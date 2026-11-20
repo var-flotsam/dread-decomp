@@ -41,16 +41,16 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassEmmyForestAIComponent, CCharClassEmmyAIComponent);
 
 // CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent
-extern bool g_unk_71726dbb58;
-extern UnkTunable g_unk_71726db920;
+namespace CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent { extern bool refl_fields_added asm("g_unk_71726dbb58"); }
+namespace CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726db920"); }
 void fn_71004f2204(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CEmmyConfiguration { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726dbb58)
+    if (refl_fields_added)
         return;
-    g_unk_71726dbb58 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_CLASS_FIELD(CEmmyConfiguration, "rConfig", 0x28);
@@ -58,7 +58,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fHeadHeatIncrementFactorForGround", 0x22c, (DefaultValue, 0.1f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToStartHeatRecover", 0x230, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fHeadHeatRecoveredPerSecond", 0x234, (DefaultValue, 0.15f));
-    fn_71004f2204(base::reflection::TunableRegistry(), &g_unk_71726db920, "Emmy");
+    fn_71004f2204(base::reflection::TunableRegistry(), &refl_tunable, "Emmy");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

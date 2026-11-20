@@ -41,15 +41,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassScorpiusPoisonousSpitAttack, CCharClassScorpiusAttack);
 
 // CCharClassScorpiusPoisonousSpitAttack::CTunableCharClassScorpiusPoisonousSpitAttack
-extern bool g_unk_7172702360;
-extern UnkTunable g_unk_7172702318;
+namespace CCharClassScorpiusPoisonousSpitAttack::CTunableCharClassScorpiusPoisonousSpitAttack { extern bool refl_fields_added asm("g_unk_7172702360"); }
+namespace CCharClassScorpiusPoisonousSpitAttack::CTunableCharClassScorpiusPoisonousSpitAttack { extern UnkTunable refl_tunable asm("g_unk_7172702318"); }
 void fn_7100682d18(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassScorpiusPoisonousSpitAttack::CTunableCharClassScorpiusPoisonousSpitAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172702360)
+    if (refl_fields_added)
         return;
-    g_unk_7172702360 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true), (ShowInDevConfig, true), (Description, "Enabled"), (InternalDevTag, "Bosses|Scorpius|PoisonSpit"));
@@ -61,7 +61,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToDisapear", 0x38, (DefaultValue, 0.4f));
     DREAD_REFLECTED_FIELD(f32, "fPoisonDamagePerSecond", 0x3c, (DefaultValue, 5.0f));
     DREAD_REFLECTED_FIELD(f32, "fPoisonDamage", 0x40, (DefaultValue, 20.0f));
-    fn_7100682d18(base::reflection::TunableRegistry(), &g_unk_7172702318, "Scorpius");
+    fn_7100682d18(base::reflection::TunableRegistry(), &refl_tunable, "Scorpius");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

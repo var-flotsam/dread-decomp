@@ -79,15 +79,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CAimComponent, CComponent);
 
 // CAimComponent::CTunableAim
-extern bool g_unk_71726b1500;
-extern UnkTunable g_unk_71726b1438;
+namespace CAimComponent::CTunableAim { extern bool refl_fields_added asm("g_unk_71726b1500"); }
+namespace CAimComponent::CTunableAim { extern UnkTunable refl_tunable asm("g_unk_71726b1438"); }
 void fn_7100342780(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAimComponent::CTunableAim {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726b1500)
+    if (refl_fields_added)
         return;
-    g_unk_71726b1500 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vLaserLockedColor0", 0x24, (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 0.0f}), (Description, "Laser locked constat 0"));
@@ -114,7 +114,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFrontDownDown", 0xb8, (DefaultValue, -1.1780972f));
     DREAD_REFLECTED_FIELD(f32, "fFrontLockUp", 0xbc, (DefaultValue, 0.19634955f));
     DREAD_REFLECTED_FIELD(f32, "fFrontLockDown", 0xc0, (DefaultValue, -0.19634955f));
-    fn_7100342780(base::reflection::TunableRegistry(), &g_unk_71726b1438, "Aim");
+    fn_7100342780(base::reflection::TunableRegistry(), &refl_tunable, "Aim");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

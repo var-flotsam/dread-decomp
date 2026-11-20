@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAutsharpAIComponent::CTunableCharClassAutsharpAIComponent
-extern bool g_unk_71726bf130;
-extern UnkTunable g_unk_71726bf0f8;
+namespace CCharClassAutsharpAIComponent::CTunableCharClassAutsharpAIComponent { extern bool refl_fields_added asm("g_unk_71726bf130"); }
+namespace CCharClassAutsharpAIComponent::CTunableCharClassAutsharpAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726bf0f8"); }
 void fn_71003d18e8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassAutsharpAIComponent::CTunableCharClassAutsharpAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726bf130)
+    if (refl_fields_added)
         return;
-    g_unk_71726bf130 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bCanBeSpawned", 0x21, (DefaultValue, true), (Description, "Autsharp can be spawned"));
@@ -37,7 +37,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToPrepareExplosion", 0x28, (DefaultValue, 1.0f), (Description, "Time to prepare the explosion"));
     DREAD_REFLECTED_FIELD(f32, "fRotationInc", 0x2c, (DefaultValue, 1.0f), (Description, "Rotation incrementation time"));
     DREAD_REFLECTED_FIELD(f32, "fRotationMultiplier", 0x30, (DefaultValue, 2.0f), (Description, "Base rotation multiplier"));
-    fn_71003d18e8(base::reflection::TunableRegistry(), &g_unk_71726bf0f8, "Autsharp");
+    fn_71003d18e8(base::reflection::TunableRegistry(), &refl_tunable, "Autsharp");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

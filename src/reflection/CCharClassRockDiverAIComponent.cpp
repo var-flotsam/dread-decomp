@@ -43,19 +43,19 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassRockDiverAIComponent, CCharClassBehaviorTreeAIComponent);
 
 // CCharClassRockDiverAIComponent::CTunableCharClassRockDiverAIComponent
-extern bool g_unk_71726fd538;
-extern UnkTunable g_unk_71726fd510;
+namespace CCharClassRockDiverAIComponent::CTunableCharClassRockDiverAIComponent { extern bool refl_fields_added asm("g_unk_71726fd538"); }
+namespace CCharClassRockDiverAIComponent::CTunableCharClassRockDiverAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726fd510"); }
 void fn_7100662b70(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassRockDiverAIComponent::CTunableCharClassRockDiverAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726fd538)
+    if (refl_fields_added)
         return;
-    g_unk_71726fd538 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x24, (DefaultValue, 0.0f));
-    fn_7100662b70(base::reflection::TunableRegistry(), &g_unk_71726fd510, "RockDiver");
+    fn_7100662b70(base::reflection::TunableRegistry(), &refl_tunable, "RockDiver");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CGunComponent::CTunableGunComponent
-extern bool g_unk_7172726270;
-extern UnkTunable g_unk_7172726228;
+namespace CGunComponent::CTunableGunComponent { extern bool refl_fields_added asm("g_unk_7172726270"); }
+namespace CGunComponent::CTunableGunComponent { extern UnkTunable refl_tunable asm("g_unk_7172726228"); }
 void fn_7100837e98(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CGunComponent::CTunableGunComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172726270)
+    if (refl_fields_added)
         return;
-    g_unk_7172726270 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fPowerBombMinTimeToStartCharge", 0x24, (DefaultValue, 0.1f), (Description, "Min time to Start Recharge"));
@@ -40,7 +40,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDiffusionFireChargeMinTime", 0x38, (DefaultValue, 0.0f), (Description, "Min time to Start Charge Diffusion Beams"));
     DREAD_REFLECTED_FIELD(f32, "fDiffusionFireChargeMaxTime", 0x3c, (DefaultValue, 0.0f), (Description, "Max time to End Charge Diffusion Beams"));
     DREAD_REFLECTED_FIELD(f32, "fIgnoreFireAfterChargeReleasedTime", 0x40, (DefaultValue, 0.2f), (Description, "Time after firing a charged beam that the fire input is ignored"));
-    fn_7100837e98(base::reflection::TunableRegistry(), &g_unk_7172726228, "Gun");
+    fn_7100837e98(base::reflection::TunableRegistry(), &refl_tunable, "Gun");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

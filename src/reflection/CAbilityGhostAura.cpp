@@ -41,15 +41,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CAbilityGhostAura, CAbility);
 
 // CAbilityGhostAura::CTunableAbilityGhostAura
-extern bool g_unk_71726af450;
-extern UnkTunable g_unk_71726af3a0;
+namespace CAbilityGhostAura::CTunableAbilityGhostAura { extern bool refl_fields_added asm("g_unk_71726af450"); }
+namespace CAbilityGhostAura::CTunableAbilityGhostAura { extern UnkTunable refl_tunable asm("g_unk_71726af3a0"); }
 void fn_7100308690(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAbilityGhostAura::CTunableAbilityGhostAura {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726af450)
+    if (refl_fields_added)
         return;
-    g_unk_71726af450 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinDistance", 0x24, (DefaultValue, 100.0f));
@@ -90,7 +90,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bChainWithDirectionTrigger", 0xa8, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bChainWithButtonTrigger", 0xa7, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bCloseAnimationWithoutInput", 0xa9, (DefaultValue, false));
-    fn_7100308690(base::reflection::TunableRegistry(), &g_unk_71726af3a0, "");
+    fn_7100308690(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

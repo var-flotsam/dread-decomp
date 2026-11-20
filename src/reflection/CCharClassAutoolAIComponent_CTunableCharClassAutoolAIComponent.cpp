@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent
-extern bool g_unk_71726beb68;
-extern UnkTunable g_unk_71726beb18;
+namespace CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent { extern bool refl_fields_added asm("g_unk_71726beb68"); }
+namespace CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726beb18"); }
 void fn_71003c82a0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726beb68)
+    if (refl_fields_added)
         return;
-    g_unk_71726beb68 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bRepairEnabled", 0x21, (DefaultValue, true), (ShowInDevConfig, true), (Description, "Repair points"), (InternalDevTag, "RegularEnemies|Autool"));
@@ -43,7 +43,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxAcceleration", 0x40, (DefaultValue, 1.5f));
     DREAD_REFLECTED_FIELD(f32, "fMinAcceleration", 0x44, (DefaultValue, 0.8f));
     DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x48, (DefaultValue, 800.0f), (ShowInDevConfig, true), (Description, "Motion speed"), (MinValue, 0.0f), (MaxValue, 5000.0f), (ControlFloatStep, 50.0f), (InternalDevTag, "RegularEnemies|Autool"));
-    fn_71003c82a0(base::reflection::TunableRegistry(), &g_unk_71726beb18, "Autool");
+    fn_71003c82a0(base::reflection::TunableRegistry(), &refl_tunable, "Autool");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -22,15 +22,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CAIManager::CTunableAIManager
-extern bool g_unk_71727bc590;
-extern UnkTunable g_unk_71727bc558;
+namespace CAIManager::CTunableAIManager { extern bool refl_fields_added asm("g_unk_71727bc590"); }
+namespace CAIManager::CTunableAIManager { extern UnkTunable refl_tunable asm("g_unk_71727bc558"); }
 void fn_7100da7b74(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAIManager::CTunableAIManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727bc590)
+    if (refl_fields_added)
         return;
-    g_unk_71727bc590 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(s32, "iIgnorePlayerMode", 0x24, (DefaultValue, 0));
@@ -40,7 +40,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bShowEnemyDamage", 0x31, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bShowPlayerDamage", 0x32, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fDistanceToDestroyProjectile", 0x34, (DefaultValue, 3000.0f));
-    fn_7100da7b74(base::reflection::TunableRegistry(), &g_unk_71727bc558, "AI");
+    fn_7100da7b74(base::reflection::TunableRegistry(), &refl_tunable, "AI");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

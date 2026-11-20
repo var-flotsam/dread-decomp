@@ -21,19 +21,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // base::input::CRumbleManager::CTunableRumbleManager
-extern bool g_unk_7101d58710;
-extern UnkTunable g_unk_7101d586e8;
+namespace base::input::CRumbleManager::CTunableRumbleManager { extern bool refl_fields_added asm("g_unk_7101d58710"); }
+namespace base::input::CRumbleManager::CTunableRumbleManager { extern UnkTunable refl_tunable asm("g_unk_7101d586e8"); }
 void fn_7100072940(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace base::input::CRumbleManager::CTunableRumbleManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7101d58710)
+    if (refl_fields_added)
         return;
-    g_unk_7101d58710 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMainGain", 0x24, (DefaultValue, 1.0f), (Description, "Main Gain"));
-    fn_7100072940(base::reflection::TunableRegistry(), &g_unk_7101d586e8, "Rumble");
+    fn_7100072940(base::reflection::TunableRegistry(), &refl_tunable, "Rumble");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

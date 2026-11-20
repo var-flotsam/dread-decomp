@@ -24,20 +24,20 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCooldownXBossLavaCarpetAttack::CTunableCharClassCooldownXBossLavaCarpetAttack
-extern bool g_unk_71726d1f70;
-extern UnkTunable g_unk_71726d1f48;
+namespace CCharClassCooldownXBossLavaCarpetAttack::CTunableCharClassCooldownXBossLavaCarpetAttack { extern bool refl_fields_added asm("g_unk_71726d1f70"); }
+namespace CCharClassCooldownXBossLavaCarpetAttack::CTunableCharClassCooldownXBossLavaCarpetAttack { extern UnkTunable refl_tunable asm("g_unk_71726d1f48"); }
 void fn_71004a1e80(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassCooldownXBossLavaCarpetAttack::CTunableCharClassCooldownXBossLavaCarpetAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726d1f70)
+    if (refl_fields_added)
         return;
-    g_unk_71726d1f70 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(s32, "iPattern", 0x24, (DefaultValue, -1));
-    fn_71004a1e80(base::reflection::TunableRegistry(), &g_unk_71726d1f48, "CooldownXBoss");
+    fn_71004a1e80(base::reflection::TunableRegistry(), &refl_tunable, "CooldownXBoss");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

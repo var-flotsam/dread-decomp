@@ -32,15 +32,15 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CCharClassAttackComponent::CTunableCharClassAttackComponent
-extern bool g_unk_71727165a8;
-extern UnkTunable g_unk_7172716160;
+namespace CCharClassAttackComponent::CTunableCharClassAttackComponent { extern bool refl_fields_added asm("g_unk_71727165a8"); }
+namespace CCharClassAttackComponent::CTunableCharClassAttackComponent { extern UnkTunable refl_tunable asm("g_unk_7172716160"); }
 void fn_7100789ca4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassAttackComponent::CTunableCharClassAttackComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727165a8)
+    if (refl_fields_added)
         return;
-    g_unk_71727165a8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamageArmadiggerDefault", 0x24, (DefaultValue, 20.0f));
@@ -306,7 +306,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDamageFulmiteBellyMineExplosionDefault", 0x438, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageInfesterBallExplosionDefault", 0x43c, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageCooldownXBossLaser", 0x440, (DefaultValue, 50.0f));
-    fn_7100789ca4(base::reflection::TunableRegistry(), &g_unk_7172716160, "Damage");
+    fn_7100789ca4(base::reflection::TunableRegistry(), &refl_tunable, "Damage");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

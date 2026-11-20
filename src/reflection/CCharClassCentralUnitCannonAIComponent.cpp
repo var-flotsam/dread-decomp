@@ -41,22 +41,22 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassCentralUnitCannonAIComponent, CCharClassAIComponent);
 
 // CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent
-extern bool g_unk_71726c32d8;
-extern UnkTunable g_unk_71726c32a0;
+namespace CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent { extern bool refl_fields_added asm("g_unk_71726c32d8"); }
+namespace CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726c32a0"); }
 void fn_71003ff338(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726c32d8)
+    if (refl_fields_added)
         return;
-    g_unk_71726c32d8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fAimAngleInterpolationSpeed", 0x24, (DefaultValue, 1.5f));
     DREAD_REFLECTED_FIELD(f32, "fAimAngleTolerance", 0x28, (DefaultValue, 0.1f));
     DREAD_REFLECTED_FIELD(f32, "fAttackPreparationTime", 0x2c, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fAttackCooldownTime", 0x30, (DefaultValue, 1.0f));
-    fn_71003ff338(base::reflection::TunableRegistry(), &g_unk_71726c32a0, "CentralUnitCannon");
+    fn_71003ff338(base::reflection::TunableRegistry(), &refl_tunable, "CentralUnitCannon");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

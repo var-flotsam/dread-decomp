@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CDropComponent::CTunableDropComponent
-extern bool g_unk_717271b6b0;
-extern UnkTunable g_unk_717271b668;
+namespace CDropComponent::CTunableDropComponent { extern bool refl_fields_added asm("g_unk_717271b6b0"); }
+namespace CDropComponent::CTunableDropComponent { extern UnkTunable refl_tunable asm("g_unk_717271b668"); }
 void fn_71007c1420(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CDropComponent::CTunableDropComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717271b6b0)
+    if (refl_fields_added)
         return;
-    g_unk_717271b6b0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fTimeToFade", 0x24, (DefaultValue, 1.5f));
@@ -44,7 +44,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bApplyLowHealthRuleCountingPreviousDrops", 0x39, (DefaultValue, true), (Description, "When under critical health, whether to force low health drops when current life plus current drops would make player leave low health zone"));
     DREAD_REFLECTED_FIELD(f32, "fXParasiteOrangeReductionOnFullPowerBombAmmo", 0x3c, (DefaultValue, 0.5f), (Description, "When dropping X-Parasites, if Power Bomb ammo is full, reduce base orange parasite probability by this factor"));
     DREAD_REFLECTED_FIELD(f32, "fXParasiteOrangeRelativeProbabilityOnOtherResourcesFull", 0x40, (DefaultValue, 0.5f), (Description, "When dropping X-Parasite, if Power Bomb ammo is empty and other resources are full (life, missiles), alter orange parasite probability to be this relative value within the total parasite probabilities"));
-    fn_71007c1420(base::reflection::TunableRegistry(), &g_unk_717271b668, "Drop");
+    fn_71007c1420(base::reflection::TunableRegistry(), &refl_tunable, "Drop");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

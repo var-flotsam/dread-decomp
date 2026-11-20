@@ -41,15 +41,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassGroundShockerAttack, CCharClassAttack);
 
 // CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack
-extern bool g_unk_71726e7c20;
-extern UnkTunable g_unk_71726e7be0;
+namespace CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack { extern bool refl_fields_added asm("g_unk_71726e7c20"); }
+namespace CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack { extern UnkTunable refl_tunable asm("g_unk_71726e7be0"); }
 void fn_710059fc94(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726e7c20)
+    if (refl_fields_added)
         return;
-    g_unk_71726e7c20 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
@@ -58,7 +58,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fHitLoopDuration", 0x30, (DefaultValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fVulnerableAfterHitDuration", 0x34, (DefaultValue, 2.5f));
     DREAD_REFLECTED_FIELD(f32, "fVulnerableOnPushDuration", 0x38, (DefaultValue, 2.5f));
-    fn_710059fc94(base::reflection::TunableRegistry(), &g_unk_71726e7be0, "GroundShocker");
+    fn_710059fc94(base::reflection::TunableRegistry(), &refl_tunable, "GroundShocker");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

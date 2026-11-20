@@ -49,22 +49,22 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CSPBGun, CBeamGun);
 
 // CSPBGun::CTunableSPB
-extern bool g_unk_71727285e8;
-extern UnkTunable g_unk_71727285b0;
+namespace CSPBGun::CTunableSPB { extern bool refl_fields_added asm("g_unk_71727285e8"); }
+namespace CSPBGun::CTunableSPB { extern UnkTunable refl_tunable asm("g_unk_71727285b0"); }
 void fn_710085d78c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSPBGun::CTunableSPB {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727285e8)
+    if (refl_fields_added)
         return;
-    g_unk_71727285e8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
     DREAD_REFLECTED_FIELD(f32, "fChargeDamageMult", 0x28, (DefaultValue, 0.0f), (Description, "Single charged shot damage multiplier"));
     DREAD_REFLECTED_FIELD(f32, "fMaximumHeat", 0x2c, (DefaultValue, 0.75f), (Description, "Maximun damage to the shield"));
     DREAD_REFLECTED_FIELD(f32, "fFractionOfHeatAddedPerShot", 0x30, (DefaultValue, 0.0f), (Description, "fraction of heat incremented per shot"));
-    fn_710085d78c(base::reflection::TunableRegistry(), &g_unk_71727285b0, "");
+    fn_710085d78c(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

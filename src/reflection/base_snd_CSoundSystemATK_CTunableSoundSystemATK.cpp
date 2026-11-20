@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // base::snd::CSoundSystemATK::CTunableSoundSystemATK
-extern bool g_unk_7101d685c0;
-extern UnkTunable g_unk_7101d68580;
+namespace base::snd::CSoundSystemATK::CTunableSoundSystemATK { extern bool refl_fields_added asm("g_unk_7101d685c0"); }
+namespace base::snd::CSoundSystemATK::CTunableSoundSystemATK { extern UnkTunable refl_tunable asm("g_unk_7101d68580"); }
 void fn_71000f60e4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace base::snd::CSoundSystemATK::CTunableSoundSystemATK {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7101d685c0)
+    if (refl_fields_added)
         return;
-    g_unk_7101d685c0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMainVolume", 0x24, (DefaultValue, 0.5f), (Description, "Main Volume"));
@@ -39,7 +39,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fGruntVolume", 0x34, (DefaultValue, 0.5f), (Description, "Grunt Volume"));
     DREAD_REFLECTED_FIELD(f32, "fGUIVolume", 0x38, (DefaultValue, 0.5f), (Description, "GUI Volume"));
     DREAD_REFLECTED_FIELD(f32, "fEnvironmentStreamsVolume", 0x3c, (DefaultValue, 0.5f), (Description, "Environment Streams Volume"));
-    fn_71000f60e4(base::reflection::TunableRegistry(), &g_unk_7101d68580, "Sounds");
+    fn_71000f60e4(base::reflection::TunableRegistry(), &refl_tunable, "Sounds");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

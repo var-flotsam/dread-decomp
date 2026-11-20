@@ -47,20 +47,20 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassSabotoruAIComponent, CCharClassBehaviorTreeAIComponent);
 
 // CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent
-extern bool g_unk_7172700858;
-extern UnkTunable g_unk_7172700828;
+namespace CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent { extern bool refl_fields_added asm("g_unk_7172700858"); }
+namespace CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent { extern UnkTunable refl_tunable asm("g_unk_7172700828"); }
 void fn_7100677068(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172700858)
+    if (refl_fields_added)
         return;
-    g_unk_7172700858 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDoorLife", 0x24, (DefaultValue, 2500.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToStopPanic", 0x28, (DefaultValue, 10.0f));
-    fn_7100677068(base::reflection::TunableRegistry(), &g_unk_7172700828, "Sabotoru");
+    fn_7100677068(base::reflection::TunableRegistry(), &refl_tunable, "Sabotoru");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

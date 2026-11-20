@@ -44,19 +44,19 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CAutofocusAimCameraCtrl, CCameraCtrl);
 
 // CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl
-extern bool g_unk_717270f988;
+namespace CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl { extern bool refl_fields_added asm("g_unk_717270f988"); }
 void fn_71007236e4();
 void fn_7100721b74(UnkReflFunction* fn, const char* name);
 void fn_710072378c();
 void fn_7100721cf0(UnkReflFunction* fn, const char* name);
-extern UnkTunable g_unk_717270f910;
+namespace CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl { extern UnkTunable refl_tunable asm("g_unk_717270f910"); }
 void fn_7100721e6c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717270f988)
+    if (refl_fields_added)
         return;
-    g_unk_717270f988 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bForceActivation", 0x21, (DefaultValue, false));
@@ -81,7 +81,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_iAimNewCameraInputMode_SetterFunction")
         fn_7100721cf0(fn, "_iAimNewCameraInputMode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iAimNewCameraInputMode", (DefaultValue, 1));
-    fn_7100721e6c(base::reflection::TunableRegistry(), &g_unk_717270f910, "AutofocusAimCameraCtrl");
+    fn_7100721e6c(base::reflection::TunableRegistry(), &refl_tunable, "AutofocusAimCameraCtrl");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

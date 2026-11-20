@@ -48,15 +48,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassRodotukAIComponent, CCharClassBehaviorTreeAIComponent);
 
 // CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent
-extern bool g_unk_71726fee40;
-extern UnkTunable g_unk_71726fedf0;
+namespace CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent { extern bool refl_fields_added asm("g_unk_71726fee40"); }
+namespace CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726fedf0"); }
 void fn_710066db90(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726fee40)
+    if (refl_fields_added)
         return;
-    g_unk_71726fee40 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fBaseAbsorbDistance", 0x28, (DefaultValue, 800.0f));
@@ -69,7 +69,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fBombAbsorbBaseSpeed", 0x40, (DefaultValue, 1000.0f));
     DREAD_REFLECTED_FIELD(f32, "fBombAbsorbAcceleration", 0x44, (DefaultValue, 800.0f));
     DREAD_REFLECTED_FIELD(f32, "fBiteAnticipationDistance", 0x48, (DefaultValue, 400.0f));
-    fn_710066db90(base::reflection::TunableRegistry(), &g_unk_71726fedf0, "Rodotuk");
+    fn_710066db90(base::reflection::TunableRegistry(), &refl_tunable, "Rodotuk");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

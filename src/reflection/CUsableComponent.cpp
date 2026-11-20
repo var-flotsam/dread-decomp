@@ -75,15 +75,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CUsableComponent, CComponent);
 
 // CUsableComponent::CTunableUsableComponent
-extern bool g_unk_7172753258;
-extern UnkTunable g_unk_71727531f0;
+namespace CUsableComponent::CTunableUsableComponent { extern bool refl_fields_added asm("g_unk_7172753258"); }
+namespace CUsableComponent::CTunableUsableComponent { extern UnkTunable refl_tunable asm("g_unk_71727531f0"); }
 void fn_7100a9d8f4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CUsableComponent::CTunableUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172753258)
+    if (refl_fields_added)
         return;
-    g_unk_7172753258 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fOnLoadBackGroundTimeMax", 0x24, (DefaultValue, 0.0f), (Description, "Max time to stay on backgorund when player loads game"));
@@ -96,7 +96,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelB", 0x50, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelC", 0x58, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelC", 0x60, (DefaultValue, CStrId(CStrId::Empty())));
-    fn_7100a9d8f4(base::reflection::TunableRegistry(), &g_unk_71727531f0, "Logic");
+    fn_7100a9d8f4(base::reflection::TunableRegistry(), &refl_tunable, "Logic");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

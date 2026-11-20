@@ -41,22 +41,22 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierDashSlashAttack, CCharClassAttack);
 
 // CCharClassChozoRobotSoldierDashSlashAttack::CTunableCharClassChozoRobotSoldierDashSlashAttack
-extern bool g_unk_71726cb150;
-extern UnkTunable g_unk_71726cb118;
+namespace CCharClassChozoRobotSoldierDashSlashAttack::CTunableCharClassChozoRobotSoldierDashSlashAttack { extern bool refl_fields_added asm("g_unk_71726cb150"); }
+namespace CCharClassChozoRobotSoldierDashSlashAttack::CTunableCharClassChozoRobotSoldierDashSlashAttack { extern UnkTunable refl_tunable asm("g_unk_71726cb118"); }
 void fn_7100462138(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoRobotSoldierDashSlashAttack::CTunableCharClassChozoRobotSoldierDashSlashAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726cb150)
+    if (refl_fields_added)
         return;
-    g_unk_71726cb150 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 700.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxTraveledDistance", 0x2c, (DefaultValue, 800.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToDisableAttackAfterMeleeSuccess", 0x30, (DefaultValue, 15.0f));
-    fn_7100462138(base::reflection::TunableRegistry(), &g_unk_71726cb118, "ChozoRobotSoldier");
+    fn_7100462138(base::reflection::TunableRegistry(), &refl_tunable, "ChozoRobotSoldier");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

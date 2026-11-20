@@ -26,15 +26,15 @@ namespace base::global { template <class> class CRntVector; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTentacle>>>::object asm("g_unk_717270d668");
 
 // CCharClassHydrogigaAIComponent::CTunableCharClassHydrogigaAIComponent
-extern bool g_unk_71726eb130;
-extern UnkTunable g_unk_71726eb108;
+namespace CCharClassHydrogigaAIComponent::CTunableCharClassHydrogigaAIComponent { extern bool refl_fields_added asm("g_unk_71726eb130"); }
+namespace CCharClassHydrogigaAIComponent::CTunableCharClassHydrogigaAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726eb108"); }
 void fn_71005b87f0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassHydrogigaAIComponent::CTunableCharClassHydrogigaAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726eb130)
+    if (refl_fields_added)
         return;
-    g_unk_71726eb130 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "HYDROGIGA_BRAID_ATTACK", 0x21, (DefaultValue, true));
@@ -42,7 +42,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "HYDROGIGA_POLYPS_ATTACK", 0x23, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "HYDROGIGA_TENTACLE_BASH_ATTACK", 0x24, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "HYDROGIGA_TONGUE_SWIRL_ATTACK", 0x25, (DefaultValue, true));
-    fn_71005b87f0(base::reflection::TunableRegistry(), &g_unk_71726eb108, "Hydrogiga");
+    fn_71005b87f0(base::reflection::TunableRegistry(), &refl_tunable, "Hydrogiga");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -52,17 +52,17 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CBombGun, CPrimaryGun);
 
 // CBombGun::CTunableBomb
-extern bool g_unk_71727254f0;
+namespace CBombGun::CTunableBomb { extern bool refl_fields_added asm("g_unk_71727254f0"); }
 void fn_7100831618();
 void fn_71008308dc(UnkReflFunction* fn, const char* name);
-extern UnkTunable g_unk_7172725488;
+namespace CBombGun::CTunableBomb { extern UnkTunable refl_tunable asm("g_unk_7172725488"); }
 void fn_7100830a58(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CBombGun::CTunableBomb {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727254f0)
+    if (refl_fields_added)
         return;
-    g_unk_71727254f0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
@@ -71,7 +71,7 @@ void refl_AddFields(CClass* cls) {
         fn_71008308dc(fn, "_sDamageSource_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CRntString, "sDamageSource", (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())), (Description, base::global::CRntString("Source of the damage to be dealt")));
     DREAD_REFLECTED_FIELD(f32, "fHeat", 0x60, (DefaultValue, 0.4f), (Description, "Maximun damage to the shield"));
-    fn_7100830a58(base::reflection::TunableRegistry(), &g_unk_7172725488, "");
+    fn_7100830a58(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

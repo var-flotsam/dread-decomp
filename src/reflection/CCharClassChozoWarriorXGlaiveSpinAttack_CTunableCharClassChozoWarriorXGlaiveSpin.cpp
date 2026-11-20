@@ -21,20 +21,20 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorXGlaiveSpinAttack::CTunableCharClassChozoWarriorXGlaiveSpinAttack
-extern bool g_unk_71726cdf58;
-extern UnkTunable g_unk_71726cdf28;
+namespace CCharClassChozoWarriorXGlaiveSpinAttack::CTunableCharClassChozoWarriorXGlaiveSpinAttack { extern bool refl_fields_added asm("g_unk_71726cdf58"); }
+namespace CCharClassChozoWarriorXGlaiveSpinAttack::CTunableCharClassChozoWarriorXGlaiveSpinAttack { extern UnkTunable refl_tunable asm("g_unk_71726cdf28"); }
 void fn_710047c1a0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoWarriorXGlaiveSpinAttack::CTunableCharClassChozoWarriorXGlaiveSpinAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726cdf58)
+    if (refl_fields_added)
         return;
-    g_unk_71726cdf58 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 1200.0f));
-    fn_710047c1a0(base::reflection::TunableRegistry(), &g_unk_71726cdf28, "ChozoWarriorXGlaiveSpinAttack");
+    fn_710047c1a0(base::reflection::TunableRegistry(), &refl_tunable, "ChozoWarriorXGlaiveSpinAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

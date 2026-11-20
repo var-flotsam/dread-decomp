@@ -49,21 +49,21 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CReserveTankInfo, CGameObject);
 
 // CReserveTankInfo::CTunableReserveTanks
-extern bool g_unk_71729dbbf0;
-extern UnkTunable g_unk_71729dbbc0;
+namespace CReserveTankInfo::CTunableReserveTanks { extern bool refl_fields_added asm("g_unk_71729dbbf0"); }
+namespace CReserveTankInfo::CTunableReserveTanks { extern UnkTunable refl_tunable asm("g_unk_71729dbbc0"); }
 void fn_7100f105b8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CReserveTankInfo::CTunableReserveTanks {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71729dbbf0)
+    if (refl_fields_added)
         return;
-    g_unk_71729dbbf0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fLifeTankSize", 0x24, (DefaultValue, 99.0f), (Description, "Size of the life tank"));
     DREAD_REFLECTED_FIELD(f32, "fSETankSize", 0x28, (DefaultValue, 500.0f), (Description, "Size of the special energy tank"));
     DREAD_REFLECTED_FIELD(f32, "fMissileTankSize", 0x2c, (DefaultValue, 30.0f), (Description, "Size of the missile tank"));
-    fn_7100f105b8(base::reflection::TunableRegistry(), &g_unk_71729dbbc0, "Amiibo");
+    fn_7100f105b8(base::reflection::TunableRegistry(), &refl_tunable, "Amiibo");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

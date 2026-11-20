@@ -41,15 +41,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CHyperBeamGun, CBeamGun);
 
 // CHyperBeamGun::CTunableHyperBeam
-extern bool g_unk_7172726568;
-extern UnkTunable g_unk_7172726520;
+namespace CHyperBeamGun::CTunableHyperBeam { extern bool refl_fields_added asm("g_unk_7172726568"); }
+namespace CHyperBeamGun::CTunableHyperBeam { extern UnkTunable refl_tunable asm("g_unk_7172726520"); }
 void fn_7100843194(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CHyperBeamGun::CTunableHyperBeam {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172726568)
+    if (refl_fields_added)
         return;
-    g_unk_7172726568 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
@@ -61,7 +61,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSingleFireChargeTime", 0x3c, (DefaultValue, 0.5f), (Description, "Time to charge when you fire after releasing the button for a period of time"));
     DREAD_REFLECTED_FIELD(f32, "fRepeatedlyFireChargeTime", 0x40, (DefaultValue, 0.3f), (Description, "Time to charge if you trigger the fire button multiple times"));
     DREAD_REFLECTED_FIELD(f32, "fInterruptFireChargeTime", 0x44, (DefaultValue, 0.07f), (Description, "Time to charge if the beam was interrupted without releasing the fire button"));
-    fn_7100843194(base::reflection::TunableRegistry(), &g_unk_7172726520, "");
+    fn_7100843194(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

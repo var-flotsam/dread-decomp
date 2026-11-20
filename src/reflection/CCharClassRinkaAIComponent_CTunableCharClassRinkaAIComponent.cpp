@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassRinkaAIComponent::CTunableCharClassRinkaAIComponent
-extern bool g_unk_71726fc750;
-extern UnkTunable g_unk_71726fc718;
+namespace CCharClassRinkaAIComponent::CTunableCharClassRinkaAIComponent { extern bool refl_fields_added asm("g_unk_71726fc750"); }
+namespace CCharClassRinkaAIComponent::CTunableCharClassRinkaAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726fc718"); }
 void fn_710065c5ac(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassRinkaAIComponent::CTunableCharClassRinkaAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726fc750)
+    if (refl_fields_added)
         return;
-    g_unk_71726fc750 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fInitialScale", 0x24, (DefaultValue, 0.1f), (ShowInDevConfig, true), (Description, "Rinka initial scale"), (MinValue, 0.0f), (MaxValue, 1.0f), (ControlFloatStep, 0.05f), (InternalDevTag, "MidBosses"));
@@ -37,7 +37,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fATypeMotionSpeed", 0x2c, (DefaultValue, 400.0f), (ShowInConfig, true), (ShowInDevConfig, true), (Description, "Rinka Type A speed"), (MinValue, 0.0f), (MaxValue, 10000.0f), (ControlFloatStep, 10.0f), (InternalTag, "MidBosses"), (InternalDevTag, "MidBosses"));
     DREAD_REFLECTED_FIELD(f32, "fBTypeMotionSpeed", 0x30, (DefaultValue, 800.0f), (ShowInConfig, true), (ShowInDevConfig, true), (Description, "Rinka Type B speed"), (MinValue, 0.0f), (MaxValue, 10000.0f), (ControlFloatStep, 10.0f), (InternalTag, "MidBosses"), (InternalDevTag, "MidBosses"));
     DREAD_REFLECTED_FIELD(f32, "fCTypeMotionSpeed", 0x34, (DefaultValue, 400.0f), (ShowInConfig, true), (ShowInDevConfig, true), (Description, "Rinka Type C speed"), (MinValue, 0.0f), (MaxValue, 10000.0f), (ControlFloatStep, 10.0f), (InternalTag, "MidBosses"), (InternalDevTag, "MidBosses"));
-    fn_710065c5ac(base::reflection::TunableRegistry(), &g_unk_71726fc718, "Rinka");
+    fn_710065c5ac(base::reflection::TunableRegistry(), &refl_tunable, "Rinka");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

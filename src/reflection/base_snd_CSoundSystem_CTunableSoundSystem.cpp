@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // base::snd::CSoundSystem::CTunableSoundSystem
-extern bool g_unk_7108b6c620;
-extern UnkTunable g_unk_7108b6c5f0;
+namespace base::snd::CSoundSystem::CTunableSoundSystem { extern bool refl_fields_added asm("g_unk_7108b6c620"); }
+namespace base::snd::CSoundSystem::CTunableSoundSystem { extern UnkTunable refl_tunable asm("g_unk_7108b6c5f0"); }
 void fn_7100107410(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace base::snd::CSoundSystem::CTunableSoundSystem {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7108b6c620)
+    if (refl_fields_added)
         return;
-    g_unk_7108b6c620 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bSFXEnabled", 0x21, (DefaultValue, true), (Description, "SFX Group enabled"));
@@ -39,7 +39,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bGUIEnabled", 0x25, (DefaultValue, true), (Description, "GUI Group enabled"));
     DREAD_REFLECTED_FIELD(bool, "bENVIRONMENT_STREAMSEnabled", 0x26, (DefaultValue, true), (Description, "ENVIRONMENT_STREAMS Group enabled"));
     DREAD_REFLECTED_FIELD(bool, "bSFX_EMMYEnabled", 0x27, (DefaultValue, true), (Description, "SFX_EMMY Group enabled"));
-    fn_7100107410(base::reflection::TunableRegistry(), &g_unk_7108b6c5f0, "SoundSystem");
+    fn_7100107410(base::reflection::TunableRegistry(), &refl_tunable, "SoundSystem");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

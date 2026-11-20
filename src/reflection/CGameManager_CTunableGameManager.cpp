@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CGameManager::CTunableGameManager
-extern bool g_unk_71727be8a0;
-extern UnkTunable g_unk_71727be870;
+namespace CGameManager::CTunableGameManager { extern bool refl_fields_added asm("g_unk_71727be8a0"); }
+namespace CGameManager::CTunableGameManager { extern UnkTunable refl_tunable asm("g_unk_71727be870"); }
 void fn_7100de2e20(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CGameManager::CTunableGameManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727be8a0)
+    if (refl_fields_added)
         return;
-    g_unk_71727be8a0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(s32, "iConfigMode", 0x24, (DefaultValue, 1));
@@ -37,7 +37,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bSamusCenterPointDebug", 0x29, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bCheatDetectedDebug", 0x2a, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bForceHardMode", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    fn_7100de2e20(base::reflection::TunableRegistry(), &g_unk_71727be870, "");
+    fn_7100de2e20(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -92,19 +92,19 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CGameManager::CTunableGraphicSettings, base::tunable::CTunable);
 
 // CGameManager::CTunableMusicVolume
-extern bool g_unk_71727be900;
-extern UnkTunable g_unk_71727be8d8;
+namespace CGameManager::CTunableMusicVolume { extern bool refl_fields_added asm("g_unk_71727be900"); }
+namespace CGameManager::CTunableMusicVolume { extern UnkTunable refl_tunable asm("g_unk_71727be8d8"); }
 void fn_7100de3a68(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CGameManager::CTunableMusicVolume {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727be900)
+    if (refl_fields_added)
         return;
-    g_unk_71727be900 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fVolumeInMenu", 0x24, (DefaultValue, 0.7f), (Description, "Multiplier for the music volume in menu"));
-    fn_7100de3a68(base::reflection::TunableRegistry(), &g_unk_71727be8d8, "MUSIC");
+    fn_7100de3a68(base::reflection::TunableRegistry(), &refl_tunable, "MUSIC");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

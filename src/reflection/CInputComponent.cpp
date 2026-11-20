@@ -61,15 +61,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CInputComponent, CComponent);
 
 // CInputComponent::CTunableInputComponent
-extern bool g_unk_71727298f8;
-extern UnkTunable g_unk_71727298b0;
+namespace CInputComponent::CTunableInputComponent { extern bool refl_fields_added asm("g_unk_71727298f8"); }
+namespace CInputComponent::CTunableInputComponent { extern UnkTunable refl_tunable asm("g_unk_71727298b0"); }
 void fn_7100871330(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CInputComponent::CTunableInputComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727298f8)
+    if (refl_fields_added)
         return;
-    g_unk_71727298f8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(s32, "iWalkInputMode", 0x24, (DefaultValue, 0));
@@ -80,7 +80,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fWalkSamusMovementVolume", 0x38, (DefaultValue, 0.2f));
     DREAD_REFLECTED_FIELD(bool, "bWalkEmmySoundReverb", 0x3c, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(s32, "iInputPreset", 0x40, (DefaultValue, 0));
-    fn_7100871330(base::reflection::TunableRegistry(), &g_unk_71727298b0, "Input");
+    fn_7100871330(base::reflection::TunableRegistry(), &refl_tunable, "Input");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

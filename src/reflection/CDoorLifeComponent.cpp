@@ -131,17 +131,17 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CDoorLifeComponent, CItemLifeComponent);
 
 // CDoorLifeComponent::CTunableDoorLifeComponent
-extern bool g_unk_71727313a0;
+namespace CDoorLifeComponent::CTunableDoorLifeComponent { extern bool refl_fields_added asm("g_unk_71727313a0"); }
 void fn_71008dccec();
 void fn_71008cda44(UnkReflFunction* fn, const char* name);
-extern UnkTunable g_unk_7172731368;
+namespace CDoorLifeComponent::CTunableDoorLifeComponent { extern UnkTunable refl_tunable asm("g_unk_7172731368"); }
 void fn_71008cdbc0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CDoorLifeComponent::CTunableDoorLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727313a0)
+    if (refl_fields_added)
         return;
-    g_unk_71727313a0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fPhaseDisplacementFactorOverride", 0x24, (DefaultValue, 0.4f), (Description, "Phase Displacement Factor Override"));
@@ -151,7 +151,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_bForceAllDoorsOpened_SetterFunction")
         fn_71008cda44(fn, "_bForceAllDoorsOpened_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bForceAllDoorsOpened");
-    fn_71008cdbc0(base::reflection::TunableRegistry(), &g_unk_7172731368, "");
+    fn_71008cdbc0(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

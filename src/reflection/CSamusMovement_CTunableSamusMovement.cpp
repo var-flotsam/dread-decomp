@@ -23,15 +23,15 @@ using base::reflection::DestroyDestructorFirst;
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CSamusMovement::CTunableSamusMovement
-extern bool g_unk_7172740e60;
-extern UnkTunable g_unk_7172740de0;
+namespace CSamusMovement::CTunableSamusMovement { extern bool refl_fields_added asm("g_unk_7172740e60"); }
+namespace CSamusMovement::CTunableSamusMovement { extern UnkTunable refl_tunable asm("g_unk_7172740de0"); }
 void fn_71009dd760(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSamusMovement::CTunableSamusMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172740e60)
+    if (refl_fields_added)
         return;
-    g_unk_7172740e60 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fFallEndTransitionSpeedOut", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
@@ -59,7 +59,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bConvertToMorphBallOnWallNoLowerTunnel", 0x79, (DefaultValue, false), (Description, "When pushing a wall (runnearwall) without a lower tunnel to slide into, should we convert to MorphBall instead?"));
     DREAD_REFLECTED_FIELD(bool, "bForceSnapRotationToSides", 0x7a, (DefaultValue, false), (Description, "After each ApplyDeltas, ensure Samus is facing a valid orientation?"));
     DREAD_REFLECTED_FIELD(f32, "fTimeIgnoringKickJumpAfterWeightBlock", 0x7c, (DefaultValue, 0.3f));
-    fn_71009dd760(base::reflection::TunableRegistry(), &g_unk_7172740de0, "Samus");
+    fn_71009dd760(base::reflection::TunableRegistry(), &refl_tunable, "Samus");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

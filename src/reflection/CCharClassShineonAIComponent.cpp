@@ -47,19 +47,19 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassShineonAIComponent, CCharClassBehaviorTreeAIComponent);
 
 // CCharClassShineonAIComponent::CTunableCharClassShineonAIComponent
-extern bool g_unk_71727074c8;
-extern UnkTunable g_unk_71727074a0;
+namespace CCharClassShineonAIComponent::CTunableCharClassShineonAIComponent { extern bool refl_fields_added asm("g_unk_71727074c8"); }
+namespace CCharClassShineonAIComponent::CTunableCharClassShineonAIComponent { extern UnkTunable refl_tunable asm("g_unk_71727074a0"); }
 void fn_71006be730(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassShineonAIComponent::CTunableCharClassShineonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727074c8)
+    if (refl_fields_added)
         return;
-    g_unk_71727074c8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x24, (DefaultValue, 400.0f));
-    fn_71006be730(base::reflection::TunableRegistry(), &g_unk_71727074a0, "Shineon");
+    fn_71006be730(base::reflection::TunableRegistry(), &refl_tunable, "Shineon");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

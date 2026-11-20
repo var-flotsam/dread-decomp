@@ -41,6 +41,7 @@ Generated files are outputs: regenerate, don't edit.
 from __future__ import annotations
 
 import argparse
+import collections
 import csv
 import json
 import re
@@ -1051,6 +1052,51 @@ def typed_attribute_keys() -> dict[str, tuple[str, str]]:
     return {f"fn_{a}": (name, obj) for name, a, obj in TYPED_KEY_RE.findall(text)}
 
 
+# A reflected class's run-once guard (refl_AddFields' first statements) and its tunable object (registered in the
+# global registry), both named in the class's namespace: refl_fields_added and refl_tunable.
+GUARD_RE = re.compile(r"^    if \((g_unk_[0-9a-f]{10})\)\n        return;\n    \1 = true;$", re.M)
+TUNABLE_USE_RE = re.compile(r"\(base::reflection::TunableRegistry\(\), &(g_unk_[0-9a-f]{10}), ")
+NAMESPACE_RE = re.compile(r"^namespace ([\w:]+) \{$", re.M)
+
+
+def namespace_at(lines: list[str], i: int) -> str | None:
+    """The generated namespace block line `i` is in (`namespace X {` ... `}  // namespace`), or None."""
+    scope = None
+    for line in lines[:i]:
+        m = NAMESPACE_RE.fullmatch(line)
+        if m:
+            scope = m.group(1)
+        elif line.startswith("}  // namespace"):
+            scope = None
+    return scope
+
+
+def class_statics_by_name(text: str) -> str:
+    """`text` with each class's run-once guard and tunable object written by name, `refl_fields_added` and
+    `refl_tunable`, declared in the class's namespace with the object's own label (asm("g_unk_<addr>")) in place of
+    the file's `extern bool g_unk_<addr>;` / `extern UnkTunable g_unk_<addr>;`. An object named twice in one
+    namespace, declared otherwise or used outside its namespace keeps its address."""
+    lines = text.split(chr(10))
+    found: dict[str, tuple[str, str, str]] = {}
+    for regex, name, spelled in ((GUARD_RE, "refl_fields_added", "bool"), (TUNABLE_USE_RE, "refl_tunable", "UnkTunable")):
+        for m in regex.finditer(text):
+            scope = namespace_at(lines, text.count(chr(10), 0, m.start()))
+            if scope:
+                found.setdefault(m.group(1), (scope, name, spelled))
+    taken = collections.Counter((scope, name) for scope, name, _ in found.values())
+    for g, (scope, name, spelled) in found.items():
+        decl = f"extern {spelled} {g};"
+        if taken[(scope, name)] != 1 or lines.count(decl) != 1:
+            continue
+        uses = [i for i, line in enumerate(lines) if re.search(rf"\b{g}\b", line) and line != decl]
+        if any(namespace_at(lines, i) != scope for i in uses):
+            continue
+        for i in uses:
+            lines[i] = re.sub(rf"\b{g}\b", name, lines[i])
+        lines[lines.index(decl)] = f'namespace {scope} {{ extern {spelled} {name} asm("{g}"); }}'
+    return chr(10).join(lines)
+
+
 def typed_keys_by_name(text: str, keys: dict[str, tuple[str, str]]) -> str:
     """`text` with each attribute added under a typed key with the key's own type, `Add<T>(fn_<key>(), &<type>,
     v)`, written `Add<T>(base::reflection::attr::<Name>(), v)` (the same key and type); the getter's declaration
@@ -1607,7 +1653,7 @@ def main() -> int:
     typed_keys = typed_attribute_keys()
     for f in sorted(OUT.glob("*.cpp")):
         old = f.read_text(encoding="utf-8")
-        new = with_registry_include(functions_in_one_line(typed_keys_by_name(old, typed_keys)))
+        new = with_registry_include(class_statics_by_name(functions_in_one_line(typed_keys_by_name(old, typed_keys))))
         if new != old:
             f.write_text(new, encoding="utf-8", newline=chr(10))
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")

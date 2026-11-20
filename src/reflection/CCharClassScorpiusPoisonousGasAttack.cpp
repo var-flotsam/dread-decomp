@@ -44,15 +44,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassScorpiusPoisonousGasAttack, CCharClassScorpiusAttack);
 
 // CCharClassScorpiusPoisonousGasAttack::CTunableCharClassScorpiusPoisonousGasAttack
-extern bool g_unk_7172702070;
-extern UnkTunable g_unk_7172702030;
+namespace CCharClassScorpiusPoisonousGasAttack::CTunableCharClassScorpiusPoisonousGasAttack { extern bool refl_fields_added asm("g_unk_7172702070"); }
+namespace CCharClassScorpiusPoisonousGasAttack::CTunableCharClassScorpiusPoisonousGasAttack { extern UnkTunable refl_tunable asm("g_unk_7172702030"); }
 void fn_71006817b4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassScorpiusPoisonousGasAttack::CTunableCharClassScorpiusPoisonousGasAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172702070)
+    if (refl_fields_added)
         return;
-    g_unk_7172702070 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
@@ -63,7 +63,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fShockWaveTimeGrowing", 0x34, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fShockWaveTimeAtMaxRadius", 0x38, (DefaultValue, 6.0f));
     DREAD_REFLECTED_FIELD(f32, "fMinChargingTime", 0x3c, (DefaultValue, 1.0f));
-    fn_71006817b4(base::reflection::TunableRegistry(), &g_unk_7172702030, "Scorpius");
+    fn_71006817b4(base::reflection::TunableRegistry(), &refl_tunable, "Scorpius");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -21,19 +21,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharacterMovement::CTunableCharacterMovement
-extern bool g_unk_717273a7c8;
-extern UnkTunable g_unk_717273a7a0;
+namespace CCharacterMovement::CTunableCharacterMovement { extern bool refl_fields_added asm("g_unk_717273a7c8"); }
+namespace CCharacterMovement::CTunableCharacterMovement { extern UnkTunable refl_tunable asm("g_unk_717273a7a0"); }
 void fn_7100975880(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharacterMovement::CTunableCharacterMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717273a7c8)
+    if (refl_fields_added)
         return;
-    g_unk_717273a7c8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fFixPositionDefaultTolerance", 0x24, (DefaultValue, 42.0f), (Description, "Fix position default tolerance"));
-    fn_7100975880(base::reflection::TunableRegistry(), &g_unk_717273a7a0, "Player");
+    fn_7100975880(base::reflection::TunableRegistry(), &refl_tunable, "Player");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

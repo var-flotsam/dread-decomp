@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBlockableWarningRadius::CTunableCharClassBlockableWarningRadius
-extern bool g_unk_71726c48f8;
-extern UnkTunable g_unk_71726c4890;
+namespace CCharClassBlockableWarningRadius::CTunableCharClassBlockableWarningRadius { extern bool refl_fields_added asm("g_unk_71726c48f8"); }
+namespace CCharClassBlockableWarningRadius::CTunableCharClassBlockableWarningRadius { extern UnkTunable refl_tunable asm("g_unk_71726c4890"); }
 void fn_7100417f14(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassBlockableWarningRadius::CTunableCharClassBlockableWarningRadius {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726c48f8)
+    if (refl_fields_added)
         return;
-    g_unk_71726c48f8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusGooplot", 0x24, (DefaultValue, 800.0f));
@@ -48,7 +48,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusSakai", 0x58, (DefaultValue, 1000.0f));
     DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusSharpaw", 0x5c, (DefaultValue, 700.0f));
     DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusQuetshockerX", 0x60, (DefaultValue, 1200.0f));
-    fn_7100417f14(base::reflection::TunableRegistry(), &g_unk_71726c4890, "BlockableWarningRadius");
+    fn_7100417f14(base::reflection::TunableRegistry(), &refl_tunable, "BlockableWarningRadius");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -36,17 +36,17 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CEmmyAIComponent::CTunableEmmyAIComponent
-extern bool g_unk_71726e0bb0;
+namespace CEmmyAIComponent::CTunableEmmyAIComponent { extern bool refl_fields_added asm("g_unk_71726e0bb0"); }
 void fn_7100564f50();
 void fn_710053b4fc(UnkReflFunction* fn, const char* name);
-extern UnkTunable g_unk_71726e0aa8;
+namespace CEmmyAIComponent::CTunableEmmyAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726e0aa8"); }
 void fn_710053b678(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CEmmyAIComponent::CTunableEmmyAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726e0bb0)
+    if (refl_fields_added)
         return;
-    g_unk_71726e0bb0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD_OF("base::snd::ELowPassFilter", "eEmmyOutsideRoomLPF", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
@@ -118,7 +118,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bAlwaysWinQTE1", 0xf5, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fCentralUnitAlarmVolumeOnGrab", 0xf8, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fTimeInFrustumToMarkEmmySeen", 0xfc, (DefaultValue, 1.0f));
-    fn_710053b678(base::reflection::TunableRegistry(), &g_unk_71726e0aa8, "Emmy");
+    fn_710053b678(base::reflection::TunableRegistry(), &refl_tunable, "Emmy");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

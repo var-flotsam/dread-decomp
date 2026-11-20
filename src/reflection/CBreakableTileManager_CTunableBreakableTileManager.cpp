@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CBreakableTileManager::CTunableBreakableTileManager
-extern bool g_unk_7172796970;
-extern UnkTunable g_unk_7172796920;
+namespace CBreakableTileManager::CTunableBreakableTileManager { extern bool refl_fields_added asm("g_unk_7172796970"); }
+namespace CBreakableTileManager::CTunableBreakableTileManager { extern UnkTunable refl_tunable asm("g_unk_7172796920"); }
 void fn_7100ca4c4c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CBreakableTileManager::CTunableBreakableTileManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172796970)
+    if (refl_fields_added)
         return;
-    g_unk_7172796970 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fPowerBeamRespawnTime", 0x24, (DefaultValue, 5.0f));
@@ -42,7 +42,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSpeedBoostRespawnTime", 0x40, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fChainDestructionTimePerTile", 0x44, (DefaultValue, 0.05f));
     DREAD_REFLECTED_FIELD(f32, "fRespawnTimeWhenDestroyedWithHyperBeam", 0x48, (DefaultValue, 5.0f));
-    fn_7100ca4c4c(base::reflection::TunableRegistry(), &g_unk_7172796920, "");
+    fn_7100ca4c4c(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

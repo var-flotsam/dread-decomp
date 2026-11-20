@@ -21,20 +21,20 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGroundShockerAIComponent::CTunableCharClassGroundShockerAIComponent
-extern bool g_unk_71726e85e8;
-extern UnkTunable g_unk_71726e85b8;
+namespace CCharClassGroundShockerAIComponent::CTunableCharClassGroundShockerAIComponent { extern bool refl_fields_added asm("g_unk_71726e85e8"); }
+namespace CCharClassGroundShockerAIComponent::CTunableCharClassGroundShockerAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726e85b8"); }
 void fn_71005a3418(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassGroundShockerAIComponent::CTunableCharClassGroundShockerAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726e85e8)
+    if (refl_fields_added)
         return;
-    g_unk_71726e85e8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fCombatMotionSpeed", 0x24, (DefaultValue, 300.0f));
     DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x28, (DefaultValue, 200.0f));
-    fn_71005a3418(base::reflection::TunableRegistry(), &g_unk_71726e85b8, "GroundShocker");
+    fn_71005a3418(base::reflection::TunableRegistry(), &refl_tunable, "GroundShocker");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

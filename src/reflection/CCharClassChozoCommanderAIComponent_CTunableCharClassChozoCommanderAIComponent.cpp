@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoCommanderAIComponent::CTunableCharClassChozoCommanderAIComponent
-extern bool g_unk_71726c9218;
-extern UnkTunable g_unk_71726c91d0;
+namespace CCharClassChozoCommanderAIComponent::CTunableCharClassChozoCommanderAIComponent { extern bool refl_fields_added asm("g_unk_71726c9218"); }
+namespace CCharClassChozoCommanderAIComponent::CTunableCharClassChozoCommanderAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726c91d0"); }
 void fn_710044ce04(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoCommanderAIComponent::CTunableCharClassChozoCommanderAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726c9218)
+    if (refl_fields_added)
         return;
-    g_unk_71726c9218 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x24, (DefaultValue, 800.0f));
@@ -54,7 +54,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "HYPER_DASH", 0x41, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "ULTIMATE_GRAB", 0x42, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "KI_GRAB", 0x43, (DefaultValue, true));
-    fn_710044ce04(base::reflection::TunableRegistry(), &g_unk_71726c91d0, "ChozoCommander");
+    fn_710044ce04(base::reflection::TunableRegistry(), &refl_tunable, "ChozoCommander");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

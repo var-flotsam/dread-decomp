@@ -23,17 +23,17 @@ using base::reflection::DestroyDestructorFirst;
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CPlayerMovement::CTunablePlayerMovement
-extern bool g_unk_7172a03df0;
+namespace CPlayerMovement::CTunablePlayerMovement { extern bool refl_fields_added asm("g_unk_7172a03df0"); }
 void fn_71010dce08();
 void fn_71010d6424(UnkReflFunction* fn, const char* name);
-extern UnkTunable g_unk_7172a03d80;
+namespace CPlayerMovement::CTunablePlayerMovement { extern UnkTunable refl_tunable asm("g_unk_7172a03d80"); }
 void fn_71010d65a0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CPlayerMovement::CTunablePlayerMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172a03df0)
+    if (refl_fields_added)
         return;
-    g_unk_7172a03df0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fSlowDownFactor", 0x24, (DefaultValue, 0.6f), (Description, "Slow down factor"));
@@ -65,7 +65,7 @@ void refl_AddFields(CClass* cls) {
         fn_71010d6424(fn, "_iFocusMode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iFocusMode", (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(f32, "fParkourMinAdaptiveAnticipationFactor", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    fn_71010d65a0(base::reflection::TunableRegistry(), &g_unk_7172a03d80, "Player");
+    fn_71010d65a0(base::reflection::TunableRegistry(), &refl_tunable, "Player");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

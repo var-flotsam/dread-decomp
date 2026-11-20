@@ -49,20 +49,20 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CUnlockAreaSmartObjectComponent, CSmartObjectComponent);
 
 // CUnlockAreaSmartObjectComponent::CTunableUnlockAreaSmartObjectComponent
-extern bool g_unk_71727430d0;
-extern UnkTunable g_unk_7172743078;
+namespace CUnlockAreaSmartObjectComponent::CTunableUnlockAreaSmartObjectComponent { extern bool refl_fields_added asm("g_unk_71727430d0"); }
+namespace CUnlockAreaSmartObjectComponent::CTunableUnlockAreaSmartObjectComponent { extern UnkTunable refl_tunable asm("g_unk_7172743078"); }
 void fn_7100a0701c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CUnlockAreaSmartObjectComponent::CTunableUnlockAreaSmartObjectComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727430d0)
+    if (refl_fields_added)
         return;
-    g_unk_71727430d0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fIgnoreInputTime", 0x24, (DefaultValue, 0.333f), (Description, "Time input is ignored when action is aborted"));
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sDialogID", 0x28, (DefaultValue, ""), (Description, "Message asking whether player wants to travel to the next area"));
-    fn_7100a0701c(base::reflection::TunableRegistry(), &g_unk_7172743078, "UnlockArea");
+    fn_7100a0701c(base::reflection::TunableRegistry(), &refl_tunable, "UnlockArea");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

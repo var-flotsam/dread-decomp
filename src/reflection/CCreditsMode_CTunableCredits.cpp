@@ -24,21 +24,21 @@ namespace base::math { class CVector3D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
 
 // CCreditsMode::CTunableCredits
-extern bool g_unk_7172a0b678;
+namespace CCreditsMode::CTunableCredits { extern bool refl_fields_added asm("g_unk_7172a0b678"); }
 void fn_7101186130();
 void fn_7101183378(UnkReflFunction* fn, const char* name);
 void fn_71011862f0();
 void fn_71011834f4(UnkReflFunction* fn, const char* name);
 void fn_71011864b0();
 void fn_7101183670(UnkReflFunction* fn, const char* name);
-extern UnkTunable g_unk_7172a0b630;
+namespace CCreditsMode::CTunableCredits { extern UnkTunable refl_tunable asm("g_unk_7172a0b630"); }
 void fn_71011837ec(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCreditsMode::CTunableCredits {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172a0b678)
+    if (refl_fields_added)
         return;
-    g_unk_7172a0b678 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FUNCTION_OF("_m_vColorTitle_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0, fn_7101186130);
@@ -53,7 +53,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_vColorEntry_SetterFunction")
         fn_7101183670(fn, "_m_vColorEntry_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vColorEntry", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}), (Description, base::global::CRntString("Entry color")));
-    fn_71011837ec(base::reflection::TunableRegistry(), &g_unk_7172a0b630, "CREDITS");
+    fn_71011837ec(base::reflection::TunableRegistry(), &refl_tunable, "CREDITS");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

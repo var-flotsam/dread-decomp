@@ -46,21 +46,21 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassSclawkAIComponent, CCharClassBehaviorTreeAIComponent);
 
 // CCharClassSclawkAIComponent::CTunableCharClassSclawkAIComponent
-extern bool g_unk_7172700f50;
-extern UnkTunable g_unk_7172700f20;
+namespace CCharClassSclawkAIComponent::CTunableCharClassSclawkAIComponent { extern bool refl_fields_added asm("g_unk_7172700f50"); }
+namespace CCharClassSclawkAIComponent::CTunableCharClassSclawkAIComponent { extern UnkTunable refl_tunable asm("g_unk_7172700f20"); }
 void fn_710067b5a8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassSclawkAIComponent::CTunableCharClassSclawkAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172700f50)
+    if (refl_fields_added)
         return;
-    g_unk_7172700f50 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinHiddenTime", 0x24, (DefaultValue, 1.5f));
     DREAD_REFLECTED_FIELD(f32, "fMaxHiddenTime", 0x28, (DefaultValue, 2.5f));
     DREAD_REFLECTED_FIELD(f32, "fJumpPreparationTime", 0x2c, (DefaultValue, 0.5f));
-    fn_710067b5a8(base::reflection::TunableRegistry(), &g_unk_7172700f20, "Sclawk");
+    fn_710067b5a8(base::reflection::TunableRegistry(), &refl_tunable, "Sclawk");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

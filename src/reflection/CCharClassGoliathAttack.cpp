@@ -43,15 +43,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassGoliathAttack, CCharClassAttack);
 
 // CCharClassGoliathAttack::CTunableCharClassGoliathAttack
-extern bool g_unk_71726e5eb8;
-extern UnkTunable g_unk_71726e5e70;
+namespace CCharClassGoliathAttack::CTunableCharClassGoliathAttack { extern bool refl_fields_added asm("g_unk_71726e5eb8"); }
+namespace CCharClassGoliathAttack::CTunableCharClassGoliathAttack { extern UnkTunable refl_tunable asm("g_unk_71726e5e70"); }
 void fn_710058d6a8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassGoliathAttack::CTunableCharClassGoliathAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726e5eb8)
+    if (refl_fields_added)
         return;
-    g_unk_71726e5eb8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
@@ -62,7 +62,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fShockWaveTimeGrowing", 0x38, (DefaultValue, 0.4f));
     DREAD_REFLECTED_FIELD(f32, "fShockWaveTimeAtMaxRadius", 0x3c, (DefaultValue, 0.6f));
     DREAD_REFLECTED_FIELD(f32, "fShockWaveAttackHeight", 0x40, (DefaultValue, 110.0f));
-    fn_710058d6a8(base::reflection::TunableRegistry(), &g_unk_71726e5e70, "Goliath");
+    fn_710058d6a8(base::reflection::TunableRegistry(), &refl_tunable, "Goliath");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -41,15 +41,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CAbilityEnergyWave, CAbility);
 
 // CAbilityEnergyWave::CTunableAbilityEnergyWave
-extern bool g_unk_71726af0a0;
-extern UnkTunable g_unk_71726af060;
+namespace CAbilityEnergyWave::CTunableAbilityEnergyWave { extern bool refl_fields_added asm("g_unk_71726af0a0"); }
+namespace CAbilityEnergyWave::CTunableAbilityEnergyWave { extern UnkTunable refl_tunable asm("g_unk_71726af060"); }
 void fn_7100303a94(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAbilityEnergyWave::CTunableAbilityEnergyWave {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726af0a0)
+    if (refl_fields_added)
         return;
-    g_unk_71726af0a0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fWeaponBoostDamageMult_emmy", 0x24, (DefaultValue, 1.0f));
@@ -58,7 +58,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSpecialRocketTimeActivate", 0x30, (DefaultValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fSpecialRocketSpeed", 0x34, (DefaultValue, 10000.0f));
     DREAD_REFLECTED_FIELD(bool, "bSpecialRocketUseInitialAcceleration", 0x38, (DefaultValue, true));
-    fn_7100303a94(base::reflection::TunableRegistry(), &g_unk_71726af060, "");
+    fn_7100303a94(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

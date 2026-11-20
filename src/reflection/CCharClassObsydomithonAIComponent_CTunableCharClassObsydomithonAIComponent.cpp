@@ -21,19 +21,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent
-extern bool g_unk_71726f9150;
-extern UnkTunable g_unk_71726f9128;
+namespace CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent { extern bool refl_fields_added asm("g_unk_71726f9150"); }
+namespace CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726f9128"); }
 void fn_710062ba18(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726f9150)
+    if (refl_fields_added)
         return;
-    g_unk_71726f9150 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fHeadAngleInterpolationSpeed", 0x24, (DefaultValue, 90.0f));
-    fn_710062ba18(base::reflection::TunableRegistry(), &g_unk_71726f9128, "Obsydomithon");
+    fn_710062ba18(base::reflection::TunableRegistry(), &refl_tunable, "Obsydomithon");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

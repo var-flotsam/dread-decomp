@@ -77,20 +77,20 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CLavaPumpComponent, CActivatableComponent);
 
 // CLavaPumpComponent::CTunableLavaPumpComponent
-extern bool g_unk_717272a758;
-extern UnkTunable g_unk_717272a728;
+namespace CLavaPumpComponent::CTunableLavaPumpComponent { extern bool refl_fields_added asm("g_unk_717272a758"); }
+namespace CLavaPumpComponent::CTunableLavaPumpComponent { extern UnkTunable refl_tunable asm("g_unk_717272a728"); }
 void fn_71008799e0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CLavaPumpComponent::CTunableLavaPumpComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717272a758)
+    if (refl_fields_added)
         return;
-    g_unk_717272a758 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fInitialPlayRate", 0x24, (DefaultValue, 0.4f), (Description, "Inital min play rate in animation"));
     DREAD_REFLECTED_FIELD(f32, "fActivationTime", 0x28, (DefaultValue, 2.0f), (Description, "Activation Time"));
-    fn_71008799e0(base::reflection::TunableRegistry(), &g_unk_717272a728, "LavaPumpComponent");
+    fn_71008799e0(base::reflection::TunableRegistry(), &refl_tunable, "LavaPumpComponent");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -74,17 +74,17 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CMorphBallMovement, CPlayerMovement);
 
 // CMorphBallMovement::CTunableMorphBallMovement
-extern bool g_unk_7172739438;
+namespace CMorphBallMovement::CTunableMorphBallMovement { extern bool refl_fields_added asm("g_unk_7172739438"); }
 void fn_710094ff98();
 void fn_710093d6cc(UnkReflFunction* fn, const char* name);
-extern UnkTunable g_unk_71727393d8;
+namespace CMorphBallMovement::CTunableMorphBallMovement { extern UnkTunable refl_tunable asm("g_unk_71727393d8"); }
 void fn_710093d848(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CMorphBallMovement::CTunableMorphBallMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172739438)
+    if (refl_fields_added)
         return;
-    g_unk_7172739438 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fWaterBombFirstImpactFactor", 0x24, (DefaultValue, 1.0f));
@@ -105,7 +105,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fCornerAssistHorizontalVelocityToConsiderMoving", 0x50, (DefaultValue, 0.0f), (Description, "Minimum horizontal physics velocity to decide whether it's stationary or moving"));
     DREAD_REFLECTED_FIELD(f32, "fCornerAssistMovingAwayFromCornerThresholdFactor", 0x54, (DefaultValue, 0.0f), (Description, "When jumping against a corner, but hitting past the corner, this is the multiplier to MorphBall's radius to consider we're still close enough to the corner to apply assistance"));
     DREAD_REFLECTED_FIELD(f32, "fAirTimeBeforeSoundRelauch", 0x58, (DefaultValue, 1.0f));
-    fn_710093d848(base::reflection::TunableRegistry(), &g_unk_71727393d8, "MorphBall");
+    fn_710093d848(base::reflection::TunableRegistry(), &refl_tunable, "MorphBall");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

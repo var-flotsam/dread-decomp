@@ -21,19 +21,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCutscene::CTunableCutscene
-extern bool g_unk_7172a00988;
-extern UnkTunable g_unk_7172a00958;
+namespace CCutscene::CTunableCutscene { extern bool refl_fields_added asm("g_unk_7172a00988"); }
+namespace CCutscene::CTunableCutscene { extern UnkTunable refl_tunable asm("g_unk_7172a00958"); }
 void fn_71010649b0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCutscene::CTunableCutscene {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172a00988)
+    if (refl_fields_added)
         return;
-    g_unk_7172a00988 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDistanceListenerToTarget", 0x24, (DefaultValue, 50.0f), (Description, "the distance at the listener target is set"));
-    fn_71010649b0(base::reflection::TunableRegistry(), &g_unk_7172a00958, "");
+    fn_71010649b0(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

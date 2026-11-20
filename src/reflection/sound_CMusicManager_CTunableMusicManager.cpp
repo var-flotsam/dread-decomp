@@ -21,19 +21,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // sound::CMusicManager::CTunableMusicManager
-extern bool g_unk_71729f0880;
-extern UnkTunable g_unk_71729f0858;
+namespace sound::CMusicManager::CTunableMusicManager { extern bool refl_fields_added asm("g_unk_71729f0880"); }
+namespace sound::CMusicManager::CTunableMusicManager { extern UnkTunable refl_tunable asm("g_unk_71729f0858"); }
 void fn_7100fd352c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace sound::CMusicManager::CTunableMusicManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71729f0880)
+    if (refl_fields_added)
         return;
-    g_unk_71729f0880 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bNCLCurrentMusicDebugEnable", 0x21, (DefaultValue, false));
-    fn_7100fd352c(base::reflection::TunableRegistry(), &g_unk_71729f0858, "MUSIC");
+    fn_7100fd352c(base::reflection::TunableRegistry(), &refl_tunable, "MUSIC");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

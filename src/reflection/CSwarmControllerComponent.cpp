@@ -53,15 +53,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CSwarmControllerComponent, CComponent);
 
 // CSwarmControllerComponent::CTunableSwarmDamage
-extern bool g_unk_7172710c78;
-extern UnkTunable g_unk_7172710c40;
+namespace CSwarmControllerComponent::CTunableSwarmDamage { extern bool refl_fields_added asm("g_unk_7172710c78"); }
+namespace CSwarmControllerComponent::CTunableSwarmDamage { extern UnkTunable refl_tunable asm("g_unk_7172710c40"); }
 void fn_7100747540(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSwarmControllerComponent::CTunableSwarmDamage {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172710c78)
+    if (refl_fields_added)
         return;
-    g_unk_7172710c78 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fChargedImpactExtraRadius", 0x24, (DefaultValue, 10.0f), (Description, "Extra radius of the charged weapon impact [10]"));
@@ -69,7 +69,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMissileSplashDamageRadius", 0x2c, (DefaultValue, 30.0f), (Description, "Radius of the splash damage of the missile [30]"));
     DREAD_REFLECTED_FIELD(f32, "fSuperMissileSplashDamageRadius", 0x30, (DefaultValue, 60.0f), (Description, "Radius of the splash damage of the super missile [60]"));
     DREAD_REFLECTED_FIELD(f32, "fBeamRadius", 0x34, (DefaultValue, 25.0f), (Description, "Radius of the beam shots when calculating impacts [25]"));
-    fn_7100747540(base::reflection::TunableRegistry(), &g_unk_7172710c40, "Swarms damage");
+    fn_7100747540(base::reflection::TunableRegistry(), &refl_tunable, "Swarms damage");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

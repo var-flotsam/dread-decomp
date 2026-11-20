@@ -23,24 +23,24 @@ using base::reflection::DestroyDestructorFirst;
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CInventoryComponent::CTunableInventoryComponent
-extern bool g_unk_7172a09290;
+namespace CInventoryComponent::CTunableInventoryComponent { extern bool refl_fields_added asm("g_unk_7172a09290"); }
 void fn_7101149248();
 void fn_710113ff7c(UnkReflFunction* fn, const char* name);
-extern UnkTunable g_unk_7172a09268;
+namespace CInventoryComponent::CTunableInventoryComponent { extern UnkTunable refl_tunable asm("g_unk_7172a09268"); }
 void fn_71011400f8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CInventoryComponent::CTunableInventoryComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172a09290)
+    if (refl_fields_added)
         return;
-    g_unk_7172a09290 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FUNCTION_OF("_iMaxNumMissiles_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_7101149248);
     DREAD_REFLECTED_FUNCTION("_iMaxNumMissiles_SetterFunction")
         fn_710113ff7c(fn, "_iMaxNumMissiles_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iMaxNumMissiles", (DefaultValue, 100), (ShowInConfig, true), (Description, "Max missiles"), (MinValueI, 0), (MaxValueI, 500), (ControlIntStep, 1), (InternalTag, "General"));
-    fn_71011400f8(base::reflection::TunableRegistry(), &g_unk_7172a09268, "");
+    fn_71011400f8(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

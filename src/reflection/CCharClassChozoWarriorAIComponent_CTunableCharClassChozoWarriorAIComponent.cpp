@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent
-extern bool g_unk_71726d0e40;
-extern UnkTunable g_unk_71726d0e00;
+namespace CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent { extern bool refl_fields_added asm("g_unk_71726d0e40"); }
+namespace CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726d0e00"); }
 void fn_7100496d00(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726d0e40)
+    if (refl_fields_added)
         return;
-    g_unk_71726d0e40 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fGrappleTime", 0x24, (DefaultValue, 3.0f));
@@ -38,7 +38,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fShieldDamagePerMelee", 0x30, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(bool, "bAllowShieldImpactAnim", 0x34, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenShieldImpactAnim", 0x38, (DefaultValue, 1.5f));
-    fn_7100496d00(base::reflection::TunableRegistry(), &g_unk_71726d0e00, "ChozoWarrior");
+    fn_7100496d00(base::reflection::TunableRegistry(), &refl_tunable, "ChozoWarrior");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

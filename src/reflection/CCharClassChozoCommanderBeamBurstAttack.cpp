@@ -41,15 +41,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderBeamBurstAttack, CCharClassChozoCommanderAirAttack);
 
 // CCharClassChozoCommanderBeamBurstAttack::CTunableCharClassChozoCommanderBeamBurstAttack
-extern bool g_unk_71726c5740;
-extern UnkTunable g_unk_71726c56e8;
+namespace CCharClassChozoCommanderBeamBurstAttack::CTunableCharClassChozoCommanderBeamBurstAttack { extern bool refl_fields_added asm("g_unk_71726c5740"); }
+namespace CCharClassChozoCommanderBeamBurstAttack::CTunableCharClassChozoCommanderBeamBurstAttack { extern UnkTunable refl_tunable asm("g_unk_71726c56e8"); }
 void fn_710041e058(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoCommanderBeamBurstAttack::CTunableCharClassChozoCommanderBeamBurstAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726c5740)
+    if (refl_fields_added)
         return;
-    g_unk_71726c5740 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
@@ -66,7 +66,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToResetHittingPlayer", 0x4c, (DefaultValue, 0.3f));
     DREAD_REFLECTED_FIELD(f32, "fContinuosDamage", 0x50, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fImpactDamage", 0x54, (DefaultValue, 50.0f));
-    fn_710041e058(base::reflection::TunableRegistry(), &g_unk_71726c56e8, "ChozoCommander");
+    fn_710041e058(base::reflection::TunableRegistry(), &refl_tunable, "ChozoCommander");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

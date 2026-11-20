@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CEvacuationCountDown::CTunableEvacuationCountDown
-extern bool g_unk_717271e8f0;
-extern UnkTunable g_unk_717271e848;
+namespace CEvacuationCountDown::CTunableEvacuationCountDown { extern bool refl_fields_added asm("g_unk_717271e8f0"); }
+namespace CEvacuationCountDown::CTunableEvacuationCountDown { extern UnkTunable refl_tunable asm("g_unk_717271e848"); }
 void fn_71007d9774(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CEvacuationCountDown::CTunableEvacuationCountDown {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717271e8f0)
+    if (refl_fields_added)
         return;
-    g_unk_717271e8f0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fRumbleMinGain", 0x24, (DefaultValue, 1.0f), (Description, "Gain min Rumble progression "));
@@ -57,7 +57,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMinEmberFlyingPercentage", 0x98, (DefaultValue, 0.0f), (Description, "Min ember percentage"));
     DREAD_REFLECTED_FIELD(f32, "fMaxEmberFlyingPercentage", 0x9c, (DefaultValue, 1.0f), (Description, "Max ember percentage"));
     DREAD_REFLECTED_FIELD(CStrId, "sEmberFyingEasingFunction", 0xa0, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Easing function ember progression"));
-    fn_71007d9774(base::reflection::TunableRegistry(), &g_unk_717271e848, "EvacuationCountDown");
+    fn_71007d9774(base::reflection::TunableRegistry(), &refl_tunable, "EvacuationCountDown");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

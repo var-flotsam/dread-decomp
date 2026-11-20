@@ -21,21 +21,21 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack
-extern bool g_unk_71726d05d0;
-extern UnkTunable g_unk_71726d05a0;
+namespace CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack { extern bool refl_fields_added asm("g_unk_71726d05d0"); }
+namespace CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack { extern UnkTunable refl_tunable asm("g_unk_71726d05a0"); }
 void fn_7100492bb4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726d05d0)
+    if (refl_fields_added)
         return;
-    g_unk_71726d05d0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, 200.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 2000.0f));
     DREAD_REFLECTED_FIELD(f32, "fSkipAttackProb", 0x2c, (DefaultValue, 0.5f));
-    fn_7100492bb4(base::reflection::TunableRegistry(), &g_unk_71726d05a0, "ChozoWarriorGlaiveWalljumpAttack");
+    fn_7100492bb4(base::reflection::TunableRegistry(), &refl_tunable, "ChozoWarriorGlaiveWalljumpAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

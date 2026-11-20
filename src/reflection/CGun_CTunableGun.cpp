@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CGun::CTunableGun
-extern bool g_unk_7172725ee8;
-extern UnkTunable g_unk_7172725ea8;
+namespace CGun::CTunableGun { extern bool refl_fields_added asm("g_unk_7172725ee8"); }
+namespace CGun::CTunableGun { extern UnkTunable refl_tunable asm("g_unk_7172725ea8"); }
 void fn_7100834e28(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CGun::CTunableGun {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172725ee8)
+    if (refl_fields_added)
         return;
-    g_unk_7172725ee8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fCheckBackDefaultDistance", 0x24, (DefaultValue, 90.0f), (Description, "Fire check back distance (default)"));
@@ -38,7 +38,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fCheckBackHangDistance", 0x30, (DefaultValue, 120.0f), (Description, "Fire check back distance (hang)"));
     DREAD_REFLECTED_FIELD(f32, "fTimeHitMissedModifierDuration", 0x34, (DefaultValue, 0.7f), (Description, "Time to not modify volume of missed hits"));
     DREAD_REFLECTED_FIELD(f32, "fVolumeHitMissedModifier", 0x38, (DefaultValue, 0.2f), (Description, "Volume multiplier for missed hits after a hit"));
-    fn_7100834e28(base::reflection::TunableRegistry(), &g_unk_7172725ea8, "Gun");
+    fn_7100834e28(base::reflection::TunableRegistry(), &refl_tunable, "Gun");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

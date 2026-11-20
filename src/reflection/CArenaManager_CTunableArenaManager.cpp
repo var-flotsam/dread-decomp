@@ -21,19 +21,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CArenaManager::CTunableArenaManager
-extern bool g_unk_71727c09f0;
-extern UnkTunable g_unk_71727c09c8;
+namespace CArenaManager::CTunableArenaManager { extern bool refl_fields_added asm("g_unk_71727c09f0"); }
+namespace CArenaManager::CTunableArenaManager { extern UnkTunable refl_tunable asm("g_unk_71727c09c8"); }
 void fn_7100e14514(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CArenaManager::CTunableArenaManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727c09f0)
+    if (refl_fields_added)
         return;
-    g_unk_71727c09f0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fSelectPreviousArenaProbability", 0x24, (DefaultValue, 0.25f), (Description, "Select previous arenam probability"));
-    fn_7100e14514(base::reflection::TunableRegistry(), &g_unk_71727c09c8, "ArenaManager");
+    fn_7100e14514(base::reflection::TunableRegistry(), &refl_tunable, "ArenaManager");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

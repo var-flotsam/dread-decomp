@@ -23,15 +23,15 @@ using base::reflection::DestroyDestructorFirst;
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCharClassKraidAIComponent::CTunableCharClassKraidAIComponent
-extern bool g_unk_71726f3480;
-extern UnkTunable g_unk_71726f3440;
+namespace CCharClassKraidAIComponent::CTunableCharClassKraidAIComponent { extern bool refl_fields_added asm("g_unk_71726f3480"); }
+namespace CCharClassKraidAIComponent::CTunableCharClassKraidAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726f3440"); }
 void fn_71005f9478(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassKraidAIComponent::CTunableCharClassKraidAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726f3480)
+    if (refl_fields_added)
         return;
-    g_unk_71726f3480 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fFlyingSpikeMotionSpeed", 0x24, (DefaultValue, 1400.0f), (ShowInConfig, true), (Description, "Kraid flying spike motion speed"), (MinValue, 1.0f), (MaxValue, 100000.0f), (ControlFloatStep, 50.0f), (InternalTag, "Bosses"));
@@ -47,7 +47,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "BOUNCING_CREATURES", 0x3d, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "SHOCKER_SPLASH", 0x3e, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "FIERCE_SWIPE", 0x3f, (DefaultValue, true));
-    fn_71005f9478(base::reflection::TunableRegistry(), &g_unk_71726f3440, "Kraid");
+    fn_71005f9478(base::reflection::TunableRegistry(), &refl_tunable, "Kraid");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

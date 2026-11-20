@@ -21,19 +21,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCooldownXBossLaserBiteAttack::CTunableCharClassCooldownXBossLaserBiteAttack
-extern bool g_unk_71726d1ca0;
-extern UnkTunable g_unk_71726d1c78;
+namespace CCharClassCooldownXBossLaserBiteAttack::CTunableCharClassCooldownXBossLaserBiteAttack { extern bool refl_fields_added asm("g_unk_71726d1ca0"); }
+namespace CCharClassCooldownXBossLaserBiteAttack::CTunableCharClassCooldownXBossLaserBiteAttack { extern UnkTunable refl_tunable asm("g_unk_71726d1c78"); }
 void fn_71004a1100(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassCooldownXBossLaserBiteAttack::CTunableCharClassCooldownXBossLaserBiteAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726d1ca0)
+    if (refl_fields_added)
         return;
-    g_unk_71726d1ca0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
-    fn_71004a1100(base::reflection::TunableRegistry(), &g_unk_71726d1c78, "CooldownXBoss");
+    fn_71004a1100(base::reflection::TunableRegistry(), &refl_tunable, "CooldownXBoss");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

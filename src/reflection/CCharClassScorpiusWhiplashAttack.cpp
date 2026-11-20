@@ -41,21 +41,21 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassScorpiusWhiplashAttack, CCharClassScorpiusAttack);
 
 // CCharClassScorpiusWhiplashAttack::CTunableCharClassScorpiusWhiplashAttack
-extern bool g_unk_7172702bf0;
-extern UnkTunable g_unk_7172702bc0;
+namespace CCharClassScorpiusWhiplashAttack::CTunableCharClassScorpiusWhiplashAttack { extern bool refl_fields_added asm("g_unk_7172702bf0"); }
+namespace CCharClassScorpiusWhiplashAttack::CTunableCharClassScorpiusWhiplashAttack { extern UnkTunable refl_tunable asm("g_unk_7172702bc0"); }
 void fn_7100685cd8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassScorpiusWhiplashAttack::CTunableCharClassScorpiusWhiplashAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172702bf0)
+    if (refl_fields_added)
         return;
-    g_unk_7172702bf0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true), (ShowInDevConfig, true), (Description, "Enabled"), (InternalDevTag, "Bosses|Scorpius|Whiplash"));
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f), (ShowInDevConfig, true), (Description, "Min distance"), (MinValue, -1.0f), (MaxValue, 2000.0f), (ControlFloatStep, 50.0f), (InternalDevTag, "Bosses|Scorpius|Whiplash"));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 1200.0f), (ShowInDevConfig, true), (Description, "Max distance"), (MinValue, -1.0f), (MaxValue, 2000.0f), (ControlFloatStep, 50.0f), (InternalDevTag, "Bosses|Scorpius|Whiplash"));
-    fn_7100685cd8(base::reflection::TunableRegistry(), &g_unk_7172702bc0, "Scorpius");
+    fn_7100685cd8(base::reflection::TunableRegistry(), &refl_tunable, "Scorpius");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

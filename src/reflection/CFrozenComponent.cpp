@@ -40,19 +40,19 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CFrozenComponent, CComponent);
 
 // CFrozenComponent::CTunableFrozenComponent
-extern bool g_unk_71727210f0;
-extern UnkTunable g_unk_71727210c8;
+namespace CFrozenComponent::CTunableFrozenComponent { extern bool refl_fields_added asm("g_unk_71727210f0"); }
+namespace CFrozenComponent::CTunableFrozenComponent { extern UnkTunable refl_tunable asm("g_unk_71727210c8"); }
 void fn_71007f8908(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CFrozenComponent::CTunableFrozenComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727210f0)
+    if (refl_fields_added)
         return;
-    g_unk_71727210f0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bInfiniteFrozenTime", 0x21, (DefaultValue, false));
-    fn_71007f8908(base::reflection::TunableRegistry(), &g_unk_71727210c8, "");
+    fn_71007f8908(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

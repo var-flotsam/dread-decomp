@@ -44,15 +44,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassHecathonAIComponent, CCharClassBehaviorTreeAIComponent);
 
 // CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent
-extern bool g_unk_71726e8d68;
-extern UnkTunable g_unk_71726e8d00;
+namespace CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent { extern bool refl_fields_added asm("g_unk_71726e8d68"); }
+namespace CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726e8d00"); }
 void fn_71005a7384(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726e8d68)
+    if (refl_fields_added)
         return;
-    g_unk_71726e8d68 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fTimeToGoPatrol", 0x24, (DefaultValue, 10.0f));
@@ -72,7 +72,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToChangeSpeed", 0x5c, (DefaultValue, 0.4f));
     DREAD_REFLECTED_FIELD(f32, "fSpeedFactor", 0x60, (DefaultValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToEat", 0x64, (DefaultValue, 1.0f));
-    fn_71005a7384(base::reflection::TunableRegistry(), &g_unk_71726e8d00, "HecathonAI");
+    fn_71005a7384(base::reflection::TunableRegistry(), &refl_tunable, "HecathonAI");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

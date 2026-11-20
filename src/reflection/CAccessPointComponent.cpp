@@ -60,15 +60,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CAccessPointComponent, CUsableComponent);
 
 // CAccessPointComponent::CTunableAccessPointComponent
-extern bool g_unk_717274ec88;
-extern UnkTunable g_unk_717274ec40;
+namespace CAccessPointComponent::CTunableAccessPointComponent { extern bool refl_fields_added asm("g_unk_717274ec88"); }
+namespace CAccessPointComponent::CTunableAccessPointComponent { extern UnkTunable refl_tunable asm("g_unk_717274ec40"); }
 void fn_7100a6c73c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAccessPointComponent::CTunableAccessPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717274ec88)
+    if (refl_fields_added)
         return;
-    g_unk_717274ec88 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fLoopGainMax", 0x24, (DefaultValue, 0.2f), (Description, "Loop Gain"));
@@ -80,7 +80,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fVoiceFadeOutTime", 0x3c, (DefaultValue, 0.2f), (Description, "Voice Fade Out Time"));
     DREAD_REFLECTED_FIELD(f32, "fVoiceReverb", 0x40, (DefaultValue, 0.5f), (Description, "Voice Reverb Intensity"));
     DREAD_REFLECTED_FIELD(f32, "fAdamSpeechVolume", 0x44, (DefaultValue, 1.0f), (Description, "Adam Speech Volume"));
-    fn_7100a6c73c(base::reflection::TunableRegistry(), &g_unk_717274ec40, "Logic");
+    fn_7100a6c73c(base::reflection::TunableRegistry(), &refl_tunable, "Logic");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

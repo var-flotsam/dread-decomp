@@ -41,19 +41,19 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassKraidBackSlapAttack, CCharClassKraidAttack);
 
 // CCharClassKraidBackSlapAttack::CTunableCharClassKraidBackSlapAttack
-extern bool g_unk_71726ee930;
-extern UnkTunable g_unk_71726ee908;
+namespace CCharClassKraidBackSlapAttack::CTunableCharClassKraidBackSlapAttack { extern bool refl_fields_added asm("g_unk_71726ee930"); }
+namespace CCharClassKraidBackSlapAttack::CTunableCharClassKraidBackSlapAttack { extern UnkTunable refl_tunable asm("g_unk_71726ee908"); }
 void fn_71005dc66c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassKraidBackSlapAttack::CTunableCharClassKraidBackSlapAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726ee930)
+    if (refl_fields_added)
         return;
-    g_unk_71726ee930 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
-    fn_71005dc66c(base::reflection::TunableRegistry(), &g_unk_71726ee908, "Kraid");
+    fn_71005dc66c(base::reflection::TunableRegistry(), &refl_tunable, "Kraid");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
