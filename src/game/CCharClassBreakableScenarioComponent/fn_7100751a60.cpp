@@ -3,6 +3,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CEmmyProtoAIComponent.h"
+#include "game/CNavMeshItemComponent.h"
 
 using namespace unk_static_init;
 
@@ -16,7 +17,6 @@ struct UnkStatics_7100751a60 {
 };
 extern UnkStatics_7100751a60 g_unk_71727110f0 __attribute__((visibility("hidden")));
 extern UnkPropertyEx<> g_unk_7172711098;
-extern UnkEnumType g_unk_717273e7f0;
 extern char g_unk_71727110d8[];
 extern char g_unk_71727110d9[];
 

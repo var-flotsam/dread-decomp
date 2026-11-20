@@ -11,52 +11,12 @@
 #include "game/CBTObserverComponent.h"
 #include "game/CHeatRoomComponent.h"
 #include "game/CNavMeshItemComponent.h"
+#include "game/UnkIdProperty.h"
 #include "types.h"
-
-using base::global::CRntString;
-using base::global::UnkStringData;
-using base::global::UnkStringPool;
-
-// The property's value holder at 0x10: a name cleaned up out of line (fn_710007ed40) before it
-// is destroyed, and a member at 0xd0.
-struct UnkNameHolder {
-    CRntString name;
-    u64 unk_0x30[0x14];
-
-    ~UnkNameHolder() { fn_710007ed40(&name); }
-};
-
-struct UnkHolderMember {
-    u64 unk_0x0[0x12];
-
-    ~UnkHolderMember() { fn_71009c172c(this); }
-};
-
-struct UnkValueHolder : UnkNameHolder {
-    UnkHolderMember field_0xd0;
-};
-
-struct UnkPropertyBase {
-    void** vtable;
-    u64 field_0x8;
-    UnkValueHolder holder;
-
-    ~UnkPropertyBase() { *reinterpret_cast<void***>(this) = g_unk_7101a889c8 + 2; }
-};
-
-template <void** Vtable>
-struct UnkIdPropertyT : UnkPropertyBase {
-    UnkStrIdTwoStep id;
-
-    ~UnkIdPropertyT() { *reinterpret_cast<void***>(this) = Vtable + 2; }
-};
-using UnkIdProperty = UnkIdPropertyT<g_unk_7101aa52d0>;
-static_assert(sizeof(UnkIdProperty) == 0x178, "UnkIdProperty layout");
 
 // The same destructor for two other property types (vtables 0x7101a8d830 and 0x7101a88970).
 using UnkIdProperty2 = UnkIdPropertyT<g_unk_7101a8d830>;
-using UnkIdProperty3 = UnkIdPropertyT<g_unk_7101a88970>;
 
 void fn_7100a24a50(UnkIdProperty2* self) { self->~UnkIdPropertyT(); }
 
-void fn_71009bd8c0(UnkIdProperty3* self) { self->~UnkIdPropertyT(); }
+void fn_71009bd8c0(UnkIdPropertyT<g_unk_7101a88970>* self) { self->~UnkIdPropertyT(); }

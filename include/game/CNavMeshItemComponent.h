@@ -28,3 +28,9 @@ extern void* g_unk_7101a887d0[];  // The component's vtable (the second one at +
 extern void* g_unk_7101a88970[];
 extern UnkNavMeshNamedDef_b49 g_unk_717273e3e0;
 extern UnkMapNamedDef_ovb0203 g_unk_717273e258;
+
+namespace unk_static_init {
+struct UnkEnumType;
+}
+// The reflected enum type of the enabled occluder colliders map (TEnabledOccluderCollidersMap).
+extern unk_static_init::UnkEnumType g_unk_717273e7f0;
