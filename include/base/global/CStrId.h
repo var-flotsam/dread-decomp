@@ -128,6 +128,10 @@ public:
     }
 
 protected:
+    // Leaves `data` for an out-of-line constructor to set (fn_7100000850).
+    struct BuiltOutOfLine {};
+    explicit UnkStrIdBase(BuiltOutOfLine) {}
+
     // Inlined into the move-assignments. Unlike the destructors, it decrements and tests in
     // two steps (the original reloads `data` and the count after the decrement). The
     // moved-from id gets the empty string of a freshly loaded pool.
@@ -153,6 +157,8 @@ public:
     // Not inherited: an inheriting constructor wouldn't be inlined.
     __attribute__((always_inline)) CStrId(UnkStrIdInline tag, const char* str, bool flag)
         : UnkStrIdBase(tag, str, flag) {}
+    // From a string, out of line (fn_7100000850, below).
+    CStrId(const CRntString& str, bool flag);
     // The global empty string id (g_unk_7101d470e0, below): default ids are copied from it.
     static CStrId& Empty();
 
@@ -291,6 +297,9 @@ class CRntString;
 // CRC-64 (`key`) is the pool hash, so nothing is rehashed, and a string with no text is passed as
 // "". Defined in src/base/global/fn_71000003d4.cpp.
 void fn_7100000850(base::global::UnkStrIdBase* self, const base::global::CRntString& str, bool flag);
+inline base::global::CStrId::CStrId(const CRntString& str, bool flag) : UnkStrIdBase(BuiltOutOfLine()) {
+    fn_7100000850(this, str, flag);
+}
 
 // The global empty string id: a guarded static that unit 0's initializer (fn_7100001390) builds
 // from no string, so it holds the pool's empty entry; its destructor is fn_710000051c. Default

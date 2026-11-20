@@ -84,15 +84,6 @@ struct UnkYamplotXBiteAttack_l6ecce4 {
     UnkBiteOwner_l6ecce4* owner;  // 0x8
 };
 
-// A string id as this function returns it (CStrId's layout), built from a string out of line.
-struct UnkBiteStrId_l6ecce4 {
-    UnkStringData* data;
-
-    explicit UnkBiteStrId_l6ecce4(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
-    }
-    ~UnkBiteStrId_l6ecce4() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
-};
 
 // A string built empty out of line (fn_710007e6c4).
 struct UnkBiteString_l6ecce4 {
@@ -124,7 +115,7 @@ static inline void Flatten(CVector2D* out, const CVector3D& v) {
     fn_710007b430(out, &v);
 }
 
-UnkBiteStrId_l6ecce4 fn_71006ecce4(UnkYamplotXBite_b57a4* attack) {
+CStrId fn_71006ecce4(UnkYamplotXBite_b57a4* attack) {
     UnkYamplotXBiteAttack_l6ecce4* self = reinterpret_cast<UnkYamplotXBiteAttack_l6ecce4*>(attack);
     UnkReflObject* mv = self->owner->movement;
     UnkReflObject* movement_obj = mv && fn_710009d50c(mv->vf_0x0(), fn_71010c74e0()) ? mv : nullptr;
@@ -176,5 +167,5 @@ UnkBiteStrId_l6ecce4 fn_71006ecce4(UnkYamplotXBite_b57a4* attack) {
         tag = "_h4";
     fn_710007e77c(suffix.Str(), tag);
     CRntString name = fn_710007eee0(&g_unk_717270bd60, suffix.Str());
-    return UnkBiteStrId_l6ecce4(name);
+    return CStrId(name, true);
 }
