@@ -16,8 +16,7 @@
 
 // The same destructor for two other property types (vtables 0x7101a8d830 and 0x7101a88970).
 using UnkIdProperty2 = UnkIdPropertyT<g_unk_7101a8d830>;
-using UnkIdProperty3 = UnkIdPropertyT<g_unk_7101a88970>;
 
 void fn_7100a24a50(UnkIdProperty2* self) { self->~UnkIdPropertyT(); }
 
-void fn_71009bd8c0(UnkIdProperty3* self) { self->~UnkIdPropertyT(); }
+void fn_71009bd8c0(UnkIdPropertyT<g_unk_7101a88970>* self) { self->~UnkIdPropertyT(); }

@@ -40,12 +40,10 @@ struct UnkMapNamedDef_ovb0203 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
 };
-extern UnkMapNamedDef_ovb0203 g_unk_717273e258;  // "ColliderOffset"
 struct UnkNavMeshNamedDef_b49 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
 };
-extern UnkNavMeshNamedDef_b49 g_unk_717273e3e0;  // "InitialStage"
 void fn_71009c26f4(void* item);  // base::reflection::refl_Register<..>, instantiated in src/reflection_statics
 extern char g_unk_717273e568;
 extern char g_unk_717273e569;
@@ -58,7 +56,6 @@ extern char g_unk_717273e960;
 extern base::reflection::CType g_unk_717273e570;
 extern base::reflection::CType g_unk_717273e6b0;
 using unk_static_init::UnkEnumType;
-extern UnkEnumType g_unk_717273e7f0;  // TEnabledOccluderCollidersMap
 const base::reflection::CType* fn_71009be878();
 const base::reflection::CType* fn_71009be954();
 const base::reflection::CType* fn_71009bef38();
