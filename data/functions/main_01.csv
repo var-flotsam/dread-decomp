@@ -2800,7 +2800,7 @@ address,size,name,name_source,subsystem,status
 0x710016bdec,196,fn_710016bdec,unknown,unknown,O
 0x710016beb0,120,fn_710016beb0,unknown,unknown,O
 0x710016bf28,272,fn_710016bf28,unknown,unknown,U
-0x710016c038,400,fn_710016c038,unknown,unknown,U
+0x710016c038,400,fn_710016c038,unknown,unknown,O
 0x710016c1c8,260,fn_710016c1c8,unknown,engine/reflection?,O
 0x710016c2cc,284,fn_710016c2cc,unknown,engine/reflection?,O
 0x710016c3e8,216,fn_710016c3e8,unknown,unknown,O

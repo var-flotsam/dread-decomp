@@ -19,6 +19,7 @@ struct UnkMat4f;
 extern char g_unk_7101a1d968[];
 extern char g_unk_7101a1da28[];
 extern char g_unk_7101a1d9c8[];
+extern char g_unk_7101a1d998[];
 
 struct UnkScene_ovb0167 {
     u8 pad_0x0[0x38c];
@@ -75,6 +76,30 @@ void fn_710016c9a8(UnkEmitter_ovb0167* self, UnkOwner_ovb0167* owner, void* arg)
     EnsureEntries(owner);
     self->field_0x10 = arg;
     self->vtable = g_unk_7101a1da28 + 0x10;
+}
+
+struct UnkEmitter2_ovb0167 {
+    char* vtable;
+    UnkOwner_ovb0167* owner;  // 0x8
+    void* field_0x10;
+    UnkOwner_ovb0167* field_0x18;
+    UnkOwner_ovb0167* field_0x20;
+};
+
+void fn_710016c038(UnkEmitter2_ovb0167* self, UnkOwner_ovb0167* owner, void* arg) {
+    self->vtable = g_unk_7101a1db18 + 0x10;
+    self->owner = owner;
+    EnsureEntries(owner);
+    self->vtable = g_unk_7101a1d998 + 0x10;
+    self->field_0x20 = nullptr;
+    __builtin_memset(&self->field_0x18, 0, 8);
+    self->field_0x10 = arg;
+    u8* scene = reinterpret_cast<u8*>(self->owner->scene);
+    self->field_0x18 = reinterpret_cast<UnkOwner_ovb0167*>(scene + 0x90);
+    EnsureEntries(self->field_0x18);
+    u8* scene2 = *reinterpret_cast<u8**>(reinterpret_cast<u8*>(self->owner) + 8);
+    self->field_0x20 = reinterpret_cast<UnkOwner_ovb0167*>(scene2 + 0x108);
+    EnsureEntries(self->field_0x20);
 }
 
 struct UnkEmitter3_ovb0167 {

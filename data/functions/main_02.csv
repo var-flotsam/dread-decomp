@@ -6004,7 +6004,7 @@ address,size,name,name_source,subsystem,status
 0x71002f8198,244,CAbility::refl_GetClass,reflection,game,O
 0x71002f828c,4,CAbility::refl_AddFields,reflection,game,O
 0x71002f8290,388,CAbility::refl_InitClass,reflection,game,O
-0x71002f8414,432,fn_71002f8414,unknown,game?,m
+0x71002f8414,432,fn_71002f8414,unknown,game?,O
 0x71002f85c4,68,fn_71002f85c4,unknown,game?,O
 0x71002f8608,576,fn_71002f8608,unknown,game?,O
 0x71002f8848,464,fn_71002f8848,unknown,game?,O

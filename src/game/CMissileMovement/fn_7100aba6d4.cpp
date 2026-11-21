@@ -72,7 +72,6 @@ static inline const char* Text(const base::UnkStrIdMember& id) {
     return reinterpret_cast<const UnkMissileNameText_laba6d4*>(id.data)->text;
 }
 
-// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 bool fn_7100aba6d4(UnkMissileMovement_laba6d4* self, UnkMissileTarget_laba6d4* target, const UnkVec3f* offset,
                    const UnkVec3f* angle) {
     UnkMissileSoundObject_laba6d4* object =
@@ -94,11 +93,11 @@ bool fn_7100aba6d4(UnkMissileMovement_laba6d4* self, UnkMissileTarget_laba6d4* t
         return false;
 
     UnkMatrix44 bone = {};
+    bool found;
+    bone.m[5] = 1.0f;
     bone.m[15] = 1.0f;
     bone.m[10] = 1.0f;
-    bone.m[5] = 1.0f;
     bone.m[0] = 1.0f;
-    bool found;
     {
         const char* name = Text(record->field_0x10);
         found = fn_71001c1694(data->resource, &name, bone.m);
@@ -113,10 +112,10 @@ bool fn_7100aba6d4(UnkMissileMovement_laba6d4* self, UnkMissileTarget_laba6d4* t
     f32 x, y, z;
     u32 index;
     {
-        const char* name = Text(record->field_0x10);
         x = world.m[3];
         z = world.m[11];
         y = world.m[7];
+        const char* name = Text(record->field_0x10);
         index = fn_71001c14fc(data->resource, &name);
     }
     UnkVec3f pos(x + offset->x, y + offset->y, z + offset->z);

@@ -29,11 +29,11 @@ void fn_710019dcac(UnkMapOwner_b260* self) {
     m->field_0x24 = true;
     m->field_0x28 = 0xe;
     base::UnkAllocator* a = fn_7100083990();
+    m->alloc_0x30 = a;
     m->field_0x38 = 0;
     m->field_0x40 = 0;
-    m->alloc_0x30 = a;
-    m->field_0x50 = 0;
     m->pool_vtable = g_unk_7101a1a4c8 + 0x10;
+    m->field_0x50 = 0;
     fn_710008377c(&m->pool);
     m->field_0x80 = 0;
     m->field_0x84 = false;
