@@ -2199,7 +2199,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2197,0x7100c7ffe4,0x7100c80924,UnkTU2197,high,unknown,matched,2,2368,2,0,0,0,0,0,0,2368,2368
 2198,0x7100c80924,0x7100c81264,UnkTU2198,high,unknown,matched,2,2360,2,0,0,0,0,0,0,2360,2360
 2199,0x7100c81264,0x7100c8137c,UnkTU2199,high,unknown,matched,3,272,3,0,0,0,0,0,0,272,272
-2200,0x7100c8137c,0x7100c932c4,CCutSceneDef,medium,game/cutscene,partial,422,73536,409,0,0,0,0,13,0,67028,67028
+2200,0x7100c8137c,0x7100c932c4,CCutSceneDef,medium,game/cutscene,partial,422,73536,410,0,0,0,0,12,0,67972,67972
 2201,0x7100c932c4,0x7100c93ff8,UnkTU2201,high,engine/reflection,matched,30,3380,30,0,0,0,0,0,0,3380,3380
 2202,0x7100c93ff8,0x7100c94244,UnkTU2202,high,audio,matched,2,580,2,0,0,0,0,0,0,580,580
 2203,0x7100c94244,0x7100c948bc,UnkTU2203,high,engine/reflection,matched,14,1652,14,0,0,0,0,0,0,1652,1652
@@ -2701,7 +2701,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2699,0x71010f21a0,0x71010f2c90,CCameraFX_RandShake,high,game,done,20,2788,19,1,1,0,0,0,0,2276,2788
 2700,0x71010f2c90,0x71010f3610,CCameraFX_RotationShake,high,game,partial,19,2420,18,0,0,0,0,1,0,1812,1812
 2701,0x71010f3610,0x71010f41a0,CCameraFX_Shake,high,game,matched,23,2948,23,0,0,0,0,0,0,2948,2948
-2702,0x71010f41a0,0x71011173fc,CAIComponent,medium,unknown,partial,458,143944,373,3,1,3,0,79,0,59412,59848
+2702,0x71010f41a0,0x71011173fc,CAIComponent,medium,unknown,partial,458,143944,374,3,1,3,0,78,0,59692,60128
 2703,0x71011173fc,0x7101120afc,CSpawnGroupComponent,high,game/components,partial,103,38652,93,2,0,0,0,8,0,34024,34024
 2704,0x7101120afc,0x71011336b0,CSpawnPointComponent,medium,engine/reflection,partial,409,76712,390,0,0,0,0,19,0,64020,64020
 2705,0x71011336b0,0x7101135a60,CAIAttackComponent,high,game/ai,partial,44,9124,37,0,0,0,0,7,0,4092,4092

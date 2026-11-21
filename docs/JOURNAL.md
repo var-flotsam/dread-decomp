@@ -102,6 +102,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A semantic lift must take x8 as an incoming result only from the facts: a register read first in address order may be a loop's value (a block placed before the one that sets it), and an sret definition shifts every argument on x86-64: [the map menu and the first room](#session-log-newest-first).
 - A `{f32, f32}` by value is s0/s1 on AArch64 but one packed xmm register on x86-64: where lifted code calls the function, or it calls lifted code, take the pair as two floats (same Switch bytes): same entry.
 - `!` on a bool callee's result: the original's byte-wide NOT (`mvn`) against our 1-bit `eor #1` is codegen, out of the permuter's reach; the permuter's yield on 95%+ fuzzy near misses is about 2% (6 of 346): [overnight permuter run](#session-log-newest-first).
+- A generated clone that declares an element assignment `void` while its definition must return the destination: list it in `gen_clones.py`'s `ASSIGN_RETURNS_DST`, not a cast: [two held drafts land](#session-log-newest-first).
 
 **Port: shaders**
 - `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
@@ -158,7 +159,20 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through 66e3e14eac660655be7e336699646051e2edeb77 -->
+<!-- journal_sync: through ebefdab2ede4587b1ccafd42d25649457a84e250 -->
+
+**Land two matching drafts held on their declarations (#609, 2026-11-21).**
+
+These two drafts already matched byte for byte but were held because their definitions disagreed with existing declarations. Both now land in `src/` as `O`.
+
+- **`fn_7100c8e034`** (`src/game/UnkTU2200/`, the cut-scene entry's move assignment). It returns its destination, like an `operator=` returning `*this`, and dropping that return breaks the match. `tools/gen_clones.py` declared every element assignment `void`. It now has a one-entry set `ASSIGN_RETURNS_DST` and an `assign_decl` helper, so this one is declared `void*`. The regenerated `src/clones/` changes only that line. The hand-written declaration in `CCutSceneDef_b42.cpp` follows it.
+- **`fn_71010fa828`** (`src/game/UnkTU2702/`). Its header declares it on `UnkAIComponent*`. The draft's layout becomes a subclass of `UnkAIComponent`, and the function downcasts to it. That also removed an offset cast: the edge is read as a named member and still matches.
+
+Still held:
+- `fn_710019dcac` needs the scene registry's two layouts merged: the one in `src/engine/UnkGraphicsSystem.cpp` (bucket and node view) and the draft's (vtable, `UnkPooledChainedMap`, `CRntVector`). That is a layout batch of its own.
+- `fn_7100494c9c` is the Chozo Warrior negation. It matches with a `u32` return, but its caller needs `bool`.
+
+Chozo Warrior negation (`0x7100494c9c`, `0x71004943b0`), studied by hand and stopped at the time-box. Every source form of the negation tried canonicalizes to the same IR, a 1-bit `xor i1 %call, true`, which compiles to `eor #1`. The forms tried were `!f()`, `== false`, `!= true`, `^ 1`, `if (f()) return false; return true;`, a ternary through a local, a bool or int result variable, an inverted guard and a single `||` expression. The original's `mvn` points to a NOT on a byte-wide value whose demanded bits are only bit 0 (InstCombine canonicalizes such an xor constant to all-ones). So in the original, the value flows through a phi wider than `i1`, and something keeps InstCombine from narrowing that phi. A `u8` declaration of the callee moves the branches instead. The next thing to test is a return path that yields a bool loaded from memory, which keeps the phi at `i8`.
 
 **Match six near-miss functions from an overnight permuter run (#607, 2026-11-20).**
 
