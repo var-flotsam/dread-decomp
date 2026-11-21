@@ -9,10 +9,10 @@
 <text class="n" x="516" y="18">untouched</text>
 <text class="big" x="500" y="52">4.71 MB</text>
 <rect class="t" x="0" y="66" width="760" height="16" rx="4"/>
-<rect class="o" x="0" y="66" width="545.9" height="16" rx="4"/>
+<rect class="o" x="0" y="66" width="546.0" height="16" rx="4"/>
 <rect class="f" x="0" y="66" width="167.7" height="16" rx="4"/>
 <rect class="u" x="569.3" y="66" width="190.7" height="16" rx="4"/>
-<text class="n" x="0" y="100">Whole binary: 101,374 functions of game code, 4,596 untouched</text>
+<text class="n" x="0" y="100">Whole binary: 101,374 functions of game code, 4,595 untouched</text>
 <text class="l" x="0" y="125" dy="0.35em">Boot path</text>
 <rect class="t" x="150" y="120" width="420" height="10" rx="5"/>
 <rect class="o" x="150" y="120" width="207.6" height="10" rx="5"/>

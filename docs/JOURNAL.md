@@ -103,6 +103,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A `{f32, f32}` by value is s0/s1 on AArch64 but one packed xmm register on x86-64: where lifted code calls the function, or it calls lifted code, take the pair as two floats (same Switch bytes): same entry.
 - `!` on a bool callee's result: the original's byte-wide NOT (`mvn`) against our 1-bit `eor #1` is codegen, out of the permuter's reach; the permuter's yield on 95%+ fuzzy near misses is about 2% (6 of 346): [overnight permuter run](#session-log-newest-first).
 - A generated clone that declares an element assignment `void` while its definition must return the destination: list it in `gen_clones.py`'s `ASSIGN_RETURNS_DST`, not a cast: [two held drafts land](#session-log-newest-first).
+- A placeholder byte array that moves the anchor register when split into flat fields can be an embedded object: the pooled map's +0x10..0x38 is a `CRntVector`, and that nested layout with typed stores matched: [scene registry layout](#session-log-newest-first).
 
 **Port: shaders**
 - `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
@@ -159,7 +160,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through ebefdab2ede4587b1ccafd42d25649457a84e250 -->
+<!-- journal_sync: through 85fa6cf86df8b16ec1db55a3d9c2410d82c01173 -->
+
+**Give the scene registry one layout and match its constructor (#611, 2026-11-21).**
+
+A layout batch for one class: the scene registry, the 0xb8-byte singleton `g_unk_716e34c2e0`. Its constructor `fn_710019dcac` already matched as a draft. It was held because `src/engine/UnkGraphicsSystem.cpp` declared it on its own registry struct, a bucket and node view, while the draft used a different struct with a vtable, a map and a vector.
+
+- **`base::input::UnkPooledChainedMap`** (`include/base/input/UnkRumbleManager.h`): the 0x18 placeholder bytes at +0xc and the members after them up to +0x38 were an entry count and a `base::global::CRntVector<void*>` of bucket heads (data, count, capacity, step, flag, flags, allocator: the vector's own layout). +0x38 and +0x40 are the node list's `last` and `first`. The graphics view agrees on every offset.
+- **`include/game/UnkGfxSceneRegistry.h`** (new): the registry, made of a vtable, the map and a vector, plus its map node `UnkGfxCameraNode`, moved out of the graphics file. The unit header `game/UnkTU225.h` declares `fn_710019dcac` and `fn_710019e088` on it.
+- **`src/engine/UnkGraphicsSystem.cpp`**: the camera insert reads through `registry->map`. Nothing it matched before stops matching (11 of 17, as on main).
+- **`src/base/input/CRumbleManager.cpp`**: its constructor `fn_71000733e4` stays `O` with typed stores in place of four offset casts.
+- **`fn_710019dcac`** (`src/game/UnkTU225/`): U -> O, with no offset casts.
+
+Reusable: splitting the placeholder bytes into flat fields moved the rumble constructor's anchor register. The vector's real nested layout combined with typed stores matched. When a placeholder array resists typing, look for the embedded object first.
 
 **Land two matching drafts held on their declarations (#609, 2026-11-21).**
 
