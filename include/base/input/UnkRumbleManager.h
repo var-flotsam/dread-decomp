@@ -25,14 +25,10 @@ namespace base::input {
 struct UnkPooledChainedMap {
     base::UnkAllocator* alloc;  // +0x0
     u32 flags;                  // +0x8, 0xe
-    u8 words_0xc[0x18];         // +0xc, cleared (and the step at +0x20 set) as words
-    bool field_0x24;            // true
-    u8 pad_0x25[3];
-    u32 field_0x28;  // 0xe
-    u8 pad_0x2c[4];
-    base::UnkAllocator* alloc_0x30;
-    u64 field_0x38;
-    u64 field_0x40;
+    u32 size;                   // +0xc, the entry count
+    base::global::CRntVector<void*> buckets;  // +0x10, the bucket heads
+    void* last;   // +0x38, the node list's last node
+    void* first;  // +0x40, its first node
     void* pool_vtable;  // +0x48
     u64 field_0x50;
     UnkBlockFreeList pool;  // +0x58
