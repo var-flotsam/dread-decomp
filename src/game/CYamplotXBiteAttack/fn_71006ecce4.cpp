@@ -12,6 +12,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CEnemyMovement.h"
+#include "game/UnkAIPathSearch.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -23,19 +24,6 @@ using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
 struct UnkAIPathFollower;
-
-// What a side search fills (0x14 bytes).
-struct UnkAIPathSearchOut {
-    u64 a;
-    u64 b;
-    f32 distance;
-
-    UnkAIPathSearchOut() : a(0), b(0), distance(-1.0f) {}
-};
-
-bool fn_710035e8d8(UnkAIPathFollower* self, const CVector2D* from, const CVector2D* to, const CVector2D* dir_a,
-                   const CVector2D* dir_b, bool flag, CVector2D* point, u32* out_0x7, f32 limit, bool* blocked,
-                   f32* out_a, f32* out_b, u32* out_c, UnkAIPathSearchOut* out, std::function<void()> filter);
 
 // What the side search fills here, as 4-byte words (0x14 bytes).
 struct UnkBiteSearchOut_l6ecce4 {
@@ -84,16 +72,6 @@ struct UnkYamplotXBiteAttack_l6ecce4 {
     UnkBiteOwner_l6ecce4* owner;  // 0x8
 };
 
-// A string id as this function returns it (CStrId's layout), built from a string out of line.
-struct UnkBiteStrId_l6ecce4 {
-    UnkStringData* data;
-
-    explicit UnkBiteStrId_l6ecce4(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
-    }
-    ~UnkBiteStrId_l6ecce4() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
-};
-
 // A string built empty out of line (fn_710007e6c4).
 struct UnkBiteString_l6ecce4 {
     alignas(8) u8 storage[sizeof(CRntString)];
@@ -124,7 +102,7 @@ static inline void Flatten(CVector2D* out, const CVector3D& v) {
     fn_710007b430(out, &v);
 }
 
-UnkBiteStrId_l6ecce4 fn_71006ecce4(UnkYamplotXBite_b57a4* attack) {
+CStrId fn_71006ecce4(UnkYamplotXBite_b57a4* attack) {
     UnkYamplotXBiteAttack_l6ecce4* self = reinterpret_cast<UnkYamplotXBiteAttack_l6ecce4*>(attack);
     UnkReflObject* mv = self->owner->movement;
     UnkReflObject* movement_obj = mv && fn_710009d50c(mv->vf_0x0(), fn_71010c74e0()) ? mv : nullptr;
@@ -176,5 +154,5 @@ UnkBiteStrId_l6ecce4 fn_71006ecce4(UnkYamplotXBite_b57a4* attack) {
         tag = "_h4";
     fn_710007e77c(suffix.Str(), tag);
     CRntString name = fn_710007eee0(&g_unk_717270bd60, suffix.Str());
-    return UnkBiteStrId_l6ecce4(name);
+    return CStrId(name, true);
 }

@@ -3730,7 +3730,7 @@ address,size,name,name_source,subsystem,status
 0x71009c49d8,200,fn_71009c49d8,unknown,unknown,O
 0x71009c4aa0,536,fn_71009c4aa0,unknown,unknown,O
 0x71009c4cb8,336,fn_71009c4cb8,unknown,unknown,O
-0x71009c4e10,1500,fn_71009c4e10,unknown,unknown,U
+0x71009c4e10,1500,fn_71009c4e10,unknown,unknown,O
 0x71009c53ec,4,CNavMeshItemStage::refl_AddAttributes,reflection,game,O
 0x71009c53f0,240,CNavMeshItemStage::refl_GetClass,reflection,game,O
 0x71009c54e0,4,CNavMeshItemStage::refl_AddFields,reflection,game,O
@@ -4362,7 +4362,7 @@ address,size,name,name_source,subsystem,status
 0x71009ecd58,64,fn_71009ecd58,unknown,game/player?,O
 0x71009ecd98,380,fn_71009ecd98,unknown,game/player?,O
 0x71009ecf14,32,fn_71009ecf14,unknown,game/player?,O
-0x71009ecf34,292,fn_71009ecf34,unknown,game/player?,U
+0x71009ecf34,292,fn_71009ecf34,unknown,game/player?,O
 0x71009ed058,1068,fn_71009ed058,unknown,game/player?,U
 0x71009ed484,72,fn_71009ed484,unknown,game/player?,O
 0x71009ed4cc,16,fn_71009ed4cc,unknown,game/player?,O

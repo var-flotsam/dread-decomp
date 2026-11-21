@@ -5,12 +5,13 @@
 #include <nn/os.h>
 #include <stdint.h>
 
+#include "UnkLeftoverReg.h"
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/UnkTU327.h"
+#include "game/media/MovieBuffer.h"
 #include "game/msapi/res/CRenderRes.h"
 #include "types.h"
-#include "UnkLeftoverReg.h"
 
 namespace nn {
 namespace os {
@@ -24,7 +25,6 @@ uintptr_t GetMultiWaitHolderUserData(const MultiWaitHolderType* holder);
 void LinkMultiWaitHolder(MultiWaitType* multiWait, MultiWaitHolderType* holder);
 }  // namespace os
 }  // namespace nn
-
 
 namespace {
 
@@ -163,17 +163,6 @@ struct UnkMovieWorker_b50 {
     u8 pad_0x1e8[0x8];
     UnkMovieUnit327_b50* field_0x1f0;
 };
-
-namespace movie {
-class Buffer {
-public:
-    Buffer();
-    ~Buffer();
-
-private:
-    u8 storage[0x40];
-};
-}  // namespace movie
 
 // The decoder a stream holds at +0x50, as far as this unit calls it (placeholder slot names).
 class UnkMovieDecoder_b50 {

@@ -421,7 +421,10 @@ def same_program(src: Path, msrc: Path, symbol: str) -> str | None:
 # is judged on exactly the inputs that showed the test can see such a change.
 
 KILL = True              # (a test, or a comparison with the mutation check alone, turns it off)
-KILL_BUDGET = 90.0       # seconds of targeted search per mutant that passed
+KILL_BUDGET = 120.0      # seconds of targeted search per mutant that passed
+KILL_READ = 256          # of the words a run read, the first that the search sets (an array's last element is late)
+KILL_FOCUS_RUNS = 16     # runs whose mutant run is compared word by word (parting_words)
+KILL_FOCUS_WORDS = 16    # of the words where the two runs part, the first
 KILL_EXTRA = (3, 4, 5, 7, 8, 15, 16, 31, 32, 63, 64, 0xFF, 0x100, 0x7FFFFFFF, 0x80000000, 0xFFFFFFFF,
               0xFFFFFFFFFFFFFFFF)
 EXTRA: dict[int, list] = {}   # address -> [(seed, overrides)]: inputs that told one of its mutants apart
@@ -469,12 +472,16 @@ def mutable_words(oracle):
     return mutable
 
 
-def kill_candidates(oracle, a: int, runs: list, values: list[int]):
-    """(seed, overrides) inputs to tell a mutant apart on, the likeliest first and none twice: each value
-    for each argument, memory word read (and the values the run's other words held) and call result of
-    every run of the original (the value outermost: the changed constant on every input before anything
-    else), then each run's register compares made equal (equal_variants, every compare of the run), then
-    every pair of the first arguments and words set to one value: a bound and a count that meet."""
+def kill_candidates(oracle, a: int, runs: list, values: list[int], focus: dict | None = None):
+    """(seed, overrides) inputs to tell a mutant apart on, the likeliest first and none twice. First, for each
+    run of the original, the words `focus` names for it (where the mutant's run and the original's read
+    different words: the element past a loop's last iteration, or the last one a shortened loop no longer
+    reads), each set to every value and to what the run's other words held. Then each value for each
+    argument, memory word read (up to KILL_READ of them, not the first SYS_READ only: an array's last
+    element is read late) and call result of every run (the value outermost: the changed constant on every
+    input before anything else), then each run's register compares made equal over every word it read
+    (equal_variants: the searched-for value placed in the last element), then every pair of the first
+    arguments and words set to one value: a bound and a count that meet."""
     import pcode_emu
     import port_lift
     f = oracle.af.facts(a)
@@ -494,13 +501,21 @@ def kill_candidates(oracle, a: int, runs: list, values: list[int]):
 
     def keys(base):
         return [("r", k) for k in regs] \
-            + [("m", w) for w in base.read_words[:SYS_READ] if mutable(w)] \
+            + [("m", w) for w in base.read_words[:KILL_READ] if mutable(w)] \
             + [("c", n) for n in range(1, min(base.calls, SYS_CALLS) + 1)]
 
     def value(base, key, v):
         return port_lift.placed(base, key[1], v) if key[0] == "m" else v
-    held = {id(b[2]): [v for v in dict.fromkeys(port_lift.held(b[2], w) for w in b[2].read_words[:SYS_READ]) if v > 2]
+    held = {id(b[2]): [v for v in dict.fromkeys(port_lift.held(b[2], w) for w in b[2].read_words[:KILL_READ]) if v > 2]
             for b in bases}
+    for seed, ovr, base in bases:
+        for w in (focus or {}).get(id(base), ()):
+            if not mutable(w) or ("m", w) in ovr:
+                continue
+            for v in [*values, *held[id(base)]]:
+                o = {**ovr, ("m", w): port_lift.placed(base, w, v)}
+                if fresh(seed, o):
+                    yield seed, o
     for v in values:
         for seed, ovr, base in bases:
             for key in keys(base):
@@ -519,7 +534,7 @@ def kill_candidates(oracle, a: int, runs: list, values: list[int]):
                 if fresh(seed, o):
                     yield seed, o
     for seed, ovr, base in bases:
-        words = [w for w in base.read_words[:SYS_READ] if mutable(w) and ("m", w) not in ovr]
+        words = [w for w in base.read_words[:KILL_READ] if mutable(w) and ("m", w) not in ovr]
         for w, v in equal_variants(getattr(base, "compares", ()), words, lambda w, base=base: port_lift.held(base, w),
                                    lambda pc: a <= pc < a + size, limit=1 << 16):
             o = {**ovr, ("m", w): port_lift.placed(base, w, v)}
@@ -535,6 +550,33 @@ def kill_candidates(oracle, a: int, runs: list, values: list[int]):
                         yield seed, o
 
 
+def parting_words(original: list[int], mutant: list[int]) -> list[int]:
+    """The words one of two runs on the same input read and the other did not, in the order they were read:
+    where a changed loop bound or test makes the mutant go one element further or stop one short. These are
+    the words whose contents can make the change show."""
+    a, b = set(original), set(mutant)
+    return list(dict.fromkeys([*(w for w in mutant if w not in a), *(w for w in original if w not in b)]))
+
+
+def mutant_words(oracle, a: int, lo, seed: int, ovr: dict, mo) -> list[int]:
+    """The words the mutant laid out in `lo` reads on the input the original's run `mo` ran on, in order; []
+    when that run is inconclusive. Run as port_lift.Oracle.check runs a lift, with the reads recorded."""
+    import pcode_emu
+    start, _ = lo.functions[a]
+    text = lo.text
+    preset = {**oracle.preset_orig, **{g: 1 for g in lo.guards}}
+    ml = oracle.machine(seed, lambda x: text[0] <= x < text[1], lambda x: pcode_emu._word(lo, x), lo, preset,
+                        oracle.dicts.get(a, ()), ovr, True, addr=a, guide=mo.call_log)
+    ml.noret_at = mo.noret_call
+    if mo.small_outs:
+        ml.small_outs = mo.small_outs
+    try:
+        ml.run(start)
+    except Exception:  # pcode_emu.Inconclusive, or a state the emulator does not model: no words to go on
+        pass
+    return list(getattr(ml, "read_words", []))
+
+
 def kill(ctx: Context, oracle, a: int, mobj: Path, ret, runs: list, values: list[int], budget: float):
     """The first input of kill_candidates() on which the mutant in `mobj` and the original differ (a run
     that fails: other writes, calls or result, or a fault only one of them has), as (seed, overrides);
@@ -547,8 +589,13 @@ def kill(ctx: Context, oracle, a: int, mobj: Path, ret, runs: list, values: list
             return None
         end = port_lift._clock() + budget
         saved = oracle.orig_runs.pop(a, None)
+        focus = {}
+        for seed, ovr, mo in [r for r in runs if not isinstance(r[2], str)][:KILL_FOCUS_RUNS]:
+            if port_lift._clock() > end:
+                break
+            focus[id(mo)] = parting_words(mo.read_words, mutant_words(oracle, a, lo, seed, ovr, mo))[:KILL_FOCUS_WORDS]
         try:
-            for seed, ovr in kill_candidates(oracle, a, runs, values):
+            for seed, ovr in kill_candidates(oracle, a, runs, values, focus):
                 if port_lift._clock() > end:
                     return None
                 oracle.deadline, oracle.over = end, None

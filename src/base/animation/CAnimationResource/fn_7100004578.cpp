@@ -1,19 +1,14 @@
-// Unit 11 (base::animation::CAnimationResource hint): builds a record of two string ids and a
-// vector of string ids filled from a list of names. Names and layouts are placeholders.
+// The resource format's constructor (base/UnkResType.h): its class name and extension as string
+// ids, and its source extensions as a vector of string ids filled from a list of names.
 #include <new>
 
-#include "base/UnkCloneRecords.h"
+#include "base/UnkResFormatMembers.h"
+#include "base/UnkResType.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkNamedIdList_004578 {
-    CStrId field_0x0;
-    CStrId field_0x8;
-    base::UnkStrIdVec ids;  // 0x10
-};
 
 // Appends an id, moving it in: the moved-from id is left holding the empty id.
 inline void AppendMoved(base::UnkStrIdVec* ids, CStrId& id) {
@@ -29,11 +24,11 @@ inline void AppendMoved(base::UnkStrIdVec* ids, CStrId& id) {
     ++ids->count;
 }
 
-void fn_7100004578(UnkNamedIdList_004578* self, const char* first, const char* second, const char* const* names,
-                   u64 count) {
-    new (&self->field_0x0) CStrId(first, true);
-    new (&self->field_0x8) CStrId(second, true);
-    base::UnkStrIdVec* ids = &self->ids;
+static inline void Construct(UnkResFormatMembers* self, const char* class_name, const char* extension,
+                             const char* const* names, u64 count) {
+    new (&self->class_name) CStrId(class_name, true);
+    new (&self->extension) CStrId(extension, true);
+    base::UnkStrIdVec* ids = &self->sources;
     ids->data = nullptr;
     ids->count = 0;
     ids->capacity = 0;
@@ -46,4 +41,9 @@ void fn_7100004578(UnkNamedIdList_004578* self, const char* first, const char* s
         CStrId id(*p, true);
         AppendMoved(ids, id);
     }
+}
+
+void fn_7100004578(UnkResFormat* self, const char* class_name, const char* extension, const char* const* names,
+                   u64 count) {
+    Construct(reinterpret_cast<UnkResFormatMembers*>(self), class_name, extension, names, count);
 }

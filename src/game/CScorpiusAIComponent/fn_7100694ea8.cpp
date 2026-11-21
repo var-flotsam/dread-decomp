@@ -8,6 +8,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CBossAIComponent.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CChozoCommanderAIComponent.h"
@@ -20,6 +21,7 @@
 #include "game/UnkTU437.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -35,21 +37,6 @@ struct UnkMlogMessage_b42a1 {
     __attribute__((always_inline)) ~UnkMlogMessage_b42a1() {
         args.Free();
     }
-};
-
-struct UnkMgr_0xf18;
-void fn_7100fdbd84(UnkMgr_0xf18* self, u32 flag);
-
-struct UnkTimedRef;
-struct UnkWeakTarget;
-bool fn_7100da9018(UnkTimedRef* self, UnkWeakTarget* target, f32 time);
-
-struct UnkObj_710119770c;
-void fn_710119780c(UnkObj_710119770c* self, const CStrId& id);
-
-// A string id built from a pooled string (fn_7100000850, out of line).
-struct UnkScorpiusTextId_l694ea8 : CStrId {
-    UnkScorpiusTextId_l694ea8(const CRntString& str, bool flag) asm("fn_7100000850");
 };
 
 struct UnkScorpiusCounted_l694ea8 : base::UnkRefCounted {
@@ -141,12 +128,12 @@ static inline bool IsCutsceneLoaded(void* cutscenes, CFilePathStrId path) {
 }
 
 // The cutscene path as a string id (counting the read of its text).
-static inline UnkScorpiusTextId_l694ea8 CutsceneId(const CFilePathStrId& path) {
+static inline CStrId CutsceneId(const CFilePathStrId& path) {
     ++path.data->reads;
-    return UnkScorpiusTextId_l694ea8(path.data->String(), true);
+    return CStrId(path.data->String(), true);
 }
 
-static inline void PlayCutscene(void* cutscenes, UnkScorpiusTextId_l694ea8 id) {
+static inline void PlayCutscene(void* cutscenes, CStrId id) {
     fn_710119780c(static_cast<UnkObj_710119770c*>(cutscenes), id);
 }
 void fn_7100694dc0(UnkScorpiusAI_l694ea8* self);

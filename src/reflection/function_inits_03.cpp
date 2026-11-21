@@ -14,6 +14,18 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
+class CEnvironmentData;
+template <> base::reflection::CType base::reflection::TypeObject<CEnvironmentData>::object asm("g_unk_71729e0568");
+class CEnvironmentMusicData;
+template <> base::reflection::CType base::reflection::TypeObject<CEnvironmentMusicData>::object asm("g_unk_71729e8dc0");
+namespace CEnvironmentSoundData { class SSound; }
+template <> base::reflection::CType base::reflection::TypeObject<CEnvironmentSoundData::SSound>::object asm("g_unk_71729ea500");
+namespace sound { class TBossMusicSubStateConfig; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::TBossMusicSubStateConfig>::object asm("g_unk_71729f2d30");
+namespace sound { class TBossMusicSpawnGroupConfig; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::TBossMusicSpawnGroupConfig>::object asm("g_unk_71729f3268");
+namespace sound { class TBossMusicPreset; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::TBossMusicPreset>::object asm("g_unk_71729f37a0");
 class CSubareaInfo;
 extern template const base::reflection::CType* base::reflection::PointerType<CSubareaInfo*>::Get();
 namespace base::global { class CFilePathStrId; }
@@ -136,21 +148,17 @@ void fn_7100f764c4();
 void fn_7100f76938();
 void fn_7100f78434();
 void fn_7100f86550();
-extern base::reflection::CType g_unk_71729e8dc0;
 void fn_7100f8a44c();
 void fn_7100f8a4c0();
-extern base::reflection::CType g_unk_71729f37a0;
 void fn_7100f8a8a4();
 void fn_7100f8a918();
 void fn_7100f91054();
 void fn_7100f91198();
-extern base::reflection::CType g_unk_71729ea500;
 void fn_7100f912e8();
 void fn_7100f9135c();
 extern base::reflection::CType g_unk_71729ea640;
 void fn_7100f964bc();
 void fn_7100f96530();
-extern base::reflection::CType g_unk_71729e0568;
 void fn_7100f9c940();
 void fn_7100f9c9b4();
 void fn_7100fa00ac();
@@ -172,10 +180,8 @@ void fn_7100fdd74c();
 void fn_7100fdd998();
 void fn_7100fdda0c();
 void fn_7100fff0ac();
-extern base::reflection::CType g_unk_71729f2d30;
 void fn_7101003b80();
 void fn_7101003bf4();
-extern base::reflection::CType g_unk_71729f3268;
 void fn_7101004e68();
 void fn_7101004edc();
 void fn_710101a504();
@@ -754,7 +760,7 @@ void fn_7100f7fd38(UnkReflFunction* fn, const char* name) {
 }
 
 void fn_7100f88d84(UnkReflFunction* fn, const char* name) {
-    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729e8dc0, 0x1, fn_7100f8a44c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<CEnvironmentMusicData>::object, 0x1, fn_7100f8a44c);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
@@ -764,7 +770,7 @@ void fn_7100f88f04(UnkReflFunction* fn, const char* name) {
 }
 
 void fn_7100f8907c(UnkReflFunction* fn, const char* name) {
-    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729f37a0, 0x1, fn_7100f8a8a4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<sound::TBossMusicPreset>::object, 0x1, fn_7100f8a8a4);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
@@ -784,7 +790,7 @@ void fn_7100f8c3f0(UnkReflFunction* fn, const char* name) {
 }
 
 void fn_7100f8c56c(UnkReflFunction* fn, const char* name) {
-    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729ea500, 0x1, fn_7100f912e8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<CEnvironmentSoundData::SSound>::object, 0x1, fn_7100f912e8);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
@@ -804,7 +810,7 @@ void fn_7100f93450(UnkReflFunction* fn, const char* name) {
 }
 
 void fn_7100f9bbb8(UnkReflFunction* fn, const char* name) {
-    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729e0568, 0x1, fn_7100f9c940);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<CEnvironmentData>::object, 0x1, fn_7100f9c940);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
@@ -879,7 +885,7 @@ void fn_7100fc8c70(UnkReflFunction* fn, const char* name) {
 }
 
 void fn_7100fd2b98(UnkReflFunction* fn, const char* name) {
-    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729e8dc0, 0x1, fn_7100fdd6d8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<CEnvironmentMusicData>::object, 0x1, fn_7100fdd6d8);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
@@ -889,7 +895,7 @@ void fn_7100fd2d18(UnkReflFunction* fn, const char* name) {
 }
 
 void fn_7100fd2e90(UnkReflFunction* fn, const char* name) {
-    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729f37a0, 0x1, fn_7100fdd998);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<sound::TBossMusicPreset>::object, 0x1, fn_7100fdd998);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
@@ -904,7 +910,7 @@ void fn_7100fe5a58(UnkReflFunction* fn, const char* name) {
 }
 
 void fn_7100fea218(UnkReflFunction* fn, const char* name) {
-    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729f2d30, 0x1, fn_7101003b80);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<sound::TBossMusicSubStateConfig>::object, 0x1, fn_7101003b80);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
@@ -914,7 +920,7 @@ void fn_7100fea398(UnkReflFunction* fn, const char* name) {
 }
 
 void fn_7100fec08c(UnkReflFunction* fn, const char* name) {
-    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729f3268, 0x1, fn_7101004e68);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<sound::TBossMusicSpawnGroupConfig>::object, 0x1, fn_7101004e68);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 

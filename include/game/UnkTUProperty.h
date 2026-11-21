@@ -120,11 +120,12 @@ __attribute__((always_inline)) inline void InitPropertyEx(P* p, void** base_vtab
     fn_7100000250(dtor, p, g_unk_7101a19000);
 }
 
-template <class P, class Init>
+// `dtor` may take the property typed: __cxa_atexit is handed it as taking the object untyped.
+template <class P, class Init, class Object>
 __attribute__((always_inline)) inline void InitPropertyExVtableFirst(P* p, void** base_vtable, UnkPropertyHead*& head,
                                                                      void** vtable, void (*member_ctor)(void*),
                                                                      const char* name, void* value, Init on_init,
-                                                                     void (*dtor)(void*)) {
+                                                                     void (*dtor)(Object*)) {
     p->next = head;
     p->vtable = base_vtable + 2;
     head = p;
@@ -135,5 +136,5 @@ __attribute__((always_inline)) inline void InitPropertyExVtableFirst(P* p, void*
     p->field_0x38 = 0;
     if (p->vf_0x10() && !p->vf_0x18())
         on_init(p);
-    fn_7100000250(dtor, p, g_unk_7101a19000);
+    fn_7100000250(reinterpret_cast<void (*)(void*)>(dtor), p, g_unk_7101a19000);
 }

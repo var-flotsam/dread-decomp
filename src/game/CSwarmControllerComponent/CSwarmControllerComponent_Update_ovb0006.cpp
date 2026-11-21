@@ -20,6 +20,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSwarmSlot.h"
 #include "game/UnkTU1159.h"
 #include "game/UnkTU1161.h"
 #include "game/UnkTU2553.h"
@@ -91,11 +92,6 @@ struct UnkSwarmOwner_ovb6 {
     UnkSwarmOwnerPart_ovb6* field_0x1b8;
 };
 
-// A slot of the array at +0x278 (see fn_710074ea40).
-struct UnkSwarmSlot_ovb6;
-
-using UnkSwarmSlots_ovb6 = base::global::CRntSmallDictionary<void*, UnkSwarmSlot_ovb6>;
-
 // The layout of a base::global::CRntVector, freed when it goes out of scope.
 struct UnkSwarmTargets_ovb6 {
     void** data;
@@ -136,7 +132,7 @@ struct UnkSwarmController_ovb6 {
     u8 pad_0x1fd[0x5b];
     u32 field_0x258;
     u8 pad_0x25c[0x1c];
-    UnkSwarmSlots_ovb6 slots;  // 0x278
+    UnkSwarmSlots slots;  // 0x278 (game/UnkSwarmSlot.h; see fn_710074ea40)
 
     UnkSwarmGroups_ovb6* Groups() { return def ? def->groups : nullptr; }
 
@@ -284,15 +280,7 @@ struct UnkSwarmPlayer_ovb6 {
     UnkAnimationComponent* animation;  // 0x220
 };
 
-struct UnkSwarmSlot_ovb6 {
-    u8 pad_0x0[0x10];
-    void* field_0x10;
-    u8 pad_0x18[0x28];
-};
-static_assert(sizeof(UnkSwarmSlot_ovb6) == 0x40, "UnkSwarmSlot_ovb6 layout");
-
 UnkSwarmTargets_ovb6 fn_710074ab2c(UnkSwarmController_ovb6* self);
-UnkSwarmSlot_ovb6* fn_710074a568(UnkSwarmSlots_ovb6* self, UnkSwarmSlot_ovb6* slot);
 void fn_710074a360(UnkSwarmController_ovb6* self, f32 dt);
 
 void fn_710074a0d4(UnkSwarmController_ovb6* self, f32 dt) {
@@ -310,7 +298,7 @@ void fn_710074a0d4(UnkSwarmController_ovb6* self, f32 dt) {
     if (self->slots.count != 0) {
         // An unused array (only its default allocator is fetched).
         base::global::CRntVector<void*> unused;
-        UnkSwarmSlot_ovb6* it = self->slots.values;
+        UnkSwarmSlot* it = self->slots.values;
         while (self->slots.values + self->slots.count != it) {
             if (it->field_0x10)
                 it = fn_710074a568(&self->slots, it);

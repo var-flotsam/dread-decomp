@@ -5393,7 +5393,7 @@ address,size,name,name_source,subsystem,status
 0x71003f9fe0,920,fn_71003f9fe0,unknown,game/ai?,O
 0x71003fa378,4,fn_71003fa378,unknown,unknown,O
 0x71003fa37c,928,fn_71003fa37c,unknown,game/ai?,U
-0x71003fa71c,736,fn_71003fa71c,unknown,game/ai?,U
+0x71003fa71c,736,fn_71003fa71c,unknown,game/ai?,M
 0x71003fa9fc,280,fn_71003fa9fc,unknown,game/ai?,O
 0x71003fab14,224,fn_71003fab14,unknown,unknown,O
 0x71003fabf4,100,fn_71003fabf4,unknown,unknown,O

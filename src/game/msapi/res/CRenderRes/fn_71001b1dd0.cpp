@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTU204.h"
+#include "game/msapi/res/CRenderRes.h"
 #include "types.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
@@ -83,7 +84,7 @@ extern UnkResStatics g_unk_716e5543a0 __attribute__((visibility("hidden")));
 #define FACTORY reinterpret_cast<UnkResFactory*>(&g_unk_716e5543a0.factory)
 
 // The other registered types (models, textures and the sonar's in base/UnkResKey.h).
-extern const UnkResType g_unk_716e453ef8, g_unk_716e454178, g_unk_716e4542f8, g_unk_716e4541f8;
+extern const UnkResType g_unk_716e454178, g_unk_716e4542f8, g_unk_716e4541f8;
 
 // NON_MATCHING(minor): in the last type's copy loop the original keeps the vector's count in a
 // register across iterations (one load before the loop); ours reloads it with the capacity at the

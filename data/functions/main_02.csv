@@ -957,7 +957,7 @@ address,size,name,name_source,subsystem,status
 0x7100221510,36,fn_7100221510,unknown,media?,O
 0x7100221534,248,fn_7100221534,unknown,media?,O
 0x710022162c,108,fn_710022162c,unknown,media?,O
-0x7100221698,672,fn_7100221698,unknown,media?,U
+0x7100221698,672,fn_7100221698,unknown,media?,O
 0x7100221938,264,fn_7100221938,unknown,media?,O
 0x7100221a40,128,fn_7100221a40,unknown,media?,O
 0x7100221ac0,64,fn_7100221ac0,unknown,media?,O
@@ -3823,7 +3823,7 @@ address,size,name,name_source,subsystem,status
 0x71002b0880,1528,fn_71002b0880,unknown,ai/navmesh?,m
 0x71002b0e78,312,fn_71002b0e78,unknown,unknown,U
 0x71002b0fb0,188,fn_71002b0fb0,unknown,unknown,O
-0x71002b106c,516,fn_71002b106c,unknown,unknown,U
+0x71002b106c,516,fn_71002b106c,unknown,unknown,O
 0x71002b1270,212,fn_71002b1270,unknown,unknown,O
 0x71002b1350,140,fn_71002b1350,unknown,unknown,O
 0x71002b13dc,792,fn_71002b13dc,unknown,ai/navmesh?,O

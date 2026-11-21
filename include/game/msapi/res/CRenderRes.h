@@ -6,4 +6,8 @@
 #include "types.h"
 
 struct UnkPlayer;
+struct UnkResType;
+
+// The resource type render resources (shaders among them) are loaded as.
+extern const UnkResType g_unk_716e453ef8;
 extern UnkPlayer* g_unk_716e554378;  // The movie texture owner.

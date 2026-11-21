@@ -120,6 +120,7 @@ address,digest,verdict,rules,detail
 0x71003aad48,e0b5b7f7dee2dfc99a6876a7dbd012d0,inconclusive,2,unresolved vtable for UnkNode_71003aad48
 0x71003c269c,415f772b721c90e19beef580da160300,pass,2,
 0x71003f2710,1d87e0b7ef5a1024eb8aec767fcd4d27,pass,2,
+0x71003fa71c,ca8c21e00af49927e4a0477a6453c6ec,behaves,2,similarity 15.3%; calls;
 0x7100430124,c3dbd50f49e0e04240a7209abfba7969,behaves,2,similarity 51.5%; operations;
 0x7100430830,b0ffc1a635f3cfd54b29a7a3a7490853,pass,2,
 0x710046971c,07542db2c7b72e8f625a0c24feec16f7,pass,2,
@@ -238,6 +239,7 @@ address,digest,verdict,rules,detail
 0x7100e10aac,7d9e1eb74b5465e4564f6d912e6ae46d,inconclusive,2,unresolved guard variable for UnkLoadingMaskOf<UnkLoadingMaskTag>::All()::s (no address in the original)
 0x7100e1cbdc,dc37fd5a7d6f02746d18f4e74dbc0754,behaves,2,similarity 94.6%; operations;
 0x7100e211cc,680b06d4d7c641c3c9ff79f4907e086b,pass,2,
+0x7100e2d4ec,8f6680b7996ce58fcd971f3c1e075c67,behaves,2,similarity 33.8%; operations; 1 inputs found for its mutants;
 0x7100e3cee0,810985efc3703226b5a16ff25ab540ca,pass,2,both runs faulted; on different accesses
 0x7100e3da0c,62ea570c773ccb8ddfc348ca61468c45,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
 0x7100e51078,780a52cb9799fa0e32c0a5bdaf4410d4,pass,2,

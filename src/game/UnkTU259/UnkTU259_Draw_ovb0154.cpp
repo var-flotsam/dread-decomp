@@ -25,7 +25,6 @@ struct UnkMaskedEntry_b67a1;
 
 extern char g_unk_7101a1e738[];
 extern f32 g_unk_7101a1e610[];
-extern u32 g_unk_716e554910;
 extern void* g_unk_716e589b58 __attribute__((visibility("hidden")));
 extern void* g_unk_716e589b60 __attribute__((visibility("hidden")));
 

@@ -457,6 +457,23 @@ class TypeObjectsByType(unittest.TestCase):
         self.assertIn("class CActorLayer;", out)
         self.assertEqual(out[-1], "void f() { use(&base::reflection::TypeObject<CActorLayer>::object); }")
 
+    def test_one_colliding_built_name_keeps_only_its_address(self):
+        text = ("extern base::reflection::CType g_unk_71726a07a0;\nextern base::reflection::CType g_unk_71726a07b0;\n"
+                "void f() { use(&g_unk_71726a07a0); use(&g_unk_71726a07b0); }")
+        built = {"g_unk_71726a07a0": ("built", "CActorLayer"), "g_unk_71726a07b0": ("built", "Bad")}
+        tiers = [built, {}, {}]
+        out = gr.type_objects_in_tiers(text, tiers, built, lambda t: "class Bad;" not in t)
+        self.assertIn("TypeObject<CActorLayer>::object", out)
+        self.assertIn("g_unk_71726a07b0", out)
+
+    def test_widest_tier_wins_when_it_builds(self):
+        text = "extern base::reflection::CType g_unk_71726a07a0;\nvoid f() { use(&g_unk_71726a07a0); }"
+        built = {"g_unk_71726a07a0": ("built", "CActorLayer")}
+        calls = []
+        out = gr.type_objects_in_tiers(text, [built, {}, {}], built, lambda t: calls.append(t) or True)
+        self.assertEqual(len(calls), 1)
+        self.assertIn("TypeObject<CActorLayer>::object", out)
+
     def test_unnamed_type_objects_are_read_from_the_texts(self):
         texts = ["extern base::reflection::CType g_unk_7100000010;\nextern CType g_unk_7100000020;",
                  "extern base::reflection::CType g_unk_7100000030;"]

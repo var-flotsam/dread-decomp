@@ -4,6 +4,7 @@
 // manager and releases the counted reference at 0x146d0.
 #include "base/global/CRntVector.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU604.h"
 #include "types.h"
 
 struct UnkTarget {
@@ -36,7 +37,6 @@ struct UnkSelf {
     UnkState state;
 };
 
-void fn_71003fa71c(void* registry, void* id);
 void fn_71003f9388(void* registry, void* id, u32 flag);
 void fn_7100a1782c(UnkTarget* target, u32 flag);
 

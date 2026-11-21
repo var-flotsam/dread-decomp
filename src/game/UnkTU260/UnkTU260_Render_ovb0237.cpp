@@ -29,7 +29,6 @@ extern u32 g_unk_716e596050[16] __attribute__((visibility("hidden")));
 extern u8 g_unk_7101a1e970 __attribute__((visibility("hidden")));
 
 void fn_71001d6b94(UnkRenderTargetA1* target);
-void fn_71001cde84(UnkRenderTargetA1* target, bool a, bool b, bool c);
 void fn_71001d0ae4(UnkRenderTargetA1* target);
 void fn_71001d0c84(UnkRenderTargetA1* target, void* p, u32 n, s32 a, s32 b);
 void fn_71001d1880(UnkRenderTargetA1* target, void* p, u32 n, u32 a);
@@ -221,7 +220,7 @@ void fn_71001da4e4(UnkRenderOwner_b0237* self) {
     fn_71001cb604(self->target, 6, nullptr, nullptr, nullptr, nullptr);
     fn_71001d0b70(self->target, self->field_0xa8, self->field_0xb0, -1, -1);
     fn_71001cdd74(self->target, &self->field_0x118);
-    fn_71001cde84(self->target, true, true, true);
+    fn_71001cde84(self->target, 1, true, true);
     fn_71001cde48(self->target);
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_71001d0ae4(self->target);
