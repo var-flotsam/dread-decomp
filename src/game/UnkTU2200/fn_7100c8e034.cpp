@@ -6,11 +6,11 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "game/UnkTU2200.h"
 
 using base::global::UnkStringPool;
 
 struct UnkCutSceneTable_lc886c0;
-void fn_7100c88920(UnkCutSceneTable_lc886c0* table);
 
 // Releases `self`'s id, then takes `other`'s, leaving `other` the pool's empty id.
 template <UnkStringPool*& Pool>

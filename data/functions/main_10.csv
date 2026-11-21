@@ -4879,7 +4879,7 @@ address,size,name,name_source,subsystem,status
 0x71010fa290,1092,fn_71010fa290,unknown,unknown,U
 0x71010fa6d4,188,fn_71010fa6d4,unknown,unknown,O
 0x71010fa790,152,fn_71010fa790,unknown,game/ai?,U
-0x71010fa828,280,fn_71010fa828,unknown,ai/behaviortree?,U
+0x71010fa828,280,fn_71010fa828,unknown,ai/behaviortree?,O
 0x71010fa940,284,fn_71010fa940,unknown,unknown,U
 0x71010faa5c,92,fn_71010faa5c,unknown,game/characters?,O
 0x71010faab8,8,fn_71010faab8,unknown,unknown,O

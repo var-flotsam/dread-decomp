@@ -1,3 +1,5 @@
+#include "game/UnkAIComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 extern "C" int rand();
@@ -11,9 +13,9 @@ struct UnkAIRangeSrc_b0144 {
     }
 };
 
-struct UnkAIK_b0144 {
-    u8 pad_0x0[0x30];
-    void* owner;  // 0x30
+// The AI component this function serves: UnkAIComponent with a range source and a value kept between
+// two edges further in.
+struct UnkAIK_b0144 : UnkAIComponent {
     u8 pad_0x38[0x1610 - 0x38];
     UnkAIRangeSrc_b0144* source;  // 0x1610
     u8 pad_0x1618[0x1468c - 0x1618];
@@ -23,14 +25,15 @@ struct UnkAIK_b0144 {
 };
 static_assert(__builtin_offsetof(UnkAIK_b0144, value) == 0x1468c, "layout");
 
-void fn_71010fa828(UnkAIK_b0144* self) {
+void fn_71010fa828(UnkAIComponent* object) {
+    auto* self = static_cast<UnkAIK_b0144*>(object);
     f32* value = &self->value;
     f32 low_value = -1.0f;
     f32 high_value = -1.0f;
     f32* low = &low_value;
     f32* high = &high_value;
-    self->source->vf_0x90(self->owner, low, high);
-    f32 min_edge = *reinterpret_cast<f32*>(reinterpret_cast<u8*>(self) + 0x14690);
+    self->source->vf_0x90(self->field_0x30, low, high);
+    f32 min_edge = self->min_edge;
     if (min_edge > -1.0f) {
         f32 max_edge = value[2];
         if (max_edge > -1.0f) {

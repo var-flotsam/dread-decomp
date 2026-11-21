@@ -100,7 +100,7 @@ struct UnkElemA0Array_b42a3 {
 
 void fn_7100c8d58c(UnkElemA0_b42a3* self);
 void fn_7100c8d9c0(void*, const void*);  // as src/clones/ declares it
-void fn_7100c8e034(void*, const void*);  // as src/clones/ declares it
+void* fn_7100c8e034(void*, const void*);  // as src/clones/ declares it
 
 static inline UnkElemA0_b42a3* GrowTo_b42a3(UnkElemA0Array_b42a3* self, u32 index) {
     if (self->field_0x14 && self->count <= index) {
