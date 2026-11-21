@@ -544,6 +544,17 @@ def iter_value_destroy_strid2(orig: asmdiff.Original, addr: int, tag: str, insns
     return f"template void base::UnkIterValue<{pair}>::Reset();"
 
 
+# An element assignment whose matched definition returns the destination (a move or copy assignment written
+# as `operator=` returning `*this`); every other one is declared void. The caller ignores the result either way.
+ASSIGN_RETURNS_DST = {0x7100C8E034}
+
+
+def assign_decl(assign: int) -> str:
+    """The declaration of an element's out-of-line assignment, with the result its definition has."""
+    result = "void*" if assign in ASSIGN_RETURNS_DST else "void"
+    return f"{result} fn_{assign:x}(void*, const void*);"
+
+
 def iter_value_copy_assign_elem(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
     """refl_IterValueCopy keyed by a string id, for an element with an out-of-line copy-assignment
     (UnkCloneAssignElem). Facts: the state offset, the key's pool and the element's assignment."""
@@ -559,7 +570,7 @@ def iter_value_copy_assign_elem(orig: asmdiff.Original, addr: int, tag: str, ins
         return None
     assign = int(insns[60][1][1:], 16)
     ident = f"UnkCloneStrIdB<{tag}>" if pool == FILE_PATH_POOL else f"UnkCloneStrId<{tag}>"
-    return "\n".join([f"void fn_{assign:x}(void*, const void*);",
+    return "\n".join([assign_decl(assign),
                       f"template <> struct UnkCloneAssignTraits<{tag}> {{",
                       f"    static void assign(void* dst, const void* src) {{ fn_{assign:x}(dst, src); }}", "};",
                       f"template void* base::refl_IterValueCopy<UnkCloneAssignElem<{tag}, {state - 8:#x}>, {ident}>("
@@ -1767,7 +1778,7 @@ def iter_value_move_assign_index(orig, addr, tag, insns):
     k = f"UnkCloneIndexU64<{tag}>" if width.group(1) == "x" else "u32"
     assign = int(insns[32][1][1:], 16)
     t = f"UnkCloneAssignElem<{tag}, {state - 8:#x}>"
-    return "\n".join([f"void fn_{assign:x}(void*, const void*);",
+    return "\n".join([assign_decl(assign),
                       f"template <> struct UnkCloneAssignTraits<{tag}> {{",
                       f"    static void assign(void* dst, const void* src) {{ fn_{assign:x}(dst, src); }}", "};",
                       f"template base::UnkIterValue<{t}, {k}>& base::UnkIterValue<{t}, {k}>::operator=("
@@ -1790,7 +1801,7 @@ def iter_value_copy_assign_index(orig, addr, tag, insns):
     k = f"UnkCloneIndexU64<{tag}>" if width.group(1) == "x" else "u32"
     assign = int(insns[33][1][1:], 16)
     t = f"UnkCloneAssignElem<{tag}, {state - 8:#x}>"
-    return "\n".join([f"void fn_{assign:x}(void*, const void*);",
+    return "\n".join([assign_decl(assign),
                       f"template <> struct UnkCloneAssignTraits<{tag}> {{",
                       f"    static void assign(void* dst, const void* src) {{ fn_{assign:x}(dst, src); }}", "};",
                       f"template base::UnkIterValue<{t}, {k}>& base::UnkIterValue<{t}, {k}>::operator=("
@@ -1920,7 +1931,7 @@ def keyed_find_assign(orig, addr, tag, insns):
     if not size or int(size.group(1), 16) % 8:
         return None
     assign = int(insns[26][1][1:], 16)
-    return "\n".join([f"void fn_{assign:x}(void*, const void*);", f"template <> struct UnkCloneAssignTraits<{tag}> {{",
+    return "\n".join([assign_decl(assign), f"template <> struct UnkCloneAssignTraits<{tag}> {{",
                       f"    static void assign(void* dst, const void* src) {{ fn_{assign:x}(dst, src); }}", "};",
                       f"template void base::refl_KeyedFindAssign<{tag}, 0, {size.group(1)}>(char*, "
                       f"const base::UnkStrIdMember*, const UnkCloneAssignElem<{tag}, {size.group(1)}>*);"])

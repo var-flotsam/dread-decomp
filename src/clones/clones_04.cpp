@@ -1979,7 +1979,7 @@ template <> struct UnkCloneAssignTraits<UnkClone_fn_7100c8e6c0> {
 };
 template base::UnkIterValue<UnkCloneAssignElem<UnkClone_fn_7100c8e6c0, 0xa0>, u32>& base::UnkIterValue<UnkCloneAssignElem<UnkClone_fn_7100c8e6c0, 0xa0>, u32>::operator=(const base::UnkIterValue<UnkCloneAssignElem<UnkClone_fn_7100c8e6c0, 0xa0>, u32>&);
 struct UnkClone_fn_7100c8e758;
-void fn_7100c8e034(void*, const void*);
+void* fn_7100c8e034(void*, const void*);
 template <> struct UnkCloneAssignTraits<UnkClone_fn_7100c8e758> {
     static void assign(void* dst, const void* src) { fn_7100c8e034(dst, src); }
 };

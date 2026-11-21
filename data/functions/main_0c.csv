@@ -4481,7 +4481,7 @@ address,size,name,name_source,subsystem,status
 0x7100c8d9c0,740,fn_7100c8d9c0,unknown,unknown,U
 0x7100c8dca4,320,fn_7100c8dca4,unknown,game/cutscene?,U
 0x7100c8dde4,592,fn_7100c8dde4,unknown,unknown,U
-0x7100c8e034,944,fn_7100c8e034,unknown,unknown,U
+0x7100c8e034,944,fn_7100c8e034,unknown,unknown,O
 0x7100c8e3e4,12,base::reflection::KeyElementValue<base::global::CRntVector<CCutSceneDef::CActorDef>>::refl_Equals,reflection,engine/reflection,O
 0x7100c8e3f0,8,base::reflection::KeyElementValue<base::global::CRntVector<CCutSceneDef::CActorDef>>::refl_Hash,reflection,engine/reflection,O
 0x7100c8e3f8,12,base::reflection::KeyElementValue<base::global::CRntVector<CCutSceneDef::CActorDef>>::refl_TypeOf,reflection,engine/reflection,O
