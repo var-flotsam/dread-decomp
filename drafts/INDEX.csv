@@ -197,7 +197,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100161800,332,drafts/game/UnkTU182/fn_7100161800.cpp,operations,11.9,73,lean-oc1,loop hoists &buffers into an extra callee-saved reg (x27) and the counter reset moves below the callback load;
 0x7100161e60,332,drafts/game/UnkTU182/fn_7100161e60.cpp,operations,29.8,58,lean-callee1,base: original stores only when data is set then reloads; draft uses a select that always stores (behaviour di
 0x710016bf28,272,drafts/game/UnkTU208/fn_710016bf28.cpp,control flow,1.4,67,lean-b4,original reloads source data pointer each iteration and non-unswitched shape; loop scheduling/loads differ
-0x710016c038,400,drafts/game/UnkTU208/fn_710016c038.cpp,operations,98.0,2,overnight,
 0x710016d2b4,348,drafts/game/UnkTU208/fn_710016d2b4.cpp,operations,33.3,55,lean-b4,value copied as raw 32-bit word (u32) not float; tail loads and block layout differ
 0x710016d410,396,drafts/game/UnkTU208/fn_710016d410.cpp,operations,40.4,58,lean-b4,result carried as raw 32-bit word on default/key paths; loop rotation and hoisting differ
 0x710016dae4,848,drafts/game/UnkTU208/fn_710016dae4.cpp,registers or order,15.6,179,lean-r2ki,binary-search loop register allocation (mid/key ptr swapped; s1/s2); branch targets off by 4 early. Signature
@@ -307,7 +306,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710019b304,560,drafts/game/UnkTU221/fn_710019b304.cpp,operations,18.3,114,lean-ob1,control flow matches; slot index part*12 is a separate u32 induction in the original; ours masks a 64-bit one
 0x710019b5ec,508,drafts/game/UnkTU222/fn_710019b5ec.cpp,operations,96.1,5,overnight,
 0x710019d174,1032,drafts/game/UnkTU224/fn_710019d174.cpp,operations,44.5,141,lean-r2ki,textured path: original loads the positions pointer with the uv/colour pointers before the attribute stores an
-0x710019dcac,380,drafts/game/UnkTU225/fn_710019dcac.cpp,registers or order,97.9,2,overnight,
+0x710019dcac,380,drafts/game/UnkTU225/fn_710019dcac.cpp,match,100.0,0,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU225/fn_710019dcac.cpp:18 fn_710019dcac: defined as void fn_710019dcac(UnkMapOwner_b260*) -> declared elsewhere with other types; use this parameter list and res...
 0x71001a7410,700,drafts/game/msapi/material/SAlpha/fn_71001a7410.cpp,conditions,49.7,88,lean-o1,memcpy size folded to 16 (original reloads count; only a union around count keeps the call); program-null test
 0x71001a80b4,696,drafts/game/msapi/material/SAlpha/fn_71001a80b4.cpp,operations,8.5,159,lean-r2ki,string-pool GOT not hoisted to entry; gfx kept in reg not spilled (regalloc); draft otherwise same code; 8.5%
 0x71001a883c,340,drafts/game/msapi/material/SAlpha/fn_71001a883c.cpp,control flow,3.5,68,lean-b3,find loop shape differs: end computed first; key loaded lazily; peeled first compare
@@ -2040,7 +2039,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71010f9e2c,440,drafts/game/UnkTU2702/fn_71010f9e2c.cpp,operations,4.5,103,lean-o2,original computes &field_0x13d0 before the first call and keeps it in x21 (one extra callee-saved reg); rest o
 0x71010fa290,1092,drafts/game/UnkTU2702/fn_71010fa290.cpp,operations,90.5,26,lean-sib3,order of slot-address computation in the two callback-set attaches and the position temp store order
 0x71010fa790,152,drafts/game/UnkTU2702/fn_71010fa790.cpp,operations,5.3,34,lean-b2,behaves (functional); held: 1 declaration problem: src/game/UnkTU2702/fn_71010fa790.cpp:40 fn_71010fa790: defined as void fn_71010fa790(UnkResetSelf_l0fa790*) -> declared elsewhere with other types; use this parameter list an...
-0x71010fa828,280,drafts/game/UnkTU2702/fn_71010fa828.cpp,operations,95.7,3,overnight,
+0x71010fa828,280,drafts/game/UnkTU2702/fn_71010fa828.cpp,match,100.0,0,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU2702/fn_71010fa828.cpp:26 fn_71010fa828: defined as void fn_71010fa828(UnkAIK_b0144*) -> declared elsewhere with other types; use this parameter list and result...
 0x71010fa940,284,drafts/game/UnkTU2702/fn_71010fa940.cpp,operations,22.5,54,lean-b2,behaves (functional); held: 1 declaration problem: src/game/UnkTU2702/fn_71010fa940.cpp:56 fn_71010fa940: defined as void fn_71010fa940(UnkResetAI_l0fa940*) -> declared elsewhere with other types; use this parameter list and ...
 0x71010fab58,1704,drafts/game/UnkTU2702/fn_71010fab58.cpp,control flow,17.1,349,lean-sib3,frame 0x10 larger (reach temp not sharing the request slot); extra branches; request fill order
 0x71010fc154,160,drafts/game/UnkTU2702/fn_71010fc154.cpp,conditions,17.5,32,lean-b2,original keeps the final select test (closed==0 && count!=0) separate from the segment-count subtraction; comp

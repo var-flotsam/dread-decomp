@@ -44,13 +44,11 @@ struct UnkStruct_7100600c98 {
 
 extern UnkFlagListKey g_unk_71726f37a0 __attribute__((visibility("hidden")));
 
-// NON_MATCHING(minor): the first call's flags share the list's stack slot (the original gives
-// them their own, after the mask).
 void fn_7100600c98(UnkStruct_7100600c98* self) {
+    base::reflection::UnkReflTypeIdArg none;
+    base::reflection::UnkReflTypeIdArg all;
     if (void* p = self->actor->field_0x220) {
-        base::reflection::UnkReflTypeIdArg none;
         none.id = 0;
-        base::reflection::UnkReflTypeIdArg all;
         all.id = UnkAll_7100600c98().value;
         fn_7101176690(p, 0x039363ae10389fa6ull, 0xf4061ff25a2163d6ull, &none, &g_unk_7101cd0898_target,
                       &g_unk_7101cd08a0_target, &all);

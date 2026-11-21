@@ -10,7 +10,7 @@ address,size,name,name_source,subsystem,status
 0x7100600b90,4,fn_7100600b90,unknown,game/ai?,O
 0x7100600b94,252,fn_7100600b94,unknown,game/ai?,O
 0x7100600c90,8,fn_7100600c90,unknown,game/ai?,O
-0x7100600c98,2340,fn_7100600c98,unknown,game/ai?,m
+0x7100600c98,2340,fn_7100600c98,unknown,game/ai?,O
 0x71006015bc,1144,fn_71006015bc,unknown,game/ai?,U
 0x7100601a34,64,fn_7100601a34,unknown,game/ai?,O
 0x7100601a74,540,fn_7100601a74,unknown,game/ai?,O

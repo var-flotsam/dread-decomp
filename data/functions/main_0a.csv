@@ -4507,7 +4507,7 @@ address,size,name,name_source,subsystem,status
 0x7100aba644,72,fn_7100aba644,unknown,game?,O
 0x7100aba68c,68,fn_7100aba68c,unknown,game?,O
 0x7100aba6d0,4,fn_7100aba6d0,unknown,game?,O
-0x7100aba6d4,464,fn_7100aba6d4,unknown,game?,m
+0x7100aba6d4,464,fn_7100aba6d4,unknown,game?,O
 0x7100aba8a4,996,fn_7100aba8a4,unknown,game?,U
 0x7100abac88,56,fn_7100abac88,unknown,game?,O
 0x7100abacc0,4,fn_7100abacc0,unknown,game?,O

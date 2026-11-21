@@ -39,13 +39,13 @@ void fn_71010fa828(UnkAIK_b0144* self) {
         }
     }
     f32 current = value[0];
-    f32 hi = *high;
     f32 lo = *low;
-    if (current >= lo && hi >= current) {
-        f32 step = self->source->field_0x134;
+    f32 hi = *high;
+    if (current >= lo && current <= hi) {
         f32 to_lo = current - lo;
-        f32 to_hi = current - hi;
+        f32 step = self->source->field_0x134;
         to_lo = __builtin_fabsf(to_lo);
+        f32 to_hi = current - hi;
         to_hi = __builtin_fabsf(to_hi);
         if (to_lo < to_hi) {
             f32 x = current + step;
