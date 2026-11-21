@@ -306,7 +306,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710019b304,560,drafts/game/UnkTU221/fn_710019b304.cpp,operations,18.3,114,lean-ob1,control flow matches; slot index part*12 is a separate u32 induction in the original; ours masks a 64-bit one
 0x710019b5ec,508,drafts/game/UnkTU222/fn_710019b5ec.cpp,operations,96.1,5,overnight,
 0x710019d174,1032,drafts/game/UnkTU224/fn_710019d174.cpp,operations,44.5,141,lean-r2ki,textured path: original loads the positions pointer with the uv/colour pointers before the attribute stores an
-0x710019dcac,380,drafts/game/UnkTU225/fn_710019dcac.cpp,match,100.0,0,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU225/fn_710019dcac.cpp:18 fn_710019dcac: defined as void fn_710019dcac(UnkMapOwner_b260*) -> declared elsewhere with other types; use this parameter list and res...
 0x71001a7410,700,drafts/game/msapi/material/SAlpha/fn_71001a7410.cpp,conditions,49.7,88,lean-o1,memcpy size folded to 16 (original reloads count; only a union around count keeps the call); program-null test
 0x71001a80b4,696,drafts/game/msapi/material/SAlpha/fn_71001a80b4.cpp,operations,8.5,159,lean-r2ki,string-pool GOT not hoisted to entry; gfx kept in reg not spilled (regalloc); draft otherwise same code; 8.5%
 0x71001a883c,340,drafts/game/msapi/material/SAlpha/fn_71001a883c.cpp,control flow,3.5,68,lean-b3,find loop shape differs: end computed first; key loaded lazily; peeled first compare

@@ -23,6 +23,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/tunable/CTunable.h"
 #include "engine/UnkGraphicsSystem.h"
+#include "game/UnkGfxSceneRegistry.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU174.h"
 #include "game/UnkTU177.h"
@@ -35,6 +36,7 @@
 #include "game/UnkTU204.h"
 #include "game/UnkTU211.h"
 #include "game/UnkTU223.h"
+#include "game/UnkTU225.h"
 #include "game/UnkTU230.h"
 #include "game/UnkTU259.h"
 #include "game/UnkTU27.h"
@@ -1065,31 +1067,6 @@ struct UnkGfxDeviceConfig {
     bool field_0x19;
 };
 
-// A node of the scene registry's map (0x28 bytes): key, value, the list links, the bucket chain.
-struct UnkGfxCameraNode {
-    void* key;
-    void* value;
-    UnkGfxCameraNode* next;  // 0x10
-    UnkGfxCameraNode* prev;  // 0x18
-    UnkGfxCameraNode* chain;  // 0x20
-};
-
-// The scene registry (the 0xb8-byte singleton g_unk_716e34c2e0, where cameras, decals and model
-// instances are entered): a map keyed by address, with bucket heads in an RntVector and the nodes
-// in a list.
-struct UnkGfxSceneRegistry {
-    u8 unk_0x0[0x8];
-    base::UnkAllocator* allocator;
-    u32 flags;  // 0x10
-    u32 size;   // 0x14
-    UnkGfxCameraNode** buckets;  // 0x18
-    u32 bucket_count;  // 0x20, the RntVector's size
-    u32 bucket_modulus;  // 0x24
-    u8 unk_0x28[0x18];
-    UnkGfxCameraNode* last;   // 0x40
-    UnkGfxCameraNode* first;  // 0x48
-};
-
 void* fn_71001cb410(UnkGfxSceneRegistry* manager, UnkCountedResource* model, u32 a);
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
@@ -1098,10 +1075,8 @@ extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, i
 // (src/base/spatial/UnkDecalProjector.cpp; 0x40c8 bytes) and the scene registry (0xb8 bytes).
 struct UnkDecalResourceMgr;
 void fn_71001d7548(UnkDecalResourceMgr* self);
-void fn_710019dcac(UnkGfxSceneRegistry* self);
 void fn_710016999c(UnkRegistry_710014c790* self);
 void fn_710016a414();
-void fn_710019e088(UnkGfxSceneRegistry* self);
 void fn_710019fe7c(UnkDecalResourceMgr* self);
 void fn_710019c198(void* camera, bool half_pixel);  // src/engine/UnkScreenCorners.cpp
 void fn_710016e75c();
@@ -1244,25 +1219,24 @@ void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* /*un
     }
 
     // The main camera, added to the camera manager's map.
-    UnkGfxSceneRegistry* cameras = static_cast<UnkGfxSceneRegistry*>(g_unk_716e34c2e0);
+    base::input::UnkPooledChainedMap& cameras = static_cast<UnkGfxSceneRegistry*>(g_unk_716e34c2e0)->map;
     void* camera = fn_71000839a0(0x188, 0x37);
     fn_710019bd2c(camera);
     if (camera) {
-        UnkGfxCameraNode** bucket;
-        if (cameras->bucket_count == 0) {
+        void** bucket;
+        if (cameras.buckets.count == 0) {
             bucket = nullptr;
         } else {
             // The remainder as AArch64 computes it (a zero modulus leaves the key).
             u32 key = (u32)(u64)camera;
-            u32 modulus = cameras->bucket_modulus;
+            u32 modulus = cameras.buckets.capacity;
             u32 index = modulus ? key % modulus : key;
-            if (cameras->bucket_count <= index)
+            if (cameras.buckets.count <= index)
                 __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
-            bucket = &cameras->buckets[index];
+            bucket = &cameras.buckets.data[index];
         }
-        UnkGfxCameraNode* head = *bucket;
-        UnkGfxCameraNode* node =
-            static_cast<UnkGfxCameraNode*>(cameras->allocator->vf_0x40(sizeof(UnkGfxCameraNode), 8, cameras->flags));
+        auto* head = static_cast<UnkGfxCameraNode*>(*bucket);
+        auto* node = static_cast<UnkGfxCameraNode*>(cameras.alloc->vf_0x40(sizeof(UnkGfxCameraNode), 8, cameras.flags));
         if (node) {
             node->key = camera;
             node->value = camera;
@@ -1272,14 +1246,15 @@ void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* /*un
         }
         node->chain = head;
         *bucket = node;
-        if (!cameras->first) {
-            cameras->first = node;
-        } else if (cameras->last) {
-            node->prev = cameras->last;
-            cameras->last->next = node;
+        auto* last = static_cast<UnkGfxCameraNode*>(cameras.last);
+        if (!cameras.first) {
+            cameras.first = node;
+        } else if (last) {
+            node->prev = last;
+            last->next = node;
         }
-        cameras->last = node;
-        ++cameras->size;
+        cameras.last = node;
+        ++cameras.size;
     }
     self->field_0x317aa20 = camera;
     fn_710019c198(camera, false);
