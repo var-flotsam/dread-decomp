@@ -101,6 +101,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A byte-identical plain lift that tail-calls a callee returning through x8 matches on the Switch (x8 passes through) but on x86-64 the callee's hidden result pointer is the caller's first argument; `gen_lift` now refuses such lifts: [the heap corruption](#session-log-newest-first).
 - A semantic lift must take x8 as an incoming result only from the facts: a register read first in address order may be a loop's value (a block placed before the one that sets it), and an sret definition shifts every argument on x86-64: [the map menu and the first room](#session-log-newest-first).
 - A `{f32, f32}` by value is s0/s1 on AArch64 but one packed xmm register on x86-64: where lifted code calls the function, or it calls lifted code, take the pair as two floats (same Switch bytes): same entry.
+- `!` on a bool callee's result: the original's byte-wide NOT (`mvn`) against our 1-bit `eor #1` is codegen, out of the permuter's reach; the permuter's yield on 95%+ fuzzy near misses is about 2% (6 of 346): [overnight permuter run](#session-log-newest-first).
 
 **Port: shaders**
 - `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
@@ -157,7 +158,233 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through 2e4bff01ccc726e1af8ba1204c9dad96e6d10f94 -->
+<!-- journal_sync: through 66e3e14eac660655be7e336699646051e2edeb77 -->
+
+**Match six near-miss functions from an overnight permuter run (#607, 2026-11-20).**
+
+An overnight `tools/permute.py` run on the owner's PC (7 cores, no model tokens) against the 346 unfinished functions at 95% or more fuzzy similarity: the `drafts/INDEX.csv` rows at 95%+ that do not match yet and the `m`/`M` sources in `src/` whose diff score in check.py's cache is 95%+. Library functions and drafts that already match were left out.
+
+- Pass 1, plain reorders, 5000 tries each: 346 tried, 5 matched.
+- Pass 2, `--scopes`, 4000 tries each, on the 318 pass 1 left: 2 matched, 20 got closer without matching.
+
+Kept, now byte-matching in `src/` (`O`):
+- `fn_71002f8414` (`src/game/CAbility/`): one store moved ahead of the first holder init.
+- `fn_7100aba6d4` (`src/game/CMissileMovement/`): identity-matrix diagonal stores reordered, one declaration moved down.
+- `fn_7100600c98` (`src/game/CKraidAIComponent/`): the two flag-argument locals declared before the `if` so the first call's flags get their own stack slot (the old `NON_MATCHING` reason). The indentation was fixed by hand.
+- `fn_710016c038` (UnkTU208 emitters): one store moved after the memset. The draft was a copy of its whole unit, so only this function and its struct went into `src/game/UnkTU208/UnkTU208_Emitters_ovb0167.cpp`, not the draft file.
+
+Now matching, but still drafts: `fn_710019dcac` and `fn_71010fa828`. `drafts.py promote` holds them because each definition's parameter type differs from its existing declaration (`UnkGfxSceneRegistry*` and `UnkAIComponent*`). Both are regraded to `match` in the index. Each needs a small hand fix to reconcile the types, as do the other matching-but-held drafts `0x7100494c9c` and `0x7100c8e034`.
+
+Rejected: `fn_710019da10` also reached a match in pass 1, but only with a scrambled body that assigns the same local twice. It stays a verified-equivalent `NON_MATCHING(minor)`, because readable code ranks above a byte match.
+
+Not reachable by the permuter (looked at by hand and stopped at the time-box): `0x7100494c9c` and `0x71004943b0` negate a bool callee's result. The original uses a byte-wide NOT and we use a 1-bit XOR, a code-generation difference that statement reordering cannot reach.
+
+Reusable: the permuter's yield on these 95%+ near misses was 6 of 346 (about 2%), against 11% on registers-only functions on 2026-11-12. Most of these near misses differ in more than order, so a larger iteration budget is not the next lever.
+
+**Record why the glaive spin check stays in drafts (#606, 2026-11-20).**
+
+This changes drafts only, and no code that is built.
+
+- **0x7100494c9c's note in `drafts/INDEX.csv`.** The draft matches when it returns u32. Its matched caller, fn_7100481914, tests the result as a bool. Every bool form tried stays at 73.9%: the compiler masks the result once at the shared exit, where the original masks it only on the fn_710049cbd8 path. equiv_test is inconclusive. The deflector shield check fn_71004943b0 is stuck on the same pattern.
+- **The draft's header comment.** fn_710049cbd8 asks whether the target is high above the floor, compared against `fTargetMinDistanceToFloorToForceGlaiveSpinAttack` (CCharClassChozoWarriorAIComponent +0x7fc). So the spin attack may start only while Samus is near the floor.
+
+**Declare the AI group flag setter and AI group lookup in their unit headers; land fn_71003fa71c as functional (#605, 2026-11-20).**
+
+- **`include/game/UnkTU604.h`** declares `fn_71003fa71c(void* registry, void* actor)`, which sets the flag at +0x1471c on every other member of the actor's AI group. The Caterzilla caller loses its local prototype.
+- **`include/game/UnkTU2704.h`** declares `fn_71011277a4`, the AI group lookup, so UnkTU2702's AI file and the draft no longer declare it locally.
+- **fn_71003fa71c lands in `src/` as `NON_MATCHING(functional)` (status M).** It takes the registry and the actor untyped, as its caller holds them, and forwards them to a typed helper. `equiv_test.py --any-kind` says `behaves`, and the verdict is in `data/equivalence.csv`. It does not match (15% similar; the calls differ), so it does not count as done.
+
+Both callers compile to the same bytes as on main.
+
+**Move the Emmy grab statics layout into a header; match the grab distance band function (#604, 2026-11-20).**
+
+- **`include/game/UnkStaticInitIds.h` (new).** It holds `unk_static_init::HeaderIds` and `unk_static_init::UnkFilePathStrIdBase`, moved out of `src/game_5821e4/UnkStaticInit.h`, which now includes it. This lets a unit's statics layout live in `include/`.
+- **`include/game/CEmmyGrabSamusAttackStatics.h` (new).** It holds the layout of CEmmyGrabSamusAttack's unit statics, `g_unk_71726de558`, as `UnkEmmyGrabStatics`. Its members are named after the strings and values the static initialiser stores: the sound and effect paths, the node and action ids, the distance bands, the `_samus`, `_emmy`, `_tunnel` and `_mb` suffixes, and the band names at 0x530, which are now typed as four `UnkInlineStr50`.
+- **The static initialiser, fn_71005113b0, uses the header.** It compiles to the same bytes.
+- **0x71005096b4, which picks the grab's distance band, is promoted from `drafts/` and matches.** It now uses the shared `UnkInlineStr50` and the statics header instead of local copies of both.
+
+Every file that includes `UnkStaticInit.h`, `UnkStaticInitS7.h`, `UnkInlineStr50.h` or the Goliath bomb header (205 files) compiles to the same bytes as on main.
+
+**Declare the shader registry and render resource type in their unit headers; match the shader loader (#603, 2026-11-20).**
+
+- **`include/game/UnkTU204.h`** declares `fn_7100169d28`, which registers a resource under a name, with a `const CStrId&` name. The one existing caller (UnkTU151's register function) passed the id's address through a `const void*`; it now passes the id itself.
+- **`include/game/msapi/res/CRenderRes.h`** declares `g_unk_716e453ef8`, the render resource type. That replaces three local declarations in UnkTU151 and the two CRenderRes files.
+- **0x71001cab0c, the shader loader, is promoted from `drafts/` and matches.** It now uses `fn_7100169c74`'s real return type, `CFilePathStrId`, instead of a local copy of a raw path id, and it takes its callees from the unit headers.
+
+Every other function in the touched files and in every file that includes the two headers compiles to the same bytes as on main.
+
+**Move the string-id property layout into a header; match CNavMeshItemComponent's static initialiser (#602, 2026-11-20).**
+
+- **New header, `include/game/UnkIdProperty.h`.** It holds the layout of the reflected property that holds a string id: the base property, its value holder and the `UnkIdPropertyT<Vtable>` template. Three source files each defined their own copy of it; they now include the header. Some structs in it are renamed so they no longer clash with an unrelated `UnkValueHolder` in another header. `fn_71009bd8c0` is declared there with its real parameter type.
+- **`InitPropertyExVtableFirst`** (`include/game/UnkTUProperty.h`) now accepts a destructor that takes the property typed, and casts it once at the `__cxa_atexit` call. I tried the other way round, giving `fn_71009bd8c0` a `void*` parameter, but that changed its register allocation.
+- **`g_unk_717273e7f0`**, the enabled occluder colliders map's enum type, is now declared once in `CNavMeshItemComponent.h`.
+- **0x71009c4e10, CNavMeshItemComponent's static initialiser, is promoted from `drafts/` and matches.** It was held only for a declaration conflict on `fn_71009bd8c0`.
+
+Every other function in the touched files and in every file that includes the touched headers compiles to the same bytes as on main.
+
+**Name reflection type objects one at a time when a file's full set does not build (#601, 2026-11-20).**
+
+- `tools/gen_reflection.py`: type objects were named per file, by tier. If one declaration of T in a file collided with the file's own declarations, the whole widest tier failed for that file, and every built name in it kept its address. The new `type_objects_in_tiers` takes the widest tier that builds. If that is not the widest tier overall, it then adds each built object one at a time, keeping only those that still build. One bad name now keeps only its own address.
+- Two tests in `tools/tests/test_gen_reflection.py` cover this.
+- Regenerated reflection: 75 more type objects are named by type, `TypeObject<T>::object`. That leaves 1376 unnamed extern declarations, down from 1451. It touches 5 files: `CShootDCBones.cpp`, `function_inits_03.cpp` and `registration_00` through `_02`.
+- `verify.py --regen gen_reflection` passes with 0 regressions and no REGRESSION, DUPLICATE or RELOC lines. O did not drop, and `data/functions` is unchanged.
+
+Not done: nested types such as `CMinimapData::SDoorData` still get a namespace declaration for their outer class, so those stay as addresses for now.
+
+**equiv_test: the mutant search sets the words where the mutant's run parts from the original's; land 1 draft (#600, 2026-11-20).**
+
+**Aim.** #595 found that the 112 surviving mutants of the held drafts are real behaviour changes (loop bounds off by one, `<` → `<=`, the last array element) that the inputs never reach. This PR gives the targeted search (`kill()`) boundary-value inputs aimed at loops.
+
+**Tool change** (`tools/equiv_test.py`):
+- `mutant_words()`: before the search, the mutant itself is run on up to 16 of the original's runs, and the words it reads are recorded.
+- `parting_words()`: the words one run read and the other did not. That is the element one past a loop's last iteration, or the one a shortened loop no longer reads. `kill_candidates()` sets these first, to every value and to what the run's other words held.
+- The search now sets up to 256 words read per run (`KILL_READ`), not only the first 32, and makes register compares equal over all of them. The budget is 120 s per mutant.
+- Tests cover `parting_words` and the focus order.
+
+**The run** (owner's PC, 4 shards, the 112 rows #595 left to a surviving mutant): 0 pass, **1 behaves**, 0 fail, 111 inconclusive (a mutant still survives). `fn_7100e2d4ec` (UnkTU2562) landed as `NON_MATCHING(functional)`, with 1 input found for its mutant. It needed no declaration move and no rename.
+
+**Finding (reusable).** A separate measurement pass over 1,191 mutant-versus-original runs (about 10.6 per mutant) looked at what the reads say. Only 35% of runs had any parting words; those averaged about 36 words, or about 12 across all runs. In two thirds of runs the mutant reads exactly what the original reads, so what it changes is a store, a float compare or an address, not which words are read. Examples from the smoke shard: a store loop starting at 1 instead of 0, a float threshold (`< 0.001f`), and a pointer offset passed to a call. Setting more read words cannot catch these. The next levers are:
+- stores that leave memory as it was: a write of the value already there changes no byte. Pre-filling written memory with values other than the stored constant would expose it. This is a guess to check, not measured.
+- float values at the exact comparison boundary, taken from the function's float constants.
+
+**Promote the movie audio stream's set-up; declare movie::Buffer once (#599, 2026-11-20).**
+
+- **fn_7100221698** sets up the movie audio stream. It had matched as a draft but was held because its caller declared it differently.
+  - It is now declared once in `game/media/CMovieAudioStreamNx.h`, with the same caller-facing types as `fn_7100221534` uses.
+  - It returns `s32`, as the original does. The caller `fn_7100221534` now returns `s32` too, which keeps its tail call; a 64-bit result would sign-extend.
+  - The audio output's open, `fn_7100220d2c`, is declared beside it with its definition's types. The stream passes its resampling flag (+0xd10) as that open's out parameter.
+- **`movie::Buffer`** had five different declarations across six files. It is now one class in a new `game/media/MovieBuffer.h`, and the six files include it.
+
+Still held:
+- the Emmy grab statics (`fn_71005096b4`): its layout lives with the static-init helpers under `src/`.
+- the glaive spin attack (`fn_7100494c9c`): the function matches only returning `u32`, while its caller matches only treating the result as `bool`.
+- the nav mesh item properties (`fn_71009c4e10`): this needs the `UnkIdPropertyT` family in a header.
+- the shader loader (`fn_71001cab0c`).
+
+**Promote ten matching drafts held on their declarations; share four layouts (#598, 2026-11-20).**
+
+Ten drafts matched byte for byte. They were held in `drafts/` only because their declarations disagreed with ones elsewhere. This PR fixes those declarations, moves the drafts to `src/`, and puts four shared layouts in headers.
+
+- **fn_7100004578, fn_7100004698**: the resource format and resource type constructors.
+  - They take the parameters `base/UnkResType.h` declares. The count becomes `u64`, as the original passes it.
+  - They read the format through a new `base/UnkResFormatMembers.h`.
+  - The format vector's reserve, `fn_7100005534`, is declared once.
+- **fn_7100133a94**: the tunable list map's find-or-add.
+  - The map's reserve, `fn_71001358e0`, is declared once in `game_s2/UnkOwnedList.h`, on `UnkOwnedListMap`.
+- **fn_71002b106c**: the navigation cell pass test.
+  - Its callee `fn_71002b1270` returns `bool`, which compiles to the same code.
+  - The callee is declared in a new `game/UnkTU368.h`.
+- **fn_71006ecce4**: the Yamplot X bite attack's animation id.
+  - `CStrId` gains the constructor from a `CRntString` that the original calls out of line (`fn_7100000850`).
+  - The function returns `CStrId`.
+- **fn_7100c9dd20**: the breakable tile's destructor.
+  - It is written as `UnkBreakableTile_b49`'s destructor, which `game/UnkBreakableTile.h` already declared.
+  - The slot's destructor is inlined, as in the original.
+- **fn_7100694ea8**: Scorpius's defeat handler.
+  - It includes the headers that already declare its callees.
+  - It builds its cutscene id with the new `CStrId` constructor.
+- **fn_71001cde84**: the graphics system's draw pass.
+  - The render target's layout moves to a new `game/UnkRenderTargetA1.h`, merged from two views.
+  - The function is declared once in `game/UnkTU259.h`, with the fourth argument every caller passes and it never reads.
+  - The AI side search (`fn_710035e8d8`) moves to a new `game/UnkAIPathSearch.h`, out of the three files that each declared it.
+- **fn_710074a568**: the swarm slot map's erase.
+  - The slot's layout moves to a new `game/UnkSwarmSlot.h`, shared with the swarm controller's update.
+- **fn_71009ecf34**: Samus's movement input sample.
+  - The movement, the sample and the word-copied float move to a new `game/UnkSamusInputMovement.h`.
+  - The function is declared there once.
+
+Reusable findings:
+- When a matched draft and an existing declaration disagree only in a pointer's type, a `static inline` helper over the draft's view, called through one cast, can keep register allocation that a local cast pointer does not. This worked for `fn_7100004578`.
+- Where both files can share one header layout, that is better than any cast. This was the case for the render target and the swarm slot.
+
+Not promoted yet, because each needs a larger layout first:
+- CMovieAudioStreamNx (`fn_7100221698`)
+- the Emmy grab statics (`fn_71005096b4`)
+- the glaive spin attack (`fn_7100494c9c`)
+- the nav mesh item properties (`fn_71009c4e10`)
+- the shader loader (`fn_71001cab0c`)
+
+**Name the remaining type objects by the strings that build them (#597, 2026-11-19).**
+
+- `tools/gen_reflection.py` gains `built_type_objects()`. It takes the type objects that the generated reflection still declared only by address (`extern CType g_unk_…;`). It reads each one's type name from the static initialiser that builds it, using `gen_fields.built_objects`. Where the name parses as a type, the object is written as `TypeObject<T>::object` with an `asm("g_unk_…")` label, so the symbol does not change.
+- The trial-compile tiers are now: built names, collections and enums first; then collections and enums; then enums alone. A file whose built names do not compile falls back to the narrower tier, so no file gets worse.
+- The regeneration names 70 type objects in 20 generated files. Address-only `CType` declarations in `src/reflection` drop from 356 to 331. Examples are `CAssetLink`, `CBlackboard::TSectionContainer`, `CBreakableTileGroupComponent::STileInfo` and `CGameBBPropID`.
+- Tests are added in `tools/tests/test_gen_reflection.py`. They cover the built declarations and the reading of unnamed objects, with `built_objects` mocked so they need no game data.
+
+**Name each tunable class's run-once guard and tunable object (#596, 2026-11-19).**
+
+About 520 of the roughly 900 address uses left in the generated reflection sources are two objects that each tunable class has. Neither is a type object:
+- **The run-once guard.** `refl_AddFields` checks it, then sets it, and returns early on later calls.
+- **The tunable object.** It is registered in the global registry.
+
+`tools/gen_reflection.py`'s final pass now names both inside the class's own namespace, under their original labels:
+
+```cpp
+namespace CAIManager::CTunableAIManager { extern bool refl_fields_added asm("g_unk_..."); }
+namespace CAIManager::CTunableAIManager { extern UnkTunable refl_tunable asm("g_unk_..."); }
+...
+    if (refl_fields_added)
+        return;
+    refl_fields_added = true;
+    ...
+    fn_X(base::reflection::TunableRegistry(), &refl_tunable, "AI");
+```
+
+An object keeps its address if the file declares it in another form, uses it outside the class's namespace, or names two such objects in one namespace. Tests cover the rename, a second run over the output, and the case where the address is kept.
+
+**equiv_test: set aside mutants the compiler shows equivalent; the 118 held drafts' survivors are not (#595, 2026-11-19).**
+
+**Question.** After #591, 118 drafts still had a mutant that no input could tell apart from the original. Were those mutants harmless (equivalent), or are the inputs weak?
+
+**Tool change** (`tools/equiv_test.py`). `same_program()` adds trivial compiler equivalence (Papadakis et al., ICSE 2015). A mutant that passes and survives the targeted search is set aside when the compiler turns the draft's text and the mutant's into the same program, and the next mutant is tried. The two routes are the same object at `-O2`, `-O1`, `-Os` or `-Oz`, or the same optimised LLVM IR module. This only ever decides "same", never "different", so a mutant it misses still counts against the draft. `--no-tce` turns it off. A `behaves` row names any mutants it set aside.
+
+**A soundness bug found and fixed during the run.** The first version compared only the tested function's own code. In `fn_7100281838` (a heap pop) the mutant `Cost() < Cost()` → `<=` on the tie-break was set aside as "the same code at -O1". At -O1 the `std::pop_heap` comparator stays out of line, so the function's own bytes did not change. The fix compares the whole object: every allocated section's bytes, and relocations by symbol name. The IR route compares the whole module, minus names and metadata. With the fix, that mutant is no longer set aside, an identical copy still counts as the same, and there are 2 new tests.
+
+**The run** (owner's PC, 4 shards, the 118 survivor rows): 0 pass, 2 behave, 0 fail, 116 inconclusive. 112 of the inconclusive ones still have a surviving mutant, and 4 fall short of full coverage (95–97%). After the fix, the compiler set aside **no** mutant. Of the two that behave, `fn_7100281838` became inconclusive once judged again. The other, `0x71003fa71c` (UnkTU604), is held on its declaration: typing it means moving a layout into a header, which is a layout batch. Its row in `drafts/INDEX.csv` says so. Nothing lands in `src/` in this PR.
+
+**Finding (reusable).** These survivors are real behaviour changes, not equivalent mutants. Of the 112:
+- 58 are a constant ±1 (loop bounds such as `< 128` → `< 127`, stored flags).
+- 38 are `<` → `<=` (loop bounds, float thresholds).
+- 9 are `==` ↔ `!=` (iterator end tests, zero checks).
+- 7 are swapped subtractions.
+
+The inputs never reach the loop's last iteration, the last array element, a non-empty list or an exact float boundary. So the next lever is input generation (loop counts and array contents driven from the loop bound, exact float boundaries), not equivalence detection.
+
+**Name the empty file-path default CFilePathStrId::Empty() (#594, 2026-11-19).**
+
+- g_unk_7101d470e8 is the global empty file-path id. Its header comment already says so, and unit 1's static initialiser builds it.
+- `include/base/global/CFilePathStrId.h` gains an inline accessor for it, `base::global::CFilePathStrId::Empty()`. It works the same way as `CStrId::Empty()` and `CRntString::Empty()`.
+- `tools/refl_attrs.py` now writes a file-path field's empty default as `CFilePathStrId(CFilePathStrId::Empty())`. That changes 16 generated files, and the test is updated to match.
+- Hand-written uses of the global keep the address for now.
+
+**Name the empty string default and collection type objects (#593, 2026-11-19).**
+
+**The empty-string default now has a name.** g_unk_7101d58d10 is the global empty string, built from "" at start-up. Its header comment already said so.
+- `base::global::CRntString::Empty()` is a new inline accessor for it, in `include/base/global/CRntString.h`.
+- `tools/refl_attrs.py` uses the accessor when it writes a string field's empty default, as `CRntString(CRntString::Empty())`. That changes 11 generated files.
+
+**Collection type objects are now named by their type.** `tools/gen_reflection.py` gains `collection_type_objects()`, which reads each `CollectionTypeMapper<T>::TypeOf` in `src/reflection_types/collection_types_*.cpp`. That gives 141 objects, for example `CRntVector<CGameLink<CActor>>` and `CRntVector<CStrId>`.
+- `type_objects_by_type` writes these as `TypeObject<T>::object`. Each file declares the names in T through `gen_types.type_declarations`.
+- In some files those declarations collide with the file's own: a class it already defines, or a template comma inside a macro argument. The type-objects pass then retries without the collections, so the file keeps every other named object. 42 files are named this way, and 11 keep their addresses.
+- A test is added.
+
+**equiv_test: a targeted search for mutants that pass; land 17 drafts it now judges functional (#591, 2026-11-19).**
+
+**Why 141 drafts were rejected in #589.** The mutation check made 141 would-be `behaves` verdicts inconclusive because a small mutant (an off-by-one, or a flipped or loosened comparison) passed too. The systematic inputs (`more_inputs`) do run boundary values: compare constants, their neighbours, and values made equal. But they keep a run only when it reaches new code of the original. The input that separates `<` from `<=` takes a branch both ways that other inputs had already reached, so it was run and then thrown away. The mutant never met it.
+
+**The tool change** (`tools/equiv_test.py`):
+- `kill()` / `kill_candidates()` / `kill_values()`: a mutant that passes is run itself on targeted inputs. These are the immediates that differ between the mutant and our code (and their neighbours, two either way), the compare constants of the original and the mutant, then small numbers, powers of two, and sign and width boundaries. Each is set on every argument, memory word read and call result of every kept run, most likely value first. After that come the held values of other words, every register compare made equal, and pairs of keys set to one value. The search has a 90 s budget per mutant.
+- An input that tells a mutant apart joins the function's inputs (`EXTRA`). Every later mutant and the function itself are judged on it too. When `EXTRA` grew, the function is judged again, so a draft that differs on such an input fails instead of behaving.
+- Only a mutant that no input tells apart leaves the verdict `inconclusive` ("… also after a targeted search").
+- `--survivors JSON...` re-judges what an earlier `--json` run left to a passing mutant (with `--shard`). `--no-kill` gives the old check.
+- `strict()` and `mutable_words()` were factored out of `judge` and `more_inputs`.
+- Fixed: a `behaves` row's detail named the last function's kind of difference instead of its own.
+- `RULES` was not raised: the bar for `behaves` is unchanged (every mutant judged must be rejected). There are only more inputs to reject them with.
+- Unit tests cover the value order, candidate order, dedupe, pairs and equal compares.
+
+**The run** (owner's PC, 4 shards, the 141 rows of #589's overnight promote JSONs): **22 behave, 1 fails, 118 still inconclusive.** All 118 inconclusive rows still have a mutant that survives the targeted search. Most of those mutants are `<` versus `<=` on a loop bound the inputs keep small, or a stored constant the test never reads back. Many are probably equivalent mutants, so the remaining limit is the mutation check itself, not the inputs. The failing draft is `0x71009403c4` (UnkTU1428): on one of the new inputs it returns a different float result. That is a real bug the old inputs missed. It was already in drafts and stays there.
+
+**Landed:** 17 drafts as `NON_MATCHING(functional)`, each re-judged after the move with `--write` (each has 1 to 5 inputs found for its mutants). **Held:** 4 on declaration conflicts with existing headers (`0x710077b638`, `0x7100a1feac`, `0x7100ca1e50`, `0x71011d968c`). One more, `0x7100f14b90`, is held because its file also defines `0x7100f14ca0`, which has no verdict. `decl_plan.py --grown` and `hub_migrate.py` moved 3 declarations into unit headers (`CPlayerLifeComponent.h`, a new `UnkTU20.h`, `UnkTU2702.h`). Five local type names clashed under `struct_check` and were renamed with address suffixes, and the 3 files involved were judged again (they still behave).
 
 **Land 43 held drafts by moving their shared declarations and layouts into headers (#590, 2026-11-19).**
 

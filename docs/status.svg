@@ -4,19 +4,19 @@
 <text class="big" x="0" y="52">71.8%</text>
 <rect class="kf" x="250" y="9" width="10" height="10" rx="2"/>
 <text class="n" x="266" y="18">finished (matched and readable)</text>
-<text class="big" x="250" y="52">21.1%</text>
+<text class="big" x="250" y="52">22.1%</text>
 <rect class="ku" x="500" y="9" width="10" height="10" rx="2"/>
 <text class="n" x="516" y="18">untouched</text>
-<text class="big" x="500" y="52">4.73 MB</text>
+<text class="big" x="500" y="52">4.71 MB</text>
 <rect class="t" x="0" y="66" width="760" height="16" rx="4"/>
-<rect class="o" x="0" y="66" width="545.3" height="16" rx="4"/>
-<rect class="f" x="0" y="66" width="160.3" height="16" rx="4"/>
-<rect class="u" x="568.6" y="66" width="191.4" height="16" rx="4"/>
-<text class="n" x="0" y="100">Whole binary: 101,374 functions of game code, 4,632 untouched</text>
+<rect class="o" x="0" y="66" width="545.9" height="16" rx="4"/>
+<rect class="f" x="0" y="66" width="167.7" height="16" rx="4"/>
+<rect class="u" x="569.2" y="66" width="190.8" height="16" rx="4"/>
+<text class="n" x="0" y="100">Whole binary: 101,374 functions of game code, 4,598 untouched</text>
 <text class="l" x="0" y="125" dy="0.35em">Boot path</text>
 <rect class="t" x="150" y="120" width="420" height="10" rx="5"/>
-<rect class="o" x="150" y="120" width="205.0" height="10" rx="5"/>
-<text class="n" x="584" y="125" dy="0.35em">48.8% matched</text>
+<rect class="o" x="150" y="120" width="207.6" height="10" rx="5"/>
+<text class="n" x="584" y="125" dy="0.35em">49.4% matched</text>
 <text class="h" x="0" y="162">PC port</text>
 <text class="l" x="0" y="183" dy="0.35em">Linux build</text>
 <text class="s" x="150" y="183" dy="0.35em">Boots into gameplay</text>
