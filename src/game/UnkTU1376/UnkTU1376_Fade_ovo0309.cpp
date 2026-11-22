@@ -30,14 +30,14 @@ struct UnkDoorOwner3_b0251 {
     UnkDoorHolder_b0251* holder;
 };
 
-struct UnkDoorState_b0251 {
+struct UnkDoorState_b0251_UnkTU1376_Fade_ovo0309 {
     u8 pad_0x0[0x10];
     s32 id;
 };
-struct UnkDoorMachine_b0251 {
+struct UnkDoorMachine_b0251_UnkTU1376_Fade_ovo0309 {
     virtual void vf_0x0();
     u64 field_0x8;
-    UnkDoorState_b0251* current;
+    UnkDoorState_b0251_UnkTU1376_Fade_ovo0309* current;
     u8 pad_0x18[0xb0 - 0x18];
 };
 
@@ -47,7 +47,7 @@ struct UnkDoor_b0251 {
     u8 pad_0x38[0x41c - 0x38];
     u8 field_0x41c;
     u8 pad_0x41d[3];
-    UnkDoorMachine_b0251 machine;
+    UnkDoorMachine_b0251_UnkTU1376_Fade_ovo0309 machine;
     u8 pad_0x4d0[0x638 - 0x4d0];
     f32 field_0x638;
     union {

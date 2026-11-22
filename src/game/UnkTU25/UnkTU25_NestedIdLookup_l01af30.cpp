@@ -9,7 +9,7 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 
 
-struct UnkIdPair {
+struct UnkIdPair_l01af30 {
     CStrId name;
     CFilePathStrId path;
 };
@@ -30,8 +30,8 @@ struct UnkKeyedTable {
     }
 };
 
-struct UnkInnerEntry : UnkKeyedTable<UnkIdPair> {
-    u8 pad_0x18[0x80 - sizeof(UnkKeyedTable<UnkIdPair>)];
+struct UnkInnerEntry : UnkKeyedTable<UnkIdPair_l01af30> {
+    u8 pad_0x18[0x80 - sizeof(UnkKeyedTable<UnkIdPair_l01af30>)];
 };
 
 // Copy-assignment of a file-path id (CFilePathStrId has none), as CStrId's, on its pool.
@@ -67,7 +67,7 @@ UnkResult fn_710001af30(UnkKeyedTable<UnkInnerEntry>* table, const UnkIdKey* key
     UnkInnerEntry* outer = table->Find(&key->outer);
     if (outer == &table->values[table->count])
         return result;
-    UnkIdPair* pair = outer->Find(&key->inner);
+    UnkIdPair_l01af30* pair = outer->Find(&key->inner);
     if (pair == &outer->values[outer->count])
         return result;
     result.name = pair->name;

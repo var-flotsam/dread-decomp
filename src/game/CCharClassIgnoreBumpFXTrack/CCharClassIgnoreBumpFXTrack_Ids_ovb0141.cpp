@@ -6,6 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkIdSlot_b0141.h"
 #include "game/UnkIdToken_b0141.h"
 #include "game/UnkIdTokens_b0141.h"
 #include "game/UnkTU99.h"
@@ -15,12 +16,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 struct UnkTunableTokens;
-
-union UnkIdSlot_b0141 {
-    CStrId id;
-    UnkIdSlot_b0141() {}
-    ~UnkIdSlot_b0141() {}
-};
 
 struct UnkBumpTrack_b0141 {
     u8 pad_0x0[0x18];

@@ -12,42 +12,12 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkCallbackSet_7101a20950.h"
 #include "game/UnkRcObject.h"
+#include "game/UnkRcRef.h"
+#include "game/UnkRcRefArray.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-struct UnkRcRef {
-    UnkRcObject* ptr;
-
-    UnkRcRef() : ptr(nullptr) {}
-    UnkRcRef(const UnkRcRef& other) {
-        __builtin_memset(&ptr, 0, sizeof(ptr));
-        UnkRcObject* o = other.ptr;
-        if (o) {
-            ++o->field_0x8;
-            Release();
-            ptr = o;
-        }
-    }
-    ~UnkRcRef() { Release(); }
-
-    void Release() {
-        UnkRcObject* o = ptr;
-        if (o && --o->field_0x8 == 0)
-            o->vf_0x10();
-    }
-};
-
-struct UnkRcRefArray {
-    UnkRcRef* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
 
 struct UnkTag_7100241b30;
 template <class Tag>

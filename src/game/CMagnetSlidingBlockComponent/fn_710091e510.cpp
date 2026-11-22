@@ -3,6 +3,7 @@
 #include "base/UnkStrIdTable.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CMagnetSlidingBlockComponent.h"
+#include "game/UnkAllocator.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU39.h"
@@ -31,32 +32,19 @@ struct UnkStrIdField {
     }
 };
 
-struct UnkAllocator {
-    virtual void vf0();
-    virtual void vf8();
-    virtual void vf10();
-    virtual void vf18();
-    virtual void vf20();
-    virtual void vf28();
-    virtual void vf30();
-    virtual void vf38();
-    virtual void* Alloc(u64 size, u64 align, u32 flags);
-    virtual void Free(void* p);
-};
+struct UnkCallback_91e510;
 
-struct UnkCallback;
-
-struct UnkCallbackOps {
+struct UnkCallbackOps_91e510 {
     u8 pad_0x0[0x40];
-    void (*destroy)(UnkCallback* cb);
+    void (*destroy)(UnkCallback_91e510* cb);
 };
 
-struct UnkCallback {
+struct UnkCallback_91e510 {
     void* field_0x0;
-    UnkCallbackOps* ops;
+    UnkCallbackOps_91e510* ops;
 };
 
-struct UnkRefCounted {
+struct UnkRefCounted_91e510 {
     virtual void vf0();
     virtual void vf8();
     virtual void Delete();
@@ -68,24 +56,24 @@ extern void* g_unk_7101a82c00[];
 // A list of callbacks (0x40 bytes) whose derived type also holds a ref-counted owner.
 struct UnkCallbackList {
     void* vtable;
-    UnkCallback* data;
+    UnkCallback_91e510* data;
     u32 count;
     u32 capacity;
     u8 pad_0x18[0x10];
     UnkAllocator* allocator;
     u8 pad_0x30[0x8];
-    UnkRefCounted* owner;
+    UnkRefCounted_91e510* owner;
 
     void Destroy() {
         vtable = g_unk_7101a33fa0 + 2;
-        if (UnkRefCounted* p = owner) {
+        if (UnkRefCounted_91e510* p = owner) {
             if (--p->ref_count == 0)
                 p->Delete();
         }
         vtable = g_unk_7101a20998 + 2;
         if (data) {
             for (u64 i = 0; i < count; ++i) {
-                UnkCallback& cb = data[i];
+                UnkCallback_91e510& cb = data[i];
                 if (cb.ops) {
                     cb.ops->destroy(&cb);
                     cb.ops = nullptr;
@@ -99,7 +87,7 @@ struct UnkCallbackList {
 };
 
 // An embedded sub-object (0x70 bytes) with its own vtable.
-struct UnkSub {
+struct UnkSub_91e510 {
     void* vtable;
     u8 pad_0x8[0x10];
     base::reflection::UnkReflValue field_0x18;
@@ -136,11 +124,11 @@ struct UnkSub2 {
 
 struct UnkObj_710091e510 : UnkBaseComponent {
     u8 pad_0x40[0x10];
-    UnkSub field_0x50;
-    UnkSub field_0xc0;
-    UnkSub field_0x130;
-    UnkSub field_0x1a0;
-    UnkSub field_0x210;
+    UnkSub_91e510 field_0x50;
+    UnkSub_91e510 field_0xc0;
+    UnkSub_91e510 field_0x130;
+    UnkSub_91e510 field_0x1a0;
+    UnkSub_91e510 field_0x210;
     UnkSub2 field_0x280;
     u8 pad_0x2a8[0xb0];
     u8 field_0x358[0xc0];

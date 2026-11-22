@@ -11,6 +11,7 @@
 #include "game/UnkMask.h"
 #include "game/UnkScenario.h"
 #include "game/UnkScenarioSub.h"
+#include "game/UnkSubArea.h"
 #include "game/UnkSubareaRenderOut.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2611.h"
@@ -20,12 +21,6 @@
 
 using base::global::CStrId;
 
-// A sub-area (a placeholder for the fields used here): two ids.
-struct UnkSubArea {
-    CStrId field_0x0;
-    u8 pad_0x8[0x48];
-    CStrId field_0x50;
-};
 static inline const CStrId& FirstId(const UnkSubArea* area) { return area ? area->field_0x0 : base::global::CStrId::Empty(); }
 static inline const CStrId& SecondId(const UnkSubArea* area) { return area ? area->field_0x50 : base::global::CStrId::Empty(); }
 

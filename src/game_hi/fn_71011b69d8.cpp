@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "game/UnkEntry_0x30.h"
 #include "game/UnkGuiHandle.h"
+#include "game/UnkRefSource_71011b69d8.h"
 #include "game/UnkTag_71011b69d8.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -44,12 +45,6 @@ struct UnkRefHandle_71011b69d8 {
         }
     }
 };
-
-struct UnkRefSource_71011b69d8 {
-    virtual void vf_0x0(); virtual void vf_0x8(); virtual void vf_0x10(); virtual void vf_0x18(); virtual void vf_0x20();
-    virtual UnkRefHandle_71011b69d8* vf_0x28();
-};
-
 
 UnkScriptPath_0x148 fn_71011b66fc(void* registry, const base::global::CRntString& name);
 UnkRefSource_71011b69d8* fn_71011b6208(UnkTag_71011b69d8 tag, const UnkStrPair_0x10* s);

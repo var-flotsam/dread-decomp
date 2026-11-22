@@ -187,21 +187,21 @@ static inline UnkLanguage* Language() {
 
 // The scenario's tunable (src/reflection/CScenario.cpp registers it): where the level's name is shown.
 // A base::math::CVector2D copied member by member (as src/game_s7/UnkGuiS7.h's colour).
-struct UnkVec2f : base::math::CVector2D {
-    UnkVec2f(const UnkVec2f& other) {
+struct UnkVec2f_CScenario : base::math::CVector2D {
+    UnkVec2f_CScenario(const UnkVec2f_CScenario& other) {
         x = other.x;
         y = other.y;
     }
 };
 // The address of `tmp`: given a temporary copy, the copy lives until the end of the call's full
 // expression it is made in.
-static inline const UnkVec2f* Addr(const UnkVec2f& tmp) {
+static inline const UnkVec2f_CScenario* Addr(const UnkVec2f_CScenario& tmp) {
     return &tmp;
 }
 struct UnkScenarioTunableView {
     u8 pad_0x0[0x24];
-    UnkVec2f label_pos;
-    UnkVec2f sprite_pos;
+    UnkVec2f_CScenario label_pos;
+    UnkVec2f_CScenario sprite_pos;
 };
 extern UnkTunable g_unk_7172a0bea8;
 static inline const UnkScenarioTunableView& ScenarioTunable() {
@@ -308,7 +308,7 @@ void fn_71011a4050(UnkGameManagerSub_0x608* scenario) {
                     UnkDialogText text = fn_710119d040(language, *labels->Find(self->sScenarioID));
                     fn_71011ec468(l, text, false);
                 }
-                fn_71011cde64(self->level_label, Addr(UnkVec2f(ScenarioTunable().label_pos)), 1, 1);
+                fn_71011cde64(self->level_label, Addr(UnkVec2f_CScenario(ScenarioTunable().label_pos)), 1, 1);
                 fn_71011cde44(self->level_label, 2);
                 Vf78(self->level_label, -2000, 0);
                 fn_71011d0088(self->level_label, 0);
@@ -335,7 +335,7 @@ void fn_71011a4050(UnkGameManagerSub_0x608* scenario) {
                     Vf78(self->level_sprite, -2000, 0);
                     fn_71011f8bdc(self->level_sprite, *sprites->Find(self->sScenarioID));
                     fn_71011cdc30(self->level_sprite, true);
-                    fn_71011cde64(self->level_sprite, Addr(UnkVec2f(ScenarioTunable().sprite_pos)), 1, 1);
+                    fn_71011cde64(self->level_sprite, Addr(UnkVec2f_CScenario(ScenarioTunable().sprite_pos)), 1, 1);
                     fn_71011f9878(self->level_sprite);
                     fn_71011cdce8(self->level_sprite, false);
                 }

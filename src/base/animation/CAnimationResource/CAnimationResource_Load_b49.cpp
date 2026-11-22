@@ -8,15 +8,9 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CAnimationResource.h"
+#include "game/UnkPathPairTemp_b45a1.h"
 #include "game/UnkTU25.h"
 #include "types.h"
-
-// As src/base/curves/CCurveResource_Load_b45.cpp declares it.
-struct UnkPathPairTemp_b45a1 {
-    void* id;
-    void* path;
-    ~UnkPathPairTemp_b45a1() { fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(this)); }
-};
 
 struct UnkAnimSection_b49a1 {
     u64 key;

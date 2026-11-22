@@ -15,7 +15,7 @@ using base::global::CStrId;
 struct CSubAreaManager;
 
 // The pooled data behind an id as its text accessor sees it.
-struct UnkIdTextData {
+struct UnkIdTextData_ovb0190 {
     u8 pad_0x0[0x10];
     CRntString str;
     u8 pad_0x40[0x4];
@@ -23,8 +23,8 @@ struct UnkIdTextData {
 };
 static inline const char* Text(const CStrId& id) {
     typedef s32 AnyS32;
-    ++*reinterpret_cast<AnyS32*>(&reinterpret_cast<UnkIdTextData*>(id.data)->reads);
-    const char* s = reinterpret_cast<UnkIdTextData*>(id.data)->str.data;
+    ++*reinterpret_cast<AnyS32*>(&reinterpret_cast<UnkIdTextData_ovb0190*>(id.data)->reads);
+    const char* s = reinterpret_cast<UnkIdTextData_ovb0190*>(id.data)->str.data;
     return s ? s : g_unk_710162e2ed;
 }
 

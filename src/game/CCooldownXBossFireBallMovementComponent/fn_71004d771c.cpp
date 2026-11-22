@@ -12,13 +12,13 @@ using base::reflection::CClass;
 struct UnkAIComponent {
     virtual const CClass* vf_0x0();
 };
-struct UnkOwnerObject {
+struct UnkOwnerObject_4d771c {
     u8 unk_0x0[0x240];
     UnkAIComponent* component;
 };
 struct UnkOwner {
     u8 unk_0x0[0x10];
-    UnkOwnerObject* object;
+    UnkOwnerObject_4d771c* object;
 };
 struct UnkSelf {
     u8 unk_0x0[0x30];

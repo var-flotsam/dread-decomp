@@ -5,7 +5,7 @@
 #include "types.h"
 #include "base/global/CStrId.h"
 
-struct UnkTarget {
+struct UnkTarget_378d84 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -17,9 +17,9 @@ struct UnkTarget {
     virtual void vf_0x40(u8 flag);
 };
 struct UnkLookupResult {
-    UnkTarget* target;
+    UnkTarget_378d84* target;
 };
-struct UnkIdData {
+struct UnkIdData_378d84 {
     u8 unk_0x0[0x30];
     u64 key;
 };
@@ -31,7 +31,7 @@ struct UnkSelf {
     u8 unk_0x0[0x18];
     UnkOwnerObjects* owner;
     u8 unk_0x20[0x10];
-    UnkIdData* id;
+    UnkIdData_378d84* id;
     u8 field_0x38;
     u8 unk_0x39;
     u8 done;
@@ -44,7 +44,7 @@ UnkLookupResult* fn_7101152b24(void* objects, u64 key);
 void fn_7100378d84(UnkSelf* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->done = 0;
-    UnkIdData* id = self->id;
+    UnkIdData_378d84* id = self->id;
     if ((u64)id == (u64)&g_unk_7101d47108->empty)
         return;
     UnkOwnerObjects* owner = self->owner;
@@ -53,7 +53,7 @@ void fn_7100378d84(UnkSelf* self) {
     UnkLookupResult* found = fn_7101152b24(owner->field_0x280, id->key);
     bool ok = false;
     if (found) {
-        UnkTarget* target = found->target;
+        UnkTarget_378d84* target = found->target;
         target->vf_0x40(self->field_0x38);
         ok = true;
     }

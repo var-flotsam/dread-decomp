@@ -70,20 +70,20 @@ void fn_7100ca76a0(UnkGameManagerSub_0x1af8* self, const CStrId& id, bool enable
 
 // The sub-area manager singleton (created on first use; 0xae8 bytes, constructor fn_7100ee1f34):
 // only its current and previous sub-areas are read here.
-struct UnkSubAreaManagerView {
+struct UnkSubAreaManagerView_UnkSubareaSetupState {
     u8 pad_0x0[0x3f0];
     UnkSubareaSetupState* current;
     UnkSubareaSetupState* previous;
 };
 struct UnkManager;
-static inline UnkSubAreaManagerView* SubAreaManager() {
+static inline UnkSubAreaManagerView_UnkSubareaSetupState* SubAreaManager() {
     void* instance = g_unk_7101d47360;
     if (!instance) {
         instance = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(instance);
         g_unk_7101d47360 = static_cast<UnkManager*>(instance);
     }
-    return static_cast<UnkSubAreaManagerView*>(instance);
+    return static_cast<UnkSubAreaManagerView_UnkSubareaSetupState*>(instance);
 }
 
 // The kind's current id becomes `id` (the source is picked before the destination is formed).
@@ -167,7 +167,7 @@ void fn_7100fac2d4(UnkSubareaSetupState* self, u32 index, bool enable, bool forc
     case 4: {
         UnkGameManagerSub_0x608* p = g_unk_7101d47310->field_0x608;
         if (other) {
-            UnkSubAreaManagerView* manager = SubAreaManager();
+            UnkSubAreaManagerView_UnkSubareaSetupState* manager = SubAreaManager();
             bool swap = manager->previous == manager->current && manager->current == self;
             if (enable) {
                 if (swap)

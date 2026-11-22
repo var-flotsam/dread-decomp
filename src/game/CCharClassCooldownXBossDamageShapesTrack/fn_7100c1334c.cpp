@@ -168,7 +168,7 @@ UnkSetStatus fn_7100d69140(void* self, UnkAngleOwnerHolder* holder, UnkValueArg*
 }
 
 // Copies two values of every item in a target's list into the target.
-struct UnkListItem {
+struct UnkListItem_c1334c {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -192,7 +192,7 @@ struct UnkListTargetRef {
     UnkListTarget* target;
 };
 
-UnkListItem** fn_7100b081ac(UnkItemList* list, u32 index);
+UnkListItem_c1334c** fn_7100b081ac(UnkItemList* list, u32 index);
 void fn_7100b04510(UnkListTarget* target, s32 value);
 void fn_7100b04524(UnkListTarget* target, s32 value);
 
@@ -200,7 +200,7 @@ UnkSetStatus fn_7100b08704(void* self, void* holder, UnkValueArg* const* arg) {
     UnkListTarget* target = (*arg)->Get<UnkListTargetRef*>()->target;
     UnkItemList* list = target->list;
     for (u32 i = 0; i < list->count; ++i) {
-        UnkListItem* item = *fn_7100b081ac(list, i);
+        UnkListItem_c1334c* item = *fn_7100b081ac(list, i);
         fn_7100b04510(target, item->vf_0x20());
         fn_7100b04524(target, item->vf_0x30());
     }

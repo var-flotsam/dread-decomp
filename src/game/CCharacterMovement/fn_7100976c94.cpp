@@ -2,6 +2,7 @@
 // the collision tracker at `pos`. Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/CCharacterMovement.h"
+#include "game/UnkCollisionShape.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkMatrix44_7100078c9c.h"
 #include "game/UnkTU2510.h"
@@ -44,9 +45,6 @@ struct UnkMover_l976c94 {
 struct UnkBox2D_l976c94 {
     base::math::CVector2D min;
     base::math::CVector2D max;
-};
-struct UnkCollisionShape {
-    u8 data[0xc0];
 };
 // A collision shape (0xc0 bytes) built from a 2D box.
 struct UnkBox2D {

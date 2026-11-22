@@ -16,6 +16,7 @@
 #include "game/UnkBossAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkMlogMessage_b42a1.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU437.h"
@@ -27,17 +28,6 @@
 using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
-
-struct UnkMlogMessage_b42a1 {
-    u32 kind;
-    base::global::CStrId text;
-    base::global::CRntVector<base::UnkStrIdMember> args;
-
-    __attribute__((always_inline)) UnkMlogMessage_b42a1(const CStrId& t) : kind(0), text(t), args(0xc) {}
-    __attribute__((always_inline)) ~UnkMlogMessage_b42a1() {
-        args.Free();
-    }
-};
 
 struct UnkScorpiusCounted_l694ea8 : base::UnkRefCounted {
     UnkWeakTarget* target;  // 0x10

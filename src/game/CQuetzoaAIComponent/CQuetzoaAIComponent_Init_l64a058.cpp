@@ -6,6 +6,7 @@
 #include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
+#include "game/UnkTimeline.h"
 #include "types.h"
 
 struct UnkStruct_7101176ea8;
@@ -18,12 +19,6 @@ struct UnkStruct_71007142e8 {
 };
 
 struct UnkMotionTracks;
-struct UnkTimeline {
-    u8 pad_0x0[0x24];
-    s32 frame_count;
-    u8 pad_0x28[0x58];
-    UnkMotionTracks* tracks;  // 0x80
-};
 
 struct UnkQuetzoaOwner_l64a058 {
     u8 pad_0x0[0x220];

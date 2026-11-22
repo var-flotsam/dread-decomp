@@ -2,11 +2,9 @@
 // scales the box (+0xa8 min, +0xb0 max) by a 2D factor about its centre, then lets the shape
 // update (vtable slot 0x80). The factor is read as plain floats, so it is reread after each store.
 // Names and layouts are placeholders.
+#include "game/UnkBoxVec2.h"
 #include "types.h"
 
-struct UnkBoxVec2 {
-    f32 x, y;
-};
 static inline UnkBoxVec2 operator+(UnkBoxVec2 a, UnkBoxVec2 b) { return {a.x + b.x, a.y + b.y}; }
 static inline UnkBoxVec2 operator-(UnkBoxVec2 a, UnkBoxVec2 b) { return {a.x - b.x, a.y - b.y}; }
 static inline UnkBoxVec2 operator*(UnkBoxVec2 a, f32 s) { return {a.x * s, a.y * s}; }

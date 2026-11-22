@@ -19,6 +19,7 @@
 #include "game/UnkFxObjectVtable_ovb0041.h"
 #include "game/UnkFxObject_ovb0041.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkStatics_710058c890.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
 #include "game/UnkTU1370.h"
@@ -31,18 +32,6 @@ using base::global::CStrId;
 using base::math::CVector3D;
 using base::reflection::CClass;
 using namespace unk_static_init;
-
-// As the unit's static initialiser declares them (fn_710058c890.cpp).
-struct UnkStatics_710058c890 {
-    HeaderIds ids;
-    u8 pad_0x18[0x8];
-    UnkStrIdBase field_0x20;
-    UnkFilePathStrIdBase field_0x28;
-    UnkFilePathStrIdBase field_0x30;
-    u8 pad_0x38[0x28];
-    u8 field_0x60[0x10];
-    u8 field_0x70[8];
-};
 
 // The effect object the model manager hands out, as its virtual calls see it (as in
 // src/game/CMeleeComponent/CMeleeComponent_Checks_ovb0041.cpp).

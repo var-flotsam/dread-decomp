@@ -4,6 +4,7 @@
 // values to go with it. Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/UnkSpreadEntry_ovb0262g.h"
 #include "types.h"
 
 extern "C" int rand();
@@ -13,14 +14,6 @@ using base::math::CVector3D;
 struct UnkTunableValue_ovb0262g {
     u8 pad_0x0[0x2c];
     f32 value;  // 0x2c
-};
-
-struct UnkSpreadEntry_ovb0262g {
-    bool ok;  // 0x0
-    CVector3D offset;  // 0x4
-    f32 scale;  // 0x10
-    f32 extra;  // 0x14
-    UnkSpreadEntry_ovb0262g() : ok(false), offset{0.0f, 0.0f, 0.0f}, scale(0.0f), extra(0.0f) {}
 };
 
 struct UnkSpread_ovb0262g {

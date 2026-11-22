@@ -18,14 +18,14 @@ struct UnkOwnedObj {
 };
 
 // An owning pointer: cleared, then its object deleted.
-struct UnkOwnedPtr {
+struct UnkOwnedPtr_fb4f70 {
     // A union member (no type-based alias info): the array's count is reloaded after the
     // pointer is cleared.
     union {
         UnkOwnedObj* ptr;
     };
 
-    ~UnkOwnedPtr() {
+    ~UnkOwnedPtr_fb4f70() {
         UnkOwnedObj* p = ptr;
         ptr = nullptr;
         if (p)
@@ -38,7 +38,7 @@ extern void* g_unk_7101cab468[];
 struct UnkOwner_7100fb4f70 {
     void** vtable;
     UnkStrIdTwoStep id;
-    base::global::CRntVector<UnkOwnedPtr> objects;
+    base::global::CRntVector<UnkOwnedPtr_fb4f70> objects;
 
     ~UnkOwner_7100fb4f70() {
         vtable = &g_unk_7101cab468[2];

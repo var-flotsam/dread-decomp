@@ -1,9 +1,6 @@
 // Forwards `dt` to virtual slot 0x70 of the object behind +0x38, then of each child in the array at +0xa0.
+#include "game_s2/UnkTarget.h"
 #include "types.h"
-
-struct UnkTarget {
-    void** vtable;
-};
 
 struct UnkParent;
 

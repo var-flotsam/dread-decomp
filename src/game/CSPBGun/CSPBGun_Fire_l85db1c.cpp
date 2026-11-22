@@ -10,6 +10,7 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkBeamIdHolder_ovb0138.h"
 #include "game/UnkBeamVec_ovb0138.h"
+#include "game/UnkSpreadEntry_ovb0262g.h"
 #include "game/UnkTU437.h"
 #include "types.h"
 
@@ -56,15 +57,6 @@ struct UnkSPBScript_l85db1c {
     const char* name;  // 0x10
     u8 pad_0x18[0x44 - 0x18];
     s32 calls;  // 0x44
-};
-
-// As src/game/UnkTU1303/fn_71008372ac.cpp defines it.
-struct UnkSpreadEntry_ovb0262g {
-    bool ok;  // 0x0
-    CVector3D offset;  // 0x4
-    f32 scale;  // 0x10
-    f32 extra;  // 0x14
-    UnkSpreadEntry_ovb0262g() : ok(false), offset{0.0f, 0.0f, 0.0f}, scale(0.0f), extra(0.0f) {}
 };
 
 struct UnkSpread_ovb0262g;

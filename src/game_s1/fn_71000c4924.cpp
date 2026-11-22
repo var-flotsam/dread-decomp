@@ -4,14 +4,11 @@
 // 2), with the state at `State`: assignment from another variant (taking its state and first 16 bytes) and from a pair.
 // Reset releases the second id, then the first.
 #include "base/UnkDestructors.h"
+#include "game/UnkWordPair.h"
 #include "types.h"
 
 using base::UnkStrIdMember;
 
-
-struct UnkWordPair {
-    u64 a, b;
-};
 
 template <u32 Second, u32 State>
 struct UnkStrIdPairVariant {

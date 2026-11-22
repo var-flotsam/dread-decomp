@@ -24,7 +24,7 @@
 #include "game/UnkBossAIComponent.h"
 
 // The handle the component refers to (base::UnkRefCounted's layout); its target is at +0x10.
-struct UnkCounted : base::UnkRefCounted {
+struct UnkCounted_b40 : base::UnkRefCounted {
     union {
         void* field_0x10;
         u64 raw_0x10;
@@ -62,7 +62,7 @@ static inline __attribute__((always_inline)) bool Names_kr(UnkLazyHandle_kr* h, 
         }
         h->state = 2;
     }
-    UnkCounted* c = static_cast<UnkCounted*>(h->handle.ptr);
+    UnkCounted_b40* c = static_cast<UnkCounted_b40*>(h->handle.ptr);
     if (!c || !c->raw_0x10)
         return false;
     asm("" ::: "memory");
@@ -85,7 +85,7 @@ struct UnkOwner_kr {
 };
 
 struct UnkList_kr {
-    UnkCounted** data;
+    UnkCounted_b40** data;
     u32 count;
 };
 
@@ -105,7 +105,7 @@ void fn_7100606964(void* object);
 void fn_7100604cc0(void* object);
 
 static inline __attribute__((always_inline)) void ForEach_kr(UnkList_kr* list, void (*fn)(void*)) {
-    for (UnkCounted **it = list->data, **end = list->data + list->count; it != end; ++it)
+    for (UnkCounted_b40 **it = list->data, **end = list->data + list->count; it != end; ++it)
         fn(*it ? (*it)->field_0x10 : nullptr);
 }
 
@@ -157,7 +157,7 @@ UnkList_kr* fn_71009526a4();
 
 bool fn_71005ff92c() {
     UnkList_kr* list = fn_71009526a4();
-    for (UnkCounted **it = list->data, **end = list->data + list->count; it != end; ++it) {
+    for (UnkCounted_b40 **it = list->data, **end = list->data + list->count; it != end; ++it) {
         base::reflection::UnkReflObject* o =
             static_cast<base::reflection::UnkReflObject*>(*it ? (*it)->field_0x10 : nullptr);
         if (o && fn_710009d50c(o->vf_0x0(), fn_71006081c4()))

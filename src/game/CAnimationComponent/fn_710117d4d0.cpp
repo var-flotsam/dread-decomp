@@ -10,7 +10,7 @@
 // The resource of base/UnkCountedResource.h with the sort key at +0x60. The handles hold the
 // resource type itself (a conversion at the free call folds a known-null argument differently
 // and changes both non-matching sorts); the comparator casts for the key.
-struct UnkObj : UnkCountedResource {
+struct UnkObj_0117d4d0 : UnkCountedResource {
     u8 pad_0x58[8];
     u32 field_0x60;
 };
@@ -42,7 +42,7 @@ struct UnkRef {
 
 struct UnkSortCmp {
     bool operator()(UnkRef a, UnkRef b) const {
-        return static_cast<UnkObj*>(b.p)->field_0x60 < static_cast<UnkObj*>(a.p)->field_0x60;
+        return static_cast<UnkObj_0117d4d0*>(b.p)->field_0x60 < static_cast<UnkObj_0117d4d0*>(a.p)->field_0x60;
     }
 };
 

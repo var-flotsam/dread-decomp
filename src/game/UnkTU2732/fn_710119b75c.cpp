@@ -1,14 +1,12 @@
 // Unit 2732 (tools/tu_map.py): records the state of one controller, or of every connected one, into the
 // next free slots of a capture table (up to 60 slots). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkSoundHolder.h"
 #include "game/UnkTU0.h"
 #include "game/nn/time.h"
 #include "types.h"
 
 struct UnkSoundGroup;
-struct UnkSoundHolder {
-    UnkSoundGroup* group;
-};
 
 // The controller source: 32 buttons per controller, each with three states and an analog value.
 struct UnkPadSource_l19b75c {

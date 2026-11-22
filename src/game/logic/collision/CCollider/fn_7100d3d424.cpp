@@ -9,6 +9,8 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkClearedArray.h"
+#include "game/UnkIdPairCopy.h"
+#include "game/UnkRecord118.h"
 #include "game/UnkTU2563.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkUnionRefObject.h"
@@ -244,13 +246,6 @@ UnkMovedArray<UnkIdValues>* fn_7100eaf960(UnkMovedArray<UnkIdValues>* self, UnkM
     return self;
 }
 
-// Copy-assignment of two ids and a value.
-struct UnkIdPairCopy {
-    CStrId first;
-    CStrId second;
-    u32 field_0x10;
-};
-
 template <class Self>
 static inline Self* Assign(Self* self, const Self* other) {
     if (self != other) {
@@ -371,13 +366,6 @@ UnkIdValuesBlock* fn_7100e7c638(UnkIdValuesBlock* self, UnkIdValuesBlock* other)
     return self;
 }
 
-// Move-assignment of an array with a second pointer (destroying the elements through
-// fn_7100ea7034, keeping the storage).
-struct UnkRecord118 {
-    u64 unk_0x0[0x23];
-
-    ~UnkRecord118();
-};
 inline UnkRecord118::~UnkRecord118() { fn_7100ea7034(this); }
 
 template <class T, class Index>

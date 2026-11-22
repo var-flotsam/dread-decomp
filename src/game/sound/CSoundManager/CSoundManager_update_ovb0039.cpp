@@ -10,6 +10,7 @@
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkShotWeakRef.h"
 #include "game/UnkShotWeakTarget.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
@@ -44,11 +45,6 @@ struct UnkSoundSystem_ovb0039 {
 void fn_7100108290(UnkSoundMgr* self, bool enabled);
 void fn_710010829c(UnkSoundMgr* self, bool enabled);
 u32 fn_7100108288(UnkSoundMgr* self);  // the number of sounds
-
-struct UnkShotWeakRef {
-    UnkShotWeakTarget* target;
-    s64 generation;
-};
 
 struct UnkSoundManager_ovb0039 {
     u8 pad_0x0[0x68];

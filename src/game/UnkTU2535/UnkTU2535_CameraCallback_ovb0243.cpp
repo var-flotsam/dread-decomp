@@ -5,6 +5,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkCameraCallbackBase_ovb0070.h"
 #include "game/UnkTU2535.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -33,14 +34,6 @@ union UnkBuilt_a4dcc {
     UnkOwnedErasedVector values;
     UnkBuilt_a4dcc() {}
     ~UnkBuilt_a4dcc() { values.~UnkOwnedErasedVector(); }
-};
-
-struct UnkCameraCallbackBase_ovb0070 {
-    void** vtable;
-    UnkOwnedErasedVector callbacks;
-    u32 state;
-
-    UnkCameraCallbackBase_ovb0070(const UnkCameraCallbackBase_ovb0070& other) asm("fn_7100da4dcc");
 };
 
 // Clang 9 ignores the asm label on the constructor, so an alias gives the definition the address's name.

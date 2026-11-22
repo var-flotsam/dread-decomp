@@ -14,6 +14,7 @@
 #include "game/UnkColorIn_710050f26c.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRGB_710050f26c.h"
+#include "game/UnkSmState_b61.h"
 #include "game/UnkStateMachineFind.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1501.h"
@@ -25,15 +26,6 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkChargeComponent.h"
 #include "types.h"
-
-struct UnkSmState_b61 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10(s32 previous);  // entered
-    virtual void vf_0x18(s32 next);      // left
-    u64 field_0x8;
-    u32 id;
-};
 
 typedef UnkSmState_b61* __attribute__((aligned(4))) UnkSmStatePtr_b61;
 

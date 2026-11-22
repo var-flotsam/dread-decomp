@@ -11,6 +11,7 @@
 #include "game/CCharClassScorpiusAIComponent.h"
 #include "game/CScorpiusAIComponent.h"
 #include "game/GUI/CPopUpComposition.h"
+#include "game/UnkAmiiboCallback_laf0d38.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU437.h"
@@ -23,17 +24,6 @@ using base::global::CStrId;
 using base::global::UnkStrIdBase;
 
 struct UnkAmiiboComposition_laf0d38;
-
-// A function bound to its object, called when the message closes. It is passed by value; its copy
-// constructor is out of line, so it goes in memory.
-struct UnkAmiiboCallback_laf0d38 {
-    UnkAmiiboComposition_laf0d38* object;
-    void (*function)(UnkAmiiboComposition_laf0d38*);
-
-    UnkAmiiboCallback_laf0d38(UnkAmiiboComposition_laf0d38* object, void (*function)(UnkAmiiboComposition_laf0d38*))
-        : object(object), function(function) {}
-    UnkAmiiboCallback_laf0d38(const UnkAmiiboCallback_laf0d38& other);
-};
 
 // What the cutscene message calls when it closes.
 void fn_71006986f8(UnkAmiiboComposition_laf0d38* self);

@@ -2,17 +2,12 @@
 // renderer. Names and layouts are placeholders.
 #include "game/UnkDrawItem_b260.h"
 #include "game/UnkDrawParent_b260.h"
+#include "game/UnkDrawer_b260.h"
 #include "game/UnkItemList_b260.h"
 #include "game/UnkRenderer_b260.h"
 #include "game/UnkTU167.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkDrawer_b260 {
-    u8 unk_0x0[8];
-    UnkDrawParent_b260* parent;  // 0x8
-    UnkRenderer_b260* renderer;  // 0x10
-};
 
 void fn_710020f240(UnkDrawer_b260* self, UnkItemList_b260* list, u64 a2, u64 a3, u64 a4, void* arg, u64 a6, u64 a7,
                    bool flag_a, bool flag_b, const UnkVec3f* vec, f32 t) {

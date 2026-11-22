@@ -7,17 +7,13 @@
 #include "base/global/CRntVector.h"
 #include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkEntry_bbd.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2560.h"
 #include "types.h"
 
 extern void* g_unk_7101a6d218[];
 void fn_7100e1c9d8(void* manager, u32 id);
-
-struct UnkEntry_bbd {
-    u8 data[0x148];
-    ~UnkEntry_bbd() asm("fn_7100745b24");
-};
 
 struct UnkBillboard_bbd : UnkBaseComponent {
     u32 field_0x40;

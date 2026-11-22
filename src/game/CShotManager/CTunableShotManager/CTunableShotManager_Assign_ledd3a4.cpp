@@ -6,6 +6,8 @@
 #include "game/CShotManager/CTunableShotManager.h"
 #include "game/CShotManager/UnkShotEffect_b0011.h"
 #include "game/UnkObj290_b43a3.h"
+#include "game/UnkShotWeakRefData_b0011.h"
+#include "game/UnkShotWeakRef_b0011.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -14,15 +16,6 @@ using base::global::CRntVector;
 static_assert(sizeof(UnkObj290_b43a3) == 0x290, "UnkObj290_b43a3 layout");
 
 struct UnkShotWeakTarget_b0011;
-struct UnkShotWeakRefData_b0011 {
-    UnkShotWeakTarget_b0011* target;
-    s64 generation;
-};
-struct UnkShotWeakRef_b0011 {
-    UnkShotWeakRefData_b0011 ref;
-
-    UnkShotWeakRef_b0011(const UnkShotWeakRef_b0011& other) : ref(other.ref) {}
-};
 
 struct UnkListedObj;
 

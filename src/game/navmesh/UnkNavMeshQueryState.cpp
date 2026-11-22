@@ -12,6 +12,7 @@
 
 #include "base/math/CVector.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkNavPathPoint.h"
 #include "game/UnkObject_0x100.h"
 #include "game/UnkTU358.h"
 #include "game/UnkTU376.h"
@@ -47,16 +48,6 @@ struct alignas(8) UnkNavPathNodeData {
     UnkNavPathNodeData(const UnkNavPathNodeData& other) { fn_71002b58c0(Object(), other.Object()); }
     UnkObject_0x100* Object() { return reinterpret_cast<UnkObject_0x100*>(this); }
     const UnkObject_0x100* Object() const { return reinterpret_cast<const UnkObject_0x100*>(this); }
-};
-
-// A point of a node, copied member by member.
-struct UnkNavPathPoint {
-    f32 x;
-    f32 y;
-
-    UnkNavPathPoint() {}
-    UnkNavPathPoint(f32 x, f32 y) : x(x), y(y) {}
-    UnkNavPathPoint(const UnkNavPathPoint& other) : x(other.x), y(other.y) {}
 };
 
 // A search node (0x128 bytes). The constructor, destructor and the two setters are out of line in

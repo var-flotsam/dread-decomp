@@ -6,18 +6,10 @@
 #include "base/global/CRntVector.h"
 #include "base/reflection.h"
 #include "base/tunable/CTunable.h"
+#include "engine/UnkSceneItem.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkTU280.h"
 #include "types.h"
-
-// A scene item (the arrays hold pointers to them): its id first.
-struct UnkSceneItem {
-    s32 id;
-    u8 pad_0x4[0xd4];
-    f32 field_0xd8;
-    f32 field_0xdc;
-    f32 field_0xe0;
-};
 
 struct UnkClone_fn_71001fc54c;
 using UnkSceneSlot = UnkCloneElem<UnkClone_fn_71001fc54c, 8>;

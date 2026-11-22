@@ -3,7 +3,7 @@
 // assignment to itself changes nothing).
 #include "game_s2/UnkItem50.h"
 
-struct UnkRange {
+struct UnkRange_4dce50 {
     const UnkItem* data;
     u32 count;
     const UnkItem* begin() const { return data; }
@@ -16,7 +16,7 @@ base::global::CRntVector<UnkItem>* fn_71004dce50(base::global::CRntVector<UnkIte
     if (self != other) {
         self->Clear();
         self->Reserve(other->capacity);
-        for (const UnkItem& item : UnkRange{other->data, other->count})
+        for (const UnkItem& item : UnkRange_4dce50{other->data, other->count})
             fn_71004dccac(self, &item);
     }
     return self;

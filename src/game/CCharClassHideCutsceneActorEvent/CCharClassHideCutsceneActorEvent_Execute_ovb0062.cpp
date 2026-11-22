@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkCutsceneActorComponent_ovb0062.h"
 #include "game/UnkCutsceneActorEntity_ovb0062.h"
+#include "game/UnkCutsceneActorEvent_ovb0062.h"
 #include "game/UnkCutsceneActorState_ovb0062.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU253.h"
@@ -17,12 +18,6 @@ using base::global::CStrId;
 
 struct UnkStruct_71002334fc;
 struct UnkResetOwner;
-
-struct UnkCutsceneActorEvent_ovb0062 {
-    u8 unk_0x0[0x10];
-    CStrId actor;  // 0x10
-    bool flag;     // 0x18
-};
 
 void fn_7100cc2fc8(UnkCutsceneActorEvent_ovb0062* self, UnkCutsceneActorEntity_ovb0062** owner) {
     if (!*owner)

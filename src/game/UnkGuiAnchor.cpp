@@ -7,26 +7,14 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkGuiAnchor.h"
 #include "game/UnkGuiArea.h"
+#include "game/UnkGuiItemState.h"
+#include "game/UnkGuiPos.h"
 #include "game/UnkTU2755.h"
 #include "types.h"
 
 using base::math::CVector2D;
-
-// A 2D position returned in memory (its user-provided copy keeps it out of registers).
-struct UnkGuiPos {
-    f32 x;
-    f32 y;
-
-    UnkGuiPos(f32 x_, f32 y_) : x(x_), y(y_) {}
-    UnkGuiPos(const UnkGuiPos& other) : x(other.x), y(other.y) {}
-};
-
-struct UnkGuiAnchor {
-    u32 horizontal;
-    u32 vertical;
-    UnkGuiPos offset;
-};
 
 // The item's two extents.
 void fn_71011f638c(const UnkGuiAnchor* self, CVector2D* a, CVector2D* b);
@@ -69,17 +57,6 @@ UnkGuiPos fn_71011f6044(const UnkGuiAnchor* self, const UnkGuiArea* area) {
     }
     return pos;
 }
-
-// The state fn_71011f61bc reads: its angle at +0x10 and scale at +0x1c (src/game/UnkGuiItemState.cpp
-// lays it out in full).
-struct UnkGuiItemState {
-    UnkGuiAnchor anchor;
-    f32 angle;
-    f32 width;
-    f32 height;
-    f32 scale_x;
-    f32 scale_y;
-};
 
 // A position scaled by the state's scale and, when it has an angle, rotated by it (y divided out of
 // and back into the screen's aspect around the rotation).

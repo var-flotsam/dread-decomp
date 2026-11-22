@@ -4,6 +4,7 @@
 // projects it (fn_7100219588). Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkGrappleAnswer_b50.h"
+#include "game/UnkGrappleVec3_ovb0047.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU315.h"
 #include "game/CGrappleBeamComponent.h"
@@ -19,11 +20,6 @@ struct UnkGrappleTunable_ovb0047 {
     u8 pad_0x0[0x2c];
     f32 max_length;  // 0x2c, fMaxLength
     f32 max_length_to_start_retract;  // 0x30, fMaxLengthToStartRetract
-};
-
-struct UnkGrappleVec3_ovb0047 {
-    f32 x, y, z;
-    bool IsZero() const { return x == 0.0f && y == 0.0f && z == 0.0f; }
 };
 
 struct UnkGrappleTransform_ovb0047 {

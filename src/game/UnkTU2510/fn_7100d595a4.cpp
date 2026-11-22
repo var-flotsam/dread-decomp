@@ -3,6 +3,8 @@
 // through the caller's filter when one is given. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkCollider.h"
+#include "game/UnkShapeFilter_590ac.h"
 #include "game/UnkTU2509.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
@@ -36,49 +38,6 @@ static inline UnkShapeTester_A5_b68* Tester() {
     }
     return t;
 }
-
-// A collider (game::logic::collision::CCollider) as the tests use it.
-struct UnkCollider {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual void vf_0x68();
-    virtual void vf_0x70();
-    virtual void vf_0x78();
-    virtual void vf_0x80();
-    virtual void vf_0x88();
-    virtual void vf_0x90();
-    virtual void UpdateBounds();  // vf_0x98
-    u8 unk_0x8[0x38];
-    f32 minX;  // 0x40
-    f32 minY;  // 0x44
-    f32 maxX;  // 0x48
-    f32 maxY;  // 0x4c
-    u8 unk_0x50[0x10];
-    bool dirty;  // 0x60
-    u8 unk_0x61[0xf7];
-    void* owner;  // 0x158
-};
-
-struct UnkShapeFilter_590ac {
-    void** vtable;
-    UnkCollider* node;
-    u64 field_0x10;
-    void* filter;
-    bool field_0x20;
-    UnkShapeFilter_590ac(UnkCollider* n, void* f)
-        : vtable(g_unk_7101aa8898 + 2), node(n), field_0x10(0), filter(f), field_0x20(false) {}
-};
 
 // The sweep's offset, handed to the tester as a copy.
 struct UnkSweepDelta_595a4 {

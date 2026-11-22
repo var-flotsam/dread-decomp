@@ -32,7 +32,7 @@ struct UnkSampleSource {
     UnkTableOwner* owner;
 };
 
-struct UnkPair {
+struct UnkPair_c79a80 {
     u64 a;
     u32 b;
 };
@@ -40,7 +40,7 @@ struct UnkPair {
 struct UnkSampler {
     UnkSampleSource* source;
     f32 field_0x8;
-    UnkPair field_0x10;
+    UnkPair_c79a80 field_0x10;
 };
 
 struct UnkFloatList {
@@ -58,7 +58,7 @@ struct UnkWideSpan {
     UnkWideSpan(const UnkSpan& span) : data(span.data), count(span.count) {}
 };
 
-struct UnkTail {
+struct UnkTail_c79a80 {
     u64 a = 0;
     u32 b = 0;
 };
@@ -67,7 +67,7 @@ struct UnkSampleParams {
     UnkWideSpan values;
     UnkWideSpan field_0x10;
     UnkWideSpan field_0x20;
-    UnkTail field_0x30;
+    UnkTail_c79a80 field_0x30;
 };
 
 f32 fn_7100027910(void* entry, f32 value);
@@ -86,7 +86,7 @@ static inline void SampleAndSend(UnkSampler* self) {
     params.values = UnkWideSpan(list.values, list.count);
     params.field_0x10 = UnkWideSpan(self->source->field_0x8);
     params.field_0x20 = UnkWideSpan(self->source->field_0x30);
-    __builtin_memcpy(&params.field_0x30, &self->field_0x10, sizeof(UnkTail));
+    __builtin_memcpy(&params.field_0x30, &self->field_0x10, sizeof(UnkTail_c79a80));
     if (!fn_7100deabe4(g_unk_7101d47310) || fn_7100deac04(g_unk_7101d47310))
         Handler(&params);
     else if (Fallback)

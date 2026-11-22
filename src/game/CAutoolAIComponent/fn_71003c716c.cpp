@@ -9,14 +9,14 @@ struct UnkNamed {
     u64 field_0x30;
 };
 
-struct UnkInner {
+struct UnkInner_3c716c {
     u8 pad_0x0[0x38];
     UnkNamed* field_0x38;
 };
 
 struct UnkMiddle {
     u8 pad_0x0[0x10];
-    UnkInner* field_0x10;
+    UnkInner_3c716c* field_0x10;
 };
 
 struct UnkEvent {

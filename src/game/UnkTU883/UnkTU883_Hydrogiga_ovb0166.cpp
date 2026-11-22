@@ -12,6 +12,7 @@
 #include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
+#include "game/UnkHydrogigaEntry_b0166.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU883.h"
@@ -21,16 +22,6 @@ using base::global::CStrId;
 
 // ---- the keyed table ----
 
-struct UnkHydrogigaEntry_b0166 {
-    u32 field_0x0;
-    CStrId field_0x8;
-    u8 unk_0x10[0x20];
-    CStrId field_0x30;
-    CStrId field_0x38;
-    CStrId field_0x40;
-    CStrId field_0x48;
-    CStrId field_0x50;
-};
 static_assert(sizeof(UnkHydrogigaEntry_b0166) == 0x58, "layout");
 
 using UnkHydrogigaTable_b0166 = base::global::CRntSmallDictionary<base::UnkStrIdMember, UnkHydrogigaEntry_b0166>;

@@ -25,6 +25,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLayout_b0209.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkGuiScreen_b0209.h"
 #include "game/UnkGuiWidget_b0209.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkScreenSize_b0209.h"
@@ -275,18 +276,6 @@ bool fn_71011b3778(UnkGuiFlags_b0209* self) {
 
 static_assert(sizeof(UnkGuiLayout_b0209) == 0x48, "layout");
 
-struct UnkGuiScreen_b0209 {
-    u8 pad_0x0[0x40];
-    UnkGuiLayout_b0209* layouts;  // 0x40
-    u8 pad_0x48[8];
-    u32 layout_count;  // 0x50
-    u8 pad_0x54[0x14];
-    UnkGuiWidget_b0209* target;  // 0x68
-    u8 pad_0x70[0xd28];
-    u8 pad_0xd98[8];
-    f32 scale_x;  // 0xda0
-    f32 scale_y;  // 0xda4
-};
 static_assert(__builtin_offsetof(UnkGuiScreen_b0209, scale_x) == 0xda0, "layout");
 
 static inline UnkScreenSize_b0209 ScreenSize() {

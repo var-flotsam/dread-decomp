@@ -79,7 +79,7 @@ struct UnkMediaListener_b0217 {
     void (*callback)(void* context, UnkMedia324_b0217* media, u32 arg);
 };
 
-struct UnkMediaTrackV_b0217 {
+struct UnkMediaTrackV_b0217_ovb0217 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -141,7 +141,7 @@ void fn_710021ea60(UnkRefObj* obj) {
         SetState(self, 11);
         fn_7100224da0(self);
         for (UnkMediaRef_b0217** it = self->tracks, **end = it + self->track_count; it != end; ++it)
-            reinterpret_cast<UnkMediaTrackV_b0217*>(*it)->vf_0x28();
+            reinterpret_cast<UnkMediaTrackV_b0217_ovb0217*>(*it)->vf_0x28();
         for (u64 i = 0; i < self->track_count; i++) {
             if (UnkMediaRef_b0217* track = self->tracks[i]) {
                 __atomic_fetch_sub(&track->refs, 1, __ATOMIC_ACQ_REL);

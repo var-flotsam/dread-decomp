@@ -10,14 +10,14 @@ using base::reflection::UnkReflValue;
 enum class EInFrustumMode : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EInFrustumMode>::object asm("g_unk_71727952a8");
 
-struct UnkSource {
+struct UnkSource_415e18 {
     u8 pad_0x0[0xc8];
     u32 field_0xc8;
 };
 
 struct UnkArgument {
     u8 pad_0x0[8];
-    UnkSource* field_0x8;
+    UnkSource_415e18* field_0x8;
 };
 
 UnkReflValue fn_7100415e18(void* unused, UnkArgument* argument) {

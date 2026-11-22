@@ -7,11 +7,11 @@
 
 using base::reflection::CClass;
 
-struct UnkNode {
+struct UnkNode_2d92b4 {
     virtual const CClass* vf_0x0();
 };
 struct UnkNodeHolder {
-    UnkNode* node;
+    UnkNode_2d92b4* node;
 };
 struct UnkNodeSet {
     u8 unk_0x0[0x18];
@@ -23,13 +23,13 @@ struct UnkNodeSource {
     u8 unk_0x10[4];
     s32 kind;
 };
-struct UnkCounted {
+struct UnkCounted_2d92b4 {
     u8 unk_0x0[0xa8];
     u32 count;
 };
 struct UnkCounter {
     u8 unk_0x0[8];
-    UnkCounted* counted;
+    UnkCounted_2d92b4* counted;
 };
 struct UnkResult_0x18 {
     u64 empty[2];
@@ -38,13 +38,13 @@ struct UnkResult_0x18 {
 
 UnkResult_0x18 fn_71002d92b4(void* unused, UnkCounter* counter, UnkNodeSource** source) {
     UnkNodeSource* src = *source;
-    UnkCounted* counted = counter->counted;
-    UnkNode** slot;
+    UnkCounted_2d92b4* counted = counter->counted;
+    UnkNode_2d92b4** slot;
     if (src->kind == 1 || src->set->count >= 9)
-        slot = reinterpret_cast<UnkNode**>(src->holder);
+        slot = reinterpret_cast<UnkNode_2d92b4**>(src->holder);
     else
-        slot = reinterpret_cast<UnkNode**>(src);
-    UnkNode* node = *slot;
+        slot = reinterpret_cast<UnkNode_2d92b4**>(src);
+    UnkNode_2d92b4* node = *slot;
     if (fn_710009d50c(node->vf_0x0(), fn_71002d2250()))
         counted->count++;
     UnkResult_0x18 result = {};

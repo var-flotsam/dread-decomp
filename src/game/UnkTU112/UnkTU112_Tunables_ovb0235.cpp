@@ -7,8 +7,11 @@
 #include <string.h>
 
 #include "base/UnkHashStream.h"
+#include "base/UnkTunableField.h"
 #include "base/UnkTunableLine.h"
+#include "base/UnkTunableMember.h"
 #include "base/UnkTunableObject.h"
+#include "base/UnkTunableType.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
@@ -40,11 +43,6 @@ using base::reflection::UnkReflTypedPtr;
 // ---- the groups
 
 struct UnkTunableGroup;
-
-// What a group lists first: objects whose first word points back at the group.
-struct UnkTunableMember {
-    UnkTunableGroup* owner;
-};
 
 // A group of tunables (0x80 bytes): three lists, each with flags 0xf.
 struct UnkTunableGroup {
@@ -108,12 +106,6 @@ UnkTunableGroup_A1b71* fn_710013c2ac(UnkTunableGroupArrays_A1b71* self_, const C
 
 // ---- a tunable's field
 
-// A reflected field (0xb0 bytes): its type at +0x10.
-struct UnkTunableField {
-    u8 pad_0x0[0x10];
-    const base::reflection::CType* type;
-    u8 pad_0x18[0x98];
-};
 static_assert(sizeof(UnkTunableField) == 0xb0, "");
 
 bool fn_71000e750c(UnkTunableFieldHandle* field);  // whether the field can be read
@@ -148,23 +140,6 @@ UnkTunableLine fn_710013ab54(UnkTunableFieldHandle* field, const UnkReflTypedPtr
 }
 
 // ---- setting a named tunable's field
-
-// A type descriptor as the lookups see it: its class (vtable slot 0) and its fields by name hash.
-struct UnkTunableType {
-    virtual const base::reflection::CType* GetClass();
-    u8 pad_0x8[0xe0];
-    UnkTunableField* fields;  // +0xe8
-    u64* keys;                // +0xf0
-    u32 count;                // +0xf8
-
-    UnkTunableField* End() { return fields + count; }
-    UnkTunableField* Find(u64 key) {
-        for (u64 i = 0; i < count; ++i)
-            if (keys[i] == key)
-                return &fields[i];
-        return End();
-    }
-};
 
 struct UnkTunableRegistry;
 

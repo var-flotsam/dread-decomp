@@ -23,21 +23,21 @@ struct UnkCountedPtr {
     }
 };
 
-struct UnkIdRef {
+struct UnkIdRef_00c2c0 {
     UnkPathIdTwoStep id;
     UnkCountedPtr ref;
 };
 
-struct UnkIdRefVariant {
+struct UnkIdRefVariant_00c2c0 {
     union {
-        UnkIdRef id_ref;
+        UnkIdRef_00c2c0 id_ref;
     };
     s32 state;
 
     void Reset() {
         switch (state) {
         case 1:
-            id_ref.~UnkIdRef();
+            id_ref.~UnkIdRef_00c2c0();
             state = 0;
             break;
         case 2:
@@ -50,7 +50,7 @@ struct UnkIdRefVariant {
 template <u32 Offset>
 struct UnkVariantHolder {
     u8 unk_0x0[Offset];
-    UnkIdRefVariant variant;
+    UnkIdRefVariant_00c2c0 variant;
 };
 
 void fn_710000c2c0(UnkVariantHolder<0x20>* self) { self->variant.Reset(); }

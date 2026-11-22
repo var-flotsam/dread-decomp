@@ -6,20 +6,20 @@
 
 struct UnkQueryObj;
 
-struct UnkBTObserver {
+struct UnkBTObserver_CBTObserverComponent_Find {
     u8 pad_0x0[0x14];
     bool enabled;
 };
 
 struct UnkBTObserverComponent {
     u8 pad_0x0[0x90];
-    UnkBTObserver** data;  // 0x90
+    UnkBTObserver_CBTObserverComponent_Find** data;  // 0x90
     u8 pad_0x98[0x8];
     u32 count;  // 0xa0
 };
 
 UnkQueryObj* fn_7100ca7494(UnkBTObserverComponent* self, void* query) {
-    for (UnkBTObserver** it = self->data, **end = self->data + self->count; it != end; ++it) {
+    for (UnkBTObserver_CBTObserverComponent_Find** it = self->data, **end = self->data + self->count; it != end; ++it) {
         if ((*it)->enabled) {
             if (UnkQueryObj* hit = fn_7100ca2048(*it, query, 0))
                 return hit;

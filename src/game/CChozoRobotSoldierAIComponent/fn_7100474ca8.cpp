@@ -2,6 +2,7 @@
 // the ultimate recharge hash is taken off: (fn_7101177da8 count) - (fn_7101177ea0 elapsed) < 3.
 #include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkSelf.h"
 #include "types.h"
 
 using UnkAttack = UnkAnimationComponent;
@@ -9,11 +10,6 @@ using UnkAttack = UnkAnimationComponent;
 struct UnkOwner {
     u8 pad_0x0[0x220];
     UnkAttack* field_0x220;
-};
-
-struct UnkSelf {
-    u8 pad_0x0[0x30];
-    UnkOwner* field_0x30;
 };
 
 bool fn_7100474ca8(UnkSelf* self) {

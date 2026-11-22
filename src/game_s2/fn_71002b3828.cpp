@@ -14,7 +14,7 @@ struct UnkKeyed {
     u64 field_0x30;
 };
 
-struct UnkEntry {
+struct UnkEntry_2b3828 {
     u8 pad_0x0[0x128];
     UnkKeyed* field_0x128;
     UnkWeakHandle* field_0x130;
@@ -75,7 +75,7 @@ void fn_71002b3828(UnkOwner* self) {
     UnkRecord* record = reinterpret_cast<UnkRecord*>(self);
     u64 size = (u64)record->field_0x124 * 24;
     for (u64 offset = 0; offset != size; offset += 24) {
-        UnkEntry* entry = reinterpret_cast<UnkEntry*>(reinterpret_cast<char*>(record) + offset);
+        UnkEntry_2b3828* entry = reinterpret_cast<UnkEntry_2b3828*>(reinterpret_cast<char*>(record) + offset);
         u64 key = entry->field_0x128->field_0x30;
         u32 kind = g_unk_71727bebb8;
         UnkWeakTarget* object = fn_7100debbc8(g_unk_7101d47310, &key, &kind);

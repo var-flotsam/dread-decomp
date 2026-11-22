@@ -8,24 +8,24 @@
 using base::reflection::CClass;
 using base::reflection::CType;
 
-struct UnkComponent {
+struct UnkComponent_d7adec {
     virtual const CClass* vf_0x0() const;
 };
 
 struct UnkComponentOwner {
     u8 unk_0x0[0xa0];
-    UnkComponent** components;
+    UnkComponent_d7adec** components;
     void* field_0xa8;
     u32 count;
 };
 
 template <u32 Slot>
 __attribute__((always_inline)) static inline void CallEach(UnkComponentOwner* self) {
-    for (UnkComponent** it = self->components; it != self->components + self->count; ++it) {
-        UnkComponent* c = *it;
+    for (UnkComponent_d7adec** it = self->components; it != self->components + self->count; ++it) {
+        UnkComponent_d7adec* c = *it;
         if (c && fn_710009d50c(c->vf_0x0(), fn_71010c23d0())) {
             void** vtable = *reinterpret_cast<void***>(c);
-            reinterpret_cast<void (*)(UnkComponent*)>(vtable[Slot / 8])(c);
+            reinterpret_cast<void (*)(UnkComponent_d7adec*)>(vtable[Slot / 8])(c);
         }
     }
 }

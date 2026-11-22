@@ -2,17 +2,8 @@
 // +0x470 as the swarm's target (+0x548, with the mode at +0x544 set to 1); otherwise calls
 // vf_0x2e8 with (0, 0). Names and layouts are placeholders.
 #include "game/UnkTU1161.h"
+#include "game/UnkVec3Result.h"
 #include "types.h"
-
-// Returned through x8, so the original's result type is not trivially copyable (as in
-// src/game_lo/fn_71007455dc.cpp).
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 struct UnkParent_71007455dc;
 

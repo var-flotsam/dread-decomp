@@ -2,6 +2,7 @@
 // some TUs' data has function records after the header, and collection and vector types are
 // registered for the reflected containers.
 #include "base/UnkArray_71729ce018.h"
+#include "base/UnkPair16.h"
 #include "base/UnkStrIdRegistry.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
@@ -593,11 +594,6 @@ void fn_7100c77cd0() {
     new (&g_unk_7172791e88) CStrId("ConeCollisionScene", true);
     fn_7100000250(fn_710000051c, &g_unk_7172791e88, &g_unk_7101a19000);
 }
-
-struct UnkPair16 {
-    u64 field_0x0;
-    u64 field_0x8;
-};
 
 void fn_7100da54b0() {
     InitHeader(g_unk_71727bc0f8);

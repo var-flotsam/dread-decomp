@@ -1,11 +1,7 @@
 // Copy assignment of a record of plain fields (an assignment to itself changes nothing).
+#include "game/UnkPair.h"
 #include "game/UnkQuad.h"
 #include "types.h"
-
-struct UnkPair {
-    u64 field_0x0;
-    u64 field_0x8;
-};
 
 struct UnkRecord_71004ccc1c {
     u8 pad_0x0[8];

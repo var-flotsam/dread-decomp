@@ -20,7 +20,7 @@ struct UnkReflValueArg {
     void* ptr;
 };
 
-struct UnkFieldAccessor {
+struct UnkFieldAccessor_l0e78e0 {
     virtual void vf_0x0() {}
     virtual void vf_0x8() {}
     virtual UnkReflValue vf_0x10(const void* obj_ref, const void* index, u32 flags) = 0;
@@ -30,11 +30,11 @@ struct UnkReflField {
     u8 pad_0x0[8];
     u32 offset;
     const CType* type;
-    UnkFieldAccessor* accessor;
+    UnkFieldAccessor_l0e78e0* accessor;
 };
 
 bool fn_71000e78e0(::UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* dst) {
-    UnkFieldAccessor* accessor = field->accessor;
+    UnkFieldAccessor_l0e78e0* accessor = field->accessor;
     if (accessor) {
         UnkReflValueArg arg;
         UnkReflValue value;

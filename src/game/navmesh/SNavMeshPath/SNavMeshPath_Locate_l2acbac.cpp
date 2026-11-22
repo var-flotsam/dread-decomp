@@ -2,11 +2,8 @@
 // the segment a distance along the path falls in, with the fraction along it. Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/UnkVec3.h"
 #include "types.h"
-
-struct UnkVec3 {
-    f32 x, y, z;
-};
 
 struct UnkNavElement_l2acbac {
     virtual void vf_0x0();

@@ -6,6 +6,7 @@
 #include "game/UnkAtkEntryIndex_b0148.h"
 #include "game/UnkAtkInfo_b0150.h"
 
+#include "game/UnkAtkWave_b0150.h"
 #include "game/UnkTU2772.h"
 #include "game/UnkTU99.h"
 #include "types.h"
@@ -16,12 +17,6 @@ struct UnkAtkVoice;
 
 struct UnkAtkArchive;
 struct UnkAtkArchive_b0148;
-
-struct UnkAtkWave_b0150 {
-    u8 pad_0x0[0x18];
-    u8 flag;  // 0x18
-    u8 pad_0x19[7];
-};
 
 bool fn_7101206fac(UnkAtkArchive* archive, u64* out, u32 id);
 

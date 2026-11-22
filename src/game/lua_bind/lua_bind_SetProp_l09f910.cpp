@@ -13,17 +13,12 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStrIdHandle.h"
 #include "game/UnkTU2676.h"
 #include "game/UnkTypedValue.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkStrIdHandle {
-    CStrId id;
-    void* field_0x8;
-    UnkStrIdHandle(const CStrId& id);  // fn_7100ae986c
-};
 
 struct UnkEnumType;
 UnkEnumType* fn_710009ffd4();  // base::global::TRntString256's type

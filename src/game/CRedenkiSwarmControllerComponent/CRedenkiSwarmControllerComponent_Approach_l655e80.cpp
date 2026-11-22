@@ -18,20 +18,12 @@
 #include "game/UnkTU1161.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2560.h"
+#include "game/UnkVec3Result.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
 using base::reflection::CClass;
-
-// As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b38.cpp defines it.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 extern u32 g_unk_7101a5aef0;
 extern char g_unk_710164a418[];

@@ -5,16 +5,12 @@
 
 #include "base/UnkPooledStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkPair.h"
 #include "game/animtree/CAnimatedNodeDef.h"
 #include "game/animtree/CLookAtEntityControlDef.h"
 #include "types.h"
 
 using base::global::UnkStringData;
-
-struct UnkPair {
-    u64 field_0x0;
-    u64 field_0x8;
-};
 
 // What CStrId's copy constructor does.
 __attribute__((always_inline)) static inline void CopyId(base::UnkPooledString& dst, const base::UnkPooledString& src) {

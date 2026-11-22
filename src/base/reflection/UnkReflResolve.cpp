@@ -4,7 +4,10 @@
 // their own resolver (fn_7100ad8120, fn_7100ad8238, the class by the object's dynamic type); a
 // result that is itself a pointer becomes a reference to the object it points to.
 // Holds fn_7100ad7db8. Names and layouts are placeholders.
+#include "base/UnkAssignedRecord_a1ba4.h"
 #include "base/UnkCloneHelpers.h"
+#include "base/UnkResolvedPair.h"
+#include "base/UnkResolvedValue.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -20,54 +23,9 @@ using base::reflection::UnkReflTypedPtr;
 using base::reflection::UnkReflValue;
 using base::reflection::UnkTypedRef;
 
-// The reflected value's copy-assignment (declared as src/game_s1/fn_71000d6310.cpp does, over a
-// record of UnkReflValue's size).
-struct UnkAssignedRecord_a1ba4 {
-    u64 unk_0x0[0x18 / 8];
-};
-
 // The object a pointer value points to, with its dynamic type.
 UnkReflTypedPtr fn_710009c460(const UnkReflTypedPtr& pointer);
 // The value a typed reference holds, as a reflected value.
-
-// Two words assigned only from another object.
-struct UnkResolvedPair {
-    u64 a;
-    u64 b;
-
-    UnkResolvedPair& operator=(const UnkResolvedPair& o) {
-        if (this != &o) {
-            a = o.a;
-            b = o.b;
-        }
-        return *this;
-    }
-};
-
-// A resolved value (0x30 bytes): the reflected value and what came with it.
-struct UnkResolvedValue {
-    UnkReflValue value;
-    u64 field_0x18;
-    UnkResolvedPair field_0x20;
-
-    UnkResolvedValue() {
-        value.field_0x0 = nullptr;
-        value.type = nullptr;
-        value.kind = 2;
-        value.field_0x14 = 1;
-        field_0x18 = 0;
-        field_0x20.a = 0;
-        field_0x20.b = 0;
-    }
-    UnkResolvedValue& operator=(const UnkResolvedValue& o) {
-        fn_71000a1ba4(reinterpret_cast<UnkAssignedRecord_a1ba4*>(&value),
-                      reinterpret_cast<const UnkAssignedRecord_a1ba4*>(&o.value));
-        field_0x18 = o.field_0x18;
-        field_0x20 = o.field_0x20;
-        return *this;
-    }
-    ~UnkResolvedValue() { fn_71000a1c60(&value); }
-};
 
 UnkResolvedValue fn_7100ad8120(const UnkTypedRef* collection, void* a, u32 b);
 UnkResolvedValue fn_7100ad8238(const UnkTypedRef* object, void* a, u32 b);

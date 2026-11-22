@@ -10,9 +10,9 @@ using base::UnkAllocator;
 
 extern char unk_7101aa28d8[];  // the array's vtable (at 0x18, or at 0x8 in fn_7100c09b38's pair)
 
-struct UnkRecord58 {
+struct UnkRecord58_c060d8 {
     virtual void vf_0x0();
-    virtual ~UnkRecord58();
+    virtual ~UnkRecord58_c060d8();
     u8 unk_0x8[0x50];
 };
 
@@ -29,7 +29,7 @@ struct UnkRecordArrayVariant {
 };
 
 // Alt reads the state at its byte offset, so the two resets of fn_7100c0621c are not merged.
-template <u32 Array, char* Vtable, bool Alt = false, class Record = UnkRecord58>
+template <u32 Array, char* Vtable, bool Alt = false, class Record = UnkRecord58_c060d8>
 __attribute__((always_inline)) static inline void ResetArrayVariant(char* self) {
     auto* v = reinterpret_cast<UnkRecordArrayVariant<Record>*>(self + Array);
     u32 state = Alt ? *reinterpret_cast<u32*>(self + Array + 0x50) : v->state;
@@ -57,7 +57,7 @@ void fn_7100c065dc(char* self) { ResetArrayVariant<0x18, unk_7101aa28d8>(self); 
 void fn_7100c09b38(char* self) { ResetArrayVariant<0x8, unk_7101aa28d8>(self); }
 void fn_7100c09ea4(char* self) { ResetArrayVariant<0x8, unk_7101aa28d8>(self); }
 
-template <char* Vtable = unk_7101aa28d8, class Record = UnkRecord58>
+template <char* Vtable = unk_7101aa28d8, class Record = UnkRecord58_c060d8>
 __attribute__((always_inline)) static inline void SetArrayVariant(char* self) {
     void* value = *reinterpret_cast<void**>(self + 8);
     if (value) {

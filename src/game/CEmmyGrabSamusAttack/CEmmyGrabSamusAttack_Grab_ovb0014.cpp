@@ -34,6 +34,7 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
+#include "game/UnkStrId_71005077f8.h"
 #include "game/UnkTU140.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
@@ -50,16 +51,6 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// fn_71005077f8's id type (src/game/CEmmyGrabSamusAttack/fn_71005077f8.cpp): a data pointer with a
-// user copy constructor, returned through x8.
-struct UnkStrId_71005077f8 {
-    UnkStringData* data;
-    UnkStrId_71005077f8(const base::global::UnkStrIdBase& other) : data(other.data) {
-        if (&g_unk_7101d47108->empty != data)
-            ++data->ref_count;
-    }
-    UnkStrId_71005077f8(const UnkStrId_71005077f8& other);
-};
 struct UnkStruct_71005077f8;
 struct UnkGrabAttack_b59a3;
 struct UnkGrabId_b59a3;

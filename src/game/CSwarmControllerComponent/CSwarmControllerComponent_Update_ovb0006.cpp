@@ -20,11 +20,13 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkShotWeakRef.h"
 #include "game/UnkSwarmSlot.h"
 #include "game/UnkTU1159.h"
 #include "game/UnkTU1161.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
+#include "game/UnkVec3Result.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -206,14 +208,6 @@ void fn_7100748234(UnkSwarmController_ovb6* self, UnkSwarmGroup_ovb6* group) {
     self->field_0x190.y = g_unk_710164779c.y;
     self->field_0x190.z = g_unk_710164779c.z;
 }
-
-// Returned through x8, so the original's result type is not trivially copyable.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 struct UnkParent_71007455dc;
 s32 fn_7100729654(UnkSwarmGroups_ovb6* groups, UnkSwarmGroup_ovb6* from, UnkSwarmGroup_ovb6* into);
@@ -408,22 +402,6 @@ void fn_710074e82c(UnkSwarmPairs2_ovb6* self, u32 n) {
 }
 
 struct UnkShotWeakTarget;
-
-// The layout of UnkShotWeakRef in src/game/CShotManager.cpp: a weak reference, empty when its
-// generation is -1. Its fields are written untyped (the original reloads the array after each new
-// element) and it is not trivially copyable (the original copies element by element).
-struct UnkShotWeakRef {
-    UnkShotWeakTarget* target;
-    s64 generation;
-
-    UnkShotWeakRef() {
-        UnkShotWeakTarget* none = nullptr;
-        s64 invalid = -1;
-        target = none;
-        generation = invalid;
-    }
-    ~UnkShotWeakRef() {}
-};
 
 // The weak reference at index i, growing the array (with empty references) to reach it.
 UnkShotWeakRef* fn_7100748064(base::global::CRntVector<UnkShotWeakRef>* self, u32 i) {

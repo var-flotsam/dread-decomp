@@ -4,6 +4,7 @@
 #include "base/UnkMatrix44.h"
 #include "game/CAnimationComponent.h"
 #include "game/CChozoWarriorAIComponent.h"
+#include "game/UnkSelf.h"
 #include "types.h"
 
 struct UnkAttack;
@@ -13,11 +14,6 @@ struct UnkOwner {
     u8 field_0x38[1];
     u8 pad_0x39[0x1e7];
     UnkAttack* field_0x220;
-};
-
-struct UnkSelf {
-    u8 pad_0x0[0x30];
-    UnkOwner* field_0x30;
 };
 
 struct UnkActorTarget;

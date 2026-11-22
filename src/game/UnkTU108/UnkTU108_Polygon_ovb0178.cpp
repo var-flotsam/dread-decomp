@@ -10,6 +10,7 @@
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkPathLink.h"
 #include "game/UnkPathPair.h"
+#include "game/UnkPolyPoint.h"
 #include "game/UnkTU108.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -260,12 +261,6 @@ struct UnkPointSet_b61 : base::global::CRntVector<UnkVertex12> {};
 __attribute__((noinline)) void* fn_7100118950(UnkPointSet_b61* self, u32 index) {
     return &self->GrowAt(index);
 }
-
-struct UnkPolyPoint {
-    f32 x;
-    f32 y;
-    f32 field_0x8;
-};
 
 struct UnkPolygonBase {
     void* vertices;

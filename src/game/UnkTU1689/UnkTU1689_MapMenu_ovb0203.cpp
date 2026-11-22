@@ -19,6 +19,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkMapNamedDef_ovb0203.h"
 #include "game/UnkTU1600.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU1689.h"
@@ -706,10 +707,6 @@ void fn_7100b45b5c(UnkMapMenuOwner_ovb0203* self) {
 
 // ---- fn_7100b46744
 
-struct UnkMapNamedDef_ovb0203 : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedName name;
-};
 extern CStrId g_unk_7172763d88 __attribute__((visibility("hidden")));
 
 static inline UnkSubId_7100fc4b34 SubId_ovb0203(UnkMapNamedDef_ovb0203& def, const CStrId& name) {

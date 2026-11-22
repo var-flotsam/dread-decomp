@@ -26,6 +26,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkModeFlags.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
@@ -125,11 +126,6 @@ struct UnkPromptHolder_ovb0168 {
 struct UnkGameManagerPrompt_ovb0168 {
     u8 pad_0x0[0x2258];
     UnkPromptHolder_ovb0168* holder;
-};
-
-struct UnkModeFlags {
-    u8 unk_0x0[0xb8];
-    bool field_0xb8;
 };
 
 struct UnkPromptCallback_ovb0168 {

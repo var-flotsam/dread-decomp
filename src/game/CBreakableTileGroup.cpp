@@ -14,6 +14,8 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CBreakableTileGroup.h"
 #include "game/CGrabComponent.h"
+#include "game/UnkCollisionShape.h"
+#include "game/UnkHelper.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU109.h"
 #include "game/UnkTU1501.h"
@@ -22,6 +24,7 @@
 #include "game/UnkTU315.h"
 #include "game/UnkTU54.h"
 #include "game/UnkTU811.h"
+#include "game/UnkTileGroup.h"
 #include "game/UnkTileOutline.h"
 #include "game/UnkTileOutlineList.h"
 #include "game/UnkTilePoint.h"
@@ -62,17 +65,6 @@ struct UnkQueryObj {
 };
 static_assert(sizeof(UnkQueryObj) == 0xa8, "UnkQueryObj placeholder layout");
 
-struct UnkTileGroup {
-    u8 pad_0x0[0x10];
-    u32 field_0x10;  // the group's id
-    bool field_0x14;
-    u8 pad_0x15[0xb];
-    f32 field_0x20;  // z of every tile
-    u8 pad_0x24[0x1c];
-    u32 field_0x40;           // the tile count
-    UnkQueryObj* field_0x48;  // the tiles
-};
-
 static const u64 kNoRenderObject = 0xffffffff;
 
 // The deferred callbacks told of every state change, with an UnkTileStateEvent.
@@ -110,9 +102,6 @@ struct UnkBox2D {
 
     UnkBox2D(f32 min_x_, f32 min_y_, f32 max_x_, f32 max_y_)
         : min_x(min_x_), min_y(min_y_), max_x(max_x_), max_y(max_y_) {}
-};
-struct UnkCollisionShape {
-    u8 data[0xc0];
 };
 
 // The hits of a collision query: an inline array of up to eight 0x48-byte records after the count,
@@ -161,13 +150,6 @@ struct __attribute__((packed)) UnkHitList {
     }
     UnkHitRecord* begin() { return items(); }
     UnkHitRecord* end() { return reinterpret_cast<UnkHitRecord*>(storage + count * sizeof(UnkHitRecord)); }
-};
-
-// The player's +0x208: a movement helper.
-struct UnkHelper {
-    void** vtable;
-
-    bool vf_0x3b8() { return reinterpret_cast<bool (*)(UnkHelper*)>(vtable[0x3b8 / 8])(this); }
 };
 
 struct UnkPlayer {

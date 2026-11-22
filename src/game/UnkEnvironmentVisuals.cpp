@@ -31,7 +31,7 @@ using UnkEnvFadeColor = base::math::UnkVector4D;
 
 // STransition (reflection; 0x10 bytes): the preset the transition is from (sPreset). The times
 // of each kind follow it.
-struct UnkTransition {
+struct UnkTransition_UnkEnvironmentVisuals {
     void* field_0x0;
     UnkStringData* preset;  // a CStrId
 };
@@ -42,23 +42,23 @@ static inline s64 PresetKey(const UnkStringData* id) {
 }
 
 // A transition with one time (most kinds; 0x18 bytes) or two.
-struct UnkTransition1 : UnkTransition {
+struct UnkTransition1 : UnkTransition_UnkEnvironmentVisuals {
     f32 time;
 };
-struct UnkTransition2 : UnkTransition {
+struct UnkTransition2 : UnkTransition_UnkEnvironmentVisuals {
     f32 time0;
     f32 time1;
 };
 // CEnvironmentData::SFogTransition (0x20 bytes) and SVerticalFogTransition (0x28 bytes).
-struct UnkFogTransition : UnkTransition {
+struct UnkFogTransition_UnkEnvironmentVisuals : UnkTransition_UnkEnvironmentVisuals {
     f32 time[4];
 };
-struct UnkVerticalFogTransition : UnkTransition {
+struct UnkVerticalFogTransition : UnkTransition_UnkEnvironmentVisuals {
     f32 time[6];
 };
 static_assert(sizeof(UnkTransition1) == 0x18, "UnkTransition1 layout");
 static_assert(sizeof(UnkTransition2) == 0x18, "UnkTransition2 layout");
-static_assert(sizeof(UnkFogTransition) == 0x20, "UnkFogTransition layout");
+static_assert(sizeof(UnkFogTransition_UnkEnvironmentVisuals) == 0x20, "UnkFogTransition_UnkEnvironmentVisuals layout");
 static_assert(sizeof(UnkVerticalFogTransition) == 0x28, "UnkVerticalFogTransition layout");
 
 // The transition from the preset whose key is `key`, if the list has one.
@@ -86,7 +86,7 @@ struct UnkEnvironmentData {
     UnkEnvVec2 field_0x20;
     UnkVector4D field_0x28;
     f32 field_0x38;  // time
-    base::global::CRntVector<UnkFogTransition> field_0x40;
+    base::global::CRntVector<UnkFogTransition_UnkEnvironmentVisuals> field_0x40;
     // 0x68.
     f32 field_0x68;  // time
     UnkEnvFadeColor field_0x6c;
@@ -260,7 +260,7 @@ void fn_7100d8e398(UnkEnvironmentVisuals* self, const UnkEnvironmentData* data, 
     } else {
         s64 key = PresetKey(self->field_0x18.data);
 
-        const UnkFogTransition* fog = FindTransition(data->field_0x40, key);
+        const UnkFogTransition_UnkEnvironmentVisuals* fog = FindTransition(data->field_0x40, key);
         UnkEnvironmentFade* fade = self->Fade();
         fn_7100f97f64(fog ? fog->time[0] : data->field_0x0, fade, &data->field_0x4);
         fn_7100f9800c(data->field_0x18, fog ? fog->time[1] : data->field_0x14, fade);

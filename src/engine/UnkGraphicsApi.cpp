@@ -10,6 +10,7 @@
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkTU167.h"
 #include "game/UnkTU244.h"
+#include "game/UnkWidgetMember.h"
 #include "types.h"
 
 static inline UnkGraphicsSystem*& Graphics() {
@@ -36,11 +37,6 @@ bool fn_7100150f90(u32 index, f32 value) {
 // What a factory returns: the new object, written through the indirect result (x8; the callers'
 // view, the same in each widget constructor). The bytes past the pointer are the callers'.
 struct UnkWidgetArg;
-struct UnkWidgetMember {
-    u8 data[0x38];
-    UnkWidgetMember() {}
-    UnkWidgetMember(const UnkWidgetMember&) {}
-};
 
 // The objects' constructors: the billboard (src/base/spatial/UnkBillboard.cpp), the cull view
 // (src/base/spatial/UnkFrustumCull.cpp) and three without a source yet.

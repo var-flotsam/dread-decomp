@@ -8,31 +8,11 @@
 #include "base/UnkCountedResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkShared54Ptr.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-struct UnkShared54Ptr {
-    UnkCountedResource* ptr;
-
-    UnkShared54Ptr(const UnkShared54Ptr& other) {
-        ptr = nullptr;
-        *this = other.ptr;
-    }
-    UnkShared54Ptr& operator=(UnkCountedResource* p) {
-        if (p != ptr) {
-            if (p)
-                ++p->ref_count;
-            if (UnkCountedResource* old = ptr) {
-                if (--old->ref_count == 0)
-                    fn_710001737c(old);
-            }
-            ptr = p;
-        }
-        return *this;
-    }
-};
 
 extern char unk_7101aa15b8[];  // the middle class's vtable
 extern char unk_7101aa1588[];

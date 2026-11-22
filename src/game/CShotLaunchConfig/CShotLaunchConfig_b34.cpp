@@ -1,8 +1,5 @@
+#include "game/UnkVec3.h"
 #include "types.h"
-
-struct UnkVec3 {
-    f32 x, y, z;
-};
 
 // The offset after time `t` of a shot launched along (dirY, dirX) at `speed` under `gravity`
 // (scaled by `t` once more): x = dirX * speed * t, y = dirY * speed * t - gravity * t * t / 2.

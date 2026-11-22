@@ -23,6 +23,8 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkMtx44_b46a2.h"
+#include "game/UnkS12.h"
+#include "game/UnkS16.h"
 #include "game/UnkSlomoFlags.h"
 #include "game/UnkTU1134.h"
 #include "game/UnkTU1141.h"
@@ -75,17 +77,6 @@ static inline UnkAnimTime_ovb0009 Seconds(f32 value) {
     t.unit = 1;
     return t;
 }
-
-// A key and a time.
-struct UnkS16 {
-    u64 key;
-    UnkAnimTime_ovb0009 time;
-};
-
-// A blend descriptor (g_unk_7172769740, g_unk_7172769770).
-struct UnkS12 {
-    u32 a, b, c;
-};
 
 static inline const UnkS16& DefaultTime() { return reinterpret_cast<const UnkS16&>(g_unk_710164b968); }
 static inline const UnkS12& DefaultBlend() { return reinterpret_cast<const UnkS12&>(g_unk_7172769740); }
@@ -307,7 +298,7 @@ UnkTimelineId fn_7101177be0(UnkAnimationComponent* self, u64 key) {
                                 : g_unk_7101647910;
 }
 
-struct UnkTimelineEvents {
+struct UnkTimelineEvents_ovb0009 {
     u8 pad_0x0[0x120];
     UnkReflObject** events;
     u32 count;
@@ -316,7 +307,7 @@ struct UnkTimelineEvents {
 // Whether the first track's timeline has a CCharClassInvertRotationEvent.
 bool fn_7101178e74(UnkAnimationComponent* self) {
     UnkTrack* track = self->field_0x40->field_0xc8.values[0]->field_0x70;
-    UnkTimelineEvents* timeline = reinterpret_cast<UnkTimelineEvents*>(fn_710070d4e8(track));
+    UnkTimelineEvents_ovb0009* timeline = reinterpret_cast<UnkTimelineEvents_ovb0009*>(fn_710070d4e8(track));
     if (!timeline)
         return false;
     for (UnkReflObject** it = timeline->events; it < timeline->events + timeline->count; ++it) {

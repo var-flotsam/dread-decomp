@@ -4,6 +4,7 @@
 // remaining distance against the two ranges the controller reports. Returns false at once when the
 // controller's step at +0xf0 is -1.
 #include "game/UnkActor.h"
+#include "game/UnkVec3.h"
 #include "types.h"
 
 typedef f32 a_f32;
@@ -12,12 +13,6 @@ typedef u32 a_u32;
 struct UnkOut {
     f32 x;
     u32 y;
-};
-
-struct UnkVec3 {
-    f32 x;
-    f32 y;
-    f32 z;
 };
 
 struct UnkLimits {

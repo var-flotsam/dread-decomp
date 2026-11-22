@@ -15,6 +15,7 @@
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
+#include "game/UnkGuiPos.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2567.h"
 #include "game/UnkTU2747.h"
@@ -29,14 +30,6 @@ using unk_static_init::UnkBufferParam;
 
 struct UnkPanel_71011dfeb0;
 struct UnkGuiItemState;
-
-// A 2D position returned in memory (src/game/UnkGuiAnchor.cpp).
-struct UnkGuiPos {
-    f32 x;
-    f32 y;
-
-    UnkGuiPos(const UnkGuiPos& other) : x(other.x), y(other.y) {}
-};
 
 // The container's own set-up, before its flags (src/game/GUI/CHUD/fn_71011dfeb0.cpp calls it too).
 // The child at a dotted path ("Content.Navigation"), given as the path string's text.

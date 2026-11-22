@@ -14,6 +14,7 @@
 #include "base/reflection.h"
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStrIdText_ovb0032.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU57.h"
@@ -141,17 +142,6 @@ void fn_71011a2a24(UnkGameManagerSub_0x608* scenario, void* object_) {
 }
 
 // --- The nearest actor ---
-
-// A string id's data as the name read sees it: the text at +0x10 and a use count at +0x44 (a union
-// member: the original reloads the id after the increment).
-struct UnkStrIdText_ovb0032 {
-    u8 pad_0x0[0x10];
-    CRntString str;
-    u8 pad_0x40[0x4];
-    union {
-        s32 uses;  // 0x44
-    };
-};
 
 static inline const CRntString* Text_ovb0032(const CStrId& id) {
     ++reinterpret_cast<UnkStrIdText_ovb0032*>(id.data)->uses;

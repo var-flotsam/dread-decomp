@@ -7,6 +7,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSubArea.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "game/UnkXformNode.h"
@@ -27,10 +28,6 @@ struct UnkForcedMovementTarget_A5_b68;
 extern CStrId g_unk_71729daee8 __attribute__((visibility("hidden")));
 void fn_7100eed9ec(void* self, void* target);
 
-// A sub-area (a placeholder for the fields used here): its first id.
-struct UnkSubArea {
-    CStrId field_0x0;
-};
 static inline const CStrId& FirstId(const UnkSubArea* area) { return area ? area->field_0x0 : base::global::CStrId::Empty(); }
 
 // The player as far as it is read here.

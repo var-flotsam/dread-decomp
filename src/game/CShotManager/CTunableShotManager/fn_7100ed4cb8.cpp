@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/CRntVector.h"
 #include "game/CSpittailMagmaBallMovementComponent.h"
+#include "game/UnkModel.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
 #include "game/UnkTU253.h"
@@ -13,11 +14,6 @@
 using base::global::CFilePathStrId;
 
 struct UnkModelData;
-
-struct UnkModel {
-    u8 pad_0x0[0x138];
-    UnkModelData* field_0x138;
-};
 
 struct UnkBuffer {
     void* data;

@@ -111,10 +111,10 @@ using base::global::CStrId;
 using UnkString40 = UnkBufferString<0x40, g_unk_7101a1b678>;
 
 // Copied as a block.
-struct UnkWord {
+struct UnkWord_e7b084 {
     u32 value;
 
-    __attribute__((always_inline)) UnkWord(const UnkWord& other) { __builtin_memcpy(this, &other, 4); }
+    __attribute__((always_inline)) UnkWord_e7b084(const UnkWord_e7b084& other) { __builtin_memcpy(this, &other, 4); }
 };
 
 // Copied as a 0x14-byte block.
@@ -133,8 +133,8 @@ struct UnkIdsString40 {
     Id field_0x10;
     Id field_0x18;
     UnkString40 field_0x20;
-    UnkWord field_0xa8;
-    UnkWord field_0xac;
+    UnkWord_e7b084 field_0xa8;
+    UnkWord_e7b084 field_0xac;
     UnkWords5 field_0xb0;
 };
 static_assert(sizeof(UnkIdsString40<CStrId>) == 0xc8, "UnkIdsString40 layout");

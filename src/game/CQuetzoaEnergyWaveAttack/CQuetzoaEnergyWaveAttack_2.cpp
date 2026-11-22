@@ -1,10 +1,7 @@
 // CQuetzoaEnergyWaveAttack: offsets a position (fn_7100645568) by 211 units against the sign of the
 // facing value and 78 units up. Names and layouts are placeholders.
+#include "game/UnkVec3.h"
 #include "types.h"
-
-struct UnkVec3 {
-    f32 x, y, z;
-};
 
 struct UnkEnergyWaveAttack;
 

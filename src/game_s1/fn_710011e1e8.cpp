@@ -46,13 +46,13 @@ struct UnkArgObj;
 struct UnkInsertTarget;
 
 // The owner of fn_710105d328 with the target object at 0 and the flag at 0x2d.
-struct UnkInsertOwner {
+struct UnkInsertOwner_11e1e8 {
     u8 target[0x2d];  // the object itself
     bool dirty;
 };
 
 UnkSetStatus fn_710011e1e8(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
-    UnkInsertOwner* owner = reinterpret_cast<UnkInsertOwner*>(holder->owner);
+    UnkInsertOwner_11e1e8* owner = reinterpret_cast<UnkInsertOwner_11e1e8*>(holder->owner);
     const UnkValueArg* args = *arg;
     u32 value = args[0].Get<u32>();
     const UnkArgObj* obj = args[1].GetPtr<UnkArgObj>();

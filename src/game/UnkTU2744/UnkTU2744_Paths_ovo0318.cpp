@@ -7,6 +7,7 @@
 #include "base/global/CRntString.h"
 #include "base/tunable/CTunable.h"
 #include "game/UnkGuiLayout_b0209.h"
+#include "game/UnkGuiScreen_b0209.h"
 #include "game/UnkGuiWidget_b0209.h"
 #include "game/UnkScreenSize_b0209.h"
 #include "game/UnkTU2668.h"
@@ -21,19 +22,6 @@ s32 fn_71010757f0(lua_State* L, s32 nargs, char* error, u32 error_size, UnkWeakT
 
 static_assert(sizeof(UnkGuiLayout_b0209) == 0x48, "layout");
 
-struct UnkGuiScreen_b0209 {
-    u8 pad_0x0[0x40];
-    UnkGuiLayout_b0209* layouts;  // 0x40
-    u8 pad_0x48[8];
-    u32 layout_count;  // 0x50
-    u8 pad_0x54[0x14];
-    UnkGuiWidget_b0209* target;  // 0x68
-    u8 pad_0x70[0xd28];
-    f32 field_0xd98;
-    f32 field_0xd9c;
-    f32 scale_x;  // 0xda0
-    f32 scale_y;  // 0xda4
-};
 static_assert(__builtin_offsetof(UnkGuiScreen_b0209, scale_x) == 0xda0, "layout");
 
 static inline UnkScreenSize_b0209 ScreenSize() {

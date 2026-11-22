@@ -6,16 +6,8 @@
 #include "game/CRedenkiSwarmControllerComponent.h"
 #include "game/UnkSwarmArea_b66a4.h"
 #include "game/UnkSwarmHold_b66a4.h"
+#include "game/UnkVec3Result.h"
 #include "types.h"
-
-// As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b38.cpp defines it.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 void fn_7100741aa8(UnkSwarmHold_b66a4* self, f32 dt);
 

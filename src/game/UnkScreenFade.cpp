@@ -3,6 +3,7 @@
 // is armed with a colour, a delay and a duration; once the delay has run out its fade node is
 // started. Names and layouts are placeholders.
 // Holds fn_7101053aa4 (the per-frame update).
+#include "game/UnkFadeColor.h"
 #include "game/UnkFadeTarget.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGlobal_710b372a98.h"
@@ -11,15 +12,6 @@
 #include "game/UnkTU286.h"
 #include "game/UnkTU315.h"
 #include "types.h"
-
-struct UnkFadeColor {
-    f32 r;
-    f32 g;
-    f32 b;
-    f32 a;
-
-    UnkFadeColor(f32 r_, f32 g_, f32 b_, f32 a_) : r(r_), g(g_), b(b_), a(a_) {}
-};
 
 // What a fade is armed with.
 struct UnkFadeParams {

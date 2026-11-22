@@ -3,6 +3,7 @@
 // alignment (device info 0x38), and registers it with a free descriptor id. Names and layouts are
 // placeholders.
 #include "engine/UnkGfxTexture.h"
+#include "game/UnkGfxHeap.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU176.h"
@@ -13,12 +14,6 @@ struct UnkRenderTargetSlot;
 struct UnkObject_0x130;
 
 static_assert(sizeof(UnkGfxTexture) == 0x100, "UnkGfxTexture layout");
-
-// A heap of texture memory: its NVN memory pool first, the pool's base address at +0x100.
-struct UnkGfxHeap {
-    u8 pool[0x100];
-    u64 base;  // 0x100
-};
 
 extern void (*g_unk_716e29b160)(void* builder, s64 stride);
 

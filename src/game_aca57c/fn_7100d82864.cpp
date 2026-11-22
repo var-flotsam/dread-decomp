@@ -7,6 +7,8 @@
 #include "base/UnkDestructors.h"
 #include "base/math/CVector.h"
 #include "game/SCameraRailNode.h"
+#include "game/UnkInsertOwner.h"
+#include "game/UnkRecordArray.h"
 #include "game/UnkSetStatus.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkValueHolder.h"
@@ -162,12 +164,6 @@ struct UnkRecord58 {
         : field_0x8(other.field_0x8), field_0x10(other.field_0x10), field_0x18(std::move(other.field_0x18)) {}
 };
 
-struct UnkRecordArray {
-    u8 unk_0x0[0x8];
-    UnkRecord58* data;
-    u32 count;
-};
-
 __attribute__((always_inline)) static inline UnkSetStatus EraseAt(UnkValueHolder* holder, UnkValueArg* const* arg) {
     UnkRecordArray* a = reinterpret_cast<UnkRecordArray*>(holder->owner);
     u32 index = (*arg)->Get<u32>();
@@ -193,13 +189,6 @@ UnkSetStatus fn_7100c08060(void* self, UnkValueHolder* holder, UnkValueArg* cons
 }
 
 struct UnkInsertTarget;
-
-struct UnkInsertOwner {
-    u8 unk_0x0[0x8];
-    UnkInsertTarget* target;  // the object itself is at 8
-    u8 unk_0x10[0x20];
-    bool dirty;
-};
 
 UnkSetStatus fn_7100c07eb0(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
     UnkInsertOwner* owner = reinterpret_cast<UnkInsertOwner*>(holder->owner);

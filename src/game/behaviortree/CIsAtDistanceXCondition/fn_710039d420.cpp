@@ -9,13 +9,13 @@
 
 using base::global::UnkStringData;
 
-struct UnkEntry {
+struct UnkEntry_39d420 {
     UnkStringData* data;
     u64 field_0x8;
     u32 field_0x10;
     u8 pad_0x14[4];
 
-    UnkEntry() {
+    UnkEntry_39d420() {
         data = nullptr;
         if (!g_unk_7101d47108)
             base::global::UnkEnsureStringPool();
@@ -26,8 +26,8 @@ struct UnkEntry {
 };
 
 struct UnkNode : UnkBehaviorTreeNode {
-    UnkEntry field_0x38;
-    UnkEntry field_0x50;
+    UnkEntry_39d420 field_0x38;
+    UnkEntry_39d420 field_0x50;
 };
 
 extern void* g_unk_7101a27d40[];
@@ -35,6 +35,6 @@ extern void* g_unk_7101a27d40[];
 void fn_710039d420(UnkNode* self) {
     fn_71003944e8(self);
     self->vtable = g_unk_7101a27d40 + 2;
-    new (&self->field_0x38) UnkEntry();
-    new (&self->field_0x50) UnkEntry();
+    new (&self->field_0x38) UnkEntry_39d420();
+    new (&self->field_0x50) UnkEntry_39d420();
 }

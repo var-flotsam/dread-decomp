@@ -49,17 +49,17 @@ using UnkCopiedStrId = UnkCopiedStrIdT<&g_unk_7101d47108>;
 using UnkCopiedFilePathStrId = UnkCopiedStrIdT<&g_unk_7101d47200>;
 
 // Elements moved member by member.
-struct UnkWordPair {
+struct UnkWordPair_0cd580 {
     u32 first;
     u32 second;
 
-    UnkWordPair(UnkWordPair&& other) : first(other.first), second(other.second) {}
+    UnkWordPair_0cd580(UnkWordPair_0cd580&& other) : first(other.first), second(other.second) {}
 };
 
-struct UnkWord {
+struct UnkWord_0cd580 {
     u32 value;
 
-    UnkWord(UnkWord&& other) : value(other.value) {}
+    UnkWord_0cd580(UnkWord_0cd580&& other) : value(other.value) {}
 };
 
 // A string id and a file path id, moved or (with no move constructor) copied member by member.
@@ -152,8 +152,8 @@ static inline void CopyConstruct(UnkIterValue<T, K>* self, const UnkIterValue<T,
 
 UNK_ITER_MOVE(71000cd580, UnkMovedStrId, u32)
 UNK_ITER_MOVE(71000cfd3c, UnkMovedFilePathStrId, u32)
-UNK_ITER_MOVE(71000de484, UnkWord, UnkMovedStrId)
-UNK_ITER_MOVE(71000de9bc, UnkWord, UnkMovedStrId)
+UNK_ITER_MOVE(71000de484, UnkWord_0cd580, UnkMovedStrId)
+UNK_ITER_MOVE(71000de9bc, UnkWord_0cd580, UnkMovedStrId)
 UNK_ITER_MOVE(7100120758, u64, UnkMovedStrId)
 UNK_ITER_MOVE(7100120c90, u64, UnkMovedStrId)
 UNK_ITER_MOVE(71002424e8, u64, UnkMovedStrId)
@@ -171,12 +171,12 @@ UNK_ITER_MOVE(710104a218, u64, UnkMovedStrId)
 UNK_ITER_MOVE(710104a750, u64, UnkMovedStrId)
 UNK_ITER_MOVE(71010c5a18, u64, UnkMovedStrId)
 UNK_ITER_MOVE(71010c5f50, u64, UnkMovedStrId)
-UNK_ITER_MOVE(7100121610, UnkWordPair, u32)
-UNK_ITER_MOVE(7100121984, UnkWordPair, u32)
-UNK_ITER_MOVE(7100c0ae3c, UnkWordPair, u32)
-UNK_ITER_MOVE(7100c0b1b0, UnkWordPair, u32)
-UNK_ITER_MOVE(710105fe4c, UnkWordPair, u32)
-UNK_ITER_MOVE(71010601c0, UnkWordPair, u32)
+UNK_ITER_MOVE(7100121610, UnkWordPair_0cd580, u32)
+UNK_ITER_MOVE(7100121984, UnkWordPair_0cd580, u32)
+UNK_ITER_MOVE(7100c0ae3c, UnkWordPair_0cd580, u32)
+UNK_ITER_MOVE(7100c0b1b0, UnkWordPair_0cd580, u32)
+UNK_ITER_MOVE(710105fe4c, UnkWordPair_0cd580, u32)
+UNK_ITER_MOVE(71010601c0, UnkWordPair_0cd580, u32)
 UNK_ITER_MOVE(71001f1cd8, u64, u64)
 UNK_ITER_MOVE(71001f1fc8, u64, u64)
 UNK_ITER_MOVE(71000da264, UnkMovedFilePathStrId, UnkMovedStrId)

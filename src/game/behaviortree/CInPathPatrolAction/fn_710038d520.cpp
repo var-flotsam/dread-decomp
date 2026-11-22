@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkMessage.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -17,12 +18,6 @@ struct UnkPayload {
     UnkPayload* field_0x10;
     u8 pad_0x18[0x20];
     CStrId field_0x38;
-};
-
-struct UnkMessage {
-    u32 field_0x0;
-    u8 pad_0x4[4];
-    UnkPayload* field_0x8;
 };
 
 struct UnkOwner {

@@ -16,6 +16,7 @@
 #include "game/UnkTU2565.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkTypedValue.h"
 #include "game/UnkXformNode.h"
 #include <new>
 
@@ -34,10 +35,6 @@ struct UnkBox;
 struct UnkPlayer;
 struct UnkFlagged;
 struct UnkShape;
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 
 struct UnkMinimapRect {
     f32 min_x;

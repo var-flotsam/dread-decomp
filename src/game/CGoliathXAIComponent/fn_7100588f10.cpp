@@ -3,18 +3,11 @@
 // far the target is from the arena's centre. Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/UnkAabb.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2702.h"
+#include "game/UnkVec3.h"
 #include "types.h"
-
-struct UnkVec3 {
-    f32 x, y, z;
-};
-
-struct UnkAabb {
-    UnkVec3 min;
-    UnkVec3 max;
-};
 
 // The arena's horizontal extent.
 struct UnkGoliathArena_l588f10 {

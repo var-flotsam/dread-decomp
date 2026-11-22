@@ -12,6 +12,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkLifeChange_ovb0000.h"
+#include "game/UnkModeFlags.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTypedValue.h"
@@ -20,11 +21,6 @@
 using base::global::CStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-struct UnkModeFlags {
-    u8 unk_0x0[0xb8];
-    bool field_0xb8;
-};
 
 struct UnkStrIdHandle;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);

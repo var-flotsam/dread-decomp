@@ -13,9 +13,13 @@
 #include "game/UnkAIPathSearch.h"
 #include "game/UnkAIReach.h"
 #include "game/UnkActor.h"
+#include "game/UnkNavActor.h"
 #include "game/UnkNavCallback.h"
 #include "game/UnkNavCallbackCopy.h"
+#include "game/UnkNavComponent.h"
+#include "game/UnkNavComponentVtbl.h"
 #include "game/UnkNavMeshHit.h"
+#include "game/UnkNavMeshHits.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU357.h"
 #include "game/UnkTU362.h"
@@ -23,31 +27,6 @@
 
 using base::math::CVector2D;
 using base::math::CVector3D;
-
-// From src/game/navmesh/CNavMesh.cpp (the same definition).
-struct UnkNavMeshHits {
-    u32 count;
-
-    UnkNavMeshHit* items() { return reinterpret_cast<UnkNavMeshHit*>(&count + 1); }
-    void Clear() {
-        for (u64 i = 0; i < count; ++i)
-            items()[i].~UnkNavMeshHit();
-        count = 0;
-    }
-    // The hit at `i`, constructing the ones up to it first when the list is shorter.
-    UnkNavMeshHit& At(u64 i) {
-        if (i >= count) {
-            for (u32 j = count; j < i + 1; ++j)
-                new (&items()[j]) UnkNavMeshHit;
-            count = i + 1;
-        }
-        return items()[i];
-    }
-    void Push(const UnkNavMeshHit& hit) {
-        new (&items()[count]) UnkNavMeshHit(hit);
-        ++count;
-    }
-};
 
 struct UnkNavMeshSideSegment;   // src/game/navmesh/CNavMesh.cpp
 
@@ -67,19 +46,6 @@ using UnkNavSideVerdict = UnkNavMeshCallback<s32, UnkNavMeshSideSegment*>;
 // result handed back (vf_0x550).
 struct UnkNavQuery;
 struct UnkNavComponent;
-struct UnkNavComponentVtbl {
-    u8 pad_0x0[0x548];
-    void (*vf_0x548)(UnkNavComponent* self, u16 cell, UnkNavQuery* query, UnkNavMeshHits* hits);
-    void (*vf_0x550)(UnkNavComponent* self, u16 cell, UnkNavQuery* query, UnkNavMeshHits* hits);
-};
-struct UnkNavComponent {
-    UnkNavComponentVtbl* vtable;
-};
-
-struct UnkNavActor {
-    u8 pad_0x0[0x240];
-    UnkNavComponent* component;
-};
 
 struct UnkNavQuery {
     UnkNavCallback field_0x0;

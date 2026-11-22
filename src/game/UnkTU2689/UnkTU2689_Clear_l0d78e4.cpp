@@ -3,7 +3,7 @@
 #include "types.h"
 #include "base/UnkEmptyDtorElem.h"
 
-struct UnkAllocator {
+struct UnkAllocator_l0d78e4 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -21,19 +21,19 @@ struct UnkBufferSet {
     u32 count0;
     u32 cap0;
     u8 pad_0x10[0x10];
-    UnkAllocator* alloc0;
+    UnkAllocator_l0d78e4* alloc0;
     u8 pad_0x28[0x20];
     void* data48;
     u32 count48;
     u32 cap48;
     u8 pad_0x58[0x10];
-    UnkAllocator* alloc68;
+    UnkAllocator_l0d78e4* alloc68;
     u8 pad_0x70_[0];
     u8* data70;
     u32 count78;
     u32 cap7c;
     u8 pad_0x80[0x10];
-    UnkAllocator* alloc90;
+    UnkAllocator_l0d78e4* alloc90;
     u32 field_0x98;
 };
 
@@ -50,21 +50,21 @@ void fn_71010d78e4(UnkBufferSet* self) {
             asm volatile("" ::: "memory");
             data = self->data70;
         }
-        UnkAllocator* alloc = self->alloc90;
+        UnkAllocator_l0d78e4* alloc = self->alloc90;
         self->count78 = 0;
         alloc->Free(data);
         self->cap7c = 0;
     }
     void* data48 = self->data48;
     if (data48) {
-        UnkAllocator* alloc = self->alloc68;
+        UnkAllocator_l0d78e4* alloc = self->alloc68;
         self->count48 = 0;
         alloc->Free(data48);
         self->cap48 = 0;
     }
     void* data0 = self->data0;
     if (data0) {
-        UnkAllocator* alloc = self->alloc0;
+        UnkAllocator_l0d78e4* alloc = self->alloc0;
         self->count0 = 0;
         alloc->Free(data0);
         self->cap0 = 0;

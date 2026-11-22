@@ -10,6 +10,7 @@
 #include "game/CSPBGun.h"
 #include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkActor.h"
+#include "game/UnkHyperBeamSoundHandle.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -23,11 +24,6 @@ struct UnkSoundObject_A5_b63 {
 
 struct UnkHyperBeamSoundRef {
     UnkSoundObject_A5_b63* object;
-    s64 serial;
-};
-
-struct UnkHyperBeamSoundHandle {
-    UnkHyperBeamSoundRef* ref;
     s64 serial;
 };
 

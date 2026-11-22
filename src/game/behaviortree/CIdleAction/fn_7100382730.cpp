@@ -7,7 +7,7 @@
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
-struct UnkRecord {
+struct UnkRecord_382730 {
     u8 pad_0x0[0x78];
     u64 field_0x78;
     u32 field_0x80;
@@ -16,7 +16,7 @@ struct UnkRecord {
 
 struct UnkRecordList {
     u8 pad_0x0[0x10];
-    UnkRecord* field_0x10;
+    UnkRecord_382730* field_0x10;
 };
 
 struct UnkRecordPtr {
@@ -85,7 +85,7 @@ u32 fn_7100382730(UnkSelf* self) {
                         query.field_0x10 = 0.0f;
                         query.field_0x14 = 1;
                     } else if (UnkRecordList* list = static_cast<UnkRecordPtr*>(object->field_0xb0)->field_0x0) {
-                        if (UnkRecord* record = list->field_0x10) {
+                        if (UnkRecord_382730* record = list->field_0x10) {
                             if (record->field_0x84) {
                                 u64 xy = record->field_0x78;
                                 u32 z = record->field_0x80;

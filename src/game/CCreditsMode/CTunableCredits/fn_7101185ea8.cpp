@@ -7,16 +7,16 @@
 #include "game/CCreditsMode/CTunableCredits.h"
 #include "types.h"
 
-struct UnkRefObj {
+struct UnkRefObj_01185ea8 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
     s32 ref_count;
 };
 
-struct UnkRef {
-    UnkRefObj* ptr;
-    ~UnkRef() {
+struct UnkRef_01185ea8 {
+    UnkRefObj_01185ea8* ptr;
+    ~UnkRef_01185ea8() {
         if (auto* held = ptr; held && --held->ref_count == 0)
             held->vf_0x10();
     }
@@ -33,23 +33,23 @@ struct UnkMember_0x9a0 {
     ~UnkMember_0x9a0();  // fn_710119ad3c
 };
 
-struct UnkNode {
+struct UnkNode_01185ea8 {
     u64 field_0x0;
-    UnkNode* next;
+    UnkNode_01185ea8* next;
 };
 
 struct UnkNodeList_0x40 {
     void** vtable;
     u32 count;
-    UnkNode* head;
-    UnkNode* tail;
+    UnkNode_01185ea8* head;
+    UnkNode_01185ea8* tail;
     base::UnkAllocator* allocator;
     u8 unk_0x28[0x18];
 
     ~UnkNodeList_0x40() {
         vtable = &g_unk_7101cb5010[2];
-        for (UnkNode* n = head; n;) {
-            UnkNode* next = n->next;
+        for (UnkNode_01185ea8* n = head; n;) {
+            UnkNode_01185ea8* next = n->next;
             allocator->vf_0x48(n);
             n = next;
         }
@@ -62,8 +62,8 @@ struct UnkNodeList_0x40 {
 struct UnkObject_7101185ea8 : UnkBase_0x90 {
     UnkNodeList_0x40 list;
     UnkMember_0x9a0 member;
-    UnkRef field_0xa70;
-    UnkRef field_0xa78;
+    UnkRef_01185ea8 field_0xa70;
+    UnkRef_01185ea8 field_0xa78;
 
     ~UnkObject_7101185ea8() { vtable = &g_unk_7101cb4ef8[2]; }
 };

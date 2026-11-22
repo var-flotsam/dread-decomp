@@ -1,17 +1,11 @@
 // Constructor of a query-system parameter named "MAX_TARGET_DIST": runs the base constructor, sets the vtable, initialises its fields
 // and names the parameter with the string id built from its tag.
 #include "base/global/CStrId.h"
+#include "game/UnkQueryParam.h"
 #include "game/querysystem/CFilter.h"
 #include "types.h"
 
 using base::global::UnkStrId;
-
-struct UnkQueryParam {
-    void** vtable;
-    UnkStrId field_0x8;
-    u8 pad_0x10[0x4];
-    u32 field_0x14;
-};
 
 extern void* g_unk_7101a21438[];
 

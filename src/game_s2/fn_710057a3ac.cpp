@@ -7,32 +7,32 @@
 
 using base::reflection::CClass;
 
-struct UnkAIComponent {
+struct UnkAIComponent_57a3ac {
     virtual const CClass* vf_0x0();
 };
-struct UnkInfesterComponent : UnkAIComponent {
+struct UnkInfesterComponent : UnkAIComponent_57a3ac {
     u8 unk_0x8[0x146d9];
     u8 field_0x146e1;
 };
 struct UnkEntity {
     u8 unk_0x0[0x240];
-    UnkAIComponent* component;
+    UnkAIComponent_57a3ac* component;
     u8 unk_0x248[0x30];
     void* field_0x278;
 };
-struct UnkNode {
+struct UnkNode_57a3ac {
     UnkEntity* entity;
-    UnkNode* next;
+    UnkNode_57a3ac* next;
 };
 struct UnkSelf {
     u8 unk_0x0[0x18];
-    UnkNode* head;
+    UnkNode_57a3ac* head;
 };
 
 bool fn_710057a3ac(UnkSelf* self) {
-    for (UnkNode* node = self->head; node; node = node->next) {
+    for (UnkNode_57a3ac* node = self->head; node; node = node->next) {
         UnkEntity* entity = node->entity;
-        UnkAIComponent* component = entity->component;
+        UnkAIComponent_57a3ac* component = entity->component;
         UnkInfesterComponent* infester = nullptr;
         if (fn_710009d50c(component->vf_0x0(), fn_71005ca678()))
             infester = static_cast<UnkInfesterComponent*>(component);

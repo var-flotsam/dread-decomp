@@ -7,15 +7,12 @@
 #include "base/global/CRntVector.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkRenderItemPair_b64a2.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU441.h"
 #include "types.h"
 
 struct UnkItemBase_71011a91c4;
-struct UnkRenderItemPair_b64a2 {
-    UnkItemBase_71011a91c4* first;
-    UnkItemBase_71011a91c4* second;
-};
 
 struct UnkBossCallbacks_l3ac388;
 template <>

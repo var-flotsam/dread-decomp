@@ -3,14 +3,9 @@
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkNamedNode.h"
 #include "types.h"
 
-struct UnkNamedNode {
-    u8 pad_0x0[0x60];
-    void* payload;
-    base::global::CStrId name;
-    base::global::CRntVector<UnkNamedNode*> children;
-};
 static_assert(sizeof(UnkNamedNode) == 0x98, "UnkNamedNode placeholder layout");
 
 UnkNamedNode* fn_7100195310(UnkNamedNode* node) {

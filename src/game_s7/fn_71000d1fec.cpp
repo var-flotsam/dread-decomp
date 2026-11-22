@@ -8,9 +8,11 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkFreedString.h"
 #include "base/UnkHandleCallbackSet.h"
+#include "base/UnkHandleObj.h"
 #include "base/UnkRefHandle.h"
 #include "base/UnkValueString.h"
 #include "base/UnkValuesCallbacks.h"
+#include "base/UnkValuesIdHalf.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -167,30 +169,6 @@ struct UnkIdValues2 {
 };
 
 using UnkU32IdValuesPair = UnkValuePairRef<u32, UnkIdValues2>;
-
-// Six values, an id and a half-word.
-struct UnkValuesIdHalf {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-    u32 field_0xc;
-    u32 field_0x10;
-    u32 field_0x14;
-    CStrId id;
-    u16 field_0x20;
-
-    UnkValuesIdHalf& operator=(const UnkValuesIdHalf& other) {
-        field_0x0 = other.field_0x0;
-        field_0x4 = other.field_0x4;
-        field_0x8 = other.field_0x8;
-        field_0xc = other.field_0xc;
-        field_0x10 = other.field_0x10;
-        field_0x14 = other.field_0x14;
-        id = other.id;
-        field_0x20 = other.field_0x20;
-        return *this;
-    }
-};
 
 using UnkIdValuesIdPair = UnkValuePairRef<CStrId, UnkValuesIdHalf>;
 
@@ -443,19 +421,6 @@ bool fn_7100a35018(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
 bool fn_7100a35c04(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
 
 bool fn_7100a35ef8(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
-
-// A value and a reference-counted weak handle (released through vf_0x10; compared by target).
-// The count is a union member (no type-based alias info: the handle is reloaded after the
-// count changes).
-struct UnkHandleObj {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    union {
-        s32 ref_count;
-    };
-    void* target;
-};
 
 struct UnkWeakHandle {
     UnkHandleObj* ptr;

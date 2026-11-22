@@ -52,7 +52,7 @@ struct UnkArgs_b257a {
     }
 };
 
-struct UnkStruct_71007142e8 {
+struct UnkStruct_71007142e8_ovb0257 {
     f32 m[12];
     u8 pad_0x30[0x40];
 };
@@ -119,7 +119,7 @@ struct UnkTU1134_b257a {
 
 s32 fn_7100c95f28(UnkPlayer_b42*);
 f32 fn_7100c95f34(UnkPlayer_b42*);
-void fn_7100714808(void* part, UnkStruct_71007142e8* motion, s32);
+void fn_7100714808(void* part, UnkStruct_71007142e8_ovb0257* motion, s32);
 void fn_7100714dac(void* part);
 void fn_7100c976e4(UnkRefObj_b257a* self, UnkArgs_b257a* args);
 

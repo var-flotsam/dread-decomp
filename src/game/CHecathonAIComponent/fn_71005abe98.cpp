@@ -3,6 +3,7 @@
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
 #include "base/UnkAngleSource.h"
 #include "base/UnkFlagSource.h"
+#include "base/UnkStateObject.h"
 #include "base/UnkVector3.h"
 #include "base/UnkVectorSource.h"
 #include "base/animation/CBlendSpaceResource.h"
@@ -42,12 +43,6 @@ UnkReflValue fn_71005abf48() {
     u32 value = 0;
     return MakeValue(fn_7100005178(), &value);
 }
-
-// Whether the word at 0x24 of the argument's object is 2.
-struct UnkStateObject {
-    u8 unk_0x0[0x24];
-    s32 field_0x24;
-};
 
 template <class T>
 struct UnkArgument {

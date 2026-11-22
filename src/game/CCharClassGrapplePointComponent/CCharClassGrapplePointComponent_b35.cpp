@@ -6,17 +6,10 @@
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"
 #include "game/CCharClassGrapplePointComponent.h"
+#include "game/UnkGrapplePointDef.h"
 #include "types.h"
 
 using base::global::UnkStrId;
-
-struct UnkGrapplePointDef {
-    void** vtable;
-    u8 pad_0x8[0x50];
-    bool field_0x58;
-    u8 pad_0x59[0x7];
-    UnkStrId field_0x60;
-};
 
 struct UnkStruct_71008bca30;
 

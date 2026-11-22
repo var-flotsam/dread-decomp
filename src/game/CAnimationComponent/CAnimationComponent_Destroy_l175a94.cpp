@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
 #include "game/CComponent.h"
+#include "game/UnkAnimListenerSet_l1757f4.h"
 #include "game/UnkAnimOwned_l1757f4.h"
 #include "game/UnkComponent.h"
 #include "game/UnkResourceRef_l1757f4.h"
@@ -32,23 +33,6 @@ template <>
 struct base::UnkPoolListTraits<UnkAnimPoolTag_l1757f4> {
     static char* vtable() { return g_unk_7101cb4840; }
     static char* base_vtable() { return g_unk_7101cb4860; }
-};
-
-// The listener lists: active, pending and queued, and the lock count of the passes over them.
-struct UnkAnimListenerSet_l1757f4 : UnkVtableHolder_l1757f4 {
-    CRntVector<void*> active;   // 0x8
-    CRntVector<void*> pending;  // 0x30
-    CRntVector<void*> queued;   // 0x58
-    s32 lock;                   // 0x80
-
-    UnkAnimListenerSet_l1757f4()
-        : UnkVtableHolder_l1757f4(g_unk_7101cb4880 + 2), active(0xf), pending(0xf), queued(0xf), lock(0) {}
-    ~UnkAnimListenerSet_l1757f4() {
-        vtable = g_unk_7101cb4880 + 2;
-        queued.Free();
-        pending.Free();
-        active.Free();
-    }
 };
 
 struct UnkAnimState_l1757f4 {

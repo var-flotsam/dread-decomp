@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkController_u207.h"
+#include "game/UnkEntry_u207.h"
 #include "game/UnkModel_u207.h"
 #include "game/UnkTU204.h"
 #include "game/UnkTU207.h"
@@ -18,12 +19,6 @@
 using base::global::CStrId;
 
 struct UnkKeySetOwner;
-
-struct UnkEntry_u207 {
-    void* target;
-    CStrId id;
-    UnkEntry_u207(const UnkEntry_u207& other) : target(other.target), id(other.id) {}
-};
 
 // A target with materials: their count at +0x2c and the array at +0x48.
 struct UnkMaterialTarget_l16ae30 {

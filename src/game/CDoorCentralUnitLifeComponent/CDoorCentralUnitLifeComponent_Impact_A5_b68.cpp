@@ -6,18 +6,12 @@
 #include "game/CDoorCentralUnitLifeComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkVec.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkCentralUnitDoor_b46a2;
-
-// A 12-byte zeroed argument (as src/game_s2/fn_710035131c.cpp's).
-struct UnkVec {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-};
 
 struct UnkDoorCentralUnitLife_A5_b68 {
     u8 pad_0x0[0xc08];

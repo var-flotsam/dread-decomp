@@ -108,7 +108,7 @@ int fn_71010762d0(lua_State* L) {
 }
 
 // A reflected object as seen through its class getter (vtable slot 0).
-struct UnkReflObject_ovb0109 {
+struct UnkReflObject_ovb0109_ovb0109 {
     virtual char* GetClass();
 };
 
@@ -135,7 +135,7 @@ struct UnkGameObjectTyped_ovb0115;  // a typed pointer (src/game/lua_lib/lua_lib
 
 static inline char* AsClass(char* type) {
     return type && fn_710009d50c(reinterpret_cast<const base::reflection::CType*>(
-                                     reinterpret_cast<UnkReflObject_ovb0109*>(type)->GetClass()),
+                                     reinterpret_cast<UnkReflObject_ovb0109_ovb0109*>(type)->GetClass()),
                                  reinterpret_cast<const base::reflection::CType*>(fn_7100096100()))
                ? type
                : nullptr;
@@ -149,7 +149,7 @@ int fn_7101075c30(lua_State* L) {
         luaL_typerror(L, 1, "__DisplayObjectType");
         return 0;
     }
-    UnkReflObject_ovb0109* object = reinterpret_cast<UnkReflObject_ovb0109*>(ud->Get());
+    UnkReflObject_ovb0109_ovb0109* object = reinterpret_cast<UnkReflObject_ovb0109_ovb0109*>(ud->Get());
     if (!object)
         return 0;
     UnkLuaArgs_ovb0109* args = fn_710109ead0(L, 2);

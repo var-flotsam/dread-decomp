@@ -7,18 +7,11 @@
 #include "game/UnkPoint2D_d52bd0.h"
 #include "game/UnkTU1159.h"
 #include "game/UnkTU357.h"
+#include "game/UnkVec3Result.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CAABoxShape2D.h"
 #include "types.h"
 
-// Returned through x8, so the original's result type is not trivially copyable.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 struct UnkStruct_71007455dc;
 
 // The query's outcome: 1 found, 2 not.

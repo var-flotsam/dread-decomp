@@ -14,12 +14,12 @@ extern char unk_7101aa2888[];  // the record's vtable
 extern char unk_7101a20950[];  // the member's vtable
 extern char unk_7101a20998[];  // the member's base's vtable
 
-struct UnkCallbackSlot;
+struct UnkCallbackSlot_c05060;
 struct UnkCallbackOps {
     u8 unk_0x0[0x40];
-    void (*destroy)(UnkCallbackSlot* slot);
+    void (*destroy)(UnkCallbackSlot_c05060* slot);
 };
-struct UnkCallbackSlot {
+struct UnkCallbackSlot_c05060 {
     u64 storage;
     UnkCallbackOps* ops;
 };
@@ -28,7 +28,7 @@ struct UnkVariantRecord {
     char* vtable;
     u8 unk_0x8[0x10];
     char* member_vtable;
-    UnkCallbackSlot* slots;
+    UnkCallbackSlot_c05060* slots;
     u32 count;
     u32 field_0x2c;
     u8 unk_0x30[0x10];
@@ -52,13 +52,13 @@ __attribute__((always_inline)) static inline void ResetVariant(char* self) {
         r->member_vtable = unk_7101a20998 + 0x10;
         if (r->slots) {
             for (u64 i = 0; i < r->count; ++i) {
-                UnkCallbackSlot* slot = &r->slots[i];
+                UnkCallbackSlot_c05060* slot = &r->slots[i];
                 if (slot->ops) {
                     slot->ops->destroy(slot);
                     slot->ops = nullptr;
                 }
             }
-            UnkCallbackSlot* slots = r->slots;
+            UnkCallbackSlot_c05060* slots = r->slots;
             r->count = 0;
             r->allocator->vf_0x48(slots);
             r->field_0x2c = 0;

@@ -4,16 +4,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CMeleeComponent.h"
 #include "game/UnkAnimationComponent.h"
-
-struct UnkMeleeOwner {
-    u8 pad_0x0[0x220];
-    UnkAnimationComponent* animation;
-};
-
-struct UnkMeleeComponent {
-    u8 pad_0x0[0x30];
-    UnkMeleeOwner* owner;
-};
+#include "game/UnkMeleeComponent.h"
+#include "game/UnkMeleeOwner.h"
 
 template <const base::reflection::CClass* (*Class)()>
 static inline bool HasTrack(UnkMeleeComponent* self) {

@@ -5,32 +5,32 @@
 #include "game/UnkTU2567.h"
 #include "types.h"
 
-struct UnkMinimapItemModifier {
+struct UnkMinimapItemModifier_ovb0187 {
     u8 pad_0x0[0xd8];
 };
-static_assert(sizeof(UnkMinimapItemModifier) == 0xd8, "UnkMinimapItemModifier layout");
+static_assert(sizeof(UnkMinimapItemModifier_ovb0187) == 0xd8, "UnkMinimapItemModifier_ovb0187 layout");
 
-struct UnkMinimapItemModifiers {
+struct UnkMinimapItemModifiers_ovb0187 {
     u32 count;
-    alignas(4) u8 storage[3 * sizeof(UnkMinimapItemModifier)];
+    alignas(4) u8 storage[3 * sizeof(UnkMinimapItemModifier_ovb0187)];
 
-    UnkMinimapItemModifier* begin() { return reinterpret_cast<UnkMinimapItemModifier*>(storage); }
-    UnkMinimapItemModifier* end() { return begin() + count; }
+    UnkMinimapItemModifier_ovb0187* begin() { return reinterpret_cast<UnkMinimapItemModifier_ovb0187*>(storage); }
+    UnkMinimapItemModifier_ovb0187* end() { return begin() + count; }
 };
 
 struct UnkMinimapItem {
     void* icon;
     u8 pad_0x8[0x58];
-    UnkMinimapItemModifiers alpha_modifiers;  // 0x60
-    UnkMinimapItemModifiers size_modifiers;   // 0x2ec
+    UnkMinimapItemModifiers_ovb0187 alpha_modifiers;  // 0x60
+    UnkMinimapItemModifiers_ovb0187 size_modifiers;   // 0x2ec
 };
 static_assert(__builtin_offsetof(UnkMinimapItem, size_modifiers) == 0x2ec, "UnkMinimapItem layout");
 
 void fn_7100eb8978(UnkMinimapItem* item, f32 dt) {
     if (!item->icon)
         return;
-    for (UnkMinimapItemModifier& it : item->alpha_modifiers)
+    for (UnkMinimapItemModifier_ovb0187& it : item->alpha_modifiers)
         fn_7100eb7470(&it, dt);
-    for (UnkMinimapItemModifier& it : item->size_modifiers)
+    for (UnkMinimapItemModifier_ovb0187& it : item->size_modifiers)
         fn_7100eb7470(&it, dt);
 }

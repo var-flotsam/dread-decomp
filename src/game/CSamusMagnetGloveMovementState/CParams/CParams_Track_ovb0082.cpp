@@ -8,6 +8,7 @@
 #include "game/UnkTU1730.h"
 #include "game/UnkTrackBlend_ovb0082.h"
 #include "game/UnkTrackOwner_ovb0082.h"
+#include "game/UnkTrackRecord_ovb0082.h"
 #include "types.h"
 
 struct UnkDesc_SpitSend;
@@ -37,13 +38,6 @@ struct UnkTrackParams_ovb0082 {
                                  base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>()) {}
 };
 static_assert(sizeof(UnkTrackParams_ovb0082) == 0x30, "layout");
-
-struct UnkTrackRecord_ovb0082 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18(UnkTrackParams_ovb0082* params);  // fills in the request
-};
 
 struct UnkMagnetTrackState_ovb0082 {
     u8 unk_0x0[0x30];

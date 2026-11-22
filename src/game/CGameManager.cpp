@@ -20,7 +20,10 @@
 #include "game/UnkGameManagerDef.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGameManagerNamedDef.h"
+#include "game/UnkIdTextData.h"
+#include "game/UnkModeFlags.h"
 #include "game/UnkMusicMode.h"
+#include "game/UnkNamedObject.h"
 #include "game/UnkNamedUser.h"
 #include "game/UnkPtrListNode.h"
 #include "game/UnkTU0.h"
@@ -298,17 +301,6 @@ static inline base::file::UnkFileDevice* FileDevice() {
     return g_unk_7101d4d828;
 }
 
-// The pooled data behind a string id as its text accessor sees it: the text as a CRntString at
-// +0x10 and a count of the reads at +0x44.
-struct UnkIdTextData {
-    u8 pad_0x0[0x10];
-    CRntString str;
-    u8 pad_0x40[0x4];
-    // A union member: the original reloads the id's data pointer after the increment.
-    union {
-        s32 reads;
-    };
-};
 template <class Id>
 static inline const CRntString& IdText(const Id& id) {
     ++reinterpret_cast<UnkIdTextData*>(id.data)->reads;
@@ -798,11 +790,6 @@ struct UnkStepCallbacks {
     u32 count;
 };
 
-// Named objects (a CRntString at +8), in a list at +0x478.
-struct UnkNamedObject {
-    u8 pad_0x0[0x8];
-    CRntString name;
-};
 struct UnkNamedNode {
     UnkNamedObject* value;
     UnkNamedNode* next;
@@ -812,13 +799,6 @@ struct UnkCompared_0x30;
 static inline bool Equal(const CRntString* a, const CRntString* b) {
     return fn_710007f120(reinterpret_cast<const UnkCompared_0x30*>(a), reinterpret_cast<const UnkCompared_0x30*>(b));
 }
-
-// A flag holder (as src/game/GUI/CIngameMenu/fn_7100b2de48.cpp sees it): set, the step callbacks and the
-// blackboard pass are skipped.
-struct UnkModeFlags {
-    u8 unk_0x0[0xb8];
-    bool field_0xb8;
-};
 
 // The game manager's members the load reads (game/UnkGameManager.h leaves them as padding).
 struct UnkGameManagerLoad {

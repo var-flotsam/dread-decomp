@@ -2,7 +2,7 @@
 // flag, flags and allocator, reserves its capacity and appends a copy of each element.
 #include "game_s2/UnkItem50.h"
 
-struct UnkRange {
+struct UnkRange_4dcb40 {
     const UnkItem* data;
     u32 count;
     const UnkItem* begin() const { return data; }
@@ -20,6 +20,6 @@ void fn_71004dcb40(base::global::CRntVector<UnkItem>* self, const base::global::
     self->flags = other->flags;
     self->allocator = other->allocator;
     self->Reserve(other->capacity);
-    for (const UnkItem& item : UnkRange{other->data, other->count})
+    for (const UnkItem& item : UnkRange_4dcb40{other->data, other->count})
         fn_71004dccac(self, &item);
 }

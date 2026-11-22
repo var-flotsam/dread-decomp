@@ -25,6 +25,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2560.h"
 #include "game/UnkTU32.h"
+#include "game/UnkVec3Result.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
@@ -270,15 +271,6 @@ void fn_71006503ac(UnkRedenkiCtrl_Members_ovb0084* self) {
 // ---- fn_7100652288: the start: ids at +0x318/+0x534/+0x538 from the tuning, then a path from the swarm's position
 // (vf_0x2c0, with the player flag of PlayerFlag unless the tuning's +0x58 is set) starts the effect;
 // without one, a point near the target goes to the record at +0x31c and fn_710073f7bc gets 1. ----
-
-// As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b38.cpp defines it.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 struct UnkPlayer;
 struct UnkSwarmHold_b66a4;

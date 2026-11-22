@@ -3,6 +3,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkElem40_b42a3.h"
 #include "game/UnkTU2200.h"
 #include "types.h"
 
@@ -10,17 +11,6 @@
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-struct UnkElem40_b42a3 {
-    CStrId field_0x0;
-    u32 field_0x8;
-    CFilePathStrId field_0x10;
-    CStrId field_0x18;
-    CStrId field_0x20;
-    CStrId field_0x28;
-    u64 field_0x30;
-    u32 field_0x38;
-};
 
 // An empty id, creating the pool first when there is none.
 static inline void MakeEmpty(CStrId* id) {

@@ -5,16 +5,13 @@
 #include "UnkClone.h"
 #include "base/global/CRntVector.h"
 #include "base/reflection.h"
+#include "engine/UnkSceneItem.h"
 #include "game/UnkTU280.h"
 #include "types.h"
 
 struct UnkSceneManager;
 
 struct UnkItem {
-    s32 id;
-};
-
-struct UnkSceneItem {
     s32 id;
 };
 

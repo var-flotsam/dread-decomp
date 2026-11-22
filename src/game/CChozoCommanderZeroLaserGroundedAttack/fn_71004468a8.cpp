@@ -5,20 +5,13 @@
 #include "base/global/CStrId.h"
 #include "game/CChozoCommanderGroundAttack.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkCounted.h"
 #include "game/UnkSwitchObject.h"
 #include "game_s2/UnkChozoCommanderAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkCounted {
-    void** vtable;
-    u32 count;
-    u32 pad_0xc;
-    UnkWeakTarget* field_0x10;
-    void vf_0x10() { reinterpret_cast<void (*)(UnkCounted*)>(vtable[2])(this); }
-};
-
-struct UnkOwner {
+struct UnkOwner_4468a8 {
     u8 pad_0x0[0x280];
     void* field_0x280;
     u8 pad_0x288[0x18];
@@ -27,7 +20,7 @@ struct UnkOwner {
 
 struct UnkSelf {
     u8 pad_0x0[8];
-    UnkOwner* field_0x8;
+    UnkOwner_4468a8* field_0x8;
     u8 pad_0x10[0x68];
     u8 field_0x78[8];
     u32 count;

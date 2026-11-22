@@ -7,14 +7,14 @@
 #include "game/UnkNavMeshManager.h"
 #include "types.h"
 
-struct UnkLinked {
+struct UnkLinked_569f34 {
     u8 pad_0x0[0x611];
     u8 field_0x611;
 };
 
 struct UnkOwner {
     u8 pad_0x0[0x29ee0];
-    UnkLinked* field_0x29ee0;
+    UnkLinked_569f34* field_0x29ee0;
 };
 
 

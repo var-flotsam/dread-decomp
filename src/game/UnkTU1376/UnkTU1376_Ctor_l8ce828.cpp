@@ -10,6 +10,7 @@
 #include "base/math/CVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CItemLifeComponent.h"
+#include "game/UnkStruct_71727313a4.h"
 #include "game/UnkStruct_71727313d4.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTU341.h"
@@ -21,9 +22,6 @@ using base::global::CRntVector;
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-struct UnkStruct_71727313a4 {
-    CColor4F colours[3];
-};
 extern const CVector2D g_unk_7101647778;
 
 extern void* g_unk_7101a7e840[];

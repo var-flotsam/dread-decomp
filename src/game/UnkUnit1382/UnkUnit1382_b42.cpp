@@ -8,6 +8,7 @@
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/UnkVec3_b42.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -184,13 +185,6 @@ void fn_71008e5e24(UnkLightApply_b42* self) {
 // fn_71008e62b8: a light's 3D value for a mode: modes 1 and 4 give the zero vector, 3 and 5 the
 // value with z cleared, the others the value as is.
 // g_unk_710164779c: base/math/UnkZeroVector3.h
-
-// Returned in memory: the vector type has a user-written copy constructor.
-struct UnkVec3_b42 {
-    f32 x, y, z;
-    UnkVec3_b42(f32 x, f32 y, f32 z) : x(x), y(y), z(z) {}
-    UnkVec3_b42(const UnkVec3_b42& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 UnkVec3_b42 fn_71008e62b8(const UnkVec3_b42* value, s32 mode) {
     switch (mode) {

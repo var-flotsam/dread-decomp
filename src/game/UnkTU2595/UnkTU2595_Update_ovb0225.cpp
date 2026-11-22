@@ -10,6 +10,7 @@
 #include "game/CBossAIComponent.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkMusicMode.h"
+#include "game/UnkSingleton2595_b0225.h"
 #include "game/UnkStateMachineFind.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2595.h"
@@ -22,15 +23,6 @@
 #include "game/UnkGameManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
-
-struct UnkSingleton2595_b0225 {
-    u8 pad_0x0[0x58];
-    bool field_0x58;
-    bool field_0x59;
-    u8 pad_0x5a[0x6];
-
-    UnkSingleton2595_b0225();  // fn_7100ec7aec
-};
 
 void fn_7100ec9e38(UnkSingleton2595_b0225* self, f32 dt);
 

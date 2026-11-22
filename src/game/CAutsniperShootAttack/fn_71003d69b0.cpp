@@ -8,26 +8,26 @@
 
 using base::reflection::CClass;
 
-struct UnkAIComponent {
+struct UnkAIComponent_3d69b0 {
     virtual const CClass* vf_0x0();
 };
-struct UnkAutsniperAI : UnkAIComponent {
+struct UnkAutsniperAI : UnkAIComponent_3d69b0 {
     u8 unk_0x8[0x1795];
     u8 field_0x179d;
 };
-struct UnkEntity {
+struct UnkEntity_3d69b0 {
     u8 unk_0x0[0x240];
     UnkAutsniperAI* component;
 };
-struct UnkLimits {
+struct UnkLimits_3d69b0 {
     u8 unk_0x0[0xfc];
     f32 limit;
 };
 struct UnkSelf {
     u8 unk_0x0[8];
-    UnkEntity* entity;
+    UnkEntity_3d69b0* entity;
     u8 unk_0x10[0x18];
-    UnkLimits* limits;
+    UnkLimits_3d69b0* limits;
     u8 unk_0x30[0x20];
     s32 state;
     u8 unk_0x54[0x34];
@@ -49,7 +49,7 @@ void fn_71003d69b0(UnkSelf* self, f32 dt) {
     if (self->state == 5)
         return;
     self->state = 5;
-    UnkAIComponent* component = self->entity->component;
+    UnkAIComponent_3d69b0* component = self->entity->component;
     UnkAutsniperAI* found = fn_710009d50c(component->vf_0x0(), fn_71003da2e0())
                                 ? static_cast<UnkAutsniperAI*>(component)
                                 : nullptr;

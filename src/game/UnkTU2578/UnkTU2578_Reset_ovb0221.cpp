@@ -4,28 +4,20 @@
 // last blend id (the stack at +0x128) is applied to them. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkSoundIdInstance.h"
 #include "game/UnkTU287.h"
 #include "game/UnkTU324.h"
 #include "types.h"
 #include "base/UnkLinkedList.h"
 
-struct UnkSoundIdInstance {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    s32 ref_count;
-    u8 pad_0xc[0x20];
-    u32 state;  // 0x2c
-};
-
-struct UnkSoundIdRef {
+struct UnkSoundIdRef_ovb0221 {
     UnkSoundIdInstance* ptr;
 
-    UnkSoundIdRef(const UnkSoundIdRef& other) : ptr(other.ptr) {
+    UnkSoundIdRef_ovb0221(const UnkSoundIdRef_ovb0221& other) : ptr(other.ptr) {
         if (ptr)
             __atomic_fetch_add(&ptr->ref_count, 1, __ATOMIC_SEQ_CST);
     }
-    ~UnkSoundIdRef() {
+    ~UnkSoundIdRef_ovb0221() {
         if (UnkSoundIdInstance* p = ptr) {
             __atomic_fetch_sub(&p->ref_count, 1, __ATOMIC_SEQ_CST);
             if (__builtin_expect(__atomic_load_n(&p->ref_count, __ATOMIC_SEQ_CST) == 0, 1))
@@ -34,10 +26,10 @@ struct UnkSoundIdRef {
     }
 };
 
-struct UnkSoundIdListNode {
+struct UnkSoundIdListNode_ovb0221 {
     u32 key;
-    UnkSoundIdRef ref;
-    UnkSoundIdListNode* next;
+    UnkSoundIdRef_ovb0221 ref;
+    UnkSoundIdListNode_ovb0221* next;
 };
 
 struct UnkRefObj;
@@ -51,7 +43,7 @@ struct UnkSoundIdItemHolder {
 
 struct UnkStruct_0x128 {
     u8 pad_0x0[0x80];
-    base::UnkLinkedList<UnkSoundIdListNode> field_0x80;
+    base::UnkLinkedList<UnkSoundIdListNode_ovb0221> field_0x80;
     u8 pad_0xa8[0x60];
     UnkSoundIdItemHolder* field_0x108;
     UnkSoundIdItemHolder* field_0x110;
@@ -61,9 +53,9 @@ struct UnkStruct_0x128 {
 };
 
 void fn_7100f00600(UnkStruct_0x128* self) {
-    UnkSoundIdListNode* node = self->field_0x80.head;
+    UnkSoundIdListNode_ovb0221* node = self->field_0x80.head;
     while (node) {
-        UnkSoundIdRef ref = node->ref;
+        UnkSoundIdRef_ovb0221 ref = node->ref;
         fn_710021fafc(reinterpret_cast<UnkRefObj*>(ref.ptr));
         node = node->next;
     }

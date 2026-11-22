@@ -10,30 +10,30 @@
 
 using base::reflection::CClass;
 
-struct UnkTunables {
+struct UnkTunables_50ccc8 {
     u8 pad_0x0[0x120];
     f32 field_0x120;
 };
 
-struct UnkObject {
+struct UnkObject_50ccc8 {
     void** vtable;
-    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkObject*)>(vtable[0])(this); }
-    UnkTunables* vf_0xd8() { return reinterpret_cast<UnkTunables* (*)(UnkObject*)>(vtable[27])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkObject_50ccc8*)>(vtable[0])(this); }
+    UnkTunables_50ccc8* vf_0xd8() { return reinterpret_cast<UnkTunables_50ccc8* (*)(UnkObject_50ccc8*)>(vtable[27])(this); }
 };
 
-struct UnkEmmyAI : UnkObject {
+struct UnkEmmyAI : UnkObject_50ccc8 {
     u8 pad_0x8[8];
-    UnkObject* field_0x10;
+    UnkObject_50ccc8* field_0x10;
 };
 
-struct UnkOwner {
+struct UnkOwner_50ccc8 {
     u8 pad_0x0[0x240];
-    UnkObject* field_0x240;
+    UnkObject_50ccc8* field_0x240;
 };
 
 struct UnkSelf {
     u8 pad_0x0[8];
-    UnkOwner* field_0x8;
+    UnkOwner_50ccc8* field_0x8;
     u8 pad_0x10[0x6a8];
     f32 field_0x6b8;
     f32 field_0x6bc;
@@ -43,7 +43,7 @@ struct UnkSelf {
 
 void fn_710050ccc8(UnkSelf* self) {
     fn_710050cd98(self);
-    UnkObject* object = self->field_0x8->field_0x240;
+    UnkObject_50ccc8* object = self->field_0x8->field_0x240;
     UnkEmmyAI* ai = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), fn_710053b934()))
         ai = static_cast<UnkEmmyAI*>(object);
@@ -51,7 +51,7 @@ void fn_710050ccc8(UnkSelf* self) {
     self->field_0x6b8 = picked;
     self->field_0x6bc = picked;
     if (ai) {
-        if (UnkObject* inner = ai->field_0x10) {
+        if (UnkObject_50ccc8* inner = ai->field_0x10) {
             if (fn_710009d50c(inner->vf_0x0(), fn_710051e010())) {
                 f32 scale = inner->vf_0xd8()->field_0x120;
                 self->field_0x6c8 = 2.0f / scale * self->field_0x6b8 + 2.0f;

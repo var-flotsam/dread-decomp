@@ -10,6 +10,7 @@
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRefObj_c3.h"
+#include "game/UnkRef_c3.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTU2506.h"
 #include "game/UnkTU341.h"
@@ -18,14 +19,6 @@
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkRef_c3 {
-    UnkRefObj_c3* p;
-    ~UnkRef_c3() {
-        if (p && --p->refs == 0)
-            p->vf_0x10();
-    }
-};
 
 // A link's target as seen here: its id at +0x48.
 struct UnkTargetLink_ovb0130;

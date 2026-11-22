@@ -1,6 +1,7 @@
 // Unit 83 (base::reflection): appends a record to an owner's two parallel arrays (the records and one
 // string id per record), growing them by their step when full, and flags the record when the editor
 // default is set. Names and layouts are placeholders.
+#include "base/UnkIdRecord18B.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
@@ -9,13 +10,6 @@
 
 using base::UnkAllocator;
 using base::global::CStrId;
-
-struct UnkIdRecord18B {
-    CStrId id;
-    u64 field_0x8;
-    u32 field_0x10;
-    u16 field_0x14;
-};
 
 using UnkIdRecord18BArrays = base::global::CRntSmallDictionary<CStrId, UnkIdRecord18B>;
 

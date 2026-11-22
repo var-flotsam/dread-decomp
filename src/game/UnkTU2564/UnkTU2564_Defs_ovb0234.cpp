@@ -26,6 +26,7 @@
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkBufferStringPool.h"
+#include "game/UnkPathPairTemp_b45a1.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2564.h"
 #include "game/UnkTU32.h"
@@ -41,13 +42,6 @@ using base::global::UnkStringPool;
 using base::reflection::UnkReflObject;
 
 // ---- Reading a reflected resource from the file its path names ----
-
-// The id and path pair built from a resource's path, destroyed out of line.
-struct UnkPathPairTemp_b45a1 {
-    void* id;
-    void* path;
-    ~UnkPathPairTemp_b45a1() { fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(this)); }
-};
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
 

@@ -2,19 +2,11 @@
 // placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkActivationAction_ovb0044.h"
+#include "game/UnkActivationOwner_ovb0044.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
-
-struct UnkActivationOwner_ovb0044 {
-    u8 pad_0x0[0x240];
-    UnkReflObject* ai;  // 0x240
-};
-
-struct UnkActivationAction_ovb0044 {
-    u8 pad_0x0[0x18];
-    UnkActivationOwner_ovb0044* owner;  // 0x18
-};
 
 bool fn_710062f260(UnkReflObject* ai);
 

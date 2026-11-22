@@ -8,6 +8,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CLogicCamera.h"
+#include "game/UnkCameraCallbackBase_ovb0070.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
@@ -61,17 +62,6 @@ UnkReflValue fn_7101052e7c(UnkCameraHolder_ovb0070* holder) {
     fn_71000a18d4(&value, type, &ref, 0);
     return value;
 }
-
-// The callback set behind the camera's lazily resolved handle: callbacks at +0x8, the state at
-// +0x30 (1: not resolved yet, 2: resolved) and the handle at +0x38.
-struct UnkCameraCallbackBase_ovb0070 {
-    void** vtable;
-    UnkOwnedErasedVector callbacks;
-    u32 state;
-
-    UnkCameraCallbackBase_ovb0070(const UnkCameraCallbackBase_ovb0070& other) asm("fn_7100da4dcc");
-    ~UnkCameraCallbackBase_ovb0070() { vtable = &g_unk_7101a20998[2]; }
-};
 
 struct UnkCameraCallbackSet_ovb0070 : UnkCameraCallbackBase_ovb0070 {
     base::UnkRefHandle handle;

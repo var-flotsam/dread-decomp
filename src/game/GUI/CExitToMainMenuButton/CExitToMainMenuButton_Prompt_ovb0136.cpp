@@ -8,6 +8,7 @@
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkModeFlags.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -24,11 +25,6 @@ struct UnkButtonCallback_ovb0136 {
 
 struct UnkGuiComposition_ovb0090;
 struct UnkMapCallback_ovb0090;
-
-struct UnkModeFlags {
-    u8 unk_0x0[0xb8];
-    bool field_0xb8;
-};
 
 struct UnkGuiRef_ovb0136 {
     u8 pad_0x0[0x10];

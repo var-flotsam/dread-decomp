@@ -22,6 +22,7 @@
 #include "game/UnkTU2656.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTypedValue.h"
+#include "game/Uuid.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -30,9 +31,6 @@ using base::reflection::UnkReflObject;
 
 // nn::util's UUID and formatter (as src/game/UnkPlayReport.cpp declares them).
 namespace nn::util {
-struct Uuid {
-    u8 data[16];
-};
 Uuid GenerateUuid();
 s32 TSNPrintf(char* buffer, u64 size, const char* format, ...);
 }  // namespace nn::util
