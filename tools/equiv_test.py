@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """The machine test for tier 2: is a hand-written function that does not match equivalent to the original?
 
-`CLAUDE.md`, "Completion": a function whose only difference from the original is register choice or
+`CLAUDE.md`, "Purpose and completion": a function whose only difference from the original is register choice or
 instruction order (`trymatch.py`'s KIND line says `registers`) counts as done when a machine test runs the
 original and ours on the same inputs with the same writes and calls. This is that test. It compiles the
 source with the project compiler, lays the object out beside the original (tools/pcode_emu.py, the engine

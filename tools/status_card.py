@@ -117,8 +117,8 @@ def markdown(c: dict, image: bool) -> list[str]:
                + "".join(f"; {x['label']}: {x['state']}" for x in c["port"]))
         return [f'<p align="center"><img src="docs/status.svg" alt="{escape(alt)}" width="760"></p>', "",
                 "**Matched**: code bytes that compile to the original's (the game's own code; libraries excluded). "
-                "**Finished**: matched and readable, hand-typed code, the project's real metric; generated code "
-                "verifies but does not count. **Untouched**: not decompiled at all. The boot path is everything "
+                "**Finished**: matched and readable, the project's real metric, whoever or whatever wrote it; "
+                "generated code counts once its text reads as source. **Untouched**: not decompiled at all. The boot path is everything "
                 "`nnMain` reaches by direct calls. Lifted code is machine translation the port runs until matching "
                 "code replaces it."]
     fin = f"**{f['pct']:.2f}%**" if f else "n/a"
