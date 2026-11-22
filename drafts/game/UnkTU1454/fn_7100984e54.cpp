@@ -2,7 +2,7 @@
 // its parameters with the tunable's braking friction; kind 1 picks the swing animation (by the value's side,
 // the grapple track's name or a table id), sends it to the owner's animation component and keeps the value's
 // sign. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"

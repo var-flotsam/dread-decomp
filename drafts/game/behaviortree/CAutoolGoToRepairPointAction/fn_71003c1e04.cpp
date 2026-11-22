@@ -3,7 +3,7 @@
 // +0x3a8 (UnkSpitSend), re-links the listener at +0x380 to the sub-object's weak handle, reads the
 // "v3WaypointPos" value (fn_710039525c) and hands it to the component (fn_71003c6a5c). Names and layouts
 // are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

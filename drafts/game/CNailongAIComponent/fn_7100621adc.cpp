@@ -2,7 +2,7 @@
 // the owner's (+0x30) actor (fn_7100d7c990) and the owner's animation component (+0x220) plays none of
 // four track classes (fn_710117b348), sends the animation component the hit track for where the actor
 // is: in front, behind, above or below the owner (mode 0, UnkSpitSend). Names are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"
 #include "base/math/CVectorOps.h"

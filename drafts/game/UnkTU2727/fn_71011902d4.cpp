@@ -3,7 +3,7 @@
 // and a string each), an empty sound handle and the name "MAINMENU". Names and layouts are placeholders.
 #include <new>
 
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/global/CRntString.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2725.h"

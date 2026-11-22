@@ -20,7 +20,7 @@
 #include "game/UnkTypedValue.h"
 #include "types.h"
 
-#include "../../game_5821e4/UnkStaticInit.h"
+#include "../../../src/game_5821e4/UnkStaticInit.h"
 
 using base::global::CRntVector;
 using base::global::CStrId;

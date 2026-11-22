@@ -2,7 +2,7 @@
 // ids, a word, a string with 0x40 bytes of storage and plain values). Names and layouts are placeholders.
 #include <new>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

@@ -3,7 +3,7 @@
 // charge; 2 charges, then casts the beam (state 3); 3 turns the beam, hurts what it hits (fn_7100429b58)
 // and ends with fn_7100429d10 when the shooting time runs out or the hit lands; 4 sends the fired event's
 // request once. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"

@@ -2,7 +2,7 @@
 // CCooldownXBossAIComponent whose handle is gone, clears its flag, counts it, sets the timeline value of its
 // kind, sends the matching track to the owner's character class and flags its name on +0x228. Names and
 // layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"

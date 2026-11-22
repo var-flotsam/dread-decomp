@@ -1,7 +1,7 @@
 // Unit 1445 (CCharacterMovement): builds the owner's fall-end animation request: the
 // CCharClassTweakFallEndActionTrack fills it when one plays, else its id is the AI's or a default one.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"

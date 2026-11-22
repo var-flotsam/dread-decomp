@@ -3,7 +3,7 @@
 // and sends the owner's character class a track: the relax track when no entry is left or Kraid (phase 1)
 // stands more than 200 units above its target, else the entry's track by its kind and side. Names and
 // layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

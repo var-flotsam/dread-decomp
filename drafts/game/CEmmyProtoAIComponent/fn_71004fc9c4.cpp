@@ -2,7 +2,7 @@
 // and a target, it plays "ncu_chasenear-scratchloop_end" when the owner already faces the target's side,
 // else the "_turn" variant, starting it from what is left of the current track's first 12 units.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CName.h"
 #include "game/UnkActor.h"

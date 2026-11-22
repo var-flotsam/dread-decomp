@@ -2,7 +2,7 @@
 // differs from the sprite's, the image is cleared, and unless the sprite is locked (+0x1d8) the sheet is
 // loaded and the image looked up in the GUI root ("WhiteSquare" needs no sheet). Names and layouts are
 // placeholders.
-#include "../../../game_aca57c/UnkBufferString.h"
+#include "../../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"

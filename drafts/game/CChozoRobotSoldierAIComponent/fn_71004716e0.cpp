@@ -1,7 +1,7 @@
 // CChozoRobotSoldierAIComponent's unit (tools/tu_map.py unit 694): picks a jump animation. When a spin
 // jump is allowed and the animation's name has "_spinjump" in it, the "_jump" one is used instead if the
 // actor's animations have it; otherwise the base's choice (fn_710110fbc8). Names and layouts are placeholders.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"

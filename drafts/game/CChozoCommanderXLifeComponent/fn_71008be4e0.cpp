@@ -3,7 +3,7 @@
 // request and counts "<scenario>#<owner name>" (fn_7100ec78e8); then turns the player's input and aim keys
 // back on, updates its hyper beam and animation, and spawns the actor of g_unk_71727302b0 at the player's
 // position. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"

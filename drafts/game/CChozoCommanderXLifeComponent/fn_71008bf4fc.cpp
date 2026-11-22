@@ -2,7 +2,7 @@
 // component (fn_7101199818), sends the owner's and the player's animations a request and listens to the
 // owner's, then places the "ev_commanderx_rock01" actor at the owner's position, enables it and sends its
 // animation a request. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"

@@ -5,7 +5,7 @@
 // its up axis (fn_71003b514c) with the AI's flag (+0x121e) set ends the charge (the flag at +0x179e
 // cleared, the owner's +0x220 sent its end request, state 0); otherwise the attack moves to state 3.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/math/CVector.h"
 #include "game/CFrozenComponent.h"
 #include "game/UnkXformNode.h"

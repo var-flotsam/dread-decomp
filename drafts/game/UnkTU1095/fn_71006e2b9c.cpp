@@ -2,7 +2,7 @@
 // entity the blackboard value at +0x38 names (or the point its AI marks on its model), else the point
 // the key at +0x30 names, and keeps it and its offset from the owner; otherwise the owner flees.
 // Names and layouts are placeholders.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

@@ -2,7 +2,7 @@
 // settings) at an index of an engine array, moving the later records up. Names and layouts are placeholders.
 #include <new>
 
-#include "../UnkUnit2601/UnkUnit2601_VecCopy_b56.h"
+#include "../../../src/game/UnkUnit2601/UnkUnit2601_VecCopy_b56.h"
 #include "base/global/CRntVector.h"
 #include "types.h"
 

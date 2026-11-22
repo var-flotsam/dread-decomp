@@ -1,7 +1,7 @@
 // behaviortree::CInfesterFleeFromTargetAction's unit (tools/tu_map.py unit 888): the update: waits for the
 // actor's movement, flees from the target and, after a delay or once the target is inside its reach, makes
 // the actor react (a kind 5 parameter block and a request to its char class). Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

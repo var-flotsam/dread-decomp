@@ -3,7 +3,7 @@
 // in state 2, else black) and turns one animation switch on; with it clear, once the mark is cleared sends the
 // class a mode-10 request and turns the switch off. Returns the base's answer. Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/math/CVector4D.h"
 #include "game/CAnimationComponent.h"
 #include "game/CAttackComponent.h"

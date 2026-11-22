@@ -1,7 +1,7 @@
 // CDropterAIComponent unit (tools/tu_map.py unit 780): the per-frame step. After the base step it runs the
 // dropter's phases (+0x1486c): waiting to drop (or settling after a hit), fading the first effect into the
 // second, fading the second out and finishing. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
 #include "base/reflection/UnkClassGetters.h"

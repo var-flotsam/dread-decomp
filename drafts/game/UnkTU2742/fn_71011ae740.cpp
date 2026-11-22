@@ -5,7 +5,7 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntVector.h"
 #include "base/UnkHashStream.h"
-#include "../../game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkIter.h"
 #include "types.h"
 
 // Where a keyed block starts in the file, and what kind it is.

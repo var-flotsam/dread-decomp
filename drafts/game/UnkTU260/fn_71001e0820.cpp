@@ -1,7 +1,7 @@
 // Unit 260 (render passes): its static initialiser, which sets the unit's header ids, the render profile and
 // pass names as string ids (each destructor registered with __cxa_atexit), and the default screen settings.
 // Names and layouts are placeholders.
-#include "../../game_5821e4/UnkStaticInit.h"
+#include "../../../src/game_5821e4/UnkStaticInit.h"
 #include "types.h"
 
 using namespace unk_static_init;

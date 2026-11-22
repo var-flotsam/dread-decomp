@@ -1,7 +1,7 @@
 // CCharClassEmmyValveComponent unit (tools/tu_map.py, unit 1212): fn_71007b26bc caches the owner's two valve
 // collision objects and animation component, starts the valve's animation for its current state and then
 // restores the valve from the game manager's blackboard. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
 #include "game/CCharClassEmmyValveComponent.h"

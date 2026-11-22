@@ -1,7 +1,7 @@
 // CScorpiusAIComponent unit: the damage handler. A hit on the mask (the collider named by a fixed hash) is
 // counted and may start the mask attack before the base handler answers; any other hit costs health, then
 // the owner's timeline plays the ids for the part hit. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"

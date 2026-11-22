@@ -4,7 +4,7 @@
 // scales the movement by how much of 64 units its motion covers. Names and layouts are placeholders.
 #include <math.h>
 
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkMotionRule.h"

@@ -1,7 +1,7 @@
 // CSamusImpactMovementState (unit 1464): after the base update, unless the movement holds the state,
 // asks the state machine for the air state (id 1) and switches to it at once. Names and layouts are
 // placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"

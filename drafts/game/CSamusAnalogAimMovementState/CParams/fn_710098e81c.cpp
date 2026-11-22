@@ -3,7 +3,7 @@
 // CAutofocusAimCameraCtrl it asks for another movement state (the movement's track request, or a fixed
 // one); then, while the movement moves, it runs four steps on its state of kind 1 as long as the target
 // stays in state 15. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"

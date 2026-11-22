@@ -2,7 +2,7 @@
 // animation (a non-empty id), plays it on the main track with mode 1, resets the tracks and restarts
 // the owner's effect and collision; then copies the owner's record (+0x38) and sets +0x2c8 when the
 // owner has nothing at +0x1f0. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
 #include "game/CCollisionComponent.h"

@@ -7,7 +7,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2729.h"
 #include "game/UnkTU344.h"
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "types.h"
 
 using base::global::CStrId;

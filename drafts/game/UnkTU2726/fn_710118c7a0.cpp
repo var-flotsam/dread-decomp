@@ -1,7 +1,7 @@
 // Unit 2726 (gui/scripts/msemenu_ingame.lua): puts the two actors the game manager keeps at +0x29a8 and
 // +0x29b0 where the player stands, facing the player's side ("left" or "right"), dressed in the player's
 // suit, and fades the environment back to white. Names and layouts are placeholders.
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

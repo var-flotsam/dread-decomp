@@ -9,7 +9,7 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkShakernautId.h"
 #include "types.h"
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 
 using base::global::CStrId;
 

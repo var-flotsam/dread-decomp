@@ -3,7 +3,7 @@
 // the matching dodge, and when it was taken turns the owner to face along its x axis, hooks the link to the
 // animation and sets "bIsDodging" on the blackboard. Returns whether the dodge started.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"

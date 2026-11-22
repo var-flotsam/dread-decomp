@@ -3,7 +3,7 @@
 // tells the game manager; when released, the owner's animation (+0x220) plays a fixed request while one
 // track plays, else is sent the request's hash with mode 0 unless that plays already (as UnkSpitSend).
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/CAnimationComponent.h"
 #include "game/CPullableGrapplePointComponent.h"
 #include "game/UnkAnimationComponent.h"

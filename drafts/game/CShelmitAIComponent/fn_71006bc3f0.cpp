@@ -3,7 +3,7 @@
 // done, or, once the abort track has played out (sub-mode 1), sends the owner's track again and puts the owner
 // back at its saved position and angles (+0x14748); otherwise the owner stops when it is too far from its
 // target. Other modes go to the base handler (fn_7101111dc8). Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAIManager/CTunableAIManager.h"

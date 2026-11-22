@@ -7,7 +7,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/CBossAIComponent.h"
 #include "game/CChozoWarriorAIComponent.h"
 #include "game/UnkAnimationComponent.h"

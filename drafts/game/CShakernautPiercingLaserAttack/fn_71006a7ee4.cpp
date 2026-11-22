@@ -15,7 +15,7 @@
 #include "game/logic/collision/CCircleShape2D.h"
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflObject;

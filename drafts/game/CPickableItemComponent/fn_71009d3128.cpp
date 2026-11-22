@@ -3,7 +3,7 @@
 // adds the scenario to the profile's list of scenarios. Names and layouts are placeholders.
 #include <new>
 
-#include "../../game_5821e4/UnkStaticInit.h"
+#include "../../../src/game_5821e4/UnkStaticInit.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
