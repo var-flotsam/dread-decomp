@@ -108,7 +108,7 @@ void fn_7100fd5ecc(UnkMusicMgr_lfd5ecc* self, u32 index, bool hold, f32 time) {
     ++first.path.data->reads;
     const CRntString* played = &first.path.data->String();
     UnkString40_lfd5ecc path;
-    fn_710007eaa0(path.Str(), played);
+    CRntString_Assign(path.Str(), played);
 
     for (u64 i = 0; i < request.paths.count; ++i)
         ResetPath_lfd5ecc(request.paths.data[i].path);

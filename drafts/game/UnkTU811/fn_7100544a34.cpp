@@ -46,14 +46,14 @@ struct UnkInlineString_l544a34 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_l544a34() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
     }
     ~UnkInlineString_l544a34() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -63,7 +63,7 @@ static inline void SetSectionString(CBlackboard* blackboard, const CStrId& secti
     if (CBlackboard::CSection* s = fn_71010472e0(blackboard, section)) {
         if (!blackboard->field_0xe8) {
             UnkInlineString_l544a34 value;
-            fn_710007e77c(value.Str(), text);
+            CRntString_AssignCString(value.Str(), text);
             UnkTypedValue v;
             v.type = reinterpret_cast<const base::reflection::CType*>(fn_710009ffd4());
             v.value = &value;

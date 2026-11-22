@@ -51,8 +51,8 @@ struct UnkNamedRegistry {
 
 }  // namespace base
 
-void fn_710007e704(base::UnkNamedEntry* entry, const char* key);
-void fn_710007ea60(base::UnkNamedEntry* dst, const base::UnkNamedEntry* src);
+void CRntString_ConstructFromCString(base::UnkNamedEntry* entry, const char* key);
+void CRntString_CopyConstruct(base::UnkNamedEntry* dst, const base::UnkNamedEntry* src);
 void fn_710007547c(base::UnkNamedRegistry* registry, u32 capacity);
 void fn_7100136f38(base::UnkNamedObject* obj);
 
@@ -88,13 +88,13 @@ UnkNamedObject* refl_RegisterNamed(UnkNamedRegistry* reg, UnkNamedObject* obj, c
         obj->field_0x10 = id;
     }
     UnkNamedEntry entry;
-    fn_710007e704(&entry, key);
+    CRntString_ConstructFromCString(&entry, key);
     if (reg->count == reg->capacity)
         fn_710007547c(reg, reg->step + reg->count);
-    fn_710007ea60(&reg->entries[reg->count], &entry);
+    CRntString_CopyConstruct(&reg->entries[reg->count], &entry);
     reg->objects[reg->count] = obj;
     reg->count++;
-    fn_710007ecd4(reinterpret_cast<global::CRntString*>(&entry));
+    CRntString_Destroy(reinterpret_cast<global::CRntString*>(&entry));
     fn_7100136f38(obj);
     return obj;
 }

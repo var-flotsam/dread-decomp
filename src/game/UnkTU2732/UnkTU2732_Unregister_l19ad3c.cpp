@@ -64,5 +64,5 @@ void fn_710119ad3c(void* self) {
     UnkItemList_l19ad3c* list = static_cast<UnkItemList_l19ad3c*>(g_unk_7172729910);
     if (list && list->Contains(self))
         list->Remove(self);
-    fn_710007ecd4(static_cast<base::global::CRntString*>(self));
+    CRntString_Destroy(static_cast<base::global::CRntString*>(self));
 }

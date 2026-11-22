@@ -13,8 +13,8 @@
 using namespace unk_static_init;
 
 __attribute__((always_inline)) inline void InitRntString(base::UnkNamedEntry* s, const char* str) {
-    fn_710007e704(s, str);
-    __cxa_atexit(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), s, g_unk_7101a19000);
+    CRntString_ConstructFromCString(s, str);
+    __cxa_atexit(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), s, g_unk_7101a19000);
 }
 
 struct UnkStatics_71004a9c40 {

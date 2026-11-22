@@ -81,16 +81,16 @@ s32 fn_7101078b20(lua_State* L) {
     if (fn_71010c0270(L, "sssb", &a, &b, &c, &flag)) {
         UnkGameManager* manager = g_unk_7101d47310;
         base::UnkNamedEntry ka;
-        fn_710007e704(&ka, a);
+        CRntString_ConstructFromCString(&ka, a);
         base::UnkNamedEntry kb;
-        fn_710007e704(&kb, b);
+        CRntString_ConstructFromCString(&kb, b);
         base::UnkNamedEntry kc;
-        fn_710007e704(&kc, c);
+        CRntString_ConstructFromCString(&kc, c);
         ok = RecordSnapshot(manager, reinterpret_cast<const char* const&>(ka), reinterpret_cast<const char* const&>(kb),
                             reinterpret_cast<const CRntString&>(kc), flag);
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&kc));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&kb));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&ka));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&kc));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&kb));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&ka));
     }
     return fn_71010c0b40(L, "b", ok);
 }
@@ -645,7 +645,7 @@ struct UnkLuaNameList_b0160 : base::UnkVtableList<u8> {
         vtable = g_unk_7101a1a070 + 2;
         for (u8* node = head; node;) {
             u8* next = *reinterpret_cast<u8**>(node + 0x30);
-            fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node));
+            CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(node));
             allocator->vf_0x48(node);
             node = next;
         }

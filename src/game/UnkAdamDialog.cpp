@@ -215,7 +215,7 @@ bool fn_7100fb85cc(UnkAdamDialog* self, f32 volume, f32 fade, const CStrId& key,
     }
     self->field_0x98 = lower;
     self->field_0x88 = 0;
-    fn_710007e77c(&self->field_0x28, text);
+    CRntString_AssignCString(&self->field_0x28, text);
     self->field_0x18 = pair;
     self->field_0x90 = volume;
     self->field_0x94 = fade;

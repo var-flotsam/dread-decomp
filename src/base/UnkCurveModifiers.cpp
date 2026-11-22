@@ -131,8 +131,8 @@ void fn_7100075f78(f32 start, f32 target, f32 duration, UnkTimedCurve* curve,
     curve->delta = target - start;
     curve->duration = duration;
     curve->time = 0.0f;
-    if (fn_710007f220(letters, modifiers))
-        fn_710007eaa0(letters, modifiers);
+    if (CRntString_KeysDiffer(letters, modifiers))
+        CRntString_Assign(letters, modifiers);
     if (curve->modifiers && *curve->modifiers) {
         f32 f = fn_7100076020(1.0f, curve->modifiers);
         curve->end = curve->start + f * curve->delta;

@@ -54,7 +54,7 @@ void fn_7100afb410(UnkCopySlotButton_ovb0131* self) {
     alignas(8) u8 prompt_storage[sizeof(CRntString)];
     CRntString* prompt = reinterpret_cast<CRntString*>(prompt_storage);
     fn_710007e6c4(prompt);
-    fn_710007f564(prompt, "#GUI_FILESELECT_OPTIONS_PROMPT_SECOND_CONFIRM");
+    CRntString_AppendCString(prompt, "#GUI_FILESELECT_OPTIONS_PROMPT_SECOND_CONFIRM");
     {
         CStrId back("#GUI_B_BACK", true);
         CStrId accept("#GUI_A_ACCEPT", true);
@@ -65,5 +65,5 @@ void fn_7100afb410(UnkCopySlotButton_ovb0131* self) {
                       reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                       reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
     }
-    fn_710007ecd4(prompt);
+    CRntString_Destroy(prompt);
 }

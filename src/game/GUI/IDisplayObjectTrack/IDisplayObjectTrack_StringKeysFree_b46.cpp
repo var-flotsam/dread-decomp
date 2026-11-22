@@ -9,7 +9,7 @@
 struct UnkTrackStringEntry_b46a3;
 template <>
 struct UnkCloneDtorTraits<UnkTrackStringEntry_b46a3> {
-    static void destroy(char* p) { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(p + 8)); }
+    static void destroy(char* p) { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(p + 8)); }
 };
 
 using UnkTrackStringEntries_b46a3 = base::global::CRntVector<UnkCloneDtorElem<UnkTrackStringEntry_b46a3, 0x38>>;

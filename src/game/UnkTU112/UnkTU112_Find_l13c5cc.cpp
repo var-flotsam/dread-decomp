@@ -46,8 +46,8 @@ UnkTunableObject* fn_710013c5cc(UnkTunableRegistry* self, const char* name, bool
     u32 count = self->count;
     for (u32 i = 0; i < count; ++i) {
         const CRntString* full = &self->names[i];
-        s32 bar = fn_710007fb10(full, '|', -1);
-        fn_710007e77c(last.Str(), (full->data ? full->data : g_unk_710162e2ed) + bar + 1);
+        s32 bar = CRntString_FindLastChar(full, '|', -1);
+        CRntString_AssignCString(last.Str(), (full->data ? full->data : g_unk_710162e2ed) + bar + 1);
         if (SameName(last.Str(), key.Str()))
             return self->objects[i];
     }

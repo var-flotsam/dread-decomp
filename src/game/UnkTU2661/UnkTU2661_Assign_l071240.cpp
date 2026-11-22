@@ -88,7 +88,7 @@ struct alignas(8) UnkCutsceneState_l071240 {
 
 struct UnkCutsceneName_l071240 : UnkBufferString<0x80, g_unk_7101a1b750> {
     UnkCutsceneName_l071240& operator=(const UnkCutsceneName_l071240& other) {
-        fn_710007eaa0(Str(), other.Str());
+        CRntString_Assign(Str(), other.Str());
         return *this;
     }
 };

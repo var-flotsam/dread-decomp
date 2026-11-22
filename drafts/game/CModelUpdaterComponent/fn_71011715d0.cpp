@@ -87,7 +87,7 @@ static inline void ReadString_l1715d0(UnkPropBag* bag, const CStrId& id, UnkMode
         char text[0x100];
         fn_710007c00c(&bag->lock, value->offset, 0);
         fn_710007ca94(&bag->lock, text);
-        fn_710007e77c(out.Str(), text);
+        CRntString_AssignCString(out.Str(), text);
     }
 }
 

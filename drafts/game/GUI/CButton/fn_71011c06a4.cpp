@@ -91,7 +91,7 @@ bool fn_71011c06a4(UnkButtonLabels_l1c06a4* self, u32 state) {
     if (!container || !IsKindOf<fn_71011d7b84>(container))
         return false;
     ++label.data->reads;
-    if (label.data == &g_unk_7101d47108->empty || !fn_710007fb9c(&label.data->String(), "."))
+    if (label.data == &g_unk_7101d47108->empty || !CRntString_Contains(&label.data->String(), "."))
         return false;
     ++label.data->reads;
     auto* child = reinterpret_cast<UnkButtonChild_l1c06a4*>(fn_71011d9508(container, &label.data->text));

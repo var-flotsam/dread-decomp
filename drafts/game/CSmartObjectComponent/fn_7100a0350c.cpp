@@ -45,8 +45,8 @@ void fn_7100a0350c(UnkSmartObjectNames* self, const CStrId* name) {
     UnkStrIdSlot slot;
     UnkBufferString<0x80, g_unk_7101a1b750> left("left");
     UnkBufferString<0x80, g_unk_7101a1b750> right("right");
-    fn_710007f3b4(left.Str(), &IdString(self->name));
-    fn_710007f3b4(right.Str(), &IdString(self->name));
+    CRntString_Append(left.Str(), &IdString(self->name));
+    CRntString_Append(right.Str(), &IdString(self->name));
     fn_7100000850(&slot.id, *left.Str(), true);
     self->left.ReleaseAndTake(slot.id);
     fn_7100000850(&slot.id, *right.Str(), true);

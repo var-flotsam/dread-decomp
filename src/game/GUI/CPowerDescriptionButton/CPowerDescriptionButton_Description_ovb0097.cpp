@@ -48,7 +48,7 @@ void fn_7100b6308c(UnkPowerDescriptionButton_ovb0097* self) {
     self->vtable = g_unk_7101a9dcb0 + 0x10;
     self->field_0x310.~UnkStrIdMemberOf();
     self->description_member.~UnkStrIdMemberOf();
-    fn_710007ecd4(&self->field_0x2d8);
-    fn_710007ecd4(&self->field_0x2a8);
+    CRntString_Destroy(&self->field_0x2d8);
+    CRntString_Destroy(&self->field_0x2a8);
     fn_71011bf1a4(reinterpret_cast<char*>(self));
 }

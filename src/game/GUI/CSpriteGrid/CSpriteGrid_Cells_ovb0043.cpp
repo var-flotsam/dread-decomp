@@ -33,7 +33,7 @@ struct UnkFrameString_ovb0043 {
         CRntString str;
     };
     explicit UnkFrameString_ovb0043(u32 value) { fn_710007eba0(reinterpret_cast<UnkString_7100fc4b34*>(&str), value); }
-    ~UnkFrameString_ovb0043() { fn_710007ecd4(&str); }
+    ~UnkFrameString_ovb0043() { CRntString_Destroy(&str); }
 };
 
 // An id built from a string (fn_7100000850).

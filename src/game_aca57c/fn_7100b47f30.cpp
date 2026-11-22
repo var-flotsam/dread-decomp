@@ -16,13 +16,13 @@ struct UnkString {
 
     ~UnkString();
 };
-inline UnkString::~UnkString() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
+inline UnkString::~UnkString() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this)); }
 
 struct UnkInlineString {
     UnkString str;
     u8 buffer[0x38];
 
-    ~UnkInlineString() { fn_710007ed40(reinterpret_cast<base::global::CRntString*>(&str)); }
+    ~UnkInlineString() { CRntString_Clear(reinterpret_cast<base::global::CRntString*>(&str)); }
 };
 
 struct UnkStringBase {

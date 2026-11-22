@@ -101,7 +101,7 @@ static inline bool Contains(CStrId id, const char* part) {
     ++id.data->reads;
     if (IsEmpty(id))
         return false;
-    return fn_710007fb9c(&id.data->String(), part);
+    return CRntString_Contains(&id.data->String(), part);
 }
 
 // An item's qualified id, built on first use.

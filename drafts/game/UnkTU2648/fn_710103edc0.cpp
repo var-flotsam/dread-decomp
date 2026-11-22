@@ -65,15 +65,15 @@ UnkPresetId_l03edc0 fn_710103edc0(const UnkPresetSource_l03edc0* self) {
     char lower[0x200];
     const CRntString* text = Text(self->path);
     UnkPresetText_l03edc0 path;
-    fn_710007eaa0(path.Str(), text);
+    CRntString_Assign(path.Str(), text);
     const char* prefix = "/presets/";
     static size_t s_prefix_length = strlen(prefix);
-    s32 found = fn_710007fb54(path.Str(), prefix, 0);
+    s32 found = CRntString_Find(path.Str(), prefix, 0);
     if (found == 0)
         return g_unk_7101d470e0;
     u32 start = found + static_cast<u32>(s_prefix_length);
     UnkPresetText_l03edc0 rest;
-    fn_710007e7f8(rest.Str(), path.Str()->data + start, path.Str()->length - start);
+    CRntString_AssignPrefix(rest.Str(), path.Str()->data + start, path.Str()->length - start);
     CopyLower(lower, rest.Str()->data);
     UnkPresetText_l03edc0 lowered(lower);
     u32 length = lowered.Str()->length;

@@ -102,12 +102,12 @@ void fn_7100debf3c(UnkTU2553Manager* self) {
     for (UnkTU2553Node* node = self->head; node;) {
         UnkTU2553Listed* obj = node->value;
         UnkTU2553Key key;
-        fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(&key), "MainCamera");
+        CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(&key), "MainCamera");
         obj->info->field_0x44++;
         obj->info->field_0x44++;
         u64 id = obj->info->field_0x30;
         u64 keyId = key.field_0x20;
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&key));
         if (id == keyId) {
             node = node->next;
             continue;

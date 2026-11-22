@@ -10,8 +10,8 @@ struct alignas(8) UnkLongStringValue_A6_b74 {
     u8 data[0x248];
 
     __attribute__((always_inline)) void Destroy() {
-        fn_710007ed40(reinterpret_cast<base::global::CRntString*>(this));
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
+        CRntString_Clear(reinterpret_cast<base::global::CRntString*>(this));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this));
     }
 };
 

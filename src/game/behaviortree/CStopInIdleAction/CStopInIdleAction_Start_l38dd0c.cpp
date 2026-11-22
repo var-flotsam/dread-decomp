@@ -20,7 +20,7 @@ using base::global::CStrId;
 
 // An animation name built from a string id (fn_710007eb6c).
 struct UnkIdleAnimName_l38dd0c : UnkBufferString<0x100, g_unk_7101a194b8> {
-    explicit UnkIdleAnimName_l38dd0c(const CStrId* id) { fn_710007eb6c(Str(), id); }
+    explicit UnkIdleAnimName_l38dd0c(const CStrId* id) { CRntString_AssignStrId(Str(), id); }
 };
 
 struct UnkIdleAI_l38dd0c {

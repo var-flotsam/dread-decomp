@@ -63,7 +63,7 @@ static inline bool Contains(UnkLuaId_b0129& id, UnkLuaId_b0129& key) {
     ++key.Data()->reads;
     const char* k = key.Data()->text.data;
     ++id.Data()->reads;
-    return id.data != &g_unk_7101d47108->empty && fn_710007fb9c(&id.Data()->text, k);
+    return id.data != &g_unk_7101d47108->empty && CRntString_Contains(&id.Data()->text, k);
 }
 
 struct UnkLuaCallback2Event_b0129 {

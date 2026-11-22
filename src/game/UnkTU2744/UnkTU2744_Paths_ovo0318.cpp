@@ -100,7 +100,7 @@ void fn_71011b350c(UnkGuiScreen_b0209* self) {
 UnkWeakTarget* fn_71011b5f5c(u32 unused, const char* const* path, const base::global::CRntString* name, void* arg) {
     UnkWeakTarget* result = nullptr;
     base::global::CRntString func(*name);
-    fn_710007f564(&func, ".Create");
+    CRntString_AppendCString(&func, ".Create");
     if (fn_71010c0bb0(g_unk_7172a01d18, func.data)) {
         s32 nargs;
         if (arg)
@@ -136,9 +136,9 @@ static inline __attribute__((always_inline)) UnkPathText_o0318 BuildPath(const c
     ToLower(lower, *name);
     {
         UnkPathText_o0318 part(lower);
-        fn_710007f3b4(out.Str(), part.Str());
+        CRntString_Append(out.Str(), part.Str());
     }
-    fn_710007f564(out.Str(), suffix);
+    CRntString_AppendCString(out.Str(), suffix);
     return out;
 }
 

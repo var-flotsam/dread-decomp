@@ -68,9 +68,9 @@ struct UnkLockOnIdText_l882cdc {
     };
 
     explicit UnkLockOnIdText_l882cdc(const CStrId* id) {
-        fn_710007eb20(&str, reinterpret_cast<const UnkPooledStrId*>(id));
+        CRntString_ConstructFromStrId(&str, reinterpret_cast<const UnkPooledStrId*>(id));
     }
-    ~UnkLockOnIdText_l882cdc() { fn_710007ecd4(&str); }
+    ~UnkLockOnIdText_l882cdc() { CRntString_Destroy(&str); }
 };
 
 // The resolved link's weak handle: its target at +0x10.
@@ -168,7 +168,7 @@ void fn_7100882cdc(UnkMultiLockOnBlock_l882cdc* self) {
         u64 activate_point = KeyOf_l882cdc(name.str);
         {
             UnkLockOnIdText_l882cdc relax(&g_unk_717272b730.relax_point);
-            fn_710007eaa0(&name.str, &relax.str);
+            CRntString_Assign(&name.str, &relax.str);
         }
         fn_710007f688(reinterpret_cast<UnkMissionLogName_ovb0079*>(&name.str), self->point_count);
         u64 relax_point = KeyOf_l882cdc(name.str);

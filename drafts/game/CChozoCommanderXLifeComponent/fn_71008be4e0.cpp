@@ -119,8 +119,8 @@ static inline const CRntString& Str(const CStrId& id) {
     return id.data->String();
 }
 
-static inline CRntString operator+(const CRntString& a, const char* b) { return fn_710007ef90(&a, b); }
-static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
+static inline CRntString operator+(const CRntString& a, const char* b) { return CRntString_ConcatCString(&a, b); }
+static inline CRntString operator+(const CRntString& a, const CRntString& b) { return CRntString_Concat(&a, &b); }
 
 // The counters (created on first use).
 static inline UnkCounters_b0166* Counters() {

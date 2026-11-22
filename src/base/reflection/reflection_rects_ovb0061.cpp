@@ -224,13 +224,13 @@ struct UnkRectName_ovb0061 {
         base::global::CRntString str;
     };
     UnkRectName_ovb0061() {
-        fn_710007ea60(reinterpret_cast<base::UnkNamedEntry*>(&str),
+        CRntString_CopyConstruct(reinterpret_cast<base::UnkNamedEntry*>(&str),
                       reinterpret_cast<const base::UnkNamedEntry*>(&g_unk_7101d58d10));
     }
     UnkRectName_ovb0061(const UnkRectName_ovb0061& o) {
-        fn_710007ea60(reinterpret_cast<base::UnkNamedEntry*>(&str), reinterpret_cast<const base::UnkNamedEntry*>(&o.str));
+        CRntString_CopyConstruct(reinterpret_cast<base::UnkNamedEntry*>(&str), reinterpret_cast<const base::UnkNamedEntry*>(&o.str));
     }
-    ~UnkRectName_ovb0061() { fn_710007ecd4(&str); }
+    ~UnkRectName_ovb0061() { CRntString_Destroy(&str); }
 };
 
 void fn_7100204338(UnkRectEntries_ovb0061* self, const UnkRectEntries_ovb0061* other);
@@ -352,5 +352,5 @@ void fn_710020002c(UnkRectOwner_ovb0061* self, UnkRectView_ovb0061** view) {
         (*view)->Delete();
         *view = nullptr;
     }
-    fn_710007eaa0(&self->name.str, &g_unk_7101d58d10);
+    CRntString_Assign(&self->name.str, &g_unk_7101d58d10);
 }

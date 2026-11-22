@@ -471,7 +471,7 @@ void fn_71003afd68(UnkBossDeathAI_ovb0102* self) {
         UnkBossDeathTargetHolder_ovb0102* holder = Holder(self);
         if (holder && holder->target && fn_7100dfbe3c(g_unk_7101d47310) && self->field_0x14998) {
             CRntString name(IdText(self->owner->name));
-            fn_710007f564(&name, "_dead");
+            CRntString_AppendCString(&name, "_dead");
             UnkGameManager* manager = g_unk_7101d47310;
             fn_7100dfaf88(manager, &name, IdText(Holder(self)->target->name), false);
         }

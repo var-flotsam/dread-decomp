@@ -28,7 +28,7 @@ namespace {
 struct UnkCopiedString_leae540 {
     base::UnkNamedEntry entry;
 
-    UnkCopiedString_leae540(const UnkCopiedString_leae540& other) { fn_710007ea60(&entry, &other.entry); }
+    UnkCopiedString_leae540(const UnkCopiedString_leae540& other) { CRntString_CopyConstruct(&entry, &other.entry); }
 };
 
 struct UnkWords5_leae540 {

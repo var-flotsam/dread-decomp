@@ -39,12 +39,12 @@ extern u8 g_unk_71729f0020[] __attribute__((visibility("hidden")));
 
 // A string on 0x40 bytes of inline storage: the first `length` characters of `str`.
 struct UnkString40_fc4640 : UnkBufferString<0x40, g_unk_7101a1b678> {
-    UnkString40_fc4640(const char* str, u32 length) { fn_710007e7f8(Str(), str, length); }
+    UnkString40_fc4640(const char* str, u32 length) { CRntString_AssignPrefix(Str(), str, length); }
     CRntString&& Take() { return static_cast<CRntString&&>(*Str()); }
 };
 
 // Assigns another string's text.
-static inline void Assign(CRntString* self, const CRntString& other) { fn_710007eaa0(self, &other); }
+static inline void Assign(CRntString* self, const CRntString& other) { CRntString_Assign(self, &other); }
 
 // A string on 0x100 bytes of inline storage.
 using UnkString100_fc4640 = UnkBufferString<0x100, g_unk_7101a194b8>;
@@ -139,43 +139,43 @@ struct UnkSaveSlot_fc4640 {
 bool fn_7100fc4640(UnkSaveSystem_fc4640* self, const CRntString* path, UnkSaveSlot_fc4640* slot) {
     static const CRntString s_prefix("savedata://");
     Assign(&slot->local_path,
-           fn_710007fc80(path, &s_prefix)
+           CRntString_StartsWith(path, &s_prefix)
                ? CRntString(UnkString40_fc4640(path->data + s_prefix.length, path->length - s_prefix.length).Take())
                : CRntString(*path));
-    fn_710007eaa0(&slot->path, path);
+    CRntString_Assign(&slot->path, path);
 
     CRntString file_name(g_unk_7101aa99b0);
-    fn_710007f564(&file_name, g_unk_7101aa99b8);
+    CRntString_AppendCString(&file_name, g_unk_7101aa99b8);
     CRntString directory(*path);
-    fn_710007f5ac(&directory, g_unk_710164784b);
+    CRntString_AppendChar(&directory, g_unk_710164784b);
 
     UnkGameBlackboard_fc4640 slot_data;
     UnkGameBlackboard_fc4640 common_data;
     bool ok = false;
     {
-        CRntString file = fn_710007eee0(&directory, &file_name);
+        CRntString file = CRntString_Concat(&directory, &file_name);
         UnkOwnedSaveBuffer_fc4640 buffer;
         if (ReadFile(&file, &buffer) == 0)
             ok = Parse(&slot_data, buffer.buffer);
     }
     if (ok) {
         ok = false;
-        CRntString file = fn_710007ef90(&directory, "common");
-        fn_710007f564(&file, g_unk_7101aa99b8);
+        CRntString file = CRntString_ConcatCString(&directory, "common");
+        CRntString_AppendCString(&file, g_unk_7101aa99b8);
         UnkOwnedSaveBuffer_fc4640 buffer;
         if (ReadFile(&file, &buffer) == 0)
             ok = Parse(&common_data, buffer.buffer);
     }
     slot->valid = ok;
     if (ok) {
-        fn_710007eaa0(&slot->field_0x60, &g_unk_7101d58d10);
-        fn_710007eaa0(&slot->field_0x90, &g_unk_7101d58d10);
+        CRntString_Assign(&slot->field_0x60, &g_unk_7101d58d10);
+        CRntString_Assign(&slot->field_0x90, &g_unk_7101d58d10);
         UnkString100_fc4640 name;
         const base::global::CStrId& section = GameManagerIdTable().field_0x1148;
         const UnkQualifiedId& id = Qid(g_unk_7172758cb0);
         if (CBlackboard::CSection* s = fn_7101047270(common_data.Blackboard(), section))
             fn_7100395c38(s, &id, name.Str());
-        fn_710007eaa0(&slot->name, name.Str());
+        CRntString_Assign(&slot->name, name.Str());
         fn_7100fc4b34(nullptr, slot_data.Blackboard(), common_data.Blackboard(),
                       reinterpret_cast<UnkTuning_7100fc4b34*>(&slot->valid));
     }

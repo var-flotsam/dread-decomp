@@ -50,15 +50,15 @@ UnkPathId_ovb0109 fn_710008dd5c(const UnkDevicePath_ovb0109* self) {
     if (self->device.data == &g_unk_7101d47108->empty)
         return UnkPathId_ovb0109(self->path);
     CRntString text(IdChars(self->device));
-    fn_710007f5ac(&text, ':');
-    fn_710007f564(&text, IdChars(self->path));
+    CRntString_AppendChar(&text, ':');
+    CRntString_AppendCString(&text, IdChars(self->path));
     return UnkPathId_ovb0109(text);
 }
 
 // A substring, on 0x200 bytes of inline storage.
 struct UnkPathPart_ovb0109 : UnkBufferString<0x200, g_unk_7101a1a5a8> {
     __attribute__((always_inline)) UnkPathPart_ovb0109(const char* str, u32 length) {
-        fn_710007e7f8(Str(), str, length);
+        CRntString_AssignPrefix(Str(), str, length);
     }
 };
 
@@ -72,23 +72,23 @@ static inline const CRntString* EmptyText() {
 // Splits "device:dir/name.ext" into the directory (with its slash), the name and the extension; each
 // output may be null.
 bool fn_710008e374(const CRntString* path, CRntString* dir, CRntString* name, CRntString* ext) {
-    s32 colon = fn_710007facc(path, ':', 0);
-    s32 slash = fn_710007fb10(path, '/', -1);
-    s32 dot = fn_710007fb10(path, '.', -1);
+    s32 colon = CRntString_FindChar(path, ':', 0);
+    s32 slash = CRntString_FindLastChar(path, '/', -1);
+    s32 dot = CRntString_FindLastChar(path, '.', -1);
     if (dir) {
         if (slash < 0)
-            fn_710007eaa0(dir, EmptyText());
+            CRntString_Assign(dir, EmptyText());
         else
-            fn_710007eaa0(dir, UnkPathPart_ovb0109(path->data + (u32)(colon + 1), slash - colon).Str());
+            CRntString_Assign(dir, UnkPathPart_ovb0109(path->data + (u32)(colon + 1), slash - colon).Str());
     }
     if (ext) {
         if (dot < 0)
-            fn_710007eaa0(ext, EmptyText());
+            CRntString_Assign(ext, EmptyText());
         else
         {
             u32 start = dot + 1;
             u32 length = path->length - start;
-            fn_710007eaa0(ext, UnkPathPart_ovb0109(path->data + start, length).Str());
+            CRntString_Assign(ext, UnkPathPart_ovb0109(path->data + start, length).Str());
         }
     }
     if (name) {
@@ -96,7 +96,7 @@ bool fn_710008e374(const CRntString* path, CRntString* dir, CRntString* name, CR
         s32 end = dot == -1 ? (s32)path->length : dot;
         u32 length = end - start;
         const char* text = path->data;
-        fn_710007eaa0(name, UnkPathPart_ovb0109(text + start, length).Str());
+        CRntString_Assign(name, UnkPathPart_ovb0109(text + start, length).Str());
     }
     return true;
 }

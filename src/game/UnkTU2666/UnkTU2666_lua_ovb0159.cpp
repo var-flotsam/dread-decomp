@@ -74,11 +74,11 @@ s32 fn_710108d440(lua_State* L) {
     if (fn_71010c0270(L, "s", &name)) {
         void* music = Singleton<void, 0xf18, fn_7100fd3804>(reinterpret_cast<void*&>(g_unk_71726bc560));
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         UnkMusicMode mode;
         mode.kind = 0x14;
         fn_7100fd90d8(1.1f, 0.5f, music, reinterpret_cast<CRntString*>(&key), 8, &mode, 1, 0, nullptr);
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return 0;
 }
@@ -93,12 +93,12 @@ s32 fn_7101077360(lua_State* L) {
     if (fn_71010c0270(L, "ss|b", &first, &second, &flag)) {
         UnkScriptManager_ovb0085* map = Singleton<UnkScriptManager_ovb0085, 0x88, fn_710109d810>(g_unk_71727bed90);
         base::UnkNamedEntry source;
-        fn_710007e704(&source, first);
+        CRntString_ConstructFromCString(&source, first);
         base::UnkNamedEntry name;
-        fn_710007e704(&name, second);
+        CRntString_ConstructFromCString(&name, second);
         fn_710109dd6c(map, &source, reinterpret_cast<UnkUnit2669Str*>(&name), true, flag);
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&name));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&source));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&name));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&source));
     }
     return 0;
 }
@@ -276,9 +276,9 @@ s32 fn_7101091a20(lua_State* L) {
     if (fn_71010c0ad0(L, 0, 1, "s", &name)) {
         void* music = Singleton<void, 0xf18, fn_7100fd3804>(reinterpret_cast<void*&>(g_unk_71726bc560));
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         playing = fn_7100fd76d4(music, reinterpret_cast<CRntString*>(&key));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return fn_71010c0b40(L, "b", playing);
 }

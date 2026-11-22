@@ -172,7 +172,7 @@ s32 fn_7101090f50(lua_State* L) {
     if (fn_71010c0270(L, "sffi", &name, &first, &second, &arg)) {
         void* manager = MusicManager_b0161();
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         u32* zero = &g_unk_717274f508;
         if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_717274f510), __ATOMIC_ACQUIRE) & 1), 0)) {
             if (__cxa_guard_acquire(&g_unk_717274f510)) {
@@ -183,7 +183,7 @@ s32 fn_7101090f50(lua_State* L) {
         alignas(8) u32 mode = *zero;
         fn_7100fd90d8(first, second, manager, reinterpret_cast<CRntString*>(&key), 7,
                       reinterpret_cast<const UnkMusicMode*>(&mode), arg, 0, nullptr);
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return 0;
 }
@@ -409,10 +409,10 @@ s32 fn_71010846e0(lua_State* L) {
     if (!triggers)
         return 1;
     base::UnkNamedEntry key;
-    fn_710007e704(&key, second);
+    CRntString_ConstructFromCString(&key, second);
     bool found = fn_7100a60104(static_cast<UnkTriggerList_A5_b72*>(triggers), *reinterpret_cast<const CRntString*>(&key));
     s32 result = fn_71010c0b40(L, "b", found);
-    fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+    CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     return result;
 }
 

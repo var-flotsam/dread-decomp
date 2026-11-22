@@ -64,12 +64,12 @@ static inline bool Contains(UnkLuaId_ovb0139& id, UnkLuaId_ovb0139& key) {
     ++key.Data()->reads;
     const char* k = key.Data()->text.data;
     ++id.Data()->reads;
-    return id.data != &g_unk_7101d47108->empty && fn_710007fb9c(&id.Data()->text, k);
+    return id.data != &g_unk_7101d47108->empty && CRntString_Contains(&id.Data()->text, k);
 }
 // Whether the id's text contains a literal (false for the empty id).
 static inline bool ContainsText(UnkLuaId_ovb0139& id, const char* key) {
     ++id.Data()->reads;
-    return id.data != &g_unk_7101d47108->empty && fn_710007fb9c(&id.Data()->text, key);
+    return id.data != &g_unk_7101d47108->empty && CRntString_Contains(&id.Data()->text, key);
 }
 
 struct UnkLuaCallback1Event_ovb0139 {

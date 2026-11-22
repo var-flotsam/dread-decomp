@@ -63,7 +63,7 @@ void fn_7101183f84(UnkCreditsCtor_ovb0070* self) {
     self->field_0xa70 = nullptr;
     self->field_0xa78 = nullptr;
     self->field_0xa80 = 0;
-    fn_710007e77c(&self->name, "CREDITS");
+    CRntString_AssignCString(&self->name, "CREDITS");
     self->field_0x38 = true;
     self->field_0x39 = true;
 }

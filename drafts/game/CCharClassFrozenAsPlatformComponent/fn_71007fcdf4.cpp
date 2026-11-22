@@ -46,8 +46,8 @@ void fn_71007fcdf4(const char* text, const char* delimiter, UnkStringList_l7fcdf
     UnkStringNode_l7fcdf4* old = list->head;
     while (old) {
         UnkStringNode_l7fcdf4* next = old->next;
-        fn_710007ed40(&old->string);
-        fn_710007ecd4(&old->string);
+        CRntString_Clear(&old->string);
+        CRntString_Destroy(&old->string);
         list->allocator->vf_0x48(old);
         old = next;
     }
@@ -102,7 +102,7 @@ void fn_71007fcdf4(const char* text, const char* delimiter, UnkStringList_l7fcdf
         void* mem = list->allocator->vf_0x40(sizeof(UnkStringNode_l7fcdf4), 8, list->flags);
         UnkStringNode_l7fcdf4* node = static_cast<UnkStringNode_l7fcdf4*>(mem);
         if (node) {
-            fn_710007e6e4(&node->string, reinterpret_cast<base::UnkAllocator*>(&node->pool_vtable));
+            CRntString_InitWithAllocator(&node->string, reinterpret_cast<base::UnkAllocator*>(&node->pool_vtable));
             node->pool_vtable = reinterpret_cast<char*>(g_unk_7101a1b750) + 0x10;
             node->field_0xb8 = 0;
             node->field_0xc0 = 0;
@@ -119,7 +119,7 @@ void fn_71007fcdf4(const char* text, const char* delimiter, UnkStringList_l7fcdf
             list->tail = node;
         }
         u32 length = (u32)(end - text);
-        fn_710007e7f8(&node->string, text, length);
+        CRntString_AssignPrefix(&node->string, text, length);
         u32 step = length + (u32)delimiter_length;
         consumed += step;
         text += step;

@@ -94,7 +94,7 @@ void fn_7100a8a1ec(UnkSaveStation_la8a1ec* self) {
     black.y = 0.0f;
     black.z = 0.0f;
     fn_7101053c14(fx, &black, delay, duration, 1.0f);
-    if (!fn_710007f140(&reinterpret_cast<UnkSaveStationManager_la8a1ec*>(g_unk_7101d47310)->mode, "MAINMENU")) {
+    if (!CRntString_EqualsCString(&reinterpret_cast<UnkSaveStationManager_la8a1ec*>(g_unk_7101d47310)->mode, "MAINMENU")) {
         self->vf_0x2b8(false);
         return;
     }

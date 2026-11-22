@@ -21,12 +21,12 @@ struct UnkScratchString {
     alignas(8) u8 storage[sizeof(CRntString)];
     CRntString* Get() { return reinterpret_cast<CRntString*>(storage); }
     UnkScratchString() { fn_710007e6c4(storage); }
-    ~UnkScratchString() { fn_710007ecd4(Get()); }
+    ~UnkScratchString() { CRntString_Destroy(Get()); }
 };
 
 bool fn_710015dc04(UnkUnit180Table* table, const void* key, u32* outIndex) {
     static UnkScratchString s_name;
-    fn_710007e77c(s_name.Get(), static_cast<const char*>(key));
+    CRntString_AssignCString(s_name.Get(), static_cast<const char*>(key));
     for (u64 i = 0; i < table->count; ++i) {
         if (fn_710007f120(reinterpret_cast<const UnkCompared_0x30*>(table->blocks + i * 0xd8),
                           reinterpret_cast<const UnkCompared_0x30*>(s_name.Get()))) {

@@ -170,8 +170,8 @@ void fn_71011f3cfc(UnkGuiModel3D_ovb0109* self) {
         if (--p->ref_count == 0)
             fn_710001737c(p);
     }
-    fn_710007ecd4(&self->field_0x1e0);
-    fn_710007ecd4(&self->model_path);
+    CRntString_Destroy(&self->field_0x1e0);
+    CRntString_Destroy(&self->model_path);
     self->char_class_name.Reset();
     fn_71011ccfb4(reinterpret_cast<char*>(self));
 }

@@ -75,8 +75,8 @@ void fn_71008de3e0(UnkDoorShieldLifeObj_ovb0001* self) {
     self->lists[2].Free();
     self->lists[1].Free();
     self->lists[0].Free();
-    fn_710007ecd4(reinterpret_cast<CRntString*>(self->field_0x3b8));
-    fn_710007ecd4(&self->name);
+    CRntString_Destroy(reinterpret_cast<CRntString*>(self->field_0x3b8));
+    CRntString_Destroy(&self->name);
     fn_71008e05e8(self);
 }
 

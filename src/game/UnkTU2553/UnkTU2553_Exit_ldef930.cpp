@@ -118,7 +118,7 @@ static inline T* Instance(T*& slot, u64 size, void (*construct)(T*)) {
 
 static inline bool IsEditor(UnkGameManager* self) {
     char* object = static_cast<char*>(self->field_0x498);
-    return object && fn_710007f140(reinterpret_cast<const CRntString*>(object + 8), "EDITOR");
+    return object && CRntString_EqualsCString(reinterpret_cast<const CRntString*>(object + 8), "EDITOR");
 }
 
 static inline UnkExitActor* Target(UnkExitHandle* handle) {
@@ -163,7 +163,7 @@ void fn_7100def930(UnkGameManager* self, u32 flags) {
         {
             UnkExitScriptHost* current = reinterpret_cast<UnkExitScriptHost*>(self->field_0x608);
             ++current->env->field_0x44;
-            CRntString name = fn_710007ef90(&current->env->name, "_auto");
+            CRntString name = CRntString_ConcatCString(&current->env->name, "_auto");
             fn_710109d890(scripts, &name);
         }
         scripts = Instance(g_unk_71727bed90, 0x88, fn_710109d810);

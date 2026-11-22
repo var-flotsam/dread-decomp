@@ -14,7 +14,7 @@ struct UnkFloatingPropActingComponent : UnkBaseComponent {
 
 void fn_71007e62f0(UnkFloatingPropActingComponent* self) {
     self->vtable = g_unk_7101a73768 + 2;
-    fn_710007ecd4(&self->field_0x60);
+    CRntString_Destroy(&self->field_0x60);
     if (UnkRefObject* p = self->field_0x40) {
         if (--p->ref_count == 0)
             p->vf_0x10();

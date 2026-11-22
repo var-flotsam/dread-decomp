@@ -40,7 +40,7 @@ static inline void ReleaseTemporary(CRntString& s) {
 // inlined) is emitted in a different shape: the original keeps the old data pointer in a register
 // and tests it again after the clear. Ours also calls the string's destructor (fn_710007ecd4) for each
 // temporary where the original has that same body inlined. The behaviour is the same.
-void fn_710007e7f8(CRntString* self, const char* str, u32 length) {
+void CRntString_AssignPrefix(CRntString* self, const char* str, u32 length) {
     if (self->borrowed)
         return;
     if (length == 0) {
@@ -68,8 +68,8 @@ void fn_710007e7f8(CRntString* self, const char* str, u32 length) {
             tmp.field_0x138 = 0;
             tmp.field_0x140 = 0;
             tmp.allocator_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
-            fn_710007e7f8(&tmp.str, str, n);
-            fn_710007ebc8(self, tmp.str.data, tmp.str.length, tmp.str.key);
+            CRntString_AssignPrefix(&tmp.str, str, n);
+            CRntString_SetText(self, tmp.str.data, tmp.str.length, tmp.str.key);
             ReleaseTemporary(tmp.str);
         } else {
             if (n == 0xffffffff)
@@ -81,12 +81,12 @@ void fn_710007e7f8(CRntString* self, const char* str, u32 length) {
             tmp.length = 0;
             tmp.key = -1;
             tmp.allocator = nullptr;
-            fn_710007e7f8(&tmp, str, n);
-            fn_710007ebc8(self, tmp.data, tmp.length, tmp.key);
+            CRntString_AssignPrefix(&tmp, str, n);
+            CRntString_SetText(self, tmp.data, tmp.length, tmp.key);
             ReleaseTemporary(tmp);
         }
     } else {
-        fn_710007ebc8(self, nullptr, n, 0);
+        CRntString_SetText(self, nullptr, n, 0);
         strncpy(self->data, str, n);
         self->data[n] = 0;
         self->length = n;

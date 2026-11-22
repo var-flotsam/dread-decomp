@@ -22,7 +22,7 @@ using namespace base::global;
 // A counted prefix of a C string, on 0x100 bytes of inline storage.
 struct UnkPairText : UnkBufferString<0x100, g_unk_7101a194b8> {
     __attribute__((always_inline)) UnkPairText(const char* str, u32 length) {
-        fn_710007e7f8(Str(), str, length);
+        CRntString_AssignPrefix(Str(), str, length);
     }
 };
 
@@ -93,7 +93,7 @@ static inline void UnkTakeId(base::UnkStrIdMemberOf<g_unk_7101d47200>& id,
 // Splits `text` at its first ':' (a colon at the very start does not count) into the string id
 // before it and the file path after it. Without one both are emptied.
 void fn_710001a8b4(UnkStrIdPathPair* self, const CRntString* text) {
-    s32 colon = fn_710007facc(text, ':', 0);
+    s32 colon = CRntString_FindChar(text, ':', 0);
     if (colon > 0) {
         UnkTakeId(self->id, UnkTextId<g_unk_7101d47108>(UnkPairText(text->data, colon)));
         u32 start = colon + 1;

@@ -110,11 +110,11 @@ static_assert(__builtin_offsetof(UnkDialog_lb018fc, cancel_function) == 0x2e8, "
 // Whether the menu of the current mode (in game or main menu) is idle (state 9).
 static inline bool MenuIdle() {
     UnkDlgModeHolder_lb018fc* mode = static_cast<UnkDlgModeHolder_lb018fc*>(g_unk_7101d47310->field_0x498);
-    if (fn_710007f140(&mode->name, "INGAME") &&
+    if (CRntString_EqualsCString(&mode->name, "INGAME") &&
         reinterpret_cast<UnkDlgIngameMenu_lb018fc*>(fn_7100deac84(g_unk_7101d47310))->state != 9)
         return false;
     mode = static_cast<UnkDlgModeHolder_lb018fc*>(g_unk_7101d47310->field_0x498);
-    if (fn_710007f140(&mode->name, "MAINMENU")) {
+    if (CRntString_EqualsCString(&mode->name, "MAINMENU")) {
         base::reflection::UnkReflObject* obj = fn_7100e033a8(g_unk_7101d47310);
         auto* menu = fn_710009d50c(obj->vf_0x0(), fn_7100b34230()) ? reinterpret_cast<UnkDlgMainMenu_lb018fc*>(obj)
                                                                   : nullptr;

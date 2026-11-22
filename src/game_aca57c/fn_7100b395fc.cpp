@@ -36,7 +36,7 @@ struct UnkRefPtr {
 struct UnkNameHolder {
     CRntString name;
 
-    __attribute__((always_inline)) ~UnkNameHolder() { fn_710007ed40(&name); }
+    __attribute__((always_inline)) ~UnkNameHolder() { CRntString_Clear(&name); }
 };
 
 __attribute__((always_inline)) static inline void SetVtable(void* self, void** vtable) {

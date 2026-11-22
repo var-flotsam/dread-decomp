@@ -218,8 +218,8 @@ struct UnkIdText_A5_b75 {
     union {
         CRntString str;
     };
-    explicit UnkIdText_A5_b75(const CStrId* id) { fn_710007eb20(&str, reinterpret_cast<const UnkPooledStrId*>(id)); }
-    ~UnkIdText_A5_b75() { fn_710007ecd4(&str); }
+    explicit UnkIdText_A5_b75(const CStrId* id) { CRntString_ConstructFromStrId(&str, reinterpret_cast<const UnkPooledStrId*>(id)); }
+    ~UnkIdText_A5_b75() { CRntString_Destroy(&str); }
 };
 void fn_7100af2b94(UnkReflObject* inspector, const UnkText_A5_b75& text, const CStrId& path);
 
@@ -242,8 +242,8 @@ static inline __attribute__((always_inline)) void Show_A5_b75(UnkGallery_A5_b75*
         fn_71011d94d4(reinterpret_cast<UnkGuiDisplayObject*>(entry.item), CStrId("Image", true))));
     UnkIdText_A5_b75 name(&static_cast<const CStrId&>(image->texture ? CStrId(*image->texture) : CStrId("", true)));
     CRntString path(name.str);
-    fn_710007f564(&path, "/");
-    fn_710007f3b4(&path, &name.str);
+    CRntString_AppendCString(&path, "/");
+    CRntString_Append(&path, &name.str);
     Send(self->inspector, UnkText_A5_b75(label->text), CStrId(path.data ? path.data : "", true));
     if (entry.item->id.data == g_unk_717275ce28.data)
         reinterpret_cast<void (*)(UnkGallery_A5_b75*, UnkGalleryItem_A5_b75*)>(self->vtable[0x268 / 8])(self,
@@ -309,12 +309,12 @@ using UnkName_A5_b75 = UnkBufferString<0x100, g_unk_7101a194b8>;
 
 struct UnkNameFromId_A5_b75 : UnkName_A5_b75 {
     __attribute__((always_inline)) explicit UnkNameFromId_A5_b75(const CStrId& id) {
-        fn_710007eb6c(Str(), &id);
+        CRntString_AssignStrId(Str(), &id);
     }
 };
 struct UnkNamePart_A5_b75 : UnkName_A5_b75 {
     __attribute__((always_inline)) UnkNamePart_A5_b75(const char* str, u32 length) {
-        fn_710007e7f8(Str(), str, length);
+        CRntString_AssignPrefix(Str(), str, length);
     }
 };
 
@@ -362,13 +362,13 @@ void fn_7100af94e4(UnkGallery_A5_b75* self) {
         auto* image = reinterpret_cast<UnkGuiImage_A5_b75*>(AsKind_A5_b75<fn_71011f6890>(
             fn_71011d94d4(reinterpret_cast<UnkGuiDisplayObject*>(entry.item), CStrId("Image", true))));
         UnkNameFromId_A5_b75 name(image->texture ? CStrId(*image->texture) : CStrId("", true));
-        u32 start = fn_710007fb54(name.Str(), "__", 0) + 1;
+        u32 start = CRntString_Find(name.Str(), "__", 0) + 1;
         u32 length = name.Str()->length - start;
         const char* rest = name.Str()->data + start;
-        fn_710007eaa0(name.Str(), UnkNamePart_A5_b75(rest, length).Str());
+        CRntString_Assign(name.Str(), UnkNamePart_A5_b75(rest, length).Str());
         UnkName_A5_b75 path(name);
-        fn_710007f564(path.Str(), "/");
-        fn_710007f3b4(path.Str(), name.Str());
+        CRntString_AppendCString(path.Str(), "/");
+        CRntString_Append(path.Str(), name.Str());
         fn_7100af2db4(self->inspector, UnkText_A5_b75(label->text),
                       CStrId(path.Str()->data ? path.Str()->data : "", true));
         if (entry.item->id.data == g_unk_717275ce28.data)

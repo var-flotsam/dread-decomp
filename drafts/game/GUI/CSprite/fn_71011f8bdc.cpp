@@ -36,7 +36,7 @@ void fn_71011f8f80(UnkGuiSprite_l1f8bdc* self, void* image, CStrId id);
 
 // A counted prefix of a C string, on 0x100 bytes of inline storage.
 struct UnkSpriteText_l1f8bdc : UnkBufferString<0x100, g_unk_7101a194b8> {
-    UnkSpriteText_l1f8bdc(const char* str, u32 length) { fn_710007e7f8(Str(), str, length); }
+    UnkSpriteText_l1f8bdc(const char* str, u32 length) { CRntString_AssignPrefix(Str(), str, length); }
 };
 
 // The id a text gives (fn_7100000850), released as CStrId is.
@@ -72,7 +72,7 @@ void fn_71011f8bdc(UnkGuiDisplayObject* self, CStrId id) {
     if (id.data == &g_unk_7101d47108->empty)
         return;
 
-    s32 slash = fn_710007facc(&base::reflection::refl_RntStringOf(id), '/', 0);
+    s32 slash = CRntString_FindChar(&base::reflection::refl_RntStringOf(id), '/', 0);
     const CRntString& path = base::reflection::refl_RntStringOf(id);
     u32 sheet_length = slash == -1 ? path.length : slash;
     UnkSpriteStrId_l1f8bdc sheet(UnkSpriteText_l1f8bdc(path.data, sheet_length));

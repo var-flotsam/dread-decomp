@@ -34,8 +34,8 @@ struct UnkWeaponMovement_lac6ed0 {
 
 // A string on 0x100 bytes of inline storage, copied from a string or from part of one.
 struct UnkText_lac6ed0 : UnkBufferString<0x100, g_unk_7101a194b8> {
-    explicit UnkText_lac6ed0(const CRntString& text) { fn_710007eaa0(Str(), &text); }
-    UnkText_lac6ed0(const char* str, u32 length) { fn_710007e7f8(Str(), str, length); }
+    explicit UnkText_lac6ed0(const CRntString& text) { CRntString_Assign(Str(), &text); }
+    UnkText_lac6ed0(const char* str, u32 length) { CRntString_AssignPrefix(Str(), str, length); }
 };
 
 // The id's whole string, counting the read.
@@ -59,14 +59,14 @@ s32 fn_7100ac6ed0(UnkWeaponMovement_lac6ed0* self, const base::UnkRefHandle* hit
     s32 value;
     if (kind == CStrId("HUSK", true)) {
         UnkText_lac6ed0 text(StringOf(object->name));
-        u32 start = fn_710007fb54(text.Str(), "husk", 0) + 4;
+        u32 start = CRntString_Find(text.Str(), "husk", 0) + 4;
         u32 length = text.Str()->length - start;
         const char* rest = text.Str()->data + start;
         UnkText_lac6ed0 digits(rest, length);
         value = -NumberOr1(digits);
     } else if (kind == CStrId("HIT", true)) {
         UnkText_lac6ed0 text(StringOf(object->name));
-        u32 start = fn_710007fb54(text.Str(), "hit", 0) + 3;
+        u32 start = CRntString_Find(text.Str(), "hit", 0) + 3;
         u32 length = text.Str()->length - start;
         const char* rest = text.Str()->data + start;
         UnkText_lac6ed0 digits(rest, length);

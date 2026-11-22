@@ -42,7 +42,7 @@ static inline void SetKindFromId(char* self, const CStrId& id) {
         kind = 0;
     } else {
         ++Text(id)->field_0x44;
-        if (id.data != &g_unk_7101d47108->empty && fn_710007fb9c(&Text(id)->str, "|")) {
+        if (id.data != &g_unk_7101d47108->empty && CRntString_Contains(&Text(id)->str, "|")) {
             ++Text(id)->field_0x44;
             const char* s = Text(id)->str.data;
             kind = Parse(s ? s : "");
@@ -150,7 +150,7 @@ static inline s32 ParseKinds(const char* text, const char* all = "All") {
     s32 kinds = 0;
     for (UnkListNode<0x30>* node = parts.field_0x10; node; node = node->next) {
         const CRntString* part = reinterpret_cast<const CRntString*>(node);
-        if (fn_710007f140(part, all))
+        if (CRntString_EqualsCString(part, all))
             kinds = -1;
         else
             kinds |= PartKind(part);
@@ -160,11 +160,11 @@ static inline s32 ParseKinds(const char* text, const char* all = "All") {
 }
 
 static inline s32 PolyEdgeKind(const CRntString* part) {
-    if (fn_710007f140(part, "Poly"))
+    if (CRntString_EqualsCString(part, "Poly"))
         return 1;
-    if (fn_710007f140(part, "Edge"))
+    if (CRntString_EqualsCString(part, "Edge"))
         return 2;
-    return fn_710007f140(part, "All") ? -1 : 0;
+    return CRntString_EqualsCString(part, "All") ? -1 : 0;
 }
 
 s32 fn_7100415050(const char* text) { return ParseKinds<PolyEdgeKind>(text); }

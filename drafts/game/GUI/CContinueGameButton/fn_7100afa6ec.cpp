@@ -139,7 +139,7 @@ void fn_7100afa6ec(UnkContinueGameButton_lafa6ec* self) {
             }
             {
                 CRntString id(text);
-                fn_710007eaa0(&info.profile_id, &id);
+                CRntString_Assign(&info.profile_id, &id);
             }
             UnkProfileSaveArg arg = {nullptr, nullptr};
             fn_7100df99f8(g_unk_7101d47310, 0, &arg, false);
@@ -161,6 +161,6 @@ void fn_7100afa6ec(UnkContinueGameButton_lafa6ec* self) {
             }
         }
         CRntString id(text);
-        fn_710007eaa0(&info.profile_id, &id);
+        CRntString_Assign(&info.profile_id, &id);
     }
 }

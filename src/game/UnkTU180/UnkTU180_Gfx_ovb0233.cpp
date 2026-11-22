@@ -40,9 +40,9 @@ void fn_710015d5d8(UnkNamedTable_b0233d3* self, u32 newCapacity) {
     if (old) {
         UnkNamedEntry_b0233d3* dst = newEntries;
         for (u32 i = 0; i < self->count; i++) {
-            fn_710007eab4(&dst->name, &old->name);
+            CRntString_MoveConstruct(&dst->name, &old->name);
             __builtin_memcpy(dst->extra, old->extra, sizeof(dst->extra));
-            fn_710007ecd4(&old->name);
+            CRntString_Destroy(&old->name);
             dst++;
             old++;
         }

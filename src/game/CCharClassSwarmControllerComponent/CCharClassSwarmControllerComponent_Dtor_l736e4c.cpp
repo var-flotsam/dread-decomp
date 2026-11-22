@@ -69,12 +69,12 @@ void fn_7100736e4c(UnkSwarmController_l736e4c* self) {
     self->field_0x334.Clear();
     self->field_0x2e8.Destroy();
     self->field_0x2a0.Destroy();
-    fn_710007ecd4(&self->field_0x270);
-    fn_710007ecd4(&self->field_0x240);
-    fn_710007ecd4(&self->field_0x210);
-    fn_710007ecd4(&self->field_0x1e0);
-    fn_710007ecd4(&self->field_0x1b0);
-    fn_710007ecd4(&self->field_0x180);
+    CRntString_Destroy(&self->field_0x270);
+    CRntString_Destroy(&self->field_0x240);
+    CRntString_Destroy(&self->field_0x210);
+    CRntString_Destroy(&self->field_0x1e0);
+    CRntString_Destroy(&self->field_0x1b0);
+    CRntString_Destroy(&self->field_0x180);
     fn_71008c2de0(self->field_0x110);
     self->field_0x70.Reset();
     fn_71011acd74(reinterpret_cast<UnkIdObject*>(self));

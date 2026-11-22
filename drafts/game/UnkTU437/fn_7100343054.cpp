@@ -294,7 +294,7 @@ void fn_7100343054(UnkAim_l343054* self) {
     self->field_0x2d8 = 0;
 
     self->input.vtable = g_unk_7101a22878 + 2;
-    fn_710007e704(&self->input.name, "AIM_INPUT");
+    CRntString_ConstructFromCString(&self->input.name, "AIM_INPUT");
     self->input.capacity = 20;
     // An array of 20 0x1c-byte entries, after its element count.
     u64* block = static_cast<u64*>(fn_7100083ba0(0x238, 5));

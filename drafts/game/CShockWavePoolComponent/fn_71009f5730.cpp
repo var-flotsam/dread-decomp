@@ -103,7 +103,7 @@ void fn_71009f5730(char* p) {
     self->field_0x141 = false;
     new (&self->field_0x148) CFilePathStrId(g_unk_710162e2ed, true);
     new (&self->field_0x150) CFilePathStrId(g_unk_710162e2ed, true);
-    fn_710007e704(&self->field_0x158, g_unk_710162e2ed);
+    CRntString_ConstructFromCString(&self->field_0x158, g_unk_710162e2ed);
     self->field_0x188 = 0;
     self->field_0x190 = false;
     self->field_0x194 = UnkPair2_l9f5730{1.0f, 0.0f, 0.0f, 1.0f};

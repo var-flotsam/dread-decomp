@@ -20,9 +20,9 @@ struct UnkMovedString {
     UnkMovedString(UnkMovedString&& other);
     ~UnkMovedString();
 };
-__attribute__((always_inline)) inline UnkMovedString::~UnkMovedString() { fn_710007ecd4(reinterpret_cast<CRntString*>(this)); }
+__attribute__((always_inline)) inline UnkMovedString::~UnkMovedString() { CRntString_Destroy(reinterpret_cast<CRntString*>(this)); }
 __attribute__((always_inline)) inline UnkMovedString::UnkMovedString(UnkMovedString&& other) {
-    fn_710007eab4(reinterpret_cast<CRntString*>(this), reinterpret_cast<CRntString*>(&other));
+    CRntString_MoveConstruct(reinterpret_cast<CRntString*>(this), reinterpret_cast<CRntString*>(&other));
 }
 
 // A string with its own inline storage, copied (not moved) by fn_710007eaa0.
@@ -40,15 +40,15 @@ struct UnkStrBuffer {
     ~UnkStrBuffer();
 };
 __attribute__((always_inline)) inline UnkStrBuffer::~UnkStrBuffer() {
-    fn_710007ed40(reinterpret_cast<CRntString*>(this));
-    fn_710007ecd4(reinterpret_cast<CRntString*>(this));
+    CRntString_Clear(reinterpret_cast<CRntString*>(this));
+    CRntString_Destroy(reinterpret_cast<CRntString*>(this));
 }
 __attribute__((always_inline)) inline UnkStrBuffer::UnkStrBuffer(const UnkStrBuffer& other) {
-    fn_710007e6e4(reinterpret_cast<CRntString*>(this), reinterpret_cast<UnkAllocator*>(&storage));
+    CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<UnkAllocator*>(&storage));
     storage.vtable = g_unk_7101a1b5a0 + 2;
     storage.field_0x28 = nullptr;
     storage.field_0x30 = 0;
-    fn_710007eaa0(reinterpret_cast<CRntString*>(this), reinterpret_cast<const CRntString*>(&other));
+    CRntString_Assign(reinterpret_cast<CRntString*>(this), reinterpret_cast<const CRntString*>(&other));
 }
 
 // Plain values copied as a whole.

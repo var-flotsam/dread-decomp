@@ -79,7 +79,7 @@ static inline bool Parse(UnkFileReader* reader, UnkReadTarget* target) {
 // Whether a link's path names a smart link file (reading the path's text counts as a read).
 static inline bool IsSmartLinkFile(const CFilePathStrId& path) {
     ++path.data->reads;
-    return path.data != &g_unk_7101d47200->empty && fn_710007fb9c(&path.data->String(), ".bmslink");
+    return path.data != &g_unk_7101d47200->empty && CRntString_Contains(&path.data->String(), ".bmslink");
 }
 
 bool fn_7100265e24(UnkSmartLinkGroup_l265e24* self) {

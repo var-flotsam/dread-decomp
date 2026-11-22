@@ -211,14 +211,14 @@ static inline UnkScriptManager_ovb0085* ScriptManager() {
 }
 
 UnkGuiHandle fn_71011b6030(UnkGuiRoot* root, const CRntString& name, const CRntString& path, UnkPropBag* bag) {
-    s32 slash = fn_710007fb10(&path, '/', -1);
+    s32 slash = CRntString_FindLastChar(&path, '/', -1);
     u32 start = slash + 1;
-    s32 dot = fn_710007fb10(&path, '.', -1);
+    s32 dot = CRntString_FindLastChar(&path, '.', -1);
     s32 end = dot == -1 ? (s32)path.length : dot;
     u32 length = end - start;
     const char* text = path.data + start;
     UnkBufferString<0x100, g_unk_7101a194b8> part;
-    fn_710007e7f8(part.Str(), text, length);
+    CRntString_AssignPrefix(part.Str(), text, length);
     UnkScriptManager_ovb0085* manager = ScriptManager();
     UnkWeakHandle* handle = nullptr;
     if (u32 script = fn_710109dd6c(manager, const_cast<CRntString*>(&path),

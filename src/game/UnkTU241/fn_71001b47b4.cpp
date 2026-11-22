@@ -19,14 +19,14 @@ struct UnkInlineString_71001b47b4 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_71001b47b4() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
     }
     ~UnkInlineString_71001b47b4() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -59,7 +59,7 @@ u32 fn_71001b47b4(UnkNameList_71001b47b4* self, const char* name) {
     }
 
     UnkInlineString_71001b47b4 key;
-    fn_710007e77c(key.Str(), lower);
+    CRntString_AssignCString(key.Str(), lower);
 
     u32 found = 0xffffffff;
     if (self->count != 0) {

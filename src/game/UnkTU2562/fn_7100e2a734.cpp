@@ -29,7 +29,7 @@ struct UnkBillboardManager_e2a734 {
     CDrop billboard;  // 0x9b20
 };
 
-static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
+static inline CRntString operator+(const CRntString& a, const CRntString& b) { return CRntString_Concat(&a, &b); }
 
 // Points a drop's model record at the ids parsed from a path (the path is built first).
 static inline void LoadPath(const CRntString& path, UnkStrIdPathResource* model) {

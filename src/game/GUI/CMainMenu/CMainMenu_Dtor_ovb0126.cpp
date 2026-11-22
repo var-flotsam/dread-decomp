@@ -72,7 +72,7 @@ struct UnkMainMenuMember2f8Holder_ovb0126 {
 struct UnkMainMenuString_ovb0126 {
     u8 storage[0x30];
     __attribute__((always_inline)) ~UnkMainMenuString_ovb0126() {
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this));
     }
 };
 

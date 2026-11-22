@@ -15,7 +15,7 @@ inline UnkLogicActionBase::~UnkLogicActionBase() { fn_7100a55ab8(this); }
 
 struct UnkLogicActionString {
     u64 unk_0x0[0x30 / 8];
-    ~UnkLogicActionString() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
+    ~UnkLogicActionString() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this)); }
 };
 
 extern void* g_unk_7101a8f358[];

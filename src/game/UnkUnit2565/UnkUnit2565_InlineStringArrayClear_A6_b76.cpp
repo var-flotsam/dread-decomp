@@ -12,8 +12,8 @@ struct UnkInlineStringRecord_A6_b76 {
     u8 unk_0x30[0x218];
 
     ~UnkInlineStringRecord_A6_b76() {
-        fn_710007ed40(reinterpret_cast<base::global::CRntString*>(str));
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(str));
+        CRntString_Clear(reinterpret_cast<base::global::CRntString*>(str));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(str));
     }
 };
 static_assert(sizeof(UnkInlineStringRecord_A6_b76) == 0x248, "layout");

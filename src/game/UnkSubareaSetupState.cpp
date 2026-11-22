@@ -273,8 +273,8 @@ struct UnkSetupIdText {
         CRntString str;
     };
 
-    explicit UnkSetupIdText(const void* id) { fn_710007eb20(&str, static_cast<const UnkPooledStrId*>(id)); }
-    ~UnkSetupIdText() { fn_710007ecd4(&str); }
+    explicit UnkSetupIdText(const void* id) { CRntString_ConstructFromStrId(&str, static_cast<const UnkPooledStrId*>(id)); }
+    ~UnkSetupIdText() { CRntString_Destroy(&str); }
 };
 
 // A definition whose qualified id is kept as a string, with named sub-ids looked up in a map
@@ -303,14 +303,14 @@ struct UnkSetupStr {
     CRntString* Str() { return reinterpret_cast<CRntString*>(this); }
 
     UnkSetupStr() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
         storage.vtable = g_unk_7101a194b8 + 2;
         storage.field_0x108 = nullptr;
         storage.field_0x110 = 0;
     }
     ~UnkSetupStr() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -367,7 +367,7 @@ void fn_7100faba64(UnkSubareaSetupState* self, CBlackboard* blackboard) {
     UnkSetupStr read;
     bool ok = ReadString(blackboard, fn_71011a2fbc(points), SubId(g_unk_71729ee018, self->name), read.Str());
     if (ok)
-        fn_710007eaa0(&chain.str, read.Str());
+        CRntString_Assign(&chain.str, read.Str());
     UnkSetupStrList parts;
     InitStrList(&parts);
     fn_71000730a0(chain.str.data, ">", &parts);

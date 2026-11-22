@@ -21,8 +21,8 @@ struct UnkInlineString80_A2_b74 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     ~UnkInlineString80_A2_b74() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 

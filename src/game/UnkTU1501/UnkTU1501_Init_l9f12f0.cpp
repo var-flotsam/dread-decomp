@@ -70,10 +70,10 @@ void fn_71009f12f0() {
     InitId(&g_unk_7172740fc8.field_0x48, "RightLeg");
     {
         base::UnkNamedEntry path;
-        fn_710007e704(&path, "audiopreset:system/snd/presets/samus/samus_run_r");
+        CRntString_ConstructFromCString(&path, "audiopreset:system/snd/presets/samus/samus_run_r");
         new (g_unk_7172740fc8.field_0xa0)
             UnkPathIdsFromText(*reinterpret_cast<const base::global::CRntString*>(&path));
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&path));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&path));
     }
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_7100333544), g_unk_7172740fc8.field_0xa0, g_unk_7101a19000);
     InitId(&g_unk_7172740fc8.field_0x50, "Auto");

@@ -27,11 +27,11 @@ s32 fn_7101078f80(lua_State* L) {
         CRntString string;
     } result;
     base::UnkNamedEntry key;
-    fn_710007e704(&key, name);
+    CRntString_ConstructFromCString(&key, name);
     new (&result.string) CRntString(fn_7100dfb1b0(manager, &key));
-    fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+    CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     const char* text = result.string.data ? result.string.data : g_unk_710162e2ed;
     s32 ret = fn_71010c0b40(L, "s", text);
-    fn_710007ecd4(&result.string);
+    CRntString_Destroy(&result.string);
     return ret;
 }

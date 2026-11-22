@@ -72,7 +72,7 @@ s32 fn_71012034b0(UnkUserDataOwner* self, u32 kind, const CRntString* scenario, 
     CRntString s2("");
     CRntString s3("");
     if (kind == 4 || kind == 1)
-        fn_710007e77c(&project, "Project");
+        CRntString_AssignCString(&project, "Project");
     fn_7100fc7920(self->loader, kind, scenario, name, blackboards, a, fn, c, &project, &s2, &s3);
     {
         UnkMutexLock state(&self->stateMutex);

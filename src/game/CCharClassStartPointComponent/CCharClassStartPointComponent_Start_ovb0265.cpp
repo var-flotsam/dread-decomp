@@ -95,16 +95,16 @@ void fn_710116c644(UnkStartPointSelf* self, UnkPlayer* player) {
     }
     if (self->actor->field_0x1e0 && self->name.data && self->name.data[0]) {
         s32 found;
-        if (fn_710007fb9c(&self->name, ".")) {
+        if (CRntString_Contains(&self->name, ".")) {
             lua_State* L = g_unk_7172a01d18;
             found = fn_71010c0bb0(L, self->name.data ? self->name.data : g_unk_710162e2ed);
         } else {
             lua_State* L = g_unk_7172a01d18;
             UnkStringSlot full;  // declared first: it gets the lower slot
             UnkStringSlot prefix;
-            new (&prefix.value) CRntString(fn_710007ef90(
+            new (&prefix.value) CRntString(CRntString_ConcatCString(
                 ScenarioName(reinterpret_cast<UnkScenarioInfo*>(g_unk_7101d47310->field_0x608)->name), "."));
-            new (&full.value) CRntString(fn_710007eee0(&prefix.value, &self->name));
+            new (&full.value) CRntString(CRntString_Concat(&prefix.value, &self->name));
             found = fn_71010c0bb0(L, full.value.data ? full.value.data : g_unk_710162e2ed);
             full.value.~CRntString();
             prefix.value.~CRntString();

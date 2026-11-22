@@ -127,7 +127,7 @@ void fn_7100302424(CAbilityComponent* self) {
     self->current = nullptr;
     self->hold = {0, 0.0f};
     self->input.vtable = g_unk_7101a22878 + 2;
-    fn_710007e704(&self->input.name, "ABILITY_INPUT");
+    CRntString_ConstructFromCString(&self->input.name, "ABILITY_INPUT");
     self->input.capacity = 20;
     // An array of 20 0x1c-byte entries, after its element count.
     u64* block = static_cast<u64*>(fn_7100083ba0(0x238, 5));
@@ -170,7 +170,7 @@ void fn_71002fd4b0(CAbilityComponent* self) {
         fn_7100083c30(static_cast<u64*>(self->input.entries) - 1);
         self->input.entries = nullptr;
     }
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&self->input.name));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&self->input.name));
     self->abilities.Free();
     fn_71010c4194(self);
 }

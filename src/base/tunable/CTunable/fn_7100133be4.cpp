@@ -11,7 +11,7 @@ using namespace base::global;
 struct UnkString30 {
     u64 field_0x0[6];
 
-    __attribute__((always_inline)) ~UnkString30() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
+    __attribute__((always_inline)) ~UnkString30() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this)); }
 };
 
 struct UnkIdsString {
@@ -20,7 +20,7 @@ struct UnkIdsString {
     UnkStrIdTwoStep field_0x10;
     UnkString30 field_0x18;
 
-    __attribute__((always_inline)) ~UnkIdsString() { fn_710007ed40(reinterpret_cast<CRntString*>(&field_0x18)); }
+    __attribute__((always_inline)) ~UnkIdsString() { CRntString_Clear(reinterpret_cast<CRntString*>(&field_0x18)); }
 };
 
 void fn_7100133be4(UnkIdsString* self) { self->~UnkIdsString(); }

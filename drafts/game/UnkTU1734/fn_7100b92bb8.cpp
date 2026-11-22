@@ -42,7 +42,7 @@ struct UnkFadeSettings_lb92bb8 {
     u32 field_0x78;
 
     bool operator==(const UnkFadeSettings_lb92bb8& other) const {
-        return key.field_0x4 == other.key.field_0x4 && fn_710007f220(&name, &other.name);
+        return key.field_0x4 == other.key.field_0x4 && CRntString_KeysDiffer(&name, &other.name);
     }
 
     // Takes the other settings' key, name and +0x78. The original compares the two first and ignores the
@@ -50,7 +50,7 @@ struct UnkFadeSettings_lb92bb8 {
     void Set(const UnkFadeSettings_lb92bb8& other) {
         static_cast<void>(other == *this);
         key = other.key;
-        fn_710007eaa0(&name, &other.name);
+        CRntString_Assign(&name, &other.name);
         field_0x78 = other.field_0x78;
     }
 };

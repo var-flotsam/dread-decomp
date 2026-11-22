@@ -27,10 +27,10 @@ bool fn_7100089cf8(base::file::UnkFileDevice* self, const base::global::CFilePat
 void fn_71002198cc(UnkRenderManager* self, const char* type, const char* layer, const char* name, s32 frame,
                    bool flag);
 
-static inline CRntString Concat_lb72b30(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
-static inline CRntString Concat_lb72b30(const CRntString& a, const char* b) { return fn_710007ef90(&a, b); }
+static inline CRntString Concat_lb72b30(const CRntString& a, const CRntString& b) { return CRntString_Concat(&a, &b); }
+static inline CRntString Concat_lb72b30(const CRntString& a, const char* b) { return CRntString_ConcatCString(&a, b); }
 
-static inline void Assign_lb72b30(CRntString* self, const CRntString& other) { fn_710007eaa0(self, &other); }
+static inline void Assign_lb72b30(CRntString* self, const CRntString& other) { CRntString_Assign(self, &other); }
 
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 

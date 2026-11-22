@@ -31,10 +31,10 @@ inline const CRntString& StringOf(const CStrId& id) {
 
 // String concatenation.
 inline CRntString Join(const CRntString& a, const char* b) {
-    return fn_710007ef90(&a, b);
+    return CRntString_ConcatCString(&a, b);
 }
 inline CRntString Join(const CRntString& a, const CRntString& b) {
-    return fn_710007eee0(&a, &b);
+    return CRntString_Concat(&a, &b);
 }
 
 void fn_7100beaf3c(CClass* cls) {

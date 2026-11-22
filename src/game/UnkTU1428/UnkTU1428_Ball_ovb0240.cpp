@@ -439,7 +439,7 @@ void fn_710093eb64(UnkMorphBall_eb64* self) {
         UnkStrIdPathResource* preset = &self->preset;
         UnkPresetName_eb64* name = reinterpret_cast<UnkPresetName_eb64*>(sub->field_0xc0.data);
         ++name->use_count;
-        fn_71000267f8(preset, UnkPathIdsFromText(fn_710007f050("audiopreset:system/snd/presets/",
+        fn_71000267f8(preset, UnkPathIdsFromText(CRntString_ConcatCStringFirst("audiopreset:system/snd/presets/",
                                                                &reinterpret_cast<UnkPresetName_eb64*>(
                                                                     sub->field_0xc0.data)->text))
                                   .ids);

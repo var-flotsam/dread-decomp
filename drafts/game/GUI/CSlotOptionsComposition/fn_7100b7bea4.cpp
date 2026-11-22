@@ -103,7 +103,7 @@ void fn_7100b7bea4(UnkSlotOptions_lb7bea4* self, UnkGuiEvent_b49* event) {
             if (UnkSlotSummary_lb7bea4(&menu->entries[index * 4 + 1]).in_use)
                 state = "INUSE_";
         }
-        fn_710007f564(&text, state);
+        CRntString_AppendCString(&text, state);
         fn_710007f634(&text, slot + 1);
         button->target = slot;
         button->source = self->slot;

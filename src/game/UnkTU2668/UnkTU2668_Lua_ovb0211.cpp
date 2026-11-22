@@ -142,20 +142,20 @@ struct UnkInlineString_710109c6d0 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_710109c6d0() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         field_0x138 = 0;
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x140 = 0;
     }
     ~UnkInlineString_710109c6d0() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
 void fn_710109c6d0(CRntString* name, UnkInlineString_710109c6d0* out) {
-    fn_710007e77c(out->Str(), g_unk_710162e2ed);
-    s32 dot = fn_710007fb10(name, '.', -1);
+    CRntString_AssignCString(out->Str(), g_unk_710162e2ed);
+    s32 dot = CRntString_FindLastChar(name, '.', -1);
     if (dot < 0)
         return;
     const char* chars = name->data;
@@ -163,7 +163,7 @@ void fn_710109c6d0(CRntString* name, UnkInlineString_710109c6d0* out) {
     alignas(8) u8 text_raw[sizeof(UnkInlineString_710109c6d0)];
     {
         UnkInlineString_710109c6d0 stem;
-        fn_710007e7f8(stem.Str(), chars, dot);
+        CRntString_AssignPrefix(stem.Str(), chars, dot);
         lower[0] = 0;
         const char* src = stem.Str()->data;
         u32 count = strlen(src);
@@ -177,11 +177,11 @@ void fn_710109c6d0(CRntString* name, UnkInlineString_710109c6d0* out) {
             lower[length] = 0;
         }
         UnkInlineString_710109c6d0& text = *new (text_raw) UnkInlineString_710109c6d0;
-        fn_710007e77c(text.Str(), lower);
-        fn_710007eaa0(out->Str(), text.Str());
+        CRntString_AssignCString(text.Str(), lower);
+        CRntString_Assign(out->Str(), text.Str());
         text.~UnkInlineString_710109c6d0();
     }
-    fn_710007f564(out->Str(), g_unk_7101602004);
+    CRntString_AppendCString(out->Str(), g_unk_7101602004);
 }
 
 struct UnkScriptManager_ovb0085;

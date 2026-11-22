@@ -153,20 +153,20 @@ void fn_71007da730(UnkCountDown_ovb0259* self) {
         u32 minutes = static_cast<u32>(remaining) / 60;
         seconds = remaining - 60 * minutes;
         if (remaining <= 599)
-            fn_710007f564(&text, "0");
+            CRntString_AppendCString(&text, "0");
         fn_710007f634(&text, minutes);
-        fn_710007f564(&text, ":");
+        CRntString_AppendCString(&text, ":");
     } else {
         seconds = remaining;
-        fn_710007f564(&text, "00:");
+        CRntString_AppendCString(&text, "00:");
     }
     if (seconds <= 9)
-        fn_710007f564(&text, "0");
+        CRntString_AppendCString(&text, "0");
     fn_710007f634(&text, seconds);
     const char* chars = text.data;
     fn_71011ec424(label, CRntString(chars ? chars : g_unk_710162e2ed));
     fn_71011cd5a0(label);
-    fn_710007ecd4(&text);
+    CRntString_Destroy(&text);
 }
 
 struct UnkInputComponent;

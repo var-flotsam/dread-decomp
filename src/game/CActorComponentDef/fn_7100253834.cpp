@@ -36,9 +36,9 @@ struct UnkIdText_l253834 {
     };
 
     explicit UnkIdText_l253834(const base::global::CStrId& id) {
-        fn_710007eb20(&str, reinterpret_cast<const UnkPooledStrId*>(&id));
+        CRntString_ConstructFromStrId(&str, reinterpret_cast<const UnkPooledStrId*>(&id));
     }
-    ~UnkIdText_l253834() { fn_710007ecd4(&str); }
+    ~UnkIdText_l253834() { CRntString_Destroy(&str); }
 };
 
 // The registered entry for the key (CRC-64) of `name`.
@@ -58,7 +58,7 @@ UnkRegClass_b0129* fn_7100253834(const UnkKeyId_b0129* id) {
     if (fn_710009d50c(type, fn_71010c23d0())) {
         for (; type; type = type->m_parent) {
             u64 key;
-            fn_7100066630(&key, Addr(fn_710007ef90(Addr(CRntString("CCharClass")), type->m_name.Text() + 1)));
+            fn_7100066630(&key, Addr(CRntString_ConcatCString(Addr(CRntString("CCharClass")), type->m_name.Text() + 1)));
             found = FindByKey(&key);
             if (found)
                 break;
@@ -66,7 +66,7 @@ UnkRegClass_b0129* fn_7100253834(const UnkKeyId_b0129* id) {
     } else {
         while (type) {
             u64 key;
-            fn_7100066630(&key, Addr(fn_710007ef90(Addr(UnkIdText_l253834(type->m_name).str), "Def")));
+            fn_7100066630(&key, Addr(CRntString_ConcatCString(Addr(UnkIdText_l253834(type->m_name).str), "Def")));
             found = FindByKey(&key);
             type = type->m_parent;
             if (found)

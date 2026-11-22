@@ -76,16 +76,16 @@ UnkExtPair_ovb0274 fn_710001a0ac(const UnkExtKey_ovb0274* key) {
     IdText(key->path);
     u8* stemData = reinterpret_cast<u8*>(key->path.data);
     IdText(key->path);
-    s32 dot = fn_710007facc(reinterpret_cast<const CRntString*>(reinterpret_cast<u8*>(key->path.data) + 0x10), '.', 0);
+    s32 dot = CRntString_FindChar(reinterpret_cast<const CRntString*>(reinterpret_cast<u8*>(key->path.data) + 0x10), '.', 0);
     if (dot == -1)
         dot = reinterpret_cast<const CRntString*>(stemData + 0x10)->length;
     const char* stemChars = reinterpret_cast<const CRntString*>(stemData + 0x10)->data;
     UnkBufferString<0x100, g_unk_7101a194b8> text;
-    fn_710007e7f8(text.Str(), stemChars, dot);
-    fn_710007f5ac(text.Str(), '.');
-    fn_710007f3b4(text.Str(), IdText(key->id));
-    fn_710007f5ac(text.Str(), '.');
-    fn_710007f3b4(text.Str(), IdText(g_unk_7101d4e590));
+    CRntString_AssignPrefix(text.Str(), stemChars, dot);
+    CRntString_AppendChar(text.Str(), '.');
+    CRntString_Append(text.Str(), IdText(key->id));
+    CRntString_AppendChar(text.Str(), '.');
+    CRntString_Append(text.Str(), IdText(g_unk_7101d4e590));
     UnkExtPathId_ovb0274 path(*text.Str());
     return UnkExtPair_ovb0274(g_unk_7101d4e570, path.id);
 }

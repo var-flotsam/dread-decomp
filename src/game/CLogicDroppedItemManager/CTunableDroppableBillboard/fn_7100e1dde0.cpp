@@ -49,7 +49,7 @@ extern UnkSoundHandle g_unk_71727c1348;
 
 static inline void InitString_le1dde0(CRntString* string, const char* text) {
     new (string) CRntString(text);
-    fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), string, g_unk_7101a19000);
+    fn_7100000250(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), string, g_unk_7101a19000);
 }
 
 void fn_7100e1dde0() {

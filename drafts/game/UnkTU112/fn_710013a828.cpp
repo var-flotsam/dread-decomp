@@ -74,7 +74,7 @@ UnkTunableLine fn_710013a828(const UnkTunableReflValue* value) {
     case 's': {
         UnkTunableLine string;
         if (IsKindOf(value, fn_710009ffd4))
-            fn_710007eaa0(string.Str(), DataOf<base::global::CRntString>(value));
+            CRntString_Assign(string.Str(), DataOf<base::global::CRntString>(value));
         line = string;
         return line;
     }
@@ -88,6 +88,6 @@ UnkTunableLine fn_710013a828(const UnkTunableReflValue* value) {
     default:
         return line;
     }
-    fn_710007e77c(line.Str(), text);
+    CRntString_AssignCString(line.Str(), text);
     return line;
 }

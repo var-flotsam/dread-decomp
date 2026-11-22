@@ -33,7 +33,7 @@ static inline bool Contains(const CStrId& name, const CStrId& part) {
     const CRntString& text = Str(name);
     if (name.data == &g_unk_7101d47108->empty)
         return false;
-    return fn_710007fb9c(&text, part.Text());
+    return CRntString_Contains(&text, part.Text());
 }
 
 struct UnkPrickEventTrack_l687278 {

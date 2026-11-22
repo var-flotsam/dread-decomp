@@ -51,7 +51,7 @@ struct UnkSlomoFlags {
     u8 unk_0xc5;
     bool paused;  // 0xc6
 };
-bool fn_710007fbc0(const CRntString* a, const CRntString* b);
+bool CRntString_ContainsString(const CRntString* a, const CRntString* b);
 void fn_710117954c(UnkWeighted_7100714808* self, const UnkAnimChannel* channel);
 void fn_7100714808(UnkWeighted_7100714808* self, const UnkWeighted_7100714808* other, bool flag);
 
@@ -179,7 +179,7 @@ void fn_7101178f24(UnkAnimationComponent_l178f24* self, f32 dt) {
         if (self->name_timer < 0.0f) {
             self->name_timer = 0.0f;
             const CRntString* pending = StringOf_l178f24(self->pending);
-            if (fn_710007fbc0(pending, StringOf_l178f24(GameManagerIdTable().field_0x1d78))) {
+            if (CRntString_ContainsString(pending, StringOf_l178f24(GameManagerIdTable().field_0x1d78))) {
                 self->action_sets = self->pending;
             } else {
                 UnkReflObject* object = self->field_0x10;

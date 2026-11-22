@@ -29,11 +29,11 @@ using base::global::CRntString;
 // The device's root path (a string at the start of the table).
 CRntString fn_710002df80(void* table, CRntString path) {
     const CRntString* root = static_cast<const CRntString*>(table);
-    if (!fn_710007fb9c(&path, root->data ? root->data : g_unk_710162e2ed)) {
-        CRntString full = fn_710007eee0(root, &path);
-        fn_710007eaa0(&path, &full);
+    if (!CRntString_Contains(&path, root->data ? root->data : g_unk_710162e2ed)) {
+        CRntString full = CRntString_Concat(root, &path);
+        CRntString_Assign(&path, &full);
     }
-    if (fn_710007facc(&path, '\\', 0) != -1) {
+    if (CRntString_FindChar(&path, '\\', 0) != -1) {
         char text[0x200];
         u32 length = path.length;
         text[length] = '\0';
@@ -44,7 +44,7 @@ CRntString fn_710002df80(void* table, CRntString path) {
                 text[i] = path.data[i];
         }
         UnkBufferString<0x100, g_unk_7101a194b8> converted(text);
-        fn_710007eaa0(&path, converted.Str());
+        CRntString_Assign(&path, converted.Str());
     }
     return static_cast<CRntString&&>(path);
 }

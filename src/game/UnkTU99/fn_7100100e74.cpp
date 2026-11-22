@@ -112,8 +112,8 @@ bool fn_7100100e74(void* self, void* object) {
     nn::fs::FileHandle file;
     const char* name = entry->name;
     CRntString path("rom:/packs/sounds/");
-    fn_710007f564(&path, name);
-    fn_710007f564(&path, ".bfgrp");
+    CRntString_AppendCString(&path, name);
+    CRntString_AppendCString(&path, ".bfgrp");
 
     nn::fs::OpenFile(&file, path.data ? path.data : g_unk_710162e2ed, nn::fs::OpenMode_Read);
     s64 size = 0;

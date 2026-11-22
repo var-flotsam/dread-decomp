@@ -143,7 +143,7 @@ s32 fn_7100df78cc(UnkGameManager* manager, const CRntString& name, bool second_b
     auto* self = reinterpret_cast<UnkGameManagerLoad_df78cc*>(manager);
     fn_7101203768(Singleton_ldf78cc<UnkUserDataOwner, 0x2b8, fn_710120320c>(g_unk_7101d47308));
     fn_7100dee46c(manager);
-    fn_710007eaa0(&self->field_0x7f0, &name);
+    CRntString_Assign(&self->field_0x7f0, &name);
     fn_7101047ea8(&self->field_0x820);
     Reset_df78cc(self->field_0x968);
     Reset_df78cc(self->field_0xab0);

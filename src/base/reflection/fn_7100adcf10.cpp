@@ -519,7 +519,7 @@ void fn_7100e16af0() {
     fn_710009ec00(&g_unk_71727c09c0, TUType<0x30>(g_unk_71727c0a58));
     InitTunable(&g_unk_71727c09c8, fn_7100136ecc, g_unk_7101aa9c90, fn_7100075104);
     new (&g_unk_71727c0a58) CRntString("Intro");
-    fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &g_unk_71727c0a58, &g_unk_7101a19000);
+    fn_7100000250(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), &g_unk_71727c0a58, &g_unk_7101a19000);
 }
 
 

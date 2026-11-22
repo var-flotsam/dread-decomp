@@ -42,7 +42,7 @@ UnkRecordC8* fn_7100e6e320(UnkRecordC8* self, UnkRecordC8* other) {
     self->field_0x8 = other->field_0x8;
     MoveId(&self->id_0x10, &other->id_0x10);
     MoveId(&self->id_0x18, &other->id_0x18);
-    fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(&self->field_0x20),
+    CRntString_Assign(reinterpret_cast<base::global::CRntString*>(&self->field_0x20),
                   reinterpret_cast<const base::global::CRntString*>(&other->field_0x20));
     self->field_0xa8 = other->field_0xa8;
     self->field_0xac = other->field_0xac;

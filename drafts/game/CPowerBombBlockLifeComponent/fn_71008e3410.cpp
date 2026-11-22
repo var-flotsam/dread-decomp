@@ -106,7 +106,7 @@ void fn_71008e3410(UnkPowerBombBlockLifeRestore_l8e3410* self, CBlackboard* blac
             ++name->uses;
             bool broken;
             if (name != reinterpret_cast<UnkPowerBombNameEntry_ovb0127*>(&g_unk_7101d47108->empty) &&
-                fn_710007fb9c(&name->buffer, "_BREAK"))
+                CRntString_Contains(&name->buffer, "_BREAK"))
                 broken = true;
             else
                 broken = false;

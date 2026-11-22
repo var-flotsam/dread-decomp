@@ -44,55 +44,55 @@ u32 fn_710111dc08(UnkObj_710111dc08* self, UnkProp* p) {
     if (Is(p, Key(0x1a88)) && p->set) {
         char buf[0x80];
         fn_710007cf30(p->stream, "s", buf);
-        fn_710007e77c(&self->field_0x258, buf);
+        CRntString_AssignCString(&self->field_0x258, buf);
         return true;
     }
     if (Is(p, Key(0x1ad8)) && p->set) {
         char buf[0x80];
         fn_710007cf30(p->stream, "s", buf);
-        fn_710007e77c(&self->field_0x228, buf);
+        CRntString_AssignCString(&self->field_0x228, buf);
         return true;
     }
     if (Is(p, Key(0x1aa8)) && p->set) {
         char buf[0x80];
         fn_710007cf30(p->stream, "s", buf);
-        fn_710007e77c(&self->field_0x1c8, buf);
+        CRntString_AssignCString(&self->field_0x1c8, buf);
         return true;
     }
     if (Is(p, Key(0x1a98)) && p->set) {
         char buf[0x80];
         fn_710007cf30(p->stream, "s", buf);
-        fn_710007e77c(&self->field_0x1f8, buf);
+        CRntString_AssignCString(&self->field_0x1f8, buf);
         return true;
     }
     if (Is(p, Key(0x1af8)) && p->set) {
         char buf[0x80];
         fn_710007cf30(p->stream, "s", buf);
-        fn_710007e77c(&self->field_0x288, buf);
+        CRntString_AssignCString(&self->field_0x288, buf);
         return true;
     }
     if (Is(p, Key(0x1af0)) && p->set) {
         char buf[0x80];
         fn_710007cf30(p->stream, "s", buf);
-        fn_710007e77c(&self->field_0x2b8, buf);
+        CRntString_AssignCString(&self->field_0x2b8, buf);
         return true;
     }
     if (Is(p, Key(0x1ad0)) && p->set) {
         char buf[0x80];
         fn_710007cf30(p->stream, "s", buf);
-        fn_710007e77c(&self->field_0x2e8, buf);
+        CRntString_AssignCString(&self->field_0x2e8, buf);
         return true;
     }
     if (Is(p, Key(0x1ac8)) && p->set) {
         char buf[0x80];
         fn_710007cf30(p->stream, "s", buf);
-        fn_710007e77c(&self->field_0x318, buf);
+        CRntString_AssignCString(&self->field_0x318, buf);
         return true;
     }
     if (Is(p, Key(0x1a68)) && p->set) {
         char buf[0x80];
         fn_710007cf30(p->stream, "s", buf);
-        fn_710007e77c(&self->field_0x348, buf);
+        CRntString_AssignCString(&self->field_0x348, buf);
         return true;
     }
     if (!p->set && Is(p, Key(0x1500)))
@@ -122,7 +122,7 @@ u32 fn_710111dc08(UnkObj_710111dc08* self, UnkProp* p) {
         const char* unused;
         fn_710007cee4(p->stream, &value);
         fn_710007cee4(p->stream, &unused);
-        fn_710007e77c(&self->field_0x148, value);
+        CRntString_AssignCString(&self->field_0x148, value);
         return true;
     }
     // The base handler takes the component and the property record: the object's first 0x40

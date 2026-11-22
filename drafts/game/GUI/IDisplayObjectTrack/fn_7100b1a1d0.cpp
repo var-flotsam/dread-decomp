@@ -41,7 +41,7 @@ base::global::CRntString fn_7100b1a1d0(UnkStringTrack1671* self, s32 time, bool 
     if (lo < 0)
         return result;
     UnkStringKey1671* key = fn_7100b1a568(&self->keys, lo);
-    fn_710007eaa0(&result, &key->value);
+    CRntString_Assign(&result, &key->value);
     if (self->field_0x38 == 0 || key->time >= time)
         return result;
     u32 next = lo + 1;
@@ -53,6 +53,6 @@ base::global::CRntString fn_7100b1a1d0(UnkStringTrack1671* self, s32 time, bool 
     fn_7100b1a568(&self->keys, next);
     fn_7100b1a568(&self->keys, lo);
     base::global::CRntString current(self->keys[lo].value);
-    fn_710007eaa0(&result, &current);
+    CRntString_Assign(&result, &current);
     return result;
 }

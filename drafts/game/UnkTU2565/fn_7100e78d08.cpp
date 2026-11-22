@@ -30,8 +30,8 @@ struct UnkGridRowText_e78d08 {
 
     const char* CStr() const { return text ? text : g_unk_710162e2ed; }
     void Destroy() {
-        fn_710007ed40(reinterpret_cast<CRntString*>(this));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(this));
+        CRntString_Clear(reinterpret_cast<CRntString*>(this));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(this));
     }
 };
 

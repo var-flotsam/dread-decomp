@@ -231,7 +231,7 @@ struct UnkAssignedString {
     UnkAssignedString& operator=(const UnkAssignedString& other);
 };
 __attribute__((always_inline)) inline UnkAssignedString& UnkAssignedString::operator=(const UnkAssignedString& other) {
-    fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(this),
+    CRntString_Assign(reinterpret_cast<base::global::CRntString*>(this),
                   reinterpret_cast<const base::global::CRntString*>(&other));
     return *this;
 }
@@ -288,7 +288,7 @@ struct alignas(16) UnkFreedString {
 
     ~UnkFreedString();
 };
-inline UnkFreedString::~UnkFreedString() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
+inline UnkFreedString::~UnkFreedString() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this)); }
 
 struct UnkBoundValueString {
     u32 value;

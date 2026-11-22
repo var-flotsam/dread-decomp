@@ -59,7 +59,7 @@ static_assert(__builtin_offsetof(UnkGuiObjectFactory, queue) == 0xa0, "UnkGuiObj
 
 UnkGuiCreatedObject* fn_71011b5aa4(UnkGuiObjectFactory* self, const CStrId* name, const CRntString* class_name,
                                    UnkGuiDisplayObject* parent) {
-    CRntString full_name = fn_710007f050("GUI::", class_name);
+    CRntString full_name = CRntString_ConcatCStringFirst("GUI::", class_name);
     UnkVersionRegistry* registry = g_unk_7101d4c8d0;
     u64 id;
     fn_7100066630(&id, &full_name);

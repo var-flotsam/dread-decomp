@@ -22,7 +22,7 @@ bool fn_710079a840(UnkCollisionClassDef* self, CRntFile* file) {
     if (result) {
         const char* str;
         fn_710007cee4(file, &str);
-        fn_710007e77c(&self->field_0x58, str);
+        CRntString_AssignCString(&self->field_0x58, str);
         fn_710007c714(file, &self->field_0x88, 1, 1);
         fn_710007c714(file, &self->field_0x89, 1, 1);
     }

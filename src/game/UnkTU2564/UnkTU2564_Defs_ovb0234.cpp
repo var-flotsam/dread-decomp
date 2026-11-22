@@ -282,7 +282,7 @@ UnkIdsString40Copy_b0234* fn_7100e6e1b0(UnkIdsString40Copy_b0234* self, const Un
     self->field_0x8 = other->field_0x8;
     self->field_0x10 = other->field_0x10;
     self->field_0x18 = other->field_0x18;
-    fn_710007eaa0(self->field_0x20.Str(), other->field_0x20.Str());
+    CRntString_Assign(self->field_0x20.Str(), other->field_0x20.Str());
     self->field_0xa8.value = other->field_0xa8.value;
     self->field_0xac.value = other->field_0xac.value;
     self->field_0xb0 = other->field_0xb0;

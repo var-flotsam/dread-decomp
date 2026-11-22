@@ -162,13 +162,13 @@ struct UnkNameSet_ovb0259 {
 void fn_7100fac824(UnkNameSet_ovb0259* self, CBlackboard* blackboard) {
     UnkTypedValue v;
     base::UnkNamedEntry entry;
-    fn_710007e704(&entry, g_unk_710162e2ed);
+    CRntString_ConstructFromCString(&entry, g_unk_710162e2ed);
     base::global::CRntString* text = reinterpret_cast<base::global::CRntString*>(&entry);
     for (UnkNamePart_ovb0259 **p = self->parts, **end = p + self->count; p != end; ++p) {
         if (text->length != 0)
-            fn_710007f564(text, ">");
+            CRntString_AppendCString(text, ">");
         ++(*p)->counter;
-        fn_710007f3b4(text, reinterpret_cast<const base::global::CRntString*>(reinterpret_cast<char*>(*p) + 0x10));
+        CRntString_Append(text, reinterpret_cast<const base::global::CRntString*>(reinterpret_cast<char*>(*p) + 0x10));
     }
     UnkGameManager* manager = g_unk_7101d47310;
     if (manager->field_0x608) {
@@ -184,7 +184,7 @@ void fn_7100fac824(UnkNameSet_ovb0259* self, CBlackboard* blackboard) {
             }
         }
     }
-    fn_710007ecd4(text);
+    CRntString_Destroy(text);
 }
 
 struct UnkRecordKinds_ovb0259 {

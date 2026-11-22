@@ -29,9 +29,9 @@ struct UnkStringElem_b62a1 {
 
     base::global::CRntString* Str() { return reinterpret_cast<base::global::CRntString*>(&value); }
 
-    UnkStringElem_b62a1(UnkStringElem_b62a1&& other) { fn_710007eab4(Str(), other.Str()); }
-    UnkStringElem_b62a1(const UnkStringElem_b62a1& other) { fn_710007ea60(&value, &other.value); }
-    ~UnkStringElem_b62a1() { fn_710007ecd4(Str()); }
+    UnkStringElem_b62a1(UnkStringElem_b62a1&& other) { CRntString_MoveConstruct(Str(), other.Str()); }
+    UnkStringElem_b62a1(const UnkStringElem_b62a1& other) { CRntString_CopyConstruct(&value, &other.value); }
+    ~UnkStringElem_b62a1() { CRntString_Destroy(Str()); }
 };
 
 // base::global::CRntVector::Insert with the new element copied in (the header's moves it).

@@ -226,7 +226,7 @@ void fn_71010fa290(char* object) {
         fn_71011a710c(TeamManager());
 
     if (UnkNamedObject_l0fa290* named = self->owner->named) {
-        CRntString script = fn_710007ef90(&named->name, ".BeginPlay");
+        CRntString script = CRntString_ConcatCString(&named->name, ".BeginPlay");
         if (fn_71010c0bb0(g_unk_7172a01d18, script.data ? script.data : g_unk_710162e2ed)) {
             char out[0x100];
             fn_7100fbc4e0(g_unk_7172a01d18, self->owner);

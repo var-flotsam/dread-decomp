@@ -28,7 +28,7 @@ static inline bool NameContains(const CStrId* id, const CStrId* part) {
     UnkStringData* data = id->data;
     if (data == &g_unk_7101d47108->empty)
         return false;
-    return fn_710007fb9c(&data->String(), part->Text());
+    return CRntString_Contains(&data->String(), part->Text());
 }
 
 // The flag calls take the name's key by address.

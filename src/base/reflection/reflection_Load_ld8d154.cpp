@@ -59,8 +59,8 @@ void fn_7100d8d154(UnkRecord_ld8d154* self, const CRntString* path) {
     UnkOwnedPair_ld8d154* c = new (fn_71000839a0(sizeof(UnkOwnedPair_ld8d154), 5)) UnkOwnedPair_ld8d154();
     fn_7100d8d670(reinterpret_cast<UnkMapPair_ovb56*>(c));
     self->c = c;
-    fn_7100f9bf8c(self->a, Entry_ld8d154(fn_710007ef90(path, ".brev")));
-    fn_7100f947b0(self->b, Entry_ld8d154(fn_710007ef90(path, ".bres")));
-    fn_7100f89450(self->c, Entry_ld8d154(fn_710007ef90(path, ".brem")));
+    fn_7100f9bf8c(self->a, Entry_ld8d154(CRntString_ConcatCString(path, ".brev")));
+    fn_7100f947b0(self->b, Entry_ld8d154(CRntString_ConcatCString(path, ".bres")));
+    fn_7100f89450(self->c, Entry_ld8d154(CRntString_ConcatCString(path, ".brem")));
     self->loaded = true;
 }

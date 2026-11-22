@@ -115,7 +115,7 @@ static_assert(__builtin_offsetof(UnkPatrolAction_l388fac, moving) == 0xa9, "layo
 
 // A line holding a string id's text.
 struct UnkIdLine_l388fac : UnkTunableLine {
-    explicit UnkIdLine_l388fac(const base::UnkStrIdMember& id) { fn_710007eb6c(Str(), &id); }
+    explicit UnkIdLine_l388fac(const base::UnkStrIdMember& id) { CRntString_AssignStrId(Str(), &id); }
 };
 
 bool fn_71010fcd04(UnkPatrolAI_l388fac* ai, s32* state, const u32* flags, CVector3D* point, f32 radius);

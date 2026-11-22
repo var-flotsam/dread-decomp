@@ -32,8 +32,8 @@ static inline const CRntString& TextOf(const CStrId& id) {
 }
 
 // The string concatenations, out of line.
-static inline CRntString operator+(const CRntString& a, const char* b) { return fn_710007ef90(&a, b); }
-static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
+static inline CRntString operator+(const CRntString& a, const char* b) { return CRntString_ConcatCString(&a, b); }
+static inline CRntString operator+(const CRntString& a, const CRntString& b) { return CRntString_Concat(&a, &b); }
 
 void fn_7100136f38(UnkIdPair136f38* self) {
     if (self->first.data != &g_unk_7101d47108->empty) {

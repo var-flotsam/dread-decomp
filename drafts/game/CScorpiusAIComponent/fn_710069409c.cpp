@@ -103,7 +103,7 @@ bool fn_710069409c(UnkScorpiusAI_b59a4* self, const UnkScorpiusKey_b59a4* id, bo
     UnkSendFloat_l69409c value = MakeSendFloat_l69409c(a);
     bool sent = Send(target, id->Hash(), track, &mode, modeId, value, &desc, &mask);
     {
-        CRntString name = fn_710007ef90(&id->Str(), "_taillayer");
+        CRntString name = CRntString_ConcatCString(&id->Str(), "_taillayer");
         fn_7100066630(&hash, &name);
     }
     // Declared past a goto so that they get no lifetime markers: each send keeps its own slots.

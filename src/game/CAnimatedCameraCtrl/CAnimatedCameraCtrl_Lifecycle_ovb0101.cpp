@@ -279,10 +279,10 @@ void fn_71010e85bc(UnkAnimatedCameraEnd_b0101* self) {
         if (--ref->ref_count == 0)
             ref->vf_0x10();
     }
-    fn_710007ed40(&self->script);
-    fn_710007ecd4(&self->script);
-    fn_710007ed40(&self->field_0x2e0);
-    fn_710007ecd4(&self->field_0x2e0);
+    CRntString_Clear(&self->script);
+    CRntString_Destroy(&self->script);
+    CRntString_Clear(&self->field_0x2e0);
+    CRntString_Destroy(&self->field_0x2e0);
     self->field_0x2b8.Reset();
     ResetFilePath(&self->field_0x2b0);
     fn_7100763f74(reinterpret_cast<UnkBossCameraCtrl_b49a3*>(self));

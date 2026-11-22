@@ -81,7 +81,7 @@ void fn_71007fc850(UnkFrozenAsPlatformComponent_b0119* self) {
     self->field_0x108.~UnkStrIdMemberOf();
     self->field_0xd8.Free();
     self->field_0xd0.~UnkStrIdMemberOf();
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(self->field_0xa0));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(self->field_0xa0));
     fn_71007ee5bc(reinterpret_cast<char*>(self));
 }
 

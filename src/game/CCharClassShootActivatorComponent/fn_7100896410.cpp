@@ -131,9 +131,9 @@ void fn_7100896410() {
     fn_710009ec00(g_unk_717272c9b9, tu.field_0x2c0);
     {
         base::UnkNamedEntry path;
-        fn_710007e704(&path, "audiopreset:system/snd/presets/pistonmag_machineryloop");
+        CRntString_ConstructFromCString(&path, "audiopreset:system/snd/presets/pistonmag_machineryloop");
         new (tu.field_0x40) UnkPathIdsFromText(*reinterpret_cast<const base::global::CRntString*>(&path));
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&path));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&path));
     }
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_7100333544), tu.field_0x40, g_unk_7101a19000);
     base::UnkDeferredSet<void>* sets = reinterpret_cast<base::UnkDeferredSet<void>*>(g_unk_717272c9c0);

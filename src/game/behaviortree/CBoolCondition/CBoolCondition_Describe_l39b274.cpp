@@ -31,14 +31,14 @@ struct UnkText_l39b274 {
 
 UnkText_l39b274 fn_710039b274(UnkBoolCondition_l39b274* self) {
     UnkText_l39b274 text;
-    fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(&text), g_unk_710162e2ed);
+    CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(&text), g_unk_710162e2ed);
     if (self->property != reinterpret_cast<UnkBoolPropertyName_l39b274*>(&g_unk_7101d47108->empty)) {
         ++self->property->uses;
-        fn_710007f3b4(reinterpret_cast<CRntString*>(&text), &self->property->text);
-        fn_710007f564(&text, "?");
+        CRntString_Append(reinterpret_cast<CRntString*>(&text), &self->property->text);
+        CRntString_AppendCString(&text, "?");
     } else {
         const char* name = self->value ? "true" : "false";
-        fn_710007f564(&text, name);
+        CRntString_AppendCString(&text, name);
     }
     return text;
 }

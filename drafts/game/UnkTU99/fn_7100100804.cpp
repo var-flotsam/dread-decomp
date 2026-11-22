@@ -88,8 +88,8 @@ bool fn_7100100804(UnkSoundSystemATK* self, const CFilePathStrId& path) {
         {
             CRntString name(PathString(path));
             if (path.data != &g_unk_7101d47200->empty && PathChars(path)[0] != '/') {
-                fn_710007e77c(&name, "/");
-                fn_710007f564(&name, PathChars(path));
+                CRntString_AssignCString(&name, "/");
+                CRntString_AppendCString(&name, PathChars(path));
             }
             CFilePathStrId id(fn_71000f63b0(UnkBuiltPathId_l100804(name).Id()));
             if (files->used) {

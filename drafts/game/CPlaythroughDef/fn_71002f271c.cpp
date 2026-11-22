@@ -29,7 +29,7 @@ struct UnkSplitToken_l2f271c {
     CRntString* Str() { return reinterpret_cast<CRntString*>(raw); }
 
     UnkSplitToken_l2f271c() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = g_unk_7101a1b5a0 + 2;
         field_0x58 = 0;
         field_0x60 = 0;
@@ -109,7 +109,7 @@ void fn_71002f271c(const char* text, const char* separator, UnkPlaythroughTokens
                 out->field_0x18 = node;
             }
             u32 len = end - p;
-            fn_710007e7f8(token->Str(), p, len);
+            CRntString_AssignPrefix(token->Str(), p, len);
             u32 step = len + sep_len;
             pos += step;
             p += step;

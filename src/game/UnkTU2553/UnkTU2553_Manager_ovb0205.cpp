@@ -467,7 +467,7 @@ struct UnkTgmStrVector_b205 {
     void Free() {
         if (data) {
             for (u32 i = 0; i < count; ++i)
-                fn_710007ecd4(&data[i]);
+                CRntString_Destroy(&data[i]);
             count = 0;
             allocator->vf_0x48(data);
             capacity = 0;
@@ -678,18 +678,18 @@ void fn_7100dee270(UnkGameManager* manager) {
     if (found && found != self->field_0x498) {
         if (self->field_0x498) {
             const CRntString* current = &self->field_0x498->name;
-            fn_710007eaa0(&self->field_0x438, current);
+            CRntString_Assign(&self->field_0x438, current);
             self->field_0x498->vf_0x30(&wanted);
         }
         if (self->field_0x29b8 && self->field_0x29b8->player)
             fn_7100d7afa8(self->field_0x29b8->player, &self->field_0x438, &wanted);
         self->field_0x5c8 = false;
-        fn_710007e77c(&self->field_0x5d0, g_unk_710162e2ed);
+        CRntString_AssignCString(&self->field_0x5d0, g_unk_710162e2ed);
         self->field_0x498 = found;
         found->vf_0x28(&self->field_0x438);
     } else {
         self->field_0x5c8 = false;
-        fn_710007e77c(&self->field_0x5d0, g_unk_710162e2ed);
+        CRntString_AssignCString(&self->field_0x5d0, g_unk_710162e2ed);
     }
 }
 

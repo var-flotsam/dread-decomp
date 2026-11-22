@@ -55,7 +55,7 @@ UnkReflValue fn_7100b873b0(void*, char* obj, UnkReflValue* const* args) {
     asm("" : "+r"(id));  // keeps the null-argument path the original has
     s32 font = fn_7100b879a0(&Text_b40a3(id)->str);
     if (font != 0x7fffffff) {
-        fn_710007eaa0(&target->font_name, &Text_b40a3(id)->str);
+        CRntString_Assign(&target->font_name, &Text_b40a3(id)->str);
         target->font = font;
         if (!target->dirty) {
             target->dirty = true;

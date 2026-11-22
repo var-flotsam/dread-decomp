@@ -56,7 +56,7 @@ struct UnkSpawnCallbackSet_l118d5c {
 struct UnkSpawnKey_l118d5c {
     base::UnkNamedEntry entry;
 
-    UnkSpawnKey_l118d5c() { fn_710007e704(&entry, g_unk_710162e2ed); }
+    UnkSpawnKey_l118d5c() { CRntString_ConstructFromCString(&entry, g_unk_710162e2ed); }
 };
 
 struct UnkSpawnState_l118d5c {

@@ -46,7 +46,7 @@ void fn_7100a2d230(UnkTimelineComponent* self, const CStrId& name) {
         if (id.data == &g_unk_7101d47108->empty)
             continue;
         const CRntString* text = &id.data->String();
-        if (fn_710007fb9c(text, name.Text()))
+        if (CRntString_Contains(text, name.Text()))
             found.PushBack(EntryName(entry));
     }
     for (CStrId *id = found.items(), *end = id + found.count; id != end; ++id) {

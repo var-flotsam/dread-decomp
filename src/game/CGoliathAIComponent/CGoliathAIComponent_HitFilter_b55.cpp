@@ -58,7 +58,7 @@ u32 fn_71005916b4(UnkGoliathAI_b55* self, u32* out, void* arg2, UnkGoliathHitInf
                         reinterpret_cast<const base::global::CRntString*>(&d->text);
                     UnkGoliathIdData_b55* other = g_unk_71726e6740;
                     ++other->count;
-                    if (fn_710007fb9c(str, other->text ? other->text : "")) {
+                    if (CRntString_Contains(str, other->text ? other->text : "")) {
                         *out = 0;
                         return 1;
                     }

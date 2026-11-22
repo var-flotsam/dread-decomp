@@ -82,7 +82,7 @@ void fn_71006905c0(UnkCharClassScorpiusAIComponent* self) {
     fn_7100685fc0(self->field_0x628);
     fn_71008c2de0(self->field_0x5b8);
     reinterpret_cast<base::global::CStrId*>(&self->field_0x598)->Reset();
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(self->field_0x558));
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(self->field_0x528));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(self->field_0x558));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(self->field_0x528));
     fn_710041a230(reinterpret_cast<UnkGoliathXBase*>(self));
 }

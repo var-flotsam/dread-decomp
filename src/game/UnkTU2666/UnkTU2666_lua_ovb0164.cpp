@@ -479,13 +479,13 @@ s32 fn_710108df00(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         if (UnkCameraHolder_b0164* holder = static_cast<UnkCameraHolder_b0164*>(fn_7100defcec(g_unk_7101d47310))) {
-            if (fn_710007f140(UseStr(GameManagerIdTable().field_0x1a90), name)) {
+            if (CRntString_EqualsCString(UseStr(GameManagerIdTable().field_0x1a90), name)) {
                 holder->field_0xc28 = true;
                 holder->field_0xc2c = 1;
-            } else if (fn_710007f140(UseStr(GameManagerIdTable().field_0x1b18), name)) {
+            } else if (CRntString_EqualsCString(UseStr(GameManagerIdTable().field_0x1b18), name)) {
                 holder->field_0xc28 = true;
                 holder->field_0xc2c = 2;
-            } else if (fn_710007f140(UseStr(GameManagerIdTable().field_0xd80), name)) {
+            } else if (CRntString_EqualsCString(UseStr(GameManagerIdTable().field_0xd80), name)) {
                 holder->field_0xc28 = true;
                 holder->field_0xc2c = 0;
             }

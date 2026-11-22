@@ -42,7 +42,7 @@ bool fn_710085e6d4(UnkSPBGun_A5_b63* gun) {
     UnkSPBTrack_b0058* const* track =
         reinterpret_cast<UnkSPBTrack_b0058* const*>(fn_7101177ae8(self->owner->anim, 0xf4061ff25a2163d6));
     ++(*track)->uses;
-    if (fn_710007fc80(&(*track)->name, &s_prefix) && !fn_710117b348(self->owner->anim, fn_7100bf36f8()))
+    if (CRntString_StartsWith(&(*track)->name, &s_prefix) && !fn_710117b348(self->owner->anim, fn_7100bf36f8()))
         return false;
     return true;
 }

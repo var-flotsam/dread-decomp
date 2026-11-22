@@ -136,8 +136,8 @@ void fn_7100a5f62c(UnkTriggerComponent_ovb0067* self, UnkTriggerActor_ovb0067* a
         CRntString name(g_unk_710162e2ed);
         UnkTriggerScenario_ovb0067* scenario =
             reinterpret_cast<UnkTriggerScenario_ovb0067*>(g_unk_7101d47310->field_0x608);
-        fn_710007eaa0(&name, UseText(scenario->name));
-        fn_710007f3b4(&name, UseText(self->owner->name));
+        CRntString_Assign(&name, UseText(scenario->name));
+        CRntString_Append(&name, UseText(self->owner->name));
         fn_7100dfaf88(g_unk_7101d47310, &name, self->field_0x208, false);
     }
     fn_7100a5f3b0(self, 1);
@@ -175,7 +175,7 @@ void fn_7100a5f210(UnkTriggerComponent_ovb0067* self) {
                 reinterpret_cast<UnkTriggerScenario_ovb0067*>(g_unk_7101d47310->field_0x608);
             // "<scenario>.<name>"
             CRntString full =
-                fn_710007eee0(Addr(fn_710007ef90(UseText(scenario->name), ".")), UseText(self->name));
+                CRntString_Concat(Addr(CRntString_ConcatCString(UseText(scenario->name), ".")), UseText(self->name));
             fn_71009cde54(script, CStr(full.data), "s", CStr(UseText(self->owner->name)->data));
         }
     }

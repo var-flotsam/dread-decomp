@@ -64,7 +64,7 @@ void fn_7100b00970(UnkDeleteSlotButton* self) {
     alignas(8) u8 prompt_storage[sizeof(CRntString)];
     CRntString* prompt = reinterpret_cast<CRntString*>(prompt_storage);
     fn_710007e6c4(prompt);
-    fn_710007f564(prompt, "#GUI_FILESELECT_OPTIONS_PROMPT_DELETE_CONFIRM_");
+    CRntString_AppendCString(prompt, "#GUI_FILESELECT_OPTIONS_PROMPT_DELETE_CONFIRM_");
     fn_710007f634(prompt, self->slot + 1);
     {
         CStrId back("#GUI_B_BACK", true);
@@ -76,5 +76,5 @@ void fn_7100b00970(UnkDeleteSlotButton* self) {
                       reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                       reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
     }
-    fn_710007ecd4(prompt);
+    CRntString_Destroy(prompt);
 }

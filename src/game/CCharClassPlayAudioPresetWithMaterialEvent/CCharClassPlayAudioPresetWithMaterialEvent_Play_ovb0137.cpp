@@ -65,7 +65,7 @@ void fn_7100bc3de0(UnkAudioPresetEvent_m_ovb0137* self, UnkEventContext_m_ovb013
         UnkStringRecord_m_ovb0137* record = reinterpret_cast<UnkStringRecord_m_ovb0137*>(self->name);
         ++record->uses;
         fn_71000267f8(&self->preset,
-                      UnkPathIdsFromText(fn_710007f050("audiopreset:system/snd/presets/",
+                      UnkPathIdsFromText(CRntString_ConcatCStringFirst("audiopreset:system/snd/presets/",
                                                        &reinterpret_cast<UnkStringRecord_m_ovb0137*>(self->name)->text))
                           .ids);
     }

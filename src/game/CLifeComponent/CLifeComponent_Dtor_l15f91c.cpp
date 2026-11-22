@@ -68,8 +68,8 @@ void fn_710115f91c(void* object) {
     self->entries.Free();
     self->sets[1].Release();
     self->sets[0].Release();
-    fn_710007ecd4(&self->field_0xb0);
-    fn_710007ecd4(&self->root_name);
+    CRntString_Destroy(&self->field_0xb0);
+    CRntString_Destroy(&self->root_name);
     if (UnkLifeShared_l15f91c* shared = self->shared) {
         if (--shared->refcount == 0)
             shared->Destroy();

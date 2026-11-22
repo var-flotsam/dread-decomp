@@ -17,8 +17,8 @@ __attribute__((always_inline)) inline void DestroyStrList(UnkNodeList_71002f608c
     for (char* n = self->head; n;) {
         char* next = *reinterpret_cast<char**>(n + Next);
         auto* str = reinterpret_cast<base::global::CRntString*>(n);
-        fn_710007ed40(str);
-        fn_710007ecd4(str);
+        CRntString_Clear(str);
+        CRntString_Destroy(str);
         self->allocator->vf_0x48(n);
         n = next;
     }

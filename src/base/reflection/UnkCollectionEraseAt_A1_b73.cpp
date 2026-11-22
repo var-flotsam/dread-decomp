@@ -44,7 +44,7 @@ void fn_71000d538c(base::global::CRntVector<UnkReflValue>* self, const u32* it) 
 }
 
 void fn_71000dff68(base::global::CRntVector<CRntString>* self, const u32* it) {
-    EraseAtIter_A1_b73<CRntString, fn_710007eab4, fn_710007ecd4>(self, it);
+    EraseAtIter_A1_b73<CRntString, CRntString_MoveConstruct, CRntString_Destroy>(self, it);
 }
 
 // Unit 341's copy (8-byte elements, the index used as is): owning pointers to objects released through their vf_0x90 and then vf_0x10.

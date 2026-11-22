@@ -124,7 +124,7 @@ using base::reflection::UnkReflTypedPtr;
 // `count` characters of `str`, as a string with inline storage.
 static inline UnkTunableLine Mid(const char* str, u32 count) {
     UnkTunableLine s;
-    fn_710007e7f8(s.Str(), str, count);
+    CRntString_AssignPrefix(s.Str(), str, count);
     return s;
 }
 
@@ -140,7 +140,7 @@ void fn_710007c610(base::global::CRntFile* file, u64 buffer);
 bool fn_710007c388(base::global::CRntFile* file, const UnkStrPair_0x10* path);
 extern UnkStrPair_0x10 g_unk_710b372708 __attribute__((visibility("hidden")));  // the tunables file
 
-void fn_710007f6dc(CRntString* self);                           // trims both ends
+void CRntString_Trim(CRntString* self);                           // trims both ends
 // The string's key (its CRC-64) into *out.
 // A copy of `str` with every `from` replaced by `to`.
 
@@ -231,8 +231,8 @@ static_assert(sizeof(UnkTunableTokens) == 0x70, "");
 // Looks up the tunable a header names: prefix, then `middle`, then the name.
 static inline UnkTunableObject* FindTunable(UnkTunableRegistry* self, const UnkTunableLine& prefix,
                                             const char* middle, const UnkTunableLine& name, bool qualified) {
-    CRntString a = fn_710007ef90(prefix.Str(), middle);
-    CRntString b = fn_710007eee0(&a, name.Str());
+    CRntString a = CRntString_ConcatCString(prefix.Str(), middle);
+    CRntString b = CRntString_Concat(&a, name.Str());
     return fn_710013c5cc(self, b.data, qualified);
 }
 
@@ -264,27 +264,27 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
             char buffer[0x100];
             if (!fn_710007c9e8(&reader.file, buffer, 0x100))
                 continue;
-            fn_710007e77c(line.Str(), buffer);
+            CRntString_AssignCString(line.Str(), buffer);
             if (generate)
                 lines.PushBackCopy(line);
-            s32 comment = fn_710007facc(line.Str(), ';', 0);
+            s32 comment = CRntString_FindChar(line.Str(), ';', 0);
             if (comment >= 0)
                 line = Mid(line.Data(), comment);
-            fn_710007f6dc(line.Str());
+            CRntString_Trim(line.Str());
 
-            s32 open = fn_710007facc(line.Str(), '[', 0);
+            s32 open = CRntString_FindChar(line.Str(), '[', 0);
             if (open >= 0) {
-                s32 close = fn_710007facc(line.Str(), ']', open);
+                s32 close = CRntString_FindChar(line.Str(), ']', open);
                 if (close < 0) {
                     result = false;
                     break;
                 }
                 u32 start = open + 1;
                 line = Mid(line.Data() + start, close - start);
-                fn_710007f6dc(line.Str());
-                s32 bar = fn_710007facc(line.Str(), '|', 0);
+                CRntString_Trim(line.Str());
+                s32 bar = CRntString_FindChar(line.Str(), '|', 0);
                 UnkTunableLine prefix;
-                fn_710007e77c(prefix.Str(), g_unk_710162e2ed);
+                CRntString_AssignCString(prefix.Str(), g_unk_710162e2ed);
                 if (bar >= 0) {
                     u32 n = bar + 1;
                     prefix = Mid(line.Data(), n);
@@ -299,21 +299,21 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                 continue;
             }
 
-            s32 equals = fn_710007facc(line.Str(), '=', 0);
+            s32 equals = CRntString_FindChar(line.Str(), '=', 0);
             if (equals < 0)
                 continue;
             UnkTunableLine key = Mid(line.Data(), equals);
             u32 after = equals + 1;
             UnkTunableLine value = Mid(line.Data() + after, line.Length() - after);
-            fn_710007f6dc(key.Str());
-            fn_710007f6dc(value.Str());
+            CRntString_Trim(key.Str());
+            CRntString_Trim(value.Str());
             if (!tunable)
                 continue;
 
             // Walks the dotted members down to the last name.
             char* type = fn_710009dcd8(tunable->GetClass(), tunable);
             void* object = tunable;
-            for (s32 dot = fn_710007facc(key.Str(), '.', 0); dot >= 0; dot = fn_710007facc(key.Str(), '.', 0)) {
+            for (s32 dot = CRntString_FindChar(key.Str(), '.', 0); dot >= 0; dot = CRntString_FindChar(key.Str(), '.', 0)) {
                 UnkTunableLine member = Mid(key.Data(), dot);
                 u64 hash = HashOf(member);
                 UnkTunableType* cls = reinterpret_cast<UnkTunableType*>(tunable->GetClass());
@@ -339,7 +339,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                 u64 i = 0;
                 do {
                     char prefix[2] = {kPrefixes[i], 0};
-                    CRntString name = fn_710007f050(prefix, key.Str());
+                    CRntString name = CRntString_ConcatCStringFirst(prefix, key.Str());
                     u64 hash;
                     fn_7100066630(&hash, &name);
                     field = owner->Find(hash);
@@ -354,7 +354,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
             if (generate && value.IsEmpty()) {
                 // The line gets the current value.
                 UnkTunableLine& last = lines.GrowAt(lines.count - 1);
-                u32 n = fn_710007facc(last.Str(), '=', 0) + 1;
+                u32 n = CRntString_FindChar(last.Str(), '=', 0) + 1;
                 if (n == 0xffffffff)
                     n = last.Length();
                 last = Mid(last.Data(), n);
@@ -365,7 +365,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                     UnkReflTypedPtr obj = Typed(type, object);
                     UnkTunableValue arg = {fn_710000d228(), &v};
                     GetField(field, &obj, &arg);
-                    fn_710007e77c(value.Str(), v != 0 ? "true" : "false");
+                    CRntString_AssignCString(value.Str(), v != 0 ? "true" : "false");
                     break;
                 }
                 case 'f': {
@@ -374,7 +374,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                     UnkTunableValue arg = {fn_710000abbc(), &v};
                     GetField(field, &obj, &arg);
                     sprintf(text, "%f", (f64)v);
-                    fn_710007e77c(value.Str(), text);
+                    CRntString_AssignCString(value.Str(), text);
                     break;
                 }
                 case 'i': {
@@ -383,7 +383,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                     UnkTunableValue arg = {fn_7100014768(), &v};
                     GetField(field, &obj, &arg);
                     sprintf(text, "%i", v);
-                    fn_710007e77c(value.Str(), text);
+                    CRntString_AssignCString(value.Str(), text);
                     break;
                 }
                 case 's': {
@@ -400,14 +400,14 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                     UnkTunableValue arg = {fn_71000246e4(), &v};
                     GetField(field, &obj, &arg);
                     sprintf(text, "V3D(%f,%f,%f)", (f64)v.x, (f64)v.y, (f64)v.z);
-                    fn_710007e77c(value.Str(), text);
+                    CRntString_AssignCString(value.Str(), text);
                     break;
                 }
                 default:
                     break;
                 }
-                fn_710007f3b4(last.Str(), value.Str());
-                fn_710007f564(last.Str(), "\n");
+                CRntString_Append(last.Str(), value.Str());
+                CRntString_AppendCString(last.Str(), "\n");
                 if (value.IsEmpty())
                     continue;
             } else if (!generate && value.IsEmpty()) {

@@ -175,7 +175,7 @@ struct UnkShaderUniformTable_l15c9b0 {
             Reserve(step + count);
         keys[count] = key;
         UnkShaderUniform_l15c9b0* entry = &entries[count];
-        fn_710007ea60(reinterpret_cast<base::UnkNamedEntry*>(&entry->name),
+        CRntString_CopyConstruct(reinterpret_cast<base::UnkNamedEntry*>(&entry->name),
                       reinterpret_cast<const base::UnkNamedEntry*>(&uniform->name));
         entry->info = uniform->info;
         count++;
@@ -256,7 +256,7 @@ static inline void CreateBlockBuffer(UnkShaderBlock_l15c9b0* block, u32 k, u64 s
 static inline void AddUniform(UnkShaderRecord_l15c9b0* rec, const char* name, u32 offset, u32 size,
                               const UnkShaderUniformDesc_l15c9b0* desc) {
     UnkShaderUniform_l15c9b0* uniform = &rec->uniforms[rec->uniformCount];
-    fn_710007e77c(&uniform->name, name);
+    CRntString_AssignCString(&uniform->name, name);
     uniform->info.size = size;
     uniform->info.offset = offset;
     uniform->info.block = desc->block;
@@ -343,8 +343,8 @@ void fn_710015c9b0(UnkShaderRecord_l15c9b0** out, u32 stage, u8* binary) {
                     CreateBlockBuffer(block, 0, size);
                     CreateBlockBuffer(block, 1, size);
                 }
-                fn_710007e77c(&block->name, strings + blockDesc->nameOffset);
-                if (fn_710007fb9c(&block->name, "_RAWCB_"))
+                CRntString_AssignCString(&block->name, strings + blockDesc->nameOffset);
+                if (CRntString_Contains(&block->name, "_RAWCB_"))
                     block->raw = true;
                 block->binding = blockDesc->bindings[stage];
             }
@@ -377,7 +377,7 @@ void fn_710015c9b0(UnkShaderRecord_l15c9b0** out, u32 stage, u8* binary) {
                 if (desc->isArray) {
                     // "name[0]": the first element under the bare name, then each element.
                     CRntString full(name);
-                    s32 bracket = fn_710007fb10(&full, '[', -1);
+                    s32 bracket = CRntString_FindLastChar(&full, '[', -1);
                     strncpy(baseName, full.data ? full.data : g_unk_710162e2ed, bracket);
                     baseName[bracket] = '\0';
                     AddUniform(rec, baseName, desc->offset == -1 ? 0 : desc->offset, size, desc);
@@ -402,7 +402,7 @@ void fn_710015c9b0(UnkShaderRecord_l15c9b0** out, u32 stage, u8* binary) {
                 UnkShaderAttributeDesc_l15c9b0* attribute = attributeDescs;
                 for (u32 k = 0; k < section->field_0x3c; k++, attribute++) {
                     const char* name = strings + attribute->nameOffset;
-                    fn_710007e77c(&rec->attributes[index].name, name);
+                    CRntString_AssignCString(&rec->attributes[index].name, name);
                     rec->attributes[index].location = attribute->location;
                     // "name[0]": the other elements are "name[1]" and on.
                     u32 m = 1;
@@ -412,7 +412,7 @@ void fn_710015c9b0(UnkShaderRecord_l15c9b0** out, u32 stage, u8* binary) {
                             strcpy(baseName, name);
                             baseName[length] = '\0';
                             sprintf(element, "%s%d]", baseName, m);
-                            fn_710007e77c(&rec->attributes[index + m].name, element);
+                            CRntString_AssignCString(&rec->attributes[index + m].name, element);
                             rec->attributes[index + m].location = m + attribute->location;
                         }
                     }

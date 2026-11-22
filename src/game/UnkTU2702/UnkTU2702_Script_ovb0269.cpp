@@ -30,14 +30,14 @@ struct UnkInlineString_b0269 {
     const char* Data() const { return reinterpret_cast<const CRntString*>(str)->data; }
     const char* CStr() const { return Data() ? Data() : g_unk_710162e2ed; }
     UnkInlineString_b0269() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
     }
     ~UnkInlineString_b0269() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -88,9 +88,9 @@ void fn_71011051fc(UnkScriptAI_b0269* self) {
         return;
     const CRntString* name = reinterpret_cast<const CRntString*>(named->name);
     UnkInlineString_b0269 text;
-    fn_710007eaa0(text.Str(), name);
+    CRntString_Assign(text.Str(), name);
     ++g_unk_7172a06300->uses;
-    fn_710007f3b4(text.Str(), reinterpret_cast<CRntString*>(g_unk_7172a06300->suffix));
+    CRntString_Append(text.Str(), reinterpret_cast<CRntString*>(g_unk_7172a06300->suffix));
     if (fn_71010c0bb0(g_unk_7172a01d18, text.CStr())) {
         char out[0x100];
         fn_7100fbc4e0(g_unk_7172a01d18, self->owner);

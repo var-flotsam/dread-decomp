@@ -122,7 +122,7 @@ void fn_71000e82a8(UnkElem_0xb0* entry, void* obj) {
         }
         CRntString default_value(g_unk_710162e2ed);
         if (ValueIs<CRntString>(def))
-            fn_710007eaa0(&default_value, ValueAs<CRntString>(def));
+            CRntString_Assign(&default_value, ValueAs<CRntString>(def));
         break;
     }
     case 'v': {

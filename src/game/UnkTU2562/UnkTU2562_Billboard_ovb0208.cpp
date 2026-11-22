@@ -41,15 +41,15 @@ using base::global::CStrId;
 
 static inline void Destroy(UnkDroppableTunable* self) {
     self->vtable = g_unk_7101aa9cc8 + 2;
-    fn_710007ecd4(&self->sAbsorbingSoundPresetName);
-    fn_710007ecd4(&self->sDropAbsorbPowerBombPresetName);
-    fn_710007ecd4(&self->sDropAbsorbMissilePresetName);
-    fn_710007ecd4(&self->sDropAbsorbLifeBigPresetName);
-    fn_710007ecd4(&self->sDropAbsorbLifePresetName);
-    fn_710007ecd4(&self->sMiniXFlyPresetName);
-    fn_710007ecd4(&self->sMiniXAbsorbLargeGroupPresetName);
-    fn_710007ecd4(&self->sMiniXAbsorbMediumGroupPresetName);
-    fn_710007ecd4(&self->sMiniXAbsorbSmallGroupPresetName);
+    CRntString_Destroy(&self->sAbsorbingSoundPresetName);
+    CRntString_Destroy(&self->sDropAbsorbPowerBombPresetName);
+    CRntString_Destroy(&self->sDropAbsorbMissilePresetName);
+    CRntString_Destroy(&self->sDropAbsorbLifeBigPresetName);
+    CRntString_Destroy(&self->sDropAbsorbLifePresetName);
+    CRntString_Destroy(&self->sMiniXFlyPresetName);
+    CRntString_Destroy(&self->sMiniXAbsorbLargeGroupPresetName);
+    CRntString_Destroy(&self->sMiniXAbsorbMediumGroupPresetName);
+    CRntString_Destroy(&self->sMiniXAbsorbSmallGroupPresetName);
     fn_7100075104(self);
 }
 
