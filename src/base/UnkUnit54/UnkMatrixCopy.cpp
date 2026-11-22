@@ -2,14 +2,8 @@
 // a 4x4 float matrix (as words), with the fourth word of each of the first three rows cleared and
 // the last row kept. The matrix type has a user-provided copy, so it is returned in memory (x8).
 // Names are placeholders.
+#include "base/UnkMatrix44Words.h"
 #include "types.h"
-
-struct UnkMatrix44Words {
-    u32 m[16];
-
-    UnkMatrix44Words() {}
-    UnkMatrix44Words(const UnkMatrix44Words& other);
-};
 
 UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src) {
     UnkMatrix44Words r;

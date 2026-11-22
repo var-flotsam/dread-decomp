@@ -6,31 +6,11 @@
 #include "game/CCharClassBaseDamageTriggerComponent.h"
 #include "game/CHeatRoomComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkHeatCurrent_ovb0083.h"
+#include "game/UnkHeatPair_ovb0083.h"
+#include "game/UnkHeatParams_ovb0083.h"
 #include "game/UnkTU23.h"
 #include "types.h"
-
-struct UnkHeatPair_ovb0083 {
-    f32 x;
-    f32 y;
-};
-
-struct UnkHeatParams_ovb0083 {
-    f32 field_0x0;
-    f32 field_0x4;
-    UnkHeatPair_ovb0083 field_0x8;
-    f32 field_0x10;
-    f32 field_0x14;
-    f32 field_0x18;
-    bool field_0x1c;
-};
-
-struct UnkHeatCurrent_ovb0083 {
-    f32 field_0x0;
-    f32 field_0x4;
-    UnkHeatPair_ovb0083 field_0x8;
-    f32 field_0x10;
-    f32 field_0x14;
-};
 
 // Takes a parameter set; the first value only when the set was not applied before.
 inline void ApplyHeat_la26758(UnkHeatCurrent_ovb0083& current, const UnkHeatParams_ovb0083& params, bool wasSet) {

@@ -3,12 +3,9 @@
 // destroyed (their entry arrays freed, their string ids released). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTileEntry_bt.h"
+#include "game/UnkTileRecordElem_b43a2.h"
 #include "types.h"
-
-struct UnkTileEntry_bt {
-    virtual ~UnkTileEntry_bt();
-    u8 pad_0x8[0x38];
-};
 
 // The record of CBreakableTileGroupComponent_b40.cpp, with the move and destruction it has here.
 struct UnkTileRecordOwned_l7613d8 {
@@ -27,10 +24,6 @@ struct UnkTileRecordOwned_l7613d8 {
     ~UnkTileRecordOwned_l7613d8() { field_0x18.Free(); }
 };
 static_assert(sizeof(UnkTileRecordOwned_l7613d8) == 0x48, "record layout");
-
-struct UnkTileRecordElem_b43a2 {
-    u8 unk_0x0[0x48];
-};
 
 using UnkTileRecordVector_l7613d8 = base::global::CRntVector<UnkTileRecordOwned_l7613d8>;
 

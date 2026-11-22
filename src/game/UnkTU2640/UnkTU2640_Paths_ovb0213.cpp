@@ -9,6 +9,9 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/UnkMissionLogRecords.h"
+#include "game/UnkElem78.h"
+#include "game/UnkHashView_b0213.h"
 #include "game/UnkTU2640.h"
 #include "types.h"
 
@@ -114,22 +117,6 @@ UnkPathRecord_b0213* fn_7100ffc138(void* array, u32 index) {
 }
 
 // ---- Groups
-
-// The element and array types the other files declare these functions with (same names, same layouts).
-struct UnkElem78 {
-    u8 unk_0x0[0x78];
-};
-
-template <class Elem>
-struct UnkElemArray {
-    Elem* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
 
 void fn_7100f85f00(UnkPathRecordVec_b56* self, const UnkPathRecordVec_b56* other);
 
@@ -449,11 +436,6 @@ void fn_7100ffaa88(void* array) {
 // ---- Id array map
 
 void fn_7101001694(UnkElemArray<UnkElem78>* self, const UnkElem78* value);
-
-struct UnkHashView_b0213 {
-    u8 pad_0x0[0x30];
-    u64 hash;
-};
 
 struct UnkIdArrayRecord_b0213 {
     CStrId id;

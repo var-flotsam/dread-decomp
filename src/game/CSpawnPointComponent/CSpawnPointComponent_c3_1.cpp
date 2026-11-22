@@ -6,17 +6,11 @@
 #include "base/global/CRntVector.h"
 #include "game/CBatalloonAIComponent.h"
 #include "game/CGameLink.h"
+#include "game/UnkRefObj_c3.h"
 #include "game/UnkTU1102.h"
 #include "types.h"
 
 struct CActor;
-
-struct UnkRefObj_c3 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();  // destroys the object
-    s32 refs;
-};
 
 struct UnkRef_c3 {
     UnkRefObj_c3* p;

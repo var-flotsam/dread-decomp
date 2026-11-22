@@ -5,16 +5,12 @@
 #include "base/global/CRntVector.h"
 #include "game/CGun.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkPlasmaBeamGun_ovb0135.h"
 #include "game/UnkTU2739.h"
 
 using base::global::CFilePathStrId;
 
 struct UnkFxCache;
-
-struct UnkPlasmaBeamGun_ovb0135 {
-    u8 pad_0x0[0x1870];
-    bool fx_registered;  // 0x1870
-};
 
 struct UnkSPBGun;
 

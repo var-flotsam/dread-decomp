@@ -4,15 +4,13 @@
 // value, which takes an argument register). They return a status record {0, 0, 2, 1}.
 #include "base/global/CStrId.h"
 #include "base/spatial/COBox2D.h"
+#include "game/UnkSetStatus.h"
+#include "game/UnkValueHolder.h"
+#include "game/UnkValueType.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
 using base::global::CStrId;
-
-struct UnkValueType {
-    u8 unk_0x0[0x18];
-    u64 size;
-};
 
 // The value is stored in place when its type fits in 8 bytes, unless kind is 1 (by reference).
 struct UnkValueArg {
@@ -27,18 +25,6 @@ struct UnkValueArg {
             return *static_cast<const T*>(storage);
         return *reinterpret_cast<const T*>(this);
     }
-};
-
-struct UnkValueHolder {
-    u8 unk_0x0[0x8];
-    char* owner;
-};
-
-struct UnkSetStatus {
-    u64 field_0x0;
-    u64 field_0x8;
-    u32 field_0x10;
-    u32 field_0x14;
 };
 
 struct UnkUpdateFn : UnkLeftoverReg {};

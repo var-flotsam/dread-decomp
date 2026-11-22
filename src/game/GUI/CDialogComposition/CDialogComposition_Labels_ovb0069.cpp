@@ -16,6 +16,8 @@
 #include "game/GUI/CDialogComposition.h"
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/GUI/CLabel.h"
+#include "game/UnkDlgIdData_ovb0069.h"
+#include "game/UnkDlgId_ovb0069.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
 #include "game/sound/SGUISoundEventsSelector.h"
@@ -26,25 +28,6 @@ using base::global::CStrId;
 
 using UnkGuiObj = UnkGuiDisplayObject;
 struct UnkWideStr_0x20;
-
-// A string id's pooled data as these reads see it.
-struct UnkDlgIdData_ovb0069 {
-    u8 pad_0x0[0x10];
-    const char* text;  // 0x10
-    u8 pad_0x18[0x2c];
-    union {
-        s32 reads;  // 0x44
-    };
-};
-
-struct UnkDlgId_ovb0069 {
-    UnkDlgIdData_ovb0069* data;
-
-    const char* Text() const {
-        ++data->reads;
-        return data->text ? data->text : g_unk_710162e2ed;
-    }
-};
 
 extern UnkDlgId_ovb0069 g_unk_717275db78 __attribute__((visibility("hidden")));
 extern UnkDlgId_ovb0069 g_unk_717275db90 __attribute__((visibility("hidden")));

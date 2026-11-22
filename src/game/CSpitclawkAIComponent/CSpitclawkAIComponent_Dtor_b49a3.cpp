@@ -2,19 +2,9 @@
 // counted references at +0x146f8 (each dropped, then the array freed), then the base destructor
 // fn_710067c3f8; fn_71006c8a28 also frees the object. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkRefSlot_b49a3.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-// A counted reference whose destructor keeps the pointer in a register (UnkRefPtr reloads it).
-struct UnkRefSlot_b49a3 {
-    UnkRefObject* ptr;
-    ~UnkRefSlot_b49a3() {
-        if (UnkRefObject* p = ptr) {
-            if (--p->ref_count == 0)
-                p->vf_0x10();
-        }
-    }
-};
 
 extern void* g_unk_7101a65cd8[];
 

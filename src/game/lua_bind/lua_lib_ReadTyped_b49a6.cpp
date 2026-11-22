@@ -7,6 +7,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkLuaReadScratch_b49a6.h"
 #include "game/UnkTU2620.h"
 #include "game/lua_lib.h"
 #include "types.h"
@@ -23,10 +24,6 @@ UnkEnumType* fn_7100231b40();  // as src/game_s7/fn_710024cc40.cpp declares it
 
 bool fn_71010bef20(lua_State* L, void** out, s32 index);
 bool fn_71010beee0(lua_State* L, void** out, s32 index);
-
-struct UnkLuaReadScratch_b49a6 {
-    u64 words[6];
-};
 
 struct UnkLuaArgReader2_b49a6 {
     u8 pad_0x0[0x10];

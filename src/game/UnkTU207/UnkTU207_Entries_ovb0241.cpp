@@ -12,6 +12,8 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
+#include "game/UnkController_u207.h"
+#include "game/UnkModel_u207.h"
 #include "game/UnkTU207.h"
 #include "game/msapi/material/SAlpha.h"
 #include "types.h"
@@ -26,19 +28,6 @@ struct UnkEntry_u207 {
     void* target;
     CStrId id;
     UnkEntry_u207(const UnkEntry_u207& other) : target(other.target), id(other.id) {}
-};
-
-struct UnkModel_u207 {
-    u8 pad_0x0[0xa9];
-    u8 field_0xa9;
-    u8 pad_0xaa[6];
-    u8 field_0xb0;
-};
-
-struct UnkController_u207 {
-    u8 pad_0x0[8];
-    UnkModel_u207* model;                    // 0x8
-    base::global::CRntVector<UnkEntry_u207> entries;  // 0x10
 };
 
 // Erases the entry at `index`: its id is released, the later entries move down and the moved-from

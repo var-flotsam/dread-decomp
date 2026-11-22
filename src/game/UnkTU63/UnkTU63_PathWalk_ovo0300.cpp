@@ -3,16 +3,12 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkRegistryString_b0248.h"
 #include "game/UnkTU63.h"
 #include "types.h"
 #include "base/UnkVtableList.h"
 
 using base::UnkStrIdMemberOf;
-
-struct UnkRegistryString_b0248 {
-    u8 pad_0x0[0x30];
-    u64 hash;  // 0x30
-};
 
 // A path id and the link to the next one.
 struct UnkListedPath_b0248 {

@@ -8,6 +8,7 @@
 #include "base/math/UnkSegment2D.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSegmentShape.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2517.h"
 #include "game/UnkTU2523.h"
@@ -74,11 +75,6 @@ struct UnkGroundPoint2D : CVector2D {
     explicit UnkGroundPoint2D(const CVector3D& v) { fn_710007b430(this, &v); }
 };
 
-// A collision shape (0xc0 bytes) built from a segment and its destructor, and the collision query
-// (declared as src/game/CLogicDroppedItemManager.cpp does).
-struct UnkSegmentShape {
-    u8 data[0xc0];
-};
 struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;

@@ -3,13 +3,8 @@
 // base destructor (fn_71010c4194) and frees the object.
 #include "base/global/CRntVector.h"
 #include "game/CAttackComponent.h"
+#include "game/UnkBase_0x40.h"
 #include "types.h"
-
-struct UnkBase_0x40 {
-    void** vtable;
-    u8 unk_0x8[0x38];
-    ~UnkBase_0x40();  // fn_71010c4194
-};
 
 struct UnkSecondaryBase_0x58 {
     void** vtable;

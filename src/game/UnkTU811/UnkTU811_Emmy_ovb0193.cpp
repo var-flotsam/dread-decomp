@@ -19,6 +19,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkDoorList_b0193.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkNavMeshCell.h"
@@ -309,10 +310,6 @@ struct UnkEmmyRelaxAI_b59;
 struct UnkFlagged;
 struct UnkShape;
 
-struct UnkDoorList_b0193 {
-    base::reflection::UnkReflObject** items;
-    u32 count;
-};
 bool fn_7100d57f44(UnkShape* shape, UnkCollisionObject* object, void* a, u32 b);
 
 struct UnkDoorOwner_b0193 {

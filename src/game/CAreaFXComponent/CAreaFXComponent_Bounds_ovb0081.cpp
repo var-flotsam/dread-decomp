@@ -3,15 +3,10 @@
 // (2, which sets *hit) or neither; for 0 the point comes from fn_71007fdc30 instead (the record layouts
 // repeat CAreaFXComponent_Pair_A5_b66.cpp's). Names and layouts are placeholders.
 #include "game/CAreaFXComponent.h"
+#include "game/UnkAreaFXResult_A5_b66.h"
 #include "types.h"
 
 typedef u32 a_u32_ovb0081;
-
-struct UnkAreaFXResult_A5_b66 {
-    u64 field_0x0;
-
-    UnkAreaFXResult_A5_b66(const UnkAreaFXResult_A5_b66& other);
-};
 
 struct UnkAreaFXPoint_ovb0081 {
     f32 x, y;

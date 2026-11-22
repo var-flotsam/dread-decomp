@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkRegistryString_b0248.h"
 #include "game/UnkTU63.h"
 #include "types.h"
 #include "base/UnkVtableList.h"
@@ -21,11 +22,6 @@ union UnkPairSlot_b0248 {
     UnkStrIdPathPair pair;
     UnkPairSlot_b0248() {}
     ~UnkPairSlot_b0248() {}
-};
-
-struct UnkRegistryString_b0248 {
-    u8 pad_0x0[0x30];
-    u64 hash;  // 0x30
 };
 
 // A path id and the link to the next one.

@@ -9,8 +9,12 @@
 #include "game/CHeatRoomComponent.h"
 #include "game/CPullOffGrapplePointComponent.h"
 #include "game/CScenario.h"
+#include "game/UnkBreakableTarget.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkHeatCurrent_ovb0083.h"
+#include "game/UnkHeatPair_ovb0083.h"
+#include "game/UnkHeatParams_ovb0083.h"
 #include "game/UnkSubId_7100fc4b34.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
@@ -18,29 +22,6 @@
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkHeatPair_ovb0083 {
-    f32 x;
-    f32 y;
-};
-
-struct UnkHeatParams_ovb0083 {
-    f32 field_0x0;
-    f32 field_0x4;
-    UnkHeatPair_ovb0083 field_0x8;
-    f32 field_0x10;
-    f32 field_0x14;
-    f32 field_0x18;
-    bool field_0x1c;
-};
-
-struct UnkHeatCurrent_ovb0083 {
-    f32 field_0x0;
-    f32 field_0x4;
-    UnkHeatPair_ovb0083 field_0x8;
-    f32 field_0x10;
-    f32 field_0x14;
-};
 
 // Takes a parameter set; the first value only when the set was not applied before.
 inline void ApplyHeat_la26e50(UnkHeatCurrent_ovb0083& current, const UnkHeatParams_ovb0083& params, bool wasSet) {
@@ -81,11 +62,6 @@ struct UnkHeatEffect_la26e50 {
         typedef void (*Fn)(UnkHeatEffect_la26e50*, f32);
         (*reinterpret_cast<Fn**>(this))[0x168 / 8](this, value);
     }
-};
-
-struct UnkBreakableTarget {
-    u8 pad_0x0[0x10];
-    void* field_0x10;
 };
 
 // A part of the room (0x40 bytes).

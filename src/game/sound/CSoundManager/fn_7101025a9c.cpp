@@ -3,14 +3,9 @@
 // delete the owned objects (fn_710102796c) and free their array, then run the base destructor
 // (fn_7100016f88); the deleting one then frees the object.
 #include "base/global/CRntVector.h"
+#include "game/UnkBase_0x58.h"
 #include "game/sound/CSoundManager.h"
 #include "types.h"
-
-struct UnkBase_0x58 {
-    void** vtable;
-    u8 unk_0x8[0x50];
-    ~UnkBase_0x58();  // fn_7100016f88
-};
 
 struct UnkOwnedObj_7101025a9c {
     u8 unk_0x0[0x8];

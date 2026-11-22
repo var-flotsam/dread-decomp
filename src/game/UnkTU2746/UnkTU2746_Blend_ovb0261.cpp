@@ -1,12 +1,9 @@
 // Unit 2746 (tools/tu_map.py, no reliable name): a component-wise blend of two 4-float values by a
 // factor in [0, 1]; a negative component means "unset" and takes the other side's. Names and layouts
 // are placeholders.
+#include "game/UnkFadeColor_b0242.h"
 #include "game/UnkTU2746.h"
 #include "types.h"
-
-struct UnkFadeColor_b0242 {
-    f32 r, g, b, a;
-};
 
 // One component of a blend: a negative value is "unset" and yields the other side's.
 static inline f32 BlendComponent_b0261(f32 from, f32 to, f32 t) {

@@ -2,6 +2,7 @@
 // the program (or the default one), the draw state and the tint uniforms. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/tunable/CTunable.h"
+#include "engine/UnkGfxCamera.h"
 #include "game/UnkTU174.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU178.h"
@@ -15,16 +16,6 @@
 #include "types.h"
 
 struct UnkGraphicsSystem;
-
-struct UnkGfxCamera {
-    u8 unk_0x0[0x20];
-    UnkMatrix44 projection;  // 0x20
-    u8 unk_0x60[0x8];
-    void* field_0x68[2];  // indexed by field_0x78
-    u32 field_0x78;
-    u8 unk_0x7c[0x4];
-    void* field_0x80;
-};
 
 // The renderer's draw context inside the graphics system.
 struct UnkGfxContext_l1d48cc {

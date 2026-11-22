@@ -8,13 +8,10 @@
 #include "base/global/CStrId.h"
 #include "game/CBouncingCreaturesLaunchPattern.h"
 #include "game/CKraidAttack.h"
+#include "game/UnkKraidBouncingList_b57a4.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkKraidBouncingList_b57a4 {
-    u8 data[0x28];
-};
 
 struct UnkKraidBouncingOwner_b57a4 {
     u8 pad_0x0[0x220];

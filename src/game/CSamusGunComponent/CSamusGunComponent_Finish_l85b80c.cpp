@@ -8,6 +8,8 @@
 #include "game/CGunComponent.h"
 #include "game/CSamusGunComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkGunBeamInfo_ovb0070.h"
+#include "game/UnkGunBeam_ovb0070.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -17,15 +19,6 @@ struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b958;  // reached through the GOT
 
 // Timeline ids reached through the GOT.
-
-struct UnkGunBeamInfo_ovb0070 {
-    u8 pad_0x0[0x30];
-    u64 id;
-};
-
-struct UnkGunBeam_ovb0070 {
-    UnkGunBeamInfo_ovb0070* info;
-};
 
 struct UnkSamusGun_ovb0070;
 struct UnkGun_ovb0091;

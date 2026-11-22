@@ -2,6 +2,7 @@
 // box is moved into the collection's frame and run through the collection's tree; when that finds
 // nothing, each polygon is tried by its first vertex (inside the box?) and by its outline around the
 // box's centre. Names and layouts are placeholders.
+#include "game/UnkPoint2D_d52bd0.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU365.h"
 #include "game/UnkVec3fOps.h"
@@ -40,14 +41,6 @@ static inline UnkColliderResult MakeContact(u32 value) {
     c.bits = value;
     return c;
 }
-
-// A 2D point, copied member by member.
-struct UnkPoint2D_d52bd0 {
-    f32 x, y;
-
-    UnkPoint2D_d52bd0(f32 x_, f32 y_) : x(x_), y(y_) {}
-    UnkPoint2D_d52bd0(const UnkPoint2D_d52bd0& o) : x(o.x), y(o.y) {}
-};
 
 // A 2D point on the collision plane as a 3D position.
 static inline UnkVec3f ToVec3(const UnkPoint2D_d52bd0& p) {

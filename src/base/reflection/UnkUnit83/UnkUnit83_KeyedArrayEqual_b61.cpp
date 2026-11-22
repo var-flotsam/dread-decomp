@@ -2,12 +2,9 @@
 // (0x18-byte values at +0, u64 keys at +8, count at +0x10): equal when the counts match and every key
 // of the first is in the second with a value equal by fn_71000a1ed4 (src/game_s1/fn_71000d4d50.cpp).
 // Names are placeholders.
+#include "base/UnkCompared_0x18.h"
 #include "base/reflection.h"
 #include "types.h"
-
-struct UnkCompared_0x18 {
-    u64 words[3];
-};
 
 struct UnkKeyedValues_b61 {
     UnkCompared_0x18* values;

@@ -1,31 +1,14 @@
 // Unit 604 of tools/tu_map.py (no name hint): finds the group whose key is the actor's AI group
 // (fn_71011277a4) and sets the flag at +0x1471c of every other member's data (fn_71003f92ac). The lists are
 // those of UnkTU604_Lists_ovb0256.cpp. Names and layouts are placeholders.
+#include "game/UnkListEntry_b256.h"
+#include "game/UnkListGroup_b256.h"
+#include "game/UnkListGroups_b256.h"
 #include "game/UnkTU604.h"
 #include "game/UnkTU2704.h"
 #include "types.h"
 
 struct UnkAIGroup_g;
-
-struct UnkListEntry_b256 {
-    void* value;
-    UnkListEntry_b256* next;
-};
-
-struct UnkListGroup_b256 {
-    u8 pad_0x0[8];
-    u32 count;                  // 0x8
-    UnkListEntry_b256* head;    // 0x10
-    u8 pad_0x18[0x58];
-    void* key;                  // 0x70
-    UnkListGroup_b256* next;    // 0x78
-};
-
-struct UnkListGroups_b256 {
-    u8 pad_0x0[0x10];
-    u32 count;                // 0x10
-    UnkListGroup_b256* head;  // 0x18
-};
 
 inline UnkListGroup_b256* GroupAt_l3fa71c(UnkListGroup_b256* n, u32 i) {
     for (u32 k = 0; k < i; ++k)

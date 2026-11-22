@@ -1,16 +1,9 @@
 // UnkTU2772 (nn::atk): returns the object an indexed reference in the table at +0xc names, if its type is 0x4900
 // and the index is in range. Names and layouts are placeholders.
+#include "game/UnkAtkRef.h"
+#include "game/UnkAtkRefTable.h"
 #include "types.h"
 
-struct UnkAtkRef {
-    u16 type;  // 0x0
-    u16 pad_0x2;
-    s32 offset;  // 0x4
-};
-struct UnkAtkRefTable {
-    u32 count;  // 0x0
-    UnkAtkRef refs[1];  // 0x4
-};
 struct UnkAtkRefOwner_l230724 {
     u8 pad_0x0[0xc];
     s32 tableOffset;  // 0xc

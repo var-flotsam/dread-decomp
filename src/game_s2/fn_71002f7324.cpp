@@ -3,6 +3,7 @@
 // created through the table's vtable slot at +0x48.
 #include "base/UnkCache.h"
 #include "game/UnkTU426.h"
+#include "game_s2/UnkKeyBody.h"
 #include "types.h"
 
 struct UnkRefCounted {
@@ -13,12 +14,6 @@ struct UnkRefCounted {
 struct UnkRef {
     UnkRefCounted* field_0x0;
     ~UnkRef() {}
-};
-
-struct UnkKeyBody {
-    u8 pad_0x0[0x30];
-    u32 field_0x30;
-    u32 field_0x34;
 };
 
 struct UnkKey {

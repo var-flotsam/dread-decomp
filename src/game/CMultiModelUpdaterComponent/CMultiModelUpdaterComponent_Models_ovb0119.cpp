@@ -7,6 +7,7 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 #include "game/CMultiModelUpdaterComponent.h"
+#include "game/UnkModelValue_b0119.h"
 #include "types.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntVector.h"
@@ -54,10 +55,6 @@ bool fn_7100938ebc(UnkMultiModel_b0119* self, const CStrId& name) {
 // map's two arrays (0x20-byte entries, string-id keys) to a new capacity: each entry is
 // copy-constructed into the new array (fn_7100939804) and destroyed (fn_7100938dec), each key moved;
 // the old arrays are freed. Names and layouts are placeholders.
-
-struct UnkModelValue_b0119 {
-    u8 data[0x20];
-};
 
 // Its keys are string ids moved bitwise, the old one left holding the empty id and then released in
 // two steps (as CStrId::Reset).

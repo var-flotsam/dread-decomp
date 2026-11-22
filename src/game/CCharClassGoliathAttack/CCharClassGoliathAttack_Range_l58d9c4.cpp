@@ -5,16 +5,9 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCharClassGoliathAttack.h"
 #include "game/CCharacterMovement.h"
+#include "game/UnkAIReach.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
-
-struct UnkAIReach {
-    f32 radius;
-    f32 field_0x4;
-
-    UnkAIReach() : radius(0.0f), field_0x4(0.0f) {}
-    UnkAIReach(const UnkAIReach& other);
-};
 
 struct UnkGoliathAI_l58d9c4 {
     void** vtable;

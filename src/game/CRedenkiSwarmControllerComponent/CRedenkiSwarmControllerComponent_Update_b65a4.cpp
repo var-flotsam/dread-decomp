@@ -4,6 +4,8 @@
 // point goes to the record at +0x31c (fn_7100737d4c, its flag set), fn_710073f7bc gets 1 and +0x568
 // becomes 1.5. Names and layouts are placeholders.
 #include "game/CFlockingSwarmControllerComponent.h"
+#include "game/UnkSwarmPoint_b65a4.h"
+#include "game/UnkSwarmRecord_b65a4.h"
 #include "game/UnkTU1161.h"
 #include "types.h"
 
@@ -19,14 +21,6 @@ struct UnkParent_71007455dc;
 
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent.cpp declares it.
 struct UnkRedenkiSwarmController;
-
-struct UnkSwarmPoint_b65a4 {
-    u64 value;
-};
-
-struct UnkSwarmRecord_b65a4 {
-    bool active;
-};
 
 struct UnkSwarmUpdate_b65a4 {
     u8 pad_0x0[0x31c];

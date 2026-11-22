@@ -12,6 +12,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkVec3_sm42.h"
 #include "types.h"
 
 struct UnkFlagged;
@@ -24,12 +25,6 @@ struct UnkMovementVec_71010d08d4;
 struct UnkCharacterMovement;
 struct UnkCollisionHit;
 struct CVector3D;
-
-struct UnkVec3_sm42 {
-    f32 x, y, z;
-    UnkVec3_sm42(f32 x, f32 y, f32 z) : x(x), y(y), z(z) {}
-    UnkVec3_sm42(const UnkVec3_sm42& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 struct UnkRelocateVec {
     f32 x, y, z;

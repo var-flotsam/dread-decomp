@@ -10,6 +10,7 @@
 #include "game/CRedenkiSwarmControllerComponent.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU1161.h"
+#include "game/UnkZeroVec_b0012.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -79,11 +80,6 @@ struct UnkDaivoTuning_b0012 {
 
 struct UnkSwarmPath_b0012 {
     u8 data[0x8];
-};
-
-struct UnkZeroVec_b0012 {
-    f32 x, y, z;
-    UnkZeroVec_b0012() : x(0.0f), y(0.0f), z(0.0f) {}
 };
 
 class UnkDaivoSwarm_b0012 {

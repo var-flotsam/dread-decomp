@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include "base/UnkVtableList.h"
 #include "base/file/CPackManagerDevice.h"
+#include "game/UnkNamedUser.h"
+#include "game/UnkPtrListNode.h"
 #include "game/UnkTU2730.h"
 
 #include <nn/os.h>
@@ -971,10 +973,6 @@ struct UnkNamedNode {
     UnkNamedObject* value;
     UnkNamedNode* next;
 };
-struct UnkNamedUser {
-    u8 pad_0x0[0x88];
-    bool field_0x88;
-};
 // String equality (the declaration is src/game_s1/fn_71000d4d50.cpp's, over a record of CRntString's size).
 struct UnkCompared_0x30;
 static inline bool Equal(const CRntString* a, const CRntString* b) {
@@ -1076,11 +1074,6 @@ using base::global::CRntString;
 
 struct UnkUserDataOwner;
 
-// A list of pointers (vtable g_unk_7101aa9ac0), its nodes from `allocator` with `flags`.
-struct UnkPtrListNode {
-    void* value;
-    UnkPtrListNode* next;
-};
 struct UnkPtrList {
     void** vtable;
     // Union members: the original reloads the count, the tail and the allocator after storing a new

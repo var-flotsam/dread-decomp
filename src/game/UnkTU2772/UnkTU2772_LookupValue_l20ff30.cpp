@@ -1,17 +1,10 @@
 // UnkTU2772 (nn::atk): resolves a packed id (kind in the top byte, index in the low 24 bits) through the
 // reference table at +4 to a block of type 0x2201 and returns a value from the data it points to, or -1.
 // Names and layouts are placeholders.
+#include "game/UnkAtkRef.h"
+#include "game/UnkAtkRefTable.h"
 #include "types.h"
 
-struct UnkAtkRef {
-    u16 type;  // 0x0
-    u16 pad_0x2;
-    s32 offset;  // 0x4
-};
-struct UnkAtkRefTable {
-    u32 count;  // 0x0
-    UnkAtkRef refs[1];  // 0x4
-};
 struct UnkAtkHolder {
     u32 field_0x0;
     s32 table;  // 0x4

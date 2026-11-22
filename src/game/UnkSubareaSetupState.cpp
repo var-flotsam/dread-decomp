@@ -17,6 +17,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkSubareaRenderOut.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2611.h"
@@ -477,10 +478,6 @@ struct UnkSubareaRenderOwner {
     UnkSubareaRenderSub* field_0x70;
     u8 pad_0x78[0x8];
     UnkSubareaRenderSub* field_0x80;
-};
-struct UnkSubareaRenderOut {
-    void* data;
-    u32 count;
 };
 
 void fn_7100facb08(UnkSubareaRenderOwner* self, s32 kind, UnkSubareaRenderSetup* setup, bool flag,

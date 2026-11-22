@@ -11,6 +11,7 @@
 #include "game/CInfesterAIComponent.h"
 #include "game/UnkAIPathSearch.h"
 #include "game/UnkActor.h"
+#include "game/UnkVec2f_A5.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -19,12 +20,6 @@ using base::reflection::CType;
 using base::reflection::UnkReflObject;
 
 struct UnkAIPathFollower;
-
-struct UnkVec2f_A5 {
-    f32 x, y;
-    UnkVec2f_A5(f32 x_, f32 y_) : x(x_), y(y_) {}
-    UnkVec2f_A5(const UnkVec2f_A5& o) : x(o.x), y(o.y) {}
-};
 
 // The movement's path state (at +0x8e8 of the movement, kind 1).
 struct UnkInfesterPathState_l5cc96c {

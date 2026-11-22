@@ -4,6 +4,7 @@
 // appends; src/game_lo/fn_710013c3c8.cpp looks a group up). Names and layouts are placeholders
 // inferred from the code.
 #include "base/UnkTunableLine.h"
+#include "base/UnkTunableObject.h"
 #include "base/global/CRntVector.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CStrId.h"
@@ -144,10 +145,6 @@ void fn_710007f6dc(CRntString* self);                           // trims both en
 // The string's key (its CRC-64) into *out.
 // A copy of `str` with every `from` replaced by `to`.
 
-// The tunable object a header names: its class is vtable slot 0.
-struct UnkTunableObject {
-    virtual char* GetClass();
-};
 struct UnkTunableRegistry;
 
 // A reflected field (0xb0 bytes): its type at +0x10.

@@ -4,6 +4,7 @@
 // The record sits at `Record` with the state after it (fn_7100c05060 and its copies).
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkVariantPair.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -74,13 +75,6 @@ void fn_7100c05060(char* self) { ResetVariant<0x18>(self); }
 void fn_7100c0562c(char* self) { ResetVariant<0x18>(self); }
 void fn_7100c08274(char* self) { ResetVariant<0x8>(self); }
 void fn_7100c088f8(char* self) { ResetVariant<0x8>(self); }
-
-// Sets the variant at 0x10 from the pointer at 8: a pair of this and the pointer (state 2), or
-// empty without one (fn_7100c051e8 and its copy).
-struct UnkVariantPair {
-    char* owner;
-    void* value;
-};
 
 __attribute__((always_inline)) static inline void SetVariant(char* self) {
     void* value = *reinterpret_cast<void**>(self + 8);

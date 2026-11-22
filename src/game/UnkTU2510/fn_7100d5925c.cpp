@@ -7,6 +7,7 @@
 #include "game/UnkTU2509.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
+#include "game/UnkVisitResult_b0040.h"
 #include "game/logic/collision/CCollider.h"
 #include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
@@ -16,14 +17,6 @@ using base::math::CVector3D;
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
-
-// The "skip" result and its guard (shared with the other visitors).
-struct UnkVisitResult_b0040 {
-    s32 value;
-    UnkVisitResult_b0040(s32 v) : value(v) {}
-    UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
-    ~UnkVisitResult_b0040() {}
-};
 
 static inline void InitSkip() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726a4780), __ATOMIC_ACQUIRE) & 1), 0)) {

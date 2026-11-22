@@ -6,16 +6,11 @@
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
 #include "base/math/UnkOneVector3.h"
+#include "game/UnkQuatRet_b0172.h"
 #include "types.h"
 
 using base::math::CVector3D;
 using base::math::CVector4D;
-
-struct UnkQuatRet_b0172 {
-    f32 x, y, z, w;
-    UnkQuatRet_b0172() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
-    UnkQuatRet_b0172(const UnkQuatRet_b0172& o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
-};
 
 UnkQuatRet_b0172 fn_71000772fc(const UnkMatrix44* mat);
 

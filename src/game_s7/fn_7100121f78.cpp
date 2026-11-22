@@ -9,67 +9,16 @@
 #include "base/global/CRntVector.h"
 #include "game/CGoliathXBurstProjectionBombMovement.h"
 #include "game/SLogicPathNode.h"
+#include "game/UnkBlockVector.h"
+#include "game/UnkCopiedVector.h"
+#include "game/UnkPolyValues.h"
+#include "game/UnkPushedVector.h"
 #include "game/UnkTU2563.h"
+#include "game/UnkValuePair.h"
+#include "game/UnkWordList.h"
+#include "game/UnkWordNode.h"
+#include "game/UnkWordsValue.h"
 #include "types.h"
-
-template <class T>
-struct UnkCopiedVector {
-    T* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    __attribute__((always_inline)) void Reallocate(u32 new_capacity) {
-        T* p = static_cast<T*>(allocator->vf_0x40((u64)new_capacity * sizeof(T), 8, flags));
-        if (data) {
-            T* src = data;
-            T* dst = p;
-            for (u32 i = 0; i < count; ++i, ++src, ++dst)
-                new (dst) T(*src);
-            allocator->vf_0x48(data);
-        }
-        data = p;
-        capacity = new_capacity;
-    }
-
-    __attribute__((always_inline)) UnkCopiedVector& operator=(const UnkCopiedVector& other) {
-        if (this != &other) {
-            count = 0;
-            u32 reserve = other.capacity;
-            if (capacity < reserve)
-                Reallocate(reserve);
-            for (const T *it = other.data, *end = it + other.count; it != end; ++it) {
-                u32 n = count;
-                u32 cap = capacity;
-                u32 new_capacity = cap;
-                if (cap <= n && step != 0)
-                    new_capacity = (n / step + 1) * step;
-                if ((s32)n >= (s32)new_capacity)
-                    for (;;) {
-                    }
-                if (cap < new_capacity)
-                    Reallocate(new_capacity);
-                new (&data[count]) T(*it);
-                ++count;
-            }
-        }
-        return *this;
-    }
-};
-
-// Two values copied one by one (as plain words: the original reloads the count after each
-// element).
-struct UnkValuePair {
-    u32 values[2];
-
-    UnkValuePair(const UnkValuePair& other) {
-        values[0] = other.values[0];
-        values[1] = other.values[1];
-    }
-};
 
 UnkCopiedVector<UnkValuePair>* fn_7100121f78(UnkCopiedVector<UnkValuePair>* self, const UnkCopiedVector<UnkValuePair>* other) {
     return &(*self = *other);
@@ -84,18 +33,6 @@ struct UnkWord {
     u64 value;
 
     UnkWord(const UnkWord& other) { value = other.value; }
-};
-
-struct UnkWordsValue {
-    u64 field_0x0;
-    u64 field_0x8;
-    u32 field_0x10;
-
-    UnkWordsValue(const UnkWordsValue& other) {
-        field_0x0 = other.field_0x0;
-        field_0x8 = other.field_0x8;
-        field_0x10 = other.field_0x10;
-    }
 };
 
 UnkCopiedVector<UnkWord>* fn_71000cf3b4(UnkCopiedVector<UnkWord>* self, const UnkCopiedVector<UnkWord>* other) {
@@ -118,10 +55,6 @@ struct UnkValues3 {
     }
 };
 
-struct UnkPushedVector : UnkCopiedVector<UnkValues3> {
-    UnkPushedVector& operator=(const UnkPushedVector& other);
-};
-
 __attribute__((always_inline)) inline UnkPushedVector& UnkPushedVector::operator=(const UnkPushedVector& other) {
     if (this != &other) {
         count = 0;
@@ -133,27 +66,6 @@ __attribute__((always_inline)) inline UnkPushedVector& UnkPushedVector::operator
     }
     return *this;
 }
-
-struct UnkBlockVector : UnkCopiedVector<u16> {
-    __attribute__((always_inline)) UnkBlockVector& operator=(const UnkBlockVector& other) {
-        if (this != &other) {
-            count = 0;
-            u32 reserve = other.capacity;
-            if (capacity < reserve) {
-                u16* p = static_cast<u16*>(allocator->vf_0x40((u64)reserve * sizeof(u16), 8, flags));
-                if (data) {
-                    __builtin_memcpy(p, data, (u64)count * sizeof(u16));
-                    allocator->vf_0x48(data);
-                }
-                data = p;
-                capacity = reserve;
-            }
-            __builtin_memcpy(data, other.data, (u64)other.count * sizeof(u16));
-            count = other.count;
-        }
-        return *this;
-    }
-};
 
 struct UnkArraysRecord {
     UnkPushedVector first;
@@ -168,56 +80,7 @@ struct UnkArraysRecord {
 // elements are destroyed, the array reserves the other's capacity (moving each record over and
 // destroying the old one) and each of the other's records is appended by fn_7100e4ea08.
 
-struct UnkPolyValues {
-    char* vtable;
-    u32 field_0x8;
-    u32 field_0xc;
-    u32 field_0x10;
-    u32 field_0x14;
-    u32 field_0x18;
-
-    void Destroy() { reinterpret_cast<void (**)(UnkPolyValues*)>(vtable)[1](this); }
-};
-
 struct UnkPolyVector : UnkCopiedVector<UnkPolyValues> {};
-
-// Copy-assignment of a singly linked list of words: the nodes are freed, then a node is
-// allocated and appended for each of the other's values.
-// The link is a union member (no type-based alias info: the count is reloaded after it is set).
-struct UnkWordNode {
-    u64 value;
-    union {
-        UnkWordNode* next;
-    };
-};
-
-struct UnkWordList : base::UnkVtableList<UnkWordNode> {
-    void PushBack(const u64& value) {
-        auto* node = static_cast<UnkWordNode*>(allocator->vf_0x40(sizeof(UnkWordNode), 8, flags));
-        if (node) {
-            node->value = value;
-            node->next = nullptr;
-        }
-        if (count == 0) {
-            head = node;
-            tail = node;
-        } else {
-            tail->next = node;
-            node->next = nullptr;
-        }
-        tail = node;
-        ++count;
-    }
-
-    UnkWordList& operator=(const UnkWordList& other) {
-        if (this != &other) {
-            Clear();
-            for (UnkWordNode* node = other.head; node; node = node->next)
-                PushBack(node->value);
-        }
-        return *this;
-    }
-};
 
 // NON_MATCHING(minor): the shared end of the append (setting the tail and the count) is duplicated
 // into the empty-list case; the original branches to it.

@@ -2,16 +2,10 @@
 // targets in a fixed list at +0x8 (a count, then the records). Results: 1 added, 2 full, 3 added and now
 // full. Names and layouts are placeholders.
 #include "game/CAimComponent.h"
+#include "game/UnkVisitResult_b0040.h"
 #include "types.h"
 
 #include <new>
-
-struct UnkVisitResult_b0040 {
-    s32 value;
-    UnkVisitResult_b0040(s32 v) : value(v) {}
-    UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
-    ~UnkVisitResult_b0040() {}
-};
 
 // A fixed-capacity list: a count, then room for N elements.
 template <typename T, int N>

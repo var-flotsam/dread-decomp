@@ -1,6 +1,10 @@
 // Copies of fn_7100b87488 (src/game_aca57c/fn_7100ad4b54.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_71005abe98, fn_71005abf48.
 // Getters building a value of kind 2 (fn_71000a18d4 fills in the rest from the type the value is
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
+#include "base/UnkAngleSource.h"
+#include "base/UnkFlagSource.h"
+#include "base/UnkVector3.h"
+#include "base/UnkVectorSource.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -8,6 +12,7 @@
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkDefIterValue.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1633.h"
 #include "game/UnkTU2200.h"
@@ -57,47 +62,6 @@ __attribute__((always_inline)) static inline UnkReflValue GetFlag(UnkArgument<bo
     return MakeValue(fn_710000d228(), &value);
 }
 
-// The vector the argument's object returns from its virtual function at 0x68.
-// (Returned in memory: its copy constructor is user-provided.)
-struct UnkVector3 {
-    f32 x, y, z;
-
-    __attribute__((always_inline)) UnkVector3(const UnkVector3& other) : x(other.x), y(other.y), z(other.z) {}
-};
-
-struct UnkVectorSource {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual UnkVector3 vf_0x68();
-};
-
-// The flag the argument's object returns from its virtual function at 0x58.
-struct UnkFlagSource {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual bool vf_0x58();
-};
-
 __attribute__((always_inline)) static inline UnkReflValue GetVirtualFlag(UnkArgument<UnkFlagSource>* argument) {
     bool value = argument->field_0x8->vf_0x58();
     return MakeValue(fn_710000d228(), &value);
@@ -106,18 +70,6 @@ __attribute__((always_inline)) static inline UnkReflValue GetVirtualFlag(UnkArgu
 // Values of kind 2 referring (flag 1) to a cutscene definition held by an iterator value: in place
 // at 0x8, or through the pointer there when the state (after the Size-byte value) is 2. The class
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
-
-template <u32 Size>
-struct UnkDefIterValue {
-    u64 unk_0x0;
-    union {
-        u8 value[Size];
-        void* ref;
-    };
-    s32 state;
-
-    __attribute__((always_inline)) void* Get() { return state == 2 ? ref : value; }
-};
 
 template <u32 Size, void* (*GetClass)(), const CType* Descriptor>
 __attribute__((always_inline)) static inline UnkReflValue GetDef(UnkArgument<UnkDefIterValue<Size>>* argument) {
@@ -148,9 +100,3 @@ __attribute__((always_inline)) static inline UnkReflValue GetSingleton() {
     return MakeValue(GetType(), &value);
 }
 
-// The sum of the two angles at 0xc8 of the argument's object, in degrees.
-struct UnkAngleSource {
-    u8 unk_0x0[0xc8];
-    f32 field_0xc8;
-    f32 field_0xcc;
-};

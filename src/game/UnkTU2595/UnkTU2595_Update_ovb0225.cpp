@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkMusicMode.h"
 #include "game/UnkStateMachineFind.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2595.h"
@@ -152,10 +153,6 @@ void fn_7100f14118(UnkSmOwner_b0225* self, f32 dt) {
 
 struct UnkSoundHolder;
 struct UnkMgr_0xf18;
-struct UnkMusicMode {
-    u32 kind;
-    u32 field_0x4;
-};
 using base::global::CRntString;
 
 // The state's entry: the base's step (which also takes the argument), the sound holder, an "Ingame" string id built and dropped, the GUI root

@@ -3,18 +3,12 @@
 // placeholders.
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/UnkTimelineEventParams_lbc844c.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern char g_unk_7101aa16a8[];
-
-struct UnkTimelineEventParams_lbc844c {
-    u32 field_0x0;
-    f32 field_0x4;
-    f32 field_0x8;
-    f32 field_0xc;
-};
 
 // The event: the timeline event base (vtable and one word), a block of four words and eight string ids.
 struct UnkPlayRandomTimelineEvent {

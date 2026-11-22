@@ -4,14 +4,12 @@
 // placeholders.
 #include "base/math/CVector.h"
 #include "game/CSamusGrappleMovementState.h"
+#include "game/UnkGrappleParams_b65a6.h"
 #include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1450.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-struct UnkGrappleParams_b65a6 {
-    u32 words[5];
-};
 struct UnkGrappleState_b65a6;
 void fn_710099c920(UnkGrappleState_b65a6* self, const UnkGrappleParams_b65a6* params);
 

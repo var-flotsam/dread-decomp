@@ -4,17 +4,9 @@
 // CVulkranMagmaBallMovementComponent (fn_71006df774, its own unit), whose direction is flattened and
 // capped. Names and layouts are placeholders.
 #include "game/CProjectileMovement.h"
+#include "game/UnkKraidCreatureVec.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
-
-// Returned in memory (x8): the copy constructor is user-provided (as in
-// CKraidBouncingCreaturesMovementComponent_3.cpp).
-struct UnkKraidCreatureVec {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
-};
 
 struct UnkAcidSettings {
     u8 pad_0x0[0x11a];

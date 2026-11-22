@@ -9,15 +9,10 @@
 #include "base/reflection/CType.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/UnkReflFieldObject.h"
 #include "game/UnkTU85.h"
 
 using namespace base::reflection;
-
-// An object and its type, as the walk passes it on.
-struct UnkReflFieldObject {
-    char* type;
-    void* ptr;
-};
 
 // A typed reference to a value (a type and where the value is).
 struct UnkReflValueArg {

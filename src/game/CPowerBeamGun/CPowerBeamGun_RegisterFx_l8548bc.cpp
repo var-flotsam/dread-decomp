@@ -6,15 +6,11 @@
 #include "game/CGun.h"
 #include "game/CPlasmaBeamGun.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkPlasmaBeamGun_ovb0135.h"
 
 using base::global::CFilePathStrId;
 
 struct UnkFxCache;
-
-struct UnkPlasmaBeamGun_ovb0135 {
-    u8 pad_0x0[0x1870];
-    bool fx_registered;  // 0x1870
-};
 
 struct UnkSPBGun;
 

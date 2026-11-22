@@ -12,6 +12,7 @@
 #include "game/CTakumakuAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTakumakuDir_b58.h"
 #include "game/UnkXformNode.h"
 #include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkParams.h"
@@ -21,9 +22,6 @@
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
-struct UnkTakumakuDir_b58 {
-    f32 x, y, z;
-};
 extern const UnkTakumakuDir_b58 g_unk_710164a7a0 __attribute__((visibility("hidden")));
 extern const UnkTakumakuDir_b58 g_unk_710164a7ac __attribute__((visibility("hidden")));
 

@@ -3,6 +3,8 @@
 // last record, then runs the base destructor.
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/UnkListenerOwner.h"
+#include "game/UnkRefSlot.h"
 #include "game/UnkTU1449.h"
 #include "game/UnkTU1452.h"
 #include "game/UnkTU1454.h"
@@ -10,18 +12,6 @@
 #include "types.h"
 
 void fn_71009b0800(void* self);
-
-// A counted reference whose slot is released in place.
-struct UnkRefSlot {
-    UnkRefObject* ptr;
-
-    void Release() {
-        if (UnkRefObject* p = ptr) {
-            if (--p->ref_count == 0)
-                p->vf_0x10();
-        }
-    }
-};
 
 // The common base: a vtable and a member at +0x18 (0x30 bytes).
 struct UnkEventBase {
@@ -66,10 +56,6 @@ struct UnkRecord {
         field_0x18 = nullptr;
         field_0x20 = 0;
     }
-};
-
-struct UnkListenerOwner : UnkRefObject {
-    UnkWeakTarget* field_0x10;
 };
 
 struct UnkListener {

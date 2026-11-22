@@ -8,19 +8,13 @@
 #include "base/global/CStrId.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMusicRequest_b55.h"
 #include "game/UnkTU2636.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 struct UnkMgr_0xf18;
-
-struct UnkMusicRequest_b55 {
-    u8 unk_0x0[0x10];
-    u32 field_0x10;
-    u8 unk_0x14[0x1c];
-    u8 field_0x30;
-};
 
 void fn_7100fd147c(UnkMusicRequest_b55* self, u32 id, u32 value, void (*callback)());
 

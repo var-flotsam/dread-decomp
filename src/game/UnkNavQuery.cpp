@@ -9,6 +9,8 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/UnkNavCallback.h"
+#include "game/UnkNavCallbackCopy.h"
 #include "game/UnkNavMeshHit.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU2702.h"
@@ -87,28 +89,6 @@ struct UnkNavGroupInfo {
 struct UnkNavActor {
     u8 pad_0x0[0x240];
     UnkNavComponent* component;
-};
-
-struct UnkNavCallback {
-    void* ctx;
-    void* fn;
-};
-
-// A callback passed by value: the original copies it member by member (a user-provided copy), so
-// the copies go in memory and their addresses are passed.
-struct UnkNavCallbackCopy {
-    void* ctx;
-    void* fn;
-
-    template <class T>
-    explicit UnkNavCallbackCopy(const T& other) {
-        ctx = other.ctx;
-        fn = reinterpret_cast<void*>(other.fn);
-    }
-    template <class T>
-    const T& As() const {
-        return *reinterpret_cast<const T*>(this);
-    }
 };
 
 struct UnkNavQuery {

@@ -6,46 +6,13 @@
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/CRntVector.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkSndChannelFade_l0ff4e4.h"
+#include "game/UnkSndChannels_l0ff4e4.h"
+#include "game/UnkSndVoice_l0ff4e4.h"
+#include "game/UnkSoundHandle_b46a1.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU104.h"
 #include "game/UnkTU99.h"
-
-struct UnkSoundHandle_b46a1 {
-    u32 value;
-    UnkSoundHandle_b46a1(const UnkSoundHandle_b46a1& other) : value(other.value) {}
-};
-
-struct UnkSndChannelFade_l0ff4e4 {
-    s32 current;  // 0x0
-    s32 from;     // 0x4
-    s32 to;       // 0x8
-    f32 time;     // 0xc
-    f32 elapsed;  // 0x10
-
-    void Start(s32 level, f32 duration) {
-        s32 target = fn_710010aaa0(level);
-        from = current;
-        to = target;
-        time = duration;
-        elapsed = 0;
-    }
-};
-
-struct UnkSndChannels_l0ff4e4 {
-    u8 pad_0x0[0xf0];
-    u32 mask;                            // 0xf0
-    UnkSndChannelFade_l0ff4e4 fades[8];  // 0xf4
-    u8 pad_0x194[0x3f0 - 0x194];
-    base::global::CRntVector<UnkInterp_7100105f94*> voices_a;  // 0x3f0
-    base::global::CRntVector<UnkInterp_7100105f94*> voices_b;  // 0x418
-    u8 pad_0x440[0x400568 - 0x440];
-    nn::os::MutexType mutex;  // 0x400568
-};
-
-struct UnkSndVoice_l0ff4e4 {
-    u8 pad_0x0[0xb0];
-    s32 channel;  // 0xb0
-};
 
 static inline s32 ChannelOf(UnkInterp_7100105f94* voice) {
     return fn_710010aae0(reinterpret_cast<UnkSndVoice_l0ff4e4*>(voice)->channel);

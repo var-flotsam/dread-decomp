@@ -6,6 +6,7 @@
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkIdValueVecSize_b43a3.h"
 #include "game/UnkTU2601.h"
 #include "types.h"
 
@@ -13,10 +14,6 @@
 template <char* Vtable>
 struct UnkIdValueVecTag_b43a3;
 
-template <char* Vtable>
-struct UnkIdValueVecSize_b43a3 {
-    static constexpr u64 value = 16;
-};
 template <char* Vtable>
 using UnkIdValueVecElem_b43a3 = base::UnkIdValueElem<UnkIdValueVecTag_b43a3<Vtable>,
                                                      UnkCloneElem<UnkIdValueVecTag_b43a3<Vtable>, UnkIdValueVecSize_b43a3<Vtable>::value>>;

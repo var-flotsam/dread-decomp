@@ -7,17 +7,12 @@
 #include "base/global/CStrId.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
+#include "game/UnkWeakRefAt.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-// As src/game_aca57c/fn_7100d78378.cpp defines it.
-template <u32 Offset>
-struct UnkWeakRefAt {
-    u8 pad_0x0[Offset];
-    UnkWeakHandle* ref;
-};
 void fn_71010e6038(UnkWeakRefAt<0xc30>* self, UnkWeakTarget* other);
 
 struct UnkSubAreaManagerView;

@@ -4,6 +4,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkPoint2D_d52bd0.h"
 #include "game/UnkTU1159.h"
 #include "game/UnkTU357.h"
 #include "game/UnkXformNode.h"
@@ -42,14 +43,6 @@ struct UnkShape_l724ecc {
     virtual UnkBox_l724ecc GetBounds(const void* transform);
     u8 field_0x8[0xa0];
     f32 radius;  // 0xa8
-};
-
-// A 2D point returned through x8 (not trivially copyable).
-struct UnkPoint2D_d52bd0 {
-    f32 x, y;
-
-    UnkPoint2D_d52bd0(f32 x_, f32 y_) : x(x_), y(y_) {}
-    UnkPoint2D_d52bd0(const UnkPoint2D_d52bd0& o) : x(o.x), y(o.y) {}
 };
 
 // The extents of a kind-4 shape (a box): its upper and lower corners.

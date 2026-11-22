@@ -1,11 +1,7 @@
 // CMorphBallMovement's unit (tools/tu_map.py): with the flag at +0xf9 set, clears it and calls the
 // virtual at slot 0x260; then resets a set of state fields. Names and layout are placeholders.
+#include "game/UnkVec2_b45a2.h"
 #include "types.h"
-
-struct UnkVec2_b45a2 {
-    f32 x;
-    f32 y;
-};
 
 // The block at +0x23c4, addressed from its start.
 struct UnkMorphBallState_b45a2 {

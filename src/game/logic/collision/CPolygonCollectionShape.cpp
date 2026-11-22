@@ -13,6 +13,7 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkTU109.h"
+#include "game/UnkTileOutlineList.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game/logic/collision/CShape.h"
 #include "game/malloc.h"
@@ -550,12 +551,6 @@ UnkColliderResult fn_7100d658e0(UnkPolygonCollection2D* self, const UnkShape8Geo
 }
 
 // ---- fn_7100d62b04: the shape's constructor ----
-
-// The polygon list it builds at +0xa8 (constructed by fn_7100123eb4, as src/game/CBreakableTileGroup.cpp's
-// scratch list).
-struct UnkTileOutlineList {
-    u8 data[0x40];
-};
 
 struct UnkPolygonCollectionShapeView {
     char* vtable;

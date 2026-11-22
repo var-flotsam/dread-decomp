@@ -11,6 +11,9 @@
 #include "base/snd/CSoundSystem.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkMask.h"
+#include "game/UnkMusicRequest_b0019.h"
+#include "game/UnkNodeList_b0019.h"
+#include "game/UnkPathEntry_0x18.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU99.h"
 #include "game/sound/CMusicManager.h"
@@ -262,12 +265,6 @@ void fn_7100fdba30(UnkMusicMgr_b0019* self) {
     SetAllHeld(self, true);
 }
 
-struct UnkPathEntry_0x18 {
-    UnkPooledId<&g_unk_7101d47200> field_0x0;
-    u64 field_0x8;
-    u64 field_0x10;
-};
-
 struct UnkPathList : base::global::CRntVector<UnkPathEntry_0x18> {
     ~UnkPathList() { Free(); }
 };
@@ -291,23 +288,6 @@ static inline UnkNode_0x68*& Prev(UnkNode_0x68* n) { return n->prev; }
 __attribute__((noinline)) void fn_7100fde6c4(UnkNode_0x68* node) {
     node->~UnkNode_0x68();
 }
-
-struct UnkNodeList_b0019 {
-    char* vtable;
-    union {
-        u32 count;  // a union member: the original reloads the links after updating it
-    };
-    UnkNode_0x68* head;
-    UnkNode_0x68* tail;
-    u32 flags;
-    base::UnkAllocator* allocator;
-    void* field_0x30;
-
-    void Destroy(UnkNode_0x68* node) {
-        fn_7100fde6c4(node);
-        allocator->vf_0x48(node);
-    }
-};
 
 // Unlinks and frees the node, returning the node after it.
 __attribute__((noinline)) UnkNode_0x68* fn_7100fd8f98(UnkNodeList_b0019* list, UnkNode_0x68* node) {
@@ -409,12 +389,6 @@ __attribute__((noinline)) void fn_7100fd5a90(UnkMusicSlots_b0019* self, u32 inde
         }
     }
 }
-
-struct UnkMusicRequest_b0019 {
-    u32 kind;  // 0x0
-    u8 pad_0x4[0x2c];
-    u32 active;  // 0x30
-};
 
 void fn_7100fd8a60(UnkNodeList_b0019* list, UnkMusicRequest_b0019* request);
 

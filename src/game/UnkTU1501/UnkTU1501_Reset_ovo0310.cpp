@@ -2,6 +2,8 @@
 // state clear, and the floor-slide check. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "game/CMovementComponent.h"
+#include "game/UnkMode_b152.h"
+#include "game/UnkStaticZero_b152.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "game/UnkTU437.h"
@@ -17,6 +19,8 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTrackLink_b152.h"
+#include "game/UnkTrackRec_b152.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -28,28 +32,6 @@ template <class R, class... A>
 static inline R CallVf(void* self, u32 off, A... args) {
     return reinterpret_cast<R (*)(void*, A...)>((*reinterpret_cast<void***>(self))[off / 8])(self, args...);
 }
-
-struct UnkMode_b152 {
-    void** vtable;
-    u8 pad_0x8[0x8];
-    s32 kind;  // 0x10
-    u8 pad_0x14[0x188];
-    UnkVec3f field_0x19c;
-};
-
-struct UnkTrackRec_b152 {
-    u8 pad_0x0[0x18];
-    f32 field_0x18;
-    f32 field_0x1c;
-};
-
-// A link into a track's weak handle list: the context and callback it is given, and the handle it holds.
-struct UnkTrackLink_b152 {
-    u8 pad_0x0[0x8];
-    void* context;
-    void (*callback)();
-    UnkWeakHandle* handle;
-};
 
 struct UnkMove_b152 {
     void** vtable;  // 0x0
@@ -169,10 +151,6 @@ struct UnkMorphBallMovement_b49a4;
 void fn_71010da750(UnkMove_b152* self);
 void fn_710034eaec(void* obj, bool flag);
 
-struct UnkStaticZero_b152 {
-    u32 value;
-    UnkStaticZero_b152() : value(0) {}
-};
 inline const UnkStaticZero_b152& StaticZero_b152() {
     static UnkStaticZero_b152 s_value asm("g_unk_71726b5354");
     return s_value;

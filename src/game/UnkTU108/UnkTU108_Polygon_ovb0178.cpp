@@ -8,6 +8,8 @@
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkPathLink.h"
+#include "game/UnkPathPair.h"
 #include "game/UnkTU108.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -15,19 +17,6 @@
 using base::math::CVector2D;
 
 // ---- An array of 8-byte pairs and one of 8-byte links ----
-
-// An 8-byte element of two words, copied member by member.
-struct UnkPathPair {
-    u32 value[2];
-
-    // Each word is copied bitwise.
-    void CopyFrom(const UnkPathPair& other) {
-        __builtin_memcpy(&value[0], &other.value[0], sizeof(u32));
-        value[1] = other.value[1];
-    }
-    UnkPathPair(const UnkPathPair& other) { CopyFrom(other); }
-    UnkPathPair(UnkPathPair&& other) { CopyFrom(other); }
-};
 
 // Allocates new_capacity elements and moves the elements over, freeing the old array.
 template <class T>
@@ -107,21 +96,6 @@ __attribute__((always_inline)) static inline void InsertAt(base::global::CRntVec
 void fn_7100122160(base::global::CRntVector<UnkPathPair>* self, UnkPathPair* value, u32 index) {
     InsertAt(self, value, index);
 }
-
-struct UnkPathLink {
-    u32 field_0x0;
-    u32 field_0x4;
-
-    // Zeroed and copied word by word, untyped: the original reloads the array after each store.
-    UnkPathLink() {
-        __builtin_memset(&field_0x0, 0, sizeof(u32));
-        __builtin_memset(&field_0x4, 0, sizeof(u32));
-    }
-    UnkPathLink(UnkPathLink&& other) {
-        field_0x0 = other.field_0x0;
-        field_0x4 = other.field_0x4;
-    }
-};
 
 __attribute__((flatten)) UnkPathLink* fn_7100122590(base::global::CRntVector<UnkPathLink>* self, u32 index) {
     return &self->GrowAt(index);

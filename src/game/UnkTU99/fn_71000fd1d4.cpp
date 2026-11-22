@@ -9,36 +9,17 @@
 #include "base/UnkDefaultAllocator.h"
 #include "base/snd/UnkSound.h"
 #include "base/snd/UnkSoundSystemATK.h"
+#include "game/UnkSystem_b0184.h"
 #include "game/UnkTU99.h"
 #include "game/UnkTU101.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkVoice_b0184.h"
 
 using base::snd::UnkSoundSystemATK;
 
 
 struct UnkInterp_7100105d34;
 struct UnkPlayingSound_ovb0074;
-
-// A voice: the group bit it answers to is 1 << shift.
-struct UnkVoice_b0184 {
-    u8 pad_0x0[0xb0];
-    u32 shift;  // 0xb0
-};
-
-// The members of the sound system these functions touch: two lists of voices and the mutex that
-// guards them.
-struct UnkSystem_b0184 {
-    u8 pad_0x0[0xe8];
-    u32 field_0xe8;
-    u8 pad_0xec[0x3f0 - 0xec];
-    UnkVoice_b0184** list_0x3f0;
-    u32 count_0x3f8;
-    u8 pad_0x3fc[0x1c];
-    UnkVoice_b0184** list_0x418;
-    u32 count_0x420;
-    u8 pad_0x424[0x400568 - 0x424];
-    nn::os::MutexType mutex;  // 0x400568
-};
 
 // Applies a fade to the first list's voices in mask.
 // NON_MATCHING(minor): the same instructions in another order or with other registers.

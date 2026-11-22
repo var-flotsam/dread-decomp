@@ -20,6 +20,7 @@
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkEntry_0x30.h"
 #include "game/UnkTU2640.h"
 #include "game/UnkTU56.h"
 #include "game/sound/CMusicManager.h"
@@ -41,11 +42,6 @@ static inline void* MusicManager() {
     }
     return g_unk_71726bc560;
 }
-
-// A string (base::global::CRntString's layout), as src/game/UnkObjectFileLoader.cpp names it.
-struct UnkEntry_0x30 {
-    u8 data[0x30];
-};
 
 // The id and path pair (base/UnkStrIdPathPair.h) that fn_710008d4c0 builds and fn_710008d8e8
 // destroys.

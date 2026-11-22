@@ -3,15 +3,12 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/CNavMeshItemStage.h"
+#include "game/UnkSourceDesc.h"
+#include "game/UnkSourceList.h"
 
 using base::reflection::refl_ArgValue;
 using base::reflection::refl_EmptyValue;
 using base::reflection::UnkReflValue;
-
-struct UnkSourceDesc {
-    u8 pad_0x0[0x30];
-    u64 id;
-};
 
 struct UnkSource {
     u8 pad_0x0[0x40];
@@ -19,11 +16,6 @@ struct UnkSource {
 };
 
 struct UnkSourceList;
-
-struct UnkSourceList {
-    u8 pad_0x0[0x8];
-    u32 count;
-};
 
 struct UnkOwner {
     u8 pad_0x0[0x148];

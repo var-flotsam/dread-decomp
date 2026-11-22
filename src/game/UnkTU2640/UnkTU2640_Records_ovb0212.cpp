@@ -9,6 +9,9 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "../UnkUnit2601/UnkUnit2601_VecCopy_b56.h"
+#include "game/GUI/UnkMissionLogRecords.h"
+#include "game/UnkElem78.h"
+#include "game/UnkRec78Init_b0212.h"
 #include "game/UnkTU2640.h"
 #include "types.h"
 
@@ -17,34 +20,7 @@ using base::global::UnkStringData;
 
 // ---- 0x78-byte records (two arrays) ----
 
-struct UnkElem78 {
-    u8 unk_0x0[0x78];
-};
-
-template <class Elem>
-struct UnkElemArray {
-    Elem* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 void fn_71010017f4(UnkElemArray<UnkElem78>* self);  // clear
-
-struct UnkRec78Init_b0212 {
-    u64 field_0x0;
-    base::global::CRntVector<u8> items_0x8{0xf};
-    u64 field_0x30 = 0;
-    f32 scale_x = 1.0f;
-    f32 scale_y = 1.0f;
-    u64 field_0x40 = 0;
-    u32 field_0x48;
-    u8 field_0x4c = 0;
-    base::global::CRntVector<u8> items_0x50{0xf};
-};
 
 // The array's resize: reserve, then value-initialise the new records.
 void fn_7101002358(UnkElemArray<UnkRec78Init_b0212>* self, u32 n) {

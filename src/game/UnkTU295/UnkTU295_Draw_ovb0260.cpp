@@ -1,65 +1,12 @@
 // Unit 295: hands an item list's handles to the renderer and draws with a position copy, then finishes the
 // renderer. Names and layouts are placeholders.
+#include "game/UnkDrawItem_b260.h"
+#include "game/UnkDrawParent_b260.h"
+#include "game/UnkItemList_b260.h"
+#include "game/UnkRenderer_b260.h"
 #include "game/UnkTU167.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkDrawItem_b260 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void Prepare(u32 flag);  // vf_0x60
-    virtual void vf_0x68();
-    virtual void vf_0x70();
-    virtual void vf_0x78();
-    virtual void vf_0x80();
-    virtual void* GetHandle();  // vf_0x88
-};
-
-struct UnkItemList_b260 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual UnkDrawItem_b260** GetItems(u32* count);  // vf_0x68
-};
-
-struct UnkRenderer_b260 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void Draw(void* list, u64 a, void* b, f32 t, u32 c, u32 d, UnkVec3f* v);  // vf_0x20
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void SetHandles(void** handles, u32 count);  // vf_0x38
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void Finish();  // vf_0x50
-};
-
-struct UnkDrawParent_b260 {
-    u8 unk_0x0[0x108];
-    void* field_0x108;
-};
 
 struct UnkDrawer_b260 {
     u8 unk_0x0[8];

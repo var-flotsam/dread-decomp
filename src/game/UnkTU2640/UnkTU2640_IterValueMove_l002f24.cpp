@@ -3,13 +3,10 @@
 #include "base/UnkCollectionIter.h"
 #include "base/global/CStrId.h"
 #include "game/GUI/UnkMissionLogRecords.h"
+#include "game/UnkElem78.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkElem78 {
-    u8 unk_0x0[0x78];
-};
 
 void fn_71010017f4(UnkElemArray<UnkElem78>* self);  // clear
 

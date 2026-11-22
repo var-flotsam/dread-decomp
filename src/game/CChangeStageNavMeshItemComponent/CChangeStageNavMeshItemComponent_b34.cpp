@@ -2,6 +2,7 @@
 // is destroyed, both handles still held are released through the registry at 0x68, then the base.
 #include "game/CChangeStageNavMeshItemComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkNavMeshItemMember.h"
 #include "types.h"
 
 struct UnkNavMeshRegistry {
@@ -9,10 +10,6 @@ struct UnkNavMeshRegistry {
     void Release(void* handle) {
         reinterpret_cast<void (*)(UnkNavMeshRegistry*, void*)>(vtable[0x48 / 8])(this, handle);
     }
-};
-
-struct UnkNavMeshItemMember {
-    void* handle;
 };
 
 struct CChangeStageNavMeshItemComponent {

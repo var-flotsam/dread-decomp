@@ -2,16 +2,9 @@
 // src/game/sound/UnkMusicPlay_b55.cpp): stops the request through fn_7100fd16ec with the request's value at
 // +0x10, unless it is not forced, flagged at +0x30, and fn_7100fd1ad8 takes it first. Four copies.
 // Names and layouts are placeholders.
+#include "game/UnkMusicRequest_b55.h"
 #include "game/UnkTU2636.h"
 #include "types.h"
-
-// As src/game/sound/UnkMusicPlay_b55.cpp spells it.
-struct UnkMusicRequest_b55 {
-    u8 unk_0x0[0x10];
-    u32 field_0x10;
-    u8 unk_0x14[0x1c];
-    u8 field_0x30;
-};
 
 void fn_7100fd16ec(UnkMusicRequest_b55* self, u32 value, u32 force);
 

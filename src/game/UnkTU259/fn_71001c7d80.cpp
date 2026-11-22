@@ -2,6 +2,7 @@
 // screen flag, then draws a frame under the device mutex every 30 ms until the flag clears or the
 // draw callback reports it is done. Names and layouts are placeholders.
 #include "base/global/timeline/CEvent.h"
+#include "engine/UnkGfxResolutionScale.h"
 #include "engine/UnkGraphicsSystem.h"
 #include "game/UnkTU259.h"
 #include <nn/os.h>
@@ -24,10 +25,6 @@ void fn_7100132890();
 bool fn_7100132b10();
 void fn_7100133030();
 
-struct UnkGfxResolutionScale {
-    f32 x;
-    f32 y;
-};
 // u8, not bool as src/engine/UnkGraphicsSystem.cpp declares it: the original compares the byte with 1.
 
 // The loading screen flag, with its light event 0x13c and its mutex 0x14c bytes after it (unit

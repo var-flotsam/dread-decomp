@@ -5,16 +5,12 @@
 #include "game/CHydrogigaPolypsAttack.h"
 #include "game/CSamusMovementState/CParams.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkHandleTarget_ovb0082.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU50.h"
 #include "game/UnkTU811.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
-
-struct UnkHandleTarget_ovb0082 {
-    void* target;
-    u64 serial;
-};
 
 struct UnkHandle {
     UnkHandleTarget_ovb0082* target;

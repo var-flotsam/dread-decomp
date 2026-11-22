@@ -3,20 +3,12 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkMaskA.h"
+#include "game/UnkMaskB.h"
 #include "game/UnkTU2201.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkMaskA {
-    u32 value;
-    UnkMaskA() : value(0) {}
-};
-
-struct UnkMaskB {
-    u32 value;
-    UnkMaskB(u8 v) : value(v) {}
-};
 
 inline const UnkMaskA& UnkMaskNone_7101d57cc8() {
     static UnkMaskA s_none;

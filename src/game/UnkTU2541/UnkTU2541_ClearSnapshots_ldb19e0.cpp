@@ -7,9 +7,11 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
+#include "game/UnkBlob_u71.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkProfileSaveArg.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTypedValue.h"
@@ -17,19 +19,7 @@
 
 using base::global::CStrId;
 
-// A block that is either owned (copied on assignment) or borrowed.
-struct UnkBlob_u71 {
-    u32 size;
-    void* data;  // 0x8
-    bool owns;   // 0x10
-};
-
 void fn_71000947d4(UnkBlob_u71* self);
-
-struct UnkProfileSaveArg {
-    void* field_0x0;
-    void* field_0x8;
-};
 
 // The snapshot properties (src/game_s7/fn_7100ae39e0.cpp).
 

@@ -6,6 +6,8 @@
 #include "base/global/CStrId.h"
 #include "game/CGunComponent.h"
 #include "game/CSamusGunComponent.h"
+#include "game/UnkGunBeamInfo_ovb0070.h"
+#include "game/UnkGunBeam_ovb0070.h"
 #include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -164,15 +166,6 @@ void fn_710085843c(UnkSamusGun_ovb0070* self) {
     self->field_0x328.~UnkGunId_ovb0070();
     fn_7100838f20(reinterpret_cast<UnkGunComponent_l838f20*>(self));
 }
-
-struct UnkGunBeamInfo_ovb0070 {
-    u8 pad_0x0[0x30];
-    u64 id;
-};
-
-struct UnkGunBeam_ovb0070 {
-    UnkGunBeamInfo_ovb0070* info;
-};
 
 void fn_7100839924(UnkSamusGun_ovb0070* self);
 

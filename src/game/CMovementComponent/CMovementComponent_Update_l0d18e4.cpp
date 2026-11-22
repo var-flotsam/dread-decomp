@@ -5,18 +5,12 @@
 #include "base/math/CVector.h"
 #include "game/CComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSlomoFlags.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "types.h"
 
 using base::math::CVector3D;
-
-// The slow-motion flags as bytes of the game manager's word at +0xc4.
-struct UnkSlomoFlags {
-    bool enabled;  // 0xc4
-    u8 unk_0xc5;
-    bool paused;  // 0xc6
-};
 
 struct UnkTransformBlock_l0d18e4 {
     f32 values[23];

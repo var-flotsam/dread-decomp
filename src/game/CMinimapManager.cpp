@@ -19,6 +19,9 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMinimapDrawList.h"
+#include "game/UnkMinimapStatics.h"
+#include "game/UnkMinimapView.h"
 #include "game/UnkTU254.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
@@ -270,13 +273,6 @@ struct UnkMinimapRef {
     UnkMapMenuController* target;
 };
 
-// The map's on-screen viewport: a node at 0x18 (fn_710020a5a0 scales it, fn_710020a4c4 places it), a
-// dirty flag and the view whose rectangle (position, size) fn_71001c36c0 applies.
-struct UnkMinimapView {
-    u8 unk_0x0[0x90];
-    base::math::CVector2D pos;
-    base::math::CVector2D size;
-};
 struct UnkMinimapViewport;
 struct UnkMinimapViewport {
     u8 unk_0x0[0x18];
@@ -367,30 +363,11 @@ static_assert(__builtin_offsetof(UnkMinimapOwner, pass_items) == 0xd64318, "UnkM
 static_assert(__builtin_offsetof(UnkMinimapOwner, regions) == 0xd643b8, "UnkMinimapOwner layout");
 static_assert(__builtin_offsetof(UnkMinimapOwner, scale) == 0xd643e4, "UnkMinimapOwner layout");
 
-// A draw list (0x28 bytes): its entries and their count, reset at the start of each pass.
-struct UnkMinimapDrawList {
-    void* data;
-    u32 count;
-    u8 unk_0xc[0x1c];
-};
-
 // A list's entries as a pointer and a 64-bit count, as the scene objects take them.
 struct UnkMinimapSpan : UnkSceneSpan {
     UnkMinimapSpan(const UnkMinimapDrawList& list) : UnkSceneSpan{list.data, list.count} {}
 };
 
-// The unit's statics, which the compiler merged into one block (addressed from one base): the map
-// cell size at 0x71729cdaa4 (a guarded function-local static of fn_7100e91d68), its guard at
-// 0x71729cdb10 and the four draw lists at 0x71729cdba0. Declared from the 8-aligned word before
-// the cell size so the guard and the lists keep their natural alignment.
-struct UnkMinimapStatics {
-    u8 unk_0x0[0x4];
-    f32 cell_size;
-    u8 unk_0x8[0x68];
-    u64 cell_size_guard;
-    u8 unk_0x78[0x88];
-    UnkMinimapDrawList lists[4];
-};
 static_assert(__builtin_offsetof(UnkMinimapStatics, cell_size_guard) == 0x70, "UnkMinimapStatics layout");
 static_assert(__builtin_offsetof(UnkMinimapStatics, lists) == 0x100, "UnkMinimapStatics layout");
 

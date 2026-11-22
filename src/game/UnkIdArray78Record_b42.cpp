@@ -7,27 +7,12 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/UnkMissionLogRecords.h"
+#include "game/UnkElem78.h"
 #include "types.h"
 #include "game/UnkTU2640.h"
 
 using base::global::CStrId;
-
-// The element and array types of src/game/GUI/CMissionLog/fn_7100b5bfdc.cpp (same names, same
-// layouts), so the callees keep that file's signatures.
-struct UnkElem78 {
-    u8 unk_0x0[0x78];
-};
-
-template <class Elem>
-struct UnkElemArray {
-    Elem* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
 
 void fn_7101001694(UnkElemArray<UnkElem78>* self, const UnkElem78* value);
 void fn_71010017f4(UnkElemArray<UnkElem78>* self);  // clear

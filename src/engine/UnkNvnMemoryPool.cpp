@@ -8,24 +8,13 @@
 #include <stdlib.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "engine/UnkNvnMemoryPool.h"
+#include "engine/UnkObject_0x130.h"
+#include "engine/UnkPoolCount.h"
+#include "engine/UnkPtrHolder.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
 #include "types.h"
-
-// The allocator the pools' storage comes from, and the five heaps (as
-// src/game_s1/fn_7100153ac0.cpp declares them).
-struct UnkPtrHolder {
-    void** vtable;
-    void* ptr;
-};
-struct UnkObject_0x130 {
-    u8 field_0x0[0x100];
-    u64 field_0x100;
-    u64 field_0x108;
-    u32 field_0x110;
-    UnkPtrHolder field_0x118;
-    u16 field_0x128;
-};
 
 // NVN entry points the graphics start-up loads (data addresses only; that they are the memory-pool
 // builder's and the pool's initialiser is inferred from the call sequence).
@@ -35,12 +24,6 @@ extern void (*g_unk_716e29af38)(void* builder, s32 flags);                 // bu
 extern void (*g_unk_716e29af30)(void* builder, void* memory, u64 size);    // builder: storage
 extern bool (*g_unk_716e29af60)(void* pool, const void* builder);          // pool: initialise
 
-// The number of pools made and its peak (merged statics of the unit).
-struct UnkPoolCount {
-    u32 count;
-    u32 peak;
-};
-
 // The builder, on the stack.
 struct UnkNvnPoolBuilder {
     u8 data[0x40];
@@ -48,15 +31,6 @@ struct UnkNvnPoolBuilder {
 
 struct UnkPool;
 
-// A memory pool with its storage (the type fn_71001587f0 passes as UnkPool).
-struct UnkNvnMemoryPool {
-    u64 field_0x0;
-    u8 pool[0x100];  // the NVN memory pool
-    void* memory;
-    u64 size;
-    s32 flags;
-    bool initialised;
-};
 static_assert(sizeof(UnkNvnMemoryPool) == 0x120, "UnkNvnMemoryPool placeholder layout");
 
 // One of the five heaps: a memory pool, a dlmalloc mspace over its storage.

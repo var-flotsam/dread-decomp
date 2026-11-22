@@ -1,9 +1,14 @@
 // Assignments of a pair of values held either in place or by reference (state 2), from another
 // such pair: read and written through the state-dependent accessors.
 #include <new>
+#include "base/UnkAssignedString.h"
 
 #include "base/UnkErasedVector.h"
+#include "base/UnkFreedString.h"
+#include "base/UnkHandleCallbackSet.h"
 #include "base/UnkRefHandle.h"
+#include "base/UnkValueString.h"
+#include "base/UnkValuesCallbacks.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -224,28 +229,11 @@ using UnkIdIdsValuePair = UnkValuePairRef<CStrId, UnkIdsValue>;
 UnkIdIdValues4Pair* fn_7100e70ab4(UnkIdIdValues4Pair* self, UnkIdIdValues4Pair* other) { return AssignFrom(self, other); }
 UnkIdIdsValuePair* fn_7100c8fcd8(UnkIdIdsValuePair* self, UnkIdIdsValuePair* other) { return Assign(self, other); }
 
-// A value and a string (base::global::CRntString's layout, assigned by fn_710007eaa0).
-struct UnkAssignedString {
-    u64 unk_0x0[6];
-
-    UnkAssignedString& operator=(const UnkAssignedString& other);
-};
 __attribute__((always_inline)) inline UnkAssignedString& UnkAssignedString::operator=(const UnkAssignedString& other) {
     fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(this),
                   reinterpret_cast<const base::global::CRntString*>(&other));
     return *this;
 }
-
-struct UnkValueString {
-    u32 value;
-    UnkAssignedString string;
-
-    UnkValueString& operator=(const UnkValueString& other) {
-        value = other.value;
-        string = other.string;
-        return *this;
-    }
-};
 
 using UnkU32ValueStringPair = UnkValuePairRef<u32, UnkValueString>;
 
@@ -282,12 +270,6 @@ UnkBoundValueArray* fn_7100d3f14c(UnkBoundValueArray* self, const UnkBoundValueA
 UnkBoundValueArray* fn_7100d3f514(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
 UnkBoundValueArray* fn_7100d3f5d4(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
 
-// As UnkBoundValueArray, with a string (destroyed by fn_710007ecd4) placed 0x10 into the pair.
-struct alignas(16) UnkFreedString {
-    u64 unk_0x0[6];
-
-    ~UnkFreedString();
-};
 inline UnkFreedString::~UnkFreedString() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
 
 struct UnkBoundValueString {
@@ -460,38 +442,6 @@ struct UnkCallbackSet {
 using UnkU32CallbacksPair = UnkValuePairRef<u32, UnkCallbackSet>;
 
 UnkU32CallbacksPair* fn_7100d87614(UnkU32CallbacksPair* self, UnkU32CallbacksPair* other) { return Assign(self, other); }
-
-// Three values and a callback set whose owner is a handle assigned by fn_7100234f78.
-struct UnkHandleCallbackSet {
-    void* vtable;
-    UnkErasedVector callbacks;
-    u32 field_0x30;
-    base::UnkRefHandle owner;
-
-    __attribute__((always_inline)) UnkHandleCallbackSet& operator=(const UnkHandleCallbackSet& other) {
-        const base::UnkRefHandle* from = &other.owner;
-        fn_7100234f78(&owner, from);
-        field_0x30 = other.field_0x30;
-        fn_710023b29c(&callbacks, &other.callbacks);
-        return *this;
-    }
-};
-
-struct UnkValuesCallbacks {
-    u64 unk_0x0;
-    u32 field_0x8;
-    u32 field_0xc;
-    u32 field_0x10;
-    UnkHandleCallbackSet set;
-
-    __attribute__((always_inline)) UnkValuesCallbacks& operator=(const UnkValuesCallbacks& other) {
-        field_0x8 = other.field_0x8;
-        field_0xc = other.field_0xc;
-        field_0x10 = other.field_0x10;
-        set = other.set;
-        return *this;
-    }
-};
 
 using UnkU32ValuesCallbacksPair = UnkValuePairRef<u32, UnkValuesCallbacks>;
 

@@ -6,13 +6,8 @@
 
 #include "base/global/CRntVector.h"
 #include "game/CCooldownXBossLavaDropsMovementDef.h"
+#include "game/UnkLavaDropsData_l4b0dd8.h"
 #include "types.h"
-
-struct UnkLavaDropsData_l4b0dd8 {
-    u32 field_0x0;
-    f32 field_0x4;
-    f32 field_0x8;
-};
 
 struct UnkLavaDropsElem_l4b0dd8;
 struct UnkLavaDropsElemVtable_l4b0dd8 {

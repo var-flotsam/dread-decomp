@@ -2,14 +2,9 @@
 // in the hash set at +0 (buckets indexed by the key's low 32 bits modulo the bucket capacity),
 // it is appended to the array at +0x88, then erased from the set. Returns whether it was there.
 #include "base/global/CRntVector.h"
+#include "engine/UnkKeyNode.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
-
-struct UnkKeyNode {
-    u64 key;
-    u8 field_0x8[0x18];
-    UnkKeyNode* next;
-};
 
 // base::global::CRntVector (the name comes from its assertion).
 template <class T>

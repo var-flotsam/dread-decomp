@@ -7,6 +7,8 @@
 #include "base/global/CStrId.h"
 #include "game/CCharClassDropItemCrazyEvent.h"
 #include "game/SDropProbabilities.h"
+#include "game/UnkDropItemDef_ovb0136.h"
+#include "game/UnkDropItemVec3_ovb0136.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -29,19 +31,6 @@ struct UnkDropItemName_ovb0136 {
             }
             data = d;
         }
-        return *this;
-    }
-};
-
-struct UnkDropItemVec3_ovb0136 {
-    f32 x, y, z;
-    UnkDropItemVec3_ovb0136& operator=(const UnkDropItemVec3_ovb0136& other) {
-        u64 xy;
-        u32 w;
-        __builtin_memcpy(&xy, &other, 8);
-        __builtin_memcpy(&w, &other.z, 4);
-        __builtin_memcpy(this, &xy, 8);
-        __builtin_memcpy(&z, &w, 4);
         return *this;
     }
 };
@@ -69,17 +58,6 @@ struct UnkDropItemParams_ovb0136 {
     u8 field_0x8a;
 
     UnkDropItemParams_ovb0136() { fn_71007c7ddc(this); }
-};
-
-// An item definition: a counted object with its name at +0x10.
-struct UnkDropItemDef_ovb0136 {
-    u8 pad_0x0[0x10];
-    const char* name;
-    u8 pad_0x18[0x2c];
-    // A union member: the definition pointer is reloaded after the increment.
-    union {
-        u32 ref_count;  // 0x44
-    };
 };
 
 static inline u32 ItemId(UnkDropItemDef_ovb0136* const& def) {

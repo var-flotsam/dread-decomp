@@ -9,6 +9,9 @@
 #include "game/CActorComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkMask.h"
+#include "game/UnkScenario.h"
+#include "game/UnkScenarioSub.h"
+#include "game/UnkSubareaRenderOut.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2611.h"
 #include "game/UnkTU2656.h"
@@ -26,21 +29,8 @@ struct UnkSubArea {
 static inline const CStrId& FirstId(const UnkSubArea* area) { return area ? area->field_0x0 : base::global::CStrId::Empty(); }
 static inline const CStrId& SecondId(const UnkSubArea* area) { return area ? area->field_0x50 : base::global::CStrId::Empty(); }
 
-struct UnkScenarioSub {
-    u8 pad_0x0[0x58];
-    bool field_0x58;
-};
-struct UnkScenario {
-    u8 pad_0x0[0x820];
-    UnkScenarioSub* field_0x820;
-};
-
 struct UnkSubareaRenderOwner;
 struct UnkSubareaRenderSetup;
-struct UnkSubareaRenderOut {
-    void* data;
-    u32 count;
-};
 void fn_7100facb08(UnkSubareaRenderOwner* self, s32 kind, UnkSubareaRenderSetup* setup, bool flag,
                    UnkSubareaRenderOut* out);
 

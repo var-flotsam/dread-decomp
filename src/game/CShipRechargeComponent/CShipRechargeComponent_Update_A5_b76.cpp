@@ -11,6 +11,9 @@
 #include "game/CInputComponent.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkKraidCreatureVec.h"
+#include "game/UnkSoundEntry_A5_b76.h"
+#include "game/UnkSoundRef_A5_b76.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
@@ -24,23 +27,7 @@ struct UnkUsableComponent_A6_b62;
 struct UnkInputComponent;
 extern __attribute__((visibility("hidden"))) char g_unk_71727515d8[];
 
-// As src/game/CSluggerAcidBallMovementComponent/CSluggerAcidBallMovementComponent_b38.cpp declares it.
-struct UnkKraidCreatureVec {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
-};
-
 struct UnkSoundMgr;
-struct UnkSoundEntry_A5_b76 {
-    void* playing;
-    u64 id;
-};
-struct UnkSoundRef_A5_b76 {
-    UnkSoundEntry_A5_b76* entry;
-    u64 id;
-};
 
 // As src/game/CShipRechargeComponent/CShipRechargeComponent_Use_A5_b73.cpp declares them.
 struct UnkShipRecharge_A5_b73;

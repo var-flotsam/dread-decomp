@@ -11,9 +11,12 @@
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
 #include "game/CComponent.h"
+#include "game/UnkAnimOwned_l1757f4.h"
 #include "game/UnkComponent.h"
+#include "game/UnkResourceRef_l1757f4.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU39.h"
+#include "game/UnkVtableHolder_l1757f4.h"
 #include "types.h"
 
 using base::global::CRntVector;
@@ -28,30 +31,6 @@ template <>
 struct base::UnkPoolListTraits<UnkAnimPoolTag_l1757f4> {
     static char* vtable() { return g_unk_7101cb4840; }
     static char* base_vtable() { return g_unk_7101cb4860; }
-};
-
-// A counted reference to a resource.
-struct UnkResourceRef_l1757f4 {
-    UnkCountedResource* ptr;
-
-    ~UnkResourceRef_l1757f4() {
-        UnkCountedResource* resource = ptr;
-        if (resource && --resource->ref_count == 0)
-            fn_710001737c(resource);
-    }
-};
-
-// The object owned at +0x40, deleted through its vtable.
-struct UnkAnimOwned_l1757f4 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-};
-
-struct UnkVtableHolder_l1757f4 {
-    void** vtable;
-
-    explicit UnkVtableHolder_l1757f4(void** table) : vtable(table) {}
 };
 
 // The listener lists: active, pending and queued, and the lock count of the passes over them.

@@ -9,6 +9,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkMenuScreen.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
@@ -17,11 +18,6 @@ using base::global::CRntString;
 using base::reflection::CClass;
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
-
-struct UnkMenuScreen {
-    void* vtable;
-    UnkGuiDisplayObject* composition;
-};
 
 template <s32 Value>
 __attribute__((always_inline)) static inline bool SetUp(UnkMenuScreen* self, const char* name) {

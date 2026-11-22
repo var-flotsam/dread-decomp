@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
+#include "game/UnkCutSceneTable_lc886c0.h"
 #include "types.h"
 
 using namespace base::global;
@@ -18,13 +19,6 @@ struct UnkIdArrays_lc88920 {
     UnkIdPair_lc88920* records;
     UnkStrIdTwoStep* ids;
     u32 count;
-};
-
-struct UnkCutSceneTable_lc886c0 {
-    void* field_0x0;
-    void* field_0x8;
-    u8 pad_0x10[0x10];
-    base::UnkAllocator* allocator;  // 0x20
 };
 
 void fn_7100c88920(UnkCutSceneTable_lc886c0* table) {

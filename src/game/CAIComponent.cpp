@@ -11,7 +11,10 @@
 #include "base/math/CVector.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkAIPathSearch.h"
+#include "game/UnkAIReach.h"
 #include "game/UnkActor.h"
+#include "game/UnkNavCallback.h"
+#include "game/UnkNavCallbackCopy.h"
 #include "game/UnkNavMeshHit.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU357.h"
@@ -76,28 +79,6 @@ struct UnkNavComponent {
 struct UnkNavActor {
     u8 pad_0x0[0x240];
     UnkNavComponent* component;
-};
-
-struct UnkNavCallback {
-    void* ctx;
-    void* fn;
-};
-
-// A callback passed by value: the original copies it member by member (a user-provided copy), so
-// the copies go in memory and their addresses are passed.
-struct UnkNavCallbackCopy {
-    void* ctx;
-    void* fn;
-
-    template <class T>
-    explicit UnkNavCallbackCopy(const T& other) {
-        ctx = other.ctx;
-        fn = reinterpret_cast<void*>(other.fn);
-    }
-    template <class T>
-    const T& As() const {
-        return *reinterpret_cast<const T*>(this);
-    }
 };
 
 struct UnkNavQuery {
@@ -206,15 +187,6 @@ struct UnkAITrackedVtbl {
 };
 struct UnkAITracked {
     UnkAITrackedVtbl* vtable;
-};
-
-// Its reach (the first float is the radius).
-struct UnkAIReach {
-    f32 radius;
-    f32 field_0x4;
-
-    UnkAIReach() : radius(0.0f), field_0x4(0.0f) {}
-    UnkAIReach(const UnkAIReach& other);
 };
 
 struct UnkAIComponent;

@@ -2,6 +2,7 @@
 // after fn_7100d7c990 gives the target object, the angle becomes atan2 of the position
 // difference (values at 0x54 and 0x44), is normalised, and the current value moves towards it
 // by at most the tunable at 0x24 times `scale`. fn_71003fd194 then gets the current value.
+#include "base/UnkAim.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCharClassCentralUnitCannonAIComponent.h"
@@ -13,10 +14,6 @@ using base::reflection::CClass;
 
 struct UnkAIObject {
     virtual const CClass* vf_0x0();
-};
-struct UnkAim {
-    f32 angle;
-    f32 current;
 };
 struct UnkSelf {
     u8 unk_0x0[0x10];

@@ -16,8 +16,12 @@
 #include "game/CInventoryComponent.h"
 #include "game/CPlayerInfo.h"
 #include "game/CPullOffGrapplePointComponent.h"
+#include "game/UnkBreakableTarget.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkHeatCurrent_ovb0083.h"
+#include "game/UnkHeatPair_ovb0083.h"
+#include "game/UnkHeatParams_ovb0083.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
@@ -28,34 +32,7 @@
 
 using base::global::CStrId;
 
-struct UnkHeatPair_ovb0083 {
-    f32 x;
-    f32 y;
-};
-
-struct UnkHeatParams_ovb0083 {
-    f32 field_0x0;
-    f32 field_0x4;
-    UnkHeatPair_ovb0083 field_0x8;
-    f32 field_0x10;
-    f32 field_0x14;
-    f32 field_0x18;
-    bool field_0x1c;
-};
-
-struct UnkHeatCurrent_ovb0083 {
-    f32 field_0x0;
-    f32 field_0x4;
-    UnkHeatPair_ovb0083 field_0x8;
-    f32 field_0x10;
-    f32 field_0x14;
-};
-
 struct UnkBreakablePart;
-struct UnkBreakableTarget {
-    u8 pad_0x0[0x10];
-    void* field_0x10;
-};
 
 struct UnkHeatOwner_ovb0083 {
     u8 pad_0x0[0x28];

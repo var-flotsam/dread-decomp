@@ -4,6 +4,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkMutexLock.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2622.h"
 #include "game/UnkTU2768.h"
@@ -57,12 +58,6 @@ static_assert(sizeof(UnkUserDataOwner) == 0x2b8, "UnkUserDataOwner layout");
 void fn_7100fc73f4(UnkLoader_b0225* loader, u64 arg);
 void fn_7100fc7b70(UnkLoader_b0225* loader);
 void fn_7100066698(nn::os::LightEventType* event);
-
-struct UnkMutexLock {
-    nn::os::MutexType* mutex;
-    explicit UnkMutexLock(nn::os::MutexType* m) : mutex(m) { fn_710006691c(m); }
-    ~UnkMutexLock() { fn_7100066920(mutex); }
-};
 
 // Marks the owner as loading, then, unless `b`, an owner with +0x48 set only signals its event and
 // returns 3; otherwise returns what fn_7101203620 does.

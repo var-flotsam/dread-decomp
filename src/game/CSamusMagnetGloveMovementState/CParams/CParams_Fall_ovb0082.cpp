@@ -8,6 +8,8 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1455.h"
 #include "game/UnkTU1730.h"
+#include "game/UnkTrackBlend_ovb0082.h"
+#include "game/UnkTrackOwner_ovb0082.h"
 #include "types.h"
 
 struct UnkDesc_SpitSend;
@@ -18,9 +20,6 @@ struct UnkAirRequest_B71a6;
 struct UnkTrackTime_ovb0082 {
     u64 key;
     u64 time;
-};
-struct UnkTrackBlend_ovb0082 {
-    u32 a, b, c;
 };
 
 struct UnkTrackParams_ovb0082 {
@@ -72,11 +71,6 @@ struct UnkFallRequest_ovb0082 : UnkParamsVtable_ovb0082 {
         field_0x44 = 0;
         vtable = g_unk_7101a22ce8 + 0x10;
     }
-};
-
-struct UnkTrackOwner_ovb0082 {
-    u8 unk_0x0[0x220];
-    UnkAnimationComponent* animation;  // 0x220
 };
 
 struct UnkMagnetFallState_ovb0082 {

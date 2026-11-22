@@ -4,19 +4,11 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkTunableRegistry.h"
 #include "game/CCharClassLifeComponent.h"
+#include "game/UnkNamedString.h"
 #include "types.h"
 
 using base::reflection::UnkTunableRegistry;
 
-struct UnkNamedString {
-    u8 unk_0x0[0x10];
-    const char* text;
-    u8 unk_0x18[0x2c];
-    // A union member: the original reloads the ids after the increment.
-    union {
-        u32 uses;
-    };
-};
 struct UnkSelf {
     u8 unk_0x0[0x510];
     UnkNamedString* name;

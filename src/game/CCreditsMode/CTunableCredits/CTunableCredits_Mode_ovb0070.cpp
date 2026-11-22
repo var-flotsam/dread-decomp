@@ -8,6 +8,8 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkMusicMode.h"
+#include "game/UnkObj_71011a50cc.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2538.h"
 #include "game/UnkTU2553.h"
@@ -90,18 +92,8 @@ void fn_7101184028(UnkCreditsMode_ovb0070* self) {
 
 void fn_71011843d0(UnkCreditsMode_ovb0070* self, f32 dt);
 
-struct UnkObj_71011a50cc {
-    u8 unk_0x0[0x98];
-    UnkObj_71011a50cc();  // fn_71011a50cc
-};
-
 struct UnkSoundMgr;
 struct UnkTunable;
-// A mode word passed by address (the word after it is not set).
-struct UnkMusicMode {
-    u32 kind;
-    u32 field_0x4;
-};
 
 struct UnkCreditsMenu_ovb0070 {
     u8 pad_0x0[0x60];

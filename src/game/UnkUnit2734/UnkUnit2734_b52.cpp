@@ -10,14 +10,13 @@
 #include "game/UnkTU2734.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU344.h"
+#include "game/UnkUnusedArg_b49.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
 struct UnkActorDefFactory;
 
 struct UnkSweepEntry_b49;
-// As src/game/UnkUnit2734/UnkUnit2734_Sweep_b49.cpp declares them: the first argument is unused.
-struct UnkUnusedArg_b49 : UnkLeftoverReg {};
 struct UnkSweepList_b49;
 struct UnkSweepNode_b49;
 

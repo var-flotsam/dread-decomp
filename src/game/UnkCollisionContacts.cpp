@@ -14,6 +14,7 @@
 #include "base/math/CVectorOps.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/spatial/COBox2D.h"
+#include "game/UnkNoContext.h"
 #include "game/UnkTU2509.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
@@ -41,9 +42,6 @@ static inline UnkColliderResult MakeContact(u32 value) {
 static inline UnkColliderResult Merge(const UnkColliderResult& a, const UnkColliderResult& b) {
     return MakeContact(a.bits | b.bits);
 }
-
-// An empty argument (its register is left as it is).
-struct UnkNoContext : UnkLeftoverReg {};
 
 struct UnkShapeTester_A5_b68;
 

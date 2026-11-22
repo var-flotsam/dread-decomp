@@ -3,14 +3,9 @@
 // clear and the state at +0x848 is 1; straight up otherwise. Both are returned in memory (their copy
 // is written out). Names and layouts are placeholders.
 #include "game/UnkTU1442.h"
+#include "game/UnkVec2f_A5.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkVec2f_A5 {
-    f32 x, y;
-    UnkVec2f_A5(f32 x_, f32 y_) : x(x_), y(y_) {}
-    UnkVec2f_A5(const UnkVec2f_A5& o) : x(o.x), y(o.y) {}
-};
 
 struct UnkEnemyOwner_A5 {
     u8 pad_0x0[0x1b1];

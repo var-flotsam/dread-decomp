@@ -4,6 +4,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CEmmyGrabSamusAttack.h"
+#include "game/UnkColorIn_710050f26c.h"
+#include "game/UnkRGB_710050f26c.h"
 #include "game/UnkSceneObject.h"
 #include "game/UnkTU140.h"
 #include "types.h"
@@ -20,22 +22,11 @@ struct UnkColor_710050f26c {
     UnkColor_710050f26c(const UnkColor_710050f26c& o) : r(o.r), g(o.g), b(o.b), a(o.a) {}
 };
 
-struct UnkRGB_710050f26c {
-    f32 r;
-    f32 g;
-    f32 b;
-};
-
 struct UnkColorArg_710050f26c {
     UnkRGB_710050f26c rgb;
     f32 a;
     UnkColorArg_710050f26c(const UnkRGB_710050f26c& rgb_, f32 a_) : rgb(rgb_), a(a_) {}
     UnkColorArg_710050f26c(const UnkColorArg_710050f26c& o) : rgb(o.rgb), a(o.a) {}
-};
-
-struct UnkColorIn_710050f26c {
-    UnkRGB_710050f26c rgb;
-    f32 a;
 };
 
 // The effects are scene objects (game/UnkSceneObject.h).

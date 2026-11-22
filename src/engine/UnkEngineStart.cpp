@@ -6,6 +6,7 @@
 // Names and layouts are placeholders inferred from the code.
 
 #include "base/UnkRegistry.h"
+#include "base/UnkVersionRegistry.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CAnimationResource.h"
 #include "base/animation/CBlendSpaceResource.h"
@@ -15,6 +16,7 @@
 #include "base/input/UnkRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "engine/UnkStartupCallback.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU52.h"
@@ -39,12 +41,6 @@ static inline T* Singleton(T*& instance) {
     return instance;
 }
 
-// A callback and the object it is for (src/engine/HostArguments.cpp).
-struct UnkStartupCallback {
-    void* object;
-    void (*function)();
-};
-
 // The settings record fn_7100000980 builds (src/engine/HostArguments.cpp has the same layout).
 struct UnkStartupSettings {
     u64 field_0x0;
@@ -59,13 +55,6 @@ struct UnkStartupSettings {
 };
 static_assert(sizeof(UnkStartupSettings) == 0x40, "UnkStartupSettings layout");
 
-// base::reflection's registry (0x1a8 bytes; unit 83): the settings' first word goes to +0x178
-// before it is set up.
-struct UnkVersionRegistry {
-    u8 unk_0x0[0x178];
-    u64 field_0x178;
-    u8 unk_0x180[0x28];
-};
 void fn_71000a4598(UnkVersionRegistry* self);  // constructor
 void fn_71000a497c(UnkVersionRegistry* self);
 

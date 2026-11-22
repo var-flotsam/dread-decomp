@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMatrix44_7100078c9c.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU54.h"
@@ -26,10 +27,6 @@ struct UnkMinimapPathPoint {
 };
 struct UnkMagnetMovablePlatform_b52;
 UnkMinimapPathPoint fn_710091ad8c(UnkMagnetMovablePlatform_b52* self, f32 t);
-
-struct UnkMatrix44_7100078c9c {
-    f32 m[16];
-};
 
 struct UnkTree;
 struct UnkShape;

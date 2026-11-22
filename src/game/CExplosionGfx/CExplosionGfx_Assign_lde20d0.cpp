@@ -4,25 +4,14 @@
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector4D.h"
+#include "game/UnkPair_de1c40.h"
+#include "game/UnkWords2_de1c40.h"
+#include "game/UnkWords4_de1c40.h"
 #include "types.h"
 
 using base::color::CColor4F;
 using base::global::CFilePathStrId;
 using base::math::UnkVector4D;
-
-// Plain words copied whole.
-struct UnkWords2_de1c40 {
-    u64 words[2];
-};
-struct UnkWords4_de1c40 {
-    u64 words[4];
-};
-
-// The two-component vectors are copied member by member.
-struct UnkPair_de1c40 {
-    f32 x;
-    f32 y;
-};
 
 struct UnkExplosionGfx_de1c40 {
     void* vtable;  // 0x0

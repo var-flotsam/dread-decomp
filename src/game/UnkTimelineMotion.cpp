@@ -9,6 +9,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTU1728.h"
+#include "game/UnkTimelineEventList.h"
 #include "game/nn/time.h"
 #include "types.h"
 
@@ -19,10 +20,6 @@ struct UnkTimelineEvent {
     const base::reflection::CClass* cls;
     f32 start;
     f32 end;
-};
-struct UnkTimelineEventList {
-    UnkTimelineEvent** data;
-    u32 count;
 };
 
 // A displacement event (CCharClassTweakDisplacementTrack): the translation's scale.

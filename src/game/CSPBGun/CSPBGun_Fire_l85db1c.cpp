@@ -8,6 +8,8 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkBeamIdHolder_ovb0138.h"
+#include "game/UnkBeamVec_ovb0138.h"
 #include "game/UnkTU437.h"
 #include "types.h"
 
@@ -16,16 +18,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkGrappleAnswer_b50;
 
-
-// As src/game/CPowerBeamGun/CPowerBeamGun_Fire_ovb0138.cpp defines them.
-struct UnkBeamVec_ovb0138 {
-    f32 x, y, z;
-};
-
-struct UnkBeamIdHolder_ovb0138 {
-    u8 pad_0x0[0x30];
-    u64 id;
-};
 
 struct UnkBeamAnimation_ovb0138 : UnkReflObject {
     u8 pad[0x530 - sizeof(UnkReflObject)];

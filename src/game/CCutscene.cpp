@@ -12,9 +12,11 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "engine/scene/UnkToggle.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkNodeArrayCopy.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1134.h"
 #include "game/UnkTU212.h"
+#include "game/UnkTimelineEventList.h"
 #include "game/nn/time.h"
 #include "types.h"
 
@@ -58,11 +60,6 @@ struct UnkFadeScreenEvent : UnkTimelineEvent {
     UnkColor32 to;
 };
 static_assert(__builtin_offsetof(UnkFadeScreenEvent, from) == 0x18, "UnkFadeScreenEvent placeholder layout");
-
-struct UnkTimelineEventList {
-    UnkTimelineEvent** data;
-    u32 count;
-};
 
 // What a cutscene track's action holds (fn_710070d4e8): its events and frame count.
 struct UnkCutsceneTimeline {
@@ -204,28 +201,6 @@ void __stable_sort<UnkNamedNodeOrder&, UnkNamedNode**>(UnkNamedNode** first, Unk
 
 // The child at `index`, and the first node at or under `node` with a payload (or null).
 UnkNamedNode* fn_7100195304(UnkNamedNode* node, u32 index);
-
-// A copy of a node array: the same capacity from the same allocator.
-struct UnkNodeArrayCopy {
-    UnkNamedNode** data;
-    u32 count;
-    base::UnkAllocator* allocator;
-
-    explicit UnkNodeArrayCopy(const base::global::CRntVector<UnkNamedNode*>& other) {
-        allocator = other.allocator;
-        data = other.capacity ? static_cast<UnkNamedNode**>(
-                                    allocator->vf_0x40((u64)other.capacity * sizeof(UnkNamedNode*), 8, other.flags))
-                              : nullptr;
-        __builtin_memcpy(data, other.data, (u64)other.count * sizeof(UnkNamedNode*));
-        count = other.count;
-    }
-    UnkNamedNode** begin() { return data; }
-    UnkNamedNode** end() { return data + count; }
-    ~UnkNodeArrayCopy() {
-        if (data)
-            allocator->vf_0x48(data);
-    }
-};
 
 static inline const base::global::CStrId& UnkDcRoot() {
     return *reinterpret_cast<const base::global::CStrId*>(

@@ -15,12 +15,15 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkMatrix4_b0233.h"
 #include "game/UnkTU1600.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU437.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkTeleporterFx_b0233.h"
+#include "game/UnkTeleporterSelf_b0233.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
@@ -46,10 +49,6 @@ struct UnkTeleporterActor_b0233 {
 struct UnkTeleporterOwner_b0233 {
     u8 pad_0x0[0x30];
     UnkTeleporterActor_b0233* actor;  // 0x30
-};
-
-struct UnkMatrix4_b0233 {
-    f32 m[16];
 };
 
 struct UnkUsable_laa1b08;  // CUsableComponent's layout in CUsableComponent_LevelChangeUse_laa1b08.cpp
@@ -184,18 +183,6 @@ struct UnkTeleporterFxEntry_b0233 {
     UnkFxId_b0233 id;
 };
 extern UnkTeleporterFxEntry_b0233 g_unk_7172751a60[8] __attribute__((visibility("hidden")));
-
-struct UnkTeleporterFx_b0233 {
-    u8 pad_0x0[0x228];
-    void* field_0x228;
-};
-
-struct UnkTeleporterSelf_b0233 {
-    u8 pad_0x0[0x30];
-    UnkTeleporterFx_b0233* actor;  // 0x30
-    u8 pad_0x38[0x550];
-    u32 mode;  // 0x588
-};
 
 void fn_7100a8e614(UnkTeleporterSelf_b0233* self);
 struct UnkEnergyWaveFxComp_b49;

@@ -6,6 +6,7 @@
 #include "base/UnkCollectionIter.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
+#include "game/UnkPlainVector.h"
 #include "types.h"
 
 struct UnkRefObject {
@@ -65,11 +66,6 @@ __attribute__((always_inline)) static inline void Erase(base::global::CRntVector
 // keeps i + 1 out of a callee-saved register (one register more here).
 void fn_7100d3ff6c(base::global::CRntVector<UnkRefPtr>* v, const UnkRefPtrIter* it);
 // NON_MATCHING(minor): as fn_7100d3ff6c.
-
-// The same for an array of vectors of plain values (an owned vector is freed).
-struct UnkPlainVector : base::global::CRntVector<u32> {
-    ~UnkPlainVector() { Free(); }
-};
 
 using UnkPlainVectorIter = base::UnkCollectionIter<UnkPlainVector>;
 

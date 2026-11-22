@@ -10,6 +10,7 @@
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkShotWeakTarget.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2523.h"
@@ -44,11 +45,6 @@ void fn_7100108290(UnkSoundMgr* self, bool enabled);
 void fn_710010829c(UnkSoundMgr* self, bool enabled);
 u32 fn_7100108288(UnkSoundMgr* self);  // the number of sounds
 
-// A weak reference, as src/game/CShotManager.cpp has it.
-struct UnkShotWeakTarget {
-    void* field_0x0;
-    s64 generation;
-};
 struct UnkShotWeakRef {
     UnkShotWeakTarget* target;
     s64 generation;

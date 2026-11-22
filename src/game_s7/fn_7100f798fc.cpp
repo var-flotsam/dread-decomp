@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection.h"
+#include "game/UnkMapHead.h"
 #include "game/UnkTU2604.h"
 #include "game/UnkTU2640.h"
 #include "game/UnkTU2647.h"
@@ -40,11 +41,6 @@ struct UnkMapIter {
             break;
         }
     }
-};
-
-struct UnkMapHead {
-    u8 unk_0x0[0x40];
-    void* head;
 };
 
 template <u32 ValueSize, void (*Destroy)(void*)>

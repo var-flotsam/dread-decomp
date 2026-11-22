@@ -23,6 +23,7 @@
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMatrix44_7100078c9c.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU2509.h"
@@ -413,10 +414,6 @@ void fn_71007ec21c(UnkForcedAreaEmmy_ovb0124* self) {
 }
 
 using base::global::CStrId;
-
-struct UnkMatrix44_7100078c9c {
-    f32 m[16];
-};
 
 struct UnkTree;
 struct UnkShape;

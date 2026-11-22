@@ -14,6 +14,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/UnkSmOther_b60.h"
+#include "game/UnkSmState_b60.h"
 #include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1450.h"
 #include "game/UnkTU1730.h"
@@ -166,15 +168,6 @@ void fn_710098202c(UnkStandStep_ovb0280* self, void* arg, UnkReflValue* value) {
     fn_710097fe58(base, arg);
 }
 
-struct UnkSmState_b60 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10(s32 previous);  // entered
-    virtual void vf_0x18(s32 next);      // left
-    u64 field_0x8;
-    u32 id;
-};
-
 typedef UnkSmState_b60* __attribute__((aligned(4))) UnkSmStatePtr_b60;
 
 struct UnkSmMachine_b60 {
@@ -260,10 +253,6 @@ static inline void ApplyPending_b60(UnkSmMachine_b60* self) {
 }
 
 struct UnkSmBase_b60;
-struct UnkSmOther_b60 {
-    u8 pad_0x0[0x3a8];
-    bool field_0x3a8;
-};
 
 struct UnkSm1452_b0280 {
     u8 pad_0x0[0x30];

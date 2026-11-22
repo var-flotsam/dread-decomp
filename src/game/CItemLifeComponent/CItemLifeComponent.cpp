@@ -3,6 +3,7 @@
 #include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CItemLifeComponent.h"
+#include "game/UnkItemLifeLists.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -12,16 +13,6 @@ struct UnkItemLifeTU {
     CStrId destroyed;  // 0x18
     u64 field_0x20;
     UnkReflType type;  // 0x28
-};
-
-// Three vectors and a flag; element types are unknown.
-struct UnkItemLifeLists {
-    base::global::CRntVector<void*> lists[3];
-    bool field_0x78;
-
-    UnkItemLifeLists() : lists{base::global::CRntVector<void*>(0xf), base::global::CRntVector<void*>(0xf), base::global::CRntVector<void*>(0xf)} {
-        field_0x78 = false;
-    }
 };
 
 extern UnkItemLifeTU g_unk_7172732448 __attribute__((visibility("hidden")));

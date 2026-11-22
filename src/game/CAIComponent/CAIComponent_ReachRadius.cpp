@@ -3,15 +3,8 @@
 // that is not negative, halved; the tunable's value at +0xf4 wins when it is not negative.
 // Names and layouts are placeholders.
 #include "game/CCharacterMovement.h"
+#include "game/UnkAIReach.h"
 #include "types.h"
-
-struct UnkAIReach {
-    f32 radius;
-    f32 field_0x4;
-
-    UnkAIReach() : radius(0.0f), field_0x4(0.0f) {}
-    UnkAIReach(const UnkAIReach& other);
-};
 
 struct UnkAIReachOwner {
     u8 unk_0x0[0x1f8];

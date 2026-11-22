@@ -3,11 +3,8 @@
 // collection functions Begin and End (base::refl_Begin/refl_End) of an array of records holding a vector of plain
 // values (an owned vector is freed) and 0x20 more bytes.
 #include "base/UnkCollectionIter.h"
+#include "game/UnkPlainVector.h"
 #include "types.h"
-
-struct UnkPlainVector : base::global::CRntVector<u32> {
-    ~UnkPlainVector() { Free(); }
-};
 
 struct UnkPlainVectorRecord {
     UnkPlainVector vector;

@@ -15,6 +15,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkProfileSaveArg.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU57.h"
@@ -123,11 +124,6 @@ f32 fn_7100dfd15c(UnkGameManager* self);
 f32 fn_7100dffc44(UnkGameManager* self);
 s64 fn_7101144a5c(void* object);
 nn::util::Uuid fn_7100132a00();  // the session id
-// Passed by address: two words, both zero here.
-struct UnkProfileSaveArg {
-    void* field_0x0;
-    void* field_0x8;
-};
 
 static inline void FormatUuid(char* buffer, const nn::util::Uuid& u) {
     nn::util::TSNPrintf(buffer, 0x40, "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",

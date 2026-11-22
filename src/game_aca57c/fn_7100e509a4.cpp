@@ -6,6 +6,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBounds.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU83.h"
 #include "types.h"
@@ -58,15 +59,6 @@ struct UnkU16Array {
         __builtin_memcpy(data, other.data, (u64)other.count * sizeof(u16));
         count = other.count;
     }
-};
-
-struct UnkBounds {
-    f32 min_x;
-    f32 min_y;
-    f32 max_x;
-    f32 max_y;
-
-    UnkBounds() : min_x(3.4028235e38f), min_y(3.4028235e38f), max_x(-3.4028235e38f), max_y(-3.4028235e38f) {}
 };
 
 struct UnkRecordA8 {

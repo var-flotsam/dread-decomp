@@ -1,5 +1,9 @@
 // Getters building a value of kind 2 (fn_71000a18d4 fills in the rest from the type the value is
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
+#include "base/UnkAngleSource.h"
+#include "base/UnkFlagSource.h"
+#include "base/UnkVector3.h"
+#include "base/UnkVectorSource.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -7,6 +11,7 @@
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkDefIterValue.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1633.h"
 #include "game/UnkTU2200.h"
@@ -80,51 +85,10 @@ UnkReflValue fn_7100eaa1c4(void* unused, UnkArgument<bool>* argument) { return G
 UnkReflValue fn_7100eaa53c(void* unused, UnkArgument<bool>* argument) { return GetFlag<0xd641c4>(argument); }
 UnkReflValue fn_7100eaa5f8(void* unused, UnkArgument<bool>* argument) { return GetFlag<0xd641c5>(argument); }
 
-// The vector the argument's object returns from its virtual function at 0x68.
-// (Returned in memory: its copy constructor is user-provided.)
-struct UnkVector3 {
-    f32 x, y, z;
-
-    __attribute__((always_inline)) UnkVector3(const UnkVector3& other) : x(other.x), y(other.y), z(other.z) {}
-};
-
-struct UnkVectorSource {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual UnkVector3 vf_0x68();
-};
-
 UnkReflValue fn_7100d6e0d4(void* unused, UnkArgument<UnkVectorSource>* argument) {
     UnkVector3 value = argument->field_0x8->vf_0x68();
     return MakeValue(fn_71000246e4(), &value);
 }
-
-// The flag the argument's object returns from its virtual function at 0x58.
-struct UnkFlagSource {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual bool vf_0x58();
-};
 
 __attribute__((always_inline)) static inline UnkReflValue GetVirtualFlag(UnkArgument<UnkFlagSource>* argument) {
     bool value = argument->field_0x8->vf_0x58();
@@ -161,18 +125,6 @@ UnkReflValue fn_71008efa44(void* unused, UnkArgument<UnkFlagSource>* argument) {
 // Values of kind 2 referring (flag 1) to a cutscene definition held by an iterator value: in place
 // at 0x8, or through the pointer there when the state (after the Size-byte value) is 2. The class
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
-
-template <u32 Size>
-struct UnkDefIterValue {
-    u64 unk_0x0;
-    union {
-        u8 value[Size];
-        void* ref;
-    };
-    s32 state;
-
-    __attribute__((always_inline)) void* Get() { return state == 2 ? ref : value; }
-};
 
 template <u32 Size, const base::reflection::CClass* (*GetClass)(), const CType* Descriptor>
 __attribute__((always_inline)) static inline UnkReflValue GetDef(UnkArgument<UnkDefIterValue<Size>>* argument) {
@@ -226,13 +178,6 @@ UnkReflValue fn_7100adaa30() { return GetSingleton<UnkManager, &g_unk_7101d47360
 UnkReflValue fn_7100adaaa4() { return GetSingleton<void, &g_unk_7101d47368, 0x4c8, fn_7100d8ced8, fn_7100ad62d4>(); }
 UnkReflValue fn_7100adabb8() { return GetSingleton<void, &g_unk_71726b1688, 0x198, fn_7100359118, fn_7100ad6568, 3>(); }
 UnkReflValue fn_7100adac2c() { return GetSingleton<UnkMgr_0xf18, &g_unk_71726bc560, 0xf18, fn_7100fd3804, fn_7100ad6644>(); }
-
-// The sum of the two angles at 0xc8 of the argument's object, in degrees.
-struct UnkAngleSource {
-    u8 unk_0x0[0xc8];
-    f32 field_0xc8;
-    f32 field_0xcc;
-};
 
 UnkReflValue fn_7100d690c4(void* unused, UnkArgument<UnkAngleSource>* argument) {
     UnkAngleSource* source = argument->field_0x8;

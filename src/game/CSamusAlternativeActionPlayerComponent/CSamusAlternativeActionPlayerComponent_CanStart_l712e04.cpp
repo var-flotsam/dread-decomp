@@ -11,6 +11,7 @@
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkSlomoFlags.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2547.h"
 #include "types.h"
@@ -22,12 +23,6 @@ void fn_7100ddba14(UnkUnit2547* self, f32* best, u32* best_id);
 
 struct UnkAltActionPlayer_l712e04;
 bool fn_7100711e00(UnkAltActionPlayer_l712e04* self);
-
-struct UnkSlomoFlags {
-    bool enabled;  // 0xc4
-    u8 unk_0xc5;
-    bool paused;  // 0xc6
-};
 
 struct UnkAltActionTarget_l712e04 {
     u8 pad_0x0[0x10];

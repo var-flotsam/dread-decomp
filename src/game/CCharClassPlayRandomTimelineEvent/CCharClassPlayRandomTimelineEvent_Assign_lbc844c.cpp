@@ -2,16 +2,10 @@
 // copies the base's word, the block of four words and the eight string ids.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTimelineEventParams_lbc844c.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkTimelineEventParams_lbc844c {
-    u32 field_0x0;
-    f32 field_0x4;
-    f32 field_0x8;
-    f32 field_0xc;
-};
 
 // The event: the timeline event base (vtable and one word), a block of four words and eight string ids.
 struct UnkPlayRandomTimelineEvent {

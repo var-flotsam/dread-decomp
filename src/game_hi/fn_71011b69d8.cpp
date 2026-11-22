@@ -4,18 +4,13 @@
 #include "base/animation/CAnimationResource.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntString.h"
+#include "game/UnkEntry_0x30.h"
 #include "game/UnkGuiHandle.h"
+#include "game/UnkTag_71011b69d8.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 #include "base/UnkStrPair.h"
-
-struct UnkTag_71011b69d8 : UnkLeftoverReg {};
-
-// A string (base::global::CRntString's layout), moved by fn_710007eab4.
-struct UnkEntry_0x30 {
-    u8 data[0x30];
-};
 
 struct UnkScriptPath_0x148 {
     UnkEntry_0x30 path;

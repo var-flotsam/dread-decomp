@@ -10,6 +10,7 @@
 #include "base/math/CVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CItemLifeComponent.h"
+#include "game/UnkStruct_71727313d4.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU39.h"
@@ -22,21 +23,6 @@ using base::math::CVector3D;
 
 struct UnkStruct_71727313a4 {
     CColor4F colours[3];
-};
-// The default colours next to g_unk_71727313a4, as twelve floats.
-struct UnkStruct_71727313d4 {
-    f32 field_0x0;
-    f32 field_0x4;
-    f32 field_0x8;
-    f32 field_0xc;
-    f32 field_0x10;
-    f32 field_0x14;
-    f32 field_0x18;
-    f32 field_0x1c;
-    f32 field_0x20;
-    f32 field_0x24;
-    f32 field_0x28;
-    f32 field_0x2c;
 };
 extern const CVector2D g_unk_7101647778;
 

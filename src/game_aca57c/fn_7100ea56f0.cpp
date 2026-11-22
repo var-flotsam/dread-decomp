@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkBufferStringPool.h"
+#include "game/UnkIdWord.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -72,11 +73,6 @@ struct UnkSuffix {
 struct UnkStringWord {
     u8 field_0x0[0xc8];
     u64 field_0xc8;
-};
-
-struct UnkIdWord {
-    UnkStrIdTwoStep id;
-    u64 field_0x8;
 };
 
 void fn_7100ae9bb0(UnkIdWord* self, const UnkStringWord* source, const UnkSuffix* suffix) {

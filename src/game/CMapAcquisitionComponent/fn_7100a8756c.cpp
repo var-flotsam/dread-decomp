@@ -9,6 +9,7 @@
 #include "base/snd/CSoundSystem.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMusicMode.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTimelineComponent.h"
@@ -23,12 +24,6 @@ using base::global::CRntString;
 struct UnkActor;
 struct UnkMgr_0xf18;
 struct UnkSoundSystemMasks_ovb0074;
-
-struct UnkMusicMode {
-    u32 kind;
-    u32 field_0x4;
-};
-
 
 // The game manager's mode name, seen at +0x438.
 struct UnkGameManagerMode_la8756c {

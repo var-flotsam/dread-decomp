@@ -4,14 +4,10 @@
 // descriptor and null when the handle is empty. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/UnkHandleHolder.h"
 #include "types.h"
 
 using base::reflection::UnkReflTypedPtr;
-
-struct UnkHandleHolder {
-    u8 pad_0x0[0x10];
-    void* object;  // 0x10
-};
 
 template <const base::reflection::CClass* (*Get)()>
 static inline UnkReflTypedPtr HandleTyped(UnkHandleHolder* const* handle) {

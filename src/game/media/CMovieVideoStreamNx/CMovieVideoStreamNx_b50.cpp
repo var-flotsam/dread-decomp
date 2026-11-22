@@ -1,24 +1,13 @@
 // The media::CMovieVideoStreamNx unit (tools/tu_map.py: 0x71002264d0-0x7100226fb0). The stream holds
 // a movie::Decoder at +0x50 (as media::CMovieStreamNx does). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/MediaData.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkTU259.h"
 #include "game/msapi/res/CRenderRes.h"
 #include "types.h"
 
 namespace movie {
-class MediaData {
-public:
-    MediaData();
-    ~MediaData();
-    void Clear();
-    bool FindString(const char* key, const char** out) const;
-    bool FindInt32(const char* key, s32* out) const;
-    bool FindInt64(const char* key, s64* out) const;
-
-private:
-    u8 storage[0x8];
-};
 class Decoder {
 public:
     s32 GetOutputFormat(MediaData* out);

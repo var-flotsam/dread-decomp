@@ -5,6 +5,7 @@
 #include "base/math/CVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CMovementComponent.h"
+#include "game/UnkDesc16_ovb0004.h"
 #include "game/UnkTU1455.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU1730.h"
@@ -15,10 +16,6 @@ struct __attribute__((packed, aligned(4))) UnkTrackBlend {
     f32 value;
 };
 static_assert(sizeof(UnkTrackBlend) == 0xc, "UnkTrackBlend layout");
-
-struct UnkDesc16_ovb0004 {
-    u64 a, b;
-};
 
 // A movement transition: an id (-1 for none), the two descriptors of UnkSpitSend.h and a mask.
 struct UnkMoveTransition_ovb0004 {

@@ -4,18 +4,12 @@
 // keys are copied through a word type that may alias the array, so the count and the key
 // pointers are reloaded as in the original; it is a struct because a may_alias typedef loses the
 // attribute as a template argument. Names are placeholders.
+#include "base/UnkAliasWord_71000dc190.h"
+#include "base/UnkValue_71000dc190.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU85.h"
 #include "types.h"
-
-struct UnkAliasWord_71000dc190 {
-    u64 value;
-};
-
-struct UnkValue_71000dc190 {
-    u8 data[0xb0];
-};
 
 using UnkKeyedArray_71000dc190 = base::global::CRntSmallDictionary<UnkAliasWord_71000dc190, UnkValue_71000dc190>;
 

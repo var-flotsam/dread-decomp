@@ -12,6 +12,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkProfileSaveArg.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU1702.h"
 #include "game/UnkTU2553.h"
@@ -83,11 +84,6 @@ void fn_7100b52284(UnkListOwner_b0249* owner, UnkListScreen_b0249* screen) {
 
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
-
-struct UnkProfileSaveArg {
-    void* field_0x0;
-    void* field_0x8;
-};
 
 static inline const CStrId& IdTableKey(u32 offset) {
     return *reinterpret_cast<const CStrId*>(GameManagerIdTable().pad_0x0 + offset);

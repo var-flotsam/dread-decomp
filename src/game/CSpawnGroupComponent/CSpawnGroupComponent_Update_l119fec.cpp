@@ -9,6 +9,7 @@
 #include "game/CCharClassEventScenarioComponent.h"
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkRefObj_c3.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTU2506.h"
 #include "game/UnkTU341.h"
@@ -17,14 +18,6 @@
 #include "types.h"
 
 using base::global::CStrId;
-
-// The counted reference fn_71003df480 returns (as src/game/CSpawnPointComponent/CSpawnPointComponent_c3_1.cpp).
-struct UnkRefObj_c3 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();  // destroys the object
-    s32 refs;
-};
 
 struct UnkRef_c3 {
     UnkRefObj_c3* p;

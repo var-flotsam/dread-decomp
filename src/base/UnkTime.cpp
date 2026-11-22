@@ -1,11 +1,6 @@
 // Time helpers.
+#include "game/UnkHms.h"
 #include "types.h"
-
-struct UnkHms {
-    u32 hours;
-    u32 minutes;
-    u32 seconds;
-};
 
 // Splits a number of seconds into hours, minutes and seconds, capped at 999:59:59.
 void fn_7100081040(u32 total, UnkHms* out) {

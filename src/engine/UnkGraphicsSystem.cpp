@@ -22,6 +22,9 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/tunable/CTunable.h"
+#include "engine/UnkGfxCamera.h"
+#include "engine/UnkGfxPairEntry.h"
+#include "engine/UnkGfxResolutionScale.h"
 #include "engine/UnkGraphicsSystem.h"
 #include "game/UnkGfxSceneRegistry.h"
 #include "game/UnkTU0.h"
@@ -399,11 +402,6 @@ struct UnkRegistry_710014c790;
 extern UnkRegistry_710014c790* unk_710b372d68;
 extern __attribute__((visibility("hidden"))) f32 g_unk_7101a1e710[4];  // the overlay's tint
 
-// The resolution scale (1 docked, 0.8 handheld) for both axes, and the docked state it was set for.
-struct UnkGfxResolutionScale {
-    f32 x;
-    f32 y;
-};
 extern __attribute__((visibility("hidden"))) bool g_unk_716e595b70;
 extern __attribute__((visibility("hidden"))) base::global::CStrId g_unk_716e595b90;
 extern __attribute__((visibility("hidden"))) s32 g_unk_716e595b78;  // flips between 0 and 1 each frame
@@ -1325,17 +1323,6 @@ extern __attribute__((visibility("hidden"))) u8 g_unk_716e595be8[];
 extern __attribute__((visibility("hidden"))) u8 g_unk_716e595bf8[];
 extern __attribute__((visibility("hidden"))) u8 g_unk_716e595c10[];
 
-// The camera at +0x317aa20 as the draw modes use it.
-struct UnkGfxCamera {
-    u8 unk_0x0[0x20];
-    UnkMatrix44 projection;  // 0x20
-    u8 unk_0x60[0x8];
-    void* field_0x68[2];  // indexed by field_0x78
-    u32 field_0x78;
-    u8 unk_0x7c[0x4];
-    void* field_0x80;
-};
-
 // A light of the four at +0xd8 (their count at +0xf8): a position at +0x38 and a colour at +0x7c.
 struct UnkGfxLight {
     u8 unk_0x0[0x38];
@@ -1588,12 +1575,6 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
     fn_710015b160();
 }
 
-// The map at +0x3183628 as a lookup sees it: 16-byte entries whose second word it returns, keyed by
-// string ids.
-struct UnkGfxPairEntry {
-    u64 first;
-    void* second;
-};
 struct UnkGfxPairMap {
     u8 pad_0x0[0x3183628];
     UnkGfxPairEntry* values;

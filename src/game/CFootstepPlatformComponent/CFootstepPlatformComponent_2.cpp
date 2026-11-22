@@ -3,6 +3,7 @@
 // marks the flag at +0xc8 when the player's movement stands on something, then runs vf_0x168.
 // Names and layouts are placeholders.
 #include "game/CSamusMagnetGloveMovementState/CParams.h"
+#include "game/UnkFootstepMode.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
@@ -10,11 +11,6 @@
 
 struct UnkPlayer;
 struct UnkFootstepArg;
-
-struct UnkFootstepMode {
-    u8 pad_0x0[0x10];
-    u32 kind;
-};
 
 struct UnkFootstepMovement {
     u8 pad_0x0[0x2d08];

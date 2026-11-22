@@ -3,6 +3,7 @@
 // vtable, then frees the storage through its allocator. The array sits at `Array` with the
 // state after it (fn_7100c060d8 and its copies), as in fn_7100c05060.
 #include "base/UnkDestructors.h"
+#include "game/UnkVariantPair.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -55,13 +56,6 @@ void fn_7100c060d8(char* self) { ResetArrayVariant<0x18, unk_7101aa28d8>(self); 
 void fn_7100c065dc(char* self) { ResetArrayVariant<0x18, unk_7101aa28d8>(self); }
 void fn_7100c09b38(char* self) { ResetArrayVariant<0x8, unk_7101aa28d8>(self); }
 void fn_7100c09ea4(char* self) { ResetArrayVariant<0x8, unk_7101aa28d8>(self); }
-
-// Sets the variant at 0x10 from the pointer at 8: a pair of this and the pointer (state 2), or
-// empty without one (fn_7100c0621c and its copy).
-struct UnkVariantPair {
-    char* owner;
-    void* value;
-};
 
 template <char* Vtable = unk_7101aa28d8, class Record = UnkRecord58>
 __attribute__((always_inline)) static inline void SetArrayVariant(char* self) {

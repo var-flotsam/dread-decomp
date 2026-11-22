@@ -9,21 +9,14 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkHashData_b0129.h"
+#include "game/UnkKeyId_b0129.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTU83.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::reflection::CType;
-
-struct UnkHashData_b0129 {
-    u8 pad_0x0[0x30];
-    u64 hash;
-};
-
-struct UnkKeyId_b0129 {
-    UnkHashData_b0129* data;
-};
 
 struct UnkRegClass_b0129;
 

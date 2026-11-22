@@ -10,17 +10,13 @@
 #include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkActor.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkMatrix44_7100078c9c.h"
 #include "game/UnkTU253.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
-
-// As src/game/CBillboardCollisionComponent/CBillboardCollisionComponent_Remove_ovb0137.cpp defines it.
-struct UnkMatrix44_7100078c9c {
-    f32 m[16];
-};
 
 u32 fn_71001c14fc(char* self, const void* name);
 UnkMatrix44 fn_71000793c0(const UnkVec3f& translation, const UnkVec3f& angle);

@@ -1,14 +1,7 @@
 // CSamusGunComponent unit (unit 1315 of tools/tu_map.py). Names and layouts are placeholders.
+#include "game/UnkGunBeamInfo_ovb0070.h"
+#include "game/UnkGunBeam_ovb0070.h"
 #include "types.h"
-
-struct UnkGunBeamInfo_ovb0070 {
-    u8 pad_0x0[0x30];
-    u64 id;
-};
-
-struct UnkGunBeam_ovb0070 {
-    UnkGunBeamInfo_ovb0070* info;
-};
 
 struct UnkSamusGunBeams_ovb0070;
 bool fn_710084089c(UnkSamusGunBeams_ovb0070* self, const UnkGunBeam_ovb0070* from, const UnkGunBeam_ovb0070* to);

@@ -1,10 +1,12 @@
 // Unit 260 (render passes): a pass that binds four targets and draws, then binds a fifth and draws again
 // with five textures bound in slots 0 to 4. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkBindList_b0237.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU179.h"
 #include "game/UnkTU182.h"
 #include "game/UnkTU259.h"
+#include "game/UnkU64P_b0237.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -16,16 +18,6 @@ void fn_710015c3f0(UnkBoundTarget* target);
 void fn_71001d6a0c(UnkRenderTargetA1* target);
 void fn_71001d6ad0(UnkRenderTargetA1* target);
 
-struct __attribute__((packed)) UnkU64P_b0237 {
-    u64 v;
-};
-
-// The list handed to fn_71001cdba4: a count, packed 8-byte entries and a trailing pointer.
-struct UnkBindList_b0237 {
-    u32 count;
-    UnkU64P_b0237 items[16];
-    void* tail;
-};
 static_assert(sizeof(UnkBindList_b0237) == 0x90, "UnkBindList_b0237 layout");
 
 // The render target as this pass reads it: two counts of queued work.

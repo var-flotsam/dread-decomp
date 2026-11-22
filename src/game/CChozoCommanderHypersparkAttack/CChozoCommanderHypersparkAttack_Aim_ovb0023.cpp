@@ -12,6 +12,7 @@
 #include "game/CChozoCommanderGroundAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkKraidCreatureVec.h"
 #include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
@@ -78,13 +79,6 @@ void fn_710042dbfc(UnkHypersparkAttack_ovb0023* self) {
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
     self->field_0x70 = __builtin_fabsf(motion.field_0x2c);
 }
-
-struct UnkKraidCreatureVec {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
-};
 
 struct UnkAbility;
 

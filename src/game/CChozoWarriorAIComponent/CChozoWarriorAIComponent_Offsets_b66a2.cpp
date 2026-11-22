@@ -2,17 +2,9 @@
 // a base value (fn_71010fc284 / fn_71010fc31c) plus or minus the component's vf_0x3c8 less half the
 // tracked object's reach radius (fn_7100977b90). Names and layouts are placeholders.
 #include "game/CCharacterMovement.h"
+#include "game/UnkAIReach.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
-
-// As src/game/CAIComponent/CAIComponent_ReachRadius.cpp defines it.
-struct UnkAIReach {
-    f32 radius;
-    f32 field_0x4;
-
-    UnkAIReach() : radius(0.0f), field_0x4(0.0f) {}
-    UnkAIReach(const UnkAIReach& other);
-};
 
 struct UnkChozoWarriorOwner_b66a2 {
     u8 pad_0x0[0x1f8];

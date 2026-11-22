@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CCameraCtrl.h"
+#include "game/UnkCamNode_l450950.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "types.h"
 
@@ -29,11 +30,6 @@ struct UnkCam_l450950 {
     u8 pad_0x8[0x10];
     void* field_0x18;
     CStrId id;  // 0x20
-};
-
-struct UnkCamNode_l450950 {
-    UnkCam_l450950* value;
-    UnkCamNode_l450950* next;
 };
 
 struct UnkCameraOwner_l0977e4 {

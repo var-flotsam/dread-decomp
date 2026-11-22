@@ -9,14 +9,10 @@
 #include "base/reflection/CType.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/UnkReflFieldObject.h"
 #include "game/UnkTU85.h"
 
 using namespace base::reflection;
-
-struct UnkReflFieldObject {
-    char* type;
-    void* ptr;
-};
 
 struct UnkReflValueArg {
     const CType* type;

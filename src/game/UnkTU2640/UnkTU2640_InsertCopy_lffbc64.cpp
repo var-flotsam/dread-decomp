@@ -4,6 +4,7 @@
 
 #include "../UnkUnit2601/UnkUnit2601_VecCopy_b56.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2640PathData.h"
 #include "types.h"
 
 using base::global::UnkStrIdBase;
@@ -31,12 +32,6 @@ struct UnkMovablePathId_lffbc64 : UnkStrIdBase {
             data = &pool->empty;
         }
     }
-};
-
-// A word and a half-word, copied as one 12-byte block (packed: the copy skips the tail padding).
-struct __attribute__((packed)) UnkTU2640PathData {
-    u64 field_0x0;
-    u32 field_0x8;
 };
 
 struct UnkPathRecord_lffbc64 {

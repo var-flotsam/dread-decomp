@@ -1,5 +1,7 @@
 // Unit 1118 (no class hint): an AI state object. Names and layouts are placeholders.
 #include "game/UnkAIComponent.h"
+#include "game/UnkListObject_b0169.h"
+#include "game/UnkReadyObject_b0169.h"
 #include "game/UnkTU55.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
@@ -16,15 +18,6 @@ struct UnkStateOwner_b0169 {
 
 struct __attribute__((packed)) UnkPacked64_b0169 {
     u64 value;
-};
-
-// An object the state asks whether it is ready.
-struct UnkReadyObject_b0169 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual bool vf_0x20();
 };
 
 struct UnkAIState_b0169 {
@@ -65,17 +58,6 @@ void fn_71006fce60(UnkAIState_b0169* self) {
     if (sub)
         sub->flag = 0;
 }
-
-// A list-like object: ready, size and element accessors.
-struct UnkListObject_b0169 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual bool vf_0x20();
-    virtual s32 vf_0x28();
-    virtual UnkReadyObject_b0169* vf_0x30(s32 index);
-};
 
 struct UnkResultObject_b0169 {
     virtual void vf_0x0();

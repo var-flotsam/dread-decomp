@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkPooledId.h"
 #include "base/reflection.h"
+#include "game/UnkBase_0x30_7100fe1050.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game/sound/UnkMusicPathVec.h"
@@ -18,12 +19,6 @@ void fn_7101007cec(UnkMusicTrack_0x32* track);
 void fn_7101007bf0(UnkMusicTrack_0x38* track);
 void fn_7100fcee44(UnkMusicTrack_0x38* track);
 void fn_7100fd0140(UnkObject_7100fcfcdc& self);
-// A channel's base (as src/game_7100ece7fc/fn_7100fd0264.cpp defines it).
-struct UnkBase_0x30_7100fe1050 {
-    void** vtable;
-    u8 unk_0x8[0x28];
-    ~UnkBase_0x30_7100fe1050() asm("fn_7100fe1050");  // fn_7100fe1050
-};
 void fn_7100fd422c(char* map);
 void fn_7100fd431c(char* map);
 

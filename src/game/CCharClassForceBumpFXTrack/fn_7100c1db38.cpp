@@ -10,6 +10,7 @@
 #include "game/CCharClassForceBumpFXTrack.h"
 #include "game/CCharClassIgnoreBumpFXTrack.h"
 #include "game/CCharClassModifyDamageTrack.h"
+#include "game/UnkIdWord.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -55,11 +56,6 @@ __attribute__((always_inline)) static inline void Destroy(UnkIdListHolder<Vtable
 
 void fn_7100c1db38(UnkIdListHolder<g_unk_7101aa3030>* self) { Destroy(self); }
 void fn_7100c274e8(UnkIdListHolder<g_unk_7101aa3440>* self) { Destroy(self); }
-
-struct UnkIdWord {
-    UnkStrIdTwoStep id;
-    u64 field_0x8;
-};
 
 struct UnkIdWordList {
     UnkStrIdTwoStep key;

@@ -11,6 +11,8 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkSwarmArea_b66a4.h"
+#include "game/UnkSwarmHold_b66a4.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU367.h"
 #include "game/logic/collision/CCollider.h"
@@ -23,25 +25,6 @@ struct UnkVec3Result {
     f32 z;
     UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
     UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
-
-// As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_Hold_b66a4.cpp defines it.
-struct UnkSwarmArea_b66a4 {
-    void** vtable;
-    bool Contains(const base::math::CVector2D* p) {
-        return reinterpret_cast<bool (*)(UnkSwarmArea_b66a4*, const base::math::CVector2D*)>(vtable[0x50 / 8])(this, p);
-    }
-};
-
-struct UnkSwarmHold_b66a4 {
-    void** vtable;
-    u8 pad_0x8[0x390 - 0x8];
-    u32 mode;  // 0x390
-    u8 pad_0x394[0x56c - 0x394];
-    f32 time;  // 0x56c
-    UnkSwarmArea_b66a4* Area(u32 slot) {
-        return reinterpret_cast<UnkSwarmArea_b66a4* (*)(UnkSwarmHold_b66a4*)>(vtable[slot / 8])(this);
-    }
 };
 
 // An actor's translation column (the transform at +0x38).

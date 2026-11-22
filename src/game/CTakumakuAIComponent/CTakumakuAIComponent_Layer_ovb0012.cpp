@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkMat4f.h"
 #include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
@@ -145,10 +146,6 @@ void fn_71006d5990(UnkTakumakuAI3_b0012* self, s32 event, void* arg, CStrId* out
 // As src/game/CTakumakuAIComponent/CTakumakuAIComponent_Send_b56.cpp declares it (the key is a hash).
 struct UnkStruct_7101176ea8;
 
-// As src/game/UnkSpawnVolume.cpp names it.
-struct UnkMat4f {
-    f32 m[4][4];
-};
 extern __attribute__((visibility("hidden"))) const UnkVec3f g_unk_710164a7f0;
 
 // As src/game/CSamusFloorSlideMovementState/CParams/CParams_Slide_ovb0004.cpp defines them.

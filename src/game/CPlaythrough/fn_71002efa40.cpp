@@ -5,15 +5,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkBufferStringPool.h"
+#include "game/UnkFnObj.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
-
-struct UnkFnObj {
-    u64 field_0x0[3];
-    void (*field_0x18)();
-    u64 field_0x20[2];
-};
 
 // A small-buffer string static (0xc8 bytes): the string object, its inline buffer's vtable at +0x30
 // and two cleared words. Layout is a placeholder.

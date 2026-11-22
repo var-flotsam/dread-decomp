@@ -8,6 +8,8 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "engine/scene/UnkToggle.h"
+#include "game/UnkQuadNode_ovb0259.h"
+#include "game/UnkQuadRender_ovb0259.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU223.h"
 #include "game/UnkTU287.h"
@@ -29,17 +31,6 @@ extern UnkWhiteTexture_ovb0259 g_unk_71726b21e8 __attribute__((visibility("hidde
 struct UnkQuadNode_ovb0259;
 struct UnkMinimapVec3;
 struct UnkStruct_710020a5a0;
-
-struct UnkQuadRender_ovb0259 {
-    u8 pad_0x0[0x78];
-    void* field_0x78;
-};
-
-struct UnkQuadNode_ovb0259 {
-    u8 pad_0x0[0x18];
-    u8 node[0x160];  // 0x18
-    UnkQuadRender_ovb0259* render;  // 0x178
-};
 
 struct UnkFadeQuads_ovb0259 {
     UnkQuadNode_ovb0259* second;  // 0x0

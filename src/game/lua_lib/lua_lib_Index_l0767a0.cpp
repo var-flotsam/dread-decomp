@@ -9,19 +9,12 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/UnkLuaDisplayObject_ovb0109.h"
 #include "game/UnkTU2676.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-// A display object as the scripts hold it: full userdata with the "__DisplayObjectType" metatable
-// holding a counted weak handle on the object.
-struct UnkLuaDisplayObject_ovb0109 {
-    UnkWeakHandle* handle;
-
-    UnkWeakTarget* Get() const { return handle ? handle->target : nullptr; }
-};
 
 // The display object behind the handle: its class getter and its name.
 struct UnkLuaDisplayTarget_l0767a0 {

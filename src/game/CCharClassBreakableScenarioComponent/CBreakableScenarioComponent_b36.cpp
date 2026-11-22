@@ -2,6 +2,7 @@
 // CBreakableScenarioComponent side). Names and layouts are placeholders.
 #include "game/CBreakableVignetteComponent.h"
 #include "game/CCharClassBreakableScenarioComponent.h"
+#include "game/UnkBreakableTarget.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 
@@ -14,11 +15,6 @@ struct UnkBreakablePart {
     u8 pad_0x8[0x38];
 };
 static_assert(sizeof(UnkBreakablePart) == 0x40, "UnkBreakablePart placeholder layout");
-
-struct UnkBreakableTarget {
-    u8 pad_0x0[0x10];
-    void* field_0x10;
-};
 
 struct UnkBreakableScenario {
     u8 pad_0x0[0x48];

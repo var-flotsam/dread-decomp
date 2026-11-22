@@ -13,6 +13,9 @@
 #include "game/CBossAIComponent.h"
 #include "game/GUI/CButton.h"
 #include "game/UnkBufferStringPool.h"
+#include "game/UnkButtonList_ovb0108.h"
+#include "game/UnkButtonScreen_ovb0108.h"
+#include "game/UnkButtonTemplate_ovb0108.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2544.h"
@@ -26,25 +29,6 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 
 using UnkButtonName_ovb0108 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
-
-struct UnkButtonTemplate_ovb0108 {
-    u8 pad_0x0[0x28];
-    void* field_0x28;
-    u8 pad_0x30[0x10c];
-    s32 default_value;  // 0x13c
-    s32 value;          // 0x140
-};
-
-struct UnkButtonList_ovb0108 {
-    u8 pad_0x0[0x1c8];
-    s32 count;  // 0x1c8
-};
-
-struct UnkButtonScreen_ovb0108 {
-    u8 pad_0x0[0x250];
-    UnkButtonList_ovb0108* list;           // 0x250
-    UnkButtonTemplate_ovb0108* button_def;  // 0x258
-};
 
 // The button as this function sees it.
 struct UnkButton_ovb0108 {

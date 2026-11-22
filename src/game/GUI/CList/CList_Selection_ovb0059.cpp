@@ -14,6 +14,7 @@
 #include "game/GUI/CList.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
+#include "game/UnkGuiEvent_b49.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
@@ -24,10 +25,6 @@ using base::global::CStrId;
 struct UnkStruct_71011ff97c;
 struct UnkSmBase_A6_b62;
 struct UnkSmArg_A6_b62;
-struct UnkGuiEvent_b49 {
-    u8 pad_0x0[0x20];
-    u64 kind;  // 0x20
-};
 struct UnkSprite_spr;
 struct UnkGuiButtonFocus_ovb0000;
 

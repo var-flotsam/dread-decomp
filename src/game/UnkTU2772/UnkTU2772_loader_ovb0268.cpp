@@ -3,6 +3,8 @@
 #include <stddef.h>
 
 #include <nn/audio.h>
+#include "game/UnkAtkEntryIndex_b0148.h"
+#include "game/UnkAtkInfo_b0150.h"
 
 #include "game/UnkTU2772.h"
 #include "game/UnkTU99.h"
@@ -14,18 +16,6 @@ struct UnkAtkVoice;
 
 struct UnkAtkArchive;
 struct UnkAtkArchive_b0148;
-
-struct UnkAtkEntryIndex_b0148 {
-    u32 index;  // 0x0
-    u8 pad_0x4[0x1c];
-};
-
-struct UnkAtkInfo_b0150 {
-    s32 field_0x0;
-    u32 count;  // 0x4
-    u8 flag;    // 0x8
-    u8 pad_0x9[7];
-};
 
 struct UnkAtkWave_b0150 {
     u8 pad_0x0[0x18];
