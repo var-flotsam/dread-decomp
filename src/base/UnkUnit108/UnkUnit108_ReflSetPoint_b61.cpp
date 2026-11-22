@@ -12,8 +12,6 @@ using base::math::CVector3D;
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
-extern base::reflection::CType g_unk_7108b6da30;
-
 struct UnkPointSet_b61 {
     u8 pad_0x0[0x2d];
     bool field_0x2d;

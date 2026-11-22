@@ -3,10 +3,10 @@
 // layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/reflection.h"
+#include "base/reflection/CType.h"
 #include "types.h"
 
 #include "base/reflection.h"
-bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const base::reflection::UnkTypedRef* src);
 
 struct UnkReflAssignValue82_b66a1 {
     u8 pad_0x0[0x8];

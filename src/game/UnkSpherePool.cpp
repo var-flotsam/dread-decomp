@@ -10,11 +10,11 @@
 #include "game/UnkPoolBox.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU270.h"
+#include "game/UnkTU307.h"
 #include "game/UnkTU308.h"
 #include "types.h"
 
-// The box's base constructor, and the vtable of the box class the pool uses (GOT 0x7101cc7410).
-void fn_7100215dcc(UnkPoolBox* self, const UnkVec3f* min, const UnkVec3f* max);
+// The vtable of the box class the pool uses (GOT 0x7101cc7410).
 extern const char g_unk_7101a20090[];
 // The pool's vtable (GOT 0x7101cc75c0).
 

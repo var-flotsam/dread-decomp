@@ -20,8 +20,6 @@ using base::global::UnkStringData;
 
 // ---- 0x78-byte records (two arrays) ----
 
-void fn_71010017f4(UnkElemArray<UnkElem78>* self);  // clear
-
 // The array's resize: reserve, then value-initialise the new records.
 void fn_7101002358(UnkElemArray<UnkRec78Init_b0212>* self, u32 n) {
     fn_710100147c(reinterpret_cast<UnkElemArray<UnkElem78>*>(self), n);

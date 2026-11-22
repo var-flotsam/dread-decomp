@@ -5,7 +5,10 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkVec3f;
 struct UnkPoolBox;
 struct UnkBounded;
 void fn_7100215f60(UnkBounded* self, const void* point);  // Grows the bounds to hold a point.
 void fn_7100215e1c(UnkPoolBox* self);
+// The box's base constructor.
+void fn_7100215dcc(UnkPoolBox* self, const UnkVec3f* min, const UnkVec3f* max);

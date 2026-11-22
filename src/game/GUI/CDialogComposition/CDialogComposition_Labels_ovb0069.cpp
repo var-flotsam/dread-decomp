@@ -89,7 +89,6 @@ void fn_7100b01c08(void* self, const UnkDlgId_ovb0069* text) {
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateKey g_unk_71729f0180;
 
 struct UnkDialogClose_ovb0069 {
     void** vtable;

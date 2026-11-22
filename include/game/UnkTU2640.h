@@ -4,6 +4,8 @@
 // 0x7100fe119c-0x7101007b10). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/GUI/UnkMissionLogRecords.h"
+#include "game/UnkElem78.h"
 #include "types.h"
 
 struct UnkIdObject_lfd9aa0;
@@ -31,3 +33,6 @@ struct UnkMapValue_b0213;
 // Inserts a node holding a copy of `key` and the value moved out of `value` (src/game/UnkTU2640/fn_7101005fcc.cpp).
 void fn_7101005fcc(UnkMap_b0213* self, const base::global::CStrId* key, UnkMapValue_b0213* value);
 const base::global::CStrId* fn_7100fed648(UnkIdObject_lfd9aa0* object);
+void fn_7101001694(UnkElemArray<UnkElem78>* self, const UnkElem78* value);
+// Clears the array.
+void fn_71010017f4(UnkElemArray<UnkElem78>* self);

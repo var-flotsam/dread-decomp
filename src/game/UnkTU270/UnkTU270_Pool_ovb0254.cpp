@@ -14,7 +14,6 @@
 #include "game/UnkTU58.h"
 #include "types.h"
 
-void fn_7100215dcc(UnkPoolBox* self, const UnkVec3f* min, const UnkVec3f* max);  // the box's base constructor
 extern const char g_unk_7101a20090[];                                           // the box class's vtable
 
 // A box and its corners quantised to tenths (0x40 bytes): a node of the tree. The box is kept as raw storage so

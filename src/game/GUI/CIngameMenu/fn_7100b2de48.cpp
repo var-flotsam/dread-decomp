@@ -176,7 +176,6 @@ struct UnkModeFlags {
 };
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateKey g_unk_71729f0180;
 void fn_7100b2d0a4(UnkStateOwner* self);
 extern base::global::CStrId g_unk_7172762fd8 __attribute__((visibility("hidden")));
 void fn_7100e9b464(void* target, bool value);

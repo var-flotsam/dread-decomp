@@ -4,11 +4,10 @@
 #include "base/global/CStrId.h"
 #include "game/GUI/UnkMissionLogRecords.h"
 #include "game/UnkElem78.h"
+#include "game/UnkTU2640.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-void fn_71010017f4(UnkElemArray<UnkElem78>* self);  // clear
 
 // Takes over the other array's buffer, emptying it (nothing happens on a self-move).
 inline void MoveItems_l002f24(UnkElemArray<UnkElem78>& dst, UnkElemArray<UnkElem78>& src) {

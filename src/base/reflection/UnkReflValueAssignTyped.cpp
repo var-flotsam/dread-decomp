@@ -2,9 +2,8 @@
 // fn_710009d5d4, each passed as a (type, object) reference built from the object's type word at +8; the type
 // of the destination selects the conversion. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
+#include "base/reflection/CType.h"
 #include "types.h"
-
-bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const base::reflection::UnkTypedRef* src);
 
 struct UnkReflTypedObject {
     void* field_0x0;

@@ -14,9 +14,6 @@
 
 using base::global::CStrId;
 
-void fn_7101001694(UnkElemArray<UnkElem78>* self, const UnkElem78* value);
-void fn_71010017f4(UnkElemArray<UnkElem78>* self);  // clear
-
 struct UnkIdArray78Record_b42a3 {
     CStrId id;
     UnkElemArray<UnkElem78> items;

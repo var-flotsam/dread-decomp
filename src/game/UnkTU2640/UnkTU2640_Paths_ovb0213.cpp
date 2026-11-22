@@ -435,8 +435,6 @@ void fn_7100ffaa88(void* array) {
 
 // ---- Id array map
 
-void fn_7101001694(UnkElemArray<UnkElem78>* self, const UnkElem78* value);
-
 struct UnkIdArrayRecord_b0213 {
     CStrId id;
     UnkElemArray<UnkElem78> items;

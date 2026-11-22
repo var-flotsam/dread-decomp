@@ -3,6 +3,7 @@
 // UnkTU1501: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1501,
 // 0x71009dc3bc-0x71009f16a8). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkGroundPlayer_b52;
@@ -29,3 +30,4 @@ void fn_71009ea070(UnkGroundMovement_ovb0138* movement);
 f32 fn_71009e754c(UnkMove_b152* self);
 bool fn_71009e12d0(void*);
 bool fn_71009e1fd4(UnkGroundPlayer_b52* player);
+UnkVec3f fn_71009ebe68(UnkHelper* helper);

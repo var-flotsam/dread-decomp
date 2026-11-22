@@ -26,6 +26,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/CAnimatedCameraCtrl.h"
 #include "game/CBombGun.h"
 #include "game/CCameraComponent.h"
@@ -479,7 +480,6 @@ struct UnkManager_7100863a8c;
 // The file device singleton and the sound manager (src/game/CGameManager.cpp).
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
-void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 // The file-path id array's element accessor (CRntVector::GrowAt, out of line).
 UnkPathIdMember* fn_710008c174(base::global::CRntVector<UnkPathIdMember>* self, u32 index);
 

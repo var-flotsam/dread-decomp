@@ -287,8 +287,6 @@ extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
 
 struct UnkFilePathList;
-// Lists the files under `path` into `out`.
-void fn_7100089eec(base::file::UnkFileDevice* self, const CFilePathStrId* path, UnkFilePathList* out);
 // Requests the file `path` (with 0 and 9; the arguments are zeroed).
 
 static inline base::file::UnkFileDevice* FileDevice() {
@@ -1012,7 +1010,6 @@ static_assert(__builtin_offsetof(UnkGameManagerProfile, field_0x7f0) == 0x7f0, "
 template <class T>
 struct UnkCopiedVector;
 struct UnkWordsValue;
-UnkCopiedVector<UnkWordsValue>* fn_7100e05764(UnkCopiedVector<UnkWordsValue>* self, const UnkCopiedVector<UnkWordsValue>* other);
 struct UnkStruct_0x28;
 void fn_7100e0552c(void* self, const void* other);
 struct UnkMainMenuSlot {

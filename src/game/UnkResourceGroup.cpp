@@ -87,8 +87,6 @@ struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
         }
     }
 };
-// Lists the files under `path` into `out` (src/game/CGameManager.cpp).
-void fn_7100089eec(base::file::UnkFileDevice* self, const CFilePathStrId* path, UnkFilePathList* out);
 
 // A scene object of the set: the render manager's node is its base at +8.
 struct UnkItemBase_71011a91c4;

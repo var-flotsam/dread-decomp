@@ -7,6 +7,7 @@
 #include "base/UnkVtableList.h"
 
 #include "base/global/CRntVector.h"
+#include "game/CGameManager/CTunableGameManager.h"
 #include "game/CGoliathXBurstProjectionBombMovement.h"
 #include "game/SLogicPathNode.h"
 #include "game/UnkBlockVector.h"
@@ -38,9 +39,6 @@ struct UnkWord {
 UnkCopiedVector<UnkWord>* fn_71000cf3b4(UnkCopiedVector<UnkWord>* self, const UnkCopiedVector<UnkWord>* other) {
     return &(*self = *other);
 }
-
-UnkCopiedVector<UnkWordsValue>* fn_7100e05764(UnkCopiedVector<UnkWordsValue>* self,
-                                              const UnkCopiedVector<UnkWordsValue>* other);
 
 // Copy-assignment of a record of two arrays and four values: the first array (of three
 // values per element) appends through its out-of-line PushBack; the second (of half-words)

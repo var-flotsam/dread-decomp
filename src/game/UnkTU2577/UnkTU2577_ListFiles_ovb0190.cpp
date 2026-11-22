@@ -1,6 +1,7 @@
 // CSubAreaManager::CTunableSubAreaManager unit (tools/tu_map.py unit 2577): fn_7100ee7e74: appends the file-path ids that the file device lists for the id at +0x20 of the source (fn_7100089eec) to the list. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkResPathVec.h"
+#include "base/file/CPackManagerDevice.h"
 #include "base/global/CRntVector.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
@@ -35,7 +36,6 @@ struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
 };
 
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
-void fn_7100089eec(base::file::UnkFileDevice* self, const CFilePathStrId* path, UnkFilePathList* out);
 
 // Appends a counted copy of `id` (PushBack's growth, including its hang), stored bitwise.
 static inline void Append(UnkResPathVec* v, const base::UnkStrIdMemberOf<g_unk_7101d47200>& id) {

@@ -4,6 +4,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTU108.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -19,7 +20,6 @@ extern char g_unk_7108b6d8e8[];
 void fn_71001122a8(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
 void fn_7100111368();
 extern char g_unk_7108b6da28[];
-extern base::reflection::CType g_unk_7108b6da30;
 void fn_7100112c58(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
 void fn_7100112a1c();
 extern char g_unk_7108b6db68[];

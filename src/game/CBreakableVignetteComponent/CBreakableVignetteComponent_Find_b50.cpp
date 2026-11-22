@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -15,8 +16,6 @@ using base::reflection::UnkReflObject;
 
 extern CStrId g_unk_7172713428 __attribute__((visibility("hidden")));  // CBreakableVignetteComponent's id
 extern CType g_unk_7172713430 __attribute__((visibility("hidden")));   // its type
-
-UnkReflObject* fn_710024e2e8(UnkGameManagerIdList* list, void* key);
 
 UnkReflObject* fn_7100762b8c(void* key) {
     UnkGameManagerIdList* list = fn_7100de94cc(g_unk_7101d47310, reinterpret_cast<const u64*>(&g_unk_7172713428));

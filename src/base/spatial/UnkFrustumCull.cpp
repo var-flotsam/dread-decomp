@@ -7,6 +7,7 @@
 #include "game/UnkTU204.h"
 #include "game/UnkTU225.h"
 #include "game/UnkTU244.h"
+#include "game/UnkTU307.h"
 #include "game/UnkTU308.h"
 #include "types.h"
 
@@ -87,8 +88,7 @@ void fn_71001691ac(UnkCullObject* self);  // its constructor
 
 // ---- The view's constructor (fn_71001b76ec) ----
 
-// The box's base constructor, and the vtable of the box class (GOT 0x7101cc7410).
-void fn_7100215dcc(UnkPoolBox* self, const UnkVec3f* min, const UnkVec3f* max);
+// The vtable of the box class (GOT 0x7101cc7410).
 extern const char g_unk_7101a20090[];
 
 // A box and its corners quantised to tenths (0x38 bytes).

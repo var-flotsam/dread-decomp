@@ -238,7 +238,6 @@ s32 fn_7101086800(lua_State* L) {
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
 bool fn_7100089864(base::file::UnkFileDevice* self, const CFilePathStrId* path);
-void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 
 static inline base::file::UnkFileDevice* FileDevice_b0163() {
     if (!g_unk_7101d4d828) {

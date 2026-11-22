@@ -25,8 +25,6 @@ void fn_7100b5bfdc(UnkElem38Array* self, const UnkElem38Array& other) {
     CopyConstruct<UnkElem38, fn_7100b5c28c, fn_7100b593d0>(self, other);
 }
 
-void fn_7101001694(UnkElemArray<UnkElem78>* self, const UnkElem78* value);
-
 void fn_71010012d4(UnkElemArray<UnkElem78>* self, const UnkElemArray<UnkElem78>& other) {
     CopyConstruct<UnkElem78, fn_710100147c, fn_7101001694>(self, other);
 }

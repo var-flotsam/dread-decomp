@@ -5,6 +5,7 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntString.h"
 #include "base/reflection.h"
+#include "base/reflection/CType.h"
 #include <new>
 
 #include "base/UnkCloneHelpers.h"
@@ -112,9 +113,6 @@ static_assert(__builtin_offsetof(UnkReflRecord_ovb0106, field_0xe0) == 0xe0, "la
 __attribute__((flatten)) void fn_7100ad8864(UnkReflRecord_ovb0106* self) { self->~UnkReflRecord_ovb0106(); }
 
 // ---- fn_7100ad8120, fn_7100ad7cc0: resolving a path of arguments ----
-
-// The value a typed reference holds, as a reflected value.
-bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const base::reflection::UnkTypedRef* src);
 
 // A resolved value (0x30 bytes), as src/base/reflection/UnkReflResolve.cpp defines it, built here from a
 // reflected value.

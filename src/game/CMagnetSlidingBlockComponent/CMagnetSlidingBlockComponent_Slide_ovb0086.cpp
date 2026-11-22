@@ -296,8 +296,6 @@ struct UnkMagnetModelComponent_b0086 {
 };
 
 struct UnkMagnetFx_b0086;
-void fn_71009272c4(UnkMagnetColorChange_b0086* self, u32 index, bool flag, const UnkVector4D* from,
-                   const UnkVector4D* to, f32 time);
 
 struct UnkMagnetOwner4_b0086 {
     u8 pad_0x0[0x228];

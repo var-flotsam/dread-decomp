@@ -204,7 +204,6 @@ struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
 void* fn_7100c9ff5c(void* p);
-UnkVec3f fn_71009ebe68(UnkHelper* helper);
 
 static inline void SetIdentity(UnkMatrix44* m) {
     *m = UnkMatrix44{};
