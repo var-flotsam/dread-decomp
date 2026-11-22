@@ -58,7 +58,7 @@ void fn_71008ac5f0() {
     UnkBeamBoxTU_l8ac5f0& tu = g_unk_717272eb48;
     InitHeader(tu.header);
     new (&g_unk_717272e160) CStrId("BEAMBOX", true);
-    fn_7100000250(fn_710000051c, &g_unk_717272e160, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_717272e160, &g_unk_7101a19000);
     InitProperty(&g_unk_717272e168, g_unk_7101a7d6e0, g_unk_71726db788, "Pos", refl_TypeOf<fn_7100024504>(),
                  fn_71008a9ab0, fn_71008a47e0);
     InitClass(AsUnk(&g_unk_717272e190), "SBeamBoxActivatable", fn_71008a49a0, fn_71008a4858);
@@ -86,7 +86,7 @@ void fn_71008ac5f0() {
     fn_71008a5a9c();
     fn_710009ec00(&g_unk_717272e6c1, &tu.type);
     new (&tu.light) CStrId("light", true);
-    fn_7100000250(fn_710000051c, &tu.light, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.light, &g_unk_7101a19000);
     new (&tu.collision) CStrId("collision", true);
-    fn_7100000250(fn_710000051c, &tu.collision, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.collision, &g_unk_7101a19000);
 }

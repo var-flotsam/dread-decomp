@@ -86,7 +86,7 @@ void fn_7100d22174(UnkBumpTrack_b0141* self, const CStrId* src) {
     fn_71000fc570(*reinterpret_cast<const char* const*>(reinterpret_cast<const char*>(src->data) + 0x10), ",", reinterpret_cast<UnkTunableTokens*>(&tokens));
     for (UnkIdToken_b0141* t = tokens.head; t; t = t->next) {
         UnkIdSlot_b0141 slot;
-        fn_7100000850(&slot.id, *reinterpret_cast<const CRntString*>(t), true);
+        CStrId_ConstructFromRntString(&slot.id, *reinterpret_cast<const CRntString*>(t), true);
         PushBackMove(&self->ids, slot.id);
         slot.id.~CStrId();
     }

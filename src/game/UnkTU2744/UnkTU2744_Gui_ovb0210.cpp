@@ -183,7 +183,7 @@ void fn_71011b97bc(UnkRecordOwner_b0210* self, const CRntString* name) {
         if (found) {
             UnkRecordMap_b0210* m = self->map;
             UnkIdSlot_b0210 slot;
-            fn_7100000850(&slot.id, *name, true);
+            CStrId_ConstructFromRntString(&slot.id, *name, true);
             u32 index = slot.id.Hash() % m->buckets.capacity;
             UnkRecordNode_b0210* n = m->buckets.data[index];
             while (n->key.data != slot.id.data)

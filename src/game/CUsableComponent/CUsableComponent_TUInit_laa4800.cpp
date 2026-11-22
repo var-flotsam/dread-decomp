@@ -41,7 +41,7 @@ void fn_7100aa4800() {
     UnkUsableComponentTU& tu = g_unk_7172753520;
     InitHeader(tu.header);
     new (&g_unk_7172753140) CStrId("USABLE", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172753140, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172753140, &g_unk_7101a19000);
     void** vtable = reinterpret_cast<void**>(g_unk_7101a945e0);
     InitPropertyVtableFirst(AsProperty(g_unk_7172753148), vtable, g_unk_71726db788, "Used",
                             refl_TypeOf<fn_710000d228>(), fn_7100aa3e68, fn_7100a9bc70);

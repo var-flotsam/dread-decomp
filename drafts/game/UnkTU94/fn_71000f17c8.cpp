@@ -145,7 +145,7 @@ struct UnkTextStrId_l0f17c8 {
     UnkStringData* data;
 
     explicit UnkTextStrId_l0f17c8(const CRntString& text) {
-        fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), text, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(this), text, true);
     }
     ~UnkTextStrId_l0f17c8() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
@@ -217,7 +217,7 @@ bool fn_71000f17c8(UnkTypedRefWriter* self) {
     if (names_value.type) {
         const auto* names = static_cast<const CRntVector<CRntString>*>(UnkOwnedValue_l0f17c8::Address(names_value));
         if (names->count > depth &&
-            fn_710007f240(reinterpret_cast<char*>(const_cast<CRntString*>(&names->data[depth])), g_unk_710162e2ed)) {
+            StringBuffer_Differs(reinterpret_cast<char*>(const_cast<CRntString*>(&names->data[depth])), g_unk_710162e2ed)) {
             UnkTextStrId_l0f17c8 name(names->data[depth]);
             void* owner = fn_71000978e4(reinterpret_cast<char*>(cls), name.Id());
 

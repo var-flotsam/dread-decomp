@@ -87,7 +87,7 @@ void fn_7100c87958(UnkCutSceneOwner_lc87958* self) {
             fn_710007eaa0(name.Str(), part.Str());
         }
         UnkStrIdSlot_lc87958 slot;
-        fn_7100000850(&slot.id, *name.Str(), true);
+        CStrId_ConstructFromRntString(&slot.id, *name.Str(), true);
         e->name = static_cast<CStrId&&>(slot.id);
     }
 }

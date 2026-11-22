@@ -33,13 +33,13 @@ void fn_7100835dd8(UnkGunIds_l835dd8* self, const CStrId* name) {
     UnkBufferString<0x80, g_unk_7101a1b750> buffer;
     fn_710007eaa0(buffer.Str(), &text);
     fn_710007f564(buffer.Str(), "0");
-    fn_7100000850(id, *buffer.Str(), true);
+    CStrId_ConstructFromRntString(id, *buffer.Str(), true);
     self->first.ReleaseAndTake(*id);
     id->~CStrId();
 
     fn_710007eaa0(buffer.Str(), &IdString(*name));
     fn_710007f564(buffer.Str(), "1");
-    fn_7100000850(id, *buffer.Str(), true);
+    CStrId_ConstructFromRntString(id, *buffer.Str(), true);
     self->second.ReleaseAndTake(*id);
     id->~CStrId();
 }

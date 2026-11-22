@@ -1,4 +1,15 @@
 address,name,name_source,reason
+0x71000003d4,CStrId_Construct,inferred,"constructs a string id from a C string: hashes it, finds it in the pool or inserts it"
+0x710000051c,CStrId_Destroy,inferred,"a string id's destructor, registered with __cxa_atexit for global ids"
+0x7100000850,CStrId_ConstructFromRntString,inferred,constructs a string id from a CRntString's text and cached key
+0x710007ecb4,StringBuffer_Construct,inferred,"constructs a string pool buffer (a borrowed string) from a text, length and key"
+0x710007edac,StringBuffer_Assign,inferred,"assigns a text, length and key to a string pool buffer"
+0x710007f240,StringBuffer_Differs,inferred,whether the string pool's buffer differs from a C string; null and empty are equal
+0x710007fdb4,StringPool_InitHeap,inferred,sets up the string pool's function-local static heap with a fixed number of blocks per size class
+0x7100080824,StringPool_Bucket,inferred,returns the address of a bucket head of the pool's hash set
+0x7100083f74,StringHeap_Init,inferred,sets up the string heap's size classes from a table of block counts
+0x7100084030,StringHeap_Alloc,inferred,allocates a block from the string heap; the block's first field is the memory
+0x7100084144,StringHeap_Free,inferred,returns a block to the string heap
 0x7100096524,AddReflectedField,inferred,"registers a member field of a class descriptor by name, type and offset, and returns its description"
 0x7100097550,AddReflectedFunction,inferred,adds a function of the given name to a class descriptor and returns its description; null if the class already has one by that name
 0x710009dd6c,TypeAttributes,inferred,"returns a type's attribute container (CType+0x80), creating it on first use"

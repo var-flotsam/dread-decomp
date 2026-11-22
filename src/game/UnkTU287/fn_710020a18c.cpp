@@ -46,7 +46,7 @@ typedef void (*UnkVf50)(UnkWidget_l20a18c*, int);
 void fn_710020a18c(UnkWidget_l20a18c* self, UnkWidgetArg* a) {
     self->field_0x8 = nullptr;
     self->vtable_0x0 = g_unk_7101a1f000 + 2;
-    fn_71000003d4(self->id_0x10, "", true);
+    CStrId_Construct(self->id_0x10, "", true);
     fn_7100025624(self->sub_0x18);
     self->field_0x74 = -1;
     self->field_0x78 = nullptr;

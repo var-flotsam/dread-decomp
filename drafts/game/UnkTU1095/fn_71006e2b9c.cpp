@@ -60,7 +60,7 @@ struct UnkBuiltId_l6e2b9c {
     UnkStringData* data;
 
     explicit UnkBuiltId_l6e2b9c(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkBuiltId_l6e2b9c() {
         if (UnkStringPool* pool = g_unk_7101d47108) {

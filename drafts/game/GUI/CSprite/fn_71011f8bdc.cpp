@@ -44,7 +44,7 @@ struct UnkSpriteStrId_l1f8bdc {
     UnkStringData* data;
 
     explicit UnkSpriteStrId_l1f8bdc(const UnkSpriteText_l1f8bdc& text) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), *text.Str(), true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), *text.Str(), true);
     }
     ~UnkSpriteStrId_l1f8bdc() {
         if (UnkStringPool* pool = g_unk_7101d47108) {

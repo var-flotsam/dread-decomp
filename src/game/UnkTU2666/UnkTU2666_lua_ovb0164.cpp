@@ -433,7 +433,7 @@ s32 fn_7101082690(lua_State* L) {
         UnkGameManager* manager = g_unk_7101d47310;
         bool in_game = false;
         if (UnkMode_b0164* mode = static_cast<UnkMode_b0164*>(manager->field_0x498))
-            in_game = !fn_710007f240(mode->name, "INGAME");
+            in_game = !StringBuffer_Differs(mode->name, "INGAME");
         if (!in_game) {
             manager = g_unk_7101d47310;
             CRntString ingame("INGAME");

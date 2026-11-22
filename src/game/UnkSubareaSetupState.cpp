@@ -341,7 +341,7 @@ struct UnkSetupPartId {
         CStrId id;
     };
 
-    explicit UnkSetupPartId(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkSetupPartId(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkSetupPartId() { id.~CStrId(); }
 };
 

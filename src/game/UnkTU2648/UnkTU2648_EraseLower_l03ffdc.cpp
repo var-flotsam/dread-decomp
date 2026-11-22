@@ -90,7 +90,7 @@ struct UnkKeyId_l03ffdc {
     UnkStringData* data;
 
     explicit UnkKeyId_l03ffdc(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkKeyId_l03ffdc() {
         if (base::global::UnkStringPool* pool = g_unk_7101d47108) {

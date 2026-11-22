@@ -35,13 +35,13 @@ struct UnkPoolIter {
 
 }  // namespace base::global
 
-char** fn_7100080824(char* set, u32 bucket);  // the address of a bucket
-bool fn_710007f240(char* buffer, const char* str);  // the buffer differs from str
-void fn_710007ecb4(char* buffer, const char* str, u32 length, s64 key);  // buffer constructor
+char** StringPool_Bucket(char* set, u32 bucket);  // the address of a bucket
+bool StringBuffer_Differs(char* buffer, const char* str);  // the buffer differs from str
+void StringBuffer_Construct(char* buffer, const char* str, u32 length, s64 key);  // buffer constructor
 // The buffer's destructor is fn_710007ecd4 (base/global/CRntString.h): the buffer is a CRntString.
-void fn_710007edac(char* buffer, const char* str, u32 length, s64 key);   // buffer assign
+void StringBuffer_Assign(char* buffer, const char* str, u32 length, s64 key);   // buffer assign
 void fn_7100080a00(char* set, base::global::UnkPoolIter* it);             // erase
-char* fn_7100084030(void* heap, u32 size);    // allocate; the block's first field is the memory
-void fn_7100084144(void* heap, char* block);  // free
+char* StringHeap_Alloc(void* heap, u32 size);    // allocate; the block's first field is the memory
+void StringHeap_Free(void* heap, char* block);  // free
 
 extern void* g_unk_7101d58d40;  // the heap the string copies come from (reached through the GOT)

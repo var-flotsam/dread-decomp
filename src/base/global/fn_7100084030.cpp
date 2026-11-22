@@ -9,7 +9,7 @@ using base::global::UnkStringBlock;
 using base::global::UnkStringBlockClass;
 using base::global::UnkStringHeap;
 
-UnkStringBlock* fn_7100084030(UnkStringHeap* heap, u32 size) {
+UnkStringBlock* StringHeap_Alloc(UnkStringHeap* heap, u32 size) {
     UnkStringBlockClass* c = nullptr;
     // The loop tests a flag set from the selected pointer, as the original does.
     bool none = true;

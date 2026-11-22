@@ -60,7 +60,7 @@ struct UnkCommanderXName_l8be4e0 {
     UnkStringData* data;
 
     explicit UnkCommanderXName_l8be4e0(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkCommanderXName_l8be4e0() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
     const CStrId* Id() const { return reinterpret_cast<const CStrId*>(this); }

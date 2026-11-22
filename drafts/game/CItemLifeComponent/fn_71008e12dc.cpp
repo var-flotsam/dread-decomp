@@ -184,7 +184,7 @@ struct UnkTextStrId_l8e12dc {
     UnkStringData* data;
 
     explicit UnkTextStrId_l8e12dc(const CRntString& text) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), text, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), text, true);
     }
     ~UnkTextStrId_l8e12dc() {
         if (UnkStringPool* pool = g_unk_7101d47108) {

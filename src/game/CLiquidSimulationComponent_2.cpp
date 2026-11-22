@@ -16,5 +16,5 @@ void fn_7100906440() {
     fn_71009058b4();
     fn_710009ec00(&g_unk_71727344a0, TUType<0x48>(g_unk_71727344b0));
     new (TUAt<CStrId, 0x20>(g_unk_71727344b0)) CStrId(fn_7100de8f78(CStrId("CLiquidSimulationComponent", true)));
-    fn_7100000250(fn_710000051c, &g_unk_71727344d0, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_71727344d0, &g_unk_7101a19000);
 }

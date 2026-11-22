@@ -1302,7 +1302,7 @@ void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntStri
         }
     }
     CStrId section = TableId(0x1bd0);
-    if (fn_710007f240(reinterpret_cast<char*>(const_cast<CRntString*>(name)), "[MANTAIN]")) {
+    if (StringBuffer_Differs(reinterpret_cast<char*>(const_cast<CRntString*>(name)), "[MANTAIN]")) {
         UnkBufferString<0x100, g_unk_7101a194b8> current(g_unk_710162e2ed);
         const UnkQualifiedId& id = DefId(g_unk_7172759a90);
         if (CBlackboard::CSection* s = fn_7101047270(blackboard, section))
@@ -1310,7 +1310,7 @@ void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntStri
         if (fn_710007f220(current.Str(), name))
             SetValue(blackboard, section, DefId(g_unk_7172759a90), fn_7100007f84, *name);
     }
-    if (fn_710007f240(reinterpret_cast<char*>(start_name.Str()), "[MANTAIN]"))
+    if (StringBuffer_Differs(reinterpret_cast<char*>(start_name.Str()), "[MANTAIN]"))
         SetValue(blackboard, section, DefId(g_unk_7172759a50), TRntString128Type, start_name);
     bool cooldown = fn_710007f140(name, "SP_CooldownX_cooldownxboss_startcombat") &&
                     fn_710007f140(start, "SP_Checkpoint_CooldownX");

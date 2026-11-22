@@ -19,7 +19,7 @@ struct UnkDropTarget;
 struct UnkUserDataOwner;
 
 bool fn_7100000790(const char* name, const char* fmt, ...);  // Calls a script function.
-void fn_71000003d4(void*, const char*, bool);  // The string-id constructor (base/global/CStrId.h).
+void CStrId_Construct(void*, const char*, bool);  // The string-id constructor (base/global/CStrId.h).
 extern UnkUserDataOwner* g_unk_7101d47308;
 extern UnkDropTarget* g_unk_7101d47318;
 extern UnkSoundHolder* g_unk_7101d47340;  // The sound holder singleton (0x48 bytes); its first word is a sound group.

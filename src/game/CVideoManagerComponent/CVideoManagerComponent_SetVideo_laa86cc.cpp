@@ -24,7 +24,7 @@ struct UnkBuiltStrId_laa86cc {
         CStrId id;
     };
 
-    explicit UnkBuiltStrId_laa86cc(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkBuiltStrId_laa86cc(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkBuiltStrId_laa86cc() { id.~CStrId(); }
 };
 

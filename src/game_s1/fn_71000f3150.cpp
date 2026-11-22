@@ -15,9 +15,9 @@ struct UnkTUHeaderRev {
 
 __attribute__((always_inline)) static inline void InitHeaderRev(UnkTUHeaderRev& h) {
     new (&h.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &h.sources, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &h.sources, &g_unk_7101a19000);
     new (&h.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &h.binaries, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &h.binaries, &g_unk_7101a19000);
     h.field_0x0 = 6;
 }
 
@@ -44,9 +44,9 @@ void fn_71000f0070();
 
 void fn_71000f3150() {
     new (&g_unk_7101d68140.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &g_unk_7101d68140.sources, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7101d68140.sources, &g_unk_7101a19000);
     new (&g_unk_7101d68140.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &g_unk_7101d68140.binaries, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7101d68140.binaries, &g_unk_7101a19000);
     InitRecord(g_unk_7101d68140.fns[0], fn_710000cf00);
     InitRecord(g_unk_7101d68140.fns[1], fn_710000d470);
     InitRecord(g_unk_7101d68140.fns[2], fn_710000d4f4);

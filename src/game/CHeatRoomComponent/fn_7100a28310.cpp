@@ -65,5 +65,5 @@ void fn_7100a28310() {
     fn_7100a259f4();
     fn_710009ec00(&g_unk_7172746769, &tu.component_type);
     new (&tu.id) CStrId(fn_7100de8f78(CStrId("CHeatRoomComponent", true)));
-    fn_7100000250(fn_710000051c, &tu.id, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.id, &g_unk_7101a19000);
 }

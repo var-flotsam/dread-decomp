@@ -14,9 +14,9 @@ struct UnkTUHeaderRev {
 
 __attribute__((always_inline)) static inline void InitHeaderRev(UnkTUHeaderRev& h) {
     new (&h.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &h.sources, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &h.sources, &g_unk_7101a19000);
     new (&h.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &h.binaries, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &h.binaries, &g_unk_7101a19000);
     h.field_0x0 = 6;
 }
 

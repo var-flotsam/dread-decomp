@@ -63,7 +63,7 @@ struct UnkButtonId_ovb0108 {
     UnkStringData* data;
 
     explicit UnkButtonId_ovb0108(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkButtonId_ovb0108() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
 };

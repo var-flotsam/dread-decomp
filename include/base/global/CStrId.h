@@ -64,9 +64,9 @@ base::global::UnkStringData* fn_71000804f8(base::global::UnkStringPool* pool, u6
 base::global::UnkStringData* fn_71000801e4(base::global::UnkStringPool* pool, u64 hash, const char* str,
                                            u32 length, bool flag);  // insert
 u32 fn_7100080568();
-void fn_710007fdb4();
+void StringPool_InitHeap();
 // A string id's destructor, out of line: what static initialisers register with the atexit stub.
-void fn_710000051c(void* id);
+void CStrId_Destroy(void* id);
 
 namespace base::global {
 
@@ -81,7 +81,7 @@ struct UnkStringPoolHolder {
 
 inline void UnkEnsureStringPool() {
     static UnkStringPoolHolder s_holder(fn_7100080568(), &g_unk_7101d47108);
-    fn_710007fdb4();
+    StringPool_InitHeap();
 }
 
 // Tag for the string-id constructor's inline definition. Game code calls it out of line
@@ -296,9 +296,9 @@ class CRntString;
 // The string-id constructor from a CRntString (fn_7100000850), out of line: the string's cached
 // CRC-64 (`key`) is the pool hash, so nothing is rehashed, and a string with no text is passed as
 // "". Defined in src/base/global/fn_71000003d4.cpp.
-void fn_7100000850(base::global::UnkStrIdBase* self, const base::global::CRntString& str, bool flag);
+void CStrId_ConstructFromRntString(base::global::UnkStrIdBase* self, const base::global::CRntString& str, bool flag);
 inline base::global::CStrId::CStrId(const CRntString& str, bool flag) : UnkStrIdBase(BuiltOutOfLine()) {
-    fn_7100000850(this, str, flag);
+    CStrId_ConstructFromRntString(this, str, flag);
 }
 
 // The global empty string id: a guarded static that unit 0's initializer (fn_7100001390) builds

@@ -29,7 +29,7 @@ struct UnkPresetId_l03edc0 {
     UnkStringData* data;
 
     explicit UnkPresetId_l03edc0(const CRntString& text) {
-        fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), text, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(this), text, true);
     }
     UnkPresetId_l03edc0(const CStrId& other) : data(other.data) {
         if (&g_unk_7101d47108->empty != data)

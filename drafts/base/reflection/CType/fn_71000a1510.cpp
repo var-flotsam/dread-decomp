@@ -25,9 +25,9 @@ extern void* g_unk_7101a1b540[];  // CType's vtable
 void fn_71000a1510() {
     UnkCTypeUnitData& unit = g_unk_7101d5b5c0;
     new (&unit.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &unit.sources, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &unit.sources, &g_unk_7101a19000);
     new (&unit.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &unit.binaries, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &unit.binaries, &g_unk_7101a19000);
     fn_710009c7b8();
     // The registry's list argument is not read by fn_710009ec00 (the original, which shares its unit,
     // leaves the register as it is).

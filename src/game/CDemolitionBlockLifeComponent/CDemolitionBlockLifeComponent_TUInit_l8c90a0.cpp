@@ -59,15 +59,15 @@ void fn_71008c90a0() {
     fn_710009ec00(&g_unk_7172730c48, AsUnk(&base::reflection::TypeObject<EDemolitionPhase>::object));
     InitEnumConverters(AsUnk(&base::reflection::TypeObject<EDemolitionPhase>::object), g_unk_7172730c50, fn_71008c89d8, g_unk_7172730c70, fn_71008c89e4);
     new (&g_unk_7172730c90) CStrId("BLOCKLIFE", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172730c90, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172730c90, &g_unk_7101a19000);
     InitPropertyVtableFirst(&g_unk_7172730c98, g_unk_7101a7e5d0, g_unk_71726db788, "Dead",
                             refl_TypeOf<fn_710000d228>(), fn_71008c8de8, fn_71008c460c);
     InitProperty(&g_unk_7172730cc0, g_unk_7101a7e5d0, g_unk_71726db788, "HuskRemoved", refl_TypeOf<fn_710000d228>(),
                  fn_71008c8de8, fn_71008c460c);
     new (&tu.destroyed) CStrId("destroyed", true);
-    fn_7100000250(fn_710000051c, &tu.destroyed, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.destroyed, &g_unk_7101a19000);
     new (&tu.explosion) CStrId("explosion", true);
-    fn_7100000250(fn_710000051c, &tu.explosion, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.explosion, &g_unk_7101a19000);
     new (&tu.phase_one_two_sound)
         CRntString("audiopreset:system/snd/presets/props/breakables/breakable_phaseone_two");
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &tu.phase_one_two_sound, &g_unk_7101a19000);
@@ -78,7 +78,7 @@ void fn_71008c90a0() {
         CRntString("audiopreset:system/snd/presets/props/breakables/breakable_phasetwo_one");
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &tu.phase_two_one_sound, &g_unk_7101a19000);
     new (&tu.material) CStrId("cascamat", true);
-    fn_7100000250(fn_710000051c, &tu.material, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.material, &g_unk_7101a19000);
     new (&tu.dissolve_fx) CFilePathStrId("actors/props/breakablecave006/fx/dissolve_cascarilla.bcptl", true);
     fn_7100000250(fn_7100000c7c, &tu.dissolve_fx, &g_unk_7101a19000);
     fn_71008c4688();

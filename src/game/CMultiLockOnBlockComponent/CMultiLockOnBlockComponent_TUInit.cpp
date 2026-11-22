@@ -52,13 +52,13 @@ void fn_7100883e20() {
     fn_7100882100();
     fn_710009ec00(&g_unk_717272b629, &tu.type);
     new (&g_unk_717272b630) CStrId("MULTI_LOCK_ON_BLOCK", true);
-    fn_7100000250(fn_710000051c, &g_unk_717272b630, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_717272b630, &g_unk_7101a19000);
     InitPropertyVtableFirst(&g_unk_717272b638, reinterpret_cast<void**>(g_unk_7101a7bb78), g_unk_71726db788,
                             "Activated", refl_TypeOf<fn_710000d228>(), fn_7100883c28, fn_71008823e8);
     new (&tu.try_to_activate_point) CStrId("try_to_activate_point_", true);
-    fn_7100000250(fn_710000051c, &tu.try_to_activate_point, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.try_to_activate_point, &g_unk_7101a19000);
     new (&tu.relax_point) CStrId("relax_point_", true);
-    fn_7100000250(fn_710000051c, &tu.relax_point, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.relax_point, &g_unk_7101a19000);
     new (&g_unk_717272b660) UnkMultiLockOnLists();
     fn_7100000250(fn_7100882460, &g_unk_717272b660, &g_unk_7101a19000);
 }

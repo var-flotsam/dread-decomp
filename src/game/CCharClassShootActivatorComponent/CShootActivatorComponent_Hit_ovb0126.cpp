@@ -160,7 +160,7 @@ struct UnkShootBuiltId_ovb0126 {
         base::global::UnkStrId id;
     };
 
-    explicit UnkShootBuiltId_ovb0126(const base::global::CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkShootBuiltId_ovb0126(const base::global::CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkShootBuiltId_ovb0126() { id.~UnkStrId(); }
 };
 

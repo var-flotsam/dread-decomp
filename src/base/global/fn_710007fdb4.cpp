@@ -6,7 +6,7 @@
 
 using base::global::UnkStringHeap;
 
-void fn_710007fdb4() {
+void StringPool_InitHeap() {
     static UnkStringHeap s_heap;
     g_unk_7101d58d40 = &s_heap;
     // Stored one by one, as the original does (no constant-pool copy).
@@ -17,5 +17,5 @@ void fn_710007fdb4() {
     counts[3] = 135000;
     counts[4] = 1000;
     counts[5] = 200;
-    fn_7100083f74(&s_heap, counts);
+    StringHeap_Init(&s_heap, counts);
 }

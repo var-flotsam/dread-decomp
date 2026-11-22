@@ -98,7 +98,7 @@ struct UnkInvRntId_ovb0094 {
         CStrId id;
     };
 
-    explicit UnkInvRntId_ovb0094(const base::global::CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkInvRntId_ovb0094(const base::global::CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkInvRntId_ovb0094() { id.~CStrId(); }
 };
 

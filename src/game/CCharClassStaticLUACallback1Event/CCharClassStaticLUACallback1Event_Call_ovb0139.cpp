@@ -47,7 +47,7 @@ static inline UnkLuaId_ovb0139& TrueId() {
                          0)) {
         if (__cxa_guard_acquire(&g_unk_717279e8f8.guard)) {
             new (&g_unk_717279e8f8.id) UnkStrIdBase("true", true);
-            fn_7100000250(fn_710000051c, &g_unk_717279e8f8.id, g_unk_7101a19000);
+            fn_7100000250(CStrId_Destroy, &g_unk_717279e8f8.id, g_unk_7101a19000);
             __cxa_guard_release(&g_unk_717279e8f8.guard);
         }
     }

@@ -759,7 +759,7 @@ struct UnkNavLoadId {
     union {
         CStrId id;
     };
-    explicit UnkNavLoadId(const char* str) { fn_71000003d4(&id, str, true); }
+    explicit UnkNavLoadId(const char* str) { CStrId_Construct(&id, str, true); }
     ~UnkNavLoadId() { id.~CStrId(); }
 };
 

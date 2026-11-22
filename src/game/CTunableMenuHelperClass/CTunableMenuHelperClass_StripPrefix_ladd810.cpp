@@ -84,7 +84,7 @@ bool fn_7100add810(const CStrId* id, void* unused, CStrId* out) {
         text = Mid_ladd810(text.Str(), second.data->String().length);
 
     UnkStrIdSlot_ladd810 slot;
-    fn_7100000850(&slot.id, *text.Str(), true);
+    CStrId_ConstructFromRntString(&slot.id, *text.Str(), true);
     out->ReleaseAndTake(slot.id);
     return true;
 }

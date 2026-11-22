@@ -65,7 +65,7 @@ extern char g_unk_7172a0cc73;
 
 static inline void InitId(CStrId& id, const char* name) {
     new (&id) CStrId(name, true);
-    fn_7100000250(fn_710000051c, &id, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &id, &g_unk_7101a19000);
 }
 
 void fn_71011bdc00() {

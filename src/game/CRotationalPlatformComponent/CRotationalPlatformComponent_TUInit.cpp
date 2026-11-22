@@ -48,21 +48,21 @@ void fn_71009d9650() {
     fn_710009ec00(&g_unk_71727408a0, AsUnk(&base::reflection::TypeObject<ERotationDirection>::object));
     InitEnumConverters(AsUnk(&base::reflection::TypeObject<ERotationDirection>::object), g_unk_71727408a8, fn_71009d8fe4, g_unk_71727408c8, fn_71009d8ff0);
     new (&g_unk_71727408e8) CStrId("ROTATIONAL", true);
-    fn_7100000250(fn_710000051c, &g_unk_71727408e8, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_71727408e8, &g_unk_7101a19000);
     InitPropertyVtableFirst(&g_unk_71727408f0, reinterpret_cast<void**>(g_unk_7101a89e08), g_unk_71726db788, "Used",
                             refl_TypeOf<fn_710000d228>(), fn_71009d93f4, fn_71009d7d8c);
     fn_71009d7e08();
     fn_710009ec00(&g_unk_7172740918, &tu.type);
     new (&tu.player_detector_right) CStrId("player_detector_right", true);
-    fn_7100000250(fn_710000051c, &tu.player_detector_right, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.player_detector_right, &g_unk_7101a19000);
     new (&tu.player_detector_left) CStrId("player_detector_left", true);
-    fn_7100000250(fn_710000051c, &tu.player_detector_left, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.player_detector_left, &g_unk_7101a19000);
     new (&tu.collision_opened) CStrId("collision_opened", true);
-    fn_7100000250(fn_710000051c, &tu.collision_opened, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.collision_opened, &g_unk_7101a19000);
     new (&tu.collision_closed) CStrId("collision_closed", true);
-    fn_7100000250(fn_710000051c, &tu.collision_closed, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.collision_closed, &g_unk_7101a19000);
     new (&tu.initial) CStrId("initial", true);
-    fn_7100000250(fn_710000051c, &tu.initial, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.initial, &g_unk_7101a19000);
     new (&tu.finished) CStrId("finished", true);
-    fn_7100000250(fn_710000051c, &tu.finished, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.finished, &g_unk_7101a19000);
 }

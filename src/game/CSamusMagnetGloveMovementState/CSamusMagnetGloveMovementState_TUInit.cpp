@@ -58,11 +58,11 @@ void fn_71009afa90() {
     fn_710009ec00(&g_unk_717273c648, &tu.tunable_type);
     InitTunable(&g_unk_717273c650, fn_7100136ecc, reinterpret_cast<void**>(g_unk_7101a87688), fn_7100075104);
     new (&tu.melee_magnet_wall) CStrId("meleemagnetwall", true);
-    fn_7100000250(fn_710000051c, &tu.melee_magnet_wall, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.melee_magnet_wall, &g_unk_7101a19000);
     new (&tu.melee_magnet_ceiling) CStrId("meleemagnetceiling", true);
-    fn_7100000250(fn_710000051c, &tu.melee_magnet_ceiling, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.melee_magnet_ceiling, &g_unk_7101a19000);
     new (&tu.loop_vibration) CFilePathStrId("props/magnetplatform/platformmagnetbig_loop.bnvib", true);
     fn_7100000250(fn_7100000c7c, &tu.loop_vibration, &g_unk_7101a19000);
     new (&tu.grapple_init_angle) CStrId("GrappleInitAngle", true);
-    fn_7100000250(fn_710000051c, &tu.grapple_init_angle, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.grapple_init_angle, &g_unk_7101a19000);
 }

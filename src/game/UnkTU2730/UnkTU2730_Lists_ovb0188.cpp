@@ -436,7 +436,7 @@ void fn_710119ab20() {
     InitPropertyExVtableFirst(property, g_unk_7101a889c8, g_unk_71726db788, g_unk_7101a8d830, fn_7100ae9cc8,
                               "CutScenePlayed", refl_TypeOf<fn_7100005178>(), fn_71004fd2cc, fn_7100a24a50);
     new (&g_unk_7172a0bc98) CStrId("PlayedCutscenes", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172a0bc98, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172a0bc98, &g_unk_7101a19000);
 }
 
 using base::UnkAllocator;

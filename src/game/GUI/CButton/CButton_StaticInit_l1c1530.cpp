@@ -45,5 +45,5 @@ void fn_71011c1530() {
     fn_71011be400();
     fn_710009ec00(&g_unk_7172a0d318, &g_unk_7172a0d340.type);
     new (&g_unk_7172a0d340.name) CStrId("Button", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172a0d340.name, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172a0d340.name, &g_unk_7101a19000);
 }
