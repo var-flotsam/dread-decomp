@@ -46,25 +46,25 @@ struct UnkRef {
     }
 };
 
-struct UnkListNode {
+struct UnkListNode_f00af4 {
     u32 key;
     UnkRef ref;
     // A union member (no type-based alias info): the original reloads the list count after
     // the link stores.
     union {
-        UnkListNode* next;
+        UnkListNode_f00af4* next;
     };
 };
 
-struct UnkList : base::UnkLinkedList<UnkListNode> {
-    UnkListNode* Find(u32 key) {
-        for (UnkListNode* n = head; n; n = n->next)
+struct UnkList_f00af4 : base::UnkLinkedList<UnkListNode_f00af4> {
+    UnkListNode_f00af4* Find(u32 key) {
+        for (UnkListNode_f00af4* n = head; n; n = n->next)
             if (n->key == key)
                 return n;
         return nullptr;
     }
     void PushBack(u32 key, const UnkRef& value) {
-        UnkListNode* n = static_cast<UnkListNode*>(allocator->vf_0x40(sizeof(UnkListNode), 8, flags));
+        UnkListNode_f00af4* n = static_cast<UnkListNode_f00af4*>(allocator->vf_0x40(sizeof(UnkListNode_f00af4), 8, flags));
         if (n) {
             n->key = key;
             n->ref.ptr = nullptr;
@@ -105,7 +105,7 @@ struct UnkPathId {
     }
 };
 
-struct UnkHashNode {
+struct UnkHashNode_f00af4 {
     u32 key;
     u8 pad_0x4[0x4];
     UnkPathId field_0x8;
@@ -115,38 +115,38 @@ struct UnkHashNode {
     u8 pad_0x1a[0x1];
     bool field_0x1b;
     u8 pad_0x1c[0x14];
-    UnkHashNode* next;
+    UnkHashNode_f00af4* next;
 };
 
 struct UnkStruct_0x128 {
     u8 pad_0x0[0x10];
-    UnkHashNode** buckets;
+    UnkHashNode_f00af4** buckets;
     u32 field_0x18;
     u32 bucket_count;
     u8 pad_0x20[0x30];
-    UnkList field_0x50;
+    UnkList_f00af4 field_0x50;
     u8 pad_0x78[0x8];
-    UnkList field_0x80;
+    UnkList_f00af4 field_0x80;
     u8 pad_0xa8[0x8];
-    UnkList field_0xb0;
+    UnkList_f00af4 field_0xb0;
     u8 pad_0xd8[0x4a];
     bool field_0x122;
 
-    UnkHashNode* Find(u32 key) {
+    UnkHashNode_f00af4* Find(u32 key) {
         if (field_0x18 == 0)
             return nullptr;
         u32 i = key % bucket_count;
-        UnkHashNode** bucket = &buckets[i];
+        UnkHashNode_f00af4** bucket = &buckets[i];
         if (!bucket)
             return nullptr;
-        for (UnkHashNode* n = *bucket; n; n = n->next)
+        for (UnkHashNode_f00af4* n = *bucket; n; n = n->next)
             if (n->key == key)
                 return n;
         return nullptr;
     }
 
     bool IsActive(u32 id) {
-        UnkListNode* n = field_0x80.Find(id);
+        UnkListNode_f00af4* n = field_0x80.Find(id);
         if (!n)
             return false;
         UnkRef ref = n->ref;
@@ -176,10 +176,10 @@ bool fn_7100f00af4(UnkStruct_0x128* self, u32 id, UnkPathId* path, bool flag) {
     if (self->IsActive(id))
         return true;
     if (path) {
-        if (UnkHashNode* h = self->Find(id))
+        if (UnkHashNode_f00af4* h = self->Find(id))
             h->field_0x8 = *path;
     }
-    UnkHashNode* h = self->Find(id);
+    UnkHashNode_f00af4* h = self->Find(id);
     if (!h)
         return false;
     UnkRef ref = fn_710021cab8(g_unk_716e554378, UnkPathKey(&h->field_0x8), h->field_0x19 ? 0 : 2, flag);

@@ -53,8 +53,8 @@ struct UnkAnimTreeId_b49a1 {
 };
 
 // Both ids empty; signature as src/game/animtree/CAnimTreeDef/fn_71002dacc0.cpp defines it.
-struct UnkIdPair;
-void fn_71002dacc0(UnkIdPair* self);
+struct UnkIdPair_2dacc0;
+void fn_71002dacc0(UnkIdPair_2dacc0* self);
 
 struct UnkAnimTreeIdPair_b49a1_b49 {
     UnkAnimTreeId_b49a1 first;
@@ -81,7 +81,7 @@ static inline void Grow_b49a1(UnkAnimTreeIdPairs_b49a1* self, u32 index) {
     for (u32 i = self->count; i < n; ++i) {
         UnkAnimTreeIdPair_b49a1_b49* p = &self->data[i];
         __builtin_memset(p, 0, sizeof(*p));
-        fn_71002dacc0(reinterpret_cast<UnkIdPair*>(p));
+        fn_71002dacc0(reinterpret_cast<UnkIdPair_2dacc0*>(p));
     }
     self->count = n;
 }

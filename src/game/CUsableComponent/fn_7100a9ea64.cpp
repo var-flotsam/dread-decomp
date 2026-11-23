@@ -12,7 +12,7 @@ struct UnkDelegate_a9ea64 {
     void (*function)();
 };
 
-struct UnkState {
+struct UnkState_a9ea64 {
     void** vtable;
     UnkStateMachine_a9ea64* machine;
     u32 id;
@@ -22,21 +22,21 @@ struct UnkState {
     UnkDelegate_a9ea64 field_0x50;
     u8 unk_0x60[0x10];
 };
-static_assert(sizeof(UnkState) == 0x70, "UnkState layout");
+static_assert(sizeof(UnkState_a9ea64) == 0x70, "UnkState_a9ea64 layout");
 
 struct UnkStateMachine_a9ea64 {
     u8 unk_0x0[0x8];
     void* owner;
     u8 unk_0x10[0x10];
     u32 count;
-    u32 states[0x22];  // UnkState* entries, 4-byte aligned
+    u32 states[0x22];  // UnkState_a9ea64* entries, 4-byte aligned
 
-    UnkState** States() { return reinterpret_cast<UnkState**>(states); }
+    UnkState_a9ea64** States() { return reinterpret_cast<UnkState_a9ea64**>(states); }
 
-    void Add(UnkState* state) {
-        UnkState** begin = States();
-        UnkState** end = begin + count;
-        for (UnkState** p = begin; p != end; ++p)
+    void Add(UnkState_a9ea64* state) {
+        UnkState_a9ea64** begin = States();
+        UnkState_a9ea64** end = begin + count;
+        for (UnkState_a9ea64** p = begin; p != end; ++p)
             if ((*p)->id == state->id)
                 return;
         state->machine = this;
@@ -55,7 +55,7 @@ struct UnkStateObject {
     UnkOwnerInfo* info;
     u8 unk_0x20[0xe0];
     UnkStateMachine_a9ea64 machine;
-    UnkState states[7];
+    UnkState_a9ea64 states[7];
     u8 field_0x4c0[0x8];
 };
 static_assert(__builtin_offsetof(UnkStateObject, states) == 0x1b0, "layout");
@@ -84,7 +84,7 @@ void fn_7100aa4660();
 void fn_7100aa466c();
 void fn_7100a9ee2c(void* self, CStrId id);
 
-static inline void Bind(UnkStateObject* self, UnkState* state, void (*a)(), void (*b)(), void (*c)()) {
+static inline void Bind(UnkStateObject* self, UnkState_a9ea64* state, void (*a)(), void (*b)(), void (*c)()) {
     self->machine.Add(state);
     state->field_0x30 = {self, a};
     state->field_0x50 = {self, b};

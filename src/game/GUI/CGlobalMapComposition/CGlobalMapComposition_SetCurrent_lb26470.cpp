@@ -65,7 +65,7 @@ static inline const UnkVec2Result& AsPoint(const UnkGuiPos& pos) {
     return reinterpret_cast<const UnkVec2Result&>(pos);
 }
 
-void fn_7100b26470(UnkGlobalMapComposition* composition, void* object, bool flag) {
+void fn_7100b26470(UnkGlobalMapComposition_b2b868* composition, void* object, bool flag) {
     UnkMapComposition_lb26470* self = reinterpret_cast<UnkMapComposition_lb26470*>(composition);
     UnkMapMarker_lb26470* marker = static_cast<UnkMapMarker_lb26470*>(object);
     if (!marker || !marker->selectable)

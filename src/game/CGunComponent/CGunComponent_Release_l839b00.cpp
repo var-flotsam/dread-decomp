@@ -89,7 +89,7 @@ void fn_7100839b00(char* self_, bool value) {
         bool cancelled = false;
         if (value && self->mode == 1 && self->charge >= self->charge_full) {
             if (!self->grab || self->grab->field_0x18) {
-                fn_710083d27c(reinterpret_cast<UnkSamusGunComponent*>(self), self->use_alt);
+                fn_710083d27c(reinterpret_cast<UnkSamusGunComponent_b50*>(self), self->use_alt);
                 self->field_0x188 = self->grab ? self->grab->field_0x18 : false;
             } else {
                 self->field_0x131 = true;

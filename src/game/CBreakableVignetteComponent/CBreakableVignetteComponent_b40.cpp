@@ -13,7 +13,7 @@
 #include "types.h"
 
 struct UnkMapData;
-struct UnkCallback;
+struct UnkCallback_ac3184;
 void fn_7100e95130(UnkMapData* map, u64 id);
 struct UnkManager;
 
@@ -53,5 +53,5 @@ void fn_7100763318(UnkBreakableVignette_bv* self) {
     }
     void* list = static_cast<char*>(manager) + 0xa60;
     *link = list;
-    fn_71005c41bc(list, reinterpret_cast<UnkCallback*>(link));
+    fn_71005c41bc(list, reinterpret_cast<UnkCallback_ac3184*>(link));
 }

@@ -39,7 +39,7 @@ using base::global::CStrId;
 struct UnkGallery_A5_b75;
 struct UnkStateSink;
 struct UnkStateKey;
-struct UnkGlobalMapComposition;
+struct UnkGlobalMapComposition_b2b868;
 using UnkGuiObj = UnkGuiDisplayObject;
 
 // The world takes the area to show (the game manager's +0x2228).
@@ -257,7 +257,7 @@ void fn_7100b29d9c(UnkMapComposition_ovb0109* self, f32 dt) {
         self->reveal_state = 2;
         {
             CStrId area(self->pending_area);
-            fn_7100b26470(reinterpret_cast<UnkGlobalMapComposition*>(self), FindRegion(&self->regions, area)->marker,
+            fn_7100b26470(reinterpret_cast<UnkGlobalMapComposition_b2b868*>(self), FindRegion(&self->regions, area)->marker,
                           true);
         }
         self->reveal_timer = 1.5f;

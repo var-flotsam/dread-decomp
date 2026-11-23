@@ -44,7 +44,7 @@ static inline UnkGfxTextureAllocator* GfxTextureAllocator() {
 
 static_assert(sizeof(UnkGfxTexture) == 0x100, "UnkGfxTexture layout");
 
-struct UnkPool;  // the memory pool type of src/game_s7/fn_71001587f0.cpp: its NVN pool at +0x8
+struct UnkPool_1587f0;  // the memory pool type of src/game_s7/fn_71001587f0.cpp: its NVN pool at +0x8
 
 // The records and the descriptor pools (all reached through the GOT).
 extern s32 g_unk_716e2a7574;   // reserved texture descriptors (device info 0x11)
@@ -71,8 +71,8 @@ __attribute__((always_inline)) static inline R CallNvn(R (*&fn)(A...), B... args
     return fn(args...);
 }
 
-static inline u64 PoolReserve(UnkPool* pool, u64 size, u64 align) {
-    return reinterpret_cast<u64 (*)(UnkPool*, u64, u64)>(fn_7100153968)(pool, size, align);
+static inline u64 PoolReserve(UnkPool_1587f0* pool, u64 size, u64 align) {
+    return reinterpret_cast<u64 (*)(UnkPool_1587f0*, u64, u64)>(fn_7100153968)(pool, size, align);
 }
 
 // A sampler slot (include/game/UnkGraphicsState.h's UnkGraphicsSlot) with the fields this unit

@@ -28,21 +28,21 @@ __attribute__((always_inline)) static inline void MoveId(base::UnkPooledString& 
 extern void* g_unk_7101a21af8[];
 extern void* g_unk_7101a21fc8[];
 
-struct UnkLevelA {
+struct UnkLevelA_2e5e80 {
     void** vtable;
     base::UnkPooledString field_0x8;
 
-    UnkLevelA(UnkLevelA& other) {
+    UnkLevelA_2e5e80(UnkLevelA_2e5e80& other) {
         vtable = g_unk_7101a21718 + 2;
         CopyId(field_0x8, other.field_0x8);
     }
 };
 
-struct UnkLevelB : UnkLevelA {
+struct UnkLevelB : UnkLevelA_2e5e80 {
     base::UnkPooledString field_0x10;
     UnkPair field_0x18;
 
-    UnkLevelB(UnkLevelB& other) : UnkLevelA(other) {
+    UnkLevelB(UnkLevelB& other) : UnkLevelA_2e5e80(other) {
         vtable = g_unk_7101a21af8 + 2;
         MoveId(field_0x10, other.field_0x10);
         field_0x18 = other.field_0x18;

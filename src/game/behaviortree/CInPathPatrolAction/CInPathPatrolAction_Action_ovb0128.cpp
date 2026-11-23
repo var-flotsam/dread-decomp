@@ -50,7 +50,7 @@ struct UnkInPathPatrol_ovb0128 {
 };
 
 // The node as fn_710038d520.cpp names it.
-struct UnkHandler;
+struct UnkHandler_38d520;
 
 static inline bool IsAbout(f32 v, f32 target) {
     return v - 0.001f <= target && v + 0.001f >= target;
@@ -58,7 +58,7 @@ static inline bool IsAbout(f32 v, f32 target) {
 
 // When the timer runs (above -0.001) or the flag is set, picks the wait at random between the two
 // blackboard values (both positive, or both -1); -1 otherwise. The timer and the flag are reset.
-void fn_710038cd5c(UnkHandler* handler) {
+void fn_710038cd5c(UnkHandler_38d520* handler) {
     UnkInPathPatrol_ovb0128* self = reinterpret_cast<UnkInPathPatrol_ovb0128*>(handler);
     if (!(self->timer > -0.001f) && !self->dirty)
         return;

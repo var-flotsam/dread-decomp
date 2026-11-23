@@ -73,12 +73,12 @@ void fn_7100a23a20(CFreezeRoomComponent* self) {
 // handed to the sound manager (fn_710010808c) before the refresh.
 struct UnkLiquidPool_b44a2;
 struct UnkSoundMgr;
-struct UnkPathNode;
+struct UnkPathNode_CEntity_2;
 
 void fn_7100a23220(CFreezeRoomComponent* self) {
     fn_7100a45cac(reinterpret_cast<UnkLiquidPool_b44a2*>(self));
     PickParams_b50a5(self);
-    fn_710010808c(g_unk_7101d4d820, reinterpret_cast<UnkPathNode*>(reinterpret_cast<char*>(self) + 0xc20));
+    fn_710010808c(g_unk_7101d4d820, reinterpret_cast<UnkPathNode_CEntity_2*>(reinterpret_cast<char*>(self) + 0xc20));
     fn_7100a232d4(self);
     fn_7100a238f4(self);
 }

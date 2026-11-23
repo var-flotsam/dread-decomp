@@ -4,16 +4,16 @@
 
 using base::math::CVector2D;
 
-struct UnkPolyPoint {
+struct UnkPolyPoint_1196d8 {
     f32 x, y, z;
 };
 struct UnkPolygonBase {
-    UnkPolyPoint* vertices;
+    UnkPolyPoint_1196d8* vertices;
     u32 count;
     __attribute__((always_inline)) UnkSegment2D Edge(u32 i) const {
-        UnkPolyPoint* v = vertices;
-        const UnkPolyPoint* cur = &v[i];
-        const UnkPolyPoint* next = count - 1 == i ? v : &v[i + 1];
+        UnkPolyPoint_1196d8* v = vertices;
+        const UnkPolyPoint_1196d8* cur = &v[i];
+        const UnkPolyPoint_1196d8* next = count - 1 == i ? v : &v[i + 1];
         return UnkSegment2D(*reinterpret_cast<const CVector2D*>(cur), *reinterpret_cast<const CVector2D*>(next));
     }
 };

@@ -176,7 +176,7 @@ void fn_7100596bd0(UnkGooplotUndoJump_l596bd0* self) {
     UnkProbePoint_l596bd0 start(from.x, from.y);
     UnkProbePoint_l596bd0 end(self->dir.x * 120.0f + from.x, self->dir.y * 120.0f + from.y);
     UnkProbeSegment_l596bd0 segment(start, end);
-    if (!fn_7100ebfa7c(manager, reinterpret_cast<Vec2*>(&segment), reinterpret_cast<Result*>(&result), width,
+    if (!fn_7100ebfa7c(manager, reinterpret_cast<Vec2_ebfa7c*>(&segment), reinterpret_cast<Result*>(&result), width,
                        flags, -1.0f)) {
         owner = self->owner;
         UnkVec3f pos = owner->xform.GetTranslation();

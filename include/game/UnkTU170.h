@@ -10,9 +10,9 @@ struct UnkHeap_71001541a0;
 struct UnkObject_0x130;
 struct UnkPoolCount;
 struct UnkPtrHolder;
-struct UnkPool;
-void fn_710015385c(UnkPool* pool, u64 size, s32 flags, void* device);
-void fn_7100153968(UnkPool* pool, u64 size, u64 align);
+struct UnkPool_1587f0;
+void fn_710015385c(UnkPool_1587f0* pool, u64 size, s32 flags, void* device);
+void fn_7100153968(UnkPool_1587f0* pool, u64 size, u64 align);
 extern UnkPtrHolder g_unk_716e275190;
 extern UnkPoolCount g_unk_716e275794 __attribute__((visibility("hidden")));
 extern UnkObject_0x130 g_unk_716e2751a0;
@@ -22,4 +22,4 @@ extern UnkObject_0x130 g_unk_716e275530;
 extern UnkObject_0x130 g_unk_716e275660;
 void fn_7100153a88(UnkHeap_71001541a0* pool, void* ptr);  // Frees through the heap.
 void* fn_7100153a10(UnkGfxHeap* heap, void* old, u64 size, u64 align);
-void fn_71001537c0(UnkPool* pool);
+void fn_71001537c0(UnkPool_1587f0* pool);

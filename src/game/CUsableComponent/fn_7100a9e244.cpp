@@ -22,7 +22,7 @@ inline const UnkStaticZero_7172716dcc& UnkGetStaticZero_7172716dcc() {
     return s_value;
 }
 
-struct UnkState {
+struct UnkState_a9e244 {
     void** vtable;
     void* machine;
     u32 id;
@@ -32,7 +32,7 @@ struct UnkState {
     u32 field_0x2c;
     u64 delegates[8];
 };
-static_assert(sizeof(UnkState) == 0x70, "UnkState layout");
+static_assert(sizeof(UnkState_a9e244) == 0x70, "UnkState_a9e244 layout");
 
 struct UnkStateObject {
     void** vtable;
@@ -88,7 +88,7 @@ struct UnkStateObject {
     u8 unk_0x124[0x80];
     u32 field_0x1a4;
     u16 field_0x1a8;
-    UnkState states[7];
+    UnkState_a9e244 states[7];
     u8 field_0x4c0[0x38];
     bool field_0x4f8;
     u8 unk_0x4f9[0xf];
@@ -108,7 +108,7 @@ static_assert(__builtin_offsetof(UnkStateObject, listener_vtable) == 0x518, "lay
 extern void* g_unk_7101a94668[];
 void fn_7100aa3ad0(void* self);
 
-static inline void InitState(UnkState* s, u32 id) {
+static inline void InitState(UnkState_a9e244* s, u32 id) {
     s->machine = nullptr;
     s->id = id;
     s->field_0x18 = 0;

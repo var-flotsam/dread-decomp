@@ -19,15 +19,15 @@ using base::global::UnkStringData;
 
 struct UnkLifeComponent_A5_b71;
 
-struct UnkPowerUpLifeListBase_ovb0126 {
+struct UnkPowerUpLifeListBase_ovb0126_8e4b24 {
     char* vtable;
     UnkOwnedErasedVector callables;
     u32 field_0x30;
 
-    UnkPowerUpLifeListBase_ovb0126() : vtable(reinterpret_cast<char*>(g_unk_7101a20998) + 0x10), field_0x30(0) {}
+    UnkPowerUpLifeListBase_ovb0126_8e4b24() : vtable(reinterpret_cast<char*>(g_unk_7101a20998) + 0x10), field_0x30(0) {}
 };
 
-struct UnkPowerUpLifeList_ovb0126_8e4b24 : UnkPowerUpLifeListBase_ovb0126 {
+struct UnkPowerUpLifeList_ovb0126_8e4b24 : UnkPowerUpLifeListBase_ovb0126_8e4b24 {
     void* owner;
 
     UnkPowerUpLifeList_ovb0126_8e4b24() {

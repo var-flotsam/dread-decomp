@@ -21,7 +21,7 @@ struct UnkSlotTarget {
     CVector4D* field_0x30;
 };
 
-struct UnkSlots {
+struct UnkSlots_926874 {
     u8 pad_0x0[0x14c];
     CVector4D field_0x14c[10];
     UnkSlotTarget* field_0x1f0[10];
@@ -41,7 +41,7 @@ struct UnkEntry {
     f32 field_0x4c;
 };
 
-struct UnkTable {
+struct UnkTable_926874 {
     u8 pad_0x0[0x48];
     u32 count;
     u8 pad_0x4c[0x4];
@@ -50,7 +50,7 @@ struct UnkTable {
 
 // NON_MATCHING(minor): register allocation; the original spills `value` around the search loop and
 // keeps `a` in a register (two extra moves), this build does the opposite.
-void fn_7100926874(UnkTable* self, const UnkKey& key, u32 id, const CVector4D& a, const CVector4D& b, u32 kind,
+void fn_7100926874(UnkTable_926874* self, const UnkKey& key, u32 id, const CVector4D& a, const CVector4D& b, u32 kind,
                    u32 value, f32 weight) {
     s32 idx = -1;
     for (u64 i = 0; i < self->count; ++i) {
@@ -77,7 +77,7 @@ void fn_7100926874(UnkTable* self, const UnkKey& key, u32 id, const CVector4D& a
     e->field_0x48 = 0;
     switch (e->field_0x8) {
     case 0: {
-        UnkSlots* s = fn_710080fa28(&e->field_0x30);
+        UnkSlots_926874* s = fn_710080fa28(&e->field_0x30);
         u32 n = e->field_0x4;
         Assign(s->field_0x240[n], e->field_0xc);
         if (UnkSlotTarget* t = s->field_0x2e0[n])
@@ -85,7 +85,7 @@ void fn_7100926874(UnkTable* self, const UnkKey& key, u32 id, const CVector4D& a
         break;
     }
     case 1: {
-        UnkSlots* s = fn_710080fa28(&e->field_0x30);
+        UnkSlots_926874* s = fn_710080fa28(&e->field_0x30);
         u32 n = e->field_0x4;
         Assign(s->field_0x14c[n], e->field_0xc);
         if (UnkSlotTarget* t = s->field_0x1f0[n])

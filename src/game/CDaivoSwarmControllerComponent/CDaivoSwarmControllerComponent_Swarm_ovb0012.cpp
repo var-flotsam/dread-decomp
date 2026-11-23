@@ -256,7 +256,7 @@ void fn_71004e2630(UnkDaivoLists_b0012* self) {
 // ---- fn_71004e05d8: the navigation-mesh probe ----
 
 // As src/game_hi/fn_7100ebfa7c.cpp defines it (its point and result types are local there).
-struct Vec2;
+struct Vec2_ebfa7c;
 struct Result;
 
 struct UnkNavPoint_b0012 {
@@ -304,6 +304,6 @@ bool fn_71004e05d8(const UnkNavPoint_b0012* pos, const UnkNavPoint_b0012* dir) {
     UnkNavPoint_b0012 end(x + start.x, y + start.y);
     UnkNavSegment_b0012 segment(start, end);
     UnkNavResult_b0012 result;
-    return !fn_7100ebfa7c(NavMeshManager(), reinterpret_cast<Vec2*>(&segment), reinterpret_cast<Result*>(&result),
+    return !fn_7100ebfa7c(NavMeshManager(), reinterpret_cast<Vec2_ebfa7c*>(&segment), reinterpret_cast<Result*>(&result),
                           40.0f, 0, -1.0f);
 }

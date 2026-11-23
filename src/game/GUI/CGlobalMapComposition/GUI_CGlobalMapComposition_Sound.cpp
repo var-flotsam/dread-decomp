@@ -23,7 +23,7 @@ struct UnkMapSoundHolder {
     UnkMapSoundGroup* group;
 };
 
-struct UnkGlobalMapComposition {
+struct UnkGlobalMapComposition_b2b868 {
     u8 unk_0x0[0x5f0];
     void* field_0x5f0;
 };
@@ -38,13 +38,13 @@ __attribute__((always_inline)) static inline UnkMapSoundHolder* Holder() {
     return reinterpret_cast<UnkMapSoundHolder*>(holder);
 }
 
-void fn_7100b2b868(UnkGlobalMapComposition* self) {
+void fn_7100b2b868(UnkGlobalMapComposition_b2b868* self) {
     UnkMapSoundGroup* group = Holder()->group;
     if (group && self->field_0x5f0 && group->vf_0x30(0x2000, 0xfd))
         fn_7100b26470(self, self->field_0x5f0, true);
 }
 
-void fn_7100b2b93c(UnkGlobalMapComposition* self) {
+void fn_7100b2b93c(UnkGlobalMapComposition_b2b868* self) {
     UnkMapSoundGroup* group = Holder()->group;
     if (group && self->field_0x5f0 && group->vf_0x30(0x2000, 0xfd))
         fn_7100b26470(self, self->field_0x5f0, true);

@@ -48,7 +48,7 @@ void fn_7100a26758(UnkHeatRoom_la26758* self) {
         ApplyHeat_la26758(self->current, self->alt, self->alt_was_set);
     else
         ApplyHeat_la26758(self->current, self->normal, self->normal_was_set);
-    fn_710010808c(g_unk_7101d4d820, reinterpret_cast<UnkPathNode*>(self->sound_path));
+    fn_710010808c(g_unk_7101d4d820, reinterpret_cast<UnkPathNode_CEntity_2*>(self->sound_path));
     self->normal_was_set = self->normal.field_0x1c;
     self->alt_was_set = self->alt.field_0x1c;
     fn_7100a26828(reinterpret_cast<UnkHeatRoom_b49*>(self));

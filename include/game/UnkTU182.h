@@ -8,7 +8,7 @@
 struct UnkGfxTexture;
 struct UnkObject_0x130;
 struct UnkGfxHeap;
-struct UnkPool;
+struct UnkPool_1587f0;
 struct UnkGfxBuffer252;
 struct UnkObj_7100161b90;
 struct UnkRenderTargetSlot;
@@ -34,7 +34,7 @@ void fn_7100160810(s32 a, s32 b, u32);
 void fn_7100160890(s32 a, s32 b, u32);
 void* fn_71001611e0(void* object);  // A target's NVN texture.
 u32 fn_71001622e0(UnkGfxBuffer252* buffer);
-extern UnkPool g_unk_716e2a7580;  // The descriptors' memory.
+extern UnkPool_1587f0 g_unk_716e2a7580;  // The descriptors' memory.
 extern UnkGfxHeap* g_unk_716e2a76a8;  // The heap for textures.
 extern UnkGfxHeap* g_unk_716e2a76b0;  // The heap for render targets.
 extern u32 g_unk_7101a1d814;

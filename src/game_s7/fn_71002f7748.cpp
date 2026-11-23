@@ -16,11 +16,11 @@
 
 extern char unk_7101a19610[];
 
-struct UnkRefCounted;
+struct UnkRefCounted_2f7324;
 namespace base {
 struct UnkLoadRequest;
 }
-void fn_7100017390(UnkRefCounted* object, base::UnkLoadRequest* visitor);
+void fn_7100017390(UnkRefCounted_2f7324* object, base::UnkLoadRequest* visitor);
 
 template <class Tag, UnkResourceNode** (*Bucket)(UnkBuckets*, u32)>
 __attribute__((always_inline)) static inline UnkShared54Ref GetOrCreate(UnkResourceMap<Tag>* self,
@@ -47,7 +47,7 @@ __attribute__((always_inline)) static inline UnkShared54Ref GetOrCreate(UnkResou
         event.field_0x8 = 0;
         event.arg = arg;
         event.data = data;
-        fn_7100017390(reinterpret_cast<UnkRefCounted*>(resource), reinterpret_cast<base::UnkLoadRequest*>(&event));
+        fn_7100017390(reinterpret_cast<UnkRefCounted_2f7324*>(resource), reinterpret_cast<base::UnkLoadRequest*>(&event));
     } else {
         resource = self->vf_0x48(key, arg, data);
     }

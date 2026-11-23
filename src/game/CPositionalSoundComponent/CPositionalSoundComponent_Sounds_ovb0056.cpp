@@ -16,7 +16,7 @@
 using base::global::CFilePathStrId;
 
 struct UnkSoundMgr;
-struct UnkPathNode;
+struct UnkPathNode_CEntity_2;
 struct UnkLightingComponent3;
 
 static inline UnkSound* GetSound_ovb56(const UnkSoundHandle* handle) {
@@ -43,7 +43,7 @@ bool fn_710114bbd4(UnkPositionalSound_ovb56* self, void* arg) {
     bool result = fn_71010c41bc(reinterpret_cast<UnkBaseComponent*>(self), arg);
     for (int i = 0; i < 4; ++i) {
         if (self->paths[i].data != &g_unk_7101d47200->empty)
-            fn_710010808c(g_unk_7101d4d820, reinterpret_cast<UnkPathNode*>(&self->paths[i]));
+            fn_710010808c(g_unk_7101d4d820, reinterpret_cast<UnkPathNode_CEntity_2*>(&self->paths[i]));
     }
     return result;
 }
@@ -52,7 +52,7 @@ bool fn_710114bbd4(UnkPositionalSound_ovb56* self, void* arg) {
 void fn_710114bc94(UnkPositionalSound_ovb56* self) {
     for (int i = 0; i < 4; ++i) {
         if (self->paths[i].data != &g_unk_7101d47200->empty)
-            fn_7100108094(g_unk_7101d4d820, reinterpret_cast<UnkPathNode*>(&self->paths[i]));
+            fn_7100108094(g_unk_7101d4d820, reinterpret_cast<UnkPathNode_CEntity_2*>(&self->paths[i]));
     }
     fn_710024f910(reinterpret_cast<UnkLightingComponent3*>(self));
 }

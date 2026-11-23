@@ -17,7 +17,7 @@ struct UnkHandle {
     UnkStrBody_0x38* field_0x0;
 };
 
-struct UnkEntry_0x60 {
+struct UnkEntry_0x60_fdd2b4 {
     u8 pad_0x0[0x8];
     f32 field_0x8;
     u8 pad_0xc[0x1c];
@@ -26,8 +26,8 @@ struct UnkEntry_0x60 {
     u8 pad_0x34[0x2c];
 };
 
-struct UnkArray {
-    UnkEntry_0x60* data;
+struct UnkArray_fdd2b4 {
+    UnkEntry_0x60_fdd2b4* data;
     u32 count;
     u32 capacity;
     u32 step;
@@ -36,10 +36,10 @@ struct UnkArray {
     void Reserve(u32 n);   // fn_7100fddcb4
     void Resize(u32 n);    // fn_7100fde4d8
 
-    UnkEntry_0x60& operator[](u64 i);
+    UnkEntry_0x60_fdd2b4& operator[](u64 i);
 };
 
-inline UnkEntry_0x60& UnkArray::operator[](u64 i) {
+inline UnkEntry_0x60_fdd2b4& UnkArray_fdd2b4::operator[](u64 i) {
     if (autoGrow && i >= count) {
         u32 n = capacity;
         if (i >= capacity && step != 0)
@@ -52,7 +52,7 @@ inline UnkEntry_0x60& UnkArray::operator[](u64 i) {
 
 struct UnkStruct_0xd0_fdd2b4 {
     u8 pad_0x0[0xb8];
-    UnkArray field_0xb8;
+    UnkArray_fdd2b4 field_0xb8;
 };
 
 struct UnkMgr;
@@ -62,9 +62,9 @@ struct UnkSoundMgr;
 static inline f32 Max(f32 a, f32 b) { return a < b ? b : a; }
 
 void fn_7100fdd2b4(UnkStruct_0xd0_fdd2b4* self, u64* id, f32 time) {
-    UnkArray& arr = self->field_0xb8;
+    UnkArray_fdd2b4& arr = self->field_0xb8;
     for (u64 i = 0; i < arr.count; ++i) {
-        UnkEntry_0x60& e = arr.data[i];
+        UnkEntry_0x60_fdd2b4& e = arr.data[i];
         if (e.field_0x30 == 0)
             continue;
         UnkHandle* h = e.field_0x28;

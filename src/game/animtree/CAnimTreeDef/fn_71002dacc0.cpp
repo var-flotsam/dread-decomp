@@ -4,12 +4,12 @@
 
 using base::global::UnkStringData;
 
-struct UnkIdPair {
+struct UnkIdPair_2dacc0 {
     UnkStringData* field_0x0;
     UnkStringData* field_0x8;
 };
 
-void fn_71002dacc0(UnkIdPair* self) {
+void fn_71002dacc0(UnkIdPair_2dacc0* self) {
     self->field_0x0 = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();

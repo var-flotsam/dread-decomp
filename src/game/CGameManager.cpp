@@ -492,7 +492,7 @@ void fn_7100e0203c(UnkGameManager* self);
 void fn_71010e4798(void* target);
 void fn_7101048af8(CBlackboard* self);
 void fn_7101046e78(CBlackboard* self, CBlackboard* other, bool a, bool b);
-struct UnkHandleList {
+struct UnkHandleList_CGameManager {
     UnkGameManagerObjRef** data;
     u32 count;
 };
@@ -511,15 +511,15 @@ struct UnkLoadedComponent {
     void vf_0x1e8(bool value) { reinterpret_cast<void (*)(UnkLoadedComponent*, bool)>(vtable[0x1e8 / 8])(this, value); }
     void vf_0x208(const char* name) { reinterpret_cast<void (*)(UnkLoadedComponent*, const char*)>(vtable[0x208 / 8])(this, name); }
 };
-struct UnkPlayerObject {
+struct UnkPlayerObject_CGameManager {
     void** vtable;
     u8 pad_0x8[0x1f8];
     UnkLoadedComponent* field_0x200;
     void vf_0xd0(const base::math::CVector3D* v, bool b) {
-        reinterpret_cast<void (*)(UnkPlayerObject*, const base::math::CVector3D*, bool)>(vtable[0xd0 / 8])(this, v, b);
+        reinterpret_cast<void (*)(UnkPlayerObject_CGameManager*, const base::math::CVector3D*, bool)>(vtable[0xd0 / 8])(this, v, b);
     }
     void vf_0xd8(const base::math::CVector3D* v, bool b) {
-        reinterpret_cast<void (*)(UnkPlayerObject*, const base::math::CVector3D*, bool)>(vtable[0xd8 / 8])(this, v, b);
+        reinterpret_cast<void (*)(UnkPlayerObject_CGameManager*, const base::math::CVector3D*, bool)>(vtable[0xd8 / 8])(this, v, b);
     }
 };
 struct UnkTriggerView {
@@ -584,7 +584,7 @@ void fn_7100df19c0(UnkGameManager* self) {
     fn_7100e01f08("Scenario.HideLoadingScreen", "");
     fn_710109d0a0();
     if (steps->field_0x2998) {
-        if (UnkPlayerObject* player = static_cast<UnkPlayerObject*>(steps->field_0x2998->obj)) {
+        if (UnkPlayerObject_CGameManager* player = static_cast<UnkPlayerObject_CGameManager*>(steps->field_0x2998->obj)) {
             fn_71011a2770(self->field_0x608, player);
             fn_71011a2770(self->field_0x608, RefObject(steps->field_0x29a0));
             fn_71011a2770(self->field_0x608, RefObject(steps->field_0x29a8));
@@ -624,7 +624,7 @@ void fn_7100df19c0(UnkGameManager* self) {
                     v.z = 0.0f;
                     player->vf_0xd8(&v, true);
                 }
-                UnkHandleList* triggers = fn_7100a5e1dc();
+                UnkHandleList_CGameManager* triggers = fn_7100a5e1dc();
                 for (UnkGameManagerObjRef **it = triggers->data, **end = it + triggers->count; it != end; ++it) {
                     auto* o = static_cast<UnkLoadedObject*>((*it)->obj);
                     auto* t = fn_710009d50c(o->vf_0x0(), fn_7100a5bab0()) ? reinterpret_cast<UnkTriggerView*>(o) : nullptr;
@@ -790,9 +790,9 @@ struct UnkStepCallbacks {
     u32 count;
 };
 
-struct UnkNamedNode {
+struct UnkNamedNode_CGameManager {
     UnkNamedObject* value;
-    UnkNamedNode* next;
+    UnkNamedNode_CGameManager* next;
 };
 // String equality (the declaration is src/game_s1/fn_71000d4d50.cpp's, over a record of CRntString's size).
 struct UnkCompared_0x30;
@@ -803,7 +803,7 @@ static inline bool Equal(const CRntString* a, const CRntString* b) {
 // The game manager's members the load reads (game/UnkGameManager.h leaves them as padding).
 struct UnkGameManagerLoad {
     u8 pad_0x0[0x478];
-    UnkNamedNode* field_0x478;
+    UnkNamedNode_CGameManager* field_0x478;
     u8 pad_0x480[0x2c8];
     UnkLoadCallback field_0x748;
     UnkStrVector field_0x758;
@@ -876,7 +876,7 @@ s32 fn_7100df99f8(UnkGameManager* self, u32 mode, const UnkLoadCallback* callbac
         }
         CRntString* scenario = &load->field_0x7f0;
         const CRntString& text = IdText(*reinterpret_cast<CStrId*>(GameManagerIdTable().pad_0x0 + 0x16a8));
-        for (UnkNamedNode* n = load->field_0x478; n; n = n->next) {
+        for (UnkNamedNode_CGameManager* n = load->field_0x478; n; n = n->next) {
             if (Equal(&n->value->name, &text)) {
                 if (UnkNamedObject* object = n->value) {
                     UnkNamedUser* user = fn_7101190890(object, *scenario);
@@ -978,13 +978,13 @@ struct UnkProfileOp {
 };
 static_assert(sizeof(UnkProfileOp) == 0xa8, "UnkProfileOp placeholder layout");
 
-struct UnkGameManagerProfile {
+struct UnkGameManagerProfile_CGameManager {
     u8 pad_0x0[0x740];
     UnkProfileOp op;
     u8 pad_0x7e8[0x8];
     CRntString field_0x7f0;  // the current profile (the scenario fn_7100df99f8 loads)
 };
-static_assert(__builtin_offsetof(UnkGameManagerProfile, field_0x7f0) == 0x7f0, "UnkGameManagerProfile placeholder layout");
+static_assert(__builtin_offsetof(UnkGameManagerProfile_CGameManager, field_0x7f0) == 0x7f0, "UnkGameManagerProfile_CGameManager placeholder layout");
 
 // The main menu's three slots (the named object "MAINMENU" on the game manager's list).
 template <class T>
@@ -1037,7 +1037,7 @@ static inline void SetMenuSlot(UnkMainMenu* menu, u32 index, const UnkPropBag* b
     }
 }
 
-// The named objects at +0x478 (UnkNamedNode) seen as `T`s.
+// The named objects at +0x478 (UnkNamedNode_CGameManager) seen as `T`s.
 template <class T>
 struct UnkNamedNodeOf {
     T* value;
@@ -1078,7 +1078,7 @@ static inline void ResetOp(UnkProfileOp* op) {
 // registry; otherwise the callback is told and the script hears of the load, delete or save, or
 // gets the three slots (also copied into the main menu's) as tables.
 void fn_7100dee46c(UnkGameManager* self) {
-    UnkProfileOp* op = &reinterpret_cast<UnkGameManagerProfile*>(self)->op;
+    UnkProfileOp* op = &reinterpret_cast<UnkGameManagerProfile_CGameManager*>(self)->op;
     fn_710006691c(&op->mutex);
     if (!op->active || op->done) {
         fn_7100066920(&op->mutex);
@@ -1103,7 +1103,7 @@ void fn_7100dee46c(UnkGameManager* self) {
             break;
         case 3: {
             fn_7100000790("slots.SetDirtyByProfileID", "s", CStr(op->entries->id));
-            CRntString* current = &reinterpret_cast<UnkGameManagerProfile*>(self)->field_0x7f0;
+            CRntString* current = &reinterpret_cast<UnkGameManagerProfile_CGameManager*>(self)->field_0x7f0;
             if (Equal(&op->entries->id, current))
                 CRntString_AssignCString(current, g_unk_710162e2ed);
             break;
@@ -1174,13 +1174,13 @@ struct UnkStartPointKey {
 
     UnkStartPointKey(u32 a, u32 b, u32 c) : field_0x0(a), field_0x4(b), field_0x8(c) {}
 };
-struct UnkStartPoint {
+struct UnkStartPoint_CGameManager {
     u8 pad_0x0[0x30];
     CStrId name;
 };
 // The start point the key names, or null.
-UnkStartPoint* fn_71011a2e54(UnkGameManagerSub_0x608* points, const UnkStartPointKey* key);
-static inline UnkStartPoint* FindStartPoint(UnkGameManagerSub_0x608* points, const UnkStartPointKey& key) {
+UnkStartPoint_CGameManager* fn_71011a2e54(UnkGameManagerSub_0x608* points, const UnkStartPointKey* key);
+static inline UnkStartPoint_CGameManager* FindStartPoint(UnkGameManagerSub_0x608* points, const UnkStartPointKey& key) {
     return fn_71011a2e54(points, &key);
 }
 
@@ -1249,7 +1249,7 @@ void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntStri
     if (!start_name.Str()->data || !start_name.Str()->data[0]) {
         if (values->field_0x29b8) {
             if (UnkCheckpoint* checkpoint = values->field_0x29b8->obj) {
-                if (UnkStartPoint* point = FindStartPoint(self->field_0x608, UnkStartPointKey(checkpoint->field_0x44, checkpoint->field_0x54, checkpoint->field_0x64)))
+                if (UnkStartPoint_CGameManager* point = FindStartPoint(self->field_0x608, UnkStartPointKey(checkpoint->field_0x44, checkpoint->field_0x54, checkpoint->field_0x64)))
                     CRntString_Assign(start_name.Str(), &IdText(point->name));
             }
         }

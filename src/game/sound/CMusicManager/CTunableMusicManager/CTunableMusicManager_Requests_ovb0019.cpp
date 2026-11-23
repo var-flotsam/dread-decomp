@@ -27,7 +27,7 @@
 struct UnkSoundMgr;
 struct UnkMgr;
 struct UnkHandle;
-struct UnkArray;
+struct UnkArray_fdd2b4;
 struct UnkRequest;
 struct UnkMgr_0xf18;
 struct UnkTunable;

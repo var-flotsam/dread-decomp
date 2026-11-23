@@ -20,7 +20,7 @@ using base::global::CFilePathStrId;
 using base::global::UnkStringPool;
 
 struct UnkSoundMgr;
-struct UnkPathNode;
+struct UnkPathNode_CEntity_2;
 struct UnkLightingComponent3;
 struct UnkSteamJetComponent;
 struct UnkSteamJetArg;
@@ -34,7 +34,7 @@ bool fn_71011806b4(UnkAreaSoundComponent_ovb0062* self, UnkSteamJetArg* arg) {
     bool result = fn_7100a46e00(reinterpret_cast<UnkSteamJetComponent*>(self), arg);
     for (int i = 0; i < 3; ++i) {
         if (self->paths[i].data != &g_unk_7101d47200->empty)
-            fn_710010808c(g_unk_7101d4d820, reinterpret_cast<UnkPathNode*>(&self->paths[i]));
+            fn_710010808c(g_unk_7101d4d820, reinterpret_cast<UnkPathNode_CEntity_2*>(&self->paths[i]));
     }
     return result;
 }
@@ -42,7 +42,7 @@ bool fn_71011806b4(UnkAreaSoundComponent_ovb0062* self, UnkSteamJetArg* arg) {
 void fn_7101180754(UnkAreaSoundComponent_ovb0062* self) {
     for (int i = 0; i < 3; ++i) {
         if (self->paths[i].data != &g_unk_7101d47200->empty)
-            fn_7100108094(g_unk_7101d4d820, reinterpret_cast<UnkPathNode*>(&self->paths[i]));
+            fn_7100108094(g_unk_7101d4d820, reinterpret_cast<UnkPathNode_CEntity_2*>(&self->paths[i]));
     }
     fn_710024f910(reinterpret_cast<UnkLightingComponent3*>(self));
 }

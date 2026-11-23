@@ -68,7 +68,7 @@ void fn_71002afa48(UnkNavMeshCell* cell, const u8& index, const u16& neighbour, 
 
 // The cell as fn_71002b0880 fills it.
 struct Mesh;
-struct Vec2;
+struct Vec2_ebfa7c;
 struct UnkNavCellData {
     u16 id;
     base::global::CRntVector<u16> vertices;
@@ -79,7 +79,7 @@ static_assert(__builtin_offsetof(UnkNavCellData, edges) == 0x30, "UnkNavCellData
 static_assert(__builtin_offsetof(UnkNavCellData, mesh) == 0x58, "UnkNavCellData placeholder layout");
 
 // The position of vertex `id` of the mesh (src/game_hi/fn_7100ebfa7c.cpp; a CVector2D).
-Vec2* fn_710027a410(Mesh*, u16);
+Vec2_ebfa7c* fn_710027a410(Mesh*, u16);
 
 // The record values of a side with no edge in the file: no neighbour and no flags.
 extern const u16 g_unk_7101648ce8 __attribute__((visibility("hidden")));

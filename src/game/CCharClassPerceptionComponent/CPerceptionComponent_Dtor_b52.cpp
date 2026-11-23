@@ -10,7 +10,7 @@
 #include "types.h"
 
 // Signature as src/game/CCharClassCollisionComponent/CCharClassCollisionComponent.cpp declares it.
-struct UnkIdObject;
+struct UnkIdObject_8da5c0;
 
 struct UnkPerceptionOwned_b52 {
     virtual void vf_0x0();
@@ -60,7 +60,7 @@ struct UnkCPerceptionComponent_b52 : UnkBaseComponent {
 __attribute__((always_inline)) static inline void Destroy_b52(UnkCPerceptionComponent_b52* self) {
     self->vtable = g_unk_7101a88c60 + 2;
     self->list.~UnkPerceptionOwnedList_b52();
-    fn_71011acd74(reinterpret_cast<UnkIdObject*>(self));
+    fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(self));
 }
 
 void fn_71009c7c80(UnkCPerceptionComponent_b52* self) {

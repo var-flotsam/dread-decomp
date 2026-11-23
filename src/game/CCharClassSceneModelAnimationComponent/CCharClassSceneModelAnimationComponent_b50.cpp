@@ -7,7 +7,7 @@
 #include "game/CCharClassSceneModelAnimationComponent.h"
 #include "types.h"
 
-struct UnkIdObject;
+struct UnkIdObject_8da5c0;
 struct UnkEntry_b50a5;
 
 struct UnkEntry_b50a5 {
@@ -74,7 +74,7 @@ struct UnkDtor_fn_71009f1e64;
 template <>
 struct base::UnkDtorTraits<UnkDtor_fn_71009f1e64> {
     static char* vtable() { return g_unk_7101a8a658; }
-    static void base(char* p) { fn_71011acd74(reinterpret_cast<UnkIdObject*>(p)); }
+    static void base(char* p) { fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(p)); }
 };
 
 template void base::refl_Dtor<UnkDtor_fn_71009f1e64, base::UnkMemberAt<UnkEntryArray_b50a5, 0x60>,

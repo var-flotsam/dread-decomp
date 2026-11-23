@@ -8,12 +8,12 @@
 #include "base/tunable/CTunable.h"
 #include "types.h"
 
-struct UnkIdsString;
+struct UnkIdsString_133be4;
 
 // Three string ids and a string with inline storage (destroyed by fn_7100133be4).
 struct UnkTunableRecord_l133780 {
     u8 pad_0x0[0x160];
-    ~UnkTunableRecord_l133780() { fn_7100133be4(reinterpret_cast<UnkIdsString*>(this)); }
+    ~UnkTunableRecord_l133780() { fn_7100133be4(reinterpret_cast<UnkIdsString_133be4*>(this)); }
 };
 using UnkTunableRecordVec_l133780 = base::global::CRntVector<UnkTunableRecord_l133780>;
 

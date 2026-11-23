@@ -25,16 +25,16 @@ struct UnkOwner {
     UnkAttack* field_0x220;
 };
 
-struct UnkHandler {
+struct UnkHandler_38d520 {
     u8 pad_0x0[0x18];
     UnkOwner* field_0x18;
     u8 pad_0x20[0x50];
     base::global::UnkStringData* field_0x70;
 };
 
-void fn_710038cd5c(UnkHandler* self);
+void fn_710038cd5c(UnkHandler_38d520* self);
 
-u32 fn_710038d520(UnkHandler* self, UnkMessage* message) {
+u32 fn_710038d520(UnkHandler_38d520* self, UnkMessage* message) {
     const CStrId* id = &base::global::CStrId::Empty();
     if (message->field_0x8) {
         UnkPayload* inner = message->field_0x8->field_0x10;

@@ -6,7 +6,7 @@
 #include "types.h"
 
 // As src/game_hi/fn_7100ebfa7c.cpp defines it (its point and result types are local there).
-struct Vec2;
+struct Vec2_ebfa7c;
 struct Result;
 
 extern f32 g_unk_7101a5aee0;
@@ -53,7 +53,7 @@ bool fn_7100652df0(const UnkNavPoint_l652df0* pos, const UnkNavPoint_l652df0* ta
                    const UnkNavPoint_l652df0* dir, u32* steps) {
     UnkNavSegment_l652df0 segment(*pos, *target);
     UnkNavResult_l652df0 result;
-    if (fn_7100ebfa7c(NavMeshManager(), reinterpret_cast<Vec2*>(&segment), reinterpret_cast<Result*>(&result),
+    if (fn_7100ebfa7c(NavMeshManager(), reinterpret_cast<Vec2_ebfa7c*>(&segment), reinterpret_cast<Result*>(&result),
                       g_unk_7101a5aee0, 0, -1.0f))
         return false;
 
@@ -63,7 +63,7 @@ bool fn_7100652df0(const UnkNavPoint_l652df0* pos, const UnkNavPoint_l652df0* ta
     f32 y = dir->y * scale * (f32)n;
     UnkNavPoint_l652df0 end(pos->x + x, pos->y + y);
     UnkNavSegment_l652df0 ahead(*pos, end);
-    if (fn_7100ebfa7c(NavMeshManager(), reinterpret_cast<Vec2*>(&ahead), reinterpret_cast<Result*>(&result),
+    if (fn_7100ebfa7c(NavMeshManager(), reinterpret_cast<Vec2_ebfa7c*>(&ahead), reinterpret_cast<Result*>(&result),
                       g_unk_7101a5aee0, 0, -1.0f)) {
         u32 reached = (u32)(result.points[4].y * (f32)*steps);
         *steps = reached < count ? count : reached;

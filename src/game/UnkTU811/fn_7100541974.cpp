@@ -22,7 +22,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkRecord;
+struct UnkRecord_54715c;
 struct UnkEmmyAI_b60;
 struct UnkEmmyRelaxAI_b59;
 struct UnkHandleAI_b0193;
@@ -190,8 +190,8 @@ void fn_7100541974(UnkEmmyAI_l541974* self) {
     }
     alerts->first.vf_0x20(false);
     alerts->second.vf_0x20(false);
-    const UnkRecord* current = reinterpret_cast<UnkRecord*>(&alerts->sighting);
-    UnkRecord* saved = reinterpret_cast<UnkRecord*>(&alerts->saved);
+    const UnkRecord_54715c* current = reinterpret_cast<UnkRecord_54715c*>(&alerts->sighting);
+    UnkRecord_54715c* saved = reinterpret_cast<UnkRecord_54715c*>(&alerts->saved);
     fn_710054715c(saved, current);
     alerts->sighting.time = 0;
     self->vf_0x7d0();

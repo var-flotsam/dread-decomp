@@ -958,9 +958,9 @@ static inline void Reset_dfa010(CBlackboard& board) { reinterpret_cast<UnkBoardC
 struct UnkLoadRequest_dfa010;
 void fn_7100dfa1e4(UnkGameManager* self, UnkLoadRequest_dfa010* request);
 
-struct UnkNamedNode {
+struct UnkNamedNode_ovb0206 {
     UnkNamedObject* value;
-    UnkNamedNode* next;
+    UnkNamedNode_ovb0206* next;
 };
 // String equality (the declaration is src/game_s1/fn_71000d4d50.cpp's, over a record of CRntString's size).
 struct UnkCompared_0x30;
@@ -989,7 +989,7 @@ struct UnkLoadRequest_dfa010 {
 
 struct UnkGameManagerRequest_dfa010 {
     u8 pad_0x0[0x478];
-    UnkNamedNode* field_0x478;
+    UnkNamedNode_ovb0206* field_0x478;
     u8 pad_0x480[0x370];
     CRntString field_0x7f0;
     CBlackboard field_0x820;
@@ -1035,7 +1035,7 @@ void fn_7100dfa010(UnkGameManager* manager, UnkLoadRequest_dfa010* request) {
     }
     const CRntString& text = IdText(*reinterpret_cast<CStrId*>(IdTable_df703c().pad_0x0 + 0x16a8));
     UnkNamedObject* found = nullptr;
-    for (UnkNamedNode* n = self->field_0x478; n; n = n->next) {
+    for (UnkNamedNode_ovb0206* n = self->field_0x478; n; n = n->next) {
         if (Equal(&n->value->name, &text)) {
             found = n->value;
             break;

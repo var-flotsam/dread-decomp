@@ -31,7 +31,7 @@ typedef u32 a_u32;
 
 struct UnkMinimapOwner;
 struct UnkMapData;
-struct UnkBox;
+struct UnkBox_e9bf60;
 struct UnkPlayer;
 struct UnkFlagged;
 struct UnkShape;
@@ -148,7 +148,7 @@ bool fn_7100e9d6f8(UnkMmOwner_b0199* self, UnkMmArg2_b0199* arg) {
             f32 hi2_y = p[1] + m;
             UnkMinimapRect box(lo_x < lo2_x ? lo_x : lo2_x, lo_y < lo2_y ? lo_y : lo2_y,
                                hi_x > hi2_x ? hi_x : hi2_x, hi_y > hi2_y ? hi_y : hi2_y);
-            fn_7100e796c4((u8*)self + 0x118, (const UnkBox*)&box, (const UnkBox*)&box);
+            fn_7100e796c4((u8*)self + 0x118, (const UnkBox_e9bf60*)&box, (const UnkBox_e9bf60*)&box);
         }
     }
     fn_7100e9d7fc((UnkMapData*)self);

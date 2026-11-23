@@ -31,7 +31,7 @@ using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
 // As other units declare them.
-struct UnkSamusGunComponent;
+struct UnkSamusGunComponent_b50;
 struct UnkChargeComponent_b47a3;
 struct UnkSamusGun_ovb0070;
 struct UnkInventory;
@@ -325,7 +325,7 @@ __attribute__((always_inline)) void fn_7100839f68(UnkGun_ovb0091* self, const CS
         return;
     }
     if (self->id_count && weapon->id.data == id.data && VCall<bool>(weapon, 0x140))
-        fn_710083ad6c(reinterpret_cast<UnkSamusGunComponent*>(self));
+        fn_710083ad6c(reinterpret_cast<UnkSamusGunComponent_b50*>(self));
 }
 
 void fn_710083a3c4(UnkGun_ovb0091* self) {
@@ -386,7 +386,7 @@ void fn_710083ab50(UnkGun_ovb0091* self, void* object) {
 }
 
 // Takes the last queued id off the list (handing it to fn_710083f32c first), then clears the id.
-void fn_710083ad6c(UnkSamusGunComponent* gun) {
+void fn_710083ad6c(UnkSamusGunComponent_b50* gun) {
     UnkGun_ovb0091* self = AsGun(gun);
     if (self->id_count) {
         fn_710083f32c(gun, self->ids + self->id_count - 1, true, false, false);
@@ -403,7 +403,7 @@ void fn_710083cd54(UnkGun_ovb0091* self, const CStrId* id, s32 value, bool now) 
     if (!weapon || weapon->id.data == id->data)
         return;
     self->field_0x138 = value;
-    UnkSamusGunComponent* gun = reinterpret_cast<UnkSamusGunComponent*>(self);
+    UnkSamusGunComponent_b50* gun = reinterpret_cast<UnkSamusGunComponent_b50*>(self);
     if (now) {
         fn_710083f32c(gun, id, true, true, false);
         fn_710083d27c(gun, true);
@@ -454,7 +454,7 @@ void fn_710083db50(UnkGun_ovb0091* self, f32 dt) {
     if (self->field_0x130) {
         self->field_0x130 = 0;
         GunTunable()->field_0x98 = 1.0f;
-        fn_710083d27c(reinterpret_cast<UnkSamusGunComponent*>(self), self->use_alt);
+        fn_710083d27c(reinterpret_cast<UnkSamusGunComponent_b50*>(self), self->use_alt);
     }
 }
 
@@ -607,7 +607,7 @@ bool fn_710084017c(char* object, const void* stream) {
     CRntFile_ReadFormat(const_cast<void*>(stream), "sb", name, &flag);
     CancelCharge(self);
     CStrId id(name, true);
-    fn_710083f32c(reinterpret_cast<UnkSamusGunComponent*>(self), &id, flag, false, false);
+    fn_710083f32c(reinterpret_cast<UnkSamusGunComponent_b50*>(self), &id, flag, false, false);
     return true;
 }
 
@@ -653,7 +653,7 @@ void fn_710083ae88(UnkGun_ovb0091* self, bool on) {
         return;
     }
     fn_710083a034(self, false, true);
-    fn_710083f32c(reinterpret_cast<UnkSamusGunComponent*>(self), &GameManagerIdTable().field_0x1640, false, false,
+    fn_710083f32c(reinterpret_cast<UnkSamusGunComponent_b50*>(self), &GameManagerIdTable().field_0x1640, false, false,
                   true);
     if (timeline) {
         fn_7100a2b7b8(timeline, &g_unk_710164ac60);

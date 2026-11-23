@@ -15,7 +15,7 @@ using base::global::UnkStringPool;
 
 extern void* g_unk_7101a9c938[];
 
-struct UnkRefObject {
+struct UnkRefObject_b395fc {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -23,10 +23,10 @@ struct UnkRefObject {
 };
 
 struct UnkRefPtr_b395fc {
-    UnkRefObject* ptr;
+    UnkRefObject_b395fc* ptr;
 
     __attribute__((always_inline)) ~UnkRefPtr_b395fc() {
-        if (UnkRefObject* p = ptr) {
+        if (UnkRefObject_b395fc* p = ptr) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
         }

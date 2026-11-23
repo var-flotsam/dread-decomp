@@ -7,39 +7,39 @@
 typedef u32 a_u32;
 typedef u64 a_u64;
 
-struct UnkBlock {
+struct UnkBlock_2ccbe0 {
     u64 field_0x0;
     u64 field_0x8;
     u64 field_0x10;
 };
 
-struct UnkPart {
+struct UnkPart_2ccbe0 {
     u8 pad_0x0[0x28];
     base::global::CStrId field_0x28;
-    UnkBlock field_0x30;
+    UnkBlock_2ccbe0 field_0x30;
 };
 
-struct UnkRecord {
+struct UnkRecord_2ccbe0 {
     u8 pad_0x0[0x50];
     u32 field_0x50;
 };
 
-UnkPart* fn_71002cbddc(UnkPart* dst, UnkPart* src);
+UnkPart_2ccbe0* fn_71002cbddc(UnkPart_2ccbe0* dst, UnkPart_2ccbe0* src);
 
-static inline a_u32* FirstOf(UnkRecord* record) {
+static inline a_u32* FirstOf(UnkRecord_2ccbe0* record) {
     return record->field_0x50 == 2 ? *reinterpret_cast<a_u32**>(record) : reinterpret_cast<a_u32*>(record);
 }
 
-static inline UnkPart* PartOf(UnkRecord* record) {
-    UnkPart* part = reinterpret_cast<UnkPart*>(reinterpret_cast<char*>(record) + 8);
-    return record->field_0x50 == 2 ? *reinterpret_cast<UnkPart**>(part) : part;
+static inline UnkPart_2ccbe0* PartOf(UnkRecord_2ccbe0* record) {
+    UnkPart_2ccbe0* part = reinterpret_cast<UnkPart_2ccbe0*>(reinterpret_cast<char*>(record) + 8);
+    return record->field_0x50 == 2 ? *reinterpret_cast<UnkPart_2ccbe0**>(part) : part;
 }
 
-UnkRecord* fn_71002ccbe0(UnkRecord* self, UnkRecord* other) {
+UnkRecord_2ccbe0* fn_71002ccbe0(UnkRecord_2ccbe0* self, UnkRecord_2ccbe0* other) {
     if (other != self) {
         *FirstOf(self) = *FirstOf(other);
-        UnkPart* src = PartOf(other);
-        UnkPart* dst = PartOf(self);
+        UnkPart_2ccbe0* src = PartOf(other);
+        UnkPart_2ccbe0* dst = PartOf(self);
         fn_71002cbddc(dst, src);
         dst->field_0x28 = src->field_0x28;
         dst->field_0x30 = src->field_0x30;
