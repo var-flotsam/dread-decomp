@@ -61,7 +61,7 @@ static_assert(__builtin_offsetof(UnkDoorShieldLifeCtor_A5_b71, field_0x490) == 0
     self->o##_step = 10;                  \
     self->o##_grow = 1;                   \
     self->o##_flags = 0xf;                \
-    self->o##_allocator = fn_7100083990()
+    self->o##_allocator = GetDefaultAllocator()
 
 void fn_71008df4c4_A5_b71(UnkDoorShieldLifeCtor_A5_b71* self) asm("_Z13fn_71008df4c4v");
 void fn_71008df4c4_A5_b71(UnkDoorShieldLifeCtor_A5_b71* self) {

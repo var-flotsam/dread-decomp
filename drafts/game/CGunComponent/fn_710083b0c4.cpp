@@ -142,7 +142,7 @@ UnkGunWeapon_l83b0c4* fn_710083b0c4(UnkGunComponent_l83b0c4* self, const char* n
     const auto* type = reinterpret_cast<const UnkGunTypeView_l83b0c4*>(entry);
     if (!type->construct)
         return nullptr;
-    void* object = fn_7100083990()->vf_0x40(type->size, 8, 5);
+    void* object = GetDefaultAllocator()->vf_0x40(type->size, 8, 5);
     if (!object)
         return nullptr;
     type->construct(object);

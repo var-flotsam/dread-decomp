@@ -450,7 +450,7 @@ void fn_7100000d40() {
 
     f32 elapsed = fn_7100081020(FrameTimer());
     UnkStatsObject* stats = Singleton<UnkStatsObject, 0x78, fn_7100131f48>(g_unk_7101d47100);
-    f32 kib = (f32)reinterpret_cast<UnkSizedAllocator*>(fn_7100083990())->vf_0xa0() * (1.0f / 1024.0f);
+    f32 kib = (f32)reinterpret_cast<UnkSizedAllocator*>(GetDefaultAllocator())->vf_0xa0() * (1.0f / 1024.0f);
     fn_7100132248(stats, CStrId("DEVICE_SIZE", true), kib);
     g_unk_7101d47398.time = elapsed + g_unk_7101d47398.time;
     ++g_unk_7101d47398.frames;

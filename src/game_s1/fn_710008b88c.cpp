@@ -35,7 +35,7 @@ struct UnkState_0xb0 {
 };
 
 void fn_710008b88c(UnkState_0xb0* self) {
-    self->alloc_0x0 = fn_7100083990();
+    self->alloc_0x0 = GetDefaultAllocator();
     self->field_0x8 = 3;
     self->field_0xc = 0;
     self->field_0x10 = 0;
@@ -45,7 +45,7 @@ void fn_710008b88c(UnkState_0xb0* self) {
     self->field_0x20 = 10;
     self->field_0x24 = 1;
     self->field_0x28 = 3;
-    self->alloc_0x30 = fn_7100083990();
+    self->alloc_0x30 = GetDefaultAllocator();
     self->field_0x38 = nullptr;
     self->field_0x40 = nullptr;
     self->vtable_0x48 = g_unk_7101a1a4c8 + 0x10;
@@ -58,5 +58,5 @@ void fn_710008b88c(UnkState_0xb0* self) {
     self->field_0x98 = 10;
     self->field_0x9c = 1;
     self->field_0xa0 = 3;
-    self->alloc_0xa8 = fn_7100083990();
+    self->alloc_0xa8 = GetDefaultAllocator();
 }

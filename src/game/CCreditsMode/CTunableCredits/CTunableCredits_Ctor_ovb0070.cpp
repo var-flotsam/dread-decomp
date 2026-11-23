@@ -57,7 +57,7 @@ void fn_7101183f84(UnkCreditsCtor_ovb0070* self) {
     self->count = 0;
     self->head = nullptr;
     self->tail = nullptr;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->list_flags = 0x13;
     fn_71009ca9fc(self->member, "CreditsMode", 0xc);
     self->field_0xa70 = nullptr;

@@ -51,7 +51,7 @@ void fn_71007d7724(UnkEmmyWakeUpComponent* self) {
     self->field_0x98 = 10;
     self->field_0x9c = true;
     self->field_0xa0 = 15;
-    self->field_0xa8 = fn_7100083990();
+    self->field_0xa8 = GetDefaultAllocator();
     self->field_0xb0 = 0;
     self->field_0x80 = g_unk_7101a20950 + 2;
     self->field_0xb8 = 0;

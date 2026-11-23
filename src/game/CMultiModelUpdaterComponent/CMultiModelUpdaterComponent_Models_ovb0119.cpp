@@ -87,7 +87,7 @@ void fn_7100939678(UnkModelMap_b0119* self, u32 capacity) {
                 if (src->data != &pool->empty) {
                     --src->data->ref_count;
                     if (src->data->ref_count == 0) {
-                        fn_71000803a4(pool, src->data);
+                        StringPool_Release(pool, src->data);
                         pool = g_unk_7101d47108;
                     }
                 }

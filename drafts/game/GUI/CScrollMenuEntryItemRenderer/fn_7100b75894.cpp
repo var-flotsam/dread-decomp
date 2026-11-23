@@ -47,7 +47,7 @@ struct UnkScrollStrList_lb75894 {
     u8 field_0x74;
 
     UnkScrollStrList_lb75894()
-        : count(0), head(nullptr), tail(nullptr), field_0x20(0x10), allocator(fn_7100083990()), field_0x30(0) {
+        : count(0), head(nullptr), tail(nullptr), field_0x20(0x10), allocator(GetDefaultAllocator()), field_0x30(0) {
         vtable = g_unk_7101a9e928 + 2;
         pool_vtable = g_unk_7101a1a4c8 + 0x10;
         pool_allocator = nullptr;

@@ -40,7 +40,7 @@ CBlackboard::CSection* fn_71010472e0(CBlackboard* self, const CStrId& key) {
     section->data.properties.capacity = 0;
     section->data.properties.step = 10;
     section->data.properties.flags = 0x15;
-    section->data.properties.allocator = fn_7100083990();
+    section->data.properties.allocator = GetDefaultAllocator();
     fn_7100093dd0(&section->data.properties, 200);
     section->data.flags = 0x15;
     section->data.field_0x38 = false;
@@ -83,7 +83,7 @@ void fn_7101046974(CBlackboard* blackboard) {
     self->sections.capacity = 0;
     self->sections.step = 10;
     self->sections.flags = 0x15;
-    self->sections.allocator = fn_7100083990();
+    self->sections.allocator = GetDefaultAllocator();
     new (&self->field_0x30) UnkChainedMap();
     self->field_0x30.ResizeBuckets(11);
     self->field_0x78 = 0;

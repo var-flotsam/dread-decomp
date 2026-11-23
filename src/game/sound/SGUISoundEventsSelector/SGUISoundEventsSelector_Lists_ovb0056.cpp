@@ -92,7 +92,7 @@ void fn_7100fcb2ec(UnkSoundSelector_ovb56* self) {
     self->step = 10;
     self->field_0xe4 = true;
     self->flags = 0xf;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
 }
 
 // An entry of the selector (0x10 bytes): a kind and an id.
@@ -214,7 +214,7 @@ struct UnkSelectorRegistry_ovb56 {
 
     UnkSelectorRegistry_ovb56()
         : selectors(nullptr), ids(nullptr), count(0), capacity(0), step(10), flags(0xe),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
     ~UnkSelectorRegistry_ovb56() asm("fn_7100fcbce8");
 };
 void fn_7100fcbde4(UnkSelectorRegistry_ovb56* self, u32 capacity);

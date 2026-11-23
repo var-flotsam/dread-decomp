@@ -144,10 +144,10 @@ void fn_71009e947c(UnkTakeover_l9e947c* self, UnkTakeoverOther_l9e947c* other) {
     self->field_0x2cdc = UnkVec3_l9e947c();
     self->field_0x2ce8 = UnkVec3_l9e947c();
     UnkActor* owner = self->owner;
-    key = fn_7100001570("stop_fx_notransition", 20);
+    key = StringCrc64("stop_fx_notransition", 20);
     fn_7100d7c828(owner, &key, false);
     owner = self->owner;
-    key = fn_7100001570("stop_materialtransition_notransition", 36);
+    key = StringCrc64("stop_materialtransition_notransition", 36);
     fn_7100d7c828(owner, &key, false);
     self->field_0x51a4 = false;
     self->field_0x51a5 = false;

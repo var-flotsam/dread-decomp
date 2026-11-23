@@ -38,7 +38,7 @@ struct UnkPrimeHashTable_b42a1 {
             field_0x24 = true;
             flags = fl;
         } else {
-            allocator0 = fn_7100083990();
+            allocator0 = GetDefaultAllocator();
             flags0 = fl;
             field_0xc = 0;
             data = nullptr;
@@ -47,7 +47,7 @@ struct UnkPrimeHashTable_b42a1 {
             step = 10;
             field_0x24 = true;
             flags = fl;
-            alloc = fn_7100083990();
+            alloc = GetDefaultAllocator();
         }
         allocator = alloc;
         field_0x38 = nullptr;

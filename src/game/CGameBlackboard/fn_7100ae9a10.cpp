@@ -46,7 +46,7 @@ void fn_7100ae9a10(UnkQualifiedId* self, UnkIdSource* source, const CStrId& pref
             if (self->id.data && self->id.data != &pool->empty) {
                 --self->id.data->ref_count;
                 if (self->id.data->ref_count == 0) {
-                    fn_71000803a4(pool, self->id.data);
+                    StringPool_Release(pool, self->id.data);
                     pool = g_unk_7101d47108;
                 }
             }

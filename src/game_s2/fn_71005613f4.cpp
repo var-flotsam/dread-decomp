@@ -35,7 +35,7 @@ void fn_71005613f4(UnkSelf* self) {
     self->field_0x0.field_0x20 = 10;
     self->field_0x0.field_0x24 = 1;
     self->field_0x0.field_0x28 = 15;
-    void* first = fn_7100083990();
+    void* first = GetDefaultAllocator();
     void** final_vtable = g_unk_7101a20950 + 2;
     self->field_0x0.field_0x8 = final_vtable;
     self->field_0x0.field_0x30 = first;
@@ -47,7 +47,7 @@ void fn_71005613f4(UnkSelf* self) {
     self->field_0x40.field_0x20 = 10;
     self->field_0x40.field_0x24 = 1;
     self->field_0x40.field_0x28 = 15;
-    void* second = fn_7100083990();
+    void* second = GetDefaultAllocator();
     self->field_0x40.field_0x30 = second;
     self->field_0x40.field_0x38 = 0;
     self->field_0x40.field_0x8 = final_vtable;

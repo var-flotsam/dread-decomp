@@ -79,7 +79,7 @@ static inline s32 Open(UnkAudioStream_l221698* self, s32 format, s32 channels, b
     if (self->channels == 1) {
         self->mono = true;
         self->out_channels = 2;
-        self->silence = fn_7100083990()->vf_0x40(self->silence_size, 0x1000, 1);
+        self->silence = GetDefaultAllocator()->vf_0x40(self->silence_size, 0x1000, 1);
         if (!self->silence) {
             // The original unlocks here and again on the way out.
             fn_7100066920(mutex);

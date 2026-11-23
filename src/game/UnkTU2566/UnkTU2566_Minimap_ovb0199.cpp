@@ -530,7 +530,7 @@ struct UnkMmCell_b0199 {
         __builtin_memset(this, 0, sizeof(*this));
         step = 10;
         flags = 14;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         u64 hi = 0x7f7fffff7f7fffffull;
         u64 lo = 0xff7fffffff7fffffull;
         __builtin_memcpy(min, &hi, 8);

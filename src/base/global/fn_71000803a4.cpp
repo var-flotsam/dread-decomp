@@ -38,7 +38,7 @@ inline void UnkPoolFind(UnkPoolIter* it, char* set, u64 key) {
 // NON_MATCHING(minor): block layout of the inlined lookup. The original computes the
 // iterator's `ref` address (sp+0x10) in both branches and stores through it after the join,
 // and stores a not-found result with one `stp`; we fold the address (3 instructions fewer).
-void fn_71000803a4(UnkStringPool* pool_, UnkStringData* data_) {
+void StringPool_Release(UnkStringPool* pool_, UnkStringData* data_) {
     char* pool = reinterpret_cast<char*>(pool_);
     char* data = reinterpret_cast<char*>(data_);
     // Loaded before the empty-string test, as in the original.

@@ -41,7 +41,7 @@ UnkTimelineEvent* fn_7100067848(base::global::CRntFile* file) {
     if (fn_710009d50c(type, reinterpret_cast<const base::reflection::CType*>(g_unk_7101d57b80))) {
         const auto* view = reinterpret_cast<const UnkEventTypeView*>(type);
         if (view->construct) {
-            void* p = fn_7100083990()->vf_0x40(view->size, 8, 0x58);
+            void* p = GetDefaultAllocator()->vf_0x40(view->size, 8, 0x58);
             if (p)
                 view->construct(p);
             event = static_cast<UnkTimelineEvent*>(p);

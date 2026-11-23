@@ -38,7 +38,7 @@ void fn_7100066cac(void* self, const void* other) {
     text->field_0x18 = 0;
     UnkWideView view(*src);
     if (view.chars != nullptr || view.count != 0) {
-        base::UnkAllocator* allocator = fn_7100083990();
+        base::UnkAllocator* allocator = GetDefaultAllocator();
         text->chars = static_cast<wchar_t*>(allocator->vf_0x40((u64)(view.count + 1) * 4, 8, 0x11));
         wcscpy(text->chars, view.CStr());
         text->count = wcslen(text->chars);

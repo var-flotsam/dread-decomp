@@ -42,7 +42,7 @@ struct UnkTextId {
         if (UnkStringPool* pool = Pool) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0)
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
             }
             data = &pool->empty;
         }
@@ -57,7 +57,7 @@ static inline void UnkResetId(base::UnkStrIdMemberOf<Pool>& id) {
         if (id.data && id.data != &pool->empty) {
             --id.data->ref_count;
             if (id.data->ref_count == 0) {
-                fn_71000803a4(pool, id.data);
+                StringPool_Release(pool, id.data);
                 pool = Pool;
             }
         }
@@ -81,7 +81,7 @@ static inline void UnkTakeId(base::UnkStrIdMemberOf<g_unk_7101d47200>& id,
         if (id.data && id.data != &pool->empty) {
             --id.data->ref_count;
             if (id.data->ref_count == 0) {
-                fn_71000803a4(pool, id.data);
+                StringPool_Release(pool, id.data);
                 pool = g_unk_7101d47200;
             }
         }

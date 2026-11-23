@@ -9,7 +9,7 @@ struct UnkNode_b0253;
 struct UnkObject_710019506c;
 struct UnkChild_710019b304;
 
-u64 fn_7100001570(const char* str, u64 length);
+u64 StringCrc64(const char* str, u64 length);
 void fn_710019b7e8(UnkKeyedArray98_b54a1* self, u32 capacity);
 void fn_7100194ba4(UnkRecord98_b54a1* self, UnkRecord98_b54a1* other);
 void fn_7100194a9c(UnkNode_b0253* self);
@@ -62,7 +62,7 @@ struct UnkBoneSkeleton_b0261 {
 void fn_7100194cfc(UnkBoneRecord_b0261* self, u8* transform, UnkBoneRecord_b0261* parent, const char* name, bool flag);
 
 static inline u64 HashName_b0261(const char* s) {
-    return fn_7100001570(s, __builtin_strlen(s));
+    return StringCrc64(s, __builtin_strlen(s));
 }
 
 void fn_710019b5ec(UnkBoneSkeleton_b0261* self, UnkBoneDefList_b0261* list, UnkChildOwner_b0261* owner) {
@@ -73,7 +73,7 @@ void fn_710019b5ec(UnkBoneSkeleton_b0261* self, UnkBoneDefList_b0261* list, UnkC
     self->bones.capacity = 0;
     self->bones.step = 10;
     self->bones.flags = 0x36;
-    self->bones.allocator = fn_7100083990();
+    self->bones.allocator = GetDefaultAllocator();
     self->done = true;
     fn_710019b7e8(reinterpret_cast<UnkKeyedArray98_b54a1*>(&self->bones), list->count);
     UnkBoneDefNode_b0261* node = list->first;

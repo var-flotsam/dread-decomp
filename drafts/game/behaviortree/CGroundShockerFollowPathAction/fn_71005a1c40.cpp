@@ -149,7 +149,7 @@ struct UnkFollowPathRequest_l5a1c40 {
         field_0xe8 = 10;
         field_0xec = true;
         field_0xf0 = 15;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         field_0x100 = false;
         field_0x101.has = false;
         field_0x103.has = false;

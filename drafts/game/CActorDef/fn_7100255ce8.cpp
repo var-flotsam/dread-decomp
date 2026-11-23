@@ -84,7 +84,7 @@ static inline UnkActorDefObject_l255ce8* CreateObject(UnkActorDefClass_l255ce8* 
     if (!fn_710009d50c(reinterpret_cast<const CType*>(cls), reinterpret_cast<const CType*>(g_unk_71726a0268)) ||
         !cls->construct)
         return nullptr;
-    void* object = fn_7100083990()->vf_0x40(cls->size, 8, 5);
+    void* object = GetDefaultAllocator()->vf_0x40(cls->size, 8, 5);
     if (!object)
         return nullptr;
     cls->construct(object);

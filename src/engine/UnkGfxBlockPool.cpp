@@ -46,7 +46,7 @@ struct UnkGfxPoolAllocator {
 };
 
 static inline UnkGfxPoolAllocator* GfxPoolAllocator() {
-    return reinterpret_cast<UnkGfxPoolAllocator*>(fn_7100083990());
+    return reinterpret_cast<UnkGfxPoolAllocator*>(GetDefaultAllocator());
 }
 
 // Creates the pool: every record cleared, every table entry pointing at its record, none live. The

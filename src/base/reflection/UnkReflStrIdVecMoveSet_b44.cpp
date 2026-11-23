@@ -17,7 +17,7 @@ __attribute__((always_inline)) static inline void ReleaseAndTake(base::UnkStrIdM
         if (self->data && self->data != &pool->empty) {
             --self->data->ref_count;
             if (self->data->ref_count == 0) {
-                fn_71000803a4(pool, self->data);
+                StringPool_Release(pool, self->data);
                 pool = Pool;
             }
         }

@@ -128,7 +128,7 @@ void fn_7100073f48(UnkRumbleManager* manager, u32 stopAll, u32 unloadAll) {
                     if (--resource->ref_count == 0) {
                         fn_710001737c(resource);
                         fn_71000741d4(&self->files, &file->path);
-                        fn_7100083990()->vf_0x48(file);
+                        GetDefaultAllocator()->vf_0x48(file);
                     }
                 }
                 fn_7100070548(manager, effect);
@@ -155,7 +155,7 @@ void fn_7100073f48(UnkRumbleManager* manager, u32 stopAll, u32 unloadAll) {
             if (UnkCountedResource* resource = file->resource) {
                 fn_710001737c(resource);
                 node = static_cast<UnkFileHashNode*>(fn_71000741d4(&self->files, &file->path));
-                fn_7100083990()->vf_0x48(file);
+                GetDefaultAllocator()->vf_0x48(file);
             } else {
                 node = node->next;
             }
@@ -167,7 +167,7 @@ void fn_7100073f48(UnkRumbleManager* manager, u32 stopAll, u32 unloadAll) {
             if (resource && resource->ref_count == 0) {
                 resource->ref_count = -1;
                 node = static_cast<UnkFileHashNode*>(fn_71000741d4(&self->files, &file->path));
-                fn_7100083990()->vf_0x48(file);
+                GetDefaultAllocator()->vf_0x48(file);
             } else {
                 node = node->next;
             }

@@ -55,12 +55,12 @@ void fn_71007b1848(UnkDemolitionBlockComponent* self) {
     self->field_0xf0 = 10;
     self->field_0xf4 = true;
     self->field_0xf8 = 0xf;
-    self->field_0x100 = fn_7100083990();
+    self->field_0x100 = GetDefaultAllocator();
     self->field_0x108 = nullptr;
     self->field_0x110 = nullptr;
     self->field_0x118 = 10;
     self->field_0x11c = true;
     self->field_0x120 = 0xf;
-    self->field_0x128 = fn_7100083990();
+    self->field_0x128 = GetDefaultAllocator();
     reinterpret_cast<void (*)(UnkDemolitionBlockComponent*)>(self->vtable[3])(self);
 }

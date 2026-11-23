@@ -45,7 +45,7 @@ void fn_7100a1c52c(UnkSabotoruSpawnPointComponent* self) {
     self->field_0x3d0 = 10;
     self->field_0x3d4 = true;
     self->field_0x3d8 = 0xf;
-    self->field_0x3e0 = fn_7100083990();
+    self->field_0x3e0 = GetDefaultAllocator();
     self->field_0x3e8 = 0;
     self->field_0x3b8 = g_unk_7101a33fa0 + 2;
     self->field_0x3f0 = 0;
@@ -55,7 +55,7 @@ void fn_7100a1c52c(UnkSabotoruSpawnPointComponent* self) {
     self->field_0x410 = 10;
     self->field_0x414 = true;
     self->field_0x418 = 0xf;
-    self->field_0x420 = fn_7100083990();
+    self->field_0x420 = GetDefaultAllocator();
     self->field_0x428 = 0;
     self->field_0x3f8 = g_unk_7101a20950 + 2;
     self->field_0x430 = 0;

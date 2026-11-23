@@ -53,7 +53,7 @@ void fn_7100ca6844(UnkBTObserver* self) {
     self->field_0x90.capacity = 0;
     self->field_0x90.step = 10;
     self->field_0x90.flags = 0xe;
-    self->field_0x90.allocator = fn_7100083990();
+    self->field_0x90.allocator = GetDefaultAllocator();
     self->field_0xb8 = 1;
     self->field_0xc0 = 0;
     self->field_0xc8 = 0;
@@ -75,6 +75,6 @@ void fn_7100ca6844(UnkBTObserver* self) {
     self->field_0x128.capacity = 0;
     self->field_0x128.step = 10;
     self->field_0x128.flags = 5;
-    self->field_0x128.allocator = fn_7100083990();
+    self->field_0x128.allocator = GetDefaultAllocator();
     fn_7100ca9158(&self->field_0x128, 0x50);
 }

@@ -302,7 +302,7 @@ extern UnkKeyData_b0242* g_unk_71729dc3b0 __attribute__((visibility("hidden")));
 extern UnkKeyData_b0242* g_unk_71729dc3b8 __attribute__((visibility("hidden")));
 
 UnkRewardText_b0242 fn_7100f159e0(const char* name) {
-    u64 key = fn_7100001570(name, strlen(name));
+    u64 key = StringCrc64(name, strlen(name));
     u32 value = 0;
     if (g_unk_71729dc388->hash == key)
         value = fn_7100ec73d4(Timer());
@@ -318,7 +318,7 @@ UnkRewardText_b0242 fn_7100f159e0(const char* name) {
 UnkRewardText_b0242 fn_7100f15b10(const char* name) {
     char buf[0x80];
     if (Timer()[8]) {
-        u64 key = fn_7100001570(name, strlen(name));
+        u64 key = StringCrc64(name, strlen(name));
         u32 value = 0;
         if (g_unk_71729dc3a0->hash == key)
             value = fn_7100ec6c3c(Timer(), 0);

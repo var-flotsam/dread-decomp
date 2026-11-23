@@ -247,7 +247,7 @@ void fn_710045332c(UnkCommanderAI_l45332c* self) {
         void* animation = target ? target->animation : nullptr;
         if (animation && target->melee_state) {
             if (target->melee_state->falling) {
-                u64 hash = fn_7100001570("meleefallsuccess", 16);
+                u64 hash = StringCrc64("meleefallsuccess", 16);
                 fall_mode.id = 1;
                 UnkBlendDesc_l45332c desc;
                 desc.field_0x0 = 0.0f;
@@ -282,7 +282,7 @@ void fn_710045332c(UnkCommanderAI_l45332c* self) {
                     }
                 }
             } else {
-                u64 hash = fn_7100001570("meleesuccess_commander", 22);
+                u64 hash = StringCrc64("meleesuccess_commander", 22);
                 success_mode.id = 1;
                 success_id.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
                 fn_7101176690(animation, hash, kKindU32, &success_mode, &g_unk_710164b958, &g_unk_7172769740,

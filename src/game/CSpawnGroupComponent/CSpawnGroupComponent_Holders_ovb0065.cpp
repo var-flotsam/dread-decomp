@@ -228,7 +228,7 @@ struct UnkCollectList_ovb0065 : base::UnkVtableList<UnkCollectList_ovb0065Node> 
         count = 0;
         head = nullptr;
         tail = nullptr;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
     }
     ~UnkCollectList_ovb0065() {

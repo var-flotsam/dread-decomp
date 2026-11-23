@@ -40,7 +40,7 @@ UnkNode_b0249* fn_71002d5070(UnkNodeOwner_b0249* self, base::reflection::UnkRefl
     UnkNode_b0249* node = nullptr;
     if (fn_710009d50c(reinterpret_cast<const base::reflection::CType*>(cls), fn_71002d5cf0()) &&
         cls->construct) {
-        node = static_cast<UnkNode_b0249*>(fn_7100083990()->vf_0x40(cls->size, 8, 0x40));
+        node = static_cast<UnkNode_b0249*>(GetDefaultAllocator()->vf_0x40(cls->size, 8, 0x40));
         if (node)
             cls->construct(node);
     }

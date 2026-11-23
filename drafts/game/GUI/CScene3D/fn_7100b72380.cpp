@@ -78,7 +78,7 @@ void fn_7100b72380(UnkScene3DCtor_lb72380* self) {
     self->list_count = 0;
     self->list_head = nullptr;
     self->list_tail = nullptr;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->field_0x3a8 = value;
     self->field_0x398 = 0x13;
     self->field_0x3a0 = g_unk_710164d278;

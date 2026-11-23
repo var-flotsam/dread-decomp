@@ -318,7 +318,7 @@ void fn_71004c493c(UnkLavaCarpet_l4c493c* self, f32 dt) {
         return;
     UnkLavaFloorPart_l4c493c* floor =
         reinterpret_cast<UnkLavaFloorPart_l4c493c*>(fn_7101152b90(static_cast<UnkWorld*>(world),
-                                                                   fn_7100001570("floormodel", 10)));
+                                                                   StringCrc64("floormodel", 10)));
     if (floor && !fn_710114e680(static_cast<UnkObject*>(world), floor->index))
         floor = nullptr;
 

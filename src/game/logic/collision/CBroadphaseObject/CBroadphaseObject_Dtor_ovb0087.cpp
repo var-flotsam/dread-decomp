@@ -53,7 +53,7 @@ void fn_7100d35944(UnkBroadphaseHandlerOwner* self) {
         if (self->name && self->name != &pool->empty) {
             --self->name->ref_count;
             if (self->name->ref_count == 0) {
-                fn_71000803a4(pool, self->name);
+                StringPool_Release(pool, self->name);
                 pool = g_unk_7101d47108;
             }
         }

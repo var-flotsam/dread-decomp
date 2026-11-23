@@ -33,7 +33,7 @@ void fn_71007686d0(UnkCaveCentralUnitComponent_86d0* self) {
     self->field_0xa18 = 10;
     self->field_0xa1c = true;
     self->field_0xa20 = 0xf;
-    self->field_0xa28 = fn_7100083990();
+    self->field_0xa28 = GetDefaultAllocator();
     self->field_0xa30 = 0;
     self->field_0xa00 = g_unk_7101a33fa0 + 2;
     self->field_0xa38 = 0;

@@ -65,7 +65,7 @@ struct UnkLinkPath_ovb0128 : UnkFilePathStrIdBase {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47200;
                 }
             }
@@ -231,7 +231,7 @@ struct UnkNavIdMap_l29b5dc {
 
     explicit UnkNavIdMap_l29b5dc(u32 flags)
         : values(nullptr), keys(nullptr), count(0), capacity(0), step(10), flags(flags),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
     UnkNavIdMap_l29b5dc(UnkNavIdMap_l29b5dc&& other)
         : values(other.values), keys(other.keys), count(other.count), capacity(other.capacity),
           step(other.step), flags(other.flags), allocator(other.allocator) {

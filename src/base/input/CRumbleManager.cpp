@@ -38,10 +38,10 @@ void fn_71000733e4(UnkRumbleManager* self) {
     self->field_0x20a8 = 0;
     self->field_0x20a0 = 0;
     *reinterpret_cast<word*>(base + 0x20b8) = 0xe0000000a;
-    self->alloc_0x20c0 = fn_7100083990();
+    self->alloc_0x20c0 = GetDefaultAllocator();
     self->vtable = g_unk_7101a1a3d0 + 0x10;
     UnkPooledChainedMap* m = &self->map;
-    m->alloc = fn_7100083990();
+    m->alloc = GetDefaultAllocator();
     m->flags = 0xe;
     m->size = 0;
     m->buckets.data = nullptr;
@@ -50,7 +50,7 @@ void fn_71000733e4(UnkRumbleManager* self) {
     m->buckets.step = 10;
     m->buckets.field_0x14 = true;
     m->buckets.flags = 0xe;
-    base::UnkAllocator* a = fn_7100083990();
+    base::UnkAllocator* a = GetDefaultAllocator();
     m->last = nullptr;
     m->first = nullptr;
     m->pool_vtable = g_unk_7101a1a4c8 + 0x10;
@@ -65,7 +65,7 @@ void fn_71000733e4(UnkRumbleManager* self) {
     self->field_0x2168 = 10;
     self->field_0x216c = true;
     self->field_0x2170 = 0xf;
-    self->alloc_0x2178 = fn_7100083990();
+    self->alloc_0x2178 = GetDefaultAllocator();
     self->field_0x2180 = 0;
     fn_710008377c(&self->pool_0x2190);
     self->field_0x21c0 = 0;
@@ -73,7 +73,7 @@ void fn_71000733e4(UnkRumbleManager* self) {
     self->field_0x21c8 = 10;
     self->field_0x21cc = true;
     self->field_0x21d0 = 0xf;
-    self->alloc_0x21d8 = fn_7100083990();
+    self->alloc_0x21d8 = GetDefaultAllocator();
     // The zero vector's three words (base/math/UnkZeroVector3.h), copied as words.
     const u32* defaults = reinterpret_cast<const u32*>(&g_unk_710164779c);
     self->field_0x21e8 = defaults[0];
@@ -139,7 +139,7 @@ struct UnkRumblePath : base::global::UnkFilePathStrIdBase {
         if (UnkStringPool* pool = g_unk_7101d47200) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47200;
                 }
             }
@@ -155,7 +155,7 @@ struct UnkRumblePath : base::global::UnkFilePathStrIdBase {
             if (data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0)
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
             }
             data = d;
         }
@@ -208,7 +208,7 @@ UnkRumbleFile* fn_710007454c(UnkRumbleManager* self, const void* name) {
         if (res.ptr) {
             UnkRumbleRes* r = reinterpret_cast<UnkRumbleRes*>(res.ptr);
             r = fn_710009d50c(r->vf_0x0(), fn_71000e8a5c()) ? r : nullptr;
-            file = new (fn_7100083990()->vf_0x40(sizeof(UnkRumbleFile), 8, 1)) UnkRumbleFile();
+            file = new (GetDefaultAllocator()->vf_0x40(sizeof(UnkRumbleFile), 8, 1)) UnkRumbleFile();
             file->res = res;
             file->field_0x10 = (u32)r->field_0x68;
             file->field_0x8 = r->source ? r->source->vf_0x28() : 0;

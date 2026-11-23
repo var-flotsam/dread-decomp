@@ -72,7 +72,7 @@ struct UnkFieldId_l16bbf0 : UnkStrIdBase {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -89,33 +89,33 @@ void fn_710116bbf0(UnkStartPointObject_l16bbf0* self, CRntFile* file) {
     const char* onTeleport;
     CRntFile_ReadCString(file, &onTeleport);
     {
-        u64 key = fn_7100001570("sOnTeleport", 11);
+        u64 key = StringCrc64("sOnTeleport", 11);
         UnkFieldId_l16bbf0 id(onTeleport, true);
         Set<fn_7100009658>(self, key, &id);
     }
     if (HasMore(file)) {
         const char* onTeleportLogicCamera;
         CRntFile_ReadCString(file, &onTeleportLogicCamera);
-        u64 key = fn_7100001570("sOnTeleportLogicCamera", 22);
+        u64 key = StringCrc64("sOnTeleportLogicCamera", 22);
         UnkFieldId_l16bbf0 id(onTeleportLogicCamera, true);
         Set<fn_7100009658>(self, key, &id);
     }
     if (HasMore(file)) {
         bool onTeleportLogicCameraRaw;
         CRntFile_Read(file, &onTeleportLogicCameraRaw, 1, 1);
-        u64 key = fn_7100001570("bOnTeleportLogicCameraRaw", 25);
+        u64 key = StringCrc64("bOnTeleportLogicCameraRaw", 25);
         Set<fn_710000d228>(self, key, &onTeleportLogicCameraRaw);
     }
     if (HasMore(file)) {
         bool projectOnFloor;
         CRntFile_Read(file, &projectOnFloor, 1, 1);
-        u64 key = fn_7100001570("bProjectOnFloor", 15);
+        u64 key = StringCrc64("bProjectOnFloor", 15);
         Set<fn_710000d228>(self, key, &projectOnFloor);
     }
     if (HasMore(file)) {
         bool morphballMode;
         CRntFile_Read(file, &morphballMode, 1, 1);
-        u64 key = fn_7100001570("bMorphballMode", 14);
+        u64 key = StringCrc64("bMorphballMode", 14);
         Set<fn_710000d228>(self, key, &morphballMode);
     }
 }

@@ -140,7 +140,7 @@ void fn_7100343ca8(UnkAim_7100343ca8* self, bool request) {
         self->held->DecRef();
         self->held = nullptr;
     }
-    self->name = fn_7100001570(g_unk_710162e2ed, 0);
+    self->name = StringCrc64(g_unk_710162e2ed, 0);
     self->field_0x580 = 0;
     self->field_0x688 = 0;
     self->field_0x67c = 0;

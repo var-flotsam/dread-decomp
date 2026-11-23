@@ -89,7 +89,7 @@ void fn_710015ef10() {
     g_unk_716e2a76b0 = reinterpret_cast<UnkGfxHeap*>(heap);
     s.entries.field_0x14 = true;
     s.entries.flags = 0x18;
-    s.entries.allocator = fn_7100083990();
+    s.entries.allocator = GetDefaultAllocator();
     fn_7100000250(fn_7100094798, &s.entries, g_unk_7101a19000);
     base::UnkPairArrays& pairs = g_unk_716e2a9708;
     pairs.keys = nullptr;
@@ -98,7 +98,7 @@ void fn_710015ef10() {
     pairs.capacity = 0;
     pairs.step = 10;
     pairs.flags = 0x26;
-    pairs.allocator = fn_7100083990();
+    pairs.allocator = GetDefaultAllocator();
     fn_7100000250(fn_710015e9a4, &pairs, g_unk_7101a19000);
     UnkSlotInit_b0246* slots = reinterpret_cast<UnkSlotInit_b0246*>(g_unk_716e2a9730);
     UnkSlotInit_b0246* p = slots;

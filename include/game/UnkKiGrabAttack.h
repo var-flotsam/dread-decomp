@@ -46,12 +46,12 @@ static inline u64 KiGrabHash(UnkKiGrabAttack* self, s32 kind, const u64* table) 
     switch (kind) {
     case 3:
         if (self->field_0x13d)
-            return fn_7100001570("kigrabcommandersamusseq1prep_aura", 33);
-        return fn_7100001570("kigrabcommandersamusseq1prep_counter", 36);
+            return StringCrc64("kigrabcommandersamusseq1prep_aura", 33);
+        return StringCrc64("kigrabcommandersamusseq1prep_counter", 36);
     case 4:
         if (self->field_0x13d)
-            return fn_7100001570("kigrabcommandersamusseq1_aura", 29);
-        return fn_7100001570("kigrabcommandersamusseq1_counter", 32);
+            return StringCrc64("kigrabcommandersamusseq1_aura", 29);
+        return StringCrc64("kigrabcommandersamusseq1_counter", 32);
     default:
         return table[kind];
     }

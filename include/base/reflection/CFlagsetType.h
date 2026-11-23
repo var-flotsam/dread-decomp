@@ -30,7 +30,7 @@ static_assert(sizeof(CFlagsetType) == 0xf0, "CFlagsetType layout");
 
 template <class T>
 CFlagsetType::CFlagsetType(const base::global::CStrId& name, T*)
-    : CType(fn_7100001570("base::reflection::CFlagsetType", 0x1e), name, FlagsetTypeDescription<T>::size,
+    : CType(StringCrc64("base::reflection::CFlagsetType", 0x1e), name, FlagsetTypeDescription<T>::size,
             reinterpret_cast<EqualsFn>(FlagsetTypeDescription<T>::equals),
             reinterpret_cast<HashFn>(FlagsetTypeDescription<T>::hash),
             reinterpret_cast<TypeOfFn>(FlagsetTypeDescription<T>::type_of), nullptr, nullptr,

@@ -208,7 +208,7 @@ void fn_7100a7c8e8(UnkElectricGenerator_la7c8e8* self) {
 
     // The blackout follows the property: full when used, none otherwise.
     bool blackout = used;
-    u64 hash = fn_7100001570("BLACKOUT_LEVEL", 14);
+    u64 hash = StringCrc64("BLACKOUT_LEVEL", 14);
     fn_710021a0bc(g_unk_7101d47300, &hash, &self->blackout);
     switch (self->mode) {
     case 0:

@@ -27,14 +27,14 @@ struct UnkAllocator;
 void* fn_7100083b60(u64 size) __attribute__((weak));                                             // operator new
 void* fn_7100083bc0(u64 size, u32 flags, u64 align, base::UnkAllocator* allocator) __attribute__((weak));
 void fn_7100083c00(void* ptr) __attribute__((weak));                                              // operator delete
-base::UnkAllocator* fn_7100083990() __attribute__((weak));                                        // the allocator
+base::UnkAllocator* GetDefaultAllocator() __attribute__((weak));                                        // the allocator
 
 namespace {
 
 // The memory block first: before the image is mapped, the allocator's pointer cannot be read.
 bool GameAllocator() {
-    return fn_7100083b60 && fn_7100083bc0 && fn_7100083990 && dread_port_game_heap_ready() &&
-           fn_7100083990() != nullptr;
+    return fn_7100083b60 && fn_7100083bc0 && GetDefaultAllocator && dread_port_game_heap_ready() &&
+           GetDefaultAllocator() != nullptr;
 }
 
 [[noreturn]] void OutOfMemory(std::size_t size) {

@@ -123,14 +123,14 @@ void fn_7100198e00(UnkObject218_l198e00* self) {
             delete owned;
         self->owned[i] = nullptr;
     }
-    fn_7100083990()->vf_0x48(self->owned);
+    GetDefaultAllocator()->vf_0x48(self->owned);
     self->owned = nullptr;
 
     for (u64 i = 0; i < self->decal_count; ++i) {
         fn_71001a080c(g_unk_716e352450, self->decals[i]);
         self->decals[i] = nullptr;
     }
-    fn_7100083990()->vf_0x48(self->decals);
+    GetDefaultAllocator()->vf_0x48(self->decals);
     self->decals = nullptr;
 
     self->refs.Clear();
@@ -142,7 +142,7 @@ void fn_7100198e00(UnkObject218_l198e00* self) {
                 self->objects[i] = nullptr;
             }
         }
-        fn_7100083990()->vf_0x48(self->objects);
+        GetDefaultAllocator()->vf_0x48(self->objects);
         self->objects = nullptr;
     }
 

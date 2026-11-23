@@ -32,7 +32,7 @@ void fn_71008c40dc(UnkDemolitionBlockActivatableActorLifeComponent_40dc* self) {
     self->field_0x480 = 10;
     self->field_0x484 = true;
     self->field_0x488 = 0xf;
-    self->field_0x490 = fn_7100083990();
+    self->field_0x490 = GetDefaultAllocator();
     self->field_0x498 = 0;
     self->field_0x468 = g_unk_7101a33fa0 + 2;
     self->field_0x4a0 = 0;

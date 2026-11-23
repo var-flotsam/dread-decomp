@@ -54,7 +54,7 @@ inline void ReserveTokens(UnkPlaythroughTokens_ovb0123* out, u32 n) {
     }
     if (n) {
         if (!alloc)
-            alloc = fn_7100083990();
+            alloc = GetDefaultAllocator();
         out->field_0x38 = alloc;
         u64 size = n * sizeof(UnkSplitToken_l2f271c);
         fn_710008378c(&out->field_0x40, alloc->vf_0x40(size, 8, flags), size, sizeof(UnkSplitToken_l2f271c));

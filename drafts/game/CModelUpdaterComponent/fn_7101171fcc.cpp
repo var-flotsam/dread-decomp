@@ -67,7 +67,7 @@ u32 fn_7101171fcc(UnkModelUpdater_l171fcc* self, UnkProp* p) {
     if (Is(p, Key(0x2000))) {
         const char* name;
         CRntFile_ReadCString(p->stream, &name);
-        self->name_hash = fn_7100001570(name, __builtin_strlen(name));
+        self->name_hash = StringCrc64(name, __builtin_strlen(name));
         return true;
     }
     if (Is(p, Key(0x1668))) {

@@ -25,7 +25,7 @@ void fn_710090bf18(UnkWaterPoolList_b44a2* self) {
     At<u32>(self, 0x18) = 10;
     At<u8>(self, 0x1c) = 1;
     At<u32>(self, 0x20) = 0xf;
-    base::UnkAllocator* alloc = fn_7100083990();
+    base::UnkAllocator* alloc = GetDefaultAllocator();
     At<base::UnkAllocator*>(self, 0x28) = alloc;
     At<u32>(self, 0x30) = 0;
     At<void**>(self, 0x0) = g_unk_7101a33fa0 + 2;

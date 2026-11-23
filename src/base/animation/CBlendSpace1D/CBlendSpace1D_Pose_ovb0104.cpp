@@ -75,7 +75,7 @@ void fn_7100006bc8(UnkBlendSpace1D13* self) {
     self->entries.step = 10;
     self->entries.field_0x14 = true;
     self->entries.flags = 0xf;
-    self->entries.allocator = fn_7100083990();
+    self->entries.allocator = GetDefaultAllocator();
 }
 
 extern void* g_unk_7101a19158[];

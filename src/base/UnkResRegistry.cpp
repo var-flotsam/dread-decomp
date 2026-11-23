@@ -150,7 +150,7 @@ void fn_71000e9c78(UnkResRegistry* self) {
     new (&set->buckets) CRntVector<UnkResSetNode*>(0xe);
     set->first_node = nullptr;
     set->first_bucket = -1;
-    set->node_allocator = fn_7100083990();
+    set->node_allocator = GetDefaultAllocator();
     set->node_flags = 0xe;
     set->node_count = 0;
     set->version = 1;
@@ -166,7 +166,7 @@ void fn_71000e9c78(UnkResRegistry* self) {
     self->descs.capacity = 0;
     self->descs.step = 10;
     self->descs.flags = 0xe;
-    self->descs.allocator = fn_7100083990();
+    self->descs.allocator = GetDefaultAllocator();
     fn_7100016b80(self->field_0x118);
     fn_71000e9f00(self->field_0x148, 10, 0, 0x13, nullptr);
 }

@@ -80,12 +80,12 @@ void fn_71008cf9f4(UnkDoorObject_l8cf9f4* self, CRntFile* file) {
     CRntFile_Read(file, &areaLeft, 4, 1);
     CRntFile_Read(file, &areaRight, 4, 1);
 
-    Set<fn_710000d228>(self, fn_7100001570("bStayOpen", 9), &stayOpen);
-    Set<fn_710000abbc>(self, fn_7100001570("fMinTimeOpened", 14), &minTimeOpened);
-    Set<fn_710000abbc>(self, fn_7100001570("fMaxDistanceOpened", 18), &maxDistanceOpened);
-    Set<fn_7100014768>(self, fn_7100001570("iAreaLeft", 9), &areaLeft);
-    Set<fn_7100014768>(self, fn_7100001570("iAreaRight", 10), &areaRight);
-    u64 key = fn_7100001570("sShieldEntity", 13);
+    Set<fn_710000d228>(self, StringCrc64("bStayOpen", 9), &stayOpen);
+    Set<fn_710000abbc>(self, StringCrc64("fMinTimeOpened", 14), &minTimeOpened);
+    Set<fn_710000abbc>(self, StringCrc64("fMaxDistanceOpened", 18), &maxDistanceOpened);
+    Set<fn_7100014768>(self, StringCrc64("iAreaLeft", 9), &areaLeft);
+    Set<fn_7100014768>(self, StringCrc64("iAreaRight", 10), &areaRight);
+    u64 key = StringCrc64("sShieldEntity", 13);
     CStrId shield(shieldEntity, true);
     Set<fn_7100009658>(self, key, &shield);
 }

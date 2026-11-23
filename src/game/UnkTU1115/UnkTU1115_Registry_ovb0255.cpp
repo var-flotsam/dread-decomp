@@ -150,7 +150,7 @@ void fn_71006f8ca0(UnkRegistry_b0255* self, UnkRegistry_b0255* other) {
     self->index.capacity = 0;
     self->index.step = 10;
     self->index.flags = 0xe;
-    self->index.allocator = fn_7100083990();
+    self->index.allocator = GetDefaultAllocator();
 
     self->objects.data = other->objects.data;
     self->objects.count = other->objects.count;

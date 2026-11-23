@@ -14,7 +14,7 @@ using base::global::UnkStringPool;
 // NON_MATCHING(minor): register allocation. We keep the heap's GOT address in x28 across the
 // buffer compare (the original reloads it in each branch), which renames x22/x23 and moves the
 // `set` address computation ahead of the bucket count test.
-UnkStringData* fn_71000801e4(UnkStringPool* pool_, u64 hash, const char* str, u32 length, bool copy) {
+UnkStringData* StringPool_Insert(UnkStringPool* pool_, u64 hash, const char* str, u32 length, bool copy) {
     char* pool = reinterpret_cast<char*>(pool_);
     if (!**reinterpret_cast<void***>(pool))
         return nullptr;

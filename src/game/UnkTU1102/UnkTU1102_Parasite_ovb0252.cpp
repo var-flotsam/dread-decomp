@@ -235,7 +235,7 @@ void XParasiteAI_Reset(UnkXParasiteAI* self) {
     self->field_0x146ec = false;
     if (UnkXParasiteHolder* holder = ModelHolder(self->owner)) {
         if (UnkXParasiteShape* shape = holder->shape) {
-            u64 key = fn_7100001570("interior", 8);
+            u64 key = StringCrc64("interior", 8);
             base::color::CColor4F color = {};
             fn_71001c28f8(shape->slots, key, 3, &color, 1);
         }

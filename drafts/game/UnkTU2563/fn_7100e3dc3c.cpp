@@ -57,8 +57,8 @@ struct UnkWeldMap_le3dc3c {
     bool field_0x84;
 
     UnkWeldMap_le3dc3c()
-        : allocator(fn_7100083990()), flags(0xe), count(0), buckets(nullptr), bucket_count(0), bucket_capacity(0),
-          bucket_step(10), field_0x24(true), bucket_flags(0xe), bucket_allocator(fn_7100083990()), tail(nullptr),
+        : allocator(GetDefaultAllocator()), flags(0xe), count(0), buckets(nullptr), bucket_count(0), bucket_capacity(0),
+          bucket_step(10), field_0x24(true), bucket_flags(0xe), bucket_allocator(GetDefaultAllocator()), tail(nullptr),
           head(nullptr), pool_vtable(g_unk_7101a1a4c8 + 0x10), pool_parent(nullptr) {
         fn_710008377c(&pool_blocks);
         field_0x80 = 0;

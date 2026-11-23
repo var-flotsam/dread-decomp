@@ -36,7 +36,7 @@ struct UnkDoorSetElem_ovb0087 {
         list_step = 10;
         list_grow = true;
         list_flags = 0xf;
-        list_allocator = fn_7100083990();
+        list_allocator = GetDefaultAllocator();
         field_0x30 = 0;
         vtable = reinterpret_cast<char*>(g_unk_7101a33fa0) + 0x10;
         owner.ptr = nullptr;

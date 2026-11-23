@@ -226,7 +226,7 @@ struct UnkStrIdHashed {{
             if (data && data != &pool->empty) {{
                 --data->ref_count;
                 if (data->ref_count == 0) {{
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }}
             }}
@@ -236,7 +236,7 @@ struct UnkStrIdHashed {{
 }};
 
 using UnkStrIdH = UnkStrIdHashed<UnkTable_fn_{id_ctor:x}>;
-#define UNK_STRID(s) UnkStrIdH(s, sizeof(s) - 1, fn_7100001570(s, sizeof(s) - 1), true)
+#define UNK_STRID(s) UnkStrIdH(s, sizeof(s) - 1, StringCrc64(s, sizeof(s) - 1), true)
 
 template <class Tag>
 struct UnkStrIdTable {{
@@ -258,11 +258,11 @@ UnkStrIdHashed<Tag>::UnkStrIdHashed(const char* str, u64 length, u64 hash, bool 
     data = nullptr;
     if (!g_unk_7101d47108)
         UnkEnsureStringPool();
-    data = fn_71000804f8(g_unk_7101d47108, hash);
+    data = StringPool_Find(g_unk_7101d47108, hash);
     if (data)
         ++data->ref_count;
     else
-        data = fn_71000801e4(g_unk_7101d47108, hash, str, length, flag);
+        data = StringPool_Insert(g_unk_7101d47108, hash, str, length, flag);
 }}
 template UnkStrIdH::UnkStrIdHashed(const char* str, u64 length, u64 hash, bool flag);
 
@@ -774,7 +774,7 @@ void fn_7100dd1358();
 void fn_7100dd13f4();
 void fn_7100dc82b4(UnkBossRush* self);
 
-#define UNK_HASH(s) fn_7100001570(s, sizeof(s) - 1)
+#define UNK_HASH(s) StringCrc64(s, sizeof(s) - 1)
 
 // NON_MATCHING(minor): register allocation differs from the third stage on (spills and
 // rematerialised constants); the instructions are otherwise the original's, block for block.

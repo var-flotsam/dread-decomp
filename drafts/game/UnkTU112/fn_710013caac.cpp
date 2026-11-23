@@ -84,7 +84,7 @@ static inline UnkReflTypedPtr Typed(char* type, void* obj) {
 
 static inline u64 HashOf(const UnkTunableLine& s) {
     const char* str = s.CStr();
-    return fn_7100001570(str, strlen(str));
+    return StringCrc64(str, strlen(str));
 }
 
 // Looks up the tunable a header names: prefix, then `middle`, then the name.

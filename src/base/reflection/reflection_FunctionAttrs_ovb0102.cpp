@@ -33,7 +33,7 @@ struct UnkReflParamAttrs_ovb0102 {
 
     UnkReflParamAttrs_ovb0102()
         : values(nullptr), keys(nullptr), count(0), capacity(0), step(10), flags(0x3e),
-          allocator(fn_7100083990()), field_0x28(0), field_0x30(4) {}
+          allocator(GetDefaultAllocator()), field_0x28(0), field_0x30(4) {}
     UnkReflParamAttrs_ovb0102(UnkReflParamAttrs_ovb0102&& other)
         : values(other.values), keys(other.keys), count(other.count), capacity(other.capacity), step(other.step),
           flags(other.flags), allocator(other.allocator) {

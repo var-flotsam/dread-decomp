@@ -93,7 +93,7 @@ static inline void TakeId(Id* dst, Id* src, UnkStringPool* const& pool_global) {
         if (dst->data && dst->data != &pool->empty) {
             --dst->data->ref_count;
             if (dst->data->ref_count == 0) {
-                fn_71000803a4(pool, dst->data);
+                StringPool_Release(pool, dst->data);
                 pool = pool_global;
             }
         }
@@ -105,7 +105,7 @@ static inline void TakeId(Id* dst, Id* src, UnkStringPool* const& pool_global) {
 
 // The map's constructor: allocation flags 0xe and 11 empty buckets.
 static void InitSoundMap(UnkTU2604SoundMap* map) {
-    map->allocator = fn_7100083990();
+    map->allocator = GetDefaultAllocator();
     map->flags = 0xe;
     map->count = 0;
     new (&map->buckets) CRntVector<UnkTU2604SoundNode*>(0xe);

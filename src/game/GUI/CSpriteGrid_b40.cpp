@@ -36,7 +36,7 @@ UnkReflValue fn_71011fde48(void*, char* obj, UnkReflValue* const* args) {
         if (path->data != &pool->empty) {
             --path->data->ref_count;
             if (path->data->ref_count == 0)
-                fn_71000803a4(pool, path->data);
+                StringPool_Release(pool, path->data);
         }
         path->data = d;
         if (!target->dirty) {

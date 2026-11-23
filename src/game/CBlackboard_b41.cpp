@@ -32,7 +32,7 @@ UnkReflValue fn_7101049fe0(void*, char* obj, UnkReflValue* const* args) {
     section->data.properties.capacity = 0;
     section->data.properties.step = 10;
     section->data.properties.flags = 0x15;
-    section->data.properties.allocator = fn_7100083990();
+    section->data.properties.allocator = GetDefaultAllocator();
     fn_7100093dd0(&section->data.properties, 200);
     section->data.flags = 0x15;
     section->data.field_0x38 = false;

@@ -16,7 +16,7 @@ void fn_710019e58c(UnkPooledChainedMap* map, u32 buckets, u32 nodes);
 void fn_710019dcac(UnkGfxSceneRegistry* self) {
     self->vtable = g_unk_7101a1e2a8 + 0x10;
     UnkPooledChainedMap* m = &self->map;
-    m->alloc = fn_7100083990();
+    m->alloc = GetDefaultAllocator();
     m->flags = 0xe;
     m->size = 0;
     m->buckets.data = nullptr;
@@ -25,7 +25,7 @@ void fn_710019dcac(UnkGfxSceneRegistry* self) {
     m->buckets.step = 10;
     m->buckets.field_0x14 = true;
     m->buckets.flags = 0xe;
-    base::UnkAllocator* a = fn_7100083990();
+    base::UnkAllocator* a = GetDefaultAllocator();
     m->buckets.allocator = a;
     m->last = nullptr;
     m->first = nullptr;

@@ -44,7 +44,7 @@ struct UnkIndexQueue_l6539fc {
         Node* next;
     };
 
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     Node* head = nullptr;
     Node* tail = nullptr;
     u32 count = 0;

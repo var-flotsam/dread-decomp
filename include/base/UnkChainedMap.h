@@ -20,7 +20,7 @@ struct UnkChainedMap {
 
     // The map before its buckets exist (some owners size them with their own initialiser).
     __attribute__((always_inline)) UnkChainedMap()
-        : allocator(fn_7100083990()), flags(0xe), count(0), buckets(0xe), head(nullptr), tail(nullptr) {}
+        : allocator(GetDefaultAllocator()), flags(0xe), count(0), buckets(0xe), head(nullptr), tail(nullptr) {}
 
     // Sets the bucket count, clearing new buckets. The array's pointer is stored after its
     // capacity (the constructors of fn_71011a870c and fn_7100ee1f34); ResizeBucketsPtrFirst has

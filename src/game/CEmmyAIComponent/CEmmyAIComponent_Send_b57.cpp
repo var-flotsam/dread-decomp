@@ -71,7 +71,7 @@ void fn_7100552f10(UnkEmmyAIStagger_b57a3* self) {
     if (fn_710117af10(static_cast<UnkStruct_710117af10*>(self->owner->field_0x220), AsName_b57a3(s_loop), false) ||
         fn_710117af10(static_cast<UnkStruct_710117af10*>(self->owner->field_0x220), AsName_b57a3(s_init), false)) {
         void* target = self->owner->field_0x220;
-        UnkSpitSend(target, fn_7100001570("grabemmysamus-stagger-recovery", 30), 0xf4061ff25a2163d6);
+        UnkSpitSend(target, StringCrc64("grabemmysamus-stagger-recovery", 30), 0xf4061ff25a2163d6);
     }
     fn_710002ffb4(&self->field_0x29418, &g_unk_71726e1fc0);
 }

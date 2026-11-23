@@ -104,7 +104,7 @@ void fn_71004faea8(UnkEmmyProto_l4faea8* self) {
         fn_710117662c(self->owner->field_0x220, 8, layer, false, false, -1.0f);
         fn_710117662c(self->owner->field_0x220, 10, layer + 1, false, false, -1.0f);
         UnkActorTarget* target = self->owner->field_0x220;
-        u64 hash = fn_7100001570("groundwalk", 10);
+        u64 hash = StringCrc64("groundwalk", 10);
         mode.id = 2;
         mask.id = UnkAll_SpitSend().value;
         fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);

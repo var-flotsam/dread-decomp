@@ -44,7 +44,7 @@ void fn_71006707e8(UnkRodotukDef* self) {
     self->field_0x528 = 10;
     self->field_0x52c = true;
     self->field_0x530 = 15;
-    self->field_0x538 = fn_7100083990();
+    self->field_0x538 = GetDefaultAllocator();
     fn_7100669dec(self->field_0x540);
     reinterpret_cast<void (*)(UnkRodotukDef*)>(self->vtable[3])(self);
 }

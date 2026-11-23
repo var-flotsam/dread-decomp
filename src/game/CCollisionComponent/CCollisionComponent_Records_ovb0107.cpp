@@ -190,7 +190,7 @@ void fn_710086023c(char* self, u32 capacity, u32 step, u32 flags) {
     records->step = step;
     records->field_0x14 = step != 0;
     records->flags = flags;
-    records->allocator = fn_7100083990();
+    records->allocator = GetDefaultAllocator();
     records->Reserve(capacity);
 }
 

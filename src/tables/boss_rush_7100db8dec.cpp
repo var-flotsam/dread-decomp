@@ -83,7 +83,7 @@ void fn_7100dd1358();
 void fn_7100dd13f4();
 void fn_7100dc82b4(UnkBossRush* self);
 
-#define UNK_HASH(s) fn_7100001570(s, sizeof(s) - 1)
+#define UNK_HASH(s) StringCrc64(s, sizeof(s) - 1)
 
 // NON_MATCHING(minor): register allocation differs from the third stage on (spills and
 // rematerialised constants); the instructions are otherwise the original's, block for block.

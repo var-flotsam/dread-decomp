@@ -91,7 +91,7 @@ void fn_710109cfb0(u64 value) {
 
 // Loads a chunk with a scratch array pushed for the load, popped after it; true when it loaded.
 bool fn_710109cba0(const char* str) {
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     u32 flags = 6;
     u64* data = static_cast<u64*>(allocator->vf_0x40(0x190 * sizeof(u64), 8, flags));
     u32 top = g_unk_7172a025a0.count;

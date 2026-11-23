@@ -106,7 +106,7 @@ void fn_71001eaa28(UnkSpherePool* self) {
     self->field_0x5e9b7c = 0;
     self->field_0x5e9b86 = true;
     new (&self->field_0x5e9b88) base::global::CRntVector<void*>(7);
-    self->field_0x5e9ac8 = fn_7100083990()->vf_0x40(kSpherePoolSize * sizeof(void*), 8, 0x42);
+    self->field_0x5e9ac8 = GetDefaultAllocator()->vf_0x40(kSpherePoolSize * sizeof(void*), 8, 0x42);
 }
 
 // Clears the counters and points every slot at its own entry again.

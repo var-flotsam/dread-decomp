@@ -126,7 +126,7 @@ void fn_7100b35b60(UnkMainMenu_lb35b60* self, UnkMenuEvent_lb35b60* ev) {
     case 4: {
         s32 index = 0;
         UnkPropBag* bag = fn_71012024f4(reinterpret_cast<UnkGuiEvent*>(ev));
-        UnkBagValue_lb35b60* it = FindValue_lb35b60(bag, fn_7100001570("StateIdx", 8));
+        UnkBagValue_lb35b60* it = FindValue_lb35b60(bag, StringCrc64("StateIdx", 8));
         if (it != &Values_lb35b60(bag)[bag->values.count] && it->type == 'i') {
             CRntFile_Seek(&bag->lock, it->offset, 0);
             fn_710007c70c(&bag->lock, &index, 4);

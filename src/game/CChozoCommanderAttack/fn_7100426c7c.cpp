@@ -56,7 +56,7 @@ f32 fn_7100426c7c(UnkAimOwner* self, bool flag) {
         f32 angle = (f64)(self->field_0x28 * 180.0f) / 3.141592653589793;
         const UnkMatrix44* matrix =
             &fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->field_0x8->field_0x38));
-        u64 hash = fn_7100001570("DC_Shot", 7);
+        u64 hash = StringCrc64("DC_Shot", 7);
         if (fn_7100b8fa7c(action, &angle, matrix, &hash, &position, flag, false))
             return (f32)((f64)angle * 3.141592653589793 / 180.0);
     }

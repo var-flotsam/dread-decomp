@@ -40,7 +40,7 @@ __attribute__((always_inline)) inline void Insert(Vec* self, base::UnkPooledStri
                 if (*slot && *slot != &pool->empty) {
                     --(*slot)->ref_count;
                     if ((*slot)->ref_count == 0) {
-                        fn_71000803a4(pool, *slot);
+                        StringPool_Release(pool, *slot);
                         pool = *Pool;
                     }
                 }

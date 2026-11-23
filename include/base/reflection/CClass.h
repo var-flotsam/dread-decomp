@@ -60,7 +60,7 @@ struct UnkReflArray {
     u32 capacity = 0;
     u32 field_0x18;  // growth step (fn_7100097550 grows by it)
     u32 field_0x1c;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
 
     UnkReflArray(u32 a, u32 b) : field_0x18(a), field_0x1c(b) {}
     u64 size() const { return count; }
@@ -157,7 +157,7 @@ public:
 
 template <class T>
 CClass::CClass(const base::global::CStrId& name, const CClass* parent, ClassSetupFn fn_0x70, ClassSetupFn fn_0xe0, T* extra)
-    : CType(fn_7100001570("base::reflection::CClass", 0x18), name, UnkReflClassTraits<T>::size,
+    : CType(StringCrc64("base::reflection::CClass", 0x18), name, UnkReflClassTraits<T>::size,
             UnkReflClassTraits<T>::fn_0x58, UnkReflClassTraits<T>::fn_0x60, UnkReflClassTraits<T>::fn_0x68,
             fn_0x70, parent,
             {reinterpret_cast<SlotFn>(UnkReflClassTraits<T>::fn_0x28), UnkReflClassTraits<T>::fn_0x30,

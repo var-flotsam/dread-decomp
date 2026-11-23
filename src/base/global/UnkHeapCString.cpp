@@ -8,7 +8,7 @@
 #include "types.h"
 
 void fn_710007b8f0(char** self, const char* str) {
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     char* old = *self;
     if (!str) {
         if (old)

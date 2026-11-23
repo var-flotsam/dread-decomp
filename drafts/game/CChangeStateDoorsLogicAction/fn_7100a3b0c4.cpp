@@ -26,7 +26,7 @@ struct UnkDoorCallbackSet_la3b0c4 {
         callbacks.step = 10;
         callbacks.field_0x14 = true;
         callbacks.flags = 0xf;
-        callbacks.allocator = fn_7100083990();
+        callbacks.allocator = GetDefaultAllocator();
         state = 0;
         vtable = &g_unk_7101a33fa0[2];
         owner.ptr = nullptr;

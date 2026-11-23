@@ -45,7 +45,7 @@ __attribute__((always_inline)) static inline void Construct(UnkAutclastChargeAtt
     self->field_0xa0 = 10;
     self->field_0xa4 = true;
     self->field_0xa8 = 15;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
 }
 
 void fn_71003b4500(UnkAutclastChargeAttack* self) {

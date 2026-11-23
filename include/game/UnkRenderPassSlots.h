@@ -34,6 +34,6 @@ __attribute__((always_inline)) inline void UnkResizeSlots(base::global::CRntVect
 }
 
 inline UnkRenderPassSlots::UnkRenderPassSlots()
-    : allocator(fn_7100083990()), field_0x8(0xe), field_0xc(0), slots(0xe), field_0x38(0), field_0x40(0) {
+    : allocator(GetDefaultAllocator()), field_0x8(0xe), field_0xc(0), slots(0xe), field_0x38(0), field_0x40(0) {
     UnkResizeSlots(slots, 11);
 }

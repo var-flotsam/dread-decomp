@@ -41,7 +41,7 @@ void fn_71002f6620() {
         p->field_0x78 = 0;
         p->growth = 10;
         p->flags = 14;
-        p->allocator = fn_7100083990();
+        p->allocator = GetDefaultAllocator();
         p->resource = nullptr;
         instance = reinterpret_cast<UnkResourceManager*>(p);
         g_unk_71726ae8a8 = instance;

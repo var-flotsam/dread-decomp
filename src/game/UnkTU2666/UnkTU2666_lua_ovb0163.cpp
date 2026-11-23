@@ -589,7 +589,7 @@ s32 fn_7101095780(lua_State* L) {
 
 inline void* FindByName_b0163(UnkGameManager* manager, const char* name) {
     u32 kind_value = g_unk_71727bebb8;
-    u64 key = fn_7100001570(name, strlen(name));
+    u64 key = StringCrc64(name, strlen(name));
     alignas(8) u32 kind = kind_value;
     return fn_7100deba8c(manager, &key, &kind);
 }
@@ -730,7 +730,7 @@ struct UnkPairList_b0163 : base::UnkVtableList<UnkPairNode_b0163> {
         count = 0;
         head = nullptr;
         tail = nullptr;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
     }
     ~UnkPairList_b0163() {

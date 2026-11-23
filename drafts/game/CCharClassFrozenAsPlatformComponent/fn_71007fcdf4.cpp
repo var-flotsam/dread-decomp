@@ -78,7 +78,7 @@ void fn_71007fcdf4(const char* text, const char* delimiter, UnkStringList_l7fcdf
         }
         if (pieces) {
             if (!source)
-                source = fn_7100083990();
+                source = GetDefaultAllocator();
             list->pool.parent = source;
             u64 size = (u64)pieces * sizeof(UnkStringNode_l7fcdf4);
             void* mem = source->vf_0x40(size, 8, flags);

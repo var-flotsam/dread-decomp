@@ -35,6 +35,6 @@ void fn_710066faa8(UnkRodotukDef2* self) {
     array->field_0x10 = 10;
     array->field_0x14 = true;
     array->field_0x18 = 15;
-    array->allocator = fn_7100083990();
+    array->allocator = GetDefaultAllocator();
     fn_7100669dec(self->field_0x540);
 }

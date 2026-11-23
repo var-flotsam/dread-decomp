@@ -35,7 +35,7 @@ static inline void Construct(UnkResFormatMembers* self, const char* class_name, 
     ids->step = 10;
     ids->field_0x14 = true;
     ids->flags = 0xf;
-    ids->allocator = fn_7100083990();
+    ids->allocator = GetDefaultAllocator();
     ids->Reserve(count);
     for (const char* const* p = names; p != names + count; ++p) {
         CStrId id(*p, true);

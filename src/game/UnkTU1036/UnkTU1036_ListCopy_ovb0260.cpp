@@ -55,7 +55,7 @@ void fn_71006a15c8(UnkCountedList_b260* self, const UnkCountedList_b260* other) 
     self->vtable = reinterpret_cast<char*>(g_unk_7101a4d918) + 0x10;
     self->head = nullptr;
     self->tail = nullptr;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->flags = 0x13;
     self->vtable = reinterpret_cast<char*>(g_unk_7101a4d8f8) + 0x10;
     self->pool.vtable = g_unk_7101a1a4c8 + 0x10;

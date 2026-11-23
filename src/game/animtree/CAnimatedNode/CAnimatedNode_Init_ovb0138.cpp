@@ -112,7 +112,7 @@ struct UnkBoneId_ovb0138 {
         base::global::UnkStringPool* pool = g_unk_7101d47108;
         if (pool && data != &pool->empty) {
             if (--data->ref_count == 0)
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
         }
     }
     s64 Hash() const { return reinterpret_cast<base::global::UnkStringEntry*>(data)->buffer.key; }

@@ -36,7 +36,7 @@ void fn_710066775c(UnkRodomithonDef_ovb0023* self) {
     self->field_0x648 = 10;
     self->field_0x64c = true;
     self->field_0x650 = 0xf;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     fn_7100664224(reinterpret_cast<UnkRodomithonList_ovb0023*>(self->list));
     reinterpret_cast<void (*)(UnkRodomithonDef_ovb0023*)>(self->vtable[3])(self);
 }

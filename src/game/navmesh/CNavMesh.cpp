@@ -1326,7 +1326,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             Read(f, &n, 4);
             if (n > 0) {
                 UnkNavLoadId key(name);
-                base::UnkAllocator* a = fn_7100083990();
+                base::UnkAllocator* a = GetDefaultAllocator();
                 auto& map = m->field_0x2e8;
                 if (map.count == map.capacity)
                     fn_710027ee38(AsIdMap(&map), map.step + map.count);
@@ -1352,7 +1352,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             Read(f, &n, 4);
             UnkNavLoadId key(name);
             u32 capacity = n;
-            base::UnkAllocator* a = fn_7100083990();
+            base::UnkAllocator* a = GetDefaultAllocator();
             UnkIdKindKey* data =
                 capacity ? static_cast<UnkIdKindKey*>(a->vf_0x40((u64)capacity * sizeof(UnkIdKindKey), 8, 0x57))
                          : nullptr;
@@ -1388,7 +1388,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
         Read(f, &nrecords, 4);
         for (s32 i = 0; i < nrecords; ++i) {
             UnkNavLoadId key(ReadName(f));
-            base::UnkAllocator* a = fn_7100083990();
+            base::UnkAllocator* a = GetDefaultAllocator();
             auto& map = m->field_0x338;
             if (map.count == map.capacity)
                 fn_710027f198(AsIdMap(&map), map.step + map.count);
@@ -1423,7 +1423,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             UnkNavLoadId key(ReadName(f));
             auto& outer = m->field_0x360;
             if (!outer.Contains(key.id)) {
-                base::UnkAllocator* a = fn_7100083990();
+                base::UnkAllocator* a = GetDefaultAllocator();
                 if (outer.count == outer.capacity)
                     fn_710027f348(&outer, outer.step + outer.count);
                 InitMap(outer.AppendKey(key.id), a);
@@ -1431,7 +1431,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             }
             UnkNavLoadCellRecordMap* inner = &outer.values[outer.IndexOf(key.id)];
             UnkNavLoadId key2(ReadName(f));
-            base::UnkAllocator* a = fn_7100083990();
+            base::UnkAllocator* a = GetDefaultAllocator();
             if (inner->count == inner->capacity)
                 fn_710027f54c(AsIdMap(inner), inner->step + inner->count);
             InitVector(inner->AppendKey(key2.id), static_cast<UnkNavLoadSlot360*>(nullptr), 0, a);
@@ -1468,7 +1468,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
         Read(f, &ngraphs, 4);
         for (s32 i = 0; i < ngraphs; ++i) {
             UnkNavLoadId key(ReadName(f));
-            base::UnkAllocator* a = fn_7100083990();
+            base::UnkAllocator* a = GetDefaultAllocator();
             auto& map = m->field_0x388;
             if (map.count == map.capacity)
                 fn_710027f6fc(AsIdMap(&map), map.step + map.count);
@@ -1480,7 +1480,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             for (s32 j = 0; j < ngraph; ++j) {
                 {
                     UnkNavLoadRecordMaps tmp;
-                    InitMap(&tmp, fn_7100083990());
+                    InitMap(&tmp, GetDefaultAllocator());
                     fn_710027f9d0(graphs, GrownCapacity(graphs));
                     MoveMap(&graphs->data[graphs->count], &tmp);
                     ++graphs->count;
@@ -1489,14 +1489,14 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                 UnkNavLoadRecordMaps* graph = GrowAt(
                     graphs, graphs->count - 1,
                     [](base::global::CRntVector<UnkNavLoadRecordMaps>* v, u32 n) { fn_710027f9d0(v, n); },
-                    [](UnkNavLoadRecordMaps* p) { InitMap(p, fn_7100083990()); });
+                    [](UnkNavLoadRecordMaps* p) { InitMap(p, GetDefaultAllocator()); });
                 s32 nnodes = 0;
                 Read(f, &nnodes, 4);
                 for (s32 k = 0; k < nnodes; ++k) {
                     UnkNavLoadId key2(ReadName(f));
                     if (!graph->Contains(key2.id)) {
                         UnkNavLoadRecordMap tmp;
-                        InitMap(&tmp, fn_7100083990());
+                        InitMap(&tmp, GetDefaultAllocator());
                         if (graph->count == graph->capacity)
                             fn_710027fc88(graph, graph->step + graph->count);
                         MoveMap(graph->AppendKey(key2.id), &tmp);
@@ -1509,7 +1509,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                     Read(f, &n, 4);
                     UnkNavLoadId key3(name3);
                     u32 capacity = n;
-                    base::UnkAllocator* a3 = fn_7100083990();
+                    base::UnkAllocator* a3 = GetDefaultAllocator();
                     UnkNavLoadPathRecord* data =
                         capacity ? static_cast<UnkNavLoadPathRecord*>(
                                        a3->vf_0x40((u64)capacity * sizeof(UnkNavLoadPathRecord), 8, 0x57))

@@ -52,7 +52,7 @@ void fn_71007f3100(UnkFrozenIceInfo_b44a2* self) {
     self->field_0xd8 = 10;
     self->field_0xdc = true;
     self->field_0xe0 = 0xf;
-    self->field_0xe8 = fn_7100083990();
+    self->field_0xe8 = GetDefaultAllocator();
     reinterpret_cast<void (*)(UnkFrozenIceInfo_b44a2*)>(self->vtable[3])(self);
 }
 

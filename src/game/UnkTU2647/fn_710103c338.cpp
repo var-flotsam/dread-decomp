@@ -19,7 +19,7 @@ struct UnkPresetList_b0192_l03c338 {
         step = 10;
         field_0x14 = true;
         flags = 0xf;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
     }
 };
 

@@ -12,7 +12,7 @@ using base::global::CRntVector;
 using base::global::UnkStringData;
 
 struct UnkAllocatorHandle_710025f17c {
-    UnkAllocator* allocator = fn_7100083990();
+    UnkAllocator* allocator = GetDefaultAllocator();
     u32 flags = 0xe;
     u32 field_0xc = 0;
 };

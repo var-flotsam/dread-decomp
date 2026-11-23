@@ -176,7 +176,7 @@ bool fn_71008567ec(UnkPowerBombGun_l8567ec* self) {
         fn_7100d7c828(reinterpret_cast<UnkActor*>(actor), &g_unk_710164ad38, false);
         if (fn_7100dec788(g_unk_7101d47310)) {
             UnkPlayer* player = fn_7100dec788(g_unk_7101d47310);
-            u64 hash = fn_7100001570("powerbombcharged", 16);
+            u64 hash = StringCrc64("powerbombcharged", 16);
             fn_7100d7c94c(reinterpret_cast<UnkActor*>(player), &hash);
         }
         fn_7100ac7db4(bomb, "PowerBomb", false);

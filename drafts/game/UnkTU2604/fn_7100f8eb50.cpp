@@ -28,7 +28,7 @@ struct UnkTU2604FindRecordId {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0)
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
             }
             data = &pool->empty;
         }
@@ -42,7 +42,7 @@ struct UnkTU2604FindRecordId {
             if (data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0)
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
             }
             data = d;
         }

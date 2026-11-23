@@ -192,7 +192,7 @@ void fn_71001d7548(UnkDecalResourceMgr* self) {
     self->field_0x30 = 0;
     self->field_0x20 = 0;
     self->field_0x28 = 0;
-    self->sub.owner_a = (UnkPoolOwner_b0154*)fn_7100083990();
+    self->sub.owner_a = (UnkPoolOwner_b0154*)GetDefaultAllocator();
     fn_710008377c(&self->sub.list);
     self->sub.field_0x48 = 10;
     self->sub.buffer_b = nullptr;
@@ -200,7 +200,7 @@ void fn_71001d7548(UnkDecalResourceMgr* self) {
     self->sub.field_0x44 = 0;
     self->sub.field_0x4c = true;
     self->sub.field_0x50 = 15;
-    self->sub.owner_b = (UnkPoolOwner_b0154*)fn_7100083990();
+    self->sub.owner_b = (UnkPoolOwner_b0154*)GetDefaultAllocator();
     fn_71001d796c(&self->sub, 0x6834, 0x35, nullptr);
     self->sub.field_0x68 = 0;
     self->sub.field_0x70 = 0.0f;

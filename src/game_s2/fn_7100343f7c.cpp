@@ -14,7 +14,7 @@ struct UnkSelf {
 void fn_7100343f7c(UnkSelf* self, UnkWeakTarget* other, void* const* name) {
     if (!other) {
         ResetRef(&self->field_0x970);
-        self->field_0x978 = reinterpret_cast<void*>(fn_7100001570("", 0));
+        self->field_0x978 = reinterpret_cast<void*>(StringCrc64("", 0));
         return;
     }
     UnkWeakHandle* handle = GetWeakHandle(other);

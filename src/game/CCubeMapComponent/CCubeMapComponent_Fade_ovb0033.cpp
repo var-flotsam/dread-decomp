@@ -60,7 +60,7 @@ void fn_710079fa98(UnkCubeMapComponent_ovb0033* self) {
         if (*name && *name != &pool->empty) {
             --(*name)->ref_count;
             if ((*name)->ref_count == 0) {
-                fn_71000803a4(pool, *name);
+                StringPool_Release(pool, *name);
                 pool = g_unk_7101d47108;
             }
         }

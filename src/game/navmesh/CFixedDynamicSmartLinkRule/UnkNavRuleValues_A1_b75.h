@@ -40,7 +40,7 @@ struct UnkNavRuleValues_A1_b75 {
 
     UnkNavRuleValues_A1_b75()
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
     UnkNavRuleValues_A1_b75(const UnkNavRuleValues_A1_b75& other) { fn_71002726e8(this, &other); }
     UnkNavRuleValues_A1_b75& operator=(const UnkNavRuleValues_A1_b75& other) {
         fn_7100272348(this, &other);

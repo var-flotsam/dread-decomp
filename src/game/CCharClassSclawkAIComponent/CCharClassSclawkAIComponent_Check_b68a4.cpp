@@ -20,7 +20,7 @@ struct UnkSclawkId_b68a4 {
     ~UnkSclawkId_b68a4() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data != &pool->empty && --data->ref_count == 0)
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
         }
     }
 };

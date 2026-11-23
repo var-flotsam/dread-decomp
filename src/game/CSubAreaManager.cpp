@@ -492,7 +492,7 @@ static inline UnkCollisionObject* ColliderOf(const UnkSubAreaColliderNode* n) {
 static inline void ResetMainCameraCtrl() {
     UnkGameManager* gm = g_unk_7101d47310;
     u32 kind_value = g_unk_71727bebb8;
-    u64 name = fn_7100001570("MainCamera", 10);
+    u64 name = StringCrc64("MainCamera", 10);
     alignas(8) u32 kind = kind_value;  // stored after the hash, in an 8-byte slot
     void* camera = fn_7100deba8c(gm, &name, &kind);
     bool skip = fn_7100deac04(g_unk_7101d47310);
@@ -691,7 +691,7 @@ void fn_71009349b0(UnkCameraCtrl* ctrl, bool flag, const CStrId* id);
 void SubArea_ApplyCameraSettings(UnkSubAreaTag, UnkSubArea* area, bool flag) {
     UnkGameManager* gm = g_unk_7101d47310;
     u32 kind_value = g_unk_71727bebb8;
-    u64 name = fn_7100001570("MainCamera", 10);
+    u64 name = StringCrc64("MainCamera", 10);
     alignas(8) u32 kind = kind_value;  // stored after the hash, in an 8-byte slot
     void* camera = fn_7100deba8c(gm, &name, &kind);
     if (!camera)

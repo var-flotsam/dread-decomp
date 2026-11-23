@@ -37,7 +37,7 @@ struct UnkSmartLinkParts_ovb0137 {
         count = 0;
         head = nullptr;
         tail = nullptr;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         field_0x28 = 4;
         vtable = g_unk_7101a1a4a8 + 2;
         field_0x30 = g_unk_7101a1a4c8 + 0x10;

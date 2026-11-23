@@ -42,7 +42,7 @@ struct UnkTextId_l08de50 {
         if (UnkStringPool* pool = Pool) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = Pool;
                 }
             }
@@ -66,7 +66,7 @@ inline void Share(Id* id, const Other& other) {
         if (id->data != &pool->empty) {
             --id->data->ref_count;
             if (id->data->ref_count == 0)
-                fn_71000803a4(pool, id->data);
+                StringPool_Release(pool, id->data);
         }
         id->data = d;
     }
@@ -79,7 +79,7 @@ inline void ReleaseAndTake(Id* id, Other&& other) {
         if (id->data && id->data != &pool->empty) {
             --id->data->ref_count;
             if (id->data->ref_count == 0) {
-                fn_71000803a4(pool, id->data);
+                StringPool_Release(pool, id->data);
                 pool = Pool;
             }
         }

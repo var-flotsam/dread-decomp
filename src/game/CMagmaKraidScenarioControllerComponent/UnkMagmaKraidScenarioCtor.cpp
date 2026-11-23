@@ -31,7 +31,7 @@ static inline __attribute__((always_inline)) void InitContainer(UnkMagmaKraidCon
     c->field_0x18 = 10;
     c->field_0x1c = true;
     c->field_0x20 = 0xf;
-    c->field_0x28 = fn_7100083990();
+    c->field_0x28 = GetDefaultAllocator();
     c->field_0x30 = 0;
     c->vtable = g_unk_7101a33fa0 + 2;
     c->field_0x38 = 0;

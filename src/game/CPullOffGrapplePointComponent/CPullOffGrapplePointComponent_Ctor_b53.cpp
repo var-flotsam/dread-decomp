@@ -53,7 +53,7 @@ void fn_710082edf8(UnkPullOffGrapplePointComponent_b53* self) {
     c.field_0x18 = 10;
     c.field_0x1c = 1;
     c.field_0x20 = 15;
-    c.field_0x28 = fn_7100083990();
+    c.field_0x28 = GetDefaultAllocator();
     c.field_0x30 = 0;
     c.vtable = reinterpret_cast<char*>(g_unk_7101a33fa0) + 0x10;
     self->field_0x100 = 0;

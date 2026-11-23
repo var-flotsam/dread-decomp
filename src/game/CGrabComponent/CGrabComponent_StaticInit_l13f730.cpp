@@ -44,7 +44,7 @@ void fn_710113f730() {
     list.count = 0;
     list.head = nullptr;
     list.tail = nullptr;
-    list.allocator = fn_7100083990();
+    list.allocator = GetDefaultAllocator();
     list.flags = 0x13;
     fn_7100000250(fn_710113ad50, &list, g_unk_7101a19000);
 }

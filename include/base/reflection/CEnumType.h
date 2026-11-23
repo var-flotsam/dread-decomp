@@ -36,7 +36,7 @@ static_assert(sizeof(CEnumType) == 0x118, "CEnumType layout");
 
 template <class T>
 CEnumType::CEnumType(const base::global::CStrId& name, const void* arg, T*)
-    : CType(fn_7100001570("base::reflection::CEnumType", 0x1b), name, EnumTypeDescription<T>::size,
+    : CType(StringCrc64("base::reflection::CEnumType", 0x1b), name, EnumTypeDescription<T>::size,
             reinterpret_cast<EqualsFn>(EnumTypeDescription<T>::equals),
             reinterpret_cast<HashFn>(EnumTypeDescription<T>::hash),
             reinterpret_cast<TypeOfFn>(EnumTypeDescription<T>::type_of), nullptr, nullptr,

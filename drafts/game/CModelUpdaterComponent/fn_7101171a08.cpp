@@ -108,7 +108,7 @@ static inline void ReleaseId(UnkStringData*& data, UnkStringPool*& global) {
         if (data && data != &pool->empty) {
             --data->ref_count;
             if (data->ref_count == 0) {
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
                 pool = global;
             }
         }
@@ -125,7 +125,7 @@ static inline void AssignPath(UnkStringData*& data, UnkStringData* d) {
         if (data != &pool->empty) {
             --data->ref_count;
             if (data->ref_count == 0)
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
         }
         data = d;
     }
@@ -137,7 +137,7 @@ struct UnkPathOf_l171a08 : UnkFilePathStrIdBase {
     ~UnkPathOf_l171a08() {
         if (UnkStringPool* pool = g_unk_7101d47200) {
             if (data && data != &pool->empty && --data->ref_count == 0) {
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
                 pool = g_unk_7101d47200;
             }
             data = &pool->empty;

@@ -69,7 +69,7 @@ void fn_71007db53c(UnkEventPropDerived* self) {
     self->field_0x98 = nullptr;
     self->field_0xa0 = 10;
     self->field_0xa4 = 14;
-    self->field_0xa8 = fn_7100083990();
+    self->field_0xa8 = GetDefaultAllocator();
     self->field_0xb0 = nullptr;
     self->field_0xb8 = -1;
     self->field_0xc0 = 0;
@@ -81,7 +81,7 @@ void fn_71007db53c(UnkEventPropDerived* self) {
     self->field_0xd8 = 10;
     self->field_0xdc = true;
     self->field_0xe0 = 15;
-    self->field_0xe8 = fn_7100083990();
+    self->field_0xe8 = GetDefaultAllocator();
     self->field_0xf0 = true;
     self->field_0xf1 = true;
     reinterpret_cast<void (*)(UnkEventPropDerived*)>(self->vtable[3])(self);

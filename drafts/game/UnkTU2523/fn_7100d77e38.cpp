@@ -67,13 +67,13 @@ void fn_7100d77e38(UnkCtorObject_ld77e38* self) {
     self->list_0x318.field_0x8 = 0;
     self->list_0x318.field_0x10 = nullptr;
     self->list_0x318.field_0x18 = nullptr;
-    self->list_0x318.allocator = fn_7100083990();
+    self->list_0x318.allocator = GetDefaultAllocator();
     self->list_0x318.field_0x28 = 0x13;
     self->list_0x348.vtable = g_unk_7101a1b030 + 2;
     self->list_0x348.field_0x8 = 0;
     self->list_0x348.field_0x10 = nullptr;
     self->list_0x348.field_0x18 = nullptr;
-    self->list_0x348.allocator = fn_7100083990();
+    self->list_0x348.allocator = GetDefaultAllocator();
     self->list_0x348.field_0x28 = 0x13;
     self->field_0x3a8 = 0.0f;
     self->field_0x3ac = -1.0f;

@@ -29,8 +29,8 @@ struct UnkWeightPropComponent_b43a3 {
 void fn_7100aca378(UnkWeightPropComponent_b43a3* self) {
     self->owner->xform.GetAngle();
     if (UnkWorld* world = self->owner->fx_world) {
-        fn_710114fe8c(world, fn_7100001570("destroyFX", 9), 1, 1);
-        if (UnkPart* part = fn_7101152b90(world, fn_7100001570("destroyFX", 9)))
+        fn_710114fe8c(world, StringCrc64("destroyFX", 9), 1, 1);
+        if (UnkPart* part = fn_7101152b90(world, StringCrc64("destroyFX", 9)))
             fn_710115596c(reinterpret_cast<UnkRinkaControl_ruc*>(world), part);
     }
 }

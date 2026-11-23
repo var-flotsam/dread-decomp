@@ -241,7 +241,7 @@ bool fn_710051c9b0(UnkSearch_b0068* self) {
                     list.count = 0;
                     list.head = nullptr;
                     list.tail = nullptr;
-                    list.allocator = fn_7100083990();
+                    list.allocator = GetDefaultAllocator();
                     list.tag = 0x13;
                     fn_710051cdd8(reinterpret_cast<UnkCollectOwner_A3_b70*>(top), self->flag, self->mode,
                                   reinterpret_cast<UnkCollectList_A3_b70*>(&list));

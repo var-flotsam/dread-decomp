@@ -6,7 +6,7 @@
 #include "types.h"
 
 struct UnkSlots_0x48 {
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     u32 flags = 0xe;
     u32 field_0xc = 0;
     base::global::CRntVector<void*> slots = base::global::CRntVector<void*>(0xe);

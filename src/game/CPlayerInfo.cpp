@@ -157,7 +157,7 @@ void fn_7100f086c8(UnkPlayerInfo* self) {
     self->field_0x334 = 0;
     self->field_0x338 = 10;
     self->field_0x33c = 5;
-    self->field_0x340 = fn_7100083990();
+    self->field_0x340 = GetDefaultAllocator();
     fn_710002f4e4(self->timer_0x348);
     self->field_0x3f8 = false;
 }

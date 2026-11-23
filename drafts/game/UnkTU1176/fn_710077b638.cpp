@@ -528,7 +528,7 @@ __attribute__((noinline)) void fn_7100772eb0(UnkSource_b0230* self, UnkWeakTarge
     self->items.step = 10;
     self->items.field_0x14 = true;
     self->items.flags = 0xf;
-    self->items.allocator = fn_7100083990();
+    self->items.allocator = GetDefaultAllocator();
     self->state = 0;
     self->vtable = g_unk_7101a33fa0 + 2;
     self->handle = nullptr;
@@ -871,7 +871,7 @@ UnkIdResult_b0230 fn_710077b638(void* unused, UnkIdTarget_b0230* target, UnkIdBu
             base::global::UnkStringData* d = id.data;
             if ((d != nullptr) & (d != &pool->empty)) {
                 if (--d->ref_count == 0) {
-                    fn_71000803a4(pool, d);
+                    StringPool_Release(pool, d);
                     pool = g_unk_7101d47108;
                 }
             }

@@ -329,7 +329,7 @@ static inline UnkNavMeshManager* GetRegistry() {
         registry->field_0x62e30 = nullptr;
         registry->field_0x62e48 = 10;
         registry->field_0x62e4c = 0x57;
-        registry->allocator = fn_7100083990();
+        registry->allocator = GetDefaultAllocator();
         fn_7100ebf2fc(&registry->pool, 100, 0, 0x57, nullptr);
         g_unk_71726a4510 = registry;
     }

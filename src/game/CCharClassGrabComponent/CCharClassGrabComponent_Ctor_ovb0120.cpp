@@ -56,7 +56,7 @@ void fn_71007905b8(UnkCharClassGrab_ovb0120* self) {
     self->field_0x60 = 0;
     self->field_0x68 = 0;
     self->field_0x70 = 0;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->field_0x80 = 0x13;
     new (&self->field_0x88) CStrId(g_unk_710162e2ed, true);
     self->field_0x90 = UnkGrabClassDefaultMask();

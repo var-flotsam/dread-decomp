@@ -150,7 +150,7 @@ UnkCountedResource* fn_71000eaf20(UnkResRegistry* registry, const UnkResKey* key
 
     UnkCountedResource* resource = nullptr;
     if (fn_710009d50c(type, reinterpret_cast<const CType*>(fn_71000e8a5c())) && type->m_fn_0x28) {
-        resource = static_cast<UnkCountedResource*>(fn_7100083990()->vf_0x40(type->m_size, 8, flags));
+        resource = static_cast<UnkCountedResource*>(GetDefaultAllocator()->vf_0x40(type->m_size, 8, flags));
         if (resource) {
             reinterpret_cast<void (*)(void*)>(type->m_fn_0x28)(resource);
             if (fn_71000171a0(resource, reinterpret_cast<const char*>(key), &request)) {

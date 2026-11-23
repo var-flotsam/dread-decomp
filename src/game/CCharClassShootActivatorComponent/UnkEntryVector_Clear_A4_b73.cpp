@@ -144,7 +144,7 @@ struct UnkPushVector_A4_b73 {
         e->list_step = 10;
         e->list_grow = true;
         e->list_flags = 0xf;
-        e->list_allocator = fn_7100083990();
+        e->list_allocator = GetDefaultAllocator();
         e->field_0x30 = 0;
         e->vtable = reinterpret_cast<char*>(g_unk_7101a33fa0) + 0x10;
         e->owner.ptr = nullptr;

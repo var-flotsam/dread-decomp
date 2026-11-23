@@ -37,7 +37,7 @@ struct UnkNodeList_0x38 {
         head = nullptr;
         tail = nullptr;
         flags = 0x10;
-        base::UnkAllocator* a = fn_7100083990();
+        base::UnkAllocator* a = GetDefaultAllocator();
         vtable = g_unk_7101cac250 + 0x10;
         allocator = a;
         field_0x30 = 0;

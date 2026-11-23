@@ -19,7 +19,7 @@ struct UnkHashBuckets {
 
     __attribute__((always_inline)) UnkHashBuckets(UnkAllocator* a, u32 flags)
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(flags),
-          allocator(a ? a : fn_7100083990()) {}
+          allocator(a ? a : GetDefaultAllocator()) {}
 
     __attribute__((always_inline)) void Resize(u32 n) {
         if (count < n) {
@@ -53,7 +53,7 @@ struct UnkHashMap {
     u32 field_0x48;
 
     __attribute__((always_inline)) UnkHashMap(UnkAllocator* a, u32 flags)
-        : buckets(a, flags), field_0x28(-1), field_0x30(nullptr), node_allocator(a ? a : fn_7100083990()),
+        : buckets(a, flags), field_0x28(-1), field_0x30(nullptr), node_allocator(a ? a : GetDefaultAllocator()),
           node_flags(flags), field_0x44(0), field_0x48(1) {
         buckets.Resize(11);
     }

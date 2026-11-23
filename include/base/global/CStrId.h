@@ -58,10 +58,10 @@ extern const char g_unk_710162e2ed[] __attribute__((visibility("hidden")));
 // The global string pool (reached through the GOT).
 extern base::global::UnkStringPool* g_unk_7101d47108;
 extern base::global::UnkStringPool* g_unk_7101d47200;  // CFilePathStrId's pool (base/global/CFilePathStrId.h)
-void fn_71000803a4(base::global::UnkStringPool* pool, base::global::UnkStringData* data);
-u64 fn_7100001570(const char* str, u64 length);  // CRC64 of a string
-base::global::UnkStringData* fn_71000804f8(base::global::UnkStringPool* pool, u64 hash);  // lookup
-base::global::UnkStringData* fn_71000801e4(base::global::UnkStringPool* pool, u64 hash, const char* str,
+void StringPool_Release(base::global::UnkStringPool* pool, base::global::UnkStringData* data);
+u64 StringCrc64(const char* str, u64 length);  // CRC64 of a string
+base::global::UnkStringData* StringPool_Find(base::global::UnkStringPool* pool, u64 hash);  // lookup
+base::global::UnkStringData* StringPool_Insert(base::global::UnkStringPool* pool, u64 hash, const char* str,
                                            u32 length, bool flag);  // insert
 u32 fn_7100080568();
 void StringPool_InitHeap();
@@ -108,12 +108,12 @@ public:
         if (str) {
             u64 length = __builtin_strlen(str);
             if (length) {
-                u64 hash = fn_7100001570(str, length);
-                data = fn_71000804f8(g_unk_7101d47108, hash);
+                u64 hash = StringCrc64(str, length);
+                data = StringPool_Find(g_unk_7101d47108, hash);
                 if (data)
                     ++data->ref_count;
                 else
-                    data = fn_71000801e4(g_unk_7101d47108, hash, str, length, flag);
+                    data = StringPool_Insert(g_unk_7101d47108, hash, str, length, flag);
             }
         }
         if (!data)
@@ -141,7 +141,7 @@ protected:
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -181,7 +181,7 @@ public:
             if (data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0)
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
             }
             data = d;
         }
@@ -194,7 +194,7 @@ public:
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -208,7 +208,7 @@ public:
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -223,7 +223,7 @@ public:
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -282,7 +282,7 @@ public:
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0)
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
             }
             data = &pool->empty;
         }
