@@ -29,7 +29,7 @@ struct UnkSclawkId_ovb0125 {
     ~UnkSclawkId_ovb0125() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data != &pool->empty && --data->ref_count == 0)
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
         }
     }
     u64 Hash() const { return *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(data) + 0x30); }

@@ -100,11 +100,11 @@ void fn_7100aa6c2c(UnkWaterPlatform_laa6c2c* self, CBlackboard* blackboard) {
         fn_7100aa6a2c(1.0f, self);
         if (UnkScriptCaller* script = self->owner->script)
             fn_7100305088(script, "OnUseCompleted", g_unk_710162e2ed);
-        light = fn_7100001570("GUIDE_LGT_00", 12);
+        light = StringCrc64("GUIDE_LGT_00", 12);
         CVector4D color = {15.0f, 15.0f, 15.0f, 1.0f};
         fn_710021a0b4(g_unk_7101d47300, &light, &color);
     } else {
-        light = fn_7100001570("GUIDE_LGT_00", 12);
+        light = StringCrc64("GUIDE_LGT_00", 12);
         CVector4D color = {0.0f, 0.0f, 0.0f, 1.0f};
         fn_710021a0b4(g_unk_7101d47300, &light, &color);
     }

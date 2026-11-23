@@ -402,7 +402,7 @@ static inline UnkComposition* FindChildById(UnkComposition* composition, u64 id)
 static inline UnkComposition* FindLabel(UnkComposition* composition, const char* name) {
     if (!composition)
         return nullptr;
-    UnkComposition* child = FindChildById(composition, fn_7100001570(name, __builtin_strlen(name)));
+    UnkComposition* child = FindChildById(composition, StringCrc64(name, __builtin_strlen(name)));
     if (!child)
         return nullptr;
     return fn_710009d50c(child->Type(), fn_71011e8dfc()) ? child : nullptr;

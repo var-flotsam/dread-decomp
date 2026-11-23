@@ -44,6 +44,6 @@ void fn_71007f5bf4(UnkFrozenAsFrostbiteComponent* self) {
     self->field_0x3f8 = 10;
     self->field_0x3fc = true;
     self->field_0x400 = 0xf;
-    self->field_0x408 = fn_7100083990();
+    self->field_0x408 = GetDefaultAllocator();
     reinterpret_cast<void (*)(UnkFrozenAsFrostbiteComponent*)>(self->vtable[3])(self);
 }

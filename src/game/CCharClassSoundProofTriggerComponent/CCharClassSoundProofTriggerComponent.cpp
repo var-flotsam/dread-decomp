@@ -31,7 +31,7 @@ void fn_7100a308b0(UnkSoundProofTrigger* self) {
     self->field_0xad0 = 10;
     self->field_0xad4 = true;
     self->field_0xad8 = 15;
-    self->field_0xae0 = fn_7100083990();
+    self->field_0xae0 = GetDefaultAllocator();
     self->field_0xae8 = 9;
     self->field_0xaec = 1.0f;
     self->field_0xaf0 = 1.0f;

@@ -60,7 +60,7 @@ using unk_prop_bag::UnkPropBag;
 
 inline void* FindByName_b0162(UnkGameManager* manager, const char* name) {
     u32 kind_value = g_unk_71727bebb8;
-    u64 key = fn_7100001570(name, strlen(name));
+    u64 key = StringCrc64(name, strlen(name));
     alignas(8) u32 kind = kind_value;
     return fn_7100deba8c(manager, &key, &kind);
 }
@@ -685,7 +685,7 @@ s32 fn_710108af30(lua_State* L) {
     const char* other;
     if (fn_71010c0270(L, "sffs", &name, &first, &second, &other)) {
         void* gui = g_unk_7101d47330;
-        u64 key = fn_7100001570(name, strlen(name));
+        u64 key = StringCrc64(name, strlen(name));
         f32 a = first;
         f32 b = second;
         alignas(8) u32 mask = UnkLayerMaskOf_b0162<UnkLayerMaskTag_b0162>::All().bits;

@@ -36,7 +36,7 @@ static inline void Reset(UnkReflValue* value) {
         if (value->field_0x14 == 0) {
             if (old->m_size > 8) {
                 old->m_fn_0x40(value->field_0x0);
-                fn_7100083990()->vf_0x48(value->field_0x0);
+                GetDefaultAllocator()->vf_0x48(value->field_0x0);
             } else {
                 old->m_fn_0x40(value);
             }
@@ -56,7 +56,7 @@ static inline void InitCopy(UnkReflValue* out, const CType* type, const void* ob
     *reinterpret_cast<const CType**>(&out->type) = type;
     u64 size = type->m_size;
     if (size > 8) {
-        void* block = fn_7100083990()->vf_0x40(size, 8, out->kind);
+        void* block = GetDefaultAllocator()->vf_0x40(size, 8, out->kind);
         out->field_0x0 = block;
         if (!block)
             return;

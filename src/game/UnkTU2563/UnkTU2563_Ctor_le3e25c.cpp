@@ -45,7 +45,7 @@ struct UnkTwinArray_e3e25c {
     u32 capacity = 0;
     u32 step = 10;
     u32 flags = 14;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
 };
 static_assert(sizeof(UnkTwinArray_e3e25c) == 0x28, "UnkTwinArray_e3e25c layout");
 
@@ -85,7 +85,7 @@ void fn_7100e3e25c(UnkMapData_e3e25c* self) {
     pairs.step = 10;
     pairs.field_0x14 = true;
     pairs.flags = 0xf;
-    pairs.allocator = fn_7100083990();
+    pairs.allocator = GetDefaultAllocator();
     fn_7100e52b58(&pairs, 0x20);
 
     for (UnkTwinArray_e3e25c& array : self->arrays)

@@ -36,7 +36,7 @@ void fn_7100a515b4(UnkPerceptionModifierLogicActionDef* self) {
     self->field_0x30 = 10;
     self->field_0x34 = true;
     self->field_0x38 = 0xf;
-    self->field_0x40 = fn_7100083990();
+    self->field_0x40 = GetDefaultAllocator();
     self->field_0x48 = 0;
     self->field_0x18 = g_unk_7101a20950 + 2;
     self->field_0x50 = 0;

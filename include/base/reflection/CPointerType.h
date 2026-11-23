@@ -36,7 +36,7 @@ static_assert(sizeof(CPointerType) == 0x108, "CPointerType layout");
 
 template <class T>
 CPointerType::CPointerType(const base::global::CStrId& name, T*, void*)
-    : CType(fn_7100001570("base::reflection::CPointerType", 0x1e), name, PointerTypeDescription<T>::size,
+    : CType(StringCrc64("base::reflection::CPointerType", 0x1e), name, PointerTypeDescription<T>::size,
             reinterpret_cast<EqualsFn>(PointerTypeDescription<T>::equals),
             reinterpret_cast<HashFn>(PointerTypeDescription<T>::hash),
             reinterpret_cast<TypeOfFn>(PointerTypeDescription<T>::type_of), nullptr, nullptr,

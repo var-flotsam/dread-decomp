@@ -166,7 +166,7 @@ UnkResult_0x18_eas fn_7100f6f928(void*, UnkEnvOwner_eas* owner, UnkValueSource_e
         if (path->data != &pool->empty) {
             --path->data->ref_count;
             if (path->data->ref_count == 0)
-                fn_71000803a4(pool, path->data);
+                StringPool_Release(pool, path->data);
         }
         path->data = d;
     }

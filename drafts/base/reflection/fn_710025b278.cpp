@@ -29,7 +29,7 @@ struct alignas(8) UnkReflRecord60_ovb0036 {
 
 template <u32 Flags>
 struct UnkAllocatorHandle_ovb0036 {
-    UnkAllocator* allocator = fn_7100083990();
+    UnkAllocator* allocator = GetDefaultAllocator();
     u32 flags = Flags;
     u32 field_0xc = 0;
 };
@@ -81,7 +81,7 @@ struct UnkWordList_ovb0036 {
     u64 field_0x10 = 0;
     u32 step = 10;
     u32 flags = Flags;
-    UnkAllocator* allocator = fn_7100083990();
+    UnkAllocator* allocator = GetDefaultAllocator();
 };
 
 extern void* g_unk_7101a20c78[];

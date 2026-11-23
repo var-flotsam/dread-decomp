@@ -39,7 +39,7 @@ void fn_7100f0f980(UnkPropertyArrays* self, u32 capacity) {
                     if (old->data != &pool->empty) {
                         --old->data->ref_count;
                         if (old->data->ref_count == 0) {
-                            fn_71000803a4(pool, old->data);
+                            StringPool_Release(pool, old->data);
                             pool = g_unk_7101d47108;
                         }
                     }

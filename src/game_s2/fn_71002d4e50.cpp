@@ -11,7 +11,7 @@ void fn_71002d4e50(base::UnkPairArrays* self, u32 reserve, u32 flags) {
     self->capacity = 0;
     self->step = 10;
     self->flags = flags;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     if (self->capacity < reserve) {
         self->Grow(reserve);
         self->capacity = reserve;

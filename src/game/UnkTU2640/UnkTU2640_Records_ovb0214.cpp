@@ -154,7 +154,7 @@ struct UnkNamedMap_ovb0214 {
     UnkMapNode_ovb0214* head;
 
     __attribute__((always_inline)) UnkNamedMap_ovb0214()
-        : allocator(fn_7100083990()), flags(0xe), count(0), buckets(0xe), tail(nullptr), head(nullptr) {
+        : allocator(GetDefaultAllocator()), flags(0xe), count(0), buckets(0xe), tail(nullptr), head(nullptr) {
         if (buckets.count < 11) {
             buckets.Reserve(11);
             __builtin_memset(&buckets.data[buckets.count], 0, (11 - buckets.count) * sizeof(void*));

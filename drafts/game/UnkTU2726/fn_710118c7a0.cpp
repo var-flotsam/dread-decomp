@@ -106,7 +106,7 @@ struct UnkName_l18c7a0 {
 
 // Tells the actor's timeline which suit it wears.
 static inline void SetSuit_l18c7a0(UnkPlacedActor_l18c7a0* actor, const UnkName_l18c7a0& suit) {
-    u64 key = fn_7100001570(suit.text, suit.length);
+    u64 key = StringCrc64(suit.text, suit.length);
     fn_7100d7c828(reinterpret_cast<UnkActor*>(actor), &key, false);
 }
 

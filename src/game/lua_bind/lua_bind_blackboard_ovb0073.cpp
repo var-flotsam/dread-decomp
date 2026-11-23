@@ -101,7 +101,7 @@ struct UnkLuaNameList_ovb0073 : base::UnkVtableList<u8> {
         count = 0;
         head = nullptr;
         tail = nullptr;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
     }
     ~UnkLuaNameList_ovb0073() {

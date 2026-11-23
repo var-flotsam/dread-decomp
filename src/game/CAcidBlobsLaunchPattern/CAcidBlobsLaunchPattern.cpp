@@ -40,7 +40,7 @@ void fn_71005d69b8(UnkLaunchPattern_71005d69b8* self) {
     self->field_0x110.field_0x8 = 0;
     self->field_0x110.field_0x14 = true;
     self->field_0x110.growth = 15;
-    self->field_0x110.allocator = fn_7100083990();
+    self->field_0x110.allocator = GetDefaultAllocator();
 }
 
 // The same for CBouncingCreaturesLaunchPattern, whose array follows the string id directly.
@@ -63,5 +63,5 @@ void fn_71005dfcc4(UnkLaunchPattern_71005dfcc4* self) {
     self->field_0xf8.field_0x14 = true;
     self->field_0xf8.field_0x8 = 0;
     self->field_0xf8.growth = 15;
-    self->field_0xf8.allocator = fn_7100083990();
+    self->field_0xf8.allocator = GetDefaultAllocator();
 }

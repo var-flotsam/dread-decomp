@@ -63,7 +63,7 @@ static inline UnkShapeTester_A5_b68* GetTester_lef694() {
 
 // The object registered under a name with the given kind.
 static inline void* FindObject_lef694(UnkGameManager* gm, const char* name, u64 length, u32 kind) {
-    u64 id = fn_7100001570(name, length);
+    u64 id = StringCrc64(name, length);
     alignas(8) u32 flags = kind;  // in an 8-byte slot, as the other callers of fn_7100deba8c
     return fn_7100deba8c(gm, &id, &flags);
 }

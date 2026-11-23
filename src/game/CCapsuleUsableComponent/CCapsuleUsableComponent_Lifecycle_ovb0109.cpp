@@ -52,7 +52,7 @@ struct UnkCapsuleUsableComponent_ovb0109 {
 static_assert(__builtin_offsetof(UnkCapsuleUsableComponent_ovb0109, link_vtable) == 0x628, "layout");
 static_assert(__builtin_offsetof(UnkCapsuleUsableComponent_ovb0109, field_0x650) == 0x650, "layout");
 
-#define INIT_LIST_OVB0109(o)                            self->o##_vtable = g_unk_7101a20998 + 2;           self->o##_data = nullptr;                          self->o##_count = 0;                               self->o##_step = 10;                               self->o##_grow = true;                             self->o##_flags = 0xf;                             self->o##_allocator = fn_7100083990();             self->o##_field_0x30 = 0;                          self->o##_vtable = g_unk_7101a33fa0 + 2;           self->o##_owner = nullptr
+#define INIT_LIST_OVB0109(o)                            self->o##_vtable = g_unk_7101a20998 + 2;           self->o##_data = nullptr;                          self->o##_count = 0;                               self->o##_step = 10;                               self->o##_grow = true;                             self->o##_flags = 0xf;                             self->o##_allocator = GetDefaultAllocator();             self->o##_field_0x30 = 0;                          self->o##_vtable = g_unk_7101a33fa0 + 2;           self->o##_owner = nullptr
 
 void fn_7100a78ca0(UnkCapsuleUsableComponent_ovb0109* self) {
     fn_7100a819ac(self);

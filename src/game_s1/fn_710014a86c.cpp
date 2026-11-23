@@ -257,7 +257,7 @@ void fn_710014b810(UnkTwoBasesInit_710014b810* self) {
     self->vtable = unk_7101a1d150 + 0x10;
     self->base_vtable = unk_7101a1d150 + 0x60;
     new (&self->array_0x80) base::global::CRntVector<void*>(0x40);
-    self->list_allocator = fn_7100083990();
+    self->list_allocator = GetDefaultAllocator();
     self->list_field_0x8 = 0xe;
     self->list_size = 0;
     new (&self->buckets) base::global::CRntVector<void*>(0xe);

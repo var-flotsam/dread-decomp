@@ -168,7 +168,7 @@ void fn_7100e06590() {
     array.count = 0;
     array.capacity = 0;
     array.flags = 15;
-    array.allocator = fn_7100083990();
+    array.allocator = GetDefaultAllocator();
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_7100de49cc), &array, g_unk_7101a19000);
 
     InitId(&s.easy_completed, "EasyModeCompleted");

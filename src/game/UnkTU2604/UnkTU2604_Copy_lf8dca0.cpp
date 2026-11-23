@@ -96,7 +96,7 @@ static inline void InitEmptyStrId(CStrId* id) {
 
 // The map's constructor: allocation flags 0xe and 11 empty buckets.
 static void InitSoundMap(UnkTU2604CopySoundMap* map) {
-    map->allocator = fn_7100083990();
+    map->allocator = GetDefaultAllocator();
     map->flags = 0xe;
     map->count = 0;
     new (&map->buckets) CRntVector<UnkTU2604CopySoundNode*>(0xe);

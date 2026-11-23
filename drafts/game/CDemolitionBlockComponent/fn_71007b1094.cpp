@@ -68,7 +68,7 @@ void fn_71007b1094(UnkDemolitionBlock* self, f32 value) {
     if (!self->field_0x78)
         (reinterpret_cast<void (*)(UnkDemolitionBlock*)>((*reinterpret_cast<void***>(self))[0x88 / 8]))(self);
     if (UnkWeakTarget* target = self->owner->field_0x220) {
-        u64 hash = fn_7100001570(g_unk_71015c6b1a, 4);
+        u64 hash = StringCrc64(g_unk_71015c6b1a, 4);
         base::reflection::UnkReflTypeIdArg mode;
         mode.id = 0;
         base::reflection::UnkReflTypeIdArg mask;

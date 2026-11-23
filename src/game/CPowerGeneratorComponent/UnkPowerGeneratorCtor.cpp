@@ -64,7 +64,7 @@ void fn_7100a7f688(UnkPowerGeneratorComponent* self) {
     self->field_0xd0 = 10;
     self->field_0xd4 = true;
     self->field_0xd8 = 0xf;
-    self->field_0xe0 = fn_7100083990();
+    self->field_0xe0 = GetDefaultAllocator();
     self->field_0xe8 = 0;
     self->field_0xb8 = g_unk_7101a33fa0 + 2;
     self->field_0xf0 = 0;
@@ -74,7 +74,7 @@ void fn_7100a7f688(UnkPowerGeneratorComponent* self) {
     self->field_0x110 = 10;
     self->field_0x114 = true;
     self->field_0x118 = 0xf;
-    self->field_0x120 = fn_7100083990();
+    self->field_0x120 = GetDefaultAllocator();
     self->field_0x128 = 0;
     self->field_0xf8 = g_unk_7101a33fa0 + 2;
     self->field_0x130 = 0;

@@ -28,7 +28,7 @@ struct UnkHolderVec_b260 {
 
     explicit UnkHolderVec_b260(u32 flags)
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(flags),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
 };
 
 void fn_7101025974(UnkDropTarget* target, UnkHolderVec_b260* out);
@@ -91,7 +91,7 @@ static inline void ResetPath(base::global::UnkFilePathStrIdBase& id) {
         if (id.data && id.data != &pool->empty) {
             --id.data->ref_count;
             if (id.data->ref_count == 0) {
-                fn_71000803a4(pool, id.data);
+                StringPool_Release(pool, id.data);
                 pool = g_unk_7101d47200;
             }
         }

@@ -36,7 +36,7 @@ struct UnkArray_l19aee8 {
     u32 flags;
 
     explicit UnkArray_l19aee8(u32 flags)
-        : data(nullptr), count(0), capacity(0), allocator(fn_7100083990()), flags(flags) {}
+        : data(nullptr), count(0), capacity(0), allocator(GetDefaultAllocator()), flags(flags) {}
 };
 
 struct UnkObject_l19aee8 {

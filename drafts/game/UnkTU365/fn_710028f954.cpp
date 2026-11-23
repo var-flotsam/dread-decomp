@@ -38,7 +38,7 @@ struct UnkNavVertexArray_28f954 {
 
     explicit UnkNavVertexArray_28f954(u32 flags)
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(flags),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
     // Out of line: takes the other's settings and copies its vertices.
     UnkNavVertexArray_28f954(const UnkNavVertexArray_28f954& other) {
         fn_710011d8b4(reinterpret_cast<UnkPart0*>(this), reinterpret_cast<const UnkPart0*>(&other));
@@ -242,7 +242,7 @@ struct UnkPointList_28f954 {
     UnkPointNode_28f954* head = nullptr;
     UnkPointNode_28f954* tail = nullptr;
     u32 count = 0;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
 
     ~UnkPointList_28f954() {
         for (UnkPointNode_28f954* n = head; n;) {

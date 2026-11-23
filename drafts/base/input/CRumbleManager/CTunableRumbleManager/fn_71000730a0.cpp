@@ -31,7 +31,7 @@ inline void ReservePool(UnkSetupStrList* list, u32 count) {
     }
     if (count) {
         if (!allocator)
-            allocator = fn_7100083990();
+            allocator = GetDefaultAllocator();
         list->field_0x38 = allocator;
         u64 size = (u64)count * sizeof(UnkStrNode_l0730a0);
         void* buffer = allocator->vf_0x40(size, 8, flags);

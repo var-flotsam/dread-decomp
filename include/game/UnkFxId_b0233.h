@@ -15,7 +15,7 @@ struct UnkFxId_b0233 {
         if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
             if (data != &pool->empty) {
                 if (--data->ref_count == 0)
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
             }
         }
     }

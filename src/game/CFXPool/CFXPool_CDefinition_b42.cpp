@@ -21,7 +21,7 @@ void fn_710104f7a4(void* self, const u32* key, UnkFXPoolRecord_b42a3* other) {
         if (e->id && e->id != &pool->empty) {
             --e->id->ref_count;
             if (e->id->ref_count == 0) {
-                fn_71000803a4(pool, e->id);
+                StringPool_Release(pool, e->id);
                 pool = g_unk_7101d47200;
             }
         }

@@ -8,7 +8,7 @@ extern char g_unk_7101a1afb0[];  // the registry's vtable (GOT 0x7101cbc3d8)
 template <char* Vtable, bool CountedTail>
 __attribute__((always_inline)) static inline void Construct(UnkRegistry_0x70* self) {
     self->vtable = Vtable + 0x10;
-    base::UnkAllocator* alloc = fn_7100083990();
+    base::UnkAllocator* alloc = GetDefaultAllocator();
     typedef u64 word;
     char* base = reinterpret_cast<char*>(self);
     self->flags = 0xe;
@@ -18,7 +18,7 @@ __attribute__((always_inline)) static inline void Construct(UnkRegistry_0x70* se
     *reinterpret_cast<word*>(base + 0x1c) = 0;
     self->entries.field_0x14 = true;
     self->entries.flags = 0xe;
-    self->entries.allocator = fn_7100083990();
+    self->entries.allocator = GetDefaultAllocator();
     self->field_0x48 = 0;
     self->field_0x40 = 0;
     if (self->entries.count < 11) {

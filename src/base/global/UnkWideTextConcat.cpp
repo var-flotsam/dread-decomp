@@ -26,7 +26,7 @@ struct UnkWideTextCat {
     base::UnkAllocator* allocator;
 
     void Allocate(u32 length) {
-        base::UnkAllocator* a = fn_7100083990();
+        base::UnkAllocator* a = GetDefaultAllocator();
         chars = static_cast<wchar_t*>(a->vf_0x40((u64)(length + 1) * 4, 8, 0x11));
         wcscpy(chars, g_unk_7101647684);
         count = wcslen(chars);
@@ -34,7 +34,7 @@ struct UnkWideTextCat {
     base::UnkAllocator* GetAllocator() const {
         base::UnkAllocator* a = allocator;
         if (!a)
-            a = fn_7100083990();
+            a = GetDefaultAllocator();
         return a;
     }
     void Resize(const wchar_t* text, u32 length) {

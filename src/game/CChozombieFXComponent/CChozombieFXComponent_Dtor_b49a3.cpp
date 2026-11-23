@@ -34,7 +34,7 @@ __attribute__((always_inline)) static inline void Destroy_b49a3(UnkChozombieFXCo
         if (*path && *path != &pool->empty) {
             --(*path)->ref_count;
             if ((*path)->ref_count == 0) {
-                fn_71000803a4(pool, *path);
+                StringPool_Release(pool, *path);
                 pool = g_unk_7101d47200;
             }
         }

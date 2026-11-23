@@ -93,7 +93,7 @@ void fn_7100da635c(char* self_) {
             if (self->path.data != &pool->empty) {
                 --self->path.data->ref_count;
                 if (self->path.data->ref_count == 0)
-                    fn_71000803a4(pool, self->path.data);
+                    StringPool_Release(pool, self->path.data);
             }
             self->path.data = d;
         }

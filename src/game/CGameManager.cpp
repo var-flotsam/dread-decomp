@@ -321,7 +321,7 @@ struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
         count = 0;
         head = nullptr;
         tail = nullptr;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
     }
     ~UnkFilePathList() {
@@ -348,7 +348,7 @@ static inline void AssignPath(CFilePathStrId* self, const CFilePathStrId& other)
         if (self->data != empty) {
             --self->data->ref_count;
             if (self->data->ref_count == 0)
-                fn_71000803a4(pool, self->data);
+                StringPool_Release(pool, self->data);
         }
         self->data = d;
     }
@@ -710,7 +710,7 @@ struct UnkPtrList {
         count = 0;
         head = nullptr;
         tail = nullptr;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
     }
     ~UnkPtrList() {
@@ -752,7 +752,7 @@ struct UnkStrVector {
 
     UnkStrVector(u32 step_, u32 flags_)
         : data(nullptr), count(0), capacity(0), step(step_), field_0x14(true), flags(flags_),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
     void Reserve(u32 n) {
         if (capacity < n) {
             CRntString* p = static_cast<CRntString*>(allocator->vf_0x40((u64)n * sizeof(CRntString), 8, flags));

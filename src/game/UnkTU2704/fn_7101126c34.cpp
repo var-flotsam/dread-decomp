@@ -53,7 +53,7 @@ void fn_7101126c34(CSpawnPointComponent* self) {
     {
         UnkGameManager* current = g_unk_7101d47310;
         u32 camera_kind = g_unk_71727bebb8;
-        u64 id = fn_7100001570("LS_EmmyZone", 11);
+        u64 id = StringCrc64("LS_EmmyZone", 11);
         u32 kind = camera_kind;
         zone = fn_7100deba8c(current, &id, &kind);
     }

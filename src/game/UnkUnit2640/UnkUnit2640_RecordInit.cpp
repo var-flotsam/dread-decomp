@@ -24,7 +24,7 @@ void fn_7100ffc49c(UnkUnit2640Record* self) {
     self->step = 10;
     self->field_0x1c = true;
     self->flags = 0xf;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->field_0x30 = 0;
     self->scale[0] = 1.0f;
     self->scale[1] = 1.0f;

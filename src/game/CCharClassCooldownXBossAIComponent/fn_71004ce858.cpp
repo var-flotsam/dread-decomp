@@ -43,7 +43,7 @@ void fn_71004ce858(UnkNode* self) {
     St<u32>(self, 0xc50, 10);
     St<u8>(self, 0xc54, 1);
     St<u32>(self, 0xc58, 0xf);
-    St<void*>(self, 0xc60, fn_7100083990());
+    St<void*>(self, 0xc60, GetDefaultAllocator());
     fn_71008c2da8(At(self, 0xc78));
     self->field_0x4fc = 0x101;
     *reinterpret_cast<u8*>(At(self, 0x409)) = 0;

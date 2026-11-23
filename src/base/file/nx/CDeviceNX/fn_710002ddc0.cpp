@@ -39,7 +39,7 @@ __attribute__((always_inline)) static inline void Release(base::UnkStrIdMember* 
         if (data && data != &pool->empty) {
             --data->ref_count;
             if (data->ref_count == 0)
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
         }
     }
 }
@@ -124,7 +124,7 @@ struct UnkIdOwned_71001a98dc {
 __attribute__((always_inline)) static inline void Destroy(UnkIdOwned_71001a98dc* self) {
     self->vtable = unk_7101a1e4d8 + 0x10;
     if (self->owned) {
-        fn_7100083990()->vf_0x48(self->owned);
+        GetDefaultAllocator()->vf_0x48(self->owned);
         self->owned = nullptr;
     }
     using Id = base::UnkStrIdMember;

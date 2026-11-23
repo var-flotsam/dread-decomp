@@ -85,7 +85,7 @@ struct UnkNameId_b0165 : UnkStrIdBase {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if ((&pool->empty != data) & (data != nullptr)) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -113,7 +113,7 @@ s32 fn_7101095fb0(lua_State* L) {
             if (name.data && name.data != &pool->empty) {
                 --name.data->ref_count;
                 if (name.data->ref_count == 0) {
-                    fn_71000803a4(pool, name.data);
+                    StringPool_Release(pool, name.data);
                     pool = g_unk_7101d47108;
                 }
             }

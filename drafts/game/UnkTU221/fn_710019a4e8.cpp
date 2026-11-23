@@ -72,7 +72,7 @@ void fn_710019a4e8(UnkBillboardDrawable* drawable, u32 a, u32 slotCount) {
         self->entries[i].field_0x20 = 0;
         self->entries[i].count = 1;
         self->entries[i].sources = static_cast<const UnkMatrix44**>(fn_7100083ba0(sizeof(UnkMatrix44*), 0x1e));
-        self->entries[i].matrices = static_cast<f32*>(fn_7100083990()->vf_0x40(12 * sizeof(f32), 8, 0x32));
+        self->entries[i].matrices = static_cast<f32*>(GetDefaultAllocator()->vf_0x40(12 * sizeof(f32), 8, 0x32));
         self->entries[i].sources[0] = nullptr;
     }
 }

@@ -91,7 +91,7 @@ static inline s32 KindOf(u64 name) {
         return 1;
     if (name == 0x61839512038ac025ull)
         return 0;
-    return fn_7100001570("E_GEOMETRY", 10) == name ? 2 : 0x7fffffff;
+    return StringCrc64("E_GEOMETRY", 10) == name ? 2 : 0x7fffffff;
 }
 
 void fn_7100c7edec(UnkTU2193* self) {

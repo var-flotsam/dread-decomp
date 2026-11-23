@@ -24,10 +24,10 @@ struct UnkPrimeTable_2b2330 {
     u32 field_0x44;
     u32 field_0x48;
 
-    UnkPrimeTable_2b2330(u32 n, u32 fl, base::UnkAllocator* alloc = fn_7100083990())
+    UnkPrimeTable_2b2330(u32 n, u32 fl, base::UnkAllocator* alloc = GetDefaultAllocator())
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(fl),
-          allocator(alloc ? alloc : fn_7100083990()), field_0x28(0xffffffff), field_0x30(nullptr),
-          node_allocator(fn_7100083990()), node_flags(fl), field_0x44(0), field_0x48(1) {
+          allocator(alloc ? alloc : GetDefaultAllocator()), field_0x28(0xffffffff), field_0x30(nullptr),
+          node_allocator(GetDefaultAllocator()), node_flags(fl), field_0x44(0), field_0x48(1) {
         if (!fn_71000669a0(n))
             n = fn_7100066930(n);
         Resize(n);

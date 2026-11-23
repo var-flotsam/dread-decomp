@@ -76,7 +76,7 @@ void fn_7100a68e8c(UnkWaterTriggerChangeComponent* self) {
     self->field_0xc0 = 10;
     self->field_0xc4 = true;
     self->field_0xc8 = 0xf;
-    self->field_0xd0 = fn_7100083990();
+    self->field_0xd0 = GetDefaultAllocator();
     self->field_0xd8 = 0;
     self->field_0xa8 = g_unk_7101a33fa0 + 2;
     self->field_0xe0 = 0;
@@ -86,7 +86,7 @@ void fn_7100a68e8c(UnkWaterTriggerChangeComponent* self) {
     self->field_0x100 = 10;
     self->field_0x104 = true;
     self->field_0x108 = 0xf;
-    self->field_0x110 = fn_7100083990();
+    self->field_0x110 = GetDefaultAllocator();
     self->field_0x118 = 0;
     self->field_0xe8 = g_unk_7101a33fa0 + 2;
     self->field_0x120 = 0;
@@ -96,7 +96,7 @@ void fn_7100a68e8c(UnkWaterTriggerChangeComponent* self) {
     self->field_0x140 = 10;
     self->field_0x144 = true;
     self->field_0x148 = 0xf;
-    self->field_0x150 = fn_7100083990();
+    self->field_0x150 = GetDefaultAllocator();
     self->field_0x158 = 0;
     self->field_0x128 = g_unk_7101a33fa0 + 2;
     self->field_0x160 = 0;

@@ -93,7 +93,7 @@ struct UnkEdgePairList : base::UnkVtableList<UnkEdgePairListNode> {
         head = nullptr;
         tail = nullptr;
         vtable = g_unk_7101a210d8 + 0x10;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
     }
 

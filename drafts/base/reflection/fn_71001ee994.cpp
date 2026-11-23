@@ -106,7 +106,7 @@ void fn_71001ee994(UnkRegistry_l1ee994* self, UnkRegObject_l1ee994* obj) {
     ++obj->name->use_count;
     const char* text = obj->name->text;
     text = text ? text : g_unk_710162e2ed;
-    u64 hash = fn_7100001570(text, __builtin_strlen(text));
+    u64 hash = StringCrc64(text, __builtin_strlen(text));
     if (!self->all.Contains(hash))
         self->all.Add(hash, obj);
     switch (obj->vf_0x88()->kind) {

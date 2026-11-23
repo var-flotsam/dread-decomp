@@ -96,7 +96,7 @@ static inline void Release_ovb0062(CFilePathStrId* path) {
         if (path->data && path->data != &pool->empty) {
             --path->data->ref_count;
             if (path->data->ref_count == 0) {
-                fn_71000803a4(pool, path->data);
+                StringPool_Release(pool, path->data);
                 pool = g_unk_7101d47200;
             }
         }

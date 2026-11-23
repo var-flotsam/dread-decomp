@@ -121,7 +121,7 @@ struct UnkKindRegistry_b0234 {
     base::UnkAllocator* allocator;
 
     UnkKindRegistry_b0234()
-        : kinds(nullptr), ids(nullptr), count(0), capacity(0), step(10), flags(0xe), allocator(fn_7100083990()) {}
+        : kinds(nullptr), ids(nullptr), count(0), capacity(0), step(10), flags(0xe), allocator(GetDefaultAllocator()) {}
     ~UnkKindRegistry_b0234() asm("fn_7100e7241c");
 };
 void fn_7100e72518(UnkKindRegistry_b0234* self, u32 capacity);
@@ -320,7 +320,7 @@ struct UnkKeyId_b0234 {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -515,7 +515,7 @@ struct UnkKeyedArrayRaw_b0234 {
     base::UnkAllocator* allocator;
 
     UnkKeyedArrayRaw_b0234()
-        : values(nullptr), keys(nullptr), count(0), capacity(0), step(10), flags(0xe), allocator(fn_7100083990()) {}
+        : values(nullptr), keys(nullptr), count(0), capacity(0), step(10), flags(0xe), allocator(GetDefaultAllocator()) {}
 };
 
 struct UnkMinimapDef_b0234 {

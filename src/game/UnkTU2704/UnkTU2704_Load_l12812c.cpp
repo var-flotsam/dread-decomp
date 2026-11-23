@@ -73,7 +73,7 @@ struct UnkFieldId_l12812c : UnkStrIdBase {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -102,33 +102,33 @@ void fn_710112812c(CSpawnPointComponent* component, CRntFile* file) {
     CRntFile_Read(file, &spawnOnFloor, 1, 1);
 
     {
-        u64 key = fn_7100001570("sCharClass", 10);
+        u64 key = StringCrc64("sCharClass", 10);
         UnkFieldId_l12812c id(charClass, true);
         Set<fn_7100009658>(self, key, &id);
     }
     {
-        u64 key = fn_7100001570("sOnBeforeGenerate", 17);
+        u64 key = StringCrc64("sOnBeforeGenerate", 17);
         UnkFieldId_l12812c id(onBeforeGenerate, true);
         Set<fn_7100009658>(self, key, &id);
     }
     {
-        u64 key = fn_7100001570("sOnEntityGenerated", 18);
+        u64 key = StringCrc64("sOnEntityGenerated", 18);
         UnkFieldId_l12812c id(onEntityGenerated, true);
         Set<fn_7100009658>(self, key, &id);
     }
     {
-        u64 key = fn_7100001570("sStartAnimation", 15);
+        u64 key = StringCrc64("sStartAnimation", 15);
         UnkFieldId_l12812c id(startAnimation, true);
         Set<fn_7100009658>(self, key, &id);
     }
     {
-        u64 key = fn_7100001570("bSpawnOnFloor", 13);
+        u64 key = StringCrc64("bSpawnOnFloor", 13);
         Set<fn_710000d228>(self, key, &spawnOnFloor);
     }
     if (HasMore(file)) {
         bool checkCollisions;
         CRntFile_Read(file, &checkCollisions, 1, 1);
-        u64 key = fn_7100001570("bCheckCollisions", 16);
+        u64 key = StringCrc64("bCheckCollisions", 16);
         Set<fn_710000d228>(self, key, &checkCollisions);
     }
     if (HasMore(file)) {
@@ -136,22 +136,22 @@ void fn_710112812c(CSpawnPointComponent* component, CRntFile* file) {
         s32 maxNumToGenerate;
         CRntFile_Read(file, &timeToActivate, 4, 1);
         CRntFile_Read(file, &maxNumToGenerate, 4, 1);
-        u64 key = fn_7100001570("fTimeToActivate", 15);
+        u64 key = StringCrc64("fTimeToActivate", 15);
         Set<fn_710000abbc>(self, key, &timeToActivate);
-        key = fn_7100001570("iMaxNumToGenerate", 17);
+        key = StringCrc64("iMaxNumToGenerate", 17);
         Set<fn_7100014768>(self, key, &maxNumToGenerate);
     }
     if (HasMore(file)) {
         const char* sceneShapeId;
         CRntFile_ReadCString(file, &sceneShapeId);
-        u64 key = fn_7100001570("sSceneShapeId", 13);
+        u64 key = StringCrc64("sSceneShapeId", 13);
         UnkFieldId_l12812c id(sceneShapeId, true);
         Set<fn_7100009658>(self, key, &id);
     }
     if (HasMore(file)) {
         const char* collisionSceneShapeId;
         CRntFile_ReadCString(file, &collisionSceneShapeId);
-        u64 key = fn_7100001570("sCollisionSceneShapeId", 22);
+        u64 key = StringCrc64("sCollisionSceneShapeId", 22);
         UnkFieldId_l12812c id(collisionSceneShapeId, true);
         Set<fn_7100009658>(self, key, &id);
     }
@@ -160,15 +160,15 @@ void fn_710112812c(CSpawnPointComponent* component, CRntFile* file) {
         bool automanaged;
         CRntFile_Read(file, &startEnabled, 1, 1);
         CRntFile_Read(file, &automanaged, 1, 1);
-        u64 key = fn_7100001570("bStartEnabled", 13);
+        u64 key = StringCrc64("bStartEnabled", 13);
         Set<fn_710000d228>(self, key, &startEnabled);
-        key = fn_7100001570("bAutomanaged", 12);
+        key = StringCrc64("bAutomanaged", 12);
         Set<fn_710000d228>(self, key, &automanaged);
     }
     if (HasMore(file)) {
         const char* navigableShape;
         CRntFile_ReadCString(file, &navigableShape);
-        u64 key = fn_7100001570("sNavigableShape", 15);
+        u64 key = StringCrc64("sNavigableShape", 15);
         UnkFieldId_l12812c id(navigableShape, true);
         Set<fn_7100009658>(self, key, &id);
     }

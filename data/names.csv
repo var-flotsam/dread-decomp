@@ -2,6 +2,7 @@ address,name,name_source,reason
 0x71000003d4,CStrId_Construct,inferred,"constructs a string id from a C string: hashes it, finds it in the pool or inserts it"
 0x710000051c,CStrId_Destroy,inferred,"a string id's destructor, registered with __cxa_atexit for global ids"
 0x7100000850,CStrId_ConstructFromRntString,inferred,constructs a string id from a CRntString's text and cached key
+0x7100001570,StringCrc64,inferred,the 64-bit string hash behind CStrId and CName: a table-driven reflected CRC-64 with an all-ones initial value and no final xor
 0x710007bf9c,CRntFile_Allocate,inferred,allocates the file's block of the given size and puts the position at 0; false when no allocator can be had
 0x710007c00c,CRntFile_Seek,inferred,"moves the read/write position: whence 0 sets it, 1 adds to it, 2 puts it on the last byte; false when the target is outside the contents"
 0x710007c3f0,CRntFile_Write,inferred,"writes bytes at the position, growing the file, and moves the position on"
@@ -52,7 +53,11 @@ address,name,name_source,reason
 0x710007fc80,CRntString_StartsWith,inferred,whether the text starts with another string's text
 0x710007fce0,CRntString_EndsWith,inferred,whether the text ends with a C string
 0x710007fdb4,StringPool_InitHeap,inferred,sets up the string pool's function-local static heap with a fixed number of blocks per size class
+0x71000801e4,StringPool_Insert,inferred,"allocates a node for a string not in the pool yet, links it into its bucket and fills its data with a reference count of 1"
+0x71000803a4,StringPool_Release,inferred,called when a string id's reference count drops to zero: frees the string's heap copy and erases its node from the pool's hash set
+0x71000804f8,StringPool_Find,inferred,looks up a string's pooled data by its CRC-64 (the string id constructors call it before inserting)
 0x7100080824,StringPool_Bucket,inferred,returns the address of a bucket head of the pool's hash set
+0x7100083990,GetDefaultAllocator,inferred,returns the current default allocator (the global the default-allocator set-up points at); every allocation without an allocator of its own goes through it
 0x7100083f74,StringHeap_Init,inferred,sets up the string heap's size classes from a table of block counts
 0x7100084030,StringHeap_Alloc,inferred,allocates a block from the string heap; the block's first field is the memory
 0x7100084144,StringHeap_Free,inferred,returns a block to the string heap

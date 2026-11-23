@@ -81,7 +81,7 @@ void fn_710055b1e8(UnkEmmyRelaxAI_b59* self) {
     if (self->owner->field_0x220) {
         fn_710117662c(self->owner->field_0x220, 8, g_unk_7101649db8, false, false, -1.0f);
         UnkActorTarget* target = self->owner->field_0x220;
-        u64 hash = fn_7100001570("relax", 5);
+        u64 hash = StringCrc64("relax", 5);
         mode.id = 2;
         mask.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
         fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);

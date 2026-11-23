@@ -31,7 +31,7 @@ void fn_7100a4cb9c(UnkColliderTriggerComponent_cb9c* self) {
     self->field_0x440 = 10;
     self->field_0x444 = true;
     self->field_0x448 = 0xf;
-    self->field_0x450 = fn_7100083990();
+    self->field_0x450 = GetDefaultAllocator();
     self->field_0x458 = 0;
     self->field_0x428 = g_unk_7101a20950 + 2;
     self->field_0x460 = 0;

@@ -22,7 +22,7 @@ struct PrimitiveTypeDescription;  // G: the getter's tag, or the type itself (Pr
 template <class G>
 inline CType refl_MakePrimitiveType(const base::global::CStrId& name) {
     using Tr = PrimitiveTypeDescription<G>;
-    return CType(fn_7100001570(Tr::name, Tr::length), name, Tr::size, reinterpret_cast<EqualsFn>(Tr::equals),
+    return CType(StringCrc64(Tr::name, Tr::length), name, Tr::size, reinterpret_cast<EqualsFn>(Tr::equals),
                  reinterpret_cast<HashFn>(Tr::hash), reinterpret_cast<TypeOfFn>(Tr::type_of),
                  reinterpret_cast<ClassSetupFn>(Tr::add_attributes), nullptr,
                  {reinterpret_cast<SlotFn>(Tr::construct), reinterpret_cast<CopyConstructFn>(Tr::copy_construct),

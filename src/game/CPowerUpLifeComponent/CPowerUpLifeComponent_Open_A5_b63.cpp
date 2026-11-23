@@ -89,7 +89,7 @@ u32 fn_71008e51c4(UnkPowerUpLife_A5_b63* self) {
         self->link = nullptr;
     }
     if (UnkTimelineComponent* timeline = self->owner->timeline) {
-        u64 key = fn_7100001570("onimpact", 8);
+        u64 key = StringCrc64("onimpact", 8);
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
         fn_7100a2cb7c(timeline, &key, &mask.id, false, -1.0f);

@@ -40,7 +40,7 @@ struct UnkStrId_71005077f8 {
             UnkStringData_71005077f8* empty = reinterpret_cast<UnkStringData_71005077f8*>(&pool->empty);
             if (old && old != empty) {
                 if (--old->ref_count == 0) {
-                    fn_71000803a4(pool, reinterpret_cast<UnkStringData*>(old));
+                    StringPool_Release(pool, reinterpret_cast<UnkStringData*>(old));
                     pool = g_unk_7101d47108;
                 }
             }

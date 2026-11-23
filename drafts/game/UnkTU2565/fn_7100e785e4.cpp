@@ -34,7 +34,7 @@ struct UnkRowTexts_le785e4 {
     u32 capacity = 0;
     u32 step = 10;
     u32 flags = 0xe;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
 
     ~UnkRowTexts_le785e4() {
         if (values && count) {

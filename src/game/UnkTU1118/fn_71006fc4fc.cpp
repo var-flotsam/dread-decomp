@@ -100,7 +100,7 @@ struct UnkTU1118Member {
         field_0xe8 = 10;
         field_0xec = 1;
         field_0xf0 = 15;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         field_0x100 = 0;
         field_0x102 = 0;
         field_0x104 = 0;

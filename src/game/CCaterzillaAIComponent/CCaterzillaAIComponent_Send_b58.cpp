@@ -26,7 +26,7 @@ void fn_71003f775c(UnkCaterzillaSend_b58* self) {
     if (target) {
         fn_710117662c(target, 12, 0, false, false, -1.0f);
         fn_710117662c(target, 6, 0, false, false, -1.0f);
-        base::reflection::refl_EmitU32(target, fn_7100001570("relax_spawn90", 13), 0xf4061ff25a2163d6, 1,
+        base::reflection::refl_EmitU32(target, StringCrc64("relax_spawn90", 13), 0xf4061ff25a2163d6, 1,
                                        &g_unk_710164b958, &g_unk_7172769740);
     }
 }

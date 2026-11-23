@@ -188,7 +188,7 @@ bool fn_7100573a60(UnkWatch_b0258w* watch, UnkWatchArg_b0258w* arg, f32 scale, f
         f32 width = spread != -1.0f ? spread : self->spread;
         f32 first = atan2f(self->dir.x, self->dir.y) + width * -0.5f;
         f32 step = width / 40.0f;
-        fn_7100083990();
+        GetDefaultAllocator();
 
         u32 i = 0;
         do {

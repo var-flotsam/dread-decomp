@@ -183,5 +183,5 @@ void fn_710114112c(UnkInvComponent_ovb0094* self) {
     self->field_0x98 = nullptr;
     self->field_0xa0 = nullptr;
     self->field_0xa8 = 10;
-    self->field_0xb0 = fn_7100083990();
+    self->field_0xb0 = GetDefaultAllocator();
 }

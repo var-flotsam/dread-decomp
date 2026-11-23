@@ -33,7 +33,7 @@ __attribute__((always_inline)) inline void refl_ParentPoolListCtor(UnkParentPool
     self->head = nullptr;
     self->tail = nullptr;
     if (!a)
-        a = fn_7100083990();
+        a = GetDefaultAllocator();
     self->allocator = a;
     self->pool_parent = nullptr;
     self->vtable = Vtable + 0x10;
@@ -47,7 +47,7 @@ __attribute__((always_inline)) inline void refl_ParentPoolListCtor(UnkParentPool
     self->pool.Release();
     if (n) {
         if (!parent)
-            parent = fn_7100083990();
+            parent = GetDefaultAllocator();
         self->pool.parent = parent;
         u64 size = (u64)n * Elem;
         fn_710008378c(&self->pool.blocks, parent->vf_0x40(size, 8, f), size, Elem);

@@ -58,7 +58,7 @@ void fn_710087b9dc(UnkThermalRoomConnectionFX* self) {
     self->field_0x98 = 10;
     self->field_0x9c = true;
     self->field_0xa0 = 0xf;
-    self->field_0xa8 = fn_7100083990();
+    self->field_0xa8 = GetDefaultAllocator();
     self->field_0xb0 = 0;
     self->field_0x80 = g_unk_7101a20950 + 2;
     self->field_0xb8 = 0;
@@ -68,7 +68,7 @@ void fn_710087b9dc(UnkThermalRoomConnectionFX* self) {
     self->field_0xd8 = 10;
     self->field_0xdc = true;
     self->field_0xe0 = 0xf;
-    self->field_0xe8 = fn_7100083990();
+    self->field_0xe8 = GetDefaultAllocator();
     self->field_0xf0 = 0;
     self->field_0xc0 = g_unk_7101a20950 + 2;
     self->field_0xf8 = 0;

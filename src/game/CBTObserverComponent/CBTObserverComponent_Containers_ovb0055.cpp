@@ -335,7 +335,7 @@ struct UnkObserverGroupOwner_ovb0055 {
 
 UnkObserverGroupItems_ovb0055* fn_7100ca7510(UnkObserverGroupOwner_ovb0055* self, const CStrId* key) {
     UnkObserverGroupMap_ovb0055& map = self->map;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     UnkObserverGroupNode_ovb0055** slot = nullptr;
     if (map.field_0x18) {
         const auto* h = reinterpret_cast<const UnkHashedStr_ovb0055*>(key->data);

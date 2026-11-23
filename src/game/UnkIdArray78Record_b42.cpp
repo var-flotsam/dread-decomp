@@ -39,7 +39,7 @@ void fn_71010027ac(UnkIdArray78Record_b42a3* self) {
     self->items.step = 10;
     self->items.field_0x14 = true;
     self->items.flags = 0xf;
-    self->items.allocator = fn_7100083990();
+    self->items.allocator = GetDefaultAllocator();
 }
 
 // The array's copy assignment on its own.

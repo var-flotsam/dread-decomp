@@ -14,7 +14,7 @@ struct UnkArray_b218 {
     base::UnkAllocator* allocator;
 
     explicit UnkArray_b218(u32 f)
-        : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(f), allocator(fn_7100083990()) {}
+        : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(f), allocator(GetDefaultAllocator()) {}
 
     __attribute__((always_inline)) UnkArray_b218(const UnkArray_b218& other)
         : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14),

@@ -123,7 +123,7 @@ struct UnkSoundKeyId_b0038 {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -394,7 +394,7 @@ __attribute__((always_inline)) static inline void Construct(UnkSoundOwnerObject_
     self->table.capacity = 0;
     self->table.step = 10;
     self->table.flags = 0xe;
-    self->table.allocator = fn_7100083990();
+    self->table.allocator = GetDefaultAllocator();
 }
 
 static inline void CallSlot(UnkSoundOwnerObject_b0038* self, u32 slot) {
@@ -434,7 +434,7 @@ void fn_7101023378(UnkSoundTableObject_b0038* self) {
     self->table.capacity = 0;
     self->table.step = 10;
     self->table.flags = 0xe;
-    self->table.allocator = fn_7100083990();
+    self->table.allocator = GetDefaultAllocator();
     self->field_0x90 = 0;
 }
 
@@ -660,7 +660,7 @@ void* fn_7101025f4c(void* self, void* source, u32 flags) {
     fn_710101fb24();
     const CClass* desc = &g_unk_71729f9c40;
     if (fn_710009d50c(desc, fn_7100016894()) && desc->m_fn_0x28) {
-        void* obj = fn_7100083990()->vf_0x40(desc->m_size, 8, flags);
+        void* obj = GetDefaultAllocator()->vf_0x40(desc->m_size, 8, flags);
         if (obj)
             reinterpret_cast<void (*)(void*)>(desc->m_fn_0x28)(obj);
         return obj;

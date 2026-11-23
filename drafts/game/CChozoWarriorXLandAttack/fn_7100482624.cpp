@@ -29,7 +29,7 @@ struct UnkStrIdOut_b0266 {
             if (raw.data && raw.data != &pool->empty) {
                 --raw.data->ref_count;
                 if (raw.data->ref_count == 0) {
-                    fn_71000803a4(pool, raw.data);
+                    StringPool_Release(pool, raw.data);
                     pool = g_unk_7101d47108;
                 }
             }

@@ -89,7 +89,7 @@ void fn_7100624e44(UnkNailAttack_ovb0134* self, f32 dt) {
                 if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
                     if (data && &pool->empty != data) {
                         if (--data->ref_count == 0) {
-                            fn_71000803a4(pool, data);
+                            StringPool_Release(pool, data);
                             pool = g_unk_7101d47108;
                         }
                     }

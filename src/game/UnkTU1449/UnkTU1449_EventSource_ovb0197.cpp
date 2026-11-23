@@ -124,7 +124,7 @@ void fn_710097bb7c(base::UnkStrIdVec* self, const base::global::CStrId* ids, u64
     self->step = step;
     self->field_0x14 = step != 0;
     self->flags = flags;
-    self->allocator = allocator ? allocator : fn_7100083990();
+    self->allocator = allocator ? allocator : GetDefaultAllocator();
     self->Reserve(size);
     for (const base::global::CStrId *p = ids, *end = ids + size; p != end; ++p) {
         base::global::CStrId id = *p;

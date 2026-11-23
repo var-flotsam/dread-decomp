@@ -19,7 +19,7 @@ struct UnkSource {
 void* fn_71002f6bc8(void* self, UnkSource* source, u32 flags) {
     const CClass* desc = source->field_0x0 == g_unk_71727b9db0 ? fn_71002effc4() : fn_71002e970c();
     if (fn_710009d50c(desc, fn_7100016894()) && desc->m_fn_0x28) {
-        void* obj = fn_7100083990()->vf_0x40(desc->m_size, 8, flags);
+        void* obj = GetDefaultAllocator()->vf_0x40(desc->m_size, 8, flags);
         if (obj)
             reinterpret_cast<void (*)(void*)>(desc->m_fn_0x28)(obj);
         return obj;

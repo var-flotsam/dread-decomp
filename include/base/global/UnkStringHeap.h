@@ -33,11 +33,11 @@ struct UnkStringBlockClass {
     // Set up by fn_7100083c48 (from fn_7100083f74, with 16 << class bytes per block).
     // Inlined in the heap's clear (fn_7100083d90).
     void Free() {
-        fn_7100083990()->vf_0x48(memory);
+        GetDefaultAllocator()->vf_0x48(memory);
         memory = nullptr;
-        fn_7100083990()->vf_0x48(headers);
+        GetDefaultAllocator()->vf_0x48(headers);
         headers = nullptr;
-        fn_7100083990()->vf_0x48(blocks);
+        GetDefaultAllocator()->vf_0x48(blocks);
         blocks = nullptr;
         free_count = 0;
         block_size = 0;

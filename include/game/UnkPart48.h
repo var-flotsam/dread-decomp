@@ -18,7 +18,7 @@ struct UnkPart48 {
     // base::global::CRntVector's defaults.
     __attribute__((always_inline)) UnkPart48()
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
     UnkPart48(const UnkPart48& other);
     __attribute__((always_inline)) UnkPart48(UnkPart48&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),

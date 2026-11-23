@@ -64,7 +64,7 @@ void fn_71002eefd8(UnkRecordMapB56* map, const UnkKeyB56* key, UnkRecordB56*& re
         if (name && name != &pool->empty) {
             --old->name->ref_count;
             if (old->name->ref_count == 0) {
-                fn_71000803a4(pool, old->name);
+                StringPool_Release(pool, old->name);
             }
         }
     }

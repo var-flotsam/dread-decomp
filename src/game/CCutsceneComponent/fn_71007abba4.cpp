@@ -51,7 +51,7 @@ public:
         values.step = 10;
         values.field_0x14 = true;
         values.flags = 0xf;
-        values.allocator = fn_7100083990();
+        values.allocator = GetDefaultAllocator();
         field_0x68 = 0;
     }
 

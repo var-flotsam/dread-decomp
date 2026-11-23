@@ -56,9 +56,9 @@ UnkWeakTarget* fn_7101066438(UnkSlotOwner_b0181* self) {
     if (!target)
         return nullptr;
     if (second | changed) {
-        key = fn_7100001570("stop_fx", 7);
+        key = StringCrc64("stop_fx", 7);
         fn_7100d7c828(reinterpret_cast<UnkActor*>(target), &key, false);
-        key = fn_7100001570("stop_materialtransition", 0x17);
+        key = StringCrc64("stop_materialtransition", 0x17);
         fn_7100d7c828(reinterpret_cast<UnkActor*>(target), &key, false);
         return target;
     }

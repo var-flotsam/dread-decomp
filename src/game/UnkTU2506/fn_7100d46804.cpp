@@ -32,7 +32,7 @@ static inline void InitPool(UnkPool_ld46804* pool, void** vtable) {
     pool->count = 0;
     pool->field_0x10 = nullptr;
     pool->field_0x18 = nullptr;
-    pool->allocator = fn_7100083990();
+    pool->allocator = GetDefaultAllocator();
     pool->flags = 0x13;
 }
 
@@ -67,7 +67,7 @@ static inline void InitGroupArray(UnkGroupArray_ovb0244* array) {
     array->capacity = 0;
     array->step = 10;
     array->flags = 7;
-    array->allocator = fn_7100083990();
+    array->allocator = GetDefaultAllocator();
 }
 
 // What a hit query found: the hit point and the values that go with it, cleared as a whole.

@@ -12,7 +12,7 @@ extern const u64 g_unk_7101646d68[/* 256; unsized: x86-64 would assume 16-byte a
 
 #define CRC64_STEP(i) crc = g_unk_7101646d68[(crc ^ (u8)str[i]) & 0xff] ^ (crc >> 8)
 
-u64 fn_7100001570(const char* str, u64 length) {
+u64 StringCrc64(const char* str, u64 length) {
     u64 crc = ~0ull;
     while (length > 8) {
         CRC64_STEP(0);

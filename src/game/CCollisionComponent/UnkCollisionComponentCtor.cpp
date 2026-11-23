@@ -57,13 +57,13 @@ static inline __attribute__((always_inline)) void InitCollision(UnkCollisionComp
     self->field_0x80 = 10;
     self->field_0x84 = true;
     self->field_0x88 = 7;
-    self->field_0x90 = fn_7100083990();
+    self->field_0x90 = GetDefaultAllocator();
     self->field_0x98 = nullptr;
     self->field_0xa0 = nullptr;
     self->field_0xa8 = 10;
     self->field_0xac = true;
     self->field_0xb0 = 7;
-    self->field_0xb8 = fn_7100083990();
+    self->field_0xb8 = GetDefaultAllocator();
     self->field_0xc0 = nullptr;
     self->field_0xc8 = 0x100;
     self->field_0xd0 = nullptr;
@@ -72,7 +72,7 @@ static inline __attribute__((always_inline)) void InitCollision(UnkCollisionComp
     self->field_0xe8 = nullptr;
     self->field_0xf0 = 10;
     self->field_0xf4 = 7;
-    self->field_0xf8 = fn_7100083990();
+    self->field_0xf8 = GetDefaultAllocator();
     self->field_0x100 = 0;
     self->field_0x108 = g_unk_7101a22d48 + 2;
     self->field_0x110 = nullptr;

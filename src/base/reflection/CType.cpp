@@ -22,7 +22,7 @@ char* fn_710009dcd8(char* type, void* obj) {
 // object: the original leaves the allocation's result in x0 for it, which x86-64 does not forward.
 base::reflection::UnkReflTypedPtr fn_710009d6d0(const base::reflection::CType* type, u32 flags) {
     base::reflection::UnkReflTypedPtr r;
-    void* obj = fn_7100083990()->vf_0x40(type->m_size, 8, flags);
+    void* obj = GetDefaultAllocator()->vf_0x40(type->m_size, 8, flags);
     base::reflection::SlotFn ctor = type->m_fn_0x28;
     if (obj && ctor) {
         reinterpret_cast<void (*)(void*)>(ctor)(obj);
@@ -119,7 +119,7 @@ static inline base::reflection::UnkReflAttrs* AttrsOf(base::reflection::CType* t
         attrs->capacity = 0;
         attrs->step = 10;
         attrs->flags = 0x3e;
-        attrs->allocator = fn_7100083990();
+        attrs->allocator = GetDefaultAllocator();
         attrs->field_0x28 = nullptr;
         attrs->field_0x30 = 0;
         type->field_0x80 = attrs;

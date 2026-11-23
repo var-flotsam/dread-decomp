@@ -32,7 +32,7 @@ struct UnkEmptyMap_l01ab7c {
         capacity = 0;
         step = 10;
         flags = 0xe;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
     }
 };
 

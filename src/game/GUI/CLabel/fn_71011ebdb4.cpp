@@ -91,7 +91,7 @@ void fn_71011ebdb4(UnkStruct_71011ebdb4* self) {
     self->field_0x2c8 = 0;
     self->field_0x2d0 = nullptr;
     self->field_0x2d8 = nullptr;
-    self->field_0x2e0 = fn_7100083990();
+    self->field_0x2e0 = GetDefaultAllocator();
     self->field_0x2e8 = 0x13;
     self->field_0x2f4 = false;
     self->field_0x2f8 = 0;

@@ -46,19 +46,19 @@ struct UnkElem_l2970ec {
         field_0x68 = 0x10;
         field_0x58 = 0;
         field_0x60 = 0;
-        allocator_a = fn_7100083990();
+        allocator_a = GetDefaultAllocator();
         vtable_b = g_unk_7101a20f68 + 0x10;
         field_0x80 = 0;
         field_0x88 = 0;
         field_0x90 = 0;
-        allocator_b = fn_7100083990();
+        allocator_b = GetDefaultAllocator();
         field_0xa0 = 0x13;
         fn_7100123eb4(reinterpret_cast<UnkTileOutlineList*>(outline_b));
         vtable_c = g_unk_7101a20f88 + 0x10;
         field_0xf0 = 0;
         field_0xf8 = 0;
         field_0x100 = 0;
-        allocator_c = fn_7100083990();
+        allocator_c = GetDefaultAllocator();
         field_0x110 = 0x13;
         fn_7100123eb4(reinterpret_cast<UnkTileOutlineList*>(outline_c));
     }

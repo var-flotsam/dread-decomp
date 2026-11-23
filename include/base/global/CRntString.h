@@ -46,7 +46,7 @@ public:
     UnkAllocator* GetAllocator() const {
         UnkAllocator* a = allocator;
         if (!a)
-            a = fn_7100083990();
+            a = GetDefaultAllocator();
         return a;
     }
 

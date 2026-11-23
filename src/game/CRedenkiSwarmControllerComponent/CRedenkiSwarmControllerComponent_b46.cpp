@@ -58,7 +58,7 @@ void fn_710065b090(UnkRedenkiSwarm_b46a2* self) {
     for (int i = 0; i < 5; i++) self->field_0x4b0[i] = 0;
     self->header_0x498.count = 0xa;
     self->header_0x498.flag = 1;
-    self->alloc_0x4a8 = fn_7100083990();
+    self->alloc_0x4a8 = GetDefaultAllocator();
     self->field_0x4b0[0] = 0;
     self->field_0x4b0[1] = 0;
     self->field_0x4b0[2] = 0;
@@ -69,13 +69,13 @@ void fn_710065b090(UnkRedenkiSwarm_b46a2* self) {
     self->header_0x4e8.count = 0xa;
     self->header_0x4e8.flag = 1;
     self->field_0x4f0 = 0xf;
-    self->alloc_0x4f8 = fn_7100083990();
+    self->alloc_0x4f8 = GetDefaultAllocator();
     self->field_0x500 = 0;
     self->field_0x508 = 0;
     self->header_0x510.count = 0xa;
     self->header_0x510.flag = 1;
     self->field_0x518 = 0xf;
-    self->alloc_0x520 = fn_7100083990();
+    self->alloc_0x520 = GetDefaultAllocator();
     self->field_0x528 = 0;
     self->field_0x530 = 0.0f;
     self->field_0x534 = -1.0f;

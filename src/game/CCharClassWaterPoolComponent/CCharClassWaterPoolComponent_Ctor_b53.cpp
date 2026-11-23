@@ -46,7 +46,7 @@ struct UnkWaterPoolComponent_b53 {
     self->field_##o##_step = 10;                   \
     self->field_##o##_grow = true;                 \
     self->field_##o##_flags = 0xf;                 \
-    self->field_##o##_allocator = fn_7100083990();
+    self->field_##o##_allocator = GetDefaultAllocator();
 
 void fn_710090be10(UnkWaterPoolComponent_b53* self) {
     fn_71009000bc(self);

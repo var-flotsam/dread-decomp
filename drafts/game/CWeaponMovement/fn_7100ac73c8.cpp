@@ -65,7 +65,7 @@ struct UnkTextStrId_lac73c8 {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -86,7 +86,7 @@ static inline void AssignText(CStrId& dst, const CRntString& text) {
         if (dst.data && dst.data != &pool->empty) {
             --dst.data->ref_count;
             if (dst.data->ref_count == 0) {
-                fn_71000803a4(pool, dst.data);
+                StringPool_Release(pool, dst.data);
                 pool = g_unk_7101d47108;
             }
         }

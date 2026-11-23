@@ -39,7 +39,7 @@ struct UnkGfxTextureAllocator {
 };
 
 static inline UnkGfxTextureAllocator* GfxTextureAllocator() {
-    return reinterpret_cast<UnkGfxTextureAllocator*>(fn_7100083990());
+    return reinterpret_cast<UnkGfxTextureAllocator*>(GetDefaultAllocator());
 }
 
 static_assert(sizeof(UnkGfxTexture) == 0x100, "UnkGfxTexture layout");

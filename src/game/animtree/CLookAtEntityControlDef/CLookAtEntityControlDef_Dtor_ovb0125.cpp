@@ -38,7 +38,7 @@ void fn_71002e5c40(UnkLookAtDef_ovb0125* self) {
         if (data && data != &pool->empty) {
             --data->ref_count;
             if (self->field_0x8.data->ref_count == 0)
-                fn_71000803a4(pool, self->field_0x8.data);
+                StringPool_Release(pool, self->field_0x8.data);
         }
     }
     operator delete(self);

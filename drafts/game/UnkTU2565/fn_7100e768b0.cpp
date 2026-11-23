@@ -19,7 +19,7 @@ void fn_7100e768b0(UnkCharMap* self, const char* chars, u32 count, u32 a, void* 
     self->flags = c;
     base::UnkAllocator* allocator = static_cast<base::UnkAllocator*>(b);
     if (!allocator)
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
     self->allocator = allocator;
     self->Reserve(count);
     const u8* p = reinterpret_cast<const u8*>(chars);

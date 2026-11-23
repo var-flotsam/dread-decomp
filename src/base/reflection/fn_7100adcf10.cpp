@@ -624,6 +624,6 @@ void fn_7100ebefd0() {
     g_unk_71729ce018.field_0x10 = 0;
     g_unk_71729ce018.field_0x18 = 10;
     g_unk_71729ce018.field_0x1c = 0xe;
-    g_unk_71729ce018.allocator = fn_7100083990();
+    g_unk_71729ce018.allocator = GetDefaultAllocator();
     fn_7100000250(fn_7100eb7590, &g_unk_71729ce018, &g_unk_7101a19000);
 }

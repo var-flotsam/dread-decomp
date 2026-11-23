@@ -30,7 +30,7 @@ inline void CopyAssignId_b62a1(UnkStringData*& data, UnkStringData* const& other
         if (data != &pool->empty) {
             --data->ref_count;
             if (data->ref_count == 0)
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
         }
         data = d;
     }
@@ -47,7 +47,7 @@ struct UnkPairId_b62a1 : base::global::CStrId {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -71,7 +71,7 @@ struct UnkPairPath_b62a1 : base::global::UnkFilePathStrIdBase {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47200;
                 }
             }

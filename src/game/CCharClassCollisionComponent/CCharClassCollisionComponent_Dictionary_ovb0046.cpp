@@ -72,7 +72,7 @@ void fn_710079cf70(UnkCollisionDefCtor_ovb0046* self) {
     self->field_0x8c[1] = 0;
     self->field_0x8c[2] = 0;
     self->field_0x8c[3] = 0;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->field_0x18 = 1000;
     self->field_0xc8 = 0;
     reinterpret_cast<void (*)(UnkCollisionDefCtor_ovb0046*)>(self->vtable[3])(self);

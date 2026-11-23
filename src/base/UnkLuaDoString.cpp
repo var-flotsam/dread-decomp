@@ -35,7 +35,7 @@ struct __attribute__((packed, aligned(4))) UnkLuaScratch {
         step = 10;
         field_0x14 = true;
         flags = 6;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         if (capacity < 400) {
             u64* p = static_cast<u64*>(allocator->vf_0x40(400 * sizeof(u64), 8, flags));
             if (data) {
@@ -68,7 +68,7 @@ typedef void (*UnkLuaReportFn)(const char* message, s32 a, s32 b);
 
 // Runs `str`; on an error, pops the error object and reports its message if there is a callback.
 void fn_710109c880(const char* str, UnkLuaReportFn report) {
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     u32 flags = 6;
     u64* data = static_cast<u64*>(allocator->vf_0x40(0x190 * sizeof(u64), 8, flags));
     u32 top = g_unk_7172a025a0.count;
@@ -155,7 +155,7 @@ s32 fn_710109d4f0(const char* format, ...) {
 // lua_pcall with a scratch array pushed for the call's reflected values and popped after it, as
 // fn_710109c880 runs a string. The state is the caller's.
 s32 fn_710109cef0(lua_State* L, s32 nargs, s32 nresults, s32 errfunc) {
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     u32 flags = 6;
     u64* data = static_cast<u64*>(allocator->vf_0x40(0x190 * sizeof(u64), 8, flags));
     u32 top = g_unk_7172a025a0.count;

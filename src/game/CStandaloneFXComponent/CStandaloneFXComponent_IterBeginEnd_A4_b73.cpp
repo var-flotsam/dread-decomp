@@ -133,7 +133,7 @@ void* fn_7100815068(void* dst, const void* src) {
             if (self->path && self->path != &pool->empty) {
                 --self->path->ref_count;
                 if (self->path->ref_count == 0) {
-                    fn_71000803a4(pool, self->path);
+                    StringPool_Release(pool, self->path);
                     pool = g_unk_7101d47200;
                 }
             }

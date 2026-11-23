@@ -69,7 +69,7 @@ UnkGuiCreatedObject* fn_71011b5aa4(UnkGuiObjectFactory* self, const CStrId* name
         const CType* type = reinterpret_cast<const CType*>(found);
         const UnkGuiTypeView* view = reinterpret_cast<const UnkGuiTypeView*>(found);
         if (fn_710009d50c(type, fn_71011c3868()) && view->construct) {
-            void* p = fn_7100083990()->vf_0x40(view->size, 8, 0xc);
+            void* p = GetDefaultAllocator()->vf_0x40(view->size, 8, 0xc);
             if (p) {
                 view->construct(p);
                 object = static_cast<UnkGuiCreatedObject*>(p);

@@ -18,7 +18,7 @@ struct UnkIdHolder_71011d9508 {
         if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -75,7 +75,7 @@ UnkGuiDisplayObject* fn_71011d9508(UnkGuiDisplayObject* self, const char* const*
     list.field_0x8 = 0;
     list.head = nullptr;
     list.field_0x18 = nullptr;
-    list.allocator = fn_7100083990();
+    list.allocator = GetDefaultAllocator();
     list.field_0x28 = 0x13;
     list.vtable = g_unk_7101a838c8 + 0x10;
     list.vtable2 = g_unk_7101a1a4c8 + 0x10;

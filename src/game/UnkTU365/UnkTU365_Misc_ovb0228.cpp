@@ -410,43 +410,43 @@ void fn_71002a93e0(UnkIds_ovb0229* list, const s32* value, UnkIds_ovb0229::Node*
 u64 fn_71002a6bdc(u32 kind) {
     switch (kind) {
     case 1:
-        return fn_7100001570("water", 5);
+        return StringCrc64("water", 5);
     case 2:
-        return fn_7100001570("speedbooster", 12);
+        return StringCrc64("speedbooster", 12);
     case 3:
-        return fn_7100001570("speedbooster45up", 16);
+        return StringCrc64("speedbooster45up", 16);
     case 4:
-        return fn_7100001570("left", 4);
+        return StringCrc64("left", 4);
     case 5:
-        return fn_7100001570("right", 5);
+        return StringCrc64("right", 5);
     case 6:
-        return fn_7100001570("patrol", 6);
+        return StringCrc64("patrol", 6);
     case 7:
-        return fn_7100001570("search", 6);
+        return StringCrc64("search", 6);
     case 8:
-        return fn_7100001570("chase", 5);
+        return StringCrc64("chase", 5);
     case 9:
-        return fn_7100001570("chase2", 6);
+        return StringCrc64("chase2", 6);
     case 10:
-        return fn_7100001570("chasereachable", 14);
+        return StringCrc64("chasereachable", 14);
     case 11:
-        return fn_7100001570("combat", 6);
+        return StringCrc64("combat", 6);
     case 12:
-        return fn_7100001570("flee", 4);
+        return StringCrc64("flee", 4);
     case 13:
-        return fn_7100001570("brokenshield", 12);
+        return StringCrc64("brokenshield", 12);
     case 14:
-        return fn_7100001570("grab2", 5);
+        return StringCrc64("grab2", 5);
     case 15:
-        return fn_7100001570("grabwater", 9);
+        return StringCrc64("grabwater", 9);
     case 16:
-        return fn_7100001570("protoemmytuto", 13);
+        return StringCrc64("protoemmytuto", 13);
     case 17:
-        return fn_7100001570("preseta", 7);
+        return StringCrc64("preseta", 7);
     case 18:
-        return fn_7100001570("presetb", 7);
+        return StringCrc64("presetb", 7);
     case 19:
-        return fn_7100001570("presetc", 7);
+        return StringCrc64("presetc", 7);
     default:
         return ~0ul;
     }
@@ -612,7 +612,7 @@ struct UnkListP_b0228 {
     UnkNodeP_b0228* tail = nullptr;
     u32 flags = 0x10;
     base::UnkAllocator* allocator;
-    UnkListP_b0228() : vtable(reinterpret_cast<void**>(g_unk_7101a20f48 + 0x10)), allocator(fn_7100083990()) {}
+    UnkListP_b0228() : vtable(reinterpret_cast<void**>(g_unk_7101a20f48 + 0x10)), allocator(GetDefaultAllocator()) {}
     ~UnkListP_b0228() {
         vtable = reinterpret_cast<void**>(g_unk_7101a20f48 + 0x10);
         for (UnkNodeP_b0228* n = head; n;) {
@@ -632,7 +632,7 @@ struct UnkListQ_b0228 : base::UnkVtableList<UnkNodeQ_b0228> {
         count = 0;
         head = nullptr;
         tail = nullptr;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
     }
     ~UnkListQ_b0228() {
@@ -647,7 +647,7 @@ struct UnkListR_b0228 : base::UnkVtableList<UnkNodeR_b0228> {
         count = 0;
         head = nullptr;
         tail = nullptr;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
     }
     ~UnkListR_b0228() {

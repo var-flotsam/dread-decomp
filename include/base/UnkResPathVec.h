@@ -20,7 +20,7 @@ struct UnkResPathVec {
 
     explicit UnkResPathVec(u32 flags)
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(flags),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
     UnkResPathVec(const UnkResPathVec& other);  // inline in src/base/UnkResRegistry.cpp
 };
 static_assert(sizeof(UnkResPathVec) == 0x28, "UnkResPathVec layout");

@@ -89,7 +89,7 @@ struct UnkRectPtrArray_ovb0061 {
 
     UnkRectPtrArray_ovb0061(u32 step_, u32 flags_)
         : data(nullptr), count(0), capacity(0), step(step_), growable(true), flags(flags_),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
     UnkRectPtrArray_ovb0061(const UnkRectPtrArray_ovb0061& o)
         : data(nullptr), count(0), capacity(0), step(o.step), growable(o.growable), flags(o.flags),
           allocator(o.allocator) {

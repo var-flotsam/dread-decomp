@@ -89,7 +89,7 @@ struct UnkGunId_ovb0070 {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -145,7 +145,7 @@ void fn_7100858294(UnkSamusGun_ovb0070* self) {
     self->shots.step = 10;
     self->shots.field_0x14 = true;
     self->shots.flags = 0xf;
-    self->shots.allocator = fn_7100083990();
+    self->shots.allocator = GetDefaultAllocator();
     self->field_0x370 = 0;
     self->field_0x378 = -1;
     self->field_0x380 = true;

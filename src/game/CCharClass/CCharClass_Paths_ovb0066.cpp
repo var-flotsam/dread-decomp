@@ -63,13 +63,13 @@ __attribute__((always_inline)) static inline void Construct(UnkCharClass_ovb0066
     self->count = 0;
     self->field_0xe8 = 10;
     self->field_0xec = 10;
-    self->table_allocator = fn_7100083990();
+    self->table_allocator = GetDefaultAllocator();
     self->counted = nullptr;
     self->paths.vtable = g_unk_7101a1b030 + 2;
     self->paths.count = 0;
     self->paths.head = nullptr;
     self->paths.tail = nullptr;
-    self->paths.allocator = fn_7100083990();
+    self->paths.allocator = GetDefaultAllocator();
     self->paths.flags = 0x13;
     self->field_0x130 = 1;
     self->field_0x134 = -1.0f;

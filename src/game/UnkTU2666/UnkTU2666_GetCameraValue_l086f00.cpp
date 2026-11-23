@@ -87,7 +87,7 @@ int fn_7101086f00(lua_State* L) {
     const char* field_name;
     if (!fn_71010c0270(L, "ss", &camera_name, &field_name))
         return 0;
-    u64 key = fn_7100001570(field_name, __builtin_strlen(field_name));
+    u64 key = StringCrc64(field_name, __builtin_strlen(field_name));
     UnkGameManagerTarget* target = fn_7100decab0(g_unk_7101d47310);
     if (!target)
         return 0;

@@ -39,7 +39,7 @@ struct UnkMainMenuScreen_lb4fe5c {
 // The id of a child's name: the CRC64 of the literal.
 template <u64 N>
 static inline u64 ChildId(const char (&name)[N]) {
-    return fn_7100001570(name, N - 1);
+    return StringCrc64(name, N - 1);
 }
 
 bool fn_7100b4fe5c(UnkMainMenuScreen_lb4fe5c* self) {

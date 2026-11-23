@@ -27,7 +27,7 @@ void fn_710111521c(UnkAIDeviceList* self) {
     self->field_0x18 = 10;
     self->field_0x1c = true;
     self->field_0x20 = 15;
-    self->field_0x28 = fn_7100083990();
+    self->field_0x28 = GetDefaultAllocator();
     self->field_0x30 = 0;
     self->vtable = reinterpret_cast<void**>(reinterpret_cast<char*>(g_unk_7101a20950) + 0x10);
     self->field_0x38 = 0;

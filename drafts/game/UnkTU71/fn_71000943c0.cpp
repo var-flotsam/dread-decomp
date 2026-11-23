@@ -28,7 +28,7 @@ static inline CRntVector<u8>& DecodeTable_u71() {
             s.table.step = 10;
             s.table.field_0x14 = true;
             s.table.flags = 0xf;
-            s.table.allocator = fn_7100083990();
+            s.table.allocator = GetDefaultAllocator();
             fn_7100000250(fn_7100094798, &s.table, g_unk_7101a19000);
             __cxa_guard_release(&s.guard);
         }

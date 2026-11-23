@@ -12,7 +12,7 @@ struct UnkList_71011199cc : base::UnkVtableList<UnkList_71011199ccNode> {
         count = 0;
         head = nullptr;
         tail = nullptr;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
     }
     ~UnkList_71011199cc() {

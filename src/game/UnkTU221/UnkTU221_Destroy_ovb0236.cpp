@@ -24,7 +24,7 @@ void fn_710019adec(UnkTable_b0236a* self) {
                 __builtin_memset(&self->entries[i].data, 0, 8);
             }
             if (self->entries[i].obj) {
-                fn_7100083990()->vf_0x48(self->entries[i].obj);
+                GetDefaultAllocator()->vf_0x48(self->entries[i].obj);
                 __builtin_memset(&self->entries[i].obj, 0, 8);
             }
         }

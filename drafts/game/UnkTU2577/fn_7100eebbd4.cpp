@@ -201,7 +201,7 @@ void fn_7100ef1abc(UnkOrphanIter* it);
 
 
 struct UnkOrphanMap {
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     u32 flags = 0xe;
     u32 count = 0;
     base::global::CRntVector<UnkOrphanNode*> buckets{0xe};

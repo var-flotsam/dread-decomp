@@ -206,7 +206,7 @@ void fn_7100015fc0(const CFilePathStrId& root) {
     AddDevice(devices, save);
     UnkDevice* textures = NewHostDevice("textures", "rom:/textures/");
     AddDevice(devices, textures);
-    base::UnkAllocator* allocator = fn_7100083724(fn_7100083990(), 3);
+    base::UnkAllocator* allocator = fn_7100083724(GetDefaultAllocator(), 3);
     UnkDevice* packs = static_cast<UnkDevice*>(fn_71000839a0(0x88, 3));
     fn_710008a288(packs, CStrId("packs", true), rom, allocator, 0x1b);
     CDeviceQueue* queue = static_cast<CDeviceQueue*>(fn_71000839a0(0x40, 3));

@@ -28,7 +28,7 @@ __attribute__((always_inline)) static inline void MoveSet(UnkIdsByKey<Pool>* sel
             if (p->data && p->data != &pool->empty) {
                 --p->data->ref_count;
                 if (p->data->ref_count == 0) {
-                    fn_71000803a4(pool, p->data);
+                    StringPool_Release(pool, p->data);
                     pool = Pool;
                 }
             }

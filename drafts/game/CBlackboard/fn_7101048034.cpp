@@ -35,7 +35,7 @@ struct UnkStrIdList_l048034 {
 // releases the ids and frees the nodes.
 struct UnkStrIdLocalList_l048034 : base::UnkSListWord, base::UnkLinkedList<UnkStrIdNode_l048034> {
     UnkStrIdLocalList_l048034() {
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
         head = nullptr;
         tail = nullptr;

@@ -29,7 +29,7 @@ void fn_71003f9d0c(UnkValueList_l3f9d0c* self, const UnkValueList_l3f9d0c* other
     self->count = 0;
     self->head = nullptr;
     self->tail = nullptr;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     self->flags = 0x13;
     self->allocator = allocator;
     self->vtable = g_unk_7101a32660 + 2;

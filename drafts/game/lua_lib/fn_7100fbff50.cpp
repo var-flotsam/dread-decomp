@@ -40,7 +40,7 @@ static inline bool ReadStrId(lua_State* L, int index, UnkStrIdBase* out) {
         if (out->data && out->data != &pool->empty) {
             --out->data->ref_count;
             if (out->data->ref_count == 0) {
-                fn_71000803a4(pool, out->data);
+                StringPool_Release(pool, out->data);
                 pool = g_unk_7101d47108;
             }
         }

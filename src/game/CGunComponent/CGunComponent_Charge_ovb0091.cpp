@@ -666,7 +666,7 @@ void fn_7100835bd8(void* object, const u64* a, const u64* b, const u64* c, const
                    const u64* f, const u64* g);
 
 static inline u64 HashOf(const char* str) {
-    return fn_7100001570(str, __builtin_strlen(str));
+    return StringCrc64(str, __builtin_strlen(str));
 }
 
 // Reflected call: nine strings from the stream; the first names the object (fn_710034df0c), seven

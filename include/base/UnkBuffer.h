@@ -28,7 +28,7 @@ inline UnkBuffer::UnkBuffer(u64 size, UnkAllocator* allocator, s32 align, u32 fl
     : allocator(allocator), data(nullptr), size(size), align(align), flags(flags) {
     if (size) {
         if (!allocator)
-            this->allocator = allocator = fn_7100083990();
+            this->allocator = allocator = GetDefaultAllocator();
         data = allocator->vf_0x40(size, align, flags);
     }
 }

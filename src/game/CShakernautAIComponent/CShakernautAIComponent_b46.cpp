@@ -54,12 +54,12 @@ void fn_71006b21a0(UnkShakernautAI_b46a2* self) {
     self->list_0x14828.capacity = 0xa;
     self->list_0x14828.flag = 1;
     self->list_0x14828.grow = 0xf;
-    self->list_0x14828.allocator = fn_7100083990();
+    self->list_0x14828.allocator = GetDefaultAllocator();
     __builtin_memset(self->field_0x14840, 0, sizeof(self->field_0x14840));
     self->list_0x14850.capacity = 0xa;
     self->list_0x14850.flag = 1;
     self->list_0x14850.grow = 0xf;
-    self->list_0x14850.allocator = fn_7100083990();
+    self->list_0x14850.allocator = GetDefaultAllocator();
     __builtin_memset(self->field_0x1487c, 0, sizeof(self->field_0x1487c));
     self->field_0x14890 = 0;
     self->field_0x14898 = -1;

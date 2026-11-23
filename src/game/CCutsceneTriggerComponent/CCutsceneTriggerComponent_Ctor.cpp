@@ -34,7 +34,7 @@ void fn_7100a2f3c8(UnkCutsceneTriggerComponent* self) {
     self->field_0xad8 = 10;
     self->field_0xadc = true;
     self->field_0xae0 = 0xf;
-    self->field_0xae8 = fn_7100083990();
+    self->field_0xae8 = GetDefaultAllocator();
     self->field_0xaf0 = 0;
     self->field_0xac0 = g_unk_7101a20950 + 2;
     self->field_0xaf8 = 0;

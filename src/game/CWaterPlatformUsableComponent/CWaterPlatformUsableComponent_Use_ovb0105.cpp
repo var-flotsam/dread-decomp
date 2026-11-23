@@ -145,7 +145,7 @@ void fn_7100aa675c(UnkWaterPlatform2_b0105* self) {
     fn_7100aa6a2c(self, 1.0f);
     if (UnkScriptCaller* script = self->owner->script)
         fn_7100305088(script, "OnUseCompleted", g_unk_710162e2ed);
-    u64 hash = fn_7100001570("GUIDE_LGT_00", 12);
+    u64 hash = StringCrc64("GUIDE_LGT_00", 12);
     UnkRenderManager* render = g_unk_7101d47300;
     base::math::CVector4D colour;
     colour.x = 15.0f;

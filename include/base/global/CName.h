@@ -15,7 +15,7 @@ struct UnkNameHash {};
 struct CName {
     u64 hash;
 
-    explicit CName(const char* str) : hash(fn_7100001570(str, __builtin_strlen(str))) {}
+    explicit CName(const char* str) : hash(StringCrc64(str, __builtin_strlen(str))) {}
     CName(UnkNameHash, u64 h) : hash(h) {}
 };
 static_assert(sizeof(CName) == 0x8, "CName layout");

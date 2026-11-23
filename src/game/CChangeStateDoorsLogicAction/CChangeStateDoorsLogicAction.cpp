@@ -29,7 +29,7 @@ void fn_7100a3a808(UnkDoorsLogicActionList* self) {
     self->field_0x18 = 10;
     self->field_0x1c = true;
     self->field_0x20 = 15;
-    self->field_0x28 = fn_7100083990();
+    self->field_0x28 = GetDefaultAllocator();
     self->field_0x30 = 0;
     self->vtable = g_unk_7101a33fa0 + 2;
     self->field_0x38 = 0;

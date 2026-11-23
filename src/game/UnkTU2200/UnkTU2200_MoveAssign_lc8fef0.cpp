@@ -21,7 +21,7 @@ struct UnkIdPairRecord_lc8fef0 {
             if (second.data && second.data != &pool->empty) {
                 --second.data->ref_count;
                 if (second.data->ref_count == 0) {
-                    fn_71000803a4(pool, second.data);
+                    StringPool_Release(pool, second.data);
                     pool = g_unk_7101d47108;
                 }
             }
