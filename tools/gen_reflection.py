@@ -697,13 +697,28 @@ def reflection_header_classes() -> frozenset[str]:
     return frozenset(out)
 
 
+def member_form_header(name: str) -> str | None:
+    """The header (relative to include/) of a base::reflection class whose definition there declares its
+    reflection functions and `struct refl_Description;` as members, or None. Such a class's description is
+    written as definitions of those members (loose_class_lines), with the same symbols as the namespace form."""
+    m = re.fullmatch(r"base::reflection::([A-Za-z_]\w*)", name)
+    if not m:
+        return None
+    for h in sorted((ROOT / "include" / "base" / "reflection").glob("*.h")):
+        body = re.search(rf"^struct {m.group(1)} \{{\n(.*?)^\}};", h.read_text(encoding="utf-8"), re.M | re.S)
+        if body and re.search(r"^\s*struct refl_Description;", body.group(1), re.M):
+            return f"base/reflection/{h.name}"
+    return None
+
+
 def loose_readable(name: str) -> bool:
     """A loose constructor's class the namespace form can spell: readable_type's, or a base::reflection class
-    the reflection headers neither declare nor define (a namespace of its name then collides with nothing)."""
+    the reflection headers neither declare nor define (a namespace of its name then collides with nothing),
+    or one whose definition declares its reflection members (member_form_header)."""
     if readable_type(name):
         return True
     m = re.fullmatch(r"base::reflection::([A-Za-z_]\w*)", name)
-    return bool(m) and m.group(1) not in reflection_header_classes()
+    return bool(m) and (m.group(1) not in reflection_header_classes() or member_form_header(name) is not None)
 
 
 KEY_VALUE_HEAD = ['#include "base/reflection/CClass.h"', '#include "base/reflection/KeyElementValue.h"',
@@ -722,7 +737,19 @@ TEMPLATE_VALUE_FILES = {
 def loose_class_lines(orig: asmdiff.Original, name: str, size: int, abstract: bool,
                       traits: dict[int, int]) -> list[str]:
     """A loose constructor's class in the namespace form: its functions under their roles, its description
-    and DREAD_REFLECTED_DESCRIPTOR."""
+    and DREAD_REFLECTED_DESCRIPTOR. A class whose header declares them as members (member_form_header) gets
+    definitions of those members instead, and no namespace."""
+    header = member_form_header(name)
+    if header:
+        defined = [src for h, slot in sorted((h, slot) for slot, h in traits.items())
+                   if (src := role_helper(orig, slot, h, f"{name}::{role_name(slot)}"))]
+        desc = [f"struct {name}::refl_Description : ClassDescription {{", f"    static constexpr u64 size = {size:#x};"]
+        if abstract:
+            desc.append("    static constexpr bool abstract = true;")
+        desc += [f"    static constexpr auto {ROLES[slot][1]} = &{role_name(slot)};"
+                 for slot in TRAIT_SLOTS if slot in traits]
+        return [f"// {name} (its reflection functions are members, {header})", *defined, *desc, "};",
+                f"DREAD_REFLECTED_DESCRIPTOR({name});"]
     inside = []
     for h, slot in sorted((h, slot) for slot, h in traits.items()):
         inside.append(role_helper(orig, slot, h) or ROLE_DECLS[slot].format(name=role_name(slot)))
@@ -732,6 +759,12 @@ def loose_class_lines(orig: asmdiff.Original, name: str, size: int, abstract: bo
     desc += [f"    static constexpr auto {ROLES[slot][1]} = &{role_name(slot)};" for slot in TRAIT_SLOTS if slot in traits]
     return [f"// {name}", f"namespace {name} {{", *inside, *desc, "};", f"}}  // namespace {name}",
             f"DREAD_REFLECTED_DESCRIPTOR({name});"]
+
+
+def member_includes(names: list[str]) -> list[str]:
+    """#include lines for the headers of the member-form classes among `names` (member_form_header)."""
+    headers = sorted({h for n in names if (h := member_form_header(n))})
+    return [f'#include "{h}"' for h in headers]
 
 
 def constructor_lines(init: int, size: int, abstract: bool, traits: dict[int, int]) -> list[str]:
@@ -1579,7 +1612,7 @@ def main() -> int:
             body, decls, _ = template_value_lines(orig, t, *ctors[a])
             text = [*TEMPLATE_VALUE_FILES[template_value_kind(t)][0], *decls, "", *body]
         else:
-            text = [*named_head, *loose_class_lines(orig, t, *ctors[a])]
+            text = [*named_head[:2], *member_includes([t]), *named_head[2:], *loose_class_lines(orig, t, *ctors[a])]
         src.write_text(chr(10).join(text) + chr(10), encoding="utf-8")
         if subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True).returncode != 0:
             return False
@@ -1624,7 +1657,8 @@ def main() -> int:
                  "// built by static initialisers), with the per-type helpers of a known uniform shape;",
                  "// byte-identical to the original. A class whose static initialiser names it is in the",
                  "// namespace form (base/reflection/ReflectedClass.h), the others are keyed by constructor.",
-                 *(named_head if any(a in named_ok for a in chunk) else ['#include "base/reflection/CClass.h"', ""])]
+                 *(named_head[:2] + member_includes([class_of_init[a] for a in chunk if a in named_ok]) + named_head[2:]
+                   if any(a in named_ok for a in chunk) else ['#include "base/reflection/CClass.h"', ""])]
         declared: set[int] = set()
         for a in chunk:
             size, abstract, traits = ctors[a]

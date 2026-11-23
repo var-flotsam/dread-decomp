@@ -357,6 +357,29 @@ class LooseClassLines(unittest.TestCase):
         ])
 
 
+    def test_member_form(self):
+        """A base::reflection class whose header declares its reflection members gets their definitions."""
+        self.assertEqual(gr.member_form_header("base::reflection::CVariable"), "base/reflection/UnkReflAttributes.h")
+        self.assertIsNone(gr.member_form_header("base::reflection::CFunction"))
+        self.assertTrue(gr.loose_readable("base::reflection::CVariable"))
+        self.assertFalse(gr.loose_readable("base::reflection::CFunction"))
+        saved = gr.role_helper
+        gr.role_helper = lambda orig, slot, addr, name=None: f"s32 {name}() {{ return -1; }}" if slot == 0x60 else None
+        try:
+            lines = gr.loose_class_lines(None, "base::reflection::CVariable", 0xb0, False, {0x60: 0x10, 0x68: 0x20})
+        finally:
+            gr.role_helper = saved
+        self.assertEqual(lines, [
+            "// base::reflection::CVariable (its reflection functions are members, base/reflection/UnkReflAttributes.h)",
+            "s32 base::reflection::CVariable::refl_Hash() { return -1; }",
+            "struct base::reflection::CVariable::refl_Description : ClassDescription {",
+            "    static constexpr u64 size = 0xb0;",
+            "    static constexpr auto hash = &refl_Hash;",
+            "    static constexpr auto type_of = &refl_TypeOf;",
+            "};",
+            "DREAD_REFLECTED_DESCRIPTOR(base::reflection::CVariable);",
+        ])
+
 class KeyValueClass(unittest.TestCase):
     def test_names(self):
         name = "base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId,float>>" \

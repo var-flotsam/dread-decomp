@@ -398,6 +398,16 @@ struct CVariable {
     u8 unk_0x0[0x38];
     UnkReflAttrs attrs;
     UnkReflAttrs attrs_0x70;  // a second container (e.g. "TypeSelectionEnabled" on vector fields)
+
+    // Its own reflection: the functions its descriptor points to and the description naming them
+    // (src/reflection/, tools/gen_reflection.py).
+    static bool refl_Equals(const void* a, const void* b);
+    static s32 refl_Hash();
+    static const CType& refl_TypeOf(const void* obj);
+    static void refl_CopyConstruct(void* dst, const void* src);
+    static void refl_MoveConstruct(void* dst, const void* src);
+    static void refl_Destroy(void* obj);
+    struct refl_Description;
 };
 
 }  // namespace base::reflection
