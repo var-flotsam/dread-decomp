@@ -2,7 +2,7 @@
 // boss start it copies the target's four values, resolves the two entity references and switches their
 // entities off, recreates the colliders, hooks the track callback up, draws the first timer between the
 // tunable bounds and sends the camera its start request. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"

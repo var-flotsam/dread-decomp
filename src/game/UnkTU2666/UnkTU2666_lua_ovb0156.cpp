@@ -288,9 +288,9 @@ s32 fn_7101078220(lua_State* L) {
     if (fn_71010c0270(L, "s", &name)) {
         UnkGameManager* manager = g_unk_7101d47310;
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         fn_7100deac9c(manager, *reinterpret_cast<CRntString*>(&key));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return 0;
 }

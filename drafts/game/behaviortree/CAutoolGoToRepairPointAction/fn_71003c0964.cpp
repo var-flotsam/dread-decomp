@@ -2,7 +2,7 @@
 // state 1 when the "v3SmartObjectPos" value is set (fn_710039525c); otherwise picks a hash at +0x3a8 from the
 // owner's (+0x18) transform orientation and requests state 2 (state machine at +0x2d0, "none" 7).
 // Names and layouts are placeholders.
-#include "../../UnkSmRequest_A5_b73.h"
+#include "../../../../src/game/UnkSmRequest_A5_b73.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "game/behaviortree/CBehavior.h"

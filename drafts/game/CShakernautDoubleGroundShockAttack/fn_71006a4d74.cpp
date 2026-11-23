@@ -1,7 +1,7 @@
 ﻿// CShakernautDoubleGroundShockAttack's unit (tools/tu_map.py unit 1041): sends the target at +0x58 a
 // mode-2 request under `id`, or, when `plain` is clear, under the hash of a suffix id (chosen by the
 // side at +0x34) followed by `id`'s text. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkTunableLine.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -43,14 +43,14 @@ void fn_71006a4d74(UnkShockAttack_l6a4d74* self, const CStrId* id, bool plain) {
         break;
     default: {
         UnkTunableLine name;
-        fn_710007eb6c(name.Str(), id);
+        CRntString_AssignStrId(name.Str(), id);
         const CStrId* suffix_id = &g_unk_71727057e0[self->side == 1 ? 0 : 1];
         UnkTunableLine suffix;
-        fn_710007eb6c(suffix.Str(), suffix_id);
+        CRntString_AssignStrId(suffix.Str(), suffix_id);
         u64 key;
         base::reflection::UnkReflTypeIdArg mode;
         base::reflection::UnkReflTypeIdArg mask;
-        fn_7100066630(&key, Address(fn_710007eee0(suffix.Str(), name.Str())));
+        fn_7100066630(&key, Address(CRntString_Concat(suffix.Str(), name.Str())));
         void* target = self->target;
         u64 hash = key;
         mode.id = 2;

@@ -1,7 +1,7 @@
 // Unit 2726 (gui/scripts/msemenu_ingame.lua): puts the two actors the game manager keeps at +0x29a8 and
 // +0x29b0 where the player stands, facing the player's side ("left" or "right"), dressed in the player's
 // suit, and fades the environment back to white. Names and layouts are placeholders.
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -137,7 +137,7 @@ void fn_710118c7a0(UnkIngameMenu_l18c7a0* self) {
 
     f32 facing = player->xform.GetMatrix().m[2];
     CRntString side(StringOf_l18c7a0(Key(0xd78)));
-    fn_710007f564(&side, facing > 0.0f ? "right" : "left");
+    CRntString_AppendCString(&side, facing > 0.0f ? "right" : "left");
 
     void* first_animation = first->animation;
     u64 first_key;

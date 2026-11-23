@@ -27,7 +27,7 @@ struct UnkTunableLine {
 
     // An empty string over the inline buffer.
     void Init() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
@@ -36,18 +36,18 @@ struct UnkTunableLine {
     UnkTunableLine() { Init(); }
     explicit UnkTunableLine(const char* text) {
         Init();
-        fn_710007e77c(Str(), text);
+        CRntString_AssignCString(Str(), text);
     }
     // The first `length` characters of `text`.
     UnkTunableLine(const char* text, u32 length) {
         Init();
-        fn_710007e7f8(Str(), text, length);
+        CRntString_AssignPrefix(Str(), text, length);
     }
     explicit UnkTunableLine(const base::global::CRntString& text) {
         Init();
-        fn_710007eaa0(Str(), &text);
+        CRntString_Assign(Str(), &text);
     }
-    UnkTunableLine(const UnkTunableLine& other) : UnkTunableLine() { fn_710007eaa0(Str(), other.Str()); }
+    UnkTunableLine(const UnkTunableLine& other) : UnkTunableLine() { CRntString_Assign(Str(), other.Str()); }
     // Inlined where it runs; the copy the runtime asset path's static registers at exit is fn_7100de9f54.
     // The label is for the matching build only (Clang 9 ignores it, tools/dread/asm_labels.py reads
     // it): the port's newer Clang never finishes compiling a destructor that is both labelled and
@@ -59,17 +59,17 @@ struct UnkTunableLine {
 #endif
 
     UnkTunableLine& operator=(const UnkTunableLine& other) {
-        fn_710007eaa0(Str(), other.Str());
+        CRntString_Assign(Str(), other.Str());
         return *this;
     }
     UnkTunableLine& operator=(const base::global::CRntString& other) {
-        fn_710007eaa0(Str(), &other);
+        CRntString_Assign(Str(), &other);
         return *this;
     }
 };
 inline UnkTunableLine::~UnkTunableLine() {
-    fn_710007ed40(Str());
-    fn_710007ecd4(Str());
+    CRntString_Clear(Str());
+    CRntString_Destroy(Str());
 }
 static_assert(sizeof(UnkTunableLine) == 0x148, "UnkTunableLine placeholder layout");
 static_assert(__builtin_offsetof(UnkTunableLine, storage_vtable) == 0x30, "UnkTunableLine placeholder layout");

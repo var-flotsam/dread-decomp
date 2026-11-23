@@ -54,7 +54,7 @@ static inline const CRntString* Str_l93a130(const CStrId& id) {
 }
 
 static inline bool StartsWith_l93a130(const CStrId& name, const CStrId& prefix) {
-    return fn_710007fc80(Str_l93a130(name), Str_l93a130(prefix));
+    return CRntString_StartsWith(Str_l93a130(name), Str_l93a130(prefix));
 }
 
 static inline bool IsModel_l93a130(const CStrId& model, const UnkModelName_l93a130& name) {
@@ -64,7 +64,7 @@ static inline bool IsModel_l93a130(const CStrId& model, const UnkModelName_l93a1
 void fn_710093a130(char* self, char* entry, CRntString* out) {
     UnkSamusModelUpdater_l93a130* updater = reinterpret_cast<UnkSamusModelUpdater_l93a130*>(self);
     const CStrId& name = *reinterpret_cast<const CStrId*>(entry);
-    fn_710007eaa0(out, Str_l93a130(name));
+    CRntString_Assign(out, Str_l93a130(name));
     {
         s64 key = name.data->Key();
         if (fn_71011743bc(reinterpret_cast<UnkModelUpdater_ovb0032*>(self), &key))
@@ -93,7 +93,7 @@ void fn_710093a130(char* self, char* entry, CRntString* out) {
     u32 rest_length = text->length - skip;
     const char* rest = text->data + skip;
     UnkBufferString<0x40, g_unk_7101a1b678> suffix;
-    fn_710007e7f8(suffix.Str(), rest, rest_length);
+    CRntString_AssignPrefix(suffix.Str(), rest, rest_length);
 
     const CStrId* mesh;
     if (IsModel_l93a130(updater->model, UnkModelName_l93a130("Default", 7, kDefaultHash, true)))
@@ -107,6 +107,6 @@ void fn_710093a130(char* self, char* entry, CRntString* out) {
     else
         return;
 
-    fn_710007eaa0(out, Str_l93a130(*mesh));
-    fn_710007f3b4(out, suffix.Str());
+    CRntString_Assign(out, Str_l93a130(*mesh));
+    CRntString_Append(out, suffix.Str());
 }

@@ -68,7 +68,7 @@ void fn_71006865b0(UnkPrickAttack_b67a4* attack) {
     u64 tail;
     {
         ++id->data->reads;
-        CRntString name = fn_710007ef90(&id->data->String(), "_taillayer");
+        CRntString name = CRntString_ConcatCString(&id->data->String(), "_taillayer");
         fn_7100066630(&tail, &name);
     }
     // Declared past a goto so that they get no lifetime markers: each send keeps its own slots.

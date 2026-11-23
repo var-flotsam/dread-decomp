@@ -42,7 +42,7 @@ struct UnkBuiltId_710119770c {
         CStrId id;
     };
 
-    explicit UnkBuiltId_710119770c(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkBuiltId_710119770c(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkBuiltId_710119770c() { id.~CStrId(); }
 };
 

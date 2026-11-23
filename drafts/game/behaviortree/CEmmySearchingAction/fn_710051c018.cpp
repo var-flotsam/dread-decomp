@@ -2,7 +2,7 @@
 // In movement mode 4 it plays the movement's pending target animation when it may; in mode 1 it plays a
 // look animation chosen by the movement; when nothing plays, the search resumes (fn_7100519b48). `played`
 // and `fromTarget` say what happened. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

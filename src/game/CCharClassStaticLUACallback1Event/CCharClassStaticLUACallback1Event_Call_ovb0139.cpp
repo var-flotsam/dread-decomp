@@ -47,7 +47,7 @@ static inline UnkLuaId_ovb0139& TrueId() {
                          0)) {
         if (__cxa_guard_acquire(&g_unk_717279e8f8.guard)) {
             new (&g_unk_717279e8f8.id) UnkStrIdBase("true", true);
-            fn_7100000250(fn_710000051c, &g_unk_717279e8f8.id, g_unk_7101a19000);
+            fn_7100000250(CStrId_Destroy, &g_unk_717279e8f8.id, g_unk_7101a19000);
             __cxa_guard_release(&g_unk_717279e8f8.guard);
         }
     }
@@ -64,12 +64,12 @@ static inline bool Contains(UnkLuaId_ovb0139& id, UnkLuaId_ovb0139& key) {
     ++key.Data()->reads;
     const char* k = key.Data()->text.data;
     ++id.Data()->reads;
-    return id.data != &g_unk_7101d47108->empty && fn_710007fb9c(&id.Data()->text, k);
+    return id.data != &g_unk_7101d47108->empty && CRntString_Contains(&id.Data()->text, k);
 }
 // Whether the id's text contains a literal (false for the empty id).
 static inline bool ContainsText(UnkLuaId_ovb0139& id, const char* key) {
     ++id.Data()->reads;
-    return id.data != &g_unk_7101d47108->empty && fn_710007fb9c(&id.Data()->text, key);
+    return id.data != &g_unk_7101d47108->empty && CRntString_Contains(&id.Data()->text, key);
 }
 
 struct UnkLuaCallback1Event_ovb0139 {

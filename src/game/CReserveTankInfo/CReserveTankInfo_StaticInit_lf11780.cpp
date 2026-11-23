@@ -54,7 +54,7 @@ void fn_7100f11780() {
     fn_710009ec00(g_unk_71729dbbb9, tu.tunables_class);
     InitTunable(&g_unk_71729dbbc0, fn_7100136ecc, g_unk_7101caa610, fn_7100075104);
     new (&g_unk_71729dbbf8) CStrId("AMIIBO", true);
-    fn_7100000250(fn_710000051c, &g_unk_71729dbbf8, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_71729dbbf8, &g_unk_7101a19000);
     InitFlag<true>(g_unk_71729dbc00, "MENU_UNLOCKED");
     InitFlag<false>(g_unk_71729dbc40, "ITEM_RESERVE_TANK_LIFE_ACTIVE");
     InitFlag<true>(g_unk_71729dbc80, "ITEM_RESERVE_TANK_LIFE_FULL");

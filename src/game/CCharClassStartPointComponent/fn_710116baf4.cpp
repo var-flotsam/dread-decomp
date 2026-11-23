@@ -81,5 +81,5 @@ UNK_NAMED_DTORS(71006b91a8, 71006b922c, g_unk_7101a63ad0, UnkNamedObject_71006b9
                 UnkStruct_7100416e80, fn_7100416e80)
 UNK_NAMED_DTORS(71006c54dc, 71006c5560, g_unk_7101a64f60, UnkNamedObject_71006c54dc, void, fn_71006c0074,
                 UnkStruct_7100416e80, fn_7100416e80)
-UNK_NAMED_DTORS(7100b03744, 7100b037c8, g_unk_7101a9a200, UnkNamedObject_7100b03744, CRntString, fn_710007ecd4,
+UNK_NAMED_DTORS(7100b03744, 7100b037c8, g_unk_7101a9a200, UnkNamedObject_7100b03744, CRntString, CRntString_Destroy,
                 char, fn_71011bf1a4)

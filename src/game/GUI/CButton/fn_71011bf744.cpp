@@ -141,7 +141,7 @@ void fn_71011bf744(UnkGuiButtonIds* button, u32 state) {
     if (!container || !IsKindOf<fn_71011d7b84>(container))
         return;
     ++label.data->reads;
-    if (label.data == &g_unk_7101d47108->empty || !fn_710007fb9c(&label.data->String(), ".")) {
+    if (label.data == &g_unk_7101d47108->empty || !CRntString_Contains(&label.data->String(), ".")) {
         // A plain name: a child of the container.
         if (UnkGuiDisplayObject* obj = fn_71011d94d4(container, label.Id())) {
             PlaySelectSound(self);

@@ -226,7 +226,7 @@ bool fn_7100fc7b78(UnkDirIter_b0235* iter) {
                 goto done;
             UnkIterInner_b0246* inner = sub->inner;
             inner->part->uses++;
-            if (fn_710007f220(&inner->part->name, &it->owner->dir->filter))
+            if (CRntString_KeysDiffer(&inner->part->name, &it->owner->dir->filter))
                 continue;
             if (it->sub)
                 goto done;

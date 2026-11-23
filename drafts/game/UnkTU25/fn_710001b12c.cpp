@@ -11,7 +11,7 @@
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU57.h"
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -178,29 +178,29 @@ UnkPair_l01b12c fn_710001b12c(UnkTable_l01b12c* self, const UnkKey_l01b12c* key,
             if (d.data == &g_unk_7101d47200->empty)
                 continue;
             // The directory's text up to and including its last '/'.
-            s32 slash = fn_710007fb10(&StringOf(d.data), '/', -1);
+            s32 slash = CRntString_FindLastChar(&StringOf(d.data), '/', -1);
             s32 length = slash > 0 ? slash + 1 : -1;
             const CRntString& str = StringOf(d.data);
             if (length == -1)
                 length = str.length;
             const char* text = d.data->text;
             UnkPathString_l01b12c path;
-            fn_710007e7f8(path.Str(), text, length);
-            fn_710007f3b4(path.Str(), &IdString(e->dir));
-            fn_710007f3b4(path.Str(), &StringOf(name.path.data));
+            CRntString_AssignPrefix(path.Str(), text, length);
+            CRntString_Append(path.Str(), &IdString(e->dir));
+            CRntString_Append(path.Str(), &StringOf(name.path.data));
             UnkPair_l01b12c candidate(&name.id, UnkPathTemp_l01b12c(*path.Str()));
             if (FileExists(candidate))
-                fn_710007eaa0(found.Str(), path.Str());
+                CRntString_Assign(found.Str(), path.Str());
         }
     }
 
     if (IsEmpty(*found.Str())) {
         for (CStrId *p = e->names, *end = p + e->name_count; p != end; ++p) {
             UnkPathString_l01b12c path(p->Text());
-            fn_710007f564(path.Str(), TextOf(name.path.data));
+            CRntString_AppendCString(path.Str(), TextOf(name.path.data));
             UnkPair_l01b12c candidate(&name.id, UnkPathTemp_l01b12c(*path.Str()));
             if (FileExists(candidate)) {
-                fn_710007eaa0(found.Str(), path.Str());
+                CRntString_Assign(found.Str(), path.Str());
                 break;
             }
         }

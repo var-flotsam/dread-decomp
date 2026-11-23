@@ -391,10 +391,10 @@ template <class After>
 static inline void Save_A6_b62(UnkSaveUsable_A6_b62* self, void (*callback)(), After after) {
     const CRntString* owner = Name_A6_b62(self->actor);
     UnkString40_A6_b62 name;
-    fn_710007eaa0(name.Str(), owner);
+    CRntString_Assign(name.Str(), owner);
     const CRntString* user = Name_A6_b62(self->user->actor);
     UnkString40_A6_b62 tag;
-    fn_710007eaa0(tag.Str(), user);
+    CRntString_Assign(tag.Str(), user);
     fn_7100dfd174(g_unk_7101d47310, name.Str(), tag.Str(), true, 1,
                   UnkSaveGamePair_b54{reinterpret_cast<u64>(self), reinterpret_cast<u64>(callback)});
     after();

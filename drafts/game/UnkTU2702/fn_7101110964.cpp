@@ -3,7 +3,7 @@
 // CCharClassSetAnimStateTrack record whose sources name a track the animation has, the id's name
 // followed by those sources is sent instead. Says whether the send went through. Names and layouts
 // are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -24,15 +24,15 @@ struct UnkInlineString_b0086 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_b0086() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
     }
-    explicit UnkInlineString_b0086(const char* text) : UnkInlineString_b0086() { fn_710007e77c(Str(), text); }
+    explicit UnkInlineString_b0086(const char* text) : UnkInlineString_b0086() { CRntString_AssignCString(Str(), text); }
     ~UnkInlineString_b0086() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -96,11 +96,11 @@ bool fn_7101110964(UnkTrackAI_l110964* self, const CStrId* id, const u64* kind, 
     if (query.result) {
         const CRntString* name = UseText(*id);
         UnkInlineString_b0086 full;
-        fn_710007eaa0(full.Str(), name);
+        CRntString_Assign(full.Str(), name);
         const CRntString* sources = UseText(query.result->sources);
         UnkInlineString_b0086 suffix;
-        fn_710007eaa0(suffix.Str(), sources);
-        fn_710007f3b4(full.Str(), suffix.Str());
+        CRntString_Assign(suffix.Str(), sources);
+        CRntString_Append(full.Str(), suffix.Str());
         u64 hash = full.Str()->key;
         if (fn_7101176e78(reinterpret_cast<UnkStruct_7101176ea8*>(animation), reinterpret_cast<void*>(hash),
                           nullptr)) {

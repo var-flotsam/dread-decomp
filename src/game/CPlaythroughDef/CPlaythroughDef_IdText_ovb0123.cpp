@@ -32,7 +32,7 @@ struct UnkPlaythroughBuiltId_ovb0123 {
         CStrId id;
     };
 
-    explicit UnkPlaythroughBuiltId_ovb0123(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkPlaythroughBuiltId_ovb0123(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkPlaythroughBuiltId_ovb0123() { id.~CStrId(); }
 };
 
@@ -87,14 +87,14 @@ struct UnkPlaythroughJoined_ovb0123 {
     CRntString* Str() { return reinterpret_cast<CRntString*>(raw); }
 
     UnkPlaythroughJoined_ovb0123() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
         storage.vtable = g_unk_7101a1b750 + 2;
         storage.field_0x88 = 0;
         storage.field_0x90 = 0;
     }
     ~UnkPlaythroughJoined_ovb0123() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 static_assert(__builtin_offsetof(UnkPlaythroughJoined_ovb0123, storage.field_0x90) == 0xc0, "layout");
@@ -137,12 +137,12 @@ UnkPlaythroughJoined_ovb0123 fn_71002f2478(const UnkPlaythroughIdsOwner_ovb0123*
         const CStrId* p = self->ids.data;
         {
             UnkPlaythroughIdRef_ovb0123 id(p[0]);
-            fn_710007f3b4(out.Str(), id.Text());
+            CRntString_Append(out.Str(), id.Text());
         }
         for (const CStrId *q = p + 1, *e = p + count; q != e; ++q) {
             UnkPlaythroughIdRef_ovb0123 id(*q);
-            fn_710007f564(out.Str(), ",");
-            fn_710007f3b4(out.Str(), id.Text());
+            CRntString_AppendCString(out.Str(), ",");
+            CRntString_Append(out.Str(), id.Text());
         }
     }
     return out;

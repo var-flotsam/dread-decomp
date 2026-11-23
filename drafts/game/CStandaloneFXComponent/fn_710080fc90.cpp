@@ -6,7 +6,7 @@
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU57.h"
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -22,12 +22,12 @@ typedef UnkBufferString<0x100, g_unk_7101a194b8> UnkFxPathText_l80fc90;
 
 // A copy of another string.
 struct UnkFxPathCopy_l80fc90 : UnkFxPathText_l80fc90 {
-    explicit UnkFxPathCopy_l80fc90(const CRntString& text) { fn_710007eaa0(Str(), &text); }
+    explicit UnkFxPathCopy_l80fc90(const CRntString& text) { CRntString_Assign(Str(), &text); }
 };
 
 // A counted part of a string.
 struct UnkFxPathPart_l80fc90 : UnkFxPathText_l80fc90 {
-    UnkFxPathPart_l80fc90(const char* str, u32 length) { fn_710007e7f8(Str(), str, length); }
+    UnkFxPathPart_l80fc90(const char* str, u32 length) { CRntString_AssignPrefix(Str(), str, length); }
 };
 
 // A string id built from a string's text, out of line (fn_7100000850).
@@ -35,7 +35,7 @@ struct UnkFxTextId_l80fc90 {
     UnkStringData* data;
 
     explicit UnkFxTextId_l80fc90(const CRntString& text) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), text, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), text, true);
     }
     ~UnkFxTextId_l80fc90() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
@@ -54,7 +54,7 @@ struct UnkFxTextId_l80fc90 {
 bool fn_710080fc90(const CFilePathStrId* path, u32* out) {
     ++path->data->reads;
     UnkFxPathCopy_l80fc90 full(path->data->String());
-    s32 dot = fn_710007fb10(full.Str(), g_unk_710164784c, -1);
+    s32 dot = CRntString_FindLastChar(full.Str(), g_unk_710164784c, -1);
     if (dot < 0)
         return false;
     u32 start = dot + 1;

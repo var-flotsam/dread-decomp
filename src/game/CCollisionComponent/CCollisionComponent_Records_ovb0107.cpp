@@ -846,7 +846,7 @@ bool fn_710086068c(UnkCollisionComponent_Load_ovb0107* self) {
     UnkTunableLine path = fn_710013c834(&charClass->path, "\\", "/");
     UnkGameManagerIdTable& table = GameManagerIdTable();
     CountUse(table.field_0x2418);
-    if (fn_710007f220(path.Str(),
+    if (CRntString_KeysDiffer(path.Str(),
                       reinterpret_cast<const CRntString*>(reinterpret_cast<char*>(table.field_0x2418.data) + 0x10))) {
         UnkCollisionFileReader reader;
         fn_7100d45fc4(&reader, self);

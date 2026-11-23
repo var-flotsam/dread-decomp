@@ -35,7 +35,7 @@ static inline bool NameHas(const CStrId& id, const char* str) {
     ++string->reads;
     if (id.data == empty)
         return false;
-    return fn_710007fb9c(&id.data->String(), str);
+    return CRntString_Contains(&id.data->String(), str);
 }
 
 UnkMapNameId fn_7100b23090(const CStrId& transport) {

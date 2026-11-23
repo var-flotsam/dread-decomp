@@ -21,7 +21,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-#include "../../../game_aca57c/UnkBufferString.h"
+#include "../../../../src/game_aca57c/UnkBufferString.h"
 
 using base::global::CStrId;
 using base::reflection::CType;
@@ -164,7 +164,7 @@ static inline bool Contains(const CStrId& id, const char* str) {
     ++id.data->reads;
     if (id.data == &g_unk_7101d47108->empty)
         return false;
-    return fn_710007fb9c(&id.data->String(), str);
+    return CRntString_Contains(&id.data->String(), str);
 }
 
 // The index of a key, or the count if it isn't there.

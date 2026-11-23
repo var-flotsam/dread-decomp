@@ -37,16 +37,16 @@ struct UnkIdText_l13d35c {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(storage); }
     explicit UnkIdText_l13d35c(const CStrId& id) {
-        fn_710007eb20(Str(), reinterpret_cast<const UnkPooledStrId*>(&id));
+        CRntString_ConstructFromStrId(Str(), reinterpret_cast<const UnkPooledStrId*>(&id));
     }
-    ~UnkIdText_l13d35c() { fn_710007ecd4(Str()); }
+    ~UnkIdText_l13d35c() { CRntString_Destroy(Str()); }
 };
 
 // Appends an id's text, counting the read.
 static inline void AppendId(CRntString* line, const CStrId& id) {
     UnkStringData* d = id.data;
     ++d->reads;
-    fn_710007f3b4(line, &d->String());
+    CRntString_Append(line, &d->String());
 }
 
 static inline void Write(CRntFile* file, const CRntString& s) {
@@ -77,13 +77,13 @@ void fn_710013d35c(UnkTunableRegistry* self, UnkTunableWriteList_l13d35c* list, 
         {
             CRntString comment(";     ");
             ++it->name.data->reads;
-            fn_710007f3b4(&comment, &it->name.data->String());
+            CRntString_Append(&comment, &it->name.data->String());
             AppendId(&comment, newline);
             Write(file, comment);
         }
         UnkIdText_l13d35c line(it->id);
-        fn_710007f564(line.Str(), " = ");
-        fn_710007f3b4(line.Str(), &it->value);
+        CRntString_AppendCString(line.Str(), " = ");
+        CRntString_Append(line.Str(), &it->value);
         AppendId(line.Str(), newline);
         Write(file, *line.Str());
     }

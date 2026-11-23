@@ -47,7 +47,7 @@ u32 fn_71005917a8(UnkGoliathAI_l5917a8* self, UnkGoliathHit_l5917a8* hit) {
     UnkCollisionContainer* collision = self->owner->field_0x2a0;
     CStrId id(collision ? *fn_7100864018(collision, hit->field_0x60) : g_unk_7101d470e0);
     id.Text();  // the read is counted even for the empty id
-    if (id.data != &g_unk_7101d47108->empty && fn_710007fb9c(&id.data->String(), PartText()))
+    if (id.data != &g_unk_7101d47108->empty && CRntString_Contains(&id.data->String(), PartText()))
         return 2;
     if (id.data == g_unk_71726e6748.data)
         return (hit->field_0xb4 & 0x8000000) ? 6 : 0;

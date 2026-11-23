@@ -20,7 +20,7 @@ extern UnkStatics_71729dc370 g_unk_71729dc370 __attribute__((visibility("hidden"
 
 static inline void InitId(UnkStrIdBase* id, const char* str) {
     new (id) UnkStrIdBase(str, true);
-    __cxa_atexit(fn_710000051c, id, g_unk_7101a19000);
+    __cxa_atexit(CStrId_Destroy, id, g_unk_7101a19000);
 }
 
 void fn_7100f17b70() {
@@ -39,5 +39,5 @@ void fn_7100f17b70() {
     InitId(&s->ids[10], "");
     InitId(&s->ids[11], "REWARDS_BK");
     new (&s->name) CRntString("EndScreen");
-    __cxa_atexit(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &s->name, g_unk_7101a19000);
+    __cxa_atexit(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), &s->name, g_unk_7101a19000);
 }

@@ -82,7 +82,7 @@ struct UnkNameId_lfbaeb0 {
     UnkStringData* data;
 
     explicit UnkNameId_lfbaeb0(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkNameId_lfbaeb0() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
@@ -103,7 +103,7 @@ struct UnkPairId_lfbaeb0 {
     UnkStringData* data;
 
     explicit UnkPairId_lfbaeb0(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     UnkPairId_lfbaeb0(const UnkPairId_lfbaeb0& other) : data(other.data) {
         if (&g_unk_7101d47108->empty != data)

@@ -26,7 +26,7 @@ void fn_7100a88650() {
     UnkMapAcquisitionTU& tu = g_unk_7172750e58;
     InitHeader(tu.header);
     new (&g_unk_7172750da0) CStrId("MAP", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172750da0, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172750da0, &g_unk_7101a19000);
     InitPropertyVtableFirst(&g_unk_7172750da8, reinterpret_cast<void**>(g_unk_7101a92110), g_unk_71726db788,
                             "Used", refl_TypeOf<fn_710000d228>(), fn_7100a88028, fn_7100a84880);
     InitPropertyEx(&g_unk_7172750dd0, g_unk_7101a45fe8, g_unk_71726db788,

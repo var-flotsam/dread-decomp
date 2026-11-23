@@ -53,13 +53,13 @@ u32 fn_7101129240(UnkObj_7101129240* self, UnkProp* p) {
     if (Is(p, Key(0x1a80)) && p->set) {
         char buf[0x80];
         CRntFile_ReadFormat(p->stream, "s", buf);
-        fn_710007e77c(&self->field_0xa8, buf);
+        CRntString_AssignCString(&self->field_0xa8, buf);
         return true;
     }
     if (Is(p, Key(0x1ad8)) && p->set) {
         char buf[0x80];
         CRntFile_ReadFormat(p->stream, "s", buf);
-        fn_710007e77c(&self->field_0xd8, buf);
+        CRntString_AssignCString(&self->field_0xd8, buf);
         return true;
     }
     if (Is(p, Key(0x1178)) && p->set) {

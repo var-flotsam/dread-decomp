@@ -53,7 +53,7 @@ void fn_7101133b58(UnkAttackData_l133b58* self) {
     self->id_0x100.~UnkStrIdMemberOf();
     self->id_0xf8.~UnkStrIdMemberOf();
     self->id_0xf0.~UnkStrIdMemberOf();
-    fn_710007ecd4(&self->name);
+    CRntString_Destroy(&self->name);
     UnkAttackList_l133b58& list = self->list;
     list.vtable = g_unk_7101a32660 + 2;
     list.clearing = true;

@@ -18,7 +18,7 @@ void fn_7100080a00(char* set, UnkPoolIter* it) {
         it->node = nullptr;
         it->ref.bucket = -1;
     }
-    char** slot = fn_7100080824(set, bucket);
+    char** slot = StringPool_Bucket(set, bucket);
     char* node = it->node;
     if (!node)
         return;
@@ -29,16 +29,16 @@ void fn_7100080a00(char* set, UnkPoolIter* it) {
     if (*slot == node) {
         *slot = *reinterpret_cast<char**>(node + 0x50);
         if (bucket == first) {
-            for (u32 b = bucket; b < count && !*fn_7100080824(set, b); b = ++first) {
+            for (u32 b = bucket; b < count && !*StringPool_Bucket(set, b); b = ++first) {
             }
             if (node == first_node)
-                first_node = first < count ? *fn_7100080824(set, first) : nullptr;
+                first_node = first < count ? *StringPool_Bucket(set, first) : nullptr;
         }
     }
     if (prev)
         *reinterpret_cast<char**>(prev + 0x50) = *reinterpret_cast<char**>(node + 0x50);
     --*reinterpret_cast<u32*>(set + 0x44);
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node + 0x18));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(node + 0x18));
     (*reinterpret_cast<base::UnkAllocator**>(set + 0x38))->vf_0x48(node);
     ++*reinterpret_cast<u32*>(set + 0x48);
 }

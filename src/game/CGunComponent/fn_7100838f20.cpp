@@ -153,7 +153,7 @@ void fn_7100838f20(UnkGunComponent_l838f20* self) {
         fn_7100083c30(static_cast<u64*>(input.entries) - 1);
         input.entries = nullptr;
     }
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&input.name));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&input.name));
 
     if (self->field_0x60.owner) {
         fn_71008410e0(self->field_0x60.owner, &self->field_0x60);

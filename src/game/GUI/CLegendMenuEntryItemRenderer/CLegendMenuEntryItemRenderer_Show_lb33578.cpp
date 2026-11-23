@@ -71,7 +71,7 @@ struct UnkLegendImageId_lb33578 {
     UnkStringData* data;
 
     explicit UnkLegendImageId_lb33578(const CRntString& text) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), text, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), text, true);
     }
     ~UnkLegendImageId_lb33578() {
         if (UnkStringPool* pool = g_unk_7101d47108) {

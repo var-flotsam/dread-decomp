@@ -38,7 +38,7 @@ static inline UnkSoundHolder* SoundHolder_e4a60() {
 
 bool fn_7100de4a60() {
     auto* mode = static_cast<UnkTU2553Mode*>(g_unk_7101d47310->field_0x498);
-    if (!mode || !fn_710007f140(&mode->name, "INGAME") || !mode->field_0x38 || mode->field_0x3b)
+    if (!mode || !CRntString_EqualsCString(&mode->name, "INGAME") || !mode->field_0x38 || mode->field_0x3b)
         return false;
     if (fn_7101196fd8(g_unk_7101d47330))
         return false;

@@ -83,7 +83,7 @@ bool fn_710111c0fc(UnkSpawnGroupScript* self, UnkPropBag* results, const char* n
     buf[n] = 0;
     {
         UnkString80 stripped(buf);
-        fn_710007eaa0(str.Str(), stripped.Str());
+        CRntString_Assign(str.Str(), stripped.Str());
     }
     s64 key = str.Str()->key;
     const s64* it = self->missing.data;

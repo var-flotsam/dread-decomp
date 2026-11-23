@@ -2,7 +2,7 @@
 // request has gone out, sends it once the owner has moved far enough from where it started, or once
 // another actor ahead of it (or the point a moving one heads for) comes within 400 units.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CEnemyMovement.h"

@@ -67,7 +67,7 @@ void fn_7100b724a4(void* maps);
 void fn_7100b72380(UnkScene3DCtor_lb72380* self) {
     fn_71011f3c4c(self);
     self->vtable = &g_unk_7101a9e968[2];
-    fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(self->name), g_unk_710162e2ed);
+    CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(self->name), g_unk_710162e2ed);
     self->frame = 0x7fffffff;
     fn_710007e6c4(self->field_0x2e0);
     u32 value = g_unk_710164d27c;

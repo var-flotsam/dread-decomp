@@ -1,7 +1,7 @@
 // CChozoRobotSoldierAIComponent's unit (tools/tu_map.py unit 694): picks a jump animation. When a spin
 // jump is allowed and the animation's name has "_spinjump" in it, the "_jump" one is used instead if the
 // actor's animations have it; otherwise the base's choice (fn_710110fbc8). Names and layouts are placeholders.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
@@ -17,8 +17,8 @@ using base::global::UnkStringData;
 struct UnkString80_l471920 : UnkBufferString<0x80, g_unk_7101a1b750> {
     explicit UnkString80_l471920(const char* str) : UnkBufferString(str) {}
     // The first `length` characters of `str`.
-    UnkString80_l471920(const char* str, u32 length) { fn_710007e7f8(Str(), str, length); }
-    explicit UnkString80_l471920(const CRntString& str) { fn_710007eaa0(Str(), &str); }
+    UnkString80_l471920(const char* str, u32 length) { CRntString_AssignPrefix(Str(), str, length); }
+    explicit UnkString80_l471920(const CRntString& str) { CRntString_Assign(Str(), &str); }
 };
 
 UnkString80_l471920 fn_7100471920(const CRntString* text, const char* from, const char* to);
@@ -65,7 +65,7 @@ struct UnkAnimId_l4716e0 {
     UnkStringData* data;
 
     explicit UnkAnimId_l4716e0(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkAnimId_l4716e0() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
 };
@@ -76,7 +76,7 @@ void fn_710110fbc8(UnkRobotSoldierAI_l4716e0* self, UnkJumpInfo_l4716e0* info, C
 static bool UseJumpForSpinJump(UnkRobotSoldierAI_l4716e0* self, CStrId* anim) {
     ++anim->data->reads;
     const CRntString& name = anim->data->String();
-    if (fn_710007fb54(&name, "_spinjump", 0) < 0)
+    if (CRntString_Find(&name, "_spinjump", 0) < 0)
         return false;
     UnkAnimId_l4716e0 jump(*fn_7100471920(&name, "_spinjump", "_jump").Str());
     if (self->actor->animations &&

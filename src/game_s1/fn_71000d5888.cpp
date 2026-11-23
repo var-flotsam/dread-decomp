@@ -21,7 +21,7 @@ struct UnkOutOfLineElement {
 };
 
 // The 0x30-byte elements are strings (base/global/CRntString.h).
-inline void DestroyString(void* self) { fn_710007ecd4(static_cast<base::global::CRntString*>(self)); }
+inline void DestroyString(void* self) { CRntString_Destroy(static_cast<base::global::CRntString*>(self)); }
 using UnkElement18 = UnkOutOfLineElement<0x18, base::reflection::UnkReflValue, fn_71000a1c60>;
 using UnkElement30 = UnkOutOfLineElement<0x30, void, DestroyString>;
 using UnkElement50 = UnkOutOfLineElement<0x50, void, fn_710026ead0>;

@@ -139,8 +139,8 @@ void fn_7100ecbddc(UnkObj290_b43a3* shot) {
     self->field_0x94[14] = 0.0f;
 
     base::UnkNamedEntry text;
-    fn_710007e704(&text, "audiopreset:system/snd/presets/weapons/common/liquidsplash");
+    CRntString_ConstructFromCString(&text, "audiopreset:system/snd/presets/weapons/common/liquidsplash");
     fn_71000267f8(&self->path,
                   UnkPathIdsFromText(*reinterpret_cast<const base::global::CRntString*>(&text)).ids);
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&text));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&text));
 }

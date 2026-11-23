@@ -124,7 +124,7 @@ CRntString fn_7100dfb330(UnkGameManager* self) {
     u32 hours = seconds / 3600;
     u32 minutes = seconds / 60 % 60;
     sprintf(buffer, "%02d:%02d:%02d", hours, minutes, secs);
-    fn_710007e77c(time.Str(), buffer);
+    CRntString_AssignCString(time.Str(), buffer);
     {
         static CStrId s_label("#GUI_MISC003", true);
         UnkDialogText text = fn_710119d040(Language_ldfb330(), s_label);

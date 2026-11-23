@@ -2,7 +2,7 @@
 // tracks whether its target is in reach (the flag at +0x14a14), measures the target's height against Kraid's
 // head, steps the morph-ball launcher track and, when the target newly comes within reach, sends the owner's
 // sub-object at +0x220 a request. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"

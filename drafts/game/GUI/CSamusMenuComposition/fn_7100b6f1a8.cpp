@@ -35,7 +35,7 @@ struct UnkStrList_b6f {
     void Clear() {
         for (UnkStrNode_b6f* node = head; node;) {
             UnkStrNode_b6f* next = node->next;
-            fn_710007ecd4(&node->str);
+            CRntString_Destroy(&node->str);
             allocator->vf_0x48(node);
             node = next;
         }
@@ -118,7 +118,7 @@ void fn_7100b6f1a8(const char* str, const char* separator, UnkStrList_b6f* out) 
             }
             UnkStrNode_b6f* node = out->PushBack();
             u32 n = end - p;
-            fn_710007e7f8(&node->str, p, n);
+            CRntString_AssignPrefix(&node->str, p, n);
             u32 step = n + separator_length;
             pos += step;
             p += step;

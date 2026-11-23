@@ -37,8 +37,8 @@ void fn_710007547c(base::UnkNamedRegistry* registry, u32 capacity) {
     if (CRntString* old = self->values) {
         CRntString* dst = values;
         for (u32 i = 0; i < self->count; ++i) {
-            fn_710007eab4(dst, old);
-            fn_710007ecd4(old);
+            CRntString_MoveConstruct(dst, old);
+            CRntString_Destroy(old);
             ++dst;
             ++old;
         }

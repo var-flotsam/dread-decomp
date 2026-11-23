@@ -324,7 +324,7 @@ s32 fn_7101082860(lua_State* L) {
     if (fn_71010c0270(L, "ssssi", &first, &second, &third, &fourth, &value)) {
         UnkGameManager* manager = g_unk_7101d47310;
         UnkModeHolder_b0163* mode = static_cast<UnkModeHolder_b0163*>(manager->field_0x498);
-        if (!mode || fn_710007f240(mode->name, "PROLOGUE")) {
+        if (!mode || StringBuffer_Differs(mode->name, "PROLOGUE")) {
             manager = g_unk_7101d47310;
             fn_7100deac9c(manager, CRntString("PROLOGUE"));
         }

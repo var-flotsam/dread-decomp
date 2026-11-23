@@ -2,7 +2,7 @@
 // a turn animation was sent and the delay is over, it waits for that animation to finish. Otherwise it picks one of
 // two animations by whether the target lies on the side the owner faces and sends it with mode 0 (UnkSpitSend,
 // src/game_s2/UnkSpitSend.h). Returns 2 while running, 5 when done. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"

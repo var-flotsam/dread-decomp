@@ -5,7 +5,7 @@
 // in the blackboard section g_unk_71726b7cb8 (false), the motor switched on at its own speed, a death
 // request sent to the animation (+0x220) and the timeline (+0x2e8) id g_unk_7101649ce0 set to the
 // all-flags mask. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"

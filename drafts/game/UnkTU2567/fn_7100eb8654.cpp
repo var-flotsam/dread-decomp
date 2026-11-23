@@ -1,6 +1,6 @@
 // Unit 2567 (the minimap's items): resets an item's selected alpha and size modifiers: each gets the
 // default curve settings and is snapped back to its off value. Names and layouts are placeholders.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkTimedCurve.h"
 #include "base/global/CRntString.h"
 #include "game/UnkBufferStringPool.h"
@@ -37,9 +37,9 @@ struct UnkModifier_eb8654 {
     // Takes `settings`; returns whether the on value or the shaping changed.
     bool Set(const UnkCurveSettings_eb8654& settings) {
         bool same = settings.range.on_value == range.on_value &&
-                    fn_710007f220(settings.modifiers.Str(), modifiers.Str());
+                    CRntString_KeysDiffer(settings.modifiers.Str(), modifiers.Str());
         range = settings.range;
-        fn_710007eaa0(modifiers.Str(), settings.modifiers.Str());
+        CRntString_Assign(modifiers.Str(), settings.modifiers.Str());
         mode = settings.mode;
         return !same;
     }

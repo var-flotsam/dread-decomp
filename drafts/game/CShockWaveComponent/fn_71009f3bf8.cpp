@@ -25,7 +25,7 @@ struct UnkShockWaveDamage_l9f3bf8 {
 struct UnkShockWaveString_l9f3bf8 {
     base::global::CRntString str;
     UnkShockWaveString_l9f3bf8& operator=(const UnkShockWaveString_l9f3bf8& other) {
-        fn_710007eaa0(&str, &other.str);
+        CRntString_Assign(&str, &other.str);
         return *this;
     }
 };

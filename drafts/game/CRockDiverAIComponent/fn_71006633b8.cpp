@@ -4,7 +4,7 @@
 // [-45, 45] degrees to [0, 1]; both values go into the owner's property bag. Names are placeholders.
 #include <math.h>
 
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/UnkMatrix44.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"

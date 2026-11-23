@@ -1,7 +1,7 @@
 // Unit 1444 of tools/tu_map.py: plays the owner's animation action that a string id names: tells the AI
 // first (keeping its answer in the stored object), then picks the action's variant by `flag` and the unit's
 // flags. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAnimationComponent.h"

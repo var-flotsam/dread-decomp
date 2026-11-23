@@ -17,28 +17,28 @@ void fn_7100065b14(const char* str, UnkStrValue& value) {
         char c = str[i];
         switch (c) {
         case ' ':
-            fn_710007f5ac(out, '_');
+            CRntString_AppendChar(out, '_');
             break;
         case '(':
-            fn_710007f564(out, "__PARI__");
+            CRntString_AppendCString(out, "__PARI__");
             break;
         case ')':
-            fn_710007f564(out, "__PARD__");
+            CRntString_AppendCString(out, "__PARD__");
             break;
         case '-':
-            fn_710007f564(out, "__DASH__");
+            CRntString_AppendCString(out, "__DASH__");
             break;
         case '[':
-            fn_710007f564(out, "__CORI__");
+            CRntString_AppendCString(out, "__CORI__");
             break;
         case ']':
-            fn_710007f564(out, "__CORD__");
+            CRntString_AppendCString(out, "__CORD__");
             break;
         case '_':
-            fn_710007f564(out, "__UNDS__");
+            CRntString_AppendCString(out, "__UNDS__");
             break;
         default:
-            fn_710007f5ac(out, c);
+            CRntString_AppendChar(out, c);
             break;
         }
     }

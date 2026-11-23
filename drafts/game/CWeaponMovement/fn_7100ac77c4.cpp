@@ -6,7 +6,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU357.h"
-#include "../../game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkIter.h"
 #include "types.h"
 
 struct UnkGunShots_ovb0070;

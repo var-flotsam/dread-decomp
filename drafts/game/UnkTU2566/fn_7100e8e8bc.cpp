@@ -3,7 +3,7 @@
 // record (growing by the array's step through fn_7100ea9934). Names and layouts are placeholders.
 #include <new>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "game/UnkTU2567.h"
 #include "types.h"
@@ -14,7 +14,7 @@ extern void* g_unk_7101a1b5a0[];
 struct UnkString20_e8bc : UnkBufferString<0x20, g_unk_7101a1b5a0> {
     UnkString20_e8bc(const UnkString20_e8bc& other) = default;
     UnkString20_e8bc& operator=(const UnkString20_e8bc& other) {
-        fn_710007eaa0(Str(), other.Str());
+        CRntString_Assign(Str(), other.Str());
         return *this;
     }
 };

@@ -4,7 +4,7 @@
 // (fn_71010c4250). Names and layouts are placeholders.
 #include <stdio.h>
 
-#include "../../game_s7/UnkPropS7.h"
+#include "../../../src/game_s7/UnkPropS7.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkHashStream.h"
 #include "base/global/CRntFile.h"

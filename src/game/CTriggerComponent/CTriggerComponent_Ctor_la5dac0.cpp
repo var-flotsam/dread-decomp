@@ -90,7 +90,7 @@ static inline void ResetTrigger(UnkTriggerComponent_la5dac0* self) {
     self->field_0x203 = false;
     self->field_0x204 = false;
     self->field_0x205 = false;
-    fn_710007e77c(&self->text, g_unk_710162e2ed);
+    CRntString_AssignCString(&self->text, g_unk_710162e2ed);
     self->field_0x240 = false;
     self->field_0x244 = 0;
     self->field_0x248 = 0;

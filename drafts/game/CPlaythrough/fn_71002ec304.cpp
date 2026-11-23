@@ -12,7 +12,7 @@
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkTU57.h"
 #include "types.h"
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
@@ -109,16 +109,16 @@ CFilePathStrId fn_71002ec304(UnkPathOwner_l2ec304* self, const u64* key) {
         if (UnkPathRecord_l2ec304* record = fn_71002f2d30(def, &(*entry)->name)) {
             char lower[0x80];
             UnkBufferString<0x80, g_unk_7101a1b750> path("rom:");
-            fn_710007f3b4(path.Str(), &g_unk_71726ad748);
-            fn_710007f3b4(path.Str(), CountedString(self->name));
+            CRntString_Append(path.Str(), &g_unk_71726ad748);
+            CRntString_Append(path.Str(), CountedString(self->name));
             char separator = g_unk_710164784b;
-            fn_710007f5ac(path.Str(), separator);
-            fn_710007f3b4(path.Str(), CountedString(record->folder));
-            fn_710007f5ac(path.Str(), separator);
+            CRntString_AppendChar(path.Str(), separator);
+            CRntString_Append(path.Str(), CountedString(record->folder));
+            CRntString_AppendChar(path.Str(), separator);
             CopyLower_l2ec304(lower, record->file.Text());
             {
                 UnkBufferString<0x80, g_unk_7101a1b750> lowered(lower);
-                fn_710007f564(path.Str(), CStr(lowered.Str()));
+                CRntString_AppendCString(path.Str(), CStr(lowered.Str()));
             }
             TakePathId(result, UnkPathId_l2ec304(*path.Str()).id);
         }

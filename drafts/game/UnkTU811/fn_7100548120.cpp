@@ -2,7 +2,7 @@
 // leaves state 1, sends the owner's character class a fixed request, registers itself with the managers,
 // clears its targeting state, re-registers its two sets and creates its scene object. Names and layouts
 // are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkDeferredSet.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityEnergyWave.h"

@@ -49,7 +49,7 @@ struct UnkTextId_l14c890 {
     union {
         CStrId id;
     };
-    explicit UnkTextId_l14c890(const CRntString& text) { fn_7100000850(&id, text, true); }
+    explicit UnkTextId_l14c890(const CRntString& text) { CStrId_ConstructFromRntString(&id, text, true); }
     ~UnkTextId_l14c890() { id.~CStrId(); }
     CStrId&& Take() { return static_cast<CStrId&&>(id); }
 };

@@ -29,14 +29,14 @@ struct UnkStrBuffer_dfb758 {
     base::global::CRntString* Str() { return reinterpret_cast<base::global::CRntString*>(this); }
 
     UnkStrBuffer_dfb758() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
         storage.vtable = g_unk_7101a194b8 + 2;
         storage.field_0x108 = nullptr;
         storage.field_0x110 = 0;
     }
     ~UnkStrBuffer_dfb758() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
     const char* c_str() const { return data ? data : ""; }
 };
@@ -51,7 +51,7 @@ s32 fn_71010c0cd0(lua_State* L, s32 count, char* buf, u32 size, UnkPropBag* resu
     if (!name)                                                                       \
         return false;                                                                \
     UnkStrBuffer_dfb758 str;                                                                \
-    fn_710007e77c(str.Str(), name);                                                  \
+    CRntString_AssignCString(str.Str(), name);                                                  \
     s32 n = 0;                                                                       \
     const char* p = str.data;                                                        \
     for (u64 left = str.length; left != 0; --left, ++p) {                            \
@@ -62,8 +62,8 @@ s32 fn_71010c0cd0(lua_State* L, s32 count, char* buf, u32 size, UnkPropBag* resu
     buf[n] = 0;                                                                      \
     {                                                                                \
         UnkStrBuffer_dfb758 stripped;                                                       \
-        fn_710007e77c(stripped.Str(), buf);                                          \
-        fn_710007eaa0(str.Str(), stripped.Str());                                    \
+        CRntString_AssignCString(stripped.Str(), buf);                                          \
+        CRntString_Assign(str.Str(), stripped.Str());                                    \
     }                                                                                \
     bool result = false;                                                             \
     if (fn_71010c0bb0(g_unk_7172a01d18, str.c_str()) != 0) {                         \

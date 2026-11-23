@@ -110,9 +110,9 @@ void fn_7100aa0810(UnkUsable_laa0810* self, const CStrId* prefix, CStrId* side, 
         return;
 
     UnkBufferString<0x80, g_unk_7101a1b750> name;
-    fn_710007eb6c(name.Str(), prefix);
-    fn_710007f564(name.Str(), "_");
-    fn_710007f3b4(name.Str(), &IdString(*side));
+    CRntString_AssignStrId(name.Str(), prefix);
+    CRntString_AppendCString(name.Str(), "_");
+    CRntString_Append(name.Str(), &IdString(*side));
     auto* animation = static_cast<UnkAnimationComponent*>(player->field_0x220);
     bool found;
     {
@@ -123,7 +123,7 @@ void fn_7100aa0810(UnkUsable_laa0810* self, const CStrId* prefix, CStrId* side, 
     }
     if (found) {
         UnkStrIdSlot_laa0810 slot;
-        fn_7100000850(&slot.id, *name.Str(), true);
+        CStrId_ConstructFromRntString(&slot.id, *name.Str(), true);
         animation_id->Reset();
         animation_id->data = slot.id.data;
     }

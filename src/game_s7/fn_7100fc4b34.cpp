@@ -157,9 +157,9 @@ bool fn_7100fc4b34(UnkOwner_7100fc4b34* self, CBlackboard* a, CBlackboard* b, Un
     {
         UnkString_7100fc4b34 s;
         fn_710007eba0(&s, 0x40);
-        fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(&out->field_0x80),
+        CRntString_Assign(reinterpret_cast<base::global::CRntString*>(&out->field_0x80),
                       reinterpret_cast<const base::global::CRntString*>(&s));
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&s));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&s));
     }
     Get<fn_7100ec50e4>(a, Key(0x1148), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_71727594b8)), &out->field_0x80);
     f32 x = 0.0f;

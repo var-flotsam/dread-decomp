@@ -10,7 +10,7 @@ struct UnkRecord30 {
 
     ~UnkRecord30();
 };
-inline UnkRecord30::~UnkRecord30() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
+inline UnkRecord30::~UnkRecord30() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this)); }
 
 template <class T>
 struct UnkFirstPtrArray {

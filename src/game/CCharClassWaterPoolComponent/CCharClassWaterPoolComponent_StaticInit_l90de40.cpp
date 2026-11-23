@@ -82,7 +82,7 @@ void fn_710090de40() {
     tu.field_0x38 = true;
 
     new (&g_unk_7172734630) CStrId("WATERPOOL", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172734630, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172734630, &g_unk_7101a19000);
     InitProperty(&g_unk_7172734638, g_unk_7101a81150, g_unk_71726db788, "ChangeIdx", refl_TypeOf<fn_7100014768>(),
                  fn_710090ba1c, fn_7100906580);
     InitPropertyEx(&g_unk_7172734660, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, fn_71002ef5bc,
@@ -133,5 +133,5 @@ void fn_710090de40() {
         CStrId name("CWaterPoolComponent", true);
         new (&tu.water_pool_id) CStrId(fn_7100de8f78(name));
     }
-    fn_7100000250(fn_710000051c, &tu.water_pool_id, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.water_pool_id, &g_unk_7101a19000);
 }

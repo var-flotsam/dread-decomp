@@ -4,8 +4,8 @@
 // and is written in degrees to its property bag. Names and layouts are placeholders.
 #include <math.h>
 
-#include "../../game_s2/UnkSpitSend.h"
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "game/CModelUpdaterComponent.h"

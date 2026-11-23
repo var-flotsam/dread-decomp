@@ -149,9 +149,9 @@ void fn_7100e06590() {
     InitId(&s.samus_deadsuit, "samus_deadsuit");
     InitPathId(&s.deadsuit_class, "actors/props/samus_deadsuit/charclasses/samus_deadsuit.bmsad");
     new (&s.samus_zero) CRntString("samuszero");
-    fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &s.samus_zero, g_unk_7101a19000);
+    fn_7100000250(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), &s.samus_zero, g_unk_7101a19000);
     new (&s.samus_zero_parts) CRntString("samuszeroparts");
-    fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &s.samus_zero_parts, g_unk_7101a19000);
+    fn_7100000250(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), &s.samus_zero_parts, g_unk_7101a19000);
     InitPathId(&s.common_pack, "packs/players/common.pkg");
     InitPathId(&s.power_pack, "packs/players/power.pkg");
     InitPathId(&s.varia_pack, "packs/players/varia.pkg");

@@ -2,7 +2,7 @@
 // and, once it passes the limit while armed, sends a fixed request to the owner's character class; then,
 // under a boss camera, eases the camera's value toward a target and keeps last frame's box. Names and layouts
 // are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAttackComponent.h"

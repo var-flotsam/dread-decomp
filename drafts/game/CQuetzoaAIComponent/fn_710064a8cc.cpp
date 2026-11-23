@@ -2,7 +2,7 @@
 // up-down factors (+0x14ad0) toward the owner's velocity, scaled and in the owner's facing, and reports
 // them to the owner's value bag as "FrontBackFactor" and "UpDownFactor". Names and layouts are placeholders.
 #include <math.h>
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "types.h"

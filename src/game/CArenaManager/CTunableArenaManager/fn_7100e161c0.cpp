@@ -31,8 +31,8 @@ void* fn_7100e161c0(void* self, const base::global::CStrId& id) {
         u32 restLength = name.length - 2;
         const char* rest = name.data + 2;
         UnkNameBuffer_le161c0 suffix;
-        fn_710007e7f8(suffix.Str(), rest, restLength);
-        fn_710007f3b4(text.Str(), suffix.Str());
+        CRntString_AssignPrefix(suffix.Str(), rest, restLength);
+        CRntString_Append(text.Str(), suffix.Str());
     }
 
     void* found = FindByName_le161c0(g_unk_7101d47310, g_unk_71727bebb8, text.Str());

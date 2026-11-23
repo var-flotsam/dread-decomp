@@ -36,17 +36,17 @@ void fn_7100a45160() {
     fn_7100a430bc();
     fn_710009ec00(&g_unk_717274a611, &tu.type);
     new (&g_unk_717274a618) CStrId("TUNNEL_TRAP", true);
-    fn_7100000250(fn_710000051c, &g_unk_717274a618, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_717274a618, &g_unk_7101a19000);
     InitPropertyVtableFirst(&g_unk_717274a620, reinterpret_cast<void**>(g_unk_7101a8e8c0), g_unk_71726db788,
                             "Activated", refl_TypeOf<fn_710000d228>(), fn_7100a44ff4, fn_7100a43538);
     InitProperty(&g_unk_717274a648, reinterpret_cast<void**>(g_unk_7101a8e8c0), g_unk_71726db788, "ForcedOpened",
                  refl_TypeOf<fn_710000d228>(), fn_7100a44ff4, fn_7100a43538);
     new (&tu.activation_trap) CStrId("activationtrap", true);
-    fn_7100000250(fn_710000051c, &tu.activation_trap, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.activation_trap, &g_unk_7101a19000);
     new (&tu.trap_block_initial) CStrId("trapblockinitial", true);
-    fn_7100000250(fn_710000051c, &tu.trap_block_initial, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.trap_block_initial, &g_unk_7101a19000);
     new (&tu.trap_block_final) CStrId("trapblockfinal", true);
-    fn_7100000250(fn_710000051c, &tu.trap_block_final, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.trap_block_final, &g_unk_7101a19000);
     new (&tu.forced_movement) CStrId("ForcedMovementAreaComponent", true);
-    fn_7100000250(fn_710000051c, &tu.forced_movement, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.forced_movement, &g_unk_7101a19000);
 }

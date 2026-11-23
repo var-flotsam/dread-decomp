@@ -150,14 +150,14 @@ static_assert(__builtin_offsetof(UnkTextBlock, in_use) == 0xd5, "UnkTextBlock pl
 void ApplyStyle(UnkTextBlock* block, const UnkBufferParam* style) {
     const CRntString* font = reinterpret_cast<const CRntString*>(style->field_0x10);
     bool changed;
-    if (style->field_0x4 == block->field_0x54 && !fn_710007f220(font, &block->font))
+    if (style->field_0x4 == block->field_0x54 && !CRntString_KeysDiffer(font, &block->font))
         changed = style->field_0x8 != block->field_0x58;
     else
         changed = true;
     block->field_0x50 = style->field_0x0;
     block->field_0x54 = style->field_0x4;
     block->field_0x58 = style->field_0x8;
-    fn_710007eaa0(&block->font, font);
+    CRntString_Assign(&block->font, font);
     block->field_0xc8 = style->field_0x78;
     if (changed && block->in_use)
         fn_7100eb7358(block, 0, 1);
@@ -350,7 +350,7 @@ void fn_7100b39950(UnkMapMenuController_b39950* self) {
                 ++name->use_count;
                 if (l->child->name == reinterpret_cast<UnkIdData*>(&g_unk_7101d47108->empty))
                     continue;
-                if (!fn_710007fb9c(&l->child->name->text, "Crosshair-"))
+                if (!CRntString_Contains(&l->child->name->text, "Crosshair-"))
                     continue;
                 UnkWeakHandle* h = GetWeakHandle(reinterpret_cast<UnkWeakTarget*>(l->child));
                 UnkPackedHandle& item = self->crosshairs[self->crosshair_count];

@@ -7,7 +7,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/math/CVector.h"
 #include "base/snd/CSoundSystem.h"
 #include "base/snd/UnkSound.h"
@@ -133,7 +133,7 @@ void fn_7101181094(UnkAreaSound_l181094* self, void* arg, const base::math::CVec
         return;
 
     if (self->paths[2].data != &g_unk_7101d47200->empty) {
-        if (fn_710007fb9c(PathText(self->paths[2]), "streams/")) {
+        if (CRntString_Contains(PathText(self->paths[2]), "streams/")) {
             static UnkAreaStreamDesc_l181094 s_stream;
             s_stream.group = 5;
             s_stream.path = self->paths[2];

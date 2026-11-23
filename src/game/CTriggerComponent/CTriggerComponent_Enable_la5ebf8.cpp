@@ -130,7 +130,7 @@ void fn_7100a5ebf8(UnkTrigger_la5ebf8* self) {
                 reinterpret_cast<UnkTriggerScenario_la5ebf8*>(g_unk_7101d47310->field_0x608);
             // "<scenario>.<name>"
             CRntString full =
-                fn_710007eee0(Addr(fn_710007ef90(UseText(scenario->name), ".")), UseText(self->enable_name));
+                CRntString_Concat(Addr(CRntString_ConcatCString(UseText(scenario->name), ".")), UseText(self->enable_name));
             fn_71009cde54(script, CStr(full.data), "s", CStr(UseText(self->owner->name)->data));
         }
     }

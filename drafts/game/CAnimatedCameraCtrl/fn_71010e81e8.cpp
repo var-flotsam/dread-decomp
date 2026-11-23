@@ -1,7 +1,7 @@
 // CAnimatedCameraCtrl's unit (tools/tu_map.py unit 2692): the constructor. After the camera base
 // (fn_7100763ed4) it builds the empty ids, the two script strings (assigned ""), the end callback,
 // the timer at +0x5a8 and the state, then resets the blend values. Names and layouts are placeholders.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CCameraBoundaryCtrl.h"
@@ -150,7 +150,7 @@ UnkAnimatedCameraCtrl_l0e81e8::UnkAnimatedCameraCtrl_l0e81e8() {
     field_0x658 = false;
     state = 0x7fff;
     field_0x9c = 1;
-    fn_710007e77c(field_0x2e0.Str(), g_unk_710162e2ed);
-    fn_710007e77c(script.Str(), g_unk_710162e2ed);
+    CRntString_AssignCString(field_0x2e0.Str(), g_unk_710162e2ed);
+    CRntString_AssignCString(script.Str(), g_unk_710162e2ed);
     ResetBlend();
 }

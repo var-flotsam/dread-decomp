@@ -27,7 +27,7 @@ extern UnkReflType g_unk_7172744440 __attribute__((visibility("hidden")));
 void fn_7100a148d0() {
     InitHeader(g_unk_7172744418.header);
     new (&g_unk_7172744418.field_0x18) CStrId("spawn_right", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172744418.field_0x18, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172744418.field_0x18, &g_unk_7101a19000);
     InitEnum(&base::reflection::TypeObject<EAutsharpSpawnPointDir, UnkReflType>::object, "EAutsharpSpawnPointDir", fn_7100a13a4c, fn_7100a138a0);
     fn_710009ec00(&g_unk_71727443c8, &base::reflection::TypeObject<EAutsharpSpawnPointDir, UnkReflType>::object);
     InitEnumConverters(&base::reflection::TypeObject<EAutsharpSpawnPointDir, UnkReflType>::object, g_unk_71727443d0, fn_7100a14774, g_unk_71727443f0, fn_7100a14780);

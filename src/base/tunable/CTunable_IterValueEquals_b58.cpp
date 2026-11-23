@@ -14,7 +14,7 @@ struct UnkTunableKey_b58 {
     UnkCompared_0x30 key;
     bool operator!=(const UnkTunableKey_b58& o) const { return !fn_710007f120(&key, &o.key); }
     UnkTunableKey_b58& operator=(const UnkTunableKey_b58& o) {
-        fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(this),
+        CRntString_Assign(reinterpret_cast<base::global::CRntString*>(this),
                       reinterpret_cast<const base::global::CRntString*>(&o));
         return *this;
     }

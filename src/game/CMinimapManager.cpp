@@ -115,10 +115,10 @@ struct UnkMinimapName {
     u8 unk_0x0[0x30];
 
     __attribute__((always_inline)) UnkMinimapName() {
-        fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(this), g_unk_710162e2ed);
+        CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(this), g_unk_710162e2ed);
     }
     __attribute__((always_inline)) ~UnkMinimapName() {
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this));
     }
 };
 
@@ -1039,7 +1039,7 @@ void fn_7100e8c114(UnkMinimapManager* self) {
 
     UnkMinimapTable& table = self->table;
     table.vtable = g_unk_7101a22878 + 2;
-    fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(&table.name), "MINIMAP");
+    CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(&table.name), "MINIMAP");
     table.count = 20;
     u64* block = static_cast<u64*>(fn_7100083ba0(8 + 20 * sizeof(UnkMinimapEntry_0x1c), 5));
     *block = 20;

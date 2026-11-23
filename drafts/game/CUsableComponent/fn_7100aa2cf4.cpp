@@ -4,7 +4,7 @@
 // +0x100. Names and layouts are placeholders.
 #include <math.h>
 
-#include "../UnkSmRequest_A5_b73.h"
+#include "../../../src/game/UnkSmRequest_A5_b73.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"

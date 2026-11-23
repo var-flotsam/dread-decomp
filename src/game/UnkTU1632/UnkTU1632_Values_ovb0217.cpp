@@ -157,14 +157,14 @@ __attribute__((noinline)) UnkReturnedValue_b0217 fn_7100ad32d0(UnkNoArg, const C
         return UnkReturnedValue_b0217(number, refl_TypeOf<fn_7100005178>);
     }
     UnkStrIdSlot_b0217 slot;
-    fn_7100000850(&slot.id, *text, true);
+    CStrId_ConstructFromRntString(&slot.id, *text, true);
     return UnkReturnedValue_b0217(slot.id, refl_TypeOf<fn_7100009658>);
 }
 
 // A counted part of a string, on 0x100 bytes of inline storage.
 struct UnkPieceText_b0217 : UnkString100 {
     __attribute__((always_inline)) UnkPieceText_b0217(const char* str, u32 length) {
-        fn_710007e7f8(Str(), str, length);
+        CRntString_AssignPrefix(Str(), str, length);
     }
 };
 
@@ -190,7 +190,7 @@ void fn_7100ad3118(UnkErasedVector* self, const CRntString* text) {
     self->allocator = fn_7100083990();
     u32 length = text->length;
     for (u32 pos = 0; length && pos < length;) {
-        s32 found = fn_710007fb54(text, g_unk_710164b8a9, pos);
+        s32 found = CRntString_Find(text, g_unk_710164b8a9, pos);
         if (found < 0) {
             u32 rest = text->length - pos;
             ADD_PIECE(self, text, pos, rest);
@@ -233,21 +233,21 @@ __attribute__((noinline)) UnkStringOut_b0217 fn_7100ad370c(UnkNoArg, UnkPathValu
         fn_710007e7d8(&result, g_unk_710164b8a8, true);
         {
             UnkString100 text = fn_7100adc570(reinterpret_cast<UnkFormatSource*>(value));
-            fn_710007f3b4(&result, text.Str());
+            CRntString_Append(&result, text.Str());
         }
-        fn_710007f5ac(&result, ']');
+        CRntString_AppendChar(&result, ']');
     } else {
         UnkString100 text = fn_7100adc570(reinterpret_cast<UnkFormatSource*>(value));
-        fn_710007eab4(&result, text.Str());
+        CRntString_MoveConstruct(&result, text.Str());
     }
     return out;
 }
 
 static inline CRntString Concat(const CRntString& a, const CRntString& b) {
-    return fn_710007eee0(&a, &b);
+    return CRntString_Concat(&a, &b);
 }
 static inline void Append(CRntString& self, const CRntString& other) {
-    fn_710007f3b4(&self, &other);
+    CRntString_Append(&self, &other);
 }
 
 // The values' texts joined with the separator between them.

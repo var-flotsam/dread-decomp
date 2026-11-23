@@ -5,7 +5,7 @@
 
 #include <algorithm>
 
-#include "../../game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkIter.h"
 
 struct UnkSwarmPair_l74bdd4 {
     u32 key;

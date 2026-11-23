@@ -1,7 +1,7 @@
 # tools/batch/
 
 The kit behind the parallel agent runs. **`lean/`** was rewritten on 2026-11-12 for the rules made since the
-runs of 2026-11-09 to 2026-11-11: the proof tiers (`CLAUDE.md`, "Completion"), one declaration per shared
+runs of 2026-11-09 to 2026-11-11: the proof tiers (`CLAUDE.md`, "Purpose and completion"), one declaration per shared
 symbol, `drafts/`, and who merges. It runs in place from this folder. The kit those runs used (`overnight/`,
 one worker per batch of about 30 functions of one unit) was removed on 2026-11-14; it is in git history at
 commit `eed157e8`.

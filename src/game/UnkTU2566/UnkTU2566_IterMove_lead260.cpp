@@ -22,7 +22,7 @@ struct UnkMovedString_lead260 {
     u8 data[0x30];
 
     UnkMovedString_lead260(UnkMovedString_lead260&& other) {
-        fn_710007eab4(reinterpret_cast<CRntString*>(this), reinterpret_cast<CRntString*>(&other));
+        CRntString_MoveConstruct(reinterpret_cast<CRntString*>(this), reinterpret_cast<CRntString*>(&other));
     }
 };
 

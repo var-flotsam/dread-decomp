@@ -23,7 +23,7 @@ struct UnkDestroyed {
 };
 
 // The 0x30-byte values are strings (base/global/CRntString.h).
-inline void DestroyString(void* self) { fn_710007ecd4(static_cast<base::global::CRntString*>(self)); }
+inline void DestroyString(void* self) { CRntString_Destroy(static_cast<base::global::CRntString*>(self)); }
 
 using UnkBound30 = UnkDestroyed<0x30, DestroyString>;
 using UnkBound50 = UnkDestroyed<0x50, fn_710026ead0>;

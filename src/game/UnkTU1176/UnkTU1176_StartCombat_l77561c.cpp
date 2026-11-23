@@ -71,7 +71,7 @@ void fn_710077561c(UnkCentralUnitProto* unit) {
     UnkCentralUnitTarget_l77561c* target = self->Target();
     if (target && target->actor && fn_7100dfbe3c(g_unk_7101d47310)) {
         CRntString tag(StringOf(self->owner->name));
-        fn_710007f564(&tag, "_startcombat");
+        CRntString_AppendCString(&tag, "_startcombat");
         if (self->combat_id != &g_unk_7101d47108->empty)
             fn_7100dfc344(g_unk_7101d47310, TextOf(self->combat_id), reinterpret_cast<const char* const&>(tag.data),
                           StringOf(self->Target()->actor->name), true);

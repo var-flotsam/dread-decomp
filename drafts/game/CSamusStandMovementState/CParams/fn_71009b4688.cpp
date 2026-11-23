@@ -1,7 +1,7 @@
 // CSamusStandMovementState::CParams' unit (tools/tu_map.py): for kind 1 or 2, hands the movement at +0x38 a
 // request (fn_71009e8218) for the id table's slot +0xaf8 or +0xb00, with the default descriptor and blend.
 // Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU1730.h"
 #include "types.h"

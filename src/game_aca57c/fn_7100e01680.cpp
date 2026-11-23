@@ -37,7 +37,7 @@ struct UnkBuiltId_e01680 {
     };
 
     explicit UnkBuiltId_e01680(const UnkInlineString& str) {
-        fn_7100000850(&id, *reinterpret_cast<const base::global::CRntString*>(&str), true);
+        CStrId_ConstructFromRntString(&id, *reinterpret_cast<const base::global::CRntString*>(&str), true);
     }
     ~UnkBuiltId_e01680() { id.~CStrId(); }
 };
@@ -56,7 +56,7 @@ void* fn_7100e01680(UnkObj_7100e01680* self) {
     if (fn_7100e03d78(&bag, "CurrentScenario.GetStartPointOverride", "")) {
         UnkInlineString s;
         auto* str = reinterpret_cast<base::global::CRntString*>(&s);
-        fn_710007e6e4(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
+        CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
         s.vtable = &g_unk_7101a1b750[2];
         s.field_0xb8 = 0;
         s.field_0xc0 = 0;
@@ -69,8 +69,8 @@ void* fn_7100e01680(UnkObj_7100e01680* self) {
             id.data = tmp.data;
             tmp.data = &g_unk_7101d47108->empty;
         }
-        fn_710007ed40(str);
-        fn_710007ecd4(str);
+        CRntString_Clear(str);
+        CRntString_Destroy(str);
     }
     if (id.data == &g_unk_7101d47108->empty)
         return nullptr;

@@ -112,7 +112,7 @@ void fn_71011ec1f4(UnkLabelInit_b0035* self) {
     self->line = -1;
     self->field_0x2f4 = false;
     self->tags = true;
-    fn_710007e77c(&self->font_name, "");
+    CRntString_AssignCString(&self->font_name, "");
     self->font_id = fn_71011b8920(g_unk_717271e8f8);
     self->fixed_advance = -1;
     self->field_0x30c = 0;
@@ -171,7 +171,7 @@ void fn_71011ebfa0(UnkLabelDtor_b0035* self) {
     self->line_count = 0;
     self->lines = nullptr;
     self->lines_tail = nullptr;
-    fn_710007ecd4(&self->font_name);
+    CRntString_Destroy(&self->font_name);
     self->font_id.~UnkStrIdMemberOf();
     fn_7100066e44(self->source_text);
     fn_7100066e44(self->text);

@@ -28,15 +28,15 @@ struct UnkToken_l0fc570 {
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
 
     UnkToken_l0fc570() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
         next = nullptr;
     }
     ~UnkToken_l0fc570() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 static_assert(sizeof(UnkToken_l0fc570) == 0x150, "");
@@ -122,7 +122,7 @@ void fn_71000fc570(const char* text, const char* separator, UnkTunableTokens* ou
         }
         UnkToken_l0fc570* token = tokens->Append();
         u32 length = end - p;
-        fn_710007e7f8(token->Str(), p, length);
+        CRntString_AssignPrefix(token->Str(), p, length);
         u32 step = length + separator_length;
         pos += step;
         p += step;

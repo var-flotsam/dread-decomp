@@ -4,7 +4,7 @@
 // the result is 0. Names and layouts are placeholders.
 #include <new>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkChainedMap.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkNamedRegistry.h"
@@ -56,7 +56,7 @@ struct UnkScriptNode_l09dd6c {
     }
 
     UnkScriptNode_l09dd6c(const CRntString* name, UnkScript_l09dd6c* value) {
-        fn_710007ea60(&key, reinterpret_cast<const UnkNamedEntry*>(name));
+        CRntString_CopyConstruct(&key, reinterpret_cast<const UnkNamedEntry*>(name));
         script = value;
         next = nullptr;
         prev = nullptr;
@@ -143,8 +143,8 @@ u32 fn_710109dd6c(void* self, void* source, UnkUnit2669Str* name, bool a, bool b
         result = 1;
     } else {
         UnkScript_l09dd6c* script = static_cast<UnkScript_l09dd6c*>(fn_71000839a0(sizeof(UnkScript_l09dd6c), 6));
-        fn_710007ea60(&script->source, static_cast<const UnkNamedEntry*>(source));
-        fn_710007ea60(&script->name, reinterpret_cast<const UnkNamedEntry*>(name));
+        CRntString_CopyConstruct(&script->source, static_cast<const UnkNamedEntry*>(source));
+        CRntString_CopyConstruct(&script->name, reinterpret_cast<const UnkNamedEntry*>(name));
         script->refs = 0;
         Insert(map, key.Str(), script);
         ++script->refs;

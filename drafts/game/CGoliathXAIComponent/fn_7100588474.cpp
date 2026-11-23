@@ -3,7 +3,7 @@
 // 6 and 11 and sends it "relax"; then updates the bombs attack at +0x14b60. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/CAnimationComponent.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkMotionRule.h"

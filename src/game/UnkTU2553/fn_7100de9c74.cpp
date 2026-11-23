@@ -26,14 +26,14 @@ struct UnkInlineString_lde9c74 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_lde9c74() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         field_0x138 = 0;
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x140 = 0;
     }
     ~UnkInlineString_lde9c74() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -78,14 +78,14 @@ void fn_7100de9c74(UnkGameManager* self, const char* name, CRntString* out) {
     s32 suffix = 0;
     while (IsNameTaken(self, id, buffer)) {
         UnkInlineString_lde9c74 stem;
-        fn_710007e77c(stem.Str(), buffer);
-        s32 underscore = fn_710007fb10(stem.Str(), '_', -1);
+        CRntString_AssignCString(stem.Str(), buffer);
+        s32 underscore = CRntString_FindLastChar(stem.Str(), '_', -1);
         u32 length = underscore == -1 ? stem.Str()->length : underscore;
         const char* text = stem.Str()->data;
         {
             UnkInlineString_lde9c74 prefix;
-            fn_710007e7f8(prefix.Str(), text, length);
-            fn_710007eaa0(stem.Str(), prefix.Str());
+            CRntString_AssignPrefix(prefix.Str(), text, length);
+            CRntString_Assign(stem.Str(), prefix.Str());
         }
         sprintf(buffer, "%s_%i", stem.Str()->data ? stem.Str()->data : g_unk_710162e2ed, ++suffix);
         base::global::UnkStrIdBase next(buffer, true);
@@ -96,5 +96,5 @@ void fn_7100de9c74(UnkGameManager* self, const char* name, CRntString* out) {
         }
         id.data = next.data;
     }
-    fn_710007e77c(out, buffer);
+    CRntString_AssignCString(out, buffer);
 }

@@ -319,7 +319,7 @@ void fn_71010f813c(UnkBtAI_A2_b76* component) {
     new (&self->bounds_0x16e8) UnkBoundsList_l0f813c;
     new (&self->bounds_0x1730) UnkBoundsList_l0f813c;
     self->field_0x1778 = 0;
-    fn_71000003d4(&self->field_0x1780, g_unk_710162e2ed, true);
+    CStrId_Construct(&self->field_0x1780, g_unk_710162e2ed, true);
     self->field_0x1788 = 0;
     self->field_0x178c = 0;
     self->field_0x1790 = 0;

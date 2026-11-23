@@ -157,15 +157,15 @@ struct UnkInlineString_b0086 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_b0086() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
     }
-    explicit UnkInlineString_b0086(const char* text) : UnkInlineString_b0086() { fn_710007e77c(Str(), text); }
+    explicit UnkInlineString_b0086(const char* text) : UnkInlineString_b0086() { CRntString_AssignCString(Str(), text); }
     ~UnkInlineString_b0086() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -191,7 +191,7 @@ struct UnkAttackStrId_b0086 {
     UnkStringData* data;
 
     explicit UnkAttackStrId_b0086(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     explicit UnkAttackStrId_b0086(const CStrId& other) : data(other.data) {
         if (&g_unk_7101d47108->empty != data)
@@ -226,14 +226,14 @@ UnkAttackStrId_b0086 fn_71003627f8(UnkGoliathXSlamAttack_b58a3* attack, UnkActor
         return UnkAttackStrId_b0086(base::global::CStrId::Empty());
     const CRntString* name = UseText(self->vf_0xb0());
     UnkInlineString_b0086 str;
-    fn_710007eaa0(str.Str(), name);
+    CRntString_Assign(str.Str(), name);
     UnkTrackQuery query;
     query.cls = fn_7100c4c1b8();
     query.result = nullptr;
     query.value = -1.0f;
     fn_710117b08c(self->owner->animation, &query);
     if (query.result)
-        fn_710007f3b4(str.Str(), UseText(reinterpret_cast<UnkIdText_b0086* const*>(&query.result->sources)));
+        CRntString_Append(str.Str(), UseText(reinterpret_cast<UnkIdText_b0086* const*>(&query.result->sources)));
     return UnkAttackStrId_b0086(*str.Str());
 }
 
@@ -289,5 +289,5 @@ void fn_71003606c8(UnkAttack4_b0086* self, UnkAttackPreset_b0086* preset) {
     u64 hash;
     UnkIdText_b0086* const* id = self->preset ? &self->preset->name
                                               : reinterpret_cast<UnkIdText_b0086* const*>(&base::global::CStrId::Empty());
-    self->hash = (fn_7100066630(&hash, Addr(fn_710007ef90(LowerCase(UseText(id)->data).Str(), "_end"))), hash);
+    self->hash = (fn_7100066630(&hash, Addr(CRntString_ConcatCString(LowerCase(UseText(id)->data).Str(), "_end"))), hash);
 }

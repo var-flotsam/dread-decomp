@@ -42,17 +42,17 @@ struct UnkInlineString_lfa6ad0 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_lfa6ad0() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
     }
     explicit UnkInlineString_lfa6ad0(const char* text) : UnkInlineString_lfa6ad0() {
-        fn_710007e77c(Str(), text);
+        CRntString_AssignCString(Str(), text);
     }
     ~UnkInlineString_lfa6ad0() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -75,12 +75,12 @@ UnkPathId_lfa6ad0 fn_7100fa6ad0(void* self, const UnkNamedId_lfa6ad0* area, cons
                                 const UnkNamedId_lfa6ad0* second) {
     char lower[0x100];  // declared first: it sits above both strings in the frame
     UnkInlineString_lfa6ad0 text("SubArea_");
-    fn_710007f3b4(text.Str(), area->Text());
-    fn_710007f564(text.Str(), "_");
-    fn_710007f3b4(text.Str(), first->Text());
+    CRntString_Append(text.Str(), area->Text());
+    CRntString_AppendCString(text.Str(), "_");
+    CRntString_Append(text.Str(), first->Text());
     if (*first != reinterpret_cast<UnkNamedId_lfa6ad0&>(GameManagerIdTable().field_0x11a8)) {
-        fn_710007f564(text.Str(), "_");
-        fn_710007f3b4(text.Str(), second->Text());
+        CRntString_AppendCString(text.Str(), "_");
+        CRntString_Append(text.Str(), second->Text());
     }
 
     CopyLower_lfa6ad0(lower, text.Str()->data);

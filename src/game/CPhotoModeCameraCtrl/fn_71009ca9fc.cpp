@@ -28,7 +28,7 @@ static_assert(__builtin_offsetof(UnkInputMember_l9ca9fc, field_0x99c) == 0x99c, 
 // NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_71009ca9fc(void* self_, const char* name, u32 flags) {
     UnkInputMember_l9ca9fc* self = static_cast<UnkInputMember_l9ca9fc*>(self_);
-    fn_710007e704(&self->name, name);
+    CRntString_ConstructFromCString(&self->name, name);
     self->flags = flags;
     self->field_0x34 = false;
     new (self->events) UnkInputEvent_l9ca9fc[120];

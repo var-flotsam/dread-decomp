@@ -34,9 +34,9 @@ template <u32 Name>
 static inline __attribute__((always_inline)) void DestroyPart_b43a3(char* raw, char* vtable) {
     auto* p = reinterpret_cast<UnkRewardsPartN_b43a3<Name>*>(raw);
     p->vtable = vtable + 0x10;
-    fn_710007ed40(&p->holder);
-    fn_710007ecd4(&p->holder);
-    fn_710007ecd4(&p->name);
+    CRntString_Clear(&p->holder);
+    CRntString_Destroy(&p->holder);
+    CRntString_Destroy(&p->name);
     p->vtable = reinterpret_cast<char*>(g_unk_7101a9cd68) + 0x10;
     fn_71000a1c60(&p->value);
 }

@@ -135,8 +135,8 @@ void fn_7100334e24(UnkAbilitySonar_l334e24* self) {
     ReleaseModel(self->model_0x390);
     fn_7100026f70(reinterpret_cast<UnkIdPair*>(self->ids_0x778));
     fn_7100026f70(reinterpret_cast<UnkIdPair*>(self->ids_0x760));
-    fn_710007ecd4(&self->string_0x728);
-    fn_710007ecd4(&self->string_0x6f8);
+    CRntString_Destroy(&self->string_0x728);
+    CRntString_Destroy(&self->string_0x6f8);
     self->hit_count = 0;
     self->pulse_count = 0;
     self->targets.Destroy();

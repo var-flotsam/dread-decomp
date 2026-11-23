@@ -94,16 +94,16 @@ bool fn_71000ef764(UnkTextWriter_b0166* self, UnkTypedValue_b0166* value) {
         if (!((1ul << it->bit) & bits))
             continue;
         if (any)
-            fn_710007f564(&text, ", ");
+            CRntString_AppendCString(&text, ", ");
         auto* data = reinterpret_cast<UnkCountedStrData_b0166*>(it->name.data);
         ++data->field_0x44;
         auto* again = reinterpret_cast<UnkCountedStrData_b0166*>(it->name.data);
-        fn_710007f564(&text, again->str ? again->str : g_unk_710162e2ed);
+        CRntString_AppendCString(&text, again->str ? again->str : g_unk_710162e2ed);
         any = true;
     }
     if (text.length == 0)
-        fn_710007e77c(reinterpret_cast<base::global::CRntString*>(&text), "0");
+        CRntString_AssignCString(reinterpret_cast<base::global::CRntString*>(&text), "0");
     strncpy(self->text, text.data ? text.data : g_unk_710162e2ed, sizeof(self->text));
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&text));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&text));
     return true;
 }

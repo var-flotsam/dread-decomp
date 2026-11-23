@@ -86,7 +86,7 @@ struct UnkStartStrId {
         CStrId id;
     };
 
-    explicit UnkStartStrId(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkStartStrId(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkStartStrId() { id.~CStrId(); }
 };
 
@@ -511,7 +511,7 @@ void fn_7100001390() {
         if (!g_unk_7101d47108)
             base::global::UnkEnsureStringPool();
         base::global::CStrId::Empty().data = &g_unk_7101d47108->empty;
-        fn_7100000250(fn_710000051c, &base::global::CStrId::Empty(), g_unk_7101a19000);
+        fn_7100000250(CStrId_Destroy, &base::global::CStrId::Empty(), g_unk_7101a19000);
         g_unk_7101d470f0 = 1;
     }
 }
@@ -520,9 +520,9 @@ void fn_7100001390() {
 
 // The start record's destructor (game/UnkStartPoint.h), which unit 2's initialiser registers.
 void fn_7100000584(UnkStartPoint* self) {
-    fn_710007ecd4(&self->field_0xc8);
-    fn_710007ecd4(&self->start_point);
-    fn_710007ecd4(&self->character);
-    fn_710007ecd4(&self->field_0x38);
-    fn_710007ecd4(&self->field_0x8);
+    CRntString_Destroy(&self->field_0xc8);
+    CRntString_Destroy(&self->start_point);
+    CRntString_Destroy(&self->character);
+    CRntString_Destroy(&self->field_0x38);
+    CRntString_Destroy(&self->field_0x8);
 }

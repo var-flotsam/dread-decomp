@@ -45,8 +45,8 @@ struct UnkRenderResEntry_l1b1680 {
 template <u32 N, void** Vtable>
 struct UnkRenderResString_l1b1680 : UnkBufferString<N, Vtable> {
     UnkRenderResString_l1b1680() {}
-    explicit UnkRenderResString_l1b1680(const CRntString& text) { fn_710007eaa0(this->Str(), &text); }
-    UnkRenderResString_l1b1680(const char* chars, u32 length) { fn_710007e7f8(this->Str(), chars, length); }
+    explicit UnkRenderResString_l1b1680(const CRntString& text) { CRntString_Assign(this->Str(), &text); }
+    UnkRenderResString_l1b1680(const char* chars, u32 length) { CRntString_AssignPrefix(this->Str(), chars, length); }
 };
 
 typedef UnkRenderResString_l1b1680<0x40, g_unk_7101a1b678> UnkShortString_l1b1680;
@@ -80,20 +80,20 @@ static inline const CRntString& Text(const Id& id) {
 
 // Appends the platform directory the name ends with (after its last '_'), then '/'.
 static inline void AppendPlatformDir(CRntString* dir, const CRntString* name) {
-    u32 start = fn_710007fb10(name, '_', -1) + 1;
+    u32 start = CRntString_FindLastChar(name, '_', -1) + 1;
     u32 length = name->length - start;
     {
         UnkShortString_l1b1680 platform(name->data + start, length);
-        fn_710007f3b4(dir, platform.Str());
+        CRntString_Append(dir, platform.Str());
     }
-    fn_710007f5ac(dir, '/');
+    CRntString_AppendChar(dir, '/');
 }
 
 UnkRenderResPair_l1b1680 fn_71001b1680(const UnkRenderResKey_l1b1680* key) {
     UnkRenderResEntry_l1b1680* entry = reinterpret_cast<UnkRenderResEntry_l1b1680*>(
         fn_7100020320(g_unk_7101d4bbc0, reinterpret_cast<const UnkRegistryKey*>(key)));
     u32 start = entry->info->name_start;
-    s32 end = fn_710007fb10(&Text(key->path), '.', -1);
+    s32 end = CRntString_FindLastChar(&Text(key->path), '.', -1);
     const CRntString& path = Text(key->path);
     if (end == -1)
         end = path.length;
@@ -102,22 +102,22 @@ UnkRenderResPair_l1b1680 fn_71001b1680(const UnkRenderResKey_l1b1680* key) {
     UnkShortString_l1b1680 type(Text(g_unk_716e453ef8.name));
     UnkShortString_l1b1680 dir;
     if (fn_710007fbf8(name.Str(), "pp_")) {
-        fn_710007e77c(dir.Str(), "system/engine/postprocess/win/");
+        CRntString_AssignCString(dir.Str(), "system/engine/postprocess/win/");
         AppendPlatformDir(dir.Str(), name.Str());
-    } else if (fn_710007fb9c(name.Str(), "_windx")) {
-        fn_710007e77c(dir.Str(), "system/engine/shaders/win/");
+    } else if (CRntString_Contains(name.Str(), "_windx")) {
+        CRntString_AssignCString(dir.Str(), "system/engine/shaders/win/");
         AppendPlatformDir(dir.Str(), name.Str());
     } else {
-        fn_710007e77c(dir.Str(), "system/engine/surfaces/");
-        fn_710007eaa0(type.Str(), &Text(g_unk_716e453f78.name));
+        CRntString_AssignCString(dir.Str(), "system/engine/surfaces/");
+        CRntString_Assign(type.Str(), &Text(g_unk_716e453f78.name));
     }
 
     UnkLongString_l1b1680 text(*dir.Str());
-    fn_710007f3b4(text.Str(), name.Str());
-    fn_710007f5ac(text.Str(), '.');
-    fn_710007f3b4(text.Str(), type.Str());
-    fn_710007f5ac(text.Str(), '.');
-    fn_710007f3b4(text.Str(), &Text(g_unk_7101d4e590));
+    CRntString_Append(text.Str(), name.Str());
+    CRntString_AppendChar(text.Str(), '.');
+    CRntString_Append(text.Str(), type.Str());
+    CRntString_AppendChar(text.Str(), '.');
+    CRntString_Append(text.Str(), &Text(g_unk_7101d4e590));
     UnkRenderResPathId_l1b1680 file(*text.Str());
     return UnkRenderResPair_l1b1680(&g_unk_716e554390, file.id);
 }

@@ -137,7 +137,7 @@ struct UnkBallHandler_l93e57c {
             delete[] field_0x40;
             field_0x40 = nullptr;
         }
-        fn_710007ecd4(&name);
+        CRntString_Destroy(&name);
     }
 };
 

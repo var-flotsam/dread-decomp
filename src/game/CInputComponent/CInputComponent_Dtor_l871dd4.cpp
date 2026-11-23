@@ -73,13 +73,13 @@ void fn_7100871dd4(UnkInputComponent_l871dd4* self) {
         fn_7100083c30(self->table.entries);
         self->table.entries = nullptr;
     }
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&self->table.name));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&self->table.name));
     self->listener.vtable = &g_unk_7101a22878[2];
     if (self->listener.entries) {
         fn_7100083c30(static_cast<u64*>(self->listener.entries) - 1);
         self->listener.entries = nullptr;
     }
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&self->listener.name));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&self->listener.name));
     fn_710119ad3c(self->item);
     fn_71010c4194(reinterpret_cast<UnkBaseComponent*>(self));
 }

@@ -2,7 +2,7 @@
 // makes the "_BREAK" colliders solid, stores "Dead" in the scenario's blackboard section, plays the
 // break on the timeline and animation (or breaks the model's parts when neither plays it), then runs
 // the base life component's handler. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkStrIdTable.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -105,7 +105,7 @@ void fn_71008e3a28(UnkPowerBombBlockLifeDie_l8e3a28* self, u32 kind, UnkHitInfo_
             ++name->uses;
             bool broken;
             if (name != reinterpret_cast<UnkPowerBombNameEntry_ovb0127*>(&g_unk_7101d47108->empty) &&
-                fn_710007fb9c(&name->buffer, "_BREAK"))
+                CRntString_Contains(&name->buffer, "_BREAK"))
                 broken = true;
             else
                 broken = false;

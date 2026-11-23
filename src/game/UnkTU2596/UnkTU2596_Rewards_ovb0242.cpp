@@ -343,7 +343,7 @@ extern const char* const g_unk_7101cab178[] __attribute__((visibility("hidden"))
 struct UnkKeyText_b0242 {
     u8 raw[0x30];
     UnkKeyText_b0242() { fn_710007e6c4(raw); }
-    ~UnkKeyText_b0242() { fn_710007ecd4(reinterpret_cast<CRntString*>(raw)); }
+    ~UnkKeyText_b0242() { CRntString_Destroy(reinterpret_cast<CRntString*>(raw)); }
 };
 
 union UnkIdSlot_b0242 {
@@ -355,11 +355,11 @@ union UnkIdSlot_b0242 {
 bool fn_7100f14f80(s32 kind, s32 variant) {
     UnkKeyText_b0242 text;
     if ((u32)kind <= 3)
-        fn_710007f564(text.raw, g_unk_7101cab158[kind]);
+        CRntString_AppendCString(text.raw, g_unk_7101cab158[kind]);
     if ((u32)variant <= 2)
-        fn_710007f564(text.raw, g_unk_7101cab178[variant]);
+        CRntString_AppendCString(text.raw, g_unk_7101cab178[variant]);
     UnkIdSlot_b0242 slot;
-    fn_7100000850(&slot.id, *reinterpret_cast<CRntString*>(text.raw), true);
+    CStrId_ConstructFromRntString(&slot.id, *reinterpret_cast<CRntString*>(text.raw), true);
     return fn_7100f15054(&slot.id);
 }
 
@@ -411,7 +411,7 @@ void fn_7100f1641c(UnkRewardsMode_b0242* object) {
     self->timer = 0;
     self->field_0xa48 = -1;
     self->field_0xa4c = -1;
-    fn_710007e77c(&self->name, "REWARDS");
+    CRntString_AssignCString(&self->name, "REWARDS");
     __builtin_memset(g_unk_71729dc270, 0, 0x38);
     __builtin_memset(g_unk_71729dc2a8, 0, 0xc8);
 }

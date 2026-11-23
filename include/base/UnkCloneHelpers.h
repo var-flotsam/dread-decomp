@@ -1234,9 +1234,9 @@ void refl_TypeStaticInit() {
     UnkTypeInitIds* ids = Traits::ids();
     ids->field_0x0 = 6;
     new (&ids->field_0x8) global::UnkStrIdBase(g_unk_7101618faa, true);
-    __cxa_atexit(fn_710000051c, &ids->field_0x8, g_unk_7101a19000);
+    __cxa_atexit(CStrId_Destroy, &ids->field_0x8, g_unk_7101a19000);
     new (&ids->field_0x10) global::UnkStrIdBase(g_unk_71015ba597, true);
-    __cxa_atexit(fn_710000051c, &ids->field_0x10, g_unk_7101a19000);
+    __cxa_atexit(CStrId_Destroy, &ids->field_0x10, g_unk_7101a19000);
     {
         global::CStrId name(Traits::name(), true);
         Traits::init(Traits::type(), name);

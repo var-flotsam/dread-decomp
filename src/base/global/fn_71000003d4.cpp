@@ -12,11 +12,11 @@ using base::global::CRntString;
 using base::global::UnkStrIdBase;
 using base::global::UnkStrIdInline;
 
-void fn_71000003d4(UnkStrIdBase* self, const char* str, bool flag) {
+void CStrId_Construct(UnkStrIdBase* self, const char* str, bool flag) {
     new (self) UnkStrIdBase(UnkStrIdInline(), str, flag);
 }
 
-void fn_7100000850(UnkStrIdBase* self, const CRntString& str, bool flag) {
+void CStrId_ConstructFromRntString(UnkStrIdBase* self, const CRntString& str, bool flag) {
     self->data = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();

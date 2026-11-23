@@ -208,7 +208,7 @@ void fn_71003437a4(UnkAim_l3437a4* self) {
         fn_7100083c30(static_cast<u64*>(self->input.entries) - 1);
         self->input.entries = nullptr;
     }
-    fn_710007ecd4(&self->input.name);
+    CRntString_Destroy(&self->input.name);
 
     self->field_0x240.Destroy();
     self->field_0x1d0.Destroy();

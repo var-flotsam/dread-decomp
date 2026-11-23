@@ -67,21 +67,21 @@ struct UnkInlineString_CSoundSystemATK {
     u32 field_0xc0;
 
     UnkInlineString_CSoundSystemATK() {
-        fn_710007e6e4(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::UnkAllocator*>(&vtable));
+        CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::UnkAllocator*>(&vtable));
         field_0xb8 = 0;
         field_0xc0 = 0;
         vtable = &g_unk_7101a1b750[2];
     }
     // The second string's order of stores differs in the original.
     explicit UnkInlineString_CSoundSystemATK(int) {
-        fn_710007e6e4(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::UnkAllocator*>(&vtable));
+        CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::UnkAllocator*>(&vtable));
         field_0xb8 = 0;
         vtable = &g_unk_7101a1b750[2];
         field_0xc0 = 0;
     }
     ~UnkInlineString_CSoundSystemATK() {
-        fn_710007ed40(reinterpret_cast<CRntString*>(this));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(this));
+        CRntString_Clear(reinterpret_cast<CRntString*>(this));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(this));
     }
 };
 static_assert(sizeof(UnkInlineString_CSoundSystemATK) == 0xc8, "UnkInlineString_CSoundSystemATK layout");
@@ -127,7 +127,7 @@ CFilePathStrId fn_71000f63b0(const CFilePathStrId& id) {
     char lower[128];
     const CRntString* source_name = reinterpret_cast<const CRntString*>(reinterpret_cast<char*>(id.data) + 0x10);
     UnkInlineString_CSoundSystemATK text;
-    fn_710007eaa0(reinterpret_cast<CRntString*>(&text), source_name);
+    CRntString_Assign(reinterpret_cast<CRntString*>(&text), source_name);
     lower[0] = 0;
     u64 full_length = __builtin_strlen(*reinterpret_cast<const char**>(&text));
     if (static_cast<int>(full_length) != 0) {
@@ -141,8 +141,8 @@ CFilePathStrId fn_71000f63b0(const CFilePathStrId& id) {
     }
     {
         UnkInlineString_CSoundSystemATK other(0);
-        fn_710007e77c(reinterpret_cast<CRntString*>(&other), lower);
-        fn_710007eaa0(reinterpret_cast<CRntString*>(&text), reinterpret_cast<CRntString*>(&other));
+        CRntString_AssignCString(reinterpret_cast<CRntString*>(&other), lower);
+        CRntString_Assign(reinterpret_cast<CRntString*>(&text), reinterpret_cast<CRntString*>(&other));
     }
     u64 remaining = *reinterpret_cast<u32*>(&text.str[8]);
     const char* source = "";
@@ -348,8 +348,8 @@ bool fn_7100100b1c(UnkSoundSystemATK* self, const CFilePathStrId& path) {
         {
             CRntString name(PathString(path));
             if (path.data != &g_unk_7101d47200->empty && PathChars(path)[0] != '/') {
-                fn_710007e77c(&name, "/");
-                fn_710007f564(&name, PathChars(path));
+                CRntString_AssignCString(&name, "/");
+                CRntString_AppendCString(&name, PathChars(path));
             }
             // The sanitised id, released by hand on its data pointer read once: the original knows
             // that nothing below changes the id (its fn_71000f63b0 does not keep the address).

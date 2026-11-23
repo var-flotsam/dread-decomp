@@ -210,7 +210,7 @@ void fn_710119cb44(UnkLanguage* self, const char* path, bool keep_texts) {
         // The id's string (counting the use), null for the empty id.
         ++e->tail.field_0x44;
         const CRntString* str = e == reinterpret_cast<UnkStringEntry*>(&g_unk_7101d47108->empty) ? nullptr : &e->buffer;
-        if (str && fn_710007fb9c(str, "CREDIT_")) {
+        if (str && CRntString_Contains(str, "CREDIT_")) {
             fn_710119ce68(self, id, text);
         } else if (!keep_texts) {
             self->Insert(id, text);

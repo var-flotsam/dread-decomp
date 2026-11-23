@@ -23,10 +23,10 @@ struct UnkString30 {
 
     __attribute__((always_inline)) UnkString30() { fn_710007e6c4(this); }
     __attribute__((always_inline)) UnkString30(const UnkString30& other) {
-        fn_710007ea60(reinterpret_cast<base::UnkNamedEntry*>(&str), reinterpret_cast<const base::UnkNamedEntry*>(&other.str));
+        CRntString_CopyConstruct(reinterpret_cast<base::UnkNamedEntry*>(&str), reinterpret_cast<const base::UnkNamedEntry*>(&other.str));
     }
-    __attribute__((always_inline)) UnkString30(UnkString30&& other) { fn_710007eab4(&str, &other.str); }
-    __attribute__((always_inline)) ~UnkString30() { fn_710007ecd4(&str); }
+    __attribute__((always_inline)) UnkString30(UnkString30&& other) { CRntString_MoveConstruct(&str, &other.str); }
+    __attribute__((always_inline)) ~UnkString30() { CRntString_Destroy(&str); }
 };
 
 // Copied as a whole, also when moved.

@@ -3,7 +3,7 @@
 // reads the chase id from the AI's blackboard, turns on every door's EMMY effect (when the tunable says so),
 // listens to the owner's animation component and its enemy movement, and refreshes the AI's ids. Names and
 // layouts are placeholders.
-#include "../../../game_s7/UnkPropBagS7.h"
+#include "../../../../src/game_s7/UnkPropBagS7.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
@@ -136,14 +136,14 @@ struct UnkInlineString_l511be4 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_l511be4() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
     }
     ~UnkInlineString_l511be4() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 

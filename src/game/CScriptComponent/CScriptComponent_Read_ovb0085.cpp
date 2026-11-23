@@ -61,8 +61,8 @@ void fn_7101139cdc(UnkScriptComponent_ovb0085* self) {
     const char* first = *reinterpret_cast<char* const*>(reinterpret_cast<u8*>(self) + 0x68);
     if (first && first[0] && IsSet(self->name_0x98))
         fn_710109d890(ScriptManager(), &self->name_0x98);
-    fn_710007ecd4(&self->name_0x98);
-    fn_710007ecd4(&self->name_0x68);
+    CRntString_Destroy(&self->name_0x98);
+    CRntString_Destroy(&self->name_0x68);
     self->entries.Free();
     fn_71010c4194(reinterpret_cast<UnkBaseComponent*>(self));
 }
@@ -75,8 +75,8 @@ void fn_710113a004(UnkScriptComponent_ovb0085* self, CRntFile* file) {
     char second[0x200] = {};
     if (file->position < file->size)
         fn_710007ca94(file, second);
-    fn_710007e77c(&self->name_0x68, first);
-    fn_710007e77c(&self->name_0x98, second);
+    CRntString_AssignCString(&self->name_0x68, first);
+    CRntString_AssignCString(&self->name_0x98, second);
     if (IsSet(self->name_0x68) && IsSet(self->name_0x98))
         fn_710109dd6c(ScriptManager(), &self->name_0x68, reinterpret_cast<UnkUnit2669Str*>(&self->name_0x98),
                       false, true);

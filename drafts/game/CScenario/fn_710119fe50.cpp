@@ -4,7 +4,7 @@
 // Names and layouts are placeholders.
 #include <new>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkCloneRecords.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CRntString.h"
@@ -182,7 +182,7 @@ void fn_710119fe50(UnkScenarioScript_ovb0032* scenario, const char* level, const
         alignas(CStrId) u8 storage[sizeof(CStrId)];
         UnkBufferString<0x100, g_unk_7101a194b8> text(category);
         CStrId* id = reinterpret_cast<CStrId*>(storage);
-        fn_7100000850(id, *text.Str(), true);
+        CStrId_ConstructFromRntString(id, *text.Str(), true);
         PushBackMoved(&self->categories, *id);
         id->~CStrId();
     }
@@ -193,7 +193,7 @@ void fn_710119fe50(UnkScenarioScript_ovb0032* scenario, const char* level, const
         alignas(CStrId) u8 storage[sizeof(CStrId)];
         UnkBufferString<0x100, g_unk_7101a194b8> text(category);
         CStrId* id = reinterpret_cast<CStrId*>(storage);
-        fn_7100000850(id, *text.Str(), true);
+        CStrId_ConstructFromRntString(id, *text.Str(), true);
         PushBackMoved(&self->categories, *id);
         id->~CStrId();
     }
@@ -204,7 +204,7 @@ void fn_710119fe50(UnkScenarioScript_ovb0032* scenario, const char* level, const
         alignas(CStrId) u8 storage[sizeof(CStrId)];
         UnkBufferString<0x100, g_unk_7101a194b8> text(category);
         CStrId* id = reinterpret_cast<CStrId*>(storage);
-        fn_7100000850(id, *text.Str(), true);
+        CStrId_ConstructFromRntString(id, *text.Str(), true);
         PushBackMoved(&self->categories, *id);
         id->~CStrId();
     }

@@ -4,7 +4,7 @@
 // action's request, sets the boss's two phase values and records where the target stands. Names and layouts
 // are placeholders.
 #include <stdlib.h>
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"

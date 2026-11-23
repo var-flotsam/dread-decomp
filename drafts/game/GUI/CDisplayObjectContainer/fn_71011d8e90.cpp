@@ -34,6 +34,6 @@ void fn_71011d8e90(UnkGuiDisplayObject* object) {
     UnkGuiContainer_l1d8e90* self = reinterpret_cast<UnkGuiContainer_l1d8e90*>(object);
     self->vtable = g_unk_7101cb5dd0 + 0x10;
     self->children.~UnkPoolList();
-    fn_710007ecd4(&self->name);
+    CRntString_Destroy(&self->name);
     fn_71011ccfb4(reinterpret_cast<char*>(self));
 }

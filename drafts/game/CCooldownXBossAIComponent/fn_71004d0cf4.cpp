@@ -3,7 +3,7 @@
 // from the lava-drops attack's (+0x15150) phase values; otherwise from the component's own (+0x15438, with
 // `own`) or the attack's, and then clears the entry's state (fn_7100232864); a fixed hash when the entry
 // has no state. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU341.h"

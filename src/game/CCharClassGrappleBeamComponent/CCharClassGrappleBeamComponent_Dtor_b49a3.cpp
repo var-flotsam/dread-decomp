@@ -33,8 +33,8 @@ void fn_710081622c(UnkObject_710081622c* self) {
         }
         self->id = &pool->empty;
     }
-    fn_710007ecd4(&self->name_0x98);
-    fn_710007ecd4(&self->name_0x68);
+    CRntString_Destroy(&self->name_0x98);
+    CRntString_Destroy(&self->name_0x68);
     fn_710097b294(self);
     operator delete(self);
 }

@@ -31,13 +31,13 @@ s32 fn_7101077a70(lua_State* L) {
     char lower[0x80];
     if (fn_71010c0270(L, "s", &name)) {
         UnkBufferString<0x80, g_unk_7101a1b750> path;
-        fn_710007e77c(path.Str(), "system/localization/");
-        fn_710007f564(path.Str(), name);
-        fn_710007f564(path.Str(), ".txt");
+        CRntString_AssignCString(path.Str(), "system/localization/");
+        CRntString_AppendCString(path.Str(), name);
+        CRntString_AppendCString(path.Str(), ".txt");
         CopyLower(lower, path.Str()->data);
         {
             UnkBufferString<0x80, g_unk_7101a1b750> lowered(lower);
-            fn_710007eaa0(path.Str(), lowered.Str());
+            CRntString_Assign(path.Str(), lowered.Str());
         }
         UnkLanguage* language = g_unk_7101d47358;
         if (!language) {

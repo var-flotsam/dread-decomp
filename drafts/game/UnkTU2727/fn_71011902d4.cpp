@@ -3,7 +3,7 @@
 // and a string each), an empty sound handle and the name "MAINMENU". Names and layouts are placeholders.
 #include <new>
 
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/global/CRntString.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2725.h"
@@ -80,6 +80,6 @@ void fn_71011902d4(UnkMainMenu_l1902d4* self) {
     new (&self->entries[2]) UnkMenuEntry_l1902d4();
     self->field_0x438 = false;
     self->sound = g_unk_7108b6c460;
-    fn_710007e77c(&self->name, "MAINMENU");
+    CRntString_AssignCString(&self->name, "MAINMENU");
     self->field_0x50 = 0;
 }

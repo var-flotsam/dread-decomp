@@ -3,7 +3,7 @@
 // parameters and puts its state machine (+0x2cf8) in state 12, fades the screen effect, starts the use
 // (fn_7100aa0b04) and puts the component's own state machine (+0x100) in state 1. Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

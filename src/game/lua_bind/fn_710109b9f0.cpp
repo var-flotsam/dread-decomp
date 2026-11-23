@@ -8,7 +8,7 @@
 
 using base::global::CRntString;
 
-bool fn_710007f320(const CRntString* a, const CRntString* b);
+bool CRntString_Less(const CRntString* a, const CRntString* b);
 
 struct UnkEntry_710109b9f0 {
     const CRntString* key;
@@ -19,7 +19,7 @@ namespace {
 
 struct UnkCmp_710109b9f0 {
     bool operator()(const UnkEntry_710109b9f0& a, const UnkEntry_710109b9f0& b) const {
-        return fn_710007f320(a.key, b.key);
+        return CRntString_Less(a.key, b.key);
     }
 };
 

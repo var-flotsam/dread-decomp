@@ -131,7 +131,7 @@ bool fn_7100fd6f74(UnkMusicManager* self, const base::global::CRntString* name, 
             UnkBuiltId() {}
             ~UnkBuiltId() { id.~CStrId(); }
         } built;
-        fn_7100000850(&built.id, *name, true);
+        CStrId_ConstructFromRntString(&built.id, *name, true);
         fn_7100fd73a4(self, &built.id, &first, &second);
     }
     if (first.files.count == 0 && second.files.count == 0)

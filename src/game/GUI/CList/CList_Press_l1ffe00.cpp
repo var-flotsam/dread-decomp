@@ -89,10 +89,10 @@ void fn_71011ffe00(UnkList_l1ffe00* self, UnkListEvent_l1ffe00* event) {
     {
         const CStrId& key = TableId(0xcb);
         base::UnkNamedEntry button;
-        fn_710007e704(&button, "ActivationButton");
+        CRntString_ConstructFromCString(&button, "ActivationButton");
         const char* text = reinterpret_cast<base::global::CRntString*>(&button)->data;
         unk_prop_bag::fn_710050e4dc(&bag, key, text ? text : g_unk_710162e2ed);
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&button));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&button));
     }
     s32 kind = 0x11;
     UnkGuiEvent ev;

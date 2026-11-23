@@ -25,10 +25,10 @@ struct UnkObject30 {
     u64 field_0x0[6];
 
     __attribute__((always_inline)) UnkObject30(const UnkObject30& other) {
-        fn_710007ea60(reinterpret_cast<base::UnkNamedEntry*>(this), reinterpret_cast<const base::UnkNamedEntry*>(&other));
+        CRntString_CopyConstruct(reinterpret_cast<base::UnkNamedEntry*>(this), reinterpret_cast<const base::UnkNamedEntry*>(&other));
     }
     __attribute__((always_inline)) UnkObject30(UnkObject30&& other) {
-        fn_710007eab4(reinterpret_cast<base::global::CRntString*>(this),
+        CRntString_MoveConstruct(reinterpret_cast<base::global::CRntString*>(this),
                       reinterpret_cast<base::global::CRntString*>(&other));
     }
 };

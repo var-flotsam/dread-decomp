@@ -87,7 +87,7 @@ void fn_71002a9170(UnkReporter_2a9170* self, const UnkSegment2D* seg, bool flip,
     if (IsNearZero(cross)) {
         return;
     }
-    if ((*self->callback)(*seg, *self->depth, fn_710007ef90(self->indent, "  "))) {
+    if ((*self->callback)(*seg, *self->depth, CRntString_ConcatCString(self->indent, "  "))) {
         return;
     }
     if (!add) {

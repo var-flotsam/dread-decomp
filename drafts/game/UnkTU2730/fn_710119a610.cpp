@@ -38,14 +38,14 @@ struct UnkInlineString_l19a610 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_l19a610() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
     }
     ~UnkInlineString_l19a610() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -54,7 +54,7 @@ struct UnkNameId_l19a610 {
     UnkStringData* data;
 
     explicit UnkNameId_l19a610(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkNameId_l19a610() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
 };
@@ -123,7 +123,7 @@ static_assert(__builtin_offsetof(UnkNamedSubIds_l19a610, sub_ids) == 0xd0, "layo
 const UnkSubId_7100fc4b34& fn_710119a610(UnkQualifiedName* self, const void* path) {
     UnkNamedSubIds_l19a610* owner = reinterpret_cast<UnkNamedSubIds_l19a610*>(self);
     UnkInlineString_l19a610 str;
-    fn_710007f3b4(str.Str(), static_cast<const CRntString*>(path));
+    CRntString_Append(str.Str(), static_cast<const CRntString*>(path));
     UnkSubIdMap_l19a610& map = owner->sub_ids;
     UnkSubIdNode_l19a610* node = map.Find(*str.Str());
     if (!node) {

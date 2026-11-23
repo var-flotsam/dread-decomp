@@ -137,11 +137,11 @@ static inline const char* Text(const char* str) {
 }
 
 static inline CRntString Concat(const CRntString& a, const char* b) {
-    return fn_710007ef90(&a, b);
+    return CRntString_ConcatCString(&a, b);
 }
 
 static inline void Assign(CRntString& dst, const CRntString& src) {
-    fn_710007eaa0(&dst, &src);
+    CRntString_Assign(&dst, &src);
 }
 
 static inline void Assign(CFilePathStrId& dst, const CFilePathStrId& src) {
@@ -186,7 +186,7 @@ void fn_7100defe10(UnkGameManager* self) {
     fn_71002191a4(g_unk_7101d47300, 4);
 
     CRntString path("maps/levels/");
-    Assign(path, Concat(Concat(Concat(Concat(Concat(Concat(fn_710007f050(Text(view->field_0x620), &path),
+    Assign(path, Concat(Concat(Concat(Concat(Concat(Concat(CRntString_ConcatCStringFirst(Text(view->field_0x620), &path),
                                                            Text(view->field_0x4b8)),
                                                     "/"),
                                              Text(view->field_0x4e8)),

@@ -10,7 +10,7 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU55.h"
 #include "game_s2/UnkWeakHandle.h"
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "types.h"
 
 using base::global::CStrId;

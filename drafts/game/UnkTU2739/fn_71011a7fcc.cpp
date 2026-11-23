@@ -15,7 +15,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU57.h"
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -149,7 +149,7 @@ inline void AppendLowerCase(CRntString* str, const char* text) {
     char lower[0x100];
     ToLower(lower, text);
     UnkString_l1a7fcc part(lower);
-    fn_710007f3b4(str, part.Str());
+    CRntString_Append(str, part.Str());
 }
 
 // The node of a path, or none.
@@ -170,23 +170,23 @@ UnkVariantList_l1a7fcc* fn_71011a7fcc(const UnkPath_l1a7fcc* key) {
         {
             const CRntString& path_text = IdString(*key);
             UnkString_l1a7fcc path;
-            fn_710007eaa0(path.Str(), &path_text);
-            s32 dot = fn_710007fb10(path.Str(), '.', -1);
+            CRntString_Assign(path.Str(), &path_text);
+            s32 dot = CRntString_FindLastChar(path.Str(), '.', -1);
             if (dot != -1) {
                 // The path up to its extension, and the extension.
                 const char* text = path.Str()->data;
                 UnkString_l1a7fcc stem;
-                fn_710007e7f8(stem.Str(), text, dot);
+                CRntString_AssignPrefix(stem.Str(), text, dot);
                 u32 rest = path.Str()->length - dot;
                 const char* extension_text = path.Str()->data + (u32)dot;
                 UnkString_l1a7fcc extension;
-                fn_710007e7f8(extension.Str(), extension_text, rest);
+                CRntString_AssignPrefix(extension.Str(), extension_text, rest);
 
                 for (u32 i = 0; i != 16; ++i) {
                     UnkString_l1a7fcc name(stem);
-                    fn_710007f564(name.Str(), "_");
+                    CRntString_AppendCString(name.Str(), "_");
                     AppendLowerCase(name.Str(), VariantName(i));
-                    fn_710007f3b4(name.Str(), extension.Str());
+                    CRntString_Append(name.Str(), extension.Str());
                     UnkPath_l1a7fcc variant(*name.Str());
                     // Kept when the file registry knows the file.
                     UnkRegistry_0x70* registry = g_unk_7101d4b5a0;

@@ -95,7 +95,7 @@ void fn_71009f35b0(char* raw) {
     self->field_0x148 = false;
     self->field_0x149 = false;
     new (&self->field_0x150) CFilePathStrId(g_unk_710162e2ed, true);
-    fn_710007e704(&self->field_0x158, g_unk_710162e2ed);
+    CRntString_ConstructFromCString(&self->field_0x158, g_unk_710162e2ed);
     self->field_0x188 = nullptr;
     self->field_0x190 = false;
     static const UnkFloat4_l9f35b0 kInitial = {1.0f, 0.0f, 0.0f, 1.0f};

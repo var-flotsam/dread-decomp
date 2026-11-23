@@ -3,7 +3,7 @@
 // request and counts "<scenario>#<owner name>" (fn_7100ec78e8); then turns the player's input and aim keys
 // back on, updates its hyper beam and animation, and spawns the actor of g_unk_71727302b0 at the player's
 // position. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -60,7 +60,7 @@ struct UnkCommanderXName_l8be4e0 {
     UnkStringData* data;
 
     explicit UnkCommanderXName_l8be4e0(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkCommanderXName_l8be4e0() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
     const CStrId* Id() const { return reinterpret_cast<const CStrId*>(this); }
@@ -119,8 +119,8 @@ static inline const CRntString& Str(const CStrId& id) {
     return id.data->String();
 }
 
-static inline CRntString operator+(const CRntString& a, const char* b) { return fn_710007ef90(&a, b); }
-static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
+static inline CRntString operator+(const CRntString& a, const char* b) { return CRntString_ConcatCString(&a, b); }
+static inline CRntString operator+(const CRntString& a, const CRntString& b) { return CRntString_Concat(&a, &b); }
 
 // The counters (created on first use).
 static inline UnkCounters_b0166* Counters() {

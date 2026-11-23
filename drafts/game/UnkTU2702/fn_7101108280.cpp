@@ -1,7 +1,7 @@
 // Unit 2702 (a CAIComponent unit): sends the owner's action named for the side the target is on (or the
 // plain one), then, when the owner has a movement, probes the floor below it and launches it toward the
 // target, faced its way. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntString.h"
@@ -17,7 +17,7 @@
 #include "game/UnkTU365.h"
 #include "types.h"
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -26,7 +26,7 @@ using base::math::CVector3D;
 
 // A string on 0x80 bytes of inline storage.
 struct UnkString80_l108280 : UnkBufferString<0x80, g_unk_7101a1b750> {
-    explicit UnkString80_l108280(const CRntString& str) { fn_710007eaa0(Str(), &str); }
+    explicit UnkString80_l108280(const CRntString& str) { CRntString_Assign(Str(), &str); }
 };
 
 // The id's string, counting the read.
@@ -168,7 +168,7 @@ void fn_7101108280(UnkLeapAI_l108280* self, UnkLeapActor_l108280* target) {
     else
         text = &Text(Slot(GameManagerIdTable(), 0x15f0));
     UnkString80_l108280 name(*text);
-    fn_710007f3b4(name.Str(), &Text(GameManagerIdTable().field_0x13f8));
+    CRntString_Append(name.Str(), &Text(GameManagerIdTable().field_0x13f8));
 
     base::reflection::UnkReflTypeIdArg mode;
     mode.id = 1;

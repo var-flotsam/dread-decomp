@@ -58,15 +58,15 @@ struct UnkInlineString_l03ffdc {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     explicit UnkInlineString_l03ffdc(const char* text) {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
-        fn_710007e77c(Str(), text);
+        CRntString_AssignCString(Str(), text);
     }
     ~UnkInlineString_l03ffdc() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -90,7 +90,7 @@ struct UnkKeyId_l03ffdc {
     UnkStringData* data;
 
     explicit UnkKeyId_l03ffdc(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkKeyId_l03ffdc() {
         if (base::global::UnkStringPool* pool = g_unk_7101d47108) {

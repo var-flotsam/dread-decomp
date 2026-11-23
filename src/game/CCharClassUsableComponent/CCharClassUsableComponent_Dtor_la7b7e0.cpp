@@ -34,8 +34,8 @@ void fn_7100a7b7e0(char* p) {
 #pragma clang loop unroll(full)
     for (int i = 19; i-- > 0;)
         self->field_0xe8[i].~CStrId();
-    fn_710007ecd4(&self->field_0xb8);
-    fn_710007ecd4(&self->field_0x88);
-    fn_710007ecd4(&self->field_0x58);
+    CRntString_Destroy(&self->field_0xb8);
+    CRntString_Destroy(&self->field_0x88);
+    CRntString_Destroy(&self->field_0x58);
     fn_71011acd74(reinterpret_cast<UnkIdObject*>(self));
 }

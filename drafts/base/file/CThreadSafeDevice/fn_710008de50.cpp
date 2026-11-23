@@ -1,7 +1,7 @@
 // CThreadSafeDevice (unit 68): splits a file-path id "device:dir/name.ext" into the directory (a
 // file-path id, with its slash), the name and the extension (string ids); each output may be null.
 // Names and layouts are placeholders.
-#include "../../../game_aca57c/UnkBufferString.h"
+#include "../../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
@@ -28,7 +28,7 @@ inline const CRntString& IdString(const Id& id) {
 // A counted part of a string, on 0x200 bytes of inline storage.
 struct UnkPart200_l08de50 : UnkBufferString<0x200, g_unk_7101a1a5a8> {
     __attribute__((always_inline)) UnkPart200_l08de50(const char* str, u32 length) {
-        fn_710007e7f8(Str(), str, length);
+        CRntString_AssignPrefix(Str(), str, length);
     }
 };
 
@@ -52,7 +52,7 @@ struct UnkTextId_l08de50 {
 };
 using UnkTextPath_l08de50 =
     UnkTextId_l08de50<g_unk_7101d47200, base::global::UnkFilePathStrIdBase, fn_710001a270>;
-using UnkTextStrId_l08de50 = UnkTextId_l08de50<g_unk_7101d47108, base::global::UnkStrIdBase, fn_7100000850>;
+using UnkTextStrId_l08de50 = UnkTextId_l08de50<g_unk_7101d47108, base::global::UnkStrIdBase, CStrId_ConstructFromRntString>;
 
 // Makes `id` share `other`'s string: the new string gains a reference before the old one is released.
 template <UnkStringPool*& Pool, class Id, class Other>
@@ -93,9 +93,9 @@ inline void ReleaseAndTake(Id* id, Other&& other) {
 
 bool fn_710008de50(const CFilePathStrId* path, CFilePathStrId* dir, CStrId* name, CStrId* ext) {
     const CRntString& text = IdString(*path);
-    s32 colon = fn_710007facc(&text, ':', 0);
-    s32 slash = fn_710007fb10(&text, '/', -1);
-    s32 dot = fn_710007fb10(&text, '.', -1);
+    s32 colon = CRntString_FindChar(&text, ':', 0);
+    s32 slash = CRntString_FindLastChar(&text, '/', -1);
+    s32 dot = CRntString_FindLastChar(&text, '.', -1);
     if (dir) {
         if (slash >= 0) {
             u32 start = colon + 1;

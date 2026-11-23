@@ -735,7 +735,7 @@ struct UnkNavLoadId {
     union {
         CStrId id;
     };
-    explicit UnkNavLoadId(const char* str) { fn_71000003d4(&id, str, true); }
+    explicit UnkNavLoadId(const char* str) { CStrId_Construct(&id, str, true); }
     ~UnkNavLoadId() { id.~CStrId(); }
 };
 
@@ -1276,9 +1276,9 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
         UnkStrPair_0x10 s;
         fn_710008d680(&s, path);
         base::UnkNamedEntry mode;
-        fn_710007e704(&mode, "rb");
+        CRntString_ConstructFromCString(&mode, "rb");
         opened = fn_710007c1ac(&reader, &s, reinterpret_cast<base::global::CRntString*>(&mode));
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&mode));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&mode));
         fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(&s));
     }
     if (opened) {

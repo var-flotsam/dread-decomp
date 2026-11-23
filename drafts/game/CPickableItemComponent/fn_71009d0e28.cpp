@@ -101,7 +101,7 @@ static inline bool Contains(CStrId id, const char* part) {
     ++id.data->reads;
     if (IsEmpty(id))
         return false;
-    return fn_710007fb9c(&id.data->String(), part);
+    return CRntString_Contains(&id.data->String(), part);
 }
 
 // An item's qualified id, built on first use.
@@ -137,7 +137,7 @@ void fn_71009d0e28(UnkPickableItem_l9d0e28* self) {
             line = fn_710013c834(line.Str(), "_CURRENT", g_unk_710162e2ed);
             // The id the name gives, built in place and destroyed by hand.
             alignas(CStrId) char storage[sizeof(CStrId)];
-            fn_7100000850(reinterpret_cast<UnkStrIdBase*>(storage), *line.Str(), true);
+            CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(storage), *line.Str(), true);
             CStrId& id = *reinterpret_cast<CStrId*>(storage);
             if (!fn_7100ae09a4(g_unk_71726ad550, id)) {
                 id = self->itemId;

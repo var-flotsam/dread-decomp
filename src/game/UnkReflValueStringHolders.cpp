@@ -28,9 +28,9 @@ struct UnkValueStringHolder : UnkValueHolderBase {
     ~UnkValueStringHolder() {
         vtable = reinterpret_cast<void**>(Vtable) + 2;
         CRntString* inline_str = At(InlineStrOffset);
-        fn_710007ed40(inline_str);
-        fn_710007ecd4(inline_str);
-        fn_710007ecd4(At(StrOffset));
+        CRntString_Clear(inline_str);
+        CRntString_Destroy(inline_str);
+        CRntString_Destroy(At(StrOffset));
     }
 };
 

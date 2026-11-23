@@ -54,9 +54,9 @@ UnkGuiHandle fn_71011b69d8(UnkGuiRoot* registry, const base::global::CRntString&
     {
         UnkScriptPath_0x148 sp = fn_71011b66fc(registry, name);
         auto* sp_str = reinterpret_cast<base::global::CRntString*>(&sp.path);
-        fn_710007eab4(reinterpret_cast<base::global::CRntString*>(&path), sp_str);
-        fn_710007ed40(sp_str);
-        fn_710007ecd4(sp_str);
+        CRntString_MoveConstruct(reinterpret_cast<base::global::CRntString*>(&path), sp_str);
+        CRntString_Clear(sp_str);
+        CRntString_Destroy(sp_str);
     }
     UnkRegistry_0x70* reg = g_unk_7101d4b5a0;
     if (!reg) {
@@ -100,6 +100,6 @@ UnkGuiHandle fn_71011b69d8(UnkGuiRoot* registry, const base::global::CRntString&
         ++h->ref_count;
         result.ptr = reinterpret_cast<UnkGuiHandleObj*>(h);
     }
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&path));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&path));
     return result;
 }

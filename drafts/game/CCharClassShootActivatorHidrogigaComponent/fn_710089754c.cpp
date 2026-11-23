@@ -2,7 +2,7 @@
 // update it ends a hit once the Hydrogiga's cooldown has passed, fades its value toward the target, tints
 // the model by how charged it is and, when a shot is pending, restarts the owner's AI with every shot at
 // full scale and sends the linked part to state 2. Names and layouts are placeholders.
-#include "../UnkSmRequest_A5_b73.h"
+#include "../../../src/game/UnkSmRequest_A5_b73.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntVector.h"

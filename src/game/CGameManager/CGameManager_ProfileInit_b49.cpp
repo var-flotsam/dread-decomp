@@ -40,12 +40,12 @@ struct UnkGameManagerProfile {
 static_assert(__builtin_offsetof(UnkGameManagerProfile, field_0xca8) == 0xca8, "layout");
 
 void fn_7100df8128(UnkGameManagerProfile* self) {
-    fn_710007e77c(&self->field_0xc78, "game");
-    fn_710007e77c(&self->field_0xca8, ".bmssv");
+    CRntString_AssignCString(&self->field_0xc78, "game");
+    CRntString_AssignCString(&self->field_0xca8, ".bmssv");
     const char* a = g_unk_7101aa99b0;
     const char* b = g_unk_7101aa99b8;
-    fn_710007e77c(&self->field_0x8a0, a);
-    fn_710007e77c(&self->field_0x8d0, b);
+    CRntString_AssignCString(&self->field_0x8a0, a);
+    CRntString_AssignCString(&self->field_0x8d0, b);
     fn_7101203768(GetOwner());
     fn_7100dee46c(reinterpret_cast<UnkGameManager*>(self));
     fn_71012037bc(GetOwner(), fn_7100df81fc);

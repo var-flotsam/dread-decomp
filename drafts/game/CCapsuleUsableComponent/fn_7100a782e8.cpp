@@ -3,7 +3,7 @@
 // that class the definition's first animation, hooks fn_7100a78db4 to it and sends the second list's owner
 // the second one (mode 2); otherwise hands the use on (fn_7100aa1b08). Last, the player's input is
 // switched on. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntString.h"
@@ -105,7 +105,7 @@ bool fn_7100a782e8(UnkCapsuleUsableComponent_la782e8* self, UnkWeakTarget* user,
     if (!user)
         return false;
     AssignRef(&self->user, fn_7100d78378(user));
-    fn_710007eaa0(&self->name, name);
+    CRntString_Assign(&self->name, name);
     if (Track_la782e8(&self->list_a)) {
         f32 a = self->def->field_0x1ac;
         f32 b = self->def->field_0x1b0;

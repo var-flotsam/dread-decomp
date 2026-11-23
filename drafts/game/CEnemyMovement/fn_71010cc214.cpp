@@ -1,7 +1,7 @@
 // CEnemyMovement unit: switches the movement to state `id` unless it is current, through the state
 // machine at +0x700, then tells the owner's component at +0x240 (virtual 0x510). Names and layouts are
 // placeholders.
-#include "../UnkSmRequest_A5_b73.h"
+#include "../../../src/game/UnkSmRequest_A5_b73.h"
 #include "types.h"
 
 struct UnkEnemyMovementPeer_l0cc214 {

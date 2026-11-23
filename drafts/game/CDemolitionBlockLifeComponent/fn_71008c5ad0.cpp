@@ -207,7 +207,7 @@ static inline bool NameHas(UnkStringData* const& name, const char* str) {
     ++name->reads;
     if (name == &g_unk_7101d47108->empty)
         return false;
-    return fn_710007fb9c(&name->String(), str);
+    return CRntString_Contains(&name->String(), str);
 }
 
 // The same, for the text of a string id, read only once the name is known not to be empty.
@@ -215,7 +215,7 @@ static inline bool NameHas(UnkStringData* const& name, const CStrId& sub) {
     ++name->reads;
     if (name == &g_unk_7101d47108->empty)
         return false;
-    return fn_710007fb9c(&name->String(), sub.Text());
+    return CRntString_Contains(&name->String(), sub.Text());
 }
 
 // The last of a name's `length` characters; reading it counts a use of the string.
@@ -258,7 +258,7 @@ struct UnkTextStrId {
     UnkStringData* data;
 
     explicit UnkTextStrId(const UnkTunableLine& text) {
-        fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), *text.Str(), true);
+        CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(this), *text.Str(), true);
     }
     ~UnkTextStrId() { reinterpret_cast<CStrId*>(this)->Reset(); }
     const CStrId& Id() const { return *reinterpret_cast<const CStrId*>(this); }
@@ -330,7 +330,7 @@ void fn_71008c5ad0(UnkDemolitionBlockLoad* self, CBlackboard* blackboard) {
                 UnkStringData* const& name = collider->name;
                 ++name->reads;
                 bool enabled;
-                if (name != &g_unk_7101d47108->empty && fn_710007fb9c(&name->String(), "_DEBRIS"))
+                if (name != &g_unk_7101d47108->empty && CRntString_Contains(&name->String(), "_DEBRIS"))
                     enabled = true;
                 else
                     enabled = false;
@@ -399,7 +399,7 @@ void fn_71008c5ad0(UnkDemolitionBlockLoad* self, CBlackboard* blackboard) {
         }
         if (name.data != &g_unk_7101d47108->empty) {
             // Hide the parts whose names contain the husk's suffix (from its last '_'), upper-cased.
-            UnkTextStrId suffix(ToUpper(Tail(TextOf(name), fn_710007fb10(&TextOf(name), '_', -1))));
+            UnkTextStrId suffix(ToUpper(Tail(TextOf(name), CRntString_FindLastChar(&TextOf(name), '_', -1))));
             UnkStringData* text = suffix.data;
             u32 length = text->String().length;
             if (length != 0) {

@@ -150,9 +150,9 @@ struct UnkStringElem_b0174 {
     base::global::CRntString* Str() { return reinterpret_cast<base::global::CRntString*>(&value); }
 
     UnkStringElem_b0174() { fn_710007e6c4(&value); }
-    UnkStringElem_b0174(UnkStringElem_b0174&& other) { fn_710007eab4(Str(), other.Str()); }
-    UnkStringElem_b0174(const UnkStringElem_b0174& other) { fn_710007ea60(&value, &other.value); }
-    ~UnkStringElem_b0174() { fn_710007ecd4(Str()); }
+    UnkStringElem_b0174(UnkStringElem_b0174&& other) { CRntString_MoveConstruct(Str(), other.Str()); }
+    UnkStringElem_b0174(const UnkStringElem_b0174& other) { CRntString_CopyConstruct(&value, &other.value); }
+    ~UnkStringElem_b0174() { CRntString_Destroy(Str()); }
 };
 
 UnkStringElem_b0174* fn_71000e0bb8(base::global::CRntVector<UnkStringElem_b0174>* self, u32 index) {

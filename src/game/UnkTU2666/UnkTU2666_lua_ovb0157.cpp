@@ -46,9 +46,9 @@ s32 fn_7101078df0(lua_State* L) {
     if (fn_71010c0270(L, "s", &name)) {
         UnkGameManager* manager = g_unk_7101d47310;
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         fn_7100df71d4(manager, *reinterpret_cast<CRntString*>(&key));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return 0;
 }
@@ -60,9 +60,9 @@ s32 fn_7101082ab0(lua_State* L) {
     if (fn_71010c0270(L, "s", &name)) {
         UnkGameManager* manager = g_unk_7101d47310;
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         fn_7100def668(manager, *reinterpret_cast<CRntString*>(&key));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return 0;
 }
@@ -138,12 +138,12 @@ s32 fn_71010771d0(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         base::UnkNamedEntry first;
-        fn_710007e704(&first, name);
+        CRntString_ConstructFromCString(&first, name);
         base::UnkNamedEntry second;
-        fn_710007e704(&second, g_unk_710162e2ed);
+        CRntString_ConstructFromCString(&second, g_unk_710162e2ed);
         fn_710109d390(&first, &second, false, true);
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&second));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&first));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&second));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&first));
     }
     return 0;
 }
@@ -176,9 +176,9 @@ s32 fn_7101082e80(lua_State* L) {
         if (fn_71010c0270(L, "sb", &name, &flag)) {                                       \
             UnkGameManager* manager = g_unk_7101d47310;                                   \
             base::UnkNamedEntry key;                                                      \
-            fn_710007e704(&key, name);                                                    \
+            CRntString_ConstructFromCString(&key, name);                                                    \
             void* object = fn_7100deab70(manager, *reinterpret_cast<CRntString*>(&key));  \
-            fn_710007ecd4(reinterpret_cast<CRntString*>(&key));                           \
+            CRntString_Destroy(reinterpret_cast<CRntString*>(&key));                           \
             if (object)                                                                   \
                 reinterpret_cast<u8*>(object)[OFFSET] = flag;                             \
         }                                                                                 \
@@ -270,9 +270,9 @@ s32 fn_7101078670(lua_State* L) {
     if (fn_71010c0270(L, "s", &name)) {
         UnkGameManager* manager = g_unk_7101d47310;
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         fn_7100dff1a8(manager, &key, false, true);
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return fn_71010c0b40(L, "b", false);
 }
@@ -285,9 +285,9 @@ s32 fn_7101079110(lua_State* L) {
     if (fn_71010c0270(L, "s", &name)) {
         UnkGameManager* manager = g_unk_7101d47310;
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         result = fn_7100df916c(manager, *reinterpret_cast<CRntString*>(&key)) == 0;
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return fn_71010c0b40(L, "b", result);
 }
@@ -298,9 +298,9 @@ s32 fn_7101078e60(lua_State* L) {
     if (fn_71010c0270(L, "s", &name)) {
         UnkGameManager* manager = g_unk_7101d47310;
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         result = fn_7100df97b4(manager, *reinterpret_cast<CRntString*>(&key), false, true);
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return fn_71010c0b40(L, "i", result);
 }
@@ -314,9 +314,9 @@ s32 fn_7101087af0(lua_State* L) {
         f32 first = a;
         f32 second = b;
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         fn_7100df6d3c(manager, &key, first, second);
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return 0;
 }
@@ -351,9 +351,9 @@ s32 fn_7101077240(lua_State* L) {
             g_unk_71727bed90 = scripts;
         }
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         fn_710109d890(scripts, reinterpret_cast<CRntString*>(&key));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return 0;
 }
@@ -372,9 +372,9 @@ s32 fn_710108b170(lua_State* L) {
             g_unk_71727bc260 = object;
         }
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         fn_71011a5cdc(object, *reinterpret_cast<CRntString*>(&key));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return 0;
 }

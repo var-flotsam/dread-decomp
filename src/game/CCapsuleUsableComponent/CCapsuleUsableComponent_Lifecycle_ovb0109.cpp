@@ -111,6 +111,6 @@ void fn_7100a78054(UnkCapsuleUsableComponentD_ovb0109* self) {
     self->listener.~UnkCapsuleListener_ovb0109();
     self->list_b.~UnkCapsuleCallbackList_ovb0109();
     self->list_a.~UnkCapsuleCallbackList_ovb0109();
-    fn_710007ecd4(&self->name);
+    CRntString_Destroy(&self->name);
     fn_7100a81c20(reinterpret_cast<UnkCapsuleUsableBase_ovb0109*>(self));
 }

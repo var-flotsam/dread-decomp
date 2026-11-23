@@ -46,7 +46,7 @@ struct UnkNumberedIds {
 
 struct UnkTempStrIdT : base::UnkPooledString {
     __attribute__((always_inline)) UnkTempStrIdT(const UnkString20& str) {
-        fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), *str.Str(), true);
+        CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(this), *str.Str(), true);
     }
 };
 
@@ -55,10 +55,10 @@ struct UnkTempStrIdT : base::UnkPooledString {
 void fn_7100ea56f0(UnkNumberedIds* self, u32 number) {
     self->field_0x4 = number;
     UnkString20 str;
-    fn_710007eb6c(&str, g_unk_71729cdad8);
+    CRntString_AssignStrId(&str, g_unk_71729cdad8);
     fn_710007f634(&str, self->field_0x4);
     self->field_0x8 = UnkTempStrIdT(str);
-    fn_710007f564(&str, "_border");
+    CRntString_AppendCString(&str, "_border");
     self->field_0x10 = UnkTempStrIdT(str);
 }
 
@@ -78,14 +78,14 @@ struct UnkStringWord {
 void fn_7100ae9bb0(UnkIdWord* self, const UnkStringWord* source, const UnkSuffix* suffix) {
     self->field_0x8 = source->field_0xc8;
     UnkString80 str;
-    fn_710007eaa0(str.Str(), reinterpret_cast<const base::global::CRntString*>(source));
+    CRntString_Assign(str.Str(), reinterpret_cast<const base::global::CRntString*>(source));
     if (suffix->data && suffix->data[0]) {
-        fn_710007f5ac(str.Str(), '[');
-        fn_710007f3b4(str.Str(), reinterpret_cast<const base::global::CRntString*>(suffix));
-        fn_710007f5ac(str.Str(), ']');
+        CRntString_AppendChar(str.Str(), '[');
+        CRntString_Append(str.Str(), reinterpret_cast<const base::global::CRntString*>(suffix));
+        CRntString_AppendChar(str.Str(), ']');
     }
     base::UnkPooledString id;
-    fn_7100000850(reinterpret_cast<UnkStrIdBase*>(&id), *str.Str(), true);
+    CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(&id), *str.Str(), true);
     self->id.~UnkStrIdTwoStep();
     self->id.data = id.data;
 }

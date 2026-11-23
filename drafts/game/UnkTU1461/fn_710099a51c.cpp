@@ -1,6 +1,6 @@
 // CSamusGrappleMovementState's unit (tools/tu_map.py, unit 1461): switches the state machine at +0x188 to
 // state 1 ("none" 5) and drops the handle at +0xb18. Names and layouts are placeholders.
-#include "../UnkSmRequest_A5_b73.h"
+#include "../../../src/game/UnkSmRequest_A5_b73.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 

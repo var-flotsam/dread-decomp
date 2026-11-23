@@ -108,7 +108,7 @@ struct UnkLuaNameList_ovb0073 : base::UnkVtableList<u8> {
         vtable = g_unk_7101a1a070 + 2;
         for (u8* node = head; node;) {
             u8* next = *reinterpret_cast<u8**>(node + 0x30);
-            fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node));
+            CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(node));
             allocator->vf_0x48(node);
             node = next;
         }

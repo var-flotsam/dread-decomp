@@ -133,8 +133,8 @@ struct UnkPathResult_e01d98 {
     ~UnkPathResult_e01d98() { id.~CFilePathStrId(); }
 };
 
-static inline CRntString Cat_e01d98(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
-static inline CRntString Cat_e01d98(const CRntString& a, const char* b) { return fn_710007ef90(&a, b); }
+static inline CRntString Cat_e01d98(const CRntString& a, const CRntString& b) { return CRntString_Concat(&a, &b); }
+static inline CRntString Cat_e01d98(const CRntString& a, const char* b) { return CRntString_ConcatCString(&a, b); }
 
 UnkPathResult_e01d98 fn_7100e01d98(UnkGameManager* self, const CStrId& scenario, const CStrId& name,
                                    const CStrId& ext) {
@@ -377,14 +377,14 @@ struct UnkInlineString_dfb1b0 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_dfb1b0() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
     }
     ~UnkInlineString_dfb1b0() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -395,7 +395,7 @@ CRntString fn_7100dfb1b0(UnkGameManager* manager, const base::UnkNamedEntry* key
     if (length >= 7) {
         const char* text = name->data + 7;
         UnkInlineString_dfb1b0 digits;
-        fn_710007e7f8(digits.Str(), text, length - 7);
+        CRntString_AssignPrefix(digits.Str(), text, length - 7);
         number = atoi(digits.Str()->data) + 1;
     } else {
         number = 1;
@@ -895,14 +895,14 @@ static inline T* Singleton_dfe36c(T*& instance) {
 void fn_7100dfe36c(UnkGameManager* manager) {
     UnkGameManagerIngame_dfe36c* self = reinterpret_cast<UnkGameManagerIngame_dfe36c*>(manager);
     char* mode = static_cast<char*>(manager->field_0x498);
-    if (!mode || fn_710007f240(mode + 8, "INGAME")) {
+    if (!mode || StringBuffer_Differs(mode + 8, "INGAME")) {
         CRntString ingame("INGAME");
-        fn_710007eaa0(&self->field_0x5d0, &ingame);
+        CRntString_Assign(&self->field_0x5d0, &ingame);
         self->field_0x5c8 = 1;
         self->field_0x600 = 0x200000000;
     } else {
         CRntString* current = reinterpret_cast<CRntString*>(static_cast<char*>(manager->field_0x498) + 8);
-        fn_710007eaa0(&self->field_0x438, current);
+        CRntString_Assign(&self->field_0x438, current);
     }
     fn_7100def888(reinterpret_cast<char*>(manager));
     fn_7101203768(Singleton_dfe36c<UnkUserDataOwner, 0x2b8, fn_710120320c>(g_unk_7101d47308));
@@ -1012,7 +1012,7 @@ void fn_7100dfa010(UnkGameManager* manager, UnkLoadRequest_dfa010* request) {
     UnkGameManagerRequest_dfa010* self = reinterpret_cast<UnkGameManagerRequest_dfa010*>(manager);
     if (request->field_0x40) {
         CRntString empty("");
-        fn_710007eaa0(&self->field_0x7f0, &empty);
+        CRntString_Assign(&self->field_0x7f0, &empty);
         fn_7101047ea8(&self->field_0x820);
         Reset_dfa010(self->field_0x968);
         Reset_dfa010(self->field_0xab0);

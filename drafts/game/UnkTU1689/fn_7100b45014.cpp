@@ -126,7 +126,7 @@ void fn_7100b45014(UnkMapPage_lb45014* self, UnkMenuEvent_lb45014* event) {
     } else if (self->ids.count) {
         ClearIds(self);
         self->shown.Reset();
-        fn_710007eaa0(&self->title, &g_unk_7101d58d10);
+        CRntString_Assign(&self->title, &g_unk_7101d58d10);
         PlaySound(self, &g_unk_71729f01c0);
     }
     s32 entry = self->close_entry;

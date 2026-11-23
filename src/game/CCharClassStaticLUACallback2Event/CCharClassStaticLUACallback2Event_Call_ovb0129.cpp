@@ -46,7 +46,7 @@ static inline UnkLuaId_b0129& TrueId() {
                          0)) {
         if (__cxa_guard_acquire(&g_unk_717279ea68.guard)) {
             new (&g_unk_717279ea68.id) UnkStrIdBase("true", true);
-            fn_7100000250(fn_710000051c, &g_unk_717279ea68.id, g_unk_7101a19000);
+            fn_7100000250(CStrId_Destroy, &g_unk_717279ea68.id, g_unk_7101a19000);
             __cxa_guard_release(&g_unk_717279ea68.guard);
         }
     }
@@ -63,7 +63,7 @@ static inline bool Contains(UnkLuaId_b0129& id, UnkLuaId_b0129& key) {
     ++key.Data()->reads;
     const char* k = key.Data()->text.data;
     ++id.Data()->reads;
-    return id.data != &g_unk_7101d47108->empty && fn_710007fb9c(&id.Data()->text, k);
+    return id.data != &g_unk_7101d47108->empty && CRntString_Contains(&id.Data()->text, k);
 }
 
 struct UnkLuaCallback2Event_b0129 {

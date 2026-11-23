@@ -6,7 +6,7 @@
 #include "base/UnkHashStream.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntVector.h"
-#include "../../game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkIter.h"
 #include "types.h"
 
 // Where a value was written: its offset in the stream, its key and a kind code.

@@ -2,7 +2,7 @@
 // differs from the sprite's, the image is cleared, and unless the sprite is locked (+0x1d8) the sheet is
 // loaded and the image looked up in the GUI root ("WhiteSquare" needs no sheet). Names and layouts are
 // placeholders.
-#include "../../../game_aca57c/UnkBufferString.h"
+#include "../../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
@@ -36,7 +36,7 @@ void fn_71011f8f80(UnkGuiSprite_l1f8bdc* self, void* image, CStrId id);
 
 // A counted prefix of a C string, on 0x100 bytes of inline storage.
 struct UnkSpriteText_l1f8bdc : UnkBufferString<0x100, g_unk_7101a194b8> {
-    UnkSpriteText_l1f8bdc(const char* str, u32 length) { fn_710007e7f8(Str(), str, length); }
+    UnkSpriteText_l1f8bdc(const char* str, u32 length) { CRntString_AssignPrefix(Str(), str, length); }
 };
 
 // The id a text gives (fn_7100000850), released as CStrId is.
@@ -44,7 +44,7 @@ struct UnkSpriteStrId_l1f8bdc {
     UnkStringData* data;
 
     explicit UnkSpriteStrId_l1f8bdc(const UnkSpriteText_l1f8bdc& text) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), *text.Str(), true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), *text.Str(), true);
     }
     ~UnkSpriteStrId_l1f8bdc() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
@@ -72,7 +72,7 @@ void fn_71011f8bdc(UnkGuiDisplayObject* self, CStrId id) {
     if (id.data == &g_unk_7101d47108->empty)
         return;
 
-    s32 slash = fn_710007facc(&base::reflection::refl_RntStringOf(id), '/', 0);
+    s32 slash = CRntString_FindChar(&base::reflection::refl_RntStringOf(id), '/', 0);
     const CRntString& path = base::reflection::refl_RntStringOf(id);
     u32 sheet_length = slash == -1 ? path.length : slash;
     UnkSpriteStrId_l1f8bdc sheet(UnkSpriteText_l1f8bdc(path.data, sheet_length));

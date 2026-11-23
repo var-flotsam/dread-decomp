@@ -29,8 +29,8 @@ static_assert(__builtin_offsetof(UnkSetAnimDependsOnDirAction, field_0x90) == 0x
 void fn_710037081c(UnkSetAnimDependsOnDirAction* self) {
     self->vtable = &g_unk_7101a24d08[2];
     CRntString* str = reinterpret_cast<CRntString*>(self->field_0x98);
-    fn_710007ed40(str);
-    fn_710007ecd4(str);
+    CRntString_Clear(str);
+    CRntString_Destroy(str);
     self->field_0x90.~CStrId();
     self->field_0x60.~CStrId();
     self->field_0x58.~CStrId();

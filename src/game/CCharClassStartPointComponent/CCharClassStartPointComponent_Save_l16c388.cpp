@@ -25,7 +25,7 @@ typedef UnkBufferString<0x100, g_unk_7101a194b8> UnkStartPointName_l16c388;
 
 // A name string built from another string.
 struct UnkStartPointNameCopy_l16c388 : UnkStartPointName_l16c388 {
-    explicit UnkStartPointNameCopy_l16c388(const CRntString& text) { fn_710007eaa0(Str(), &text); }
+    explicit UnkStartPointNameCopy_l16c388(const CRntString& text) { CRntString_Assign(Str(), &text); }
 };
 
 struct UnkEnumType;

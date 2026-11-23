@@ -57,13 +57,13 @@ static inline __attribute__((always_inline)) UnkReflValue SetEnumByName_b41a3(ch
     ++reinterpret_cast<UnkStrIdText_b41a3*>(id->data)->field_0x44;
     const CRntString* name = &reinterpret_cast<UnkStrIdText_b41a3*>(id->data)->str;
     u32 value;
-    if (fn_710007f140(name, g_unk_7101cb6868[0]))
+    if (CRntString_EqualsCString(name, g_unk_7101cb6868[0]))
         value = 0;
-    else if (fn_710007f140(name, g_unk_7101cb6868[1]))
+    else if (CRntString_EqualsCString(name, g_unk_7101cb6868[1]))
         value = 1;
-    else if (fn_710007f140(name, g_unk_7101cb6868[2]))
+    else if (CRntString_EqualsCString(name, g_unk_7101cb6868[2]))
         value = 2;
-    else if (fn_710007f140(name, g_unk_7101cb6868[3]))
+    else if (CRntString_EqualsCString(name, g_unk_7101cb6868[3]))
         value = 3;
     else
         return base::reflection::refl_EmptyValue();

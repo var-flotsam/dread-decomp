@@ -1,6 +1,6 @@
 // Unit 1176 (hint 'CCentralUnitComponent'): when the event's key matches the unit's (+0x538) and the unit's
 // state machine (+0x30) is in state 3, requests state 2 ("none" 8). Names and layouts are placeholders.
-#include "../UnkSmRequest_A5_b73.h"
+#include "../../../src/game/UnkSmRequest_A5_b73.h"
 #include "types.h"
 
 struct UnkCentralUnit;

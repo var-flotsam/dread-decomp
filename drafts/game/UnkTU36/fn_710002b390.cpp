@@ -2,7 +2,7 @@
 // picks the next state and result code from the request's word at +0x2e4. Names and layouts are placeholders.
 #include <nn/os.h>
 
-#include "../../base/UnkUnit36/UnkUnit36_Nfp.h"
+#include "../../../src/base/UnkUnit36/UnkUnit36_Nfp.h"
 #include "game/UnkTU36.h"
 #include "types.h"
 

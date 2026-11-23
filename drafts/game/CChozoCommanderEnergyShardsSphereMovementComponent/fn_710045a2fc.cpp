@@ -5,7 +5,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkActor.h"

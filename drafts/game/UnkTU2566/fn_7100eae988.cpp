@@ -4,7 +4,7 @@
 #include <new>
 #include <string.h>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -30,7 +30,7 @@ struct UnkMovedString118 {
     u8 data[0x30];
 
     __attribute__((always_inline)) UnkMovedString118(UnkMovedString118&& other) {
-        fn_710007eab4(reinterpret_cast<CRntString*>(this), reinterpret_cast<CRntString*>(&other));
+        CRntString_MoveConstruct(reinterpret_cast<CRntString*>(this), reinterpret_cast<CRntString*>(&other));
     }
 };
 

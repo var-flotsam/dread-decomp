@@ -28,14 +28,14 @@ struct UnkStrBuffer {
     base::global::CRntString* Str() { return reinterpret_cast<base::global::CRntString*>(this); }
 
     UnkStrBuffer() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
         storage.vtable = g_unk_7101a1b750 + 2;
         storage.field_0x88 = nullptr;
         storage.field_0x90 = 0;
     }
     ~UnkStrBuffer() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
     const char* c_str() const { return data ? data : ""; }
 };
@@ -100,7 +100,7 @@ bool fn_71009cde54(UnkScriptRunner* self, const char* name, const char* fmt, ...
     if (!name)
         return false;
     UnkStrBuffer str;
-    fn_710007e77c(str.Str(), name);
+    CRntString_AssignCString(str.Str(), name);
     s32 n = 0;
     const char* p = str.data;
     for (u64 left = str.length; left != 0; --left, ++p) {
@@ -111,8 +111,8 @@ bool fn_71009cde54(UnkScriptRunner* self, const char* name, const char* fmt, ...
     buf[n] = 0;
     {
         UnkStrBuffer stripped;
-        fn_710007e77c(stripped.Str(), buf);
-        fn_710007eaa0(str.Str(), stripped.Str());
+        CRntString_AssignCString(stripped.Str(), buf);
+        CRntString_Assign(str.Str(), stripped.Str());
     }
     u64 hash = str.hash;
     bool result;

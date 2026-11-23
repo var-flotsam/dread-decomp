@@ -32,7 +32,7 @@ using UnkString200_l08d99c = UnkBufferString<0x200, g_unk_7101a1a5a8>;
 // A counted part of a string, on 0x200 bytes of inline storage.
 struct UnkPart200_l08d99c : UnkString200_l08d99c {
     __attribute__((always_inline)) UnkPart200_l08d99c(const char* str, u32 length) {
-        fn_710007e7f8(Str(), str, length);
+        CRntString_AssignPrefix(Str(), str, length);
     }
 };
 
@@ -41,7 +41,7 @@ struct UnkTextStrId_l08d99c {
     UnkStringData* data;
 
     explicit UnkTextStrId_l08d99c(const CRntString& text) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), text, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), text, true);
     }
     ~UnkTextStrId_l08d99c() {
         if (UnkStringPool* pool = g_unk_7101d47108) {

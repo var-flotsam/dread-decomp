@@ -1,7 +1,7 @@
 // CCutsceneComponent's unit: copies a byte array into the entry named `id`: the component's own
 // entry when `id` is the id table's key at 0x1f00, otherwise the first entry in the list at 0xd0 with
 // that name. Names and layouts are placeholders.
-#include "../../game_s7/UnkPropS7.h"
+#include "../../../src/game_s7/UnkPropS7.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"

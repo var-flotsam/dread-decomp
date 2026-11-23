@@ -9,7 +9,7 @@ struct UnkTrackKey {
     u64 field_0x0;
     alignas(8) u8 name[sizeof(base::global::CRntString)];  // a base::global::CRntString
 
-    ~UnkTrackKey() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(name)); }
+    ~UnkTrackKey() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(name)); }
 };
 static_assert(sizeof(UnkTrackKey) == 0x38, "UnkTrackKey layout");
 

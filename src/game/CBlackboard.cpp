@@ -87,8 +87,8 @@ void fn_7101046974(CBlackboard* blackboard) {
     new (&self->field_0x30) UnkChainedMap();
     self->field_0x30.ResizeBuckets(11);
     self->field_0x78 = 0;
-    fn_710007e704(&self->field_0x80, g_unk_710162e2ed);
-    fn_710007e704(&self->field_0xb0, g_unk_710162e2ed);
+    CRntString_ConstructFromCString(&self->field_0x80, g_unk_710162e2ed);
+    CRntString_ConstructFromCString(&self->field_0xb0, g_unk_710162e2ed);
     self->field_0xe0 = 0;
     self->field_0xe8 = false;
 }

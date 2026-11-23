@@ -27,9 +27,9 @@ void fn_7100a6b440() {
     fn_7100a69610();
     fn_710009ec00(&g_unk_717274ea78, &tu.type);
     INIT_HASHED_STRID(&tu.ids[0], "collision_camera_005");
-    fn_7100000250(fn_710000051c, &tu.ids[0], &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.ids[0], &g_unk_7101a19000);
     INIT_HASHED_STRID(&tu.ids[1], "collision_camera_004");
-    fn_7100000250(fn_710000051c, &tu.ids[1], &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.ids[1], &g_unk_7101a19000);
     INIT_HASHED_STRID(&tu.ids[2], "AccessPointCommanderComponent");
-    fn_7100000250(fn_710000051c, &tu.ids[2], &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.ids[2], &g_unk_7101a19000);
 }

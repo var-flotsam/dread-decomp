@@ -80,7 +80,7 @@ static_assert(__builtin_offsetof(UnkSoundSelector_ovb56, allocator) == 0xf0, "la
 
 void fn_7100fcb2ec(UnkSoundSelector_ovb56* self) {
     self->vtable = &g_unk_7101cabad0[2];
-    fn_710007e6e4(reinterpret_cast<base::global::CRntString*>(self->name),
+    CRntString_InitWithAllocator(reinterpret_cast<base::global::CRntString*>(self->name),
                   reinterpret_cast<UnkAllocator*>(&self->name_allocator_vtable));
     self->name_allocator_vtable = &g_unk_7101a1b750[2];
     self->field_0xc0 = 0;
@@ -141,7 +141,7 @@ static_assert(sizeof(UnkSoundSelectorMove_ovb56) == 0xf8, "layout");
 UnkSoundSelectorMove_ovb56* fn_7100fcb500(UnkSoundSelectorMove_ovb56* self, UnkSoundSelectorMove_ovb56* other) {
     if (self == other)
         return self;
-    fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(self->name),
+    CRntString_Assign(reinterpret_cast<base::global::CRntString*>(self->name),
                   reinterpret_cast<const base::global::CRntString*>(other->name));
     self->entries = static_cast<UnkSelectorEntries_ovb56&&>(other->entries);
     return self;
@@ -295,20 +295,20 @@ UnkReflValue fn_7100fcbb3c(UnkSelectorHolder_ovb56* self) {
     UnkSelectorEvents_ovb56* selector = self->selector;
     UnkInlineString256_ovb56 s;
     CRntString* str = reinterpret_cast<CRntString*>(s.str);
-    fn_710007e6e4(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
+    CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
     s.vtable = g_unk_7101a194b8 + 2;
     s.field_0x138 = 0;
     s.field_0x140 = 0;
     if (u32 count = selector->count) {
         UnkSelectorEvent_ovb56* event = selector->events;
         if (event->kind == 0)
-            fn_710007f5ac(str, '@');
-        fn_710007f3b4(str, UseStr_ovb56(event->id));
+            CRntString_AppendChar(str, '@');
+        CRntString_Append(str, UseStr_ovb56(event->id));
         for (UnkSelectorEvent_ovb56* it = event + 1, *end = event + count; it != end; ++it) {
-            fn_710007f5ac(str, ',');
+            CRntString_AppendChar(str, ',');
             if (it->kind == 0)
-                fn_710007f5ac(str, '@');
-            fn_710007f3b4(str, UseStr_ovb56(it->id));
+                CRntString_AppendChar(str, '@');
+            CRntString_Append(str, UseStr_ovb56(it->id));
         }
     }
     const base::reflection::CType* type = reinterpret_cast<const base::reflection::CType*>(fn_710009ffd4());
@@ -317,7 +317,7 @@ UnkReflValue fn_7100fcbb3c(UnkSelectorHolder_ovb56* self) {
     r.field_0x0 = nullptr;
     r.type = nullptr;
     fn_71000a18d4(&r, type, str, false);
-    fn_710007ed40(str);
-    fn_710007ecd4(str);
+    CRntString_Clear(str);
+    CRntString_Destroy(str);
     return r;
 }

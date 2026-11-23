@@ -41,23 +41,23 @@ struct UnkDebugText_ovb0128 {
         CRntString str;
     };
 
-    explicit UnkDebugText_ovb0128(CRntString* from) { fn_710007eab4(&str, from); }
+    explicit UnkDebugText_ovb0128(CRntString* from) { CRntString_MoveConstruct(&str, from); }
     UnkDebugText_ovb0128(const UnkDebugText_ovb0128& other);  // never called: the result is built in place
-    ~UnkDebugText_ovb0128() { fn_710007ecd4(&str); }
+    ~UnkDebugText_ovb0128() { CRntString_Destroy(&str); }
 };
 
 UnkDebugText_ovb0128 fn_7100376104(UnkStorePosInBlc_ovb0128* self) {
     UnkDebugBuffer_ovb0128 text(g_unk_710162e2ed);
     UnkDebugBuffer_ovb0128 source;
     if (self->source.data == &g_unk_7101d47108->empty) {
-        fn_710007e77c(source.Str(), "Owner");
+        CRntString_AssignCString(source.Str(), "Owner");
     } else if (!reinterpret_cast<bool (*)(UnkStringEqualsCondition_A2_b72*, CStrId*, UnkInlineString_A2_b72*)>(
                    fn_7100395044)(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->source,
                                   reinterpret_cast<UnkInlineString_A2_b72*>(&source))) {
-        fn_710007e77c(source.Str(), "Unknown");
+        CRntString_AssignCString(source.Str(), "Unknown");
     }
-    fn_710007f3b4(text.Str(), &static_cast<const CRntString&>(fn_710007ef90(source.Str(), " Position -> ")));
+    CRntString_Append(text.Str(), &static_cast<const CRntString&>(CRntString_ConcatCString(source.Str(), " Position -> ")));
     ++self->target->reads;
-    fn_710007f3b4(text.Str(), &self->target->text);
+    CRntString_Append(text.Str(), &self->target->text);
     return UnkDebugText_ovb0128(text.Str());
 }

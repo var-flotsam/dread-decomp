@@ -2,7 +2,7 @@
 // facing and the movement's speed agree in sign with the stored direction, requests the state, places
 // both transforms of the pose at the stored position (shifted by the collider's offset) turned a quarter
 // turn, resets the movement and marks it pending. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

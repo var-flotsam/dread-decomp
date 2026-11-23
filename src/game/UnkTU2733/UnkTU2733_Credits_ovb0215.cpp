@@ -100,19 +100,19 @@ static inline UnkCreditEntry_ovb0215* NewEntry(UnkLanguage* self, const UnkLangu
 void fn_710119ce68(UnkLanguage* self, const CStrId& key, const UnkLanguageText& text) {
     UnkCreditEntry_ovb0215* e;
     const CRntString* s = IdString(key);
-    if (s && fn_710007fb9c(s, "_TITLE")) {
+    if (s && CRntString_Contains(s, "_TITLE")) {
         e = NewEntry(self, text);
         e->title = true;
         e->subtitle = false;
     } else {
         s = IdString(key);
-        if (s && fn_710007fb9c(s, "_SUBTITLE")) {
+        if (s && CRntString_Contains(s, "_SUBTITLE")) {
             e = NewEntry(self, text);
             e->title = false;
             e->subtitle = true;
         } else {
             s = IdString(key);
-            if (s && fn_710007fb9c(s, "_END")) {
+            if (s && CRntString_Contains(s, "_END")) {
                 self->field_0x5c = true;
                 e = NewEntry(self, text);
                 e->title = false;

@@ -228,7 +228,7 @@ s32 fn_7101077f30(lua_State* L) {
         UnkIngameGui_b0158* gui = static_cast<UnkIngameGui_b0158*>(fn_7100deab70(manager, CRntString("INGAME")));
         if (gui) {
             CRntString value(name);
-            fn_710007eaa0(&gui->field_0xb8, &value);
+            CRntString_Assign(&gui->field_0xb8, &value);
         }
     }
     return 0;
@@ -240,9 +240,9 @@ s32 fn_71010785e0(lua_State* L) {
     if (fn_71010c0270(L, "s", &name)) {
         UnkGameManager* manager = g_unk_7101d47310;
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         value = fn_7100dff1a8(manager, &key, true, true) == 0;
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return fn_71010c0b40(L, "b", value);
 }
@@ -253,10 +253,10 @@ s32 fn_7101078a90(lua_State* L) {
     if (fn_71010c0270(L, "s", &name) && fn_7100dfbe3c(g_unk_7101d47310)) {
         UnkGameManager* manager = g_unk_7101d47310;
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         auto check = reinterpret_cast<bool (*)(UnkGameManager*, const base::UnkNamedEntry*)>(fn_7100dfbe78);
         value = check(manager, &key);
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return fn_71010c0b40(L, "b", value);
 }
@@ -268,9 +268,9 @@ s32 fn_7101078ef0(lua_State* L) {
     if (fn_71010c0270(L, "sb", &name, &flag)) {
         UnkGameManager* manager = g_unk_7101d47310;
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         result = fn_7100df78cc(manager, *reinterpret_cast<const CRntString*>(&key), flag, false);
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return fn_71010c0b40(L, "i", result);
 }
@@ -286,13 +286,13 @@ s32 fn_7101079030(lua_State* L) {
         CRntString string;
     } result;
     base::UnkNamedEntry key;
-    fn_710007e704(&key, name);
+    CRntString_ConstructFromCString(&key, name);
     auto lookup = reinterpret_cast<CRntString (*)(UnkGameManager*, const base::UnkNamedEntry*)>(fn_7100dfb330);
     new (&result.string) CRntString(lookup(manager, &key));
-    fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+    CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     const char* text = result.string.data ? result.string.data : g_unk_710162e2ed;
     s32 ret = fn_71010c0b40(L, "s", text);
-    fn_710007ecd4(&result.string);
+    CRntString_Destroy(&result.string);
     return ret;
 }
 
@@ -391,9 +391,9 @@ s32 fn_71010772c0(lua_State* L) {
             g_unk_71727bed90 = manager;
         }
         base::UnkNamedEntry key;
-        fn_710007e704(&key, name);
+        CRntString_ConstructFromCString(&key, name);
         fn_710109e1ac(manager, &key, 0, flag);
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     }
     return 0;
 }

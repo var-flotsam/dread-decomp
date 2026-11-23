@@ -136,7 +136,7 @@ inline const CStrId& Kind_COLLISION() {
 static inline bool SpawnsClass(CSpawnPointComponent* self, const char* name) {
     ++self->field_0x48.data->reads;
     return self->field_0x48.data != &g_unk_7101d47108->empty &&
-           fn_710007fb9c(&self->field_0x48.data->String(), name);
+           CRntString_Contains(&self->field_0x48.data->String(), name);
 }
 
 bool fn_710112a558(CSpawnPointComponent* self, f32 time) {

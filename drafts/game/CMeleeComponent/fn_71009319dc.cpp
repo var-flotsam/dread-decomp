@@ -5,7 +5,7 @@
 
 #include <new>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkBlockFreeList.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
@@ -123,7 +123,7 @@ void fn_71009319dc(const char* text, const char* separator, UnkStringList_l9319d
         auto* node = new (memory) UnkStringNode_l9319dc;
         list->nodes.PushBack(node);
         u32 length = end - p;
-        fn_710007e7f8(node->text.Str(), p, length);
+        CRntString_AssignPrefix(node->text.Str(), p, length);
         u32 step = length + separator_length;
         pos += step;
         p += step;

@@ -23,7 +23,7 @@ struct UnkBuiltStrId_ee1840 {
     base::global::UnkStringData* data;
 
     explicit UnkBuiltStrId_ee1840(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(this), str, true);
     }
     ~UnkBuiltStrId_ee1840() { AsId().~CStrId(); }
     CStrId& AsId() { return *reinterpret_cast<CStrId*>(this); }
@@ -54,6 +54,6 @@ void fn_7100ee1840() {
         ++prefix.data->reads;
         ++s_separator.data->reads;
         GroupName(i) = static_cast<CStrId&&>(
-            UnkBuiltStrId_ee1840(fn_710007eee0(&prefix.data->String(), &s_separator.data->String())).AsId());
+            UnkBuiltStrId_ee1840(CRntString_Concat(&prefix.data->String(), &s_separator.data->String())).AsId());
     }
 }

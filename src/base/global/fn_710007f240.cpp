@@ -25,7 +25,7 @@ inline int UnkSafeStrcmp(const char* a, const char* b) {
 // NON_MATCHING(minor): the original computes the empty-string result with a select before
 // testing `a_empty || b_empty` (tbnz) and shares the final `!= 0` with the equal-pointer case;
 // we branch first (cmp #1, b.eq) and return directly. Same blocks and calls otherwise.
-bool fn_710007f240(char* buffer, const char* str) {
+bool StringBuffer_Differs(char* buffer, const char* str) {
     auto* self = reinterpret_cast<base::global::UnkStringBuffer*>(buffer);
     if (self->length != (u32)(str ? strlen(str) : 0))
         return true;

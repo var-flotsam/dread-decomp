@@ -2,7 +2,7 @@
 // at +0x30 (or the one +0x38 resolves to), with a random number from [+0x44, +0x48] appended when both are
 // set, plays it on the actor's (+0x18) character class, then sets and clears the timeline ids at +0x50 and
 // +0x58. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
@@ -29,16 +29,16 @@ struct UnkInlineString_l36cf68 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_l36cf68() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         field_0x138 = 0;
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x140 = 0;
     }
     // The text of a string id.
-    explicit UnkInlineString_l36cf68(const UnkStrId* id) : UnkInlineString_l36cf68() { fn_710007eb6c(Str(), id); }
+    explicit UnkInlineString_l36cf68(const UnkStrId* id) : UnkInlineString_l36cf68() { CRntString_AssignStrId(Str(), id); }
     ~UnkInlineString_l36cf68() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 

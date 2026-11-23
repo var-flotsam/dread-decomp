@@ -37,7 +37,7 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
 void fn_71004495a8(UnkNode* self) {
     fn_7100393e68(self);
     self->vtable = &g_unk_7101a36838[2];
-    fn_710007e704(&self->field_0x30, "");
+    CRntString_ConstructFromCString(&self->field_0x30, "");
     self->field_0x60.data = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();

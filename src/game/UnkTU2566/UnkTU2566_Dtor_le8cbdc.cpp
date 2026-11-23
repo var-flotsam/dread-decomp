@@ -68,9 +68,9 @@ struct UnkMinimapModifier_e8cbdc {
     u8 unk_0x90[0x48];
 
     ~UnkMinimapModifier_e8cbdc() {
-        fn_710007ed40(AsString(label));
-        fn_710007ecd4(AsString(label));
-        fn_710007ecd4(AsString(name));
+        CRntString_Clear(AsString(label));
+        CRntString_Destroy(AsString(label));
+        CRntString_Destroy(AsString(name));
     }
 };
 static_assert(sizeof(UnkMinimapModifier_e8cbdc) == 0xd8, "UnkMinimapModifier_e8cbdc layout");
@@ -81,7 +81,7 @@ struct UnkMinimapModifierHead_e8cbdc {
     base::UnkNamedEntry name;  // 0x18
     u8 unk_0x48[0x8];
 
-    ~UnkMinimapModifierHead_e8cbdc() { fn_710007ecd4(AsString(name)); }
+    ~UnkMinimapModifierHead_e8cbdc() { CRntString_Destroy(AsString(name)); }
 };
 static_assert(sizeof(UnkMinimapModifierHead_e8cbdc) == 0x50, "UnkMinimapModifierHead_e8cbdc layout");
 
@@ -273,7 +273,7 @@ void fn_7100e8cbdc(UnkMinimapManager_e8cbdc* self) {
         fn_7100083c30(static_cast<u64*>(input.entries) - 1);
         input.entries = nullptr;
     }
-    fn_710007ecd4(AsString(input.name));
+    CRntString_Destroy(AsString(input.name));
 
     fn_710002f67c(self->timer);
     fn_710002f67c(self->timer_0xd63d90);

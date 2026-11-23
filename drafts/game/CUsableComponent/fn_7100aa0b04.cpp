@@ -4,7 +4,7 @@
 // grabber track, fills the grab record (+0x40) and hands it to the grabber; otherwise plays the user's
 // animation on the player (unless use kind 7 is blocked by the player's +0x208) and the own animation on
 // the owner, each restarting (mode 2) unless already playing. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"

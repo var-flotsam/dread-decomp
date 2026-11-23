@@ -4,7 +4,7 @@
 // placeholders.
 #include <algorithm>
 
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/UnkCloneRecords.h"
 #include "base/UnkHashStream.h"
 #include "base/global/CRntFile.h"

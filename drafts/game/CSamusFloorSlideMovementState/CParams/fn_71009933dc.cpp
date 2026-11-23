@@ -2,7 +2,7 @@
 // A slope of about 45 or 26 degrees (or the flat floor ahead missing) picks the floor-slide track
 // to play on the owner's animation and the state (+0x198) to go to. Names and layouts are placeholders.
 #include <math.h>
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"

@@ -6,8 +6,8 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
-#include "../../game_s7/UnkIter.h"
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "types.h"
 
 #include <algorithm>

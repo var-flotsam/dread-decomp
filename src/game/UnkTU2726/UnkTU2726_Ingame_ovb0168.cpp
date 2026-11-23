@@ -243,7 +243,7 @@ bool fn_710118a8d0(UnkPlacedObj* placed) {
             if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_7172a0b900.guard), __ATOMIC_ACQUIRE) & 1), 0)) {
                 if (__cxa_guard_acquire(&g_unk_7172a0b900.guard)) {
                     new (&g_unk_7172a0b900.id) CStrId("EmmyAbilityObtained", true);
-                    fn_7100000250(fn_710000051c, &g_unk_7172a0b900.id, g_unk_7101a19000);
+                    fn_7100000250(CStrId_Destroy, &g_unk_7172a0b900.id, g_unk_7101a19000);
                     __cxa_guard_release(&g_unk_7172a0b900.guard);
                 }
             }

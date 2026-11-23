@@ -258,7 +258,7 @@ void fn_7100dcc404(UnkRush_b0195* rush, bool dread_rush, bool survival, bool fla
     self->runs = 0;
     self->level = flag;
     UnkGameManager* manager = g_unk_7101d47310;
-    if (!manager->field_0x498 || fn_710007f240(static_cast<char*>(manager->field_0x498) + 8, "INGAME"))
+    if (!manager->field_0x498 || StringBuffer_Differs(static_cast<char*>(manager->field_0x498) + 8, "INGAME"))
         fn_7100deac9c(g_unk_7101d47310, CRntString("INGAME"));
     RequestState(&self->machine, 3);
 }

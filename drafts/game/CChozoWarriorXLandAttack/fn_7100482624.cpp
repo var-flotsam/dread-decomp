@@ -2,8 +2,8 @@
 // CChozoWarriorXAIComponent and the owner has an animation (+0x220), plays the landing track, sets the
 // AI's landing speed scale to the middle of its two heights over the track's whole z motion, and hooks
 // the callback fn_71004837a0 up to the animation. Names and layouts are placeholders.
-#include "../../game_5821e4/CAttackDtor.h"
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_5821e4/CAttackDtor.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"

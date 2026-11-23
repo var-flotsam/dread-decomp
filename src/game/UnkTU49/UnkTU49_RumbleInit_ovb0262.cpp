@@ -30,9 +30,9 @@ void fn_710007149c();
 
 void fn_7100071b80() {
     new (&g_unk_7101d586b0.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &g_unk_7101d586b0.sources, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7101d586b0.sources, &g_unk_7101a19000);
     new (&g_unk_7101d586b0.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &g_unk_7101d586b0.binaries, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7101d586b0.binaries, &g_unk_7101a19000);
     UnkReflType* rumble_type = reinterpret_cast<UnkReflType*>(&base::reflection::TypeObject<base::input::ERumbleType>::object);
     InitEnum(rumble_type, "base::input::ERumbleType", fn_710007131c, fn_71000710b0);
     fn_710009ec00(&g_unk_7101d58528, &base::reflection::TypeObject<base::input::ERumbleType>::object);

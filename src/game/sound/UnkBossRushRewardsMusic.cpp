@@ -64,7 +64,7 @@ struct UnkRewardsPart {
 struct UnkRewardsName {
     alignas(8) u8 unk_0x0[0x30];
 
-    UnkRewardsName() { fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(this), ""); }
+    UnkRewardsName() { CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(this), ""); }
 };
 
 struct UnkRewardsPartDescBody {
@@ -163,7 +163,7 @@ void fn_7100b91030(UnkBossRushRewards* self) {
     InitPartN(&self->part3, g_unk_7101aa0250, 3);
     self->part3.field_0x178 = 0;
     self->part3.field_0x17a = false;
-    fn_710007e77c(&self->name, "BOSSRUSHREWARDS");
+    CRntString_AssignCString(&self->name, "BOSSRUSHREWARDS");
     self->parts.owner = self;
     self->parts.Add(&self->part1);
     self->parts.Add(&self->part2);

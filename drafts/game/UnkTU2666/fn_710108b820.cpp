@@ -9,7 +9,7 @@
 #include "game/UnkTU2677.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
@@ -28,7 +28,7 @@ struct UnkTextId_l08b820 {
     UnkStringData* data;
 
     explicit UnkTextId_l08b820(const CRntString& text) {
-        fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), text, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(this), text, true);
     }
     ~UnkTextId_l08b820() {
         if (UnkStringPool* pool = g_unk_7101d47108) {

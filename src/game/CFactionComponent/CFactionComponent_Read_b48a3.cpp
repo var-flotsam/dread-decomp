@@ -19,7 +19,7 @@ void fn_7101139014(UnkFactionComponent_b48a3* self, void* stream) {
     const char* name;
     CRntFile_ReadCString(stream, &name);
     UnkFactionKey_b48a3 key;
-    fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(&key), name);
+    CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(&key), name);
     fn_710113906c(self, &key);
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&key));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&key));
 }

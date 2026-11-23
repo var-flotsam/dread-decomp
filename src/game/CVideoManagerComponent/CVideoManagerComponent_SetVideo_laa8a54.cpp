@@ -23,7 +23,7 @@ struct UnkBuiltStrId_laa8a54 {
         CStrId id;
     };
 
-    explicit UnkBuiltStrId_laa8a54(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkBuiltStrId_laa8a54(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkBuiltStrId_laa8a54() { id.~CStrId(); }
 };
 
@@ -51,13 +51,13 @@ void fn_7100aa8a54(UnkVideoManager_laa8a54* self, const CFilePathStrId& path) {
         return;
     }
     ++path.data->reads;
-    if (path.data != &g_unk_7101d47200->empty && fn_710007fb9c(&path.data->String(), "rom:")) {
+    if (path.data != &g_unk_7101d47200->empty && CRntString_Contains(&path.data->String(), "rom:")) {
         self->video = static_cast<CStrId&&>(UnkBuiltStrId_laa8a54(IdString(path)).id);
         self->path = static_cast<CFilePathStrId&&>(UnkBuiltPathId_laa8a54(IdString(self->video)).id);
     } else {
         CRntString name("rom:");
         const CRntString& text = IdString(path);
-        fn_710007f3e4(&name, text.data ? text.data : g_unk_710162e2ed, text.length);
+        CRntString_AppendChars(&name, text.data ? text.data : g_unk_710162e2ed, text.length);
         self->video = static_cast<CStrId&&>(UnkBuiltStrId_laa8a54(name).id);
         self->path = static_cast<CFilePathStrId&&>(UnkBuiltPathId_laa8a54(IdString(self->video)).id);
     }

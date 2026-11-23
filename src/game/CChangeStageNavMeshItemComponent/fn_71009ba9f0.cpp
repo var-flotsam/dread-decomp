@@ -68,7 +68,7 @@ inline const CStrId& ChangeStageNavmeshItemId() {
 void fn_71009ba9f0() {
     InitHeader(g_unk_717273d710);
     new (&g_unk_717273d728) CStrId(fn_7100de8f78(ChangeStageNavmeshItemId()));
-    fn_7100000250(fn_710000051c, &g_unk_717273d728, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_717273d728, &g_unk_7101a19000);
     fn_71009b9654();
     fn_710009ec00(&g_unk_717273d6f8, TUType<0x10>(g_unk_717273d728));
 }

@@ -28,7 +28,7 @@ u32 fn_71011823a4(UnkObj_71011823a4* self, UnkProp* p) {
         CRntFile_Read(file, &self->field_0x40, 4, 1);
         CRntFile_Read(file, &self->field_0x48, 1, 1);
         fn_710007ca94(file, buf);
-        fn_710007e77c(&self->field_0x50, buf);
+        CRntString_AssignCString(&self->field_0x50, buf);
         return true;
     }
     if (Is(p, Key(0x21e0)) && p->set) {

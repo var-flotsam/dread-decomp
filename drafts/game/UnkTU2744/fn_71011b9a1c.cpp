@@ -44,7 +44,7 @@ struct UnkBuiltId_b0209 {
     union {
         CStrId id;
     };
-    explicit UnkBuiltId_b0209(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkBuiltId_b0209(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkBuiltId_b0209() { id.~CStrId(); }
 };
 

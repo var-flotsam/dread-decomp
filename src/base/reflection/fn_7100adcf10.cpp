@@ -373,9 +373,9 @@ void fn_7100da1ce0() {
 void fn_7100db21d0() {
     InitHeader(g_unk_71727bc9d0);
     new (TUAt<CStrId, 0x18>(g_unk_71727bc9d0)) CStrId("ITEM_WEAPON_MISSILE_MAX", true);
-    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x18>(g_unk_71727bc9d0), &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, TUAt<CStrId, 0x18>(g_unk_71727bc9d0), &g_unk_7101a19000);
     new (TUAt<CStrId, 0x20>(g_unk_71727bc9d0)) CStrId("ITEM_WEAPON_MISSILE_CURRENT", true);
-    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x20>(g_unk_71727bc9d0), &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, TUAt<CStrId, 0x20>(g_unk_71727bc9d0), &g_unk_7101a19000);
     InitEnum(&base::reflection::TypeObject<EAmiibo, UnkReflType>::object, "EAmiibo", fn_7100daf558, fn_7100daf1cc);
     fn_710009ec00(&g_unk_71727bc988, &base::reflection::TypeObject<EAmiibo, UnkReflType>::object);
     InitEnumConverters(&base::reflection::TypeObject<EAmiibo, UnkReflType>::object, g_unk_71727bc990, fn_7100db2038, g_unk_71727bc9b0, fn_7100db2044);
@@ -446,17 +446,17 @@ void fn_7100e7c980() {
 void fn_7100acb290() {
     InitHeader(g_unk_7172755b78);
     new (&g_unk_7172755b00) CStrId("ACTIVABLE", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172755b00, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172755b00, &g_unk_7101a19000);
     InitPropertyVtableFirst(&g_unk_7172755b08, g_unk_7101a97370, g_unk_71726db788, "Opened", refl_TypeOf<fn_710000d228>(), fn_7100acacf8,
                  fn_7100ac8db0);
     new (TUAt<CStrId, 0x0>(g_unk_7172755b90)) CStrId("collision_close", true);
-    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x0>(g_unk_7172755b90), &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, TUAt<CStrId, 0x0>(g_unk_7172755b90), &g_unk_7101a19000);
     new (TUAt<CStrId, 0x8>(g_unk_7172755b90)) CStrId("player_detector", true);
-    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x8>(g_unk_7172755b90), &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, TUAt<CStrId, 0x8>(g_unk_7172755b90), &g_unk_7101a19000);
     new (TUAt<CStrId, 0x10>(g_unk_7172755b90)) CStrId("closed", true);
-    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x10>(g_unk_7172755b90), &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, TUAt<CStrId, 0x10>(g_unk_7172755b90), &g_unk_7101a19000);
     new (TUAt<CStrId, 0x18>(g_unk_7172755b90)) CStrId("opened", true);
-    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x18>(g_unk_7172755b90), &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, TUAt<CStrId, 0x18>(g_unk_7172755b90), &g_unk_7101a19000);
     fn_7100ac8e2c();
     fn_710009ec00(&g_unk_7172755b30, TUType<0x28>(g_unk_7172755b90));
 }
@@ -469,7 +469,7 @@ void fn_7100ca9504(UnkPropertyEx<0x160>* p);
 void fn_7100ca6150() {
     InitHeader(g_unk_7172797460);
     new (&g_unk_7172796388) CStrId("BLEAKABLE", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172796388, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172796388, &g_unk_7101a19000);
     InitPropertyExVtableFirst(&g_unk_7172796390, g_unk_7101a889c8, g_unk_71726db788, g_unk_7101aa52d0, fn_7100ae9cc8,
                    "PB_AND_SM", refl_TypeOf<fn_7100005178>(), fn_7100ca9504, fn_7100ca3be4);
     InitPropertyExVtableFirst(&g_unk_7172796518, g_unk_7101a889c8, g_unk_71726db788, g_unk_7101aa52d0, fn_7100ae9cc8,
@@ -509,7 +509,7 @@ void fn_7100ca6150() {
 void fn_7100e16af0() {
     InitHeader(g_unk_71727c0a38);
     new (&g_unk_71727c0918) CStrId("ARENA", true);
-    fn_7100000250(fn_710000051c, &g_unk_71727c0918, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_71727c0918, &g_unk_7101a19000);
     InitPropertyVtableFirst(&g_unk_71727c0920, g_unk_7101aa9c38, g_unk_71726db788, "PrevSG", refl_TypeOf<fn_7100009658>(), fn_7100e165e8,
                  fn_7100e140c0);
     InitPropertyVtableFirst(&g_unk_71727c0948, g_unk_7101aa9c38, g_unk_71726db788, "SG", refl_TypeOf<fn_7100009658>(), fn_7100e165e8,
@@ -522,7 +522,7 @@ void fn_7100e16af0() {
     fn_710009ec00(&g_unk_71727c09c0, TUType<0x30>(g_unk_71727c0a58));
     InitTunable(&g_unk_71727c09c8, fn_7100136ecc, g_unk_7101aa9c90, fn_7100075104);
     new (&g_unk_71727c0a58) CRntString("Intro");
-    fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &g_unk_71727c0a58, &g_unk_7101a19000);
+    fn_7100000250(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), &g_unk_71727c0a58, &g_unk_7101a19000);
 }
 
 
@@ -539,7 +539,7 @@ inline const CStrId& WorldGraphId() {
 void fn_7100acd5d0() {
     InitHeader(g_unk_7172755cf8);
     new (&g_unk_7172755d10) CStrId(fn_7100de8f78(WorldGraphId()));
-    fn_7100000250(fn_710000051c, &g_unk_7172755d10, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172755d10, &g_unk_7101a19000);
     fn_7100acb4ac();
     fn_710009ec00(&g_unk_7172755cf0, TUType<0x10>(g_unk_7172755d10));
 }
@@ -579,7 +579,7 @@ void fn_7100da7050() {
     new (TUAt<CFilePathStrId, 0x58>(g_unk_71727bc5b0)) CFilePathStrId("actors/props/barelyice/models/barelyice02_strong.bcmdl", true);
     fn_7100000250(fn_7100da6f50, nullptr, &g_unk_7101a19000);
     new (TUAt<CStrId, 0x0>(g_unk_71727bc5b0)) CStrId("ITEM_OPTIC_CAMOUFLAGE", true);
-    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x0>(g_unk_71727bc5b0), &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, TUAt<CStrId, 0x0>(g_unk_71727bc5b0), &g_unk_7101a19000);
     fn_7100da7408();
     fn_710009ec00(&g_unk_71727bc550, TUType<0xb8>(g_unk_71727bc5b0));
     InitTunable(&g_unk_71727bc558, fn_7100136ecc, g_unk_7101aa9278, fn_7100075104);
@@ -592,7 +592,7 @@ void fn_7100c77cd0() {
     g_unk_7172791e48.Reserve(50);
     fn_7100000250(fn_7100c66ab0, &g_unk_7172791e48, &g_unk_7101a19000);
     new (&g_unk_7172791e88) CStrId("ConeCollisionScene", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172791e88, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172791e88, &g_unk_7101a19000);
 }
 
 void fn_7100da54b0() {
@@ -602,9 +602,9 @@ void fn_7100da54b0() {
     fn_710009ec00(&g_unk_71727bbfa1, fn_7100da4cf0());
     InitConverterTo(g_unk_71727bbfa8, AsUnk(&g_unk_71727bbe68), refl_TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_7100da5184));
     new (&g_unk_71727bbfc8) CStrId("{EMPTY}", true);
-    fn_7100000250(fn_710000051c, &g_unk_71727bbfc8, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_71727bbfc8, &g_unk_7101a19000);
     new (&g_unk_71727bbfd0) CStrId("{BROKEN}", true);
-    fn_7100000250(fn_710000051c, &g_unk_71727bbfd0, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_71727bbfd0, &g_unk_7101a19000);
     g_unk_71727bbfd8.field_0x0 = 0;
     g_unk_71727bbfd8.field_0x8 = 0;
 }
@@ -618,7 +618,7 @@ void fn_7100ebefd0() {
     fn_710009ec00(&g_unk_71729cdfd0, &base::reflection::TypeObject<minimap::EIconAnimID, UnkReflType>::object);
     InitEnumConverters(&base::reflection::TypeObject<minimap::EIconAnimID, UnkReflType>::object, g_unk_71729cdfd8, fn_7100ebecec, g_unk_71729cdff8, fn_7100ebecf8);
     new (TUAt<CStrId, 0x0>(g_unk_71729ce058)) CStrId("digital_medium", true);
-    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x0>(g_unk_71729ce058), &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, TUAt<CStrId, 0x0>(g_unk_71729ce058), &g_unk_7101a19000);
     g_unk_71729ce018.field_0x0 = 0;
     g_unk_71729ce018.field_0x8 = 0;
     g_unk_71729ce018.field_0x10 = 0;

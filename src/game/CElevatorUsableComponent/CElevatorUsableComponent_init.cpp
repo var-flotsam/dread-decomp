@@ -27,7 +27,7 @@ extern UnkReflType g_unk_7172750920 __attribute__((visibility("hidden")));
 void fn_7100a82930() {
     InitHeader(g_unk_71727508f8.header);
     new (&g_unk_71727508f8.field_0x18) CStrId("CElevatorUsableComponent", true);
-    fn_7100000250(fn_710000051c, &g_unk_71727508f8.field_0x18, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_71727508f8.field_0x18, &g_unk_7101a19000);
     InitEnum(&base::reflection::TypeObject<EElevatorDirection, UnkReflType>::object, "EElevatorDirection", fn_7100a8106c, fn_7100a80f20);
     fn_710009ec00(&g_unk_71727508a8, &base::reflection::TypeObject<EElevatorDirection, UnkReflType>::object);
     InitEnumConverters(&base::reflection::TypeObject<EElevatorDirection, UnkReflType>::object, g_unk_71727508b0, fn_7100a827ac, g_unk_71727508d0, fn_7100a827b8);

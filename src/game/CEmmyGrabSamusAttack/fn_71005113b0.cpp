@@ -15,13 +15,13 @@ void fn_7100504fdc(void* self);  // the inline string's destructor, as registere
 // Builds a static inline string and registers its destructor.
 __attribute__((always_inline)) inline void InitInlineStr50(UnkInlineStr50* s, const char* str) {
     s->Init();
-    fn_710007e77c(s->Str(), str);
+    CRntString_AssignCString(s->Str(), str);
     __cxa_atexit(fn_7100504fdc, s, g_unk_7101a19000);
 }
 
 __attribute__((always_inline)) inline void InitRntString(base::UnkNamedEntry* s, const char* str) {
-    fn_710007e704(s, str);
-    __cxa_atexit(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), s, g_unk_7101a19000);
+    CRntString_ConstructFromCString(s, str);
+    __cxa_atexit(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), s, g_unk_7101a19000);
 }
 
 extern char g_unk_71726de550[];

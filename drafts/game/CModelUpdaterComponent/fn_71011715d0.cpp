@@ -3,9 +3,9 @@
 // entry's value bag holds (fn_7101171a08). Names and layouts are placeholders.
 #include <algorithm>
 
-#include "../../game_aca57c/UnkBufferString.h"
-#include "../../game_s7/UnkIter.h"
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
+#include "../../../src/game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -87,7 +87,7 @@ static inline void ReadString_l1715d0(UnkPropBag* bag, const CStrId& id, UnkMode
         char text[0x100];
         CRntFile_Seek(&bag->lock, value->offset, 0);
         fn_710007ca94(&bag->lock, text);
-        fn_710007e77c(out.Str(), text);
+        CRntString_AssignCString(out.Str(), text);
     }
 }
 

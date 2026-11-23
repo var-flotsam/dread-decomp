@@ -30,7 +30,7 @@ struct UnkVulkranBuiltId {
         CStrId id;
     };
 
-    explicit UnkVulkranBuiltId(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkVulkranBuiltId(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkVulkranBuiltId() { id.~CStrId(); }
 };
 

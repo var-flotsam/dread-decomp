@@ -89,13 +89,13 @@ void fn_7100fc7920(void* loader, u32 kind, const CRntString* scenario, const CRn
         self->entries.data[i].~UnkScenarioLoadEntry();
     self->entries.count = 0;
     UnkScenarioLoadEntry* e = fn_7100fc77b0(&self->entries);
-    fn_710007eaa0(&e->scenario, scenario);
-    fn_710007eaa0(&e->name, name);
+    CRntString_Assign(&e->scenario, scenario);
+    CRntString_Assign(&e->name, name);
     CopyBlackboards(e, blackboards);
-    fn_710007eaa0(&e->c, c);
-    fn_710007eaa0(&e->project, project);
-    fn_710007eaa0(&e->s2, s2);
-    fn_710007eaa0(&e->s3, s3);
+    CRntString_Assign(&e->c, c);
+    CRntString_Assign(&e->project, project);
+    CRntString_Assign(&e->s2, s2);
+    CRntString_Assign(&e->s3, s3);
     self->pending = true;
 }
 
@@ -112,22 +112,22 @@ void fn_7100fc7500(UnkScenarioLoadRequest* self, const CRntString* scenario, con
     self->entries.count = 0;
 
     UnkScenarioLoadEntry* e = fn_7100fc77b0(&self->entries);
-    fn_710007eaa0(&e->scenario, scenario);
-    fn_710007eaa0(&e->name, name);
+    CRntString_Assign(&e->scenario, scenario);
+    CRntString_Assign(&e->name, name);
     CopyBlackboards(e, blackboards);
-    fn_710007eaa0(&e->c, &g_unk_7101d58d10);
-    fn_710007eaa0(&e->project, project);
-    fn_710007eaa0(&e->s2, s2);
-    fn_710007eaa0(&e->s3, s3);
+    CRntString_Assign(&e->c, &g_unk_7101d58d10);
+    CRntString_Assign(&e->project, project);
+    CRntString_Assign(&e->s2, s2);
+    CRntString_Assign(&e->s3, s3);
 
     UnkScenarioLoadEntry* second = fn_7100fc77b0(&self->entries);
-    fn_710007eaa0(&second->scenario, scenario2);
-    fn_710007eaa0(&second->name, name2);
+    CRntString_Assign(&second->scenario, scenario2);
+    CRntString_Assign(&second->name, name2);
     second->blackboards.Clear();
-    fn_710007eaa0(&second->c, &g_unk_7101d58d10);
-    fn_710007eaa0(&second->project, &g_unk_7101d58d10);
-    fn_710007eaa0(&second->s2, &g_unk_7101d58d10);
-    fn_710007eaa0(&second->s3, &g_unk_7101d58d10);
+    CRntString_Assign(&second->c, &g_unk_7101d58d10);
+    CRntString_Assign(&second->project, &g_unk_7101d58d10);
+    CRntString_Assign(&second->s2, &g_unk_7101d58d10);
+    CRntString_Assign(&second->s3, &g_unk_7101d58d10);
 
     self->pending = true;
 }

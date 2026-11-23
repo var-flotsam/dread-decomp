@@ -2,7 +2,7 @@
 // from the movement's (+0x1d8) and takes the launch speed on each axis the direction points; then it
 // sends the movement a parameter block, the owner's sub-object (+0x220) one of two hashes and sets the
 // two flags on the component at +0x228. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/math/CVector.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CEnemyMovement.h"

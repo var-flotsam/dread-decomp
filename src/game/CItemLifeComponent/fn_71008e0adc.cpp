@@ -113,7 +113,7 @@ static inline bool NameHas(UnkStringData* const& name, const char* str) {
     ++name->reads;
     if (name == &g_unk_7101d47108->empty)
         return false;
-    return fn_710007fb9c(&name->String(), str);
+    return CRntString_Contains(&name->String(), str);
 }
 
 void fn_71008e0adc(UnkPowerUpLifeBase_ovb0126* self, CBlackboard* blackboard) {
@@ -148,7 +148,7 @@ void fn_71008e0adc(UnkPowerUpLifeBase_ovb0126* self, CBlackboard* blackboard) {
             UnkStringData* const& name = collider->name;
             ++name->reads;
             bool enabled;
-            if (name != &g_unk_7101d47108->empty && fn_710007fb9c(&name->String(), "_DEBRIS"))
+            if (name != &g_unk_7101d47108->empty && CRntString_Contains(&name->String(), "_DEBRIS"))
                 enabled = true;
             else
                 enabled = false;

@@ -2,7 +2,7 @@
 // cased, plus the "actordef" category's extension is looked for under "actors/<folder>/<name>/charclasses/"
 // in each actor folder in turn; the first one the registry knows is the path. Names and layouts are placeholders.
 // Needs CFilePathStrId(const CRntString&, bool) asm("fn_710001a270") in base/global/CFilePathStrId.h.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkStrPair.h"
@@ -74,54 +74,54 @@ inline bool IsRegistered(const CRntString& path) {
 }
 
 // Concatenation (the string operators, out of line).
-static inline CRntString operator+(const char* a, const CRntString& b) { return fn_710007f050(a, &b); }
-static inline CRntString operator+(const CRntString& a, const char* b) { return fn_710007ef90(&a, b); }
-static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
+static inline CRntString operator+(const char* a, const CRntString& b) { return CRntString_ConcatCStringFirst(a, &b); }
+static inline CRntString operator+(const CRntString& a, const char* b) { return CRntString_ConcatCString(&a, b); }
+static inline CRntString operator+(const CRntString& a, const CRntString& b) { return CRntString_Concat(&a, &b); }
 
 CFilePathStrId fn_710025539c(UnkKey_71011938bc* const* key) {
     const CStrId& id = *reinterpret_cast<const CStrId*>(key);
     UnkActorName_l25539c name = LowerCase(id.Text());
     UnkActorFileName_l25539c file;
-    fn_710007eaa0(file.Str(), name.Str());
-    fn_710007f3b4(file.Str(), UseString(reinterpret_cast<UnkResCategory_l25539c*>(g_unk_71727b9530)->types[0]));
+    CRntString_Assign(file.Str(), name.Str());
+    CRntString_Append(file.Str(), UseString(reinterpret_cast<UnkResCategory_l25539c*>(g_unk_71727b9530)->types[0]));
     UnkActorPath_l25539c path;
     bool found;
-    fn_710007eaa0(path.Str(), Addr("actors/weapons/" + *name.Str() + "/charclasses/" + *file.Str()));
+    CRntString_Assign(path.Str(), Addr("actors/weapons/" + *name.Str() + "/charclasses/" + *file.Str()));
     found = IsRegistered(*path.Str());
     if (!found) {
-        fn_710007eaa0(path.Str(), Addr("actors/characters/" + *name.Str() + "/charclasses/" + *file.Str()));
+        CRntString_Assign(path.Str(), Addr("actors/characters/" + *name.Str() + "/charclasses/" + *file.Str()));
         found = IsRegistered(*path.Str());
     }
     if (!found) {
-        fn_710007eaa0(path.Str(), Addr("actors/props/" + *name.Str() + "/charclasses/" + *file.Str()));
+        CRntString_Assign(path.Str(), Addr("actors/props/" + *name.Str() + "/charclasses/" + *file.Str()));
         found = IsRegistered(*path.Str());
     }
     if (!found) {
-        fn_710007eaa0(path.Str(), Addr("actors/logic/" + *name.Str() + "/charclasses/" + *file.Str()));
+        CRntString_Assign(path.Str(), Addr("actors/logic/" + *name.Str() + "/charclasses/" + *file.Str()));
         found = IsRegistered(*path.Str());
     }
     if (!found) {
-        fn_710007eaa0(path.Str(), Addr("actors/sounds/" + *name.Str() + "/charclasses/" + *file.Str()));
+        CRntString_Assign(path.Str(), Addr("actors/sounds/" + *name.Str() + "/charclasses/" + *file.Str()));
         found = IsRegistered(*path.Str());
     }
     if (!found) {
-        fn_710007eaa0(path.Str(), Addr("actors/items/" + *name.Str() + "/charclasses/" + *file.Str()));
+        CRntString_Assign(path.Str(), Addr("actors/items/" + *name.Str() + "/charclasses/" + *file.Str()));
         found = IsRegistered(*path.Str());
     }
     if (!found) {
-        fn_710007eaa0(path.Str(), Addr("actors/spawnpoints/" + *name.Str() + "/charclasses/" + *file.Str()));
+        CRntString_Assign(path.Str(), Addr("actors/spawnpoints/" + *name.Str() + "/charclasses/" + *file.Str()));
         found = IsRegistered(*path.Str());
     }
     if (!found) {
-        fn_710007eaa0(path.Str(), Addr("actors/events/" + *name.Str() + "/charclasses/" + *file.Str()));
+        CRntString_Assign(path.Str(), Addr("actors/events/" + *name.Str() + "/charclasses/" + *file.Str()));
         found = IsRegistered(*path.Str());
     }
     if (!found) {
-        fn_710007eaa0(path.Str(), Addr("actors/swarms/" + *name.Str() + "/charclasses/" + *file.Str()));
+        CRntString_Assign(path.Str(), Addr("actors/swarms/" + *name.Str() + "/charclasses/" + *file.Str()));
         found = IsRegistered(*path.Str());
     }
     if (!found) {
-        fn_710007eaa0(path.Str(), Addr("actors/fx/" + *name.Str() + "/charclasses/" + *file.Str()));
+        CRntString_Assign(path.Str(), Addr("actors/fx/" + *name.Str() + "/charclasses/" + *file.Str()));
         found = IsRegistered(*path.Str());
     }
     if (found)

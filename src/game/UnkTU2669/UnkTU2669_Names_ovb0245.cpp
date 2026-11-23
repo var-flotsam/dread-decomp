@@ -30,14 +30,14 @@ struct UnkStackStr_ovb0245 {
     CRntString* Str() { return reinterpret_cast<CRntString*>(this); }
 
     UnkStackStr_ovb0245() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = g_unk_7101a194b8 + 2;
         field_0x138 = nullptr;
         field_0x140 = 0;
     }
     ~UnkStackStr_ovb0245() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -45,17 +45,17 @@ struct UnkUnit2669Str;
 
 void fn_710109e0a0(UnkUnit2669Tag, void* source, UnkUnit2669Str* out_) {
     CRntString* out = reinterpret_cast<CRntString*>(out_);
-    fn_710007e77c(out, g_unk_710162e2ed);
+    CRntString_AssignCString(out, g_unk_710162e2ed);
     UnkStackStr_ovb0245 whole;
-    fn_710007eaa0(whole.Str(), static_cast<const CRntString*>(source));
-    s32 dot = fn_710007fb10(whole.Str(), '.', -1);
+    CRntString_Assign(whole.Str(), static_cast<const CRntString*>(source));
+    s32 dot = CRntString_FindLastChar(whole.Str(), '.', -1);
     if (dot >= 0) {
-        u32 start = fn_710007fb10(whole.Str(), '/', -1) + 1;
+        u32 start = CRntString_FindLastChar(whole.Str(), '/', -1) + 1;
         s32 length = dot - start;
         const char* text = whole.data + start;
         UnkStackStr_ovb0245 name;
-        fn_710007e7f8(name.Str(), text, length);
-        fn_710007eaa0(out, name.Str());
+        CRntString_AssignPrefix(name.Str(), text, length);
+        CRntString_Assign(out, name.Str());
     }
 }
 
@@ -86,7 +86,7 @@ void fn_710109dc90(UnkScriptManager_ovb0085* self_, UnkLuaNameList_b0160* out_) 
         if (out && r == 3) {
             auto* node = static_cast<UnkScriptNode_ovb0245*>(out->allocator->vf_0x40(0x38, 8, out->flags));
             if (node) {
-                fn_710007ea60(reinterpret_cast<base::UnkNamedEntry*>(node), reinterpret_cast<base::UnkNamedEntry*>(e));
+                CRntString_CopyConstruct(reinterpret_cast<base::UnkNamedEntry*>(node), reinterpret_cast<base::UnkNamedEntry*>(e));
                 node->next = nullptr;
                 u32 count;
                 if (out->count == 0) {
@@ -170,7 +170,7 @@ UnkScriptItem_ovb0245* fn_710109da60(UnkScriptTable_ovb0245* self, UnkScriptItem
     } else {
         result = nullptr;
     }
-    fn_710007ecd4(&node->name);
+    CRntString_Destroy(&node->name);
     self->allocator->vf_0x48(node);
     self->count = self->count - 1;
     return result;

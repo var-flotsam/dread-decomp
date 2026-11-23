@@ -2,7 +2,7 @@
 // "Completed" flag from its blackboard section; a completed platform is marked used, told so (mode 2),
 // raised, runs its "OnUseCompleted" script and lights the guide; otherwise the guide light is off.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkTimedCurve.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

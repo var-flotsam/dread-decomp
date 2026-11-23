@@ -21,7 +21,7 @@ template <u32 Offset>
 using UnkSpitclawkPathAt_A4_b70 = base::UnkMemberAt<base::UnkStrIdMemberOf<g_unk_7101d47200>, Offset>;
 
 struct UnkSpitclawkString_A4_b70 {
-    static void Release(char* self) { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(self + 0x158)); }
+    static void Release(char* self) { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(self + 0x158)); }
 };
 
 struct UnkSpitclawkBase_A4_b70 {

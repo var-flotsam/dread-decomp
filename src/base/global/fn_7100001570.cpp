@@ -66,9 +66,9 @@ void fn_7100001760() {
     UnkUnit2Statics& s = g_unk_7101d4738c;
     s.header = 6;
     new (s.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, s.binaries, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, s.binaries, g_unk_7101a19000);
     new (s.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, s.sources, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, s.sources, g_unk_7101a19000);
     UnkStartPoint* start = reinterpret_cast<UnkStartPoint*>(s.start);
     start->field_0x0 = 0;
     *reinterpret_cast<u64*>(s.limits) = 0xbf800000bf800000;

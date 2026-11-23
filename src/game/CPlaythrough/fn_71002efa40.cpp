@@ -24,11 +24,11 @@ void fn_71002eba1c(void* self);  // its destructor, as registered
 
 __attribute__((always_inline)) inline void InitBufferStr(UnkBufferStr* b, const char* str) {
     auto* s = reinterpret_cast<base::global::CRntString*>(b);
-    fn_710007e6e4(s, reinterpret_cast<base::UnkAllocator*>(&b->field_0x30));
+    CRntString_InitWithAllocator(s, reinterpret_cast<base::UnkAllocator*>(&b->field_0x30));
     b->field_0x30 = g_unk_7101a1b750 + 2;
     b->field_0xb8 = 0;
     b->field_0xc0 = 0;
-    fn_710007e77c(s, str);
+    CRntString_AssignCString(s, str);
     __cxa_atexit(fn_71002eba1c, b, g_unk_7101a19000);
 }
 

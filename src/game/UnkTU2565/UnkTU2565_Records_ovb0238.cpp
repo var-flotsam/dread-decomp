@@ -33,8 +33,8 @@ struct UnkRecordMap_b0238 {
         if (values && count) {
             for (u32 i = 0; i < count; ++i) {
                 UnkRecord_b0238* e = &values[i];
-                fn_710007ed40(&e->name);
-                fn_710007ecd4(&e->name);
+                CRntString_Clear(&e->name);
+                CRntString_Destroy(&e->name);
             }
         }
     }
@@ -158,7 +158,7 @@ struct UnkRowCell_b0238 {
 
 void fn_7100e7a110(UnkRowCell_b0238* cells, s32 row, CRntString* out) {
     s32 first = (s32)((u32)row * 0x28a);
-    fn_710007eaa0(out, &g_unk_7101d58d10);
+    CRntString_Assign(out, &g_unk_7101d58d10);
     u8 previous = 0;
     u32 run = 0;
     if (first > 0x7ffffd75)
@@ -172,14 +172,14 @@ void fn_7100e7a110(UnkRowCell_b0238* cells, s32 row, CRntString* out) {
         }
         if (previous) {
             fn_710007f634(out, run);
-            fn_710007f5ac(out, previous);
+            CRntString_AppendChar(out, previous);
         }
         run = 1;
         previous = symbol;
     }
     if (run) {
         fn_710007f634(out, run);
-        fn_710007f5ac(out, previous);
+        CRntString_AppendChar(out, previous);
         // keeps the last append an ordinary call: the original does not tail-call it
         asm volatile("" ::: "memory");
     }

@@ -65,7 +65,7 @@ struct UnkEmptyString_l086f00 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkEmptyString_l086f00() { fn_710007e6c4(this); }
-    ~UnkEmptyString_l086f00() { fn_710007ecd4(Str()); }
+    ~UnkEmptyString_l086f00() { CRntString_Destroy(Str()); }
 };
 
 // Reads the field with that name hash into `out`; false when there is none or it cannot be read.

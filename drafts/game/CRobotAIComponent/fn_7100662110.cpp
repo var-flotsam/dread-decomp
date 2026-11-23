@@ -3,7 +3,7 @@
 // empty: the character class (+0x220) gets fn_710117ab64 with 1 and g_unk_71726fd320, and the owner's
 // timeline (+0x2e8) gets the id the object at +0x146c8 names (vf_0xd8) set to the all-flags mask.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"

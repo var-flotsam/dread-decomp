@@ -113,14 +113,14 @@ void fn_7100b599f0(void* self, u32 index, const UnkMissionLogButtonText_ovb0079*
     if (!button)
         return;
     UnkMissionLogName_ovb0079 name;
-    fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(&name), "Button");
+    CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(&name), "Button");
     fn_710007f688(&name, index);
     {
         CStrId id(name.data ? name.data : g_unk_710162e2ed, true);
         button->field_0x130 = id;
     }
     fn_71011ecfbc(fn_71011c08dc(button), text->text);
-    fn_710007ecd4(reinterpret_cast<CRntString*>(&name));
+    CRntString_Destroy(reinterpret_cast<CRntString*>(&name));
 }
 
 struct UnkMissionLogPool_ovb0079 {

@@ -2,7 +2,7 @@
 // base ignores (an actor with an AI component whose +0x1b8 part is in state 2, while the flags at +0x3fc allow
 // it), sets the "onimpact_<area>" event of the area kind at +0x5d8 on the owner's timeline to the all-flags
 // mask; then runs the base impact (fn_7100ac4864). Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"

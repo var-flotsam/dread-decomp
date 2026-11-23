@@ -19,7 +19,7 @@ extern UnkUnit3Header g_unk_7101d474b8 __attribute__((visibility("hidden")));
 void fn_7100001860() {
     g_unk_7101d474b8.field_0x0 = 6;
     new (&g_unk_7101d474b8.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &g_unk_7101d474b8.sources, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7101d474b8.sources, g_unk_7101a19000);
     new (&g_unk_7101d474b8.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &g_unk_7101d474b8.binaries, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7101d474b8.binaries, g_unk_7101a19000);
 }

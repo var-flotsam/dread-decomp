@@ -256,7 +256,7 @@ void fn_7100b44f08(UnkMapMenuController_ovb0203* self) {
     for (u64 i = 0; i < self->id_count; ++i)
         self->ids[i].Reset();
     self->id_count = 0;
-    fn_710007eaa0(&self->field_0x4d0, &g_unk_7101d58d10);
+    CRntString_Assign(&self->field_0x4d0, &g_unk_7101d58d10);
 }
 
 // ---- fn_7100b459e4

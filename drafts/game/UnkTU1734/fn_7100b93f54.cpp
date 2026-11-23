@@ -2,7 +2,7 @@
 // steps 1 to 12 each bring in one button of the two button lists (six each) and show its highlight, step 13
 // brings in one more object and step 14 the last two, applying the text style and playing the closing sound.
 // Afterwards the text block's transition runs while it is in use. Names and layouts are placeholders.
-#include "../../game_s7/UnkGuiS7.h"
+#include "../../../src/game_s7/UnkGuiS7.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -101,9 +101,9 @@ static_assert(__builtin_offsetof(UnkMenuReveal_lb93f54, text) == 0x90, "UnkMenuR
 
 // Copies a style into a text block; returns whether it changed the block's second number or font name.
 static inline bool ApplyStyle(UnkTextBlock_lb93f54* block, const UnkTextStyle_lb93f54* style) {
-    bool changed = style->params.field_0x4 != block->params.field_0x4 || fn_710007f220(&style->font, &block->font);
+    bool changed = style->params.field_0x4 != block->params.field_0x4 || CRntString_KeysDiffer(&style->font, &block->font);
     block->params = style->params;
-    fn_710007eaa0(&block->font, &style->font);
+    CRntString_Assign(&block->font, &style->font);
     block->field_0xc8 = style->field_0x78;
     return changed;
 }

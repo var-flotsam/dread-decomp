@@ -23,14 +23,14 @@ struct UnkInlineString_lc87958 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_lc87958() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         field_0x138 = 0;
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x140 = 0;
     }
     ~UnkInlineString_lc87958() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -62,9 +62,9 @@ void fn_7100c87958(UnkCutSceneOwner_lc87958* self) {
         ++e->path->reads;
         const CRntString& file = e->path->String();
         UnkInlineString_lc87958 name;
-        fn_710007eaa0(name.Str(), &file);
-        s32 dot = fn_710007fb10(name.Str(), '.', -1);
-        s32 slash = fn_710007fb10(name.Str(), '/', -1);
+        CRntString_Assign(name.Str(), &file);
+        s32 dot = CRntString_FindLastChar(name.Str(), '.', -1);
+        s32 slash = CRntString_FindLastChar(name.Str(), '/', -1);
         char* data = name.Str()->data;
         const char* text = data ? data : g_unk_710162e2ed;
         u32 start;
@@ -83,11 +83,11 @@ void fn_7100c87958(UnkCutSceneOwner_lc87958* self) {
         }
         {
             UnkInlineString_lc87958 part;
-            fn_710007e7f8(part.Str(), data + start, end - start);
-            fn_710007eaa0(name.Str(), part.Str());
+            CRntString_AssignPrefix(part.Str(), data + start, end - start);
+            CRntString_Assign(name.Str(), part.Str());
         }
         UnkStrIdSlot_lc87958 slot;
-        fn_7100000850(&slot.id, *name.Str(), true);
+        CStrId_ConstructFromRntString(&slot.id, *name.Str(), true);
         e->name = static_cast<CStrId&&>(slot.id);
     }
 }

@@ -38,7 +38,7 @@ void fn_7100a2d400(UnkTimelineComponent* self, const UnkTimelineId_ovb0089* a, c
     if (!b->IsEmpty()) {
         u64 hash;
         {
-            CRntString joined = fn_710007eee0(&a->Str(), &b->Str());
+            CRntString joined = CRntString_Concat(&a->Str(), &b->Str());
             fn_7100066630(&hash, &joined);
         }
         if (fn_7100a2c13c(self, &hash)) {
@@ -55,7 +55,7 @@ bool fn_7100a2caac(UnkTimelineComponent* self, const UnkTimelineId_ovb0089* a, c
     if (!b->IsEmpty()) {
         u64 hash;
         {
-            CRntString joined = fn_710007eee0(&a->Str(), &b->Str());
+            CRntString joined = CRntString_Concat(&a->Str(), &b->Str());
             fn_7100066630(&hash, &joined);
         }
         if (fn_7100a2c13c(self, &hash))
@@ -71,7 +71,7 @@ void fn_7100a2cddc(UnkTimelineComponent* self, const UnkTimelineId_ovb0089* a, c
     if (!b->IsEmpty()) {
         u64 hash;
         {
-            CRntString joined = fn_710007eee0(&a->Str(), &b->Str());
+            CRntString joined = CRntString_Concat(&a->Str(), &b->Str());
             fn_7100066630(&hash, &joined);
         }
         if (fn_7100a2c13c(self, &hash)) {

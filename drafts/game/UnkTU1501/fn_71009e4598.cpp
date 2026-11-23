@@ -1,7 +1,7 @@
 // UnkTU1501 (CSamusMovement's unit, tools/tu_map.py unit 1501): picks Samus's stealth animation. While a
 // schedule-stealth track runs, only sets the flag at +0x51d4; otherwise asks the tweak-stealth (or
 // tweak-stealth-end) track to fill in a request and plays it. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"

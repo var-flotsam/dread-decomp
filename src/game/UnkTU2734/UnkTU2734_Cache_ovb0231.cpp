@@ -351,11 +351,11 @@ UnkPowerUpLifeEntry_b52* fn_710119e5b8(UnkUnusedArg_b49, UnkPoolOwner_b0231* own
     sprintf(key, "pool#%s@%s%d", first, second, owner->index);
     UnkActorDefFactory* factory = g_unk_71726a0220;
     base::UnkNamedEntry entry;
-    fn_710007e704(&entry, key);
+    CRntString_ConstructFromCString(&entry, key);
     alignas(8) u32 type = 0x144;
     UnkPowerUpLifeEntry_b52* result = fn_710119438c(factory, reinterpret_cast<const char*>(&entry),
                                                     reinterpret_cast<CStrId*>(owner),
                                                     reinterpret_cast<const UnkPowerUpLifeType_b52&>(type), nullptr);
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&entry));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&entry));
     return result;
 }

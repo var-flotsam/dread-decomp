@@ -51,7 +51,7 @@ UnkPlaythroughRecord_ovb0123* fn_71002f4df0(UnkPlaythroughRecord_ovb0123* self,
                                             const UnkPlaythroughRecord_ovb0123* other) {
     self->field_0x8 = other->field_0x8;
     self->field_0x10 = other->field_0x10;
-    fn_710007eaa0(&self->field_0x18, &other->field_0x18);
+    CRntString_Assign(&self->field_0x18, &other->field_0x18);
     self->field_0xa0 = other->field_0xa0;
     fn_71000ce19c(reinterpret_cast<UnkStruct_0x28*>(self->field_0xa8),
                   reinterpret_cast<const UnkStruct_0x28*>(other->field_0xa8));
@@ -76,17 +76,17 @@ struct UnkPlaythroughText_ovb0123 {
     const CRntString* Str() const { return reinterpret_cast<const CRntString*>(raw); }
 
     UnkPlaythroughText_ovb0123() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
         storage.vtable = g_unk_7101a1b678 + 2;
         storage.field_0x48 = 0;
         storage.field_0x50 = 0;
     }
     UnkPlaythroughText_ovb0123(const UnkPlaythroughText_ovb0123& other) : UnkPlaythroughText_ovb0123() {
-        fn_710007eaa0(Str(), other.Str());
+        CRntString_Assign(Str(), other.Str());
     }
     ~UnkPlaythroughText_ovb0123() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -121,8 +121,8 @@ void fn_71002f4a5c(UnkPlaythroughNode_ovb0123* self) {
         self->ids.capacity = 0;
     }
     self->field_0xa0.Reset();
-    fn_710007ed40(self->text.Str());
-    fn_710007ecd4(self->text.Str());
+    CRntString_Clear(self->text.Str());
+    CRntString_Destroy(self->text.Str());
     self->field_0x10.Reset();
     self->field_0x8.Reset();
 }

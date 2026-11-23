@@ -3,7 +3,7 @@
 // every other Batalloon of the spawn group a random delay and marks it synced. Names and layouts are placeholders.
 #include <stdlib.h>
 
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"

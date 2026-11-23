@@ -4,7 +4,7 @@
 // placeholders.
 #include <new>
 
-#include "../../game/CMinimapData/UnkStrIdIterBeginEnd_A6_b75.h"
+#include "../../../src/game/CMinimapData/UnkStrIdIterBeginEnd_A6_b75.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCollectionIter.h"
 #include "base/global/CRntDictionary.h"

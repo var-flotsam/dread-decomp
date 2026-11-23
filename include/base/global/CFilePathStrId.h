@@ -17,7 +17,7 @@ namespace base::global {
 // The file-path pool's counterpart of UnkEnsureStringPool (the same holder type, another pool).
 inline void UnkEnsureFilePathPool() {
     static UnkStringPoolHolder s_holder(fn_7100080570(), &g_unk_7101d47200);
-    fn_710007fdb4();
+    StringPool_InitHeap();
 }
 
 class CRntString;

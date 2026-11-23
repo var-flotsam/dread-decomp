@@ -79,9 +79,9 @@ void* fn_710106caa4(UnkCutscene_b0181* self, UnkSharedStr_b0181* name) {
         const CRntString* key_str = &key->rep->str;
         name->Take();
         const char* text = name->rep->str.data;
-        s32 pos = fn_710007fb54(key_str, text ? text : g_unk_710162e2ed, 0);
+        s32 pos = CRntString_Find(key_str, text ? text : g_unk_710162e2ed, 0);
         key->Take();
-        s32 limit = fn_710007facc(&key->rep->str, '_', 0);
+        s32 limit = CRntString_FindChar(&key->rep->str, '_', 0);
         if (limit < 0)
             limit = key->rep->str.length;
         if (pos >= 0 && pos < limit)
@@ -115,9 +115,9 @@ void fn_710106cdb0(UnkCutscene_b0181* self, UnkSharedStr_b0181* name, bool flag,
         const CRntString* key_str = &key->rep->str;
         name->Take();
         const char* text = name->rep->str.data;
-        s32 pos = fn_710007fb54(key_str, text ? text : g_unk_710162e2ed, 0);
+        s32 pos = CRntString_Find(key_str, text ? text : g_unk_710162e2ed, 0);
         key->Take();
-        s32 limit = fn_710007facc(&key->rep->str, '_', 0);
+        s32 limit = CRntString_FindChar(&key->rep->str, '_', 0);
         if (limit < 0)
             limit = key->rep->str.length;
         if (pos >= 0 && pos < limit) {

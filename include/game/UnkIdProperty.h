@@ -14,7 +14,7 @@ struct UnkIdPropName {
     base::global::CRntString name;
     u64 unk_0x30[0x14];
 
-    ~UnkIdPropName() { fn_710007ed40(&name); }
+    ~UnkIdPropName() { CRntString_Clear(&name); }
 };
 
 struct UnkIdPropMember {

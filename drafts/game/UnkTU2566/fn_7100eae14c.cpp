@@ -4,7 +4,7 @@
 #include <new>
 #include <string.h>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

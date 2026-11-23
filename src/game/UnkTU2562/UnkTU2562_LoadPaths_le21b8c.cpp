@@ -21,7 +21,7 @@ struct UnkDropManager_e21b8c {
 };
 static_assert(__builtin_offsetof(UnkDropManager_e21b8c, paths) == 0xa020, "paths");
 
-static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
+static inline CRntString operator+(const CRntString& a, const CRntString& b) { return CRntString_Concat(&a, &b); }
 
 static inline bool IsEmpty(const CRntString& text) { return !text.data || !text.data[0]; }
 

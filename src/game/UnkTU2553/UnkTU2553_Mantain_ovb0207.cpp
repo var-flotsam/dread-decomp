@@ -42,7 +42,7 @@ static inline void Lock_ovb0207(CBlackboard* blackboard, const CStrId& id) {
 
 bool fn_7100dfbe78(UnkGameManager* self, void* text) {
     u8* raw = reinterpret_cast<u8*>(self);
-    fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(raw + 0xe88),
+    CRntString_Assign(reinterpret_cast<base::global::CRntString*>(raw + 0xe88),
                   static_cast<const base::global::CRntString*>(text));
     UnkTunable_ovb0207* tunable = reinterpret_cast<UnkTunable_ovb0207*>(raw + 0xd40);
     UnkTunableVtbl_ovb0207* vtbl = tunable->vtbl;
@@ -55,10 +55,10 @@ bool fn_7100dfbe78(UnkGameManager* self, void* text) {
         Lock_ovb0207(blackboard, id);
     }
     base::UnkNamedEntry a, b;
-    fn_710007e704(&a, "[MANTAIN]");
-    fn_710007e704(&b, "[MANTAIN]");
+    CRntString_ConstructFromCString(&a, "[MANTAIN]");
+    CRntString_ConstructFromCString(&b, "[MANTAIN]");
     bool r = fn_7100dfc0c8(self, &a, &b, false, false, true, false, false, 3);
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&b));
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&a));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&b));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&a));
     return r;
 }

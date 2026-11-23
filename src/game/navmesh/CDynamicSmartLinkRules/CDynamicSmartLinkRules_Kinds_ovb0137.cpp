@@ -65,11 +65,11 @@ static inline UnkSmartLinkParts_ovb0137& SmartLinkParts_ovb0137() {
 }
 
 static inline s32 SmartLinkKind(const CRntString* part) {
-    if (fn_710007f140(part, "Tunnel"))
+    if (CRntString_EqualsCString(part, "Tunnel"))
         return 1;
-    if (fn_710007f140(part, "Water"))
+    if (CRntString_EqualsCString(part, "Water"))
         return 2;
-    return fn_710007f140(part, "All") ? -1 : 0;
+    return CRntString_EqualsCString(part, "All") ? -1 : 0;
 }
 
 // The smart-link kinds named in `text` (split at "|"): "Tunnel" is bit 0, "Water" bit 1, "All" every bit.
@@ -77,7 +77,7 @@ s32 fn_710026d2e4(const char* text) {
     UnkSmartLinkParts_ovb0137& parts = SmartLinkParts_ovb0137();
     for (UnkListNode<0x30>* node = parts.head; node;) {
         UnkListNode<0x30>* next = node->next;
-        fn_710007ecd4(reinterpret_cast<CRntString*>(node));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(node));
         parts.allocator->vf_0x48(node);
         node = next;
     }
@@ -88,7 +88,7 @@ s32 fn_710026d2e4(const char* text) {
     s32 kinds = 0;
     for (UnkListNode<0x30>* node = parts.head; node; node = node->next) {
         const CRntString* part = reinterpret_cast<const CRntString*>(node);
-        if (fn_710007f140(part, "All"))
+        if (CRntString_EqualsCString(part, "All"))
             kinds = -1;
         else
             kinds |= SmartLinkKind(part);

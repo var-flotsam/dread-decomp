@@ -199,15 +199,15 @@ struct UnkMapLabel {
         const CRntString& text = id.data->String();
         u32 length = text.length - skip;
         const char* start = text.data + skip;
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = g_unk_7101a194b8 + 2;
         field_0x138 = 0;
         field_0x140 = 0;
-        fn_710007e7f8(Str(), start, length);
+        CRntString_AssignPrefix(Str(), start, length);
     }
     ~UnkMapLabel() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 static_assert(sizeof(UnkMapLabel) == 0x148, "UnkMapLabel layout");
@@ -257,15 +257,15 @@ void fn_7100b28144(UnkGlobalMapView_b28144* self) {
     self->listener_a.Listen(destination->Animation());
 
     UnkMapLabel label(self->selected_area, 2);
-    fn_710007f564(label.Str(), "_");
+    CRntString_AppendCString(label.Str(), "_");
     {
         UnkMapLabel part(self->current->name, 4);
-        fn_710007f3b4(label.Str(), part.Str());
+        CRntString_Append(label.Str(), part.Str());
     }
-    fn_710007f564(label.Str(), "-");
+    CRntString_AppendCString(label.Str(), "-");
     {
         UnkMapLabel part(Widget(map)->name, 4);
-        fn_710007f3b4(label.Str(), part.Str());
+        CRntString_Append(label.Str(), part.Str());
     }
     Widget(self->root)->PlayAnimation(label.Str()->data, false);
     self->close_sound = fn_7100fc9d78(g_unk_717275c380, reinterpret_cast<UnkStateKey*>(&g_unk_71729f0240), self);
