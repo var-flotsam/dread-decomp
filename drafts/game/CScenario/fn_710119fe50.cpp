@@ -4,7 +4,7 @@
 // Names and layouts are placeholders.
 #include <new>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkCloneRecords.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CRntString.h"

@@ -1,7 +1,7 @@
 // GUI::CGlobalMapComposition's unit (tools/tu_map.py unit 1680): sets the transport's area and target
 // scenario, takes the target's "#GUI_TRANSPORT_*" label (none for an unknown scenario) and moves to state 2.
 // Names and layouts are placeholders.
-#include "../../../game_s7/UnkStaticInitS7.h"
+#include "../../../../src/game_s7/UnkStaticInitS7.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2564.h"
 #include "types.h"

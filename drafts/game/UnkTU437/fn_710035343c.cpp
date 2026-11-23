@@ -1,7 +1,7 @@
 // Unit 437 (CAimComponent): while the aim angle is between a quarter turn and its limit and the facing
 // differs from the aim's side, plays the animation the owner's CCharClassTweakInvertAnalogAimActionTrack
 // asks for, or else the one the current action's timeline event asks for. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"

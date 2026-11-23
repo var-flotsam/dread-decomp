@@ -2,7 +2,7 @@
 // the owner's angles, turns the angle at +0xd4 toward +0xd0 by at most 15 degrees, hands it to the owner's
 // property bag, recomputes the aim when not turning and with no live track, then applies it (vtable 0xe8).
 // Names and layouts are placeholders.
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkXformNode.h"

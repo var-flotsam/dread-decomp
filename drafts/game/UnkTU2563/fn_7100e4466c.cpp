@@ -1,7 +1,7 @@
 // CMinimapData's unit (2563): for every door, records the heat and freeze rooms that hold a point just in
 // front of and just behind it (150 units to either side of the door's two frames).
 // Names and layouts are placeholders.
-#include "../CMinimapData/UnkStrIdIterBeginEnd_A6_b75.h"
+#include "../../../src/game/CMinimapData/UnkStrIdIterBeginEnd_A6_b75.h"
 #include "base/UnkCloneRecords.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"

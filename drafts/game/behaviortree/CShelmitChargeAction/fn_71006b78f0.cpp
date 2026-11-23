@@ -3,7 +3,7 @@
 // request and, when it is taken, moves to stage 3 and starts sampling the character class's value; in stage 4
 // an id hash of 0x6836cdff1d937e28 moves to stage 5 and resets the AI's charge state. Always returns true.
 // Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"

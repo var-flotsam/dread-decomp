@@ -4,8 +4,8 @@
 // Names and layouts are placeholders.
 #include <math.h>
 
-#include "../../game_s2/UnkSpitSend.h"
-#include "../CSensorDoorComponent/UnkDoorStateMachine_b58.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../../src/game/CSensorDoorComponent/UnkDoorStateMachine_b58.h"
 #include "base/math/CVector.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"

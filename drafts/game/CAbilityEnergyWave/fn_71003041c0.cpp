@@ -2,7 +2,7 @@
 // runs and the owner may charge, the charge fills over the tunable's time, with the charge timeline keys,
 // the charging sounds, the charging-loop rumble and the end-of-charge rumble; else it is dropped. Then the
 // base update (fn_71002f8de4). Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"

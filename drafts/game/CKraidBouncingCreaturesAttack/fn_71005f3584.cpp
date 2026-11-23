@@ -2,7 +2,7 @@
 // set (+0x30) has slots left past +0x3c and the owner's Kraid AI does not stop it (fn_71005fd848), sends the
 // owner's animation (+0x220) the next launch with mode 2 (the entry's time kept at +0x40); otherwise sends the
 // set's end id with mode 0 and returns false. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

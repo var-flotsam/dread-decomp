@@ -2,7 +2,7 @@
 // is already pending, sends the state machine a ground request that the tweak-fall track fills in; while one of
 // three animations plays it also gets a facing speed (boosted, fixed or from the params) and mode 1.
 // Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAbilityGhostAura.h"

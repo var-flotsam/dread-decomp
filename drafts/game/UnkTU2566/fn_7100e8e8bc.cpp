@@ -3,7 +3,7 @@
 // record (growing by the array's step through fn_7100ea9934). Names and layouts are placeholders.
 #include <new>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "game/UnkTU2567.h"
 #include "types.h"

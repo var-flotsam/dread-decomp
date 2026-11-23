@@ -3,7 +3,7 @@
 // CCooldownXBossAIComponent and the owner has a character class, copies the drop position, rebinds the
 // listener at +0x328 to the character class, picks the drop pattern and sends the four lava tracks, each in
 // the variant its pattern flag selects. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

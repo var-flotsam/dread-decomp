@@ -9,7 +9,7 @@
 #include "game/UnkTU2677.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;

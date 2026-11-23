@@ -1,7 +1,7 @@
 // CBossAIComponent's unit (tools/tu_map.py): when the subject at +0x14908 allows it (+0x50e) and vf_0x808
 // agrees, sends the owner's (+0x30) sub-object at +0x220 the current action's hash with the given value;
 // on success calls vf_0x7f8(index), otherwise remembers the index at +0x14804. Names are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/CBossAIComponent.h"
 #include "types.h"
 

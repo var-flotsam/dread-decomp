@@ -2,7 +2,7 @@
 // flags and two of the owner's switches, quiets the owner's audio, fades the music when asked, and
 // once the phase's timeline id is pending sets it, takes the owner out of the game's list and sets
 // another; finally marks the owner's part as changed. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntVector.h"
 #include "game/CAudioComponent.h"
 #include "game/CBossAIComponent.h"

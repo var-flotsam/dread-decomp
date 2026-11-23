@@ -2,7 +2,7 @@
 // `phase`. With `notify`, it sets the owner's timeline id for the transition and writes a tunable float
 // through reflection; it then records the phase at the front of a bounded history list, dropping the oldest
 // entry when the list is full. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"

@@ -2,13 +2,13 @@
 // of the grabbed actor about the grab (a mode-10 request under the grab's string ids, with the
 // link flags both character classes allow), then marks them with the unit's "Grab" id.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
-#include "../../game_5821e4/UnkStaticInit.h"
+#include "../../../src/game_5821e4/UnkStaticInit.h"
 
 using base::global::CStrId;
 using unk_static_init::HeaderIds;

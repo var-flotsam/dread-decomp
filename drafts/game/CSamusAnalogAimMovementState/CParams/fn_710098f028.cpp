@@ -3,7 +3,7 @@
 // change it; when it does not, the movement's two probes (vf_0x2e8) pick a nearer variant: none when both are
 // within 100, the second's when it is within 60, the first's when it is within 40. Names and layouts are
 // placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"
 #include "game/CMovementComponent.h"

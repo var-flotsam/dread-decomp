@@ -3,7 +3,7 @@
 // movie stream gets one last call. True on success or end. Names and layouts are placeholders.
 #include <algorithm>
 
-#include "../../game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkIter.h"
 #include "base/UnkDefaultAllocator.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

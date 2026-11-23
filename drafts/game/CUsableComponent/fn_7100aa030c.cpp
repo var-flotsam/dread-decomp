@@ -2,7 +2,7 @@
 // transition, runs the component's start hook, plays the use timeline on the owner and moves the listener
 // onto its timeline, then picks the use animation by the player's facing and starts it through
 // fn_7100aa0b04. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CTimelineComponent.h"

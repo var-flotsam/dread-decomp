@@ -3,7 +3,7 @@
 // id table's +0xff8 id and is filled in by a tweak-fall track; it is played on the owner's animation when the
 // owner's +0x2b0 object is in state 2 or 3, and requested from the target otherwise. Names and layouts are
 // placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAbilityGhostAura.h"

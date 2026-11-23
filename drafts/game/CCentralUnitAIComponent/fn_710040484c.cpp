@@ -3,7 +3,7 @@
 // fn_7100408770); reaching the maximum explodes the unit once: the music changes, the blackboard gets
 // "bHasExploded" and the owner's +0x220 object two requests and an animation. Then the point the hit
 // pushes towards is set in front of the owner. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"

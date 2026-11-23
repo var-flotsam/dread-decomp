@@ -2,8 +2,8 @@
 // (+0x2d0, "none" 7): from state 1 it sends the owner's (+0x18) sub-object at +0x220 the hash at +0x3a0
 // when one is set (UnkSpitSend) and moves to state 2; from state 4 it moves to state 5. Names and layouts
 // are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
-#include "../../UnkSmRequest_A5_b73.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
+#include "../../../../src/game/UnkSmRequest_A5_b73.h"
 #include "types.h"
 
 struct UnkAutoolOwner_l3c133c {

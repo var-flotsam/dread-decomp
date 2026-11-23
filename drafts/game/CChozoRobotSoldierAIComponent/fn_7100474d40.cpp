@@ -2,7 +2,7 @@
 // and the actor the owner acts against is busy (+0x208, fn_71009e12d0) and the manager's node set does
 // not take the owner (fn_7100475aac), 2 when the owner is the manager's attacking actor (+0x2a0), else 1.
 // Names and layouts are placeholders.
-#include "../CChozoRobotSoldierDashSlashAttack/UnkRobotSoldierAttack_b49.h"
+#include "../../../src/game/CChozoRobotSoldierDashSlashAttack/UnkRobotSoldierAttack_b49.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1501.h"
 #include "types.h"

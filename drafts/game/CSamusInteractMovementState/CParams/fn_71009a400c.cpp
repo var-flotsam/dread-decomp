@@ -1,7 +1,7 @@
 // CSamusInteractMovementState (unit 1465): when the movement's value at +0x7c is away from zero,
 // asks the state machine for the next movement state, with a transition whose id depends on the
 // sign of the value at +0x58. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"

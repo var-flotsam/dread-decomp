@@ -5,7 +5,7 @@
 // placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CName.h"
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/CProjectileMovement.h"
 #include "game/CWeaponMovement.h"
 #include "game/UnkActor.h"

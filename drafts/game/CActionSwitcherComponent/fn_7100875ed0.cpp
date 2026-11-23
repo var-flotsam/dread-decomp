@@ -3,7 +3,7 @@
 // the definition's on or off action with mode 0; when notifying, the animation is first flagged (+0x2c8)
 // if the owner has the object at +0x1f0, and the other descriptor goes with the request.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU372.h"

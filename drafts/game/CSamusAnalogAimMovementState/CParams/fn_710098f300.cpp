@@ -2,7 +2,7 @@
 // object is in state 3), plays on the owner's animation the movement's track request: the first kind
 // (fn_71009767f4) while the movement's aim value (+0x7c) is within 0.001 of zero, else the second
 // (fn_7100976944) after refreshing the owner's transform. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkTU1730.h"

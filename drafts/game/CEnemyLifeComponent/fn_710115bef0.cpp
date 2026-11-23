@@ -1,7 +1,7 @@
 // CEnemyLifeComponent's unit (tools/tu_map.py unit 2714): sends the owner's animation the hit's own
 // animation when it names one, else the "hit from behind" one when the attacker stands behind the owner
 // (against the way it faces), else the plain hit one. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkXformNode.h"

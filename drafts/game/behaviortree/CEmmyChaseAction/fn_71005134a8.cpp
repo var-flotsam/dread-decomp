@@ -2,7 +2,7 @@
 // CCharClassAllowChaseTransitionTrack, plays the animation request that track fills in and, when it
 // starts, clears the id property g_unk_71726debd8 of the blackboard section g_unk_71726b7cb8 (unless the
 // blackboard is locked). Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"

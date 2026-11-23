@@ -3,7 +3,7 @@
 // the named one (+0x60) when it has a name (built by fn_71007121e0), else the one whose id hash is the
 // singleton's part at +0x1258 as the CCharClassTweakGrappleDragActionTrack fills it in (which also sets the
 // flag). Flags 0x10, bit 0 from the flag, are added. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

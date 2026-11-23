@@ -2,7 +2,7 @@
 // makes the "_BREAK" colliders solid, stores "Dead" in the scenario's blackboard section, plays the
 // break on the timeline and animation (or breaks the model's parts when neither plays it), then runs
 // the base life component's handler. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkStrIdTable.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

@@ -1,7 +1,7 @@
 // CMeleeComponent's unit: plays the melee fail animation on the owner's character class (filled in by its
 // CCharClassMeleeFailActionTrack), stops the owner's horizontal motion while a track ignores air movement,
 // then tells the other actor's AI. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"
 #include "game/CMovementComponent.h"

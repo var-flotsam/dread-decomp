@@ -21,7 +21,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-#include "../../../game_aca57c/UnkBufferString.h"
+#include "../../../../src/game_aca57c/UnkBufferString.h"
 
 using base::global::CStrId;
 using base::reflection::CType;

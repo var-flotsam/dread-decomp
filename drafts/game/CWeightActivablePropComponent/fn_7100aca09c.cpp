@@ -2,7 +2,7 @@
 // "opened" id, turns off the "collision_close" and "player_detector" colliders and, when the owner has its
 // animation object (+0x220), sends it a request (as src/game_s2/UnkSpitSend.h) after hooking a callback up
 // to it; without one it finishes at once. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CActorComponent.h"
 #include "game/CAnimationComponent.h"

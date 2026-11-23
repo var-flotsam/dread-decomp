@@ -1,7 +1,7 @@
 // CFulmiteBellyMineAIComponent unit (tools/tu_map.py unit 826): fn_710057c3d8 starts the mine after the base
 // update: resets its state block (+0x146c8), turns the owner, picks the facing from the carrier's (+0x146f0)
 // transform, and sends the facing to the owner's +0x298 and its effect sink. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"
 #include "game/CEnemyMovement.h"

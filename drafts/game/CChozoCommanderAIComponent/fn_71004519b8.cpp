@@ -4,7 +4,7 @@
 // it landed in its own frame and setting a timeline id), else the hit is scaled by the char class's
 // factor and capped so the commander keeps its ground, and a hit that drops it below the stage line
 // makes it and its target play the stage-change request. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

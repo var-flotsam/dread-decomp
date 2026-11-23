@@ -3,7 +3,7 @@
 // or string. Names and layouts are placeholders.
 #include "../../../lib/lua/lua.h"
 #include "../../../lib/lua/lauxlib.h"
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"

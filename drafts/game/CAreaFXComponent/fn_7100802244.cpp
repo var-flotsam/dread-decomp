@@ -1,7 +1,7 @@
 // CAreaFXComponent's unit: when enabled (+0x400) and the owner's animation does not already have the
 // track named at +0x3f8, plays the animation named at +0x408 (fn_7101176ea8, key 0xf4061ff25a2163d6) with
 // the blend time at +0x410, inside a scoped 0x100-byte object. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"

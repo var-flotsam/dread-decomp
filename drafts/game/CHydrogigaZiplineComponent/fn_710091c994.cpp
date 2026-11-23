@@ -1,7 +1,7 @@
 // CHydrogigaZiplineComponent's unit (tools/tu_map.py unit 1410): records the rail part's flag and moves its
 // state machine (+0x280, "none" 6) on: when set, from state 1 to 2 or from 5 to 3; when cleared, from 2 to 1
 // or else to 5 (not from 1). Names and layouts are placeholders.
-#include "../UnkSmRequest_A5_b73.h"
+#include "../../../src/game/UnkSmRequest_A5_b73.h"
 #include "game/CHydrogigaZiplineComponent.h"
 #include "types.h"
 

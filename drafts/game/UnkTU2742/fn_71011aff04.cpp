@@ -7,7 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "base/UnkHashStream.h"
 #include "types.h"
-#include "../../game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkIter.h"
 
 using base::global::CRntFile;
 using base::global::CRntVector;

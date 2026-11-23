@@ -2,7 +2,7 @@
 // it reaches the start and the gun when it is full), then, while the secondary charge is on, advances the
 // charge of the secondary weapon (+0x4c8 of the id table) and fires it when full. Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"

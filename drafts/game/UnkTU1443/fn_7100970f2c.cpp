@@ -2,7 +2,7 @@
 // along the velocity and stops when blocked; otherwise, unless the owner is held, it plays the action
 // and applies the motion. The velocity is then clamped to the maximum speed. Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/math/CVector.h"
 #include "base/math/CVectorOps.h"
 #include "game/CAnimationComponent.h"

@@ -2,7 +2,7 @@
 // named by a string, unless the game manager is in one of four states. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkGameManager.h"
-#include "../../../CSensorDoorComponent/UnkDoorStateMachine_b58.h"
+#include "../../../../../src/game/CSensorDoorComponent/UnkDoorStateMachine_b58.h"
 
 bool fn_7100deac44(UnkGameManager* self);
 bool fn_7100deac64(UnkGameManager* self);

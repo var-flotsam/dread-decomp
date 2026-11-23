@@ -1,7 +1,7 @@
 ﻿// CShakernautDoubleGroundShockAttack's unit (tools/tu_map.py unit 1041): sends the target at +0x58 a
 // mode-2 request under `id`, or, when `plain` is clear, under the hash of a suffix id (chosen by the
 // side at +0x34) followed by `id`'s text. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkTunableLine.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

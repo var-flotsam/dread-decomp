@@ -2,7 +2,7 @@
 // is set up (slot 0x88 when the flag at +0x78 is clear), sends the owner's +0x220 object a "move" request,
 // hooks the callback fn_71007b1a24 up to it (link at +0xc0, handle at +0xd8) and switches the owner's +0x2a0
 // component off. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CActorComponent.h"
 #include "game_s2/UnkWeakHandle.h"

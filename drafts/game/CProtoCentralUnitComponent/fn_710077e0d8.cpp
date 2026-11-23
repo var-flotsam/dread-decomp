@@ -7,7 +7,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU372.h"
 #include "game/UnkTU437.h"
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "types.h"
 
 struct UnkWeakTarget;

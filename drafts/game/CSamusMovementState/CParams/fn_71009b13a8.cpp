@@ -1,7 +1,7 @@
 // CSamusMovementState::CParams's unit (tools/tu_map.py): starts a movement state's turn. When the owner's
 // animation has a tweak-turn track, the track fills a transition that is played; otherwise the state's own
 // action is sent with mode 2 (or 0). Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"

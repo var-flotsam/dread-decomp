@@ -3,7 +3,7 @@
 // additions queued meanwhile are applied, and when the random-event timer (+0x58) runs out a random event
 // is played (fn_7100a2b9a8): from the definition's mask (+0x1a8, +0x70) when it has one and the owner allows
 // it, else the all-flags mask. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2523.h"

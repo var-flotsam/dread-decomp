@@ -1,7 +1,7 @@
 // UnkTU1501 (CSamusMovement's unit, tools/tu_map.py unit 1501): builds a track request for the id table's
 // name at +0x1d78; plays it directly while the state at +0x2d08 is in mode 2, else hands it to the
 // movement state machine at +0x2cf8 as CParams (fn_710098ae04). Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"

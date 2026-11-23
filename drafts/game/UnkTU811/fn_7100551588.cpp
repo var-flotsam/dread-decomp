@@ -1,7 +1,7 @@
 // UnkTU811 (CEmmyAIComponent's unit): reacts to two messages named by the game's id table. The first
 // enters state 1, sends an action to the entity's animation, plays a sound and starts an effect; the
 // second clears a flag and starts another effect. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkAtExit.h"
 #include "base/UnkDestructors.h"
 #include "base/global/CFilePathStrId.h"

@@ -2,7 +2,7 @@
 // the owner's track holder (+0x220) to play the named track and hooks a listener up to it, or moves the
 // owner between two points by a clamped progress; then, while a count or one of three timeline ids is set,
 // it runs a timer that clears them. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"

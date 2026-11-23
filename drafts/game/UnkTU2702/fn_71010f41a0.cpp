@@ -3,7 +3,7 @@
 // are placeholders.
 #include <new>
 
-#include "../../game_s7/UnkStaticInitS7.h"
+#include "../../../src/game_s7/UnkStaticInitS7.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

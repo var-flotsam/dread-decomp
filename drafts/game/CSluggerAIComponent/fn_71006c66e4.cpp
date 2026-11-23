@@ -4,7 +4,7 @@
 // hashes by side (whether `actor` is behind the owner) and by whether the enemy movement's current id
 // plays (fn_710117ae38); when the actor is behind and the send took, hands the owner's +0x298 a facing
 // query (fn_71006f4b0c). Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"

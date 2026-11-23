@@ -11,7 +11,7 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkXformNode.h"
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "types.h"
 
 using base::global::CRntString;
