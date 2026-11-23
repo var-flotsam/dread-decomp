@@ -5,7 +5,7 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
-struct UnkArray;
+struct UnkArray_fdd2b4;
 
 struct UnkEntryArray_b0019 {
     UnkMusicEntry_b0019* data;
@@ -20,7 +20,7 @@ struct UnkEntryArray_b0019 {
             if (i >= capacity && step != 0)
                 n = ((u32)i / step + 1) * step;
             fn_7100fddcb4(reinterpret_cast<base::global::CRntVector<UnkMusicEntry_0x60>*>(this), n);
-            fn_7100fde4d8(reinterpret_cast<UnkArray*>(this), i + 1);
+            fn_7100fde4d8(reinterpret_cast<UnkArray_fdd2b4*>(this), i + 1);
         }
         return data[i];
     }

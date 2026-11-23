@@ -4,7 +4,7 @@
 #include "game/UnkNavMeshManager.h"
 #include "types.h"
 
-struct Vec2;
+struct Vec2_ebfa7c;
 using Mesh = UnkNavMesh;
 
 struct UnkNavMeshVertices {
@@ -12,6 +12,6 @@ struct UnkNavMeshVertices {
     u64* vertices;
 };
 
-Vec2* fn_710027a410(Mesh* mesh, u16 index) {
-    return reinterpret_cast<Vec2*>(&reinterpret_cast<UnkNavMeshVertices*>(mesh)->vertices[index]);
+Vec2_ebfa7c* fn_710027a410(Mesh* mesh, u16 index) {
+    return reinterpret_cast<Vec2_ebfa7c*>(&reinterpret_cast<UnkNavMeshVertices*>(mesh)->vertices[index]);
 }

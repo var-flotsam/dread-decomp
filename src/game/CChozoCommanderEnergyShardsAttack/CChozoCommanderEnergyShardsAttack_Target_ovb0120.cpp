@@ -12,7 +12,7 @@
 using base::reflection::UnkReflObject;
 
 struct UnkSelf;
-struct UnkOut;
+struct UnkOut_42bb48;
 
 struct UnkShardsRange_ovb0120 {
     f32 left;
@@ -68,5 +68,5 @@ bool fn_710042b1a0(UnkShardsAttack_ovb0120* self, UnkShardsTarget_ovb0120* out) 
         out->x = (mid + range->right) * 0.5f;
         return true;
     }
-    return fn_710042bb48(reinterpret_cast<UnkSelf*>(self), reinterpret_cast<UnkOut*>(out));
+    return fn_710042bb48(reinterpret_cast<UnkSelf*>(self), reinterpret_cast<UnkOut_42bb48*>(out));
 }

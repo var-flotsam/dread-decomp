@@ -37,8 +37,8 @@ void fn_71002cbc20(UnkEntries16_ovb0180* self, const UnkEntries16_ovb0180* other
         self->PushBackCopy(*p);
 }
 
-struct UnkPart;
-UnkPart* fn_71002cbddc(UnkPart* dst, UnkPart* src) {
+struct UnkPart_2ccbe0;
+UnkPart_2ccbe0* fn_71002cbddc(UnkPart_2ccbe0* dst, UnkPart_2ccbe0* src) {
     UnkEntries16_ovb0180* self = reinterpret_cast<UnkEntries16_ovb0180*>(dst);
     const UnkEntries16_ovb0180* other = reinterpret_cast<const UnkEntries16_ovb0180*>(src);
     if (self != other) {

@@ -21,7 +21,7 @@ struct UnkPayload {
     CStrId field_0x38;
 };
 
-struct UnkHandler {
+struct UnkHandler_390860 {
     u8 pad_0x0[0x2c];
     u32 field_0x2c;
     // Union members: the original reloads the message kind after the stores.
@@ -33,7 +33,7 @@ struct UnkHandler {
     };
 };
 
-u32 fn_7100390860(UnkHandler* self, UnkMessage* message) {
+u32 fn_7100390860(UnkHandler_390860* self, UnkMessage* message) {
     const CStrId* id = &base::global::CStrId::Empty();
     if (message->field_0x8) {
         UnkPayload* inner = message->field_0x8->field_0x10;

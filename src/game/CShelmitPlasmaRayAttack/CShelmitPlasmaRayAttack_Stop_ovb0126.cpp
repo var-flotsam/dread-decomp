@@ -1,4 +1,4 @@
-// CShelmitPlasmaRayAttack's unit (tools/tu_map.py): fn_71006b46c8 stops the attack. After CAttack's step
+// CShelmitPlasmaRayAttack_b34's unit (tools/tu_map.py): fn_71006b46c8 stops the attack. After CAttack's step
 // (fn_71003609b8) the owner (+0x8) is handed to the lazily created manager's objects at +0x3f0 and +0x470
 // (fn_71006bd4f0); with the owner's character class (+0x220), the link at +0x38 is unhooked from the target
 // of its weak handle (+0x50) and the class gets three calls (fn_7101178e08: 0xb, 8 and 0xc); the ray ends
@@ -23,8 +23,8 @@
 struct UnkActorTarget;
 struct UnkEffectSink;
 
-struct CShelmitPlasmaRayAttack;
-void fn_71006b4900(CShelmitPlasmaRayAttack* self);
+struct CShelmitPlasmaRayAttack_b34;
+void fn_71006b4900(CShelmitPlasmaRayAttack_b34* self);
 
 struct UnkPlasmaRayKind3Params_ovb0126 {
     void** vtable;
@@ -103,7 +103,7 @@ void fn_71006b46c8(UnkPlasmaRayStop_ovb0126* self) {
         }
     }
     if (self->field_0x72)
-        fn_71006b4900(reinterpret_cast<CShelmitPlasmaRayAttack*>(self));
+        fn_71006b4900(reinterpret_cast<CShelmitPlasmaRayAttack_b34*>(self));
     if (self->state == 7) {
         UnkPlasmaRayStopOwner_ovb0126* owner = self->owner;
         if (owner && owner->navigation) {
@@ -149,7 +149,7 @@ void fn_71006b46c8(UnkPlasmaRayStop_ovb0126* self) {
 // vector at +0x70 of the owner's +0x218 object; otherwise it clears the flag and hands it a kind-6 block (as
 // src/game/behaviortree/CGoToSideAction/CGoToSideAction_Side_ovb0043.cpp builds one) toward the target's
 // side (the key g_unk_710164a6d0 when the target is to the left, g_unk_710164a6dc otherwise), called back
-// through fn_71006b6dc8 (src/game/CShelmitPlasmaRayAttack/CShelmitPlasmaRayAttack_Nav_b65a4.cpp).
+// through fn_71006b6dc8 (src/game/CShelmitPlasmaRayAttack_b34/CShelmitPlasmaRayAttack_Nav_b65a4.cpp).
 struct UnkPlasmaRayKey_ovb0126 {
     u8 bytes[12];
 };

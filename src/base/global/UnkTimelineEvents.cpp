@@ -8,14 +8,14 @@
 #include "types.h"
 
 // An event: polymorphic, destroyed (and freed) through its vtable's slot 2.
-struct UnkTimelineEvent {
+struct UnkTimelineEvent_068f5c {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();  // deleting destructor
 };
 
 // Reads one event (created by its class id) from the file.
-UnkTimelineEvent* fn_7100067848(base::global::CRntFile* file);
+UnkTimelineEvent_068f5c* fn_7100067848(base::global::CRntFile* file);
 
 // The arrays' slots are written as raw words (the original's stores may alias the arrays' own
 // fields: their counts are read again after each one).
@@ -25,19 +25,19 @@ static inline void StoreSlot(T* slot, T value) {
 }
 
 // An array of owning event pointers (base::global::CRntVector's layout), moved when it grows.
-struct UnkEventArray : base::global::CRntVector<UnkTimelineEvent*> {
+struct UnkEventArray : base::global::CRntVector<UnkTimelineEvent_068f5c*> {
     __attribute__((always_inline)) void Grow(u32 n) {
         if (capacity < n) {
-            auto** p = static_cast<UnkTimelineEvent**>(allocator->vf_0x40((u64)n * 8, 8, flags));
+            auto** p = static_cast<UnkTimelineEvent_068f5c**>(allocator->vf_0x40((u64)n * 8, 8, flags));
             if (data) {
-                UnkTimelineEvent** src = data;
+                UnkTimelineEvent_068f5c** src = data;
                 u64 k = 0;
                 for (u32 i = 0; i < count; ++i, ++k, ++src) {
-                    UnkTimelineEvent* t = *src;
-                    StoreSlot<UnkTimelineEvent*>(src, nullptr);
+                    UnkTimelineEvent_068f5c* t = *src;
+                    StoreSlot<UnkTimelineEvent_068f5c*>(src, nullptr);
                     StoreSlot(&p[k], t);
-                    UnkTimelineEvent* old = *src;
-                    StoreSlot<UnkTimelineEvent*>(src, nullptr);
+                    UnkTimelineEvent_068f5c* old = *src;
+                    StoreSlot<UnkTimelineEvent_068f5c*>(src, nullptr);
                     if (old)
                         old->vf_0x10();
                 }
@@ -47,7 +47,7 @@ struct UnkEventArray : base::global::CRntVector<UnkTimelineEvent*> {
             capacity = n;
         }
     }
-    __attribute__((always_inline)) void Append(UnkTimelineEvent* e) {
+    __attribute__((always_inline)) void Append(UnkTimelineEvent_068f5c* e) {
         u32 c = count;
         u32 cap = capacity;
         if (cap <= c && step != 0)
@@ -63,7 +63,7 @@ struct UnkEventArray : base::global::CRntVector<UnkTimelineEvent*> {
 
 // The timed events: the events and their times in two arrays sharing a count.
 struct UnkTimedEvents {
-    UnkTimelineEvent** events;
+    UnkTimelineEvent_068f5c** events;
     f32* times;
     u32 count;
     u32 capacity;
@@ -95,7 +95,7 @@ void fn_7100068f5c(UnkTimelineEvents* self, base::global::CRntFile* file) {
         u32 tenths;
         CRntFile_Read(file, &tenths, 4, 1);
         f32 time = (f32)tenths * 0.1f;
-        UnkTimelineEvent* e = fn_7100067848(file);
+        UnkTimelineEvent_068f5c* e = fn_7100067848(file);
         UnkTimedEvents& t = self->timed;
         if (t.count == t.capacity)
             fn_710006981c(&t, t.step + t.count);

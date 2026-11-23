@@ -50,9 +50,9 @@ UnkNavMeshSidePair fn_71002afe60(UnkNavMeshCell* cell, u8* index) {
 // ---- fn_71002afea8: a side's segment ----
 
 struct UnkNavMesh;
-struct Vec2;
+struct Vec2_ebfa7c;
 using Mesh = UnkNavMesh;
-Vec2* fn_710027a410(Mesh* mesh, u16 index);  // the mesh's vertex (src/game/navmesh/CNavMesh/fn_710027a410.cpp)
+Vec2_ebfa7c* fn_710027a410(Mesh* mesh, u16 index);  // the mesh's vertex (src/game/navmesh/CNavMesh/fn_710027a410.cpp)
 
 // The cell as the side lookup reads it: the vertex ids, their count and the mesh.
 struct UnkNavMeshCellSides {

@@ -29,9 +29,9 @@ struct UnkStrIdField {
     }
 };
 
-struct UnkTree;
+struct UnkTree_9cf440;
 
-struct UnkTree {
+struct UnkTree_9cf440 {
     base::UnkDeferredSet<void>* root;
     void* field_0x8;
     void* field_0x10;
@@ -47,7 +47,7 @@ struct UnkTree {
 };
 
 struct UnkPool {
-    UnkTree* data;
+    UnkTree_9cf440* data;
     void* field_0x8;
     u32 count;
     u8 pad_0x14[0xc];
@@ -71,7 +71,7 @@ struct UnkObj_71009cf440 {
     UnkOwnedStrIdTable field_0x178;
     UnkStrIdField field_0x1a0;
     u8 pad_0x1a8[0x10];
-    UnkTree field_0x1b8;
+    UnkTree_9cf440 field_0x1b8;
     u8 field_0x1d0[0x10];
 };
 

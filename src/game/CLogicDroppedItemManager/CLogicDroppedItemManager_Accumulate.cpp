@@ -4,7 +4,7 @@
 #include "game/UnkTU2562.h"
 #include "types.h"
 
-struct UnkDroppedItem {
+struct UnkDroppedItem_e2f9a4 {
     u8 unk_0x0[0x7c];
     f32 pos[3];
 };
@@ -19,10 +19,10 @@ struct UnkDroppedItemManager {
     UnkDroppedSum total;
 };
 
-void fn_7100e2e8a4(UnkDroppedItemManager* self, UnkDroppedItem* item, void* arg, u32 flags);
-void fn_7100e2e9b0(UnkDroppedItemManager* self, UnkDroppedItem* item, void* arg, u32 flags);
+void fn_7100e2e8a4(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, u32 flags);
+void fn_7100e2e9b0(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, u32 flags);
 
-static inline void Accumulate(UnkDroppedSum* total, const UnkDroppedItem* item) {
+static inline void Accumulate(UnkDroppedSum* total, const UnkDroppedItem_e2f9a4* item) {
     f32 x = item->pos[0] + total->sum[0];
     f32 y = item->pos[1] + total->sum[1];
     f32 z = item->pos[2] + total->sum[2];
@@ -32,13 +32,13 @@ static inline void Accumulate(UnkDroppedSum* total, const UnkDroppedItem* item) 
     total->count++;
 }
 
-void fn_7100e2f9a4(UnkDroppedItemManager* self, UnkDroppedItem* item, void* arg, bool) {
+void fn_7100e2f9a4(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool) {
     UnkDroppedSum* total = &self->total;
     fn_7100e2e9b0(self, item, arg, 0);
     Accumulate(total, item);
 }
 
-void fn_7100e2fa00(UnkDroppedItemManager* self, UnkDroppedItem* item, void* arg, bool) {
+void fn_7100e2fa00(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool) {
     UnkDroppedSum* total = &self->total;
     fn_7100e2e8a4(self, item, arg, 0);
     Accumulate(total, item);

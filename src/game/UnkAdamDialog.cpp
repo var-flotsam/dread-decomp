@@ -48,7 +48,7 @@ struct UnkSoundHandle {
     }
 };
 
-struct UnkWordPair {
+struct UnkWordPair_fb89b4 {
     u64 field_0x0;
     u64 field_0x8;
 };
@@ -58,7 +58,7 @@ struct UnkWordPair {
 struct UnkAdamDialog {
     u8 unk_0x0[0x8];
     UnkSoundHandle voice;      // +0x8
-    UnkWordPair field_0x18;    // +0x18
+    UnkWordPair_fb89b4 field_0x18;    // +0x18
     CRntString field_0x28;     // +0x28
     u8 unk_0x58[0x30];
     u32 field_0x88;
@@ -91,7 +91,7 @@ struct UnkDialogCallback {
 void fn_7100fb9564(void* object);
 
 // The dialog target behind the game manager's +0x2260 (its +0x10) and what opens a page on it.
-struct UnkDialogHolder {
+struct UnkDialogHolder_fb89b4 {
     u8 unk_0x0[0x10];
     void* target;
 };
@@ -107,8 +107,8 @@ void fn_7100fb89b4(UnkAdamDialog* owner, const CStrId& key, void* arg2, const CS
     const UnkQualifiedId& name = Qid(reinterpret_cast<UnkDialogDef&>(g_unk_7172759b50));
     if (CBlackboard::CSection* s = fn_7101047270(blackboard, section))
         fn_7100395a30(s, &name, &mode);
-    UnkDialogHolder* holder =
-        *reinterpret_cast<UnkDialogHolder**>(reinterpret_cast<char*>(g_unk_7101d47310) + 0x2260);
+    UnkDialogHolder_fb89b4* holder =
+        *reinterpret_cast<UnkDialogHolder_fb89b4**>(reinterpret_cast<char*>(g_unk_7101d47310) + 0x2260);
     if (!holder)
         return;
     void* target = holder->target;
@@ -166,7 +166,7 @@ static inline void* MusicManager() {
 // level is read once), else back to the level read before; then the page opens with `text`.
 // False when the key is empty or the voice did not start.
 bool fn_7100fb85cc(UnkAdamDialog* self, f32 volume, f32 fade, const CStrId& key, void* arg2, const char* voice,
-                   bool stop, bool lower, const char* text, const UnkWordPair& pair) {
+                   bool stop, bool lower, const char* text, const UnkWordPair_fb89b4& pair) {
     if (key.data == &g_unk_7101d47108->empty)
         return false;
     if (stop) {

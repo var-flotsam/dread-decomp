@@ -1,14 +1,14 @@
 #include "types.h"
 
-struct CShelmitPlasmaRayAttack {
+struct CShelmitPlasmaRayAttack_b34 {
     u8 unk_0x0[0x30];
     u32 state;
 };
 
-void fn_71006b4900(CShelmitPlasmaRayAttack* self);
+void fn_71006b4900(CShelmitPlasmaRayAttack_b34* self);
 
 // Ends the attack: states 0-2 and 7-9 just move to 11; states 3-6 also run fn_71006b4900.
-void fn_71006b6508(CShelmitPlasmaRayAttack* self) {
+void fn_71006b6508(CShelmitPlasmaRayAttack_b34* self) {
     switch (self->state) {
     case 3:
     case 4:

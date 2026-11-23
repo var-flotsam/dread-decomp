@@ -61,7 +61,7 @@ struct UnkU16Array_e509a4 {
     }
 };
 
-struct UnkRecordA8 {
+struct UnkRecordA8_e509a4 {
     UnkPart0 field_0x0;
     u32 field_0x28;
     bool field_0x2c;
@@ -75,15 +75,15 @@ struct UnkRecordA8 {
     u32 field_0xa0;
     u32 field_0xa4;
 
-    __attribute__((always_inline)) UnkRecordA8(const UnkRecordA8& other)
+    __attribute__((always_inline)) UnkRecordA8_e509a4(const UnkRecordA8_e509a4& other)
         : field_0x0(other.field_0x0), field_0x28(other.field_0x28), field_0x2c(other.field_0x2c), field_0x2d(true),
           field_0x40(other.field_0x40), field_0x48(other.field_0x48), field_0x70(other.field_0x70),
           field_0x98(other.field_0x98), field_0x9c(other.field_0x9c), field_0xa0(other.field_0xa0),
           field_0xa4(other.field_0xa4) {}
 };
-static_assert(sizeof(UnkRecordA8) == 0xa8, "UnkRecordA8 layout");
+static_assert(sizeof(UnkRecordA8_e509a4) == 0xa8, "UnkRecordA8_e509a4 layout");
 
-void fn_7100e509a4(UnkRecordA8* self, const UnkRecordA8& other) { new (self) UnkRecordA8(other); }
+void fn_7100e509a4(UnkRecordA8_e509a4* self, const UnkRecordA8_e509a4& other) { new (self) UnkRecordA8_e509a4(other); }
 
 struct UnkRecord80 {
     u32 field_0x0;

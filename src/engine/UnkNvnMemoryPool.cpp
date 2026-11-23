@@ -29,7 +29,7 @@ struct UnkNvnPoolBuilder {
     u8 data[0x40];
 };
 
-struct UnkPool;
+struct UnkPool_1587f0;
 
 static_assert(sizeof(UnkNvnMemoryPool) == 0x120, "UnkNvnMemoryPool placeholder layout");
 
@@ -69,7 +69,7 @@ static inline void InitPool(T* self, void* device, s32 flags) {
     Call(g_unk_716e29af60, self->pool, &builder);
 }
 
-void fn_710015385c(UnkPool* p, u64 size, s32 flags, void* device) {
+void fn_710015385c(UnkPool_1587f0* p, u64 size, s32 flags, void* device) {
     UnkNvnMemoryPool* self = reinterpret_cast<UnkNvnMemoryPool*>(p);
     if (size <= 0x1000)
         size = 0x1000;

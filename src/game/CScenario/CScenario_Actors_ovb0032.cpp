@@ -168,12 +168,12 @@ static inline const CStrId& DebugPrefix_ovb0032() {
 }
 
 // As src/game/CGameManager.cpp declares them.
-struct UnkStartPoint;
+struct UnkStartPoint_CGameManager;
 struct UnkStartPointKey;
 
 // The nearest actor of the list at +0x2a0 to the point `key` that fn_7100774014 accepts and whose
 // name doesn't start with "ST_DEBUG_", or null.
-UnkStartPoint* fn_71011a2e54(UnkGameManagerSub_0x608* scenario, const UnkStartPointKey* key) {
+UnkStartPoint_CGameManager* fn_71011a2e54(UnkGameManagerSub_0x608* scenario, const UnkStartPointKey* key) {
     auto* self = reinterpret_cast<UnkScenario_ovb0032*>(scenario);
     auto* point = reinterpret_cast<const UnkVec3f*>(key);
     const CStrId& prefix = DebugPrefix_ovb0032();
@@ -195,7 +195,7 @@ UnkStartPoint* fn_71011a2e54(UnkGameManagerSub_0x608* scenario, const UnkStartPo
             best = actor;
         }
     }
-    return reinterpret_cast<UnkStartPoint*>(best);
+    return reinterpret_cast<UnkStartPoint_CGameManager*>(best);
 }
 
 // --- The layers ---

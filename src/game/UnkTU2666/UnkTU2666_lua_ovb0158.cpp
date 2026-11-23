@@ -297,7 +297,7 @@ s32 fn_7101079030(lua_State* L) {
 }
 
 struct UnkSoundMgr;
-struct UnkPathNode;
+struct UnkPathNode_CEntity_2;
 
 void fn_7100df21e8(UnkGameManager* self, CStrId* id);
 
@@ -336,7 +336,7 @@ s32 fn_710108b360(lua_State* L) {
     if (fn_71010c0270(L, "s", &name)) {
         UnkSoundMgr* sound = g_unk_7101d4d820;
         CFilePathStrId id(name, true);
-        fn_710010808c(sound, reinterpret_cast<UnkPathNode*>(&id));
+        fn_710010808c(sound, reinterpret_cast<UnkPathNode_CEntity_2*>(&id));
     }
     return 0;
 }

@@ -255,7 +255,7 @@ address,digest,verdict,rules,detail
 0x7100e91018,2c59d243b991dd4bc564711fb10d7fe8,pass,2,both runs were cut off
 0x7100e91d68,6f3c9de0dde0ceb5d24ca712cb2c8581,pass,2,
 0x7100e94e10,dc7011ed5cd98181dc653fe57e0684f3,pass,2,
-0x7100e9d6f8,743e3a93eeae5188c487d7e857f6594f,pass,2,
+0x7100e9d6f8,cee61ae1f71d7fbe4941182062db7d1c,pass,2,
 0x7100eb7358,f1c6cc38ba6a2af0fd928cc247e9f3d7,behaves,2,similarity 21.4%; operations;
 0x7100ebf55c,816c1569e2e3f9cf40aaa1eecd7ff56e,pass,2,both runs were cut off
 0x7100eca5dc,056cff2f7069cf909a91ac97438182f9,inconclusive,2,only 83% of the original's instructions ran
@@ -291,7 +291,7 @@ address,digest,verdict,rules,detail
 0x710109b870,4e6ca49488d0ba63a9e5e7d6d92513f5,behaves,2,similarity 68.1%; operations;
 0x71010bf400,b52bb19a6538b8000fcf7397bb49b128,inconclusive,2,only 17% of the original's instructions ran
 0x71010cdc48,ad1b664d490783e48300354c46ec781c,pass,2,
-0x71010d313c,806cc531aa8a60af9d193f16a8eae397,pass,2,
+0x71010d313c,a626675596589c5edfb92a857e0956c3,pass,2,
 0x71010d94f4,22862360e4e8e7e936d520e61088eeb5,behaves,2,similarity 64.5%; operations;
 0x71010dcab0,eb1a72af756fe4c2e5de837988f67c5b,behaves,2,similarity 87.3%; operations;
 0x71010e53dc,9533a3f343eb5ccf7d0eb5a13432c83c,behaves,2,similarity 65.3%; operations;

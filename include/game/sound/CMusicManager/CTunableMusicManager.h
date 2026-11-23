@@ -8,7 +8,7 @@
 
 struct UnkTuneMgrView_b0019;
 struct UnkMusicMode;
-struct UnkArray;
+struct UnkArray_fdd2b4;
 struct UnkMask;
 struct UnkMgr_0xf18;
 struct UnkMusicMgr_b0019;
@@ -22,7 +22,7 @@ void fn_7100fd7af8(void* manager, f32 level, f32 time);
 void fn_7100fdcf2c(void* manager, u32 slot, bool active, f32 time);
 f32 fn_7100fd7b3c(void* manager);
 void fn_7100fd7c3c(UnkMgr_0xf18*, u32, UnkRequest*, f32, UnkMask, UnkMask);
-void fn_7100fde4d8(UnkArray*, u32);
+void fn_7100fde4d8(UnkArray_fdd2b4*, u32);
 // Stops every active entry of slot `index` and empties it.
 void fn_7100fd8720(UnkMusicSlotOwner_fd8720* self, u32 index);
 void fn_7100fde6c4(UnkNode_0x68*);  // A node's destructor.

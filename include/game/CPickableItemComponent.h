@@ -6,8 +6,8 @@
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
-struct UnkTree;
-void fn_71009d3dc4(void* root, UnkTree* tree);
+struct UnkTree_9cf440;
+void fn_71009d3dc4(void* root, UnkTree_9cf440* tree);
 void fn_71009cef20(void* p);
 extern void* g_unk_7101a89358[];
 extern UnkProperty g_unk_717273fe08;

@@ -18,7 +18,7 @@ struct TriggerView {
 };
 }  // namespace
 
-struct UnkHandleList;
+struct UnkHandleList_CGameManager;
 
 void fn_7100e01fc8(void*) {
     struct List {

@@ -75,13 +75,13 @@ struct UnkGfxProgram {
 };
 static_assert(sizeof(UnkGfxProgram) == 0x150, "UnkGfxProgram placeholder layout");
 
-struct UnkPool;  // the memory pool type of src/game_s7/fn_71001587f0.cpp
+struct UnkPool_1587f0;  // the memory pool type of src/game_s7/fn_71001587f0.cpp
 
 // The pools (all reached through the GOT).
 extern UnkGfxRecord_0xc0* g_unk_716e29d438[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];
 extern UnkGfxProgram* g_unk_716e2a1440[0x400];
 extern u8 g_unk_716e2a3458[];          // a sync object
-extern UnkPool g_unk_716e29d318;
+extern UnkPool_1587f0 g_unk_716e29d318;
 
 // NVN's sync initialiser (as src/game_s7/fn_71001587f0.cpp declares it).
 

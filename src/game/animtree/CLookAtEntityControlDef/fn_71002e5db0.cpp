@@ -32,23 +32,23 @@ struct UnkLevelA {
     }
 };
 
-struct UnkLevelB : UnkLevelA {
+struct UnkLevelB_2e5db0 : UnkLevelA {
     base::UnkPooledString field_0x10;
     UnkPair field_0x18;
 
-    UnkLevelB(const UnkLevelB& other) : UnkLevelA(other) {
+    UnkLevelB_2e5db0(const UnkLevelB_2e5db0& other) : UnkLevelA(other) {
         vtable = g_unk_7101a21af8 + 2;
         CopyId(field_0x10, other.field_0x10);
         field_0x18 = other.field_0x18;
     }
 };
 
-struct UnkLevelC : UnkLevelB {
+struct UnkLevelC : UnkLevelB_2e5db0 {
     UnkPair field_0x28;
     u32 field_0x38;
     u8 pad_0x3c[4];
 
-    UnkLevelC(const UnkLevelC& other) : UnkLevelB(other) {
+    UnkLevelC(const UnkLevelC& other) : UnkLevelB_2e5db0(other) {
         vtable = g_unk_7101a21fc8 + 2;
         field_0x28 = other.field_0x28;
         field_0x38 = other.field_0x38;

@@ -14,7 +14,7 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 struct UnkSoundMgr;
-struct UnkPathNode;
+struct UnkPathNode_CEntity_2;
 
 struct UnkValueSet_psc {
     u8 unk_0x0[0x18];
@@ -57,7 +57,7 @@ static inline __attribute__((always_inline)) UnkResult_0x18_psc SetPath_psc(UnkP
     const CFilePathStrId* value = PickArg_psc(src);
     CFilePathStrId* path = &target->paths[Index];
     if (path->data != &g_unk_7101d47200->empty)
-        fn_7100108094(g_unk_7101d4d820, reinterpret_cast<UnkPathNode*>(path));
+        fn_7100108094(g_unk_7101d4d820, reinterpret_cast<UnkPathNode_CEntity_2*>(path));
     if (path->data != value->data) {
         UnkStringData* d = value->data;
         UnkStringPool* pool = g_unk_7101d47200;
@@ -71,7 +71,7 @@ static inline __attribute__((always_inline)) UnkResult_0x18_psc SetPath_psc(UnkP
         path->data = d;
     }
     if (path->data != &g_unk_7101d47200->empty)
-        fn_710010808c(g_unk_7101d4d820, reinterpret_cast<UnkPathNode*>(path));
+        fn_710010808c(g_unk_7101d4d820, reinterpret_cast<UnkPathNode_CEntity_2*>(path));
     UnkResult_0x18_psc result = {};
     result.kind_and_flag = 0x100000002;
     return result;

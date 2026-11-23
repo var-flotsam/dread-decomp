@@ -77,5 +77,5 @@ void fn_7100736e4c(UnkSwarmController_l736e4c* self) {
     CRntString_Destroy(&self->field_0x180);
     fn_71008c2de0(self->field_0x110);
     self->field_0x70.Reset();
-    fn_71011acd74(reinterpret_cast<UnkIdObject*>(self));
+    fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(self));
 }

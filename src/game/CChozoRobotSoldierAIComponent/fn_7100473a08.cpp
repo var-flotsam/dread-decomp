@@ -30,7 +30,7 @@ struct UnkValue {
     UnkValue(const UnkValue& other) : x(other.x), y(other.y), z(other.z) {}
 };
 
-struct UnkTable {
+struct UnkTable_473a08 {
     UnkEntry* entries;
     u32 count;
     u8 pad_0xc[0x1c];
@@ -39,7 +39,7 @@ struct UnkTable {
 
 struct UnkSelf {
     u8 pad_0x0[0x14b28];
-    UnkTable table;
+    UnkTable_473a08 table;
 };
 
 UnkValue fn_7100473a08(UnkSelf* self, void* owner) {

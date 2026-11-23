@@ -87,12 +87,12 @@ static_assert(sizeof(UnkPolygonHit) == 0x38, "UnkPolygonHit layout");
 
 // A tree node: its box and, at 0x10, where the walk goes on when the box misses (< 0 for a leaf,
 // which is followed by the next node).
-struct UnkTreeNode {
+struct UnkTreeNode_d636d8 {
     f32 min_x, min_y;
     f32 max_x, max_y;
     s32 next;
 };
-static_assert(sizeof(UnkTreeNode) == 0x14, "UnkTreeNode layout");
+static_assert(sizeof(UnkTreeNode_d636d8) == 0x14, "UnkTreeNode_d636d8 layout");
 
 // The base shape (0xa8 bytes); the shape data follows it.
 struct UnkShape {
@@ -104,7 +104,7 @@ struct UnkShape10 : UnkShape {
     UnkPolygonCollection2D polygons;
     u8 unk_0xb8[0x30];
     bool has_tree;
-    UnkTreeNode* nodes;
+    UnkTreeNode_d636d8* nodes;
     u32 node_count;
 };
 static_assert(__builtin_offsetof(UnkShape10, has_tree) == 0xe8, "UnkShape10 layout");
@@ -167,8 +167,8 @@ struct UnkTreeBox {
 UnkBox3D fn_7100126ba0(const UnkSegment2D* seg);
 
 // A 3D vector's x and y (fn_710007b430), as a temporary.
-struct UnkProjected : CVector2D {
-    explicit UnkProjected(const CVector3D* v) { fn_710007b430(this, v); }
+struct UnkProjected_d636d8 : CVector2D {
+    explicit UnkProjected_d636d8(const CVector3D* v) { fn_710007b430(this, v); }
 };
 
 // Visitor arguments are copied member by member.
@@ -197,11 +197,11 @@ struct UnkLeafVisitor {
 // Walks the tree: a node whose box meets `box` is entered (a leaf goes to `leaf`, which returns
 // false to stop), a node that misses is skipped.
 template <class V>
-static inline void WalkTree(const UnkShape10* self, const UnkTreeBox& box, V* v, bool (*leaf)(V*, const UnkTreeNode*)) {
+static inline void WalkTree(const UnkShape10* self, const UnkTreeBox& box, V* v, bool (*leaf)(V*, const UnkTreeNode_d636d8*)) {
     u32 count = self->node_count;
     u32 i = 0;
     while (i < count) {
-        const UnkTreeNode& n = self->nodes[i];
+        const UnkTreeNode_d636d8& n = self->nodes[i];
         if (box.max.x >= n.min_x && box.min.x <= n.max_x && box.max.y >= n.min_y && box.min.y <= n.max_y) {
             if (n.next < 0 && !leaf(v, &n))
                 break;
@@ -212,7 +212,7 @@ static inline void WalkTree(const UnkShape10* self, const UnkTreeBox& box, V* v,
     }
 }
 
-bool fn_7100d66bc4(UnkLeafVisitor<UnkSegment2D, bool>* self, const UnkTreeNode* node);
+bool fn_7100d66bc4(UnkLeafVisitor<UnkSegment2D, bool>* self, const UnkTreeNode_d636d8* node);
 UnkColliderResult fn_7100d644d0(UnkPolygonCollection2D* self, const UnkSegment2D* seg, UnkLocalQuery* query);
 
 // A segment against the collection.
@@ -268,7 +268,7 @@ static inline UnkBox2D Union(const UnkBox2D& a, const UnkBox2D& b) {
     return r;
 }
 
-bool fn_7100d6675c(UnkLeafVisitor<UnkBox2D, bool>* self, const UnkTreeNode* node);
+bool fn_7100d6675c(UnkLeafVisitor<UnkBox2D, bool>* self, const UnkTreeNode_d636d8* node);
 UnkColliderResult fn_7100d63a40(UnkPolygonCollection2D* self, const UnkBox2D* box, bool flag, UnkLocalQuery* query);
 
 // A box against the collection.
@@ -281,7 +281,7 @@ UnkColliderResult fn_7100d63870(UnkShape10* self, const UnkBox2D* box, UnkLocalQ
     return v.result;
 }
 
-bool fn_7100d668d4(UnkLeafVisitor<UnkShape8Geometry, bool>* self, const UnkTreeNode* node);
+bool fn_7100d668d4(UnkLeafVisitor<UnkShape8Geometry, bool>* self, const UnkTreeNode_d636d8* node);
 UnkColliderResult fn_7100d63e50(UnkPolygonCollection2D* self, const UnkShape8Geometry* shape, bool flag,
                          UnkLocalQuery* query);
 
@@ -298,7 +298,7 @@ UnkColliderResult fn_7100d63c74(UnkShape10* self, const UnkShape8Geometry* shape
 }
 
 // A tree leaf's edge handle: its polygon and edge, or none (0xfffffff) for an inner node.
-static inline u32 LeafHandle(const UnkTreeNode* node) {
+static inline u32 LeafHandle(const UnkTreeNode_d636d8* node) {
     return node->next < 0 ? (u32)node->next & 0x7ffffff : 0xfffffff;
 }
 
@@ -322,7 +322,7 @@ struct UnkStruct_0x48;
 // one slot), the result stays in a register through the loop and the loop is rotated. The contact
 // point (0x2c bytes) is copied into the hit with a call of memmove where the original copies it in
 // line: the same bytes, and the two cannot overlap (the hit is a local, the point is in the buffer).
-bool fn_7100d668d4(UnkLeafVisitor<UnkShape8Geometry, bool>* self, const UnkTreeNode* node) {
+bool fn_7100d668d4(UnkLeafVisitor<UnkShape8Geometry, bool>* self, const UnkTreeNode_d636d8* node) {
     // Against one segment the test finds at most two points: the buffer has room for two only
     // (fn_7100129910's declaration in src/game/UnkCollisionContacts.cpp names a four-point one).
     UnkContactBuffer<2> found;
@@ -351,7 +351,7 @@ bool fn_7100d668d4(UnkLeafVisitor<UnkShape8Geometry, bool>* self, const UnkTreeN
     return !(self->result.bits & 2);
 }
 
-bool fn_7100d66a4c(UnkLeafVisitor<UnkCircle2D, bool>* self, const UnkTreeNode* node);
+bool fn_7100d66a4c(UnkLeafVisitor<UnkCircle2D, bool>* self, const UnkTreeNode_d636d8* node);
 UnkColliderResult fn_7100d64270(UnkPolygonCollection2D* self, const UnkCircle2D* circle, bool flag,
                          UnkLocalQuery* query);
 
@@ -368,7 +368,7 @@ UnkColliderResult fn_7100d64088(UnkShape10* self, const UnkCircle2D* circle, Unk
     return v.result;
 }
 
-bool fn_7100d66d84(UnkLeafVisitor<UnkCircle2D, CVector2D>* self, const UnkTreeNode* node);
+bool fn_7100d66d84(UnkLeafVisitor<UnkCircle2D, CVector2D>* self, const UnkTreeNode_d636d8* node);
 UnkColliderResult fn_7100d64f70(UnkPolygonCollection2D* self, const UnkCircle2D* circle, const CVector3D* dir,
                          UnkLocalQuery* query);
 
@@ -385,13 +385,13 @@ UnkColliderResult fn_7100d64d3c(UnkShape* self, const UnkCircle2D* circle, const
         return fn_7100d64f70(&shape->polygons, circle, dir, query);
     f32 r = circle->radius;
     UnkBox2D swept = Union(CircleBox(circle->x, circle->y, r), CircleBox(circle->x + dir->x, circle->y + dir->y, r));
-    UnkLeafVisitor<UnkCircle2D, CVector2D> v(circle, UnkProjected(dir), query);
+    UnkLeafVisitor<UnkCircle2D, CVector2D> v(circle, UnkProjected_d636d8(dir), query);
     UnkTreeBox tree_box(Unbounded(swept.min_x, swept.min_y, swept.max_x, swept.max_y));
     WalkTree(shape, tree_box, &v, fn_7100d66d84);
     return v.result;
 }
 
-bool fn_7100d66ed8(UnkLeafVisitor<UnkBox2D, CVector2D>* self, const UnkTreeNode* node);
+bool fn_7100d66ed8(UnkLeafVisitor<UnkBox2D, CVector2D>* self, const UnkTreeNode_d636d8* node);
 UnkColliderResult fn_7100d65410(UnkPolygonCollection2D* self, const UnkBox2D* box, const CVector3D* dir,
                          UnkLocalQuery* query);
 
@@ -402,13 +402,13 @@ UnkColliderResult fn_7100d65200(UnkShape* self, const UnkBox2D* box, const CVect
         return fn_7100d65410(&shape->polygons, box, dir, query);
     UnkBox2D moved = {dir->x + box->min_x, dir->y + box->min_y, dir->x + box->max_x, dir->y + box->max_y};
     UnkBox2D swept = Union(moved, *box);
-    UnkLeafVisitor<UnkBox2D, CVector2D> v(box, UnkProjected(dir), query);
+    UnkLeafVisitor<UnkBox2D, CVector2D> v(box, UnkProjected_d636d8(dir), query);
     UnkTreeBox tree_box(Unbounded(swept.min_x, swept.min_y, swept.max_x, swept.max_y));
     WalkTree(shape, tree_box, &v, fn_7100d66ed8);
     return v.result;
 }
 
-bool fn_7100d6702c(UnkLeafVisitor<UnkShape8Geometry, CVector2D>* self, const UnkTreeNode* node);
+bool fn_7100d6702c(UnkLeafVisitor<UnkShape8Geometry, CVector2D>* self, const UnkTreeNode_d636d8* node);
 UnkColliderResult fn_7100d658e0(UnkPolygonCollection2D* self, const UnkShape8Geometry* shape, const CVector3D* dir,
                          UnkLocalQuery* query);
 
@@ -430,7 +430,7 @@ UnkColliderResult fn_7100d656a0(UnkShape* self, const UnkShape8Geometry* geom, c
     f32 hy = sy * 0.5f;
     UnkBox2D swept =
         Union(CenteredBox(geom->x, geom->y, hx, hy), CenteredBox(geom->x + dir->x, geom->y + dir->y, hx, hy));
-    UnkLeafVisitor<UnkShape8Geometry, CVector2D> v(geom, UnkProjected(dir), query);
+    UnkLeafVisitor<UnkShape8Geometry, CVector2D> v(geom, UnkProjected_d636d8(dir), query);
     UnkTreeBox tree_box(Unbounded(swept.min_x, swept.min_y, swept.max_x, swept.max_y));
     WalkTree(shape, tree_box, &v, fn_7100d6702c);
     return v.result;
@@ -445,7 +445,7 @@ struct UnkBoxVisitor {
     UnkBoxVisitor(const UnkQueryBox* b, UnkLocalQuery* q) : box(b), query(q), result(NoContact()) {}
 };
 
-bool fn_7100d67180(UnkBoxVisitor* self, const UnkTreeNode* node);
+bool fn_7100d67180(UnkBoxVisitor* self, const UnkTreeNode_d636d8* node);
 UnkColliderResult fn_7100d65d50(UnkPolygonCollection2D* self, const UnkQueryBox* box, UnkLocalQuery* query);
 
 // A query box (its corners in any order) against the collection.

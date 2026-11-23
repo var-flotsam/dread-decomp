@@ -11,7 +11,7 @@
 struct UnkListedObj;
 
 // Erasing moves the later entries down with memcpy.
-struct UnkPtrList : base::global::CRntVector<UnkListedObj*> {
+struct UnkPtrList_e0babc : base::global::CRntVector<UnkListedObj*> {
     __attribute__((always_inline)) void EraseAt(u64 index) {
         if (index < count) {
             __builtin_memcpy(&data[index], &data[index + 1], (u64)(u32)(count - 1 - (u32)index) * 8);
@@ -23,10 +23,10 @@ struct UnkPtrList : base::global::CRntVector<UnkListedObj*> {
 struct UnkListPair {
     u8 unk_0x0[0x8];
     base::global::CRntVector<UnkListedObj*> active;
-    UnkPtrList pending;
+    UnkPtrList_e0babc pending;
 };
 
-template <u32 Offset, u32 Flag, UnkListedObj** (*Get)(UnkPtrList*, u32)>
+template <u32 Offset, u32 Flag, UnkListedObj** (*Get)(UnkPtrList_e0babc*, u32)>
 __attribute__((always_inline)) static inline void Activate(char* self, UnkListedObj* obj) {
     if (!obj)
         return;
@@ -40,8 +40,8 @@ __attribute__((always_inline)) static inline void Activate(char* self, UnkListed
     }
 }
 
-UnkListedObj** fn_7100e0a49c(UnkPtrList* list, u32 index);
-UnkListedObj** fn_7100e0a73c(UnkPtrList* list, u32 index);
+UnkListedObj** fn_7100e0a49c(UnkPtrList_e0babc* list, u32 index);
+UnkListedObj** fn_7100e0a73c(UnkPtrList_e0babc* list, u32 index);
 
 void fn_7100e0babc(char* self, UnkListedObj* obj) { Activate<0x0, 0x20, fn_7100e0a49c>(self, obj); }
 void fn_7100e0bc40(char* self, UnkListedObj* obj) { Activate<0x50, 0x28, fn_7100e0a5ec>(self, obj); }

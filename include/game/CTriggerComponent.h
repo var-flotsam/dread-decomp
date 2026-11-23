@@ -13,14 +13,14 @@ struct UnkTriggerComponent_ovb0067;
 struct UnkVec3f;
 struct UnkColliderTrigger_b0058;
 struct UnkProperty;
-struct UnkHandleList;
+struct UnkHandleList_CGameManager;
 struct UnkTriggerEntry_b50a5;
 struct UnkTriggerOwned_b56;
 struct UnkTrigger_b50a5;
 struct UnkTriggerComponent_la601cc;
 struct UnkTriggerTarget_la601cc;
 void fn_7100a632e8(UnkTriggerOwned_b56* self);
-UnkHandleList* fn_7100a5e1dc();
+UnkHandleList_CGameManager* fn_7100a5e1dc();
 // Moves the component's key from `previous`'s listener list to `target`'s.
 void fn_7100a601cc(UnkTriggerComponent_la601cc* self, UnkTriggerTarget_la601cc* target,
                    UnkTriggerTarget_la601cc* previous);

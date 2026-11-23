@@ -3,14 +3,8 @@
 // rand() & 0x7fff modulo 3.
 #include "game/UnkTU811.h"
 #include "game_s2/UnkProvider.h"
+#include "game_s2/UnkTunables.h"
 #include "types.h"
-
-struct UnkTunables {
-    u8 pad_0x0[0x108];
-    f32 field_0x108;
-    f32 field_0x10c;
-    f32 field_0x110;
-};
 
 struct UnkSelf_552e3c {
     u8 pad_0x0[0x29ee0];

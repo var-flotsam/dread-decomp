@@ -16,7 +16,7 @@
 
 using base::global::UnkStringData;
 
-struct UnkRecord;
+struct UnkRecord_54715c;
 struct UnkCentralUnit_b49;
 struct UnkEmmyAI_b60;
 void fn_7100369710(void* self);
@@ -132,8 +132,8 @@ void fn_71005452b4(UnkEmmyAI_l5452b4* self) {
 
     self->alerts.first.vf_0x20(false);
     self->alerts.second.vf_0x20(false);
-    const UnkRecord* current = reinterpret_cast<UnkRecord*>(self->alerts.record);
-    UnkRecord* saved = reinterpret_cast<UnkRecord*>(self->savedRecord);
+    const UnkRecord_54715c* current = reinterpret_cast<UnkRecord_54715c*>(self->alerts.record);
+    UnkRecord_54715c* saved = reinterpret_cast<UnkRecord_54715c*>(self->savedRecord);
     fn_710054715c(saved, current);
     self->alerts.recordTime = 0;
     self->vf_0x7d0();

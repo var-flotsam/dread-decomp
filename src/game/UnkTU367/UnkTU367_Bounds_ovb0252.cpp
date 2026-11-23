@@ -5,9 +5,9 @@
 #include "types.h"
 
 struct UnkNavMesh;
-struct Vec2;
+struct Vec2_ebfa7c;
 using Mesh = UnkNavMesh;
-Vec2* fn_710027a410(Mesh* mesh, u16 index);
+Vec2_ebfa7c* fn_710027a410(Mesh* mesh, u16 index);
 
 struct UnkNavMeshBounds_b0252 {
     f32 min_x, min_y, max_x, max_y;

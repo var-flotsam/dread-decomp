@@ -69,7 +69,7 @@ static_assert(__builtin_offsetof(UnkHeatRoom_ovb0083, sound_path) == 0xc50, "Unk
 struct UnkHeatRoom_b49;
 void fn_7100a45cec(UnkHeatRoom_ovb0083* self);
 struct UnkSoundMgr;
-struct UnkPathNode;
+struct UnkPathNode_CEntity_2;
 struct UnkStruct_710024fa0c;
 struct UnkPlayer;
 struct UnkInventory;
@@ -125,7 +125,7 @@ void fn_7100a27b08(UnkHeatRoom_ovb0083* self, f32 value) {
 }
 
 void fn_7100a270f4(UnkHeatRoom_ovb0083* self) {
-    fn_7100108094(g_unk_7101d4d820, reinterpret_cast<UnkPathNode*>(self->sound_path));
+    fn_7100108094(g_unk_7101d4d820, reinterpret_cast<UnkPathNode_CEntity_2*>(self->sound_path));
     Refresh(self);
     if (self->field_0x7c >= 1.0f)
         SetOnParts<0x168>(self, 1.0f);

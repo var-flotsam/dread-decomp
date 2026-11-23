@@ -127,7 +127,7 @@ void fn_7100003344(UnkBlendOwner_ovb0003* self) {
     self->entries.Clear();
 }
 
-struct UnkKeyedTable {
+struct UnkKeyedTable_b48 {
     void* vtable;
     UnkKeyedEntry* entries;  // 0x8
     void** keys;             // 0x10
@@ -143,7 +143,7 @@ struct UnkBlendSkeleton_ovb0003 {
     UnkU64Array_b47* bones;  // 0x80
 };
 
-bool fn_7100015570(UnkKeyedTable* self, void** key, UnkKeyedEntry** entry);
+bool fn_7100015570(UnkKeyedTable_b48* self, void** key, UnkKeyedEntry** entry);
 s32 fn_710019ba50(UnkU64Array_b47* self, const u64* key);
 void fn_7100015094(void* self, const void* other);
 void fn_7100015124(void* self, const void* other);
@@ -153,9 +153,9 @@ struct UnkBlendTransformer_ovb0003 {
     std::shared_ptr<void> shared;
     UnkBlendSkeleton_ovb0003* skeleton;  // 0x18
     u8 pad_0x20[0x8];
-    UnkKeyedTable source;  // 0x28
-    UnkKeyedTable target;  // 0x60
-    UnkKeyedTable table;   // 0x98
+    UnkKeyedTable_b48 source;  // 0x28
+    UnkKeyedTable_b48 target;  // 0x60
+    UnkKeyedTable_b48 table;   // 0x98
     std::shared_ptr<void> pending;  // 0xd0
     f32 field_0xe0;
     f32 weight;  // 0xe4
@@ -166,7 +166,7 @@ struct UnkBlendTransformer_ovb0003 {
 };
 static_assert(__builtin_offsetof(UnkBlendTransformer_ovb0003, has_pending) == 0x100, "layout");
 
-void fn_7100005ebc(UnkBlendTransformer_ovb0003* self, void* pose, UnkKeyedTable* table);
+void fn_7100005ebc(UnkBlendTransformer_ovb0003* self, void* pose, UnkKeyedTable_b48* table);
 void fn_7100005e4c(UnkBlendTransformer_ovb0003* self, void* out);
 
 void fn_7100003afc(UnkBlendTransformer_ovb0003* self, void* out) {
@@ -180,7 +180,7 @@ void fn_7100003afc(UnkBlendTransformer_ovb0003* self, void* out) {
             fn_7100005ebc(self, self->pending.get(), &self->table);
             self->pending.reset();
         } else {
-            const UnkKeyedTable* target = &self->target;
+            const UnkKeyedTable_b48* target = &self->target;
             fn_7100014e5c(&self->table, target);
         }
     }

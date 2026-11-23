@@ -13,7 +13,7 @@
 
 // The dropped-item manager and the item a drop's callback is handed (unit 2562).
 struct UnkDroppedItemManager;
-struct UnkDroppedItem;
+struct UnkDroppedItem_e2f9a4;
 
 // One entry of a drop's table (0x48 bytes): two ids, two colours and its counts.
 struct UnkDropTableEntry {
@@ -52,7 +52,7 @@ struct CDrop {
     void* owner;  // 0x10
     // Called with the owner, the item and the manager's two arguments; fn_7100e2f98c, fn_7100e2f994 and
     // fn_7100e2f99c pass the flag on, fn_7100e2f9a4 and fn_7100e2fa00 ignore it.
-    void (*callback)(UnkDroppedItemManager* owner, UnkDroppedItem* item, void* arg, bool flag);  // 0x18
+    void (*callback)(UnkDroppedItemManager* owner, UnkDroppedItem_e2f9a4* item, void* arg, bool flag);  // 0x18
     UnkDropTable table;       // 0x20
     base::global::CStrId item;  // 0x460
     u32 field_0x468;

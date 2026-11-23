@@ -16,7 +16,7 @@ struct UnkElem_2b2e9c {
 
 struct UnkSub;
 
-struct UnkRecord {
+struct UnkRecord_2b2e9c {
     u64 field_0x0;
     CStrId field_0x8;
     s32 field_0x10;
@@ -39,7 +39,7 @@ struct UnkRecord {
     u64 field_0x200;
 };
 
-void fn_71002b2e9c(UnkRecord* self) {
+void fn_71002b2e9c(UnkRecord_2b2e9c* self) {
     self->field_0x0 = 0;
     new (&self->field_0x8) CStrId(base::global::CStrId::Empty());
     self->field_0x10 = -1;

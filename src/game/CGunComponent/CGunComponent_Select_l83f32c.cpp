@@ -70,9 +70,9 @@ static inline bool Contains(const base::UnkStrIdVec& ids, const CStrId& id) {
     return false;
 }
 
-struct UnkSamusGunComponent;
+struct UnkSamusGunComponent_b50;
 
-bool fn_710083f32c(UnkSamusGunComponent* gun, const CStrId* id, bool primary, bool remember, bool exact) {
+bool fn_710083f32c(UnkSamusGunComponent_b50* gun, const CStrId* id, bool primary, bool remember, bool exact) {
     UnkGunComponent_l83f32c* self = reinterpret_cast<UnkGunComponent_l83f32c*>(gun);
     if (primary) {
         UnkGunWeaponGroup_l83f32c* group = self->primary.data;

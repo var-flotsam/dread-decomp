@@ -10,7 +10,7 @@
 typedef f32 a_f32;
 typedef u32 a_u32;
 
-struct UnkOut {
+struct UnkOut_42bb48 {
     f32 x;
     u32 y;
 };
@@ -51,7 +51,7 @@ struct UnkSelf {
     UnkController* field_0x48;
 };
 
-bool fn_710042bb48(UnkSelf* self, UnkOut* out) {
+bool fn_710042bb48(UnkSelf* self, UnkOut_42bb48* out) {
     bool result = false;
     if (self->field_0x48->field_0xf0 != -1.0f) {
         f32 from = self->field_0x8->field_0x44;

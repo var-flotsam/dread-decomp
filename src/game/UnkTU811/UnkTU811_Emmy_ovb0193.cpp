@@ -21,6 +21,7 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkDoorList_b0193.h"
 #include "game/UnkEmmyAI_b0193.h"
+#include "game/UnkEmmyOwner_b0193.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkNavMeshCell.h"
@@ -41,25 +42,6 @@ using base::global::CStrId;
 
 struct UnkEmmyAI_b0193;
 struct UnkEmmyActor_b0193;
-struct UnkEmmyAIObj_b0193;
-
-struct UnkEmmyAIObjVtbl_b0193 {
-    void* unk_0x0[85];
-    void* (*vf_0x2a8)(UnkEmmyAIObj_b0193* self);
-    void (*vf_0x2b0)(UnkEmmyAIObj_b0193* self, void* arg);
-};
-
-struct UnkEmmyAIObj_b0193 {
-    UnkEmmyAIObjVtbl_b0193* vtbl;
-};
-
-struct UnkEmmyOwner_b0193 {
-    u8 unk_0x0[0x218];
-    UnkEmmyAIObj_b0193* field_0x218;
-    u8 unk_0x220[0x2a0 - 0x220];
-    UnkCollisionContainer* field_0x2a0;
-};
-
 struct UnkEmmyOther_b0193 {
     u8 unk_0x0[0x34];
     u8 field_0x34;

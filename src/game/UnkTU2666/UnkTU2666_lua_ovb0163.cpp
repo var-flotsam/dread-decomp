@@ -417,7 +417,7 @@ s32 fn_7101082100(lua_State* L) {
 struct UnkGun_ovb0091;
 struct UnkPlayer;
 bool fn_710083e250(UnkGun_ovb0091* self, f32 value, bool flag);
-struct UnkGuiHolder_b0159;
+struct UnkGuiHolder_b0159_ovb0163;
 
 struct UnkSlomoRef_b0163 {
     void* field_0x0;
@@ -429,7 +429,7 @@ struct UnkHolderTarget_b0163 {
     u8 pad_0x0[0x10];
     UnkActor* field_0x10;
 };
-struct UnkGuiHolder_b0159 {
+struct UnkGuiHolder_b0159_ovb0163 {
     u8 pad_0x0[0x40];
     UnkHolderTarget_b0163* field_0x40;
 };
@@ -451,10 +451,10 @@ s32 fn_7101094230(lua_State* L) {
     if (player) {
         void* body = player->field_0x2b0;
         if (body) {
-            UnkGuiHolder_b0159* holder;
+            UnkGuiHolder_b0159_ovb0163* holder;
             {
                 CStrId id(name, true);
-                holder = reinterpret_cast<UnkGuiHolder_b0159*>(fn_7101126814(&id));
+                holder = reinterpret_cast<UnkGuiHolder_b0159_ovb0163*>(fn_7101126814(&id));
             }
             if (holder && holder->field_0x40 && holder->field_0x40->field_0x10)
                 fn_7100352b14(body, holder->field_0x40->field_0x10, 0);

@@ -18,7 +18,7 @@ struct UnkEntry {
     f32 field_0x30;
 };
 
-struct UnkPool {
+struct UnkPool_4cb554 {
     u8 pad_0x0[0x128];
     u32 count;
 };
@@ -50,7 +50,7 @@ struct UnkSelf {
     u8 pad_0x0[8];
     UnkOwner* field_0x8;
     u8 pad_0x10[0x58];
-    UnkPool* field_0x68;
+    UnkPool_4cb554* field_0x68;
     union {
         u64 field_0x70;
         struct {
@@ -72,7 +72,7 @@ struct UnkSelf {
 
 struct UnkTunable;
 
-UnkEntry* fn_71004ba10c(UnkPool* pool, u32 index, u32 flag);
+UnkEntry* fn_71004ba10c(UnkPool_4cb554* pool, u32 index, u32 flag);
 void fn_71004d1fe8(UnkActor* actor);
 
 void fn_71004cb554(UnkSelf* self) {

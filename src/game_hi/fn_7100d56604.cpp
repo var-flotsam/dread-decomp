@@ -3,18 +3,18 @@
 #include "game/UnkQueryBox.h"
 #include "types.h"
 
-struct UnkFlags {
+struct UnkFlags_d56604 {
     u32 bits;
-    UnkFlags() : bits(0) {}
-    UnkFlags(const UnkFlags& o) : bits(o.bits) {}
-    UnkFlags& operator=(const UnkFlags& o) {
+    UnkFlags_d56604() : bits(0) {}
+    UnkFlags_d56604(const UnkFlags_d56604& o) : bits(o.bits) {}
+    UnkFlags_d56604& operator=(const UnkFlags_d56604& o) {
         bits = o.bits;
         return *this;
     }
 };
 
-inline const UnkFlags& NoFlags_d56604() {
-    static UnkFlags s;
+inline const UnkFlags_d56604& NoFlags_d56604() {
+    static UnkFlags_d56604 s;
     return s;
 }
 
@@ -61,16 +61,16 @@ struct UnkLocalQuery {
 };
 
 struct UnkWorld;
-UnkFlags fn_7100d56cec(UnkWorld* self, const UnkQueryBox* box, UnkShape1* shape, const UnkMtx34* xf, void* arg);
-UnkFlags fn_7100d56930(UnkWorld* self, const UnkQueryBox* box, UnkShape2* shape, const UnkMtx34* xf, void* arg, u32 arg2);
-UnkFlags fn_7100d56b08(UnkWorld* self, const UnkQueryBox* box, UnkShape4* shape, const UnkMtx34* xf, void* arg, u32 arg2);
-UnkFlags fn_7100d56ec8(UnkWorld* self, const UnkQueryBox* box, UnkShape8* shape, const UnkMtx34* xf, void* arg, u32 arg2);
-UnkFlags fn_7100d570cc(UnkWorld* self, const UnkQueryBox* box, UnkShape40* shape, const UnkMtx34* xf, void* arg, u32 arg2);
-UnkFlags fn_7100d65b70(UnkShape10_d56604* shape, const UnkQueryBox* box, UnkLocalQuery* query);
+UnkFlags_d56604 fn_7100d56cec(UnkWorld* self, const UnkQueryBox* box, UnkShape1* shape, const UnkMtx34* xf, void* arg);
+UnkFlags_d56604 fn_7100d56930(UnkWorld* self, const UnkQueryBox* box, UnkShape2* shape, const UnkMtx34* xf, void* arg, u32 arg2);
+UnkFlags_d56604 fn_7100d56b08(UnkWorld* self, const UnkQueryBox* box, UnkShape4* shape, const UnkMtx34* xf, void* arg, u32 arg2);
+UnkFlags_d56604 fn_7100d56ec8(UnkWorld* self, const UnkQueryBox* box, UnkShape8* shape, const UnkMtx34* xf, void* arg, u32 arg2);
+UnkFlags_d56604 fn_7100d570cc(UnkWorld* self, const UnkQueryBox* box, UnkShape40* shape, const UnkMtx34* xf, void* arg, u32 arg2);
+UnkFlags_d56604 fn_7100d65b70(UnkShape10_d56604* shape, const UnkQueryBox* box, UnkLocalQuery* query);
 
 // NON_MATCHING(minor): in the inline type-0x10 case the local box translation, the query object's
 // field stores and the vtable load are scheduled in a different order; same instructions otherwise.
-UnkFlags fn_7100d56604(UnkWorld* self, const UnkQueryBox* box, UnkShape* shape, const UnkMtx34* xf, void* arg, u32 arg2) {
+UnkFlags_d56604 fn_7100d56604(UnkWorld* self, const UnkQueryBox* box, UnkShape* shape, const UnkMtx34* xf, void* arg, u32 arg2) {
     switch (shape->GetType()) {
     case 1:
         return fn_7100d56cec(self, box, ShapeCast<UnkShape1, 1>(shape), xf, arg);
@@ -84,7 +84,7 @@ UnkFlags fn_7100d56604(UnkWorld* self, const UnkQueryBox* box, UnkShape* shape, 
         return fn_7100d570cc(self, box, ShapeCast<UnkShape40, 0x40>(shape), xf, arg, arg2);
     case 0x10: {
         UnkShape10_d56604* s = ShapeCast<UnkShape10_d56604, 0x10>(shape);
-        UnkFlags result = NoFlags_d56604();
+        UnkFlags_d56604 result = NoFlags_d56604();
         UnkQueryBox local = *box;
         Vec3_d56604 t = xf->GetTranslation();
         local.minX -= t.x;
@@ -93,7 +93,7 @@ UnkFlags fn_7100d56604(UnkWorld* self, const UnkQueryBox* box, UnkShape* shape, 
         local.maxY -= t.y;
         UnkLocalQuery q(t, s->field_0xa8, arg);
         result = fn_7100d65b70(s, &local, &q);
-        return UnkFlags(result);
+        return UnkFlags_d56604(result);
     }
     }
     return NoFlags_d56604();
