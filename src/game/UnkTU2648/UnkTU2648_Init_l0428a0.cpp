@@ -61,9 +61,9 @@ void fn_71010428a0() {
     UnkTUHeader_l0428a0& h = g_unk_71729fc130;
     h.field_0x0 = 6;
     new (&h.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &h.binaries, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &h.binaries, &g_unk_7101a19000);
     new (&h.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &h.sources, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &h.sources, &g_unk_7101a19000);
     h.field_0x28 = -1.0f;
     h.field_0x2c = -1.0f;
     h.field_0x30 = true;

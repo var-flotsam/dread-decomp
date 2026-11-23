@@ -157,7 +157,7 @@ __attribute__((noinline)) UnkReturnedValue_b0217 fn_7100ad32d0(UnkNoArg, const C
         return UnkReturnedValue_b0217(number, refl_TypeOf<fn_7100005178>);
     }
     UnkStrIdSlot_b0217 slot;
-    fn_7100000850(&slot.id, *text, true);
+    CStrId_ConstructFromRntString(&slot.id, *text, true);
     return UnkReturnedValue_b0217(slot.id, refl_TypeOf<fn_7100009658>);
 }
 

@@ -59,7 +59,7 @@ struct UnkTextStrId_lac73c8 {
     UnkStringData* data;
 
     explicit UnkTextStrId_lac73c8(const CRntString& text) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), text, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), text, true);
     }
     ~UnkTextStrId_lac73c8() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
@@ -80,7 +80,7 @@ static inline void AssignText(CStrId& dst, const CRntString& text) {
     struct {
         UnkStringData* data;
     } id;
-    fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(&id), text, true);
+    CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(&id), text, true);
     UnkStringPool* pool = g_unk_7101d47108;
     if (pool) {
         if (dst.data && dst.data != &pool->empty) {

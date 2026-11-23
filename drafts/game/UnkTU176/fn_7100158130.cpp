@@ -82,9 +82,9 @@ void fn_7100158130() {
     UnkUnit176Statics& s = g_unk_716e29c6d4;
     s.header = 6;
     new (&s.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &s.binaries, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &s.binaries, g_unk_7101a19000);
     new (&s.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &s.sources, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &s.sources, g_unk_7101a19000);
     fn_71001537c0(&g_unk_716e29bcd0[0]);
     fn_71001537c0(&g_unk_716e29bcd0[1]);
     fn_7100000250(fn_71001580c0, nullptr, g_unk_7101a19000);

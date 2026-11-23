@@ -21,7 +21,7 @@ inline void UnkPoolFind(UnkPoolIter* it, char* set, u64 key) {
         u32 bucket = (u32)key % *reinterpret_cast<u32*>(set + 0xc);
         if (bucket < n) {
             char* prev = nullptr;
-            char* node = *fn_7100080824(set, bucket);
+            char* node = *StringPool_Bucket(set, bucket);
             while (node && *reinterpret_cast<u64*>(node) != key) {
                 prev = node;
                 node = *reinterpret_cast<char**>(node + 0x50);
@@ -46,8 +46,8 @@ void fn_71000803a4(UnkStringPool* pool_, UnkStringData* data_) {
     if (pool + 0x10 == data || !owner)
         return;
     if (char* str = *reinterpret_cast<char**>(data)) {
-        if (fn_710007f240(data + 0x10, "")) {
-            fn_7100084144(g_unk_7101d58d40, str);
+        if (StringBuffer_Differs(data + 0x10, "")) {
+            StringHeap_Free(g_unk_7101d58d40, str);
             *reinterpret_cast<char**>(data) = nullptr;
         }
     }
@@ -57,5 +57,5 @@ void fn_71000803a4(UnkStringPool* pool_, UnkStringData* data_) {
     UnkPoolIter* it = reinterpret_cast<UnkPoolIter*>(raw);
     base::global::UnkPoolFind(it, set, *reinterpret_cast<u64*>(data + 0x30));
     fn_7100080a00(set, it);
-    fn_710007edac(buffer, "", 0, -1);
+    StringBuffer_Assign(buffer, "", 0, -1);
 }

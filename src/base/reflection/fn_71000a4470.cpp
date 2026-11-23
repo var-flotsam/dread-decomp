@@ -20,9 +20,9 @@ void fn_71000a2184(void*);
 void fn_71000a2270(void* obj, CStrId* name, void (*fn)(void*), void* a);
 void fn_71000a4470() {
     new (&g_unk_7101d5bdb0[0]) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &g_unk_7101d5bdb0[0], &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7101d5bdb0[0], &g_unk_7101a19000);
     new (&g_unk_7101d5bdb0[1]) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &g_unk_7101d5bdb0[1], &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7101d5bdb0[1], &g_unk_7101a19000);
     {
         CStrId name("EExecutionReturnValue", true);
         fn_71000a2270(base::reflection::TypeObject<EExecutionReturnValue, u8[]>::object, &name, fn_71000a2184, nullptr);

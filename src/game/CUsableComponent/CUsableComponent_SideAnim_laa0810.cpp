@@ -123,7 +123,7 @@ void fn_7100aa0810(UnkUsable_laa0810* self, const CStrId* prefix, CStrId* side, 
     }
     if (found) {
         UnkStrIdSlot_laa0810 slot;
-        fn_7100000850(&slot.id, *name.Str(), true);
+        CStrId_ConstructFromRntString(&slot.id, *name.Str(), true);
         animation_id->Reset();
         animation_id->data = slot.id.data;
     }

@@ -106,5 +106,5 @@ void fn_7100fa0e20() {
     InitConverter(g_unk_71729ecc18, refl_TypeOf<fn_7100f9d5bc>, refl_TypeOf<fn_7100ef0e00>, fn_7100f9fc9c);
 
     new (&g_unk_71729ecc38) CStrId("No Enemies", true);
-    fn_7100000250(fn_710000051c, &g_unk_71729ecc38, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_71729ecc38, &g_unk_7101a19000);
 }

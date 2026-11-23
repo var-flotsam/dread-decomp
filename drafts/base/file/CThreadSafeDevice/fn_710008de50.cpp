@@ -52,7 +52,7 @@ struct UnkTextId_l08de50 {
 };
 using UnkTextPath_l08de50 =
     UnkTextId_l08de50<g_unk_7101d47200, base::global::UnkFilePathStrIdBase, fn_710001a270>;
-using UnkTextStrId_l08de50 = UnkTextId_l08de50<g_unk_7101d47108, base::global::UnkStrIdBase, fn_7100000850>;
+using UnkTextStrId_l08de50 = UnkTextId_l08de50<g_unk_7101d47108, base::global::UnkStrIdBase, CStrId_ConstructFromRntString>;
 
 // Makes `id` share `other`'s string: the new string gains a reference before the old one is released.
 template <UnkStringPool*& Pool, class Id, class Other>

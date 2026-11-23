@@ -69,7 +69,7 @@ void fn_7100a75a70() {
     tu.field_0x50 = true;
 
     new (&g_unk_717274ec08) CStrId("ACCESSPOINT", true);
-    fn_7100000250(fn_710000051c, &g_unk_717274ec08, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_717274ec08, &g_unk_7101a19000);
     InitProperty(&g_unk_717274ec10, g_unk_7101a901e8, g_unk_71726db788, "ThermalDoorOpened",
                  refl_TypeOf<fn_710000d228>(), fn_7100a7399c, fn_7100a6b5b4);
 

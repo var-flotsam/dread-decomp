@@ -40,10 +40,10 @@ void fn_7100a03790(UnkSmartObjectNames* self, const CStrId* name) {
     UnkBufferString<0x80, g_unk_7101a1b750> right("right");
     fn_710007f3b4(left.Str(), &IdString(self->other_name));
     fn_710007f3b4(right.Str(), &IdString(self->other_name));
-    fn_7100000850(&slot.id, *left.Str(), true);
+    CStrId_ConstructFromRntString(&slot.id, *left.Str(), true);
     self->other_left.ReleaseAndTake(slot.id);
     slot.id.~CStrId();
-    fn_7100000850(&slot.id, *right.Str(), true);
+    CStrId_ConstructFromRntString(&slot.id, *right.Str(), true);
     self->other_right.ReleaseAndTake(slot.id);
     slot.id.~CStrId();
 }

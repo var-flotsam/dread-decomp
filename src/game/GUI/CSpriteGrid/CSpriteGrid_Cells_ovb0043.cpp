@@ -41,7 +41,7 @@ struct UnkFrameId_ovb0043 {
     union {
         CStrId id;
     };
-    explicit UnkFrameId_ovb0043(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkFrameId_ovb0043(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkFrameId_ovb0043() { id.~CStrId(); }
 };
 

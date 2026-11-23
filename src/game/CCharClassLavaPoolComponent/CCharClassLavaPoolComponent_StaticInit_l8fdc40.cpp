@@ -56,7 +56,7 @@ void fn_71008fdc40() {
     tu.field_0x34 = -1.0f;
     tu.field_0x38 = true;
     new (&g_unk_7172733330) CStrId("LAVA_POOL", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172733330, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172733330, &g_unk_7101a19000);
     InitProperty(&g_unk_7172733338, g_unk_7101a809f0, g_unk_71726db788, "Used", refl_TypeOf<fn_710000d228>(),
                  fn_71008fd2ac, fn_71008fab30);
     InitPropertyEx(&g_unk_7172733360, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, fn_71002ef5bc,
@@ -77,5 +77,5 @@ void fn_71008fdc40() {
         CStrId name("CLavaPoolComponent", true);
         new (&tu.component_id) CStrId(fn_7100de8f78(name));
     }
-    fn_7100000250(fn_710000051c, &tu.component_id, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.component_id, &g_unk_7101a19000);
 }

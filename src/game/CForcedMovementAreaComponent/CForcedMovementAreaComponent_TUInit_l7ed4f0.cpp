@@ -49,7 +49,7 @@ void fn_71007ed4f0() {
     InitId(&tu.name, "ForcedMovementAreaComponent");
     InitId(&tu.field_0x38, "ForcedMovementAreaComponent");
     new (&tu.id) CStrId(fn_7100de8f78(ForcedMovementAreaId()));
-    fn_7100000250(fn_710000051c, &tu.id, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.id, g_unk_7101a19000);
     InitEnum(&base::reflection::TypeObject<CForcedMovementAreaComponent::EForcedDirection, UnkEnumType>::object, "CForcedMovementAreaComponent::EForcedDirection", fn_71007e8e2c, fn_71007e8c80,
              g_unk_717271fd38, &g_unk_717271fd40, fn_71007ece64, &g_unk_717271fd60, fn_71007ece70);
     fn_71007e8fb0();

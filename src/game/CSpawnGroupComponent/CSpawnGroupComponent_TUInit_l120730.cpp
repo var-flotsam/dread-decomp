@@ -35,7 +35,7 @@ void fn_7101120730() {
     UnkSpawnGroupTU& tu = g_unk_7172a06798;
     InitHeader(tu.header);
     new (&g_unk_7172a065d8) CStrId("SPAWNGROUP", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172a065d8, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172a065d8, &g_unk_7101a19000);
     InitProperty(&g_unk_7172a065e0, g_unk_7101cb2828, g_unk_71726db788, "Enabled", refl_TypeOf<fn_710000d228>(),
                  fn_710111fa80, fn_71011173fc);
     InitProperty(&g_unk_7172a06608, g_unk_7101cb2828, g_unk_71726db788, "NumDeaths", refl_TypeOf<fn_7100014768>(),
@@ -45,7 +45,7 @@ void fn_7101120730() {
     new (&g_unk_7172a06638) UnkValue(CStrId("vectSpawnPoints", true), refl_TypeOf<fn_7100009658>);
     fn_7100000250(fn_710010c424, &g_unk_7172a06638, &g_unk_7101a19000);
     new (&tu.metroid_key) CStrId(fn_7100de8f78(CStrId("SPAWNGROUPS:METROID", true)));
-    fn_7100000250(fn_710000051c, &tu.metroid_key, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.metroid_key, &g_unk_7101a19000);
     new (&tu.key) CStrId(fn_7100de8f78(SpawnGroupId()));
-    fn_7100000250(fn_710000051c, &tu.key, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.key, &g_unk_7101a19000);
 }

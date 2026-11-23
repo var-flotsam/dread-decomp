@@ -191,7 +191,7 @@ struct UnkAttackStrId_b0086 {
     UnkStringData* data;
 
     explicit UnkAttackStrId_b0086(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     explicit UnkAttackStrId_b0086(const CStrId& other) : data(other.data) {
         if (&g_unk_7101d47108->empty != data)

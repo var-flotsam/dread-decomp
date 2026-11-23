@@ -54,7 +54,7 @@ struct UnkNameId_l19a610 {
     UnkStringData* data;
 
     explicit UnkNameId_l19a610(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkNameId_l19a610() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
 };

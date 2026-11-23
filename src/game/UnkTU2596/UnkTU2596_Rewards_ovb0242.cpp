@@ -359,7 +359,7 @@ bool fn_7100f14f80(s32 kind, s32 variant) {
     if ((u32)variant <= 2)
         fn_710007f564(text.raw, g_unk_7101cab178[variant]);
     UnkIdSlot_b0242 slot;
-    fn_7100000850(&slot.id, *reinterpret_cast<CRntString*>(text.raw), true);
+    CStrId_ConstructFromRntString(&slot.id, *reinterpret_cast<CRntString*>(text.raw), true);
     return fn_7100f15054(&slot.id);
 }
 

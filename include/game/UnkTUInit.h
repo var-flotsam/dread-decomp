@@ -54,9 +54,9 @@ struct UnkTUHeader {
 __attribute__((always_inline)) static inline void InitHeader(UnkTUHeader& h) {
     h.field_0x0 = 6;
     new (&h.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &h.binaries, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &h.binaries, &g_unk_7101a19000);
     new (&h.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &h.sources, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &h.sources, &g_unk_7101a19000);
 }
 
 // A class type: constructed from its name by `ctor` with its base type (if any) and an init
@@ -157,9 +157,9 @@ template <class Header>
 __attribute__((always_inline)) static inline void InitHeaderFns(Header& h) {
     h.field_0x0 = 6;
     new (&h.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &h.binaries, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &h.binaries, &g_unk_7101a19000);
     new (&h.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &h.sources, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &h.sources, &g_unk_7101a19000);
     InitRecord(h.fns[0], fn_710000cf00);
     InitRecord(h.fns[1], fn_710000d470);
     InitRecord(h.fns[2], fn_710000d4f4);

@@ -99,9 +99,9 @@ static inline void (*AsInit(void (*init)(base::reflection::CClass*)))() {
 
 void fn_710001f460() {
     new (&HeaderIds().sources) UnkStrIdBase("sources", true);
-    fn_7100000250(fn_710000051c, &HeaderIds().sources, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &HeaderIds().sources, g_unk_7101a19000);
     new (&HeaderIds().binaries) UnkStrIdBase("binaries", true);
-    fn_7100000250(fn_710000051c, &HeaderIds().binaries, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &HeaderIds().binaries, g_unk_7101a19000);
 
     InitClass(AsUnk(g_unk_7101d4d998), "base::core::AssetName", fn_7100018bc4, AsInit(fn_7100018a44));
     fn_710009ec00(g_unk_7101d4dad0, g_unk_7101d4d998);

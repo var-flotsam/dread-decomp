@@ -37,7 +37,7 @@ struct UnkBuiltId_e01680 {
     };
 
     explicit UnkBuiltId_e01680(const UnkInlineString& str) {
-        fn_7100000850(&id, *reinterpret_cast<const base::global::CRntString*>(&str), true);
+        CStrId_ConstructFromRntString(&id, *reinterpret_cast<const base::global::CRntString*>(&str), true);
     }
     ~UnkBuiltId_e01680() { id.~CStrId(); }
 };

@@ -12,7 +12,7 @@ using base::global::CStrId;
 CStrId* fn_7100ad37c0(CStrId* self, void* source) {
     UnkStrIdSlot slot;
     CRntString str = fn_7100ad3614(source);
-    fn_7100000850(&slot.id, str, true);
+    CStrId_ConstructFromRntString(&slot.id, str, true);
     self->ReleaseAndTake(slot.id);
     return self;
 }

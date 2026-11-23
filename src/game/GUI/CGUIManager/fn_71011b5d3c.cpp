@@ -8,7 +8,7 @@
 UnkGuiDisplayObject* fn_71011b5d3c(UnkGuiRoot* root, const char* const* path) {
     if (!root->menu)
         return nullptr;
-    if (fn_710007f240(reinterpret_cast<char*>(const_cast<const char**>(path)), "[Root]"))
+    if (StringBuffer_Differs(reinterpret_cast<char*>(const_cast<const char**>(path)), "[Root]"))
         return unk_gui::fn_71011d9508(root->menu, path);
     return root->menu;
 }

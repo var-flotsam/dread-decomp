@@ -24,9 +24,9 @@ void fn_7100a05880() {
     fn_7100a00014();
     fn_710009ec00(&g_unk_7172742c68, &tu.type);
     new (&tu.id) CStrId(fn_7100de8f78(CStrId("SMARTOBJS", true)));
-    fn_7100000250(fn_710000051c, &tu.id, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.id, &g_unk_7101a19000);
     new (&tu.use_init) CStrId("useinit", true);
-    fn_7100000250(fn_710000051c, &tu.use_init, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.use_init, &g_unk_7101a19000);
     new (&tu.use_abort) CStrId("useabort", true);
-    fn_7100000250(fn_710000051c, &tu.use_abort, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.use_abort, &g_unk_7101a19000);
 }

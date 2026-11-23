@@ -35,7 +35,7 @@ struct UnkFxTextId_l80fc90 {
     UnkStringData* data;
 
     explicit UnkFxTextId_l80fc90(const CRntString& text) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), text, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), text, true);
     }
     ~UnkFxTextId_l80fc90() {
         if (UnkStringPool* pool = g_unk_7101d47108) {

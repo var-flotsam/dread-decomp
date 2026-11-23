@@ -160,7 +160,7 @@ static inline const CStrId& DebugPrefix_ovb0032() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&slot.guard), __ATOMIC_ACQUIRE) & 1), 0)) {
         if (__cxa_guard_acquire(&slot.guard)) {
             new (&slot.id) CStrId("ST_DEBUG_", true);
-            fn_7100000250(fn_710000051c, &slot.id, &g_unk_7101a19000);
+            fn_7100000250(CStrId_Destroy, &slot.id, &g_unk_7101a19000);
             __cxa_guard_release(&slot.guard);
         }
     }

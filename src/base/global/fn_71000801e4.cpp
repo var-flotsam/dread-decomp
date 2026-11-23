@@ -25,7 +25,7 @@ UnkStringData* fn_71000801e4(UnkStringPool* pool_, u64 hash, const char* str, u3
     if (node) {
         *reinterpret_cast<u64*>(node) = hash;
         *reinterpret_cast<u32*>(node + 0x10) = 0;
-        fn_710007ecb4(node + 0x18, "", 0, -1);
+        StringBuffer_Construct(node + 0x18, "", 0, -1);
         *reinterpret_cast<u8*>(node + 0x48) = 1;
         *reinterpret_cast<u32*>(node + 0x4c) = 0;
         *reinterpret_cast<char**>(node + 0x8) = nullptr;
@@ -36,7 +36,7 @@ UnkStringData* fn_71000801e4(UnkStringPool* pool_, u64 hash, const char* str, u3
     first = bucket < first ? bucket : first;
     if (first == bucket)
         *reinterpret_cast<char**>(set + 0x30) = node;
-    char** slot = fn_7100080824(set, bucket);
+    char** slot = StringPool_Bucket(set, bucket);
     *reinterpret_cast<char**>(node + 0x50) = *slot;
     *slot = node;
     ++*reinterpret_cast<u32*>(set + 0x44);
@@ -46,13 +46,13 @@ UnkStringData* fn_71000801e4(UnkStringPool* pool_, u64 hash, const char* str, u3
     char* data = node + 8;
     char* buffer = data + 0x10;
     char* old = *reinterpret_cast<char**>(data);
-    if (fn_710007f240(buffer, "")) {
-        fn_7100084144(g_unk_7101d58d40, old);
+    if (StringBuffer_Differs(buffer, "")) {
+        StringHeap_Free(g_unk_7101d58d40, old);
         *reinterpret_cast<char**>(data) = nullptr;
     }
     const char* s = "";
     if (str && copy) {
-        char* block = fn_7100084030(g_unk_7101d58d40, length);
+        char* block = StringHeap_Alloc(g_unk_7101d58d40, length);
         *reinterpret_cast<char**>(data) = block;
         char* mem = *reinterpret_cast<char**>(block);
         strcpy(mem, str);
@@ -61,6 +61,6 @@ UnkStringData* fn_71000801e4(UnkStringPool* pool_, u64 hash, const char* str, u3
     *reinterpret_cast<u32*>(data + 8) = 1;
     *reinterpret_cast<u32*>(data + 0x44) = 0;
     *reinterpret_cast<u8*>(data + 0x40) = copy;
-    fn_710007edac(buffer, s, length, hash);
+    StringBuffer_Assign(buffer, s, length, hash);
     return reinterpret_cast<UnkStringData*>(data);
 }

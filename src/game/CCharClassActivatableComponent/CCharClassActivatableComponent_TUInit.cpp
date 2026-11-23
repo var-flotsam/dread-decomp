@@ -27,7 +27,7 @@ void fn_7100878e20() {
     UnkCharClassActivatableTU& tu = g_unk_717272a488;
     InitHeader(tu.header);
     new (&g_unk_717272a3e8) CStrId("ACTIVATABLE", true);
-    fn_7100000250(fn_710000051c, &g_unk_717272a3e8, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_717272a3e8, &g_unk_7101a19000);
     InitPropertyVtableFirst(&g_unk_717272a3f0, reinterpret_cast<void**>(g_unk_7101a7ada8), g_unk_71726db788,
                             "Activated", refl_TypeOf<fn_710000d228>(), fn_7100878ac0, fn_7100877b90);
     InitProperty(&g_unk_717272a418, reinterpret_cast<void**>(g_unk_7101a7ada8), g_unk_71726db788, "Enabled",

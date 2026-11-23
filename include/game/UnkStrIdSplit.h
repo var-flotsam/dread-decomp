@@ -86,7 +86,7 @@ __attribute__((always_inline)) inline void UnkSplitStrIds(const base::global::CS
             UnkStrPiece* piece = list.At(i);
             alignas(8) u8 raw[sizeof(base::global::CStrId)];
             auto* built = reinterpret_cast<base::global::CStrId*>(raw);
-            fn_7100000850(built, *reinterpret_cast<const base::global::CRntString*>(piece), true);
+            CStrId_ConstructFromRntString(built, *reinterpret_cast<const base::global::CRntString*>(piece), true);
             if (out->field_0x14 && out->count <= i) {
                 u32 cap = out->capacity;
                 if (cap <= i && out->step != 0)

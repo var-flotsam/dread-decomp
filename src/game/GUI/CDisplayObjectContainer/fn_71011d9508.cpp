@@ -95,7 +95,7 @@ UnkGuiDisplayObject* fn_71011d9508(UnkGuiDisplayObject* self, const char* const*
             break;
         }
         UnkIdHolder_71011d9508 id;
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(&id), tok->str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(&id), tok->str, true);
         UnkDisplayObject_71011d9508* found = nullptr;
         if (UnkChildLink_71011d9508* l = cur->children) {
             do {

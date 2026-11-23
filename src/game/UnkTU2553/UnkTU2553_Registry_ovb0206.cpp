@@ -895,7 +895,7 @@ static inline T* Singleton_dfe36c(T*& instance) {
 void fn_7100dfe36c(UnkGameManager* manager) {
     UnkGameManagerIngame_dfe36c* self = reinterpret_cast<UnkGameManagerIngame_dfe36c*>(manager);
     char* mode = static_cast<char*>(manager->field_0x498);
-    if (!mode || fn_710007f240(mode + 8, "INGAME")) {
+    if (!mode || StringBuffer_Differs(mode + 8, "INGAME")) {
         CRntString ingame("INGAME");
         fn_710007eaa0(&self->field_0x5d0, &ingame);
         self->field_0x5c8 = 1;

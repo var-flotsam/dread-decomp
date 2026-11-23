@@ -65,7 +65,7 @@ struct UnkAnimId_l4716e0 {
     UnkStringData* data;
 
     explicit UnkAnimId_l4716e0(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkAnimId_l4716e0() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
 };

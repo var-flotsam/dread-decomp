@@ -26,8 +26,8 @@ extern void* g_unk_7101aa5b90[];
 __attribute__((always_inline)) inline void InitFXMaterialEvent(UnkFXMaterialEvent* self, void** vtable) {
     fn_7100067ea4(self);
     self->vtable = vtable + 2;
-    fn_71000003d4(&self->id_0x10, "", true);
-    fn_71000003d4(&self->id_0x18, "", true);
+    CStrId_Construct(&self->id_0x10, "", true);
+    CStrId_Construct(&self->id_0x18, "", true);
     self->field_0x20 = 0;
     self->field_0x24 = 1;
     self->field_0x28 = 0;

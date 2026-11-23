@@ -40,7 +40,7 @@ void fn_7100ae9a10(UnkQualifiedId* self, UnkIdSource* source, const CStrId& pref
     fn_710007f3b4(str, UseStr(source->vf_0x28()));
     {
         UnkStringData* tmp;
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(&tmp), *str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(&tmp), *str, true);
         // Move-assign: release the old id, then take over the new one.
         if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
             if (self->id.data && self->id.data != &pool->empty) {

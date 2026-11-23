@@ -20,9 +20,9 @@ __attribute__((always_inline)) inline void InitResource(UnkResourceStatics* s, c
                                                         const char* name, const char* ext, const char* source,
                                                         void* registry, const char* category) {
     new (&s->sources) UnkStrIdBase("sources", true);
-    __cxa_atexit(fn_710000051c, &s->sources, g_unk_7101a19000);
+    __cxa_atexit(CStrId_Destroy, &s->sources, g_unk_7101a19000);
     new (&s->binaries) UnkStrIdBase("binaries", true);
-    __cxa_atexit(fn_710000051c, &s->binaries, g_unk_7101a19000);
+    __cxa_atexit(CStrId_Destroy, &s->binaries, g_unk_7101a19000);
     get_class();
     fn_710009ec00(list, s->type);
     {

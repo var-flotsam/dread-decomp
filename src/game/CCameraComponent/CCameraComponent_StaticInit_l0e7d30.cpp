@@ -70,9 +70,9 @@ struct UnkValueCopy_l0e7d30 {
 void fn_71010e7d30() {
     InitHeader(g_unk_7172a045d8.header);
     new (&g_unk_7172a045d8.default_near) CStrId("DefaultNear", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172a045d8.default_near, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172a045d8.default_near, &g_unk_7101a19000);
     new (&g_unk_7172a045d8.default_far) CStrId("DefaultFar", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172a045d8.default_far, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172a045d8.default_far, &g_unk_7101a19000);
 
     fn_710009ec00(g_unk_7172a04268, const_cast<base::reflection::CType*>(fn_71010df6c0()));
     fn_71010df7a0();

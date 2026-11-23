@@ -9,7 +9,7 @@
 using base::global::CStrId;
 using base::global::UnkStringPool;
 
-void fn_710000051c(void* id) {
+void CStrId_Destroy(void* id) {
     static_cast<CStrId*>(id)->Reset();
 }
 
