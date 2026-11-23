@@ -33,9 +33,8 @@ struct UnkColor_lb02ff8 {
 // A display object's colour (+0xa0), as the label refresh below passes it back.
 struct UnkGuiColored_lb02ff8 {
     u8 pad_0x0[0xa0];
-    UnkColor_lb02ff8 color;  // 0xa0
+    unk_gui::UnkColor color;  // 0xa0
 };
-void fn_71011ce488(UnkGuiDisplayObject* self, const UnkColor_lb02ff8* color);
 
 struct UnkMainMenu_lb02ff8 {
     u8 pad_0x0[0x4f0];

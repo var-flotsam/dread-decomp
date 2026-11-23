@@ -26,5 +26,7 @@ extern unk_static_init::UnkEnumType g_unk_71729f01a0;
 extern unk_static_init::UnkEnumType g_unk_71729f01a8;
 extern unk_static_init::UnkEnumType g_unk_71729f01b0;
 extern unk_static_init::UnkEnumType g_unk_71729f01d0;
+extern unk_static_init::UnkEnumType g_unk_71729f0228;
+extern unk_static_init::UnkEnumType g_unk_71729f0278;
 extern UnkStateKey g_unk_71729f0178;
 extern UnkStateKey g_unk_71729f0180;

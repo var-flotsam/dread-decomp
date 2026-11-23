@@ -5446,7 +5446,7 @@ address,size,name,name_source,subsystem,status
 0x71006dfa64,4,fn_71006dfa64,unknown,game/components?,O
 0x71006dfa68,28,fn_71006dfa68,unknown,game/components?,O
 0x71006dfa84,4,fn_71006dfa84,unknown,game/components?,O
-0x71006dfa88,488,fn_71006dfa88,unknown,game/components?,U
+0x71006dfa88,488,fn_71006dfa88,unknown,game/components?,O
 0x71006dfc70,28,fn_71006dfc70,unknown,game/components?,O
 0x71006dfc8c,132,fn_71006dfc8c,unknown,game/components?,O
 0x71006dfd10,8,CVulkranMagmaBallMovementComponent::refl_Equals,reflection,game/components,O
