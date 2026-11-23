@@ -59,7 +59,7 @@ struct UnkActorDefMap {
     UnkBlockPool pool;
 
     UnkActorDefMap()
-        : buckets(0xe), first_bucket(-1), first_node(nullptr), allocator(fn_7100083990()), flags(0xe), count(0),
+        : buckets(0xe), first_bucket(-1), first_node(nullptr), allocator(GetDefaultAllocator()), flags(0xe), count(0),
           version(1) {
         pool.Init();
         pool.field_0x38 = 0;
@@ -133,7 +133,7 @@ struct UnkActorDefEntryId {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = *Pool;
                 }
             }

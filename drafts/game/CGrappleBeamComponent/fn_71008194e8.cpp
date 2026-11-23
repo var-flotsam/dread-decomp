@@ -72,7 +72,7 @@ static_assert(__builtin_offsetof(UnkGrappleBeam_l8194e8, length) == 0x540, "layo
 static_assert(__builtin_offsetof(UnkGrappleBeam_l8194e8, beam_part) == 0x730, "layout");
 
 static inline u64 HashOf(const char* name) {
-    return fn_7100001570(name, __builtin_strlen(name));
+    return StringCrc64(name, __builtin_strlen(name));
 }
 
 // The part of the world named `name`, or null when the world does not have it (fn_710114e680).

@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -110,14 +110,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fInitialAccumulatedTime", 0x4b8, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fActivationTime", 0x4b0, (DefaultValue, 2.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimePerShot", 0x4b4, (DefaultValue, 0.3f), (MinValue, 0.0f), (MaxValue, 100.0f));
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("vTargetsToActivate", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x388, -1, -1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("vTargetsToActivate", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x388, -1, -1);
     field3->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field3->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 10);
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("vTargetsToDeactivate", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x3b0, -1, -1);
+    CVariable* field4 = AddReflectedField(cls, CStrId("vTargetsToDeactivate", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x3b0, -1, -1);
     field4->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field4->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 10);
     DREAD_REFLECTED_FIELD(CStrId, "sOnUseEntityTimeline", 0x4d8, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field6 = AddReflectedField(cls, CStrId("wpAtmosphereEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x530, -1, -1);
+    CVariable* field6 = AddReflectedField(cls, CStrId("wpAtmosphereEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x530, -1, -1);
     field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SActivatabledOnEventInfo>", "vEntitiesActivatabledOnEvent", 0x4e0);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SActivatabledOnEventInfo>", "vEntitiesDeactivatabledOnEvent", 0x508);

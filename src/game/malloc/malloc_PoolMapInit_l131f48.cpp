@@ -31,7 +31,7 @@ void fn_7100131f48(UnkStatsObject* self) {
     self->pool_vtable = reinterpret_cast<char*>(g_unk_7101a1bdf8) + 0x10;
     self->pool_field_0x50 = 0;
     self->pool_field_0x60 = nullptr;
-    self->pool_allocator = fn_7100083990();
+    self->pool_allocator = GetDefaultAllocator();
     self->pool_field_0x70 = 0x13;
     self->map.Clear();
     for (UnkPoolMapBlock* block = self->pool_blocks; block;) {

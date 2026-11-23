@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -30,7 +30,7 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 namespace CChozoWarriorAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpChozoWarrioXSpawnPoint", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x149d8, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("wpChozoWarrioXSpawnPoint", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x149d8, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 3);
     DREAD_REFLECTED_FIELD_OF("CChozoWarriorAIComponent::ETransformationType", "eTransformationType", 0x149cc, (DefaultValue, 1));
 }

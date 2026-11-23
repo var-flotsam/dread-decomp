@@ -37,18 +37,18 @@ struct UnkReflAttrKey {
 };
 static_assert(sizeof(UnkReflAttrKey) == 0x18, "UnkReflAttrKey layout");
 struct UnkReflAttrs;    // 0x38 bytes, created on first use
-struct UnkReflField;    // a member field descriptor; its attributes are at +0x38
+struct CVariable;    // a member field descriptor; its attributes are at +0x38
 // A reflected function (0xb8 bytes, in CClass+0x110). Getter/setter-backed fields register
 // one getter and one setter function and then a field that refers to them by index.
-struct UnkReflFunction;
+struct CFunction;
 // The reflected function's virtual table, as far as the registration functions use it.
 struct UnkReflFunctionVtbl {
     void* unk_0x0[9];
-    UnkReflAttrs* (*vf_0x48)(UnkReflFunction* self);  // the function's attributes
+    UnkReflAttrs* (*vf_0x48)(CFunction* self);  // the function's attributes
     void* unk_0x50;
-    UnkReflAttrs* (*vf_0x58)(UnkReflFunction* self, u32 index);  // a parameter's attributes
+    UnkReflAttrs* (*vf_0x58)(CFunction* self, u32 index);  // a parameter's attributes
 };
-struct UnkReflFunction {
+struct CFunction {
     const UnkReflFunctionVtbl* vtbl;
     base::global::CRntVector<const CType*> params;  // parameter types (fn_7100a19530 adds one)
     base::global::UnkStrId name;
@@ -62,7 +62,7 @@ struct UnkReflFunction {
     UnkReflAttrs* Attrs() { return vtbl->vf_0x48(this); }
     UnkReflAttrs* ParamAttrs(u32 index) { return vtbl->vf_0x58(this, index); }
 };
-static_assert(sizeof(UnkReflFunction) == 0xb8, "function array stride");
+static_assert(sizeof(CFunction) == 0xb8, "function array stride");
 
 struct UnkTunableRegistry;  // 0x58 bytes, created on first use by the CTunable* field functions
 struct UnkTunable;          // the global a CTunable* class registers
@@ -81,7 +81,7 @@ void fn_71000934b8(base::reflection::UnkReflAttrs* attrs, const base::reflection
                    const base::reflection::UnkReflValueRef& value);
 
 // Register a member field: name, type, offset in the object. The two -1s are unknown.
-base::reflection::UnkReflField* AddReflectedField(base::reflection::CClass* cls, base::global::CStrId name,
+base::reflection::CVariable* AddReflectedField(base::reflection::CClass* cls, base::global::CStrId name,
                                               const base::reflection::CType* type, u64 offset, s64 unk_4,
                                               s64 unk_5);
 
@@ -94,10 +94,10 @@ inline base::global::CStrId& ElementFieldName() { return g_unk_7101d5a458; }
 }  // namespace base::reflection
 
 // Add a function named `name` to a class; null if the class already has one by that name.
-base::reflection::UnkReflFunction* AddReflectedFunction(base::reflection::CClass* cls, const base::global::CStrId& name);
+base::reflection::CFunction* AddReflectedFunction(base::reflection::CClass* cls, const base::global::CStrId& name);
 
 // Resize a function's parameter attribute containers (0x38 bytes each, at +0x88) to `count`.
-void fn_710009ae5c(base::reflection::UnkReflFunction* fn, u32 count);
+void fn_710009ae5c(base::reflection::CFunction* fn, u32 count);
 
 // Allocation (size, flags; the flags are 0x3f for the tunable registry), and the registry's
 // constructor.
@@ -123,7 +123,7 @@ inline const base::global::CRntString& refl_RntStringOf(const base::global::CStr
 
 // A class's member field by name (CClass+0xe8: fields of 0xb0 bytes, keyed by the name's
 // hash), or null.
-inline UnkReflField* refl_FindField(CClass* cls, const base::global::CName& name) {
+inline CVariable* refl_FindField(CClass* cls, const base::global::CName& name) {
     struct Fields {
         struct Slot {
             u8 bytes[0xb0];
@@ -141,7 +141,7 @@ inline UnkReflField* refl_FindField(CClass* cls, const base::global::CName& name
     };
     Fields& fields = *reinterpret_cast<Fields*>(&cls->m_array_0xe8);
     auto* it = fields.Find(name.hash);
-    return it == &fields.data[fields.count] ? nullptr : reinterpret_cast<UnkReflField*>(it);
+    return it == &fields.data[fields.count] ? nullptr : reinterpret_cast<CVariable*>(it);
 }
 
 // A list value (base::global::CRntVector's layout) built from an initializer list, moved into a
@@ -394,10 +394,20 @@ struct UnkReflAttrs {
     }
 };
 
-struct UnkReflField {
+struct CVariable {
     u8 unk_0x0[0x38];
     UnkReflAttrs attrs;
     UnkReflAttrs attrs_0x70;  // a second container (e.g. "TypeSelectionEnabled" on vector fields)
+
+    // Its own reflection: the functions its descriptor points to and the description naming them
+    // (src/reflection/, tools/gen_reflection.py).
+    static bool refl_Equals(const void* a, const void* b);
+    static s32 refl_Hash();
+    static const CType& refl_TypeOf(const void* obj);
+    static void refl_CopyConstruct(void* dst, const void* src);
+    static void refl_MoveConstruct(void* dst, const void* src);
+    static void refl_Destroy(void* obj);
+    struct refl_Description;
 };
 
 }  // namespace base::reflection

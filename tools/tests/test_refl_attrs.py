@@ -103,7 +103,7 @@ class ValueExpr(unittest.TestCase):
         self.assertIsNone(ra.value_expr("u32", [("imm", 1, 8)]))
 
 
-FN_STMT = ["    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId(\"Get\", true))) {",
+FN_STMT = ["    if (CFunction* fn = AddReflectedFunction(cls, CStrId(\"Get\", true))) {",
            "        fn->name = base::global::UnkStrId(\"Get\", true);", "    }"]
 
 
@@ -150,7 +150,7 @@ class Parse(unittest.TestCase):
                bl(KEY), val("imm", 7, 4), bl(U32_T), bl(ra.ADD_ATTR)]
         decls, src = run_parse(evs)
         self.assertEqual(src.split("\n")[1:-1], [
-            '    UnkReflField* field0 = AddReflectedField(cls, CStrId("speed", true), fn_7100005178(), 0x18, -1, -1);',
+            '    CVariable* field0 = AddReflectedField(cls, CStrId("speed", true), fn_7100005178(), 0x18, -1, -1);',
             f"    field0->attrs.Add<u32>(fn_{KEY:x}(), 0x7u);"])
         self.assertEqual(decls, [f"const base::reflection::UnkReflAttrKey& fn_{KEY:x}();"])
 
@@ -228,7 +228,7 @@ if __name__ == "__main__":
 
 
 class ReadableFields(unittest.TestCase):
-    REG = '    UnkReflField* field{n} = AddReflectedField(cls, CStrId("{name}", true), fn_{getter}(), {off}, -1, -1);'
+    REG = '    CVariable* field{n} = AddReflectedField(cls, CStrId("{name}", true), fn_{getter}(), {off}, -1, -1);'
 
     def test_one_line_per_field(self):
         lines = [
@@ -249,10 +249,10 @@ class ReadableFields(unittest.TestCase):
         lines = [
             self.REG.format(n=0, name="fSpeed", getter="710000abbc", off="0x510"),
             "    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);",
-            '    UnkReflField* field1 = AddReflectedField(cls, CStrId("fWidth", true), fn_710000abbc(), 0xffffffff, '
+            '    CVariable* field1 = AddReflectedField(cls, CStrId("fWidth", true), fn_710000abbc(), 0xffffffff, '
             'cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);',
             "    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);",
-            '    UnkReflField* field2 = AddReflectedField(cls, CStrId("uKey", true), fn_7100005178(), 0xffffffff, '
+            '    CVariable* field2 = AddReflectedField(cls, CStrId("uKey", true), fn_7100005178(), 0xffffffff, '
             'cls->m_array_0x110.size() - 1, -1);',
         ]
         self.assertEqual(ra.readable_fields(lines), [
@@ -268,7 +268,7 @@ class ReadableFields(unittest.TestCase):
         self.assertEqual(ra.readable_fields(lines), lines)
 
     def test_field_of_a_named_type_object(self):
-        reg = '    UnkReflField* field0 = AddReflectedField(cls, CStrId("eDir", true), &g_unk_7101d00010, 0x3b8, -1, -1);'
+        reg = '    CVariable* field0 = AddReflectedField(cls, CStrId("eDir", true), &g_unk_7101d00010, 0x3b8, -1, -1);'
         lines = [reg, "    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7101d00010, 2);"]
         self.assertEqual(ra.readable_fields(lines, type_objects={0x7101D00010: "EDir"}),
                          ['    DREAD_REFLECTED_FIELD_OF("EDir", "eDir", 0x3b8, (DefaultValue, 2));'])
@@ -276,7 +276,7 @@ class ReadableFields(unittest.TestCase):
         self.assertEqual(ra.readable_fields(untyped, type_objects={0x7101D00010: "EDir"}), untyped)
 
     def test_type_object_names(self):
-        src = '    UnkReflField* field0 = AddReflectedField(cls, CStrId("eDir", true), &g_unk_7101d00010, 0x3b8, -1, -1);'
+        src = '    CVariable* field0 = AddReflectedField(cls, CStrId("eDir", true), &g_unk_7101d00010, 0x3b8, -1, -1);'
         names = ra.type_object_names({"CA": src, "CB": src.replace("eDir", "eWay")},
                                      {("CA", "eDir"): "EDir", ("CB", "eWay"): "EDir"}, set())
         self.assertEqual(names, {0x7101D00010: "EDir"})

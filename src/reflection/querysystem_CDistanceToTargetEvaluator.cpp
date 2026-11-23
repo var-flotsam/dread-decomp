@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,9 +23,9 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // querysystem::CDistanceToTargetEvaluator
 void fn_71002bcf74();
-void fn_71002bc774(UnkReflFunction* fn, const char* name);
+void fn_71002bc774(CFunction* fn, const char* name);
 void fn_71002bd004();
-void fn_71002bc8f0(UnkReflFunction* fn, const char* name);
+void fn_71002bc8f0(CFunction* fn, const char* name);
 namespace querysystem::CDistanceToTargetEvaluator {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

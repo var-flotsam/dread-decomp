@@ -21,14 +21,14 @@ u64 fn_7100b89f84(CRntFile* file, CFilePathStrId* out) {
         u64 read = CRntFile_Read(file, buffer, length, 1);
         u64 size = length;
         buffer[size] = 0;
-        u64 hash = fn_7100001570(buffer, size);
+        u64 hash = StringCrc64(buffer, size);
         if (!g_unk_7101d47200)
             base::global::UnkEnsureFilePathPool();
-        UnkStringData* data = fn_71000804f8(g_unk_7101d47200, hash);
+        UnkStringData* data = StringPool_Find(g_unk_7101d47200, hash);
         if (data)
             ++data->ref_count;
         else
-            data = fn_71000801e4(g_unk_7101d47200, hash, buffer, size, true);
+            data = StringPool_Insert(g_unk_7101d47200, hash, buffer, size, true);
         total += read;
         base::global::UnkFilePathStrIdBase raw;
         raw.data = data;
@@ -49,14 +49,14 @@ u64 fn_7100b8a428(CRntFile* file, CStrId* out) {
         u64 read = CRntFile_Read(file, buffer, length, 1);
         u64 size = length;
         buffer[size] = 0;
-        u64 hash = fn_7100001570(buffer, size);
+        u64 hash = StringCrc64(buffer, size);
         if (!g_unk_7101d47108)
             base::global::UnkEnsureStringPool();
-        UnkStringData* data = fn_71000804f8(g_unk_7101d47108, hash);
+        UnkStringData* data = StringPool_Find(g_unk_7101d47108, hash);
         if (data)
             ++data->ref_count;
         else
-            data = fn_71000801e4(g_unk_7101d47108, hash, buffer, size, true);
+            data = StringPool_Insert(g_unk_7101d47108, hash, buffer, size, true);
         total += read;
         struct {
             UnkStringData* data;

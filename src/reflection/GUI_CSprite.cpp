@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,21 +24,21 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // GUI::CSprite
-void fn_71011f7b70(UnkReflFunction* fn, const char* name);
+void fn_71011f7b70(CFunction* fn, const char* name);
 void fn_71011fa690();
-void fn_71011f7cec(UnkReflFunction* fn, const char* name);
+void fn_71011f7cec(CFunction* fn, const char* name);
 void fn_71011fa760();
-void fn_71011f7e68(UnkReflFunction* fn, const char* name);
+void fn_71011f7e68(CFunction* fn, const char* name);
 void fn_71011fa830();
-void fn_71011f7fe4(UnkReflFunction* fn, const char* name);
+void fn_71011f7fe4(CFunction* fn, const char* name);
 void fn_71011fa900();
-void fn_71011f8160(UnkReflFunction* fn, const char* name);
+void fn_71011f8160(CFunction* fn, const char* name);
 void fn_71011faaa0();
-void fn_71011f82dc(UnkReflFunction* fn, const char* name);
+void fn_71011f82dc(CFunction* fn, const char* name);
 void fn_71011fabe8();
-void fn_71011f8458(UnkReflFunction* fn, const char* name);
+void fn_71011f8458(CFunction* fn, const char* name);
 void fn_71011fadf8();
-void fn_71011f85d4(UnkReflFunction* fn, const char* name);
+void fn_71011f85d4(CFunction* fn, const char* name);
 namespace GUI::CSprite {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -31,10 +31,10 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Camera");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("tTravellingDirections", true), &base::reflection::TypeObject<TShinesparkTravellingDirectionFlagSet>::object, 0x6c, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("tTravellingDirections", true), &base::reflection::TypeObject<TShinesparkTravellingDirectionFlagSet>::object, 0x6c, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<TShinesparkTravellingDirectionFlagSet>::object, s32(base::reflection::refl_GetEnumZero<0x71726b0940>()));
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Play camera animation when travelling towards these directions");
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("tSituations", true), &base::reflection::TypeObject<TCoolShinesparkSituation>::object, 0x70, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("tSituations", true), &base::reflection::TypeObject<TCoolShinesparkSituation>::object, 0x70, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<TCoolShinesparkSituation>::object, s32(base::reflection::refl_GetEnumZero<0x71726b0950>()));
     field1->attrs.Add<const char*>(base::reflection::attr::Description(), "Play camera animation only in these situations");
     DREAD_REFLECTED_FIELD(f32, "fTargetSlomo", 0x74, (DefaultValue, 1.0f), (Description, "While playing Cool Shinespark, apply this slomo to the game"));

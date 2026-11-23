@@ -210,7 +210,7 @@ static_assert(__builtin_offsetof(UnkGunComponent_l83b83c, secondary) == 0xf0, "l
 // Looks up a reflected type by its name's 64-bit id.
 inline const UnkGunType_l83b83c* FindType_l83b83c(const char* name) {
     UnkVersionRegistry* registry = g_unk_7101d4c8d0;
-    u64 id = fn_7100001570(name, __builtin_strlen(name));
+    u64 id = StringCrc64(name, __builtin_strlen(name));
     return reinterpret_cast<const UnkGunType_l83b83c*>(fn_71000a5118(registry, &id));
 }
 
@@ -228,7 +228,7 @@ UnkSecondaryGun_l83b83c* fn_710083b83c(char* self_, const char* a, const char* b
         return nullptr;
     if (!type->construct)
         return nullptr;
-    void* object = fn_7100083990()->vf_0x40(type->size, 8, 5);
+    void* object = GetDefaultAllocator()->vf_0x40(type->size, 8, 5);
     if (!object)
         return nullptr;
     type->construct(object);
@@ -254,8 +254,8 @@ UnkSecondaryGun_l83b83c* fn_710083b83c(char* self_, const char* a, const char* b
     }
     gun->vf_0xf0(i);
     gun->vf_0x100(j);
-    gun->field_0x60 = fn_7100001570("WaveBeamChargeBurst", 19);
-    gun->field_0x68 = fn_7100001570("WaveBeamBurstChargeBeamCharging", 31);
+    gun->field_0x60 = StringCrc64("WaveBeamChargeBurst", 19);
+    gun->field_0x68 = StringCrc64("WaveBeamBurstChargeBeamCharging", 31);
 
     if (self->secondary.count <= gun->vf_0xe8())
         ResizeSlots_l83b83c(self->secondary, gun->vf_0xe8() + 1);

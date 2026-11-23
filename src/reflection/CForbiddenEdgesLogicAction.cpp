@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -33,9 +33,9 @@ namespace CForbiddenEdgesLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("navmesh::ENavMeshGroup", "eNavMeshGroup", 0x94, (DefaultValue, 0), (Persistence, 0), (EditorVisible, false));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpSpawnPoint", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x10, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("wpSpawnPoint", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x10, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpLogicShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x50, -1, -1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("wpLogicShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x50, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FIELD_OF("CForbiddenEdgesLogicAction::EState", "eState", 0x90, (DefaultValue, 1));
 }

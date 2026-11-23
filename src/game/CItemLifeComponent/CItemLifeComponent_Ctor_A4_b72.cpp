@@ -64,7 +64,7 @@ static_assert(__builtin_offsetof(UnkItemLifeCtor_A4_b72, field_0x380) == 0x380, 
     self->o##_step = 10;                  \
     self->o##_grow = 1;                   \
     self->o##_flags = 0xf;                \
-    self->o##_allocator = fn_7100083990()
+    self->o##_allocator = GetDefaultAllocator()
 
 void fn_71008e28c0_A4_b72(UnkItemLifeCtor_A4_b72* self) asm("_Z13fn_71008e28c0v");
 void fn_71008e28c0_A4_b72(UnkItemLifeCtor_A4_b72* self) {

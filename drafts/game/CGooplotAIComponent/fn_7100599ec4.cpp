@@ -91,7 +91,7 @@ void fn_7100599ec4(UnkGooplotAI_l599ec4* self) {
     if (!parts)
         return;
     UnkGooplotPart_l599ec4* part = reinterpret_cast<UnkGooplotPart_l599ec4*>(
-        fn_7101152b90(reinterpret_cast<UnkWorld*>(parts), fn_7100001570("gooplottail", 11)));
+        fn_7101152b90(reinterpret_cast<UnkWorld*>(parts), StringCrc64("gooplottail", 11)));
     if (part)
         part = fn_710114e680(parts, part->kind) ? part : nullptr;
     UnkGooplotMesh_l599ec4* mesh = part->data->meshes->meshes[0];

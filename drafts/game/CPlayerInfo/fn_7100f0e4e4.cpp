@@ -54,7 +54,7 @@ struct UnkPlayerProps_lf0e4e4 {
                 if (data && data != &pool->empty) {
                     --data->ref_count;
                     if (list[i].data->ref_count == 0) {
-                        fn_71000803a4(pool, list[i].data);
+                        StringPool_Release(pool, list[i].data);
                         pool = g_unk_7101d47108;
                     }
                 }
@@ -144,7 +144,7 @@ void fn_7100f0e4e4(void* a, void* b, void* c, void* d) {
     UnkTimedMap_lf0e4e4& timed = self->timed;
     UnkTimedEntry_lf0e4e4* entry = timed.Find(name);
     if (entry == &timed.values[timed.count]) {
-        entry = timed.Add(name, fn_7100083990());
+        entry = timed.Add(name, GetDefaultAllocator());
         entry->head.counter = 0;
         entry->properties.Clear();
         entry->head.time = reinterpret_cast<UnkFrameTimer_lf0e4e4*>(g_unk_7101d47328)->time;

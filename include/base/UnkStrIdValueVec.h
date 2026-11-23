@@ -58,7 +58,7 @@ struct UnkStrIdValueElem {
             if (id != &pool->empty) {
                 --id->ref_count;
                 if (id->ref_count == 0)
-                    fn_71000803a4(pool, id);
+                    StringPool_Release(pool, id);
             }
             id = d;
         }

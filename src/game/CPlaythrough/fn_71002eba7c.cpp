@@ -19,7 +19,7 @@ struct UnkModeArray {
     u64 field_0x10[2] = {};
     u32 step = 10;
     u32 mode = 2;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     u16 field_0x28 = 0;
     u8 pad_0x2a;
     u8 field_0x2b = 0;

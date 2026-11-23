@@ -79,7 +79,7 @@ void fn_7101100544(UnkAI_l100544* self) {
         UnkTrackRecord* record = query.result;
         u64 effect = record && record->sources.data != &g_unk_7101d47108->empty
                          ? record->sources.data->Key()
-                         : fn_7100001570("blockableattackwarning", 22);
+                         : StringCrc64("blockableattackwarning", 22);
         fn_710114fe8c(fx, effect, 1, 1);
     }
 

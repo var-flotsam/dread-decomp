@@ -50,7 +50,7 @@ struct UnkPtrArrayHolder_b70a1 {
         UnkPtrArrayHolder_b70a1* t = this;
         if (far)
             asm("" : "+r"(t));
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0xe;
         t->field_0xc = 0;
         t->array.data = nullptr;
@@ -59,7 +59,7 @@ struct UnkPtrArrayHolder_b70a1 {
         t->array.step = 10;
         t->array.field_0x14 = true;
         array.flags = 0xe;
-        array.allocator = fn_7100083990();
+        array.allocator = GetDefaultAllocator();
         field_0x38 = 0;
         field_0x40 = 0;
         array.Resize(11);

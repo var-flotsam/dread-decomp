@@ -65,5 +65,5 @@ void fn_7100dae6dc(UnkDetectList_ldae6dc* self, s32 level, UnkDetectOwner_ldae6d
         if (!owner->field_0x260 || !fn_710113d83c(owner->field_0x260))
             on = NoneBlocks(self);
     }
-    fn_710114ffb8(fx, fn_7100001570("emmydetection", 13), on, false);
+    fn_710114ffb8(fx, StringCrc64("emmydetection", 13), on, false);
 }

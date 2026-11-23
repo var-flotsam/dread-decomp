@@ -215,7 +215,7 @@ void fn_71011a67b8(UnkTeamSortedList* self, u32 capacity, u32 flags, base::UnkAl
     self->head = nullptr;
     self->tail = nullptr;
     self->flags = flags;
-    self->allocator = allocator ? allocator : fn_7100083990();
+    self->allocator = allocator ? allocator : GetDefaultAllocator();
     self->pool_source = nullptr;
     self->vtable = &g_unk_7101cb5648[2];
     self->pool.vtable = g_unk_7101a1a4c8 + 0x10;
@@ -232,7 +232,7 @@ void fn_71011a67b8(UnkTeamSortedList* self, u32 capacity, u32 flags, base::UnkAl
     }
     if (capacity) {
         if (!source)
-            source = fn_7100083990();
+            source = GetDefaultAllocator();
         self->pool.parent = source;
         u64 size = (u64)capacity * sizeof(UnkTeamSortedNode);
         void* buffer = source->vf_0x40(size, 8, pool_flags);

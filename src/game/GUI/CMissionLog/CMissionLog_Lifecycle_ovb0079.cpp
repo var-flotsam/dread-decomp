@@ -164,7 +164,7 @@ void fn_7100b59c4c(UnkMissionLogList_ovb0079* self, const UnkMissionLogList_ovb0
     self->count = 0;
     self->head = nullptr;
     self->tail = nullptr;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->flags = 0x13;
     self->vtable = g_unk_7101a9d490 + 0x10;
     self->pool.vtable = g_unk_7101a1a4c8 + 0x10;

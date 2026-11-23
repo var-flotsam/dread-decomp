@@ -51,7 +51,7 @@ UnkEmptyBoundsItem* fn_7100e45270(UnkEmptyBoundsArray* self, const CStrId* key) 
     UnkStringPool* after = g_unk_7101d47108;
     if (after && before != after) {
         if (--before->empty.ref_count == 0)
-            fn_71000803a4(after, &before->empty);
+            StringPool_Release(after, &before->empty);
     }
     return result;
 }

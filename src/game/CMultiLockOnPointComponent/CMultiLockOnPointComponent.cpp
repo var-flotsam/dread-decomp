@@ -36,7 +36,7 @@ void fn_7100884884(UnkMultiLockOnPointComponent_4884* self) {
     self->field_0x58 = 10;
     self->field_0x5c = true;
     self->field_0x60 = 0xf;
-    self->field_0x68 = fn_7100083990();
+    self->field_0x68 = GetDefaultAllocator();
     self->field_0x70 = 0;
     self->field_0x40 = g_unk_7101a33fa0 + 2;
     self->field_0x78 = 0;

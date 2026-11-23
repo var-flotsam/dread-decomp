@@ -90,7 +90,7 @@ static inline void InitEntry_b0246(UnkLoadEntry_b0246* e) {
     e->blackboards.count = 0;
     e->blackboards.head = nullptr;
     e->blackboards.tail = nullptr;
-    e->blackboards.allocator = fn_7100083990();
+    e->blackboards.allocator = GetDefaultAllocator();
     e->blackboards.flags = 3;
     new (&e->c) CRntString(g_unk_710162e2ed);
     u8* raw = reinterpret_cast<u8*>(e);

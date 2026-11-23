@@ -37,7 +37,7 @@ UnkCameraEvent_b0141* fn_7100bdb724(UnkCameraEvent_b0141* self, const UnkCameraE
         if (self->path.data != &pool->empty) {
             --self->path.data->ref_count;
             if (self->path.data->ref_count == 0)
-                fn_71000803a4(pool, self->path.data);
+                StringPool_Release(pool, self->path.data);
         }
         self->path.data = d;
     }

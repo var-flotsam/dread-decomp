@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -32,18 +32,18 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 
 // CHecathonAIComponent
 void fn_71005abe98();
-void fn_71005a9250(UnkReflFunction* fn, const char* name);
+void fn_71005a9250(CFunction* fn, const char* name);
 void fn_71005abef0();
-void fn_71005a93cc(UnkReflFunction* fn, const char* name);
+void fn_71005a93cc(CFunction* fn, const char* name);
 void fn_71005abf48();
-void fn_71005a9548(UnkReflFunction* fn, const char* name);
+void fn_71005a9548(CFunction* fn, const char* name);
 namespace CHecathonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpPatrolPath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x146d8, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("wpPatrolPath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x146d8, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD_OF("IPath::EType", "ePatrolPathType", 0x14718, (DefaultValue, 3));
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpHarassPath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14720, -1, -1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("wpHarassPath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14720, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD_OF("IPath::EType", "eHarassPathType", 0x14760, (DefaultValue, 3));
     DREAD_REFLECTED_FUNCTION_OF("_fTimeToGoPatrol_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71005abe98);

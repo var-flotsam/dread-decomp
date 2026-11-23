@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -46,9 +46,9 @@ DREAD_REFLECTED_CLASS(CAutofocusAimCameraCtrl, CCameraCtrl);
 // CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl
 namespace CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl { extern bool refl_fields_added asm("g_unk_717270f988"); }
 void fn_71007236e4();
-void fn_7100721b74(UnkReflFunction* fn, const char* name);
+void fn_7100721b74(CFunction* fn, const char* name);
 void fn_710072378c();
-void fn_7100721cf0(UnkReflFunction* fn, const char* name);
+void fn_7100721cf0(CFunction* fn, const char* name);
 namespace CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl { extern UnkTunable refl_tunable asm("g_unk_717270f910"); }
 void fn_7100721e6c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl {

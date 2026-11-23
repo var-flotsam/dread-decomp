@@ -121,7 +121,7 @@ inline f32 Trunc(f32 t) { return t > 0.0f ? __builtin_floorf(t) : __builtin_ceil
 // null.
 __attribute__((always_inline)) inline UnkGuiObj* FindChild(UnkGuiObj* composition, const char* name,
                                                            const CClass* (*get_class)()) {
-    UnkGuiObj* child = fn_71011d98ec(composition, fn_7100001570(name, __builtin_strlen(name)));
+    UnkGuiObj* child = fn_71011d98ec(composition, StringCrc64(name, __builtin_strlen(name)));
     return child && fn_710009d50c(child->GetClass(), get_class()) ? child : nullptr;
 }
 

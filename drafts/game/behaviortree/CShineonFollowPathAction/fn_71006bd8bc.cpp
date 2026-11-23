@@ -140,7 +140,7 @@ struct UnkFollowPathParamsBase_l6bd8bc {
         step = 10;
         field_0xec = true;
         flags = 15;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         field_0x100 = 0;
         field_0x102 = 0;
         field_0x104 = 0;

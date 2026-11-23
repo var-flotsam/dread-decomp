@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -28,41 +28,41 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 // CMinimapManager::CTunableMinimapManager
 namespace CMinimapManager::CTunableMinimapManager { extern bool refl_fields_added asm("g_unk_71727ca6d0"); }
 void fn_7100eaa764();
-void fn_7100e83c40(UnkReflFunction* fn, const char* name);
+void fn_7100e83c40(CFunction* fn, const char* name);
 void fn_7100eaa8f8();
-void fn_7100e83dbc(UnkReflFunction* fn, const char* name);
+void fn_7100e83dbc(CFunction* fn, const char* name);
 void fn_7100eaaa8c();
-void fn_7100e83f38(UnkReflFunction* fn, const char* name);
+void fn_7100e83f38(CFunction* fn, const char* name);
 void fn_7100eaac20();
-void fn_7100e840b4(UnkReflFunction* fn, const char* name);
+void fn_7100e840b4(CFunction* fn, const char* name);
 void fn_7100eaadb4();
-void fn_7100e84230(UnkReflFunction* fn, const char* name);
+void fn_7100e84230(CFunction* fn, const char* name);
 void fn_7100eaaf48();
-void fn_7100e843ac(UnkReflFunction* fn, const char* name);
+void fn_7100e843ac(CFunction* fn, const char* name);
 void fn_7100eab0dc();
-void fn_7100e84528(UnkReflFunction* fn, const char* name);
+void fn_7100e84528(CFunction* fn, const char* name);
 void fn_7100eab270();
-void fn_7100e846a4(UnkReflFunction* fn, const char* name);
+void fn_7100e846a4(CFunction* fn, const char* name);
 void fn_7100eab404();
-void fn_7100e84820(UnkReflFunction* fn, const char* name);
+void fn_7100e84820(CFunction* fn, const char* name);
 void fn_7100eab58c();
-void fn_7100e8499c(UnkReflFunction* fn, const char* name);
+void fn_7100e8499c(CFunction* fn, const char* name);
 void fn_7100eab714();
-void fn_7100e84b18(UnkReflFunction* fn, const char* name);
+void fn_7100e84b18(CFunction* fn, const char* name);
 void fn_7100eab89c();
-void fn_7100e84c94(UnkReflFunction* fn, const char* name);
+void fn_7100e84c94(CFunction* fn, const char* name);
 void fn_7100eaba24();
-void fn_7100e84e10(UnkReflFunction* fn, const char* name);
+void fn_7100e84e10(CFunction* fn, const char* name);
 void fn_7100eabbac();
-void fn_7100e84f8c(UnkReflFunction* fn, const char* name);
+void fn_7100e84f8c(CFunction* fn, const char* name);
 void fn_7100eabd34();
-void fn_7100e85108(UnkReflFunction* fn, const char* name);
+void fn_7100e85108(CFunction* fn, const char* name);
 void fn_7100eabebc();
-void fn_7100e85284(UnkReflFunction* fn, const char* name);
+void fn_7100e85284(CFunction* fn, const char* name);
 void fn_7100eac044();
-void fn_7100e85400(UnkReflFunction* fn, const char* name);
+void fn_7100e85400(CFunction* fn, const char* name);
 void fn_7100eac1cc();
-void fn_7100e8557c(UnkReflFunction* fn, const char* name);
+void fn_7100e8557c(CFunction* fn, const char* name);
 namespace CMinimapManager::CTunableMinimapManager { extern UnkTunable refl_tunable asm("g_unk_71727ca410"); }
 void fn_7100e856f8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CMinimapManager::CTunableMinimapManager {

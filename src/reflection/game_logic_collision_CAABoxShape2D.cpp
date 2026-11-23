@@ -11,8 +11,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -27,11 +27,11 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // game::logic::collision::CAABoxShape2D
 void fn_7100d5ed18();
-void fn_7100d5db88(UnkReflFunction* fn, const char* name);
+void fn_7100d5db88(CFunction* fn, const char* name);
 void fn_7100d5edcc();
-void fn_7100d5dd04(UnkReflFunction* fn, const char* name);
+void fn_7100d5dd04(CFunction* fn, const char* name);
 void fn_7100d5ee80();
-void fn_7100d5de80(UnkReflFunction* fn, const char* name);
+void fn_7100d5de80(CFunction* fn, const char* name);
 namespace game::logic::collision::CAABoxShape2D {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

@@ -163,7 +163,7 @@ s32 fn_7101082e80(lua_State* L) {
     bool enable;
     if (fn_71010c0270(L, "sb", &name, &enable)) {
         UnkRenderManager* render = g_unk_7101d47300;
-        u64 id = fn_7100001570(name, strlen(name));
+        u64 id = StringCrc64(name, strlen(name));
         fn_7100219ca4(render, reinterpret_cast<void*>(id), enable, 0);
     }
     return 0;
@@ -199,7 +199,7 @@ static inline s32 PushObject(lua_State* L, void* arg) {
 s32 fn_710107a070(lua_State* L) {
     UnkGameManager* manager = g_unk_7101d47310;
     u32 mode = g_unk_71727bebb8;
-    u64 id = fn_7100001570("MainCamera", 10);
+    u64 id = StringCrc64("MainCamera", 10);
     alignas(8) u32 flags = mode;
     return PushObject(L, fn_7100deba8c(manager, &id, &flags));
 }

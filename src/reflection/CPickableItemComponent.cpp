@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -20,8 +20,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CPickableItemComponent
-void fn_71009cedb8(UnkReflFunction* fn, const char* name);
-void fn_71009cee6c(UnkReflFunction* fn, const char* name);
+void fn_71009cedb8(CFunction* fn, const char* name);
+void fn_71009cee6c(CFunction* fn, const char* name);
 namespace CPickableItemComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

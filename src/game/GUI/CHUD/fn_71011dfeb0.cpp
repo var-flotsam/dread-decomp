@@ -108,7 +108,7 @@ struct UnkPanel_71011dfeb0 {
     // The child with this name when it is of the class `get_class` returns, else null.
     template <class T>
     __attribute__((always_inline)) T* FindAs(const char* name, const CClass* (*get_class)()) {
-        UnkGuiObj_71011dfeb0* child = FindChildById(this, fn_7100001570(name, __builtin_strlen(name)));
+        UnkGuiObj_71011dfeb0* child = FindChildById(this, StringCrc64(name, __builtin_strlen(name)));
         return child && fn_710009d50c(child->GetClass(), get_class()) ? static_cast<T*>(child)
                                                                       : nullptr;
     }

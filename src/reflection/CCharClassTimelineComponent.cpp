@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -31,7 +31,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CTimelineComponent::ENextPolicy", "eNextPolicy", 0x58, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(f32, "fMinDelayTime", 0x68, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxDelayTime", 0x6c, (DefaultValue, 0.0f));
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("eLayerInFrustumToLaunchInRandomDelayPolicy", true), &base::reflection::TypeObject<base::global::timeline::TLayers>::object, 0x70, -1, -1);
+    CVariable* field4 = AddReflectedField(cls, CStrId("eLayerInFrustumToLaunchInRandomDelayPolicy", true), &base::reflection::TypeObject<base::global::timeline::TLayers>::object, 0x70, -1, -1);
     field4->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<base::global::timeline::TLayers>::object, s32(base::reflection::refl_GetEnumZero<0x7101d57cc8>()));
 }
 bool refl_Equals(const void*, const void*) { return false; }

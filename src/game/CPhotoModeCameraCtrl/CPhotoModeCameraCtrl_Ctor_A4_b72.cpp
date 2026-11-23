@@ -52,7 +52,7 @@ void fn_71009cbe24_A4_b72(UnkPhotoModeCameraCtrl_A4_b72* self) {
     self->list_step = 10;
     self->list_grow = 1;
     self->list_flags = 0xf;
-    self->list_allocator = fn_7100083990();
+    self->list_allocator = GetDefaultAllocator();
     self->field_0x200 = 1500.0f;
     self->field_0x204 = 1800.0f;
     self->field_0x208 = 0;

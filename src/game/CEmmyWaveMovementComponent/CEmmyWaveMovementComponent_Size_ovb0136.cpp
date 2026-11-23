@@ -45,7 +45,7 @@ static inline UnkWorld* FxWorld(UnkChargeComponent* self) {
 }
 
 static inline void ScaleFx(UnkWorld* world, const char* name, u64 length, f32 scale) {
-    if (auto* fx = reinterpret_cast<UnkWaveFx_ovb0136*>(fn_7101152b90(world, fn_7100001570(name, length)))) {
+    if (auto* fx = reinterpret_cast<UnkWaveFx_ovb0136*>(fn_7101152b90(world, StringCrc64(name, length)))) {
         UnkVec3f v(scale, scale, scale);
         fx->vf_0x20(&v);
     }

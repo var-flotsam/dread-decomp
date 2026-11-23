@@ -74,7 +74,7 @@ void fn_71005fcea4(UnkKraidAI_l5fcea4* self) {
     if (!move)
         return;
     if (UnkKraidMoveState_l5fcea4* state = FindState(move, 1)) {
-        u64 id = fn_7100001570("magnetwallrelaxshot", 19);
+        u64 id = StringCrc64("magnetwallrelaxshot", 19);
         fn_710098b590(reinterpret_cast<UnkAirState_B71a6*>(state), move->field_0x280, &id);
     }
 }

@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -69,7 +69,7 @@ void refl_AddFields(CClass* cls) {
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 25.0f), (Description, "Single shot damage amount"));
     DREAD_REFLECTED_FIELD(f32, "fHeat", 0x28, (DefaultValue, 0.3f), (Description, "Maximun damage to the shield"));
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("iSelectionMode", true), &base::reflection::PrimitiveType<int>::Get(), 0x2c, -1, -1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("iSelectionMode", true), &base::reflection::PrimitiveType<int>::Get(), 0x2c, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CGrappleBeamGun::ESelectionMode>::object, 0);
     field2->attrs.Add<bool>(base::reflection::attr::ShowInConfig(), true);
     field2->attrs.Add<const char*>(base::reflection::attr::Description(), "Grapple Beam selection mode");
@@ -77,7 +77,7 @@ void refl_AddFields(CClass* cls) {
     field2->attrs.Add<s32>(base::reflection::attr::MaxValueI(), 3);
     field2->attrs.Add<s32>(base::reflection::attr::ControlIntStep(), 1);
     field2->attrs.Add<const char*>(base::reflection::attr::InternalTag(), "General");
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("iSelectionInput", true), &base::reflection::PrimitiveType<int>::Get(), 0x30, -1, -1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("iSelectionInput", true), &base::reflection::PrimitiveType<int>::Get(), 0x30, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CGrappleBeamGun::ESelectionInput>::object, 0);
     field3->attrs.Add<bool>(base::reflection::attr::ShowInConfig(), true);
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Grapple Beam selection input");

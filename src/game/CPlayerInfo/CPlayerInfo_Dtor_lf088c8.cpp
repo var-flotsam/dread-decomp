@@ -87,7 +87,7 @@ void fn_7100f088c8(UnkPlayerInfo_lf088c8* self) {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (names[i]->ref_count == 0) {
-                    fn_71000803a4(pool, names[i]);
+                    StringPool_Release(pool, names[i]);
                     pool = g_unk_7101d47108;
                 }
             }

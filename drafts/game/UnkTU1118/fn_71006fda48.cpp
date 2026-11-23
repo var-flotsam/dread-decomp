@@ -240,7 +240,7 @@ void fn_71006fc4fc(UnkAIStateInit_b0169* self, u32 arg) {
     __builtin_memset(self->zero_0x1c0, 0, 16);
     self->field_0x1ec = 1;
     self->field_0x1f0 = 0xf;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->flag_0x200 = 0;
     self->flag_0x202 = 0;
     self->flag_0x204 = 0;

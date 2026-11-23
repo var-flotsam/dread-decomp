@@ -3,7 +3,7 @@
 // The engine's growable array, base::global::CRntVector (the name reflection gives it), and the
 // allocator interface it allocates through (a placeholder name). The layout is shared by CType+0x90 (default-constructed
 // there: growth step 10, flags 0x3e) and the parameter-type list of a reflected function
-// (UnkReflFunction+0x8, filled by fn_7100a19530).
+// (CFunction+0x8, filled by fn_7100a19530).
 
 #include <new>
 
@@ -39,7 +39,7 @@ struct UnkAllocator {
 // it the memory heap's first 0x4e700000 bytes; src/base/UnkDefaultAllocatorGlobal.cpp).
 void fn_7100083870(void* mem, u64 size);
 // Returns the allocator new arrays are created with.
-base::UnkAllocator* fn_7100083990();
+base::UnkAllocator* GetDefaultAllocator();
 // Allocates `size` bytes from that allocator (its vf_0x40, 8-byte aligned) with the given flags.
 void* fn_71000839a0(u64 size, u32 flags);
 // Allocates `size` bytes from that allocator, 8-byte aligned, with the given flags (the system
@@ -67,7 +67,7 @@ struct CRntVector {
     u32 step = 10;  // capacity grows to the next multiple of this
     bool field_0x14 = true;
     u32 flags = 0x3e;  // passed to the allocator
-    UnkAllocator* allocator = fn_7100083990();
+    UnkAllocator* allocator = GetDefaultAllocator();
 
     CRntVector() = default;
     explicit CRntVector(u32 flags) : flags(flags) {}

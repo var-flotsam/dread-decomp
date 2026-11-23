@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,13 +25,13 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 
 // GUI::CText
 void fn_7100b8708c();
-void fn_7100b85f78(UnkReflFunction* fn, const char* name);
+void fn_7100b85f78(CFunction* fn, const char* name);
 void fn_7100b8719c();
-void fn_7100b860f4(UnkReflFunction* fn, const char* name);
+void fn_7100b860f4(CFunction* fn, const char* name);
 void fn_7100b87318();
-void fn_7100b86270(UnkReflFunction* fn, const char* name);
+void fn_7100b86270(CFunction* fn, const char* name);
 void fn_7100b87488();
-void fn_7100b863ec(UnkReflFunction* fn, const char* name);
+void fn_7100b863ec(CFunction* fn, const char* name);
 namespace GUI::CText {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

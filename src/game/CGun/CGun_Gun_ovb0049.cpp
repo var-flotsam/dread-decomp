@@ -74,7 +74,7 @@ static_assert(__builtin_offsetof(UnkGunCtor_ovb0049, field_0x1850) == 0x1850, "l
 static_assert(__builtin_offsetof(UnkGunCtor_ovb0049, field_0x1878) == 0x1878, "layout");
 
 static inline u64 EmptyHash() {
-    return fn_7100001570(g_unk_710162e2ed, 0);
+    return StringCrc64(g_unk_710162e2ed, 0);
 }
 
 void fn_7100835410(UnkGunCtor_ovb0049* self) {

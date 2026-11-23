@@ -91,7 +91,7 @@ static inline UnkFxPart_l10ed94* FindPart(void* parts, u64 hash) {
 
 // Points the named part's material against `dir`.
 static inline void PointDissolve(void* parts, const char* name, u64 length, const UnkVec3f& dir) {
-    UnkFxPart_l10ed94* part = FindPart(parts, fn_7100001570(name, length));
+    UnkFxPart_l10ed94* part = FindPart(parts, StringCrc64(name, length));
     if (part && fn_710114e674(static_cast<UnkObject*>(parts), part->id)) {
         if (UnkFxMaterial_l10ed94* material = part->model->material) {
             UnkVector4D v(-dir.x, -dir.y, -dir.z, 0.0f);
@@ -156,7 +156,7 @@ void fn_710110ed94(UnkDeathAI_l10ed94* self) {
             break;
         }
         }
-        u64 melee = fn_7100001570("deathparticles_melee", 20);
+        u64 melee = StringCrc64("deathparticles_melee", 20);
         if (fx.name.data->Key() != melee)
             continue;
         auto* player = reinterpret_cast<UnkDeathPlayer_l10ed94*>(fn_7100dec788(g_unk_7101d47310));

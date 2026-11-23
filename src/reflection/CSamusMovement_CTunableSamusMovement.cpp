@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -88,7 +88,7 @@ DREAD_REFLECTED_CLASS(CSamusMovement::CTunableSamusMovement, base::tunable::CTun
 // CSamusMovement
 void fn_71009f0f38();
 void fn_71009f0f7c();
-void fn_71009df12c(UnkReflFunction* fn, const char* name);
+void fn_71009df12c(CFunction* fn, const char* name);
 namespace CSamusMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

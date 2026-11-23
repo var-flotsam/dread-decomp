@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -27,15 +27,15 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // CAimComponent
 void fn_7100353e98();
-void fn_7100340cac(UnkReflFunction* fn, const char* name);
+void fn_7100340cac(CFunction* fn, const char* name);
 void fn_7100353f28();
-void fn_7100340e28(UnkReflFunction* fn, const char* name);
+void fn_7100340e28(CFunction* fn, const char* name);
 void fn_7100353fb8();
-void fn_7100340fa4(UnkReflFunction* fn, const char* name);
+void fn_7100340fa4(CFunction* fn, const char* name);
 void fn_7100354048();
-void fn_7100341120(UnkReflFunction* fn, const char* name);
+void fn_7100341120(CFunction* fn, const char* name);
 void fn_7100354274();
-void fn_71003540d8(UnkReflFunction* fn);
+void fn_71003540d8(CFunction* fn);
 namespace CAimComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

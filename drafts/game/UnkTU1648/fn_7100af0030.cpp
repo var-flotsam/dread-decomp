@@ -53,7 +53,7 @@ void fn_7100af0030(UnkSectionData* self, const UnkSectionData* other) {
     props.capacity = 0;
     props.step = 10;
     props.flags = flags;
-    props.allocator = fn_7100083990();
+    props.allocator = GetDefaultAllocator();
     fn_7100093dd0(&props, capacity);
     self->flags = other->flags;
 

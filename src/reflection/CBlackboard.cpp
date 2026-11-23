@@ -9,8 +9,8 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -27,7 +27,7 @@ template <> base::reflection::CType base::reflection::TypeObject<CBlackboard::TS
 
 // CBlackboard
 void fn_7101049fa8();
-void fn_7101045544(UnkReflFunction* fn, const char* name);
+void fn_7101045544(CFunction* fn, const char* name);
 void fn_710104a108();
 namespace CBlackboard {
 void refl_AddAttributes(CClass* cls) {
@@ -35,7 +35,7 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_hashSections_GetterFunction", &base::reflection::TypeObject<CBlackboard::TSectionContainer>::object, 0x1, fn_7101049fa8);
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("hashSections", true), &base::reflection::TypeObject<CBlackboard::TSectionContainer>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("hashSections", true), &base::reflection::TypeObject<CBlackboard::TSectionContainer>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 1);
     field0->attrs.Add<const char*>(base::reflection::attr::CreateElement(), "CreateSection");
     field0->attrs.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterSectionsDeserialization", true));

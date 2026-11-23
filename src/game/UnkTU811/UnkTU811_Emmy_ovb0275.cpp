@@ -102,7 +102,7 @@ bool fn_71005608ec(UnkEmmyComp_b0275* self) {
                 list.count = 0;
                 list.head = nullptr;
                 list.tail = nullptr;
-                list.allocator = fn_7100083990();
+                list.allocator = GetDefaultAllocator();
                 list.tag = 0x13;
                 fn_7100560d14(target, self->flag, self->mode, &list);
                 for (UnkEmmyNode_b0275* node = list.head; node; node = node->next)

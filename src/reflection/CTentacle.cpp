@@ -11,8 +11,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -31,7 +31,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x8, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fExtraNodeLengthFactor", 0x38, (DefaultValue, -1.0f));
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("tTentacleNodes", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x10, -1, -1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("tTentacleNodes", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x10, -1, -1);
     field2->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
     DREAD_REFLECTED_FIELD(bool, "bAllowTrail", 0x3c, (DefaultValue, false));
 }

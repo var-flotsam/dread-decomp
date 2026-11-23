@@ -193,7 +193,7 @@ static inline UnkTeleportEntity_l07e3f0* FindById(UnkGameManager* manager, const
 }
 
 static inline UnkTeleportEntity_l07e3f0* FindByName(UnkGameManager* manager, const char* name, u32 kind) {
-    u64 hash = fn_7100001570(name, __builtin_strlen(name));
+    u64 hash = StringCrc64(name, __builtin_strlen(name));
     alignas(8) u32 flags = kind;
     return static_cast<UnkTeleportEntity_l07e3f0*>(fn_7100deba8c(manager, &hash, &flags));
 }

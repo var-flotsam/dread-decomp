@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,19 +23,19 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // CCharClassAimComponent
 void fn_710035c020();
-void fn_710035b488(UnkReflFunction* fn, const char* name);
+void fn_710035b488(CFunction* fn, const char* name);
 void fn_710035c0b0();
-void fn_710035b604(UnkReflFunction* fn, const char* name);
+void fn_710035b604(CFunction* fn, const char* name);
 void fn_710035c140();
-void fn_710035b780(UnkReflFunction* fn, const char* name);
+void fn_710035b780(CFunction* fn, const char* name);
 void fn_710035c1d0();
-void fn_710035b8fc(UnkReflFunction* fn, const char* name);
+void fn_710035b8fc(CFunction* fn, const char* name);
 void fn_710035c260();
-void fn_710035ba78(UnkReflFunction* fn, const char* name);
+void fn_710035ba78(CFunction* fn, const char* name);
 void fn_710035c2f0();
-void fn_710035bbf4(UnkReflFunction* fn, const char* name);
+void fn_710035bbf4(CFunction* fn, const char* name);
 void fn_710035c380();
-void fn_710035bd70(UnkReflFunction* fn, const char* name);
+void fn_710035bd70(CFunction* fn, const char* name);
 namespace CCharClassAimComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

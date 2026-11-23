@@ -98,7 +98,7 @@ void fn_7100d357d8(UnkBroadphaseObject_ld357d8* self) {
     self->count = 0;
     self->head = nullptr;
     self->tail = nullptr;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->flags = 0x13;
     self->busy = false;
 }

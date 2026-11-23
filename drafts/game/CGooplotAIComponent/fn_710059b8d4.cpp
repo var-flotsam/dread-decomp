@@ -78,7 +78,7 @@ u32 fn_710059b8d4(UnkGooplotAI_l59b8d4* self, UnkGooplotMessage_l59b8d4* msg) {
             fn_71010c7e6c(sink, &params, 1);
         }
         if (UnkWorld* world = self->owner->world)
-            fn_710114fe8c(world, fn_7100001570("gooplottail", 11), 0, 0);
+            fn_710114fe8c(world, StringCrc64("gooplottail", 11), 0, 0);
         break;
     default: {
         if (!sink)

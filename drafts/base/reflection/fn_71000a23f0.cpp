@@ -23,7 +23,7 @@ using base::reflection::UnkTypedRef;
 struct UnkReflFieldInfo;
 struct UnkFieldOwner;
 
-bool fn_71000e74bc(UnkReflField* field);  // whether a field without an accessor can be set
+bool fn_71000e74bc(CVariable* field);  // whether a field without an accessor can be set
 bool fn_71000e750c(UnkTunableFieldHandle* field);  // whether the field can be read
 UnkReflTypedPtr fn_71000e755c(const UnkReflFieldInfo* field, UnkFieldOwner* owner);
 
@@ -145,7 +145,7 @@ bool fn_71000a23f0(UnkObjectVisitor_l0a23f0* self, const UnkReflTypedPtr* obj) {
         for (u64 i = 0, n = cls->m_array_0xe8.count; i != n; ++i) {
             UnkVisitedField_l0a23f0* field = &fields[i];
             if (self->AcceptsField(field) == 1) {
-                if (fn_71000e74bc(reinterpret_cast<UnkReflField*>(field))) {
+                if (fn_71000e74bc(reinterpret_cast<CVariable*>(field))) {
                     UnkReflTypedPtr at = fn_71000e755c(reinterpret_cast<const UnkReflFieldInfo*>(field),
                                                        reinterpret_cast<UnkFieldOwner*>(const_cast<UnkReflTypedPtr*>(obj)));
                     if (at.type)

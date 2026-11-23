@@ -44,7 +44,7 @@ void fn_710034dc8c(UnkLaserAim* self) {
         fn_7100145e94(laser, true);
         fn_7100208124(reinterpret_cast<char*>(self->field_0x4f0->field_0x28), false);
         UnkActor* actor = self->field_0x30;
-        u64 key = fn_7100001570("onanalogaiminglasercreated", 0x1a);
+        u64 key = StringCrc64("onanalogaiminglasercreated", 0x1a);
         fn_7100d7c828(actor, &key, false);
     }
     self->field_0x528 = true;

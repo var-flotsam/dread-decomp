@@ -11,8 +11,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -34,7 +34,7 @@ namespace CShootDCBones {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x8, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("tBoneNames", true), &g_unk_7101d5c998, 0x10, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("tBoneNames", true), &g_unk_7101d5c998, 0x10, -1, -1);
     field1->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -100,7 +100,7 @@ namespace CPattern {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sPatternName", 0x8, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("tOffsets", true), &base::reflection::TypeObject<TPatterns>::object, 0x10, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("tOffsets", true), &base::reflection::TypeObject<TPatterns>::object, 0x10, -1, -1);
     field1->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -151,9 +151,9 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSlowSteeringAcceleration", 0x764, (DefaultValue, 2.5f));
     DREAD_REFLECTED_FIELD(f32, "fSlowMaxTargetDistanceToAccelerateCloseToTarget", 0x768, (DefaultValue, 200.0f));
     DREAD_REFLECTED_FIELD(f32, "fSlowMotionSpeed", 0x76c, (DefaultValue, 250.0f));
-    UnkReflField* field16 = AddReflectedField(cls, CStrId("tShootDCBones", true), &g_unk_71726f5280, 0x770, -1, -1);
+    CVariable* field16 = AddReflectedField(cls, CStrId("tShootDCBones", true), &g_unk_71726f5280, 0x770, -1, -1);
     field16->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
-    UnkReflField* field17 = AddReflectedField(cls, CStrId("tLaunchConfig", true), &g_unk_71726f5eb8, 0x798, -1, -1);
+    CVariable* field17 = AddReflectedField(cls, CStrId("tLaunchConfig", true), &g_unk_71726f5eb8, 0x798, -1, -1);
     field17->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void*, const void*) { return false; }
@@ -549,34 +549,34 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_710061c0a8();
 void fn_710061c0f8();
 void fn_7100611c40(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710061c0a8);
-    UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", COffset::refl_GetClass(), 0x1, fn_710061c0f8);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), COffset::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), COffset::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_710061c2f0();
 void fn_710061c340();
 void fn_7100612230(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710061c2f0);
-    UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", COffset::refl_GetClass(), 0x101, fn_710061c340);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), COffset::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), COffset::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

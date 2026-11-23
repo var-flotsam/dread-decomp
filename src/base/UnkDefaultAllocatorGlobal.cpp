@@ -51,7 +51,7 @@ void fn_7100083870(void* mem, u64 size) {
     fn_7100133010(g_unk_7101d58eb0, g_unk_7101d58eb8);
 }
 
-base::UnkAllocator* fn_7100083990() {
+base::UnkAllocator* GetDefaultAllocator() {
     return reinterpret_cast<base::UnkAllocator*>(s_current);
 }
 

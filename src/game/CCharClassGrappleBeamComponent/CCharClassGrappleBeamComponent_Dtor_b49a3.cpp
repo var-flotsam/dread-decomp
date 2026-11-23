@@ -27,7 +27,7 @@ void fn_710081622c(UnkObject_710081622c* self) {
         if (self->id && self->id != &pool->empty) {
             --self->id->ref_count;
             if (self->id->ref_count == 0) {
-                fn_71000803a4(pool, self->id);
+                StringPool_Release(pool, self->id);
                 pool = g_unk_7101d47108;
             }
         }

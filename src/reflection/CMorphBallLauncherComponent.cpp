@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -29,7 +29,7 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 namespace CMorphBallLauncherComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpLauncherExit", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x2b8, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("wpLauncherExit", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x2b8, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 11);
     DREAD_REFLECTED_FIELD(CStrId, "sTravellingAction", 0x2f8, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play on the morphball to travel towards the exit"));
     DREAD_REFLECTED_FIELD(bool, "bManualActivation", 0x300, (DefaultValue, true), (Description, "Whether we require a bomb to start launch sequence"));

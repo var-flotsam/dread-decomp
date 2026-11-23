@@ -76,7 +76,7 @@ void fn_71003641fc(UnkStruct_71003641fc* self) {
     self->field_0x18 = 10;
     self->field_0x1c = true;
     self->field_0x20 = 4;
-    self->field_0x28 = fn_7100083990();
+    self->field_0x28 = GetDefaultAllocator();
     new (&self->field_0x30) CStrId("", true);
     new (&self->field_0x38) CStrId("", true);
     self->field_0x40 = -1.0f;

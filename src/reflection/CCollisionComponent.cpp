@@ -9,8 +9,8 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -20,7 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCollisionComponent
-void fn_710085fff4(UnkReflFunction* fn, const char* name);
+void fn_710085fff4(CFunction* fn, const char* name);
 namespace CCollisionComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

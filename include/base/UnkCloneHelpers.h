@@ -40,7 +40,7 @@ void refl_StrIdListCtor(char* self) {
     *reinterpret_cast<u64*>(self + 0x20) = 0;
     *reinterpret_cast<u32*>(self + 0x28) = 10;
     *reinterpret_cast<u32*>(self + 0x2c) = 14;
-    *reinterpret_cast<UnkAllocator**>(self + 0x30) = fn_7100083990();
+    *reinterpret_cast<UnkAllocator**>(self + 0x30) = GetDefaultAllocator();
 }
 }
 
@@ -599,7 +599,7 @@ void refl_ResizeSubVecs(global::CRntVector<UnkCloneSubVec<Tag>>* v, u32 n) {
         e->capacity = 0;
         e->field_0x14 = true;
         e->flags = 0xf;
-        e->allocator = fn_7100083990();
+        e->allocator = GetDefaultAllocator();
     }
     v->count = n;
 }
@@ -1134,7 +1134,7 @@ struct UnkPoolListBase {
         head = nullptr;
         tail = nullptr;
         if (!a)
-            a = fn_7100083990();
+            a = GetDefaultAllocator();
         allocator = a;
         this->flags = flags;
     }
@@ -1170,7 +1170,7 @@ struct UnkPoolList : UnkPoolListBase<Tag, Next> {
         pool.Release();
         if (n) {
             if (!parent)
-                parent = fn_7100083990();
+                parent = GetDefaultAllocator();
             pool.parent = parent;
             u64 size = (u64)n * Elem;
             fn_710008378c(&pool.blocks, parent->vf_0x40(size, 8, f), size, Elem);
@@ -1472,7 +1472,7 @@ void refl_HashMapInit(char* self, u32 buckets, u32 nodes) {
     }
     if (nodes) {
         if (!a)
-            a = fn_7100083990();
+            a = GetDefaultAllocator();
         pool_alloc = a;
         u64 size = (u64)nodes * NodeSize;
         void* block = a->vf_0x40(size, 8, flags);

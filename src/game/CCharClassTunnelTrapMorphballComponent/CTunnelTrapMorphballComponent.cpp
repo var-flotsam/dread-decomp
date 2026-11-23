@@ -47,7 +47,7 @@ void fn_7100a44f10(UnkTunnelTrapMorphballComponent* self) {
     self->field_0xb8 = 10;
     self->field_0xbc = true;
     self->field_0xc0 = 15;
-    self->field_0xc8 = fn_7100083990();
+    self->field_0xc8 = GetDefaultAllocator();
     self->field_0xd0 = 0;
     self->field_0xd8 = false;
     reinterpret_cast<void (*)(UnkTunnelTrapMorphballComponent*)>(self->vtable[3])(self);

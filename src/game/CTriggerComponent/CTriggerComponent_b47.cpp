@@ -44,7 +44,7 @@ struct UnkTriggerRecord {
         field_0x40 = 10;
         field_0x44 = true;
         field_0x48 = 0xf;
-        field_0x50 = fn_7100083990();
+        field_0x50 = GetDefaultAllocator();
         field_0x58 = false;
     }
 };

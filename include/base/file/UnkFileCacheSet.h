@@ -26,7 +26,7 @@ __attribute__((always_inline)) inline void UnkFileCacheSetSetUp(UnkFileCacheSet*
     self->nodes.Release();
     if (nodes) {
         if (!a)
-            a = fn_7100083990();
+            a = GetDefaultAllocator();
         self->nodes.parent = a;
         u64 size = (u64)nodes * NodeSize;
         void* block = a->vf_0x40(size, 8, flags);

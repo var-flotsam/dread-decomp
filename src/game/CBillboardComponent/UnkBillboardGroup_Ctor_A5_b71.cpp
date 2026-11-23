@@ -58,7 +58,7 @@ void fn_7100745a7c(UnkBillboardGroup_A5_b71* self) {
     self->field_0xc8 = 10;
     self->field_0xcc = 1;
     self->field_0xd0 = 15;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     fn_71007457cc(self->member);
     self->owner = self;
     self->callback = fn_7100745fd8;

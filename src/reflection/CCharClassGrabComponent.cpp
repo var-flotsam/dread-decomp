@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -27,7 +27,7 @@ namespace CCharClassGrabComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sFireCameraFXPreset", 0x88, (DefaultValue, ""), (Description, "Fire Camera FX Preset"));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("oAnimationLayers", true), &base::reflection::TypeObject<base::global::timeline::TLayers>::object, 0x90, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("oAnimationLayers", true), &base::reflection::TypeObject<base::global::timeline::TLayers>::object, 0x90, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<base::global::timeline::TLayers>::object, s32(base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>()));
 }
 bool refl_Equals(const void*, const void*) { return false; }

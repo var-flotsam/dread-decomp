@@ -9,8 +9,8 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -29,9 +29,9 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 namespace CMagmaKraidScenarioControllerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpBackGorundPipesEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x40, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("wpBackGorundPipesEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x40, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpPistonEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x80, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("wpPistonEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x80, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

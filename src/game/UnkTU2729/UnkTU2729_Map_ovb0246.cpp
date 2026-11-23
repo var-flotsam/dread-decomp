@@ -18,7 +18,7 @@ static inline void ResetId_b0246(UnkStringData** slot) {
         if (data && data != &pool->empty) {
             --data->ref_count;
             if ((*slot)->ref_count == 0) {
-                fn_71000803a4(pool, *slot);
+                StringPool_Release(pool, *slot);
                 pool = *Pool;
             }
         }

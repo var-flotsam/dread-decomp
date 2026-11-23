@@ -169,10 +169,10 @@ void fn_7100771ea4(UnkCentralUnit_l771ea4* self, f32 dt) {
         if (g_unk_71727153dc == 0.0f) {
             if (UnkEvacTimeline_b61* timeline = fn_71003c6c3c(self->part)) {
                 if (phase_2) {
-                    u64 id = fn_7100001570("emmy_alarm_phase_2", 18);
+                    u64 id = StringCrc64("emmy_alarm_phase_2", 18);
                     StartTimeline(timeline, id);
                 } else {
-                    u64 id = fn_7100001570("emmy_alarm_phase_1", 18);
+                    u64 id = StringCrc64("emmy_alarm_phase_1", 18);
                     StartTimeline(timeline, id);
                 }
             }

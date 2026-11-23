@@ -102,7 +102,7 @@ inline void AssignPath_fd73a4(UnkPooledId<&g_unk_7101d47200>& dst, const UnkPool
         if (dst.data != &pool->empty) {
             --dst.data->ref_count;
             if (dst.data->ref_count == 0)
-                fn_71000803a4(pool, dst.data);
+                StringPool_Release(pool, dst.data);
         }
         dst.data = d;
     }

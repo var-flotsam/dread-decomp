@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -36,7 +36,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sEnterZoneSound", 0xc50, (DefaultValue, base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "levels/lava_pain_01.wav", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sVisualPresetOverride", 0xc58, (DefaultValue, CStrId("HeatZone", true)));
     DREAD_REFLECTED_FIELD_OF("CGameLink<CActor>", "pEnvironmentFXActor", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("vEnvironmentFXActors", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0xc28, -1, -1);
+    CVariable* field5 = AddReflectedField(cls, CStrId("vEnvironmentFXActors", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0xc28, -1, -1);
     field5->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field5->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 10);
 }

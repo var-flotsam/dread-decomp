@@ -43,7 +43,7 @@ void* fn_71000238c8(UnkBaseObject_b49a1* self, u32 flags) {
     void* copy = nullptr;
     if (fn_710009d50c(reinterpret_cast<const CType*>(cls), reinterpret_cast<const CType*>(g_unk_7101d4e990)) &&
         cls->construct) {
-        copy = fn_7100083990()->vf_0x40(cls->size, 8, flags);
+        copy = GetDefaultAllocator()->vf_0x40(cls->size, 8, flags);
         if (copy)
             cls->construct(copy);
     }

@@ -43,7 +43,7 @@ void fn_7100640918(UnkQuetzoaXAIComponent* self) {
     self->field_0x14ba0 = 10;
     self->field_0x14ba4 = true;
     self->field_0x14ba8 = 0xf;
-    self->field_0x14bb0 = fn_7100083990();
+    self->field_0x14bb0 = GetDefaultAllocator();
     self->field_0x14bb8 = 0;
     self->field_0x14b88 = g_unk_7101a20950 + 2;
     self->field_0x14bc0 = 0;

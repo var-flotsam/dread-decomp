@@ -394,7 +394,7 @@ static inline void MoveKey(CStrId* dst, CStrId* src) {
         if (dst->data && dst->data != &pool->empty) {
             --dst->data->ref_count;
             if (dst->data->ref_count == 0) {
-                fn_71000803a4(pool, dst->data);
+                StringPool_Release(pool, dst->data);
                 pool = g_unk_7101d47108;
             }
         }
@@ -419,10 +419,10 @@ UnkTileStatesPair_ovb0028* fn_710075faac(UnkTileStatesPair_ovb0028* self, UnkTil
 
 // ---- Reflection ----
 
-void fn_710075d748(base::reflection::UnkReflFunction* fn);
+void fn_710075d748(base::reflection::CFunction* fn);
 
 // CreateNewTile's parameter types (uIdx, eTileType, then the rest from fn_710075d748).
-void fn_710075d430(base::reflection::UnkReflFunction* fn) {
+void fn_710075d430(base::reflection::CFunction* fn) {
     fn->params.PushBack(fn_7100005178());
     fn->params.PushBack(&base::reflection::TypeObject<EBreakableTileType>::object);
     fn_710075d748(fn);

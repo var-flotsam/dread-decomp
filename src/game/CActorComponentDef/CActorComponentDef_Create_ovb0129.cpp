@@ -96,7 +96,7 @@ UnkComponentDef_b0129* fn_7100253988(const base::UnkStrIdMember& name, const Unk
     if (!cls || !fn_710009d50c(reinterpret_cast<const base::reflection::CType*>(cls), ComponentDefType()) ||
         !cls->construct)
         return nullptr;
-    auto* def = static_cast<UnkComponentDef_b0129*>(fn_7100083990()->vf_0x40(cls->size, 8, 5));
+    auto* def = static_cast<UnkComponentDef_b0129*>(GetDefaultAllocator()->vf_0x40(cls->size, 8, 5));
     if (!def)
         return nullptr;
     cls->construct(def);

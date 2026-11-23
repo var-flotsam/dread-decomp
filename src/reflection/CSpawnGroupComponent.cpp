@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -61,9 +61,9 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bSpawnPointsNotInFrustrum", 0x141, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bGenerateEntitiesByOrder", 0x142, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(CStrId, "sLogicCollisionShapeID", 0x418, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field20 = AddReflectedField(cls, CStrId("wpAreaOfInterest", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xb8, -1, -1);
+    CVariable* field20 = AddReflectedField(cls, CStrId("wpAreaOfInterest", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xb8, -1, -1);
     field20->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
-    UnkReflField* field21 = AddReflectedField(cls, CStrId("wpAreaOfInterestEnd", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xf8, -1, -1);
+    CVariable* field21 = AddReflectedField(cls, CStrId("wpAreaOfInterestEnd", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xf8, -1, -1);
     field21->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FIELD(f32, "fDropAmmoProb", 0x3d8, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(s32, "iInitToGenerate", 0x188, (DefaultValue, 0));
@@ -71,7 +71,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bCheckActiveDrops", 0x1a0, (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION_OF("_m_iNumDeaths_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_710111fd34);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iNumDeaths", (DefaultValue, 0), (Persistence, 0));
-    UnkReflField* field27 = AddReflectedField(cls, CStrId("vectSpawnPoints", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CSpawnPointComponent>>>::object, 0x68, -1, -1);
+    CVariable* field27 = AddReflectedField(cls, CStrId("vectSpawnPoints", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CSpawnPointComponent>>>::object, 0x68, -1, -1);
     field27->attrs.Add<bool>(base::reflection::attr::DisableListAdd(), true);
     field27->attrs_0x70.Add<bool>(base::reflection::attr::bWeakLink(), true);
     field27->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 3);

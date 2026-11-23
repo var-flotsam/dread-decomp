@@ -51,7 +51,7 @@ static_assert(__builtin_offsetof(UnkHidrogigaCtor_A4_b72, field_0x600) == 0x600,
     self->o##_step = 10;                                                   \
     self->o##_grow = true;                                                 \
     self->o##_flags = 0xf;                                                 \
-    self->o##_allocator = fn_7100083990();                                 \
+    self->o##_allocator = GetDefaultAllocator();                                 \
     self->o##_field_0x30 = 0;                                              \
     self->o##_vtable = reinterpret_cast<char*>(g_unk_7101a33fa0) + 0x10;   \
     self->o##_field_0x38 = nullptr

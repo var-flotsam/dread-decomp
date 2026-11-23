@@ -23,7 +23,7 @@ void fn_7100ad3404(UnkErasedVector* self, const UnkErasedValue_0x10* values, u64
     self->capacity = 0;
     self->field_0x14 = true;
     self->flags = 0xf;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     if (self->capacity < n) {
         auto* p = static_cast<UnkErasedValue_0x10*>(
             self->allocator->vf_0x40((u64)n * sizeof(UnkErasedValue_0x10), 8, self->flags));

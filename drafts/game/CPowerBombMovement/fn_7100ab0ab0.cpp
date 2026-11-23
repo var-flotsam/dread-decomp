@@ -51,7 +51,7 @@ struct UnkPbMap_ovb0015 {
     UnkPbNode_ovb0015* last;       // 0x40: where the walk starts
 
     UnkPbMap_ovb0015()
-        : allocator(fn_7100083990()), field_0x8(5), count(0), buckets(5), first(nullptr), last(nullptr) {
+        : allocator(GetDefaultAllocator()), field_0x8(5), count(0), buckets(5), first(nullptr), last(nullptr) {
         buckets.Resize(11);
     }
 

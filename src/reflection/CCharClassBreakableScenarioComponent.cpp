@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -32,7 +32,7 @@ template <> base::reflection::CType base::reflection::TypeObject<base::serializa
 namespace CCharClassBreakableScenarioComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("vColliderIds", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0xffffffff, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("vColliderIds", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0xffffffff, -1, -1);
     field0->attrs.Add<bool>(base::reflection::attr::DeprecatedVar(), true);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 1);

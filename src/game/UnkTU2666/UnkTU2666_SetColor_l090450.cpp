@@ -33,7 +33,7 @@ static inline void* FindByName(UnkGameManager* manager, const char* name) {
     u32 kind_value = g_unk_71727bebb8;
     u64 hash;
     alignas(8) u32 kind;
-    hash = fn_7100001570(name, __builtin_strlen(name));
+    hash = StringCrc64(name, __builtin_strlen(name));
     kind = kind_value;
     return fn_7100deba8c(manager, &hash, &kind);
 }
@@ -78,7 +78,7 @@ s32 fn_7101090450(lua_State* L) {
     CStrId kind_id(kind_name, true);
     u32 kind = SlotKind(kind_id);
     CColor4F color(1.0f, 1.0f, 1.0f, 1.0f);
-    u64 key = fn_7100001570(slot, __builtin_strlen(slot));
+    u64 key = StringCrc64(slot, __builtin_strlen(slot));
     fn_71001c2bac(owner->slots, key, kind, &color, 1);
     if (r >= 0.0f)
         color.r = r <= 0.0f ? 0.0f : r;

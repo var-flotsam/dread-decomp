@@ -25,7 +25,7 @@ struct UnkSurvivalArray_b42a3 {
         field_0x14 = 0;
         step = 10;
         flags = 0xe;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
     }
 
     // Takes the other's storage and settings, leaving it empty.

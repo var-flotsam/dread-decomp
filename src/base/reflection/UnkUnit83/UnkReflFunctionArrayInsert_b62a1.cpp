@@ -1,5 +1,5 @@
 // Unit 83: the "insert by key" function (slot 0x120 of the reflected collection type) of a keyed
-// array of reflected functions (0xb8 bytes each, UnkReflFunction) and their names: the inlined
+// array of reflected functions (0xb8 bytes each, CFunction) and their names: the inlined
 // append of fn_7100097550 (src/base/reflection/fn_7100097550.cpp), with the function moved in from
 // the argument. The types are local views of that file's; names are placeholders.
 #include <new>
@@ -82,7 +82,7 @@ struct UnkReflFunctionData {
           invoker(other.invoker), field_0x50(other.field_0x50), field_0x78(other.field_0x78, other.field_0x50),
           param_attrs(static_cast<UnkVectorView<void*>&&>(other.param_attrs)), field_0xb0_w(other.field_0xb0_w) {}
 };
-static_assert(sizeof(UnkReflFunctionData) == 0xb8, "UnkReflFunction layout");
+static_assert(sizeof(UnkReflFunctionData) == 0xb8, "CFunction layout");
 
 }  // namespace refl_function_insert_b62a1
 

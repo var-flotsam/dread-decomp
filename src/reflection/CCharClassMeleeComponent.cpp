@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,7 +23,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassMeleeComponent
 void fn_71009284a4();
-void fn_710092816c(UnkReflFunction* fn, const char* name);
+void fn_710092816c(CFunction* fn, const char* name);
 namespace CCharClassMeleeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

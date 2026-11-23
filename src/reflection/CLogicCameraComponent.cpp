@@ -8,8 +8,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -28,7 +28,7 @@ void fn_71009115e0();
 namespace CLogicCameraComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("rLogicCamera", true), fn_7100910720(), 0x30, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("rLogicCamera", true), fn_7100910720(), 0x30, -1, -1);
     [&] {
         DREAD_REFLECTED_FUNCTION_OF("GetLogicCamera", base::reflection::PointerType<CLogicCamera*>::Get(), 0, fn_71009115e0);
     }();

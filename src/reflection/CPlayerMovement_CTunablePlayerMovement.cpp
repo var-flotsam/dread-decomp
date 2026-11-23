@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,7 +25,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 // CPlayerMovement::CTunablePlayerMovement
 namespace CPlayerMovement::CTunablePlayerMovement { extern bool refl_fields_added asm("g_unk_7172a03df0"); }
 void fn_71010dce08();
-void fn_71010d6424(UnkReflFunction* fn, const char* name);
+void fn_71010d6424(CFunction* fn, const char* name);
 namespace CPlayerMovement::CTunablePlayerMovement { extern UnkTunable refl_tunable asm("g_unk_7172a03d80"); }
 void fn_71010d65a0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CPlayerMovement::CTunablePlayerMovement {

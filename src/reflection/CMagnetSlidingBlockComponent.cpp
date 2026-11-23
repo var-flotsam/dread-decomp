@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -33,9 +33,9 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToCompleteMovementTowardsEnd", 0x334, (DefaultValue, 0.0f), (Description, "Seconds it takes to complete movement through the path"));
     DREAD_REFLECTED_FIELD(f32, "fTimeToCompleteMovementTowardsStart", 0x338, (DefaultValue, 0.0f), (Description, "Seconds it takes to complete movement from the end to the start of the path"));
     DREAD_REFLECTED_FIELD(bool, "bContinueMovingOnStopHang", 0x340, (DefaultValue, false), (Description, "Whether movement should continue regardless of having an entity hanging, after the initial hang"));
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("wpRail", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x428, -1, -1);
+    CVariable* field4 = AddReflectedField(cls, CStrId("wpRail", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x428, -1, -1);
     field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("wpDoorOpeningOnAnimatedCamera", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x4a0, -1, -1);
+    CVariable* field5 = AddReflectedField(cls, CStrId("wpDoorOpeningOnAnimatedCamera", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x4a0, -1, -1);
     field5->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD(f32, "fTotalMetersToMoveY", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fTimeToOpen", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));

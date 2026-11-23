@@ -93,7 +93,7 @@ void fn_71011fcc54(UnkSpriteGridReset_ovb0043* self) {
         if (path->data != &pool->empty) {
             --path->data->ref_count;
             if (path->data->ref_count == 0)
-                fn_71000803a4(pool, path->data);
+                StringPool_Release(pool, path->data);
         }
         path->data = d;
     }

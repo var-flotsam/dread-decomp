@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -30,12 +30,12 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 
 // CBreakableTileGroupComponent
 void fn_710075d2e4();
-void fn_71007542cc(UnkReflFunction* fn, const char* name);
+void fn_71007542cc(CFunction* fn, const char* name);
 void fn_710075d374();
-void fn_7100754448(UnkReflFunction* fn, const char* name);
+void fn_7100754448(CFunction* fn, const char* name);
 void fn_710075d73c();
-void fn_710075d430(UnkReflFunction* fn);
-void fn_71007545bc(UnkReflFunction* fn, const char* name);
+void fn_710075d430(CFunction* fn);
+void fn_71007545bc(CFunction* fn, const char* name);
 void fn_710075d94c();
 namespace CBreakableTileGroupComponent {
 void refl_AddAttributes(CClass*) {}
@@ -49,7 +49,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_eCollisionMaterial_GetterFunction", &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0, fn_710075d374);
     DREAD_REFLECTED_FUNCTION("_m_eCollisionMaterial_SetterFunction")
         fn_7100754448(fn, "_m_eCollisionMaterial_SetterFunction");
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("eCollisionMaterial", true), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("eCollisionMaterial", true), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0);
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Collision Material");
     DREAD_REFLECTED_FUNCTION("CreateNewTile") {

@@ -48,7 +48,7 @@ struct UnkFile_l07c1ac {
 
     base::UnkAllocator* Allocator() {
         if (!allocator)
-            allocator = fn_7100083990();
+            allocator = GetDefaultAllocator();
         return allocator;
     }
 };

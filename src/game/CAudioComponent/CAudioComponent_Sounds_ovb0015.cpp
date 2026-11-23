@@ -65,7 +65,7 @@ struct UnkAudioPathId_ovb0015 {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47200;
                 }
             }
@@ -297,7 +297,7 @@ struct UnkAudioVector_ovb0015 {
 
     UnkAudioVector_ovb0015(u32 step_)
         : data(nullptr), count(0), capacity(0), step(step_), field_0x14(true), flags(0xb),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
 };
 
 // Makes room for `n` links: the links are copied into a new array and released in the old one.
@@ -333,7 +333,7 @@ struct UnkAudioPairList_ovb0015 {
 
     UnkAudioPairList_ovb0015()
         : data(nullptr), ptrs(nullptr), count(0), capacity(0), step(10), flags(0xe),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
 };
 
 struct UnkAudioComponent_ovb0015 {

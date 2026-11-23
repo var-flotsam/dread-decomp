@@ -66,7 +66,7 @@ bool fn_710000ccd8(UnkFileReader* self) {
     return true;
 }
 
-// The void type (src/base/reflection/UnkReflFunction.cpp).
+// The void type (src/base/reflection/CFunction.cpp).
 
 // Parses a value of `type` (nothing for void) with the context's callbacks and file into a target of
 // its own (with `Parse`), and destroys what was read.

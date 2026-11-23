@@ -54,7 +54,7 @@ void fn_7100c8d58c(UnkElemA0_b42a3* self) {
     self->field_0x28.capacity = 0;
     self->field_0x28.step = 10;
     self->field_0x28.flags = 0xe;
-    self->field_0x28.allocator = fn_7100083990();
+    self->field_0x28.allocator = GetDefaultAllocator();
     self->field_0x50 = -1;
     MakeEmpty(&self->field_0x58);
     MakeEmpty(&self->field_0x60);
@@ -64,6 +64,6 @@ void fn_7100c8d58c(UnkElemA0_b42a3* self) {
     self->field_0x70.capacity = 0;
     self->field_0x70.step = 10;
     self->field_0x70.flags = 0xe;
-    self->field_0x70.allocator = fn_7100083990();
+    self->field_0x70.allocator = GetDefaultAllocator();
     new (&self->field_0x98) CFilePathStrId();
 }

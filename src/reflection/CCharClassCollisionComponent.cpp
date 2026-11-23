@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -33,7 +33,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("game::logic::collision::EColMat", "eDefaultCollisionMaterial", 0x98, (DefaultValue, 0), (Description, "General Collision Material"));
     DREAD_REFLECTED_FIELD(bool, "bShouldIgnoreSlopeSupport", 0xc8, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bForceSlopeDirectionOnFloorHit", 0xc9, (DefaultValue, false));
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("mExplicitCollisionMaterials", true), &base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::object, 0xa0, -1, -1);
+    CVariable* field4 = AddReflectedField(cls, CStrId("mExplicitCollisionMaterials", true), &base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::object, 0xa0, -1, -1);
     field4->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void*, const void*) { return false; }

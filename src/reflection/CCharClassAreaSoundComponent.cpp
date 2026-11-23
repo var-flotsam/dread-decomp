@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,7 +23,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassAreaSoundComponent
 void fn_710077f56c();
-void fn_710077f2f8(UnkReflFunction* fn, const char* name);
+void fn_710077f2f8(CFunction* fn, const char* name);
 namespace CCharClassAreaSoundComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

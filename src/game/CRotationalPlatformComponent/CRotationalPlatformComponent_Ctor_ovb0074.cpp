@@ -34,7 +34,7 @@ void fn_71009d957c(UnkRotationalPlatform_ovb0074* self) {
     At<u32>(self, 0x60) = 10;
     At<u8>(self, 0x64) = 1;
     At<u32>(self, 0x68) = 0xf;
-    At<base::UnkAllocator*>(self, 0x70) = fn_7100083990();
+    At<base::UnkAllocator*>(self, 0x70) = GetDefaultAllocator();
     At<u32>(self, 0x78) = 0;
     At<char*>(self, 0x48) = reinterpret_cast<char*>(g_unk_7101a33fa0) + 0x10;
     At<u64>(self, 0x80) = 0;

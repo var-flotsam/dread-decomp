@@ -49,7 +49,7 @@ void fn_710026059c(UnkStrIdMap_A6_b75<UnkReflRecord60_ovb0036>* self,
 
 template <u32 Flags>
 struct UnkAllocatorHandle_ovb0036 {
-    UnkAllocator* allocator = fn_7100083990();
+    UnkAllocator* allocator = GetDefaultAllocator();
     u32 flags = Flags;
     u32 field_0xc = 0;
 };
@@ -127,7 +127,7 @@ struct UnkWordList_ovb0036 {
     u64 field_0x10 = 0;
     u32 step = 10;
     u32 flags = Flags;
-    UnkAllocator* allocator = fn_7100083990();
+    UnkAllocator* allocator = GetDefaultAllocator();
 };
 
 extern void* g_unk_7101a20c78[];
@@ -361,7 +361,7 @@ struct UnkKeyNodeOwner_ovb0036 {
 base::global::CRntVector<u64>* fn_710025c1a4(UnkKeyNodeOwner_ovb0036* self, UnkStringData* const* key) {
     UnkKeyNodeMap_ovb0036* map = &self->map;
     map->Erase(*key);
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     UnkKeyNode_ovb0036** slot = nullptr;
     if (map->field_0x18) {
         u32 b = UnkKeyNodeMap_ovb0036::Hash(*key) % map->bucket_count;

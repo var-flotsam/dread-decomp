@@ -63,7 +63,7 @@ static inline void InitEvents(UnkModelUpdaterEvents_l170b2c* e) {
     e->count = 0;
     e->head = nullptr;
     e->tail = nullptr;
-    e->allocator = fn_7100083990();
+    e->allocator = GetDefaultAllocator();
     e->flags = 0x13;
     e->field_0x30 = 0;
 }

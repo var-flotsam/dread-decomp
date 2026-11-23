@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -68,15 +68,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CSpecialEnergyComponent::CTunableSpecialEnergyComponent, base::tunable::CTunable);
 
 // CSpecialEnergyComponent
-void fn_7100a1eff8(UnkReflFunction* fn, const char* name);
+void fn_7100a1eff8(CFunction* fn, const char* name);
 void fn_7100a20250();
-void fn_7100a1f0ac(UnkReflFunction* fn, const char* name);
+void fn_7100a1f0ac(CFunction* fn, const char* name);
 void fn_7100a202f8();
-void fn_71000e8118(UnkReflField* field, u64 index);
-void fn_7100a1f228(UnkReflFunction* fn, const char* name);
-void fn_71000e8180(UnkReflField* field, u64 index);
+void fn_71000e8118(CVariable* field, u64 index);
+void fn_7100a1f228(CFunction* fn, const char* name);
+void fn_71000e8180(CVariable* field, u64 index);
 void fn_7100a203a8();
-void fn_7100a1f3a4(UnkReflFunction* fn, const char* name);
+void fn_7100a1f3a4(CFunction* fn, const char* name);
 namespace CSpecialEnergyComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

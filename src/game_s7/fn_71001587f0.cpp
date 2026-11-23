@@ -234,7 +234,7 @@ bool fn_71001587f0() {
     Call(g_unk_716e29ad70, fn_7100153e10(), command_size);
     Call(g_unk_716e29ad98, fn_7100153e10(), command_size);
     u64 queue_memory_size = Call(g_unk_716e29ad88, fn_7100153e10());
-    g_unk_716e29bcc8[0] = fn_7100083990()->vf_0x40(queue_memory_size, 0x1000, 0x3a);
+    g_unk_716e29bcc8[0] = GetDefaultAllocator()->vf_0x40(queue_memory_size, 0x1000, 0x3a);
     Call(g_unk_716e29ad90, fn_7100153e10(), g_unk_716e29bcc8[0], queue_memory_size);
     {
         void* queue = fn_7100153d10(0);
@@ -255,7 +255,7 @@ bool fn_71001587f0() {
             void* device = fn_7100153cd0();
             Call(g_unk_716e29b740, builder, device);
         }
-        g_unk_716e29bf10[i] = fn_7100083990()->vf_0x40(0x200000, command_alignment, 8);
+        g_unk_716e29bf10[i] = GetDefaultAllocator()->vf_0x40(0x200000, command_alignment, 8);
         fn_7100153968(pool, 0xf00000, control_alignment);
         Call(g_unk_716e29b770, fn_7100153db0(i), pool->pad_0x0 + 8, 0, 0xf00000);
         Call(g_unk_716e29b778, fn_7100153db0(i), g_unk_716e29bf10[i], 0x200000);

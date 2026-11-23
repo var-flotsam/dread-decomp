@@ -59,7 +59,7 @@ static inline void* FindByName(UnkGameManager* manager, const char* name) {
     u32 kind_value = g_unk_71727bebb8;
     u64 hash;
     alignas(8) u32 kind;
-    hash = fn_7100001570(name, __builtin_strlen(name));
+    hash = StringCrc64(name, __builtin_strlen(name));
     kind = kind_value;
     return fn_7100deba8c(manager, &hash, &kind);
 }

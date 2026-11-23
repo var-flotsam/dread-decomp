@@ -47,7 +47,7 @@ static_assert(sizeof(CCollectionType) == 0x170, "CCollectionType layout");
 
 template <class T>
 CCollectionType::CCollectionType(const base::global::CStrId& name, T*, void*)
-    : CType(fn_7100001570("base::reflection::CCollectionType", 0x21), name, CollectionTypeDescription<T>::size,
+    : CType(StringCrc64("base::reflection::CCollectionType", 0x21), name, CollectionTypeDescription<T>::size,
             reinterpret_cast<EqualsFn>(CollectionTypeDescription<T>::equals),
             reinterpret_cast<HashFn>(CollectionTypeDescription<T>::hash),
             reinterpret_cast<TypeOfFn>(CollectionTypeDescription<T>::type_of), nullptr, nullptr,

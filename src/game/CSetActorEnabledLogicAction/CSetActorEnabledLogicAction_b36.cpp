@@ -34,7 +34,7 @@ void fn_7100a51ea0(UnkSetActorEnabledLogicActionDef* self) {
     self->field_0x28 = 10;
     self->field_0x2c = true;
     self->field_0x30 = 0xf;
-    self->field_0x38 = fn_7100083990();
+    self->field_0x38 = GetDefaultAllocator();
     self->field_0x40 = 0;
     self->field_0x10 = g_unk_7101a20950 + 2;
     self->field_0x48 = 0;

@@ -72,7 +72,7 @@ struct UnkFieldId_la6081c : UnkStrIdBase {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -110,62 +110,62 @@ void fn_7100a6081c(UnkColliderTrigger_b0058* component, CRntFile* file) {
     CRntFile_Read(file, &onAllExitAlways, 1, 1);
 
     {
-        u64 key = fn_7100001570("sOnEnable", 9);
+        u64 key = StringCrc64("sOnEnable", 9);
         UnkFieldId_la6081c id(onEnable, true);
         Set<fn_7100009658>(self, key, &id);
     }
     {
-        u64 key = fn_7100001570("sOnDisable", 10);
+        u64 key = StringCrc64("sOnDisable", 10);
         UnkFieldId_la6081c id(onDisable, true);
         Set<fn_7100009658>(self, key, &id);
     }
-    Set<fn_710000d228>(self, fn_7100001570("bOnEnableAlways", 15), &onEnableAlways);
-    Set<fn_710000d228>(self, fn_7100001570("bOnDisableAlways", 16), &onDisableAlways);
+    Set<fn_710000d228>(self, StringCrc64("bOnEnableAlways", 15), &onEnableAlways);
+    Set<fn_710000d228>(self, StringCrc64("bOnDisableAlways", 16), &onDisableAlways);
     {
-        u64 key = fn_7100001570("sOnEnter", 8);
+        u64 key = StringCrc64("sOnEnter", 8);
         UnkFieldId_la6081c id(onEnter, true);
         Set<fn_7100009658>(self, key, &id);
     }
-    Set<fn_710000d228>(self, fn_7100001570("bOnEnterAlways", 14), &onEnterAlways);
+    Set<fn_710000d228>(self, StringCrc64("bOnEnterAlways", 14), &onEnterAlways);
     {
-        u64 key = fn_7100001570("sOnExit", 7);
+        u64 key = StringCrc64("sOnExit", 7);
         UnkFieldId_la6081c id(onExit, true);
         Set<fn_7100009658>(self, key, &id);
     }
-    Set<fn_710000d228>(self, fn_7100001570("bOnExitAlways", 13), &onExitAlways);
+    Set<fn_710000d228>(self, StringCrc64("bOnExitAlways", 13), &onExitAlways);
     {
-        u64 key = fn_7100001570("sOnAllExit", 10);
+        u64 key = StringCrc64("sOnAllExit", 10);
         UnkFieldId_la6081c id(onAllExit, true);
         Set<fn_7100009658>(self, key, &id);
     }
-    Set<fn_710000d228>(self, fn_7100001570("bOnAllExitAlways", 16), &onAllExitAlways);
-    Set<fn_710000d228>(self, fn_7100001570("bStartEnabled", 13), &startEnabled);
+    Set<fn_710000d228>(self, StringCrc64("bOnAllExitAlways", 16), &onAllExitAlways);
+    Set<fn_710000d228>(self, StringCrc64("bStartEnabled", 13), &startEnabled);
 
     // Fields newer files add, each read only while the file still has data.
     if (file->position < file->size) {
         bool checkAllEntities;
         CRntFile_Read(file, &checkAllEntities, 1, 1);
-        Set<fn_710000d228>(self, fn_7100001570("bCheckAllEntities", 17), &checkAllEntities);
+        Set<fn_710000d228>(self, StringCrc64("bCheckAllEntities", 17), &checkAllEntities);
     }
     if (file->position < file->size) {
         bool water;
         CRntFile_Read(file, &water, 1, 1);
-        Set<fn_710000d228>(self, fn_7100001570("bWater", 6), &water);
+        Set<fn_710000d228>(self, StringCrc64("bWater", 6), &water);
     }
     if (file->position < file->size) {
         bool slowDown;
         CRntFile_Read(file, &slowDown, 1, 1);
-        Set<fn_710000d228>(self, fn_7100001570("bSlowDown", 9), &slowDown);
+        Set<fn_710000d228>(self, StringCrc64("bSlowDown", 9), &slowDown);
     }
     if (file->position < file->size) {
         bool persistentState;
         CRntFile_Read(file, &persistentState, 1, 1);
-        Set<fn_710000d228>(self, fn_7100001570("bPersistentState", 16), &persistentState);
+        Set<fn_710000d228>(self, StringCrc64("bPersistentState", 16), &persistentState);
     }
     if (file->position < file->size) {
         const char* sfxType;
         CRntFile_ReadCString(file, &sfxType);
-        u64 key = fn_7100001570("sSfxType", 8);
+        u64 key = StringCrc64("sSfxType", 8);
         UnkFieldId_la6081c id(sfxType, true);
         Set<fn_7100009658>(self, key, &id);
     }

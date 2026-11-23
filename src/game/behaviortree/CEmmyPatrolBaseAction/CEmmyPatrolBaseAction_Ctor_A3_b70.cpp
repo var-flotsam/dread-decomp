@@ -30,7 +30,7 @@ struct UnkPatrolArray_A3_b70 {
     u32 step = 20;
     bool field_0x14 = true;
     u32 flags = 4;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
 };
 
 struct UnkPatrolXY_A3_b70 {

@@ -11,8 +11,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -38,70 +38,70 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 
 // sound::CAudioPreset
 void fn_710103aa44();
-void fn_7101032464(UnkReflFunction* fn, const char* name);
+void fn_7101032464(CFunction* fn, const char* name);
 void fn_710103ab44();
-void fn_71010325e0(UnkReflFunction* fn, const char* name);
+void fn_71010325e0(CFunction* fn, const char* name);
 extern base::reflection::CType g_unk_71729fa4e8;
 void fn_710103ac44();
-void fn_710103275c(UnkReflFunction* fn, const char* name);
+void fn_710103275c(CFunction* fn, const char* name);
 void fn_710103acd4();
-void fn_71010328d0(UnkReflFunction* fn, const char* name);
+void fn_71010328d0(CFunction* fn, const char* name);
 void fn_710103ad60();
-void fn_7101032a44(UnkReflFunction* fn, const char* name);
+void fn_7101032a44(CFunction* fn, const char* name);
 void fn_710103adec();
-void fn_7101032bb8(UnkReflFunction* fn, const char* name);
+void fn_7101032bb8(CFunction* fn, const char* name);
 void fn_710103ae78();
-void fn_7101032d2c(UnkReflFunction* fn, const char* name);
+void fn_7101032d2c(CFunction* fn, const char* name);
 void fn_710103af04();
-void fn_7101032ea0(UnkReflFunction* fn, const char* name);
+void fn_7101032ea0(CFunction* fn, const char* name);
 void fn_710103af94();
-void fn_710103301c(UnkReflFunction* fn, const char* name);
+void fn_710103301c(CFunction* fn, const char* name);
 void fn_710103b024();
-void fn_7101033198(UnkReflFunction* fn, const char* name);
+void fn_7101033198(CFunction* fn, const char* name);
 void fn_710103b0b4();
-void fn_7101033314(UnkReflFunction* fn, const char* name);
+void fn_7101033314(CFunction* fn, const char* name);
 void fn_710103b144();
-void fn_7101033490(UnkReflFunction* fn, const char* name);
+void fn_7101033490(CFunction* fn, const char* name);
 void fn_710103b1d4();
-void fn_710103360c(UnkReflFunction* fn, const char* name);
+void fn_710103360c(CFunction* fn, const char* name);
 void fn_710103b264();
-void fn_7101033788(UnkReflFunction* fn, const char* name);
+void fn_7101033788(CFunction* fn, const char* name);
 void fn_710103b2f4();
-void fn_7101033904(UnkReflFunction* fn, const char* name);
+void fn_7101033904(CFunction* fn, const char* name);
 void fn_710103b384();
-void fn_7101033a80(UnkReflFunction* fn, const char* name);
+void fn_7101033a80(CFunction* fn, const char* name);
 void fn_710103b414();
-void fn_7101033bfc(UnkReflFunction* fn, const char* name);
+void fn_7101033bfc(CFunction* fn, const char* name);
 void fn_710103b4a4();
-void fn_7101033d78(UnkReflFunction* fn, const char* name);
+void fn_7101033d78(CFunction* fn, const char* name);
 void fn_710103b534();
-void fn_7101033ef4(UnkReflFunction* fn, const char* name);
+void fn_7101033ef4(CFunction* fn, const char* name);
 void fn_710103b5c4();
-void fn_7101034070(UnkReflFunction* fn, const char* name);
+void fn_7101034070(CFunction* fn, const char* name);
 void fn_710103b654();
-void fn_71010341ec(UnkReflFunction* fn, const char* name);
+void fn_71010341ec(CFunction* fn, const char* name);
 void fn_710103b6e4();
-void fn_7101034368(UnkReflFunction* fn, const char* name);
+void fn_7101034368(CFunction* fn, const char* name);
 void fn_710103b774();
-void fn_71010344e4(UnkReflFunction* fn, const char* name);
+void fn_71010344e4(CFunction* fn, const char* name);
 void fn_710103b804();
-void fn_7101034660(UnkReflFunction* fn, const char* name);
+void fn_7101034660(CFunction* fn, const char* name);
 void fn_710103b894();
-void fn_71010347dc(UnkReflFunction* fn, const char* name);
+void fn_71010347dc(CFunction* fn, const char* name);
 void fn_710103b924();
-void fn_7101034958(UnkReflFunction* fn, const char* name);
+void fn_7101034958(CFunction* fn, const char* name);
 void fn_710103b9b4();
-void fn_7101034ad4(UnkReflFunction* fn, const char* name);
+void fn_7101034ad4(CFunction* fn, const char* name);
 void fn_710103ba44();
-void fn_7101034c50(UnkReflFunction* fn, const char* name);
+void fn_7101034c50(CFunction* fn, const char* name);
 void fn_710103bad4();
-void fn_7101034dcc(UnkReflFunction* fn, const char* name);
+void fn_7101034dcc(CFunction* fn, const char* name);
 void fn_710103bb64();
-void fn_7101034f48(UnkReflFunction* fn, const char* name);
+void fn_7101034f48(CFunction* fn, const char* name);
 void fn_710103bbf4();
-void fn_71010350c4(UnkReflFunction* fn, const char* name);
+void fn_71010350c4(CFunction* fn, const char* name);
 void fn_710103bc84();
-void fn_7101035240(UnkReflFunction* fn, const char* name);
+void fn_7101035240(CFunction* fn, const char* name);
 namespace sound::CAudioPreset {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -116,23 +116,23 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_arrMatFiles_GetterFunction", &g_unk_71729fa4e8, 0x101, fn_710103ac44);
     DREAD_REFLECTED_FUNCTION("_arrMatFiles_SetterFunction")
         fn_710103275c(fn, "_arrMatFiles_SetterFunction");
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("arrMatFiles", true), &g_unk_71729fa4e8, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("arrMatFiles", true), &g_unk_71729fa4e8, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_ePlayerId_GetterFunction", &base::reflection::TypeObject<base::snd::ESndPlayerId>::object, 0, fn_710103acd4);
     DREAD_REFLECTED_FUNCTION("_ePlayerId_SetterFunction")
         fn_71010328d0(fn, "_ePlayerId_SetterFunction");
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("ePlayerId", true), &base::reflection::TypeObject<base::snd::ESndPlayerId>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("ePlayerId", true), &base::reflection::TypeObject<base::snd::ESndPlayerId>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_eLogicId_GetterFunction", &base::reflection::TypeObject<base::snd::ESndLogicId>::object, 0, fn_710103ad60);
     DREAD_REFLECTED_FUNCTION("_eLogicId_SetterFunction")
         fn_7101032a44(fn, "_eLogicId_SetterFunction");
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("eLogicId", true), &base::reflection::TypeObject<base::snd::ESndLogicId>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field4 = AddReflectedField(cls, CStrId("eLogicId", true), &base::reflection::TypeObject<base::snd::ESndLogicId>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_eAttCurve_GetterFunction", &base::reflection::TypeObject<base::snd::EAttenuationCurve>::object, 0, fn_710103adec);
     DREAD_REFLECTED_FUNCTION("_eAttCurve_SetterFunction")
         fn_7101032bb8(fn, "_eAttCurve_SetterFunction");
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("eAttCurve", true), &base::reflection::TypeObject<base::snd::EAttenuationCurve>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field5 = AddReflectedField(cls, CStrId("eAttCurve", true), &base::reflection::TypeObject<base::snd::EAttenuationCurve>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_ePositional_GetterFunction", &base::reflection::TypeObject<base::snd::EPositionalType>::object, 0, fn_710103ae78);
     DREAD_REFLECTED_FUNCTION("_ePositional_SetterFunction")
         fn_7101032d2c(fn, "_ePositional_SetterFunction");
-    UnkReflField* field6 = AddReflectedField(cls, CStrId("ePositional", true), &base::reflection::TypeObject<base::snd::EPositionalType>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field6 = AddReflectedField(cls, CStrId("ePositional", true), &base::reflection::TypeObject<base::snd::EPositionalType>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_iInstanceLimit_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_710103af04);
     DREAD_REFLECTED_FUNCTION("_iInstanceLimit_SetterFunction")
         fn_7101032ea0(fn, "_iInstanceLimit_SetterFunction");

@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,9 +24,9 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassFXControlTrack
 void fn_7100cfd080();
-void fn_7100cfc500(UnkReflFunction* fn, const char* name);
+void fn_7100cfc500(CFunction* fn, const char* name);
 void fn_7100cfd18c();
-void fn_7100cfc67c(UnkReflFunction* fn, const char* name);
+void fn_7100cfc67c(CFunction* fn, const char* name);
 namespace CCharClassFXControlTrack {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "FX Control");

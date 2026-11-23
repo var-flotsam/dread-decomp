@@ -3,7 +3,7 @@
 // reflected function's move constructor, and a class attribute read with a default.
 //
 // The types here are local views of layouts the rest of the code only declares
-// (UnkReflArray in CClass.h, UnkReflFunction and UnkReflAttrs in UnkReflAttributes.h); the
+// (UnkReflArray in CClass.h, CFunction and UnkReflAttrs in UnkReflAttributes.h); the
 // static_asserts tie them together. Names are placeholders.
 #include <new>
 
@@ -21,7 +21,7 @@ using base::reflection::CClass;
 using base::reflection::CType;
 using base::reflection::UnkReflAttrKey;
 using base::reflection::UnkReflAttrs;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 
 namespace refl_add_function {
 
@@ -51,7 +51,7 @@ struct UnkKeyedArray {
 };
 static_assert(sizeof(UnkKeyedArray<int>) == sizeof(base::reflection::UnkReflArray), "UnkReflArray layout");
 
-// base::global::CRntVector's layout, with the move constructor UnkReflFunction's uses.
+// base::global::CRntVector's layout, with the move constructor CFunction's uses.
 template <class T>
 struct UnkVectorView {
     T* data;
@@ -72,7 +72,7 @@ struct UnkVectorView {
 };
 static_assert(sizeof(UnkVectorView<void*>) == sizeof(base::global::CRntVector<void*>), "CRntVector layout");
 
-// A reflected function (UnkReflFunction) with its whole layout.
+// A reflected function (CFunction) with its whole layout.
 struct UnkReflFunctionData {
     // The two fields after the keyed array. Their copy is read before the array's source is
     // cleared and written after it (the order the original's move constructor has).
@@ -116,13 +116,13 @@ struct UnkReflFunctionData {
           invoker(other.invoker), field_0x50(other.field_0x50), field_0x78(other.field_0x78, other.field_0x50),
           param_attrs(static_cast<UnkVectorView<void*>&&>(other.param_attrs)), field_0xb0_w(other.field_0xb0_w) {}
 
-    UnkReflFunction* Public() { return reinterpret_cast<UnkReflFunction*>(this); }
+    CFunction* Public() { return reinterpret_cast<CFunction*>(this); }
 };
-static_assert(sizeof(UnkReflFunctionData) == sizeof(UnkReflFunction), "UnkReflFunction layout");
-static_assert(__builtin_offsetof(UnkReflFunctionData, return_type) == __builtin_offsetof(UnkReflFunction, return_type),
-              "UnkReflFunction layout");
-static_assert(__builtin_offsetof(UnkReflFunctionData, field_0xb2) == __builtin_offsetof(UnkReflFunction, field_0xb2),
-              "UnkReflFunction layout");
+static_assert(sizeof(UnkReflFunctionData) == sizeof(CFunction), "CFunction layout");
+static_assert(__builtin_offsetof(UnkReflFunctionData, return_type) == __builtin_offsetof(CFunction, return_type),
+              "CFunction layout");
+static_assert(__builtin_offsetof(UnkReflFunctionData, field_0xb2) == __builtin_offsetof(CFunction, field_0xb2),
+              "CFunction layout");
 
 // An attribute value: stored in place, or through `ptr` when flagged (field_0x14 == 1) or
 // larger than 8 bytes.
@@ -160,7 +160,7 @@ void fn_7100097f80(UnkKeyedArray<UnkReflFunctionData>* array, u32 capacity);
 
 // Add a function named `name` to a class; null if the class already has one by that name. A
 // class whose "_EditorOnly" attribute is set marks the new function the same way.
-UnkReflFunction* AddReflectedFunction(CClass* cls, const CStrId& name) {
+CFunction* AddReflectedFunction(CClass* cls, const CStrId& name) {
     auto& fns = *reinterpret_cast<UnkKeyedArray<UnkReflFunctionData>*>(&cls->m_array_0x110);
     if (fns.Find(name) != fns.End())
         return nullptr;

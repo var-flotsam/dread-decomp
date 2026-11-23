@@ -23,7 +23,7 @@ struct UnkSetBase_la94e9c {
         callbacks.step = 10;
         callbacks.field_0x14 = true;
         callbacks.flags = 0xf;
-        callbacks.allocator = fn_7100083990();
+        callbacks.allocator = GetDefaultAllocator();
         field_0x30 = 0;
     }
 };

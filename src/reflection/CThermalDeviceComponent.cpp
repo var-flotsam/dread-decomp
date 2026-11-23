@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,9 +25,9 @@ template <> base::reflection::CType base::reflection::TypeObject<CThermalDeviceC
 
 // CThermalDeviceComponent
 void fn_7100a94804();
-void fn_7100a90798(UnkReflFunction* fn, const char* name);
+void fn_7100a90798(CFunction* fn, const char* name);
 void fn_7100a94890();
-void fn_7100a9090c(UnkReflFunction* fn, const char* name);
+void fn_7100a9090c(CFunction* fn, const char* name);
 namespace CThermalDeviceComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -40,12 +40,12 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_ePipeGroup1_GetterFunction", &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0, fn_7100a94804);
     DREAD_REFLECTED_FUNCTION("_m_ePipeGroup1_SetterFunction")
         fn_7100a90798(fn, "_m_ePipeGroup1_SetterFunction");
-    UnkReflField* field6 = AddReflectedField(cls, CStrId("ePipeGroup1", true), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field6 = AddReflectedField(cls, CStrId("ePipeGroup1", true), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field6->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0);
     DREAD_REFLECTED_FUNCTION_OF("_m_ePipeGroup2_GetterFunction", &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0, fn_7100a94890);
     DREAD_REFLECTED_FUNCTION("_m_ePipeGroup2_SetterFunction")
         fn_7100a9090c(fn, "_m_ePipeGroup2_SetterFunction");
-    UnkReflField* field7 = AddReflectedField(cls, CStrId("ePipeGroup2", true), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field7 = AddReflectedField(cls, CStrId("ePipeGroup2", true), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field7->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }

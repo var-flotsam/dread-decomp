@@ -109,7 +109,7 @@ UnkGuiLayer_b0209* fn_71011ba3b0(UnkGuiMap_b0209* self, const CStrId* key) {
     layer->field_0x10 = 10;
     layer->field_0x14 = true;
     layer->field_0x18 = 7;
-    layer->allocator = fn_7100083990();
+    layer->allocator = GetDefaultAllocator();
     layer->field_0x28 = 0;
     layer->field_0x2c = false;
     layer->field_0x2d = true;

@@ -35,7 +35,7 @@ struct UnkRecordId_lfedc08 {
             if (data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0)
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
             }
             data = d;
         }
@@ -45,7 +45,7 @@ struct UnkRecordId_lfedc08 {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0)
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
             }
             data = &pool->empty;
         }
@@ -144,7 +144,7 @@ static void InitEmpty_lfedc08(UnkIdArray78Record_lfedc08* record) {
     record->items.step = 10;
     record->items.field_0x14 = true;
     record->items.flags = 0xf;
-    record->items.allocator = fn_7100083990();
+    record->items.allocator = GetDefaultAllocator();
 }
 
 // The record under `key`, added (named for the key) when there is none.

@@ -51,12 +51,12 @@ public:
         if (str) {
             u64 length = __builtin_strlen(str);
             if (length) {
-                u64 hash = fn_7100001570(str, length);
-                data = fn_71000804f8(g_unk_7101d47200, hash);
+                u64 hash = StringCrc64(str, length);
+                data = StringPool_Find(g_unk_7101d47200, hash);
                 if (data)
                     ++data->ref_count;
                 else
-                    data = fn_71000801e4(g_unk_7101d47200, hash, str, length, flag);
+                    data = StringPool_Insert(g_unk_7101d47200, hash, str, length, flag);
             }
         }
         if (!data)
@@ -79,7 +79,7 @@ public:
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47200;
                 }
             }
@@ -99,7 +99,7 @@ public:
             if (data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0)
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
             }
             data = d;
         }
@@ -118,7 +118,7 @@ public:
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47200;
                 }
             }

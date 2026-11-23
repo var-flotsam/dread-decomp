@@ -10,13 +10,13 @@
 
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 
 struct UnkEnumType;
 extern UnkEnumType g_unk_717269bb48;
 
 // A field descriptor with the flag after its two attribute containers.
-struct UnkDaivoField_l4ded68 : UnkReflField {
+struct UnkDaivoField_l4ded68 : CVariable {
     u8 field_0xa8;
     bool field_0xa9;
 };
@@ -30,11 +30,11 @@ static inline const base::reflection::CType* TypeOf(UnkEnumType& t) {
 
 void fn_71004ded68(CClass* cls) {
     namespace attr = base::reflection::attr;
-    UnkReflField* actor = AddReflectedField(cls, CStrId("wpSwarmActor", true), TypeOf(g_unk_717269bb48), 0x14840, -1, -1);
+    CVariable* actor = AddReflectedField(cls, CStrId("wpSwarmActor", true), TypeOf(g_unk_717269bb48), 0x14840, -1, -1);
     actor->attrs.Add<s32>(attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 0);
-    UnkReflField* begin = AddReflectedField(cls, CStrId("wpSwarmAOIBegin", true), TypeOf(g_unk_717269bb48), 0x147c0, -1, -1);
+    CVariable* begin = AddReflectedField(cls, CStrId("wpSwarmAOIBegin", true), TypeOf(g_unk_717269bb48), 0x147c0, -1, -1);
     begin->attrs.Add<s32>(attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 0);
-    UnkReflField* end = AddReflectedField(cls, CStrId("wpSwarmAOIEnd", true), TypeOf(g_unk_717269bb48), 0x14800, -1, -1);
+    CVariable* end = AddReflectedField(cls, CStrId("wpSwarmAOIEnd", true), TypeOf(g_unk_717269bb48), 0x14800, -1, -1);
     end->attrs.Add<s32>(attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 0);
 
     auto* path = static_cast<UnkDaivoField_l4ded68*>(
@@ -42,7 +42,7 @@ void fn_71004ded68(CClass* cls) {
     path->field_0xa9 = true;
     path->attrs.Add<CStrId>(attr::DisplayName(), CStrId("Swarm path", true));
 
-    UnkReflField* distance = AddReflectedField(cls, CStrId("fChaseForcedDistanceToWall", true),
+    CVariable* distance = AddReflectedField(cls, CStrId("fChaseForcedDistanceToWall", true),
                                                base::reflection::UnkReflTypeOf<f32>::Get(), 0x14888, -1, -1);
     distance->attrs.Add<f32>(attr::DefaultValue(), -1.0f);
 }

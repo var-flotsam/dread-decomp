@@ -250,7 +250,7 @@ struct UnkGlyphId {
             if (id.data && id.data != &pool->empty) {
                 --id.data->ref_count;
                 if (id.data->ref_count == 0) {
-                    fn_71000803a4(pool, id.data);
+                    StringPool_Release(pool, id.data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -497,7 +497,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
             line->width = 0.0f;
             line->height = 0.0f;
             line->runs.field_0x0 = reinterpret_cast<u64>(g_unk_7101cb65c8 + 0x10);
-            line->runs.allocator = fn_7100083990();
+            line->runs.allocator = GetDefaultAllocator();
             line->runs.flags = 0x13;
             self->lines.PushBack(reinterpret_cast<u64>(line));
             y = 0.0f;
@@ -520,7 +520,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
         run->glyphs.step = 10;
         run->glyphs.field_0x14 = true;
         run->glyphs.flags = 0xc;
-        run->glyphs.allocator = fn_7100083990();
+        run->glyphs.allocator = GetDefaultAllocator();
         fn_71011f05d4(&run->glyphs, 10);
         run->object = nullptr;
         fn_71011bab10(*root, &run->object, frame);

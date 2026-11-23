@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -26,8 +26,8 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CInputComponent
 void fn_710087412c();
-void fn_7100874050(UnkReflFunction* fn);
-void fn_7100870a5c(UnkReflFunction* fn, const char* name);
+void fn_7100874050(CFunction* fn);
+void fn_7100870a5c(CFunction* fn, const char* name);
 void fn_7100874290();
 namespace CInputComponent {
 void refl_AddAttributes(CClass*) {}

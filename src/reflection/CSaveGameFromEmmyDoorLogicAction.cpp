@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -29,7 +29,7 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 namespace CSaveGameFromEmmyDoorLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpEmmyDoorActor", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x10, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("wpEmmyDoorActor", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x10, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD(bool, "bForce", 0x50, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bRestoreOriginalValue", 0x51, (DefaultValue, true));

@@ -43,7 +43,7 @@ void fn_7100a946ec(UnkThermalComp_b0237* self) {
     self->vtable = g_unk_7101a92ed0 + 2;
     self->devices_grow = true;
     self->devices_flags = 15;
-    self->devices_allocator = fn_7100083990();
+    self->devices_allocator = GetDefaultAllocator();
     new (&self->id_0x570) CStrId(base::global::CStrId::Empty());
     new (&self->id_0x578) CStrId(base::global::CStrId::Empty());
     new (&self->id_0x580) CStrId(base::global::CStrId::Empty());

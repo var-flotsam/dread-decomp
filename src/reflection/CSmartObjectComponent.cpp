@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,25 +25,25 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CSmartObjectComponent
 void fn_7100a04d10();
-void fn_7100a01964(UnkReflFunction* fn, const char* name);
+void fn_7100a01964(CFunction* fn, const char* name);
 void fn_7100a04e10();
-void fn_7100a01ae0(UnkReflFunction* fn, const char* name);
+void fn_7100a01ae0(CFunction* fn, const char* name);
 void fn_7100a04f10();
-void fn_7100a01c5c(UnkReflFunction* fn, const char* name);
+void fn_7100a01c5c(CFunction* fn, const char* name);
 void fn_7100a05010();
-void fn_7100a01dd8(UnkReflFunction* fn, const char* name);
+void fn_7100a01dd8(CFunction* fn, const char* name);
 void fn_7100a05110();
-void fn_7100a01f54(UnkReflFunction* fn, const char* name);
+void fn_7100a01f54(CFunction* fn, const char* name);
 void fn_7100a051b8();
-void fn_7100a020d0(UnkReflFunction* fn, const char* name);
+void fn_7100a020d0(CFunction* fn, const char* name);
 void fn_7100a05260();
-void fn_7100a0224c(UnkReflFunction* fn, const char* name);
-void fn_7100a023c8(UnkReflFunction* fn, const char* name);
-void fn_7100a02540(UnkReflFunction* fn, const char* name);
-void fn_7100a025f4(UnkReflFunction* fn, const char* name);
-void fn_7100a026a8(UnkReflFunction* fn, const char* name);
-void fn_7100a0275c(UnkReflFunction* fn, const char* name);
-void fn_7100a02810(UnkReflFunction* fn, const char* name);
+void fn_7100a0224c(CFunction* fn, const char* name);
+void fn_7100a023c8(CFunction* fn, const char* name);
+void fn_7100a02540(CFunction* fn, const char* name);
+void fn_7100a025f4(CFunction* fn, const char* name);
+void fn_7100a026a8(CFunction* fn, const char* name);
+void fn_7100a0275c(CFunction* fn, const char* name);
+void fn_7100a02810(CFunction* fn, const char* name);
 namespace CSmartObjectComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

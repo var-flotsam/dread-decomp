@@ -86,7 +86,7 @@ UnkRecord* fn_71008625a0(UnkCollisionOwner* self, void* owner, base::UnkPooledSt
         if (cur != empty) {
             cur->ref_count--;
             if (rec->name->ref_count == 0)
-                fn_71000803a4(g_unk_7101d47108, rec->name);
+                StringPool_Release(g_unk_7101d47108, rec->name);
         }
         __builtin_memcpy(&rec->name, &incoming, sizeof(incoming));
     }

@@ -59,7 +59,7 @@ struct UnkStrList_b6f {
             pool_parent = nullptr;
         }
         if (!from)
-            from = fn_7100083990();
+            from = GetDefaultAllocator();
         pool_parent = from;
         u64 size = (u64)nodes * sizeof(UnkStrNode_b6f);
         void* buffer = from->vf_0x40(size, 8, block_flags);

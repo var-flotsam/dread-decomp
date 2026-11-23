@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -30,7 +30,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CElectricGeneratorComponent::EBlackOutZone", "eBlackOutZone", 0x578, (DefaultValue, 2));
     DREAD_REFLECTED_FIELD(CStrId, "sOnEnterUseLuaCallback", 0x570, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("vAffectedSubAreas", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x540, -1, -1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("vAffectedSubAreas", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x540, -1, -1);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

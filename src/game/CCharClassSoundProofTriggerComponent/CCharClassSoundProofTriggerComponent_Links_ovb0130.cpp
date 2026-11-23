@@ -74,7 +74,7 @@ void fn_7100a30a9c(UnkTargetLink_ovb0130* self, UnkWeakTarget* target) {
     self->step = 10;
     self->field_0x1c = true;
     self->flags = 0xf;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->state = 0;
     self->vtable = &g_unk_7101a20950[2];
     self->handle = nullptr;

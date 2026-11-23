@@ -44,7 +44,7 @@ struct UnkNavPolygon_l28e71c {
         vertices.step = 10;
         vertices.field_0x14 = true;
         vertices.flags = 7;
-        vertices.allocator = fn_7100083990();
+        vertices.allocator = GetDefaultAllocator();
         field_0x28 = 0.0f;
         closed = false;
         dirty = true;

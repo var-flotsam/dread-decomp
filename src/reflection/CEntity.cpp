@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -32,19 +32,19 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 // CEntity
 void fn_7100d823f4();
 void fn_7100d82448();
-void fn_71000e8118(UnkReflField* field, u64 index);
-void fn_7100d71900(UnkReflFunction* fn, const char* name);
-void fn_7100d719b4(UnkReflFunction* fn, const char* name);
-void fn_7100d71a68(UnkReflFunction* fn, const char* name);
-void fn_7100d71b1c(UnkReflFunction* fn, const char* name);
+void fn_71000e8118(CVariable* field, u64 index);
+void fn_7100d71900(CFunction* fn, const char* name);
+void fn_7100d719b4(CFunction* fn, const char* name);
+void fn_7100d71a68(CFunction* fn, const char* name);
+void fn_7100d71b1c(CFunction* fn, const char* name);
 void fn_7100d82864();
-void fn_7100d826c8(UnkReflFunction* fn);
-void fn_7100d71c98(UnkReflFunction* fn, const char* name);
+void fn_7100d826c8(CFunction* fn);
+void fn_7100d71c98(CFunction* fn, const char* name);
 namespace CEntity {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_oBBox_GetterFunction", &base::reflection::TypeObject<base::spatial::CAABox>::object, 0, fn_7100d823f4);
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("oBBox", true), &base::reflection::TypeObject<base::spatial::CAABox>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("oBBox", true), &base::reflection::TypeObject<base::spatial::CAABox>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Entity BBox");

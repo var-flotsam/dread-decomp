@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -54,7 +54,7 @@ DREAD_REFLECTED_CLASS(CBombGun, CPrimaryGun);
 // CBombGun::CTunableBomb
 namespace CBombGun::CTunableBomb { extern bool refl_fields_added asm("g_unk_71727254f0"); }
 void fn_7100831618();
-void fn_71008308dc(UnkReflFunction* fn, const char* name);
+void fn_71008308dc(CFunction* fn, const char* name);
 namespace CBombGun::CTunableBomb { extern UnkTunable refl_tunable asm("g_unk_7172725488"); }
 void fn_7100830a58(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CBombGun::CTunableBomb {

@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -27,11 +27,11 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassWeaponMovement
 void fn_7100ab3a44();
-void fn_7100ab342c(UnkReflFunction* fn, const char* name);
+void fn_7100ab342c(CFunction* fn, const char* name);
 void fn_7100ab3af0();
-void fn_7100ab35a8(UnkReflFunction* fn, const char* name);
+void fn_7100ab35a8(CFunction* fn, const char* name);
 void fn_7100ab3bb4();
-void fn_7100ab3724(UnkReflFunction* fn, const char* name);
+void fn_7100ab3724(CFunction* fn, const char* name);
 namespace CCharClassWeaponMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

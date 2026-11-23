@@ -88,7 +88,7 @@ void fn_71001a6f54(void*, CRntFile* file, void*, UnkMaterialValuesVector* values
         CRntFile_Read(file, &e->d.field_0x14, 4, 1);
         e->id = static_cast<CStrId&&>(UnkMovedId(name).id);
         u64 size = (u64)e->d.field_0x14 * 4;
-        void* p = fn_7100083990()->vf_0x40(size, 8, 0x35);
+        void* p = GetDefaultAllocator()->vf_0x40(size, 8, 0x35);
         e->d.field_0x30 = p;
         fn_710007c70c(file, p, size);
     }

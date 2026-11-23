@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -26,7 +26,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // CPlayerLifeComponent
 void fn_710116a30c();
-void fn_71011623bc(UnkReflFunction* fn, const char* name);
+void fn_71011623bc(CFunction* fn, const char* name);
 void fn_710116a3b4();
 namespace CPlayerLifeComponent {
 void refl_AddAttributes(CClass*) {}

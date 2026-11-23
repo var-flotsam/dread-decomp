@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,15 +23,15 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassBossAIComponent
 void fn_710041a4e0();
-void fn_7100419a2c(UnkReflFunction* fn, const char* name);
+void fn_7100419a2c(CFunction* fn, const char* name);
 void fn_710041a570();
-void fn_7100419ba8(UnkReflFunction* fn, const char* name);
+void fn_7100419ba8(CFunction* fn, const char* name);
 void fn_710041a600();
-void fn_7100419d24(UnkReflFunction* fn, const char* name);
+void fn_7100419d24(CFunction* fn, const char* name);
 void fn_710041a690();
-void fn_7100419ea0(UnkReflFunction* fn, const char* name);
+void fn_7100419ea0(CFunction* fn, const char* name);
 void fn_710041a720();
-void fn_710041a01c(UnkReflFunction* fn, const char* name);
+void fn_710041a01c(CFunction* fn, const char* name);
 namespace CCharClassBossAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

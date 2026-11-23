@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -29,20 +29,20 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CLifeComponent
-void fn_710115f078(UnkReflFunction* fn, const char* name);
+void fn_710115f078(CFunction* fn, const char* name);
 void fn_710116132c();
-void fn_710115f12c(UnkReflFunction* fn, const char* name);
+void fn_710115f12c(CFunction* fn, const char* name);
 void fn_71011613dc();
-void fn_71000e8118(UnkReflField* field, u64 index);
-void fn_710115f2a8(UnkReflFunction* fn, const char* name);
-void fn_71000e8180(UnkReflField* field, u64 index);
+void fn_71000e8118(CVariable* field, u64 index);
+void fn_710115f2a8(CFunction* fn, const char* name);
+void fn_71000e8180(CVariable* field, u64 index);
 void fn_7101161490();
-void fn_710115f424(UnkReflFunction* fn, const char* name);
-void fn_710115f5a0(UnkReflFunction* fn, const char* name);
-void fn_710115f654(UnkReflFunction* fn, const char* name);
-void fn_710115f708(UnkReflFunction* fn, const char* name);
+void fn_710115f424(CFunction* fn, const char* name);
+void fn_710115f5a0(CFunction* fn, const char* name);
+void fn_710115f654(CFunction* fn, const char* name);
+void fn_710115f708(CFunction* fn, const char* name);
 void fn_7101161700();
-void fn_7100302d14(UnkReflFunction* fn);
+void fn_7100302d14(CFunction* fn);
 namespace CLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -55,7 +55,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_fMaxLife_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710116132c);
     DREAD_REFLECTED_FUNCTION("_m_fMaxLife_SetterFunction")
         fn_710115f12c(fn, "_m_fMaxLife_SetterFunction");
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("fMaxLife", true), &base::reflection::PrimitiveType<float>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("fMaxLife", true), &base::reflection::PrimitiveType<float>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     field1->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     field1->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("max life"));

@@ -28,9 +28,9 @@ struct UnkFlagsetType_b0068;
 struct UnkReflFieldInfo;
 struct UnkFieldOwner;
 
-bool fn_710009a430(UnkFlagsetType_b0068* self, const UnkReflFieldObject* obj, UnkReflField* field, CRntFile* file);
+bool fn_710009a430(UnkFlagsetType_b0068* self, const UnkReflFieldObject* obj, CVariable* field, CRntFile* file);
 bool fn_7100099890(const CEnumType* self, const char* name, s32* out);
-bool fn_71000e74bc(UnkReflField* field);  // whether a field without an accessor can be set
+bool fn_71000e74bc(CVariable* field);  // whether a field without an accessor can be set
 UnkReflTypedPtr fn_71000e755c(const UnkReflFieldInfo* field, UnkFieldOwner* owner);
 // Sets the enum value `value` in the object `obj` points to.
 void fn_7100099960(const CEnumType* self, const UnkReflFieldObject* obj, s32 value);
@@ -48,7 +48,7 @@ struct UnkReadRef {
 };
 
 inline bool SetField(UnkReadField* field, const UnkReadRef* obj, UnkReadRef* value) {
-    return fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
+    return fn_71000e7a80(reinterpret_cast<CVariable*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
                          reinterpret_cast<UnkReflValueArg*>(value));
 }
 
@@ -78,7 +78,7 @@ bool fn_7100023d2c(UnkReflObject* self, UnkReadField* field, CRntFile* file) {
         UnkReadRef obj = {self->vf_0x0(), self};
         // The reader's result is not used: the field counts as not read.
         fn_710009a430(reinterpret_cast<UnkFlagsetType_b0068*>(flagset), reinterpret_cast<const UnkReflFieldObject*>(&obj),
-                      reinterpret_cast<UnkReflField*>(field), file);
+                      reinterpret_cast<CVariable*>(field), file);
         return false;
     }
     case 'I': {
@@ -127,7 +127,7 @@ bool fn_7100023d2c(UnkReflObject* self, UnkReadField* field, CRntFile* file) {
         s32 value;  // set by the lookup
         if (!fn_7100099890(enum_type, name, &value))
             return false;
-        if (!fn_71000e74bc(reinterpret_cast<UnkReflField*>(field)))
+        if (!fn_71000e74bc(reinterpret_cast<CVariable*>(field)))
             return false;
         UnkReflTypedPtr member = MemberOf(self, field);
         UnkReadRef target = {fn_710009dcd8(fn_710009dcd8(member.type, member.ptr), member.ptr), member.ptr};

@@ -11,8 +11,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -34,7 +34,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CPlaythrough
 void fn_71002edffc();
-void fn_71002ea054(UnkReflFunction* fn, const char* name);
+void fn_71002ea054(CFunction* fn, const char* name);
 void fn_71002ee0fc();
 void fn_71002ee124();
 void fn_71002ee14c();
@@ -50,9 +50,9 @@ void refl_AddFields(CClass* cls) {
         fn_71002ea054(fn, "_sPlaythroughName_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sPlaythroughName", (XmlAttribute, true));
     DREAD_REFLECTED_FUNCTION_OF("_m_oPlayDefLink_GetterFunction", &base::reflection::TypeObject<base::core::CAssetLink>::object, 0x1, fn_71002ee0fc);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("oPlayDefLink", true), &base::reflection::TypeObject<base::core::CAssetLink>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("oPlayDefLink", true), &base::reflection::TypeObject<base::core::CAssetLink>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     DREAD_REFLECTED_FUNCTION_OF("_dctCheckpointDatas_GetterFunction", &base::reflection::TypeObject<CPlaythrough::TDictCheckpointDatas>::object, 0x1, fn_71002ee124);
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("dctCheckpointDatas", true), &base::reflection::TypeObject<CPlaythrough::TDictCheckpointDatas>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("dctCheckpointDatas", true), &base::reflection::TypeObject<CPlaythrough::TDictCheckpointDatas>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     DREAD_REFLECTED_FUNCTION_OF("AfterDeserialize", &base::reflection::TypeObject<void>::object, 0, fn_71002ee14c);
     DREAD_REFLECTED_FUNCTION_OF("GetDef", base::reflection::PointerType<CPlaythroughDef const*>::Get(), 0, fn_71002ee510);
 }

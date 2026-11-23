@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -46,7 +46,7 @@ DREAD_REFLECTED_CLASS(CLockOnMissileGun, CMissileBaseGun);
 // CLockOnMissileGun::CTunableLockOnMissile
 namespace CLockOnMissileGun::CTunableLockOnMissile { extern bool refl_fields_added asm("g_unk_7172726e98"); }
 void fn_710084db80();
-void fn_710084c724(UnkReflFunction* fn, const char* name);
+void fn_710084c724(CFunction* fn, const char* name);
 namespace CLockOnMissileGun::CTunableLockOnMissile { extern UnkTunable refl_tunable asm("g_unk_7172726e58"); }
 void fn_710084c8a0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CLockOnMissileGun::CTunableLockOnMissile {

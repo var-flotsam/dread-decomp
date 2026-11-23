@@ -68,7 +68,7 @@ void fn_71005cb424(UnkInfesterAI_b57a3* self, void* arg) {
             fn_7101172780(target, reinterpret_cast<const char*>(&hash));
             if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
                 if (d != &pool->empty && --d->ref_count == 0)
-                    fn_71000803a4(pool, d);
+                    StringPool_Release(pool, d);
             }
         }
         self->field_0x146d8 = 0;

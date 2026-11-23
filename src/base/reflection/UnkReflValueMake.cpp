@@ -28,7 +28,7 @@ __attribute__((always_inline)) static inline void SetValue(UnkReflValue* out, co
     *reinterpret_cast<const CType**>(&out->type) = type;
     u64 size = type->m_size;
     if (size > 8) {
-        void* block = fn_7100083990()->vf_0x40(size, 8, out->kind);
+        void* block = GetDefaultAllocator()->vf_0x40(size, 8, out->kind);
         out->field_0x0 = block;
         if (!block)
             return;

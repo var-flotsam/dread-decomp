@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -70,7 +70,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDamagePerSecondStill", 0x30, (DefaultValue, 2.5f), (ShowInConfig, true), (Description, "Damage per second still"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 0.5f), (InternalTag, "OpticCamouflage"));
     DREAD_REFLECTED_FIELD(f32, "fDamagePerSecondMoving", 0x34, (DefaultValue, 10.0f), (ShowInConfig, true), (Description, "Damage per second moving"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 0.5f), (InternalTag, "OpticCamouflage"));
     DREAD_REFLECTED_FIELD(s32, "iMode", 0x38, (DefaultValue, 0));
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("iSelectionMode", true), &base::reflection::PrimitiveType<int>::Get(), 0x84, -1, -1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("iSelectionMode", true), &base::reflection::PrimitiveType<int>::Get(), 0x84, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CAbilityOpticCamouflage::ESelectionMode>::object, 0);
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Which action should player do with input to activate/deactivate");
     field3->attrs.Add<bool>(base::reflection::attr::ShowInConfig(), true);
@@ -78,7 +78,7 @@ void refl_AddFields(CClass* cls) {
     field3->attrs.Add<s32>(base::reflection::attr::MinValueI(), 0);
     field3->attrs.Add<s32>(base::reflection::attr::MaxValueI(), 1);
     field3->attrs.Add<s32>(base::reflection::attr::ControlIntStep(), 1);
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("iSelectionInput", true), &base::reflection::PrimitiveType<int>::Get(), 0x88, -1, -1);
+    CVariable* field4 = AddReflectedField(cls, CStrId("iSelectionInput", true), &base::reflection::PrimitiveType<int>::Get(), 0x88, -1, -1);
     field4->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CAbilityOpticCamouflage::ESelectionInput>::object, 0);
     field4->attrs.Add<const char*>(base::reflection::attr::Description(), "Which input to use when activating ability");
     field4->attrs.Add<bool>(base::reflection::attr::ShowInConfig(), true);

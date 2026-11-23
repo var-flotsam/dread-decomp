@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,17 +25,17 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // CCharClassAINavigationComponent
 void fn_71006f7b0c();
-void fn_71006f7008(UnkReflFunction* fn, const char* name);
+void fn_71006f7008(CFunction* fn, const char* name);
 void fn_71006f7b9c();
-void fn_71006f7184(UnkReflFunction* fn, const char* name);
+void fn_71006f7184(CFunction* fn, const char* name);
 void fn_71006f7c2c();
-void fn_71006f7300(UnkReflFunction* fn, const char* name);
+void fn_71006f7300(CFunction* fn, const char* name);
 void fn_71006f7cbc();
-void fn_71006f747c(UnkReflFunction* fn, const char* name);
+void fn_71006f747c(CFunction* fn, const char* name);
 void fn_71006f7d4c();
-void fn_71006f75f8(UnkReflFunction* fn, const char* name);
+void fn_71006f75f8(CFunction* fn, const char* name);
 void fn_71006f7ddc();
-void fn_71006f7774(UnkReflFunction* fn, const char* name);
+void fn_71006f7774(CFunction* fn, const char* name);
 namespace CCharClassAINavigationComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

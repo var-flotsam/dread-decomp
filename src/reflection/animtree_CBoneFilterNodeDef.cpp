@@ -9,8 +9,8 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -29,9 +29,9 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Bone Filter Node Definition");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("vBones", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x10, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("vBones", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x10, -1, -1);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "List of bone filters");
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("vBoneHierarchies", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x38, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("vBoneHierarchies", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x38, -1, -1);
     field1->attrs.Add<const char*>(base::reflection::attr::Description(), "List of bone hierarchies filters");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

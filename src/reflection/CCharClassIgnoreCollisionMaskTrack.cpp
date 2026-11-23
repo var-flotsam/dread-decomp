@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,9 +24,9 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassIgnoreCollisionMaskTrack
 void fn_7100c29f5c();
-void fn_7100c299c0(UnkReflFunction* fn, const char* name);
+void fn_7100c299c0(CFunction* fn, const char* name);
 void fn_7100c2a0d0();
-void fn_7100c29b3c(UnkReflFunction* fn, const char* name);
+void fn_7100c29b3c(CFunction* fn, const char* name);
 namespace CCharClassIgnoreCollisionMaskTrack {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Collision Mask");

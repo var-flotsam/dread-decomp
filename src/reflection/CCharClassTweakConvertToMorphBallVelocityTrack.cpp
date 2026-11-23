@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,9 +24,9 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // CCharClassTweakConvertToMorphBallVelocityTrack
 void fn_7100d2eb80();
-void fn_7100d2e758(UnkReflFunction* fn, const char* name);
+void fn_7100d2e758(CFunction* fn, const char* name);
 void fn_7100d2ec10();
-void fn_7100d2e8d4(UnkReflFunction* fn, const char* name);
+void fn_7100d2e8d4(CFunction* fn, const char* name);
 namespace CCharClassTweakConvertToMorphBallVelocityTrack {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Convert Velocity");

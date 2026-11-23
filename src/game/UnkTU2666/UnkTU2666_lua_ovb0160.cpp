@@ -134,7 +134,7 @@ static inline UnkSpawnEachFn_ovb0065 MemberPointer(u64 function, u64 adjust) {
 }
 
 static inline void* FindByName(UnkGameManager* manager, const char* name, u32 kind) {
-    u64 hash = fn_7100001570(name, __builtin_strlen(name));
+    u64 hash = StringCrc64(name, __builtin_strlen(name));
     alignas(8) u32 flags = kind;
     return fn_7100deba8c(manager, &hash, &flags);
 }
@@ -347,7 +347,7 @@ s32 fn_710108fc70(lua_State* L) {
         UnkGameManager* manager = g_unk_7101d47310;
         if (void* object = FindByName(manager, target, g_unk_71727bebb8)) {
             if (UnkStruct_710024fa0c* world = fn_7100798eec(object))
-                fn_710114fe8c(reinterpret_cast<UnkWorld*>(world), fn_7100001570(effect, __builtin_strlen(effect)), first, second);
+                fn_710114fe8c(reinterpret_cast<UnkWorld*>(world), StringCrc64(effect, __builtin_strlen(effect)), first, second);
         }
     }
     return 0;
@@ -363,7 +363,7 @@ s32 fn_710108fd50(lua_State* L) {
         if (void* object = FindByName(manager, target, g_unk_71727bebb8)) {
             if (UnkStruct_710024fa0c* world = fn_7100798eec(object))
                 fn_710114ffb8(reinterpret_cast<UnkRinkaControl_ruc*>(world),
-                              fn_7100001570(effect, __builtin_strlen(effect)), first, second);
+                              StringCrc64(effect, __builtin_strlen(effect)), first, second);
         }
     }
     return 0;
@@ -639,7 +639,7 @@ struct UnkLuaNameList_b0160 : base::UnkVtableList<u8> {
         count = 0;
         head = nullptr;
         tail = nullptr;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
     }
     ~UnkLuaNameList_b0160() {

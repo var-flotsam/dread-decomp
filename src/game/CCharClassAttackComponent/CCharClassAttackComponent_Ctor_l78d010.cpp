@@ -68,7 +68,7 @@ void fn_710078d010(UnkCharClassAttack_l78d010* self) {
     self->array_0xa0.field_0xb0 = 0;
     self->array_0xa0.step = 10;
     self->array_0xa0.flags = 0xe;
-    self->array_0xa0.allocator = fn_7100083990();
+    self->array_0xa0.allocator = GetDefaultAllocator();
     new (&self->id_0xc8) CStrId("", true);
     new (&self->array_0xd0) base::global::CRntVector<void*>(0xf);
     self->field_0x18 = 0x1130;

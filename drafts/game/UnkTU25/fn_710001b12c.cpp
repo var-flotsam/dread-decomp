@@ -56,7 +56,7 @@ struct UnkPathTemp_l01b12c : UnkFilePathStrIdBase {
             UnkStringData* d = data;
             if (d && d != &pool->empty) {
                 if (--d->ref_count == 0) {
-                    fn_71000803a4(pool, d);
+                    StringPool_Release(pool, d);
                     pool = g_unk_7101d47200;
                 }
             }
@@ -90,7 +90,7 @@ struct UnkPairPath_l01b12c {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47200;
                 }
             }

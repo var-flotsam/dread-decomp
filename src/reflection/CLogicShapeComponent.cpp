@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -28,11 +28,11 @@ extern template const base::reflection::CType* base::reflection::PointerType<gam
 const base::reflection::CType* fn_7100913068();
 const base::reflection::CType* fn_71009155a8();
 void fn_71009158dc();
-void fn_7100913144(UnkReflFunction* fn, const char* name);
+void fn_7100913144(CFunction* fn, const char* name);
 namespace CLogicShapeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("pLogicShape", true), fn_7100913068(), 0x30, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("pLogicShape", true), fn_7100913068(), 0x30, -1, -1);
     field0->attrs.Add<bool>(base::reflection::attr::SetRenderItemSelectionIdCall(), true);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Shape");
     field0->attrs.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);

@@ -53,7 +53,7 @@ static inline void SeekToStart(CRntFile* file) {
 static inline void* AllocateBlock(CRntFile* file, s64 size) {
     base::UnkAllocator* allocator = file->allocator;
     if (!allocator) {
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         file->allocator = allocator;
         if (!allocator)
             return nullptr;

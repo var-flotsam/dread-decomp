@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -29,31 +29,31 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 
 // GUI::CLabel
 void fn_71011ef99c();
-void fn_71011eaa68(UnkReflFunction* fn, const char* name);
+void fn_71011eaa68(CFunction* fn, const char* name);
 void fn_71011efa60();
-void fn_71011eabe4(UnkReflFunction* fn, const char* name);
+void fn_71011eabe4(CFunction* fn, const char* name);
 void fn_71011efb14();
-void fn_71011ead60(UnkReflFunction* fn, const char* name);
+void fn_71011ead60(CFunction* fn, const char* name);
 void fn_71011efc28();
-void fn_71011eaedc(UnkReflFunction* fn, const char* name);
+void fn_71011eaedc(CFunction* fn, const char* name);
 void fn_71011efd60();
-void fn_71011eb058(UnkReflFunction* fn, const char* name);
+void fn_71011eb058(CFunction* fn, const char* name);
 void fn_71011efe68();
-void fn_71011eb1d4(UnkReflFunction* fn, const char* name);
+void fn_71011eb1d4(CFunction* fn, const char* name);
 void fn_71011effbc();
-void fn_71011eb350(UnkReflFunction* fn, const char* name);
+void fn_71011eb350(CFunction* fn, const char* name);
 void fn_71011f0110();
-void fn_71011eb4cc(UnkReflFunction* fn, const char* name);
+void fn_71011eb4cc(CFunction* fn, const char* name);
 void fn_71011f01c4();
-void fn_71011eb648(UnkReflFunction* fn, const char* name);
+void fn_71011eb648(CFunction* fn, const char* name);
 void fn_71011f0278();
-void fn_71011eb7c4(UnkReflFunction* fn, const char* name);
+void fn_71011eb7c4(CFunction* fn, const char* name);
 void fn_71011f0364();
-void fn_71011eb940(UnkReflFunction* fn, const char* name);
+void fn_71011eb940(CFunction* fn, const char* name);
 void fn_71011f0418();
-void fn_71011ebabc(UnkReflFunction* fn, const char* name);
+void fn_71011ebabc(CFunction* fn, const char* name);
 void fn_71011f04cc();
-void fn_71011ebc38(UnkReflFunction* fn, const char* name);
+void fn_71011ebc38(CFunction* fn, const char* name);
 namespace GUI::CLabel {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

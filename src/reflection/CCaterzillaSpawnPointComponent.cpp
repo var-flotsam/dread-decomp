@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -34,7 +34,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("ECaterzillaSpawnPointOrder", "eSpawnOrder", 0x3bc, (DefaultValue, 2));
     DREAD_REFLECTED_FIELD(u32, "NumCaterzillas", 0x3c8, (DefaultValue, 5));
     DREAD_REFLECTED_FIELD(f32, "fTimeToGenerateNextWave", 0x3d4, (DefaultValue, 10.0f));
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("wpSpawnPointLinked", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x3e0, -1, -1);
+    CVariable* field4 = AddReflectedField(cls, CStrId("wpSpawnPointLinked", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x3e0, -1, -1);
     field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 3);
     DREAD_REFLECTED_FIELD(f32, "fTimeToRespawnAllCaterzillas", 0x428, (DefaultValue, 30.0f));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "aHomeLandmarks", 0x438);

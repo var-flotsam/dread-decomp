@@ -65,7 +65,7 @@ struct UnkGfxStrId {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -747,7 +747,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     nv.capacity = 0;
     nv.step = 10;
     nv.flags = 0xe;
-    nv.allocator = fn_7100083990();
+    nv.allocator = GetDefaultAllocator();
     self->field_0x30 = 0;
     self->field_0x38 = 1.0f;
     self->field_0x3c = 0.0f;
@@ -765,7 +765,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     modes.step = 0;
     modes.field_0x14 = false;
     modes.flags = 0x18;
-    modes.allocator = fn_7100083990();
+    modes.allocator = GetDefaultAllocator();
     if (modes.capacity < 0x80) {
         UnkGfxDisplayMode* p = static_cast<UnkGfxDisplayMode*>(
             modes.allocator->vf_0x40(0x80 * sizeof(UnkGfxDisplayMode), 8, modes.flags));
@@ -784,7 +784,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     v88.step = 10;
     v88.field_0x14 = true;
     v88.flags = 0xf;
-    v88.allocator = fn_7100083990();
+    v88.allocator = GetDefaultAllocator();
     base::global::CRntVector<u8>& vb0 = self->field_0xb0;
     vb0.data = nullptr;
     vb0.count = 0;
@@ -792,7 +792,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     vb0.step = 10;
     vb0.field_0x14 = true;
     vb0.flags = 0x38;
-    vb0.allocator = fn_7100083990();
+    vb0.allocator = GetDefaultAllocator();
     fn_71000231f4(&vb0, 0x18);
 
     self->field_0xf8 = 0;
@@ -825,7 +825,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     lists.step = 0;
     lists.field_0x14 = false;
     lists.flags = 0xf;
-    lists.allocator = fn_7100083990();
+    lists.allocator = GetDefaultAllocator();
     if (lists.capacity < 8) {
         UnkGfxPairList* p =
             static_cast<UnkGfxPairList*>(lists.allocator->vf_0x40(8 * sizeof(UnkGfxPairList), 8, lists.flags));
@@ -853,7 +853,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     self->field_0x317aa60 = 0;
     self->field_0x317aa64 = true;
     self->field_0x317aa68 = 0;
-    self->field_0x317aa70 = fn_7100083990();
+    self->field_0x317aa70 = GetDefaultAllocator();
     self->field_0x317aa78 = 0xe;
     self->field_0x317aa7c = 0;
 
@@ -865,7 +865,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     words.step = 10;
     words.field_0x14 = true;
     words.flags = 0xe;
-    words.allocator = fn_7100083990();
+    words.allocator = GetDefaultAllocator();
     self->field_0x317aaa8 = 0;
     self->field_0x317aab0 = 0;
     if (words.count < 11) {
@@ -972,7 +972,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     nv2.capacity = 0;
     nv2.step = 10;
     nv2.flags = 0xe;
-    nv2.allocator = fn_7100083990();
+    nv2.allocator = GetDefaultAllocator();
     self->field_0x3183650 = -1;
     self->field_0x3183654 = 0.25f;
     self->field_0x3183658 = 0xffffffff;
@@ -1260,7 +1260,7 @@ void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* /*un
     fn_71001cafa0(reinterpret_cast<UnkStruct_71001cdd74*>(self), 0, 1, 0);
 
     // Indices for quads: 0, 1, 2, 0, 2, 3 for each four vertices.
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     u16* indices = static_cast<u16*>(allocator->vf_0x40((u64)self->field_0x317af48 * sizeof(u16), 8, 8));
     u32 count = self->field_0x317af48;
     self->field_0x317af50 = indices;

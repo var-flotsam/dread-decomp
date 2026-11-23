@@ -31,7 +31,7 @@ struct UnkWideTextStr {
     base::UnkAllocator* allocator;
 
     void Allocate(u64 length) {
-        base::UnkAllocator* a = fn_7100083990();
+        base::UnkAllocator* a = GetDefaultAllocator();
         chars = static_cast<wchar_t*>(a->vf_0x40((u64)(u32)(length + 1) * 4, 8, 0x11));
         wcscpy(chars, g_unk_7101647684);
         count = wcslen(chars);
@@ -81,7 +81,7 @@ bool fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 cor
     nn::os::InitializeLightEvent(&self->startEvent, false, nn::os::EventClearMode_AutoClear);
     nn::os::InitializeLightEvent(&self->doneEvent, false, nn::os::EventClearMode_AutoClear);
     s32 prio = (s32)priority < 0 ? 27 : 2;
-    self->stack = fn_7100083990()->vf_0x40(0x10000, 0x1000, 3);
+    self->stack = GetDefaultAllocator()->vf_0x40(0x10000, 0x1000, 3);
     nn::os::CreateThread(&self->thread, fn_71000666b0, self, self->stack, 0x10000, prio);
     s32 c = self->core != 0;
     nn::os::SetThreadCoreMask(&self->thread, c, 1ull << c);

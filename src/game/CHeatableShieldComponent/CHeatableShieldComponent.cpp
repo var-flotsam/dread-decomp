@@ -31,7 +31,7 @@ void fn_710086cab8(UnkHeatableShield* self) {
     self->field_0x50 = 0;
     self->field_0x58 = 10;
     self->field_0x5c = 0xe;
-    self->field_0x60 = fn_7100083990();
+    self->field_0x60 = GetDefaultAllocator();
     fn_710086abb4(self->field_0x68);
     self->field_0x270 = 0;
     self->field_0x268 = 0;

@@ -59,7 +59,7 @@ bool fn_7100712538(UnkAltActionClear_ovb0115* self, UnkAltActionMsg_ovb0115* msg
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (ids[i]->ref_count == 0) {
-                    fn_71000803a4(pool, ids[i]);
+                    StringPool_Release(pool, ids[i]);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -113,7 +113,7 @@ void fn_710071263c(UnkAltActionArrays_A3_b74* arrays, u32 capacity) {
                 if (src->data && src->data != &pool->empty) {
                     --src->data->ref_count;
                     if (src->data->ref_count == 0) {
-                        fn_71000803a4(pool, src->data);
+                        StringPool_Release(pool, src->data);
                         pool = g_unk_7101d47108;
                     }
                 }
@@ -232,7 +232,7 @@ struct UnkAltNamedRequest_ovb0115 {
             if (name.data && name.data != &pool->empty) {
                 --name.data->ref_count;
                 if (name.data->ref_count == 0) {
-                    fn_71000803a4(pool, name.data);
+                    StringPool_Release(pool, name.data);
                     pool = g_unk_7101d47108;
                 }
             }

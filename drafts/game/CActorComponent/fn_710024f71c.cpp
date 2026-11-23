@@ -60,7 +60,7 @@ UnkNewComponent* fn_710024f71c(UnkNamedOwner* self) {
         auto* view = reinterpret_cast<const UnkCompTypeView*>(entry);
         if (fn_710009d50c(type, reinterpret_cast<const base::reflection::CType*>(g_unk_717269fef8)) &&
             view->construct) {
-            void* p = fn_7100083990()->vf_0x40(view->size, 8, 5);
+            void* p = GetDefaultAllocator()->vf_0x40(view->size, 8, 5);
             if (p) {
                 view->construct(p);
                 result = static_cast<UnkNewComponent*>(p);
@@ -72,7 +72,7 @@ UnkNewComponent* fn_710024f71c(UnkNamedOwner* self) {
     if (pool) {
         if (name != &pool->empty) {
             if (--name->ref_count == 0)
-                fn_71000803a4(pool, name);
+                StringPool_Release(pool, name);
         }
     }
     return result;

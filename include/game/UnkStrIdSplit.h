@@ -66,7 +66,7 @@ __attribute__((always_inline)) inline void UnkSplitStrIds(const base::global::CS
     list.count = 0;
     list.head = nullptr;
     list.tail = nullptr;
-    list.allocator = fn_7100083990();
+    list.allocator = GetDefaultAllocator();
     list.flags = 0x13;
     list.vtable = g_unk_7101a74458 + 0x10;
     list.pool_vtable = g_unk_7101a1a4c8 + 0x10;

@@ -120,7 +120,7 @@ void fn_710054b93c(UnkEmmyLabAI_A2_b70* ai, s32 from, s32 to) {
 
         UnkObject* fx = static_cast<UnkObject*>(self->owner->field_0x280);
         UnkFxPart_l54b93c* cone = reinterpret_cast<UnkFxPart_l54b93c*>(
-            fn_7101152b90(reinterpret_cast<UnkWorld*>(fx), fn_7100001570("conepatrolsearch", 16)));
+            fn_7101152b90(reinterpret_cast<UnkWorld*>(fx), StringCrc64("conepatrolsearch", 16)));
         if (cone && fn_710114e680(fx, cone->index)) {
             f32 red;
             if (fn_7100543b30(reinterpret_cast<UnkEmmyAIView*>(self)))

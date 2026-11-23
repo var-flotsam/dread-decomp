@@ -1,5 +1,5 @@
 // base::reflection's unit (tools/tu_map.py unit 79): the reflected function's call (fn_710009ad50, which
-// converts the arguments to the parameter types first), its destructor (UnkReflFunction,
+// converts the arguments to the parameter types first), its destructor (CFunction,
 // base/reflection/UnkReflAttributes.h: vtable g_unk_7101a1b460) and the growth of its parameter
 // attribute containers (0x38 bytes each, at +0x88; fn_710009abf8 destroys one). Names and layouts
 // are placeholders.
@@ -33,7 +33,7 @@ struct UnkReflParamAttrs_ovb0102 {
 
     UnkReflParamAttrs_ovb0102()
         : values(nullptr), keys(nullptr), count(0), capacity(0), step(10), flags(0x3e),
-          allocator(fn_7100083990()), field_0x28(0), field_0x30(4) {}
+          allocator(GetDefaultAllocator()), field_0x28(0), field_0x30(4) {}
     UnkReflParamAttrs_ovb0102(UnkReflParamAttrs_ovb0102&& other)
         : values(other.values), keys(other.keys), count(other.count), capacity(other.capacity), step(other.step),
           flags(other.flags), allocator(other.allocator) {
@@ -78,7 +78,7 @@ __attribute__((flatten)) static inline UnkReflParamAttrs_ovb0102& ParamAttrsAt(
 }
 
 // Resizes the function's parameter attribute containers to `count` and sets each one's +0x30 to 3.
-void fn_710009ae5c(base::reflection::UnkReflFunction* function, u32 count) {
+void fn_710009ae5c(base::reflection::CFunction* function, u32 count) {
     base::global::CRntVector<UnkReflParamAttrs_ovb0102>* v =
         &reinterpret_cast<UnkReflFunctionParams_ovb0102*>(function)->param_attrs;
     if (v->count < count) {
@@ -97,7 +97,7 @@ struct UnkReflFunctionAttrs_ovb0102 {
     ~UnkReflFunctionAttrs_ovb0102() { fn_710009abf8(this); }
 };
 
-// UnkReflFunction (base/reflection/UnkReflAttributes.h) with the members its destructor releases.
+// CFunction (base/reflection/UnkReflAttributes.h) with the members its destructor releases.
 struct UnkReflFunctionData_ovb0102 {
     char* vtable;
     base::global::CRntVector<const void*> params;  // +0x8

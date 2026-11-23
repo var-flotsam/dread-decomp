@@ -38,7 +38,7 @@ f32 fn_71004482d0(UnkZeroLaserAttack* self, bool flag) {
             f32 angle = 0.0f;
             const UnkMatrix44* matrix =
                 &fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->field_0x8->field_0x38));
-            u64 hash = fn_7100001570("DC_Shot", 7);
+            u64 hash = StringCrc64("DC_Shot", 7);
             if (fn_7100b8fa7c(action, &angle, matrix, &hash, &self->field_0x64, flag, false)) {
                 result = (f32)((f64)angle * 3.141592653589793 / 180.0);
                 if (self->field_0x58 == 5) {

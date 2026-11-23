@@ -116,7 +116,7 @@ void fn_710089dfe4(UnkSteamJet_ovb0008* self) {
     list.field_0x18 = 10;
     list.field_0x1c = true;
     list.field_0x20 = 0xf;
-    list.field_0x28 = fn_7100083990();
+    list.field_0x28 = GetDefaultAllocator();
     list.field_0x30 = 0;
     list.vtable = g_unk_7101a20950 + 2;
     self->field_0xc48 = 0;

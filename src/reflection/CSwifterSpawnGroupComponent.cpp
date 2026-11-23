@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,14 +25,14 @@ template <> base::reflection::CType base::reflection::TypeObject<ESwifterSpawnGr
 
 // CSwifterSpawnGroupComponent
 void fn_7100a13530();
-void fn_7100a12648(UnkReflFunction* fn, const char* name);
+void fn_7100a12648(CFunction* fn, const char* name);
 namespace CSwifterSpawnGroupComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_eDirection_GetterFunction", &base::reflection::TypeObject<ESwifterSpawnGroupDirection>::object, 0, fn_7100a13530);
     DREAD_REFLECTED_FUNCTION("_m_eDirection_SetterFunction")
         fn_7100a12648(fn, "_m_eDirection_SetterFunction");
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eDirection", true), &base::reflection::TypeObject<ESwifterSpawnGroupDirection>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("eDirection", true), &base::reflection::TypeObject<ESwifterSpawnGroupDirection>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<ESwifterSpawnGroupDirection>::object, 1);
     DREAD_REFLECTED_FIELD_OF("ESwifterSpawnGroupSpawnMode", "eMode", 0x424, (DefaultValue, 1));
     DREAD_REFLECTED_FIELD(f32, "fTimeToSpawn", 0x434, (DefaultValue, 5.0f));

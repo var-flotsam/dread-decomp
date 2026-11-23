@@ -79,7 +79,7 @@ static inline void ResetPath_lfd5ecc(CFilePathStrId& id) {
         if (id.data && id.data != &pool->empty) {
             --id.data->ref_count;
             if (id.data->ref_count == 0) {
-                fn_71000803a4(pool, id.data);
+                StringPool_Release(pool, id.data);
                 pool = g_unk_7101d47200;
             }
         }

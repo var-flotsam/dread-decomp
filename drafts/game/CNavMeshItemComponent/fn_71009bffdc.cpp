@@ -114,7 +114,7 @@ struct UnkNavNodeMap_l9bffdc {
 
     UnkNavNodeMap_l9bffdc(u32 step, u32 flags)
         : values(nullptr), keys(nullptr), count(0), capacity(0), step(step), flags(flags),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
 
     CRntVector<u64>* End() { return &values[count]; }
 

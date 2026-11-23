@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,15 +24,15 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 
 // CCharClassSwarmControllerComponent
 void fn_7100737778();
-void fn_7100736400(UnkReflFunction* fn, const char* name);
+void fn_7100736400(CFunction* fn, const char* name);
 void fn_7100737808();
-void fn_710073657c(UnkReflFunction* fn, const char* name);
+void fn_710073657c(CFunction* fn, const char* name);
 void fn_7100737898();
-void fn_71007366f8(UnkReflFunction* fn, const char* name);
+void fn_71007366f8(CFunction* fn, const char* name);
 void fn_7100737928();
-void fn_7100736874(UnkReflFunction* fn, const char* name);
+void fn_7100736874(CFunction* fn, const char* name);
 void fn_71007379b8();
-void fn_71007369f0(UnkReflFunction* fn, const char* name);
+void fn_71007369f0(CFunction* fn, const char* name);
 namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassSwarmControllerComponent {
 void refl_AddAttributes(CClass*) {}

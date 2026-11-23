@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,7 +24,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassStopAudioPresetEvent
 void fn_7100be4d2c();
-void fn_7100be42fc(UnkReflFunction* fn, const char* name);
+void fn_7100be42fc(CFunction* fn, const char* name);
 namespace CCharClassStopAudioPresetEvent {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Stop Preset");

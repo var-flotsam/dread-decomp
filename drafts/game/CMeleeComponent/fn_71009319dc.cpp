@@ -83,7 +83,7 @@ struct UnkStringList_l9319dc {
         }
         if (n) {
             if (!alloc)
-                alloc = fn_7100083990();
+                alloc = GetDefaultAllocator();
             pool.backing = alloc;
             u64 size = (u64)n * sizeof(UnkStringNode_l9319dc);
             fn_710008378c(&pool.blocks, alloc->vf_0x40(size, 8, alloc_flags), size, sizeof(UnkStringNode_l9319dc));

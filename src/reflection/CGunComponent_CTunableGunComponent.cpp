@@ -10,8 +10,8 @@
 #include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -67,11 +67,11 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CGunComponent::CTunableGunComponent, base::tunable::CTunable);
 
 // CGunComponent
-void fn_71008388f8(UnkReflFunction* fn, const char* name);
-void fn_71008389ac(UnkReflFunction* fn, const char* name);
-void fn_7100838a60(UnkReflFunction* fn, const char* name);
-void fn_7100838b14(UnkReflFunction* fn, const char* name);
-void fn_7100838bc8(UnkReflFunction* fn, const char* name);
+void fn_71008388f8(CFunction* fn, const char* name);
+void fn_71008389ac(CFunction* fn, const char* name);
+void fn_7100838a60(CFunction* fn, const char* name);
+void fn_7100838b14(CFunction* fn, const char* name);
+void fn_7100838bc8(CFunction* fn, const char* name);
 namespace CGunComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

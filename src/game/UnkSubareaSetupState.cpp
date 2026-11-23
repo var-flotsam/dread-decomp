@@ -326,7 +326,7 @@ static inline void InitStrList(UnkSetupStrList* list) {
     list->field_0x8 = 0;
     list->field_0x10 = nullptr;
     list->field_0x18 = nullptr;
-    list->field_0x20 = fn_7100083990();
+    list->field_0x20 = GetDefaultAllocator();
     *reinterpret_cast<u32*>(list->pad_0x28) = 0x13;
     list->vtable = g_unk_7101a1a4a8 + 2;
     list->field_0x30 = g_unk_7101a1a4c8 + 0x10;

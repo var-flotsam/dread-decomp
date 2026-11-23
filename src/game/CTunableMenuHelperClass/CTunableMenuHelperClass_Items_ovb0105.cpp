@@ -119,7 +119,7 @@ struct UnkTunableMenuList_b0105 {
     u64 field_0x10 = 0;
     u32 field_0x18 = 10;
     u32 field_0x1c = 2;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
 };
 
 // A path element: an id released in two steps (CStrId::Reset).

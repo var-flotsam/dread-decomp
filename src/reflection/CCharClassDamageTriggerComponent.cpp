@@ -10,8 +10,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,7 +25,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassDamageTriggerComponent
 void fn_7100a4b3d8();
-void fn_7100a4a448(UnkReflFunction* fn, const char* name);
+void fn_7100a4a448(CFunction* fn, const char* name);
 namespace CCharClassDamageTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

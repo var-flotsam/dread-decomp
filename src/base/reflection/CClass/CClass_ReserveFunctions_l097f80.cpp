@@ -56,7 +56,7 @@ struct UnkKeyedArray {
           field_0x1c(other.field_0x1c), allocator(other.allocator) {}
 };
 
-// A reflected function (UnkReflFunction) with its whole layout.
+// A reflected function (CFunction) with its whole layout.
 struct UnkReflFunctionData {
     // The name: moved, the source gets the pool's empty id.
     struct Name {
@@ -99,7 +99,7 @@ struct UnkReflFunctionData {
 
     void Destroy() { vtbl->destroy(this); }
 };
-static_assert(sizeof(UnkReflFunctionData) == 0xb8, "UnkReflFunction layout");
+static_assert(sizeof(UnkReflFunctionData) == 0xb8, "CFunction layout");
 
 
 }  // namespace refl_reserve_functions_l097f80

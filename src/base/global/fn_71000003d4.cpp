@@ -24,11 +24,11 @@ void CStrId_ConstructFromRntString(UnkStrIdBase* self, const CRntString& str, bo
     u32 length = str.length;
     if (length) {
         u64 hash = str.key;
-        self->data = fn_71000804f8(g_unk_7101d47108, hash);
+        self->data = StringPool_Find(g_unk_7101d47108, hash);
         if (self->data)
             ++self->data->ref_count;
         else
-            self->data = fn_71000801e4(g_unk_7101d47108, hash, text, length, flag);
+            self->data = StringPool_Insert(g_unk_7101d47108, hash, text, length, flag);
     }
     if (!self->data)
         self->data = &g_unk_7101d47108->empty;

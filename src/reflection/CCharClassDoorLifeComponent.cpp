@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -26,27 +26,27 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // CCharClassDoorLifeComponent
 void fn_71008b2d64();
-void fn_71008b1b68(UnkReflFunction* fn, const char* name);
+void fn_71008b1b68(CFunction* fn, const char* name);
 void fn_71008b2df4();
-void fn_71008b1ce4(UnkReflFunction* fn, const char* name);
+void fn_71008b1ce4(CFunction* fn, const char* name);
 void fn_71008b2e84();
-void fn_71008b1e60(UnkReflFunction* fn, const char* name);
+void fn_71008b1e60(CFunction* fn, const char* name);
 void fn_71008b2f14();
-void fn_71008b1fdc(UnkReflFunction* fn, const char* name);
+void fn_71008b1fdc(CFunction* fn, const char* name);
 void fn_71008b2fa4();
-void fn_71008b2158(UnkReflFunction* fn, const char* name);
+void fn_71008b2158(CFunction* fn, const char* name);
 void fn_71008b3034();
-void fn_71008b22d4(UnkReflFunction* fn, const char* name);
+void fn_71008b22d4(CFunction* fn, const char* name);
 void fn_71008b311c();
-void fn_71008b2450(UnkReflFunction* fn, const char* name);
+void fn_71008b2450(CFunction* fn, const char* name);
 void fn_71008b3204();
-void fn_71008b25cc(UnkReflFunction* fn, const char* name);
+void fn_71008b25cc(CFunction* fn, const char* name);
 void fn_71008b3294();
-void fn_71008b2748(UnkReflFunction* fn, const char* name);
+void fn_71008b2748(CFunction* fn, const char* name);
 void fn_71008b3324();
-void fn_71008b28c4(UnkReflFunction* fn, const char* name);
+void fn_71008b28c4(CFunction* fn, const char* name);
 void fn_71008b33b4();
-void fn_71008b2a40(UnkReflFunction* fn, const char* name);
+void fn_71008b2a40(CFunction* fn, const char* name);
 namespace CCharClassDoorLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

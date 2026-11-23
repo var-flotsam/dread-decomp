@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,7 +24,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharacterLifeComponent
 void fn_71011592e0();
-void fn_7101158a9c(UnkReflFunction* fn, const char* name);
+void fn_7101158a9c(CFunction* fn, const char* name);
 namespace CCharacterLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

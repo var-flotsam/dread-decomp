@@ -218,7 +218,7 @@ void fn_710020dbd8(UnkUpdater_710020c780* self) {
     *reinterpret_cast<u8*>(&s->field_0x70) = active;
     f32 radius = 0.0f;
     UnkSource_710020c780* lookup = self->field_0x108;
-    u64 key = fn_7100001570("BSphereRadius", 13);
+    u64 key = StringCrc64("BSphereRadius", 13);
     if (fn_71001c32bc(lookup, &key, 1, &radius))
         fn_710021693c(reinterpret_cast<UnkSphere*>(self->field_0x80), radius);
 }

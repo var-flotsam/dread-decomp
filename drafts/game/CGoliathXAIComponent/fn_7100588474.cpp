@@ -71,7 +71,7 @@ void fn_7100588474(UnkGoliathXAI_l588474* self) {
             fn_7101178e08(target, 12, false, false, -1.0f);
             fn_7101178e08(target, 6, false, false, -1.0f);
             fn_710117662c(target, 11, 0, false, false, -1.0f);
-            u64 hash = fn_7100001570("relax", 5);
+            u64 hash = StringCrc64("relax", 5);
             base::reflection::UnkReflTypeIdArg value;
             value.id = 0x82;
             base::reflection::UnkReflTypeIdArg arg;

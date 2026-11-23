@@ -158,7 +158,7 @@ void fn_710013c4b4(UnkTunableRegistry* self, const char* name, const char* field
     if (!object)
         return;
     auto* type = reinterpret_cast<UnkTunableType*>(object->GetClass());
-    u64 hash = fn_7100001570(field_name, strlen(field_name));
+    u64 hash = StringCrc64(field_name, strlen(field_name));
     UnkTunableField* field = type->Find(hash);
     if (field == type->End())
         return;

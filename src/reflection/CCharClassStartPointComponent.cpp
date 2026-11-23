@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -50,7 +50,7 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassStartPointComponent, CCharClassComponent);
 
 // CStartPointComponent
-void fn_710116b5f4(UnkReflFunction* fn, const char* name);
+void fn_710116b5f4(CFunction* fn, const char* name);
 namespace CStartPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

@@ -11,8 +11,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -30,21 +30,21 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 // CCameraComponent
 void fn_71010e70d0();
 void fn_71010e711c();
-void fn_71010e0ce0(UnkReflFunction* fn, const char* name);
+void fn_71010e0ce0(CFunction* fn, const char* name);
 void fn_71010e7218();
-void fn_71010e0e5c(UnkReflFunction* fn, const char* name);
+void fn_71010e0e5c(CFunction* fn, const char* name);
 void fn_71010e7314();
-void fn_71010e0fd8(UnkReflFunction* fn, const char* name);
+void fn_71010e0fd8(CFunction* fn, const char* name);
 void fn_71010e73a4();
-void fn_71010e1154(UnkReflFunction* fn, const char* name);
+void fn_71010e1154(CFunction* fn, const char* name);
 void fn_71010e7434();
-void fn_71010e12d0(UnkReflFunction* fn, const char* name);
+void fn_71010e12d0(CFunction* fn, const char* name);
 void fn_71010e74c4();
-void fn_71010e144c(UnkReflFunction* fn, const char* name);
+void fn_71010e144c(CFunction* fn, const char* name);
 void fn_71010e7828();
-void fn_71010e7554(UnkReflFunction* fn);
-void fn_71010e15c8(UnkReflFunction* fn, const char* name);
-void fn_71010e167c(UnkReflFunction* fn, const char* name);
+void fn_71010e7554(CFunction* fn);
+void fn_71010e15c8(CFunction* fn, const char* name);
+void fn_71010e167c(CFunction* fn, const char* name);
 namespace CCameraComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

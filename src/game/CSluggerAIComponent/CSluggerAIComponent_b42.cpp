@@ -40,10 +40,10 @@ struct UnkBucketTable_b42a2 {
             field_0x30 = nullptr;
             allocator = alloc;
         } else {
-            buckets.allocator = fn_7100083990();
+            buckets.allocator = GetDefaultAllocator();
             field_0x28 = -1;
             field_0x30 = nullptr;
-            allocator = fn_7100083990();
+            allocator = GetDefaultAllocator();
         }
         flags = fl;
         field_0x44 = 0;

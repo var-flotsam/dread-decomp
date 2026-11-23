@@ -9,8 +9,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,7 +25,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 namespace game::logic::collision::CBroadphaseObject {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("sId", true), &base::reflection::PrimitiveType<unsigned long>::Get(), 0x18, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("sId", true), &base::reflection::PrimitiveType<unsigned long>::Get(), 0x18, -1, -1);
     field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     DREAD_REFLECTED_FIELD(CStrId, "sStrId", 0x20);
 }

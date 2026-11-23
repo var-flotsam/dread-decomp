@@ -1,5 +1,5 @@
 // Unit 83 (base::reflection): the move helper (CType+0x38) of the iterator value over a keyed
-// array of reflected functions (UnkReflFunction, 0xb8 bytes) and their names: base::UnkIterValue
+// array of reflected functions (CFunction, 0xb8 bytes) and their names: base::UnkIterValue
 // keyed by a string id, moved with refl_IterValueMove. The function's move constructor is the one
 // of src/base/reflection/UnkUnit83/UnkReflFunctionArrayInsert_b62a1.cpp. Names are placeholders.
 #include "base/UnkCollectionIter.h"
@@ -78,7 +78,7 @@ struct UnkReflFunctionData {
           invoker(other.invoker), field_0x50(static_cast<UnkKeyedArray&&>(other.field_0x50)), field_0x78(other.field_0x78),
           param_attrs(static_cast<UnkVectorView<void*>&&>(other.param_attrs)), field_0xb0_w(other.field_0xb0_w) {}
 };
-static_assert(sizeof(UnkReflFunctionData) == 0xb8, "UnkReflFunction layout");
+static_assert(sizeof(UnkReflFunctionData) == 0xb8, "CFunction layout");
 
 }  // namespace refl_function_iter_a1_b75
 

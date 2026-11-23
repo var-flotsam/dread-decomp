@@ -415,7 +415,7 @@ static inline void ResetPath(base::global::CFilePathStrId& id) {
         if (id.data && id.data != &pool->empty) {
             --id.data->ref_count;
             if (id.data->ref_count == 0) {
-                fn_71000803a4(pool, id.data);
+                StringPool_Release(pool, id.data);
                 pool = g_unk_7101d47200;
             }
         }
@@ -456,7 +456,7 @@ struct UnkTgmStrVector_b205 {
 
     UnkTgmStrVector_b205(u32 step_, u32 flags_)
         : data(nullptr), count(0), capacity(0), step(step_), field_0x14(false), flags(flags_),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
     void Free() {
         if (data) {
             for (u32 i = 0; i < count; ++i)

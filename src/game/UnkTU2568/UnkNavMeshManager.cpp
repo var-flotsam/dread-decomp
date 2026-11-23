@@ -137,7 +137,7 @@ void fn_7100ebf278(UnkNavMeshManager* self) {
     self->field_0x62e30 = nullptr;
     self->field_0x62e48 = 10;
     self->field_0x62e4c = 0x57;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     fn_7100ebf2fc(&self->pool, 100, 0, 0x57, nullptr);
 }
 

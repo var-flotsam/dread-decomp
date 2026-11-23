@@ -9,8 +9,8 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CVariable;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -28,14 +28,14 @@ namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CNavMeshItemComponent
-void fn_71009be10c(UnkReflFunction* fn, const char* name);
-void fn_71009be288(UnkReflFunction* fn, const char* name);
+void fn_71009be10c(CFunction* fn, const char* name);
+void fn_71009be288(CFunction* fn, const char* name);
 void fn_71009c29f0();
-void fn_7100500260(UnkReflFunction* fn);
+void fn_7100500260(CFunction* fn);
 void fn_71009c2b04();
-void fn_71009be404(UnkReflFunction* fn, const char* name);
-void fn_71009be580(UnkReflFunction* fn, const char* name);
-void fn_71009be6fc(UnkReflFunction* fn, const char* name);
+void fn_71009be404(CFunction* fn, const char* name);
+void fn_71009be580(CFunction* fn, const char* name);
+void fn_71009be6fc(CFunction* fn, const char* name);
 namespace CNavMeshItemComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -57,7 +57,7 @@ void refl_AddFields(CClass* cls) {
         fn_71009be580(fn, "OverrideInitialStage");
     DREAD_REFLECTED_FUNCTION("SetStage")
         fn_71009be6fc(fn, "SetStage");
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("tForbiddenEdgesSpawnPoints", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object, 0x188, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("tForbiddenEdgesSpawnPoints", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object, 0x188, -1, -1);
     field0->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Spawn points to set forbidden edges"));
     field0->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }

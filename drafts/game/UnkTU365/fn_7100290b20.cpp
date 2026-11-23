@@ -142,7 +142,7 @@ void fn_7100290b20(void* self, UnkPolygonArray_l290b20* polys, UnkLinkList_l290b
         u32 index_b = 0;
         UnkPolygon_l290b20* end = polys->data + polys->count;
         for (UnkPolygon_l290b20* poly = polys->data; poly != end; ++poly) {
-            fn_7100083990();
+            GetDefaultAllocator();
             for (u64 i = 0; i < EdgeCount(poly); ++i) {
                 UnkSegment2D seg;
                 CVector3D* start = &poly->points[i];
