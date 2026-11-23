@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassAlternativeActionPlayEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,27 +19,21 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAlternativeActionPlayEvent
-namespace CCharClassAlternativeActionPlayEvent {
-void refl_AddAttributes(CClass* cls) {
+void CCharClassAlternativeActionPlayEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Alternative Action Play");
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Actions");
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x10, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play"));
-    DREAD_REFLECTED_FIELD(f32, "fChanceIncrementOnFail", 0x18, (DefaultValue, 0.0f), (Description, "When action play fails (random value wasn't good enough), this is how much next chances increment"));
-    DREAD_REFLECTED_FIELD(f32, "fMaximumChanceIncrementOnFail", 0x1c, (DefaultValue, 0.0f), (Description, "When action play fails, this is the maximum value next chances can increase to"));
+void CCharClassAlternativeActionPlayEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", offsetof(CCharClassAlternativeActionPlayEvent, sAction), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play"));
+    DREAD_REFLECTED_FIELD(f32, "fChanceIncrementOnFail", offsetof(CCharClassAlternativeActionPlayEvent, fChanceIncrementOnFail), (DefaultValue, 0.0f), (Description, "When action play fails (random value wasn't good enough), this is how much next chances increment"));
+    DREAD_REFLECTED_FIELD(f32, "fMaximumChanceIncrementOnFail", offsetof(CCharClassAlternativeActionPlayEvent, fMaximumChanceIncrementOnFail), (DefaultValue, 0.0f), (Description, "When action play fails, this is the maximum value next chances can increase to"));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CCharClassAlternativeActionPlayEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassAlternativeActionPlayEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassAlternativeActionPlayEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAlternativeActionPlayEvent*>(obj)->vf_0x0(); }
+void CCharClassAlternativeActionPlayEvent::refl_Destroy(void* obj) { static_cast<CCharClassAlternativeActionPlayEvent*>(obj)->~CCharClassAlternativeActionPlayEvent(); }
+struct CCharClassAlternativeActionPlayEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassAlternativeActionPlayEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -49,5 +44,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassAlternativeActionPlayEvent
-DREAD_REFLECTED_CLASS(CCharClassAlternativeActionPlayEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassAlternativeActionPlayEvent, base::global::timeline::CEvent);

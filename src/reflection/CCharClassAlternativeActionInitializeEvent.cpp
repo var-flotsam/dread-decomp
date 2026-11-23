@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassAlternativeActionInitializeEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,27 +19,21 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAlternativeActionInitializeEvent
-namespace CCharClassAlternativeActionInitializeEvent {
-void refl_AddAttributes(CClass* cls) {
+void CCharClassAlternativeActionInitializeEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Alternative Action Initialize");
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Actions");
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x10, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Alternative action to be played later on"));
-    DREAD_REFLECTED_FIELD(f32, "fMinimumTimeToBeConsidered", 0x18, (DefaultValue, 0.0f), (Description, "Time since this event gets executed while we ignore attempts to play this action"));
-    DREAD_REFLECTED_FIELD(f32, "fMinimumChanceToPlay", 0x1c, (DefaultValue, 0.0f), (Description, "When minimum time completes, this is the initial chance to play this action"));
+void CCharClassAlternativeActionInitializeEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", offsetof(CCharClassAlternativeActionInitializeEvent, sAction), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Alternative action to be played later on"));
+    DREAD_REFLECTED_FIELD(f32, "fMinimumTimeToBeConsidered", offsetof(CCharClassAlternativeActionInitializeEvent, fMinimumTimeToBeConsidered), (DefaultValue, 0.0f), (Description, "Time since this event gets executed while we ignore attempts to play this action"));
+    DREAD_REFLECTED_FIELD(f32, "fMinimumChanceToPlay", offsetof(CCharClassAlternativeActionInitializeEvent, fMinimumChanceToPlay), (DefaultValue, 0.0f), (Description, "When minimum time completes, this is the initial chance to play this action"));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CCharClassAlternativeActionInitializeEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassAlternativeActionInitializeEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassAlternativeActionInitializeEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAlternativeActionInitializeEvent*>(obj)->vf_0x0(); }
+void CCharClassAlternativeActionInitializeEvent::refl_Destroy(void* obj) { static_cast<CCharClassAlternativeActionInitializeEvent*>(obj)->~CCharClassAlternativeActionInitializeEvent(); }
+struct CCharClassAlternativeActionInitializeEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassAlternativeActionInitializeEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -49,5 +44,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassAlternativeActionInitializeEvent
-DREAD_REFLECTED_CLASS(CCharClassAlternativeActionInitializeEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassAlternativeActionInitializeEvent, base::global::timeline::CEvent);

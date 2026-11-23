@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassFXFadeEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,30 +19,24 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFXFadeEvent
-namespace CCharClassFXFadeEvent {
-void refl_AddAttributes(CClass* cls) {
+void CCharClassFXFadeEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "FX Fade");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("FX", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(f32, "fTime", 0x18, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 50.0f));
-    DREAD_REFLECTED_FIELD(f32, "fIntensitySrc", 0x1c, (DefaultValue, 0.0f), (MinValue, -1.0f), (MaxValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fIntensityDst", 0x20, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
-    DREAD_REFLECTED_FIELD(bool, "bEnableBefore", 0x24, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bDisableAfter", 0x25, (DefaultValue, false));
+void CCharClassFXFadeEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sName", offsetof(CCharClassFXFadeEvent, sName), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(f32, "fTime", offsetof(CCharClassFXFadeEvent, fTime), (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fIntensitySrc", offsetof(CCharClassFXFadeEvent, fIntensitySrc), (DefaultValue, 0.0f), (MinValue, -1.0f), (MaxValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fIntensityDst", offsetof(CCharClassFXFadeEvent, fIntensityDst), (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
+    DREAD_REFLECTED_FIELD(bool, "bEnableBefore", offsetof(CCharClassFXFadeEvent, bEnableBefore), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bDisableAfter", offsetof(CCharClassFXFadeEvent, bDisableAfter), (DefaultValue, false));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x28;
+bool CCharClassFXFadeEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassFXFadeEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassFXFadeEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXFadeEvent*>(obj)->vf_0x0(); }
+void CCharClassFXFadeEvent::refl_Destroy(void* obj) { static_cast<CCharClassFXFadeEvent*>(obj)->~CCharClassFXFadeEvent(); }
+struct CCharClassFXFadeEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassFXFadeEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -52,5 +47,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassFXFadeEvent
-DREAD_REFLECTED_CLASS(CCharClassFXFadeEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassFXFadeEvent, base::global::timeline::CEvent);

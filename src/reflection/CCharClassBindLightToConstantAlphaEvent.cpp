@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassBindLightToConstantAlphaEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,27 +19,21 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBindLightToConstantAlphaEvent
-namespace CCharClassBindLightToConstantAlphaEvent {
-void refl_AddAttributes(CClass* cls) {
+void CCharClassBindLightToConstantAlphaEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Bind Light To Constant Alpha");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Material", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sMaterial", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sLight", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(s32, "iConstant", 0x20, (DefaultValue, 0));
+void CCharClassBindLightToConstantAlphaEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sMaterial", offsetof(CCharClassBindLightToConstantAlphaEvent, sMaterial), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sLight", offsetof(CCharClassBindLightToConstantAlphaEvent, sLight), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(s32, "iConstant", offsetof(CCharClassBindLightToConstantAlphaEvent, iConstant), (DefaultValue, 0));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x28;
+bool CCharClassBindLightToConstantAlphaEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassBindLightToConstantAlphaEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassBindLightToConstantAlphaEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBindLightToConstantAlphaEvent*>(obj)->vf_0x0(); }
+void CCharClassBindLightToConstantAlphaEvent::refl_Destroy(void* obj) { static_cast<CCharClassBindLightToConstantAlphaEvent*>(obj)->~CCharClassBindLightToConstantAlphaEvent(); }
+struct CCharClassBindLightToConstantAlphaEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassBindLightToConstantAlphaEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -49,5 +44,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassBindLightToConstantAlphaEvent
-DREAD_REFLECTED_CLASS(CCharClassBindLightToConstantAlphaEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassBindLightToConstantAlphaEvent, base::global::timeline::CEvent);

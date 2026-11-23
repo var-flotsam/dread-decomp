@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCameraFX_OscillationShake.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,29 +19,27 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_OscillationShake
-namespace CCameraFX_OscillationShake {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sFunction", 0x58, (DefaultValue, ""), (Description, "Function (p.ej: SqooooooszI)"));
-    DREAD_REFLECTED_FIELD(f32, "fAmplitudeX", 0x60, (DefaultValue, 0.0f), (Description, "Max Oscillation Amplitude in Camera local x axis"));
-    DREAD_REFLECTED_FIELD(f32, "fSpeedX", 0x64, (DefaultValue, 0.0f), (Description, "Max Oscillation speed in Camera local x axis"));
-    DREAD_REFLECTED_FIELD(f32, "fAmplitudeY", 0x68, (DefaultValue, 0.0f), (Description, "Max Oscillation Amplitude in Camera local y axis"));
-    DREAD_REFLECTED_FIELD(f32, "fSpeedY", 0x6c, (DefaultValue, 0.0f), (Description, "Max Oscillation speed in Camera local y axis"));
-    DREAD_REFLECTED_FIELD(f32, "fAmplitudeZ", 0x70, (DefaultValue, 0.0f), (Description, "Max Oscillation Amplitude in Camera local z axis"));
-    DREAD_REFLECTED_FIELD(f32, "fSpeedZ", 0x74, (DefaultValue, 0.0f), (Description, "Max Oscillation speed in Camera local z axis"));
-    DREAD_REFLECTED_FIELD(f32, "fTimeToMax", 0x78, (DefaultValue, 0.0f), (Description, "Time to reach max values"));
+void CCameraFX_OscillationShake::refl_AddAttributes(CClass*) {}
+void CCameraFX_OscillationShake::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sFunction", offsetof(CCameraFX_OscillationShake, sFunction), (DefaultValue, ""), (Description, "Function (p.ej: SqooooooszI)"));
+    DREAD_REFLECTED_FIELD(f32, "fAmplitudeX", offsetof(CCameraFX_OscillationShake, fAmplitudeX), (DefaultValue, 0.0f), (Description, "Max Oscillation Amplitude in Camera local x axis"));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedX", offsetof(CCameraFX_OscillationShake, fSpeedX), (DefaultValue, 0.0f), (Description, "Max Oscillation speed in Camera local x axis"));
+    DREAD_REFLECTED_FIELD(f32, "fAmplitudeY", offsetof(CCameraFX_OscillationShake, fAmplitudeY), (DefaultValue, 0.0f), (Description, "Max Oscillation Amplitude in Camera local y axis"));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedY", offsetof(CCameraFX_OscillationShake, fSpeedY), (DefaultValue, 0.0f), (Description, "Max Oscillation speed in Camera local y axis"));
+    DREAD_REFLECTED_FIELD(f32, "fAmplitudeZ", offsetof(CCameraFX_OscillationShake, fAmplitudeZ), (DefaultValue, 0.0f), (Description, "Max Oscillation Amplitude in Camera local z axis"));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedZ", offsetof(CCameraFX_OscillationShake, fSpeedZ), (DefaultValue, 0.0f), (Description, "Max Oscillation speed in Camera local z axis"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToMax", offsetof(CCameraFX_OscillationShake, fTimeToMax), (DefaultValue, 0.0f), (Description, "Time to reach max values"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xb8;
+bool CCameraFX_OscillationShake::refl_Equals(const void*, const void*) { return false; }
+s32 CCameraFX_OscillationShake::refl_Hash() { return -1; }
+const base::reflection::CType& CCameraFX_OscillationShake::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX_OscillationShake*>(obj)->vf_0x0(); }
+void CCameraFX_OscillationShake::refl_CopyConstruct(void*, const void*) {}
+void CCameraFX_OscillationShake::refl_MoveConstruct(void*, const void*) {}
+void CCameraFX_OscillationShake::refl_Destroy(void* obj) { static_cast<CCameraFX_OscillationShake*>(obj)->~CCameraFX_OscillationShake(); }
+void* CCameraFX_OscillationShake::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCameraFX_OscillationShake::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCameraFX_OscillationShake::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCameraFX_OscillationShake);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -51,5 +50,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCameraFX_OscillationShake
-DREAD_REFLECTED_CLASS(CCameraFX_OscillationShake, CCameraFX_Shake);
+DREAD_REFLECTED_DECLARED_CLASS(CCameraFX_OscillationShake, CCameraFX_Shake);

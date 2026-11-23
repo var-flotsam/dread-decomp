@@ -1214,6 +1214,82 @@ def without_unused_usings(text: str) -> str:
     return chr(10).join(lines)
 
 
+# A class block of the namespace form, with its getter's macro.
+CLASS_BLOCK = re.compile(r"^namespace ([\w:]+) \{\n(.*?)^\}  // namespace \1\n"
+                         r"DREAD_REFLECTED_(CLASS|ROOT_CLASS)\(\1(?:, ([\w:]+))?\);$", re.M | re.S)
+REFL_DECLARATION = re.compile(r"^[^ ].*? refl_\w+\([^)]*\);$")
+REFL_DEFINITION = re.compile(r"^([^ ].*?) (refl_\w+\(.*)$")
+FIELD_OFFSET = re.compile(r'^(    DREAD_REFLECTED_(?:FIELD|CLASS_FIELD|FIELD_OF)\((?:"[^"]*"|[^,]+), "(\w+)", )(0x[0-9a-f]+|\d+)\b')
+
+
+def declared_class_block(name: str, body: str, sizes: dict[str, int], offsets: dict[tuple[str, str], int]) -> str | None:
+    """The namespace block of class `name` as its declared class's member definitions (tools/gen_classes.py):
+    sizeof and offsetof for the numbers the header asserts, the class type for the virtual calls; None
+    when a line has no such form."""
+    if "DestructorFirst" in body:
+        return None  # the header declares the getter-first virtual table
+    short = name.split("::")[-1]
+    out = []
+    for line in body.split(chr(10))[:-1]:
+        if REFL_DECLARATION.match(line):
+            continue  # declared by the class
+        if line == "struct refl_Description : ClassDescription {":
+            out.append(f"struct {name}::refl_Description : ClassDescription {{")
+            continue
+        m = re.fullmatch(r"    static constexpr u64 size = (0x[0-9a-f]+);", line)
+        if m:
+            if int(m.group(1), 16) != sizes.get(name):
+                return None
+            out.append(f"    static constexpr u64 size = sizeof({short});")
+            continue
+        m = FIELD_OFFSET.match(line)
+        if m:
+            if offsets.get((name, m.group(2))) != int(m.group(3), 0):
+                return None
+            out.append(f"{m.group(1)}offsetof({short}, {m.group(2)}){line[m.end():]}")
+            continue
+        m = REFL_DEFINITION.match(line)
+        if m:
+            # in a member's body the class is named without its namespace
+            line = f"{m.group(1)} {name}::{m.group(2)}"
+            line = line.replace("{ return ClassOf(obj); }", f"{{ return *static_cast<const {short}*>(obj)->vf_0x0(); }}")
+            line = line.replace("{ Destroy(obj); }", f"{{ static_cast<{short}*>(obj)->~{short}(); }}")
+        elif not (line.startswith(" ") or line in ("}", "};")):
+            return None
+        out.append(line)
+    return chr(10).join(out) + chr(10)
+
+
+def with_declared_classes(text: str, includes: dict[str, str], sizes: dict[str, int],
+                          offsets: dict[tuple[str, str], int]) -> str:
+    """`text` with the blocks of the classes tools/gen_classes.py declares (`includes`: class -> header)
+    written as the class's members, and the header included (the final pass)."""
+    def one(m: re.Match) -> str:
+        name, body, kind, parent = m.group(1), m.group(2), m.group(3), m.group(4)
+        if name not in includes or (parent and parent not in includes):
+            return m.group(0)
+        members = declared_class_block(name, body, sizes, offsets)
+        if members is None:
+            return m.group(0)
+        use = f"DREAD_REFLECTED_DECLARED_CLASS({name}, {parent});" if parent else f"DREAD_REFLECTED_DECLARED_ROOT_CLASS({name});"
+        return members + use
+
+    new = CLASS_BLOCK.sub(one, text)
+    for name, include in includes.items():
+        if new != text and re.search(rf"^DREAD_REFLECTED_DECLARED_(?:ROOT_)?CLASS\({re.escape(name)}[,)]", new, re.M):
+            new = with_include(new, f'#include "{include}"')
+    return new
+
+
+def declared_classes() -> tuple[dict[str, str], dict[str, int], dict[tuple[str, str], int]]:
+    """The arguments of with_declared_classes, from tools/gen_classes.py's headers and the class sizes."""
+    import gen_classes
+
+    types, _ = gen_classes.tables()
+    return (gen_classes.declared_includes(), {t: int(r["size"], 16) for t, r in types.items() if r["size"]},
+            gen_classes.offsets())
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
@@ -1737,9 +1813,12 @@ def main() -> int:
         objects_by_type = sum(pool.map(by_object_type, sorted(OUT.glob("*.cpp"))))
     # Reflected functions in one line, typed attribute keys by name: textual, so each file compiles as it did.
     typed_keys = typed_attribute_keys()
+    # Classes tools/gen_classes.py declares: their blocks as the class's members.
+    declared = declared_classes()
     for f in sorted(OUT.glob("*.cpp")):
         old = f.read_text(encoding="utf-8")
         new = without_unused_usings(with_registry_include(class_statics_by_name(functions_in_one_line(typed_keys_by_name(old, typed_keys)))))
+        new = with_declared_classes(new, *declared)
         if new != old:
             f.write_text(new, encoding="utf-8", newline=chr(10))
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")

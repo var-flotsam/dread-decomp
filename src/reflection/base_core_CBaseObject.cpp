@@ -17,29 +17,28 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "reflected/base/core/CBaseObject.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // base::core::CBaseObject
 void fn_7100024edc();
-namespace base::core::CBaseObject {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void base::core::CBaseObject::refl_AddAttributes(CClass*) {}
+void base::core::CBaseObject::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("PrintTypeLists") {
         DREAD_REFLECTED_FUNCTION_DESCRIPTION("PrintTypeLists", &base::reflection::TypeObject<void>::object, 0, fn_7100024edc);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Print type vars");
     }
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x8;
+bool base::core::CBaseObject::refl_Equals(const void*, const void*) { return false; }
+s32 base::core::CBaseObject::refl_Hash() { return -1; }
+const base::reflection::CType& base::core::CBaseObject::refl_TypeOf(const void* obj) { return *static_cast<const CBaseObject*>(obj)->vf_0x0(); }
+void base::core::CBaseObject::refl_CopyConstruct(void*, const void*) {}
+void base::core::CBaseObject::refl_MoveConstruct(void*, const void*) {}
+void base::core::CBaseObject::refl_Destroy(void* obj) { static_cast<CBaseObject*>(obj)->~CBaseObject(); }
+void* base::core::CBaseObject::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* base::core::CBaseObject::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct base::core::CBaseObject::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CBaseObject);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -50,5 +49,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace base::core::CBaseObject
-DREAD_REFLECTED_ROOT_CLASS(base::core::CBaseObject);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(base::core::CBaseObject);
