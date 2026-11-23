@@ -1,32 +1,21 @@
 // CCooldownXBossFireBallDef's unit (tools/tu_map.py): the reflected-array helpers of its array of
 // 0x18-byte polymorphic elements (base/global/CRntVector.h), as CCooldownXBossLavaDropsMovementDef's
 // (../CCooldownXBossLavaDropsMovementDef/CCooldownXBossLavaDropsMovementDef_Array_ovb0072.cpp): the
-// begin iterator, erase, grow-to-index and copy constructor. The element is a vtable (unk_7101a3e2b0),
-// a flag, a word and a flag; the default constructor sets them to true, 0 and false. Names and layouts
-// are placeholders.
+// begin iterator, erase, grow-to-index and copy constructor. The element is the class
+// (reflected/CCooldownXBossFireBallDef.h): its default constructor sets bEnabled, fPreparationTimeOffset
+// and bBreakable to true, 0 and false.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkCollectionIter.h"
 #include "base/global/CRntVector.h"
-#include "game/CCooldownXBossFireBallDef.h"
-#include "game/UnkFireBallDefData_ovb0072.h"
-#include "game/UnkFireBallDefVtable_ovb0072.h"
-#include "game/UnkFireBallDef_ovb0072.h"
+#include "reflected/CCooldownXBossFireBallDef.h"
 #include "types.h"
-
-
-
-struct UnkFireBallDef_ovb0072;
-
-static_assert(sizeof(UnkFireBallDef_ovb0072) == 0x18, "UnkFireBallDef_ovb0072 layout");
 
 // The begin iterator only needs the element's size; its value holder is reset without a destructor.
 struct UnkFireBallDefWords_ovb0072 {
     u64 words[3];
 };
 
-
-
-using UnkFireBallDefVector_ovb0072 = base::global::CRntVector<UnkFireBallDef_ovb0072>;
+using FireBallDefVector = base::global::CRntVector<CCooldownXBossFireBallDef>;
 
 void fn_71004c0bac(const base::global::CRntVector<UnkFireBallDefWords_ovb0072>* v, base::UnkCollectionIter<UnkFireBallDefWords_ovb0072>* out) {
     base::refl_Begin(v, out);
@@ -34,29 +23,29 @@ void fn_71004c0bac(const base::global::CRntVector<UnkFireBallDefWords_ovb0072>* 
 
 // CRntVector::EraseAt, written as fn_71004bf588 (this unit): the moved-from
 // element is destroyed through a reload of the array.
-static inline void EraseAt(UnkFireBallDefVector_ovb0072* self, u32 index) {
+static inline void EraseAt(FireBallDefVector* self, u32 index) {
     if (index < self->count) {
         u64 i = index;
-        self->data[i].~UnkFireBallDef_ovb0072();
+        self->data[i].~CCooldownXBossFireBallDef();
         for (; i < (u32)(self->count - 1); ++i) {
-            UnkFireBallDef_ovb0072* cur = &self->data[i];
-            new (cur) UnkFireBallDef_ovb0072(static_cast<UnkFireBallDef_ovb0072&&>(cur[1]));
-            (&self->data[i])[1].~UnkFireBallDef_ovb0072();
+            CCooldownXBossFireBallDef* cur = &self->data[i];
+            new (cur) CCooldownXBossFireBallDef(static_cast<CCooldownXBossFireBallDef&&>(cur[1]));
+            (&self->data[i])[1].~CCooldownXBossFireBallDef();
         }
         self->count = self->count - 1;
     }
 }
 
-void fn_71004c0078(UnkFireBallDefVector_ovb0072* self, const u32* it) {
-    UnkFireBallDef_ovb0072* base = reinterpret_cast<UnkFireBallDef_ovb0072*>(self);
-    u64 offset = (u64)*it * sizeof(UnkFireBallDef_ovb0072);
-    UnkFireBallDef_ovb0072* p = reinterpret_cast<UnkFireBallDef_ovb0072*>(reinterpret_cast<char*>(base) + offset);
+void fn_71004c0078(FireBallDefVector* self, const u32* it) {
+    CCooldownXBossFireBallDef* base = reinterpret_cast<CCooldownXBossFireBallDef*>(self);
+    u64 offset = (u64)*it * sizeof(CCooldownXBossFireBallDef);
+    CCooldownXBossFireBallDef* p = reinterpret_cast<CCooldownXBossFireBallDef*>(reinterpret_cast<char*>(base) + offset);
     EraseAt(self, (u32)(p - base));
 }
 
-UnkFireBallDef_ovb0072* fn_71004c095c(UnkFireBallDefVector_ovb0072* self, u32 index) { return &self->GrowAt(index); }
+CCooldownXBossFireBallDef* fn_71004c095c(FireBallDefVector* self, u32 index) { return &self->GrowAt(index); }
 
-__attribute__((flatten)) void fn_71004bd2f0(UnkFireBallDefVector_ovb0072* self, const UnkFireBallDefVector_ovb0072* other) {
+__attribute__((flatten)) void fn_71004bd2f0(FireBallDefVector* self, const FireBallDefVector* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;
@@ -65,6 +54,6 @@ __attribute__((flatten)) void fn_71004bd2f0(UnkFireBallDefVector_ovb0072* self, 
     self->flags = other->flags;
     self->allocator = other->allocator;
     self->Reserve(other->capacity);
-    for (const UnkFireBallDef_ovb0072 *p = other->data, *e = p + other->count; p != e; ++p)
+    for (const CCooldownXBossFireBallDef *p = other->data, *e = p + other->count; p != e; ++p)
         self->PushBackCopy(*p);
 }

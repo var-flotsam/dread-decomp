@@ -1,0 +1,9 @@
+class,kind,declaration,address,definition,source
+base::core::CBaseObject,virtual 3,virtual void vf_0x18(),,,"fn_71010f2b68, fn_7100767fb8: called right after construction"
+CCameraFX_Shake,ctor,CCameraFX_Shake(),0x71010f3d20,,fn_71010f2b68
+CCameraFX_RandShake,vtable,,0x7101cb1c98,,fn_71010f2b68
+CCameraFX_RandShake,ctor,CCameraFX_RandShake(),,default,fn_71010f2b68 (inlined into refl_Construct)
+CCameraFX_OscillationShake,vtable,,0x7101a6e8b8,,fn_7100767fb8
+CCameraFX_OscillationShake,ctor,CCameraFX_OscillationShake(),,default,fn_7100767fb8 (inlined into refl_Construct)
+CCooldownXBossFireBallDef,vtable,,0x7101a3e2b0,,fn_71004c095c
+CCooldownXBossFireBallDef,ctor,CCooldownXBossFireBallDef(),,default,fn_71004c095c (inlined into the array's grow)
