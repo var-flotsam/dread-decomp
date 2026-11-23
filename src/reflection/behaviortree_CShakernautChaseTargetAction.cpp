@@ -7,41 +7,38 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CShakernautChaseTargetAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CShakernautChaseTargetAction
-namespace behaviortree::CShakernautChaseTargetAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bMaintainViewDirOnReached", 0x48, (DefaultValue, false), (Description, "Maintain View Dir On Reached"));
-    DREAD_REFLECTED_FIELD(bool, "bIgnoreTargetAccesible", 0x49, (DefaultValue, false), (Description, "Ignore target accesible"));
-    DREAD_REFLECTED_FIELD(bool, "bGotoMovingIfNotInFrustum", 0x4a, (DefaultValue, false), (Description, "Goto Moving If Not In Frustum"));
-    DREAD_REFLECTED_FIELD(bool, "bAllowTargetToJumpOver", 0x60, (DefaultValue, true), (Description, "Allow Target To Jump Over"));
-    DREAD_REFLECTED_FIELD(f32, "fMovingToIdleLimitsOffset", 0x64, (DefaultValue, 100.0f), (Description, "Moving to Idle limits offset"));
-    DREAD_REFLECTED_FIELD(bool, "bIgnoreNextAttackTimeOnIdle", 0x68, (DefaultValue, false), (Description, "Reset Next Attack Time On Idle"));
-    DREAD_REFLECTED_FIELD(f32, "fMinDist", 0x6c, (DefaultValue, -1.0f), (Description, "Chase min dist"));
-    DREAD_REFLECTED_FIELD(f32, "fMaxDist", 0x70, (DefaultValue, -1.0f), (Description, "Chase max dist"));
-    DREAD_REFLECTED_FIELD(f32, "fCenterDistance", 0x74, (DefaultValue, -1.0f), (Description, "Chase center dist"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CShakernautChaseTargetAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CShakernautChaseTargetAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bMaintainViewDirOnReached", offsetof(CShakernautChaseTargetAction, bMaintainViewDirOnReached), (DefaultValue, false), (Description, "Maintain View Dir On Reached"));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreTargetAccesible", offsetof(CShakernautChaseTargetAction, bIgnoreTargetAccesible), (DefaultValue, false), (Description, "Ignore target accesible"));
+    DREAD_REFLECTED_FIELD(bool, "bGotoMovingIfNotInFrustum", offsetof(CShakernautChaseTargetAction, bGotoMovingIfNotInFrustum), (DefaultValue, false), (Description, "Goto Moving If Not In Frustum"));
+    DREAD_REFLECTED_FIELD(bool, "bAllowTargetToJumpOver", offsetof(CShakernautChaseTargetAction, bAllowTargetToJumpOver), (DefaultValue, true), (Description, "Allow Target To Jump Over"));
+    DREAD_REFLECTED_FIELD(f32, "fMovingToIdleLimitsOffset", offsetof(CShakernautChaseTargetAction, fMovingToIdleLimitsOffset), (DefaultValue, 100.0f), (Description, "Moving to Idle limits offset"));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreNextAttackTimeOnIdle", offsetof(CShakernautChaseTargetAction, bIgnoreNextAttackTimeOnIdle), (DefaultValue, false), (Description, "Reset Next Attack Time On Idle"));
+    DREAD_REFLECTED_FIELD(f32, "fMinDist", offsetof(CShakernautChaseTargetAction, fMinDist), (DefaultValue, -1.0f), (Description, "Chase min dist"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDist", offsetof(CShakernautChaseTargetAction, fMaxDist), (DefaultValue, -1.0f), (Description, "Chase max dist"));
+    DREAD_REFLECTED_FIELD(f32, "fCenterDistance", offsetof(CShakernautChaseTargetAction, fCenterDistance), (DefaultValue, -1.0f), (Description, "Chase center dist"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x78;
+bool behaviortree::CShakernautChaseTargetAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CShakernautChaseTargetAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CShakernautChaseTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CShakernautChaseTargetAction*>(obj)->vf_0x0(); }
+void behaviortree::CShakernautChaseTargetAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CShakernautChaseTargetAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CShakernautChaseTargetAction::refl_Destroy(void* obj) { static_cast<CShakernautChaseTargetAction*>(obj)->~CShakernautChaseTargetAction(); }
+void* behaviortree::CShakernautChaseTargetAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CShakernautChaseTargetAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CShakernautChaseTargetAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CShakernautChaseTargetAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -52,5 +49,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CShakernautChaseTargetAction
-DREAD_REFLECTED_CLASS(behaviortree::CShakernautChaseTargetAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CShakernautChaseTargetAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

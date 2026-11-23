@@ -7,35 +7,30 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassTweakAirFrictionTrack.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTweakAirFrictionTrack
-namespace CCharClassTweakAirFrictionTrack {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassTweakAirFrictionTrack::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Air Friction Params");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Tweak", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fFrictionFactor", 0x18, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fNonAffectedSpeedFactorFromAirVelocityX", 0x1c, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
+void CCharClassTweakAirFrictionTrack::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fFrictionFactor", offsetof(CCharClassTweakAirFrictionTrack, fFrictionFactor), (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fNonAffectedSpeedFactorFromAirVelocityX", offsetof(CCharClassTweakAirFrictionTrack, fNonAffectedSpeedFactorFromAirVelocityX), (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CCharClassTweakAirFrictionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassTweakAirFrictionTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassTweakAirFrictionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakAirFrictionTrack*>(obj)->vf_0x0(); }
+void CCharClassTweakAirFrictionTrack::refl_Destroy(void* obj) { static_cast<CCharClassTweakAirFrictionTrack*>(obj)->~CCharClassTweakAirFrictionTrack(); }
+struct CCharClassTweakAirFrictionTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassTweakAirFrictionTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,5 +39,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassTweakAirFrictionTrack
-DREAD_REFLECTED_CLASS(CCharClassTweakAirFrictionTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassTweakAirFrictionTrack, base::global::timeline::CTrack);
+#pragma GCC diagnostic pop

@@ -7,34 +7,31 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CQuetzoaFollowPathAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CQuetzoaFollowPathAction
-namespace behaviortree::CQuetzoaFollowPathAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bFlee", 0x34, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fSpeedMultiplier", 0x38, (DefaultValue, 1.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CQuetzoaFollowPathAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CQuetzoaFollowPathAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bFlee", offsetof(CQuetzoaFollowPathAction, bFlee), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedMultiplier", offsetof(CQuetzoaFollowPathAction, fSpeedMultiplier), (DefaultValue, 1.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x48;
+bool behaviortree::CQuetzoaFollowPathAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CQuetzoaFollowPathAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CQuetzoaFollowPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CQuetzoaFollowPathAction*>(obj)->vf_0x0(); }
+void behaviortree::CQuetzoaFollowPathAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CQuetzoaFollowPathAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CQuetzoaFollowPathAction::refl_Destroy(void* obj) { static_cast<CQuetzoaFollowPathAction*>(obj)->~CQuetzoaFollowPathAction(); }
+void* behaviortree::CQuetzoaFollowPathAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CQuetzoaFollowPathAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CQuetzoaFollowPathAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CQuetzoaFollowPathAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -45,5 +42,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CQuetzoaFollowPathAction
-DREAD_REFLECTED_CLASS(behaviortree::CQuetzoaFollowPathAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CQuetzoaFollowPathAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

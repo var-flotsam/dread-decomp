@@ -7,33 +7,30 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CMoveToTargetLastKnownPositionAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CMoveToTargetLastKnownPositionAction
-namespace behaviortree::CMoveToTargetLastKnownPositionAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", 0x38, (DefaultValue, 10.0f), (Description, "Reach distance"));
-    DREAD_REFLECTED_FIELD(f32, "fRefreshRate", 0x3c, (DefaultValue, -1.0f), (Description, "Refresh rate"));
-    DREAD_REFLECTED_FIELD(bool, "bShouldLookAtDir", 0x44, (DefaultValue, true), (Description, "Character should look at movement direction"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CMoveToTargetLastKnownPositionAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CMoveToTargetLastKnownPositionAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", offsetof(CMoveToTargetLastKnownPositionAction, fReachedDistance), (DefaultValue, 10.0f), (Description, "Reach distance"));
+    DREAD_REFLECTED_FIELD(f32, "fRefreshRate", offsetof(CMoveToTargetLastKnownPositionAction, fRefreshRate), (DefaultValue, -1.0f), (Description, "Refresh rate"));
+    DREAD_REFLECTED_FIELD(bool, "bShouldLookAtDir", offsetof(CMoveToTargetLastKnownPositionAction, bShouldLookAtDir), (DefaultValue, true), (Description, "Character should look at movement direction"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x12ae0;
+bool behaviortree::CMoveToTargetLastKnownPositionAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CMoveToTargetLastKnownPositionAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CMoveToTargetLastKnownPositionAction::refl_TypeOf(const void* obj) { return *static_cast<const CMoveToTargetLastKnownPositionAction*>(obj)->vf_0x0(); }
+void behaviortree::CMoveToTargetLastKnownPositionAction::refl_Destroy(void* obj) { static_cast<CMoveToTargetLastKnownPositionAction*>(obj)->~CMoveToTargetLastKnownPositionAction(); }
+void* behaviortree::CMoveToTargetLastKnownPositionAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CMoveToTargetLastKnownPositionAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CMoveToTargetLastKnownPositionAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CMoveToTargetLastKnownPositionAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -42,5 +39,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CMoveToTargetLastKnownPositionAction
-DREAD_REFLECTED_CLASS(behaviortree::CMoveToTargetLastKnownPositionAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CMoveToTargetLastKnownPositionAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

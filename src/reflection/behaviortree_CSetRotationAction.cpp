@@ -7,38 +7,35 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CSetRotationAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSetRotationAction
-namespace behaviortree::CSetRotationAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bSetX", 0x2c, (DefaultValue, true), (Description, "Set the X value [true]"));
-    DREAD_REFLECTED_FIELD(bool, "bSetY", 0x2d, (DefaultValue, true), (Description, "Set the Y value [true]"));
-    DREAD_REFLECTED_FIELD(bool, "bSetZ", 0x2e, (DefaultValue, true), (Description, "Set the Z value [true]"));
-    DREAD_REFLECTED_FIELD(f32, "fXValue", 0x30, (DefaultValue, 0.0f), (Description, "Value for the X component [0.0]"));
-    DREAD_REFLECTED_FIELD(f32, "fYValue", 0x34, (DefaultValue, 0.0f), (Description, "Value for the Y component [0.0]"));
-    DREAD_REFLECTED_FIELD(f32, "fZValue", 0x38, (DefaultValue, 0.0f), (Description, "Value for the Z component [0.0]"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CSetRotationAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CSetRotationAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bSetX", offsetof(CSetRotationAction, bSetX), (DefaultValue, true), (Description, "Set the X value [true]"));
+    DREAD_REFLECTED_FIELD(bool, "bSetY", offsetof(CSetRotationAction, bSetY), (DefaultValue, true), (Description, "Set the Y value [true]"));
+    DREAD_REFLECTED_FIELD(bool, "bSetZ", offsetof(CSetRotationAction, bSetZ), (DefaultValue, true), (Description, "Set the Z value [true]"));
+    DREAD_REFLECTED_FIELD(f32, "fXValue", offsetof(CSetRotationAction, fXValue), (DefaultValue, 0.0f), (Description, "Value for the X component [0.0]"));
+    DREAD_REFLECTED_FIELD(f32, "fYValue", offsetof(CSetRotationAction, fYValue), (DefaultValue, 0.0f), (Description, "Value for the Y component [0.0]"));
+    DREAD_REFLECTED_FIELD(f32, "fZValue", offsetof(CSetRotationAction, fZValue), (DefaultValue, 0.0f), (Description, "Value for the Z component [0.0]"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x40;
+bool behaviortree::CSetRotationAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CSetRotationAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CSetRotationAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetRotationAction*>(obj)->vf_0x0(); }
+void behaviortree::CSetRotationAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CSetRotationAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CSetRotationAction::refl_Destroy(void* obj) { static_cast<CSetRotationAction*>(obj)->~CSetRotationAction(); }
+void* behaviortree::CSetRotationAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CSetRotationAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CSetRotationAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSetRotationAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -49,5 +46,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CSetRotationAction
-DREAD_REFLECTED_CLASS(behaviortree::CSetRotationAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CSetRotationAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

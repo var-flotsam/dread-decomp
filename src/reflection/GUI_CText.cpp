@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/GUI/CText.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
@@ -30,9 +27,8 @@ void fn_7100b87318();
 void fn_7100b86270(CFunction* fn, const char* name);
 void fn_7100b87488();
 void fn_7100b863ec(CFunction* fn, const char* name);
-namespace GUI::CText {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void GUI::CText::refl_AddAttributes(CClass*) {}
+void GUI::CText::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_Font_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100b8708c);
     DREAD_REFLECTED_FUNCTION("_Font_SetterFunction")
         fn_7100b85f78(fn, "_Font_SetterFunction");
@@ -50,18 +46,16 @@ void refl_AddFields(CClass* cls) {
         fn_7100b863ec(fn, "_Text_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "Text");
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x240;
+bool GUI::CText::refl_Equals(const void*, const void*) { return false; }
+s32 GUI::CText::refl_Hash() { return -1; }
+const base::reflection::CType& GUI::CText::refl_TypeOf(const void* obj) { return *static_cast<const CText*>(obj)->vf_0x0(); }
+void GUI::CText::refl_Destroy(void* obj) { static_cast<CText*>(obj)->~CText(); }
+struct GUI::CText::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CText);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace GUI::CText
-DREAD_REFLECTED_CLASS(GUI::CText, GUI::CDisplayObject);
+DREAD_REFLECTED_DECLARED_CLASS(GUI::CText, GUI::CDisplayObject);

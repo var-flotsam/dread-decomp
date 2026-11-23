@@ -7,34 +7,31 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CHoldPlayerDirectionOnSubAreaChangeLogicAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CHoldPlayerDirectionOnSubAreaChangeLogicAction
-namespace CHoldPlayerDirectionOnSubAreaChangeLogicAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bForce", 0x10, (DefaultValue, false), (Description, "Force to hold Samus direction"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_AddAttributes(CClass*) {}
+void CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bForce", offsetof(CHoldPlayerDirectionOnSubAreaChangeLogicAction, bForce), (DefaultValue, false), (Description, "Force to hold Samus direction"));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
+bool CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_Hash() { return -1; }
+const base::reflection::CType& CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CHoldPlayerDirectionOnSubAreaChangeLogicAction*>(obj)->vf_0x0(); }
+void CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_Destroy(void* obj) { static_cast<CHoldPlayerDirectionOnSubAreaChangeLogicAction*>(obj)->~CHoldPlayerDirectionOnSubAreaChangeLogicAction(); }
+struct CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CHoldPlayerDirectionOnSubAreaChangeLogicAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CHoldPlayerDirectionOnSubAreaChangeLogicAction
-DREAD_REFLECTED_CLASS(CHoldPlayerDirectionOnSubAreaChangeLogicAction, CTriggerLogicAction);
+DREAD_REFLECTED_DECLARED_CLASS(CHoldPlayerDirectionOnSubAreaChangeLogicAction, CTriggerLogicAction);
+#pragma GCC diagnostic pop

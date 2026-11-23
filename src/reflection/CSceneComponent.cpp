@@ -5,25 +5,21 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CSceneComponent.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CSceneComponent
-namespace CSceneComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x48;
+void CSceneComponent::refl_AddAttributes(CClass*) {}
+void CSceneComponent::refl_AddFields(CClass*) {}
+bool CSceneComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CSceneComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CSceneComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSceneComponent*>(obj)->vf_0x0(); }
+void CSceneComponent::refl_Destroy(void* obj) { static_cast<CSceneComponent*>(obj)->~CSceneComponent(); }
+void* CSceneComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CSceneComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CSceneComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSceneComponent);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -32,5 +28,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CSceneComponent
-DREAD_REFLECTED_CLASS(CSceneComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CSceneComponent, CComponent);

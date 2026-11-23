@@ -7,35 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CBillboardComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CBillboardComponent
-namespace CBillboardComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(s32, "iNumGroups", 0x110, (DefaultValue, 15));
-    DREAD_REFLECTED_FIELD(s32, "iMaxInhabitantsPerGroup", 0x114, (DefaultValue, 15));
-    DREAD_REFLECTED_FIELD(s32, "iMinInhabitantsPerGroup", 0x118, (DefaultValue, 10));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CBillboardComponent::refl_AddAttributes(CClass*) {}
+void CBillboardComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(s32, "iNumGroups", offsetof(CBillboardComponent, iNumGroups), (DefaultValue, 15));
+    DREAD_REFLECTED_FIELD(s32, "iMaxInhabitantsPerGroup", offsetof(CBillboardComponent, iMaxInhabitantsPerGroup), (DefaultValue, 15));
+    DREAD_REFLECTED_FIELD(s32, "iMinInhabitantsPerGroup", offsetof(CBillboardComponent, iMinInhabitantsPerGroup), (DefaultValue, 10));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x130;
+bool CBillboardComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CBillboardComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CBillboardComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBillboardComponent*>(obj)->vf_0x0(); }
+void CBillboardComponent::refl_CopyConstruct(void*, const void*) {}
+void CBillboardComponent::refl_MoveConstruct(void*, const void*) {}
+void CBillboardComponent::refl_Destroy(void* obj) { static_cast<CBillboardComponent*>(obj)->~CBillboardComponent(); }
+void* CBillboardComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CBillboardComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CBillboardComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CBillboardComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -46,8 +43,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CBillboardComponent
-DREAD_REFLECTED_CLASS(CBillboardComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CBillboardComponent, CComponent);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

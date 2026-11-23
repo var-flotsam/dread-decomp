@@ -7,31 +7,28 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CPoisonFlyChasePlayerAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CPoisonFlyChasePlayerAction
-namespace behaviortree::CPoisonFlyChasePlayerAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", 0x2c, (DefaultValue, 1.0f), (Description, "Reach distance"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CPoisonFlyChasePlayerAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CPoisonFlyChasePlayerAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", offsetof(CPoisonFlyChasePlayerAction, fReachedDistance), (DefaultValue, 1.0f), (Description, "Reach distance"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x12ad0;
+bool behaviortree::CPoisonFlyChasePlayerAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CPoisonFlyChasePlayerAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CPoisonFlyChasePlayerAction::refl_TypeOf(const void* obj) { return *static_cast<const CPoisonFlyChasePlayerAction*>(obj)->vf_0x0(); }
+void behaviortree::CPoisonFlyChasePlayerAction::refl_Destroy(void* obj) { static_cast<CPoisonFlyChasePlayerAction*>(obj)->~CPoisonFlyChasePlayerAction(); }
+void* behaviortree::CPoisonFlyChasePlayerAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CPoisonFlyChasePlayerAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CPoisonFlyChasePlayerAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CPoisonFlyChasePlayerAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -40,5 +37,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CPoisonFlyChasePlayerAction
-DREAD_REFLECTED_CLASS(behaviortree::CPoisonFlyChasePlayerAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CPoisonFlyChasePlayerAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

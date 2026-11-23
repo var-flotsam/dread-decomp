@@ -7,35 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CIgnoreFloorSlideUpperBodySubmergedLogicAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CIgnoreFloorSlideUpperBodySubmergedLogicAction
-namespace CIgnoreFloorSlideUpperBodySubmergedLogicAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bActive", 0x10, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CIgnoreFloorSlideUpperBodySubmergedLogicAction::refl_AddAttributes(CClass*) {}
+void CIgnoreFloorSlideUpperBodySubmergedLogicAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bActive", offsetof(CIgnoreFloorSlideUpperBodySubmergedLogicAction, bActive), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(CStrId, "sId", offsetof(CIgnoreFloorSlideUpperBodySubmergedLogicAction, sId), (DefaultValue, CStrId(CStrId::Empty())));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CIgnoreFloorSlideUpperBodySubmergedLogicAction::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CIgnoreFloorSlideUpperBodySubmergedLogicAction::refl_Hash() { return -1; }
+const base::reflection::CType& CIgnoreFloorSlideUpperBodySubmergedLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CIgnoreFloorSlideUpperBodySubmergedLogicAction*>(obj)->vf_0x0(); }
+void CIgnoreFloorSlideUpperBodySubmergedLogicAction::refl_Destroy(void* obj) { static_cast<CIgnoreFloorSlideUpperBodySubmergedLogicAction*>(obj)->~CIgnoreFloorSlideUpperBodySubmergedLogicAction(); }
+struct CIgnoreFloorSlideUpperBodySubmergedLogicAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CIgnoreFloorSlideUpperBodySubmergedLogicAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CIgnoreFloorSlideUpperBodySubmergedLogicAction
-DREAD_REFLECTED_CLASS(CIgnoreFloorSlideUpperBodySubmergedLogicAction, CTriggerLogicAction);
+DREAD_REFLECTED_DECLARED_CLASS(CIgnoreFloorSlideUpperBodySubmergedLogicAction, CTriggerLogicAction);
+#pragma GCC diagnostic pop

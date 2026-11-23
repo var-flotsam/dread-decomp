@@ -7,38 +7,35 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CForceMovementLogicAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CForceMovementLogicAction
-namespace CForceMovementLogicAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bMovePlayer", 0x10, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(base::math::CVector2D, "v2Direction", 0x14, (DefaultValue, base::math::CVector2D{1.0f, 0.0f}));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CForceMovementLogicAction::refl_AddAttributes(CClass*) {}
+void CForceMovementLogicAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bMovePlayer", offsetof(CForceMovementLogicAction, bMovePlayer), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(base::math::CVector2D, "v2Direction", offsetof(CForceMovementLogicAction, v2Direction), (DefaultValue, base::math::CVector2D{1.0f, 0.0f}));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CForceMovementLogicAction::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CForceMovementLogicAction::refl_Hash() { return -1; }
+const base::reflection::CType& CForceMovementLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CForceMovementLogicAction*>(obj)->vf_0x0(); }
+void CForceMovementLogicAction::refl_Destroy(void* obj) { static_cast<CForceMovementLogicAction*>(obj)->~CForceMovementLogicAction(); }
+struct CForceMovementLogicAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CForceMovementLogicAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CForceMovementLogicAction
-DREAD_REFLECTED_CLASS(CForceMovementLogicAction, CTriggerLogicAction);
+DREAD_REFLECTED_DECLARED_CLASS(CForceMovementLogicAction, CTriggerLogicAction);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

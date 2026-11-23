@@ -14,11 +14,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CComponent.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CComponent
@@ -27,9 +24,8 @@ void fn_71010c580c();
 void fn_71010c2d24(CFunction* fn, const char* name);
 void fn_71010c58b4();
 void fn_71010c2ea0(CFunction* fn, const char* name);
-namespace CComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CComponent::refl_AddAttributes(CClass*) {}
+void CComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_bEnabled_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71010c57bc);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bEnabled", (DefaultValue, true), (Persistence, 0), (EditorVisible, false), (Description, base::global::CRntString("Enabled?")));
     DREAD_REFLECTED_FUNCTION_OF("_bWantsEnabled_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71010c580c);
@@ -41,17 +37,16 @@ void refl_AddFields(CClass* cls) {
         fn_71010c2ea0(fn, "_bUseDefaultValues_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bUseDefaultValues", (DefaultValue, true), (Description, base::global::CRntString("Use charclass values instead of specific values")));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x40;
+bool CComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CComponent::refl_TypeOf(const void* obj) { return *static_cast<const CComponent*>(obj)->vf_0x0(); }
+void CComponent::refl_CopyConstruct(void*, const void*) {}
+void CComponent::refl_MoveConstruct(void*, const void*) {}
+void CComponent::refl_Destroy(void* obj) { static_cast<CComponent*>(obj)->~CComponent(); }
+void* CComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -62,8 +57,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CComponent
-DREAD_REFLECTED_CLASS(CComponent, CActorComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CComponent, CActorComponent);
 
 void fn_71010c4718();
 void fn_71010c4780();

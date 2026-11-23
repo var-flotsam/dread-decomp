@@ -5,28 +5,23 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CCharClassScriptComponent.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassScriptComponent
-namespace CCharClassScriptComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x58;
+void CCharClassScriptComponent::refl_AddAttributes(CClass*) {}
+void CCharClassScriptComponent::refl_AddFields(CClass*) {}
+bool CCharClassScriptComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassScriptComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassScriptComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScriptComponent*>(obj)->vf_0x0(); }
+void CCharClassScriptComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassScriptComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassScriptComponent::refl_Destroy(void* obj) { static_cast<CCharClassScriptComponent*>(obj)->~CCharClassScriptComponent(); }
+void* CCharClassScriptComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassScriptComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassScriptComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassScriptComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -37,5 +32,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassScriptComponent
-DREAD_REFLECTED_CLASS(CCharClassScriptComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassScriptComponent, CCharClassComponent);

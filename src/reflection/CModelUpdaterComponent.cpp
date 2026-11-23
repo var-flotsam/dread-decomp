@@ -12,12 +12,9 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "reflected/CModelUpdaterComponent.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::global { class CFilePathStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
@@ -32,9 +29,8 @@ void fn_710117084c(CFunction* fn, const char* name);
 void fn_7101170900(CFunction* fn, const char* name);
 void fn_71011709b4(CFunction* fn, const char* name);
 void fn_7101174a28();
-namespace CModelUpdaterComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CModelUpdaterComponent::refl_AddAttributes(CClass*) {}
+void CModelUpdaterComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sDefaultModelPath_GetterFunction", &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0x101, fn_7101174534);
     DREAD_REFLECTED_FUNCTION("_m_sDefaultModelPath_SetterFunction")
         fn_71011704b4(fn, "_m_sDefaultModelPath_SetterFunction");
@@ -68,17 +64,16 @@ void refl_AddFields(CClass* cls) {
         fn_71011709b4(fn, "GetNodePosition");
     DREAD_REFLECTED_FUNCTION_OF("ForceUpdate", &base::reflection::TypeObject<void>::object, 0, fn_7101174a28);
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x1e8;
+bool CModelUpdaterComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CModelUpdaterComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CModelUpdaterComponent::refl_TypeOf(const void* obj) { return *static_cast<const CModelUpdaterComponent*>(obj)->vf_0x0(); }
+void CModelUpdaterComponent::refl_CopyConstruct(void*, const void*) {}
+void CModelUpdaterComponent::refl_MoveConstruct(void*, const void*) {}
+void CModelUpdaterComponent::refl_Destroy(void* obj) { static_cast<CModelUpdaterComponent*>(obj)->~CModelUpdaterComponent(); }
+void* CModelUpdaterComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CModelUpdaterComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CModelUpdaterComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CModelUpdaterComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -89,5 +84,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CModelUpdaterComponent
-DREAD_REFLECTED_CLASS(CModelUpdaterComponent, CSceneComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CModelUpdaterComponent, CSceneComponent);

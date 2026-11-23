@@ -7,34 +7,28 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/CActorDef.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CActorDef
-namespace CActorDef {
-void refl_AddAttributes(CClass* cls) {
+void CActorDef::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0xf0200u);
 }
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xd0;
+void CActorDef::refl_AddFields(CClass*) {}
+bool CActorDef::refl_Equals(const void*, const void*) { return false; }
+s32 CActorDef::refl_Hash() { return -1; }
+const base::reflection::CType& CActorDef::refl_TypeOf(const void* obj) { return *static_cast<const CActorDef*>(obj)->vf_0x0(); }
+void CActorDef::refl_Destroy(void* obj) { static_cast<CActorDef*>(obj)->~CActorDef(); }
+struct CActorDef::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CActorDef);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CActorDef
-DREAD_REFLECTED_CLASS(CActorDef, base::core::CDefinition);
+DREAD_REFLECTED_DECLARED_CLASS(CActorDef, base::core::CDefinition);

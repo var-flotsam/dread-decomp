@@ -7,35 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassMagnetSlidingBlockComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMagnetSlidingBlockComponent
-namespace CCharClassMagnetSlidingBlockComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bFreezeOnFinish", 0x5c, (DefaultValue, false), (Description, "Is movement allowed after movement is completed?"));
-    DREAD_REFLECTED_FIELD(bool, "bActiveRailCameraOnFinish", 0x5d, (DefaultValue, false), (Description, "Activate rail camera when block has been used"));
-    DREAD_REFLECTED_FIELD(f32, "fMinMovementPercentToForceContinueMovingOnStopHang", 0x58, (DefaultValue, 1.0f), (Description, "For those instances that shouldn't continue moving on stop hang, if they surpass this movement percent they will continue moving as well"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassMagnetSlidingBlockComponent::refl_AddAttributes(CClass*) {}
+void CCharClassMagnetSlidingBlockComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bFreezeOnFinish", offsetof(CCharClassMagnetSlidingBlockComponent, bFreezeOnFinish), (DefaultValue, false), (Description, "Is movement allowed after movement is completed?"));
+    DREAD_REFLECTED_FIELD(bool, "bActiveRailCameraOnFinish", offsetof(CCharClassMagnetSlidingBlockComponent, bActiveRailCameraOnFinish), (DefaultValue, false), (Description, "Activate rail camera when block has been used"));
+    DREAD_REFLECTED_FIELD(f32, "fMinMovementPercentToForceContinueMovingOnStopHang", offsetof(CCharClassMagnetSlidingBlockComponent, fMinMovementPercentToForceContinueMovingOnStopHang), (DefaultValue, 1.0f), (Description, "For those instances that shouldn't continue moving on stop hang, if they surpass this movement percent they will continue moving as well"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x60;
+bool CCharClassMagnetSlidingBlockComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassMagnetSlidingBlockComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassMagnetSlidingBlockComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMagnetSlidingBlockComponent*>(obj)->vf_0x0(); }
+void CCharClassMagnetSlidingBlockComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassMagnetSlidingBlockComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassMagnetSlidingBlockComponent::refl_Destroy(void* obj) { static_cast<CCharClassMagnetSlidingBlockComponent*>(obj)->~CCharClassMagnetSlidingBlockComponent(); }
+void* CCharClassMagnetSlidingBlockComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassMagnetSlidingBlockComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassMagnetSlidingBlockComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassMagnetSlidingBlockComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -46,5 +43,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassMagnetSlidingBlockComponent
-DREAD_REFLECTED_CLASS(CCharClassMagnetSlidingBlockComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassMagnetSlidingBlockComponent, CCharClassComponent);
+#pragma GCC diagnostic pop

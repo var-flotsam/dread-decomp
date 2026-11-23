@@ -12,28 +12,24 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "reflected/CBaseTriggerComponent.h"
+#include "reflected/CCharClassBaseTriggerComponent.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CCharClassBaseTriggerComponent
-namespace CCharClassBaseTriggerComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x60;
+void CCharClassBaseTriggerComponent::refl_AddAttributes(CClass*) {}
+void CCharClassBaseTriggerComponent::refl_AddFields(CClass*) {}
+bool CCharClassBaseTriggerComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassBaseTriggerComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassBaseTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBaseTriggerComponent*>(obj)->vf_0x0(); }
+void CCharClassBaseTriggerComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassBaseTriggerComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassBaseTriggerComponent::refl_Destroy(void* obj) { static_cast<CCharClassBaseTriggerComponent*>(obj)->~CCharClassBaseTriggerComponent(); }
+void* CCharClassBaseTriggerComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassBaseTriggerComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassBaseTriggerComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassBaseTriggerComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,35 +40,34 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassBaseTriggerComponent
-DREAD_REFLECTED_CLASS(CCharClassBaseTriggerComponent, CCharClassActivatableComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassBaseTriggerComponent, CCharClassActivatableComponent);
 
 // CBaseTriggerComponent
 void fn_7100a46978(CFunction* fn, const char* name);
 void fn_7100a4953c();
 void fn_71003540d8(CFunction* fn);
-namespace CBaseTriggerComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CBaseTriggerComponent::refl_AddAttributes(CClass*) {}
+void CBaseTriggerComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("IsPlayerInside") {
         fn_7100a46978(fn, "IsPlayerInside");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    DREAD_REFLECTED_FIELD(bool, "bCheckAllEntities", 0x9bc, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bCheckAllEntities", offsetof(CBaseTriggerComponent, bCheckAllEntities), (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION("DisableLogic") {
         DREAD_REFLECTED_FUNCTION_DESCRIPTION("DisableLogic", &base::reflection::TypeObject<void>::object, 0, fn_7100a4953c);
         fn_71003540d8(fn);
     }
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xac0;
+bool CBaseTriggerComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CBaseTriggerComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CBaseTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBaseTriggerComponent*>(obj)->vf_0x0(); }
+void* CBaseTriggerComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CBaseTriggerComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CBaseTriggerComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CBaseTriggerComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -80,5 +75,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CBaseTriggerComponent
-DREAD_REFLECTED_CLASS(CBaseTriggerComponent, CActivatableComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CBaseTriggerComponent, CActivatableComponent);
+#pragma GCC diagnostic pop

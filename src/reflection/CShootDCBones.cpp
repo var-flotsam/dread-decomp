@@ -15,11 +15,10 @@ using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "reflected/COffset.h"
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 class TPatterns;
@@ -60,26 +59,22 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_ROOT_CLASS(CShootDCBones);
 
 // COffset
-namespace COffset {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fOffset", 0x10, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sBoneName", 0x8, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(f32, "fGravity", 0x14, (DefaultValue, 3000.0f));
-    DREAD_REFLECTED_FIELD(f32, "fSpeed", 0x18, (DefaultValue, 1500.0f));
-    DREAD_REFLECTED_FIELD(f32, "fTimeToNextOffset", 0x1c, (DefaultValue, 0.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void COffset::refl_AddAttributes(CClass*) {}
+void COffset::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fOffset", offsetof(COffset, fOffset), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sBoneName", offsetof(COffset, sBoneName), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(f32, "fGravity", offsetof(COffset, fGravity), (DefaultValue, 3000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpeed", offsetof(COffset, fSpeed), (DefaultValue, 1500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToNextOffset", offsetof(COffset, fTimeToNextOffset), (DefaultValue, 0.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool COffset::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 COffset::refl_Hash() { return -1; }
+const base::reflection::CType& COffset::refl_TypeOf(const void* obj) { return *static_cast<const COffset*>(obj)->vf_0x0(); }
+void COffset::refl_Destroy(void* obj) { static_cast<COffset*>(obj)->~COffset(); }
+struct COffset::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(COffset);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -90,8 +85,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace COffset
-DREAD_REFLECTED_ROOT_CLASS(COffset);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(COffset);
+#pragma GCC diagnostic pop
 
 // CPattern
 namespace CPattern {

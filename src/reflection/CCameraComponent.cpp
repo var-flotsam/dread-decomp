@@ -14,12 +14,9 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "reflected/CCameraComponent.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::math { class CVector3D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
@@ -43,9 +40,10 @@ void fn_71010e7828();
 void fn_71010e7554(CFunction* fn);
 void fn_71010e15c8(CFunction* fn, const char* name);
 void fn_71010e167c(CFunction* fn, const char* name);
-namespace CCameraComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCameraComponent::refl_AddAttributes(CClass*) {}
+void CCameraComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_fCurrentInterp_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71010e70d0);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(f32, "fCurrentInterp", (Description, base::global::CRntString("Current interpolation speed")), (EditorModeDataFlow, 2), (Persistence, 0));
     DREAD_REFLECTED_FUNCTION_OF("_vCurrentPos_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_71010e711c);
@@ -81,25 +79,24 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    DREAD_REFLECTED_FIELD(bool, "bIgnoreSlomo", 0xc20);
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreSlomo", offsetof(CCameraComponent, bIgnoreSlomo));
     DREAD_REFLECTED_FUNCTION("GetCtrl")
         fn_71010e167c(fn, "GetCtrl");
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xc50;
+bool CCameraComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCameraComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCameraComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCameraComponent*>(obj)->vf_0x0(); }
+void CCameraComponent::refl_Destroy(void* obj) { static_cast<CCameraComponent*>(obj)->~CCameraComponent(); }
+struct CCameraComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCameraComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCameraComponent
-DREAD_REFLECTED_CLASS(CCameraComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCameraComponent, CComponent);
+#pragma GCC diagnostic pop
 
 void fn_71010e6cfc();
 void fn_71010e6d64();

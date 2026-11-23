@@ -7,33 +7,30 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CActionSwitcherOnPullGrapplePointComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CActionSwitcherOnPullGrapplePointComponent
-namespace CActionSwitcherOnPullGrapplePointComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPull", 0xa0, (DefaultValue, "right3down4"), (Description, "Action to play when the pull is performed"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CActionSwitcherOnPullGrapplePointComponent::refl_AddAttributes(CClass*) {}
+void CActionSwitcherOnPullGrapplePointComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPull", offsetof(CActionSwitcherOnPullGrapplePointComponent, sActionOnPull), (DefaultValue, "right3down4"), (Description, "Action to play when the pull is performed"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xa8;
+bool CActionSwitcherOnPullGrapplePointComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CActionSwitcherOnPullGrapplePointComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CActionSwitcherOnPullGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CActionSwitcherOnPullGrapplePointComponent*>(obj)->vf_0x0(); }
+void CActionSwitcherOnPullGrapplePointComponent::refl_CopyConstruct(void*, const void*) {}
+void CActionSwitcherOnPullGrapplePointComponent::refl_MoveConstruct(void*, const void*) {}
+void CActionSwitcherOnPullGrapplePointComponent::refl_Destroy(void* obj) { static_cast<CActionSwitcherOnPullGrapplePointComponent*>(obj)->~CActionSwitcherOnPullGrapplePointComponent(); }
+void* CActionSwitcherOnPullGrapplePointComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CActionSwitcherOnPullGrapplePointComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CActionSwitcherOnPullGrapplePointComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CActionSwitcherOnPullGrapplePointComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,8 +41,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CActionSwitcherOnPullGrapplePointComponent
-DREAD_REFLECTED_CLASS(CActionSwitcherOnPullGrapplePointComponent, CPullableGrapplePointComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CActionSwitcherOnPullGrapplePointComponent, CPullableGrapplePointComponent);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

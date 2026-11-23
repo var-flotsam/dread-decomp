@@ -16,11 +16,10 @@ using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "reflected/SLogicPathNode.h"
 namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
@@ -35,9 +34,10 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 // SLogicPathNode
 void fn_710105cdb4();
 void fn_7101054b10(CFunction* fn, const char* name);
-namespace SLogicPathNode {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void SLogicPathNode::refl_AddAttributes(CClass*) {}
+void SLogicPathNode::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_vPos_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_710105cdb4);
     DREAD_REFLECTED_FUNCTION("_vPos_SetterFunction")
         fn_7101054b10(fn, "_vPos_SetterFunction");
@@ -46,20 +46,15 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Position"));
     field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 3);
     field0->attrs.Add<bool>(base::reflection::attr::bEditorModeDataFlowInit(), true);
-    DREAD_REFLECTED_FIELD(f32, "fSwarmRadius", 0x14, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fDiversionChance", 0x18, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSwarmRadius", offsetof(SLogicPathNode, fSwarmRadius), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDiversionChance", offsetof(SLogicPathNode, fDiversionChance), (DefaultValue, 1.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool SLogicPathNode::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 SLogicPathNode::refl_Hash() { return -1; }
+const base::reflection::CType& SLogicPathNode::refl_TypeOf(const void* obj) { return *static_cast<const SLogicPathNode*>(obj)->vf_0x0(); }
+void SLogicPathNode::refl_Destroy(void* obj) { static_cast<SLogicPathNode*>(obj)->~SLogicPathNode(); }
+struct SLogicPathNode::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(SLogicPathNode);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -70,8 +65,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace SLogicPathNode
-DREAD_REFLECTED_CLASS(SLogicPathNode, IPathNode);
+DREAD_REFLECTED_DECLARED_CLASS(SLogicPathNode, IPathNode);
+#pragma GCC diagnostic pop
 
 // SLogicSubPath
 void fn_710105d0a8();

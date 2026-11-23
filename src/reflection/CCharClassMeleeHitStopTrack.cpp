@@ -7,34 +7,29 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassMeleeHitStopTrack.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMeleeHitStopTrack
-namespace CCharClassMeleeHitStopTrack {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassMeleeHitStopTrack::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Melee Hit Stop");
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Melee");
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fTime", 0x18, (DefaultValue, 0.4f));
+void CCharClassMeleeHitStopTrack::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fTime", offsetof(CCharClassMeleeHitStopTrack, fTime), (DefaultValue, 0.4f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CCharClassMeleeHitStopTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassMeleeHitStopTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassMeleeHitStopTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMeleeHitStopTrack*>(obj)->vf_0x0(); }
+void CCharClassMeleeHitStopTrack::refl_Destroy(void* obj) { static_cast<CCharClassMeleeHitStopTrack*>(obj)->~CCharClassMeleeHitStopTrack(); }
+struct CCharClassMeleeHitStopTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassMeleeHitStopTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -43,5 +38,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassMeleeHitStopTrack
-DREAD_REFLECTED_CLASS(CCharClassMeleeHitStopTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassMeleeHitStopTrack, base::global::timeline::CTrack);
+#pragma GCC diagnostic pop

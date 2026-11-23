@@ -7,33 +7,31 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassStartPointComponent.h"
+#include "reflected/CStartPointComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassStartPointComponent
-namespace CCharClassStartPointComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bProjectOnFloor", 0x58, (DefaultValue, false));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassStartPointComponent::refl_AddAttributes(CClass*) {}
+void CCharClassStartPointComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bProjectOnFloor", offsetof(CCharClassStartPointComponent, bProjectOnFloor), (DefaultValue, false));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x60;
+bool CCharClassStartPointComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassStartPointComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassStartPointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStartPointComponent*>(obj)->vf_0x0(); }
+void CCharClassStartPointComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassStartPointComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassStartPointComponent::refl_Destroy(void* obj) { static_cast<CCharClassStartPointComponent*>(obj)->~CCharClassStartPointComponent(); }
+void* CCharClassStartPointComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassStartPointComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassStartPointComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassStartPointComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,35 +42,35 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassStartPointComponent
-DREAD_REFLECTED_CLASS(CCharClassStartPointComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassStartPointComponent, CCharClassComponent);
+#pragma GCC diagnostic pop
 
 // CStartPointComponent
 void fn_710116b5f4(CFunction* fn, const char* name);
-namespace CStartPointComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnTeleport", 0x40, (DefaultValue, base::global::CRntString(refl_GlobalRntString())));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnTeleportLogicCamera", 0x70, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bOnTeleportLogicCameraRaw", 0x78, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bProjectOnFloor", 0x79, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bMorphballMode", 0x7a, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bSaveGameToCheckpoint", 0x7b, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bIsBossStartPoint", 0x7c, (DefaultValue, false));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CStartPointComponent::refl_AddAttributes(CClass*) {}
+void CStartPointComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnTeleport", offsetof(CStartPointComponent, sOnTeleport), (DefaultValue, base::global::CRntString(refl_GlobalRntString())));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnTeleportLogicCamera", offsetof(CStartPointComponent, sOnTeleportLogicCamera), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bOnTeleportLogicCameraRaw", offsetof(CStartPointComponent, bOnTeleportLogicCameraRaw), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bProjectOnFloor", offsetof(CStartPointComponent, bProjectOnFloor), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bMorphballMode", offsetof(CStartPointComponent, bMorphballMode), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bSaveGameToCheckpoint", offsetof(CStartPointComponent, bSaveGameToCheckpoint), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bIsBossStartPoint", offsetof(CStartPointComponent, bIsBossStartPoint), (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION("SetSaveGameToCheckpoint")
         fn_710116b5f4(fn, "SetSaveGameToCheckpoint");
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x80;
+bool CStartPointComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CStartPointComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CStartPointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CStartPointComponent*>(obj)->vf_0x0(); }
+void CStartPointComponent::refl_CopyConstruct(void*, const void*) {}
+void CStartPointComponent::refl_MoveConstruct(void*, const void*) {}
+void CStartPointComponent::refl_Destroy(void* obj) { static_cast<CStartPointComponent*>(obj)->~CStartPointComponent(); }
+void* CStartPointComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CStartPointComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CStartPointComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CStartPointComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -83,5 +81,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CStartPointComponent
-DREAD_REFLECTED_CLASS(CStartPointComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CStartPointComponent, CComponent);
+#pragma GCC diagnostic pop

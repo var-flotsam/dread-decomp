@@ -7,45 +7,42 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CInPathPatrolAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CInPathPatrolAction
-namespace behaviortree::CInPathPatrolAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", 0x64, (DefaultValue, 10.0f), (Description, "Reach distance"));
-    DREAD_REFLECTED_FIELD(CStrId, "sGrazeInitAction", 0x68, (DefaultValue, ""), (Description, "Name of the action to init grazing"));
-    DREAD_REFLECTED_FIELD(CStrId, "sGrazeEndAction", 0x70, (DefaultValue, ""), (Description, "Name of the action to end grazing"));
-    DREAD_REFLECTED_FIELD(CStrId, "sMinTimeBetweenGrazings", 0x78, (DefaultValue, ""), (Description, "(Variable) Min random time (s) between grazings"));
-    DREAD_REFLECTED_FIELD(CStrId, "sMaxTimeBetweenGrazings", 0x80, (DefaultValue, ""), (Description, "(Variable) Max random time (s) between grazings"));
-    DREAD_REFLECTED_FIELD(CStrId, "sMinTimeGrazing", 0x88, (DefaultValue, ""), (Description, "(Variable) Min random time (s) grazing"));
-    DREAD_REFLECTED_FIELD(CStrId, "sMaxTimeGrazing", 0x90, (DefaultValue, ""), (Description, "(Variable) Max random time (s) grazing"));
-    DREAD_REFLECTED_FIELD(bool, "bStopInAbort", 0x98, (DefaultValue, false), (Description, "Stop movement in abort"));
-    DREAD_REFLECTED_FIELD(bool, "bWantsModifyPathIfTargetNear", 0x99, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bCheckDirToMove", 0xc8, (DefaultValue, false), (Description, "Check dir to init movement"));
-    DREAD_REFLECTED_FIELD(bool, "bAlwaysInDir", 0xc9, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fMaxDistToModifyPath", 0xcc, (DefaultValue, 250.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMinDist2GoAway", 0xd0, (DefaultValue, 300.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CInPathPatrolAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CInPathPatrolAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", offsetof(CInPathPatrolAction, fReachedDistance), (DefaultValue, 10.0f), (Description, "Reach distance"));
+    DREAD_REFLECTED_FIELD(CStrId, "sGrazeInitAction", offsetof(CInPathPatrolAction, sGrazeInitAction), (DefaultValue, ""), (Description, "Name of the action to init grazing"));
+    DREAD_REFLECTED_FIELD(CStrId, "sGrazeEndAction", offsetof(CInPathPatrolAction, sGrazeEndAction), (DefaultValue, ""), (Description, "Name of the action to end grazing"));
+    DREAD_REFLECTED_FIELD(CStrId, "sMinTimeBetweenGrazings", offsetof(CInPathPatrolAction, sMinTimeBetweenGrazings), (DefaultValue, ""), (Description, "(Variable) Min random time (s) between grazings"));
+    DREAD_REFLECTED_FIELD(CStrId, "sMaxTimeBetweenGrazings", offsetof(CInPathPatrolAction, sMaxTimeBetweenGrazings), (DefaultValue, ""), (Description, "(Variable) Max random time (s) between grazings"));
+    DREAD_REFLECTED_FIELD(CStrId, "sMinTimeGrazing", offsetof(CInPathPatrolAction, sMinTimeGrazing), (DefaultValue, ""), (Description, "(Variable) Min random time (s) grazing"));
+    DREAD_REFLECTED_FIELD(CStrId, "sMaxTimeGrazing", offsetof(CInPathPatrolAction, sMaxTimeGrazing), (DefaultValue, ""), (Description, "(Variable) Max random time (s) grazing"));
+    DREAD_REFLECTED_FIELD(bool, "bStopInAbort", offsetof(CInPathPatrolAction, bStopInAbort), (DefaultValue, false), (Description, "Stop movement in abort"));
+    DREAD_REFLECTED_FIELD(bool, "bWantsModifyPathIfTargetNear", offsetof(CInPathPatrolAction, bWantsModifyPathIfTargetNear), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bCheckDirToMove", offsetof(CInPathPatrolAction, bCheckDirToMove), (DefaultValue, false), (Description, "Check dir to init movement"));
+    DREAD_REFLECTED_FIELD(bool, "bAlwaysInDir", offsetof(CInPathPatrolAction, bAlwaysInDir), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistToModifyPath", offsetof(CInPathPatrolAction, fMaxDistToModifyPath), (DefaultValue, 250.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinDist2GoAway", offsetof(CInPathPatrolAction, fMinDist2GoAway), (DefaultValue, 300.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xd8;
+bool behaviortree::CInPathPatrolAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CInPathPatrolAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CInPathPatrolAction::refl_TypeOf(const void* obj) { return *static_cast<const CInPathPatrolAction*>(obj)->vf_0x0(); }
+void behaviortree::CInPathPatrolAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CInPathPatrolAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CInPathPatrolAction::refl_Destroy(void* obj) { static_cast<CInPathPatrolAction*>(obj)->~CInPathPatrolAction(); }
+void* behaviortree::CInPathPatrolAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CInPathPatrolAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CInPathPatrolAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CInPathPatrolAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -56,5 +53,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CInPathPatrolAction
-DREAD_REFLECTED_CLASS(behaviortree::CInPathPatrolAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CInPathPatrolAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

@@ -7,38 +7,35 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CMorphBallLauncherExitComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CMorphBallLauncherExitComponent
-namespace CMorphBallLauncherExitComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::math::CVector2D, "vExpelDirection", 0x48, (DefaultValue, base::math::CVector2D{0.0f, 0.0f}), (Description, "Direction in which the MorphBall will be expelled when finishing the sequence"));
-    DREAD_REFLECTED_FIELD(f32, "fExpelImpulseSize", 0x50, (DefaultValue, 0.0f), (Description, "Impulse force to apply when expelling MorphBall through exit"));
-    DREAD_REFLECTED_FIELD(f32, "fInputIgnoreTimeAfterExpelling", 0x54, (DefaultValue, 0.0f), (Description, "Time after expelling during which the input is ignored (so impulse is kept for a bit"));
-    DREAD_REFLECTED_FIELD(f32, "fFrictionIgnoreTimeAfterExpelling", 0x58, (DefaultValue, 0.0f), (Description, "Time after expelling during which MorphBall's friction is ignored (so impulse is kept for a bit longer)"));
-    DREAD_REFLECTED_FIELD(bool, "bWantsRelocationAndExpelImpulse", 0x5c, (DefaultValue, true), (Description, "Whether the morph wants relocation and expel impulse"));
-    DREAD_REFLECTED_FIELD(bool, "bWantsAutomaticOpenOnStartLaunchProcess", 0x5d, (DefaultValue, true), (Description, "Whether to play open/opened action as soon as launch process starts"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CMorphBallLauncherExitComponent::refl_AddAttributes(CClass*) {}
+void CMorphBallLauncherExitComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::math::CVector2D, "vExpelDirection", offsetof(CMorphBallLauncherExitComponent, vExpelDirection), (DefaultValue, base::math::CVector2D{0.0f, 0.0f}), (Description, "Direction in which the MorphBall will be expelled when finishing the sequence"));
+    DREAD_REFLECTED_FIELD(f32, "fExpelImpulseSize", offsetof(CMorphBallLauncherExitComponent, fExpelImpulseSize), (DefaultValue, 0.0f), (Description, "Impulse force to apply when expelling MorphBall through exit"));
+    DREAD_REFLECTED_FIELD(f32, "fInputIgnoreTimeAfterExpelling", offsetof(CMorphBallLauncherExitComponent, fInputIgnoreTimeAfterExpelling), (DefaultValue, 0.0f), (Description, "Time after expelling during which the input is ignored (so impulse is kept for a bit"));
+    DREAD_REFLECTED_FIELD(f32, "fFrictionIgnoreTimeAfterExpelling", offsetof(CMorphBallLauncherExitComponent, fFrictionIgnoreTimeAfterExpelling), (DefaultValue, 0.0f), (Description, "Time after expelling during which MorphBall's friction is ignored (so impulse is kept for a bit longer)"));
+    DREAD_REFLECTED_FIELD(bool, "bWantsRelocationAndExpelImpulse", offsetof(CMorphBallLauncherExitComponent, bWantsRelocationAndExpelImpulse), (DefaultValue, true), (Description, "Whether the morph wants relocation and expel impulse"));
+    DREAD_REFLECTED_FIELD(bool, "bWantsAutomaticOpenOnStartLaunchProcess", offsetof(CMorphBallLauncherExitComponent, bWantsAutomaticOpenOnStartLaunchProcess), (DefaultValue, true), (Description, "Whether to play open/opened action as soon as launch process starts"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x60;
+bool CMorphBallLauncherExitComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CMorphBallLauncherExitComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CMorphBallLauncherExitComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMorphBallLauncherExitComponent*>(obj)->vf_0x0(); }
+void CMorphBallLauncherExitComponent::refl_CopyConstruct(void*, const void*) {}
+void CMorphBallLauncherExitComponent::refl_MoveConstruct(void*, const void*) {}
+void CMorphBallLauncherExitComponent::refl_Destroy(void* obj) { static_cast<CMorphBallLauncherExitComponent*>(obj)->~CMorphBallLauncherExitComponent(); }
+void* CMorphBallLauncherExitComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CMorphBallLauncherExitComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CMorphBallLauncherExitComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CMorphBallLauncherExitComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -49,5 +46,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CMorphBallLauncherExitComponent
-DREAD_REFLECTED_CLASS(CMorphBallLauncherExitComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CMorphBallLauncherExitComponent, CComponent);
+#pragma GCC diagnostic pop

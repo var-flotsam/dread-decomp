@@ -12,20 +12,16 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CCharacterLifeComponent.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
 // CCharacterLifeComponent
 void fn_71011592e0();
 void fn_7101158a9c(CFunction* fn, const char* name);
-namespace CCharacterLifeComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CCharacterLifeComponent::refl_AddAttributes(CClass*) {}
+void CCharacterLifeComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sImpactAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71011592e0);
     DREAD_REFLECTED_FUNCTION("_sImpactAnim_SetterFunction")
         fn_7101158a9c(fn, "_sImpactAnim_SetterFunction");
@@ -35,17 +31,16 @@ void refl_AddFields(CClass* cls) {
         fn_7101158a9c(fn, "_sDeadAnim_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sDeadAnim", (Persistence, 0));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x248;
+bool CCharacterLifeComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharacterLifeComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharacterLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharacterLifeComponent*>(obj)->vf_0x0(); }
+void CCharacterLifeComponent::refl_Destroy(void* obj) { static_cast<CCharacterLifeComponent*>(obj)->~CCharacterLifeComponent(); }
+struct CCharacterLifeComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharacterLifeComponent);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharacterLifeComponent
-DREAD_REFLECTED_CLASS(CCharacterLifeComponent, CLifeComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharacterLifeComponent, CLifeComponent);

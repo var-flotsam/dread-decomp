@@ -5,28 +5,23 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CMagnetSurfaceComponent.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CMagnetSurfaceComponent
-namespace CMagnetSurfaceComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x40;
+void CMagnetSurfaceComponent::refl_AddAttributes(CClass*) {}
+void CMagnetSurfaceComponent::refl_AddFields(CClass*) {}
+bool CMagnetSurfaceComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CMagnetSurfaceComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CMagnetSurfaceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMagnetSurfaceComponent*>(obj)->vf_0x0(); }
+void CMagnetSurfaceComponent::refl_CopyConstruct(void*, const void*) {}
+void CMagnetSurfaceComponent::refl_MoveConstruct(void*, const void*) {}
+void CMagnetSurfaceComponent::refl_Destroy(void* obj) { static_cast<CMagnetSurfaceComponent*>(obj)->~CMagnetSurfaceComponent(); }
+void* CMagnetSurfaceComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CMagnetSurfaceComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CMagnetSurfaceComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CMagnetSurfaceComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -37,8 +32,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CMagnetSurfaceComponent
-DREAD_REFLECTED_CLASS(CMagnetSurfaceComponent, CActorComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CMagnetSurfaceComponent, CActorComponent);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

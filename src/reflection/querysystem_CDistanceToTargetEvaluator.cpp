@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/querysystem/CDistanceToTargetEvaluator.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // querysystem::CDistanceToTargetEvaluator
@@ -24,9 +21,8 @@ void fn_71002bcf74();
 void fn_71002bc774(CFunction* fn, const char* name);
 void fn_71002bd004();
 void fn_71002bc8f0(CFunction* fn, const char* name);
-namespace querysystem::CDistanceToTargetEvaluator {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void querysystem::CDistanceToTargetEvaluator::refl_AddAttributes(CClass*) {}
+void querysystem::CDistanceToTargetEvaluator::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_fMinDistance_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71002bcf74);
     DREAD_REFLECTED_FUNCTION("_fMinDistance_SetterFunction")
         fn_71002bc774(fn, "_fMinDistance_SetterFunction");
@@ -36,17 +32,12 @@ void refl_AddFields(CClass* cls) {
         fn_71002bc8f0(fn, "_fMaxDistance_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fMaxDistance", (DefaultValue, -1.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x28;
+bool querysystem::CDistanceToTargetEvaluator::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 querysystem::CDistanceToTargetEvaluator::refl_Hash() { return -1; }
+const base::reflection::CType& querysystem::CDistanceToTargetEvaluator::refl_TypeOf(const void* obj) { return *static_cast<const CDistanceToTargetEvaluator*>(obj)->vf_0x0(); }
+void querysystem::CDistanceToTargetEvaluator::refl_Destroy(void* obj) { static_cast<CDistanceToTargetEvaluator*>(obj)->~CDistanceToTargetEvaluator(); }
+struct querysystem::CDistanceToTargetEvaluator::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CDistanceToTargetEvaluator);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -57,5 +48,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace querysystem::CDistanceToTargetEvaluator
-DREAD_REFLECTED_CLASS(querysystem::CDistanceToTargetEvaluator, querysystem::CEvaluator);
+DREAD_REFLECTED_DECLARED_CLASS(querysystem::CDistanceToTargetEvaluator, querysystem::CEvaluator);

@@ -7,34 +7,31 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CStoreBoolInBlcAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CStoreBoolInBlcAction
-namespace behaviortree::CStoreBoolInBlcAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sPropName", 0x30, (DefaultValue, ""), (Description, "Property name"));
-    DREAD_REFLECTED_FIELD(bool, "bValue", 0x38, (DefaultValue, false), (Description, "Property value"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CStoreBoolInBlcAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CStoreBoolInBlcAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sPropName", offsetof(CStoreBoolInBlcAction, sPropName), (DefaultValue, ""), (Description, "Property name"));
+    DREAD_REFLECTED_FIELD(bool, "bValue", offsetof(CStoreBoolInBlcAction, bValue), (DefaultValue, false), (Description, "Property value"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x40;
+bool behaviortree::CStoreBoolInBlcAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CStoreBoolInBlcAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CStoreBoolInBlcAction::refl_TypeOf(const void* obj) { return *static_cast<const CStoreBoolInBlcAction*>(obj)->vf_0x0(); }
+void behaviortree::CStoreBoolInBlcAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CStoreBoolInBlcAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CStoreBoolInBlcAction::refl_Destroy(void* obj) { static_cast<CStoreBoolInBlcAction*>(obj)->~CStoreBoolInBlcAction(); }
+void* behaviortree::CStoreBoolInBlcAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CStoreBoolInBlcAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CStoreBoolInBlcAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CStoreBoolInBlcAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -45,5 +42,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CStoreBoolInBlcAction
-DREAD_REFLECTED_CLASS(behaviortree::CStoreBoolInBlcAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CStoreBoolInBlcAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

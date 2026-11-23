@@ -7,34 +7,30 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/ICharClassFXDeleteEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // ICharClassFXDeleteEvent
-namespace ICharClassFXDeleteEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void ICharClassFXDeleteEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "FX Delete Interface");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("FX", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(f32, "fTimeToDelete", 0x18, (DefaultValue, 0.0f));
+void ICharClassFXDeleteEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sName", offsetof(ICharClassFXDeleteEvent, sName), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToDelete", offsetof(ICharClassFXDeleteEvent, fTimeToDelete), (DefaultValue, 0.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool ICharClassFXDeleteEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 ICharClassFXDeleteEvent::refl_Hash() { return -1; }
+const base::reflection::CType& ICharClassFXDeleteEvent::refl_TypeOf(const void* obj) { return *static_cast<const ICharClassFXDeleteEvent*>(obj)->vf_0x0(); }
+void ICharClassFXDeleteEvent::refl_Destroy(void* obj) { static_cast<ICharClassFXDeleteEvent*>(obj)->~ICharClassFXDeleteEvent(); }
+struct ICharClassFXDeleteEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(ICharClassFXDeleteEvent);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -43,5 +39,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace ICharClassFXDeleteEvent
-DREAD_REFLECTED_CLASS(ICharClassFXDeleteEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(ICharClassFXDeleteEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

@@ -81,3 +81,4 @@ address,name,name_source,reason
 0x7100ee6d00,CSubAreaManager_ChangeSubAreaResources,inferred,works out the id lists and files that change from one sub-area to another (either may be null) and loads them
 0x7100eea4c8,SubArea_ApplyEnvironmentSettings,inferred,"hands a sub-area's settings for the slots set in the mask to the environment manager, or resets all three without a sub-area"
 0x7100eea618,SubArea_ApplyCameraSettings,inferred,hands a sub-area's camera settings to the main camera's controller when it is the CMetroidCameraCtrl one
+0x71010f3d20,CCameraFX_Shake::CCameraFX_Shake,inferred,the out-of-line constructor of CCameraFX_Shake: refl_Construct of RandShake and OscillationShake call it on the new object before storing the subclass's virtual table

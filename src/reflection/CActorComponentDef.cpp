@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CActorComponentDef.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CActorComponentDef
@@ -28,11 +25,10 @@ void fn_7100254728();
 void fn_71002533b8(CFunction* fn, const char* name);
 void fn_7100254784();
 void fn_7100253534(CFunction* fn, const char* name);
-namespace CActorComponentDef {
-void refl_AddAttributes(CClass* cls) {
+void CActorComponentDef::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x70200u);
 }
-void refl_AddFields(CClass* cls) {
+void CActorComponentDef::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_bStartEnabled_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100254640);
     DREAD_REFLECTED_FUNCTION("_m_bStartEnabled_SetterFunction")
         fn_71002530c0(fn, "_m_bStartEnabled_SetterFunction");
@@ -50,17 +46,16 @@ void refl_AddFields(CClass* cls) {
         fn_7100253534(fn, "_bPostPhysicsUpdateInEditor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bPostPhysicsUpdateInEditor", (DefaultValue, true));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x30;
+bool CActorComponentDef::refl_Equals(const void*, const void*) { return false; }
+s32 CActorComponentDef::refl_Hash() { return -1; }
+const base::reflection::CType& CActorComponentDef::refl_TypeOf(const void* obj) { return *static_cast<const CActorComponentDef*>(obj)->vf_0x0(); }
+void CActorComponentDef::refl_CopyConstruct(void*, const void*) {}
+void CActorComponentDef::refl_MoveConstruct(void*, const void*) {}
+void CActorComponentDef::refl_Destroy(void* obj) { static_cast<CActorComponentDef*>(obj)->~CActorComponentDef(); }
+void* CActorComponentDef::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CActorComponentDef::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CActorComponentDef::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CActorComponentDef);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -71,8 +66,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CActorComponentDef
-DREAD_REFLECTED_CLASS(CActorComponentDef, base::core::CBaseObject);
+DREAD_REFLECTED_DECLARED_CLASS(CActorComponentDef, base::core::CBaseObject);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

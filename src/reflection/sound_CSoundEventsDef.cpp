@@ -14,12 +14,11 @@ using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/TypeObject.h"
+#include "reflected/sound/CSoundManager.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace gameeditor { enum class EPersistenceTarget : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object asm("g_unk_7172756f90");
@@ -95,24 +94,21 @@ DREAD_REFLECTED_ROOT_CLASS(sound::CSoundEventsDef::SSoundEventsSelector);
 
 // sound::CSoundManager
 void fn_7101028f4c();
-namespace sound::CSoundManager {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void sound::CSoundManager::refl_AddAttributes(CClass*) {}
+void sound::CSoundManager::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_pAudioPresets_GetterFunction", base::reflection::PointerType<sound::CAudioPresets*>::Get(), 0, fn_7101028f4c);
     CVariable* field0 = AddReflectedField(cls, CStrId("pAudioPresets", true), base::reflection::PointerType<sound::CAudioPresets*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 8);
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x98;
+bool sound::CSoundManager::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 sound::CSoundManager::refl_Hash() { return -1; }
+struct sound::CSoundManager::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSoundManager);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
 };
-}  // namespace sound::CSoundManager
-DREAD_REFLECTED_ROOT_CLASS(sound::CSoundManager);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(sound::CSoundManager);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

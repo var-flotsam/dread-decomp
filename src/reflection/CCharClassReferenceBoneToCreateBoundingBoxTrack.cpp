@@ -12,37 +12,30 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CCharClassReferenceBoneToCreateBoundingBoxTrack.h"
 namespace base::global { class CName; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CName>::Get();
 
 // CCharClassReferenceBoneToCreateBoundingBoxTrack
 void fn_7100c47e64();
 void fn_7100c47bb8(CFunction* fn, const char* name);
-namespace CCharClassReferenceBoneToCreateBoundingBoxTrack {
-void refl_AddAttributes(CClass* cls) {
+void CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Reference Bone To Create Bounding Box");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Camera", true));
 }
-void refl_AddFields(CClass* cls) {
+void CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sBone_GetterFunction", &base::reflection::PrimitiveType<base::global::CName>::Get(), 0x101, fn_7100c47e64);
     DREAD_REFLECTED_FUNCTION("_sBone_SetterFunction")
         fn_7100c47bb8(fn, "_sBone_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CName, "sBone", (DefaultValue, base::global::CName("")));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassReferenceBoneToCreateBoundingBoxTrack*>(obj)->vf_0x0(); }
+void CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_Destroy(void* obj) { static_cast<CCharClassReferenceBoneToCreateBoundingBoxTrack*>(obj)->~CCharClassReferenceBoneToCreateBoundingBoxTrack(); }
+struct CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassReferenceBoneToCreateBoundingBoxTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -51,5 +44,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassReferenceBoneToCreateBoundingBoxTrack
-DREAD_REFLECTED_CLASS(CCharClassReferenceBoneToCreateBoundingBoxTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassReferenceBoneToCreateBoundingBoxTrack, base::global::timeline::CTrack);

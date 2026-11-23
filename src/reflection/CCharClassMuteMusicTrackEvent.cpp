@@ -7,38 +7,31 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassMuteMusicTrackEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMuteMusicTrackEvent
-namespace CCharClassMuteMusicTrackEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassMuteMusicTrackEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Mute Music Track");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(u32, "uTrack", 0xc, (DefaultValue, 0), (MinValueI, 0), (MaxValueI, 1));
-    DREAD_REFLECTED_FIELD(f32, "fFadeTime", 0x10, (DefaultValue, 0.1f), (MinValue, 0.0f), (MaxValue, 10.0f));
-    DREAD_REFLECTED_FIELD(bool, "bMute", 0x14, (DefaultValue, false));
+void CCharClassMuteMusicTrackEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(u32, "uTrack", offsetof(CCharClassMuteMusicTrackEvent, uTrack), (DefaultValue, 0), (MinValueI, 0), (MaxValueI, 1));
+    DREAD_REFLECTED_FIELD(f32, "fFadeTime", offsetof(CCharClassMuteMusicTrackEvent, fFadeTime), (DefaultValue, 0.1f), (MinValue, 0.0f), (MaxValue, 10.0f));
+    DREAD_REFLECTED_FIELD(bool, "bMute", offsetof(CCharClassMuteMusicTrackEvent, bMute), (DefaultValue, false));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
+bool CCharClassMuteMusicTrackEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassMuteMusicTrackEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassMuteMusicTrackEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMuteMusicTrackEvent*>(obj)->vf_0x0(); }
+void CCharClassMuteMusicTrackEvent::refl_Destroy(void* obj) { static_cast<CCharClassMuteMusicTrackEvent*>(obj)->~CCharClassMuteMusicTrackEvent(); }
+struct CCharClassMuteMusicTrackEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassMuteMusicTrackEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -49,5 +42,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassMuteMusicTrackEvent
-DREAD_REFLECTED_CLASS(CCharClassMuteMusicTrackEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassMuteMusicTrackEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

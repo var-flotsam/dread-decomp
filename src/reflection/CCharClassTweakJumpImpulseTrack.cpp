@@ -7,37 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassTweakJumpImpulseTrack.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTweakJumpImpulseTrack
-namespace CCharClassTweakJumpImpulseTrack {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassTweakJumpImpulseTrack::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Jump Impulse");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Tweak", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fImpulseMultiplierX", 0x18, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fImpulseMultiplierY", 0x1c, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(bool, "bKeepExistingVelocityX", 0x20, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bKeepExistingVelocityY", 0x21, (DefaultValue, false));
+void CCharClassTweakJumpImpulseTrack::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fImpulseMultiplierX", offsetof(CCharClassTweakJumpImpulseTrack, fImpulseMultiplierX), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fImpulseMultiplierY", offsetof(CCharClassTweakJumpImpulseTrack, fImpulseMultiplierY), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(bool, "bKeepExistingVelocityX", offsetof(CCharClassTweakJumpImpulseTrack, bKeepExistingVelocityX), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bKeepExistingVelocityY", offsetof(CCharClassTweakJumpImpulseTrack, bKeepExistingVelocityY), (DefaultValue, false));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x28;
+bool CCharClassTweakJumpImpulseTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassTweakJumpImpulseTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassTweakJumpImpulseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakJumpImpulseTrack*>(obj)->vf_0x0(); }
+void CCharClassTweakJumpImpulseTrack::refl_Destroy(void* obj) { static_cast<CCharClassTweakJumpImpulseTrack*>(obj)->~CCharClassTweakJumpImpulseTrack(); }
+struct CCharClassTweakJumpImpulseTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassTweakJumpImpulseTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -46,5 +41,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassTweakJumpImpulseTrack
-DREAD_REFLECTED_CLASS(CCharClassTweakJumpImpulseTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassTweakJumpImpulseTrack, base::global::timeline::CTrack);
+#pragma GCC diagnostic pop

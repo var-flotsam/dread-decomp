@@ -72,6 +72,22 @@ class ClassLines(unittest.TestCase):
     def test_include_path(self):
         self.assertEqual(gc.include_of("base::core::CRoot"), "reflected/base/core/CRoot.h")
 
+    def test_key_function_and_reflection_members(self):
+        # every class but a root declares its destructor out of line: the key function
+        self.assertIn("    ~CMid() override;", gc.class_lines("CMid", TYPES, FIELDS)[0])
+        self.assertNotIn("    ~CRoot() override;", gc.class_lines("base::core::CRoot", TYPES, FIELDS)[0])
+        lines = gc.class_lines("CMid", TYPES, FIELDS, refl={"CMid": {"refl_GetClass", "refl_Hash"}})[0]
+        self.assertIn("    static s32 refl_Hash();", lines)
+        self.assertNotIn("    static void refl_Construct(void* obj);", lines)
+        self.assertIn("    struct refl_Description;", lines)
+        self.assertIn("    static void refl_Construct(void* obj);", gc.class_lines("CMid", TYPES, FIELDS)[0])
+
+    def test_size_must_be_the_reflected_one(self):
+        # a base whose subclass starts inside it, with nothing to pad it out to its reflected size
+        types = {**TYPES, "CMid": {**TYPES["CMid"], "size": "0x28"}}
+        with self.assertRaises(gc.LayoutError):
+            gc.class_lines("CMid", types, {**FIELDS, "CLeaf": [(0x18, "bOn", "bool")]})
+
 
 def member(cls, offset, typ, name, init="", note=""):
     return {"class": cls, "offset": offset, "type": typ, "name": name, "init": init, "source": "fn_7100000000",
@@ -194,6 +210,25 @@ class Selection(unittest.TestCase):
         self.assertIn("nested", errors[0])
         self.assertEqual(gc.declared(types, ["CLeaf"]), ["base::core::CRoot", "CMid", "CLeaf"])
 
+    def test_units_that_open_a_declared_class_namespace(self):
+        body = BLOCK.split("namespace CLeaf {\n", 1)[1].split("}  // namespace")[0]
+        # CMid is in the declared form in its unit, but the unit also keeps a statics line in CMid's namespace
+        units = [gc.Unit("CMid.cpp", {"CMid"}, {}, {"CMid"}),
+                 gc.Unit("CLeaf.cpp", set(), {"CLeaf": "CMid"}, set())]
+        refl = ({"base::core::CRoot", "CMid"}, {"CLeaf": body}, set(), units)
+        self.assertEqual(gc.clashes({"base::core::CRoot", "CMid", "CLeaf"}, TYPES, units), {"CMid": "CMid.cpp"})
+        why = {}
+        classes, _ = gc.selected(TYPES, FIELDS, gc.NO_EXTRA, None, refl, why)
+        self.assertEqual(classes, ["base::core::CRoot"])  # CMid and so CLeaf are left out
+        self.assertIn("opens a namespace", why["CLeaf"])
+        # a namespace-form subclass declares its parent's getter in the parent's namespace
+        units = [gc.Unit("CMid.cpp", set(), {"CMid": "base::core::CRoot", "CLeaf": "CMid"}, set())]
+        self.assertEqual(gc.clashes({"base::core::CRoot", "CMid"}, TYPES, units), {"CMid": "CMid.cpp"})
+        self.assertEqual(gc.clashes({"base::core::CRoot", "CMid", "CLeaf"}, TYPES, units), {})
+        # a type src/reflection/ names inside a class keeps the class out
+        refl = ({"base::core::CRoot", "CMid"}, {"CLeaf": body}, {"CLeaf"}, [])
+        self.assertEqual(gc.selected(TYPES, FIELDS, gc.NO_EXTRA, None, refl)[0], ["CMid", "base::core::CRoot"])
+
     def test_getters_of_declared_classes_are_left_out(self):
         import gen_class_getters
         text = gen_class_getters.render([(0x7100000010, "CMid"), (0x7100000020, "COther")], {"CMid"})
@@ -230,6 +265,16 @@ class DeclaredClassPass(unittest.TestCase):
         self.assertEqual(self.convert(BLOCK, {("CLeaf", "bOn"): 0x1D, ("CLeaf", "iCount"): 0x20}), text)
         self.assertEqual(gr.with_declared_classes(text, {"CLeaf": "reflected/CLeaf.h"}, self.SIZES, self.OFFSETS),
                          text)
+
+    def test_unused_usings_of_the_namespace_form(self):
+        text = ("using base::reflection::ClassOf;\nusing base::reflection::Destroy;\nusing base::reflection::CClass;\n"
+                + self.convert(BLOCK))
+        out = gr.without_unused_declared_usings(text)
+        self.assertNotIn("using base::reflection::ClassOf;", out)
+        self.assertNotIn("using base::reflection::Destroy;", out)
+        self.assertIn("using base::reflection::CClass;", out)
+        namespace_form = "using base::reflection::ClassOf;\n" + BLOCK
+        self.assertEqual(gr.without_unused_declared_usings(namespace_form), namespace_form)
 
     def test_kept_for_destructor_first_tables(self):
         text = BLOCK.replace("ClassOf(obj)", "ClassOfDestructorFirst(obj)")

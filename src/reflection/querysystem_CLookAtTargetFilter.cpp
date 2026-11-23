@@ -7,33 +7,26 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/querysystem/CLookAtTargetFilter.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // querysystem::CLookAtTargetFilter
-namespace querysystem::CLookAtTargetFilter {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vOffset", 0x14, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void querysystem::CLookAtTargetFilter::refl_AddAttributes(CClass*) {}
+void querysystem::CLookAtTargetFilter::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vOffset", offsetof(CLookAtTargetFilter, vOffset), (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool querysystem::CLookAtTargetFilter::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 querysystem::CLookAtTargetFilter::refl_Hash() { return -1; }
+const base::reflection::CType& querysystem::CLookAtTargetFilter::refl_TypeOf(const void* obj) { return *static_cast<const CLookAtTargetFilter*>(obj)->vf_0x0(); }
+void querysystem::CLookAtTargetFilter::refl_Destroy(void* obj) { static_cast<CLookAtTargetFilter*>(obj)->~CLookAtTargetFilter(); }
+struct querysystem::CLookAtTargetFilter::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CLookAtTargetFilter);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,5 +37,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace querysystem::CLookAtTargetFilter
-DREAD_REFLECTED_CLASS(querysystem::CLookAtTargetFilter, querysystem::CFilter);
+DREAD_REFLECTED_DECLARED_CLASS(querysystem::CLookAtTargetFilter, querysystem::CFilter);
+#pragma GCC diagnostic pop

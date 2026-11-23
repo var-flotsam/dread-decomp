@@ -18,9 +18,7 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/UnkTunableRegistry.h"

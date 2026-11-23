@@ -12,36 +12,31 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CSceneModelAnimationComponent.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
 // CSceneModelAnimationComponent
 void fn_71009f3394();
 void fn_71009f2f60(CFunction* fn, const char* name);
-namespace CSceneModelAnimationComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CSceneModelAnimationComponent::refl_AddAttributes(CClass*) {}
+void CSceneModelAnimationComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sModelAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71009f3394);
     DREAD_REFLECTED_FUNCTION("_sModelAnim_SetterFunction")
         fn_71009f2f60(fn, "_sModelAnim_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sModelAnim", (DefaultValue, CStrId("default", true)), (Description, base::global::CRntString("Sets the animation for all the scene models")));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x48;
+bool CSceneModelAnimationComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CSceneModelAnimationComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CSceneModelAnimationComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSceneModelAnimationComponent*>(obj)->vf_0x0(); }
+void CSceneModelAnimationComponent::refl_CopyConstruct(void*, const void*) {}
+void CSceneModelAnimationComponent::refl_MoveConstruct(void*, const void*) {}
+void CSceneModelAnimationComponent::refl_Destroy(void* obj) { static_cast<CSceneModelAnimationComponent*>(obj)->~CSceneModelAnimationComponent(); }
+void* CSceneModelAnimationComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CSceneModelAnimationComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CSceneModelAnimationComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSceneModelAnimationComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -52,5 +47,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CSceneModelAnimationComponent
-DREAD_REFLECTED_CLASS(CSceneModelAnimationComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CSceneModelAnimationComponent, CComponent);

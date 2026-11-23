@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "reflected/CAnimationComponent.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CAnimationComponent
@@ -27,9 +24,8 @@ void fn_71011755d8(CFunction* fn, const char* name);
 void fn_710117568c(CFunction* fn, const char* name);
 void fn_710117c12c();
 void fn_7101175740(CFunction* fn, const char* name);
-namespace CAnimationComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CAnimationComponent::refl_AddAttributes(CClass*) {}
+void CAnimationComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("SetAction") {
         fn_71011753bc(fn, "SetAction");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
@@ -53,18 +49,16 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("SetActionFromEditor")
         fn_7101175740(fn, "SetActionFromEditor");
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x530;
+bool CAnimationComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CAnimationComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CAnimationComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAnimationComponent*>(obj)->vf_0x0(); }
+void CAnimationComponent::refl_Destroy(void* obj) { static_cast<CAnimationComponent*>(obj)->~CAnimationComponent(); }
+struct CAnimationComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CAnimationComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CAnimationComponent
-DREAD_REFLECTED_CLASS(CAnimationComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CAnimationComponent, CComponent);

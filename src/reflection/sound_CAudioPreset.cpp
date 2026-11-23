@@ -14,12 +14,9 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "reflected/sound/CAudioPreset.h"
 namespace base::snd { enum class EAttenuationCurve : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::snd::EAttenuationCurve>::object asm("g_unk_7108b6cb28");
 namespace base::snd { enum class EPositionalType : u32; }
@@ -100,9 +97,8 @@ void fn_710103bbf4();
 void fn_71010350c4(CFunction* fn, const char* name);
 void fn_710103bc84();
 void fn_7101035240(CFunction* fn, const char* name);
-namespace sound::CAudioPreset {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void sound::CAudioPreset::refl_AddAttributes(CClass*) {}
+void sound::CAudioPreset::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sUniqueId_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710103aa44);
     DREAD_REFLECTED_FUNCTION("_sUniqueId_SetterFunction")
         fn_7101032464(fn, "_sUniqueId_SetterFunction");
@@ -232,17 +228,16 @@ void refl_AddFields(CClass* cls) {
         fn_7101035240(fn, "_fDimRecoverTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fDimRecoverTime", (DefaultValue, 10.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x5d0;
+bool sound::CAudioPreset::refl_Equals(const void*, const void*) { return false; }
+s32 sound::CAudioPreset::refl_Hash() { return -1; }
+const base::reflection::CType& sound::CAudioPreset::refl_TypeOf(const void* obj) { return *static_cast<const CAudioPreset*>(obj)->vf_0x0(); }
+void sound::CAudioPreset::refl_CopyConstruct(void*, const void*) {}
+void sound::CAudioPreset::refl_MoveConstruct(void*, const void*) {}
+void sound::CAudioPreset::refl_Destroy(void* obj) { static_cast<CAudioPreset*>(obj)->~CAudioPreset(); }
+void* sound::CAudioPreset::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* sound::CAudioPreset::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct sound::CAudioPreset::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CAudioPreset);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -253,8 +248,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace sound::CAudioPreset
-DREAD_REFLECTED_CLASS(sound::CAudioPreset, base::core::CAsset);
+DREAD_REFLECTED_DECLARED_CLASS(sound::CAudioPreset, base::core::CAsset);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

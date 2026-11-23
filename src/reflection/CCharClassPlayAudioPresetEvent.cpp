@@ -7,34 +7,25 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/CCharClassPlayAudioPresetEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPlayAudioPresetEvent
-namespace CCharClassPlayAudioPresetEvent {
-void refl_AddAttributes(CClass* cls) {
+void CCharClassPlayAudioPresetEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Preset");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Audio", true));
 }
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x40;
+void CCharClassPlayAudioPresetEvent::refl_AddFields(CClass*) {}
+bool CCharClassPlayAudioPresetEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassPlayAudioPresetEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassPlayAudioPresetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPlayAudioPresetEvent*>(obj)->vf_0x0(); }
+void CCharClassPlayAudioPresetEvent::refl_Destroy(void* obj) { static_cast<CCharClassPlayAudioPresetEvent*>(obj)->~CCharClassPlayAudioPresetEvent(); }
+struct CCharClassPlayAudioPresetEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassPlayAudioPresetEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -45,8 +36,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassPlayAudioPresetEvent
-DREAD_REFLECTED_CLASS(CCharClassPlayAudioPresetEvent, ICharClassPlayAudioPresetEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassPlayAudioPresetEvent, ICharClassPlayAudioPresetEvent);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

@@ -12,36 +12,31 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CSoundListenerComponent.h"
 namespace base::math { class CVector3D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
 
 // CSoundListenerComponent
 void fn_710090ee6c();
 void fn_710090e924(CFunction* fn, const char* name);
-namespace CSoundListenerComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CSoundListenerComponent::refl_AddAttributes(CClass*) {}
+void CSoundListenerComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_vLookAt_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_710090ee6c);
     DREAD_REFLECTED_FUNCTION("_vLookAt_SetterFunction")
         fn_710090e924(fn, "_vLookAt_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vLookAt", (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 0.0f}), (EditorModeDataFlow, 3), (bSkipDataFlowOrder, true), (Persistence, 0));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x70;
+bool CSoundListenerComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CSoundListenerComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CSoundListenerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSoundListenerComponent*>(obj)->vf_0x0(); }
+void CSoundListenerComponent::refl_CopyConstruct(void*, const void*) {}
+void CSoundListenerComponent::refl_MoveConstruct(void*, const void*) {}
+void CSoundListenerComponent::refl_Destroy(void* obj) { static_cast<CSoundListenerComponent*>(obj)->~CSoundListenerComponent(); }
+void* CSoundListenerComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CSoundListenerComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CSoundListenerComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSoundListenerComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -52,5 +47,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CSoundListenerComponent
-DREAD_REFLECTED_CLASS(CSoundListenerComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CSoundListenerComponent, CComponent);

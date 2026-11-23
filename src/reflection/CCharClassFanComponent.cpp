@@ -13,10 +13,9 @@ using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CFanComponent.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCharClassFanComponent
@@ -61,9 +60,8 @@ void fn_710087fa34();
 void fn_710087d924(CFunction* fn, const char* name);
 void fn_710087fae0();
 void fn_710087daa0(CFunction* fn, const char* name);
-namespace CFanComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CFanComponent::refl_AddAttributes(CClass*) {}
+void CFanComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_fWindLength_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710087f868);
     DREAD_REFLECTED_FUNCTION("_m_fWindLength_SetterFunction")
         fn_710087d4b0(fn, "_m_fWindLength_SetterFunction");
@@ -85,15 +83,14 @@ void refl_AddFields(CClass* cls) {
         fn_710087daa0(fn, "_m_fParticleScale_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fParticleScale", (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 2.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xbe8;
+bool CFanComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CFanComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CFanComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFanComponent*>(obj)->vf_0x0(); }
+void CFanComponent::refl_Destroy(void* obj) { static_cast<CFanComponent*>(obj)->~CFanComponent(); }
+void* CFanComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CFanComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CFanComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CFanComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -102,5 +99,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CFanComponent
-DREAD_REFLECTED_CLASS(CFanComponent, CBaseTriggerComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CFanComponent, CBaseTriggerComponent);
