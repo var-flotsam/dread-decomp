@@ -26,7 +26,7 @@ GROUPS: list[tuple[str, list[str]]] = [
     ("Reconnaissance", ["recon/run", "ghidra/analyze", "ghidra/export", "ghidra/decompile", "gen_functions_csv",
                         "sigmatch", "tu_map", "vtables", "data_map", "callgraph", "abi_facts", "compiler_matrix", "libcheck_lua"]),
     ("Generators (maintenance)", ["gen_reflection", "gen_types", "gen_statics", "gen_clones", "gen_tables",
-                                  "gen_lift", "gen_class_getters", "gen_fields"]),
+                                  "gen_lift", "gen_class_getters", "gen_fields", "gen_classes"]),
     ("Matching", ["trymatch", "asmdiff", "nearcopy", "hubs", "shape_census", "objdiff_gen"]),
     ("Checks and progress", ["check", "verify", "progress", "daily", "policy_check", "decl_check", "struct_check", "lost_matches", "name_check", "rename", "equiv_test", "ref_check", "permute", "drafts", "fakematch", "sample_review", "dashboard_export", "status_card", "tu_status", "journal_sync",
                              "gen_commands"]),

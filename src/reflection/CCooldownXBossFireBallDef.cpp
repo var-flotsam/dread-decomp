@@ -24,29 +24,26 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/UnkTunableRegistry.h"
+#include "reflected/CCooldownXBossFireBallDef.h"
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CCooldownXBossFireBallDef
-namespace CCooldownXBossFireBallDef {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x8, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(f32, "fPreparationTimeOffset", 0xc, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(bool, "bBreakable", 0x10, (DefaultValue, false));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCooldownXBossFireBallDef::refl_AddAttributes(CClass*) {}
+void CCooldownXBossFireBallDef::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", offsetof(CCooldownXBossFireBallDef, bEnabled), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fPreparationTimeOffset", offsetof(CCooldownXBossFireBallDef, fPreparationTimeOffset), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bBreakable", offsetof(CCooldownXBossFireBallDef, bBreakable), (DefaultValue, false));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
+bool CCooldownXBossFireBallDef::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCooldownXBossFireBallDef::refl_Hash() { return -1; }
+const base::reflection::CType& CCooldownXBossFireBallDef::refl_TypeOf(const void* obj) { return *static_cast<const CCooldownXBossFireBallDef*>(obj)->vf_0x0(); }
+void CCooldownXBossFireBallDef::refl_Destroy(void* obj) { static_cast<CCooldownXBossFireBallDef*>(obj)->~CCooldownXBossFireBallDef(); }
+struct CCooldownXBossFireBallDef::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCooldownXBossFireBallDef);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -57,8 +54,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCooldownXBossFireBallDef
-DREAD_REFLECTED_ROOT_CLASS(CCooldownXBossFireBallDef);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(CCooldownXBossFireBallDef);
+#pragma GCC diagnostic pop
 
 // CCooldownXBossFireWallDef
 namespace CCooldownXBossFireWallDef {

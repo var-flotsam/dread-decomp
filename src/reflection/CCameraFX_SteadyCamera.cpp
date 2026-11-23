@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCameraFX_SteadyCamera.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,27 +19,27 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_SteadyCamera
-namespace CCameraFX_SteadyCamera {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fMinAngleXAxis", 0x34, (DefaultValue, 0.0f), (Description, "Min angle in X axis"));
-    DREAD_REFLECTED_FIELD(f32, "fMaxAngleXAxis", 0x3c, (DefaultValue, 0.0f), (Description, "Max angle in X axis"));
-    DREAD_REFLECTED_FIELD(f32, "fMinAngleYAxis", 0x38, (DefaultValue, 0.0f), (Description, "Min angle in Y axis"));
-    DREAD_REFLECTED_FIELD(f32, "fMaxAngleYAxis", 0x40, (DefaultValue, 0.0f), (Description, "Max angle in Y axis"));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sFunction", 0x48, (DefaultValue, base::global::CRntString("SqooooooszI")), (Description, base::global::CRntString("Function (p.ej: SqooooooszI)")));
-    DREAD_REFLECTED_FIELD(bool, "bCentered", 0x78, (DefaultValue, false), (Description, "Centered in player path"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCameraFX_SteadyCamera::refl_AddAttributes(CClass*) {}
+void CCameraFX_SteadyCamera::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fMinAngleXAxis", offsetof(CCameraFX_SteadyCamera, fMinAngleXAxis), (DefaultValue, 0.0f), (Description, "Min angle in X axis"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAngleXAxis", offsetof(CCameraFX_SteadyCamera, fMaxAngleXAxis), (DefaultValue, 0.0f), (Description, "Max angle in X axis"));
+    DREAD_REFLECTED_FIELD(f32, "fMinAngleYAxis", offsetof(CCameraFX_SteadyCamera, fMinAngleYAxis), (DefaultValue, 0.0f), (Description, "Min angle in Y axis"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAngleYAxis", offsetof(CCameraFX_SteadyCamera, fMaxAngleYAxis), (DefaultValue, 0.0f), (Description, "Max angle in Y axis"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sFunction", offsetof(CCameraFX_SteadyCamera, sFunction), (DefaultValue, base::global::CRntString("SqooooooszI")), (Description, base::global::CRntString("Function (p.ej: SqooooooszI)")));
+    DREAD_REFLECTED_FIELD(bool, "bCentered", offsetof(CCameraFX_SteadyCamera, bCentered), (DefaultValue, false), (Description, "Centered in player path"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x80;
+bool CCameraFX_SteadyCamera::refl_Equals(const void*, const void*) { return false; }
+s32 CCameraFX_SteadyCamera::refl_Hash() { return -1; }
+const base::reflection::CType& CCameraFX_SteadyCamera::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX_SteadyCamera*>(obj)->vf_0x0(); }
+void CCameraFX_SteadyCamera::refl_CopyConstruct(void*, const void*) {}
+void CCameraFX_SteadyCamera::refl_MoveConstruct(void*, const void*) {}
+void CCameraFX_SteadyCamera::refl_Destroy(void* obj) { static_cast<CCameraFX_SteadyCamera*>(obj)->~CCameraFX_SteadyCamera(); }
+void* CCameraFX_SteadyCamera::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCameraFX_SteadyCamera::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCameraFX_SteadyCamera::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCameraFX_SteadyCamera);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -49,5 +50,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCameraFX_SteadyCamera
-DREAD_REFLECTED_CLASS(CCameraFX_SteadyCamera, CCameraFX);
+DREAD_REFLECTED_DECLARED_CLASS(CCameraFX_SteadyCamera, CCameraFX);
+#pragma GCC diagnostic pop

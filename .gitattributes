@@ -11,6 +11,7 @@ src/clones/** linguist-generated=true
 src/tables/** linguist-generated=true
 src/lifted/** linguist-generated=true
 include/base/reflection/UnkClassGetters.h linguist-generated=true
+include/reflected/** linguist-generated=true
 docs/commands.md linguist-generated=true
 data/functions/*.csv linguist-generated=true
 data/reflection_types.csv linguist-generated=true

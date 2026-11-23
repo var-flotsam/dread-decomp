@@ -257,6 +257,15 @@ python tools/gen_fields.py --class CActor      # the class's layout: its members
 python tools/gen_fields.py --member vBones     # every class with a member of that name
 ```
 
+### `tools/gen_classes.py`
+
+Class declarations for reflected classes, from the reflection tables: include/reflected/.
+
+```sh
+python tools/gen_classes.py            # write include/reflected/ (and drop headers no longer listed)
+python tools/gen_classes.py --check    # exit 1 if include/reflected/ is not what this would write
+```
+
 ## Matching
 
 ### `tools/trymatch.py`

@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCameraFX_CrossShake.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,23 +19,23 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_CrossShake
-namespace CCameraFX_CrossShake {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fDistance", 0x58, (DefaultValue, 0.0f), (Description, "Distance"));
-    DREAD_REFLECTED_FIELD(f32, "fIterations", 0x5c, (DefaultValue, 0.0f), (Description, "Numer of iterations in fShakeTime"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCameraFX_CrossShake::refl_AddAttributes(CClass*) {}
+void CCameraFX_CrossShake::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fDistance", offsetof(CCameraFX_CrossShake, fDistance), (DefaultValue, 0.0f), (Description, "Distance"));
+    DREAD_REFLECTED_FIELD(f32, "fIterations", offsetof(CCameraFX_CrossShake, fIterations), (DefaultValue, 0.0f), (Description, "Numer of iterations in fShakeTime"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x60;
+bool CCameraFX_CrossShake::refl_Equals(const void*, const void*) { return false; }
+s32 CCameraFX_CrossShake::refl_Hash() { return -1; }
+const base::reflection::CType& CCameraFX_CrossShake::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX_CrossShake*>(obj)->vf_0x0(); }
+void CCameraFX_CrossShake::refl_CopyConstruct(void*, const void*) {}
+void CCameraFX_CrossShake::refl_MoveConstruct(void*, const void*) {}
+void CCameraFX_CrossShake::refl_Destroy(void* obj) { static_cast<CCameraFX_CrossShake*>(obj)->~CCameraFX_CrossShake(); }
+void* CCameraFX_CrossShake::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCameraFX_CrossShake::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCameraFX_CrossShake::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCameraFX_CrossShake);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -45,5 +46,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCameraFX_CrossShake
-DREAD_REFLECTED_CLASS(CCameraFX_CrossShake, CCameraFX_Shake);
+DREAD_REFLECTED_DECLARED_CLASS(CCameraFX_CrossShake, CCameraFX_Shake);
+#pragma GCC diagnostic pop

@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassAIAttackEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,39 +19,35 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAIAttackEvent
-namespace CCharClassAIAttackEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassAIAttackEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "AI Attack");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("AI", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(f32, "fProbability", 0x18, (DefaultValue, 0.5f));
-    DREAD_REFLECTED_FIELD(bool, "bPlayerOnViewDir", 0x1c, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bCheckPlayerNotInvulnerable", 0x1d, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bCheckPlayerInvulnerable", 0x1e, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fCheckPlayerMaxDistance", 0x20, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fCheckPlayerMinDistance", 0x24, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fCheckPlayerMinUpDistance", 0x28, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fCheckPlayerMaxUpDistance", 0x2c, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fCheckNavPathMaxDistance", 0x30, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fCheckNavPathMinDistance", 0x34, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(s32, "iFrame", 0x38, (DefaultValue, -1));
-    DREAD_REFLECTED_FIELD(s32, "iBehaviorPresetMin", 0x3c, (DefaultValue, -1));
-    DREAD_REFLECTED_FIELD(s32, "iBehaviorPresetMax", 0x40, (DefaultValue, -1));
-    DREAD_REFLECTED_FIELD(bool, "bCheckInCombat", 0x44, (DefaultValue, false));
+void CCharClassAIAttackEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", offsetof(CCharClassAIAttackEvent, sAction), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(f32, "fProbability", offsetof(CCharClassAIAttackEvent, fProbability), (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(bool, "bPlayerOnViewDir", offsetof(CCharClassAIAttackEvent, bPlayerOnViewDir), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bCheckPlayerNotInvulnerable", offsetof(CCharClassAIAttackEvent, bCheckPlayerNotInvulnerable), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bCheckPlayerInvulnerable", offsetof(CCharClassAIAttackEvent, bCheckPlayerInvulnerable), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fCheckPlayerMaxDistance", offsetof(CCharClassAIAttackEvent, fCheckPlayerMaxDistance), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCheckPlayerMinDistance", offsetof(CCharClassAIAttackEvent, fCheckPlayerMinDistance), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCheckPlayerMinUpDistance", offsetof(CCharClassAIAttackEvent, fCheckPlayerMinUpDistance), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCheckPlayerMaxUpDistance", offsetof(CCharClassAIAttackEvent, fCheckPlayerMaxUpDistance), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCheckNavPathMaxDistance", offsetof(CCharClassAIAttackEvent, fCheckNavPathMaxDistance), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCheckNavPathMinDistance", offsetof(CCharClassAIAttackEvent, fCheckNavPathMinDistance), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(s32, "iFrame", offsetof(CCharClassAIAttackEvent, iFrame), (DefaultValue, -1));
+    DREAD_REFLECTED_FIELD(s32, "iBehaviorPresetMin", offsetof(CCharClassAIAttackEvent, iBehaviorPresetMin), (DefaultValue, -1));
+    DREAD_REFLECTED_FIELD(s32, "iBehaviorPresetMax", offsetof(CCharClassAIAttackEvent, iBehaviorPresetMax), (DefaultValue, -1));
+    DREAD_REFLECTED_FIELD(bool, "bCheckInCombat", offsetof(CCharClassAIAttackEvent, bCheckInCombat), (DefaultValue, false));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x48;
+bool CCharClassAIAttackEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassAIAttackEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassAIAttackEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAIAttackEvent*>(obj)->vf_0x0(); }
+void CCharClassAIAttackEvent::refl_Destroy(void* obj) { static_cast<CCharClassAIAttackEvent*>(obj)->~CCharClassAIAttackEvent(); }
+struct CCharClassAIAttackEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassAIAttackEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -61,5 +58,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassAIAttackEvent
-DREAD_REFLECTED_CLASS(CCharClassAIAttackEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassAIAttackEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

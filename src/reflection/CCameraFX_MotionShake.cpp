@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCameraFX_MotionShake.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,23 +19,23 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_MotionShake
-namespace CCameraFX_MotionShake {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fDistance", 0x58, (DefaultValue, 0.0f), (Description, "Distance"));
-    DREAD_REFLECTED_FIELD(CStrId, "sFunction", 0x60, (DefaultValue, "SqooooooszI"), (Description, "Function (p.ej: SqooooooszI)"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCameraFX_MotionShake::refl_AddAttributes(CClass*) {}
+void CCameraFX_MotionShake::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fDistance", offsetof(CCameraFX_MotionShake, fDistance), (DefaultValue, 0.0f), (Description, "Distance"));
+    DREAD_REFLECTED_FIELD(CStrId, "sFunction", offsetof(CCameraFX_MotionShake, sFunction), (DefaultValue, "SqooooooszI"), (Description, "Function (p.ej: SqooooooszI)"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x68;
+bool CCameraFX_MotionShake::refl_Equals(const void*, const void*) { return false; }
+s32 CCameraFX_MotionShake::refl_Hash() { return -1; }
+const base::reflection::CType& CCameraFX_MotionShake::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX_MotionShake*>(obj)->vf_0x0(); }
+void CCameraFX_MotionShake::refl_CopyConstruct(void*, const void*) {}
+void CCameraFX_MotionShake::refl_MoveConstruct(void*, const void*) {}
+void CCameraFX_MotionShake::refl_Destroy(void* obj) { static_cast<CCameraFX_MotionShake*>(obj)->~CCameraFX_MotionShake(); }
+void* CCameraFX_MotionShake::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCameraFX_MotionShake::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCameraFX_MotionShake::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCameraFX_MotionShake);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -45,5 +46,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCameraFX_MotionShake
-DREAD_REFLECTED_CLASS(CCameraFX_MotionShake, CCameraFX_Shake);
+DREAD_REFLECTED_DECLARED_CLASS(CCameraFX_MotionShake, CCameraFX_Shake);
+#pragma GCC diagnostic pop

@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCameraFX_Shake.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,26 +19,26 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_Shake
-namespace CCameraFX_Shake {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fTime", 0x34, (DefaultValue, 0.0f), (Description, "Time"));
-    DREAD_REFLECTED_FIELD(f32, "fAttMinRange", 0x38, (DefaultValue, 0.0f), (Description, "When the distance to the source is under this value, no attenuation gets applied"));
-    DREAD_REFLECTED_FIELD(f32, "fAttMaxRange", 0x3c, (DefaultValue, 0.0f), (Description, "When the distance to the source is over this value, use the max attenuation value"));
-    DREAD_REFLECTED_FIELD(f32, "fAttRange", 0x40, (DefaultValue, 0.0f), (Description, "Attenuation gets calculated between no attenuation and this number"));
-    DREAD_REFLECTED_FIELD(CStrId, "sAttRangeFunction", 0x48, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Attenuation curve to apply between [min,max]. Its value gets multiplied by m_fAttRange"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCameraFX_Shake::refl_AddAttributes(CClass*) {}
+void CCameraFX_Shake::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fTime", offsetof(CCameraFX_Shake, fTime), (DefaultValue, 0.0f), (Description, "Time"));
+    DREAD_REFLECTED_FIELD(f32, "fAttMinRange", offsetof(CCameraFX_Shake, fAttMinRange), (DefaultValue, 0.0f), (Description, "When the distance to the source is under this value, no attenuation gets applied"));
+    DREAD_REFLECTED_FIELD(f32, "fAttMaxRange", offsetof(CCameraFX_Shake, fAttMaxRange), (DefaultValue, 0.0f), (Description, "When the distance to the source is over this value, use the max attenuation value"));
+    DREAD_REFLECTED_FIELD(f32, "fAttRange", offsetof(CCameraFX_Shake, fAttRange), (DefaultValue, 0.0f), (Description, "Attenuation gets calculated between no attenuation and this number"));
+    DREAD_REFLECTED_FIELD(CStrId, "sAttRangeFunction", offsetof(CCameraFX_Shake, sAttRangeFunction), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Attenuation curve to apply between [min,max]. Its value gets multiplied by m_fAttRange"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x58;
+bool CCameraFX_Shake::refl_Equals(const void*, const void*) { return false; }
+s32 CCameraFX_Shake::refl_Hash() { return -1; }
+const base::reflection::CType& CCameraFX_Shake::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX_Shake*>(obj)->vf_0x0(); }
+void CCameraFX_Shake::refl_CopyConstruct(void*, const void*) {}
+void CCameraFX_Shake::refl_MoveConstruct(void*, const void*) {}
+void CCameraFX_Shake::refl_Destroy(void* obj) { static_cast<CCameraFX_Shake*>(obj)->~CCameraFX_Shake(); }
+void* CCameraFX_Shake::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCameraFX_Shake::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCameraFX_Shake::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCameraFX_Shake);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -48,5 +49,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCameraFX_Shake
-DREAD_REFLECTED_CLASS(CCameraFX_Shake, CCameraFX);
+DREAD_REFLECTED_DECLARED_CLASS(CCameraFX_Shake, CCameraFX);
+#pragma GCC diagnostic pop
