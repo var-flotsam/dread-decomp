@@ -6,4 +6,6 @@
 #include "types.h"
 
 struct UnkStandState_A6_b70;
+struct UnkSamusGroundState;
 void fn_710099d6f0(UnkStandState_A6_b70* self);
+void fn_710099db00(UnkSamusGroundState* self, bool skip);

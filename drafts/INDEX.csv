@@ -1220,7 +1220,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71008c5ad0,2836,drafts/game/CDemolitionBlockLifeComponent/fn_71008c5ad0.cpp,operations,95.5,32,lean-r6k,stack: mode/mask (0x2a0/0x298) share slots in ours (frame 0x3a0 vs 0x3b0); cbnz vs tbnz on has_debris|held; su
 0x71008ca3f8,348,drafts/game/CDoorCentralUnitLifeComponent/fn_71008ca3f8.cpp,registers or order,98.9,1,lean-fam0a,one cmp operand order; writing g_unk_7172730f68->id == hit->source->id untried with the manager-local form; li
 0x71008ceda0,1548,drafts/game/UnkTU1376/fn_71008ceda0.cpp,registers or order,98.4,6,lean-fam0a,nav-link loop: empty test on the count instead of the byte count (FindStateById's barrier case); registers swa
-0x71008d0250,1264,drafts/game/UnkTU1376/fn_71008d0250.cpp,match,100.0,0,lean-fam0a,stack slots only: the shield-flag name and the request mode share sp+0x18 (original keeps 4 separate slots); a
 0x71008d07f8,528,drafts/game/UnkTU1376/fn_71008d07f8.cpp,calls,0.0,50,lean-callee1,unit statics merged (GlobalMerge): path at +0; desc at +0x358; guard +0x100; desc ctor stores split by merged
 0x71008d0a08,540,drafts/game/UnkTU1376/fn_71008d0a08.cpp,control flow,40.7,76,lean-r2k,behaves (functional); held: 1 declaration problem: src/game/UnkTU1376/fn_71008d0a08.cpp:64 fn_71008d0a08: defined as bool fn_71008d0a08(UnkFlagComponent_l8d0a08*; const CStrId*; bool; bool) -> declared elsewhere with other ty...
 0x71008d0c24,400,drafts/game/UnkTU1376/fn_71008d0c24.cpp,operations,61.2,37,lean-oc1,entry check order (original tests the state pointer before the float args); late-path call setup duplicated pe
@@ -1351,7 +1350,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710099bab0,1136,drafts/game/UnkTU1461/fn_710099bab0.cpp,control flow,45.8,146,lean-r2ke,control flow: one branch fewer (29 vs 28; likely the state search loop without the byte-count test or tail dup
 0x710099bf20,484,drafts/game/UnkTU1461/fn_710099bf20.cpp,operations,98.3,2,overnight,
 0x710099d420,720,drafts/game/CSamusGroundMovementState/CParams/fn_710099d420.cpp,calls,80.6,35,lean-r2ke,last track test is tail-called in ours (original returns 1 itself); send args share the request's stack slots
-0x710099db00,1048,drafts/game/CSamusGroundMovementState/CParams/fn_710099db00.cpp,match,100.0,0,lean-r2ki,one insn: entry+0x34 tested tbnz bit 0 vs our cbnz on a bool (likely a 1-bit field); also needs id-table slots
 0x710099e714,876,drafts/game/CSamusGroundMovementState/CParams/fn_710099e714.cpp,operations,86.3,30,lean-r2ke,request copy keeps &req.params in x20 and stores 3 early; one jump threaded after the close track
 0x710099ea80,928,drafts/game/CSamusGroundMovementState/CParams/fn_710099ea80.cpp,registers or order,87.5,29,lean-r2ki,scheduling of the capsule vcall setup and the vector adds; reads UnkGameManager+0x13c through a view struct (h
 0x710099ee20,696,drafts/game/CSamusGroundMovementState/CParams/fn_710099ee20.cpp,operations,51.1,81,lean-r2ke,request build after the guard: params copy order and stores differ; keeps &req.params in x20

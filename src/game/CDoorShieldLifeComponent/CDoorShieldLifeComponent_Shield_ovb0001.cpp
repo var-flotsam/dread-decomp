@@ -2,7 +2,7 @@
 // (fn_71008de2fc; the same layout as CDoorShieldLifeComponent_Ctor_A5_b71.cpp, its three arrays built as one
 // array of three) and the destructor (fn_71008de3e0: clears what the first array's entries point to, empties
 // and frees the arrays, destroys the two strings, then the base destructor); fn_71008db6c4 opens or closes the
-// shield (animation g_unk_71727317a0 or g_unk_71727317a8, forwards when the state object at +0x430 is in
+// shield (the open or close animation of g_unk_71727317a0, forwards when the state object at +0x430 is in
 // state 1, the matching flag on the actor's +0x228 set or cleared, and the state bytes at +0xae8..+0xaed);
 // fn_71008de71c fades the shield out over `time` (each mesh slot's colour to alpha 0, or the actor's fader at
 // +0x280) and schedules its deletion 0.1 s later; fn_71008de8f4 handles a damage request through virtual
@@ -17,7 +17,9 @@
 #include "game/CDoorShieldLifeComponent.h"
 #include "game/CItemLifeComponent.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkDoorShieldIds.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU1376.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU253.h"
 #include "game/UnkTU57.h"
@@ -83,19 +85,6 @@ void fn_71008de3e0(UnkDoorShieldLifeObj_ovb0001* self) {
 // As src/game/CGooplotAIComponent/CGooplotAIComponent_Reset_b49.cpp declares them.
 struct UnkFlagTarget;
 
-struct UnkDoorShieldLife6_ovb0001;
-void fn_71008d0a08(UnkDoorShieldLife6_ovb0001* self, const void* animation, bool reverse, bool loop);
-
-struct UnkDoorShieldFlags_ovb0001 {
-    u8 pad_0x0[0x30];
-    u64 name;  // 0x30
-};
-
-extern UnkDoorShieldFlags_ovb0001* g_unk_7172731790 __attribute__((visibility("hidden")));
-extern UnkDoorShieldFlags_ovb0001* g_unk_7172731798 __attribute__((visibility("hidden")));
-extern const u64 g_unk_71727317a0 __attribute__((visibility("hidden")));
-extern const u64 g_unk_71727317a8 __attribute__((visibility("hidden")));
-
 struct UnkDoorShieldActor6_ovb0001 {
     u8 pad_0x0[0x228];
     UnkFlagTarget* flags;  // 0x228
@@ -134,23 +123,23 @@ void fn_71008db6c4(UnkDoorShieldLife6_ovb0001* self, bool open) {
     bool ready = self->field_0x430 && self->field_0x430->state == 1;
     if (open) {
         if (ready) {
-            fn_71008d0a08(self, &g_unk_71727317a0, false, false);
+            fn_71008d0a08(self, &g_unk_71727317a0.open, false, false);
             SetFlag(self, g_unk_7172731790, true);
             self->field_0xaed = true;
         } else {
             SetFlag(self, g_unk_7172731790, false);
-            fn_71008d0a08(self, &g_unk_71727317a0, true, false);
+            fn_71008d0a08(self, &g_unk_71727317a0.open, true, false);
             self->field_0xaed = false;
         }
         self->field_0xaea = true;
     } else {
         if (ready) {
-            fn_71008d0a08(self, &g_unk_71727317a8, false, false);
+            fn_71008d0a08(self, &g_unk_71727317a0.close, false, false);
             SetFlag(self, g_unk_7172731798, true);
             self->field_0xaec = true;
         } else {
             SetFlag(self, g_unk_7172731798, false);
-            fn_71008d0a08(self, &g_unk_71727317a8, true, false);
+            fn_71008d0a08(self, &g_unk_71727317a0.close, true, false);
             self->field_0xaec = false;
         }
         self->field_0xaeb = true;
