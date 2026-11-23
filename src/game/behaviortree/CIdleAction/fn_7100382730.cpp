@@ -23,7 +23,7 @@ struct UnkRecordPtr {
     UnkRecordList* field_0x0;
 };
 
-struct UnkSelf {
+struct UnkSelf_382730 {
     u8 pad_0x0[0x18];
     UnkActor* field_0x18;
     u8 pad_0x20[0xc];
@@ -68,7 +68,7 @@ struct UnkQuery {
 
 // NON_MATCHING(minor): the two null tests after the query object lookup (the object, the position
 // object) are made in the other order (scheduling only)
-u32 fn_7100382730(UnkSelf* self) {
+u32 fn_7100382730(UnkSelf_382730* self) {
     if (self->field_0x18) {
         UnkActor* target = fn_7100d7c990(self->field_0x18);
         UnkActor* owner = self->field_0x18;

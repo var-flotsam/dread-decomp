@@ -25,7 +25,7 @@ struct UnkScaled {
     f32 field_0x74;
 };
 
-struct UnkSelf {
+struct UnkSelf_437fb4 {
     u8 pad_0x0[8];
     UnkActor* field_0x8;
     u8 pad_0x10[0x48];
@@ -38,7 +38,7 @@ struct UnkSelfCfg {
     UnkConfig* field_0x50;
 };
 
-void fn_7100437fb4(UnkSelf* self, UnkScaled* block) {
+void fn_7100437fb4(UnkSelf_437fb4* self, UnkScaled* block) {
     if (self->field_0x58 != 0)
         return;
     f32 own_x = self->field_0x8->field_0x44;

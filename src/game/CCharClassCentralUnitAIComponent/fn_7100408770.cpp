@@ -9,7 +9,7 @@
 
 using base::reflection::UnkTunableRegistry;
 
-struct UnkSelf {
+struct UnkSelf_408770 {
     u8 unk_0x0[0x510];
     UnkNamedString* name;
 };
@@ -20,7 +20,7 @@ struct UnkGroupIds {
 
 void fn_710013c7e0(UnkTunableRegistry* registry, const char* group, const char* name, f32* value);
 
-f32 fn_7100408770(UnkSelf* self) {
+f32 fn_7100408770(UnkSelf_408770* self) {
     f32 found = 0.0f;
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {

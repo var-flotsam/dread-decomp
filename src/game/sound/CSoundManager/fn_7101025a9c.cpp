@@ -28,16 +28,16 @@ struct UnkOwnedPtr {
     }
 };
 
-struct UnkTable_0x28;
-void fn_71010287d4(UnkTable_0x28* self);
+struct UnkTable_0x28_01025a9c;
+void fn_71010287d4(UnkTable_0x28_01025a9c* self);
 
-struct UnkTable_0x28 {
+struct UnkTable_0x28_01025a9c {
     void* field_0x0;
     void* field_0x8;
     u8 unk_0x10[0x10];
     base::UnkAllocator* allocator;
 
-    ~UnkTable_0x28() {
+    ~UnkTable_0x28_01025a9c() {
         fn_71010287d4(this);
         if (field_0x8)
             allocator->vf_0x48(field_0x8);
@@ -52,12 +52,12 @@ struct UnkObject_7101025a9c : UnkBase_0x58 {
     };
     // Destroyed before the array above, so both are destroyed by hand.
     union {
-        UnkTable_0x28 table;
+        UnkTable_0x28_01025a9c table;
     };
 
     __attribute__((always_inline)) ~UnkObject_7101025a9c() {
         vtable = &g_unk_7101cac688[2];
-        table.~UnkTable_0x28();
+        table.~UnkTable_0x28_01025a9c();
         objects.Free();
     }
 };

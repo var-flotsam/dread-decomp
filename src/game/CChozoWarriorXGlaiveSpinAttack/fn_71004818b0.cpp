@@ -2,15 +2,15 @@
 // target, hands the target the object at +0x50 (fn_710117b3f0) and drops the handle.
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkSelf {
+struct UnkSelf_4818b0 {
     u8 pad_0x0[0x50];
     u8 field_0x50[0x18];
     UnkWeakHandle* field_0x68;
 };
 
-void fn_7100494c98(UnkSelf* self);
+void fn_7100494c98(UnkSelf_4818b0* self);
 
-void fn_71004818b0(UnkSelf* self) {
+void fn_71004818b0(UnkSelf_4818b0* self) {
     fn_7100494c98(self);
     if (UnkWeakHandle* handle = self->field_0x68) {
         if (UnkWeakTarget* target = handle->target)

@@ -10,7 +10,7 @@
 using namespace unk_prop_bag;
 
 // A string with 0x80 bytes of inline storage (as in fn_7100ae9a10).
-struct UnkInlineString {
+struct UnkInlineString_e01680 {
     const char* str;
     u8 unk_0x8[0x28];
     void** vtable;
@@ -20,12 +20,12 @@ struct UnkInlineString {
 };
 
 bool fn_7100e03d78(UnkPropBag* bag, const char* function, const char* args, ...);  // runs a script call
-bool fn_7100e03f50(UnkPropBag* bag, const u64* key, UnkInlineString* out, bool flag);  // reads a string
+bool fn_7100e03f50(UnkPropBag* bag, const u64* key, UnkInlineString_e01680* out, bool flag);  // reads a string
 
 
 struct UnkObj_7100e01680 {
     u8 unk_0x0[0x518];
-    UnkInlineString field_0x518;
+    UnkInlineString_e01680 field_0x518;
     u8 unk_0x5e0[0x28];
     UnkGameManagerSub_0x608* field_0x608;  // the start points
 };
@@ -36,7 +36,7 @@ struct UnkBuiltId_e01680 {
         CStrId id;
     };
 
-    explicit UnkBuiltId_e01680(const UnkInlineString& str) {
+    explicit UnkBuiltId_e01680(const UnkInlineString_e01680& str) {
         CStrId_ConstructFromRntString(&id, *reinterpret_cast<const base::global::CRntString*>(&str), true);
     }
     ~UnkBuiltId_e01680() { id.~CStrId(); }
@@ -54,7 +54,7 @@ void* fn_7100e01680(UnkObj_7100e01680* self) {
     CStrId& id = built.id;
     UnkPropBag bag;
     if (fn_7100e03d78(&bag, "CurrentScenario.GetStartPointOverride", "")) {
-        UnkInlineString s;
+        UnkInlineString_e01680 s;
         auto* str = reinterpret_cast<base::global::CRntString*>(&s);
         CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
         s.vtable = &g_unk_7101a1b750[2];

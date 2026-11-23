@@ -25,14 +25,14 @@ struct UnkEntry_39d420 {
     }
 };
 
-struct UnkNode : UnkBehaviorTreeNode {
+struct UnkNode_39d420 : UnkBehaviorTreeNode {
     UnkEntry_39d420 field_0x38;
     UnkEntry_39d420 field_0x50;
 };
 
 extern void* g_unk_7101a27d40[];
 
-void fn_710039d420(UnkNode* self) {
+void fn_710039d420(UnkNode_39d420* self) {
     fn_71003944e8(self);
     self->vtable = g_unk_7101a27d40 + 2;
     new (&self->field_0x38) UnkEntry_39d420();

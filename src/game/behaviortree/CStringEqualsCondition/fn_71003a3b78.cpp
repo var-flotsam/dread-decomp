@@ -5,7 +5,7 @@
 #include "game/behaviortree/CStringEqualsCondition.h"
 #include "types.h"
 
-struct UnkObj {
+struct UnkObj_3a3b78 {
     void** vtable;
     u8 pad_0x8[0x60];
     UnkStrIdTwoStep field_0x68;
@@ -13,7 +13,7 @@ struct UnkObj {
 
 void fn_7100394530(void*);
 
-void fn_71003a3b78(UnkObj* self) {
+void fn_71003a3b78(UnkObj_3a3b78* self) {
     self->vtable = &g_unk_7101a28ac0[2];
     self->field_0x68.~UnkStrIdTwoStep();
     CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(reinterpret_cast<char*>(self) + 0x38));

@@ -3,7 +3,7 @@
 // the sub-records at +0xa0 (fn_7100d62ca8) and +0x1d8 (fn_71004c5c2c) and copies 11 bytes at +0x77c.
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkRecord {
+struct UnkRecord_4c5a14 {
     u8 pad_0x0[0x8];
     u8 field_0x8[32];
     u64 field_0x28;
@@ -36,7 +36,7 @@ void fn_7100d62ca8(void* self, const void* other);
 void fn_71004c5c2c(void* self, const void* other);
 
 // NON_MATCHING(minor): the 24-byte copy at +0x1c0 and the 11-byte copy at +0x77c load and store in a different order
-UnkRecord* fn_71004c5a14(UnkRecord* self, const UnkRecord* other) {
+UnkRecord_4c5a14* fn_71004c5a14(UnkRecord_4c5a14* self, const UnkRecord_4c5a14* other) {
     __builtin_memcpy(self->field_0x8, other->field_0x8, 32);
     self->field_0x28 = other->field_0x28;
     self->field_0x30 = other->field_0x30;

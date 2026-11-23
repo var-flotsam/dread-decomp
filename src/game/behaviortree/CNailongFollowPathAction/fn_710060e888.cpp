@@ -14,7 +14,7 @@ struct UnkEntry {
     UnkKind* field_0x10;
 };
 
-struct UnkValue {
+struct UnkValue_60e888 {
     u8 pad_0x0[0xac];
     u32 field_0xac;
 };
@@ -22,7 +22,7 @@ struct UnkValue {
 struct UnkRecord {
     UnkEntry* field_0x0;
     u8 pad_0x8[8];
-    UnkValue* field_0x10;
+    UnkValue_60e888* field_0x10;
 };
 
 struct UnkSource {

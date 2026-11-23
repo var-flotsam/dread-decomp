@@ -10,17 +10,17 @@ using base::global::UnkStrId;
 
 typedef void** UnkVtable;
 
-struct UnkNode : UnkBehaviorTreeNodeBase {
+struct UnkNode_3739b8 : UnkBehaviorTreeNodeBase {
     u8 pad_0x2c[4];
     UnkStrId field_0x30;
     UnkStrId field_0x38;
 
-    void vf_0x18() { reinterpret_cast<void (*)(UnkNode*)>(vtable[3])(this); }
+    void vf_0x18() { reinterpret_cast<void (*)(UnkNode_3739b8*)>(vtable[3])(this); }
 };
 
 extern void* g_unk_7101a25170[];
 
-void fn_71003739b8(UnkNode* self) {
+void fn_71003739b8(UnkNode_3739b8* self) {
     fn_7100393e68(self);
     self->vtable = g_unk_7101a25170 + 2;
     new (&self->field_0x30) UnkStrId("", true);

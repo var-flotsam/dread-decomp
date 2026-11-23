@@ -8,7 +8,7 @@
 
 using base::global::UnkStrId;
 
-struct UnkNode : UnkBehaviorTreeNodeBase {
+struct UnkNode_3750e4 : UnkBehaviorTreeNodeBase {
     u8 pad_0x2c[4];
     UnkStrId field_0x30;
     u8 field_0x38;
@@ -25,7 +25,7 @@ static inline void Construct(Self* self) {
     reinterpret_cast<void (*)(Self*)>(self->vtable[3])(self);
 }
 
-void fn_71003750e4(UnkNode* self) { Construct<UnkBehaviorTreeNodeBase, fn_7100393e68, g_unk_7101a25380>(self); }
+void fn_71003750e4(UnkNode_3750e4* self) { Construct<UnkBehaviorTreeNodeBase, fn_7100393e68, g_unk_7101a25380>(self); }
 
 // The same constructor for another node (vtable g_unk_7101a8b150) above its own, larger base
 // (fn_7100a028c4): the id and flag sit at 0x148 and 0x150.

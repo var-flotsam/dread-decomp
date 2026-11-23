@@ -28,7 +28,7 @@ struct UnkOwnerRef {
     UnkAnimationComponent* field_0x220;
 };
 
-struct UnkSelf {
+struct UnkSelf_452608 {
     u8 pad_0x0[0x30];
     UnkOwnerRef* field_0x30;
     u8 pad_0x38[0x15d88];
@@ -38,7 +38,7 @@ struct UnkSelf {
     base::UnkRefHandle handle;
 };
 
-bool fn_7100452608(UnkSelf* self) {
+bool fn_7100452608(UnkSelf_452608* self) {
     if (self->field_0x30->field_0x220 && fn_710117ae38(self->field_0x30->field_0x220, 0xb1908e0ac25fa340ull, 0))
         return false;
     if (self->state == 0)

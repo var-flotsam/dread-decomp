@@ -36,7 +36,7 @@ struct UnkSelf {
     UnkOwner* field_0x8;
 };
 
-struct UnkBox {
+struct UnkBox_430830 {
     f32 field_0x0;
     f32 field_0x4;
     f32 field_0x8;
@@ -47,7 +47,7 @@ struct UnkBox {
 
 // NON_MATCHING(minor): the last z clamp (fmaxnm) and its store are scheduled before the paired store
 // of the max x/y pair (scheduling only)
-void fn_7100430830(UnkSelf* self, UnkBox* box) {
+void fn_7100430830(UnkSelf* self, UnkBox_430830* box) {
     void* holder = fn_7100defcec(g_unk_7101d47310);
     if (!holder)
         return;

@@ -9,7 +9,7 @@
 
 using base::global::UnkStrId;
 
-struct UnkNode : UnkBehaviorTreeNodeBase {
+struct UnkNode_3927e8 : UnkBehaviorTreeNodeBase {
     u8 pad_0x2c[4];
     UnkStrId field_0x30;
     u8 field_0x38;
@@ -23,7 +23,7 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
 
 extern void* g_unk_7101a26c00[];
 
-void fn_71003927e8(UnkNode* self) {
+void fn_71003927e8(UnkNode_3927e8* self) {
     fn_7100393e68(self);
     self->vtable = &g_unk_7101a26c00[2];
     new (&self->field_0x30) UnkStrId("", true);
@@ -32,5 +32,5 @@ void fn_71003927e8(UnkNode* self) {
     new (&self->field_0x48) UnkStrId("", true);
     new (&self->field_0x50) UnkStrId("", true);
     self->field_0x58 = 2;
-    reinterpret_cast<void (*)(UnkNode*)>(self->vtable[3])(self);
+    reinterpret_cast<void (*)(UnkNode_3927e8*)>(self->vtable[3])(self);
 }

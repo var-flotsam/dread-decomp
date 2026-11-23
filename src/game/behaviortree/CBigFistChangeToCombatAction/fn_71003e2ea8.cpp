@@ -3,13 +3,13 @@
 #include "game/UnkBehaviorTree.h"
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkSelf {
+struct UnkSelf_3e2ea8 {
     u8 pad_0x0[0x40];
     u8 field_0x40[0x18];
     UnkWeakHandle* field_0x58;
 };
 
-void fn_71003e2ea8(UnkSelf* self) {
+void fn_71003e2ea8(UnkSelf_3e2ea8* self) {
     fn_7100394bd4(self);
     if (UnkWeakHandle* handle = self->field_0x58) {
         if (UnkWeakTarget* target = handle->target)

@@ -9,7 +9,7 @@
 struct UnkStruct_71008bca30;
 extern char g_unk_7101a884a0[];
 
-struct UnkChangeStageNavMeshItem {
+struct UnkChangeStageNavMeshItem_b52 {
     void** vtable;
     u8 pad_0x8[0x50];
     base::global::UnkStringData* field_0x58;
@@ -23,7 +23,7 @@ static inline __attribute__((always_inline)) void InitEmpty_csnm(base::global::U
     *id = &g_unk_7101d47108->empty;
 }
 
-void fn_71009bafdc(UnkChangeStageNavMeshItem* self) {
+void fn_71009bafdc(UnkChangeStageNavMeshItem_b52* self) {
     fn_71011acd10(reinterpret_cast<UnkStruct_71008bca30*>(self));
     self->vtable = reinterpret_cast<void**>(g_unk_7101a884a0 + 0x10);
     InitEmpty_csnm(&self->field_0x58);

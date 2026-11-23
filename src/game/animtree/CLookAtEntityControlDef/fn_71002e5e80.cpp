@@ -61,10 +61,10 @@ struct UnkLevelC : UnkLevelB {
     }
 };
 
-struct UnkLevelD : UnkLevelC {
+struct UnkLevelD_2e5e80 : UnkLevelC {
     base::UnkPooledString field_0x40;
 
-    UnkLevelD(UnkLevelD& other) : UnkLevelC(other) {
+    UnkLevelD_2e5e80(UnkLevelD_2e5e80& other) : UnkLevelC(other) {
         vtable = g_unk_7101a21ef0 + 2;
         MoveId(field_0x40, other.field_0x40);
     }
@@ -72,6 +72,6 @@ struct UnkLevelD : UnkLevelC {
 
 // NON_MATCHING(minor): the copied words at 0x28..0x38 are loaded and stored in a different order
 // (the pair before the u32 instead of after it)
-void fn_71002e5e80(UnkLevelD* self, UnkLevelD* other) {
-    new (self) UnkLevelD(*other);
+void fn_71002e5e80(UnkLevelD_2e5e80* self, UnkLevelD_2e5e80* other) {
+    new (self) UnkLevelD_2e5e80(*other);
 }

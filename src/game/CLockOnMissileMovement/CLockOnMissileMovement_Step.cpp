@@ -4,7 +4,7 @@
 // +0x660 (fn_7100ab7774). Names and layouts are placeholders.
 #include "types.h"
 
-struct UnkLockOnMissileMovement {
+struct UnkLockOnMissileMovement_ab7734 {
     u8 pad_0x0[0x30];
     void* target;  // 0x30
     u8 pad_0x38[0x480];
@@ -13,7 +13,7 @@ struct UnkLockOnMissileMovement {
     f32 field_0x660;
 };
 
-void fn_7100ab7774(UnkLockOnMissileMovement* self, void* arg, void* state, f32* a, f32* b, f32 dt);
+void fn_7100ab7774(UnkLockOnMissileMovement_ab7734* self, void* arg, void* state, f32* a, f32* b, f32 dt);
 
 static inline f32 ClampStep(f32 value, f32 low, f32 high) {
     if (value <= low)
@@ -21,7 +21,7 @@ static inline f32 ClampStep(f32 value, f32 low, f32 high) {
     return value >= high ? high : value;
 }
 
-void fn_7100ab7734(UnkLockOnMissileMovement* self, void* arg, f32 dt) {
+void fn_7100ab7734(UnkLockOnMissileMovement_ab7734* self, void* arg, f32 dt) {
     if (self->target)
         fn_7100ab7774(self, arg, self->field_0x4b8, &self->field_0x65c, &self->field_0x660,
                       ClampStep(dt, 1.0f / 30.0f, 1.0f / 60.0f));

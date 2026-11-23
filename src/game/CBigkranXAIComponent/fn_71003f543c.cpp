@@ -11,7 +11,7 @@
 
 using base::global::CStrId;
 
-struct UnkComponent {
+struct UnkComponent_3f543c {
     void** vtable;
     u8 pad_0x8[0x149b0];
     u64 field_0x149b8;
@@ -30,11 +30,11 @@ struct UnkComponent {
     u16 field_0x14ba0;
 };
 
-void fn_71003e5994(UnkComponent* self);
+void fn_71003e5994(UnkComponent_3f543c* self);
 void fn_71003ea504(void* member);
 void fn_71003f13fc(void* member);
 
-void fn_71003f543c(UnkComponent* self) {
+void fn_71003f543c(UnkComponent_3f543c* self) {
     fn_71003e5994(self);
     self->vtable = g_unk_7101a31448 + 2;
     self->field_0x149b8 = 0;
@@ -50,5 +50,5 @@ void fn_71003f543c(UnkComponent* self) {
     self->field_0x14b90 = 0;
     self->field_0x14b98 = 0;
     self->field_0x14ba0 = 0;
-    reinterpret_cast<void (*)(UnkComponent*)>(self->vtable[3])(self);
+    reinterpret_cast<void (*)(UnkComponent_3f543c*)>(self->vtable[3])(self);
 }

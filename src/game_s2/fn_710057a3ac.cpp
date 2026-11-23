@@ -24,12 +24,12 @@ struct UnkNode_57a3ac {
     UnkEntity* entity;
     UnkNode_57a3ac* next;
 };
-struct UnkSelf {
+struct UnkSelf_57a3ac {
     u8 unk_0x0[0x18];
     UnkNode_57a3ac* head;
 };
 
-bool fn_710057a3ac(UnkSelf* self) {
+bool fn_710057a3ac(UnkSelf_57a3ac* self) {
     for (UnkNode_57a3ac* node = self->head; node; node = node->next) {
         UnkEntity* entity = node->entity;
         UnkAIComponent_57a3ac* component = entity->component;

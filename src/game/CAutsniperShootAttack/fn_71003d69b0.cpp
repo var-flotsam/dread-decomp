@@ -23,7 +23,7 @@ struct UnkLimits_3d69b0 {
     u8 unk_0x0[0xfc];
     f32 limit;
 };
-struct UnkSelf {
+struct UnkSelf_3d69b0 {
     u8 unk_0x0[8];
     UnkEntity_3d69b0* entity;
     u8 unk_0x10[0x18];
@@ -36,11 +36,11 @@ struct UnkSelf {
     u32 field_0x9c;
 };
 
-void fn_71003d7158(UnkSelf* self);
-void fn_71003d7250(UnkSelf* self);
-void fn_71003d7348(UnkSelf* self);
+void fn_71003d7158(UnkSelf_3d69b0* self);
+void fn_71003d7250(UnkSelf_3d69b0* self);
+void fn_71003d7348(UnkSelf_3d69b0* self);
 
-void fn_71003d69b0(UnkSelf* self, f32 dt) {
+void fn_71003d69b0(UnkSelf_3d69b0* self, f32 dt) {
     f32 timer = self->timer + dt;
     self->timer = timer;
     if (!(timer >= self->limits->limit))

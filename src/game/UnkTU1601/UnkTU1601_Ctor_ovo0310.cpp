@@ -13,7 +13,7 @@ using base::global::CStrId;
 
 struct UnkCallbackSetElem;
 
-struct UnkThermalComp_b0237 {
+struct UnkThermalComp_b0237_a946ec {
     void** vtable;
     u8 pad_0x8[0x540];
     UnkCallbackSetElem* devices_data;  // 0x548
@@ -32,9 +32,9 @@ struct UnkThermalComp_b0237 {
     u8 pad_0x59c[1];
     u8 field_0x59d;
 };
-static_assert(__builtin_offsetof(UnkThermalComp_b0237, id_0x570) == 0x570, "UnkThermalComp_b0237 layout");
+static_assert(__builtin_offsetof(UnkThermalComp_b0237_a946ec, id_0x570) == 0x570, "UnkThermalComp_b0237_a946ec layout");
 
-void fn_7100a946ec(UnkThermalComp_b0237* self) {
+void fn_7100a946ec(UnkThermalComp_b0237_a946ec* self) {
     fn_7100a9e244(self);
     self->devices_data = nullptr;
     self->devices_step = 10;
@@ -51,5 +51,5 @@ void fn_7100a946ec(UnkThermalComp_b0237* self) {
     new (&self->id_0x590) CStrId(base::global::CStrId::Empty());
     self->field_0x598 = 0;
     self->field_0x59d = 0;
-    reinterpret_cast<void (*)(UnkThermalComp_b0237*)>(self->vtable[3])(self);
+    reinterpret_cast<void (*)(UnkThermalComp_b0237_a946ec*)>(self->vtable[3])(self);
 }

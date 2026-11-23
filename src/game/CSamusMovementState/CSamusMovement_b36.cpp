@@ -24,14 +24,14 @@ struct UnkSamusMovementState2 {
     s32 kind;
 };
 #pragma pack(push, 4)
-struct UnkSamusMovement2 {
+struct UnkSamusMovement2_b36 {
     u8 pad_0x0[0x2d18];
     u32 state_count;
     UnkSamusMovementState2* states[1];  // 0x2d1c, 4-byte aligned
 };
 #pragma pack(pop)
 
-static inline UnkSamusMovementState2* FindState(UnkSamusMovement2* self, s32 kind) {
+static inline UnkSamusMovementState2* FindState(UnkSamusMovement2_b36* self, s32 kind) {
     UnkSamusMovementState2** it = self->states;
     u64 size = (u64)self->state_count * sizeof(*it);
     asm("" : "+r"(size));
@@ -43,13 +43,13 @@ static inline UnkSamusMovementState2* FindState(UnkSamusMovement2* self, s32 kin
 }
 
 // Forwards the argument to the first state of kind 5 (virtual slot 11), if any.
-void fn_71009ebfc4(UnkSamusMovement2* self, void* arg) {
+void fn_71009ebfc4(UnkSamusMovement2_b36* self, void* arg) {
     if (UnkSamusMovementState2* state = FindState(self, 5))
         state->vf_0x58(arg);
 }
 
 // The same for kind 6.
-void fn_71009ec00c(UnkSamusMovement2* self, void* arg) {
+void fn_71009ec00c(UnkSamusMovement2_b36* self, void* arg) {
     if (UnkSamusMovementState2* state = FindState(self, 6))
         state->vf_0x58(arg);
 }

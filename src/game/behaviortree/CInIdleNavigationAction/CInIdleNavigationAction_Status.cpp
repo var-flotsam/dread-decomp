@@ -2,13 +2,13 @@
 // two flags: 6 when either +0x38 or +0x39 is set, 5 otherwise. Names are placeholders.
 #include "types.h"
 
-struct UnkInIdleNavigationAction {
+struct UnkInIdleNavigationAction_38a678 {
     u8 pad_0x0[0x38];
     bool field_0x38;
     bool field_0x39;
 };
 
-s32 fn_710038a678(UnkInIdleNavigationAction* self) {
+s32 fn_710038a678(UnkInIdleNavigationAction_38a678* self) {
     if (self->field_0x38) {
         return 6;
     }

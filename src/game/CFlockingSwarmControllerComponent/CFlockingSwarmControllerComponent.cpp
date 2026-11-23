@@ -8,7 +8,7 @@ struct UnkSwarmElement {
     u8 pad_0x8[0x18];
 };
 
-struct UnkSwarmController {
+struct UnkSwarmController_73d958 {
     u8 pad_0x0[0x2d0];
     UnkSwarmElement* elements;
     u32 count;
@@ -16,7 +16,7 @@ struct UnkSwarmController {
     bool field_0x395;
 };
 
-void fn_710073d958(UnkSwarmController* self) {
+void fn_710073d958(UnkSwarmController_73d958* self) {
     for (u64 i = 0; i < self->count; ++i)
         self->elements[i].vtable[1](&self->elements[i]);
     self->count = 0;

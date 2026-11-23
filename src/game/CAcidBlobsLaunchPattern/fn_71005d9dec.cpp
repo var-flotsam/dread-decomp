@@ -6,7 +6,7 @@
 #include "types.h"
 
 // Each member is held inline or, in mode 2, through a pointer.
-struct UnkHolder {
+struct UnkHolder_5d9dec {
     union {
         u32 value;
         const u32* ptr;
@@ -22,8 +22,8 @@ struct UnkHolder {
 };
 
 static inline bool Equal(const void* a_, const void* b_) {
-    const UnkHolder* a = static_cast<const UnkHolder*>(a_);
-    const UnkHolder* b = static_cast<const UnkHolder*>(b_);
+    const UnkHolder_5d9dec* a = static_cast<const UnkHolder_5d9dec*>(a_);
+    const UnkHolder_5d9dec* b = static_cast<const UnkHolder_5d9dec*>(b_);
     if (a->Id() != b->Id())
         return false;
     const UnkIdVec& x = a->List();

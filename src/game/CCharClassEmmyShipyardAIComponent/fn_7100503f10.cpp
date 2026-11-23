@@ -7,7 +7,7 @@
 
 using base::global::UnkStrId;
 
-struct UnkNode {
+struct UnkNode_503f10 {
     void** vtable;
     u8 pad_0x8[0x5f8];
     u16 field_0x600;
@@ -16,14 +16,14 @@ struct UnkNode {
     UnkStrId field_0x608;
 };
 
-void fn_710051eaa0(UnkNode*);
+void fn_710051eaa0(UnkNode_503f10*);
 extern void* g_unk_7101a46dc8[];
 
-void fn_7100503f10(UnkNode* self) {
+void fn_7100503f10(UnkNode_503f10* self) {
     fn_710051eaa0(self);
     self->vtable = &g_unk_7101a46dc8[2];
     self->field_0x600 = 256;
     self->field_0x602 = 1;
     self->field_0x608 = UnkStrId("CurrentScenario.OnEmmyShipyardAbilityObtained", true);
-    reinterpret_cast<void (*)(UnkNode*)>(self->vtable[3])(self);
+    reinterpret_cast<void (*)(UnkNode_503f10*)>(self->vtable[3])(self);
 }

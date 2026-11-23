@@ -2,14 +2,14 @@
 // target at +0x298 of the owner (+0x18).
 #include "game_s2/UnkParams.h"
 
-struct UnkOwner {
+struct UnkOwner_3c286c {
     u8 pad_0x0[0x298];
     void* field_0x298;
 };
 
 struct UnkComponent {
     u8 pad_0x0[0x18];
-    UnkOwner* field_0x18;
+    UnkOwner_3c286c* field_0x18;
 };
 
 void fn_71003c286c(UnkComponent* self) {

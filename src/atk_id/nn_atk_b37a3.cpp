@@ -176,22 +176,22 @@ __attribute__((noinline)) u32 fn_71012101f8(const UnkAtkKind1Record* record) { K
 
 // Appends a node (link at +0x38, state at +0x34 set to 1) to the singly linked list whose head and tail sit
 // at +0xc8 and +0xd0.
-struct UnkAtkListNode {
+struct UnkAtkListNode_b37a3 {
     u8 pad_0x0[0x34];
     u32 state;
-    UnkAtkListNode* next;
+    UnkAtkListNode_b37a3* next;
 };
 
 struct UnkAtkNodeList {
     u8 pad_0x0[0xc8];
-    UnkAtkListNode* head;
-    UnkAtkListNode* tail;
+    UnkAtkListNode_b37a3* head;
+    UnkAtkListNode_b37a3* tail;
 };
 
-void fn_710122f578(UnkAtkNodeList* self, UnkAtkListNode* node) {
+void fn_710122f578(UnkAtkNodeList* self, UnkAtkListNode_b37a3* node) {
     node->next = nullptr;
     node->state = 1;
-    UnkAtkListNode* tail = self->tail;
+    UnkAtkListNode_b37a3* tail = self->tail;
     (tail ? tail->next : self->head) = node;
     self->tail = node;
 }

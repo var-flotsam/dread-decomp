@@ -7,7 +7,7 @@
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
-struct UnkComponent {
+struct UnkComponent_5136cc {
     u8 pad_0x0[0x18];
     UnkActor* field_0x18;
 };
@@ -48,7 +48,7 @@ static inline u32 AsU32(const f32& value) {
     return bits;
 }
 
-void fn_71005136cc(UnkComponent* self) {
+void fn_71005136cc(UnkComponent_5136cc* self) {
     UnkActor* owner = self->field_0x18;
     if (owner->field_0x298 && owner->field_0x218) {
         UnkActor* position = fn_7100d7c990(owner);

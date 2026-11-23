@@ -6,7 +6,7 @@
 #include "game/UnkTU2553.h"
 #include "types.h"
 
-struct UnkSetSlomoCustomEvent {
+struct UnkSetSlomoCustomEvent_cd8d78 {
     u8 pad_0x0[0xc];
     f32 a;
     f32 b;
@@ -14,7 +14,7 @@ struct UnkSetSlomoCustomEvent {
     UnkSlomoSettings* settings;
 };
 
-void fn_7100cd8d78(UnkSetSlomoCustomEvent* self) {
+void fn_7100cd8d78(UnkSetSlomoCustomEvent_cd8d78* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     f32 a = self->a, b = self->b;
     ++self->settings->ref_count;

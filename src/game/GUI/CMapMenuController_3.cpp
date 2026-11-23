@@ -7,16 +7,16 @@
 
 using base::global::CStrId;
 
-struct UnkMapMenuController {
+struct UnkMapMenuController_b3d16c {
     u8 pad_0x0[0x4b4];
     bool field_0x4b4;
     u8 pad_0x4b5[0x163];
     u8 field_0x618[1];
 };
 
-void fn_7100b43b30(UnkMapMenuController* self, const CStrId* id, void* arg);
+void fn_7100b43b30(UnkMapMenuController_b3d16c* self, const CStrId* id, void* arg);
 
-void fn_7100b3d16c(UnkMapMenuController* self, const CStrId* id, void* arg) {
+void fn_7100b3d16c(UnkMapMenuController_b3d16c* self, const CStrId* id, void* arg) {
     fn_7100b43b30(self, id, arg);
     self->field_0x4b4 = true;
     if (id->data == &g_unk_7101d47108->empty)

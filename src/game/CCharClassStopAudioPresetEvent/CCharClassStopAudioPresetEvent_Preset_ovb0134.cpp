@@ -35,7 +35,7 @@ struct UnkStopAudioPresetEvent_ovb0134 {
     f32 start;                     // 0x34
 };
 
-struct UnkActorRef_ovb0134 {
+struct UnkActorRef_ovb0134_be45dc {
     UnkActor* actor;
 };
 
@@ -59,7 +59,7 @@ void fn_7100be45dc(UnkStopAudioPresetEvent_ovb0134* self, const base::UnkStrIdMe
         Resolve(self, preset, self->Name());
 }
 
-void fn_7100be4760(UnkStopAudioPresetEvent_ovb0134* self, UnkActorRef_ovb0134* ref) {
+void fn_7100be4760(UnkStopAudioPresetEvent_ovb0134* self, UnkActorRef_ovb0134_be45dc* ref) {
     UnkStrIdPathResource* preset = &self->preset;
     if (!IsSet(preset)) {
         if (self->Name() != reinterpret_cast<UnkPresetName_ovb0134*>(&g_unk_7101d47108->empty))

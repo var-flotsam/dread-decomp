@@ -3,17 +3,17 @@
 // +0x30 back at the holder. Does nothing without a holder.
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkHolder {
+struct UnkHolder_3a4cc0 {
     u8 pad_0x0[0x20];
     UnkWeakHandle* field_0x20;
 };
 
 struct UnkOwnedTarget : UnkWeakTarget {
     u8 pad_0x8[0x28];
-    UnkHolder* field_0x30;
+    UnkHolder_3a4cc0* field_0x30;
 };
 
-void fn_71003a4cc0(UnkOwnedTarget* target, UnkHolder* holder) {
+void fn_71003a4cc0(UnkOwnedTarget* target, UnkHolder_3a4cc0* holder) {
     if (!holder)
         return;
     UnkWeakHandle* handle = target ? GetWeakHandle(target) : nullptr;

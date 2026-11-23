@@ -11,7 +11,7 @@ struct UnkTarget_49b874 : base::UnkRefCounted {
     void* field_0x10;
 };
 
-struct UnkComponent {
+struct UnkComponent_49b874 {
     u8 pad_0x0[0x149e0];
     u8 field_0x149e0[0x28];
     u32 field_0x14a08;
@@ -19,10 +19,10 @@ struct UnkComponent {
     base::UnkRefHandle field_0x14a10;
 };
 
-void fn_710049b920(UnkComponent* self);
+void fn_710049b920(UnkComponent_49b874* self);
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
-void fn_710049b874(UnkComponent* self, void* arg) {
+void fn_710049b874(UnkComponent_49b874* self, void* arg) {
     fn_71003aea40(reinterpret_cast<UnkBossAIComponent*>(self), arg);
     if (self->field_0x14a08 == 1) {
         {

@@ -34,14 +34,14 @@ struct __attribute__((packed)) UnkBlock_518ef4 {
     UnkCounted* field_0x1c;
 };
 
-struct __attribute__((packed)) UnkTable {
+struct __attribute__((packed)) UnkTable_518ef4 {
     void** vtable;
     u32 count;
     UnkRecord records[250];
     UnkBlock_518ef4 block;
 };
 
-void fn_7100518ef4(UnkTable* self, const UnkTable* other) {
+void fn_7100518ef4(UnkTable_518ef4* self, const UnkTable_518ef4* other) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101a21168) + 2;
     u32 count = other->count;
     if (count != 0) {

@@ -9,11 +9,11 @@
 
 using base::global::UnkStrId;
 
-struct UnkNode {
+struct UnkNode_01002998 {
     UnkStrIdTwoStep field_0x0;
 };
 
-void fn_7101002998(UnkNode* self) {
+void fn_7101002998(UnkNode_01002998* self) {
     fn_7100ffaa88(reinterpret_cast<char*>(self) + 0x8);
     self->field_0x0.~UnkStrIdTwoStep();
 }

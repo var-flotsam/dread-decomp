@@ -56,13 +56,13 @@ struct UnkAnimTreeId_b49a1 {
 struct UnkIdPair;
 void fn_71002dacc0(UnkIdPair* self);
 
-struct UnkAnimTreeIdPair_b49a1 {
+struct UnkAnimTreeIdPair_b49a1_b49 {
     UnkAnimTreeId_b49a1 first;
     UnkAnimTreeId_b49a1 second;
 };
 
 struct UnkAnimTreeIdPairs_b49a1 {
-    UnkAnimTreeIdPair_b49a1* data;
+    UnkAnimTreeIdPair_b49a1_b49* data;
     u32 count;
     u32 capacity;
     u32 step;
@@ -79,23 +79,23 @@ static inline void Grow_b49a1(UnkAnimTreeIdPairs_b49a1* self, u32 index) {
     u32 n = index + 1;
     fn_71002da674(self, n);
     for (u32 i = self->count; i < n; ++i) {
-        UnkAnimTreeIdPair_b49a1* p = &self->data[i];
+        UnkAnimTreeIdPair_b49a1_b49* p = &self->data[i];
         __builtin_memset(p, 0, sizeof(*p));
         fn_71002dacc0(reinterpret_cast<UnkIdPair*>(p));
     }
     self->count = n;
 }
 
-void fn_71002da0e0(UnkAnimTreeIdPairs_b49a1* self, const u32* index, const UnkAnimTreeIdPair_b49a1* value) {
+void fn_71002da0e0(UnkAnimTreeIdPairs_b49a1* self, const u32* index, const UnkAnimTreeIdPair_b49a1_b49* value) {
     u32 i = *index;
     if (self->field_0x14 && self->count <= i)
         Grow_b49a1(self, i);
     self->data[i] = *value;
 }
 
-void fn_71002da258(UnkAnimTreeIdPairs_b49a1* self, const u32* index, UnkAnimTreeIdPair_b49a1* value) {
+void fn_71002da258(UnkAnimTreeIdPairs_b49a1* self, const u32* index, UnkAnimTreeIdPair_b49a1_b49* value) {
     u32 i = *index;
     if (self->field_0x14 && self->count <= i)
         Grow_b49a1(self, i);
-    self->data[i] = static_cast<UnkAnimTreeIdPair_b49a1&&>(*value);
+    self->data[i] = static_cast<UnkAnimTreeIdPair_b49a1_b49&&>(*value);
 }

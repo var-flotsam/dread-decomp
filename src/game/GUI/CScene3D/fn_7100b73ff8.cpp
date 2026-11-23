@@ -4,7 +4,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
-struct UnkGuiEvent {
+struct UnkGuiEvent_b73ff8 {
     u8 unk_0x0[0x20];
     u64 kind;
 };
@@ -19,11 +19,11 @@ struct UnkGuiScreen : UnkGuiDisplayObject {
 static_assert(__builtin_offsetof(UnkGuiScreen, field_0x330) == 0x330, "UnkGuiScreen placeholder layout");
 static_assert(__builtin_offsetof(UnkGuiScreen, field_0x468) == 0x468, "UnkGuiScreen placeholder layout");
 
-void fn_71011cf75c(UnkGuiScreen* self, UnkGuiEvent* event);
+void fn_71011cf75c(UnkGuiScreen* self, UnkGuiEvent_b73ff8* event);
 void fn_7100b73624(UnkGuiScreen* self);
 void fn_7100b72e5c(UnkGuiScreen* self, bool flag);
 
-void fn_7100b73ff8(UnkGuiScreen* self, UnkGuiEvent* event) {
+void fn_7100b73ff8(UnkGuiScreen* self, UnkGuiEvent_b73ff8* event) {
     fn_71011cf75c(self, event);
     if (event->kind != 2)
         return;

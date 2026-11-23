@@ -19,14 +19,14 @@ using base::reflection::CClass;
 
 typedef u64 u64_a4 __attribute__((aligned(4)));
 
-struct UnkActor {
+struct UnkActor_4ec294 {
     void** vtable;
-    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkActor*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkActor_4ec294*)>(vtable[0])(this); }
 };
 
 struct __attribute__((packed)) UnkComponent {
     u8 pad_0x0[0x10];
-    UnkActor* field_0x10;
+    UnkActor_4ec294* field_0x10;
     u8 pad_0x18[0x1600];
     u32 field_0x1618;
     void* field_0x161c[0x1000];
@@ -61,7 +61,7 @@ bool fn_71004ec294(UnkComponent* self, void* arg) {
     // `arg` (x1) reaches the base initialiser untouched in the original (tools/forwarded_args.py).
     // Read as a flag here, as a word by the other callers.
     bool result = reinterpret_cast<bool (*)(char*, void*)>(fn_7100369490)(reinterpret_cast<char*>(self), arg);
-    UnkActor* obj = self->field_0x10;
+    UnkActor_4ec294* obj = self->field_0x10;
     char* actor = nullptr;
     if (obj && fn_710009d50c(obj->vf_0x0(), fn_71004eb2d0()))
         actor = reinterpret_cast<char*>(obj);

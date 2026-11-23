@@ -8,7 +8,7 @@
 #include "types.h"
 
 // The handle an entry refers to (base::UnkRefCounted's layout); its target, the entry's owner, is at +0x10.
-struct UnkCounted : base::UnkRefCounted {
+struct UnkCounted_473a08 : base::UnkRefCounted {
     void* owner;
 };
 
@@ -53,7 +53,7 @@ UnkValue fn_7100473a08(UnkSelf* self, void* owner) {
             }
             entry->state = 2;
         }
-        UnkCounted* handle = static_cast<UnkCounted*>(entry->handle.ptr);
+        UnkCounted_473a08* handle = static_cast<UnkCounted_473a08*>(entry->handle.ptr);
         void* entry_owner = handle ? handle->owner : nullptr;
         if (entry_owner == owner)
             return self->table.values[i];

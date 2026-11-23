@@ -4,14 +4,14 @@
 #include "game/UnkActor.h"
 #include "types.h"
 
-struct UnkRange {
+struct UnkRange_39dd34 {
     u8 pad_0x0[0x18];
     UnkActor* field_0x18;
     u8 pad_0x20[0x18];
     f32 field_0x38;
 };
 
-bool fn_710039dd34(UnkRange* self) {
+bool fn_710039dd34(UnkRange_39dd34* self) {
     UnkActor* target = fn_7100d7c990(self->field_0x18);
     if (!target)
         return false;

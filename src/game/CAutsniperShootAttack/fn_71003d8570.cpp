@@ -4,7 +4,7 @@
 #include "game/navmesh/SNavMeshPath.h"
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkRecord {
+struct UnkRecord_3d8570 {
     u8 pad_0x0[0x8];
     u8 field_0x8[32];
     u64 field_0x28;
@@ -32,7 +32,7 @@ struct UnkRecord {
     u8 field_0x12b58;
 };
 
-UnkRecord* fn_71003d8570(UnkRecord* self, const UnkRecord* other) {
+UnkRecord_3d8570* fn_71003d8570(UnkRecord_3d8570* self, const UnkRecord_3d8570* other) {
     __builtin_memcpy(self->field_0x8, other->field_0x8, 32);
     self->field_0x28 = other->field_0x28;
     __builtin_memcpy(self->field_0x38, other->field_0x38, 16);

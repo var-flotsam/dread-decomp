@@ -1,7 +1,7 @@
 // Copy assignments of a plain 0x88-byte record (two identical functions).
 #include "types.h"
 
-struct UnkRecord {
+struct UnkRecord_437038 {
     u8 unk_0x0[8];
     u64 field_0x8[2];
     u64 field_0x18[2];
@@ -21,7 +21,7 @@ struct UnkRecord {
     u8 field_0x84;
 };
 
-__attribute__((always_inline)) static inline void Assign(UnkRecord* self, const UnkRecord* other) {
+__attribute__((always_inline)) static inline void Assign(UnkRecord_437038* self, const UnkRecord_437038* other) {
     if (self == other)
         return;
     u64 a0 = other->field_0x8[0], a1 = other->field_0x8[1];
@@ -53,6 +53,6 @@ __attribute__((always_inline)) static inline void Assign(UnkRecord* self, const 
 }
 
 // NON_MATCHING(minor): the stores of 0x50 and 0x58 pair differently (stp 0x50/0x58 + str 0x60 here, stp 0x58/0x60 + str 0x50 in the original).
-void fn_7100437038(UnkRecord* self, const UnkRecord* other) { Assign(self, other); }
+void fn_7100437038(UnkRecord_437038* self, const UnkRecord_437038* other) { Assign(self, other); }
 // NON_MATCHING(minor): as fn_7100437038.
-void fn_71004370bc(UnkRecord* self, const UnkRecord* other) { Assign(self, other); }
+void fn_71004370bc(UnkRecord_437038* self, const UnkRecord_437038* other) { Assign(self, other); }

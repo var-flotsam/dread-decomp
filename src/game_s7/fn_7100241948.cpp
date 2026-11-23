@@ -47,7 +47,7 @@ struct UnkReleasedStrId {
     }
 };
 
-struct UnkRefObject {
+struct UnkRefObject_241948 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -55,10 +55,10 @@ struct UnkRefObject {
 };
 
 struct UnkRefPtr_241948 {
-    UnkRefObject* ptr;
+    UnkRefObject_241948* ptr;
 
     ~UnkRefPtr_241948() {
-        if (UnkRefObject* p = ptr) {
+        if (UnkRefObject_241948* p = ptr) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
         }

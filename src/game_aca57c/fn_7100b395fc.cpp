@@ -51,21 +51,21 @@ struct UnkNamedRoot {
     u64 field_0x58[3];
 };
 
-struct UnkNamedBase : UnkNamedRoot {
+struct UnkNamedBase_b395fc : UnkNamedRoot {
     UnkNameHolder holder;
     u64 field_0xa0[10];
 
-    __attribute__((always_inline)) ~UnkNamedBase() { SetVtable(this, g_unk_7101a9c8e0); }
+    __attribute__((always_inline)) ~UnkNamedBase_b395fc() { SetVtable(this, g_unk_7101a9c8e0); }
 };
 
-struct UnkNamedWithId : UnkNamedBase {
+struct UnkNamedWithId : UnkNamedBase_b395fc {
     u64 field_0xf0;
     UnkStrIdTwoStep id;
 
     __attribute__((always_inline)) ~UnkNamedWithId() { SetVtable(this, g_unk_7101a9ca40); }
 };
 
-struct UnkNamedWithRef : UnkNamedBase {
+struct UnkNamedWithRef : UnkNamedBase_b395fc {
     UnkRefPtr ref;
 
     __attribute__((always_inline)) ~UnkNamedWithRef() { SetVtable(this, g_unk_7101a9cb48); }
@@ -83,7 +83,7 @@ using UnkNamedWithRefId2 = UnkNamedWithRefIdT<g_unk_7101a9c888>;
 
 // NON_MATCHING(minor): the base's vtable store post-increments to the string at 0x28 instead of
 // the holder at 0x70, so the two addresses are formed the other way round.
-void fn_7100b395fc(UnkNamedBase* self) { self->~UnkNamedBase(); }
+void fn_7100b395fc(UnkNamedBase_b395fc* self) { self->~UnkNamedBase_b395fc(); }
 // NON_MATCHING(minor): as fn_7100b395fc.
 void fn_7100b3955c(UnkNamedWithId* self) { self->~UnkNamedWithId(); }
 // NON_MATCHING(minor): as fn_7100b395fc.
@@ -95,23 +95,23 @@ void fn_7100b39714(UnkNamedWithRefId2* self) { self->~UnkNamedWithRefId2(); }
 
 // Deleting destructors of the base (four copies).
 // NON_MATCHING(minor): as fn_7100b395fc, and the deleted pointer takes a third register.
-void fn_7100b4797c(UnkNamedBase* self) {
-    self->~UnkNamedBase();
+void fn_7100b4797c(UnkNamedBase_b395fc* self) {
+    self->~UnkNamedBase_b395fc();
     operator delete(self);
 }
 // NON_MATCHING(minor): as fn_7100b4797c.
-void fn_7100b479ec(UnkNamedBase* self) {
-    self->~UnkNamedBase();
+void fn_7100b479ec(UnkNamedBase_b395fc* self) {
+    self->~UnkNamedBase_b395fc();
     operator delete(self);
 }
 // NON_MATCHING(minor): as fn_7100b4797c.
-void fn_7100b47a38(UnkNamedBase* self) {
-    self->~UnkNamedBase();
+void fn_7100b47a38(UnkNamedBase_b395fc* self) {
+    self->~UnkNamedBase_b395fc();
     operator delete(self);
 }
 // NON_MATCHING(minor): as fn_7100b4797c.
-void fn_7100b47b2c(UnkNamedBase* self) {
-    self->~UnkNamedBase();
+void fn_7100b47b2c(UnkNamedBase_b395fc* self) {
+    self->~UnkNamedBase_b395fc();
     operator delete(self);
 }
 // NON_MATCHING(minor): as fn_7100b3955c, deleting.
