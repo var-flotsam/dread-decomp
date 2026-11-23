@@ -3193,7 +3193,7 @@ address,size,name,name_source,subsystem,status
 0x7100eb7f08,100,fn_7100eb7f08,unknown,engine/reflection?,U
 0x7100eb7f6c,132,fn_7100eb7f6c,unknown,engine/reflection?,O
 0x7100eb7ff0,1636,fn_7100eb7ff0,unknown,engine/reflection?,U
-0x7100eb8654,804,fn_7100eb8654,unknown,engine/reflection?,U
+0x7100eb8654,804,fn_7100eb8654,unknown,engine/reflection?,O
 0x7100eb8978,160,fn_7100eb8978,unknown,engine/reflection?,O
 0x7100eb8a20,712,fn_7100eb8a20,unknown,engine/reflection?,U
 0x7100eb8cf0,3732,fn_7100eb8cf0,unknown,engine/reflection?,U

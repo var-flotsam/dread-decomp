@@ -217,8 +217,8 @@ u32 fn_7100696f04(UnkScorpiusAI_l696f04* self, UnkScorpiusEvent_l696f04* event) 
         if (!(*name == g_unk_71727041f0)) {
             UnkCollisionObject* body = fn_7100864194(self->owner->collision, &g_unk_71727041f0);
             UnkMatrix44 transform = fn_7100d36a2c(reinterpret_cast<UnkShape*>(body));
-            f32 dy = event->y - transform.m[7];
             f32 dx = event->x - transform.m[3];
+            f32 dy = event->y - transform.m[7];
             f32 dz = event->z - transform.m[11];
             if (!(dx * dx + dy * dy + dz * dz <= 19600.0f)) {
                 const auto* tunables = reinterpret_cast<const UnkScorpiusTunables_l696f04*>(&g_unk_7172703e88);

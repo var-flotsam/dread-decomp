@@ -36,7 +36,7 @@ struct UnkZeroLaserAttack_A2_b72 {
     u32 field_0x80;
     u8 pad_0x84[0x1c];
     UnkZeroLaserTrackLink_A2_b72 link;  // 0xa0
-    UnkWeakHandle* handle;              // 0xb8
+    UnkWeakRef handle;              // 0xb8
 };
 
 void fn_71004467a4(UnkZeroLaserAttack_A2_b72* self) {
@@ -54,18 +54,18 @@ void fn_71004467a4(UnkZeroLaserAttack_A2_b72* self) {
     link->callback = fn_7100448f28;
     UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(self->owner + 0x220);
     if (track) {
-        if (UnkWeakHandle* handle = self->handle) {
+        if (UnkWeakHandle* handle = self->handle.handle) {
             if (UnkWeakTarget* target = handle->target)
                 fn_710117b3f0(target, link);
-            if (UnkWeakHandle* p = self->handle) {
+            if (UnkWeakHandle* p = self->handle.handle) {
                 if (--p->ref_count == 0)
                     p->vf_0x10();
-                self->handle = nullptr;
+                self->handle.handle = nullptr;
             }
         }
         asm("" : "+r"(self));
         fn_7100316018(track, &self->handle);
-        fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+        fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
     fn_7100426b54(reinterpret_cast<UnkChozoCommanderAttack*>(self), 0x8f4e8a524ebacc1bull, false);
 }

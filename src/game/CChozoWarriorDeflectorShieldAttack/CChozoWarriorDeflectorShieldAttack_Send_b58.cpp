@@ -10,10 +10,9 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "game_s2/UnkSpitAttack.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
-bool fn_71010fc554(base::reflection::UnkReflObject* component, f32* out);
-bool fn_71010fc5fc(base::reflection::UnkReflObject* component, f32* out);
 
 struct UnkDeflectorOwner_b58 {
     u8 pad_0x0[0x38];

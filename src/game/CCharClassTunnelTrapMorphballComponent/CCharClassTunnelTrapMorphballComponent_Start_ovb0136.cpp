@@ -102,7 +102,7 @@ void fn_7100a443c8(UnkTunnelTrapMorphball* trap) {
             }
         }
         asm("" : "+r"(self));
-        fn_7100316018(static_cast<UnkWeakTarget*>(anim), &self->handle);
+        fn_7100316018(static_cast<UnkWeakTarget*>(anim), reinterpret_cast<UnkWeakRef*>(&self->handle));
         fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
     }
     if (self->def->field_0x58) {

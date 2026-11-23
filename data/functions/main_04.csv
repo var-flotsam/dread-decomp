@@ -1258,7 +1258,7 @@ address,size,name,name_source,subsystem,status
 0x710043bc98,316,fn_710043bc98,unknown,game/ai?,O
 0x710043bdd4,688,fn_710043bdd4,unknown,game/ai?,U
 0x710043c084,408,fn_710043c084,unknown,game/ai?,O
-0x710043c21c,940,fn_710043c21c,unknown,game/ai?,U
+0x710043c21c,940,fn_710043c21c,unknown,game/ai?,O
 0x710043c5c8,100,fn_710043c5c8,unknown,game/ai?,O
 0x710043c62c,4,fn_710043c62c,unknown,game/ai?,O
 0x710043c630,4,fn_710043c630,unknown,game/ai?,O
@@ -2898,7 +2898,7 @@ address,size,name,name_source,subsystem,status
 0x71004823fc,388,CChozoWarriorXLandAttack::refl_InitClass,reflection,game/ai,O
 0x7100482580,68,fn_7100482580,unknown,game/ai?,O
 0x71004825c4,96,fn_71004825c4,unknown,game/ai?,O
-0x7100482624,848,fn_7100482624,unknown,game/ai?,U
+0x7100482624,848,fn_7100482624,unknown,game/ai?,O
 0x7100482974,4,fn_7100482974,unknown,game/ai?,O
 0x7100482978,204,fn_7100482978,unknown,game/ai?,O
 0x7100482a44,164,fn_7100482a44,unknown,game/ai?,O

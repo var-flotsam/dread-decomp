@@ -1,6 +1,6 @@
 // Unit 2567 (the minimap's items): resets an item's selected alpha and size modifiers: each gets the
 // default curve settings and is snapped back to its off value. Names and layouts are placeholders.
-#include "../../../src/game_aca57c/UnkBufferString.h"
+#include "../../game_aca57c/UnkBufferString.h"
 #include "base/UnkTimedCurve.h"
 #include "base/global/CRntString.h"
 #include "game/UnkBufferStringPool.h"
@@ -87,8 +87,9 @@ static_assert(__builtin_offsetof(UnkMinimapItem_eb8654, size_modifiers) == 0x2ec
 static const u32 kNoModifier = 0xffffffff;
 
 static inline void Reset(UnkModifiers_eb8654* list, u32 index) {
-    if (list->count < index + 1)
-        list->Resize(index + 1);
+    u32 size = index + 1;
+    if (size > list->count)
+        list->Resize(size);
     UnkModifier_eb8654* modifiers = list->data();
     UnkCurveSettings_eb8654 settings = UnkCurveSettings_eb8654();
     UnkModifier_eb8654& modifier = modifiers[index];

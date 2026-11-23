@@ -57,7 +57,7 @@ void fn_710038ff68(UnkScaredAction_b49* self) {
         }
     take:
         if (animation) {
-            fn_7100316018(animation, reinterpret_cast<UnkWeakHandle**>(reinterpret_cast<char*>(self) + 0x50));
+            fn_7100316018(animation, reinterpret_cast<UnkWeakRef*>(reinterpret_cast<char*>(self) + 0x50));
             fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
         }
     }

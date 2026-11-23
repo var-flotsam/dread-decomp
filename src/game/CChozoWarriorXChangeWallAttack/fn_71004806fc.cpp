@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkAttack.h"
 #include "game_s2/UnkWeakHandle.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "types.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
@@ -35,7 +36,6 @@ struct UnkStrIdOut_b0266 {
         }
     }
 };
-UnkStrIdOut_b0266 fn_710049c59c(UnkReflObject* ai);
 
 struct UnkChangeWallLink_b0266 {
     u8 pad_0x0[0x8];
@@ -48,7 +48,7 @@ struct UnkChangeWallStart_b0266 {
     char* owner;
     u8 pad_0x10[0x38];
     UnkChangeWallLink_b0266 link;  // 0x48
-    UnkWeakHandle* handle;         // 0x60
+    UnkWeakRef handle;         // 0x60
 };
 
 static inline UnkReflObject* Ai_b0266(char* owner) { return *reinterpret_cast<UnkReflObject**>(owner + 0x240); }
@@ -75,19 +75,19 @@ void fn_71004806fc(UnkChangeWallStart_b0266* self) {
     link->context = self;
     link->callback = fn_7100481424;
     UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(owner + 0x220);
-    if (UnkWeakHandle* handle = self->handle) {
+    if (UnkWeakHandle* handle = self->handle.handle) {
         if (UnkWeakTarget* target = handle->target)
             fn_710117b3f0(target, link);
-        if (UnkWeakHandle* p = self->handle) {
+        if (UnkWeakHandle* p = self->handle.handle) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
-            self->handle = nullptr;
+            self->handle.handle = nullptr;
         }
     }
     if (track) {
-        // keeps self (not &self->handle) live across the calls
+        // keeps self (not &self->handle.handle) live across the calls
         asm("" : "+r"(self));
         fn_7100316018(track, &self->handle);
-        fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+        fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
 }

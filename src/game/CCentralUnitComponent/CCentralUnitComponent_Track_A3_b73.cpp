@@ -20,7 +20,7 @@ struct UnkCentralUnitTrack_A3_b73 {
     base::UnkRefHandle target;  // 0x470
     u8 pad_0x478[0x768 - 0x478];
     u8 link[0x18];           // 0x768
-    UnkWeakHandle* handle;   // 0x780
+    UnkWeakRef handle;   // 0x780
 };
 
 u32 fn_7100773b74(UnkCentralUnitTrack_A3_b73* self, void* other) {
@@ -39,18 +39,18 @@ u32 fn_7100773b74(UnkCentralUnitTrack_A3_b73* self, void* other) {
                 char* obj = *reinterpret_cast<char**>(reinterpret_cast<char*>(target) + 0x10);
                 if (UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(obj + 0x220)) {
                     void* link = self->link;
-                    if (UnkWeakHandle* handle = self->handle) {
+                    if (UnkWeakHandle* handle = self->handle.handle) {
                         if (UnkWeakTarget* t = handle->target)
                             fn_710117b3f0(t, link);
-                        if (UnkWeakHandle* p = self->handle) {
+                        if (UnkWeakHandle* p = self->handle.handle) {
                             if (--p->ref_count == 0)
                                 p->vf_0x10();
-                            self->handle = nullptr;
+                            self->handle.handle = nullptr;
                         }
                     }
                     asm("" : "+r"(self));
                     fn_7100316018(track, &self->handle);
-                    fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+                    fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
                 }
             }
         }

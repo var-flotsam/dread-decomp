@@ -2,12 +2,13 @@
 // a Sabotoru's AI is marked and its controller updated, the door of its spawn point is turned toward the side
 // the owner faces, the enemy movement gets its parameter blocks, and the animation is sent the turn to one side
 // or the other. Names and layouts are placeholders.
-#include "../../../../src/game_s2/UnkSpitSend.h"
+#include "../../../game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CBossAIComponent.h"
+#include "game/CDoorShieldLifeComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTU1730.h"
@@ -20,8 +21,6 @@ using base::reflection::CClass;
 
 struct UnkAnimationComponent;
 
-void fn_71008db24c(UnkDoorLife_b44a2* door, void* actor);
-void fn_71008db440(UnkDoorLife_b44a2* door, void* actor);
 
 // An object reached through its vtable only.
 struct UnkTurnObject_l6751d0 {
@@ -153,9 +152,9 @@ void fn_71006751d0(UnkTurnInDoorAction_l6751d0* self) {
             if (UnkDoorLock* lock = fn_71002af860(LinkedDoor(spawn_point))) {
                 UnkDoorLife_b44a2* door = reinterpret_cast<UnkDoorLife_b44a2*>(lock);
                 if (fn_710002614c(&self->owner->transform).m[2] > 0.0f)
-                    fn_71008db24c(door, self->owner);
+                    fn_71008db24c(lock, self->owner);
                 else
-                    fn_71008db440(door, self->owner);
+                    fn_71008db440(lock, self->owner);
                 fn_71008d498c(door, 0, 0, 0);
             }
         }
@@ -179,8 +178,8 @@ void fn_71006751d0(UnkTurnInDoorAction_l6751d0* self) {
         UnkTurnMovementParams_l6751d0 params;
         params.field_0xc = 0;
         params.field_0x14 = 0;
-        __builtin_memset(params.field_0x28, 0, 13);
         __builtin_memset(params.field_0x18, 0, 13);
+        __builtin_memset(params.field_0x28, 0, 13);
         params.vtable = g_unk_7101a2e208 + 2;
         params.field_0x38 = 3;
         params.field_0x3c = 0;

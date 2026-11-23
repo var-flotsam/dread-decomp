@@ -4,7 +4,7 @@
 // time, otherwise a third id; then raises the CChozoCommanderAIComponent's flag at +0x15f00 and hooks the
 // callback fn_710043ce18 (link at +0x60, handle at +0x78) up to the animation. Names and layouts are
 // placeholders.
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -34,10 +34,30 @@ struct UnkTriComboAI_l43c21c : base::reflection::UnkReflObject {
 };
 static_assert(__builtin_offsetof(UnkTriComboAI_l43c21c, field_0x15f00) == 0x15f00, "layout");
 
+
+// A listener on an animation: the callback with its context, and the weak handle of what it listens to.
 struct UnkTriComboLink_l43c21c {
     u8 pad_0x0[0x8];
     void* context;
     void (*callback)();
+    UnkWeakRef ref;  // 0x18
+
+    // Stops listening to the animation the handle points at, and drops the handle.
+    void Detach() {
+        if (UnkWeakHandle* h = ref.handle) {
+            if (UnkWeakTarget* target = h->target)
+                fn_710117b3f0(target, this);
+            ResetRef(&ref.handle);
+        }
+    }
+    // Listens to `animation` instead.
+    void Attach(UnkWeakTarget* animation) {
+        Detach();
+        if (animation) {
+            fn_7100316018(animation, &ref);
+            fn_710117b3e8(ref.handle ? ref.handle->target : nullptr, this);
+        }
+    }
 };
 
 struct UnkTriComboAttack_l43c21c {
@@ -47,7 +67,6 @@ struct UnkTriComboAttack_l43c21c {
     f32 field_0x58;
     f32 field_0x5c;
     UnkTriComboLink_l43c21c link;  // 0x60
-    UnkWeakHandle* handle;         // 0x78
 };
 
 void fn_710043c21c(UnkTriComboAttack_l43c21c* self) {
@@ -83,14 +102,7 @@ start:
     auto* ai = static_cast<UnkTriComboAI_l43c21c*>(self->owner->field_0x240);
     if (ai && fn_710009d50c(ai->vf_0x0(), fn_710044e708()))
         ai->field_0x15f00 = true;
-    UnkTriComboLink_l43c21c* link = &self->link;
-    link->context = self;
-    link->callback = fn_710043ce18;
-    if (UnkWeakHandle* handle = self->handle) {
-        if (handle->target)
-            fn_710117b3f0(handle->target, link);
-        ResetRef(&self->handle);
-    }
-    fn_7100316018(reinterpret_cast<UnkWeakTarget*>(animation), &self->handle);
-    fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+    self->link.context = self;
+    self->link.callback = fn_710043ce18;
+    self->link.Attach(reinterpret_cast<UnkWeakTarget*>(animation));
 }

@@ -56,17 +56,17 @@ struct UnkMushroomLinked_b56 {
     u32 field_0x3f4;
     u8 pad_0x3f8[0x4e8 - 0x3f8];
     u8 link[0x18];
-    UnkWeakHandle* handle;
+    UnkWeakRef handle;
 };
 
 static inline __attribute__((always_inline)) void Unhook_b56(UnkMushroomLinked_b56* self) {
-    if (UnkWeakHandle* handle = self->handle) {
+    if (UnkWeakHandle* handle = self->handle.handle) {
         if (UnkWeakTarget* target = handle->target)
             fn_710117b3f0(target, self->link);
-        if (UnkWeakHandle* p = self->handle) {
+        if (UnkWeakHandle* p = self->handle.handle) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
-            self->handle = nullptr;
+            self->handle.handle = nullptr;
         }
     }
 }
@@ -79,7 +79,7 @@ void fn_710088b8d0(UnkMushroomLinked_b56* self) {
         Unhook_b56(self);
         asm("" : "+r"(self));
         fn_7100316018(track, &self->handle);
-        fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+        fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     } else {
         Unhook_b56(self);
     }

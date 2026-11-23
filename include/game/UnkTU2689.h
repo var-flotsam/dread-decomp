@@ -6,6 +6,11 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+namespace base::reflection {
+struct UnkTunable;
+}
+extern base::reflection::UnkTunable g_unk_7172a03d80;  // CPlayerMovement's tunable.
+
 struct UnkMorphBallMovement_01d8;
 struct UnkForcedMovementTarget_A5_b68;
 struct UnkHitInfo_b152;
