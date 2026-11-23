@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/global/timeline/CEvent.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
@@ -13,17 +14,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // base::global::timeline::CEvent
-namespace base::global::timeline::CEvent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x10;
+void base::global::timeline::CEvent::refl_AddAttributes(CClass*) {}
+void base::global::timeline::CEvent::refl_AddFields(CClass*) {}
+bool base::global::timeline::CEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 base::global::timeline::CEvent::refl_Hash() { return -1; }
+const base::reflection::CType& base::global::timeline::CEvent::refl_TypeOf(const void* obj) { return *static_cast<const CEvent*>(obj)->vf_0x0(); }
+void base::global::timeline::CEvent::refl_Destroy(void* obj) { static_cast<CEvent*>(obj)->~CEvent(); }
+struct base::global::timeline::CEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CEvent);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -32,5 +30,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace base::global::timeline::CEvent
-DREAD_REFLECTED_ROOT_CLASS(base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(base::global::timeline::CEvent);

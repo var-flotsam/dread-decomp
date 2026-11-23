@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCameraFX_RotationShake.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,24 +19,24 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_RotationShake
-namespace CCameraFX_RotationShake {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fAmplitude", 0x58, (DefaultValue, 0.0f), (Description, "Amplitude (degrees)"));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sFunction", 0x60, (DefaultValue, base::global::CRntString("SqooooooszI")), (Description, base::global::CRntString("Function (p.ej: SqooooooszI)")));
-    DREAD_REFLECTED_FIELD(bool, "bCentered", 0x90, (DefaultValue, false), (Description, "Centered in player path"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCameraFX_RotationShake::refl_AddAttributes(CClass*) {}
+void CCameraFX_RotationShake::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fAmplitude", offsetof(CCameraFX_RotationShake, fAmplitude), (DefaultValue, 0.0f), (Description, "Amplitude (degrees)"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sFunction", offsetof(CCameraFX_RotationShake, sFunction), (DefaultValue, base::global::CRntString("SqooooooszI")), (Description, base::global::CRntString("Function (p.ej: SqooooooszI)")));
+    DREAD_REFLECTED_FIELD(bool, "bCentered", offsetof(CCameraFX_RotationShake, bCentered), (DefaultValue, false), (Description, "Centered in player path"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x98;
+bool CCameraFX_RotationShake::refl_Equals(const void*, const void*) { return false; }
+s32 CCameraFX_RotationShake::refl_Hash() { return -1; }
+const base::reflection::CType& CCameraFX_RotationShake::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX_RotationShake*>(obj)->vf_0x0(); }
+void CCameraFX_RotationShake::refl_CopyConstruct(void*, const void*) {}
+void CCameraFX_RotationShake::refl_MoveConstruct(void*, const void*) {}
+void CCameraFX_RotationShake::refl_Destroy(void* obj) { static_cast<CCameraFX_RotationShake*>(obj)->~CCameraFX_RotationShake(); }
+void* CCameraFX_RotationShake::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCameraFX_RotationShake::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCameraFX_RotationShake::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCameraFX_RotationShake);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -46,5 +47,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCameraFX_RotationShake
-DREAD_REFLECTED_CLASS(CCameraFX_RotationShake, CCameraFX_Shake);
+DREAD_REFLECTED_DECLARED_CLASS(CCameraFX_RotationShake, CCameraFX_Shake);
+#pragma GCC diagnostic pop

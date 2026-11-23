@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassBaseFadeInEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,29 +19,25 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBaseFadeInEvent
-namespace CCharClassBaseFadeInEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassBaseFadeInEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Fade In");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Fade", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fTime", 0xc, (DefaultValue, 0.3f), (MinValue, 0.1f), (MaxValue, 20.0f));
-    DREAD_REFLECTED_FIELD(f32, "fDelay", 0x10, (DefaultValue, 0.1f));
-    DREAD_REFLECTED_FIELD(f32, "fR", 0x14, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fG", 0x18, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fB", 0x1c, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
+void CCharClassBaseFadeInEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fTime", offsetof(CCharClassBaseFadeInEvent, fTime), (DefaultValue, 0.3f), (MinValue, 0.1f), (MaxValue, 20.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDelay", offsetof(CCharClassBaseFadeInEvent, fDelay), (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fR", offsetof(CCharClassBaseFadeInEvent, fR), (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fG", offsetof(CCharClassBaseFadeInEvent, fG), (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fB", offsetof(CCharClassBaseFadeInEvent, fB), (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CCharClassBaseFadeInEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassBaseFadeInEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassBaseFadeInEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBaseFadeInEvent*>(obj)->vf_0x0(); }
+void CCharClassBaseFadeInEvent::refl_Destroy(void* obj) { static_cast<CCharClassBaseFadeInEvent*>(obj)->~CCharClassBaseFadeInEvent(); }
+struct CCharClassBaseFadeInEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassBaseFadeInEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -51,5 +48,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassBaseFadeInEvent
-DREAD_REFLECTED_CLASS(CCharClassBaseFadeInEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassBaseFadeInEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

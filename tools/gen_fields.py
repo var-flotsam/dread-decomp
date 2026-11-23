@@ -45,6 +45,8 @@ KEYED_NAMED = re.compile(r'struct base::reflection::(?:Pointer|Primitive)TypeDes
 # namespace of its name, its fields one line each.
 NAMESPACE = re.compile(r"^namespace ([\w:]+) \{\n(.*?)^\}  // namespace \1$", re.M | re.S)
 ADD_FIELDS = re.compile(r"^void refl_AddFields\(CClass\* cls\) \{\n(.*?)^\}", re.M | re.S)
+DECLARED_ADD_FIELDS = re.compile(r"^void ([\w:]+)::refl_AddFields\(CClass\* cls\) \{\n(.*?)^\}", re.M | re.S)
+OFFSETOF = re.compile(r"offsetof\(\w+, (\w+)\)")
 FIELD_LINE = re.compile(r'^    (DREAD_REFLECTED_(?:FIELD|CLASS_FIELD|PROPERTY|READ_ONLY_PROPERTY|FIELD_OF))\('
                         r'("[^"]*"|[^,]+), "([^"]+)"(?:, (0x[0-9a-f]+|\d+))?', re.M)
 
@@ -82,6 +84,16 @@ def members(text: str) -> list[tuple[str, int, str, str]]:
         f = ADD_FIELDS.search(m.group(2))
         if f:
             out += readable_members(m.group(1), f.group(1))
+    # A class tools/gen_classes.py declares: its members' offsets are offsetof(T, member), which its header asserts.
+    declared = list(DECLARED_ADD_FIELDS.finditer(text))
+    if declared:
+        import gen_classes
+
+        offsets = gen_classes.offsets()
+        for m in declared:
+            cls = m.group(1)
+            body = OFFSETOF.sub(lambda o: hex(offsets[(cls, o.group(1))]), m.group(2))
+            out += readable_members(cls, body)
     return out
 
 

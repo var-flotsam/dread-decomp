@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassCameraFXPresetEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,28 +19,24 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCameraFXPresetEvent
-namespace CCharClassCameraFXPresetEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassCameraFXPresetEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Camera FX Preset");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Camera", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(f32, "fDirX", 0x18, (DefaultValue, 0.0f), (MinValue, -1.0f), (MaxValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fDirY", 0x1c, (DefaultValue, 0.0f), (MinValue, -1.0f), (MaxValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fDirZ", 0x20, (DefaultValue, 0.0f), (MinValue, -1.0f), (MaxValue, 1.0f));
+void CCharClassCameraFXPresetEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", offsetof(CCharClassCameraFXPresetEvent, sPreset), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(f32, "fDirX", offsetof(CCharClassCameraFXPresetEvent, fDirX), (DefaultValue, 0.0f), (MinValue, -1.0f), (MaxValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDirY", offsetof(CCharClassCameraFXPresetEvent, fDirY), (DefaultValue, 0.0f), (MinValue, -1.0f), (MaxValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDirZ", offsetof(CCharClassCameraFXPresetEvent, fDirZ), (DefaultValue, 0.0f), (MinValue, -1.0f), (MaxValue, 1.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x28;
+bool CCharClassCameraFXPresetEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassCameraFXPresetEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassCameraFXPresetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCameraFXPresetEvent*>(obj)->vf_0x0(); }
+void CCharClassCameraFXPresetEvent::refl_Destroy(void* obj) { static_cast<CCharClassCameraFXPresetEvent*>(obj)->~CCharClassCameraFXPresetEvent(); }
+struct CCharClassCameraFXPresetEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassCameraFXPresetEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -50,5 +47,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassCameraFXPresetEvent
-DREAD_REFLECTED_CLASS(CCharClassCameraFXPresetEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassCameraFXPresetEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

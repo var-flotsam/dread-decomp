@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassDropItemCrazyEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -18,55 +19,51 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDropItemCrazyEvent
-namespace CCharClassDropItemCrazyEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassDropItemCrazyEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Drop Item Crazy");
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Drops");
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bForce", 0xc, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(s32, "iMinNumOfDroppedItems", 0x10, (DefaultValue, 0));
-    DREAD_REFLECTED_FIELD(s32, "iMaxNumOfDroppedItems", 0x14, (DefaultValue, 0));
-    DREAD_REFLECTED_FIELD(s32, "iMaxItemTypeMin", 0x18, (DefaultValue, 0));
-    DREAD_REFLECTED_FIELD(s32, "iMaxItemTypeMax", 0x1c, (DefaultValue, 0));
-    DREAD_REFLECTED_FIELD(f32, "fNothingProbability", 0x20, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fLifeProbability", 0x24, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fLifeBigProbability", 0x28, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMissileProbability", 0x2c, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMissileBigProbability", 0x30, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fPowerBombProbability", 0x34, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fPowerBombBigProbability", 0x38, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fXParasiteYellowTypeProbability", 0x3c, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fXParasiteGreenTypeProbability", 0x40, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fXParasiteRedTypeProbability", 0x44, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fXParasiteOrangeTypeProbability", 0x48, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMinDistance", 0x4c, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMaxDistance", 0x50, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMaxZDisp", 0x54, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x58, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(f32, "fOffsetX", 0x60, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fOffsetY", 0x64, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fOffsetZ", 0x68, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fRawOffsetX", 0x6c, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fRawOffsetY", 0x70, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fRawOffsetZ", 0x74, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sDirection", 0x78, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bStrictDirection", 0x80, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bForceAttract", 0x81, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bIgnoreAttractionRadius", 0x82, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bDoNotDropWithNormalMelee", 0x83, (DefaultValue, false));
+void CCharClassDropItemCrazyEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bForce", offsetof(CCharClassDropItemCrazyEvent, bForce), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(s32, "iMinNumOfDroppedItems", offsetof(CCharClassDropItemCrazyEvent, iMinNumOfDroppedItems), (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iMaxNumOfDroppedItems", offsetof(CCharClassDropItemCrazyEvent, iMaxNumOfDroppedItems), (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iMaxItemTypeMin", offsetof(CCharClassDropItemCrazyEvent, iMaxItemTypeMin), (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iMaxItemTypeMax", offsetof(CCharClassDropItemCrazyEvent, iMaxItemTypeMax), (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(f32, "fNothingProbability", offsetof(CCharClassDropItemCrazyEvent, fNothingProbability), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLifeProbability", offsetof(CCharClassDropItemCrazyEvent, fLifeProbability), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLifeBigProbability", offsetof(CCharClassDropItemCrazyEvent, fLifeBigProbability), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMissileProbability", offsetof(CCharClassDropItemCrazyEvent, fMissileProbability), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMissileBigProbability", offsetof(CCharClassDropItemCrazyEvent, fMissileBigProbability), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPowerBombProbability", offsetof(CCharClassDropItemCrazyEvent, fPowerBombProbability), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPowerBombBigProbability", offsetof(CCharClassDropItemCrazyEvent, fPowerBombBigProbability), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fXParasiteYellowTypeProbability", offsetof(CCharClassDropItemCrazyEvent, fXParasiteYellowTypeProbability), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fXParasiteGreenTypeProbability", offsetof(CCharClassDropItemCrazyEvent, fXParasiteGreenTypeProbability), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fXParasiteRedTypeProbability", offsetof(CCharClassDropItemCrazyEvent, fXParasiteRedTypeProbability), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fXParasiteOrangeTypeProbability", offsetof(CCharClassDropItemCrazyEvent, fXParasiteOrangeTypeProbability), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinDistance", offsetof(CCharClassDropItemCrazyEvent, fMinDistance), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistance", offsetof(CCharClassDropItemCrazyEvent, fMaxDistance), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxZDisp", offsetof(CCharClassDropItemCrazyEvent, fMaxZDisp), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sNode", offsetof(CCharClassDropItemCrazyEvent, sNode), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(f32, "fOffsetX", offsetof(CCharClassDropItemCrazyEvent, fOffsetX), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fOffsetY", offsetof(CCharClassDropItemCrazyEvent, fOffsetY), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fOffsetZ", offsetof(CCharClassDropItemCrazyEvent, fOffsetZ), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRawOffsetX", offsetof(CCharClassDropItemCrazyEvent, fRawOffsetX), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRawOffsetY", offsetof(CCharClassDropItemCrazyEvent, fRawOffsetY), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRawOffsetZ", offsetof(CCharClassDropItemCrazyEvent, fRawOffsetZ), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sDirection", offsetof(CCharClassDropItemCrazyEvent, sDirection), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bStrictDirection", offsetof(CCharClassDropItemCrazyEvent, bStrictDirection), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bForceAttract", offsetof(CCharClassDropItemCrazyEvent, bForceAttract), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreAttractionRadius", offsetof(CCharClassDropItemCrazyEvent, bIgnoreAttractionRadius), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bDoNotDropWithNormalMelee", offsetof(CCharClassDropItemCrazyEvent, bDoNotDropWithNormalMelee), (DefaultValue, false));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x88;
+bool CCharClassDropItemCrazyEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassDropItemCrazyEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassDropItemCrazyEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDropItemCrazyEvent*>(obj)->vf_0x0(); }
+void CCharClassDropItemCrazyEvent::refl_Destroy(void* obj) { static_cast<CCharClassDropItemCrazyEvent*>(obj)->~CCharClassDropItemCrazyEvent(); }
+struct CCharClassDropItemCrazyEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassDropItemCrazyEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -77,5 +74,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassDropItemCrazyEvent
-DREAD_REFLECTED_CLASS(CCharClassDropItemCrazyEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassDropItemCrazyEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop
