@@ -106,6 +106,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A placeholder byte array that moves the anchor register when split into flat fields can be an embedded object: the pooled map's +0x10..0x38 is a `CRntVector`, and that nested layout with typed stores matched: [scene registry layout](#session-log-newest-first).
 - A function that a generated source reaches through a hand-written header's declaration cannot be renamed until that generator emits the name: grep `src/tables`, `src/clones` and `src/reflection*` before renaming a hub: [Name the CRntString functions](#session-log-newest-first) (#614).
 - A header-only type move is safe when each edited source's object hashes the same before and after (Clang 9.0.1 with the project flags); partial views of one type merge into the union of their fields where they agree at every overlapping offset: [Reconcile differing copies of shared types](#session-log-newest-first) (#618).
+- A `base::reflection` class whose header declares `refl_Description` and its reflection functions as members takes the generator's member form, not the namespace form; the mangled symbols are the same, so its matches stay: [Name the reflected field type base::reflection::CVariable](#session-log-newest-first) (#625).
 
 **Port: shaders**
 - `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
@@ -162,7 +163,52 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through ca6b82cb4a09e36c7b73e203edbfa6e62f05dbb1 -->
+<!-- journal_sync: through 9a90b16789ce943acb4e47819d2461c48f4b4d62 -->
+
+**Name the reflected field type base::reflection::CVariable (#625, 2026-11-23).**
+
+- The member-field descriptor `base::reflection::UnkReflField` (0xb0 bytes, attributes at +0x38 and +0x70) is now `base::reflection::CVariable`. The name comes from mercury-engine-data-structures: `CRntSmallDictionary<CName, base::reflection::CVariable>` is a class's field dictionary. The tool `tools/refl_attrs.py`, its tests and every hand-written use are updated.
+- The global placeholder `::UnkReflField` is a separate type, used by the UnkTU85 field converters and the tunable-registry callers. It keeps its name until there is evidence about what it is.
+- `tools/gen_reflection.py`: a `base::reflection` class whose header declares its reflection functions and `struct refl_Description;` as members can't take the namespace form, because a namespace with the struct's name would collide with it. The generator now writes that class's description as definitions of those members (`member_form_header`, `member_includes`), and `CVariable` declares them in `include/base/reflection/UnkReflAttributes.h`. The mangled symbols are identical to the namespace form, so `refl_Equals` (0x71000e8894) and `refl_Hash` (0x71000e88a0) stay `O`.
+- `src/reflection/` is regenerated: 1510 files with the rename only, plus `class_descriptors_00.cpp` in the member form.
+
+**Name the reflected function type base::reflection::CFunction (#623, 2026-11-23).**
+
+**The reflection template loses its most common placeholder type.** The reflected-function descriptor (0xb8 bytes, kept in the dictionary at `CClass+0x110`) was `base::reflection::UnkReflFunction`. It is now `base::reflection::CFunction`.
+
+**Evidence for the name:** the game's type data, as MEDS lists it (`docs/references.md`), names the class's function dictionary `CRntSmallDictionary<CStrId, base::reflection::CFunction>`. The generated reflection files already forward-declared `base::reflection::CFunction` for that dictionary's getters.
+
+- Renamed in `include/` (`UnkReflAttributes.h` and the headers that use it), in 33 hand-written sources, and in `tools/gen_reflection.py`, `tools/refl_attrs.py` and their tests.
+- `src/reflection/` was regenerated on the owner's PC: 1,510 files and 3,607 lines, each the same line with only the type renamed. Most are `using base::reflection::CFunction;` and helper parameters. Nothing else under `src/` or `include/` still spells `UnkReflFunction`.
+
+**Not in this PR:** `UnkReflField` → `base::reflection::CVariable` (the field dictionary is `CRntSmallDictionary<CName, base::reflection::CVariable>`). Three hand-written files and `include/game/UnkTU85.h` use a different, global-scope placeholder of the same name with other layouts. A blanket rename breaks their calls and gives `CVariable` three different definitions under `struct_check`. Those uses have to be separated first. `UnkTunable` and `UnkTunableRegistry` stay too: MEDS has `base::tunable::CTunable` and `CTunableManager`, but nothing yet ties them to these placeholders.
+
+**Checked:**
+- On the PC: `check.py --version 2.1.0 --update` shows no REGRESSION, DUPLICATE or RELOC line (O 96,094), and `data/functions/` is unchanged. `rename.py --check` reports 0 problems.
+- In the cloud: tool tests pass, and `decl_check --strict`, `struct_check` and `policy_check` pass. A syntax-only compile of every hand-written source with Clang 18 shows no new failures.
+
+**Name the default allocator, the string hash and the string pool's release, find and insert (#622, 2026-11-23).**
+
+**Name five hub functions (rename batch 7).** #614 and #616 held these back because generated tables reach them through `CStrId.h`. Each gets an inferred name through `tools/rename.py`, with its reason in `data/names.csv`:
+
+| Address | Name | Hand-written uses |
+|---|---|---|
+| 0x7100083990 | `GetDefaultAllocator` | 518 in 382 files |
+| 0x7100001570 | `StringCrc64` | 267 in 114 files |
+| 0x71000803a4 | `StringPool_Release` | 440 in 366 files |
+| 0x71000804f8 | `StringPool_Find` | 7 |
+| 0x71000801e4 | `StringPool_Insert` | 8 |
+
+- `tools/gen_tables.py` now writes the new names in the string-id and boss rush tables it emits.
+- `src/tables/` was regenerated on the owner's PC. The diff is 5 lines in 2 files, each swapping a placeholder for its name.
+- `src/lifted/` keeps the placeholders, because it declares its callees itself.
+
+**Checked:**
+- On the PC: `check.py --version 2.1.0 --update` shows no REGRESSION, DUPLICATE or RELOC line (O 96,094, 0 relocation mismatches), and `data/functions/` is unchanged by it.
+- `rename.py --check`: 82 names, 0 problems.
+- In the cloud: `decl_check --strict`, `struct_check`, `lost_matches` and `policy_check` pass. A syntax-only compile with Clang 18 shows no new failures.
+
+**Reusable:** a function that a generator emits by name needs the generator changed and re-run in the same PR. Grep `tools/gen_*.py` for the placeholder before renaming.
 
 **Name eight sub-area manager functions (#621, 2026-11-23).**
 
