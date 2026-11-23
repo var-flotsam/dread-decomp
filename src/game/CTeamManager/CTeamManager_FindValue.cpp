@@ -16,12 +16,12 @@ struct UnkTeamNode_CTeamManager_FindValue {
     UnkTeamNode_CTeamManager_FindValue* next;
 };
 
-struct UnkTeamList {
+struct UnkTeamList_011a76ec {
     u8 unk_0x0[0x10];
     UnkTeamNode_CTeamManager_FindValue* head;
 };
 
-f32 fn_71011a76ec(const UnkTeamList* self, const void* target) {
+f32 fn_71011a76ec(const UnkTeamList_011a76ec* self, const void* target) {
     for (UnkTeamNode_CTeamManager_FindValue* n = self->head; n != nullptr; n = n->next) {
         void* t = n->ref != nullptr ? n->ref->target : nullptr;
         if (t == target)

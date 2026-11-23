@@ -2,7 +2,7 @@
 // itself) makes the weak reference at +0xa0 refer to what the other one refers to.
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkRecord {
+struct UnkRecord_42a63c {
     u8 pad_0x0[0x8];
     u8 field_0x8[32];
     u8 field_0x28[32];
@@ -15,7 +15,7 @@ struct UnkRecord {
     u64 field_0xa8;
 };
 
-UnkRecord* fn_710042a63c(UnkRecord* self, const UnkRecord* other) {
+UnkRecord_42a63c* fn_710042a63c(UnkRecord_42a63c* self, const UnkRecord_42a63c* other) {
     __builtin_memcpy(self->field_0x8, other->field_0x8, 32);
     __builtin_memcpy(self->field_0x28, other->field_0x28, 32);
     self->field_0x48 = other->field_0x48;

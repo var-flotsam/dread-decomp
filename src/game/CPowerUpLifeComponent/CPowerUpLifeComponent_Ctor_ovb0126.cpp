@@ -36,7 +36,7 @@ struct UnkPowerUpLifeList_ovb0126 : UnkPowerUpLifeListBase_ovb0126 {
     }
 };
 
-struct UnkPowerUpLife_ovb0126 {
+struct UnkPowerUpLife_ovb0126_8e4b24 {
     char* vtable;
     u8 pad_0x8[0x380];
     UnkPowerUpLifeList_ovb0126 list;  // 0x388
@@ -44,9 +44,9 @@ struct UnkPowerUpLife_ovb0126 {
     base::global::CStrId name;        // 0x3d0
     UnkEmptyStrId id;  // 0x3d8
 };
-static_assert(__builtin_offsetof(UnkPowerUpLife_ovb0126, id) == 0x3d8, "layout");
+static_assert(__builtin_offsetof(UnkPowerUpLife_ovb0126_8e4b24, id) == 0x3d8, "layout");
 
-void fn_71008e4b24(UnkPowerUpLife_ovb0126* self) {
+void fn_71008e4b24(UnkPowerUpLife_ovb0126_8e4b24* self) {
     fn_71008e04e8(reinterpret_cast<UnkLifeComponent_A5_b71*>(self));
     self->vtable = g_unk_7101a7f4c0 + 0x10;
     new (&self->list) UnkPowerUpLifeList_ovb0126;

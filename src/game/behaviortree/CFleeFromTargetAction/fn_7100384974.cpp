@@ -3,14 +3,14 @@
 #include "game/UnkBehaviorTree.h"
 #include "game_s2/UnkParams.h"
 
-struct UnkComponent {
+struct UnkComponent_384974 {
     u8 pad_0x0[0x38];
     void* field_0x38;
     u8 pad_0x40[0x3c];
     u8 field_0x7c;
 };
 
-void fn_7100384974(UnkComponent* self) {
+void fn_7100384974(UnkComponent_384974* self) {
     fn_7100394bd4(self);
     self->field_0x7c = 0;
     UnkParams params;

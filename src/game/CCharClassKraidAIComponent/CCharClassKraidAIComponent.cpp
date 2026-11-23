@@ -8,7 +8,7 @@
 
 extern void* g_unk_7101a542f0[];
 
-struct UnkKraidAIComponent : UnkBossAIComponent {};
+struct UnkKraidAIComponent_5fa760 : UnkBossAIComponent {};
 
 struct UnkLaunchPattern_71005d69b8;
 struct UnkLaunchPattern_71005dfcc4;
@@ -31,7 +31,7 @@ static inline T* Member(void* base, u64 offset) {
     return reinterpret_cast<T*>(reinterpret_cast<char*>(base) + offset);
 }
 
-void fn_71005fa760(UnkKraidAIComponent* self) {
+void fn_71005fa760(UnkKraidAIComponent_5fa760* self) {
     fn_710041a198(self);
     At<void**>(self, 0) = g_unk_7101a542f0 + 2;
     fn_71008c2da8(Member<char>(self, 0x550));

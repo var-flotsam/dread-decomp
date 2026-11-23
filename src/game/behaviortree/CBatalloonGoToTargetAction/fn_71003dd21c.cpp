@@ -8,7 +8,7 @@
 typedef u64 u64_a4 __attribute__((aligned(4)));
 typedef void** UnkVtable;
 
-struct UnkNode : UnkBehaviorTreeNodeBase {
+struct UnkNode_3dd21c : UnkBehaviorTreeNodeBase {
     u64_a4 field_0x2c;
     u64_a4 field_0x34;
     u16 field_0x3c;
@@ -22,12 +22,12 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     u8 pad_0x12ae9[3];
     u64_a4 field_0x12aec;
 
-    void vf_0x18() { reinterpret_cast<void (*)(UnkNode*)>(vtable[3])(this); }
+    void vf_0x18() { reinterpret_cast<void (*)(UnkNode_3dd21c*)>(vtable[3])(this); }
 };
 
 extern void* g_unk_7101a2f0d8[];
 
-void fn_71003dd21c(UnkNode* self) {
+void fn_71003dd21c(UnkNode_3dd21c* self) {
     fn_7100393e68(self);
     self->field_0x2c = 0xbf800000bf800000ull;
     self->vtable = g_unk_7101a2f0d8 + 2;

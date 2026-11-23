@@ -105,12 +105,12 @@ struct UnkCountedIds {
 };
 #pragma pack(pop)
 
-struct UnkIdValues {
+struct UnkIdValues_0104ee34 {
     UnkFilePathReleasedStrId id;
     u32 field_0x8;
     u32 field_0xc;
 
-    UnkIdValues(UnkIdValues&& other)
+    UnkIdValues_0104ee34(UnkIdValues_0104ee34&& other)
         : id(static_cast<UnkFilePathReleasedStrId&&>(other.id)), field_0x8(other.field_0x8),
           field_0xc(other.field_0xc) {}
 };
@@ -181,13 +181,13 @@ struct UnkValuesIdArrayRecord {
     UnkMovedArray<UnkReleasedStrId> ids;
 };
 
-UnkMovedArray<UnkIdValues>* fn_710104ee34(UnkMovedArray<UnkIdValues>* self, UnkMovedArray<UnkIdValues>* other) {
+UnkMovedArray<UnkIdValues_0104ee34>* fn_710104ee34(UnkMovedArray<UnkIdValues_0104ee34>* self, UnkMovedArray<UnkIdValues_0104ee34>* other) {
     if (self != other)
         self->MoveFrom(other);
     return self;
 }
 
-UnkMovedArray<UnkIdValues>* fn_710104f9e4(UnkMovedArray<UnkIdValues>* self, UnkMovedArray<UnkIdValues>* other) {
+UnkMovedArray<UnkIdValues_0104ee34>* fn_710104f9e4(UnkMovedArray<UnkIdValues_0104ee34>* self, UnkMovedArray<UnkIdValues_0104ee34>* other) {
     if (self != other)
         self->MoveFrom(other);
     return self;

@@ -5,13 +5,13 @@
 #include "base/global/CStrId.h"
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkSelf {
+struct UnkSelf_343f7c {
     u8 pad_0x0[0x970];
     UnkWeakHandle* field_0x970;
     void* field_0x978;
 };
 
-void fn_7100343f7c(UnkSelf* self, UnkWeakTarget* other, void* const* name) {
+void fn_7100343f7c(UnkSelf_343f7c* self, UnkWeakTarget* other, void* const* name) {
     if (!other) {
         ResetRef(&self->field_0x970);
         self->field_0x978 = reinterpret_cast<void*>(StringCrc64("", 0));

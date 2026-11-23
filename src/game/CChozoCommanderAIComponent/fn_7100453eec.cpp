@@ -26,7 +26,7 @@ struct UnkOwnerObject {
     UnkFlagTarget* field_0x228;
 };
 
-struct UnkRecord {
+struct UnkRecord_453eec {
     u8 pad_0x0[0x30];
     UnkOwnerObject* field_0x30;
     u8 pad_0x38[0x1108];
@@ -112,7 +112,7 @@ void fn_7100dcdce4(UnkManager* manager, s32 value, f32 scale);
 
 // NON_MATCHING(minor): the original tests the state against 2 first and lays the state-1 path out ahead of the
 // state-2 one; here the compiler turns the two tests into a switch in the other order. Same behaviour.
-void fn_7100453eec(UnkRecord* self) {
+void fn_7100453eec(UnkRecord_453eec* self) {
     if (!self->field_0x30)
         return;
     for (UnkNode* node = self->field_0x1178; node;) {

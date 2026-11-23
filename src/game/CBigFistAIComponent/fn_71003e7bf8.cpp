@@ -14,7 +14,7 @@
 
 using base::global::CStrId;
 
-struct UnkOwner {
+struct UnkOwner_3e7bf8 {
     u8 pad_0x0[0x14b54];
     u8 field_0x14b54;
 };
@@ -26,7 +26,7 @@ struct UnkOther {
 
 // A blackboard property definition (game/UnkItemProperties.h): its qualified id is built on first use.
 
-void fn_71003e7bf8(UnkOwner* self, UnkOther* other) {
+void fn_71003e7bf8(UnkOwner_3e7bf8* self, UnkOther* other) {
     u32 value = other->field_0x1a;
     if (value) {
         if (self->field_0x14b54) {

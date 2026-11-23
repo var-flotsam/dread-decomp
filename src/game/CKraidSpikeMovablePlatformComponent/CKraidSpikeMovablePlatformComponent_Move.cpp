@@ -6,12 +6,12 @@
 
 using base::math::CVector3D;
 
-struct UnkKraidSpikePlatform {
+struct UnkKraidSpikePlatform_608994 {
     u8 pad_0x0[0x258];
     f32 speed;
 };
 
-void fn_7100608994(UnkKraidSpikePlatform* self, void*, void*, f32 dt, CVector3D* out) {
+void fn_7100608994(UnkKraidSpikePlatform_608994* self, void*, void*, f32 dt, CVector3D* out) {
     if (!fn_7100deabe4(g_unk_7101d47310)) {
         f32 x = -(self->speed * dt);
         f32 zero = dt * 0.0f;

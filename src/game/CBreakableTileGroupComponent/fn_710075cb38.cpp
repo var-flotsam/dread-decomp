@@ -39,7 +39,7 @@ struct UnkArray {
     }
 };
 
-struct UnkPair {
+struct UnkPair_75cb38 {
     UnkMovedId id;
     UnkArray array;
 };
@@ -54,7 +54,7 @@ struct UnkHolder {
     alignas(8) u8 storage[0x30];
     u32 kind;
 
-    UnkPair& Value() { return *reinterpret_cast<UnkPair*>(storage); }
+    UnkPair_75cb38& Value() { return *reinterpret_cast<UnkPair_75cb38*>(storage); }
     UnkPairRef& Ref() { return *reinterpret_cast<UnkPairRef*>(storage); }
 
     UnkMovedId& Id() { return kind == 2 ? *Ref().id : Value().id; }
@@ -62,7 +62,7 @@ struct UnkHolder {
 
     void Reset() {
         if (kind == 1) {
-            Value().~UnkPair();
+            Value().~UnkPair_75cb38();
             kind = 0;
         } else if (kind == 2) {
             kind = 0;

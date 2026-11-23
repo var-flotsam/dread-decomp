@@ -8,7 +8,7 @@
 struct UnkNode;
 extern void* g_unk_7101a7dbf0[];
 
-struct UnkChozoCommanderXLife {
+struct UnkChozoCommanderXLife_8ae790 {
     void** vtable;
     u8 pad_0x8[0x10];
     u64 field_0x18;
@@ -17,7 +17,7 @@ struct UnkChozoCommanderXLife {
     f32 field_0xa8;
 };
 
-void fn_71008ae790(UnkChozoCommanderXLife* self) {
+void fn_71008ae790(UnkChozoCommanderXLife_8ae790* self) {
     fn_71008bca30(self);
     self->vtable = g_unk_7101a7dbf0 + 2;
     self->field_0xa4 = 10.0f;

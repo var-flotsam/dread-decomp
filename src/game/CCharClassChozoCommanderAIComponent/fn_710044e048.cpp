@@ -9,7 +9,7 @@
 extern void* g_unk_7101a369a8[];
 
 // Only the base is named; the rest is addressed by offset.
-struct UnkComponent : UnkBossAIComponent {};
+struct UnkComponent_44e048 : UnkBossAIComponent {};
 
 void fn_7100422d7c(void* member);
 void fn_7100420fa4(void* member);
@@ -33,7 +33,7 @@ static inline T& At(void* base, u64 offset) {
     return *reinterpret_cast<T*>(reinterpret_cast<char*>(base) + offset);
 }
 
-void fn_710044e048(UnkComponent* self) {
+void fn_710044e048(UnkComponent_44e048* self) {
     fn_710041a198(self);
     At<void**>(self, 0) = g_unk_7101a369a8 + 2;
     fn_7100422d7c(reinterpret_cast<char*>(self) + 0x528);

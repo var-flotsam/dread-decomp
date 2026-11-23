@@ -12,7 +12,7 @@
 
 typedef void** UnkVtable;
 
-struct UnkNode : UnkBossAIComponent {};
+struct UnkNode_4ce858 : UnkBossAIComponent {};
 
 void fn_71004a4ffc(void*);
 void fn_71004ae6f4(void*);
@@ -23,13 +23,13 @@ void fn_71004b9cc4(UnkFireBallAttackDef_l4b9cc4*);
 void fn_71004a1790(void*);
 
 template <class T>
-static inline void St(UnkNode* self, u32 off, T value) {
+static inline void St(UnkNode_4ce858* self, u32 off, T value) {
     *reinterpret_cast<T*>(reinterpret_cast<char*>(self) + off) = value;
 }
 
-static inline char* At(UnkNode* self, u32 off) { return reinterpret_cast<char*>(self) + off; }
+static inline char* At(UnkNode_4ce858* self, u32 off) { return reinterpret_cast<char*>(self) + off; }
 
-void fn_71004ce858(UnkNode* self) {
+void fn_71004ce858(UnkNode_4ce858* self) {
     fn_710041a198(self);
     self->vtable = g_unk_7101a3ebe8 + 2;
     fn_71004a4ffc(At(self, 0x528));
@@ -48,5 +48,5 @@ void fn_71004ce858(UnkNode* self) {
     self->field_0x4fc = 0x101;
     *reinterpret_cast<u8*>(At(self, 0x409)) = 0;
     *reinterpret_cast<u8*>(At(self, 0x4dc)) = 1;
-    reinterpret_cast<void (*)(UnkNode*)>(self->vtable[3])(self);
+    reinterpret_cast<void (*)(UnkNode_4ce858*)>(self->vtable[3])(self);
 }

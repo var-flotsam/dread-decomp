@@ -8,7 +8,7 @@
 #include "game/UnkTU1501.h"
 #include "types.h"
 
-struct UnkVec3 {
+struct UnkVec3_46514c {
     u32 x;
     u32 y;
     u32 z;
@@ -58,7 +58,7 @@ static inline u32 AsU32(f32 value) {
     return bits;
 }
 
-bool fn_710046514c(UnkSelf* self, UnkVec3* out) {
+bool fn_710046514c(UnkSelf* self, UnkVec3_46514c* out) {
     UnkTarget_46514c* target = reinterpret_cast<UnkTarget_46514c*>(fn_7100d7c990(reinterpret_cast<UnkActor*>(self->field_0x8)));
     if (!target)
         return false;

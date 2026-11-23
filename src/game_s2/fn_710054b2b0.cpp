@@ -12,7 +12,7 @@ struct UnkTrackOwner {
     u8 unk_0x0[0x220];
     UnkAnimationComponent* field_0x220;
 };
-struct UnkSelf {
+struct UnkSelf_54b2b0 {
     u8 unk_0x0[0x30];
     UnkTrackOwner* owner;
     u8 unk_0x38[0x14748];
@@ -29,7 +29,7 @@ struct UnkSelf {
 
 bool fn_7100573d54(void* sub, void* a1);
 
-__attribute__((always_inline)) static inline bool Check(UnkSelf* self, void* sub, void* a1) {
+__attribute__((always_inline)) static inline bool Check(UnkSelf_54b2b0* self, void* sub, void* a1) {
     if (!self->field_0x27720)
         return true;
     if (!self->field_0x14c14 || fn_710002fb70(self->timer_0x29350))
@@ -41,5 +41,5 @@ __attribute__((always_inline)) static inline bool Check(UnkSelf* self, void* sub
     return fn_7100573d54(sub, a1);
 }
 
-bool fn_710054b120(UnkSelf* self, void* a1) { return Check(self, self->sub_0x14780, a1); }
-bool fn_710054b2b0(UnkSelf* self, void* a1) { return Check(self, self->sub_0x14880, a1); }
+bool fn_710054b120(UnkSelf_54b2b0* self, void* a1) { return Check(self, self->sub_0x14780, a1); }
+bool fn_710054b2b0(UnkSelf_54b2b0* self, void* a1) { return Check(self, self->sub_0x14880, a1); }

@@ -31,13 +31,13 @@ struct UnkLight {
     UnkLightRes* res;
 };
 
-struct UnkLightingComponent {
+struct UnkLightingComponent_8e8108 {
     u8 pad_0x0[0x60];
     UnkLight** lights;
     u32 count;
 };
 
-void fn_71008e8108(UnkLightingComponent* self, const u64* id, f32 value) {
+void fn_71008e8108(UnkLightingComponent_8e8108* self, const u64* id, f32 value) {
     for (UnkLight **it = self->lights, **end = it + self->count; it != end; ++it) {
         UnkLight* light = *it;
         UnkLightDef* def = light->res->def;
@@ -47,7 +47,7 @@ void fn_71008e8108(UnkLightingComponent* self, const u64* id, f32 value) {
     }
 }
 
-void fn_71008e8090(UnkLightingComponent* self, const u64* id, bool flag) {
+void fn_71008e8090(UnkLightingComponent_8e8108* self, const u64* id, bool flag) {
     for (UnkLight **it = self->lights, **end = it + self->count; it != end; ++it) {
         UnkLight* light = *it;
         UnkLightDef* def = light->res->def;

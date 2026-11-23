@@ -9,14 +9,14 @@
 
 using base::global::CStrId;
 
-struct UnkPlayEntityTimelineEvent {
+struct UnkPlayEntityTimelineEvent_bc58a4 {
     void* vtable;
     u8 unk_0x8[0x8];
     CStrId id_0x10;
     CStrId id_0x18;
 };
 
-void fn_7100bc58a4(UnkPlayEntityTimelineEvent* self) {
+void fn_7100bc58a4(UnkPlayEntityTimelineEvent_bc58a4* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa1648 + 0x10;
     new (&self->id_0x10) CStrId("", true);

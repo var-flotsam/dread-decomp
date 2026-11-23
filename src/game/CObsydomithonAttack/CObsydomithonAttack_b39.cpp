@@ -7,14 +7,14 @@ struct UnkObsydomithonParams {
     f32 limit;  // 0xec
 };
 
-struct UnkObsydomithonAttack {
+struct UnkObsydomithonAttack_b39 {
     u8 pad_0x0[0x28];
     UnkObsydomithonParams* params;  // 0x28
 };
 
-f32 fn_7100629368(UnkObsydomithonAttack* self);
+f32 fn_7100629368(UnkObsydomithonAttack_b39* self);
 
-bool fn_710062a0c8(UnkObsydomithonAttack* self) {
+bool fn_710062a0c8(UnkObsydomithonAttack_b39* self) {
     f32 v = fn_7100629368(self);
     if (v > -0.001f && v < self->params->limit)
         return true;

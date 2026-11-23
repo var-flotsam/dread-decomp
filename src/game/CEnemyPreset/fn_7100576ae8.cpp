@@ -11,7 +11,7 @@
 using base::global::UnkStringPool;
 using base::reflection::UnkTunableRegistry;
 
-struct UnkSelf {
+struct UnkSelf_576ae8 {
     u8 unk_0x0[0x18];
     f32 value;
     u8 unk_0x1c[4];
@@ -21,7 +21,7 @@ struct UnkSelf {
 
 void fn_710013c7e0(UnkTunableRegistry* registry, const char* group, const char* name, f32* value);
 
-f32 fn_7100576ae8(UnkSelf* self) {
+f32 fn_7100576ae8(UnkSelf_576ae8* self) {
     f32 value = self->value;
     if (!(value < 0.0f))
         return value;

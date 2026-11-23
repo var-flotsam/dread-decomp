@@ -5,13 +5,13 @@
 #include "game/UnkAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkSelf : UnkAttackBase {
+struct UnkSelf_5c7210 : UnkAttackBase {
     u8 pad_0x20[0x18];
     u8 field_0x38[0x18];
     UnkWeakHandle* field_0x50;
 };
 
-void fn_71005c7210(UnkSelf* self) {
+void fn_71005c7210(UnkSelf_5c7210* self) {
     fn_71003609b8(self);
     if (UnkWeakHandle* handle = self->field_0x50) {
         if (UnkWeakTarget* target = handle->target)
@@ -20,7 +20,7 @@ void fn_71005c7210(UnkSelf* self) {
     }
 }
 
-void fn_71006a55e8(UnkSelf* self) {
+void fn_71006a55e8(UnkSelf_5c7210* self) {
     fn_71003609b8(self);
     if (UnkWeakHandle* handle = self->field_0x50) {
         if (UnkWeakTarget* target = handle->target)
@@ -29,7 +29,7 @@ void fn_71006a55e8(UnkSelf* self) {
     }
 }
 
-void fn_71006a9208(UnkSelf* self) {
+void fn_71006a9208(UnkSelf_5c7210* self) {
     fn_71003609b8(self);
     if (UnkWeakHandle* handle = self->field_0x50) {
         if (UnkWeakTarget* target = handle->target)

@@ -6,14 +6,14 @@
 
 using base::global::CStrId;
 
-struct UnkRecord {
+struct UnkRecord_2ee65c {
     u64 field_0x0;
     CStrId field_0x8;
     u8 field_0x10[32];
     UnkOwned* field_0x30;
 };
 
-void fn_71002ee65c(UnkRecord* self) {
+void fn_71002ee65c(UnkRecord_2ee65c* self) {
     UnkOwned* old = self->field_0x30;
     self->field_0x30 = nullptr;
     if (old)

@@ -17,13 +17,13 @@ static inline UnkRefPtr MakeRef(UnkWeakHandle* handle) {
     return ref;
 }
 
-struct UnkTargetHolder {
+struct UnkTargetHolder_6bd128 {
     u8 pad_0x0[0x8];
     UnkWeakHandle* field_0x8;
     UnkHandleList field_0x10;
 };
 
-void fn_71006bd128(UnkTargetHolder* self, UnkWeakTarget* target) {
+void fn_71006bd128(UnkTargetHolder_6bd128* self, UnkWeakTarget* target) {
     if (!target)
         return;
     if (UnkWeakHandle* held = self->field_0x8) {

@@ -8,7 +8,7 @@
 using UnkId = UnkPooledId<&g_unk_7101d47108>;
 using UnkPathId = UnkPooledId<&g_unk_7101d47200>;
 
-struct UnkIdSet {
+struct UnkIdSet_lef2390 {
     base::global::CRntVector<UnkId> field_0x0;
     base::global::CRntVector<UnkId> field_0x28;
     base::global::CRntVector<UnkPathId> field_0x50;
@@ -17,7 +17,7 @@ struct UnkIdSet {
     base::global::CRntVector<UnkPathId> field_0xc8;
 };
 
-void fn_7100ef2390(UnkIdSet* self) {
+void fn_7100ef2390(UnkIdSet_lef2390* self) {
     self->field_0xc8.Free();
     self->field_0xa0.Free();
     self->field_0x78.Free();

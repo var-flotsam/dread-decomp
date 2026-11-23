@@ -6,7 +6,7 @@
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
-struct UnkPayload {
+struct UnkPayload_adaf7c {
     void* data;
     u8 unk_0x8[0x8];
     s32 kind;
@@ -14,7 +14,7 @@ struct UnkPayload {
 
 struct UnkHolder {
     u8 unk_0x0[0x8];
-    UnkPayload* payload;
+    UnkPayload_adaf7c* payload;
 };
 
 UnkReflValue fn_7100adaf7c(void* self, const UnkHolder* holder) {

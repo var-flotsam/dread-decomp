@@ -4,7 +4,7 @@
 #include "game_s2/UnkTarget.h"
 #include "types.h"
 
-struct UnkReset {
+struct UnkReset_2cd038 {
     u8 pad_0x0[8];
     void* field_0x8;
     u32 field_0x10;
@@ -16,7 +16,7 @@ struct UnkReset {
     u32 field_0x50;
 };
 
-void fn_71002cd038(UnkReset* self) {
+void fn_71002cd038(UnkReset_2cd038* self) {
     u32 state = self->field_0x50;
     if (state == 2) {
         self->field_0x50 = 0;

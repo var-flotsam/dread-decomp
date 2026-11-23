@@ -27,7 +27,7 @@ struct UnkOwnerObjects {
     u8 unk_0x0[0x280];
     void* field_0x280;
 };
-struct UnkSelf {
+struct UnkSelf_378d84 {
     u8 unk_0x0[0x18];
     UnkOwnerObjects* owner;
     u8 unk_0x20[0x10];
@@ -41,7 +41,7 @@ struct UnkStruct_0x68;
 UnkLookupResult* fn_7101152b24(void* objects, u64 key);
 
 // NON_MATCHING(minor): the flag load and the slot load swap order in the call.
-void fn_7100378d84(UnkSelf* self) {
+void fn_7100378d84(UnkSelf_378d84* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->done = 0;
     UnkIdData_378d84* id = self->id;

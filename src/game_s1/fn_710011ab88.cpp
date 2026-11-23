@@ -55,14 +55,14 @@ struct UnkFreedVectorRecord {
     u64 unk_0x28[4];
 };
 
-struct UnkBoundValueArray {
+struct UnkBoundValueArray_11ab88 {
     u32 value;
     UnkFreedVectorRecord* array;
     UnkValuePairRef<u32, UnkFreedVectorRecord> pair;
 };
-static_assert(__builtin_offsetof(UnkBoundValueArray, pair.state) == 0x60, "");
+static_assert(__builtin_offsetof(UnkBoundValueArray_11ab88, pair.state) == 0x60, "");
 
-static inline UnkBoundValueArray* Assign(UnkBoundValueArray* self, const UnkBoundValueArray* other) {
+static inline UnkBoundValueArray_11ab88* Assign(UnkBoundValueArray_11ab88* self, const UnkBoundValueArray_11ab88* other) {
     if (self != other) {
         self->value = other->value;
         self->array = other->array;
@@ -74,7 +74,7 @@ static inline UnkBoundValueArray* Assign(UnkBoundValueArray* self, const UnkBoun
     return self;
 }
 
-UnkBoundValueArray* fn_710011ab88(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
-UnkBoundValueArray* fn_710011ac48(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
-UnkBoundValueArray* fn_710011b010(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
-UnkBoundValueArray* fn_710011b0d0(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
+UnkBoundValueArray_11ab88* fn_710011ab88(UnkBoundValueArray_11ab88* self, const UnkBoundValueArray_11ab88* other) { return Assign(self, other); }
+UnkBoundValueArray_11ab88* fn_710011ac48(UnkBoundValueArray_11ab88* self, const UnkBoundValueArray_11ab88* other) { return Assign(self, other); }
+UnkBoundValueArray_11ab88* fn_710011b010(UnkBoundValueArray_11ab88* self, const UnkBoundValueArray_11ab88* other) { return Assign(self, other); }
+UnkBoundValueArray_11ab88* fn_710011b0d0(UnkBoundValueArray_11ab88* self, const UnkBoundValueArray_11ab88* other) { return Assign(self, other); }

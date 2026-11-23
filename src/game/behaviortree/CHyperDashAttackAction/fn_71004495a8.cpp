@@ -16,7 +16,7 @@ struct UnkListener_4495a8 {
     u64 field_0x8;
 };
 
-struct UnkNode : UnkBehaviorTreeNodeBase {
+struct UnkNode_4495a8 : UnkBehaviorTreeNodeBase {
     u8 pad_0x2c[4];
     base::UnkNamedEntry field_0x30;
     UnkStrIdBase field_0x60;
@@ -34,7 +34,7 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     u32 field_0xc0;
 };
 
-void fn_71004495a8(UnkNode* self) {
+void fn_71004495a8(UnkNode_4495a8* self) {
     fn_7100393e68(self);
     self->vtable = &g_unk_7101a36838[2];
     CRntString_ConstructFromCString(&self->field_0x30, "");

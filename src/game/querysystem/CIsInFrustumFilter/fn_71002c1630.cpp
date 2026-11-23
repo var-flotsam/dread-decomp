@@ -7,7 +7,7 @@
 #include "game/UnkTU315.h"
 #include "types.h"
 
-struct UnkTarget {
+struct UnkTarget_2c1630 {
     u8 pad_0x0[0x38];
     u8 field_0x38[0xc];
     f32 field_0x44;
@@ -25,7 +25,7 @@ struct UnkSelf {
 
 // NON_MATCHING(minor): the sums land in other registers (the original adds into s8-s10 with the products
 // as first operand, a commuted add; one product is also kept in s5 instead of s0)
-u32 fn_71002c1630(UnkSelf* self, void* unused, UnkTarget* target) {
+u32 fn_71002c1630(UnkSelf* self, void* unused, UnkTarget_2c1630* target) {
     f32 x = target->field_0x44;
     f32 y = target->field_0x54;
     alignas(16) f32 point[4];

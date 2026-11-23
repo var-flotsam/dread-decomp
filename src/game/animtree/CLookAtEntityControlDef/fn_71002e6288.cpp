@@ -5,7 +5,7 @@
 
 using base::global::CStrId;
 
-struct UnkRecord {
+struct UnkRecord_2e6288 {
     u64 field_0x0;
     CStrId field_0x8;
     CStrId field_0x10;
@@ -15,7 +15,7 @@ struct UnkRecord {
     CStrId field_0x40;
 };
 
-UnkRecord* fn_71002e6288(UnkRecord* self, UnkRecord* other) {
+UnkRecord_2e6288* fn_71002e6288(UnkRecord_2e6288* self, UnkRecord_2e6288* other) {
     self->field_0x8 = other->field_0x8;
     self->field_0x10.ReleaseAndTake(other->field_0x10);
     __builtin_memcpy(self->field_0x18, other->field_0x18, sizeof(self->field_0x18));

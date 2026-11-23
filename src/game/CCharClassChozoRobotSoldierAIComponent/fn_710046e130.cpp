@@ -10,7 +10,7 @@
 
 using base::global::UnkStrId;
 
-struct UnkNode : UnkBossAIComponent {
+struct UnkNode_46e130 : UnkBossAIComponent {
     u8 pad_0x528[0x3f8];
     void** field_0x920;
     UnkStrId field_0x928;
@@ -29,7 +29,7 @@ void fn_71004632ac(void*);
 void fn_710046424c(void*);
 void fn_71002c6c6c(void*);
 
-void fn_710046e130(UnkNode* self) {
+void fn_710046e130(UnkNode_46e130* self) {
     fn_710041a198(self);
     self->vtable = &g_unk_7101a38b28[2];
     fn_710045ee14(reinterpret_cast<char*>(self) + 0x528);

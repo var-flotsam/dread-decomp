@@ -8,7 +8,7 @@ struct UnkOwnedCallable {
     virtual void vf_0x8();  // deletes the object
 };
 
-struct UnkCallbackSlot {
+struct UnkCallbackSlot_fb5cac {
     u32 id;
     void* target;
     void* field_0x10;
@@ -47,7 +47,7 @@ struct UnkCallbackSlot {
         }
     }
 
-    UnkCallbackSlot& Assign(const UnkCallbackSlot& other) {
+    UnkCallbackSlot_fb5cac& Assign(const UnkCallbackSlot_fb5cac& other) {
         if (this != &other) {
             id = other.id;
             void* t = other.target;
@@ -65,18 +65,18 @@ struct UnkCallbackSlot {
     }
 };
 
-UnkCallbackSlot& fn_7100fb5cac(UnkCallbackSlot* self, const UnkCallbackSlot* other) {
+UnkCallbackSlot_fb5cac& fn_7100fb5cac(UnkCallbackSlot_fb5cac* self, const UnkCallbackSlot_fb5cac* other) {
     return self->Assign(*other);
 }
 
-UnkCallbackSlot& fn_7100fb5d5c(UnkCallbackSlot* self, const UnkCallbackSlot* other) {
+UnkCallbackSlot_fb5cac& fn_7100fb5d5c(UnkCallbackSlot_fb5cac* self, const UnkCallbackSlot_fb5cac* other) {
     return self->Assign(*other);
 }
 
-UnkCallbackSlot& fn_7100fb6104(UnkCallbackSlot* self, const UnkCallbackSlot* other) {
+UnkCallbackSlot_fb5cac& fn_7100fb6104(UnkCallbackSlot_fb5cac* self, const UnkCallbackSlot_fb5cac* other) {
     return self->Assign(*other);
 }
 
-UnkCallbackSlot& fn_7100fb61b4(UnkCallbackSlot* self, const UnkCallbackSlot* other) {
+UnkCallbackSlot_fb5cac& fn_7100fb61b4(UnkCallbackSlot_fb5cac* self, const UnkCallbackSlot_fb5cac* other) {
     return self->Assign(*other);
 }

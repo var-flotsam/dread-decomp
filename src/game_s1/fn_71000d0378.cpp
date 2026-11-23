@@ -70,7 +70,7 @@ using UnkReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47108>;
 // The same id in CFilePathStrId's pool.
 using UnkFilePathReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47200>;
 
-struct UnkIdArrayOwner {
+struct UnkIdArrayOwner_0d0378 {
     u64 field_0x0;
     UnkClearedArray<UnkReleasedStrId> ids;
 };
@@ -79,7 +79,7 @@ void fn_71000d0378(UnkClearedArray<UnkFilePathReleasedStrId>* self) { self->Clea
 
 void fn_71000cdbbc(UnkClearedArray<UnkReleasedStrId>* self) { self->Clear(); }
 
-void fn_71000deb68(UnkIdArrayOwner* self) {
+void fn_71000deb68(UnkIdArrayOwner_0d0378* self) {
     UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
     if (ids->data) {
         for (u64 i = 0; i < ids->count; ++i)
@@ -88,7 +88,7 @@ void fn_71000deb68(UnkIdArrayOwner* self) {
     ids->count = 0;
 }
 
-void fn_7100251758(UnkIdArrayOwner* self) {
+void fn_7100251758(UnkIdArrayOwner_0d0378* self) {
     UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
     if (ids->data) {
         for (u64 i = 0; i < ids->count; ++i)
@@ -98,7 +98,7 @@ void fn_7100251758(UnkIdArrayOwner* self) {
 }
 
 // Identical copies: fn_710079c1c8, fn_7100904430, fn_710091623c, fn_7100d862b4, fn_710104a8fc, fn_71010c60fc.
-void fn_710079c1c8(UnkIdArrayOwner* self) {
+void fn_710079c1c8(UnkIdArrayOwner_0d0378* self) {
     UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
     if (ids->data) {
         for (u64 i = 0; i < ids->count; ++i)
@@ -106,7 +106,7 @@ void fn_710079c1c8(UnkIdArrayOwner* self) {
     }
     ids->count = 0;
 }
-void fn_7100904430(UnkIdArrayOwner* self) {
+void fn_7100904430(UnkIdArrayOwner_0d0378* self) {
     UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
     if (ids->data) {
         for (u64 i = 0; i < ids->count; ++i)
@@ -114,7 +114,7 @@ void fn_7100904430(UnkIdArrayOwner* self) {
     }
     ids->count = 0;
 }
-void fn_710091623c(UnkIdArrayOwner* self) {
+void fn_710091623c(UnkIdArrayOwner_0d0378* self) {
     UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
     if (ids->data) {
         for (u64 i = 0; i < ids->count; ++i)
@@ -122,7 +122,7 @@ void fn_710091623c(UnkIdArrayOwner* self) {
     }
     ids->count = 0;
 }
-void fn_7100d862b4(UnkIdArrayOwner* self) {
+void fn_7100d862b4(UnkIdArrayOwner_0d0378* self) {
     UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
     if (ids->data) {
         for (u64 i = 0; i < ids->count; ++i)
@@ -130,7 +130,7 @@ void fn_7100d862b4(UnkIdArrayOwner* self) {
     }
     ids->count = 0;
 }
-void fn_710104a8fc(UnkIdArrayOwner* self) {
+void fn_710104a8fc(UnkIdArrayOwner_0d0378* self) {
     UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
     if (ids->data) {
         for (u64 i = 0; i < ids->count; ++i)
@@ -138,7 +138,7 @@ void fn_710104a8fc(UnkIdArrayOwner* self) {
     }
     ids->count = 0;
 }
-void fn_71010c60fc(UnkIdArrayOwner* self) {
+void fn_71010c60fc(UnkIdArrayOwner_0d0378* self) {
     UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
     if (ids->data) {
         for (u64 i = 0; i < ids->count; ++i)

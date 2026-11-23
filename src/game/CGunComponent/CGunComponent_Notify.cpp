@@ -8,12 +8,12 @@
 using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
 
-struct UnkGunComponent {
+struct UnkGunComponent_8409d0 {
     u8 pad_0x0[0x198];
     UnkDeferredSet<UnkDeferredCallback<bool>> field_0x198;
 };
 
-void fn_71008409d0(UnkGunComponent* self) {
+void fn_71008409d0(UnkGunComponent_8409d0* self) {
     bool arg = true;
     fn_71000303c0(&self->field_0x198, &arg);
 }

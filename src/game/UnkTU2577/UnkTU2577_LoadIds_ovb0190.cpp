@@ -22,16 +22,16 @@ struct UnkIdSource_b190 {
     base::UnkStrIdVec ids;  // 0x28
 };
 
-struct UnkSubAreaMgr_b190 {
+struct UnkSubAreaMgr_b190_ee96f0 {
     u8 pad_0x0[0x338];
     base::UnkStrIdVec loaded;  // 0x338
 };
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, loaded) == 0x338, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ee96f0, loaded) == 0x338, "layout");
 
 bool fn_710119e4ec(UnkSubAreaGuiCache* self, const CStrId* id, bool flag);
 void fn_710111b040(base::reflection::UnkReflObject* component, const CStrId* id);
 
-void fn_7100ee96f0(UnkSubAreaMgr_b190* self, UnkIdSource_b190* source) {
+void fn_7100ee96f0(UnkSubAreaMgr_b190_ee96f0* self, UnkIdSource_b190* source) {
     fn_71000839c0(true);
     if (source->ids.count) {
         for (const CStrId *it = source->ids.data, *end = it + source->ids.count; it != end; ++it) {

@@ -10,7 +10,7 @@
 struct UnkStateObject;
 void fn_7100925b38(void* self);
 
-struct UnkMagnetSurfaceHusk : UnkBaseComponent {
+struct UnkMagnetSurfaceHusk_925c30 : UnkBaseComponent {
     u32 field_0x40;
     u64 field_0x48;
     u16 field_0x50;
@@ -18,12 +18,12 @@ struct UnkMagnetSurfaceHusk : UnkBaseComponent {
     u8 field_0x58[0x8];
 };
 
-void fn_7100925c30(UnkMagnetSurfaceHusk* self) {
+void fn_7100925c30(UnkMagnetSurfaceHusk_925c30* self) {
     fn_71010c4148(reinterpret_cast<UnkStateObject*>(self));
     self->field_0x40 = 0;
     self->field_0x48 = 0;
     self->vtable = g_unk_7101a831e0 + 2;
     self->field_0x50 = 1;
     fn_7100925b38(self->field_0x58);
-    reinterpret_cast<void (*)(UnkMagnetSurfaceHusk*)>(self->vtable[3])(self);
+    reinterpret_cast<void (*)(UnkMagnetSurfaceHusk_925c30*)>(self->vtable[3])(self);
 }

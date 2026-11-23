@@ -16,7 +16,7 @@
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
 
-struct UnkCollisionShape {
+struct UnkCollisionShape_d462b4 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -26,20 +26,20 @@ struct UnkCollisionShape {
 
 struct UnkShapeOwner;
 // Gives the shape to its owner (which then owns it).
-void fn_7100d36da4(UnkShapeOwner* self, UnkCollisionShape* shape, bool owned);
+void fn_7100d36da4(UnkShapeOwner* self, UnkCollisionShape_d462b4* shape, bool owned);
 
 template <void (*Construct)(void*)>
-static inline UnkCollisionShape* NewShape(u64 size) {
+static inline UnkCollisionShape_d462b4* NewShape(u64 size) {
     void* p = fn_71000839a0(size, 7);
     Construct(p);
-    return static_cast<UnkCollisionShape*>(p);
+    return static_cast<UnkCollisionShape_d462b4*>(p);
 }
 
 // Reads a shape of the type named in the stream into `owner`; an unknown name reads nothing more.
 void fn_7100d462b4(void*, UnkShapeOwner* owner, void* stream) {
     const char* type;
     CRntFile_ReadCString(stream, &type);
-    UnkCollisionShape* shape;
+    UnkCollisionShape_d462b4* shape;
     if (strcmp(type, "AABOX2D") == 0)
         shape = NewShape<fn_7100d5e1b4>(0xc0);
     else if (strcmp(type, "SEGMENT2D") == 0)

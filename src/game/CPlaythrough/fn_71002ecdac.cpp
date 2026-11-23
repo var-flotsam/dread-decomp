@@ -5,13 +5,13 @@
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
-struct UnkRecord {
+struct UnkRecord_2ecdac {
     u8 unk_0x0[8];
     UnkStrIdTwoStep field_0x8;
     u8 unk_0x10[0x20];
     UnkOwned* field_0x30;
 
-    ~UnkRecord() {
+    ~UnkRecord_2ecdac() {
         UnkOwned* owned = field_0x30;
         field_0x30 = nullptr;
         if (owned)
@@ -19,8 +19,8 @@ struct UnkRecord {
     }
 };
 
-void fn_71002ecdac(UnkRecord** slot) {
-    UnkRecord* record = *slot;
+void fn_71002ecdac(UnkRecord_2ecdac** slot) {
+    UnkRecord_2ecdac* record = *slot;
     *slot = nullptr;
     delete record;
 }

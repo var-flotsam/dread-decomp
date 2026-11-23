@@ -3,14 +3,14 @@
 #include "game/UnkBehaviorTree.h"
 #include "game_s2/UnkParams.h"
 
-struct UnkOwner {
+struct UnkOwner_3e4ec8 {
     u8 pad_0x0[0x298];
     void* field_0x298;
 };
 
 struct UnkComponent {
     u8 pad_0x0[0x18];
-    UnkOwner* field_0x18;
+    UnkOwner_3e4ec8* field_0x18;
 };
 
 void fn_71003e4ec8(UnkComponent* self) {

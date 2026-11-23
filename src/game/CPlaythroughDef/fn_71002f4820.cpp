@@ -22,7 +22,7 @@ struct UnkStorage {
     base::global::CRntVector<void*> field_0x60;
 };
 
-struct UnkNode {
+struct UnkNode_2f4820 {
     void** vtable;
     UnkStringData* field_0x8;
     UnkStringData* field_0x10;
@@ -30,7 +30,7 @@ struct UnkNode {
     UnkStorage field_0x48;
 };
 
-void fn_71002f4820(UnkNode* self) {
+void fn_71002f4820(UnkNode_2f4820* self) {
     self->vtable = g_unk_7101a22280 + 2;
     self->field_0x8 = nullptr;
     if (!g_unk_7101d47108)

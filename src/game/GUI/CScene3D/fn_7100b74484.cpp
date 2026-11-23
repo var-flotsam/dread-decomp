@@ -21,13 +21,13 @@ struct UnkBuiltId {
     ~UnkBuiltId() { id.~CStrId(); }
 };
 
-struct UnkHolder {
+struct UnkHolder_b74484 {
     u8 unk_0x0[0x8];
     char* object;
 };
 
 template <u32 Offset>
-__attribute__((always_inline)) static inline UnkReflValue GetId(const UnkHolder* holder) {
+__attribute__((always_inline)) static inline UnkReflValue GetId(const UnkHolder_b74484* holder) {
     UnkBuiltId id(*reinterpret_cast<const CRntString*>(holder->object + Offset));
     const CType* type = fn_7100009658();  // refl_GetType<base::global::CStrId>
     UnkReflValue result;
@@ -38,15 +38,15 @@ __attribute__((always_inline)) static inline UnkReflValue GetId(const UnkHolder*
     return result;
 }
 
-UnkReflValue fn_7100b74484(void* self, const UnkHolder* holder) { return GetId<0xe18>(holder); }
-UnkReflValue fn_7100b74580(void* self, const UnkHolder* holder) { return GetId<0x2e0>(holder); }
-UnkReflValue fn_7100b746b8(void* self, const UnkHolder* holder) { return GetId<0x288>(holder); }
-UnkReflValue fn_7100b87318(void* self, const UnkHolder* holder) { return GetId<0x1c0>(holder); }
+UnkReflValue fn_7100b74484(void* self, const UnkHolder_b74484* holder) { return GetId<0xe18>(holder); }
+UnkReflValue fn_7100b74580(void* self, const UnkHolder_b74484* holder) { return GetId<0x2e0>(holder); }
+UnkReflValue fn_7100b746b8(void* self, const UnkHolder_b74484* holder) { return GetId<0x288>(holder); }
+UnkReflValue fn_7100b87318(void* self, const UnkHolder_b74484* holder) { return GetId<0x1c0>(holder); }
 // The same getter in other GUI units, at their own offsets.
-UnkReflValue fn_71011d3fa4(void* self, const UnkHolder* holder) { return GetId<0x150>(holder); }
-UnkReflValue fn_71011efc28(void* self, const UnkHolder* holder) { return GetId<0x268>(holder); }
-UnkReflValue fn_71011f4ee0(void* self, const UnkHolder* holder) { return GetId<0x1b0>(holder); }
-UnkReflValue fn_71011f5000(void* self, const UnkHolder* holder) { return GetId<0x1e0>(holder); }
+UnkReflValue fn_71011d3fa4(void* self, const UnkHolder_b74484* holder) { return GetId<0x150>(holder); }
+UnkReflValue fn_71011efc28(void* self, const UnkHolder_b74484* holder) { return GetId<0x268>(holder); }
+UnkReflValue fn_71011f4ee0(void* self, const UnkHolder_b74484* holder) { return GetId<0x1b0>(holder); }
+UnkReflValue fn_71011f5000(void* self, const UnkHolder_b74484* holder) { return GetId<0x1e0>(holder); }
 
 // An empty id (the pool is created first if there is none yet), released like CStrId.
 struct UnkReleasedEmptyStrId {
@@ -75,5 +75,5 @@ __attribute__((always_inline)) static inline UnkReflValue GetEmptyId() {
     return result;
 }
 
-UnkReflValue fn_7100b631e8(void* self, const UnkHolder* holder) { return GetEmptyId(); }
-UnkReflValue fn_7100b8719c(void* self, const UnkHolder* holder) { return GetEmptyId(); }
+UnkReflValue fn_7100b631e8(void* self, const UnkHolder_b74484* holder) { return GetEmptyId(); }
+UnkReflValue fn_7100b8719c(void* self, const UnkHolder_b74484* holder) { return GetEmptyId(); }

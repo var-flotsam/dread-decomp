@@ -5,16 +5,16 @@
 #include "types.h"
 #include "base/global/CStrId.h"
 
-struct UnkSelf {
+struct UnkSelf_416fe0 {
     u8 unk_0x0[0x500];
     u64 field_0x500;
 };
 
-bool fn_7100413ef8(UnkSelf* self, void* arg);
+bool fn_7100413ef8(UnkSelf_416fe0* self, void* arg);
 void fn_7100db3adc(UnkPathRegistry* registry, u64* id);
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
-bool fn_7100416fe0(UnkSelf* self, void* arg) {
+bool fn_7100416fe0(UnkSelf_416fe0* self, void* arg) {
     bool ok = fn_7100413ef8(self, arg);
     if (ok && self->field_0x500 != (u64)&g_unk_7101d47200->empty) {
         UnkPathRegistry* registry = g_unk_71726b3240;

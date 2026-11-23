@@ -17,12 +17,12 @@ struct UnkSubject_3afca0 {
     CStrId field_0x518;
 };
 
-struct UnkSelf {
+struct UnkSelf_3afca0 {
     u8 pad_0x0[0x14908];
     UnkSubject_3afca0* field_0x14908;
 };
 
-void fn_71003afca0(UnkSelf* self) {
+void fn_71003afca0(UnkSelf_3afca0* self) {
     UnkStrIdHandle handle(self->field_0x14908->field_0x518);
     if (handle.id.data != &g_unk_7101d47108->empty) {
         fn_71011437bc(fn_7100df55e4(g_unk_7101d47310), handle);

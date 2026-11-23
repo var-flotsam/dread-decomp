@@ -19,7 +19,7 @@ struct UnkRefObject {
     s32 ref_count;
 };
 
-struct UnkComponent_0x5b8 {
+struct UnkComponent_0x5b8_ac2e00 {
     void** vtable;
     u8 unk_0x8[0x480];
     UnkStringData* field_0x488;  // CFilePathStrId
@@ -43,7 +43,7 @@ struct UnkComponent_0x5b8 {
     void* field_0x5b0;
 };
 
-void fn_7100ac72a4(UnkComponent_0x5b8* self);
+void fn_7100ac72a4(UnkComponent_0x5b8_ac2e00* self);
 
 // A string id's destructor on the given pool: decrement, then test the reloaded count.
 static inline void ReleaseId(UnkStringData** id, UnkStringPool** global_pool) {
@@ -64,7 +64,7 @@ static inline void Release(UnkRefObject* p) {
         p->vf_0x10();
 }
 
-void fn_7100ac2e00(UnkComponent_0x5b8* self) {
+void fn_7100ac2e00(UnkComponent_0x5b8_ac2e00* self) {
     self->vtable = &g_unk_7101a96b30[2];
     if (self->field_0x5a0) {
         fn_71005c4828(self->field_0x5a0, &self->field_0x5a0);

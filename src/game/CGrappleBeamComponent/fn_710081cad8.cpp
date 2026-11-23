@@ -12,7 +12,7 @@ extern void* g_unk_7101a85cd8[];
 extern void* g_unk_7101a7eae0[];
 extern void* g_unk_7101a6ba70[];
 
-struct __attribute__((packed)) UnkSelf {
+struct __attribute__((packed)) UnkSelf_81cad8 {
     void** vtable;
     u32 field_0x8;
     UnkRecord field_0xc[1];
@@ -23,7 +23,7 @@ static inline void Release(UnkRefObject* p) {
         p->vf_0x10();
 }
 
-void fn_710081cad8(UnkSelf* self) {
+void fn_710081cad8(UnkSelf_81cad8* self) {
     self->vtable = g_unk_7101a75548 + 2;
     for (u64 i = 0; i < self->field_0x8; i++) {
         Release(self->field_0xc[i].field_0x8);
@@ -32,7 +32,7 @@ void fn_710081cad8(UnkSelf* self) {
     self->field_0x8 = 0;
 }
 
-void fn_71008da4f0(UnkSelf* self) {
+void fn_71008da4f0(UnkSelf_81cad8* self) {
     self->vtable = g_unk_7101a7eae0 + 2;
     for (u64 i = 0; i < self->field_0x8; i++) {
         Release(self->field_0xc[i].field_0x8);
@@ -41,7 +41,7 @@ void fn_71008da4f0(UnkSelf* self) {
     self->field_0x8 = 0;
 }
 
-void fn_710097e418(UnkSelf* self) {
+void fn_710097e418(UnkSelf_81cad8* self) {
     self->vtable = g_unk_7101a85cd8 + 2;
     for (u64 i = 0; i < self->field_0x8; i++) {
         Release(self->field_0xc[i].field_0x8);
@@ -50,7 +50,7 @@ void fn_710097e418(UnkSelf* self) {
     self->field_0x8 = 0;
 }
 
-void fn_710098caac(UnkSelf* self) {
+void fn_710098caac(UnkSelf_81cad8* self) {
     self->vtable = g_unk_7101a86478 + 2;
     for (u64 i = 0; i < self->field_0x8; i++) {
         Release(self->field_0xc[i].field_0x8);
@@ -59,7 +59,7 @@ void fn_710098caac(UnkSelf* self) {
     self->field_0x8 = 0;
 }
 
-void fn_7100700d58(UnkSelf* self) {
+void fn_7100700d58(UnkSelf_81cad8* self) {
     self->vtable = g_unk_7101a6ba70 + 2;
     for (u64 i = 0; i < self->field_0x8; i++) {
         Release(self->field_0xc[i].field_0x8);
@@ -68,7 +68,7 @@ void fn_7100700d58(UnkSelf* self) {
     self->field_0x8 = 0;
 }
 
-void fn_71007bafa8(UnkSelf* self) {
+void fn_71007bafa8(UnkSelf_81cad8* self) {
     self->vtable = g_unk_7101a70eb0 + 2;
     for (u64 i = 0; i < self->field_0x8; i++) {
         Release(self->field_0xc[i].field_0x8);

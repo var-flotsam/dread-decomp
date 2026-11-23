@@ -17,7 +17,7 @@ struct UnkVersionRegistry;
 struct UnkVersionEntry;
 
 // A track: polymorphic, destroyed (and freed) through its vtable's slot 2.
-struct UnkTrack {
+struct UnkTrack_06b6e4 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();  // deleting destructor
@@ -32,27 +32,27 @@ struct UnkTypeView {
 };
 
 // Reads the rest of a track from the file.
-void fn_710006afd4(UnkTrack* track, base::global::CRntFile* file);
+void fn_710006afd4(UnkTrack_06b6e4* track, base::global::CRntFile* file);
 
 // The array's slots are written as raw words (the original's stores may alias the array's own
 // fields: its count is read again after each one).
-static inline void StoreSlot(UnkTrack** slot, UnkTrack* value) {
+static inline void StoreSlot(UnkTrack_06b6e4** slot, UnkTrack_06b6e4* value) {
     __builtin_memcpy(slot, &value, sizeof(value));
 }
 
 // The tracks' array: owning pointers, moved when it grows.
-struct UnkTrackArray : base::global::CRntVector<UnkTrack*> {
+struct UnkTrackArray : base::global::CRntVector<UnkTrack_06b6e4*> {
     void Grow(u32 n) {
         if (capacity < n) {
-            auto** p = static_cast<UnkTrack**>(allocator->vf_0x40((u64)n * 8, 8, flags));
+            auto** p = static_cast<UnkTrack_06b6e4**>(allocator->vf_0x40((u64)n * 8, 8, flags));
             if (data) {
-                UnkTrack** src = data;
+                UnkTrack_06b6e4** src = data;
                 u64 k = 0;
                 for (u32 i = 0; i < count; ++i, ++k, ++src) {
-                    UnkTrack* t = *src;
+                    UnkTrack_06b6e4* t = *src;
                     StoreSlot(src, nullptr);
                     StoreSlot(&p[k], t);
-                    UnkTrack* old = *src;
+                    UnkTrack_06b6e4* old = *src;
                     StoreSlot(src, nullptr);
                     if (old)
                         old->vf_0x10();
@@ -96,8 +96,8 @@ void fn_710006b6e4(UnkTrackArray* self, base::global::CRntFile* file) {
             for (;;) {
             }
         self->Grow(cap);
-        StoreSlot(&self->data[self->count], static_cast<UnkTrack*>(p));
+        StoreSlot(&self->data[self->count], static_cast<UnkTrack_06b6e4*>(p));
         ++self->count;
-        fn_710006afd4(static_cast<UnkTrack*>(p), file);
+        fn_710006afd4(static_cast<UnkTrack_06b6e4*>(p), file);
     }
 }

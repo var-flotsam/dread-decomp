@@ -17,7 +17,7 @@ struct UnkComponent_3f47fc {
     const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkComponent_3f47fc*)>(vtable[0])(this); }
 };
 
-struct UnkSelf {
+struct UnkSelf_3f47fc {
     u8 pad_0x0[0x10];
     UnkComponent_3f47fc* field_0x10;
     u8 pad_0x18[0x1600];
@@ -29,11 +29,11 @@ struct UnkSelf {
     u8 field_0x14a20[1];
 };
 
-u32 fn_71003e59f8(UnkSelf* self, void* arg);
+u32 fn_71003e59f8(UnkSelf_3f47fc* self, void* arg);
 void fn_71003ea558(void* entry, u8* source);
 void fn_71003f14c4(void* entry, u8* source);
 
-__attribute__((always_inline)) static inline void Register(UnkSelf* self, u8* entry) {
+__attribute__((always_inline)) static inline void Register(UnkSelf_3f47fc* self, u8* entry) {
     // Addressed by hand: an array member would be materialised ahead of the first store.
     char* list = reinterpret_cast<char*>(self) + 0x161c;
     u32 index = self->field_0x1618;
@@ -43,7 +43,7 @@ __attribute__((always_inline)) static inline void Register(UnkSelf* self, u8* en
 
 // Calls a step on the object as the step's own declaration types it.
 template <class T>
-__attribute__((always_inline)) static inline u32 CallStep(u32 (*step)(T*, void*), UnkSelf* self, void* arg) {
+__attribute__((always_inline)) static inline u32 CallStep(u32 (*step)(T*, void*), UnkSelf_3f47fc* self, void* arg) {
     return step(reinterpret_cast<T*>(self), arg);
 }
 
@@ -51,7 +51,7 @@ __attribute__((always_inline)) static inline u32 CallStep(u32 (*step)(T*, void*)
 // component pointer, the entries and their sources in the component.
 template <auto Step, const CClass* (*Getter)(), void (*Init1)(void*, u8*), void (*Init2)(void*, u8*),
           u32 Component, u32 Entry1, u32 Entry2, u32 Source1, u32 Source2>
-__attribute__((always_inline)) static inline u32 Initialise(UnkSelf* self, void* arg) {
+__attribute__((always_inline)) static inline u32 Initialise(UnkSelf_3f47fc* self, void* arg) {
     char* base = reinterpret_cast<char*>(self);
     // The step gets the caller's `arg` (x1), which the original hands it untouched.
     u32 result = CallStep(Step, self, arg);
@@ -68,15 +68,15 @@ __attribute__((always_inline)) static inline u32 Initialise(UnkSelf* self, void*
     return result & 1;
 }
 
-u32 fn_71003f47fc(UnkSelf* self, void* arg) {
+u32 fn_71003f47fc(UnkSelf_3f47fc* self, void* arg) {
     return Initialise<fn_71003e59f8, fn_71003f5604, fn_71003ea558, fn_71003f14c4, 0x149b8, 0x149c0, 0x14a20, 0x628,
                       0x730>(self, arg);
 }
 
 // The same initialisation in the Goliath X, Quetzoa and Shakernaut AI components' units, with their
 // own steps, class getters, initialisers and offsets.
-u32 fn_7100590c14(UnkSelf* self, void* arg);
-u32 fn_710066193c(UnkSelf* self, void* arg);
+u32 fn_7100590c14(UnkSelf_3f47fc* self, void* arg);
+u32 fn_710066193c(UnkSelf_3f47fc* self, void* arg);
 void fn_7100583e14(void* entry, u8* source);
 void fn_71005869d0(void* entry, u8* source);
 void fn_7100643ed0(void* entry, u8* source);
@@ -84,17 +84,17 @@ void fn_71006453a8(void* entry, u8* source);
 void fn_71006a4200(void* entry, u8* source);
 void fn_71006a6e4c(void* entry, u8* source);
 
-u32 fn_710058835c(UnkSelf* self, void* arg) {
+u32 fn_710058835c(UnkSelf_3f47fc* self, void* arg) {
     return Initialise<fn_7100590c14, fn_710058793c, fn_7100583e14, fn_71005869d0, 0x14b58, 0x14b60, 0x14bf0, 0x628,
                       0x720>(self, arg);
 }
 
-u32 fn_7100649f88(UnkSelf* self, void* arg) {
+u32 fn_7100649f88(UnkSelf_3f47fc* self, void* arg) {
     return Initialise<fn_71003ac8f4, fn_7100648ce0, fn_7100643ed0, fn_71006453a8, 0x14a28, 0x149a0, 0x149e0, 0x528,
                       0x618>(self, arg);
 }
 
-u32 fn_71006ad75c(UnkSelf* self, void* arg) {
+u32 fn_71006ad75c(UnkSelf_3f47fc* self, void* arg) {
     return Initialise<fn_710066193c, fn_71006ac5f4, fn_71006a4200, fn_71006a6e4c, 0x147f8, 0x146d0, 0x14738, 0x520,
                       0x620>(self, arg);
 }
@@ -107,17 +107,17 @@ void fn_71005c5478(void* entry, u8* source);
 void fn_710060b214(void* entry, u8* source);
 void fn_7100624a8c(void* entry, u8* source);
 
-u32 fn_7100599d3c(UnkSelf* self, void* arg) {
+u32 fn_7100599d3c(UnkSelf_3f47fc* self, void* arg) {
     return Initialise<fn_7100369490, fn_7100598ca0, fn_7100594488, fn_71005968b4, 0x147f0, 0x146e0, 0x14768, 0x510,
                       0x600>(self, arg);
 }
 
-u32 fn_71005cbb00(UnkSelf* self, void* arg) {
+u32 fn_71005cbb00(UnkSelf_3f47fc* self, void* arg) {
     return Initialise<fn_7100369490, fn_71005c9c50, fn_71005c63d0, fn_71005c5478, 0x146c8, 0x146f8, 0x14758, 0x520,
                       0x610>(self, arg);
 }
 
-u32 fn_710061fec8(UnkSelf* self, void* arg) {
+u32 fn_710061fec8(UnkSelf_3f47fc* self, void* arg) {
     return Initialise<fn_7100369490, fn_7100614184, fn_710060b214, fn_7100624a8c, 0x147e0, 0x146c8, 0x14760, 0x510,
                       0x638>(self, arg);
 }

@@ -105,12 +105,12 @@ struct UnkCountedIds {
 };
 #pragma pack(pop)
 
-struct UnkIdValues {
+struct UnkIdValues_0104f600 {
     UnkFilePathReleasedStrId id;
     u32 field_0x8;
     u32 field_0xc;
 
-    UnkIdValues(UnkIdValues&& other)
+    UnkIdValues_0104f600(UnkIdValues_0104f600&& other)
         : id(static_cast<UnkFilePathReleasedStrId&&>(other.id)), field_0x8(other.field_0x8),
           field_0xc(other.field_0xc) {}
 };
@@ -150,7 +150,7 @@ struct UnkIdArrayOwner {
     UnkClearedArray<UnkReleasedStrId> ids;
 };
 
-void fn_710104f600(UnkClearedArray<UnkIdValues>* self) { self->Clear(); }
+void fn_710104f600(UnkClearedArray<UnkIdValues_0104f600>* self) { self->Clear(); }
 
 // The same Clear for 0x18-byte elements (a path id and four values) in another unit: fn_7100ffb5c8.
 struct UnkIdValues18 {

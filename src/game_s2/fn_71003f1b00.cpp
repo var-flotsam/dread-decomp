@@ -7,10 +7,10 @@
 #include "game/UnkActor.h"
 #include "types.h"
 
-struct UnkComponent {
+struct UnkComponent_3f1b00 {
     void** vtable;
     const base::reflection::CType* vf_0x0() {
-        return reinterpret_cast<const base::reflection::CType* (*)(UnkComponent*)>(vtable[0])(this);
+        return reinterpret_cast<const base::reflection::CType* (*)(UnkComponent_3f1b00*)>(vtable[0])(this);
     }
 };
 
@@ -19,14 +19,14 @@ struct UnkSelf {
     UnkActor* field_0x8;
 };
 
-bool fn_71003f4bc0(UnkComponent* component);
+bool fn_71003f4bc0(UnkComponent_3f1b00* component);
 bool fn_71003f1ba8(UnkSelf* self, bool flag);
 
 bool fn_71003f1b00(UnkSelf* self, void* arg, u32 mode) {
     bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), arg, mode);
     ok &= fn_7100d7c990(self->field_0x8) != nullptr;
     if (UnkActor* owner = self->field_0x8) {
-        if (UnkComponent* component = static_cast<UnkComponent*>(owner->field_0x240)) {
+        if (UnkComponent_3f1b00* component = static_cast<UnkComponent_3f1b00*>(owner->field_0x240)) {
             bool is_class = fn_710009d50c(component->vf_0x0(), fn_71003f4454());
             if (ok & is_class)
                 return fn_71003f1ba8(self, !fn_71003f4bc0(component));

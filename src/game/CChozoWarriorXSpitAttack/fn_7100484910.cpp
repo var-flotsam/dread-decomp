@@ -28,7 +28,7 @@ struct UnkHandle_484910 {
     u64 field_0x8;
 };
 
-struct UnkSelf {
+struct UnkSelf_484910 {
     u8 pad_0x0[8];
     UnkOwner_484910* field_0x8;
     u8 pad_0x10[0x88];
@@ -39,7 +39,7 @@ struct UnkSelf {
 extern const base::global::CStrId g_unk_71726cf1e0[] __attribute__((visibility("hidden")));
 struct UnkPart;
 
-void fn_7100484910(UnkSelf* self) {
+void fn_7100484910(UnkSelf_484910* self) {
     if (UnkCollisionContainer* object = self->field_0x8->field_0x2a0) {
         fn_7100863a8c(object, g_unk_71726cf1e0);
         fn_7100863a8c(object, g_unk_71726cf1e0 + 1);

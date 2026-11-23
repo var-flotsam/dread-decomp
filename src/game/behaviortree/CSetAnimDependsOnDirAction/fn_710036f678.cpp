@@ -21,7 +21,7 @@ struct UnkInlineStr {
     u32 field_0x140;
 };
 
-struct UnkNode : UnkBehaviorTreeNodeBase {
+struct UnkNode_36f678 : UnkBehaviorTreeNodeBase {
     UnkStrId field_0x30;
     UnkStrId field_0x38;
     UnkStrId field_0x40;
@@ -43,7 +43,7 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     UnkInlineStr field_0x98;
 };
 
-void fn_710036f678(UnkNode* self) {
+void fn_710036f678(UnkNode_36f678* self) {
     fn_7100393e68(self);
     self->vtable = &g_unk_7101a24d08[2];
     new (&self->field_0x30) UnkStrId("", true);

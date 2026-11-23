@@ -24,7 +24,7 @@ struct __attribute__((packed)) UnkLongWord {
     u32 field_0x8;
 };
 
-struct UnkRecord {
+struct UnkRecord_4caf24 {
     u8 pad_0x0[0x8];
     UnkBlock32 field_0x8;
     u64 field_0x28;
@@ -46,7 +46,7 @@ struct UnkRecord {
     UnkWeakHandle* field_0x90;
 };
 
-UnkRecord* fn_71004caf24(UnkRecord* self, const UnkRecord* other) {
+UnkRecord_4caf24* fn_71004caf24(UnkRecord_4caf24* self, const UnkRecord_4caf24* other) {
     self->field_0x8 = other->field_0x8;
     self->field_0x28 = other->field_0x28;
     self->field_0x30 = other->field_0x30;
