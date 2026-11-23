@@ -168,7 +168,138 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through 70cf3316766cb4940fb591f38ff033a40ff2ec62 -->
+<!-- journal_sync: through 4bc61496a137ab70499b5f75d3e025f7aae84b80 -->
+
+**Spell the real names of 316 matching functions in their sources (#639, 2026-11-23).**
+
+`progress.py --quality` counted 1,431 finished hand-written functions whose source still spells `fn_<addr>` while `data/functions/` already gives a real name. Why they disagreed: those names come from the binary's own evidence (`name_source` `reflection`, 1,105, and `string`, 326; none `inferred`). `tools/rename.py` deliberately refuses those sources (they are not the name map's), and `rename.py --check` only checks the map's `inferred` names, so nothing ever rewrote the sources. `check.py` pairs a symbol with its row by the `fn_<addr>` in its name first, so a placeholder kept matching and nothing failed.
+
+This spells 316 of them in their sources, with scripts kept untracked:
+
+- **305 free functions** (the Lua bindings, `lua_bind::` and `lua_lib::`): each definition now sits in `namespace lua_bind` or `namespace lua_lib` under its listed name. Neighbouring definitions share one namespace block. Three are written through the `SET_FLAG_BINDING` macro.
+- **11 reflection value operations of classes declared in `include/`** (`CAbilityComponent`, `CGoliathAttack`, `CGroundShockerAttack`, `CSpawnerActorBlueprint`, `base::file::CDeviceQueue`): each is now a static member, declared in the class with the signature its definition already had.
+- One local `extern` of `g_unk_71727bebb8` was dropped from `UnkTU2666_lua_ovb0157.cpp`. Its included `game/UnkTU2553.h` already declares it. `decl_check` saw this duplicate only once the macro lines were wrapped.
+
+Acceptance, per file: every changed source, and every source that sees a changed header (50 for `CAbilityLayout.h`), compiles with the project compiler and flags to the same object apart from symbol names. The test compares section bytes, relocations by offset, type, addend and target (each renamed symbol mapped back to its address) and the defined symbols. A class whose files failed this was restored whole.
+
+Not changed (1,115):
+
+- **1,085 members of classes with no declaration in `include/`** (657 classes; 1,080 are reflection value operations such as `refl_Construct`, `refl_CopyAssign` and `refl_Equals`, 5 are `CRntVector<T>::Insert*`). The sources see these classes only as `void*` or `Unk...` views. Most held: `sound::TMusicTrack` 6; then 5 each for `base::animation::CAnimationSkeletonTransformer`, `animtree::CLookAtPosControlDef`, `animtree::CSamusLegsBoneControlDef`, `CBarelyFrozenIceInfo`, `CCharClassAIAttackEvent`, `CCharClassFXSetMaterialPropertyEvent`, `CCharClassSetMaterialPropertyEvent`, `CCooldownXBossWindTunnelAttack` and `SDropProbabilities`. 96 of them are defined through macros that paste the address.
+- **9 members of declared classes**:
+  - `CVariable::refl_GetClass` is declared by the generated `UnkClassGetters.h`.
+  - With `CExplosionGfx::refl_AddFields`, the header no longer compiled for its includers (`CClass` is not visible there).
+  - The two `CRntFile` operations: their source does not see the class definition.
+  - Three `AssetName` and two `CChozoCommanderAttack` operations take source-local `Unk...` or `char*` parameters.
+- **21 decorated names**:
+  - 8 `lua_bind::*_caf720`/`_caf7b0`/`_cae778` carry a generator suffix that tells same-named bindings apart.
+  - 13 `lua_lib::__eq`/`__index`/`__add`/... are reserved C++ identifiers, some also suffixed.
+- The one draft that copies a renamed binding (`drafts/game/UnkTU2666/fn_7101095fb0.cpp`) keeps its placeholder.
+
+What would unlock the rest: class declarations for those 657 classes (the other job). The generated reflection sources' convention (`base/reflection/ReflectedClass.h`) is a namespace named for the class. It mangles like a static member and would spell the 1,080 `refl_` names with no declaration, but it collides as soon as a real class declaration appears in the same translation unit.
+
+**Pilot: declare 22 reflected classes from the reflection tables; reflection sources use sizeof and offsetof (#638, 2026-11-23).**
+
+**A pilot: real class declarations for 22 reflected classes, generated from the reflection tables, and their reflection sources written against them. Everything stays byte-identical.** The sampled read of `src/reflection/` failed partly because the class's own type never appears (construct A) and because sizes and field offsets are bare numbers (B, C). This tries the fix the reader proposed on a small set, and measures how far it would go.
+
+### The pilot
+
+- **`tools/gen_classes.py`** (new) writes one header per class under `include/reflected/`. The headers are generated and listed in `.gitattributes`. Each holds:
+  - the class under its real name, with its base;
+  - its reflected members by name and type, at their offsets;
+  - `pad_0x..` arrays for the gaps the reflection does not describe;
+  - `static_assert`s on `sizeof` and on every member's `offsetof`.
+
+  It follows these rules:
+  - **Tail padding:** a subclass can reuse a base's tail padding (the Itanium layout of a non-POD base). So when a reflected subclass's first member starts inside the base's size, the base's trailing gap ends there. For example, `CCameraFX` (0x38 bytes) ends its data at 0x34, where `CCameraFX_Shake::fTime` sits.
+  - **Root classes** declare the virtual table the reflection functions call: the class getter in slot 0 (no known name, so it keeps `vf_0x0`), then the destructor.
+  - **Properties** (no storage, offset `0xffffffff`) are not members.
+  - **Errors:** a member type the generator cannot spell, or a layout that overlaps, is an error, and the class is not declared.
+- **`gen_reflection.py`**, final pass `with_declared_classes`: a declared class's namespace block becomes the class's own static members, defined outside the class (`void CCameraFX::refl_AddFields(CClass* cls) { ... }`). A namespace and a class mangle the same way, so every symbol is unchanged.
+  - The size is `sizeof(T)`.
+  - Each field's offset is `offsetof(T, member)`, only where the header asserts the same number.
+  - `refl_TypeOf` is `*static_cast<const T*>(obj)->vf_0x0()`.
+  - `refl_Destroy` is `static_cast<T*>(obj)->~T()`.
+  - A block keeps the namespace form in three cases: a line in it has no such form, its virtual table puts the destructor first, or its parent is not declared.
+- **`include/base/reflection/ReflectedClass.h`** gains:
+  - `DREAD_REFLECTED_CLASS_MEMBERS`: the static members a declared class has;
+  - `DREAD_REFLECTED_DECLARED_CLASS` and `DREAD_REFLECTED_DECLARED_ROOT_CLASS`: the getter, without the namespace declarations;
+  - `-Winvalid-offsetof` silenced, with the reason in a comment.
+- **`gen_fields.py`** reads the new form (offsets through the headers' asserts), so `--class` still shows these classes.
+- Tests: `tools/tests/test_gen_classes.py`.
+
+**Classes: 22 headers, 19 of them with fields.**
+- `base::core::CBaseObject` > `CGameObject` > `CCameraFX` > `CCameraFX_Shake` and `CCameraFX_SteadyCamera`.
+- Five classes share `CCameraFX_Shake`: `CCameraFX_CrossShake`, `_MotionShake`, `_OscillationShake`, `_RandShake` and `_RotationShake`.
+- `CCooldownXBossFireBallDef`, a root with its own virtual table.
+- `base::global::timeline::CEvent` and ten events: `CCharClassAIAttackEvent`, `...AlternativeActionInitializeEvent`, `...AlternativeActionPlayEvent`, `...BaseFadeInEvent`, `...BindLightToConstantAlphaEvent`, `...CallEmmyEvent`, `...CameraFXPresetEvent`, `...EnableScenarioItemByNameEvent`, `...FXFadeEvent`, `...DropItemCrazyEvent`.
+
+**Byte identity:**
+- `trymatch.py`: all 22 regenerated files match, every function `MATCH`.
+- `check.py --update`: no `REGRESSION`, `DUPLICATE`, `RELOC` or `EQUIV` line, and `O` is unchanged.
+
+### The whole family: a trial (scratch only, not committed)
+
+The trial generated headers for every class whose layout the generator can write and ran the pass over every source. It then compiled each changed source and compared its object with the object of today's source.
+
+| | count |
+|---|---|
+| Reflected classes | 2,355 |
+| Layout writable (whole base chain) | 1,534 |
+| Not nested in another reflected class (149 are; the outer class must be declared first) | 1,380 |
+| Sources changed / compiled | 1,283 / 1,191 |
+| Objects byte-identical to today's | **1,191 of 1,191** |
+| Classes converted in those files | 1,207 (343 with at least one `offsetof`) |
+| `O` functions named for those classes | about 14,300 |
+
+**What blocks the rest:**
+- **Member types not declared: 716 classes,** through their own members or a base's.
+  - By the first type that fails: `CRntVector<...>` 176, `CGameLink<...>` 118, `behaviortree::SStatus::Enum` 57, `CPooledList<...>` 50, `TActionInsertFlagset` 34.
+  - Then enums and reflected structs: `EProjectileMeleeHitReaction` 26, `CDamageSourceFactor` 22, and others.
+  - Most are templates and enums with a type object in the project but no C++ declaration. Declaring `CRntVector<T>`, `CGameLink<T>` and the enums by name would unlock most of them.
+- **Layouts that do not fit: 116 classes.**
+  - 105 fail in the generator: 101 with overlapping or misaligned members, 4 with members past the class size.
+  - 11 more fail their size assert when compiled.
+  - Causes seen: roots without a virtual table (a member at offset 0), and member types whose size or alignment the generator guesses wrong.
+- **Namespace and class clashes in multi-class units: 81 of the 92 compile failures.** A file that still declares something in a declared class's namespace cannot also see the class. Such declarations are the `CTunable*` statics `refl_fields_added` and `refl_tunable`, and nested classes. Those statics would become static data members.
+- **Virtual tables with the destructor first:** 14 blocks are kept (the roots `CActionInstance` and `media::CMediaStream`). They need a second root layout.
+- **Readability left:** 942 of the converted classes have no reflected fields, and 968 have at least one `pad_` gap. A gap is honest, but it is still a placeholder.
+
+**`decl_check.py` and `struct_check.py`:** both pass, unchanged against `main`. Neither one sees the clash question: the hand-written views use other names (`Unk...`), so to them these are different types.
+
+### The two hand-written views of the same classes
+
+- **`CCameraFX_RandShake` and `UnkRandShake_ovb0131`** (`include/game/`):
+  - The view's `duration` (0x34), `amplitude` (0x60) and `amplitude_w` (0x64) are `fTime`, `fDistance` and `fTwist`.
+  - Its `curve` pointer at 0x58 is the reflected `sFunction`, a `CStrId`. What the view calls the curve's text and use count belong to the string id's entry.
+  - The view also knows members the reflection does not describe: `time` (0x50) and `stopped` (0x54), in `CCameraFX_Shake`'s gap, and the offset at 0x68.
+  - The generated header could replace the view, but not as a drop-in change. Gap members would first have to be merged in as placeholders, and the `CStrId` entry exposed.
+- **`CCooldownXBossFireBallDef` and `UnkFireBallDef_ovb0072`:**
+  - The view's virtual table pointer and its packed `data` (0x8, 0xc, 0x10) are `bEnabled`, `fPreparationTimeOffset` and `bBreakable`.
+  - Its virtual table (slot 0, then the destructor) is the one the header declares.
+  - The view writes its constructors by hand, with a packed 9-byte copy, to match four functions. Moving them onto the real class would mean redoing those matches.
+
+### Placeholders in `include/base/reflection/` (constructs B and D), and the evidence for real names
+
+This PR renames nothing. Evidence for a later `rename.py` job:
+
+| Placeholder | Evidence |
+|---|---|
+| `CClass::CClass` params `fn_0x70`, `fn_0xe0`; `m_fn_0x70`, `m_fn_0xe0` | roles only: the add-attributes and add-fields functions (`T::refl_AddAttributes`, `refl_AddFields`, inferred) |
+| `CType::UnkFnSet`, `fn_0x28`..`fn_0x68`, `m_fn_0x28`..`m_fn_0x68` | roles only: `ClassDescription`'s construct, copy and move construct, destroy, copy and move assign, equals, hash, type_of |
+| `UnkReflClassTraits` | our own device; `ClassDescription` could replace it |
+| `UnkReflArray` at CClass+0xe8 and +0x110 | reflection type-name strings `CRntSmallDictionary<CStrId, base::reflection::CVariable>` and `<CStrId, base::reflection::CFunction>` |
+| `UnkReflAttrs` (0x38), `UnkReflValueRef` | string `CRntSmallDictionary<CStrId, base::reflection::CTypedValue>`; a value with its type is plausibly `CTypedValue` |
+| `UnkReflAttrKey` | nothing direct; `base::reflection::EAttributeTarget` is a reflected enum near it |
+| attribute-key getters `fn_71000...` (`attr::Description()`, `TrackGroup()`, ...) | each key's own string, already in the comments |
+| `fn_71000934b8` (insert), `UnkReflTypeOf<T>` | none; `UnkReflTypeOf<T>::Get` is `refl_GetType<T>` in `data/functions/` (inferred) |
+| `UnkReflObject(B)::vf_0x0`, `vf_0x18` (the class getter) | none found: no string, not in MEDS |
+
+### Estimate for the whole family
+
+- **The 1,207 classes that already work:** 1 to 2 hours. List them in `gen_classes.py`, or select them by rule, then regenerate and run the full check.
+- **Nested classes, tunable statics and multi-class units:** about a day. This unlocks about 150 nested classes and the 81 clashing files.
+- **Member types:** a few days to declare `CRntVector<T>`, `CGameLink<T>`, `CPooledList<T>` and the reflected enums. Some uses already have their layouts. This unlocks most of the 716 blocked classes.
+- **Layout misfits:** the 116 classes, by hand or through a second root layout.
 
 **Match five near-miss drafts (98% and over) and move them into src (#637, 2026-11-23).**
 
