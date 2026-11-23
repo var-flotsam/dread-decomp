@@ -11,14 +11,14 @@ struct UnkOwner {
     UnkAIComponent* field_0x240;
 };
 
-struct UnkComponent {
+struct UnkComponent_37b524 {
     u8 pad_0x0[0x18];
     UnkOwner* field_0x18;
     u8 pad_0x20[0x3a];
     u8 field_0x5a;
 };
 
-void fn_710037b524(UnkComponent* self) {
+void fn_710037b524(UnkComponent_37b524* self) {
     fn_7100394bd4(self);
     if (self->field_0x18) {
         UnkAIComponent* object = self->field_0x18->field_0x240;

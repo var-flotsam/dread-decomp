@@ -8,15 +8,15 @@
 #include "game/UnkTU604.h"
 #include "types.h"
 
-struct UnkTarget {
+struct UnkTarget_3f8210 {
     void** vtable;
-    void vf_0x178(void* id) { reinterpret_cast<void (*)(UnkTarget*, void*)>(vtable[47])(this, id); }
+    void vf_0x178(void* id) { reinterpret_cast<void (*)(UnkTarget_3f8210*, void*)>(vtable[47])(this, id); }
 };
 
 struct UnkState_3f8210 {
     UnkCounted* field_0x0;
     u8 pad_0x8[0x18];
-    UnkTarget* field_0x20;
+    UnkTarget_3f8210* field_0x20;
     u8 pad_0x28[0x22];
     u8 field_0x4a;
     u8 field_0x4b;
@@ -33,7 +33,7 @@ struct UnkSelf {
 };
 
 void fn_71003f9388(void* registry, void* id, u32 flag);
-void fn_7100a1782c(UnkTarget* target, u32 flag);
+void fn_7100a1782c(UnkTarget_3f8210* target, u32 flag);
 
 void fn_71003f8210(UnkSelf* self) {
     UnkState_3f8210* state = &self->state;

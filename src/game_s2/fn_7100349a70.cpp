@@ -5,7 +5,7 @@
 #include "game/UnkTU437.h"
 #include "game_s2/UnkWeakHandle.h"
 
-struct __attribute__((packed)) UnkSelf {
+struct __attribute__((packed)) UnkSelf_349a70 {
     void** vtable;
     u32 field_0x8;
     UnkRecord field_0xc[1];
@@ -16,7 +16,7 @@ static inline void Release(UnkRefObject* p) {
         p->vf_0x10();
 }
 
-void fn_7100349a70(UnkSelf* self) {
+void fn_7100349a70(UnkSelf_349a70* self) {
     self->vtable = g_unk_7101a23c58 + 2;
     for (u64 i = 0; i < self->field_0x8; i++) {
         Release(self->field_0xc[i].field_0x8);

@@ -39,14 +39,14 @@ struct UnkOwner_1443 {
     UnkTarget_1443* target;
 };
 
-struct UnkUnit1443 {
+struct UnkUnit1443_b51 {
     u8 pad_0x0[0x30];
     UnkOwner_1443* owner;
     UnkMovement_1443* movement;
     UnkSettings_1443* settings;
 };
 
-static inline void UpdateTarget(UnkUnit1443* self) {
+static inline void UpdateTarget(UnkUnit1443_b51* self) {
     if (self->movement->vf_0x170() && !self->movement->vf_0x378())
         return;
     UnkOwner_1443* owner = self->owner;
@@ -67,7 +67,7 @@ static inline void UpdateTarget(UnkUnit1443* self) {
     }
 }
 
-void fn_7100971358(UnkUnit1443* self, f32 dt) {
+void fn_7100971358(UnkUnit1443_b51* self, f32 dt) {
     UpdateTarget(self);
     self->movement->vf_0x310(dt);
 }

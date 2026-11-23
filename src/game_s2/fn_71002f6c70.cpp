@@ -10,13 +10,13 @@
 
 using base::reflection::CClass;
 
-struct UnkSource {
+struct UnkSource_2f6c70 {
     u64 field_0x0;
 };
 
 // NON_MATCHING(minor): the two description calls are laid out the other way round (the branch on the
 // comparison is b.ne where the original has b.eq); behaviour is identical
-void* fn_71002f6c70(void* self, UnkSource* source, u32 flags) {
+void* fn_71002f6c70(void* self, UnkSource_2f6c70* source, u32 flags) {
     const CClass* desc = source->field_0x0 == g_unk_71727b9db0 ? fn_71002effc4() : fn_71002e970c();
     if (fn_710009d50c(desc, fn_7100016894()) && desc->m_fn_0x28) {
         void* obj = GetDefaultAllocator()->vf_0x40(desc->m_size, 8, flags);

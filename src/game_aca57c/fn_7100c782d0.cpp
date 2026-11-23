@@ -28,7 +28,7 @@ void fn_7100c787ec(void* self, UnkWeakTarget* target) { PassWeakHandle<fn_7100c7
 
 // Whether the list of weak handles (at 0x10, count at 0x18) has an entry for the same object as
 // `target`'s handle, which is held for the search.
-struct UnkHandleList {
+struct UnkHandleList_c782d0 {
     u8 unk_0x0[0x10];
     UnkWeakHandle** data;
     u32 count;
@@ -51,7 +51,7 @@ struct UnkHeldHandle {
 };
 
 // NON_MATCHING(minor): the null-handle flag is tested with cbz instead of tbz.
-bool fn_7100c77e78(UnkHandleList* self, UnkWeakTarget* target) {
+bool fn_7100c77e78(UnkHandleList_c782d0* self, UnkWeakTarget* target) {
     UnkHeldHandle handle(GetWeakHandle(target));
     UnkWeakHandle** it = self->data;
     for (u64 n = self->count; n != 0; --n, ++it) {

@@ -4,12 +4,12 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-struct UnkProjectileMovement {
+struct UnkProjectileMovement_ac437c {
     u8 pad_0x0[0x4b8];
     u32 dir_0x4b8[2];
 };
 
-void fn_7100ac437c(UnkProjectileMovement* self, UnkVec3f* out) {
+void fn_7100ac437c(UnkProjectileMovement_ac437c* self, UnkVec3f* out) {
     UnkVec3f dir;
     struct Words { u32 x, y, z; };
     Words w = {self->dir_0x4b8[0], self->dir_0x4b8[1], 0};

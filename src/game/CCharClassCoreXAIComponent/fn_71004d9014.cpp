@@ -7,7 +7,7 @@
 
 using base::global::UnkStringData;
 
-struct UnkNode : UnkBossAIComponent {
+struct UnkNode_4d9014 : UnkBossAIComponent {
     u8 pad_0x528[0x10];
     u64 field_0x538;
     u8 pad_0x540[0x18];
@@ -16,7 +16,7 @@ struct UnkNode : UnkBossAIComponent {
 
 extern void* g_unk_7101a3fb70[];
 
-void fn_71004d9014(UnkNode* self) {
+void fn_71004d9014(UnkNode_4d9014* self) {
     fn_710041a198(self);
     self->vtable = g_unk_7101a3fb70 + 2;
     self->field_0x538 = 0;

@@ -29,7 +29,7 @@ struct UnkEmmyWakeUpTarget : base::UnkRefCounted {
     void* field_0x10;
 };
 
-struct UnkEmmyWakeUpComponent {
+struct UnkEmmyWakeUpComponent_b52 {
     u8 pad_0x0[0x30];
     UnkEntityState* entity;
     u8 pad_0x38[0x50];
@@ -41,7 +41,7 @@ struct UnkEmmyWakeUpComponent {
 
 typedef void (*UnkEmmyWakeUpCall)(UnkCentralUnitProto* unit);
 
-bool fn_71007d73cc(UnkEmmyWakeUpComponent* self, const UnkEmmyWakeUpMessage* msg) {
+bool fn_71007d73cc(UnkEmmyWakeUpComponent_b52* self, const UnkEmmyWakeUpMessage* msg) {
     if (msg->type->hash != 0xf4061ff25a2163d6ull || msg->kind != 1)
         return true;
     if (self->state == 1) {

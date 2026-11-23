@@ -4,16 +4,16 @@
 // handler that returns 1; the result is the last handler's result (0 when none ran).
 #include "types.h"
 
-struct UnkEvent {
+struct UnkEvent_d35cfc {
     u8 unk_0x0[0x58];
     u32 mask_0x58;
     u32 mask_0x5c;
 };
 
 struct UnkHandler {
-    virtual s32 vf_0x0(UnkEvent* event);
-    virtual s32 vf_0x8(UnkEvent* event);
-    virtual s32 vf_0x10(UnkEvent* event);
+    virtual s32 vf_0x0(UnkEvent_d35cfc* event);
+    virtual s32 vf_0x8(UnkEvent_d35cfc* event);
+    virtual s32 vf_0x10(UnkEvent_d35cfc* event);
 };
 
 struct UnkHandlerNode {
@@ -31,8 +31,8 @@ struct UnkDispatcher {
     bool busy;
 };
 
-template <s32 (UnkHandler::*Handle)(UnkEvent*)>
-__attribute__((always_inline)) static inline s32 Dispatch(UnkDispatcher* self, UnkEvent* event) {
+template <s32 (UnkHandler::*Handle)(UnkEvent_d35cfc*)>
+__attribute__((always_inline)) static inline s32 Dispatch(UnkDispatcher* self, UnkEvent_d35cfc* event) {
     self->busy = true;
     s32 result = 0;
     for (UnkHandlerNode* node = self->head; node; node = node->next) {
@@ -46,6 +46,6 @@ __attribute__((always_inline)) static inline s32 Dispatch(UnkDispatcher* self, U
     return result;
 }
 
-s32 fn_7100d35cfc(UnkDispatcher* self, UnkEvent* event) { return Dispatch<&UnkHandler::vf_0x0>(self, event); }
-s32 fn_7100d35d98(UnkDispatcher* self, UnkEvent* event) { return Dispatch<&UnkHandler::vf_0x8>(self, event); }
-s32 fn_7100d35e34(UnkDispatcher* self, UnkEvent* event) { return Dispatch<&UnkHandler::vf_0x10>(self, event); }
+s32 fn_7100d35cfc(UnkDispatcher* self, UnkEvent_d35cfc* event) { return Dispatch<&UnkHandler::vf_0x0>(self, event); }
+s32 fn_7100d35d98(UnkDispatcher* self, UnkEvent_d35cfc* event) { return Dispatch<&UnkHandler::vf_0x8>(self, event); }
+s32 fn_7100d35e34(UnkDispatcher* self, UnkEvent_d35cfc* event) { return Dispatch<&UnkHandler::vf_0x10>(self, event); }

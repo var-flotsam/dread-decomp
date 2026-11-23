@@ -7,12 +7,12 @@ struct UnkValues4 {
     u32 v[4];
 };
 
-struct UnkValues3 {
+struct UnkValues3_2cb6b8 {
     u32 v[3];
 };
 
 using UnkU32Values4Pair = UnkValuePairRef<u32, UnkValues4>;
-using UnkU32Values3Pair = UnkValuePairRef<u32, UnkValues3>;
+using UnkU32Values3Pair = UnkValuePairRef<u32, UnkValues3_2cb6b8>;
 
 UnkU32Values4Pair* fn_71002cb6b8(UnkU32Values4Pair* self, UnkU32Values4Pair* other) { return Assign(self, other); }
 

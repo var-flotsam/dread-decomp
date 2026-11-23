@@ -2,13 +2,13 @@
 #include "game_s2/UnkChild.h"
 #include "types.h"
 
-struct UnkParent {
+struct UnkParent_2dfb0c {
     u8 pad_0x0[0x38];
     UnkChild** children;
     u32 count;
 };
 
-s32 fn_71002dfb0c(UnkParent* self) {
+s32 fn_71002dfb0c(UnkParent_2dfb0c* self) {
     s32 best = 0;
     UnkChild** end = self->children + self->count;
     for (UnkChild** p = self->children; p != end; ++p) {

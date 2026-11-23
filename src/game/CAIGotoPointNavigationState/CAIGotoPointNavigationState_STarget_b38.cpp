@@ -13,7 +13,7 @@ extern __attribute__((visibility("hidden"))) base::reflection::CClass g_unk_7172
 struct UnkTarget;
 typedef void (*UnkTargetDelegate)(void* context, const UnkTarget* target, void* owner, u32 arg, void* data);
 
-struct UnkTargetHolder {
+struct UnkTargetHolder_b38 {
     u8 pad_0x0[0x30];
     void* owner;
     u8 pad_0x38[0xc0];
@@ -38,7 +38,7 @@ __attribute__((always_inline)) static inline const UnkTarget* GetTarget(UnkReflV
     return base::reflection::refl_ArgValue<UnkTarget>(v);
 }
 
-u32 fn_7100702564(UnkTargetHolder* self, u32 arg, void* data) {
+u32 fn_7100702564(UnkTargetHolder_b38* self, u32 arg, void* data) {
     const UnkTarget* target = IsTarget(&self->target) ? GetTarget(&self->target) : nullptr;
     if (!target || !self->enabled || !self->delegate)
         return 0;

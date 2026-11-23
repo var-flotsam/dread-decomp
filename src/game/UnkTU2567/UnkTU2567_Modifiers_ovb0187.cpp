@@ -18,15 +18,15 @@ struct UnkMinimapItemModifiers_ovb0187 {
     UnkMinimapItemModifier_ovb0187* end() { return begin() + count; }
 };
 
-struct UnkMinimapItem {
+struct UnkMinimapItem_ovb0187 {
     void* icon;
     u8 pad_0x8[0x58];
     UnkMinimapItemModifiers_ovb0187 alpha_modifiers;  // 0x60
     UnkMinimapItemModifiers_ovb0187 size_modifiers;   // 0x2ec
 };
-static_assert(__builtin_offsetof(UnkMinimapItem, size_modifiers) == 0x2ec, "UnkMinimapItem layout");
+static_assert(__builtin_offsetof(UnkMinimapItem_ovb0187, size_modifiers) == 0x2ec, "UnkMinimapItem_ovb0187 layout");
 
-void fn_7100eb8978(UnkMinimapItem* item, f32 dt) {
+void fn_7100eb8978(UnkMinimapItem_ovb0187* item, f32 dt) {
     if (!item->icon)
         return;
     for (UnkMinimapItemModifier_ovb0187& it : item->alpha_modifiers)

@@ -15,7 +15,7 @@ struct UnkAimActor_352240 {
     UnkAimTarget* field_0x220;
 };
 
-struct UnkAimComponent {
+struct UnkAimComponent_352240 {
     u8 pad_0x0[0x30];
     UnkAimActor_352240* field_0x30;
     u8 pad_0x38[0x638];
@@ -30,7 +30,7 @@ struct UnkAimOutput {
     f32 field_0x6c;
 };
 
-void fn_7100352240(UnkAimComponent* self, UnkAimOutput* out) {
+void fn_7100352240(UnkAimComponent_352240* self, UnkAimOutput* out) {
     if (!self->field_0x30->field_0x220)
         return;
     UnkTrackQuery query = {fn_7100c50338(), nullptr, -1.0f};

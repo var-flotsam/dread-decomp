@@ -30,7 +30,7 @@ struct UnkMainMenuSettings_ovb0126 {
     bool field_0xb4;
 };
 
-struct UnkMainMenu_ovb0126 {
+struct UnkMainMenu_ovb0126_b363ac {
     u8 pad_0x0[0x268];
     UnkGuiDisplayObject* display;  // 0x268
     UnkMainMenuComposition_ovb0126* composition;  // 0x270
@@ -42,12 +42,12 @@ struct UnkMainMenu_ovb0126 {
 };
 
 // Whether the menu shows the slot selection composition in state 3.
-static inline bool InSlotSelection(UnkMainMenu_ovb0126* self, UnkMainMenuComposition_ovb0126* composition) {
+static inline bool InSlotSelection(UnkMainMenu_ovb0126_b363ac* self, UnkMainMenuComposition_ovb0126* composition) {
     CStrId name("slotselectioncomposition", true);
     return composition->name == name.data && self->state == 3;
 }
 
-bool fn_7100b363ac(UnkMainMenu_ovb0126* self) {
+bool fn_7100b363ac(UnkMainMenu_ovb0126_b363ac* self) {
     fn_710002ffb4(&g_unk_717271e8f8->field_0xca8, &g_unk_7172763718);
     if (UnkMainMenuComposition_ovb0126* composition = self->composition) {
         if (InSlotSelection(self, composition))

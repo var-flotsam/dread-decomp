@@ -33,7 +33,7 @@ static inline base::file::UnkFileDevice* FileDevice() {
 }
 
 // The pooled data behind a string id as its text accessor sees it (src/game/CGameManager.cpp).
-struct UnkIdTextData {
+struct UnkIdTextData_ecb00c {
     u8 pad_0x0[0x10];
     CRntString str;
     u8 pad_0x40[0x4];
@@ -58,8 +58,8 @@ static inline void ResetPath(CFilePathStrId* id) {
 }
 
 static inline const char* IdText(UnkPathIdTwoStep& id) {
-    ++reinterpret_cast<UnkIdTextData*>(id.data)->reads;
-    const CRntString& str = reinterpret_cast<UnkIdTextData*>(id.data)->str;
+    ++reinterpret_cast<UnkIdTextData_ecb00c*>(id.data)->reads;
+    const CRntString& str = reinterpret_cast<UnkIdTextData_ecb00c*>(id.data)->str;
     return str.data ? str.data : g_unk_710162e2ed;
 }
 

@@ -6,17 +6,17 @@
 #include "game/behaviortree/CWaitAction.h"
 #include "types.h"
 
-struct UnkSelf : UnkBehaviorTreeNodeBase {
+struct UnkSelf_393558 : UnkBehaviorTreeNodeBase {
     f32 field_0x2c;
     u8 id_0x30[8];
     u8 id_0x38[8];
     u8 id_0x40[8];
     u8 field_0x48[11];
 
-    UnkSelf* vf_0x18() { return reinterpret_cast<UnkSelf* (*)(UnkSelf*)>(vtable[3])(this); }
+    UnkSelf_393558* vf_0x18() { return reinterpret_cast<UnkSelf_393558* (*)(UnkSelf_393558*)>(vtable[3])(this); }
 };
 
-UnkSelf* fn_7100393558(UnkSelf* self) {
+UnkSelf_393558* fn_7100393558(UnkSelf_393558* self) {
     fn_7100393e68(self);
     self->vtable = g_unk_7101a26cb0 + 2;
     self->field_0x2c = 1.0f;

@@ -5,7 +5,7 @@
 
 using base::global::CStrId;
 
-struct UnkRecord {
+struct UnkRecord_2e788c {
     u64 field_0x0;
     CStrId field_0x8;
     CStrId field_0x10;
@@ -13,7 +13,7 @@ struct UnkRecord {
     u8 field_0x28[20];
 };
 
-UnkRecord* fn_71002e788c(UnkRecord* self, UnkRecord* other) {
+UnkRecord_2e788c* fn_71002e788c(UnkRecord_2e788c* self, UnkRecord_2e788c* other) {
     if (self != other) {
         self->field_0x8 = other->field_0x8;
         self->field_0x10.ReleaseAndTake(other->field_0x10);

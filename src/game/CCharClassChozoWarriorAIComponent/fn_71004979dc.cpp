@@ -12,12 +12,12 @@
 
 using base::global::UnkStrId;
 
-struct UnkNode : UnkBossAIComponent {
+struct UnkNode_4979dc : UnkBossAIComponent {
     u8 pad_0x528[0x2d0];
     u8 field_0x7f8;
 };
 
-void fn_71004979dc(UnkNode* self) {
+void fn_71004979dc(UnkNode_4979dc* self) {
     fn_710041a198(self);
     self->vtable = &g_unk_7101a3cab0[2];
     fn_71004923f4(reinterpret_cast<char*>(self) + 0x528);
@@ -26,5 +26,5 @@ void fn_71004979dc(UnkNode* self) {
     self->field_0x7f8 = 1;
     self->field_0x4fc = 257;
     self->field_0x409 = 0;
-    reinterpret_cast<void (*)(UnkNode*)>(self->vtable[3])(self);
+    reinterpret_cast<void (*)(UnkNode_4979dc*)>(self->vtable[3])(self);
 }

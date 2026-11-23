@@ -30,15 +30,15 @@ struct UnkOwner_495954 {
     UnkComponent_495954* field_0x240;
 };
 
-struct UnkSelf {
+struct UnkSelf_495954 {
     u8 pad_0x0[0x8];
     UnkOwner_495954* field_0x8;
 };
 
-f32 fn_7100362648(UnkSelf* self, void* arg, u32 mode);
+f32 fn_7100362648(UnkSelf_495954* self, void* arg, u32 mode);
 
 // `arg` and `mode` (x1, w2) reach the base untouched in the original (tools/forwarded_args.py).
-f32 fn_7100495954(UnkSelf* self, void* arg, u32 mode) {
+f32 fn_7100495954(UnkSelf_495954* self, void* arg, u32 mode) {
     f32 value = fn_7100362648(self, arg, mode);
     UnkComponent_495954* component = self->field_0x8->field_0x240;
     if (component && fn_710009d50c(component->vf_0x0(), fn_7100497f2c())) {

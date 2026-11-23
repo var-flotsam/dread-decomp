@@ -21,13 +21,13 @@ struct UnkRecord_5613f4 {
     u32 field_0x38;
 };
 
-struct UnkSelf {
+struct UnkSelf_5613f4 {
     UnkRecord_5613f4 field_0x0;
     UnkRecord_5613f4 field_0x40;
     u64 field_0x80;
 };
 
-void fn_71005613f4(UnkSelf* self) {
+void fn_71005613f4(UnkSelf_5613f4* self) {
     self->field_0x0.field_0x0 = g_unk_7101a48248 + 2;
     self->field_0x0.field_0x8 = g_unk_7101a20998 + 2;
     self->field_0x0.field_0x10.field_0x0 = 0;

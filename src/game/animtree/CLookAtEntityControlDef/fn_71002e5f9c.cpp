@@ -12,7 +12,7 @@
 using base::global::CStrId;
 using base::global::UnkStringData;
 
-struct UnkNode {
+struct UnkNode_2e5f9c {
     void** vtable;
     CStrId field_0x8;
     UnkStringData* field_0x10;
@@ -22,7 +22,7 @@ struct UnkNode {
 
 extern void* g_unk_7101a21af8[];
 
-void fn_71002e5f9c(UnkNode* self) {
+void fn_71002e5f9c(UnkNode_2e5f9c* self) {
     self->vtable = g_unk_7101a21718 + 2;
     new (&self->field_0x8) CStrId(base::global::CStrId::Empty());
     self->vtable = g_unk_7101a21af8 + 2;

@@ -8,18 +8,18 @@ typedef u64 u64_a4 __attribute__((aligned(4)));
 
 // Only the vtable is named; the rest is addressed by offset. It stays a separate view of the node
 // (deriving from UnkBehaviorTreeNodeBase reorders the zero stores), hence the cast at the call.
-struct UnkNode {
+struct UnkNode_37a410 {
     void** vtable;
 };
 
 extern void* g_unk_7101a25a60[];
 
 template <class T>
-static inline void St(UnkNode* self, u32 off, T value) {
+static inline void St(UnkNode_37a410* self, u32 off, T value) {
     *reinterpret_cast<T*>(reinterpret_cast<char*>(self) + off) = value;
 }
 
-void fn_710037a410(UnkNode* self) {
+void fn_710037a410(UnkNode_37a410* self) {
     fn_7100393e68(reinterpret_cast<UnkBehaviorTreeNodeBase*>(self));
     self->vtable = g_unk_7101a25a60 + 2;
     St<u64_a4>(self, 0x2c, 0);

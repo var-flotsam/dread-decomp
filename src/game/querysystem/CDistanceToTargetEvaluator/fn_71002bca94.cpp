@@ -5,13 +5,13 @@
 #include "game/UnkActor.h"
 #include "types.h"
 
-struct UnkLimits {
+struct UnkLimits_2bca94 {
     u8 pad_0x0[0x20];
     f32 field_0x20;
     f32 field_0x24;
 };
 
-f32 fn_71002bca94(UnkLimits* self, UnkActor* first, UnkActor* second) {
+f32 fn_71002bca94(UnkLimits_2bca94* self, UnkActor* first, UnkActor* second) {
     f32 result = 0.0f;
     UnkActor* target = fn_7100d7c990(first);
     if (target) {

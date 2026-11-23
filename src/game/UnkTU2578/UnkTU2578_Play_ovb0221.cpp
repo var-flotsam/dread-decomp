@@ -24,19 +24,19 @@ struct UnkSoundIdList_ovb0221 {
 struct UnkMedia324;
 u32 fn_710021fa20(UnkMedia324* self);
 
-struct UnkStruct_0x128 {
+struct UnkStruct_0x128_f020d4 {
     u8 pad_0x0[0x80];
     UnkSoundIdList_ovb0221 field_0x80;
 };
 
-void fn_7100f020d4(UnkStruct_0x128* self, u32 id) {
+void fn_7100f020d4(UnkStruct_0x128_f020d4* self, u32 id) {
     if (UnkSoundIdListNode* n = self->field_0x80.Find(id)) {
         UnkSoundIdRef ref = n->ref;
         fn_710021f950(reinterpret_cast<UnkMedia324*>(ref.ptr));
     }
 }
 
-void fn_7100f02170(UnkStruct_0x128* self, u32 id) {
+void fn_7100f02170(UnkStruct_0x128_f020d4* self, u32 id) {
     if (UnkSoundIdListNode* n = self->field_0x80.Find(id)) {
         UnkSoundIdRef ref = n->ref;
         fn_710021fa20(reinterpret_cast<UnkMedia324*>(ref.ptr));

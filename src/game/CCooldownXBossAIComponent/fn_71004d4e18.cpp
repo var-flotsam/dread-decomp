@@ -12,7 +12,7 @@ struct UnkPositioned {
     u32 field_0x64;
 };
 
-struct UnkBoxed {
+struct UnkBoxed_4d4e18 {
     u8 pad_0x0[0x30];
     UnkPositioned* field_0x30;
 };
@@ -26,7 +26,7 @@ struct UnkBox {
     f32 max_z;
 };
 
-void fn_71004d4e18(UnkBoxed* self, UnkBox* box) {
+void fn_71004d4e18(UnkBoxed_4d4e18* self, UnkBox* box) {
     if (!fn_7100d7c990(reinterpret_cast<UnkActor*>(self->field_0x30)))
         return;
     UnkPositioned* p = self->field_0x30;

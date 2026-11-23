@@ -9,7 +9,7 @@
 #include "types.h"
 
 // Only the vtable at +0x0 is named; the rest is addressed by offset.
-struct UnkComponent {
+struct UnkComponent_49d418 {
     u8 unk_0x0;
 };
 
@@ -25,7 +25,7 @@ static inline T& At(void* base, u64 offset) {
     return *reinterpret_cast<T*>(reinterpret_cast<char*>(base) + offset);
 }
 
-void fn_710049d418(UnkComponent* self) {
+void fn_710049d418(UnkComponent_49d418* self) {
     fn_71003ac064(reinterpret_cast<UnkBossAI_l3ac064*>(self));
     At<void**>(self, 0) = g_unk_7101a3cbc8 + 2;
     At<f32>(self, 0x1499c) = 300.0f;
@@ -64,5 +64,5 @@ void fn_710049d418(UnkComponent* self) {
     At<u64>(self, 0x14b68) = 0;
     At<u64>(self, 0x14b58) = 0;
     At<u64>(self, 0x14b60) = 0;
-    reinterpret_cast<void (*)(UnkComponent*)>(At<void**>(self, 0)[3])(self);
+    reinterpret_cast<void (*)(UnkComponent_49d418*)>(At<void**>(self, 0)[3])(self);
 }

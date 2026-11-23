@@ -14,9 +14,9 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 
-struct UnkActor {
+struct UnkActor_3ad8e4 {
     void** vtable;
-    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkActor*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkActor_3ad8e4*)>(vtable[0])(this); }
 };
 
 struct UnkFlagObject {
@@ -36,7 +36,7 @@ struct UnkHolder {
 
 struct UnkOwner {
     u8 pad_0x0[0x28];
-    UnkActor* field_0x28;
+    UnkActor_3ad8e4* field_0x28;
     u8 pad_0x30[0x188];
     UnkHolder* field_0x1b8;
 };
@@ -51,10 +51,10 @@ struct UnkSelf {
 void fn_71003ad8e4(UnkSelf* self) {
     if (self->field_0x14908->field_0x50c)
         return;
-    UnkActor* actor = self->field_0x30->field_0x28;
+    UnkActor_3ad8e4* actor = self->field_0x30->field_0x28;
     if (actor && fn_710009d50c(actor->vf_0x0(), fn_71011abbd4())) {
         UnkGameManager* manager = g_unk_7101d47310;
-        UnkActor* object = self->field_0x30->field_0x28;
+        UnkActor_3ad8e4* object = self->field_0x30->field_0x28;
         char* cast = nullptr;
         if (object && fn_710009d50c(object->vf_0x0(), fn_71011abbd4()))
             cast = reinterpret_cast<char*>(object);

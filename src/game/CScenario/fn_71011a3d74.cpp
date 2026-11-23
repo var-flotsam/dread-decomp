@@ -3,12 +3,12 @@
 // group has it. Names and layouts are placeholders.
 #include "game/UnkGameManager.h"
 
-struct UnkScenarioGroup {
+struct UnkScenarioGroup_011a3d74 {
     u8 data[0x60];
 };
 
 struct UnkScenarioGroups_011a3d74 {
-    UnkScenarioGroup* data;
+    UnkScenarioGroup_011a3d74* data;
     u8 pad_0x8[8];
     u32 count;
 };
@@ -23,10 +23,10 @@ struct UnkScenarioPoints {
 };
 static_assert(__builtin_offsetof(UnkScenarioPoints, third) == 0x1b8, "UnkScenarioPoints layout");
 
-void* fn_71002636b0(UnkScenarioGroup* group, const u64* key);
+void* fn_71002636b0(UnkScenarioGroup_011a3d74* group, const u64* key);
 
 static inline void* Find(UnkScenarioGroups_011a3d74* groups, const u64* key) {
-    for (UnkScenarioGroup *g = groups->data, *end = g + groups->count; g != end; ++g)
+    for (UnkScenarioGroup_011a3d74 *g = groups->data, *end = g + groups->count; g != end; ++g)
         if (void* found = fn_71002636b0(g, key))
             return found;
     return nullptr;

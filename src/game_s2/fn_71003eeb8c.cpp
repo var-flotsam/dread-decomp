@@ -5,13 +5,13 @@
 
 using base::global::CStrId;
 
-struct UnkRecord {
+struct UnkRecord_3eeb8c {
     base::global::CRntVector<u32> field_0x0;
     u8 pad_0x28[0x0];
     CStrId field_0x28;
 };
 
-void fn_71003eeb8c(UnkRecord* self) {
+void fn_71003eeb8c(UnkRecord_3eeb8c* self) {
     self->field_0x28.Reset();
     self->field_0x0.Free();
 }

@@ -2,7 +2,7 @@
 #include "game_s2/UnkChild.h"
 #include "types.h"
 
-struct UnkParent {
+struct UnkParent_2d5698 {
     u8 pad_0x0[0xa0];
     UnkChild** children;
     u32 count;
@@ -10,9 +10,9 @@ struct UnkParent {
     u32 field_0x100;
 };
 
-void fn_71002df9f4(UnkParent*);
+void fn_71002df9f4(UnkParent_2d5698*);
 
-void fn_71002d5698(UnkParent* self) {
+void fn_71002d5698(UnkParent_2d5698* self) {
     fn_71002df9f4(self);
     u32 n = self->count;
     self->field_0x100 = 0;

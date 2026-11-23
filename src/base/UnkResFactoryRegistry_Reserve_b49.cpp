@@ -44,31 +44,31 @@ struct UnkRegistryEntryId {
 
 struct UnkRegistryDesc;
 
-struct UnkRegistryEntry : UnkRegistryEntryHead {
+struct UnkRegistryEntry_b49 : UnkRegistryEntryHead {
     UnkRegistryEntryId<&g_unk_7101d47108> id;
     UnkRegistryEntryId<&g_unk_7101d47200> path_0x18;
     UnkRegistryEntryId<&g_unk_7101d47200> path_0x20;
     UnkRegistryCallback field_0x28;
     UnkRegistryCallback field_0x38;
 
-    UnkRegistryEntry(UnkRegistryEntry&& other) = default;
+    UnkRegistryEntry_b49(UnkRegistryEntry_b49&& other) = default;
 };
-static_assert(sizeof(UnkRegistryEntry) == 0x48, "UnkRegistryEntry layout");
+static_assert(sizeof(UnkRegistryEntry_b49) == 0x48, "UnkRegistryEntry_b49 layout");
 
-using UnkRegistryEntries = base::global::CRntSmallDictionary<UnkRegistryEntryId<&g_unk_7101d47108>, UnkRegistryEntry>;
+using UnkRegistryEntries = base::global::CRntSmallDictionary<UnkRegistryEntryId<&g_unk_7101d47108>, UnkRegistryEntry_b49>;
 
 void fn_7100022e2c(UnkRegistryEntries* self, u32 capacity) {
     using Key = UnkRegistryEntryId<&g_unk_7101d47108>;
     if (self->capacity >= capacity)
         return;
-    UnkRegistryEntry* values = static_cast<UnkRegistryEntry*>(
-        self->allocator->vf_0x40((u64)capacity * sizeof(UnkRegistryEntry), 8, self->flags));
+    UnkRegistryEntry_b49* values = static_cast<UnkRegistryEntry_b49*>(
+        self->allocator->vf_0x40((u64)capacity * sizeof(UnkRegistryEntry_b49), 8, self->flags));
     Key* keys = static_cast<Key*>(self->allocator->vf_0x40((u64)capacity * sizeof(Key), 8, self->flags));
     if (self->values) {
-        UnkRegistryEntry* src = self->values;
-        UnkRegistryEntry* dst = values;
+        UnkRegistryEntry_b49* src = self->values;
+        UnkRegistryEntry_b49* dst = values;
         for (u32 i = 0; i < self->count; ++i, ++dst, ++src) {
-            new (dst) UnkRegistryEntry(static_cast<UnkRegistryEntry&&>(*src));
+            new (dst) UnkRegistryEntry_b49(static_cast<UnkRegistryEntry_b49&&>(*src));
             fn_7100020164(reinterpret_cast<char*>(src));
         }
         self->allocator->vf_0x48(self->values);

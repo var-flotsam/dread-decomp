@@ -6,7 +6,7 @@
 
 using base::math::CVector4D;
 
-struct UnkRecord_0x40 {
+struct UnkRecord_0x40_f65400 {
     u32 field_0x0;
     CVector4D field_0x4;
     CVector4D field_0x14;
@@ -15,7 +15,7 @@ struct UnkRecord_0x40 {
     u32 field_0x38;
     u32 field_0x3c;
 
-    UnkRecord_0x40& Assign(const UnkRecord_0x40& other) {
+    UnkRecord_0x40_f65400& Assign(const UnkRecord_0x40_f65400& other) {
         if (this != &other) {
             field_0x0 = other.field_0x0;
             base::math::Assign(field_0x4, other.field_0x4);
@@ -29,10 +29,10 @@ struct UnkRecord_0x40 {
     }
 };
 
-UnkRecord_0x40& fn_7100f65400(UnkRecord_0x40* self, const UnkRecord_0x40* other) {
+UnkRecord_0x40_f65400& fn_7100f65400(UnkRecord_0x40_f65400* self, const UnkRecord_0x40_f65400* other) {
     return self->Assign(*other);
 }
 
-UnkRecord_0x40& fn_7100f6546c(UnkRecord_0x40* self, const UnkRecord_0x40* other) {
+UnkRecord_0x40_f65400& fn_7100f6546c(UnkRecord_0x40_f65400* self, const UnkRecord_0x40_f65400* other) {
     return self->Assign(*other);
 }

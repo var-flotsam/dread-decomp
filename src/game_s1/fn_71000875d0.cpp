@@ -3,7 +3,7 @@
 // 8-byte value: fn_71000875d0.
 #include "base/UnkCloneHelpers.h"
 
-struct UnkNamedObject {
+struct UnkNamedObject_0875d0 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -17,7 +17,7 @@ struct UnkNamedObjectMap {
     base::UnkStrIdHashMap<UnkObjectsByName> map;
 };
 
-__attribute__((flatten)) void fn_71000875d0(UnkNamedObjectMap* self, UnkNamedObject* object) {
+__attribute__((flatten)) void fn_71000875d0(UnkNamedObjectMap* self, UnkNamedObject_0875d0* object) {
     u64 value = reinterpret_cast<u64>(object);
     base::refl_StrIdHashInsert<UnkObjectsByName>(&self->map, object->vf_0x18(), &value);
 }

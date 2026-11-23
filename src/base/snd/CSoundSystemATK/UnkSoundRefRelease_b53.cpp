@@ -10,7 +10,7 @@ struct UnkSoundResource {
     u32 refs;  // 0x14
 };
 
-struct UnkSoundEntry {
+struct UnkSoundEntry_b53 {
     u64 handle;  // 0x0
     u8 pad_0x8[0xc];
     u32 refs;  // 0x14
@@ -38,7 +38,7 @@ struct UnkSoundActiveList {
     UnkSoundMap* map;  // 0x50
 };
 
-void fn_71001033d4(u8* self, UnkSoundEntry* entry, bool force) {
+void fn_71001033d4(u8* self, UnkSoundEntry_b53* entry, bool force) {
     nn::os::GetCurrentThread();
     if (!entry)
         return;

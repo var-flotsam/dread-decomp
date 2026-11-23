@@ -23,12 +23,12 @@ struct UnkKraidAcidBlobsOther {
     void* field_0x240;
 };
 
-struct UnkKraidAcidBlobsMovement {
+struct UnkKraidAcidBlobsMovement_604be8 {
     u8 pad_0x0[0x230];
     UnkKraidAcidBlobsHeld* field_0x230;
 };
 
-bool fn_7100604be8(UnkKraidAcidBlobsMovement* self, UnkKraidAcidBlobsOther* other, void* a2, void* a3, void* a4,
+bool fn_7100604be8(UnkKraidAcidBlobsMovement_604be8* self, UnkKraidAcidBlobsOther* other, void* a2, void* a3, void* a4,
                    void* a5) {
     if (!other)
         return false;

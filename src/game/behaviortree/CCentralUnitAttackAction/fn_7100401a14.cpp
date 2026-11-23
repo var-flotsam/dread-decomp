@@ -6,12 +6,12 @@
 
 using base::reflection::CClass;
 
-struct UnkAIComponent {
+struct UnkAIComponent_401a14 {
     virtual const CClass* vf_0x0();
 };
 struct UnkOwner {
     u8 unk_0x0[0x240];
-    UnkAIComponent* component;
+    UnkAIComponent_401a14* component;
 };
 struct UnkSelf {
     u8 unk_0x0[0x18];
@@ -20,13 +20,13 @@ struct UnkSelf {
     s32 field_0x2c;
 };
 
-void fn_7100405854(UnkAIComponent* component, s32 a1);
+void fn_7100405854(UnkAIComponent_401a14* component, s32 a1);
 
 u32 fn_7100401a14(UnkSelf* self) {
     if (self->field_0x2c < 0)
         return 6;
-    UnkAIComponent* component = self->owner->component;
-    UnkAIComponent* found = nullptr;
+    UnkAIComponent_401a14* component = self->owner->component;
+    UnkAIComponent_401a14* found = nullptr;
     if (component && fn_710009d50c(component->vf_0x0(), fn_71004030f4()))
         found = component;
     fn_7100405854(found, self->field_0x2c);

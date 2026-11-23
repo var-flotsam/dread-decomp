@@ -30,7 +30,7 @@ struct UnkSpitLink {
     UnkSpitLink2* field_0x10;
 };
 
-struct UnkSpitAttack {
+struct UnkSpitAttack_b38 {
     u8 pad_0x0[0x8];
     UnkActor* owner;
     u8 pad_0x10[0xd0];
@@ -39,9 +39,9 @@ struct UnkSpitAttack {
 
 // The base attack's check (declared elsewhere without its arguments; called with them).
 struct UnkSelf;
-bool fn_71006c1108(UnkSpitAttack* self);
+bool fn_71006c1108(UnkSpitAttack_b38* self);
 
-bool fn_71006c1044(UnkSpitAttack* self, void* arg1, u32 arg2) {
+bool fn_71006c1044(UnkSpitAttack_b38* self, void* arg1, u32 arg2) {
     bool base = fn_7100360b84(reinterpret_cast<CAttack*>(self), arg1, arg2);
     UnkActor* target = fn_7100d7c990(self->owner);
     bool ok = false;

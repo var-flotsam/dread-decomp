@@ -17,11 +17,11 @@ struct UnkComponent_46f400 {
     const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkComponent_46f400*)>(vtable[0])(this); }
 };
 
-struct UnkSelf {
+struct UnkSelf_46f400 {
     u8 pad_0x0[0x10];
     UnkComponent_46f400* field_0x10;
     u8 pad_0x18[0x1588];
-    UnkSelf* field_0x15a0;
+    UnkSelf_46f400* field_0x15a0;
     void* field_0x15a8;
     u8 pad_0x15b0[0x68];
     u32 field_0x1618;
@@ -49,7 +49,7 @@ void fn_7100468248(void* entry, u8* source);
 void fn_71004696bc(void* entry, u8* source);
 void fn_710046a1c8(void* entry, u8* source);
 
-__attribute__((always_inline)) static inline void Register(UnkSelf* self, u8* entry) {
+__attribute__((always_inline)) static inline void Register(UnkSelf_46f400* self, u8* entry) {
     // Addressed by hand: an array member would be materialised ahead of the first store.
     char* list = reinterpret_cast<char*>(self) + 0x161c;
     u32 index = self->field_0x1618;
@@ -58,7 +58,7 @@ __attribute__((always_inline)) static inline void Register(UnkSelf* self, u8* en
 }
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
-u32 fn_710046f400(UnkSelf* self, void* arg) {
+u32 fn_710046f400(UnkSelf_46f400* self, void* arg) {
     u32 result = fn_71003ac8f4(reinterpret_cast<UnkBossAIComponent*>(self), arg);
     UnkComponent_46f400* object = self->field_0x10;
     UnkComponent_46f400* component = nullptr;

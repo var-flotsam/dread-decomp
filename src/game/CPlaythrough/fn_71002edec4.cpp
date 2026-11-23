@@ -16,12 +16,12 @@ struct UnkNode {
     UnkOwned* field_0x30;
 };
 
-struct UnkHolder {
+struct UnkHolder_2edec4 {
     CStrId field_0x0;
     UnkNode* field_0x8;
 };
 
-void fn_71002edec4(UnkHolder* self) {
+void fn_71002edec4(UnkHolder_2edec4* self) {
     UnkNode* node = self->field_0x8;
     self->field_0x8 = nullptr;
     if (node) {

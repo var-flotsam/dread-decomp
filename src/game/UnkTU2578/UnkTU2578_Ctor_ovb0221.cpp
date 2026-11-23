@@ -31,7 +31,7 @@ struct UnkMap11 : UnkChainedMap {
     __attribute__((always_inline)) UnkMap11() { ResizeBuckets(11); }
 };
 
-struct UnkStruct_0x128 {
+struct UnkStruct_0x128_ovb0221 {
     UnkMap11 map;
     UnkSoundIdListOwner<g_unk_7101caa208, UnkSoundIdNodeA> field_0x48;
     UnkSoundIdListOwner<g_unk_7101caa208, UnkSoundIdNodeA> field_0x78;
@@ -45,12 +45,12 @@ struct UnkStruct_0x128 {
     bool field_0x122;
     base::global::CRntVector<u32> field_0x128;
 
-    UnkStruct_0x128()
+    UnkStruct_0x128_ovb0221()
         : field_0x108(nullptr), field_0x110(nullptr), field_0x118(1.0f), field_0x11c(1.0f), field_0x120(0),
           field_0x122(true), field_0x128(0xf) {}
 };
-static_assert(sizeof(UnkStruct_0x128) == 0x150, "UnkStruct_0x128 layout");
+static_assert(sizeof(UnkStruct_0x128_ovb0221) == 0x150, "UnkStruct_0x128_ovb0221 layout");
 
-__attribute__((flatten)) void fn_7100ef3494(UnkStruct_0x128* self) {
-    new (self) UnkStruct_0x128;
+__attribute__((flatten)) void fn_7100ef3494(UnkStruct_0x128_ovb0221* self) {
+    new (self) UnkStruct_0x128_ovb0221;
 }

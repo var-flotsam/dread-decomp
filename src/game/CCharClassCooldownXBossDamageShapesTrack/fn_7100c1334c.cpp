@@ -13,7 +13,7 @@
 using base::global::CStrId;
 
 // The value is stored in place when its type fits in 8 bytes, unless kind is 1 (by reference).
-struct UnkValueArg {
+struct UnkValueArg_c1334c {
     void* storage;
     UnkValueType* type;
     u8 unk_0x10[0x4];
@@ -32,7 +32,7 @@ struct UnkUpdateFn : UnkLeftoverReg {};
 // FromValue: the update function gets the new value instead of the field.
 template <u32 Offset, void (*Update)(UnkUpdateFn, const CStrId*, void*), bool FromValue = false>
 __attribute__((always_inline)) static inline UnkSetStatus SetStrId(void* self, UnkValueHolder* holder,
-                                                                   UnkValueArg* const* arg) {
+                                                                   UnkValueArg_c1334c* const* arg) {
     char* owner = holder->owner;
     const CStrId& value = (*arg)->Get<CStrId>();
     CStrId* id = reinterpret_cast<CStrId*>(owner + Offset);
@@ -50,31 +50,31 @@ void fn_7100c12c00(UnkUpdateFn, const CStrId* id, void* next);
 void fn_7100d1f764(UnkUpdateFn, const CStrId* id, void* next);
 void fn_7100cfca0c(UnkUpdateFn, const CStrId* id, void* next);
 
-UnkSetStatus fn_7100c1334c(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_7100c1334c(void* self, UnkValueHolder* holder, UnkValueArg_c1334c* const* arg) {
     return SetStrId<0x18, fn_7100c12c00>(self, holder, arg);
 }
-UnkSetStatus fn_7100d20728(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_7100d20728(void* self, UnkValueHolder* holder, UnkValueArg_c1334c* const* arg) {
     return SetStrId<0x18, fn_7100d1f764>(self, holder, arg);
 }
-UnkSetStatus fn_7100d208e0(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_7100d208e0(void* self, UnkValueHolder* holder, UnkValueArg_c1334c* const* arg) {
     return SetStrId<0x58, fn_7100d1f764>(self, holder, arg);
 }
-UnkSetStatus fn_7100d20a98(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_7100d20a98(void* self, UnkValueHolder* holder, UnkValueArg_c1334c* const* arg) {
     return SetStrId<0x98, fn_7100d1f764>(self, holder, arg);
 }
-UnkSetStatus fn_7100d20c50(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_7100d20c50(void* self, UnkValueHolder* holder, UnkValueArg_c1334c* const* arg) {
     return SetStrId<0xd8, fn_7100d1f764>(self, holder, arg);
 }
-UnkSetStatus fn_7100d20e08(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_7100d20e08(void* self, UnkValueHolder* holder, UnkValueArg_c1334c* const* arg) {
     return SetStrId<0x118, fn_7100d1f764>(self, holder, arg);
 }
-UnkSetStatus fn_7100d20fc0(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_7100d20fc0(void* self, UnkValueHolder* holder, UnkValueArg_c1334c* const* arg) {
     return SetStrId<0x158, fn_7100d1f764>(self, holder, arg);
 }
-UnkSetStatus fn_7100cfd0c4(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_7100cfd0c4(void* self, UnkValueHolder* holder, UnkValueArg_c1334c* const* arg) {
     return SetStrId<0x18, fn_7100cfca0c, true>(self, holder, arg);
 }
-UnkSetStatus fn_7100cfd1d0(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_7100cfd1d0(void* self, UnkValueHolder* holder, UnkValueArg_c1334c* const* arg) {
     return SetStrId<0x48, fn_7100cfca0c, true>(self, holder, arg);
 }
 
@@ -109,7 +109,7 @@ struct UnkStrIdTargetHolder {
     UnkStrIdTarget* owner;
 };
 
-UnkSetStatus fn_7100b870d0(void* self, UnkStrIdTargetHolder* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_7100b870d0(void* self, UnkStrIdTargetHolder* holder, UnkValueArg_c1334c* const* arg) {
     UnkStrIdTarget* owner = holder->owner;
     const CStrId& value = (*arg)->Get<CStrId>();
     if (value.data != owner->field_0x1a8.data) {
@@ -154,7 +154,7 @@ struct UnkAngleOwnerHolder {
     UnkAngleOwner* owner;
 };
 
-UnkSetStatus fn_7100d69140(void* self, UnkAngleOwnerHolder* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_7100d69140(void* self, UnkAngleOwnerHolder* holder, UnkValueArg_c1334c* const* arg) {
     UnkAngleOwner* owner = holder->owner;
     f32 degrees = (*arg)->Get<f32>();
     fn_7100110664(&owner->field_0xa8, (f32)((f64)degrees * 3.141592653589793 / 180.0));
@@ -196,7 +196,7 @@ UnkListItem_c1334c** fn_7100b081ac(UnkItemList* list, u32 index);
 void fn_7100b04510(UnkListTarget* target, s32 value);
 void fn_7100b04524(UnkListTarget* target, s32 value);
 
-UnkSetStatus fn_7100b08704(void* self, void* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_7100b08704(void* self, void* holder, UnkValueArg_c1334c* const* arg) {
     UnkListTarget* target = (*arg)->Get<UnkListTargetRef*>()->target;
     UnkItemList* list = target->list;
     for (u32 i = 0; i < list->count; ++i) {
@@ -214,6 +214,6 @@ UnkSetStatus fn_7100b08704(void* self, void* holder, UnkValueArg* const* arg) {
 
 // The same setter for the id at 0xd0 of another class, with its own update (fn_71007fcae4).
 void fn_71007fcae4(UnkUpdateFn, const CStrId* id, void* next);
-UnkSetStatus fn_71007fd3d8(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
+UnkSetStatus fn_71007fd3d8(void* self, UnkValueHolder* holder, UnkValueArg_c1334c* const* arg) {
     return SetStrId<0xd0, fn_71007fcae4>(self, holder, arg);
 }

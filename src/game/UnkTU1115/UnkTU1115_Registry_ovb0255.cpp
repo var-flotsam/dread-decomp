@@ -209,11 +209,11 @@ void fn_71006f84a8(UnkRegObj_b0255* self, UnkRegistry_b0255* registry, const bas
 }
 
 // The number of entries in all the records, counted over copies of them (the records are arrays of arrays).
-struct UnkInnerVec {
+struct UnkInnerVec_ovb0255 {
     base::global::CRntVector<u32> v;
-    ~UnkInnerVec() { v.Free(); }
+    ~UnkInnerVec_ovb0255() { v.Free(); }
 };
-typedef base::global::CRntVector<UnkInnerVec> UnkOuterVec;
+typedef base::global::CRntVector<UnkInnerVec_ovb0255> UnkOuterVec;
 void fn_71006fb3f4(UnkOuterVec* self, const UnkOuterVec* other);
 
 struct UnkRecord_b0255 {

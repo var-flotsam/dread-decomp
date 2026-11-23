@@ -5,7 +5,7 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 
-struct UnkCollisionEntry {
+struct UnkCollisionEntry_b51 {
     u32 count;
     u8 items[0x40];
 };
@@ -14,16 +14,16 @@ struct UnkCollisionEntry {
 // capacity: 0x14
 // flags: 0x1c
 // allocator: 0x20
-using UnkCollisionPairArray = base::global::CRntSmallDictionary<u32, UnkCollisionEntry>;
+using UnkCollisionPairArray = base::global::CRntSmallDictionary<u32, UnkCollisionEntry_b51>;
 
 void fn_7100866c74(UnkCollisionPairArray* self, u32 capacity) {
     if (self->capacity >= capacity)
         return;
-    UnkCollisionEntry* entries =
-        static_cast<UnkCollisionEntry*>(self->allocator->vf_0x40((u64)capacity * sizeof(UnkCollisionEntry), 8, self->flags));
+    UnkCollisionEntry_b51* entries =
+        static_cast<UnkCollisionEntry_b51*>(self->allocator->vf_0x40((u64)capacity * sizeof(UnkCollisionEntry_b51), 8, self->flags));
     u32* keys = static_cast<u32*>(self->allocator->vf_0x40((u64)capacity * sizeof(u32), 8, self->flags));
-    if (UnkCollisionEntry* old = self->values) {
-        UnkCollisionEntry* dst = entries;
+    if (UnkCollisionEntry_b51* old = self->values) {
+        UnkCollisionEntry_b51* dst = entries;
         for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
             memcpy(dst->items, old->items, (u64)old->count * 8);
             dst->count = old->count;

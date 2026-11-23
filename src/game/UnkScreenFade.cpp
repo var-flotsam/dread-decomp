@@ -23,7 +23,7 @@ struct UnkFadeParams {
     f32 delay;
 };
 
-struct UnkScreenFade {
+struct UnkScreenFade_01053aa4 {
     UnkFadeTarget* target;
     bool enabled;  // +0x8
     bool armed;    // +0x9
@@ -32,7 +32,7 @@ struct UnkScreenFade {
     f32 elapsed;           // +0x24
     u32 field_0x28;
 };
-static_assert(__builtin_offsetof(UnkScreenFade, field_0x28) == 0x28, "UnkScreenFade placeholder layout");
+static_assert(__builtin_offsetof(UnkScreenFade_01053aa4, field_0x28) == 0x28, "UnkScreenFade_01053aa4 placeholder layout");
 
 // The game's mode holder (UnkGameManager::field_0x498): vf_0x68 says whether it is set up.
 struct UnkModeHolder {
@@ -65,7 +65,7 @@ static inline f32 NonNegative(f32 v) {
 // NON_MATCHING(minor): register allocation and scheduling only: the colour's blue and the zero it
 // is clamped against are in swapped s registers (s2/s3), and the address of the target colour
 // (x1) is formed after the stores instead of before the clamps.
-void fn_7101053aa4(f32 dt, UnkScreenFade* self) {
+void fn_7101053aa4(f32 dt, UnkScreenFade_01053aa4* self) {
     if (self->armed) {
         UnkFadeParams& params = self->params;
         self->elapsed += dt;

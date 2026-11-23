@@ -15,7 +15,7 @@ struct UnkTrailer {
     u8 field_0x10;
 };
 
-struct UnkNode : UnkBehaviorTreeNodeBase {
+struct UnkNode_37fe18 : UnkBehaviorTreeNodeBase {
     u8 pad_0x2c[4];
     UnkStringData* field_0x30;
     u8 pad_0x38;
@@ -27,7 +27,7 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     UnkTrailer field_0x12ad8;
 };
 
-void fn_710037fe18(UnkNode* self) {
+void fn_710037fe18(UnkNode_37fe18* self) {
     fn_7100393e68(self);
     self->vtable = g_unk_7101a25e50 + 2;
     self->field_0x30 = nullptr;

@@ -44,12 +44,12 @@ __attribute__((always_inline)) static inline UnkReflValue MakeValue(const CType*
     return result;
 }
 
-struct UnkCountObject {
+struct UnkCountObject_2678c8 {
     u8 unk_0x0[0x40];
     u32 field_0x40;
 };
 
-UnkReflValue fn_710011e3b8(void* unused, UnkArgument<UnkCountObject>* argument) {
+UnkReflValue fn_710011e3b8(void* unused, UnkArgument<UnkCountObject_2678c8>* argument) {
     bool value = argument->field_0x8->field_0x40 > 1;
     return MakeValue(fn_710000d228(), &value);
 }

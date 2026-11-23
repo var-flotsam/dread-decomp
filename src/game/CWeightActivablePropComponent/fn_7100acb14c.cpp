@@ -17,7 +17,7 @@ struct UnkState {
 // The states are only 4-aligned after the count.
 typedef UnkState* __attribute__((aligned(4))) UnkStatePtr;
 
-struct UnkStateMachine {
+struct UnkStateMachine_acb14c {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -33,7 +33,7 @@ struct UnkStateMachine {
     s32 pending;
 };
 
-__attribute__((always_inline)) static inline UnkState* FindState(UnkStateMachine* self, s32 id) {
+__attribute__((always_inline)) static inline UnkState* FindState(UnkStateMachine_acb14c* self, s32 id) {
     for (UnkStatePtr *p = self->states, *e = p + self->count; p != e; ++p) {
         if ((*p)->id == id)
             return *p;
@@ -44,7 +44,7 @@ __attribute__((always_inline)) static inline UnkState* FindState(UnkStateMachine
 // The original keeps whether a state is entered in its own register (and the new state in
 // two), so it saves one more register; the logic is the same.
 template <u32 Count, s32 None>
-__attribute__((always_inline)) static inline void UpdateState(UnkStateMachine* self) {
+__attribute__((always_inline)) static inline void UpdateState(UnkStateMachine_acb14c* self) {
     s32 pending = self->pending;
     if ((u32)pending >= Count)
         return;
@@ -68,12 +68,12 @@ __attribute__((always_inline)) static inline void UpdateState(UnkStateMachine* s
 }
 
 // NON_MATCHING(minor): register allocation (see UpdateState).
-void fn_7100acb14c(UnkStateMachine* self) { UpdateState<3, 3>(self); }
+void fn_7100acb14c(UnkStateMachine_acb14c* self) { UpdateState<3, 3>(self); }
 // NON_MATCHING(minor): register allocation (see UpdateState).
-void fn_7100b2bb00(UnkStateMachine* self) { UpdateState<7, 0x7fffffff>(self); }
+void fn_7100b2bb00(UnkStateMachine_acb14c* self) { UpdateState<7, 0x7fffffff>(self); }
 // NON_MATCHING(minor): register allocation (see UpdateState).
-void fn_7100b486dc(UnkStateMachine* self) { UpdateState<5, 0x7fffffff>(self); }
+void fn_7100b486dc(UnkStateMachine_acb14c* self) { UpdateState<5, 0x7fffffff>(self); }
 // NON_MATCHING(minor): register allocation (see UpdateState).
-void fn_7100dd1250(UnkStateMachine* self) { UpdateState<4, 4>(self); }
+void fn_7100dd1250(UnkStateMachine_acb14c* self) { UpdateState<4, 4>(self); }
 // NON_MATCHING(minor): register allocation (see UpdateState).
-void fn_7100dd8f54(UnkStateMachine* self) { UpdateState<9, 9>(self); }
+void fn_7100dd8f54(UnkStateMachine_acb14c* self) { UpdateState<9, 9>(self); }

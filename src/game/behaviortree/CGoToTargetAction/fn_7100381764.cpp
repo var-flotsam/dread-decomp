@@ -6,14 +6,14 @@
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
-struct UnkOwner {
+struct UnkOwner_381764 {
     u8 pad_0x0[0x240];
     UnkAIComponent* field_0x240;
 };
 
 struct UnkComponent {
     u8 pad_0x0[0x18];
-    UnkOwner* field_0x18;
+    UnkOwner_381764* field_0x18;
 };
 
 

@@ -9,7 +9,7 @@
 
 using base::global::CFilePathStrId;
 
-struct UnkComponent {
+struct UnkComponent_5732dc {
     void** vtable;
     u8 pad_0x8[0x24];
     u32 field_0x2c;
@@ -35,9 +35,9 @@ struct UnkComponent {
 
 extern void* g_unk_7101a49310[];
 
-void fn_7100573104(UnkComponent* self, void* arg);  // keeps `arg` at +0x20
+void fn_7100573104(UnkComponent_5732dc* self, void* arg);  // keeps `arg` at +0x20
 
-void fn_71005732dc(UnkComponent* self, void* arg, const CFilePathStrId* path) {
+void fn_71005732dc(UnkComponent_5732dc* self, void* arg, const CFilePathStrId* path) {
     fn_7100573104(self, arg);
     self->vtable = g_unk_7101a49310 + 2;
     self->field_0x2c = 0;

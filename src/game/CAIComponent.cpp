@@ -124,7 +124,7 @@ struct UnkAIPathHits {
 };
 
 // Where the request ends up, for the caller: the point and whether it is set.
-struct UnkAIPathPoint {
+struct UnkAIPathPoint_CAIComponent {
     f32 x, y;
     bool set;
 };
@@ -159,7 +159,7 @@ struct UnkAIComponent;
 struct UnkAIComponentVtbl {
     u8 pad_0x0[0x7a8];
     bool (*vf_0x7a8)(UnkAIComponent* self, UnkAIPathCandidates* candidates);
-    s32 (*vf_0x7b0)(UnkAIComponent* self, UnkAIPathCandidates* candidates, UnkAIPathPoint* point);
+    s32 (*vf_0x7b0)(UnkAIComponent* self, UnkAIPathCandidates* candidates, UnkAIPathPoint_CAIComponent* point);
 };
 
 struct UnkAIComponent {
@@ -219,7 +219,7 @@ static inline CVector3D UnkTranslation(const UnkActor* actor) {
 // NON_MATCHING(minor): register allocation (the frame is 0x10 larger), and the callbacks are stored
 // in another order, the null case without the original's shared tail; the same calls with the same
 // arguments in the same order, and the same locals at the same offsets.
-bool fn_7101103080(UnkAIComponent* self, void* path, UnkAIPathPoint* point, UnkAIPathCandidates* candidates) {
+bool fn_7101103080(UnkAIComponent* self, void* path, UnkAIPathPoint_CAIComponent* point, UnkAIPathCandidates* candidates) {
     if (candidates)
         for (UnkAIPathCandidate& c : candidates->c)
             c.Reset();

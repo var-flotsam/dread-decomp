@@ -11,7 +11,7 @@ using base::global::UnkStringData;
 
 typedef u64 u64_a4 __attribute__((aligned(4)));
 
-struct UnkNode : UnkBehaviorTreeNodeBase {
+struct UnkNode_3b3028 : UnkBehaviorTreeNodeBase {
     u64_a4 field_0x2c;
     u32 field_0x34;
     u8 pad_0x38[8];
@@ -20,7 +20,7 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     u8 field_0x50[1];
 };
 
-void fn_71003b3028(UnkNode* self) {
+void fn_71003b3028(UnkNode_3b3028* self) {
     fn_7100393e68(self);
     self->vtable = g_unk_7101a2ad48 + 2;
     self->field_0x2c = 0;

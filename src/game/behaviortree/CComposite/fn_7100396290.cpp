@@ -3,17 +3,17 @@
 #include "base/global/CRntVector.h"
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkChild {
+struct UnkChild_396290 {
     u8 pad_0x0[0x20];
     UnkWeakHandle* field_0x20;
 };
 
 struct UnkOwner : UnkWeakTarget {
     u8 pad_0x8[0x28];
-    base::global::CRntVector<UnkChild*> field_0x30;
+    base::global::CRntVector<UnkChild_396290*> field_0x30;
 };
 
-void fn_7100396290(UnkOwner* self, UnkChild* child) {
+void fn_7100396290(UnkOwner* self, UnkChild_396290* child) {
     UnkWeakHandle* handle = self ? GetWeakHandle(self) : nullptr;
     AssignRef(&child->field_0x20, handle);
     self->field_0x30.PushBack(child);

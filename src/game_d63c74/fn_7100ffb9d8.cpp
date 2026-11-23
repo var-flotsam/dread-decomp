@@ -9,7 +9,7 @@ using namespace base::global;
 
 // The id in CFilePathStrId's pool.
 
-struct UnkIdValues {
+struct UnkIdValues_ffb9d8 {
     UnkPathIdTwoStep id;
     u32 field_0x8;
     u32 field_0xc;
@@ -44,7 +44,7 @@ struct UnkMovedArray {
     }
 };
 
-UnkMovedArray<UnkIdValues>* fn_7100ffb9d8(UnkMovedArray<UnkIdValues>* self, UnkMovedArray<UnkIdValues>* other) {
+UnkMovedArray<UnkIdValues_ffb9d8>* fn_7100ffb9d8(UnkMovedArray<UnkIdValues_ffb9d8>* self, UnkMovedArray<UnkIdValues_ffb9d8>* other) {
     if (self != other)
         self->MoveFrom(other);
     return self;

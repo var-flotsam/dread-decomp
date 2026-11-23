@@ -20,12 +20,12 @@ struct UnkRefObject {
     };
 };
 
-struct UnkRefPtr {
+struct UnkRefPtr_241888 {
     UnkRefObject* ptr = nullptr;
 
-    UnkRefPtr() = default;
-    UnkRefPtr(const UnkRefPtr& other) { *this = other; }
-    UnkRefPtr& operator=(const UnkRefPtr& other) {
+    UnkRefPtr_241888() = default;
+    UnkRefPtr_241888(const UnkRefPtr_241888& other) { *this = other; }
+    UnkRefPtr_241888& operator=(const UnkRefPtr_241888& other) {
         UnkRefObject* p = other.ptr;
         if (p)
             ++p->ref_count;
@@ -36,7 +36,7 @@ struct UnkRefPtr {
         ptr = p;
         return *this;
     }
-    ~UnkRefPtr() {
+    ~UnkRefPtr_241888() {
         if (UnkRefObject* p = ptr) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
@@ -44,17 +44,17 @@ struct UnkRefPtr {
     }
 };
 
-using UnkRefPtrArray = base::global::CRntVector<UnkRefPtr>;
+using UnkRefPtrArray = base::global::CRntVector<UnkRefPtr_241888>;
 
 static inline void Reserve(UnkRefPtrArray* self, u32 capacity) {
     if (self->capacity >= capacity)
         return;
-    UnkRefPtr* data = (UnkRefPtr*)self->allocator->vf_0x40((u64)capacity * sizeof(UnkRefPtr),
-                                                          alignof(UnkRefPtr), self->flags);
-    if (UnkRefPtr* old = self->data) {
+    UnkRefPtr_241888* data = (UnkRefPtr_241888*)self->allocator->vf_0x40((u64)capacity * sizeof(UnkRefPtr_241888),
+                                                          alignof(UnkRefPtr_241888), self->flags);
+    if (UnkRefPtr_241888* old = self->data) {
         for (u64 i = 0; (u32)i < self->count; ++i) {
-            new (&data[i]) UnkRefPtr(old[i]);
-            old[i].~UnkRefPtr();
+            new (&data[i]) UnkRefPtr_241888(old[i]);
+            old[i].~UnkRefPtr_241888();
         }
         self->allocator->vf_0x48(self->data);
     }
@@ -78,7 +78,7 @@ static inline void Reserve(UnkRefPtrArray* self, u32 capacity) {
 static inline void Free(UnkRefPtrArray* self) {
     if (self->data) {
         for (u64 i = 0; i < self->count; ++i)
-            self->data[i].~UnkRefPtr();
+            self->data[i].~UnkRefPtr_241888();
         self->count = 0;
         self->allocator->vf_0x48(self->data);
         self->capacity = 0;
@@ -92,7 +92,7 @@ void fn_7100289098(UnkRefPtrArray* self) { Free(self); }
 // Clear: releases each pointer, keeping the storage. Three identical copies.
 static inline void Clear(UnkRefPtrArray* self) {
     for (u64 i = 0; i < self->count; ++i)
-        self->data[i].~UnkRefPtr();
+        self->data[i].~UnkRefPtr_241888();
     self->count = 0;
 }
 

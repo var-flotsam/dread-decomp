@@ -438,11 +438,11 @@ bool fn_7100adb008(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
 bool fn_7100eb1de0(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
 bool fn_7100eb20d4(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
 
-struct UnkWeakHandle {
+struct UnkWeakHandle_adae44 {
     UnkHandleObj* ptr;
 
-    UnkWeakHandle(const UnkWeakHandle& other) : ptr(nullptr) { *this = other; }
-    UnkWeakHandle& operator=(const UnkWeakHandle& other) {
+    UnkWeakHandle_adae44(const UnkWeakHandle_adae44& other) : ptr(nullptr) { *this = other; }
+    UnkWeakHandle_adae44& operator=(const UnkWeakHandle_adae44& other) {
         UnkHandleObj* p = other.ptr;
         if (p)
             ++p->ref_count;
@@ -454,7 +454,7 @@ struct UnkWeakHandle {
         return *this;
     }
     void* Get() const { return ptr ? ptr->target : nullptr; }
-    bool operator==(const UnkWeakHandle& other) const {
+    bool operator==(const UnkWeakHandle_adae44& other) const {
         void* theirs = other.Get();
         return Get() == theirs;
     }
@@ -482,7 +482,7 @@ static inline void CopyConstruct(UnkValuePairRef<X, Y>* self, const UnkValuePair
     }
 }
 
-using UnkU32HandlePair = UnkValuePairRef<u32, UnkWeakHandle>;
+using UnkU32HandlePair = UnkValuePairRef<u32, UnkWeakHandle_adae44>;
 
 bool fn_7100d3f840(UnkU32HandlePair* a, UnkU32HandlePair* b) { return Equals(a, b); }
 bool fn_7100d3fc20(UnkU32HandlePair* a, UnkU32HandlePair* b) { return Equals(a, b); }

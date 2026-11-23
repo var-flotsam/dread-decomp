@@ -7,7 +7,7 @@
 
 using base::global::UnkStringData;
 
-struct UnkNode : UnkBehaviorTreeNodeBase {
+struct UnkNode_38db9c : UnkBehaviorTreeNodeBase {
     u8 pad_0x2c[4];
     u8 field_0x30[0xb];
     u8 field_0x3b;
@@ -20,7 +20,7 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
 
 extern void* g_unk_7101a267e0[];
 
-void fn_710038db9c(UnkNode* self) {
+void fn_710038db9c(UnkNode_38db9c* self) {
     fn_7100393e68(self);
     self->vtable = g_unk_7101a267e0 + 2;
     __builtin_memset(self->field_0x30, 0, 11);

@@ -19,7 +19,7 @@ struct UnkAimComponent_343c18 : UnkAimObject {
     u8 unk_0x64[0x18];
     u32 field_0x7c;
 };
-struct UnkSelf {
+struct UnkSelf_343c18 {
     u8 unk_0x0[0x10];
     UnkAimObject* object;
     u8 unk_0x18[0x298];
@@ -33,7 +33,7 @@ struct UnkSelf {
 
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
-bool fn_7100343c18(UnkSelf* self, void* arg) {
+bool fn_7100343c18(UnkSelf_343c18* self, void* arg) {
     bool result = fn_71010c41bc(reinterpret_cast<UnkBaseComponent*>(self), arg);
     UnkAimObject* object = self->object;
     UnkAimComponent_343c18* aim = nullptr;

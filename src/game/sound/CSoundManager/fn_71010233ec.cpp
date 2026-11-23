@@ -9,15 +9,15 @@ struct UnkBase_0x8 {
     void** vtable;
 };
 
-struct UnkSecondaryBase_0x30;
+struct UnkSecondaryBase_0x30_010233ec;
 
-struct UnkSecondaryBase_0x30 {
+struct UnkSecondaryBase_0x30_010233ec {
     void** vtable;
     union {
         base::global::CRntVector<u64> array;
     };
 
-    ~UnkSecondaryBase_0x30() {
+    ~UnkSecondaryBase_0x30_010233ec() {
         vtable = &g_unk_7101cac6e8[2];
         fn_710102be04(&array);
         array.Free();
@@ -42,13 +42,13 @@ struct UnkTable_0x28 {
     }
 };
 
-struct UnkObject_71010233ec : UnkBase_0x8, UnkSecondaryBase_0x30 {
+struct UnkObject_71010233ec : UnkBase_0x8, UnkSecondaryBase_0x30_010233ec {
     u8 unk_0x38[0x30];
     UnkTable_0x28 table;
 
     ~UnkObject_71010233ec() {
         UnkBase_0x8::vtable = &g_unk_7101cac5d8[2];
-        UnkSecondaryBase_0x30::vtable = &g_unk_7101cac5d8[12];
+        UnkSecondaryBase_0x30_010233ec::vtable = &g_unk_7101cac5d8[12];
     }
 };
 
@@ -61,10 +61,10 @@ void fn_7101023544(UnkObject_71010233ec& self) {
 }
 
 // The same two, entered through the secondary base.
-void fn_7101023490(UnkSecondaryBase_0x30& base) {
+void fn_7101023490(UnkSecondaryBase_0x30_010233ec& base) {
     static_cast<UnkObject_71010233ec&>(base).~UnkObject_71010233ec();
 }
 
-void fn_71010235e8(UnkSecondaryBase_0x30& base) {
+void fn_71010235e8(UnkSecondaryBase_0x30_010233ec& base) {
     fn_7101023544(static_cast<UnkObject_71010233ec&>(base));
 }

@@ -9,14 +9,14 @@ using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
 
-struct UnkComponentOwner {
+struct UnkComponentOwner_d78a30 {
     u64 field_0x0;
     CStrId id;
 };
 
 struct UnkComponent : UnkReflObject {
     u64 field_0x8;
-    UnkComponentOwner* owner;
+    UnkComponentOwner_d78a30* owner;
 };
 
 // The kind ids components of each class are registered under.
