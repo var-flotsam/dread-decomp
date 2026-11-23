@@ -1,7 +1,7 @@
 // UnkTU811 (CEmmyAIComponent's unit): sets the E.M.M.I.'s AI up after the base step: resets its members
 // and switches, names the current area "default", sets a model flag, watches the owner's life part, takes
 // its ranges from the tunables and puts 200 into the animation's bag. Names and layouts are placeholders.
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/CModelUpdaterComponent.h"

@@ -232,7 +232,7 @@ struct UnkLabelStrId {
     };
 
     UnkLabelStrId() {}
-    void Build(const CRntString& str) { fn_7100000850(&id, str, true); }
+    void Build(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkLabelStrId() { id.~CStrId(); }
 };
 

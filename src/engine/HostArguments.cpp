@@ -86,7 +86,7 @@ struct UnkStartStrId {
         CStrId id;
     };
 
-    explicit UnkStartStrId(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkStartStrId(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkStartStrId() { id.~CStrId(); }
 };
 
@@ -511,7 +511,7 @@ void fn_7100001390() {
         if (!g_unk_7101d47108)
             base::global::UnkEnsureStringPool();
         base::global::CStrId::Empty().data = &g_unk_7101d47108->empty;
-        fn_7100000250(fn_710000051c, &base::global::CStrId::Empty(), g_unk_7101a19000);
+        fn_7100000250(CStrId_Destroy, &base::global::CStrId::Empty(), g_unk_7101a19000);
         g_unk_7101d470f0 = 1;
     }
 }

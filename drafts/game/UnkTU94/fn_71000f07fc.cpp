@@ -95,7 +95,7 @@ struct UnkReaderId_f07fc {
     UnkStringData* data;
 
     explicit UnkReaderId_f07fc(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(this), str, true);
     }
     ~UnkReaderId_f07fc() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
 };
@@ -125,7 +125,7 @@ static inline UnkReader_f07fc* FindClassReader(const CType* type) {
     if (attr.type) {
         auto* name = static_cast<UnkReaderName_f07fc*>(ValueAddress(attr));
         if (name->length &&
-            fn_710007f240(reinterpret_cast<char*>(const_cast<CRntString*>(name->string)), g_unk_710162e2ed)) {
+            StringBuffer_Differs(reinterpret_cast<char*>(const_cast<CRntString*>(name->string)), g_unk_710162e2ed)) {
             UnkReaderId_f07fc id(*name->string);
             const CClass* cls =
                 type && fn_710009d50c(reinterpret_cast<const UnkReflObject*>(type)->vf_0x0(), fn_7100096100())

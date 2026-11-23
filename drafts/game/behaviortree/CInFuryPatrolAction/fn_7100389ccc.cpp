@@ -2,7 +2,7 @@
 // the actor's movement is in state 4 or its animation plays a turn track; otherwise it sends the animation the
 // track named at +0x90 once, ends when that track has stopped, clears the owner's blackboard flag when it is
 // set and returns 7. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"

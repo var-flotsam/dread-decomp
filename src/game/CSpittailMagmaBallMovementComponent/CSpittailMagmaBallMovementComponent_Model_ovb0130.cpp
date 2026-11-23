@@ -155,7 +155,7 @@ struct UnkSpittailBuiltId_ovb0130 {
         CStrId id;
     };
 
-    explicit UnkSpittailBuiltId_ovb0130(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkSpittailBuiltId_ovb0130(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkSpittailBuiltId_ovb0130() { id.~CStrId(); }
 };
 

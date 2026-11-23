@@ -25,9 +25,9 @@ struct HeaderIds2 {
 __attribute__((always_inline)) inline void InitHeaderIds(HeaderIds2* ids) {
     ids->field_0x0 = 6;
     new (&ids->field_0x10) UnkStrIdBase("binaries", true);
-    fn_7100000250(fn_710000051c, &ids->field_0x10, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &ids->field_0x10, g_unk_7101a19000);
     new (&ids->field_0x18) UnkStrIdBase("sources", true);
-    fn_7100000250(fn_710000051c, &ids->field_0x18, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &ids->field_0x18, g_unk_7101a19000);
 }
 
 
@@ -42,9 +42,9 @@ struct __attribute__((packed, aligned(4))) HeaderIds4 {
 __attribute__((always_inline)) inline void InitHeaderIds(HeaderIds4* ids) {
     ids->field_0x0 = 6;
     new (&ids->field_0x4) UnkStrIdBase("binaries", true);
-    fn_7100000250(fn_710000051c, &ids->field_0x4, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &ids->field_0x4, g_unk_7101a19000);
     new (&ids->field_0xc) UnkStrIdBase("sources", true);
-    fn_7100000250(fn_710000051c, &ids->field_0xc, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &ids->field_0xc, g_unk_7101a19000);
 }
 
 // The header statics in units built from the other order: "sources" first, the u32 last.
@@ -56,9 +56,9 @@ struct HeaderIdsRev {
 
 __attribute__((always_inline)) inline void InitHeaderIds(HeaderIdsRev* ids) {
     new (&ids->field_0x8) UnkStrIdBase("sources", true);
-    fn_7100000250(fn_710000051c, &ids->field_0x8, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &ids->field_0x8, g_unk_7101a19000);
     new (&ids->field_0x10) UnkStrIdBase("binaries", true);
-    fn_7100000250(fn_710000051c, &ids->field_0x10, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &ids->field_0x10, g_unk_7101a19000);
     ids->field_0x0 = 6;
 }
 }  // namespace unk_static_init
@@ -201,7 +201,7 @@ __attribute__((always_inline)) inline void MakeEmptyId(UnkStrIdBase* id) {
 
 __attribute__((always_inline)) inline void InitEmptyId(UnkStrIdBase* id) {
     MakeEmptyId(id);
-    fn_7100000250(fn_710000051c, id, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, id, g_unk_7101a19000);
 }
 
 }  // namespace unk_static_init
@@ -257,7 +257,7 @@ namespace unk_static_init {
 // (built on first use, guarded).
 __attribute__((always_inline)) inline void InitClassIdFrom(UnkStrIdBase* id, const CStrId& name) {
     new (id) CStrId(fn_7100de8f78(name));
-    fn_7100000250(fn_710000051c, id, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, id, g_unk_7101a19000);
 }
 
 }  // namespace unk_static_init

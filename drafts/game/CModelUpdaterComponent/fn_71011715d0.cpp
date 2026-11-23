@@ -3,9 +3,9 @@
 // entry's value bag holds (fn_7101171a08). Names and layouts are placeholders.
 #include <algorithm>
 
-#include "../../game_aca57c/UnkBufferString.h"
-#include "../../game_s7/UnkIter.h"
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
+#include "../../../src/game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

@@ -84,7 +84,7 @@ struct UnkResizedVector_ovb0036 : CRntVector<T> {
 // A string id made from a C string (fn_71000003d4).
 struct UnkNameId_ovb0036 {
     void* data;
-    __attribute__((always_inline)) UnkNameId_ovb0036(const char* text) { fn_71000003d4(this, text, true); }
+    __attribute__((always_inline)) UnkNameId_ovb0036(const char* text) { CStrId_Construct(this, text, true); }
 };
 
 struct UnkNamedFlagObject_ovb0036 {

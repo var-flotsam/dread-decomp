@@ -63,7 +63,7 @@ struct UnkBuiltId_b21f20 {
     UnkStringData* data;
 
     explicit UnkBuiltId_b21f20(const CRntString& text) {
-        fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), text, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(this), text, true);
     }
     ~UnkBuiltId_b21f20() { reinterpret_cast<UnkStrId*>(this)->~UnkStrId(); }
 };

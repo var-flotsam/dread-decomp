@@ -12,7 +12,7 @@ using UnkPathIdMember = base::UnkStrIdMemberOf<g_unk_7101d47200>;  // a file-pat
 inline void UnkEnsureFilePathPool_l08c174() {
     static base::global::UnkStringPoolHolder s_holder asm("g_unk_7101d47208")(
         fn_7100080570(), &g_unk_7101d47200);
-    fn_710007fdb4();
+    StringPool_InitHeap();
 }
 
 UnkPathIdMember* fn_710008c174(base::global::CRntVector<UnkPathIdMember>* list, u32 index) {

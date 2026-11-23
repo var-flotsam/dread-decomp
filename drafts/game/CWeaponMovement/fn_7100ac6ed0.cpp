@@ -4,7 +4,7 @@
 // placeholders.
 #include <stdlib.h>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"

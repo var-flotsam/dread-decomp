@@ -1,7 +1,7 @@
 // Unit 2702 (a CAIComponent unit): sends the owner's action named for the side the target is on (or the
 // plain one), then, when the owner has a movement, probes the floor below it and launches it toward the
 // target, faced its way. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntString.h"
@@ -17,7 +17,7 @@
 #include "game/UnkTU365.h"
 #include "types.h"
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 
 using base::global::CRntString;
 using base::global::CStrId;

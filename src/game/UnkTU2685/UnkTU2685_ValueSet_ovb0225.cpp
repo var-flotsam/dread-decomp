@@ -35,7 +35,7 @@ struct UnkValueSet_b0225 {
 
 void fn_71010c7284(UnkValueSet_b0225* self, const CStrId* name, const CRntString* key, bool flag, void* arg) {
     new (&self->name) CStrId(*name);
-    fn_7100000850(&self->key, *key, true);
+    CStrId_ConstructFromRntString(&self->key, *key, true);
     new (&self->values) base::global::CRntVector<UnkValueElem_b0225>(5);
     fn_710007be8c(&self->stream, 0x16, nullptr);
     self->arg = arg;

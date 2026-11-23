@@ -23,10 +23,10 @@ struct UnkBonePositionEvent_b42a3 {
 void fn_7100bd85e4(UnkBonePositionEvent_b42a3* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa1b88 + 0x10;
-    fn_71000003d4(&self->ids[0], "", true);
-    fn_71000003d4(&self->ids[1], "", true);
-    fn_71000003d4(&self->ids[2], "", true);
-    fn_71000003d4(&self->ids[3], "", true);
+    CStrId_Construct(&self->ids[0], "", true);
+    CStrId_Construct(&self->ids[1], "", true);
+    CStrId_Construct(&self->ids[2], "", true);
+    CStrId_Construct(&self->ids[3], "", true);
     self->field_0x30 = 0;
     self->field_0x34 = 1;
     self->field_0x38 = 0;

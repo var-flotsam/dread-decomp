@@ -2,8 +2,8 @@
 // in mode 2. With `plain` set the id is sent as it is; otherwise it is prefixed with the facing side's
 // name (one of two ids, chosen by +0xb0) and the joined string's key is sent. Names and layouts are
 // placeholders.
-#include "../../game_aca57c/UnkBufferString.h"
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"

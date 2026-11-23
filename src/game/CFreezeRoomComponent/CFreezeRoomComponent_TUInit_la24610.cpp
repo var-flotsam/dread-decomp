@@ -72,5 +72,5 @@ void fn_7100a24610() {
         CStrId name("CFreezeRoomComponent", true);
         new (&cls.id) CStrId(fn_7100de8f78(name));
     }
-    fn_7100000250(fn_710000051c, &cls.id, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &cls.id, &g_unk_7101a19000);
 }

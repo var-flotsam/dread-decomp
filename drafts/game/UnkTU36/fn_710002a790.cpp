@@ -6,7 +6,7 @@
 
 #include <nn/os.h>
 
-#include "../../base/UnkUnit36/UnkUnit36_Nfp.h"
+#include "../../../src/base/UnkUnit36/UnkUnit36_Nfp.h"
 #include "game/UnkTU36.h"
 #include "types.h"
 

@@ -21,7 +21,7 @@
         GETCLASS();                                                         \
         fn_710009ec00(&g_unk_##LIST, TUType<0x28>(g_unk_##HDR));            \
         new (&g_unk_##ID) CStrId(fn_7100de8f78(IDFN()));                    \
-        fn_7100000250(fn_710000051c, &g_unk_##ID, &g_unk_7101a19000);       \
+        fn_7100000250(CStrId_Destroy, &g_unk_##ID, &g_unk_7101a19000);       \
     }
 
 COMPONENT_TU_INIT(fn_7100769fc0, 7172713c70, 7172713c90, 7172713c58, CameraRailId, "CAMERARAIL", fn_7100769854)

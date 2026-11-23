@@ -55,7 +55,7 @@ void fn_71008dee60() {
     fn_71008ddcf0();
     fn_710009ec00(&g_unk_7172732028, &tu.type);
     new (&tu.collision_l) CStrId("collision_L", true);
-    fn_7100000250(fn_710000051c, &tu.collision_l, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.collision_l, &g_unk_7101a19000);
     new (&tu.collision_r) CStrId("collision_R", true);
-    fn_7100000250(fn_710000051c, &tu.collision_r, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.collision_r, &g_unk_7101a19000);
 }

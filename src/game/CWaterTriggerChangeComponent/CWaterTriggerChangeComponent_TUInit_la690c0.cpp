@@ -41,7 +41,7 @@ void fn_7100a690c0() {
     tu.target_height = -1.0f;
     tu.field_0x38 = true;
     new (&g_unk_717274e770) CStrId("WATERCHANGE", true);
-    fn_7100000250(fn_710000051c, &g_unk_717274e770, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_717274e770, &g_unk_7101a19000);
     InitPropertyVtableFirst(&g_unk_717274e778, vtable, g_unk_71726db788, "OriginInitH",
                             refl_TypeOf<fn_710000abbc>(), fn_7100a68d04, fn_7100a653b8);
     InitProperty(&g_unk_717274e7a0, vtable, g_unk_71726db788, "OriginInitY", refl_TypeOf<fn_710000abbc>(),

@@ -5,7 +5,7 @@
 
 ## Progress
 
-<!-- tools/progress.py and tools/progress.py --slice boot, before -> after (percent and O count). -->
+<!-- tools/progress.py and tools/progress.py --quality, before -> after (percent and O count). -->
 
 ## Checklist
 

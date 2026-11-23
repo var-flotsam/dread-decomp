@@ -3,7 +3,7 @@
 // actor's part at +0x1b40 hash; on show it sets the loading screen's kind (6 when unset), tells the unit's
 // listeners and starts the travel to the three names at +0x540, +0x558, +0x560. Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"

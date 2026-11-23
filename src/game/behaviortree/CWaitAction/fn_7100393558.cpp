@@ -20,9 +20,9 @@ UnkSelf* fn_7100393558(UnkSelf* self) {
     fn_7100393e68(self);
     self->vtable = g_unk_7101a26cb0 + 2;
     self->field_0x2c = 1.0f;
-    fn_71000003d4(self->id_0x30, "", true);
-    fn_71000003d4(self->id_0x38, "", true);
-    fn_71000003d4(self->id_0x40, "", true);
+    CStrId_Construct(self->id_0x30, "", true);
+    CStrId_Construct(self->id_0x38, "", true);
+    CStrId_Construct(self->id_0x40, "", true);
     __builtin_memset(self->field_0x48, 0, 11);
     return self->vf_0x18();
 }

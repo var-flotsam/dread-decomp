@@ -12,7 +12,7 @@ using base::global::UnkStrIdBase;
 
 static inline void InitId(UnkStrIdBase* id, const char* str) {
     new (id) UnkStrIdBase(str, true);
-    __cxa_atexit(fn_710000051c, id, g_unk_7101a19000);
+    __cxa_atexit(CStrId_Destroy, id, g_unk_7101a19000);
 }
 
 void fn_71001e50b0() {

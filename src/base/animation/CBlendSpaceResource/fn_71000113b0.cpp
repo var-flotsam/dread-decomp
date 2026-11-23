@@ -49,9 +49,9 @@ void fn_710000a5d0(UnkReflType* self, const CStrId& name, void* a, void* b);
 
 void fn_71000113b0() {
     new (&g_unk_7101d4cdc8.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &g_unk_7101d4cdc8.sources, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7101d4cdc8.sources, &g_unk_7101a19000);
     new (&g_unk_7101d4cdc8.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &g_unk_7101d4cdc8.binaries, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7101d4cdc8.binaries, &g_unk_7101a19000);
     InitRecord(g_unk_7101d4cdc8.fns[0], fn_710000cf00);
     InitRecord(g_unk_7101d4cdc8.fns[1], fn_710000d470);
     InitRecord(g_unk_7101d4cdc8.fns[2], fn_710000d4f4);

@@ -173,7 +173,7 @@ struct UnkBuiltStrId_b0026 {
         CStrId id;
     };
 
-    explicit UnkBuiltStrId_b0026(const base::global::CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkBuiltStrId_b0026(const base::global::CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkBuiltStrId_b0026() { id.~CStrId(); }
 };
 

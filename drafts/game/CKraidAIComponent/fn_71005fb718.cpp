@@ -1,7 +1,7 @@
 // CKraidAIComponent unit: the component's destructor: its list links, listener, callback lists and
 // attacks, last first, then the array at +0x149e8 and CBossAIComponent's destructor (fn_71003ac388).
 // Names and layouts are placeholders.
-#include "../../game_5821e4/CAttackDtor.h"
+#include "../../../src/game_5821e4/CAttackDtor.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"

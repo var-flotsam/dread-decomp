@@ -2,7 +2,7 @@
 // unlocked from the user data, fades the panels, describes the two difficulty buttons (greyed out while
 // locked), selects the default entry and titles the screen after the current difficulty. Names and
 // layouts are placeholders.
-#include "../../game_s7/UnkGuiS7.h"
+#include "../../../src/game_s7/UnkGuiS7.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"

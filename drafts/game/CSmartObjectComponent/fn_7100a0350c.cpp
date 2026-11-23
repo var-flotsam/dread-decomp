@@ -1,6 +1,6 @@
 // CSmartObjectComponent unit: sets an object's name id (a default one when the given id is
 // empty), then builds its "left" and "right" ids from it. Names and layouts are placeholders.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -47,8 +47,8 @@ void fn_7100a0350c(UnkSmartObjectNames* self, const CStrId* name) {
     UnkBufferString<0x80, g_unk_7101a1b750> right("right");
     CRntString_Append(left.Str(), &IdString(self->name));
     CRntString_Append(right.Str(), &IdString(self->name));
-    fn_7100000850(&slot.id, *left.Str(), true);
+    CStrId_ConstructFromRntString(&slot.id, *left.Str(), true);
     self->left.ReleaseAndTake(slot.id);
-    fn_7100000850(&slot.id, *right.Str(), true);
+    CStrId_ConstructFromRntString(&slot.id, *right.Str(), true);
     self->right.ReleaseAndTake(slot.id);
 }

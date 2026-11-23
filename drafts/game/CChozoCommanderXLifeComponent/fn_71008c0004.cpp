@@ -24,7 +24,7 @@ struct UnkSubIdName_8c0004 {
     UnkStringData* data;
 
     explicit UnkSubIdName_8c0004(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkSubIdName_8c0004() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
     const CStrId& Id() const { return *reinterpret_cast<const CStrId*>(this); }

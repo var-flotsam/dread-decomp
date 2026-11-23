@@ -11,7 +11,7 @@
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU2566.h"
-#include "../../../game_s7/UnkGuiS7.h"
+#include "../../../../src/game_s7/UnkGuiS7.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 

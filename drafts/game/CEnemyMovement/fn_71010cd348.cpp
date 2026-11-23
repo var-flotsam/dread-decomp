@@ -1,7 +1,7 @@
 // CEnemyMovement unit: takes a reference on the request's object, reads its name (or the empty
 // string) as a state id and asks the state machine at +0x700 for it, when it is one of the seven.
 // Names and layouts are placeholders.
-#include "../CSensorDoorComponent/UnkDoorStateMachine_b58.h"
+#include "../../../src/game/CSensorDoorComponent/UnkDoorStateMachine_b58.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 

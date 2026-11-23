@@ -27,9 +27,9 @@ using base::global::UnkStrIdBase;
 __attribute__((always_inline)) inline void InitHeaderIds(HeaderIds* ids) {
     ids->field_0x0 = 6;
     new (&ids->field_0x8) UnkStrIdBase("binaries", true);
-    fn_7100000250(fn_710000051c, &ids->field_0x8, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &ids->field_0x8, g_unk_7101a19000);
     new (&ids->field_0x10) UnkStrIdBase("sources", true);
-    fn_7100000250(fn_710000051c, &ids->field_0x10, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &ids->field_0x10, g_unk_7101a19000);
 }
 
 // A string id built from a class name through fn_7100de8f78.
@@ -38,7 +38,7 @@ __attribute__((always_inline)) inline void InitClassId(UnkStrIdBase* id, const c
         CStrId n(name, true);
         new (id) CStrId(fn_7100de8f78(n));
     }
-    fn_7100000250(fn_710000051c, id, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, id, g_unk_7101a19000);
 }
 
 // A file path id built from a string.
@@ -70,7 +70,7 @@ void fn_710058a070(void* self, const UnkStrIdBase* ids, u32 count);
 // A string id built directly from a string.
 __attribute__((always_inline)) inline void InitId(UnkStrIdBase* id, const char* str) {
     new (id) UnkStrIdBase(str, true);
-    fn_7100000250(fn_710000051c, id, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, id, g_unk_7101a19000);
 }
 
 // A reflected enum's type object (a global shared between units, so reached through the GOT),

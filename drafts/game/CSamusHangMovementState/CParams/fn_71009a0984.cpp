@@ -4,7 +4,7 @@
 // owner's (+0x30) part at +0x2b0 is flagged, the params with mode 3, otherwise the params with mode 1 carrying
 // two values of the movement (+0x38); the transition id depends on a movement flag. Names and layouts are
 // placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkTU1455.h"
 #include "game/UnkTU1730.h"

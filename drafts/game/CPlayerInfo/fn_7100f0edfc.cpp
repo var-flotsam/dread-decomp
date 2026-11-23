@@ -1,7 +1,7 @@
 // CPlayerInfo unit: a reflected function that reads a name from the argument's stream, counts a use of
 // each slot (0x38 bytes) of the object up to the one whose key matches the name's, makes that slot the
 // Input tunable's current one, and returns the int 0 as a reflected value. Names and layouts are placeholders.
-#include "../../game_s7/UnkPropS7.h"
+#include "../../../src/game_s7/UnkPropS7.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflAttributes.h"

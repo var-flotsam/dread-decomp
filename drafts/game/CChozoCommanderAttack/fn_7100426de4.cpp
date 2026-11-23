@@ -4,7 +4,7 @@
 // Names and layouts are placeholders.
 #include <math.h>
 
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU54.h"
 #include "types.h"

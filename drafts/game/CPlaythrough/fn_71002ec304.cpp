@@ -12,7 +12,7 @@
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkTU57.h"
 #include "types.h"
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;

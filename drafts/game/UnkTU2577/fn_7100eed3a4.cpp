@@ -6,7 +6,7 @@
 #include <algorithm>
 
 #include "base/global/CStrId.h"
-#include "../../game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkIter.h"
 #include "game/UnkMask.h"
 #include "game/UnkTU2611.h"
 #include "game/UnkTU2577.h"

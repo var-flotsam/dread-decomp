@@ -3,7 +3,7 @@
 // the stealth tweak track (when the movement is in stealth and the track names one) or the id table's
 // default with mode 0 (as UnkSpitSend, src/game_s2/UnkSpitSend.h). Names and layouts are placeholders.
 #include "../../../../build/lean/scratch/game/UnkGameManagerIdTable.h"
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

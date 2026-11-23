@@ -2,7 +2,7 @@
 // unless a freeze-in-frame track plays, plays the tweak-unfreeze action request (filled in by the track, by
 // the component's filter or from the char class's ids), first starting the thaw blend layer's fade in.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

@@ -2,7 +2,7 @@
 // blackboard: when the scenario's section says "Dead", breaks the model's parts, makes the "_BREAK"
 // colliders solid, plays the break animation and sends the "destroyed" id. Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkStrIdTable.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

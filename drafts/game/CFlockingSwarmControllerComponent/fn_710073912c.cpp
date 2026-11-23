@@ -6,7 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "game/CFlockingSwarmControllerComponent.h"
 #include "game/UnkBroadphaseObject.h"
-#include "../../game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkIter.h"
 #include "types.h"
 
 struct UnkEntryList_fs {

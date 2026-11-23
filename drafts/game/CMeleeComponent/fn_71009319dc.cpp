@@ -5,7 +5,7 @@
 
 #include <new>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkBlockFreeList.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"

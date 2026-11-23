@@ -1,7 +1,7 @@
 // CEnemyMovement unit: starts the owner's turn. A reversible turn plays the main track's action with
 // "_reverse" appended for the rest of the current one; otherwise the AI component turns, or the
 // turn action the character class names is sent to the animation. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkTunableLine.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

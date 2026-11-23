@@ -24,7 +24,7 @@ extern void* g_unk_7101aa6138[];
 void fn_7100cd5c4c(UnkMaterialTransitionEvent* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa6138 + 2;
-    fn_71000003d4(&self->id_0x10, "", true);
+    CStrId_Construct(&self->id_0x10, "", true);
     self->field_0x18 = 0;
     self->field_0x1c = 1;
     self->field_0x20 = 0;

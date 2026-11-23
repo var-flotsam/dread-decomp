@@ -74,9 +74,9 @@ void fn_710015ef10() {
     UnkUnit181Statics_b0246& s = g_unk_716e2aadb0;
     s.header = 6;
     new (&s.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &s.binaries, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &s.binaries, g_unk_7101a19000);
     new (&s.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &s.sources, g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &s.sources, g_unk_7101a19000);
     fn_71001537c0(&g_unk_716e2a7580);
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_71001537d4), &g_unk_716e2a7580, g_unk_7101a19000);
     g_unk_716e2a76a0 = fn_7100153a90(2);

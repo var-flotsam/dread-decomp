@@ -28,7 +28,7 @@ bool fn_71011b89dc(UnkGuiRoot* root, u8 font, const base::global::CStrId* font_i
         const base::global::CRntString* name = *fn_710109c444(self->names, font);
         alignas(8) u8 storage[sizeof(base::global::CStrId)];
         auto* id = reinterpret_cast<base::global::CStrId*>(storage);
-        fn_7100000850(id, *name, true);
+        CStrId_ConstructFromRntString(id, *name, true);
         id->~CStrId();
     }
     return false;

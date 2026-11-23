@@ -56,4 +56,4 @@ struct UnkStringHeap {
 }  // namespace base::global
 
 // Sets up each size class with counts[class] blocks.
-void fn_7100083f74(base::global::UnkStringHeap* heap, const u32* counts);
+void StringHeap_Init(base::global::UnkStringHeap* heap, const u32* counts);

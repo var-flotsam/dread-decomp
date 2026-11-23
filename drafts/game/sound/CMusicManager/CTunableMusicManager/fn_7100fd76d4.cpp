@@ -54,7 +54,7 @@ struct UnkMusicNameId_fd76d4 {
     base::global::UnkStringData* data;
 
     explicit UnkMusicNameId_fd76d4(const CRntString& name) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), name, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), name, true);
     }
     ~UnkMusicNameId_fd76d4() {
         if (UnkStringPool* pool = g_unk_7101d47108) {

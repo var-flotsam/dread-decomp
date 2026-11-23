@@ -1,7 +1,7 @@
 // CHyperBeamGun's unit (tools/tu_map.py): arming the hyper beam. Ends a pending shot, sends the arming
 // request to the owner's character class and the timeline value, sizes the charge effect, restarts the two
 // charge sounds and refreshes the CCharClassFireActionTrack track. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkDestructors.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"

@@ -3,7 +3,7 @@
 // AI's attacks with a query built from the owner and the attack parameters. Names and layouts are
 // placeholders.
 #include <math.h>
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/UnkMatrix44.h"
 #include "base/UnkVtableList.h"
 #include "base/global/CStrId.h"

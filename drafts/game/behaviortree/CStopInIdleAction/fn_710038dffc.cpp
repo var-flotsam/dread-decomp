@@ -4,8 +4,8 @@
 // blackboard value the id at +0x50 names. Otherwise it runs while the idle animation is not yet playing, or
 // for the time at +0x3c when no animation was asked for. Returns 2 while running, 5 when done. Names and
 // layouts are placeholders.
-#include "../../../game_aca57c/UnkBufferString.h"
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_aca57c/UnkBufferString.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"

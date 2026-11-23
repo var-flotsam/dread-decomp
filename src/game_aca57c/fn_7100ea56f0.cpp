@@ -46,7 +46,7 @@ struct UnkNumberedIds {
 
 struct UnkTempStrIdT : base::UnkPooledString {
     __attribute__((always_inline)) UnkTempStrIdT(const UnkString20& str) {
-        fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), *str.Str(), true);
+        CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(this), *str.Str(), true);
     }
 };
 
@@ -85,7 +85,7 @@ void fn_7100ae9bb0(UnkIdWord* self, const UnkStringWord* source, const UnkSuffix
         CRntString_AppendChar(str.Str(), ']');
     }
     base::UnkPooledString id;
-    fn_7100000850(reinterpret_cast<UnkStrIdBase*>(&id), *str.Str(), true);
+    CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(&id), *str.Str(), true);
     self->id.~UnkStrIdTwoStep();
     self->id.data = id.data;
 }

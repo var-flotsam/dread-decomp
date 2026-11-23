@@ -2,7 +2,7 @@
 // at +0x30 (or the one +0x38 resolves to), with a random number from [+0x44, +0x48] appended when both are
 // set, plays it on the actor's (+0x18) character class, then sets and clears the timeline ids at +0x50 and
 // +0x58. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"

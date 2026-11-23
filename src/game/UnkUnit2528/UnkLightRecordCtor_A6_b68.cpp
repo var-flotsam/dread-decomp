@@ -19,8 +19,8 @@ struct UnkLightRecord_A6_b68 {
 
 static inline __attribute__((always_inline)) void LightRecordCtor_A6_b68(UnkLightRecord_A6_b68* self) {
     self->field_0x0 = 1;
-    fn_71000003d4(&self->id_0x8, "Light", true);
-    fn_71000003d4(&self->id_0x10, "", true);
+    CStrId_Construct(&self->id_0x8, "Light", true);
+    CStrId_Construct(&self->id_0x10, "", true);
     self->field_0x18[0] = 0;
     self->field_0x18[1] = 0;
     self->field_0x18[2] = 0;

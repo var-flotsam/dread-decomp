@@ -3,7 +3,7 @@
 // a turn track plays, hands the owner's +0x298 a kind-5 parameter block), copies two values from the
 // description (+0x28), and hooks the callback fn_710060dd9c (link at +0x30, handle at +0x48) up to the
 // character class. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"

@@ -4,8 +4,8 @@
 // Names and layouts are placeholders.
 #include <algorithm>
 
-#include "../../game_s7/UnkIter.h"
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU56.h"

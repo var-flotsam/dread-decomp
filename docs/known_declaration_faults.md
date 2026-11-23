@@ -8,29 +8,22 @@ It matters twice. A wrong declaration blocks other matches or forces a workaroun
 crash, not a comment: a result declared too small or an argument in the wrong class corrupts the caller in
 the port (journal, 2026-11-08 and 2026-11-09). The entries are the workers' reports and have not all been
 checked against the original. Remove an entry when its declaration is corrected, in the same change.
+Entries whose declaration had been corrected were removed on 2026-11-22 (`tools/decl_check.py --symbol`).
 
 ## Wrong return type
 
 | Symbol | Declared | The original | Reported by |
 |---|---|---|---|
-| `fn_71011d9e90`, `fn_71010e655c`, `fn_7100362324`, `fn_710000f750` | `void` | returns a value | b0005, b0001, b0026, b0032 |
 | `fn_710007b518` | `void` (in a header) | returns a pointer the caller uses | b0099 |
-| `fn_71011a32d8`, `fn_71011a3574` | `void` | return values that are used; reached as `bool` through `asm`-label aliases in `UnkTU2577_SubAreaMgr_ovb0189.cpp` | b0189 |
-| `fn_7100ef0cdc`, `fn_7100ef11f4` | `void()` in `function_inits_02.cpp` | not stated | b0189 |
+| `fn_71011a32d8` | `void` | returns a value that is used; reached as `bool` through an `asm`-label alias in `UnkTU2577_SubAreaMgr_ovb0189.cpp` | b0189 |
 
 ## Wrong parameters
 
 | Symbol | Declared | The original | Reported by |
 |---|---|---|---|
-| `fn_7100004578` | a count parameter that is not `u64` (`include/base/UnkResType.h`) | matches when it is `u64` | b0033 |
-| `fn_71007616e8` | as `src/clones/clones_02.cpp` declares it | defined with another signature (matters for the port's link) | b0028 |
 | `fn_71011a1d00` | no `self` parameter (`src/game/CScenario.cpp`) | takes `self` | b0032 |
-| `fn_710076438c` | lacks a `bool` argument | takes it | b0001, b0008 |
-| `fn_710014580c` | one argument (`src/game/CFXComponent/fn_7101152b90.cpp`) | two; b0052 casts at the call | b0052 |
-| `fn_71010d4234` | `char*(char*)` in 4 files | a caller passes a float | b0048 |
 | `fn_7101105e14` | with an `f32` (`CQuetzoaAIComponent_Dodge_A3_b76.cpp`) | the call passes none; blocks `fn_710113430c` | b0050 |
 | `fn_7100caacd0` | `void()` (`CBTObserverComponent.cpp`) | `(self, const u32*)`; matched in scratch, blocked | b0055 |
-| `fn_7100ca7a64` | `(void*, u16)` (`game_s2/fn_71002b3828.cpp`) | takes `u32`; matched in scratch, blocked | b0055 |
 | `fn_7100f0f4d0` | `void()` (`src/game/CPlayerInfo.cpp`) | `(self, message)` | b0071 |
 | `fn_71007b70d8` | `void(void*)` (`CDoorEmmyFXComponent.cpp`) | two parameters | b0074 |
 | `fn_71011b7ec0` | 2 parameters (`include/game/UnkGuiFrames.h`) | a caller passes 3 | b0080 |
@@ -38,11 +31,9 @@ checked against the original. Remove an entry when its declaration is corrected,
 | `fn_7100df31b8` | third argument `bool` | the caller passes 2; its matching draft is held back in `drafts/` | b0103 |
 | `fn_7100219558` | third argument `bool` | `u32`; called through a function-pointer cast in `UnkTU2666_lua_ovb0157`/`ovb0159` | b0157 |
 | `fn_7100eb33c8`, `fn_7100eb2eac` | one argument | need a second | later batch |
-| `fn_7100eaf72c` | no parameters | takes some | later batch |
+| `fn_7100eaf72c` | no parameters (the generated `src/reflection_types/collection_types_00.cpp`) | takes some | later batch |
 | `fn_7100331c7c` | 2 arguments | 1; `UnkTU437_Aim_ovb0198.cpp` declares it through an `asm` label | b0198 |
 | `fn_7100b43b30` | not stated | `UnkTU1689_MapMenu_ovb0203.cpp` declares it through an alias | b0203 |
-| `fn_71001cde84` | takes `bool` | `u32` first argument; `UnkRenderCalls_b0253` reaches it as a static member | b0253 |
-| `fn_71000e88c0` | a `CClass*` getter in the generated `include/base/reflection/UnkClassGetters.h` | a `void` descriptor initialiser: the generator names it wrongly | b0136 |
 
 ## Matches to look at again
 
@@ -57,7 +48,8 @@ checked against the original. Remove an entry when its declaration is corrected,
 
 Resolved since the runs: the two string literals of `fn_7100775358` (`UnkTU1176_Central_ovb0230.cpp`) that
 were taken from a truncated listing are the original's (`check.py` compares string contents since #355);
-`fn_7100ac82c0`'s `void` declaration was corrected to `s32` in the lean run.
+`fn_7100ac82c0`'s `void` declaration was corrected to `s32` in the lean run; `fn_71000e88c0` is declared `void` in the generated
+`UnkClassGetters.h` now.
 
 ## Structs defined in several files
 
@@ -77,75 +69,47 @@ constructor named in a comment and not by a label, were folded in the same day. 
 
 ## Shared functions the mechanical header migration could not move
 
-`tools/decl_plan.py` and `tools/hub_migrate.py` moved 1,353 shared functions' declarations into unit headers on
-2026-11-11. 46 of those tried are still left with every local copy in place, because moving them changed a
-file or stopped it compiling. Each needs a person to settle the type. (`tools/decl_plan.py --exclude` takes
-this list; remove a symbol here when it has moved.)
+`tools/decl_plan.py` and `tools/hub_migrate.py` moved the declarations of most shared functions into unit
+headers in seven passes on 2026-11-11 and 2026-11-12 (journal, those dates). The functions below were tried and
+left with every local copy in place, because moving them changed a file or stopped it compiling; each needs a
+person to settle the type. (`tools/decl_plan.py --exclude` takes this list; remove a symbol here when it has
+moved.) On 2026-11-22, 288 symbols were still declared in more than one file (626 extra copies,
+`tools/decl_check.py`); symbols of these lists that have since moved were taken out that day.
 
-**30: the header's forward declaration clashes with a type of another kind that a file defines under the same name (a typedef, a template alias, a type in a namespace).**
-`fn_710007b444` `fn_710009fb38` `fn_710009ffd4` `fn_71000fbce0` `fn_71002295ac` `fn_7100229688` `fn_7100231b40` `fn_710026d2e4` `fn_710027fc88` `fn_7100287598` `fn_71002af6fc` `fn_71002b3114` `fn_71002b3328` `fn_71002b52a4` `fn_71002f239c` `fn_7100353be8` `fn_7100407170` `fn_7100d46804` `fn_7100d46c60` `fn_7100d476e4` `fn_7100ee34f0` `fn_7100ee62bc` `fn_7100ee6884` `fn_7100ef1e1c` `fn_7100f84868` `fn_7100f85f00` `fn_7100f86020` `fn_7100f86254` `fn_7100faa3d8` `fn_710119a110`
+**16: the header's forward declaration clashes with a type of another kind that a file defines under the same name (a typedef, a template alias, a type in a namespace).**
+`fn_710009fb38` `fn_710009ffd4` `fn_71000fbce0` `fn_71002295ac` `fn_7100229688` `fn_7100231b40` `fn_710027fc88` `fn_71002f239c` `fn_7100407170` `fn_7100ee34f0` `fn_7100ee6884` `fn_7100f84868` `fn_7100f85f00` `fn_7100f86020` `fn_7100f86254` `fn_7100faa3d8`
 
-**7: the file's compiled output changed.**
-`fn_71005c1008` `fn_7100895498` `fn_710098ae04` `fn_71009a60fc` `fn_71009a64cc` `fn_710111b230` `fn_71011201e4`
+**5: the file's compiled output changed.**
+`fn_71009a64cc` `fn_710111b230` `fn_71011201e4` `fn_7100ae986c` `fn_71011cd5dc`
 
-**5: a file uses a type the header does not bring.**
-`fn_71007142e8` `fn_710099d6f0` `fn_71009a1f40` `fn_71009b0800` `fn_71010d1598`
+**2: a file uses a type the header does not bring.**
+`fn_71009a1f40` `fn_71009b0800`
 
-A third pass on 2026-11-12 moved 437 more symbols, none left over: the planner forward-declares a type the
-declaring file takes from an include when every file of the tree agrees on it (`tools/decl_plan.py`,
-`type_index`).
+**1: a file has its own definition of a type the declaration's header brings (`UnkVec3f`).**
+`fn_7100215dcc`
 
-A fourth pass on 2026-11-12, after the conflicting signatures were settled, moved 91 more symbols, 16 functions and 11 globals of the lists here among them (the lists and their counts are what is left).
+**1: its parameter is a template that no header defines.**
+`fn_71007ed25c`
 
-A fifth pass on 2026-11-12 moved 423 more symbols (16 functions and 4 globals of the lists here among them). The planner learned two things for it: a type that exactly one header under
-`include/` defines (`CStrId`, `CRntString`, `UnkVec3f`) is used through that header, with its full name in
-the declaration; and a name that some file reaches through a namespace or defines as an alias is never
-forward-declared. What a declaration needs in its header now travels with it in the plan, so
-`tools/hub_migrate.py` writes it with the declaration and takes it back with it.
-
-A sixth pass the same day moved 159 more: declarations with a function-pointer type, and with a
-template that a header defines (`base::global::CRntVector<u8>*`), which comes with that header. One run, nothing
-left half-moved. 409 symbols are still declared in more than one file: the globals between two units'
-data spans (108), the ones whose type is a name some file gives another meaning, the ones whose files
-would not build the same with the shared declaration (they are in the lists here), and the 20 with
-conflicting signatures.
-
-A seventh pass, after those 20 were settled, moved 18 more: those 20 except `fn_710031da18` and
-`fn_71007ed25c`, whose parameter is a template no header defines. It left 13 that it tried, added to the
-lists here: 387 symbols are still declared in more than one file.
-
-Four of them had a definition that returns another type than every caller declared; the callers took
-the definition's type the same day and the four moved (`fn_7100a0feac`, `fn_71001fdacc`, `fn_7101126814`,
-`fn_7101177ae8`).
-
-**2: the file's compiled output changed.**
-`fn_7100ae986c` `fn_71011cd5dc`
-
-**2: a file has its own definition of a type the declaration's header brings (`UnkVec3f`).**
-`fn_7100215dcc` `fn_710039525c`
+What a declaration needs in its header travels with it in the plan: a type that exactly one header under
+`include/` defines (`CStrId`, `CRntString`, `UnkVec3f`) is used through that header, a name that some file
+reaches through a namespace or defines as an alias is never forward-declared, and a template that a header
+defines comes with that header.
 
 ## Shared globals the mechanical header migration could not move
 
-`tools/decl_plan.py` and `tools/hub_migrate.py` moved 674 shared symbols' declarations (672 globals and two
-functions) into unit headers on 2026-11-11, each global into the header of the unit whose data span holds it
-(`tools/data_map.py`). 27 of those tried are still left with every local copy in place. (They are in the
-`--exclude` list with the functions above; remove a symbol here when it has moved.)
+The same tools moved 672 globals on 2026-11-11, each into the header of the unit whose data span holds it
+(`tools/data_map.py`). These were tried and are still left with every local copy in place (in the `--exclude`
+list with the functions above; remove a symbol here when it has moved).
 
-**18: the header's forward declaration of the global's type clashes with a type of the same name in a namespace that a file opens (the compiler: "reference is ambiguous").**
-`g_unk_7101a45f90` `g_unk_7101a45fe8` `g_unk_7108b6d8f0` `g_unk_71726dfca0` `g_unk_71727115d0` `g_unk_7172731200` `g_unk_71729f0188` `g_unk_71729f0190` `g_unk_71729f0198` `g_unk_71729f01a0` `g_unk_71729f01a8` `g_unk_71729f01c8` `g_unk_71729f0228` `g_unk_71729f0238` `g_unk_71729f0240` `g_unk_71729f0248` `g_unk_71729f0298` `g_unk_71729f02a8`
+**10: the header's forward declaration of the global's type clashes with a type of the same name in a namespace that a file opens (the compiler: "reference is ambiguous").**
+`g_unk_71727115d0` `g_unk_71729f0190` `g_unk_71729f0198` `g_unk_71729f01c8` `g_unk_71729f0228` `g_unk_71729f0238` `g_unk_71729f0240` `g_unk_71729f0248` `g_unk_71729f0298` `g_unk_71729f02a8`
 
-**1: the global's unit header also declares a function that one of the files declares with another return type (the functions of the list above), so that file cannot include the header.**
-`g_unk_7101d4bbc0`
+**2: a file's `using` declaration or typedef clashes with the header's forward declaration.**
+`g_unk_7172735f58` `g_unk_7172795e08`
 
-**3: a file's `using` declaration or typedef clashes with the header's forward declaration.**
-`g_unk_7172730858` `g_unk_7172735f58` `g_unk_7172795e08`
-
-**5: a file has its own `operator new`, or a `using` declaration, that clashes with what the unit header brings.**
-`g_unk_7101d47348` `g_unk_71727bca40` `g_unk_71727bca80` `g_unk_71727bcac0` `g_unk_71727bcb00`
-
-Not tried in this pass: 328 globals whose type comes from a shared header (`UnkReflType`, `UnkConverter`,
-`CStrId`, `UnkProperty`, `UnkTUHeader`), 95 that lie between two units' data spans, 92 with conflicting
-signatures, and 2 whose copies differ in a visibility attribute. (The conflicting ones are down to 10 since 2026-11-12, see below.)
+**4: a file has its own `operator new`, or a `using` declaration, that clashes with what the unit header brings.**
+`g_unk_71727bca40` `g_unk_71727bca80` `g_unk_71727bcac0` `g_unk_71727bcb00`
 
 ## Symbols declared with more than one signature
 
@@ -256,14 +220,12 @@ One is left: `fn_71003f4bc0`. Its caller negates the result as a `bool` (`mvn w8
 own code only matches when it returns a word (as `bool` its three returns come out as `mov w8, ...; and w0, w8,
 #1`). Seven ways of writing its ending were tried.
 
-`fn_71000e88c0` is a different fault with the same look: the generated `UnkClassGetters.h` lists it as a class
-getter and it is an initialiser that returns nothing; the generator's list is wrong for it.
-
 ## Definitions whose types are not their declaration's
 
 `python tools/decl_check.py --definition-types` lists every hand-written definition whose signature is not the
 text of any declaration of the same function in another file. The call is the same in all but the one the
-section above keeps; what differs is a type's name. 1,090 on 2026-11-12:
+section above keeps; what differs is a type's name. 1,121 on 2026-11-22, 954 of them beyond a namespace
+written out; on 2026-11-12, when there were 1,090:
 - 651 name a pointed-to struct differently (the definition has its file's own struct, the callers theirs
   or `void*`);
 - 190 differ in another parameter type, 143 in the result's type (`fn_7101177ae8` returned `const CStrId*` where its
@@ -277,7 +239,7 @@ places. The port's link sees two mangled names for such a function and joins the
 (`tools/port_link.py`, "function alias"), so nothing is unresolved; across the two only the shape of the call
 is checked, not the types.
 And the file that defines the function cannot include the header that declares it, which is what stopped four
-symbols of the seventh pass; 272 of the 984 beyond a namespace are declared in a header today. The ones in
+symbols of the seventh pass (on 2026-11-12, 272 of the 984 beyond a namespace were declared in a header). The ones in
 the tree stay until someone settles them; since 2026-11-12 `tools/decl_check.py --base` fails when a pull request
 adds one (a namespace written out on one side never fails: it is the same type). To settle one, give the definition and the header the same struct (the unit's
 view of the object, in its header) and make the defining file include the header.

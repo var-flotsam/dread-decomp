@@ -51,7 +51,7 @@ void fn_7100a7b494(UnkShipRechargeDef* def) {
     fn_710007e6c4(&self->field_0x88);
     fn_710007e6c4(&self->field_0xb8);
     for (CStrId& id : self->field_0xe8)
-        fn_7100000850(&id, g_unk_7101d58d10, true);
+        CStrId_ConstructFromRntString(&id, g_unk_7101d58d10, true);
     InitEmpty(&self->field_0x180);
     new (&self->field_0x188) CFilePathStrId();
     new (&self->field_0x190) CFilePathStrId();

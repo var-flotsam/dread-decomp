@@ -4,7 +4,7 @@
 // (state 1) the shock wave grows with the timer until fAttackTime, when it is stopped; the Scorpius AI is
 // then flagged as gassing, and as gassing its target when the target's helper agrees (fn_71009e6434).
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAttack.h"

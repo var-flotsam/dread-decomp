@@ -1,7 +1,7 @@
 // In the CSamusMagnetGloveMovementState::CParams unit: fn_71009aaa98 updates the magnet glove state each frame.
 // It falls when either attachment lost its body, cancels to a default move request, counts the two timers
 // down and eases the camera offset towards the attachment point. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkTU1455.h"
 #include "game/UnkTU1501.h"

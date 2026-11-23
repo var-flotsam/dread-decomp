@@ -1,7 +1,7 @@
 // CScorpiusAIComponent unit: the component's destructor: its list links, callback lists, node lists and
 // attacks, last first, then CBossAIComponent's destructor (fn_71003ac388). Names and layouts are
 // placeholders.
-#include "../../game_5821e4/CAttackDtor.h"
+#include "../../../src/game_5821e4/CAttackDtor.h"
 #include "base/UnkCloneHelpers.h"
 #include "game/CBossAIComponent.h"
 #include "game/CCentralUnitAIComponent.h"

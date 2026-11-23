@@ -2,7 +2,7 @@
 // entity the blackboard value at +0x38 names (or the point its AI marks on its model), else the point
 // the key at +0x30 names, and keeps it and its offset from the owner; otherwise the owner flees.
 // Names and layouts are placeholders.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -60,7 +60,7 @@ struct UnkBuiltId_l6e2b9c {
     UnkStringData* data;
 
     explicit UnkBuiltId_l6e2b9c(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
     }
     ~UnkBuiltId_l6e2b9c() {
         if (UnkStringPool* pool = g_unk_7101d47108) {

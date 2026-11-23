@@ -2,7 +2,7 @@
 // cased, plus the "actordef" category's extension is looked for under "actors/<folder>/<name>/charclasses/"
 // in each actor folder in turn; the first one the registry knows is the path. Names and layouts are placeholders.
 // Needs CFilePathStrId(const CRntString&, bool) asm("fn_710001a270") in base/global/CFilePathStrId.h.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkStrPair.h"

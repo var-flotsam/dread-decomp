@@ -2,7 +2,7 @@
 // defeated: the "#MLOG_DEFEAT_BOSS_COOLDOWN_X" message goes to the game manager's callbacks, the base handler
 // runs and the damage at +0x15838 is updated; then the death track's id is sent to the character class, and
 // when that fails (or there is none) fn_71004d3318 runs. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"

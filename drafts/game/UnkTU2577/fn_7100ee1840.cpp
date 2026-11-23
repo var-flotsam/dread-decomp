@@ -23,7 +23,7 @@ struct UnkBuiltStrId_ee1840 {
     base::global::UnkStringData* data;
 
     explicit UnkBuiltStrId_ee1840(const CRntString& str) {
-        fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), str, true);
+        CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(this), str, true);
     }
     ~UnkBuiltStrId_ee1840() { AsId().~CStrId(); }
     CStrId& AsId() { return *reinterpret_cast<CStrId*>(this); }

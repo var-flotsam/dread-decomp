@@ -34,7 +34,7 @@ struct UnkTextId {
 
     explicit UnkTextId(const UnkPairText& text) {
         if (&Pool == &g_unk_7101d47108)
-            fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), *text.Str(), true);
+            CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(this), *text.Str(), true);
         else
             fn_710001a270(reinterpret_cast<UnkFilePathStrIdBase*>(this), *text.Str(), true);
     }

@@ -212,7 +212,7 @@ struct UnkCamBuiltId_ovb5 {
         CStrId id;
     };
 
-    explicit UnkCamBuiltId_ovb5(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkCamBuiltId_ovb5(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkCamBuiltId_ovb5() { id.~CStrId(); }
 };
 

@@ -32,7 +32,7 @@ struct UnkPlaythroughBuiltId_ovb0123 {
         CStrId id;
     };
 
-    explicit UnkPlaythroughBuiltId_ovb0123(const CRntString& str) { fn_7100000850(&id, str, true); }
+    explicit UnkPlaythroughBuiltId_ovb0123(const CRntString& str) { CStrId_ConstructFromRntString(&id, str, true); }
     ~UnkPlaythroughBuiltId_ovb0123() { id.~CStrId(); }
 };
 

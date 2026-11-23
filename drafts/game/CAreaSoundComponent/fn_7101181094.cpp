@@ -7,7 +7,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/math/CVector.h"
 #include "base/snd/CSoundSystem.h"
 #include "base/snd/UnkSound.h"

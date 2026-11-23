@@ -258,7 +258,7 @@ struct UnkTextStrId {
     UnkStringData* data;
 
     explicit UnkTextStrId(const UnkTunableLine& text) {
-        fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), *text.Str(), true);
+        CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(this), *text.Str(), true);
     }
     ~UnkTextStrId() { reinterpret_cast<CStrId*>(this)->Reset(); }
     const CStrId& Id() const { return *reinterpret_cast<const CStrId*>(this); }

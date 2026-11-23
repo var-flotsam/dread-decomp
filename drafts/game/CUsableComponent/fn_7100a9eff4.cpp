@@ -3,7 +3,7 @@
 // names; when found, copies it to +0xf8 and +0x538, and while it is clear sends the owner's (+0x30)
 // sub-object at +0x220 the hash at +0x30 of the record +0x150 of +0x500 (UnkSpitSend). Names and
 // layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTUProperty.h"

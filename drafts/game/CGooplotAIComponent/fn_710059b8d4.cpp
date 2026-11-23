@@ -3,7 +3,7 @@
 // block when it is in mode 3 or 2 and plays "gooplottail" on the owner's +0x280; otherwise, in mode 1, sends
 // the owner's animation (+0x220) a hash by the track it holds (4, 5 or its own). Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
 #include "game/CAutsharpAIComponent.h"

@@ -2,7 +2,7 @@
 // a Sabotoru's AI is marked and its controller updated, the door of its spawn point is turned toward the side
 // the owner faces, the enemy movement gets its parameter blocks, and the animation is sent the turn to one side
 // or the other. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

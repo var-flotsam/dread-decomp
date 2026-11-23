@@ -1,7 +1,7 @@
 // CThreadSafeDevice (unit 68): splits a file-path id "device:dir/name.ext" into the directory (a
 // file-path id, with its slash), the name and the extension (string ids); each output may be null.
 // Names and layouts are placeholders.
-#include "../../../game_aca57c/UnkBufferString.h"
+#include "../../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
@@ -52,7 +52,7 @@ struct UnkTextId_l08de50 {
 };
 using UnkTextPath_l08de50 =
     UnkTextId_l08de50<g_unk_7101d47200, base::global::UnkFilePathStrIdBase, fn_710001a270>;
-using UnkTextStrId_l08de50 = UnkTextId_l08de50<g_unk_7101d47108, base::global::UnkStrIdBase, fn_7100000850>;
+using UnkTextStrId_l08de50 = UnkTextId_l08de50<g_unk_7101d47108, base::global::UnkStrIdBase, CStrId_ConstructFromRntString>;
 
 // Makes `id` share `other`'s string: the new string gains a reference before the old one is released.
 template <UnkStringPool*& Pool, class Id, class Other>

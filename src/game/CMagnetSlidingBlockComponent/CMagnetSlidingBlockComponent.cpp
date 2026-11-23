@@ -31,19 +31,19 @@ void fn_7100921cb0() {
     UnkMagnetSlidingBlockTU& tu = g_unk_71727375b0;
     InitHeader(tu.header);
     new (&g_unk_7172737528) CStrId("MAGNET_SLIDING_BLOCK", true);
-    fn_7100000250(fn_710000051c, &g_unk_7172737528, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_7172737528, &g_unk_7101a19000);
     InitPropertyVtableFirst(&g_unk_7172737530, reinterpret_cast<void**>(g_unk_7101a82b50), g_unk_71726db788,
                             "FinishedMovement", refl_TypeOf<fn_710000d228>(), fn_71009217a4, fn_710091d7d0);
     fn_710091d84c();
     fn_710009ec00(&g_unk_7172737558, &tu.type);
     new (&tu.magnet) CStrId("magnet", true);
-    fn_7100000250(fn_710000051c, &tu.magnet, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.magnet, &g_unk_7101a19000);
     new (&tu.logic) CStrId("MagnetSlidingBlockComponent Logic", true);
-    fn_7100000250(fn_710000051c, &tu.logic, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.logic, &g_unk_7101a19000);
     new (&tu.logic_2) CStrId("MagnetSlidingBlockComponent Logic", true);
-    fn_7100000250(fn_710000051c, &tu.logic_2, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.logic_2, &g_unk_7101a19000);
     new (&tu.finished) CStrId("finished", true);
-    fn_7100000250(fn_710000051c, &tu.finished, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.finished, &g_unk_7101a19000);
     new (&tu.loop_vibration) CFilePathStrId("props/magnetplatform/platformmagnetbig_loop.bnvib", true);
     fn_7100000250(fn_7100000c7c, &tu.loop_vibration, &g_unk_7101a19000);
 }

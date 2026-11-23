@@ -70,7 +70,7 @@ void fn_71009c4e10() {
     InitPropertyEx(&g_unk_717273e210, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, fn_71002ef5bc,
                    "NAVMESH_OCCLUDERS", &g_unk_717273e7f0, fn_71004fd2cc, fn_71004fa3b8);
     new (&g_unk_717273e250) CStrId("NAVMESHITEM", true);
-    fn_7100000250(fn_710000051c, &g_unk_717273e250, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_717273e250, &g_unk_7101a19000);
     InitPropertyExVtableFirst(reinterpret_cast<UnkPropertyEx<0x160>*>(&g_unk_717273e258), g_unk_7101a889c8, g_unk_71726db788, g_unk_7101a88970, fn_7100ae9cc8,
                               "ColliderOffset", refl_TypeOf<fn_7100024504>(), fn_71009c26f4, fn_71009bd8c0);
     InitPropertyExVtableFirst(reinterpret_cast<UnkPropertyEx<0x160>*>(&g_unk_717273e3e0), g_unk_7101a889c8, g_unk_71726db788, g_unk_7101a88970, fn_7100ae9cc8,
@@ -93,7 +93,7 @@ void fn_71009c4e10() {
     InitVector(reinterpret_cast<UnkReflType*>(&g_unk_717273e7f0), "TEnabledOccluderCollidersMap", fn_71009bf5f8);
     fn_710009ec00(&g_unk_717273e960, &g_unk_717273e7f0);
     new (&tu.key) CStrId(fn_7100de8f78(NavMeshItemId()));
-    fn_7100000250(fn_710000051c, &tu.key, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.key, &g_unk_7101a19000);
     new (&tu.default_id) CStrId("_default", true);
-    fn_7100000250(fn_710000051c, &tu.default_id, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.default_id, &g_unk_7101a19000);
 }

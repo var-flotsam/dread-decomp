@@ -3,7 +3,7 @@
 // reads the chase id from the AI's blackboard, turns on every door's EMMY effect (when the tunable says so),
 // listens to the owner's animation component and its enemy movement, and refreshes the AI's ids. Names and
 // layouts are placeholders.
-#include "../../../game_s7/UnkPropBagS7.h"
+#include "../../../../src/game_s7/UnkPropBagS7.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"

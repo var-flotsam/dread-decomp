@@ -52,9 +52,9 @@ static inline void* AsList(const base::reflection::CType* t) {
 
 void fn_71001392b0() {
     new (&g_unk_710b371b10.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &g_unk_710b371b10.sources, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_710b371b10.sources, &g_unk_7101a19000);
     new (&g_unk_710b371b10.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &g_unk_710b371b10.binaries, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &g_unk_710b371b10.binaries, &g_unk_7101a19000);
 
     fn_7100135a94();
     fn_710009ec00(&g_unk_710b3710b1, g_unk_710b371b10.type);

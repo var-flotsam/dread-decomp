@@ -4,7 +4,7 @@
 // already playing, 1 otherwise. Names and layouts are placeholders.
 #include <math.h>
 
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"

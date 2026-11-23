@@ -2,7 +2,7 @@
 // archives' hidden flags (one per memory and one for the secret), shows each gallery button as hidden or revealed,
 // reveals the memories of the scenarios the profile lists and decides how the secret button shows. Names and
 // layouts are placeholders.
-#include "../../../game_5821e4/UnkStaticInit.h"
+#include "../../../../src/game_5821e4/UnkStaticInit.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"

@@ -1,7 +1,7 @@
 // CFlockingSwarmControllerComponent unit: the swarm's active members (0x148 bytes each), nearest the
 // player first (fn_7100739e4c). Names and layouts are placeholders.
 #include <algorithm>
-#include "../../game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkIter.h"
 #include "base/global/CRntVector.h"
 #include "game/CFlockingSwarmControllerComponent.h"
 #include "types.h"

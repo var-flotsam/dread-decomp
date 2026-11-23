@@ -4,7 +4,7 @@
 #include <algorithm>
 
 #include "base/global/CRntVector.h"
-#include "../../game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkIter.h"
 #include "types.h"
 
 using base::global::CRntVector;

@@ -43,7 +43,7 @@ UnkStringPoolHolder::UnkStringPoolHolder(u32 a, UnkStringPool** pool) {
     self->slot = pool;
     self->field_0x8 = false;
     self->state.empty.ref_count = 0;
-    fn_710007ecb4(reinterpret_cast<char*>(&self->state.empty.buffer), "", 0, -1);
+    StringBuffer_Construct(reinterpret_cast<char*>(&self->state.empty.buffer), "", 0, -1);
     // The state is reached through one register, the pre-indexed store's write-back, up to the
     // node allocation; the barrier keeps the stores that follow on that register.
     UnkStringPoolState* state = &self->state;
@@ -89,7 +89,7 @@ UnkStringPoolHolder::UnkStringPoolHolder(u32 a, UnkStringPool** pool) {
     first = bucket < first ? bucket : first;
     if (first == bucket)
         s.set.first_node = node;
-    UnkPoolNode** head = reinterpret_cast<UnkPoolNode**>(fn_7100080824(set, bucket));
+    UnkPoolNode** head = reinterpret_cast<UnkPoolNode**>(StringPool_Bucket(set, bucket));
     node->next = *head;
     *head = node;
     ++s.set.node_count;
@@ -105,7 +105,7 @@ UnkStringPoolHolder::~UnkStringPoolHolder() {
     if (s.set.node_count) {
         u32 n = s.set.buckets.count;
         for (u32 i = 0; i != n; ++i) {
-            UnkPoolNode* node = reinterpret_cast<UnkPoolNode*>(*fn_7100080824(set, i));
+            UnkPoolNode* node = reinterpret_cast<UnkPoolNode*>(*StringPool_Bucket(set, i));
             while (node) {
                 UnkPoolNode* next = node->next;
                 CRntString_Destroy(&node->data.buffer);

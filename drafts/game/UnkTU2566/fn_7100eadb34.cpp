@@ -3,7 +3,7 @@
 // key and a copy of the record. Names and layouts are placeholders.
 #include <new>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"

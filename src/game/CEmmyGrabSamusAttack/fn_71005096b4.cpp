@@ -88,7 +88,7 @@ void fn_71005096b4(UnkStruct_71005077f8* self_, u32 kind) {
             {
                 UnkStrIdSlot_l5096b4 slot;
                 CRntString text = CRntString_Concat(name.Str(), g.band_names[i].Str());
-                fn_7100000850(&slot.id, text, true);
+                CStrId_ConstructFromRntString(&slot.id, text, true);
                 Take_l5096b4(self->id, slot.id);
             }
             *chosen -= step;

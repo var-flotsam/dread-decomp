@@ -20,9 +20,9 @@ struct UnkObject_7100138090 {
 void fn_7100138090(UnkObject_7100138090* self) {
     fn_7100023838(self);
     self->vtable = reinterpret_cast<void (**)(UnkObject_7100138090*)>(unk_7101a1a478 + 0x10);
-    fn_71000003d4(&self->id_0x8, "", true);
-    fn_71000003d4(&self->id_0x10, "", true);
-    fn_71000003d4(&self->id_0x18, "", true);
+    CStrId_Construct(&self->id_0x8, "", true);
+    CStrId_Construct(&self->id_0x10, "", true);
+    CStrId_Construct(&self->id_0x18, "", true);
     self->flag_0x20 = false;
     self->vtable[3](self);
 }
@@ -33,8 +33,8 @@ void fn_7100136ecc(UnkTunable* tunable) {
     auto* self = reinterpret_cast<UnkObject_7100138090*>(tunable);
     fn_7100023838(self);
     self->vtable = reinterpret_cast<void (**)(UnkObject_7100138090*)>(unk_7101a1a478 + 0x10);
-    fn_71000003d4(&self->id_0x8, "", true);
-    fn_71000003d4(&self->id_0x10, "", true);
-    fn_71000003d4(&self->id_0x18, "", true);
+    CStrId_Construct(&self->id_0x8, "", true);
+    CStrId_Construct(&self->id_0x10, "", true);
+    CStrId_Construct(&self->id_0x18, "", true);
     self->flag_0x20 = false;
 }

@@ -5,8 +5,9 @@ Hand-written functions that do not match yet. They were written by the agent run
 the work is not lost and so the tools that will judge and finish them have something to run on.
 
 Nothing here is built by `tools/check.py`, the port or CI, and nothing here counts as progress. A draft
-moves to `src/` when it matches, or when it is verified equivalent (`CLAUDE.md`, "Completion"). Since
-2026-11-13 (owner) this is also where a new function goes that does neither, unless the port needs it.
+moves to `src/` when it matches, or when it is verified equivalent (`CLAUDE.md`, "Purpose and completion"). Since
+2026-11-13 (owner) this is also where a new function goes that does neither; since 2026-11-17 the
+port is on hold, so "the port needs it" keeps nothing in `src/` either.
 
 ## Layout
 

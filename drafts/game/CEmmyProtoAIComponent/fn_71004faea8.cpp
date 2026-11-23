@@ -4,7 +4,7 @@
 // 2; asks for state 2 against the actor the owner acts against; resets every slot of the owner's model;
 // and, when fn vf_0x818 says so, registers the callback record (+0x2a710) in the set of the kind-3 entry
 // of that actor's info. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkDeferredSet.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"

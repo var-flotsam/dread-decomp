@@ -3,7 +3,7 @@
 // Names and layouts are placeholders.
 #include <stdlib.h>
 
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkActor.h"

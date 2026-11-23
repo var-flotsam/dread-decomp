@@ -2,7 +2,7 @@
 // (CCharClassAnimationComponent, +0x10): clears its lists, takes the class's default action names and,
 // when it has tracks, requests the class's start action (or the default one) on the main track; a
 // request that is taken clears a flag of the owner's +0x218 object. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"

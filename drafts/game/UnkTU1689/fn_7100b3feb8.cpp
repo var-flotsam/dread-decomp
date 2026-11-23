@@ -1,7 +1,7 @@
 // GUI::CMapMenuController's unit (1689): enters a mode. With bit 0 of the flags set the mode is stored
 // (+0x6f0) and the controller moves to entry 4; otherwise it moves to the mode itself. Either way the state
 // machine at +0x918 is asked for that state. Names and layouts are placeholders.
-#include "../UnkSmRequest_A5_b73.h"
+#include "../../../src/game/UnkSmRequest_A5_b73.h"
 #include "game/UnkTU1689.h"
 #include "types.h"
 

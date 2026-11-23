@@ -1,7 +1,7 @@
 // UnkTU2553 (the game manager): fills in the unlock flags the user data's section is missing (hard and expert
 // mode from the legacy keys and the save slots' rankings, the main menu's state, the rush pop-ups) and saves
 // the user data when any was missing. Names and layouts are placeholders.
-#include "../../game_5821e4/UnkStaticInit.h"
+#include "../../../src/game_5821e4/UnkStaticInit.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"

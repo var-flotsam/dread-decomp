@@ -116,7 +116,7 @@ void fn_7100aff9fc(UnkDebugMenuEntryItemRenderer_ovb0112* self, UnkMenuEntryData
     CVector2D submenu_size;
     CVector2D plain_size;
     if (self->submenu && name.data && *name.data) {
-        if (fn_710007f240(reinterpret_cast<char*>(&name), "[SUBMENU]")) {
+        if (StringBuffer_Differs(reinterpret_cast<char*>(&name), "[SUBMENU]")) {
             SetSubmenuLayout(self, submenu_size);
         } else {
             SetPlainLayout(self, plain_size);

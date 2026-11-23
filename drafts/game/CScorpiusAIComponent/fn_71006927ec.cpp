@@ -1,8 +1,8 @@
 // CScorpiusAIComponent unit: the start step. Resets the timer, tints the owner's glow part, makes two named
 // husks unbreakable, enters the tuned mode, clears the attack state and tells the owner's animation about
 // the start. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/global/CStrId.h"
 #include "game/CBossAIComponent.h"
 #include "game/CCharClassLifeComponent.h"

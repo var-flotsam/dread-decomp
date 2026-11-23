@@ -17,7 +17,7 @@ void fn_71006e1010() {
     if (!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_717270aeb8), __ATOMIC_ACQUIRE) & 1)) {
         if (__cxa_guard_acquire(&g_unk_717270aeb8)) {
             new (g_unk_717270aeb0) CStrId("v3FleePos", true);
-            fn_7100000250(fn_710000051c, g_unk_717270aeb0, &g_unk_7101a19000);
+            fn_7100000250(CStrId_Destroy, g_unk_717270aeb0, &g_unk_7101a19000);
             __cxa_guard_release(&g_unk_717270aeb8);
         }
     }
@@ -27,7 +27,7 @@ void fn_71006e5a90() {
     if (!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_717270b878), __ATOMIC_ACQUIRE) & 1)) {
         if (__cxa_guard_acquire(&g_unk_717270b878)) {
             new (g_unk_717270b870) CStrId("v3FleePos", true);
-            fn_7100000250(fn_710000051c, g_unk_717270b870, &g_unk_7101a19000);
+            fn_7100000250(CStrId_Destroy, g_unk_717270b870, &g_unk_7101a19000);
             __cxa_guard_release(&g_unk_717270b878);
         }
     }

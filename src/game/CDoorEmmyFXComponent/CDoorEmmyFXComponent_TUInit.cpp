@@ -38,13 +38,13 @@ void fn_71007b7190() {
     fn_71007b55e4();
     fn_710009ec00(&g_unk_717271a549, &tu.type);
     new (&tu.position) CStrId("fPosition", true);
-    fn_7100000250(fn_710000051c, &tu.position, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.position, &g_unk_7101a19000);
     new (&tu.opening) CStrId("fOpening", true);
-    fn_7100000250(fn_710000051c, &tu.opening, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.opening, &g_unk_7101a19000);
     new (&tu.id) CStrId(fn_7100de8f78(DoorEmmyFXId()));
-    fn_7100000250(fn_710000051c, &tu.id, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.id, &g_unk_7101a19000);
     new (&tu.magma_event) CStrId("MagmaEvent", true);
-    fn_7100000250(fn_710000051c, &tu.magma_event, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.magma_event, &g_unk_7101a19000);
     new (&tu.emmy_chase) CStrId("EmmyChase", true);
-    fn_7100000250(fn_710000051c, &tu.emmy_chase, &g_unk_7101a19000);
+    fn_7100000250(CStrId_Destroy, &tu.emmy_chase, &g_unk_7101a19000);
 }
