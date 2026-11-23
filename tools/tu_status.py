@@ -21,8 +21,9 @@ data/tu_status.csv columns:
   --list STATE    the units in one state (--sort left|bytes|index, --top N)
   --unit U        one unit's functions and their statuses (U: an index, a unit name, a function's address
                   or its data/functions name)
-  --quality       add the two qualities per unit (tools/progress.py --quality): how many functions are
-                  byte-matching and readable, and the units where all are. Needs build/check/<version>/
+  --quality       add the qualities per unit (tools/progress.py --quality): how many functions are
+                  byte-matching, hand-written, with no steering form, and the units where all are. Needs
+                  build/check/<version>/
   --write         rewrite data/tu_status.csv
   --check         exit 1 when data/tu_status.csv differs from what --write would write
   --summary F     append the units by state to F as markdown (for $GITHUB_STEP_SUMMARY), with the units
@@ -210,20 +211,21 @@ def print_report(table: list[dict], outside: list[dict], listed: int, top: int) 
 
 
 def print_quality(table: list[dict]) -> None:
-    """The two qualities per unit. A unit is complete when every function of it is byte-matching and readable."""
+    """The qualities per unit. A unit is clean in form, hand-written, when every function of it is byte-matching,
+    hand-written and free of steering forms (the `complete` key, tools/progress.py's QUALITIES)."""
     game = [r for r in table if r["state"] in GAME_STATES]
     complete = [r for r in game if r["complete"] == r["functions"]]
     generated = [r for r in game if r["state"] == "matched" and r["match_generated"] == r["functions"]]
     some = [r for r in game if 0 < r["complete"] < r["functions"]]
     print()
-    print("units by the two qualities each function needs, byte-matching and readable (tools/progress.py --quality):")
-    print(f"  complete (every function byte-matching and readable): {len(complete):,} units, "
+    print("units by the qualities each function needs, byte-matching and clean in form (tools/progress.py --quality):")
+    print(f"  every function byte-matching, hand-written, no steering form: {len(complete):,} units, "
           f"{sum(r['bytes'] for r in complete):,} bytes")
     print(f"  matched by generated source alone: {len(generated):,} units, {sum(r['bytes'] for r in generated):,} bytes")
-    print(f"  with some complete functions: {len(some):,} units")
+    print(f"  with some such functions: {len(some):,} units")
     near = sorted(some, key=lambda r: (r["functions"] - r["complete"], -r["bytes"], r["index"]))[:15]
     if near:
-        print("  nearest to complete (functions that are not byte-matching and readable yet):")
+        print("  nearest to all (functions that are not byte-matching, hand-written, with no steering form yet):")
         for r in near:
             print(f"  {r['index']:>5} {r['complete']:>5}/{r['functions']:<5} {r['name'][:48]:<48} "
                   + ", ".join(f"{r[k]} {k}" for k in QUALITY_KEYS[1:] if r[k]))
@@ -322,7 +324,7 @@ def main() -> int:
     ap.add_argument("--sort", choices=list(SORTS), default="left", help="order of --list (default: fewest functions left)")
     ap.add_argument("--top", type=int, default=20, help="rows to show (default 20; 0 for all with --list)")
     ap.add_argument("--quality", action="store_true",
-                    help="add byte-matching and readable per unit (needs build/check/<version>/)")
+                    help="add byte-matching, hand-written, no steering form per unit (needs build/check/<version>/)")
     ap.add_argument("--version", default="2.1.0", help="dump version whose check cache --quality reads (default 2.1.0)")
     ap.add_argument("--summary", type=Path, help="append the units by state as markdown to this file")
     ap.add_argument("--base", help="with --summary: the ref to compare the units against")

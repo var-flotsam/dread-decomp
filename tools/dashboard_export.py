@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Tables for the private progress dashboard, written to build/dashboard/ (counts only, no code).
 
-The dashboard follows the README's card: matched and finished first, then where the untouched code is,
-then the port. One CSV per dataset:
+The dashboard follows the README's card: matched and matching-and-clean-in-form first, then where the
+untouched code is, then the port. One CSV per dataset:
 
   daily.csv        day,matched_pct,finished_pct,matched_functions,untouched_mb,drafts: one row per day on
-                   --ref (tools/daily.py's record, read with `git show`, so the tree is untouched). With
-                   --now, today's row is the working tree's, its finished share computed fresh when
-                   check.py's cache (build/check/<version>/) is present.
+                   --ref (tools/daily.py's record, read with `git show`, so the tree is untouched); the
+                   column finished_pct keeps its name and holds the matching and clean in form share
+                   (tools/progress.py's headline since 2026-11-23). With --now, today's row is the working
+                   tree's, that share computed fresh when check.py's cache (build/check/<version>/) is present.
   subsystems.csv   subsystem,functions,code_mb,matched_pct,untouched_mb: data/functions/main_*.csv summed
                    per subsystem ('?' folded in, library rows left out), most untouched first.
   port.csv         order,area,state: the port rows of docs/HANDOFF.md's "Where things stand".

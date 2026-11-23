@@ -361,7 +361,7 @@ python tools/progress.py --units
 
 ### `tools/daily.py`
 
-Daily progress from main's history: matched, finished, untouched and drafts, one row per day.
+Daily progress from main's history: matched, clean in form, untouched and drafts, one row per day.
 
 ```sh
 python tools/daily.py [--ref origin/main] [--days 14] [--now] [--csv FILE]
