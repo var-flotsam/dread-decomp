@@ -100,6 +100,10 @@ class Definitions(unittest.TestCase):
         self.assertEqual(progress.short_name("CThing::~CThing"), "~CThing")
 
 
+CURRENT = lambda row: ("current", "")  # noqa: E731
+CHANGED = lambda row: ("changed", f"1 commit to tools/gen_reflection.py since {row['generator_commit']}")  # noqa: E731
+
+
 class FamilyReads(unittest.TestCase):
     def write(self, root: Path, rows: list[str]) -> Path:
         p = root / "family_reads.csv"
@@ -123,7 +127,7 @@ class FamilyReads(unittest.TestCase):
                 "lifted,src/lifted/*,abc123,2026-11-20,20,pass,reader,",
                 "lifted,src/lifted/*,def456,2026-11-21,20,fail,reader,two read as machine code",
                 "tables,list.txt,abc123,2026-11-21,20,pass,reader,"])
-            scopes = progress.passed_scopes(progress.read_family_reads(p), root)
+            scopes = progress.passed_scopes(progress.read_family_reads(p), root, CURRENT)
         self.assertTrue(progress.covered(scopes, "src/reflection/x/y.cpp", 1))
         self.assertFalse(progress.covered(scopes, "src/lifted/z.cpp", 1))             # its later read failed
         self.assertTrue(progress.covered(scopes, "src/tables/a.cpp", 1))
@@ -132,6 +136,54 @@ class FamilyReads(unittest.TestCase):
 
     def test_no_reads_cover_nothing(self):
         self.assertEqual(progress.passed_scopes([]), [])
+
+    def test_a_pass_counts_only_while_its_generator_is_unchanged(self):
+        reads = [{"family": "lifted", "scope": "src/lifted/*", "generator_commit": "abc123", "date": "2026-11-20",
+                  "sample_size": "20", "verdict": "pass"},
+                 {"family": "reflection", "scope": "src/reflection/*", "generator_commit": "def456",
+                  "date": "2026-11-21", "sample_size": "20", "verdict": "fail"}]
+        states = progress.family_states(reads, state=CHANGED)
+        self.assertEqual(states["lifted"]["state"], "changed")
+        self.assertEqual(states["reflection"]["state"], "failed")     # a fail asks nothing of git
+        self.assertEqual(progress.passed_scopes(reads, state=CHANGED), [])
+        self.assertEqual(progress.passed_scopes(reads, state=CURRENT), [(["src/lifted/*"], set())])
+
+    def test_the_family_s_generator(self):
+        row = lambda fam, scope: {"family": fam, "scope": scope}  # noqa: E731
+        self.assertEqual(progress.family_dir(row("reflection", "list.txt")), "reflection")
+        self.assertEqual(progress.family_dir(row("refl", "src/reflection_types/*.cpp")), "reflection_types")
+        self.assertIsNone(progress.family_dir(row("refl", "list.txt")))
+        self.assertIsNone(progress.family_dir(row("game", "src/game/*.cpp")))
+        self.assertEqual(set(progress.GENERATORS), progress.GENERATED_DIRS)
+        for gens in progress.GENERATORS.values():
+            for g in gens:
+                self.assertTrue((progress.ROOT / g).is_file(), g)
+
+    def test_generator_state_asks_git_what_touched_the_generator_since(self):
+        calls = []
+
+        def git(*args, since=0, known=True):
+            calls.append(args)
+            if args[0] == "rev-parse":
+                return (0, "x") if known else (1, "")
+            return 0, str(since)
+        row = {"family": "lifted", "scope": "src/lifted/*", "generator_commit": "abc123"}
+        self.assertEqual(progress.generator_state(row, git=git), ("current", ""))
+        self.assertEqual(calls[-1], ("rev-list", "--count", "abc123..HEAD", "--", "tools/gen_lift.py"))
+        self.assertEqual(progress.generator_state(row, git=lambda *a: git(*a, since=3)),
+                         ("changed", "3 commits to tools/gen_lift.py since abc123"))
+        st, why = progress.generator_state(row, git=lambda *a: git(*a, known=False))
+        self.assertEqual((st, why), ("unchecked", "generator commit abc123 is not in this clone"))
+        self.assertEqual(progress.generator_state({**row, "generator_commit": ""}, git=git)[0], "unchecked")
+        self.assertEqual(progress.generator_state({"family": "x", "scope": "x.txt", "generator_commit": "abc"},
+                                                  git=git), ("unchecked", "no generator known for this family"))
+
+    def test_generator_state_on_this_repository(self):
+        head = progress._git("rev-parse", "HEAD")
+        if head[0] != 0:
+            self.skipTest("no git here")
+        row = {"family": "lifted", "scope": "src/lifted/*", "generator_commit": head[1][:12]}
+        self.assertEqual(progress.generator_state(row), ("current", ""))
 
 
 class Report(unittest.TestCase):
@@ -167,7 +219,12 @@ class Report(unittest.TestCase):
                 n = progress.names_report("test", rows, qa, reads)
                 reads.write_text(",".join(progress.FAMILY_COLUMNS) + "\nrefl,src/reflection/Clean.cpp,abc,2026-11-23,"
                                  "20,pass,reader,\n", encoding="utf-8")
-                passed = progress.names_report("test", rows, qa, reads)
+                passed = progress.names_report("test", rows, qa, reads, CURRENT)
+                changed = progress.names_report("test", rows, qa, reads, CHANGED)
+                reads.write_text(",".join(progress.FAMILY_COLUMNS) + "\nrefl,src/reflection/Clean.cpp,abc,2026-11-23,"
+                                 "20,pass,reader,\nrefl,src/reflection/*.cpp,def,2026-11-24,12,fail,reader,\n",
+                                 encoding="utf-8")
+                failed = progress.names_report("test", rows, qa, reads, CURRENT)
             finally:
                 progress.ROOT = old
                 del progress._CACHE_OBJECTS["test"]
@@ -178,6 +235,23 @@ class Report(unittest.TestCase):
         self.assertEqual(n["read_passed"]["functions"], 0)
         self.assertEqual(passed["read_passed"], {"functions": 1, "bytes": 16})
         self.assertEqual(passed["generated"]["reflection"]["clean"]["functions"], 0)
+        # a pass whose generator changed since: its own row, not counted, not "not yet read" either
+        self.assertEqual(changed["read_passed"]["functions"], 0)
+        self.assertEqual(changed["generated"]["reflection"]["clean"]["functions"], 0)
+        self.assertEqual(changed["read_stale"]["refl"]["functions"], 1)
+        self.assertEqual(changed["read_stale"]["refl"]["state"], "changed")
+        # the family's later read failed: its own row with the read's date and sample, out of "not yet read"
+        self.assertEqual(failed["read_passed"]["functions"], 0)
+        self.assertEqual(failed["generated"]["reflection"]["clean"]["functions"], 0)
+        self.assertEqual({k: failed["read_failed"]["refl"][k] for k in ("functions", "bytes", "date", "sample_size")},
+                         {"functions": 1, "bytes": 16, "date": "2026-11-24", "sample_size": "12"})
+        self.assertEqual(failed["read_stale"], {})
+        # every other figure is the one the report gave before
+        for k in n:
+            if k not in ("generated", "read_failed", "read_stale", "read_passed"):
+                self.assertEqual((k, failed[k]), (k, n[k]))
+                self.assertEqual((k, changed[k]), (k, n[k]))
+        self.assertEqual(failed["generated"]["reflection"]["matching"], n["generated"]["reflection"]["matching"])
         self.assertEqual(n["named_sourced"], {"functions": 1, "bytes": 16})
         self.assertEqual(n["named_inferred"], {"functions": 1, "bytes": 16})
         self.assertEqual(n["named_unlisted"]["functions"], 0)
@@ -195,6 +269,11 @@ class Report(unittest.TestCase):
         self.assertIn("Names are a floor a tool can see, not a reading.", line)
         self.assertIn("**8.33%** (2 functions) = from a source 4.17% (1) + inferred 4.17% (1)",
                       progress.named_line(passed, {"bytes": 384}))
+        self.assertIn("generated, clean, not yet read 0.00% (0); generated, read and failed (refl, 2026-11-24) 4.17% (1); "
+                      "generated, read and passed 0.00% (0).", progress.names_line(failed, q, {"bytes": 384}))
+        self.assertIn("read and passed, not counted (refl: 1 commit to tools/gen_reflection.py since abc) 4.17% (1).",
+                      progress.names_line(changed, q, {"bytes": 384}))
+        self.assertEqual(progress.headline(q, changed), progress.headline(q, n))
 
     def test_name_tiers(self):
         self.assertEqual(progress.name_tier({"name": "CThing::Update", "name_source": "reflection"}), "named_sourced")

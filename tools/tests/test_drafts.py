@@ -145,5 +145,120 @@ class Index(unittest.TestCase):
         self.assertEqual(len(drafts.short("x" * 300, 100)), 100)
 
 
+class Absorb(unittest.TestCase):
+    """drafts.py absorb over a made-up tree: text only, nothing compiled."""
+    UNIT = """// Unit 180: lookups. Names are placeholders.
+#include "game/UnkTU180.h"
+
+static u32 Count(UnkA* self);
+
+void fn_710015dc04(UnkA* self) {
+    self->n = 0;
+}
+
+u32 CLookup::Find(UnkA* self,
+                  u32 key) {
+    return key;
+}
+"""
+
+    def tree(self, root: Path) -> list[dict]:
+        (root / "src" / "game" / "UnkTU180").mkdir(parents=True)
+        (root / "drafts" / "game" / "UnkTU180").mkdir(parents=True)
+        (root / "drafts" / "game" / "Other").mkdir(parents=True)
+        (root / "src" / "game" / "UnkTU180" / "Lookup.cpp").write_text(self.UNIT, encoding="utf-8")
+        rows = []
+        for addr, folder in ((0x710015dc04, "UnkTU180"), (0x710015ddc0, "UnkTU180"), (0x710015e600, "Other"),
+                             (0x710015e800, "UnkTU180")):
+            f = root / "drafts" / "game" / folder / f"fn_{addr:x}.cpp"
+            f.write_text(f"void fn_{addr:x}() {{}}\n", encoding="utf-8")
+            rows.append({"address": f"0x{addr:x}", "size": "8", "file": f.relative_to(root).as_posix(),
+                         "difference": "operations", "similarity": "98.9", "differing_instructions": "1",
+                         "from": "t", "note": ""})
+        return rows
+
+    def run_absorb(self, names, listed, write, into="src/game/UnkTU180/Lookup.cpp", extra=None):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            rows = self.tree(root)
+            for rel, text in (extra or {}).items():
+                (root / rel).write_text(text, encoding="utf-8")
+            old = drafts.ROOT
+            drafts.ROOT = root
+            try:
+                done, problems = drafts.absorb([root / n for n in names], root / into, rows, listed, write)
+                left = sorted(p.relative_to(root).as_posix() for p in (root / "drafts").rglob("*"))
+            finally:
+                drafts.ROOT = old
+        return done, problems, [r["address"] for r in rows], left
+
+    def test_a_draft_the_target_defines_by_its_placeholder_goes_with_its_row(self):
+        done, problems, rows, left = self.run_absorb(["drafts/game/UnkTU180/fn_710015dc04.cpp"], {}, True)
+        self.assertEqual(problems, [])
+        self.assertEqual(len(done), 1)
+        self.assertIn("removed  0x710015dc04", done[0])
+        self.assertIn("defines it as fn_710015dc04", done[0])
+        self.assertNotIn("0x710015dc04", rows)
+        self.assertNotIn("drafts/game/UnkTU180/fn_710015dc04.cpp", left)
+
+    def test_by_its_name_in_the_function_list_over_several_lines(self):
+        done, problems, rows, _ = self.run_absorb(["drafts/game/UnkTU180/fn_710015ddc0.cpp"],
+                                                  {0x710015ddc0: "CLookup::Find"}, True)
+        self.assertEqual(problems, [])
+        self.assertIn("defines it as CLookup::Find", done[0])
+        self.assertNotIn("0x710015ddc0", rows)
+
+    def test_a_function_only_declared_there_stays(self):
+        done, problems, _, left = self.run_absorb(["drafts/game/Other/fn_710015e600.cpp"], {0x710015e600: "Count"},
+                                                  True)
+        self.assertEqual(done, [])
+        self.assertEqual(len(problems), 1)
+        self.assertIn("drafts/game/Other/fn_710015e600.cpp", left)
+
+    def test_the_folder_a_draft_leaves_empty_goes_too(self):
+        unit = self.UNIT + "\nstatic u32 Count(UnkA* self) {\n    return self->n;\n}\n"
+        done, problems, _, left = self.run_absorb(["drafts/game/Other/fn_710015e600.cpp"], {0x710015e600: "Count"},
+                                                  True, extra={"src/game/UnkTU180/Lookup.cpp": unit})
+        self.assertEqual(problems, [])
+        self.assertIn("defines it as Count", done[0])
+        self.assertNotIn("drafts/game/Other", left)
+        self.assertIn("drafts/game/UnkTU180", left)
+
+    def test_without_write_nothing_changes(self):
+        done, problems, rows, left = self.run_absorb(["drafts/game/UnkTU180/fn_710015dc04.cpp"], {}, False)
+        self.assertIn("would remove  0x710015dc04", done[0])
+        self.assertIn("0x710015dc04", rows)
+        self.assertIn("drafts/game/UnkTU180/fn_710015dc04.cpp", left)
+
+    def test_a_function_the_target_does_not_define_stays(self):
+        done, problems, rows, left = self.run_absorb(["drafts/game/UnkTU180/fn_710015e800.cpp",
+                                                      "drafts/game/UnkTU180/fn_710015dc04.cpp"],
+                                                     {0x710015e800: "COther::Find"}, True)
+        self.assertEqual(len(done), 1)                     # the other one still goes
+        self.assertEqual(len(problems), 1)
+        self.assertIn("does not define 0x710015e800 (looked for fn_710015e800 or COther::Find)", problems[0])
+        self.assertIn("0x710015e800", rows)
+        self.assertIn("drafts/game/UnkTU180/fn_710015e800.cpp", left)
+
+    def test_a_file_without_a_row_and_a_target_outside_src(self):
+        _, problems, _, _ = self.run_absorb(["drafts/game/UnkTU180/missing.cpp"], {}, True)
+        self.assertIn("no row of drafts/INDEX.csv", problems[0])
+        done, problems, rows, _ = self.run_absorb(["drafts/game/UnkTU180/fn_710015dc04.cpp"], {}, True,
+                                                  into="drafts/game/UnkTU180/fn_710015dc04.cpp")
+        self.assertEqual(done, [])
+        self.assertIn("not a source file under src/", problems[0])
+        self.assertIn("0x710015dc04", rows)
+
+    def test_defines(self):
+        text = Absorb.UNIT
+        self.assertTrue(drafts.defines(text, "fn_710015dc04"))
+        self.assertTrue(drafts.defines(text, "CLookup::Find"))
+        self.assertTrue(drafts.defines(text, "game::CLookup::Find"))   # namespaces as a block or a prefix
+        self.assertFalse(drafts.defines(text, "COther::Find"))         # another class's function of that name
+        self.assertFalse(drafts.defines(text, "Count"))                # declared only
+        self.assertEqual(drafts.candidate_names(0x710015dc04, "fn_710015dc04"), ["fn_710015dc04"])
+        self.assertEqual(drafts.candidate_names(0x710015ddc0, "CLookup::Find"), ["fn_710015ddc0", "CLookup::Find"])
+
+
 if __name__ == "__main__":
     unittest.main()

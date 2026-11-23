@@ -50,6 +50,12 @@ in data/functions/, --no-reloc) are the same as when it was computed (`<obj>.dif
 Statuses are always derived afresh from the diff and the source's annotations. `--no-cache`
 rebuilds and rediffs everything (the nightly run does), refreshing both caches.
 
+One run at a time: a run holds build/check/<version>/check.lock (tools/dread/runlock.py) from start to end, since
+two checkouts can share build/ (a junction or link) and two runs writing one cache corrupt it. Another run waits,
+saying every 30 seconds who holds it, and exits with status 3 after --wait minutes (default 30). A lock whose
+process is gone is taken over with a note. Cache files are written to a temporary file and replaced, and the
+replace is retried for a few seconds while another process has the file open (Windows).
+
 Verified equivalence (tier 2 of CLAUDE.md's completion): data/equivalence.csv holds the verdicts of
 tools/equiv_test.py, each with the digest of the code it judged. Every `pass` row must still describe
 the tree: its function is defined in src/ as NON_MATCHING(minor) and its code has that digest. A row
@@ -72,6 +78,7 @@ Usage:
   python tools/check.py --version 2.1.0 --no-reloc # bytes only, as before the relocation check
   python tools/check.py --version 2.1.0 --no-cache # rebuild and rediff every source
   python tools/check.py --compile-only             # compile every source, no dump needed (hosted CI)
+  python tools/check.py --version 2.1.0 --wait 0   # exit 3 at once if another run holds the cache
 """
 
 from __future__ import annotations
@@ -84,12 +91,13 @@ import os
 import re
 import subprocess
 import sys
+import time
 from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import asmdiff  # noqa: E402
-from dread import asm_labels, functions  # noqa: E402
+from dread import asm_labels, functions, runlock  # noqa: E402
 import buildcfg  # noqa: E402
 import equiv_test  # noqa: E402
 import hostenv  # noqa: E402
@@ -159,8 +167,12 @@ demangle = asmdiff.demangle
 strip_params = asmdiff.strip_params
 
 
+def cache_dir(version: str) -> Path:
+    return ROOT / "build" / "check" / version
+
+
 def object_path(version: str, src: Path) -> Path:
-    return ROOT / "build" / "check" / version / src.relative_to(ROOT / "src").with_suffix(".o")
+    return cache_dir(version) / src.relative_to(ROOT / "src").with_suffix(".o")
 
 
 def digest(path: Path) -> str | None:
@@ -240,10 +252,30 @@ def build(version: str, src: Path, cache: bool = True) -> Path | None:
 
 
 def write_json(path: Path, data) -> None:
-    """Write a cache file atomically, so an interrupted run never leaves a half-written one."""
+    """Write a cache file atomically, so an interrupted run never leaves a half-written one. A cache file that
+    cannot be replaced (still in use after replace()'s retries) is left as it was, with a note: every cache
+    file is checked against its inputs before it is used, so the next run only redoes that work."""
     tmp = path.with_name(path.name + f".{os.getpid()}.tmp")
     tmp.write_text(json.dumps(data), encoding="utf-8")
-    os.replace(tmp, path)
+    try:
+        replace(tmp, path)
+    except PermissionError as e:
+        print(f"cache: could not write {path.relative_to(ROOT) if path.is_relative_to(ROOT) else path} ({e}); "
+              "the next run redoes it", flush=True)
+
+
+def replace(src: Path, dst: Path, tries: int = 10, delay: float = 0.05) -> None:
+    """os.replace, retried with a growing delay (about 5 s in all) on PermissionError: on Windows the
+    replace fails while another process (a reader, a virus scanner) has dst open."""
+    for i in range(tries):
+        try:
+            os.replace(src, dst)
+            return
+        except PermissionError:
+            if i == tries - 1:
+                src.unlink(missing_ok=True)
+                raise
+            time.sleep(delay * (i + 1))
 
 
 def resolver(by_name: dict[str, list[int]], names: dict[str, str]):
@@ -539,12 +571,25 @@ def main() -> int:
                     help="only compile every source with the project toolchain; needs no dump (hosted CI)")
     ap.add_argument("--no-cache", action="store_true",
                     help="rebuild and rediff every source, ignoring (and refreshing) the caches")
+    ap.add_argument("--wait", type=float, default=30, metavar="MINUTES",
+                    help="how long to wait for another run that holds build/check/<version>/ (default 30)")
     args = ap.parse_args()
+    if not args.compile_only and not args.version:
+        ap.error("--version is required unless --compile-only")
+    try:
+        with runlock.RunLock(cache_dir(args.version or "compile-only"), "check.py", wait=max(0.0, args.wait) * 60,
+                             worktree=ROOT):
+            return run(args)
+    except runlock.Busy as e:
+        print(e, flush=True)
+        return runlock.EXIT_BUSY
+
+
+def run(args: argparse.Namespace) -> int:
+    """The run itself, under the lock."""
     cache = not args.no_cache
     if args.compile_only:
         return compile_only(args.version or "compile-only", args.jobs, cache)
-    if not args.version:
-        ap.error("--version is required unless --compile-only")
 
     rows, files = load_csv()
     by_name = csv_by_name(rows)
