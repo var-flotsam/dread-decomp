@@ -3,7 +3,7 @@
 // navigation a kind-5 parameter block, clears the AI's blackboard flag and returns 7. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CEnemyMovement.h"

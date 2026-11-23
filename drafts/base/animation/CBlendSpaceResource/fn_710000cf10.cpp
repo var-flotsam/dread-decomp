@@ -1,7 +1,7 @@
 // base::animation::CBlendSpaceResource: looks a reflected value up by key in the resource's own table, then
 // (when asked and nothing was found) in the table of its parent. Names and layouts are placeholders.
 #include "base/reflection.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"

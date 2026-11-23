@@ -3,7 +3,7 @@
 // object's value by the current phase's tunable rate or moves the target position; it counts the timer at
 // +0x15684 down and runs the per-frame checks. Names and layouts are placeholders.
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAttackComponent.h"
 #include "game/CGrabComponent.h"
 #include "types.h"

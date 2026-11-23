@@ -1,6 +1,6 @@
 // CPowerUpLifeComponent's unit: a reflected function's invoker, the shape of
 // ../CUsableComponent/CUsableComponent_ReflInvokers_A6_b63.cpp (copy of fn_7100aa4108, slot 0x1f0). Names are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

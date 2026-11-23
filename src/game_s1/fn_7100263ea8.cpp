@@ -3,7 +3,7 @@
 // and g_unk_7101d4ec50: fn_7100263ea8; the unsigned integer type and g_unk_7108b6da30:
 // fn_710011e050.
 #include "base/UnkCloneHelpers.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU2201.h"
 #include "game/UnkTU32.h"

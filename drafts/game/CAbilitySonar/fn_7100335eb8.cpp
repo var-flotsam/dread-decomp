@@ -2,7 +2,7 @@
 // list at +0x3a0, sorts it nearest first, offers each target's component the pulse until 64 are found,
 // then empties the list. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include <new>
 

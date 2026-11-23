@@ -3,7 +3,7 @@
 // passes the platform's limit (storing the next delay, -1 meaning Kraid's tunable default), calls
 // fn_7100608674 when the timer at +0x264 reaches its own limit (same default rule), then runs the
 // base update. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "types.h"
 
 // CCharClassKraidAIComponent's tunable: the default delays at +0x24 and +0x28.

@@ -4,7 +4,7 @@
 // under 1 is switched off and 12 returned. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkTunableRegistry.h"
 #include "types.h"
 

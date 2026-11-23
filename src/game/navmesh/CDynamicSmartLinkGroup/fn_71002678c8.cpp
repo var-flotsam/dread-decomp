@@ -5,7 +5,7 @@
 // fn_7100d2c880 (src/game_aca57c/fn_7100ad4b54.cpp), a bool value: whether the word at 0x40 of the
 // argument's object is above 1 (fn_710011e3b8).
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkDefIterValue.h"
 #include "game/navmesh/CDynamicSmartLinkGroup.h"

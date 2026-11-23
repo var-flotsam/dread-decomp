@@ -1,7 +1,7 @@
 // A reflected property getter: the rotation angles (as a base::math::CVector3D) of the UnkXform
 // at +0x38 in the object `obj` points to at +8, deriving and caching them on first use. The first
 // parameter is unused.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkXformNode.h"
 

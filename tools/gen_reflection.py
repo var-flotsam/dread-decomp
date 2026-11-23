@@ -865,7 +865,7 @@ def types_by_type(text: str, keyed: dict[int, tuple[str, str]], enums: frozenset
             head = i + 1
         elif line and not line.startswith("//"):
             break
-    includes = [f'#include "base/reflection/{h}"' for h, kind in (("UnkReflPrimitiveType.h", "Primitive"),
+    includes = [f'#include "base/reflection/{h}"' for h, kind in (("PrimitiveType.h", "Primitive"),
                                                                    ("CPointerType.h", "Pointer"))
                 if any(keyed[a][0] == kind for a in used)]
     first = [line for line in dict.fromkeys(includes + first) if line not in lines]
@@ -1197,6 +1197,21 @@ def with_registry_include(text: str) -> str:
     if "base::reflection::TunableRegistry()" in text:
         return with_include(text, '#include "base/reflection/UnkTunableRegistry.h"')
     return text
+
+
+# Prelude names (refl_attrs.PRELUDE) only the CTunable* classes' field functions use: a file that names neither
+# loses their `using` lines (the final pass).
+TUNABLE_USINGS = ("UnkTunable", "UnkTunableRegistry")
+
+
+def without_unused_usings(text: str) -> str:
+    """`text` without the `using base::reflection::<name>;` lines of TUNABLE_USINGS it does not otherwise name."""
+    lines = text.split(chr(10))
+    for name in TUNABLE_USINGS:
+        using = f"using base::reflection::{name};"
+        if using in lines and not any(re.search(rf"\b{name}\b", line) for line in lines if line != using):
+            lines.remove(using)
+    return chr(10).join(lines)
 
 
 def main() -> int:
@@ -1724,7 +1739,7 @@ def main() -> int:
     typed_keys = typed_attribute_keys()
     for f in sorted(OUT.glob("*.cpp")):
         old = f.read_text(encoding="utf-8")
-        new = with_registry_include(class_statics_by_name(functions_in_one_line(typed_keys_by_name(old, typed_keys))))
+        new = without_unused_usings(with_registry_include(class_statics_by_name(functions_in_one_line(typed_keys_by_name(old, typed_keys)))))
         if new != old:
             f.write_text(new, encoding="utf-8", newline=chr(10))
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")

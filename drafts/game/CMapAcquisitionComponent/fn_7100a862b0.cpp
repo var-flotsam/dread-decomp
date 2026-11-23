@@ -2,7 +2,7 @@
 // callback (fn_7100a88628), sets its acquired flag (+0x539), stores it under the unit's property in its
 // blackboard section, and drops its timeline listener (+0x820). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CTimelineComponent.h"

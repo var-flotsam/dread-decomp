@@ -3,7 +3,7 @@
 // id on the owner's timeline and schedules the owner's removal. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/CShockWaveComponent.h"

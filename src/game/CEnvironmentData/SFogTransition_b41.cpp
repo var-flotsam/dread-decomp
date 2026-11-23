@@ -1,7 +1,7 @@
 // CEnvironmentData::SFogTransition unit (tools/tu_map.py, the name from reflection): a reflected getter that returns a copy of the
 // CFilePathStrId at +0x8 of the object at 8 as a reflected value. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

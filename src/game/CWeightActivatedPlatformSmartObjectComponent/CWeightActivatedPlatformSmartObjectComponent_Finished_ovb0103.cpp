@@ -4,7 +4,7 @@
 // 0x178) the event's name and requests state 3 from the state machine at +0x180 (the template of
 // src/game/UnkStateMachineSetA6_b62.cpp, copied here; last state 7, "none" 6). Names and layouts are
 // placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/CElectricReactionComponent.h"

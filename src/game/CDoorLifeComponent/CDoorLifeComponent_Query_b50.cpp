@@ -1,7 +1,7 @@
 // CDoorLifeComponent unit (tools/tu_map.py, the name from reflection): a reflected query: stores the
 // answer of fn_71008d5c1c as a bool in the value `out` (in place when it already holds a compatible
 // type, else by resetting and rebuilding it) and reports success. Names are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU1376.h"

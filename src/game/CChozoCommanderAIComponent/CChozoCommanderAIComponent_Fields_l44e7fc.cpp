@@ -2,7 +2,7 @@
 // reflected fields: the ultimate grab test flag and the landmark and cutscene player links (each a link
 // target of kind 6 or 1). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTU2536.h"
 #include "types.h"
 using base::global::CStrId;

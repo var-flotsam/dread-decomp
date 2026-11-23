@@ -2,7 +2,7 @@
 // named "base::file::CPackSetManager", registers its destructor with atexit and adds it to the registry.
 #include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))

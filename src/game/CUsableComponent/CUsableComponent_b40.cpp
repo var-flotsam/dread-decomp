@@ -3,7 +3,7 @@
 // when it changes, stores it at +0xfa and runs an update and one of two virtuals; it returns the int 1
 // as a reflected value. Names are placeholders.
 #include "../../game_s7/UnkPropS7.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CUsableComponent.h"
 #include "types.h"

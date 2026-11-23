@@ -7,7 +7,7 @@
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGuiSprite.h"

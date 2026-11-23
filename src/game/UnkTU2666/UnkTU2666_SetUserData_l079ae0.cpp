@@ -7,7 +7,7 @@
 #include "../../game_s7/UnkPropBagS7.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU0.h"

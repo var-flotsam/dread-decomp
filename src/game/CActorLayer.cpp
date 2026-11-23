@@ -3,12 +3,12 @@
 // actor layer is a dictionary of sublayers ("dctSublayers", keyed by their "sName") and one of actor
 // groups ("dctActorGroups"), with the functions that create and delete a sublayer by name and the
 // hooks run after each part is read. The keys' strings are their getters' (base/reflection/
-// UnkReflAttributes.h names the shared ones); names and layouts are placeholders.
+// ReflectedAttributes.h names the shared ones); names and layouts are placeholders.
 // Holds fn_71002584a0 (CActorLayer::refl_InitClass's body).
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection.h"
 #include "base/reflection/CClass.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTU2536.h"
 #include "game/UnkTU69.h"
 #include "game/UnkTUInit.h"

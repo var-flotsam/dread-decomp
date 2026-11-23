@@ -6,7 +6,7 @@
 
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CFXComponent.h"
 #include "game/CGrappleBeamComponent.h"
 #include "game/UnkSlots.h"

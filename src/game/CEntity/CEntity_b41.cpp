@@ -2,7 +2,7 @@
 // bounding box ("oBBox": fn_7100d7bcc8, src/game/CEntity_2.cpp), returned as a reflected value of the
 // box type g_unk_7108b6d3d0. Names and layouts are placeholders.
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkRenderManager.h"

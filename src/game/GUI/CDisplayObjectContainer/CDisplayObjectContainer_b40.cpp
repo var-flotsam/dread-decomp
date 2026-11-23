@@ -3,7 +3,7 @@
 // in the list at +0x1d0 whose id at +0x130 is the argument's, or what fn_71011d9780 finds for a u32
 // and a second argument (null when it has no type); and one that passes the child at the u32 index
 // given to the GUI root's fn_71011b57c4 and returns true. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGuiRoot.h"
 #include "game/lua_lib.h"

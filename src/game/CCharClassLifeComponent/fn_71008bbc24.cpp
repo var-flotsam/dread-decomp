@@ -1,7 +1,7 @@
 // CCharClassLifeComponent (unit 1368): a float tunable read through reflection by the name in an id, then
 // adjusted for one game mode (the player life tunable's easy-mode members): with one-hit enemy projectiles
 // some names read 1; one is scaled by the Kraid bouncing creature life factor. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassLifeComponent.h"

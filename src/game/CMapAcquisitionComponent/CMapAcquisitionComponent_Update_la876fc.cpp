@@ -4,7 +4,7 @@
 // the user (+0xe8) and calls its own slot 0x2b8. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/reflection.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CBossAIComponent.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkSaveStationTunables_ovb0118.h"

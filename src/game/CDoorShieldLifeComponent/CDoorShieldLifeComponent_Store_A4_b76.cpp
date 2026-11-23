@@ -4,7 +4,7 @@
 // +0x678 (count +0x680, values at +0x670), looked up as in src/game/CDoorLifeComponent/CDoorLifeComponent_b49.cpp.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CDoorShieldLifeComponent.h"

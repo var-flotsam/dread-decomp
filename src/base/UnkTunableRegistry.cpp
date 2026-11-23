@@ -111,7 +111,7 @@ void fn_710013ec80(UnkTunableGroupArrays* self, u32 new_capacity) {
 #include "base/global/CRntStringAssign.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/UnkStrPair.h"

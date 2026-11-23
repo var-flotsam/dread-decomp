@@ -10,7 +10,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/CEnumType.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/UnkTU56.h"

@@ -9,7 +9,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTU25.h"

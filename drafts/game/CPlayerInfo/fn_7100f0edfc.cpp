@@ -4,7 +4,7 @@
 #include "../../../src/game_s7/UnkPropS7.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"

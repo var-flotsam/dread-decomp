@@ -3,7 +3,7 @@
 // g_unk_710164b410 with its own time, then lets the current CCharClassToRelaxTrack fill it in. Names and layouts
 // are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTrackBlend_ovb0082.h"

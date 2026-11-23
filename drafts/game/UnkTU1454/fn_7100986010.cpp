@@ -4,7 +4,7 @@
 // the owner's flag) into the reflected value the caller passed; otherwise fn_710097f678 does the work.
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAbilityGhostAura.h"

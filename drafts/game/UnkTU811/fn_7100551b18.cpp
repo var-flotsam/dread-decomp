@@ -3,7 +3,7 @@
 // returns 2; for another it tells whether the bumped-track check holds. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CGrabComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"

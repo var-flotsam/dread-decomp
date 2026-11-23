@@ -6,7 +6,7 @@
 // is ready (+0x1b4) and, if it needs one (+0x1b0), has its object (+0x1a8). Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CCharClassEventPropComponent.h"

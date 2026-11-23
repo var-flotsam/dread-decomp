@@ -5,7 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/UnkZeroVector3.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkBufferStringPool.h"

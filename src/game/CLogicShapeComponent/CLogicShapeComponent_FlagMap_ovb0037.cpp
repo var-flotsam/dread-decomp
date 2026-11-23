@@ -13,7 +13,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CActorComponent.h"
 #include "game/UnkTU2505.h"

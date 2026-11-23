@@ -3,7 +3,7 @@
 // payload, or a payload node under it; the empty id when there is none. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkNamedNode.h"
 #include "game/UnkNodeArrayCopy.h"
 #include "game/UnkTU212.h"

@@ -9,7 +9,7 @@
 #include "../../../lib/lua/lua.h"
 #include "base/UnkTunableLine.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"

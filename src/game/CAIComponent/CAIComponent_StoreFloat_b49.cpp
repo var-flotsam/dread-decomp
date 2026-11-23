@@ -2,7 +2,7 @@
 // fixed property in a fixed section of the blackboard at +0x1260 of `owner`, unless the blackboard is
 // locked (the setter as in src/game/CDoorLifeComponent.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU2702.h"

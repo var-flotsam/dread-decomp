@@ -2,7 +2,7 @@
 // (CAIComponent), that passes its first two arguments (null when an argument has no type) to
 // fn_71002634f8 on the object at 8 and returns its pointer result as a reflected value described by fn_71002295ac.
 // Names are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

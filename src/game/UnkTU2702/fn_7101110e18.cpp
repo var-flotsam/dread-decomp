@@ -1,5 +1,5 @@
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/CFrozenComponent.h"
 #include "game/UnkTU2702.h"

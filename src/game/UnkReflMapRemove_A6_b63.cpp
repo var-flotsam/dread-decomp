@@ -2,7 +2,7 @@
 // argument up in a map of the object at 8 and erase it with the map's own erase (fn_7100f8ede4).
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkStrIdToIdMap.h"
 #include "game/UnkTU2604.h"

@@ -1,7 +1,7 @@
 // Unit 2729: whether a string id is one of eleven fixed names of the reflection id table.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "types.h"
 
 using base::global::CStrId;

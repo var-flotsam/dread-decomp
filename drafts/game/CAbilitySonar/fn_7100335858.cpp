@@ -3,7 +3,7 @@
 // the pulse effect at the owner; records the owner's position as the pulse origin, shows the wave model there
 // and clears the pending items. Names and layouts are placeholders.
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbility.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"

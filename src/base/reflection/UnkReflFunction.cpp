@@ -3,7 +3,7 @@
 // and through one of these for setters.
 #include "base/reflection/CClass.h"
 #include "base/reflection/CType.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 
 using base::global::UnkStrId;
 using base::reflection::CType;

@@ -4,7 +4,7 @@
 #include "../../game_s7/UnkPropS7.h"
 #include "base/global/timeline/CEvent.h"
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU218.h"
 #include "types.h"

@@ -1,7 +1,7 @@
 // Unit 2666 (lua_bind): with a positive value from the script and a player present, sets the
 // inventory section's maximum life to it. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"

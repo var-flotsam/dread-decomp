@@ -6,7 +6,7 @@
 #include "base/reflection/CFlagsetType.h"
 #include "base/reflection/CollectionTypeMapper.h"
 #include "base/reflection/CPointerType.h"
-#include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/PrimitiveType.h"
 #include "base/reflection/ValueOps.h"
 using base::reflection::CType;
 using base::reflection::SlotFn;

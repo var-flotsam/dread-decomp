@@ -2,7 +2,7 @@
 // two tunable values of g_unk_7172716160 and copies the matching unit-static id into the request's
 // id at +0xb8, picked by the word at +0x5dc. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
 #include "types.h"

@@ -2,7 +2,7 @@
 // matching the setters in CDisplayObject_PlaceSetters.cpp: each returns the x or y coordinate of the
 // object's placement when it is measured by the given mode (0 to 3), NaN otherwise, as a float value.
 // Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

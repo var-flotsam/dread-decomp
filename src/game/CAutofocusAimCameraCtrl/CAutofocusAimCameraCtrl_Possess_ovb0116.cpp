@@ -14,7 +14,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector4D.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CCameraCtrl.h"

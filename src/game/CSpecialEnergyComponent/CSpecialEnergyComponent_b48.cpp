@@ -4,7 +4,7 @@
 // the recovery time, the faster one (+0x50) while fn_7100a1f84c's test holds (inlined here), else
 // +0x54. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CComponent.h"
 #include "game/CSpecialEnergyComponent.h"
 #include "game/UnkAnimationComponent.h"

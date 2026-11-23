@@ -4,7 +4,7 @@
 // Names and layouts are placeholders.
 #include <string.h>
 
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTU101.h"
 #include "types.h"
 

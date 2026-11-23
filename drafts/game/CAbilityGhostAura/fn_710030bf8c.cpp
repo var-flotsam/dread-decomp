@@ -2,7 +2,7 @@
 // ignores the aura, while a grab is held, outside the world's allowed state, or while the world's mode
 // forbids it; otherwise decided by the state at +0x497 and its floats. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CGrabComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"

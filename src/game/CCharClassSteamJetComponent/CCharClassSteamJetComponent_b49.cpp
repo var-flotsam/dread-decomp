@@ -4,7 +4,7 @@
 // blackboard section (keys at +0x1d0, count +0x1d8, values at +0x1c8; lookup and setter as in
 // src/game/CActionSwitcherComponent/CActionSwitcherComponent_b48.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CCharClassShootActivatorComponent.h"

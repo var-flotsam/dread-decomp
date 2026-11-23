@@ -2,7 +2,7 @@
 // configuration): loop and per-boss debug-time members, then the tunable's registration.
 // Written from the refl_attrs draft; the two type getters live in this class's translation unit.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkTunableRegistry.h"
 #include "game/UnkTU2544.h"
 using base::global::CStrId;

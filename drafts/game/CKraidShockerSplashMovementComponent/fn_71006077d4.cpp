@@ -4,7 +4,7 @@
 // base test fn_7100ac4ec0. Names and layouts are placeholders.
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CCharClassAttackComponent.h"

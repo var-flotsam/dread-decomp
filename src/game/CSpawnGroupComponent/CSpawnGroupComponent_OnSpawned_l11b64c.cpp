@@ -7,7 +7,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CPickableComponent.h"
 #include "game/UnkTU432.h"
 #include "game_s2/UnkWeakHandle.h"

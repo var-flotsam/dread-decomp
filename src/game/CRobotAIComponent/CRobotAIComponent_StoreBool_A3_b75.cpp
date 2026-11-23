@@ -3,7 +3,7 @@
 // (+0x30), unless its blackboard (+0x1260) is locked (the setter as in
 // src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"

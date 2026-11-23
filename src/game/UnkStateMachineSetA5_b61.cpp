@@ -7,7 +7,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CCharClassEventPropComponent.h"

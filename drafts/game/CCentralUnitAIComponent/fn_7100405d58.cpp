@@ -4,7 +4,7 @@
 // simultaneous Rinkas, hands the shot object the value at +0x14730 and `value` (fn_710066008c).
 // Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/global/CRntVector.h"
 #include "game/CAISmartObjectComponent.h"
 #include "game/UnkCallbackSet_7101a20950.h"

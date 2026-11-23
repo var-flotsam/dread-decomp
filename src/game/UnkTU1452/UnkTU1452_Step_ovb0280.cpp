@@ -10,7 +10,7 @@
 // the caller passed, else fn_710097f71c does the work; fn_710097fe58 ends both. Names and layouts are
 // placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAbilityGhostAura.h"

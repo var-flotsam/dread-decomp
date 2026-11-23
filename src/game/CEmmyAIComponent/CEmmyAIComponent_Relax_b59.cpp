@@ -6,7 +6,7 @@
 // the record at +0x14b40 when it is live and leaves with fn_71005479a0. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CAnimationComponent.h"

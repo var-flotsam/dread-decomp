@@ -5,7 +5,7 @@
 // namespace form (base/reflection/ReflectedClass.h), the others are keyed by constructor.
 #include "base/reflection/CClass.h"
 #include "base/reflection/ReflectedClass.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
@@ -280,7 +280,7 @@ struct refl_Description : ClassDescription {
 }  // namespace CAfterElementDeserializationWrapper
 DREAD_REFLECTED_DESCRIPTOR(CAfterElementDeserializationWrapper);
 
-// base::reflection::CVariable (its reflection functions are members, base/reflection/UnkReflAttributes.h)
+// base::reflection::CVariable (its reflection functions are members, base/reflection/ReflectedAttributes.h)
 bool base::reflection::CVariable::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 base::reflection::CVariable::refl_Hash() { return -1; }
 struct base::reflection::CVariable::refl_Description : ClassDescription {

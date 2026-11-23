@@ -5,7 +5,7 @@
 // (src/game/sound/CMusicManager/CMusicManager_b41.cpp) without the notification; the object pointer
 // is read before the argument. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

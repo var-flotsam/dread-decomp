@@ -1,7 +1,7 @@
 // Unit 2553 (CGameManager::CTunableGameManager): reads the cooldown flags from the game manager's blackboard
 // and hands each one to the callback set that watches it. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"

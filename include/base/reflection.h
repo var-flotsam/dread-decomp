@@ -7,7 +7,7 @@
 #include "base/reflection/CClass.h"
 #include "base/global/CStrId.h"
 #include "base/UnkCloneHelpers.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
 #include "game/UnkTUInit.h"
 #include "types.h"

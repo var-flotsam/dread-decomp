@@ -295,7 +295,7 @@ class TypesByType(unittest.TestCase):
         self.assertNotIn("const base::reflection::CType* fn_7100000100();", out)
         ext = "extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();"
         self.assertEqual(out[:3], ['#include "base/reflection/CClass.h"', "using base::global::CStrId;",
-                                   '#include "base/reflection/UnkReflPrimitiveType.h"'])
+                                   '#include "base/reflection/PrimitiveType.h"'])
         self.assertLess(out.index(ext), out.index("void f(CFunction* fn) {"))
         self.assertIn("namespace a { class CFoo; }", out)
         self.assertIn("namespace base::global { class CStrId; }", out)
@@ -359,7 +359,7 @@ class LooseClassLines(unittest.TestCase):
 
     def test_member_form(self):
         """A base::reflection class whose header declares its reflection members gets their definitions."""
-        self.assertEqual(gr.member_form_header("base::reflection::CVariable"), "base/reflection/UnkReflAttributes.h")
+        self.assertEqual(gr.member_form_header("base::reflection::CVariable"), "base/reflection/ReflectedAttributes.h")
         self.assertIsNone(gr.member_form_header("base::reflection::CFunction"))
         self.assertTrue(gr.loose_readable("base::reflection::CVariable"))
         self.assertFalse(gr.loose_readable("base::reflection::CFunction"))
@@ -370,7 +370,7 @@ class LooseClassLines(unittest.TestCase):
         finally:
             gr.role_helper = saved
         self.assertEqual(lines, [
-            "// base::reflection::CVariable (its reflection functions are members, base/reflection/UnkReflAttributes.h)",
+            "// base::reflection::CVariable (its reflection functions are members, base/reflection/ReflectedAttributes.h)",
             "s32 base::reflection::CVariable::refl_Hash() { return -1; }",
             "struct base::reflection::CVariable::refl_Description : ClassDescription {",
             "    static constexpr u64 size = 0xb0;",
@@ -584,6 +584,16 @@ class ClassStatics(unittest.TestCase):
         out = gr.class_statics_by_name(text)
         self.assertIn("extern UnkTunable g_unk_7100000020;", out)
         self.assertIn("refl_fields_added", out)
+
+
+class UnusedUsings(unittest.TestCase):
+    def test_drops_only_unnamed_tunable_usings(self):
+        text = "\n".join(["using base::reflection::CClass;", "using base::reflection::UnkTunable;",
+                          "using base::reflection::UnkTunableRegistry;", "extern UnkTunable g_obj;"])
+        out = gr.without_unused_usings(text).split("\n")
+        self.assertIn("using base::reflection::UnkTunable;", out)
+        self.assertNotIn("using base::reflection::UnkTunableRegistry;", out)
+        self.assertIn("using base::reflection::CClass;", out)
 
 
 if __name__ == "__main__":

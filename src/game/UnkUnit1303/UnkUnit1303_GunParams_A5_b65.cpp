@@ -1,7 +1,7 @@
 // Unit 1303 (tools/tu_map.py, no name hint; next to CGunComponent::CTunableGunComponent): returns the
 // parameter record of a gun kind (1-3), refreshed from the gun tunable's pair of values for that kind,
 // or null. Names are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "types.h"
 
 struct UnkGunParams_A5_b65 {

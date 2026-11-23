@@ -18,7 +18,7 @@
 #include "game/UnkTU2553.h"
 #include "types.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGuiRoot.h"
