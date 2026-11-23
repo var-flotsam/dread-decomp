@@ -442,6 +442,50 @@ def names_of(code: str, name: str) -> tuple[bool, bool, bool]:
     return loose, strict, False
 
 
+LOOSE_REASONS = {"own_name": "its own name is a placeholder",
+                 "own_class": "its own class or namespace is a placeholder",
+                 "signature_type": "a parameter or return type is a placeholder",
+                 "member": "a member it touches (`field_0x..`, `unk_0x..`)",
+                 "global": "a global it touches (`g_unk_...`, `unk_<addr>`)",
+                 "body_type": "a local or other type in its body (`Unk...`)"}
+
+
+def loose_reason(code: str, name: str) -> str | None:
+    """Why the function `name` fails the loose test (a key of LOOSE_REASONS), by the first reason in that order;
+    None when it passes. By the whole file where definitions() does not find it, as names_of."""
+    short = short_name(name)
+    parts, depth, cur = [], 0, ""  # the cache's name, cut at top-level `::`, template arguments kept
+    for ch in name:
+        if ch == "(" and depth == 0:
+            break
+        depth += (ch == "<") - (ch == ">")
+        cur = "" if ch == " " and depth == 0 else cur + ch
+        if depth == 0 and cur.endswith("::"):
+            parts.append(cur[:-2])
+            cur = ""
+    structor = bool(parts) and cur.lstrip("~") == parts[-1].split("<")[0]  # named for its class: the class decides
+    if not structor and (PLACEHOLDER.fullmatch(short) or placeholders(code_only(cur))):
+        return "own_name"  # its template arguments are part of its name
+    defs = definitions(code, short)
+    quals = parts
+    sigs, bodies = [sig for sig, _ in defs], [body for _, body in defs] if defs else [code]
+    for sig in sigs:
+        m = re.search(r"((?:[\w~]+\s*(?:<[^()]*?>)?\s*::\s*)+)~?" + re.escape(short) + r"\s*(?:<[^()]*>)?\s*\(\s*$",
+                      sig[:sig.find(short + "(") + len(short) + 1] if short + "(" in sig else "")
+        if m:
+            quals.append(m.group(1))
+    if any(placeholders(q) for q in quals):
+        return "own_class"
+    if any(placeholders(sig) for sig in sigs):
+        return "signature_type"
+    found = [t for b in bodies for t in placeholders(b, loose=True)]
+    if any(t.startswith("field_") or t.startswith("unk_0x") for t in found):
+        return "member"
+    if any(t.startswith("g_unk_") or t.startswith("unk_") for t in found):
+        return "global"
+    return "body_type" if found else None
+
+
 def read_family_reads(path: Path = FAMILY_READS) -> list[dict]:
     """The rows of data/family_reads.csv: the sampled reads of generated families (CLAUDE.md, "Purpose")."""
     import csv
@@ -493,7 +537,7 @@ def names_report(version: str, rows: list[dict], qa: dict[int, tuple[str, bool]]
     covers ("read and passed"). Reporting only."""
     by_addr = {int(r["address"], 16): r for r in rows}
     zero = lambda: {"functions": 0, "bytes": 0}  # noqa: E731
-    out = {"loose": zero(), "strict": zero(), "by_file": zero(),
+    out = {"loose": zero(), "strict": zero(), "by_file": zero(), "loose_fails": {k: zero() for k in LOOSE_REASONS}, "own_name_listed": zero(),
            "generated": {d: {"matching": zero(), "clean": zero()} for d in sorted(GENERATED_DIRS)},
            "read_passed": zero()}
     scopes = passed_scopes(read_family_reads(reads_path))
@@ -545,6 +589,11 @@ def names_report(version: str, rows: list[dict], qa: dict[int, tuple[str, bool]]
             for k, v in (("loose", loose), ("strict", strict), ("by_file", by_file)):
                 if v:
                     add(out[k], a)
+            if not loose:
+                why = loose_reason(s, e.get("name", "")) or "body_type"
+                add(out["loose_fails"][why], a)
+                if why == "own_name" and not PLACEHOLDER.search(by_addr[a].get("name", "")):
+                    add(out["own_name_listed"], a)  # the function list has a real name the source does not use yet
     return out
 
 
@@ -562,6 +611,13 @@ def print_names(n: dict, q: dict, overall: dict) -> None:
         row(f"Generated `src/{d}/`, clean, not yet read (matching, file free of placeholders; "
             f"{g['matching']['functions']:,} match)", g["clean"])
     row("Generated, read and passed (`data/family_reads.csv`)", n["read_passed"])
+    print()
+    print("| Finished, failing loose, by the first reason | Functions | Bytes | Share of code |")
+    print("|---|---|---|---|")
+    for k, label in LOOSE_REASONS.items():
+        row(label, n["loose_fails"][k])
+    print(f"(of those whose own name is a placeholder, {n['own_name_listed']['functions']:,} have a real name in "
+          "data/functions/ that their source does not use yet.)")
     print(f"(names are tested on each finished function's own text; {n['by_file']['functions']:,} of them by file, "
           "where the tool did not find the definition. Placeholders: fn_<addr>, Unk... types other than UnkNoArg, "
           "field_0x.., unk_<addr>, g_unk_..., vf_<slot>; refl_ roles are names. Comments and strings do not count.)")
