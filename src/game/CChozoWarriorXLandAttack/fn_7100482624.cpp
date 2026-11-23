@@ -2,8 +2,8 @@
 // CChozoWarriorXAIComponent and the owner has an animation (+0x220), plays the landing track, sets the
 // AI's landing speed scale to the middle of its two heights over the track's whole z motion, and hooks
 // the callback fn_71004837a0 up to the animation. Names and layouts are placeholders.
-#include "../../../src/game_5821e4/CAttackDtor.h"
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_5821e4/CAttackDtor.h"
+#include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
@@ -13,6 +13,8 @@
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game_s2/UnkWeakHandle.h"
+#include "game/UnkTU2702.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -37,12 +39,7 @@ struct UnkStrIdOut_b0266 {
         }
     }
 };
-UnkStrIdOut_b0266 fn_710049c59c(UnkReflObject* ai);
 
-struct UnkTimelineId {
-    u64 value;
-};
-UnkTimelineId fn_7101177be0(UnkAnimationComponent* self, u64 key);
 
 struct UnkStruct_71007142e8 {
     f32 m[12];
@@ -56,14 +53,12 @@ struct UnkTimeline {
     UnkMotionTracks* tracks;  // 0x80
 };
 
-struct UnkWarriorXAI_l482624 {
-    u8 pad_0x0[0x149ac];
+struct UnkWarriorXAI_l482624 : base::reflection::UnkReflObject {
+    u8 pad_0x8[0x149a4];
     f32 land_scale;  // 0x149ac
 };
 
 // The AI's high and low landing heights.
-void fn_71010fc5fc(UnkWarriorXAI_l482624* self, f32* out);
-void fn_71010fc554(UnkWarriorXAI_l482624* self, f32* out);
 void fn_71004837a0();
 
 
@@ -74,20 +69,13 @@ struct UnkLandOwner_l482624 {
     UnkReflObject* ai;  // 0x240
 };
 
-// The slot that holds a counted reference to an object's weak handle. fn_7100316018 takes the slot itself,
-// not the pointer inside it: with UnkWeakHandle** (include/game/CAbilityGhostAura.h today) the compiler shares
-// one address for the slot and folds it into a pre-indexed load. Belongs in include/game_s2/UnkWeakHandle.h.
-struct UnkWeakRef_l482624 {
-    UnkWeakHandle* handle;
-};
-void fn_7100316018(UnkWeakTarget* self, UnkWeakRef_l482624* out);
 
 // A listener on an animation: the callback with its context, and the weak handle of what it listens to.
 struct UnkLandLink_l482624 {
     u8 pad_0x0[0x8];
     void* context;
     void (*callback)();
-    UnkWeakRef_l482624 ref;  // 0x18
+    UnkWeakRef ref;  // 0x18
 
     // Stops listening to the animation the handle points at, and drops the handle.
     void Detach() {

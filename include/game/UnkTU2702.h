@@ -5,6 +5,13 @@
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
 #include "types.h"
+
+namespace base::reflection {
+struct UnkReflObject;
+}
+// The component's path ends: the higher (fn_71010fc5fc) and the lower (fn_71010fc554) height.
+bool fn_71010fc5fc(base::reflection::UnkReflObject* component, f32* out);
+bool fn_71010fc554(base::reflection::UnkReflObject* component, f32* out);
 #include "base/reflection/TypeObject.h"
 
 struct UnkStatics_7101116680;

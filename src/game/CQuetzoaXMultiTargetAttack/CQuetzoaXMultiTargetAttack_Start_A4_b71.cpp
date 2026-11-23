@@ -35,7 +35,7 @@ struct UnkQuetzoaMTAttack_A4_b71 {
     u32 field_0x38;
     f32 side;                       // +0x3c
     UnkQuetzoaMTLink_A4_b71 link;   // +0x40
-    UnkWeakHandle* handle;          // +0x58
+    UnkWeakRef handle;          // +0x58
 };
 
 void fn_710063d6d4(UnkQuetzoaMTAttack_A4_b71* self) {
@@ -51,16 +51,16 @@ void fn_710063d6d4(UnkQuetzoaMTAttack_A4_b71* self) {
     UnkQuetzoaMTLink_A4_b71* link = &self->link;
     link->context = self;
     link->callback = fn_710063e878;
-    if (UnkWeakHandle* handle = self->handle) {
+    if (UnkWeakHandle* handle = self->handle.handle) {
         if (UnkWeakTarget* target = handle->target)
             fn_710117b3f0(target, link);
-        if (UnkWeakHandle* p = self->handle) {
+        if (UnkWeakHandle* p = self->handle.handle) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
-            self->handle = nullptr;
+            self->handle.handle = nullptr;
         }
     }
     asm("" : "+r"(self));
     fn_7100316018(track, &self->handle);
-    fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+    fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
 }

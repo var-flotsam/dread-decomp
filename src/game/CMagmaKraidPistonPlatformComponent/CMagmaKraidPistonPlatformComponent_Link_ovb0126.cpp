@@ -68,7 +68,7 @@ static inline __attribute__((always_inline)) void SendAndLink(UnkKraidLinked_ovb
             self->handle = nullptr;
         }
     }
-    fn_7100316018(track, reinterpret_cast<UnkWeakHandle**>(reinterpret_cast<u8*>(self) + 0x2d0));
+    fn_7100316018(track, reinterpret_cast<UnkWeakRef*>(reinterpret_cast<u8*>(self) + 0x2d0));
     fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
 }
 

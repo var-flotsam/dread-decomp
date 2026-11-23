@@ -4,7 +4,7 @@
 // time, otherwise a third id; then raises the CChozoCommanderAIComponent's flag at +0x15f00 and hooks the
 // callback fn_710043ce18 (link at +0x60, handle at +0x78) up to the animation. Names and layouts are
 // placeholders.
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -34,20 +34,13 @@ struct UnkTriComboAI_l43c21c : base::reflection::UnkReflObject {
 };
 static_assert(__builtin_offsetof(UnkTriComboAI_l43c21c, field_0x15f00) == 0x15f00, "layout");
 
-// The slot that holds a counted reference to an object's weak handle. fn_7100316018 takes the slot itself,
-// not the pointer inside it: with UnkWeakHandle** (include/game/CAbilityGhostAura.h today) the compiler shares
-// one address for the slot and folds it into a pre-indexed load. Belongs in include/game_s2/UnkWeakHandle.h.
-struct UnkWeakRef_l43c21c {
-    UnkWeakHandle* handle;
-};
-void fn_7100316018(UnkWeakTarget* self, UnkWeakRef_l43c21c* out);
 
 // A listener on an animation: the callback with its context, and the weak handle of what it listens to.
 struct UnkTriComboLink_l43c21c {
     u8 pad_0x0[0x8];
     void* context;
     void (*callback)();
-    UnkWeakRef_l43c21c ref;  // 0x18
+    UnkWeakRef ref;  // 0x18
 
     // Stops listening to the animation the handle points at, and drops the handle.
     void Detach() {

@@ -239,7 +239,6 @@ using base::global::CStrId;
 
 struct UnkNameHolder;
 
-UnkTimelineId fn_7101177be0(UnkAnimationComponent* self, u64 key);
 u32 fn_710050816c(UnkNameHolder* self);
 
 struct UnkSpeedNode_h {

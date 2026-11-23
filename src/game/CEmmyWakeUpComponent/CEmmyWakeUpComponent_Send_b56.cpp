@@ -22,7 +22,7 @@ struct UnkEmmyWakeUp_b56 {
     UnkEmmyWakeUpOwner_b56* owner;
     u8 pad_0x38[0xc0 - 0x38];
     u8 link[0x18];
-    UnkWeakHandle* handle;
+    UnkWeakRef handle;
 };
 
 static inline bool SendWalk_b56(void* target, u64 hash) {
@@ -43,16 +43,16 @@ void fn_71007d723c(UnkEmmyWakeUp_b56* self) {
     if (!SendWalk_b56(track, base::global::CName("walk").hash))
         return;
     void* link = self->link;
-    if (UnkWeakHandle* handle = self->handle) {
+    if (UnkWeakHandle* handle = self->handle.handle) {
         if (UnkWeakTarget* target = handle->target)
             fn_710117b3f0(target, link);
-        if (UnkWeakHandle* p = self->handle) {
+        if (UnkWeakHandle* p = self->handle.handle) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
-            self->handle = nullptr;
+            self->handle.handle = nullptr;
         }
     }
     asm("" : "+r"(self));
     fn_7100316018(track, &self->handle);
-    fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+    fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
 }
