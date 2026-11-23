@@ -26,6 +26,7 @@
 #include "game/UnkTU53.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTimelineComponent.h"
+#include "reflected/CCameraFX_RandShake.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -250,7 +251,7 @@ void fn_71007dacbc(UnkCountDown_ovb0259* self) {
     }
 done:
     if (base::reflection::UnkReflObject* fx = fn_7100e0398c(g_unk_7101d47310, g_unk_717271e920)) {
-        if (fn_710009d50c(fx->vf_0x0(), fn_71010f21a4())) {
+        if (fn_710009d50c(fx->vf_0x0(), CCameraFX_RandShake::refl_GetClass())) {
             if (!HasKey_l7dacbc(g_unk_717271e920)) {
                 UnkZeroVec_ovb0259 zero;
                 fn_7100e038b0(g_unk_7101d47310, g_unk_717271e920, reinterpret_cast<UnkVec*>(&zero), 0);

@@ -1,27 +1,19 @@
 // CCooldownXBossFireBallDef's unit (tools/tu_map.py): the copy assignment of its array of 0x18-byte
 // polymorphic elements (base/global/CRntVector.h): unless assigned to itself, destroy the elements,
-// reserve the other's capacity, then append a copy of each element. Names and layouts are
-// placeholders.
+// reserve the other's capacity, then append a copy of each element.
 #include "base/global/CRntVector.h"
-#include "game/CCooldownXBossFireBallDef.h"
-#include "game/UnkFireBallDefData_ovb0072.h"
-#include "game/UnkFireBallDefVtable_ovb0072.h"
-#include "game/UnkFireBallDef_ovb0072.h"
+#include "reflected/CCooldownXBossFireBallDef.h"
 #include "types.h"
 
-struct UnkFireBallDef_ovb0072;
+using FireBallDefVector = base::global::CRntVector<CCooldownXBossFireBallDef>;
 
-static_assert(sizeof(UnkFireBallDef_ovb0072) == 0x18, "UnkFireBallDef_ovb0072 layout");
-
-using UnkFireBallDefVector_ovb0072 = base::global::CRntVector<UnkFireBallDef_ovb0072>;
-
-UnkFireBallDefVector_ovb0072* fn_71004bd548(UnkFireBallDefVector_ovb0072* self, const UnkFireBallDefVector_ovb0072* other) {
+FireBallDefVector* fn_71004bd548(FireBallDefVector* self, const FireBallDefVector* other) {
     if (self != other) {
         self->Clear();
         self->Reserve(other->capacity);
         if (other->count != 0) {
-            const UnkFireBallDef_ovb0072* end = other->data + other->count;
-            for (const UnkFireBallDef_ovb0072* p = other->data; p != end; ++p) {
+            const CCooldownXBossFireBallDef* end = other->data + other->count;
+            for (const CCooldownXBossFireBallDef* p = other->data; p != end; ++p) {
                 // Grow to the next multiple of the step when full (a zero step hangs, as in the original).
                 u32 n = self->count;
                 u32 new_capacity = self->capacity;
@@ -31,7 +23,7 @@ UnkFireBallDefVector_ovb0072* fn_71004bd548(UnkFireBallDefVector_ovb0072* self, 
                     for (;;) {
                     }
                 self->Reserve(new_capacity);
-                new (&self->data[self->count]) UnkFireBallDef_ovb0072(*p);
+                new (&self->data[self->count]) CCooldownXBossFireBallDef(*p);
                 ++self->count;
             }
         }

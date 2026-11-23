@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/UnkHandleHolder.h"
+#include "reflected/CGameObject.h"
 #include "types.h"
 
 using base::reflection::UnkReflTypedPtr;
@@ -28,7 +29,7 @@ static inline UnkReflTypedPtr HandleTyped(UnkHandleHolder* const* handle) {
 
 // CGameObject handle (CActor unit).
 UnkReflTypedPtr fn_710023da28(UnkHandleHolder* const* handle) {
-    return HandleTyped<fn_7101043688>(handle);
+    return HandleTyped<&CGameObject::refl_GetClass>(handle);
 }
 
 // CEntity handle (CCentralUnitAIComponent unit).

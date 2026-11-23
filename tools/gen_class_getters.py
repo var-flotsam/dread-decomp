@@ -10,8 +10,10 @@ descriptor, defined in src/reflection/ by tools/gen_reflection.py through DREAD_
 Hand-written sources used to declare the getters they call locally, each with its own guess at
 the return type (void*, const CClass*, UnkClass* ...), which is what tools/decl_check.py counts as
 conflicting signatures. This writes the one declaration of each getter, read from
-data/functions/*.csv alone (the rows whose name ends in `::refl_GetClass` and whose name_source is
-`reflection`), sorted by address, with the class name as a trailing comment. CClass is only
+data/functions/*.csv (the rows whose name ends in `::refl_GetClass` and whose name_source is
+`reflection`), sorted by address, with the class name as a trailing comment. The getter of a class
+tools/gen_classes.py declares (include/reflected/) is left out: it is the class's static member
+T::refl_GetClass, and a caller includes the class's header instead. CClass is only
 forward-declared, so including the header is cheap; sources that use the descriptor's members
 include base/reflection/CClass.h as well.
 
@@ -71,10 +73,20 @@ def getters() -> list[tuple[int, str]]:
     return out
 
 
-def render(rows: list[tuple[int, str]]) -> str:
+# Getters whose matched definition returns nothing (its result is a global the callers read):
+# src/base/reflection/CVariable/CVariable_Init_ovb0136.cpp.
+VOID_GETTERS = {0x71000E88C0}
+
+
+def render(rows: list[tuple[int, str]], declared: frozenset[str] | set[str] = frozenset()) -> str:
+    """The header; a class in `declared` (tools/gen_classes.py writes it) is left out: its getter is the
+    class's own static member, T::refl_GetClass, which has no second name."""
     lines = [HEADER]
     for addr, cls in rows:
-        lines.append(f"const base::reflection::CClass* fn_{addr:010x}();  // {cls}::refl_GetClass")
+        if cls in declared:
+            continue
+        result = "void" if addr in VOID_GETTERS else "const base::reflection::CClass*"
+        lines.append(f"{result} fn_{addr:010x}();  // {cls}::refl_GetClass")
     return "\n".join(lines) + "\n"
 
 
@@ -85,10 +97,14 @@ def main() -> int:
     rows = getters()
     if not rows:
         raise SystemExit("no reflected class getters found in data/functions/")
-    text = render(rows)
+    import gen_classes
+
+    declared = set(gen_classes.declared_classes())
+    text = render(rows, declared)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(text, encoding="utf-8", newline="\n")
-    print(f"wrote {OUT.relative_to(ROOT).as_posix()}: {len(rows)} class getters, {len(text)} bytes")
+    print(f"wrote {OUT.relative_to(ROOT).as_posix()}: {len(rows) - len(declared)} class getters "
+          f"({len(declared)} more are their class's own member), {len(text)} bytes")
     return 0
 
 
