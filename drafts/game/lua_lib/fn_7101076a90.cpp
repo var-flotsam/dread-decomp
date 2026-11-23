@@ -10,7 +10,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
-#include "../../game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkIter.h"
 
 using base::global::CStrId;
 

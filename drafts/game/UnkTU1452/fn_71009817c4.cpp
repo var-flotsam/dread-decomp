@@ -3,7 +3,7 @@
 // (fn_710097f1b8) animation (+0x220), else the one whose id hash is the singleton's part at +0x1da0, with the
 // default time and blend, flags 0x10 (bit 0 from the caller's flag) and the all-bits mask (as fn_7100981604).
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkTU1450.h"

@@ -3,7 +3,7 @@
 // the owner's movement is within the radius of the point (seen from above), then hands the navigation
 // (+0x48) a cleared kind-5 block, unless it is already in that state, and sends the owner's animation the
 // name at +0x68. It returns 5 when done and finishing, else 2. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"

@@ -2,7 +2,7 @@
 // morph-ball transition, lets the state fill a transition and hands it to the movement; when the
 // transition asks for it, notifies the game manager and plays the to-morph-ball sound. The pending
 // flag is cleared either way. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"

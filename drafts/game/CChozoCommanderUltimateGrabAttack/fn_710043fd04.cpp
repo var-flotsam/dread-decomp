@@ -1,7 +1,7 @@
 // CChozoCommanderUltimateGrabAttack's unit (tools/tu_map.py, unit 658): sends the hashes for a kind under
 // mode 10 first to the owner's character class and, when that applies, to the player's (as fn_7100440140
 // and fn_710043ffa4 pick them). Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"

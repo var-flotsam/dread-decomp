@@ -3,7 +3,7 @@
 // actor are (600 or more, 500 to 600, 400 to 500, closer). Names and layouts are placeholders.
 #include <cmath>
 
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/UnkActor.h"

@@ -2,7 +2,7 @@
 // embedded listener at +0x14798, drops the counted references at +0x14768 to +0x14758, frees two arrays,
 // drops the reference at +0x14700, frees the array of entries at +0x146d8 and runs the base's destructor.
 // Names and layouts are placeholders.
-#include "../../game_5821e4/CAttackDtor.h"
+#include "../../../src/game_5821e4/CAttackDtor.h"
 #include "base/global/CRntVector.h"
 #include "game/CRobotAIComponent.h"
 #include "types.h"

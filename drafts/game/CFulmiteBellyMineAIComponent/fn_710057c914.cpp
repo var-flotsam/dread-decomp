@@ -2,7 +2,7 @@
 // one: it arms once the owner has stood still for a moment, runs the pending requests, paces the beeps by the
 // fuse's progress, warns the timeline near the end, tints the model and checks whether to blow up. Names and
 // layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
 #include "game/CMovementComponent.h"

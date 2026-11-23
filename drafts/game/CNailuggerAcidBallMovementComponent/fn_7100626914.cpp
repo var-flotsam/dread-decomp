@@ -2,7 +2,7 @@
 // target and repeat hits are no hit; a hit on the player that the player's guard (+0x340) turns away is
 // bounced back along the ball's velocity; any other hit is recorded, tells a Nailong AI, sends "onimpact" to
 // the owner's timeline and goes to the base test. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CName.h"
 #include "base/reflection/UnkClassGetters.h"

@@ -10,8 +10,8 @@ from their own files (keys, ROM, filesystem); nothing of the game is hosted or h
 deliberately different from the static recompilation "Metroid Dread Recomp": no translation layer in
 the product. The aim is a tool that deepens the community's understanding of a game they already own:
 speedrunners reading the real code to find new methods, developers making mods that would otherwise
-be impossible. Readable, hand-typed code is the measure of completion; the lifted code the port runs
-today is scaffolding, reported in [`docs/HANDOFF.md`](docs/HANDOFF.md) until it is gone.
+be impossible. Readable, matching code is the measure of completion, whoever or whatever wrote it; the lifted
+code the port runs today is scaffolding, reported in [`docs/HANDOFF.md`](docs/HANDOFF.md) until it is gone.
 
 **This repository contains no game data.** No executables, assets, keys, firmware or assembly
 listings are stored here, and none will be accepted. To build and check anything you need your
@@ -27,8 +27,9 @@ expected version (`data/hashes.json`) before using it.
 **Matched**: code bytes that compile to the original's (the game's own code; libraries excluded). **Finished**: matched and readable, hand-typed code, the project's real metric; generated code verifies but does not count. **Untouched**: not decompiled at all. The boot path is everything `nnMain` reaches by direct calls. Lifted code is machine translation the port runs until matching code replaces it.
 <!-- status:end -->
 
-Progress is measured over the game's own code (libraries excluded) by `tools/progress.py`, for
-the whole binary and for the boot path (`--slice boot`: everything reachable from `nnMain`).
+Progress is measured over the game's own code (libraries excluded) by `tools/progress.py`:
+`--quality` reports matched and readable apart, and `--slice boot` the boot path (everything
+reachable from `nnMain`), which has no priority while the port is on hold.
 Current numbers, what each part of the tree is and what to work on next are in
 [`docs/HANDOFF.md`](docs/HANDOFF.md); the route from matching source to a running PC build, and
 what it needs, is in [`docs/PORT_PLAN.md`](docs/PORT_PLAN.md); the history is in
@@ -36,9 +37,10 @@ what it needs, is in [`docs/PORT_PLAN.md`](docs/PORT_PLAN.md); the history is in
 
 Much of the matching code so far is **generated** from the binary by the tools in `tools/`
 (reflection boilerplate, descriptor constructors, small functions lifted from their
-instructions, repeated template instantiations) and verified byte for byte. Generated
+instructions, repeated template instantiations) and verified byte for byte. It counts as
+finished once its text reads as source, as hand-written code does. Generated
 directories (`src/reflection/`, `src/reflection_types/`, `src/reflection_statics/`,
-`src/clones/`, `src/lifted/`) are regenerated, never edited by hand.
+`src/clones/`, `src/tables/`, `src/lifted/`) are regenerated, never edited by hand.
 
 ## Getting started
 

@@ -2,7 +2,7 @@
 // to state 1 ("none" is 4), cancels the boost (fn_710033c350), resets the model colour of the player and of
 // the camera's actor, clears two of the owner's tracks and replays its boost track, plays the ability's
 // timeline key when the reason is 2, then runs CAbility's end (fn_71002fa068). Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

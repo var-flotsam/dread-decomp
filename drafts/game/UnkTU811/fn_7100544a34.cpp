@@ -2,7 +2,7 @@
 // at g_unk_71726df1a0, or chase). The action is kept in the blackboard (+0x1260); when it changes, the
 // animation's layers 6 to 9 are set for the new one, and entering a chase from the other two may start a
 // timeline entry. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityShinespark.h"

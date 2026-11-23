@@ -1,7 +1,7 @@
 // CAbilityGhostAura's unit (tools/tu_map.py unit 430): picks the timeline ids the player's timeline
 // component (+0x2e8) gets for a ghost aura event: one cleared (fn_7100a2b7b8) and one set to the all-flags
 // mask (fn_7100a2cb7c), by the event and the aura's state. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"

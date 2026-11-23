@@ -3,7 +3,7 @@
 // animation the activatable object played ("ActivatableObjectLastAnim"); when there is one, resolves the
 // object's link and sends that animation to the object's character class with mode 0. Names and layouts
 // are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"

@@ -1,6 +1,6 @@
 // CSmartObjectComponent unit: sets an object's name id (a default one when the given id is
 // empty), then builds its "left" and "right" ids from it. Names and layouts are placeholders.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"

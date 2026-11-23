@@ -184,7 +184,7 @@ copies to restore from) rather than one `trymatch.py` call at a time. The pilot 
 ### 6. Open a pull request
 
 Push to your fork and open a PR against `var-flotsam/dread-decomp:main`. Fill in the template:
-what you matched (functions and bytes; `tools/progress.py --slice boot` before and after), which
+what you matched (functions and bytes; `tools/progress.py --quality` before and after), which
 tools you changed, and confirm the checklist. Hosted CI runs the content-policy and
 declaration checks; it can't run `check.py`, because it has no game data. The maintainer's
 self-hosted job runs `check.py` when it is enabled; otherwise reviewers rely on your report.

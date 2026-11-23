@@ -3,7 +3,7 @@
 // its attack (a CCharClassKeepAttackOnSubareaChangeTrack), or is near the player and not told to abort
 // (CCharClassAbortAttackOnSubareaChangeTrack), the attack is stopped and the owner is sent the track the
 // AI names, with mode 2. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"

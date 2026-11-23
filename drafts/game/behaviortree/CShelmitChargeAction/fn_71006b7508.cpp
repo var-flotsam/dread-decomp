@@ -3,7 +3,7 @@
 // counts the timer at +0x54 down by the time step and, when it runs out, sends the next track and moves to
 // stage 4; stage 5 is done (5), an unknown stage fails (6), and any other runs on (2) unless the animation
 // component no longer plays a CCharClassShelmitChargeTrack. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

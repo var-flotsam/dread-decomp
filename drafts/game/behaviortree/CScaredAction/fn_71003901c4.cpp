@@ -1,7 +1,7 @@
 // behaviortree::CScaredAction's unit (tools/tu_map.py): the update step. It steps the state at +0x30
 // through the scared animation (requests sent as UnkSpitSend, src/game_s2/UnkSpitSend.h), counts the
 // timer at +0x34 down, and returns 2 (running), 5 (done) or 6 (track lost). Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"

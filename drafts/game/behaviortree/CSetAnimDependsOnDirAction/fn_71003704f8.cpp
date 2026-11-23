@@ -2,7 +2,7 @@
 // at +0x88 it plays the animation it names (as CSetAnimAction does, with a second name unless +0x1e1 is set);
 // otherwise it waits while the owner turns (its enemy movement in state 4, or its animation on a turn track)
 // and starts the turn (fn_710036f938) once it is done. Names and layouts are placeholders.
-#include "../../../game_aca57c/UnkBufferString.h"
+#include "../../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"

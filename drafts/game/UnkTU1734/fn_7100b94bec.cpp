@@ -2,7 +2,7 @@
 // out a delay and then bring in one more object (with a sound); step 4 brings in the last two, applies the
 // text style and plays the closing sound. The text block's transition runs while it is in use. Names and
 // layouts are placeholders.
-#include "../../game_s7/UnkGuiS7.h"
+#include "../../../src/game_s7/UnkGuiS7.h"
 #include "base/global/CRntString.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGuiDisplayObject.h"

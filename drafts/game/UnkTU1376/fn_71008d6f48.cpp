@@ -4,7 +4,7 @@
 // the owner's key g_unk_710164b0b0 and fn_71008d07f8, unless one of them plays already. Then it registers the
 // owner in its list (+0x848) and notifies the unit's listeners (g_unk_7172731438 +0x100) with the door.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/global/CStrId.h"
 #include "game/CInputComponent.h"

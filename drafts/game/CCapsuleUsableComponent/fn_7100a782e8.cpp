@@ -3,7 +3,7 @@
 // that class the definition's first animation, hooks fn_7100a78db4 to it and sends the second list's owner
 // the second one (mode 2); otherwise hands the use on (fn_7100aa1b08). Last, the player's input is
 // switched on. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntString.h"

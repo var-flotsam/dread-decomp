@@ -3,7 +3,7 @@
 // the owner's animation the definition's (+0x250) request, notifies the owner's object, turns the platform on,
 // stores that in the current scenario's blackboard and calls the script function named at +0x270.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"

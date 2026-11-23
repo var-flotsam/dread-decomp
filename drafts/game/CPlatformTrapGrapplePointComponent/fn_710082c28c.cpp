@@ -1,7 +1,7 @@
 // CPlatformTrapGrapplePointComponent's unit (tools/tu_map.py): passes its arguments to fn_710082cdb0,
 // then for state 0 has the owner's animation (+0x30 -> +0x220) play a fixed request, for state 1
 // sends it a fixed hash with mode 0 (as UnkSpitSend). Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkTU1730.h"
 #include "types.h"

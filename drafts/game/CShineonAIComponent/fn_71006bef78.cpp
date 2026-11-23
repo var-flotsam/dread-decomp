@@ -2,7 +2,7 @@
 // +0x146d0 towards the vertical part of the owner's normalized velocity, at most 2*dt per call, and reports
 // it to the owner's value bag as "UpDownFactor". Names and layouts are placeholders.
 #include <math.h>
-#include "../../game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"

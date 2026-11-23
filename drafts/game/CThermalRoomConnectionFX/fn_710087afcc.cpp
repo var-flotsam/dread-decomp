@@ -1,7 +1,7 @@
 // CThermalRoomConnectionFX unit: while the factor (+0x7c) is above zero, plays the timeline ids that
 // follow the connection's state (+0x100) and the linked actor's state (+0x108), then shows or hides the
 // actor's (+0x30) effect from the other actor (+0x110). Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/CActorComponent.h"
 #include "game/CCollisionMaterialCacheComponent.h"
 #include "game/UnkTimelineCalls.h"

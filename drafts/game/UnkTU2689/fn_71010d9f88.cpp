@@ -1,7 +1,7 @@
 // Unit 2689 (the player movement): fn_71010d9f88 starts the hold state (+0x18a4): clears its timers, plays two
 // timeline ids on the owner, locks the owner's input, saves the current movement state (+0x284) into +0x338
 // and adds the unit's key to g_unk_71726af0a8. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CInputComponent.h"

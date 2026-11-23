@@ -2,7 +2,7 @@
 // charged hyper beam fires, the input is held, the gun is busy or the game manager says so; otherwise
 // plays what the relax-shot-end track asks for, or sends the animation the stealth track's sources, the
 // crouch or the default end animation. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"

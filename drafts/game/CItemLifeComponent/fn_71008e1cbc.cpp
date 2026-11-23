@@ -3,7 +3,7 @@
 // has its animation (+0x220), hooks the listener at +0x318 (callback fn_71008e2a74) up to it, keeps `info`
 // at +0x338 and sends it a one under a fixed hash; without one it dies at once (fn_71008e1ea4). The base
 // call fn_710116064c follows. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"

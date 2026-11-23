@@ -2,7 +2,7 @@
 // the bomb timers (dropping each one that runs out, outside a CCharClassIgnoreKraidBellyBombAnimationTrack),
 // reacts to the bombs now in the world, and while in a CCharClassKraidBellyDamageTrack sends the linked
 // actor a damage request each time the damage timer runs out. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"

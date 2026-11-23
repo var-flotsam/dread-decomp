@@ -2,7 +2,7 @@
 // (unless the stop track plays already), switches the two beam objects off, clears the shot's timeline ids
 // and sets the one of the gun's state, fades the charge sounds and the rumble out and tells the game
 // manager (HYPER_BEAM_COMMANDERX). Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/snd/UnkSound.h"
 #include "game/CAbilityEnergyWave.h"

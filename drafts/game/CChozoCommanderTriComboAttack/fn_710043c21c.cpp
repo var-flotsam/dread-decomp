@@ -4,7 +4,7 @@
 // time, otherwise a third id; then raises the CChozoCommanderAIComponent's flag at +0x15f00 and hooks the
 // callback fn_710043ce18 (link at +0x60, handle at +0x78) up to the animation. Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"

@@ -16,7 +16,7 @@
 #include "game/UnkTU54.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkXformNode.h"
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "types.h"
 
 struct UnkMatrix44Words {

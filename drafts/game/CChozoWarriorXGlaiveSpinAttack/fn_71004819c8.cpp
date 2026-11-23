@@ -3,7 +3,7 @@
 // spinning (when it faces the side its target is on) or first turns: its navigation is handed a parameter block
 // (kind 5) pointing back along its facing, and the turn track is sent instead. Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "game/UnkAIComponent.h"
 #include "game/UnkActor.h"

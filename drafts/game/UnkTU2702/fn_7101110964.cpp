@@ -3,7 +3,7 @@
 // CCharClassSetAnimStateTrack record whose sources name a track the animation has, the id's name
 // followed by those sources is sent instead. Says whether the send went through. Names and layouts
 // are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"

@@ -3,7 +3,7 @@
 // boss's and its target's character classes and starts the attack at +0x15480; otherwise, high enough, picks a
 // random wait and sends one of two alternating hashes. Names and layouts are placeholders.
 #include <stdlib.h>
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAIAttackComponent.h"

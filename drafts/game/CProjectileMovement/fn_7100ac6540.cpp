@@ -2,7 +2,7 @@
 // keeps `id` at +0x57c, plays the record at +0x580 at `at` (or the owner's position) through the sound
 // manager when the projectile moves, and sets every group of the owner's audio component to `level`.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/UnkTU0.h"
 #include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"

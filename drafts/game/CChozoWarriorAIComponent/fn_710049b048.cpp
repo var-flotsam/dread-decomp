@@ -4,7 +4,7 @@
 // sends the animation a one. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflStatics.h"
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/CAnimationComponent.h"
 #include "game/CAttackComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"

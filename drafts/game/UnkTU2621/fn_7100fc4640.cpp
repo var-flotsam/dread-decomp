@@ -2,7 +2,7 @@
 // prefix) and the path itself, reads the slot's file and the "common" file of its directory into two
 // game blackboards, and when both read, takes the profile name from the second and reads the slot's
 // values from the two. Names and layouts are placeholders.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkHashStream.h"
 #include "base/file/nx/CDeviceNX.h"
 #include "base/global/CRntFile.h"

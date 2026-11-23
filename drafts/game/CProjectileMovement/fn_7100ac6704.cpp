@@ -1,7 +1,7 @@
 // CProjectileMovement unit (tools/tu_map.py): when the sound flag at +0x579 is set, clears it and the
 // word at +0x57c, plays the record at +0x580 at `at` (or the owner's position) through the sound
 // manager, then fades every group of the owner's audio component. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/UnkTU0.h"
 #include "game/UnkXformNode.h"
 #include "game/sound/CSoundManager.h"

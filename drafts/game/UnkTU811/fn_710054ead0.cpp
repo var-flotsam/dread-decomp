@@ -4,7 +4,7 @@
 // Names and layouts are placeholders.
 #include <math.h>
 
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "game/CAnimationComponent.h"
 #include "game/CCharacterMovement.h"

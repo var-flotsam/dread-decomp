@@ -3,7 +3,7 @@
 // stopping the owner's navigation), keeps the owner's Nailong AI component and animation, and hooks the
 // callback fn_7100625b98 (link at +0x30, handle at +0x48) up to the animation. Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"

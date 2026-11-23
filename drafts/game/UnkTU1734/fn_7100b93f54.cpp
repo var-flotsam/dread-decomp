@@ -2,7 +2,7 @@
 // steps 1 to 12 each bring in one button of the two button lists (six each) and show its highlight, step 13
 // brings in one more object and step 14 the last two, applying the text style and playing the closing sound.
 // Afterwards the text block's transition runs while it is in use. Names and layouts are placeholders.
-#include "../../game_s7/UnkGuiS7.h"
+#include "../../../src/game_s7/UnkGuiS7.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

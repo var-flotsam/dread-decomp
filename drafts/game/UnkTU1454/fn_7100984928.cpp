@@ -2,7 +2,7 @@
 // out of reach (fn_7100984d24), else to state 1, sends the owner's animation component the matching id and
 // resets the values at +0x3c0. Names and layouts are placeholders.
 // NON_MATCHING(major): the two sends' arguments share stack slots here; the original gives each its own.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU1450.h"
 #include "types.h"

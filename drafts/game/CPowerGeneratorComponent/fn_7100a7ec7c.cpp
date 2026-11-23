@@ -3,7 +3,7 @@
 // the "already used" one when the "Used" flag (+0x138) is set, else the first-use one, after which it sets
 // the flag and stores it in the blackboard section of the current scenario. Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"

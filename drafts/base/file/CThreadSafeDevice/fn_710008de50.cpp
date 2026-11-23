@@ -1,7 +1,7 @@
 // CThreadSafeDevice (unit 68): splits a file-path id "device:dir/name.ext" into the directory (a
 // file-path id, with its slash), the name and the extension (string ids); each output may be null.
 // Names and layouts are placeholders.
-#include "../../../game_aca57c/UnkBufferString.h"
+#include "../../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"

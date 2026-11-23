@@ -1,6 +1,6 @@
 // CGun unit: from a non-empty name id, builds the ids "<name>0" and "<name>1" and stores them at
 // +0x50 and +0x58. Names and layouts are placeholders.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkBufferStringPool.h"

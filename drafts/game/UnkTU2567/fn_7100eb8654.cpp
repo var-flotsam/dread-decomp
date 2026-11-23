@@ -1,6 +1,6 @@
 // Unit 2567 (the minimap's items): resets an item's selected alpha and size modifiers: each gets the
 // default curve settings and is snapped back to its off value. Names and layouts are placeholders.
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkTimedCurve.h"
 #include "base/global/CRntString.h"
 #include "game/UnkBufferStringPool.h"

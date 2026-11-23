@@ -4,7 +4,7 @@
 // orientation and the step's mode), else, when the movement allows it, another whose track depends on the
 // owner's animation. The request is stored in the reflected value the caller passed. Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"

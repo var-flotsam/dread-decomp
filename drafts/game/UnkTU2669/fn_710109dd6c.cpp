@@ -4,7 +4,7 @@
 // the result is 0. Names and layouts are placeholders.
 #include <new>
 
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "base/UnkChainedMap.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkNamedRegistry.h"

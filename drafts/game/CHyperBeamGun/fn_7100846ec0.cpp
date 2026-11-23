@@ -2,7 +2,7 @@
 // recoil track (id at +0x1918) plays past 3.0 it is sent mode 2; when it stops, a fire-action track starts a
 // new one (mode 1), and with none the gun's cooldown (+0x190c) counts down by `dt`. Names and layouts are
 // placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"

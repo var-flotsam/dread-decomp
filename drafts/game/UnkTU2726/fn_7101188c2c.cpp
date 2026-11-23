@@ -2,9 +2,9 @@
 // player's turn, the effect fades, the death and the game-over prompt. Names and layouts are placeholders.
 #include <algorithm>
 
-#include "../../game_s7/UnkIter.h"
-#include "../../game_s7/UnkPropBagS7.h"
-#include "../../game_s7/UnkGuiS7.h"
+#include "../../../src/game_s7/UnkIter.h"
+#include "../../../src/game_s7/UnkPropBagS7.h"
+#include "../../../src/game_s7/UnkGuiS7.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntVector.h"

@@ -3,7 +3,7 @@
 // pulses the colour's w with a sine, else leaves it white. Names and layouts are placeholders.
 #include <math.h>
 
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"

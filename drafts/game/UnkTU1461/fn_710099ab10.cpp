@@ -2,7 +2,7 @@
 // Runs the base and kind steps, clears the hold values, takes a weak handle to the grapple beam gun's
 // grabbed target and requests the state the target reports from the state machine at +0x188 ("none" 5),
 // then sets the owner's timeline key g_unk_710164b368. Names and layouts are placeholders.
-#include "../UnkSmRequest_A5_b73.h"
+#include "../../../src/game/UnkSmRequest_A5_b73.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

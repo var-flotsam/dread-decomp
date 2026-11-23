@@ -1,7 +1,7 @@
 // behaviortree::CEmmySearchingAction's unit (tools/tu_map.py unit 805): when the CEmmyMovement is in mode 1,
 // picks the search animation (the id the AI's blackboard holds, cleared after use, else one from the movement),
 // plays it and listens to the animation through a weak handle. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"

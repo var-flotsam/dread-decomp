@@ -1,7 +1,7 @@
 // Static initialiser of the unit of the CObsydomithonAttack::EState enum: the header ids, the
 // class registration, the enum, the animation ids and two vectors. Names and layouts are placeholders.
-#include "../../game_5821e4/UnkStaticInit.h"
-#include "../../game_s7/UnkStaticInitS7.h"
+#include "../../../src/game_5821e4/UnkStaticInit.h"
+#include "../../../src/game_s7/UnkStaticInitS7.h"
 #include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 

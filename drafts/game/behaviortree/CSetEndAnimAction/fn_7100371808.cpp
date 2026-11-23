@@ -2,7 +2,7 @@
 // sends the owner's animation the target animation (bForce as the mode, bSyncWithCurrent picking the
 // descriptor); then, with bWaitAnimEnd, it runs (2) while that animation still plays, or while the owner is
 // frozen with bWaitIfFrozen, and is done (5); 6 when nothing could be started. Names and layouts are placeholders.
-#include "../../../game_s2/UnkSpitSend.h"
+#include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
 #include "game/CFrozenComponent.h"

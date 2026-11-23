@@ -2,7 +2,7 @@
 // timeline, grab, gun and other parts about it, then either lets the AI part (+0x200) handle the damage or
 // sends the movement (+0x208) the damage transition, with the hit effect and the id the damage names.
 // Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"

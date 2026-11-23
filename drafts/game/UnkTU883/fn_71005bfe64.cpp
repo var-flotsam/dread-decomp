@@ -2,7 +2,7 @@
 // base handler, links the component into the AI manager's list and hands the manager its target with a
 // time (0.26 or 0.1 by the event's flags); when the manager refuses, unlinks and sends the owner's character
 // class a request. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"

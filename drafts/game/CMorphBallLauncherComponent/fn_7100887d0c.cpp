@@ -3,7 +3,7 @@
 // start to above the launcher; then a delay timer fires a timeline event, a blend timer drives a track value
 // through a named curve, and when the last timer runs out the state machine is asked for state 4.
 // Names and layouts are placeholders.
-#include "../UnkSmRequest_A5_b73.h"
+#include "../../../src/game/UnkSmRequest_A5_b73.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
