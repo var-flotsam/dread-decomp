@@ -47,7 +47,7 @@ struct UnkEventAI_l111744;
 struct UnkEventVtable_l111744 {
     void* pad_0x0[0x83];
     void (*vf_0x418)(UnkEventAI_l111744* self);
-    void* pad_0x420[0x6e];
+    void* pad_0x420[0x6d];
     void (*vf_0x788)(UnkEventAI_l111744* self);
 };
 

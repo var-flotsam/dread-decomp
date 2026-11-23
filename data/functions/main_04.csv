@@ -1645,7 +1645,7 @@ address,size,name,name_source,subsystem,status
 0x7100456ac0,188,fn_7100456ac0,unknown,game/ai?,O
 0x7100456b7c,1448,fn_7100456b7c,unknown,game/ai?,U
 0x7100457124,336,fn_7100457124,unknown,game/ai?,O
-0x7100457274,796,fn_7100457274,unknown,game/ai?,U
+0x7100457274,796,fn_7100457274,unknown,game/ai?,O
 0x7100457590,860,fn_7100457590,unknown,game/ai?,O
 0x71004578ec,4,CCharClassChozoCommanderSentenceSphereLifeComponent::refl_AddAttributes,reflection,game/characters,O
 0x71004578f0,244,CCharClassChozoCommanderSentenceSphereLifeComponent::refl_GetClass,reflection,game/characters,O
@@ -2928,7 +2928,7 @@ address,size,name,name_source,subsystem,status
 0x7100483b30,88,fn_7100483b30,unknown,game/ai?,O
 0x7100483b88,96,fn_7100483b88,unknown,game/ai?,O
 0x7100483be8,252,fn_7100483be8,unknown,game/ai?,O
-0x7100483ce4,572,fn_7100483ce4,unknown,game/ai?,U
+0x7100483ce4,572,fn_7100483ce4,unknown,game/ai?,O
 0x7100483f20,2436,fn_7100483f20,unknown,game/ai?,U
 0x71004848a4,108,fn_71004848a4,unknown,game/ai?,O
 0x7100484910,344,fn_7100484910,unknown,game/ai?,O

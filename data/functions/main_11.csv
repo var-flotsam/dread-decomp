@@ -169,7 +169,7 @@ address,size,name,name_source,subsystem,status
 0x7101110fcc,148,fn_7101110fcc,unknown,unknown,U
 0x7101111060,888,fn_7101111060,unknown,game/components?,U
 0x71011113d8,876,fn_71011113d8,unknown,game/components?,U
-0x7101111744,356,fn_7101111744,unknown,unknown,U
+0x7101111744,356,fn_7101111744,unknown,unknown,O
 0x71011118a8,892,fn_71011118a8,unknown,game?,U
 0x7101111c24,96,fn_7101111c24,unknown,game/ai?,O
 0x7101111c84,248,fn_7101111c84,unknown,unknown,O

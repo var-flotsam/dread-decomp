@@ -68,6 +68,15 @@ static_assert(__builtin_offsetof(UnkSwarmCtrl_l741aa8, member_targets) == 0x368,
 void fn_710074124c(UnkSwarmCtrl_l741aa8* self, base::global::CRntVector<UnkVec3_cs>* positions,
                    base::global::CRntVector<UnkVec3_cs>* targets);
 
+// Moves the later positions down one over the one at `index`.
+static inline void ErasePosition(base::global::CRntVector<CVector3D>* v, u32 index) {
+    if (index < v->count) {
+        for (u64 i = index; i < v->count - 1; ++i)
+            v->data[i] = v->data[i + 1];
+        v->count = v->count - 1;
+    }
+}
+
 static inline f32& LifetimeAt(UnkSwarmCtrl_l741aa8* self, u32 i) {
     return *fn_71000d4a50(reinterpret_cast<UnkFrameVector<f32>*>(&self->lifetimes), i);
 }
@@ -81,11 +90,7 @@ void fn_7100741aa8(UnkSwarmCtrl_l741aa8* self, f32 dt) {
         LifetimeAt(self, i) -= dt;
         if (!(LifetimeAt(self, i) <= 0.0f))
             continue;
-        if (self->positions.count > i) {
-            for (u64 j = i; self->positions.count - 1 > j; ++j)
-                self->positions.data[j] = self->positions.data[j + 1];
-            self->positions.count = self->positions.count - 1;
-        }
+        ErasePosition(&self->positions, i);
         self->lifetimes.EraseAt(i);
     }
 
