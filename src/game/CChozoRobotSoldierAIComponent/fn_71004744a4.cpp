@@ -6,14 +6,14 @@
 #include "game/UnkGameManager.h"
 #include "types.h"
 
-struct UnkEntity {
+struct UnkEntity_4744a4 {
     u8 pad_0x0[0x30];
     UnkActor* field_0x30;
 };
 
 struct UnkEntry {
     u8 pad_0x0[0x10];
-    UnkEntity* field_0x10;
+    UnkEntity_4744a4* field_0x10;
 };
 
 struct UnkEntryList {
@@ -28,14 +28,14 @@ extern char g_unk_71726cca00[] __attribute__((visibility("hidden")));
 
 // NON_MATCHING(minor): the height band test (+-10) is a conditional-compare chain with its two operands
 // swapped, and the two constants are materialised in the other order
-bool fn_71004744a4(UnkEntity* self) {
+bool fn_71004744a4(UnkEntity_4744a4* self) {
     UnkActor* target = fn_7100d7c990(self->field_0x30);
     if (!target)
         return false;
     UnkEntryList* list = reinterpret_cast<UnkEntryList*>(
         fn_7100de94cc(g_unk_7101d47310, reinterpret_cast<const u64*>(g_unk_71726cca00)));
     for (UnkEntry* entry : *list) {
-        UnkEntity* other = entry ? entry->field_0x10 : nullptr;
+        UnkEntity_4744a4* other = entry ? entry->field_0x10 : nullptr;
         if (other == self)
             continue;
         UnkActor* me = self->field_0x30;

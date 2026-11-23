@@ -15,7 +15,7 @@ struct __attribute__((packed)) UnkTail {
     u32 field_0x18;
 };
 
-struct UnkRecord {
+struct UnkRecord_2ad4f4 {
     u8 pad_0x0[0x8];
     u8 field_0x8[0x11944];
     UnkTail field_0x1194c;
@@ -24,7 +24,7 @@ struct UnkRecord {
 
 void fn_71002ae2f0(void* self, const void* other);
 
-UnkRecord* fn_71002ad4f4(UnkRecord* self, const UnkRecord* other) {
+UnkRecord_2ad4f4* fn_71002ad4f4(UnkRecord_2ad4f4* self, const UnkRecord_2ad4f4* other) {
     fn_71002ae2f0(self->field_0x8, other->field_0x8);
     self->field_0x1194c.field_0x0 = other->field_0x1194c.field_0x0;
     self->field_0x1194c.field_0x4 = other->field_0x1194c.field_0x4;

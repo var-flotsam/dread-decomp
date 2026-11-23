@@ -50,7 +50,7 @@ inline UnkEntry_0x60& UnkArray::operator[](u64 i) {
     return data[i];
 }
 
-struct UnkStruct_0xd0 {
+struct UnkStruct_0xd0_fdd2b4 {
     u8 pad_0x0[0xb8];
     UnkArray field_0xb8;
 };
@@ -61,7 +61,7 @@ struct UnkSoundMgr;
 
 static inline f32 Max(f32 a, f32 b) { return a < b ? b : a; }
 
-void fn_7100fdd2b4(UnkStruct_0xd0* self, u64* id, f32 time) {
+void fn_7100fdd2b4(UnkStruct_0xd0_fdd2b4* self, u64* id, f32 time) {
     UnkArray& arr = self->field_0xb8;
     for (u64 i = 0; i < arr.count; ++i) {
         UnkEntry_0x60& e = arr.data[i];

@@ -29,7 +29,7 @@ struct UnkSink : base::UnkRefCounted {
     void* field_0x10;
 };
 
-struct UnkRecord {
+struct UnkRecord_5528fc {
     u8 pad_0x0[0x5b0];
     u8 field_0x5b0[0x28];
     s32 field_0x5d8;
@@ -39,7 +39,7 @@ struct UnkRecord {
 
 struct UnkRoot_5528fc {
     u8 pad_0x0[0x10];
-    UnkRecord* field_0x10;
+    UnkRecord_5528fc* field_0x10;
 };
 
 struct UnkSelf {
@@ -51,7 +51,7 @@ bool fn_71005528fc(UnkSelf* self, void* arg) {
     UnkRoot_5528fc* root = self->field_0x29558;
     if (!root)
         return false;
-    UnkRecord* record = root->field_0x10;
+    UnkRecord_5528fc* record = root->field_0x10;
     if (!record)
         return false;
     if (record->field_0x5d8 == 1) {

@@ -11,13 +11,13 @@ struct UnkOwner_381764 {
     UnkAIComponent* field_0x240;
 };
 
-struct UnkComponent {
+struct UnkComponent_381764 {
     u8 pad_0x0[0x18];
     UnkOwner_381764* field_0x18;
 };
 
 
-void fn_7100381764(UnkComponent* self) {
+void fn_7100381764(UnkComponent_381764* self) {
     fn_7100394bd4(self);
     if (self->field_0x18 && self->field_0x18->field_0x240) {
         if (UnkNavigation* target = fn_71010fccf8(self->field_0x18->field_0x240)) {

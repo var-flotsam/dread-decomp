@@ -13,14 +13,14 @@ struct UnkPayload_11ec5c {
     s32 kind;
 };
 
-struct UnkHolder {
+struct UnkHolder_11ec5c {
     u8 unk_0x0[0x8];
     UnkPayload_11ec5c* payload;
 };
 
 
 // NON_MATCHING(minor): one temporary lands in w8 instead of w9 (register allocation only).
-UnkReflValue fn_710011ec5c(void* self, const UnkHolder* holder) {
+UnkReflValue fn_710011ec5c(void* self, const UnkHolder_11ec5c* holder) {
     void* data = &holder->payload->data;
     if (holder->payload->kind == 2)
         data = *static_cast<void**>(data);

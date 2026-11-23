@@ -28,7 +28,7 @@ struct UnkLinks {
     UnkWeakHandle* field_0x80;
 };
 
-struct UnkRecord {
+struct UnkRecord_2ad978 {
     u8 pad_0x0[0x129e8];
     UnkLinks field_0x129e8;
 };
@@ -44,7 +44,7 @@ static inline UnkLinkOwner_2ad978* OwnerOf(UnkWeakHandle* handle) {
     return static_cast<UnkLinkOwner_2ad978*>(handle->target);
 }
 
-void fn_71002ad978(UnkRecord* self, UnkWeakTarget* target) {
+void fn_71002ad978(UnkRecord_2ad978* self, UnkWeakTarget* target) {
     UnkLinks* links = &self->field_0x129e8;
     if (links->field_0x80 && links->field_0x80->target) {
         Unlink(&links->field_0x0);

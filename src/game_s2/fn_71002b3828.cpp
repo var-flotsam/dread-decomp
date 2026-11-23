@@ -23,7 +23,7 @@ struct UnkEntry_2b3828 {
 
 struct UnkLinkList;
 
-struct UnkRecord {
+struct UnkRecord_2b3828 {
     u8 pad_0x0[0x124];
     u32 field_0x124;
 };
@@ -72,7 +72,7 @@ void fn_71002b3828(UnkOwner* self) {
             }
         }
     }
-    UnkRecord* record = reinterpret_cast<UnkRecord*>(self);
+    UnkRecord_2b3828* record = reinterpret_cast<UnkRecord_2b3828*>(self);
     u64 size = (u64)record->field_0x124 * 24;
     for (u64 offset = 0; offset != size; offset += 24) {
         UnkEntry_2b3828* entry = reinterpret_cast<UnkEntry_2b3828*>(reinterpret_cast<char*>(record) + offset);

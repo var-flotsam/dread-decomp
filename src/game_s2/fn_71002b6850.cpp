@@ -8,12 +8,12 @@ struct UnkSource_2b6850 {
     u32 field_0x38;
 };
 
-struct UnkHolder {
+struct UnkHolder_2b6850 {
     u8 pad_0x0[0x10];
     base::global::CRntVector<u32> field_0x10;
 };
 
-void fn_71002b6850(UnkHolder* self, const UnkSource_2b6850* source) {
+void fn_71002b6850(UnkHolder_2b6850* self, const UnkSource_2b6850* source) {
     u32 n = source->field_0x38;
     if (n == 0)
         return;

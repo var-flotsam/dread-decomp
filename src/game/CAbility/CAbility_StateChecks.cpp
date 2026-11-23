@@ -8,7 +8,7 @@ struct UnkAbilityState {
     s32 field_0x10;
 };
 
-struct UnkAbility {
+struct UnkAbility_2f8da8 {
     u8 pad_0x0[0x20];
     UnkAbilityState* field_0x20;
     u8 pad_0x28[0x8c];
@@ -22,33 +22,33 @@ struct UnkAbility {
     }
 };
 
-struct UnkAbilitySpeedBooster : UnkAbility {
+struct UnkAbilitySpeedBooster : UnkAbility_2f8da8 {
     u8 pad_0xb8[0x394 - 0xb8];
     bool field_0x394;
 };
 static_assert(__builtin_offsetof(UnkAbilitySpeedBooster, field_0x394) == 0x394, "layout");
 
 // CAbility (unit of 0x71002f8da8 and 0x71002fa550).
-bool fn_71002f8da8(const UnkAbility* self) {
+bool fn_71002f8da8(const UnkAbility_2f8da8* self) {
     s32 state = self->State();
     return state == 5 || state == 6;
 }
-bool fn_71002fa550(const UnkAbility* self) { return self->State() == 4; }
-bool fn_71002fa584(const UnkAbility* self) {
+bool fn_71002fa550(const UnkAbility_2f8da8* self) { return self->State() == 4; }
+bool fn_71002fa584(const UnkAbility_2f8da8* self) {
     s32 state = self->State();
     return state == 5 || state == 6;
 }
-bool fn_71002fa5c0(const UnkAbility* self) { return self->State() == 6; }
+bool fn_71002fa5c0(const UnkAbility_2f8da8* self) { return self->State() == 6; }
 
 // CAbilityShinespark.
-bool fn_710032d650(const UnkAbility* self) { return self->State() == 6; }
+bool fn_710032d650(const UnkAbility_2f8da8* self) { return self->State() == 6; }
 
 // CAbilitySonar.
-bool fn_7100336858(const UnkAbility* self) { return self->State() == 4; }
-bool fn_710033688c(const UnkAbility* self) { return self->State() == 5; }
+bool fn_7100336858(const UnkAbility_2f8da8* self) { return self->State() == 4; }
+bool fn_710033688c(const UnkAbility_2f8da8* self) { return self->State() == 5; }
 
 // CAbilitySpeedBooster.
-bool fn_710033c4cc(const UnkAbility* self) { return self->State() == 6; }
+bool fn_710033c4cc(const UnkAbility_2f8da8* self) { return self->State() == 6; }
 bool fn_710033f074(const UnkAbilitySpeedBooster* self) {
     if (self->State() == 6)
         return false;

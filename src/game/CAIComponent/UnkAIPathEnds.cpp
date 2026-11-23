@@ -13,7 +13,7 @@ struct UnkAIPathPoint {
     f32 field_0x8;
 };
 
-struct UnkAIPath {
+struct UnkAIPath_010fc31c {
     u8 pad_0x0[0x68];
     UnkAIPathPoint* points;
     u32 count;  // 0x70
@@ -22,11 +22,11 @@ struct UnkAIPath {
 };
 
 // Whether the path is open (not a loop, and not empty): computed without branching, the flag first.
-static inline u32 IsOpen(const UnkAIPath* self, u32 n) {
+static inline u32 IsOpen(const UnkAIPath_010fc31c* self, u32 n) {
     return (u32)(self->loop == 0) & (u32)(n != 0);
 }
 
-bool fn_71010fc31c(UnkAIPath* self, u32* out) {
+bool fn_71010fc31c(UnkAIPath_010fc31c* self, u32* out) {
     u32 n = self->count;
     if (n == IsOpen(self, n))
         return false;
@@ -39,7 +39,7 @@ bool fn_71010fc31c(UnkAIPath* self, u32* out) {
 
 // NON_MATCHING(minor): the original keeps a second, unreachable test of the leg count (storing 0 and
 // returning true) and its registers differ; the behaviour is the same.
-bool fn_71010fc284(UnkAIPath* self, u32* out) {
+bool fn_71010fc284(UnkAIPath_010fc31c* self, u32* out) {
     u32 n = self->count;
     u32 open = IsOpen(self, n);
     u32 legs = n - open;

@@ -604,7 +604,7 @@ void fn_71000f68bc(UnkSoundSystemATK* object) {
 
 // The game's handle on a playing sound, as the stop command reads it: the voice's id, a second
 // id sent after the stop and whether the voice has one.
-struct UnkSoundHandle {
+struct UnkSoundHandle_0faac4 {
     u8 pad_0x0[0xc4];
     s32 id;
     u8 pad_0xc8[0x24];
@@ -612,7 +612,7 @@ struct UnkSoundHandle {
     u8 pad_0xf0[0x30];
     bool field_0x120;
 };
-static_assert(__builtin_offsetof(UnkSoundHandle, field_0x120) == 0x120, "UnkSoundHandle placeholder layout");
+static_assert(__builtin_offsetof(UnkSoundHandle_0faac4, field_0x120) == 0x120, "UnkSoundHandle_0faac4 placeholder layout");
 
 // What the stop commands send: the voice's id, whether to skip the fade-out and the fade's length.
 struct UnkSoundStop {
@@ -628,7 +628,7 @@ static inline f32 StopFade(f32 fade) { return !(fade <= 0.06f) ? fade : 0.06f; }
 // voice with the second id is then sent command 0x18.
 // The early return keeps the 0x18 and 10 calls apart until the branch folder merges them, which
 // gives the original's schedule (a shared call block from the start schedules their stores early).
-void fn_71000ffa68(UnkSoundSystemATK* self, UnkSoundHandle* sound, bool immediate, f32 fade) {
+void fn_71000ffa68(UnkSoundSystemATK* self, UnkSoundHandle_0faac4* sound, bool immediate, f32 fade) {
     fn_7100132cd0();
     if (!sound)
         return;

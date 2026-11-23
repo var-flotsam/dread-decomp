@@ -5,7 +5,7 @@
 // told again (vf_0x20). The pending state is cleared either way.
 #include "types.h"
 
-struct UnkState {
+struct UnkState_acb14c {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10(s32 previous);
@@ -15,25 +15,25 @@ struct UnkState {
 };
 
 // The states are only 4-aligned after the count.
-typedef UnkState* __attribute__((aligned(4))) UnkStatePtr;
+typedef UnkState_acb14c* __attribute__((aligned(4))) UnkStatePtr;
 
 struct UnkStateMachine_acb14c {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
     virtual void vf_0x18();
-    virtual void vf_0x20(UnkState* previous, UnkState* next);
-    virtual void vf_0x28(UnkState* current, UnkState* next);
+    virtual void vf_0x20(UnkState_acb14c* previous, UnkState_acb14c* next);
+    virtual void vf_0x28(UnkState_acb14c* current, UnkState_acb14c* next);
 
     u64 field_0x8;
-    UnkState* current;
-    UnkState* previous;
+    UnkState_acb14c* current;
+    UnkState_acb14c* previous;
     u32 count;
     UnkStatePtr states[16];
     s32 pending;
 };
 
-__attribute__((always_inline)) static inline UnkState* FindState(UnkStateMachine_acb14c* self, s32 id) {
+__attribute__((always_inline)) static inline UnkState_acb14c* FindState(UnkStateMachine_acb14c* self, s32 id) {
     for (UnkStatePtr *p = self->states, *e = p + self->count; p != e; ++p) {
         if ((*p)->id == id)
             return *p;
@@ -48,14 +48,14 @@ __attribute__((always_inline)) static inline void UpdateState(UnkStateMachine_ac
     s32 pending = self->pending;
     if ((u32)pending >= Count)
         return;
-    UnkState* current = self->current;
+    UnkState_acb14c* current = self->current;
     if (!current || current->id != pending) {
-        UnkState* next = FindState(self, pending);
+        UnkState_acb14c* next = FindState(self, pending);
         if (next || pending == 0) {
             if (current)
                 current->vf_0x18();
             self->vf_0x28(self->current, next);
-            UnkState* prev = self->current;
+            UnkState_acb14c* prev = self->current;
             self->current = next;
             self->previous = prev;
             if (next) {

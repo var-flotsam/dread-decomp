@@ -3,7 +3,7 @@
 // child constructor.
 #include "base/global/CRntVector.h"
 
-struct UnkChild {
+struct UnkChild_9b7ddc {
     virtual void vf0();
     virtual void vf8();
     virtual void Delete();
@@ -11,17 +11,17 @@ struct UnkChild {
 
 // Owns its object: moving leaves the source empty, destroying deletes it.
 struct UnkOwnedPtr_9b7ddc {
-    UnkChild* ptr;
+    UnkChild_9b7ddc* ptr;
 
-    explicit UnkOwnedPtr_9b7ddc(UnkChild* p) : ptr(p) {}
+    explicit UnkOwnedPtr_9b7ddc(UnkChild_9b7ddc* p) : ptr(p) {}
     UnkOwnedPtr_9b7ddc(UnkOwnedPtr_9b7ddc&& other) : ptr(other.Release()) {}
-    UnkChild* Release() {
-        UnkChild* p = ptr;
+    UnkChild_9b7ddc* Release() {
+        UnkChild_9b7ddc* p = ptr;
         ptr = nullptr;
         return p;
     }
     ~UnkOwnedPtr_9b7ddc() {
-        UnkChild* p = ptr;
+        UnkChild_9b7ddc* p = ptr;
         ptr = nullptr;
         if (p)
             p->Delete();
@@ -39,7 +39,7 @@ struct UnkOwnedPtrVector {
 
     // A capacity that doesn't grow past the count (no step) hangs, as CRntVector::PushBack does.
     // Pointers are stored bitwise: the original reloads `count` after each store.
-    __attribute__((always_inline)) void PushBack(UnkChild* child) {
+    __attribute__((always_inline)) void PushBack(UnkChild_9b7ddc* child) {
         u32 n = count;
         u32 old_capacity = capacity;
         u32 new_capacity = old_capacity;
@@ -55,7 +55,7 @@ struct UnkOwnedPtrVector {
                 UnkOwnedPtr_9b7ddc* src = data;
                 UnkOwnedPtr_9b7ddc* dst = p;
                 for (u32 i = 0; i < count; ++i, ++src, ++dst) {
-                    UnkChild* moved = src->Release();
+                    UnkChild_9b7ddc* moved = src->Release();
                     __builtin_memcpy(dst, &moved, sizeof(UnkOwnedPtr_9b7ddc));
                     src->~UnkOwnedPtr_9b7ddc();
                 }
@@ -77,17 +77,17 @@ struct UnkChildOwner {
     UnkOwnedPtrVector children;
 };
 
-template <void (*Construct)(UnkChild*, u32, void*, UnkChildOwner*)>
+template <void (*Construct)(UnkChild_9b7ddc*, u32, void*, UnkChildOwner*)>
 static inline __attribute__((always_inline)) void AddChild(UnkChildOwner* self, void* arg) {
-    UnkChild* child = static_cast<UnkChild*>(fn_71000839a0(0x110, 5));
+    UnkChild_9b7ddc* child = static_cast<UnkChild_9b7ddc*>(fn_71000839a0(0x110, 5));
     Construct(child, self->children.count, arg, self);
     self->children.PushBack(child);
 }
 
-void fn_71009b88e0(UnkChild* self, u32 index, void* arg, UnkChildOwner* owner);
-void fn_71009bd530(UnkChild* self, u32 index, void* arg, UnkChildOwner* owner);
-void fn_71009c5a24(UnkChild* self, u32 index, void* arg, UnkChildOwner* owner);
-void fn_71009c734c(UnkChild* self, u32 index, void* arg, UnkChildOwner* owner);
+void fn_71009b88e0(UnkChild_9b7ddc* self, u32 index, void* arg, UnkChildOwner* owner);
+void fn_71009bd530(UnkChild_9b7ddc* self, u32 index, void* arg, UnkChildOwner* owner);
+void fn_71009c5a24(UnkChild_9b7ddc* self, u32 index, void* arg, UnkChildOwner* owner);
+void fn_71009c734c(UnkChild_9b7ddc* self, u32 index, void* arg, UnkChildOwner* owner);
 
 void fn_71009b7ddc(UnkChildOwner* self, void* arg) {
     AddChild<fn_71009b88e0>(self, arg);

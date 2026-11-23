@@ -78,7 +78,7 @@ void fn_71000e7420(UnkReflClassEntry* self_, base::reflection::CClass* owner) {
 }
 
 // A reflected field: its offset in the object (-1 when it has an accessor), its type and its accessor.
-struct UnkReflField {
+struct UnkReflField_ovb0221 {
     void* vtable;
     u32 offset;  // 0x8
     u8 pad_0xc[4];
@@ -97,7 +97,7 @@ static inline void* ValueData85(UnkReflValue* v) {
 
 // The typed pointer of a field of the object `obj` points to: its storage in the object, or the value its
 // accessor gives.
-UnkReflTypedPtr fn_71000e7614(UnkReflField* self, const UnkReflTypedPtr* obj) {
+UnkReflTypedPtr fn_71000e7614(UnkReflField_ovb0221* self, const UnkReflTypedPtr* obj) {
     UnkReflTypedPtr r;
     if (self->offset == 0xffffffff) {
         UnkReflTypedPtr o;
@@ -118,7 +118,7 @@ UnkReflTypedPtr fn_71000e7614(UnkReflField* self, const UnkReflTypedPtr* obj) {
 }
 
 // The value of a field of the object `obj` points to, through its accessor or copied out of its storage.
-UnkReflValue fn_71000e77dc(UnkReflField* field, const UnkReflTypedPtr* obj) {
+UnkReflValue fn_71000e77dc(UnkReflField_ovb0221* field, const UnkReflTypedPtr* obj) {
     UnkReflValue r;
     r.field_0x0 = nullptr;
     r.type = nullptr;

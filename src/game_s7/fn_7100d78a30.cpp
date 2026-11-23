@@ -14,7 +14,7 @@ struct UnkComponentOwner_d78a30 {
     CStrId id;
 };
 
-struct UnkComponent : UnkReflObject {
+struct UnkComponent_d78a30 : UnkReflObject {
     u64 field_0x8;
     UnkComponentOwner_d78a30* owner;
 };
@@ -186,58 +186,58 @@ inline bool SameId(const CStrId& a, const CStrId& b) {
 }
 
 template <const CStrId& (*Kind)(), const CClass* (*GetClass)()>
-inline void CacheAs(UnkComponent*& slot, UnkComponent* comp) {
+inline void CacheAs(UnkComponent_d78a30*& slot, UnkComponent_d78a30* comp) {
     if (SameId(Kind(), comp->owner->id))
         slot = fn_710009d50c(comp->vf_0x0(), GetClass()) ? comp : nullptr;
 }
 
 struct UnkComponentCache {
     u8 unk_0x0[0x1b8];
-    UnkComponent* lifeComponent;
-    UnkComponent* playerLifeComponent;
-    UnkComponent* characterLifeComponent;
-    UnkComponent* enemyLifeComponent;
-    UnkComponent* inputComponent;
-    UnkComponent* scriptComponent;
-    UnkComponent* triggerComponent;
-    UnkComponent* movementComponent;
-    UnkComponent* characterMovement;
-    UnkComponent* playerMovement;
-    UnkComponent* samusMovement;
-    UnkComponent* morphBallMovement;
-    UnkComponent* enemyMovement;
-    UnkComponent* animationComponent;
-    UnkComponent* modelUpdaterComponent;
-    UnkComponent* billboardComponent;
-    UnkComponent* interpolationComponent;
-    UnkComponent* aIComponent;
-    UnkComponent* cameraComponent;
-    UnkComponent* positionalSoundComponent;
-    UnkComponent* attackComponent;
-    UnkComponent* grabComponent;
-    UnkComponent* factionComponent;
-    UnkComponent* inventoryComponent;
-    UnkComponent* aIAttackComponent;
-    UnkComponent* fXComponent;
-    UnkComponent* materialFXComponent;
-    UnkComponent* targetComponent;
-    UnkComponent* aINavigationComponent;
-    UnkComponent* collisionComponent;
-    UnkComponent* gunComponent;
-    UnkComponent* aimComponent;
-    UnkComponent* audioComponent;
-    UnkComponent* rumbleComponent;
-    UnkComponent* frozenComponent;
-    UnkComponent* shotComponent;
-    UnkComponent* sceneModelAnimationComponent;
-    UnkComponent* abilityComponent;
-    UnkComponent* timelineComponent;
-    UnkComponent* movablePlatformComponent;
-    UnkComponent* meleeComponent;
-    UnkComponent* emmyValveComponent;
+    UnkComponent_d78a30* lifeComponent;
+    UnkComponent_d78a30* playerLifeComponent;
+    UnkComponent_d78a30* characterLifeComponent;
+    UnkComponent_d78a30* enemyLifeComponent;
+    UnkComponent_d78a30* inputComponent;
+    UnkComponent_d78a30* scriptComponent;
+    UnkComponent_d78a30* triggerComponent;
+    UnkComponent_d78a30* movementComponent;
+    UnkComponent_d78a30* characterMovement;
+    UnkComponent_d78a30* playerMovement;
+    UnkComponent_d78a30* samusMovement;
+    UnkComponent_d78a30* morphBallMovement;
+    UnkComponent_d78a30* enemyMovement;
+    UnkComponent_d78a30* animationComponent;
+    UnkComponent_d78a30* modelUpdaterComponent;
+    UnkComponent_d78a30* billboardComponent;
+    UnkComponent_d78a30* interpolationComponent;
+    UnkComponent_d78a30* aIComponent;
+    UnkComponent_d78a30* cameraComponent;
+    UnkComponent_d78a30* positionalSoundComponent;
+    UnkComponent_d78a30* attackComponent;
+    UnkComponent_d78a30* grabComponent;
+    UnkComponent_d78a30* factionComponent;
+    UnkComponent_d78a30* inventoryComponent;
+    UnkComponent_d78a30* aIAttackComponent;
+    UnkComponent_d78a30* fXComponent;
+    UnkComponent_d78a30* materialFXComponent;
+    UnkComponent_d78a30* targetComponent;
+    UnkComponent_d78a30* aINavigationComponent;
+    UnkComponent_d78a30* collisionComponent;
+    UnkComponent_d78a30* gunComponent;
+    UnkComponent_d78a30* aimComponent;
+    UnkComponent_d78a30* audioComponent;
+    UnkComponent_d78a30* rumbleComponent;
+    UnkComponent_d78a30* frozenComponent;
+    UnkComponent_d78a30* shotComponent;
+    UnkComponent_d78a30* sceneModelAnimationComponent;
+    UnkComponent_d78a30* abilityComponent;
+    UnkComponent_d78a30* timelineComponent;
+    UnkComponent_d78a30* movablePlatformComponent;
+    UnkComponent_d78a30* meleeComponent;
+    UnkComponent_d78a30* emmyValveComponent;
 };
 
-void fn_7100d78a30(UnkComponentCache* self, UnkComponent* comp) {
+void fn_7100d78a30(UnkComponentCache* self, UnkComponent_d78a30* comp) {
     if (!comp)
         return;
     CacheAs<Kind_LIFE, fn_710115ddb8>(self->lifeComponent, comp);
