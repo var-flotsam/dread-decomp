@@ -34,6 +34,16 @@ equivalent) has a row of its own: acceptable now, a match later. "Readable" is a
 (hand-written, with none of tools/fakematch.py's steering forms in the function), not a reading. The same
 figures go under the handoff's table with --handoff when check.py's cache is there.
 
+Under that table, `--quality` reports what CLAUDE.md, "Purpose and completion", defines and the table does not (reporting
+only; no figure above changes): of the byte-matching and readable functions, those whose names are *loose* (its own
+name, class and members real; references to placeholder functions allowed) and *strict* (no placeholder anywhere),
+tested on each function's own text, by file where the tool does not find its definition; per generated directory,
+the matching functions whose file has no placeholder ("clean, not yet read"); those of them a family's passing
+sampled read in data/family_reads.csv covers ("read and passed"); and the finished figure plus "read and passed",
+the metric CLAUDE.md describes, beside the finished figure. A family's latest row decides, pass or fail; `scope` is a
+path glob relative to the repository or a list file of globs and addresses. The line goes under the handoff's table
+with --handoff.
+
 A function marked `// NON_MATCHING(functional)` with a current `behaves` verdict of tools/equiv_test.py
 --any-kind (tier 3, owner 2026-11-19) has a row of its own in --quality: the same results on every input tried,
 not proven, not counted as done.
@@ -62,6 +72,7 @@ from __future__ import annotations
 import argparse
 import datetime
 import json
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -214,31 +225,50 @@ def quality(status: str, hand: bool, steered: bool, verified: bool, functional: 
     return "functional" if status == "M" and functional else "unproven"
 
 
+_CACHE_OBJECTS: dict[str, list[tuple[Path, list[dict]]]] = {}
+
+
+def cache_objects(version: str) -> list[tuple[Path, list[dict]]]:
+    """(path relative to check.py's cache, entries) of each object in build/check/<version>/, sorted; read once
+    per run (quality_by_address and names_report both walk it)."""
+    if version not in _CACHE_OBJECTS:
+        cache = ROOT / "build" / "check" / version
+        if not cache.is_dir():
+            raise SystemExit(f"{cache}: no check cache; run tools/check.py --version {version} first")
+        objs = []
+        for p in sorted(cache.rglob("*.o.diff.json")):
+            try:
+                objs.append((p.relative_to(cache), json.loads(p.read_text(encoding="utf-8"))["entries"]))
+            except (OSError, ValueError, KeyError, TypeError):
+                continue
+        _CACHE_OBJECTS[version] = objs
+    return _CACHE_OBJECTS[version]
+
+
+def source_of(rel: Path) -> Path:
+    """The source under src/ that check.py compiled into the cached object `rel`."""
+    return ROOT / "src" / (rel.as_posix()[:-len(".o.diff.json")] + ".cpp")
+
+
 def quality_by_address(version: str, rows: list[dict], verified: frozenset[int] | None = None) -> dict[int, tuple[str, bool]]:
     """Each function's row of the completeness table (a key of QUALITIES), and whether its source has a
     steering form. tools/tu_status.py --quality adds these up per translation unit; quality_report, below,
     for the whole binary, and its docstring says what readable means here."""
     import fakematch
     verified = VERIFIED if verified is None else verified
-    cache = ROOT / "build" / "check" / version
-    if not cache.is_dir():
-        raise SystemExit(f"{cache}: no check cache; run tools/check.py --version {version} first")
     by_addr = {int(r["address"], 16): r for r in rows}
     hand: set[int] = set()
     steered: set[int] = set()
     seen: set[int] = set()
-    for p in sorted(cache.rglob("*.o.diff.json")):
-        rel = p.relative_to(cache)
-        try:
-            entries = json.loads(p.read_text(encoding="utf-8"))["entries"]
-        except (OSError, ValueError, KeyError, TypeError):
+    for rel, entries in cache_objects(version):
+        if not isinstance(entries, list):
             continue
         mine = [e for e in entries if e.get("address") in by_addr]
         seen.update(e["address"] for e in mine)
         if rel.parts[0] in GENERATED_DIRS or not mine:
             continue
         hand.update(e["address"] for e in mine)
-        src = ROOT / "src" / (rel.as_posix()[:-len(".o.diff.json")] + ".cpp")
+        src = source_of(rel)
         if not src.is_file():
             continue
         flagged = {h.function.split("::")[-1] for h in fakematch.scan_text(src.relative_to(ROOT).as_posix(),
@@ -254,7 +284,8 @@ def quality_by_address(version: str, rows: list[dict], verified: frozenset[int] 
     return out
 
 
-def quality_report(version: str, rows: list[dict], verified: frozenset[int] | None = None) -> dict:
+def quality_report(version: str, rows: list[dict], verified: frozenset[int] | None = None,
+                   qa: dict[int, tuple[str, bool]] | None = None) -> dict:
     """The game's functions by the two qualities the project needs of each: byte-matching, and readable.
 
     Readable is measured as a floor, by what a tool can see: the function's source is hand-written (not in a
@@ -266,7 +297,7 @@ def quality_report(version: str, rows: list[dict], verified: frozenset[int] | No
     by_addr = {int(r["address"], 16): r for r in rows}
     out = {k: {"functions": 0, "bytes": 0} for k in QUALITIES}
     out["equivalent_readable"] = {"functions": 0, "bytes": 0}
-    for a, (k, steered) in quality_by_address(version, rows, verified).items():
+    for a, (k, steered) in (qa if qa is not None else quality_by_address(version, rows, verified)).items():
         for key in [k] + (["equivalent_readable"] if k == "equivalent" and not steered else []):
             out[key]["functions"] += 1
             out[key]["bytes"] += int(by_addr[a]["size"])
@@ -298,6 +329,265 @@ def quality_line(q: dict, overall: dict) -> str:
             f"identical behaviour with other bytes {pct('equivalent')} ({q['equivalent']['functions']:,} functions, a "
             f"match for later); functional (same results on every input tried, tier 3) {pct('functional')} "
             f"({q['functional']['functions']:,} functions). Readable is a floor a tool can see, not a reading.")
+
+
+# Names (CLAUDE.md, "Purpose and completion" and "Names"). A placeholder is a name that says only where something
+# is: `fn_<addr>`, an `Unk...` type (not `UnkNoArg`, which names a fact: the original leaves that argument register
+# unloaded; not `Unknown`), a member `field_0x..`, `unk_<addr>` or `unk_0x..`, a global `g_unk_...`, and a virtual
+# slot `vf_<slot>` (a number, not a role). `refl_...` is an inferred role (refl_GetClass, refl_TypeOf) that reads
+# as what the function does, so it is a name; so is `pad_0x..`, the layout's own mark for bytes nothing reads.
+# Comments, string contents and preprocessor lines are not tested.
+PLACEHOLDER = re.compile(r"\bfn_[0-9a-fA-F]{6,}\b|\bUnk(?!NoArg\b)(?![a-z])\w*|\bfield_(?:0x)?[0-9a-fA-F]+\b"
+                         r"|\bunk_(?:0x)?[0-9a-fA-F]+\b|\bg_unk_\w+|\bvf_(?:0x[0-9a-fA-F]+|\d+)\b")
+# Loose (a function's own name, class and members real; placeholder callees allowed): in its body, a reference to
+# another function is allowed (`fn_<addr>` called or passed as a pointer, `vf_<slot>`), and so is an `Unk...` class
+# that only qualifies a callee (`UnkFoo::fn_x(`). Its members, globals and the types of what it touches still count.
+_LOOSE_OK = re.compile(r"fn_|vf_")
+_QUALIFIES_CALL = re.compile(r"(?:\s*::\s*~?\w+)+\s*(?:<[^<>;{}()]*>)?\s*\(")
+_PARENS, _BRACES = re.compile(r"[()]"), re.compile(r"[{}]")
+_NOT_CODE = re.compile(r"//[^\n]*|/\*.*?\*/|\"(?:\\.|[^\"\\\n])*\"|'(?:\\.|[^'\\\n])*'|^[ \t]*#[^\n]*(?:\\\n[^\n]*)*",
+                       re.S | re.M)
+_INIT = re.compile(r"\s*[\w:~<>,\s]+?\s*([({])")
+NAME_KINDS = {"loose": "Finished, names loose (its own name, class and members real; placeholder callees allowed)",
+              "strict": "Finished, names strict (no placeholder anywhere in it)"}
+FAMILY_READS = ROOT / "data" / "family_reads.csv"
+FAMILY_COLUMNS = ["family", "scope", "generator_commit", "date", "sample_size", "verdict", "reader", "notes"]
+
+
+def code_only(text: str) -> str:
+    """`text` with comments, string and character contents and preprocessor lines blanked to spaces; line breaks
+    and offsets kept."""
+    return _NOT_CODE.sub(lambda m: re.sub(r"[^\n]", " ", m.group(0)), text.replace("\r\n", "\n"))
+
+
+def placeholders(code: str, loose: bool = False) -> list[str]:
+    """The placeholder names in `code` (already code_only); loose skips those that refer to another function."""
+    return [m.group(0) for m in PLACEHOLDER.finditer(code)
+            if not (loose and (_LOOSE_OK.match(m.group(0))
+                               or (m.group(0).startswith("Unk") and _QUALIFIES_CALL.match(code, m.end()))))]
+
+
+def short_name(name: str) -> str:
+    """The last part of a function's name as check.py's cache gives it: `bool ns::C<T>::f(int) const` -> `f`."""
+    out, depth = [], 0
+    for ch in name:
+        if ch == "(" and depth == 0:
+            break
+        depth += (ch == "<") - (ch == ">")
+        if depth == 0 and ch != ">":
+            out.append(ch)
+    words = "".join(out).split()
+    return words[-1].split("::")[-1] if words else ""
+
+
+def _close(code: str, i: int, rx: re.Pattern) -> int | None:
+    """The offset just past the bracket that closes the one at `i`."""
+    depth = 0
+    for m in rx.finditer(code, i):
+        depth += 1 if m.group(0) in "({" else -1
+        if depth == 0:
+            return m.end()
+    return None
+
+
+def definitions(code: str, name: str) -> list[tuple[str, str]]:
+    """(signature, body) of each definition of the function `name` (its last part) in `code` (code_only): one
+    that starts at column 0, a one-line definition included. One the tool does not find (indented, made by a
+    macro) is not here."""
+    out: list[tuple[str, str]] = []
+    if not name:
+        return out
+    rx = re.compile(r"^(?=[^\s#])[^\n;{}]*?(?<![\w~])" + re.escape(name) + r"\s*(?:<[^\n;{}()]*>)?\s*\(", re.M)
+    for m in rx.finditer(code):
+        i = _close(code, m.end() - 1, _PARENS)
+        if i is None:
+            continue
+        rest = re.compile(r"[^;{:]*").match(code, i).end()
+        if rest >= len(code) or code[rest] == ";":
+            continue  # a declaration
+        if code[rest] == ":" and code.startswith("::", rest):
+            continue
+        if code[rest] == ":":  # a constructor's initializers
+            j = rest + 1
+            while True:
+                e = _INIT.match(code, j)
+                if not e:
+                    break
+                k = _close(code, e.start(1), _PARENS if e.group(1) == "(" else _BRACES)
+                if k is None:
+                    break
+                j = re.compile(r"\s*").match(code, k).end()
+                if j < len(code) and code[j] == ",":
+                    j += 1
+                    continue
+                break
+            rest = j
+            if rest >= len(code) or code[rest] != "{":
+                continue
+        end = _close(code, rest, _BRACES)
+        if end is not None:
+            out.append((code[m.start():rest], code[rest:end]))
+    return out
+
+
+def names_of(code: str, name: str) -> tuple[bool, bool, bool]:
+    """(loose, strict, by_file) for the function `name` in a file (code_only): by its own definitions where
+    definitions() finds them, else by the whole file. Its signature is its own name, class and parameter types,
+    so every placeholder there counts in both figures."""
+    defs = definitions(code, short_name(name))
+    if not defs:
+        return not placeholders(code, loose=True), not placeholders(code), True
+    loose = all(not placeholders(sig) and not placeholders(body, loose=True) for sig, body in defs)
+    strict = all(not placeholders(sig + body) for sig, body in defs)
+    return loose, strict, False
+
+
+def read_family_reads(path: Path = FAMILY_READS) -> list[dict]:
+    """The rows of data/family_reads.csv: the sampled reads of generated families (CLAUDE.md, "Purpose")."""
+    import csv
+    if not path.is_file():
+        return []
+    with path.open(newline="", encoding="utf-8") as fh:
+        return [r for r in csv.DictReader(fh) if (r.get("family") or "").strip()]
+
+
+def passed_scopes(reads: list[dict], root: Path = ROOT) -> list[tuple[list[str], set[int]]]:
+    """The scopes whose family passed its latest read: per family, the row with the latest date (the later row on
+    a tie) decides, pass or fail for the whole family. A scope is a path glob relative to the repository, or the
+    path of a list file (`.txt`, `.csv`, `.lst`) with one glob or function address per line (`#` comments)."""
+    latest: dict[str, dict] = {}
+    for r in reads:
+        f = r["family"].strip()
+        if f not in latest or (r.get("date") or "") >= (latest[f].get("date") or ""):
+            latest[f] = r
+    out = []
+    for r in latest.values():
+        if (r.get("verdict") or "").strip().lower() != "pass":
+            continue
+        scope = (r.get("scope") or "").strip()
+        items = [scope]
+        listed = root / scope
+        if scope and listed.suffix in (".txt", ".csv", ".lst") and listed.is_file():
+            items = [ln.split("#")[0].strip() for ln in listed.read_text(encoding="utf-8").splitlines()]
+        globs, addrs = [], set()
+        for it in filter(None, items):
+            try:
+                addrs.add(int(it, 16))
+            except ValueError:
+                globs.append(it)
+        out.append((globs, addrs))
+    return out
+
+
+def covered(scopes: list[tuple[list[str], set[int]]], path: str, address: int) -> bool:
+    import fnmatch
+    return any(address in addrs or any(fnmatch.fnmatchcase(path, g) for g in globs) for globs, addrs in scopes)
+
+
+def names_report(version: str, rows: list[dict], qa: dict[int, tuple[str, bool]],
+                 reads_path: Path = FAMILY_READS) -> dict:
+    """The figures CLAUDE.md, "Purpose and completion", defines and the completeness table does not: the names of
+    the finished (`complete`) functions, loose and strict, tested on each function's own text (by file when the
+    tool does not find its definition); per generated directory, the matching functions whose file has no
+    placeholder ("clean, not yet read"); and those of them a passing sampled read in data/family_reads.csv
+    covers ("read and passed"). Reporting only."""
+    by_addr = {int(r["address"], 16): r for r in rows}
+    zero = lambda: {"functions": 0, "bytes": 0}  # noqa: E731
+    out = {"loose": zero(), "strict": zero(), "by_file": zero(),
+           "generated": {d: {"matching": zero(), "clean": zero()} for d in sorted(GENERATED_DIRS)},
+           "read_passed": zero()}
+    scopes = passed_scopes(read_family_reads(reads_path))
+    files: dict[Path, str | None] = {}
+
+    def scan(src: Path) -> str | None:
+        """The file's code (code_only), read once per run."""
+        if src not in files:
+            files[src] = code_only(src.read_text(encoding="utf-8", errors="replace")) if src.is_file() else None
+        return files[src]
+
+    def add(key: dict, a: int) -> None:
+        key["functions"] += 1
+        key["bytes"] += int(by_addr[a]["size"])
+
+    done: set[int] = set()
+    clean_file: dict[Path, bool] = {}
+    for rel, entries in cache_objects(version):
+        if not isinstance(entries, list):
+            continue
+        gen = rel.parts[0] if rel.parts[0] in GENERATED_DIRS else None
+        mine = [e for e in entries if e.get("address") in by_addr and e["address"] not in done
+                and qa.get(e["address"], ("",))[0] == ("match_generated" if gen else "complete")]
+        if not mine:
+            continue
+        src = source_of(rel)
+        s = scan(src)
+        for e in mine:
+            a = e["address"]
+            if a in done:
+                continue  # a second symbol of the same function
+            done.add(a)
+            if gen:
+                add(out["generated"][gen]["matching"], a)
+                if s is None:
+                    continue
+                if src not in clean_file:
+                    clean_file[src] = not placeholders(s)
+                if not clean_file[src]:
+                    continue
+                if covered(scopes, src.relative_to(ROOT).as_posix(), a):
+                    add(out["read_passed"], a)
+                else:
+                    add(out["generated"][gen]["clean"], a)
+                continue
+            if s is None:
+                continue
+            loose, strict, by_file = names_of(s, e.get("name", ""))
+            for k, v in (("loose", loose), ("strict", strict), ("by_file", by_file)):
+                if v:
+                    add(out[k], a)
+    return out
+
+
+def print_names(n: dict, q: dict, overall: dict) -> None:
+    total = overall["bytes"]
+
+    def row(label: str, v: dict, mark: str = "") -> None:
+        print(f"| {mark}{label}{mark} | {v['functions']:,} | {v['bytes'] / 1e6:.2f} MB | "
+              f"{mark}{100 * v['bytes'] / total:.2f}%{mark} |")
+    print("| Readable and matching (CLAUDE.md, \"Purpose and completion\") | Functions | Bytes | Share of code |")
+    print("|---|---|---|---|")
+    for k, label in NAME_KINDS.items():
+        row(label, n[k])
+    for d, g in n["generated"].items():
+        row(f"Generated `src/{d}/`, clean, not yet read (matching, file free of placeholders; "
+            f"{g['matching']['functions']:,} match)", g["clean"])
+    row("Generated, read and passed (`data/family_reads.csv`)", n["read_passed"])
+    print(f"(names are tested on each finished function's own text; {n['by_file']['functions']:,} of them by file, "
+          "where the tool did not find the definition. Placeholders: fn_<addr>, Unk... types other than UnkNoArg, "
+          "field_0x.., unk_<addr>, g_unk_..., vf_<slot>; refl_ roles are names. Comments and strings do not count.)")
+    print(metric_line(n, q, overall))
+
+
+def metric_line(n: dict, q: dict, overall: dict) -> str:
+    total = overall["bytes"]
+    fin, rp = q["complete"], n["read_passed"]
+    return (f"Readable and matching, the metric CLAUDE.md describes (finished plus generated read and passed): "
+            f"**{100 * (fin['bytes'] + rp['bytes']) / total:.2f}%** ({fin['functions'] + rp['functions']:,} functions), "
+            f"beside byte-matching and readable {100 * fin['bytes'] / total:.2f}%.")
+
+
+def names_line(n: dict, q: dict, overall: dict) -> str:
+    total = overall["bytes"]
+
+    def pct(v: dict) -> str:
+        return f"{100 * v['bytes'] / total:.2f}%"
+    clean = {"functions": sum(g["clean"]["functions"] for g in n["generated"].values()),
+             "bytes": sum(g["clean"]["bytes"] for g in n["generated"].values())}
+    return (f"Readable and matching, whole binary (`tools/progress.py --quality`, CLAUDE.md's two name figures): "
+            f"of byte-matching and readable, names loose {pct(n['loose'])} ({n['loose']['functions']:,} functions) and "
+            f"names strict {pct(n['strict'])} ({n['strict']['functions']:,}), per function ({n['by_file']['functions']:,} "
+            f"by file); generated, clean, not yet read {pct(clean)} ({clean['functions']:,}); generated, read and passed "
+            f"{pct(n['read_passed'])} ({n['read_passed']['functions']:,}). " + metric_line(n, q, overall))
 
 
 def fuzzy_report(version: str, rows: list[dict], verified: frozenset[int] | None = None) -> dict:
@@ -365,7 +655,7 @@ def table_row(label: str, t: dict) -> str:
 
 
 def update_handoff(path: Path, overall: dict, boot: dict | None, quality_text: str | None = None,
-                   fuzzy_text: str | None = None) -> None:
+                   fuzzy_text: str | None = None, names_text: str | None = None) -> None:
     """Replace the generated table in the handoff; keep the old boot row when no slice was computed, and the
     old completeness line when it was not computed (it needs check.py's cache)."""
     text = path.read_text(encoding="utf-8")
@@ -391,6 +681,9 @@ def update_handoff(path: Path, overall: dict, boot: dict | None, quality_text: s
     quality_text = quality_text or next((ln for ln in old.splitlines() if ln.startswith("Completeness, whole binary")), None)
     if quality_text:
         lines += ["", quality_text]
+    names_text = names_text or next((ln for ln in old.splitlines() if ln.startswith("Readable and matching, whole binary")), None)
+    if names_text:
+        lines += ["", names_text]
     fuzzy_text = fuzzy_text or next((ln for ln in old.splitlines() if ln.startswith("Near misses, whole binary")), None)
     if fuzzy_text:
         lines += ["", fuzzy_text]
@@ -464,11 +757,16 @@ def main() -> int:
 
     cache = (ROOT / "build" / "check" / args.version).is_dir()
     if args.quality or (args.handoff and cache):
-        report["quality"] = quality_report(args.version, game)
+        qa = quality_by_address(args.version, game)
+        report["quality"] = quality_report(args.version, game, qa=qa)
+        report["names"] = names_report(args.version, game, qa)
     if args.quality:
         print()
         print("completeness by the two qualities each function needs, byte-matching and readable (whole binary):")
         print_quality(report["quality"], overall)
+        print()
+        print("readable and matching as CLAUDE.md defines it: names, and generated code that reads as source:")
+        print_names(report["names"], report["quality"], overall)
 
     if args.fuzzy or args.handoff:
         report["fuzzy"] = fuzzy_report(args.version, game)
@@ -492,7 +790,8 @@ def main() -> int:
     if args.handoff:
         update_handoff(args.handoff, overall, report["slice"]["overall"] if "slice" in report else None,
                        quality_line(report["quality"], overall) if "quality" in report else None,
-                       fuzzy_line(report["fuzzy"]) if "fuzzy" in report else None)
+                       fuzzy_line(report["fuzzy"]) if "fuzzy" in report else None,
+                       names_line(report["names"], report["quality"], overall) if "names" in report else None)
     if args.json:
         args.json.parent.mkdir(parents=True, exist_ok=True)
         args.json.write_text(json.dumps(report, indent=1), encoding="utf-8")
