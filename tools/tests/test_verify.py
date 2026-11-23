@@ -6,9 +6,12 @@ untouched.
 """
 
 import contextlib
+import dataclasses
 import io
 import json
+import os
 import tempfile
+import time
 import types
 import unittest
 from pathlib import Path
@@ -16,6 +19,7 @@ from unittest import mock
 
 from tools.tests import _path  # noqa: F401
 import verify
+from dread import runlock
 
 DECL = {"declared": 5, "files": 3, "multi_file": 1, "extra_files": 1, "conflicting": 0,
         "extra_signatures": 0, "header_redeclared": 0}
@@ -169,6 +173,42 @@ class Main(unittest.TestCase):
         rc, out = self.run_main()
         self.assertEqual(rc, 1)
         self.assertIn("no longer O: 0x7100000300", out)
+
+    def test_check_crash_is_not_counted_as_lost_functions(self):
+        # check.py died mid-run (2026-11-23: PermissionError writing its cache): what it printed is a fragment.
+        self.outputs[("tools/check.py", True)] = (1, ["Traceback (most recent call last):", '  File "check.py"',
+                                                      "PermissionError: [WinError 5] Access is denied"])
+        rc, out = self.run_main()
+        self.assertEqual(rc, 1)
+        self.assertIn("FAIL check.py --update: check.py stopped before its summary (exit 1): PermissionError", out)
+        self.assertNotIn("no longer O", out)
+        self.assertNotIn("PASS regressions", out)
+
+    def test_waits_for_and_gives_up_on_another_run(self):
+        lock_dir = self.root / "build" / "check" / "9.9.9"
+        lock_dir.mkdir(parents=True)
+        other = runlock.Holder(pid=os.getpid(), host="some-other-host", worktree="/other/worktree",
+                               command="check.py", started=time.time(), token="t-other")
+        (lock_dir / runlock.LOCK_NAME).write_text(json.dumps(dataclasses.asdict(other)), encoding="utf-8")
+        rc, out = self.run_main("--wait", "0")
+        self.assertEqual(rc, runlock.EXIT_BUSY)
+        self.assertIn("FAIL lock: build/check/9.9.9 is in use by check.py", out)
+        self.assertEqual(self.calls, [])
+
+    def test_holds_the_lock_while_check_runs(self):
+        seen = []
+        real = self.fake_run
+
+        def run(script, *args):
+            if script == "tools/check.py":
+                h = runlock.read_holder(self.root / "build" / "check" / "9.9.9" / runlock.LOCK_NAME)
+                seen.append((h.command, h.token == os.environ.get(runlock.ENV)))
+            return real(script, *args)
+        with mock.patch.object(verify, "run", run):
+            rc, _ = self.run_main()
+        self.assertEqual(rc, 0)
+        self.assertEqual(seen, [("verify.py", True)] * 2)
+        self.assertFalse((self.root / "build" / "check" / "9.9.9" / runlock.LOCK_NAME).exists())
 
     def test_duplicates_fail(self):
         self.outputs[("tools/check.py", True)] = (0, status("0x7100000100") + ["DUPLICATE 0x7100000100 a.cpp b.cpp"])
