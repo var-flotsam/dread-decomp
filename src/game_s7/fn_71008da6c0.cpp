@@ -3,6 +3,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkDoorLifeTunable.h"
 #include "game/UnkStruct_71727313d4.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTUProperty.h"
@@ -59,7 +60,6 @@ void fn_71008caef4(UnkEnumType* type, const CStrId& name, void (*factory)(), voi
 void fn_71008cace8();
 extern char g_unk_7172731360[];
 extern char g_unk_7172731361[];
-extern UnkTunable g_unk_7172731368;
 extern void* g_unk_7101a7eab0[];
 struct UnkStruct_71727313a4 {
     f32 field_0x0;
