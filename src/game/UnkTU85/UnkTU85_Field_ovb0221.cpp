@@ -40,7 +40,7 @@ bool fn_71000e6db0(UnkVersionEntry* self) {
     u32 ok = (u64)self;
     if (self) {
         ok = 0;
-        UnkReflValue v = fn_710009ddd4(self, fn_7100090910());
+        UnkReflValue v = fn_710009ddd4(self, base::reflection::attr::IsLink());
         const CType* type = reinterpret_cast<const CType*>(v.type);
         if (type && fn_710009d50c(type, fn_710000d228()))
             ok = *base::reflection::refl_ArgValue<u8>(&v);

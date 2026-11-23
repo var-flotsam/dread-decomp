@@ -65,7 +65,7 @@ void fn_71000a4b60(UnkVersionRegistry* self_) {
     roots.Reserve(0x880);
     for (CType* type = static_cast<CType*>(g_unk_7101d5bdc0); type; type = static_cast<CType*>(type->field_0x88)) {
         {
-            CStrId name = type->m_name;
+            CStrId name = type->sName;
             AddType(&self->names, name, type);
         }
         if (const CType* parent = type->m_parent) {

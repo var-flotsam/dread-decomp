@@ -37,7 +37,7 @@ void fn_71000a1510() {
         CStrId name("void", true);
         CType& type = g_unk_7101d5af48;
         *reinterpret_cast<void***>(&type) = &g_unk_7101a1b540[2];
-        new (&type.m_name) CStrId(name);
+        new (&type.sName) CStrId(name);
         type.m_kind = -1;
         type.m_size = 0;
         type.m_flags = 0;

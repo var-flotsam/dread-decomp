@@ -41,7 +41,7 @@ s32 fn_71000edb4c(UnkWriter_b0202* self, UnkWriteNode_l0edb4c* node, const void*
     if (fn_710009d760(object, reinterpret_cast<const CType*>(fn_710009bedc()))) {
         if (!type)
             type = fn_710009c640(object);
-        name = type->m_name;
+        name = type->sName;
     }
     if (name.data != &g_unk_7101d47108->empty) {
         CName hashed(base::global::UnkNameHash(), name.data->Key());

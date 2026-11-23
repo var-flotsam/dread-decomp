@@ -19,17 +19,17 @@ static inline const CType* TypeOf(UnkEnumType& t) { return reinterpret_cast<cons
 
 void fn_710044e7fc(CClass* cls) {
     CVariable* testMode = AddReflectedField(cls, CStrId("bUltimateGrabTestMode", true), fn_710000d228(), 0x15d70, -1, -1);
-    testMode->attrs.Add<bool>(fn_7100075240(), false);
+    testMode->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
     CVariable* landmark = AddReflectedField(cls, CStrId("wpUltimateGrabLandmark", true), TypeOf(g_unk_717269bb48), 0x15d30, -1, -1);
-    landmark->attrs.Add<u32>(fn_710025daa0(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 6);
+    landmark->attrs.Add<u32>(base::reflection::attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 6);
     CVariable* dead = AddReflectedField(cls, CStrId("wpDeadCutScenePlayer", true), TypeOf(g_unk_71727b6270), 0x15d78, -1, -1);
-    dead->attrs.Add<u32>(fn_710025daa0(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 1);
+    dead->attrs.Add<u32>(base::reflection::attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 1);
     CVariable* phase2 = AddReflectedField(cls, CStrId("wpPhase2CutscenePlayer", true), TypeOf(g_unk_71727b6270), 0x15db8, -1, -1);
-    phase2->attrs.Add<u32>(fn_710025daa0(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 1);
+    phase2->attrs.Add<u32>(base::reflection::attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 1);
     CVariable* phase3 = AddReflectedField(cls, CStrId("wpPhase3CutscenePlayer", true), TypeOf(g_unk_71727b6270), 0x15df8, -1, -1);
-    phase3->attrs.Add<u32>(fn_710025daa0(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 1);
+    phase3->attrs.Add<u32>(base::reflection::attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 1);
     CVariable* endLeft = AddReflectedField(cls, CStrId("wpPhase3EndLeftCutscenePlayer", true), TypeOf(g_unk_71727b6270), 0x15e38, -1, -1);
-    endLeft->attrs.Add<u32>(fn_710025daa0(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 1);
+    endLeft->attrs.Add<u32>(base::reflection::attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 1);
     CVariable* endRight = AddReflectedField(cls, CStrId("wpPhase3EndRightCutscenePlayer", true), TypeOf(g_unk_71727b6270), 0x15e78, -1, -1);
-    endRight->attrs.Add<u32>(fn_710025daa0(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 1);
+    endRight->attrs.Add<u32>(base::reflection::attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 1);
 }

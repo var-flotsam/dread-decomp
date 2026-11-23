@@ -13,6 +13,6 @@ struct base::reflection::UnkReflStatic<UnkRefl_DefaultValue_b61> {
     static constexpr u32 field_0x10 = 0x2;
 };
 
-__attribute__((flatten)) const base::reflection::UnkReflAttrKey& fn_7100075240() {
+__attribute__((flatten)) const base::reflection::UnkReflAttrKey& base::reflection::attr::DefaultValue() {
     return base::reflection::refl_GetAttrKey<UnkRefl_DefaultValue_b61>();
 }
