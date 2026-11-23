@@ -90,10 +90,17 @@ u32 fn_7101171fcc(UnkModelUpdater_l171fcc* self, UnkProp* p) {
             for (s32 i = first; i <= last; ++i, --pick) {
                 char name[0x40];
                 sprintf(name, "%s%i", prefix, i);
-                if (pick == 0)
-                    ShowPart(self, name, true);
-                else
-                    ShowPart(self, name, false);
+                if (pick == 0) {
+                    u64 hash;
+                    fn_710006663c(&hash, name);
+                    if (self->model)
+                        fn_7100199420(self->model->slots->parts, &hash, true);
+                } else {
+                    u64 hash;
+                    fn_710006663c(&hash, name);
+                    if (self->model)
+                        fn_7100199420(self->model->slots->parts, &hash, false);
+                }
             }
         }
         return true;
@@ -115,8 +122,8 @@ u32 fn_7101171fcc(UnkModelUpdater_l171fcc* self, UnkProp* p) {
         return true;
     }
     if (Is(p, Key(0x1fb0)) && p->set) {
-        UnkVec3f center(0.0f, 0.0f, 0.0f);
         f32 radius = -1.0f;
+        UnkVec3f center(0.0f, 0.0f, 0.0f);
         CRntFile_ReadFormat(p->stream, "ffff", &radius, &center.x, &center.y, &center.z);
         if (radius >= 0.0f) {
             UnkSphere sphere;

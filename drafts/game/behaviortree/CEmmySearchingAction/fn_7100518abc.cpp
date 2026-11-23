@@ -70,27 +70,35 @@ struct UnkEmmyActor_l518abc {
     UnkEmmyAI_l518abc* ai;  // 0x240
 };
 
+// The slot that holds a counted reference to an object's weak handle. fn_7100316018 takes the slot itself,
+// not the pointer inside it: with UnkWeakHandle** (include/game/CAbilityGhostAura.h today) the compiler shares
+// one address for the slot and folds it into a pre-indexed load. Belongs in include/game_s2/UnkWeakHandle.h.
+struct UnkWeakRef_l518abc {
+    UnkWeakHandle* handle;
+};
+void fn_7100316018(UnkWeakTarget* self, UnkWeakRef_l518abc* out);
+
 // A listener on an animation: the callback with its context, and the weak handle of what it listens to.
 struct UnkEmmyAnimLink_l518abc {
     u8 pad_0x0[0x8];
     void* context;
     void (*callback)();
-    UnkWeakHandle* handle;  // 0x18
+    UnkWeakRef_l518abc ref;  // 0x18
 
     // Stops listening to the animation the handle points at, and drops the handle.
     void Detach() {
-        if (UnkWeakHandle* h = handle) {
+        if (UnkWeakHandle* h = ref.handle) {
             if (UnkWeakTarget* target = h->target)
                 fn_710117b3f0(target, this);
-            ResetRef(&handle);
+            ResetRef(&ref.handle);
         }
     }
     // Listens to `animation` instead.
     void Attach(UnkWeakTarget* animation) {
         Detach();
         if (animation) {
-            fn_7100316018(animation, &handle);
-            fn_710117b3e8(handle ? handle->target : nullptr, this);
+            fn_7100316018(animation, &ref);
+            fn_710117b3e8(ref.handle ? ref.handle->target : nullptr, this);
         }
     }
 };
@@ -102,7 +110,7 @@ struct UnkEmmySearchingAction_l518abc {
     u64 animation;  // 0x38
     UnkEmmyAnimLink_l518abc link;  // 0x40
 };
-static_assert(__builtin_offsetof(UnkEmmySearchingAction_l518abc, link.handle) == 0x58, "layout");
+static_assert(__builtin_offsetof(UnkEmmySearchingAction_l518abc, link.ref) == 0x58, "layout");
 
 void fn_7100518abc(UnkEmmySearchingAction_l518abc* self) {
     UnkEmmyMovement_l518abc* movement = self->actor->movement;

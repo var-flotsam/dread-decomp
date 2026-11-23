@@ -12,7 +12,8 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAttack.h"
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_s2/UnkSpitSend.h"
+#include "game/CAutsniperShootAttack.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -23,7 +24,6 @@ struct UnkAutsniperSend_b58;
 
 extern u8 g_unk_71016492a8;  // reached through the GOT
 
-void fn_71003d3cf8(UnkAutsniperSend_b58* self);
 
 struct UnkAutsniperAI_l3d3a74 {
     virtual const CClass* vf_0x0();
@@ -115,9 +115,9 @@ void fn_71003d3a74(UnkAutsniperShoot_l3d3a74* self) {
     self->field_0x88 = 0.0f;
     self->field_0xa8 = 0.0f;
     self->field_0xc8 = 1.0f;
-    UnkAutsniperTunable_l3d3a74* tunable = self->tunable;
     self->field_0x98 = UnkAutsniperPair_l3d3a74();
     self->field_0x90 = 0;
+    UnkAutsniperTunable_l3d3a74* tunable = self->tunable;
     self->field_0xcc = false;
     f32 a = tunable->field_0x114;
     f32 b = tunable->field_0xfc;

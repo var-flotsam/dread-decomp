@@ -4267,7 +4267,7 @@ address,size,name,name_source,subsystem,status
 0x71009e4204,764,fn_71009e4204,unknown,game/player?,U
 0x71009e4500,136,fn_71009e4500,unknown,game/player?,O
 0x71009e4588,16,fn_71009e4588,unknown,game/player?,O
-0x71009e4598,692,fn_71009e4598,unknown,game/player?,U
+0x71009e4598,692,fn_71009e4598,unknown,game/player?,O
 0x71009e484c,116,fn_71009e484c,unknown,game/player?,O
 0x71009e48c0,200,fn_71009e48c0,unknown,game/player?,O
 0x71009e4988,1428,fn_71009e4988,unknown,game/player?,U

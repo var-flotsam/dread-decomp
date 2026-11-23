@@ -157,13 +157,6 @@ static inline void PlayShield(UnkDoorLife_l8d0250* self, const u64* animation, b
     fn_71008d0a08(reinterpret_cast<UnkDoorShieldLife6_ovb0001*>(self), animation, reverse, false);
 }
 
-static inline void ClearFlag(UnkDoorLife_l8d0250* self, UnkDoorShieldFlags_ovb0001* flags) {
-    if (UnkFlagTarget* target = self->owner->flags) {
-        u64 name = flags->name;
-        fn_7101172780(target, reinterpret_cast<const char*>(&name));
-    }
-}
-
 static inline bool IsLocked(const UnkDoorLife_l8d0250* self) {
     return (self->field_0x644 & 0x8000400) || (self->field_0x648 & 0x8000400);
 }
@@ -191,13 +184,22 @@ void fn_71008d0250(UnkDoorLife_l8d0250* self) {
     if (InState(&self->machine, 2))
         fn_71008d07f8(self);
 
+    // One name buffer serves both shield flags and lives to the end (the original's frame keeps it apart from
+    // the request below).
+    u64 name;
     if (self->owner->flags) {
         if (!self->field_0x41f)
             PlayShield(self, &g_unk_7172731788, false);
         PlayShield(self, &g_unk_71727317a0[0], self->field_0xaea);
         PlayShield(self, &g_unk_71727317a0[1], self->field_0xaeb);
-        ClearFlag(self, g_unk_7172731790);
-        ClearFlag(self, g_unk_7172731798);
+        if (UnkFlagTarget* target = self->owner->flags) {
+            name = g_unk_7172731790->name;
+            fn_7101172780(target, reinterpret_cast<const char*>(&name));
+        }
+        if (UnkFlagTarget* target = self->owner->flags) {
+            name = g_unk_7172731798->name;
+            fn_7101172780(target, reinterpret_cast<const char*>(&name));
+        }
     }
 
     if (!self->field_0x41f && self->field_0x41c) {

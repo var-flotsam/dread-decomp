@@ -90,7 +90,7 @@ struct UnkGroundTrack_l99db00 {
 
 struct UnkAnimEntry_l99db00 {
     u8 pad_0x0[0x34];
-    bool field_0x34;
+    bool field_0x34 : 1;
 };
 
 struct UnkGroundMachine_l99db00 {

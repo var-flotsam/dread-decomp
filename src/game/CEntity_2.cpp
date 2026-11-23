@@ -26,6 +26,7 @@
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CCollider.h"
 #include "game/sound/UnkSoundHandle.h"
+#include "game/UnkTU2689.h"
 #include "types.h"
 
 struct UnkEntityComponent {
@@ -53,7 +54,6 @@ void fn_7100d7afa8(UnkEntityComponents* self, void* a, void* b) { ForEachCompone
 void fn_7100d7b468(UnkEntityComponents* self, void* a) { ForEachComponent<0x130>(self, a); }
 
 struct UnkOwner;
-extern base::reflection::UnkTunable g_unk_7172a03d80;
 void fn_71010d6878(f32 value);
 
 void fn_7100d7b394(UnkEntityComponents* self, void* a) {

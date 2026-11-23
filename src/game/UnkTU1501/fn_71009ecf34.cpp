@@ -16,7 +16,6 @@ struct UnkAbility;
 struct UnkSamusRunInfo;
 
 f32 fn_7100796590(UnkSamusRunInfo* info);
-extern base::reflection::UnkTunable g_unk_7172a03d80;
 
 static inline f32 TunableAt(const base::reflection::UnkTunable& tunable, u32 offset) {
     return *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&tunable) + offset);

@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBossAIComponent.h"
+#include "game/CDoorShieldLifeComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkBehaviorTree.h"
@@ -49,8 +50,6 @@ struct UnkGobblerAI_l581de0 {
     UnkGobblerOwner_l581de0* owner;
 };
 
-void fn_71008db24c(UnkDoorLock* door, UnkGobblerOwner_l581de0* owner);
-void fn_71008db440(UnkDoorLock* door, UnkGobblerOwner_l581de0* owner);
 void fn_7100581f88(UnkGobblerAI_l581de0* self);
 
 static inline UnkGobblerLinkTarget_l581de0* LinkTarget(u8* link) {

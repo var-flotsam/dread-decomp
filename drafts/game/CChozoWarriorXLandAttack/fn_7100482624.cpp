@@ -66,11 +66,6 @@ void fn_71010fc5fc(UnkWarriorXAI_l482624* self, f32* out);
 void fn_71010fc554(UnkWarriorXAI_l482624* self, f32* out);
 void fn_71004837a0();
 
-struct UnkLandLink_l482624 {
-    u8 pad_0x0[0x8];
-    void* context;
-    void (*callback)();
-};
 
 struct UnkLandOwner_l482624 {
     u8 pad_0x0[0x220];
@@ -79,12 +74,44 @@ struct UnkLandOwner_l482624 {
     UnkReflObject* ai;  // 0x240
 };
 
+// The slot that holds a counted reference to an object's weak handle. fn_7100316018 takes the slot itself,
+// not the pointer inside it: with UnkWeakHandle** (include/game/CAbilityGhostAura.h today) the compiler shares
+// one address for the slot and folds it into a pre-indexed load. Belongs in include/game_s2/UnkWeakHandle.h.
+struct UnkWeakRef_l482624 {
+    UnkWeakHandle* handle;
+};
+void fn_7100316018(UnkWeakTarget* self, UnkWeakRef_l482624* out);
+
+// A listener on an animation: the callback with its context, and the weak handle of what it listens to.
+struct UnkLandLink_l482624 {
+    u8 pad_0x0[0x8];
+    void* context;
+    void (*callback)();
+    UnkWeakRef_l482624 ref;  // 0x18
+
+    // Stops listening to the animation the handle points at, and drops the handle.
+    void Detach() {
+        if (UnkWeakHandle* h = ref.handle) {
+            if (UnkWeakTarget* target = h->target)
+                fn_710117b3f0(target, this);
+            ResetRef(&ref.handle);
+        }
+    }
+    // Listens to `animation` instead.
+    void Attach(UnkWeakTarget* animation) {
+        Detach();
+        if (animation) {
+            fn_7100316018(animation, &ref);
+            fn_710117b3e8(ref.handle ? ref.handle->target : nullptr, this);
+        }
+    }
+};
+
 struct UnkLandAttack_l482624 {
     u8 pad_0x0[0x8];
     UnkLandOwner_l482624* owner;
     u8 pad_0x10[0x38];
     UnkLandLink_l482624 link;  // 0x48
-    UnkWeakHandle* handle;     // 0x60
 };
 
 void fn_7100482624(UnkLandAttack_l482624* self) {
@@ -126,18 +153,7 @@ void fn_7100482624(UnkLandAttack_l482624* self) {
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
     ai->land_scale = middle / motion.m[11];
 
-    UnkLandLink_l482624* link = &self->link;
-    link->context = self;
-    link->callback = fn_71004837a0;
-    if (UnkWeakHandle* handle = self->handle) {
-        if (UnkWeakTarget* target = handle->target)
-            fn_710117b3f0(target, link);
-        if (UnkWeakHandle* p = self->handle) {
-            if (--p->ref_count == 0)
-                p->vf_0x10();
-            self->handle = nullptr;
-        }
-    }
-    fn_7100316018(reinterpret_cast<UnkWeakTarget*>(animation), &self->handle);
-    fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+    self->link.context = self;
+    self->link.callback = fn_71004837a0;
+    self->link.Attach(reinterpret_cast<UnkWeakTarget*>(animation));
 }

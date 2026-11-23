@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include <string>
 
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntString.h"
 #include "base/global/timeline/CEvent.h"
@@ -123,24 +123,24 @@ void fn_71006cd5c8(UnkSwifterAI_l6cd5c8* self) {
         mode.id = 0;
         UnkSendBlend_l6cd5c8 blend;
         blend.id = -1;
-        blend.weight = 0.6f;
-        blend.flags = 1;
         UnkSendDelay_l6cd5c8 wait;
         wait.field_0x0 = 0;
+        blend.weight = 0.6f;
         wait.delay = delay;
+        blend.flags = 1;
         mask.id = UnkAll_SpitSend().value;
         fn_7101176690(cls, hash, 0xf4061ff25a2163d6, &mode, &blend, &wait, &mask);
     }
     UnkDirParams_l6cd5c8 params;
     params.scale.set = false;
-    __builtin_memset(params.field_0x20, 0, 16);
-    params.vtable = g_unk_7101a25b10 + 2;
     params.dir.Clear();
+    __builtin_memset(params.field_0x20, 0, 16);
     params.field_0x30 = 0;
+    params.kind = 5;
+    params.vtable = g_unk_7101a25b10 + 2;
     params.field_0x39 = 0;
     params.field_0x3b = 0;
     params.field_0x3d = 0;
-    params.kind = 5;
     const UnkMatrix44& m = Matrix(self->owner);
     params.dir.value = UnkVec3f(m.m[2], m.m[6], m.m[10]);
     params.dir.set = true;
@@ -149,8 +149,8 @@ void fn_71006cd5c8(UnkSwifterAI_l6cd5c8* self) {
     fn_71006f4b0c(self->owner->field_0x298, &params, 1);
     UnkMoveParams_l6cd5c8 move;
     move.field_0x14 = 0;
-    move.dir.Clear();
     move.field_0x18.Clear();
+    move.dir.Clear();
     move.vtable = g_unk_7101a2e208 + 2;
     move.kind = 3;
     move.field_0x3c = 0;
