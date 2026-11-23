@@ -21,8 +21,8 @@ struct UnkComponentDefRead_b67a1 {
 bool fn_7100253af0(UnkComponentDefRead_b67a1* self, base::global::CRntFile* file) {
     s32 first = 0;
     s32 second = -1;
-    fn_710007c714(file, &first, 4, 1);
-    fn_710007c714(file, &second, 4, 1);
+    CRntFile_Read(file, &first, 4, 1);
+    CRntFile_Read(file, &second, 4, 1);
     if (first != -1)
         self->field_0x18 = first;
     if (second != -2)

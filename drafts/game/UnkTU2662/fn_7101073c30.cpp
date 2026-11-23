@@ -36,7 +36,7 @@ struct UnkScriptParams_l073c30 {
                             [key](const UnkScriptParam_l073c30& param) { return param.key == key; });
     }
     void Read(const UnkScriptParam_l073c30* param, void* dest, u64 size) {
-        fn_710007c00c(&file, param->offset, 0);
+        CRntFile_Seek(&file, param->offset, 0);
         fn_710007c70c(&file, dest, size);
     }
     template <class T>

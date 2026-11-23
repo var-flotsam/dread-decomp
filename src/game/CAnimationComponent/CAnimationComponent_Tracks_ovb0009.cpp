@@ -227,7 +227,7 @@ static inline bool SendAction(UnkAnimationComponent* self, u64 id, u64 key, cons
 s32 fn_710117b3f8(UnkAnimationComponent* self, void* stream) {
     char name[0x80];
     bool flag;
-    fn_710007cf30(stream, "sb", name, &flag);
+    CRntFile_ReadFormat(stream, "sb", name, &flag);
     u32 mode = flag;
     u64 id;
     fn_710006663c(&id, name);
@@ -438,7 +438,7 @@ static inline void SetValue(UnkReflValue* v, const CType* t, const void* obj) {
 // plays an action of it in `out`.
 bool fn_710117b1c8(UnkAnimComponent_b1c8* self, void* stream, UnkReflValue* out) {
     char name[0x80];
-    fn_710007cf30(stream, "s", name);
+    CRntFile_ReadFormat(stream, "s", name);
     UnkReflObject* entry;
     {
         UnkVersionRegistry* registry = g_unk_7101d4c8d0;
@@ -469,7 +469,7 @@ struct UnkAnimComponent_a018 {
 // Script binding: reads a name into the string id at +0x2b8 (resetting +0x2b4 when it changes).
 s32 fn_710117a018(UnkAnimComponent_a018* self, void* stream) {
     char buffer[0x80];
-    fn_710007cf30(stream, "s", buffer);
+    CRntFile_ReadFormat(stream, "s", buffer);
     CStrId name(buffer, true);
     self->SetName(name);
     return 0;

@@ -65,7 +65,7 @@ s32 fn_7100dfb930() {
         s32 total = 0;
         UnkScriptValue_ldfb930* it = FindValue_ldfb930(results, name.id);
         if (it != &Values_ldfb930(results)[results.values.count] && it->type == 'i') {
-            fn_710007c00c(&results.lock, it->offset, 0);
+            CRntFile_Seek(&results.lock, it->offset, 0);
             fn_710007c70c(&results.lock, &total, 4);
         }
         s32 progress = 0;

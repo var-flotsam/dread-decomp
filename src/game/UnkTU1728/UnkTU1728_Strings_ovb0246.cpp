@@ -15,10 +15,10 @@ using base::global::UnkStringData;
 
 u64 fn_7100b89f84(CRntFile* file, CFilePathStrId* out) {
     u16 length;
-    u64 total = fn_710007c714(file, &length, 2, 1);
+    u64 total = CRntFile_Read(file, &length, 2, 1);
     if (length != 0) {
         char buffer[0x80];
-        u64 read = fn_710007c714(file, buffer, length, 1);
+        u64 read = CRntFile_Read(file, buffer, length, 1);
         u64 size = length;
         buffer[size] = 0;
         u64 hash = fn_7100001570(buffer, size);
@@ -43,10 +43,10 @@ using base::global::UnkStringData;
 
 u64 fn_7100b8a428(CRntFile* file, CStrId* out) {
     u16 length;
-    u64 total = fn_710007c714(file, &length, 2, 1);
+    u64 total = CRntFile_Read(file, &length, 2, 1);
     if (length != 0) {
         char buffer[0x80];
-        u64 read = fn_710007c714(file, buffer, length, 1);
+        u64 read = CRntFile_Read(file, buffer, length, 1);
         u64 size = length;
         buffer[size] = 0;
         u64 hash = fn_7100001570(buffer, size);

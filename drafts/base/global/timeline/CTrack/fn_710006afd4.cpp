@@ -92,17 +92,17 @@ void fn_710006afd4(UnkTrack* track, CRntFile* file) {
     UnkTrackBody_l06afd4* self = reinterpret_cast<UnkTrackBody_l06afd4*>(track);
     u32 start;
     u32 length;
-    fn_710007c714(file, &start, 4, 1);
-    fn_710007c714(file, &length, 4, 1);
+    CRntFile_Read(file, &start, 4, 1);
+    CRntFile_Read(file, &length, 4, 1);
     self->field_0x10 = start * 0.1f;
     self->field_0x14 = length * 0.1f;
     UnkReflTypedPtr obj = Typed_l06afd4(self->GetClass(), self);
 
     s32 count = 0;
-    fn_710007c714(file, &count, 4, 1);
+    CRntFile_Read(file, &count, 4, 1);
     for (s32 i = 0; i < count; ++i) {
         u64 hash;
-        fn_710007c714(file, &hash, 8, 1);
+        CRntFile_Read(file, &hash, 8, 1);
         UnkTrackType_l06afd4* type = AsType(reinterpret_cast<const CType*>(obj.type));
         UnkTrackType_l06afd4* cls =
             type && fn_710009d50c(type->GetClass(), fn_7100096100()) ? type : nullptr;
@@ -116,14 +116,14 @@ void fn_710006afd4(UnkTrack* track, CRntFile* file) {
         case TypeId(0xf6d656c06a983519):
         case TypeId(0xb97cd894d76cacd6): {
             u32 value;
-            fn_710007c714(file, &value, 4, 1);
+            CRntFile_Read(file, &value, 4, 1);
             UnkTrackValue_l06afd4 arg = {fn_7100005178(), &value};
             Set_l06afd4(field, &obj, &arg);
             break;
         }
         case TypeId(0x28230a7fdbf66651): {
             u64 value = -1;
-            fn_710007c714(file, &value, 8, 1);
+            CRntFile_Read(file, &value, 8, 1);
             UnkTrackValue_l06afd4 arg = {fn_710000fd7c(), &value};
             Set_l06afd4(field, &obj, &arg);
             break;
@@ -132,9 +132,9 @@ void fn_710006afd4(UnkTrack* track, CRntFile* file) {
         case TypeId(0x8c2deec131321516): {
             u16 size;
             char text[0x140];
-            fn_710007c714(file, &size, 2, 1);
+            CRntFile_Read(file, &size, 2, 1);
             if (size)
-                fn_710007c714(file, text, size, 1);
+                CRntFile_Read(file, text, size, 1);
             text[size] = '\0';
             const char* value = text;
             UnkTrackValue_l06afd4 arg = {fn_71000081e8(), &value};
@@ -151,28 +151,28 @@ void fn_710006afd4(UnkTrack* track, CRntFile* file) {
         }
         case TypeId(0x4048cbeec15d3c0e): {
             f32 value[4] = {1.0f, 1.0f, 1.0f, 1.0f};
-            fn_710007c714(file, value, 0x10, 1);
+            CRntFile_Read(file, value, 0x10, 1);
             UnkTrackValue_l06afd4 arg = {reinterpret_cast<const CType*>(fn_7100068204()), value};
             Set_l06afd4(field, &obj, &arg);
             break;
         }
         case TypeId(0x937459ba5ed68a51): {
             f32 value;
-            fn_710007c714(file, &value, 4, 1);
+            CRntFile_Read(file, &value, 4, 1);
             UnkTrackValue_l06afd4 arg = {fn_710000abbc(), &value};
             Set_l06afd4(field, &obj, &arg);
             break;
         }
         case TypeId(0x291e3f130f064f1d): {
             s32 value;
-            fn_710007c714(file, &value, 4, 1);
+            CRntFile_Read(file, &value, 4, 1);
             UnkTrackValue_l06afd4 arg = {fn_7100014768(), &value};
             Set_l06afd4(field, &obj, &arg);
             break;
         }
         case TypeId(0x313df0831835525f): {
             f32 value[4] = {};
-            fn_710007c714(file, value, 0x10, 1);
+            CRntFile_Read(file, value, 0x10, 1);
             UnkTrackValue_l06afd4 arg = {fn_71000248c4(), value};
             Set_l06afd4(field, &obj, &arg);
             break;
@@ -180,7 +180,7 @@ void fn_710006afd4(UnkTrack* track, CRntFile* file) {
         case TypeId(0xfc925429c459c462): {
             // An enum: its value is stored straight into the member.
             u32 value;
-            fn_710007c714(file, &value, 4, 1);
+            CRntFile_Read(file, &value, 4, 1);
             UnkReflTypedPtr member = fn_71000e755c(reinterpret_cast<const UnkReflFieldInfo*>(field),
                                                    reinterpret_cast<UnkFieldOwner*>(&obj));
             *static_cast<u32*>(Typed_l06afd4(member.type, member.ptr).ptr) = value;
@@ -188,21 +188,21 @@ void fn_710006afd4(UnkTrack* track, CRntFile* file) {
         }
         case TypeId(0x7c0e083af861f5a8): {
             f32 value[3] = {1.0f, 1.0f, 1.0f};
-            fn_710007c714(file, value, 0xc, 1);
+            CRntFile_Read(file, value, 0xc, 1);
             UnkTrackValue_l06afd4 arg = {reinterpret_cast<const CType*>(fn_7100067f5c()), value};
             Set_l06afd4(field, &obj, &arg);
             break;
         }
         case TypeId(0x6a0c7bde338b1a2b): {
             bool value;
-            fn_710007c714(file, &value, 1, 1);
+            CRntFile_Read(file, &value, 1, 1);
             UnkTrackValue_l06afd4 arg = {fn_710000d228(), &value};
             Set_l06afd4(field, &obj, &arg);
             break;
         }
         case TypeId(0x0d7b335721099bf9): {
             f32 value[3] = {};
-            fn_710007c714(file, value, 0xc, 1);
+            CRntFile_Read(file, value, 0xc, 1);
             UnkTrackValue_l06afd4 arg = {fn_71000246e4(), value};
             Set_l06afd4(field, &obj, &arg);
             break;

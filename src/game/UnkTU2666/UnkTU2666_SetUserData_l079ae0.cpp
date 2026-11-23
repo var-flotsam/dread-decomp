@@ -47,7 +47,7 @@ static inline UnkBagValue_l079ae0* FindValue_l079ae0(UnkPropBag& bag, const CStr
 static inline void ReadBool_l079ae0(UnkPropBag& bag, const CStrId& id, bool* out) {
     UnkBagValue_l079ae0* it = FindValue_l079ae0(bag, id);
     if (it != &Values_l079ae0(bag)[bag.values.count] && it->type == 'b') {
-        fn_710007c00c(&bag.lock, it->offset, 0);
+        CRntFile_Seek(&bag.lock, it->offset, 0);
         fn_710007c70c(&bag.lock, out, 1);
     }
 }

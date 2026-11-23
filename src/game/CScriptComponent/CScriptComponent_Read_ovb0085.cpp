@@ -86,8 +86,8 @@ static inline const char* Text(const CRntString& s) { return s.data ? s.data : g
 
 u32 fn_7101139e08(UnkScriptComponent_ovb0085* self, UnkProp* p) {
     if (!p->set && Is(p, Key(0x16a0)))
-        return fn_710007cb4c(p->stream, "s", Text(self->name_0x68)) != 0;
+        return CRntFile_WriteFormat(p->stream, "s", Text(self->name_0x68)) != 0;
     if (p->set && Is(p, Key(0x16a0)))
-        return fn_710007cf30(p->stream, "s", Text(self->name_0x68)) != 0;
+        return CRntFile_ReadFormat(p->stream, "s", Text(self->name_0x68)) != 0;
     return fn_71010c4250(reinterpret_cast<UnkBaseComponent*>(self), reinterpret_cast<UnkComponentProp*>(p));
 }

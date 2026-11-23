@@ -32,7 +32,7 @@ void fn_7100a4c6a0(UnkColliderTrigger_la4c6a0* self, base::global::CRntFile* fil
     alignas(8) u32 kind;
     const char* name;
     fn_7100a6081c(reinterpret_cast<UnkColliderTrigger_b0058*>(self), file);
-    fn_710007cee4(file, &name);
+    CRntFile_ReadCString(file, &name);
     void* actor;
     {
         UnkGameManager* manager = g_unk_7101d47310;

@@ -35,9 +35,9 @@ void fn_71000ed224(UnkVersionWriter_A1b71* self, base::global::CRntFile* file, U
         UnkVersionDesc_A1b71* desc = reinterpret_cast<UnkVersionEntryView_A1b71*>(entry)->desc;
         base::global::CRntFile* out = self->file;
         u64 id = desc->id;
-        fn_710007c3f0(out, &id, 8);
-        fn_710007c3f0(self->file, &major, 2);
-        fn_710007c3f0(self->file, &minor, 2);
+        CRntFile_Write(out, &id, 8);
+        CRntFile_Write(self->file, &major, 2);
+        CRntFile_Write(self->file, &minor, 2);
     }
     fn_71000ed2b8(self, entry);
 }

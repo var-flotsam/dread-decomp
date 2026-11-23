@@ -121,13 +121,13 @@ UnkCounted_71011934b0* fn_7100255ce8(const CStrId& name, UnkKey_71011934b0* cons
     }
     UnkActorDefObject_l255ce8* result = nullptr;
     if (opened) {
-        fn_710007c00c(&file, 8, 0);
+        CRntFile_Seek(&file, 8, 0);
         CStrId id = name;
         const char* str;
-        fn_710007cee4(&file, &str);
+        CRntFile_ReadCString(&file, &str);
         if (id == g_unk_7101d470e0)
             id = CStrId(str, true);
-        fn_710007cee4(&file, &str);
+        CRntFile_ReadCString(&file, &str);
         CStrId className(str, true);
         UnkActorDefClass_l255ce8* cls = FindClass(className);
         UnkActorDefLoadRequest_l255ce8 request(id, &file);

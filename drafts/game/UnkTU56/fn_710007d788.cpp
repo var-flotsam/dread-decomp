@@ -88,7 +88,7 @@ u64 fn_710007d788(CRntFile* file, const char* format, ...) {
         case 'I':
         case 'U':
         case 'o':
-            total += fn_710007c714(file, va_arg(args, u64*), 8, 1);
+            total += CRntFile_Read(file, va_arg(args, u64*), 8, 1);
             break;
         case 'b':
             total += UnkRead(file, va_arg(args, u8*), 1, 1);

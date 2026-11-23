@@ -167,7 +167,7 @@ void fn_7100233a38(void* object, UnkCommand_b0163* command) {
     UnkKeyedArray_l233a38<UnkReflValue>* attrs = function->vf_0x40();
     if (attrs->Find(s_packed_params) != attrs->End()) {
         // The parameters come packed in the file: rewind it and pass them as they are.
-        fn_710007c00c(&call->file, fn_710007c1a4(&call->file), 0);
+        CRntFile_Seek(&call->file, fn_710007c1a4(&call->file), 0);
         UnkReflArgs_l233a38 args;
         args.data = call->params.data;
         args.count = call->params.count;

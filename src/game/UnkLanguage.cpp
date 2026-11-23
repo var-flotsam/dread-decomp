@@ -195,7 +195,7 @@ void fn_710119cb44(UnkLanguage* self, const char* path, bool keep_texts) {
         }
         fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(&s));
     }
-    fn_710007c00c(&reader.file, 8, 0);
+    CRntFile_Seek(&reader.file, 8, 0);
     while (reader.file.position < reader.file.size) {
         char key[0x200];
         char32_t value[0x1000];

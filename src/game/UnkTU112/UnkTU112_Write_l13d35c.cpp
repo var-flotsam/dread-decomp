@@ -50,7 +50,7 @@ static inline void AppendId(CRntString* line, const CStrId& id) {
 }
 
 static inline void Write(CRntFile* file, const CRntString& s) {
-    fn_710007c450(file, s.data ? s.data : g_unk_710162e2ed, s.length, 1);
+    CRntFile_WriteElements(file, s.data ? s.data : g_unk_710162e2ed, s.length, 1);
 }
 
 // Writes an id's text, counting the read.

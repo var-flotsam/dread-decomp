@@ -416,7 +416,7 @@ bool fn_7101156ac4(UnkFXComponent_ovb51* self, void* stream) {
     char name[0x80];
     bool a;
     bool b;
-    fn_710007cf30(stream, "sbb", name, &a, &b);
+    CRntFile_ReadFormat(stream, "sbb", name, &a, &b);
     u64 hash;
     fn_710006663c(&hash, name);
     u32 on = a;

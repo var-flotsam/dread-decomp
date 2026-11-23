@@ -80,7 +80,7 @@ void fn_7100b30198(UnkIngameMenu_lb30198* self, UnkMenuEvent_lb30198* ev) {
         UnkPropBag* bag = fn_71012024f4(reinterpret_cast<UnkGuiEvent*>(ev));
         UnkBagValue_lb30198* it = FindValue_lb30198(bag, fn_7100001570("StateIdx", 8));
         if (it != &Values_lb30198(bag)[bag->values.count] && it->type == 'i') {
-            fn_710007c00c(&bag->lock, it->offset, 0);
+            CRntFile_Seek(&bag->lock, it->offset, 0);
             fn_710007c70c(&bag->lock, &index, 4);
         }
         fn_7100b2eaac(Owner(self), index, self->state == 1, true);

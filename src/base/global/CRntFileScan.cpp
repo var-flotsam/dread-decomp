@@ -111,7 +111,7 @@ inline u64 UnkRead(CRntFile* file, void* dest, u64 size, u64 count) {
 // address, the 0x20 fill and the table base in callee-saved registers, so it saves one more pair and
 // its frame is 0x10 larger), the format pointer is advanced without a pre-indexed load, and the
 // inline reads test the element count before the swap flag; the same reads in the same order.
-s64 fn_710007cf30(void* stream, const char* format, ...) {
+s64 CRntFile_ReadFormat(void* stream, const char* format, ...) {
     CRntFile* file = static_cast<CRntFile*>(stream);
     UnkSeek(file, 0, 0);
     va_list args;
@@ -122,7 +122,7 @@ s64 fn_710007cf30(void* stream, const char* format, ...) {
         case 'I':
         case 'U':
         case 'o':
-            total += fn_710007c714(file, va_arg(args, u64*), 8, 1);
+            total += CRntFile_Read(file, va_arg(args, u64*), 8, 1);
             break;
         case 'b':
             total += UnkRead(file, va_arg(args, u8*), 1, 1);

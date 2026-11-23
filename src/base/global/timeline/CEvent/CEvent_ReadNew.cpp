@@ -32,7 +32,7 @@ void fn_710006790c(UnkTimelineEvent* event, base::global::CRntFile* file);
 
 UnkTimelineEvent* fn_7100067848(base::global::CRntFile* file) {
     u64 raw;
-    fn_710007c714(file, &raw, 8, 1);
+    CRntFile_Read(file, &raw, 8, 1);
     UnkVersionRegistry* registry = g_unk_7101d4c8d0;
     u64 id = raw;
     auto* type = reinterpret_cast<const base::reflection::CType*>(fn_71000a5118(registry, &id));

@@ -74,23 +74,23 @@ static inline UnkId_lc7ab58& AddId(CRntVector<UnkId_lc7ab58>* ids) {
 }
 
 void fn_7100c7ab58(UnkRecord_lc7ab58* self, CRntFile* file) {
-    fn_710007c714(file, &self->field_0x0, sizeof(u32), 1);
-    fn_710007c714(file, &self->field_0x4, sizeof(u32), 1);
+    CRntFile_Read(file, &self->field_0x0, sizeof(u32), 1);
+    CRntFile_Read(file, &self->field_0x4, sizeof(u32), 1);
     CFilePathStrId path;
     fn_7100b89f84(file, &path);
     u32 count;
-    fn_710007c714(file, &count, sizeof(count), 1);
+    CRntFile_Read(file, &count, sizeof(count), 1);
     if (count) {
         self->field_0x8.Reserve(count);
         for (u32 i = 0; i < count; ++i)
-            fn_710007c714(file, &AddId(&self->field_0x8), sizeof(UnkId_lc7ab58), 1);
+            CRntFile_Read(file, &AddId(&self->field_0x8), sizeof(UnkId_lc7ab58), 1);
     }
     u32 count2;
-    fn_710007c714(file, &count2, sizeof(count2), 1);
+    CRntFile_Read(file, &count2, sizeof(count2), 1);
     if (count2) {
         self->field_0x30.Reserve(count2);
         for (u32 i = 0; i < count2; ++i)
-            fn_710007c714(file, &AddId(&self->field_0x30), sizeof(UnkId_lc7ab58), 1);
+            CRntFile_Read(file, &AddId(&self->field_0x30), sizeof(UnkId_lc7ab58), 1);
     }
 
     UnkRegistry_7100d92158* registry = g_unk_7101d4bbc0;

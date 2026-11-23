@@ -35,7 +35,7 @@ UnkEnergyWaveEntry_l2fff58* fn_71003000cc(UnkEnergyWave_l2fff58* self, const CSt
 u32 fn_71002fff58(UnkEnergyWave_l2fff58* self, UnkProp* p) {
     if (Is(p, Key(0x678))) {
         const char* text;
-        fn_710007cee4(p->stream, &text);
+        CRntFile_ReadCString(p->stream, &text);
         UnkEnergyWaveEntry_l2fff58* entry;
         {
             CStrId name(text, true);

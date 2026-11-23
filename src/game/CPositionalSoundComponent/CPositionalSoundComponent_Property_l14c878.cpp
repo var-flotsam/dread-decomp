@@ -29,23 +29,23 @@ static_assert(__builtin_offsetof(UnkPositionalSound_l14c878, field_0xa8) == 0xa8
 
 u32 fn_710114c878(UnkPositionalSound_l14c878* self, UnkProp* p) {
     if (Is(p, Key(0x1498)) && p->set) {
-        fn_710007cf30(p->stream, "ffff", &self->field_0x7c, &self->field_0x80, &self->field_0x70,
+        CRntFile_ReadFormat(p->stream, "ffff", &self->field_0x7c, &self->field_0x80, &self->field_0x70,
                       &self->field_0x74);
         return true;
     }
     if (Is(p, Key(0x1ff0)) && p->set) {
-        fn_710007cf30(p->stream, "b", &self->field_0xa8);
+        CRntFile_ReadFormat(p->stream, "b", &self->field_0xa8);
         return true;
     }
     if (Is(p, Key(0x1fe8)) && p->set) {
-        fn_710007cf30(p->stream, "f", &self->field_0x78);
+        CRntFile_ReadFormat(p->stream, "f", &self->field_0x78);
         return true;
     }
     if (Is(p, Key(0x1fa8)) && p->set) {
         CRntFile* file = reinterpret_cast<CRntFile*>(p->stream);
         for (int i = 0; file->position < file->size && i < self->path_count; ++i) {
             const char* path;
-            fn_710007cee4(file, &path);
+            CRntFile_ReadCString(file, &path);
             self->paths[i] = CFilePathStrId(path, true);
         }
         return true;

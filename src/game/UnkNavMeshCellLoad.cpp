@@ -130,27 +130,27 @@ void fn_71002b0880(UnkNavCellData* cell, base::global::CRntFile* file, u16 id, M
     cell->id = id;
     cell->mesh = mesh;
     s32 n = 0;
-    fn_710007c714(file, &n, 4, 1);
+    CRntFile_Read(file, &n, 4, 1);
     if (n > 0) {
         cell->vertices.Reserve(n);
         for (s32 i = 0; i < n; ++i) {
             u32 vertex = 0xffff;
-            fn_710007c714(file, &vertex, 4, 1);
+            CRntFile_Read(file, &vertex, 4, 1);
             cell->vertices.PushBack(vertex);
         }
     }
     if (n > 0) {
         s32 m = 0;
-        fn_710007c714(file, &m, 4, 1);
+        CRntFile_Read(file, &m, 4, 1);
         if (m > 0) {
             cell->edges.Reserve(n);
             for (s32 i = 0; i < m; ++i) {
                 u32 side = 0xff;
                 u32 neighbour = 0xffff;
                 u32 flags = 0xff;
-                fn_710007c714(file, &side, 4, 1);
-                fn_710007c714(file, &neighbour, 4, 1);
-                fn_710007c714(file, &flags, 4, 1);
+                CRntFile_Read(file, &side, 4, 1);
+                CRntFile_Read(file, &neighbour, 4, 1);
+                CRntFile_Read(file, &flags, 4, 1);
                 CVector2D dir;
                 f32 len = SideDirection(cell, mesh, side, &dir);
                 fn_71002afa48(reinterpret_cast<UnkNavMeshCell*>(cell), side, neighbour, flags, len, dir);

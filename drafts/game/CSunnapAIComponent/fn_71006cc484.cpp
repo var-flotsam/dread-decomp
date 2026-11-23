@@ -41,6 +41,6 @@ void fn_71006cc484(UnkKeyedFileWriter* self, const u64* key, f32 value) {
     } else {
         offset = entry->offset;
     }
-    fn_710007c00c(&self->file, offset, 0);
-    fn_710007c450(&self->file, &value, sizeof(value), 1);
+    CRntFile_Seek(&self->file, offset, 0);
+    CRntFile_WriteElements(&self->file, &value, sizeof(value), 1);
 }

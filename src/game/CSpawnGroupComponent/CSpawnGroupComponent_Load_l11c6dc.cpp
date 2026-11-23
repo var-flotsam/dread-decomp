@@ -102,20 +102,20 @@ void fn_710111c6dc(UnkSpawnGroupObject_l11c6dc* self, CRntFile* file) {
     const char* onEntityDead;
     const char* onEntityDamaged;
     const char* onAllEntitiesDead;
-    fn_710007c714(file, &isGenerator, 1, 1);
-    fn_710007c714(file, &isInfinite, 1, 1);
-    fn_710007c714(file, &maxToGenerate, 4, 1);
-    fn_710007c714(file, &maxSimultaneous, 4, 1);
-    fn_710007c714(file, &generateEvery, 4, 1);
-    fn_710007cee4(file, &onBeforeGenerateEntity);
-    fn_710007cee4(file, &onEntityGenerated);
-    fn_710007cee4(file, &onEnable);
-    fn_710007cee4(file, &onDisable);
-    fn_710007cee4(file, &onMaxSimultaneous);
-    fn_710007cee4(file, &onMaxGenerated);
-    fn_710007cee4(file, &onEntityDead);
-    fn_710007cee4(file, &onEntityDamaged);
-    fn_710007cee4(file, &onAllEntitiesDead);
+    CRntFile_Read(file, &isGenerator, 1, 1);
+    CRntFile_Read(file, &isInfinite, 1, 1);
+    CRntFile_Read(file, &maxToGenerate, 4, 1);
+    CRntFile_Read(file, &maxSimultaneous, 4, 1);
+    CRntFile_Read(file, &generateEvery, 4, 1);
+    CRntFile_ReadCString(file, &onBeforeGenerateEntity);
+    CRntFile_ReadCString(file, &onEntityGenerated);
+    CRntFile_ReadCString(file, &onEnable);
+    CRntFile_ReadCString(file, &onDisable);
+    CRntFile_ReadCString(file, &onMaxSimultaneous);
+    CRntFile_ReadCString(file, &onMaxGenerated);
+    CRntFile_ReadCString(file, &onEntityDead);
+    CRntFile_ReadCString(file, &onEntityDamaged);
+    CRntFile_ReadCString(file, &onAllEntitiesDead);
 
     Set<fn_710000d228>(self, fn_7100001570("bIsGenerator", 12), &isGenerator);
     Set<fn_710000d228>(self, fn_7100001570("bIsInfinite", 11), &isInfinite);
@@ -171,17 +171,17 @@ void fn_710111c6dc(UnkSpawnGroupObject_l11c6dc* self, CRntFile* file) {
     // Values newer files add, read only while the file has more.
     if (file->position < file->size) {
         bool automanaged = false;
-        fn_710007c714(file, &automanaged, 1, 1);
+        CRntFile_Read(file, &automanaged, 1, 1);
         Set<fn_710000d228>(self, fn_7100001570("bAutomanaged", 12), &automanaged);
     }
     if (file->position < file->size) {
         bool autoenabled = false;
-        fn_710007c714(file, &autoenabled, 1, 1);
+        CRntFile_Read(file, &autoenabled, 1, 1);
         Set<fn_710000d228>(self, fn_7100001570("bAutoenabled", 12), &autoenabled);
     }
     const char* shapeId;
     if (file->position < file->size) {
-        fn_710007cee4(file, &shapeId);
+        CRntFile_ReadCString(file, &shapeId);
         u64 key = fn_7100001570("sLogicCollisionShapeID", 22);
         UnkFieldId_l11c6dc id(shapeId, true);
         Set<fn_7100009658>(self, key, &id);
@@ -196,38 +196,38 @@ void fn_710111c6dc(UnkSpawnGroupObject_l11c6dc* self, CRntFile* file) {
     areaSize.y = 10000.0f;
     areaSize.z = 10000.0f;
     if (file->position < file->size) {
-        fn_710007c714(file, &areaOffset, 12, 1);
-        fn_710007c714(file, &areaSize, 12, 1);
+        CRntFile_Read(file, &areaOffset, 12, 1);
+        CRntFile_Read(file, &areaSize, 12, 1);
         Set<fn_71000246e4>(self, fn_7100001570("vActiveAreaOffset", 17), &areaOffset);
         Set<fn_71000246e4>(self, fn_7100001570("vActiveAreaSize", 15), &areaSize);
     }
     // A flag older versions read and no longer use.
     if (file->position < file->size) {
         bool unused = false;
-        fn_710007c714(file, &unused, 1, 1);
+        CRntFile_Read(file, &unused, 1, 1);
     }
     if (file->position < file->size) {
         f32 unused;  // a second value after the probability, read and dropped
         f32 dropAmmoProb = 0.0f;
-        fn_710007c714(file, &dropAmmoProb, 4, 1);
-        fn_710007c714(file, &unused, 4, 1);
+        CRntFile_Read(file, &dropAmmoProb, 4, 1);
+        CRntFile_Read(file, &unused, 4, 1);
         Set<fn_710000abbc>(self, fn_7100001570("fDropAmmoProb", 13), &dropAmmoProb);
     }
     if (file->position < file->size) {
         s32 initToGenerate = 0;
-        fn_710007c714(file, &initToGenerate, 4, 1);
+        CRntFile_Read(file, &initToGenerate, 4, 1);
         Set<fn_7100014768>(self, fn_7100001570("iInitToGenerate", 15), &initToGenerate);
     }
     if (file->position < file->size) {
         const char* arenaId;
-        fn_710007cee4(file, &arenaId);
+        CRntFile_ReadCString(file, &arenaId);
         u64 key = fn_7100001570("sArenaId", 8);
         UnkFieldId_l11c6dc id(arenaId, true);
         Set<fn_7100009658>(self, key, &id);
     }
     if (file->position < file->size) {
         bool checkActiveDrops = false;
-        fn_710007c714(file, &checkActiveDrops, 1, 1);
+        CRntFile_Read(file, &checkActiveDrops, 1, 1);
         Set<fn_710000d228>(self, fn_7100001570("bCheckActiveDrops", 17), &checkActiveDrops);
     }
 }

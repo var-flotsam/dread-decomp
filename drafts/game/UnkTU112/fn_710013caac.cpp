@@ -204,7 +204,7 @@ bool fn_710013caac(UnkTunableRegistry* self, const UnkStrPair_0x10* path) {
             }
         }
         fn_710007f564(line.Str(), g_unk_71015abdba);
-        fn_710007c450(&out, line.CStr(), line.Length(), 1);
+        CRntFile_WriteElements(&out, line.CStr(), line.Length(), 1);
     }
     fn_710007c144(&in.file);
     // The original closes the input a second time where the output would be expected.

@@ -36,13 +36,13 @@ void fn_71000ed480(UnkWriter_b0202* self, const UnkReflValueRef* ref) {
     if (fn_710009d50c(ref->type, static_cast<const CType*>(fn_710000ffd0()))) {
         const UnkBlob_b0202* blob = static_cast<const UnkBlob_b0202*>(ref->value);
         if (blob) {
-            fn_710007cb4c(self->file, "i", blob->length);
-            fn_710007c3f0(self->file, blob->data, blob->length);
+            CRntFile_WriteFormat(self->file, "i", blob->length);
+            CRntFile_Write(self->file, blob->data, blob->length);
             return;
         }
     }
     if (!fn_710009d52c(ref->type, fn_7100007f84())) {
-        fn_710007c3f0(self->file, ref->value, *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(ref->type) + 0x18));
+        CRntFile_Write(self->file, ref->value, *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(ref->type) + 0x18));
         return;
     }
     UnkReflValue value = fn_71000a1774(ref, fn_7100007f84());
@@ -60,6 +60,6 @@ void fn_71000ed480(UnkWriter_b0202* self, const UnkReflValueRef* ref) {
         const char* chars = text.Str()->data;
         if (!chars)
             chars = g_unk_710162e2ed;
-        fn_710007c3f0(file, chars, __builtin_strlen(chars) + 1);
+        CRntFile_Write(file, chars, __builtin_strlen(chars) + 1);
     }
 }

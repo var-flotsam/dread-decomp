@@ -467,8 +467,8 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                 }
                 fn_710007c610(&reader.file, fn_710007c1a4(&reader.file));
                 for (UnkTunableLine *p = lines.data, *end = lines.data + lines.count; p != end; ++p)
-                    fn_710007c450(&reader.file, p->CStr(), p->Length(), 1);
-                fn_710007c450(&reader.file, g_unk_710162e2ed, 1, 1);
+                    CRntFile_WriteElements(&reader.file, p->CStr(), p->Length(), 1);
+                CRntFile_WriteElements(&reader.file, g_unk_710162e2ed, 1, 1);
                 fn_710007c388(&reader.file, &g_unk_710b372708);
                 fn_710007c144(&reader.file);
             }

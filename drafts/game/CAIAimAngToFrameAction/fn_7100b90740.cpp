@@ -87,7 +87,7 @@ void fn_7100b90740(UnkAimAngToFrameAction_lb90740* self, UnkAimFrames_lb90740* o
     UnkPropBag& props = self->owner->properties->props;
     UnkPropValue_lb90740* value = FindValue_lb90740(props, s_recoil);
     if (value != &Values_lb90740(props)[props.values.count] && value->type == 'b') {
-        fn_710007c00c(&props.lock, value->offset, 0);
+        CRntFile_Seek(&props.lock, value->offset, 0);
         fn_710007c70c(&props.lock, &recoil, 1);
     }
     out->entry = self->frames->Get(unk_prop_bag::Key(0xd88));

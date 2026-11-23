@@ -103,12 +103,12 @@ CRntString fn_7100dfb330(UnkGameManager* self) {
         if (it != &Values_ldfb330(results)[results.values.count]) {
             switch (it->type) {
             case 'f':
-                fn_710007c00c(&results.lock, it->offset, 0);
+                CRntFile_Seek(&results.lock, it->offset, 0);
                 fn_710007c70c(&results.lock, &progress, 4);
                 break;
             case 'i': {
                 s32 value;
-                fn_710007c00c(&results.lock, it->offset, 0);
+                CRntFile_Seek(&results.lock, it->offset, 0);
                 fn_710007c70c(&results.lock, &value, 4);
                 progress = value;
                 break;

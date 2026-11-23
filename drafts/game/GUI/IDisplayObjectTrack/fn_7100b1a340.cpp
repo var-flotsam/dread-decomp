@@ -43,10 +43,10 @@ void fn_7100b1a340(UnkTrackOut_A5_b73* self, const u64* key, const char* text) {
         offset = slot->offset;
     else
         self->slots.EmplaceBack(UnkTrackSlot_lb18a14(offset, *key, 's'));
-    fn_710007c00c(&self->file, offset, 0);
+    CRntFile_Seek(&self->file, offset, 0);
     u64 size = strlen(text) + 1;
     u64 written = size < 0x100 ? size : 0x100;
-    fn_710007c3f0(&self->file, text, written);
+    CRntFile_Write(&self->file, text, written);
     if (size < 0x100)
-        fn_710007c4b8(&self->file, 0, 0x100 - written);
+        CRntFile_Fill(&self->file, 0, 0x100 - written);
 }

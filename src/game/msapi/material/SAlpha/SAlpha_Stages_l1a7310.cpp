@@ -52,7 +52,7 @@ static inline UnkStage_l1a7310& AddStage(UnkStages_l1a7310* stages) {
 void fn_71001a7310(UnkMaterial* self, CRntFile* file, base::global::CRntVector<u64>* list) {
     auto* stages = reinterpret_cast<UnkStages_l1a7310*>(list);
     s32 count = 0;
-    fn_710007c714(file, &count, sizeof(count), 1);
+    CRntFile_Read(file, &count, sizeof(count), 1);
     Reserve(stages, count);
     for (s32 i = 0; i < count; ++i)
         fn_71001a69a0(UnkNoArg(), file, &AddStage(stages));

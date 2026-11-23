@@ -43,7 +43,7 @@ void fn_71011ae740(UnkBlobWriter_l1ae740* self, const u64* key, const UnkBlob_l1
         return;
 
     u64 offset = fn_710007c1a4(&self->file);
-    fn_710007c450(&self->file, blob, 1, 4);
-    fn_710007c450(&self->file, blob->data, blob->size, 1);
+    CRntFile_WriteElements(&self->file, blob, 1, 4);
+    CRntFile_WriteElements(&self->file, blob->data, blob->size, 1);
     self->entries.EmplaceBack(UnkBlobEntry_l1ae740(offset, *key, 0x63));
 }

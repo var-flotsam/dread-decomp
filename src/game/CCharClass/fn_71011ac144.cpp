@@ -83,10 +83,10 @@ struct UnkCharClass_l1ac144 {
 bool fn_71011ac144(UnkCharClass_l1ac144* self, base::global::CRntFile* file) {
     static const CStrId s_timeline("timeline", true);
     s32 count = 0;
-    fn_710007c714(file, &count, 4, 1);
+    CRntFile_Read(file, &count, 4, 1);
     for (s32 i = 0; i < count; ++i) {
         const char* path;
-        fn_710007cee4(file, &path);
+        CRntFile_ReadCString(file, &path);
         UnkAssetResRef set = AsActionSet(Resolve(
             g_unk_7101d4bbc0, UnkActionSetIds_l1ac144(reinterpret_cast<const CStrId&>(g_unk_71727b9630),
                                                       CFilePathStrId(path, true))));

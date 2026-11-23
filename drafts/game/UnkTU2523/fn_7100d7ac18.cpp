@@ -113,7 +113,7 @@ void fn_7100d7ac18(UnkEntityReset_b0220* self) {
             while (remaining) {
                 if (!entry[0x10]) {
                     u8* command = entry + 0x18;
-                    fn_710007c00c(reinterpret_cast<base::global::CRntFile*>(entry + 0x50), *reinterpret_cast<u32*>(entry + 0x14), 0);
+                    CRntFile_Seek(reinterpret_cast<base::global::CRntFile*>(entry + 0x50), *reinterpret_cast<u32*>(entry + 0x14), 0);
                     fn_7100233a38(self, command);
                 }
                 entry += 0x98;

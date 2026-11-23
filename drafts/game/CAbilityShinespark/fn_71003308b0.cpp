@@ -71,7 +71,7 @@ static inline f32 ReadFloat_l3308b0(UnkPropBag& bag, const CStrId& id) {
     f32 value = 0.0f;
     UnkBagValue_l3308b0* it = FindValue_l3308b0(bag, id);
     if (it != &reinterpret_cast<UnkBagValue_l3308b0*>(bag.values.data)[bag.values.count] && it->type == 'f') {
-        fn_710007c00c(&bag.lock, it->offset, 0);
+        CRntFile_Seek(&bag.lock, it->offset, 0);
         fn_710007c70c(&bag.lock, &value, 4);
     }
     return value;

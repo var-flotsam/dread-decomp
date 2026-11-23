@@ -75,20 +75,20 @@ bool fn_71009f1f60(UnkSceneModelAnimDef_l9f1f60* self, CRntFile* file) {
 
     const char* str;
     s32 group_count = 0;
-    fn_710007c714(file, &group_count, 4, 1);
+    CRntFile_Read(file, &group_count, 4, 1);
     self->entries.Clear();
     for (s32 group = 0; group < group_count; ++group) {
-        fn_710007cee4(file, &str);
+        CRntFile_ReadCString(file, &str);
         s32 count;
-        fn_710007c714(file, &count, 4, 1);
+        CRntFile_Read(file, &count, 4, 1);
         CStrId name(str, true);
         self->entries.Reserve(count);
         for (s32 i = 0; i < count; ++i) {
             UnkAnimEntryBody_l9f1f60& entry = self->entries.Add().Body();
             entry.name = name;
-            fn_710007cee4(file, &str);
+            CRntFile_ReadCString(file, &str);
             entry.id = base::global::UnkStrId(str, true);
-            fn_710007cee4(file, &str);
+            CRntFile_ReadCString(file, &str);
             CFilePathStrId path(base::global::UnkStrIdInline(), str, true);
             entry.resource = fn_7100013484(path);
         }

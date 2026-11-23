@@ -32,7 +32,7 @@ struct UnkInterpolationProps_l16e4b0 {
 // Reads a vector from the property's stream into `out`: 1 when it read one, else 0.
 static inline u32 ReadVec(UnkProp* p, UnkInterpolationVec_l16e4b0* out) {
     UnkInterpolationVec_l16e4b0* value;
-    if (fn_710007cf30(p->stream, "o", &value) != 8)
+    if (CRntFile_ReadFormat(p->stream, "o", &value) != 8)
         return 0;
     *out = *value;
     return 1;
@@ -40,11 +40,11 @@ static inline u32 ReadVec(UnkProp* p, UnkInterpolationVec_l16e4b0* out) {
 
 u32 fn_710116e4b0(UnkInterpolationProps_l16e4b0* self, UnkProp* p) {
     if (unk_prop::IsName(p, CRntString("Pos")) && !p->set)
-        return fn_710007cb4c(p->stream, "o", &self->pos) == 8;
+        return CRntFile_WriteFormat(p->stream, "o", &self->pos) == 8;
     if (unk_prop::IsName(p, CRntString("Pos")) && p->set)
         return ReadVec(p, &self->pos);
     if (unk_prop::IsName(p, CRntString("Ang")) && !p->set)
-        return fn_710007cb4c(p->stream, "o", &self->ang) == 8;
+        return CRntFile_WriteFormat(p->stream, "o", &self->ang) == 8;
     if (unk_prop::IsName(p, CRntString("Ang")) && p->set)
         return ReadVec(p, &self->ang);
     return fn_71010c4250(reinterpret_cast<UnkBaseComponent*>(self), reinterpret_cast<UnkComponentProp*>(p));

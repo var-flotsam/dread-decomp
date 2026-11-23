@@ -21,7 +21,7 @@ UnkReflValue fn_7100aa41d0(void*, char* obj, UnkReflValue* const* args) {
     else
         stream = arg;
     bool value = true;
-    fn_710007cf30(stream, "b", &value);
+    CRntFile_ReadFormat(stream, "b", &value);
     bool v = value;
     bool* flag = reinterpret_cast<bool*>(target + 0xfa);
     if (*flag != v) {

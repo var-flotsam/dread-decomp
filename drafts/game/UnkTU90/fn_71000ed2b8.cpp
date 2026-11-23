@@ -45,7 +45,7 @@ s32 fn_71000ed2b8(UnkWriter_b0202* self, const CType* type) {
     self->count = count + 1;
 
     CName root("Root");
-    fn_710007c3f0(self->file, &root, sizeof(root));
+    CRntFile_Write(self->file, &root, sizeof(root));
 
     CStrId name = g_unk_7101d470e0;
     if (fn_710009d760(reinterpret_cast<const UnkReflObject*>(type), reinterpret_cast<const CType*>(fn_710009bedc())))

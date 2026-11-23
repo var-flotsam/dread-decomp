@@ -43,7 +43,7 @@ u32 fn_7101181d70(UnkObj_7101181d70* self, UnkProp* p) {
             ++sub->named->use_count;
             name = &sub->named->name;
         }
-        return fn_710007cb4c(stream, "s", name->data ? name->data : "") != 0;
+        return CRntFile_WriteFormat(stream, "s", name->data ? name->data : "") != 0;
     }
     return fn_71010c4250(reinterpret_cast<UnkBaseComponent*>(self), reinterpret_cast<UnkComponentProp*>(p));
 }

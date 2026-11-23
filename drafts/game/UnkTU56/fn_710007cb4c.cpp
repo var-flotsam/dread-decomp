@@ -16,7 +16,7 @@ struct UnkVec3_cb4c {
 
 // Writes `size` bytes at the position and moves it on; returns `size` (fn_710007c3f0, inlined).
 static inline u64 UnkWriteBytes(CRntFile* file, const void* data, u64 size) {
-    fn_710007c514(file, size, 1);
+    CRntFile_Reserve(file, size, 1);
     memcpy(file->data + file->position, data, size);
     file->position += size;
     return size;
@@ -28,7 +28,7 @@ static inline u64 UnkWrite(CRntFile* file, T value) {
     return UnkWriteBytes(file, &value, sizeof(T));
 }
 
-s64 fn_710007cb4c(void* stream, const char* format, ...) {
+s64 CRntFile_WriteFormat(void* stream, const char* format, ...) {
     CRntFile* file = static_cast<CRntFile*>(stream);
     va_list args;
     va_start(args, format);

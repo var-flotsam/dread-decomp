@@ -76,7 +76,7 @@ void fn_710113420c(UnkAIAttackComponent3_ovb0050* self, CRntFile* file) {
         fn_710007ca94(file, second);
     u32 value = 0;
     if (file->position < file->size)
-        fn_710007c714(file, &value, 4, 1);
+        CRntFile_Read(file, &value, 4, 1);
     {
         CRntString text(first);
         fn_710007eaa0(&self->field_0x138, &text);

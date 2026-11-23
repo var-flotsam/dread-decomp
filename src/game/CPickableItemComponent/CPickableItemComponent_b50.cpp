@@ -109,36 +109,36 @@ bool fn_71009cfbf0(UnkPickableItem_l9cfbf0* self, CRntFile* file) {
     const char* string_0xc0;
     const char* string_0xf0;
     bool flag;
-    fn_710007c00c(file, 0, 0);
-    fn_710007cee4(file, &id_0x98);
-    fn_710007c714(file, &value_0xa8, 4, 1);
-    fn_710007c714(file, &value_0x50, 4, 1);
-    fn_710007cee4(file, &kind);
-    fn_710007cee4(file, &id_0xa0);
-    fn_710007cee4(file, &id_0xb8);
-    fn_710007cee4(file, &string_0xc0);
-    fn_710007cee4(file, &string_0xf0);
-    fn_710007c714(file, &flag, 1, 1);
+    CRntFile_Seek(file, 0, 0);
+    CRntFile_ReadCString(file, &id_0x98);
+    CRntFile_Read(file, &value_0xa8, 4, 1);
+    CRntFile_Read(file, &value_0x50, 4, 1);
+    CRntFile_ReadCString(file, &kind);
+    CRntFile_ReadCString(file, &id_0xa0);
+    CRntFile_ReadCString(file, &id_0xb8);
+    CRntFile_ReadCString(file, &string_0xc0);
+    CRntFile_ReadCString(file, &string_0xf0);
+    CRntFile_Read(file, &flag, 1, 1);
     fn_71009cfe98(reinterpret_cast<UnkItemDesc_l9cfe98*>(self), value_0xa8, value_0x50, id_0x98, kind,
                   id_0xa0, id_0xb8, string_0xc0, string_0xf0, flag);
 
     if (HasData(file)) {
         u8 value;  // unset in the original: the read fills it
-        fn_710007c714(file, &value, 1, 1);
+        CRntFile_Read(file, &value, 1, 1);
         self->field_0x1b1 = value;
     }
     if (HasData(file)) {
         u8 value = 0;
-        fn_710007c714(file, &value, 1, 1);
+        CRntFile_Read(file, &value, 1, 1);
         self->field_0x1b0 = value;
     }
     if (HasData(file)) {
         const char* name;
-        fn_710007cee4(file, &name);
+        CRntFile_ReadCString(file, &name);
         self->field_0x1a0 = UnkStrIdHandleTemp_l9cfbf0(CStrId(name, true)).value();
     }
     if (HasData(file))
-        fn_710007c714(file, &self->field_0xac, 4, 1);
+        CRntFile_Read(file, &self->field_0xac, 4, 1);
     self->field_0x1b2 = false;
     return true;
 }

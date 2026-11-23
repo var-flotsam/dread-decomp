@@ -41,7 +41,7 @@ void fn_71011ae550(UnkKeyedFile_l1ae550* self, const u64* key, const UnkBytes_l1
         offset = it->offset;
     else
         self->slots.EmplaceBack(UnkKeyedSlot_l1ae550(offset, *key, 'c'));
-    fn_710007c00c(&self->file, offset, 0);
-    fn_710007c3f0(&self->file, &bytes->size, sizeof(bytes->size));
-    fn_710007c450(&self->file, bytes->data, 1, bytes->size);
+    CRntFile_Seek(&self->file, offset, 0);
+    CRntFile_Write(&self->file, &bytes->size, sizeof(bytes->size));
+    CRntFile_WriteElements(&self->file, bytes->data, 1, bytes->size);
 }

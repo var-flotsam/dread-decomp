@@ -41,6 +41,6 @@ void fn_71011afd24(UnkValueWriter_l1afd24* self, const u64* key, const void* val
         offset = end_offset;
         self->entries.EmplaceBack(UnkValueEntry_l1afd24(offset, *key, 0x77));
     }
-    fn_710007c00c(&self->file, offset, 0);
-    fn_710007c450(&self->file, value, 0x10, 1);
+    CRntFile_Seek(&self->file, offset, 0);
+    CRntFile_WriteElements(&self->file, value, 0x10, 1);
 }

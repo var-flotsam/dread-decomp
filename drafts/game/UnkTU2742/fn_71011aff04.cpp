@@ -33,6 +33,6 @@ void fn_71011aff04(UnkTU2742Table* self, const u64* key, const void* value) {
     if (found != end)
         return;
     u64 offset = fn_710007c1a4(&self->file);
-    fn_710007c450(&self->file, value, 0x10, 1);
+    CRntFile_WriteElements(&self->file, value, 0x10, 1);
     self->entries.EmplaceBack(UnkTU2742Entry(offset, *key, 0x77));
 }

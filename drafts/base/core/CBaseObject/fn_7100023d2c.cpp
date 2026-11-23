@@ -61,7 +61,7 @@ inline UnkReflTypedPtr MemberOf(UnkReflObject* self, UnkReadField* field) {
 // Reads a T's bytes from the file into `value` and sets the field to it.
 template <class T, const CType* (*TypeOf)()>
 inline bool ReadInto(UnkReflObject* self, UnkReadField* field, CRntFile* file, T& value) {
-    fn_710007c714(file, &value, sizeof(T), 1);
+    CRntFile_Read(file, &value, sizeof(T), 1);
     UnkReadRef obj = {self->vf_0x0(), self};
     UnkReadRef arg = {TypeOf(), &value};
     return SetField(field, &obj, &arg);
@@ -103,7 +103,7 @@ bool fn_7100023d2c(UnkReflObject* self, UnkReadField* field, CRntFile* file) {
     }
     case 's': {
         const char* text;
-        fn_710007cee4(file, &text);
+        CRntFile_ReadCString(file, &text);
         UnkReadRef obj = {self->vf_0x0(), self};
         CRntString value(text);
         UnkReadRef arg = {fn_7100007f84(), &value};
@@ -119,7 +119,7 @@ bool fn_7100023d2c(UnkReflObject* self, UnkReadField* field, CRntFile* file) {
     }
     case 'e': {
         const char* name;
-        fn_710007cee4(file, &name);
+        CRntFile_ReadCString(file, &name);
         UnkReflObject* type = field->type;
         const CEnumType* enum_type = type && fn_710009d50c(type->vf_0x0(), fn_710009921c())
                                          ? reinterpret_cast<const CEnumType*>(type)

@@ -32,7 +32,7 @@ UnkReflValue fn_71009395b8(void*, char* obj, UnkReflValue* const* args) {
     void* stream = ArgPtr_A5_b67(args[0]);
     u8 value = 0;
     s32 one;
-    fn_710007cf30(stream, "b", &value);
+    CRntFile_ReadFormat(stream, "b", &value);
     u8 flag = value;
     if (*reinterpret_cast<u8*>(self + 0x218) != flag) {
         bool on = flag != 0;

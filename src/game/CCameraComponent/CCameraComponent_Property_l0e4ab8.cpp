@@ -94,14 +94,14 @@ u32 fn_71010e4ab8(UnkCameraComponent_l0e4ab8* self, UnkProp* p) {
         f32 x, y, z;
         UnkArg1_71010e2278* a1;
         UnkArg2_71010e2278* a2;
-        fn_710007cf30(p->stream, "fffoo", &x, &y, &z, &a1, &a2);
+        CRntFile_ReadFormat(p->stream, "fffoo", &x, &y, &z, &a1, &a2);
         fn_71010e2278(reinterpret_cast<UnkOwner_71010e2278*>(self), a1, a2, x, y, z);
         return true;
     }
     if (Is(p, Key(0xa80)) && p->set) {
         char buf[0x80];
         u8 flag;
-        fn_710007cf30(p->stream, "sb", buf, &flag);
+        CRntFile_ReadFormat(p->stream, "sb", buf, &flag);
         CStrId id(buf, true);
         bool on = flag;
         UnkCamState_l0e4ab8** it = self->states.Find(id);
@@ -115,14 +115,14 @@ u32 fn_71010e4ab8(UnkCameraComponent_l0e4ab8* self, UnkProp* p) {
         return true;
     }
     if (!p->set && Is(p, Key(0xdc0)))
-        return fn_710007cb4c(p->stream, "f", (f64)self->field_0x48) != 0;
+        return CRntFile_WriteFormat(p->stream, "f", (f64)self->field_0x48) != 0;
     if (p->set && Is(p, Key(0xdc0)))
-        return fn_710007cf30(p->stream, "f", &self->field_0x48) != 0;
+        return CRntFile_ReadFormat(p->stream, "f", &self->field_0x48) != 0;
     if (!p->set && Is(p, Key(0xda0)))
-        return fn_710007cb4c(p->stream, "f", (f64)self->default_fov) != 0;
+        return CRntFile_WriteFormat(p->stream, "f", (f64)self->default_fov) != 0;
     if (p->set && Is(p, Key(0xda0)))
-        return fn_710007cf30(p->stream, "f", &self->default_fov) != 0;
+        return CRntFile_ReadFormat(p->stream, "f", &self->default_fov) != 0;
     if (p->set && Is(p, Key(0x13d0)))
-        return fn_710007cf30(p->stream, "b", &self->scaled) != 0;
+        return CRntFile_ReadFormat(p->stream, "b", &self->scaled) != 0;
     return fn_71010c4250(reinterpret_cast<UnkBaseComponent*>(self), reinterpret_cast<UnkComponentProp*>(p));
 }

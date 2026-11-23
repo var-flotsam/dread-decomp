@@ -624,7 +624,7 @@ s32 fn_710107d380(lua_State* L) {
         fn_71010c7284(&slot.command, &id, &text, flag, nullptr);
     }
     fn_71010bf250(L, 5, command_name, &slot.command.file);
-    fn_710007c00c(&slot.command.file, 0, 0);
+    CRntFile_Seek(&slot.command.file, 0, 0);
     fn_7100233a38(object, &slot.command);
     fn_71010c7328(&slot.command);
     return 0;

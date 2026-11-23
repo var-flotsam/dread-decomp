@@ -65,7 +65,7 @@ void fn_7100c9b784(UnkAimAngToFrame_lc9b784* self) {
     UnkPropBag& bag = self->owner->props->bag;
     UnkPropValue_lc9b784* it = FindValue_lc9b784(bag, s_angle);
     if (it != &Values_lc9b784(bag)[bag.values.count] && it->type == 'f') {
-        fn_710007c00c(&bag.lock, it->offset, 0);
+        CRntFile_Seek(&bag.lock, it->offset, 0);
         fn_710007c70c(&bag.lock, &degrees, 4);
     }
     f32 angle = degrees * 3.141592653589793 / 180.0;

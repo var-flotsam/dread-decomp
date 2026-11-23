@@ -66,17 +66,17 @@ __attribute__((noinline)) void fn_710010e364(UnkBoxVector_b0236* self, u32 n) {
 // Reads the boxes from a file.
 bool fn_710010ddc4(UnkBoxVector_b0236* self, base::global::CRntFile* file) {
     s32 n;
-    fn_710007c714(file, &n, 4, 1);
+    CRntFile_Read(file, &n, 4, 1);
     self->Reserve(n);
     if (n >= 1) {
         for (s32 i = 0; i < n; ++i) {
             u32 word;
             f32 a, b, c, d;
-            fn_710007c714(file, &word, 4, 1);
-            fn_710007c714(file, &a, 4, 1);
-            fn_710007c714(file, &b, 4, 1);
-            fn_710007c714(file, &c, 4, 1);
-            fn_710007c714(file, &d, 4, 1);
+            CRntFile_Read(file, &word, 4, 1);
+            CRntFile_Read(file, &a, 4, 1);
+            CRntFile_Read(file, &b, 4, 1);
+            CRntFile_Read(file, &c, 4, 1);
+            CRntFile_Read(file, &d, 4, 1);
             fn_710010e364(self, self->count + 1);
             u32 count = self->count;
             UnkBox_b0236* end = &self->data[count];

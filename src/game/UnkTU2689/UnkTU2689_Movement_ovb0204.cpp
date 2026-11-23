@@ -417,7 +417,7 @@ UnkReflValue fn_71010dd0d4(UnkMovementMethod_b0204* self, UnkReflValue* const* a
     const char* text = arg->type ? base::reflection::refl_ArgValue<char>(arg) : nullptr;
     {
         char name[0x80];
-        fn_710007cf30(const_cast<char*>(text), "s", name);
+        CRntFile_ReadFormat(const_cast<char*>(text), "s", name);
         CStrId id(name, true);
         fn_710006c76c(target->member, &id);
     }

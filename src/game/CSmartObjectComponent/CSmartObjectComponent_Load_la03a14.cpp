@@ -92,13 +92,13 @@ void fn_7100a03a14(UnkSmartObjectObject_la03a14* self, CRntFile* file) {
     const char* usableEntity;
     const char* defaultUseAction;
     const char* defaultAbortAction;
-    fn_710007c714(file, &startEnabled, 1, 1);
-    fn_710007cee4(file, &onUseStart);
-    fn_710007cee4(file, &onUseSuccess);
-    fn_710007cee4(file, &onUseFailure);
-    fn_710007cee4(file, &usableEntity);
-    fn_710007cee4(file, &defaultUseAction);
-    fn_710007cee4(file, &defaultAbortAction);
+    CRntFile_Read(file, &startEnabled, 1, 1);
+    CRntFile_ReadCString(file, &onUseStart);
+    CRntFile_ReadCString(file, &onUseSuccess);
+    CRntFile_ReadCString(file, &onUseFailure);
+    CRntFile_ReadCString(file, &usableEntity);
+    CRntFile_ReadCString(file, &defaultUseAction);
+    CRntFile_ReadCString(file, &defaultAbortAction);
 
     {
         u64 key = fn_7100001570("sOnUseStart", 11);
@@ -135,10 +135,10 @@ void fn_7100a03a14(UnkSmartObjectObject_la03a14* self, CRntFile* file) {
     // Two values older files no longer use: read and dropped.
     if (file->position < file->size) {
         bool unused = false;
-        fn_710007c714(file, &unused, 1, 1);
+        CRntFile_Read(file, &unused, 1, 1);
     }
     if (file->position < file->size) {
         s32 unused = -1;
-        fn_710007c714(file, &unused, 4, 1);
+        CRntFile_Read(file, &unused, 4, 1);
     }
 }

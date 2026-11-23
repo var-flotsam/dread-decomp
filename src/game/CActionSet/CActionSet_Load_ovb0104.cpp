@@ -175,13 +175,13 @@ bool fn_7100b8c1a0(UnkActionSet_b0104* self) {
     if (opened) {
         u32 value;
         s32 count;
-        fn_710007c00c(&file, 8, 0);
+        CRntFile_Seek(&file, 8, 0);
         fn_7100b8a428(&file, self->field_0x58);
         value = 0;
-        fn_710007c714(&file, &value, 4, 1);
+        CRntFile_Read(&file, &value, 4, 1);
         self->field_0x60 = value;
         count = 0;
-        fn_710007c714(&file, &count, 4, 1);
+        CRntFile_Read(&file, &count, 4, 1);
         fn_7100b8c2cc(self->actions, count > 4 ? static_cast<u32>(count) / 4 + 1 : 11, count);
         for (s32 i = 0; i < count; ++i)
             fn_7100b8c420(self, &file);

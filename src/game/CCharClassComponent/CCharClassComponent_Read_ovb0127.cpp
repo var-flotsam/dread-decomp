@@ -71,7 +71,7 @@ static inline UnkCharClassEntry_ovb0127& AddEntry(UnkCharClassEntries_ovb0127* e
 
 bool fn_71011acf1c(UnkCharClassTable_ovb0127* self, base::global::CRntFile* file) {
     s32 count = 0;
-    fn_710007c714(file, &count, sizeof(count), 1);
+    CRntFile_Read(file, &count, sizeof(count), 1);
     UnkCharClassEntries_ovb0127* entries = &self->entries;
     for (u64 i = 0; i < entries->count; ++i)
         fn_71011ad580(&entries->data[i]);

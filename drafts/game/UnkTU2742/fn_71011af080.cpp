@@ -40,6 +40,6 @@ void fn_71011af080(UnkValueWriter_2742* self, const u64* key, u32 value) {
         return;
 
     u64 offset = fn_710007c1a4(&self->stream);
-    fn_710007c450(&self->stream, &value, sizeof(value), 1);
+    CRntFile_WriteElements(&self->stream, &value, sizeof(value), 1);
     self->records.EmplaceBack(UnkValueRecord_2742(offset, *key, 0x75));
 }

@@ -1011,10 +1011,10 @@ static inline void AssignBag(UnkPropBag* self, const UnkPropBag* other) {
                   reinterpret_cast<const UnkCopiedVector<UnkWordsValue>*>(&other->values));
     if (self != other) {
         fn_710007c144(&self->lock);
-        fn_710007bf9c(&self->lock, other->lock.size);
+        CRntFile_Allocate(&self->lock, other->lock.size);
         memcpy(self->lock.data, other->lock.data, other->lock.size);
         self->lock.size = other->lock.size;
-        fn_710007c00c(&self->lock, 0, 0);
+        CRntFile_Seek(&self->lock, 0, 0);
     }
     fn_71000ce19c(reinterpret_cast<UnkStruct_0x28*>(&self->names), reinterpret_cast<const UnkStruct_0x28*>(&other->names));
 }

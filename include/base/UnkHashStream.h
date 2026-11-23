@@ -23,13 +23,13 @@ struct UnkScopedHashStream : UnkHashStream_0x38 {
     UnkScopedHashStream(s32 kind, void* arg) { fn_710007be8c(this, kind, arg); }
     ~UnkScopedHashStream() { fn_710007c0e4(this); }
 
-    void Begin(s32 size) { fn_710007bf9c(this, size); }  // the block's initial size
-    void PutBytes(const void* data, u32 size) { fn_710007c3f0(this, data, size); }
+    void Begin(s32 size) { CRntFile_Allocate(this, size); }  // the block's initial size
+    void PutBytes(const void* data, u32 size) { CRntFile_Write(this, data, size); }
 
     // Writes a copy of the value, so each call owns its own temporary.
     template <class T>
     void Put(T v) {
-        fn_710007c3f0(this, &v, sizeof(T));
+        CRntFile_Write(this, &v, sizeof(T));
     }
 
     s32 Finish() { return fn_710007b750(data, fn_710007c1a4(this), -1); }

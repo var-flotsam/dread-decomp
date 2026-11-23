@@ -41,6 +41,6 @@ void fn_7100b18a14(UnkTrackOut_A5_b73* self, const u64* key, bool value) {
         offset = slot->offset;
     else
         self->slots.EmplaceBack(UnkTrackSlot_lb18a14(offset, *key, 'b'));
-    fn_710007c00c(&self->file, offset, 0);
-    fn_710007c450(&self->file, &value, 1, 1);
+    CRntFile_Seek(&self->file, offset, 0);
+    CRntFile_WriteElements(&self->file, &value, 1, 1);
 }

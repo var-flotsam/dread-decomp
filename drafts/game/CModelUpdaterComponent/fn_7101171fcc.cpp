@@ -60,19 +60,19 @@ static inline void ShowPart(UnkModelUpdater_l171fcc* self, const char* name, boo
 u32 fn_7101171fcc(UnkModelUpdater_l171fcc* self, UnkProp* p) {
     if (Is(p, Key(0x2018))) {
         s32 layer = -1;
-        fn_710007c714(reinterpret_cast<CRntFile*>(p->stream), &layer, 4, 1);
+        CRntFile_Read(reinterpret_cast<CRntFile*>(p->stream), &layer, 4, 1);
         self->layer = layer;
         return true;
     }
     if (Is(p, Key(0x2000))) {
         const char* name;
-        fn_710007cee4(p->stream, &name);
+        CRntFile_ReadCString(p->stream, &name);
         self->name_hash = fn_7100001570(name, __builtin_strlen(name));
         return true;
     }
     if (Is(p, Key(0x1668))) {
         auto* stream = reinterpret_cast<UnkHashStream_0x38*>(p->stream);
-        fn_710007c00c(reinterpret_cast<CRntFile*>(p->stream), fn_710007c1a4(stream), 0);
+        CRntFile_Seek(reinterpret_cast<CRntFile*>(p->stream), fn_710007c1a4(stream), 0);
         return self->model != nullptr;
     }
     if (Is(p, Key(0x20c0))) {
@@ -80,9 +80,9 @@ u32 fn_7101171fcc(UnkModelUpdater_l171fcc* self, UnkProp* p) {
         s32 first;
         s32 last;
         const char* prefix;
-        fn_710007cee4(p->stream, &prefix);
-        fn_710007c714(reinterpret_cast<CRntFile*>(p->stream), &first, 4, 1);
-        fn_710007c714(reinterpret_cast<CRntFile*>(p->stream), &last, 4, 1);
+        CRntFile_ReadCString(p->stream, &prefix);
+        CRntFile_Read(reinterpret_cast<CRntFile*>(p->stream), &first, 4, 1);
+        CRntFile_Read(reinterpret_cast<CRntFile*>(p->stream), &last, 4, 1);
         s32 r = rand();
         if (last >= first) {
             s32 pick = r % (last - first + 1);
@@ -100,14 +100,14 @@ u32 fn_7101171fcc(UnkModelUpdater_l171fcc* self, UnkProp* p) {
     }
     if (Is(p, Key(0x2060))) {
         bool visible;
-        fn_710007cf30(p->stream, "b", &visible);
+        CRntFile_ReadFormat(p->stream, "b", &visible);
         fn_71009f19b0(self, visible);
         return true;
     }
     if (Is(p, Key(0x2030))) {
         bool a;
         bool b;
-        fn_710007cf30(p->stream, "bb", &a, &b);
+        CRntFile_ReadFormat(p->stream, "bb", &a, &b);
         if (!self->model)
             return false;
         self->model->slots->field_0x35c = a;
@@ -117,7 +117,7 @@ u32 fn_7101171fcc(UnkModelUpdater_l171fcc* self, UnkProp* p) {
     if (Is(p, Key(0x1fb0)) && p->set) {
         UnkVec3f center(0.0f, 0.0f, 0.0f);
         f32 radius = -1.0f;
-        fn_710007cf30(p->stream, "ffff", &radius, &center.x, &center.y, &center.z);
+        CRntFile_ReadFormat(p->stream, "ffff", &radius, &center.x, &center.y, &center.z);
         if (radius >= 0.0f) {
             UnkSphere sphere;
             fn_710021685c(&sphere);
@@ -129,7 +129,7 @@ u32 fn_7101171fcc(UnkModelUpdater_l171fcc* self, UnkProp* p) {
         return true;
     }
     if (Is(p, Key(0x2040)) && p->set) {
-        fn_710007cf30(p->stream, "b", &self->field_0x158);
+        CRntFile_ReadFormat(p->stream, "b", &self->field_0x158);
         return true;
     }
     // The base handler takes the component and the property record.

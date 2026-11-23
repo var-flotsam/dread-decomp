@@ -18,12 +18,12 @@ struct UnkGrabRecord_A3_b72 {
 void fn_7100790cbc(UnkGrabRecord_A3_b72* self, CRntFile* file) {
     bool first = false;
     bool second = false;
-    fn_710007c714(file, self->field_0x0, 0xc, 1);
-    fn_710007c714(file, self->field_0xc, 0xc, 1);
-    fn_710007c714(file, &self->field_0x18, 4, 1);
-    fn_710007c714(file, &self->field_0x1c, 4, 1);
-    fn_710007c714(file, &first, 1, 1);
-    fn_710007c714(file, &second, 1, 1);
+    CRntFile_Read(file, self->field_0x0, 0xc, 1);
+    CRntFile_Read(file, self->field_0xc, 0xc, 1);
+    CRntFile_Read(file, &self->field_0x18, 4, 1);
+    CRntFile_Read(file, &self->field_0x1c, 4, 1);
+    CRntFile_Read(file, &first, 1, 1);
+    CRntFile_Read(file, &second, 1, 1);
     if (first)
         self->flags_0x20 |= 4;
     if (second)

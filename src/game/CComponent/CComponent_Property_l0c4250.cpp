@@ -40,9 +40,9 @@ static inline bool IsCharClass(UnkReflObject* obj) {
 u32 fn_71010c4250(UnkBaseComponent* self, UnkComponentProp* prop) {
     UnkProp* p = reinterpret_cast<UnkProp*>(prop);
     if (!p->set && Is(p, Key(0xe88)))
-        return fn_710007cb4c(p->stream, "b", self->unk_0x38[4]) != 0;
+        return CRntFile_WriteFormat(p->stream, "b", self->unk_0x38[4]) != 0;
     if (p->set && Is(p, Key(0xe88)))
-        return fn_710007cf30(p->stream, "b", &self->unk_0x38[4]) != 0;
+        return CRntFile_ReadFormat(p->stream, "b", &self->unk_0x38[4]) != 0;
     if (Is(p, Key(0xaa8)) && !p->set) {
         char buf[0x80];
         if (self->field_0x30 && Owner(self)->object && IsCharClass(Owner(self)->object)) {
@@ -56,7 +56,7 @@ u32 fn_71010c4250(UnkBaseComponent* self, UnkComponentProp* prop) {
         } else {
             buf[0] = '\0';
         }
-        fn_710007cb4c(p->stream, "s", buf);
+        CRntFile_WriteFormat(p->stream, "s", buf);
         return true;
     }
     return fn_710024fc10(self, prop);

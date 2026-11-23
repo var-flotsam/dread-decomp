@@ -586,13 +586,13 @@ bool fn_7100840064(char* self, const void* stream) {
     fn_710007ca94(file, a);
     fn_710007ca94(file, b);
     fn_710007ca94(file, c);
-    fn_710007c714(file, &value, 4, 1);
+    CRntFile_Read(file, &value, 4, 1);
     fn_710007ca94(file, d);
     fn_710007ca94(file, e);
     fn_710007ca94(file, f);
     fn_710007ca94(file, g);
-    fn_710007c714(file, &i, 4, 1);
-    fn_710007c714(file, &j, 4, 1);
+    CRntFile_Read(file, &i, 4, 1);
+    CRntFile_Read(file, &j, 4, 1);
     fn_710007ca94(file, h);
     fn_710083b83c(self, a, b, c, value, d, e, h, f, g, i, j);
     return true;
@@ -604,7 +604,7 @@ bool fn_710084017c(char* object, const void* stream) {
     UnkGun_ovb0091* self = AsGun(object);
     char name[0x80];
     bool flag = true;
-    fn_710007cf30(const_cast<void*>(stream), "sb", name, &flag);
+    CRntFile_ReadFormat(const_cast<void*>(stream), "sb", name, &flag);
     CancelCharge(self);
     CStrId id(name, true);
     fn_710083f32c(reinterpret_cast<UnkSamusGunComponent*>(self), &id, flag, false, false);
@@ -673,7 +673,7 @@ static inline u64 HashOf(const char* str) {
 // of the others are passed hashed to fn_7100835bd8. Returns true (the clone declares it void).
 bool fn_71008402ac(char* self, const void* stream) {
     void* file = const_cast<void*>(stream);
-    fn_710007c00c(reinterpret_cast<CRntFile*>(file), 0, 0);
+    CRntFile_Seek(reinterpret_cast<CRntFile*>(file), 0, 0);
     const char* name;
     const char* b;
     const char* c;
@@ -683,15 +683,15 @@ bool fn_71008402ac(char* self, const void* stream) {
     const char* g;
     const char* h;
     const char* i;
-    fn_710007cee4(file, &name);
-    fn_710007cee4(file, &b);
-    fn_710007cee4(file, &c);
-    fn_710007cee4(file, &unused);
-    fn_710007cee4(file, &e);
-    fn_710007cee4(file, &f);
-    fn_710007cee4(file, &g);
-    fn_710007cee4(file, &h);
-    fn_710007cee4(file, &i);
+    CRntFile_ReadCString(file, &name);
+    CRntFile_ReadCString(file, &b);
+    CRntFile_ReadCString(file, &c);
+    CRntFile_ReadCString(file, &unused);
+    CRntFile_ReadCString(file, &e);
+    CRntFile_ReadCString(file, &f);
+    CRntFile_ReadCString(file, &g);
+    CRntFile_ReadCString(file, &h);
+    CRntFile_ReadCString(file, &i);
     CStrId id(name, true);
     if (void* object = fn_710034df0c(self, &id)) {
         u64 hb = HashOf(b);

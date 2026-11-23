@@ -89,12 +89,12 @@ void fn_7100007320(UnkBlendSpaceRead13* self, UnkBlendStream13* stream) {
         if (it != stream->end()) {
             switch (it->type) {
             case 'f':
-                fn_710007c00c(&stream->file, it->offset, 0);
+                CRntFile_Seek(&stream->file, it->offset, 0);
                 fn_710007c70c(&stream->file, &value, 4);
                 break;
             case 'i': {
                 s32 integer;
-                fn_710007c00c(&stream->file, it->offset, 0);
+                CRntFile_Seek(&stream->file, it->offset, 0);
                 fn_710007c70c(&stream->file, &integer, 4);
                 value = static_cast<f32>(integer);
                 break;

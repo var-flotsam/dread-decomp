@@ -38,10 +38,10 @@ void fn_71011ae328(UnkKeyedFile_l1ae328* self, const u64* key, const char* text)
         offset = it->offset;
     else
         self->slots.EmplaceBack(UnkKeyedSlot_l1ae328(offset, *key, 's'));
-    fn_710007c00c(&self->file, offset, 0);
+    CRntFile_Seek(&self->file, offset, 0);
     u64 length = __builtin_strlen(text) + 1;
     u64 written = length < kFieldSize ? length : kFieldSize;
-    fn_710007c3f0(&self->file, text, written);
+    CRntFile_Write(&self->file, text, written);
     if (length < kFieldSize)
-        fn_710007c4b8(&self->file, 0, kFieldSize - written);
+        CRntFile_Fill(&self->file, 0, kFieldSize - written);
 }

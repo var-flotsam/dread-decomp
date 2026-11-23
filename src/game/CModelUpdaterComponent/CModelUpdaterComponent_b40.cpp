@@ -26,7 +26,7 @@ static inline __attribute__((always_inline)) UnkReflValue ReadVector_b40a3(char*
         stream = arg;
     {
         f32 x, y, z;
-        fn_710007cf30(stream, "fff", &x, &y, &z);
+        CRntFile_ReadFormat(stream, "fff", &x, &y, &z);
         *reinterpret_cast<CVector3D*>(target + Offset) = CVector3D{x, y, z};
     }
     void** vtable = *reinterpret_cast<void***>(target);
@@ -64,7 +64,7 @@ UnkReflValue fn_71011745dc(void*, char* obj, UnkReflValue* const* args) {
         stream = arg;
     char name[0x80];
     bool flag;
-    fn_710007cf30(stream, "sb", name, &flag);
+    CRntFile_ReadFormat(stream, "sb", name, &flag);
     s32& done = *reinterpret_cast<s32*>(name);
     s32 v = 0;
     if (*reinterpret_cast<char**>(target + 0x50)) {

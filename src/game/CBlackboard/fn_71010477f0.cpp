@@ -25,7 +25,7 @@ bool fn_71010477f0(UnkReflObject* self, const base::global::CRntFile* file) {
     UnkFileReader reader;
     fn_710007beac(&reader.file, file, 0x16, nullptr);
     reader.field_0x3c = 2;
-    fn_710007c00c(&reader.file, 0, 0);
+    CRntFile_Seek(&reader.file, 0, 0);
     fn_710000ccd8(&reader);
     bool ok = false;
     if (reader.field_0x38 == 0) {

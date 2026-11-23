@@ -70,8 +70,8 @@ void fn_7100aa3b9c(UnkPropBag* bag, const CStrId& key, u32 value) {
         self->records.PushBackCopy(UnkPropRecord_aa3b9c(position, HashOf(key), 0x69));
     else
         position = record->position;
-    fn_710007c00c(&self->file, position, 0);
-    fn_710007c450(&self->file, &value, 4, 1);
+    CRntFile_Seek(&self->file, position, 0);
+    CRntFile_WriteElements(&self->file, &value, 4, 1);
     if (self->FindName(key) == self->NamesEnd())
         self->names.PushBack(key);
 }

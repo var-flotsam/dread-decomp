@@ -51,6 +51,6 @@ u32 fn_710113eb5c(UnkGrabComponent_b3eb5c* self, UnkComponentProp* prop) {
         UnkReflObject* obj = owner->object;
         name = static_cast<UnkGrabCharClass_b3eb5c*>(IsCharClass(obj) ? obj : nullptr)->name;
     }
-    fn_710007cb4c(p->stream, "s", name.Text());
+    CRntFile_WriteFormat(p->stream, "s", name.Text());
     return true;
 }

@@ -25,8 +25,8 @@ u32 fn_71011823a4(UnkObj_71011823a4* self, UnkProp* p) {
     if (Is(p, Key(0xc28)) && p->set) {
         CRntFile* file = reinterpret_cast<CRntFile*>(p->stream);
         char buf[0x200] = {};
-        fn_710007c714(file, &self->field_0x40, 4, 1);
-        fn_710007c714(file, &self->field_0x48, 1, 1);
+        CRntFile_Read(file, &self->field_0x40, 4, 1);
+        CRntFile_Read(file, &self->field_0x48, 1, 1);
         fn_710007ca94(file, buf);
         fn_710007e77c(&self->field_0x50, buf);
         return true;

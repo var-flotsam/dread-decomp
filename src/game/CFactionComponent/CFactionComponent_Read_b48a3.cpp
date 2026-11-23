@@ -17,7 +17,7 @@ bool fn_710113906c(UnkFactionComponent_b48a3* self, UnkFactionKey_b48a3* key);
 void fn_7101139014(UnkFactionComponent_b48a3* self, void* stream) {
     fn_710024fc08();
     const char* name;
-    fn_710007cee4(stream, &name);
+    CRntFile_ReadCString(stream, &name);
     UnkFactionKey_b48a3 key;
     fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(&key), name);
     fn_710113906c(self, &key);

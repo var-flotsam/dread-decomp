@@ -91,10 +91,10 @@ bool fn_7100d61e94(UnkCompoundShape2D* self, CRntFile* file) {
     fn_7100d6c288(reinterpret_cast<UnkPolygonCollectionShape*>(self), file);
     s32 count = 0;
     if (file->position < file->size)
-        fn_710007c714(file, &count, sizeof(count), 1);
+        CRntFile_Read(file, &count, sizeof(count), 1);
     for (s32 i = 0; i < count; ++i) {
         const char* type;
-        fn_710007cee4(file, &type);
+        CRntFile_ReadCString(file, &type);
         UnkChildShape2D* shape;
         if (strcmp(type, "AABOX2D") == 0) {
             shape = NewShape<fn_7100d5e1b4>(0xc0);

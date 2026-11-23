@@ -82,13 +82,13 @@ void fn_71009cd2c4(UnkPickableIds_ovb0023* self, UnkPickableStream_ovb0023* stre
     fn_710024fc08();
     if (stream->pos < stream->size) {
         const char* name;
-        fn_710007cee4(stream, &name);
+        CRntFile_ReadCString(stream, &name);
         base::global::UnkStrId id(name, true);
         self->field_0x40 = static_cast<base::global::UnkStrId&&>(id);
     }
     if (stream->pos < stream->size) {
         const char* name;
-        fn_710007cee4(stream, &name);
+        CRntFile_ReadCString(stream, &name);
         base::global::UnkStrId id(name, true);
         self->field_0x48 = static_cast<base::global::UnkStrId&&>(id);
     }

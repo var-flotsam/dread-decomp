@@ -352,7 +352,7 @@ s32 fn_7101173ddc(void* object, const void* stream) {
     bool flag;
     UnkTriple_ovb0032 a;
     UnkTriple_ovb0032 b;
-    fn_710007cf30(const_cast<void*>(stream), "ssbffffff", entity_name, part_name, &flag, &a.x, &a.y, &a.z, &b.x,
+    CRntFile_ReadFormat(const_cast<void*>(stream), "ssbffffff", entity_name, part_name, &flag, &a.x, &a.y, &a.z, &b.x,
                   &b.y, &b.z);
     UnkGameManager* manager = g_unk_7101d47310;
     u32 k = g_unk_71727bebb8;

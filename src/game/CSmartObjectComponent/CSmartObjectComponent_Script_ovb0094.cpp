@@ -37,7 +37,7 @@ struct UnkSmartObject_ovb0094 {
 // list at +0x200.
 bool fn_7100a04210(UnkSmartObject_ovb0094* self, void* stream) {
     char name[0x100];
-    fn_710007cf30(stream, "s", name);
+    CRntFile_ReadFormat(stream, "s", name);
     self->SetName(CStrId(name, true));
     if (UnkPlayer* player = fn_7100dec788(g_unk_7101d47310))
         fn_71010d98bc(reinterpret_cast<UnkSmartPlayer_ovb0094*>(player)->field_0x200, self->object);

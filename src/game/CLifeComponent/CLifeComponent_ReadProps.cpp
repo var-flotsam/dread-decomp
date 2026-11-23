@@ -59,7 +59,7 @@ UnkReflValue fn_7101161520(void*, UnkLifeComponentOwner_lcr* owner, UnkValueSour
     void* stream = PickArg_lcr(src);
     bool value = false;
     s32 one;
-    fn_710007cf30(stream, "b", &value);
+    CRntFile_ReadFormat(stream, "b", &value);
     target->field_0x6c = value;
     return ReturnOne_lcr(one);
 }
@@ -70,7 +70,7 @@ UnkReflValue fn_71011615c0(void*, UnkLifeComponentOwner_lcr* owner, UnkValueSour
     void* stream = PickArg_lcr(src);
     bool value = false;
     s32 one;
-    fn_710007cf30(stream, "b", &value);
+    CRntFile_ReadFormat(stream, "b", &value);
     target->field_0x64 = value;
     return ReturnOne_lcr(one);
 }
@@ -81,7 +81,7 @@ UnkReflValue fn_7101161660(void*, UnkLifeComponentOwner_lcr* owner, UnkValueSour
     void* stream = PickArg_lcr(src);
     f32 value = 0.0f;
     s32 one;
-    fn_710007cf30(stream, "f", &value);
+    CRntFile_ReadFormat(stream, "f", &value);
     target->field_0x68 = value;
     return ReturnOne_lcr(one);
 }

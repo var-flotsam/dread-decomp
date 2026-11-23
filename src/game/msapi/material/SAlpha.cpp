@@ -83,9 +83,9 @@ void fn_71001a6f54(void*, CRntFile* file, void*, UnkMaterialValuesVector* values
     for (s32 i = 0; i < n; ++i) {
         fn_71001a9bd0(values, values->count + 1);
         UnkMaterialValues* e = values->Back();
-        fn_710007cee4(file, &name);
-        fn_710007c714(file, &e->d.field_0x10, 1, 1);
-        fn_710007c714(file, &e->d.field_0x14, 4, 1);
+        CRntFile_ReadCString(file, &name);
+        CRntFile_Read(file, &e->d.field_0x10, 1, 1);
+        CRntFile_Read(file, &e->d.field_0x14, 4, 1);
         e->id = static_cast<CStrId&&>(UnkMovedId(name).id);
         u64 size = (u64)e->d.field_0x14 * 4;
         void* p = fn_7100083990()->vf_0x40(size, 8, 0x35);
@@ -140,7 +140,7 @@ void fn_71001a6644(UnkMaterial* self, CRntFile* file) {
         At<u64>(self, o) = 0;
     At<u64>(self, 0x1f0) = 0;
     At<u64>(self, 0x1f8) = 0;
-    fn_710007c00c(file, 8, 0);
+    CRntFile_Seek(file, 8, 0);
     fn_71001a69a0(UnkNoArg(), file, self);
     fn_71001a6b5c(self);
     At<u32>(self, 0x148) = At<u32>(self, 0x18);
@@ -163,7 +163,7 @@ void fn_71001a6644(UnkMaterial* self, CRntFile* file) {
     At<u32>(self, 0x18) = At<u32>(self, 0x148);
     fn_71001a6f54(nullptr, file, nullptr, &At<UnkMaterialValuesVector>(self, 0x330));
     s32 count = 0;
-    fn_710007c714(file, &count, 4, 1);
+    CRntFile_Read(file, &count, 4, 1);
     fn_71001a71b8(&self->passes, count);
     for (s32 i = 0; i < count; ++i) {
         u32 n = self->passes.count + 1;

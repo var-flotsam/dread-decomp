@@ -739,10 +739,10 @@ struct UnkNavLoadId {
     ~UnkNavLoadId() { id.~CStrId(); }
 };
 
-__attribute__((always_inline)) static inline void Read(UnkFileReader* r, void* dest, u64 size) { fn_710007c714(&r->file, dest, size, 1); }
+__attribute__((always_inline)) static inline void Read(UnkFileReader* r, void* dest, u64 size) { CRntFile_Read(&r->file, dest, size, 1); }
 __attribute__((always_inline)) static inline const char* ReadName(UnkFileReader* r) {
     const char* s;
-    fn_710007cee4(&r->file, &s);
+    CRntFile_ReadCString(&r->file, &s);
     return s;
 }
 
@@ -1283,7 +1283,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
     }
     if (opened) {
         UnkFileReader* f = &reader;
-        fn_710007c00c(&reader.file, 8, 0);
+        CRntFile_Seek(&reader.file, 8, 0);
 
         // The vertices.
         s32 nverts = 0;
