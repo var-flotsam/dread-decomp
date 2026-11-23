@@ -24,6 +24,8 @@ public:
     u8 pad_0x7c[0x3c];
 };
 static_assert(sizeof(CCameraFX_OscillationShake) == 0xb8, "CCameraFX_OscillationShake size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCameraFX_OscillationShake, sFunction) == 0x58, "CCameraFX_OscillationShake::sFunction");
 static_assert(offsetof(CCameraFX_OscillationShake, fAmplitudeX) == 0x60, "CCameraFX_OscillationShake::fAmplitudeX");
 static_assert(offsetof(CCameraFX_OscillationShake, fSpeedX) == 0x64, "CCameraFX_OscillationShake::fSpeedX");
@@ -32,3 +34,4 @@ static_assert(offsetof(CCameraFX_OscillationShake, fSpeedY) == 0x6c, "CCameraFX_
 static_assert(offsetof(CCameraFX_OscillationShake, fAmplitudeZ) == 0x70, "CCameraFX_OscillationShake::fAmplitudeZ");
 static_assert(offsetof(CCameraFX_OscillationShake, fSpeedZ) == 0x74, "CCameraFX_OscillationShake::fSpeedZ");
 static_assert(offsetof(CCameraFX_OscillationShake, fTimeToMax) == 0x78, "CCameraFX_OscillationShake::fTimeToMax");
+#pragma GCC diagnostic pop

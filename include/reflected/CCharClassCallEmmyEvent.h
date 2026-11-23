@@ -15,4 +15,7 @@ public:
     f32 fMinTimeSinceLastTargetPerception;  // 0xc
 };
 static_assert(sizeof(CCharClassCallEmmyEvent) == 0x10, "CCharClassCallEmmyEvent size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCharClassCallEmmyEvent, fMinTimeSinceLastTargetPerception) == 0xc, "CCharClassCallEmmyEvent::fMinTimeSinceLastTargetPerception");
+#pragma GCC diagnostic pop

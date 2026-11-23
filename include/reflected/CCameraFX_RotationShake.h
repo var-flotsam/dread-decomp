@@ -20,6 +20,9 @@ public:
     u8 pad_0x91[0x7];
 };
 static_assert(sizeof(CCameraFX_RotationShake) == 0x98, "CCameraFX_RotationShake size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCameraFX_RotationShake, fAmplitude) == 0x58, "CCameraFX_RotationShake::fAmplitude");
 static_assert(offsetof(CCameraFX_RotationShake, sFunction) == 0x60, "CCameraFX_RotationShake::sFunction");
 static_assert(offsetof(CCameraFX_RotationShake, bCentered) == 0x90, "CCameraFX_RotationShake::bCentered");
+#pragma GCC diagnostic pop

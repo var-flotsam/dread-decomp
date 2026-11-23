@@ -23,9 +23,12 @@ public:
     u8 pad_0x26[0x2];
 };
 static_assert(sizeof(CCharClassFXFadeEvent) == 0x28, "CCharClassFXFadeEvent size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCharClassFXFadeEvent, sName) == 0x10, "CCharClassFXFadeEvent::sName");
 static_assert(offsetof(CCharClassFXFadeEvent, fTime) == 0x18, "CCharClassFXFadeEvent::fTime");
 static_assert(offsetof(CCharClassFXFadeEvent, fIntensitySrc) == 0x1c, "CCharClassFXFadeEvent::fIntensitySrc");
 static_assert(offsetof(CCharClassFXFadeEvent, fIntensityDst) == 0x20, "CCharClassFXFadeEvent::fIntensityDst");
 static_assert(offsetof(CCharClassFXFadeEvent, bEnableBefore) == 0x24, "CCharClassFXFadeEvent::bEnableBefore");
 static_assert(offsetof(CCharClassFXFadeEvent, bDisableAfter) == 0x25, "CCharClassFXFadeEvent::bDisableAfter");
+#pragma GCC diagnostic pop

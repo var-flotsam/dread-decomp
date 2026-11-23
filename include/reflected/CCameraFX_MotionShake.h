@@ -18,5 +18,8 @@ public:
     base::global::CStrId sFunction;  // 0x60
 };
 static_assert(sizeof(CCameraFX_MotionShake) == 0x68, "CCameraFX_MotionShake size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCameraFX_MotionShake, fDistance) == 0x58, "CCameraFX_MotionShake::fDistance");
 static_assert(offsetof(CCameraFX_MotionShake, sFunction) == 0x60, "CCameraFX_MotionShake::sFunction");
+#pragma GCC diagnostic pop

@@ -19,6 +19,9 @@ public:
     u8 pad_0x68[0x10];
 };
 static_assert(sizeof(CCameraFX_RandShake) == 0x78, "CCameraFX_RandShake size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCameraFX_RandShake, sFunction) == 0x58, "CCameraFX_RandShake::sFunction");
 static_assert(offsetof(CCameraFX_RandShake, fDistance) == 0x60, "CCameraFX_RandShake::fDistance");
 static_assert(offsetof(CCameraFX_RandShake, fTwist) == 0x64, "CCameraFX_RandShake::fTwist");
+#pragma GCC diagnostic pop

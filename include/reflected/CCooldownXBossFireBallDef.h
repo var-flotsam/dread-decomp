@@ -21,6 +21,9 @@ public:
     u8 pad_0x11[0x7];
 };
 static_assert(sizeof(CCooldownXBossFireBallDef) == 0x18, "CCooldownXBossFireBallDef size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCooldownXBossFireBallDef, bEnabled) == 0x8, "CCooldownXBossFireBallDef::bEnabled");
 static_assert(offsetof(CCooldownXBossFireBallDef, fPreparationTimeOffset) == 0xc, "CCooldownXBossFireBallDef::fPreparationTimeOffset");
 static_assert(offsetof(CCooldownXBossFireBallDef, bBreakable) == 0x10, "CCooldownXBossFireBallDef::bBreakable");
+#pragma GCC diagnostic pop

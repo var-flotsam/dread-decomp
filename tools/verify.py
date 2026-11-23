@@ -3,9 +3,11 @@
 
 Runs, in order:
   1. the generators named with --regen, in the order CLAUDE.md lists them
-     (gen_class_getters, gen_reflection, gen_types, gen_statics, gen_clones, gen_tables,
+     (gen_class_getters, gen_classes, gen_reflection, gen_types, gen_statics, gen_clones, gen_tables,
      gen_lift; gen_class_getters writes include/base/reflection/UnkClassGetters.h from
-     data/functions/ alone); without gen_lift, `gen_lift.py --prune` instead (seconds), which
+     data/functions/ alone; gen_classes writes include/reflected/, which gen_reflection reads, and
+     without --regen gen_classes `gen_classes.py --check` fails the gate when those headers are stale);
+     without gen_lift, `gen_lift.py --prune` instead (seconds), which
      drops lifted copies of functions that other sources now define. gen_types brings the rest of
      its chain: gen_functions_csv (its named forms' names into data/functions/), gen_types again
      (the named forms are compared through those names) and gen_clones (the clones of slots that
@@ -45,7 +47,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import policy_check  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-GENERATORS = ["gen_class_getters", "gen_reflection", "gen_types", "gen_statics", "gen_clones", "gen_tables",
+GENERATORS = ["gen_class_getters", "gen_classes", "gen_reflection", "gen_types", "gen_statics", "gen_clones", "gen_tables",
               "gen_lift"]
 STATUS_LINE = re.compile(r"^([OmMW])  (0x[0-9a-f]+)  ")
 SUMMARY_LINE = re.compile(r"^\d+ functions in src/: (.*)$")
@@ -105,6 +107,8 @@ def main() -> int:
             steps.append((g, ["--version", v]))
             if g == "gen_types":
                 steps += [("gen_functions_csv", ["--version", v]), ("gen_types", ["--version", v])]
+    if "gen_classes" not in wanted:
+        steps.insert(0, ("gen_classes", ["--check"]))
     if "gen_lift" not in wanted:
         steps.append(("gen_lift", ["--prune"]))
     for g, gargs in steps:

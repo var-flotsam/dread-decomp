@@ -47,11 +47,13 @@ class ClassLines(unittest.TestCase):
         self.assertNotIn("pad_0x1c", " ".join(lines))
         self.assertIn('static_assert(sizeof(CMid) == 0x20, "CMid size");', lines)
         self.assertIn('static_assert(offsetof(CMid, fTime) == 0x18, "CMid::fTime");', lines)
+        self.assertEqual(lines[-1], "#pragma GCC diagnostic pop")
         self.assertEqual(includes, {"base/global/CStrId.h"})
 
     def test_root_has_virtual_table_and_namespace(self):
         lines, _ = gc.class_lines("base::core::CRoot", TYPES, FIELDS)
         self.assertEqual(lines[0], "namespace base::core {")
+        self.assertNotIn("#pragma GCC diagnostic push", lines)  # no offsetof, no pragma
         self.assertIn("    virtual ~CRoot();", lines)
         self.assertIn("    u8 pad_0x8[0x8];", lines)
 
@@ -88,7 +90,9 @@ class DeclaredClassPass(unittest.TestCase):
         self.assertIn("void CLeaf::refl_Destroy(void* obj) { static_cast<CLeaf*>(obj)->~CLeaf(); }", out)
         self.assertIn("struct CLeaf::refl_Description : ClassDescription {", out)
         self.assertIn("    static constexpr u64 size = sizeof(CLeaf);", out)
-        self.assertTrue(out.endswith("DREAD_REFLECTED_DECLARED_CLASS(CLeaf, CMid);\n"))
+        self.assertIn('// CLeaf\n#pragma GCC diagnostic push\n#pragma GCC diagnostic ignored "-Winvalid-offsetof"\n', out)
+        self.assertTrue(out.endswith("DREAD_REFLECTED_DECLARED_CLASS(CLeaf, CMid);\n#pragma GCC diagnostic pop\n"))
+        self.assertEqual(gr.unconverted_classes([out], self.INCLUDES), ["CMid"])
 
     def test_kept_when_an_offset_disagrees_or_the_parent_is_not_declared(self):
         text = '#include "base/reflection/ReflectedClass.h"\n' + BLOCK

@@ -21,7 +21,10 @@ public:
     u8 pad_0x24[0x4];
 };
 static_assert(sizeof(CCharClassCameraFXPresetEvent) == 0x28, "CCharClassCameraFXPresetEvent size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCharClassCameraFXPresetEvent, sPreset) == 0x10, "CCharClassCameraFXPresetEvent::sPreset");
 static_assert(offsetof(CCharClassCameraFXPresetEvent, fDirX) == 0x18, "CCharClassCameraFXPresetEvent::fDirX");
 static_assert(offsetof(CCharClassCameraFXPresetEvent, fDirY) == 0x1c, "CCharClassCameraFXPresetEvent::fDirY");
 static_assert(offsetof(CCharClassCameraFXPresetEvent, fDirZ) == 0x20, "CCharClassCameraFXPresetEvent::fDirZ");
+#pragma GCC diagnostic pop

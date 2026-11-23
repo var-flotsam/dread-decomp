@@ -163,9 +163,17 @@ def class_lines(name: str, types: dict[str, dict], fields: dict) -> tuple[list[s
     if outer:
         lines.append(f"}}  // namespace {'::'.join(outer)}")
     lines.append(f'static_assert(sizeof({name}) == {size:#x}, "{name} size");')
-    for off, member, _ in fields.get(name, []):
-        lines.append(f'static_assert(offsetof({name}, {member}) == {off:#x}, "{name}::{member}");')
+    if fields.get(name):
+        lines += OFFSETOF_ALLOWED
+        for off, member, _ in fields[name]:
+            lines.append(f'static_assert(offsetof({name}, {member}) == {off:#x}, "{name}::{member}");')
+        lines.append("#pragma GCC diagnostic pop")
     return lines, includes
+
+
+# offsetof on a class with a virtual table (no standard layout) is conditionally supported: Clang and GCC give
+# the Itanium layout's offset, as the reflection records it. Allowed only around the lines that use it.
+OFFSETOF_ALLOWED = ["#pragma GCC diagnostic push", '#pragma GCC diagnostic ignored "-Winvalid-offsetof"']
 
 
 def header(name: str, types: dict[str, dict], fields: dict) -> str:
@@ -207,6 +215,7 @@ def declared_includes() -> dict[str, str]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--version", help="accepted for tools/verify.py; the headers depend only on data/")
     args = ap.parse_args()
     types, fields = tables()
     want = {OUT / (include_of(c)[len("reflected/"):]): header(c, types, fields) for c in declared(types)}

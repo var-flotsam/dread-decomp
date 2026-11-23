@@ -133,7 +133,7 @@ inline void DestroyDestructorFirst(void* obj) {
 // the namespace form's: a namespace and a class mangle the same way.
 // A field's offset is offsetof(T, member). T has a virtual table and so no standard layout, where offsetof is
 // conditionally supported; Clang and GCC give the Itanium layout's offset, as the reflection itself records.
-#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+// The header and the reflection source each allow it (-Winvalid-offsetof) only where they use it.
 #define DREAD_REFLECTED_CLASS_MEMBERS                                                                \
     static const base::reflection::CClass* refl_GetClass();                                             \
     static void refl_AddAttributes(base::reflection::CClass* cls);                                      \

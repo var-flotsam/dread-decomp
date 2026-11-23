@@ -1272,6 +1272,11 @@ def with_declared_classes(text: str, includes: dict[str, str], sizes: dict[str, 
         if members is None:
             return m.group(0)
         use = f"DREAD_REFLECTED_DECLARED_CLASS({name}, {parent});" if parent else f"DREAD_REFLECTED_DECLARED_ROOT_CLASS({name});"
+        if "offsetof(" in members:
+            # offsetof on a class with a virtual table: allowed for this class's definitions only
+            # (base/reflection/ReflectedClass.h)
+            return (f'#pragma GCC diagnostic push{chr(10)}#pragma GCC diagnostic ignored "-Winvalid-offsetof"{chr(10)}'
+                    f"{members}{use}{chr(10)}#pragma GCC diagnostic pop")
         return members + use
 
     new = CLASS_BLOCK.sub(one, text)
@@ -1279,6 +1284,13 @@ def with_declared_classes(text: str, includes: dict[str, str], sizes: dict[str, 
         if new != text and re.search(rf"^DREAD_REFLECTED_DECLARED_(?:ROOT_)?CLASS\({re.escape(name)}[,)]", new, re.M):
             new = with_include(new, f'#include "{include}"')
     return new
+
+
+def unconverted_classes(texts: list[str], includes: dict[str, str]) -> list[str]:
+    """The declared classes (`includes`) whose getter no text writes in the declared form: their source kept
+    the namespace form, which their header's class would clash with."""
+    done = {m for text in texts for m in re.findall(r"^DREAD_REFLECTED_DECLARED_(?:ROOT_)?CLASS\(([\w:]+)", text, re.M)}
+    return sorted(set(includes) - done)
 
 
 def declared_classes() -> tuple[dict[str, str], dict[str, int], dict[tuple[str, str], int]]:
@@ -1821,6 +1833,12 @@ def main() -> int:
         new = with_declared_classes(new, *declared)
         if new != old:
             f.write_text(new, encoding="utf-8", newline=chr(10))
+    missed = unconverted_classes([f.read_text(encoding="utf-8") for f in OUT.glob("*.cpp")], declared[0])
+    if missed:
+        print(f"error: {len(missed)} classes tools/gen_classes.py declares kept the namespace form in "
+              f"src/reflection/ (a line the pass has no member form for, a destructor-first table, or an offset "
+              f"or size the header does not assert): {', '.join(missed)}", file=sys.stderr)
+        return 1
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
     print(f"{len(rows)} class getters; {len(located)} located; {len(blocks)} TUs. Generated {generated} getters "
           f"and {helpers_defined} helpers ({attrs_defined} of {attr_total} non-empty attribute/field functions) in {len(list(OUT.glob('*.cpp')))} files; {padded_ok} of the getters in padded TUs; skipped {skipped_layout} (other statics) and "

@@ -19,5 +19,8 @@ public:
     u8 pad_0x19[0x7];
 };
 static_assert(sizeof(CCharClassEnableScenarioItemByNameEvent) == 0x20, "CCharClassEnableScenarioItemByNameEvent size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCharClassEnableScenarioItemByNameEvent, sItemName) == 0x10, "CCharClassEnableScenarioItemByNameEvent::sItemName");
 static_assert(offsetof(CCharClassEnableScenarioItemByNameEvent, bEnable) == 0x18, "CCharClassEnableScenarioItemByNameEvent::bEnable");
+#pragma GCC diagnostic pop

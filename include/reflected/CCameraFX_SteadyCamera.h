@@ -23,9 +23,12 @@ public:
     u8 pad_0x79[0x7];
 };
 static_assert(sizeof(CCameraFX_SteadyCamera) == 0x80, "CCameraFX_SteadyCamera size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCameraFX_SteadyCamera, fMinAngleXAxis) == 0x34, "CCameraFX_SteadyCamera::fMinAngleXAxis");
 static_assert(offsetof(CCameraFX_SteadyCamera, fMinAngleYAxis) == 0x38, "CCameraFX_SteadyCamera::fMinAngleYAxis");
 static_assert(offsetof(CCameraFX_SteadyCamera, fMaxAngleXAxis) == 0x3c, "CCameraFX_SteadyCamera::fMaxAngleXAxis");
 static_assert(offsetof(CCameraFX_SteadyCamera, fMaxAngleYAxis) == 0x40, "CCameraFX_SteadyCamera::fMaxAngleYAxis");
 static_assert(offsetof(CCameraFX_SteadyCamera, sFunction) == 0x48, "CCameraFX_SteadyCamera::sFunction");
 static_assert(offsetof(CCameraFX_SteadyCamera, bCentered) == 0x78, "CCameraFX_SteadyCamera::bCentered");
+#pragma GCC diagnostic pop

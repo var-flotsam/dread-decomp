@@ -19,6 +19,9 @@ public:
     f32 fMaximumChanceIncrementOnFail;  // 0x1c
 };
 static_assert(sizeof(CCharClassAlternativeActionPlayEvent) == 0x20, "CCharClassAlternativeActionPlayEvent size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCharClassAlternativeActionPlayEvent, sAction) == 0x10, "CCharClassAlternativeActionPlayEvent::sAction");
 static_assert(offsetof(CCharClassAlternativeActionPlayEvent, fChanceIncrementOnFail) == 0x18, "CCharClassAlternativeActionPlayEvent::fChanceIncrementOnFail");
 static_assert(offsetof(CCharClassAlternativeActionPlayEvent, fMaximumChanceIncrementOnFail) == 0x1c, "CCharClassAlternativeActionPlayEvent::fMaximumChanceIncrementOnFail");
+#pragma GCC diagnostic pop

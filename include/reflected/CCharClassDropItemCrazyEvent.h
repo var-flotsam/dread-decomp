@@ -48,6 +48,8 @@ public:
     u8 pad_0x84[0x4];
 };
 static_assert(sizeof(CCharClassDropItemCrazyEvent) == 0x88, "CCharClassDropItemCrazyEvent size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCharClassDropItemCrazyEvent, bForce) == 0xc, "CCharClassDropItemCrazyEvent::bForce");
 static_assert(offsetof(CCharClassDropItemCrazyEvent, iMinNumOfDroppedItems) == 0x10, "CCharClassDropItemCrazyEvent::iMinNumOfDroppedItems");
 static_assert(offsetof(CCharClassDropItemCrazyEvent, iMaxNumOfDroppedItems) == 0x14, "CCharClassDropItemCrazyEvent::iMaxNumOfDroppedItems");
@@ -79,3 +81,4 @@ static_assert(offsetof(CCharClassDropItemCrazyEvent, bStrictDirection) == 0x80, 
 static_assert(offsetof(CCharClassDropItemCrazyEvent, bForceAttract) == 0x81, "CCharClassDropItemCrazyEvent::bForceAttract");
 static_assert(offsetof(CCharClassDropItemCrazyEvent, bIgnoreAttractionRadius) == 0x82, "CCharClassDropItemCrazyEvent::bIgnoreAttractionRadius");
 static_assert(offsetof(CCharClassDropItemCrazyEvent, bDoNotDropWithNormalMelee) == 0x83, "CCharClassDropItemCrazyEvent::bDoNotDropWithNormalMelee");
+#pragma GCC diagnostic pop

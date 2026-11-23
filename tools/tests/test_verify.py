@@ -45,6 +45,8 @@ class Parsing(unittest.TestCase):
     def test_generators_in_documented_order(self):
         self.assertEqual(verify.GENERATORS[0], "gen_class_getters")
         self.assertEqual(verify.GENERATORS[-1], "gen_lift")
+        # gen_reflection reads the headers gen_classes writes
+        self.assertLess(verify.GENERATORS.index("gen_classes"), verify.GENERATORS.index("gen_reflection"))
 
     def test_check_parses_output(self):
         lines = [*status("0x7100000100", "0x7100000200"), *status("0x7100000300", code="m"),
@@ -116,14 +118,23 @@ class Main(unittest.TestCase):
     def test_regen_runs_in_generator_order(self):
         self.run_main("--regen", "gen_lift.py, gen_statics,gen_class_getters")
         gens = [c for c in self.calls if c[0].startswith("tools/gen_")]
-        self.assertEqual(gens, [("tools/gen_class_getters.py", "--version", "9.9.9"),
+        self.assertEqual(gens, [("tools/gen_classes.py", "--check"),  # not regenerated: its headers are checked
+                                ("tools/gen_class_getters.py", "--version", "9.9.9"),
                                 ("tools/gen_statics.py", "--version", "9.9.9"),
                                 ("tools/gen_lift.py", "--version", "9.9.9")])
+
+    def test_regen_gen_classes_writes_instead_of_checking(self):
+        self.run_main("--regen", "gen_reflection,gen_classes")
+        gens = [c for c in self.calls if c[0].startswith("tools/gen_")]
+        self.assertEqual(gens[:2], [("tools/gen_classes.py", "--version", "9.9.9"),
+                                    ("tools/gen_reflection.py", "--version", "9.9.9")])
+        self.assertNotIn(("tools/gen_classes.py", "--check"), gens)
 
     def test_gen_types_runs_its_chain(self):
         self.run_main("--regen", "gen_types")
         gens = [c for c in self.calls if c[0].startswith("tools/gen_")]
-        self.assertEqual(gens, [("tools/gen_types.py", "--version", "9.9.9"),
+        self.assertEqual(gens, [("tools/gen_classes.py", "--check"),
+                                ("tools/gen_types.py", "--version", "9.9.9"),
                                 ("tools/gen_functions_csv.py", "--version", "9.9.9"),
                                 ("tools/gen_types.py", "--version", "9.9.9"),
                                 ("tools/gen_clones.py", "--version", "9.9.9"),

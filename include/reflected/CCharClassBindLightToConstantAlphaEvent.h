@@ -20,6 +20,9 @@ public:
     u8 pad_0x24[0x4];
 };
 static_assert(sizeof(CCharClassBindLightToConstantAlphaEvent) == 0x28, "CCharClassBindLightToConstantAlphaEvent size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCharClassBindLightToConstantAlphaEvent, sMaterial) == 0x10, "CCharClassBindLightToConstantAlphaEvent::sMaterial");
 static_assert(offsetof(CCharClassBindLightToConstantAlphaEvent, sLight) == 0x18, "CCharClassBindLightToConstantAlphaEvent::sLight");
 static_assert(offsetof(CCharClassBindLightToConstantAlphaEvent, iConstant) == 0x20, "CCharClassBindLightToConstantAlphaEvent::iConstant");
+#pragma GCC diagnostic pop

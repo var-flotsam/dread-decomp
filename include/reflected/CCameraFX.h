@@ -17,4 +17,7 @@ public:
     u8 pad_0x18[0x1c];
 };
 static_assert(sizeof(CCameraFX) == 0x38, "CCameraFX size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCameraFX, sID) == 0x10, "CCameraFX::sID");
+#pragma GCC diagnostic pop

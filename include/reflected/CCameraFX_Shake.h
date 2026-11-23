@@ -22,8 +22,11 @@ public:
     u8 pad_0x50[0x8];
 };
 static_assert(sizeof(CCameraFX_Shake) == 0x58, "CCameraFX_Shake size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCameraFX_Shake, fTime) == 0x34, "CCameraFX_Shake::fTime");
 static_assert(offsetof(CCameraFX_Shake, fAttMinRange) == 0x38, "CCameraFX_Shake::fAttMinRange");
 static_assert(offsetof(CCameraFX_Shake, fAttMaxRange) == 0x3c, "CCameraFX_Shake::fAttMaxRange");
 static_assert(offsetof(CCameraFX_Shake, fAttRange) == 0x40, "CCameraFX_Shake::fAttRange");
 static_assert(offsetof(CCameraFX_Shake, sAttRangeFunction) == 0x48, "CCameraFX_Shake::sAttRangeFunction");
+#pragma GCC diagnostic pop

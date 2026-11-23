@@ -53,6 +53,8 @@ jobs:
         run: python tools/rename.py --check
       - name: Command index current (docs/commands.md)
         run: python tools/gen_commands.py --check
+      - name: Reflected class headers current (include/reflected/)
+        run: python tools/gen_classes.py --check
       # The README's status card (tools/status_card.py) for this commit, in the job summary; on a pull
       # request with what the change does to the whole binary. Tracked files only, never fails the job.
       - name: Status card (job summary)

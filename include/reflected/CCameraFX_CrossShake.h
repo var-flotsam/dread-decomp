@@ -16,5 +16,8 @@ public:
     f32 fIterations;  // 0x5c
 };
 static_assert(sizeof(CCameraFX_CrossShake) == 0x60, "CCameraFX_CrossShake size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCameraFX_CrossShake, fDistance) == 0x58, "CCameraFX_CrossShake::fDistance");
 static_assert(offsetof(CCameraFX_CrossShake, fIterations) == 0x5c, "CCameraFX_CrossShake::fIterations");
+#pragma GCC diagnostic pop

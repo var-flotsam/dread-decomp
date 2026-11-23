@@ -33,6 +33,8 @@ public:
     u8 pad_0x45[0x3];
 };
 static_assert(sizeof(CCharClassAIAttackEvent) == 0x48, "CCharClassAIAttackEvent size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCharClassAIAttackEvent, sAction) == 0x10, "CCharClassAIAttackEvent::sAction");
 static_assert(offsetof(CCharClassAIAttackEvent, fProbability) == 0x18, "CCharClassAIAttackEvent::fProbability");
 static_assert(offsetof(CCharClassAIAttackEvent, bPlayerOnViewDir) == 0x1c, "CCharClassAIAttackEvent::bPlayerOnViewDir");
@@ -48,3 +50,4 @@ static_assert(offsetof(CCharClassAIAttackEvent, iFrame) == 0x38, "CCharClassAIAt
 static_assert(offsetof(CCharClassAIAttackEvent, iBehaviorPresetMin) == 0x3c, "CCharClassAIAttackEvent::iBehaviorPresetMin");
 static_assert(offsetof(CCharClassAIAttackEvent, iBehaviorPresetMax) == 0x40, "CCharClassAIAttackEvent::iBehaviorPresetMax");
 static_assert(offsetof(CCharClassAIAttackEvent, bCheckInCombat) == 0x44, "CCharClassAIAttackEvent::bCheckInCombat");
+#pragma GCC diagnostic pop

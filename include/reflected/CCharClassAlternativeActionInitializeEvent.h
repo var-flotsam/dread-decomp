@@ -19,6 +19,9 @@ public:
     f32 fMinimumChanceToPlay;  // 0x1c
 };
 static_assert(sizeof(CCharClassAlternativeActionInitializeEvent) == 0x20, "CCharClassAlternativeActionInitializeEvent size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCharClassAlternativeActionInitializeEvent, sAction) == 0x10, "CCharClassAlternativeActionInitializeEvent::sAction");
 static_assert(offsetof(CCharClassAlternativeActionInitializeEvent, fMinimumTimeToBeConsidered) == 0x18, "CCharClassAlternativeActionInitializeEvent::fMinimumTimeToBeConsidered");
 static_assert(offsetof(CCharClassAlternativeActionInitializeEvent, fMinimumChanceToPlay) == 0x1c, "CCharClassAlternativeActionInitializeEvent::fMinimumChanceToPlay");
+#pragma GCC diagnostic pop

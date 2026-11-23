@@ -19,8 +19,11 @@ public:
     f32 fB;  // 0x1c
 };
 static_assert(sizeof(CCharClassBaseFadeInEvent) == 0x20, "CCharClassBaseFadeInEvent size");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 static_assert(offsetof(CCharClassBaseFadeInEvent, fTime) == 0xc, "CCharClassBaseFadeInEvent::fTime");
 static_assert(offsetof(CCharClassBaseFadeInEvent, fDelay) == 0x10, "CCharClassBaseFadeInEvent::fDelay");
 static_assert(offsetof(CCharClassBaseFadeInEvent, fR) == 0x14, "CCharClassBaseFadeInEvent::fR");
 static_assert(offsetof(CCharClassBaseFadeInEvent, fG) == 0x18, "CCharClassBaseFadeInEvent::fG");
 static_assert(offsetof(CCharClassBaseFadeInEvent, fB) == 0x1c, "CCharClassBaseFadeInEvent::fB");
+#pragma GCC diagnostic pop
