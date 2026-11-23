@@ -106,9 +106,13 @@ class FamilyReads(unittest.TestCase):
         p.write_text(",".join(progress.FAMILY_COLUMNS) + "\n" + "".join(r + "\n" for r in rows), encoding="utf-8")
         return p
 
-    def test_the_tracked_file_has_the_header_only(self):
-        self.assertEqual(progress.FAMILY_READS.read_text(encoding="utf-8").splitlines(),
-                         [",".join(progress.FAMILY_COLUMNS)])
+    def test_the_tracked_file_has_the_header_and_rows_that_read(self):
+        lines = progress.FAMILY_READS.read_text(encoding="utf-8").splitlines()
+        self.assertEqual(lines[0], ",".join(progress.FAMILY_COLUMNS))
+        for row in progress.read_family_reads():
+            self.assertTrue(row["family"] and row["scope"] and row["date"])
+            self.assertIn(row["verdict"], ("pass", "fail"))
+            self.assertTrue(row["sample_size"].isdigit())
 
     def test_latest_read_of_a_family_decides(self):
         with tempfile.TemporaryDirectory() as d:
@@ -145,6 +149,8 @@ class Report(unittest.TestCase):
             reads = root / "family_reads.csv"
             reads.write_text(",".join(progress.FAMILY_COLUMNS) + "\n", encoding="utf-8")
             rows = [{"address": f"{a:x}", "size": "16"} for a in range(0x10, 0x16)]
+            rows[0].update(name="CThing::Update", name_source="rtti")
+            rows[1].update(name="CThing::Reset", name_source="inferred")
             progress._CACHE_OBJECTS["test"] = [
                 (Path("game/Thing.o.diff.json"), [{"address": 0x10, "name": "CThing::Update"},
                                                   {"address": 0x11, "name": "CThing::Reset"},
@@ -172,10 +178,32 @@ class Report(unittest.TestCase):
         self.assertEqual(n["read_passed"]["functions"], 0)
         self.assertEqual(passed["read_passed"], {"functions": 1, "bytes": 16})
         self.assertEqual(passed["generated"]["reflection"]["clean"]["functions"], 0)
-        q = {"complete": {"functions": 2, "bytes": 32}}
-        self.assertIn("**12.50%** (3 functions), beside byte-matching and readable 8.33%",
-                      progress.metric_line(passed, q, {"bytes": 384}))
-        self.assertTrue(progress.names_line(passed, q, {"bytes": 384}).startswith("Readable and matching, whole binary"))
+        self.assertEqual(n["named_sourced"], {"functions": 1, "bytes": 16})
+        self.assertEqual(n["named_inferred"], {"functions": 1, "bytes": 16})
+        self.assertEqual(n["named_unlisted"]["functions"], 0)
+        self.assertEqual(progress.named(n), {"functions": 2, "bytes": 32})
+        q = {k: {"functions": 0, "bytes": 0} for k in progress.QUALITIES}
+        q["complete"] = {"functions": 2, "bytes": 32}
+        self.assertEqual(progress.headline(q, passed), {"functions": 3, "bytes": 48})
+        self.assertIn("matching and clean in form **12.50%** (3 functions;",
+                      progress.quality_line(q, {"bytes": 384}, passed))
+        line = progress.names_line(passed, q, {"bytes": 384})
+        self.assertTrue(line.startswith("Names, whole binary"))
+        self.assertIn("named **8.33%** (2 functions) = own name from a source 4.17% (1) + own name inferred 4.17% (1)",
+                      line)
+        self.assertNotIn("readable and matching", line.lower())
+        self.assertIn("Names are a floor a tool can see, not a reading.", line)
+        self.assertIn("**8.33%** (2 functions) = from a source 4.17% (1) + inferred 4.17% (1)",
+                      progress.named_line(passed, {"bytes": 384}))
+
+    def test_name_tiers(self):
+        self.assertEqual(progress.name_tier({"name": "CThing::Update", "name_source": "reflection"}), "named_sourced")
+        self.assertEqual(progress.name_tier({"name": "nn::os::Lock", "name_source": "library"}), "named_sourced")
+        self.assertEqual(progress.name_tier({"name": "CStrId_Construct", "name_source": "inferred"}), "named_inferred")
+        # the source spells a real name, the function list does not: shown apart, not counted as named
+        self.assertEqual(progress.name_tier({"name": "fn_7100000010", "name_source": "unknown"}), "named_unlisted")
+        self.assertEqual(progress.name_tier({"name": "fn_7100000010", "name_source": "inferred"}), "named_unlisted")
+        self.assertEqual(progress.name_tier({"name": "CThing::Reset", "name_source": "unknown"}), "named_unlisted")
 
     def test_handoff_writes_the_line_and_keeps_it_when_not_computed(self):
         overall = {"functions": 1, "bytes": 100, "matching_bytes_pct": 1.0, "usable_bytes_pct": 1.0,
@@ -184,10 +212,15 @@ class Report(unittest.TestCase):
             p = Path(d) / "HANDOFF.md"
             p.write_text(f"top\n{progress.BEGIN}\nold\n{progress.END}\nbottom\n", encoding="utf-8")
             progress.update_handoff(p, overall, None, "Completeness, whole binary x", None,
-                                    "Readable and matching, whole binary y")
+                                    "Names, whole binary y")
             progress.update_handoff(p, overall, None)
             text = p.read_text(encoding="utf-8")
-        self.assertIn("\nCompleteness, whole binary x\n\nReadable and matching, whole binary y\n", text)
+            self.assertIn("\nCompleteness, whole binary x\n\nNames, whole binary y\n", text)
+            # a names line written before 2026-11-23 is kept too, until a run with the cache replaces it
+            p.write_text(f"top\n{progress.BEGIN}\nReadable and matching, whole binary z\n{progress.END}\n",
+                         encoding="utf-8")
+            progress.update_handoff(p, overall, None)
+            self.assertIn("\nReadable and matching, whole binary z\n", p.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

@@ -28,21 +28,28 @@ lifts). Hand-typed, readable code is the project's completion metric (CLAUDE.md,
 generated share verifies correctness but does not count toward it. It reads check.py's diff cache
 (build/check/<version>/**/*.o.diff.json, the object that defines each function), so run check.py first.
 
-`--quality` reports the two qualities each function needs, apart (owner, 2026-11-13): the bytes match, and the
-source is readable. A function is complete with both. Identical behaviour with other bytes (verified
-equivalent) has a row of its own: acceptable now, a match later. "Readable" is a floor a tool can see
-(hand-written, with none of tools/fakematch.py's steering forms in the function), not a reading. The same
-figures go under the handoff's table with --handoff when check.py's cache is there.
+`--quality` reports the qualities each function needs, apart (owner, 2026-11-13): the bytes match, and the
+source is clean in form. Its headline (owner, 2026-11-23) is *matching and clean in form*: a function that
+byte-matches, has no steering form and is hand-written (the row "byte-matching, hand-written, no steering form":
+none of tools/fakematch.py's steering forms in the function), or comes from a generated family whose sampled read
+in data/family_reads.csv passed ("generated, read and passed"). "Complete" keeps its strict meaning (matching,
+readable, real names); the headline does not claim it. Identical behaviour with other bytes (verified equivalent)
+has a row of its own: acceptable now, a match later. The same figures go under the handoff's table with --handoff
+when check.py's cache is there, the headline first.
 
-Under that table, `--quality` reports what CLAUDE.md, "Purpose and completion", defines and the table does not (reporting
-only; no figure above changes): of the byte-matching and readable functions, those whose names are *loose* (its own
-name, class and members real; references to placeholder functions allowed) and *strict* (no placeholder anywhere),
-tested on each function's own text, by file where the tool does not find its definition; per generated directory,
-the matching functions whose file has no placeholder ("clean, not yet read"); those of them a family's passing
-sampled read in data/family_reads.csv covers ("read and passed"); and the finished figure plus "read and passed",
-the metric CLAUDE.md describes, beside the finished figure. A family's latest row decides, pass or fail; `scope` is a
-path glob relative to the repository or a list file of globs and addresses. The line goes under the handoff's table
-with --handoff.
+Names are a second figure beside the headline, not a cut to it (reporting only; no figure above changes). Of the
+byte-matching, hand-written functions with no steering form: those whose names are *loose* (its own name, class and
+members real; references to placeholder functions allowed) and *strict* (no placeholder anywhere), tested on each
+function's own text, by file where the tool does not find its definition. *Named* is the loose ones whose own name
+the function list records: from a source (`name_source` rtti, reflection, string, symbol, library) or inferred
+(`inferred`, through data/names.csv), the two parts shown apart (owner, 2026-11-23: inferred names count as named,
+as their own tier). A function whose source spells a real name while its row in data/functions/ has none (a
+placeholder name, `name_source` unknown) is shown apart and not counted as named: a name counts once the list
+records it with its source (tools/rename.py). Per generated directory, the matching functions whose file has no
+placeholder ("clean, not yet read"), and those of them a family's passing sampled read covers ("read and passed").
+A family's latest row decides, pass or fail; `scope` is a path glob relative to the repository or a list file of
+globs and addresses. The names line goes under the handoff's table with --handoff. The name and placeholder scans
+are a floor a tool can see, not a reading.
 
 A function marked `// NON_MATCHING(functional)` with a current `behaves` verdict of tools/equiv_test.py
 --any-kind (tier 3, owner 2026-11-19) has a row of its own in --quality: the same results on every input tried,
@@ -202,8 +209,10 @@ def print_origin(o: dict, overall: dict) -> None:
 
 
 STEERING = ("offset-cast", "volatile", "empty-block", "barrier", "barrier-no-comment")
+# "complete" is the key of the hand-written part of the headline (matching and clean in form); the key keeps its
+# old spelling for tools/tu_status.py and the JSON report, the label says what the row tests.
 QUALITIES = {
-    "complete": "Byte-matching and readable",
+    "complete": "Byte-matching, hand-written, no steering form",
     "match_steered": "Byte-matching, hand-written with a steering form",
     "match_generated": "Byte-matching, generated source",
     "equivalent": "Identical behaviour, bytes differ (verified equivalent)",
@@ -215,7 +224,7 @@ QUALITIES = {
 
 def quality(status: str, hand: bool, steered: bool, verified: bool, functional: bool = False) -> str:
     """Which row of the completeness table a function is in. Two qualities, both needed (owner, 2026-11-13):
-    the bytes match, and the source is readable. Identical behaviour with other bytes is a match for later."""
+    the bytes match, and the source is clean in form. Identical behaviour with other bytes is a match for later."""
     if status == "O":
         return "match_generated" if not hand else "match_steered" if steered else "complete"
     if status == "U":
@@ -253,7 +262,7 @@ def source_of(rel: Path) -> Path:
 def quality_by_address(version: str, rows: list[dict], verified: frozenset[int] | None = None) -> dict[int, tuple[str, bool]]:
     """Each function's row of the completeness table (a key of QUALITIES), and whether its source has a
     steering form. tools/tu_status.py --quality adds these up per translation unit; quality_report, below,
-    for the whole binary, and its docstring says what readable means here."""
+    for the whole binary, and its docstring says what clean in form means here."""
     import fakematch
     verified = VERIFIED if verified is None else verified
     by_addr = {int(r["address"], 16): r for r in rows}
@@ -286,11 +295,12 @@ def quality_by_address(version: str, rows: list[dict], verified: frozenset[int] 
 
 def quality_report(version: str, rows: list[dict], verified: frozenset[int] | None = None,
                    qa: dict[int, tuple[str, bool]] | None = None) -> dict:
-    """The game's functions by the two qualities the project needs of each: byte-matching, and readable.
+    """The game's functions by the qualities the project needs of each: byte-matching, and clean in form.
 
-    Readable is measured as a floor, by what a tool can see: the function's source is hand-written (not in a
-    generated directory) and has none of the forms that are there to steer the compiler (tools/fakematch.py's
-    offset casts, `volatile`, empty blocks and barriers, attributed to the function they sit in). It cannot
+    Clean in form is measured, for hand-written code, by what a tool can see: the function's source is not in a
+    generated directory and has none of the forms that are there to steer the compiler (tools/fakematch.py's
+    offset casts, `volatile`, empty blocks and barriers, attributed to the function they sit in); generated code
+    is clean in form once its family's sampled read passed (names_report). It cannot
     see a wrong comment, a meaningless name, a struct private to one file or a form inside a shared inline
     helper: reading does (tools/sample_review.py). Needs check.py's diff cache for where each function is
     defined."""
@@ -304,31 +314,50 @@ def quality_report(version: str, rows: list[dict], verified: frozenset[int] | No
     return out
 
 
-def print_quality(q: dict, overall: dict) -> None:
+HEADLINE = "Matching and clean in form"
+
+
+def headline(q: dict, n: dict | None) -> dict:
+    """The headline (owner, 2026-11-23): byte-matching, hand-written, no steering form, plus generated, read and
+    passed (names_report's `read_passed`; none when names were not computed)."""
+    rp = (n or {}).get("read_passed", {"functions": 0, "bytes": 0})
+    return {"functions": q["complete"]["functions"] + rp["functions"], "bytes": q["complete"]["bytes"] + rp["bytes"]}
+
+
+def print_quality(q: dict, overall: dict, n: dict | None = None) -> None:
     total = overall["bytes"]
     print("| Completeness | Functions | Bytes | Share of code |")
     print("|---|---|---|---|")
     for k, label in QUALITIES.items():
         v = q[k]
-        mark = "**" if k == "complete" else ""
-        print(f"| {mark}{label}{mark} | {v['functions']:,} | {v['bytes'] / 1e6:.2f} MB | {mark}{100 * v['bytes'] / total:.2f}%{mark} |")
+        print(f"| {label} | {v['functions']:,} | {v['bytes'] / 1e6:.2f} MB | {100 * v['bytes'] / total:.2f}% |")
     e = q["equivalent_readable"]
-    print(f"(of the verified-equivalent ones, {e['functions']:,} have no steering form: they are readable and need only "
-          "a match, later. Readable is a floor: see tools/progress.py's quality_report.)")
+    print(f"(of the verified-equivalent ones, {e['functions']:,} have no steering form: they need only a match, later.)")
+    h = headline(q, n)
+    rp = (n or {}).get("read_passed", {"functions": 0, "bytes": 0})
+    print(f"**{HEADLINE}** (the headline): **{100 * h['bytes'] / total:.2f}%** ({h['functions']:,} functions): "
+          f"byte-matching, hand-written, no steering form {100 * q['complete']['bytes'] / total:.2f}% plus generated, "
+          f"read and passed (`data/family_reads.csv`) {100 * rp['bytes'] / total:.2f}%. Names are a second figure, "
+          "below, not a cut to it.")
 
 
-def quality_line(q: dict, overall: dict) -> str:
+def quality_line(q: dict, overall: dict, n: dict | None = None) -> str:
     total = overall["bytes"]
 
     def pct(k: str) -> str:
         return f"{100 * q[k]['bytes'] / total:.2f}%"
-    return (f"Completeness, whole binary, by the two qualities each function needs (`tools/progress.py --quality`): "
-            f"byte-matching and readable **{pct('complete')}** ({q['complete']['functions']:,} functions); byte-matching "
-            f"but not readable yet {100 * (q['match_steered']['bytes'] + q['match_generated']['bytes']) / total:.2f}% "
-            f"(generated source {pct('match_generated')}, hand-written with a steering form {pct('match_steered')}); "
-            f"identical behaviour with other bytes {pct('equivalent')} ({q['equivalent']['functions']:,} functions, a "
-            f"match for later); functional (same results on every input tried, tier 3) {pct('functional')} "
-            f"({q['functional']['functions']:,} functions). Readable is a floor a tool can see, not a reading.")
+    h = headline(q, n)
+    rp = h["bytes"] - q["complete"]["bytes"]
+    not_yet = q["match_steered"]["bytes"] + q["match_generated"]["bytes"] - rp
+    return (f"Completeness, whole binary (`tools/progress.py --quality`): {HEADLINE.lower()} "
+            f"**{100 * h['bytes'] / total:.2f}%** ({h['functions']:,} functions; byte-matching, hand-written, no "
+            f"steering form {pct('complete')}, plus generated, read and passed {100 * rp / total:.2f}%); byte-matching "
+            f"but not clean in form yet {100 * not_yet / total:.2f}% (generated source not yet read "
+            f"{100 * (q['match_generated']['bytes'] - rp) / total:.2f}%, hand-written with a steering form "
+            f"{pct('match_steered')}); identical behaviour with other bytes {pct('equivalent')} "
+            f"({q['equivalent']['functions']:,} functions, a match for later); functional (same results on every input "
+            f"tried, tier 3) {pct('functional')} ({q['functional']['functions']:,} functions). Names are a second "
+            "figure, on the next line.")
 
 
 # Names (CLAUDE.md, "Purpose and completion" and "Names"). A placeholder is a name that says only where something
@@ -348,8 +377,26 @@ _PARENS, _BRACES = re.compile(r"[()]"), re.compile(r"[{}]")
 _NOT_CODE = re.compile(r"//[^\n]*|/\*.*?\*/|\"(?:\\.|[^\"\\\n])*\"|'(?:\\.|[^'\\\n])*'|^[ \t]*#[^\n]*(?:\\\n[^\n]*)*",
                        re.S | re.M)
 _INIT = re.compile(r"\s*[\w:~<>,\s]+?\s*([({])")
-NAME_KINDS = {"loose": "Finished, names loose (its own name, class and members real; placeholder callees allowed)",
-              "strict": "Finished, names strict (no placeholder anywhere in it)"}
+NAME_KINDS = {"loose": "Hand-written clean in form, names loose (its own name, class and members real; placeholder "
+                       "callees allowed)",
+              "strict": "Hand-written clean in form, names strict (no placeholder anywhere in it)"}
+# Of the loose ones, where the function list's own name comes from (owner, 2026-11-23: inferred names count as named,
+# as their own tier). "unlisted": the source spells a real name, the list's row does not (a placeholder name or
+# `name_source` unknown); not counted as named until tools/rename.py records it.
+SOURCED = frozenset({"rtti", "reflection", "string", "symbol", "library"})
+NAME_TIERS = {"named_sourced": "of which own name from a source (`name_source` rtti, reflection, string, symbol, "
+                               "library)",
+              "named_inferred": "of which own name inferred (`name_source` inferred, `data/names.csv`)",
+              "named_unlisted": "of which a real name in the source only, not in `data/functions/` (not counted as "
+                                "named)"}
+
+
+def name_tier(row: dict) -> str:
+    """A key of NAME_TIERS for a function that passes the loose test, by its row in data/functions/."""
+    if PLACEHOLDER.search(row.get("name", "")):
+        return "named_unlisted"
+    src = row.get("name_source", "")
+    return "named_sourced" if src in SOURCED else "named_inferred" if src == "inferred" else "named_unlisted"
 FAMILY_READS = ROOT / "data" / "family_reads.csv"
 FAMILY_COLUMNS = ["family", "scope", "generator_commit", "date", "sample_size", "verdict", "reader", "notes"]
 
@@ -531,13 +578,15 @@ def covered(scopes: list[tuple[list[str], set[int]]], path: str, address: int) -
 def names_report(version: str, rows: list[dict], qa: dict[int, tuple[str, bool]],
                  reads_path: Path = FAMILY_READS) -> dict:
     """The figures CLAUDE.md, "Purpose and completion", defines and the completeness table does not: the names of
-    the finished (`complete`) functions, loose and strict, tested on each function's own text (by file when the
-    tool does not find its definition); per generated directory, the matching functions whose file has no
+    the byte-matching, hand-written functions with no steering form (`complete`), loose and strict, tested on each
+    function's own text (by file when the tool does not find its definition), and the loose ones by where the
+    function list's name comes from (NAME_TIERS); per generated directory, the matching functions whose file has no
     placeholder ("clean, not yet read"); and those of them a passing sampled read in data/family_reads.csv
     covers ("read and passed"). Reporting only."""
     by_addr = {int(r["address"], 16): r for r in rows}
     zero = lambda: {"functions": 0, "bytes": 0}  # noqa: E731
     out = {"loose": zero(), "strict": zero(), "by_file": zero(), "loose_fails": {k: zero() for k in LOOSE_REASONS}, "own_name_listed": zero(),
+           **{k: zero() for k in NAME_TIERS},
            "generated": {d: {"matching": zero(), "clean": zero()} for d in sorted(GENERATED_DIRS)},
            "read_passed": zero()}
     scopes = passed_scopes(read_family_reads(reads_path))
@@ -589,7 +638,9 @@ def names_report(version: str, rows: list[dict], qa: dict[int, tuple[str, bool]]
             for k, v in (("loose", loose), ("strict", strict), ("by_file", by_file)):
                 if v:
                     add(out[k], a)
-            if not loose:
+            if loose:
+                add(out[name_tier(by_addr[a])], a)
+            else:
                 why = loose_reason(s, e.get("name", "")) or "body_type"
                 add(out["loose_fails"][why], a)
                 if why == "own_name" and not PLACEHOLDER.search(by_addr[a].get("name", "")):
@@ -603,33 +654,45 @@ def print_names(n: dict, q: dict, overall: dict) -> None:
     def row(label: str, v: dict, mark: str = "") -> None:
         print(f"| {mark}{label}{mark} | {v['functions']:,} | {v['bytes'] / 1e6:.2f} MB | "
               f"{mark}{100 * v['bytes'] / total:.2f}%{mark} |")
-    print("| Readable and matching (CLAUDE.md, \"Purpose and completion\") | Functions | Bytes | Share of code |")
+    print("| Names, beside the headline (CLAUDE.md, \"Purpose and completion\") | Functions | Bytes | Share of code |")
     print("|---|---|---|---|")
-    for k, label in NAME_KINDS.items():
+    row(NAME_KINDS["loose"], n["loose"])
+    for k, label in NAME_TIERS.items():
         row(label, n[k])
+    row(NAME_KINDS["strict"], n["strict"])
     for d, g in n["generated"].items():
         row(f"Generated `src/{d}/`, clean, not yet read (matching, file free of placeholders; "
             f"{g['matching']['functions']:,} match)", g["clean"])
     row("Generated, read and passed (`data/family_reads.csv`)", n["read_passed"])
     print()
-    print("| Finished, failing loose, by the first reason | Functions | Bytes | Share of code |")
+    print("| Hand-written clean in form, failing loose, by the first reason | Functions | Bytes | Share of code |")
     print("|---|---|---|---|")
     for k, label in LOOSE_REASONS.items():
         row(label, n["loose_fails"][k])
     print(f"(of those whose own name is a placeholder, {n['own_name_listed']['functions']:,} have a real name in "
           "data/functions/ that their source does not use yet.)")
-    print(f"(names are tested on each finished function's own text; {n['by_file']['functions']:,} of them by file, "
+    print(f"(names are tested on each such function's own text; {n['by_file']['functions']:,} of them by file, "
           "where the tool did not find the definition. Placeholders: fn_<addr>, Unk... types other than UnkNoArg, "
-          "field_0x.., unk_<addr>, g_unk_..., vf_<slot>; refl_ roles are names. Comments and strings do not count.)")
-    print(metric_line(n, q, overall))
+          "field_0x.., unk_<addr>, g_unk_..., vf_<slot>; refl_ roles are names. Comments and strings do not count. "
+          "Names are a floor a tool can see, not a reading.)")
+    print(named_line(n, overall))
 
 
-def metric_line(n: dict, q: dict, overall: dict) -> str:
+def named(n: dict) -> dict:
+    """Named (owner, 2026-11-23): names loose, own name from a source plus own name inferred."""
+    s, i = n["named_sourced"], n["named_inferred"]
+    return {"functions": s["functions"] + i["functions"], "bytes": s["bytes"] + i["bytes"]}
+
+
+def named_line(n: dict, overall: dict) -> str:
     total = overall["bytes"]
-    fin, rp = q["complete"], n["read_passed"]
-    return (f"Readable and matching, the metric CLAUDE.md describes (finished plus generated read and passed): "
-            f"**{100 * (fin['bytes'] + rp['bytes']) / total:.2f}%** ({fin['functions'] + rp['functions']:,} functions), "
-            f"beside byte-matching and readable {100 * fin['bytes'] / total:.2f}%.")
+
+    def pct(v: dict) -> str:
+        return f"{100 * v['bytes'] / total:.2f}%"
+    s, i, u, a = n["named_sourced"], n["named_inferred"], n["named_unlisted"], named(n)
+    return (f"Named (names loose, own name in the function list): **{pct(a)}** ({a['functions']:,} functions) = from a "
+            f"source {pct(s)} ({s['functions']:,}) + inferred {pct(i)} ({i['functions']:,}); a real name in the "
+            f"source only, not counted, {pct(u)} ({u['functions']:,}).")
 
 
 def names_line(n: dict, q: dict, overall: dict) -> str:
@@ -639,11 +702,15 @@ def names_line(n: dict, q: dict, overall: dict) -> str:
         return f"{100 * v['bytes'] / total:.2f}%"
     clean = {"functions": sum(g["clean"]["functions"] for g in n["generated"].values()),
              "bytes": sum(g["clean"]["bytes"] for g in n["generated"].values())}
-    return (f"Readable and matching, whole binary (`tools/progress.py --quality`, CLAUDE.md's two name figures): "
-            f"of byte-matching and readable, names loose {pct(n['loose'])} ({n['loose']['functions']:,} functions) and "
-            f"names strict {pct(n['strict'])} ({n['strict']['functions']:,}), per function ({n['by_file']['functions']:,} "
-            f"by file); generated, clean, not yet read {pct(clean)} ({clean['functions']:,}); generated, read and passed "
-            f"{pct(n['read_passed'])} ({n['read_passed']['functions']:,}). " + metric_line(n, q, overall))
+    s, i, u, a = n["named_sourced"], n["named_inferred"], n["named_unlisted"], named(n)
+    return (f"Names, whole binary (`tools/progress.py --quality`), a second figure beside the headline, not a cut to "
+            f"it: named **{pct(a)}** ({a['functions']:,} functions) = own name from a source {pct(s)} "
+            f"({s['functions']:,}) + own name inferred {pct(i)} ({i['functions']:,}); a real name in the source only, "
+            f"not counted, {pct(u)} ({u['functions']:,}). Of byte-matching, hand-written, no steering form: names loose "
+            f"{pct(n['loose'])} ({n['loose']['functions']:,} functions), names strict {pct(n['strict'])} "
+            f"({n['strict']['functions']:,}), per function ({n['by_file']['functions']:,} by file); generated, clean, "
+            f"not yet read {pct(clean)} ({clean['functions']:,}); generated, read and passed {pct(n['read_passed'])} "
+            f"({n['read_passed']['functions']:,}). Names are a floor a tool can see, not a reading.")
 
 
 def fuzzy_report(version: str, rows: list[dict], verified: frozenset[int] | None = None) -> dict:
@@ -702,6 +769,7 @@ def fuzzy_line(f: dict) -> str:
 HANDOFF = ROOT / "docs" / "HANDOFF.md"
 BEGIN, END = "<!-- progress:begin -->", "<!-- progress:end -->"
 WHOLE, BOOT = "Whole binary (`L` excluded)", "Boot slice (from `nnMain`, direct calls)"
+NAMES_PREFIXES = ("Names, whole binary", "Readable and matching, whole binary")  # the second: before 2026-11-23
 
 
 def table_row(label: str, t: dict) -> str:
@@ -737,7 +805,7 @@ def update_handoff(path: Path, overall: dict, boot: dict | None, quality_text: s
     quality_text = quality_text or next((ln for ln in old.splitlines() if ln.startswith("Completeness, whole binary")), None)
     if quality_text:
         lines += ["", quality_text]
-    names_text = names_text or next((ln for ln in old.splitlines() if ln.startswith("Readable and matching, whole binary")), None)
+    names_text = names_text or next((ln for ln in old.splitlines() if ln.startswith(NAMES_PREFIXES)), None)
     if names_text:
         lines += ["", names_text]
     fuzzy_text = fuzzy_text or next((ln for ln in old.splitlines() if ln.startswith("Near misses, whole binary")), None)
@@ -759,8 +827,8 @@ def main() -> int:
     ap.add_argument("--origin", action="store_true",
                     help="split matched bytes into hand-typed and generated source (needs build/check/<version>/)")
     ap.add_argument("--quality", action="store_true",
-                    help="the functions by the two qualities each needs: byte-matching, and readable (needs "
-                         "build/check/<version>/)")
+                    help="the functions by the qualities each needs: byte-matching, and clean in form (the headline), "
+                         "with names beside it (needs build/check/<version>/)")
     ap.add_argument("--fuzzy", action="store_true",
                     help="partial credit by similarity: drafts/INDEX.csv, and check.py's cache when it is there")
     ap.add_argument("--units", action="store_true",
@@ -818,10 +886,10 @@ def main() -> int:
         report["names"] = names_report(args.version, game, qa)
     if args.quality:
         print()
-        print("completeness by the two qualities each function needs, byte-matching and readable (whole binary):")
-        print_quality(report["quality"], overall)
+        print("completeness by the qualities each function needs, byte-matching and clean in form (whole binary):")
+        print_quality(report["quality"], overall, report["names"])
         print()
-        print("readable and matching as CLAUDE.md defines it: names, and generated code that reads as source:")
+        print("names, a second figure beside the headline, and generated code that reads as source:")
         print_names(report["names"], report["quality"], overall)
 
     if args.fuzzy or args.handoff:
@@ -845,7 +913,7 @@ def main() -> int:
 
     if args.handoff:
         update_handoff(args.handoff, overall, report["slice"]["overall"] if "slice" in report else None,
-                       quality_line(report["quality"], overall) if "quality" in report else None,
+                       quality_line(report["quality"], overall, report["names"]) if "quality" in report else None,
                        fuzzy_line(report["fuzzy"]) if "fuzzy" in report else None,
                        names_line(report["names"], report["quality"], overall) if "names" in report else None)
     if args.json:
