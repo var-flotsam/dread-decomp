@@ -115,3 +115,4 @@ Thumbs.db
 
 # Per-machine notes (paths to the dump, keys, emulator)
 CLAUDE.local.md
+.claude/settings.local.json
