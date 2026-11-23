@@ -4,7 +4,7 @@
 // CLogicActionTriggerComponent_b48.cpp's fn_710090f894; the setter as in CDoorLifeComponent.cpp. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CScenario.h"

@@ -9,7 +9,7 @@
 // block and the message and runs fn_71004ec714. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CBlackboard.h"

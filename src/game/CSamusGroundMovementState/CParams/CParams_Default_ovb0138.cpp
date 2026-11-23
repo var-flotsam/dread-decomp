@@ -4,7 +4,7 @@
 // when it takes it, the owner gets one of two keys (+0x3a8 of the movement set), the target at +0x8
 // the request (fn_710098ae04), and the movement's flags at +0x2324/+0x2325 are set when fn_71010d1598
 // or fn_71010d15ac holds. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkGameManager.h"

@@ -262,7 +262,7 @@ void fn_7100ed5f2c(UnkShotIdRecordSet* self) {
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"

@@ -3,7 +3,7 @@
 // layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 

@@ -5,7 +5,7 @@
 // (+0x4c, fn_710007b444) and flags it (+0x49). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU55.h"

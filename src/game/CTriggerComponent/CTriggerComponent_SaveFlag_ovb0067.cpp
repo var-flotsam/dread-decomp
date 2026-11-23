@@ -4,7 +4,7 @@
 // name is looked up in the key list at +0x298 (count +0x2a0, values +0x290) as in
 // CCharClassActivatableComponent_b48.cpp. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CTriggerComponent.h"

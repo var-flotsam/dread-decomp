@@ -2,7 +2,7 @@
 // "StayOpened" flag, shows or hides the door's parts, and stores the flag in the current scenario's
 // blackboard section unless the door is locked open. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CNavMeshItemComponent.h"

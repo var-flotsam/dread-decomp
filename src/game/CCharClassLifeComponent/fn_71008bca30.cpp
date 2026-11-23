@@ -3,7 +3,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"  // base::global::CStrId::Empty(), the shared id
+#include "base/reflection/ReflectedAttributes.h"  // base::global::CStrId::Empty(), the shared id
 #include "game/CCharClassComponent.h"
 #include "game/CCharClassLifeComponent.h"
 #include "types.h"

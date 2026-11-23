@@ -125,7 +125,7 @@ void fn_71011a2500(UnkGameManagerSub_0x608* self) {
 // the image the sprite table gives) in the GUI root's menu, tells the navigation mesh, and calls
 // fn_71002326d0 on every object in the scenario's three groups.
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
 #include "game/UnkGuiRoot.h"

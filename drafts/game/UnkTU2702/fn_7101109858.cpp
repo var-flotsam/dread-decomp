@@ -3,7 +3,7 @@
 // says 1, by its cross product with the owner's transform. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CEnemyMovement.h"
 #include "types.h"
 

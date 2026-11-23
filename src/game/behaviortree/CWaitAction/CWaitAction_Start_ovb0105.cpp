@@ -3,7 +3,7 @@
 // from the global tunable registry (created on first use), else from the blackboard entry named at +0x30
 // when there is one (fn_7100394e2c). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkTunableRegistry.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"

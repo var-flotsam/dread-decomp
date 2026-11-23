@@ -4,7 +4,7 @@
 // g_unk_717272c450) up by the amount times the maximums at +0x4c8 and +0x4cc, clamped to the maximums, over
 // 0.2 (fn_7100105da8, fn_7100105d34); otherwise a positive amount has the owner (+0x30) play the sound named at
 // +0x450 (fn_7100d7c45c). Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassShootActivatorComponent.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"

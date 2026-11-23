@@ -3,7 +3,7 @@
 // request's id at +0xb8 becomes the unit's static id, its value (fn_71008c1538) is what fn_7100789f5c gives
 // for that id and the word at +0xc8 is set to 1. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
 #include "types.h"

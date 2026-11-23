@@ -3,7 +3,7 @@
 // g_unk_71726b7cb8 (blackboard at +0x1260, skipped while it is locked), as fn_71006ea3fc in
 // src/game/CXParasiteAIComponent.cpp does. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU1102.h"

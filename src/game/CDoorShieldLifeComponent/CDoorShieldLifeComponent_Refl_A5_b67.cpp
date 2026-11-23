@@ -3,7 +3,7 @@
 // and returns its bool result; fn_71008dca58 locks the door (fn_71008d586c with true, 1 and an empty string id, as
 // fn_7100bd37dc in CCharClassSetDoorLockedEvent_Execute.cpp) and returns the int 1. Names are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU1376.h"
 #include "types.h"

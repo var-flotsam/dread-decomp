@@ -4,7 +4,7 @@
 // and a pending stop (+0x14772) whose time is under 1 ends (fn_71003c4e64). Names and layouts are
 // placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAutoolAIComponent.h"

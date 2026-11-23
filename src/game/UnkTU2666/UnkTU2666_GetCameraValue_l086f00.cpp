@@ -4,7 +4,7 @@
 #include "base/core/CBaseObject.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/CCameraComponent.h"
 #include "game/UnkGameManager.h"

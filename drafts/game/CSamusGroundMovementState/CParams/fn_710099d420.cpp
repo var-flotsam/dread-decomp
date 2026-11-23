@@ -5,7 +5,7 @@
 // placeholders.
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkAnimationComponent.h"

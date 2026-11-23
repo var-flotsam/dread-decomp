@@ -7,7 +7,7 @@
 #include "base/math/CVector4D.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAttack.h"
 #include "game/CAutsharpAIComponent.h"

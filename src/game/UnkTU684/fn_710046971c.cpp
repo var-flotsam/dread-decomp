@@ -3,7 +3,7 @@
 // than the tunable radius at g_unk_71726cb3f8 + 0x2c; otherwise the base attack's test (fn_7100360b84) decides.
 // Names and layouts are placeholders.
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"

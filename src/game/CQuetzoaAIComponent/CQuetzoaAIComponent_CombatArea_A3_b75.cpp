@@ -6,7 +6,7 @@
 // placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CComponent.h"

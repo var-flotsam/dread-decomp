@@ -2,7 +2,7 @@
 // string member of the holder's object (four string members), or empty.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

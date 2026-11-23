@@ -3,7 +3,7 @@
 // rebuilt) whether a string id of the object at +8 is set (+0x9b0 and +0x1e8), and returns the int 1. Names
 // are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"

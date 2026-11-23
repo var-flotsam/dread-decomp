@@ -3,7 +3,7 @@
 // blackboard at +0x968 of the global manager names by the string table's id at 0x1150 (the table is a
 // function-local static); the named id at 0x717275ac18+0x10 is set to the default id on first use.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"

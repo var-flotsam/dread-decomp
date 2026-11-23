@@ -1,7 +1,7 @@
 // GUI::CDisplayObject unit (tools/tu_map.py, the name from reflection): a reflected getter that returns a copy of the
 // CStrId at +0x18 of the object at 8 as a reflected value. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"

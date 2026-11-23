@@ -7,7 +7,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CAnimationComponent.h"

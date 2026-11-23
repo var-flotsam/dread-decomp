@@ -5,7 +5,7 @@
 // owner's direction to the global dispatcher.
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CGunComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"

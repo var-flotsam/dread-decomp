@@ -1,6 +1,6 @@
 // From unit 70 of tools/tu_map.py (0x71000934b8-0x71000943bc; its initialiser,
 // src/game_s1/fn_7100094300.cpp, registers the "base::reflection::EAttributeTarget" enum): a
-// reflected element's attributes (UnkReflAttrs, base/reflection/UnkReflAttributes.h), values keyed
+// reflected element's attributes (UnkReflAttrs, base/reflection/ReflectedAttributes.h), values keyed
 // by the attribute key's name, and the insertion every attribute registration goes through
 // (fn_71000934b8). Names and layouts are placeholders.
 #include <new>
@@ -8,7 +8,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBlackboard.h"

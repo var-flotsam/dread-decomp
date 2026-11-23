@@ -48,7 +48,7 @@
 #include "base/global/UnkStringPool.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameBlackboard.h"

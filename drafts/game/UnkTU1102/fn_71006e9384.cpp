@@ -3,7 +3,7 @@
 // object's partner, 5 locks on to the partner of the object at +0x147a0, 7 drops the lock. Names and
 // layouts are placeholders.
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"

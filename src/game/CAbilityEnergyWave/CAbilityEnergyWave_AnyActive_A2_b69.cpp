@@ -1,7 +1,7 @@
 // CAbilityEnergyWave's unit (the name from reflection): a reflected getter (the first parameter is unused) that
 // answers, as a bool value, whether any ability of the object's list (+0x40, count +0x48) has a state (CAbility's,
 // state 7 deferring to the ability at +0x20) of 2 or more. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAbilityLayout.h"
 #include "types.h"

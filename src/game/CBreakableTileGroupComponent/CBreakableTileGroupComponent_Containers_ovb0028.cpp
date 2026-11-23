@@ -13,7 +13,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTileElem_ovb0028.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"

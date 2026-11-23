@@ -4,7 +4,7 @@
 // +0x15ec8, enters the mode the tunable asks for (+0x2c of g_unk_71726c91d0) and hooks the callback
 // fn_710045696c (link at +0x15f08, handle at +0x15f20) up to the owner's animation (+0x220).
 // Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
 #include "game/CBossAIComponent.h"

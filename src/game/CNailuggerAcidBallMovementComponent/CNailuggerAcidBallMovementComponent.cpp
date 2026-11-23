@@ -2,7 +2,7 @@
 // tunable value at +0x41c of g_unk_7172716160 and copies a unit-static id into the request's id at
 // +0xb8, like fn_71006238ec (CNailongThornMovementComponent_2.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
 #include "types.h"

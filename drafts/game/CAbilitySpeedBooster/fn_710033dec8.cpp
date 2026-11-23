@@ -5,7 +5,7 @@
 // with fn_71010d1598. Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbility.h"
 #include "game/CMovementComponent.h"

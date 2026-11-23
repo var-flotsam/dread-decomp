@@ -3,7 +3,7 @@
 // fMinTimeOpened, fMaxDistanceOpened, iAreaLeft, iAreaRight and sShieldEntity. Names and layouts are placeholders.
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/CActorComponent.h"
 #include "game/UnkTU56.h"

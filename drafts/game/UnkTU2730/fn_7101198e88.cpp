@@ -5,7 +5,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkNoArg.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAbilityShinespark.h"

@@ -1,7 +1,7 @@
 // CSamusMovement's unit (unit 1501): the movement's input sample, an x scale from the run info and a y copied
 // from it, damped while slow motion or the speed booster is on, scaled while the morph-ball style flag (+0x7e4)
 // is set, and zeroed under a few conditions of the aim component. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilitySpeedBooster.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSamusInputMovement.h"

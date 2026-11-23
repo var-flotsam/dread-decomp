@@ -3,7 +3,7 @@
 // blackboard is locked), then lets the player's component (fn_7100303054) update (fn_7100a1f8cc).
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"

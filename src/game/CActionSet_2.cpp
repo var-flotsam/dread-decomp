@@ -1,7 +1,7 @@
 // CActionSet unit: the "Version" attribute of a class, 0x30000 plus the 16-bit number in
 // g_unk_710164b950. Names are placeholders.
 #include "base/reflection/CClass.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 
 using base::reflection::CClass;
 

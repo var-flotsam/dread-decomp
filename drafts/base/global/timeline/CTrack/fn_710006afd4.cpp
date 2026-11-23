@@ -3,7 +3,7 @@
 // from a value read as the field's type says. Names and layouts are placeholders.
 #include "base/global/CRntFile.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/UnkTU85.h"

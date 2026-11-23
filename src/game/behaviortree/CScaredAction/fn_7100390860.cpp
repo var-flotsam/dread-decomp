@@ -3,7 +3,7 @@
 // id of the first known hash) or to 5 (kind-1 message, id of the second known hash).
 // Always returns 1.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkMessage.h"
 #include "types.h"
 

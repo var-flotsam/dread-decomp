@@ -2,7 +2,7 @@
 // (CKraidBouncingCreaturesMovementComponent_2.cpp) without the word store. Names and layouts are
 // placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/CProjectileMovement.h"

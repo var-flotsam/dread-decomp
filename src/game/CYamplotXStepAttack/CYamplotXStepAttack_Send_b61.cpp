@@ -5,7 +5,7 @@
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkActor.h"
 #include "game/UnkAttack.h"
 #include "game/UnkTU2702.h"

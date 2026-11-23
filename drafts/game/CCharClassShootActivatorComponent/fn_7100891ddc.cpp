@@ -3,7 +3,7 @@
 // g_unk_717272c420 in the scenario's blackboard section once complete). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"

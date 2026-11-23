@@ -3,7 +3,7 @@
 // animated grab point, or else its node's transform. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAnimationComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkTU1134.h"

@@ -8,7 +8,7 @@
 // switcher on, falling below 1 turns it off, and the new state is stored in the section (unless the
 // blackboard is locked; the setter as in CDoorLifeComponent.cpp).
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CAnimationComponent.h"
 #include "game/CBlackboard.h"

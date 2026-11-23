@@ -1359,7 +1359,7 @@ def primitive_traits(orig: asmdiff.Original, addr: int, decls: set[str]) -> list
     return lines
 
 
-# A plain type's CType slots by role (UnkReflPrimitiveType.h): the value operations and CType+0x70.
+# A plain type's CType slots by role (PrimitiveType.h): the value operations and CType+0x70.
 PRIMITIVE_SLOTS = {**{off: SLOTS[off] for off in VALUE_OPS}, 0x70: "add_attributes"}
 
 # The plain types, by the name the game gives them, whose value operations come from ValueOps.h:
@@ -1501,7 +1501,7 @@ PRELUDE = ['#include "base/global/CRntVector.h"',
            '#include "base/reflection/CFlagsetType.h"',
            '#include "base/reflection/CollectionTypeMapper.h"',
            '#include "base/reflection/CPointerType.h"',
-           '#include "base/reflection/UnkReflPrimitiveType.h"',
+           '#include "base/reflection/PrimitiveType.h"',
            '#include "base/reflection/ValueOps.h"',
            "using base::reflection::CType;",
            "using base::reflection::SlotFn;"]

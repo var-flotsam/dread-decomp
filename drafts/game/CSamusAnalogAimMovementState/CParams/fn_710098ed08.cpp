@@ -5,7 +5,7 @@
 // tunable in one game mode; then it settles the movement. Names and layouts are placeholders.
 #include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkGameManager.h"

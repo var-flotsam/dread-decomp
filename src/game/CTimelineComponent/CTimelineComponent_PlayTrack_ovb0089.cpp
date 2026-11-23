@@ -2,7 +2,7 @@
 // CCharClassPlayTimelineTrack record: stops the timeline of the one kept at +0xe8 when it no longer
 // applies, and starts the new one's. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"

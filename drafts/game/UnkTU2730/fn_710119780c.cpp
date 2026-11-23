@@ -3,7 +3,7 @@
 // +0x968, then resets that id and appends `name` to the list at +0xae8. Names and layouts are placeholders.
 #include "base/UnkCloneRecords.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"

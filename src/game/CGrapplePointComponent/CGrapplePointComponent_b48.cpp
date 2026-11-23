@@ -5,7 +5,7 @@
 // placeholders. fn_7100822a30 stores the point's flag (g_unk_71727235d0) the same way, as a bool.
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CGrapplePointComponent.h"

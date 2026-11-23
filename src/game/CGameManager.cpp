@@ -383,7 +383,7 @@ void fn_7100df026c(UnkGameManager* self, const CFilePathStrId& path) {
     fn_71000898c4(FileDevice());
 }
 
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkSubId_7100fc4b34.h"
 #include "game/UnkTUProperty.h"

@@ -5,7 +5,7 @@
 // (fn_7100232864); fn_710090f894 and fn_710090fa80 store true and false unless the blackboard is locked (the
 // setter as in CDoorLifeComponent.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CLogicActionTriggerComponent.h"

@@ -3,7 +3,7 @@
 #include "base/UnkHashStream.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection/CType.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"

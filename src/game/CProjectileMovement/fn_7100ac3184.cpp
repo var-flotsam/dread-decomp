@@ -4,7 +4,7 @@
 // and binds its callback to a lazily created global dispatcher.
 #include "base/global/CStrId.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CTimelineComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU0.h"

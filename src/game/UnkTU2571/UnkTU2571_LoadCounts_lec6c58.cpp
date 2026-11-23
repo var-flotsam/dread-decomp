@@ -2,7 +2,7 @@
 // reflection id table), the names fn_7100ec6714 stores them under; the first two can be kept as they
 // are. Marks the counters loaded when all three were there. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2571.h"

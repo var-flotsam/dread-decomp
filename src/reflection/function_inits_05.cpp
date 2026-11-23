@@ -2,14 +2,12 @@
 // Out-of-line initialisers of reflected functions (tools/refl_attrs.py,
 // parse_initialiser), byte-identical to the original.
 #include "base/reflection/CClass.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
-#include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");

@@ -5,7 +5,7 @@
 // damage request (fn_71008c0c74, virtual 0x190) with the tunable's value (+0x1a4 of g_unk_7172716160) and
 // the unit's static string id at +0xb8. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkLavaDropsShape_A2_b71.h"

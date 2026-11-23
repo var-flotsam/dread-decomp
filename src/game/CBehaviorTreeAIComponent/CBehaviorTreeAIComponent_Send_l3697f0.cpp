@@ -3,7 +3,7 @@
 // sends the id table's slot 0xc90 and, if that is not taken, slot 0x1d78. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "types.h"
 

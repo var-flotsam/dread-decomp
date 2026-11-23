@@ -1,7 +1,7 @@
 // CPickableItemComponent's unit (1493): reflected functions' invokers that pass their two arguments (as
 // pointers) to a virtual of the object at +8 (slots 0x198 and 0x1a0) and return the int it answers. Names are
 // placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

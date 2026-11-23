@@ -2,7 +2,7 @@
 // own getter, used as a return type, lives in this translation unit.
 #include "base/reflection/CType.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 using base::global::CStrId;
 using base::reflection::CClass;

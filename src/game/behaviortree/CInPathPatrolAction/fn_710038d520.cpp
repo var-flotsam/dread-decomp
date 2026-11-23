@@ -4,7 +4,7 @@
 // Always returns 1.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkMessage.h"
 #include "types.h"

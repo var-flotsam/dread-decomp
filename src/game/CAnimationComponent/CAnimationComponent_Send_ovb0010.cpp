@@ -4,7 +4,7 @@
 // track entry of hash 0xf4061ff25a2163d6 (fn_7101177044), first descriptor g_unk_710164b968 and the
 // all-bits mask. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CActionSet.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkTU1730.h"

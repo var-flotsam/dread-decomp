@@ -6,7 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/CType.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkListEntry_b0236.h"

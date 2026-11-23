@@ -1,7 +1,7 @@
 // Constructor of a component base (shared by 25 derived constructors): runs the base
 // constructor, sets the vtable, copies the default id and default-initialises the rest.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassProjectileMovement.h"
 #include "types.h"
 

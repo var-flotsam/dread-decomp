@@ -6,7 +6,7 @@
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/GUI/CList.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiRoot.h"

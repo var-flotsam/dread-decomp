@@ -4,7 +4,7 @@
 // (vtable g_unk_7101a22d18) with 3 and zeros, as fn_71009a9434
 // (src/game/CSamusMagnetGloveMovementState/CParams/CParams_Fall_ovb0082.cpp). Names and layouts are
 // placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkTU1455.h"
 #include "game/UnkTU1730.h"

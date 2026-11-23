@@ -1,7 +1,7 @@
 // GUI::CSpriteGrid unit (tools/tu_map.py, the name from reflection): a reflected getter that returns
 // the string id fn_71011fd7a0 makes for the grid at 8. Names are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

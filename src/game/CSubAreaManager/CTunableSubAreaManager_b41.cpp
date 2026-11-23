@@ -2,7 +2,7 @@
 // function of the object at 8 that passes a u32 argument and a second (nullable) argument to
 // fn_7100eef488 and returns the pointer it gives (typed by fn_7100ef0e00). Same shape as
 // fn_71011dc794. Names are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU2577.h"
 #include "types.h"

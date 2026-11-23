@@ -3,7 +3,7 @@
 // "SecretVisited" property (g_unk_717275aef8). Names and layouts are placeholders.
 #include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
