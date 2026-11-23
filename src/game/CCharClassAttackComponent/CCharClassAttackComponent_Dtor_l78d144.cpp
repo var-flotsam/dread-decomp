@@ -69,5 +69,5 @@ void fn_710078d144(UnkCharClassAttack_l78d144* self) {
     self->id_0x80.~CStrId();
     self->id_0x60.~CStrId();
     self->id_0x58.~CStrId();
-    fn_71011acd74(reinterpret_cast<UnkIdObject*>(self));
+    fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(self));
 }

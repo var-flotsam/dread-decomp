@@ -16,7 +16,7 @@ using base::global::UnkStringPool;
 
 // Signatures as src/game/CCharClassCollisionComponent/CCharClassCollisionComponent.cpp and
 // src/game/CUsableComponent/fn_7100a9e6bc.cpp declare them.
-struct UnkIdObject;
+struct UnkIdObject_8da5c0;
 
 struct UnkListNode_grab_b43a2 {
     u8 pad_0x0[0x88];
@@ -55,5 +55,5 @@ void fn_7100790da8(UnkGrabComponent_b43a2* self) {
     list->count = 0;
     list->head = nullptr;
     list->tail = nullptr;
-    fn_71011acd74(reinterpret_cast<UnkIdObject*>(self));
+    fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(self));
 }

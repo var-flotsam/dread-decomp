@@ -48,7 +48,7 @@ struct UnkShotSound_b0011 {
 };
 
 struct UnkListedObj;
-struct UnkPtrList;
+struct UnkPtrList_e0babc;
 
 struct UnkShotManager_b0011 {
     u8 pad_0x0[0x30];
@@ -144,7 +144,7 @@ static inline char* LightManager_b0011() {
 void fn_7100ed54fc(UnkShotManager_b0011* self) {
     u32 n = self->field_0x1238.capacity;
     for (u32 i = 0; i < n; ++i) {
-        UnkPtrList* list = reinterpret_cast<UnkPtrList*>(&self->field_0x1238);
+        UnkPtrList_e0babc* list = reinterpret_cast<UnkPtrList_e0babc*>(&self->field_0x1238);
         *fn_7100e0a5ec(list, i) = fn_7100e0b770(LightManager_b0011());
         UnkToggle* toggle = &reinterpret_cast<UnkShotLight_b0011*>(*fn_7100e0a5ec(list, i))->toggle;
         fn_710020c4b8(toggle, false);

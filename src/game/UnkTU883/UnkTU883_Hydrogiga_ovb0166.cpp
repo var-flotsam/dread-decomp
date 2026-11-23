@@ -135,10 +135,10 @@ s32 fn_71005c0f2c(UnkHydrogigaAI_b0166* self) {
 
 // ---- the colour of a shape's slots ----
 
-struct UnkTable;
+struct UnkTable_926874;
 struct UnkKey;
 struct UnkPolygon2D;
-void fn_7100926874(UnkTable* self, const UnkKey& key, u32 id, const base::math::CVector4D& a, const base::math::CVector4D& b,
+void fn_7100926874(UnkTable_926874* self, const UnkKey& key, u32 id, const base::math::CVector4D& a, const base::math::CVector4D& b,
                    u32 kind, u32 value, f32 weight);
 
 // The key as fn_7100926874.cpp's, with its id released in two steps.
@@ -177,7 +177,7 @@ struct UnkActorWith_b0166 {
     u8 pad_0x0[0x228];
     UnkActorSub_b0166* field_0x228;
     u8 pad_0x230[0x58];
-    UnkTable* field_0x288;
+    UnkTable_926874* field_0x288;
 };
 
 struct UnkFoundObject_b0166 {
@@ -194,7 +194,7 @@ struct UnkFound_b0166 {
 
 void fn_71005c18dc(UnkHydrogigaAI_b0166* self, UnkActorWith_b0166* actor) {
     UnkActorSub_b0166* sub = actor->field_0x228;
-    UnkTable* table = actor->field_0x288;
+    UnkTable_926874* table = actor->field_0x288;
     if (!sub || !table)
         return;
     UnkShape_b0166* shape = sub->shape;

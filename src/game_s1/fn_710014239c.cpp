@@ -26,7 +26,7 @@ struct UnkKeySet {
     UnkRntVector<UnkKeyNode*> buckets;  // +0x10
 };
 
-struct UnkKeyOwner {
+struct UnkKeyOwner_14239c {
     UnkKeySet set;  // +0x0
     u8 field_0x20[0x68];
     base::global::CRntVector<u64> moved;  // +0x88
@@ -34,7 +34,7 @@ struct UnkKeyOwner {
 
 void* fn_7100142504(UnkKeySet* set, const u64* key);  // erases the key
 
-bool fn_710014239c(UnkKeyOwner* self, u64 key) {
+bool fn_710014239c(UnkKeyOwner_14239c* self, u64 key) {
     if (self->set.buckets.size == 0)
         return false;
     UnkKeyNode** bucket = self->set.buckets.At((u32)key % self->set.buckets.capacity);

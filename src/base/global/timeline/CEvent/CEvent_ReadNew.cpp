@@ -14,7 +14,7 @@
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
 
-struct UnkTimelineEvent;
+struct UnkTimelineEvent_068f5c;
 
 // CEvent's class: the static inside its getter fn_71000675e8.
 extern char g_unk_7101d57b80[] __attribute__((visibility("hidden")));
@@ -28,23 +28,23 @@ struct UnkEventTypeView {
 };
 
 // Reads the rest of an event from the file.
-void fn_710006790c(UnkTimelineEvent* event, base::global::CRntFile* file);
+void fn_710006790c(UnkTimelineEvent_068f5c* event, base::global::CRntFile* file);
 
-UnkTimelineEvent* fn_7100067848(base::global::CRntFile* file) {
+UnkTimelineEvent_068f5c* fn_7100067848(base::global::CRntFile* file) {
     u64 raw;
     CRntFile_Read(file, &raw, 8, 1);
     UnkVersionRegistry* registry = g_unk_7101d4c8d0;
     u64 id = raw;
     auto* type = reinterpret_cast<const base::reflection::CType*>(fn_71000a5118(registry, &id));
     fn_71000675e8();
-    UnkTimelineEvent* event = nullptr;
+    UnkTimelineEvent_068f5c* event = nullptr;
     if (fn_710009d50c(type, reinterpret_cast<const base::reflection::CType*>(g_unk_7101d57b80))) {
         const auto* view = reinterpret_cast<const UnkEventTypeView*>(type);
         if (view->construct) {
             void* p = GetDefaultAllocator()->vf_0x40(view->size, 8, 0x58);
             if (p)
                 view->construct(p);
-            event = static_cast<UnkTimelineEvent*>(p);
+            event = static_cast<UnkTimelineEvent_068f5c*>(p);
         }
     }
     fn_710006790c(event, file);

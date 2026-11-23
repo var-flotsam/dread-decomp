@@ -12,14 +12,14 @@
 using base::global::CRntString;
 
 struct UnkObject_71011ace00;
-struct UnkIdObject;
+struct UnkIdObject_8da5c0;
 void fn_710079b944(UnkKeyedStrIds* self);
 
 struct UnkCollisionBase {
     void** vtable;
     u8 unk_0x8[0x50];
     __attribute__((always_inline)) ~UnkCollisionBase() {
-        fn_71011acd74(reinterpret_cast<UnkIdObject*>(this));
+        fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(this));
     }
 };
 

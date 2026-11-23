@@ -38,7 +38,7 @@ struct UnkComponent;
 struct UnkPlayer;
 struct UnkWorld;
 struct UnkLifeComponent;
-struct UnkSamusGunComponent;
+struct UnkSamusGunComponent_b50;
 struct UnkScriptCaller;
 struct UnkSmLockon_A1_b64;
 struct UnkSmAbility3_A2_b63;
@@ -55,13 +55,13 @@ extern const u64 g_unk_7101648d18;
 void fn_7100301600(void* self, u64 hash, bool on, UnkObject* world);
 
 void fn_71003053c4(CAbilityEnergyWave* self);
-void fn_710085ab38(UnkSamusGunComponent* gun);
+void fn_710085ab38(UnkSamusGunComponent_b50* gun);
 
 struct UnkEnergyWavePlayer2_ovb22 {
     u8 pad_0x0[0x1e0];
     UnkScriptCaller* script;  // 0x1e0
     u8 pad_0x1e8[0xc0];
-    UnkSamusGunComponent* gun;  // 0x2a8
+    UnkSamusGunComponent_b50* gun;  // 0x2a8
 };
 
 struct UnkEnergyWaveWorldHolder_ovb22 {
@@ -138,7 +138,7 @@ void fn_71003052a0(CAbilityEnergyWave* self, s32 reason) {
         fn_7100305088(player->script, "OnAbilityEWEnd", g_unk_710162e2ed);
     }
     if (UnkOwner* local = fn_7100defcd4(g_unk_7101d47310)) {
-        if (UnkSamusGunComponent* gun = reinterpret_cast<UnkEnergyWavePlayer2_ovb22*>(local)->gun) {
+        if (UnkSamusGunComponent_b50* gun = reinterpret_cast<UnkEnergyWavePlayer2_ovb22*>(local)->gun) {
             auto* typed = reinterpret_cast<UnkEnergyWaveGun*>(gun);
             gun = fn_710009d50c(typed->GetClass(), fn_7100857564()) ? gun : nullptr;  // CSamusGunComponent
             fn_710085ab38(gun);

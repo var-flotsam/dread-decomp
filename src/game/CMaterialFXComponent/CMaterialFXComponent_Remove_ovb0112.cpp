@@ -11,7 +11,7 @@
 using base::math::CVector4D;
 
 struct UnkKey;
-struct UnkSlots;
+struct UnkSlots_926874;
 
 struct UnkMaterialFXTarget_ovb0112 {
     u8 pad_0x0[0x30];

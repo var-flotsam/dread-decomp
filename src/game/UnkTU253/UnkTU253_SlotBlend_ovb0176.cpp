@@ -8,6 +8,7 @@
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSlots.h"
+#include "game/UnkSlotsInfo_ovb0176.h"
 #include "game/UnkTU218.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU253.h"
@@ -70,11 +71,6 @@ bool fn_71001c2c70(UnkSlots* self, f32 duration, u32 id, u32 kind, const CColor4
     return StartBlend(self, id, kind, from, to, mode, duration);
 }
 
-struct UnkSlotsInfo_ovb0176 {
-    u8 pad_0x0[0x30];
-    u32 field_0x30;
-};
-
 // A polymorphic object the owner drives each frame.
 struct UnkDriver_ovb0176 {
     virtual void vf_0x0();
@@ -130,7 +126,7 @@ void fn_71001c1030(UnkSlotsOwner_ovb0176* self, bool force, f32 dt) {
     if (scaled)
         dt = *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(g_unk_710b372a98) + 0x38) * dt;
     f32 step = flags[0x13] ? 0.0f : dt;
-    if ((self->field_0x35e && self->info->field_0x30 != 0) || force || self->field_0x70 || flags[0]) {
+    if ((self->field_0x35e && self->info->count != 0) || force || self->field_0x70 || flags[0]) {
         if (!self->field_0x359) {
             if (UnkDriver_ovb0176* driver = self->driver) {
                 if (self->field_0xe0)

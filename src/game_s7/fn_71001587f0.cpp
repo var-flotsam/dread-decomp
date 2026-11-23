@@ -95,7 +95,7 @@ struct UnkHandleSet {
 };
 static_assert(sizeof(UnkHandleSet) == 0x90, "");
 
-struct UnkPool {
+struct UnkPool_1587f0 {
     u8 pad_0x0[0x120];
 };
 
@@ -110,7 +110,7 @@ extern s32 g_unk_716e29c1d0;
 extern u64 g_unk_716e29c218;
 extern UnkHandle* g_unk_716e29c170[2];
 extern void* g_unk_716e29bcc0;
-extern UnkPool g_unk_716e29bcd0[];
+extern UnkPool_1587f0 g_unk_716e29bcd0[];
 extern u8 g_unk_716e29c1d8[];
 extern u8 g_unk_716e29c6b0[];
 extern s32 g_unk_7101a1d808;
@@ -247,7 +247,7 @@ bool fn_71001587f0() {
     Call(g_unk_716e29ac78, fn_7100153cd0(), 0x13, &control_alignment);
     Call(g_unk_716e29ac78, fn_7100153cd0(), 0x14, &command_alignment);
     for (u32 i = 0; i < pool_count; i++) {
-        UnkPool* pool = &g_unk_716e29bcd0[i];
+        UnkPool_1587f0* pool = &g_unk_716e29bcd0[i];
         u64 size = fn_710015383c(0xf00000, control_alignment);
         fn_710015385c(pool, size, 0x22, fn_7100153cd0());
         {

@@ -14,7 +14,7 @@ struct UnkAimActor_34f8dc {
     UnkAnimationComponent* animation;
 };
 
-struct UnkAimComponent {
+struct UnkAimComponent_34f8dc {
     u8 pad_0x0[0x30];
     UnkAimActor_34f8dc* actor;  // 0x30
     u8 pad_0x38[0x18];
@@ -23,7 +23,7 @@ struct UnkAimComponent {
     bool field_0x360;
 };
 
-bool fn_710034f8dc(UnkAimComponent* self) {
+bool fn_710034f8dc(UnkAimComponent_34f8dc* self) {
     if (self->aim && self->aim->state == 1 && self->field_0x360) {
         UnkAnimationComponent* animation = self->actor->animation;
         return fn_710117b348(animation, fn_7100d03e08());

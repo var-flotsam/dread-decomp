@@ -23,7 +23,7 @@ struct UnkVec2_e9bf60 {
     f32 y;
 };
 
-struct UnkRecord {
+struct UnkRecord_e9bf60 {
     UnkKeyObject* key;
     s32 field_0x8;
     u8 field_0xc[0x8];
@@ -33,16 +33,16 @@ struct UnkRecord {
     u8 unk_0x24[0x4];
     f32 field_0x28;
     u8 unk_0x2c[0x15f8 - 0x2c];
-    UnkRecord* next;
+    UnkRecord_e9bf60* next;
 };
 
 struct UnkRecordBuckets {
-    UnkRecord** data;
+    UnkRecord_e9bf60** data;
     u32 count;
     u32 capacity;
 };
 
-struct UnkBox {
+struct UnkBox_e9bf60 {
     UnkVec2_e9bf60 min;
     UnkVec2_e9bf60 max;
 };
@@ -64,7 +64,7 @@ bool fn_7100e9bf60(UnkRecordOwner* self, UnkEntityArg* arg) {
     u32 i = hash % self->records.capacity;
     if (i >= self->records.count)
         return false;
-    UnkRecord* record = *fn_7100eb3814(&self->records, i);
+    UnkRecord_e9bf60* record = *fn_7100eb3814(&self->records, i);
     for (; record; record = record->next) {
         if (record->key == entity->key)
             break;
@@ -73,7 +73,7 @@ bool fn_7100e9bf60(UnkRecordOwner* self, UnkEntityArg* arg) {
         return false;
     f32 x = record->field_0x14.x;
     f32 y = record->field_0x14.y;
-    UnkBox box;
+    UnkBox_e9bf60 box;
     box.min.y = record->field_0x14.y;
     if (!record->field_0x8) {
         fn_7100eb7680(record->field_0xc);

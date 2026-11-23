@@ -315,7 +315,7 @@ struct UnkEntryList_p {
 };
 
 // As src/game/CMinimapManager/fn_7100ea5c40.cpp and src/game_aca57c/fn_7100e9bf60.cpp declare them.
-struct UnkRecord;
+struct UnkRecord_e9bf60;
 struct UnkRecordBuckets;
 void fn_7100ea5c40(char* set, UnkPoolIter* it);
 struct UnkRecord118;

@@ -17,7 +17,7 @@ void fn_7101037664(UnkAudioPresetBank_b0192* self) {
     for (u32 index : g_unk_710164c2d4) {
         UnkPathIdList_b0192& list = self->items[index].first;
         for (u32 i = 0; i < list.count; ++i) {
-            UnkPathNode* path = reinterpret_cast<UnkPathNode*>(&list.data[i]);
+            UnkPathNode_CEntity_2* path = reinterpret_cast<UnkPathNode_CEntity_2*>(&list.data[i]);
             if (*reinterpret_cast<void**>(path) != &g_unk_7101d47200->empty)
                 fn_710010808c(g_unk_7101d4d820, path);
         }

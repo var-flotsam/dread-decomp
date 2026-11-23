@@ -8,14 +8,14 @@
 
 using base::global::CStrId;
 
-struct UnkSamusGunComponent {
+struct UnkSamusGunComponent_b50 {
     u8 unk_0x0[0x168];
     CStrId pending;  // 0x168
     u8 unk_0x170[0xc];
     f32 timer;  // 0x17c
 };
 
-void fn_7100858790(UnkSamusGunComponent* self) {
+void fn_7100858790(UnkSamusGunComponent_b50* self) {
     char* gun = fn_710083cd4c(self);
     if (gun == nullptr)
         return;

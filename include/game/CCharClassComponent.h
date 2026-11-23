@@ -7,10 +7,10 @@
 #include "types.h"
 
 struct UnkCollisionClassDef;
-struct UnkIdObject;
+struct UnkIdObject_8da5c0;
 struct UnkModelEntity;
 struct UnkStruct_71008bca30;
 void fn_71011acd10(UnkStruct_71008bca30*);  // Derived classes call it as their base's constructor.
-void fn_71011acd74(UnkIdObject* self);  // Derived classes call it as their base's destructor.
+void fn_71011acd74(UnkIdObject_8da5c0* self);  // Derived classes call it as their base's destructor.
 bool fn_71011ace94(UnkModelEntity* self, void* arg);
 bool fn_71011aced4(UnkCollisionClassDef* self, base::global::CRntFile* file);

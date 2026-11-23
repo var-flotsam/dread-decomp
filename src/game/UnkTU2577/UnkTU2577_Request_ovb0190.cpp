@@ -46,7 +46,7 @@ struct UnkNamedObjectPtr_b190 {
     UnkNamedObject_b190* ptr;
 };
 
-struct UnkSubAreaMgr_b190 {
+struct UnkSubAreaMgr_b190_ee4704 {
     u8 pad_0x0[0x110];
     u32 field_0x110;
     u8 pad_0x114[0x44];
@@ -60,8 +60,8 @@ struct UnkSubAreaMgr_b190 {
     u8 pad_0x40a[0x426];
     base::global::CRntVector<UnkNamedObjectPtr_b190> field_0x830;
 };
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x3f0) == 0x3f0, "layout");
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x830) == 0x830, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ee4704, field_0x3f0) == 0x3f0, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ee4704, field_0x830) == 0x830, "layout");
 
 struct UnkSubAreaEntity_b190 {
     u8 pad_0x0[0x10];
@@ -78,7 +78,7 @@ void fn_7100fad0bc(UnkSubAreaRecord_0x188* self, const CStrId* id, bool flag, bo
 void fn_7100ee6884(CSubAreaManager* self);
 
 void fn_7100ee4704(CSubAreaManager* self_, const UnkPoppedRequest* request_, bool a, bool b) {
-    UnkSubAreaMgr_b190* self = reinterpret_cast<UnkSubAreaMgr_b190*>(self_);
+    UnkSubAreaMgr_b190_ee4704* self = reinterpret_cast<UnkSubAreaMgr_b190_ee4704*>(self_);
     const CStrId* request = reinterpret_cast<const CStrId*>(request_);
     if (self->field_0x3f0) {
         UnkSubareaNamedEntry* entry = fn_7100fab838(reinterpret_cast<UnkSubareaNamedList*>(self->field_0x3f0), request);

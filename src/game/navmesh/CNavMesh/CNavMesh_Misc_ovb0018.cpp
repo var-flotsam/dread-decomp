@@ -452,14 +452,14 @@ void fn_7100279600(base::global::CRntVector<UnkNavLoadCell>* self, u32 capacity)
 
 struct UnkNavMeshItem;  // src/game/navmesh/UnkNavMeshItem.cpp
 
-struct UnkRecord;  // the item, as src/game_s2/fn_71002b2e9c.cpp names it
-void fn_71002b2e9c(UnkRecord* self);
+struct UnkRecord_2b2e9c;  // the item, as src/game_s2/fn_71002b2e9c.cpp names it
+void fn_71002b2e9c(UnkRecord_2b2e9c* self);
 
 // An item (0x208 bytes) with its out-of-line constructor, move and destructor.
 struct alignas(8) UnkNavItem9dd4 {
     u8 raw[0x208];
 
-    UnkNavItem9dd4() { fn_71002b2e9c(reinterpret_cast<UnkRecord*>(this)); }
+    UnkNavItem9dd4() { fn_71002b2e9c(reinterpret_cast<UnkRecord_2b2e9c*>(this)); }
     UnkNavItem9dd4(UnkNavItem9dd4&& other) { fn_71002b3114(Get(), other.Get()); }
     ~UnkNavItem9dd4() { fn_71002b3328(Get()); }
 

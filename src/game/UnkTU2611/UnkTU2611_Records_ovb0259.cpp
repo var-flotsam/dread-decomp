@@ -61,7 +61,7 @@ void fn_7100fab330(UnkIdNine_ovb0259* self, UnkIdNine_ovb0259* other) {
 
 struct UnkGeneratorRecord_ovb0120;
 
-struct UnkRecord_ovb0259 {
+struct UnkRecord_ovb0259_fab330 {
     UnkStringData* id;  // 0x0
     void* field_0x8;
     void* data;  // 0x10
@@ -78,12 +78,12 @@ struct UnkRecord_ovb0259 {
     u32 field_0x17c;
     u16 field_0x180;
 };
-static_assert(__builtin_offsetof(UnkRecord_ovb0259, kinds) == 0x150, "UnkRecord_ovb0259 layout");
-static_assert(__builtin_offsetof(UnkRecord_ovb0259, field_0x178) == 0x178, "UnkRecord_ovb0259 layout");
+static_assert(__builtin_offsetof(UnkRecord_ovb0259_fab330, kinds) == 0x150, "UnkRecord_ovb0259_fab330 layout");
+static_assert(__builtin_offsetof(UnkRecord_ovb0259_fab330, field_0x178) == 0x178, "UnkRecord_ovb0259_fab330 layout");
 
 void fn_7100fab18c(UnkGeneratorRecord_ovb0120* self_, UnkGeneratorRecord_ovb0120* other_) {
-    UnkRecord_ovb0259* self = reinterpret_cast<UnkRecord_ovb0259*>(self_);
-    UnkRecord_ovb0259* other = reinterpret_cast<UnkRecord_ovb0259*>(other_);
+    UnkRecord_ovb0259_fab330* self = reinterpret_cast<UnkRecord_ovb0259_fab330*>(self_);
+    UnkRecord_ovb0259_fab330* other = reinterpret_cast<UnkRecord_ovb0259_fab330*>(other_);
     self->id = other->id;
     if (&g_unk_7101d47108->empty != self->id)
         ++self->id->ref_count;

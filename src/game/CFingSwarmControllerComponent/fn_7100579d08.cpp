@@ -19,7 +19,7 @@ struct UnkKeyHolder {
     u64 field_0x30;
 };
 
-struct UnkBillboard {
+struct UnkBillboard_579d08 {
     void** vtable;
     u8 pad_0x8[0xc8];
     UnkKeyHolder* field_0xd0;
@@ -27,7 +27,7 @@ struct UnkBillboard {
 
 struct UnkChain2 {
     u8 pad_0x0[0x10];
-    UnkBillboard* field_0x10;
+    UnkBillboard_579d08* field_0x10;
 };
 
 struct UnkChain1 {
@@ -45,7 +45,7 @@ struct UnkTypeRef {
     u64 field_0x30;
 };
 
-struct UnkMessage {
+struct UnkMessage_579d08 {
     UnkTypeRef* field_0x0;
 };
 
@@ -60,16 +60,16 @@ struct UnkTarget {
 
 extern u8 g_unk_7101649f60[];
 
-bool fn_7100579d08(UnkSelf* self, UnkTarget* target, UnkMessage* message) {
+bool fn_7100579d08(UnkSelf* self, UnkTarget* target, UnkMessage_579d08* message) {
     if (fn_710074ddd8(self, target, message))
         return true;
     if (message->field_0x0->field_0x30 != 0xfab221522cf4e099ull)
         return false;
     target->field_0x6c = -target->field_0x6c;
     target->field_0x180 = 0;
-    UnkBillboard* obj = self->field_0xe8->field_0x10->field_0x10;
-    UnkBillboard* billboard =
-        obj && fn_710009d50c(reinterpret_cast<const CClass* (*)(UnkBillboard*)>(obj->vtable[0])(obj), fn_710072be34()) ? obj
+    UnkBillboard_579d08* obj = self->field_0xe8->field_0x10->field_0x10;
+    UnkBillboard_579d08* billboard =
+        obj && fn_710009d50c(reinterpret_cast<const CClass* (*)(UnkBillboard_579d08*)>(obj->vtable[0])(obj), fn_710072be34()) ? obj
                                                                                                           : nullptr;
     void* manager = g_unk_71726da048;
     if (!manager) {

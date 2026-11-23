@@ -21,8 +21,8 @@
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
-struct UnkTree;
-void fn_71009d4418(void* root, UnkTree* tree);
+struct UnkTree_9cf440;
+void fn_71009d4418(void* root, UnkTree_9cf440* tree);
 
 // An entry registered with its root (fn_71009d4418 adds it, fn_71009d3dc4 removes it).
 struct UnkPickEntry_ovb0094 {
@@ -32,7 +32,7 @@ struct UnkPickEntry_ovb0094 {
 
     void Reset() {
         if (root) {
-            fn_71009d3dc4(root, reinterpret_cast<UnkTree*>(this));
+            fn_71009d3dc4(root, reinterpret_cast<UnkTree_9cf440*>(this));
             root = nullptr;
         }
         field_0x8 = nullptr;
@@ -42,7 +42,7 @@ struct UnkPickEntry_ovb0094 {
         : root(other.root), field_0x8(other.field_0x8), field_0x10(other.field_0x10) {
         other.Reset();
         if (root)
-            fn_71009d4418(root, reinterpret_cast<UnkTree*>(this));
+            fn_71009d4418(root, reinterpret_cast<UnkTree_9cf440*>(this));
     }
     ~UnkPickEntry_ovb0094() { Reset(); }
 };

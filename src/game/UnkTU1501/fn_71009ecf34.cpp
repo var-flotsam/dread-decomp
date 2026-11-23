@@ -39,7 +39,7 @@ void fn_71009ecf34(UnkSamusInputMovement* self, UnkSamusInputSample* out, bool s
         out->y.value = TunableAt(g_unk_7172a03d80, 0x30) * out->y.value;
     }
     UnkSamusAim* aim = self->actor->aim;
-    if (aim && aim->field_0x360 && !fn_710034f8dc(reinterpret_cast<UnkAimComponent*>(aim)))
+    if (aim && aim->field_0x360 && !fn_710034f8dc(reinterpret_cast<UnkAimComponent_34f8dc*>(aim)))
         out->x = 0.0f;
     if (self->field_0x7c == 0.0f && stopWhenIdle)
         out->x = 0.0f;

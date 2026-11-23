@@ -15,9 +15,9 @@ using base::global::CStrId;
 
 struct UnkObject_0x130;
 struct UnkGfxHeap;
-struct UnkPool;
+struct UnkPool_1587f0;
 
-void fn_71001537d4(UnkPool* pool);
+void fn_71001537d4(UnkPool_1587f0* pool);
 UnkObject_0x130* fn_7100153a90(s32 index);
 void fn_7100094798(void* vector);
 void fn_710015e9a4(void* arrays);

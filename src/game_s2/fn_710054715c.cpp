@@ -2,7 +2,7 @@
 // reference refer to what the other one refers to, then copies the remaining fields.
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkRecord {
+struct UnkRecord_54715c {
     UnkWeakHandle* field_0x0;
     u64 field_0x8;
     u32 field_0x10;
@@ -10,7 +10,7 @@ struct UnkRecord {
     u64 field_0x18;
 };
 
-UnkRecord* fn_710054715c(UnkRecord* self, const UnkRecord* other) {
+UnkRecord_54715c* fn_710054715c(UnkRecord_54715c* self, const UnkRecord_54715c* other) {
     if (self != other)
         CopyWeakRef(&self->field_0x0, other->field_0x0);
     self->field_0x8 = other->field_0x8;

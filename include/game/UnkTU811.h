@@ -9,7 +9,7 @@
 
 struct UnkHandleAI_b0193;
 struct UnkEmmyAI_b60;
-struct UnkRecord;
+struct UnkRecord_54715c;
 struct UnkEmmyForestAI_A2_b70;
 struct UnkLuaDoorTarget;
 struct UnkListedItem;
@@ -59,7 +59,7 @@ void fn_7100547428(UnkEmmyActor_b55* self, s32 state, UnkActor* target, bool b);
 bool fn_710054782c(UnkEmmyRelaxAI_b59* self);
 void fn_710054d16c(UnkEmmyForestAI_A2_b70* self, f32 dt);
 void fn_7100541fd4(UnkEmmyAI_b60* self);
-UnkRecord* fn_710054715c(UnkRecord* self, const UnkRecord* other);
+UnkRecord_54715c* fn_710054715c(UnkRecord_54715c* self, const UnkRecord_54715c* other);
 void fn_7100552324(UnkEmmyRelaxAI_b59* self);
 struct UnkEmmyAI_l541974;  // the E.M.M.I. AI component as its stop reads it
 void fn_7100541974(UnkEmmyAI_l541974* self);  // stops the AI; derived E.M.M.I.s call it first

@@ -208,8 +208,8 @@ UnkPendingList::Node* Erase(UnkPendingList* list, UnkPendingList::Node* node) {
 
 }  // namespace
 
-struct UnkKeyOwner;
-bool fn_710014239c(UnkKeyOwner* self, u64 key);
+struct UnkKeyOwner_14239c;
+bool fn_710014239c(UnkKeyOwner_14239c* self, u64 key);
 bool fn_7100219a34(UnkRenderManager* self, UnkSceneNode* node);
 
 // Releases the pending scene nodes whose renderable is no longer in use: takes each off its layer

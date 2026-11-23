@@ -31,7 +31,7 @@ struct UnkRenderItems_b190 {
     u32 count;
 };
 
-struct UnkSubAreaMgr_b190 {
+struct UnkSubAreaMgr_b190_ee4d34 {
     u8 pad_0x0[0x108];
     u32 field_0x108;
     u8 pad_0x10c[4];
@@ -47,11 +47,11 @@ struct UnkSubAreaMgr_b190 {
     u8 pad_0x970[0x18];
     f32 field_0x988;
 };
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x140) == 0x140, "layout");
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x3f0) == 0x3f0, "layout");
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x938) == 0x938, "layout");
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x960) == 0x960, "layout");
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x988) == 0x988, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ee4d34, field_0x140) == 0x140, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ee4d34, field_0x3f0) == 0x3f0, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ee4d34, field_0x938) == 0x938, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ee4d34, field_0x960) == 0x960, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ee4d34, field_0x988) == 0x988, "layout");
 
 static inline f32 Lerp(f32 a, f32 b, f32 t) {
     f32 rest = 1.0f - t;
@@ -70,7 +70,7 @@ static inline void ApplyAll(UnkRenderItems_b190* items, f32 value) {
         fn_7100219560(g_unk_7101d47300, *it, value, false);
 }
 
-void fn_7100ee4d34(UnkSubAreaMgr_b190* self, f32 dt) {
+void fn_7100ee4d34(UnkSubAreaMgr_b190_ee4d34* self, f32 dt) {
     CSubAreaManager* manager = reinterpret_cast<CSubAreaManager*>(self);
     switch (self->field_0x110) {
     case 2: {

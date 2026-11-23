@@ -142,7 +142,7 @@ void fn_71009e9268(UnkMove_b152* self, bool flag) {
 struct UnkGroundPlayer_b52;
 struct UnkSlideState;
 bool fn_7100996bc4(UnkSlideState* self);
-struct UnkAimComponent;
+struct UnkAimComponent_34f8dc;
 struct UnkPlayer;
 
 // The aim tunables block: the slide angle range.
@@ -220,7 +220,7 @@ bool fn_71009ea19c(UnkSlideMovement_b0153* self) {
         if (aim) {
             if (!aim->field_0x50 || aim->field_0x50->field_0x10 != 1)
                 goto veto;
-            if (fn_710034f8dc(reinterpret_cast<UnkAimComponent*>(aim)))
+            if (fn_710034f8dc(reinterpret_cast<UnkAimComponent_34f8dc*>(aim)))
                 goto veto;
         }
         if (!(self->field_0x6f0 > 0.0f))

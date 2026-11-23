@@ -91,14 +91,14 @@ struct UnkCameraVtable_ovb0070 {
     UnkCameraVtable_ovb0070() { vtable = &g_unk_7101a20998[2]; }
 };
 
-struct UnkCameraCallbackBase_ovb0070 : UnkCameraVtable_ovb0070 {
+struct UnkCameraCallbackBase_ovb0070_0105263c : UnkCameraVtable_ovb0070 {
     UnkOwnedErasedVector callbacks;
     u32 field_0x30;
-    UnkCameraCallbackBase_ovb0070() : field_0x30(0) {}
+    UnkCameraCallbackBase_ovb0070_0105263c() : field_0x30(0) {}
 };
 
 // The callback set at the camera's +0x38 handle.
-struct UnkCameraCallbackSet_ovb0070 : UnkCameraCallbackBase_ovb0070 {
+struct UnkCameraCallbackSet_ovb0070 : UnkCameraCallbackBase_ovb0070_0105263c {
     base::UnkRefHandle owner;
 
     // The move constructor (fn_7101052fd4): an empty set takes the other's owner, state and

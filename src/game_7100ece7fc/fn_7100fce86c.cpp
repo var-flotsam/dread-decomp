@@ -7,21 +7,9 @@
 #include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
+#include "game/sound/UnkMgr_0xf18.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
-
-struct UnkState_fce86c {
-    u8 unk_0x0[0x10];
-    s32 state;
-};
-
-struct UnkMgr_0xf18 {
-    u8 unk_0x0[0x2f8];
-    UnkState_fce86c* field_0x2f8;
-    u8 unk_0x300[0x8c];
-    s32 field_0x38c;
-    u8 unk_0x390[0xb88];
-};
 
 static inline UnkMgr_0xf18* GetMgr() {
     if (!g_unk_71726bc560) {

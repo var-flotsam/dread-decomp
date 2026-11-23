@@ -5,6 +5,6 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
-struct UnkGlobalMapComposition;
-void fn_7100b26470(UnkGlobalMapComposition* self, void* object, bool flag);
+struct UnkGlobalMapComposition_b2b868;
+void fn_7100b26470(UnkGlobalMapComposition_b2b868* self, void* object, bool flag);
 void fn_7100b228e0(void* self);

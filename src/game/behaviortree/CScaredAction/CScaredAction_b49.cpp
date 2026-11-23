@@ -11,9 +11,9 @@
 
 struct UnkSelf;
 struct UnkStruct_0x68;
-struct UnkHandler;
+struct UnkHandler_390860;
 struct UnkMessage;
-u32 fn_7100390860(UnkHandler* self, UnkMessage* message);  // fn_7100390860.cpp
+u32 fn_7100390860(UnkHandler_390860* self, UnkMessage* message);  // fn_7100390860.cpp
 
 struct UnkScaredLink_b49 {
     u8 pad_0x0[0x8];

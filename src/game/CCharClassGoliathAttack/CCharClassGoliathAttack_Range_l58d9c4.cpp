@@ -6,6 +6,7 @@
 #include "game/CCharClassGoliathAttack.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkAIReach.h"
+#include "game/UnkGoliathTunables_gla.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
@@ -17,12 +18,6 @@ struct UnkGoliathAI_l58d9c4 {
     f32 vf_0x3c8() {
         return reinterpret_cast<f32 (*)(UnkGoliathAI_l58d9c4*)>(vtable[0x3c8 / 8])(this);
     }
-};
-
-struct UnkGoliathTunables_gla {
-    u8 pad_0x0[0x28];
-    f32 field_0x28;
-    f32 field_0x2c;
 };
 
 struct UnkGoliathAttack_l58d9c4 {

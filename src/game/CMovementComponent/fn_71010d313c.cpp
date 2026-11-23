@@ -9,7 +9,7 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-struct Vec2;
+struct Vec2_ebfa7c;
 struct Result;
 
 struct UnkProbeActor_l0d313c {
@@ -82,7 +82,7 @@ bool fn_71010d313c(UnkProbeMovement_l0d313c* self, const CVector3D* dir, CVector
     UnkProbePoint_l0d313c end(nx * reach + start.x, ny * reach + start.y);
     UnkProbeSegment_l0d313c segment(start, end);
     UnkProbeResult_l0d313c result;
-    bool hit = fn_7100ebfa7c(NavMeshManager(), reinterpret_cast<Vec2*>(&segment), reinterpret_cast<Result*>(&result),
+    bool hit = fn_7100ebfa7c(NavMeshManager(), reinterpret_cast<Vec2_ebfa7c*>(&segment), reinterpret_cast<Result*>(&result),
                              limit, 0, -1.0f);
     if (hit) {
         const f32* p = &result.points[0].x;
