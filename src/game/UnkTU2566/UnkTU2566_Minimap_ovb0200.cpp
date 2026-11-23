@@ -105,7 +105,7 @@ struct UnkIdWords_b0200 {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -382,7 +382,7 @@ struct UnkIdValues_b0200 {
             if (id && id != &pool->empty) {
                 --id->ref_count;
                 if (id->ref_count == 0) {
-                    fn_71000803a4(pool, id);
+                    StringPool_Release(pool, id);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -486,7 +486,7 @@ struct UnkIdWords_b0200c {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }

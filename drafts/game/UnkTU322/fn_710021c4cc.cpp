@@ -27,7 +27,7 @@ struct UnkList_l21c4cc {
     u64 field_0x10 = 0;
     u32 step = 10;
     u32 flags = 0xe;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
 };
 
 struct UnkTextureHolder_l21c4cc {

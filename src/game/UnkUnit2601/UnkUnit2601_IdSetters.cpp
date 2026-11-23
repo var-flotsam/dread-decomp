@@ -51,7 +51,7 @@ static inline __attribute__((always_inline)) void AssignPath_ids(CFilePathStrId*
         if (self->data != &pool->empty) {
             --self->data->ref_count;
             if (self->data->ref_count == 0)
-                fn_71000803a4(pool, self->data);
+                StringPool_Release(pool, self->data);
         }
         self->data = d;
     }

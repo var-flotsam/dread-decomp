@@ -50,7 +50,7 @@ struct UnkLabelId_l1c06a4 {
         UnkStringPool* pool = g_unk_7101d47108;
         if (pool && data != &pool->empty) {
             if (--data->ref_count == 0)
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
         }
     }
     void Take(const CStrId& id) {

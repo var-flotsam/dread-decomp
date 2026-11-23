@@ -68,7 +68,7 @@ struct UnkEnergyWave_l3054c0 {
     UnkObjectHandle_l3054c0 rumble;  // 0x400
 };
 
-static inline u64 HashOf(const char* name) { return fn_7100001570(name, __builtin_strlen(name)); }
+static inline u64 HashOf(const char* name) { return StringCrc64(name, __builtin_strlen(name)); }
 
 // The part of the effect, or null when the world does not show it.
 static inline UnkBurstPart_l3054c0* LivePart(UnkWorld* world, u64 hash) {

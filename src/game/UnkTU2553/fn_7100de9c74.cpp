@@ -92,7 +92,7 @@ void fn_7100de9c74(UnkGameManager* self, const char* name, CRntString* out) {
         // The old string is released, but the id is not reset to the empty one before it takes the new.
         if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
             if (id.data && id.data != &pool->empty && --id.data->ref_count == 0)
-                fn_71000803a4(pool, id.data);
+                StringPool_Release(pool, id.data);
         }
         id.data = next.data;
     }

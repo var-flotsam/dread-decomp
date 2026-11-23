@@ -39,7 +39,7 @@ struct lua_State;
 
 inline void* FindByName_b0158(UnkGameManager* manager, const char* name) {
     u32 kind_value = g_unk_71727bebb8;
-    u64 key = fn_7100001570(name, strlen(name));
+    u64 key = StringCrc64(name, strlen(name));
     alignas(8) u32 kind = kind_value;
     return fn_7100deba8c(manager, &key, &kind);
 }
@@ -146,7 +146,7 @@ s32 fn_710107fbb0(lua_State* L) {
         void* object = FindByName_b0158(g_unk_7101d47310, name);
         if (object) {
             if (void* target = fn_71007e4924(object))
-                fn_7100083990();
+                GetDefaultAllocator();
         }
     }
     return 0;
@@ -350,7 +350,7 @@ s32 fn_7101082f00(lua_State* L) {
     bool enable;
     if (fn_71010c0270(L, "sb", &name, &enable)) {
         auto show = reinterpret_cast<u32 (*)(UnkRenderManager*, bool, u64, u32, bool)>(fn_7100219c6c);
-        while (show(g_unk_7101d47300, enable, fn_7100001570(name, strlen(name)), 0, false) == 2) {
+        while (show(g_unk_7101d47300, enable, StringCrc64(name, strlen(name)), 0, false) == 2) {
         }
     }
     return 0;
@@ -363,7 +363,7 @@ s32 fn_7101082df0(lua_State* L) {
     if (fn_71010c0270(L, "sb|b", &name, &enable, &flag)) {
         UnkRenderManager* manager = g_unk_7101d47300;
         bool value = enable;
-        fn_7100219c5c(manager, value, reinterpret_cast<void*>(fn_7100001570(name, strlen(name))), 0, flag);
+        fn_7100219c5c(manager, value, reinterpret_cast<void*>(StringCrc64(name, strlen(name))), 0, flag);
     }
     return 0;
 }
@@ -373,7 +373,7 @@ s32 fn_7101082f90(lua_State* L) {
     bool result = false;
     if (fn_71010c0270(L, "s", &name, &result)) {
         UnkRenderManager* manager = g_unk_7101d47300;
-        result = fn_7100219c7c(manager, fn_7100001570(name, strlen(name)), false);
+        result = fn_7100219c7c(manager, StringCrc64(name, strlen(name)), false);
     }
     return fn_71010c0b40(L, "b", result);
 }
@@ -418,7 +418,7 @@ s32 fn_7101085480(lua_State* L) {
             reinterpret_cast<u8*>(settings)[0x14] = 1;
             settings->field_0x20 = nullptr;
             settings->field_0x28 = 0;
-            settings->field_0x20 = fn_7100083990();
+            settings->field_0x20 = GetDefaultAllocator();
             reinterpret_cast<u8*>(settings)[0x28] = 1;
             g_unk_71726bc568 = settings;
         }

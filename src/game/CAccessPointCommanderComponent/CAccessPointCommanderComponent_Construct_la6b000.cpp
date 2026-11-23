@@ -47,7 +47,7 @@ void fn_7100a6b000(UnkAccessPointCommander_la6b000* self) {
     self->field_0x9b8 = 10;
     self->field_0x9bc = 1;
     self->field_0x9c0 = 15;
-    self->field_0x9c8 = fn_7100083990();
+    self->field_0x9c8 = GetDefaultAllocator();
     self->field_0x9d0 = 0;
     self->field_0x9a0 = g_unk_7101a33fa0 + 2;
     self->field_0x9d8 = nullptr;

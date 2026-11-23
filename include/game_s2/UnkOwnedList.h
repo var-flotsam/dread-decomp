@@ -44,7 +44,7 @@ struct UnkOwnedList {
     // The value-initialised element of GrowAt (fn_71004a972c): an empty list that allocates with
     // flags 0xf.
     UnkOwnedList()
-        : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf), allocator(fn_7100083990()) {}
+        : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf), allocator(GetDefaultAllocator()) {}
     UnkOwnedList(UnkOwnedList&& other) {
         data = other.data;
         count = other.count;

@@ -74,7 +74,7 @@ __attribute__((always_inline)) inline void InsertCopy(Vec* self, const base::Unk
                 if (*slot && *slot != &pool->empty) {
                     --(*slot)->ref_count;
                     if ((*slot)->ref_count == 0) {
-                        fn_71000803a4(pool, *slot);
+                        StringPool_Release(pool, *slot);
                         pool = *Pool;
                     }
                 }
@@ -348,7 +348,7 @@ struct UnkMovedId_b0174 : base::global::UnkStrIdBase {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = Pool;
                 }
             }
@@ -427,7 +427,7 @@ __attribute__((always_inline)) inline void AssignId(UnkStringData** dst, UnkStri
         if (*dst != &pool->empty) {
             --(*dst)->ref_count;
             if ((*dst)->ref_count == 0)
-                fn_71000803a4(pool, *dst);
+                StringPool_Release(pool, *dst);
         }
         *dst = d;
     }
@@ -602,10 +602,10 @@ __attribute__((always_inline)) static inline void InitSet(UnkFileCacheSet* s) {
     s->buckets.step = 10;
     s->buckets.field_0x14 = true;
     s->buckets.flags = 0xe;
-    s->buckets.allocator = fn_7100083990();
+    s->buckets.allocator = GetDefaultAllocator();
     s->first_bucket = -1;
     s->first_node = nullptr;
-    s->node_allocator = fn_7100083990();
+    s->node_allocator = GetDefaultAllocator();
     s->node_flags = 0xe;
     s->node_count = 0;
     s->version = 1;
@@ -625,7 +625,7 @@ void fn_71000a4598(UnkVersionRegistry* self_) {
     self->list_a.step = 10;
     self->list_a.field_0x14 = true;
     self->list_a.flags = 0x3e;
-    self->list_a.allocator = fn_7100083990();
+    self->list_a.allocator = GetDefaultAllocator();
     self->list_a.Reserve(5000);
     self->keyed.values = nullptr;
     self->keyed.keys = nullptr;
@@ -633,7 +633,7 @@ void fn_71000a4598(UnkVersionRegistry* self_) {
     self->keyed.capacity = 0;
     self->keyed.step = 10;
     self->keyed.flags = 0x3e;
-    self->keyed.allocator = fn_7100083990();
+    self->keyed.allocator = GetDefaultAllocator();
     InitSet(&self->set_b);
     fn_71000a562c(&self->set_b, 5000, 5000);
     self->field_0x178 = 0;
@@ -643,7 +643,7 @@ void fn_71000a4598(UnkVersionRegistry* self_) {
     self->list_b.step = 10;
     self->list_b.field_0x14 = true;
     self->list_b.flags = 0xf;
-    self->list_b.allocator = fn_7100083990();
+    self->list_b.allocator = GetDefaultAllocator();
     self->list_b.Reserve(2);
 }
 

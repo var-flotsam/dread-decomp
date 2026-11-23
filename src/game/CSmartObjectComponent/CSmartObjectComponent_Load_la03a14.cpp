@@ -73,7 +73,7 @@ struct UnkFieldId_la03a14 : UnkStrIdBase {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -101,36 +101,36 @@ void fn_7100a03a14(UnkSmartObjectObject_la03a14* self, CRntFile* file) {
     CRntFile_ReadCString(file, &defaultAbortAction);
 
     {
-        u64 key = fn_7100001570("sOnUseStart", 11);
+        u64 key = StringCrc64("sOnUseStart", 11);
         UnkFieldId_la03a14 id(onUseStart, true);
         Set<fn_7100009658>(self, key, &id);
     }
     {
-        u64 key = fn_7100001570("sOnUseFailure", 13);
+        u64 key = StringCrc64("sOnUseFailure", 13);
         UnkFieldId_la03a14 id(onUseFailure, true);
         Set<fn_7100009658>(self, key, &id);
     }
     {
-        u64 key = fn_7100001570("sOnUseSuccess", 13);
+        u64 key = StringCrc64("sOnUseSuccess", 13);
         UnkFieldId_la03a14 id(onUseSuccess, true);
         Set<fn_7100009658>(self, key, &id);
     }
     {
-        u64 key = fn_7100001570("sUsableEntity", 13);
+        u64 key = StringCrc64("sUsableEntity", 13);
         UnkFieldId_la03a14 id(usableEntity, true);
         Set<fn_7100009658>(self, key, &id);
     }
     {
-        u64 key = fn_7100001570("sDefaultUseAction", 17);
+        u64 key = StringCrc64("sDefaultUseAction", 17);
         UnkFieldId_la03a14 id(defaultUseAction, true);
         Set<fn_7100009658>(self, key, &id);
     }
     {
-        u64 key = fn_7100001570("sDefaultAbortAction", 19);
+        u64 key = StringCrc64("sDefaultAbortAction", 19);
         UnkFieldId_la03a14 id(defaultAbortAction, true);
         Set<fn_7100009658>(self, key, &id);
     }
-    Set<fn_710000d228>(self, fn_7100001570("bStartEnabled", 13), &startEnabled);
+    Set<fn_710000d228>(self, StringCrc64("bStartEnabled", 13), &startEnabled);
 
     // Two values older files no longer use: read and dropped.
     if (file->position < file->size) {

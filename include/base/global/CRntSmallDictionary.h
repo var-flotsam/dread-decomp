@@ -20,7 +20,7 @@ struct CRntSmallDictionary {
     u32 capacity = 0;
     u32 step = 10;  // capacity grows by this many entries
     u32 flags;      // passed to the allocator
-    UnkAllocator* allocator = fn_7100083990();
+    UnkAllocator* allocator = GetDefaultAllocator();
 
     explicit CRntSmallDictionary(u32 flags) : flags(flags) {}
 

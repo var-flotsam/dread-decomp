@@ -72,7 +72,7 @@ struct UnkMagnetCallbackList_l91e260 {
         field_0x18 = 10;
         field_0x1c = true;
         field_0x20 = 15;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         field_0x30 = 0;
         vtable = g_unk_7101a33fa0 + 2;
         owner = nullptr;

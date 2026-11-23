@@ -157,7 +157,7 @@ struct UnkNamedPoint_b0025 {
             if (name && name != &pool->empty) {
                 --name->ref_count;
                 if (name->ref_count == 0) {
-                    fn_71000803a4(pool, name);
+                    StringPool_Release(pool, name);
                     pool = g_unk_7101d47108;
                 }
             }

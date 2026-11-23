@@ -33,7 +33,7 @@ struct UnkUnit56Block_b59 {
         field_0x34 = 0;
         u64 n = o.size;
         u8* p;
-        if (!allocator && !(allocator = fn_7100083990())) {
+        if (!allocator && !(allocator = GetDefaultAllocator())) {
             p = nullptr;
             data = nullptr;
         } else {

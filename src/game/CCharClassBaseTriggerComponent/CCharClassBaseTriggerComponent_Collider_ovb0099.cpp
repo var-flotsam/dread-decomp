@@ -372,7 +372,7 @@ void fn_7100a49318(UnkBaseTriggerCtorFlat* self) {
     self->field_0x9e8 = 10;
     self->field_0x9ec = true;
     self->field_0x9f0 = 15;
-    self->field_0x9f8 = fn_7100083990();
+    self->field_0x9f8 = GetDefaultAllocator();
     self->field_0xa00 = 0;
     self->field_0x9d0 = g_unk_7101a20950 + 2;
     self->field_0xa08 = 0;
@@ -411,7 +411,7 @@ void fn_7100a46a68(UnkBaseTriggerCtor* self) {
     self->field_0x9d0.field_0x18 = 10;
     self->field_0x9d0.field_0x1c = true;
     self->field_0x9d0.field_0x20 = 15;
-    self->field_0x9d0.field_0x28 = fn_7100083990();
+    self->field_0x9d0.field_0x28 = GetDefaultAllocator();
     self->field_0x9d0.field_0x30 = 0;
     self->field_0x9d0.vtable = g_unk_7101a20950 + 2;
     self->field_0x9d0.field_0x38 = 0;

@@ -38,7 +38,7 @@ __attribute__((always_inline)) inline void UnkBlockArrayPoolCreate(UnkBlockArray
     }
     self->flags = flags;
     if (!allocator)
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
     self->allocator = allocator;
     u8* mem = static_cast<u8*>(allocator->vf_0x40(n * Size, 8, flags));
     fn_710008378c(&self->list, mem, n * Size, Size);

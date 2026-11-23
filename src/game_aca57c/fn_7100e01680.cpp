@@ -60,7 +60,7 @@ void* fn_7100e01680(UnkObj_7100e01680* self) {
         s.vtable = &g_unk_7101a1b750[2];
         s.field_0xb8 = 0;
         s.field_0xc0 = 0;
-        u64 key = fn_7100001570("StartPoint", 10);
+        u64 key = StringCrc64("StartPoint", 10);
         if (fn_7100e03f50(&bag, &key, &s, false) && s.str && *s.str) {
             UnkBuiltId_e01680 built_tmp(s);
             CStrId& tmp = built_tmp.id;

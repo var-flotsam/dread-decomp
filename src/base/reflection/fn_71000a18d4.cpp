@@ -25,7 +25,7 @@ void fn_71000a18d4(UnkReflValue* out, const CType* type, const void* value, u32 
     *reinterpret_cast<const CType**>(&out->type) = type;
     u64 size = type->m_size;
     if (size > 8) {
-        void* block = fn_7100083990()->vf_0x40(size, 8, out->kind);
+        void* block = GetDefaultAllocator()->vf_0x40(size, 8, out->kind);
         out->field_0x0 = block;
         if (!block)
             return;
@@ -44,7 +44,7 @@ void fn_71000a2014(UnkReflValue* value, const CType* type) {
         if (value->field_0x14 == 0) {
             if (old->m_size > 8) {
                 old->m_fn_0x40(value->field_0x0);
-                fn_7100083990()->vf_0x48(value->field_0x0);
+                GetDefaultAllocator()->vf_0x48(value->field_0x0);
             } else {
                 old->m_fn_0x40(value);
             }
@@ -58,7 +58,7 @@ void fn_71000a2014(UnkReflValue* value, const CType* type) {
     value->field_0x14 = 0;
     u64 size = type->m_size;
     if (size > 8) {
-        void* block = fn_7100083990()->vf_0x40(size, 8, value->kind);
+        void* block = GetDefaultAllocator()->vf_0x40(size, 8, value->kind);
         value->field_0x0 = block;
         if (block)
             reinterpret_cast<void (*)(void*)>(type->m_fn_0x28)(block);

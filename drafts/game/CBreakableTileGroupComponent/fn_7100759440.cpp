@@ -59,7 +59,7 @@ struct UnkActorTileStates_l759440 {
     u32 capacity = 0;
     u32 step = 10;
     u32 flags = 0xe;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
 
     inline ~UnkActorTileStates_l759440() {
         if (keys) {

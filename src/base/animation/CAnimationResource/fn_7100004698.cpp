@@ -53,7 +53,7 @@ static inline void Construct(UnkResTypeMembers* self, const char* name, const Un
     self->formats.step = 10;
     self->formats.field_0x14 = true;
     self->formats.flags = 0xf;
-    self->formats.allocator = fn_7100083990();
+    self->formats.allocator = GetDefaultAllocator();
     self->formats.Reserve(count);
 
     self->extensions.data = nullptr;
@@ -62,7 +62,7 @@ static inline void Construct(UnkResTypeMembers* self, const char* name, const Un
     self->extensions.step = 10;
     self->extensions.field_0x14 = true;
     self->extensions.flags = 0xf;
-    self->extensions.allocator = fn_7100083990();
+    self->extensions.allocator = GetDefaultAllocator();
     self->extensions.Reserve(count);
 
     self->sources.data = nullptr;
@@ -71,7 +71,7 @@ static inline void Construct(UnkResTypeMembers* self, const char* name, const Un
     self->sources.step = 10;
     self->sources.field_0x14 = true;
     self->sources.flags = 0xf;
-    self->sources.allocator = fn_7100083990();
+    self->sources.allocator = GetDefaultAllocator();
 
     for (const UnkResFormatMembers* f = formats; f != formats + count; ++f) {
         self->formats.PushBack(*f);

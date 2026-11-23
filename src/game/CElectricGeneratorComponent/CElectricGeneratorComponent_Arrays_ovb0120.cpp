@@ -86,7 +86,7 @@ struct UnkElectricGeneratorUpd_ovb0120 {
 void fn_7100a7d594(UnkElectricGeneratorUpd_ovb0120* self) {
     fn_7100aa3264(self);
     {
-        u64 hash = fn_7100001570("BLACKOUT_LEVEL", 14);
+        u64 hash = StringCrc64("BLACKOUT_LEVEL", 14);
         fn_710021a0bc(g_unk_7101d47300, &hash, &self->blackout);
         switch (self->mode) {
         case 0:

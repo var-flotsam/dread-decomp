@@ -27,7 +27,7 @@ struct UnkReleasedId_b0261 {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -111,7 +111,7 @@ void fn_7100ae0f8c(UnkPropertyIndex_lae0f8c* self) {
             table->capacity = 0;
             table->field_0x18 = 10;
             table->field_0x1c = 0xe;
-            table->allocator = fn_7100083990();
+            table->allocator = GetDefaultAllocator();
 
             if (map.count == map.capacity)
                 fn_7100ae2ef4(&map, map.count + map.step);

@@ -99,7 +99,7 @@ static_assert(__builtin_offsetof(UnkSubAreaMgr_ed550, field_0x930) == 0x930, "Un
 static inline void* MainCamera() {
     UnkGameManager* gm = g_unk_7101d47310;
     u32 kind_value = g_unk_71727bebb8;
-    u64 name = fn_7100001570("MainCamera", 10);
+    u64 name = StringCrc64("MainCamera", 10);
     alignas(8) u32 kind = kind_value;  // stored after the hash, in an 8-byte slot
     return fn_7100deba8c(gm, &name, &kind);
 }

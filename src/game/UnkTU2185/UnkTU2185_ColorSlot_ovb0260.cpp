@@ -64,27 +64,27 @@ struct UnkPart;
 struct UnkWorld;
 
 u32 fn_7100c7b648(u64 hash) {
-    if (fn_7100001570("MATERIAL_CONSTANT_COLOR_0", 25) == hash)
+    if (StringCrc64("MATERIAL_CONSTANT_COLOR_0", 25) == hash)
         return 0;
-    if (fn_7100001570("MATERIAL_CONSTANT_COLOR_1", 25) == hash)
+    if (StringCrc64("MATERIAL_CONSTANT_COLOR_1", 25) == hash)
         return 1;
-    if (fn_7100001570("MATERIAL_CONSTANT_COLOR_2", 25) == hash)
+    if (StringCrc64("MATERIAL_CONSTANT_COLOR_2", 25) == hash)
         return 2;
-    if (fn_7100001570("MATERIAL_CONSTANT_COLOR_3", 25) == hash)
+    if (StringCrc64("MATERIAL_CONSTANT_COLOR_3", 25) == hash)
         return 3;
-    if (fn_7100001570("MATERIAL_CONSTANT_COLOR_4", 25) == hash)
+    if (StringCrc64("MATERIAL_CONSTANT_COLOR_4", 25) == hash)
         return 4;
-    if (fn_7100001570("MATERIAL_CONSTANT_COLOR_5", 25) == hash)
+    if (StringCrc64("MATERIAL_CONSTANT_COLOR_5", 25) == hash)
         return 5;
-    if (fn_7100001570("MATERIAL_CONSTANT_COLOR_6", 25) == hash)
+    if (StringCrc64("MATERIAL_CONSTANT_COLOR_6", 25) == hash)
         return 6;
-    if (fn_7100001570("MATERIAL_CONSTANT_COLOR_7", 25) == hash)
+    if (StringCrc64("MATERIAL_CONSTANT_COLOR_7", 25) == hash)
         return 7;
-    if (fn_7100001570("MATERIAL_CONSTANT_COLOR_8", 25) == hash)
+    if (StringCrc64("MATERIAL_CONSTANT_COLOR_8", 25) == hash)
         return 8;
-    if (fn_7100001570("MATERIAL_CONSTANT_COLOR_9", 25) == hash)
+    if (StringCrc64("MATERIAL_CONSTANT_COLOR_9", 25) == hash)
         return 9;
-    return fn_7100001570("EMATERIALCONSTANTCOLOR_COUNT", 28) == hash ? 10 : 0x7fffffff;
+    return StringCrc64("EMATERIALCONSTANTCOLOR_COUNT", 28) == hash ? 10 : 0x7fffffff;
 }
 
 
@@ -112,7 +112,7 @@ void fn_7100c7b4ec(UnkSampleParams* p_) {
     else if (h == 0x61839512038ac025ull)
         kind = 0;
     else
-        kind = fn_7100001570("E_GEOMETRY", 10) == h ? 2 : 0x7fffffff;
+        kind = StringCrc64("E_GEOMETRY", 10) == h ? 2 : 0x7fffffff;
     u32 slot = fn_7100c7b648(params->key->slot_hash);
     if (params->key->index2 != (u64)-1)
         target->SetColorIndexed(params->key->index2, slot, c, kind);

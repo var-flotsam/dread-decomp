@@ -76,7 +76,7 @@ struct UnkFieldId_l11c6dc : UnkStrIdBase {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -117,53 +117,53 @@ void fn_710111c6dc(UnkSpawnGroupObject_l11c6dc* self, CRntFile* file) {
     CRntFile_ReadCString(file, &onEntityDamaged);
     CRntFile_ReadCString(file, &onAllEntitiesDead);
 
-    Set<fn_710000d228>(self, fn_7100001570("bIsGenerator", 12), &isGenerator);
-    Set<fn_710000d228>(self, fn_7100001570("bIsInfinite", 11), &isInfinite);
-    Set<fn_7100014768>(self, fn_7100001570("iMaxToGenerate", 14), &maxToGenerate);
-    Set<fn_7100014768>(self, fn_7100001570("iMaxSimultaneous", 16), &maxSimultaneous);
-    Set<fn_710000abbc>(self, fn_7100001570("fGenerateEvery", 14), &generateEvery);
+    Set<fn_710000d228>(self, StringCrc64("bIsGenerator", 12), &isGenerator);
+    Set<fn_710000d228>(self, StringCrc64("bIsInfinite", 11), &isInfinite);
+    Set<fn_7100014768>(self, StringCrc64("iMaxToGenerate", 14), &maxToGenerate);
+    Set<fn_7100014768>(self, StringCrc64("iMaxSimultaneous", 16), &maxSimultaneous);
+    Set<fn_710000abbc>(self, StringCrc64("fGenerateEvery", 14), &generateEvery);
     {
-        u64 key = fn_7100001570("sOnBeforeGenerateEntity", 23);
+        u64 key = StringCrc64("sOnBeforeGenerateEntity", 23);
         CRntString str(onBeforeGenerateEntity);
         Set<fn_7100007f84>(self, key, &str);
     }
     {
-        u64 key = fn_7100001570("sOnEntityGenerated", 18);
+        u64 key = StringCrc64("sOnEntityGenerated", 18);
         CRntString str(onEntityGenerated);
         Set<fn_7100007f84>(self, key, &str);
     }
     {
-        u64 key = fn_7100001570("sOnEnable", 9);
+        u64 key = StringCrc64("sOnEnable", 9);
         CRntString str(onEnable);
         Set<fn_7100007f84>(self, key, &str);
     }
     {
-        u64 key = fn_7100001570("sOnDisable", 10);
+        u64 key = StringCrc64("sOnDisable", 10);
         CRntString str(onDisable);
         Set<fn_7100007f84>(self, key, &str);
     }
     {
-        u64 key = fn_7100001570("sOnMaxSimultaneous", 18);
+        u64 key = StringCrc64("sOnMaxSimultaneous", 18);
         CRntString str(onMaxSimultaneous);
         Set<fn_7100007f84>(self, key, &str);
     }
     {
-        u64 key = fn_7100001570("sOnMaxGenerated", 15);
+        u64 key = StringCrc64("sOnMaxGenerated", 15);
         CRntString str(onMaxGenerated);
         Set<fn_7100007f84>(self, key, &str);
     }
     {
-        u64 key = fn_7100001570("sOnEntityDead", 13);
+        u64 key = StringCrc64("sOnEntityDead", 13);
         CRntString str(onEntityDead);
         Set<fn_7100007f84>(self, key, &str);
     }
     {
-        u64 key = fn_7100001570("sOnEntityDamaged", 16);
+        u64 key = StringCrc64("sOnEntityDamaged", 16);
         CRntString str(onEntityDamaged);
         Set<fn_7100007f84>(self, key, &str);
     }
     {
-        u64 key = fn_7100001570("sOnAllEntitiesDead", 18);
+        u64 key = StringCrc64("sOnAllEntitiesDead", 18);
         CRntString str(onAllEntitiesDead);
         Set<fn_7100007f84>(self, key, &str);
     }
@@ -172,17 +172,17 @@ void fn_710111c6dc(UnkSpawnGroupObject_l11c6dc* self, CRntFile* file) {
     if (file->position < file->size) {
         bool automanaged = false;
         CRntFile_Read(file, &automanaged, 1, 1);
-        Set<fn_710000d228>(self, fn_7100001570("bAutomanaged", 12), &automanaged);
+        Set<fn_710000d228>(self, StringCrc64("bAutomanaged", 12), &automanaged);
     }
     if (file->position < file->size) {
         bool autoenabled = false;
         CRntFile_Read(file, &autoenabled, 1, 1);
-        Set<fn_710000d228>(self, fn_7100001570("bAutoenabled", 12), &autoenabled);
+        Set<fn_710000d228>(self, StringCrc64("bAutoenabled", 12), &autoenabled);
     }
     const char* shapeId;
     if (file->position < file->size) {
         CRntFile_ReadCString(file, &shapeId);
-        u64 key = fn_7100001570("sLogicCollisionShapeID", 22);
+        u64 key = StringCrc64("sLogicCollisionShapeID", 22);
         UnkFieldId_l11c6dc id(shapeId, true);
         Set<fn_7100009658>(self, key, &id);
     }
@@ -198,8 +198,8 @@ void fn_710111c6dc(UnkSpawnGroupObject_l11c6dc* self, CRntFile* file) {
     if (file->position < file->size) {
         CRntFile_Read(file, &areaOffset, 12, 1);
         CRntFile_Read(file, &areaSize, 12, 1);
-        Set<fn_71000246e4>(self, fn_7100001570("vActiveAreaOffset", 17), &areaOffset);
-        Set<fn_71000246e4>(self, fn_7100001570("vActiveAreaSize", 15), &areaSize);
+        Set<fn_71000246e4>(self, StringCrc64("vActiveAreaOffset", 17), &areaOffset);
+        Set<fn_71000246e4>(self, StringCrc64("vActiveAreaSize", 15), &areaSize);
     }
     // A flag older versions read and no longer use.
     if (file->position < file->size) {
@@ -211,23 +211,23 @@ void fn_710111c6dc(UnkSpawnGroupObject_l11c6dc* self, CRntFile* file) {
         f32 dropAmmoProb = 0.0f;
         CRntFile_Read(file, &dropAmmoProb, 4, 1);
         CRntFile_Read(file, &unused, 4, 1);
-        Set<fn_710000abbc>(self, fn_7100001570("fDropAmmoProb", 13), &dropAmmoProb);
+        Set<fn_710000abbc>(self, StringCrc64("fDropAmmoProb", 13), &dropAmmoProb);
     }
     if (file->position < file->size) {
         s32 initToGenerate = 0;
         CRntFile_Read(file, &initToGenerate, 4, 1);
-        Set<fn_7100014768>(self, fn_7100001570("iInitToGenerate", 15), &initToGenerate);
+        Set<fn_7100014768>(self, StringCrc64("iInitToGenerate", 15), &initToGenerate);
     }
     if (file->position < file->size) {
         const char* arenaId;
         CRntFile_ReadCString(file, &arenaId);
-        u64 key = fn_7100001570("sArenaId", 8);
+        u64 key = StringCrc64("sArenaId", 8);
         UnkFieldId_l11c6dc id(arenaId, true);
         Set<fn_7100009658>(self, key, &id);
     }
     if (file->position < file->size) {
         bool checkActiveDrops = false;
         CRntFile_Read(file, &checkActiveDrops, 1, 1);
-        Set<fn_710000d228>(self, fn_7100001570("bCheckActiveDrops", 17), &checkActiveDrops);
+        Set<fn_710000d228>(self, StringCrc64("bCheckActiveDrops", 17), &checkActiveDrops);
     }
 }

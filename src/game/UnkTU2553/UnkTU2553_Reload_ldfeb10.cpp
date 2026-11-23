@@ -46,7 +46,7 @@ struct UnkPtrList {
         count = 0;
         head = nullptr;
         tail = nullptr;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
     }
     ~UnkPtrList() {

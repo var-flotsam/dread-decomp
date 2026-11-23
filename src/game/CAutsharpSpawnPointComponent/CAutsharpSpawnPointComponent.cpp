@@ -31,7 +31,7 @@ void fn_7100a1482c(UnkAutsharpSpawnPointComponent_482c* self) {
     self->field_0x3d8 = 10;
     self->field_0x3dc = true;
     self->field_0x3e0 = 0xf;
-    self->field_0x3e8 = fn_7100083990();
+    self->field_0x3e8 = GetDefaultAllocator();
     self->field_0x3f0 = 0;
     self->field_0x3c0 = g_unk_7101a20950 + 2;
     self->field_0x3f8 = 0;

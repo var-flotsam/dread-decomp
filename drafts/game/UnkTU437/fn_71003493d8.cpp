@@ -103,7 +103,7 @@ void fn_71003493d8(UnkAimComponent_l3493d8* self, UnkAimInfo_l3493d8* info, f32 
             u64 pose;
             f32 degrees = 0.0f;
             const UnkMatrix44& matrix = self->owner->xform.GetMatrix();
-            pose = fn_7100001570("DC_Shot", 7);
+            pose = StringCrc64("DC_Shot", 7);
             if (fn_7100c9adbc(reinterpret_cast<UnkSamusAimAction_ovb0115*>(action), &degrees,
                               const_cast<UnkMatrix44*>(&matrix), &pose, &info->target, false, false))
                 angle = degrees * 3.141592653589793 / 180.0;

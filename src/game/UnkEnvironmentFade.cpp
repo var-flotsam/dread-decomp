@@ -231,7 +231,7 @@ void fn_7100f989f0(UnkEnvironmentFade* self, const CFilePathStrId& path) {
         if (own->data != &pool->empty) {
             --own->data->ref_count;
             if (own->data->ref_count == 0)
-                fn_71000803a4(pool, own->data);
+                StringPool_Release(pool, own->data);
         }
         own->data = d;
     }

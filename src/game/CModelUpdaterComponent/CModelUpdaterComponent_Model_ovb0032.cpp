@@ -226,7 +226,7 @@ static inline void ResetPath_ovb0032(CFilePathStrId& path) {
         if (path.data && path.data != &pool->empty) {
             --path.data->ref_count;
             if (path.data->ref_count == 0) {
-                fn_71000803a4(pool, path.data);
+                StringPool_Release(pool, path.data);
                 pool = g_unk_7101d47200;
             }
         }
@@ -263,7 +263,7 @@ public:
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -356,7 +356,7 @@ s32 fn_7101173ddc(void* object, const void* stream) {
                   &b.y, &b.z);
     UnkGameManager* manager = g_unk_7101d47310;
     u32 k = g_unk_71727bebb8;
-    id = fn_7100001570(entity_name, __builtin_strlen(entity_name));
+    id = StringCrc64(entity_name, __builtin_strlen(entity_name));
     kind = k;
     void* entity = fn_7100deba8c(manager, &id, &kind);
     if (!entity)

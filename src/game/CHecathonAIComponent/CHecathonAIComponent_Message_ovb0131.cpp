@@ -103,7 +103,7 @@ u32 fn_71005abb48(UnkHecathonMsg_ovb0131* self, UnkHecathonMessage_ovb0131* msg)
                           *reinterpret_cast<f32*>(reinterpret_cast<char*>(&g_unk_71726e8d00) + 0x28));
         }
         UnkWorld* fx = self->owner->fx;
-        auto* effect = reinterpret_cast<UnkHecathonEffect_ovb0131*>(fn_7101152b90(fx, fn_7100001570("airexpel", 8)));
+        auto* effect = reinterpret_cast<UnkHecathonEffect_ovb0131*>(fn_7101152b90(fx, StringCrc64("airexpel", 8)));
         effect = Live(fx, effect);
         state->effect_on = effect->settings->data->flag;
         fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(effect), false);
@@ -115,7 +115,7 @@ u32 fn_71005abb48(UnkHecathonMsg_ovb0131* self, UnkHecathonMessage_ovb0131* msg)
         if (state->effect_on) {
             UnkWorld* fx = self->owner->fx;
             auto* effect =
-                reinterpret_cast<UnkHecathonEffect_ovb0131*>(fn_7101152b90(fx, fn_7100001570("airexpel", 8)));
+                reinterpret_cast<UnkHecathonEffect_ovb0131*>(fn_7101152b90(fx, StringCrc64("airexpel", 8)));
             if (effect)
                 effect = Live(fx, effect);
             fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(effect), true);

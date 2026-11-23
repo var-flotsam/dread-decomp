@@ -102,6 +102,6 @@ void fn_7100b02ff8(UnkDifficultyButton_lb02ff8* self) {
     fn_71011cec68(accept, self->locked ? 0.35f : 1.0f);
     fn_71011ce208(accept, 0.2f);
 
-    UnkGuiDisplayObject* icon = As<fn_71011f6890>(fn_71011d98ec(root, fn_7100001570("LockedIcon", 10)));
+    UnkGuiDisplayObject* icon = As<fn_71011f6890>(fn_71011d98ec(root, StringCrc64("LockedIcon", 10)));
     fn_71011cdc30(icon, self->locked);
 }

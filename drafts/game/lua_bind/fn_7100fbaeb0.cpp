@@ -68,7 +68,7 @@ struct UnkLuaNameList_lfbaeb0 : base::UnkVtableList<UnkLuaNameNode_lfbaeb0> {
         count = 0;
         head = nullptr;
         tail = nullptr;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flags = 0x13;
     }
     ~UnkLuaNameList_lfbaeb0() {
@@ -88,7 +88,7 @@ struct UnkNameId_lfbaeb0 {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -119,7 +119,7 @@ struct UnkPairId_lfbaeb0 {
             if (data && &pool->empty != data) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }

@@ -46,7 +46,7 @@ void fn_710006daf0(UnkSoundGroup_710006cdb8* self_) {
     self->field_0x28 = 0;
     self->field_0x30 = 10;
     self->field_0x34 = 14;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->vtable = reinterpret_cast<char*>(g_unk_7101a1a218) + 0x10;
     __builtin_memset(self->buffer, 0, sizeof(self->buffer));
     nn::hid::InitializeNpad();

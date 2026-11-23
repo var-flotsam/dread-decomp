@@ -34,7 +34,7 @@ void fn_71007cdebc(UnkXParasiteStayOnPlaceBehavior* self) {
     list->step = 10;
     list->field_0x14 = true;
     list->flags = 0xf;
-    list->allocator = fn_7100083990();
+    list->allocator = GetDefaultAllocator();
     list->field_0x30 = 0;
     list->vtable = reinterpret_cast<char*>(g_unk_7101a20950) + 0x10;
     list->field_0x38 = 0;

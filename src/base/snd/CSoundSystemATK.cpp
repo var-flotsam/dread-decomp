@@ -388,7 +388,7 @@ bool fn_7100100b1c(UnkSoundSystemATK* self, const CFilePathStrId& path) {
             if (base::global::UnkStringPool* pool = g_unk_7101d47200) {
                 if (data && data != &pool->empty) {
                     if (--data->ref_count == 0) {
-                        fn_71000803a4(pool, data);
+                        StringPool_Release(pool, data);
                         pool = g_unk_7101d47200;
                     }
                 }
@@ -441,7 +441,7 @@ f32 fn_71000fe1f8(UnkSoundSystemATK* self, const CFilePathStrId& path) {
         if (base::global::UnkStringPool* pool = g_unk_7101d47200) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47200;
                 }
             }
@@ -481,7 +481,7 @@ static inline void UnkInitWords(base::global::CRntVector<u64>* v, u32 step, u32 
     v->step = step;
     v->field_0x14 = true;
     v->flags = 0xb;
-    v->allocator = fn_7100083990();
+    v->allocator = GetDefaultAllocator();
     v->Reserve(n);
 }
 

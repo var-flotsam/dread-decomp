@@ -71,7 +71,7 @@ inline UnkLayer224::~UnkLayer224() {
         fn_71001541a0(field_0x130);
         field_0x130 = nullptr;
     }
-    fn_7100083990()->vf_0x48(block.data);
+    GetDefaultAllocator()->vf_0x48(block.data);
     field_0x90 = UnkBlock224();
     block = UnkBlock224();
 }

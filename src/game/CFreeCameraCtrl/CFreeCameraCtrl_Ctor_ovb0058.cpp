@@ -154,7 +154,7 @@ static inline void ConstructRest(T* self) {
     self->entries.count = 0;
     self->entries.head = nullptr;
     self->entries.tail = nullptr;
-    self->entries.allocator = fn_7100083990();
+    self->entries.allocator = GetDefaultAllocator();
     self->entries.flags = 0x13;
     self->field_0x248 = -1;
     fn_71009ca9fc(self->member, "FreeCameraCtrl", 0x03f00f33);
@@ -180,7 +180,7 @@ void fn_71010f0234(UnkFreeCameraCtrlRaw_b0058* self) {
     self->list_step = 10;
     self->list_grow = true;
     self->list_flags = 0xf;
-    self->list_allocator = fn_7100083990();
+    self->list_allocator = GetDefaultAllocator();
     ConstructRest(self);
     reinterpret_cast<void (*)(UnkFreeCameraCtrlRaw_b0058*)>(self->vtable[3])(self);
 }

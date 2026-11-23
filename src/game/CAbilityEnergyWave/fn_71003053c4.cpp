@@ -20,12 +20,12 @@ struct UnkWorld;
 
 void fn_71003053c4(CAbilityEnergyWave* self) {
     fn_710114fe8c(reinterpret_cast<UnkWorld*>(self->component->Owner<UnkOwnerObject_3053c4>()->field_0x280),
-                  fn_7100001570("specialburst_rocketball", 23), 0, 0);
+                  StringCrc64("specialburst_rocketball", 23), 0, 0);
     fn_710114fe8c(reinterpret_cast<UnkWorld*>(self->component->Owner<UnkOwnerObject_3053c4>()->field_0x280),
-                  fn_7100001570("specialburst_rocketballcenter", 29), 0,
+                  StringCrc64("specialburst_rocketballcenter", 29), 0,
                   0);
     fn_710114fe8c(reinterpret_cast<UnkWorld*>(self->component->Owner<UnkOwnerObject_3053c4>()->field_0x280),
-                  fn_7100001570("specialburst_rocketballcharging", 31), 0,
+                  StringCrc64("specialburst_rocketballcharging", 31), 0,
                   0);
     UnkEnergyWaveHandle* handle = &self->handle;
     if (handle->target && handle->target->serial == handle->serial && handle->serial != ~0ull &&

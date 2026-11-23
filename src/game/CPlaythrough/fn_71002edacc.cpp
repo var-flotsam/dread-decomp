@@ -33,7 +33,7 @@ void fn_71002edacc(UnkHolder* self) {
             if (node->field_0x8.data && node->field_0x8.data != &pool->empty) {
                 --node->field_0x8.data->ref_count;
                 if (node->field_0x8.data->ref_count == 0)
-                    fn_71000803a4(pool, node->field_0x8.data);
+                    StringPool_Release(pool, node->field_0x8.data);
             }
         }
         fn_7100083c00(node);
@@ -42,7 +42,7 @@ void fn_71002edacc(UnkHolder* self) {
         if (self->field_0x0.data && self->field_0x0.data != &pool->empty) {
             --self->field_0x0.data->ref_count;
             if (self->field_0x0.data->ref_count == 0) {
-                fn_71000803a4(pool, self->field_0x0.data);
+                StringPool_Release(pool, self->field_0x0.data);
                 pool = g_unk_7101d47108;
             }
         }

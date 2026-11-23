@@ -33,7 +33,7 @@ void fn_71002b2afc(UnkWaterPuzzle_b43a3* self, const CStrId& id, f32 value, f32 
     self->value = value;
     self->flag_0x14 = false;
     self->step = 15;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     f32 s = rate;
     if (rate <= 0.0f)
         s = 1.0f;

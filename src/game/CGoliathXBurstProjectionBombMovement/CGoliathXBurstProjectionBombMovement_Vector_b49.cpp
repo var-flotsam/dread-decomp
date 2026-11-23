@@ -23,7 +23,7 @@ void fn_710058beec(UnkBombVector_b49* self, const UnkBombValue_b49* values, u64 
     self->capacity = 0;
     self->grows = step != 0;
     if (!allocator)
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
     self->allocator = allocator;
     u32 n = (u32)count;
     if (self->capacity < n) {

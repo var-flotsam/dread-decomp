@@ -40,7 +40,7 @@ static inline __attribute__((always_inline)) void InitShockWave(UnkShockWaveComp
     self->field_0x258 = 0;
     self->field_0x260 = nullptr;
     self->field_0x268 = nullptr;
-    self->field_0x270 = fn_7100083990();
+    self->field_0x270 = GetDefaultAllocator();
     self->field_0x278 = 0x13;
     self->field_0x280 = nullptr;
     self->field_0x288 = nullptr;

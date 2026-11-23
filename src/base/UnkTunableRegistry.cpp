@@ -208,7 +208,7 @@ static inline UnkTunableObject* FindTunable(UnkTunableRegistry* self, const UnkT
 
 static inline u64 HashOf(const UnkTunableLine& s) {
     const char* str = s.CStr();
-    return fn_7100001570(str, strlen(str));
+    return StringCrc64(str, strlen(str));
 }
 
 // Reads the tunables file into the tunables (see above); false when it can't be opened or a header
@@ -427,7 +427,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                 tokens.count = 0;
                 tokens.head = nullptr;
                 tokens.tail = nullptr;
-                tokens.allocator = fn_7100083990();
+                tokens.allocator = GetDefaultAllocator();
                 tokens.flags = 0x13;
                 tokens.vtable = reinterpret_cast<char*>(g_unk_7101a1bcd0 + 2);
                 tokens.pool_vtable = g_unk_7101a1a4c8 + 0x10;

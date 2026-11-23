@@ -64,7 +64,7 @@ void fn_7100b8be4c(UnkActionSetCtor_b0104* self) {
         base::global::UnkEnsureStringPool();
     self->name.data = &g_unk_7101d47108->empty;
     self->field_0x60 = 0;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->flags = 0x58;
     self->count = 0;
     self->buckets.data = nullptr;
@@ -73,7 +73,7 @@ void fn_7100b8be4c(UnkActionSetCtor_b0104* self) {
     self->buckets.step = 10;
     self->buckets.field_0x14 = true;
     self->buckets.flags = 0x58;
-    self->buckets.allocator = fn_7100083990();
+    self->buckets.allocator = GetDefaultAllocator();
     self->last = nullptr;
     self->first = nullptr;
     self->pool.vtable = g_unk_7101a1a4c8 + 0x10;

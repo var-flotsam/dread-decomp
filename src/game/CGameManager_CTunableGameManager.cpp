@@ -24,7 +24,7 @@ struct UnkStringList {
 
     UnkStringList()
         : field_0x0(0), field_0x8(0), data(nullptr), count(0), capacity(0), step(1),
-          field_0x24(true), flags(0xf), allocator(fn_7100083990()) {}
+          field_0x24(true), flags(0xf), allocator(GetDefaultAllocator()) {}
     base::global::CRntVector<base::global::CRntString>& Strings() {
         return *reinterpret_cast<base::global::CRntVector<base::global::CRntString>*>(&data);
     }

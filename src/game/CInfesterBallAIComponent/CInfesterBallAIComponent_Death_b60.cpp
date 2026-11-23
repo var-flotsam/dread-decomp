@@ -68,7 +68,7 @@ void fn_71005d0530(UnkInfesterBallDeathAI_b60* self) {
         owner = self->owner;
     }
     if (void* target = owner->field_0x220) {
-        u64 hash = fn_7100001570("death", 5);
+        u64 hash = StringCrc64("death", 5);
 
         mode.id = 0;
         mask2.id = UnkAll_SpitSend().value;

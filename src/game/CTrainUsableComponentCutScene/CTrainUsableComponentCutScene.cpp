@@ -32,7 +32,7 @@ void fn_7100a9b308(UnkTrainUsableComponentCutScene_b308* self) {
     self->field_0x588 = 10;
     self->field_0x58c = true;
     self->field_0x590 = 0xf;
-    self->field_0x598 = fn_7100083990();
+    self->field_0x598 = GetDefaultAllocator();
     self->field_0x5a0 = 0;
     self->field_0x570 = g_unk_7101a33fa0 + 2;
     self->field_0x5a8 = 0;

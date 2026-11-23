@@ -29,7 +29,7 @@ struct UnkRecordId : base::global::UnkStrIdBase {
             if (d != &pool->empty)
                 ++d->ref_count;
             if (old != &pool->empty && --old->ref_count == 0)
-                fn_71000803a4(pool, old);
+                StringPool_Release(pool, old);
             data = d;
         }
         return *this;
@@ -38,7 +38,7 @@ struct UnkRecordId : base::global::UnkStrIdBase {
     ~UnkRecordId() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty && --data->ref_count == 0) {
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
                 pool = g_unk_7101d47108;
             }
             data = &pool->empty;

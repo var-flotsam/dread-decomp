@@ -807,7 +807,7 @@ struct UnkMinimapBuffer {
     u32 capacity = 0;
     u32 step = 10;
     u32 flags = 0xe;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
 };
 static_assert(sizeof(UnkMinimapBuffer) == 0x20, "UnkMinimapBuffer layout");
 
@@ -1092,7 +1092,7 @@ void fn_7100e8c114(UnkMinimapManager* self) {
     new (&set.buckets) base::global::CRntVector<void*>(0xe);
     set.field_0x28 = -1;
     set.field_0x30 = 0;
-    set.allocator = fn_7100083990();
+    set.allocator = GetDefaultAllocator();
     set.flags = 0xe;
     set.count = 0;
     set.field_0x48 = 1;

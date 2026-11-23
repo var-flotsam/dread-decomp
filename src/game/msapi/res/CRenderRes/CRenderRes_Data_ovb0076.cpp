@@ -78,7 +78,7 @@ void fn_71001b1478(UnkResPathVec* self, const CFilePathStrId* ids, u64 count, u3
     self->field_0x14 = step != 0;
     self->flags = flags;
     if (!allocator)
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
     self->allocator = allocator;
     fn_7100018450(self, count);
     for (const CFilePathStrId* p = ids, *end = ids + count; p != end; ++p) {

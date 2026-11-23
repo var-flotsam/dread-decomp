@@ -34,7 +34,7 @@ struct alignas(16) UnkFlagList {
         u32 flags;
     };
 
-    UnkFlagList() : count(0), head(nullptr), tail(nullptr), allocator(fn_7100083990()), flags(0x13) {}
+    UnkFlagList() : count(0), head(nullptr), tail(nullptr), allocator(GetDefaultAllocator()), flags(0x13) {}
     // A copy with the other list's allocator and flags, its values appended one by one.
     UnkFlagList(const UnkFlagList& other)
         : count(0), head(nullptr), tail(nullptr), allocator(other.allocator), flags(other.flags) {

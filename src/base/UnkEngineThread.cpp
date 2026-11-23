@@ -40,7 +40,7 @@ void fn_710006686c(void* thread) {
         self->state = 3;
         nn::os::SignalLightEvent(&self->startEvent);
         nn::os::DestroyThread(&self->thread);
-        fn_7100083990()->vf_0x48(self->stack);
+        GetDefaultAllocator()->vf_0x48(self->stack);
         self->stack = nullptr;
         nn::os::FinalizeLightEvent(&self->event_0x1cc);
         nn::os::FinalizeLightEvent(&self->startEvent);

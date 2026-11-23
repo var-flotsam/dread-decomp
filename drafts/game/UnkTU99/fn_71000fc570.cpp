@@ -74,7 +74,7 @@ struct UnkTokens_l0fc570 {
         }
         if (n) {
             if (!parent)
-                parent = fn_7100083990();
+                parent = GetDefaultAllocator();
             pool_parent = parent;
             u64 size = n * sizeof(UnkToken_l0fc570);
             fn_710008378c(&pool_blocks, parent->vf_0x40(size, 8, pool_flags), size, sizeof(UnkToken_l0fc570));

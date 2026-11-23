@@ -176,7 +176,7 @@ void fn_7100428d50(UnkBeamBurstUpdate_l428d50* self, f32 dt) {
             self->state = 2;
             self->charge_time = 0.0f;
             if (auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8)) {
-                u64 key = fn_7100001570("onbeamburstcharging", 19);
+                u64 key = StringCrc64("onbeamburstcharging", 19);
                 Notify(timeline, &key);
             }
         }

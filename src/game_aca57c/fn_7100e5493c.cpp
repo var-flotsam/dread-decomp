@@ -31,7 +31,7 @@ struct UnkU16Array {
     // base::global::CRntVector's defaults.
     __attribute__((always_inline)) UnkU16Array()
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
     // Takes the settings, reserves the source's capacity and copies the elements.
     __attribute__((always_inline)) UnkU16Array(const UnkU16Array& other)
         : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14),

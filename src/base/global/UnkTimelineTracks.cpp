@@ -84,7 +84,7 @@ void fn_710006b6e4(UnkTrackArray* self, base::global::CRntFile* file) {
         const auto* view = reinterpret_cast<const UnkTypeView*>(type);
         if (!view->construct)
             continue;
-        void* p = fn_7100083990()->vf_0x40(view->size, 8, 0x58);
+        void* p = GetDefaultAllocator()->vf_0x40(view->size, 8, 0x58);
         if (!p)
             continue;
         view->construct(p);

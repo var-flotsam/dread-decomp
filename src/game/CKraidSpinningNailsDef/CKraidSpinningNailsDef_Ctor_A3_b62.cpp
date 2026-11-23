@@ -30,11 +30,11 @@ void fn_71005eaafc(UnkLaunchPattern_b62a3* self) {
     self->field_0xf0.capacity = 10;
     self->field_0xf0.field_0x14 = true;
     self->field_0xf0.growth = 15;
-    self->field_0xf0.allocator = fn_7100083990();
+    self->field_0xf0.allocator = GetDefaultAllocator();
     self->field_0x118.data = nullptr;
     self->field_0x118.field_0x8 = 0;
     self->field_0x118.capacity = 10;
     self->field_0x118.field_0x14 = true;
     self->field_0x118.growth = 15;
-    self->field_0x118.allocator = fn_7100083990();
+    self->field_0x118.allocator = GetDefaultAllocator();
 }

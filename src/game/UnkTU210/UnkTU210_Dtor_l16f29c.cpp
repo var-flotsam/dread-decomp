@@ -101,7 +101,7 @@ void fn_710016f29c(UnkEmitter_l16f29c* self) {
     Release(self->field_0x3a0);
     Release(self->field_0x3a8);
     if (self->indices) {
-        fn_7100083990()->vf_0x48(self->indices);
+        GetDefaultAllocator()->vf_0x48(self->indices);
         self->indices = nullptr;
     }
     DestroyChildren(self->field_0x200);

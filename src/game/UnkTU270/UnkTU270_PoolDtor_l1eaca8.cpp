@@ -52,7 +52,7 @@ static_assert(__builtin_offsetof(UnkPool_l1eaca8, tree) == 0x5e9b88, "pool layou
 void fn_71001eaca8(UnkPool_l1eaca8* self) {
     self->vtable = g_unk_7101a1eeb0 + 0x10;
     if (self->seen) {
-        fn_7100083990()->vf_0x48(self->seen);
+        GetDefaultAllocator()->vf_0x48(self->seen);
         self->seen = nullptr;
     }
     fn_710021273c(&self->tree);

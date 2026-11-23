@@ -30,7 +30,7 @@ void fn_71008a9c2c(void* p) {
     self->vtable = reinterpret_cast<char*>(g_unk_7101a20998) + 0x10;
     self->step = 10;
     self->field_0x1c = true;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->field_0x30 = 0;
     self->field_0x38 = nullptr;
     self->id = nullptr;

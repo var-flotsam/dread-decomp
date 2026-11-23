@@ -17,7 +17,7 @@ static inline __attribute__((always_inline)) void ResetId_A3_b67(UnkStringData*&
         if (data && data != &pool->empty) {
             --data->ref_count;
             if (data->ref_count == 0) {
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
                 pool = g_unk_7101d47108;
             }
         }

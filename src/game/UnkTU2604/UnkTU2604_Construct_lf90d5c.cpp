@@ -23,7 +23,7 @@ struct UnkTU2604Slots {
 
 // The slots' constructor: 11 null slots.
 static void InitSlots(UnkTU2604Slots* s) {
-    s->allocator = fn_7100083990();
+    s->allocator = GetDefaultAllocator();
     s->field_0x8 = 0xb;
     s->field_0xc = 0;
     new (&s->slots) base::global::CRntVector<void*>(0xb);

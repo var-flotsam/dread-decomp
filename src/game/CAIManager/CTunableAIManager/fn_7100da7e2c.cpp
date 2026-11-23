@@ -78,7 +78,7 @@ struct UnkList_0x30 {
     void* field_0x10 = nullptr;
     u32 step = 10;
     u32 flags = 0xe;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
     void* field_0x28 = nullptr;
 };
 

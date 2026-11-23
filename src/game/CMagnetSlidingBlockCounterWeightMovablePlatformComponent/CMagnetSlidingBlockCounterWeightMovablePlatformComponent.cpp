@@ -32,7 +32,7 @@ void fn_710091a710(UnkMagnetSlidingBlockCounterWeightMovablePlatformComponent_a7
     self->field_0x270 = 10;
     self->field_0x274 = true;
     self->field_0x278 = 0xf;
-    self->field_0x280 = fn_7100083990();
+    self->field_0x280 = GetDefaultAllocator();
     self->field_0x288 = 0;
     self->field_0x258 = g_unk_7101a33fa0 + 2;
     self->field_0x290 = 0;

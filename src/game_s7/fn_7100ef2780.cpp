@@ -74,9 +74,9 @@ void fn_7100ef2780() {
     g_unk_71729daec0.field_0x68 = -1.0f;
     g_unk_71729daec0.field_0x6c = -1.0f;
     g_unk_71729daec0.field_0x70 = true;
-    const u64 hash0 = fn_7100001570("s010_cave", 9);
-    const u64 hash1 = fn_7100001570("collision_camera_000_Init", 25);
-    const u64 hash2 = fn_7100001570("PostIntro", 9);
+    const u64 hash0 = StringCrc64("s010_cave", 9);
+    const u64 hash1 = StringCrc64("collision_camera_000_Init", 25);
+    const u64 hash2 = StringCrc64("PostIntro", 9);
     g_unk_71729daec0.field_0x78 = hash0;
     g_unk_71729daec0.field_0x80 = hash1;
     g_unk_71729daec0.field_0x88 = hash2;

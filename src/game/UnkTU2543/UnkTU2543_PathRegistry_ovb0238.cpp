@@ -35,7 +35,7 @@ struct UnkPathNode_b0238 {
             if (d && d != &pool->empty) {
                 --d->ref_count;
                 if (key.data->ref_count == 0) {
-                    fn_71000803a4(pool, key.data);
+                    StringPool_Release(pool, key.data);
                     pool = g_unk_7101d47200;
                 }
             }

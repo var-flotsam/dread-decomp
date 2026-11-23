@@ -56,14 +56,14 @@ void fn_7100b5af1c(UnkMissionLogCtor_b5af1c* self) {
     self->field_0x248_step = 10;
     self->field_0x248_grow = true;
     self->field_0x248_flags = 5;
-    self->field_0x248_allocator = fn_7100083990();
+    self->field_0x248_allocator = GetDefaultAllocator();
     fn_7100b5c28c(reinterpret_cast<UnkElem38Array*>(&self->field_0x248_data), 0x47);
     self->field_0x270_data = nullptr;
     self->field_0x270_count = 0;
     self->field_0x270_step = 10;
     self->field_0x270_grow = true;
     self->field_0x270_flags = 5;
-    self->field_0x270_allocator = fn_7100083990();
+    self->field_0x270_allocator = GetDefaultAllocator();
     fn_7100b5c28c(reinterpret_cast<UnkElem38Array*>(&self->field_0x270_data), 0xd);
     self->field_0x298 = 0;
     self->field_0x2a4 = false;

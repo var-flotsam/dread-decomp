@@ -202,13 +202,13 @@ void fn_710061e89c(UnkComponent_ovb0219* self) {
     self->step_0x780 = 10;
     self->field_0x784 = true;
     self->flags_0x788 = 0xf;
-    self->allocator_0x790 = fn_7100083990();
+    self->allocator_0x790 = GetDefaultAllocator();
     self->data_0x798 = nullptr;
     self->count_0x7a0 = 0;
     self->capacity_0x7a4 = 0;
     self->step_0x7a8 = 10;
     self->field_0x7ac = true;
     self->flags_0x7b0 = 0xf;
-    self->allocator_0x7b8 = fn_7100083990();
+    self->allocator_0x7b8 = GetDefaultAllocator();
     reinterpret_cast<void (*)(UnkComponent_ovb0219*)>(self->vtable[3])(self);
 }

@@ -46,7 +46,7 @@ struct UnkTimedEntry_b0169 {
         inner.vtable = reinterpret_cast<char*>(g_unk_7101a46040) + 0x10;
         inner.count = 0;
         inner.head = inner.tail = nullptr;
-        inner.allocator = fn_7100083990();
+        inner.allocator = GetDefaultAllocator();
         inner.flags = 0x13;
         both = 0;
     }

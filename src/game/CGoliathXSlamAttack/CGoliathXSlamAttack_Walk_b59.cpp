@@ -65,7 +65,7 @@ void fn_7100586d0c(UnkGoliathXSlamWalk_b59a3* self, f32 dt) {
     auto* target = static_cast<UnkAnimationComponent*>(self->owner->field_0x220);
     if (!target)
         return;
-    if (!fn_710117ae38(target, fn_7100001570("attack_slam_walk", 16), false))
+    if (!fn_710117ae38(target, StringCrc64("attack_slam_walk", 16), false))
         return;
     // The gotos skip the declarations below, so they get no lifetime markers and keep slots of their own.
     {

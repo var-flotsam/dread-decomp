@@ -70,7 +70,7 @@ struct UnkDictionary_fc4640 {
     u32 capacity = 0;
     u32 step = 10;
     u32 flags;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
 
     explicit UnkDictionary_fc4640(u32 flags) : flags(flags) {}
 };

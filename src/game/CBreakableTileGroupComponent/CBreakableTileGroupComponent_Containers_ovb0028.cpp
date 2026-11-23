@@ -394,7 +394,7 @@ static inline void MoveKey(CStrId* dst, CStrId* src) {
         if (dst->data && dst->data != &pool->empty) {
             --dst->data->ref_count;
             if (dst->data->ref_count == 0) {
-                fn_71000803a4(pool, dst->data);
+                StringPool_Release(pool, dst->data);
                 pool = g_unk_7101d47108;
             }
         }

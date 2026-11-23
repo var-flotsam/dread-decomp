@@ -30,7 +30,7 @@ struct UnkHecathonList_b55 {
         field_0x18 = 10;
         field_0x1c = true;
         field_0x20 = 15;
-        field_0x28 = fn_7100083990();
+        field_0x28 = GetDefaultAllocator();
         field_0x30 = 0;
         vtable = g_unk_7101a20950 + 2;
         field_0x38 = 0;

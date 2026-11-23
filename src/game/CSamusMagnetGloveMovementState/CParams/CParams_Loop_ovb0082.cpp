@@ -74,7 +74,7 @@ struct UnkRumbleParams_ovb0082 {
                 ++d->ref_count;
             if (old != &pool->empty) {
                 if (--old->ref_count == 0)
-                    fn_71000803a4(pool, old);
+                    StringPool_Release(pool, old);
             }
             path.data = d;
         }

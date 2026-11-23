@@ -39,7 +39,7 @@ struct UnkNavMeshMap47f8 {
         capacity = 0;
         step = 10;
         flags = 0x57;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
     }
 };
 
@@ -312,7 +312,7 @@ static inline void ResetName(UnkNavTablesE5a0* self, u64 i) {
         if (data && data != &pool->empty) {
             --data->ref_count;
             if (data->ref_count == 0) {
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
                 pool = g_unk_7101d47108;
             }
         }
@@ -370,7 +370,7 @@ static inline void ResetName(UnkNavTablesE93c* self, u64 i) {
         if (data && data != &pool->empty) {
             --data->ref_count;
             if (data->ref_count == 0) {
-                fn_71000803a4(pool, data);
+                StringPool_Release(pool, data);
                 pool = g_unk_7101d47108;
             }
         }

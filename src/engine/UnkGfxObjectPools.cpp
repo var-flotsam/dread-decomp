@@ -35,7 +35,7 @@ struct UnkGfxObjectPoolAllocator {
 };
 
 static inline UnkGfxObjectPoolAllocator* GfxObjectPoolAllocator() {
-    return reinterpret_cast<UnkGfxObjectPoolAllocator*>(fn_7100083990());
+    return reinterpret_cast<UnkGfxObjectPoolAllocator*>(GetDefaultAllocator());
 }
 
 // A record of the first table. +0x90-+0xb8 look like an array (growth step 10, allocator flags 0xe).
@@ -57,7 +57,7 @@ struct UnkGfxRecord_0xc0 {
 
     UnkGfxRecord_0xc0()
         : field_0x0(0), field_0x8(0), field_0x10(0), field_0x48(0), field_0x50(-1), field_0x54(),
-          field_0x90(10), field_0x94(0xe), field_0x98(fn_7100083990()), field_0xa0(0), field_0xa8(0),
+          field_0x90(10), field_0x94(0xe), field_0x98(GetDefaultAllocator()), field_0xa0(0), field_0xa8(0),
           field_0xb0(0), field_0xb8(true) {}
 };
 static_assert(sizeof(UnkGfxRecord_0xc0) == 0xc0, "UnkGfxRecord_0xc0 placeholder layout");

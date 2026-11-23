@@ -90,6 +90,6 @@ void CRntString_AssignPrefix(CRntString* self, const char* str, u32 length) {
         strncpy(self->data, str, n);
         self->data[n] = 0;
         self->length = n;
-        self->key = fn_7100001570(self->data, n);
+        self->key = StringCrc64(self->data, n);
     }
 }

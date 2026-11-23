@@ -38,7 +38,7 @@ void* fn_7100e8f600(void* self, const u64* typeId, u32 flags) {
         return nullptr;
     if (!cls->construct)
         return nullptr;
-    void* obj = fn_7100083990()->vf_0x40(cls->size, 8, flags);
+    void* obj = GetDefaultAllocator()->vf_0x40(cls->size, 8, flags);
     if (obj)
         cls->construct(obj);
     return obj;

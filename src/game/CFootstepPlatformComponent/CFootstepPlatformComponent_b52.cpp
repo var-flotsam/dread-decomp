@@ -31,7 +31,7 @@ struct UnkFootstepList {
         step = 10;
         field_0x1c = true;
         flags = 0xf;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         field_0x30 = 0;
         vtable = g_unk_7101a33fa0 + 2;
         field_0x38 = nullptr;

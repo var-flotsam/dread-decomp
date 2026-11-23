@@ -22,7 +22,7 @@ struct UnkSoundIdListOwner : base::UnkVtableList<Node> {
         this->count = 0;
         this->head = nullptr;
         this->tail = nullptr;
-        this->allocator = fn_7100083990();
+        this->allocator = GetDefaultAllocator();
         this->flags = 0x13;
     }
 };

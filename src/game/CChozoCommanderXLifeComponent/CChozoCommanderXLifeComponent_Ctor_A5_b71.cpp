@@ -60,7 +60,7 @@ static_assert(__builtin_offsetof(UnkXLifeCtor_A5_b71, list_b_vtable) == 0x2f0, "
     self->o##_step = 10;                                                   \
     self->o##_grow = true;                                                 \
     self->o##_flags = 0xf;                                                 \
-    self->o##_allocator = fn_7100083990();                                 \
+    self->o##_allocator = GetDefaultAllocator();                                 \
     self->o##_field_0x30 = 0;                                              \
     self->o##_vtable = reinterpret_cast<char*>(g_unk_7101a33fa0) + 0x10;   \
     self->o##_field_0x38 = nullptr

@@ -14,11 +14,11 @@ void fn_7100083c48(UnkStringBlockClass* self, u32 count, u32 block_size, u32 ind
     self->block_size = block_size;
     self->count = count;
     self->min_free = count;
-    self->memory = static_cast<char*>(fn_7100083990()->vf_0x40(total, 8, 1));
+    self->memory = static_cast<char*>(GetDefaultAllocator()->vf_0x40(total, 8, 1));
     self->headers = static_cast<UnkStringBlock*>(
-        fn_7100083990()->vf_0x40((u64)self->count * sizeof(UnkStringBlock), 8, 1));
+        GetDefaultAllocator()->vf_0x40((u64)self->count * sizeof(UnkStringBlock), 8, 1));
     self->blocks = static_cast<UnkStringBlock**>(
-        fn_7100083990()->vf_0x40((u64)self->count * sizeof(UnkStringBlock*), 8, 1));
+        GetDefaultAllocator()->vf_0x40((u64)self->count * sizeof(UnkStringBlock*), 8, 1));
     for (u32 i = 0; i < self->count; ++i) {
         UnkStringBlock* block = &self->headers[i];
         block->memory = self->memory + self->block_size * i;

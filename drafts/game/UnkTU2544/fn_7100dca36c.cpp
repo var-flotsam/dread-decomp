@@ -407,7 +407,7 @@ struct UnkRushBoard_b0195 {
         : field_0x0(0), field_0x8(0), field_0x10(0), field_0x18(0xf), allocator(nullptr), field_0x28(0) {
         step = 10;
         field_0x14 = true;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
         flag_0x28 = true;
     }
 };

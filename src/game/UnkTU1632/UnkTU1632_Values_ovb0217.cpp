@@ -187,7 +187,7 @@ void fn_7100ad3118(UnkErasedVector* self, const CRntString* text) {
     self->capacity = 0;
     self->field_0x14 = true;
     self->flags = 0xf;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     u32 length = text->length;
     for (u32 pos = 0; length && pos < length;) {
         s32 found = CRntString_Find(text, g_unk_710164b8a9, pos);

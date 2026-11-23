@@ -70,7 +70,7 @@ struct UnkEnumName_l043a04 : UnkStrIdBase {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -80,7 +80,7 @@ struct UnkEnumName_l043a04 : UnkStrIdBase {
 };
 
 static inline u64 Hash_l043a04(const char* name) {
-    return fn_7100001570(name, strlen(name));
+    return StringCrc64(name, strlen(name));
 }
 
 // Sets the field named by `key` from the value `in` points at, of the type `Type` gives.

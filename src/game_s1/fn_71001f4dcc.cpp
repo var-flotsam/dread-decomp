@@ -95,7 +95,7 @@ void fn_71001f4dcc(UnkWidget* self, UnkWidgetArg* a) {
     self->buffer_0x110.field_0x10 = 10;
     self->buffer_0x110.flag_0x14 = 1;
     self->buffer_0x110.field_0x18 = 15;
-    self->allocator_0x130 = fn_7100083990();
+    self->allocator_0x130 = GetDefaultAllocator();
     self->field_0x138 = 1.0f;
     self->field_0x13c = 1.0f;
     self->field_0x140 = 1.0f;

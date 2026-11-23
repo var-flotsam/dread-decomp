@@ -41,7 +41,7 @@ static inline void ResetFilePath(CFilePathStrId& id) {
         if (id.data && id.data != &pool->empty) {
             --id.data->ref_count;
             if (id.data->ref_count == 0) {
-                fn_71000803a4(pool, id.data);
+                StringPool_Release(pool, id.data);
                 pool = g_unk_7101d47200;
             }
         }
@@ -71,7 +71,7 @@ void* fn_7100c91450(void* dst, const void* src) {
         if (a->field_0x10.data != &pool->empty) {
             --a->field_0x10.data->ref_count;
             if (a->field_0x10.data->ref_count == 0)
-                fn_71000803a4(pool, a->field_0x10.data);
+                StringPool_Release(pool, a->field_0x10.data);
         }
         a->field_0x10.data = d;
     }

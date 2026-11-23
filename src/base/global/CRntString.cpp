@@ -42,14 +42,14 @@ void CRntString_ConstructFromCString(CRntString* self, const char* str) {
     self->key = -1;
     self->allocator = nullptr;
     u32 length = str ? strlen(str) : 0;
-    CRntString_SetText(self, str, length, fn_7100001570(str, length));
+    CRntString_SetText(self, str, length, StringCrc64(str, length));
 }
 
 // Assigns a literal.
 // NON_MATCHING(minor): as fn_710007e704.
 void CRntString_AssignCString(CRntString* self, const char* str) {
     u32 length = str ? strlen(str) : 0;
-    CRntString_SetText(self, str, length, fn_7100001570(str, length));
+    CRntString_SetText(self, str, length, StringCrc64(str, length));
 }
 
 // The pooled string data behind a string id, as copying it into a CRntString sees it.
@@ -198,7 +198,7 @@ CRntString CRntString_Concat(const CRntString* a, const CRntString* b) {
         if (b_data)
             strcpy(result.data + a_length, b_data);
         result.length = strlen(result.data);
-        result.key = fn_7100001570(result.data, result.length);
+        result.key = StringCrc64(result.data, result.length);
     }
     return result;
 }
@@ -216,7 +216,7 @@ CRntString CRntString_ConcatCStringFirst(const char* a, const CRntString* b) {
         if (b_data)
             strcpy(result.data + a_length, b_data);
         result.length = strlen(result.data);
-        result.key = fn_7100001570(result.data, result.length);
+        result.key = StringCrc64(result.data, result.length);
     }
     return result;
 }
@@ -263,20 +263,20 @@ void CRntString_AppendChars(CRntString* self, const char* str, u32 length) {
         strcpy(self->data + old, str);
         char* d = self->data;
         self->length = strlen(d);
-        self->key = fn_7100001570(d, self->length);
+        self->key = StringCrc64(d, self->length);
     } else {
         u32 total = (u32)old + length;
         if (total) {
-            char* p = static_cast<char*>(fn_7100083990()->vf_0x40(total + 1, 8, 0x11));
+            char* p = static_cast<char*>(GetDefaultAllocator()->vf_0x40(total + 1, 8, 0x11));
             *p = 0;
             if (data)
                 strcpy(p, data);
             if (str)
                 strcpy(p + (u32)old, str);
             u32 n = strlen(p);
-            CRntString_SetText(self, p, n, fn_7100001570(p, n));
+            CRntString_SetText(self, p, n, StringCrc64(p, n));
             if (p && p != g_unk_7101647847)
-                fn_7100083990()->vf_0x48(p);
+                GetDefaultAllocator()->vf_0x48(p);
         } else {
             CRntString_SetText(self, nullptr, 0, -1);
         }
@@ -299,7 +299,7 @@ struct UnkTrimString {
     bool borrowed;
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(this); }
-    base::UnkAllocator* GetAllocator() const { return allocator ? allocator : fn_7100083990(); }
+    base::UnkAllocator* GetAllocator() const { return allocator ? allocator : GetDefaultAllocator(); }
 };
 static_assert(sizeof(UnkTrimString) == sizeof(CRntString), "UnkTrimString layout");
 

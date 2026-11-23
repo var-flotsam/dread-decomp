@@ -39,7 +39,7 @@ struct UnkRecPath_b0213 : base::global::UnkFilePathStrIdBase {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47200;
                 }
             }
@@ -280,7 +280,7 @@ struct UnkPathPoint_b0213 {
             if (name && name != &pool->empty) {
                 --name->ref_count;
                 if (name->ref_count == 0) {
-                    fn_71000803a4(pool, name);
+                    StringPool_Release(pool, name);
                     pool = g_unk_7101d47200;
                 }
             }
@@ -527,7 +527,7 @@ __attribute__((always_inline)) static inline void ConstructEmpty(UnkIdMapOf_b021
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
     self->id.data = &g_unk_7101d47108->empty;
-    self->allocator = fn_7100083990();
+    self->allocator = GetDefaultAllocator();
     self->flags = 0xe;
     self->count = 0;
     self->buckets.data = nullptr;
@@ -536,7 +536,7 @@ __attribute__((always_inline)) static inline void ConstructEmpty(UnkIdMapOf_b021
     self->buckets.step = 10;
     self->buckets.field_0x14 = true;
     self->buckets.flags = 0xe;
-    self->buckets.allocator = fn_7100083990();
+    self->buckets.allocator = GetDefaultAllocator();
     self->tail = nullptr;
     self->head = nullptr;
     u32 n = 11;

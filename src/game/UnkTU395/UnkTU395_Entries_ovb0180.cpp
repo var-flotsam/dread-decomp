@@ -109,7 +109,7 @@ struct UnkElement {
             if (data && data != &pool->empty) {
                 --field_0x28.data->ref_count;
                 if (field_0x28.data->ref_count == 0) {
-                    fn_71000803a4(pool, field_0x28.data);
+                    StringPool_Release(pool, field_0x28.data);
                     pool = g_unk_7101d47108;
                 }
             }

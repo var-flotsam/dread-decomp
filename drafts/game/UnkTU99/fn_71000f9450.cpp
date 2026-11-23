@@ -94,7 +94,7 @@ union UnkPathIdSlot_b0185 {
 };
 
 // Releases the id in `slot` (whose data pointer was read once as `data`) like its destructor.
-#define RELEASE_ID_b0185(slot, data)                                      if (base::global::UnkStringPool* pool = g_unk_7101d47200) {              if (data && data != &pool->empty) {                                       if (--data->ref_count == 0) {                                             fn_71000803a4(pool, data);                                            pool = g_unk_7101d47200;                                          }                                                                 }                                                                     slot.id.data = &pool->empty;                                      }
+#define RELEASE_ID_b0185(slot, data)                                      if (base::global::UnkStringPool* pool = g_unk_7101d47200) {              if (data && data != &pool->empty) {                                       if (--data->ref_count == 0) {                                             StringPool_Release(pool, data);                                            pool = g_unk_7101d47200;                                          }                                                                 }                                                                     slot.id.data = &pool->empty;                                      }
 
 
 // ---- the id maps ----

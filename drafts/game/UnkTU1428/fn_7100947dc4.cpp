@@ -104,9 +104,9 @@ void fn_7100947dc4(UnkBallMovement_l947dc4* self, void* arg) {
     self->field_0x2489 = 1;
     self->field_0x248a = 1;
     UnkActor* actor = reinterpret_cast<UnkActor*>(self->owner);
-    u64 key = fn_7100001570("stop_fx_notransition", 20);
+    u64 key = StringCrc64("stop_fx_notransition", 20);
     fn_7100d7c828(actor, &key, false);
     actor = reinterpret_cast<UnkActor*>(self->owner);
-    key = fn_7100001570("stop_materialtransition_notransition", 36);
+    key = StringCrc64("stop_materialtransition_notransition", 36);
     fn_7100d7c828(actor, &key, false);
 }

@@ -28,7 +28,7 @@ struct UnkIdList_b0248 {
             if (id.data && id.data != &pool->empty) {
                 --id.data->ref_count;
                 if (id.data->ref_count == 0) {
-                    fn_71000803a4(pool, id.data);
+                    StringPool_Release(pool, id.data);
                     pool = g_unk_7101d47200;
                 }
             }
@@ -112,7 +112,7 @@ void fn_710008c2cc(UnkPooledPathMap_b0248* self) {
             if (n->key && n->key != &pool->empty) {
                 --n->key->ref_count;
                 if (n->key->ref_count == 0) {
-                    fn_71000803a4(pool, n->key);
+                    StringPool_Release(pool, n->key);
                     pool = g_unk_7101d47200;
                 }
             }

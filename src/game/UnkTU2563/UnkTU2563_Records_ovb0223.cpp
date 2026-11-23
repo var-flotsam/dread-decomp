@@ -432,7 +432,7 @@ struct UnkU16Array_b0223 {
     // base::global::CRntVector's defaults.
     __attribute__((always_inline)) UnkU16Array_b0223()
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
     // Takes the settings, reserves the source's capacity and copies the elements.
     __attribute__((always_inline)) UnkU16Array_b0223(const UnkU16Array_b0223& other)
         : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14),
@@ -728,7 +728,7 @@ struct UnkMinimapId_b0223 {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }

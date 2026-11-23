@@ -200,7 +200,7 @@ void fn_7100228ca0(base::reflection::UnkReflList<CRntString>* self, const CRntSt
     self->step = step;
     self->field_0x14 = step != 0;
     self->flags = flags;
-    self->allocator = allocator ? allocator : fn_7100083990();
+    self->allocator = allocator ? allocator : GetDefaultAllocator();
     v->Reserve(size);
     for (const CRntString *it = items, *end = items + size; it != end; ++it) {
         CRntString copy(*it);

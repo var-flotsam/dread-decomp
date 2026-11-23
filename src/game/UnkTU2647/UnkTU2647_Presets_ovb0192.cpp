@@ -29,7 +29,7 @@ struct UnkPresetList_b0192 {
         step = 10;
         field_0x14 = true;
         flags = 0xf;
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
     }
     // The id's destructor, with the decrement and the test in two steps.
     static void Release(CFilePathStrId& id) {
@@ -38,7 +38,7 @@ struct UnkPresetList_b0192 {
             if (id.data && id.data != &pool->empty) {
                 --id.data->ref_count;
                 if (id.data->ref_count == 0) {
-                    fn_71000803a4(pool, id.data);
+                    StringPool_Release(pool, id.data);
                     pool = g_unk_7101d47200;
                 }
             }
@@ -184,7 +184,7 @@ static inline void Release(CStrId& id) {
         if (id.data && id.data != &pool->empty) {
             --id.data->ref_count;
             if (id.data->ref_count == 0) {
-                fn_71000803a4(pool, id.data);
+                StringPool_Release(pool, id.data);
                 pool = g_unk_7101d47108;
             }
         }

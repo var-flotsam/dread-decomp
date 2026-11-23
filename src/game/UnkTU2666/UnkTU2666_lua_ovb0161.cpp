@@ -354,7 +354,7 @@ s32 fn_7101086df0(lua_State* L) {
 
 static inline void* FindByName_b0161(UnkGameManager* manager, const char* name) {
     u32 kind_value = g_unk_71727bebb8;
-    u64 key = fn_7100001570(name, strlen(name));
+    u64 key = StringCrc64(name, strlen(name));
     alignas(8) u32 kind = kind_value;
     return fn_7100deba8c(manager, &key, &kind);
 }
@@ -435,7 +435,7 @@ s32 fn_710108fe30(lua_State* L) {
     void* target = fn_7100798eec(object);
     if (!target)
         return 0;
-    fn_7101156058(target, fn_7100001570(effect, strlen(effect)), x, y, a, b, z);
+    fn_7101156058(target, StringCrc64(effect, strlen(effect)), x, y, a, b, z);
     return 0;
 }
 

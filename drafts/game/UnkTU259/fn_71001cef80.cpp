@@ -192,7 +192,7 @@ void fn_71001cef80(UnkGfx_l1cef80* self, const UnkLightList_l1cef80* lights) {
         f32 g = powf(light->color[1], 2.2f);
         f32 b = powf(light->color[2], 2.2f);
         base::math::UnkVector4D tint;
-        UnkTintEntry_l1cef80* found = self->FindTint(fn_7100001570("EMMY_ZONE_LGT", 13));
+        UnkTintEntry_l1cef80* found = self->FindTint(StringCrc64("EMMY_ZONE_LGT", 13));
         r = intensity * r;
         g = intensity * g;
         b = intensity * b;

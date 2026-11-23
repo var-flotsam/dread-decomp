@@ -150,7 +150,7 @@ void fn_71010e46cc(void* object, bool value);
 
 inline void* FindByName_b0163(UnkGameManager* manager, const char* name) {
     u32 kind_value = g_unk_71727bebb8;
-    u64 key = fn_7100001570(name, strlen(name));
+    u64 key = StringCrc64(name, strlen(name));
     alignas(8) u32 kind = kind_value;
     return fn_7100deba8c(manager, &key, &kind);
 }

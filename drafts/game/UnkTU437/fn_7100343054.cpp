@@ -369,7 +369,7 @@ void fn_7100343054(UnkAim_l343054* self) {
     self->field_0x968 = false;
     self->field_0x969 = false;
     self->field_0x970 = nullptr;
-    self->name = fn_7100001570(g_unk_710162e2ed, 0);
+    self->name = StringCrc64(g_unk_710162e2ed, 0);
     self->field_0x980 = 0;
     self->field_0x988 = 0;
     self->field_0x990 = false;

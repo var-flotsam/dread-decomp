@@ -165,7 +165,7 @@ void fn_710119fe50(UnkScenarioScript_ovb0032* scenario, const char* level, const
     self->field_0x888.field_0x8 = 0;
     self->field_0x888.field_0x10 = 0;
     self->field_0x888.field_0x18 = 0;
-    self->field_0x888.allocator = fn_7100083990();
+    self->field_0x888.allocator = GetDefaultAllocator();
     self->field_0x888.flags = 0x13;
     fn_71011a4eb4(self->field_0x8b8);
     self->field_0x918 = 0;

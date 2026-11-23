@@ -39,7 +39,7 @@ void fn_7100154538(void* handle);
 // element from the second on, then stores the first).
 void fn_71001545d0() {
     InitHeaderIds(&g_unk_716e29ac18.ids);
-    g_unk_716e29ab80 = fn_7100083990();
+    g_unk_716e29ab80 = GetDefaultAllocator();
     InitPathId(&g_unk_716e29ac18.font, "system/engine/fonts/sys_font.bctex");
     g_unk_716e29ab88 = nullptr;
     __cxa_atexit(fn_7100154538, &g_unk_716e29ab88, g_unk_7101a19000);

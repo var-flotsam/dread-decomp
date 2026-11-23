@@ -15,7 +15,7 @@ struct UnkVector_0xf {
     u32 step = 10;
     bool field_0x14 = true;
     u32 flags = 0xf;
-    base::UnkAllocator* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = GetDefaultAllocator();
 };
 static_assert(sizeof(UnkVector_0xf) == 0x28, "UnkVector_0xf layout");
 

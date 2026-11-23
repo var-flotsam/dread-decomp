@@ -54,7 +54,7 @@ UnkStringPoolHolder::UnkStringPoolHolder(u32 a, UnkStringPool** pool) {
     new (&state->set.buckets) CRntVector<UnkPoolNode*>(0x25);
     state->set.first_node = nullptr;
     state->set.first_bucket = -1;
-    state->set.node_allocator = fn_7100083990();
+    state->set.node_allocator = GetDefaultAllocator();
     state->set.node_flags = 0x25;
     state->set.node_count = 0;
     state->set.version = 1;
@@ -140,7 +140,7 @@ void fn_7100080578(UnkPoolSetWithNodes* set, u32 buckets, u32 nodes) {
     // The pool's address is formed afresh at each use rather than kept in a register.
     if (nodes) {
         if (!node_allocator)
-            node_allocator = fn_7100083990();
+            node_allocator = GetDefaultAllocator();
         set->nodes.parent = node_allocator;
         void* memory = node_allocator->vf_0x40((u64)nodes * sizeof(UnkPoolNode), 8, flags);
         asm("" : "+r"(set));

@@ -341,7 +341,7 @@ static inline UnkReflAttrs* AttrsOf_ovb0053(CType* type) {
         attrs->capacity = 0;
         attrs->step = 10;
         attrs->flags = 0x3e;
-        attrs->allocator = fn_7100083990();
+        attrs->allocator = GetDefaultAllocator();
         attrs->field_0x28 = nullptr;
         attrs->field_0x30 = 0;
         type->field_0x80 = attrs;

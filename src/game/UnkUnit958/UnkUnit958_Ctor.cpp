@@ -39,7 +39,7 @@ void fn_7100639cf8(UnkUnit958* self) {
     self->entries.step = 10;
     self->entries.field_0x14 = true;
     self->entries.flags = 0xf;
-    self->entries.allocator = fn_7100083990();
+    self->entries.allocator = GetDefaultAllocator();
     fn_710063cb28(&self->entries, 6);
     fn_710059c644(self->field_0x30, 10, 0, 0x13, 0);
     self->field_0xb0 = false;

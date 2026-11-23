@@ -107,7 +107,7 @@ struct UnkNodeTable_l2d4920 {
 
     explicit UnkNodeTable_l2d4920(u32 flags)
         : values(nullptr), keys(nullptr), count(0), capacity(0), step(10), flags(flags),
-          allocator(fn_7100083990()) {}
+          allocator(GetDefaultAllocator()) {}
 
     UnkAnimNode_l2d4920** Find(const u64& key) {
         for (u64 i = 0; i != count; ++i) {

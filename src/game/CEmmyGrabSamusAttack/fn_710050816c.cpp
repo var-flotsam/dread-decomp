@@ -9,41 +9,41 @@ struct UnkNameHolder {
 };
 
 u32 fn_710050816c(UnkNameHolder* self) {
-    if (fn_7100001570("water", 5) == self->hash)
+    if (StringCrc64("water", 5) == self->hash)
         return 1;
-    if (fn_7100001570("speedbooster", 12) == self->hash)
+    if (StringCrc64("speedbooster", 12) == self->hash)
         return 2;
-    if (fn_7100001570("speedbooster45up", 16) == self->hash)
+    if (StringCrc64("speedbooster45up", 16) == self->hash)
         return 3;
-    if (fn_7100001570("left", 4) == self->hash)
+    if (StringCrc64("left", 4) == self->hash)
         return 4;
-    if (fn_7100001570("right", 5) == self->hash)
+    if (StringCrc64("right", 5) == self->hash)
         return 5;
-    if (fn_7100001570("patrol", 6) == self->hash)
+    if (StringCrc64("patrol", 6) == self->hash)
         return 6;
-    if (fn_7100001570("search", 6) == self->hash)
+    if (StringCrc64("search", 6) == self->hash)
         return 7;
-    if (fn_7100001570("chase", 5) == self->hash)
+    if (StringCrc64("chase", 5) == self->hash)
         return 8;
-    if (fn_7100001570("chase2", 6) == self->hash)
+    if (StringCrc64("chase2", 6) == self->hash)
         return 9;
-    if (fn_7100001570("chasereachable", 14) == self->hash)
+    if (StringCrc64("chasereachable", 14) == self->hash)
         return 10;
-    if (fn_7100001570("combat", 6) == self->hash)
+    if (StringCrc64("combat", 6) == self->hash)
         return 11;
-    if (fn_7100001570("flee", 4) == self->hash)
+    if (StringCrc64("flee", 4) == self->hash)
         return 12;
-    if (fn_7100001570("brokenshield", 12) == self->hash)
+    if (StringCrc64("brokenshield", 12) == self->hash)
         return 13;
-    if (fn_7100001570("grab2", 5) == self->hash)
+    if (StringCrc64("grab2", 5) == self->hash)
         return 14;
-    if (fn_7100001570("grabwater", 9) == self->hash)
+    if (StringCrc64("grabwater", 9) == self->hash)
         return 15;
-    if (fn_7100001570("protoemmytuto", 13) == self->hash)
+    if (StringCrc64("protoemmytuto", 13) == self->hash)
         return 16;
-    if (fn_7100001570("preseta", 7) == self->hash)
+    if (StringCrc64("preseta", 7) == self->hash)
         return 17;
-    if (fn_7100001570("presetb", 7) == self->hash)
+    if (StringCrc64("presetb", 7) == self->hash)
         return 18;
-    return fn_7100001570("presetc", 7) == self->hash ? 19 : 0;
+    return StringCrc64("presetc", 7) == self->hash ? 19 : 0;
 }

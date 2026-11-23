@@ -46,7 +46,7 @@ struct UnkGridRows_e78d08 {
     base::UnkAllocator* allocator;
 
     UnkGridRows_e78d08()
-        : values(nullptr), keys(nullptr), count(0), capacity(0), step(10), flags(0xe), allocator(fn_7100083990()) {}
+        : values(nullptr), keys(nullptr), count(0), capacity(0), step(10), flags(0xe), allocator(GetDefaultAllocator()) {}
     ~UnkGridRows_e78d08() {
         if (values) {
             for (u64 i = 0; i < count; ++i)

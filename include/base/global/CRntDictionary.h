@@ -75,7 +75,7 @@ struct CRntDictionary {
     // An empty dictionary with no buckets yet, its nodes and buckets from the default allocator with
     // the given flags (fn_7100e1bca4).
     explicit CRntDictionary(u32 flags)
-        : allocator(fn_7100083990()), flags(flags), count(0), buckets(flags), last(nullptr), first(nullptr) {}
+        : allocator(GetDefaultAllocator()), flags(flags), count(0), buckets(flags), last(nullptr), first(nullptr) {}
 
     // Sets the bucket count to n, clearing the new buckets; a new array's pointer is stored after its
     // capacity (fn_7100e1bca4).

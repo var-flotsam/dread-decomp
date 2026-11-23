@@ -63,7 +63,7 @@ struct UnkPairId_l01a39c {
                 ++d->ref_count;
             if (old != &pool->empty) {
                 if (--old->ref_count == 0)
-                    fn_71000803a4(pool, old);
+                    StringPool_Release(pool, old);
             }
             data = d;
         }
@@ -84,7 +84,7 @@ struct UnkPairPath_l01a39c {
             if (data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0)
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
             }
             data = d;
         }
@@ -100,7 +100,7 @@ struct UnkBuiltPath_l01a39c : UnkFilePathStrIdBase {
             UnkStringData* d = data;
             if (d && d != &pool->empty) {
                 if (--d->ref_count == 0) {
-                    fn_71000803a4(pool, d);
+                    StringPool_Release(pool, d);
                     pool = g_unk_7101d47200;
                 }
             }

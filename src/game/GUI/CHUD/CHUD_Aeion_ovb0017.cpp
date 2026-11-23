@@ -230,7 +230,7 @@ void fn_71011df420(UnkHudIdValueVector_ovb0017* self, std::initializer_list<UnkH
     self->field_0x14 = step != 0;
     self->flags = flags;
     if (!allocator)
-        allocator = fn_7100083990();
+        allocator = GetDefaultAllocator();
     self->allocator = allocator;
     fn_71011e7ac8(self, items.size());
     for (UnkHudIdValue_ovb0017 item : items) {

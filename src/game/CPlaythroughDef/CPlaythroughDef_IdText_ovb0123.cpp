@@ -56,7 +56,7 @@ void fn_71002f25ec(UnkPlaythroughIdsOwner_ovb0123* self, const char* const* text
     tokens.field_0x8 = 0;
     tokens.field_0x10 = nullptr;
     tokens.field_0x18 = nullptr;
-    tokens.field_0x20 = fn_7100083990();
+    tokens.field_0x20 = GetDefaultAllocator();
     *reinterpret_cast<u32*>(tokens.pad_0x28) = 0x13;
     tokens.vtable = g_unk_7101a222a8 + 2;
     tokens.field_0x30 = g_unk_7101a1a4c8 + 0x10;
@@ -121,7 +121,7 @@ struct UnkPlaythroughIdRef_ovb0123 {
     ~UnkPlaythroughIdRef_ovb0123() {
         base::global::UnkStringPool* pool = g_unk_7101d47108;
         if (pool && data != &pool->empty && --data->ref_count == 0)
-            fn_71000803a4(pool, data);
+            StringPool_Release(pool, data);
     }
     const CRntString* Text() const {
         auto* d = reinterpret_cast<UnkPlaythroughIdData_ovb0123*>(data);

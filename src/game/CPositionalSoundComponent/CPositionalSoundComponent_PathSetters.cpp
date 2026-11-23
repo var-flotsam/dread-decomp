@@ -66,7 +66,7 @@ static inline __attribute__((always_inline)) UnkResult_0x18_psc SetPath_psc(UnkP
         if (path->data != &pool->empty) {
             --path->data->ref_count;
             if (path->data->ref_count == 0)
-                fn_71000803a4(pool, path->data);
+                StringPool_Release(pool, path->data);
         }
         path->data = d;
     }
