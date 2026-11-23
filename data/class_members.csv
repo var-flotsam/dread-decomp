@@ -1,0 +1,19 @@
+class,offset,type,name,init,source,note
+CCameraFX_Shake,0x50,f32,field_0x50,,fn_71010f27c0,"the time the shake has run; over fTime, where on its curve it is"
+CCameraFX_Shake,0x54,bool,field_0x54,,fn_71010f2918,set once the shake has stopped
+CCameraFX_RandShake,0x58,base::global::CStrId,sFunction,"{"""", true}",fn_71010f2b68,
+CCameraFX_RandShake,0x60,f32,fDistance,0.0f,fn_71010f2b68,
+CCameraFX_RandShake,0x64,f32,fTwist,0.0f,fn_71010f2b68,
+CCameraFX_RandShake,0x68,base::math::CVector3D,field_0x68,{},fn_71010f27c0,the rolled position offset
+CCameraFX_RandShake,0x74,f32,field_0x74,0.0f,fn_71010f27c0,the rolled offset of the value fn_71010f2918 adds it to
+CCameraFX_OscillationShake,0x58,base::global::CStrId,sFunction,"{"""", true}",fn_7100767fb8,
+CCameraFX_OscillationShake,0x60,f32,fAmplitudeX,0.0f,fn_7100767fb8,
+CCameraFX_OscillationShake,0x64,f32,fSpeedX,0.0f,fn_7100767fb8,
+CCameraFX_OscillationShake,0x68,f32,fAmplitudeY,0.0f,fn_7100767fb8,
+CCameraFX_OscillationShake,0x6c,f32,fSpeedY,0.0f,fn_7100767fb8,
+CCameraFX_OscillationShake,0x70,f32,fAmplitudeZ,0.0f,fn_7100767fb8,
+CCameraFX_OscillationShake,0x74,f32,fSpeedZ,0.0f,fn_7100767fb8,
+CCameraFX_OscillationShake,0x78,f32,fTimeToMax,0.0f,fn_7100767fb8,
+CCooldownXBossFireBallDef,0x8,bool,bEnabled,true,fn_71004c095c,
+CCooldownXBossFireBallDef,0xc,f32,fPreparationTimeOffset,0.0f,fn_71004c095c,
+CCooldownXBossFireBallDef,0x10,bool,bBreakable,false,fn_71004c095c,

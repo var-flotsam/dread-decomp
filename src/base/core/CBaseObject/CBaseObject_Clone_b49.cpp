@@ -1,13 +1,13 @@
 // base::core::CBaseObject's unit (unit 29 of tools/tu_map.py): a copy of an object through its
 // reflected class (fn_71000238c8). When the object's dynamic class is a kind of
 // base::core::CBaseObject (its class descriptor, g_unk_7101d4e990, inside the getter
-// fn_7100023464's static) and has a constructor (+0x28), a block of the class's size (+0x18) is
+// CBaseObject::refl_GetClass's static) and has a constructor (+0x28), a block of the class's size (+0x18) is
 // taken from the default allocator and constructed; then each 0xb0-byte field entry of the class
 // (+0xe8) is copied over by fn_71000239a8 (also with no block). Names are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
-#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "reflected/base/core/CBaseObject.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -39,7 +39,7 @@ void fn_71000239a8(void* dst, UnkBaseObject_b49a1* src, UnkClassField_b49a1* fie
 
 void* fn_71000238c8(UnkBaseObject_b49a1* self, u32 flags) {
     const UnkClassView_b49a1* cls = reinterpret_cast<const UnkClassView_b49a1*>(self->vf_0x0());
-    fn_7100023464();
+    base::core::CBaseObject::refl_GetClass();
     void* copy = nullptr;
     if (fn_710009d50c(reinterpret_cast<const CType*>(cls), reinterpret_cast<const CType*>(g_unk_7101d4e990)) &&
         cls->construct) {

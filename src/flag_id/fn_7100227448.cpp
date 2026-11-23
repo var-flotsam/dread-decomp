@@ -3,7 +3,7 @@
 // type-specific function pointers. UnkClass is this file's placeholder for
 // base::reflection::CClass, which base/reflection/UnkClassGetters.h declares the getters with.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkClassGetters.h"
+#include "reflected/CGameObject.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -41,7 +41,7 @@ void fn_710022753c(UnkActor*);
 // That offset comes from the other statics in the real translation unit; Phase 4 must
 // reproduce that layout so every refl_GetClass reaches O.
 const base::reflection::CClass* fn_7100227448() {
-    static UnkClass s_class(UnkName("CActor", true), reinterpret_cast<const UnkClass*>(fn_7101043688()),
+    static UnkClass s_class(UnkName("CActor", true), reinterpret_cast<const UnkClass*>(CGameObject::refl_GetClass()),
                             &fn_710022739c, &fn_710022753c, nullptr);
     return reinterpret_cast<const base::reflection::CClass*>(&s_class);
 }

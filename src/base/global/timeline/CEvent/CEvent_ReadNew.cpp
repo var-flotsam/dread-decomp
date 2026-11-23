@@ -5,9 +5,9 @@
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
-#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU83.h"
+#include "reflected/base/global/timeline/CEvent.h"
 #include "types.h"
 
 // The registry of reflected types by 64-bit id (as src/base/global/UnkTimelineTracks.cpp declares it).
@@ -16,7 +16,7 @@ struct UnkVersionEntry;
 
 struct UnkTimelineEvent_068f5c;
 
-// CEvent's class: the static inside its getter fn_71000675e8.
+// CEvent's class: the static inside its getter CEvent::refl_GetClass.
 extern char g_unk_7101d57b80[] __attribute__((visibility("hidden")));
 
 // What a type's descriptor gives: the object's size and its in-place constructor.
@@ -36,7 +36,7 @@ UnkTimelineEvent_068f5c* fn_7100067848(base::global::CRntFile* file) {
     UnkVersionRegistry* registry = g_unk_7101d4c8d0;
     u64 id = raw;
     auto* type = reinterpret_cast<const base::reflection::CType*>(fn_71000a5118(registry, &id));
-    fn_71000675e8();
+    base::global::timeline::CEvent::refl_GetClass();
     UnkTimelineEvent_068f5c* event = nullptr;
     if (fn_710009d50c(type, reinterpret_cast<const base::reflection::CType*>(g_unk_7101d57b80))) {
         const auto* view = reinterpret_cast<const UnkEventTypeView*>(type);

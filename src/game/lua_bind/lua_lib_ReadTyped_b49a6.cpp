@@ -10,6 +10,7 @@
 #include "game/UnkLuaReadScratch_b49a6.h"
 #include "game/UnkTU2620.h"
 #include "game/lua_lib.h"
+#include "reflected/CGameObject.h"
 #include "types.h"
 
 struct lua_State;
@@ -57,7 +58,7 @@ u32 fn_7100fbfe1c(UnkLuaArgReader2_b49a6* self, UnkTypedRef* value) {
             ok = true;
             goto done;
         }
-    } else if (fn_710009d50c(pointee, fn_7101043688())) {
+    } else if (fn_710009d50c(pointee, CGameObject::refl_GetClass())) {
         void* object = nullptr;
         if (fn_71010beee0(L, &object, -1)) {
             const CType* type = value->type;
