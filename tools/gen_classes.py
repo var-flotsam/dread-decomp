@@ -22,16 +22,18 @@ tables that this merges in (a header is never edited by hand):
   data/class_methods.csv  class,kind,declaration,address,definition,source
       kind `vtable`: the class's virtual table is the original's object at `address` (written as
       `// vtable g_unk_<address>` on the class, which tools/dread/asm_labels.py reads).
-      kind `ctor`, `dtor`, `static` or `plain`: `declaration` is written into the class body; an
-      `address` names the original's function (`// fn_<address>` after a constructor or destructor,
-      `asm("fn_<address>")` after any other). `definition` `default` defines it after the class as
+      kind `ctor`, `dtor`, `static` or `plain`: `declaration` is written into the class body. A
+      constructor's or destructor's `address` names the original's function (`// fn_<address>` after
+      it, which tools/dread/asm_labels.py reads). Any other method takes no address: name the function
+      through tools/rename.py and declare the method plainly (an asm label would hide the name). `definition` `default` defines it after the class as
       `inline T::T() = default;`: a constructor the original inlines, user-provided, so `T()` does not
       zero the object before running it. A destructor row replaces a root's generated destructor.
       kind `virtual <slot>`: a virtual function the class adds, in that slot of the table (a root's first
       is 3, after the getter and the two destructor slots; the rows of a class and its bases count up).
 
-An overlap or a misaligned member, a member past the class's data, a row for a class that is not
-declared, or a type the generator cannot spell is an error.
+An overlap or a misaligned member, a member past the class's data, a type the generator cannot spell,
+a malformed row (a missing column, an offset or address that is not hex), a second row for one member
+or a second virtual table is an error, reported with the file and line.
 
 Padding: a gap that the next member's alignment explains (and a leaf class's tail padding) is left to
 the compiler, so the implicit copy of a class copies its members, not its padding. A base class's trailing
@@ -132,13 +134,56 @@ def read_rows(path: Path) -> list[dict]:
         return list(csv.DictReader(f))
 
 
-def extra_tables() -> Extra:
+MEMBER_COLUMNS = ("class", "offset", "type", "name", "init", "source", "note")
+METHOD_COLUMNS = ("class", "kind", "declaration", "address", "definition", "source")
+
+
+def table_rows(rows: list[dict], columns: tuple[str, ...], where: str) -> list[dict]:
+    """`rows` checked for shape: every column present (a short row has None), none extra. A bad row is a
+    LayoutError naming `where` (the file) and its line."""
+    out = []
+    for line, r in enumerate(rows, start=2):  # line 1 is the header
+        missing = [c for c in columns if r.get(c) is None]
+        if missing or None in r or set(r) - set(columns):
+            what = f"missing {', '.join(missing)}" if missing else "extra or unknown columns"
+            raise LayoutError(f"{where}:{line}: {what} (columns: {','.join(columns)})")
+        if not r["class"]:
+            raise LayoutError(f"{where}:{line}: no class")
+        out.append({**r, "_where": f"{where}:{line}"})
+    return out
+
+
+def extra_from_rows(member_rows: list[dict], method_rows: list[dict],
+                    members_at: str = "data/class_members.csv", methods_at: str = "data/class_methods.csv") -> Extra:
+    """The two tables, checked: offsets and addresses are hex, a member or a virtual table appears once."""
     out = Extra()
-    for r in read_rows(MEMBERS):
+    seen: dict[tuple[str, int], str] = {}
+    for r in table_rows(member_rows, MEMBER_COLUMNS, members_at):
+        if not re.fullmatch(r"0x[0-9a-f]+", r["offset"]):
+            raise LayoutError(f"{r['_where']}: offset {r['offset']!r} is not lowercase hex (0x..)")
+        if not r["name"] or not r["type"]:
+            raise LayoutError(f"{r['_where']}: a member needs a type and a name")
+        key = (r["class"], int(r["offset"], 16))
+        if key in seen:
+            raise LayoutError(f"{r['_where']}: {r['class']} at {r['offset']} already has a row ({seen[key]})")
+        seen[key] = r["_where"]
         out.members.setdefault(r["class"], []).append(r)
-    for r in read_rows(METHODS):
+    vtables: dict[str, str] = {}
+    for r in table_rows(method_rows, METHOD_COLUMNS, methods_at):
+        if r["address"] and not re.fullmatch(r"0x71[0-9a-f]{8}", r["address"]):
+            raise LayoutError(f"{r['_where']}: address {r['address']!r} is not 0x71xxxxxxxx")
+        if r["kind"] == "vtable":
+            if r["class"] in vtables:
+                raise LayoutError(f"{r['_where']}: {r['class']} already has a vtable row ({vtables[r['class']]})")
+            if not r["address"]:
+                raise LayoutError(f"{r['_where']}: a vtable row needs its address")
+            vtables[r["class"]] = r["_where"]
         out.methods.setdefault(r["class"], []).append(r)
     return out
+
+
+def extra_tables() -> Extra:
+    return extra_from_rows(read_rows(MEMBERS), read_rows(METHODS))
 
 
 def member_type(typ: str) -> tuple[str, int, int, str | None] | None:
@@ -166,6 +211,8 @@ def members(name: str, fields: dict, extra: Extra) -> list[Member]:
                 raise LayoutError(f"{name}::{row['name']} at {off:#x}: overlaps the reflected {same[0].name}")
             if not row["init"]:
                 raise LayoutError(f"{name}::{row['name']}: a reflected member's row gives only its init")
+            if same[0].init:
+                raise LayoutError(f"{name}::{row['name']}: a second init row")
             same[0].init, same[0].note = row["init"], row["note"]
             continue
         out.append(Member(off, row["name"], row["type"], False, row["init"], row["note"]))
@@ -255,6 +302,8 @@ def class_lines(name: str, types: dict[str, dict], fields: dict, extra: Extra = 
         if addr and not re.fullmatch(r"0x71[0-9a-f]{8}", addr):
             raise LayoutError(f"{name}: address {addr!r} is not 0x71xxxxxxxx")
         if kind == "vtable":
+            if vtable:
+                raise LayoutError(f"{r.get('_where', name)}: {name} already has a vtable row")
             vtable = f"  // vtable g_unk_{addr[2:]}"
             continue
         if kind == "ctor" and not decl.startswith(f"{short}("):
@@ -263,10 +312,11 @@ def class_lines(name: str, types: dict[str, dict], fields: dict, extra: Extra = 
             if not re.match(rf"(virtual )?~{short}\(\)", decl):
                 raise LayoutError(f"{name}: destructor {decl!r} is not ~{short}()")
             has_dtor = True
-        label = ""
-        if addr:
-            label = f";  // fn_{addr[2:]}" if kind in ("ctor", "dtor") else f' asm("fn_{addr[2:]}");'
-        methods.append(f"    {decl}{label or ';'}")
+        if addr and kind not in ("ctor", "dtor"):
+            # an asm label would keep the symbol fn_<addr>: the function list would never learn the name
+            raise LayoutError(f"{r.get('_where', name)}: {decl!r} has an address; name the function through "
+                              f"tools/rename.py and declare the method plainly, with no address")
+        methods.append(f"    {decl};  // fn_{addr[2:]}" if addr else f"    {decl};")
         if r["definition"] == "default":
             if kind not in ("ctor", "dtor"):
                 raise LayoutError(f"{name}: only a constructor or destructor is defined as default")
@@ -393,7 +443,10 @@ def declared(types: dict[str, dict], classes: list[str]) -> list[str]:
 def declared_classes() -> list[str]:
     """The classes this writes a header for (tools/gen_class_getters.py leaves their getters to the class)."""
     types, fields = tables()
-    extra = extra_tables()
+    try:
+        extra = extra_tables()
+    except LayoutError as e:
+        raise SystemExit(f"gen_classes: {e}")
     classes, errors = selected(types, fields, extra, scope(), reflection_blocks())
     if errors:
         raise SystemExit("gen_classes: " + "; ".join(errors))
@@ -428,7 +481,11 @@ def main() -> int:
     ap.add_argument("--version", help="accepted for tools/verify.py; the headers depend only on data/ and src/reflection/")
     args = ap.parse_args()
     types, fields = tables()
-    extra = extra_tables()
+    try:
+        extra = extra_tables()
+    except LayoutError as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 1
     refl = reflection_blocks()
     if args.rule:
         classes, _ = selected(types, fields, extra, None, refl)

@@ -144,9 +144,10 @@ Clang 9.0.1 has no arm64 macOS build; the x86_64 build runs under Rosetta 2. Bef
   hand-written code learns about the class goes into data, never into a second `Unk...` view.
   `data/class_members.csv` holds the members the reflection lacks (placeholder `field_0x..` names until
   a real one is known; a row at a reflected member gives only its default initializer) and
-  `data/class_methods.csv` the virtual table's address, constructors and destructors (with `// fn_` or
-  an `asm` label naming the original, or `default` for one the original inlines), and new virtual
-  slots. Each row names its evidence (`source`). An overlap or a misfit is a generator error. The
+  `data/class_methods.csv` the virtual table's address, constructors and destructors (with `// fn_`
+  naming the original, or `default` for one the original inlines), other methods (declared plainly,
+  no address: their names go through `tools/rename.py`) and new virtual slots. Each row names its
+  evidence (`source`). An overlap, a misfit or a malformed or duplicate row is a generator error. The
   generator picks every class whose layout it can write and whose reflection source converts;
   `data/class_scope.csv` limits that while the family is brought over (`*` lifts the limit). A
   declared class's getter is its static `T::refl_GetClass`, which `UnkClassGetters.h` no longer

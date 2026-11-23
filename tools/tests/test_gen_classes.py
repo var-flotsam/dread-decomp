@@ -109,14 +109,14 @@ class ExtraTables(unittest.TestCase):
             "base::core::CRoot": [method("base::core::CRoot", "virtual 3", "virtual void vf_0x18()")],
             "CLeaf": [method("CLeaf", "vtable", address="0x7101000010"),
                       method("CLeaf", "ctor", "CLeaf()", definition="default"),
-                      method("CLeaf", "plain", "void Reset()", address="0x7100001234"),
+                      method("CLeaf", "plain", "void Reset()"),
                       method("CLeaf", "virtual 4", "virtual void vf_0x20()")]})
         root, _ = gc.class_lines("base::core::CRoot", TYPES, FIELDS, extra)
         self.assertEqual(root[root.index("    virtual ~CRoot();") + 1], "    virtual void vf_0x18();")
         lines, _ = gc.class_lines("CLeaf", TYPES, FIELDS, extra)
         self.assertIn("class CLeaf : public CMid {  // vtable g_unk_7101000010", lines)
         self.assertIn("    CLeaf();", lines)
-        self.assertIn('    void Reset() asm("fn_7100001234");', lines)
+        self.assertIn("    void Reset();", lines)
         self.assertIn("inline CLeaf::CLeaf() = default;", lines)
         self.assertIn("    virtual void vf_0x20();", lines)
         ctor = gc.Extra(methods={"CLeaf": [method("CLeaf", "ctor", "CLeaf()", address="0x7100005678")]})
@@ -124,9 +124,47 @@ class ExtraTables(unittest.TestCase):
         for rows in ([method("CLeaf", "virtual 4", "virtual void vf_0x20()")],  # slot 3 is the next free one
                      [method("CLeaf", "ctor", "CMid()")],
                      [method("CLeaf", "plain", "void f()", definition="default")],
+                     [method("CLeaf", "plain", "void f()", address="0x7100001234")],  # no asm label
+                     [method("CLeaf", "static", "static void f()", address="0x7100001234")],
+                     [method("CLeaf", "vtable", address="0x7101000010"),
+                      method("CLeaf", "vtable", address="0x7101000020")],
                      [method("CLeaf", "friend", "void f()")]):
             with self.assertRaises(gc.LayoutError, msg=rows):
                 gc.class_lines("CLeaf", TYPES, FIELDS, gc.Extra(methods={"CLeaf": rows}))
+
+
+class TableErrors(unittest.TestCase):
+    def assertTableError(self, members=(), methods=(), where=""):
+        with self.assertRaises(gc.LayoutError) as e:
+            gc.extra_from_rows(list(members), list(methods))
+        self.assertIn(where, str(e.exception))
+
+    def test_malformed_rows(self):
+        self.assertTableError([member("CLeaf", "24", "f32", "field_0x24")], where="data/class_members.csv:2: offset")
+        self.assertTableError([member("CLeaf", "0xzz", "f32", "field_0x24")], where="data/class_members.csv:2")
+        short = member("CLeaf", "0x24", "f32", "field_0x24")
+        short["note"] = None  # what csv.DictReader gives a short row
+        self.assertTableError([member("CLeaf", "0x20", "f32", "field_0x20"), short],
+                              where="data/class_members.csv:3: missing note")
+        surplus = {**member("CLeaf", "0x24", "f32", "field_0x24"), None: ["surplus"]}
+        self.assertTableError([surplus], where="data/class_members.csv:2: extra")
+        self.assertTableError(methods=[method("CLeaf", "ctor", "CLeaf()", address="7100001234")],
+                              where="data/class_methods.csv:2: address")
+        no_kind = method("CLeaf", "ctor", "CLeaf()")
+        del no_kind["kind"]
+        self.assertTableError(methods=[no_kind], where="data/class_methods.csv:2: missing kind")
+
+    def test_duplicates(self):
+        self.assertTableError([member("CLeaf", "0x1c", "bool", "bOn", init="true"),
+                               member("CLeaf", "0x1c", "bool", "bOn", init="false")],
+                              where="data/class_members.csv:3: CLeaf at 0x1c already has a row "
+                                    "(data/class_members.csv:2)")
+        self.assertTableError(methods=[method("CLeaf", "vtable", address="0x7101000010"),
+                                       method("CLeaf", "vtable", address="0x7101000020")],
+                              where="data/class_methods.csv:3: CLeaf already has a vtable row")
+        ok = gc.extra_from_rows([member("CLeaf", "0x1c", "bool", "bOn", init="true")],
+                                [method("CLeaf", "vtable", address="0x7101000010")])
+        self.assertIn("    bool bOn = true;  // 0x1c", gc.class_lines("CLeaf", TYPES, FIELDS, ok)[0])
 
 
 class Selection(unittest.TestCase):
