@@ -2,12 +2,11 @@
 
 // Reflection attributes: (key, typed value) pairs attached to a type (CType+0x80) or to a
 // member field. The keys are guarded static objects named by their own strings
-// ("Description", "TrackGroup", ...). Their getters are declared here under fn_<addr>, and
-// the comments give each key's string. A value is passed type-erased, as its type
-// descriptor plus a pointer.
+// ("Description", "TrackGroup", ...); their getters are declared here under those names
+// (base::reflection::attr::Description()), but for the two typed keys, whose comments give
+// their strings. A value is passed type-erased, as its type descriptor plus a pointer.
 //
-// Only the calls are known. The container, the keys and the insert function keep
-// placeholder names.
+// The container and the key type keep placeholder names.
 
 #include <initializer_list>
 
@@ -77,7 +76,7 @@ struct UnkReflValueRef {
 // Get (creating on first use) a type's attribute container (CType+0x80).
 base::reflection::UnkReflAttrs* TypeAttributes(base::reflection::CType* type);
 // Insert a (key, value) pair.
-void fn_71000934b8(base::reflection::UnkReflAttrs* attrs, const base::reflection::UnkReflAttrKey& key,
+void SetAttribute(base::reflection::UnkReflAttrs* attrs, const base::reflection::UnkReflAttrKey& key,
                    const base::reflection::UnkReflValueRef& value);
 
 // Register a member field: name, type, offset in the object. The two -1s are unknown.
@@ -232,70 +231,75 @@ const u32& refl_GetEnumNot8() {
 
 }  // namespace base::reflection
 
-// Attribute keys, by the names they register (base/reflection/ReflectedFields.h names them).
-const base::reflection::UnkReflAttrKey& fn_7100005070();  // "Version"
-const base::reflection::UnkReflAttrKey& fn_7100007e80();  // "Description"
+// Attribute keys: guarded statics, each built by its getter from its name and value type.
+// The keys whose values are of their own enum type (attr:: in base/reflection/ReflectedFields.h adds the type).
 const base::reflection::UnkReflAttrKey& fn_710000bf80();  // "Persistence"
-const base::reflection::UnkReflAttrKey& fn_7100011040();  // "sBinaryDeserialize"
-const base::reflection::UnkReflAttrKey& fn_710001b9f0();  // "XmlAttribute"
-const base::reflection::UnkReflAttrKey& fn_7100026bf0();  // "sSerializationType"
-const base::reflection::UnkReflAttrKey& fn_7100075240();  // "DefaultValue"
-const base::reflection::UnkReflAttrKey& fn_710008f920();  // "Name"
-const base::reflection::UnkReflAttrKey& fn_710008fa30();  // "UniqueId"
-const base::reflection::UnkReflAttrKey& fn_710008fb40();  // "DeleteElement"
-const base::reflection::UnkReflAttrKey& fn_710008fc50();  // "EraseElement"
-const base::reflection::UnkReflAttrKey& fn_710008fd60();  // "CreateElement"
-const base::reflection::UnkReflAttrKey& fn_710008fe70();  // "InsertElement"
-const base::reflection::UnkReflAttrKey& fn_710008ff80();  // "AfterElementDeserialization"
-const base::reflection::UnkReflAttrKey& fn_7100090090();  // "FixedCollection"
-const base::reflection::UnkReflAttrKey& fn_71000901a0();  // "ElementKeyVariable"
-const base::reflection::UnkReflAttrKey& fn_71000903c0();  // "Required"
-const base::reflection::UnkReflAttrKey& fn_71000904d0();  // "RntFilePackedParams"
-const base::reflection::UnkReflAttrKey& fn_7100090800();  // "bBinaryDumpable"
-const base::reflection::UnkReflAttrKey& fn_7100090910();  // "IsLink"
-const base::reflection::UnkReflAttrKey& fn_7100090a20();  // "EditorVisible"
-const base::reflection::UnkReflAttrKey& fn_7100090c40();  // "CharEditorVisible"
-const base::reflection::UnkReflAttrKey& fn_7100090d50();  // "EventGroup"
-const base::reflection::UnkReflAttrKey& fn_7100090e60();  // "TrackGroup"
-const base::reflection::UnkReflAttrKey& fn_7100091080();  // "MinValue"
-const base::reflection::UnkReflAttrKey& fn_7100091190();  // "MaxValue"
-const base::reflection::UnkReflAttrKey& fn_71000912a0();  // "EmptyTrack"
-const base::reflection::UnkReflAttrKey& fn_71000913b0();  // "MinValueProperty"
-const base::reflection::UnkReflAttrKey& fn_71000914c0();  // "MaxValueProperty"
-const base::reflection::UnkReflAttrKey& fn_71000916e0();  // "MinValueI"
-const base::reflection::UnkReflAttrKey& fn_71000917f0();  // "MaxValueI"
-const base::reflection::UnkReflAttrKey& fn_7100091900();  // "Extension"
-const base::reflection::UnkReflAttrKey& fn_7100091c30();  // "DisplayName"
-const base::reflection::UnkReflAttrKey& fn_7100091d40();  // "TypeSelectionEnabled"
-const base::reflection::UnkReflAttrKey& fn_7100091e50();  // "SPointChClassSelectEnabled"
-const base::reflection::UnkReflAttrKey& fn_7100091f60();  // "AddNewItemButtonEnabled"
-const base::reflection::UnkReflAttrKey& fn_7100092070();  // "DeleteItemButtonEnabled"
 const base::reflection::UnkReflAttrKey& fn_71000923a0();  // "EditorModeDataFlow"
-const base::reflection::UnkReflAttrKey& fn_71000924b0();  // "bEditorModeDataFlowInit"
-const base::reflection::UnkReflAttrKey& fn_71000925c0();  // "bSkipDataFlowOrder"
-const base::reflection::UnkReflAttrKey& fn_71000926d0();  // "CompleteGameModelActionTreeFrom"
-const base::reflection::UnkReflAttrKey& fn_7100092b10();  // "DisableListAddRemove"
-const base::reflection::UnkReflAttrKey& fn_7100092c20();  // "DisableListAdd"
-const base::reflection::UnkReflAttrKey& fn_7100093170();  // "ShowInConfig"
-const base::reflection::UnkReflAttrKey& fn_7100093280();  // "ShowInDevConfig"
-const base::reflection::UnkReflAttrKey& fn_7100093390();  // "DeprecatedVar"
-const base::reflection::UnkReflAttrKey& fn_7100234410();  // "WidgetReadOnly"
-const base::reflection::UnkReflAttrKey& fn_7100234780();  // "SetRenderItemSelectionIdCall"
-const base::reflection::UnkReflAttrKey& fn_710025d990();  // "ePersistenceTarget"
-const base::reflection::UnkReflAttrKey& fn_710025daa0();  // "eLinkTarget"
-const base::reflection::UnkReflAttrKey& fn_710025dbb0();  // "bWeakLink"
-const base::reflection::UnkReflAttrKey& fn_7100263720();  // "ePersistenceTargetExclude"
-const base::reflection::UnkReflAttrKey& fn_7100324af0();  // "ControlFloatStep"
-const base::reflection::UnkReflAttrKey& fn_7100324c00();  // "InternalTag"
-const base::reflection::UnkReflAttrKey& fn_7100324d10();  // "ControlIntStep"
-const base::reflection::UnkReflAttrKey& fn_71003ba540();  // "InternalDevTag"
-const base::reflection::UnkReflAttrKey& fn_710075a400();  // "DefaultPasteValue"
-const base::reflection::UnkReflAttrKey& fn_7100ed8b60();  // "FileFilter"
-const base::reflection::UnkReflAttrKey& fn_7100f9e870();  // "AssetType"
-const base::reflection::UnkReflAttrKey& fn_7100f9e980();  // "BasePath"
-const base::reflection::UnkReflAttrKey& fn_7100f9ea90();  // "FolderFilter"
-const base::reflection::UnkReflAttrKey& fn_7100f9eba0();  // "FileNameOnly"
-const base::reflection::UnkReflAttrKey& fn_71010434d0();  // "eActorLinkToComponentLinkTransform"
+
+namespace base::reflection::attr {
+// The other keys, each named by the string it registers.
+const UnkReflAttrKey& Version();
+const UnkReflAttrKey& Description();
+const UnkReflAttrKey& sBinaryDeserialize();
+const UnkReflAttrKey& XmlAttribute();
+const UnkReflAttrKey& sSerializationType();
+const UnkReflAttrKey& DefaultValue();
+const UnkReflAttrKey& Name();
+const UnkReflAttrKey& UniqueId();
+const UnkReflAttrKey& DeleteElement();
+const UnkReflAttrKey& EraseElement();
+const UnkReflAttrKey& CreateElement();
+const UnkReflAttrKey& InsertElement();
+const UnkReflAttrKey& AfterElementDeserialization();
+const UnkReflAttrKey& FixedCollection();
+const UnkReflAttrKey& ElementKeyVariable();
+const UnkReflAttrKey& Required();
+const UnkReflAttrKey& RntFilePackedParams();
+const UnkReflAttrKey& bBinaryDumpable();
+const UnkReflAttrKey& IsLink();
+const UnkReflAttrKey& EditorVisible();
+const UnkReflAttrKey& CharEditorVisible();
+const UnkReflAttrKey& EventGroup();
+const UnkReflAttrKey& TrackGroup();
+const UnkReflAttrKey& MinValue();
+const UnkReflAttrKey& MaxValue();
+const UnkReflAttrKey& EmptyTrack();
+const UnkReflAttrKey& MinValueProperty();
+const UnkReflAttrKey& MaxValueProperty();
+const UnkReflAttrKey& MinValueI();
+const UnkReflAttrKey& MaxValueI();
+const UnkReflAttrKey& Extension();
+const UnkReflAttrKey& DisplayName();
+const UnkReflAttrKey& TypeSelectionEnabled();
+const UnkReflAttrKey& SPointChClassSelectEnabled();
+const UnkReflAttrKey& AddNewItemButtonEnabled();
+const UnkReflAttrKey& DeleteItemButtonEnabled();
+const UnkReflAttrKey& bEditorModeDataFlowInit();
+const UnkReflAttrKey& bSkipDataFlowOrder();
+const UnkReflAttrKey& CompleteGameModelActionTreeFrom();
+const UnkReflAttrKey& DisableListAddRemove();
+const UnkReflAttrKey& DisableListAdd();
+const UnkReflAttrKey& ShowInConfig();
+const UnkReflAttrKey& ShowInDevConfig();
+const UnkReflAttrKey& DeprecatedVar();
+const UnkReflAttrKey& WidgetReadOnly();
+const UnkReflAttrKey& SetRenderItemSelectionIdCall();
+const UnkReflAttrKey& ePersistenceTarget();
+const UnkReflAttrKey& eLinkTarget();
+const UnkReflAttrKey& bWeakLink();
+const UnkReflAttrKey& ePersistenceTargetExclude();
+const UnkReflAttrKey& ControlFloatStep();
+const UnkReflAttrKey& InternalTag();
+const UnkReflAttrKey& ControlIntStep();
+const UnkReflAttrKey& InternalDevTag();
+const UnkReflAttrKey& DefaultPasteValue();
+const UnkReflAttrKey& FileFilter();
+const UnkReflAttrKey& AssetType();
+const UnkReflAttrKey& BasePath();
+const UnkReflAttrKey& FolderFilter();
+const UnkReflAttrKey& FileNameOnly();
+const UnkReflAttrKey& eActorLinkToComponentLinkTransform();
+}  // namespace base::reflection::attr
 
 // Type descriptors of attribute value types (each a guarded static named by the type).
 const base::reflection::CType* fn_7100005178();  // "unsigned"
@@ -376,12 +380,12 @@ struct UnkReflAttrs {
 
     template <class T>
     void Add(const UnkReflAttrKey& key, const T& value) {
-        fn_71000934b8(this, key, UnkReflValueRef{UnkReflTypeOf<T>::Get(), &value});
+        SetAttribute(this, key, UnkReflValueRef{UnkReflTypeOf<T>::Get(), &value});
     }
     // With an explicit type descriptor (enum values of a field typed by a global descriptor).
     template <class T>
     void Add(const UnkReflAttrKey& key, const CType* type, const T& value) {
-        fn_71000934b8(this, key, UnkReflValueRef{type, &value});
+        SetAttribute(this, key, UnkReflValueRef{type, &value});
     }
     template <class T>
     void Add(const TypedAttrKey& key, const T& value) {
@@ -390,7 +394,7 @@ struct UnkReflAttrs {
     // The same with the type getter called after the value is stored.
     template <class T, auto Get>
     void AddTyped(const UnkReflAttrKey& key, const T& value) {
-        fn_71000934b8(this, key, UnkReflValueRef{Get(), &value});
+        SetAttribute(this, key, UnkReflValueRef{Get(), &value});
     }
 };
 

@@ -139,7 +139,7 @@ static inline const UnkAttrSet_l08ef70* ParamAttrs(CFunction* function, u32 inde
 
 // `self` and `node` are not read here.
 void fn_710008ef70(void* self, void* node, UnkClassField_l08ef70* field, CClass* cls) {
-    CFunction* create = fn_71000979a0(cls, reinterpret_cast<CVariable*>(field), fn_710008fd60());
+    CFunction* create = fn_71000979a0(cls, reinterpret_cast<CVariable*>(field), base::reflection::attr::CreateElement());
     if (!create)
         return;
     const CType* collection = fn_710009c640(field->type);
@@ -153,7 +153,7 @@ void fn_710008ef70(void* self, void* node, UnkClassField_l08ef70* field, CClass*
     UnkClassField_l08ef70* fields = static_cast<UnkClassField_l08ef70*>(element_class->m_array_0xe8.data);
     UnkClassField_l08ef70* end = fields + element_class->m_array_0xe8.count;
     bool has_attribute = std::any_of(fields, end, [](const UnkClassField_l08ef70& f) {
-        return f.attrs.Get(fn_710001b9f0()).IsTrue();
+        return f.attrs.Get(base::reflection::attr::XmlAttribute()).IsTrue();
     });
     (void)has_attribute;
 
@@ -163,7 +163,7 @@ void fn_710008ef70(void* self, void* node, UnkClassField_l08ef70* field, CClass*
         reinterpret_cast<const CStrId&>(params.data[i].name).Text();
         const UnkAttrSet_l08ef70* attrs = ParamAttrs(create, i);
         if (attrs->count != 0) {
-            bool required = attrs->Get(fn_71000903c0()).IsTrue();
+            bool required = attrs->Get(base::reflection::attr::Required()).IsTrue();
             (void)required;
         }
     }

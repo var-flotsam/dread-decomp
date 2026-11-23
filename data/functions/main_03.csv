@@ -432,9 +432,9 @@ address,size,name,name_source,subsystem,status
 0x7100324aa4,12,fn_7100324aa4,unknown,game?,O
 0x7100324ab0,28,fn_7100324ab0,unknown,game?,O
 0x7100324acc,36,fn_7100324acc,unknown,game?,O
-0x7100324af0,260,fn_7100324af0,unknown,game?,O
-0x7100324c00,260,fn_7100324c00,unknown,game?,O
-0x7100324d10,260,fn_7100324d10,unknown,game?,O
+0x7100324af0,260,base::reflection::attr::ControlFloatStep,inferred,game?,O
+0x7100324c00,260,base::reflection::attr::InternalTag,inferred,game?,O
+0x7100324d10,260,base::reflection::attr::ControlIntStep,inferred,game?,O
 0x7100324e14,116,fn_7100324e14,unknown,game?,O
 0x7100324e88,128,fn_7100324e88,unknown,game?,O
 0x7100324f08,8,CAbilityOpticCamouflage::refl_Equals,reflection,game,O
@@ -4004,7 +4004,7 @@ address,size,name,name_source,subsystem,status
 0x71003ba4f0,12,fn_71003ba4f0,unknown,game/characters?,O
 0x71003ba4fc,28,fn_71003ba4fc,unknown,game/characters?,O
 0x71003ba518,36,fn_71003ba518,unknown,game/characters?,O
-0x71003ba540,260,fn_71003ba540,unknown,game/characters?,O
+0x71003ba540,260,base::reflection::attr::InternalDevTag,inferred,game/characters?,O
 0x71003ba644,8,CCharClassAutclastAIComponent::CTunableCharClassAutclastAIComponent::refl_Equals,reflection,game/characters,O
 0x71003ba64c,8,CCharClassAutclastAIComponent::CTunableCharClassAutclastAIComponent::refl_Hash,reflection,game/characters,O
 0x71003ba654,28,CCharClassAutclastAIComponent::CTunableCharClassAutclastAIComponent::refl_TypeOf,reflection,game/characters,O

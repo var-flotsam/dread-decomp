@@ -122,7 +122,7 @@ static inline void SetValue(UnkReflValue* slot, const CType* type, const UnkRefl
 // after the lookup (here the existing-key path does), keeps the attributes in x21 and the type in
 // x20 (swapped here), and tests the "refused" byte as (byte ^ 1) where this tests it for nonzero
 // (the same for a bool); the same calls with the same arguments (752 B original, 708 B here).
-void fn_71000934b8(UnkReflAttrs* attrs_, const UnkReflAttrKey& key, const UnkReflValueRef& value) {
+void SetAttribute(UnkReflAttrs* attrs_, const UnkReflAttrKey& key, const UnkReflValueRef& value) {
     auto* attrs = reinterpret_cast<UnkReflAttrsMap*>(attrs_);
     UnkReflAttrInfo* info = nullptr;
     bool known = false;

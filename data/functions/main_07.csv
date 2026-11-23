@@ -1462,7 +1462,7 @@ address,size,name,name_source,subsystem,status
 0x710075a288,8,fn_710075a288,unknown,unknown,O
 0x710075a290,8,fn_710075a290,unknown,unknown,O
 0x710075a298,356,fn_710075a298,unknown,unknown,O
-0x710075a400,252,fn_710075a400,unknown,game/components?,O
+0x710075a400,252,base::reflection::attr::DefaultPasteValue,inferred,game/components?,O
 0x710075a4fc,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementIterator>,reflection,engine/reflection,O
 0x710075a668,96,fn_710075a668,unknown,engine/reflection?,O
 0x710075a6c8,12,fn_710075a6c8,unknown,unknown,O

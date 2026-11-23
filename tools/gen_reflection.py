@@ -238,12 +238,13 @@ def reflection_names(g: "Getter") -> dict[int, str]:
     return out
 
 
-# Declarations ReflectedFields.h already brings: the named attribute keys and the enum types of the typed ones.
+# Declarations ReflectedFields.h already brings: the typed attribute keys and their enum types. (The other keys'
+# address-named declarations stay until attribute_keys_by_name writes their calls by name.)
 KEY_DECL_RE = re.compile(r"^(?:const base::reflection::UnkReflAttrKey& fn_|extern base::reflection::CType g_unk_)([0-9a-f]+)(?:\(\))?;$")
 OBJECT_DECL_RE = re.compile(r"^extern base::reflection::CType g_unk_([0-9a-f]+);$")
 GETTER_DECL_RE = re.compile(r"^const base::reflection::C(?:Type|Class)\* fn_([0-9a-f]+)\(\);$")
 FIELD_MACRO_RE = re.compile(r"\bDREAD_REFLECTED_(?:FIELD|CLASS_FIELD|FIELD_OF|PROPERTY|READ_ONLY_PROPERTY)\(")  # ReflectedFields.h
-DECLARED_KEYS = set(refl_attrs.ATTRIBUTE_NAMES) | set(refl_attrs.TYPED_KEYS.values())
+DECLARED_KEYS = set(refl_attrs.TYPED_KEYS) | set(refl_attrs.TYPED_KEYS.values())
 
 
 def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_sources: dict[int, tuple[list[str], str]],
@@ -1027,20 +1028,16 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
     return chr(10).join(lines[:head] + first + lines[head:])
 
 
-# An attribute key's named getter (base/reflection/ReflectedFields.h): the name it registers.
-ATTR_KEY_RE = re.compile(r"^inline const UnkReflAttrKey& (\w+)\(\) \{ return fn_([0-9a-f]{10})\(\); \}$", re.M)
-
-
 def attribute_keys() -> dict[int, str]:
-    """{key getter: name} of the attribute keys ReflectedFields.h names (namespace base::reflection::attr)."""
-    text = (ROOT / "include" / "base" / "reflection" / "ReflectedFields.h").read_text(encoding="utf-8")
-    return {int(a, 16): name for name, a in ATTR_KEY_RE.findall(text)}
+    """{key getter: name} of the attribute keys whose getters are named by the string they register,
+    base::reflection::attr::<Name> (declared in base/reflection/ReflectedAttributes.h; data/names.csv): every key
+    but the typed ones (typed_attribute_keys)."""
+    return {a: name for a, name in refl_attrs.ATTRIBUTE_NAMES.items() if a not in refl_attrs.TYPED_KEYS}
 
 
 def attribute_keys_by_name(text: str, keys: dict[int, str]) -> str:
-    """`text` with each call of an attribute key's getter (attribute_keys) written by the key's name,
-    base::reflection::attr::<Name>() (an inline call of the same getter); the getter's own declaration goes once
-    nothing else names it by address."""
+    """`text` with each call of an attribute key's getter (attribute_keys) written by the getter's name,
+    base::reflection::attr::<Name>(); its address-named declaration goes once nothing else names it by address."""
     used = {int(a, 16) for a in re.findall(r"\bfn_([0-9a-f]{10})\(\)", text)} & set(keys)
     if not used:
         return text

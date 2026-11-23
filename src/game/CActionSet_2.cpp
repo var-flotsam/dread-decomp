@@ -8,5 +8,5 @@ using base::reflection::CClass;
 extern u16 g_unk_710164b950;
 
 void fn_7100b8bb94(CClass* cls) {
-    TypeAttributes(cls)->Add<u32>(fn_7100005070(), g_unk_710164b950 | 0x30000u);
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), g_unk_710164b950 | 0x30000u);
 }
