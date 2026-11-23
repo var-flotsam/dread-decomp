@@ -19,6 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_RotationShake
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 void CCameraFX_RotationShake::refl_AddAttributes(CClass*) {}
 void CCameraFX_RotationShake::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fAmplitude", offsetof(CCameraFX_RotationShake, fAmplitude), (DefaultValue, 0.0f), (Description, "Amplitude (degrees)"));
@@ -46,3 +48,4 @@ struct CCameraFX_RotationShake::refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DECLARED_CLASS(CCameraFX_RotationShake, CCameraFX_Shake);
+#pragma GCC diagnostic pop

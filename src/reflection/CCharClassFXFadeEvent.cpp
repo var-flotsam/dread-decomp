@@ -19,6 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFXFadeEvent
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 void CCharClassFXFadeEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "FX Fade");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("FX", true));
@@ -48,3 +50,4 @@ struct CCharClassFXFadeEvent::refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DECLARED_CLASS(CCharClassFXFadeEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

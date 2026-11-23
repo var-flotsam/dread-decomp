@@ -19,6 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAlternativeActionInitializeEvent
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 void CCharClassAlternativeActionInitializeEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Alternative Action Initialize");
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Actions");
@@ -45,3 +47,4 @@ struct CCharClassAlternativeActionInitializeEvent::refl_Description : ClassDescr
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DECLARED_CLASS(CCharClassAlternativeActionInitializeEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

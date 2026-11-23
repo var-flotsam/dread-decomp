@@ -19,6 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 void CCameraFX::refl_AddAttributes(CClass*) {}
 void CCameraFX::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sID", offsetof(CCameraFX, sID), (DefaultValue, ""), (Description, "ID (same as preset type)"));
@@ -44,3 +46,4 @@ struct CCameraFX::refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DECLARED_CLASS(CCameraFX, CGameObject);
+#pragma GCC diagnostic pop

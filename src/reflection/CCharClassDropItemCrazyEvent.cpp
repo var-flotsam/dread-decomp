@@ -19,6 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDropItemCrazyEvent
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 void CCharClassDropItemCrazyEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Drop Item Crazy");
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Drops");
@@ -73,3 +75,4 @@ struct CCharClassDropItemCrazyEvent::refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DECLARED_CLASS(CCharClassDropItemCrazyEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

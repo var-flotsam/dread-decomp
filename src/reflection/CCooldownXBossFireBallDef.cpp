@@ -30,6 +30,8 @@ template <> base::reflection::CType base::reflection::TypeObject<base::serializa
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CCooldownXBossFireBallDef
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 void CCooldownXBossFireBallDef::refl_AddAttributes(CClass*) {}
 void CCooldownXBossFireBallDef::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEnabled", offsetof(CCooldownXBossFireBallDef, bEnabled), (DefaultValue, true));
@@ -53,6 +55,7 @@ struct CCooldownXBossFireBallDef::refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DECLARED_ROOT_CLASS(CCooldownXBossFireBallDef);
+#pragma GCC diagnostic pop
 
 // CCooldownXBossFireWallDef
 namespace CCooldownXBossFireWallDef {

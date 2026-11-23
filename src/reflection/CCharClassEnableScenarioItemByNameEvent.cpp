@@ -19,6 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassEnableScenarioItemByNameEvent
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 void CCharClassEnableScenarioItemByNameEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Enable Scenario Item By Name");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Scenario", true));
@@ -44,3 +46,4 @@ struct CCharClassEnableScenarioItemByNameEvent::refl_Description : ClassDescript
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DECLARED_CLASS(CCharClassEnableScenarioItemByNameEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

@@ -19,6 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_SteadyCamera
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 void CCameraFX_SteadyCamera::refl_AddAttributes(CClass*) {}
 void CCameraFX_SteadyCamera::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMinAngleXAxis", offsetof(CCameraFX_SteadyCamera, fMinAngleXAxis), (DefaultValue, 0.0f), (Description, "Min angle in X axis"));
@@ -49,3 +51,4 @@ struct CCameraFX_SteadyCamera::refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DECLARED_CLASS(CCameraFX_SteadyCamera, CCameraFX);
+#pragma GCC diagnostic pop

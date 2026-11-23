@@ -19,6 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_CrossShake
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 void CCameraFX_CrossShake::refl_AddAttributes(CClass*) {}
 void CCameraFX_CrossShake::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDistance", offsetof(CCameraFX_CrossShake, fDistance), (DefaultValue, 0.0f), (Description, "Distance"));
@@ -45,3 +47,4 @@ struct CCameraFX_CrossShake::refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DECLARED_CLASS(CCameraFX_CrossShake, CCameraFX_Shake);
+#pragma GCC diagnostic pop

@@ -19,6 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_RandShake
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 void CCameraFX_RandShake::refl_AddAttributes(CClass*) {}
 void CCameraFX_RandShake::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sFunction", offsetof(CCameraFX_RandShake, sFunction), (DefaultValue, ""), (Description, "Function (p.ej: SqooooooszI)"));
@@ -46,3 +48,4 @@ struct CCameraFX_RandShake::refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DECLARED_CLASS(CCameraFX_RandShake, CCameraFX_Shake);
+#pragma GCC diagnostic pop

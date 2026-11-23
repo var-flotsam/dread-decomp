@@ -19,6 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_Shake
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
 void CCameraFX_Shake::refl_AddAttributes(CClass*) {}
 void CCameraFX_Shake::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTime", offsetof(CCameraFX_Shake, fTime), (DefaultValue, 0.0f), (Description, "Time"));
@@ -48,3 +50,4 @@ struct CCameraFX_Shake::refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DECLARED_CLASS(CCameraFX_Shake, CCameraFX);
+#pragma GCC diagnostic pop
