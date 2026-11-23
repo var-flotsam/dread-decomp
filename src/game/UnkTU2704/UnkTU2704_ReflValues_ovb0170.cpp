@@ -56,13 +56,13 @@ static inline __attribute__((always_inline)) void DestroyPayload(UnkReflValue* v
 
 // ---- Spawn point values
 
-void fn_710112f1f8(void* obj) {
+void CSpawnerActorBlueprint::refl_Destroy(void* obj) {
     UnkReflValue* v = static_cast<UnkReflValue*>(obj);
     DestroyPayload(v);
     fn_71000a1c60(v);
 }
 
-void* fn_710112f290(void* dst, const void* src) {
+void* CSpawnerActorBlueprint::refl_MoveAssign(void* dst, const void* src) {
     UnkReflValue* self = static_cast<UnkReflValue*>(dst);
     if (dst != src) {
         DestroyPayload(self);

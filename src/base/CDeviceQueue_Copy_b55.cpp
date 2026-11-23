@@ -26,10 +26,10 @@ static __attribute__((always_inline)) void CopyConstruct(CDeviceQueue* dst, cons
         dst->devices.PushBack(n->device);
 }
 
-void fn_7100084f44(void* dst, const void* src) {
+void base::file::CDeviceQueue::refl_CopyConstruct(void* dst, const void* src) {
     CopyConstruct(static_cast<CDeviceQueue*>(dst), static_cast<const CDeviceQueue*>(src));
 }
 
-void fn_7100085030(void* dst, const void* src) {
+void base::file::CDeviceQueue::refl_MoveConstruct(void* dst, const void* src) {
     CopyConstruct(static_cast<CDeviceQueue*>(dst), static_cast<const CDeviceQueue*>(src));
 }
