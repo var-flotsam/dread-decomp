@@ -70,7 +70,7 @@ CStrId fn_7100de9c30(UnkGameManager* self) {
 bool fn_7100deabe4(UnkGameManager* self) {
     char* object = static_cast<char*>(self->field_0x498);
     if (object)
-        return fn_710007f140(reinterpret_cast<const base::global::CRntString*>(object + 8), "EDITOR");
+        return CRntString_EqualsCString(reinterpret_cast<const base::global::CRntString*>(object + 8), "EDITOR");
     return false;
 }
 
@@ -78,7 +78,7 @@ bool fn_7100deabe4(UnkGameManager* self) {
 // there is none.
 bool fn_7100df5c94(UnkGameManager* self) {
     if (self->field_0x498 &&
-        fn_710007f140(reinterpret_cast<const base::global::CRntString*>(static_cast<char*>(self->field_0x498) + 8),
+        CRntString_EqualsCString(reinterpret_cast<const base::global::CRntString*>(static_cast<char*>(self->field_0x498) + 8),
                       "INGAME"))
         return *reinterpret_cast<s32*>(static_cast<char*>(self->field_0x498) + 0x260) != 0;
     return false;
@@ -88,7 +88,7 @@ bool fn_7100df5c94(UnkGameManager* self) {
 bool fn_7100deac04(UnkGameManager* self) {
     char* object = static_cast<char*>(self->field_0x498);
     if (object)
-        return fn_710007f140(reinterpret_cast<const base::global::CRntString*>(object + 8), "VIEWER");
+        return CRntString_EqualsCString(reinterpret_cast<const base::global::CRntString*>(object + 8), "VIEWER");
     return false;
 }
 
@@ -206,14 +206,14 @@ struct UnkGameManagerStr {
     CRntString* Str() { return reinterpret_cast<CRntString*>(this); }
 
     UnkGameManagerStr() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
         storage.vtable = g_unk_7101a194b8 + 2;
         storage.field_0x108 = nullptr;
         storage.field_0x110 = 0;
     }
     ~UnkGameManagerStr() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
     const char* c_str() const { return data ? data : ""; }
 };
@@ -247,15 +247,15 @@ static inline UnkGameManagerStr StripSpaces(const UnkGameManagerStr& s) {
     }
     buf[n] = 0;
     UnkGameManagerStr out;
-    fn_710007e77c(out.Str(), buf);
+    CRntString_AssignCString(out.Str(), buf);
     return out;
 }
 
 static inline CRntString Concat(const CRntString& a, const CRntString& b) {
-    return fn_710007eee0(&a, &b);
+    return CRntString_Concat(&a, &b);
 }
 static inline void Assign(CRntString* self, const CRntString& other) {
-    fn_710007eaa0(self, &other);
+    CRntString_Assign(self, &other);
 }
 
 // Calls the script function `name` (spaces removed) of the environment behind +0x608, with the
@@ -264,10 +264,10 @@ void fn_7100def678(UnkGameManager* self, const CRntString& name, const char* fmt
     if (!self->field_0x608)
         return;
     UnkGameManagerStr str;
-    fn_710007eaa0(str.Str(), &name);
+    CRntString_Assign(str.Str(), &name);
     UnkGameManagerSub_0x608Env* owner = reinterpret_cast<UnkGameManagerSub_0x608Env*>(self->field_0x608);
     ++owner->env->field_0x44;
-    Assign(str.Str(), Concat(fn_710007ef90(&owner->env->name, "."), *StripSpaces(str).Str()));
+    Assign(str.Str(), Concat(CRntString_ConcatCString(&owner->env->name, "."), *StripSpaces(str).Str()));
     if (fn_71010c0bb0(g_unk_7172a01d18, str.c_str()) != 0) {
         va_list args;
         va_start(args, fmt);
@@ -567,7 +567,7 @@ static inline T* Singleton(T*& instance) {
 static inline bool IsMode(UnkGameManager* self, const char* name) {
     char* object = static_cast<char*>(self->field_0x498);
     if (object)
-        return fn_710007f140(reinterpret_cast<const CRntString*>(object + 8), name);
+        return CRntString_EqualsCString(reinterpret_cast<const CRntString*>(object + 8), name);
     return false;
 }
 
@@ -759,8 +759,8 @@ struct UnkStrVector {
             if (CRntString* old = data) {
                 CRntString* to = p;
                 for (u32 i = 0; i < count; ++i, ++to, ++old) {
-                    fn_710007eab4(to, old);
-                    fn_710007ecd4(old);
+                    CRntString_MoveConstruct(to, old);
+                    CRntString_Destroy(old);
                 }
                 allocator->vf_0x48(data);
             }
@@ -771,7 +771,7 @@ struct UnkStrVector {
     void Free() {
         if (data) {
             for (u32 i = 0; i < count; ++i)
-                fn_710007ecd4(&data[i]);
+                CRntString_Destroy(&data[i]);
             count = 0;
             allocator->vf_0x48(data);
             capacity = 0;
@@ -921,7 +921,7 @@ static_assert(__builtin_offsetof(UnkGameManagerModeRequest, field_0x600) == 0x60
 
 void fn_7100deac9c(UnkGameManager* manager, const CRntString& mode) {
     auto* request = reinterpret_cast<UnkGameManagerModeRequest*>(manager);
-    fn_710007eaa0(&request->field_0x5d0, &mode);
+    CRntString_Assign(&request->field_0x5d0, &mode);
     request->field_0x5c8 = true;
     request->field_0x600 = 0;
     request->field_0x604 = 2;
@@ -1069,7 +1069,7 @@ static inline void ResetOp(UnkProfileOp* op) {
     op->callback.context = nullptr;
     op->callback.fn = nullptr;
     for (u64 i = 0; i < op->strings.count; ++i)
-        fn_710007ecd4(&op->strings.data[i]);
+        CRntString_Destroy(&op->strings.data[i]);
     op->strings.count = 0;
     fn_7100066920(&op->mutex);
 }
@@ -1105,7 +1105,7 @@ void fn_7100dee46c(UnkGameManager* self) {
             fn_7100000790("slots.SetDirtyByProfileID", "s", CStr(op->entries->id));
             CRntString* current = &reinterpret_cast<UnkGameManagerProfile*>(self)->field_0x7f0;
             if (Equal(&op->entries->id, current))
-                fn_710007e77c(current, g_unk_710162e2ed);
+                CRntString_AssignCString(current, g_unk_710162e2ed);
             break;
         }
         case 4:
@@ -1245,12 +1245,12 @@ void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntStri
     auto* values = reinterpret_cast<UnkGameManagerProfileValues*>(self);
     SetValue(blackboard, TableId(0x1148), DefId(g_unk_7172758bb0), fn_7100014768, *reinterpret_cast<s32*>(&g_unk_7101a20300));
     UnkBufferString<0x80, g_unk_7101a1b750> start_name;
-    fn_710007eaa0(start_name.Str(), start);
+    CRntString_Assign(start_name.Str(), start);
     if (!start_name.Str()->data || !start_name.Str()->data[0]) {
         if (values->field_0x29b8) {
             if (UnkCheckpoint* checkpoint = values->field_0x29b8->obj) {
                 if (UnkStartPoint* point = FindStartPoint(self->field_0x608, UnkStartPointKey(checkpoint->field_0x44, checkpoint->field_0x54, checkpoint->field_0x64)))
-                    fn_710007eaa0(start_name.Str(), &IdText(point->name));
+                    CRntString_Assign(start_name.Str(), &IdText(point->name));
             }
         }
     }
@@ -1260,15 +1260,15 @@ void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntStri
         const UnkQualifiedId& id = DefId(g_unk_7172759a90);
         if (CBlackboard::CSection* s = fn_7101047270(blackboard, section))
             fn_7100395c38(s, &id, current.Str());
-        if (fn_710007f220(current.Str(), name))
+        if (CRntString_KeysDiffer(current.Str(), name))
             SetValue(blackboard, section, DefId(g_unk_7172759a90), fn_7100007f84, *name);
     }
     if (StringBuffer_Differs(reinterpret_cast<char*>(start_name.Str()), "[MANTAIN]"))
         SetValue(blackboard, section, DefId(g_unk_7172759a50), TRntString128Type, start_name);
-    bool cooldown = fn_710007f140(name, "SP_CooldownX_cooldownxboss_startcombat") &&
-                    fn_710007f140(start, "SP_Checkpoint_CooldownX");
-    bool commander = fn_710007f140(name, "SP_ChozoCommander_chozocommander_startcombat") &&
-                     fn_710007f140(start, "SP_Checkpoint_Commander");
+    bool cooldown = CRntString_EqualsCString(name, "SP_CooldownX_cooldownxboss_startcombat") &&
+                    CRntString_EqualsCString(start, "SP_Checkpoint_CooldownX");
+    bool commander = CRntString_EqualsCString(name, "SP_ChozoCommander_chozocommander_startcombat") &&
+                     CRntString_EqualsCString(start, "SP_Checkpoint_Commander");
     if (!commander && !cooldown) {
         f32 stored = 0.0f;
         GetFloat(blackboard, TableId(0x1148), DefId(g_unk_7172758cf0), &stored);

@@ -54,7 +54,7 @@ void fn_7100b52284(UnkListOwner_b0249* owner, UnkListScreen_b0249* screen) {
         Holder(const CRntString& s) : str(s) {}
         ~Holder() {}
     } copy(*reinterpret_cast<const CRntString*>(reinterpret_cast<const char*>(g_unk_7101d47310) + 0x7f0));
-    fn_710007eaa0(&screen->text, &copy.str);
+    CRntString_Assign(&screen->text, &copy.str);
     copy.str.~CRntString();
     if (screen->mode == 8)
         return;

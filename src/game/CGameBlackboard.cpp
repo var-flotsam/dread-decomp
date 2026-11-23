@@ -20,12 +20,12 @@ void fn_7100ae9d7c(UnkQualifiedName* self, UnkIdSource* source, const CStrId& pr
     auto* str = reinterpret_cast<base::global::CRntString*>(self);
     self->source = source;
     if (HasValue(prefix)) {
-        fn_710007f3b4(str, UseStr(prefix));
-        fn_710007f5ac(str, ':');
+        CRntString_Append(str, UseStr(prefix));
+        CRntString_AppendChar(str, ':');
     }
     if (HasValue(source->vf_0x20())) {
-        fn_710007f3b4(str, UseStr(source->vf_0x20()));
-        fn_710007f5ac(str, ':');
+        CRntString_Append(str, UseStr(source->vf_0x20()));
+        CRntString_AppendChar(str, ':');
     }
-    fn_710007f3b4(str, UseStr(source->vf_0x28()));
+    CRntString_Append(str, UseStr(source->vf_0x28()));
 }

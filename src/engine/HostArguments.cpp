@@ -520,9 +520,9 @@ void fn_7100001390() {
 
 // The start record's destructor (game/UnkStartPoint.h), which unit 2's initialiser registers.
 void fn_7100000584(UnkStartPoint* self) {
-    fn_710007ecd4(&self->field_0xc8);
-    fn_710007ecd4(&self->start_point);
-    fn_710007ecd4(&self->character);
-    fn_710007ecd4(&self->field_0x38);
-    fn_710007ecd4(&self->field_0x8);
+    CRntString_Destroy(&self->field_0xc8);
+    CRntString_Destroy(&self->start_point);
+    CRntString_Destroy(&self->character);
+    CRntString_Destroy(&self->field_0x38);
+    CRntString_Destroy(&self->field_0x8);
 }

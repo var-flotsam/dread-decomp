@@ -41,7 +41,7 @@ void fn_71011a4f1c(UnkStrList_b257b* self) {
     UnkStrNode_b257b* str_node = self->head_0x40;
     while (str_node) {
         UnkStrNode_b257b* next = str_node->next;
-        fn_710007ecd4(&str_node->str);
+        CRntString_Destroy(&str_node->str);
         self->allocator_0x50->vf_0x48(str_node);
         str_node = next;
     }

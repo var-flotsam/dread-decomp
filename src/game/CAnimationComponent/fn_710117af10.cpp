@@ -52,7 +52,7 @@ bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool sk
         const UnkClsStr_710117af10* str = &c->name;
         (*name)->field_0x44++;
         const char* n = (*name)->name.str ? (*name)->name.str : "";
-        if (!fn_710007fb9c(reinterpret_cast<const base::global::CRntString*>(str), n))
+        if (!CRntString_Contains(reinterpret_cast<const base::global::CRntString*>(str), n))
             continue;
         if (skipBusy && fn_710070d830(obj))
             continue;

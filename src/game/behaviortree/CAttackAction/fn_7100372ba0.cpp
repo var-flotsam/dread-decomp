@@ -15,6 +15,6 @@ struct UnkObj {
 void fn_7100372ba0(UnkObj* self) {
     self->vtable = &g_unk_7101a25010[2];
     self->field_0x60.~UnkStrIdTwoStep();
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(reinterpret_cast<char*>(self) + 0x30));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(reinterpret_cast<char*>(self) + 0x30));
     fn_7100393ea0(self);
 }

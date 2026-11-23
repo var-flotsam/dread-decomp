@@ -137,7 +137,7 @@ void fn_710118c7a0(UnkIngameMenu_l18c7a0* self) {
 
     f32 facing = player->xform.GetMatrix().m[2];
     CRntString side(StringOf_l18c7a0(Key(0xd78)));
-    fn_710007f564(&side, facing > 0.0f ? "right" : "left");
+    CRntString_AppendCString(&side, facing > 0.0f ? "right" : "left");
 
     void* first_animation = first->animation;
     u64 first_key;

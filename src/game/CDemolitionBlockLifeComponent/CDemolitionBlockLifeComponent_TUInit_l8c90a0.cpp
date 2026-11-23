@@ -70,13 +70,13 @@ void fn_71008c90a0() {
     fn_7100000250(CStrId_Destroy, &tu.explosion, &g_unk_7101a19000);
     new (&tu.phase_one_two_sound)
         CRntString("audiopreset:system/snd/presets/props/breakables/breakable_phaseone_two");
-    fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &tu.phase_one_two_sound, &g_unk_7101a19000);
+    fn_7100000250(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), &tu.phase_one_two_sound, &g_unk_7101a19000);
     new (&tu.phase_one_one_sound)
         CRntString("audiopreset:system/snd/presets/props/breakables/breakable_phaseone_one");
-    fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &tu.phase_one_one_sound, &g_unk_7101a19000);
+    fn_7100000250(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), &tu.phase_one_one_sound, &g_unk_7101a19000);
     new (&tu.phase_two_one_sound)
         CRntString("audiopreset:system/snd/presets/props/breakables/breakable_phasetwo_one");
-    fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &tu.phase_two_one_sound, &g_unk_7101a19000);
+    fn_7100000250(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), &tu.phase_two_one_sound, &g_unk_7101a19000);
     new (&tu.material) CStrId("cascamat", true);
     fn_7100000250(CStrId_Destroy, &tu.material, &g_unk_7101a19000);
     new (&tu.dissolve_fx) CFilePathStrId("actors/props/breakablecave006/fx/dissolve_cascarilla.bcptl", true);

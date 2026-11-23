@@ -82,7 +82,7 @@ void fn_7100b1f960(UnkFloatTunableButton_lb1f960* self) {
     fn_71011ed018(self->label, 2);
     fn_71011d968c(reinterpret_cast<UnkGuiDisplayObject*>(self), self->label);
     CRntString text(g_unk_710162e2ed);
-    fn_710007f5e0(&text, self->value);
+    CRntString_AppendFloat(&text, self->value);
     fn_71011ec424(self->label, text);
     fn_71011cd5a0(self->label);
     fn_71011ed018(Sub(self), 0);

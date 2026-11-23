@@ -54,6 +54,6 @@ void fn_7100ee1840() {
         ++prefix.data->reads;
         ++s_separator.data->reads;
         GroupName(i) = static_cast<CStrId&&>(
-            UnkBuiltStrId_ee1840(fn_710007eee0(&prefix.data->String(), &s_separator.data->String())).AsId());
+            UnkBuiltStrId_ee1840(CRntString_Concat(&prefix.data->String(), &s_separator.data->String())).AsId());
     }
 }

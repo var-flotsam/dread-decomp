@@ -32,5 +32,5 @@ void fn_7100138d0c(UnkNamedRegistryCopy111* self, const UnkNamedRegistryCopy111*
     self->count = other->count;
     self->count = other->count;
     for (u64 i = 0; i < self->count; ++i)
-        fn_710007ea60(&self->entries[i], &other->entries[i]);
+        CRntString_CopyConstruct(&self->entries[i], &other->entries[i]);
 }

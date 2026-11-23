@@ -81,7 +81,7 @@ static inline bool Contains(UnkBigFistNameEntry_ovb0127* const& name, UnkBigFist
     ++name->uses;
     if (name == reinterpret_cast<UnkBigFistNameEntry_ovb0127*>(&g_unk_7101d47108->empty))
         return false;
-    return fn_710007fb9c(&name->text, Text(part));
+    return CRntString_Contains(&name->text, Text(part));
 }
 
 struct UnkBigFistHitTarget_ovb0127 {

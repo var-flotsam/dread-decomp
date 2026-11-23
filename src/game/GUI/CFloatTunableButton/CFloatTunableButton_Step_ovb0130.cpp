@@ -77,7 +77,7 @@ void fn_7100b1f80c(UnkFloatTunableButton_ovb0130* self, s32 direction) {
     }
     }
     CRntString text(g_unk_710162e2ed);
-    fn_710007f5e0(&text, self->value);
+    CRntString_AppendFloat(&text, self->value);
     fn_71011ec424(self->label, text);
     reinterpret_cast<UnkFloatTunableLabel_ovb0130*>(self->label)->vf_0x88();
     fn_71011cd5a0(self->label);

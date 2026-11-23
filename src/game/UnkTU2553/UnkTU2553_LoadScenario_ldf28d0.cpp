@@ -80,12 +80,12 @@ void fn_7100df28d0(UnkGameManager* manager, const CRntString& a, const CRntStrin
     UnkGameManagerLoad_df28d0* self = reinterpret_cast<UnkGameManagerLoad_df28d0*>(manager);
     UnkLoadRecord_df28d0 record;
     UnkLoadRecordFields_df28d0& r = record.Fields();
-    fn_710007eaa0(&r.field_0x18, &a);
-    fn_710007eaa0(&r.field_0x48, &b);
-    fn_710007eaa0(&r.field_0x78, &c);
+    CRntString_Assign(&r.field_0x18, &a);
+    CRntString_Assign(&r.field_0x48, &b);
+    CRntString_Assign(&r.field_0x78, &c);
     r.field_0xa8 = e;
     r.field_0xd4 = flag;
-    fn_710007eaa0(&r.field_0xe0, &d);
+    CRntString_Assign(&r.field_0xe0, &d);
     r.field_0x110 = f;
     r.field_0x118 = g;
     r.field_0x120 = h;

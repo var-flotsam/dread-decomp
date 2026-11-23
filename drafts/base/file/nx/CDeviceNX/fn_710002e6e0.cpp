@@ -99,8 +99,8 @@ s32 fn_710002e6e0(void* table, CRntString* path, s32 depth, bool dirs, bool file
             strcpy(name.ptr, entry.name);
             CRntString child(*path);
             if (path->data && path->data[0])
-                fn_710007f5ac(&child, '/');
-            fn_710007f564(&child, name.ptr);
+                CRntString_AppendChar(&child, '/');
+            CRntString_AppendCString(&child, name.ptr);
             CRntString item(child);
             bool is_dir = entry.type == nn::fs::DirectoryEntryType_Directory;
             if ((is_dir && dirs) || (!is_dir && files))

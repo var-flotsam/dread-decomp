@@ -39,8 +39,8 @@ static inline const base::UnkNamedEntry* Key_l81bb50(const base::global::CStrId&
 
 struct UnkTargetKey_l81bb50 {
     base::UnkNamedEntry entry;
-    explicit UnkTargetKey_l81bb50(const base::global::CStrId& id) { fn_710007ea60(&entry, Key_l81bb50(id)); }
-    ~UnkTargetKey_l81bb50() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&entry)); }
+    explicit UnkTargetKey_l81bb50(const base::global::CStrId& id) { CRntString_CopyConstruct(&entry, Key_l81bb50(id)); }
+    ~UnkTargetKey_l81bb50() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&entry)); }
 };
 
 struct UnkGrappleTarget_l81bb50 {

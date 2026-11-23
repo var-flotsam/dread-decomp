@@ -128,9 +128,9 @@ struct UnkText_ovb0121 {
 static inline void AppendOperand(UnkText_ovb0121* out, const UnkFloatOperand_ovb0121& operand) {
     if (operand.property != reinterpret_cast<UnkNamedString_ovb0121*>(&g_unk_7101d47108->empty)) {
         ++operand.property->uses;
-        fn_710007f3b4(reinterpret_cast<CRntString*>(out), &operand.property->text);
+        CRntString_Append(reinterpret_cast<CRntString*>(out), &operand.property->text);
     } else {
-        fn_710007f5e0(out, operand.value);
+        CRntString_AppendFloat(out, operand.value);
     }
 }
 
@@ -142,12 +142,12 @@ static inline const char* OpName(s32 op) {
 
 UnkText_ovb0121 fn_710039c2b0(UnkFloatCondition_ovb0121* self) {
     UnkText_ovb0121 text;
-    fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(&text), g_unk_710162e2ed);
+    CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(&text), g_unk_710162e2ed);
     AppendOperand(&text, self->a);
-    fn_710007f564(&text, " ");
-    fn_710007f564(&text, OpName(self->op));
-    fn_710007f564(&text, " ");
+    CRntString_AppendCString(&text, " ");
+    CRntString_AppendCString(&text, OpName(self->op));
+    CRntString_AppendCString(&text, " ");
     AppendOperand(&text, self->b);
-    fn_710007f564(&text, "?");
+    CRntString_AppendCString(&text, "?");
     return text;
 }

@@ -40,7 +40,7 @@ static_assert(sizeof(UnkDisplayObjectDef_ovb0108) == 0x90, "UnkDisplayObjectDef_
 void fn_7100b064bc(UnkDisplayObjectDef_ovb0108* self) {
     fn_7100023838(self);
     self->vtable = g_unk_7101a9a488 + 0x10;
-    fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(&self->name), g_unk_710162e2ed);
+    CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(&self->name), g_unk_710162e2ed);
     new (&self->children) base::global::CRntVector<UnkDisplayChild_ovb0108*>(0xf);
     new (&self->items) base::global::CRntVector<UnkDisplayItem_ovb0108*>(0xc);
     self->items.Reserve(20);
@@ -65,7 +65,7 @@ void fn_7100b065a8(UnkDisplayObjectDef_ovb0108* self) {
     DeleteAll(self->children);
     self->items.Free();
     self->children.Free();
-    fn_710007ecd4(&self->name);
+    CRntString_Destroy(&self->name);
     fn_710002384c(self);
 }
 

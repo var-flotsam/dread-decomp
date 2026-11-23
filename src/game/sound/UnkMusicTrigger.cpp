@@ -31,5 +31,5 @@ void fn_7101186780(UnkMusicTrigger* self) {
     self->field_0x3c = false;
     self->field_0x40 = nullptr;
     self->field_0x48 = 0;
-    fn_710007e77c(&self->name, "");
+    CRntString_AssignCString(&self->name, "");
 }

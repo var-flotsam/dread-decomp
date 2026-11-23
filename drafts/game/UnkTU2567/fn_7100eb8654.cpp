@@ -37,9 +37,9 @@ struct UnkModifier_eb8654 {
     // Takes `settings`; returns whether the on value or the shaping changed.
     bool Set(const UnkCurveSettings_eb8654& settings) {
         bool same = settings.range.on_value == range.on_value &&
-                    fn_710007f220(settings.modifiers.Str(), modifiers.Str());
+                    CRntString_KeysDiffer(settings.modifiers.Str(), modifiers.Str());
         range = settings.range;
-        fn_710007eaa0(modifiers.Str(), settings.modifiers.Str());
+        CRntString_Assign(modifiers.Str(), settings.modifiers.Str());
         mode = settings.mode;
         return !same;
     }

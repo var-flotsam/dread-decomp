@@ -76,7 +76,7 @@ static inline bool SameString(const CStrId& id, const CRntString& str) {
 const UnkSubId_7100fc4b34& fn_71008c0004(UnkQualifiedName* self, const char* name) {
     UnkSubIdMap_8c0004* map = reinterpret_cast<UnkSubIdMap_8c0004*>(self);
     UnkTunableLine text;
-    fn_710007f564(text.Str(), name);
+    CRntString_AppendCString(text.Str(), name);
 
     UnkSubIdNode_8c0004* node = nullptr;
     if (map->buckets.count) {

@@ -34,18 +34,18 @@ struct UnkBaseCondition_ovb0127 {
 CRntString fn_7100394588(UnkBaseCondition_ovb0127* self) {
     CRntString text = self->vf_0xa8();
     if (self->negated) {
-        CRntString negated = fn_710007f050("NOT ", &text);
-        fn_710007eaa0(&text, &negated);
+        CRntString negated = CRntString_ConcatCStringFirst("NOT ", &text);
+        CRntString_Assign(&text, &negated);
     }
     if (self->on_success != 5) {
-        fn_710007f564(&text, "(OnSuccess=");
-        fn_710007f564(&text, ResultName(self->on_success));
-        fn_710007f564(&text, ")");
+        CRntString_AppendCString(&text, "(OnSuccess=");
+        CRntString_AppendCString(&text, ResultName(self->on_success));
+        CRntString_AppendCString(&text, ")");
     }
     if (self->on_failed != 6) {
-        fn_710007f564(&text, "(OnFailed=");
-        fn_710007f564(&text, ResultName(self->on_failed));
-        fn_710007f564(&text, ")");
+        CRntString_AppendCString(&text, "(OnFailed=");
+        CRntString_AppendCString(&text, ResultName(self->on_failed));
+        CRntString_AppendCString(&text, ")");
     }
     return text;
 }

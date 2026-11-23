@@ -332,14 +332,14 @@ void fn_7100ed5a04(UnkShotPresets* self) {
         for (u32 j = 0; j < 8; ++j) {
             u32 preset = g_unk_710164befc[j];
             const base::global::CStrId& name = self->names[kind][preset];
-            s32 dot = fn_710007fb10(&base::reflection::refl_RntStringOf(name), '.', -1);
+            s32 dot = CRntString_FindLastChar(&base::reflection::refl_RntStringOf(name), '.', -1);
             if (dot <= 0)
                 continue;
             UnkPresetText text("audiopreset:");
             {
                 UnkPresetText stem;
-                fn_710007e7f8(stem.Str(), base::reflection::refl_RntStringOf(name).data, dot);
-                fn_710007f3b4(text.Str(), stem.Str());
+                CRntString_AssignPrefix(stem.Str(), base::reflection::refl_RntStringOf(name).data, dot);
+                CRntString_Append(text.Str(), stem.Str());
             }
             UnkPathIdsFromText built(*text.Str());
             fn_71000267f8(&self->presets[kind][preset], built.ids);

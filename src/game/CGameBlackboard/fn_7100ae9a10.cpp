@@ -24,20 +24,20 @@ static inline bool HasValue(const CStrId& id) {
 void fn_7100ae9a10(UnkQualifiedId* self, UnkIdSource* source, const CStrId& prefix) {
     UnkInlineString s;
     auto* str = reinterpret_cast<base::global::CRntString*>(&s);
-    fn_710007e6e4(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
+    CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
     s.vtable = &g_unk_7101a1b750[2];
     s.field_0xb8 = 0;
     s.field_0xc0 = 0;
     self->source = source;
     if (HasValue(prefix)) {
-        fn_710007f3b4(str, UseStr(prefix));
-        fn_710007f5ac(str, ':');
+        CRntString_Append(str, UseStr(prefix));
+        CRntString_AppendChar(str, ':');
     }
     if (HasValue(source->vf_0x20())) {
-        fn_710007f3b4(str, UseStr(source->vf_0x20()));
-        fn_710007f5ac(str, ':');
+        CRntString_Append(str, UseStr(source->vf_0x20()));
+        CRntString_AppendChar(str, ':');
     }
-    fn_710007f3b4(str, UseStr(source->vf_0x28()));
+    CRntString_Append(str, UseStr(source->vf_0x28()));
     {
         UnkStringData* tmp;
         CStrId_ConstructFromRntString(reinterpret_cast<base::global::UnkStrIdBase*>(&tmp), *str, true);
@@ -54,6 +54,6 @@ void fn_7100ae9a10(UnkQualifiedId* self, UnkIdSource* source, const CStrId& pref
     }
         self->id.data = tmp;
     }
-    fn_710007ed40(str);
-    fn_710007ecd4(str);
+    CRntString_Clear(str);
+    CRntString_Destroy(str);
 }

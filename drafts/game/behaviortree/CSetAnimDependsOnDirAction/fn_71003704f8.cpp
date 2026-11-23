@@ -20,7 +20,7 @@ using base::reflection::UnkReflObject;
 
 // A name built from a string id (fn_710007eb6c).
 struct UnkAnimName_l3704f8 : UnkBufferString<0x100, g_unk_7101a194b8> {
-    explicit UnkAnimName_l3704f8(const CStrId* id) { fn_710007eb6c(Str(), id); }
+    explicit UnkAnimName_l3704f8(const CStrId* id) { CRntString_AssignStrId(Str(), id); }
 };
 
 struct UnkDirOwner_l3704f8 {
@@ -86,7 +86,7 @@ u32 fn_71003704f8(UnkSetAnimDependsOnDir_l3704f8* self) {
         if (!self->keep_name) {
             {
                 UnkAnimName_l3704f8 alt(&self->alt_name);
-                fn_710007eaa0(name.Str(), alt.Str());
+                CRntString_Assign(name.Str(), alt.Str());
             }
             ResolveName(self, &self->alt_name_property, &name);
         }
@@ -95,7 +95,7 @@ u32 fn_71003704f8(UnkSetAnimDependsOnDir_l3704f8* self) {
             if (animation) {
                 const CStrId* current = fn_7101177ae8(animation, 0xf4061ff25a2163d6);
                 ++current->data->reads;
-                if (!fn_710007f220(&current->data->String(), name.Str()) &&
+                if (!CRntString_KeysDiffer(&current->data->String(), name.Str()) &&
                     !fn_71011782ec(animation, 0xf4061ff25a2163d6))
                     return 2;
             }

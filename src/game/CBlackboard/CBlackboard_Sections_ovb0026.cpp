@@ -275,14 +275,14 @@ struct UnkInlineString_b0026 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_b0026() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
     }
     ~UnkInlineString_b0026() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -307,14 +307,14 @@ static inline void ToLower(CRntString* str) {
         lower[length] = '\0';
     }
     UnkInlineString_b0026 tmp;
-    fn_710007e77c(tmp.Str(), lower);
-    fn_710007eaa0(str, tmp.Str());
+    CRntString_AssignCString(tmp.Str(), lower);
+    CRntString_Assign(str, tmp.Str());
 }
 
 // The two strings joined, in lower case.
 void fn_71010476a0(UnkBlackboardStrings_b0026* self, CRntString* out) {
-    fn_710007eaa0(out, &self->field_0x80);
-    fn_710007f3b4(out, &self->field_0xb0);
+    CRntString_Assign(out, &self->field_0x80);
+    CRntString_Append(out, &self->field_0xb0);
     ToLower(out);
 }
 
@@ -337,12 +337,12 @@ struct UnkBlackboardUser_b0026 {
 // The user's name joined with the blackboard's second string, in lower case.
 void fn_7101047b2c(UnkBlackboardUser_b0026* self, CRntString* out) {
     ++self->info->field_0x44;
-    fn_710007eaa0(out, &self->info->name);
+    CRntString_Assign(out, &self->info->name);
     {
         base::UnkNamedEntry suffix;
-        fn_710007ea60(&suffix, reinterpret_cast<const base::UnkNamedEntry*>(&self->blackboard->field_0xb0));
-        fn_710007f3b4(out, reinterpret_cast<CRntString*>(&suffix));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&suffix));
+        CRntString_CopyConstruct(&suffix, reinterpret_cast<const base::UnkNamedEntry*>(&self->blackboard->field_0xb0));
+        CRntString_Append(out, reinterpret_cast<CRntString*>(&suffix));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&suffix));
     }
     ToLower(out);
 }

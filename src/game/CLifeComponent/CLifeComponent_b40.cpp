@@ -21,7 +21,7 @@ UnkReflValue fn_7101161298(void*, char* obj, UnkReflValue* const* args) {
         stream = arg;
     const char* str;
     fn_710007cee4(stream, &str);
-    fn_710007e77c(reinterpret_cast<base::global::CRntString*>(target + 0xb0), str);
+    CRntString_AssignCString(reinterpret_cast<base::global::CRntString*>(target + 0xb0), str);
     s32 zero = 0;
     const base::reflection::CType* type = fn_7100014768();
     UnkReflValue r;

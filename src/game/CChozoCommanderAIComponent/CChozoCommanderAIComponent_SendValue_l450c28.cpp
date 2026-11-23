@@ -89,7 +89,7 @@ void fn_7100450c28(UnkCommanderAI_l450c28* self) {
     f32 value = fn_710117808c(animation, track);
     u64 hash;
     {
-        CRntString full = fn_710007eee0(&name.Str(), &Str(g_unk_71726c9540));
+        CRntString full = CRntString_Concat(&name.Str(), &Str(g_unk_71726c9540));
         fn_7100066630(&hash, &full);
     }
     base::reflection::UnkReflTypeIdArg mode, mask, mode2, mask2;

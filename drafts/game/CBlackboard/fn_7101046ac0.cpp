@@ -102,8 +102,8 @@ void fn_7101046ac0(CBlackboard* blackboard) {
         map.first = nullptr;
     }
     self->field_0x78 = 0;
-    fn_710007ecd4(&self->field_0xb0);
-    fn_710007ecd4(&self->field_0x80);
+    CRntString_Destroy(&self->field_0xb0);
+    CRntString_Destroy(&self->field_0x80);
     fn_7101046c68(&self->map);
     fn_7101046d58(&self->sections);
 }

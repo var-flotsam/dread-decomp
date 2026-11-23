@@ -183,7 +183,7 @@ UnkStartPoint* fn_71011a2e54(UnkGameManagerSub_0x608* scenario, const UnkStartPo
         auto* actor = reinterpret_cast<UnkScenarioObject_ovb0032*>(n->value);
         if (!fn_7100774014(actor))
             continue;
-        if (fn_710007fc80(Text_ovb0032(actor->name), Text_ovb0032(prefix)))
+        if (CRntString_StartsWith(Text_ovb0032(actor->name), Text_ovb0032(prefix)))
             continue;
         UnkVec3f t = actor->xform.GetTranslation();
         f32 dx = t.x - point->x;

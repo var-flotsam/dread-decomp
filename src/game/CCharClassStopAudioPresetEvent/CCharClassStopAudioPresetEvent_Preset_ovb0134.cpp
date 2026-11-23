@@ -48,7 +48,7 @@ __attribute__((always_inline)) static inline void Resolve(UnkStopAudioPresetEven
                                                           UnkStrIdPathResource* preset, UnkPresetName_ovb0134* name) {
     ++name->use_count;
     fn_71000267f8(preset,
-                  UnkPathIdsFromText(fn_710007f050("audiopreset:system/snd/presets/", &self->Name()->text)).ids);
+                  UnkPathIdsFromText(CRntString_ConcatCStringFirst("audiopreset:system/snd/presets/", &self->Name()->text)).ids);
 }
 
 // Sets the preset name and resolves the ids from it.

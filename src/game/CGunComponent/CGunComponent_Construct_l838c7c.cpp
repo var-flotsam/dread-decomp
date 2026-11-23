@@ -115,7 +115,7 @@ void fn_7100838c7c(UnkSamusGun_ovb0070* gun) {
     self->field_0x60.callback = fn_7100840eb8;
 
     self->input.vtable = g_unk_7101a22878 + 2;
-    fn_710007e704(&self->input.name, "GUN_INPUT");
+    CRntString_ConstructFromCString(&self->input.name, "GUN_INPUT");
     self->input.capacity = 20;
     // An array of 20 0x1c-byte entries, after its element count.
     u64* block = static_cast<u64*>(fn_7100083ba0(0x238, 5));

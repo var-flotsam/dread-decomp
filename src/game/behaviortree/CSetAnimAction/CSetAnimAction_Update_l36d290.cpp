@@ -15,7 +15,7 @@ using base::global::CStrId;
 
 // A name built from a string id (fn_710007eb6c).
 struct UnkAnimName_l36d290 : UnkBufferString<0x100, g_unk_7101a194b8> {
-    explicit UnkAnimName_l36d290(const CStrId* id) { fn_710007eb6c(Str(), id); }
+    explicit UnkAnimName_l36d290(const CStrId* id) { CRntString_AssignStrId(Str(), id); }
 };
 
 struct UnkSetAnimOwner_l36d290 {
@@ -60,7 +60,7 @@ u32 fn_710036d290(UnkSetAnimAction_l36d290* self) {
         if (animation) {
             const CStrId* current = fn_7101177ae8(animation, 0xf4061ff25a2163d6);
             ++current->data->reads;
-            if (!fn_710007f220(&current->data->String(), name.Str()) &&
+            if (!CRntString_KeysDiffer(&current->data->String(), name.Str()) &&
                 !fn_71011782ec(animation, 0xf4061ff25a2163d6))
                 return 2;
         }

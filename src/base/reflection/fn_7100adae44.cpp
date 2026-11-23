@@ -208,7 +208,7 @@ UnkIdIdValues4Pair* fn_7100e70ab4(UnkIdIdValues4Pair* self, UnkIdIdValues4Pair* 
 UnkIdIdsValuePair* fn_7100c8fcd8(UnkIdIdsValuePair* self, UnkIdIdsValuePair* other) { return Assign(self, other); }
 
 __attribute__((always_inline)) inline UnkAssignedString& UnkAssignedString::operator=(const UnkAssignedString& other) {
-    fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(this),
+    CRntString_Assign(reinterpret_cast<base::global::CRntString*>(this),
                   reinterpret_cast<const base::global::CRntString*>(&other));
     return *this;
 }
@@ -248,7 +248,7 @@ UnkBoundValueArray* fn_7100d3f14c(UnkBoundValueArray* self, const UnkBoundValueA
 UnkBoundValueArray* fn_7100d3f514(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
 UnkBoundValueArray* fn_7100d3f5d4(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
 
-inline UnkFreedString::~UnkFreedString() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
+inline UnkFreedString::~UnkFreedString() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this)); }
 
 struct UnkBoundValueString {
     u32 value;

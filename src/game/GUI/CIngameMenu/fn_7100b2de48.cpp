@@ -512,14 +512,14 @@ void fn_7100b2cebc(UnkStateOwner* self) {
     PlaySound<fn_710006d4d0>(0xfd);
     UnkInlineString path;
     auto* str = reinterpret_cast<base::global::CRntString*>(&path);
-    fn_710007e6e4(str, reinterpret_cast<base::UnkAllocator*>(&path.vtable));
+    CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&path.vtable));
     path.vtable = &g_unk_7101a1b750[2];
     path.field_0xb8 = 0;
     path.field_0xc0 = 0;
-    fn_710007e77c(str, "playdata:playthroughs/pt_official/pt_official");
+    CRntString_AssignCString(str, "playdata:playthroughs/pt_official/pt_official");
     fn_71002f7048(g_unk_71726ae8a8, UnkPathIdsFromText(*str).ids);
-    fn_710007ed40(str);
-    fn_710007ecd4(str);
+    CRntString_Clear(str);
+    CRntString_Destroy(str);
 }
 
 void fn_7100b2c964(UnkStateOwner* self);

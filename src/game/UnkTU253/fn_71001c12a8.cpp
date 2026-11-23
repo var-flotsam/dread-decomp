@@ -61,7 +61,7 @@ struct UnkSlotsOwner_ovb0176;
 static inline bool NameContains(const CStrId& id, const char* str) {
     UnkStringEntry* entry = reinterpret_cast<UnkStringEntry*>(id.data);
     ++entry->tail.field_0x44;
-    return id.data != &g_unk_7101d47108->empty && fn_710007fb9c(&entry->buffer, str);
+    return id.data != &g_unk_7101d47108->empty && CRntString_Contains(&entry->buffer, str);
 }
 
 // NON_MATCHING(functional): Control flow differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.

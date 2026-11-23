@@ -13,7 +13,7 @@ struct UnkFloatingPropActingComponent_b49a3 : UnkBaseComponent {
 
 void fn_71007e6358(UnkFloatingPropActingComponent_b49a3* self) {
     self->vtable = g_unk_7101a73768 + 2;
-    fn_710007ecd4(&self->field_0x60);
+    CRntString_Destroy(&self->field_0x60);
     if (UnkRefObject* p = self->field_0x40) {
         if (--p->ref_count == 0)
             p->vf_0x10();

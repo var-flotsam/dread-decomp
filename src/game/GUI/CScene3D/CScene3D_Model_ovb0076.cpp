@@ -60,7 +60,7 @@ struct UnkAssignedString_ovb0076 {
     u8 raw[0x30];
 
     UnkAssignedString_ovb0076& operator=(const CRntString& other) {
-        fn_710007eaa0(reinterpret_cast<CRntString*>(this), &other);
+        CRntString_Assign(reinterpret_cast<CRntString*>(this), &other);
         return *this;
     }
 };
@@ -149,7 +149,7 @@ void fn_71011f3cfc(UnkScene3D_ovb0076* self);  // the base destructor
 
 void fn_7100b72688(UnkScene3D_ovb0076* self) {
     self->vtable = &g_unk_7101a9e968[2];
-    fn_710007ecd4(&self->field_0xe18);
+    CRntString_Destroy(&self->field_0xe18);
     fn_710119ad3c(&self->item);
     UnkChainedMap* first = &self->maps.first;
     fn_7100b74158(&self->maps.second);
@@ -157,9 +157,9 @@ void fn_7100b72688(UnkScene3D_ovb0076* self) {
     UnkScene3DList_ovb0076& objects = self->objects;
     objects.vtable = &g_unk_7101a9ebb8[2];
     objects.Clear();
-    fn_710007ecd4(&self->field_0x338);
-    fn_710007ecd4(&self->field_0x2e0);
-    fn_710007ecd4(&self->name);
+    CRntString_Destroy(&self->field_0x338);
+    CRntString_Destroy(&self->field_0x2e0);
+    CRntString_Destroy(&self->name);
     fn_71011f3cfc(self);
 }
 
@@ -171,7 +171,7 @@ void fn_7100b727c4(UnkScene3D_ovb0076* self) {
     self->field_0x2c4 = 0.0f;
     self->field_0x2bc = -1.0f;
     self->field_0x2dc = 0;
-    fn_710007e77c(&self->field_0x2e0, g_unk_710162e2ed);
+    CRntString_AssignCString(&self->field_0x2e0, g_unk_710162e2ed);
     self->field_0x460 = 5.0f;
     self->field_0x464 = 5.0f;
     self->field_0x224 = -1.0f;
@@ -210,7 +210,7 @@ static inline void* ItemList_ovb0076() {
 CRntString fn_71011cd4f8(UnkScene3D_ovb0076* self);  // the object's name
 
 static inline CRntString Prefixed_ovb0076(const char* prefix, const CRntString& str) {
-    return fn_710007f050(prefix, &str);
+    return CRntString_ConcatCStringFirst(prefix, &str);
 }
 
 void fn_7100b72e5c(UnkScene3D_ovb0076* self, bool on) {
@@ -301,10 +301,10 @@ void fn_7100b73454(UnkScene3DMaps_ovb0076* self) {
 
 const CRntString* fn_7100def670(UnkGameManager* self);  // the data root
 
-static inline CRntString Concat_ovb0076(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
-static inline CRntString Concat_ovb0076(const CRntString& a, const char* b) { return fn_710007ef90(&a, b); }
+static inline CRntString Concat_ovb0076(const CRntString& a, const CRntString& b) { return CRntString_Concat(&a, &b); }
+static inline CRntString Concat_ovb0076(const CRntString& a, const char* b) { return CRntString_ConcatCString(&a, b); }
 
-static inline void Assign_ovb0076(CRntString* self, const CRntString& other) { fn_710007eaa0(self, &other); }
+static inline void Assign_ovb0076(CRntString* self, const CRntString& other) { CRntString_Assign(self, &other); }
 
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 
@@ -349,6 +349,6 @@ void fn_7100b72f64(UnkScene3D_ovb0076* self) {
                                   self->name),
                    ".bmssd"));
         Unload_ovb0076(FileDevice_ovb0076(), UnkScenePathId_ovb0076(path));
-        fn_710007e77c(&self->name, g_unk_710162e2ed);
+        CRntString_AssignCString(&self->name, g_unk_710162e2ed);
     }
 }

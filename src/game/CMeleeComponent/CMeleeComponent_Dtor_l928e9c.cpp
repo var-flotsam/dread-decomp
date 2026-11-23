@@ -106,6 +106,6 @@ void fn_7100928e9c(UnkMeleeComponent_l928e9c* self) {
         fn_7100083c30(static_cast<u64*>(self->input.entries) - 1);
         self->input.entries = nullptr;
     }
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&self->input.name));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&self->input.name));
     fn_71010c4194(reinterpret_cast<UnkBaseComponent*>(self));
 }

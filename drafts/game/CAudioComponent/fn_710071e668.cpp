@@ -191,7 +191,7 @@ inline f32 DistanceSq_l71e668(const UnkAudio_l71e668* self, const UnkSoundEntry_
 
 // Plays the entry's sound, by its ids when it has both, else by its request.
 static void Play_l71e668(UnkAudio_l71e668* self, UnkSoundEntry_l71e668* entry, bool flag) {
-    if (!fn_710007f220(PathString_l71e668(entry->path), PathString_l71e668(GameIds_l71e668().field_0x5f8)))
+    if (!CRntString_KeysDiffer(PathString_l71e668(entry->path), PathString_l71e668(GameIds_l71e668().field_0x5f8)))
         return;
     UnkSoundRequest_l71e668 request;
     fn_710071b39c(&request, &entry->value_index);

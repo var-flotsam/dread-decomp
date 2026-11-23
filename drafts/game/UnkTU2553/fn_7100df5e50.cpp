@@ -92,7 +92,7 @@ struct UnkManager_df5e50 {
 
 static inline bool IsEditor(UnkManager_df5e50* self) {
     if (self->mode)
-        return fn_710007f140(reinterpret_cast<const CRntString*>(self->mode + 8), "EDITOR");
+        return CRntString_EqualsCString(reinterpret_cast<const CRntString*>(self->mode + 8), "EDITOR");
     return false;
 }
 

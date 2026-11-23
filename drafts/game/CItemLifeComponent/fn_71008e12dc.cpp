@@ -215,13 +215,13 @@ static inline bool NameHas(UnkStringData* const& name, const char* str) {
     ++name->reads;
     if (name == &g_unk_7101d47108->empty)
         return false;
-    return fn_710007fb9c(&name->String(), str);
+    return CRntString_Contains(&name->String(), str);
 }
 
 // The id of a husk collider's suffix (from its last '_' on), upper-cased.
 static inline UnkTextStrId_l8e12dc HuskSuffixId(const CStrId& name) {
     const CRntString& text = NameString(name);
-    u32 start = fn_710007fb10(&NameString(name), '_', -1);
+    u32 start = CRntString_FindLastChar(&NameString(name), '_', -1);
     u32 length = text.length - start;
     UnkTunableLine suffix(text.data + start, length);
     char upper[0x100];
@@ -244,7 +244,7 @@ static inline bool HuskAllows(UnkOut_71008651c8& husks, UnkTunableLine& suffix) 
     if (husks.count == 0)
         return true;
     if (suffix.IsEmpty())
-        fn_710007e77c(suffix.Str(), g_unk_710164b160);
+        CRntString_AssignCString(suffix.Str(), g_unk_710164b160);
     for (u64 i = 0; i < husks.count; ++i) {
         UnkCollisionObject* object = reinterpret_cast<UnkCollisionRecord*>(husks.data[i])->field_0x28;
         auto* record = reinterpret_cast<UnkCollisionRecord*>(husks.GrowAt(i));
@@ -283,7 +283,7 @@ bool fn_71008e12dc(UnkItemLife_l8e12dc* self, UnkHitInfo_l8e12dc* hit) {
                     ++part->name->reads;
                     if (part->name == &g_unk_7101d47108->empty)
                         continue;
-                    if (fn_710007fb9c(&part->name->String(), suffix.Text())) {
+                    if (CRntString_Contains(&part->name->String(), suffix.Text())) {
                         u64 key = part->name->Key();
                         fn_7101172780(reinterpret_cast<UnkFlagTarget*>(model), reinterpret_cast<const char*>(&key));
                     }
@@ -295,7 +295,7 @@ bool fn_71008e12dc(UnkItemLife_l8e12dc* self, UnkHitInfo_l8e12dc* hit) {
         // The source's name ends in "hit<suffix>": the hit counts unless it lands on an enabled "HUSK" collider
         // whose name has that suffix.
         UnkTunableLine name(NameString(hit->source->name));
-        u32 start = fn_710007fb54(name.Str(), "hit", 0) + 3;
+        u32 start = CRntString_Find(name.Str(), "hit", 0) + 3;
         u32 length = name.Length() - start;
         UnkTunableLine suffix(name.Data() + start, length);
         UnkOut_71008651c8 husks(0xf);

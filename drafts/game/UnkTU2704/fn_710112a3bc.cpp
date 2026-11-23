@@ -32,7 +32,7 @@ static inline bool NameIs(UnkNamed* self, const char* str) {
     ++self->id->ref_count;
     UnkNameData* id = self->id;
     UnkNameData* empty = reinterpret_cast<UnkNameData*>(&g_unk_7101d47108->empty);
-    return id != empty && fn_710007fb9c(&id->name, str);
+    return id != empty && CRntString_Contains(&id->name, str);
 }
 
 

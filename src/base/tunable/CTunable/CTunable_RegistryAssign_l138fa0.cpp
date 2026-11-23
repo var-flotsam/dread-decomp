@@ -9,7 +9,7 @@
 #include "types.h"
 
 struct UnkRegistryKey138fa0 : base::UnkNamedEntry {
-    ~UnkRegistryKey138fa0() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
+    ~UnkRegistryKey138fa0() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this)); }
 };
 
 struct UnkRegistryAssign138fa0 {
@@ -38,7 +38,7 @@ UnkRegistryAssign138fa0* fn_7100138fa0(UnkRegistryAssign138fa0* self, const UnkR
         self->count = other->count;
         self->count = other->count;
         for (u64 i = 0; i < self->count; ++i)
-            fn_710007ea60(&self->entries[i], &other->entries[i]);
+            CRntString_CopyConstruct(&self->entries[i], &other->entries[i]);
     }
     return self;
 }

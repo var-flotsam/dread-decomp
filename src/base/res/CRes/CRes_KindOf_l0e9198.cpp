@@ -16,7 +16,7 @@ static inline bool Contains(const CFilePathStrId& path, const CFilePathStrId& pa
         return false;
     const base::global::CRntString* str = &path.data->String();
     ++part.data->reads;
-    return fn_710007fb9c(str, part.data->text ? part.data->text : g_unk_710162e2ed);
+    return CRntString_Contains(str, part.data->text ? part.data->text : g_unk_710162e2ed);
 }
 
 u32 fn_71000e9198(void* self, const CFilePathStrId& path, u32 fallback) {

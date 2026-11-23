@@ -43,13 +43,13 @@ void fn_71006a7afc(UnkShakernautLaserPlay_l6a7afc* self, CStrId id, bool plain) 
         break;
     default: {
         UnkLaserName_l6a7afc name;
-        fn_710007eb6c(name.Str(), &id);
+        CRntString_AssignStrId(name.Str(), &id);
         const CStrId* side_id = self->side == 1 ? &g_unk_7172705cd8[0] : &g_unk_7172705cd8[1];
         UnkLaserName_l6a7afc side;
-        fn_710007eb6c(side.Str(), side_id);
+        CRntString_AssignStrId(side.Str(), side_id);
         u64 hash;
         {
-            CRntString joined = fn_710007eee0(side.Str(), name.Str());
+            CRntString joined = CRntString_Concat(side.Str(), name.Str());
             fn_7100066630(&hash, &joined);
         }
         base::reflection::UnkReflTypeIdArg mode;

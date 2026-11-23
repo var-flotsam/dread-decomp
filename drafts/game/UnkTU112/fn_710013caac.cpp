@@ -26,7 +26,7 @@ using base::reflection::UnkReflTypedPtr;
 
 // Reads a line of at most `size` bytes from the position; false when none could be read.
 bool fn_710007c9e8(base::global::CRntFile* file, char* buffer, u32 size);
-void fn_710007f6dc(CRntString* self);  // trims both ends
+void CRntString_Trim(CRntString* self);  // trims both ends
 UnkTunableLine fn_710013ab54(UnkTunableFieldHandle* field, const UnkReflTypedPtr* obj);  // the value as text
 
 struct UnkReflFieldInfo;
@@ -90,8 +90,8 @@ static inline u64 HashOf(const UnkTunableLine& s) {
 // Looks up the tunable a header names: prefix, then `middle`, then the name.
 static inline UnkTunableObject* FindTunable(UnkTunableRegistry* self, const UnkTunableLine& prefix,
                                             const char* middle, const UnkTunableLine& name, bool qualified) {
-    CRntString a = fn_710007ef90(prefix.Str(), middle);
-    CRntString b = fn_710007eee0(&a, name.Str());
+    CRntString a = CRntString_ConcatCString(prefix.Str(), middle);
+    CRntString b = CRntString_Concat(&a, name.Str());
     return fn_710013c5cc(self, b.data, qualified);
 }
 
@@ -113,22 +113,22 @@ bool fn_710013caac(UnkTunableRegistry* self, const UnkStrPair_0x10* path) {
     while (in.file.position < in.file.size) {
         if (!fn_710007c9e8(&in.file, buffer, 0x100))
             continue;
-        fn_710007e77c(line.Str(), buffer);
-        fn_710007f6dc(line.Str());
+        CRntString_AssignCString(line.Str(), buffer);
+        CRntString_Trim(line.Str());
 
         if (line.Length() != 0 && line.Data()[0] != ';') {
-            s32 open = fn_710007facc(line.Str(), '[', 0);
+            s32 open = CRntString_FindChar(line.Str(), '[', 0);
             if (open != -1) {
                 // A header: the tunable the following pairs belong to.
-                s32 close = fn_710007facc(line.Str(), ']', 0);
+                s32 close = CRntString_FindChar(line.Str(), ']', 0);
                 if (close == -1) {
                     result = false;
                     break;
                 }
                 u32 start = open + 1;
                 UnkTunableLine name(line.Data() + start, close - start);
-                fn_710007f6dc(name.Str());
-                s32 bar = fn_710007facc(name.Str(), '|', 0);
+                CRntString_Trim(name.Str());
+                s32 bar = CRntString_FindChar(name.Str(), '|', 0);
                 UnkTunableLine prefix(g_unk_710162e2ed);
                 if (bar >= 0) {
                     u32 n = bar + 1;
@@ -141,10 +141,10 @@ bool fn_710013caac(UnkTunableRegistry* self, const UnkStrPair_0x10* path) {
                 if (!tunable)
                     tunable = FindTunable(self, prefix, "CTunableCharClass", name, bar >= 0);
             } else {
-                s32 equals = fn_710007facc(line.Str(), '=', 0);
+                s32 equals = CRntString_FindChar(line.Str(), '=', 0);
                 if (equals != -1) {
                     UnkTunableLine key(line.Data(), equals);
-                    fn_710007f6dc(key.Str());
+                    CRntString_Trim(key.Str());
                     UnkTunableLine written(key);
                     if (tunable) {
                         // Walks the dotted members down to the last name.
@@ -153,7 +153,7 @@ bool fn_710013caac(UnkTunableRegistry* self, const UnkStrPair_0x10* path) {
                         UnkReflTypedPtr obj;
                         obj.type = type;
                         obj.ptr = object;
-                        s32 dot = fn_710007facc(key.Str(), '.', 0);
+                        s32 dot = CRntString_FindChar(key.Str(), '.', 0);
                         while (dot >= 0) {
                             UnkTunableLine member(key.Data(), dot);
                             u64 hash = HashOf(member);
@@ -168,7 +168,7 @@ bool fn_710013caac(UnkTunableRegistry* self, const UnkStrPair_0x10* path) {
                             object = obj.ptr;
                             u32 after = dot + 1;
                             key = UnkTunableLine(key.Data() + after, key.Length() - after);
-                            dot = fn_710007facc(key.Str(), '.', 0);
+                            dot = CRntString_FindChar(key.Str(), '.', 0);
                         }
 
                         UnkTunableType* owner = reinterpret_cast<UnkTunableType*>(type);
@@ -182,7 +182,7 @@ bool fn_710013caac(UnkTunableRegistry* self, const UnkStrPair_0x10* path) {
                                 u64 i = 0;
                                 do {
                                     char prefix[2] = {kPrefixes[i], 0};
-                                    CRntString name = fn_710007f050(prefix, key.Str());
+                                    CRntString name = CRntString_ConcatCStringFirst(prefix, key.Str());
                                     u64 hash;
                                     fn_7100066630(&hash, &name);
                                     field = owner->Find(hash);
@@ -194,16 +194,16 @@ bool fn_710013caac(UnkTunableRegistry* self, const UnkStrPair_0x10* path) {
                             if (field) {
                                 UnkTunableLine value =
                                     fn_710013ab54(reinterpret_cast<UnkTunableFieldHandle*>(field), &obj);
-                                CRntString a = fn_710007ef90(written.Str(), " = ");
-                                CRntString b = fn_710007eee0(&a, value.Str());
-                                fn_710007eaa0(line.Str(), &b);
+                                CRntString a = CRntString_ConcatCString(written.Str(), " = ");
+                                CRntString b = CRntString_Concat(&a, value.Str());
+                                CRntString_Assign(line.Str(), &b);
                             }
                         }
                     }
                 }
             }
         }
-        fn_710007f564(line.Str(), g_unk_71015abdba);
+        CRntString_AppendCString(line.Str(), g_unk_71015abdba);
         fn_710007c450(&out, line.CStr(), line.Length(), 1);
     }
     fn_710007c144(&in.file);

@@ -7,7 +7,7 @@
 #include "game/UnkTU324.h"
 #include "types.h"
 
-bool fn_710007ee58(const base::global::CRntString* self, const char* str, u32 n);
+bool CRntString_EqualsIgnoreCaseN(const base::global::CRntString* self, const char* str, u32 n);
 
 struct UnkMediaEntry324 {
     u8 pad_0x0[0x38];
@@ -37,7 +37,7 @@ u32 fn_710021f704(UnkMediaSelect324* self, s32 kind, const char* prefix) {
     if (prefix) {
         UnkMediaEntry324** it = std::find_if(self->lists[index].entries, self->lists[index].entries + self->lists[index].count, [prefix](UnkMediaEntry324* entry) {
             const char* name = entry->name.data;
-            return name && *name && fn_710007ee58(&entry->name, prefix, 3);
+            return name && *name && CRntString_EqualsIgnoreCaseN(&entry->name, prefix, 3);
         });
         if (it != self->lists[index].entries + self->lists[index].count) {
             self->current[index] = *it;

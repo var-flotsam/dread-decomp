@@ -64,41 +64,41 @@ static_assert(sizeof(CRntString) == 0x30, "CRntString layout");
 // The destructor, as a function (fn_710007ecd4): frees the heap copy. It is also what
 // __cxa_atexit registers for global strings, and the second step of destroying a string with
 // inline storage (after fn_710007ed40).
-void fn_710007ecd4(base::global::CRntString* self);
+void CRntString_Destroy(base::global::CRntString* self);
 // Copies [str, str + length) in (fn_710007ebc8).
-void fn_710007ebc8(base::global::CRntString* self, const char* str, u32 length, s64 key);
-void fn_710007f3e4(base::global::CRntString* self, const char* str, u32 length);  // appends
+void CRntString_SetText(base::global::CRntString* self, const char* str, u32 length, s64 key);
+void CRntString_AppendChars(base::global::CRntString* self, const char* str, u32 length);  // appends
 // Appends another string's text (fn_710007f3b4, through fn_710007f3e4 with its data and length);
 // returns the string.
-base::global::CRntString* fn_710007f3b4(base::global::CRntString* self, const base::global::CRntString* other);
+base::global::CRntString* CRntString_Append(base::global::CRntString* self, const base::global::CRntString* other);
 // Whether two strings differ, by their keys (fn_710007f220).
-bool fn_710007f220(const base::global::CRntString* a, const base::global::CRntString* b);
+bool CRntString_KeysDiffer(const base::global::CRntString* a, const base::global::CRntString* b);
 // Whether the string's text equals a C string (fn_710007f140, src/base/global/CRntString.cpp).
-bool fn_710007f140(const base::global::CRntString* self, const char* str);
+bool CRntString_EqualsCString(const base::global::CRntString* self, const char* str);
 // Appends one character (through fn_710007f3e4); returns the string.
-base::global::CRntString* fn_710007f5ac(base::global::CRntString* self, char c);
+base::global::CRntString* CRntString_AppendChar(base::global::CRntString* self, char c);
 // Whether the string contains `str` (fn_710007fb9c).
-bool fn_710007fb9c(const base::global::CRntString* self, const char* str);
+bool CRntString_Contains(const base::global::CRntString* self, const char* str);
 // Concatenation: a new string (returned in memory) with a's text followed by b's
 // (fn_710007eee0, src/base/global/CRntString.cpp).
-base::global::CRntString fn_710007eee0(const base::global::CRntString* a, const base::global::CRntString* b);
+base::global::CRntString CRntString_Concat(const base::global::CRntString* a, const base::global::CRntString* b);
 
 // Builds an empty string that allocates from `allocator` (fn_710007e6e4): the first step of
 // constructing a string with inline storage, whose allocator object follows the string (the
 // callers set that object's vtable afterwards). Leaves owns_allocator and borrowed clear.
-void fn_710007e6e4(base::global::CRntString* self, base::UnkAllocator* allocator);
+void CRntString_InitWithAllocator(base::global::CRntString* self, base::UnkAllocator* allocator);
 // Assigns a C string (fn_710007e77c) or another string's text and key (fn_710007eaa0), both
 // through fn_710007ebc8.
-void fn_710007e77c(base::global::CRntString* self, const char* str);
-void fn_710007eaa0(base::global::CRntString* self, const base::global::CRntString* other);
+void CRntString_AssignCString(base::global::CRntString* self, const char* str);
+void CRntString_Assign(base::global::CRntString* self, const base::global::CRntString* other);
 // Move-constructs from `other`, which is left empty: the heap copy and allocator are taken over,
 // unless `other` allocates from an allocator it doesn't own (inline storage), when the text is
 // copied instead.
-void fn_710007eab4(base::global::CRntString* self, base::global::CRntString* other);
+void CRntString_MoveConstruct(base::global::CRntString* self, base::global::CRntString* other);
 // Clears the string: frees the heap copy (unless borrowed) and resets data, length and key; the
 // allocator is kept. The first step of destroying a string with inline storage, before
 // fn_710007ecd4.
-void fn_710007ed40(base::global::CRntString* self);
+void CRntString_Clear(base::global::CRntString* self);
 
 // A global empty string: what a string id with no data reads as (its text, +0x10 of the id's
 // data), and the default modifiers passed with a path.

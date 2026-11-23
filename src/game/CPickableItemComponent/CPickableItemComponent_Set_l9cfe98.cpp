@@ -59,8 +59,8 @@ void fn_71009cfe98(UnkItemDesc_l9cfe98* self, f32 value_0xa8, f32 value_0x50, co
         UnkStrId id(id_0xb8, true);
         self->field_0xb8 = static_cast<UnkStrId&&>(id);
     }
-    fn_710007e77c(&self->field_0xc0, string_0xc0);
-    fn_710007e77c(&self->field_0xf0, string_0xf0);
+    CRntString_AssignCString(&self->field_0xc0, string_0xc0);
+    CRntString_AssignCString(&self->field_0xf0, string_0xf0);
     self->field_0x128 = flag;
     self->field_0x129 = self->field_0xb8.data == &g_unk_7101d47108->empty;
     self->field_0x12a = self->field_0xf0.data && self->field_0xf0.data[0] != '\0';

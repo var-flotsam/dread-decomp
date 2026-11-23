@@ -70,7 +70,7 @@ extern const char* g_unk_7101cb6fd8[];  // the 43 event names, by kind
 // (csel, cmp); Clang branches on the comparison. The behaviour is the same.
 s32 fn_7101202300(const base::global::CRntString* name) {
     for (u32 i = 0; i < 0x2b; ++i)
-        if (fn_710007f140(name, g_unk_7101cb6fd8[i]))
+        if (CRntString_EqualsCString(name, g_unk_7101cb6fd8[i]))
             return i;
     return 0x2c;
 }

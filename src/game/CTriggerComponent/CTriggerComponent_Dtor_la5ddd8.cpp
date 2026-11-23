@@ -70,8 +70,8 @@ struct UnkTriggerShape_la5ddd8 {
 
     void Destroy() {
         fn_71009c172c(field_0xd0);
-        fn_710007ed40(&text);
-        fn_710007ecd4(&text);
+        CRntString_Clear(&text);
+        CRntString_Destroy(&text);
     }
 };
 static_assert(sizeof(UnkTriggerShape_la5ddd8) == 0x168, "layout");
@@ -131,7 +131,7 @@ void fn_7100a5ddd8(UnkTriggerComponent_la5ddd8* self) {
     self->field_0x280.table.~UnkOwnedStrIdTable();
     self->field_0x280.id.~CStrId();
     self->owned.Free();
-    fn_710007ecd4(&self->text);
+    CRntString_Destroy(&self->text);
     self->field_0x1f8.~CStrId();
     self->field_0x1f0.~CStrId();
     self->name.~CStrId();

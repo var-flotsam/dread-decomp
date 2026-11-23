@@ -22,10 +22,10 @@ bool fn_71000949b0(const UnkBlob_u71* self, base::global::CRntString* out) {
         const u8* bytes = static_cast<const u8*>(self->data);
         u32 v = (bytes[pos] << 16) | (bytes[pos + 1] << 8) | bytes[pos + 2];
         pos += 3;
-        fn_710007f5ac(out, alphabet[(v >> 18) & 0x3f]);
-        fn_710007f5ac(out, alphabet[(v >> 12) & 0x3f]);
-        fn_710007f5ac(out, alphabet[(v >> 6) & 0x3f]);
-        fn_710007f5ac(out, alphabet[v & 0x3f]);
+        CRntString_AppendChar(out, alphabet[(v >> 18) & 0x3f]);
+        CRntString_AppendChar(out, alphabet[(v >> 12) & 0x3f]);
+        CRntString_AppendChar(out, alphabet[(v >> 6) & 0x3f]);
+        CRntString_AppendChar(out, alphabet[v & 0x3f]);
         }
     } else {
         return false;
@@ -35,19 +35,19 @@ bool fn_71000949b0(const UnkBlob_u71* self, base::global::CRntString* out) {
     case 1: {
         const u8* bytes = static_cast<const u8*>(self->data);
         u8 last = bytes[pos];
-        fn_710007f5ac(out, alphabet[last >> 2]);
-        fn_710007f5ac(out, alphabet[(last & 3) << 4]);
-        fn_710007f5ac(out, '=');
-        fn_710007f5ac(out, '=');
+        CRntString_AppendChar(out, alphabet[last >> 2]);
+        CRntString_AppendChar(out, alphabet[(last & 3) << 4]);
+        CRntString_AppendChar(out, '=');
+        CRntString_AppendChar(out, '=');
         break;
     }
     case 2: {
         const u8* bytes = static_cast<const u8*>(self->data);
         u32 v = (bytes[pos] << 16) | (bytes[pos + 1] << 8);
-        fn_710007f5ac(out, alphabet[(v >> 18) & 0x3f]);
-        fn_710007f5ac(out, alphabet[(v >> 12) & 0x3f]);
-        fn_710007f5ac(out, alphabet[(v >> 6) & 0x3f]);
-        fn_710007f5ac(out, '=');
+        CRntString_AppendChar(out, alphabet[(v >> 18) & 0x3f]);
+        CRntString_AppendChar(out, alphabet[(v >> 12) & 0x3f]);
+        CRntString_AppendChar(out, alphabet[(v >> 6) & 0x3f]);
+        CRntString_AppendChar(out, '=');
         break;
     }
     }

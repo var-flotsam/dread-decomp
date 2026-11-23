@@ -36,14 +36,14 @@ CRntString fn_71003a4774(UnkTunableBoolCondition_l3a4774* self) {
     void* empty = &g_unk_7101d47108->empty;
     if (first == empty || self->field_0x48 == empty) {
         const char* word = self->field_0x38 == false ? "false" : "true";
-        fn_710007f564(&result, word);
+        CRntString_AppendCString(&result, word);
         return result;
     }
     first->ref_count++;
-    fn_710007f3b4(&result, &self->field_0x40->text);
-    fn_710007f564(&result, ":");
+    CRntString_Append(&result, &self->field_0x40->text);
+    CRntString_AppendCString(&result, ":");
     self->field_0x48->ref_count++;
-    fn_710007f3b4(&result, &self->field_0x48->text);
-    fn_710007f564(&result, "?");
+    CRntString_Append(&result, &self->field_0x48->text);
+    CRntString_AppendCString(&result, "?");
     return result;
 }

@@ -107,7 +107,7 @@ void fn_7100b51d40(UnkSlotOwner_lb51d40* self, UnkFileScreen_lb51d40* screen) {
     bool changed;
     {
         CRntString current = screen->scenario;
-        changed = fn_710007f220(&current, &scenario);
+        changed = CRntString_KeysDiffer(&current, &scenario);
     }
     if (changed) {
         CBlackboard* profile = &g_unk_7101d47310->field_0x820;

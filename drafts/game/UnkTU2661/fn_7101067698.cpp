@@ -174,7 +174,7 @@ static inline UnkModelManager* ModelManager() {
 
 // A string followed by a text.
 static inline CRntString Concat(const CRntString& a, const char* b) {
-    return fn_710007ef90(&a, b);
+    return CRntString_ConcatCString(&a, b);
 }
 
 // Sets `target` up to read the cutscene definition (a CCutSceneDef) at `def`, in `mode`.
@@ -285,7 +285,7 @@ bool fn_7101067698(UnkCutscene_l067698* self, const CFilePathStrId* path) {
             }
 
             ++self->name.data->reads;
-            CRntString stream = Concat(fn_710007f050("streams_cutscenes_", &self->name.data->String()), "_wav");
+            CRntString stream = Concat(CRntString_ConcatCStringFirst("streams_cutscenes_", &self->name.data->String()), "_wav");
             self->stream_path = CFilePathStrId(stream.data ? stream.data : g_unk_710162e2ed, true);
             ok = self->state == 1;
         }

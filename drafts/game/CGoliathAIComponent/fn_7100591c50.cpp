@@ -36,7 +36,7 @@ u32 fn_7100591c50(UnkGoliathAI_l591c50* self, void* object) {
             CStrId id(*fn_7100864018(collision, object));
             const CRntString& name = Name(id);
             if (id.data != &g_unk_7101d47108->empty)
-                result = fn_710007fb9c(&name, g_unk_71726e6740.Text());
+                result = CRntString_Contains(&name, g_unk_71726e6740.Text());
         }
     }
     return result;

@@ -78,7 +78,7 @@ void fn_71005096b4(UnkStruct_71005077f8* self_, u32 kind) {
     UnkInlineStr50 name;
     self->id = g_unk_7101d470e0;
     bool samus = samus_distance >= emmy_distance && kind == 13;
-    fn_710007eaa0(name.Str(), samus ? g.samus_suffix.Str() : g.emmy_suffix.Str());
+    CRntString_Assign(name.Str(), samus ? g.samus_suffix.Str() : g.emmy_suffix.Str());
     f32 value = samus ? samus_distance : emmy_distance;
     f32* chosen = samus ? &samus_distance : &emmy_distance;
     f32 step = 0.0f;
@@ -87,7 +87,7 @@ void fn_71005096b4(UnkStruct_71005077f8* self_, u32 kind) {
             step = g.bands[i];
             {
                 UnkStrIdSlot_l5096b4 slot;
-                CRntString text = fn_710007eee0(name.Str(), g.band_names[i].Str());
+                CRntString text = CRntString_Concat(name.Str(), g.band_names[i].Str());
                 CStrId_ConstructFromRntString(&slot.id, text, true);
                 Take_l5096b4(self->id, slot.id);
             }

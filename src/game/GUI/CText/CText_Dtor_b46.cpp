@@ -23,7 +23,7 @@ struct UnkWideStringAt_b46a3 {
 
 template <u32 Offset>
 struct UnkRntStringAt_b46a3 {
-    static void Release(char* self) { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(self + Offset)); }
+    static void Release(char* self) { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(self + Offset)); }
 };
 
 using UnkTextMembers_b46a3 = base::UnkMembers<UnkWideStringAt_b46a3<0x218>, UnkWideStringAt_b46a3<0x1f8>,

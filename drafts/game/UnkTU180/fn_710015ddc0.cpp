@@ -43,7 +43,7 @@ struct UnkScratchString {
     alignas(8) u8 storage[sizeof(CRntString)];
     CRntString* Get() { return reinterpret_cast<CRntString*>(storage); }
     UnkScratchString() { fn_710007e6c4(storage); }
-    ~UnkScratchString() { fn_710007ecd4(Get()); }
+    ~UnkScratchString() { CRntString_Destroy(Get()); }
 };
 
 bool fn_710015ddc0(UnkUniformTables* self, u32 kind, u64* out, const char* name) {
@@ -68,7 +68,7 @@ bool fn_710015ddc0(UnkUniformTables* self, u32 kind, u64* out, const char* name)
     if (!table)
         return false;
     static UnkScratchString s_name;
-    fn_710007e77c(s_name.Get(), name);
+    CRntString_AssignCString(s_name.Get(), name);
     UnkUniformRangeEntry* entry = table->ranges.Find(s_name.Get()->key);
     if (entry == table->ranges.End())
         return false;

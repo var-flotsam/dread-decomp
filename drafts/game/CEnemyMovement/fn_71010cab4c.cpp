@@ -137,11 +137,11 @@ static inline bool PlayReverse(UnkEnemyMovement_l0cab4c* self, bool flag) {
         return false;
     CStrId action = *fn_7101177ae8(animation, kMainTrack);
     UnkTunableLine name;
-    fn_710007eb6c(name.Str(), &action);
+    CRntString_AssignStrId(name.Str(), &action);
     UnkTunableLine suffix("_reverse");
     u64 key;
     {
-        CRntString reversed = fn_710007eee0(name.Str(), suffix.Str());
+        CRntString reversed = CRntString_Concat(name.Str(), suffix.Str());
         fn_7100066630(&key, &reversed);
     }
     s32 done = static_cast<s32>(fn_710070d89c(fn_71011771e0(animation, kMainTrack)));

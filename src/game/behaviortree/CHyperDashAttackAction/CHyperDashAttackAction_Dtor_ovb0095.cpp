@@ -47,7 +47,7 @@ void fn_710044b4cc(UnkHyperDashAction_ovb0095* self) {
     self->vtable = &g_unk_7101a36838[2];
     self->listener.~UnkHyperDashListener_ovb0095();
     self->field_0x60.~UnkStrIdMemberOf();
-    fn_710007ecd4(&self->field_0x30);
+    CRntString_Destroy(&self->field_0x30);
     fn_7100393ea0(self);
 }
 

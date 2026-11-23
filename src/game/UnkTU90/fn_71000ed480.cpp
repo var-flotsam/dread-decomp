@@ -55,7 +55,7 @@ void fn_71000ed480(UnkWriter_b0202* self, const UnkReflValueRef* ref) {
             src = value.field_0x14 == 1 || *reinterpret_cast<const u64*>(value.type + 0x18) > 8
                       ? static_cast<const base::global::CRntString*>(value.field_0x0)
                       : reinterpret_cast<const base::global::CRntString*>(&value);
-        fn_710007eaa0(text.Str(), src);
+        CRntString_Assign(text.Str(), src);
         base::global::CRntFile* file = self->file;
         const char* chars = text.Str()->data;
         if (!chars)

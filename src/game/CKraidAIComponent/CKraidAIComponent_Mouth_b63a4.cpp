@@ -61,7 +61,7 @@ __attribute__((always_inline)) static inline bool Contains_b63a4(UnkKraidMouthVa
         return false;
     UnkKraidMouthIdData_b63a4* o = other.data;
     ++o->count;
-    return fn_710007fb9c(reinterpret_cast<const base::global::CRntString*>(&d->text), o->text ? o->text : "");
+    return CRntString_Contains(reinterpret_cast<const base::global::CRntString*>(&d->text), o->text ? o->text : "");
 }
 
 void fn_71005fd5cc(UnkKraidMouthAI_b63a4* self, f32 dt) {

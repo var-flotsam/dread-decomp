@@ -92,7 +92,7 @@ void fn_71008fc90c(UnkLavaPoolEnter_l8fc90c* self, UnkLavaPoolActor_l8fc90c* act
         return;
     void* info = g_unk_7101d47310->field_0x38;
     UnkTunableLine key(self->owner->ResourceName());
-    fn_710007f3b4(key.Str(), &actor->ResourceName());
+    CRntString_Append(key.Str(), &actor->ResourceName());
     {
         UnkTextStrId_l8fc90c id(*key.Str());
         fn_7100f0ecf4(info, reinterpret_cast<const CStrId*>(&id));

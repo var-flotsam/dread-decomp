@@ -28,7 +28,7 @@ inline const CRntString& IdString(const Id& id) {
 // A counted part of a string, on 0x200 bytes of inline storage.
 struct UnkPart200_l08de50 : UnkBufferString<0x200, g_unk_7101a1a5a8> {
     __attribute__((always_inline)) UnkPart200_l08de50(const char* str, u32 length) {
-        fn_710007e7f8(Str(), str, length);
+        CRntString_AssignPrefix(Str(), str, length);
     }
 };
 
@@ -93,9 +93,9 @@ inline void ReleaseAndTake(Id* id, Other&& other) {
 
 bool fn_710008de50(const CFilePathStrId* path, CFilePathStrId* dir, CStrId* name, CStrId* ext) {
     const CRntString& text = IdString(*path);
-    s32 colon = fn_710007facc(&text, ':', 0);
-    s32 slash = fn_710007fb10(&text, '/', -1);
-    s32 dot = fn_710007fb10(&text, '.', -1);
+    s32 colon = CRntString_FindChar(&text, ':', 0);
+    s32 slash = CRntString_FindLastChar(&text, '/', -1);
+    s32 dot = CRntString_FindLastChar(&text, '.', -1);
     if (dir) {
         if (slash >= 0) {
             u32 start = colon + 1;

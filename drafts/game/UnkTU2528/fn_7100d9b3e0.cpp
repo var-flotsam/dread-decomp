@@ -54,17 +54,17 @@ static inline UnkPathName_ld9b3e0 Replaced(const UnkPathName_ld9b3e0& name, char
 // Keeps `length` characters of the name from `from` on.
 static inline void Keep(UnkPathName_ld9b3e0& name, const char* from, u32 length) {
     UnkPathName_ld9b3e0 part;
-    fn_710007e7f8(part.Str(), from, length);
-    fn_710007eaa0(name.Str(), part.Str());
+    CRntString_AssignPrefix(part.Str(), from, length);
+    CRntString_Assign(name.Str(), part.Str());
 }
 
 CFilePathStrId fn_7100d9b3e0(const CStrId& id) {
     ++id.data->reads;
     UnkPathName_ld9b3e0 path = Replaced(Replaced(Lowered(id.data->text), '\\', '/'), '/', '#');
-    s32 dot = fn_710007fb10(path.Str(), '.', -1);
+    s32 dot = CRntString_FindLastChar(path.Str(), '.', -1);
     if (dot > 0)
         Keep(path, path.Str()->data, dot);
-    s32 colon = fn_710007fb10(path.Str(), ':', -1);
+    s32 colon = CRntString_FindLastChar(path.Str(), ':', -1);
     if (colon > 0) {
         u32 start = colon + 1;
         u32 length = path.Str()->length - start;

@@ -33,17 +33,17 @@ struct UnkGuiIdText_b44a3 {
         CRntString str;
     };
 
-    explicit UnkGuiIdText_b44a3(const void* id) { fn_710007eb20(&str, static_cast<const UnkPooledStrId*>(id)); }
+    explicit UnkGuiIdText_b44a3(const void* id) { CRntString_ConstructFromStrId(&str, static_cast<const UnkPooledStrId*>(id)); }
     UnkGuiIdText_b44a3(const UnkGuiIdText_b44a3& other);  // never called: the result is built in place
-    ~UnkGuiIdText_b44a3() { fn_710007ecd4(&str); }
+    ~UnkGuiIdText_b44a3() { CRntString_Destroy(&str); }
 };
 
 UnkGuiIdText_b44a3 fn_71011cd4f8(const UnkGuiNamedNode_b44a3* self) {
     UnkGuiIdText_b44a3 name(&self->id);
     for (const UnkGuiNamedNode_b44a3* n = self->parent; n; n = n->parent) {
         ++n->id->reads;
-        fn_710007eaa0(&name.str, &static_cast<const CRntString&>(
-                                     fn_710007eee0(&static_cast<const CRntString&>(fn_710007ef90(&n->id->text, ".")),
+        CRntString_Assign(&name.str, &static_cast<const CRntString&>(
+                                     CRntString_Concat(&static_cast<const CRntString&>(CRntString_ConcatCString(&n->id->text, ".")),
                                                    &name.str)));
     }
     return name;

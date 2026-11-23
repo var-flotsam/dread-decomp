@@ -22,7 +22,7 @@ using base::global::CStrId;
 
 // An animation name built from a string id (fn_710007eb6c).
 struct UnkIdleAnimName_l38dffc : UnkBufferString<0x100, g_unk_7101a194b8> {
-    explicit UnkIdleAnimName_l38dffc(const CStrId* id) { fn_710007eb6c(Str(), id); }
+    explicit UnkIdleAnimName_l38dffc(const CStrId* id) { CRntString_AssignStrId(Str(), id); }
 };
 
 // The kind-5 navigation parameter block (vtable g_unk_7101a25b10), with the flags at +0x38 to +0x3d named.
@@ -133,7 +133,7 @@ u32 fn_710038dffc(UnkStopInIdleAction_l38dffc* self, f32 dt) {
             if (UnkAnimationComponent* animation = self->owner->animation) {
                 const CStrId* current = fn_7101177ae8(animation, 0xf4061ff25a2163d6);
                 ++current->data->reads;
-                if (!fn_710007f220(&current->data->String(), name.Str()))
+                if (!CRntString_KeysDiffer(&current->data->String(), name.Str()))
                     status = fn_71011782ec(animation, 0xf4061ff25a2163d6) ? 5 : 2;
             }
         }

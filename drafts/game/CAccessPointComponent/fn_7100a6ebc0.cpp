@@ -91,7 +91,7 @@ void fn_7100a6ebc0(UnkAp_la6ebc0* self) {
     color.y = 0.0f;
     color.z = 0.0f;
     fn_7101053c14(fx, &color, fade_in, fade_out, 1.0f);
-    if (fn_710007f140(&reinterpret_cast<UnkGameManagerMode_la6ebc0*>(g_unk_7101d47310)->mode, "MAINMENU")) {
+    if (CRntString_EqualsCString(&reinterpret_cast<UnkGameManagerMode_la6ebc0*>(g_unk_7101d47310)->mode, "MAINMENU")) {
         UnkApCharClass_la6ebc0* char_class = self->char_class;
         void* music = MusicManager();
         ++char_class->music->use_count;

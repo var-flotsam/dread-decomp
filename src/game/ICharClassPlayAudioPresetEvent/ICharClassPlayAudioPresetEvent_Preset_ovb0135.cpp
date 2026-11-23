@@ -23,7 +23,7 @@ void fn_7100beeadc(UnkAudioPresetEvent_ovb0135* self, const CStrId* name) {
     self->name = *name;
     if (self->name.data == &g_unk_7101d47108->empty)
         return;
-    fn_71000267f8(&self->path, UnkPathIdsFromText(fn_710007f050("audiopreset:system/snd/presets/",
+    fn_71000267f8(&self->path, UnkPathIdsFromText(CRntString_ConcatCStringFirst("audiopreset:system/snd/presets/",
                                                                  &base::reflection::refl_RntStringOf(self->name)))
                                    .ids);
 }

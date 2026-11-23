@@ -111,7 +111,7 @@ static inline bool NameHas(UnkStringData* const& name, const char* str) {
     ++name->reads;
     if (name == &g_unk_7101d47108->empty)
         return false;
-    return fn_710007fb9c(&name->String(), str);
+    return CRntString_Contains(&name->String(), str);
 }
 
 static inline void SetSectionBool(CBlackboard* blackboard, const CStrId& section, UnkPropertyName* name, bool* value) {
@@ -149,7 +149,7 @@ void fn_71008e1ea4(UnkItemLife_l8e1ea4* self) {
             UnkStringData* const& name = collider->name;
             ++name->reads;
             bool enabled;
-            if (name != &g_unk_7101d47108->empty && fn_710007fb9c(&name->String(), "_DEBRIS"))
+            if (name != &g_unk_7101d47108->empty && CRntString_Contains(&name->String(), "_DEBRIS"))
                 enabled = true;
             else
                 enabled = false;

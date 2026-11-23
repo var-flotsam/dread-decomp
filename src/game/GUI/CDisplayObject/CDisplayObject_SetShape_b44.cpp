@@ -50,7 +50,7 @@ UnkReflValue fn_71011d403c(UnkGuiShapeOwner_b44a3* owner, UnkReflValue** source)
         auto* d = reinterpret_cast<UnkGuiShapeIdData_b44a3*>(id.data);
         target->shape = fn_71011ba9dc(reinterpret_cast<UnkGuiMapOwner*>(g_unk_717271e8f8), d->text.key);
         ++d->reads;
-        fn_710007eaa0(&target->name, &d->text);
+        CRntString_Assign(&target->name, &d->text);
         has = target->shape != nullptr;
     }
     const base::reflection::CType* type = fn_710000d228();

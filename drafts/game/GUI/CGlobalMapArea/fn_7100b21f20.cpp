@@ -145,7 +145,7 @@ void fn_7100b21f20(UnkGlobalMapArea_b21f20* self) {
             TakeId(self->id, UnkBuiltId_b21f20(*area.Str()));
         }
         UnkTunableLine text("Default");
-        fn_710007f3b4(text.Str(), &TextOf(self->id));
+        CRntString_Append(text.Str(), &TextOf(self->id));
         TakeId(self->default_id, UnkBuiltId_b21f20(*text.Str()));
         static const CStrId s_on_focus_received("OnFocusReceived", true);
         self->on_focus_received = s_on_focus_received;

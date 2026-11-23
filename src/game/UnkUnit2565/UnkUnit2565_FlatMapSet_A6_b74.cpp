@@ -9,7 +9,7 @@ struct UnkLongString_A6_b74 {
     u8 data[0x248];
 
     void Assign(const UnkLongString_A6_b74* o) {
-        fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(this),
+        CRntString_Assign(reinterpret_cast<base::global::CRntString*>(this),
                       reinterpret_cast<const base::global::CRntString*>(o));
     }
 };

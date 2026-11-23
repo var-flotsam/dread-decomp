@@ -31,14 +31,14 @@ void fn_7100835dd8(UnkGunIds_l835dd8* self, const CStrId* name) {
     CStrId* id = reinterpret_cast<CStrId*>(slot);
     const CRntString& text = IdString(*name);
     UnkBufferString<0x80, g_unk_7101a1b750> buffer;
-    fn_710007eaa0(buffer.Str(), &text);
-    fn_710007f564(buffer.Str(), "0");
+    CRntString_Assign(buffer.Str(), &text);
+    CRntString_AppendCString(buffer.Str(), "0");
     CStrId_ConstructFromRntString(id, *buffer.Str(), true);
     self->first.ReleaseAndTake(*id);
     id->~CStrId();
 
-    fn_710007eaa0(buffer.Str(), &IdString(*name));
-    fn_710007f564(buffer.Str(), "1");
+    CRntString_Assign(buffer.Str(), &IdString(*name));
+    CRntString_AppendCString(buffer.Str(), "1");
     CStrId_ConstructFromRntString(id, *buffer.Str(), true);
     self->second.ReleaseAndTake(*id);
     id->~CStrId();

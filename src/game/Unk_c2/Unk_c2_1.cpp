@@ -30,22 +30,22 @@ void fn_710118b384(UnkObj_710118b384* self) {
     CRntString* path = &self->path;
     if (!path->data || !path->data[0])
         return;
-    u32 start = fn_710007fb10(path, '/', -1) + 1;
-    s32 end = fn_710007fb10(path, '.', -1);
+    u32 start = CRntString_FindLastChar(path, '/', -1) + 1;
+    s32 end = CRntString_FindLastChar(path, '.', -1);
     if (end == -1)
         end = self->path.length;
     const char* text = path->data + start;
     u32 length = end - start;
     UnkInlineString_710118b384 s;
     auto* str = reinterpret_cast<CRntString*>(&s);
-    fn_710007e6e4(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
+    CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
     s.vtable = &g_unk_7101a194b8[2];
     s.field_0x138 = 0;
     s.field_0x140 = 0;
-    fn_710007e7f8(str, text, length);
-    fn_710007f564(str, ".OnLuaLibrariesReloaded");
+    CRntString_AssignPrefix(str, text, length);
+    CRntString_AppendCString(str, ".OnLuaLibrariesReloaded");
     fn_7100000790(str->data, "");
     fn_71011b6b5c(g_unk_717271e8f8, 0);
-    fn_710007ed40(str);
-    fn_710007ecd4(str);
+    CRntString_Clear(str);
+    CRntString_Destroy(str);
 }

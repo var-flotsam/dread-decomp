@@ -189,7 +189,7 @@ using UnkIdIdValues4Pair = UnkValuePairRef<CStrId, UnkIdValues4_245b60>;
 using UnkIdIdsValuePair = UnkValuePairRef<CStrId, UnkIdsValue_245b60>;
 
 __attribute__((always_inline)) inline UnkAssignedString& UnkAssignedString::operator=(const UnkAssignedString& other) {
-    fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(this),
+    CRntString_Assign(reinterpret_cast<base::global::CRntString*>(this),
                   reinterpret_cast<const base::global::CRntString*>(&other));
     return *this;
 }

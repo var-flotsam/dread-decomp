@@ -105,7 +105,7 @@ bool fn_7100a782e8(UnkCapsuleUsableComponent_la782e8* self, UnkWeakTarget* user,
     if (!user)
         return false;
     AssignRef(&self->user, fn_7100d78378(user));
-    fn_710007eaa0(&self->name, name);
+    CRntString_Assign(&self->name, name);
     if (Track_la782e8(&self->list_a)) {
         f32 a = self->def->field_0x1ac;
         f32 b = self->def->field_0x1b0;

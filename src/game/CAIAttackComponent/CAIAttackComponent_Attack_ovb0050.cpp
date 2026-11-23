@@ -79,11 +79,11 @@ void fn_710113420c(UnkAIAttackComponent3_ovb0050* self, CRntFile* file) {
         fn_710007c714(file, &value, 4, 1);
     {
         CRntString text(first);
-        fn_710007eaa0(&self->field_0x138, &text);
+        CRntString_Assign(&self->field_0x138, &text);
     }
     {
         CRntString text(second);
-        fn_710007eaa0(&self->field_0x168, &text);
+        CRntString_Assign(&self->field_0x168, &text);
     }
     self->field_0x198 = value;
 }

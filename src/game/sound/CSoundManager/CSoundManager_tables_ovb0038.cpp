@@ -647,7 +647,7 @@ void fn_7101028b08(UnkSoundNamed_b0038* self) {
     __builtin_memset(&self->name, 0, sizeof(self->name));
     self->vtable = g_unk_7101cabad0 + 2;
     UnkSoundInlineString_b0038* s = &self->name;
-    fn_710007e6e4(reinterpret_cast<CRntString*>(s), reinterpret_cast<base::UnkAllocator*>(&s->vtable));
+    CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(s), reinterpret_cast<base::UnkAllocator*>(&s->vtable));
     s->vtable = g_unk_7101a1b750 + 2;
     s->field_0xb8 = 0;
     s->field_0xc0 = 0;

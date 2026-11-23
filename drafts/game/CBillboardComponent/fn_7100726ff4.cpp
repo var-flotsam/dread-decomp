@@ -43,7 +43,7 @@ static inline const UnkResType& PathType(const CFilePathStrId& path) {
     ++path.data->reads;
     if (path.data == &g_unk_7101d47200->empty)
         return g_unk_716e4540f8;
-    return fn_710007fb9c(&path.data->String(), ".bsmat") ? g_unk_716e453f78 : g_unk_716e4540f8;
+    return CRntString_Contains(&path.data->String(), ".bsmat") ? g_unk_716e453f78 : g_unk_716e4540f8;
 }
 
 bool fn_7100726ff4(UnkBillboardComponent_l726ff4* self, void* arg) {

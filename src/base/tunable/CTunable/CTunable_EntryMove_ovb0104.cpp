@@ -20,6 +20,6 @@ UnkTunableEntryMove* fn_7100133054(UnkTunableEntryMove* self, UnkTunableEntryMov
     self->name.ReleaseAndTake(other->name);
     self->field_0x10.ReleaseAndTake(other->field_0x10);
     const base::global::CRntString* text = &other->field_0x18;
-    fn_710007eaa0(&self->field_0x18, text);
+    CRntString_Assign(&self->field_0x18, text);
     return self;
 }

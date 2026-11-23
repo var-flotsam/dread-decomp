@@ -68,14 +68,14 @@ struct UnkNodeOwner {
 template <u32 Next>
 __attribute__((always_inline)) inline void UnkDestroyStrNode(UnkListNode<Next>* node) {
     auto* str = reinterpret_cast<base::global::CRntString*>(node);
-    fn_710007ed40(str);
-    fn_710007ecd4(str);
+    CRntString_Clear(str);
+    CRntString_Destroy(str);
 }
 
 // A node whose string is only destroyed.
 template <u32 Next>
 __attribute__((always_inline)) inline void UnkDestroyStrNodeOnly(UnkListNode<Next>* node) {
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(node));
 }
 
 // The string list fn_71000732d4 destroys (src/game_s1/fn_71000fc7cc.cpp): next link at +0x30; its

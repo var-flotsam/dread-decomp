@@ -36,15 +36,15 @@ struct UnkInlineString_lfcd380 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_lfcd380() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
     }
-    explicit UnkInlineString_lfcd380(const char* text) : UnkInlineString_lfcd380() { fn_710007e77c(Str(), text); }
+    explicit UnkInlineString_lfcd380(const char* text) : UnkInlineString_lfcd380() { CRntString_AssignCString(Str(), text); }
     ~UnkInlineString_lfcd380() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -88,17 +88,17 @@ UnkPathId_lfcd380 fn_7100fcd380(UnkStream_lfcd380* self, bool localized) {
         Language();
         CopyLower(lower, fn_710119bdac(language));
         UnkInlineString_lfcd380 code(lower);
-        fn_710007f3b4(path.Str(), code.Str());
+        CRntString_Append(path.Str(), code.Str());
     } else {
-        fn_710007f564(path.Str(), "common");
+        CRntString_AppendCString(path.Str(), "common");
     }
-    fn_710007f564(path.Str(), "/");
+    CRntString_AppendCString(path.Str(), "/");
     CopyLower(lower, Text(self->name)->data);
     {
         UnkInlineString_lfcd380 name(lower);
-        fn_710007f3b4(path.Str(), name.Str());
+        CRntString_Append(path.Str(), name.Str());
     }
-    if (!fn_710007fb9c(Text(self->name), ".wav"))
-        fn_710007f564(path.Str(), ".wav");
+    if (!CRntString_Contains(Text(self->name), ".wav"))
+        CRntString_AppendCString(path.Str(), ".wav");
     return UnkPathId_lfcd380(*path.Str());
 }

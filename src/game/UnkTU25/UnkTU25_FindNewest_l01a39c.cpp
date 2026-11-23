@@ -24,7 +24,7 @@ using base::global::UnkStringPool;
 
 struct UnkRegistry_7100d92158;
 extern char g_unk_7101d4e578[] __attribute__((visibility("hidden")));
-bool fn_710007fbc0(const CRntString* self, const CRntString* other);
+bool CRntString_ContainsString(const CRntString* self, const CRntString* other);
 
 // The string of an id, counting the read.
 template <class Id>
@@ -162,30 +162,30 @@ UnkPair_l01a39c fn_710001a39c(const UnkKey_l01a39c* key) {
         fn_7100020320(g_unk_7101d4bbc0, reinterpret_cast<const UnkRegistryKey*>(key)));
     UnkNames_l01a39c* names = entry->names;
     for (base::UnkPooledString *p = names->names, *e = p + names->name_count; p != e; ++p) {
-        if (fn_710007fbc0(&IdString(key->path), &IdString(*p)))
+        if (CRntString_ContainsString(&IdString(key->path), &IdString(*p)))
             return UnkPair_l01a39c(g_unk_7101d4e578, key->path);
     }
 
     UnkBufferString<0x100, g_unk_7101a194b8> dir;
     if (entry->directory.data != &g_unk_7101d47200->empty) {
-        fn_710007eaa0(dir.Str(), &IdString(entry->directory));
+        CRntString_Assign(dir.Str(), &IdString(entry->directory));
         // The key's file name: what follows the last '/' of its path.
         const CRntString& path = IdString(key->path);
-        u32 start = fn_710007fb10(&IdString(key->path), '/', -1) + 1;
+        u32 start = CRntString_FindLastChar(&IdString(key->path), '/', -1) + 1;
         u32 length = path.length - start;
         const char* text = path.data + start;
         UnkBufferString<0x100, g_unk_7101a194b8> name;
-        fn_710007e7f8(name.Str(), text, length);
-        fn_710007f3b4(dir.Str(), name.Str());
+        CRntString_AssignPrefix(name.Str(), text, length);
+        CRntString_Append(dir.Str(), name.Str());
     } else {
-        fn_710007eaa0(dir.Str(), &IdString(key->path));
+        CRntString_Assign(dir.Str(), &IdString(key->path));
     }
 
     UnkPair_l01a39c result;
     s64 newest = 0;
     names = entry->names;
     for (base::UnkPooledString *p = names->names, *e = p + names->name_count; p != e; ++p) {
-        UnkPair_l01a39c candidate(g_unk_7101d4e578, UnkBuiltPath_l01a39c(fn_710007eee0(dir.Str(), &IdString(*p))));
+        UnkPair_l01a39c candidate(g_unk_7101d4e578, UnkBuiltPath_l01a39c(CRntString_Concat(dir.Str(), &IdString(*p))));
         UnkFileInfo_l01a39c info;
         UnkRegistry_0x70* reg = g_unk_7101d4b5a0;
         if (!reg) {

@@ -25,7 +25,7 @@ struct UnkNamedBase_0x38 {
 
     __attribute__((always_inline)) ~UnkNamedBase_0x38() {
         vtable = &g_unk_7101cabad0[2];
-        fn_710007ed40(&name);
+        CRntString_Clear(&name);
     }
 };
 

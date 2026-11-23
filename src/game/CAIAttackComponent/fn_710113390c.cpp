@@ -85,15 +85,15 @@ void fn_710113390c(UnkAIAttackComponent_l13390c* self) {
     fn_7101135f04(reinterpret_cast<UnkAttackComponent_c3*>(self));
     self->vtable = g_unk_7101cb2ab0 + 2;
     self->vtable_0x40 = g_unk_7101cb2ab0 + 62;
-    fn_710007e704(&self->key_0x138, g_unk_710162e2ed);
-    fn_710007e704(&self->key_0x168, g_unk_710162e2ed);
+    CRntString_ConstructFromCString(&self->key_0x138, g_unk_710162e2ed);
+    CRntString_ConstructFromCString(&self->key_0x168, g_unk_710162e2ed);
     self->field_0x198 = 0;
     self->field_0x1a0 = nullptr;
     self->field_0x1a8 = 0;
     self->field_0x1ac = -1.0f;
     self->field_0x1b0 = -1.0f;
     new (&self->pool) UnkAttackPool_l13390c();
-    fn_710007e704(&self->key_0x270, g_unk_710162e2ed);
+    CRntString_ConstructFromCString(&self->key_0x270, g_unk_710162e2ed);
     self->field_0x2a0 = -1;
     new (&self->id_0x2a8) CStrId(base::global::CStrId::Empty());
     new (&self->id_0x2b0) CStrId(base::global::CStrId::Empty());
@@ -101,7 +101,7 @@ void fn_710113390c(UnkAIAttackComponent_l13390c* self) {
     self->field_0x2c0 = 0;
     self->field_0x2c8 = 0;
     self->field_0x2d0 = 0;
-    fn_710007e704(&self->key_0x2d8, g_unk_710162e2ed);
+    CRntString_ConstructFromCString(&self->key_0x2d8, g_unk_710162e2ed);
     self->field_0x308 = g_unk_7101a2aef8 + 2;
     self->field_0x328 = 0;
     self->field_0x338 = 0;

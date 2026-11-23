@@ -24,18 +24,18 @@ struct UnkInlineString_ladd810 {
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     const CRntString* Str() const { return reinterpret_cast<const CRntString*>(str); }
     UnkInlineString_ladd810() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         field_0x138 = 0;
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x140 = 0;
     }
     UnkInlineString_ladd810& operator=(const UnkInlineString_ladd810& other) {
-        fn_710007eaa0(Str(), other.Str());
+        CRntString_Assign(Str(), other.Str());
         return *this;
     }
     ~UnkInlineString_ladd810() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -52,7 +52,7 @@ inline UnkInlineString_ladd810 Mid_ladd810(const CRntString* text, u32 start, u3
     u32 length = count == 0xffffffff ? text->length - start : count;
     const char* from = text->data + start;
     UnkInlineString_ladd810 part;
-    fn_710007e7f8(part.Str(), from, length);
+    CRntString_AssignPrefix(part.Str(), from, length);
     return part;
 }
 
@@ -67,8 +67,8 @@ inline bool SameText_ladd810(const CRntString& a, const CRntString& b) { return 
 
 bool fn_7100add810(const CStrId* id, void* unused, CStrId* out) {
     UnkInlineString_ladd810 text;
-    fn_710007eb6c(text.Str(), id);
-    s32 bar = fn_710007fb10(text.Str(), '|', -1);
+    CRntString_AssignStrId(text.Str(), id);
+    s32 bar = CRntString_FindLastChar(text.Str(), '|', -1);
     if (bar >= 0)
         text = Mid_ladd810(text.Str(), bar + 1);
 

@@ -18,19 +18,19 @@ bool fn_710113906c(UnkFactionComponent_c3* self, const CRntString* name) {
         return false;
     if (!name->data || !name->data[0])
         return false;
-    if (fn_710007f140(name, "Players")) {
+    if (CRntString_EqualsCString(name, "Players")) {
         self->kind = 1;
-        fn_710007eaa0(&self->name, name);
+        CRntString_Assign(&self->name, name);
         return true;
     }
     u32 kind;
-    if (fn_710007f140(name, "Neutral"))
+    if (CRntString_EqualsCString(name, "Neutral"))
         kind = 2;
-    else if (fn_710007f140(name, "Enemies"))
+    else if (CRntString_EqualsCString(name, "Enemies"))
         kind = 4;
     else
         return false;
     self->kind = kind;
-    fn_710007eaa0(&self->name, name);
+    CRntString_Assign(&self->name, name);
     return true;
 }

@@ -72,7 +72,7 @@ bool fn_710050a500(UnkGrabAttack_b59a3* self, const UnkGrabId_b59a3* id) {
         goto plain;
     u64 hash;
     {
-        CRntString s = fn_710007eee0(&id->Str(), &g_unk_71726de700);
+        CRntString s = CRntString_Concat(&id->Str(), &g_unk_71726de700);
         fn_7100066630(&hash, &s);
     }
     base::reflection::UnkReflTypeIdArg mode2;

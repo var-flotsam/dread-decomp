@@ -40,12 +40,12 @@ static inline void DestroyList(List* self) {
 static inline void DestroyNode_7100219134(char* node) { fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(node)); }
 
 // A node that is a string (base/global/CRntString.h).
-static inline void DestroyNode_710002e3f8(char* node) { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node)); }
+static inline void DestroyNode_710002e3f8(char* node) { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(node)); }
 
 static inline void DestroyNode_7100103cb8(char* node) {
     auto* str = reinterpret_cast<base::global::CRntString*>(node);
-    fn_710007ed40(str);
-    fn_710007ecd4(str);
+    CRntString_Clear(str);
+    CRntString_Destroy(str);
 }
 
 void fn_7100219134(UnkNodeList_7100219134* self) { DestroyList<unk_7101a202e0, 0x10, DestroyNode_7100219134>(self); }

@@ -158,7 +158,7 @@ struct UnkRectName_l2045d0 {
     base::global::CRntString str;
 
     UnkRectName_l2045d0& operator=(const UnkRectName_l2045d0& o) {
-        fn_710007eaa0(&str, &o.str);
+        CRntString_Assign(&str, &o.str);
         return *this;
     }
 };

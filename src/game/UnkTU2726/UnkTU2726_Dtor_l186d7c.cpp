@@ -81,8 +81,8 @@ void fn_7101186d7c(UnkIngameMenu_l186d7c* self) {
     Release(self->field_0x100);
     Release(self->field_0xf8);
     Release(self->field_0xf0);
-    fn_710007ecd4(&self->field_0xb8);
-    fn_710007ecd4(&self->field_0x88);
-    fn_710007ecd4(&self->field_0x58);
+    CRntString_Destroy(&self->field_0xb8);
+    CRntString_Destroy(&self->field_0x88);
+    CRntString_Destroy(&self->field_0x58);
     fn_71011867d4(self);
 }

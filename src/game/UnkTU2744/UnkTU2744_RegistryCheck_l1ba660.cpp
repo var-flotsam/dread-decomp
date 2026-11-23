@@ -17,8 +17,8 @@ struct UnkKeyTemp_l1ba660 {
 struct UnkTextTemp_l1ba660 {
     u64 words[41];
     ~UnkTextTemp_l1ba660() {
-        fn_710007ed40(reinterpret_cast<base::global::CRntString*>(this));
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
+        CRntString_Clear(reinterpret_cast<base::global::CRntString*>(this));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this));
     }
 };
 struct UnkEntry_0x30;

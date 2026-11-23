@@ -360,10 +360,10 @@ struct UnkMmName_b0199 {
     u8 unk_0x0[0x30];
 
     __attribute__((always_inline)) UnkMmName_b0199() {
-        fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(this), g_unk_7101603b01);
+        CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(this), g_unk_7101603b01);
     }
     __attribute__((always_inline)) ~UnkMmName_b0199() {
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this));
     }
 };
 

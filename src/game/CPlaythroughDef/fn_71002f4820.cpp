@@ -40,7 +40,7 @@ void fn_71002f4820(UnkNode* self) {
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
     self->field_0x10 = &g_unk_7101d47108->empty;
-    fn_710007e6e4(reinterpret_cast<base::global::CRntString*>(self->field_0x18),
+    CRntString_InitWithAllocator(reinterpret_cast<base::global::CRntString*>(self->field_0x18),
                   reinterpret_cast<base::UnkAllocator*>(&self->field_0x48));
     self->field_0x48.vtable = g_unk_7101a1b678 + 2;
     self->field_0x48.field_0x48 = 0;

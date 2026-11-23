@@ -32,7 +32,7 @@ void fn_7100133e28(UnkIdsInlineString_l133e28* self) {
     MakeEmpty(&self->ids[0]);
     MakeEmpty(&self->ids[1]);
     MakeEmpty(&self->ids[2]);
-    fn_710007e6e4(&self->str.str, reinterpret_cast<base::UnkAllocator*>(&self->str.vtable));
+    CRntString_InitWithAllocator(&self->str.str, reinterpret_cast<base::UnkAllocator*>(&self->str.vtable));
     self->str.vtable = &g_unk_7101a194b8[2];
     self->str.field_0x138 = 0;
     self->str.field_0x140 = 0;

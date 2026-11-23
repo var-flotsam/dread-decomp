@@ -91,7 +91,7 @@ struct UnkReportString {
     };
 
     explicit UnkReportString(u32 size) { fn_710007eba0(Raw(), size); }
-    ~UnkReportString() { fn_710007ecd4(&str); }
+    ~UnkReportString() { CRntString_Destroy(&str); }
     UnkString_7100fc4b34* Raw() { return reinterpret_cast<UnkString_7100fc4b34*>(&str); }
     bool IsEmpty() const { return !str.data || !*str.data; }
 };

@@ -472,7 +472,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
     CRntString name(self->font_name);
     if (!name.data || name.data[0] == 0) {
         CRntString found = fn_71011b8790(*root, &self->font_id);
-        fn_710007eaa0(&name, &found);
+        CRntString_Assign(&name, &found);
     }
     CVector2D unit = {1.0f, 1.0f};
     UnkLabelVec2 scale = fn_71011b7e7c(*root, state->frame, &unit);
@@ -738,7 +738,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
                             UnkLabelStrId full;
                             {
                                 CRntString a = fn_710006c080(tag_name.chars);
-                                CRntString b = fn_710007eee0(&a, &name);
+                                CRntString b = CRntString_Concat(&a, &name);
                                 full.Build(b);
                             }
                             sprite = fn_71011b9fac(*root, &full.id);

@@ -60,7 +60,7 @@ struct UnkMapInlineString_lb245c0 {
     CRntString str;
     u8 storage[0x48];
 
-    ~UnkMapInlineString_lb245c0() { fn_710007ed40(&str); }
+    ~UnkMapInlineString_lb245c0() { CRntString_Clear(&str); }
 };
 
 // The state machine: its states are not owned.

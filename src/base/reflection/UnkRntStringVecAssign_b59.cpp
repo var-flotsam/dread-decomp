@@ -13,7 +13,7 @@ void fn_71000e0320(void* self, const void* other);  // the array's copy construc
 struct UnkRntString_b59 {
     u64 field_0x0[6];
 
-    ~UnkRntString_b59() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
+    ~UnkRntString_b59() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this)); }
 };
 
 struct UnkRntStringVec_b59 {

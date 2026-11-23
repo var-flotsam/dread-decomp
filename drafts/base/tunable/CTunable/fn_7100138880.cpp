@@ -32,13 +32,13 @@ void fn_7100138880(UnkKeyedObjects138880* self, const base::UnkNamedEntry* key) 
     if (slot == self->objects + self->count)
         return;
     u32 index = slot - self->objects;
-    fn_710007ecd4(reinterpret_cast<CRntString*>(&self->keys[index]));
+    CRntString_Destroy(reinterpret_cast<CRntString*>(&self->keys[index]));
     u32 last = self->count - 1;
     if (index != last) {
         self->objects[index] = self->objects[last];
-        fn_710007eab4(reinterpret_cast<CRntString*>(&self->keys[index]),
+        CRntString_MoveConstruct(reinterpret_cast<CRntString*>(&self->keys[index]),
                       reinterpret_cast<CRntString*>(&self->keys[self->count - 1]));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(&self->keys[self->count - 1]));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(&self->keys[self->count - 1]));
         last = self->count - 1;
     }
     self->count = last;

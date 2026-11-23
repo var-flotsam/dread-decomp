@@ -32,15 +32,15 @@ struct UnkInlineString_l08e6e0 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     explicit UnkInlineString_l08e6e0(const char* text) {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a1b750 + 2);
         field_0xb8 = 0;
         field_0xc0 = 0;
-        fn_710007e77c(Str(), text);
+        CRntString_AssignCString(Str(), text);
     }
     ~UnkInlineString_l08e6e0() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 
@@ -85,7 +85,7 @@ int fn_710108e6e0(lua_State* L) {
         if (!preset.IsSet() && text.Str()->data && text.Str()->data[0]) {
             ReplaceHashes(*text.Str());  // the result is unused in the original
 
-            CRntString path = fn_710007f050("audiopreset:system/snd/presets/", text.Str());
+            CRntString path = CRntString_ConcatCStringFirst("audiopreset:system/snd/presets/", text.Str());
             UnkPathIdsFromText ids(path);
             fn_71000267f8(preset.Resource(), ids.ids);
         }

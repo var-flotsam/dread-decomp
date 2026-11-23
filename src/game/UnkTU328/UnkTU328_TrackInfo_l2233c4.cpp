@@ -8,7 +8,7 @@
 namespace movie {
 }  // namespace movie
 
-bool fn_710007ee58(const base::global::CRntString* self, const char* str, u32 n);
+bool CRntString_EqualsIgnoreCaseN(const base::global::CRntString* self, const char* str, u32 n);
 
 // The extractor the track is read from (placeholder slot names).
 class UnkMovieExtractor_l2233c4 {
@@ -64,27 +64,27 @@ s32 fn_71002233c4(UnkMovieExtractor_l2233c4* extractor, s32 track, UnkTrackInfo_
                 format.FindInt64("durationUs", &info->duration_us);
                 const char* language;
                 const char* name = format.FindString("media-language", &language) ? language : "int";
-                fn_710007e77c(&info->language, name);
-                if (fn_710007ee58(&mime, "video/", 6)) {
+                CRntString_AssignCString(&info->language, name);
+                if (CRntString_EqualsIgnoreCaseN(&mime, "video/", 6)) {
                     info->kind = 0;
                     s32 frame_rate;
                     format.FindInt32("frame-rate", &frame_rate);
                     info->video.frame_rate = frame_rate;
                     format.FindInt32("width", &info->video.width);
                     format.FindInt32("height", &info->video.height);
-                    if (fn_710007fb9c(&mime, "avc"))
+                    if (CRntString_Contains(&mime, "avc"))
                         info->codec = 0;
-                    else if (fn_710007fb9c(&mime, "x-vnd.on2.vp8"))
+                    else if (CRntString_Contains(&mime, "x-vnd.on2.vp8"))
                         info->codec = 1;
-                    else if (fn_710007fb9c(&mime, "x-vnd.on2.vp9"))
+                    else if (CRntString_Contains(&mime, "x-vnd.on2.vp9"))
                         info->codec = 2;
-                } else if (fn_710007ee58(&mime, "audio/", 6)) {
+                } else if (CRntString_EqualsIgnoreCaseN(&mime, "audio/", 6)) {
                     info->kind = 1;
                     format.FindInt32("channel-count", &info->audio.channel_count);
                     format.FindInt32("sample-rate", &info->audio.sample_rate);
-                    if (fn_710007fb9c(&mime, "mp4a"))
+                    if (CRntString_Contains(&mime, "mp4a"))
                         info->codec = 3;
-                    else if (fn_710007fb9c(&mime, "vorbis"))
+                    else if (CRntString_Contains(&mime, "vorbis"))
                         info->codec = 4;
                 }
             }

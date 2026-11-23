@@ -145,9 +145,9 @@ void fn_7100b4e5b0(UnkDifficultySelector_lb4e5b0* self, UnkDifficultyOwner_lb4e5
         fn_71011cf2a4(hard, true);
         fn_71011cdc30(expert, true);
         fn_71011cf2a4(expert, true);
-        fn_710007e77c(&AsButton(hard)->description, hard_unlocked ? "#GUI_DIFSELECTOR_LABEL_DESCRIPTOR_HARD_UNLOCKED"
+        CRntString_AssignCString(&AsButton(hard)->description, hard_unlocked ? "#GUI_DIFSELECTOR_LABEL_DESCRIPTOR_HARD_UNLOCKED"
                                                                   : "#GUI_GAMEMODE_HARD_LOCKED_DESC");
-        fn_710007e77c(&AsButton(expert)->description, expert_unlocked ? "#GUI_DIFSELECTOR_LABEL_DESCRIPTOR_EXPERT"
+        CRntString_AssignCString(&AsButton(expert)->description, expert_unlocked ? "#GUI_DIFSELECTOR_LABEL_DESCRIPTOR_EXPERT"
                                                                       : "#GUI_GAMEMODE_DREAD_LOCKED_DESC");
         UnkLockedColor_lb4e5b0 grey(0x1.468bd4p-2f, 0x1.acbbc8p-2f, 0x1.c71c74p-2f, 1.0f);
         if (!hard_unlocked) {

@@ -89,7 +89,7 @@ void fn_71000730a0(const char* str, const char* separators, UnkSetupStrList* out
             ++out->field_0x8;
         }
         u32 part_length = end - str;
-        fn_710007e7f8(reinterpret_cast<CRntString*>(node), str, part_length);
+        CRntString_AssignPrefix(reinterpret_cast<CRntString*>(node), str, part_length);
         u32 step = part_length + separator_length;
         pos += step;
         str += step;

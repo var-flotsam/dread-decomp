@@ -2,9 +2,44 @@ address,name,name_source,reason
 0x71000003d4,CStrId_Construct,inferred,"constructs a string id from a C string: hashes it, finds it in the pool or inserts it"
 0x710000051c,CStrId_Destroy,inferred,"a string id's destructor, registered with __cxa_atexit for global ids"
 0x7100000850,CStrId_ConstructFromRntString,inferred,constructs a string id from a CRntString's text and cached key
+0x710007e6e4,CRntString_InitWithAllocator,inferred,builds an empty string that allocates from the given allocator (the first step of a string with inline storage)
+0x710007e704,CRntString_ConstructFromCString,inferred,"constructs a string from a C string: clears the fields, then copies the text with its CRC-64 key"
+0x710007e77c,CRntString_AssignCString,inferred,assigns a C string's text and its CRC-64 key through the text setter
+0x710007e7f8,CRntString_AssignPrefix,inferred,assigns at most the given count of characters of a C string
+0x710007ea60,CRntString_CopyConstruct,inferred,the copy constructor: builds a string from another string's text and key
+0x710007eaa0,CRntString_Assign,inferred,assigns another string's text and key through the text setter
+0x710007eab4,CRntString_MoveConstruct,inferred,"move-constructs from another string, taking over its heap copy unless it allocates from inline storage"
+0x710007eb20,CRntString_ConstructFromStrId,inferred,constructs a string from a string id's pooled text
+0x710007eb6c,CRntString_AssignStrId,inferred,"assigns a string id's pooled text and key, counting the copy in the pool"
+0x710007ebc8,CRntString_SetText,inferred,"replaces the string's heap copy with a copy of the given text, length and key; every assignment goes through it"
 0x710007ecb4,StringBuffer_Construct,inferred,"constructs a string pool buffer (a borrowed string) from a text, length and key"
+0x710007ecd4,CRntString_Destroy,inferred,the destructor: frees the heap copy unless borrowed; registered with __cxa_atexit for global strings
+0x710007ed40,CRntString_Clear,inferred,"frees the heap copy unless borrowed and resets data, length and key, keeping the allocator"
 0x710007edac,StringBuffer_Assign,inferred,"assigns a text, length and key to a string pool buffer"
+0x710007edc4,CRntString_EqualsIgnoreCase,inferred,case-insensitive equality of the string's text with a C string (tolower per character)
+0x710007ee58,CRntString_EqualsIgnoreCaseN,inferred,case-insensitive equality with a C string over at most n characters
+0x710007eee0,CRntString_Concat,inferred,returns a new string holding the first string's text followed by the second's
+0x710007ef90,CRntString_ConcatCString,inferred,returns a new string holding the string's text followed by a C string
+0x710007f050,CRntString_ConcatCStringFirst,inferred,returns a new string holding a C string followed by the string's text
+0x710007f140,CRntString_EqualsCString,inferred,"compares lengths, then the text, with a C string; null and empty are equal"
+0x710007f220,CRntString_KeysDiffer,inferred,"whether two strings differ, by their CRC-64 keys"
 0x710007f240,StringBuffer_Differs,inferred,whether the string pool's buffer differs from a C string; null and empty are equal
+0x710007f320,CRntString_Less,inferred,"orders two strings by strcmp, with null and empty strings after all others"
+0x710007f3b4,CRntString_Append,inferred,appends another string's text through the character appender
+0x710007f3e4,CRntString_AppendChars,inferred,"appends the given number of characters of a C string, rebuilding through a stack or heap copy"
+0x710007f564,CRntString_AppendCString,inferred,"appends a C string (callers append suffixes such as ""_border"")"
+0x710007f5ac,CRntString_AppendChar,inferred,appends one character through a two-byte buffer
+0x710007f5e0,CRntString_AppendFloat,inferred,appends a float's text (the tunable float button and the float condition print values with it)
+0x710007f6dc,CRntString_Trim,inferred,trims both ends (the tunable registry's line parser calls it on each line and key)
+0x710007f700,CRntString_TrimStart,inferred,"removes leading spaces, tabs and line breaks unless the string is borrowed"
+0x710007f8e4,CRntString_TrimEnd,inferred,"removes trailing spaces, tabs and line breaks unless the string is borrowed"
+0x710007facc,CRntString_FindChar,inferred,"the index of a character from a start index on, -1 when absent"
+0x710007fb10,CRntString_FindLastChar,inferred,"the index of a character searching backwards from a start index (the end when negative), -1 when absent"
+0x710007fb54,CRntString_Find,inferred,the index of a C string from a start index on (callers replace substrings with it)
+0x710007fb9c,CRntString_Contains,inferred,whether the text contains a C string (strstr)
+0x710007fbc0,CRntString_ContainsString,inferred,whether the text contains another string's text (strstr)
+0x710007fc80,CRntString_StartsWith,inferred,whether the text starts with another string's text
+0x710007fce0,CRntString_EndsWith,inferred,whether the text ends with a C string
 0x710007fdb4,StringPool_InitHeap,inferred,sets up the string pool's function-local static heap with a fixed number of blocks per size class
 0x7100080824,StringPool_Bucket,inferred,returns the address of a bucket head of the pool's hash set
 0x7100083f74,StringHeap_Init,inferred,sets up the string heap's size classes from a table of block counts

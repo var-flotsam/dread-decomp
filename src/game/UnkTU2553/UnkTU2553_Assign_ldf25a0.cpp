@@ -38,9 +38,9 @@ UnkRecord_df25a0* fn_7100df25a0(UnkRecord_df25a0* self, const UnkRecord_df25a0* 
     if (self != other)
         CopyWeakRef(&self->owner, other->owner);
     self->field_0x10 = other->field_0x10;
-    fn_710007eaa0(&self->field_0x18, &other->field_0x18);
-    fn_710007eaa0(&self->field_0x48, &other->field_0x48);
-    fn_710007eaa0(&self->field_0x78, &other->field_0x78);
+    CRntString_Assign(&self->field_0x18, &other->field_0x18);
+    CRntString_Assign(&self->field_0x48, &other->field_0x48);
+    CRntString_Assign(&self->field_0x78, &other->field_0x78);
     self->field_0xa8 = other->field_0xa8;
     self->field_0xb0 = other->field_0xb0;
     self->field_0xb8 = other->field_0xb8;
@@ -52,7 +52,7 @@ UnkRecord_df25a0* fn_7100df25a0(UnkRecord_df25a0* self, const UnkRecord_df25a0* 
     u16 d8 = other->field_0xd8;
     self->field_0xd8 = d8;
     self->field_0xd4 = d4;
-    fn_710007eaa0(&self->field_0xe0, &other->field_0xe0);
+    CRntString_Assign(&self->field_0xe0, &other->field_0xe0);
     self->field_0x110 = other->field_0x110;
     self->field_0x114 = other->field_0x114;
     u64 v118 = other->field_0x118;

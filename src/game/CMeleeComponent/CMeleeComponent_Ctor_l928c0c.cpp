@@ -71,7 +71,7 @@ void fn_7100928c0c(UnkMeleeComponent_l928c0c* self) {
     fn_71010c4148(reinterpret_cast<UnkStateObject*>(self));
     self->vtable = g_unk_7101a83750 + 2;
     self->input.vtable = g_unk_7101a22878 + 2;
-    fn_710007e704(&self->input.name, "MELEE_INPUT");
+    CRntString_ConstructFromCString(&self->input.name, "MELEE_INPUT");
     self->input.capacity = 20;
     // An array of 20 0x1c-byte entries, after its element count.
     u64* block = static_cast<u64*>(fn_7100083ba0(0x238, 5));

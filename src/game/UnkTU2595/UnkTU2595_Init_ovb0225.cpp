@@ -35,5 +35,5 @@ void fn_7100f149a0() {
     fn_710009ec00(&g_unk_71729dc1c8, &base::reflection::TypeObject<CPrologueMode::SState, UnkReflType>::object);
     InitEnumConverters(&base::reflection::TypeObject<CPrologueMode::SState, UnkReflType>::object, g_unk_71729dc1d0, fn_7100f1457c, g_unk_71729dc1f0, fn_7100f14588);
     new (&g_unk_71729dc240) base::global::CRntString("SamusStory");
-    fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &g_unk_71729dc240, &g_unk_7101a19000);
+    fn_7100000250(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), &g_unk_71729dc240, &g_unk_7101a19000);
 }

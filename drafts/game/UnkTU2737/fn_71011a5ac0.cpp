@@ -220,10 +220,10 @@ void fn_71011a5bc8(UnkScheduler_b0253* self, u32 id) {
 // The same for the objects with a name.
 void fn_71011a5cdc(UnkScheduler_b0253* self, const base::global::CRntString* name) {
     for (UnkList_b0253::Node* n = self->all.head; n; n = n->next)
-        if (fn_710007f140(name, fn_7101073c20(Object(n))))
+        if (CRntString_EqualsCString(name, fn_7101073c20(Object(n))))
             fn_71011a5958(self, Object(n));
     for (UnkList_b0253::Node* n = self->pending.head; n;) {
-        if (fn_710007f140(name, fn_7101073c20(Object(n)))) {
+        if (CRntString_EqualsCString(name, fn_7101073c20(Object(n)))) {
             UnkList_b0253::Node* next = n->next;
             EraseNode(self->pending, n);
             n = next;

@@ -109,9 +109,9 @@ struct UnkLightIdText_ovb0061 {
         base::global::CRntString str;
     };
     explicit UnkLightIdText_ovb0061(const void* id) {
-        fn_710007eb20(&str, static_cast<const UnkPooledStrId*>(id));
+        CRntString_ConstructFromStrId(&str, static_cast<const UnkPooledStrId*>(id));
     }
-    ~UnkLightIdText_ovb0061() { fn_710007ecd4(&str); }
+    ~UnkLightIdText_ovb0061() { CRntString_Destroy(&str); }
 };
 
 // Takes the light set's path (+0x58 of the CCharClassLightingComponent) and resolves the resource
@@ -120,8 +120,8 @@ void fn_71008e756c(UnkLightingComponent3* component, void* arg) {
     UnkLightingComponentDtor_ovb0061* self = reinterpret_cast<UnkLightingComponentDtor_ovb0061*>(component);
     self->field_0x40 = *static_cast<const base::UnkStrIdMemberOf<g_unk_7101d47200>*>(arg);
     UnkLightIdText_ovb0061 text(g_unk_71727b9f30);
-    fn_710007f564(&text.str, ":");
-    fn_710007f3b4(&text.str, &base::reflection::refl_RntStringOf(
+    CRntString_AppendCString(&text.str, ":");
+    CRntString_Append(&text.str, &base::reflection::refl_RntStringOf(
                                  reinterpret_cast<const base::global::CStrId&>(self->field_0x40)));
     fn_71000267f8(&self->path.value, UnkPathIdsFromText(text.str).ids);
 }

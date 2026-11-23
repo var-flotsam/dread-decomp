@@ -77,7 +77,7 @@ struct UnkBiteString_l6ecce4 {
     alignas(8) u8 storage[sizeof(CRntString)];
 
     UnkBiteString_l6ecce4() { fn_710007e6c4(storage); }
-    ~UnkBiteString_l6ecce4() { fn_710007ecd4(Str()); }
+    ~UnkBiteString_l6ecce4() { CRntString_Destroy(Str()); }
     CRntString* Str() { return reinterpret_cast<CRntString*>(storage); }
 };
 
@@ -152,7 +152,7 @@ CStrId fn_71006ecce4(UnkYamplotXBite_b57a4* attack) {
         tag = "_h3";
     else
         tag = "_h4";
-    fn_710007e77c(suffix.Str(), tag);
-    CRntString name = fn_710007eee0(&g_unk_717270bd60, suffix.Str());
+    CRntString_AssignCString(suffix.Str(), tag);
+    CRntString name = CRntString_Concat(&g_unk_717270bd60, suffix.Str());
     return CStrId(name, true);
 }

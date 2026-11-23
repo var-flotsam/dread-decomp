@@ -194,8 +194,8 @@ struct UnkKeyTemp_b0209 {
 struct UnkTextTemp_b0209 {
     u64 words[41];
     ~UnkTextTemp_b0209() {
-        fn_710007ed40(reinterpret_cast<CRntString*>(this));
-        fn_710007ecd4(reinterpret_cast<CRntString*>(this));
+        CRntString_Clear(reinterpret_cast<CRntString*>(this));
+        CRntString_Destroy(reinterpret_cast<CRntString*>(this));
     }
 };
 struct UnkEntry_0x30;
@@ -319,15 +319,15 @@ struct UnkPathText_b0209 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(raw); }
     ~UnkPathText_b0209() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 static_assert(sizeof(UnkPathText_b0209) == 0x148, "layout");
 
 struct UnkMovedStr_b0209 {
     u64 words[6];
-    ~UnkMovedStr_b0209() { fn_710007ecd4(reinterpret_cast<CRntString*>(this)); }
+    ~UnkMovedStr_b0209() { CRntString_Destroy(reinterpret_cast<CRntString*>(this)); }
 };
 
 UnkPathText_b0209 fn_71011b659c(void* self, const char* const* name);
@@ -348,7 +348,7 @@ UnkRefPtr fn_71011b685c(void* self, const char* const* path, CRntString* name, v
     UnkMovedStr_b0209 key;
     {
         UnkPathText_b0209 text = fn_71011b659c(self, reinterpret_cast<const char* const*>(name));
-        fn_710007eab4(reinterpret_cast<CRntString*>(&key), text.Str());
+        CRntString_MoveConstruct(reinterpret_cast<CRntString*>(&key), text.Str());
     }
     UnkScriptManager_ovb0085* manager = ScriptManager();
     u32 loaded = fn_710109dd6c(manager, &key, reinterpret_cast<UnkUnit2669Str*>(name), false, false);

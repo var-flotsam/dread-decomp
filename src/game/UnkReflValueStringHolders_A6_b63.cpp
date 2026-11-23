@@ -22,10 +22,10 @@ struct UnkValueStringHolder_A6_b63 {
 
 static inline __attribute__((always_inline)) void Destroy_A6_b63(UnkValueStringHolder_A6_b63*& self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101aa01f0) + 2;
-    fn_710007ed40(&self->inline_str);
-    fn_710007ecd4(&self->inline_str);
+    CRntString_Clear(&self->inline_str);
+    CRntString_Destroy(&self->inline_str);
     asm("" : "+r"(self));  // the original adds the +0xa8 offset after the calls
-    fn_710007ecd4(&self->str);
+    CRntString_Destroy(&self->str);
     self->vtable = g_unk_7101a9cd68 + 2;
     fn_71000a1c60(&self->value);
 }

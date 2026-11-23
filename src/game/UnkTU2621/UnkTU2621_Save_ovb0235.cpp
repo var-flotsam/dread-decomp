@@ -341,8 +341,8 @@ struct UnkInlineString_b0235 {
     };
     u8 storage[0x118];
     __attribute__((always_inline)) ~UnkInlineString_b0235() {
-        fn_710007ed40(&str);
-        fn_710007ecd4(&str);
+        CRntString_Clear(&str);
+        CRntString_Destroy(&str);
     }
 };
 static_assert(sizeof(UnkInlineString_b0235) == 0x148, "UnkInlineString_b0235 layout");
@@ -366,8 +366,8 @@ static inline __attribute__((always_inline)) CRntString JoinPath(const CRntStrin
     char sep = g_unk_710164784b;
     CRntString path(root);
     if (name.str.data && name.str.data[0]) {
-        fn_710007f5ac(&path, sep);
-        fn_710007f3b4(&path, &name.str);
+        CRntString_AppendChar(&path, sep);
+        CRntString_Append(&path, &name.str);
     }
     return path;
 }

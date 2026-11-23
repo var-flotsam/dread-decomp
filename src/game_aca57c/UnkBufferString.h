@@ -28,7 +28,7 @@ struct UnkBufferString {
     }
 
     __attribute__((always_inline)) void Init() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
         storage.vtable = Vtable + 2;
         field_tail = 0;
         field_tail_count = 0;
@@ -37,14 +37,14 @@ struct UnkBufferString {
     __attribute__((always_inline)) UnkBufferString() { Init(); }
     __attribute__((always_inline)) explicit UnkBufferString(const char* str) {
         Init();
-        fn_710007e77c(Str(), str);
+        CRntString_AssignCString(Str(), str);
     }
     __attribute__((always_inline)) UnkBufferString(const UnkBufferString& other) {
         Init();
-        fn_710007eaa0(Str(), other.Str());
+        CRntString_Assign(Str(), other.Str());
     }
     __attribute__((always_inline)) ~UnkBufferString() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };

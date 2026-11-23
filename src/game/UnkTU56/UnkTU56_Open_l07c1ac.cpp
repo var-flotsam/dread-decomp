@@ -58,8 +58,8 @@ bool fn_710007c1ac(UnkFileReader* reader, const UnkStrPair_0x10* path, const bas
     if (self->is_open)
         return false;
 
-    self->in_place = !fn_710007fb9c(mode, "w") && !fn_710007fb9c(mode, "a");
-    self->binary = fn_710007fb9c(mode, "b");
+    self->in_place = !CRntString_Contains(mode, "w") && !CRntString_Contains(mode, "a");
+    self->binary = CRntString_Contains(mode, "b");
 
     UnkRegistry_0x70* reg = g_unk_7101d4b5a0;
     if (!reg) {

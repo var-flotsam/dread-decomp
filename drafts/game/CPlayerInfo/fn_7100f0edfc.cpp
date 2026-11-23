@@ -51,7 +51,7 @@ UnkReflValue fn_7100f0edfc(char* obj, UnkReflValue* const* args) {
         char name[0x100];
         fn_710007cf30(stream, "s", name);
         base::UnkNamedEntry entry;
-        fn_710007e704(&entry, name);
+        CRntString_ConstructFromCString(&entry, name);
         s64 key = reinterpret_cast<base::global::CRntString*>(&entry)->key;
         UnkSlot_lf0edfc* it = owner->slots;
         u32 i = 0;
@@ -66,7 +66,7 @@ UnkReflValue fn_7100f0edfc(char* obj, UnkReflValue* const* args) {
                 ++i;
             } while (it != owner->slots + owner->count);
         }
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&entry));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&entry));
     }
     s32 zero = 0;
     const base::reflection::CType* type = fn_7100014768();

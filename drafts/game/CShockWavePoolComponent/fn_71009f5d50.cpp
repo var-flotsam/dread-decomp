@@ -99,7 +99,7 @@ UnkShockWaveDef_l9f5d50* fn_71009f5d50(UnkShockWaveDef_l9f5d50* self, const UnkS
     self->field_0x140 = other->field_0x140;
     self->field_0x148 = other->field_0x148;
     self->field_0x150 = other->field_0x150;
-    fn_710007eaa0(&self->field_0x158, &other->field_0x158);
+    CRntString_Assign(&self->field_0x158, &other->field_0x158);
     fn_710031d208(&self->field_0x188, &other->field_0x188);
     self->field_0x190 = other->field_0x190;
     fn_710007b518(&self->field_0x194, &other->field_0x194);

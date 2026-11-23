@@ -103,7 +103,7 @@ static inline bool NameHas(UnkStringEntry* const& name, const char* str) {
     ++name->uses;
     if (name == reinterpret_cast<UnkStringEntry*>(&g_unk_7101d47108->empty))
         return false;
-    return fn_710007fb9c(&name->buffer, str);
+    return CRntString_Contains(&name->buffer, str);
 }
 
 static inline void ShowPart(UnkPowerBombModel_ovb0127* model, UnkPowerBombPart_ovb0127* part) {
@@ -183,7 +183,7 @@ void fn_71008e3808(UnkPowerBombBlockLifeBreak_ovb0127* self) {
             ++name->uses;
             bool solid;
             if (name != reinterpret_cast<UnkStringEntry*>(&g_unk_7101d47108->empty) &&
-                fn_710007fb9c(&name->buffer, "_BREAK"))
+                CRntString_Contains(&name->buffer, "_BREAK"))
                 solid = false;
             else
                 solid = true;

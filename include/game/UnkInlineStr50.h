@@ -21,7 +21,7 @@ struct UnkInlineStr50 {
 
     // An empty string over the inline storage.
     void Init() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&vtable));
         vtable = g_unk_7101a479c8 + 2;
         field_0x40 = 0;
         field_0x48 = 0;
@@ -30,16 +30,16 @@ struct UnkInlineStr50 {
     UnkInlineStr50() { Init(); }
     UnkInlineStr50(const char* text) {
         Init();
-        fn_710007e77c(Str(), text);
+        CRntString_AssignCString(Str(), text);
     }
-    UnkInlineStr50(const UnkInlineStr50& other) : UnkInlineStr50() { fn_710007eaa0(Str(), other.Str()); }
+    UnkInlineStr50(const UnkInlineStr50& other) : UnkInlineStr50() { CRntString_Assign(Str(), other.Str()); }
     UnkInlineStr50& operator=(const UnkInlineStr50& other) {
-        fn_710007eaa0(Str(), other.Str());
+        CRntString_Assign(Str(), other.Str());
         return *this;
     }
     ~UnkInlineStr50() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
+        CRntString_Clear(Str());
+        CRntString_Destroy(Str());
     }
 };
 static_assert(sizeof(UnkInlineStr50) == 0x50, "UnkInlineStr50 placeholder layout");

@@ -190,7 +190,7 @@ struct UnkHandlerDerived {
             delete[] field_0x40;
             field_0x40 = nullptr;
         }
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(field_0x8));
+        CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(field_0x8));
     }
 };
 

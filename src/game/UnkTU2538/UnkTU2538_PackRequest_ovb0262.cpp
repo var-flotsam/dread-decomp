@@ -65,7 +65,7 @@ void fn_7100da635c(char* self_) {
     if (self->path.data != &g_unk_7101d47200->empty) {
         self->field_0x9c.value = 0;
         
-        fn_710007e77c(reinterpret_cast<CRntString*>(self->name), g_unk_710162e2ed);
+        CRntString_AssignCString(reinterpret_cast<CRntString*>(self->name), g_unk_710162e2ed);
         self->count = 0;
         UnkPackSlot_b0163 first;
         UnkPackSlot_b0163 second;

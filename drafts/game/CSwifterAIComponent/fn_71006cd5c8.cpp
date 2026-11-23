@@ -115,7 +115,7 @@ void fn_71006cd5c8(UnkSwifterAI_l6cd5c8* self) {
     {
         std::string digit = std::to_string(variant);
         CRntString suffix(digit.c_str());
-        fn_710007f3b4(&name, &suffix);
+        CRntString_Append(&name, &suffix);
     }
     void* cls = self->owner->field_0x220;
     fn_7100066630(&hash, &name);

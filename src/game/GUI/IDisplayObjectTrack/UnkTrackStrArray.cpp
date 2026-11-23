@@ -11,7 +11,7 @@ struct UnkTrackStrElement {
     u64 field_0x0;
     u64 field_0x8[0x30 / 8];
 
-    ~UnkTrackStrElement() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(field_0x8)); }
+    ~UnkTrackStrElement() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(field_0x8)); }
 };
 
 using UnkTrackStrIter = base::UnkCollectionIter<UnkTrackStrElement>;
