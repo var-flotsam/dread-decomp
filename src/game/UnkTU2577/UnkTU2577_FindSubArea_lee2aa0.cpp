@@ -19,7 +19,7 @@ struct UnkSubAreaMgr_lee2aa0 {
     u32 count;                         // 0x868
 };
 
-UnkSubAreaEntry_lee2aa0* fn_7100ee2aa0(UnkSubAreaMgr_lee2aa0* self, const CStrId* id) {
+UnkSubAreaEntry_lee2aa0* CSubAreaManager_FindSubArea(UnkSubAreaMgr_lee2aa0* self, const CStrId* id) {
     UnkSubAreaEntry_lee2aa0* found = self->entries;
     UnkSubAreaEntry_lee2aa0* end = found + self->count;
     {

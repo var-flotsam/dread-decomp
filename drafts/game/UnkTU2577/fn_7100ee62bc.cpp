@@ -120,8 +120,8 @@ struct UnkBitMaskHolder_b47a3;
 
 // Helpers that take an empty value first (their callers leave x0 as it is).
 struct UnkSubAreaTag : UnkLeftoverReg {};
-void* fn_7100eea4c8(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, UnkMask mask);
-void* fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag);
+void* SubArea_ApplyEnvironmentSettings(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, UnkMask mask);
+void* SubArea_ApplyCameraSettings(UnkSubAreaTag, UnkSubArea* area, bool flag);
 
 void fn_7100fac120(UnkSubArea* area, UnkMask mask, bool a, bool b, void* c, bool d);
 void fn_7100d59dd8(UnkScenarioSub* self);
@@ -156,7 +156,7 @@ void fn_7100ee62bc(CSubAreaManager* self, UnkSubArea* area) {
     if (self->field_0x108 == 3) {
         fn_7100fac120(self->field_0x3f0, UnkSubAreaAllMask(), true, false, self->field_0x3f8, false);
         UnkGameManager* manager = g_unk_7101d47310;
-        fn_7100eea618(UnkSubAreaTag(), self->field_0x3f0, true);
+        SubArea_ApplyCameraSettings(UnkSubAreaTag(), self->field_0x3f0, true);
         UnkCutsceneState* cutscene;
         if (UnkCameraHolder* holder = static_cast<UnkCameraHolder*>(fn_7100defcec(g_unk_7101d47310))) {
             if (self->field_0x3f0->field_0x181) {
@@ -180,7 +180,7 @@ void fn_7100ee62bc(CSubAreaManager* self, UnkSubArea* area) {
             }
         }
     environment:
-        fn_7100eea4c8(UnkSubAreaTag(), self->field_0x3f0, false, true, UnkMask(0x1c0));
+        SubArea_ApplyEnvironmentSettings(UnkSubAreaTag(), self->field_0x3f0, false, true, UnkMask(0x1c0));
         {
             UnkSubArea* prev = self->field_0x3f8;
             UnkSubArea* cur = self->field_0x3f0;

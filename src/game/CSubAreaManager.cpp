@@ -265,8 +265,8 @@ static_assert(__builtin_offsetof(CSubAreaManager, field_0x9c0) == 0x9c0, "CSubAr
 static_assert(__builtin_offsetof(CSubAreaManager, field_0x3f0) == 0x3f0, "CSubAreaManager placeholder layout");
 static_assert(__builtin_offsetof(CSubAreaManager, field_0xae1) == 0xae1, "CSubAreaManager placeholder layout");
 
-void fn_7100ee34f0(CSubAreaManager* self);
-void fn_7100ee2ebc(CSubAreaManager* self, const char* path);
+void CSubAreaManager_Reset(CSubAreaManager* self);
+void CSubAreaManager_LoadColliders(CSubAreaManager* self, const char* path);
 void fn_7100ee2768(CSubAreaManager* self);
 void fn_7100ee400c(CSubAreaManager* self);
 
@@ -301,12 +301,12 @@ static inline const char* PathText(const CFilePathStrId& id) {
 
 // Loads the scenario's collision (`name`.bmscc) and then the file with g_unk_71729daef0's
 // extension, when the path registry knows it.
-void fn_7100ee327c(CSubAreaManager* self, const CRntString& scenario, const CStrId& name) {
+void CSubAreaManager_LoadScenarioCollision(CSubAreaManager* self, const CRntString& scenario, const CStrId& name) {
     self->field_0xae1 = false;
-    fn_7100ee34f0(self);
+    CSubAreaManager_Reset(self);
     CFilePathStrId collision =
         fn_7100e01d98(g_unk_7101d47310, UnkBuiltId(scenario).id, name, CStrId("bmscc", true));
-    fn_7100ee2ebc(self, PathText(collision));
+    CSubAreaManager_LoadColliders(self, PathText(collision));
     fn_7100ee2768(self);
     CFilePathStrId path = fn_7100e01d98(g_unk_7101d47310, UnkBuiltId(scenario).id, name, g_unk_71729daef0);
     UnkRegistry_0x70* reg = g_unk_7101d4b5a0;
@@ -341,7 +341,7 @@ struct UnkPlayer {
 
 void fn_7100eead58(CSubAreaManager* self, const CStrId& prev_a, const CStrId& prev_b, const CStrId& cur_a,
                    const CStrId& cur_b);
-void fn_7100ee6d00(CSubAreaManager* self, UnkSubArea* prev, UnkSubArea* cur, UnkIdSet* set, bool flag);
+void CSubAreaManager_ChangeSubAreaResources(CSubAreaManager* self, UnkSubArea* prev, UnkSubArea* cur, UnkIdSet* set, bool flag);
 void fn_7100ee8ea4(CSubAreaManager* self, UnkIdSet* set);
 void fn_7100ee6884(CSubAreaManager* self);
 
@@ -349,7 +349,7 @@ void fn_7100ee6884(CSubAreaManager* self);
 // NON_MATCHING(minor): scheduling only: the flag's `and w, #1` is placed before the store of the
 // previous sub-area (another register), and the two csels picking the current sub-area's ids for
 // fn_7100eeaa48 are swapped.
-void fn_7100ee4f84(CSubAreaManager* self, UnkSubArea* area, bool force, bool flag) {
+void CSubAreaManager_SetCurrentSubArea(CSubAreaManager* self, UnkSubArea* area, bool force, bool flag) {
     if (self->field_0x3f0 == area && !force)
         return;
     self->field_0x3f8 = self->field_0x3f0;
@@ -379,12 +379,12 @@ void fn_7100ee4f84(CSubAreaManager* self, UnkSubArea* area, bool force, bool fla
     }
 update:
     if (!cleared)
-        fn_7100ee6d00(self, self->field_0x3f8, self->field_0x3f0, &self->field_0x158, false);
+        CSubAreaManager_ChangeSubAreaResources(self, self->field_0x3f8, self->field_0x3f0, &self->field_0x158, false);
     UnkSubArea* prev = self->field_0x3f8;
     UnkSubArea* next = self->field_0x3f0;
     if (!prev) {
-        fn_7100eea4c8(UnkSubAreaTag(), next, false, true, UnkMask(0x1c0));
-        fn_7100eea618(UnkSubAreaTag(), self->field_0x3f0, true);
+        SubArea_ApplyEnvironmentSettings(UnkSubAreaTag(), next, false, true, UnkMask(0x1c0));
+        SubArea_ApplyCameraSettings(UnkSubAreaTag(), self->field_0x3f0, true);
         fn_7100ee8ea4(self, &self->field_0x158);
         UnkScenario* scenario = reinterpret_cast<UnkScenario*>(g_unk_7101d47310->field_0x608);
         UnkScenarioSub* sub = scenario ? scenario->field_0x820 : nullptr;
@@ -517,7 +517,7 @@ static inline void ResetMainCameraCtrl() {
 // collider loop loads the collider into a scratch register and reloads it for the call instead of
 // keeping it in x1 (8 bytes longer), and the clears of the two owned-pointer arrays (+0x830, +0x888)
 // reload the count at the end of the body instead of at the loop head.
-void fn_7100ee34f0(CSubAreaManager* self) {
+void CSubAreaManager_Reset(CSubAreaManager* self) {
     self->field_0x9b8 = false;
     self->field_0x9c0.Reset();
     self->field_0x9c8.Reset();
@@ -653,7 +653,7 @@ static inline UnkEnvironmentManager* EnvironmentManager() {
 
 // Hands the sub-area's settings for the slots set in `mask` (6, 8, then 7) to the environment
 // manager; without a sub-area, resets all three (`b` is then false).
-void fn_7100eea4c8(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, const UnkMask& mask) {
+void SubArea_ApplyEnvironmentSettings(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, const UnkMask& mask) {
     UnkEnvironmentManager* env = EnvironmentManager();
     if (!area) {
         fn_7100d8e32c(env, &g_unk_71729daf08, a, false);
@@ -688,7 +688,7 @@ void fn_71009349b0(UnkCameraCtrl* ctrl, bool flag, const CStrId* id);
 
 // Hands the sub-area's camera settings to the main camera's controller when it is the
 // CMetroidCameraCtrl one.
-void fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag) {
+void SubArea_ApplyCameraSettings(UnkSubAreaTag, UnkSubArea* area, bool flag) {
     UnkGameManager* gm = g_unk_7101d47310;
     u32 kind_value = g_unk_71727bebb8;
     u64 name = fn_7100001570("MainCamera", 10);
@@ -730,7 +730,7 @@ UnkRefPtrMap::TNode* fn_7100d41b00(UnkRefPtrMap* self, const CStrId& key, const 
 // colliders under its name.
 // NON_MATCHING(minor): the weak handle's branches are laid out differently (the original stores the
 // empty reference in each of them and keeps a separate exit for each).
-void fn_7100ee2ebc(CSubAreaManager* self, const char* path) {
+void CSubAreaManager_LoadColliders(CSubAreaManager* self, const char* path) {
     UnkCollisionFileReader reader;
     fn_7100d45fc4(&reader, nullptr);
     base::global::CRntVector<UnkCollisionRecord> records(0xf);
@@ -821,7 +821,7 @@ __attribute__((always_inline)) static inline void DiffFiles(UnkIdSet* set, UnkRe
 
 // What changes from sub-area `prev` to `cur` (either may be null): the id lists and the files.
 // NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
-void fn_7100ee6d00(CSubAreaManager* self, UnkSubArea* prev, UnkSubArea* cur, UnkIdSet* set, bool flag) {
+void CSubAreaManager_ChangeSubAreaResources(CSubAreaManager* self, UnkSubArea* prev, UnkSubArea* cur, UnkIdSet* set, bool flag) {
     fn_7100ee7134(set);
     bool all = fn_7100ee7438(self, prev, cur, &set->field_0x28, set, false);
     fn_7100ee7808(self, prev, cur, &set->field_0x50, &set->field_0x78, all);

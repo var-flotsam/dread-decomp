@@ -114,7 +114,7 @@ __attribute__((noinline)) void fn_7100eeac18(UnkFourIds_b189* self) {
 
 // ---- fn_7100eecd08 ----
 struct CSubAreaManager;
-void fn_7100ee34f0(CSubAreaManager* self);
+void CSubAreaManager_Reset(CSubAreaManager* self);
 void fn_7100ef1c10(void* list, u32 count);
 
 struct UnkMgrReset_b189 {
@@ -128,7 +128,7 @@ struct UnkMgrReset_b189 {
 };
 
 void fn_7100eecd08(UnkMgrReset_b189* self) {
-    fn_7100ee34f0(reinterpret_cast<CSubAreaManager*>(self));
+    CSubAreaManager_Reset(reinterpret_cast<CSubAreaManager*>(self));
     self->field_0x9b8 = 0;
     self->field_0x9c0.Reset();
     self->field_0x9c8.Reset();

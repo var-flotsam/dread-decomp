@@ -22,9 +22,9 @@ struct UnkSubAreaChange_b190;
 // The two settings steps take an empty value first: their callers leave x0 as it is.
 struct UnkSubAreaTag : UnkLeftoverReg {};
 // Hands the sub-area's settings for the slots set in `mask` to the environment manager.
-void fn_7100eea4c8(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, const UnkMask& mask);
+void SubArea_ApplyEnvironmentSettings(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, const UnkMask& mask);
 // Hands the sub-area's camera settings to the main camera's controller.
-void fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag);
+void SubArea_ApplyCameraSettings(UnkSubAreaTag, UnkSubArea* area, bool flag);
 void fn_7100eeaa48(CSubAreaManager* self, const base::global::CStrId& prev_a, const base::global::CStrId& prev_b,
                    const base::global::CStrId& cur_a, const base::global::CStrId& cur_b, bool flag);
 void fn_7100ee6ae4(CSubAreaManager* self);          // takes the player as the follow actor
