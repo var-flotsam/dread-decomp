@@ -84,7 +84,7 @@ PRELUDE = [
     "using base::global::CStrId;",
     "using base::reflection::CClass;",
     "using base::reflection::UnkReflField;",
-    "using base::reflection::UnkReflFunction;",
+    "using base::reflection::CFunction;",
     "using base::reflection::UnkTunable;",
     "using base::reflection::UnkTunableRegistry;",
 ]
@@ -590,7 +590,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             elif t > 0 and evs[jb].regs.get("ret0") == ("ret", ADD_FUNCTION) and t not in NOT_KEYS \
                     and t not in VALUE_TYPES and t not in class_getters:
                 # A call that takes the function (e.g. one that adds a parameter type).
-                decls.append(f"void fn_{t:x}(UnkReflFunction* fn);")
+                decls.append(f"void fn_{t:x}(CFunction* fn);")
                 r = jb + 1, f"    fn_{t:x}(fn);"
             else:
                 return k, lines
@@ -611,7 +611,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
         k, vals = next_bl(skip_release(j + 1))
         if vals or k >= n:
             return None
-        head = f"    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId({name}, true)))"
+        head = f"    if (CFunction* fn = AddReflectedFunction(cls, CStrId({name}, true)))"
         if evs[k].target == CSTRID_CTOR:
             # Inline initialiser (getters): name, return type, invoker.
             if evs[k].regs.get("1") != s or evs[k].regs.get("2") != ("imm", 1):
@@ -665,7 +665,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
         if evs[k].regs.get("1") != s or evs[k].target in NOT_KEYS:
             return None
         init = evs[k].target
-        decls.append(f"void fn_{init:x}(UnkReflFunction* fn, const char* name);")
+        decls.append(f"void fn_{init:x}(CFunction* fn, const char* name);")
         r = function_attrs(k + 1)
         if r is None:
             return None
@@ -933,7 +933,7 @@ def parse_initialiser(orig: asmdiff.Original, addr: int, class_getters: set[int]
     if ret_expr is None or None in params:
         return None
     decls.append(f"void fn_{inv[1]:x}();")
-    body = [f"void fn_{addr:x}(UnkReflFunction* fn, const char* name) {{",
+    body = [f"void fn_{addr:x}(CFunction* fn, const char* name) {{",
             "    fn->name = base::global::UnkStrId(name, true);",
             f"    fn->return_type = {ret_expr};",
             f"    fn->field_0xb2 = {flag:#x};",
@@ -941,7 +941,7 @@ def parse_initialiser(orig: asmdiff.Original, addr: int, class_getters: set[int]
             f"    fn->invoker = reinterpret_cast<void*>(&fn_{inv[1]:x});"]
     body += [f"    fn->params.PushBack({e});" for e in params]
     for t in tail:
-        decls.append(f"void fn_{t:x}(UnkReflFunction* fn);")
+        decls.append(f"void fn_{t:x}(CFunction* fn);")
         body.append(f"    fn_{t:x}(fn);")
     return list(dict.fromkeys(decls)), "\n".join(body + ["}"])
 
@@ -958,7 +958,7 @@ def statements(src: str) -> list[list[str]]:
 
 
 def is_function_statement(stmt: list[str]) -> bool:
-    return stmt[0].startswith("    if (UnkReflFunction* fn = AddReflectedFunction(")
+    return stmt[0].startswith("    if (CFunction* fn = AddReflectedFunction(")
 
 
 TYPED_ADD = re.compile(r"Add<(\w+)>\((fn_\w+\(\)), (fn_\w+)\(\), ")

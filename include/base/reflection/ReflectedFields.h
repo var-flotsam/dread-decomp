@@ -41,7 +41,7 @@
 // A reflected function of the class, named NAME: the statement or block that follows describes it through
 // `fn` (its name, return type, parameters, invoker and attributes), and runs unless the class already has one by that name.
 #define DREAD_REFLECTED_FUNCTION(NAME) \
-    if (base::reflection::UnkReflFunction* fn = AddReflectedFunction(cls, base::global::CStrId(NAME, true)))
+    if (base::reflection::CFunction* fn = AddReflectedFunction(cls, base::global::CStrId(NAME, true)))
 
 // The description a registration gives `fn` in place: its name (the string it is registered under), return
 // type, flags and invoker (the function that calls the accessor), set in this order.

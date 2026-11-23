@@ -15,7 +15,7 @@ using base::reflection::CClass;
 using base::reflection::CType;
 using base::reflection::UnkReflAttrKey;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkReflValue;
 
 // A reflected value as an attribute set stores it: its type, and the value inline when it fits in
@@ -62,31 +62,31 @@ struct UnkAttrSet_l0979a0 {
 
 // The class's functions (CClass+0x110) and their names' string data, `count` of each.
 struct UnkFunctionSet_l0979a0 {
-    UnkReflFunction* functions;
+    CFunction* functions;
     const void** keys;
     u32 count;
 
-    UnkReflFunction* Find(const CStrId& name) const {
+    CFunction* Find(const CStrId& name) const {
         for (u32 i = 0; i < count; ++i)
             if (keys[i] == name.data)
                 return &functions[i];
         return functions + count;
     }
-    UnkReflFunction* End() const { return functions + count; }
+    CFunction* End() const { return functions + count; }
 };
 
 // The class's function named `name`, or null.
-static inline UnkReflFunction* FindFunction(CClass* cls, const CStrId& name) {
+static inline CFunction* FindFunction(CClass* cls, const CStrId& name) {
     const auto* set = reinterpret_cast<const UnkFunctionSet_l0979a0*>(&cls->m_array_0x110);
-    UnkReflFunction* it = set->Find(name);
+    CFunction* it = set->Find(name);
     return it == set->End() ? nullptr : it;
 }
 
-UnkReflFunction* fn_71000979a0(CClass* self, UnkReflField* field, const UnkReflAttrKey& key) {
+CFunction* fn_71000979a0(CClass* self, UnkReflField* field, const UnkReflAttrKey& key) {
     const auto* attrs = reinterpret_cast<const UnkAttrSet_l0979a0*>(&field->attrs);
     const UnkAttrValue_l0979a0* found = attrs->Find(key);
     UnkAttrValue_l0979a0 value = found != attrs->End() ? UnkAttrValue_l0979a0(*found) : UnkAttrValue_l0979a0();
-    UnkReflFunction* function = nullptr;
+    CFunction* function = nullptr;
     if (value.type) {
         CStrId name(UnkStrIdInline(), nullptr, false);
         if (value.IsStrId()) {

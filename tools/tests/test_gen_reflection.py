@@ -281,7 +281,7 @@ class TypesByType(unittest.TestCase):
     def test_calls_by_type(self):
         text = "\n".join(['#include "base/reflection/CClass.h"', "using base::global::CStrId;", "",
                           "const base::reflection::CType* fn_7100000100();",
-                          "void f(UnkReflFunction* fn) {",
+                          "void f(CFunction* fn) {",
                           "    fn->return_type = fn_7100000100();",
                           "    fn->params.PushBack(fn_7100000200());",
                           "    fn->params.PushBack(fn_7100000300());",
@@ -296,7 +296,7 @@ class TypesByType(unittest.TestCase):
         ext = "extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();"
         self.assertEqual(out[:3], ['#include "base/reflection/CClass.h"', "using base::global::CStrId;",
                                    '#include "base/reflection/UnkReflPrimitiveType.h"'])
-        self.assertLess(out.index(ext), out.index("void f(UnkReflFunction* fn) {"))
+        self.assertLess(out.index(ext), out.index("void f(CFunction* fn) {"))
         self.assertIn("namespace a { class CFoo; }", out)
         self.assertIn("namespace base::global { class CStrId; }", out)
 
@@ -507,7 +507,7 @@ class FunctionsInOneLine(unittest.TestCase):
                       "(&base::reflection::PointerType<A<B, C>>::Get()), 0x101, fn_7101049fa8);\n        fn_7100601f24(fn);", out)
 
     def test_initialiser(self):
-        text = "\n".join(["void fn_7100026684(UnkReflFunction* fn, const char* name) {",
+        text = "\n".join(["void fn_7100026684(CFunction* fn, const char* name) {",
                           "    fn->name = base::global::UnkStrId(name, true);", "    fn->return_type = &g_unk_7101d5af48;",
                           "    fn->field_0xb2 = 0x0;", "    fn->field_0x40 = nullptr;",
                           "    fn->invoker = reinterpret_cast<void*>(&fn_7100027268);", "}", ""])

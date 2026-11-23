@@ -15,7 +15,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 #include "base/reflection/TypeObject.h"
@@ -25,12 +25,12 @@ template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEd
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 base::reflection::UnkReflValue fn_71007ad4d0(void*, char* obj);
-void fn_71007a515c(UnkReflFunction* fn, const char* name);
+void fn_71007a515c(CFunction* fn, const char* name);
 void fn_71007ad5e8();
 void fn_71007ad648();
-void fn_71007a52d8(UnkReflFunction* fn, const char* name);
+void fn_71007a52d8(CFunction* fn, const char* name);
 void fn_71007ad78c();
-void fn_71007a544c(UnkReflFunction* fn, const char* name);
+void fn_71007a544c(CFunction* fn, const char* name);
 base::reflection::UnkReflValue fn_71007ad814(void*, char* obj);
 void fn_71007ad8d4();
 void fn_71007ad8e8();
@@ -46,31 +46,31 @@ extern const base::reflection::CType g_unk_71727199c0 __attribute__((visibility(
 void fn_71007adb50();
 void fn_71007adba0();
 base::reflection::UnkReflValue fn_71007adbe8(void*, char* obj);
-void fn_71007a55c8(UnkReflFunction* fn, const char* name);
+void fn_71007a55c8(CFunction* fn, const char* name);
 base::reflection::UnkReflValue fn_71007ade14(void*, char* obj, base::reflection::UnkReflValue* const* args);
-void fn_71007adc7c(UnkReflFunction* fn);
-void fn_71007a5744(UnkReflFunction* fn, const char* name);
+void fn_71007adc7c(CFunction* fn);
+void fn_71007a5744(CFunction* fn, const char* name);
 void fn_71007ae270();
 base::reflection::UnkReflValue fn_71007ae2bc(void*, char* obj, base::reflection::UnkReflValue* const* args);
-void fn_7100302b38(UnkReflFunction* fn);
+void fn_7100302b38(CFunction* fn);
 base::reflection::UnkReflValue fn_71007ae4e8(void*, char* obj, base::reflection::UnkReflValue* const* args);
-void fn_71007ae40c(UnkReflFunction* fn);
+void fn_71007ae40c(CFunction* fn);
 
 void fn_71007a2fb4(CClass* cls) {
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_m_sCutsceneName_GetterFunction", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_sCutsceneName_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sCutsceneName_GetterFunction", true);
         fn->return_type = fn_7100009658();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad4d0);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_m_sCutsceneName_SetterFunction", true)))
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_sCutsceneName_SetterFunction", true)))
         fn_71007a515c(fn, "_m_sCutsceneName_SetterFunction");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("sCutsceneName", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<bool>(fn_7100090a20(), true);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("bDisableScenarioEntitiesOnPlay", true), fn_710000d228(), 0x20e, -1, -1);
     field1->attrs.Add<bool>(fn_7100075240(), true);
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_m_vOriginalPos_GetterFunction", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_vOriginalPos_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vOriginalPos_GetterFunction", true);
         fn->return_type = fn_71000246e4();
         fn->field_0xb2 = 0;
@@ -81,14 +81,14 @@ void fn_71007a2fb4(CClass* cls) {
     field2->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     field2->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
     field2->attrs.Add<bool>(fn_7100090a20(), false);
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_m_vctCutscenesOffsets_GetterFunction", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_vctCutscenesOffsets_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vctCutscenesOffsets_GetterFunction", true);
         fn->return_type = &g_unk_7101d5c078;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad648);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_m_vctCutscenesOffsets_SetterFunction", true)))
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_vctCutscenesOffsets_SetterFunction", true)))
         fn_71007a52d8(fn, "_m_vctCutscenesOffsets_SetterFunction");
     UnkReflField* field3 = AddReflectedField(cls, CStrId("vctCutscenesOffsets", true), &g_unk_7101d5c078, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field3->attrs.Add<bool>(fn_7100090a20(), false);
@@ -100,116 +100,116 @@ void fn_71007a2fb4(CClass* cls) {
     UnkReflField* field7 = AddReflectedField(cls, CStrId("vctOnAfterCutsceneEndsLA", true), &g_unk_717274caa0, 0x120, -1, -1);
     UnkReflField* field8 = AddReflectedField(cls, CStrId("bHasSamusAsExtraActor", true), fn_710000d228(), 0x210, -1, -1);
     field8->attrs.Add<bool>(fn_7100090a20(), false);
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("SetupCutsceneForEditor", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("SetupCutsceneForEditor", true))) {
         fn->name = base::global::UnkStrId("SetupCutsceneForEditor", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad78c);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("ChangeToTake", true)))
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("ChangeToTake", true)))
         fn_71007a544c(fn, "ChangeToTake");
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("SetupCurrentTakePositions", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("SetupCurrentTakePositions", true))) {
         fn->name = base::global::UnkStrId("SetupCurrentTakePositions", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad814);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("SetGlobalfreeCamera", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("SetGlobalfreeCamera", true))) {
         fn->name = base::global::UnkStrId("SetGlobalfreeCamera", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad8d4);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("LoadExtraInvolvedSubareas", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("LoadExtraInvolvedSubareas", true))) {
         fn->name = base::global::UnkStrId("LoadExtraInvolvedSubareas", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad8e8);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("ShowAllExtraActors", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("ShowAllExtraActors", true))) {
         fn->name = base::global::UnkStrId("ShowAllExtraActors", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad91c);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("HideAllExtraActors", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("HideAllExtraActors", true))) {
         fn->name = base::global::UnkStrId("HideAllExtraActors", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad950);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("RetrieveExtraActorsVisibleStatus", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("RetrieveExtraActorsVisibleStatus", true))) {
         fn->name = base::global::UnkStrId("RetrieveExtraActorsVisibleStatus", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad984);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("LaunchCutscene", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("LaunchCutscene", true))) {
         fn->name = base::global::UnkStrId("LaunchCutscene", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad9b8);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("LaunchCutsceneImmediate", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("LaunchCutsceneImmediate", true))) {
         fn->name = base::global::UnkStrId("LaunchCutsceneImmediate", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad9ec);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("HasCutsceneBeenPlayed", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("HasCutsceneBeenPlayed", true))) {
         fn->name = base::global::UnkStrId("HasCutsceneBeenPlayed", true);
         fn->return_type = fn_710000d228();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ada28);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("OnTakeChanged", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("OnTakeChanged", true))) {
         fn->name = base::global::UnkStrId("OnTakeChanged", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007adb08);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("ResetOffsets", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("ResetOffsets", true))) {
         fn->name = base::global::UnkStrId("ResetOffsets", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007adb3c);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("CreateExtraActor", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("CreateExtraActor", true))) {
         fn->name = base::global::UnkStrId("CreateExtraActor", true);
         fn->return_type = (fn_71007a225c(), &g_unk_71727199c0);
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007adb50);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("ContinueCutsceneIfTakeLooped", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("ContinueCutsceneIfTakeLooped", true))) {
         fn->name = base::global::UnkStrId("ContinueCutsceneIfTakeLooped", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007adba0);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("TryLaunchCutscene", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("TryLaunchCutscene", true))) {
         fn->name = base::global::UnkStrId("TryLaunchCutscene", true);
         fn->return_type = fn_710000d228();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007adbe8);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("QueueCutscenePlayer", true)))
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("QueueCutscenePlayer", true)))
         fn_71007a55c8(fn, "QueueCutscenePlayer");
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("SetTakePlayMode", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("SetTakePlayMode", true))) {
         fn->name = base::global::UnkStrId("SetTakePlayMode", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
@@ -217,16 +217,16 @@ void fn_71007a2fb4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71007ade14);
         fn_71007adc7c(fn);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("SkipCutscene", true)))
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("SkipCutscene", true)))
         fn_71007a5744(fn, "SkipCutscene");
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("GetCutscene", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("GetCutscene", true))) {
         fn->name = base::global::UnkStrId("GetCutscene", true);
         fn->return_type = fn_71007adf30();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ae270);
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("SetExtraActorStatus", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("SetExtraActorStatus", true))) {
         fn->name = base::global::UnkStrId("SetExtraActorStatus", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
@@ -238,7 +238,7 @@ void fn_71007a2fb4(CClass* cls) {
         fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("_bEnabled", true));
         fn->ParamAttrs(2)->Add<CStrId>(fn_710008f920(), CStrId("_bRestoreVisibility", true));
     }
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("OnExtraActorVisibilityPerTakeChanged", true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId("OnExtraActorVisibilityPerTakeChanged", true))) {
         fn->name = base::global::UnkStrId("OnExtraActorVisibilityPerTakeChanged", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
