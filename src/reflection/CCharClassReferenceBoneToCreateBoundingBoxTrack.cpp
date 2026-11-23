@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,7 +24,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassReferenceBoneToCreateBoundingBoxTrack
 void fn_7100c47e64();
-void fn_7100c47bb8(UnkReflFunction* fn, const char* name);
+void fn_7100c47bb8(CFunction* fn, const char* name);
 namespace CCharClassReferenceBoneToCreateBoundingBoxTrack {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Reference Bone To Create Bounding Box");

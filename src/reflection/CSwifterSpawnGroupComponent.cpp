@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,7 +25,7 @@ template <> base::reflection::CType base::reflection::TypeObject<ESwifterSpawnGr
 
 // CSwifterSpawnGroupComponent
 void fn_7100a13530();
-void fn_7100a12648(UnkReflFunction* fn, const char* name);
+void fn_7100a12648(CFunction* fn, const char* name);
 namespace CSwifterSpawnGroupComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

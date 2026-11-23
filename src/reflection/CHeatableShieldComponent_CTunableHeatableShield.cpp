@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -69,9 +69,9 @@ DREAD_REFLECTED_CLASS(CHeatableShieldComponent::CTunableHeatableShield, base::tu
 
 // CHeatableShieldComponent
 void fn_710086ce20();
-void fn_710086cb28(UnkReflFunction* fn);
+void fn_710086cb28(CFunction* fn);
 void fn_710086d4f8();
-void fn_7100500260(UnkReflFunction* fn);
+void fn_7100500260(CFunction* fn);
 void fn_710086d530();
 namespace CHeatableShieldComponent {
 void refl_AddAttributes(CClass*) {}

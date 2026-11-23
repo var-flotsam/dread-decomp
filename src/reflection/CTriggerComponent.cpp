@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -30,14 +30,14 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CTriggerComponent
-void fn_7100a5cbcc(UnkReflFunction* fn, const char* name);
+void fn_7100a5cbcc(CFunction* fn, const char* name);
 void fn_7100a6463c();
-void fn_7100a5cc80(UnkReflFunction* fn, const char* name);
+void fn_7100a5cc80(CFunction* fn, const char* name);
 void fn_7100a646ec();
-void fn_7100a5cdfc(UnkReflFunction* fn, const char* name);
+void fn_7100a5cdfc(CFunction* fn, const char* name);
 void fn_7100a64790();
-void fn_7100a5cf78(UnkReflFunction* fn, const char* name);
-void fn_7100a5d0f4(UnkReflFunction* fn, const char* name);
+void fn_7100a5cf78(CFunction* fn, const char* name);
+void fn_7100a5d0f4(CFunction* fn, const char* name);
 namespace CTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

@@ -1,5 +1,5 @@
 // Unit 72 (base::reflection::CClass): shrinking a keyed array of reflected functions (0xb8 bytes
-// each, UnkReflFunction) and their names to its count: the functions are moved and the old ones
+// each, CFunction) and their names to its count: the functions are moved and the old ones
 // destroyed, the names copied and released. Names and layouts are placeholders.
 #include <new>
 
@@ -12,7 +12,7 @@ using base::global::CRntVector;
 using base::global::CStrId;
 using base::global::UnkStringData;
 
-extern char g_unk_7101a1b460[];  // UnkReflFunction's virtual table (its address point is +0x10)
+extern char g_unk_7101a1b460[];  // CFunction's virtual table (its address point is +0x10)
 
 namespace refl_function_shrink_l096c80 {
 
@@ -74,7 +74,7 @@ struct UnkReflFunctionData {
 
     void Destroy() { vtbl->dtor(this); }
 };
-static_assert(sizeof(UnkReflFunctionData) == 0xb8, "UnkReflFunction layout");
+static_assert(sizeof(UnkReflFunctionData) == 0xb8, "CFunction layout");
 
 }  // namespace refl_function_shrink_l096c80
 

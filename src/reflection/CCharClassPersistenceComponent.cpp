@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -27,13 +27,13 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassPersistenceComponent
 void fn_71009c9bec();
-void fn_71009c932c(UnkReflFunction* fn, const char* name);
+void fn_71009c932c(CFunction* fn, const char* name);
 void fn_71009c9cd8();
-void fn_71009c94a0(UnkReflFunction* fn, const char* name);
+void fn_71009c94a0(CFunction* fn, const char* name);
 void fn_71009c9dc4();
-void fn_71009c9614(UnkReflFunction* fn, const char* name);
+void fn_71009c9614(CFunction* fn, const char* name);
 void fn_71009c9eb0();
-void fn_71009c9788(UnkReflFunction* fn, const char* name);
+void fn_71009c9788(CFunction* fn, const char* name);
 namespace CCharClassPersistenceComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

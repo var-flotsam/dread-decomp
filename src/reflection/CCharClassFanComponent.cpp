@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -54,15 +54,15 @@ DREAD_REFLECTED_CLASS(CCharClassFanComponent, CCharClassBaseTriggerComponent);
 
 // CFanComponent
 void fn_710087f868();
-void fn_710087d4b0(UnkReflFunction* fn, const char* name);
+void fn_710087d4b0(CFunction* fn, const char* name);
 void fn_710087f914();
-void fn_710087d62c(UnkReflFunction* fn, const char* name);
+void fn_710087d62c(CFunction* fn, const char* name);
 void fn_710087f9a4();
-void fn_710087d7a8(UnkReflFunction* fn, const char* name);
+void fn_710087d7a8(CFunction* fn, const char* name);
 void fn_710087fa34();
-void fn_710087d924(UnkReflFunction* fn, const char* name);
+void fn_710087d924(CFunction* fn, const char* name);
 void fn_710087fae0();
-void fn_710087daa0(UnkReflFunction* fn, const char* name);
+void fn_710087daa0(CFunction* fn, const char* name);
 namespace CFanComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

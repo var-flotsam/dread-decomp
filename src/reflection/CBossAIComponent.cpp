@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -32,7 +32,7 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 
 // CBossAIComponent
 void fn_71003b0e60();
-void fn_7100302d14(UnkReflFunction* fn);
+void fn_7100302d14(CFunction* fn);
 namespace CBossAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

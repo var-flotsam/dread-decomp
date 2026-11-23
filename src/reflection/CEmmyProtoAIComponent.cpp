@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -22,7 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CEmmyProtoAIComponent
-void fn_71004fa958(UnkReflFunction* fn, const char* name);
+void fn_71004fa958(CFunction* fn, const char* name);
 void fn_71004fd4d8();
 namespace CEmmyProtoAIComponent {
 void refl_AddAttributes(CClass*) {}

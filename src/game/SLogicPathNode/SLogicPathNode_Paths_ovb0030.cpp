@@ -25,7 +25,7 @@
 #include "types.h"
 
 using base::reflection::CType;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkReflObject;
 using base::reflection::UnkReflValue;
 
@@ -234,7 +234,7 @@ UnkReflObject* fn_71010590dc(char* self, u32 index, void* arg) {
 
 UnkReflValue fn_710105d0d0(void*, char* obj, UnkReflValue* const* args);
 
-void fn_7101055b34(UnkReflFunction* fn, const char* name) {
+void fn_7101055b34(CFunction* fn, const char* name) {
     fn->name = base::global::UnkStrId(name, true);
     fn_7101054330();
     fn->return_type = reinterpret_cast<const CType*>(g_unk_71729ffb90);
@@ -256,7 +256,7 @@ struct base::UnkPushPairTraits<UnkPathNodeParams> {
     }
 };
 
-__attribute__((flatten)) void fn_710105d188(UnkReflFunction* fn) {
+__attribute__((flatten)) void fn_710105d188(CFunction* fn) {
     base::refl_PushPair<UnkPathNodeParams>(reinterpret_cast<char*>(fn));
 }
 

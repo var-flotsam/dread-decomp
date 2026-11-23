@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -22,13 +22,13 @@ using base::reflection::DestroyDestructorFirst;
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CAnimationComponent
-void fn_71011753bc(UnkReflFunction* fn, const char* name);
-void fn_7101175470(UnkReflFunction* fn, const char* name);
-void fn_7101175524(UnkReflFunction* fn, const char* name);
-void fn_71011755d8(UnkReflFunction* fn, const char* name);
-void fn_710117568c(UnkReflFunction* fn, const char* name);
+void fn_71011753bc(CFunction* fn, const char* name);
+void fn_7101175470(CFunction* fn, const char* name);
+void fn_7101175524(CFunction* fn, const char* name);
+void fn_71011755d8(CFunction* fn, const char* name);
+void fn_710117568c(CFunction* fn, const char* name);
 void fn_710117c12c();
-void fn_7101175740(UnkReflFunction* fn, const char* name);
+void fn_7101175740(CFunction* fn, const char* name);
 namespace CAnimationComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

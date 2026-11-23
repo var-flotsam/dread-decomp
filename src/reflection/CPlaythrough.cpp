@@ -12,7 +12,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -34,7 +34,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CPlaythrough
 void fn_71002edffc();
-void fn_71002ea054(UnkReflFunction* fn, const char* name);
+void fn_71002ea054(CFunction* fn, const char* name);
 void fn_71002ee0fc();
 void fn_71002ee124();
 void fn_71002ee14c();

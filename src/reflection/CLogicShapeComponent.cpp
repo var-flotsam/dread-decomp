@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -28,7 +28,7 @@ extern template const base::reflection::CType* base::reflection::PointerType<gam
 const base::reflection::CType* fn_7100913068();
 const base::reflection::CType* fn_71009155a8();
 void fn_71009158dc();
-void fn_7100913144(UnkReflFunction* fn, const char* name);
+void fn_7100913144(CFunction* fn, const char* name);
 namespace CLogicShapeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

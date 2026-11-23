@@ -12,7 +12,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -27,9 +27,9 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // game::logic::collision::CShape
 void fn_7100d6e0d4();
-void fn_7100d69d64(UnkReflFunction* fn, const char* name);
+void fn_7100d69d64(CFunction* fn, const char* name);
 void fn_7100d6e19c();
-void fn_7100d69ee0(UnkReflFunction* fn, const char* name);
+void fn_7100d69ee0(CFunction* fn, const char* name);
 namespace game::logic::collision::CShape {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

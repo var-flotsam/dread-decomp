@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -334,27 +334,27 @@ DREAD_REFLECTED_CLASS(CCharClassAttackComponent::CTunableCharClassAttackComponen
 
 // CCharClassAttackComponent
 void fn_710078d8c0();
-void fn_710078bfc4(UnkReflFunction* fn, const char* name);
+void fn_710078bfc4(CFunction* fn, const char* name);
 void fn_710078da0c();
-void fn_710078c140(UnkReflFunction* fn, const char* name);
+void fn_710078c140(CFunction* fn, const char* name);
 void fn_710078da9c();
-void fn_710078c2bc(UnkReflFunction* fn, const char* name);
+void fn_710078c2bc(CFunction* fn, const char* name);
 void fn_710078db9c();
-void fn_710078c438(UnkReflFunction* fn, const char* name);
+void fn_710078c438(CFunction* fn, const char* name);
 void fn_710078dc9c();
-void fn_710078c5b4(UnkReflFunction* fn, const char* name);
+void fn_710078c5b4(CFunction* fn, const char* name);
 void fn_710078dd9c();
-void fn_710078c730(UnkReflFunction* fn, const char* name);
+void fn_710078c730(CFunction* fn, const char* name);
 void fn_710078de9c();
-void fn_710078c8ac(UnkReflFunction* fn, const char* name);
+void fn_710078c8ac(CFunction* fn, const char* name);
 void fn_710078df2c();
-void fn_710078ca28(UnkReflFunction* fn, const char* name);
+void fn_710078ca28(CFunction* fn, const char* name);
 void fn_710078dfbc();
-void fn_710078cba4(UnkReflFunction* fn, const char* name);
+void fn_710078cba4(CFunction* fn, const char* name);
 void fn_710078e048();
-void fn_710078cd18(UnkReflFunction* fn, const char* name);
+void fn_710078cd18(CFunction* fn, const char* name);
 void fn_710078e0d8();
-void fn_710078ce94(UnkReflFunction* fn, const char* name);
+void fn_710078ce94(CFunction* fn, const char* name);
 namespace CCharClassAttackComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

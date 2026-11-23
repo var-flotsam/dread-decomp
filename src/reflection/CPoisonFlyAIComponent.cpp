@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,7 +23,7 @@ template <> base::reflection::CType base::reflection::TypeObject<void>::object a
 
 // CPoisonFlyAIComponent
 void fn_7100639afc();
-void fn_7100639960(UnkReflFunction* fn);
+void fn_7100639960(CFunction* fn);
 void fn_7100639bc8();
 namespace CPoisonFlyAIComponent {
 void refl_AddAttributes(CClass*) {}

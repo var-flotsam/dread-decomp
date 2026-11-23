@@ -1,4 +1,4 @@
-// Unit 83 (base::reflection): erases one reflected function (UnkReflFunction, 0xb8 bytes) from a keyed
+// Unit 83 (base::reflection): erases one reflected function (CFunction, 0xb8 bytes) from a keyed
 // array of functions with their names alongside: the function is destroyed through its virtual
 // destructor and the last function and name moved into its place. Names and layouts are placeholders.
 #include <new>
@@ -19,7 +19,7 @@ namespace refl_function_erase_l0dded4 {
 
 struct UnkReflFunctionData;
 
-// The first slot of UnkReflFunction's virtual table: its destructor.
+// The first slot of CFunction's virtual table: its destructor.
 struct UnkReflFunctionVtbl {
     void (*destruct)(UnkReflFunctionData* self);
 };
@@ -56,7 +56,7 @@ struct UnkReflFunctionData {
 
     void Destroy() { vtbl->destruct(this); }
 };
-static_assert(sizeof(UnkReflFunctionData) == 0xb8, "UnkReflFunction layout");
+static_assert(sizeof(UnkReflFunctionData) == 0xb8, "CFunction layout");
 
 }  // namespace refl_function_erase_l0dded4
 

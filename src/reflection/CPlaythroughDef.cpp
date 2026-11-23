@@ -12,7 +12,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -29,7 +29,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 // CPlaythroughDef
 extern base::reflection::CType g_unk_71726adc98;
 void fn_71002f4644();
-void fn_71002f0664(UnkReflFunction* fn, const char* name);
+void fn_71002f0664(CFunction* fn, const char* name);
 void fn_71002f471c();
 namespace CPlaythroughDef {
 void refl_AddAttributes(CClass* cls) {
@@ -62,8 +62,8 @@ DREAD_REFLECTED_CLASS(CPlaythroughDef, base::core::CAsset);
 
 // CPlaythroughDef::SCheckpointDef
 void fn_71002f4f44();
-void fn_71002f0f90(UnkReflFunction* fn, const char* name);
-void fn_71002f110c(UnkReflFunction* fn, const char* name);
+void fn_71002f0f90(CFunction* fn, const char* name);
+void fn_71002f110c(CFunction* fn, const char* name);
 namespace CPlaythroughDef::SCheckpointDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -32,11 +32,11 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 
 // CHecathonAIComponent
 void fn_71005abe98();
-void fn_71005a9250(UnkReflFunction* fn, const char* name);
+void fn_71005a9250(CFunction* fn, const char* name);
 void fn_71005abef0();
-void fn_71005a93cc(UnkReflFunction* fn, const char* name);
+void fn_71005a93cc(CFunction* fn, const char* name);
 void fn_71005abf48();
-void fn_71005a9548(UnkReflFunction* fn, const char* name);
+void fn_71005a9548(CFunction* fn, const char* name);
 namespace CHecathonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

@@ -13,7 +13,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -40,10 +40,10 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CSpawnPointComponent
-void fn_71011255e4(UnkReflFunction* fn, const char* name);
+void fn_71011255e4(CFunction* fn, const char* name);
 void fn_7101132780();
 void fn_71011327d8();
-void fn_7101125760(UnkReflFunction* fn, const char* name);
+void fn_7101125760(CFunction* fn, const char* name);
 void fn_71011328d8();
 void fn_7101132928();
 void fn_7101132978();

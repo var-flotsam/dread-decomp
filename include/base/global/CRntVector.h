@@ -3,7 +3,7 @@
 // The engine's growable array, base::global::CRntVector (the name reflection gives it), and the
 // allocator interface it allocates through (a placeholder name). The layout is shared by CType+0x90 (default-constructed
 // there: growth step 10, flags 0x3e) and the parameter-type list of a reflected function
-// (UnkReflFunction+0x8, filled by fn_7100a19530).
+// (CFunction+0x8, filled by fn_7100a19530).
 
 #include <new>
 

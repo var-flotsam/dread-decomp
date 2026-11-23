@@ -12,7 +12,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -26,8 +26,8 @@ namespace base::global { template <class> class CRntVector; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CLightInfo>>::object asm("g_unk_71727bac20");
 
 // CLightsDef
-void fn_7100d9d680(UnkReflFunction* fn, const char* name);
-void fn_7100d9d800(UnkReflFunction* fn, const char* name);
+void fn_7100d9d680(CFunction* fn, const char* name);
+void fn_7100d9d800(CFunction* fn, const char* name);
 namespace CLightsDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

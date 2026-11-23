@@ -1,4 +1,4 @@
-// Unit 72 (base::reflection::CClass): the constructor and destructor of a reflected function (UnkReflFunction,
+// Unit 72 (base::reflection::CClass): the constructor and destructor of a reflected function (CFunction,
 // 0xb8 bytes) extended with a list of reflected values (+0xc0), one more value (+0xe8) and a
 // list of words (+0x100); vtable unk_7101a1b260. They start from the function's own constructor
 // (fn_710009a5b4) and end in its destructor (fn_710009aae8; UnkReflFunctionData's in

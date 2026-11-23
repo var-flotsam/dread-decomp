@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -76,7 +76,7 @@ DREAD_REFLECTED_CLASS(CMorphBallMovement, CPlayerMovement);
 // CMorphBallMovement::CTunableMorphBallMovement
 namespace CMorphBallMovement::CTunableMorphBallMovement { extern bool refl_fields_added asm("g_unk_7172739438"); }
 void fn_710094ff98();
-void fn_710093d6cc(UnkReflFunction* fn, const char* name);
+void fn_710093d6cc(CFunction* fn, const char* name);
 namespace CMorphBallMovement::CTunableMorphBallMovement { extern UnkTunable refl_tunable asm("g_unk_71727393d8"); }
 void fn_710093d848(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CMorphBallMovement::CTunableMorphBallMovement {

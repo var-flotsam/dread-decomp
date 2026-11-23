@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -26,27 +26,27 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 
 // CCharClassBillboardComponent
 void fn_7100730cc0();
-void fn_710072e150(UnkReflFunction* fn, const char* name);
+void fn_710072e150(CFunction* fn, const char* name);
 void fn_7100730d50();
-void fn_710072e2cc(UnkReflFunction* fn, const char* name);
+void fn_710072e2cc(CFunction* fn, const char* name);
 void fn_7100730de0();
-void fn_710072e448(UnkReflFunction* fn, const char* name);
+void fn_710072e448(CFunction* fn, const char* name);
 void fn_7100730e70();
-void fn_710072e5c4(UnkReflFunction* fn, const char* name);
+void fn_710072e5c4(CFunction* fn, const char* name);
 void fn_7100730f00();
-void fn_710072e740(UnkReflFunction* fn, const char* name);
+void fn_710072e740(CFunction* fn, const char* name);
 void fn_7100730f98();
-void fn_710072e8bc(UnkReflFunction* fn, const char* name);
+void fn_710072e8bc(CFunction* fn, const char* name);
 void fn_7100731028();
-void fn_710072ea38(UnkReflFunction* fn, const char* name);
+void fn_710072ea38(CFunction* fn, const char* name);
 void fn_71007310c0();
-void fn_710072ebb4(UnkReflFunction* fn, const char* name);
+void fn_710072ebb4(CFunction* fn, const char* name);
 void fn_7100731150();
-void fn_710072ed30(UnkReflFunction* fn, const char* name);
+void fn_710072ed30(CFunction* fn, const char* name);
 void fn_71007311e0();
-void fn_710072eeac(UnkReflFunction* fn, const char* name);
+void fn_710072eeac(CFunction* fn, const char* name);
 void fn_7100731270();
-void fn_710072f028(UnkReflFunction* fn, const char* name);
+void fn_710072f028(CFunction* fn, const char* name);
 namespace CCharClassBillboardComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

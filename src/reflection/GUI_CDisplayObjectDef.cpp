@@ -12,7 +12,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -26,7 +26,7 @@ extern template const base::reflection::CType* base::reflection::PointerType<GUI
 // GUI::CDisplayObjectDef
 extern base::reflection::CType g_unk_717275f310;
 void fn_7100b086b8();
-void fn_7100b05218(UnkReflFunction* fn, const char* name);
+void fn_7100b05218(CFunction* fn, const char* name);
 extern base::reflection::CType g_unk_717275e480;
 const base::reflection::CType* fn_7100b05394();
 void fn_7100b087d4();

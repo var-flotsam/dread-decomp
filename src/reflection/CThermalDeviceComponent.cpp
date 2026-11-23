@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,9 +25,9 @@ template <> base::reflection::CType base::reflection::TypeObject<CThermalDeviceC
 
 // CThermalDeviceComponent
 void fn_7100a94804();
-void fn_7100a90798(UnkReflFunction* fn, const char* name);
+void fn_7100a90798(CFunction* fn, const char* name);
 void fn_7100a94890();
-void fn_7100a9090c(UnkReflFunction* fn, const char* name);
+void fn_7100a9090c(CFunction* fn, const char* name);
 namespace CThermalDeviceComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -34,23 +34,23 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 
 // CDoorLifeComponent
 void fn_71008dc010();
-void fn_71008cca04(UnkReflFunction* fn, const char* name);
+void fn_71008cca04(CFunction* fn, const char* name);
 void fn_71008dc0a8();
-void fn_71008ccb80(UnkReflFunction* fn, const char* name);
+void fn_71008ccb80(CFunction* fn, const char* name);
 void fn_71008dc150();
-void fn_71008cccfc(UnkReflFunction* fn, const char* name);
+void fn_71008cccfc(CFunction* fn, const char* name);
 void fn_71008dc1e0();
-void fn_71008cce78(UnkReflFunction* fn, const char* name);
+void fn_71008cce78(CFunction* fn, const char* name);
 void fn_71008dc34c();
-void fn_71008dc270(UnkReflFunction* fn);
-void fn_71008ccff4(UnkReflFunction* fn, const char* name);
+void fn_71008dc270(CFunction* fn);
+void fn_71008ccff4(CFunction* fn, const char* name);
 void fn_71008dc890();
-void fn_7100302d14(UnkReflFunction* fn);
+void fn_7100302d14(CFunction* fn);
 void fn_71008dca4c();
-void fn_71003540d8(UnkReflFunction* fn);
-void fn_71008cd0a8(UnkReflFunction* fn, const char* name);
-void fn_71008cd15c(UnkReflFunction* fn, const char* name);
-void fn_71008cd210(UnkReflFunction* fn, const char* name);
+void fn_71003540d8(CFunction* fn);
+void fn_71008cd0a8(CFunction* fn, const char* name);
+void fn_71008cd15c(CFunction* fn, const char* name);
+void fn_71008cd210(CFunction* fn, const char* name);
 void fn_71008dcc08();
 namespace CDoorLifeComponent {
 void refl_AddAttributes(CClass*) {}
@@ -133,7 +133,7 @@ DREAD_REFLECTED_CLASS(CDoorLifeComponent, CItemLifeComponent);
 // CDoorLifeComponent::CTunableDoorLifeComponent
 namespace CDoorLifeComponent::CTunableDoorLifeComponent { extern bool refl_fields_added asm("g_unk_71727313a0"); }
 void fn_71008dccec();
-void fn_71008cda44(UnkReflFunction* fn, const char* name);
+void fn_71008cda44(CFunction* fn, const char* name);
 namespace CDoorLifeComponent::CTunableDoorLifeComponent { extern UnkTunable refl_tunable asm("g_unk_7172731368"); }
 void fn_71008cdbc0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CDoorLifeComponent::CTunableDoorLifeComponent {

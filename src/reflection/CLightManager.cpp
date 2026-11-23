@@ -12,7 +12,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -27,8 +27,8 @@ namespace base::global { template <class, class> class CRntDictionary; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>>::object asm("g_unk_71727bfc38");
 
 // CLightManager
-void fn_7100e082bc(UnkReflFunction* fn, const char* name);
-void fn_7100e08438(UnkReflFunction* fn, const char* name);
+void fn_7100e082bc(CFunction* fn, const char* name);
+void fn_7100e08438(CFunction* fn, const char* name);
 namespace CLightManager {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);

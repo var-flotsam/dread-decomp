@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -54,7 +54,7 @@ DREAD_REFLECTED_CLASS(CPowerBombGun, CSecondaryGun);
 // CPowerBombGun::CTunablePowerBomb
 namespace CPowerBombGun::CTunablePowerBomb { extern bool refl_fields_added asm("g_unk_7172727d48"); }
 void fn_7100856ee4();
-void fn_71008560b4(UnkReflFunction* fn, const char* name);
+void fn_71008560b4(CFunction* fn, const char* name);
 namespace CPowerBombGun::CTunablePowerBomb { extern UnkTunable refl_tunable asm("g_unk_7172727ce0"); }
 void fn_7100856230(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CPowerBombGun::CTunablePowerBomb {

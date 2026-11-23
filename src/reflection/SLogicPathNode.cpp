@@ -13,7 +13,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -36,7 +36,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 
 // SLogicPathNode
 void fn_710105cdb4();
-void fn_7101054b10(UnkReflFunction* fn, const char* name);
+void fn_7101054b10(CFunction* fn, const char* name);
 namespace SLogicPathNode {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -78,11 +78,11 @@ DREAD_REFLECTED_CLASS(SLogicPathNode, IPathNode);
 // SLogicSubPath
 void fn_710105d0a8();
 void fn_710105d0bc();
-void fn_7101055b34(UnkReflFunction* fn, const char* name);
+void fn_7101055b34(CFunction* fn, const char* name);
 void fn_710105d328();
-void fn_710105d188(UnkReflFunction* fn);
-void fn_7101055bf4(UnkReflFunction* fn, const char* name);
-void fn_7101055d70(UnkReflFunction* fn, const char* name);
+void fn_710105d188(CFunction* fn);
+void fn_7101055bf4(CFunction* fn, const char* name);
+void fn_7101055d70(CFunction* fn, const char* name);
 namespace SLogicSubPath {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -446,7 +446,7 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_710105db6c();
@@ -463,7 +463,7 @@ void fn_71010563b4(CClass* cls) {
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_710105dd24();
@@ -480,7 +480,7 @@ void fn_71010569a4(CClass* cls) {
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_710105ea20();
@@ -497,7 +497,7 @@ void fn_7101057344(CClass* cls) {
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_710105ec80();

@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -30,22 +30,22 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // CCubeMapComponent
 void fn_71007a07a0();
-void fn_710079e864(UnkReflFunction* fn, const char* name);
+void fn_710079e864(CFunction* fn, const char* name);
 void fn_71007a088c();
-void fn_710079e9e0(UnkReflFunction* fn, const char* name);
+void fn_710079e9e0(CFunction* fn, const char* name);
 void fn_71007a0938();
-void fn_710079eb5c(UnkReflFunction* fn, const char* name);
+void fn_710079eb5c(CFunction* fn, const char* name);
 void fn_71007a0a3c();
-void fn_710079ecd8(UnkReflFunction* fn, const char* name);
+void fn_710079ecd8(CFunction* fn, const char* name);
 void fn_71007a0b28();
-void fn_710079ee54(UnkReflFunction* fn, const char* name);
+void fn_710079ee54(CFunction* fn, const char* name);
 void fn_71007a0bdc();
-void fn_710079efd0(UnkReflFunction* fn, const char* name);
+void fn_710079efd0(CFunction* fn, const char* name);
 void fn_71007a0cac();
-void fn_710079f14c(UnkReflFunction* fn, const char* name);
+void fn_710079f14c(CFunction* fn, const char* name);
 void fn_71007a0d58();
-void fn_710079f2c8(UnkReflFunction* fn, const char* name);
-void fn_710079f444(UnkReflFunction* fn, const char* name);
+void fn_710079f2c8(CFunction* fn, const char* name);
+void fn_710079f444(CFunction* fn, const char* name);
 void fn_71007a0efc();
 namespace CCubeMapComponent {
 void refl_AddAttributes(CClass*) {}

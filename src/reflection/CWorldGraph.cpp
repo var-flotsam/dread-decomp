@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -28,8 +28,8 @@ template <> base::reflection::CType base::reflection::TypeObject<base::global::C
 // CWorldGraph
 void fn_7100acceb8();
 void fn_7100accfc8();
-void fn_7100acceec(UnkReflFunction* fn);
-void fn_7100acbea0(UnkReflFunction* fn, const char* name);
+void fn_7100acceec(CFunction* fn);
+void fn_7100acbea0(CFunction* fn, const char* name);
 namespace CWorldGraph {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

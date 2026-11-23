@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,13 +24,13 @@ extern template const base::reflection::CType* base::reflection::PointerType<bas
 
 // CPositionalSoundComponent
 void fn_710114cf08();
-void fn_710114affc(UnkReflFunction* fn, const char* name);
+void fn_710114affc(CFunction* fn, const char* name);
 void fn_710114d078();
-void fn_710114b178(UnkReflFunction* fn, const char* name);
+void fn_710114b178(CFunction* fn, const char* name);
 void fn_710114d1e8();
-void fn_710114b2f4(UnkReflFunction* fn, const char* name);
+void fn_710114b2f4(CFunction* fn, const char* name);
 void fn_710114d358();
-void fn_710114b470(UnkReflFunction* fn, const char* name);
+void fn_710114b470(CFunction* fn, const char* name);
 namespace CPositionalSoundComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

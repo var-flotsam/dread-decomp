@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -31,33 +31,33 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // CBaseLightComponent
 void fn_71008ef0bc();
-void fn_71008edb54(UnkReflFunction* fn, const char* name);
+void fn_71008edb54(CFunction* fn, const char* name);
 void fn_71008ef184();
-void fn_71008edcd0(UnkReflFunction* fn, const char* name);
+void fn_71008edcd0(CFunction* fn, const char* name);
 void fn_71008ef23c();
-void fn_71008ede4c(UnkReflFunction* fn, const char* name);
+void fn_71008ede4c(CFunction* fn, const char* name);
 void fn_71008ef2f4();
-void fn_71008edfc8(UnkReflFunction* fn, const char* name);
+void fn_71008edfc8(CFunction* fn, const char* name);
 void fn_71008ef3ac();
-void fn_71008ee144(UnkReflFunction* fn, const char* name);
+void fn_71008ee144(CFunction* fn, const char* name);
 void fn_71008ef468();
-void fn_71008ee2c0(UnkReflFunction* fn, const char* name);
+void fn_71008ee2c0(CFunction* fn, const char* name);
 void fn_71008ef524();
-void fn_71008ee43c(UnkReflFunction* fn, const char* name);
+void fn_71008ee43c(CFunction* fn, const char* name);
 void fn_71008ef5e0();
-void fn_71008ee5b8(UnkReflFunction* fn, const char* name);
+void fn_71008ee5b8(CFunction* fn, const char* name);
 void fn_71008ef69c();
-void fn_71008ee734(UnkReflFunction* fn, const char* name);
+void fn_71008ee734(CFunction* fn, const char* name);
 void fn_71008ef758();
-void fn_71008ee8b0(UnkReflFunction* fn, const char* name);
+void fn_71008ee8b0(CFunction* fn, const char* name);
 void fn_71008ef810();
-void fn_71008eea24(UnkReflFunction* fn, const char* name);
+void fn_71008eea24(CFunction* fn, const char* name);
 void fn_71008ef8cc();
-void fn_71008eeba0(UnkReflFunction* fn, const char* name);
+void fn_71008eeba0(CFunction* fn, const char* name);
 void fn_71008ef988();
-void fn_71008eed1c(UnkReflFunction* fn, const char* name);
+void fn_71008eed1c(CFunction* fn, const char* name);
 void fn_71008efa44();
-void fn_71008eee98(UnkReflFunction* fn, const char* name);
+void fn_71008eee98(CFunction* fn, const char* name);
 namespace CBaseLightComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

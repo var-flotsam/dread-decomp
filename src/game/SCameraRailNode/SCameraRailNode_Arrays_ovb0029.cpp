@@ -20,7 +20,7 @@
 #include "types.h"
 
 using base::reflection::CType;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkReflValue;
 using base::UnkAllocator;
 
@@ -31,7 +31,7 @@ UnkReflValue fn_7100c07c58(void*, char* obj, UnkReflValue* const* args);
 // Sets up a reflected function taking a camera-rail node: its name, the node class as its return
 // type, its invoker fn_7100c07c58 (src/game/SCameraRailNode/SCameraRailNode_b40.cpp), then its
 // parameters (fn_710011ddc0).
-void fn_7100bfff5c(UnkReflFunction* fn, const char* name) {
+void fn_7100bfff5c(CFunction* fn, const char* name) {
     fn->name = base::global::UnkStrId(name, true);
     fn_7100bfe80c();
     fn->return_type = reinterpret_cast<const CType*>(g_unk_717277cb68);
@@ -42,7 +42,7 @@ void fn_7100bfff5c(UnkReflFunction* fn, const char* name) {
 }
 
 // Pushes two parameter types on a reflected function: unsigned and the camera-rail node class.
-void fn_7100c07d10(UnkReflFunction* fn) {
+void fn_7100c07d10(CFunction* fn) {
     fn->params.PushBack(fn_7100005178());
     fn_7100bfe80c();
     fn->params.PushBack(reinterpret_cast<const CType*>(g_unk_717277cb68));

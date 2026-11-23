@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,19 +24,19 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // COmniLightComponent
 void fn_71008f1f54();
-void fn_71008f0d98(UnkReflFunction* fn, const char* name);
+void fn_71008f0d98(CFunction* fn, const char* name);
 void fn_71008f2004();
-void fn_71008f0f14(UnkReflFunction* fn, const char* name);
+void fn_71008f0f14(CFunction* fn, const char* name);
 void fn_71008f20d8();
-void fn_71008f1090(UnkReflFunction* fn, const char* name);
+void fn_71008f1090(CFunction* fn, const char* name);
 void fn_71008f2180();
-void fn_71008f120c(UnkReflFunction* fn, const char* name);
+void fn_71008f120c(CFunction* fn, const char* name);
 void fn_71008f2228();
-void fn_71008f1388(UnkReflFunction* fn, const char* name);
+void fn_71008f1388(CFunction* fn, const char* name);
 void fn_71008f22e4();
-void fn_71008f1504(UnkReflFunction* fn, const char* name);
+void fn_71008f1504(CFunction* fn, const char* name);
 void fn_71008f238c();
-void fn_71008f1680(UnkReflFunction* fn, const char* name);
+void fn_71008f1680(CFunction* fn, const char* name);
 namespace COmniLightComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

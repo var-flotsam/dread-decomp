@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -54,7 +54,7 @@ DREAD_REFLECTED_CLASS(CLineBombGun, CSecondaryGun);
 // CLineBombGun::CTunableLineBomb
 namespace CLineBombGun::CTunableLineBomb { extern bool refl_fields_added asm("g_unk_7172726bb0"); }
 void fn_710084b964();
-void fn_710084ac1c(UnkReflFunction* fn, const char* name);
+void fn_710084ac1c(CFunction* fn, const char* name);
 namespace CLineBombGun::CTunableLineBomb { extern UnkTunable refl_tunable asm("g_unk_7172726b48"); }
 void fn_710084ad98(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CLineBombGun::CTunableLineBomb {

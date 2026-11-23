@@ -440,7 +440,7 @@ def registration_functions(orig: asmdiff.Original) -> list[int]:
 
 
 REGISTRATION_CHUNK = 200  # functions per generated registration_NN.cpp / function_inits_NN.cpp
-# Defined by hand (the smoke test's known match): src/base/reflection/UnkReflFunction.cpp.
+# Defined by hand (the smoke test's known match): src/base/reflection/CFunction.cpp.
 HAND_WRITTEN = {0x7100A19530}
 STRH_B2_X19 = 0x79000000 | (0xB2 // 2) << 10 | 19 << 5  # strh wN, [x19, #0xb2]
 
@@ -1022,7 +1022,7 @@ def attribute_keys_by_name(text: str, keys: dict[int, str]) -> str:
 
 
 # A reflected function's registration, in the form DREAD_REFLECTED_FUNCTION (ReflectedFields.h) writes.
-FUNCTION_RE = re.compile(r'^(\s*)if \(UnkReflFunction\* fn = AddReflectedFunction\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\)\)\)',
+FUNCTION_RE = re.compile(r'^(\s*)if \(CFunction\* fn = AddReflectedFunction\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\)\)\)',
                          re.M)
 
 
@@ -1070,7 +1070,7 @@ def functions_in_one_line(text: str) -> str:
     return with_include(new, '#include "base/reflection/ReflectedFields.h"') if new != text else text
 
 
-# The same description in an out-of-line initialiser, `void fn_<addr>(UnkReflFunction* fn, const char* name)`.
+# The same description in an out-of-line initialiser, `void fn_<addr>(CFunction* fn, const char* name)`.
 INIT_DESCRIPTION_RE = re.compile(r'^(\s*)fn->name = base::global::UnkStrId\(name, true\);\n'
                                  r'\s*fn->return_type = ?([^;\n]+);\n'
                                  r'\s*fn->field_0xb2 = (\w+);\n'

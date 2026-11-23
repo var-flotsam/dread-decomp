@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,7 +25,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 // CInventoryComponent::CTunableInventoryComponent
 namespace CInventoryComponent::CTunableInventoryComponent { extern bool refl_fields_added asm("g_unk_7172a09290"); }
 void fn_7101149248();
-void fn_710113ff7c(UnkReflFunction* fn, const char* name);
+void fn_710113ff7c(CFunction* fn, const char* name);
 namespace CInventoryComponent::CTunableInventoryComponent { extern UnkTunable refl_tunable asm("g_unk_7172a09268"); }
 void fn_71011400f8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CInventoryComponent::CTunableInventoryComponent {
@@ -67,9 +67,9 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CInventoryComponent::CTunableInventoryComponent, base::tunable::CTunable);
 
 // CInventoryComponent
-void fn_7101140d84(UnkReflFunction* fn, const char* name);
-void fn_7101140f00(UnkReflFunction* fn, const char* name);
-void fn_7101140fb4(UnkReflFunction* fn, const char* name);
+void fn_7101140d84(CFunction* fn, const char* name);
+void fn_7101140f00(CFunction* fn, const char* name);
+void fn_7101140fb4(CFunction* fn, const char* name);
 namespace CInventoryComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

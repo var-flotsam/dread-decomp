@@ -264,7 +264,7 @@ public:
     }
 };
 
-// The id type of a reflected function's name (UnkReflFunction+0x30). It is built by the same
+// The id type of a reflected function's name (CFunction+0x30). It is built by the same
 // constructor as CStrId but destroyed differently: in fn_71004f01a8 the CStrId passed to
 // fn_7100097550 is released by CStrId's destructor (empty id from the pool reloaded after a
 // release), while the moved-from temporary assigned to the name folds away only if its

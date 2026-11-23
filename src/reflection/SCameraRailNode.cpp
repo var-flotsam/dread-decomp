@@ -13,7 +13,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -36,7 +36,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 
 // SCameraRailNode
 void fn_7100c079cc();
-void fn_7100bfef1c(UnkReflFunction* fn, const char* name);
+void fn_7100bfef1c(CFunction* fn, const char* name);
 namespace SCameraRailNode {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -77,11 +77,11 @@ DREAD_REFLECTED_CLASS(SCameraRailNode, IPathNode);
 // SCameraSubRail
 void fn_7100c07c30();
 void fn_7100c07c44();
-void fn_7100bfff5c(UnkReflFunction* fn, const char* name);
+void fn_7100bfff5c(CFunction* fn, const char* name);
 void fn_7100c07eb0();
-void fn_7100c07d10(UnkReflFunction* fn);
-void fn_7100c0001c(UnkReflFunction* fn, const char* name);
-void fn_7100c00198(UnkReflFunction* fn, const char* name);
+void fn_7100c07d10(CFunction* fn);
+void fn_7100c0001c(CFunction* fn, const char* name);
+void fn_7100c00198(CFunction* fn, const char* name);
 namespace SCameraSubRail {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -434,7 +434,7 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_7100c08624();
@@ -451,7 +451,7 @@ void fn_7100c00b94(CClass* cls) {
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_7100c08a10();
@@ -468,7 +468,7 @@ void fn_7100c01184(CClass* cls) {
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_7100c09dc4();
@@ -485,7 +485,7 @@ void fn_7100c01b24(CClass* cls) {
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_7100c09f78();

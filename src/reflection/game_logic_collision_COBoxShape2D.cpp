@@ -12,7 +12,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -28,11 +28,11 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // game::logic::collision::COBoxShape2D
 void fn_7100d69010();
-void fn_7100d67cb0(UnkReflFunction* fn, const char* name);
+void fn_7100d67cb0(CFunction* fn, const char* name);
 void fn_7100d690c4();
-void fn_7100d67e2c(UnkReflFunction* fn, const char* name);
+void fn_7100d67e2c(CFunction* fn, const char* name);
 void fn_7100d691e0();
-void fn_7100d67fa8(UnkReflFunction* fn, const char* name);
+void fn_7100d67fa8(CFunction* fn, const char* name);
 namespace game::logic::collision::COBoxShape2D {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

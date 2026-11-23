@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -51,7 +51,7 @@ DREAD_REFLECTED_CLASS(CCharClassEmmyValveComponent, CCharClassComponent);
 
 // CEmmyValveComponent
 void fn_71007b4bb0();
-void fn_7100302d14(UnkReflFunction* fn);
+void fn_7100302d14(CFunction* fn);
 void fn_71007b4c44();
 namespace CEmmyValveComponent {
 void refl_AddAttributes(CClass*) {}

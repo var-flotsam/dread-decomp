@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,7 +25,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassDropItemOverwriteProbabilitiesEvent
 void fn_7100cb869c();
-void fn_7100cb7a04(UnkReflFunction* fn, const char* name);
+void fn_7100cb7a04(CFunction* fn, const char* name);
 namespace CCharClassDropItemOverwriteProbabilitiesEvent {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Drop Item Overwrite Probabilities");

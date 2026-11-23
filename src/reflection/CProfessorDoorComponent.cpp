@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,7 +23,7 @@ template <> base::reflection::CType base::reflection::TypeObject<void>::object a
 
 // CProfessorDoorComponent
 void fn_71007dde04();
-void fn_71007dd7fc(UnkReflFunction* fn, const char* name);
+void fn_71007dd7fc(CFunction* fn, const char* name);
 namespace CProfessorDoorComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

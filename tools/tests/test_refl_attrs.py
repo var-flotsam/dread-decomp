@@ -103,7 +103,7 @@ class ValueExpr(unittest.TestCase):
         self.assertIsNone(ra.value_expr("u32", [("imm", 1, 8)]))
 
 
-FN_STMT = ["    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId(\"Get\", true))) {",
+FN_STMT = ["    if (CFunction* fn = AddReflectedFunction(cls, CStrId(\"Get\", true))) {",
            "        fn->name = base::global::UnkStrId(\"Get\", true);", "    }"]
 
 

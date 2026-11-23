@@ -13,7 +13,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -36,7 +36,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 
 // CCutsceneComponent::SActorInfo
 void fn_71007ad0ec();
-void fn_71007a2ac8(UnkReflFunction* fn, const char* name);
+void fn_71007a2ac8(CFunction* fn, const char* name);
 namespace CCutsceneComponent::SActorInfo {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -301,7 +301,7 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_71007abea0();
@@ -318,7 +318,7 @@ void fn_71007a13a4(CClass* cls) {
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_71007ac010();

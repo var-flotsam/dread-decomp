@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,7 +23,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // CCharClassMovementComponent
 void fn_710097b370();
-void fn_710097b0d4(UnkReflFunction* fn, const char* name);
+void fn_710097b0d4(CFunction* fn, const char* name);
 namespace CCharClassMovementComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

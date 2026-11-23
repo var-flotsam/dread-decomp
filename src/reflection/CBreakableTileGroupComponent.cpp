@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -30,12 +30,12 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 
 // CBreakableTileGroupComponent
 void fn_710075d2e4();
-void fn_71007542cc(UnkReflFunction* fn, const char* name);
+void fn_71007542cc(CFunction* fn, const char* name);
 void fn_710075d374();
-void fn_7100754448(UnkReflFunction* fn, const char* name);
+void fn_7100754448(CFunction* fn, const char* name);
 void fn_710075d73c();
-void fn_710075d430(UnkReflFunction* fn);
-void fn_71007545bc(UnkReflFunction* fn, const char* name);
+void fn_710075d430(CFunction* fn);
+void fn_71007545bc(CFunction* fn, const char* name);
 void fn_710075d94c();
 namespace CBreakableTileGroupComponent {
 void refl_AddAttributes(CClass*) {}

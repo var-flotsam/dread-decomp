@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -75,7 +75,7 @@ DREAD_REFLECTED_CLASS(CCharClassKraidAIComponent::CTunableCharClassKraidAICompon
 
 // CCharClassKraidAIComponent
 void fn_71005faa98();
-void fn_71005fa5e4(UnkReflFunction* fn, const char* name);
+void fn_71005fa5e4(CFunction* fn, const char* name);
 namespace CCharClassKraidAcidBlobsAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassKraidBackSlapAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassKraidBouncingCreaturesAttack { const base::reflection::CClass* refl_GetClass(); }

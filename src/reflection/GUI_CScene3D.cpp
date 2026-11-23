@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -26,25 +26,25 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // GUI::CScene3D
 void fn_7100b7439c();
-void fn_7100b714a8(UnkReflFunction* fn, const char* name);
+void fn_7100b714a8(CFunction* fn, const char* name);
 void fn_7100b74484();
-void fn_7100b71624(UnkReflFunction* fn, const char* name);
+void fn_7100b71624(CFunction* fn, const char* name);
 void fn_7100b74580();
-void fn_7100b717a0(UnkReflFunction* fn, const char* name);
+void fn_7100b717a0(CFunction* fn, const char* name);
 void fn_7100b746b8();
-void fn_7100b7191c(UnkReflFunction* fn, const char* name);
+void fn_7100b7191c(CFunction* fn, const char* name);
 void fn_7100b747b4();
-void fn_7100b71a98(UnkReflFunction* fn, const char* name);
+void fn_7100b71a98(CFunction* fn, const char* name);
 void fn_7100b74878();
-void fn_7100b71c14(UnkReflFunction* fn, const char* name);
+void fn_7100b71c14(CFunction* fn, const char* name);
 void fn_7100b74908();
-void fn_7100b71d90(UnkReflFunction* fn, const char* name);
+void fn_7100b71d90(CFunction* fn, const char* name);
 void fn_7100b74998();
-void fn_7100b71f0c(UnkReflFunction* fn, const char* name);
+void fn_7100b71f0c(CFunction* fn, const char* name);
 void fn_7100b74a28();
-void fn_7100b72088(UnkReflFunction* fn, const char* name);
+void fn_7100b72088(CFunction* fn, const char* name);
 void fn_7100b74ab8();
-void fn_7100b72204(UnkReflFunction* fn, const char* name);
+void fn_7100b72204(CFunction* fn, const char* name);
 namespace GUI::CScene3D {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

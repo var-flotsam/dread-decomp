@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,7 +25,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassModifyDamageTrack
 void fn_7100d2279c();
-void fn_7100d21e7c(UnkReflFunction* fn, const char* name);
+void fn_7100d21e7c(CFunction* fn, const char* name);
 namespace CCharClassModifyDamageTrack {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Modify Damage");

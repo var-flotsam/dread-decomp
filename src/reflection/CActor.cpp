@@ -12,7 +12,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -38,18 +38,18 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CActor
 void fn_710023e0f8();
-void fn_71002289a8(UnkReflFunction* fn, const char* name);
+void fn_71002289a8(CFunction* fn, const char* name);
 void fn_710023e1ac();
 void fn_710023e278();
-void fn_7100228b24(UnkReflFunction* fn, const char* name);
+void fn_7100228b24(CFunction* fn, const char* name);
 void fn_710023e348();
-void fn_7100228ee4(UnkReflFunction* fn, const char* name);
+void fn_7100228ee4(CFunction* fn, const char* name);
 void fn_710023e44c();
-void fn_710022913c(UnkReflFunction* fn, const char* name);
+void fn_710022913c(CFunction* fn, const char* name);
 void fn_710023e8b4();
-void fn_71002292b4(UnkReflFunction* fn, const char* name);
+void fn_71002292b4(CFunction* fn, const char* name);
 void fn_710023e998();
-void fn_7100229430(UnkReflFunction* fn, const char* name);
+void fn_7100229430(CFunction* fn, const char* name);
 namespace CActor {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::UniqueId(), CStrId("sName", true));

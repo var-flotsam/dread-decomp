@@ -13,7 +13,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -29,7 +29,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 
 // animtree::CAnimTreeDef
 extern base::reflection::CType g_unk_71726aa3a0;
-void fn_71002d69a4(UnkReflFunction* fn, const char* name);
+void fn_71002d69a4(CFunction* fn, const char* name);
 namespace animtree::CAnimTreeDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -227,7 +227,7 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_71002d9b8c();
@@ -244,7 +244,7 @@ void fn_71002d6cd8(CClass* cls) {
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_71002d9e00();

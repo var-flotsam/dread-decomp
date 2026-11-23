@@ -13,7 +13,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,12 +25,12 @@ using base::reflection::DestroyDestructorFirst;
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // GUI::CDisplayObjectContainer
-void fn_71011d8690(UnkReflFunction* fn, const char* name);
-void fn_71011d8808(UnkReflFunction* fn, const char* name);
-void fn_71011d8980(UnkReflFunction* fn, const char* name);
+void fn_71011d8690(CFunction* fn, const char* name);
+void fn_71011d8808(CFunction* fn, const char* name);
+void fn_71011d8980(CFunction* fn, const char* name);
 void fn_71011dc5bc();
-void fn_71011d8af8(UnkReflFunction* fn, const char* name);
-void fn_71011d8bac(UnkReflFunction* fn, const char* name);
+void fn_71011d8af8(CFunction* fn, const char* name);
+void fn_71011d8bac(CFunction* fn, const char* name);
 namespace GUI::CDisplayObjectContainer {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10202u);

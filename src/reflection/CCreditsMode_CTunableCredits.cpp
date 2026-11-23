@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -26,11 +26,11 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 // CCreditsMode::CTunableCredits
 namespace CCreditsMode::CTunableCredits { extern bool refl_fields_added asm("g_unk_7172a0b678"); }
 void fn_7101186130();
-void fn_7101183378(UnkReflFunction* fn, const char* name);
+void fn_7101183378(CFunction* fn, const char* name);
 void fn_71011862f0();
-void fn_71011834f4(UnkReflFunction* fn, const char* name);
+void fn_71011834f4(CFunction* fn, const char* name);
 void fn_71011864b0();
-void fn_7101183670(UnkReflFunction* fn, const char* name);
+void fn_7101183670(CFunction* fn, const char* name);
 namespace CCreditsMode::CTunableCredits { extern UnkTunable refl_tunable asm("g_unk_7172a0b630"); }
 void fn_71011837ec(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCreditsMode::CTunableCredits {

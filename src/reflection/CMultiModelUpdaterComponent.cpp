@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,8 +24,8 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CMultiModelUpdaterComponent
 void fn_71009393fc();
-void fn_7100937dd0(UnkReflFunction* fn, const char* name);
-void fn_7100937f48(UnkReflFunction* fn, const char* name);
+void fn_7100937dd0(CFunction* fn, const char* name);
+void fn_7100937f48(CFunction* fn, const char* name);
 namespace CMultiModelUpdaterComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

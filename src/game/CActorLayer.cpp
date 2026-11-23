@@ -19,7 +19,7 @@ using base::reflection::CClass;
 using base::reflection::CType;
 using base::reflection::UnkReflAttrKey;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using unk_static_init::UnkEnumType;
 using unk_static_init::UnkNamedValueTmp;
 
@@ -86,18 +86,18 @@ const base::reflection::UnkReflAttrKey& fn_710025dcc0();
 // The getters' invokers and the functions' set-up (each given the function's name).
 void fn_7100260928();
 void fn_7100260950();
-void fn_710025915c(UnkReflFunction* fn, const char* name);
-void fn_71002592d0(UnkReflFunction* fn, const char* name);
-void fn_7100259444(UnkReflFunction* fn, const char* name);
-void fn_71002595c4(UnkReflFunction* fn, const char* name);
-void fn_710025973c(UnkReflFunction* fn, const char* name);
+void fn_710025915c(CFunction* fn, const char* name);
+void fn_71002592d0(CFunction* fn, const char* name);
+void fn_7100259444(CFunction* fn, const char* name);
+void fn_71002595c4(CFunction* fn, const char* name);
+void fn_710025973c(CFunction* fn, const char* name);
 
 static inline const CType* TypeOf(UnkReflType& t) { return reinterpret_cast<const CType*>(&t); }
 static inline const CType* TypeOf(UnkEnumType& t) { return reinterpret_cast<const CType*>(&t); }
 
 // The getter function of a dictionary member, returning `type` through `invoker`.
 static inline void AddGetter(CClass* cls, const char* name, const CType* type, void (*invoker)()) {
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId(name, true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId(name, true))) {
         fn->name = base::global::UnkStrId(name, true);
         fn->return_type = type;
         fn->field_0xb2 = 1;
@@ -107,9 +107,9 @@ static inline void AddGetter(CClass* cls, const char* name, const CType* type, v
 }
 
 // A function that takes a sublayer's name (parameter 0, tagged "sName").
-static inline void AddByNameFunction(CClass* cls, const char* name, void (*setup)(UnkReflFunction*, const char*),
+static inline void AddByNameFunction(CClass* cls, const char* name, void (*setup)(CFunction*, const char*),
                                      const char* description) {
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId(name, true))) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId(name, true))) {
         setup(fn, name);
         fn->Attrs()->Add<const char*>(fn_7100007e80(), static_cast<const char*>(description));  // a fresh temporary
         fn_710009ae5c(fn, fn->params.count);
@@ -118,8 +118,8 @@ static inline void AddByNameFunction(CClass* cls, const char* name, void (*setup
 }
 
 // A hook function with no attributes.
-static inline void AddHook(CClass* cls, const char* name, void (*setup)(UnkReflFunction*, const char*)) {
-    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId(name, true)))
+static inline void AddHook(CClass* cls, const char* name, void (*setup)(CFunction*, const char*)) {
+    if (CFunction* fn = AddReflectedFunction(cls, CStrId(name, true)))
         setup(fn, name);
 }
 

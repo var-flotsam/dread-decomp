@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -27,7 +27,7 @@ template <> base::reflection::CType base::reflection::TypeObject<CBlackboard::TS
 
 // CBlackboard
 void fn_7101049fa8();
-void fn_7101045544(UnkReflFunction* fn, const char* name);
+void fn_7101045544(CFunction* fn, const char* name);
 void fn_710104a108();
 namespace CBlackboard {
 void refl_AddAttributes(CClass* cls) {
