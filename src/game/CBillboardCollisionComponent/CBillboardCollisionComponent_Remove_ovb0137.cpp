@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkMatrix44_7100078c9c.h"
 #include "game/UnkTU1159.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
@@ -36,10 +37,6 @@ struct UnkBillboardMap_ovb0137 {
         }
         return values + count;
     }
-};
-
-struct UnkMatrix44_7100078c9c {
-    f32 m[16];
 };
 
 // Returned through x8, so the original's result type is not trivially copyable.

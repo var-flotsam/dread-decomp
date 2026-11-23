@@ -2,17 +2,11 @@
 // (its +0x10) through fn_7100b8534c (set) or fn_7100b8538c (clear). Names and layouts are placeholders.
 #include "game/GUI/CSubtitleComposition.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkUnit2728.h"
+#include "game/UnkUnit2728Holder.h"
 #include "types.h"
 struct UnkUnit2728Target;
 void fn_7100b8534c(UnkUnit2728Target* target);
-struct UnkUnit2728Holder {
-    u8 pad_0x0[0x10];
-    UnkUnit2728Target* target;  // 0x10
-};
-struct UnkUnit2728 {
-    u8 pad_0x0[0x38];
-    bool flag;  // 0x38
-};
 void fn_7101192b48(UnkUnit2728* self, bool flag) {
     if (self->flag == flag)
         return;

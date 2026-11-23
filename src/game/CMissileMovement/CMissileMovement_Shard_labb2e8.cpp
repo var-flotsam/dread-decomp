@@ -4,6 +4,8 @@
 
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
+#include "game/UnkIceShard_ovb0122.h"
+#include "game/UnkIceVec3_ovb0122.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2550.h"
 #include "types.h"
@@ -12,31 +14,6 @@ using base::math::CVector3D;
 
 // As src/game/CIceMissileMovement/CIceMissileMovement_Shards_ovb0122.cpp declares them.
 struct UnkGameObject_0x150;
-
-struct UnkIceVec3_ovb0122 {
-    u32 x, y, z;
-};
-
-struct UnkIceShard_ovb0122 {
-    u32 kind;      // 0x0
-    f32 pos_x;     // 0x4
-    f32 pos_y;     // 0x8
-    f32 pos_z;     // 0xc
-    UnkIceVec3_ovb0122 dir;  // 0x10
-    f32 size_a;    // 0x1c
-    f32 size_b;    // 0x20
-    f32 field_0x24;
-    f32 field_0x28;
-    f32 field_0x2c;
-    f32 field_0x30;
-    f32 field_0x34;
-    f32 field_0x38;
-    f32 field_0x3c;
-    f32 field_0x40;
-    f32 field_0x44;
-    f32 angle;     // 0x48
-    f32 field_0x4c;
-};
 
 static inline f32 Random01_labb2e8() {
     return (f32)((rand() & 0x7fff) * (1.0 / 32767.0));

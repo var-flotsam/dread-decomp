@@ -28,6 +28,7 @@
 #include "game/CBossAIComponent.h"
 #include "game/CCentralUnitCannonBeamMovementComponent.h"
 #include "game/CScenario.h"
+#include "game/UnkFileRequestArgs.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -47,6 +48,9 @@
 #include "game/UnkTU57.h"
 #include "game/UnkTU83.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkTgmHolder_b205.h"
+#include "game/UnkTgmRefVector_b205.h"
+#include "game/UnkTgmRef_b205.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
@@ -263,18 +267,6 @@ struct UnkTgmModelState_b205 {
 struct UnkTgmModel_b205 {
     u8 pad_0x0[0x50];
     UnkTgmModelState_b205* state;
-};
-struct UnkTgmHolder_b205 {
-    u8 pad_0x0[0x18];
-    void* entity;
-};
-struct UnkTgmRef_b205 : base::UnkRefCounted {
-    u8 pad_0xc[4];
-    UnkTgmHolder_b205* target;
-};
-struct UnkTgmRefVector_b205 {
-    UnkTgmRef_b205** data;
-    u32 count;
 };
 struct UnkStruct_7100233684;
 
@@ -769,10 +761,6 @@ void fn_7100dffd48(UnkGameManager* manager) {
 // ---- fn_7100e00900
 struct UnkSoundMgr;
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
-struct UnkFileRequestArgs {
-    u64 field_0x0;
-    u64 field_0x8;
-};
 extern const CStrId g_unk_71727bedd0 __attribute__((visibility("hidden")));
 
 static inline base::file::UnkFileDevice* FileDevice() {

@@ -6,6 +6,7 @@
 #include "base/math/CVector.h"
 #include "game/CProjectileMovement.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkRGB_710050f26c.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
 #include "game/UnkTU140.h"
@@ -16,12 +17,6 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkSelf;
-
-struct UnkRGB_710050f26c {
-    f32 r;
-    f32 g;
-    f32 b;
-};
 
 struct UnkColorArg_710050f26c {
     UnkRGB_710050f26c rgb;

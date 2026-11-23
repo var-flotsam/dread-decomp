@@ -11,19 +11,11 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkCallbackSet_7101a20950.h"
+#include "game/UnkRcObject.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-struct UnkRcObject {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    union {
-        u32 field_0x8;
-    };
-};
 
 struct UnkRcRef {
     UnkRcObject* ptr;

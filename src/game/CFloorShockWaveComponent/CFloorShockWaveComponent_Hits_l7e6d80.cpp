@@ -4,6 +4,7 @@
 // the side the wave travels (+0x16c, its sign) count. Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkActorPosition.h"
 #include "game/UnkTU2523.h"
 #include "game/malloc.h"
 #include "types.h"
@@ -19,12 +20,6 @@ bool fn_71009f4d18(UnkShockWaveHitTest_ovb0123* self, UnkOwner* actor, const Unk
 struct UnkEntityBox {
     base::math::CVector3D min;
     base::math::CVector3D max;
-};
-
-// A position returned in memory (x8): 16 bytes, not trivially copyable.
-struct UnkActorPosition {
-    f32 x, y, z, w;
-    UnkActorPosition(const UnkActorPosition& other);
 };
 
 struct UnkFloorShockWaveBody_l7e6d80 {

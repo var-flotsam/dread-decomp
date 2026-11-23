@@ -4,22 +4,10 @@
 // count at +0x14 from going negative and bit 2 clears the value at +0x24 for a flagged member. fn_71000f413c
 // fades a level (+0x14 to the target at +0x1c, over the time at +0x20) or, with no time, sets it on the
 // sound's effect at once. Names and layouts are placeholders.
+#include "game/UnkEffectRef_b0184.h"
+#include "game/UnkEffect_b0184.h"
 #include "game/UnkTU2772.h"
 #include "types.h"
-
-class UnkEffect_b0184 {
-public:
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual bool vf_0x28();
-};
-
-struct UnkEffectRef_b0184 {
-    UnkEffect_b0184* effect;
-};
 
 struct UnkSoundControl_b0242 {
     u8 pad_0x0[0x14];

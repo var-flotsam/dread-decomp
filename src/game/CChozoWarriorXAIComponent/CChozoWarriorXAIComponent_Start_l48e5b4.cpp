@@ -10,6 +10,9 @@
 #include "game/UnkShakernautId.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTgmHolder_b205.h"
+#include "game/UnkTgmRefVector_b205.h"
+#include "game/UnkTgmRef_b205.h"
 #include "game/UnkXParasiteAI.h"
 #include "types.h"
 
@@ -30,19 +33,6 @@ struct UnkChozoXOwner_l48e5b4 {
     UnkShakernautCtrl_b53* ctrl;  // 0x220
 };
 
-// The registry of X parasite AI components, as src/game/UnkTU2553/UnkTU2553_Manager_ovb0205.cpp declares it.
-struct UnkTgmHolder_b205 {
-    u8 pad_0x0[0x18];
-    void* entity;
-};
-struct UnkTgmRef_b205 : base::UnkRefCounted {
-    u8 pad_0xc[4];
-    UnkTgmHolder_b205* target;
-};
-struct UnkTgmRefVector_b205 {
-    UnkTgmRef_b205** data;
-    u32 count;
-};
 void fn_71006e9778(UnkXParasiteAI* self, const s32* state, f32 time);
 
 // Puts the parasite into `state` for `time` seconds.

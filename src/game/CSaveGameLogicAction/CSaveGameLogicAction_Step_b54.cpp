@@ -12,6 +12,7 @@
 #include "game/CBossAIComponent.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSaveGamePair_b54.h"
 #include "game/UnkTU2553.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -23,11 +24,6 @@ struct UnkTutoExitAction_b47;
 struct UnkModeFlags {
     u8 unk_0x0[0xb8];
     bool field_0xb8;
-};
-
-struct UnkSaveGamePair_b54 {
-    u64 first;
-    u64 second;
 };
 
 // A string-id entry as read here: the text pointer at +0x10, a use count at +0x44 (a union member:

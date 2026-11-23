@@ -30,7 +30,6 @@ struct UnkStruct_0x128;
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateKey g_unk_71729f0180;
 
 static inline UnkStruct_0x128* Music() {
     UnkStruct_0x128* m = g_unk_7101d47320;

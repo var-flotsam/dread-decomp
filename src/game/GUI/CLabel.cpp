@@ -11,6 +11,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGuiFrames.h"
+#include "game/UnkMinimapView.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU135.h"
 #include "game/UnkTU1722.h"
@@ -22,13 +23,6 @@
 #include "types.h"
 
 using base::math::CVector2D;
-
-// The view (the same definition as src/game/CMinimapManager.cpp's).
-struct UnkMinimapView {
-    u8 unk_0x0[0x90];
-    base::math::CVector2D pos;
-    base::math::CVector2D size;
-};
 
 struct UnkStruct_710020a5a0;
 

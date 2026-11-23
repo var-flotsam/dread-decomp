@@ -22,7 +22,9 @@
 #include "game/CGrabComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/CSpecialEnergyComponent.h"
+#include "game/UnkAbilityOwner_ovb22.h"
 #include "game/UnkComponent.h"
+#include "game/UnkEnergyWaveFlags_ovb22.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkSwitchObject.h"
@@ -56,13 +58,6 @@ extern char g_unk_7101648d28[];
 extern const u64 g_unk_7101648d18;
 
 // ---- The ability set ----
-
-struct UnkAbilityOwner_ovb22 {
-    u8 pad_0x0[0x210];
-    UnkEnergyWaveCompB_b49* field_0x210;
-    u8 pad_0x218[0x48];
-    UnkEnergyWaveCompA_b49* field_0x260;
-};
 
 static inline CAbility** FindSlot(CAbilityComponent* self, const CStrId* id) {
     return CAbilityComponent::FindByName(self->begin(), self->end(), *id);
@@ -187,13 +182,6 @@ UnkReflValue fn_7100302928(void*, char* obj, UnkReflValue* const* args) {
 
 CAbility* fn_7100301cf0(CAbilityComponent* self, const CStrId* id);
 CAbility* fn_7100301e20(CAbilityComponent* self, const CStrId* id);
-
-// A set of flags (a u32) that starts empty; the empty set is a shared constant.
-struct UnkEnergyWaveFlags_ovb22 {
-    u32 bits;
-    UnkEnergyWaveFlags_ovb22() : bits(0) {}
-    UnkEnergyWaveFlags_ovb22(const UnkEnergyWaveFlags_ovb22& o) : bits(o.bits) {}
-};
 
 inline const UnkEnergyWaveFlags_ovb22& NoFlags() {
     static UnkEnergyWaveFlags_ovb22 s_none;

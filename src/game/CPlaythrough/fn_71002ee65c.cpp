@@ -1,15 +1,10 @@
 // Clears a record: destroys its owned object (through its vtable slot at +0x10) and resets its string id
 // to the empty one.
 #include "base/global/CStrId.h"
+#include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkOwned {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-};
 
 struct UnkRecord {
     u64 field_0x0;

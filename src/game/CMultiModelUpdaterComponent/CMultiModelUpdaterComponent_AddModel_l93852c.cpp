@@ -11,6 +11,7 @@
 #include "base/global/CStrId.h"
 #include "game/CMultiModelUpdaterComponent.h"
 #include "game/CSpittailMagmaBallMovementComponent.h"
+#include "game/UnkModelValue_b0119.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
 #include "types.h"
@@ -20,10 +21,6 @@
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
-// As its other users declare it (CMultiModelUpdaterComponent_Models_ovb0119.cpp).
-struct UnkModelValue_b0119 {
-    u8 data[0x20];
-};
 using UnkModelMap_b0119 = base::global::CRntSmallDictionary<base::UnkPooledString, UnkModelValue_b0119>;
 void fn_7100939678(UnkModelMap_b0119* self, u32 capacity);
 void fn_7100938ba0(UnkModelValue_b0119* self, const CStrId* name, const CFilePathStrId* path,

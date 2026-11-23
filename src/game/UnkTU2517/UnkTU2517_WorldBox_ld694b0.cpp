@@ -2,6 +2,7 @@
 // transform's translation (+0xc, +0x1c, +0x2c of a 3x4 matrix), ordered into the min and max of a 3D box at
 // the translation's z. Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/UnkBoxTransform.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -13,9 +14,6 @@ struct UnkBoxVec2 {
 struct UnkBox3 {
     CVector3D min;
     CVector3D max;
-};
-struct UnkBoxTransform {
-    f32 m[3][4];
 };
 
 struct UnkSegmentShape2D_ld694b0 {

@@ -17,6 +17,8 @@
 #include "game/CUsableComponent.h"
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGuiRef_ovb0118.h"
+#include "game/UnkSaveStationTunables_ovb0118.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
@@ -40,11 +42,6 @@ struct UnkSaveCallback_ovb0118 {
 
 struct UnkGuiComposition_ovb0090;
 struct UnkMapCallback_ovb0090;
-
-struct UnkGuiRef_ovb0118 {
-    u8 pad_0x0[0x10];
-    UnkGuiComposition_ovb0090* composition;  // 0x10
-};
 
 struct UnkSound;
 struct UnkSoundRef {
@@ -144,12 +141,6 @@ struct UnkSaveStationName_ovb0118 {
 struct UnkSaveStationClass2_ovb0118 {
     u8 pad_0x0[0x190];
     UnkSaveStationName_ovb0118* music;  // 0x190
-};
-
-// The save station's tunables: the time to wait for the music at +0x24.
-struct UnkSaveStationTunables_ovb0118 {
-    u8 pad_0x0[0x24];
-    f32 music_wait;  // 0x24
 };
 
 struct UnkSaveStation2_ovb0118 {

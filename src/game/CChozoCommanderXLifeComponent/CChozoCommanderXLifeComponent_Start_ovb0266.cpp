@@ -14,6 +14,7 @@
 #include "game/CCutsceneComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/CScenario.h"
+#include "game/UnkCountedA5_b76.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
@@ -35,13 +36,6 @@ extern __attribute__((visibility("hidden"))) char g_unk_71727302a0[];
 struct UnkCallback_kr {
     void* object;
     void (*fn)();
-};
-
-struct UnkCountedA5_b76 : base::UnkRefCounted {
-    union {
-        void* field_0x10;
-        u64 raw_0x10;
-    };
 };
 
 using UnkRef = base::UnkRefPtrMember;

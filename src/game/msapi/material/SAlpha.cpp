@@ -11,6 +11,7 @@
 #include "base/core/CBaseObject.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
+#include "game/UnkMaterialValuesData.h"
 #include "game/UnkTU56.h"
 #include "game/msapi/material/SAlpha.h"
 #include "types.h"
@@ -20,16 +21,6 @@ using base::global::CStrId;
 
 // The element's vtable (reached through the GOT); its slot 1 is the complete destructor.
 extern char unk_7101a1e4d8[];
-
-// The element's plain part (copied as a whole).
-struct UnkMaterialValuesData {
-    u8 field_0x10;
-    s32 field_0x14;  // the number of values
-    u64 field_0x18;
-    u64 field_0x20;
-    u64 field_0x28;
-    void* field_0x30;  // the values
-};
 
 struct UnkMaterialValues {
     char* vtable;

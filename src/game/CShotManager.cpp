@@ -17,6 +17,7 @@
 #include "game/CSwarmControllerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkShotWeakTarget.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU32.h"
 #include "game/UnkTU54.h"
@@ -54,11 +55,6 @@ struct UnkShotEffect {
 };
 static_assert(sizeof(UnkShotEffect) == 0xfc, "UnkShotEffect placeholder layout");
 
-// A weak reference: alive while the target's generation is this one's.
-struct UnkShotWeakTarget {
-    void* field_0x0;
-    s64 generation;
-};
 struct UnkShotWeakRef {
     UnkShotWeakTarget* target;
     s64 generation;

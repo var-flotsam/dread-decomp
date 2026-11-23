@@ -1,9 +1,6 @@
 #include "game/CSamusMovementState/CParams.h"
+#include "game/UnkVec3Zero.h"
 #include "types.h"
-
-struct UnkVec3Zero {
-    f32 x, y, z;
-};
 
 struct CSamusAirMovementState {
     u8 unk_0x0[0x190];

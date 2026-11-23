@@ -17,6 +17,7 @@
 #include "base/input/UnkRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/CActorComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CBossAIComponent.h"
@@ -166,8 +167,6 @@ using base::global::CFilePathStrId;
 
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
-
-void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 
 void fn_7101187e2c() {
     base::file::UnkFileDevice* device = g_unk_7101d4d828;

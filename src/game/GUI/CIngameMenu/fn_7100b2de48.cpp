@@ -28,6 +28,7 @@
 #include "game/UnkHandleMenu.h"
 #include "game/UnkMapMenuController.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkResourceHandle.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2527.h"
@@ -175,7 +176,6 @@ struct UnkModeFlags {
 };
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateKey g_unk_71729f0180;
 void fn_7100b2d0a4(UnkStateOwner* self);
 extern base::global::CStrId g_unk_7172762fd8 __attribute__((visibility("hidden")));
 void fn_7100e9b464(void* target, bool value);
@@ -510,15 +510,6 @@ struct UnkInlineString {
     u32 field_0xc0;
 };
 
-// A reference-counted resource (base/UnkCountedResource.h), dropped when the handle dies.
-struct UnkResourceHandle {
-    UnkCountedResource* ptr;
-
-    ~UnkResourceHandle() {
-        if (auto* held = ptr; held && --held->ref_count == 0)
-            fn_710001737c(held);
-    }
-};
 struct UnkResourceManager;
 void fn_7100b2c58c(UnkStateOwner* self);
 

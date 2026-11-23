@@ -2,16 +2,11 @@
 // hashed from two words at 0x30; buckets read through fn_7100eb3814) and passes a box around
 // the record's position (100 units to either side, its height up) to fn_7100e796c4, first
 // initialising the record's part at 0xc once.
+#include "game/UnkKeyObject.h"
 #include "game/UnkTU2565.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2567.h"
 #include "types.h"
-
-struct UnkKeyObject {
-    u8 unk_0x0[0x30];
-    u32 hash_a;
-    u32 hash_b;
-};
 
 struct UnkEntityRef {
     u8 unk_0x0[0x30];

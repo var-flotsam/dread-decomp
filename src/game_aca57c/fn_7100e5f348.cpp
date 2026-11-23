@@ -6,6 +6,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBounds.h"
 #include "types.h"
 
 using namespace base::global;
@@ -58,15 +59,6 @@ struct UnkArray {
             capacity = 0;
         }
     }
-};
-
-struct UnkBounds {
-    f32 min_x;
-    f32 min_y;
-    f32 max_x;
-    f32 max_y;
-
-    UnkBounds() : min_x(3.4028235e38f), min_y(3.4028235e38f), max_x(-3.4028235e38f), max_y(-3.4028235e38f) {}
 };
 
 struct UnkRecordA8 {

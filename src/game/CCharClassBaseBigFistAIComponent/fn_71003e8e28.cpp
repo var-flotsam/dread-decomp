@@ -8,16 +8,9 @@
 #include "game/CMeleeComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkSluggerPos.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
-
-// As src/game/CCharClassSluggerAIComponent/CCharClassSluggerAIComponent_b38.cpp declares them.
-struct UnkSluggerPos {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkSluggerPos(const UnkSluggerPos& other);
-};
 
 struct UnkBigFistOther_l3e8e28 {
     u8 pad_0x0[0x44];

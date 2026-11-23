@@ -5,13 +5,8 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
 #include "game/CLightsDef.h"
+#include "game/UnkBase_0x58.h"
 #include "types.h"
-
-struct UnkBase_0x58 {
-    void** vtable;
-    u8 unk_0x8[0x50];
-    ~UnkBase_0x58();  // fn_7100016f88
-};
 
 struct UnkClearedArray;
 

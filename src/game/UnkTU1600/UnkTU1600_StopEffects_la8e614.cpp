@@ -2,6 +2,8 @@
 // mode-to-effect table (the effects fn_7100a8e4c0 starts). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkTeleporterFx_b0233.h"
+#include "game/UnkTeleporterSelf_b0233.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -30,18 +32,6 @@ struct UnkTeleporterFxEntry_b0233 {
     UnkFxId_b0233 id;
 };
 extern UnkTeleporterFxEntry_b0233 g_unk_7172751a60[8] __attribute__((visibility("hidden")));
-
-struct UnkTeleporterFx_b0233 {
-    u8 pad_0x0[0x228];
-    void* field_0x228;
-};
-
-struct UnkTeleporterSelf_b0233 {
-    u8 pad_0x0[0x30];
-    UnkTeleporterFx_b0233* actor;  // 0x30
-    u8 pad_0x38[0x550];
-    u32 mode;  // 0x588
-};
 
 void fn_7100a8e614(UnkTeleporterSelf_b0233* self) {
 #pragma clang loop unroll(full)

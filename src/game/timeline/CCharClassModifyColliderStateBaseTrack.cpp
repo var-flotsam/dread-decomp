@@ -1,10 +1,9 @@
 // From unit 2452 of tools/tu_map.py (0x7100d1bb60-0x7100d211e0, CCharClassModifyColliderStateBaseTrack by reflection): the track's
 // list of ids, read from one comma-separated string id. Names and layouts are placeholders.
 // Holds fn_7100d1f764.
+#include "game/UnkLeftoverArg.h"
 #include "game/UnkStrIdSplit.h"
 #include "UnkLeftoverReg.h"
-
-struct UnkLeftoverArg : UnkLeftoverReg {};
 
 // Replaces `out` with the ids of the comma-separated parts of `name` (the first argument is not read).
 // NON_MATCHING(minor): the empty-id loop's counter is loaded sign-extended (the original zero-extends

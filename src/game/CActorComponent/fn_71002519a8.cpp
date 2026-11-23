@@ -6,6 +6,7 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/UnkTU23.h"
+#include "game/UnkValue_0x10.h"
 #include "types.h"
 
 struct UnkKeyedValues_71002519a8;
@@ -111,11 +112,6 @@ bool fn_71001c147c(char* self, const u64* key) {
     return p != nullptr;
 }
 
-// The lookup and the removal over 0x10-byte values (fn_71009046bc, fn_7100904644) and 0x80-byte values
-// (fn_7100e6095c, fn_7100e608e0), each removal with its own out-of-line removal.
-struct UnkValue_0x10 {
-    u64 words[2];
-};
 struct UnkValue_0x80 {
     u64 words[16];
 };

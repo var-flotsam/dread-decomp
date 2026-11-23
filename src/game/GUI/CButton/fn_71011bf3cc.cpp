@@ -11,6 +11,7 @@
 #include "base/reflection/TypeObject.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CButton.h"
+#include "game/UnkButtonClassData_l1c1530.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2747.h"
@@ -20,13 +21,6 @@
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-// The class name and the class type after it.
-struct UnkButtonClassData_l1c1530 {
-    CStrId name;
-    u8 unk_0x8[0x10];
-    UnkReflType type;  // 0x18
-};
 
 void fn_710120186c(UnkGuiDisplayObject* list);
 

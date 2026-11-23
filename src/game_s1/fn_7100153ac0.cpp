@@ -1,25 +1,13 @@
 // The static initialiser of a unit with a small polymorphic object (a vtable and a pointer) and
 // five 0x130-byte objects that each end with such an object, destroyed by fn_7100153998.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "engine/UnkObject_0x130.h"
+#include "engine/UnkPtrHolder.h"
 #include "game/UnkTU170.h"
 
 using namespace unk_static_init;
 
 extern void* g_unk_7101a1d770[];
-
-struct UnkPtrHolder {
-    void** vtable;
-    void* ptr;
-};
-
-struct UnkObject_0x130 {
-    u8 field_0x0[0x100];
-    u64 field_0x100;
-    u64 field_0x108;
-    u32 field_0x110;
-    UnkPtrHolder field_0x118;
-    u16 field_0x128;
-};
 
 __attribute__((always_inline)) inline void InitHolder(UnkPtrHolder* h) {
     h->vtable = &g_unk_7101a1d770[2];

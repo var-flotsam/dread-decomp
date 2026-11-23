@@ -15,7 +15,11 @@
 #include "game/CRedenkiSwarmControllerComponent.h"
 #include "game/CSwarmControllerComponent.h"
 #include "game/SLogicPathNode.h"
+#include "game/UnkCountedRef_A5_b67.h"
+#include "game/UnkCounted_A5_b67.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSwarmPoint_b65a4.h"
+#include "game/UnkSwarmRecord_b65a4.h"
 #include "game/UnkTU1159.h"
 #include "game/UnkTU1161.h"
 #include "game/UnkTU2553.h"
@@ -158,23 +162,6 @@ void fn_710064f184(UnkRedenkiFullReset_ovb0084* self) {
 // ---- fn_7100650158: entry `index` of the tuning's table (+0x708) in mode 2 when both its ids are set, else the base
 // entry (fn_710074e2c0). ----
 
-// As src/game/CSwarmControllerComponent/CSwarmControllerComponent_Entry_A5_b67.cpp defines it, with
-// its destructor (fn_7100026f70).
-struct UnkCounted_A5_b67 {
-    u8 pad_0x0[0x54];
-    s32 count;
-};
-
-struct UnkCountedRef_A5_b67 {
-    UnkCounted_A5_b67* p;
-    UnkCountedRef_A5_b67(const UnkCountedRef_A5_b67& other) : p(nullptr) {
-        if (UnkCounted_A5_b67* q = other.p) {
-            ++q->count;
-            p = q;
-        }
-    }
-};
-
 // The ids are union members so that only fn_7100026f70 releases them.
 struct UnkIdPair;
 
@@ -299,16 +286,6 @@ struct UnkSwarmUpdate_b65a4;
 struct UnkParent_71007455dc;
 struct UnkRedenkiSwarmController;
 extern char g_unk_710164a408[];
-
-// As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_Update_b65a4.cpp
-// defines them.
-struct UnkSwarmPoint_b65a4 {
-    u64 value;
-};
-
-struct UnkSwarmRecord_b65a4 {
-    bool active;
-};
 
 struct UnkRedenkiKeyHolder_ovb0084 {
     u8 pad_0x0[0x30];

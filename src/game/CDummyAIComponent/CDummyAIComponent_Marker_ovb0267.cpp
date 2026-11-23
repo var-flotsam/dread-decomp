@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkActor.h"
+#include "game/UnkRGB_710050f26c.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
 #include "game/UnkTU140.h"
@@ -17,12 +18,6 @@
 using base::global::CStrId;
 
 void fn_71001494e4(UnkSceneObject* self, bool flag);
-
-struct UnkRGB_710050f26c {
-    f32 r;
-    f32 g;
-    f32 b;
-};
 
 struct UnkColorArg_710050f26c {
     UnkRGB_710050f26c rgb;

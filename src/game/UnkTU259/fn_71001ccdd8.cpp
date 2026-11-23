@@ -3,6 +3,7 @@
 // slots left over, then binds the BRDF lookup table. Names and layouts are placeholders.
 #include "base/UnkParallelFind.h"
 #include "base/global/CStrId.h"
+#include "engine/UnkGfxPairEntry.h"
 #include "game/UnkTU182.h"
 #include "types.h"
 
@@ -12,11 +13,6 @@ struct UnkShadowMap_l1ccdd8 {
     u32 kind;  // 0x90
     u8 pad_0x94[0xa8 - 0x94];
     void* texture;  // 0xa8
-};
-
-struct UnkGfxPairEntry {
-    u64 first;
-    void* second;
 };
 
 struct UnkTextureMap_l1ccdd8 {

@@ -3,19 +3,14 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiFocusUser238.h"
+#include "game/UnkGuiFocusUser318.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkReportRef.h"
+#include "game/UnkWeakRefF0.h"
 #include "game_s2/UnkWeakHandle.h"
 
 using base::reflection::CClass;
-
-// Unless the flag at 0x181 is set, refers to the focused object at 0x318 (or to nothing), passes it
-// 0 and this object 1, then hands this object to the root.
-struct UnkGuiFocusUser318 {
-    u8 unk_0x0[0x181];
-    bool field_0x181;
-    u8 unk_0x182[0x196];
-    UnkWeakHandle* field_0x318;
-};
 
 void fn_7100b021fc(UnkGuiFocusUser318* self) {
     if (self->field_0x181)
@@ -30,13 +25,6 @@ void fn_7100b021fc(UnkGuiFocusUser318* self) {
     fn_71011b6bbc(g_unk_717271e8f8, reinterpret_cast<UnkGuiDisplayObject*>(self), false);
 }
 
-// As fn_7100b021fc with the reference at 0x238, which is only changed when there is a focused
-// object.
-struct UnkGuiFocusUser238 {
-    u8 unk_0x0[0x238];
-    UnkWeakHandle* field_0x238;
-};
-
 void fn_7100b619b4(UnkGuiFocusUser238* self) {
     if (UnkWeakHandle* focus = g_unk_717271e8f8->field_0x230) {
         if (UnkWeakTarget* target = focus->target) {
@@ -49,12 +37,6 @@ void fn_7100b619b4(UnkGuiFocusUser238* self) {
     fn_71011b6bbc(g_unk_717271e8f8, reinterpret_cast<UnkGuiDisplayObject*>(self), false);
 }
 
-// Refers the reference at 0xf0 to `other`'s weak handle.
-struct UnkWeakRefF0 {
-    u8 unk_0x0[0xf0];
-    UnkWeakHandle* field_0xf0;
-};
-
 void fn_7100b42be0(UnkWeakRefF0* self, UnkWeakTarget* other) { AssignRef(&self->field_0xf0, GetWeakHandle(other)); }
 
 // A weak reference to a GUI::CBossRushReport, assigned from another weak reference: it refers to
@@ -63,10 +45,6 @@ void fn_7100b42be0(UnkWeakRefF0* self, UnkWeakTarget* other) { AssignRef(&self->
 __attribute__((always_inline)) static inline const CClass* GetClass(UnkWeakTarget* target) {
     return reinterpret_cast<const CClass* (*)(UnkWeakTarget*)>((*reinterpret_cast<void***>(target))[0])(target);
 }
-
-struct UnkReportRef {
-    UnkWeakHandle* handle;
-};
 
 UnkReportRef* fn_7100b4c2e8(UnkReportRef* self, const UnkReportRef* other) {
     UnkWeakTarget* target = other->handle ? other->handle->target : nullptr;

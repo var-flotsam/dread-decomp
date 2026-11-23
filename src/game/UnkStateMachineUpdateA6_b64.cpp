@@ -2,6 +2,7 @@
 // src/game/UnkStateMachineUpdateA5_b62.cpp, fn_7100886c10): applies the pending state, then updates the
 // current state and applies what it asked for, at most ten times, while marked busy. Names are placeholders.
 #include "game/CUsableComponent.h"
+#include "game/UnkObj_71011a50cc.h"
 #include "game/UnkStateMachineFind.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1450.h"
@@ -173,11 +174,6 @@ void fn_7100b29fbc(UnkGlobalMapOwner_A6_b64* self, f32 dt) {
 // Passes a flag (+0x50) and dt to the lazily created object of unit 2727 (g_unk_71727bc260; layout as in
 // src/game/UnkUnit2727/UnkUnit2727_c2_1.cpp), then updates.
 #include "base/global/CRntVector.h"
-
-struct UnkObj_71011a50cc {
-    u8 unk_0x0[0x98];
-    UnkObj_71011a50cc();  // fn_71011a50cc
-};
 
 struct UnkFlagOwner_A6_b64 {
     u8 pad_0x0[0x50];

@@ -5,6 +5,7 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkElem40Array_b42a3.h"
 #include "game/UnkTU2200.h"
 #include "game/UnkTU83.h"
 #include "types.h"
@@ -23,16 +24,6 @@ struct UnkElem40_b42a3 {
     CStrId field_0x28;
     u64 field_0x30;
     u32 field_0x38;
-};
-
-struct UnkElem40Array_b42a3 {
-    UnkElem40_b42a3* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
 };
 
 void fn_7100c90fb0(void* dst, const void* src) {

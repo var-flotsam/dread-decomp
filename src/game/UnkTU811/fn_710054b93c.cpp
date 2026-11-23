@@ -6,6 +6,8 @@
 #include "base/math/CVector4D.h"
 #include "game/CFXComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkEmmyLabAI_A2_b70.h"
+#include "game/UnkEmmyLabMark_A2_b70.h"
 #include "game/UnkTU134.h"
 #include "game/UnkTU811.h"
 #include "game/UnkTimelineComponent.h"
@@ -88,19 +90,6 @@ struct UnkEmmyAI_l54b93c {
     u32 material2;  // 0x2a030
 };
 static_assert(__builtin_offsetof(UnkEmmyAI_l54b93c, color) == 0x2a020, "UnkEmmyAI_l54b93c layout");
-
-// The type the derived classes' overrides pass (CEmmyLabAIComponent_StateChange_A2_b70.cpp).
-struct UnkEmmyLabMark_A2_b70 {
-    f32 x, y, z;
-    bool marked;
-};
-
-struct UnkEmmyLabAI_A2_b70 {
-    u8 pad_0x0[0x30];
-    UnkActor* owner;  // 0x30
-    u8 pad_0x38[0x2a700 - 0x38];
-    UnkEmmyLabMark_A2_b70 mark;  // 0x2a700
-};
 
 const CVector4D* fn_7100572130(s32 state);
 UnkVector4D fn_710054b4b0(UnkEmmyAI_l54b93c* self);

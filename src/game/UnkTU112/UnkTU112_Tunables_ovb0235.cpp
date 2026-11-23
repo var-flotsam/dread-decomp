@@ -8,6 +8,7 @@
 
 #include "base/UnkHashStream.h"
 #include "base/UnkTunableLine.h"
+#include "base/UnkTunableObject.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
@@ -22,7 +23,9 @@
 #include "game/UnkTU112.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU85.h"
+#include "game/UnkTunableEntry_b0235.h"
 #include "game/UnkTunableFieldHandle.h"
+#include "game/UnkTunableObjects_b0235.h"
 #include "game/UnkTunableReflValue.h"
 #include "types.h"
 #include "base/UnkStrPair.h"
@@ -163,10 +166,6 @@ struct UnkTunableType {
     }
 };
 
-// The tunable object a header names: its class is vtable slot 0.
-struct UnkTunableObject {
-    virtual char* GetClass();
-};
 struct UnkTunableRegistry;
 
 // The field calls' argument: a value's type and where it is.
@@ -206,22 +205,6 @@ void fn_710013c4b4(UnkTunableRegistry* self, const char* name, const char* field
 extern UnkParseCallbacks g_unk_710b372778 __attribute__((visibility("hidden")));  // this unit's callbacks
 extern UnkStrPair_0x10 g_unk_710b372748 __attribute__((visibility("hidden")));    // the second tunables file
 extern base::reflection::CType g_unk_710b371c60;                                  // the registry's type
-
-// A registered tunable: its vf_0x18 prepares it; its flag at +0x20 marks it as read.
-struct UnkTunableEntry_b0235 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    u8 pad_0x8[0x18];
-    u8 field_0x20;
-};
-
-struct UnkTunableObjects_b0235 {
-    UnkTunableEntry_b0235** objects;
-    u8 pad_0x8[8];
-    u32 count;  // 0x10
-};
 
 // Parses the file into the target, starting from its last entry's node.
 static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {

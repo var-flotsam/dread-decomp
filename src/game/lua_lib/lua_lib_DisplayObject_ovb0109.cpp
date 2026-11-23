@@ -17,6 +17,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkLuaDisplayObject_ovb0109.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2676.h"
 #include "game/UnkTU2744.h"
@@ -27,14 +28,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
-
-// A display object as the scripts hold it: full userdata with the "__DisplayObjectType" metatable
-// holding a counted weak handle on the object.
-struct UnkLuaDisplayObject_ovb0109 {
-    UnkWeakHandle* handle;
-
-    UnkWeakTarget* Get() const { return handle ? handle->target : nullptr; }
-};
 
 static inline UnkLuaDisplayObject_ovb0109* ToDisplayObject(lua_State* L, int index) {
     return static_cast<UnkLuaDisplayObject_ovb0109*>(fn_71010a4740(L, index, "__DisplayObjectType"));

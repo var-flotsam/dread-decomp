@@ -8,19 +8,11 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/CCameraFX_Shake.h"
+#include "game/UnkRandShakeCurve_ovb0131.h"
 #include "game/UnkTU53.h"
 #include "types.h"
 
 extern "C" int rand();
-
-struct UnkRandShakeCurve_ovb0131 {
-    u8 pad_0x0[0x10];
-    const char* text;
-    u8 pad_0x18[0x44 - 0x18];
-    union {
-        u32 use_count;
-    };
-};
 
 using base::math::CVector3D;
 

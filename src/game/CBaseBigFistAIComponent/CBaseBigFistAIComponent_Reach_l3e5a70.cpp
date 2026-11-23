@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkMat4f.h"
 #include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
@@ -15,10 +16,6 @@
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkMat4f {
-    f32 m[4][4];
-};
 
 extern __attribute__((visibility("hidden"))) const UnkVec3f g_unk_7101649350;
 

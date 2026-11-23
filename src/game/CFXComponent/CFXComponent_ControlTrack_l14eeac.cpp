@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkFXIdNode.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU132.h"
 #include "types.h"
@@ -15,18 +16,6 @@
 using base::global::CStrId;
 
 // ---- the unit's list of string ids (defined in CFXComponent_Update_ovb0052.cpp) ----
-
-struct UnkFXIdNode {
-    base::global::CStrId id;
-    // Union members: Clang gives union accesses no type-based alias info, so the links are
-    // reloaded after each store as in the original.
-    union {
-        UnkFXIdNode* next;
-    };
-    union {
-        UnkFXIdNode* prev;
-    };
-};
 
 void fn_71011571f8(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::UnkAllocator* a);
 void fn_7101157530(UnkParentPoolList* self);

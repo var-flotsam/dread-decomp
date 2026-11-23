@@ -9,35 +9,14 @@
 #include "game/UnkTU1730.h"
 #include "game/UnkTU399.h"
 #include "game/UnkTU53.h"
+#include "game/UnkWaterEntry_b57.h"
+#include "game/UnkWaterLevel_b57.h"
+#include "game/UnkWaterOwner_b57.h"
+#include "game/UnkWaterSub_b57.h"
 #include "game/animtree/CBoneControl.h"
 #include "types.h"
 
 struct UnkEntry;
-
-struct UnkWaterEntry_b57 {
-    void** vtable;
-    const base::reflection::CClass* vf_0x0() {
-        return reinterpret_cast<const base::reflection::CClass* (*)(UnkWaterEntry_b57*)>(vtable[0])(this);
-    }
-};
-
-struct UnkWaterLevel_b57 {
-    u8 pad_0x0[0x1c];
-    f32 field_0x1c;
-    u8 pad_0x20[0x8];
-    u64 field_0x28;
-    u8 pad_0x30[0x10];
-};
-
-struct UnkWaterSub_b57 {
-    u8 pad_0x0[0x40];
-    void* field_0x40;
-};
-
-struct UnkWaterOwner_b57 {
-    u8 pad_0x0[0x220];
-    UnkWaterSub_b57* field_0x220;
-};
 
 struct UnkWaterPlatformLevel_laa63b0 {
     u8 pad_0x0[0x30];

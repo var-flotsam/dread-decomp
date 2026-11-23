@@ -3,19 +3,9 @@
 // restarts; any other state marks the record once and saves the owner's (+0x30) position in it. Then the
 // base fn_710054b93c. Names and layouts are placeholders.
 #include "game/UnkActor.h"
+#include "game/UnkEmmyLabAI_A2_b70.h"
+#include "game/UnkEmmyLabMark_A2_b70.h"
 #include "types.h"
-
-struct UnkEmmyLabMark_A2_b70 {
-    f32 x, y, z;
-    bool marked;
-};
-
-struct UnkEmmyLabAI_A2_b70 {
-    u8 pad_0x0[0x30];
-    UnkActor* owner;  // 0x30
-    u8 pad_0x38[0x2a700 - 0x38];
-    UnkEmmyLabMark_A2_b70 mark;  // 0x2a700
-};
 
 void fn_71004f7570(UnkEmmyLabAI_A2_b70* self, bool flag);
 void fn_710054b93c(UnkEmmyLabAI_A2_b70* self, s32 from, s32 to);

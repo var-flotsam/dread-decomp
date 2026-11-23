@@ -5,15 +5,11 @@
 #include "base/global/CStrId.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkPacked.h"
 #include "game/behaviortree/CHyperDashAttackAction.h"
 #include "types.h"
 
 using base::global::UnkStrIdBase;
-
-template <class T>
-struct __attribute__((packed)) UnkPacked {
-    T v;
-};
 
 struct UnkListener {
     void** vtable;

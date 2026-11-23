@@ -9,6 +9,8 @@
 #include "base/global/CRntVector.h"
 #include "game/CGameManager/CTunableGameManager.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkPtrListNode.h"
+#include "game/UnkReloadCallback.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2768.h"
@@ -23,11 +25,6 @@ struct UnkStrVector;
 
 void fn_7100e06210(void* context);
 
-// A list of pointers (vtable g_unk_7101aa9ac0), its nodes from `allocator` with `flags`.
-struct UnkPtrListNode {
-    void* value;
-    UnkPtrListNode* next;
-};
 struct UnkPtrList {
     void** vtable;
     // Union members: the original reloads the count, the tail and the allocator after storing a new
@@ -90,12 +87,6 @@ static inline T* Singleton_ldf71d4(T*& instance) {
     }
     return instance;
 }
-
-// A load's callback: a context and a function.
-struct UnkReloadCallback {
-    void* context;
-    void* fn;
-};
 
 // The game manager's members the reload uses (game/UnkGameManager.h leaves them as padding).
 struct UnkGameManagerReload {

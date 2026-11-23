@@ -9,18 +9,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCharacterMovement.h"
+#include "game/UnkAIReach.h"
 #include "game/UnkActor.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "types.h"
-
-// As src/game/CAIComponent/CAIComponent_ReachRadius.cpp has it.
-struct UnkAIReach {
-    f32 radius;
-    f32 field_0x4;
-
-    UnkAIReach() : radius(0.0f), field_0x4(0.0f) {}
-    UnkAIReach(const UnkAIReach& other);
-};
 
 struct UnkKiGrabCommander_b59 {
     u8 pad_0x0[0x15d1c];

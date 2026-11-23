@@ -12,13 +12,8 @@
 #include "game/UnkTU25.h"
 #include "game/UnkTU32.h"
 #include "game/UnkXformNode.h"
+#include "game/UnkXformStaticZero32.h"
 #include "types.h"
-
-// A zero whose constructor isn't constexpr, so the static is guarded.
-struct UnkXformStaticZero32 {
-    u32 value;
-    UnkXformStaticZero32() : value(0) {}
-};
 
 inline const UnkXformStaticZero32& UnkXformStaticZero() {
     static UnkXformStaticZero32 s_value asm("g_unk_7101d4ec40");

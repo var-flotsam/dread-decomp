@@ -4,6 +4,8 @@
 // (+0x28) as a float; flag 2 when +0x2c is set, and the duration (+0x30) when it is not negative.
 // Names and layouts are placeholders.
 #include "game/UnkTU1730.h"
+#include "game/UnkTrackOptional.h"
+#include "game/UnkTrackTiming.h"
 #include "types.h"
 
 struct __attribute__((packed, aligned(4))) UnkTrackBlend {
@@ -12,19 +14,9 @@ struct __attribute__((packed, aligned(4))) UnkTrackBlend {
 };
 static_assert(sizeof(UnkTrackBlend) == 0xc, "UnkTrackBlend layout");
 
-// A float with a flag saying it is set (the float's bits in the low word, the flag in the high).
-struct UnkTrackOptional {
-    u64 bits;
-};
-
 struct UnkTrackStateName {
     u8 unk_0x0[0x30];
     u64 hash;
-};
-
-struct UnkTrackTiming {
-    s64 id;
-    UnkTrackOptional duration;
 };
 
 struct UnkToStateTrack {

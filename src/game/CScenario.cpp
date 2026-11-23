@@ -17,6 +17,7 @@
 #include "game/CScenario.h"
 #include "game/GUI/CLabel.h"
 #include "game/GUI/CSprite.h"
+#include "game/UnkCollisionFileReader.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -369,11 +370,6 @@ void fn_71011a4050(UnkGameManagerSub_0x608* scenario) {
 
 #include "game/UnkCollisionRecord.h"
 #include "game_s2/UnkWeakHandle.h"
-
-// The collision file's reader (as src/game/CSubAreaManager.cpp declares it).
-struct UnkCollisionFileReader {
-    u8 unk_0x0[0x18];
-};
 
 // The scenario's array of weak references to its collision objects (+0x828; base::global::CRntVector's
 // layout, Reserve out of line as in src/game/logic/collision/CCollider/fn_7100d407c0.cpp).

@@ -3,6 +3,7 @@
 // Equality of two iterator values over 0x80-byte records keyed by a word (base::UnkIterValue's
 // layout, the state at 0x88): the keys are compared, then the records by their word at 8.
 #include "base/UnkCollectionIter.h"
+#include "game/UnkIdWordPair.h"
 #include "types.h"
 
 struct UnkRecord80 {
@@ -33,11 +34,6 @@ __attribute__((always_inline)) static inline bool Equal(const UnkRecord80IterVal
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-
-struct UnkIdWordPair {
-    UnkStrIdTwoStep id;
-    u64 field_0x8;
-};
 
 template <class T>
 static inline void Clear(base::global::CRntVector<T>* self) {

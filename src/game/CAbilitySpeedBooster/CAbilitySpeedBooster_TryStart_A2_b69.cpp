@@ -6,13 +6,9 @@
 #include "game/CAbilitySpeedBooster.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbility.h"
+#include "game/UnkFloatList_b46a1.h"
 #include "game/UnkTU39.h"
 #include "types.h"
-
-struct UnkFloatList_b46a1 {
-    void* data;
-    u32 count;
-};
 
 struct UnkSmAbility3_A2_b63;
 

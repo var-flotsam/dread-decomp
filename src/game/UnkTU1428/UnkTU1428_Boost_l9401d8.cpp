@@ -6,6 +6,7 @@
 
 #include "game/CAbilitySpeedBooster.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSlomoFlags.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "game/UnkVec3fOps.h"
@@ -15,13 +16,6 @@
 namespace base { namespace reflection { struct UnkTunable; } }
 
 struct UnkPlayer;
-
-// The slow-motion flags as bytes of the game manager's word at +0xc4.
-struct UnkSlomoFlags {
-    bool enabled;  // 0xc4
-    u8 unk_0xc5;
-    bool paused;  // 0xc6
-};
 
 struct UnkMorphBallTunable_01d8 {
     u8 pad_0x0[0x34];

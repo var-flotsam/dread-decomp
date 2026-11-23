@@ -8,6 +8,7 @@
 #include "game/CCharacterMovement.h"
 #include "game/CQuarentineDoorComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkContactPointA5_b61.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -18,9 +19,6 @@ struct UnkPlayer;
 struct UnkFlagged;
 struct UnkShape;
 struct UnkBox2D;
-struct UnkContactPointA5_b61 {
-    u8 data[0x2c];
-};
 template <u32 N>
 struct UnkContactBuffer {
     u32 count;

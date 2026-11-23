@@ -3,12 +3,8 @@
 // object's id at +0x18) is the id (+0x30) of one of two unit statics, clears a flag and a counter;
 // then sets the flag in front of them. Returns 0. Names and layouts are placeholders.
 #include "game/CFootstepPlatformComponent.h"
+#include "game/UnkFootstepStatic_b45a2.h"
 #include "types.h"
-
-struct UnkFootstepStatic_b45a2 {
-    u8 pad_0x0[0x30];
-    u64 id;
-};
 
 struct UnkFootstepSenderObject_b45a2 {
     u8 pad_0x0[0x18];

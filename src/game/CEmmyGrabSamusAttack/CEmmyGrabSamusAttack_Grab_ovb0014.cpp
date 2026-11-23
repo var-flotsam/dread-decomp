@@ -29,6 +29,8 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGrabVec_b58a3.h"
+#include "game/UnkKraidCreatureVec.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
@@ -131,9 +133,6 @@ void fn_710050c914(UnkGrabAttack2_ovb0014* self) {
 }
 
 struct UnkEmmyRegistry_b55;
-struct UnkGrabVec_b58a3 {
-    f32 x, y, z;
-};
 struct UnkGrabAttack_A3_b68;
 
 struct UnkGrabAttack3_ovb0014 {
@@ -379,13 +378,6 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkGrappleAnswer_b50;
-
-struct UnkKraidCreatureVec {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
-};
 
 struct UnkGrabOwner_ovb0014 {
     u8 pad_0x0[0x38];

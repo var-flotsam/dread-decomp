@@ -2,6 +2,8 @@
 // colour level matches the target (+0x640) with the open animation playing, fades the door towards 0.3
 // (0 when busy or closed, 1 in state 3); otherwise restarts the timer at 0.2. Names and layouts are placeholders.
 #include <math.h>
+#include "game/UnkDoorGfx_b0251.h"
+#include "game/UnkDoorHolder_b0251.h"
 
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU1376.h"
@@ -22,14 +24,6 @@ struct UnkGameManagerIdKey_b0251 {
     u64 id;
 };
 
-struct UnkDoorGfx_b0251 {
-    u8 pad_0x0[0x138];
-    void* slots;
-};
-struct UnkDoorHolder_b0251 {
-    u8 pad_0x0[0x50];
-    UnkDoorGfx_b0251* gfx;
-};
 struct UnkDoorOwner3_b0251 {
     u8 pad_0x0[0x220];
     UnkAnimationComponent* animation;

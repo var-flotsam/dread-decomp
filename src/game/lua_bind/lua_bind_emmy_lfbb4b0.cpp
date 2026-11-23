@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkLuaStrData.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU811.h"
@@ -16,11 +17,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
 struct UnkLuaDoorTarget;
-
-struct UnkLuaStrData {
-    u8 pad_0x0[0x30];
-    u64 hash;  // 0x30
-};
 
 // The entity as this binding sees it: its AI component.
 struct UnkLuaEntity_lfbb4b0 {

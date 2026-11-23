@@ -11,7 +11,9 @@
 #include "game/CInputComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkColorIn_710050f26c.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkRGB_710050f26c.h"
 #include "game/UnkStateMachineFind.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1501.h"
@@ -226,17 +228,6 @@ void fn_710050c258(UnkGrabSm_b61* self, f32 dt) {
         RequestState_b61<13, 14>(&self->machine, 8);
 }
 
-// The effect restart of src/game/CEmmyGrabSamusAttack/CEmmyGrabSamusAttack_Tick_b54.cpp in red: the level
-// (+0x6d4) drops by 0.8 per second, not below zero.
-struct UnkRGB_710050f26c {
-    f32 r;
-    f32 g;
-    f32 b;
-};
-struct UnkColorIn_710050f26c {
-    UnkRGB_710050f26c rgb;
-    f32 a;
-};
 struct UnkColor_710050f26c {
     f32 r;
     f32 g;

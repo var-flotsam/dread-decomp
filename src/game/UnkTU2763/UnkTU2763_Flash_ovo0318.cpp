@@ -2,6 +2,7 @@
 // first update, restores it once the delay runs out, and while the period is positive blends between
 // that colour and the mask colour (a triangle wave over the period), keeping the channels whose mask
 // is negative. Names and layouts are placeholders.
+#include "game/UnkFadeColor_b0242.h"
 #include "game/UnkTU2746.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "../../game_s7/UnkGuiS7.h"
@@ -9,9 +10,6 @@
 
 typedef u32 a_u32;
 
-struct UnkFadeColor_b0242 {
-    f32 r, g, b, a;
-};
 float fmodf(float, float);
 
 struct UnkFlashTarget_ovo0318 {

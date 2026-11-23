@@ -9,6 +9,7 @@
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkMapHead.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -72,11 +73,6 @@ struct UnkMapIter {
             break;
         }
     }
-};
-
-struct UnkMapHead {
-    u8 unk_0x0[0x40];
-    void* head;
 };
 
 template <class Value, void (*Destroy)(Value*)>

@@ -14,6 +14,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTileElem_ovb0028.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
@@ -198,10 +199,6 @@ void fn_710075e804(UnkTileInfoVector_ovb0028* self, UnkTileInfoIter_ovb0028* out
 
 // ---- TActorTileStatesMap ----
 
-struct UnkTileElem_ovb0028 {
-    u64 a;
-    u64 b;
-};
 using UnkTileElemVector_ovb0028 = base::global::CRntVector<UnkTileElem_ovb0028>;
 
 struct UnkTileStatesMap_ovb0028 {

@@ -3,13 +3,10 @@
 // side axis (column 0) scaled by the negated side (+0x54), orthonormalised by fn_7100077bbc. Names and
 // layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/UnkMat4f.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkMat4f {
-    f32 m[4][4];
-};
 
 struct UnkSmartObjectOwner_ovb0069 {
     u8 pad_0x0[0x38];

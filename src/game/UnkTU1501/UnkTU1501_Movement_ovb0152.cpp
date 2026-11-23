@@ -30,7 +30,12 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkHitFlags_b152.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkMatrix44_7100078c9c.h"
+#include "game/UnkMode_b152.h"
+#include "game/UnkProbeResult.h"
+#include "game/UnkStaticZero_b152.h"
 #include "game/UnkTU1455.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU1730.h"
@@ -39,6 +44,8 @@
 #include "game/UnkTU363.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU54.h"
+#include "game/UnkTrackLink_b152.h"
+#include "game/UnkTrackRec_b152.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CCapsuleShape2D.h"
 #include "game/logic/collision/UnkBvhTreeSweep.h"
@@ -66,30 +73,6 @@ template <class R, class... A>
 static inline R CallVf(void* self, u32 off, A... args) {
     return reinterpret_cast<R (*)(void*, A...)>((*reinterpret_cast<void***>(self))[off / 8])(self, args...);
 }
-
-// A mode of the movement (the pointers at +0x2d1c): its kind and, for kind 6, a position at +0x19c.
-struct UnkMode_b152 {
-    void** vtable;
-    u8 pad_0x8[0x8];
-    s32 kind;  // 0x10
-    u8 pad_0x14[0x188];
-    UnkVec3f field_0x19c;
-};
-
-// What a CCharClass*Track record holds past its header: two floats.
-struct UnkTrackRec_b152 {
-    u8 pad_0x0[0x18];
-    f32 field_0x18;
-    f32 field_0x1c;
-};
-
-// A link into the weak handle list of a track: the context and callback it is given, and the handle it holds.
-struct UnkTrackLink_b152 {
-    u8 pad_0x0[0x8];
-    void* context;
-    void (*callback)();
-    UnkWeakHandle* handle;
-};
 
 struct UnkMove_b152 {
     void** vtable;  // 0x0
@@ -202,11 +185,6 @@ struct UnkMove_b152 {
     UnkLeg_b152* leg1;  // 0x5470
 };
 
-struct UnkProbeResult {
-    u64 field_0x0;
-    u32 field_0x8;
-};
-
 struct UnkSamusSettings {
     u8 pad_0x0[0x70];
     f32 field_0x70;
@@ -261,11 +239,6 @@ struct UnkVec2_b152 {
     f32 x, y;
 };
 
-struct UnkHitFlags_b152 {
-    u32 bits;
-    UnkHitFlags_b152(u32 b) : bits(b) {}
-    UnkHitFlags_b152(const UnkHitFlags_b152& o) : bits(o.bits) {}
-};
 struct UnkHitNode_b152 {
     u8 pad_0x0[0x10];
     UnkHitNode_b152* field_0x10;
@@ -365,9 +338,6 @@ struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
 struct Vec2;
-struct UnkMatrix44_7100078c9c {
-    f32 m[16];
-};
 
 extern base::global::CStrId g_unk_7172740fe0 __attribute__((visibility("hidden")));
 
@@ -409,10 +379,6 @@ static inline void ReleaseRef_b152(UnkRefObject* p) {
     }
 }
 
-struct UnkStaticZero_b152 {
-    u32 value;
-    UnkStaticZero_b152() : value(0) {}
-};
 inline const UnkStaticZero_b152& StaticZero_b152() {
     static UnkStaticZero_b152 s_value asm("g_unk_71726aec10");
     return s_value;

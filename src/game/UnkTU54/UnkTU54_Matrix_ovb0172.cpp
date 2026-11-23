@@ -5,15 +5,10 @@
 #include <math.h>
 
 #include "base/UnkMatrix44.h"
+#include "game/UnkQuatRet_b0172.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkQuatRet_b0172 {
-    f32 x, y, z, w;
-    UnkQuatRet_b0172() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
-    UnkQuatRet_b0172(const UnkQuatRet_b0172& o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
-};
 
 UnkQuatRet_b0172 fn_71000772fc(const UnkMatrix44* mat) {
     UnkQuatRet_b0172 q;

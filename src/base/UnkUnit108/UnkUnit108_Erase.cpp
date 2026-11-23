@@ -3,44 +3,20 @@
 // setters that read the index out of a value holder (in place, or behind a pointer when the holder
 // is in mode 1 or its type is wider than 8 bytes) and answer a 0x18-byte status {0, 0, 2, 1}.
 // Names and layouts are placeholders.
+#include "base/UnkEntry108.h"
+#include "base/UnkStatus108.h"
+#include "base/UnkValue108.h"
+#include "base/UnkValueType108.h"
 #include "types.h"
-
-struct UnkEntry108 {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-};
 
 struct UnkEntryArray108 {
     UnkEntry108* data;
     u32 count;  // 0x8
 };
 
-struct UnkValueType108 {
-    u8 pad_0x0[0x18];
-    u64 size;  // 0x18
-};
-
-struct UnkValue108 {
-    union {
-        u8 inline_data[8];
-        u8* data;
-    };
-    UnkValueType108* type;  // 0x8
-    u8 pad_0x10[0x4];
-    u32 mode;  // 0x14
-};
-
 struct UnkArrayOwner108 {
     u8 pad_0x0[0x8];
     UnkEntryArray108* array;  // 0x8
-};
-
-struct UnkStatus108 {
-    u64 field_0x0;
-    u64 field_0x8;
-    u32 field_0x10;
-    u32 field_0x14;
 };
 
 static inline void Erase(UnkEntryArray108* self, u32 index) {

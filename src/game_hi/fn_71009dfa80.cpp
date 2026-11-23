@@ -8,6 +8,8 @@
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/CInputComponent.h"
 #include "game/CSamusHangMovementState/CParams.h"
+#include "game/UnkListenerOwner.h"
+#include "game/UnkRefSlot.h"
 #include "game/UnkTU2689.h"
 #include "game/UnkTU39.h"
 #include "game/navmesh/SNavMeshPath.h"
@@ -50,18 +52,6 @@ struct UnkAllocator {
     virtual void Free(void* p);
 };
 
-// A counted reference whose slot is released in place.
-struct UnkRefSlot {
-    UnkRefObject* ptr;
-
-    void Release() {
-        if (UnkRefObject* p = ptr) {
-            if (--p->ref_count == 0)
-                p->vf_0x10();
-        }
-    }
-};
-
 struct UnkLinkList;
 void fn_71009a1f40(void* p);
 void fn_71009b0800(void* p);
@@ -81,10 +71,6 @@ void fn_7100988dfc(void* p);
 
 extern void* g_unk_7101a8a048[];
 extern void* g_unk_7101a8a498[];
-
-struct UnkListenerOwner : UnkRefObject {
-    UnkWeakTarget* field_0x10;
-};
 
 struct UnkListener {
     void* vtable;

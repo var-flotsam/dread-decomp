@@ -5,15 +5,13 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
+#include "game/UnkSetStatus.h"
+#include "game/UnkValueHolder.h"
+#include "game/UnkValueType.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::math::CVector4D;
-
-struct UnkValueType {
-    u8 unk_0x0[0x18];
-    u64 size;
-};
 
 // The value is stored in place when its type fits in 8 bytes, unless kind is 1 (by reference).
 struct UnkValueArg {
@@ -32,18 +30,6 @@ struct UnkValueArg {
     }
 };
 
-
-struct UnkValueHolder {
-    u8 unk_0x0[0x8];
-    char* owner;
-};
-
-struct UnkSetStatus {
-    u64 field_0x0;
-    u64 field_0x8;
-    u32 field_0x10;
-    u32 field_0x14;
-};
 
 static inline UnkSetStatus Done() {
     UnkSetStatus status;

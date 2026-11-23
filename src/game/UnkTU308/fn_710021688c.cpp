@@ -1,26 +1,9 @@
 // Unit 308: initialises a record from a scale value and a 3-float vector, storing fixed-point copies.
 // Names and layouts are placeholders.
+#include "game/UnkScaledRecord.h"
 #include "types.h"
 
 extern char g_unk_7101a20220[];
-
-struct UnkScaledRecord {
-    void* vtable;
-    f32 scale;
-    u32 field_0xc;
-    u32 field_0x10;
-    u32 field_0x14;
-    u32 vec[3];
-    f32 field_0x24;
-    f32 field_0x28;
-    f32 field_0x2c;
-    f32 field_0x30;
-    u32 pad_0x34;
-    s64 scaled;
-    s32 fixed[3];
-    u8 isZero;
-    u8 field_0x4d;
-};
 
 // NON_MATCHING(minor): same instructions; scheduling and register choice differ (GOT load and int-to-float moves)
 void fn_710021688c(f32 scale, UnkScaledRecord* self, const u32* vec) {

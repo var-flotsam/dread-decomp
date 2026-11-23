@@ -3,15 +3,11 @@
 // copied: a u64 index with a 0xc8-byte element (fn_7100260c50) and a string-id key with a
 // 0x60-byte element (fn_710025f084). Names and layouts are placeholders.
 #include "base/UnkCollectionIter.h"
+#include "base/UnkUnassignedElem.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 namespace {
-template <u64 Size>
-struct UnkUnassignedElem {
-    u64 words[Size / 8];
-    UnkUnassignedElem& operator=(const UnkUnassignedElem&) { return *this; }
-};
 }  // namespace
 
 void* fn_7100260c50(void* dst, const void* src) {

@@ -13,6 +13,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
+#include "game/UnkIdValueVecSize_b43a3.h"
 #include "game/UnkTU2599.h"
 #include "types.h"
 
@@ -271,10 +272,6 @@ ITER_ASSIGN(7100f6d954, UnkIter24_b0196)
 template <char* Vtable>
 struct UnkIdValueVecTag_b43a3;
 
-template <char* Vtable>
-struct UnkIdValueVecSize_b43a3 {
-    static constexpr u64 value = 16;
-};
 template <>
 struct UnkIdValueVecSize_b43a3<g_unk_7101cab338> {
     static constexpr u64 value = 24;

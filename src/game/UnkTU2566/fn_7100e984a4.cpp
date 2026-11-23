@@ -7,6 +7,7 @@
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMapNamedDef_b49.h"
 #include "game/UnkTU106.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkSubId_7100fc4b34.h"
@@ -37,11 +38,6 @@ struct UnkMinimapRect {
         ((a_u32*)this)[3] = ((const a_u32*)&o)[3];
         return *this;
     }
-};
-
-struct UnkMapNamedDef_b49 : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedName name;
 };
 
 static inline UnkSubId_7100fc4b34 SubId(UnkMapNamedDef_b49& def, const CStrId& name) {

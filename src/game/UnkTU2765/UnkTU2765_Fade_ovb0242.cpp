@@ -3,16 +3,13 @@
 // pending, then blends from it towards the target colour over the duration (fn_71011c1764 blends, the
 // result goes to the object through fn_71011cfc24) and, once the time is up, parks the timer
 // (elapsed 0, duration -1). Names and layouts are placeholders.
+#include "game/UnkFadeColor_b0242.h"
 #include "game/UnkTU2746.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "../../game_s7/UnkGuiS7.h"
 #include "types.h"
 
 extern void* g_unk_7101cb7168[];
-
-struct UnkFadeColor_b0242 {
-    f32 r, g, b, a;
-};
 
 // The values a target keeps at +0xa0 (a colour).
 struct UnkFadeTarget_b0242 {

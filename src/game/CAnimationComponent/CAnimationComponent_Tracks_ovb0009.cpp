@@ -18,9 +18,12 @@
 #include "game/CActorComponent.h"
 #include "game/CAnimationComponent.h"
 #include "game/CComponent.h"
+#include "game/UnkAnimTime_ovb0009.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkMtx44_b46a2.h"
+#include "game/UnkSlomoFlags.h"
 #include "game/UnkTU1134.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1643.h"
@@ -30,6 +33,7 @@
 #include "game/UnkTU2689.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU83.h"
+#include "game/UnkTimelineId.h"
 #include "game/UnkXformNode.h"
 #include "game/animtree/CAnimTreeElement.h"
 #include "game/animtree/CAnimatedNode.h"
@@ -62,12 +66,6 @@ struct UnkFlags_7101176ea8 {
         value = o.value;
         return *this;
     }
-};
-
-// A time on an animation's clock (src/game/UnkAnimTime.cpp): unit 1 is seconds.
-struct UnkAnimTime_ovb0009 {
-    f32 value;
-    s32 unit;
 };
 
 // Built out of line in the original (returned in a register), so it is stored as one word.
@@ -292,10 +290,6 @@ f32 fn_7101178134(UnkAnimationComponent* self, u64 key) {
     return end - fn_710070d890(track);
 }
 
-struct UnkTimelineId {
-    u64 value;
-};
-
 struct UnkTimelineHeader {
     u8 pad_0x0[0x40];
     UnkTimelineId id;
@@ -491,10 +485,6 @@ s32 fn_710117a018(UnkAnimComponent_a018* self, void* stream) {
 }
 
 // ---- Action sets ----------------------------------------------------------------------------
-
-struct UnkMtx44_b46a2 {
-    f32 m[16];
-};
 
 UnkVec3f fn_710007a320(const UnkVec3f* v, f32 angle);
 
@@ -742,13 +732,6 @@ void fn_7101176bec(UnkAnimComponent_b1c* self) {
 // ---- Slow motion ------------------------------------------------------------------------------
 
 struct UnkPlayer;
-
-// The slow-motion flags as bytes of the game manager's word at +0xc4.
-struct UnkSlomoFlags {
-    bool enabled;  // 0xc4
-    u8 unk_0xc5;
-    bool paused;  // 0xc6
-};
 
 struct UnkWaterState {
     u8 pad_0x0[0x70];

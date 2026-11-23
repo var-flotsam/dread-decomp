@@ -15,6 +15,7 @@
 #include "game/CCharacterMovement.h"
 #include "game/CLifeComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkContactPointA5_b61.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1376.h"
@@ -432,9 +433,6 @@ struct UnkPlayer;
 struct UnkFlagged;
 struct UnkShape;
 struct UnkBox2D;
-struct UnkContactPointA5_b61 {
-    u8 data[0x2c];
-};
 template <u32 N>
 struct UnkContactBuffer {
     u32 count;

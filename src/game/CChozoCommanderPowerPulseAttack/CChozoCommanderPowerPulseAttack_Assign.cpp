@@ -1,17 +1,12 @@
 // CChozoCommanderPowerPulseAttack (name from reflection, src/reflection/CChozoCommanderPowerPulseAttack.cpp):
 // the two copy assignments its descriptor points at (0x78 bytes, polymorphic: everything after the
 // vtable is copied). Member layouts are placeholders.
+#include "game/UnkLevel0.h"
+#include "game/UnkPolyBase.h"
 #include "types.h"
 
 namespace {
-struct UnkPolyBase {
-    virtual ~UnkPolyBase();
-};
 
-// Each level of the class chain copies its own members, so the runs are not merged.
-struct UnkLevel0 : UnkPolyBase {
-    u32 field_0x8[8];
-};
 struct UnkLevel1 : UnkLevel0 {
     u32 field_0x28[8];
 };

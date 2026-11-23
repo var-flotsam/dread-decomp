@@ -12,6 +12,7 @@
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerDef.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
@@ -43,10 +44,6 @@ struct UnkNewGameButton {
 
 extern CStrId g_unk_7172765228 __attribute__((visibility("hidden")));
 
-struct UnkGameManagerDef : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedId qid;
-};
 static inline const UnkQualifiedId& Qid(UnkGameManagerDef& def) {
     if (def.qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&def.qid, &def, g_unk_7101d470e0);

@@ -3,14 +3,11 @@
 #include "base/math/CVector.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMatrix44_7100078c9c.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU54.h"
 #include "game/logic/collision/CAABoxShape2D.h"
 #include "types.h"
-
-struct UnkMatrix44_7100078c9c {
-    f32 m[16];
-};
 
 // A shape's bounds: its two corners.
 struct UnkShapeBounds_l976c94 {

@@ -11,6 +11,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkLifeChange_ovb0000.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTypedValue.h"
@@ -23,12 +24,6 @@ using base::global::UnkStringPool;
 struct UnkModeFlags {
     u8 unk_0x0[0xb8];
     bool field_0xb8;
-};
-
-struct UnkLifeChange_ovb0000 {
-    f32 life;
-    bool increased;
-    UnkLifeChange_ovb0000(f32 life_, bool increased_) : life(life_), increased(increased_) {}
 };
 
 struct UnkStrIdHandle;

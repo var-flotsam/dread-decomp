@@ -1,9 +1,6 @@
 // CSamusGrappleMovementState's unit: copies five words into the state at +0xb74. Names are placeholders.
+#include "game/UnkGrappleParams_b65a6.h"
 #include "types.h"
-
-struct UnkGrappleParams_b65a6 {
-    u32 words[5];
-};
 
 struct UnkGrappleState_b65a6 {
     u8 pad_0x0[0xb74];

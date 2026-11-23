@@ -10,8 +10,11 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkClearedArray.h"
 #include "game/UnkTU2563.h"
 #include "game/UnkTU2566.h"
+#include "game/UnkUnionRefObject.h"
+#include "game/UnkUnionRefPtr.h"
 #include "types.h"
 
 using namespace base::global;
@@ -136,20 +139,6 @@ struct UnkIdBlockRecord {
     }
 };
 
-// Clears (destroying the elements, keeping the storage) of arrays of ids (at 0xd642f0 of an
-// owner) and of ids with two values.
-template <class T>
-struct UnkClearedArray {
-    T* data;
-    u32 count;
-
-    void Clear() {
-        for (u64 i = 0; i < count; ++i)
-            data[i].~T();
-        count = 0;
-    }
-};
-
 struct UnkIdArrayOwner {
     u8 unk_0x0[0xd642f0];
     UnkClearedArray<UnkReleasedStrId> ids;
@@ -198,28 +187,6 @@ struct UnkValueIdIdArrayRecord {
     u32 field_0x0;
     UnkReleasedStrId id;
     UnkMovedArray<UnkReleasedStrId> ids;
-};
-
-// A reference whose object's count is a union member (no type-based alias info: the count of
-// the array is reloaded after each release).
-struct UnkUnionRefObject {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    union {
-        s32 ref_count;
-    };
-};
-
-struct UnkUnionRefPtr {
-    UnkUnionRefObject* ptr;
-
-    ~UnkUnionRefPtr() {
-        if (UnkUnionRefObject* p = ptr) {
-            if (--p->ref_count == 0)
-                p->vf_0x10();
-        }
-    }
 };
 
 UnkMovedArray<UnkUnionRefPtr>* fn_7100241948(UnkMovedArray<UnkUnionRefPtr>* self, UnkMovedArray<UnkUnionRefPtr>* other) {

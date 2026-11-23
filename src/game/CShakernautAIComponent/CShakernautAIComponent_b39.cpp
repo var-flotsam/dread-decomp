@@ -11,6 +11,7 @@
 #include "game/CComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
+#include "game/UnkActorPosition.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
@@ -137,12 +138,6 @@ void fn_71006b0e98(UnkShakernautAI_sna* self) {
     }
     fn_71006ae948(self);
 }
-
-// A position returned in memory (x8): 16 bytes, not trivially copyable.
-struct UnkActorPosition {
-    f32 x, y, z, w;
-    UnkActorPosition(const UnkActorPosition& other);
-};
 
 struct UnkEnemyMovement_sna {
     void** vtable;

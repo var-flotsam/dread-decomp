@@ -1,24 +1,12 @@
 // Unit 210 (a GPU particle system's emitters): spawns particles, giving each new one its attributes'
 // default values, a position from the spawn volume (or the default), and the volume's transform.
 // Names and layouts are placeholders.
+#include "game/UnkMat4f.h"
+#include "game/UnkSpawnVolume.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-// The matrix type of fn_7100078170 (as src/game/CExplosionGfx.cpp names it).
-struct UnkMat4f {
-    f32 m[4][4];
-};
-
-struct UnkSpawnVolume {
-    u8 unk_0x0[0x1c];
-    UnkMat4f matrix;
-    u8 unk_0x5c[0xc];
-    f32 size[3];
-    u8 unk_0x74[0x18];
-    s32 shape;
-    f32 inner;
-};
 static_assert(__builtin_offsetof(UnkSpawnVolume, shape) == 0x8c, "UnkSpawnVolume placeholder layout");
 
 UnkVec3f fn_710016e468(const UnkSpawnVolume* self);

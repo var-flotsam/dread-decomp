@@ -26,6 +26,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/CAnimatedCameraCtrl.h"
 #include "game/CBombGun.h"
 #include "game/CCameraComponent.h"
@@ -33,11 +34,19 @@
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "base/input/UnkRumbleManager.h"
+#include "game/UnkCollisionFileReader.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkIdList.h"
 #include "game/UnkMask.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkPlayerSub.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkScenario.h"
+#include "game/UnkScenarioSub.h"
+#include "game/UnkSubAreaDropTargetView.h"
+#include "game/UnkSubAreaEntity.h"
+#include "game/UnkSubAreaEntityList.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2505.h"
@@ -118,13 +127,6 @@ void fn_7100ee30dc(UnkFileReadTag, const CFilePathStrId* path) {
     fn_710007c0e4(&reader.file);
 }
 
-// The six id lists fn_7100ee7134 empties (src/game_hi/fn_7100ee7134.cpp: two string-id lists and
-// four file-path-id lists); only the counts are read here.
-struct UnkIdList {
-    void* data;
-    u32 count;
-    u8 pad_0xc[0x1c];
-};
 struct UnkIdSet {
     UnkIdList field_0x0;
     UnkIdList field_0x28;
@@ -344,24 +346,10 @@ static inline const CStrId& SecondId(const UnkSubArea* area) { return area ? are
 // The camera holder fn_7100defcec gives and its current camera controller (game/UnkCameraCtrl.h).
 void fn_7100723120(void* holder);
 
-struct UnkPlayerSub {
-    u8 pad_0x0[0x6c];
-    bool field_0x6c;
-};
 struct UnkPlayer {
     u8 pad_0x0[0x1c0];
     UnkPlayerSub* field_0x1c0;
 };
-
-struct UnkScenarioSub {
-    u8 pad_0x0[0x58];
-    bool field_0x58;
-};
-struct UnkScenario {
-    u8 pad_0x0[0x820];
-    UnkScenarioSub* field_0x820;
-};
-
 
 void fn_7100eead58(CSubAreaManager* self, const CStrId& prev_a, const CStrId& prev_b, const CStrId& cur_a,
                    const CStrId& cur_b);
@@ -479,29 +467,10 @@ bool fn_710119e684(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, boo
 bool fn_710119d9b8(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
 void fn_710119d910(UnkSubAreaGuiCache* self);
 
-// The entities whose component (+0x10) of class fn_7101117478 is told about each id.
-struct UnkSubAreaEntity {
-    u8 pad_0x0[0x10];
-    base::reflection::UnkReflObject* field_0x10;
-};
-struct UnkSubAreaEntityList {
-    UnkSubAreaEntity** data;
-    u32 count;
-};
 void fn_710111b138(base::reflection::UnkReflObject* component, const base::UnkStrIdMember* id);
 
 // The manager at g_unk_7101d47318 as far as it is called here.
 struct UnkDropTarget;
-struct UnkSubAreaDropTargetView {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38(u32 a, u32 b);
-};
 
 using base::input::UnkRumbleManager;
 
@@ -511,7 +480,6 @@ struct UnkManager_7100863a8c;
 // The file device singleton and the sound manager (src/game/CGameManager.cpp).
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
-void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 // The file-path id array's element accessor (CRntVector::GrowAt, out of line).
 UnkPathIdMember* fn_710008c174(base::global::CRntVector<UnkPathIdMember>* self, u32 index);
 
@@ -756,12 +724,6 @@ void fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag) {
 
 #include "game/UnkCollisionRecord.h"
 #include "game_s2/UnkWeakHandle.h"
-
-// The collision file's reader (0x18 bytes; its constructor and destructor), and the read that
-// fills the records (src/game/CCollisionComponent's unit).
-struct UnkCollisionFileReader {
-    u8 unk_0x0[0x18];
-};
 
 // A collision object as the sub-area manager keeps it: weakly referenced, owned by the manager's
 // object at +0x920, and named by the id at +0x20.

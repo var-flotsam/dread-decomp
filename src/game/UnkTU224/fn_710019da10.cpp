@@ -1,27 +1,13 @@
 #include "base/UnkMatrix44.h"
+#include "game/UnkSize_ovb0245.h"
 #include "game/UnkTU54.h"
+#include "game/UnkView_ovb0245.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 #include "game/UnkTU178.h"
 #include "game/UnkTU53.h"
 
-struct UnkView_ovb0245 {
-    u8 pad_0x0[0x30];
-    UnkVec3f position;  // 0x30
-    UnkVec3f scale;     // 0x3c
-    u8 pad_0x48[0x11c];
-    UnkMatrix44 matrix;  // 0x164
-    u8 pad_0x1a4[8];
-    u8 matrix_valid;  // 0x1ac
-};
 static_assert(__builtin_offsetof(UnkView_ovb0245, matrix_valid) == 0x1ac, "layout");
-
-struct UnkSize_ovb0245 {
-    u8 pad_0x0[8];
-    u32 width;   // 0x8
-    u32 height;  // 0xc
-};
-
 
 static inline bool Differs(f32 current, f32 value) {
     f32 low = current - 0.001f;

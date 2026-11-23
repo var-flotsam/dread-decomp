@@ -4,6 +4,7 @@
 // fn_71010c4194; fn_7100806fc0 also frees the object. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkComponent.h"
+#include "game/UnkFxRenderObject_b49a3.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
@@ -11,12 +12,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 extern void* g_unk_7101a74b88[];
-
-// A render object: its item for the render manager follows the vtable.
-struct UnkFxRenderObject_b49a3 {
-    void** vtable;
-    u8 item[0x8];
-};
 
 struct UnkChozombieFXComponent_b49a3 {
     void** vtable;

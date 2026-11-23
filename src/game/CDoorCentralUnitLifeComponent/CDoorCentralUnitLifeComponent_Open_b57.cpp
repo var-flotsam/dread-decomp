@@ -8,15 +8,11 @@
 #include "base/global/CName.h"
 #include "game/CActorComponent.h"
 #include "game/CDoorCentralUnitLifeComponent.h"
+#include "game/UnkDoorLifeOwner_b56.h"
 #include "game/UnkTU794.h"
 #include "types.h"
 
 struct UnkStruct_710024fa0c;
-
-struct UnkDoorLifeOwner_b56 {
-    u8 pad_0x0[0x220];
-    void* field_0x220;
-};
 
 struct UnkDoorLifePart_b56;
 

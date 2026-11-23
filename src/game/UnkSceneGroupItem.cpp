@@ -4,17 +4,11 @@
 // item map. Names and layouts are placeholders.
 // Holds fn_71001f9e34.
 #include "base/reflection.h"
+#include "engine/UnkSceneGroupItem.h"
 #include "types.h"
 
 // The scene (only its functions are used here).
 struct UnkScene;
-
-// Kind 1: the word is the object itself; otherwise it is the id the scene finds it by.
-struct UnkSceneGroupItem {
-    u64 field_0x0;
-    u8 pad_0x8[0x8];
-    u32 field_0x10;
-};
 
 void fn_71001eeff4(UnkScene* scene, u64 object, bool flag);
 

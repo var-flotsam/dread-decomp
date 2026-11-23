@@ -2,6 +2,7 @@
 // of each node, the next node at +0x40) and drops every node whose entry fn_710119d5f0 accepts; the drop
 // (fn_710119d7e4) gives the node to carry on from. Names and layouts are placeholders.
 #include "game/UnkTU2734.h"
+#include "game/UnkUnusedArg_b49.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
@@ -17,9 +18,6 @@ struct UnkSweepList_b49 {
     u8 pad_0x0[0x40];
     UnkSweepNode_b49* head;
 };
-
-// Its first argument is unused (the caller leaves x0 as it is): an empty struct by value.
-struct UnkUnusedArg_b49 : UnkLeftoverReg {};
 
 void fn_710119d584(UnkSweepList_b49* self, bool flag) {
     UnkSweepNode_b49* node = self->head;

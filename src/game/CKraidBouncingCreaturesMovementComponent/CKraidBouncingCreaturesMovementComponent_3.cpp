@@ -5,16 +5,9 @@
 // the vector at +0x4b8. Names and layouts are placeholders.
 #include "game/CProjectileMovement.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkKraidCreatureVec.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
-
-// Returned in memory (x8): the copy constructor is user-provided.
-struct UnkKraidCreatureVec {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
-};
 
 struct UnkSelf;
 extern u64 g_unk_71726f41d0 __attribute__((visibility("hidden")));

@@ -4,27 +4,10 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
+#include "game/UnkTU2640Array.h"
 #include "types.h"
 
 using base::global::UnkStringData;
-
-struct UnkTU2640Array {
-    void* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkTU2640Array(UnkTU2640Array&& other)
-        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
-          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
-        other.data = nullptr;
-        other.count = 0;
-        other.capacity = 0;
-    }
-};
 
 struct UnkTU2640Record {
     UnkMovedStrId id;

@@ -5,16 +5,13 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMatrix44_7100078c9c.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/UnkBvhTree.h"
 #include "game/logic/collision/UnkBvhTreeSweep.h"
 #include "types.h"
-
-struct UnkMatrix44_7100078c9c {
-    f32 m[16];
-};
 
 struct UnkQuetzoaPart_l64b884;
 UnkTree* fn_710110c498(UnkQuetzoaPart_l64b884* part);

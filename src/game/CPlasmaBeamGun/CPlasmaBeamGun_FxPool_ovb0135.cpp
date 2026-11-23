@@ -12,6 +12,7 @@
 #include "game/CFXPool/CDefinition.h"
 #include "game/CPlasmaBeamGun.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkPlasmaBeamGun_ovb0135.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
@@ -119,13 +120,6 @@ void fn_7100851bc0(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool
 void fn_7100851d6c(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool flag) {
     Preload<fn_7100852698>(cache, path, kind, flag);
 }
-
-// The plasma beam's effects: registered with the model manager's effect cache once (flag at +0x1870)
-// before the base's step (fn_71008548bc), released again before the other base step (fn_7100854db8).
-struct UnkPlasmaBeamGun_ovb0135 {
-    u8 pad_0x0[0x1870];
-    bool fx_registered;  // 0x1870
-};
 
 void fn_71008548bc(UnkPlasmaBeamGun_ovb0135* self);
 void fn_7100854db8(UnkPlasmaBeamGun_ovb0135* self);

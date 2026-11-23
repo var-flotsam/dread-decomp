@@ -12,6 +12,7 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/CGameObject.h"
+#include "game/UnkPoint_ovb0229.h"
 #include "game/UnkTU109.h"
 #include "game/UnkTU365.h"
 #include "game/navmesh/CNavMesh.h"
@@ -217,12 +218,6 @@ struct UnkSortedList_ovb0229 {
     Node* tail;
     base::UnkAllocator* allocator;
     u32 flags;
-};
-
-struct UnkPoint_ovb0229 {
-    u32 x;
-    u32 y;
-    UnkPoint_ovb0229(const UnkPoint_ovb0229& other) : x(other.x), y(other.y) {}
 };
 
 using UnkPoints_ovb0229 = UnkSortedList_ovb0229<UnkPoint_ovb0229>;

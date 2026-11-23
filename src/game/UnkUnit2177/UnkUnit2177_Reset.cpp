@@ -3,6 +3,7 @@
 // through its vtable slot 0x48; a node's next link is at +0x120), empties the list and destroys the
 // elements of the global array g_unk_7172791e48. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkElem188.h"
 #include "game/UnkTU2177.h"
 #include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
@@ -11,14 +12,6 @@
 
 // The collision manager singleton (src/game/CCollisionComponent/fn_7100863a8c.cpp).
 struct UnkManager_7100863a8c;
-
-// The global array's elements (as src/game/CChangeStageNavMeshItemComponent/fn_71009ba9f0.cpp).
-struct UnkElem188 {
-    virtual void vf_0x0();
-    virtual ~UnkElem188();
-    UnkElem188(UnkElem188&& other);  // fn_7100d36688
-    u8 unk_0x8[0x180];
-};
 
 struct UnkUnit2177Node {
     u8 pad_0x0[0x120];

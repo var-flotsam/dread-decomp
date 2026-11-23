@@ -4,6 +4,8 @@
 // it is cleared; then the base step fn_7100741aa8. Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/CRedenkiSwarmControllerComponent.h"
+#include "game/UnkSwarmArea_b66a4.h"
+#include "game/UnkSwarmHold_b66a4.h"
 #include "types.h"
 
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b38.cpp defines it.
@@ -13,24 +15,6 @@ struct UnkVec3Result {
     f32 z;
     UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
     UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
-
-struct UnkSwarmArea_b66a4 {
-    void** vtable;
-    bool Contains(const base::math::CVector2D* p) {
-        return reinterpret_cast<bool (*)(UnkSwarmArea_b66a4*, const base::math::CVector2D*)>(vtable[0x50 / 8])(this, p);
-    }
-};
-
-struct UnkSwarmHold_b66a4 {
-    void** vtable;
-    u8 pad_0x8[0x390 - 0x8];
-    u32 mode;  // 0x390
-    u8 pad_0x394[0x56c - 0x394];
-    f32 time;  // 0x56c
-    UnkSwarmArea_b66a4* Area(u32 slot) {
-        return reinterpret_cast<UnkSwarmArea_b66a4* (*)(UnkSwarmHold_b66a4*)>(vtable[slot / 8])(this);
-    }
 };
 
 void fn_7100741aa8(UnkSwarmHold_b66a4* self, f32 dt);

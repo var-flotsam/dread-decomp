@@ -4,19 +4,13 @@
 #include <math.h>
 #include "../../game_s7/UnkPropBagS7.h"
 #include "base/UnkMatrix44.h"
+#include "base/UnkMatrix44Words.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkMatrix44Words {
-    u32 m[16];
-
-    UnkMatrix44Words() {}
-    UnkMatrix44Words(const UnkMatrix44Words& other);
-};
 
 UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src);
 

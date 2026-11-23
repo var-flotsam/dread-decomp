@@ -4,6 +4,8 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
+#include "game/UnkSubareaEvent_ovb0139.h"
+#include "game/UnkSubareaStaticZero_ovb0139.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "types.h"
@@ -11,11 +13,6 @@
 using base::global::CStrId;
 
 struct UnkManager;
-
-struct UnkSubareaStaticZero_ovb0139 {
-    u32 value;
-    UnkSubareaStaticZero_ovb0139() : value(0) {}
-};
 
 inline const UnkSubareaStaticZero_ovb0139& UnkSubareaStaticZero() {
     static UnkSubareaStaticZero_ovb0139 s_value asm("g_unk_7172719980");
@@ -26,14 +23,6 @@ inline u32 UnkSubareaAllMask() {
     static u32 s_mask asm("g_unk_7172719970") = ~UnkSubareaStaticZero().value & 0x1ff;
     return s_mask;
 }
-
-struct UnkSubareaEvent_ovb0139 {
-    void** vtable;
-    u8 pad_0x8[0x8];
-    CStrId setup;      // 0x10
-    bool all;          // 0x18
-    bool bits[9];      // 0x19
-};
 
 void fn_7100baedc0(UnkSubareaEvent_ovb0139* self) {
     if (self->setup.data == &g_unk_7101d47108->empty)

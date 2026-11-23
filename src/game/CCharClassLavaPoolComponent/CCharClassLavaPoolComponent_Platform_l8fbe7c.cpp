@@ -4,12 +4,10 @@
 #include "game/CCharClassLavaPoolComponent.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CLiquidSimulationComponent.h"
+#include "game/UnkWaterPoolPlatform_b0086.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-// Copied from src/game/CCharClassWaterPoolComponent/CCharClassWaterPoolComponent_Platform_ovb0086.cpp.
-struct UnkWaterPoolPlatform_b0086 : UnkWeakTarget {};
 
 struct UnkWaterPoolComponent_b0086;
 

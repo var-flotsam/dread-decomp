@@ -2,17 +2,13 @@
 // two words at +0x30 of the object): when the key is present, its array is move-assigned from
 // `value`; otherwise nothing happens.
 #include "base/global/CRntVector.h"
+#include "game/UnkMapElem40.h"
 #include "types.h"
 
 struct UnkMapKey {
     u8 unk_0x0[0x30];
     u32 field_0x30;
     u32 field_0x34;
-};
-
-struct UnkMapElem40 {
-    virtual ~UnkMapElem40();
-    u8 unk_0x8[0x38];
 };
 
 struct UnkArrayMapNode {

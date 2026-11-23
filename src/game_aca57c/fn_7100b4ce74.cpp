@@ -10,6 +10,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkMenuScreen.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
@@ -18,11 +19,6 @@ using base::global::CRntString;
 using base::reflection::CClass;
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
-
-struct UnkMenuScreen {
-    void* vtable;
-    UnkGuiDisplayObject* composition;
-};
 
 static inline void CallVf78(void* composition, s32 a, bool b) {
     void** vtable = *static_cast<void***>(composition);

@@ -3,17 +3,8 @@
 // Names and layouts are placeholders.
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkGroupArray_ovb0244.h"
 #include "types.h"
-
-// The handle's count is a union member: the original reloads the pointers around count updates here.
-struct UnkRefCountedU_ovb0244 {
-    virtual void vf0();
-    virtual void vf8();
-    virtual void Delete();
-    union {
-        s32 ref_count;
-    };
-};
 
 // A counted reference to a handle; a new one is cleared by assigning an empty reference.
 struct UnkHandleRef_ld4ae50 {

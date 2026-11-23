@@ -6,6 +6,7 @@
 // byte array copy constructor (fn_71000e1848).
 #include "base/UnkCollectionIter.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkElem_0xc.h"
 #include "types.h"
 
 using base::UnkCollectionIter;
@@ -14,10 +15,6 @@ using base::global::CRntVector;
 
 struct UnkElem_0x2 {
     u8 data[2];
-};
-
-struct UnkElem_0xc {
-    u32 words[3];
 };
 
 struct UnkWord64 {

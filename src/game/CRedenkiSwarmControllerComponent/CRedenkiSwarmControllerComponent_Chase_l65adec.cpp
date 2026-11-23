@@ -5,6 +5,8 @@
 #include "game/CRedenkiSwarmControllerComponent.h"
 #include "game/SLogicPathNode.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSwarmPoint_b65a4.h"
+#include "game/UnkSwarmRecord_b65a4.h"
 #include "game/UnkTU1161.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -16,14 +18,6 @@ struct UnkVec3Result {
     f32 z;
     UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
     UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
-
-struct UnkSwarmPoint_b65a4 {
-    u64 value;
-};
-
-struct UnkSwarmRecord_b65a4 {
-    bool active;
 };
 
 struct UnkPathPoints;

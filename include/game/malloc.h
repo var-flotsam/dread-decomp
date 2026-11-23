@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "types.h"
 
+struct UnkSegment2D_71001262e0;
 struct UnkSweep2D;
 struct UnkBox2D;
 struct UnkContact2D;
@@ -36,3 +37,5 @@ extern void* g_unk_7101a1bdf8[];
 bool fn_710012b7f0(const UnkSweep2D* seg, const UnkBox2D* box, UnkContact2D* out, s32 mode);
 bool fn_7100126018(const UnkSegment2D* seg, const base::math::CVector2D* point, base::math::CVector2D* out, f32 tolerance);
 bool fn_710012dbd0(const UnkBox2D* a, void* x5, const void* b, UnkContactPoint* out);
+// The squared distance from `p` to the segment, with the closest point (and where along it).
+f32 fn_71001262e0(const UnkSegment2D_71001262e0* seg, const base::math::CVector2D* p, base::math::CVector2D* closest, f32* t);

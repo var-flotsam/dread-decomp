@@ -13,6 +13,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkCountedRef_l2a6d38.h"
 #include "game/UnkTU2527.h"
 #include "game/UnkTU27.h"
 #include "game/UnkTU56.h"
@@ -20,29 +21,6 @@
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-// As src/game/UnkTU365/UnkTU365_Reserve_l2a6d38.cpp defines them.
-struct UnkCountedRef_l2a6d38 {
-    UnkCountedResource* ptr;
-
-    UnkCountedRef_l2a6d38(UnkCountedRef_l2a6d38&& other) {
-        ptr = nullptr;
-        if (ptr != other.ptr) {
-            UnkCountedResource* p = other.ptr;
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-    }
-    ~UnkCountedRef_l2a6d38() {
-        UnkCountedResource* p = ptr;
-        if (p && --p->ref_count == 0)
-            fn_710001737c(p);
-    }
-};
 
 using UnkCountedRefArrays_l2a6d38 = base::global::CRntSmallDictionary<CStrId, UnkCountedRef_l2a6d38>;
 void fn_71002a6d38(UnkCountedRefArrays_l2a6d38* self, u32 new_capacity);

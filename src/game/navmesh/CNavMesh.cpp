@@ -27,6 +27,7 @@
 #include "game/UnkTU376.h"
 #include "game/UnkTU55.h"
 #include "game/UnkTU56.h"
+#include "game/malloc.h"
 #include "game/navmesh/CDynamicSmartLinkRules.h"
 #include "game/navmesh/CNavMesh.h"
 #include "types.h"
@@ -379,7 +380,6 @@ void fn_710027c134(const UnkNavMeshRayProbe* self, UnkNavMeshBox* box, f32 dx, f
 struct UnkRegion_710027a41c;      // a cell record (src/game/navmesh/CNavMesh/fn_710027a41c.cpp)
 struct UnkSegment2D_71001262e0;   // a segment's two points (src/game/malloc/fn_71001262e0.cpp)
 
-f32 fn_71001262e0(const UnkSegment2D_71001262e0* seg, const CVector2D* p, CVector2D* closest, f32* t);
 bool fn_71006f379c(const UnkDirectionFilter* self, const UnkSegment2D* seg);
 bool fn_71002afc84(const Cell* cell, const u8* side, u32 flags);
 

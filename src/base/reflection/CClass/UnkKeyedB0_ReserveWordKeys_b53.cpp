@@ -4,18 +4,12 @@
 // (src/base/reflection/UnkKeyedB0_Reserve_b52.cpp) does for string-id keys: each record moved
 // (fn_7100097d18) and the old one destroyed (fn_71000e70c4), the keys copied through the aliasing
 // word type (the count and the key pointer are reloaded). Names are placeholders.
+#include "base/UnkAliasWord_71000dc190.h"
+#include "base/UnkValue_71000dc190.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU85.h"
 #include "types.h"
-
-struct UnkAliasWord_71000dc190 {
-    u64 value;
-};
-
-struct UnkValue_71000dc190 {
-    u8 data[0xb0];
-};
 
 using UnkKeyedArray_71000dc190 = base::global::CRntSmallDictionary<UnkAliasWord_71000dc190, UnkValue_71000dc190>;
 

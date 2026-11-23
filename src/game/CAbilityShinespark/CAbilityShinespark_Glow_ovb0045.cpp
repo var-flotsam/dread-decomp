@@ -17,6 +17,8 @@
 #include "game/UnkTU39.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkSubId_7100fc4b34.h"
+#include "game/UnkV4_b47.h"
+#include "game/UnkVisitResult_b0040.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
@@ -25,12 +27,6 @@ using base::reflection::UnkReflObject;
 
 // ---- The glow: a pulse between two colours on the model updater ----
 
-struct UnkV4_b47 {
-    f32 x, y, z, w;
-    UnkV4_b47() {}
-    UnkV4_b47(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
-    UnkV4_b47(const UnkV4_b47& o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
-};
 extern const u64 g_unk_7101648ed8 __attribute__((visibility("hidden")));
 extern const u64 g_unk_7101648ee8 __attribute__((visibility("hidden")));
 extern const u64 g_unk_7101648ef8 __attribute__((visibility("hidden")));
@@ -93,12 +89,6 @@ __attribute__((always_inline)) inline UnkAssignedSlot& UnkAssignedSlot::operator
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
-struct UnkVisitResult_b0040 {
-    s32 value;
-    UnkVisitResult_b0040(s32 v) : value(v) {}
-    UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
-    ~UnkVisitResult_b0040() {}
-};
 
 static inline UnkVisitResult_b0040 Skip_b0045() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726a4780), __ATOMIC_ACQUIRE) & 1), 0)) {

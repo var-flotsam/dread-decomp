@@ -5,17 +5,11 @@
 #include "base/UnkKeyedStrIds.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkCutSceneTable_lc886c0.h"
 #include "game/UnkTU2200.h"
 #include "types.h"
 
 using UnkPathIdMember_lc886c0 = base::UnkStrIdMemberOf<g_unk_7101d47200>;
-
-struct UnkCutSceneTable_lc886c0 {
-    void* field_0x0;
-    void* field_0x8;
-    u8 pad_0x10[0x10];
-    base::UnkAllocator* allocator;  // 0x20
-};
 
 struct UnkCutSceneEntry_lc886c0 {
     base::UnkStrIdMember field_0x0;

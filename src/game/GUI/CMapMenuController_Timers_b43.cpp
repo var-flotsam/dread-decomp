@@ -18,7 +18,6 @@
 // src/game/GUI/CGlobalMapComposition/CGlobalMapComposition_Sound.cpp declare them.
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateKey g_unk_71729f0180;
 
 // As src/game/GUI/CMapMenuController.cpp and src/game/GUI/CMapMenuController_Close.cpp declare them.
 struct UnkMapData;

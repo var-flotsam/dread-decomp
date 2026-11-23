@@ -13,6 +13,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkProfileSaveArg.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU2553.h"
@@ -70,11 +71,6 @@ void fn_7100af77dc(UnkArchivesComposition_ovb0124* self, UnkGuiEvent_b49* event)
 }
 
 using base::global::CStrId;
-
-struct UnkProfileSaveArg {
-    void* field_0x0;
-    void* field_0x8;
-};
 
 static inline const CStrId& IdTableKey(u32 offset) {
     return *reinterpret_cast<const CStrId*>(GameManagerIdTable().pad_0x0 + offset);

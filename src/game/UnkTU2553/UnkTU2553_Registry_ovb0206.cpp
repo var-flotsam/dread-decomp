@@ -7,6 +7,9 @@
 #include <stdlib.h>
 #include "base/UnkVtableList.h"
 #include "base/file/CPackManagerDevice.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/UnkNamedUser.h"
+#include "game/UnkPtrListNode.h"
 #include "game/UnkTU2730.h"
 
 #include <nn/os.h>
@@ -327,9 +330,7 @@ struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
 };
 
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
-void fn_7100089eec(base::file::UnkFileDevice* self, const CFilePathStrId* path, UnkFilePathList* out);
 bool fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path);
-void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 
 static inline base::file::UnkFileDevice* PackSets_e00b48() {
     base::file::UnkFileDevice* object = g_unk_7101d4d828;
@@ -971,10 +972,6 @@ struct UnkNamedNode {
     UnkNamedObject* value;
     UnkNamedNode* next;
 };
-struct UnkNamedUser {
-    u8 pad_0x0[0x88];
-    bool field_0x88;
-};
 // String equality (the declaration is src/game_s1/fn_71000d4d50.cpp's, over a record of CRntString's size).
 struct UnkCompared_0x30;
 static inline bool Equal(const CRntString* a, const CRntString* b) {
@@ -1076,11 +1073,6 @@ using base::global::CRntString;
 
 struct UnkUserDataOwner;
 
-// A list of pointers (vtable g_unk_7101aa9ac0), its nodes from `allocator` with `flags`.
-struct UnkPtrListNode {
-    void* value;
-    UnkPtrListNode* next;
-};
 struct UnkPtrList {
     void** vtable;
     // Union members: the original reloads the count, the tail and the allocator after storing a new

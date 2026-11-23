@@ -27,6 +27,7 @@
 #include "game/UnkTU394.h"
 #include "game/UnkTU53.h"
 #include "game/UnkTU55.h"
+#include "game/UnkTimelineId.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -236,9 +237,6 @@ void fn_7101102da8(UnkAIStruct_g* self) {
 // ---- h ----
 using base::global::CStrId;
 
-struct UnkTimelineId {
-    u64 value;
-};
 struct UnkNameHolder;
 
 UnkTimelineId fn_7101177be0(UnkAnimationComponent* self, u64 key);

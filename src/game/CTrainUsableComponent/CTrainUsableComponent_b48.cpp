@@ -15,6 +15,9 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkUsableName_b48.h"
+#include "game/UnkUsableValue_b48.h"
+#include "game/UnkUsable_b48.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
@@ -33,27 +36,6 @@ static inline void SetSectionBool(CBlackboard* blackboard, const CStrId& section
         }
     }
 }
-
-// The id fn_7100de9bf8 gives, as this caller sees its data.
-struct UnkUsableName_b48 {
-    u8 pad_0x0[0x10];
-    u8 name[0x34];
-    union {
-        u32 uses;
-    };
-};
-
-struct UnkUsableValue_b48 {
-    UnkPropertyName name;
-    u64 field_0x8;
-};
-
-struct UnkUsable_b48 {
-    u8 pad_0x0[0x4d0];
-    UnkUsableValue_b48* values;
-    u64* keys;
-    u32 count;
-};
 
 // The name of the id, counting the use.
 static inline void* UseName(const CStrId* id) {

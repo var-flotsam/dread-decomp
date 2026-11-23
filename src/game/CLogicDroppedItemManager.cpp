@@ -14,6 +14,7 @@
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
 #include "game/UnkDroppableTunable.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSegmentShape.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2517.h"
@@ -92,12 +93,6 @@ void fn_7100e2d39c(UnkDroppedItemManager* self) {
             ++it;
     }
 }
-
-// A collision shape (0xc0 bytes) built from a segment (fn_7100d693ac) and destroyed by
-// fn_7100d69400.
-struct UnkSegmentShape {
-    u8 data[0xc0];
-};
 
 // The hits of a collision query: up to 32 records of 0x48 bytes after the count, each starting
 // with two reference-counted pointers, which the destructor (vtable g_unk_7101a70eb0) releases.

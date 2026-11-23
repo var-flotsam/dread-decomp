@@ -7,16 +7,9 @@
 #include "game/CCharClassAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkSluggerPos.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
-
-// A position returned in memory (not a plain vector: the original builds it through x8).
-struct UnkSluggerPos {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkSluggerPos(const UnkSluggerPos& other);
-};
 
 // The base character class's check, called with the same arguments (declared without them in its
 // generated definition).

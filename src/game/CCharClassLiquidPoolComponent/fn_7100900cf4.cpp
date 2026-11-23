@@ -13,6 +13,7 @@
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTypedValue.h"
+#include "game/UnkValue_0x10.h"
 #include "types.h"
 
 #include <new>
@@ -21,9 +22,6 @@ using base::global::CRntSmallDictionary;
 using base::global::CStrId;
 
 
-struct UnkValue_0x10 {
-    u64 words[2];
-};
 struct UnkKeyedValues_71009046bc;
 using UnkValues10ByKey = base::UnkKeyedArray<UnkKeyedValues_71009046bc, u64, UnkValue_0x10>;
 

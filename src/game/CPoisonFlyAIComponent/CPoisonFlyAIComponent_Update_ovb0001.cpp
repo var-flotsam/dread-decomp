@@ -12,6 +12,8 @@
 #include "base/reflection/CClass.h"
 #include "game/CCharClassBlockableWarningRadius.h"
 #include "game/CComponent.h"
+#include "game/UnkAITunablesValue_ovb0001.h"
+#include "game/UnkAITunables_ovb0001.h"
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU2702.h"
@@ -19,25 +21,6 @@
 
 using base::math::CVector3D;
 using base::reflection::UnkReflObject;
-
-// The AI tuning constants (g_unk_71726c4890), as far as these units read them. Each pair of values is
-// read as two differently nested fields, so the choice between them stays a choice of address.
-struct UnkAITunablesValue_ovb0001 {
-    f32 value;
-};
-
-struct UnkAITunables_ovb0001 {
-    u8 pad_0x0[0x30];
-    UnkAITunablesValue_ovb0001 field_0x30;
-    f32 field_0x34;
-    u8 pad_0x38[0x8];
-    UnkAITunablesValue_ovb0001 field_0x40;
-    f32 field_0x44;
-    u8 pad_0x48[0x10];
-    f32 field_0x58;
-    u8 pad_0x5c[0x4];
-    UnkAITunablesValue_ovb0001 field_0x60;
-};
 
 struct UnkPoisonFlyCharClass_ovb0001 {
     u8 pad_0x0[0x608];

@@ -5,6 +5,7 @@
 #include "base/global/CRntString.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkProfileSaveArg.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
@@ -183,11 +184,6 @@ s32 fn_7101090f00(lua_State* L) {
         fn_7100108ae8(g_unk_7101d4d820, 5, 0.25f, delay, true);
     return 0;
 }
-
-struct UnkProfileSaveArg {
-    void* field_0x0;
-    void* field_0x8;
-};
 
 s32 fn_71010791a0(lua_State* L) {
     u8 flag;

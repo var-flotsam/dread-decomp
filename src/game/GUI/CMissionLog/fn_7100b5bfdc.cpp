@@ -3,6 +3,7 @@
 // reserves its capacity and appends each element.
 #include "base/global/CRntVector.h"
 #include "game/GUI/UnkMissionLogRecords.h"
+#include "game/UnkElem78.h"
 #include "types.h"
 #include "game/UnkTU2640.h"
 
@@ -23,13 +24,6 @@ static inline void CopyConstruct(UnkElemArray<Elem>* self, const UnkElemArray<El
 void fn_7100b5bfdc(UnkElem38Array* self, const UnkElem38Array& other) {
     CopyConstruct<UnkElem38, fn_7100b5c28c, fn_7100b593d0>(self, other);
 }
-
-// The same for 0x78-byte elements in another unit, through its own reserve and push-back.
-struct UnkElem78 {
-    u8 unk_0x0[0x78];
-};
-
-void fn_7101001694(UnkElemArray<UnkElem78>* self, const UnkElem78* value);
 
 void fn_71010012d4(UnkElemArray<UnkElem78>* self, const UnkElemArray<UnkElem78>& other) {
     CopyConstruct<UnkElem78, fn_710100147c, fn_7101001694>(self, other);

@@ -11,6 +11,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CDoorEmmyFXComponent.h"
+#include "game/UnkDoorList_b0193.h"
 #include "game/UnkTypedValue.h"
 #include "game/behaviortree/CBehavior.h"
 #include "game/behaviortree/CEmmyChaseAction.h"
@@ -25,11 +26,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkComponent;
 struct UnkDoorEmmyFX_b50;
-
-struct UnkDoorList_b0193 {
-    base::reflection::UnkReflObject** items;
-    u32 count;
-};
 
 void fn_71007b6be4(UnkDoorEmmyFX_b50* self, bool add);
 

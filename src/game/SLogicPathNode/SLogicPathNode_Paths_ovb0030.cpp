@@ -18,6 +18,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/SLogicPathNode.h"
+#include "game/UnkPathLink.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU2563.h"
 #include "game_s2/UnkItem50.h"
@@ -495,21 +496,6 @@ __attribute__((flatten)) base::UnkIterValue<UnkPathItemD>* fn_710105e890(base::U
 }
 
 // ---- An array of 8-byte links ----
-
-struct UnkPathLink {
-    u32 field_0x0;
-    u32 field_0x4;
-
-    // Zeroed and copied word by word, untyped: the original reloads the array after each store.
-    UnkPathLink() {
-        __builtin_memset(&field_0x0, 0, sizeof(u32));
-        __builtin_memset(&field_0x4, 0, sizeof(u32));
-    }
-    UnkPathLink(UnkPathLink&& other) {
-        field_0x0 = other.field_0x0;
-        field_0x4 = other.field_0x4;
-    }
-};
 
 __attribute__((flatten)) UnkPathLink* fn_7101060dcc(base::global::CRntVector<UnkPathLink>* self, u32 index) {
     return &self->GrowAt(index);

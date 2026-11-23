@@ -10,17 +10,13 @@
 #include "game/CScenario.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkNavMeshNamedDef_b49.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
-
-struct UnkNavMeshNamedDef_b49 : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedName name;
-};
 
 static inline UnkSubId_7100fc4b34 SubId(UnkNavMeshNamedDef_b49& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])

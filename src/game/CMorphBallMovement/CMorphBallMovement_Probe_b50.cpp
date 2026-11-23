@@ -6,14 +6,10 @@
 #include "game/CCharacterMovement.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkProbeResult.h"
 #include "types.h"
 
 using base::math::CVector3D;
-
-struct UnkProbeResult {
-    u64 field_0x0;
-    u32 field_0x8;
-};
 
 // `arg` (x1) reaches fn_7100978f58 untouched in the original (tools/forwarded_args.py).
 void fn_710094014c(char* self, const void* arg) {

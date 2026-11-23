@@ -18,6 +18,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkBucketSet.h"
 #include "game/UnkTU27.h"
+#include "game/UnkTU88.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -136,7 +137,6 @@ struct UnkResRegistry {
 };
 static_assert(sizeof(UnkResRegistry) == 0x1b8, "");
 
-extern char g_unk_7101a1b888[];  // the registry's vtable
 void fn_71000e9d60(void* self, u32 a, u32 flags);
 void fn_7100016b80(void* self);
 void fn_71000e9f00(void* list, u32 n, u32, u32 flags, UnkAllocator* allocator);

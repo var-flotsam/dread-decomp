@@ -20,6 +20,7 @@
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkItemLifeLists.h"
 #include "game/UnkTU253.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU883.h"
@@ -39,16 +40,6 @@ struct UnkActor;
 struct UnkWeakTarget;
 struct UnkItemLifeOwner_l8e1ea4;
 struct UnkItemLife_l8e1ea4;
-
-// Three vectors and a flag; element types are unknown.
-struct UnkItemLifeLists {
-    base::global::CRntVector<void*> lists[3];
-    bool field_0x78;
-
-    UnkItemLifeLists() : lists{base::global::CRntVector<void*>(0xf), base::global::CRntVector<void*>(0xf), base::global::CRntVector<void*>(0xf)} {
-        field_0x78 = false;
-    }
-};
 
 struct UnkClone_fn_710082d0ac;
 using UnkItemLifeListeners = base::UnkDeferredSet<base::UnkDeferredCallback<u64>>;

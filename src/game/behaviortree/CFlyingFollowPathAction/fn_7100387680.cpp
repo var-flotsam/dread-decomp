@@ -3,12 +3,9 @@
 // value at +0xac of the second pointer and the 12 bytes at +0x40 of the owner's record at +0x1f0 into the
 // object at +0x14678. Then hands a default parameter block to fn_71006f4b0c. Always returns state 7.
 #include "game/UnkAIComponent.h"
+#include "game/UnkCopy.h"
+#include "game/UnkKind.h"
 #include "game_s2/UnkParams.h"
-
-struct UnkKind {
-    u8 pad_0x0[0x10];
-    s32 field_0x10;
-};
 
 struct UnkEntry {
     u8 pad_0x0[0x10];
@@ -42,12 +39,6 @@ struct UnkOwner {
 struct UnkComponent {
     u8 pad_0x0[0x18];
     UnkOwner* field_0x18;
-};
-
-struct __attribute__((packed)) UnkCopy {
-    u32 field_0x0;
-    u64 field_0x4;
-    u32 field_0xc;
 };
 
 u32 fn_7100387680(UnkComponent* self) {

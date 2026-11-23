@@ -7,8 +7,11 @@
 #include "base/global/CStrId.h"
 #include "base/UnkCloneHelpers.h"
 #include "game/CAutclastChargeAttack.h"
+#include "game/UnkFxObjectVtable_ovb0041.h"
+#include "game/UnkFxObject_ovb0041.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkScaledRecord.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
 #include "game/UnkTU2553.h"
@@ -19,37 +22,6 @@
 
 // As src/game/CProjectileMovement/CProjectileMovement_Spawn_ovb0046.cpp declares it.
 struct UnkFxObject_ovb0041;
-struct UnkFxObjectVtable_ovb0041 {
-    void* unk_0x0[2];
-    void (*set_position)(UnkFxObject_ovb0041* self, const UnkVec3f* v);  // 0x10
-    void (*set_rotation)(UnkFxObject_ovb0041* self, const UnkVec3f* v);  // 0x18
-    void (*set_scale)(UnkFxObject_ovb0041* self, const UnkVec3f* v);     // 0x20
-    void* unk_0x28[13];
-    void (*set_loop)(UnkFxObject_ovb0041* self, bool loop);               // 0x90
-    void (*set_speed)(UnkFxObject_ovb0041* self, f32 speed);              // 0x98
-};
-struct UnkFxObject_ovb0041 {
-    UnkFxObjectVtable_ovb0041* vtable;
-};
-
-// As src/game/UnkTU308/fn_710021688c.cpp defines it.
-struct UnkScaledRecord {
-    void* vtable;
-    f32 scale;
-    u32 field_0xc;
-    u32 field_0x10;
-    u32 field_0x14;
-    u32 vec[3];
-    f32 field_0x24;
-    f32 field_0x28;
-    f32 field_0x2c;
-    f32 field_0x30;
-    u32 pad_0x34;
-    s64 scaled;
-    s32 fixed[3];
-    u8 isZero;
-    u8 field_0x4d;
-};
 
 void fn_710021688c(f32 scale, UnkScaledRecord* self, const u32* vec);
 void fn_7100209394(UnkXformNode* self, const UnkScaledRecord* record);

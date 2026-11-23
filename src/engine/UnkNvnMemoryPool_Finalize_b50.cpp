@@ -2,30 +2,15 @@
 // memory pool down - finalises the NVN pool, counts it out and returns its storage to the allocator.
 // Names and layouts are placeholders.
 #include "base/UnkDefaultAllocator.h"
+#include "engine/UnkNvnMemoryPool.h"
+#include "engine/UnkPoolCount.h"
+#include "engine/UnkPtrHolder.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU176.h"
 #include "types.h"
 
-struct UnkPtrHolder {
-    void** vtable;
-    void* ptr;
-};
-
-struct UnkPoolCount {
-    u32 count;
-    u32 peak;
-};
-
 // NVN entry point the graphics start-up loads (inferred: the memory pool's finaliser).
 
-struct UnkNvnMemoryPool {
-    u64 field_0x0;
-    u8 pool[0x100];  // the NVN memory pool
-    void* memory;
-    u64 size;
-    s32 flags;
-    bool initialised;
-};
 static_assert(sizeof(UnkNvnMemoryPool) == 0x120, "UnkNvnMemoryPool placeholder layout");
 
 // The NVN entry points are called through inline wrappers (as UnkNvnMemoryPool.cpp's), so the

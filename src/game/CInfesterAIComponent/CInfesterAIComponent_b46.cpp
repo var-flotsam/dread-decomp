@@ -3,15 +3,12 @@
 // action by key; when found, fills an identity matrix for it and keeps its translation at +0x146e4.
 // The flag at g_unk_71726ec411 marks it done. Names are placeholders.
 #include "game/CAnimationComponent.h"
+#include "game/UnkMtx44_b46a2.h"
 #include "types.h"
 
 struct UnkAnimActionSetsOwner;
 struct UnkActorTarget;
 struct UnkStruct_7101176ea8;
-
-struct UnkMtx44_b46a2 {
-    f32 m[16];
-};
 
 struct UnkInfesterOwner_b46a2 {
     u8 pad_0x0[0x220];

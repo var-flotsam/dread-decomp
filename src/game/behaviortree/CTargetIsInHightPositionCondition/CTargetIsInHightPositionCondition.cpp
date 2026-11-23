@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkActorPosition.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
 
@@ -12,12 +13,6 @@ struct UnkShakernautAI_tih {
     const base::reflection::CClass* vf_0x0() {
         return reinterpret_cast<const base::reflection::CClass* (*)(UnkShakernautAI_tih*)>(vtable[0])(this);
     }
-};
-
-// A position returned in memory (x8): 16 bytes, not trivially copyable.
-struct UnkActorPosition {
-    f32 x, y, z, w;
-    UnkActorPosition(const UnkActorPosition& other);
 };
 
 struct UnkHighCondition_tih {

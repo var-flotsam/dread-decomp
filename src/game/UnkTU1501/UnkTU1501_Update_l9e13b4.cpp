@@ -5,6 +5,7 @@
 #include "game/CActorComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSlomoFlags.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
@@ -14,13 +15,6 @@
 struct UnkMorphBallMovement_01d8;
 struct UnkGroundPlayer_b52;
 struct UnkContact_ovb0048;
-
-// The bytes of the game manager's slow motion state (+0xc4).
-struct UnkSlomoFlags {
-    bool enabled;  // 0xc4
-    u8 unk_0xc5;
-    bool paused;  // 0xc6
-};
 
 // What the ignore-jump track's record holds: whether the track says to keep ignoring the jump.
 struct UnkIgnoreJumpRecord_l9e13b4 {

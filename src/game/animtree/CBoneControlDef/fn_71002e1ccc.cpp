@@ -1,13 +1,10 @@
 // Copy-assignment of two ids and a 16-byte value after a field that is not copied (as in
 // fn_7100c8f87c, src/game/logic/collision/CCollider/fn_7100d3d424.cpp).
 #include "base/global/CStrId.h"
+#include "game/UnkValue_0x10.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkValue_0x10 {
-    u64 words[2];
-};
 
 struct UnkIdPairCopy_71002e1ccc {
     void* field_0x0;

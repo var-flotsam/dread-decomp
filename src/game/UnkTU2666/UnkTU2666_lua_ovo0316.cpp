@@ -10,6 +10,7 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CAudioComponent.h"
 #include "game/CCharClassStartPointComponent.h"
+#include "game/UnkGameManagerDef.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU1176.h"
@@ -191,10 +192,6 @@ s32 fn_710107de40(lua_State* L) {
 
 void fn_7100dffe04(UnkGameManager* self, s32 value);
 
-struct UnkGameManagerDef : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedId qid;
-};
 static inline const UnkQualifiedId& Qid(UnkGameManagerDef& def) {
     if (def.qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&def.qid, &def, base::global::CStrId::Empty());

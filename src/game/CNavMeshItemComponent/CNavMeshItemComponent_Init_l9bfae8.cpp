@@ -10,6 +10,9 @@
 #include "game/CScenario.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkNavMeshNamedDef_b49.h"
+#include "game/UnkSourceDesc.h"
+#include "game/UnkSourceList.h"
 #include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 
@@ -17,26 +20,11 @@ using base::global::CStrId;
 
 extern u64 g_unk_717273ee08 __attribute__((visibility("hidden")));
 
-struct UnkNavMeshNamedDef_b49 : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedName name;
-};
-
 static inline UnkSubId_7100fc4b34 SubId(UnkNavMeshNamedDef_b49& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])
         fn_7100ae9d7c(&def.name, &def, base::global::CStrId::Empty());
     return fn_71003327a4(&def.name, &name);
 }
-
-struct UnkSourceDesc {
-    u8 pad_0x0[0x30];
-    u64 id;
-};
-
-struct UnkSourceList {
-    u8 pad_0x0[0x8];
-    u32 count;
-};
 
 // A listed source: its descriptor holds the id it is selected by.
 struct UnkNavMeshSource_l9bfae8 {

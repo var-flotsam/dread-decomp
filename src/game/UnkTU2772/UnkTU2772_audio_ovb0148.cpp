@@ -1,6 +1,7 @@
 // nn::atk-ish unit 2772: sound-system helpers: the audio renderer's sink setup and update, the voice
 // pool's channel lists and a few small accessors on parameter blocks. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkAtkEntryIndex_b0148.h"
 #include "game/UnkTU2772.h"
 #include "game/UnkTU99.h"
 #include "types.h"
@@ -346,10 +347,6 @@ void fn_7101212e14(UnkAtkBytes_b0148* dst, UnkAtkBytes_b0148* src) {
 
 // ---- 71012126dc ----
 struct UnkAtkArchive_b0148;
-struct UnkAtkEntryIndex_b0148 {
-    u32 index;  // 0x0
-    u8 pad_0x4[0x1c];
-};
 struct UnkAtkEntryInfo_b0148 {
     u32 id;  // 0x0
     u32 field_0x4;

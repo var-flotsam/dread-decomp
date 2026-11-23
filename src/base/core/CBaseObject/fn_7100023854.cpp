@@ -2,6 +2,7 @@
 // object's class's 0xb0-byte entries in its array at +0xe8, with the class and the object as the
 // context. The callers (constructors that finish with it) name the object UnkNode. Names are
 // placeholders.
+#include "base/UnkClassEntry.h"
 #include "base/core/CBaseObject.h"
 #include "base/reflection/CClass.h"
 #include "game/UnkTU85.h"
@@ -20,10 +21,6 @@ struct UnkBaseObjectView {
 struct UnkClassEntryContext {
     const CClass* cls;
     UnkNode* object;
-};
-
-struct UnkClassEntry {
-    u8 data[0xb0];
 };
 
 void fn_7100023854(UnkNode* node) {

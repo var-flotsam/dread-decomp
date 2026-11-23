@@ -15,6 +15,7 @@
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkIdProperty.h"
 #include "game/UnkGameBlackboard.h"
+#include "game/UnkNavMeshNamedDef_b49.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTUSymbols.h"
@@ -37,10 +38,6 @@ extern base::global::CStrId g_unk_717273e250;
 // The two properties as the unit's readers see them (a named definition); here they are built as
 // UnkPropertyEx<0x160>.
 struct UnkMapNamedDef_ovb0203 : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedName name;
-};
-struct UnkNavMeshNamedDef_b49 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
 };

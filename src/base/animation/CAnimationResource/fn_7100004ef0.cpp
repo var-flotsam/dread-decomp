@@ -1,15 +1,10 @@
 // base::animation::CAnimationResource's unit (tools/tu_map.py unit 11): finds the track with the given
 // id among the resource's tracks (+0x60) and, when there is one, applies it to the matrix at the time
 // scaled by the track list's rate (fn_7100012b60). Names and layouts are placeholders.
+#include "base/UnkAnimTrack_b67a1.h"
 #include "base/UnkMatrix44.h"
 #include "game/UnkTU20.h"
 #include "types.h"
-
-// As src/base/animation/CSkeletalAnimation/CSkeletalAnimation_ApplyTracks_b67a1.cpp defines it.
-struct UnkAnimTrack_b67a1 {
-    u64 id;
-    u8 pad_0x8[0x28];
-};
 
 struct UnkAnimTracks_l004ef0 {
     u8 pad_0x0[0xc];

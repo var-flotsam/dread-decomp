@@ -5,16 +5,12 @@
 #include "base/global/CRntVector.h"
 #include "game/CShotManager/CTunableShotManager.h"
 #include "game/CShotManager/UnkShotEffect_b0011.h"
+#include "game/UnkObj290_b43a3.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CRntVector;
 
-// The shots (as src/game/CShotManager/CTunableShotManager/CTunableShotManager_Shots_ovb0011.cpp defines them).
-struct UnkObj290_b43a3 {
-    virtual void vf_0x0();  // destroys
-    u8 pad_0x8[0x288];
-};
 static_assert(sizeof(UnkObj290_b43a3) == 0x290, "UnkObj290_b43a3 layout");
 
 struct UnkShotWeakTarget_b0011;

@@ -3,19 +3,10 @@
 // and restarts the effects (fn_710050f26c) with the timings at +0x6d0 and +0x6cc, the colours (0, 0.8, 0)
 // and (0, 1, 0) at that level's alpha, and an offset of 0.2. Names and layouts are placeholders.
 #include "game/CEmmyGrabSamusAttack.h"
+#include "game/UnkColorIn_710050f26c.h"
+#include "game/UnkRGB_710050f26c.h"
 #include "types.h"
 
-// The colour types of fn_710050f26c (src/game/CEmmyGrabSamusAttack/fn_710050f26c.cpp), named the same so
-// the call resolves to that definition.
-struct UnkRGB_710050f26c {
-    f32 r;
-    f32 g;
-    f32 b;
-};
-struct UnkColorIn_710050f26c {
-    UnkRGB_710050f26c rgb;
-    f32 a;
-};
 struct UnkColor_710050f26c {
     f32 r;
     f32 g;

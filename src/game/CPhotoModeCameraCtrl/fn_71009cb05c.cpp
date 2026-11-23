@@ -12,6 +12,7 @@
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerDef.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU2553.h"
@@ -20,11 +21,6 @@
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkGameManagerDef : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedId qid;
-};
 
 static inline const UnkQualifiedId& Qid(UnkGameManagerDef& def) {
     if (def.qid.id.data == &g_unk_7101d47108->empty)

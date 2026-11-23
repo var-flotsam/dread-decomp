@@ -4,17 +4,13 @@
 #include "base/UnkCountedResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkModelValue_b0119.h"
 #include "types.h"
 
 #include <new>
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-// As its caller declares it (CMultiModelUpdaterComponent_Models_ovb0119.cpp).
-struct UnkModelValue_b0119 {
-    u8 data[0x20];
-};
 
 // A counted reference to the loaded resource (as UnkResRef, base/UnkResKey.h).
 struct UnkModelResRef_l938ba0 {

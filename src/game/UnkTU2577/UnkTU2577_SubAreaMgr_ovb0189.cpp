@@ -14,6 +14,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CChangeStageNavMeshItemComponent.h"
+#include "game/UnkCameraEvent_b0058.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
@@ -320,11 +321,6 @@ struct UnkMaskMgr_b189 {
     u32 count;
     u8 pad_0x86c[0x16c];
     u32 field_0x9d8;
-};
-
-struct UnkCameraEvent_b0058 {
-    s32 kind;
-    u32 unk_0x4;
 };
 
 void fn_7100eecf7c(void* manager, bool on, const UnkCameraEvent_b0058* event) {

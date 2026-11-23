@@ -19,8 +19,11 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/CGameObject.h"
 #include "game/UnkCallbackSetVector.h"
+#include "game/UnkLinkHandle_b54a1.h"
+#include "game/UnkRcObject.h"
 #include "game/UnkTU32.h"
 #include "game/UnkTU341.h"
+#include "game/UnkXformStaticZero32.h"
 #include "game/lua_lib.h"
 #include "game_s2/UnkWeakHandle.h"
 #include <new>
@@ -675,15 +678,6 @@ void fn_71002486a8(UnkNodeMap_710025ad0c* map, UnkNode_710025ad0c* node) {
 }
 
 
-struct UnkRcObject {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    union {
-        u32 field_0x8;
-    };
-};
-
 struct UnkRcRef {
     UnkRcObject* ptr;
 
@@ -845,12 +839,6 @@ void fn_7100231e80(UnkEntityDtor* self) {
     fn_7101043934(reinterpret_cast<UnkCameraCtrl_ovb0049*>(self));
 }
 
-
-// A zero whose constructor isn't constexpr, so the static is guarded.
-struct UnkXformStaticZero32 {
-    u32 value;
-    UnkXformStaticZero32() : value(0) {}
-};
 
 inline const UnkXformStaticZero32& UnkXformStaticZero() {
     static UnkXformStaticZero32 s_value asm("g_unk_7101d4ec40");
@@ -1258,11 +1246,6 @@ void fn_7100240594(UnkPoolList_7100240594* self, const UnkPoolList_7100240594* o
         list->PushBack(n->value);
 }
 
-
-struct UnkLinkHandle_b54a1 {
-    u8 pad_0x0[0x10];
-    void* target;
-};
 
 // A link, as src/game/CActor/UnkLinkVectorEqual_b54.cpp has it.
 struct UnkLink_7100245c4c {

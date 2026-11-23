@@ -7,28 +7,14 @@
 
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkPoolBox.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU270.h"
+#include "game/UnkTU307.h"
 #include "game/UnkTU308.h"
 #include "types.h"
 
-// A box with virtual accessors (0x20 bytes): its minimum and maximum corners.
-struct UnkPoolBox {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void SetMin(const UnkVec3f* v);  // vf_0x28
-    virtual void SetMax(const UnkVec3f* v);  // vf_0x30
-    virtual UnkVec3f GetMin();               // vf_0x38
-    virtual UnkVec3f GetMax();               // vf_0x40
-    UnkVec3f min;
-    UnkVec3f max;
-};
-
-// The box's base constructor, and the vtable of the box class the pool uses (GOT 0x7101cc7410).
-void fn_7100215dcc(UnkPoolBox* self, const UnkVec3f* min, const UnkVec3f* max);
+// The vtable of the box class the pool uses (GOT 0x7101cc7410).
 extern const char g_unk_7101a20090[];
 // The pool's vtable (GOT 0x7101cc75c0).
 
