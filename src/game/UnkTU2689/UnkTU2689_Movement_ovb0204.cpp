@@ -253,7 +253,6 @@ void fn_71010d80e8(UnkPlayerMovementD_b0204* self, u32 kind);
 void fn_71010d9f88(UnkPlayerMovementD_b0204* self);
 void fn_71010d7d0c(UnkPlayerMovementD_b0204* self, u32 kind);
 void fn_71010da220(UnkPlayerMovementD_b0204* self, f32 a, f32 b, f32 c);
-extern base::reflection::UnkTunable g_unk_7172a03d80;
 
 struct UnkRequest_b0204 {
     u8 pad_0x0[0xb8];

@@ -4,6 +4,7 @@
 // (fn_71003d3cf8). Names are placeholders.
 #include "base/reflection/UnkReflStatics.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAutsniperShootAttack.h"
 #include "types.h"
 
 struct UnkAutsniperSendEntity_b58 {
@@ -25,7 +26,6 @@ struct UnkAutsniperSend_b58 {
     f32 timer;
 };
 
-void fn_71003d3cf8(UnkAutsniperSend_b58* self);
 
 void fn_71003d6a84(UnkAutsniperSend_b58* self, f32 dt) {
     f32 timer = self->timer + dt;

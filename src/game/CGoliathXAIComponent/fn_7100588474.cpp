@@ -3,7 +3,7 @@
 // 6 and 11 and sends it "relax"; then updates the bombs attack at +0x14b60. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_s2/UnkSpitSend.h"
 #include "game/CAnimationComponent.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkMotionRule.h"
@@ -25,6 +25,12 @@ struct UnkStruct_71007142e8 {
 };
 
 struct UnkMotionTracks;
+
+// The motion parts to sample, as UnkFlags_71007142e8 (game/UnkMotionRule.h) holds them but left unset until
+// assigned: that type's default constructor zeroes, which the original does not do here.
+struct UnkMotionParts_l588474 {
+    u32 bits;
+};
 struct UnkTimeline {
     u8 pad_0x0[0x24];
     s32 frame_count;
@@ -57,13 +63,13 @@ void fn_7100588474(UnkGoliathXAI_l588474* self) {
     if (UnkStruct_7101176ea8* animations = static_cast<UnkStruct_7101176ea8*>(self->owner->field_0x220)) {
         UnkTimeline* timeline =
             static_cast<UnkTimeline*>(fn_7101176d34(animations, reinterpret_cast<void*>(0xbe901ff6f5cba1f7ull)));
-        u32 parts;  // the motion parts to sample: all of them
+        UnkMotionParts_l588474 parts;  // all of them, set below
         UnkStruct_71007142e8 motion;
         if (timeline) {
             fn_71007142e8(&motion);
             UnkMotionTracks* tracks = timeline->tracks;
-            parts = UnkFlagsAll_71007142e8().bits;
-            fn_7100b8b3bc(timeline, &motion, tracks, &parts, 0.0f, timeline->frame_count);
+            parts.bits = UnkFlagsAll_71007142e8().bits;
+            fn_7100b8b3bc(timeline, &motion, tracks, &parts.bits, 0.0f, timeline->frame_count);
             self->motion_height = motion.m[11];
         }
         if (reinterpret_cast<UnkGoliathModeFlags_l588474*>(g_unk_71726bc570)->calm) {

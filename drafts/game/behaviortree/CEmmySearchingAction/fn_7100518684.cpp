@@ -76,6 +76,14 @@ struct UnkEmmyAnimLink_l518684 {
     void (*callback)();
 };
 
+// The slot that holds a counted reference to an object's weak handle. fn_7100316018 takes the slot itself,
+// not the pointer inside it: with UnkWeakHandle** (include/game/CAbilityGhostAura.h today) the compiler shares
+// one address for the slot and folds it into a pre-indexed load. Belongs in include/game_s2/UnkWeakHandle.h.
+struct UnkWeakRef_l518684 {
+    UnkWeakHandle* handle;
+};
+void fn_7100316018(UnkWeakTarget* self, UnkWeakRef_l518684* out);
+
 struct UnkEmmySearchingAction_l518684 {
     u8 pad_0x0[0x18];
     UnkEmmyActor_l518684* actor;  // 0x18
@@ -83,15 +91,15 @@ struct UnkEmmySearchingAction_l518684 {
     u64 animation;  // 0x30
     u8 pad_0x38[0x8];
     UnkEmmyAnimLink_l518684 link;  // 0x40
-    UnkWeakHandle* handle;         // 0x58
+    UnkWeakRef_l518684 ref;        // 0x58
 };
 
 // Stops listening to the animation the handle points at, and drops the handle.
 inline void DetachAnimation_l518684(UnkEmmySearchingAction_l518684* self, UnkEmmyAnimLink_l518684* link) {
-    if (UnkWeakHandle* handle = self->handle) {
+    if (UnkWeakHandle* handle = self->ref.handle) {
         if (UnkWeakTarget* target = handle->target)
             fn_710117b3f0(target, link);
-        ResetRef(&self->handle);
+        ResetRef(&self->ref.handle);
     }
 }
 
@@ -143,8 +151,8 @@ void fn_7100518684(UnkEmmySearchingAction_l518684* self) {
         link->callback = fn_710051d568;
         DetachAnimation_l518684(self, link);
         if (animation) {
-            fn_7100316018(animation, &self->handle);
-            fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+            fn_7100316018(animation, &self->ref);
+            fn_710117b3e8(self->ref.handle ? self->ref.handle->target : nullptr, link);
         }
     } else {
         self->animation = ~0ull;

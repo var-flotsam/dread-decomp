@@ -3,7 +3,7 @@
 // counts the timer at +0x54 down by the time step and, when it runs out, sends the next track and moves to
 // stage 4; stage 5 is done (5), an unknown stage fails (6), and any other runs on (2) unless the animation
 // component no longer plays a CCharClassShelmitChargeTrack. Names and layouts are placeholders.
-#include "../../../../src/game_s2/UnkSpitSend.h"
+#include "../../../game_s2/UnkSpitSend.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -39,9 +39,9 @@ struct UnkShelmitChargeAction_l6b7508 {
 };
 
 u32 fn_71006b7508(UnkShelmitChargeAction_l6b7508* self, f32 dt) {
+    UnkShelmitChargeCharClass_l6b7508* charClass = nullptr;
     UnkAnimationComponent* animation = nullptr;
     UnkShelmitChargeAI_l6b7508* ai = nullptr;
-    UnkShelmitChargeCharClass_l6b7508* charClass = nullptr;
     bool isShelmit = false;
     if (UnkShelmitChargeOwner_l6b7508* owner = self->owner) {
         animation = owner->animation;
@@ -68,10 +68,10 @@ u32 fn_71006b7508(UnkShelmitChargeAction_l6b7508* self, f32 dt) {
         base::reflection::UnkReflTypeIdArg mode, mask;
         if (!animation)
             return 2;
-        u64 track;
-        track = 0x884c8e254ba39908;
         mode.id = 0;
+        u64 track;
         mask.id = UnkAll_SpitSend().value;
+        track = 0x884c8e254ba39908;
         if (fn_7101176690(animation, track, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                           &mask) ||
             fn_710117ae38(animation, track, false)) {

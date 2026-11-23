@@ -77,9 +77,9 @@ void fn_71004c7324(UnkLavaDropsAttack_l4c7324* self) {
         drop->pending = false;
         ++drops.released;
         UnkActor* owner = self->owner;
+        base::reflection::UnkReflTypeIdArg mode;
+        base::reflection::UnkReflTypeIdArg mask;
         if (void* anim = owner->field_0x220) {
-            base::reflection::UnkReflTypeIdArg mode;
-            base::reflection::UnkReflTypeIdArg mask;
             base::reflection::UnkReflTypeIdArg all;
             UnkTimelineComponent* timeline = static_cast<UnkTimelineComponent*>(owner->field_0x2e8);
             u64 hash;
