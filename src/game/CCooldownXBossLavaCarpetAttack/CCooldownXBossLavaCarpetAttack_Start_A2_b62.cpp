@@ -72,7 +72,7 @@ struct UnkCarpetStart_b62a2 {
     u8 pad_0x60[0x8];
     UnkCarpetStartDef_b62a2* field_0x68;
     UnkCarpetTrackLink_b62a2 link;  // 0x70
-    UnkWeakHandle* handle;          // 0x88
+    UnkWeakRef handle;          // 0x88
     u8 pad_0x90[0x1c0 - 0x90];
     s32 field_0x1c0;
     u32 field_0x1c4;
@@ -93,19 +93,19 @@ void fn_71004c3664(UnkCarpetStart_b62a2* self) {
     link->context = self;
     link->callback = fn_71004c5db0;
     UnkWeakTarget* track = self->owner->field_0x220;
-    if (UnkWeakHandle* handle = self->handle) {
+    if (UnkWeakHandle* handle = self->handle.handle) {
         if (UnkWeakTarget* target = handle->target)
             fn_710117b3f0(target, link);
-        if (UnkWeakHandle* p = self->handle) {
+        if (UnkWeakHandle* p = self->handle.handle) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
-            self->handle = nullptr;
+            self->handle.handle = nullptr;
         }
     }
     if (track) {
         asm("" : "+r"(self));
         fn_7100316018(track, &self->handle);
-        fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+        fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
     self->field_0x58 = 0;
     UnkCarpetStartAI_b62a2* ai = self->owner->field_0x240;

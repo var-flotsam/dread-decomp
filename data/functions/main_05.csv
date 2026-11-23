@@ -432,8 +432,8 @@ address,size,name,name_source,subsystem,status
 0x7100517604,3728,fn_7100517604,unknown,ai/behaviortree?,U
 0x7100518494,232,fn_7100518494,unknown,ai/behaviortree?,O
 0x710051857c,264,fn_710051857c,unknown,ai/behaviortree?,O
-0x7100518684,1080,fn_7100518684,unknown,ai/behaviortree?,U
-0x7100518abc,1080,fn_7100518abc,unknown,ai/behaviortree?,U
+0x7100518684,1080,fn_7100518684,unknown,ai/behaviortree?,O
+0x7100518abc,1080,fn_7100518abc,unknown,ai/behaviortree?,O
 0x7100518ef4,340,fn_7100518ef4,unknown,ai/behaviortree?,O
 0x7100519048,464,fn_7100519048,unknown,ai/behaviortree?,O
 0x7100519218,392,fn_7100519218,unknown,ai/behaviortree?,O

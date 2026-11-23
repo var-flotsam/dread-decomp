@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/UnkCountedDeferredSet.h"
+#include "game/UnkTimelineId.h"
 #include "types.h"
 
 struct UnkStruct_71007142e8;
@@ -71,3 +72,6 @@ bool fn_7101176e78(UnkStruct_7101176ea8* self, void* key, void** out);
 void fn_710117eb1c(base::UnkCountedDeferredSet<void>* self, void* value);
 void fn_710117ecb0(base::UnkCountedDeferredWalk<void>* walk);
 void fn_7101179d08(UnkAnimationComponent* self, UnkStruct_71007142e8* motion, const void* key);
+
+struct UnkAnimationComponent;
+UnkTimelineId fn_7101177be0(UnkAnimationComponent* self, u64 key);

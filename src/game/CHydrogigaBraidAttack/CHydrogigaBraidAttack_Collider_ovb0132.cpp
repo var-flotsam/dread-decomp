@@ -44,7 +44,7 @@ struct UnkBraidStart_ovb0132 {
     bool field_0x68;
     u8 pad_0x69[0x7];
     UnkBraidLink_ovb0132 link;  // +0x70
-    UnkWeakHandle* handle;      // +0x88
+    UnkWeakRef handle;      // +0x88
 };
 
 // The attack's start: after the base start, hooks fn_71005b4608 up to the object the owner tracks
@@ -57,18 +57,18 @@ void fn_71005b39d8(UnkBraidStart_ovb0132* self) {
         UnkBraidLink_ovb0132* link = &self->link;
         link->context = self;
         link->callback = fn_71005b4608;
-        if (UnkWeakHandle* handle = self->handle) {
+        if (UnkWeakHandle* handle = self->handle.handle) {
             if (UnkWeakTarget* target = handle->target)
                 fn_710117b3f0(target, link);
-            if (UnkWeakHandle* p = self->handle) {
+            if (UnkWeakHandle* p = self->handle.handle) {
                 if (--p->ref_count == 0)
                     p->vf_0x10();
-                self->handle = nullptr;
+                self->handle.handle = nullptr;
             }
         }
         asm("" : "+r"(self));  // as src/game/CChozoCommanderHypersparkAttack/CHypersparkAttack_Start_A2_b73.cpp
         fn_7100316018(track, &self->handle);
-        fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+        fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
         owner = self->owner;
     }
     UnkCollisionContainer* collision = reinterpret_cast<UnkBraidOwnerView2_ovb0132*>(owner)->collision;

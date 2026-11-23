@@ -59,7 +59,7 @@ struct UnkCoreXState_A2_b73 {
     CVector3D field_0x10;
     u8 pad_0x1c[0x14];
     UnkCoreXLink_A2_b73 link;  // 0x30
-    UnkWeakHandle* handle;     // 0x48
+    UnkWeakRef handle;     // 0x48
 };
 
 struct UnkCoreXAI_A2_b73 {
@@ -110,18 +110,18 @@ void fn_71004d99d4(UnkCoreXAI_A2_b73* self) {
     UnkCoreXLink_A2_b73* link = &state->link;
     link->context = self;
     link->callback = fn_71004db7f8;
-    if (UnkWeakHandle* handle = state->handle) {
+    if (UnkWeakHandle* handle = state->handle.handle) {
         if (UnkWeakTarget* t = handle->target)
             fn_710117b3f0(t, link);
-        if (UnkWeakHandle* p = state->handle) {
+        if (UnkWeakHandle* p = state->handle.handle) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
-            state->handle = nullptr;
+            state->handle.handle = nullptr;
         }
     }
     asm("" : "+r"(state));
     fn_7100316018(track, &state->handle);
-    fn_710117b3e8(state->handle ? state->handle->target : nullptr, link);
+    fn_710117b3e8(state->handle.handle ? state->handle.handle->target : nullptr, link);
     if (flags->field_0x11c)
         flags->field_0x114 = true;
 }
