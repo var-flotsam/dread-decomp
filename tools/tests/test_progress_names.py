@@ -78,6 +78,22 @@ class Definitions(unittest.TestCase):
         clean = progress.code_only("#define F(x) void x() {}\nF(Go)\n")
         self.assertEqual(progress.names_of(clean, "Go"), (True, True, True))
 
+    def test_first_reason_loose_fails(self):
+        code = progress.code_only(SOURCE + "void UnkHolder::Run() {}\nvoid Go(UnkArg* a) {}\n"
+                                  "void Load(CThing* t) { g_unk_7101d47108 = t; }\n"
+                                  "void Make() { UnkLocal x; }\nvoid Both(CThing* t) { t->field_0x8 = g_unk_7101d47108; }\n")
+        reason = lambda n: progress.loose_reason(code, n)  # noqa: E731
+        self.assertEqual(reason("fn_7100000003"), "own_name")
+        self.assertEqual(reason("base::CClass::CClass<UnkRefl_fn_7100e7e428>"), "own_name")   # template arguments
+        self.assertEqual(reason("UnkHolder::Run"), "own_class")
+        self.assertEqual(reason("UnkHolder::~UnkHolder"), "own_class")   # named for its class
+        self.assertEqual(reason("Go"), "signature_type")
+        self.assertEqual(reason("CThing::Poke"), "member")
+        self.assertEqual(reason("Both"), "member")                       # the first reason in the order
+        self.assertEqual(reason("Load"), "global")
+        self.assertEqual(reason("Make"), "body_type")
+        self.assertIsNone(reason("CThing::Update"))                      # a placeholder callee is allowed
+
     def test_short_name(self):
         self.assertEqual(progress.short_name("bool base::C<int, ns::T>::Find(int) const"), "Find")
         self.assertEqual(progress.short_name("fn_7100000003"), "fn_7100000003")
