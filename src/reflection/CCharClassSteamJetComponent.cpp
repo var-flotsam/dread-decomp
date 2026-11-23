@@ -9,7 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -118,7 +118,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_vReactionDirection_SetterFunction")
         fn_710089da64(fn, "_m_vReactionDirection_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "vReactionDirection", (DefaultValue, base::math::CVector2D{1.0f, 0.0f}));
-    UnkReflField* field11 = AddReflectedField(cls, CStrId("wpNextSteamJet", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xc10, -1, -1);
+    CVariable* field11 = AddReflectedField(cls, CStrId("wpNextSteamJet", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xc10, -1, -1);
     field11->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 10);
 }
 bool refl_Equals(const void*, const void*) { return false; }

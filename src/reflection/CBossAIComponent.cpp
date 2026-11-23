@@ -9,7 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -39,24 +39,24 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sArenaLeftLandmark", 0x146f0, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(CStrId, "sArenaRightLandmark", 0x146f8, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(f32, "fArenaLimitDist", 0x14700, (DefaultValue, 0.0f));
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("tDoors", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object, 0x146c8, -1, -1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("tDoors", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object, 0x146c8, -1, -1);
     field3->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Door to lock on emmy spawn"));
     field3->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("wpBossCamera", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14728, -1, -1);
+    CVariable* field4 = AddReflectedField(cls, CStrId("wpBossCamera", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14728, -1, -1);
     field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("wpBossCameraFloorLandmark", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14768, -1, -1);
+    CVariable* field5 = AddReflectedField(cls, CStrId("wpBossCameraFloorLandmark", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14768, -1, -1);
     field5->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
-    UnkReflField* field6 = AddReflectedField(cls, CStrId("wpBossCameraCeilingLandmark", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x147a8, -1, -1);
+    CVariable* field6 = AddReflectedField(cls, CStrId("wpBossCameraCeilingLandmark", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x147a8, -1, -1);
     field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
     DREAD_REFLECTED_FUNCTION("SetBossCamera") {
         DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetBossCamera", &base::reflection::TypeObject<void>::object, 0, fn_71003b0e60);
         fn_7100302d14(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Sets the Boss Camera");
     }
-    UnkReflField* field7 = AddReflectedField(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14910, -1, -1);
+    CVariable* field7 = AddReflectedField(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14910, -1, -1);
     field7->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD(CStrId, "sStartCombatCheckpointSnapshotId", 0x14950, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field9 = AddReflectedField(cls, CStrId("wpDeadCheckpointStartPoint", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14958, -1, -1);
+    CVariable* field9 = AddReflectedField(cls, CStrId("wpDeadCheckpointStartPoint", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14958, -1, -1);
     field9->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD(bool, "bSaveGameOnAfterDead", 0x14998, (DefaultValue, true));
 }

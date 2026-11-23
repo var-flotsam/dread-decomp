@@ -21,7 +21,7 @@ using base::reflection::UnkReflTypedPtr;
 using base::reflection::UnkReflValue;
 using base::reflection::UnkTypedRef;
 
-UnkReflTypedPtr fn_71000e7614(UnkReflField* self, const UnkReflTypedPtr* obj);
+UnkReflTypedPtr fn_71000e7614(CVariable* self, const UnkReflTypedPtr* obj);
 bool fn_71000e750c(UnkTunableFieldHandle* field);  // whether the field can be read
 
 // Two words assigned only from another object.
@@ -171,7 +171,7 @@ static inline UnkClassField_ad8238* FindField(UnkClassFields_ad8238* cls, u64 ke
 static inline UnkReflTypedPtr Target(UnkTunableFieldHandle* field, const UnkTypedRef* object) {
     UnkTypedRef self;
     fn_71000a174c(&self, object);
-    return fn_71000e7614(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflTypedPtr*>(&self));
+    return fn_71000e7614(reinterpret_cast<CVariable*>(field), reinterpret_cast<const UnkReflTypedPtr*>(&self));
 }
 
 UnkResolvedValue fn_7100ad8238(const UnkTypedRef* object, void* a, u32 b) {

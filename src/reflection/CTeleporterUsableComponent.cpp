@@ -10,7 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -35,7 +35,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sScenarioName", 0x548, (DefaultValue, CStrId("", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sTargetSpawnPoint", 0x550, (DefaultValue, CStrId("", true)));
     DREAD_REFLECTED_FIELD_OF("ETeleporterColorSphere", "eTeleporterColorSphere", 0x588, (DefaultValue, 0));
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("wpFrozenPlatform", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x590, -1, -1);
+    CVariable* field5 = AddReflectedField(cls, CStrId("wpFrozenPlatform", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x590, -1, -1);
     field5->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

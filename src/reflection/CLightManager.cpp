@@ -11,7 +11,7 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -34,7 +34,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("dicLightDefs", true), &base::reflection::TypeObject<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>>::object, 0x148, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("dicLightDefs", true), &base::reflection::TypeObject<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>>::object, 0x148, -1, -1);
     field0->attrs.Add<CStrId>(base::reflection::attr::ElementKeyVariable(), CStrId("sPath", true));
     field0->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateElement", true));
     field0->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteElement", true));

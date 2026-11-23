@@ -10,7 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -30,10 +30,10 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 namespace CQuetzoaAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpShortRangePath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14a30, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("wpShortRangePath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14a30, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD_OF("IPath::EType", "eShortRangePathType", 0x14a70, (DefaultValue, 3));
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpLongRangePath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14a78, -1, -1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("wpLongRangePath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14a78, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD_OF("IPath::EType", "eLongRangePathType", 0x14ab8, (DefaultValue, 3));
 }

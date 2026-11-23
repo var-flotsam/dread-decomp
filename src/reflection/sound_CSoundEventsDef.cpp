@@ -10,7 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -41,7 +41,7 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_aSoundEventRules_GetterFunction", &base::reflection::TypeObject<sound::CSoundEventsDef::TSoundEventRules>::object, 0x1, fn_7101028a7c);
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("aSoundEventRules", true), &base::reflection::TypeObject<sound::CSoundEventsDef::TSoundEventRules>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("aSoundEventRules", true), &base::reflection::TypeObject<sound::CSoundEventsDef::TSoundEventRules>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterRulesDeserialization");
     DREAD_REFLECTED_FUNCTION_OF("AfterRulesDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7101028aa4);
 }
@@ -69,7 +69,7 @@ DREAD_REFLECTED_CLASS(sound::CSoundEventsDef, base::core::CAsset);
 namespace sound::CSoundEventsDef::SSoundEventsSelector {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("strSelectorDesc", true), &base::reflection::PrimitiveType<base::global::TRntString128>::Get(), 0x8, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("strSelectorDesc", true), &base::reflection::PrimitiveType<base::global::TRntString128>::Get(), 0x8, -1, -1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -101,7 +101,7 @@ namespace sound::CSoundManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_pAudioPresets_GetterFunction", base::reflection::PointerType<sound::CAudioPresets*>::Get(), 0, fn_7101028f4c);
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("pAudioPresets", true), base::reflection::PointerType<sound::CAudioPresets*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("pAudioPresets", true), base::reflection::PointerType<sound::CAudioPresets*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 8);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

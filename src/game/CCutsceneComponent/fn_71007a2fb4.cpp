@@ -14,7 +14,7 @@
 #include "game/UnkTU89.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -66,9 +66,9 @@ void fn_71007a2fb4(CClass* cls) {
     }
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_sCutsceneName_SetterFunction", true)))
         fn_71007a515c(fn, "_m_sCutsceneName_SetterFunction");
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("sCutsceneName", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("sCutsceneName", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<bool>(fn_7100090a20(), true);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("bDisableScenarioEntitiesOnPlay", true), fn_710000d228(), 0x20e, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("bDisableScenarioEntitiesOnPlay", true), fn_710000d228(), 0x20e, -1, -1);
     field1->attrs.Add<bool>(fn_7100075240(), true);
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_vOriginalPos_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vOriginalPos_GetterFunction", true);
@@ -77,7 +77,7 @@ void fn_71007a2fb4(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad5e8);
     }
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("vOriginalPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("vOriginalPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field2->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     field2->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
     field2->attrs.Add<bool>(fn_7100090a20(), false);
@@ -90,15 +90,15 @@ void fn_71007a2fb4(CClass* cls) {
     }
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_vctCutscenesOffsets_SetterFunction", true)))
         fn_71007a52d8(fn, "_m_vctCutscenesOffsets_SetterFunction");
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("vctCutscenesOffsets", true), &g_unk_7101d5c078, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("vctCutscenesOffsets", true), &g_unk_7101d5c078, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field3->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("vctExtraInvolvedSubareas", true), &g_unk_7101d5c998, 0x80, -1, -1);
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("vctExtraInvolvedActors", true), &g_unk_7172719170, 0xd0, -1, -1);
+    CVariable* field4 = AddReflectedField(cls, CStrId("vctExtraInvolvedSubareas", true), &g_unk_7101d5c998, 0x80, -1, -1);
+    CVariable* field5 = AddReflectedField(cls, CStrId("vctExtraInvolvedActors", true), &g_unk_7172719170, 0xd0, -1, -1);
     field5->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateExtraActor", true));
     field5->attrs_0x70.Add<CStrId>(fn_7100091c30(), CStrId("Extra Actor", true));
-    UnkReflField* field6 = AddReflectedField(cls, CStrId("vctOnBeforeCutsceneStartsLA", true), &g_unk_717274caa0, 0xf8, -1, -1);
-    UnkReflField* field7 = AddReflectedField(cls, CStrId("vctOnAfterCutsceneEndsLA", true), &g_unk_717274caa0, 0x120, -1, -1);
-    UnkReflField* field8 = AddReflectedField(cls, CStrId("bHasSamusAsExtraActor", true), fn_710000d228(), 0x210, -1, -1);
+    CVariable* field6 = AddReflectedField(cls, CStrId("vctOnBeforeCutsceneStartsLA", true), &g_unk_717274caa0, 0xf8, -1, -1);
+    CVariable* field7 = AddReflectedField(cls, CStrId("vctOnAfterCutsceneEndsLA", true), &g_unk_717274caa0, 0x120, -1, -1);
+    CVariable* field8 = AddReflectedField(cls, CStrId("bHasSamusAsExtraActor", true), fn_710000d228(), 0x210, -1, -1);
     field8->attrs.Add<bool>(fn_7100090a20(), false);
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("SetupCutsceneForEditor", true))) {
         fn->name = base::global::UnkStrId("SetupCutsceneForEditor", true);

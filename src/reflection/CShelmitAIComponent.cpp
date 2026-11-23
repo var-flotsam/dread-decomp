@@ -9,7 +9,7 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -31,7 +31,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_eShellState_GetterFunction", &base::reflection::TypeObject<EShellState>::object, 0, fn_71006bcb7c);
     DREAD_REFLECTED_FUNCTION("_m_eShellState_SetterFunction")
         fn_71006b9d50(fn, "_m_eShellState_SetterFunction");
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eShellState", true), &base::reflection::TypeObject<EShellState>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("eShellState", true), &base::reflection::TypeObject<EShellState>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EShellState>::object, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }

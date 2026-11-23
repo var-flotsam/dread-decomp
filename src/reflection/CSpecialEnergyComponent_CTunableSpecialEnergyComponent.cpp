@@ -9,7 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -72,9 +72,9 @@ void fn_7100a1eff8(CFunction* fn, const char* name);
 void fn_7100a20250();
 void fn_7100a1f0ac(CFunction* fn, const char* name);
 void fn_7100a202f8();
-void fn_71000e8118(UnkReflField* field, u64 index);
+void fn_71000e8118(CVariable* field, u64 index);
 void fn_7100a1f228(CFunction* fn, const char* name);
-void fn_71000e8180(UnkReflField* field, u64 index);
+void fn_71000e8180(CVariable* field, u64 index);
 void fn_7100a203a8();
 void fn_7100a1f3a4(CFunction* fn, const char* name);
 namespace CSpecialEnergyComponent {

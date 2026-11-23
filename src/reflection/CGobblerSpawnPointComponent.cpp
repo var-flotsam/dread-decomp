@@ -9,7 +9,7 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -36,12 +36,12 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_wpDoor_GetterFunction", &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x101, fn_7100a1a994);
     DREAD_REFLECTED_FUNCTION("_m_wpDoor_SetterFunction")
         fn_7100a1a1e8(fn, "_m_wpDoor_SetterFunction");
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpDoor", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("wpDoor", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FUNCTION_OF("_m_wpWeb_GetterFunction", &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x101, fn_7100a1ac00);
     DREAD_REFLECTED_FUNCTION("_m_wpWeb_SetterFunction")
         fn_7100a1a35c(fn, "_m_wpWeb_SetterFunction");
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpWeb", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("wpWeb", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

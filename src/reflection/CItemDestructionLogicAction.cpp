@@ -9,7 +9,7 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -31,9 +31,9 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 namespace CItemDestructionLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpItemToDestroy", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x10, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("wpItemToDestroy", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x10, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpObserver", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x50, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("wpObserver", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x50, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

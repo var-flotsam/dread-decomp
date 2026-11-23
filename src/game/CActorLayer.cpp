@@ -18,7 +18,7 @@ using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CType;
 using base::reflection::UnkReflAttrKey;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using unk_static_init::UnkEnumType;
 using unk_static_init::UnkNamedValueTmp;
@@ -129,7 +129,7 @@ void fn_71002584a0(CClass* cls) {
         fn_710025d550(), UnkReflAnyList(UnkReflAnyValue(CStrId("sName", true), fn_7100009658())));
 
     AddGetter(cls, "_m_dctSublayers_GetterFunction", TypeOf(g_unk_71726a0628), fn_7100260928);
-    UnkReflField* sublayers = AddReflectedField(cls, CStrId("dctSublayers", true), TypeOf(g_unk_71726a0628), 0xffffffff,
+    CVariable* sublayers = AddReflectedField(cls, CStrId("dctSublayers", true), TypeOf(g_unk_71726a0628), 0xffffffff,
                                             cls->m_array_0x110.size() - 1, -1);
     sublayers->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewSublayer", true));
     sublayers->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteSublayerByName", true));
@@ -140,7 +140,7 @@ void fn_71002584a0(CClass* cls) {
     sublayers->attrs_0x70.Add<s32>(fn_710025d990(), TypeOf(base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object), 2);
 
     AddGetter(cls, "_m_dctActorGroups_GetterFunction", TypeOf(g_unk_717269c300), fn_7100260950);
-    UnkReflField* groups = AddReflectedField(cls, CStrId("dctActorGroups", true), TypeOf(g_unk_717269c300), 0xffffffff,
+    CVariable* groups = AddReflectedField(cls, CStrId("dctActorGroups", true), TypeOf(g_unk_717269c300), 0xffffffff,
                                          cls->m_array_0x110.size() - 1, -1);
     groups->attrs.Add<const char*>(fn_710008ff80(), "AfterActorGroupDeserialization");
     groups->attrs.Add<s32>(fn_710025d990(), TypeOf(base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object), 2);

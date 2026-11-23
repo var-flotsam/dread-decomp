@@ -16,7 +16,7 @@ using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CType;
 using base::reflection::UnkReflAttrKey;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 #include "base/reflection/TypeObject.h"
 enum class EFXType : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EFXType>::object asm("g_unk_71727b8dd8");
@@ -39,13 +39,13 @@ inline CRntString Join(const CRntString& a, const CRntString& b) {
 
 void fn_7100beaf3c(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(base::global::CStrId::Empty())));
-    UnkReflField* type = AddReflectedField(cls, CStrId("eType", true), reinterpret_cast<CType*>(&base::reflection::TypeObject<EFXType>::object), 0x18, -1, -1);
+    CVariable* type = AddReflectedField(cls, CStrId("eType", true), reinterpret_cast<CType*>(&base::reflection::TypeObject<EFXType>::object), 0x18, -1, -1);
     type->attrs.Add<s32>(fn_7100075240(), reinterpret_cast<CType*>(&base::reflection::TypeObject<EFXType>::object), 0);
-    UnkReflField* path = AddReflectedField(cls, CStrId("sPath", true), fn_710000ad9c(), 0x20, -1, -1);
+    CVariable* path = AddReflectedField(cls, CStrId("sPath", true), fn_710000ad9c(), 0x20, -1, -1);
     path->attrs.Add<CFilePathStrId>(fn_7100075240(), CFilePathStrId(g_unk_7101d470e8));
     path->attrs.Add<CRntString>(fn_7100091900(),
                                 Join(Join(StringOf(g_unk_716e454078.extensions[0]), "|"), StringOf(g_unk_716e453ff8.extensions[0])));
-    UnkReflField* link = AddReflectedField(cls, CStrId("eLinkType", true), reinterpret_cast<CType*>(&base::reflection::TypeObject<ELinkType>::object), 0x28, -1, -1);
+    CVariable* link = AddReflectedField(cls, CStrId("eLinkType", true), reinterpret_cast<CType*>(&base::reflection::TypeObject<ELinkType>::object), 0x28, -1, -1);
     link->attrs.Add<s32>(fn_7100075240(), reinterpret_cast<CType*>(&base::reflection::TypeObject<ELinkType>::object), 0);
     DREAD_REFLECTED_FIELD(CStrId, "sTarget", 0x30, (DefaultValue, CStrId(base::global::CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetX", 0x38, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));

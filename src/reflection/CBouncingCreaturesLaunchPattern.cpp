@@ -12,7 +12,7 @@
 #include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -101,7 +101,7 @@ namespace CCharClassKraidBouncingCreaturesAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sEndAttackAnim", 0xf0, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("tPatterns", true), &g_unk_71726ef250, 0xf8, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("tPatterns", true), &g_unk_71726ef250, 0xf8, -1, -1);
     field1->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

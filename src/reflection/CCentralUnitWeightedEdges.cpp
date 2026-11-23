@@ -11,7 +11,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -32,7 +32,7 @@ namespace CCentralUnitWeightedEdges {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("pLogicShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x10, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("pLogicShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x10, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FIELD(f32, "fFactorToAdd", 0x50, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fFactorToMultiply", 0x54, (DefaultValue, 1.0f));

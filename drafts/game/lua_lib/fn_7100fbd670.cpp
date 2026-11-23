@@ -49,8 +49,8 @@ struct UnkReflValueArg {
 
 UnkReflValue fn_710009da40(const CType* type, const UnkTypedRef* src, const CType* to);
 void* fn_71000978e4(char* cls, const CStrId* name);
-bool fn_71000e74bc(UnkReflField* field);
-UnkReflTypedPtr fn_71000e755c(UnkReflField* field, const UnkReflTypedPtr* obj);
+bool fn_71000e74bc(CVariable* field);
+UnkReflTypedPtr fn_71000e755c(CVariable* field, const UnkReflTypedPtr* obj);
 int fn_7100fbf2c0(lua_State* L);
 
 // The names of the methods every collection has.
@@ -219,8 +219,8 @@ int fn_7100fbd670(lua_State* L, UnkTypedPair_ovb0016* value, CStrId* name) {
         UnkClassField_lfbd670* field = &fields[index];
         UnkClassField_lfbd670* end = &fields[cls->m_array_0xe8.count];
         if (field != end && field) {
-            if (fn_71000e74bc(reinterpret_cast<UnkReflField*>(field))) {
-                UnkReflTypedPtr member = fn_71000e755c(reinterpret_cast<UnkReflField*>(field), &target);
+            if (fn_71000e74bc(reinterpret_cast<CVariable*>(field))) {
+                UnkReflTypedPtr member = fn_71000e755c(reinterpret_cast<CVariable*>(field), &target);
                 if (!member.type || !member.ptr)
                     return 0;
                 UnkTypedPair_ovb0016 pair = {fn_710009dcd8(member.type, member.ptr), member.ptr};

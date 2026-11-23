@@ -14,7 +14,7 @@ using base::global::UnkStrIdInline;
 using base::reflection::CClass;
 using base::reflection::CType;
 using base::reflection::UnkReflAttrKey;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkReflValue;
 
@@ -82,7 +82,7 @@ static inline CFunction* FindFunction(CClass* cls, const CStrId& name) {
     return it == set->End() ? nullptr : it;
 }
 
-CFunction* fn_71000979a0(CClass* self, UnkReflField* field, const UnkReflAttrKey& key) {
+CFunction* fn_71000979a0(CClass* self, CVariable* field, const UnkReflAttrKey& key) {
     const auto* attrs = reinterpret_cast<const UnkAttrSet_l0979a0*>(&field->attrs);
     const UnkAttrValue_l0979a0* found = attrs->Find(key);
     UnkAttrValue_l0979a0 value = found != attrs->End() ? UnkAttrValue_l0979a0(*found) : UnkAttrValue_l0979a0();

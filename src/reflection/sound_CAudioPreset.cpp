@@ -11,7 +11,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -116,23 +116,23 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_arrMatFiles_GetterFunction", &g_unk_71729fa4e8, 0x101, fn_710103ac44);
     DREAD_REFLECTED_FUNCTION("_arrMatFiles_SetterFunction")
         fn_710103275c(fn, "_arrMatFiles_SetterFunction");
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("arrMatFiles", true), &g_unk_71729fa4e8, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("arrMatFiles", true), &g_unk_71729fa4e8, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_ePlayerId_GetterFunction", &base::reflection::TypeObject<base::snd::ESndPlayerId>::object, 0, fn_710103acd4);
     DREAD_REFLECTED_FUNCTION("_ePlayerId_SetterFunction")
         fn_71010328d0(fn, "_ePlayerId_SetterFunction");
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("ePlayerId", true), &base::reflection::TypeObject<base::snd::ESndPlayerId>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("ePlayerId", true), &base::reflection::TypeObject<base::snd::ESndPlayerId>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_eLogicId_GetterFunction", &base::reflection::TypeObject<base::snd::ESndLogicId>::object, 0, fn_710103ad60);
     DREAD_REFLECTED_FUNCTION("_eLogicId_SetterFunction")
         fn_7101032a44(fn, "_eLogicId_SetterFunction");
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("eLogicId", true), &base::reflection::TypeObject<base::snd::ESndLogicId>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field4 = AddReflectedField(cls, CStrId("eLogicId", true), &base::reflection::TypeObject<base::snd::ESndLogicId>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_eAttCurve_GetterFunction", &base::reflection::TypeObject<base::snd::EAttenuationCurve>::object, 0, fn_710103adec);
     DREAD_REFLECTED_FUNCTION("_eAttCurve_SetterFunction")
         fn_7101032bb8(fn, "_eAttCurve_SetterFunction");
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("eAttCurve", true), &base::reflection::TypeObject<base::snd::EAttenuationCurve>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field5 = AddReflectedField(cls, CStrId("eAttCurve", true), &base::reflection::TypeObject<base::snd::EAttenuationCurve>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_ePositional_GetterFunction", &base::reflection::TypeObject<base::snd::EPositionalType>::object, 0, fn_710103ae78);
     DREAD_REFLECTED_FUNCTION("_ePositional_SetterFunction")
         fn_7101032d2c(fn, "_ePositional_SetterFunction");
-    UnkReflField* field6 = AddReflectedField(cls, CStrId("ePositional", true), &base::reflection::TypeObject<base::snd::EPositionalType>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field6 = AddReflectedField(cls, CStrId("ePositional", true), &base::reflection::TypeObject<base::snd::EPositionalType>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_iInstanceLimit_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_710103af04);
     DREAD_REFLECTED_FUNCTION("_iInstanceLimit_SetterFunction")
         fn_7101032ea0(fn, "_iInstanceLimit_SetterFunction");

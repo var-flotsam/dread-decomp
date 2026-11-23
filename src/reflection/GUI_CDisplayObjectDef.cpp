@@ -11,7 +11,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -34,13 +34,13 @@ namespace GUI::CDisplayObjectDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sID", 0x8);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("lstpStates", true), &g_unk_717275f310, 0x38, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("lstpStates", true), &g_unk_717275f310, 0x38, -1, -1);
     field1->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("AddNewDOStateDef", true));
     field1->attrs_0x70.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterStateDeserialization", true));
     DREAD_REFLECTED_FUNCTION_OF("AddNewDOStateDef", base::reflection::PointerType<GUI::CDisplayObjectStateDef*>::Get(), 0, fn_7100b086b8);
     DREAD_REFLECTED_FUNCTION("AfterStateDeserialization")
         fn_7100b05218(fn, "AfterStateDeserialization");
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("lstpChildren", true), &g_unk_717275e480, 0x60, -1, -1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("lstpChildren", true), &g_unk_717275e480, 0x60, -1, -1);
     field2->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("AddNewChild", true));
     DREAD_REFLECTED_FUNCTION_OF("AddNewChild", fn_7100b05394(), 0, fn_7100b087d4);
 }

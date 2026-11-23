@@ -10,7 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -395,14 +395,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_eDamageStrengthOnForcedReaction_GetterFunction", &base::reflection::TypeObject<EDamageStrength>::object, 0, fn_710078dfbc);
     DREAD_REFLECTED_FUNCTION("_m_eDamageStrengthOnForcedReaction_SetterFunction")
         fn_710078cba4(fn, "_m_eDamageStrengthOnForcedReaction_SetterFunction");
-    UnkReflField* field10 = AddReflectedField(cls, CStrId("eDamageStrengthOnForcedReaction", true), &base::reflection::TypeObject<EDamageStrength>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field10 = AddReflectedField(cls, CStrId("eDamageStrengthOnForcedReaction", true), &base::reflection::TypeObject<EDamageStrength>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field10->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EDamageStrength>::object, 3);
     field10->attrs.Add<const char*>(base::reflection::attr::Description(), "Override damage strength reaction when forcing reaction [DEFAULT]");
     DREAD_REFLECTED_FUNCTION_OF("_m_bIgnoreInmune_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710078e048);
     DREAD_REFLECTED_FUNCTION("_m_bIgnoreInmune_SetterFunction")
         fn_710078cd18(fn, "_m_bIgnoreInmune_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bIgnoreInmune", (DefaultValue, false), (Description, "Ignore Player Inmune [false]"));
-    UnkReflField* field12 = AddReflectedField(cls, CStrId("dictDamageIDOverrides", true), &base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::object, 0xa0, -1, -1);
+    CVariable* field12 = AddReflectedField(cls, CStrId("dictDamageIDOverrides", true), &base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::object, 0xa0, -1, -1);
     field12->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
     DREAD_REFLECTED_FUNCTION_OF("_sIgnoreBumpColliders_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710078e0d8);
     DREAD_REFLECTED_FUNCTION("_sIgnoreBumpColliders_SetterFunction")

@@ -10,7 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -31,7 +31,7 @@ namespace CPerceptionModifierLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CPerceptionModifierLogicAction::EMode", "eMode", 0x10, (DefaultValue, 2147483647));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpPerceivedPosition", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x18, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("wpPerceivedPosition", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x18, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
     DREAD_REFLECTED_FIELD_OF("CAIManager::EAIGroup", "eGroup", 0x58, (DefaultValue, 0));
 }

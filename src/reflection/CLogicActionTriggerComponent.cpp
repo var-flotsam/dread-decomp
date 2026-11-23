@@ -9,7 +9,7 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -28,7 +28,7 @@ template <> base::reflection::CType base::reflection::TypeObject<base::global::C
 namespace CLogicActionTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("vLogicActions", true), &base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>>::object, 0x40, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("vLogicActions", true), &base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>>::object, 0x40, -1, -1);
     field0->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void*, const void*) { return false; }

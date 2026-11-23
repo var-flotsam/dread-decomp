@@ -8,7 +8,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -33,10 +33,10 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Screen Effects", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("vColorStart", true), &base::reflection::PrimitiveType<base::color::CColor4B_SRGB>::Get(), 0x18, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("vColorStart", true), &base::reflection::PrimitiveType<base::color::CColor4B_SRGB>::Get(), 0x18, -1, -1);
     field0->attrs.AddTyped<s32, &fn_71000a41b4>(base::reflection::attr::DefaultValue(), 0);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Color Start");
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("vColorEnd", true), &base::reflection::PrimitiveType<base::color::CColor4B_SRGB>::Get(), 0x1c, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("vColorEnd", true), &base::reflection::PrimitiveType<base::color::CColor4B_SRGB>::Get(), 0x1c, -1, -1);
     field1->attrs.AddTyped<s32, &fn_71000a41b4>(base::reflection::attr::DefaultValue(), -16777216);
     field1->attrs.Add<const char*>(base::reflection::attr::Description(), "Color End");
 }
