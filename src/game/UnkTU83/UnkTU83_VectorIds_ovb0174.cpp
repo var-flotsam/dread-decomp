@@ -727,7 +727,7 @@ void fn_71000a497c(UnkVersionRegistry* self_) {
     for (void** p = self->list_a.data, **e = p + self->list_a.count; p != e; ++p) {
         CType* type = static_cast<CType*>(*p);
         auto* attrs = reinterpret_cast<UnkReflAttrsMap_b0174*>(TypeAttributes(type));
-        const CStrId& version = fn_7100005070().name;
+        const CStrId& version = base::reflection::attr::Version().name;
         if (attrs->Find(version) != attrs->End())
             fn_710009ea3c(type);
     }

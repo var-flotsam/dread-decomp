@@ -79,7 +79,7 @@ public:
     CType(u64 kind, const base::global::CStrId& name, u64 size, EqualsFn fn_0x58, HashFn fn_0x60,
           TypeOfFn fn_0x68,
           ClassSetupFn fn_0x70, const CType* parent, const UnkFnSet& fns, bool abstract)
-        : m_name(name), m_kind(kind), m_size(size), m_flags(0), field_0x24(-1), m_fn_0x58(fn_0x58),
+        : sName(name), m_kind(kind), m_size(size), m_flags(0), field_0x24(-1), m_fn_0x58(fn_0x58),
           m_fn_0x60(fn_0x60), m_fn_0x68(fn_0x68), m_fn_0x70(fn_0x70), m_parent(parent),
           m_array_0xb8(10, 0x3e) {
         if (fns.fn_0x28)
@@ -100,7 +100,7 @@ public:
     }
     virtual ~CType();
 
-    base::global::CStrId m_name;
+    base::global::CStrId sName;
     u64 m_kind;
     u64 m_size;
     u32 m_flags;

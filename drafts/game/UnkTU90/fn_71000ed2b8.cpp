@@ -49,7 +49,7 @@ s32 fn_71000ed2b8(UnkWriter_b0202* self, const CType* type) {
 
     CStrId name = g_unk_7101d470e0;
     if (fn_710009d760(reinterpret_cast<const UnkReflObject*>(type), reinterpret_cast<const CType*>(fn_710009bedc())))
-        name = type->m_name;
+        name = type->sName;
     if (name.data != &g_unk_7101d47108->empty) {
         CName hashed(base::global::UnkNameHash(), name.data->Key());
         UnkReflValueRef value = {fn_710000fd7c(), &hashed};

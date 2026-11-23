@@ -20,6 +20,11 @@
            --write nothing is kept. With --functional (tier 3, owner 2026-11-19) a function with any other
            difference moves too when tools/equiv_test.py --any-kind says `behaves`; it gets
            `// NON_MATCHING(functional)` and counts as functional, not done.
+  absorb   retire drafts whose functions now live in another source of src/ (a function that matches only beside
+           its unit's other functions, in their file): checks that the target defines each draft's function,
+           by its placeholder `fn_<addr>` or its name in data/functions/, then deletes the draft and its row.
+           Text only: it neither compiles nor grades (no dump needed); the byte check is tools/check.py's and
+           CI's. Without --write it only says what it would do.
 
 After `promote --write`: tools/equiv_test.py --write on the moved files that do not match (the verdict is what
 makes them count), then tools/decl_plan.py and tools/hub_migrate.py for declarations they copied, then
@@ -29,7 +34,8 @@ Usage:
   python tools/drafts.py --version 2.1.0 add FILE.cpp ADDR --from TAG [--note TEXT] [--replace] [--remove]
   python tools/drafts.py --version 2.1.0 grade [FILE.cpp ...] [--from TAG] [--write] [--jobs N]
   python tools/drafts.py --version 2.1.0 promote FILE.cpp [...] [--write]
-Needs the dump; promote needs what tools/equiv_test.py needs for a draft that does not match.
+  python tools/drafts.py absorb DRAFT.cpp [...] --into src/FILE.cpp [--write]
+Needs the dump, but for absorb; promote needs what tools/equiv_test.py needs for a draft that does not match.
 """
 
 from __future__ import annotations
@@ -449,9 +455,93 @@ def cmd_promote(args) -> int:
     return 0
 
 
+def candidate_names(address: int, listed: str | None) -> list[str]:
+    """The names a source may define the function at address under: its placeholder, and its name in
+    data/functions/ (qualified, parameters left out) when that is another."""
+    names = [f"fn_{address:x}"]
+    if listed and listed not in names:
+        names.append(listed)
+    return names
+
+
+def defines(text: str, name: str) -> bool:
+    """Whether a source's text defines the function `name` (a qualified name is looked for as written, its class
+    and the function's own name together, so another class's function of the same name is not taken for it)."""
+    lines = text.split("\n")
+    parts = name.split("::")
+    if len(parts) == 1:
+        return definition_line(lines, name) is not None
+    tail = r"\s*::\s*".join(re.escape(x) for x in parts[-2:])
+    for i, line in enumerate(lines):
+        if re.match(rf"^[^\s/#][^;]*\b{tail}\s*\(", line):
+            for later in lines[i:i + 8]:
+                if ";" in later.split("{")[0] and "{" not in later:
+                    break
+                if "{" in later:
+                    return True
+    return False
+
+
+def absorb(drafts_: list[Path], into: Path, rows: list[dict], listed: dict[int, str], write: bool) -> tuple[list[str], list[str]]:
+    """Retire the drafts whose function `into` now defines: (lines saying what was or would be done, problems).
+    With write, the draft files go and their rows leave `rows` (the caller writes the index); a problem stops
+    nothing else, and a draft with one is left as it is."""
+    done, problems = [], []
+    target = into.resolve()
+    try:
+        trel = target.relative_to(ROOT).as_posix()
+    except ValueError:
+        return [], [f"{into}: not in the repository"]
+    if not trel.startswith("src/") or not target.is_file():
+        return [], [f"{trel}: not a source file under src/"]
+    text = target.read_text(encoding="utf-8").replace("\r\n", "\n")
+    for d in drafts_:
+        rel = d.resolve().relative_to(ROOT).as_posix() if d.resolve().is_relative_to(ROOT) else str(d)
+        mine = [r for r in rows if r["file"] == rel]
+        if not mine:
+            problems.append(f"{rel}: no row of drafts/INDEX.csv")
+            continue
+        if len(mine) > 1:
+            problems.append(f"{rel}: {len(mine)} rows of drafts/INDEX.csv name this file; absorb takes one function a file")
+            continue
+        r = mine[0]
+        address = int(r["address"], 16)
+        names = candidate_names(address, listed.get(address))
+        found = next((n for n in names if defines(text, n)), None)
+        if found is None:
+            problems.append(f"{rel}: {trel} does not define {r['address']} (looked for {' or '.join(names)})")
+            continue
+        verb = "removed" if write else "would remove"
+        done.append(f"{verb}  {r['address']}  {rel} and its row: {trel} defines it as {found}")
+        if write:
+            p = ROOT / rel
+            if p.is_file():
+                p.unlink()
+            rows.remove(r)
+            if p.parent.is_dir() and not any(p.parent.iterdir()):
+                p.parent.rmdir()
+    return done, problems
+
+
+def cmd_absorb(args) -> int:
+    from dread import functions as function_list
+    listed = {int(r["address"], 16): r["name"] for r in function_list.rows()}
+    rows = read_index()
+    done, problems = absorb(args.files, args.into, rows, listed, args.write)
+    for line in done:
+        print(line)
+    for line in problems:
+        print(f"not absorbed  {line}")
+    print(f"drafts: {len(done)} {'absorbed' if args.write else 'can be absorbed (--write to do it)'}, "
+          f"{len(problems)} not; nothing was compiled: tools/check.py and CI check the bytes")
+    if args.write and done:
+        write_index(rows)
+    return 1 if problems else 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--version", required=True)
+    ap.add_argument("--version", help="the dump's version (every command but absorb)")
     sub = ap.add_subparsers(dest="command", required=True)
     a = sub.add_parser("add", help="file a source as the draft of one function")
     a.add_argument("file", type=Path)
@@ -473,8 +563,17 @@ def main() -> int:
                         "must be of the files as they are now")
     p.add_argument("--functional", action="store_true",
                    help="also move functions of any difference that tools/equiv_test.py --any-kind says behave")
+    b = sub.add_parser("absorb", help="retire drafts whose function another source of src/ now defines (no dump)")
+    b.add_argument("files", nargs="+", type=Path, help="the drafts (their files under drafts/)")
+    b.add_argument("--into", type=Path, required=True, help="the source of src/ that defines their functions now")
+    b.add_argument("--write", action="store_true", help="delete the drafts and their rows (default: say what would go)")
     args = ap.parse_args()
     os.chdir(ROOT)
+    if args.command == "absorb":
+        sys.path.insert(0, str(ROOT / "tools"))
+        return cmd_absorb(args)
+    if not args.version:
+        ap.error("--version is needed for " + args.command)
     init(args.version)
     return {"add": cmd_add, "grade": cmd_grade, "promote": cmd_promote}[args.command](args)
 

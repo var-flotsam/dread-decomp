@@ -73,7 +73,7 @@ bool fn_71000f2af4(UnkTypedRefWriter* self) {
                           reinterpret_cast<const CType*>(&g_unk_7101d67d80))) {
             auto* context = reinterpret_cast<UnkBaseContext_f2af4*>(entry.storage);
             if (context->source) {
-                UnkReflValue value = fn_71000e8044(context->source->field_0x80, fn_7100090800());
+                UnkReflValue value = fn_71000e8044(context->source->field_0x80, base::reflection::attr::bBinaryDumpable());
                 if (value.type) {
                     if (fn_710009d50c(reinterpret_cast<const CType*>(value.type), fn_710000d228())) {
                         void* address = value.field_0x14 == 1 || *reinterpret_cast<const u64*>(value.type + 0x18) > 8

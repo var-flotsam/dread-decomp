@@ -12,6 +12,6 @@ struct base::reflection::UnkReflStatic<UnkRefl_DefaultPasteValue_A5_b64> {
     static constexpr u32 field_0x10 = 0x2;
 };
 
-__attribute__((flatten)) const base::reflection::UnkReflAttrKey& fn_710075a400() {
+__attribute__((flatten)) const base::reflection::UnkReflAttrKey& base::reflection::attr::DefaultPasteValue() {
     return base::reflection::refl_GetAttrKey<UnkRefl_DefaultPasteValue_A5_b64>();
 }

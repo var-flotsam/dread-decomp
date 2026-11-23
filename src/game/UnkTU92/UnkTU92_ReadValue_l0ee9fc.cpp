@@ -65,9 +65,9 @@ bool fn_71000ee9fc(void* reader, u32 kind, UnkReadArg_b0026* arg, const base::gl
     case 1: {
         const CType* type = reinterpret_cast<const CType*>(entry->typed.type);
         if (type && entry->typed.ptr)
-            ReadStrId(out, &type->m_name);
+            ReadStrId(out, &type->sName);
         else
-            ReadStrId(out, &base::reflection::TypeObject<void>::object.m_name);
+            ReadStrId(out, &base::reflection::TypeObject<void>::object.sName);
         break;
     }
     case 2:

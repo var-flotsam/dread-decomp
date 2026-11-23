@@ -26,17 +26,17 @@ void fn_7100db69a8(CClass* cls) {
     if (!cls)
         return;
     CVariable* field0 = AddReflectedField(cls, CStrId("bBossRushGameOverEnabled", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
+    field0->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
     CVariable* field1 = AddReflectedField(cls, CStrId("fDeathAddedTime", true), fn_710000abbc(), 0x24, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 15.0f);
+    field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 15.0f);
     CVariable* field2 = AddReflectedField(cls, CStrId("fSurvivalInitialTime", true), fn_710000abbc(), 0x28, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 300.0f);
+    field2->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 300.0f);
     CVariable* field3 = AddReflectedField(cls, CStrId("fSurvivalInitialLife", true), fn_710000abbc(), 0x2c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 599.0f);
+    field3->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 599.0f);
     CVariable* field4 = AddReflectedField(cls, CStrId("fSurvivalInitialMissiles", true), fn_710000abbc(), 0x30, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 90.0f);
+    field4->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 90.0f);
     CVariable* field5 = AddReflectedField(cls, CStrId("iSurvivalMaxLoops", true), fn_7100014768(), 0x34, -1, -1);
-    field5->attrs.Add<s32>(fn_7100075240(), 10);
+    field5->attrs.Add<s32>(base::reflection::attr::DefaultValue(), 10);
     CVariable* field6 = AddReflectedField(cls, CStrId("oLoop0", true), (fn_7100db5c98(), &g_unk_71727bdbb8), 0x38, -1, -1);
     CVariable* field7 = AddReflectedField(cls, CStrId("oLoop1", true), (fn_7100db5c98(), &g_unk_71727bdbb8), 0x58, -1, -1);
     CVariable* field8 = AddReflectedField(cls, CStrId("oLoop2", true), (fn_7100db5c98(), &g_unk_71727bdbb8), 0x78, -1, -1);
@@ -54,11 +54,11 @@ void fn_7100db69a8(CClass* cls) {
     CVariable* field20 = AddReflectedField(cls, CStrId("oFereniaCUDebugTime", true), (fn_7100db6424(), &g_unk_71727bdcf0), 0x1a8, -1, -1);
     CVariable* field21 = AddReflectedField(cls, CStrId("oRavenBeakDebugTime", true), (fn_7100db6424(), &g_unk_71727bdcf0), 0x1c0, -1, -1);
     CVariable* field22 = AddReflectedField(cls, CStrId("iDebugSurvivalInitialBoss", true), fn_7100014768(), 0x1d8, -1, -1);
-    field22->attrs.Add<s32>(fn_7100075240(), 1);
+    field22->attrs.Add<s32>(base::reflection::attr::DefaultValue(), 1);
     CVariable* field23 = AddReflectedField(cls, CStrId("fDebugSurvivalRemainingTime", true), fn_710000abbc(), 0x1dc, -1, -1);
-    field23->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field23->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.0f);
     CVariable* field24 = AddReflectedField(cls, CStrId("iDebugSurvivalLoop", true), fn_7100014768(), 0x1e0, -1, -1);
-    field24->attrs.Add<s32>(fn_7100075240(), 0);
+    field24->attrs.Add<s32>(base::reflection::attr::DefaultValue(), 0);
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

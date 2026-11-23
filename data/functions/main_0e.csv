@@ -3535,7 +3535,7 @@ address,size,name,name_source,subsystem,status
 0x7100ed8b30,4,fn_7100ed8b30,unknown,unknown,O
 0x7100ed8b34,20,fn_7100ed8b34,unknown,unknown,O
 0x7100ed8b48,20,fn_7100ed8b48,unknown,unknown,O
-0x7100ed8b60,260,fn_7100ed8b60,unknown,unknown,O
+0x7100ed8b60,260,base::reflection::attr::FileFilter,inferred,unknown,O
 0x7100ed8c64,364,base::reflection::refl_InitType<CShotAudioWeaponStates*>,reflection,engine/reflection,O
 0x7100ed8dd0,96,fn_7100ed8dd0,unknown,engine/reflection?,O
 0x7100ed8e30,12,fn_7100ed8e30,unknown,unknown,O

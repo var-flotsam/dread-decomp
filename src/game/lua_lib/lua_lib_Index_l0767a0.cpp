@@ -60,7 +60,7 @@ int fn_71010767a0(lua_State* L) {
         lua_pushcclosure(L, fn_7101075c30, 1);
     } else {
         luaL_error(L, "DisplayObject '%s' [%s]. Property '%s' not found", object->name.Text(),
-                   reinterpret_cast<base::reflection::CType*>(object->GetClass())->m_name.Text(), key.Text());
+                   reinterpret_cast<base::reflection::CType*>(object->GetClass())->sName.Text(), key.Text());
         lua_pushnil(L);
     }
     return 1;

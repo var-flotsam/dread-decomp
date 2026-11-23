@@ -28,7 +28,7 @@ static inline bool IsKindOf(const CType* type, const CType* current) {
         if (t == current)
             return true;
     }
-    u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(current->m_name.data) + 0x30);
+    u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(current->sName.data) + 0x30);
     do {
         auto* links = reinterpret_cast<UnkTypeLinks*>(const_cast<base::reflection::UnkReflArray*>(&type->m_array_0xb8));
         void** slot = links->Find(key);

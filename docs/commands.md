@@ -336,6 +336,7 @@ python tools/check.py --version 2.1.0 --update   # also write O/m/M/W into data/
 python tools/check.py --version 2.1.0 --no-reloc # bytes only, as before the relocation check
 python tools/check.py --version 2.1.0 --no-cache # rebuild and rediff every source
 python tools/check.py --compile-only             # compile every source, no dump needed (hosted CI)
+python tools/check.py --version 2.1.0 --wait 0   # exit 3 at once if another run holds the cache
 ```
 
 ### `tools/verify.py`
@@ -343,7 +344,7 @@ python tools/check.py --compile-only             # compile every source, no dump
 One-command gate: regenerate, check, report progress and the content rules, in a few lines.
 
 ```sh
-python tools/verify.py --version 2.1.0 [--regen gen_statics,gen_clones]
+python tools/verify.py --version 2.1.0 [--regen gen_statics,gen_clones] [--wait 30]
 ```
 
 ### `tools/progress.py`
@@ -474,6 +475,7 @@ drafts/: file a function that does not match yet, regrade what is there, move a 
 python tools/drafts.py --version 2.1.0 add FILE.cpp ADDR --from TAG [--note TEXT] [--replace] [--remove]
 python tools/drafts.py --version 2.1.0 grade [FILE.cpp ...] [--from TAG] [--write] [--jobs N]
 python tools/drafts.py --version 2.1.0 promote FILE.cpp [...] [--write]
+python tools/drafts.py absorb DRAFT.cpp [...] --into src/FILE.cpp [--write]
 ```
 
 ### `tools/fakematch.py`
