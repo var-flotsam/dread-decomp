@@ -40,6 +40,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Vptr stores of a middle base survive only when an untyped copy follows: same entry.
 
 **Static initialisers and tables**
+- A function-local static sits at a distance from its guard that depends on the unit's other statics, so such a function matches only in a file that defines them all in order; 7 of 18 near-miss failures were this (session log, #637).
 - Each vector of ids built from a list sits in its own immediately called lambda; lists of one length in a unit need one element type; packed 4-byte-aligned struct when a u32 precedes the ids: [Above 2 KB](#above-2-kb-outside-the-six-hand-slices-srcgame_s7-2026-10-21).
 - Header ids built "sources first", enum converters local to the unit (`visibility("hidden")`): [batch 13](#slice-1-static-initialisers-batch-13).
 - Giant table functions are generated (`tools/gen_tables.py`); the id table's destructor still differs in register allocation: [Giant functions](#giant-functions-probe-2026-10-21-cloud-thread-biggest-functions-probe).
@@ -55,6 +56,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Taking both ids by reference in a comparison keeps the owner load from being hoisted; a loop over a matrix becomes memcpy, so write `UnkCopyMatrix` out: [hubs batch 3](#slice-1-hubs-batch-3).
 
 **Switches and block layout**
+- A clamp toward a target is two branches, each computing its own bound; every ternary form gives the wrong condition. A hand-written erase or lookup inside a body swaps compare operands that an inline helper with a matched sibling's text does not (session log, #637).
 - Two calls to one callee on two paths: an early `return` after the first keeps them in separate blocks until the branch folder merges them (if/else merges them in the IR and the stores before them move): [port functions round 3](#session-log-newest-first).
 - A 7 KB function compared block by block (per-block counts of loads, stores and arithmetic, then stored addresses and constants as sets) finds behaviour differences that a percentage hides: same entry.
 - Write switch cases in the order of their bodies in the binary to get Clang's compare tree: [Above 2 KB](#above-2-kb-outside-the-six-hand-slices-srcgame_s7-2026-10-21) (music volume overrides).
@@ -65,6 +67,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A counter compared in 32 bits beside a 64-bit array index: a separate `u64` index for the destination: same entry.
 
 **Lifter and generators**
+- The reflection family's first sampled read failed (2026-11-23, 12 of 20, `data/family_reads.csv`): a token scan for placeholders is a floor, since placeholders reach a function through macros, inline helpers and `asm("...")` labels. Two worktrees' `check.py` runs collide in the shared `build/check` (session log, #634, #636).
 - A lift the oracle can't judge because the original faults on every made-up input can be judged on a state the port captures at the trap (`port_link --capture`, `port/runtime/src/capture.cpp`, format "port-core"): [snapshots from the port](#session-log-newest-first).
 - Alias, sort and copy rewrite rounds; "the generic lifter is near its limit": work log item 1.
 - Semantic mode and its P-code oracle; four flat-mode bugs byte identity hid; the oracle's reach (mutation test): [port M1 step 3](#session-log-newest-first).
@@ -75,6 +78,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Multi-register results (x0:x1, s0-s3) and the result register, read off what callers do right after a call; a void lift of a function whose result is read; every `U` function's outcome: [lifter gaps round 3](#session-log-newest-first).
 
 **Declarations and calling conventions**
+- Renaming a type that appears in signatures: accept a file when its object is the same once symbol names are cut to their qualified names (session log, #632), and rename a whole group at once, the file plus every file that declares or defines a function with the name in its signature (#635). A rename can change a verified-equivalent function's text: re-judge it with `equiv_test.py --write`, and test `check.py`'s exit code, not its summary (#635).
+- A callback that returns `u32`, declared `bool`, costs one mask on the result (session log, #637).
 - A caller declared with fewer parameters can rely on an argument register the caller left set (six callers of `fn_7100216978` passed the vector in `x1` unawares); declaring the real signature keeps the bytes: [sixteenth session](#session-log-newest-first).
 - A union-typed scoped reference adds a reload in its destructor; cast at the call instead. A cast that lets Clang tail-merge two paths can be undone by an anonymous-union member: [sixteenth session](#session-log-newest-first).
 - A header type name must not be one that other files define locally (`UnkComponent` had 41 local definitions): the port links one program; a hidden-visibility attribute stays load-bearing in the header: [hub batch 6](#session-log-newest-first).
@@ -163,7 +168,212 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through 9a90b16789ce943acb4e47819d2461c48f4b4d62 -->
+<!-- journal_sync: through 70cf3316766cb4940fb591f38ff033a40ff2ec62 -->
+
+**Match five near-miss drafts (98% and over) and move them into src (#637, 2026-11-23).**
+
+A batch on the drafts at 98% similarity or more whose difference is not registers-only: 24 drafts, four workers, six drafts each, about 30 minutes a draft, editing only their own draft files.
+
+**Matched and moved to `src/` (5, all `O`):**
+- `fn_7100457274` (CChozoCommanderAIComponent): the handler and the function return `u32`, not `bool`, like the callback type in `include/base/UnkCloneHelpers.h`; the extra mask on the result goes away.
+- `fn_7100483ce4` (CChozoWarriorXSpitAttack): the final clamp is two branches, each computing its own bound, not a ternary. Every ternary form gave the wrong condition.
+- `fn_71006f8944` (unit 1115): the name lookup is a small inline helper over a pointer and a down-counter, and the id lookup tests the count before it loads the data. The draft's `goto` and `memcpy` are gone. Its object layout has a per-file name here because the unit's registry source defines the same object with an accessor cast; merging the two is layout work for that unit.
+- `fn_7100ee7808` (unit 2577): the grow check in `Append` is written as `include/base/global/CRntVector.h` writes `PushBack`'s.
+- `fn_7101111744` (unit 2702): the draft's vtable padding was one slot too long, so the call went through the next slot.
+
+**Matches, stays in `drafts/` (1):** `fn_7100741aa8` (CFlockingSwarmControllerComponent) matches once the erase of a position is an inline helper with the text of the matched `UnkUnit108_Erase`. It is held because an existing declaration names its parameter type differently.
+
+**Cleaner, not matched (2):** `fn_71009e9390` uses existing members instead of an offset-cast block and a `memcpy` (one instruction still differs: the original addresses a member through an inner object's base). `fn_7100b4c684` uses the shared `FindStateById` and drops three barriers and three inlining attributes; one barrier and one compare remain.
+
+**Not matched (16), by cause, for whoever picks these up:**
+- 7 need their whole unit in one file: a function-local static sits at a distance from its guard that depends on the unit's other statics (units 180, 2553, 2564, 2702, CAIManager, and others). Two of them (0x710015dc04, 0x710015ddc0) match when built together in one scratch file with one more 8-byte static between them, whose identity is unknown.
+- 4 are a flag test where the original tests bit 0 and ours compares with zero; every source form that gives the bit test moves a block elsewhere (the same unsolved block order noted on `fn_7100100b1c`).
+- The rest: stack slots that merge where the original keeps four, an iterator read through the wrong pointer, a negation emitted as an exclusive-or, a shared not-found block's branch sense.
+
+Reusable: retries of single near-miss drafts are close to used up. The unit-statics group is the one structural lead, and it needs whole-unit files, not more attempts per function.
+
+Cost: four workers, about 695,000 tokens, 6 matches (5 landed), about 116,000 tokens a match. Per worker that is the same as #629's run (about 170,000); the match rate is lower (25% against 39%).
+
+**Separate or merge 67 more differing type copies, renaming each with the files that declare its functions (#635, 2026-11-23).**
+
+Batch 3 of the type names that hand-written sources define with different texts (after #618, #628 and #632): the copies whose functions are declared in other files or headers under the shared name.
+
+| `tools/struct_check.py` | origin/main | this PR |
+|---|---|---|
+| names with differing texts | 249 | 182 |
+| ... with a function body in one | 120 | 95 |
+
+- **Renames by group (75 groups, 62 names, 190 files).** For each name, the files that mention it are joined into groups: two files join when one translation unit sees both (a source and the headers it includes, transitively), or when one function is declared or defined in both with the name in its signature. A group whose only definition text is not the kept one (a header's, else the most common) is renamed `<Name>_<suffix>` in all its files at once, headers included (36 groups span several files, 22 include a header). The suffix is the defining file's unit suffix or its first function's address, as in #628; these stay placeholders. Of the 62 names, 59 now have one text.
+- **Acceptance test, per group.** Every source that sees an edited file compiles (Clang 9.0.1, project flags) to the same object once every symbol name is cut to its qualified name without parameter types: the same section bytes, the same relocations by offset, type, addend and target, the same defined symbols. A group failing it is restored as a whole (11 groups: mostly a type whose own constructor or method is an outside symbol, so the qualified name itself changes). A group that would give an enclosing type in its files a new differing text is skipped before compiling (17 groups, for example `UnkItem` inside `UnkPtrArray`, `UnkRefObject` inside `UnkRefPtr`).
+- **Merges (8 names).** Two views of one object with compatible members, joined in a header of its own and included by every user, the fuller view kept: `UnkTunables`, `UnkGoliathTunables_gla`, `UnkSlotsInfo_ovb0176` (one read of `field_0x30` becomes `count`), `UnkHeatableShieldEntry`, `UnkWideStr_0x20`, `UnkMgr_0xf18` (with its state object), `UnkEmmyOwner_b0193` (with its AI object and vtable), and `UnkThermalDevice_b0279`, whose local copy was a subset of `include/game/UnkThermalDevice_b0279.h` and now includes it. Each merge passed the same test (here the objects are identical, names included).
+- **Backed out:** nothing after the gates. Linking a function's definition to its declarations (not only declarations to each other) made `decl_check --strict` and `struct_check --base` pass on the first try; a first run without it broke both, and was discarded.
+- **Untouched:** templates and namespaced names, as before; anything under `CSamusGroundMovementState/`, `CSamusFloorSlideMovementState/`, the door unit `UnkTU1376` and its headers, and files naming `g_unk_7172731368` (merged meanwhile in #633; this branch merges it cleanly).
+- **What is left (182).** About 140 are names with groups that hold two texts of the name in one translation unit or across one function's declarations: a header forward-declares the type and points at it from another struct or a function, and two sources complete it differently (for example `UnkBoundsNode`, `UnkContactHit`, `UnkEntry_cu`, `UnkLabelSource`). Renaming cannot separate them; they need layout work, one class at a time: decide whether the two texts are one object (merge, as above; many differ in a member's pointee type or in an inline constructor, which changes code and needs care) or two (then the shared header's declaration must be split per user). The rest are three names too large for this pass (`UnkManager`, `UnkObject`, `UnkParent`, 44 to 52 files each) and the 28 skipped or failed groups above; the largest names (`UnkOwner`, `UnkStateObject`, `UnkLanguage`) are of the first kind.
+
+Reusable: the grouping (translation-unit visibility plus signature linkage, definitions included) is what a rename across files needs; with it the two ratchets passed with no backing out.
+
+**Generated reflection: drop unused tunable usings, rename two reflection headers (#636, 2026-11-23).**
+
+**About a thousand more generated reflection files are free of placeholders.** In most of `src/reflection/`, the only placeholder tokens were an include and two `using` lines that the file does not use. This change removes them.
+
+- `tools/gen_reflection.py`: a final pass, `without_unused_usings`, drops `using base::reflection::UnkTunable;` and `using base::reflection::UnkTunableRegistry;` from any file that does not name them elsewhere. Only the 183 files with `CTunable*` field functions keep them. A test is in `tools/tests/test_gen_reflection.py`.
+- `include/base/reflection/UnkReflAttributes.h` is renamed to `ReflectedAttributes.h`. The new name matches `ReflectedClass.h` and `ReflectedFields.h`, which it sits beside: the header holds the attribute and member-field registration helpers. A header's file name is ours to choose. **The types inside it are not renamed.** `UnkReflAttrKey`, `UnkReflAttrs`, `UnkReflValueRef`, the `fn_<addr>` key getters and the rest keep their placeholders: no RTTI, reflection or MEDS name ties to them yet.
+- `include/base/reflection/UnkReflPrimitiveType.h` is renamed to `PrimitiveType.h`. It is the same kind of placeholder, found the same way: an include in 147 generated files. Its contents already had real names (`PrimitiveType<T>`, `PrimitiveTypeDescription`).
+- Every include of the two headers is updated: hand-written sources, drafts, tools and their tests. Historical entries in `docs/JOURNAL.md` are left as they are. `src/reflection/` (1,511 files) and `src/reflection_types/` (11 files) were regenerated by `gen_reflection` and `gen_types`. The generated diff has only three kinds of change: the renamed include, the renamed primitive-type include, and the removed `using` lines.
+
+**How the files were counted:** a script, not committed, scanned every `src/reflection/*.cpp`.
+- Comments and string literals are stripped first. Include paths are kept.
+- A file is placeholder-free when nothing is left that matches any of these: `fn_<hex>`, any identifier containing `Unk`, `g_unk_`, `field_0x`, `unk_0x`, `unk_<hex>`.
+- Functions and bytes are the `O` functions that `check.py`'s cache attributes to each file, with sizes from `data/functions/`.
+
+| | files | `O` functions | bytes |
+|---|---|---|---|
+| Placeholder-free, before | 455 | 5,931 | 482,448 |
+| Placeholder-free, after | 1,495 | 15,092 | 1,771,632 |
+| All of `src/reflection/` | 2,117 | 25,748 | 4,559,184 |
+
+The other worker's scan found 592 clean files. That scan counted `\bUnk`-prefixed tokens only. This one also counts `refl_UnkStaticsUse_<addr>`, so it is stricter.
+
+**What still carries placeholders, and why:**
+- 388 files have `fn_<addr>` in their bodies: callees, accessors and invokers that have no names yet. That is naming work and is not touched here.
+- 234 more files carry one of these:
+  - `refl_UnkStaticsUse_<addr>` and `unk_statics_*` (363 files, overlapping the 388). These are padding for statics of the unit that are not reconstructed, so they are honestly unknown.
+  - `UnkTunable` / `UnkTunableRegistry` where a `CTunable*` class registers itself. MEDS has `base::tunable::CTunable` and `CTunableManager`, but nothing ties them to these types yet (PR #623).
+  - A few `g_unk_`, `UnkRefl_fn_`, `UnkStrIdInline`, `UnkReflClassTraits`, `UnkReflList` and `UnkReflStringList` uses.
+
+**progress.py --quality: name figures, clean generated code and sampled reads (#634, 2026-11-23).**
+
+`tools/progress.py --quality` now reports, under its existing table and in the block `--handoff` writes, the figures `CLAUDE.md` ("Purpose and completion") defines but the tool did not measure. Reporting only: no gate, no CI check, and every existing row keeps its label and value (compared against `origin/main` on the same cache). `docs/HANDOFF.md` is not regenerated here.
+
+New rows, today (cache shared with other worktrees, so about 0.1 point either way):
+
+| Row | Functions | Share of code |
+|---|---|---|
+| Finished, names loose (own name, class and members real; references to placeholder functions allowed) | 18 | 0.01% |
+| Finished, names strict (no placeholder anywhere) | 18 | 0.01% |
+| Generated `src/reflection/`, clean, not yet read | 6,229 of 25,747 matching | 2.54% |
+| Generated `src/clones/`, `lifted/`, `reflection_types/`, `reflection_statics/`, `tables/`, clean | 0 | 0.00% |
+| Generated, read and passed (`data/family_reads.csv`) | 0 | 0.00% |
+| Readable and matching, the CLAUDE.md metric (finished + read and passed) | 12,422 | 22.13%, beside the finished 22.13% |
+
+Most finished functions fail on their own name: 10,950 of the 12,422 are still `fn_<addr>`. Among the others the usual failures are `field_0x..` members, `g_unk_` globals and `Unk...` types.
+
+**Placeholders.** `fn_<addr>`; `Unk...` types, except `UnkNoArg` (it states a fact: the original leaves that argument register unloaded) and ordinary words such as `Unknown`; `field_0x..`; `unk_<addr>` and `unk_0x..`; `g_unk_...`; `vf_<slot>`, because a slot number says nothing about what the function does. Not placeholders: `refl_...`, inferred roles (`refl_GetClass`, `refl_TypeOf`) that read as what the function does, and `pad_0x..`, a layout's mark for bytes nothing reads. Comments, string and character contents and preprocessor lines are blanked before the test.
+
+**Loose vs strict.** Strict: no placeholder in the function's signature or body. Loose: the signature (own name, class, parameter types) must be clean. In the body, references to other functions are allowed (`fn_<addr>` called or passed as a pointer, `vf_<slot>`), and so is an `Unk...` class that only qualifies a callee (`UnkFoo::fn_x(`). Members, globals and the types of what the function touches still count.
+
+**Scope.** The test runs per function: it finds the definition by its name from check.py's cache, at column 0, including one-line definitions and constructors with initializers. When the definition is not found (596 today: indented, template-generated, made by a macro), the file is tested instead, and the output says how many were judged that way. Generated code is tested per file, as asked.
+
+**`data/family_reads.csv`** (new, header only): `family,scope,generator_commit,date,sample_size,verdict,reader,notes`. `scope` is a path glob relative to the repository, or a `.txt`/`.csv`/`.lst` list file with one glob or function address per line. A family's latest row (by date, then by order in the file) decides, pass or fail, for the whole family. A clean, matching generated function that a passing scope covers moves from "clean, not yet read" to "read and passed".
+
+Still open: the join does not check `generator_commit` against the generator's current version, so a pass recorded for an older release still counts. The person who adds a row after a generator change has to keep that in mind. Unit tests are in `tools/tests/test_progress_names.py` and use made-up sources only: tokens, comments, finding definitions, loose and strict, the by-file fallback, the `family_reads.csv` join, `names_report` on a fake cache, and the handoff line. `--quality` ran in about 15 to 25 s here, against 35 s before (the check cache is now read once and shared).
+
+**Move two held matching drafts into src: one Samus ground state layout, one declaration each for the door tunable and shield ids (include/) (#633, 2026-11-23).**
+
+The two drafts that matched byte for byte but were held on declarations are now in `src/`.
+
+- **`fn_710099db00`** (`CSamusGroundMovementState::CParams`, 1,048 bytes). The floor-slide caller declared it locally through its own view of the state, and the draft used another. Both views are now one layout in `include/game/UnkSamusGroundState.h` (the vtable up to `vf_38`, the machine, owner, movement, params and state members, and the four small types they point at), and the function is declared once, in the unit header. The draft's cast of the id table is gone: `include/game/UnkGameManagerIdTable.h` gains two named slots, split out of two pads, with the size and every other offset unchanged. The floor-slide source loses its local structs and prototype and still matches.
+- **`fn_71008d0250`** (the door unit `UnkTU1376`, 1,264 bytes). The door tunable `g_unk_7172731368` now has one type, `UnkDoorLifeTunable`, in a header of its own, with members from `gen_fields.py` for the door life component's tunable. The shield's animation ids were declared as a two-element array in the draft and as two separate globals in the shield source; both now use one `UnkDoorShieldAnimations {open, close}` in `include/game/UnkDoorShieldIds.h`. `fn_71008d0a08` and `fn_71008d89b0` move into the unit header.
+- **Existing sources touched** grade as before: the floor-slide track file (1 of 1), the door shield file (5 of 5), the door fade file (1 of 1), and `fn_71008da6c0`, which was already minor and is unchanged at 88.5%.
+
+Left over: the calls to `fn_710098ae04` in the first function still cast between placeholder types, as in the draft. The held draft for `fn_71008d0a08` may be released by the new unit header; not tried here.
+
+Reusable: two workers shared one checkout, one draft each, file-disjoint apart from `drafts/INDEX.csv`, with their own `trymatch --obj-dir`; the coordinator ran `check.py` once. About 140,000 and 159,000 worker tokens for the two.
+
+**Give file-local copies of 15 more conflicting type names their own names (#632, 2026-11-23).**
+
+Batch 2 of the type names #618 left, a second pass of #628 after it merged: names that hand-written sources define with different texts, where the type appears in a function's mangled signature, so #618's byte-identical test refused the rename.
+
+| `tools/struct_check.py` | origin/main | this PR |
+|---|---|---|
+| names with differing texts | 264 | 249 |
+
+- **Renames (69 files).** As in #618, the most common text (or a header's) keeps the name and each other file-local copy becomes `<Name>_<suffix>`, with the file's unit suffix or its first function's address. These stay placeholders.
+- **The test changes.** An edit is kept only when the source compiles (Clang 9.0.1, project flags) to the same object once every symbol name is cut to its qualified name without parameter types: the same section bytes, the same relocations by offset, type, addend and target, the same defined symbols. A renamed type can therefore change only a mangled parameter list, never code or data.
+- **Backed out:** every renamed file that made `decl_check --strict --base origin/main` or `struct_check --base origin/main` worse. These are mostly a function declared in another file with the old type name, or a renamed member type that changed an enclosing struct's text. Renames reverted on that basis are left for the next batch. Templates and namespaced names (for example `nn::mem::StandardAllocator`) were not touched.
+- **What is left (249).** Mostly copies whose functions are declared in other files or headers with the shared name. Separating those means giving the declaring header the renamed type, file by file. Next batch.
+
+Reusable: the comparison "same object modulo parameter types in symbol names" is the right acceptance test for renaming types that appear in signatures; check.py maps functions by name, so the match check is unaffected.
+
+**Narrow the project permission rules (#630, 2026-11-23).**
+
+Replaces the project's `.claude/settings.json` permission list with narrow rules that the owner approved:
+
+- **Allowed:** read-only git (status, diff, log, show, blame, grep, rev-parse, merge-base, for-each-ref, `fetch origin`, branch listing) and read-only gh (pr view/list/checks/diff, run list/view, issue view/list). Each repo tool by name (check, verify, trymatch, hubs, drafts, permute, equiv_test and the rest) under `python`, `python3`, `python -m tools` and the venv's python. Edits under `build/` and `drafts/`. Pushing, merging and deleting `claude/*` branches, and creating and editing PRs.
+- **Denied:** plain force-push, any push to the `archive` remote, `gh pr merge --admin`, `git commit --no-verify`, `gh repo delete`, `git reset --hard`, `git clean`.
+
+There is no broad `python:*` or `git:*`. Anything not listed falls back to auto mode's classifier.
+
+The prompts seen since Code Mode was turned on were safety-check writes inside worktrees. Allow rules can't pre-approve those, so this PR reduces classifier calls but won't remove those prompts.
+
+**Give fn_7100316018 a slot type and promote four drafts that needed it (#631, 2026-11-23).**
+
+Four drafts from #629 that match only when fn_7100316018's out-parameter is a slot type of its own. That callee now takes it, and they are promoted.
+
+- **`UnkWeakRef` (include/game_s2/UnkWeakHandle.h):** a one-member struct holding the `UnkWeakHandle*` that fn_7100316018 fills. With a bare `UnkWeakHandle**`, Clang folds the slot's address into a pre-indexed load where the original keeps `self`; with the slot as its own object it keeps `self`, as the original does.
+- **fn_7100316018** (`include/game/CAbilityGhostAura.h` and its definition) takes `UnkWeakRef*`. Its 46 callers were rewritten by script, and each was kept only if its object still matched:
+  - 40 now hold their slot as `UnkWeakRef handle;`. Their other uses read `handle.handle`.
+  - 6 address the slot by offset or through another layout, and now pass `reinterpret_cast<UnkWeakRef*>(...)` where they passed a `UnkWeakHandle**` before. That is no worse than before. Most of them carried an offset cast already.
+  - The Takumaku component's file-local `UnkWeakRef` is now `UnkWeakRef_l6d4d4c`.
+- **Promoted, all `O`:** 0x7100518684 and 0x7100518abc (behaviortree::CEmmySearchingAction), 0x7100482624 (CChozoWarriorXLandAttack), 0x710043c21c (CChozoCommanderTriComboAttack).
+- **Declarations moved into headers,** so that the multi-file count does not grow:
+  - The E.M.M.I. movement view and fn_71005717d4 go in the new `include/game/CEmmyMovement.h`.
+  - The path-end pair fn_71010fc5fc and fn_71010fc554 go in `include/game/UnkTU2702.h`, with their definitions' types. The land attack's AI view now derives from `UnkReflObject`.
+  - fn_710051d568 goes in `CEmmySearchingAction.h`, fn_7101177be0 in `CAnimationComponent.h` (with `UnkTimelineId.h`), and fn_710049c59c in `CChozoWarriorAIComponent.h`.
+
+Still in drafts: 0x710099db00 and 0x71008d0250 match. Each needs two partial views of one object merged first (the Samus ground and floor-slide state, the door tunable).
+
+Follow-up worth trying: many matched callers keep an empty barrier or an offset cast for this very slot. Now that the slot has its own type, some of those may no longer be needed (`fakematch.py --unneeded-barriers`).
+
+**Match seven recovered drafts and promote them (#629, 2026-11-23).**
+
+The matching run on the drafts #615 made compile again (graded in #624). Of those, 47 were at 95% or more: 35 registers-only, 18 with other differences (4 of them the held drafts #627 landed).
+
+**Matched and promoted (7, all `O`):**
+- By `permute.py` over the 35 registers-only drafts (3 of 35): 0x71006cd5c8 (CSwifterAIComponent), 0x71006b7508 (CShelmitChargeAction), 0x71006751d0 (CTurnInDoorAction). Each is two to four statements moved.
+- By hand, three workers with about 30 minutes a function on the other 18 (4 promoted here):
+  - 0x71003d3a74 (CAutsniperShootAttack): the zeroing of the pair at +0x98 and of +0x90 comes right after the store to +0xc8, before the tunable is read.
+  - 0x7100588474 (CGoliathXAIComponent): the motion-parts word is a small struct declared outside the `if`, not zeroed. A plain `u32` takes another stack slot.
+  - 0x71009e4598: the stealth tunable's flag at +0x39 is a one-bit field (`tbz` on bit 0).
+  - 0x7100eb8654: the grow check is written as its sibling `At` writes it (`size = index + 1; if (size > count)`).
+- 0x71006751d0's door-facing callees (fn_71008db24c, fn_71008db440) are now declared once in `include/game/CDoorShieldLifeComponent.h`; fn_71003d3cf8 and the player-movement tunable g_unk_7172a03d80 moved to their unit headers too (multi-file declarations 267 -> 266).
+
+**Match but stay in drafts (6), each held on a shared declaration:**
+- 0x7100518684, 0x7100518abc, 0x7100482624, 0x710043c21c: each matches once the weak-handle slot passed to fn_7100316018 is a one-member struct (`UnkWeakRef { UnkWeakHandle* handle; }`) instead of a bare `UnkWeakHandle**`. Each draft carries a local overload today. The header change touches fn_7100316018's 49 callers, and many matched siblings use a barrier or offset cast for exactly this, so it is its own PR.
+- 0x710099db00 (a one-bit field at +0x34, like 0x71009e4598): its definition's parameter type differs from the Samus floor-slide state's declaration, a view of the same object.
+- 0x71008d0250: one `u64 name` at function scope fixes the slots; it still declares the door tunable (g_unk_7172731368) and an animation-id pair with other types than their existing declarations.
+
+**Improved, not matched:** 0x71004c7324 (98.8% -> 99.4%) and 0x7101171fcc (96.7% -> 99.2%) are now registers-only; the permuter found nothing at 3,000 tries, and `equiv_test` stops on the known inline local-static guard. 0x7100696f04 is 96.2%: its note's "without strict aliasing" was backwards (the project default already is). The rest of the 18 are unchanged; the worker reports said why (stack-slot sharing, a static's offset inside the unit's merged `.bss`, an iterator form).
+
+Reusable: in three of these, the slot difference came from where a local's lifetime ends (its scope), not where it is declared; Clang treats a local as live from its first use.
+
+Cost: three workers, about 510,000 tokens in all, for 7 hand matches (4 promoted here, 3 held), about 73,000 tokens a match.
+
+**Give file-local copies of 72 conflicting type names their own names (#628, 2026-11-23).**
+
+Batch 1 of the type names #618 left: names that hand-written sources define with different texts, where the type appears in a function's mangled signature, so #618's byte-identical test refused the rename.
+
+| `tools/struct_check.py` | origin/main | this PR |
+|---|---|---|
+| names with differing texts | 336 | 264 |
+
+- **Renames (242 files, one line pattern each).** As in #618, the most common text (or a header's) keeps the name and each other file-local copy becomes `<Name>_<suffix>`, with the file's unit suffix or its first function's address. These stay placeholders.
+- **The test changes.** An edit is kept only when the source compiles (Clang 9.0.1, project flags) to the same object once every symbol name is cut to its qualified name without parameter types: the same section bytes, the same relocations by offset, type, addend and target, the same defined symbols. A renamed type can therefore change only a mangled parameter list, never code or data.
+- **Backed out:** every renamed file that made `decl_check --strict --base origin/main` or `struct_check --base origin/main` worse. These are mostly a function declared in another file with the old type name, or a renamed member type that changed an enclosing struct's text. About 120 renames were reverted on that basis. Templates and namespaced names (for example `nn::mem::StandardAllocator`) were not touched.
+- **What is left (264).** Mostly copies whose functions are declared in other files or headers with the shared name. Separating those means giving the declaring header the renamed type, file by file. Next batch.
+
+Reusable: the comparison "same object modulo parameter types in symbol names" is the right acceptance test for renaming types that appear in signatures; check.py maps functions by name, so the match check is unaffected.
+
+**Reconcile four held drafts' declarations and promote them (#627, 2026-11-23).**
+
+The four drafts #624 held on their declarations, reconciled and promoted. No match lost (`check.py`: 0 mismatched relocations; `lost_matches` clean).
+
+- **0x710107e260 (`lua_bind::TeleportEntityToRawPos`), O.** It declared fn_7100d7babc with two parameters; the unit header has a third, a float. The call now passes the speed it just tested, which is what the original's float register holds there. fn_71010e46cc (the camera's flag setter, unit 2691) is declared once in `include/game/CCameraComponent.h` with a `bool`, the type its other caller already used; fn_71010c0270 and the unit 2553 symbols come from their headers.
+- **0x7100e6fb64, O.** The callee fn_7100e6fdf4 was defined through a file-local alias (`UnkKeyedArray<T>` = `CRntSmallDictionary<CStrId, T>`), which `decl_check` reads as a different type. The definition now spells the dictionary type, and its declaration (with fn_7100e6f940's, now shared by two files) lives in `include/game/UnkTU2564.h`.
+- **0x7100b94bec, m (verified equivalent).** fn_71011ce488 takes the display object's colour (+0xa0); the draft passed a 0x14-byte "rest state". It is declared once in `include/game/UnkTU2747.h` with `unk_gui::UnkColor`, and both callers use that type. With the declaration fixed, `equiv_test.py` passes (it had been inconclusive). Two sound-event globals it uses move into `include/game/sound/SGUISoundEventsSelector.h`.
+- **0x71006dfa88, O (the Vulkran magma ball's hit test).** Three files had their own view of one object. Its layout is now `include/game/CVulkranMagmaBallMovementComponent.h` (`UnkVulkranMagmaBall`, the player part, holder, definition and the shot it sends back), used by the Vulkran update (0x71006df868), this hit test and the Spittail ball's collide (0x71006caaf8), whose layout now derives from it (its own flag at +0x5d8, its own definition at +0x5e0).
+
+Reusable: `decl_check` compares declaration text, so a type alias in a definition reads as a conflict; spell the aliased type in shared signatures.
 
 **Name the reflected field type base::reflection::CVariable (#625, 2026-11-23).**
 
