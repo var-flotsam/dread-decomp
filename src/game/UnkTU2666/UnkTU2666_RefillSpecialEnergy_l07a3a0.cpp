@@ -29,7 +29,8 @@ void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 
 void fn_7100a1f8cc(UnkWeakTarget* target);
 
-s32 fn_710107a3a0(lua_State* L) {
+namespace lua_bind {
+s32 RecoverSpecialEnergy(lua_State* L) {
     {
         UnkTypedValue v;
         UnkGameManager* manager = g_unk_7101d47310;
@@ -64,3 +65,4 @@ s32 fn_710107a3a0(lua_State* L) {
             fn_7100a1f8cc(target);
     return 0;
 }
+}  // namespace lua_bind

@@ -48,7 +48,8 @@ static inline u32 SlotKind(const CStrId& id) {
     return kind;
 }
 
-s32 fn_7101090450(lua_State* L) {
+namespace lua_bind {
+s32 SetMaterialProperty(lua_State* L) {
     const char* name;
     const char* slot;
     const char* kind_name;
@@ -91,3 +92,4 @@ s32 fn_7101090450(lua_State* L) {
     fn_71001c28f8(owner->slots, key, kind, &color, 1);
     return 0;
 }
+}  // namespace lua_bind

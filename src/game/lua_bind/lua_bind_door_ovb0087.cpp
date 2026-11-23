@@ -70,7 +70,8 @@ struct __attribute__((packed)) UnkLuaIdList {
 };
 struct UnkStruct_7172a0768c;
 
-int fn_7100fbb9e0(lua_State* L) {
+namespace lua_bind {
+int AddSpawneableCharClassInFINAL(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name) && *name) {
         CStrId id(name, true);
@@ -81,7 +82,7 @@ int fn_7100fbb9e0(lua_State* L) {
     return 0;
 }
 
-int fn_7100fb9bc0(lua_State* L) {
+int ClearWorldGraph(lua_State* L) {
     u64 hash;
     alignas(8) u32 kind;
     const char* name;
@@ -103,6 +104,7 @@ int fn_7100fb9bc0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 static inline void* FindObject(UnkGameManager* manager, const CStrId& id, u32 kind_value) {
     u64 hash;
@@ -114,7 +116,8 @@ static inline void* FindObject(UnkGameManager* manager, const CStrId& id, u32 ki
     return fn_7100deba8c(manager, &hash, &kind);
 }
 
-int fn_7100fb9840(lua_State* L) {
+namespace lua_bind {
+int SetWorldGraphNodeEnabled(lua_State* L) {
     const char* name;
     const char* state;
     bool enabled;
@@ -141,7 +144,7 @@ int fn_7100fb9840(lua_State* L) {
     return 0;
 }
 
-int fn_7100fb96c0(lua_State* L) {
+int AddWorldGraphNode(lua_State* L) {
     const char* name;
     const char* other;
     if (fn_71010c0270(L, "ss", &name, &other) && *name && *other) {
@@ -164,6 +167,7 @@ int fn_7100fb96c0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkReflType;
 u32 fn_71000997b4(UnkReflType* type, const char* name);
@@ -178,7 +182,8 @@ static inline UnkManager_71726af468* AIManager() {
     return m;
 }
 
-int fn_7100fbb850(lua_State* L) {
+namespace lua_bind {
+int RemovePerceptionModifier(lua_State* L) {
     const char* name;
     const char* group;
     if (fn_71010c0270(L, "ss", &name, &group) && *name && *group) {
@@ -189,7 +194,7 @@ int fn_7100fbb850(lua_State* L) {
     return 0;
 }
 
-int fn_7100fbb6e0(lua_State* L) {
+int AddPerceptionModifier(lua_State* L) {
     const char* name;
     const char* group;
     CVector3D pos;
@@ -203,3 +208,4 @@ int fn_7100fbb6e0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

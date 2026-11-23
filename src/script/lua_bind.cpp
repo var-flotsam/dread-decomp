@@ -61,52 +61,54 @@ struct UnkSubAreaManagerView_lua_bind {
 }  // namespace
 
 // lua_bind::IsSaveDataInDummyMode
-int fn_7101078d20(lua_State* L) {
+namespace lua_bind {
+int IsSaveDataInDummyMode(lua_State* L) {
     UnkUserDataOwner* owner = GetOrCreate<UnkUserDataOwner, 0x2b8>(g_unk_7101d47308, fn_710120320c);
     return fn_71010c0b40(L, "b", FlagAt(owner, 0x2a8));
 }
 
 // lua_bind::GetControlledAI
-int fn_7101085e00(lua_State* L) {
+int GetControlledAI(lua_State* L) {
     UnkManager_71726af468* m = GetOrCreate<UnkManager_71726af468, 0x2610>(g_unk_71726af468, fn_7100da7e2c);
     return fn_71010c0b40(L, "b", FlagAt(m, 0x8));
 }
 
 // lua_bind::IsAttackLocked
-int fn_7101087980(lua_State* L) {
+int IsAttackLocked(lua_State* L) {
     char* m = GetOrCreate<char, 0x108>(g_unk_71726b2398, fn_71011a664c);
     return fn_71010c0b40(L, "b", FlagAt(m, 0xf0));
 }
 
 // lua_bind::GetCaptionsAllowed
-int fn_710108da20(lua_State* L) {
+int GetCaptionsAllowed(lua_State* L) {
     void* m = GetOrCreate<void, 0x40>(g_unk_7172758b20, fn_7101192628);
     return fn_71010c0b40(L, "b", FlagAt(m, 0x38));
 }
 
 // lua_bind::IsEnvironmentSoundEnabled
-int fn_710108eda0(lua_State* L) {
+int IsEnvironmentSoundEnabled(lua_State* L) {
     void* m = GetOrCreate<void, 0x4c8>(g_unk_7101d47368, fn_7100d8ced8);
     return fn_71010c0b40(L, "b", FlagAt(m, 0x4a2));
 }
 
 // lua_bind::IsEnvironmentSoundEffectsEnabled
-int fn_710108ee00(lua_State* L) {
+int IsEnvironmentSoundEffectsEnabled(lua_State* L) {
     void* m = GetOrCreate<void, 0x4c8>(g_unk_7101d47368, fn_7100d8ced8);
     return fn_71010c0b40(L, "b", FlagAt(m, 0x4a3));
 }
 
 // lua_bind::IsDroppedItemsAttractionEnabled
-int fn_71010945d0(lua_State* L) {
+int IsDroppedItemsAttractionEnabled(lua_State* L) {
     void* m = GetOrCreate<void, 0xa0f8>(g_unk_71726eb3e8, fn_7100e211cc);
     return fn_71010c0b40(L, "b", FlagAt(m, 0x7888));
 }
 
 // lua_bind::GetCurrentSubAreaId: the current sub-area's name, or the empty one's.
-int fn_7101094e20(lua_State* L) {
+int GetCurrentSubAreaId(lua_State* L) {
     auto* m = static_cast<UnkSubAreaManagerView_lua_bind*>(GetOrCreate<void,
                                                   0xae8>(reinterpret_cast<void*&>(g_unk_7101d47360), fn_7100ee1f34));
     const CStrId& id = m->current ? m->current->name : base::global::CStrId::Empty();
     const CRntString& str = base::reflection::refl_RntStringOf(id);
     return fn_71010c0b40(L, "s", str.data ? str.data : "");
 }
+}  // namespace lua_bind

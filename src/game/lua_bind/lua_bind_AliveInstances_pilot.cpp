@@ -11,7 +11,8 @@ struct lua_State;
 
 s32 fn_7100deb830(UnkGameManager* manager, const CStrId& id);
 
-s32 fn_710107ee80(lua_State* L) {
+namespace lua_bind {
+s32 GetNumberOfAliveInstancesOfCharClass(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -23,3 +24,4 @@ s32 fn_710107ee80(lua_State* L) {
     }
     return fn_71010c0b40(L, "i", result);
 }
+}  // namespace lua_bind

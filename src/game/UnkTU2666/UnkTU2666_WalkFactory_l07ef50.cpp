@@ -35,10 +35,12 @@ struct UnkHashCursor_l07ef50 {
     }
 };
 
-u32 fn_710107ef50() {
+namespace lua_bind {
+u32 PrintCharClasses() {
     UnkActorDefFactory_l07ef50* factory = reinterpret_cast<UnkActorDefFactory_l07ef50*>(g_unk_71726a0220);
     UnkHashCursor_l07ef50 cur = {factory, factory->bucket, factory->node};
     for (; cur.node; cur.Next()) {
     }
     return 0;
 }
+}  // namespace lua_bind

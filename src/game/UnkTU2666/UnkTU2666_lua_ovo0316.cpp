@@ -102,15 +102,16 @@ static inline s32 SetEntitySound_b0163(lua_State* L) {
     return 0;
 }
 
-s32 fn_710108c1d0(lua_State* L) {
+namespace lua_bind {
+s32 SetEntitySoundPitch(lua_State* L) {
     return SetEntitySound_b0163<false>(L);
 }
 
-s32 fn_710108c350(lua_State* L) {
+s32 SetEntitySoundVol(lua_State* L) {
     return SetEntitySound_b0163<true>(L);
 }
 
-s32 fn_710107d500(lua_State* L) {
+s32 HasEntityComponent(lua_State* L) {
     // The entity's key and then the component's name id use one stack slot.
     union Slot {
         Slot() {}
@@ -145,6 +146,7 @@ s32 fn_710107d500(lua_State* L) {
     slot.id.~CStrId();
     return pushed;
 }
+}  // namespace lua_bind
 
 struct UnkScenarioObject_ovb0032;
 
@@ -155,7 +157,8 @@ inline void* FindByName_b0163(UnkGameManager* manager, const char* name) {
     return fn_7100deba8c(manager, &key, &kind);
 }
 
-s32 fn_710107de40(lua_State* L) {
+namespace lua_bind {
+s32 TeleportEntityToStartPoint(lua_State* L) {
     alignas(8) u32 kind;
     const char* entity_name;
     const char* target_name;
@@ -189,6 +192,7 @@ s32 fn_710107de40(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 void fn_7100dffe04(UnkGameManager* self, s32 value);
 

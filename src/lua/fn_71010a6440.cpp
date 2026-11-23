@@ -7,7 +7,8 @@
 
 extern int (*g_puts_71010a6440)(const char*, FILE*);
 
-int fn_71010a6440(lua_State* L) {
+namespace lua_lib {
+int print(lua_State* L) {
     int n = lua_gettop(L);
     int i;
     lua_getglobal(L, "tostring");
@@ -26,3 +27,4 @@ int fn_71010a6440(lua_State* L) {
     g_puts_71010a6440("\n", stdout);
     return 0;
 }
+}  // namespace lua_lib
