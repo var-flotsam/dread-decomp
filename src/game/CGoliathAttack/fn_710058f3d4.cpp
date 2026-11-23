@@ -6,10 +6,10 @@
 
 #include <new>
 
-void fn_710058f3d4(CGoliathAttack* self, const CGoliathAttack* other) {
+void CGoliathAttack::refl_CopyConstruct(CGoliathAttack* self, const CGoliathAttack* other) {
     new (self) CGoliathAttack(*other);
 }
 
-void fn_710058f4cc(CGoliathAttack* self, const CGoliathAttack* other) {
+void CGoliathAttack::refl_MoveConstruct(CGoliathAttack* self, const CGoliathAttack* other) {
     new (self) CGoliathAttack(*other);
 }

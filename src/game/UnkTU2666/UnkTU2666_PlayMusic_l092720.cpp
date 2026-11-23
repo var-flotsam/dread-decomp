@@ -90,7 +90,8 @@ static inline UnkTuneMgrView_b0019* MusicManager_l092720() {
     return static_cast<UnkTuneMgrView_b0019*>(manager);
 }
 
-s32 fn_7101092720(lua_State* L) {
+namespace lua_bind {
+s32 DebugPlayStream(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         CFilePathStrId path(name, true);
@@ -106,3 +107,4 @@ s32 fn_7101092720(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

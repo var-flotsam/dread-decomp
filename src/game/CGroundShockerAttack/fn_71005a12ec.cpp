@@ -5,10 +5,10 @@
 
 #include <new>
 
-void fn_71005a12ec(CGroundShockerAttack* self, const CGroundShockerAttack* other) {
+void CGroundShockerAttack::refl_CopyConstruct(CGroundShockerAttack* self, const CGroundShockerAttack* other) {
     new (self) CGroundShockerAttack(*other);
 }
 
-void fn_71005a13a0(CGroundShockerAttack* self, const CGroundShockerAttack* other) {
+void CGroundShockerAttack::refl_MoveConstruct(CGroundShockerAttack* self, const CGroundShockerAttack* other) {
     new (self) CGroundShockerAttack(*other);
 }

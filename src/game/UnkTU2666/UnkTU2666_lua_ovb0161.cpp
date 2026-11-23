@@ -69,13 +69,15 @@ static inline f32 StatByName_b0161(UnkStatsObject* stats, const char* name) {
     return fn_7100132240(stats, id);
 }
 
-s32 fn_710107f9e0(lua_State* L) {
+namespace lua_bind {
+s32 GetStat(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
     UnkStatsObject* stats = Singleton_b0161<UnkStatsObject, 0x78, fn_7100131f48>(g_unk_7101d47100);
     return fn_71010c0b40(L, "f", (f64)StatByName_b0161(stats, name));
 }
+}  // namespace lua_bind
 
 // ---- the music manager ----
 struct UnkMgr_0xf18;
@@ -92,7 +94,8 @@ static inline void* MusicManager_b0161() {
     return manager;
 }
 
-s32 fn_7101092ac0(lua_State* L) {
+namespace lua_bind {
+s32 DebugGetStreamVolumeFromData(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return -1;
@@ -102,7 +105,7 @@ s32 fn_7101092ac0(lua_State* L) {
     return fn_71010c0b40(L, "f", (f64)value);
 }
 
-s32 fn_7101092bb0(lua_State* L) {
+s32 DebugGetEnvironmentMultiplier(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return -1;
@@ -111,6 +114,7 @@ s32 fn_7101092bb0(lua_State* L) {
     f32 value = fn_7100fdc500(static_cast<UnkTuneMgrView_b0019*>(manager), reinterpret_cast<const u64*>(&id));
     return fn_71010c0b40(L, "f", (f64)value);
 }
+}  // namespace lua_bind
 
 // ---- the item inventory ----
 struct UnkInventory;
@@ -144,7 +148,8 @@ struct UnkMgr;
 struct UnkHandle;
 void fn_7100fdc598(void* manager, f32 value, const CFilePathStrId* id);
 
-s32 fn_71010929c0(lua_State* L) {
+namespace lua_bind {
+s32 DebugSetStreamVol(lua_State* L) {
     f32 value;
     const char* name;
     bool flag = false;
@@ -156,6 +161,7 @@ s32 fn_71010929c0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 // ---- a music request by name ----
 extern "C" int __cxa_guard_acquire(u64* guard);
@@ -164,7 +170,8 @@ extern u32 g_unk_717274f508;
 extern u64 g_unk_717274f510;
 struct UnkMusicMode;
 
-s32 fn_7101090f50(lua_State* L) {
+namespace lua_bind {
+s32 PlayCustomMusic(lua_State* L) {
     f32 first;
     f32 second;
     s32 arg;
@@ -187,6 +194,7 @@ s32 fn_7101090f50(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 // ---- the rumble manager ----
 using base::input::UnkRumbleManager;
@@ -210,7 +218,8 @@ inline u32 UnkRumbleDefaultMask() {
     return s_mask;
 }
 
-s32 fn_710107f440(lua_State*) {
+namespace lua_bind {
+s32 StopPadVibration(lua_State*) {
     base::input::UnkRumbleManager* manager =
         Singleton_b0161<base::input::UnkRumbleManager, 0x2210, fn_71000733e4>(g_unk_7101d47348);
     alignas(8) u32 mask = UnkRumbleDefaultMask();
@@ -218,18 +227,20 @@ s32 fn_710107f440(lua_State*) {
     return 0;
 }
 
-s32 fn_710107f540(lua_State*) {
+s32 PausePadVibration(lua_State*) {
     base::input::UnkRumbleManager* manager =
         Singleton_b0161<base::input::UnkRumbleManager, 0x2210, fn_71000733e4>(g_unk_7101d47348);
     alignas(8) u32 mask = UnkRumbleDefaultMask();
     fn_7100075020(reinterpret_cast<UnkTunableRumbleManager_b0068*>(manager), true, &mask);
     return 0;
 }
+}  // namespace lua_bind
 
 // ---- the game manager, two names ----
 void fn_7100e037f8(UnkGameManager* self, const CStrId& first, const CStrId& second);
 
-s32 fn_7101082ca0(lua_State* L) {
+namespace lua_bind {
+s32 SetScenarioBlackboardSectionID(lua_State* L) {
     const char* first;
     const char* second;
     if (fn_71010c0270(L, "ss", &first, &second)) {
@@ -240,6 +251,7 @@ s32 fn_7101082ca0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkArenaEntries_ovb0108;
 void fn_7100e1593c(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& value);
@@ -280,7 +292,8 @@ struct UnkManager;
 void fn_7100eeb15c(void* self, const CStrId& id);
 void fn_7100eeb24c(void* self);
 
-s32 fn_71010838a0(lua_State* L) {
+namespace lua_bind {
+s32 SetCollisionCameraLocked(lua_State* L) {
     const char* name;
     bool flag;
     if (fn_71010c0270(L, "sb", &name, &flag)) {
@@ -295,13 +308,14 @@ s32 fn_71010838a0(lua_State* L) {
     return 0;
 }
 
-s32 fn_710107f640(lua_State*) {
+s32 RestorePadVibration(lua_State*) {
     base::input::UnkRumbleManager* manager =
         Singleton_b0161<base::input::UnkRumbleManager, 0x2210, fn_71000733e4>(g_unk_7101d47348);
     alignas(8) u32 mask = UnkRumbleDefaultMask();
     fn_7100075020(reinterpret_cast<UnkTunableRumbleManager_b0068*>(manager), false, &mask);
     return 0;
 }
+}  // namespace lua_bind
 
 // ---- the metroid counters ----
 void fn_71011406b4(UnkInventory* inventory, const UnkQualifiedId& item, s32 amount, bool a, bool b, bool c, f32 extra);
@@ -332,7 +346,8 @@ s32 fn_71010866b0(lua_State* L) {
 struct UnkCameraCtrl;
 bool fn_7101043a04(UnkCameraCtrl* controller, const char* name, lua_State* L, s32 mode);
 
-s32 fn_7101086df0(lua_State* L) {
+namespace lua_bind {
+s32 SetCameraCtrlValue(lua_State* L) {
     const char* first = luaL_checkstring(L, 1);
     const char* second = luaL_checkstring(L, 2);
     bool result = false;
@@ -349,6 +364,7 @@ s32 fn_7101086df0(lua_State* L) {
     }
     return fn_71010c0b40(L, "b", result);
 }
+}  // namespace lua_bind
 
 // ---- objects found by the hash of a name ----
 
@@ -376,7 +392,8 @@ struct UnkSpawnEntry_b0161 {
     CStrId name;
 };
 
-s32 fn_7101084870(lua_State* L) {
+namespace lua_bind {
+s32 SpawnEntity(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -393,11 +410,13 @@ s32 fn_7101084870(lua_State* L) {
     const char* text = reinterpret_cast<UnkStringText_b0161*>(id.data)->text;
     return fn_71010c0b40(L, "s", text ? text : g_unk_710162e2ed);
 }
+}  // namespace lua_bind
 
 struct UnkTriggerList_A5_b72;
 bool fn_7100a60104(UnkTriggerList_A5_b72* self, const CRntString& name);
 
-s32 fn_71010846e0(lua_State* L) {
+namespace lua_bind {
+s32 IsEntityInsideTrigger(lua_State* L) {
     const char* name;
     const char* second;
     if (!fn_71010c0270(L, "ss", &name, &second))
@@ -415,11 +434,13 @@ s32 fn_71010846e0(lua_State* L) {
     CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     return result;
 }
+}  // namespace lua_bind
 
 struct UnkStruct_710024fa0c;
 void fn_7101156058(void* self, u64 hash, f32 x, f32 y, bool a, bool b, f32 z);
 
-s32 fn_710108fe30(lua_State* L) {
+namespace lua_bind {
+s32 SetActorFXFadeIntensity(lua_State* L) {
     const char* name;
     const char* effect;
     f32 x = 0.0f;
@@ -438,6 +459,7 @@ s32 fn_710108fe30(lua_State* L) {
     fn_7101156058(target, StringCrc64(effect, strlen(effect)), x, y, a, b, z);
     return 0;
 }
+}  // namespace lua_bind
 
 // ---- a landmark node by name ----
 struct UnkLuaNode_b0160;
@@ -448,7 +470,8 @@ struct UnkVec3_b0161 {
     UnkVec3_b0161() : x(0.0f), y(0.0f), z(0.0f) {}
 };
 
-s32 fn_710107e840(lua_State* L) {
+namespace lua_bind {
+s32 SetLandmarkTransform(lua_State* L) {
     const char* name;
     UnkVec3_b0161 position;
     UnkVec3_b0161 rotation;
@@ -466,12 +489,14 @@ s32 fn_710107e840(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 // ---- an effect at a position ----
 void fn_710101f3d4(void* fx, const CFilePathStrId* id, const f32* position, bool a, bool b, f32 c, f32 d, f32 e, f32 f,
                    f32 g);
 
-s32 fn_710108c790(lua_State* L) {
+namespace lua_bind {
+s32 PlayPosSound(lua_State* L) {
     const char* path;
     UnkVec3_b0161 position;
     f32 a;
@@ -485,6 +510,7 @@ s32 fn_710108c790(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 // ---- the player's damage request ----
 struct UnkEnumType;
@@ -522,7 +548,8 @@ struct UnkRequestPlayer_b0161 {
     UnkRequestTarget_b0161* field_0x1b8;
 };
 
-s32 fn_71010961e0(lua_State* L) {
+namespace lua_bind {
+s32 ImpactPlayerLeft(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         UnkRequestPlayer_b0161* player = reinterpret_cast<UnkRequestPlayer_b0161*>(fn_7100dec788(g_unk_7101d47310));
@@ -542,7 +569,7 @@ s32 fn_71010961e0(lua_State* L) {
     return 0;
 }
 
-s32 fn_71010962e0(lua_State* L) {
+s32 ImpactPlayerRight(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         UnkRequestPlayer_b0161* player = reinterpret_cast<UnkRequestPlayer_b0161*>(fn_7100dec788(g_unk_7101d47310));
@@ -561,6 +588,7 @@ s32 fn_71010962e0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 // ---- a table of every registered object's name ----
 struct UnkRegisteredNode_b0161 {
@@ -572,7 +600,8 @@ struct UnkNameHolder_b0161 {
     unk_prop_bag::UnkName* name;
 };
 
-s32 fn_710107ccd0(lua_State* L) {
+namespace lua_bind {
+s32 GetEntities(lua_State* L) {
     unk_prop_bag::UnkPropBag bag;
     UnkRegisteredNode_b0161* node = *reinterpret_cast<UnkRegisteredNode_b0161**>(
         reinterpret_cast<char*>(g_unk_7101d47310) + 0x2638);
@@ -583,6 +612,7 @@ s32 fn_710107ccd0(lua_State* L) {
     }
     return fn_71010c0b40(L, "t", &bag);
 }
+}  // namespace lua_bind
 
 // ---- every entity of a kind ----
 s32 fn_710113912c(void* object);
@@ -602,7 +632,8 @@ struct UnkListedEntity_b0161 {
     void* field_0x268;
 };
 
-s32 fn_710107fe60(lua_State*) {
+namespace lua_bind {
+s32 KillAllEnemies(lua_State*) {
     UnkRegisteredNode_b0161* node = *reinterpret_cast<UnkRegisteredNode_b0161**>(
         reinterpret_cast<char*>(g_unk_7101d47310) + 0x2638);
     for (; node; node = node->next) {
@@ -627,6 +658,7 @@ s32 fn_710107fe60(lua_State*) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 // ---- entities found by a string id ----
 // The entity registered under a string id, looked up by the id's hash.
@@ -655,7 +687,8 @@ struct UnkSlotTarget_b0161 {
 
 typedef void (*SlotFn_b0161)(UnkSlotTarget_b0161*, bool, f32);
 
-s32 fn_7101080910(lua_State* L) {
+namespace lua_bind {
+s32 RecoverEntityLife(lua_State* L) {
     u64 key;
     alignas(8) u32 kind;
     const char* name;
@@ -674,7 +707,7 @@ s32 fn_7101080910(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101080290(lua_State* L) {
+s32 SetEntityLife(lua_State* L) {
     u64 key;
     alignas(8) u32 kind;
     const char* name;
@@ -694,7 +727,7 @@ s32 fn_7101080290(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101080650(lua_State* L) {
+s32 SetEntityLifePct(lua_State* L) {
     u64 key;
     alignas(8) u32 kind;
     const char* name;
@@ -714,7 +747,7 @@ s32 fn_7101080650(lua_State* L) {
     return 0;
 }
 
-s32 fn_710107f290(lua_State* L) {
+s32 StopEntityFor(lua_State* L) {
     u64 key;
     alignas(8) u32 kind;
     const char* name;
@@ -732,13 +765,15 @@ s32 fn_710107f290(lua_State* L) {
     fn_7100d7babc(entity, true, value);
     return 0;
 }
+}  // namespace lua_bind
 
 // Returns the number of values the callee left on the script stack.
 static inline s32 PushObject_b0161(lua_State* L, void* object) {
     return fn_7100fbc4e0(L, object);
 }
 
-s32 fn_710107c990(lua_State* L) {
+namespace lua_bind {
+s32 GetTarget(lua_State* L) {
     u64 key;
     alignas(8) u32 kind;
     const char* name;
@@ -757,6 +792,7 @@ s32 fn_710107c990(lua_State* L) {
         return 0;
     return PushObject_b0161(L, actor);
 }
+}  // namespace lua_bind
 
 static inline void* FindByIdOld_b0161(UnkGameManager* manager, const CStrId& id, u64& key, u32& kind) {
     u32 kind_value = g_unk_71727bebb8;
@@ -765,7 +801,8 @@ static inline void* FindByIdOld_b0161(UnkGameManager* manager, const CStrId& id,
     return fn_7100deba8c(manager, &key, &kind);
 }
 
-s32 fn_710107ca90(lua_State* L) {
+namespace lua_bind {
+s32 GetActor(lua_State* L) {
     u64 key;
     alignas(8) u32 kind;
     const char* name;
@@ -781,3 +818,4 @@ s32 fn_710107ca90(lua_State* L) {
         return 0;
     return PushObject_b0161(L, object);
 }
+}  // namespace lua_bind

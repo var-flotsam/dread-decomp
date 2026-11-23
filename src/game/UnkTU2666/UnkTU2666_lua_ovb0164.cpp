@@ -97,7 +97,8 @@ struct UnkEntityA_b0164 {
 };
 struct UnkInventory;
 
-s32 fn_710108f570(lua_State* L) {
+namespace lua_bind {
+s32 SetItem(lua_State* L) {
     alignas(8) u32 kind;
     const char* first;
     const char* second;
@@ -125,7 +126,7 @@ s32 fn_710108f570(lua_State* L) {
     return 0;
 }
 
-s32 fn_710108f050(lua_State* L) {
+s32 GetItemAmount(lua_State* L) {
     u64 key;
     alignas(8) u32 kind;
     const char* first;
@@ -146,6 +147,7 @@ s32 fn_710108f050(lua_State* L) {
     }
     return result;
 }
+}  // namespace lua_bind
 
 struct UnkCompEntry_b0164 {
     u8 pad_0x0[0x10];
@@ -199,7 +201,8 @@ struct UnkEnergy_b0164 {
 };
 UnkEnergy_b0164* fn_7100df55c8(UnkGameManager* self);
 
-s32 fn_710107ba70(lua_State* L) {
+namespace lua_bind {
+s32 GetPlayerSpecialEnergyStatus(lua_State* L) {
     if (fn_7100dec788(g_unk_7101d47310)) {
         UnkPropBag bag;
         if (UnkEnergy_b0164* energy = fn_7100df55c8(g_unk_7101d47310)) {
@@ -211,7 +214,7 @@ s32 fn_710107ba70(lua_State* L) {
     return 0;
 }
 
-s32 fn_710108f3d0(lua_State* L) {
+s32 HasItem(lua_State* L) {
     alignas(8) u32 kind;
     const char* first;
     const char* second;
@@ -236,11 +239,13 @@ s32 fn_710108f3d0(lua_State* L) {
     UnkStrIdHandle_b0164 handle(b);
     return fn_71010c0b40(L, "b", fn_71011428bc(static_cast<UnkInventory*>(object), reinterpret_cast<const UnkQualifiedId&>(handle)));
 }
+}  // namespace lua_bind
 
 void fn_7100df2dd4(UnkGameManager* self, const CStrId& a, u8 b1, u8 b2, u8 b3, u8 b4, u8 b5, const CStrId& c,
                    const CStrId& d, const UnkLuaVec3_b0164& v);
 
-s32 fn_71010888b0(lua_State* L) {
+namespace lua_bind {
+s32 PlayCutsceneOnScenarioLoaded(lua_State* L) {
     const char* s1;
     const char* s2;
     const char* s3;
@@ -256,6 +261,7 @@ s32 fn_71010888b0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkSoundHolder;
 struct UnkSoundGroup_b0164 {
@@ -277,7 +283,8 @@ static inline UnkSoundHolder* SoundHolder_b0164() {
     return g_unk_7101d47340;
 }
 
-s32 fn_71010943a0(lua_State* L) {
+namespace lua_bind {
+s32 IsDebugPadButtonPressed(lua_State* L) {
     UnkSoundGroup_b0164* group = *reinterpret_cast<UnkSoundGroup_b0164**>(SoundHolder_b0164());
     if (!group || !group->vf_0x28())
         return 0;
@@ -303,13 +310,15 @@ s32 fn_71010943a0(lua_State* L) {
         mask = strcmp(name, "CIRCLE") == 0;
     return fn_71010c0b40(L, "b", group->vf_0x30(mask, 0xfd));
 }
+}  // namespace lua_bind
 
 using base::reflection::UnkReflObject;
 
 struct UnkCameraCtrl;
 void fn_7101043f74(UnkCameraCtrl* component, UnkPropBag* bag);
 
-s32 fn_710107d820(lua_State* L) {
+namespace lua_bind {
+s32 GetActorComponentVariables(lua_State* L) {
     UnkReflObject* component = nullptr;
     {
         const char* first;
@@ -330,6 +339,7 @@ s32 fn_710107d820(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkMlogMessage_b0164 {
     u32 kind;
@@ -343,7 +353,8 @@ struct UnkMlogMessage_b0164 {
 struct UnkMlogMessage_b42a1;
 void fn_7100e00cc0(UnkGameManager* self, bool flag);
 
-s32 fn_7101081c50(lua_State* L) {
+namespace lua_bind {
+s32 SetCooldownFlag(lua_State* L) {
     bool flag;
     if (fn_71010c0270(L, "b", &flag)) {
         fn_7100e00cc0(g_unk_7101d47310, flag);
@@ -355,12 +366,14 @@ s32 fn_7101081c50(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkComponent_71011199cc;
 struct UnkList_71011199cc;
 void fn_710111b230(UnkComponent_71011199cc* self, UnkList_71011199cc* out);
 
-s32 fn_7101084b60(lua_State* L) {
+namespace lua_bind {
+s32 EnableSpawnGroup(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -383,10 +396,12 @@ s32 fn_7101084b60(lua_State* L) {
     }
     return result;
 }
+}  // namespace lua_bind
 
 struct UnkUserDataOwner;
 
-s32 fn_71010798e0(lua_State* L) {
+namespace lua_bind {
+s32 GetDifficultyModesUnlocked(lua_State* L) {
     bool first = false;
     bool second = false;
     UnkUserDataOwner* provider = g_unk_7101d47308;
@@ -412,6 +427,7 @@ s32 fn_71010798e0(lua_State* L) {
     unk_prop_bag::fn_710050f4ac(&bag, g_unk_7172a01968[1], second);
     return fn_71010c0b40(L, "t", &bag);
 }
+}  // namespace lua_bind
 
 using base::global::CRntString;
 
@@ -420,7 +436,8 @@ struct UnkMode_b0164 {
     char name[1];  // 0x8
 };
 
-s32 fn_7101082690(lua_State* L) {
+namespace lua_bind {
+s32 LoadScenario(lua_State* L) {
     const char* s1 = nullptr;
     const char* s2 = nullptr;
     const char* s3 = nullptr;
@@ -451,6 +468,7 @@ s32 fn_7101082690(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 // The string data's use count, a union member (no type-based alias info, so the id is reloaded after
 // the increment).
@@ -472,7 +490,8 @@ struct UnkCameraHolder_b0164 {
     u32 field_0xc2c;
 };
 
-s32 fn_710108df00(lua_State* L) {
+namespace lua_bind {
+s32 OverrideSoundListener(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         if (UnkCameraHolder_b0164* holder = static_cast<UnkCameraHolder_b0164*>(fn_7100defcec(g_unk_7101d47310))) {
@@ -490,3 +509,4 @@ s32 fn_710108df00(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

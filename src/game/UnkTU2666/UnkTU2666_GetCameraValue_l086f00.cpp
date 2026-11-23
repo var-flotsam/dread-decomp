@@ -82,7 +82,8 @@ inline bool ReadField(UnkCameraObject_l086f00* obj, u64 key, T* out) {
                                   reinterpret_cast<UnkReflValueArg*>(&value));
 }
 
-int fn_7101086f00(lua_State* L) {
+namespace lua_bind {
+int GetCameraCtrlValue(lua_State* L) {
     const char* camera_name;
     const char* field_name;
     if (!fn_71010c0270(L, "ss", &camera_name, &field_name))
@@ -135,3 +136,4 @@ int fn_7101086f00(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

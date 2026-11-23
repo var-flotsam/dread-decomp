@@ -38,5 +38,8 @@ struct CSpawnerActorBlueprint {
         }
         fn_71000a1c60(&value);
     }
+    // Reflection's value operations (CType+0x28..+0x58), defined out of line.
+    static void refl_Destroy(void* obj);
+    static void* refl_MoveAssign(void* dst, const void* src);
 };
 static_assert(sizeof(CSpawnerActorBlueprint) == 0x18, "element size");

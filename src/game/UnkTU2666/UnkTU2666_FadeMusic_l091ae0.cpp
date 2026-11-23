@@ -12,7 +12,8 @@
 
 struct lua_State;
 
-s32 fn_7101091ae0(lua_State* L) {
+namespace lua_bind {
+s32 StopMusicWithFade(lua_State* L) {
     f32 time = -1.0f;
     bool flag = false;
     const char* name = nullptr;
@@ -32,3 +33,4 @@ s32 fn_7101091ae0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

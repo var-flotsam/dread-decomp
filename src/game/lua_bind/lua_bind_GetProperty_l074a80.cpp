@@ -15,7 +15,8 @@
 
 using base::global::CStrId;
 
-int fn_7101074a80(lua_State* L) {
+namespace lua_bind {
+int GetProp(lua_State* L) {
     UnkGameManager* manager = g_unk_7101d47310;
     const char* section;
     const char* name;
@@ -52,3 +53,4 @@ int fn_7101074a80(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

@@ -16,7 +16,8 @@ struct lua_State;
 
 CRntString fn_7100dfb1b0(UnkGameManager* manager, const base::UnkNamedEntry* key);
 
-s32 fn_7101078f80(lua_State* L) {
+namespace lua_bind {
+s32 GetProfileName(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -35,3 +36,4 @@ s32 fn_7101078f80(lua_State* L) {
     CRntString_Destroy(&result.string);
     return ret;
 }
+}  // namespace lua_bind

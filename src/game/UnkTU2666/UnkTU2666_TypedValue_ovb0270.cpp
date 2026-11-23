@@ -95,7 +95,8 @@ s32 fn_7101095cf0(lua_State* L) {
     return ok;
 }
 
-s32 fn_7101079e20(lua_State* L) {
+namespace lua_bind {
+s32 RetrievePlaythrough(lua_State* L) {
     UnkCountedResource* held = nullptr;
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
@@ -139,3 +140,4 @@ s32 fn_7101079e20(lua_State* L) {
         fn_710001737c(held);
     return result;
 }
+}  // namespace lua_bind
