@@ -5,6 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkCreditsNode_ovb0070.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
@@ -52,11 +53,6 @@ struct UnkCreditsLine_ovb0070 {
     UnkGuiText string;  // 0x28
 };
 
-struct UnkCreditsNode_ovb0070 {
-    UnkCreditsLine_ovb0070* line;
-    UnkCreditsNode_ovb0070* next;
-};
-
 struct UnkCreditsMode_ovb0070 {
     u8 pad_0x0[0x50];
     f32 time;   // 0x50
@@ -95,7 +91,7 @@ void fn_71011843d0(UnkCreditsMode_ovb0070* self, f32 dt);
 struct UnkSoundMgr;
 struct UnkTunable;
 
-struct UnkCreditsMenu_ovb0070 {
+struct UnkCreditsMenu_ovb0070_ovb0070 {
     u8 pad_0x0[0x60];
     u32 state;
 };
@@ -113,7 +109,7 @@ void fn_71011841b4(UnkCreditsMode_ovb0070* self, f32 dt) {
             if (flags & 0x20) {
                 fn_7100deac9c(manager, CRntString("REWARDS"));
             } else {
-                auto* menu = static_cast<UnkCreditsMenu_ovb0070*>(fn_7100deab70(manager, CRntString("MAINMENU")));
+                auto* menu = static_cast<UnkCreditsMenu_ovb0070_ovb0070*>(fn_7100deab70(manager, CRntString("MAINMENU")));
                 if (menu)
                     menu->state = 7;
                 fn_7100deac9c(g_unk_7101d47310, CRntString("MAINMENU"));

@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStrIdHandle.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU500.h"
 #include "types.h"
@@ -13,12 +14,6 @@
 #include "../../game_aca57c/UnkBufferString.h"
 
 using base::global::CStrId;
-
-struct UnkStrIdHandle {
-    CStrId id;
-    void* field_0x8;
-    UnkStrIdHandle(const CStrId& id);  // fn_7100ae986c
-};
 
 int fn_7101074a80(lua_State* L) {
     UnkGameManager* manager = g_unk_7101d47310;

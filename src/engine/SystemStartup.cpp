@@ -10,6 +10,8 @@
 // Results are taken as s32, which is how they come back in w0.
 
 #include "base/global/CRntVector.h"
+#include "game/UnkBox2D.h"
+#include "game/UnkContact2D.h"
 #include "game/UnkTU110.h"
 #include "game/malloc.h"
 #include "types.h"
@@ -182,54 +184,6 @@ void fn_7100132730() {
 
 using base::math::CVector2D;
 using base::math::CVector3D;
-
-// What the 2D tests fill on a hit (the layout of src/game/malloc/fn_710012be70.cpp's contact): the
-// point, the normal of the first shape, the normal of the second, and which of them are set.
-struct UnkContact2D {
-    CVector3D point;
-    CVector3D normal_a;
-    CVector3D normal_b;
-    f32 param;  // where along the moving shape's path (0x200)
-    u32 flags;  // 8 point, 0x10 normal_b, 0x20 normal_a, 0x200 param
-
-    void SetPoint(const CVector3D& p) {
-        point = p;
-        flags |= 8;
-    }
-    void SetNormalA(const CVector3D& n) {
-        normal_a.x = n.x;
-        normal_a.y = n.y;
-        normal_a.z = n.z;
-        flags |= 0x20;
-    }
-    void SetNormalB(const CVector3D& n) {
-        normal_b.x = n.x;
-        normal_b.y = n.y;
-        normal_b.z = n.z;
-        flags |= 0x10;
-    }
-    void SetNormalA(const UnkVec2Result& n) {
-        normal_a.x = n.x;
-        normal_a.y = n.y;
-        normal_a.z = 0.0f;
-        flags |= 0x20;
-    }
-    void SetNormalB(const UnkVec2Result& n) {
-        normal_b.x = n.x;
-        normal_b.y = n.y;
-        normal_b.z = 0.0f;
-        flags |= 0x10;
-    }
-};
-
-// An axis-aligned box: its corners go (x0, y0), (x0, y1), (x1, y1), (x1, y0).
-struct UnkBox2D {
-    f32 x0;
-    f32 y0;
-    f32 x1;
-    f32 y1;
-    UnkVec2Result Corner(s32 index) const asm("fn_710010d02c");
-};
 
 struct UnkCircle2D {
     UnkVec2Result center;

@@ -2,20 +2,8 @@
 // registers it with every entry of the new one (skipping entries that already have it), then refreshes.
 #include "game/CNavMeshItemComponent.h"
 #include "game/CNavMeshItemStage.h"
+#include "game/UnkAllocator.h"
 #include "types.h"
-
-struct UnkAllocator {
-    virtual void vf0();
-    virtual void vf8();
-    virtual void vf10();
-    virtual void vf18();
-    virtual void vf20();
-    virtual void vf28();
-    virtual void vf30();
-    virtual void vf38();
-    virtual void* Alloc(u64 size, u64 align, u32 flags);
-    virtual void Free(void* p);
-};
 
 template <class T>
 struct UnkList {
@@ -90,11 +78,11 @@ struct UnkList {
     }
 };
 
-struct UnkListener;
+struct UnkListener_9bfda8;
 
 struct UnkEntry {
     char pad_0x0[0x130];
-    UnkList<UnkListener*> field_0x130;
+    UnkList<UnkListener_9bfda8*> field_0x130;
 };
 
 struct UnkSource {
@@ -109,13 +97,13 @@ struct UnkSource {
     u32 field_0x4c;
 };
 
-struct UnkListener {
+struct UnkListener_9bfda8 {
     char pad_0x0[0x8];
 };
 
 struct UnkOwner {
     char pad_0x0[0x40];
-    UnkListener field_0x40;
+    UnkListener_9bfda8 field_0x40;
     char pad_0x48[0x138];
     UnkSource* field_0x180;
 };

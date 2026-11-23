@@ -9,6 +9,8 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimTime_ovb0009.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkS12.h"
+#include "game/UnkS16.h"
 #include "game/animtree/CAnimTreeElement.h"
 #include "types.h"
 
@@ -23,17 +25,6 @@ struct UnkFlags_7101176ea8 {
         value = o.value;
         return *this;
     }
-};
-
-// A key and a time.
-struct UnkS16 {
-    u64 key;
-    UnkAnimTime_ovb0009 time;
-};
-
-// A blend descriptor (g_unk_7172769740, g_unk_7172769770).
-struct UnkS12 {
-    u32 a, b, c;
 };
 
 // What an action of a track was started with.

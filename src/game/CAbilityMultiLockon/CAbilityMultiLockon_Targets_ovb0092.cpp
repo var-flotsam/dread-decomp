@@ -8,6 +8,7 @@
 // model). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CScenario.h"
+#include "game/UnkColor_ovb0092.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU252.h"
@@ -50,11 +51,6 @@ struct UnkLockonEntry_ovb0092 {
     void* target;
 
     UnkLockonEntry_ovb0092() : time(0.0f), target(nullptr) {}
-};
-
-struct UnkColor_ovb0092 {
-    f32 r, g, b, a;
-    UnkColor_ovb0092() : r(1.0f), g(1.0f), b(1.0f), a(1.0f) {}
 };
 
 struct UnkLockonModel_ovb0092;

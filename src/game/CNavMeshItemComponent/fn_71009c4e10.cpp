@@ -15,6 +15,7 @@
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkIdProperty.h"
 #include "game/UnkGameBlackboard.h"
+#include "game/UnkMapNamedDef_ovb0203.h"
 #include "game/UnkNavMeshNamedDef_b49.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
@@ -35,12 +36,6 @@ struct UnkNavMeshItemTU_l9c4e10 {
 extern UnkNavMeshItemTU_l9c4e10 g_unk_717273ede8 __attribute__((visibility("hidden")));
 extern UnkPropertyEx<> g_unk_717273e210;  // "NAVMESH_OCCLUDERS"
 extern base::global::CStrId g_unk_717273e250;
-// The two properties as the unit's readers see them (a named definition); here they are built as
-// UnkPropertyEx<0x160>.
-struct UnkMapNamedDef_ovb0203 : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedName name;
-};
 void fn_71009c26f4(void* item);  // base::reflection::refl_Register<..>, instantiated in src/reflection_statics
 extern char g_unk_717273e568;
 extern char g_unk_717273e569;

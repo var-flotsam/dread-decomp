@@ -50,17 +50,17 @@ struct UnkList : base::UnkLinkedList<UnkListNode> {
     }
 };
 
-struct UnkHashNode {
+struct UnkHashNode_f00f4c {
     u32 key;
     u8 pad_0x4[0x17];
     bool field_0x1b;
     u8 pad_0x1c[0x14];
-    UnkHashNode* next;
+    UnkHashNode_f00f4c* next;
 };
 
 struct UnkStruct_0x128 {
     u8 pad_0x0[0x10];
-    UnkHashNode** buckets;
+    UnkHashNode_f00f4c** buckets;
     u32 field_0x18;
     u32 bucket_count;
     u8 pad_0x20[0x30];
@@ -70,14 +70,14 @@ struct UnkStruct_0x128 {
     u8 pad_0xa8[0x8];
     UnkList field_0xb0;
 
-    UnkHashNode* Find(u32 key) {
+    UnkHashNode_f00f4c* Find(u32 key) {
         if (field_0x18 == 0)
             return nullptr;
         u32 i = key % bucket_count;
-        UnkHashNode** bucket = &buckets[i];
+        UnkHashNode_f00f4c** bucket = &buckets[i];
         if (!bucket)
             return nullptr;
-        for (UnkHashNode* n = *bucket; n; n = n->next)
+        for (UnkHashNode_f00f4c* n = *bucket; n; n = n->next)
             if (n->key == key)
                 return n;
         return nullptr;
@@ -95,7 +95,7 @@ struct UnkStruct_0x128 {
 
 bool fn_7100f00f4c(UnkStruct_0x128* self, u32 id, bool force) {
     if (!force) {
-        UnkHashNode* h = self->Find(id);
+        UnkHashNode_f00f4c* h = self->Find(id);
         if (h && h->field_0x1b) {
             fn_71000810b0(0x10);
             return true;

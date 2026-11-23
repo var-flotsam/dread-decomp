@@ -6,29 +6,12 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
+#include "game/UnkMovedArray.h"
 #include "game/UnkTU1728.h"
 #include "types.h"
 
 using base::UnkAllocator;
 using base::global::UnkStringData;
-
-struct UnkMovedArray {
-    void* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    UnkAllocator* allocator;
-
-    UnkMovedArray(UnkMovedArray&& other)
-        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
-          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
-        other.data = nullptr;
-        other.count = 0;
-        other.capacity = 0;
-    }
-};
 
 // Two parallel arrays; a move leaves the capacity behind.
 struct UnkMovedPairArray {

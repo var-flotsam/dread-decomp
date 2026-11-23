@@ -4,6 +4,8 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/UnkBucketSet.h"
+#include "game/UnkPathNode.h"
+#include "game/UnkPathValue.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -31,17 +33,6 @@ struct UnkPathIdList_7100d94220 : base::global::CRntVector<CFilePathStrId> {
             ++value->ref_count;
         ++count;
     }
-};
-
-struct UnkPathValue {
-    u8 unk_0x0[0x10];
-    CFilePathStrId id;
-};
-
-struct UnkPathNode {
-    void* key;
-    UnkPathValue* value;
-    UnkPathNode* next;
 };
 
 using UnkPathMap = base::global::UnkBucketSet<UnkPathNode>;

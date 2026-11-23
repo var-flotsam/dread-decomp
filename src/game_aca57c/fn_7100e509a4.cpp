@@ -33,7 +33,7 @@ struct UnkPart48 {
 inline UnkPart48::UnkPart48(const UnkPart48& other) { fn_71000cbae4(this, &other); }
 
 // base::global::CRntVector<u16>'s layout.
-struct UnkU16Array {
+struct UnkU16Array_e509a4 {
     u16* data;
     u32 count;
     u32 capacity;
@@ -43,7 +43,7 @@ struct UnkU16Array {
     base::UnkAllocator* allocator;
 
     // Takes the settings, reserves the source's capacity and copies the elements.
-    __attribute__((always_inline)) UnkU16Array(const UnkU16Array& other)
+    __attribute__((always_inline)) UnkU16Array_e509a4(const UnkU16Array_e509a4& other)
         : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14),
           flags(other.flags), allocator(other.allocator) {
         u32 n = other.capacity;
@@ -69,7 +69,7 @@ struct UnkRecordA8 {
     UnkBounds field_0x30;
     u32 field_0x40;
     UnkPart48 field_0x48;
-    UnkU16Array field_0x70;
+    UnkU16Array_e509a4 field_0x70;
     u32 field_0x98;
     u32 field_0x9c;
     u32 field_0xa0;
@@ -92,7 +92,7 @@ struct UnkRecord80 {
     u32 field_0xc;
     base::global::CStrId field_0x10;
     UnkPart48 field_0x18;
-    UnkU16Array field_0x40;
+    UnkU16Array_e509a4 field_0x40;
     u32 field_0x68;
     u32 field_0x6c;
     u32 field_0x70;

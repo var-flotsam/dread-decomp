@@ -1,5 +1,6 @@
 // Dispatches a query against a collision shape by the shape's type, forwarding to the
 // type-specific query; one type is handled inline with the query box moved into the shape's space.
+#include "game/UnkQueryBox.h"
 #include "types.h"
 
 struct UnkFlags {
@@ -17,23 +18,15 @@ inline const UnkFlags& NoFlags_d56604() {
     return s;
 }
 
-struct Vec3 {
+struct Vec3_d56604 {
     f32 x, y, z;
-    Vec3(f32 x, f32 y, f32 z) : x(x), y(y), z(z) {}
-    Vec3(const Vec3& o) : x(o.x), y(o.y), z(o.z) {}
+    Vec3_d56604(f32 x, f32 y, f32 z) : x(x), y(y), z(z) {}
+    Vec3_d56604(const Vec3_d56604& o) : x(o.x), y(o.y), z(o.z) {}
 };
 
 struct UnkMtx34 {
     f32 m[12];
-    Vec3 GetTranslation() const { return Vec3{m[3], m[7], m[11]}; }
-};
-
-struct UnkQueryBox {
-    f32 minX, minY, maxX, maxY;
-    u32 field_0x10;
-    u32 field_0x14;
-    UnkQueryBox(const UnkQueryBox& o)
-        : minX(o.minX), minY(o.minY), maxX(o.maxX), maxY(o.maxY), field_0x10(o.field_0x10), field_0x14(o.field_0x14) {}
+    Vec3_d56604 GetTranslation() const { return Vec3_d56604{m[3], m[7], m[11]}; }
 };
 
 struct UnkShape {
@@ -60,11 +53,11 @@ static inline T* ShapeCast(UnkShape* s) {
 
 struct UnkLocalQuery {
     virtual void vf_0x0();  // vtable at 0x7101aa8870
-    Vec3 offset;
+    Vec3_d56604 offset;
     u16 field_0x14;
     void* field_0x18;
     void* field_0x20;
-    UnkLocalQuery(const Vec3& o, void* p, void* a) : offset(o), field_0x14(0), field_0x18(p), field_0x20(a) {}
+    UnkLocalQuery(const Vec3_d56604& o, void* p, void* a) : offset(o), field_0x14(0), field_0x18(p), field_0x20(a) {}
 };
 
 struct UnkWorld;
@@ -93,7 +86,7 @@ UnkFlags fn_7100d56604(UnkWorld* self, const UnkQueryBox* box, UnkShape* shape, 
         UnkShape10* s = ShapeCast<UnkShape10, 0x10>(shape);
         UnkFlags result = NoFlags_d56604();
         UnkQueryBox local = *box;
-        Vec3 t = xf->GetTranslation();
+        Vec3_d56604 t = xf->GetTranslation();
         local.minX -= t.x;
         local.minY -= t.y;
         local.maxX -= t.x;

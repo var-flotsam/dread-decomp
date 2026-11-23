@@ -11,6 +11,8 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkClearedArray.h"
+#include "game/UnkIdPairCopy.h"
+#include "game/UnkRecord118.h"
 #include "game/UnkTU2563.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkUnionRefObject.h"
@@ -52,10 +54,10 @@ struct UnkRefObject {
     s32 ref_count;
 };
 
-struct UnkRefPtr {
+struct UnkRefPtr_241948 {
     UnkRefObject* ptr;
 
-    ~UnkRefPtr() {
+    ~UnkRefPtr_241948() {
         if (UnkRefObject* p = ptr) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
@@ -63,21 +65,21 @@ struct UnkRefPtr {
     }
 };
 
-struct UnkIdRef {
+struct UnkIdRef_241948 {
     UnkReleasedStrId id;
-    UnkRefPtr ref;
+    UnkRefPtr_241948 ref;
 };
 
-struct UnkIdRefVariant {
+struct UnkIdRefVariant_241948 {
     union {
-        UnkIdRef id_ref;
+        UnkIdRef_241948 id_ref;
     };
     s32 state;
 
     void Reset() {
         switch (state) {
         case 1:
-            id_ref.~UnkIdRef();
+            id_ref.~UnkIdRef_241948();
             state = 0;
             break;
         case 2:
@@ -87,9 +89,9 @@ struct UnkIdRefVariant {
     }
 };
 
-struct UnkVariantHolder {
+struct UnkVariantHolder_241948 {
     u64 field_0x0;
-    UnkIdRefVariant variant;
+    UnkIdRefVariant_241948 variant;
 };
 
 // A count followed directly (at +4, packed) by the ids.
@@ -123,13 +125,13 @@ struct UnkIdValues4 {
 
 // Copy-assignment of a polymorphic record: a value, a string id and 0x1c plain bytes (copied as
 // one block).
-struct UnkIdBlockRecord {
+struct UnkIdBlockRecord_241948 {
     void* vtable;
     u32 field_0x8;
     CStrId id;
     u8 data[0x1c];
 
-    UnkIdBlockRecord& operator=(const UnkIdBlockRecord& other) {
+    UnkIdBlockRecord_241948& operator=(const UnkIdBlockRecord_241948& other) {
         if (this != &other) {
             field_0x8 = other.field_0x8;
             id = other.id;
@@ -173,13 +175,6 @@ struct UnkValuesIdArrayRecord {
     u32 field_0x0;
     u32 field_0x4;
     UnkMovedArray<UnkReleasedStrId> ids;
-};
-
-// Copy-assignment of two ids and a value.
-struct UnkIdPairCopy {
-    CStrId first;
-    CStrId second;
-    u32 field_0x10;
 };
 
 // Move-assignment of a value, an id and an array of ids.
@@ -238,14 +233,6 @@ struct UnkIdValuesBlock {
     u32 field_0x14;
     u64 unk_0x18;
     u8 data[0x5f54];
-};
-
-// Move-assignment of an array with a second pointer (destroying the elements through
-// fn_7100ea7034, keeping the storage).
-struct UnkRecord118 {
-    u64 unk_0x0[0x23];
-
-    ~UnkRecord118();
 };
 
 template <class T, class Index>
@@ -386,7 +373,7 @@ void fn_7100e5854c(UnkIdPairArrayMap* self, u32 capacity);
 
 // Ids to 0x60-byte records: plain words, two string ids and an array of string ids (destroyed by
 // fn_7100e4a1d0 and copied by fn_7100e4fd1c, both in fn_7100e4fd1c.cpp).
-struct UnkRecord60 {
+struct UnkRecord60_241948 {
     u32 field_0x0[10];
     UnkStringData* id_0x28;
     UnkStringData* id_0x30;
@@ -399,7 +386,7 @@ struct UnkRecord60 {
     base::UnkAllocator* allocator;
 
     // Takes over the ids (leaving the pool's empty string) and the array (leaving it empty).
-    __attribute__((always_inline)) UnkRecord60(UnkRecord60&& other) {
+    __attribute__((always_inline)) UnkRecord60_241948(UnkRecord60_241948&& other) {
         for (u32 i = 0; i < 10; ++i)
             field_0x0[i] = other.field_0x0[i];
         id_0x28 = other.id_0x28;
@@ -419,8 +406,8 @@ struct UnkRecord60 {
         other.capacity = 0;
     }
 };
-static_assert(sizeof(UnkRecord60) == 0x60, "UnkRecord60 layout");
-using UnkIdRecordMap = UnkIdMap<UnkRecord60>;
+static_assert(sizeof(UnkRecord60_241948) == 0x60, "UnkRecord60_241948 layout");
+using UnkIdRecordMap = UnkIdMap<UnkRecord60_241948>;
 void fn_7100e5a114(UnkIdRecordMap* self);              // frees the storage
 __attribute__((noinline)) void fn_7100e59d18(UnkIdRecordMap* self, u32 capacity);
 

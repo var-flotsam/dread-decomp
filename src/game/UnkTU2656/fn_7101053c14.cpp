@@ -2,7 +2,9 @@
 // (src/game/UnkScreenFade.cpp) with a colour, or, with no delay, starts it at once.
 // Names and layouts are placeholders.
 #include "game/CBossAIComponent.h"
+#include "game/UnkFadeColor.h"
 #include "game/UnkGlobal_710b372a98.h"
+#include "game/UnkModeFlags.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU259.h"
@@ -11,20 +13,6 @@
 #include "game/UnkTU286.h"
 #include "game/UnkTU315.h"
 #include "types.h"
-
-struct UnkFadeColor {
-    f32 r;
-    f32 g;
-    f32 b;
-    f32 a;
-
-    UnkFadeColor(f32 r_, f32 g_, f32 b_, f32 a_) : r(r_), g(g_), b(b_), a(a_) {}
-};
-
-struct UnkModeFlags {
-    u8 unk_0x0[0xb8];
-    bool field_0xb8;
-};
 
 struct UnkFadeParams_l053c14 {
     base::math::CVector3D color;

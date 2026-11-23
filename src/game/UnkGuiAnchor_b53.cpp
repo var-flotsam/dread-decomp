@@ -3,32 +3,10 @@
 // placeholders.
 #include "base/math/UnkSegment2D.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkGuiAnchor.h"
+#include "game/UnkGuiItemState.h"
+#include "game/UnkGuiPos.h"
 #include "types.h"
-
-// From src/game/UnkGuiAnchor.cpp (the same definitions).
-struct UnkGuiPos {
-    f32 x;
-    f32 y;
-
-    UnkGuiPos(f32 x_, f32 y_) : x(x_), y(y_) {}
-    UnkGuiPos(const UnkGuiPos& other) : x(other.x), y(other.y) {}
-    UnkGuiPos& operator=(const UnkGuiPos& other) = default;
-};
-
-struct UnkGuiAnchor {
-    u32 horizontal;
-    u32 vertical;
-    UnkGuiPos offset;
-};
-
-struct UnkGuiItemState {
-    UnkGuiAnchor anchor;
-    f32 angle;
-    f32 width;
-    f32 height;
-    f32 scale_x;
-    f32 scale_y;
-};
 
 // As fn_71011f61bc: a position scaled by the state's scale and rotated by its angle.
 static inline UnkGuiPos Transform_b53(const UnkGuiItemState* state, const UnkGuiPos& pos) {

@@ -10,14 +10,14 @@
 #include "types.h"
 #include "game/sound/CMusicManager.h"
 
-struct UnkState {
+struct UnkState_fce86c {
     u8 unk_0x0[0x10];
     s32 state;
 };
 
 struct UnkMgr_0xf18 {
     u8 unk_0x0[0x2f8];
-    UnkState* field_0x2f8;
+    UnkState_fce86c* field_0x2f8;
     u8 unk_0x300[0x8c];
     s32 field_0x38c;
     u8 unk_0x390[0xb88];
@@ -38,7 +38,7 @@ static inline void Callback() {
         return;
     s32 state = mgr->field_0x38c;
     if (state == 0x7fffffff) {
-        UnkState* s = mgr->field_0x2f8;
+        UnkState_fce86c* s = mgr->field_0x2f8;
         if (!s) {
             fn_7100fdb9e0(mgr, 1, 0, -1.0f, 0.0f);
             return;

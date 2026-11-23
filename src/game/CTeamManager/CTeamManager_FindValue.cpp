@@ -10,19 +10,19 @@ struct UnkTeamRefBlock {
     void* target;
 };
 
-struct UnkTeamNode {
+struct UnkTeamNode_CTeamManager_FindValue {
     UnkTeamRefBlock* ref;
     f32 value;
-    UnkTeamNode* next;
+    UnkTeamNode_CTeamManager_FindValue* next;
 };
 
 struct UnkTeamList {
     u8 unk_0x0[0x10];
-    UnkTeamNode* head;
+    UnkTeamNode_CTeamManager_FindValue* head;
 };
 
 f32 fn_71011a76ec(const UnkTeamList* self, const void* target) {
-    for (UnkTeamNode* n = self->head; n != nullptr; n = n->next) {
+    for (UnkTeamNode_CTeamManager_FindValue* n = self->head; n != nullptr; n = n->next) {
         void* t = n->ref != nullptr ? n->ref->target : nullptr;
         if (t == target)
             return n->value;

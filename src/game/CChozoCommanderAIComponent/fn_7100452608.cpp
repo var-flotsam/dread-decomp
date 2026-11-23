@@ -11,7 +11,7 @@
 #include "types.h"
 
 // The handle the component refers to (base::UnkRefCounted's layout); its target is at +0x10.
-struct UnkCounted : base::UnkRefCounted {
+struct UnkCounted_452608 : base::UnkRefCounted {
     void* field_0x10;
 };
 
@@ -51,7 +51,7 @@ bool fn_7100452608(UnkSelf* self) {
         }
         self->state = 2;
     }
-    UnkCounted* handle = static_cast<UnkCounted*>(self->handle.ptr);
+    UnkCounted_452608* handle = static_cast<UnkCounted_452608*>(self->handle.ptr);
     UnkFound* found = reinterpret_cast<UnkFound*>(fn_71004067a4(handle ? handle->field_0x10 : nullptr));
     if (!found)
         return true;

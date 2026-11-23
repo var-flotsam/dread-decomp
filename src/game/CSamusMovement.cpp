@@ -8,6 +8,7 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkSamusSettings.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU39.h"
 #include "game/UnkVec3fOps.h"
@@ -70,12 +71,6 @@ static_assert(__builtin_offsetof(UnkSamusMovement, field_0x3568) == 0x3568, "Unk
 static_assert(__builtin_offsetof(UnkSamusMovement, timer) == 0x5260, "UnkSamusMovement placeholder layout");
 static_assert(__builtin_offsetof(UnkSamusMovement, field_0x532c) == 0x532c, "UnkSamusMovement placeholder layout");
 static_assert(__builtin_offsetof(UnkSamusMovement, legs) == 0x5468, "UnkSamusMovement placeholder layout");
-
-// A settings object (reached through the GOT): the legs' override is off while its +0x78 is clear.
-struct UnkSamusSettings {
-    u8 pad_0x0[0x78];
-    bool field_0x78;
-};
 
 // The two leg keys fn_71009eee34 is given.
 struct UnkLegKeys {

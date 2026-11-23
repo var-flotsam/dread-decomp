@@ -13,6 +13,7 @@
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
 #include "game/UnkController_u207.h"
+#include "game/UnkEntry_u207.h"
 #include "game/UnkModel_u207.h"
 #include "game/UnkTU207.h"
 #include "game/msapi/material/SAlpha.h"
@@ -23,12 +24,6 @@ using base::math::CVector4D;
 using base::math::UnkVector4D;
 
 // ---- The controller ----
-
-struct UnkEntry_u207 {
-    void* target;
-    CStrId id;
-    UnkEntry_u207(const UnkEntry_u207& other) : target(other.target), id(other.id) {}
-};
 
 // Erases the entry at `index`: its id is released, the later entries move down and the moved-from
 // ones are released again (CRntVector::EraseAt, inlined).

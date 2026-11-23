@@ -5,10 +5,10 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
-struct UnkId {
+struct UnkId_968a84 {
     base::global::UnkStringData* data;
 
-    UnkId(const UnkId& other) : data(other.data) {
+    UnkId_968a84(const UnkId_968a84& other) : data(other.data) {
         if (&g_unk_7101d47108->empty != data)
             ++data->ref_count;
     }
@@ -16,13 +16,13 @@ struct UnkId {
 
 struct UnkIdRecord {
     virtual void vf0();
-    UnkId field_0x8;
-    UnkId field_0x10;
-    UnkId field_0x18;
-    UnkId field_0x20;
-    UnkId field_0x28;
-    UnkId field_0x30;
-    UnkId field_0x38;
+    UnkId_968a84 field_0x8;
+    UnkId_968a84 field_0x10;
+    UnkId_968a84 field_0x18;
+    UnkId_968a84 field_0x20;
+    UnkId_968a84 field_0x28;
+    UnkId_968a84 field_0x30;
+    UnkId_968a84 field_0x38;
 
     UnkIdRecord(const UnkIdRecord& other) = default;
 };

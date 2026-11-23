@@ -3,17 +3,18 @@
 // loader's service of the request ring, and unmounting a pack set's packs. Names and layouts are
 // placeholders.
 #include <nn/os.h>
-#include "base/UnkVtableList.h"
 
 #include "base/CDeviceQueue.h"
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkDestructors.h"
+#include "base/UnkListedPath.h"
 #include "base/UnkRegistry.h"
-#include "base/global/CRntVector.h"
+#include "base/UnkVtableList.h"
 #include "base/animation/CAnimationResource.h"
 #include "base/file/CPackManagerDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU63.h"
 #include "game/UnkTU67.h"
@@ -139,11 +140,6 @@ bool fn_71000898c8(UnkFileDevice* self) {
     return ok;
 }
 
-// A listed path (a node of UnkFilePathList).
-struct UnkListedPath {
-    UnkStrIdMemberOf<g_unk_7101d47200> id;
-    UnkListedPath* next;
-};
 // A list of path ids (as src/base/file/CPackManagerDevice.cpp has it).
 struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
     UnkFilePathList() {

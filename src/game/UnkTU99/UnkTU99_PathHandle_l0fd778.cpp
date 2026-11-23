@@ -6,6 +6,7 @@
 #include <nn/os.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "base/UnkPathIdSlot.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/snd/UnkSoundSystemATK.h"
 #include "base/tunable/CTunable.h"
@@ -45,13 +46,6 @@ struct UnkPathSystem {
     u32 count_0x420;
     u8 pad_0x424[0x400568 - 0x424];
     nn::os::MutexType mutex;
-};
-
-// Storage for a file-path id whose release is written out by hand.
-union UnkPathIdSlot {
-    CFilePathStrId id;
-    UnkPathIdSlot() {}
-    ~UnkPathIdSlot() {}
 };
 
 UnkSoundHandle fn_71000fd778(UnkSoundSystemATK* self, const CFilePathStrId& path) {

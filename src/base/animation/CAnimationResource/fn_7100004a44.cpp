@@ -12,7 +12,7 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-struct UnkReleasedStrIdArray {
+struct UnkReleasedStrIdArray_004a44 {
     UnkStrIdTwoStep* data;
     u32 count;
     u32 capacity;
@@ -21,7 +21,7 @@ struct UnkReleasedStrIdArray {
     u32 flags;
     base::UnkAllocator* allocator;
 
-    __attribute__((always_inline)) ~UnkReleasedStrIdArray() {
+    __attribute__((always_inline)) ~UnkReleasedStrIdArray_004a44() {
         if (data) {
             for (u64 i = 0; i < count; ++i)
                 data[i].~UnkStrIdTwoStep();
@@ -35,7 +35,7 @@ struct UnkReleasedStrIdArray {
 struct UnkIdsRecord38 {
     UnkStrIdTwoStep id_0x0;
     UnkStrIdTwoStep id_0x8;
-    UnkReleasedStrIdArray ids;
+    UnkReleasedStrIdArray_004a44 ids;
 
     __attribute__((always_inline)) ~UnkIdsRecord38() {}
 };

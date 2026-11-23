@@ -12,6 +12,8 @@
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkLocalQuery.h"
+#include "game/UnkQueryBox.h"
 #include "game/UnkTU109.h"
 #include "game/UnkTileOutlineList.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
@@ -83,18 +85,6 @@ struct UnkPolygonHit {
 };
 static_assert(sizeof(UnkPolygonHit) == 0x38, "UnkPolygonHit layout");
 
-// The query a polygon collection shape runs (same type as in src/game/UnkCollisionContacts.cpp and
-// src/game_hi/fn_7100d56604.cpp, vtable at 0x7101aa8870).
-struct UnkLocalQuery {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual UnkColliderResult vf_0x10(UnkPolygonHit hit);
-    CVector3D offset;
-    u16 field_0x14;
-    const void* field_0x18;
-    void* field_0x20;
-};
-
 // A tree node: its box and, at 0x10, where the walk goes on when the box misses (< 0 for a leaf,
 // which is followed by the next node).
 struct UnkTreeNode {
@@ -138,13 +128,6 @@ struct UnkShape8Geometry {
     f32 x, y;
     f32 field_0x8;
     f32 field_0xc;
-};
-
-// A query box (as in src/game_hi/fn_7100d56604.cpp): two corners in any order, two more words.
-struct UnkQueryBox {
-    f32 minX, minY, maxX, maxY;
-    u32 field_0x10;
-    u32 field_0x14;
 };
 
 // CVector3D is an aggregate; the original builds these through a constructor (the components are

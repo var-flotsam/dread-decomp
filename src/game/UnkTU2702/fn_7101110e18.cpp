@@ -5,17 +5,12 @@
 #include "game/UnkTU2702.h"
 #include "game/UnkTU500.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkTypedValue.h"
 #include "types.h"
 #include "game/CAbilityShinespark.h"
 #include "game/behaviortree/CBehavior.h"
 
 using base::global::CStrId;
-
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
-
 
 struct UnkTimerOwner_r {
     u8 pad_0x0[0x2c8];

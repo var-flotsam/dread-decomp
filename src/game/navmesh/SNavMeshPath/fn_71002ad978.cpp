@@ -13,7 +13,7 @@ struct UnkLinkSource {
     u8 field_0x1928[0x8];
 };
 
-struct UnkLinkOwner : UnkWeakTarget {
+struct UnkLinkOwner_2ad978 : UnkWeakTarget {
     u8 pad_0x8[0x238];
     UnkLinkSource* field_0x240;
 };
@@ -40,8 +40,8 @@ static inline void Unlink(UnkLinkList** slot) {
     }
 }
 
-static inline UnkLinkOwner* OwnerOf(UnkWeakHandle* handle) {
-    return static_cast<UnkLinkOwner*>(handle->target);
+static inline UnkLinkOwner_2ad978* OwnerOf(UnkWeakHandle* handle) {
+    return static_cast<UnkLinkOwner_2ad978*>(handle->target);
 }
 
 void fn_71002ad978(UnkRecord* self, UnkWeakTarget* target) {
@@ -54,7 +54,7 @@ void fn_71002ad978(UnkRecord* self, UnkWeakTarget* target) {
     UnkWeakHandle* handle = target ? GetWeakHandle(target) : nullptr;
     AssignRef(&links->field_0x80, handle);
     if (handle) {
-        if (UnkLinkOwner* owner = OwnerOf(handle)) {
+        if (UnkLinkOwner_2ad978* owner = OwnerOf(handle)) {
             if (UnkLinkSource* source = owner->field_0x240) {
                 Unlink(&links->field_0x0);
                 links->field_0x0 = reinterpret_cast<UnkLinkList*>(source->field_0x1828);

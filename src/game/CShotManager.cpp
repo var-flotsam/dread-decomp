@@ -17,6 +17,7 @@
 #include "game/CSwarmControllerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkShotWeakRef.h"
 #include "game/UnkShotWeakTarget.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU32.h"
@@ -54,11 +55,6 @@ struct UnkShotEffect {
     u8 pad_0x30[0xcc];
 };
 static_assert(sizeof(UnkShotEffect) == 0xfc, "UnkShotEffect placeholder layout");
-
-struct UnkShotWeakRef {
-    UnkShotWeakTarget* target;
-    s64 generation;
-};
 
 struct UnkShotModel {
     u8 data[0x8];

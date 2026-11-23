@@ -12,7 +12,7 @@ struct UnkAttackObj {
     u8 field_0x58;
 };
 
-struct UnkAttackOwner {
+struct UnkAttackOwner_l3e82f0 {
     u8 pad_0x00[0x218];
     void* pMovement;  // 0x218
     u8 pad_0x220[0x58];
@@ -25,7 +25,7 @@ struct UnkAttackComp {
 
 struct UnkBigFist {
     u8 pad_0x00[0x30];
-    UnkAttackOwner* pOwner;  // 0x30
+    UnkAttackOwner_l3e82f0* pOwner;  // 0x30
     u8 pad_0x38[0x14a28 - 0x38];
     u8 field_0x14a28;
 };

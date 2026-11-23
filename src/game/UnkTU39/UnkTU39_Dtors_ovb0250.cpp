@@ -6,19 +6,13 @@
 #include "base/UnkDeferredSet.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkKeyNode_b0250.h"
 #include "game/UnkTU39.h"
 #include "base/UnkVtableList.h"
 
 using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
 using base::global::CStrId;
-
-struct UnkKeyNode_b0250 {
-    CStrId id;
-    f32 value;
-    f32 value2;
-    UnkKeyNode_b0250* next;
-};
 
 template <void** Vtable>
 struct UnkKeyListBase_b0250 : base::UnkVtableList<UnkKeyNode_b0250> {

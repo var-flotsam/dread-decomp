@@ -1,26 +1,8 @@
 // From unit 1115 of tools/tu_map.py (0x71006f8120-0x71006fbadc, no reflected class): the copy of an
 // array of arrays. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkInnerVec.h"
 #include "types.h"
-
-// An inner array: base::global::CRntVector's layout with a move that leaves the source empty.
-struct UnkInnerVec {
-    void* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkInnerVec(UnkInnerVec&& other)
-        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
-          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
-        other.data = nullptr;
-        other.count = 0;
-        other.capacity = 0;
-    }
-};
 
 typedef base::global::CRntVector<UnkInnerVec> UnkOuterVec;
 

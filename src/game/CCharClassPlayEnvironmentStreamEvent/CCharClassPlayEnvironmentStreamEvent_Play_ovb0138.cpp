@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/UnkPlayingHandle_ovb0074.h"
 #include "game/UnkTU23.h"
 #include "types.h"
 
@@ -67,10 +68,6 @@ struct UnkStreamDesc_ovb0138 {
 struct UnkSoundSystemPlayView_ovb0074;
 struct UnkSoundDesc_ovb0074;
 struct UnkPlayingRef_ovb0074;
-struct UnkPlayingHandle_ovb0074 {
-    UnkPlayingRef_ovb0074* ref;
-    u64 serial;
-};
 struct UnkSoundMgr;
 
 struct UnkPlayEnvironmentStreamEvent_ovb0138 {

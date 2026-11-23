@@ -6,6 +6,7 @@
 #include "base/math/CVector.h"
 #include "base/math/CVectorOps.h"
 #include "game/UnkActor.h"
+#include "game/UnkMeleeRequest_l1065bc.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
@@ -13,14 +14,6 @@ using base::global::CStrId;
 using base::math::CVector3D;
 
 extern CStrId g_unk_71726c0f68 __attribute__((visibility("hidden")));
-
-struct UnkMeleeRequest_l1065bc {
-    u64 key;  // 0x0
-    u8 pad_0x8[0x1c];
-    u32 field_0x24;
-    u8 pad_0x28[0x8];
-    CStrId id;  // 0x30
-};
 
 struct UnkMeleeSelf_l1065bc;
 

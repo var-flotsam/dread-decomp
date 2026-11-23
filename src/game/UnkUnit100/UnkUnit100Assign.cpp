@@ -7,13 +7,13 @@
 #include "types.h"
 
 namespace {
-struct UnkUnit100Entry {
+struct UnkUnit100Entry_UnkUnit100Assign {
     u32 words[3];
 };
 
 struct UnkUnit100Value {
     u32 field_0x0;
-    UnkUnit100Entry* data;  // 0x8
+    UnkUnit100Entry_UnkUnit100Assign* data;  // 0x8
     u32 count;              // 0x10
     u32 capacity;           // 0x14
     u32 step;               // 0x18
@@ -26,11 +26,11 @@ struct UnkUnit100Value {
             field_0x0 = other.field_0x0;
             count = 0;
             u32 cap = other.capacity;
-            UnkUnit100Entry* p;
+            UnkUnit100Entry_UnkUnit100Assign* p;
             if (capacity < cap) {
-                p = static_cast<UnkUnit100Entry*>(allocator->vf_0x40((u64)cap * sizeof(UnkUnit100Entry), 8, flags));
+                p = static_cast<UnkUnit100Entry_UnkUnit100Assign*>(allocator->vf_0x40((u64)cap * sizeof(UnkUnit100Entry_UnkUnit100Assign), 8, flags));
                 if (data) {
-                    __builtin_memcpy(p, data, (u64)count * sizeof(UnkUnit100Entry));
+                    __builtin_memcpy(p, data, (u64)count * sizeof(UnkUnit100Entry_UnkUnit100Assign));
                     allocator->vf_0x48(data);
                 }
                 data = p;
@@ -38,7 +38,7 @@ struct UnkUnit100Value {
             } else {
                 p = data;
             }
-            __builtin_memcpy(p, other.data, (u64)other.count * sizeof(UnkUnit100Entry));
+            __builtin_memcpy(p, other.data, (u64)other.count * sizeof(UnkUnit100Entry_UnkUnit100Assign));
             count = other.count;
         }
         return *this;

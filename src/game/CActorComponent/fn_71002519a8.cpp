@@ -5,6 +5,7 @@
 #include "base/UnkCloneCalls.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "game/CCharClassLiquidPoolComponent.h"
+#include "game/UnkRecord_0x40.h"
 #include "game/UnkTU23.h"
 #include "game/UnkValue_0x10.h"
 #include "types.h"
@@ -71,12 +72,6 @@ void fn_710079c3a4(UnkWordsByKey* a, const u64* key) {
     if (p != a->End())
         fn_710079ccb8(a, p);
 }
-
-// And over 0x40-byte records held at 8 in an object, with the key passed by value
-// (fn_7100015250, fn_7100015508).
-struct UnkRecord_0x40 {
-    u8 data[0x40];
-};
 
 struct UnkRecordsByKeyHolder_7100015250 {
     u64 field_0x0;

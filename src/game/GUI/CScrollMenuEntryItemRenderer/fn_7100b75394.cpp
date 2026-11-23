@@ -7,13 +7,13 @@
 #include "types.h"
 #include "base/UnkVtableList.h"
 
-struct UnkListNode {
+struct UnkListNode_b75394 {
     u64 field_0x0;
-    UnkListNode* next;
+    UnkListNode_b75394* next;
 };
 
-struct UnkNodeList : base::UnkVtableList<UnkListNode> {
-    ~UnkNodeList() {
+struct UnkNodeList_b75394 : base::UnkVtableList<UnkListNode_b75394> {
+    ~UnkNodeList_b75394() {
         vtable = g_unk_7101a9ee50 + 2;
         Clear();
     }
@@ -22,12 +22,12 @@ struct UnkNodeList : base::UnkVtableList<UnkListNode> {
 struct UnkListScreen {
     void** vtable;
     u8 unk_0x8[0x230];
-    UnkNodeList field_0x238;
+    UnkNodeList_b75394 field_0x238;
 };
 
 void fn_7100b75394(UnkListScreen* self) {
     self->vtable = g_unk_7101a9ebd8 + 2;
-    self->field_0x238.~UnkNodeList();
+    self->field_0x238.~UnkNodeList_b75394();
     fn_71011d8e90(reinterpret_cast<UnkGuiDisplayObject*>(self));
     operator delete(self);
 }

@@ -7,6 +7,8 @@
 
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkBoundsItem.h"
+#include "game/UnkBoundsList.h"
 #include "game/UnkPoolBox.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU270.h"
@@ -143,17 +145,6 @@ struct UnkBoundsNode {
     u8 unk_0x0[0xa4];
     UnkVec3f origin;     // 0xa4
     UnkVec3f points[7];  // 0xb0
-};
-
-struct UnkBoundsItem {
-    UnkBoundsNode* node;
-    u8 unk_0x8[0x18];
-};
-
-struct UnkBoundsList {
-    u8 unk_0x0[0x34];
-    u32 count;
-    UnkBoundsItem* items;
 };
 
 // Sets `box` to the bounds of every point of every node in `list` (left as it is when the list is

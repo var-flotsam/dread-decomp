@@ -1,15 +1,8 @@
 // Unit SCameraRailNode: the bounds of the node's points (0x58-byte polymorphic elements, slot 3 answers a
 // position), recomputed when the dirty flag is set; answers the box. Names and layouts are placeholders.
+#include "game/UnkAabb.h"
+#include "game/UnkVec3.h"
 #include "types.h"
-
-struct UnkVec3 {
-    f32 x, y, z;
-};
-
-struct UnkAabb {
-    UnkVec3 min;
-    UnkVec3 max;
-};
 
 struct UnkRailPoint_c04740 {
     virtual void vf_0x0();

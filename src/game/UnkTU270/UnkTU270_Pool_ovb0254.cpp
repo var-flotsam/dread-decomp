@@ -8,6 +8,8 @@
 
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkBoundsItem.h"
+#include "game/UnkBoundsList.h"
 #include "game/UnkPoolBox.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU307.h"
@@ -166,17 +168,6 @@ UnkVec3f fn_7100215e38(UnkPoolBox* self);                              // its si
 struct UnkBoundsNode {
     u8 unk_0x0[0xa4];
     UnkVec3f points[8];  // 0xa4
-};
-
-struct UnkBoundsItem {
-    UnkBoundsNode* node;
-    u8 unk_0x8[0x18];
-};
-
-struct UnkBoundsList {
-    u8 unk_0x0[0x34];
-    u32 count;
-    UnkBoundsItem* items;
 };
 
 // Sets the sphere to the one around every point of every node in the list (the first parameter is unused).

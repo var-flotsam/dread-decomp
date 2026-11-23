@@ -7,22 +7,22 @@
 #include "game/UnkTU2578.h"
 #include "types.h"
 
-struct UnkRefObj {
+struct UnkRefObj_f02528 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
     s32 ref_count;
 };
 
-static inline void RefRelease(UnkRefObj* o) {
+static inline void RefRelease(UnkRefObj_f02528* o) {
     __atomic_fetch_sub(&o->ref_count, 1, __ATOMIC_SEQ_CST);
     if (__atomic_load_n(&o->ref_count, __ATOMIC_SEQ_CST) == 0)
         o->vf_0x10();
 }
 
-struct UnkRef {
-    UnkRefObj* ptr;
-    ~UnkRef() {
+struct UnkRef_f02528 {
+    UnkRefObj_f02528* ptr;
+    ~UnkRef_f02528() {
         if (ptr)
             RefRelease(ptr);
     }
@@ -30,12 +30,12 @@ struct UnkRef {
 
 struct UnkKeyRefNode {
     u32 key;
-    UnkRef ref;
+    UnkRef_f02528 ref;
     UnkKeyRefNode* next;
 };
 
 struct UnkRefNode {
-    UnkRef ref;
+    UnkRef_f02528 ref;
     UnkRefNode* next;
 };
 

@@ -32,6 +32,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkIdTextData.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
@@ -771,15 +772,6 @@ static inline base::file::UnkFileDevice* FileDevice() {
     }
     return g_unk_7101d4d828;
 }
-struct UnkIdTextData {
-    u8 pad_0x0[0x10];
-    CRntString str;
-    u8 pad_0x40[0x4];
-    // A union member: the original reloads the id's data pointer after the increment.
-    union {
-        s32 reads;
-    };
-};
 template <class Id>
 static inline const CRntString& IdText(const Id& id) {
     ++reinterpret_cast<UnkIdTextData*>(id.data)->reads;

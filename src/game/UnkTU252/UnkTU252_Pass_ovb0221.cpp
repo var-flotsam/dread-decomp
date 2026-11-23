@@ -10,6 +10,7 @@
 #include "engine/UnkGfxData252.h"
 #include "engine/UnkGfxSlot252.h"
 #include "engine/UnkGfxSlots252.h"
+#include "game/UnkColor_ovb0092.h"
 #include "game/UnkPool252.h"
 #include "game/UnkTU182.h"
 #include "game/UnkTU204.h"
@@ -19,10 +20,6 @@
 using base::color::CColor4F;
 using base::math::CVector4D;
 using base::math::UnkVector4D;
-
-struct UnkColor_ovb0092 {
-    f32 r, g, b, a;
-};
 
 struct UnkLockonModel_ovb0092 {
     u8 pad_0x0[0xe8];

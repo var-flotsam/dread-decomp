@@ -15,13 +15,13 @@ struct UnkValueSource_b35a2 {
     u8 unk_0x10[4];
     s32 kind;
 };
-struct UnkCentralUnit {
+struct UnkCentralUnit_b35 {
     u8 unk_0x0[0x9f8];
     u8 field_0x9f8;
 };
 struct UnkCentralUnitOwner {
     u8 unk_0x0[8];
-    UnkCentralUnit* target;
+    UnkCentralUnit_b35* target;
 };
 struct UnkResult_0x18_b35a2 {
     u64 empty[2];
@@ -30,7 +30,7 @@ struct UnkResult_0x18_b35a2 {
 
 UnkResult_0x18_b35a2 fn_710077b878(void* unused, UnkCentralUnitOwner* owner, UnkValueSource_b35a2** source) {
     UnkValueSource_b35a2* src = *source;
-    UnkCentralUnit* target = owner->target;
+    UnkCentralUnit_b35* target = owner->target;
     u8* slot;
     if (src->kind == 1 || src->set->count >= 9)
         slot = src->holder;

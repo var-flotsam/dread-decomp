@@ -16,9 +16,11 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkProfileSaveArg.h"
+#include "game/UnkRecord_7101147868.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU57.h"
+#include "game/Uuid.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
@@ -28,25 +30,10 @@ using base::global::CStrId;
 // nn::util's UUID and formatter (lib/nnsdk's nn/util.h has neither; port/runtime/include/nn/util.h
 // declares the same).
 namespace nn::util {
-struct Uuid {
-    u8 data[16];
-};
 Uuid GenerateUuid();
 s32 TSNPrintf(char* buffer, u64 size, const char* format, ...);
 }  // namespace nn::util
 
-// A report record (0x20 bytes, as src/game/CInventoryComponent/fn_7101147868.cpp lays it out): the key, a string
-// value, an integer value and the value's kind. Built out of line from a key and a string id
-// (fn_7100ec4240) or an integer (fn_71003afa88); both take the ids by value.
-struct UnkRecord_7101147868 {
-    CStrId field_0x0;
-    base::UnkStrIdMember field_0x8;
-    u64 field_0x10;
-    u32 field_0x18;
-
-    UnkRecord_7101147868(CStrId name, CStrId value) asm("fn_7100ec4240");
-    UnkRecord_7101147868(CStrId name, s64 value) asm("fn_71003afa88");
-};
 static_assert(sizeof(UnkRecord_7101147868) == 0x20, "UnkRecord_7101147868 placeholder layout");
 
 // Grows the array to hold `capacity` records (out of line).

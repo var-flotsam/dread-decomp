@@ -4,13 +4,10 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkKeyedStrIds.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkWordPair.h"
 #include "types.h"
 
 using base::UnkStrIdMember;
-
-struct UnkWordPair {
-    u64 a, b;
-};
 
 template <u32 Second, u32 State>
 struct UnkStrIdPairVariant {

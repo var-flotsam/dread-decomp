@@ -18,6 +18,7 @@
 #include "base/reflection.h"
 #include "game/CBlackboard.h"
 #include "game/CGameBlackboard.h"
+#include "game/UnkStrIdHandle.h"
 #include "game/UnkTU83.h"
 #include "types.h"
 
@@ -368,11 +369,6 @@ void fn_7100aedd04(UnkFloatsByIdValue_ovb0064* self, UnkFloatsByIdValue_ovb0064*
 }
 
 // ---- A handle (an id and the object a registry has for it) ----
-
-struct UnkStrIdHandle {
-    CStrId id;
-    void* field_0x8;
-};
 
 void fn_7100ae986c(__attribute__((noescape)) UnkStrIdHandle* self, const CStrId& id);
 

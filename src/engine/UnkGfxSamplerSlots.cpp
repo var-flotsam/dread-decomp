@@ -5,6 +5,7 @@
 // fn_710015f100 and fn_7100161520 run during the device set-up (fn_71001587f0). Names and layouts
 // are placeholders.
 #include "engine/UnkGfxTexture.h"
+#include "game/UnkGfxHeap.h"
 #include "game/UnkGraphicsState.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU170.h"
@@ -42,12 +43,6 @@ static inline UnkGfxTextureAllocator* GfxTextureAllocator() {
 }
 
 static_assert(sizeof(UnkGfxTexture) == 0x100, "UnkGfxTexture layout");
-
-// A heap of texture memory: its NVN memory pool first, the pool's base address at +0x100.
-struct UnkGfxHeap {
-    u8 pool[0x100];
-    u64 base;  // 0x100
-};
 
 struct UnkPool;  // the memory pool type of src/game_s7/fn_71001587f0.cpp: its NVN pool at +0x8
 

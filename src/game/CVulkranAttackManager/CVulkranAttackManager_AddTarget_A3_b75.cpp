@@ -3,15 +3,12 @@
 // fn_71006bd128 in src/game_lo/fn_71006bd128.cpp does), then drops the handle held at +0x8 when it refers
 // to `target`, and reloads the word at +0x10 from the tunable's +0x24. Nothing happens for a null target.
 // Names and layouts are placeholders.
+#include "game/UnkHandleList.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU852.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-struct UnkHandleList {
-    void* field_0x0;
-};
 
 extern UnkTunable g_unk_717270a770;
 

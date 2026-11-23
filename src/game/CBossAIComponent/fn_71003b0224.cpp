@@ -2,16 +2,12 @@
 // In state 1 it first builds a counted reference with fn_710023b580 on the member at +0x147b0, hands it
 // to the holder (fn_7100234f78) and moves to state 2.
 #include "base/UnkRefHandle.h"
+#include "game/UnkTargetHolder.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkTarget {
     u8 pad_0x0[0x54];
     u32 field_0x54;
-};
-
-// The weak handle the holder refers to (base::UnkRefCounted's layout); its target is at +0x10.
-struct UnkTargetHolder : base::UnkRefCounted {
-    UnkTarget* field_0x10;
 };
 
 struct UnkComponent {

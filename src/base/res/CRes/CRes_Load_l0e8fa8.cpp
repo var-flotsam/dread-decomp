@@ -8,17 +8,11 @@
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkPathPairTemp_b45a1.h"
 #include "game/UnkTU25.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
-
-// As src/base/curves/CCurveResource_Load_b45.cpp declares it.
-struct UnkPathPairTemp_b45a1 {
-    void* id;
-    void* path;
-    ~UnkPathPairTemp_b45a1() { fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(this)); }
-};
 
 // The resource's key: an id and path pair made and destroyed out of line, assigned in place.
 struct UnkResKey_l0e8fa8 {

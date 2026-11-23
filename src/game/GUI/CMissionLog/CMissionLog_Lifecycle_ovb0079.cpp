@@ -20,6 +20,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game/GUI/UnkMissionLogRecords.h"
+#include "game/UnkMissionLogTarget_ovb0079.h"
 #include "types.h"
 
 using base::UnkRefPtrMember;
@@ -57,12 +58,6 @@ void fn_7100b55bdc(UnkMissionLog_ovb0079* self) {
 }
 
 extern CStrId g_unk_7172765068 __attribute__((visibility("hidden")));
-
-struct UnkMissionLogTarget_ovb0079 {
-    u8 unk_0x0[0x260];
-    CStrId field_0x260;
-    u8 field_0x268[0x8];
-};
 
 struct UnkMissionLogEvent_ovb0079 {
     u8 unk_0x0[0x298];

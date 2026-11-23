@@ -28,7 +28,7 @@ struct UnkSubObject {
     u8 unk_0x0[0x64];
     u8 field_0x64;
 };
-struct UnkOwner {
+struct UnkOwner_459e6c {
     u8 unk_0x0[0x1b8];
     UnkSubObject* field_0x1b8;
     u8 unk_0x1c0[0xe0];
@@ -36,7 +36,7 @@ struct UnkOwner {
 };
 struct UnkSelf {
     u8 unk_0x0[0x30];
-    UnkOwner* owner;
+    UnkOwner_459e6c* owner;
     u8 unk_0x38[0x5b8];
     u32 field_0x5f0;
     u8 unk_0x5f4[0xc];

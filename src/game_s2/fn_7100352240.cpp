@@ -8,7 +8,7 @@
 
 using UnkAimTarget = UnkAnimationComponent;
 
-struct UnkAimActor {
+struct UnkAimActor_352240 {
     u8 pad_0x0[0x38];
     u8 field_0x38[8];
     u8 pad_0x40[0x1e0];
@@ -17,7 +17,7 @@ struct UnkAimActor {
 
 struct UnkAimComponent {
     u8 pad_0x0[0x30];
-    UnkAimActor* field_0x30;
+    UnkAimActor_352240* field_0x30;
     u8 pad_0x38[0x638];
     f32 field_0x670;
     f32 field_0x674;

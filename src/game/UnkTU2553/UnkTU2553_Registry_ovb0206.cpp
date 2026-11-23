@@ -5,31 +5,30 @@
 // steps (batch b0206). Each function is introduced by a comment. Names and layouts are placeholders.
 #include <stdio.h>
 #include <stdlib.h>
-#include "base/UnkVtableList.h"
-#include "base/file/CPackManagerDevice.h"
-#include "base/snd/CSoundSystem.h"
-#include "game/UnkNamedUser.h"
-#include "game/UnkPtrListNode.h"
-#include "game/UnkTU2730.h"
 
 #include <nn/os.h>
 
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkDestructors.h"
+#include "base/UnkLinkedList.h"
+#include "base/UnkListedPath.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkSList.h"
-#include "base/global/CRntVector.h"
+#include "base/UnkVtableList.h"
+#include "base/file/CPackManagerDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPool.h"
 #include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/CBlackboard.h"
 #include "game/CBombGun.h"
 #include "game/CBossAIComponent.h"
@@ -41,7 +40,12 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkIdTextData.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkLuaVec3_b0164.h"
+#include "game/UnkNamedObject.h"
+#include "game/UnkNamedUser.h"
+#include "game/UnkPtrListNode.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU0.h"
@@ -51,6 +55,7 @@
 #include "game/UnkTU2559.h"
 #include "game/UnkTU2571.h"
 #include "game/UnkTU2727.h"
+#include "game/UnkTU2730.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU341.h"
@@ -63,7 +68,6 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-#include "base/UnkLinkedList.h"
 
 // ---- fn_7100df5cec ----
 // CGameManager::CTunableGameManager's unit: replaces the id at +0x2238; when the old one was not empty the
@@ -304,11 +308,6 @@ using base::UnkStrIdMemberOf;
 
 struct UnkSoundMgr;
 
-// UnkListedPath and UnkFilePathList as src/base/file/CPackManagerDevice.cpp defines them.
-struct UnkListedPath {
-    UnkStrIdMemberOf<g_unk_7101d47200> id;
-    UnkListedPath* next;
-};
 struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
     UnkFilePathList() {
         vtable = &g_unk_7101a1b030[2];
@@ -461,10 +460,6 @@ CRntString fn_7100df703c(u32 kind) {
 // (+0x4a2..+0x4a7), two more ids (+0x558, +0x560) and a vector (+0x568). Names and layouts are
 // placeholders.
 using base::global::CStrId;
-
-struct UnkLuaVec3_b0164 {
-    f32 x, y, z;
-};
 
 // The members of the game manager this function writes that the shared layout leaves as padding.
 struct UnkGameManagerRequestView_df2dd4 {
@@ -963,11 +958,6 @@ static inline void Reset_dfa010(CBlackboard& board) { reinterpret_cast<UnkBoardC
 struct UnkLoadRequest_dfa010;
 void fn_7100dfa1e4(UnkGameManager* self, UnkLoadRequest_dfa010* request);
 
-// Named objects (a CRntString at +8), in a list at +0x478.
-struct UnkNamedObject {
-    u8 pad_0x0[0x8];
-    CRntString name;
-};
 struct UnkNamedNode {
     UnkNamedObject* value;
     UnkNamedNode* next;
@@ -978,15 +968,6 @@ static inline bool Equal(const CRntString* a, const CRntString* b) {
     return fn_710007f120(reinterpret_cast<const UnkCompared_0x30*>(a), reinterpret_cast<const UnkCompared_0x30*>(b));
 }
 
-// The pooled data behind a string id as its text accessor sees it.
-struct UnkIdTextData {
-    u8 pad_0x0[0x10];
-    CRntString str;
-    u8 pad_0x40[0x4];
-    union {
-        s32 reads;
-    };
-};
 template <class Id>
 static inline const CRntString& IdText(const Id& id) {
     ++reinterpret_cast<UnkIdTextData*>(id.data)->reads;

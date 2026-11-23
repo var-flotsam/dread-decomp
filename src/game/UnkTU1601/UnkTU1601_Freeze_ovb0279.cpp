@@ -19,6 +19,7 @@
 #include "game/UnkTU367.h"
 #include "game/UnkTU437.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkThermalDevice_b0279.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -40,7 +41,7 @@ struct UnkRef {
     }
 };
 
-struct UnkDoorState_b0279 {
+struct UnkDoorState_b0279_ovb0279 {
     u8 pad_0x0[0x408];
     u8 field_0x408;
     u8 pad_0x409[3];
@@ -63,16 +64,6 @@ struct UnkThermalValue_b0279 {
     u64 field_0x8;
 };
 
-struct UnkThermalDevice_b0279 {
-    u8 pad_0x0[0x4d0];
-    UnkThermalValue_b0279* values;  // 0x4d0
-    u64* keys;                      // 0x4d8
-    u32 key_count;                  // 0x4e0
-    u8 pad_0x4e4[0x548 - 0x4e4];
-    UnkThermalLink_b0279* links;  // 0x548
-    u32 link_count;               // 0x550
-};
-
 bool fn_7100a928ec(UnkThermalDevice_b0279* self, bool frozen) {
     if (frozen) {
         for (u64 i = 0; i < self->link_count; ++i) {
@@ -86,8 +77,8 @@ bool fn_7100a928ec(UnkThermalDevice_b0279* self, bool frozen) {
                 link->state = 2;
             }
             UnkWeakHandle* h = link->handle.ptr;
-            UnkDoorState_b0279* door =
-                reinterpret_cast<UnkDoorState_b0279*>(fn_71002af860(h ? h->target : nullptr));
+            UnkDoorState_b0279_ovb0279* door =
+                reinterpret_cast<UnkDoorState_b0279_ovb0279*>(fn_71002af860(h ? h->target : nullptr));
             if (!door)
                 continue;
             door->field_0x408 = 0;

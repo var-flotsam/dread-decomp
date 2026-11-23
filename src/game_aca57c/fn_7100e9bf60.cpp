@@ -8,17 +8,17 @@
 #include "game/UnkTU2567.h"
 #include "types.h"
 
-struct UnkEntityRef {
+struct UnkEntityRef_e9bf60 {
     u8 unk_0x0[0x30];
     UnkKeyObject* key;
 };
 
 struct UnkEntityArg {
     u8 unk_0x0[0x30];
-    UnkEntityRef* entity;
+    UnkEntityRef_e9bf60* entity;
 };
 
-struct UnkVec2 {
+struct UnkVec2_e9bf60 {
     f32 x;
     f32 y;
 };
@@ -27,7 +27,7 @@ struct UnkRecord {
     UnkKeyObject* key;
     s32 field_0x8;
     u8 field_0xc[0x8];
-    UnkVec2 field_0x14;
+    UnkVec2_e9bf60 field_0x14;
     u8 unk_0x1c[0x4];
     f32 field_0x20;
     u8 unk_0x24[0x4];
@@ -43,8 +43,8 @@ struct UnkRecordBuckets {
 };
 
 struct UnkBox {
-    UnkVec2 min;
-    UnkVec2 max;
+    UnkVec2_e9bf60 min;
+    UnkVec2_e9bf60 max;
 };
 
 struct UnkRecordOwner {
@@ -59,7 +59,7 @@ struct UnkRecordOwner {
 bool fn_7100e9bf60(UnkRecordOwner* self, UnkEntityArg* arg) {
     if (!self->records.count)
         return false;
-    UnkEntityRef* entity = arg->entity;
+    UnkEntityRef_e9bf60* entity = arg->entity;
     u32 hash = entity->key->hash_a ^ entity->key->hash_b;
     u32 i = hash % self->records.capacity;
     if (i >= self->records.count)

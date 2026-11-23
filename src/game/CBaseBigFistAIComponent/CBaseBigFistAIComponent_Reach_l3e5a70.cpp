@@ -12,6 +12,7 @@
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU54.h"
+#include "game/UnkTimeline.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -20,12 +21,6 @@ using base::global::CStrId;
 extern __attribute__((visibility("hidden"))) const UnkVec3f g_unk_7101649350;
 
 struct UnkMotionTracks;
-struct UnkTimeline {
-    u8 pad_0x0[0x24];
-    s32 frame_count;
-    u8 pad_0x28[0x58];
-    UnkMotionTracks* tracks;  // 0x80
-};
 
 // The motion fn_71007142e8 initialises: a 3x4 matrix and what follows it (0x70 bytes).
 struct UnkBigFistMotion_l3e5a70 {

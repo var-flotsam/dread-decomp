@@ -16,7 +16,7 @@ extern char unk_7101a1d9f8[];
 // The matrix of `value` rotated by `angle` (returned in memory).
 
 // An entry (12 bytes, zeroed).
-struct UnkSceneEntry {
+struct UnkSceneEntry_UnkSceneMatrixNode {
     u32 words[3] = {};
 };
 
@@ -43,12 +43,12 @@ void fn_710016c760(UnkSceneMatrixNode* self, UnkSceneEntryOwner* owner, const vo
     self->owner = owner;
     if (!owner->entries) {
         u32 n = *reinterpret_cast<const u32*>(owner->scene + 0x38c);
-        u64 size = (u64)n * sizeof(UnkSceneEntry);
-        UnkSceneEntry* p = static_cast<UnkSceneEntry*>(fn_7100083ba0(size, 0x1a));
+        u64 size = (u64)n * sizeof(UnkSceneEntry_UnkSceneMatrixNode);
+        UnkSceneEntry_UnkSceneMatrixNode* p = static_cast<UnkSceneEntry_UnkSceneMatrixNode*>(fn_7100083ba0(size, 0x1a));
         if (n) {
-            UnkSceneEntry* e = p;
+            UnkSceneEntry_UnkSceneMatrixNode* e = p;
             do {
-                new (e) UnkSceneEntry;
+                new (e) UnkSceneEntry_UnkSceneMatrixNode;
                 ++e;
             } while (e != p + n);
         }

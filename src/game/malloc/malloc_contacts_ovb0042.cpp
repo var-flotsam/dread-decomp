@@ -5,6 +5,8 @@
 // impact; the capsule tests try the capsule's two end circles and its straight body in turn. Names
 // and layouts are placeholders (the types are declared as src/game/UnkCollisionContacts.cpp does).
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkBox2D.h"
+#include "game/UnkVec3_b42.h"
 #include "game/malloc.h"
 #include "types.h"
 
@@ -18,16 +20,6 @@ struct UnkContactBuffer;
 struct UnkCircle2D {
     f32 x, y;
     f32 radius;
-};
-
-// An axis-aligned box: its lower and upper corners.
-struct UnkBox2D {
-    f32 x0, y0;
-    f32 x1, y1;
-};
-
-struct UnkVec3_b42 {
-    f32 x, y, z;
 };
 
 // One contact point (0x2c bytes): the position, a vector for each shape of the pair, the time of

@@ -3,6 +3,7 @@
 // remembers the plane that last rejected it and the test starts there, walking the planes in the
 // order a next-plane table gives. Names and layouts are placeholders.
 // Holds fn_71001bab30 and the frustum's update, fn_71001b83f8.
+#include "base/UnkPlane.h"
 #include "game/UnkPoolBox.h"
 #include "game/UnkTU204.h"
 #include "game/UnkTU225.h"
@@ -10,14 +11,6 @@
 #include "game/UnkTU307.h"
 #include "game/UnkTU308.h"
 #include "types.h"
-
-// A plane: its normal and its distance term.
-struct UnkPlane {
-    f32 x;
-    f32 y;
-    f32 z;
-    f32 d;
-};
 
 struct UnkFrustumView {
     u8 pad_0x0[0x178];

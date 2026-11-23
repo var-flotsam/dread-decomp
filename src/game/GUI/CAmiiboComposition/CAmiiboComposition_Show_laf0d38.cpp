@@ -7,6 +7,7 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/GUI/CPopUpComposition.h"
+#include "game/UnkAmiiboCallback_laf0d38.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -26,17 +27,6 @@ void fn_710002a560(UnkAmiiboSingleton_laf0d38* self);
 
 struct UnkAmiiboComposition_laf0d38;
 void fn_7100af1d78(UnkAmiiboComposition_laf0d38* self);
-
-// A function bound to its object, called when the message closes. It is passed by value; its copy
-// constructor is out of line, so it goes in memory.
-struct UnkAmiiboCallback_laf0d38 {
-    UnkAmiiboComposition_laf0d38* object;
-    void (*function)(UnkAmiiboComposition_laf0d38*);
-
-    UnkAmiiboCallback_laf0d38(UnkAmiiboComposition_laf0d38* object, void (*function)(UnkAmiiboComposition_laf0d38*))
-        : object(object), function(function) {}
-    UnkAmiiboCallback_laf0d38(const UnkAmiiboCallback_laf0d38& other);
-};
 
 struct UnkAmiiboMessages_laf0d38;
 

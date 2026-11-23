@@ -5,18 +5,13 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkStrIdPair_b239.h"
 #include "types.h"
 
 #include <new>
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-struct UnkStrIdPair_b239 {
-    CStrId first;
-    CStrId second;
-    u32 value;
-};
 
 using UnkStrIdMap_b239 = base::global::CRntSmallDictionary<CStrId, UnkStrIdPair_b239>;
 

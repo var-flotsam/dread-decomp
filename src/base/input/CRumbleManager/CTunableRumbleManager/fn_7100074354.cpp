@@ -6,6 +6,8 @@
 #include "base/global/CStrId.h"
 #include "base/input/UnkRumbleManager.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/UnkHandle.h"
+#include "game/UnkHandleTarget.h"
 #include "game/UnkTU49.h"
 #include "game/UnkTU50.h"
 #include "game/operator_new.h"
@@ -16,17 +18,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 using base::input::UnkRumbleManager;
 using base::math::CVector3D;
-
-// A handle to a playing rumble: current while the target's serial is the handle's.
-struct UnkHandleTarget {
-    void* field_0x0;
-    u64 field_0x8;
-};
-
-struct UnkHandle {
-    UnkHandleTarget* target;
-    u64 serial;
-};
 
 struct UnkRumbleParams;
 struct UnkRumbleFile;

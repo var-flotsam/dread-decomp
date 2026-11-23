@@ -8,18 +8,13 @@
 #include "game/CAnimationComponent.h"
 #include "game/CEmmyGrabSamusAttack.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStrId_71005077f8.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// fn_71005077f8's id type (src/game/CEmmyGrabSamusAttack/fn_71005077f8.cpp): a data pointer with a
-// user copy constructor, returned through x8.
-struct UnkStrId_71005077f8 {
-    UnkStringData* data;
-    UnkStrId_71005077f8(const UnkStrId_71005077f8& other);
-};
 struct UnkStruct_71005077f8;
 struct UnkGrabAttack_b59a3;
 struct UnkGrabId_b59a3;

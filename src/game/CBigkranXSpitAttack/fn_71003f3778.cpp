@@ -7,15 +7,15 @@
 
 using base::global::UnkStrIdBase;
 
-struct UnkEventSource {
+struct UnkEventSource_3f3778 {
     u8 pad_0x0[0x10];
-    UnkEventSource* field_0x10;
+    UnkEventSource_3f3778* field_0x10;
 };
 
 struct UnkSpitEvent {
     s32 field_0x0;
     u8 pad_0x4[4];
-    UnkEventSource* field_0x8;
+    UnkEventSource_3f3778* field_0x8;
 };
 
 struct UnkSpitOwnerObject {
@@ -31,7 +31,7 @@ struct UnkSpitHandler {
 bool fn_71003f3778(UnkSpitHandler* self, UnkSpitEvent* event) {
     const UnkStrIdBase* name = &base::global::CStrId::Empty();
     if (event->field_0x8) {
-        UnkEventSource* source = event->field_0x8->field_0x10;
+        UnkEventSource_3f3778* source = event->field_0x8->field_0x10;
         name = source ? reinterpret_cast<const UnkStrIdBase*>(reinterpret_cast<u8*>(source) + 0x38) : name;
     }
     base::global::UnkStringData* id = name->data;

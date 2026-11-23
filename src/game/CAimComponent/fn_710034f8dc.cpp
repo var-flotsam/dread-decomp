@@ -4,21 +4,21 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
 
-struct UnkAimState {
+struct UnkAimState_34f8dc {
     u8 pad_0x0[0x10];
     s32 state;
 };
 
-struct UnkAimActor {
+struct UnkAimActor_34f8dc {
     u8 pad_0x0[0x220];
     UnkAnimationComponent* animation;
 };
 
 struct UnkAimComponent {
     u8 pad_0x0[0x30];
-    UnkAimActor* actor;  // 0x30
+    UnkAimActor_34f8dc* actor;  // 0x30
     u8 pad_0x38[0x18];
-    UnkAimState* aim;  // 0x50
+    UnkAimState_34f8dc* aim;  // 0x50
     u8 pad_0x58[0x308];
     bool field_0x360;
 };

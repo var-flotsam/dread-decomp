@@ -1,24 +1,14 @@
 // Computes a hash over an object's state: opens a stream (kind 0x16), appends its id, a
 // 64-bit value reached through a pointer chain, and returns the digest of the buffer.
 #include "base/UnkHashStream.h"
+#include "base/UnkHashed.h"
+#include "base/UnkInner.h"
 #include "base/reflection/CType.h"
 #include "types.h"
-
-struct UnkInner {
-    u8 pad_0x0[0x30];
-    u64 field_0x30;
-};
 
 struct UnkNode {
     u8 pad_0x0[8];
     UnkInner* inner_0x8;
-};
-
-struct UnkHashed {
-    u8 pad_0x0[0xe0];
-    u32 field_0xe0;
-    u8 pad_0xe4[4];
-    UnkNode* node_0xe8;
 };
 
 s32 fn_710009a394(UnkHashed* self) {

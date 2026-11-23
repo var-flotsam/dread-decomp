@@ -3,6 +3,7 @@
 // last record, then runs the base destructor.
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/UnkListener.h"
 #include "game/UnkListenerOwner.h"
 #include "game/UnkRefSlot.h"
 #include "game/UnkTU1449.h"
@@ -26,7 +27,7 @@ struct UnkEventBase {
 };
 
 // Eight callback slots after the base (0x70 bytes).
-struct UnkSlots : UnkEventBase {
+struct UnkSlots_99a084 : UnkEventBase {
     void* slots[8];
 
     void Destroy(void** vt) {
@@ -43,7 +44,7 @@ struct UnkSlots : UnkEventBase {
 };
 
 // A small record with its own vtable (0x28 bytes).
-struct UnkRecord {
+struct UnkRecord_99a084 {
     void* vtable;
     u8 pad_0x8[0x8];
     void* field_0x10;
@@ -58,47 +59,41 @@ struct UnkRecord {
     }
 };
 
-struct UnkListener {
-    void* vtable;
-    u8 pad_0x8[0x10];
-    UnkListenerOwner* owner;
-};
-
 extern void* g_unk_7101a86c60[];
 extern void* g_unk_7101a86e28[];
 
 struct UnkObj_710099a084 {
     void* vtable;
     u8 pad_0x8[0x180];
-    UnkRecord field_0x188;
+    UnkRecord_99a084 field_0x188;
     u8 pad_0x1b0[0x88];
     UnkEventBase field_0x238;
     UnkEventBase field_0x268;
-    UnkRecord field_0x298;
+    UnkRecord_99a084 field_0x298;
     u8 pad_0x2c0[0x88];
-    UnkRecord field_0x348;
+    UnkRecord_99a084 field_0x348;
     u8 pad_0x370[0x88];
-    UnkSlots field_0x3f8;
-    UnkSlots field_0x468;
-    UnkSlots field_0x4d8;
-    UnkSlots field_0x548;
-    UnkSlots field_0x5b8;
+    UnkSlots_99a084 field_0x3f8;
+    UnkSlots_99a084 field_0x468;
+    UnkSlots_99a084 field_0x4d8;
+    UnkSlots_99a084 field_0x548;
+    UnkSlots_99a084 field_0x5b8;
     u8 pad_0x628[0x38];
     UnkEventBase field_0x660;
-    UnkRecord field_0x690;
+    UnkRecord_99a084 field_0x690;
     u8 pad_0x6b8[0x88];
-    UnkSlots field_0x740;
-    UnkSlots field_0x7b0;
-    UnkSlots field_0x820;
+    UnkSlots_99a084 field_0x740;
+    UnkSlots_99a084 field_0x7b0;
+    UnkSlots_99a084 field_0x820;
     u8 pad_0x890[0x28];
     UnkListener field_0x8b8;
     u8 pad_0x8d8[0x8];
     UnkEventBase field_0x8e0;
-    UnkRecord field_0x910;
+    UnkRecord_99a084 field_0x910;
     u8 pad_0x938[0x90];
-    UnkSlots field_0x9c8;
-    UnkSlots field_0xa38;
-    UnkSlots field_0xaa8;
+    UnkSlots_99a084 field_0x9c8;
+    UnkSlots_99a084 field_0xa38;
+    UnkSlots_99a084 field_0xaa8;
     UnkRefSlot field_0xb18;
 };
 

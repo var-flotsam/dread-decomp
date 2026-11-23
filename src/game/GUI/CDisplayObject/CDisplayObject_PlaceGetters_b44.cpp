@@ -9,7 +9,7 @@
 using base::reflection::UnkReflValue;
 
 // The placement: the two modes and the position.
-struct UnkGuiPlacement_b44a3 {
+struct UnkGuiPlacement_b44a3_b44 {
     u8 pad_0x0[0x78];
     u32 mode[2];
     f32 pos[2];
@@ -17,7 +17,7 @@ struct UnkGuiPlacement_b44a3 {
 
 template <u32 Axis, u32 Mode>
 static inline __attribute__((always_inline)) UnkReflValue GetPlace_b44a3(char* obj) {
-    auto* p = *reinterpret_cast<UnkGuiPlacement_b44a3**>(obj + 8);
+    auto* p = *reinterpret_cast<UnkGuiPlacement_b44a3_b44**>(obj + 8);
     f32 value = p->mode[Axis] == Mode ? p->pos[Axis] : __builtin_nanf("");
     const base::reflection::CType* type = fn_710000abbc();
     UnkReflValue r;

@@ -7,18 +7,11 @@
 #include "game/CBatalloonAIComponent.h"
 #include "game/CGameLink.h"
 #include "game/UnkRefObj_c3.h"
+#include "game/UnkRef_c3.h"
 #include "game/UnkTU1102.h"
 #include "types.h"
 
 struct CActor;
-
-struct UnkRef_c3 {
-    UnkRefObj_c3* p;
-    ~UnkRef_c3() {
-        if (p && --p->refs == 0)
-            p->vf_0x10();
-    }
-};
 
 // Resolves `link` the way this function's copy does (fn_71003df480, fn_71006eb8cc) and returns its target.
 static CActor* Get(CGameLink<CActor>& link) {

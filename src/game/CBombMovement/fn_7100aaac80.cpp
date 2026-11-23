@@ -4,17 +4,17 @@
 #include "game/UnkGameManager.h"
 #include "types.h"
 
-struct UnkRefCounted {
+struct UnkRefCounted_aaac80 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void Delete();
     s32 ref_count;
 };
 
-struct UnkRef {
-    UnkRefCounted* ptr = nullptr;
+struct UnkRef_aaac80 {
+    UnkRefCounted_aaac80* ptr = nullptr;
 
-    ~UnkRef() {
+    ~UnkRef_aaac80() {
         if (auto* held = ptr; held && --held->ref_count == 0)
             held->Delete();
     }
@@ -24,8 +24,8 @@ struct UnkQueryObj;
 
 struct UnkHit {
     UnkQueryObj* obj;
-    UnkRef field_0x8;
-    UnkRef field_0x10;
+    UnkRef_aaac80 field_0x8;
+    UnkRef_aaac80 field_0x10;
     s32 field_0x18 = -1;
     f32 field_0x1c[12] = {};
 };

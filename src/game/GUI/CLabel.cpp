@@ -11,6 +11,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGuiFrames.h"
+#include "game/UnkLabelTextObject.h"
 #include "game/UnkMinimapView.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU135.h"
@@ -292,13 +293,6 @@ static_assert(sizeof(UnkLabelGlyph) == 0x30, "UnkLabelGlyph placeholder layout")
 struct UnkLabelTextNode {
     u8 unk_0x0[0xe4];
     u32 color;  // the colour digit ('0' to '9')
-};
-struct UnkLabelTextObject {
-    u8 unk_0x0[0x11b];
-    bool field_0x11b;
-    u8 unk_0x11c[0x14];
-    UnkLabelTextNode* node;
-    void* font;
 };
 
 // A run (0x70 bytes; CLabel.cpp's UnkLabelItem).

@@ -1,13 +1,8 @@
 // Unit 108: sets a polygon's winding direction (state 1 or 2), reversing the point list when the
 // signed area disagrees with the requested direction. Names and layouts are placeholders.
+#include "game/UnkPolyPoint.h"
 #include "game/UnkTU108.h"
 #include "types.h"
-
-struct UnkPolyPoint {
-    f32 x;
-    f32 y;
-    f32 field_0x8;
-};
 
 struct UnkPolygon_b61 {
     UnkPolyPoint* points;

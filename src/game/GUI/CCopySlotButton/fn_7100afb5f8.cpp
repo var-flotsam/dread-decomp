@@ -14,7 +14,7 @@ using base::reflection::CClass;
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
 
-struct UnkCallbackSlot {
+struct UnkCallbackSlot_afb5f8 {
     void* set;
 
     // Moves the callback to the set at `Offset` in `owner`.
@@ -31,21 +31,21 @@ struct UnkCallbackSlot {
     }
 };
 
-struct UnkMainMenu {
+struct UnkMainMenu_afb5f8 {
     u8 unk_0x0[0x540];
     UnkReflObject* popup;
 };
 
 struct UnkPopUpListener {
     u8 unk_0x0[0x2a8];
-    UnkCallbackSlot callback;
+    UnkCallbackSlot_afb5f8 callback;
 };
 
 __attribute__((always_inline)) static inline void WatchPopUp(UnkPopUpListener* self) {
     UnkReflObject* menu = fn_7100e033a8(g_unk_7101d47310);
     if (!menu || !fn_710009d50c(menu->vf_0x0(), fn_7100b34230()))
         return;
-    UnkReflObject* popup = reinterpret_cast<UnkMainMenu*>(menu)->popup;
+    UnkReflObject* popup = reinterpret_cast<UnkMainMenu_afb5f8*>(menu)->popup;
     if (!popup || !fn_710009d50c(popup->vf_0x0(), fn_7100b5e368()))
         return;
     self->callback.Watch<0x260>(popup);

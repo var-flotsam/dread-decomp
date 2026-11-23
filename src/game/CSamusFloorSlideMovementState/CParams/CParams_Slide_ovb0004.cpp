@@ -25,6 +25,7 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkMotionRule.h"
+#include "game/UnkSamusSettings.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1455.h"
 #include "game/UnkTU1501.h"
@@ -42,18 +43,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 // ---- shared declarations ----
-
-// The Samus settings object of src/game/CSamusMovement.cpp (reached through the GOT).
-struct UnkSamusSettings {
-    u8 pad_0x0[0x24];
-    f32 field_0x24;
-    f32 field_0x28;
-    u8 pad_0x2c[0x8];
-    u32 field_0x34;
-    u32 field_0x38;
-    u8 pad_0x3c[0x3c];
-    bool field_0x78;
-};
 
 extern const base::global::CStrId g_unk_717273b7c0 __attribute__((visibility("hidden")));  // the slide collider's name
 extern const CStrId g_unk_717273b7b8 __attribute__((visibility("hidden")));

@@ -2,24 +2,11 @@
 // item's display state (0x40 bytes: its anchoring, angle, size, scale, depth, colour and flags)
 // composed with its parent's (fn_7100b1c56c). The anchoring is the one of src/game/UnkGuiAnchor.cpp,
 // whose types are repeated here as they are defined there. Names and layouts are placeholders.
+#include "game/UnkGuiAnchor.h"
 #include "game/UnkGuiArea.h"
 #include "game/UnkGuiColor.h"
+#include "game/UnkGuiPos.h"
 #include "types.h"
-
-// From src/game/UnkGuiAnchor.cpp (the same definitions).
-struct UnkGuiPos {
-    f32 x;
-    f32 y;
-
-    UnkGuiPos(f32 x_, f32 y_) : x(x_), y(y_) {}
-    UnkGuiPos(const UnkGuiPos& other) : x(other.x), y(other.y) {}
-};
-
-struct UnkGuiAnchor {
-    u32 horizontal;
-    u32 vertical;
-    UnkGuiPos offset;
-};
 
 struct UnkGuiScale {
     f32 x, y;

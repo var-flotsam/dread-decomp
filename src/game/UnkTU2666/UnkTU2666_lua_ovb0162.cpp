@@ -21,6 +21,8 @@
 #include "game/CCharClassAttack.h"
 #include "game/CInventoryComponent.h"
 #include "game/CReserveTankInfo.h"
+#include "game/UnkCentralUnitEntry.h"
+#include "game/UnkCentralUnitList.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -442,15 +444,6 @@ s32 fn_71010782d0(lua_State* L) {
 
 // ---- central units ----
 using base::reflection::UnkReflObject;
-
-struct UnkCentralUnitEntry {
-    u8 pad_0x0[0x10];
-    UnkReflObject* object;
-};
-struct UnkCentralUnitList {
-    UnkCentralUnitEntry** data;
-    u32 count;
-};
 
 s32 fn_7101095060(lua_State* L) {
     const char* name;

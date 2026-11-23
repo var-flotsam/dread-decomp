@@ -19,6 +19,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU50.h"
 #include "game/UnkTimelineCalls.h"
+#include "game/UnkVec.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -30,12 +31,12 @@ using base::reflection::UnkReflTypeIdTag;
 
 // A handle on a sound: the reference and the serial it was taken with; the sound is gone once the
 // reference's serial differs (or the handle's is -1).
-struct UnkHyperBeamSoundRef {
+struct UnkHyperBeamSoundRef_CHyperBeamGun {
     UnkSound* sound;
     s64 serial;
 };
 struct UnkHyperBeamSoundHandle {
-    UnkHyperBeamSoundRef* ref;
+    UnkHyperBeamSoundRef_CHyperBeamGun* ref;
     s64 serial;
 
     UnkSound* Get() const {
@@ -116,13 +117,6 @@ struct UnkHyperBeamEffectDesc {
           field_0x3c(1.0f), field_0x40(false), field_0x41(false) {}
 };
 static_assert(sizeof(UnkHyperBeamEffectDesc) == 0x48, "");
-
-// A 12-byte zeroed argument (as src/game_s2/fn_710035131c.cpp's).
-struct UnkVec {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-};
 
 // The part of the owner's object that is told the shot ended (its vf_0x20).
 struct UnkHyperBeamPart {

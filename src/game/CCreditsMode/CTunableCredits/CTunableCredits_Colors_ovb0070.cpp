@@ -2,6 +2,7 @@
 // placeholders.
 #include "../../../game_s7/UnkGuiS7.h"
 #include "base/global/CRntString.h"
+#include "game/UnkCreditsNode_ovb0070.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -23,11 +24,6 @@ struct UnkCreditsLine_ovb0070 {
     unk_gui::UnkGuiObj* text;
     unk_gui::UnkGuiObj* shadow;
     u32 kind;
-};
-
-struct UnkCreditsNode_ovb0070 {
-    UnkCreditsLine_ovb0070* line;
-    UnkCreditsNode_ovb0070* next;
 };
 
 struct UnkCreditsMenu_ovb0070 {

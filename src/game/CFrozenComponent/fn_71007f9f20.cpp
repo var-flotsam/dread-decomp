@@ -17,7 +17,7 @@ struct UnkFrozenOwner {
     UnkAnimationComponent* animation;
 };
 
-struct UnkFrozenComponent {
+struct UnkFrozenComponent_7f9f20 {
     u8 pad_0x0[0x30];
     UnkFrozenOwner* owner;
     u8 pad_0x38[0x200];
@@ -27,7 +27,7 @@ struct UnkFrozenComponent {
 // NON_MATCHING(minor): the original loads the owner in each arm of the state test and keeps the two
 // "state 4" results apart; Clang merges them. The behaviour is the same.
 bool fn_71007f9f20(void* component) {
-    UnkFrozenComponent* self = static_cast<UnkFrozenComponent*>(component);
+    UnkFrozenComponent_7f9f20* self = static_cast<UnkFrozenComponent_7f9f20*>(component);
     u32 state = self->field_0x238 ? self->field_0x238->state : 5;
     UnkFrozenOwner* owner = self->owner;
     bool frozen;

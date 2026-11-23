@@ -2,17 +2,13 @@
 // words, defaults 10, 1 and 15, and a pointer from fn_7100083990), the second one without
 // its first vtable.
 #include "base/global/CRntVector.h"
+#include "game/UnkPair.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 extern void* g_unk_7101a48248[];
 
-struct UnkPair {
-    u64 field_0x0;
-    u64 field_0x8;
-};
-
-struct UnkRecord {
+struct UnkRecord_5613f4 {
     void** field_0x0;
     void** field_0x8;
     UnkPair field_0x10;
@@ -26,8 +22,8 @@ struct UnkRecord {
 };
 
 struct UnkSelf {
-    UnkRecord field_0x0;
-    UnkRecord field_0x40;
+    UnkRecord_5613f4 field_0x0;
+    UnkRecord_5613f4 field_0x40;
     u64 field_0x80;
 };
 

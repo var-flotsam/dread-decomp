@@ -1,5 +1,6 @@
 // Forwards a request record (unless its id is -1) with the entry found by key and the default all-bits mask.
 #include "game/CAnimationComponent.h"
+#include "game/UnkS12.h"
 #include "types.h"
 
 struct UnkEntry_7101176ea8 {
@@ -32,7 +33,6 @@ struct UnkFlags_7101176ea8 {
     UnkFlags_7101176ea8(const UnkFlags_7101176ea8& o) : value(o.value) {}
 };
 struct UnkS16 { u64 a, b; };
-struct UnkS12 { u32 a, b, c; };
 
 struct UnkMaskBase_7101176ea8 {
     u8 value;

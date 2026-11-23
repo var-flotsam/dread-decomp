@@ -8,17 +8,13 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CUsableComponent.h"
+#include "game/UnkIdPair_7100a8e07c.h"
 #include "game/UnkTU1600.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CRntVector;
 using base::global::UnkStringData;
-
-struct UnkIdPair_7100a8e07c {
-    UnkStringData* field_0x0;
-    UnkStringData* field_0x8;
-};
 
 struct UnkUsableCallbacks_la8de20 {
     void** vtable;

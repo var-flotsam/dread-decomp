@@ -4,12 +4,12 @@
 
 extern "C" __attribute__((noreturn)) void __assert_fail(const char*, const char*, unsigned, const char*);
 
-struct UnkHashNode {
+struct UnkHashNode_l1efddc {
     u64 key;
     u64 field_0x8;
-    UnkHashNode* prev;
-    UnkHashNode* next;
-    UnkHashNode* chain;
+    UnkHashNode_l1efddc* prev;
+    UnkHashNode_l1efddc* next;
+    UnkHashNode_l1efddc* chain;
 };
 
 struct UnkNodeAllocator {
@@ -22,32 +22,32 @@ struct UnkNodeAllocator {
     virtual void vf_0x30();
     virtual void vf_0x38();
     virtual void vf_0x40();
-    virtual void vf_0x48(UnkHashNode* node);
+    virtual void vf_0x48(UnkHashNode_l1efddc* node);
 };
 
-struct UnkHashTable {
+struct UnkHashTable_l1efddc {
     UnkNodeAllocator* allocator;
     u32 pad_0x8;
     s32 count;
-    UnkHashNode** buckets;
+    UnkHashNode_l1efddc** buckets;
     u32 bucketCount;
     u32 modulus;
     u8 pad_0x20[0x18];
-    UnkHashNode* head;
-    UnkHashNode* tail;
+    UnkHashNode_l1efddc* head;
+    UnkHashNode_l1efddc* tail;
 };
 
-static inline __attribute__((always_inline)) UnkHashNode* EraseNode(UnkHashTable* self, const u64* key) {
+static inline __attribute__((always_inline)) UnkHashNode_l1efddc* EraseNode(UnkHashTable_l1efddc* self, const u64* key) {
     u64 k = *key;
     u32 i = (u32)(k >> 32) ^ (u32)k;
     i %= self->modulus;
     if (self->bucketCount <= i)
         __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
-    UnkHashNode** slot = &self->buckets[i];
-    UnkHashNode* node = *slot;
+    UnkHashNode_l1efddc** slot = &self->buckets[i];
+    UnkHashNode_l1efddc* node = *slot;
     if (!node)
         return nullptr;
-    UnkHashNode* before = nullptr;
+    UnkHashNode_l1efddc* before = nullptr;
     if (node->key != k) {
         do {
             before = node;
@@ -60,18 +60,18 @@ static inline __attribute__((always_inline)) UnkHashNode* EraseNode(UnkHashTable
     if (self->tail == node)
         self->tail = node->prev;
     if (self->head == node) {
-        UnkHashNode* n = node->next;
+        UnkHashNode_l1efddc* n = node->next;
         self->head = n;
     }
     if (node->next) {
-        UnkHashNode* p = node->prev;
+        UnkHashNode_l1efddc* p = node->prev;
         node->next->prev = p;
     }
     if (node->prev) {
-        UnkHashNode* n = node->next;
+        UnkHashNode_l1efddc* n = node->next;
         node->prev->next = n;
     }
-    UnkHashNode* result = node->prev;
+    UnkHashNode_l1efddc* result = node->prev;
     self->allocator->vf_0x48(node);
     self->count--;
     return result;
@@ -80,5 +80,5 @@ static inline __attribute__((always_inline)) UnkHashNode* EraseNode(UnkHashTable
 struct UnkRegMap_ovb0108;
 
 void* fn_71001efddc(UnkRegMap_ovb0108* map, const u64* key) {
-    return EraseNode(reinterpret_cast<UnkHashTable*>(map), key);
+    return EraseNode(reinterpret_cast<UnkHashTable_l1efddc*>(map), key);
 }

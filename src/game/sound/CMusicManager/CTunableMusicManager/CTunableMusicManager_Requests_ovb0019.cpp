@@ -10,7 +10,10 @@
 #include "base/global/UnkPooledId.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CChozoCommanderAIComponent.h"
+#include "game/UnkEntryArray_b0019.h"
 #include "game/UnkMask.h"
+#include "game/UnkMusicEntry_b0019.h"
+#include "game/UnkMusicMgr_b0019.h"
 #include "game/UnkMusicRequest_b0019.h"
 #include "game/UnkNodeList_b0019.h"
 #include "game/UnkPathEntry_0x18.h"
@@ -182,43 +185,6 @@ struct UnkTuneStr_b0019 {
 };
 
 
-struct UnkMusicEntry_b0019 {
-    u8 pad_0x0[0x28];
-    UnkPathVec_b0019 paths;  // 0x28
-    u8 pad_0x50[0x8];
-    UnkTuneStr_b0019* name;  // 0x58
-};
-
-struct UnkEntryArray_b0019 {
-    UnkMusicEntry_b0019* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool autoGrow;
-
-    UnkMusicEntry_b0019& operator[](u64 i) {
-        if (autoGrow && i >= count) {
-            u32 n = capacity;
-            if (i >= capacity && step != 0)
-                n = ((u32)i / step + 1) * step;
-            fn_7100fddcb4(reinterpret_cast<base::global::CRntVector<UnkMusicEntry_0x60>*>(this), n);
-            fn_7100fde4d8(reinterpret_cast<UnkArray*>(this), i + 1);
-        }
-        return data[i];
-    }
-};
-
-struct UnkMusicMgr_b0019 {
-    u8 pad_0x0[0xaa];
-    bool enabled;  // 0xaa
-    u8 pad_0xab[0x1];
-    s32 hold_count;  // 0xac
-    u8 pad_0xb0[0x8];
-    UnkEntryArray_b0019 entries;  // 0xb8
-    u8 pad_0xd0[0x180];
-    u32 slot_count;  // 0x250
-};
-
 static inline UnkRequest* Request(UnkMusicMgr_b0019* self, u64 i) {
     return reinterpret_cast<UnkRequest*>(&self->entries[i]);
 }
@@ -265,14 +231,14 @@ void fn_7100fdba30(UnkMusicMgr_b0019* self) {
     SetAllHeld(self, true);
 }
 
-struct UnkPathList : base::global::CRntVector<UnkPathEntry_0x18> {
-    ~UnkPathList() { Free(); }
+struct UnkPathList_ovb0019 : base::global::CRntVector<UnkPathEntry_0x18> {
+    ~UnkPathList_ovb0019() { Free(); }
 };
 
 // A node of a slot's list (0x70 bytes).
 struct UnkNode_0x68 {
     u8 pad_0x0[0x28];
-    UnkPathList paths;  // 0x28
+    UnkPathList_ovb0019 paths;  // 0x28
     u64 field_0x50;
     UnkPooledId<&g_unk_7101d47108> name;  // 0x58
     UnkNode_0x68* next;  // 0x60

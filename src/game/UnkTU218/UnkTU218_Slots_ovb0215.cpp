@@ -3,6 +3,7 @@
 // bone record its counterpart, and erasing a node of the string-id keyed map. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkRecord_0x40.h"
 #include "game/UnkTU222.h"
 #include "game/UnkTU58.h"
 #include "types.h"
@@ -45,9 +46,6 @@ void fn_7100199370(UnkSlotsInfo_ovb0176* info, f32 dt) {
     }
 }
 
-struct UnkRecord_0x40 {
-    u8 data[0x40];
-};
 struct UnkRecordsByKeyHolder_7100015250;
 UnkRecord_0x40* fn_7100015250(UnkRecordsByKeyHolder_7100015250* self, u64 key);
 

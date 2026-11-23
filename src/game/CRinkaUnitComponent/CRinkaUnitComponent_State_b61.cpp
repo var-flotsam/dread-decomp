@@ -1,17 +1,9 @@
 // CRinkaUnitComponent asks its state machine (the machine of src/game/UnkStateMachineUpdate_b59.cpp at +0x1a8)
 // for a new state after storing its parameters. The request template is a copy of
 // src/game/UnkStateMachineSet_b60.cpp's. Names are placeholders.
+#include "game/UnkSmState_b61.h"
 #include "game/UnkStateMachineFind.h"
 #include "types.h"
-
-struct UnkSmState_b61 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10(s32 previous);  // entered
-    virtual void vf_0x18(s32 next);      // left
-    u64 field_0x8;
-    u32 id;
-};
 
 typedef UnkSmState_b61* __attribute__((aligned(4))) UnkSmStatePtr_b61;
 

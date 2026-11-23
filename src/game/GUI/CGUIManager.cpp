@@ -20,6 +20,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkRefSource_71011b69d8.h"
 #include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU56.h"
@@ -257,10 +258,6 @@ static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {
 }
 
 struct UnkRefHandle_71011b69d8;
-struct UnkRefSource_71011b69d8 {
-    virtual void vf_0x0(); virtual void vf_0x8(); virtual void vf_0x10(); virtual void vf_0x18(); virtual void vf_0x20();
-    virtual UnkRefHandle_71011b69d8* vf_0x28();
-};
 
 // The std::unique_ptr the file is read into.
 struct UnkOwnedSource {

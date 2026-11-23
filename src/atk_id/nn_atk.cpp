@@ -1,4 +1,5 @@
 // nn::atk (unit 2772 of tools/tu_map.py): small setters. Names and layouts are placeholders.
+#include "game/UnkAtkListNode.h"
 #include "game/UnkTU2772.h"
 #include "types.h"
 
@@ -75,12 +76,6 @@ bool fn_71012108e4(const UnkAtkInfoReader* self, u32 id, UnkAtkInfoOut* out) {
     return true;
 }
 
-// An intrusive list whose nodes sit at +0x288 of their owners; destroys every owner
-// (fn_710122cf1c), reading the next node first.
-struct UnkAtkListNode {
-    UnkAtkListNode* prev;
-    UnkAtkListNode* next;
-};
 struct UnkAtkListOwner;
 
 struct UnkAtkOwnerList {

@@ -8,7 +8,7 @@
 #include "types.h"
 
 // The placement fields read here.
-struct UnkGuiPlacement {
+struct UnkGuiPlacement_UnkLocalPoint {
     u8 pad_0x0[0x40];
     f32 x;      // 0x40
     f32 y;      // 0x44
@@ -18,8 +18,8 @@ struct UnkGuiPlacement {
     f32 scale_y;  // 0x58
 };
 
-static inline UnkGuiPlacement* Placement(UnkGuiDisplayObject* self) {
-    return reinterpret_cast<UnkGuiPlacement*>(self);
+static inline UnkGuiPlacement_UnkLocalPoint* Placement(UnkGuiDisplayObject* self) {
+    return reinterpret_cast<UnkGuiPlacement_UnkLocalPoint*>(self);
 }
 
 UnkVec2Result fn_71011cf1b4(UnkGuiDisplayObject* self, const UnkVec2Result& point) {
@@ -35,7 +35,7 @@ UnkVec2Result fn_71011cf12c(UnkGuiDisplayObject* self, const UnkVec2Result& poin
     UnkVec2Result r(point);
     if (self->field_0x183)
         fn_71011cee40(self);
-    UnkGuiPlacement* p = Placement(self);
+    UnkGuiPlacement_UnkLocalPoint* p = Placement(self);
     f32 x = r.x - p->x;
     f32 y = r.y - p->y;
     r.x = x / p->scale_x;

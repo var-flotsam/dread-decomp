@@ -4,6 +4,7 @@
 #include "game/UnkAtkInfo_b0150.h"
 #include "game/UnkAtkItemRefs.h"
 
+#include "game/UnkAtkWave_b0150.h"
 #include "game/UnkTU2772.h"
 #include "game/UnkTU99.h"
 #include "types.h"
@@ -145,11 +146,6 @@ void* fn_7101211fc8(UnkAtkLoader* self, u32 id, UnkAtkHeap_b0150* heap, void* ar
     self->Register(file_id, buf);
     return buf;
 }
-
-struct UnkAtkWave_b0150 {
-    u8 pad_0x0[0x18];
-    u8 flag;  // 0x18
-};
 
 struct UnkAtkWaveBody_b0150 {
     u32 pad_0x0[2];

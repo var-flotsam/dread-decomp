@@ -2,6 +2,7 @@
 // box is moved into the collection's frame and run through the collection's tree; when that finds
 // nothing, each polygon is tried by its first vertex (inside the box?) and by its outline around the
 // box's centre. Names and layouts are placeholders.
+#include "game/UnkContactSink.h"
 #include "game/UnkPoint2D_d52bd0.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU365.h"
@@ -73,12 +74,6 @@ struct UnkContactHit {
           flags(o.flags) {}
 };
 static_assert(sizeof(UnkContactHit) == 0x30, "UnkContactHit layout");
-
-struct UnkContactSink {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual UnkColliderResult vf_0x10(UnkContactHit hit);
-};
 
 extern char g_unk_7101aa8870[];  // the local query's vtable
 extern char g_unk_7101aa88c0[];  // CAABoxShape2D's vtable

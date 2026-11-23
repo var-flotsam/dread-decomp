@@ -9,6 +9,7 @@
 #include "game/CBatalloonAIComponent.h"
 #include "game/CCharClassEventScenarioComponent.h"
 #include "game/CSpawnPointComponent.h"
+#include "game/UnkCameraCallbackBase_ovb0070.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTU2506.h"
 #include "game/UnkTU2704.h"
@@ -139,17 +140,6 @@ struct UnkCameraHolder_ovb0171 {
     u32 state;
     u32 pad_0x34;
     base::UnkRefHandle handle;
-};
-
-// The callback set behind the camera's lazily resolved handle: callbacks at +0x8, the state at
-// +0x30 (1: not resolved yet, 2: resolved) and the handle at +0x38.
-struct UnkCameraCallbackBase_ovb0070 {
-    void** vtable;
-    UnkOwnedErasedVector callbacks;
-    u32 state;
-
-    UnkCameraCallbackBase_ovb0070(const UnkCameraCallbackBase_ovb0070& other) asm("fn_7100da4dcc");
-    ~UnkCameraCallbackBase_ovb0070() { vtable = &g_unk_7101a20998[2]; }
 };
 
 struct UnkCameraCallbackSet_ovb0171 : UnkCameraCallbackBase_ovb0070 {

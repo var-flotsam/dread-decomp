@@ -1,17 +1,9 @@
 // Copy constructor of a layered class.
 #include "game/CDropterDiveAttack.h"
+#include "game/UnkRefObj.h"
 #include "types.h"
 
 extern void* g_unk_7101a24060[];
-
-struct UnkRefObj {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    union {
-        u32 ref_count;
-    };
-};
 
 void fn_71004ead00(char* self, const char* other) {
     *reinterpret_cast<void***>(self) = &g_unk_7101a24060[2];

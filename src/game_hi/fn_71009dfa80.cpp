@@ -8,6 +8,8 @@
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/CInputComponent.h"
 #include "game/CSamusHangMovementState/CParams.h"
+#include "game/UnkAllocator.h"
+#include "game/UnkListener.h"
 #include "game/UnkListenerOwner.h"
 #include "game/UnkRefSlot.h"
 #include "game/UnkTU2689.h"
@@ -39,19 +41,6 @@ struct UnkStrIdField {
     }
 };
 
-struct UnkAllocator {
-    virtual void vf0();
-    virtual void vf8();
-    virtual void vf10();
-    virtual void vf18();
-    virtual void vf20();
-    virtual void vf28();
-    virtual void vf30();
-    virtual void vf38();
-    virtual void* Alloc(u64 size, u64 align, u32 flags);
-    virtual void Free(void* p);
-};
-
 struct UnkLinkList;
 void fn_71009a1f40(void* p);
 void fn_71009b0800(void* p);
@@ -72,25 +61,7 @@ void fn_7100988dfc(void* p);
 extern void* g_unk_7101a8a048[];
 extern void* g_unk_7101a8a498[];
 
-struct UnkListener {
-    void* vtable;
-    u8 pad_0x8[0x10];
-    UnkListenerOwner* owner;
-
-    void Destroy() {
-        vtable = g_unk_7101a22d48 + 2;
-        if (UnkListenerOwner* o = owner) {
-            if (o->field_0x10)
-                fn_710117b3f0(o->field_0x10, this);
-            if (UnkListenerOwner* p = owner) {
-                if (--p->ref_count == 0)
-                    p->vf_0x10();
-            }
-        }
-    }
-};
-
-struct UnkTree {
+struct UnkTree_9dfa80 {
     void* root;
     void* field_0x8;
     void* field_0x10;
@@ -122,7 +93,7 @@ struct UnkMulti {
     }
 };
 
-struct UnkRecord {
+struct UnkRecord_9dfa80 {
     void* vtable;
     u8 pad_0x8[0x8];
     void* field_0x10;
@@ -137,7 +108,7 @@ struct UnkRecord {
     }
 };
 
-struct UnkPair {
+struct UnkPair_9dfa80 {
     UnkRefSlot a;
     UnkRefSlot b;
     u8 pad_0x10[0x38];
@@ -149,11 +120,11 @@ struct UnkPair {
 };
 
 // A fixed-capacity array of pairs (count, then 4-aligned storage).
-struct UnkPairArray {
+struct UnkPairArray_9dfa80 {
     u32 count;
-    u8 storage[32 * sizeof(UnkPair)];
+    u8 storage[32 * sizeof(UnkPair_9dfa80)];
 
-    UnkPair* data() { return reinterpret_cast<UnkPair*>(storage); }
+    UnkPair_9dfa80* data() { return reinterpret_cast<UnkPair_9dfa80*>(storage); }
 
     void Destroy() {
         for (u64 i = 0; i < count; ++i)
@@ -162,22 +133,22 @@ struct UnkPairArray {
     }
 };
 
-struct UnkNode {
+struct UnkNode_9dfa80 {
     void* value;
-    UnkNode* next;
+    UnkNode_9dfa80* next;
 };
 
 struct UnkNodeList {
     void* vtable;
     u32 count;
-    UnkNode* head;
-    UnkNode* tail;
+    UnkNode_9dfa80* head;
+    UnkNode_9dfa80* tail;
     UnkAllocator* allocator;
 
     void Destroy() {
         vtable = g_unk_7101a46040 + 2;
-        for (UnkNode* n = head; n;) {
-            UnkNode* next = n->next;
+        for (UnkNode_9dfa80* n = head; n;) {
+            UnkNode_9dfa80* next = n->next;
             allocator->Free(n);
             n = next;
         }
@@ -251,9 +222,9 @@ struct UnkObj_71009dfa80 {
     UnkRefSlot field_0x2390;
     UnkRefSlot field_0x2398;
     u8 pad_0x23a0[0x38];
-    UnkPairArray field_0x23d8;
+    UnkPairArray_9dfa80 field_0x23d8;
     u8 pad_0x2cdc[0x1c];
-    UnkRecord field_0x2cf8;
+    UnkRecord_9dfa80 field_0x2cf8;
     u8 pad_0x2d20[0x88];
     u8 field_0x2da8[0x10];
     u8 pad_0x2db8[0x210];
@@ -286,7 +257,7 @@ struct UnkObj_71009dfa80 {
     UnkRefSlot field_0x51d8;
     UnkRefSlot field_0x51e0;
     u8 pad_0x51e8[0x58];
-    UnkTree field_0x5240;
+    UnkTree_9dfa80 field_0x5240;
     u8 pad_0x5258[0x8];
     u8 field_0x5260[0x10];
     u8 pad_0x5270[0x100];

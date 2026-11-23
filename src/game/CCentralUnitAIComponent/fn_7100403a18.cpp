@@ -20,14 +20,14 @@ struct UnkOwner {
     void* field_0x40;
 };
 
-struct UnkOwnerRef {
+struct UnkOwnerRef_403a18 {
     u8 pad_0x0[0x220];
     UnkOwner* field_0x220;
 };
 
 struct UnkSelf : UnkBehaviorTreeAI {
     u8 pad_0x38[0x146c0];
-    UnkOwnerRef* Owner() const { return static_cast<UnkOwnerRef*>(field_0x30); }
+    UnkOwnerRef_403a18* Owner() const { return static_cast<UnkOwnerRef_403a18*>(field_0x30); }
     u8 field_0x146f8;
     u8 pad_0x146f9[0x33];
     u32 field_0x1472c;

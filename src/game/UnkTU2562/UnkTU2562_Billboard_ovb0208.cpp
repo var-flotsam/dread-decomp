@@ -20,6 +20,7 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkSoundRef.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU1102.h"
@@ -114,11 +115,6 @@ void fn_7100f05c18(UnkDropSlot_ovb0208* slot, void* actor, bool flag);
 // Each 0xf0-byte element starts the slot 8 bytes in; its active flag is at +0x7d.
 struct UnkDropElem_ovb0208 {
     u8 bytes[0xf0];
-};
-
-struct UnkSoundRef {
-    UnkSound* object;
-    s64 serial;
 };
 
 struct UnkDropManagerE_ovb0208 {

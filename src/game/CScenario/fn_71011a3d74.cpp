@@ -7,7 +7,7 @@ struct UnkScenarioGroup {
     u8 data[0x60];
 };
 
-struct UnkScenarioGroups {
+struct UnkScenarioGroups_011a3d74 {
     UnkScenarioGroup* data;
     u8 pad_0x8[8];
     u32 count;
@@ -15,17 +15,17 @@ struct UnkScenarioGroups {
 
 struct UnkScenarioPoints {
     u8 pad_0x0[0x28];
-    UnkScenarioGroups first;  // 0x28
+    UnkScenarioGroups_011a3d74 first;  // 0x28
     u8 pad_0x40[0xb0];
-    UnkScenarioGroups second;  // 0xf0
+    UnkScenarioGroups_011a3d74 second;  // 0xf0
     u8 pad_0x108[0xb0];
-    UnkScenarioGroups third;  // 0x1b8
+    UnkScenarioGroups_011a3d74 third;  // 0x1b8
 };
 static_assert(__builtin_offsetof(UnkScenarioPoints, third) == 0x1b8, "UnkScenarioPoints layout");
 
 void* fn_71002636b0(UnkScenarioGroup* group, const u64* key);
 
-static inline void* Find(UnkScenarioGroups* groups, const u64* key) {
+static inline void* Find(UnkScenarioGroups_011a3d74* groups, const u64* key) {
     for (UnkScenarioGroup *g = groups->data, *end = g + groups->count; g != end; ++g)
         if (void* found = fn_71002636b0(g, key))
             return found;

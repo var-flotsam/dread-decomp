@@ -3,6 +3,7 @@
 // src/game_s1/fn_71000f3150.cpp). The writer keeps a stack of contexts; fn_71000f0648 resolves the
 // value of the innermost one. Which context type is which, and the names and layouts below, are
 // placeholders inferred from the code.
+#include "base/UnkAssignedRecord_a1ba4.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -16,12 +17,6 @@ using base::reflection::CType;
 using base::reflection::UnkReflObject;
 using base::reflection::UnkReflTypedPtr;
 using base::reflection::UnkReflValue;
-
-// The reflected value's copy-assignment (the declaration is src/game_s1/fn_71000d6310.cpp's, over a
-// record of UnkReflValue's size).
-struct UnkAssignedRecord_a1ba4 {
-    u64 unk_0x0[0x18 / 8];
-};
 
 // A reflected value with its copy-assignment (fn_71000a1ba4) and destructor (fn_71000a1c60).
 struct UnkOwnedReflValue : UnkReflValue {

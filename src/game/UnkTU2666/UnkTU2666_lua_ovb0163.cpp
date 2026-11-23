@@ -41,6 +41,7 @@
 #include "game/UnkTU437.h"
 #include "game/UnkTU785.h"
 #include "game/UnkTU794.h"
+#include "game/UnkVec.h"
 #include "game/lua_lib.h"
 #include "game/msapi/res/CRenderRes.h"
 #include "game/sound/CMusicManager.h"
@@ -415,11 +416,6 @@ s32 fn_7101082100(lua_State* L) {
 
 struct UnkGun_ovb0091;
 struct UnkPlayer;
-struct UnkVec {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-};
 bool fn_710083e250(UnkGun_ovb0091* self, f32 value, bool flag);
 struct UnkGuiHolder_b0159;
 

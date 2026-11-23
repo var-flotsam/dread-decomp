@@ -11,6 +11,7 @@
 #include "base/UnkSoundSettings_ovb0074.h"
 #include "base/global/CStrId.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/UnkPlayingHandle_ovb0074.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU99.h"
 #include "types.h"
@@ -103,14 +104,6 @@ struct UnkPlayingSound_ovb0074 {
     u32 variant;  // 0xd8
     u8 pad_0xdc[0x11b - 0xdc];
     bool field_0x11b;
-};
-
-struct UnkPlayingHandle_ovb0074 {
-    UnkPlayingRef_ovb0074* ref;
-    u64 serial;
-
-    bool IsValid() const { return ref && serial != ~0ull && ref->serial == serial; }
-    UnkPlayingSound_ovb0074* Get() const { return IsValid() ? ref->sound : nullptr; }
 };
 
 struct UnkSoundDesc_ovb0074 {

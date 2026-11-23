@@ -18,6 +18,7 @@
 #include "game/UnkTU2656.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTypedValue.h"
+#include "game/Uuid.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
@@ -27,9 +28,6 @@ using unk_static_init::UnkEnumType;
 
 // nn::util's UUID and formatter (as src/game/UnkPlayReport.cpp declares them).
 namespace nn::util {
-struct Uuid {
-    u8 data[16];
-};
 Uuid GenerateUuid();
 s32 TSNPrintf(char* buffer, u64 size, const char* format, ...);
 }  // namespace nn::util

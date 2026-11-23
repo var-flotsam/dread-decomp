@@ -16,14 +16,14 @@ struct UnkRequest {
     u8 field_0x20;
 };
 
-struct UnkOwnerObject {
+struct UnkOwnerObject_48f258 {
     u8 pad_0x0[0x220];
     UnkAnimationComponent* field_0x220;
 };
 
 struct UnkChecker {
     u8 pad_0x0[0x30];
-    UnkOwnerObject* field_0x30;
+    UnkOwnerObject_48f258* field_0x30;
 };
 
 u32 fn_7100499a88(UnkChecker* self, UnkRequest* request);

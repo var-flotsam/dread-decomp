@@ -12,10 +12,12 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "engine/scene/UnkToggle.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkNamedNode.h"
 #include "game/UnkNodeArrayCopy.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1134.h"
 #include "game/UnkTU212.h"
+#include "game/UnkTimelineEvent.h"
 #include "game/UnkTimelineEventList.h"
 #include "game/nn/time.h"
 #include "types.h"
@@ -45,14 +47,6 @@ static inline base::color::CColor4F UnkColorFromPacked(const UnkColor32& c) {
                                  UnkPackedAlpha(c.a));
 }
 
-// A timeline event (base::global::timeline): its class, then the frames it spans.
-struct UnkTimelineEvent {
-    void** vtable;
-    const base::reflection::CClass* cls;
-    f32 start;
-    f32 end;
-};
-
 // A CFadeScreenTrack event: the colours the fade goes from and to over the event, packed as
 // 0xAARRGGBB.
 struct UnkFadeScreenEvent : UnkTimelineEvent {
@@ -76,16 +70,16 @@ struct UnkFadeLayerHolder {
     u8 pad_0x0[0x78];
     UnkFadeLayer* layer;
 };
-struct UnkGuiScreen {
+struct UnkGuiScreen_CCutscene {
     u8 pad_0x0[0x18];
     UnkToggle fade;  // shown while a fade event plays
     u8 pad_0x128[0x50];
     UnkFadeLayerHolder* fade_holder;
 };
-static_assert(__builtin_offsetof(UnkGuiScreen, fade_holder) == 0x178, "UnkGuiScreen placeholder layout");
-struct UnkGuiRoot {
+static_assert(__builtin_offsetof(UnkGuiScreen_CCutscene, fade_holder) == 0x178, "UnkGuiScreen_CCutscene placeholder layout");
+struct UnkGuiRoot_CCutscene {
     u8 pad_0x0[0x108];
-    UnkGuiScreen* screen;
+    UnkGuiScreen_CCutscene* screen;
 };
 
 struct UnkCutscene {
@@ -120,7 +114,7 @@ void fn_710106b2bc(UnkCutscene* self, f32 frame) {
     const base::reflection::CClass* cls = fn_7100c6595c();
     UnkFadeScreenEvent* ev =
         static_cast<UnkFadeScreenEvent*>(fn_710006bb80(pos, &timeline->events, cls, timeline->frame_count));
-    UnkGuiRoot* root = static_cast<UnkGuiRoot*>(g_unk_7101d47330);
+    UnkGuiRoot_CCutscene* root = static_cast<UnkGuiRoot_CCutscene*>(g_unk_7101d47330);
     if (!ev) {
         fn_710020ac34(&root->screen->fade, false);
         return;
@@ -128,16 +122,9 @@ void fn_710106b2bc(UnkCutscene* self, f32 frame) {
     fn_710020ac34(&root->screen->fade, true);
     base::color::CColor4F color = fn_710003088c((pos - ev->start) / (ev->end - ev->start),
                                                 UnkColorFromPacked(ev->from), UnkColorFromPacked(ev->to));
-    fn_710019c4fc(static_cast<UnkGuiRoot*>(g_unk_7101d47330)->screen->fade_holder->layer, &color);
+    fn_710019c4fc(static_cast<UnkGuiRoot_CCutscene*>(g_unk_7101d47330)->screen->fade_holder->layer, &color);
 }
 
-// A node of an object's named tree (0x98 bytes): its payload, name and child nodes.
-struct UnkNamedNode {
-    u8 pad_0x0[0x60];
-    void* payload;
-    base::global::CStrId name;
-    base::global::CRntVector<UnkNamedNode*> children;
-};
 static_assert(sizeof(UnkNamedNode) == 0x98, "UnkNamedNode placeholder layout");
 
 // The nodes of a tree by the key (CRC-64) of their names.

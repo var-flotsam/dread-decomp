@@ -2,13 +2,8 @@
 // Equality of two iterator values over 0x80-byte records keyed by a word (base::UnkIterValue's
 // layout, the state at 0x88): the keys are compared, then the records by their word at 8.
 #include "base/UnkCollectionIter.h"
+#include "game/UnkRecord80.h"
 #include "types.h"
-
-struct UnkRecord80 {
-    u64 field_0x0;
-    u64 field_0x8;
-    u64 field_0x10[14];
-};
 
 using UnkRecord80IterValue = base::UnkIterValue<UnkRecord80, u32>;
 

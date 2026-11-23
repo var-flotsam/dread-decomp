@@ -375,7 +375,7 @@ __attribute__((flatten)) void fn_7100e50e20(UnkMinimapAreaItem* self, const UnkM
 
 
 // A shape whose points' 2D bounds are cached at +0x50.
-struct UnkMinimapShape {
+struct UnkMinimapShape_CMinimapData_3 {
     base::math::CVector3D* points;
     u32 count;  // +0x8
     u8 unk_0xc[0x44];
@@ -385,7 +385,7 @@ struct UnkMinimapShape {
 
 struct UnkMinimapShapeTask {
     u8 unk_0x0[0x8];
-    UnkMinimapShape* shape;  // +0x8
+    UnkMinimapShape_CMinimapData_3* shape;  // +0x8
 };
 
 // The step's result: two empty words and two codes.
@@ -398,7 +398,7 @@ struct UnkMinimapStepResult {
 
 // Recomputes the shape's 2D bounds from its points.
 UnkMinimapStepResult fn_7100e4f5f4(void* self, UnkMinimapShapeTask* task) {
-    UnkMinimapShape* shape = task->shape;
+    UnkMinimapShape_CMinimapData_3* shape = task->shape;
     shape->min = {__FLT_MAX__, __FLT_MAX__};
     shape->max = {-__FLT_MAX__, -__FLT_MAX__};
     if (u32 n = shape->count) {

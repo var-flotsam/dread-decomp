@@ -16,12 +16,12 @@ __attribute__((always_inline)) static inline void MoveId(UnkStrIdTwoStep* self, 
 }
 
 // A string (base::global::CRntString) with its own inline storage behind it.
-struct UnkStrBuffer {
+struct UnkStrBuffer_e6e320 {
     u8 unk_0x0[0x88];
 };
 
 // Plain values copied as a whole.
-struct UnkWords5 {
+struct UnkWords5_e6e320 {
     u32 field_0x0[5];
 };
 
@@ -30,10 +30,10 @@ struct UnkRecordC8 {
     u64 field_0x8;
     UnkStrIdTwoStep id_0x10;
     UnkStrIdTwoStep id_0x18;
-    UnkStrBuffer field_0x20;
+    UnkStrBuffer_e6e320 field_0x20;
     u32 field_0xa8;
     u32 field_0xac;
-    UnkWords5 field_0xb0;
+    UnkWords5_e6e320 field_0xb0;
 };
 static_assert(sizeof(UnkRecordC8) == 0xc8, "UnkRecordC8 layout");
 

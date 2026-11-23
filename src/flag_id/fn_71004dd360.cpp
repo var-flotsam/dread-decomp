@@ -7,7 +7,7 @@ struct UnkTriple {
     u32 a, b, c;
 };
 
-struct UnkSource {
+struct UnkSource_4dd360 {
     u8 unk_0x0[0x44];
     u32 a;
     u8 unk_0x48[0xc];
@@ -32,7 +32,7 @@ struct UnkVec3u {
 
 struct UnkStruct_0x68 {
     u8 unk_0x0[0x18];
-    UnkSource* source;
+    UnkSource_4dd360* source;
     u8 unk_0x20[0xc];
     UnkVec3u v;
     u32 w0, w1, w2;
@@ -47,7 +47,7 @@ void fn_71004dd3d8(UnkStruct_0x68* self);
 
 void fn_71004dd360(UnkStruct_0x68* self) {
     fn_7100394bd0(self);
-    UnkSource* src = self->source;
+    UnkSource_4dd360* src = self->source;
     self->v = UnkVec3u{src->a, src->b, src->c};
     self->w0 = 0;
     self->w1 = 0;

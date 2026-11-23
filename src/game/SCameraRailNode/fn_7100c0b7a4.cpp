@@ -13,6 +13,8 @@
 #include "game/UnkPushedVector.h"
 #include "game/UnkTU2563.h"
 #include "game/UnkValuePair.h"
+#include "game/UnkValues3.h"
+#include "game/UnkWord.h"
 #include "game/UnkWordList.h"
 #include "game/UnkWordNode.h"
 #include "game/UnkWordsValue.h"
@@ -21,13 +23,6 @@
 UnkCopiedVector<UnkValuePair>* fn_7100c0b7a4(UnkCopiedVector<UnkValuePair>* self, const UnkCopiedVector<UnkValuePair>* other) {
     return &(*self = *other);
 }
-
-// A plain word, and two words and a value, copied piece by piece.
-struct UnkWord {
-    u64 value;
-
-    UnkWord(const UnkWord& other) { value = other.value; }
-};
 
 UnkCopiedVector<UnkWord>* fn_7100b177a4(UnkCopiedVector<UnkWord>* self, const UnkCopiedVector<UnkWord>* other) {
     return &(*self = *other);
@@ -39,19 +34,6 @@ UnkCopiedVector<UnkWordsValue>* fn_7100e05764(UnkCopiedVector<UnkWordsValue>* se
                                               const UnkCopiedVector<UnkWordsValue>* other) {
     return &(*self = *other);
 }
-
-// Copy-assignment of a record of two arrays and four values: the first array (of three
-// values per element) appends through its out-of-line PushBack; the second (of half-words)
-// is copied as one block.
-struct UnkValues3 {
-    u32 values[3];
-
-    UnkValues3(const UnkValues3& other) {
-        values[0] = other.values[0];
-        values[1] = other.values[1];
-        values[2] = other.values[2];
-    }
-};
 
 __attribute__((always_inline)) inline UnkPushedVector& UnkPushedVector::operator=(const UnkPushedVector& other) {
     if (this != &other) {

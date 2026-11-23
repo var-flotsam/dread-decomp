@@ -10,6 +10,7 @@
 #include "base/snd/UnkSound.h"
 #include "game/CActorComponent.h"
 #include "game/CCharClassBaseTriggerComponent.h"
+#include "game/UnkSoundRef.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
 #include "game/sound/UnkSoundHandle.h"
@@ -45,11 +46,6 @@ void fn_7101180754(UnkAreaSoundComponent_ovb0062* self) {
     }
     fn_710024f910(reinterpret_cast<UnkLightingComponent3*>(self));
 }
-
-struct UnkSoundRef {
-    UnkSound* object;
-    s64 serial;
-};
 
 static inline UnkSound* GetSound_ovb0062(const UnkSoundHandle* handle) {
     if (handle->ref && handle->ref->serial == handle->serial && handle->serial != -1)

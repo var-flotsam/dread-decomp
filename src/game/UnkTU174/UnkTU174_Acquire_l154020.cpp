@@ -1,6 +1,7 @@
 // Unit 174 (no reliable name): takes a pooled buffer object from the slot table, fills in its size and
 // format, allocates its memory from one of two heaps (chosen by flag bit 0) and registers it with the
 // device. Names and layouts are placeholders.
+#include "game/UnkGfxHeap.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU174.h"
@@ -8,13 +9,6 @@
 #include "types.h"
 
 struct UnkHeap_71001541a0;
-
-struct UnkGfxHeap {
-    u8 pool[0x100];
-    u64 base;  // 0x100
-    u8 pad_0x108[0x18];
-    void* space;  // 0x120
-};
 
 struct UnkPooledBuffer_l154020 {
     void* field_0x0;

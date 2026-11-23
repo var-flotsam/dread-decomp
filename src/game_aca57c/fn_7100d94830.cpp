@@ -3,13 +3,8 @@
 // Each map type has its own bucket getter and erase.
 #include "base/global/UnkBucketSet.h"
 #include "game/UnkHashKeyObj.h"
+#include "game/UnkHashNode.h"
 #include "types.h"
-
-struct UnkHashNode {
-    UnkHashKeyObj* key;
-    u8 unk_0x8[0x8];
-    UnkHashNode* next;
-};
 
 using UnkHashMap = base::global::UnkBucketSet<UnkHashNode>;
 

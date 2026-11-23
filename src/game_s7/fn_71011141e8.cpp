@@ -11,6 +11,7 @@
 #include "game/CCharClassShootActivatorComponent.h"
 #include "game/UnkCallbackBase.h"
 #include "game/UnkCallbackSetVectorFwd.h"
+#include "game/UnkMovedPairRef.h"
 #include "game/UnkTU2702.h"
 
 using base::global::CStrId;
@@ -52,11 +53,11 @@ struct UnkId : CStrId {
     }
 };
 
-struct UnkCallbackSet_7101a20950 : UnkCallbackBase {
+struct UnkCallbackSet_7101a20950_011141e8 : UnkCallbackBase {
     virtual void vf8();
     base::UnkRefHandle owner;
 
-    __attribute__((always_inline)) UnkCallbackSet_7101a20950& operator=(UnkCallbackSet_7101a20950&& other) {
+    __attribute__((always_inline)) UnkCallbackSet_7101a20950_011141e8& operator=(UnkCallbackSet_7101a20950_011141e8&& other) {
         fn_710031d208(&owner, &other.owner);
         field_0x30 = other.field_0x30;
         fn_710023b29c(&callbacks, &other.callbacks);
@@ -70,16 +71,16 @@ struct UnkCallbackSet_7101a20950 : UnkCallbackBase {
         return *this;
     }
 
-    __attribute__((always_inline)) ~UnkCallbackSet_7101a20950() {
+    __attribute__((always_inline)) ~UnkCallbackSet_7101a20950_011141e8() {
         if (base::UnkRefCounted* p = owner.ptr) {
             if (--p->ref_count == 0)
                 delete p;
         }
     }
 
-    UnkCallbackSet_7101a20950(UnkCallbackSet_7101a20950&& other);  // fn_71002458a4
+    UnkCallbackSet_7101a20950_011141e8(UnkCallbackSet_7101a20950_011141e8&& other);  // fn_71002458a4
 
-    __attribute__((always_inline)) UnkCallbackSet_7101a20950& operator=(const UnkCallbackSet_7101a20950& other) {
+    __attribute__((always_inline)) UnkCallbackSet_7101a20950_011141e8& operator=(const UnkCallbackSet_7101a20950_011141e8& other) {
         const base::UnkRefHandle* from = &other.owner;  // evaluated first, as `owner = other.owner` would be
         fn_710031d208(&owner, from);
         field_0x30 = other.field_0x30;
@@ -87,7 +88,7 @@ struct UnkCallbackSet_7101a20950 : UnkCallbackBase {
         return *this;
     }
 
-    UnkCallbackSet_7101a20950(const UnkCallbackSet_7101a20950& other) {
+    UnkCallbackSet_7101a20950_011141e8(const UnkCallbackSet_7101a20950_011141e8& other) {
         owner.ptr = nullptr;
         owner.Set(other.owner.ptr);
         field_0x30 = other.field_0x30;
@@ -96,7 +97,7 @@ struct UnkCallbackSet_7101a20950 : UnkCallbackBase {
 };
 
 struct UnkEntry {
-    UnkCallbackSet_7101a20950 set;
+    UnkCallbackSet_7101a20950_011141e8 set;
     UnkId id;
 
     UnkEntry(const UnkEntry& other) = default;
@@ -107,37 +108,37 @@ struct UnkEntry {
     }
     __attribute__((always_inline)) ~UnkEntry() {}
     __attribute__((always_inline)) UnkEntry& operator=(UnkEntry&& other) {
-        set = static_cast<UnkCallbackSet_7101a20950&&>(other.set);
+        set = static_cast<UnkCallbackSet_7101a20950_011141e8&&>(other.set);
         id = static_cast<UnkId&&>(other.id);
         return *this;
     }
 };
 
-struct UnkPair {
+struct UnkPair_011141e8 {
     u32 value;
     UnkEntry entry;
 };
 
-struct UnkPairRef {
+struct UnkPairRef_011141e8 {
     u32* value;
     UnkEntry* entry;
 };
 
 // Untyped storage for either form.
-struct UnkHolder {
+struct UnkHolder_011141e8 {
     alignas(8) u8 storage[0x50];
     u32 kind;
 
-    UnkPair& Pair() { return *reinterpret_cast<UnkPair*>(storage); }
-    const UnkPair& Pair() const { return *reinterpret_cast<const UnkPair*>(storage); }
-    const UnkPairRef& Ref() const { return *reinterpret_cast<const UnkPairRef*>(storage); }
+    UnkPair_011141e8& Pair() { return *reinterpret_cast<UnkPair_011141e8*>(storage); }
+    const UnkPair_011141e8& Pair() const { return *reinterpret_cast<const UnkPair_011141e8*>(storage); }
+    const UnkPairRef_011141e8& Ref() const { return *reinterpret_cast<const UnkPairRef_011141e8*>(storage); }
     u32& Value() { return kind == 2 ? *Ref().value : Pair().value; }
     UnkEntry& Entry() { return kind == 2 ? *Ref().entry : Pair().entry; }
     const u32& Value() const { return kind == 2 ? *Ref().value : Pair().value; }
     const UnkEntry& Entry() const { return kind == 2 ? *Ref().entry : Pair().entry; }
 };
 
-static inline __attribute__((always_inline)) void CopyHolder(UnkHolder* self, const UnkHolder* other) {
+static inline __attribute__((always_inline)) void CopyHolder(UnkHolder_011141e8* self, const UnkHolder_011141e8* other) {
     self->kind = 0;
     if (other->kind == 1) {
         self->kind = 1;
@@ -152,7 +153,7 @@ static inline __attribute__((always_inline)) void CopyHolder(UnkHolder* self, co
 }
 
 struct UnkMovedEntry {
-    UnkCallbackSet_7101a20950 set;
+    UnkCallbackSet_7101a20950_011141e8 set;
     base::UnkStrIdMember id;
 };
 
@@ -258,13 +259,8 @@ struct UnkMovedPair {
     UnkMovedEntry entry;
 };
 
-struct UnkMovedPairRef {
-    u32* value;
-    UnkMovedEntry* entry;
-};
-
 // Moves either form into an owned pair.
-static inline __attribute__((always_inline)) void MoveHolder(UnkHolder* self, UnkHolder* other) {
+static inline __attribute__((always_inline)) void MoveHolder(UnkHolder_011141e8* self, UnkHolder_011141e8* other) {
     self->kind = 0;
     UnkMovedPair* pair = reinterpret_cast<UnkMovedPair*>(self->storage);
     if (other->kind == 1) {
@@ -292,7 +288,7 @@ static inline __attribute__((always_inline)) UnkEntry* MoveAssign(UnkEntry* self
     return self;
 }
 
-static inline __attribute__((always_inline)) UnkHolder* AssignHolder(UnkHolder* self, const UnkHolder* other) {
+static inline __attribute__((always_inline)) UnkHolder_011141e8* AssignHolder(UnkHolder_011141e8* self, const UnkHolder_011141e8* other) {
     if (self != other) {
         self->Value() = other->Value();
         self->Entry() = other->Entry();

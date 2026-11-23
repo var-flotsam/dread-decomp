@@ -14,15 +14,10 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU437.h"
+#include "game/UnkVec.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkVec {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-};
 
 struct UnkComponent {
     u8 pad_0x0[0x128];

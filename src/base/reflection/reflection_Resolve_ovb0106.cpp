@@ -3,6 +3,8 @@
 // arguments from the root object that come before and after a collection (fn_7100ad7db8 in
 // src/base/reflection/UnkReflResolve.cpp does the rest). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "base/UnkResolvedPair.h"
+#include "base/UnkResolvedValue.h"
 #include "base/global/CRntString.h"
 #include "base/reflection.h"
 #include "base/reflection/CType.h"
@@ -113,36 +115,6 @@ static_assert(__builtin_offsetof(UnkReflRecord_ovb0106, field_0xe0) == 0xe0, "la
 __attribute__((flatten)) void fn_7100ad8864(UnkReflRecord_ovb0106* self) { self->~UnkReflRecord_ovb0106(); }
 
 // ---- fn_7100ad8120, fn_7100ad7cc0: resolving a path of arguments ----
-
-// A resolved value (0x30 bytes), as src/base/reflection/UnkReflResolve.cpp defines it, built here from a
-// reflected value.
-struct UnkResolvedPair {
-    u64 a;
-    u64 b;
-};
-
-struct UnkResolvedValue {
-    UnkReflValue value;
-    u64 field_0x18;
-    UnkResolvedPair field_0x20;
-
-    UnkResolvedValue() {
-        value.field_0x0 = nullptr;
-        value.type = nullptr;
-        value.kind = 2;
-        value.field_0x14 = 1;
-        field_0x18 = 0;
-        field_0x20.a = 0;
-        field_0x20.b = 0;
-    }
-    explicit UnkResolvedValue(const UnkReflValue& v) {
-        fn_71000a179c(&value, &v);
-        field_0x18 = 0;
-        field_0x20.a = 0;
-        field_0x20.b = 0;
-    }
-    ~UnkResolvedValue() { fn_71000a1c60(&value); }
-};
 
 UnkResolvedValue fn_7100ad7db8(const UnkTypedRef* ref, void* a, u32 b);
 

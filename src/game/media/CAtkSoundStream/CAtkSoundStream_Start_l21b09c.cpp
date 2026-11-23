@@ -8,6 +8,7 @@
 #include "base/global/UnkStringPoolBody.h"
 #include "base/global/timeline/CEvent.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/UnkPlayingHandle_ovb0074.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
 #include "game/media/CMediaStream.h"
@@ -69,10 +70,6 @@ struct UnkStreamDesc_l21b09c {
 struct UnkSoundSystemPlayView_ovb0074;
 struct UnkSoundDesc_ovb0074;
 struct UnkPlayingSound_ovb0074;
-struct UnkPlayingHandle_ovb0074 {
-    UnkPlayingRef_ovb0074* ref;
-    u64 serial;
-};
 struct UnkSoundMgr;
 
 struct UnkAtkSoundStream_ovb0008;

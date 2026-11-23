@@ -9,6 +9,7 @@
 #include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStrIdHandle.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU56.h"
 #include "types.h"
@@ -65,11 +66,6 @@ bool fn_71009d377c(char* self) {
 // and a flag for fn_71009cfe98, then, while the file has data left, two flags, a handle by name and a
 // value. Names and layouts are placeholders.
 using base::global::CRntFile;
-
-struct UnkStrIdHandle {
-    CStrId id;
-    void* field_0x8;
-};
 
 // A handle built in place from an id by fn_7100ae986c, released when it goes out of scope.
 class UnkStrIdHandleTemp_l9cfbf0 {

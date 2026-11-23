@@ -15,17 +15,9 @@
 #include "game/UnkSwarmHold_b66a4.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU367.h"
+#include "game/UnkVec3Result.h"
 #include "game/logic/collision/CCollider.h"
 #include "types.h"
-
-// As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b38.cpp defines it.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 // An actor's translation column (the transform at +0x38).
 struct UnkSwarmActor_l64fef8 {

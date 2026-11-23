@@ -6,15 +6,10 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkMediaCollector.h"
 #include "game/UnkMediaStream.h"
+#include "game/UnkMediaStreamList.h"
 #include "types.h"
 
 void fn_7100222cc8(void* list, void* item, bool flag);
-
-struct UnkMediaStreamList {
-    u8 pad_0x0[0x60];
-    UnkMediaStream** items;
-    u32 count;  // +0x68
-};
 
 template <bool kFlag>
 static __attribute__((always_inline)) void CollectMovieStreams(UnkMediaCollector* self, UnkMediaStreamList* src) {

@@ -7,6 +7,7 @@
 #include "game/SLogicPathNode.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMinimapPathPoint.h"
 #include "game/UnkTU53.h"
 #include "game/behaviortree/CGoToWallFronPathAction.h"
 #include "types.h"
@@ -14,11 +15,6 @@
 using base::math::CVector3D;
 
 struct UnkDashPath;
-// A point of the path, handed back in memory (as src/game/CMinimapData.cpp declares it).
-struct UnkMinimapPathPoint {
-    CVector3D v;
-    ~UnkMinimapPathPoint() {}
-};
 
 struct UnkMagnetPathHolder_b52 {
     u8 unk_0x0[0x40];

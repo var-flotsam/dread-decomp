@@ -1,6 +1,6 @@
 #include "types.h"
 
-struct UnkGrappleLink {
+struct UnkGrappleLink_b34 {
     u8 unk_0x0[0x10];
     void* target;
 };
@@ -11,7 +11,7 @@ struct UnkGrappleVisitor {
 
 struct CGrappleBeamComponent {
     u8 unk_0x0[0x230];
-    UnkGrappleLink* link;
+    UnkGrappleLink_b34* link;
 };
 
 typedef void (*UnkGrappleVisit)(UnkGrappleVisitor*, void*, void*);

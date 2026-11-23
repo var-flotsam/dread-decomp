@@ -3,6 +3,7 @@
 // some TUs' data has function records after the header, and collection and vector types are
 // registered for the reflected containers.
 #include "base/UnkArray_71729ce018.h"
+#include "base/UnkPair16.h"
 #include "base/UnkStrIdRegistry.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
@@ -77,9 +78,4 @@ extern const char g_unk_710164b8ad[];
 extern const char g_unk_710164b8af[];
 
 extern void* g_unk_7101aa9278[];
-
-struct UnkPair16 {
-    u64 field_0x0;
-    u64 field_0x8;
-};
 

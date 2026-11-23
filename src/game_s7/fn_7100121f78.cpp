@@ -16,6 +16,8 @@
 #include "game/UnkPushedVector.h"
 #include "game/UnkTU2563.h"
 #include "game/UnkValuePair.h"
+#include "game/UnkValues3.h"
+#include "game/UnkWord.h"
 #include "game/UnkWordList.h"
 #include "game/UnkWordNode.h"
 #include "game/UnkWordsValue.h"
@@ -29,29 +31,9 @@ UnkCopiedVector<UnkValuePair>* fn_71010607b4(UnkCopiedVector<UnkValuePair>* self
     return &(*self = *other);
 }
 
-// A plain word, and two words and a value, copied piece by piece.
-struct UnkWord {
-    u64 value;
-
-    UnkWord(const UnkWord& other) { value = other.value; }
-};
-
 UnkCopiedVector<UnkWord>* fn_71000cf3b4(UnkCopiedVector<UnkWord>* self, const UnkCopiedVector<UnkWord>* other) {
     return &(*self = *other);
 }
-
-// Copy-assignment of a record of two arrays and four values: the first array (of three
-// values per element) appends through its out-of-line PushBack; the second (of half-words)
-// is copied as one block.
-struct UnkValues3 {
-    u32 values[3];
-
-    UnkValues3(const UnkValues3& other) {
-        values[0] = other.values[0];
-        values[1] = other.values[1];
-        values[2] = other.values[2];
-    }
-};
 
 __attribute__((always_inline)) inline UnkPushedVector& UnkPushedVector::operator=(const UnkPushedVector& other) {
     if (this != &other) {
@@ -65,7 +47,7 @@ __attribute__((always_inline)) inline UnkPushedVector& UnkPushedVector::operator
     return *this;
 }
 
-struct UnkArraysRecord {
+struct UnkArraysRecord_121f78 {
     UnkPushedVector first;
     UnkBlockVector second;
     u32 field_0x50;
@@ -78,7 +60,7 @@ struct UnkArraysRecord {
 // elements are destroyed, the array reserves the other's capacity (moving each record over and
 // destroying the old one) and each of the other's records is appended by fn_7100e4ea08.
 
-struct UnkPolyVector : UnkCopiedVector<UnkPolyValues> {};
+struct UnkPolyVector_121f78 : UnkCopiedVector<UnkPolyValues> {};
 
 // NON_MATCHING(minor): the shared end of the append (setting the tail and the count) is duplicated
 // into the empty-list case; the original branches to it.

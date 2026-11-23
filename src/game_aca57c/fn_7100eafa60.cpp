@@ -10,14 +10,14 @@
 
 using base::global::CStrId;
 
-struct UnkIdValues {
+struct UnkIdValues_eafa60 {
     CStrId id;
     u32 field_0x8;
     u32 field_0xc;
 
     // The values are stored through plain pointers (the original reloads the array's count
     // after them).
-    UnkIdValues(const UnkIdValues& other) : id(other.id) {
+    UnkIdValues_eafa60(const UnkIdValues_eafa60& other) : id(other.id) {
         u32* values = &field_0x8;
         values[0] = other.field_0x8;
         values[1] = other.field_0xc;
@@ -25,7 +25,7 @@ struct UnkIdValues {
 };
 
 struct UnkIdValuesArray {
-    UnkIdValues* data;
+    UnkIdValues_eafa60* data;
     u32 count;
     u32 capacity;
     u32 step;
@@ -43,7 +43,7 @@ void fn_7100eafa60(UnkIdValuesArray* self, const UnkIdValuesArray& other) {
     self->flags = other.flags;
     self->allocator = other.allocator;
     fn_7100b48af4(self, other.capacity);
-    for (const UnkIdValues *it = other.data, *end = it + other.count; it != end; ++it) {
+    for (const UnkIdValues_eafa60 *it = other.data, *end = it + other.count; it != end; ++it) {
         u32 n = self->count;
         u32 new_capacity = self->capacity;
         if (new_capacity <= n && self->step != 0)
@@ -52,7 +52,7 @@ void fn_7100eafa60(UnkIdValuesArray* self, const UnkIdValuesArray& other) {
             for (;;) {
             }
         fn_7100b48af4(self, new_capacity);
-        new (&self->data[self->count]) UnkIdValues(*it);
+        new (&self->data[self->count]) UnkIdValues_eafa60(*it);
         ++self->count;
     }
 }

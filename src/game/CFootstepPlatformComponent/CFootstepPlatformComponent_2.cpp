@@ -4,6 +4,8 @@
 // Names and layouts are placeholders.
 #include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game/UnkFootstepMode.h"
+#include "game/UnkFootstepPlatform.h"
+#include "game/UnkFootstepPlayer.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
@@ -19,20 +21,6 @@ struct UnkFootstepMovement {
     u32 count;
     UnkFootstepMode* modes[1];
 } __attribute__((packed));
-
-struct UnkFootstepPlayer {
-    u8 pad_0x0[0x208];
-    UnkFootstepMovement* movement;
-};
-
-struct UnkFootstepPlatform {
-    virtual void vf_0x0();
-    void Dispatch(UnkFootstepArg* arg) {
-        reinterpret_cast<void (*)(UnkFootstepPlatform*, UnkFootstepArg*)>((*reinterpret_cast<void***>(this))[0x168 / 8])(this, arg);
-    }
-    u8 pad_0x8[0xc0];
-    bool field_0xc8;
-};
 
 static inline UnkFootstepMode* FindMode(UnkFootstepMovement* movement, u32 kind) {
     UnkFootstepMode** it = movement->modes;

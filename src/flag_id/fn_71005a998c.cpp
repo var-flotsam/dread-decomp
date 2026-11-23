@@ -2,7 +2,7 @@
 #include "game/UnkBehaviorTree.h"
 #include "types.h"
 
-struct UnkRefCounted {
+struct UnkRefCounted_5a998c {
     virtual void unk_vf0();
     virtual void unk_vf1();
     virtual void Destroy();
@@ -24,8 +24,8 @@ struct UnkRefPtr {
 
 struct UnkStruct_0x147e8 : UnkBehaviorTreeAI {
     u8 unk_0x38[0x147d8 - sizeof(UnkBehaviorTreeAI)];
-    UnkRefPtr<UnkRefCounted> first;
-    UnkRefPtr<UnkRefCounted> second;
+    UnkRefPtr<UnkRefCounted_5a998c> first;
+    UnkRefPtr<UnkRefCounted_5a998c> second;
 };
 
 void fn_71005a998c(UnkStruct_0x147e8* self) {

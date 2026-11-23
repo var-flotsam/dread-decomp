@@ -44,6 +44,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkScenario.h"
 #include "game/UnkScenarioSub.h"
+#include "game/UnkSubArea.h"
 #include "game/UnkSubAreaDropTargetView.h"
 #include "game/UnkSubAreaEntity.h"
 #include "game/UnkSubAreaEntityList.h"
@@ -141,19 +142,6 @@ struct UnkIdSet {
     }
 };
 void fn_7100ee7134(UnkIdSet* self);
-
-// A sub-area (a placeholder for the fields used here): two ids and a flag.
-struct UnkSubArea {
-    CStrId field_0x0;
-    u8 pad_0x8[0x48];
-    CStrId field_0x50;
-    u8 pad_0x58[0x129];
-    // A union member (no type-based alias info): the original reloads the manager's sub-area
-    // pointers after storing it, and the flag itself after every store.
-    union {
-        bool field_0x181;
-    };
-};
 
 // Members the reset (fn_7100ee34f0) empties.
 using UnkPathIdMember = base::UnkStrIdMemberOf<g_unk_7101d47200>;  // a file-path id
@@ -299,15 +287,15 @@ struct UnkBuiltId {
 
 // The pooled data behind a file-path id as its text accessor sees it: the text at +0x10 and a
 // count of the reads at +0x44.
-struct UnkIdTextData {
+struct UnkIdTextData_CSubAreaManager {
     u8 pad_0x0[0x10];
     CRntString str;
     u8 pad_0x40[0x4];
     s32 reads;
 };
 static inline const char* PathText(const CFilePathStrId& id) {
-    ++reinterpret_cast<UnkIdTextData*>(id.data)->reads;
-    const char* s = reinterpret_cast<UnkIdTextData*>(id.data)->str.data;
+    ++reinterpret_cast<UnkIdTextData_CSubAreaManager*>(id.data)->reads;
+    const char* s = reinterpret_cast<UnkIdTextData_CSubAreaManager*>(id.data)->str.data;
     return s ? s : g_unk_710162e2ed;
 }
 

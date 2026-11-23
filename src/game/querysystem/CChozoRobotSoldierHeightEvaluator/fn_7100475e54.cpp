@@ -5,11 +5,11 @@
 #include "game/UnkTU362.h"
 #include "types.h"
 
-struct UnkEntry;
+struct UnkEntry_475e54;
 struct UnkElem_7100286624;
 
 // Not trivially destructible, so it is returned in memory.
-struct UnkEntry {
+struct UnkEntry_475e54 {
     s16 field_0x0;
     u8 field_0x2;
     u8 pad_0x3;
@@ -17,13 +17,13 @@ struct UnkEntry {
     f32 field_0x8;
     u8 pad_0xc[4];
 
-    UnkEntry() = default;
-    ~UnkEntry() { fn_710028760c(reinterpret_cast<UnkElem_7100286624*>(this)); }
+    UnkEntry_475e54() = default;
+    ~UnkEntry_475e54() { fn_710028760c(reinterpret_cast<UnkElem_7100286624*>(this)); }
 };
 
-struct UnkHolder {
+struct UnkHolder_475e54 {
     void** vtable;
-    UnkEntry vf_0x2d8() { return reinterpret_cast<UnkEntry (*)(UnkHolder*)>(vtable[0x2d8 / 8])(this); }
+    UnkEntry_475e54 vf_0x2d8() { return reinterpret_cast<UnkEntry_475e54 (*)(UnkHolder_475e54*)>(vtable[0x2d8 / 8])(this); }
 };
 
 struct UnkChecked {
@@ -39,7 +39,7 @@ f32 fn_7100475e54(void* self, UnkActor* first, UnkChecked* second) {
     if (owner && owner->field_0x1f8) {
         bool above = false;
         {
-            UnkEntry entry = static_cast<UnkHolder*>(owner->field_0x1f8)->vf_0x2d8();
+            UnkEntry_475e54 entry = static_cast<UnkHolder_475e54*>(owner->field_0x1f8)->vf_0x2d8();
             if (entry.field_0x0 != -1 && entry.field_0x2 != 0xff && second->field_0x54 > entry.field_0x8)
                 above = true;
         }

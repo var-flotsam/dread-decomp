@@ -1,6 +1,7 @@
 // Unit 182: takes the next free object from the fixed pool (0x4000 slots), resets it, allocates its
 // buffer from one of two heaps by its flags and registers the buffer and its block with the device.
 // Names and layouts are placeholders.
+#include "game/UnkGfxHeap.h"
 #include "game/UnkStaticZero_ovb0224.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
@@ -12,13 +13,6 @@ inline const UnkStaticZero_ovb0224& SecondZero_ovb0224() {
     static UnkStaticZero_ovb0224 s_value asm("g_unk_716e34ae40");
     return s_value;
 }
-
-struct UnkGfxHeap {
-    u8 pool[0x100];
-    u64 base;  // 0x100
-    u8 pad_0x108[0x18];
-    void* space;  // 0x120
-};
 
 struct UnkGfxPoolChild_l161960;
 
