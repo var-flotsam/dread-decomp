@@ -1,11 +1,8 @@
 // Reset routine: state 1 releases the string id at +0x30 and notifies the target; states 1 and 2 clear the state.
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
+#include "game_s2/UnkTarget.h"
 #include "types.h"
-
-struct UnkTarget {
-    void** vtable;
-};
 
 struct UnkReset {
     u8 pad_0x0[8];

@@ -10,6 +10,7 @@
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerDef.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU1645.h"
@@ -17,6 +18,7 @@
 #include "game/UnkTU2656.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTypedValue.h"
+#include "game/Uuid.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
@@ -26,9 +28,6 @@ using unk_static_init::UnkEnumType;
 
 // nn::util's UUID and formatter (as src/game/UnkPlayReport.cpp declares them).
 namespace nn::util {
-struct Uuid {
-    u8 data[16];
-};
 Uuid GenerateUuid();
 s32 TSNPrintf(char* buffer, u64 size, const char* format, ...);
 }  // namespace nn::util
@@ -64,10 +63,6 @@ struct UnkDifficultyButton {
     bool field_0x2a8;
 };
 
-struct UnkGameManagerDef : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedId qid;
-};
 static inline const UnkQualifiedId& Qid(UnkGameManagerDef& def) {
     if (def.qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&def.qid, &def, g_unk_7101d470e0);

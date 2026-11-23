@@ -27,9 +27,12 @@
 #include "game/CCharacterMovement.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/CScenario.h"
+#include "game/UnkDoorGfx_b0251.h"
+#include "game/UnkDoorHolder_b0251.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkSlots.h"
+#include "game/UnkStruct_71727313a4.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTU253.h"
 #include "game/UnkTU2553.h"
@@ -440,21 +443,10 @@ struct UnkDoorLock;
 struct UnkUnit2186Object;
 struct UnkLightingComponent2;
 extern u64 g_unk_710164b098 __attribute__((visibility("hidden")));
-struct UnkStruct_71727313a4 {
-    CColor4F colours[3];
-};
 struct UnkEnumType;
 namespace CDoorLifeComponent { enum class SState : u32; }
 template <> UnkEnumType base::reflection::TypeObject<CDoorLifeComponent::SState, UnkEnumType>::object asm("g_unk_7172731200");
 
-struct UnkDoorGfx_b0251 {
-    u8 pad_0x0[0x138];
-    void* slots;
-};
-struct UnkDoorHolder_b0251 {
-    u8 pad_0x0[0x50];
-    UnkDoorGfx_b0251* gfx;
-};
 struct UnkDoorOwner7_b0251 {
     u8 pad_0x0[0x228];
     UnkDoorHolder_b0251* holder;

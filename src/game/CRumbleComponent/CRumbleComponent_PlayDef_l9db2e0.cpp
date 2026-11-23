@@ -5,6 +5,8 @@
 #include "base/global/CStrId.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/CRumbleComponent.h"
+#include "game/UnkHandle.h"
+#include "game/UnkHandleTarget.h"
 #include "game/UnkTU49.h"
 #include "types.h"
 
@@ -22,16 +24,6 @@ struct UnkRumbleOffset_l9db2e0 {
         z = o.z;
         return *this;
     }
-};
-
-struct UnkHandleTarget {
-    void* field_0x0;
-    u64 field_0x8;
-};
-
-struct UnkHandle {
-    UnkHandleTarget* target;
-    u64 serial;
 };
 
 struct CRumbleComponent;

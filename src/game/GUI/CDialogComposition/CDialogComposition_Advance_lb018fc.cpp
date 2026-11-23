@@ -10,6 +10,8 @@
 #include "game/GUI/CDialogComposition.h"
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/GUI/CLabel.h"
+#include "game/UnkDlgIdData_ovb0069.h"
+#include "game/UnkDlgId_ovb0069.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
@@ -21,25 +23,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 using UnkGuiObj = UnkGuiDisplayObject;
-
-// A string id's pooled data as these reads see it.
-struct UnkDlgIdData_ovb0069 {
-    u8 pad_0x0[0x10];
-    const char* text;  // 0x10
-    u8 pad_0x18[0x2c];
-    union {
-        s32 reads;  // 0x44
-    };
-};
-
-struct UnkDlgId_ovb0069 {
-    UnkDlgIdData_ovb0069* data;
-
-    const char* Text() const {
-        ++data->reads;
-        return data->text ? data->text : g_unk_710162e2ed;
-    }
-};
 
 static inline UnkGuiObj* FindLabel(void* self, const UnkDlgId_ovb0069& id) {
     UnkGuiObj* obj;

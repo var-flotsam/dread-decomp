@@ -3,15 +3,12 @@
 // labelled wrapper around a nested description, a five-value node, or an emitter over a value list
 // (fn_710016d154) with its argument node. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkKeyRequest_b0197.h"
 #include "game/UnkTU208.h"
 #include "game/UnkTU211.h"
 #include "types.h"
 
 struct UnkKeyPlayer_b0197;
-struct UnkKeyRequest_b0197 {
-    u32 kind_0x0;
-    u32 mode_0x4;
-};
 struct UnkOwner4_ovb0167;
 struct UnkCurveEmitter_ovb0167;
 

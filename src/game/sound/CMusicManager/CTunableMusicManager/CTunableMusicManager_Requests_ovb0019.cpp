@@ -10,7 +10,13 @@
 #include "base/global/UnkPooledId.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CChozoCommanderAIComponent.h"
+#include "game/UnkEntryArray_b0019.h"
 #include "game/UnkMask.h"
+#include "game/UnkMusicEntry_b0019.h"
+#include "game/UnkMusicMgr_b0019.h"
+#include "game/UnkMusicRequest_b0019.h"
+#include "game/UnkNodeList_b0019.h"
+#include "game/UnkPathEntry_0x18.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU99.h"
 #include "game/sound/CMusicManager.h"
@@ -179,43 +185,6 @@ struct UnkTuneStr_b0019 {
 };
 
 
-struct UnkMusicEntry_b0019 {
-    u8 pad_0x0[0x28];
-    UnkPathVec_b0019 paths;  // 0x28
-    u8 pad_0x50[0x8];
-    UnkTuneStr_b0019* name;  // 0x58
-};
-
-struct UnkEntryArray_b0019 {
-    UnkMusicEntry_b0019* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool autoGrow;
-
-    UnkMusicEntry_b0019& operator[](u64 i) {
-        if (autoGrow && i >= count) {
-            u32 n = capacity;
-            if (i >= capacity && step != 0)
-                n = ((u32)i / step + 1) * step;
-            fn_7100fddcb4(reinterpret_cast<base::global::CRntVector<UnkMusicEntry_0x60>*>(this), n);
-            fn_7100fde4d8(reinterpret_cast<UnkArray*>(this), i + 1);
-        }
-        return data[i];
-    }
-};
-
-struct UnkMusicMgr_b0019 {
-    u8 pad_0x0[0xaa];
-    bool enabled;  // 0xaa
-    u8 pad_0xab[0x1];
-    s32 hold_count;  // 0xac
-    u8 pad_0xb0[0x8];
-    UnkEntryArray_b0019 entries;  // 0xb8
-    u8 pad_0xd0[0x180];
-    u32 slot_count;  // 0x250
-};
-
 static inline UnkRequest* Request(UnkMusicMgr_b0019* self, u64 i) {
     return reinterpret_cast<UnkRequest*>(&self->entries[i]);
 }
@@ -262,20 +231,14 @@ void fn_7100fdba30(UnkMusicMgr_b0019* self) {
     SetAllHeld(self, true);
 }
 
-struct UnkPathEntry_0x18 {
-    UnkPooledId<&g_unk_7101d47200> field_0x0;
-    u64 field_0x8;
-    u64 field_0x10;
-};
-
-struct UnkPathList : base::global::CRntVector<UnkPathEntry_0x18> {
-    ~UnkPathList() { Free(); }
+struct UnkPathList_ovb0019 : base::global::CRntVector<UnkPathEntry_0x18> {
+    ~UnkPathList_ovb0019() { Free(); }
 };
 
 // A node of a slot's list (0x70 bytes).
 struct UnkNode_0x68 {
     u8 pad_0x0[0x28];
-    UnkPathList paths;  // 0x28
+    UnkPathList_ovb0019 paths;  // 0x28
     u64 field_0x50;
     UnkPooledId<&g_unk_7101d47108> name;  // 0x58
     UnkNode_0x68* next;  // 0x60
@@ -291,23 +254,6 @@ static inline UnkNode_0x68*& Prev(UnkNode_0x68* n) { return n->prev; }
 __attribute__((noinline)) void fn_7100fde6c4(UnkNode_0x68* node) {
     node->~UnkNode_0x68();
 }
-
-struct UnkNodeList_b0019 {
-    char* vtable;
-    union {
-        u32 count;  // a union member: the original reloads the links after updating it
-    };
-    UnkNode_0x68* head;
-    UnkNode_0x68* tail;
-    u32 flags;
-    base::UnkAllocator* allocator;
-    void* field_0x30;
-
-    void Destroy(UnkNode_0x68* node) {
-        fn_7100fde6c4(node);
-        allocator->vf_0x48(node);
-    }
-};
 
 // Unlinks and frees the node, returning the node after it.
 __attribute__((noinline)) UnkNode_0x68* fn_7100fd8f98(UnkNodeList_b0019* list, UnkNode_0x68* node) {
@@ -409,12 +355,6 @@ __attribute__((noinline)) void fn_7100fd5a90(UnkMusicSlots_b0019* self, u32 inde
         }
     }
 }
-
-struct UnkMusicRequest_b0019 {
-    u32 kind;  // 0x0
-    u8 pad_0x4[0x2c];
-    u32 active;  // 0x30
-};
 
 void fn_7100fd8a60(UnkNodeList_b0019* list, UnkMusicRequest_b0019* request);
 

@@ -6,17 +6,12 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkComponentDef_b0129.h"
 #include "game/UnkTU56.h"
 #include "types.h"
 
 using base::global::CRntVector;
 using base::global::CStrId;
-
-struct UnkComponentDef_b0129 {
-    void* vtable;
-    base::UnkStrIdMember name;
-    base::UnkStrIdMember type;
-};
 
 struct UnkKeyId_b0129;
 struct UnkComponentDefRead_b67a1;

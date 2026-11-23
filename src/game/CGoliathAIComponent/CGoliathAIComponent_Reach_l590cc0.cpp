@@ -6,19 +6,16 @@
 
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
+#include "game/UnkMat4f.h"
 #include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU54.h"
+#include "game/UnkTimeline.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-// As src/game/UnkSpawnVolume.cpp names it.
-struct UnkMat4f {
-    f32 m[4][4];
-};
 
 extern __attribute__((visibility("hidden"))) const UnkVec3f g_unk_710164a030;
 
@@ -30,12 +27,6 @@ struct UnkStruct_71007142e8 {
 };
 
 struct UnkMotionTracks;
-struct UnkTimeline {
-    u8 pad_0x0[0x24];
-    s32 frame_count;
-    u8 pad_0x28[0x58];
-    UnkMotionTracks* tracks;  // 0x80
-};
 
 struct UnkGoliathMotion_l590cc0 {
     UnkStruct_71007142e8 motion;

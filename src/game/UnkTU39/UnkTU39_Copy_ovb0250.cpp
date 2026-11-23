@@ -9,24 +9,14 @@
 #include "base/UnkDeferredSet.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkKeyNode_b0250.h"
 #include "game/UnkTU39.h"
 
 using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
 using base::global::CStrId;
 
-struct UnkKeyNode_b0250 {
-    CStrId id;
-    f32 value;
-    f32 value2;
-    UnkKeyNode_b0250* next;
-    UnkKeyNode_b0250(const UnkKeyNode_b0250* src) : id(src->id) {
-        value = src->value;
-        next = nullptr;
-    }
-};
-
-struct UnkKeyList_b0250 {
+struct UnkKeyList_b0250_ovb0250 {
     void** vtable;
     u32 count;
     UnkKeyNode_b0250* head;
@@ -39,8 +29,8 @@ struct UnkKeyList_b0250 {
 void fn_710003017c(UnkDeferredSet<UnkDeferredCallback<f32>>* self, UnkDeferredSet<UnkDeferredCallback<f32>>* other);
 
 void fn_710002f588(void* dst, const void* src) {
-    UnkKeyList_b0250* self = static_cast<UnkKeyList_b0250*>(dst);
-    const UnkKeyList_b0250* other = static_cast<const UnkKeyList_b0250*>(src);
+    UnkKeyList_b0250_ovb0250* self = static_cast<UnkKeyList_b0250_ovb0250*>(dst);
+    const UnkKeyList_b0250_ovb0250* other = static_cast<const UnkKeyList_b0250_ovb0250*>(src);
     self->count = 0;
     self->vtable = &g_unk_7101a1a090[2];
     self->head = nullptr;

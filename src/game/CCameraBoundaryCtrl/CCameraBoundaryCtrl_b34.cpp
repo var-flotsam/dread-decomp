@@ -5,18 +5,18 @@ struct UnkCameraBoundaryData {
     f32 field_0xc40;
 };
 
-struct UnkCameraBoundaryOwner {
+struct UnkCameraBoundaryOwner_b34 {
     u8 unk_0x0[0x10];
     UnkCameraBoundaryData* data;
 };
 
-static inline UnkCameraBoundaryData* GetData(UnkCameraBoundaryOwner* owner) {
+static inline UnkCameraBoundaryData* GetData(UnkCameraBoundaryOwner_b34* owner) {
     return owner ? owner->data : nullptr;
 }
 
 struct CCameraBoundaryCtrl {
     u8 unk_0x0[0xb0];
-    UnkCameraBoundaryOwner* owner;
+    UnkCameraBoundaryOwner_b34* owner;
     u8 unk_0xb8[0x8];
     f32 field_0xc0;
 };
@@ -24,7 +24,7 @@ struct CCameraBoundaryCtrl {
 bool fn_71010e63ec(UnkCameraBoundaryData* data, CCameraBoundaryCtrl* ctrl, f32 a, f32 b, f32 c);
 
 void fn_710076438c(CCameraBoundaryCtrl* self, f32 dt, bool) {  // the bool its callers pass is not read
-    UnkCameraBoundaryOwner* owner = self->owner;
+    UnkCameraBoundaryOwner_b34* owner = self->owner;
     f32 value = owner->data->field_0xc40;
     if (value > 0.0f)
         fn_71010e63ec(GetData(owner), self, self->field_0xc0, 4.0f, dt);

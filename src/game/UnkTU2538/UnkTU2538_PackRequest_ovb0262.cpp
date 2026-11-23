@@ -4,6 +4,8 @@
 // then sets the path to the global one. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/UnkPackRefTarget_b0163.h"
+#include "game/UnkPackRef_b0163.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2201.h"
 #include "game/UnkTU2730.h"
@@ -26,20 +28,6 @@ struct UnkMaskedId {
 inline UnkMaskedId::UnkMaskedId() { fn_7100c939dc(this); }
 
 struct UnkPackManager_b0163;
-struct UnkPackRefTarget_b0163 {
-    void** vtable;
-    s32 ref_count;  // 0x8
-};
-struct UnkPackRef_b0163 {
-    UnkPackRefTarget_b0163* ptr;
-    ~UnkPackRef_b0163() {
-        if (UnkPackRefTarget_b0163* p = ptr) {
-            __atomic_fetch_sub(&p->ref_count, 1, __ATOMIC_SEQ_CST);
-            if (__atomic_load_n(&p->ref_count, __ATOMIC_SEQ_CST) == 0)
-                reinterpret_cast<void (*)(UnkPackRefTarget_b0163*)>(p->vtable[0x10 / 8])(p);
-        }
-    }
-};
 
 struct UnkCallback_kr {
     void* object;

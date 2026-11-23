@@ -6,34 +6,12 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkPooledId.h"
+#include "game/UnkMusicRequest_b0019.h"
+#include "game/UnkNodeList_b0019.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game/sound/UnkMusicPathVec.h"
 #include "types.h"
-
-// The two types the declaration in CTunableMusicManager_Requests_ovb0019.cpp names.
-struct UnkNodeList_b0019 {
-    char* vtable;
-    union {
-        u32 count;  // a union member: the original reloads the links after updating it
-    };
-    UnkNode_0x68* head;
-    UnkNode_0x68* tail;
-    u32 flags;
-    base::UnkAllocator* allocator;
-    void* field_0x30;
-
-    void Destroy(UnkNode_0x68* node) {
-        fn_7100fde6c4(node);
-        allocator->vf_0x48(node);
-    }
-};
-
-struct UnkMusicRequest_b0019 {
-    u32 kind;  // 0x0
-    u8 pad_0x4[0x2c];
-    u32 active;  // 0x30
-};
 
 // A request as the list keeps it (0x60 bytes: as fn_7100fddcb4's entry).
 struct UnkMusicRequestEntry_d8a60 {

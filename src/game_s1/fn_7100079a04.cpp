@@ -1,12 +1,9 @@
 // Right-handed perspective projection matrix from a vertical field of view (radians), aspect
 // ratio and near/far distances (depth range 0 to 1, w = -z).
+#include "game/UnkMat4f.h"
 #include "types.h"
 
 extern "C" f32 tanf(f32);
-
-struct UnkMat4f {
-    f32 m[4][4];
-};
 
 UnkMat4f fn_7100079a04(f32 fov, f32 aspect, f32 near_z, f32 far_z) {
     UnkMat4f r = {};

@@ -18,6 +18,7 @@
 #include "game/CGrabComponent.h"
 #include "game/CInputComponent.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkAbilityOwner_ovb22.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -50,13 +51,6 @@ struct UnkEnergyWaveFxComp_b49;
 
 extern char g_unk_7101648d28[];
 extern const u64 g_unk_7101648d18;
-
-struct UnkAbilityOwner_ovb22 {
-    u8 pad_0x0[0x210];
-    UnkEnergyWaveCompB_b49* field_0x210;
-    u8 pad_0x218[0x48];
-    UnkEnergyWaveCompA_b49* field_0x260;
-};
 
 bool fn_71002fdbc0(CAbilityComponent* self, bool);
 

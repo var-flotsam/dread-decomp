@@ -9,17 +9,12 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkMissionLog.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTypedValue.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkMissionLog {
-    u8 pad_0x0[0x248];
-    u8 entries_0x248[0x28];
-    u8 entries_0x270[0x28];
-};
 
 // The "EventsList" and "TutosList" properties and their collection type (src/game_s7/fn_7100ae39e0.cpp).
 

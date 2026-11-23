@@ -1,16 +1,8 @@
 // Unit 307: three (min, max) float ranges from +8; each valid range (min <= max) is scaled about its own
 // midpoint by a per-axis factor. Names and layouts are placeholders.
+#include "game/UnkRange.h"
+#include "game/UnkRanges.h"
 #include "types.h"
-
-struct UnkRange {
-    f32 min;
-    f32 max;
-};
-
-struct UnkRanges {
-    u8 pad_0x0[0x8];
-    UnkRange ranges[3];  // 0x8
-};
 
 static inline f32 Midpoint(const UnkRange& r) { return (r.min + r.max) * 0.5f; }
 

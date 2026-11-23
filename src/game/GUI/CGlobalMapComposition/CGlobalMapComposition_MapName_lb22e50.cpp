@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiPos.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU2755.h"
 #include "game/UnkTU57.h"
@@ -73,15 +74,6 @@ UnkMapNameId fn_7100b22e50(const CStrId& scenario) {
     result = CStrId(name, true);
     return result;
 }
-
-// A point of a display object's anchor state (the block at +0x78) by horizontal and vertical
-// anchor, as src/game/GUI/CMapMenuController/CMapMenuController_BindWidgets.cpp declares it.
-struct UnkGuiPos {
-    f32 x;
-    f32 y;
-
-    UnkGuiPos(const UnkGuiPos& other) : x(other.x), y(other.y) {}
-};
 
 // An anchor point as the point fn_71011cf0a8 takes.
 static inline const UnkVec2Result& AsPoint(const UnkGuiPos& pos) {

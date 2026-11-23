@@ -15,6 +15,7 @@
 #include "game/UnkTU341.h"
 #include "game/UnkTU344.h"
 #include <stdio.h>
+#include "game/UnkUnusedArg_b49.h"
 
 #include "types.h"
 #include "UnkLeftoverReg.h"
@@ -121,7 +122,6 @@ struct UnkGuiCacheView_b0231 {
     }
 };
 
-struct UnkUnusedArg_b49 : UnkLeftoverReg {};
 struct UnkSweepEntry_b49;
 struct UnkSweepList_b49;
 struct UnkSweepNode_b49;

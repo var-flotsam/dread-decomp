@@ -5,12 +5,9 @@
 #include "base/UnkRefHandle.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CCharClassSteamJetComponent.h"
+#include "game/UnkCountedWater_b51.h"
 #include "game/UnkTU437.h"
 #include "game/UnkTimelineComponent.h"
-
-struct UnkCountedWater_b51 : base::UnkRefCounted {
-    void* field_0x10;
-};
 
 using UnkRef = base::UnkRefPtrMember;
 

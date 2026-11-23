@@ -1,5 +1,6 @@
 // Two-level handle lookup: bits 16..30 select a 0x48-byte slot, the low 16 bits
 // select a 12-byte entry in that slot's array; returns the entry's third word.
+#include "game/UnkPool_0x48.h"
 #include "types.h"
 
 struct UnkStruct_0xc {
@@ -11,11 +12,6 @@ struct UnkStruct_0xc {
 struct UnkStruct_0x48 {
     UnkStruct_0xc* entries;
     u8 unk_0x8[0x40];
-};
-
-struct UnkPool_0x48 {
-    UnkStruct_0x48* slots;
-    u32 count;
 };
 
 // NON_MATCHING(minor): same instructions, different scheduling and register assignment.

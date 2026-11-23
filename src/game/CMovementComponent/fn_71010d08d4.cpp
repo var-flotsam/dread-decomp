@@ -2,6 +2,7 @@
 // and, when its y is above 0.001 and `start` is set, raises the flag at +0xf9 (once) through the
 // virtual at 0x260. Names and layouts are placeholders.
 #include "game/CMovementComponent.h"
+#include "game/UnkMovementVec_71010d08d4.h"
 #include "types.h"
 
 struct UnkMovement_71010d08d4;
@@ -9,10 +10,6 @@ struct UnkMovement_71010d08d4;
 struct UnkMovementVtbl_71010d08d4 {
     u8 pad_0x0[0x260];
     void (*vf_0x260)(UnkMovement_71010d08d4* self);
-};
-
-struct UnkMovementVec_71010d08d4 {
-    f32 x, y, z;
 };
 
 struct UnkMovement_71010d08d4 {

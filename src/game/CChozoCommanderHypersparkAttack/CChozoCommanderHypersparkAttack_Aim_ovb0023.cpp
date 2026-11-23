@@ -12,11 +12,13 @@
 #include "game/CChozoCommanderGroundAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkKraidCreatureVec.h"
 #include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTimeline.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -30,12 +32,6 @@ struct UnkStruct_71007142e8 {
 };
 
 struct UnkMotionTracks;
-struct UnkTimeline {
-    u8 pad_0x0[0x24];
-    s32 frame_count;
-    u8 pad_0x28[0x58];
-    UnkMotionTracks* tracks;  // 0x80
-};
 
 struct UnkHypersparkOwner_ovb0023 {
     u8 pad_0x0[0x38];
@@ -78,13 +74,6 @@ void fn_710042dbfc(UnkHypersparkAttack_ovb0023* self) {
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
     self->field_0x70 = __builtin_fabsf(motion.field_0x2c);
 }
-
-struct UnkKraidCreatureVec {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
-};
 
 struct UnkAbility;
 

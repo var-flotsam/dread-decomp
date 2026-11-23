@@ -7,6 +7,7 @@
 #include "base/UnkRefHandle.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CCutsceneComponent.h"
+#include "game/UnkCountedA5_b76.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
@@ -21,14 +22,6 @@ void fn_7100e04834(UnkGameManager* self, f32 a, f32 b);
 struct UnkManager;
 void fn_7100eed85c(void* self, void* key, bool a, bool b);
 extern __attribute__((visibility("hidden"))) char g_unk_717274eab0[];
-
-// As src/game/UnkStateMachineSetA5_b61.cpp declares them.
-struct UnkCountedA5_b76 : base::UnkRefCounted {
-    union {
-        void* field_0x10;
-        u64 raw_0x10;
-    };
-};
 
 using UnkRef = base::UnkRefPtrMember;
 

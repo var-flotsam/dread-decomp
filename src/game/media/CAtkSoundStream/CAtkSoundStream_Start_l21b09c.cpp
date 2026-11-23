@@ -2,11 +2,13 @@
 // "AtkSoundStream Thread" (fn_710021b2ac), plays the stream's path as a group 1 sound, keeps the
 // handle at +0x248 and sets the playing sound's value to 0. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "base/UnkPlayingRef_ovb0074.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
 #include "base/global/timeline/CEvent.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/UnkPlayingHandle_ovb0074.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
 #include "game/media/CMediaStream.h"
@@ -68,14 +70,6 @@ struct UnkStreamDesc_l21b09c {
 struct UnkSoundSystemPlayView_ovb0074;
 struct UnkSoundDesc_ovb0074;
 struct UnkPlayingSound_ovb0074;
-struct UnkPlayingRef_ovb0074 {
-    UnkPlayingSound_ovb0074* sound;
-    u64 serial;
-};
-struct UnkPlayingHandle_ovb0074 {
-    UnkPlayingRef_ovb0074* ref;
-    u64 serial;
-};
 struct UnkSoundMgr;
 
 struct UnkAtkSoundStream_ovb0008;

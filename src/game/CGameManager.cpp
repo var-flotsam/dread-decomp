@@ -15,8 +15,17 @@
 #include "game/CScenario.h"
 #include "game/CTriggerComponent.h"
 #include "game/UnkBufferStringPool.h"
+#include "game/UnkFileRequestArgs.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerDef.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkGameManagerNamedDef.h"
+#include "game/UnkIdTextData.h"
+#include "game/UnkModeFlags.h"
+#include "game/UnkMusicMode.h"
+#include "game/UnkNamedObject.h"
+#include "game/UnkNamedUser.h"
+#include "game/UnkPtrListNode.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU23.h"
@@ -281,12 +290,6 @@ extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
 
 struct UnkFilePathList;
-// Lists the files under `path` into `out`.
-void fn_7100089eec(base::file::UnkFileDevice* self, const CFilePathStrId* path, UnkFilePathList* out);
-struct UnkFileRequestArgs {
-    u64 field_0x0;
-    u64 field_0x8;
-};
 // Requests the file `path` (with 0 and 9; the arguments are zeroed).
 
 static inline base::file::UnkFileDevice* FileDevice() {
@@ -298,17 +301,6 @@ static inline base::file::UnkFileDevice* FileDevice() {
     return g_unk_7101d4d828;
 }
 
-// The pooled data behind a string id as its text accessor sees it: the text as a CRntString at
-// +0x10 and a count of the reads at +0x44.
-struct UnkIdTextData {
-    u8 pad_0x0[0x10];
-    CRntString str;
-    u8 pad_0x40[0x4];
-    // A union member: the original reloads the id's data pointer after the increment.
-    union {
-        s32 reads;
-    };
-};
 template <class Id>
 static inline const CRntString& IdText(const Id& id) {
     ++reinterpret_cast<UnkIdTextData*>(id.data)->reads;
@@ -399,24 +391,12 @@ void fn_7100df026c(UnkGameManager* self, const CFilePathStrId& path) {
 
 using base::global::UnkStrIdBase;
 
-// A property seen as a definition whose qualified id (game/UnkGameBlackboard.h) is built on first
-// use (as in src/game_s7/fn_7100fc4b34.cpp).
-struct UnkGameManagerDef : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedId qid;
-};
 static inline const UnkQualifiedId& Qid(UnkGameManagerDef& def) {
     if (def.qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&def.qid, &def, base::global::CStrId::Empty());
     return def.qid;
 }
 
-// A definition whose qualified id is kept as a string, with named sub-ids looked up in a map
-// (fn_71003327a4, game/UnkSubId_7100fc4b34.h).
-struct UnkGameManagerNamedDef : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedName name;
-};
 static inline UnkSubId_7100fc4b34 SubId(UnkGameManagerNamedDef& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])
         fn_7100ae9d7c(&def.name, &def, base::global::CStrId::Empty());
@@ -505,11 +485,6 @@ struct UnkMgr_0xf18;
 struct UnkTreeNode;  // src/engine/render/anim/CSkeletalAnimTree/fn_710014be78.cpp
 struct UnkObj_7100e01680;  // src/game_aca57c/fn_7100e01680.cpp
 void* fn_7100e0189c(void* start_point);
-// A mode word passed by address (the word after it is not set).
-struct UnkMusicMode {
-    u32 kind;
-    u32 field_0x4;
-};
 struct UnkStruct_71002334fc;  // src/game_lo/fn_71002334fc.cpp
 struct UnkCameraCtrl;  // src/game/CBossAIComponent/fn_71003ad014.cpp
 void fn_7100935d40(UnkCameraCtrl* ctrl);
@@ -712,11 +687,6 @@ struct UnkLoadCallback {
     void (*fn)(void* context, UnkLoadResult* result);
 };
 
-// A list of pointers (vtable g_unk_7101aa9ac0), its nodes from `allocator` with `flags`.
-struct UnkPtrListNode {
-    void* value;
-    UnkPtrListNode* next;
-};
 struct UnkPtrList {
     void** vtable;
     // Union members: the original reloads the count, the tail and the allocator after storing a new
@@ -820,31 +790,15 @@ struct UnkStepCallbacks {
     u32 count;
 };
 
-// Named objects (a CRntString at +8), in a list at +0x478.
-struct UnkNamedObject {
-    u8 pad_0x0[0x8];
-    CRntString name;
-};
 struct UnkNamedNode {
     UnkNamedObject* value;
     UnkNamedNode* next;
-};
-struct UnkNamedUser {
-    u8 pad_0x0[0x88];
-    bool field_0x88;
 };
 // String equality (the declaration is src/game_s1/fn_71000d4d50.cpp's, over a record of CRntString's size).
 struct UnkCompared_0x30;
 static inline bool Equal(const CRntString* a, const CRntString* b) {
     return fn_710007f120(reinterpret_cast<const UnkCompared_0x30*>(a), reinterpret_cast<const UnkCompared_0x30*>(b));
 }
-
-// A flag holder (as src/game/GUI/CIngameMenu/fn_7100b2de48.cpp sees it): set, the step callbacks and the
-// blackboard pass are skipped.
-struct UnkModeFlags {
-    u8 unk_0x0[0xb8];
-    bool field_0xb8;
-};
 
 // The game manager's members the load reads (game/UnkGameManager.h leaves them as padding).
 struct UnkGameManagerLoad {
@@ -1036,7 +990,6 @@ static_assert(__builtin_offsetof(UnkGameManagerProfile, field_0x7f0) == 0x7f0, "
 template <class T>
 struct UnkCopiedVector;
 struct UnkWordsValue;
-UnkCopiedVector<UnkWordsValue>* fn_7100e05764(UnkCopiedVector<UnkWordsValue>* self, const UnkCopiedVector<UnkWordsValue>* other);
 struct UnkStruct_0x28;
 void fn_7100e0552c(void* self, const void* other);
 struct UnkMainMenuSlot {

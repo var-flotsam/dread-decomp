@@ -9,29 +9,29 @@
 #include "game/UnkTU852.h"
 #include "types.h"
 
-struct UnkRefObj {
+struct UnkRefObj_011a78a8 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
     s32 ref_count;
 };
 
-struct UnkRef {
-    UnkRefObj* ptr;
-    ~UnkRef() {
+struct UnkRef_011a78a8 {
+    UnkRefObj_011a78a8* ptr;
+    ~UnkRef_011a78a8() {
         if (auto* held = ptr; held && --held->ref_count == 0)
             held->vf_0x10();
     }
 };
 
 struct UnkRefNode_0x18 {
-    UnkRef ref;
+    UnkRef_011a78a8 ref;
     u64 field_0x8;
     UnkRefNode_0x18* next;
 };
 
 struct UnkRefNode_0x10 {
-    UnkRef ref;
+    UnkRef_011a78a8 ref;
     UnkRefNode_0x10* next;
 };
 
@@ -47,7 +47,7 @@ struct UnkRefList {
     ~UnkRefList() {
         for (Node* n = head; n;) {
             Node* next = n->next;
-            n->ref.~UnkRef();
+            n->ref.~UnkRef_011a78a8();
             allocator->vf_0x48(n);
             n = next;
         }

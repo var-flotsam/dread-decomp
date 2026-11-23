@@ -2,6 +2,7 @@
 // object the owner's accessor (vtable slot 0xd8 of the object at +0x29ee0) returns, chosen by
 // rand() & 0x7fff modulo 3.
 #include "game/UnkTU811.h"
+#include "game_s2/UnkProvider.h"
 #include "types.h"
 
 struct UnkTunables {
@@ -9,11 +10,6 @@ struct UnkTunables {
     f32 field_0xf4;
     f32 field_0xf8;
     f32 field_0xfc;
-};
-
-struct UnkProvider {
-    void** vtable;
-    UnkTunables* vf_0xd8() { return reinterpret_cast<UnkTunables* (*)(UnkProvider*)>(vtable[27])(this); }
 };
 
 struct UnkSelf {

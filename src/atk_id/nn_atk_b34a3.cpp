@@ -1,5 +1,6 @@
 // nn::atk unit: a sound archive ("FSAR") file header, copied out when its magic, byte-order mark and
 // version are valid. Names and layouts are placeholders.
+#include "game/UnkAtkItemRefs.h"
 #include "game/UnkTU2772.h"
 #include "game/UnkTU99.h"
 #include "types.h"
@@ -196,12 +197,6 @@ f32 fn_7101230ab4(const UnkAtkOptionalParamsOwner4* self) {
 // items it refers to (flags 4 and 8: up to four ids fn_7101206b4c fills in, -1 for none, each loaded
 // by fn_7101211a64). False when a step fails.
 struct UnkAtkArchive;
-struct UnkAtkItemRefs {
-    u32 field_0x0;
-    u32 ids[4];  // 0x4
-    u32 field_0x14;
-    u16 field_0x18;
-};
 struct UnkAtkLoader {
     u8 pad_0x0[0x8];
     UnkAtkArchive* archive;  // 0x8

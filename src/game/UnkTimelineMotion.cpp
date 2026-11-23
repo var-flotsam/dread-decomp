@@ -9,21 +9,10 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTU1728.h"
+#include "game/UnkTimelineEvent.h"
+#include "game/UnkTimelineEventList.h"
 #include "game/nn/time.h"
 #include "types.h"
-
-// A timeline event (base::global::timeline; as src/game/CCutscene.cpp's): its class, then the
-// frames it spans.
-struct UnkTimelineEvent {
-    void** vtable;
-    const base::reflection::CClass* cls;
-    f32 start;
-    f32 end;
-};
-struct UnkTimelineEventList {
-    UnkTimelineEvent** data;
-    u32 count;
-};
 
 // A displacement event (CCharClassTweakDisplacementTrack): the translation's scale.
 struct UnkDisplacementEvent : UnkTimelineEvent {

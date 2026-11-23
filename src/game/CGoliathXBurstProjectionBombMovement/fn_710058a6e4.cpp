@@ -16,7 +16,10 @@
 #include "game/CGoliathXBurstProjectionBombMovement.h"
 #include "game/CWeaponMovement.h"
 #include "game/UnkActor.h"
+#include "game/UnkFxObjectVtable_ovb0041.h"
+#include "game/UnkFxObject_ovb0041.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkStatics_710058c890.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
 #include "game/UnkTU1370.h"
@@ -30,33 +33,9 @@ using base::math::CVector3D;
 using base::reflection::CClass;
 using namespace unk_static_init;
 
-// As the unit's static initialiser declares them (fn_710058c890.cpp).
-struct UnkStatics_710058c890 {
-    HeaderIds ids;
-    u8 pad_0x18[0x8];
-    UnkStrIdBase field_0x20;
-    UnkFilePathStrIdBase field_0x28;
-    UnkFilePathStrIdBase field_0x30;
-    u8 pad_0x38[0x28];
-    u8 field_0x60[0x10];
-    u8 field_0x70[8];
-};
-
 // The effect object the model manager hands out, as its virtual calls see it (as in
 // src/game/CMeleeComponent/CMeleeComponent_Checks_ovb0041.cpp).
 struct UnkFxObject_ovb0041;
-struct UnkFxObjectVtable_ovb0041 {
-    void* unk_0x0[2];
-    void (*set_position)(UnkFxObject_ovb0041* self, const UnkVec3f* v);  // 0x10
-    void (*set_rotation)(UnkFxObject_ovb0041* self, const UnkVec3f* v);  // 0x18
-    void (*set_scale)(UnkFxObject_ovb0041* self, const UnkVec3f* v);     // 0x20
-    void* unk_0x28[13];
-    void (*set_loop)(UnkFxObject_ovb0041* self, bool loop);               // 0x90
-    void (*set_speed)(UnkFxObject_ovb0041* self, f32 speed);              // 0x98
-};
-struct UnkFxObject_ovb0041 {
-    UnkFxObjectVtable_ovb0041* vtable;
-};
 
 // The target's CGoliathXAIComponent: four values the bomb takes over.
 struct UnkGoliathXAI_l58a6e4 {

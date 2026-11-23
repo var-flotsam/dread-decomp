@@ -12,6 +12,8 @@
 #include "base/UnkCountedResource.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkClearedArray.h"
+#include "game/UnkTwoWords.h"
 #include "types.h"
 
 using namespace base::global;
@@ -67,18 +69,6 @@ struct UnkReleasedStrIdT {
 using UnkReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47108>;
 // The same id in CFilePathStrId's pool.
 using UnkFilePathReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47200>;
-
-template <class T>
-struct UnkClearedArray {
-    T* data;
-    u32 count;
-
-    void Clear() {
-        for (u64 i = 0; i < count; ++i)
-            data[i].~T();
-        count = 0;
-    }
-};
 
 struct UnkIdArrayOwner {
     u64 field_0x0;
@@ -441,12 +431,6 @@ void fn_710079cea0(const UnkIdTable<u32>* self, UnkIterValue<u32, UnkReleasedStr
 void fn_7100916e80(const UnkIdTable<u8>* self, UnkIterValue<u8, UnkReleasedStrId>* out) {
     out->SetRef(self->keys + self->count, self->values + self->count);
 }
-
-// Over two-word values, in another unit (fn_71009051d0).
-struct UnkTwoWords {
-    u64 first;
-    u64 second;
-};
 
 void fn_71009051d0(const UnkIdTable<UnkTwoWords>* self, UnkIterValue<UnkTwoWords, UnkReleasedStrId>* out) {
     out->SetRef(self->keys + self->count, self->values + self->count);

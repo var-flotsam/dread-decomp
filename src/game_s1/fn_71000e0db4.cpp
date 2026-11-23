@@ -4,70 +4,11 @@
 // argument and assigns it to the second: the value and the pointer are copied and the target's pair is rebound to the
 // target's own members (or reset). The in-place second value is destroyed out of line. Two record sizes.
 #include "base/global/CRntString.h"
+#include "game/UnkBoundPair.h"
+#include "game/UnkBoundRef.h"
 #include "game/UnkTU1629.h"
 #include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
-
-template <class X, class Y>
-struct UnkBoundPair {
-    union {
-        struct {
-            X x;
-            Y y;
-        } values;
-        struct {
-            X* x;
-            Y* y;
-        } refs;
-    };
-    s32 state;
-
-    __attribute__((always_inline)) UnkBoundPair() {}
-    __attribute__((always_inline)) ~UnkBoundPair() {}
-
-    __attribute__((always_inline)) void Reset() {
-        switch (state) {
-        case 1:
-            values.y.~Y();
-            state = 0;
-            break;
-        case 2:
-            state = 0;
-            break;
-        }
-    }
-    __attribute__((always_inline)) void Set(X* x, Y* y) {
-        Reset();
-        state = 2;
-        refs.x = x;
-        refs.y = y;
-    }
-};
-
-template <class Y>
-struct UnkBoundRef {
-    u32 value;
-    Y* ptr;
-    UnkBoundPair<u32, Y> pair;
-
-    __attribute__((always_inline)) explicit UnkBoundRef(Y* p) : value(0), ptr(p) {
-        pair.state = 0;
-        if (ptr)
-            pair.Set(&value, ptr);
-    }
-    __attribute__((always_inline)) UnkBoundRef& operator=(const UnkBoundRef& other) {
-        if (this != &other) {
-            value = other.value;
-            ptr = other.ptr;
-            if (ptr)
-                pair.Set(&value, ptr);
-            else
-                pair.Reset();
-        }
-        return *this;
-    }
-    __attribute__((always_inline)) ~UnkBoundRef() { pair.Reset(); }
-};
 
 template <class Y>
 __attribute__((always_inline)) static inline void AssignBound(Y* const* src, UnkBoundRef<Y>* out) {

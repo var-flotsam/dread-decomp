@@ -10,6 +10,7 @@
 #include "game/CComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkLifeChange_ovb0000.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
@@ -117,12 +118,6 @@ void fn_7101160078(UnkCommanderLife_A5_b63* component, f32 dt) {
         self->dead_time = 0.0f;
     }
 }
-
-struct UnkLifeChange_ovb0000 {
-    f32 life;
-    bool increased;
-    UnkLifeChange_ovb0000(f32 life_, bool increased_) : life(life_), increased(increased_) {}
-};
 
 struct UnkLifeState_ovb0000 {
     void** vtable;

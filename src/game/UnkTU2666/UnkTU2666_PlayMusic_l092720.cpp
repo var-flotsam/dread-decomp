@@ -9,6 +9,7 @@
 #include "base/global/UnkStringPoolBody.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkPlayingHandle_ovb0074.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2677.h"
 #include "game/sound/CMusicManager.h"
@@ -77,10 +78,6 @@ struct UnkMusicDesc_l092720 {
 struct UnkSoundSystemPlayView_ovb0074;
 struct UnkSoundDesc_ovb0074;
 struct UnkPlayingRef_ovb0074;
-struct UnkPlayingHandle_ovb0074 {
-    UnkPlayingRef_ovb0074* ref;
-    u64 serial;
-};
 
 // The music manager, created on first use.
 static inline UnkTuneMgrView_b0019* MusicManager_l092720() {

@@ -7,21 +7,11 @@
 #include "base/global/CStrId.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMlogMessage_b42a1.h"
 #include "game/UnkTU0.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkMlogMessage_b42a1 {
-    u32 kind;
-    base::global::CStrId text;
-    base::global::CRntVector<base::UnkStrIdMember> args;
-
-    __attribute__((always_inline)) UnkMlogMessage_b42a1(const CStrId& t) : kind(0), text(t), args(0xc) {}
-    __attribute__((always_inline)) ~UnkMlogMessage_b42a1() {
-        args.Free();
-    }
-};
 
 __attribute__((always_inline)) static inline void SendDefeated(const char* text, const char* script) {
     UnkMlogMessage_b42a1 message(CStrId(text, true));

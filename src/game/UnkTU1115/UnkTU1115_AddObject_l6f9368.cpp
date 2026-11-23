@@ -6,6 +6,7 @@
 #include "UnkLeftoverReg.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkQueryTag_b50.h"
 #include "game/UnkTU1115.h"
 #include "types.h"
 
@@ -40,7 +41,6 @@ struct UnkRegistry_l6f9368 {
 
 // The holder and tag as the unit's other file declares this function.
 struct UnkQueryHolder_b50;
-struct UnkQueryTag_b50 : UnkLeftoverReg {};
 
 void fn_71006f9368(UnkQueryHolder_b50* holder, UnkQueryTag_b50 tag, void* data, u32 mode) {
     auto* self = reinterpret_cast<UnkRegistry_l6f9368*>(holder);

@@ -26,7 +26,7 @@ __attribute__((always_inline)) inline UnkMovedString::UnkMovedString(UnkMovedStr
 }
 
 // A string with its own inline storage, copied (not moved) by fn_710007eaa0.
-struct UnkStrStorage {
+struct UnkStrStorage_eae77c {
     void* vtable;
     u8 unk_0x8[0x20];
     void* field_0x28;
@@ -34,7 +34,7 @@ struct UnkStrStorage {
 };
 struct UnkStrBuffer {
     u8 unk_0x0[0x30];
-    UnkStrStorage storage;
+    UnkStrStorage_eae77c storage;
 
     UnkStrBuffer(const UnkStrBuffer& other);
     ~UnkStrBuffer();

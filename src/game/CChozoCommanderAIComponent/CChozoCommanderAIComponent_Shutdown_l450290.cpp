@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CWeaponMovement.h"
+#include "game/UnkSphereList.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -15,11 +16,6 @@ using base::reflection::UnkReflObject;
 struct UnkSphereEntry {
     u8 pad_0x0[0x10];
     UnkReflObject* object;  // 0x10
-};
-
-struct UnkSphereList {
-    UnkSphereEntry** data;
-    u32 count;
 };
 
 struct UnkChozoSphereMovement_l450290 : UnkReflObject {

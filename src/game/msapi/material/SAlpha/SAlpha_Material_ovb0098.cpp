@@ -19,6 +19,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/UnkBlendStack.h"
+#include "game/UnkMaterialValuesData.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU180.h"
 #include "game/UnkTU230.h"
@@ -196,16 +197,6 @@ void fn_71001a90fc(UnkMatPass_ovb0098* self) {
 
 // The value block's vtable (reached through the GOT); its slot 1 is the complete destructor.
 extern char unk_7101a1e4d8[];
-
-// The element's plain part (copied as a whole).
-struct UnkMaterialValuesData {
-    u8 field_0x10;
-    s32 field_0x14;  // the number of values
-    u64 field_0x18;
-    u64 field_0x20;
-    u64 field_0x28;
-    void* field_0x30;  // the values
-};
 
 struct UnkMaterialValues {
     char* vtable;

@@ -4,21 +4,13 @@
 // (fn_7100c8a490) first. The shape of fn_71010012d4 (src/game/GUI/CMissionLog/fn_7100b5bfdc.cpp).
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkElem40Array_b42a3.h"
+#include "game/UnkElemA0Array_b42a3.h"
 #include "game/UnkTU2200.h"
 #include "types.h"
 
 struct UnkElem40_b42a3 {
     u8 unk_0x0[0x40];
-};
-
-struct UnkElem40Array_b42a3 {
-    UnkElem40_b42a3* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
 };
 
 void fn_7100c9115c(UnkElem40_b42a3* self);  // the element's constructor, after it is cleared
@@ -86,16 +78,6 @@ void fn_7100c92150(UnkElem40Array_b42a3* self, const u32* index, UnkElem40_b42a3
 // fn_7100c8d58c, copy and move assignment fn_7100c8d9c0 and fn_7100c8e034).
 struct UnkElemA0_b42a3 {
     u8 unk_0x0[0xa0];
-};
-
-struct UnkElemA0Array_b42a3 {
-    UnkElemA0_b42a3* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
 };
 
 void fn_7100c8d58c(UnkElemA0_b42a3* self);

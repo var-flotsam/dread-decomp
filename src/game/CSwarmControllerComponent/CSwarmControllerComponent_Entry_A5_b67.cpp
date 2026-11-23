@@ -3,25 +3,12 @@
 // placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkCountedRef_A5_b67.h"
+#include "game/UnkCounted_A5_b67.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-struct UnkCounted_A5_b67 {
-    u8 pad_0x0[0x54];
-    s32 count;
-};
-
-struct UnkCountedRef_A5_b67 {
-    UnkCounted_A5_b67* p;
-    UnkCountedRef_A5_b67(const UnkCountedRef_A5_b67& other) : p(nullptr) {
-        if (UnkCounted_A5_b67* q = other.p) {
-            ++q->count;
-            p = q;
-        }
-    }
-};
 
 struct UnkSwarmEntry_A5_b67 {
     CStrId name;

@@ -2,48 +2,15 @@
 // weight the first child evaluates into the pose and channels 1 and 2 are reset; with any weight the
 // second child's pose is blended into those channels by the node's weight (+0x28, +0x38). Names and
 // layouts are placeholders.
+#include "game/UnkAnimChannel_ovb0125.h"
+#include "game/UnkAnimChildren_ovb0125.h"
+#include "game/UnkAnimEvalNode_ovb0125.h"
+#include "game/UnkAnimPose_ovb0125.h"
 #include "game/UnkTU1141.h"
 #include "types.h"
 
 struct UnkStruct_71007142e8;
 struct UnkWeighted_7100714808;
-
-struct alignas(8) UnkAnimChannel_ovb0125 {
-    u8 data[0x70];
-    UnkAnimChannel_ovb0125() { fn_71007142e8(reinterpret_cast<UnkStruct_71007142e8*>(this)); }
-    UnkWeighted_7100714808* Weighted() { return reinterpret_cast<UnkWeighted_7100714808*>(this); }
-};
-
-// The three channels a node evaluates into.
-struct UnkAnimPose_ovb0125 {
-    UnkAnimChannel_ovb0125 channels[3];
-};
-
-struct UnkAnimEvalNode_ovb0125 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual void vf_0x68();
-    virtual void vf_0x70();
-    virtual void Evaluate(UnkAnimPose_ovb0125* pose, void* arg);  // 0x78
-    u8 pad_0x8[0x5c];
-    f32 weight;  // 0x64
-};
-
-struct UnkAnimChildren_ovb0125 {
-    UnkAnimEvalNode_ovb0125* first;
-    UnkAnimEvalNode_ovb0125* second;
-};
 
 struct UnkAnimBlendParams_ovb0125 {
     u8 pad_0x0[0x38];

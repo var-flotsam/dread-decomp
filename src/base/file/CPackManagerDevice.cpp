@@ -4,18 +4,20 @@
 // base/file/UnkFileDevice.h). Names and layouts are placeholders inferred from the code.
 
 #include <stdio.h>
-#include "base/UnkVtableList.h"
 
 #include <nn/os.h>
 
 #include "base/CDeviceQueue.h"
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkDestructors.h"
-#include "base/global/CRntVector.h"
+#include "base/UnkListedPath.h"
+#include "base/UnkVtableList.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkIdTextData.h"
 #include "game/UnkTU63.h"
 #include "game/UnkTU67.h"
 #include "types.h"
@@ -104,18 +106,6 @@ using base::file::UnkPackKey;
 using base::file::UnkPathRequestArgs;
 using base::file::UnkPathSlot;
 
-// The pooled data behind an id as its text accessor sees it: the text at +0x10 and a count of the
-// reads at +0x44.
-struct UnkIdTextData {
-    u8 pad_0x0[0x10];
-    CRntString str;
-    u8 pad_0x40[0x4];
-    // A union member: the original reloads the id's data pointer after the increment.
-    union {
-        s32 reads;
-    };
-};
-
 static inline const char* PathText(const CFilePathStrId& id) {
     ++reinterpret_cast<UnkIdTextData*>(id.data)->reads;
     const char* s = reinterpret_cast<UnkIdTextData*>(id.data)->str.data;
@@ -201,11 +191,6 @@ void fn_7100089af8(void* arg) {
     }
 }
 
-// A listed path (a node of UnkFilePathList).
-struct UnkListedPath {
-    UnkStrIdMemberOf<g_unk_7101d47200> id;
-    UnkListedPath* next;
-};
 // A list of path ids (its destructor is fn_7100087cf8; src/game/UnkResourceGroup.cpp has the same).
 struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
     UnkFilePathList() {

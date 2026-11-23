@@ -6,6 +6,7 @@
 // (src/game/CActor/CActor_VectorCopy_b41.cpp). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/SCameraRailNode.h"
+#include "game/UnkRailNode_b43a3.h"
 #include "types.h"
 
 #include <new>
@@ -13,15 +14,6 @@
 
 // The move constructor, typed as CCentralUnitComponent's 0x40-byte half (one declaration per symbol).
 
-struct UnkRailNode_b43a3 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();  // destroys
-    u32 field_0x8;
-    u32 field_0xc;
-    u32 field_0x10;
-    u32 pad_0x14;
-    UnkHalf_cu set;  // 0x18
-};
 static_assert(sizeof(UnkRailNode_b43a3) == 0x58, "UnkRailNode_b43a3 layout");
 
 struct UnkRailNodeRaw_b43a3 {

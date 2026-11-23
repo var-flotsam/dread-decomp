@@ -4,6 +4,7 @@
 // differ; otherwise y is raised by 6. Returns false when there is no object.
 #include "base/UnkMatrix44.h"
 #include "game/UnkActor.h"
+#include "game/UnkHelper.h"
 #include "game/UnkTU1501.h"
 #include "types.h"
 
@@ -13,11 +14,7 @@ struct UnkVec3 {
     u32 z;
 };
 
-struct UnkHelper {
-    void** vtable;
-};
-
-struct UnkTarget {
+struct UnkTarget_46514c {
     u8 pad_0x0[0x38];
     u8 field_0x38[0xc];
     u32 field_0x44;
@@ -62,7 +59,7 @@ static inline u32 AsU32(f32 value) {
 }
 
 bool fn_710046514c(UnkSelf* self, UnkVec3* out) {
-    UnkTarget* target = reinterpret_cast<UnkTarget*>(fn_7100d7c990(reinterpret_cast<UnkActor*>(self->field_0x8)));
+    UnkTarget_46514c* target = reinterpret_cast<UnkTarget_46514c*>(fn_7100d7c990(reinterpret_cast<UnkActor*>(self->field_0x8)));
     if (!target)
         return false;
     u32 x = target->field_0x44;

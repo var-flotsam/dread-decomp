@@ -9,6 +9,7 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkBucketSet.h"
+#include "game/UnkTU88.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -20,9 +21,7 @@ struct UnkFirstSetNode_l0ebad4;
 
 using UnkNamedSet_b257j = base::global::UnkBucketSet<UnkSetNode_b257j>;
 void fn_71000ea16c(UnkNamedSet_b257j* self);
-void fn_71000ea064(void* list);
 
-extern char g_unk_7101a1b888[];  // the registry's vtable
 extern char g_unk_7101a1b918[];
 extern char g_unk_7101a1b938[];
 

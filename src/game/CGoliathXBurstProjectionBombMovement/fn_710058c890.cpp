@@ -2,19 +2,10 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CGoliathXBurstProjectionBombMovement.h"
+#include "game/UnkStatics_710058c890.h"
 
 using namespace unk_static_init;
 
-struct UnkStatics_710058c890 {
-    HeaderIds ids;
-    u8 pad_0x18[0x8];
-    UnkStrIdBase field_0x20;
-    UnkFilePathStrIdBase field_0x28;
-    UnkFilePathStrIdBase field_0x30;
-    u8 pad_0x38[0x28];
-    u8 field_0x60[0x10];
-    u8 field_0x70[8];
-};
 extern char g_unk_71726e5ca8[];
 
 void fn_710058c890() {

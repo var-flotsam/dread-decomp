@@ -36,3 +36,4 @@ void fn_7100108c2c(UnkSoundMgr* self, const u32* mask, u32 v, f32 f);
 void fn_7100108464(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask);
 extern UnkSoundSettings_ovb0074 g_unk_7108b6c5f0;
 void fn_71001082a8(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask);
+void fn_7100108c94(UnkSoundMgr* self, const base::global::CFilePathStrId* path);

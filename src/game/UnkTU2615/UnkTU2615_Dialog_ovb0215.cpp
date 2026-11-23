@@ -10,6 +10,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
+#include "game/UnkMissionLogTarget_ovb0079.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
@@ -62,11 +63,6 @@ void fn_7100fb9564(void* object) {
     self->done = true;
 }
 
-struct UnkMissionLogTarget_ovb0079 {
-    u8 unk_0x0[0x260];
-    CStrId field_0x260;
-    u8 field_0x268[0x8];
-};
 void fn_7100b02384(UnkMissionLogTarget_ovb0079* self);
 
 // The target's id slot taking a temporary's id (the move assignment, with the temporary's release folded away).

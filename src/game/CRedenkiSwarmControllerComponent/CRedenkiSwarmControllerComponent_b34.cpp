@@ -1,8 +1,5 @@
+#include "game/UnkVec3.h"
 #include "types.h"
-
-struct UnkVec3 {
-    f32 x, y, z;
-};
 
 // A weight that falls off with the squared distance between `a` and `b`: 1000 / (d^2 + 1).
 f32 fn_710065b01c(const UnkVec3& a, const UnkVec3& b) {

@@ -4,6 +4,7 @@
 #include <nn/fs.h>
 #include <nn/os.h>
 
+#include "base/UnkAtkHeap.h"
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -14,17 +15,6 @@
 #include "types.h"
 
 using base::global::CRntString;
-
-struct UnkAtkHeap {
-    u64 field_0x0;
-    base::UnkSubAllocator allocator;  // 0x8
-    u8 heap[8];                       // 0x40, nn::atk's
-    void* last;                       // 0x48
-    void (*hook)(void* arg, UnkAtkHeap* heap);
-    void* hook_arg;
-    u64 field_0x60;
-    u64 field_0x68;
-};
 
 extern u8 g_unk_7108b6b3c0[] __attribute__((visibility("hidden")));
 // nn::atk (library): adds a loaded block of `size` bytes.

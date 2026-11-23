@@ -11,6 +11,7 @@
 #include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkHyperBeamSoundHandle.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -22,10 +23,6 @@ struct UnkEntityState;
 
 // The sound handle fn_7100ed6910 returns (as src/game/CHyperBeamGun.cpp declares it).
 struct UnkHyperBeamSoundRef;
-struct UnkHyperBeamSoundHandle {
-    UnkHyperBeamSoundRef* ref;
-    s64 serial;
-};
 
 struct UnkGrappleObject {
     u8 pad_0x0[0x30];

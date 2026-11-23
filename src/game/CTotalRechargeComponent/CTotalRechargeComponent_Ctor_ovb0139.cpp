@@ -2,19 +2,13 @@
 // empty string ids (+0x540, +0x548, +0x550; the pool is made first when there is none). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CUsableComponent.h"
+#include "game/UnkRecharge_ovb0139.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern void* g_unk_7101a932d0[];
 
-struct UnkRecharge_ovb0139 {
-    void** vtable;
-    u8 pad_0x8[0x538];
-    CStrId id_0x540;
-    CStrId id_0x548;
-    CStrId id_0x550;
-};
 static_assert(__builtin_offsetof(UnkRecharge_ovb0139, id_0x550) == 0x550, "layout");
 
 static inline void UnkSetEmptyId(CStrId* id) {

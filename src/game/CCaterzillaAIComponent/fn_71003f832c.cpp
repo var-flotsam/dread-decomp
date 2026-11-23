@@ -38,7 +38,7 @@ struct UnkParams6 {
     u8 field_0x39;
 };
 
-struct UnkState {
+struct UnkState_3f832c {
     f32 field_0x0;
     u8 field_0x4;
 };
@@ -60,7 +60,7 @@ static inline u32 AsU32(const f32& value) {
 void fn_71003f832c(UnkComponent* self, u32 old_state, u32 new_state) {
     if (old_state == new_state)
         return;
-    UnkState* state = reinterpret_cast<UnkState*>(reinterpret_cast<char*>(self) + 0x146e4);
+    UnkState_3f832c* state = reinterpret_cast<UnkState_3f832c*>(reinterpret_cast<char*>(self) + 0x146e4);
     if (old_state == 1 && new_state == 2) {
         if (state->field_0x0 < 0.0f)
             state->field_0x4 ^= 1;

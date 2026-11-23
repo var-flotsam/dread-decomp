@@ -3,6 +3,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkReloadCallback.h"
 #include "game/UnkTU2677.h"
 #include "types.h"
 
@@ -12,12 +13,6 @@ using base::global::CRntVector;
 struct lua_State;
 
 void fn_7101097034(void* context);
-
-// A load's callback: a context and a function.
-struct UnkReloadCallback {
-    void* context;
-    void* fn;
-};
 
 void fn_7100dfeacc(UnkGameManager* manager, const UnkReloadCallback* callback, CRntVector<CRntString>* files,
                    bool flag);

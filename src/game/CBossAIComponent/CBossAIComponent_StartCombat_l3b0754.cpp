@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkModeFlags.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU57.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -14,11 +15,6 @@
 
 using base::global::CRntString;
 using base::global::UnkStringData;
-
-struct UnkModeFlags {
-    u8 unk_0x0[0xb8];
-    bool field_0xb8;
-};
 
 struct UnkBossDoorAI_ovb0102;
 struct UnkCameraOwner;

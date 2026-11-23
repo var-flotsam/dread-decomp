@@ -5,16 +5,12 @@
 #include "base/global/CRntVector.h"
 #include "game/CSpitclawkAIComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkShockWavePoolMember.h"
 #include "game/UnkTU604.h"
 #include "types.h"
 #include "base/UnkVtableList.h"
 
 struct UnkShockWavePoolMember;
-
-struct UnkShockWavePoolMember {
-    u8 unk_0x0[0x228];
-    ~UnkShockWavePoolMember() { fn_71006c9404(this); }
-};
 
 struct UnkShockWavePoolNode_ovb0069 {
     u64 field_0x0;

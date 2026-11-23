@@ -1,20 +1,8 @@
 // Sets the translation column of a node's 3x4 matrix: if any component differs from the new
 // value by more than 0.001, stores all three, marks the node dirty and hands the new value to the
 // embedded sphere (fn_7100216978).
+#include "game/UnkMatrixNode.h"
 #include "game/UnkSphere.h"
-
-struct UnkMatrixNode {
-    u8 pad_0x0[0x24];
-    f32 x_0x24;
-    u8 pad_0x28[0xc];
-    f32 y_0x34;
-    u8 pad_0x38[0xc];
-    f32 z_0x44;
-    u8 pad_0x48[0x38];
-    UnkSphere sphere_0x80;
-    u8 pad_0xd0[0x2a];
-    u8 dirty_0xfa;
-};
 
 void fn_71001fb294(UnkMatrixNode* self, const UnkVec3f* v) {
     if (UNK_CHANGED(self->x_0x24, v->x) || UNK_CHANGED(self->y_0x34, v->y) ||

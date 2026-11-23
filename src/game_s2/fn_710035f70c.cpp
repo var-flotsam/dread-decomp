@@ -3,15 +3,10 @@
 // by one.
 #include "base/UnkEmptyDtorElem.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkElem.h"
 #include "types.h"
 
 struct UnkElem;
-
-struct UnkElem {
-    u32 field_0x0;
-
-    ~UnkElem() { fn_71002874dc(this); }
-};
 
 void fn_710035f70c(base::global::CRntVector<UnkElem>* self, UnkElem* value) {
     self->EmplaceBack(static_cast<UnkElem&&>(*value));

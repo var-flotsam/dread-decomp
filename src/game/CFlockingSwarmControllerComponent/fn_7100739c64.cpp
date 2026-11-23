@@ -7,18 +7,11 @@
 #include "game/CFlockingSwarmControllerComponent.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU1161.h"
+#include "game/UnkVec3Result.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
-
-// Returned through x8, so the original's result type is not trivially copyable.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 struct UnkSwarmMember_l739c64 {
     u8 pad_0x0[0x24];

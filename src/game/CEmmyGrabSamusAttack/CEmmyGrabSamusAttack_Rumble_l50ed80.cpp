@@ -2,15 +2,12 @@
 // Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/UnkHandle.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 
 struct UnkHandleTarget;
-struct UnkHandle {
-    UnkHandleTarget* target;
-    u64 serial;
-};
 struct UnkEntityWithSound;
 struct UnkRumbleParams;
 UnkHandle fn_7100d7c650(UnkEntityWithSound* self, const UnkRumbleParams* params, bool a, bool b, bool c);

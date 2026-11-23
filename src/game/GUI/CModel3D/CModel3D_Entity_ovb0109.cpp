@@ -21,6 +21,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkSpawnDefRef_b52.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2729.h"
@@ -39,30 +40,6 @@ struct UnkTreeNode;
 struct UnkModelUpdater_ovb0032;
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
-
-// A counted reference to a resource whose destructor reads the pointer once (as in
-// src/game/CSpawnPointComponent/CSpawnPointComponent_b52.cpp).
-struct UnkSpawnDefRef_b52 {
-    UnkCountedResource* ptr;
-
-    UnkSpawnDefRef_b52& operator=(const UnkSpawnDefRef_b52& other) {
-        UnkCountedResource* p = other.ptr;
-        if (ptr != p) {
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-        return *this;
-    }
-    ~UnkSpawnDefRef_b52() {
-        UnkCountedResource* p = ptr;
-        if (p && --p->ref_count == 0)
-            fn_710001737c(p);
-    }
-};
 
 // The character class with this name.
 UnkSpawnDefRef_b52 fn_7100e051b4(UnkActorDefFactory* factory, const CStrId* name);

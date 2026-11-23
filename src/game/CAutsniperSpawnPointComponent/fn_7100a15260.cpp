@@ -4,6 +4,7 @@
 // "sources" ids), then registers its reflected types: a class or enum type built from its name
 // (destroyed at exit) and noted in the TU's registry flags, and for enums a pair of converter
 // records (to and from the integer type) registered with fn_71000a16c4.
+#include "base/UnkLoadingScreenData.h"
 #include "base/reflection.h"
 #include "base/reflection/CEnumType.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -198,11 +199,3 @@ void fn_71009bbed0() {
     fn_710009ec00(&g_unk_717273db30, &g_unk_717273db58);
 }
 
-// The TU's data: the header, then a pair of floats (-1, -1) and a flag.
-struct UnkLoadingScreenData {
-    UnkTUHeader header;
-    u8 unk_0x18[0x80];
-    f32 field_0x98;
-    f32 field_0x9c;
-    bool field_0xa0;
-};

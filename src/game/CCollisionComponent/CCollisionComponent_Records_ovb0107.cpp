@@ -18,6 +18,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
+#include "game/UnkCollisionFileReader.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
@@ -30,6 +31,7 @@
 #include "game/UnkTU365.h"
 #include "game/UnkTU54.h"
 #include "game/UnkTU58.h"
+#include "game/UnkVisitResult_b0040.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CBroadphaseObject.h"
 #include "game/logic/collision/CCollider.h"
@@ -464,13 +466,6 @@ struct UnkShape;
 
 struct UnkShapeTester_A5_b68;
 
-struct UnkVisitResult_b0040 {
-    s32 value;
-    UnkVisitResult_b0040(s32 v) : value(v) {}
-    UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
-    ~UnkVisitResult_b0040() {}
-};
-
 static inline void InitSkip() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726a4780), __ATOMIC_ACQUIRE) & 1), 0)) {
         if (__cxa_guard_acquire(&g_unk_71726a4780)) {
@@ -783,11 +778,6 @@ done:
 }
 
 // Loading the collision file the CCharClassCollisionComponent names.
-
-// The collision file's reader (as src/game/CSubAreaManager.cpp declares it).
-struct UnkCollisionFileReader {
-    u8 unk_0x0[0x18];
-};
 
 // The component's CCharClassCollisionComponent: the collision file's path and two flags.
 struct UnkCharClassCollision_ovb0107 : UnkReflObject {

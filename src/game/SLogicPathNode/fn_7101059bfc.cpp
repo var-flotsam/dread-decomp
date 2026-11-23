@@ -3,28 +3,10 @@
 // Constructor of an array of 0x50-byte polymorphic elements with the given allocator flags,
 // reserving `n` elements up front.
 #include "base/global/CRntVector.h"
+#include "game/UnkMovedArray.h"
 #include "types.h"
 
 using base::UnkAllocator;
-
-// An array moved by taking over its storage (the source keeps its step and allocator).
-struct UnkMovedArray {
-    void* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    UnkAllocator* allocator;
-
-    UnkMovedArray(UnkMovedArray&& other)
-        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
-          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
-        other.data = nullptr;
-        other.count = 0;
-        other.capacity = 0;
-    }
-};
 
 struct UnkElem50_7101cac938 {
     virtual void vf_0x0();

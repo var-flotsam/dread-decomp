@@ -5,21 +5,13 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CAttackComponent.h"
 #include "game/CChozoWarriorAIComponent.h"
+#include "game/UnkChozoWarriorHitObject_b67a2.h"
+#include "game/UnkChozoWarriorHitTarget_b67a2.h"
 #include "types.h"
 
 extern "C" int rand();
 
 struct UnkChozoWarriorKind_b67a2;
-
-struct UnkChozoWarriorHitObject_b67a2 {
-    u8 pad_0x0[0x20];
-    UnkChozoWarriorKind_b67a2* kind;
-};
-
-struct UnkChozoWarriorHitTarget_b67a2 {
-    u8 pad_0x0[0x10];
-    UnkChozoWarriorHitObject_b67a2* object;
-};
 
 struct UnkChozoWarriorOwner_l499f78 {
     u8 pad_0x0[0x220];

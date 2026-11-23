@@ -1,9 +1,6 @@
 // Calls virtual slot 0x48 on each child object of the array at +0xa0.
+#include "game_s2/UnkChild.h"
 #include "types.h"
-
-struct UnkChild {
-    void** vtable;
-};
 
 struct UnkParent {
     u8 pad_0x0[0xa0];

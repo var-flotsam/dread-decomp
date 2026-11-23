@@ -3,6 +3,7 @@
 // flag, or true when the key isn't there. Also whether a key is in the hash set of
 // fn_710019e100's owner (at +8, buckets at +0x18): fn_710019e4fc; and one at 0x108 hashing both
 // key halves: fn_71001ef3f8.
+#include "engine/UnkKeyNode.h"
 #include "types.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
@@ -46,12 +47,6 @@ bool fn_710014bdec(UnkFlagMapOwner* self, u64 key) {
     }
     return true;
 }
-
-struct UnkKeyNode {
-    u64 key;
-    u8 field_0x8[0x18];
-    UnkKeyNode* next;
-};
 
 struct UnkKeySet {
     u8 field_0x0[0x10];

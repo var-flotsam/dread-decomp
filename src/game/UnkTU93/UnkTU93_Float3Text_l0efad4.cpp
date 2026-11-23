@@ -2,13 +2,9 @@
 // buffer at +0xc and reports success (as fn_71000efa94 does for four).
 // Names and layouts are placeholders.
 #include <stdio.h>
+#include "game/UnkTextWriter_71000ef9cc.h"
 
 #include "types.h"
-
-struct UnkTextWriter_71000ef9cc {
-    u8 unk_0x0[0xc];
-    char text[0x200];
-};
 
 struct UnkFloat3_l0efad4 {
     f32 x, y, z;

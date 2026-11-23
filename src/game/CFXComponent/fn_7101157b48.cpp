@@ -8,28 +8,13 @@
 #include "game/CFXComponent.h"
 #include "game/CGameManager/CTunableGameManager.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkIdNode_0x10.h"
+#include "game/UnkIdNode_0x18.h"
+#include "game/UnkIdNode_0x30.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-struct UnkIdNode_0x18 {
-    UnkStrIdTwoStep id;
-    u64 field_0x8;
-    UnkIdNode_0x18* next;
-};
-
-struct UnkIdNode_0x10 {
-    UnkStrIdTwoStep id;
-    UnkIdNode_0x10* next;
-};
-
-struct UnkIdNode_0x30 {
-    u8 unk_0x0[0x18];
-    UnkStrIdTwoStep id;
-    u64 field_0x20;
-    UnkIdNode_0x30* next;
-};
 
 // Pad: the bytes between the tail and the allocator.
 template <class Node, u32 Pad>

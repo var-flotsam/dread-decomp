@@ -10,16 +10,13 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkStrIdHandle.h"
 #include "game/UnkTU83.h"
 #include "types.h"
 
 using base::global::CRntVector;
 using base::global::CStrId;
 
-struct UnkStrIdHandle {
-    CStrId id;
-    void* field_0x8;
-};
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 
 // A handle built in place from an id by fn_7100ae986c, released when it goes out of scope.

@@ -4,12 +4,9 @@
 // fn_7100c77bcc (src/game/UnkUnit2177/UnkObj188Vector_b43.cpp). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CShotManager/CTunableShotManager.h"
+#include "game/UnkObj290_b43a3.h"
 #include "types.h"
 
-struct UnkObj290_b43a3 {
-    virtual void vf_0x0();  // destroys
-    u8 pad_0x8[0x288];
-};
 static_assert(sizeof(UnkObj290_b43a3) == 0x290, "UnkObj290_b43a3 layout");
 
 void fn_7100ecbddc(UnkObj290_b43a3* self);  // constructor

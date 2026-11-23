@@ -10,6 +10,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkNavCallback_b0194.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkObject_0x100.h"
@@ -190,11 +191,6 @@ f32 fn_71005414c8(UnkEmmyAI_b0194* self) {
 
 using base::math::CVector2D;
 using base::math::CVector3D;
-
-struct UnkNavCallback_b0194 {
-    void* ctx;
-    void* fn;
-};
 
 // The navigation query as the AI builds it: only the members set here are named.
 struct UnkNavQuery {

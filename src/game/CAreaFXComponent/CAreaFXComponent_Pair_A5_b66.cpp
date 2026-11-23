@@ -1,13 +1,8 @@
 // CAreaFXComponent's unit: builds a pair of results from one 16-byte record (copied field by field into
 // each by-value argument) and two different third arguments (fn_71007fdc30). Names are placeholders.
 #include "game/CAreaFXComponent.h"
+#include "game/UnkAreaFXResult_A5_b66.h"
 #include "types.h"
-
-struct UnkAreaFXResult_A5_b66 {
-    u64 field_0x0;
-
-    UnkAreaFXResult_A5_b66(const UnkAreaFXResult_A5_b66& other);
-};
 
 struct UnkAreaFXResultPair_A5_b66 {
     UnkAreaFXResult_A5_b66 first;

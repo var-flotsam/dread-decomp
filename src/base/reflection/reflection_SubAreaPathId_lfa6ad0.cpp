@@ -1,5 +1,6 @@
 // base::reflection's unit (tools/tu_map.py, unit 2610): builds the lower-case file-path id
 // "subarea_<a>_<b>[_<c>]" from three named ids (fn_7100fa6ad0). Names and layouts are placeholders.
+#include "base/UnkPathId_lfa6ad0.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -53,13 +54,6 @@ struct UnkInlineString_lfa6ad0 {
         CRntString_Clear(Str());
         CRntString_Destroy(Str());
     }
-};
-
-// A file-path id built from a string; returned in memory.
-struct UnkPathId_lfa6ad0 {
-    base::global::UnkFilePathStrIdBase id;
-    explicit UnkPathId_lfa6ad0(const CRntString& str) { fn_710001a270(&id, str, true); }
-    UnkPathId_lfa6ad0(const UnkPathId_lfa6ad0& other);
 };
 
 // Copies `src` into `dst` with A-Z turned into a-z.

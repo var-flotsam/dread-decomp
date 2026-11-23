@@ -5,15 +5,10 @@
 
 #include "base/UnkMatrix44.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkMatrix44_7100078c9c.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkMatrix44_7100078c9c {
-    f32 m[16];
-};
-
-
 
 UnkMatrix44_7100078c9c fn_7100078c9c(f32 x, f32 y, f32 z) {
     UnkMatrix44_7100078c9c r = {};

@@ -19,6 +19,7 @@
 #include "game/UnkTU2712.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU432.h"
+#include "game/UnkV4_b47.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -28,13 +29,6 @@ struct UnkListener_b40;
 struct UnkSpecialEnergyComponent;
 struct UnkComponent;
 struct UnkObject;
-
-struct UnkV4_b47 {
-    f32 x, y, z, w;
-    UnkV4_b47() {}
-    UnkV4_b47(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
-    UnkV4_b47(const UnkV4_b47& o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
-};
 
 struct UnkCameraCtrl_ovb0049;
 f32 fn_7100301700(void* p);

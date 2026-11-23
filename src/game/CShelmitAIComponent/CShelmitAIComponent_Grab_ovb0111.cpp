@@ -19,6 +19,7 @@
 #include "game/CShelmitAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkKraidCreatureVec.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2523.h"
@@ -155,13 +156,6 @@ void fn_71006ba7ec(UnkShelmitGrabAI_ovb0111* self, f32 dt) {
     if (state->cooldown > 0.001f)
         state->cooldown -= dt;
 }
-
-struct UnkKraidCreatureVec {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
-};
 
 struct UnkShelmitBlendTarget_ovb0111 {
     u8 pad_0x0[0x138];

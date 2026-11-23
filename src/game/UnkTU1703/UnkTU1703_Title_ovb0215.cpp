@@ -14,6 +14,7 @@
 #include "game/UnkTU101.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2578.h"
+#include "game/UnkTitleScreenB.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
@@ -76,12 +77,6 @@ void fn_7100b54418(UnkTitlePhase_ovb0215* self) {
 struct UnkMusicState_ovb0215 {
     u8 pad_0x0[0x11c];
     f32 volume;  // 0x11c
-};
-
-struct UnkTitleScreenB {
-    void* vtable;
-    u8 pad_0x8[0x28];
-    UnkSoundHandle sound;  // 0x30
 };
 
 void fn_7100b541d0(UnkTitleScreenB* self) {

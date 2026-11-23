@@ -1,6 +1,7 @@
 // Picks the pair handler for two shapes from the sum of their type bits, passing the shapes
 // (and their transforms) in the order the handler expects. Unhandled pairs give an empty
 // result. Names and layouts are placeholders.
+#include "game/UnkNoContext.h"
 #include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
@@ -19,8 +20,6 @@ inline const UnkColliderResult& NoContact() {
 }
 
 struct UnkShapeTester_A5_b68;
-// An empty argument (its register is left as it is).
-struct UnkNoContext : UnkLeftoverReg {};
 
 UnkColliderResult fn_7100d54f28(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
 UnkColliderResult fn_7100d55920(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool flag);

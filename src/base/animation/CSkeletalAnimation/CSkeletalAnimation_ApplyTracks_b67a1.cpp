@@ -2,15 +2,11 @@
 // track list (*(+8))->+0x60, looks the track's bone id up among the given matrices (fn_7100015508)
 // and, when there is one, applies the track to it with the weight at +0x18 (fn_7100013be4 ->
 // fn_7100012b60). Names and layouts are placeholders.
+#include "base/UnkAnimTrack_b67a1.h"
 #include "base/UnkMatrix44.h"
 #include "game/UnkTU20.h"
 #include "game/UnkTU23.h"
 #include "types.h"
-
-struct UnkAnimTrack_b67a1 {
-    u64 id;
-    u8 pad_0x8[0x28];
-};
 
 struct UnkAnimTrackList_b67a1 {
     u8 pad_0x0[0x10];

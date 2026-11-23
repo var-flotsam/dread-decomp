@@ -8,35 +8,14 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/CCameraFX_Shake.h"
+#include "game/UnkRandShakeCurve_ovb0131.h"
+#include "game/UnkRandShake_ovb0131.h"
 #include "game/UnkTU53.h"
 #include "types.h"
 
 extern "C" int rand();
 
-struct UnkRandShakeCurve_ovb0131 {
-    u8 pad_0x0[0x10];
-    const char* text;
-    u8 pad_0x18[0x44 - 0x18];
-    union {
-        u32 use_count;
-    };
-};
-
 using base::math::CVector3D;
-
-struct UnkRandShake_ovb0131 {
-    u8 pad_0x0[0x34];
-    f32 duration;  // 0x34
-    u8 pad_0x38[0x18];
-    f32 time;  // 0x50
-    bool stopped;  // 0x54
-    u8 pad_0x55[0x3];
-    UnkRandShakeCurve_ovb0131* curve;  // 0x58
-    f32 amplitude;  // 0x60
-    f32 amplitude_w;  // 0x64
-    CVector3D offset;  // 0x68
-    f32 offset_w;  // 0x74
-};
 
 static inline f32 RandUnit() {
     return (f32)((rand() & 0x7fff) * (1.0 / 32767.0));

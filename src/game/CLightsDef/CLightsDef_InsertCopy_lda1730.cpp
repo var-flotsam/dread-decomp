@@ -6,26 +6,13 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CLightsDef.h"
+#include "game/UnkLightsArray_b42a3.h"
+#include "game/UnkLightsElem_b42a3.h"
 #include "game/UnkTU2528.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-// As src/game/CLightsDef/CLightsDef_b42.cpp declares them.
-struct UnkLightsElem_b42a3 {
-    u8 unk_0x0[0x60];
-};
-
-struct UnkLightsArray_b42a3 {
-    UnkLightsElem_b42a3* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
 
 // The element's move constructor (src/game_aca57c/fn_7100d9b18c.cpp).
 struct UnkIdRecord60;

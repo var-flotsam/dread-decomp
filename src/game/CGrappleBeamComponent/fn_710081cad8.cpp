@@ -4,18 +4,13 @@
 // every record and empties the array.
 #include "game/CDroppableComponent.h"
 #include "game/CGrappleBeamComponent.h"
+#include "game/UnkRecord.h"
 #include "game_s2/UnkWeakHandle.h"
 
 extern void* g_unk_7101a86478[];
 extern void* g_unk_7101a85cd8[];
 extern void* g_unk_7101a7eae0[];
 extern void* g_unk_7101a6ba70[];
-
-struct __attribute__((packed)) UnkRecord {
-    UnkRefObject* field_0x0;
-    UnkRefObject* field_0x8;
-    u8 pad_0x10[0x38];
-};
 
 struct __attribute__((packed)) UnkSelf {
     void** vtable;

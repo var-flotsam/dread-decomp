@@ -4,22 +4,10 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CRotationalPlatformComponent.h"
+#include "game/UnkRotationalPlatformTU.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 #include "base/reflection/TypeObject.h"
-
-// The unit's data (its statics, merged into one block).
-struct UnkRotationalPlatformTU {
-    UnkTUHeader header;
-    u64 field_0x18;
-    CStrId player_detector_right;  // 0x20
-    CStrId player_detector_left;   // 0x28
-    CStrId collision_opened;       // 0x30
-    CStrId collision_closed;       // 0x38
-    CStrId initial;                // 0x40
-    CStrId finished;               // 0x48
-    UnkReflType type;              // 0x50
-};
 
 enum class ERotationDirection : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ERotationDirection>::object asm("g_unk_7172740788");

@@ -4,23 +4,12 @@
 // (fn_7100226068: the ring of words at +0x2c0, under the mutex at +0x2a0). Names and layouts are
 // placeholders.
 #include "base/UnkDefaultAllocator.h"
+#include "game/MediaData.h"
 #include "game/media/CMediaStream.h"
 #include "game/media/MovieBuffer.h"
 #include "types.h"
 
 namespace movie {
-class MediaData {
-public:
-    MediaData();
-    ~MediaData();
-    void Clear();
-    bool FindString(const char* key, const char** out) const;
-    bool FindInt32(const char* key, s32* out) const;
-    bool FindInt64(const char* key, s64* out) const;
-
-private:
-    u8 storage[0x8];
-};
 class DecoderEvents;
 class Decoder {
 public:

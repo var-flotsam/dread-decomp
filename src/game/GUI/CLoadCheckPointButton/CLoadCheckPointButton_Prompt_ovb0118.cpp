@@ -15,6 +15,7 @@
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiEvent.h"
+#include "game/UnkGuiRef_ovb0118.h"
 #include "game/UnkTU2559.h"
 #include "types.h"
 
@@ -32,11 +33,6 @@ struct UnkButtonCallback_ovb0118 {
 
 struct UnkGuiComposition_ovb0090;
 struct UnkMapCallback_ovb0090;
-
-struct UnkGuiRef_ovb0118 {
-    u8 pad_0x0[0x10];
-    UnkGuiComposition_ovb0090* composition;  // 0x10
-};
 
 void fn_7100b33bcc(UnkLoadCheckPointButton_ovb0118* self) {
     UnkGuiRef_ovb0118* ref = static_cast<UnkGuiRef_ovb0118*>(g_unk_7101d47310->field_0x2258);

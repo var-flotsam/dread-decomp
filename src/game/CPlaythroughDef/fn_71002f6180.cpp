@@ -4,16 +4,11 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "game/CPlaythrough.h"
+#include "game/UnkFnObj.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 using base::reflection::CType;
-
-struct UnkFnObj {
-    u64 field_0x0[3];
-    void (*field_0x18)();
-    u64 field_0x20[2];
-};
 
 struct UnkStatics_71002f6180 {
     HeaderIds ids;

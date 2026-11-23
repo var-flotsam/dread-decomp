@@ -14,6 +14,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkModeFlags.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1376.h"
@@ -29,21 +30,21 @@ using base::math::CVector4D;
 using base::global::CRntString;
 
 // A counted reference to a weak handle; assigning another one refers to the handle of its target.
-struct UnkRef {
+struct UnkRef_ovb0102 {
     UnkWeakHandle* ptr;
 
-    __attribute__((always_inline)) UnkRef& operator=(const UnkRef& other) {
+    __attribute__((always_inline)) UnkRef_ovb0102& operator=(const UnkRef_ovb0102& other) {
         if (this != &other)
             CopyWeakRef(&ptr, other.ptr);
         return *this;
     }
-    ~UnkRef() {
+    ~UnkRef_ovb0102() {
         if (ptr && --ptr->ref_count == 0)
             ptr->vf_0x10();
     }
 
     // The counted reference fn_7100353be8 returns, seen as this one (the same pointer).
-    static const UnkRef& Of(const base::UnkRefPtrMember& ref) { return reinterpret_cast<const UnkRef&>(ref); }
+    static const UnkRef_ovb0102& Of(const base::UnkRefPtrMember& ref) { return reinterpret_cast<const UnkRef_ovb0102&>(ref); }
 };
 
 
@@ -52,7 +53,7 @@ struct UnkBossLazyLink_ovb0102 {
     u8 source[0x28];  // +0x8
     u32 state;        // +0x30
     u8 pad_0x34[4];
-    UnkRef handle;    // +0x38
+    UnkRef_ovb0102 handle;    // +0x38
 };
 
 struct UnkZiplineLink_b49;
@@ -67,7 +68,7 @@ UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* link) {
     case 1:
         {
             base::UnkRefPtrMember fetched = fn_7100353be8(self->source);
-            self->handle = UnkRef::Of(fetched);
+            self->handle = UnkRef_ovb0102::Of(fetched);
         }
         self->state = 2;
         return reinterpret_cast<UnkZiplineLinkTarget_b49**>(&self->handle);
@@ -394,11 +395,6 @@ void fn_71003ae858(UnkBossBlinkAI_ovb0102* self, f32 dt) {
     self->elapsed = 0.0f;
     ApplyAll(self, self->link->field_0x228, &g_unk_71016491b0);
 }
-
-struct UnkModeFlags {
-    u8 unk_0x0[0xb8];
-    bool field_0xb8;
-};
 
 // The pooled data behind an id as its text accessor sees it: the text at +0x10 and a count of the
 // reads at +0x44 (a union member: the original reloads the id after the increment).

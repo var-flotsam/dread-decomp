@@ -12,6 +12,9 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkComponentDef_b0129.h"
+#include "game/UnkHashData_b0129.h"
+#include "game/UnkKeyId_b0129.h"
 #include "game/UnkTU56.h"
 #include "types.h"
 #include "base/UnkFileReader.h"
@@ -68,15 +71,6 @@ bool fn_710025435c(UnkReflObject* self, base::global::CRntFile* file) {
     return ok;
 }
 
-struct UnkHashData_b0129 {
-    u8 pad_0x0[0x30];
-    u64 hash;
-};
-
-struct UnkKeyId_b0129 {
-    UnkHashData_b0129* data;
-};
-
 // The definition class registered for a class (by its type id), not decompiled here.
 struct UnkRegClass_b0129;
 UnkRegClass_b0129* fn_7100253834(const UnkKeyId_b0129* id);
@@ -94,12 +88,6 @@ struct UnkDefFactory_b0129 {
     u64 size;
     u8 pad_0x20[0x8];
     void (*construct)(void* object);
-};
-
-struct UnkComponentDef_b0129 {
-    void* vtable;
-    base::UnkStrIdMember name;
-    base::UnkStrIdMember type;
 };
 
 // Creates the definition registered for a component class (fn_7100253834), named `name`.

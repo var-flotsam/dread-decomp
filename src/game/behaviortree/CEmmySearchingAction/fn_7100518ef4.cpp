@@ -1,6 +1,7 @@
 // Copy constructor of a table of up to 250 records (0x120 bytes each, from +0xc) followed by a
 // small block at +0x1194c: copies the records one by one, then the block, whose last member is a
 // counted reference (released first when it was set, then replaced by the copy of the other's).
+#include "game/UnkCounted.h"
 #include "game/UnkNavMeshPath.h"
 #include "game/UnkObject_0x100.h"
 #include "game/navmesh/SNavMeshPath.h"
@@ -21,13 +22,7 @@ struct __attribute__((packed)) UnkRecord {
 
 typedef u32 a_u32;
 
-struct UnkCounted {
-    void** vtable;
-    u32 count;
-    void vf_0x10() { reinterpret_cast<void (*)(UnkCounted*)>(vtable[2])(this); }
-};
-
-struct __attribute__((packed)) UnkBlock {
+struct __attribute__((packed)) UnkBlock_518ef4 {
     u8 field_0x0;
     u8 pad_0x1[3];
     u32 field_0x4;
@@ -43,7 +38,7 @@ struct __attribute__((packed)) UnkTable {
     void** vtable;
     u32 count;
     UnkRecord records[250];
-    UnkBlock block;
+    UnkBlock_518ef4 block;
 };
 
 void fn_7100518ef4(UnkTable* self, const UnkTable* other) {

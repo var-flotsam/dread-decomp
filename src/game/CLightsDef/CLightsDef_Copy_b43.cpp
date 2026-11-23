@@ -6,23 +6,10 @@
 // (src/game/CCutSceneDef/CCutSceneDef_CopyA0_b43.cpp). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CLightsDef.h"
+#include "game/UnkLightsArray_b42a3.h"
+#include "game/UnkLightsElem_b42a3.h"
 #include "game/UnkTU2528.h"
 #include "types.h"
-
-// As src/game/CLightsDef/CLightsDef_b42.cpp declares them.
-struct UnkLightsElem_b42a3 {
-    u8 unk_0x0[0x60];
-};
-
-struct UnkLightsArray_b42a3 {
-    UnkLightsElem_b42a3* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
 
 // As src/game/CLightManager/fn_7100e0ccf8.cpp declares it.
 struct UnkClearedArray;

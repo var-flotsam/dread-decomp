@@ -10,6 +10,7 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CFootstepPlatformComponent.h"
 #include "game/CSamusMagnetGloveMovementState/CParams.h"
+#include "game/UnkFootstepStatic_b45a2.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
@@ -21,11 +22,6 @@ struct UnkPlayer;
 struct UnkAbility;
 struct UnkAbilitySet;
 struct UnkFootstepMode;
-
-struct UnkFootstepStatic_b45a2 {
-    u8 pad_0x0[0x30];
-    u64 id;
-};
 
 struct UnkStepMode_ovb0138 {
     u8 pad_0x0[0x10];

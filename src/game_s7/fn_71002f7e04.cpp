@@ -3,19 +3,9 @@
 // the object): find the node and its predecessor, then hand the iterator to the map's erase.
 // Each map type has its own bucket getter and erase.
 #include "base/global/UnkBucketSet.h"
+#include "game/UnkHashKeyObj.h"
+#include "game/UnkHashNode.h"
 #include "types.h"
-
-struct UnkHashKeyObj {
-    u8 unk_0x0[0x30];
-    u32 field_0x30;
-    u32 field_0x34;
-};
-
-struct UnkHashNode {
-    UnkHashKeyObj* key;
-    u8 unk_0x8[0x8];
-    UnkHashNode* next;
-};
 
 using UnkHashMap = base::global::UnkBucketSet<UnkHashNode>;
 

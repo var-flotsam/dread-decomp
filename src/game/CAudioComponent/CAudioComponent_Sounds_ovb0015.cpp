@@ -13,6 +13,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAudioComponent.h"
 #include "game/CComponent.h"
+#include "game/UnkHandle.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU32.h"
 #include "game/UnkTU50.h"
@@ -51,10 +52,6 @@ static inline UnkSoundObject_b50* Resolve_ovb0015(const UnkSoundHandle* handle) 
 
 // As src/game/CRumbleComponent.cpp has it.
 struct UnkHandleTarget;
-struct UnkHandle {
-    UnkHandleTarget* target;
-    u64 serial;
-};
 
 // The eight sound groups (their bit numbers in a group mask).
 extern const s32 g_unk_710164a8ec[8];

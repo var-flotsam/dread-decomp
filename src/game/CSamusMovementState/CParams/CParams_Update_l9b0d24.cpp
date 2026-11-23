@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CGunComponent.h"
+#include "game/UnkDesc16_l9b0d24.h"
 #include "game/UnkTU1455.h"
 #include "game/UnkTU1730.h"
 #include "types.h"
@@ -24,10 +25,6 @@ struct __attribute__((packed, aligned(4))) UnkTrackBlend {
     f32 value;
 };
 static_assert(sizeof(UnkTrackBlend) == 0xc, "UnkTrackBlend layout");
-
-struct UnkDesc16_l9b0d24 {
-    u64 a, b;
-};
 
 // A movement transition: an id (-1 for none), the two descriptors of UnkSpitSend.h and a mask.
 struct UnkMoveTransition_l9b0d24 {

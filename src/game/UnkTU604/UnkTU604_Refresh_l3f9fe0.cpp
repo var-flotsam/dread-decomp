@@ -2,23 +2,11 @@
 // of each one that holds a value (fn_71003f6cfc); the first one's slot is pointed at `target` through its weak
 // handle (src/game_s2/UnkWeakHandle.h) and flagged. The lists are those of UnkTU604_Lists_ovb0256.cpp.
 // Names and layouts are placeholders.
+#include "game/UnkListEntry_b256.h"
+#include "game/UnkListGroup_b256.h"
 #include "game/UnkTU604.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-struct UnkListEntry_b256 {
-    void* value;
-    UnkListEntry_b256* next;
-};
-
-struct UnkListGroup_b256 {
-    u8 pad_0x0[8];
-    u32 count;                  // 0x8
-    UnkListEntry_b256* head;    // 0x10
-    u8 pad_0x18[0x58];
-    void* key;                  // 0x70
-    UnkListGroup_b256* next;    // 0x78
-};
 
 struct UnkMemberSlot_l3f9fe0 {
     UnkWeakHandle* handle;  // 0x0

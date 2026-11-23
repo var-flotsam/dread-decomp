@@ -8,7 +8,7 @@
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
-struct UnkVec3 {
+struct UnkVec3_b38 {
     u32 x;
     u32 y;
     u32 z;
@@ -36,7 +36,7 @@ struct UnkOptByte {
 template <class Tail>
 struct UnkHandlerParams {
     void** vtable;
-    UnkOpt<UnkVec3> field_0x8;
+    UnkOpt<UnkVec3_b38> field_0x8;
     UnkOpt<u32> field_0x18;
     UnkOpt<UnkWords4> field_0x20;
     u32 kind;  // 0x34
@@ -64,7 +64,7 @@ struct UnkBytes1 {
 
 struct UnkWordVec {
     UnkOpt<u32> field_0x0;
-    UnkOpt<UnkVec3> field_0x8;
+    UnkOpt<UnkVec3_b38> field_0x8;
 };
 
 template <class Tail>
@@ -168,8 +168,8 @@ struct UnkSinkParams {
     void** vtable;
     UnkOpt<u32> field_0x8;
     UnkOpt<f32> field_0x10;
-    UnkOpt<UnkVec3> field_0x18;
-    UnkOpt<UnkVec3> field_0x28;
+    UnkOpt<UnkVec3_b38> field_0x18;
+    UnkOpt<UnkVec3_b38> field_0x28;
     u32 kind;  // 0x38
 };
 

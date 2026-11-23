@@ -5,26 +5,26 @@
 
 using base::global::CStrId;
 
-struct UnkStateMachine;
+struct UnkStateMachine_a9ea64;
 
-struct UnkDelegate {
+struct UnkDelegate_a9ea64 {
     void* object;
     void (*function)();
 };
 
 struct UnkState {
     void** vtable;
-    UnkStateMachine* machine;
+    UnkStateMachine_a9ea64* machine;
     u32 id;
     u8 unk_0x14[0x1c];
-    UnkDelegate field_0x30;
-    UnkDelegate field_0x40;
-    UnkDelegate field_0x50;
+    UnkDelegate_a9ea64 field_0x30;
+    UnkDelegate_a9ea64 field_0x40;
+    UnkDelegate_a9ea64 field_0x50;
     u8 unk_0x60[0x10];
 };
 static_assert(sizeof(UnkState) == 0x70, "UnkState layout");
 
-struct UnkStateMachine {
+struct UnkStateMachine_a9ea64 {
     u8 unk_0x0[0x8];
     void* owner;
     u8 unk_0x10[0x10];
@@ -54,7 +54,7 @@ struct UnkStateObject {
     u8 unk_0x0[0x18];
     UnkOwnerInfo* info;
     u8 unk_0x20[0xe0];
-    UnkStateMachine machine;
+    UnkStateMachine_a9ea64 machine;
     UnkState states[7];
     u8 field_0x4c0[0x8];
 };

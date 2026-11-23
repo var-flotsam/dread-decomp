@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkDefIterValue.h"
 #include "game/navmesh/CDynamicSmartLinkGroup.h"
 #include "types.h"
 
@@ -17,18 +18,6 @@ template <class T>
 struct UnkArgument {
     u8 unk_0x0[8];
     T* field_0x8;
-};
-
-template <u32 Size>
-struct UnkDefIterValue {
-    u64 unk_0x0;
-    union {
-        u8 value[Size];
-        void* ref;
-    };
-    s32 state;
-
-    __attribute__((always_inline)) void* Get() { return state == 2 ? ref : value; }
 };
 
 __attribute__((always_inline)) static inline UnkReflValue GetRulesSet(UnkArgument<UnkDefIterValue<0x10>>* argument) {

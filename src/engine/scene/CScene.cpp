@@ -3,6 +3,7 @@
 // forwards the report to the delegate at its +8 as a tail call of one virtual for "on" and the
 // next for "off"; the virtual receives the delegate and the item, not the flag. Also the pass of a
 // flag to a scene group's items (fn_71001ef280).
+#include "engine/UnkSceneGroupItem.h"
 #include "engine/scene/UnkToggle.h"
 
 void fn_71001eef58(UnkToggleListener* owner, UnkToggle* item, bool on) {
@@ -27,12 +28,6 @@ extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, i
 
 struct UnkScene;
 
-// An item of a group (src/game/UnkSceneGroupItem.cpp passes the flag on).
-struct UnkSceneGroupItem {
-    u64 field_0x0;
-    u8 pad_0x8[0x8];
-    u32 field_0x10;
-};
 void fn_71001f9e34(const UnkSceneGroupItem* self, UnkScene* scene, bool flag);
 
 struct UnkSceneGroup {

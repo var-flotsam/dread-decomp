@@ -6,21 +6,13 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkCentralUnitEntry.h"
+#include "game/UnkCentralUnitList.h"
 #include "game/UnkTU1176.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
-
-struct UnkCentralUnitEntry {
-    u8 pad_0x0[0x10];
-    UnkReflObject* object;
-};
-
-struct UnkCentralUnitList {
-    UnkCentralUnitEntry** data;
-    u32 count;
-};
 
 struct UnkStartDarknessEvent {
     u8 pad_0x0[0x10];

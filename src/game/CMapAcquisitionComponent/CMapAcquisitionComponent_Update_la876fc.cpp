@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBossAIComponent.h"
 #include "game/CUsableComponent.h"
+#include "game/UnkSaveStationTunables_ovb0118.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTimelineComponent.h"
@@ -27,12 +28,6 @@ struct UnkMapAcquisitionMusic_la876fc {
 struct UnkMapAcquisitionClass_la876fc {
     u8 pad_0x0[0x190];
     UnkMapAcquisitionMusic_la876fc* music;  // 0x190
-};
-
-// The save station's tunables: the time to wait for the music at +0x24.
-struct UnkSaveStationTunables_ovb0118 {
-    u8 pad_0x0[0x24];
-    f32 music_wait;  // 0x24
 };
 
 struct UnkMapAcquisition_la876fc {

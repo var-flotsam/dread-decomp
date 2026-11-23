@@ -6,21 +6,22 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBounds.h"
 #include "types.h"
 
 using namespace base::global;
 
 // A string id: moving leaves the pool's empty string behind; the destructor decrements and tests
 // in two steps (the original reloads the id after the decrement).
-struct UnkReleasedStrId {
+struct UnkReleasedStrId_e5f348 {
     UnkStringData* data;
 
-    UnkReleasedStrId(const UnkReleasedStrId& other) : data(other.data) {
+    UnkReleasedStrId_e5f348(const UnkReleasedStrId_e5f348& other) : data(other.data) {
         if (&g_unk_7101d47108->empty != data)
             ++data->ref_count;
     }
-    UnkReleasedStrId(UnkReleasedStrId&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-    ~UnkReleasedStrId() {
+    UnkReleasedStrId_e5f348(UnkReleasedStrId_e5f348&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
+    ~UnkReleasedStrId_e5f348() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 --data->ref_count;
@@ -60,15 +61,6 @@ struct UnkArray {
     }
 };
 
-struct UnkBounds {
-    f32 min_x;
-    f32 min_y;
-    f32 max_x;
-    f32 max_y;
-
-    UnkBounds() : min_x(3.4028235e38f), min_y(3.4028235e38f), max_x(-3.4028235e38f), max_y(-3.4028235e38f) {}
-};
-
 struct UnkRecordA8 {
     UnkArray field_0x0;
     u32 field_0x28;
@@ -95,7 +87,7 @@ static_assert(sizeof(UnkRecordA8) == 0xa8, "UnkRecordA8 layout");
 
 struct UnkRecordIdArray {
     UnkRecordA8* records;
-    UnkReleasedStrId* ids;
+    UnkReleasedStrId_e5f348* ids;
     u32 count;
     u32 capacity;
     u32 field_0x18;
@@ -109,7 +101,7 @@ void fn_7100e5f348(UnkRecordIdArray* self, u32 n) {
     if (self->capacity >= n)
         return;
     auto* records = static_cast<UnkRecordA8*>(self->allocator->vf_0x40((u64)n * sizeof(UnkRecordA8), 8, self->flags));
-    auto* ids = static_cast<UnkReleasedStrId*>(self->allocator->vf_0x40((u64)n * sizeof(UnkReleasedStrId), 8, self->flags));
+    auto* ids = static_cast<UnkReleasedStrId_e5f348*>(self->allocator->vf_0x40((u64)n * sizeof(UnkReleasedStrId_e5f348), 8, self->flags));
     if (UnkRecordA8* old = self->records) {
         for (u32 i = 0; i < self->count; ++i) {
             new (&records[i]) UnkRecordA8(static_cast<UnkRecordA8&&>(old[i]));
@@ -117,11 +109,11 @@ void fn_7100e5f348(UnkRecordIdArray* self, u32 n) {
         }
         self->allocator->vf_0x48(self->records);
     }
-    if (UnkReleasedStrId* old = self->ids) {
-        UnkReleasedStrId* dst = ids;
+    if (UnkReleasedStrId_e5f348* old = self->ids) {
+        UnkReleasedStrId_e5f348* dst = ids;
         for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
-            new (dst) UnkReleasedStrId(static_cast<UnkReleasedStrId&&>(*old));
-            old->~UnkReleasedStrId();
+            new (dst) UnkReleasedStrId_e5f348(static_cast<UnkReleasedStrId_e5f348&&>(*old));
+            old->~UnkReleasedStrId_e5f348();
         }
         self->allocator->vf_0x48(self->ids);
     }
@@ -137,8 +129,8 @@ void fn_7100e5f748(UnkRecordIdArray* self) {
         return;
     auto* records = static_cast<UnkRecordA8*>(
         self->allocator->vf_0x40((u64)self->count * sizeof(UnkRecordA8), 8, self->flags));
-    auto* ids = static_cast<UnkReleasedStrId*>(
-        self->allocator->vf_0x40((u64)self->count * sizeof(UnkReleasedStrId), 8, self->flags));
+    auto* ids = static_cast<UnkReleasedStrId_e5f348*>(
+        self->allocator->vf_0x40((u64)self->count * sizeof(UnkReleasedStrId_e5f348), 8, self->flags));
     if (UnkRecordA8* old = self->records) {
         for (u32 i = 0; i < self->count; ++i) {
             new (&records[i]) UnkRecordA8(static_cast<UnkRecordA8&&>(old[i]));
@@ -146,11 +138,11 @@ void fn_7100e5f748(UnkRecordIdArray* self) {
         }
         self->allocator->vf_0x48(self->records);
     }
-    if (UnkReleasedStrId* old = self->ids) {
-        UnkReleasedStrId* dst = ids;
+    if (UnkReleasedStrId_e5f348* old = self->ids) {
+        UnkReleasedStrId_e5f348* dst = ids;
         for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
-            new (dst) UnkReleasedStrId(*old);
-            old->~UnkReleasedStrId();
+            new (dst) UnkReleasedStrId_e5f348(*old);
+            old->~UnkReleasedStrId_e5f348();
         }
         self->allocator->vf_0x48(self->ids);
     }

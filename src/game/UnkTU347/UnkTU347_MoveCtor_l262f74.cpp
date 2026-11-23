@@ -6,20 +6,12 @@
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
+#include "game/UnkBoundObject_b260.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkBoundObject_b260;
-
-struct UnkBoundObject_b260 {
-    u8 unk_0x0[0x30];
-    CStrId key;   // 0x30
-    u8 unk_0x38[0x90];
-    void* owner;  // 0xc8
-    u8 unk_0xd0[0xe5];
-    u8 detached;  // 0x1b5
-};
 
 // The bound objects by id, and a word after them.
 struct UnkIdMap_b260 : base::global::CRntDictionary<CStrId, UnkBoundObject_b260*> {

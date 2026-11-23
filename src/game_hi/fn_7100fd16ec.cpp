@@ -6,15 +6,10 @@
 #include "base/global/UnkPooledId.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkMask.h"
+#include "game/UnkPathEntry_0x18.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
-
-struct UnkPathEntry_0x18 {
-    UnkPooledId<&g_unk_7101d47200> field_0x0;
-    u64 field_0x8;
-    u64 field_0x10;
-};
 
 struct UnkRequest {
     u8 data[0xc];

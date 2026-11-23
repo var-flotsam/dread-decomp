@@ -14,6 +14,7 @@
 #include "game/CBossAIComponent.h"
 #include "game/CDrop.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMusicMode.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
@@ -62,12 +63,6 @@ static inline void* FindByName(UnkGameManager* manager, const char* name) {
     kind = kind_value;
     return fn_7100deba8c(manager, &hash, &kind);
 }
-
-// A mode word passed by address (the word after it is not set).
-struct UnkMusicMode {
-    u32 kind;
-    u32 field_0x4;
-};
 
 s32 fn_710108d440(lua_State* L) {
     const char* name;

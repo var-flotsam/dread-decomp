@@ -4,6 +4,7 @@
 #include "../../../lib/lua/lua.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkLuaStrData.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU811.h"
@@ -13,11 +14,6 @@ using base::global::CStrId;
 
 struct UnkLuaDoorTarget;
 void fn_7100acca50(UnkLuaDoorTarget* target, void* first, void* second);
-
-struct UnkLuaStrData {
-    u8 pad_0x0[0x30];
-    u64 hash;  // 0x30
-};
 
 static inline void* FindObject(UnkGameManager* manager, const CStrId& id, u32 kind_value) {
     u64 hash;

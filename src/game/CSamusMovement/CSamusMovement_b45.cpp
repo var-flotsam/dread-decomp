@@ -1,11 +1,7 @@
 // CSamusMovement's unit (tools/tu_map.py; the name from reflection): clears a set of the
 // movement's state fields and sets the flag at +0x22f9. Names and layout are placeholders.
+#include "game/UnkVec2_b45a2.h"
 #include "types.h"
-
-struct UnkVec2_b45a2 {
-    f32 x;
-    f32 y;
-};
 
 struct UnkSamusMovement_b45a2 {
     u8 pad_0x0[0x40];

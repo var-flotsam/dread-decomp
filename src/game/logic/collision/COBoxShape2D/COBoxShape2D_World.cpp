@@ -2,21 +2,11 @@
 // transform: moved by its translation and turned by its z angle (fn_7100076acc) on top of the box's own
 // angle (fn_7100110664). Names and layouts are placeholders.
 #include "base/spatial/COBox2D.h"
+#include "game/UnkOBoxPlacement.h"
+#include "game/UnkOBoxShape2D.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-// The box copied member by member (as UnkPlacement2D in src/game/UnkCollisionContacts.cpp).
-struct UnkOBoxPlacement : base::spatial::COBox2D {
-    UnkOBoxPlacement(const UnkOBoxPlacement& o)
-        : COBox2D{{o.center.x, o.center.y}, {o.axis_x.x, o.axis_x.y}, {o.axis_y.x, o.axis_y.y},
-                  {o.size.x, o.size.y}, o.offset, o.angle} {}
-};
-
-struct UnkOBoxShape2D {
-    u8 pad_0x0[0xa8];
-    UnkOBoxPlacement placement;  // 0xa8
-};
 
 UnkOBoxPlacement fn_7100d685c0(const UnkOBoxShape2D* self, const UnkXform* xf) {
     UnkOBoxPlacement box = self->placement;

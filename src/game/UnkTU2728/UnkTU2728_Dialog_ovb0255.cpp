@@ -6,6 +6,7 @@
 #include "base/global/timeline/CEvent.h"
 #include "game/CBlackboard.h"
 #include "game/GUI/CSubtitleComposition.h"
+#include "game/UnkDialogDef.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -15,14 +16,12 @@
 #include "game/UnkTU2615.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkUnit2728.h"
+#include "game/UnkUnit2728Holder.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-struct UnkDialogDef : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedId qid;
-};
 static inline const UnkQualifiedId& Qid(UnkDialogDef& def) {
     if (def.qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&def.qid, &def, base::global::CStrId::Empty());
@@ -47,15 +46,6 @@ static inline UnkLanguage* Language() {
 using UnkGuiObj = UnkGuiDisplayObject;
 bool fn_7100b8524c(UnkGuiObj* self, const UnkGuiText& text);
 struct UnkUnit2728Target;
-
-struct UnkUnit2728Holder {
-    u8 pad_0x0[0x10];
-    UnkUnit2728Target* target;  // 0x10
-};
-struct UnkUnit2728 {
-    u8 pad_0x0[0x38];
-    bool flag;  // 0x38
-};
 
 __attribute__((noinline)) void fn_7101192664(UnkUnit2728* self, const CStrId* key) {
     s32 mode = 2;

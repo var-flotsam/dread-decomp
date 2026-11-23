@@ -9,16 +9,17 @@
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkMapHead.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 // A string id whose release decrements and tests the count in two steps.
-struct UnkMapKey {
+struct UnkMapKey_0d6844 {
     UnkStringData* data;
 
-    ~UnkMapKey() {
+    ~UnkMapKey_0d6844() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 --data->ref_count;
@@ -52,7 +53,7 @@ struct UnkMapIter {
     void* node;
     union {
         struct {
-            UnkMapKey key;
+            UnkMapKey_0d6844 key;
             Value value;  // destroyed by Destroy
         } entry;  // kind 1
     };
@@ -64,7 +65,7 @@ struct UnkMapIter {
         switch (kind) {
         case 1:
             Destroy(&entry.value);
-            entry.key.~UnkMapKey();
+            entry.key.~UnkMapKey_0d6844();
             kind = 0;
             break;
         case 2:
@@ -72,11 +73,6 @@ struct UnkMapIter {
             break;
         }
     }
-};
-
-struct UnkMapHead {
-    u8 unk_0x0[0x40];
-    void* head;
 };
 
 template <class Value, void (*Destroy)(Value*)>

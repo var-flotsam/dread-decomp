@@ -12,6 +12,8 @@
 #include "game/CMagnetSlidingBlockRailComponent.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkHandle.h"
+#include "game/UnkHandleTarget.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU372.h"
 #include "game/UnkTU437.h"
@@ -26,17 +28,6 @@ struct UnkMagnetSlidingBlockRail_ovb0097;
 // The rail component of an object.
 
 extern CStrId g_unk_71727375e8 __attribute__((visibility("hidden")));  // "finished"
-
-// A handle to a playing vibration: current while the target's serial is the handle's.
-struct UnkHandleTarget {
-    void* field_0x0;
-    u64 field_0x8;
-};
-
-struct UnkHandle {
-    UnkHandleTarget* target;
-    u64 serial;
-};
 
 static inline void* HandleObject(const UnkHandle& handle) {
     if (handle.target && handle.target->field_0x8 == handle.serial && handle.serial != ~0ull)

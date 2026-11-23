@@ -3,16 +3,12 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkStrIdHandle.h"
 
 using base::global::CStrId;
 
 extern void* g_unk_71726ad550;
 void* fn_7100ae09a4(void* registry, CStrId id);
-
-struct UnkStrIdHandle {
-    CStrId id;
-    void* field_0x8;
-};
 
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id) {
     // The id's default constructor: the empty string of the pool, created if needed.

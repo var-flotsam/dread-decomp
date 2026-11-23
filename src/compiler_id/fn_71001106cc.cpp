@@ -1,12 +1,7 @@
 // Multiplies a 2D vector by the 2x2 matrix stored at +0x8 (rows at +0x8, +0x10).
 // The result type is returned through x8, so it is not trivially copyable.
+#include "game/UnkVec2.h"
 #include "types.h"
-
-struct UnkVec2 {
-    f32 x, y;
-    UnkVec2(f32 x_, f32 y_) : x(x_), y(y_) {}
-    UnkVec2(const UnkVec2& other) : x(other.x), y(other.y) {}
-};
 
 struct UnkStruct_0x18 {
     u8 unk_0x0[0x8];

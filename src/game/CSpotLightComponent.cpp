@@ -8,64 +8,13 @@
 
 #include "base/UnkCountedResource.h"
 #include "base/global/CRntDictionary.h"
+#include "game/UnkLightNode.h"
+#include "game/UnkSpotLightBase.h"
+#include "game/UnkSpotLightObject.h"
+#include "game/UnkSpotLightResRef.h"
 #include "game/UnkTU290.h"
 #include "types.h"
 
-// The scene object's part at +0x20 with a virtual update (as the other light components').
-struct UnkLightNode {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual void vf_0x68();
-    virtual void vf_0x70();
-    virtual void vf_0x78();
-    virtual void vf_0x80();
-    virtual void vf_0x88();
-    virtual void vf_0x90();
-};
-
-// A counted resource reference (base/UnkCountedResource.h).
-struct UnkSpotLightResRef {
-    UnkCountedResource* ptr;
-
-    void Set(UnkCountedResource* p) {
-        if (ptr != p) {
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-    }
-};
-
-// The object's base at +8 (what the map is keyed by and the caller gets back).
-struct UnkSpotLightBase {
-    u64 field_0x0;
-};
-
-// The 0x140-byte scene object.
-struct UnkSpotLightObject {
-    void* vtable;
-    UnkSpotLightBase base;          // 0x8
-    UnkSpotLightResRef resource;    // 0x10
-    u8 pad_0x18[0x8];
-    UnkLightNode node;              // 0x20
-    u8 pad_0x28[0x70];
-    UnkSpotLightResRef resource2;   // 0x98
-    u8 pad_0xa0[0xa0];
-};
 static_assert(sizeof(UnkSpotLightObject) == 0x140, "UnkSpotLightObject layout");
 
 // Its constructor (the second argument is passed through).

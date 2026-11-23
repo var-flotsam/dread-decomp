@@ -3,20 +3,13 @@
 // layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkFadeTarget.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-struct UnkFadeTarget {
-    u8 unk_0x0[0x18];
-    u8 node[0x138];
-    union {
-        bool hidden;  // +0x150
-    };
-};
 
 struct UnkScreenFade {
     UnkFadeTarget* target;

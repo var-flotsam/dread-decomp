@@ -7,6 +7,7 @@
 
 #include "base/UnkChainedMap.h"
 #include "base/UnkDestructors.h"
+#include "base/UnkMap11_ovb56.h"
 #include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
@@ -348,11 +349,6 @@ void fn_7100d8ced8(void* p) {
     self->field_0x4c1 = false;
     self->field_0x4c2 = false;
 }
-
-// A chained map started with 11 buckets.
-struct UnkMap11_ovb56 : UnkChainedMap {
-    __attribute__((always_inline)) UnkMap11_ovb56() { ResizeBuckets(11); }
-};
 
 // Two such maps (0x48 bytes each).
 struct UnkMapPair_ovb56 {

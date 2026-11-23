@@ -10,6 +10,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CPopUpComposition.h"
+#include "game/UnkDeleteSlotButton.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU2553.h"
@@ -23,14 +24,6 @@ using base::reflection::UnkReflObject;
 struct UnkMapCallback_ovb0090;
 struct UnkGuiComposition_ovb0090;
 
-struct UnkDeleteSlotButton {
-    char* vtable;
-    u8 base_0x8[0x2a0];
-    void* field_0x2a8;  // a callback: unused word, the object, the function
-    void* object;
-    void (*fn)();
-    s32 slot;  // 0x2c0
-};
 static_assert(__builtin_offsetof(UnkDeleteSlotButton, slot) == 0x2c0, "UnkDeleteSlotButton layout");
 
 void fn_7100b01090(UnkDeleteSlotButton* self);

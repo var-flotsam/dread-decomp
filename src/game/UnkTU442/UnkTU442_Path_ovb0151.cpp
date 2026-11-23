@@ -3,17 +3,10 @@
 #include "base/UnkEmptyDtorElem.h"
 #include "base/global/CRntVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkElem.h"
 #include "types.h"
 
 using base::math::CVector2D;
-
-struct UnkElem {
-    u32 field_0x0;
-
-    // Copied bytewise: the original reloads the array pointer after the store.
-    UnkElem(UnkElem&& other) { __builtin_memcpy(this, &other, sizeof(*this)); }
-    ~UnkElem() { fn_71002874dc(this); }
-};
 
 struct UnkPathPoint_b0151 {
     CVector2D pos;

@@ -4,23 +4,23 @@
 #include "game/UnkTU2772.h"
 #include "types.h"
 
-struct UnkListNode {
-    UnkListNode* prev;
-    UnkListNode* next;
+struct UnkListNode_nn_atk_Shutdown_pilot {
+    UnkListNode_nn_atk_Shutdown_pilot* prev;
+    UnkListNode_nn_atk_Shutdown_pilot* next;
 };
 
 struct UnkListItem {
     u8 pad_0x0[0x3d8];
-    UnkListNode node;
+    UnkListNode_nn_atk_Shutdown_pilot node;
 
-    static UnkListItem* FromNode(UnkListNode* node) {
+    static UnkListItem* FromNode(UnkListNode_nn_atk_Shutdown_pilot* node) {
         return reinterpret_cast<UnkListItem*>(reinterpret_cast<u8*>(node) - __builtin_offsetof(UnkListItem, node));
     }
 };
 
 struct UnkListOwner {
     u8 pad_0x0[0x18];
-    UnkListNode items;  // 0x18
+    UnkListNode_nn_atk_Shutdown_pilot items;  // 0x18
     bool active;        // 0x28
     u8 pad_0x29[7];
     void* field_0x30;
@@ -33,7 +33,7 @@ void fn_710122ad74(void* object);
 void fn_710122c8c0(UnkListOwner* self) {
     if (!self->active)
         return;
-    for (UnkListNode* node = self->items.next; &self->items != node;) {
+    for (UnkListNode_nn_atk_Shutdown_pilot* node = self->items.next; &self->items != node;) {
         UnkListItem* item = UnkListItem::FromNode(node);
         node = node->next;
         fn_710122bee4(item);

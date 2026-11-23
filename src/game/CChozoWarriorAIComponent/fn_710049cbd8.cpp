@@ -16,14 +16,14 @@ struct UnkFlagged {
     u8 field_0xf9;
 };
 
-struct UnkBody {
+struct UnkBody_49cbd8 {
     u8 pad_0x0[0x54];
     f32 field_0x54;
     u8 pad_0x58[0x1b0];
     UnkFlagged* field_0x208;
 };
 
-struct UnkTunables {
+struct UnkTunables_49cbd8 {
     u8 pad_0x0[0x7fc];
     f32 field_0x7fc;
 };
@@ -41,11 +41,11 @@ struct UnkSelf {
 
 struct UnkSelfFar {
     u8 pad_0x0[0x149d0];
-    UnkTunables* field_0x149d0;
+    UnkTunables_49cbd8* field_0x149d0;
 };
 
 bool fn_710049cbd8(UnkSelf* self) {
-    UnkBody* body = reinterpret_cast<UnkBody*>(fn_7100d7c990(self->field_0x30));
+    UnkBody_49cbd8* body = reinterpret_cast<UnkBody_49cbd8*>(fn_7100d7c990(self->field_0x30));
     if (body && body->field_0x208 && body->field_0x208->field_0xf9 && fn_71009e8590(body->field_0x208) >= 1 &&
         (fn_71009e75e8(body->field_0x208) || fn_7100df5630(g_unk_7101d47310))) {
         u32 mode = self->field_0x70;

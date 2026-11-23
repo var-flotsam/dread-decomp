@@ -2,17 +2,9 @@
 // fn_7100ae9a10, which interns it as an id).
 #include "base/global/CRntString.h"
 #include "game/UnkGameBlackboard.h"
+#include "game/UnkStringUse.h"
 
 using base::global::CStrId;
-
-// The string data's use count, a union member like ref_count (no type-based alias info, so the
-// id is reloaded after the increment; see fn_7100ae9a10).
-struct UnkStringUse {
-    u8 unk_0x0[0x44];
-    union {
-        u32 use_count;
-    };
-};
 
 // The id's string (a CRntString at +0x10 of the string data), with its use count raised.
 static inline const base::global::CRntString* UseStr(const CStrId& id) {

@@ -4,27 +4,14 @@
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkSize_ovb0245.h"
 #include "game/UnkTU178.h"
 #include "game/UnkTU54.h"
+#include "game/UnkView_ovb0245.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-struct UnkView_ovb0245 {
-    u8 pad_0x0[0x30];
-    UnkVec3f position;  // 0x30
-    UnkVec3f scale;     // 0x3c
-    u8 pad_0x48[0x11c];
-    UnkMatrix44 matrix;  // 0x164
-    u8 pad_0x1a4[8];
-    u8 matrix_valid;  // 0x1ac
-};
 static_assert(__builtin_offsetof(UnkView_ovb0245, matrix_valid) == 0x1ac, "layout");
-
-struct UnkSize_ovb0245 {
-    u8 pad_0x0[8];
-    u32 width;   // 0x8
-    u32 height;  // 0xc
-};
 
 UnkMatrix44* fn_710019d920(UnkView_ovb0245* self, UnkSize_ovb0245* size) {
     if (!self->matrix_valid) {

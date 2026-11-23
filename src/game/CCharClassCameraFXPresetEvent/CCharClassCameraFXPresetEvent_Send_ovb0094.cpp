@@ -3,18 +3,12 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkVec.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkPlayer;
-
-// A 12-byte argument (as src/game_s2/fn_710035131c.cpp's).
-struct UnkVec {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-};
 
 struct UnkCameraFXState_ovb0094 {
     u8 unk_0x0[0x70];

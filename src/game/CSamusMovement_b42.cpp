@@ -6,6 +6,7 @@
 #include "base/math/CVector.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkVec3_sm42.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -61,12 +62,6 @@ struct UnkSamusMovement_sm42 {
     UnkEntity_sm42* owner;  // 0x30
     u8 pad_0x38[0x2cd0];
     UnkController_sm42* controller;  // 0x2d08
-};
-
-struct UnkVec3_sm42 {
-    f32 x, y, z;
-    UnkVec3_sm42(f32 x, f32 y, f32 z) : x(x), y(y), z(z) {}
-    UnkVec3_sm42(const UnkVec3_sm42& o) : x(o.x), y(o.y), z(o.z) {}
 };
 
 static inline UnkTracked_sm42* Tracked(UnkGameManager* gm) {

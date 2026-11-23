@@ -6,6 +6,8 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/input/UnkRumbleManager.h"
+#include "game/UnkHandle.h"
+#include "game/UnkHandleTarget.h"
 #include "game/UnkTU50.h"
 #include "types.h"
 
@@ -13,18 +15,6 @@ using base::global::CFilePathStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 using base::input::UnkRumbleManager;
-
-// A handle to a playing rumble (as in src/game/CAbilityEnergyWave/fn_71003053c4.cpp): current while the target's
-// serial is the handle's.
-struct UnkHandleTarget {
-    void* field_0x0;
-    u64 field_0x8;
-};
-
-struct UnkHandle {
-    UnkHandleTarget* target;
-    u64 serial;
-};
 
 // The rumble manager, created on first use.
 

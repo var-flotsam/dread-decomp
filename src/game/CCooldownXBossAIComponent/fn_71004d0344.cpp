@@ -11,14 +11,14 @@ using base::reflection::CClass;
 
 typedef u64 u64_a4 __attribute__((aligned(4)));
 
-struct UnkComponent {
+struct UnkComponent_4d0344 {
     void** vtable;
-    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkComponent*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkComponent_4d0344*)>(vtable[0])(this); }
 };
 
 struct UnkSelf {
     u8 pad_0x0[0x10];
-    UnkComponent* field_0x10;
+    UnkComponent_4d0344* field_0x10;
     u8 pad_0x18[0x1600];
     u32 field_0x1618;
     // Pointers stored from 4-byte alignment.
@@ -53,8 +53,8 @@ __attribute__((always_inline)) static inline void Register(UnkSelf* self, u8* en
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
 u32 fn_71004d0344(UnkSelf* self, void* arg) {
     u32 result = fn_71003ac8f4(reinterpret_cast<UnkBossAIComponent*>(self), arg);
-    UnkComponent* object = self->field_0x10;
-    UnkComponent* component = nullptr;
+    UnkComponent_4d0344* object = self->field_0x10;
+    UnkComponent_4d0344* component = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), fn_71004cde00()))
         component = object;
     self->field_0x149a0 = reinterpret_cast<u64>(component);

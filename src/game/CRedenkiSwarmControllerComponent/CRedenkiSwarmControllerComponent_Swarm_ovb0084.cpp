@@ -15,12 +15,17 @@
 #include "game/CRedenkiSwarmControllerComponent.h"
 #include "game/CSwarmControllerComponent.h"
 #include "game/SLogicPathNode.h"
+#include "game/UnkCountedRef_A5_b67.h"
+#include "game/UnkCounted_A5_b67.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSwarmPoint_b65a4.h"
+#include "game/UnkSwarmRecord_b65a4.h"
 #include "game/UnkTU1159.h"
 #include "game/UnkTU1161.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2560.h"
 #include "game/UnkTU32.h"
+#include "game/UnkVec3Result.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
@@ -158,23 +163,6 @@ void fn_710064f184(UnkRedenkiFullReset_ovb0084* self) {
 // ---- fn_7100650158: entry `index` of the tuning's table (+0x708) in mode 2 when both its ids are set, else the base
 // entry (fn_710074e2c0). ----
 
-// As src/game/CSwarmControllerComponent/CSwarmControllerComponent_Entry_A5_b67.cpp defines it, with
-// its destructor (fn_7100026f70).
-struct UnkCounted_A5_b67 {
-    u8 pad_0x0[0x54];
-    s32 count;
-};
-
-struct UnkCountedRef_A5_b67 {
-    UnkCounted_A5_b67* p;
-    UnkCountedRef_A5_b67(const UnkCountedRef_A5_b67& other) : p(nullptr) {
-        if (UnkCounted_A5_b67* q = other.p) {
-            ++q->count;
-            p = q;
-        }
-    }
-};
-
 // The ids are union members so that only fn_7100026f70 releases them.
 struct UnkIdPair;
 
@@ -284,31 +272,12 @@ void fn_71006503ac(UnkRedenkiCtrl_Members_ovb0084* self) {
 // (vf_0x2c0, with the player flag of PlayerFlag unless the tuning's +0x58 is set) starts the effect;
 // without one, a point near the target goes to the record at +0x31c and fn_710073f7bc gets 1. ----
 
-// As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b38.cpp defines it.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
-
 struct UnkPlayer;
 struct UnkSwarmHold_b66a4;
 struct UnkSwarmUpdate_b65a4;
 struct UnkParent_71007455dc;
 struct UnkRedenkiSwarmController;
 extern char g_unk_710164a408[];
-
-// As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_Update_b65a4.cpp
-// defines them.
-struct UnkSwarmPoint_b65a4 {
-    u64 value;
-};
-
-struct UnkSwarmRecord_b65a4 {
-    bool active;
-};
 
 struct UnkRedenkiKeyHolder_ovb0084 {
     u8 pad_0x0[0x30];

@@ -3,6 +3,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkStruct_71727313d4.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTUProperty.h"
 #include "base/reflection/TypeObject.h"
@@ -68,20 +69,6 @@ struct UnkStruct_71727313a4 {
     f32 field_0x10;
     f32 field_0x14;
     u64 field_0x18;
-    f32 field_0x20;
-    f32 field_0x24;
-    f32 field_0x28;
-    f32 field_0x2c;
-};
-struct UnkStruct_71727313d4 {
-    f32 field_0x0;
-    f32 field_0x4;
-    f32 field_0x8;
-    f32 field_0xc;
-    f32 field_0x10;
-    f32 field_0x14;
-    f32 field_0x18;
-    f32 field_0x1c;
     f32 field_0x20;
     f32 field_0x24;
     f32 field_0x28;

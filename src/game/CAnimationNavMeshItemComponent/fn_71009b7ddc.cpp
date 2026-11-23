@@ -10,17 +10,17 @@ struct UnkChild {
 };
 
 // Owns its object: moving leaves the source empty, destroying deletes it.
-struct UnkOwnedPtr {
+struct UnkOwnedPtr_9b7ddc {
     UnkChild* ptr;
 
-    explicit UnkOwnedPtr(UnkChild* p) : ptr(p) {}
-    UnkOwnedPtr(UnkOwnedPtr&& other) : ptr(other.Release()) {}
+    explicit UnkOwnedPtr_9b7ddc(UnkChild* p) : ptr(p) {}
+    UnkOwnedPtr_9b7ddc(UnkOwnedPtr_9b7ddc&& other) : ptr(other.Release()) {}
     UnkChild* Release() {
         UnkChild* p = ptr;
         ptr = nullptr;
         return p;
     }
-    ~UnkOwnedPtr() {
+    ~UnkOwnedPtr_9b7ddc() {
         UnkChild* p = ptr;
         ptr = nullptr;
         if (p)
@@ -29,7 +29,7 @@ struct UnkOwnedPtr {
 };
 
 struct UnkOwnedPtrVector {
-    UnkOwnedPtr* data;
+    UnkOwnedPtr_9b7ddc* data;
     u32 count;
     u32 capacity;
     u32 step;
@@ -48,16 +48,16 @@ struct UnkOwnedPtrVector {
         if ((s32)n >= (s32)new_capacity)
             for (;;) {
             }
-        UnkOwnedPtr* p;
+        UnkOwnedPtr_9b7ddc* p;
         if (old_capacity < new_capacity) {
-            p = static_cast<UnkOwnedPtr*>(allocator->vf_0x40((u64)new_capacity * sizeof(UnkOwnedPtr), 8, flags));
+            p = static_cast<UnkOwnedPtr_9b7ddc*>(allocator->vf_0x40((u64)new_capacity * sizeof(UnkOwnedPtr_9b7ddc), 8, flags));
             if (data) {
-                UnkOwnedPtr* src = data;
-                UnkOwnedPtr* dst = p;
+                UnkOwnedPtr_9b7ddc* src = data;
+                UnkOwnedPtr_9b7ddc* dst = p;
                 for (u32 i = 0; i < count; ++i, ++src, ++dst) {
                     UnkChild* moved = src->Release();
-                    __builtin_memcpy(dst, &moved, sizeof(UnkOwnedPtr));
-                    src->~UnkOwnedPtr();
+                    __builtin_memcpy(dst, &moved, sizeof(UnkOwnedPtr_9b7ddc));
+                    src->~UnkOwnedPtr_9b7ddc();
                 }
                 allocator->vf_0x48(data);
             }
@@ -67,7 +67,7 @@ struct UnkOwnedPtrVector {
         } else {
             p = data;
         }
-        __builtin_memcpy(&p[n], &child, sizeof(UnkOwnedPtr));
+        __builtin_memcpy(&p[n], &child, sizeof(UnkOwnedPtr_9b7ddc));
         ++count;
     }
 };

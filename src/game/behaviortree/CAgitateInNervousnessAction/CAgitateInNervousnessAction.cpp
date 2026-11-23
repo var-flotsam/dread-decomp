@@ -6,6 +6,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkAgitateAction_ain.h"
+#include "game/UnkAgitateAnim_ain.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -16,21 +18,6 @@ struct UnkSabotoruAI_ain {
     const base::reflection::CClass* vf_0x0() {
         return reinterpret_cast<const base::reflection::CClass* (*)(UnkSabotoruAI_ain*)>(vtable[0])(this);
     }
-};
-
-struct UnkAgitateAnim_ain {
-    u8 pad_0x0[0x30];
-    u64 id;  // 0x30
-};
-
-struct UnkAgitateAction_ain {
-    u8 pad_0x0[0x18];
-    UnkActor* owner;  // 0x18
-    u8 pad_0x20[0xc];
-    bool active;  // 0x2c
-    f32 limit;  // 0x30
-    f32 time;  // 0x34
-    UnkAgitateAnim_ain* anim;  // 0x38
 };
 
 void fn_71006749bc(UnkAgitateAction_ain* self);

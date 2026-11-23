@@ -6,13 +6,10 @@
 #include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/GUI/CText.h"
+#include "game/UnkNumberText_b41a3.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-struct UnkNumberText_b41a3 {
-    u8 unk_0x0[0x20];
-};
 
 UnkReflValue fn_7100b874cc(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* a = args[0];

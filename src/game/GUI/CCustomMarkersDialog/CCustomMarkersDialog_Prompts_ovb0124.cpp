@@ -101,7 +101,6 @@ void fn_7100afdf5c(UnkCustomMarkersDialog_ovb0124* self, UnkMarkersInput_ovb0124
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateKey g_unk_71729f0180;
 struct UnkMarkersEvent_ovb0124;
 extern UnkMarkersEvent_ovb0124 g_unk_717275d460 __attribute__((visibility("hidden")));
 

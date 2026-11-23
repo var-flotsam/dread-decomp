@@ -6,6 +6,8 @@
 #include "base/global/CRntVector.h"
 #include "game/CGoliathXBurstProjectionBombMovement.h"
 #include "game/UnkActor.h"
+#include "game/UnkBombValue_b49.h"
+#include "game/UnkBombVector_b49.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
@@ -21,27 +23,6 @@ void fn_7100146e0c(UnkSwitchObject* self, bool enable);
 
 struct UnkBurstBombKey_l58b5ec;
 extern UnkBurstBombKey_l58b5ec g_unk_710164a020;  // reached through the GOT
-
-// As fn_710058beec's own file declares them (CGoliathXBurstProjectionBombMovement_Vector_b49.cpp).
-struct UnkBombValue_b49 {
-    u32 values[3];
-
-    UnkBombValue_b49(const UnkBombValue_b49& other) {
-        values[0] = other.values[0];
-        values[1] = other.values[1];
-        values[2] = other.values[2];
-    }
-};
-
-struct UnkBombVector_b49 {
-    UnkBombValue_b49* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool grows;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
 
 void fn_710058beec(UnkBombVector_b49* self, const UnkBombValue_b49* values, u64 count, u32 step,
                    base::UnkAllocator* allocator, u32 flags);

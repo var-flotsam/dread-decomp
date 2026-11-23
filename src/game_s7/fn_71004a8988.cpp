@@ -4,12 +4,8 @@
 // (mode 2) through a pointer. Used as a type descriptor's compare (fn_71004a84c8, in
 // class_descriptors_00.cpp, matched by hand stream 2); these are its two identical copies for
 // other types. Names are placeholders.
+#include "game/UnkIdVec.h"
 #include "types.h"
-
-struct UnkIdVec {
-    u64* data;
-    u32 count;
-};
 
 // Each member is held inline or, in mode 2, through a pointer.
 struct UnkHolder {

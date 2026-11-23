@@ -26,8 +26,12 @@
 #include "game/UnkGuiLabel.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkHandleMenu.h"
+#include "game/UnkInlineString.h"
 #include "game/UnkMapMenuController.h"
+#include "game/UnkModeFlags.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkResourceHandle.h"
+#include "game/UnkSoundHolder.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2527.h"
@@ -97,14 +101,14 @@ struct UnkPlacedObj {
     virtual bool vf_0x68();
     virtual void vf_0x70();
 };
-struct UnkObject {
+struct UnkObject_b2de48 {
     void** vtable;
 
-    const CClass* Type() { return reinterpret_cast<const CClass* (*)(UnkObject*)>(vtable[0])(this); }
+    const CClass* Type() { return reinterpret_cast<const CClass* (*)(UnkObject_b2de48*)>(vtable[0])(this); }
 };
 struct UnkObjRef {
     u8 unk_0x0[0x10];
-    UnkObject* obj;
+    UnkObject_b2de48* obj;
 };
 struct UnkLogFlagsA {
     u8 unk_0x0[0x320];
@@ -115,7 +119,7 @@ struct UnkLogFlagsB {
     bool field_0x262;
     bool field_0x263;
 };
-struct UnkMissionLog : UnkObject {
+struct UnkMissionLog_b2de48 : UnkObject_b2de48 {
     u8 unk_0x8[0x230];
     UnkLogFlagsB* field_0x238;
     UnkLogFlagsA* field_0x240;
@@ -129,9 +133,6 @@ struct UnkMissionLog : UnkObject {
     }
 };
 struct UnkSoundGroup;
-struct UnkSoundHolder {
-    UnkSoundGroup* group;
-};
 
 struct UnkStateOwner {
     u8 unk_0x0[0x248];
@@ -166,16 +167,11 @@ struct UnkStateOwner {
     u8 unk_0x388[0x108];
     UnkObjRef* field_0x490;
 
-    UnkObject* MissionMenu() const { return field_0x490 ? field_0x490->obj : nullptr; }
+    UnkObject_b2de48* MissionMenu() const { return field_0x490 ? field_0x490->obj : nullptr; }
 };
 
-struct UnkModeFlags {
-    u8 unk_0x0[0xb8];
-    bool field_0xb8;
-};
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateKey g_unk_71729f0180;
 void fn_7100b2d0a4(UnkStateOwner* self);
 extern base::global::CStrId g_unk_7172762fd8 __attribute__((visibility("hidden")));
 void fn_7100e9b464(void* target, bool value);
@@ -205,11 +201,11 @@ static inline UnkComposition* GetHolder(void* p) {
 // The game manager's object at 0x498.
 static inline UnkPlacedObj* Placed() { return static_cast<UnkPlacedObj*>(g_unk_7101d47310->field_0x498); }
 
-static inline UnkMissionLog* GetMissionLog(UnkObjRef* ref) {
-    UnkObject* obj = ref ? ref->obj : nullptr;
+static inline UnkMissionLog_b2de48* GetMissionLog(UnkObjRef* ref) {
+    UnkObject_b2de48* obj = ref ? ref->obj : nullptr;
     if (!obj)
         return nullptr;
-    return fn_710009d50c(obj->Type(), fn_7100b54a10()) ? static_cast<UnkMissionLog*>(obj) : nullptr;
+    return fn_710009d50c(obj->Type(), fn_7100b54a10()) ? static_cast<UnkMissionLog_b2de48*>(obj) : nullptr;
 }
 
 // Sends a sound id to the global sound holder (created on first use).
@@ -321,7 +317,7 @@ void fn_7100b2d3e8(UnkStateOwner* self) {
 // handed on and the recorded flags are undone; the two settings are set back last.
 void fn_7100b2dcac(UnkStateOwner* self) {
     fn_7100e9b464(g_unk_7101d47310->field_0x2228, self->field_0x279);
-    UnkMissionLog* log = GetMissionLog(self->field_0x490);
+    UnkMissionLog_b2de48* log = GetMissionLog(self->field_0x490);
     if (log->field_0x240->field_0x320 || log->field_0x238->field_0x262) {
         log->SetFlags(self->field_0x2e8 != 1);
     }
@@ -464,7 +460,7 @@ void fn_7100b2d868(UnkStateOwner* self) {
     ResetParams();
 }
 
-struct UnkSamusMenu : UnkObject {
+struct UnkSamusMenu : UnkObject_b2de48 {
     u8 unk_0x8[0x228];
     CStrId field_0x230;
 };
@@ -476,12 +472,12 @@ void fn_7100e9b4b0(void* target);
 // is told, the manager's object at 0x498 is reset once in place, the owner is handed on and the
 // recorded flags are undone.
 void fn_7100b2dfc4(UnkStateOwner* self) {
-    UnkObject* menu = reinterpret_cast<UnkObject*>(self->field_0x2c0);
+    UnkObject_b2de48* menu = reinterpret_cast<UnkObject_b2de48*>(self->field_0x2c0);
     UnkSamusMenu* samus =
         fn_710009d50c(menu->Type(), fn_7100b65dc0()) ? static_cast<UnkSamusMenu*>(menu) : nullptr;
     samus->field_0x230 = base::global::CStrId::Empty();
     self->field_0x288 = self->field_0x2c0;
-    UnkMissionLog* log = GetMissionLog(self->field_0x490);
+    UnkMissionLog_b2de48* log = GetMissionLog(self->field_0x490);
     if (log->field_0x240->field_0x320 || log->field_0x238->field_0x262) {
         log->SetFlags(self->field_0x2e8 != 1);
     }
@@ -501,24 +497,6 @@ void fn_7100b2dfc4(UnkStateOwner* self) {
         fn_71011cdc30(AsDisplayObject(GetHolder(g_unk_7101d47310->field_0x2270)), true);
 }
 
-// A string with 0x80 bytes of inline storage (as in fn_7100ae9a10).
-struct UnkInlineString {
-    u8 str[0x30];
-    void** vtable;
-    u8 buffer[0x80];
-    u64 field_0xb8;
-    u32 field_0xc0;
-};
-
-// A reference-counted resource (base/UnkCountedResource.h), dropped when the handle dies.
-struct UnkResourceHandle {
-    UnkCountedResource* ptr;
-
-    ~UnkResourceHandle() {
-        if (auto* held = ptr; held && --held->ref_count == 0)
-            fn_710001737c(held);
-    }
-};
 struct UnkResourceManager;
 void fn_7100b2c58c(UnkStateOwner* self);
 
@@ -578,7 +556,7 @@ void fn_7100b2d6d0(UnkStateOwner* self) {
 }
 
 // The mission log, its menu created first when there is none.
-UnkMissionLog* fn_7100b2e338(UnkStateOwner* self) {
+UnkMissionLog_b2de48* fn_7100b2e338(UnkStateOwner* self) {
     UnkObjRef* ref = self->field_0x490;
     if (!ref || !ref->obj)
         fn_7100b2cd24(reinterpret_cast<UnkHandleMenu<0x490>*>(self));
@@ -600,8 +578,8 @@ void fn_7100b2e208(UnkStateOwner* self) {
 // (as in fn_7100b2dcac, unconditionally) and the menu hidden; the rest follows fn_7100b2dfc4.
 void fn_7100b2e3b8(UnkStateOwner* self) {
     // Stored as a plain pointer: the original reloads the menu afterwards.
-    *reinterpret_cast<UnkObject**>(&self->field_0x288) = self->MissionMenu();
-    UnkMissionLog* log = GetMissionLog(self->field_0x490);
+    *reinterpret_cast<UnkObject_b2de48**>(&self->field_0x288) = self->MissionMenu();
+    UnkMissionLog_b2de48* log = GetMissionLog(self->field_0x490);
     log->SetFlags(self->field_0x2e8 != 1);
     fn_7100b2d0a4(self);
     fn_7100219d4c(g_unk_7101d47300, true, false);
@@ -703,23 +681,23 @@ struct UnkIdPair {
 inline UnkIdPair::~UnkIdPair() { fn_7100026f70(this); }
 
 // An array of pointers whose destructor frees its storage.
-struct UnkPtrArray : base::global::CRntVector<void*> {
+struct UnkPtrArray_b2de48 : base::global::CRntVector<void*> {
     using base::global::CRntVector<void*>::CRntVector;
-    ~UnkPtrArray() { Free(); }
+    ~UnkPtrArray_b2de48() { Free(); }
 };
 
 // A reference-counted handle released through vf_0x10.
-struct UnkHandleObj {
+struct UnkHandleObj_b2de48 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
     s32 ref_count;
 };
-struct UnkHandle {
-    UnkHandleObj* ptr = nullptr;
+struct UnkHandle_b2de48 {
+    UnkHandleObj_b2de48* ptr = nullptr;
 
-    ~UnkHandle() {
-        if (UnkHandleObj* p = ptr) {
+    ~UnkHandle_b2de48() {
+        if (UnkHandleObj_b2de48* p = ptr) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
         }
@@ -755,7 +733,7 @@ struct UnkMenuStates : UnkMenuStatesVtable {
     UnkIdPair field_0x338;
     UnkIdPair field_0x350;
     UnkIdPair field_0x368;
-    UnkPtrArray field_0x380{0xf};
+    UnkPtrArray_b2de48 field_0x380{0xf};
     UnkCallback<fn_71004f3ea4, fn_71004f3cf0> field_0x3a8{this, fn_7100b31394};
     UnkCallback<fn_7100b31770, fn_7100b31900> field_0x3c0{this, fn_7100b31464};
     struct UnkMember3d8 {
@@ -764,8 +742,8 @@ struct UnkMenuStates : UnkMenuStatesVtable {
         UnkMember3d8() { fn_710002f4e4(this); }
         ~UnkMember3d8() { fn_710002f67c(this); }
     } field_0x3d8;
-    UnkHandle field_0x488;
-    UnkHandle field_0x490;
+    UnkHandle_b2de48 field_0x488;
+    UnkHandle_b2de48 field_0x490;
 
     __attribute__((always_inline)) UnkMenuStates() {}
     __attribute__((always_inline)) ~UnkMenuStates() {
@@ -803,7 +781,7 @@ void fn_7100b2e978(UnkStateOwner* self, const UnkInputEvent* event) {
     if (event->handled)
         return;
     UnkWeakHandle* popup_ref = g_unk_717271e8f8->field_0x230;
-    UnkObject* popup = popup_ref ? reinterpret_cast<UnkObject*>(popup_ref->target) : nullptr;
+    UnkObject_b2de48* popup = popup_ref ? reinterpret_cast<UnkObject_b2de48*>(popup_ref->target) : nullptr;
     if (popup && fn_710009d50c(popup->Type(), fn_7100b5e368()))
         return;
     switch (self->field_0x2e0) {
@@ -944,7 +922,7 @@ void fn_7100b2ee88(UnkStateOwner* self, const UnkInputEvent* event) { SwitchPage
 
 // A string id and a file-path id copied from globals for an assignment (fn_71000267f8), the
 // path released as a two-step member.
-struct UnkIdPairValue {
+struct UnkIdPairValue_b2de48 {
     union {
         CStrId id;
     };
@@ -953,15 +931,15 @@ struct UnkIdPairValue {
         base::UnkStrIdMemberOf<g_unk_7101d47200> path;
     };
 
-    UnkIdPairValue(const CStrId& a, const CFilePathStrId& b) : id(a) { new (&path_init) CFilePathStrId(b); }
-    ~UnkIdPairValue() {
+    UnkIdPairValue_b2de48(const CStrId& a, const CFilePathStrId& b) : id(a) { new (&path_init) CFilePathStrId(b); }
+    ~UnkIdPairValue_b2de48() {
         path.~UnkStrIdMemberOf();
         id.~CStrId();
     }
 };
 
 // fn_71000267f8 on the id pair: the pair is the ids and the resource, the value the ids alone.
-__attribute__((always_inline)) static inline void AssignIds(UnkIdPair* pair, const UnkIdPairValue& value) {
+__attribute__((always_inline)) static inline void AssignIds(UnkIdPair* pair, const UnkIdPairValue_b2de48& value) {
     fn_71000267f8(reinterpret_cast<UnkStrIdPathResource*>(pair), reinterpret_cast<const UnkStrIdPathPair&>(value));
 }
 void fn_71011d931c(UnkMenuStates* self);
@@ -977,10 +955,10 @@ extern CFilePathStrId g_unk_7172763000 __attribute__((visibility("hidden")));
 // power description and mission menu are set up.
 void fn_7100b2f250(UnkMenuStates* self) {
     fn_71011d931c(self);
-    AssignIds(&self->field_0x2f0, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172762ff0));
-    AssignIds(&self->field_0x308, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172762ff8));
-    AssignIds(&self->field_0x368, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172762fe8));
-    AssignIds(&self->field_0x320, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172763000));
+    AssignIds(&self->field_0x2f0, UnkIdPairValue_b2de48(g_unk_71727b9d30, g_unk_7172762ff0));
+    AssignIds(&self->field_0x308, UnkIdPairValue_b2de48(g_unk_71727b9d30, g_unk_7172762ff8));
+    AssignIds(&self->field_0x368, UnkIdPairValue_b2de48(g_unk_71727b9d30, g_unk_7172762fe8));
+    AssignIds(&self->field_0x320, UnkIdPairValue_b2de48(g_unk_71727b9d30, g_unk_7172763000));
     fn_7100b2f6b0(self);
     self->field_0x2e0 = -1;
     self->field_0x2e4 = -1;

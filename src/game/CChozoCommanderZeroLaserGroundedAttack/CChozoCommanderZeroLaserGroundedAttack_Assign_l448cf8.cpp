@@ -2,15 +2,8 @@
 // listener's owner are left alone when assigning to itself. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CAttack.h"
+#include "game/CChozoCommanderAttack.h"
 #include "game_s2/UnkWeakHandle.h"
-
-struct CChozoCommanderAttack : CAttack {
-    ~CChozoCommanderAttack() override;
-    u64 field_0x28;
-    u64 field_0x30;
-    u64 field_0x38;
-    u64 field_0x40;
-};
 
 struct CChozoCommanderGroundAttack : CChozoCommanderAttack {
     ~CChozoCommanderGroundAttack() override;

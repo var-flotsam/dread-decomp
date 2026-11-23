@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -14,8 +15,6 @@ using base::reflection::UnkReflObject;
 
 extern CStrId g_unk_7172736760 __attribute__((visibility("hidden")));  // CLogicShapeComponent's id
 extern CType g_unk_7172736768 __attribute__((visibility("hidden")));   // its type
-
-UnkReflObject* fn_710024e2e8(UnkGameManagerIdList* list, void* key);
 
 UnkReflObject* fn_71009143d8(void* key) {
     UnkGameManagerIdList* list =

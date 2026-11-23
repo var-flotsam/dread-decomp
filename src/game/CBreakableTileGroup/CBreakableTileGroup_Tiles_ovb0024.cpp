@@ -10,6 +10,7 @@
 #include "game/UnkTU2510.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU54.h"
+#include "game/UnkTileGroup.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -35,26 +36,6 @@ static_assert(sizeof(UnkQueryObj) == 0xa8, "UnkQueryObj placeholder layout");
 
 struct UnkTileCollider;
 
-// The group: its origin (+0x18), its size in cells (+0x24, +0x28), its tiles (+0x40, +0x48), the
-// tile index of each cell (+0x58), a render parameter (+0xc8) and its collider (+0xd0).
-struct UnkTileGroup {
-    u8 pad_0x0[0x14];
-    bool field_0x14;
-    u8 pad_0x15[0x3];
-    f32 field_0x18;
-    f32 field_0x1c;
-    f32 field_0x20;
-    s32 field_0x24;
-    s32 field_0x28;
-    u8 pad_0x2c[0x14];
-    u32 field_0x40;
-    UnkQueryObj* field_0x48;
-    u8 pad_0x50[0x8];
-    u32* field_0x58;
-    u8 pad_0x60[0x68];
-    u32 field_0xc8;
-    UnkTileCollider* field_0xd0;
-};
 static_assert(__builtin_offsetof(UnkTileGroup, field_0xd0) == 0xd0, "UnkTileGroup placeholder layout");
 
 static const u64 kNoRenderObject = 0xffffffff;

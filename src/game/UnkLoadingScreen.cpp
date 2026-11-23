@@ -6,6 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
 #include "game/GUI/CLabel.h"
+#include "game/UnkFadeColor.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
@@ -21,16 +22,6 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/UnkMask.h"
-
-// A fade colour (the same definition as src/game/UnkScreenFade.cpp's).
-struct UnkFadeColor {
-    f32 r;
-    f32 g;
-    f32 b;
-    f32 a;
-
-    UnkFadeColor(f32 r_, f32 g_, f32 b_, f32 a_) : r(r_), g(g_), b(b_), a(a_) {}
-};
 
 // The object behind +0x20 whose node at +0x18 shows the fade.
 struct UnkLoadingFade {

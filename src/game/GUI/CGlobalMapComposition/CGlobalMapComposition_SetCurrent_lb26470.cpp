@@ -9,20 +9,13 @@
 #include "game/GUI/CGlobalMapComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiPos.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU2755.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-// A point of a display object's anchor state, as fn_71011f6240 returns it.
-struct UnkGuiPos {
-    f32 x;
-    f32 y;
-
-    UnkGuiPos(const UnkGuiPos& other) : x(other.x), y(other.y) {}
-};
 
 // An area marker on the map.
 struct UnkMapMarker_lb26470 {

@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/input/UnkRumbleManager.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/UnkHandleTarget_ovb0082.h"
 #include "game/UnkTU50.h"
 #include "types.h"
 
@@ -12,11 +13,6 @@ using base::global::CFilePathStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 using base::input::UnkRumbleManager;
-
-struct UnkHandleTarget_ovb0082 {
-    void* target;
-    u64 serial;
-};
 
 struct UnkHandle {
     UnkHandleTarget_ovb0082* target;

@@ -2,6 +2,7 @@
 // central-unit list fn_7100772c98 returns (as the darkness events do) and act on each entry's object
 // (+0x10), skipping empty entries. Names and layouts are placeholders.
 #include "game/CAudioComponent.h"
+#include "game/UnkCentralUnitList.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU2547.h"
 #include "types.h"
@@ -21,11 +22,6 @@ struct UnkCentralUnit {
 struct UnkCentralUnitEntry {
     u8 pad_0x0[0x10];
     UnkCentralUnit* object;
-};
-
-struct UnkCentralUnitList {
-    UnkCentralUnitEntry** data;
-    u32 count;
 };
 
 void fn_7100773018(UnkCentralUnit* unit, void* arg);

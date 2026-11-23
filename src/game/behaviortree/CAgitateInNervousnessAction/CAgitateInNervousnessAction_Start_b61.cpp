@@ -6,23 +6,10 @@
 #include "../../../game_s2/UnkSpitSend.h"
 #include "game/UnkAIComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkAgitateAction_ain.h"
+#include "game/UnkAgitateAnim_ain.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
-
-struct UnkAgitateAnim_ain {
-    u8 pad_0x0[0x30];
-    u64 id;  // 0x30
-};
-
-struct UnkAgitateAction_ain {
-    u8 pad_0x0[0x18];
-    UnkActor* owner;  // 0x18
-    u8 pad_0x20[0xc];
-    bool active;  // 0x2c
-    f32 limit;  // 0x30
-    f32 time;  // 0x34
-    UnkAgitateAnim_ain* anim;  // 0x38
-};
 
 void fn_71006749bc(UnkAgitateAction_ain* self) {
     UnkActor* owner = self->owner;

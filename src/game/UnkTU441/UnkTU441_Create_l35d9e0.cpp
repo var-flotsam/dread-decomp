@@ -7,6 +7,8 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
+#include "game/UnkQuadNode_ovb0259.h"
+#include "game/UnkQuadRender_ovb0259.h"
 #include "game/UnkTU137.h"
 #include "game/UnkTU287.h"
 #include "types.h"
@@ -16,17 +18,6 @@ struct UnkModelInstance;
 struct UnkModelNode;
 struct UnkTaggedObject;
 void fn_7100147ca4(UnkTaggedObject* self);
-
-struct UnkQuadRender_ovb0259 {
-    u8 pad_0x0[0x78];
-    void* field_0x78;
-};
-
-struct UnkQuadNode_ovb0259 {
-    u8 pad_0x0[0x18];
-    u8 node[0x160];  // 0x18
-    UnkQuadRender_ovb0259* render;  // 0x178
-};
 
 struct UnkResHolder2;
 bool fn_710035db30(UnkResHolder2* self, const base::global::CFilePathStrId& path);

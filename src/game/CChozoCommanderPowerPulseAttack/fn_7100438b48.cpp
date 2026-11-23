@@ -8,7 +8,7 @@
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
-struct UnkQuery {
+struct UnkQuery_438b48 {
     void** vtable;
     u32 field_0x8;
     u32 field_0xc;
@@ -23,7 +23,7 @@ struct UnkQuery {
     u8 pad_0x31[3];
     u32 field_0x34;
 
-    UnkQuery() {
+    UnkQuery_438b48() {
         field_0x1c = 0;
         field_0x34 = 0;
         field_0x20 = 0;
@@ -34,12 +34,12 @@ struct UnkQuery {
     }
 };
 
-struct UnkTarget {
+struct UnkTarget_438b48 {
     u8 pad_0x0[0x298];
     void* field_0x298;
 };
 
-struct UnkOwner {
+struct UnkOwner_438b48 {
     u8 pad_0x0[0x38];
     u8 field_0x38[1];
     u8 pad_0x39[0x25f];
@@ -48,7 +48,7 @@ struct UnkOwner {
 
 struct UnkSelf {
     u8 pad_0x0[8];
-    UnkOwner* field_0x8;
+    UnkOwner_438b48* field_0x8;
     u8 pad_0x10[0x48];
     u8 field_0x58;
     u8 pad_0x59[3];
@@ -67,12 +67,12 @@ static inline u32 AsU32(f32 value) {
 // out, so the stack setup is two stores shorter
 void fn_7100438b48(UnkSelf* self) {
     fn_710042bb3c(self);
-    UnkOwner* owner = self->field_0x8;
+    UnkOwner_438b48* owner = self->field_0x8;
     self->field_0x58 = 0;
     __builtin_memset(self->field_0x5c, 0, 13);
     __builtin_memset(self->field_0x5c + 0x10, 0, 10);
     if (owner->field_0x298) {
-        UnkQuery query;
+        UnkQuery_438b48 query;
         const UnkMatrix44& m = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(owner->field_0x38));
         u32 x = AsU32(m.m[2]);  // the third column (the facing), as bit patterns
         u32 y = AsU32(m.m[6]);

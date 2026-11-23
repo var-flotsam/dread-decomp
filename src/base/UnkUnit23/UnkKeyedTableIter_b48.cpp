@@ -1,11 +1,8 @@
 // Unit 23 (tools/tu_map.py): steps a cursor over a keyed table of 0x40-byte entries (entries +0x8,
 // keys +0x10, count +0x18, cursor +0x30), returning the next key and entry. Names and layouts are
 // placeholders.
+#include "base/UnkKeyedEntry.h"
 #include "types.h"
-
-struct UnkKeyedEntry {
-    u8 data[0x40];
-};
 
 struct UnkKeyedTable {
     void* vtable;

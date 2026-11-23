@@ -8,6 +8,9 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1455.h"
 #include "game/UnkTU1730.h"
+#include "game/UnkTrackBlend_ovb0082.h"
+#include "game/UnkTrackOwner_ovb0082.h"
+#include "game/UnkTrackRecord_ovb0082.h"
 #include "types.h"
 
 struct UnkDesc_SpitSend;
@@ -15,35 +18,25 @@ extern UnkDesc_SpitSend g_unk_710164b958;
 struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;
 
-struct UnkTrackTime_ovb0082 {
+struct UnkTrackTime_ovb0082_ovb0082 {
     u64 key;
     u64 time;
-};
-struct UnkTrackBlend_ovb0082 {
-    u32 a, b, c;
 };
 
 struct UnkTrackParams_ovb0082 {
     s64 id;
-    UnkTrackTime_ovb0082 time;
+    UnkTrackTime_ovb0082_ovb0082 time;
     UnkTrackBlend_ovb0082 blend;
     u32 flags;
     u32 mask;
 
-    __attribute__((always_inline)) UnkTrackParams_ovb0082(UnkTrackTime_ovb0082 time_, UnkTrackBlend_ovb0082 blend_,
+    __attribute__((always_inline)) UnkTrackParams_ovb0082(UnkTrackTime_ovb0082_ovb0082 time_, UnkTrackBlend_ovb0082 blend_,
                                                           u32 mask_)
         : id(-1), time(time_), blend(blend_), flags(0), mask(mask_) {}
     __attribute__((always_inline)) UnkTrackParams_ovb0082()
-        : UnkTrackParams_ovb0082(reinterpret_cast<const UnkTrackTime_ovb0082&>(g_unk_710164b958),
+        : UnkTrackParams_ovb0082(reinterpret_cast<const UnkTrackTime_ovb0082_ovb0082&>(g_unk_710164b958),
                                  reinterpret_cast<const UnkTrackBlend_ovb0082&>(g_unk_7172769740),
                                  base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>()) {}
-};
-
-struct UnkTrackRecord_ovb0082 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18(UnkTrackParams_ovb0082* params);  // fills in the request
 };
 
 // The request passed to the movement: the reflected params base (vtable g_unk_7101a22cb8) holding the track
@@ -74,11 +67,6 @@ struct UnkFallRequest_ovb0082 : UnkParamsVtable_ovb0082 {
     }
 };
 
-struct UnkTrackOwner_ovb0082 {
-    u8 unk_0x0[0x220];
-    UnkAnimationComponent* animation;  // 0x220
-};
-
 struct UnkMagnetFallState_ovb0082 {
     u8 unk_0x0[0x8];
     UnkAirTarget_B71a6* target;  // 0x8
@@ -103,7 +91,7 @@ void fn_71009a9434(UnkMagnetFallState_ovb0082* self) {
         flags = 1;
     }
     req.field_0x40 = 0;
-    req.params.time = reinterpret_cast<const UnkTrackTime_ovb0082&>(g_unk_710164b968);
+    req.params.time = reinterpret_cast<const UnkTrackTime_ovb0082_ovb0082&>(g_unk_710164b968);
     req.params.flags = flags;
     fn_710098ae04(self->target, reinterpret_cast<UnkAirRequest_B71a6*>(&req));
 }

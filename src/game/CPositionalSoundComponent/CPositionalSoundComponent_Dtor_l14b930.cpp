@@ -6,17 +6,13 @@
 #include "base/snd/UnkSound.h"
 #include "game/CPositionalSoundComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkSoundRef.h"
 #include "game/UnkTU101.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-struct UnkSoundRef {
-    UnkSound* object;
-    s64 serial;
-};
 
 static inline UnkSound* GetSound_l14b930(const UnkSoundHandle* handle) {
     if (handle->ref && handle->ref->serial == handle->serial && handle->serial != -1)

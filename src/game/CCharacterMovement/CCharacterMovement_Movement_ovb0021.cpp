@@ -15,6 +15,7 @@
 #include "game/CCharacterMovement.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkAssignedSlot.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkNavMeshCell.h"
@@ -572,12 +573,6 @@ void fn_7100975f10(UnkCharacterMovementFull_ovb0021* self) {
     Release(self->field_0x230);
     fn_71010d092c(self);
 }
-
-// ----
-// The out-of-line assignment both hit references share (as src/game/CCharacterMovement.cpp declares it).
-struct UnkAssignedSlot {
-    void* ptr;
-};
 
 struct UnkHitSource_ovb0021 {
     u8 unk_0x0[0x20];

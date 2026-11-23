@@ -6,31 +6,31 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
-struct UnkComponent {
+struct UnkComponent_48ecbc {
     u8 pad_0x0[0xb];
     u8 field_0xb;
 };
 
 struct UnkObject;
 
-struct UnkOwner {
+struct UnkOwner_48ecbc {
     u8 pad_0x0[0x280];
     UnkObject* field_0x280;
 };
 
-struct UnkHandleTarget {
+struct UnkHandleTarget_48ecbc {
     u8 pad_0x0[0x10];
     void* field_0x10;
 };
 
 struct UnkHandles {
-    UnkHandleTarget* field_0x0;
-    UnkHandleTarget* field_0x8;
+    UnkHandleTarget_48ecbc* field_0x0;
+    UnkHandleTarget_48ecbc* field_0x8;
 };
 
 struct UnkSelf {
     u8 pad_0x0[0x30];
-    UnkOwner* field_0x30;
+    UnkOwner_48ecbc* field_0x30;
     u8 pad_0x38[0x154b0];
     UnkHandles field_0x154e8;
 };
@@ -39,19 +39,19 @@ struct UnkPart;
 
 void fn_710048ecbc(UnkSelf* self) {
     if (UnkObject* object = self->field_0x30->field_0x280) {
-        UnkComponent* a = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+        UnkComponent_48ecbc* a = reinterpret_cast<UnkComponent_48ecbc*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
                                                                         0x89f328dc37ac167bull));
         if (a)
             a = fn_710114e680(object, a->field_0xb) ? a : nullptr;
-        UnkComponent* b = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+        UnkComponent_48ecbc* b = reinterpret_cast<UnkComponent_48ecbc*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
                                                                         0x8c9dfb3ece4e323cull));
         if (b)
             b = fn_710114e680(object, b->field_0xb) ? b : nullptr;
-        UnkComponent* c = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+        UnkComponent_48ecbc* c = reinterpret_cast<UnkComponent_48ecbc*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
                                                                         0xa0cda40259a7a253ull));
         if (c)
             c = fn_710114e668(object, c->field_0xb) ? c : nullptr;
-        UnkComponent* d = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+        UnkComponent_48ecbc* d = reinterpret_cast<UnkComponent_48ecbc*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
                                                                         0xa5a377e0a0458614ull));
         if (d)
             d = fn_710114e668(object, d->field_0xb) ? d : nullptr;

@@ -34,7 +34,7 @@ struct UnkFadeFloatB {
 };
 
 // A colour channel.
-struct UnkFadeColor {
+struct UnkFadeColor_b45 {
     CVector4D now;
     CVector4D from;
     CVector4D to;
@@ -45,7 +45,7 @@ struct UnkFadeLayout {
     CVector2D now2;   // 0x3c
     CVector2D from2;  // 0x44
     CVector2D to2;    // 0x4c
-    UnkFadeColor c3;  // 0x54
+    UnkFadeColor_b45 c3;  // 0x54
     u8 pad_0x84[0xf8];
     CVector3D from10;  // 0x17c
     CVector3D to10;    // 0x188
@@ -55,14 +55,14 @@ struct UnkFadeLayout {
     CVector3D to12;    // 0x1b8
     CVector3D now12;   // 0x1c4
     u8 pad_0x1d0[0x4];
-    UnkFadeColor c13;    // 0x1d4
+    UnkFadeColor_b45 c13;    // 0x1d4
     UnkFadeFloat f14;    // 0x204
     UnkFadeFloat f16;    // 0x210
     UnkFadeFloat f17;    // 0x21c
     CVector2D now15;     // 0x228
     CVector2D from15;    // 0x230
     CVector2D to15;      // 0x238
-    UnkFadeColor c18;    // 0x240
+    UnkFadeColor_b45 c18;    // 0x240
     bool flag_0x270;
     u8 pad_0x271[0x17];
     UnkFadeFloatB f19;   // 0x288
@@ -74,7 +74,7 @@ struct UnkFadeLayout {
     UnkFadeFloat f23;    // 0x2bc
     UnkFadeFloat f24;    // 0x2c8
     UnkFadeFloat f25;    // 0x2d4
-    UnkFadeColor c26;    // 0x2e0
+    UnkFadeColor_b45 c26;    // 0x2e0
     UnkFadeFloat f27;    // 0x310
     bool flag_0x31c;
     u8 pad_0x31d[0x3];
@@ -123,7 +123,7 @@ __attribute__((always_inline)) inline void FadeFlagged(UnkFadeLayout* self, bool
     Fade(self, channel, f, to, time);
 }
 
-__attribute__((always_inline)) inline void FadeColor(UnkFadeLayout* self, u32 channel, UnkFadeColor* c,
+__attribute__((always_inline)) inline void FadeColor(UnkFadeLayout* self, u32 channel, UnkFadeColor_b45* c,
                                                      const CVector4D* to, f32 time) {
     self->StartTime(channel, time);
     const CVector4D* now = &c->now;

@@ -4,19 +4,11 @@
 // if flagged (+0x129), finalises the NVN pool, counts it out, returns the storage to the allocator and
 // clears it. Names and layouts are placeholders.
 #include "base/UnkDefaultAllocator.h"
+#include "engine/UnkPoolCount.h"
+#include "engine/UnkPtrHolder.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU176.h"
 #include "types.h"
-
-struct UnkPtrHolder {
-    void** vtable;
-    void* ptr;
-};
-
-struct UnkPoolCount {
-    u32 count;
-    u32 peak;
-};
 
 // NVN entry point the graphics start-up loads (inferred: the memory pool's finaliser).
 

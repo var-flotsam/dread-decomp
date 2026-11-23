@@ -18,6 +18,9 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/UnkBufferStringPool.h"
+#include "game/UnkInlineString.h"
+#include "game/UnkLuaReadScratch_b49a6.h"
+#include "game/UnkResourceHandle.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2620.h"
 #include "game/UnkTU2677.h"
@@ -40,28 +43,8 @@ struct UnkVersionEntry;
 base::reflection::UnkReflTypedPtr fn_710009d6d0(const base::reflection::CType* type, u32 flags);
 int lua_type(lua_State* L, int idx);
 
-struct UnkLuaReadScratch_b49a6 {
-    u64 words[6];
-};
 s32 fn_7100fbde20(void* state, UnkFormatArgs* value, s32 arg0, s32 arg1);
 
-// A string with 0x80 bytes of inline storage (as in fn_7100ae9a10).
-struct UnkInlineString {
-    u8 str[0x30];
-    void** vtable;
-    u8 buffer[0x80];
-    u64 field_0xb8;
-    u32 field_0xc0;
-};
-
-struct UnkResourceHandle {
-    UnkCountedResource* ptr;
-
-    ~UnkResourceHandle() {
-        if (auto* held = ptr; held && --held->ref_count == 0)
-            fn_710001737c(held);
-    }
-};
 struct UnkResourceManager;
 
 struct UnkEnumType;

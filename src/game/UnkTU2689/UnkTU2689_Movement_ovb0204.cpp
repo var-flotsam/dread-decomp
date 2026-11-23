@@ -23,6 +23,7 @@
 #include "game/UnkTU56.h"
 #include "game/UnkTU785.h"
 #include "game/UnkTU794.h"
+#include "game/UnkTileQuery_A3_b64.h"
 #include "game/UnkTimelineCalls.h"
 #include "game_s2/UnkChargeComponent.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -97,11 +98,6 @@ void fn_71010d956c(UnkPlayerMovement_b0204* self) {
 
 struct UnkQueryObj;
 struct UnkPlayer;
-
-struct UnkTileQuery_A3_b64 {
-    u8 pad_0x0[0x38];
-    u32 kind;
-};
 
 struct UnkHitLink1_b0204 {
     u8 pad_0x0[0x10];

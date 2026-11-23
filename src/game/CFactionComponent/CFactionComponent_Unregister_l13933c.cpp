@@ -3,15 +3,11 @@
 // (+0x70) from 1 to 7, it is removed from its own faction's list, then (as the original has it) never from the list of all.
 // Names and layouts are placeholders.
 #include "game/CFactionComponent.h"
+#include "game/UnkFaction_ovb0139.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 using UnkFactionNode_l13933c = UnkFactionList_ovb0139::Node;
-
-struct UnkFaction_ovb0139 {
-    u8 pad_0x0[0x70];
-    s32 kind;  // 0x70
-};
 
 static inline s32 IndexOf(UnkFactionList_ovb0139* list, UnkFaction_ovb0139* obj) {
     u32 i = 0;

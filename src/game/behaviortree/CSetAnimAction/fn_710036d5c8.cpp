@@ -4,14 +4,10 @@
 
 #include "base/global/CStrId.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkPacked.h"
 #include "types.h"
 
 using base::global::UnkStrId;
-
-template <class T>
-struct __attribute__((packed)) UnkPacked {
-    T v;
-};
 
 struct UnkNode : UnkBehaviorTreeNodeBase {
     UnkStrId field_0x30;

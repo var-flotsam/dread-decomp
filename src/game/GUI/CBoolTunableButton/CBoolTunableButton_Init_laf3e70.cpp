@@ -13,6 +13,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
+#include "game/UnkTunableLabelView_b0266.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -22,15 +23,6 @@ struct UnkStruct_71011ebdb4;
 struct UnkMissionLogButton_ovb0079;
 struct UnkRumbleTunableButton_ovb0085;
 
-struct UnkTunableLabelView_b0266 {
-    u8 pad_0x0[0x130];
-    CStrId name;
-    u8 pad_0x138[0x4c];
-    bool field_0x184;
-    u8 pad_0x185[2];
-    bool field_0x187;
-    bool field_0x188;
-};
 static_assert(__builtin_offsetof(UnkTunableLabelView_b0266, field_0x188) == 0x188, "layout");
 
 struct UnkBoolTunableButton_laf3e70 {

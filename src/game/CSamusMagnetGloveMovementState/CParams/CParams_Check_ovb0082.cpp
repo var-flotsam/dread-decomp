@@ -21,12 +21,12 @@ static inline f32 TunableAt(u32 offset) {
     return *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_717273c650) + offset);
 }
 
-struct UnkMagnetRef_ovb0082 {
+struct UnkMagnetRef_ovb0082_ovb0082 {
     u8 pad_0x0[0x10];
     void* target;
 };
 
-static inline void* RefTarget(const UnkMagnetRef_ovb0082* ref) {
+static inline void* RefTarget(const UnkMagnetRef_ovb0082_ovb0082* ref) {
     return ref ? ref->target : nullptr;
 }
 
@@ -42,7 +42,7 @@ struct UnkMagnetRequestTail_ovb0082 {
     u8 pad_0x0[0x78];
     s32 field_0x78;
     u8 pad_0x7c[0xc];
-    UnkMagnetRef_ovb0082* field_0x88;
+    UnkMagnetRef_ovb0082_ovb0082* field_0x88;
 };
 
 struct UnkMagnetMovement_ovb0082 {
@@ -68,7 +68,7 @@ struct UnkMagnetCheckState_ovb0082 {
     u8 pad_0x40[0x168];
     f32 field_0x1a8;
     f32 field_0x1ac;
-    UnkMagnetRef_ovb0082* field_0x1b0;
+    UnkMagnetRef_ovb0082_ovb0082* field_0x1b0;
     s32 field_0x1b8;
 };
 

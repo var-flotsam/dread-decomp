@@ -8,22 +8,12 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/UnkShared54Ptr.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-
-struct UnkShared54Ptr {
-    UnkCountedResource* ptr;
-
-    __attribute__((always_inline)) ~UnkShared54Ptr() {
-        if (UnkCountedResource* p = ptr) {
-            if (--p->ref_count == 0)
-                fn_710001737c(p);
-        }
-    }
-};
 
 template <char* Vtable>
 struct UnkPathRefBase {

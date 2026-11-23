@@ -1,6 +1,7 @@
 // Unit 2545 of tools/tu_map.py: refreshes a counter panel: its count text with a sound when non-zero, then
 // the panel children's alpha. Names and layouts are placeholders.
 #include <stdio.h>
+#include "base/UnkStrIdPathRecord_b48.h"
 
 #include "base/global/timeline/CEvent.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -12,9 +13,6 @@
 #include "game/UnkTU2747.h"
 #include "types.h"
 
-struct UnkStrIdPathRecord_b48 {
-    u8 data[0x18];
-};
 struct UnkIdPair;
 struct UnkStrIdPathPair;
 struct UnkDropTarget;

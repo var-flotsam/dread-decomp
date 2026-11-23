@@ -4,6 +4,7 @@
 // the owner's array at +0x88, and a copy of that id is appended to `out`. False when there is no
 // such set. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "base/UnkListedPath.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU63.h"
@@ -14,11 +15,6 @@
 using base::UnkStrIdMemberOf;
 using base::global::CFilePathStrId;
 
-// UnkListedPath and UnkFilePathList as src/base/file/CPackManagerDevice.cpp defines them.
-struct UnkListedPath {
-    UnkStrIdMemberOf<g_unk_7101d47200> id;
-    UnkListedPath* next;
-};
 struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
     UnkFilePathList() {
         vtable = &g_unk_7101a1b030[2];

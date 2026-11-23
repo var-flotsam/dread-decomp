@@ -5,23 +5,19 @@
 #include "game/UnkCollisionRecord.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkSelf.h"
 #include "types.h"
 
 using base::reflection::CClass;
 
-struct UnkComponent {
+struct UnkComponent_3bb408 {
     void** vtable;
-    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkComponent*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkComponent_3bb408*)>(vtable[0])(this); }
 };
 
 struct UnkOwner {
     u8 pad_0x0[0x2a0];
-    UnkComponent* field_0x2a0;
-};
-
-struct UnkSelf {
-    u8 pad_0x0[0x30];
-    UnkOwner* field_0x30;
+    UnkComponent_3bb408* field_0x2a0;
 };
 
 struct UnkEntry;
@@ -31,8 +27,8 @@ struct UnkEntry;
 
 void fn_71003bb408(UnkSelf* self) {
     fn_7100369650(reinterpret_cast<char*>(self));
-    UnkComponent* object = self->field_0x30->field_0x2a0;
-    UnkComponent* component = nullptr;
+    UnkComponent_3bb408* object = self->field_0x30->field_0x2a0;
+    UnkComponent_3bb408* component = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), fn_710085fc44()))
         component = object;
     UnkEntry* first = reinterpret_cast<UnkEntry*>(fn_7100864194(

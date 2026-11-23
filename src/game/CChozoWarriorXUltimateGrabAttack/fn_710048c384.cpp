@@ -4,6 +4,7 @@
 // +0x90 (0x7fffffff when there is none) and the float.
 #include "game/CChozoWarriorXUltimateGrabAttack.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkVec4.h"
 #include "types.h"
 
 using UnkAttack = UnkAnimationComponent;
@@ -16,13 +17,6 @@ struct UnkIdObject {
 struct UnkOwner {
     u8 pad_0x0[0x220];
     UnkAttack* field_0x220;
-};
-
-struct UnkVec4 {
-    f32 field_0x0;
-    f32 field_0x4;
-    f32 field_0x8;
-    f32 field_0xc;
 };
 
 struct UnkEffect {

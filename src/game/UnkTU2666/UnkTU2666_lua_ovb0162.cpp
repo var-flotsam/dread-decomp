@@ -21,6 +21,8 @@
 #include "game/CCharClassAttack.h"
 #include "game/CInventoryComponent.h"
 #include "game/CReserveTankInfo.h"
+#include "game/UnkCentralUnitEntry.h"
+#include "game/UnkCentralUnitList.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -28,6 +30,8 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkSoundEntry_A5_b76.h"
+#include "game/UnkSoundRef_A5_b76.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU1645.h"
@@ -222,14 +226,6 @@ s32 fn_7101077d50(lua_State*) {
 }
 
 struct UnkSoundMgr;
-struct UnkSoundEntry_A5_b76 {
-    void* playing;
-    u64 id;
-};
-struct UnkSoundRef_A5_b76 {
-    UnkSoundEntry_A5_b76* entry;
-    u64 id;
-};
 void fn_7100fdc7e0(void* music, const CFilePathStrId* path, f32 value);
 
 s32 fn_7101092ca0(lua_State* L) {
@@ -448,15 +444,6 @@ s32 fn_71010782d0(lua_State* L) {
 
 // ---- central units ----
 using base::reflection::UnkReflObject;
-
-struct UnkCentralUnitEntry {
-    u8 pad_0x0[0x10];
-    UnkReflObject* object;
-};
-struct UnkCentralUnitList {
-    UnkCentralUnitEntry** data;
-    u32 count;
-};
 
 s32 fn_7101095060(lua_State* L) {
     const char* name;

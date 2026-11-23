@@ -7,6 +7,7 @@
 #include "game/CCharacterMovement.h"
 #include "game/UnkAssignedSlot.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMatrix44_7100078c9c.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU54.h"
 #include "game/UnkVec3fOps.h"
@@ -16,10 +17,6 @@
 #include "types.h"
 
 using base::math::CVector2D;
-
-struct UnkMatrix44_7100078c9c {
-    f32 m[16];
-};
 
 // A reference to a counted object, released when the count drops to zero; assigned out of line.
 struct UnkDropRef_l93ff08 {

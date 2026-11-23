@@ -13,7 +13,7 @@
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
-struct UnkSpitOwnerTarget {
+struct UnkSpitOwnerTarget_3f28c8 {
     u8 pad_0x0[0x14f8];
     f32 field_0x14f8;
 };
@@ -63,7 +63,7 @@ bool fn_71003f28c8(UnkSpitAttack* self, f32 delta) {
         bool busy = fn_7100d7bea0(owner, true);
         owner = self->field_0x8;
         result = !busy && owner->field_0x240 &&
-                 static_cast<UnkSpitOwnerTarget*>(owner->field_0x240)->field_0x14f8 > self->field_0x28->field_0xfc;
+                 static_cast<UnkSpitOwnerTarget_3f28c8*>(owner->field_0x240)->field_0x14f8 > self->field_0x28->field_0xfc;
     }
 finish:
     if (owner && result) {

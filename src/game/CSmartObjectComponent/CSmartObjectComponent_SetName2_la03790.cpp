@@ -1,6 +1,7 @@
 // CSmartObjectComponent unit: sets an object's second name id (a default one when the given id is
 // empty), then builds its second "left" and "right" ids from it. Names and layouts are placeholders.
 #include "../../game_aca57c/UnkBufferString.h"
+#include "base/UnkStrIdSlot.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkBufferStringPool.h"
@@ -11,15 +12,6 @@ using base::global::CStrId;
 
 // The second name an object with an empty one gets.
 __attribute__((visibility("hidden"))) extern CStrId g_unk_7172742db0;
-
-// Room for a string id that the out-of-line constructor (fn_7100000850) builds; it is left
-// without a destructor, since its string is always handed on.
-// Here each id built in it is a temporary: handed on, then destroyed by hand.
-union UnkStrIdSlot {
-    CStrId id;
-    UnkStrIdSlot() {}
-    ~UnkStrIdSlot() {}
-};
 
 struct UnkSmartObjectNames {
     u8 pad_0x0[0x68];

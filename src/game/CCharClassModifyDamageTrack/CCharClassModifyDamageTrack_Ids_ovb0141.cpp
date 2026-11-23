@@ -6,37 +6,16 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkIdSlot_b0141.h"
+#include "game/UnkIdToken_b0141.h"
+#include "game/UnkIdTokens_b0141.h"
 #include "game/UnkTU99.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 
-struct UnkIdToken_b0141 {
-    u8 text[0x148];
-    UnkIdToken_b0141* next;  // 0x148
-};
-
-struct UnkIdTokens_b0141 {
-    char* vtable;
-    u32 count;
-    UnkIdToken_b0141* head;
-    UnkIdToken_b0141* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-    char* pool_vtable;  // 0x30
-    base::UnkAllocator* pool_parent;
-    UnkBlockFreeList pool_blocks;
-    u32 field_0x68;
-    bool field_0x6c;
-};
 struct UnkTunableTokens;
-
-union UnkIdSlot_b0141 {
-    CStrId id;
-    UnkIdSlot_b0141() {}
-    ~UnkIdSlot_b0141() {}
-};
 
 struct UnkBumpTrack_b0141 {
     u8 pad_0x0[0x18];

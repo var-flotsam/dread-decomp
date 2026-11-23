@@ -7,21 +7,9 @@
 // fn_7100c92080 (src/game/CCutSceneDef/CCutSceneDef_b42.cpp). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CLightsDef.h"
+#include "game/UnkLightsArray_b42a3.h"
+#include "game/UnkLightsElem_b42a3.h"
 #include "types.h"
-
-struct UnkLightsElem_b42a3 {
-    u8 unk_0x0[0x60];
-};
-
-struct UnkLightsArray_b42a3 {
-    UnkLightsElem_b42a3* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
 
 void fn_7100d9b128(UnkLightsElem_b42a3* self);
 void* fn_7100d9b27c(UnkLightsElem_b42a3* self, UnkLightsElem_b42a3* other);

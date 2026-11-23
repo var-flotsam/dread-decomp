@@ -21,6 +21,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkHitFlags_b152.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
@@ -226,11 +227,6 @@ struct UnkMove_b152;
 struct UnkQueryObj;
 struct UnkPlayer;
 
-struct UnkHitFlags_b152 {
-    u32 bits;
-    UnkHitFlags_b152(u32 b) : bits(b) {}
-    UnkHitFlags_b152(const UnkHitFlags_b152& o) : bits(o.bits) {}
-};
 struct UnkHitNode_dcf0 {
     u8 pad_0x0[0x10];
     UnkHitNode_dcf0* field_0x10;

@@ -2,15 +2,11 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkHashView_b0213.h"
 #include "game/UnkTU2640.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkHashView_b0213 {
-    u8 pad_0x0[0x30];
-    u64 hash;
-};
 
 struct UnkMapValue_b0213 {
     base::global::UnkStringData* id;

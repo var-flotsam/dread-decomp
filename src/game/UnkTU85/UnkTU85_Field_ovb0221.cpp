@@ -7,6 +7,7 @@
 // placeholders.
 #include <new>
 
+#include "base/UnkAssignedRecord_a1ba4.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection.h"
@@ -75,12 +76,6 @@ void fn_71000e7420(UnkReflClassEntry* self_, base::reflection::CClass* owner) {
         }
     }
 }
-
-// The reflected value's copy-assignment (declared as src/base/reflection/UnkReflResolve.cpp does, over a record of
-// UnkReflValue's size).
-struct UnkAssignedRecord_a1ba4 {
-    u64 unk_0x0[0x18 / 8];
-};
 
 // A reflected field: its offset in the object (-1 when it has an accessor), its type and its accessor.
 struct UnkReflField {

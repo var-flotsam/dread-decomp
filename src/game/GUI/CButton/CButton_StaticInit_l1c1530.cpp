@@ -4,6 +4,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/GUI/CButton.h"
+#include "game/UnkButtonClassData_l1c1530.h"
 #include "game/UnkTUInit.h"
 #include "base/reflection/TypeObject.h"
 
@@ -13,13 +14,6 @@ struct UnkButtonTUData_l1c1530 {
     f32 scale_a;  // 0x28
     f32 scale_b;  // 0x2c
     bool flag;    // 0x30
-};
-
-// The class name and the class type after it.
-struct UnkButtonClassData_l1c1530 {
-    CStrId name;
-    u8 unk_0x8[0x10];
-    UnkReflType type;  // 0x18
 };
 
 extern UnkButtonTUData_l1c1530 g_unk_7172a0d320 __attribute__((visibility("hidden")));

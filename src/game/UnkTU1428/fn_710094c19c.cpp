@@ -9,6 +9,7 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMatrix44_7100078c9c.h"
 #include "game/UnkTU1428.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU54.h"
@@ -16,10 +17,6 @@
 #include "game/logic/collision/UnkBvhTree.h"
 #include "game/logic/collision/UnkBvhTreeSweep.h"
 #include "types.h"
-
-struct UnkMatrix44_7100078c9c {
-    f32 m[16];
-};
 
 struct UnkMorphBall_fd88;
 void fn_710093fd88(UnkMorphBall_fd88* self, const u32* a, const u32* b, f32 speed);

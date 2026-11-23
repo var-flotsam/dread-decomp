@@ -1,14 +1,9 @@
 // CSluggerSpitAttack (reflection: size 0xe8): its copy constructor, out of line; the
 // descriptor's copy and move constructors (fn_71006c3c5c, fn_71006c3c60) branch to it.
 #include "game/CAttack.h"
+#include "game/UnkMember_7100331c7c.h"
 
 #include <new>
-
-// A 0x48-byte member copied out of line (fn_7100331c7c).
-struct UnkMember_7100331c7c {
-    u64 unk_0x0[9];
-    UnkMember_7100331c7c(const UnkMember_7100331c7c& other);  // fn_7100331c7c
-};
 
 struct CSluggerSpitAttack : CAttack {
     ~CSluggerSpitAttack() override;

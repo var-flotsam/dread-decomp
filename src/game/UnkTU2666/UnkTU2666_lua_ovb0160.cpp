@@ -28,6 +28,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkLuaReadScratch_b49a6.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2523.h"
@@ -670,10 +671,6 @@ s32 fn_7101077770(lua_State* L) {
 struct UnkEnumInfo;
 
 UnkReflValue fn_7100fbdfd0(lua_State* L, s32 index);
-
-struct UnkLuaReadScratch_b49a6 {
-    u64 words[6];
-};
 
 // The value's storage: through field_0x0 when flagged or when it doesn't fit in 8 bytes, else inline.
 static inline u64 TypeSize(const CType* type) {

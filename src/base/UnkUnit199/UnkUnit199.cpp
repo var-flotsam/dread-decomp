@@ -1,11 +1,8 @@
 // Unit 199 of tools/tu_map.py (0x71001695ec-0x710016974c): a perspective's parameters (field of
 // view, never below 0, aspect and near and far distances) turned into its projection matrix
 // (fn_7100079a04) at +0x60 of a target. Names and layouts are placeholders.
+#include "game/UnkMat4f.h"
 #include "types.h"
-
-struct UnkMat4f {
-    f32 m[4][4];
-};
 
 UnkMat4f fn_7100079a04(f32 fov, f32 aspect, f32 near_z, f32 far_z);
 

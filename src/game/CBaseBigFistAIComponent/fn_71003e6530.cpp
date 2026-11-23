@@ -4,12 +4,8 @@
 // run ends with a point on the limit line (and a last one level with the origin). The sign of the
 // direction's y picks the side. The unused first parameter is the owner.
 #include "game/UnkTU108.h"
+#include "game/UnkVec2.h"
 #include "types.h"
-
-struct UnkVec2 {
-    f32 x;
-    f32 y;
-};
 
 struct UnkVec3 {
     f32 x;

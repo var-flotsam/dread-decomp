@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkBox2D.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
@@ -62,10 +63,6 @@ struct UnkEntityBox {
 };
 struct UnkEntityBounds;
 
-struct UnkBox2D {
-    f32 x0, y0;
-    f32 x1, y1;
-};
 struct UnkContactPoint_ovb0069 {
     u8 data[0x2c];
 };

@@ -7,20 +7,12 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkGrappleAnswer_b50.h"
 #include "types.h"
 
 struct UnkIdHolder_b50gb {
     u8 pad_0x0[0x30];
     u64 id;
-};
-
-// The answer, built in place (not trivially copyable: returned in memory).
-struct UnkGrappleAnswer_b50 {
-    void* field_0x0;
-    u32 field_0x8;
-
-    UnkGrappleAnswer_b50() : field_0x0(nullptr), field_0x8(0) {}
-    UnkGrappleAnswer_b50(const UnkGrappleAnswer_b50& other);
 };
 
 struct UnkGrappleRecord_b50 {

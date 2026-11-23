@@ -6,15 +6,12 @@
 #include <new>
 
 #include "base/global/CRntVector.h"
+#include "game/UnkKeyRequest_b0197.h"
 #include "game/UnkTU208.h"
 #include "game/UnkTU211.h"
 #include "types.h"
 
 struct UnkKeyPlayer_b0197;
-struct UnkKeyRequest_b0197 {
-    u32 kind_0x0;
-    u32 mode_0x4;
-};
 struct UnkValueNode;
 struct UnkNodeOwner;
 struct UnkGridEmitter_ovb0167;

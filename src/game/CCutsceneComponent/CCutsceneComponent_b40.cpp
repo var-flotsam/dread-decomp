@@ -5,34 +5,17 @@
 // (fn_710106bcfc). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkActor.h"
+#include "game/UnkCutsceneComponent_cs.h"
+#include "game/UnkCutsceneObject_cs.h"
 #include "game/UnkTU2661.h"
 #include "game/UnkTU83.h"
+#include "game/UnkTake_cs.h"
+#include "game/UnkVec3_cs.h"
 #include "types.h"
-
-struct UnkVec3_cs {
-    f32 x, y, z;
-};
 
 static inline UnkVec3_cs Add_cs(const UnkVec3_cs& a, const UnkVec3_cs& b) {
     return {a.x + b.x, a.y + b.y, a.z + b.z};
 }
-
-struct UnkTake_cs {
-    const base::global::CStrId* name;
-};
-
-struct UnkCutsceneObject_cs {
-    u8 pad_0x0[0x178];
-    UnkTake_cs* take;
-};
-
-struct UnkCutsceneComponent_cs {
-    u8 pad_0x0[0x18];
-    UnkActor* actor;
-    u8 pad_0x20[0x38];
-    u8 field_0x58[0x1a8];
-    UnkCutsceneObject_cs* object;  // 0x200
-};
 
 void fn_71007a9d8c(UnkCutsceneComponent_cs* self) {
     UnkCutsceneObject_cs* object = self->object;

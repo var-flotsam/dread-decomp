@@ -9,10 +9,10 @@
 
 using namespace base::global;
 
-struct UnkString30 {
+struct UnkString30_e6c960 {
     u64 field_0x0[6];
 
-    __attribute__((always_inline)) ~UnkString30() { CRntString_Destroy(reinterpret_cast<CRntString*>(this)); }
+    __attribute__((always_inline)) ~UnkString30_e6c960() { CRntString_Destroy(reinterpret_cast<CRntString*>(this)); }
 };
 
 struct UnkIdsString {
@@ -20,7 +20,7 @@ struct UnkIdsString {
     u64 field_0x8;
     UnkStrIdTwoStep field_0x10;
     UnkStrIdTwoStep field_0x18;
-    UnkString30 field_0x20;
+    UnkString30_e6c960 field_0x20;
 
     __attribute__((always_inline)) ~UnkIdsString() { CRntString_Clear(reinterpret_cast<CRntString*>(&field_0x20)); }
 };

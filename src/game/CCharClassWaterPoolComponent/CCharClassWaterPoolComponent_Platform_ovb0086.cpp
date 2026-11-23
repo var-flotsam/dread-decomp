@@ -14,6 +14,7 @@
 #include "game/UnkComponent.h"
 #include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
+#include "game/UnkWaterPoolPlatform_b0086.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -60,8 +61,6 @@ UnkWaterPoolIterValue_b0086* fn_710090c404(UnkWaterPoolIterValue_b0086* self, Un
     dst.field_0x40 = src.field_0x40;
     return self;
 }
-
-struct UnkWaterPoolPlatform_b0086 : UnkWeakTarget {};
 
 struct UnkWaterPoolComponent_b0086 {
     virtual void vf_0x0();

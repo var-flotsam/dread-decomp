@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -18,8 +19,6 @@ extern CStrId g_unk_717272dec0 __attribute__((visibility("hidden")));  // CLandm
 extern CType g_unk_717272dec8 __attribute__((visibility("hidden")));   // its type
 extern CStrId g_unk_71727358a8 __attribute__((visibility("hidden")));  // CLogicCameraComponent's id
 extern CType g_unk_71727358b0 __attribute__((visibility("hidden")));   // its type
-
-UnkReflObject* fn_710024e2e8(UnkGameManagerIdList* list, void* key);
 
 #define FIND_COMPONENT(FN, ID, TYPE, GETCLASS)                                                \
     UnkReflObject* FN(void* key) {                                                            \

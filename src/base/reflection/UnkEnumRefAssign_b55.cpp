@@ -3,9 +3,8 @@
 // references; the enum's own reference is built by fn_71000a174c.
 #include "base/UnkCloneHelpers.h"
 #include "base/reflection.h"
+#include "base/reflection/CType.h"
 #include "types.h"
-
-bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const base::reflection::UnkTypedRef* src);
 
 using base::reflection::CType;
 using base::reflection::UnkTypedRef;

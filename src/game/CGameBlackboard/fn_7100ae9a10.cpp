@@ -4,28 +4,11 @@
 #include "base/global/CStrId.h"
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkGameBlackboard.h"
+#include "game/UnkInlineString.h"
+#include "game/UnkStringUse.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
-
-// A string with 0x80 bytes of inline storage (the string part is 0x30 bytes, followed by
-// its inline allocator).
-struct UnkInlineString {
-    u8 str[0x30];
-    void** vtable;
-    u8 buffer[0x80];
-    u64 field_0xb8;
-    u32 field_0xc0;
-};
-
-// The string data's use count, a union member like ref_count (no type-based alias info, so
-// the id is reloaded after the increment).
-struct UnkStringUse {
-    u8 unk_0x0[0x44];
-    union {
-        u32 use_count;
-    };
-};
 
 // The id's string (a CRntString at +0x10 of the string data), with its use count raised.
 static inline const base::global::CRntString* UseStr(const CStrId& id) {

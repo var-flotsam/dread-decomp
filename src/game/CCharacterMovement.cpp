@@ -5,6 +5,7 @@
 // normal faces the direction closely enough.
 #include "base/UnkDestructors.h"
 #include "base/math/CVector.h"
+#include "game/UnkAssignedSlot.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
@@ -12,12 +13,6 @@
 
 using base::math::CVector2D;
 using base::math::CVector3D;
-
-// The out-of-line assignment both hit references share (declared as the other hand-written files
-// do).
-struct UnkAssignedSlot {
-    void* ptr;
-};
 
 // A reference to a counted object (base::UnkRefCounted), released when the count drops to zero.
 // The second one keeps its pointer in a union: the original reloads it after the count increment.

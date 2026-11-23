@@ -18,6 +18,7 @@
 #include "game/CAudioComponent.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkCountedA5_b76.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU2523.h"
@@ -309,16 +310,6 @@ UnkIterValue_b0220* fn_7100d878b0(UnkIterValue_b0220* self, UnkIterValue_b0220* 
     }
     return self;
 }
-
-// ---- Handle sources behind a lazily resolved handle (state 1 becomes 2): equality of the iterator values
-// of two arrays of them, and the copy assignment of one ----
-// As src/game/CAccessPointCommanderComponent/CAccessPointCommanderComponent_Handle_ovb0085.cpp declares them.
-struct UnkCountedA5_b76 : base::UnkRefCounted {
-    union {
-        void* field_0x10;
-        u64 raw_0x10;
-    };
-};
 
 using UnkRef = base::UnkRefPtrMember;
 

@@ -13,6 +13,7 @@
 #include "base/math/CVector.h"
 #include "game/CAIManager/CTunableAIManager.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkLuaStrData.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU1629.h"
 #include "game/UnkTU2553.h"
@@ -47,11 +48,6 @@ struct UnkLuaDoorState {
 };
 UnkLuaDoorState* fn_7100acc8a8(UnkLuaDoorTarget* target, const CStrId& name);
 void* fn_7100acc5ec(UnkLuaDoorTarget* target, void* object);
-
-struct UnkLuaStrData {
-    u8 pad_0x0[0x30];
-    u64 hash;  // 0x30
-};
 
 void fn_7100fbbaa4(UnkLuaDoorTarget* self) {
     for (u64 i = 0; i < self->item_count; ++i)

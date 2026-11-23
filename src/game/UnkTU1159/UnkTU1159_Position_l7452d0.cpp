@@ -1,6 +1,7 @@
 // Unit 1159 (no name hint). fn_71007452d0: an object's position (+0x2c) plus its offset (+0xac); when
 // the mode at +0xd8 is not 1 and it has an owner (+0x10), scaled by the owner's scale (+0x28) and
 // moved by the owner's world position. Names and layouts are placeholders.
+#include "game/UnkVec3_1161_b42.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -22,11 +23,6 @@ struct UnkOffsetObj_1159_l7452d0 {
 
 // Defined in src/game/UnkUnit1161/UnkUnit1161_b42.cpp.
 struct UnkPoint_1161_b42;
-struct UnkVec3_1161_b42 {
-    f32 x, y, z;
-    UnkVec3_1161_b42(f32 x, f32 y, f32 z) : x(x), y(y), z(z) {}
-    UnkVec3_1161_b42(const UnkVec3_1161_b42& o) : x(o.x), y(o.y), z(o.z) {}
-};
 UnkVec3_1161_b42 fn_7100745f80(const UnkPoint_1161_b42* self);
 
 UnkVec3f fn_71007452d0(const UnkOffsetObj_1159_l7452d0* self) {

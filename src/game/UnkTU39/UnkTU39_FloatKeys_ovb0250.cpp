@@ -15,21 +15,21 @@ using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
 using base::global::CStrId;
 
-struct UnkKeyNode_b0250 {
+struct UnkKeyNode_b0250_ovb0250 {
     CStrId id;
     f32 value;
     union {
         f32 value2;
         u32 value2_bits;
     };
-    UnkKeyNode_b0250* next;
+    UnkKeyNode_b0250_ovb0250* next;
 };
 
 struct UnkKeyList_b0250 {
     void** vtable;
     u32 count;
-    UnkKeyNode_b0250* head;
-    UnkKeyNode_b0250* tail;
+    UnkKeyNode_b0250_ovb0250* head;
+    UnkKeyNode_b0250_ovb0250* tail;
     base::UnkAllocator* allocator;
     u32 tag;
     UnkDeferredSet<UnkDeferredCallback<f32>> on_change;  // 0x30
@@ -38,9 +38,9 @@ struct UnkKeyList_b0250 {
 void fn_7100030ce0(void* list) {
     UnkKeyList_b0250* self = static_cast<UnkKeyList_b0250*>(list);
     f32 old = self->count ? self->tail->value : 0.0f;
-    UnkKeyNode_b0250* node = self->head;
+    UnkKeyNode_b0250_ovb0250* node = self->head;
     if (node) {
-        UnkKeyNode_b0250* next = node->next;
+        UnkKeyNode_b0250_ovb0250* next = node->next;
         for (;;) {
             node->id.Reset();
             self->allocator->vf_0x48(node);
@@ -62,7 +62,7 @@ void fn_7100030fc0(void* list, const void* key_ptr, f32 value) {
     UnkKeyList_b0250* self = static_cast<UnkKeyList_b0250*>(list);
     const CStrId* key = static_cast<const CStrId*>(key_ptr);
     f32 old = self->count ? self->tail->value : 0.0f;
-    UnkKeyNode_b0250* found = self->head;
+    UnkKeyNode_b0250_ovb0250* found = self->head;
     for (; found; found = found->next) {
         if (found->id.data == key->data)
             break;
@@ -72,9 +72,9 @@ void fn_7100030fc0(void* list, const void* key_ptr, f32 value) {
         found->value2_bits = 0xbf800000;
     } else {
         CStrId tmp(*key);
-        void* mem = self->allocator->vf_0x40(sizeof(UnkKeyNode_b0250), 8, self->tag);
+        void* mem = self->allocator->vf_0x40(sizeof(UnkKeyNode_b0250_ovb0250), 8, self->tag);
         if (mem) {
-            UnkKeyNode_b0250* node = static_cast<UnkKeyNode_b0250*>(mem);
+            UnkKeyNode_b0250_ovb0250* node = static_cast<UnkKeyNode_b0250_ovb0250*>(mem);
             node->id.data = tmp.data;
             tmp.data = &g_unk_7101d47108->empty;
             node->value = value;
@@ -85,7 +85,7 @@ void fn_7100030fc0(void* list, const void* key_ptr, f32 value) {
                 self->tail = node;
                 self->count = 1;
             } else {
-                UnkKeyNode_b0250* last = self->tail;
+                UnkKeyNode_b0250_ovb0250* last = self->tail;
                 last->next = node;
                 node->next = nullptr;
                 self->tail = node;
@@ -101,7 +101,7 @@ void fn_7100031140(void* list, const void* key_ptr, f32 value2, f32 value) {
     UnkKeyList_b0250* self = static_cast<UnkKeyList_b0250*>(list);
     const CStrId* key = static_cast<const CStrId*>(key_ptr);
     f32 old = self->count ? self->tail->value : 0.0f;
-    UnkKeyNode_b0250* found = self->head;
+    UnkKeyNode_b0250_ovb0250* found = self->head;
     for (; found; found = found->next) {
         if (found->id.data == key->data)
             break;
@@ -111,9 +111,9 @@ void fn_7100031140(void* list, const void* key_ptr, f32 value2, f32 value) {
         found->value2 = value2;
     } else {
         CStrId tmp(*key);
-        void* mem = self->allocator->vf_0x40(sizeof(UnkKeyNode_b0250), 8, self->tag);
+        void* mem = self->allocator->vf_0x40(sizeof(UnkKeyNode_b0250_ovb0250), 8, self->tag);
         if (mem) {
-            UnkKeyNode_b0250* node = static_cast<UnkKeyNode_b0250*>(mem);
+            UnkKeyNode_b0250_ovb0250* node = static_cast<UnkKeyNode_b0250_ovb0250*>(mem);
             node->id.data = tmp.data;
             tmp.data = &g_unk_7101d47108->empty;
             node->value = value;
@@ -124,7 +124,7 @@ void fn_7100031140(void* list, const void* key_ptr, f32 value2, f32 value) {
                 self->tail = node;
                 self->count = 1;
             } else {
-                UnkKeyNode_b0250* last = self->tail;
+                UnkKeyNode_b0250_ovb0250* last = self->tail;
                 last->next = node;
                 node->next = nullptr;
                 self->tail = node;
@@ -140,17 +140,17 @@ void fn_71000312c4(void* list, const void* key_ptr) {
     UnkKeyList_b0250* self = static_cast<UnkKeyList_b0250*>(list);
     const CStrId* key = static_cast<const CStrId*>(key_ptr);
     f32 old = self->count ? self->tail->value : 0.0f;
-    UnkKeyNode_b0250** head_slot = &self->head;
-    UnkKeyNode_b0250* first = *head_slot;
-    UnkKeyNode_b0250* node = first;
+    UnkKeyNode_b0250_ovb0250** head_slot = &self->head;
+    UnkKeyNode_b0250_ovb0250* first = *head_slot;
+    UnkKeyNode_b0250_ovb0250* node = first;
     for (; node; node = node->next) {
         if (node->id.data == key->data)
             break;
     }
     if (node) {
-        UnkKeyNode_b0250* prev;
-        UnkKeyNode_b0250* last = nullptr;
-        UnkKeyNode_b0250* walk = first;
+        UnkKeyNode_b0250_ovb0250* prev;
+        UnkKeyNode_b0250_ovb0250* last = nullptr;
+        UnkKeyNode_b0250_ovb0250* walk = first;
         bool removed = false;
         while (walk) {
             prev = last;

@@ -4,6 +4,10 @@
 // flag at +0x18 is set, the entries of the object at +0x50 of its component (+0x228) are reset.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkCutsceneActorComponent_ovb0062.h"
+#include "game/UnkCutsceneActorEntity_ovb0062.h"
+#include "game/UnkCutsceneActorEvent_ovb0062.h"
+#include "game/UnkCutsceneActorState_ovb0062.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU253.h"
 #include "game/UnkTU2730.h"
@@ -14,27 +18,6 @@ using base::global::CStrId;
 
 struct UnkStruct_71002334fc;
 struct UnkResetOwner;
-
-struct UnkCutsceneActorState_ovb0062 {
-    u8 unk_0x0[0x138];
-    UnkResetOwner* entries;  // 0x138
-};
-
-struct UnkCutsceneActorComponent_ovb0062 {
-    u8 unk_0x0[0x50];
-    UnkCutsceneActorState_ovb0062* state;  // 0x50
-};
-
-struct UnkCutsceneActorEntity_ovb0062 {
-    u8 unk_0x0[0x228];
-    UnkCutsceneActorComponent_ovb0062* component;  // 0x228
-};
-
-struct UnkCutsceneActorEvent_ovb0062 {
-    u8 unk_0x0[0x10];
-    CStrId actor;  // 0x10
-    bool flag;     // 0x18
-};
 
 void fn_7100cda490(UnkCutsceneActorEvent_ovb0062* self, UnkCutsceneActorEntity_ovb0062** owner) {
     if (!*owner)

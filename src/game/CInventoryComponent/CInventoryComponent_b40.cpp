@@ -4,15 +4,12 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkStrIdHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
 
-struct UnkStrIdHandle {
-    CStrId id;
-    void* field_0x8;
-};
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 
 struct UnkKeyData_b40a3 {

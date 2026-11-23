@@ -23,8 +23,12 @@
 #include "base/tunable/CTunable.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiLayout_b0209.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkGuiScreen_b0209.h"
+#include "game/UnkGuiWidget_b0209.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkScreenSize_b0209.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2669.h"
@@ -270,56 +274,9 @@ bool fn_71011b3778(UnkGuiFlags_b0209* self) {
 
 // ---- fn_71011b33cc: the scale of the second layout against the screen size ----
 
-struct UnkGuiWidget_b0209 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58(f32 value);
-    virtual void vf_0x60();
-    virtual void vf_0x68();
-    virtual void vf_0x70();
-    virtual void vf_0x78();
-    virtual void vf_0x80();
-    virtual void vf_0x88();
-};
-
-struct UnkGuiLayout_b0209 {
-    u8 pad_0x0[8];
-    s32 kind;  // 0x8
-    u8 pad_0xc[0x18];
-    f32 width;  // 0x24
-    u8 pad_0x28[4];
-    f32 height;  // 0x2c
-    u8 pad_0x30[0x18];
-};
 static_assert(sizeof(UnkGuiLayout_b0209) == 0x48, "layout");
 
-struct UnkGuiScreen_b0209 {
-    u8 pad_0x0[0x40];
-    UnkGuiLayout_b0209* layouts;  // 0x40
-    u8 pad_0x48[8];
-    u32 layout_count;  // 0x50
-    u8 pad_0x54[0x14];
-    UnkGuiWidget_b0209* target;  // 0x68
-    u8 pad_0x70[0xd28];
-    u8 pad_0xd98[8];
-    f32 scale_x;  // 0xda0
-    f32 scale_y;  // 0xda4
-};
 static_assert(__builtin_offsetof(UnkGuiScreen_b0209, scale_x) == 0xda0, "layout");
-
-struct UnkScreenSize_b0209 {
-    f32 width;
-    f32 height;
-};
 
 static inline UnkScreenSize_b0209 ScreenSize() {
     f32 w = static_cast<f32>(fn_7100132fc0());

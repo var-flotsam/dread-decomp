@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkRecord_7101147868.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -57,16 +58,6 @@ static inline bool HasItem(UnkInventory_7101147868* self, UnkPropertyEx<>& item)
     return false;
 }
 
-struct UnkRecord_7101147868 {
-    CStrId field_0x0;
-    base::UnkStrIdMember field_0x8;
-    u64 field_0x10;
-    u32 field_0x18;
-
-    // Takes the ids by value: the caller destroys the argument copies after the append, and
-    // keeps their final stores (as references to temporaries, those stores are dropped).
-    UnkRecord_7101147868(CStrId name, CStrId value) asm("fn_7100ec4240");
-};
 void fn_71003af880(base::global::CRntVector<UnkRecord_7101147868>* self, UnkRecord_7101147868&& value);
 
 

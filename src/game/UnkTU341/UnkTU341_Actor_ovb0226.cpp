@@ -19,8 +19,15 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/CGameObject.h"
 #include "game/UnkCallbackSetVector.h"
+#include "game/UnkCameraCallbackBase_ovb0070.h"
+#include "game/UnkLinkHandle_b54a1.h"
+#include "game/UnkRcObject.h"
+#include "game/UnkRcRef.h"
+#include "game/UnkRcRefArray.h"
+#include "game/UnkShared54Ptr.h"
 #include "game/UnkTU32.h"
 #include "game/UnkTU341.h"
+#include "game/UnkXformStaticZero32.h"
 #include "game/lua_lib.h"
 #include "game_s2/UnkWeakHandle.h"
 #include <new>
@@ -675,46 +682,6 @@ void fn_71002486a8(UnkNodeMap_710025ad0c* map, UnkNode_710025ad0c* node) {
 }
 
 
-struct UnkRcObject {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    union {
-        u32 field_0x8;
-    };
-};
-
-struct UnkRcRef {
-    UnkRcObject* ptr;
-
-    ~UnkRcRef() { Release(); }
-    UnkRcRef(const UnkRcRef& other) {
-        __builtin_memset(&ptr, 0, sizeof(ptr));
-        UnkRcObject* o = other.ptr;
-        if (o) {
-            ++o->field_0x8;
-            Release();
-            ptr = o;
-        }
-    }
-
-    void Release() {
-        UnkRcObject* o = ptr;
-        if (o && --o->field_0x8 == 0)
-            o->vf_0x10();
-    }
-};
-
-struct UnkRcRefArray {
-    UnkRcRef* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 struct UnkTag_7100241b30;
 template <class Tag>
 struct UnkSlotArray;
@@ -787,17 +754,6 @@ void fn_7100231fd4(void* member);  // the destructor of the component map at +0x
 struct UnkCameraCtrl_ovb0049;
 
 
-struct UnkShared54Ptr {
-    UnkCountedResource* ptr;
-
-    __attribute__((always_inline)) ~UnkShared54Ptr() {
-        if (UnkCountedResource* p = ptr) {
-            if (--p->ref_count == 0)
-                fn_710001737c(p);
-        }
-    }
-};
-
 // The string id, file path and resource a path reference holds; fn_7100027044 runs before the three
 // are released.
 struct UnkPathRes_7100231e80 {
@@ -845,12 +801,6 @@ void fn_7100231e80(UnkEntityDtor* self) {
     fn_7101043934(reinterpret_cast<UnkCameraCtrl_ovb0049*>(self));
 }
 
-
-// A zero whose constructor isn't constexpr, so the static is guarded.
-struct UnkXformStaticZero32 {
-    u32 value;
-    UnkXformStaticZero32() : value(0) {}
-};
 
 inline const UnkXformStaticZero32& UnkXformStaticZero() {
     static UnkXformStaticZero32 s_value asm("g_unk_7101d4ec40");
@@ -1259,11 +1209,6 @@ void fn_7100240594(UnkPoolList_7100240594* self, const UnkPoolList_7100240594* o
 }
 
 
-struct UnkLinkHandle_b54a1 {
-    u8 pad_0x0[0x10];
-    void* target;
-};
-
 // A link, as src/game/CActor/UnkLinkVectorEqual_b54.cpp has it.
 struct UnkLink_7100245c4c {
     u8 pad_0x0[0x8];
@@ -1416,18 +1361,6 @@ UnkIterValue_7100245dfc* fn_7100245dfc(UnkIterValue_7100245dfc* self, UnkIterVal
 
 struct UnkCountedLink_b0226 : base::UnkRefCounted {
     void* field_0x10;
-};
-
-// The callback set behind a lazily resolved handle: callbacks at +0x8, the state at +0x30 (1: not
-// resolved yet, 2: resolved) and the handle at +0x38. The base copy constructor is
-// fn_7100da4dcc (the same as src/game/CLogicCamera/CLogicCamera_Value_ovb0070.cpp's).
-struct UnkCameraCallbackBase_ovb0070 {
-    void** vtable;
-    UnkOwnedErasedVector callbacks;
-    u32 state;
-
-    UnkCameraCallbackBase_ovb0070(const UnkCameraCallbackBase_ovb0070& other) asm("fn_7100da4dcc");
-    ~UnkCameraCallbackBase_ovb0070() { vtable = &g_unk_7101a20998[2]; }
 };
 
 struct UnkLinkCallbackSet_b0226 : UnkCameraCallbackBase_ovb0070 {

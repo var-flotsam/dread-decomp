@@ -3,21 +3,11 @@
 // transform's depth for both corners. Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "base/spatial/COBox2D.h"
+#include "game/UnkOBoxPlacement.h"
+#include "game/UnkOBoxShape2D.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-// The box copied member by member (as UnkPlacement2D in src/game/UnkCollisionContacts.cpp).
-struct UnkOBoxPlacement : base::spatial::COBox2D {
-    UnkOBoxPlacement(const UnkOBoxPlacement& o)
-        : COBox2D{{o.center.x, o.center.y}, {o.axis_x.x, o.axis_x.y}, {o.axis_y.x, o.axis_y.y},
-                  {o.size.x, o.size.y}, o.offset, o.angle} {}
-};
-
-struct UnkOBoxShape2D {
-    u8 pad_0x0[0xa8];
-    UnkOBoxPlacement placement;  // 0xa8
-};
 
 // An axis-aligned 2D box, returned in memory.
 struct UnkAABox2D_ld68654 {

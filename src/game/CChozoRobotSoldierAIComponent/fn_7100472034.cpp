@@ -3,17 +3,13 @@
 #include "game/CAnimationComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkSelf.h"
 #include "types.h"
 
 struct UnkOwner {
     u8 pad_0x0[0x218];
     void* field_0x218;
     UnkAnimationComponent* field_0x220;
-};
-
-struct UnkSelf {
-    u8 pad_0x0[0x30];
-    UnkOwner* field_0x30;
 };
 
 bool fn_7100472034(UnkSelf* self) {

@@ -19,6 +19,7 @@
 #include "game/UnkGameManager.h"
 #include "../../game_s7/UnkPropBagS7.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkLuaVec3_b0164.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2666.h"
@@ -236,10 +237,6 @@ s32 fn_710108f3d0(lua_State* L) {
     return fn_71010c0b40(L, "b", fn_71011428bc(static_cast<UnkInventory*>(object), reinterpret_cast<const UnkQualifiedId&>(handle)));
 }
 
-struct UnkLuaVec3_b0164 {
-    f32 x, y, z;
-    UnkLuaVec3_b0164() : x(0.0f), y(0.0f), z(0.0f) {}
-};
 void fn_7100df2dd4(UnkGameManager* self, const CStrId& a, u8 b1, u8 b2, u8 b3, u8 b4, u8 b5, const CStrId& c,
                    const CStrId& d, const UnkLuaVec3_b0164& v);
 

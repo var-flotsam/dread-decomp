@@ -6,6 +6,7 @@
 #include "base/UnkPooledStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkElem40Array_b42a3.h"
 #include "game/UnkTU2200.h"
 #include "types.h"
 
@@ -26,15 +27,6 @@ static_assert(sizeof(UnkCutSceneEntry_lc92508) == 0x40, "layout");
 
 // The array as the unit's other files declare it; its elements are the entries above.
 struct UnkElem40_b42a3;
-struct UnkElem40Array_b42a3 {
-    UnkElem40_b42a3* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
 
 void fn_7100c92508(UnkElem40Array_b42a3* self, const UnkElem40_b42a3* value, u32 index) {
     if (index == self->count) {

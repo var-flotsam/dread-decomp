@@ -5,6 +5,8 @@
 
 #include <new>
 
+#include "base/AudioOutParameter.h"
+#include "base/UnkAtkHeap.h"
 #include "base/UnkDefaultAllocator.h"
 #include "base/animation/CBlendSpace1D.h"
 #include "base/global/CRntDictionary.h"
@@ -57,32 +59,32 @@ using base::global::CFilePathStrId;
 using base::global::CRntString;
 
 // A string with 0x80 bytes of inline storage (as in src/game/GUI/CIngameMenu/fn_7100b2de48.cpp).
-struct UnkInlineString {
+struct UnkInlineString_CSoundSystemATK {
     u8 str[0x30];
     void** vtable;
     u8 buffer[0x80];
     u64 field_0xb8;
     u32 field_0xc0;
 
-    UnkInlineString() {
+    UnkInlineString_CSoundSystemATK() {
         CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::UnkAllocator*>(&vtable));
         field_0xb8 = 0;
         field_0xc0 = 0;
         vtable = &g_unk_7101a1b750[2];
     }
     // The second string's order of stores differs in the original.
-    explicit UnkInlineString(int) {
+    explicit UnkInlineString_CSoundSystemATK(int) {
         CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::UnkAllocator*>(&vtable));
         field_0xb8 = 0;
         vtable = &g_unk_7101a1b750[2];
         field_0xc0 = 0;
     }
-    ~UnkInlineString() {
+    ~UnkInlineString_CSoundSystemATK() {
         CRntString_Clear(reinterpret_cast<CRntString*>(this));
         CRntString_Destroy(reinterpret_cast<CRntString*>(this));
     }
 };
-static_assert(sizeof(UnkInlineString) == 0xc8, "UnkInlineString layout");
+static_assert(sizeof(UnkInlineString_CSoundSystemATK) == 0xc8, "UnkInlineString_CSoundSystemATK layout");
 
 // The id map: sanitised ids by the hash of the id they were made from.
 struct UnkIdMap : base::global::CRntDictionary<u64, CFilePathStrId> {};
@@ -124,7 +126,7 @@ CFilePathStrId fn_71000f63b0(const CFilePathStrId& id) {
     ++*reinterpret_cast<alias_s32*>(name + 0x44);
     char lower[128];
     const CRntString* source_name = reinterpret_cast<const CRntString*>(reinterpret_cast<char*>(id.data) + 0x10);
-    UnkInlineString text;
+    UnkInlineString_CSoundSystemATK text;
     CRntString_Assign(reinterpret_cast<CRntString*>(&text), source_name);
     lower[0] = 0;
     u64 full_length = __builtin_strlen(*reinterpret_cast<const char**>(&text));
@@ -138,7 +140,7 @@ CFilePathStrId fn_71000f63b0(const CFilePathStrId& id) {
         lower[length] = 0;
     }
     {
-        UnkInlineString other(0);
+        UnkInlineString_CSoundSystemATK other(0);
         CRntString_AssignCString(reinterpret_cast<CRntString*>(&other), lower);
         CRntString_Assign(reinterpret_cast<CRntString*>(&text), reinterpret_cast<CRntString*>(&other));
     }
@@ -310,10 +312,10 @@ struct UnkBuiltPathId {
 };
 
 // Storage for a file-path id whose release is written out by hand.
-union UnkPathIdSlot {
+union UnkPathIdSlot_CSoundSystemATK {
     CFilePathStrId id;
-    UnkPathIdSlot() {}
-    ~UnkPathIdSlot() {}
+    UnkPathIdSlot_CSoundSystemATK() {}
+    ~UnkPathIdSlot_CSoundSystemATK() {}
 };
 
 // The text of a file-path id's pooled data (a CRntString at +0x10), with the count of its reads at
@@ -351,7 +353,7 @@ bool fn_7100100b1c(UnkSoundSystemATK* self, const CFilePathStrId& path) {
             }
             // The sanitised id, released by hand on its data pointer read once: the original knows
             // that nothing below changes the id (its fn_71000f63b0 does not keep the address).
-            UnkPathIdSlot slot;
+            UnkPathIdSlot_CSoundSystemATK slot;
             new (&slot.id) CFilePathStrId(fn_71000f63b0(UnkBuiltPathId(name).id));
             base::global::UnkStringData* data = slot.id.data;
             if (files->field_0x4d0) {
@@ -432,7 +434,7 @@ f32 fn_71000fe1f8(UnkSoundSystemATK* self, const CFilePathStrId& path) {
         fn_7100132cd0();
         nn::os::MutexType* mutex = &reinterpret_cast<UnkSoundSystemVoices*>(self)->field_0x400568;
         fn_710006691c(mutex);
-        UnkPathIdSlot slot;
+        UnkPathIdSlot_CSoundSystemATK slot;
         new (&slot.id) CFilePathStrId(fn_71000f63b0(path));
         base::global::UnkStringData* data = slot.id.data;
         u64 key = *reinterpret_cast<u64*>(reinterpret_cast<char*>(data) + 0x30);
@@ -653,11 +655,6 @@ void fn_71000ffa68(UnkSoundSystemATK* self, UnkSoundHandle* sound, bool immediat
 // audio output; the port's runtime has neither these nor nn::os::SystemEvent, so those are spelled
 // out here with the console's layout (an event and its state byte at +0x28).
 namespace nn::audio {
-struct AudioOutParameter {
-    u32 sample_rate;
-    u16 channel_count;
-    u16 reserved;
-};
 struct AudioOut {
     u8 storage[0x168];
 };
@@ -711,19 +708,6 @@ static inline bool CanOpenAudioOut() {
     return result == 0;
 }
 
-// The sound engine's heaps: a sub-allocator over a static block, the engine's own heap object over
-// the same memory at +0x40, and a hook run after every allocation (with the heap; it may replace
-// the result at +0x48).
-struct UnkAtkHeap {
-    u64 field_0x0;
-    base::UnkSubAllocator allocator;  // 0x8
-    u8 heap[8];                       // 0x40, nn::atk's
-    void* last;                       // 0x48
-    void (*hook)(void* arg, UnkAtkHeap* heap);
-    void* hook_arg;
-    u64 field_0x60;
-    u64 field_0x68;
-};
 static_assert(__builtin_offsetof(UnkAtkHeap, field_0x68) == 0x68, "UnkAtkHeap placeholder layout");
 
 static inline void* Allocate(UnkAtkHeap* heap, u64 size, u64 align) {

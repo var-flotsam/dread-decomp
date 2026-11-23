@@ -10,6 +10,8 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkBvhBox.h"
+#include "game/UnkBvhShape.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU55.h"
 #include "game/logic/collision/UnkColliderResult.h"
@@ -274,39 +276,6 @@ UnkColliderResult fn_7100d5823c(UnkReflObject* objA, UnkReflObject* objB, const 
         return result;
     }
 }
-
-// A shape placed in a tree query (as in src/game_hi/fn_7100d5bfbc.cpp): its cached 2D bounds,
-// refreshed through vf_0x98 when marked dirty.
-struct UnkBvhBox {
-    f32 minX, minY, maxX, maxY;
-};
-
-struct UnkBvhShape {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual void vf_0x68();
-    virtual void vf_0x70();
-    virtual void vf_0x78();
-    virtual void vf_0x80();
-    virtual void vf_0x88();
-    virtual void vf_0x90();
-    virtual void RefreshBounds();  // vf_0x98
-    u8 unk_0x8[0x38];
-    UnkBvhBox bounds;  // 0x40
-    u8 unk_0x50[0x10];
-    bool boundsDirty;  // 0x60
-};
 
 // A tree node: its box, then the index of the next node outside its subtree (>= 0) or a leaf (< 0).
 struct UnkBvhNode {

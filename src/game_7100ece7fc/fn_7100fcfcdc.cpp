@@ -7,7 +7,7 @@
 #include "types.h"
 #include "game/sound/CMusicManager.h"
 
-struct UnkObject_7100fcfcdc {
+struct UnkObject_7100fcfcdc_fcfcdc {
     void** vtable;
     u8 unk_0x8[0x28];
     void** vtable_0x30;
@@ -35,7 +35,7 @@ extern void* g_unk_7101cabf20[];
 extern void* g_unk_7101cabe98[];
 
 void fn_7100fcfcdc(UnkMusicBank_0xb78* bank, u32 kind) {
-    auto* self = reinterpret_cast<UnkObject_7100fcfcdc*>(bank);  // this file's view of the bank
+    auto* self = reinterpret_cast<UnkObject_7100fcfcdc_fcfcdc*>(bank);  // this file's view of the bank
     fn_7100fe1028(reinterpret_cast<UnkMusicChannel_0x30*>(self), kind);  // its base, the channel
     self->field_0x38 = nullptr;
     self->field_0x40 = nullptr;

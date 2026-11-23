@@ -5,13 +5,10 @@
 #include "game/CAIManager/CTunableAIManager.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/UnkActor.h"
+#include "game/UnkGrabVec_b58a3.h"
 #include "types.h"
 
 struct UnkEmmyRegistry_b55;
-
-struct UnkGrabVec_b58a3 {
-    f32 x, y, z;
-};
 
 static inline __attribute__((always_inline)) const UnkGrabVec_b58a3* Addr_A5_b73(const UnkGrabVec_b58a3& v) {
     return &v;

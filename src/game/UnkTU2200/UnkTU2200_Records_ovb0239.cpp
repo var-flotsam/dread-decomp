@@ -5,6 +5,11 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkElem40Array_b42a3.h"
+#include "game/UnkElem40_b42a3.h"
+#include "game/UnkElemA0Array_b42a3.h"
+#include "game/UnkPathArray_b239.h"
+#include "game/UnkStrIdPair_b239.h"
 #include "game/UnkTU2200.h"
 #include "game/UnkTU83.h"
 #include "types.h"
@@ -13,27 +18,6 @@
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-struct UnkElem40_b42a3 {
-    CStrId field_0x0;
-    u32 field_0x8;
-    CFilePathStrId field_0x10;
-    CStrId field_0x18;
-    CStrId field_0x20;
-    CStrId field_0x28;
-    u64 field_0x30;
-    u32 field_0x38;
-};
-
-struct UnkElem40Array_b42a3 {
-    UnkElem40_b42a3* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
 
 void fn_7100c90fb0(void* dst, const void* src) {
     new (dst) UnkElem40_b42a3(*static_cast<const UnkElem40_b42a3*>(src));
@@ -129,16 +113,6 @@ struct UnkPathEntry_b239 {
     u64 value;
 };
 
-struct UnkPathArray_b239 {
-    UnkPathEntry_b239* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 field_0x18;
-    u64 field_0x20;
-};
-
 struct UnkFXPathEntry_b0068;
 
 static inline __attribute__((always_inline)) void AppendAll_b239(UnkPathArray_b239* self, const UnkPathArray_b239* other) {
@@ -181,12 +155,6 @@ UnkPathArray_b239* fn_7100c8cc78(UnkPathArray_b239* self, const UnkPathArray_b23
     return self;
 }
 
-struct UnkStrIdPair_b239 {
-    CStrId first;
-    CStrId second;
-    u32 value;
-};
-
 using UnkStrIdMap_b239 = base::global::CRntSmallDictionary<CStrId, UnkStrIdPair_b239>;
 
 using UnkIdArray_b239 = base::global::CRntSmallDictionary<CStrId, u32>;
@@ -207,16 +175,6 @@ struct UnkElemA0_b42a3 {
     CFilePathStrId field_0x98;
 };
 static_assert(sizeof(UnkElemA0_b42a3) == 0xa0, "UnkElemA0_b42a3 layout");
-
-struct UnkElemA0Array_b42a3 {
-    UnkElemA0_b42a3* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
 
 struct UnkKeyedStrIds;
 void fn_7100c8bd98(UnkStrIdMap_b239* self, const UnkStrIdMap_b239* other);

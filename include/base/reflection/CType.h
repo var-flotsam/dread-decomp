@@ -21,3 +21,5 @@ base::reflection::UnkReflValue fn_710009ddd4(UnkVersionEntry* self, const base::
 // The reflected value's copy-assignment.
 bool fn_710009d960(const base::reflection::CType* type, base::reflection::UnkTypedRef* src, base::reflection::UnkTypedRef* dst);
 bool fn_710009d760(const base::reflection::UnkReflObject* obj, const base::reflection::CType* type);
+// The value a typed reference holds, as a reflected value.
+bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const base::reflection::UnkTypedRef* src);

@@ -10,7 +10,7 @@
 #include "game/CAbilityLayout.h"
 #include "types.h"
 
-struct UnkVec4 {
+struct UnkVec4_300bd0 {
     u64 xy;
     u64 zw;
 };
@@ -20,15 +20,15 @@ struct UnkPart {
     u8 pad_0x8[3];
     u8 field_0xb;
     void vf_0x90(u32 a) { reinterpret_cast<void (*)(UnkPart*, u32)>(vtable[18])(this, a); }
-    void vf_0xd0(u32 a, u32 b, UnkVec4* v, u32 c) {
-        reinterpret_cast<void (*)(UnkPart*, u32, u32, UnkVec4*, u32)>(vtable[26])(this, a, b, v, c);
+    void vf_0xd0(u32 a, u32 b, UnkVec4_300bd0* v, u32 c) {
+        reinterpret_cast<void (*)(UnkPart*, u32, u32, UnkVec4_300bd0*, u32)>(vtable[26])(this, a, b, v, c);
     }
     s32 vf_0xf0() { return reinterpret_cast<s32 (*)(UnkPart*)>(vtable[30])(this); }
 };
 
 struct UnkWorld;
 
-struct UnkOwner {
+struct UnkOwner_300bd0 {
     u8 pad_0x0[0x280];
     UnkWorld* field_0x280;
 };
@@ -43,10 +43,10 @@ UnkPart* fn_7100300bd0(CAbilityComponent* self, u32 flags) {
             fn_71011e49fc(hud);
     }
     fn_7100d7c828(self->Owner<UnkActor>(), &g_unk_7101648d40, false);
-    UnkVec4 vector;
+    UnkVec4_300bd0 vector;
     vector.xy = 0;
     vector.zw = 0x3f80000000000000ull;
-    UnkWorld* world = self->Owner<UnkOwner>()->field_0x280;
+    UnkWorld* world = self->Owner<UnkOwner_300bd0>()->field_0x280;
     UnkPart* part = fn_7101152b90(world, 0x6923d83cbb01adc0ull);
     if (part) {
         if (fn_710114e668(reinterpret_cast<UnkObject*>(world), part->field_0xb)) {

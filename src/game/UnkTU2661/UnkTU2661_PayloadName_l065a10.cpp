@@ -4,18 +4,13 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkNamedNode.h"
+#include "game/UnkNodeArrayCopy.h"
 #include "game/UnkTU212.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-// A node of an object's named tree (0x98 bytes): its payload, name and child nodes.
-struct UnkNamedNode {
-    u8 pad_0x0[0x60];
-    void* payload;
-    base::global::CStrId name;
-    base::global::CRntVector<UnkNamedNode*> children;
-};
 static_assert(sizeof(UnkNamedNode) == 0x98, "UnkNamedNode placeholder layout");
 
 // The nodes of a tree by the key (CRC-64) of their names.
@@ -55,28 +50,6 @@ struct UnkNamedTreeOwner1_l065a10 {
 struct UnkNamedTreeOwner_l065a10 {
     u8 pad_0x0[0x50];
     UnkNamedTreeOwner1_l065a10* field_0x50;
-};
-
-// A copy of a node array: the same capacity from the same allocator.
-struct UnkNodeArrayCopy {
-    UnkNamedNode** data;
-    u32 count;
-    base::UnkAllocator* allocator;
-
-    explicit UnkNodeArrayCopy(const base::global::CRntVector<UnkNamedNode*>& other) {
-        allocator = other.allocator;
-        data = other.capacity ? static_cast<UnkNamedNode**>(
-                                    allocator->vf_0x40((u64)other.capacity * sizeof(UnkNamedNode*), 8, other.flags))
-                              : nullptr;
-        __builtin_memcpy(data, other.data, (u64)other.count * sizeof(UnkNamedNode*));
-        count = other.count;
-    }
-    UnkNamedNode** begin() { return data; }
-    UnkNamedNode** end() { return data + count; }
-    ~UnkNodeArrayCopy() {
-        if (data)
-            allocator->vf_0x48(data);
-    }
 };
 
 // Sorts nodes by fn_710019536c's value, largest first (libc++'s std::sort, src/game_s7/fn_7101072a80.cpp).

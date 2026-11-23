@@ -7,12 +7,9 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CAlternativeActionPlayerComponent.h"
 #include "game/CComponent.h"
+#include "game/UnkAlternativeActionPlayer.h"
 
 struct UnkStateObject;
-
-struct UnkAlternativeActionPlayer {
-    void** vtable;
-};
 
 template <class T>
 static inline T& At(void* base, u64 offset) {

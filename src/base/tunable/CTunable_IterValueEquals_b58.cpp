@@ -3,13 +3,10 @@
 // and whose element is 64 bits (fn_710013812c, fn_71001384cc: reflection slot 0x58 of two types).
 // Names are placeholders.
 #include "base/UnkCollectionIter.h"
+#include "base/UnkCompared_0x30.h"
 #include "base/global/CRntString.h"
 #include "game/UnkTU57.h"
 #include "types.h"
-
-struct UnkCompared_0x30 {
-    u64 words[6];
-};
 
 // The key (a base::global::CRntString) as an iterator index: compared through fn_710007f120 and
 // assigned through fn_710007eaa0.

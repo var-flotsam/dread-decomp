@@ -10,6 +10,8 @@
 #include <nn/os.h>
 
 #include "base/reflection.h"
+#include "engine/UnkStartupCallback.h"
+#include "engine/UnkStartupFlags.h"
 #include "game/CInventoryComponent.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2550.h"
@@ -138,12 +140,6 @@ void fn_7100015fc0(const CFilePathStrId& root);
 void fn_7100001714() __attribute__((visibility("hidden")));
 void fn_7100001718() __attribute__((visibility("hidden")));
 
-// A callback and the object it is for (none here).
-struct UnkStartupCallback {
-    void* object;
-    void (*function)();
-};
-
 // What fn_7100015c70 starts the engine from: it copies +0x0 and the two callbacks into objects it
 // creates, calls +0x10 with the root path and passes +0x3b on; +0x8 and +0x38-0x3a are not read
 // there.
@@ -172,12 +168,6 @@ struct UnkRenderSetup {
     u8 field_0xe;
     bool field_0xf;
     bool field_0x10;
-};
-
-// Two flags fn_7100adfb20 takes with the root path.
-struct UnkStartupFlags {
-    bool field_0x0;
-    u8 field_0x1;
 };
 
 // The paths are passed by value (a copy the caller makes and destroys), except fn_71002182c0's.

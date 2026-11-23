@@ -8,23 +8,14 @@
 #include "base/UnkDeferredSet.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkKeyNode_b0250.h"
 #include "game/UnkTU39.h"
 
 using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
 using base::global::CStrId;
 
-struct UnkKeyNode_b0250 {
-    CStrId id;
-    f32 value;
-    UnkKeyNode_b0250* next;
-    UnkKeyNode_b0250(const UnkKeyNode_b0250* src) : id(src->id) {
-        value = src->value;
-        next = nullptr;
-    }
-};
-
-struct UnkKeyList_b0250 {
+struct UnkKeyList_b0250_02f90c {
     void** vtable;
     u32 count;
     UnkKeyNode_b0250* head;
@@ -35,8 +26,8 @@ struct UnkKeyList_b0250 {
 };
 
 void* fn_710002f90c(void* dst, const void* src) {
-    UnkKeyList_b0250* self = static_cast<UnkKeyList_b0250*>(dst);
-    const UnkKeyList_b0250* other = static_cast<const UnkKeyList_b0250*>(src);
+    UnkKeyList_b0250_02f90c* self = static_cast<UnkKeyList_b0250_02f90c*>(dst);
+    const UnkKeyList_b0250_02f90c* other = static_cast<const UnkKeyList_b0250_02f90c*>(src);
     UnkKeyNode_b0250* node = self->head;
     u32 old_count = self->count;
     if (node) {

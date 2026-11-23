@@ -2,13 +2,8 @@
 // file-path id (copied, its count raised). Names and layouts are placeholders.
 #include "base/UnkCollectionIter.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU2640PathData.h"
 #include "types.h"
-
-// A word and a half-word, copied as one 12-byte block (packed: the copy skips the tail padding).
-struct __attribute__((packed)) UnkTU2640PathData {
-    u64 field_0x0;
-    u32 field_0x8;
-};
 
 struct UnkTU2640PathElem {
     base::global::CFilePathStrId path;

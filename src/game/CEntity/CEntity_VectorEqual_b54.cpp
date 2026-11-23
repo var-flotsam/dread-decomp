@@ -6,6 +6,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkCompared_0x28b.h"
 #include "game/UnkTU437.h"
 #include "types.h"
 
@@ -35,10 +36,6 @@ struct UnkEntityLink_b54 {
     }
 };
 static_assert(sizeof(UnkEntityLink_b54) == 0x40, "UnkEntityLink_b54 layout");
-
-struct UnkCompared_0x28b {
-    u64 words[5];
-};
 
 bool fn_7100d883f0(const UnkCompared_0x28b* a, const UnkCompared_0x28b* b) {
     auto* self = reinterpret_cast<base::global::CRntVector<UnkEntityLink_b54>*>(const_cast<UnkCompared_0x28b*>(a));

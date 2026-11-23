@@ -3,6 +3,7 @@
 // (fn_7100078d1c); also an axis-angle quaternion (fn_7100079e70) and an angle unwrap
 // (fn_710007a170).
 #include <math.h>
+#include "base/UnkAim.h"
 
 #include "base/UnkMatrix44.h"
 #include "game/UnkTU54.h"
@@ -38,14 +39,6 @@ UnkQuat_7100079e70 fn_7100079e70(const UnkVec3f& axis, f32 angle) {
     q.w = c;
     return q;
 }
-
-// Moves the angle (radians) by a full turn either way when that brings it closer to `target`
-// (fn_710007a170). The angle is the first member of a pair (src/game/CCentralUnitCannonAIComponent/
-// fn_71003fd0b0.cpp names the pair UnkAim).
-struct UnkAim {
-    f32 angle;
-    f32 current;
-};
 
 void fn_710007a170(UnkAim* aim, f32 target) {
     f32* angle = &aim->angle;

@@ -8,6 +8,7 @@
 #include "game/CActorComponent.h"
 #include "game/CComponent.h"
 #include "game/CFXComponent.h"
+#include "game/UnkFXIdNode.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkTU132.h"
@@ -19,18 +20,6 @@
 
 extern char unk_7101cb38e8[];  // the base part's vtable (reached through the GOT)
 extern char unk_7101cb38c8[];  // the container's vtable (reached through the GOT)
-
-struct UnkFXIdNode {
-    base::global::CStrId id;
-    // Union members: Clang gives union accesses no type-based alias info, so the links are
-    // reloaded after each store as in the original.
-    union {
-        UnkFXIdNode* next;
-    };
-    union {
-        UnkFXIdNode* prev;
-    };
-};
 
 static inline UnkFXIdNode*& Head(UnkParentPoolList* self) { return reinterpret_cast<UnkFXIdNode*&>(self->head); }
 static inline UnkFXIdNode*& Tail(UnkParentPoolList* self) { return reinterpret_cast<UnkFXIdNode*&>(self->tail); }

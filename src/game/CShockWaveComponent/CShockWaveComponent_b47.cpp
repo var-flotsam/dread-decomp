@@ -6,15 +6,11 @@
 #include "game/CAutsharpAIComponent.h"
 #include "game/CComponent.h"
 #include "game/CShockWaveComponent.h"
+#include "game/UnkShockWaveMember.h"
 #include "types.h"
 
 struct UnkParent;
 struct UnkShockWaveMember;
-
-struct UnkShockWaveMember {
-    u8 unk_0x0[0x210];
-    ~UnkShockWaveMember() { fn_71003cc474(this); }
-};
 
 // A freshly constructed member (fn_71009f35b0).
 struct UnkShockWaveFreshB47 : UnkShockWaveMember {

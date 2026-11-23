@@ -3,6 +3,9 @@
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkListEntry_b256.h"
+#include "game/UnkListGroup_b256.h"
+#include "game/UnkListGroups_b256.h"
 #include "game/UnkTU604.h"
 #include "types.h"
 
@@ -87,26 +90,6 @@ struct UnkListRef_b256 {
     };
     u32 pad_0xc;
     void* owner;  // 0x10
-};
-
-struct UnkListEntry_b256 {
-    void* value;
-    UnkListEntry_b256* next;
-};
-
-struct UnkListGroup_b256 {
-    u8 pad_0x0[8];
-    u32 count;                  // 0x8
-    UnkListEntry_b256* head;    // 0x10
-    u8 pad_0x18[0x58];
-    void* key;                  // 0x70
-    UnkListGroup_b256* next;    // 0x78
-};
-
-struct UnkListGroups_b256 {
-    u8 pad_0x0[0x10];
-    u32 count;                // 0x10
-    UnkListGroup_b256* head;  // 0x18
 };
 
 struct UnkListSlot_b256 {

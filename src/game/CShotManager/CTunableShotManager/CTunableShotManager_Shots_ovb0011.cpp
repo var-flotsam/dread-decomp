@@ -13,7 +13,10 @@
 #include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkObj290_b43a3.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkShotWeakRefData_b0011.h"
+#include "game/UnkShotWeakRef_b0011.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
@@ -455,17 +458,6 @@ void fn_7100ede32c(UnkRefRecord10Vec_b0011* self, const UnkRefRecord10Vec_b0011*
 void fn_7100ede1f0(UnkRefRecord18Vec_b0011* self, const UnkRefRecord18Vec_b0011* other) { self->CopyFrom(*other); }
 
 struct UnkShotWeakTarget_b0011;
-struct UnkShotWeakRefData_b0011 {
-    UnkShotWeakTarget_b0011* target;
-    s64 generation;
-};
-// A weak reference (the manager's +0x1210 holds them): alive while the target's generation is this
-// one's. Copied as a block.
-struct UnkShotWeakRef_b0011 {
-    UnkShotWeakRefData_b0011 ref;
-
-    UnkShotWeakRef_b0011(const UnkShotWeakRef_b0011& other) : ref(other.ref) {}
-};
 
 // Copy assignment: cleared, reserved to the other's capacity, and each element appended.
 base::global::CRntVector<UnkShotWeakRef_b0011>* fn_7100eddaac(base::global::CRntVector<UnkShotWeakRef_b0011>* self,
@@ -479,11 +471,6 @@ base::global::CRntVector<UnkShotWeakRef_b0011>* fn_7100eddaac(base::global::CRnt
     return self;
 }
 
-// The shots (src/game/CShotManager/CTunableShotManager_Resize_b43.cpp).
-struct UnkObj290_b43a3 {
-    virtual void vf_0x0();  // destroys
-    u8 pad_0x8[0x288];
-};
 static_assert(sizeof(UnkObj290_b43a3) == 0x290, "UnkObj290_b43a3 layout");
 
 // Reallocates to n shots, moving each over and destroying the old one.

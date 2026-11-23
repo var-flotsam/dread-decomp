@@ -27,6 +27,7 @@
 #include "game/GUI/CGlobalMapComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiPos.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU2755.h"
 #include "game/sound/SGUISoundEventsSelector.h"
@@ -46,12 +47,6 @@ void fn_7100e9867c(void* world, const CStrId& area);
 // A point of a display object's anchor state (the block at +0x78) by horizontal and vertical
 // anchor, as src/game/GUI/CMapMenuController/CMapMenuController_BindWidgets.cpp declares it.
 struct UnkGuiItemState;
-struct UnkGuiPos {
-    f32 x;
-    f32 y;
-
-    UnkGuiPos(const UnkGuiPos& other) : x(other.x), y(other.y) {}
-};
 
 // ---- The regions ----
 

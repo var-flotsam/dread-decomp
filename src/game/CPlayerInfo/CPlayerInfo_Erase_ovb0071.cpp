@@ -9,6 +9,8 @@
 #include "game/CBlackboard.h"
 #include "game/CPlayerInfo.h"
 #include "game/UnkTU39.h"
+#include "game/UnkTimedEntry_ovb0071.h"
+#include "game/UnkTimedHead_ovb0071.h"
 #include "types.h"
 
 #include <new>
@@ -37,19 +39,6 @@ UnkPlayerInfoValue_ovb0071* fn_7100f0eaec(UnkPropertyArrays* self, UnkPlayerInfo
     --self->count;
     return &static_cast<UnkPlayerInfoValue_ovb0071*>(self->values)[index];
 }
-
-struct UnkTimedHead_ovb0071 {
-    u8 counter;
-    f32 time;
-};
-
-struct UnkTimedEntry_ovb0071 {
-    UnkTimedHead_ovb0071 head;
-    UnkKeyedStrIds properties;  // 0x8
-
-    UnkTimedEntry_ovb0071(UnkTimedEntry_ovb0071&& other)
-        : head(other.head), properties(static_cast<UnkKeyedStrIds&&>(other.properties)) {}
-};
 
 using UnkTimedMap_ovb0071 = base::global::CRntSmallDictionary<CStrId, UnkTimedEntry_ovb0071>;
 

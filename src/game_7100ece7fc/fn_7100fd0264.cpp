@@ -3,16 +3,11 @@
 // first (fn_7100fd11e8), reset the secondary base and run the primary base's destructor
 // (fn_7100fe1050).
 #include <new>
+#include "game/UnkBase_0x30_7100fe1050.h"
 
 #include "game/UnkEntry_0x150.h"
 #include "game/UnkTU2635.h"
 #include "types.h"
-
-struct UnkBase_0x30_7100fe1050 {
-    void** vtable;
-    u8 unk_0x8[0x28];
-    ~UnkBase_0x30_7100fe1050() asm("fn_7100fe1050");  // fn_7100fe1050
-};
 
 extern void* g_unk_7101cac080[];
 

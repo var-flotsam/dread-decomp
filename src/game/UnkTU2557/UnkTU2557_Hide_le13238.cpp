@@ -5,15 +5,11 @@
 #include "game/CBossAIComponent.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkModeFlags.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2557.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
-
-struct UnkModeFlags {
-    u8 unk_0x0[0xb8];
-    bool field_0xb8;
-};
 
 // The parent link of a GUI object, 0x120 bytes into it.
 struct UnkGuiParentLink_le13238 {

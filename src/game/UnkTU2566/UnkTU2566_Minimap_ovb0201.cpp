@@ -22,6 +22,8 @@
 #include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMinimapDrawList.h"
+#include "game/UnkMinimapStatics.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
 #include "game/UnkTU127.h"
@@ -213,23 +215,6 @@ extern "C" void __cxa_guard_release(u64* guard);
 
 extern u32 g_unk_7101aa9e38[][1024];
 extern const f32 g_unk_7101647bec[4] HIDDEN;
-
-struct UnkMinimapDrawList {
-    void* data;
-    u32 count;
-    u8 unk_0xc[0x1c];
-};
-
-// The unit's statics, which the compiler merged into one block (addressed from one base), as
-// src/game/CMinimapManager.cpp declares it.
-struct UnkMinimapStatics {
-    u8 unk_0x0[0x4];
-    f32 cell_size;
-    u8 unk_0x8[0x68];
-    u64 cell_size_guard;
-    u8 unk_0x78[0x88];
-    UnkMinimapDrawList lists[4];
-};
 
 struct UnkLinkedCell_e;
 void fn_7100e78180(UnkLinkedCell_e* self);

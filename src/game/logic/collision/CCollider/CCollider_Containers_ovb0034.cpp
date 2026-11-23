@@ -7,6 +7,8 @@
 
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkPtrArray_ovb0034.h"
+#include "game/UnkPtrArrays_ovb0034.h"
 #include "game/logic/collision/CBroadphaseObject.h"
 #include "game/logic/collision/CCollider.h"
 #include "types.h"
@@ -104,42 +106,7 @@ void fn_7100d418c8(UnkColliderMap_ovb0034* self) {
     self->last = nullptr;
 }
 
-// An array of pointers that owns its storage (0x28 bytes, laid out as base::global::CRntVector).
-struct UnkPtrArray_ovb0034 {
-    void** data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkPtrArray_ovb0034(UnkPtrArray_ovb0034&& other)
-        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
-          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
-        other.data = nullptr;
-        other.count = 0;
-        other.capacity = 0;
-    }
-    ~UnkPtrArray_ovb0034() {
-        if (data) {
-            count = 0;
-            allocator->vf_0x48(data);
-            capacity = 0;
-        }
-    }
-};
 static_assert(sizeof(UnkPtrArray_ovb0034) == 0x28, "UnkPtrArray_ovb0034 layout");
-
-struct UnkPtrArrays_ovb0034 {
-    UnkPtrArray_ovb0034* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
 
 // Destroys the elements, grows the storage to the other array's capacity (moving the elements
 // over), then appends a copy of each of the other's elements.

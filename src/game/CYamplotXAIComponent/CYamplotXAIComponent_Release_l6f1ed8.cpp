@@ -5,6 +5,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkMovementVec_71010d08d4.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -23,10 +24,6 @@ struct UnkYamplotId_l6f1ed8 {
                 fn_71000803a4(pool, data);
         }
     }
-};
-
-struct UnkMovementVec_71010d08d4 {
-    f32 x, y, z;
 };
 
 struct UnkStringEntry_l6f1ed8 {

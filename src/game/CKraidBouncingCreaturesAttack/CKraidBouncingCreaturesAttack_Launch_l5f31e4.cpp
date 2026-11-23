@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBouncingCreaturesLaunchPattern.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkKraidBouncingList_b57a4.h"
 #include "game/UnkTU2729.h"
 #include "game/UnkTU344.h"
 #include "game/UnkVec3fOps.h"
@@ -95,10 +96,6 @@ struct UnkKraidCreatureMovement_l5f31e4 {
 static_assert(__builtin_offsetof(UnkKraidCreatureMovement_l5f31e4, field_0x5d8) == 0x5d8, "layout");
 
 UnkKraidCreatureMovement_l5f31e4* fn_71005f34a8(UnkKraidCreature_l5f31e4* creature);
-
-struct UnkKraidBouncingList_b57a4 {
-    u8 data[0x28];
-};
 
 struct UnkKraidBouncingSet_l5f31e4 {
     u8 pad_0x0[0xf8];

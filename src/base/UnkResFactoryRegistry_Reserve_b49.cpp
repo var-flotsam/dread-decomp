@@ -4,6 +4,8 @@
 // released. Names and layouts are placeholders.
 #include <new>
 
+#include "base/UnkRegistryCallback.h"
+#include "base/UnkRegistryEntryHead.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
@@ -41,19 +43,6 @@ struct UnkRegistryEntryId {
 };
 
 struct UnkRegistryDesc;
-
-// Copied member by member (the original reloads the source after each store).
-struct UnkRegistryCallback {
-    void* context;
-    void (*function)();
-
-    UnkRegistryCallback(const UnkRegistryCallback& other) : context(other.context), function(other.function) {}
-};
-
-struct UnkRegistryEntryHead {
-    UnkRegistryDesc* desc;
-    void* factory;
-};
 
 struct UnkRegistryEntry : UnkRegistryEntryHead {
     UnkRegistryEntryId<&g_unk_7101d47108> id;

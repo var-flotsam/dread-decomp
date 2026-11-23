@@ -24,7 +24,7 @@ struct UnkDetectKind {
     u32 unk_0x4;
 };
 
-struct UnkShakernautAI {
+struct UnkShakernautAI_ovb0265 {
     u8 pad_0x0[0x14810];
     f32 field_0x14810;
     u8 pad_0x14814[0x148a0 - 0x14814];
@@ -80,7 +80,7 @@ bool fn_71006abe10(UnkDetectCondition* self) {
     if (!self->owner)
         return false;
     UnkReflObject* raw = self->owner->ai;
-    UnkShakernautAI* ai = fn_710009d50c(raw->vf_0x0(), fn_71006ad0a4()) ? reinterpret_cast<UnkShakernautAI*>(raw) : nullptr;
+    UnkShakernautAI_ovb0265* ai = fn_710009d50c(raw->vf_0x0(), fn_71006ad0a4()) ? reinterpret_cast<UnkShakernautAI_ovb0265*>(raw) : nullptr;
     if (!ai->field_0x148a0)
         return false;
     f32* tunable = &ai->field_0x14810;

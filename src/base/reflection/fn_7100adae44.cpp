@@ -1,9 +1,16 @@
 // Assignments of a pair of values held either in place or by reference (state 2), from another
 // such pair: read and written through the state-dependent accessors.
 #include <new>
+#include "base/UnkAssignedString.h"
 
 #include "base/UnkErasedVector.h"
+#include "base/UnkFreedString.h"
+#include "base/UnkHandleCallbackSet.h"
+#include "base/UnkHandleObj.h"
 #include "base/UnkRefHandle.h"
+#include "base/UnkValueString.h"
+#include "base/UnkValuesCallbacks.h"
+#include "base/UnkValuesIdHalf.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -149,30 +156,6 @@ using UnkU32IdValuesPair = UnkValuePairRef<u32, UnkIdValues2>;
 
 UnkU32IdValuesPair* fn_7100eaee5c(UnkU32IdValuesPair* self, UnkU32IdValuesPair* other) { return Assign(self, other); }
 
-// Six values, an id and a half-word.
-struct UnkValuesIdHalf {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-    u32 field_0xc;
-    u32 field_0x10;
-    u32 field_0x14;
-    CStrId id;
-    u16 field_0x20;
-
-    UnkValuesIdHalf& operator=(const UnkValuesIdHalf& other) {
-        field_0x0 = other.field_0x0;
-        field_0x4 = other.field_0x4;
-        field_0x8 = other.field_0x8;
-        field_0xc = other.field_0xc;
-        field_0x10 = other.field_0x10;
-        field_0x14 = other.field_0x14;
-        id = other.id;
-        field_0x20 = other.field_0x20;
-        return *this;
-    }
-};
-
 using UnkIdValuesIdPair = UnkValuePairRef<CStrId, UnkValuesIdHalf>;
 
 // As Assign, comparing the other with self.
@@ -224,28 +207,11 @@ using UnkIdIdsValuePair = UnkValuePairRef<CStrId, UnkIdsValue>;
 UnkIdIdValues4Pair* fn_7100e70ab4(UnkIdIdValues4Pair* self, UnkIdIdValues4Pair* other) { return AssignFrom(self, other); }
 UnkIdIdsValuePair* fn_7100c8fcd8(UnkIdIdsValuePair* self, UnkIdIdsValuePair* other) { return Assign(self, other); }
 
-// A value and a string (base::global::CRntString's layout, assigned by fn_710007eaa0).
-struct UnkAssignedString {
-    u64 unk_0x0[6];
-
-    UnkAssignedString& operator=(const UnkAssignedString& other);
-};
 __attribute__((always_inline)) inline UnkAssignedString& UnkAssignedString::operator=(const UnkAssignedString& other) {
     CRntString_Assign(reinterpret_cast<base::global::CRntString*>(this),
                   reinterpret_cast<const base::global::CRntString*>(&other));
     return *this;
 }
-
-struct UnkValueString {
-    u32 value;
-    UnkAssignedString string;
-
-    UnkValueString& operator=(const UnkValueString& other) {
-        value = other.value;
-        string = other.string;
-        return *this;
-    }
-};
 
 using UnkU32ValueStringPair = UnkValuePairRef<u32, UnkValueString>;
 
@@ -282,12 +248,6 @@ UnkBoundValueArray* fn_7100d3f14c(UnkBoundValueArray* self, const UnkBoundValueA
 UnkBoundValueArray* fn_7100d3f514(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
 UnkBoundValueArray* fn_7100d3f5d4(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
 
-// As UnkBoundValueArray, with a string (destroyed by fn_710007ecd4) placed 0x10 into the pair.
-struct alignas(16) UnkFreedString {
-    u64 unk_0x0[6];
-
-    ~UnkFreedString();
-};
 inline UnkFreedString::~UnkFreedString() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this)); }
 
 struct UnkBoundValueString {
@@ -461,38 +421,6 @@ using UnkU32CallbacksPair = UnkValuePairRef<u32, UnkCallbackSet>;
 
 UnkU32CallbacksPair* fn_7100d87614(UnkU32CallbacksPair* self, UnkU32CallbacksPair* other) { return Assign(self, other); }
 
-// Three values and a callback set whose owner is a handle assigned by fn_7100234f78.
-struct UnkHandleCallbackSet {
-    void* vtable;
-    UnkErasedVector callbacks;
-    u32 field_0x30;
-    base::UnkRefHandle owner;
-
-    __attribute__((always_inline)) UnkHandleCallbackSet& operator=(const UnkHandleCallbackSet& other) {
-        const base::UnkRefHandle* from = &other.owner;
-        fn_7100234f78(&owner, from);
-        field_0x30 = other.field_0x30;
-        fn_710023b29c(&callbacks, &other.callbacks);
-        return *this;
-    }
-};
-
-struct UnkValuesCallbacks {
-    u64 unk_0x0;
-    u32 field_0x8;
-    u32 field_0xc;
-    u32 field_0x10;
-    UnkHandleCallbackSet set;
-
-    __attribute__((always_inline)) UnkValuesCallbacks& operator=(const UnkValuesCallbacks& other) {
-        field_0x8 = other.field_0x8;
-        field_0xc = other.field_0xc;
-        field_0x10 = other.field_0x10;
-        set = other.set;
-        return *this;
-    }
-};
-
 using UnkU32ValuesCallbacksPair = UnkValuePairRef<u32, UnkValuesCallbacks>;
 
 UnkU32ValuesCallbacksPair* fn_7100c0837c(UnkU32ValuesCallbacksPair* self, UnkU32ValuesCallbacksPair* other) {
@@ -509,19 +437,6 @@ bool fn_7100adad14(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
 bool fn_7100adb008(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
 bool fn_7100eb1de0(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
 bool fn_7100eb20d4(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
-
-// A value and a reference-counted weak handle (released through vf_0x10; compared by target).
-// The count is a union member (no type-based alias info: the handle is reloaded after the
-// count changes).
-struct UnkHandleObj {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    union {
-        s32 ref_count;
-    };
-    void* target;
-};
 
 struct UnkWeakHandle {
     UnkHandleObj* ptr;

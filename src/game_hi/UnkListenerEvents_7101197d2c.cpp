@@ -3,20 +3,20 @@
 // argument on. Names and layouts are placeholders.
 #include "types.h"
 
-struct UnkEventListener {
+struct UnkEventListener_7101197d2c {
     void* context;
     void (*callback)(void* context, void* arg, u32 event);
 };
 
 struct UnkEventSource {
     u8 pad_0x0[0x30];
-    UnkEventListener* listeners;
+    UnkEventListener_7101197d2c* listeners;
     u32 count;
 };
 
 template <u32 Event>
 __attribute__((always_inline)) static inline void Notify(UnkEventSource* self, void* arg) {
-    for (UnkEventListener *it = self->listeners, *end = self->listeners + self->count; it != end; ++it)
+    for (UnkEventListener_7101197d2c *it = self->listeners, *end = self->listeners + self->count; it != end; ++it)
         it->callback(it->context, arg, Event);
 }
 
