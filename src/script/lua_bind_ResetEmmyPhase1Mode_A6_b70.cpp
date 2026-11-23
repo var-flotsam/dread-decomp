@@ -14,7 +14,8 @@ struct UnkResetEmmyItem_A6_b70 {
 
 void fn_7100544a24(void* entity);
 
-int fn_7100fbb670(lua_State* L) {
+namespace lua_bind {
+int ResetEmmyPhase1Mode(lua_State* L) {
     base::global::CRntVector<UnkListedItem*>* items = fn_7100552d7c();
     UnkListedItem** it = items->data;
     UnkListedItem** end = it + items->count;
@@ -25,3 +26,4 @@ int fn_7100fbb670(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

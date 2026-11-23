@@ -50,7 +50,8 @@ static inline UnkWeakTarget* FindEntity(UnkGameManager* manager, const CStrId& i
     return fn_7100debbc8(manager, &hash, &kind);
 }
 
-int fn_7100fbb4b0(lua_State* L) {
+namespace lua_bind {
+int SetWorldGraphToEmmy(lua_State* L) {
     const char* name;
     const char* emmy_name;
     if (fn_71010c0270(L, "ss", &name, &emmy_name) && *name && *emmy_name) {
@@ -77,3 +78,4 @@ int fn_7100fbb4b0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

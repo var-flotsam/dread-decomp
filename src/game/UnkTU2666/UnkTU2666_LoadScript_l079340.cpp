@@ -17,7 +17,8 @@ void fn_7101097034(void* context);
 void fn_7100dfeacc(UnkGameManager* manager, const UnkReloadCallback* callback, CRntVector<CRntString>* files,
                    bool flag);
 
-s32 fn_7101079340(lua_State* L) {
+namespace lua_bind {
+s32 LoadGameDataTo(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         CRntVector<CRntString> files(0xf, 1);
@@ -32,3 +33,4 @@ s32 fn_7101079340(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

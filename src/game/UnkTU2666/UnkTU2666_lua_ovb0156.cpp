@@ -30,31 +30,34 @@ s32 fn_71010947e0(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101094820(lua_State* L) {
+namespace lua_bind {
+s32 LogWarn(lua_State* L) {
     s32 number = 0;
     const char* text;
     fn_71010c0270(L, "is", &number, &text);
     return 0;
 }
 
-s32 fn_7101094860(lua_State* L) {
+s32 LogError(lua_State* L) {
     s32 number = 0;
     const char* text;
     fn_71010c0270(L, "is", &number, &text);
     return 0;
 }
 
-s32 fn_710107f400(lua_State* L) {
+s32 SetPadVibrationFor(lua_State* L) {
     f32 a, b, c;
     return !fn_71010c0270(L, "fff", &a, &b, &c);
 }
+}  // namespace lua_bind
 
 struct UnkFlagHolder_ovb0156 {
     u8 pad_0x0[0x5d0];
     u8* field_0x5d0;
 };
 
-s32 fn_7101078290(lua_State* L) {
+namespace lua_bind {
+s32 IsGameModeChangePending(lua_State* L) {
     UnkGameManager* manager = g_unk_7101d47310;
     u8* flag = reinterpret_cast<UnkFlagHolder_ovb0156*>(manager)->field_0x5d0;
     if (flag)
@@ -62,24 +65,25 @@ s32 fn_7101078290(lua_State* L) {
     return fn_71010c0b40(L, "b", false);
 }
 
-s32 fn_71010925d0(lua_State* L) {
+s32 IsSFXEnabled(lua_State* L) {
     u8* block = reinterpret_cast<u8*>(g_unk_7101d4d820) + 0x400910;
     return fn_71010c0b40(L, "b", block[0] ? block[6] : 0);
 }
 
-s32 fn_7101087a40(lua_State* L) {
+s32 SetSlomo(lua_State* L) {
     f32 value;
     if (fn_71010c0270(L, "f", &value))
         fn_7100df6c78(g_unk_7101d47310, value, 0.0f);
     return 0;
 }
 
-s32 fn_7101091f20(lua_State* L) {
+s32 SetTotalPlayTime(lua_State* L) {
     f32 value = 0.0f;
     if (fn_71010c0270(L, "f", &value))
         fn_7100dffc3c(g_unk_7101d47310, value);
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkCounterHolder_ovb0156 {
     u8 pad_0x0[0x48];
@@ -87,45 +91,51 @@ struct UnkCounterHolder_ovb0156 {
 };
 UnkCounterHolder_ovb0156* fn_7100e02920(UnkGameManager* self);
 
-s32 fn_7101093f00(lua_State*) {
+namespace lua_bind {
+s32 DecrementNavMeshGeneratorDebugBreakableTileIndex(lua_State*) {
     s32 count = fn_7100e02920(g_unk_7101d47310)->field_0x48;
     s32 next = count >= 0 ? count - 1 : count;
     fn_7100e02920(g_unk_7101d47310)->field_0x48 = next;
     return 0;
 }
 
-s32 fn_7101076ef0(lua_State* L) {
+s32 EnableSceneDraw(lua_State* L) {
     s32 layer;
     bool flag;
     if (fn_71010c0270(L, "bi", &flag, &layer))
         fn_7100219d4c(g_unk_7101d47300, flag, layer);
     return 0;
 }
+}  // namespace lua_bind
 
 bool fn_7101096d68(s32 a, s32 b);
 
-s32 fn_7101078900(lua_State* L) {
+namespace lua_bind {
+s32 LoadGameEnding(lua_State* L) {
     s32 a = -1;
     s32 b = -1;
     return fn_71010c0270(L, "ii", &a, &b) && fn_7101096d68(a, b);
 }
+}  // namespace lua_bind
 
 void fn_710010805c(UnkSoundMgr* self, f32 v);
 void fn_710021a088(UnkRenderManager* self, f32 v);
 
-s32 fn_710108b310(lua_State* L) {
+namespace lua_bind {
+s32 SetGlobalPitch(lua_State* L) {
     f32 value = 1.0f;
     if (fn_71010c0270(L, "f", &value))
         fn_710010805c(g_unk_7101d4d820, value);
     return 0;
 }
 
-s32 fn_7101094d40(lua_State* L) {
+s32 SetSafeFarPlaneFactor(lua_State* L) {
     f32 value = -1.0f;
     if (fn_71010c0270(L, "f", &value))
         fn_710021a088(g_unk_7101d47300, value);
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkSceneInner_ovb0156 {
     u8 pad_0x0[0x10];
@@ -138,7 +148,8 @@ struct UnkSceneHolder_ovb0156 {
     UnkSceneInner_ovb0156* field_0x18;
 };
 
-s32 fn_7101082b20(lua_State* L) {
+namespace lua_bind {
+s32 GetScenarioID(lua_State* L) {
     UnkSceneHolder_ovb0156* holder = reinterpret_cast<UnkSceneHolder_ovb0156*>(g_unk_7101d47310->field_0x608);
     if (!holder)
         return 0;
@@ -148,11 +159,13 @@ s32 fn_7101082b20(lua_State* L) {
     const char* name = holder->field_0x18->field_0x10;
     return fn_71010c0b40(L, "s", name ? name : g_unk_710162e2ed);
 }
+}  // namespace lua_bind
 
 s32 fn_7100108c84(UnkSoundMgr* self);
 void fn_7100108c8c(UnkSoundMgr* self, s32 mode);
 
-s32 fn_710108b260(lua_State*) {
+namespace lua_bind {
+s32 SwitchSoundMode(lua_State*) {
     s32 mode = fn_7100108c84(g_unk_7101d4d820);
     if (mode == 1)
         fn_7100108c8c(g_unk_7101d4d820, 2);
@@ -161,31 +174,33 @@ s32 fn_710108b260(lua_State*) {
     return 0;
 }
 
-s32 fn_710108d5d0(lua_State* L) {
+s32 FadeOutStream(lua_State* L) {
     f32 time;
     if (fn_71010c0270(L, "f", &time))
         fn_7100108ae8(g_unk_7101d4d820, 1, time, 0.0f, false);
     return 0;
 }
+}  // namespace lua_bind
 
 bool fn_7100108c14(UnkSoundMgr* self);
 s32 fn_7100108c1c(UnkSoundMgr* self);
 
-s32 fn_710108e450(lua_State* L) {
+namespace lua_bind {
+s32 GetReverbConfig(lua_State* L) {
     s32 value = 0;
     if (fn_7100108c14(g_unk_7101d4d820))
         value = fn_7100108c1c(g_unk_7101d4d820) + 1;
     return fn_71010c0b40(L, "i", value);
 }
 
-s32 fn_7101090f00(lua_State* L) {
+s32 SetEnvironmentVolume(lua_State* L) {
     f32 delay;
     if (fn_71010c0270(L, "f", &delay))
         fn_7100108ae8(g_unk_7101d4d820, 5, 0.25f, delay, true);
     return 0;
 }
 
-s32 fn_71010791a0(lua_State* L) {
+s32 SaveProfile(lua_State* L) {
     u8 flag;
     if (fn_71010c0270(L, "b", &flag)) {
         u32 bits = flag << 1;
@@ -195,10 +210,12 @@ s32 fn_71010791a0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 void fn_7100df9358(void* self, u32 index, s32 level);
 
-s32 fn_71010795b0(lua_State* L) {
+namespace lua_bind {
+s32 SetSceneBrightness(lua_State* L) {
     s32 index = 0;
     s32 level = 0;
     if (fn_71010c0270(L, "ii", &index, &level))
@@ -206,7 +223,7 @@ s32 fn_71010795b0(lua_State* L) {
     return 0;
 }
 
-s32 fn_710108e620(lua_State* L) {
+s32 PauseSounds(lua_State* L) {
     bool on = false;
     if (fn_71010c0270(L, "b", &on)) {
         UnkSoundSystemMasks_ovb0074* sound = reinterpret_cast<UnkSoundSystemMasks_ovb0074*>(g_unk_7101d4d820);
@@ -216,7 +233,7 @@ s32 fn_710108e620(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101092df0(lua_State* L) {
+s32 SetSFXMuted(lua_State* L) {
     bool on = true;
     if (fn_71010c0270(L, "b", &on)) {
         u32 mask = 1;
@@ -224,33 +241,39 @@ s32 fn_7101092df0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 void fn_7100df6cd0(UnkGameManager* self, f32 a, f32 b);
 
-s32 fn_7101087a90(lua_State* L) {
+namespace lua_bind {
+s32 SetSlomoFor(lua_State* L) {
     f32 a = 1.0f;
     f32 b = 1.0f;
     if (fn_71010c0270(L, "ff", &a, &b))
         fn_7100df6cd0(g_unk_7101d47310, a, b);
     return 0;
 }
+}  // namespace lua_bind
 
 void fn_7100ca79f0(UnkObserverEntryMap_7100ca79f0* manager, u32 id, bool flag);
 
-s32 fn_7101094ce0(lua_State* L) {
+namespace lua_bind {
+s32 ResetTileGroup(lua_State* L) {
     s32 id = 0;
     bool flag = false;
     if (fn_71010c0270(L, "ib", &id, &flag))
         fn_7100ca79f0(reinterpret_cast<UnkObserverEntryMap_7100ca79f0*>(g_unk_7101d47310->field_0x1af8), id, flag);
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkGaugeHolder_ovb0156 {
     u8 pad_0x0[0x2318];
     f32 field_0x2318;
 };
 
-s32 fn_710108e320(lua_State* L) {
+namespace lua_bind {
+s32 SetSoundListenerFactor(lua_State* L) {
     f32 value = 0.0f;
     if (fn_71010c0270(L, "f", &value)) {
         UnkGaugeHolder_ovb0156* holder = reinterpret_cast<UnkGaugeHolder_ovb0156*>(g_unk_7101d47310);
@@ -259,6 +282,7 @@ s32 fn_710108e320(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 s32 fn_7101090c60(lua_State* L) {
     f32 t;
@@ -273,7 +297,8 @@ struct UnkPos_ovb0156 {
     UnkPos_ovb0156() : x(0.0f), y(0.0f), z(0.0f) {}
 };
 
-s32 fn_710108f7c0(lua_State* L) {
+namespace lua_bind {
+s32 FadeOut(lua_State* L) {
     f32 duration;
     if (fn_71010c0270(L, "f", &duration)) {
         u8* effects = g_unk_7101d47310->field_0x1040;
@@ -283,7 +308,7 @@ s32 fn_710108f7c0(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101078220(lua_State* L) {
+s32 ChangeGameMode(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         UnkGameManager* manager = g_unk_7101d47310;
@@ -294,3 +319,4 @@ s32 fn_7101078220(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

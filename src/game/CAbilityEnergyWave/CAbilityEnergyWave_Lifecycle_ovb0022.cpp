@@ -114,7 +114,7 @@ static inline void* InputOf(UnkBaseComponent* component) {
     return OwnerOf<UnkEnergyWaveLinkOwner_ovb22>(component)->comp;
 }
 
-void fn_7100302424(CAbilityComponent* self) {
+void CAbilityComponent::refl_Construct(CAbilityComponent* self) {
     fn_71010c4148(reinterpret_cast<UnkStateObject*>(self));
     self->vtable = g_unk_7101a22690 + 2;
     new (&self->abilities) base::global::CRntVector<CAbility*>(0xf);

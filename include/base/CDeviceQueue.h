@@ -96,6 +96,9 @@ public:
         }
         return *this;
     }
+    // Reflection's value operations (CType+0x28..+0x58), defined out of line.
+    static void refl_CopyConstruct(void* dst, const void* src);
+    static void refl_MoveConstruct(void* dst, const void* src);
 };
 
 }  // namespace base::file
