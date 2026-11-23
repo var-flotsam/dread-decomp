@@ -10,6 +10,7 @@
 #include "game/UnkTU1601.h"
 #include "game/UnkTU367.h"
 #include "game/UnkTU437.h"
+#include "game/UnkThermalDevice_b0279.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -57,17 +58,6 @@ struct UnkStringEntry_b0279 {
 };
 
 struct UnkThermalDevice_A5_b73;
-
-struct UnkThermalDevice_b0279 {
-    u8 pad_0x0[0x30];
-    void* owner;  // 0x30
-    u8 pad_0x38[0x548 - 0x38];
-    UnkThermalLink_b0279* links;  // 0x548
-    u32 link_count;               // 0x550
-    u8 pad_0x554[0x578 - 0x554];
-    UnkStringEntry_b0279* script_a;  // 0x578
-    UnkStringEntry_b0279* script_b;  // 0x580
-};
 
 static inline void ResolveLink(UnkThermalLink_b0279* link) {
     if (link->state == 1) {

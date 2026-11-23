@@ -1,14 +1,12 @@
 // GUI::CBossRushReport: formats a signed number of seconds as "[+-]HH:MM:SS" wide text.
 // Names and layouts are placeholders.
+#include "base/global/timeline/UnkWideStr_0x20.h"
 #include "game/UnkHms.h"
 #include "game/UnkTU58.h"
 #include "types.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/timeline/CEvent.h"
 
-struct UnkWideStr_0x20 {
-    u8 pad_0x0[0x20];
-};
 using UnkText = UnkWideStr_0x20;  // the GUI's name for it (src/game_s7/UnkGuiS7.h)
 
 extern "C" int sprintf(char* buf, const char* fmt, ...);
