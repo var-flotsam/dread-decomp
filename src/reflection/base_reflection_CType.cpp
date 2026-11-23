@@ -8,7 +8,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -22,11 +22,11 @@ DREAD_REFL_TAG(710009cab0);
 void fn_710009c7b4(base::reflection::CClass*) {}
 void fn_710009f1a4();
 void fn_710009c8a8(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("sName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x8, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("sName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x8, -1, -1);
     [&] {
         DREAD_REFLECTED_FUNCTION_OF("_sBaseTypeName_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710009f1a4);
     }();
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("sBaseTypeName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("sBaseTypeName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
 }
 bool fn_710009f168(const void* a, const void* b) { return a == b; }
 s32 fn_710009f174() { return -1; }

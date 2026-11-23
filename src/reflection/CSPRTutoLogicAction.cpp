@@ -9,7 +9,7 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -30,11 +30,11 @@ extern base::reflection::CType g_unk_717274caa0;
 namespace CSPRTutoLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpCentralUnitDoor", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x10, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("wpCentralUnitDoor", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x10, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpCentralUnit", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x50, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("wpCentralUnit", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x50, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("vAfterTutoLogicActions", true), &g_unk_717274caa0, 0x90, -1, -1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("vAfterTutoLogicActions", true), &g_unk_717274caa0, 0x90, -1, -1);
     field2->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

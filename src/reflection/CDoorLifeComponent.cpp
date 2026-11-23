@@ -10,7 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -56,9 +56,9 @@ namespace CDoorLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxDistanceOpened", 0x414, (DefaultValue, 400.0f), (Description, "Max distance to be opened"));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpLeftDoorShieldEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x388, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("wpLeftDoorShieldEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x388, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpRightDoorShieldEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x3c8, -1, -1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("wpRightDoorShieldEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x3c8, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FUNCTION_OF("_m_fMinTimeOpened_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008dc010);
     DREAD_REFLECTED_FUNCTION("_m_fMinTimeOpened_SetterFunction")

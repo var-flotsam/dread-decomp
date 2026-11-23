@@ -10,7 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -34,13 +34,13 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 namespace CCentralUnitAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("vSpawnPointActors", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x146d0, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("vSpawnPointActors", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x146d0, -1, -1);
     field0->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field0->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 3);
     DREAD_REFLECTED_FIELD_OF("CRinkaUnitComponent::ECentralUnitType", "eType", 0x14730, (DefaultValue, 2147483647));
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpDoorCentralUnit", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x14790, -1, -1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("wpDoorCentralUnit", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x14790, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("wpDeadCutScenePlayer", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x14750, -1, -1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("wpDeadCutScenePlayer", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x14750, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

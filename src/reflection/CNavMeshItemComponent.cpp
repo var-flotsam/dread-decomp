@@ -9,7 +9,7 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -57,7 +57,7 @@ void refl_AddFields(CClass* cls) {
         fn_71009be580(fn, "OverrideInitialStage");
     DREAD_REFLECTED_FUNCTION("SetStage")
         fn_71009be6fc(fn, "SetStage");
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("tForbiddenEdgesSpawnPoints", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object, 0x188, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("tForbiddenEdgesSpawnPoints", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object, 0x188, -1, -1);
     field0->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Spawn points to set forbidden edges"));
     field0->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }

@@ -10,7 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -35,7 +35,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CEntity>>", "vDoorsToChange", 0x898);
     DREAD_REFLECTED_FIELD(CStrId, "sInteractionLiteralID", 0x588, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>", "tCaptionList", 0x5a0);
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("wpThermalDevice", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x540, -1, -1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("wpThermalDevice", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x540, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FUNCTION("ActiveDialogue") {
         fn_7100a6bc44(fn, "ActiveDialogue");

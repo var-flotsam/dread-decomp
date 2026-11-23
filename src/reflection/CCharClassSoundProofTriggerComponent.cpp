@@ -10,7 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -64,7 +64,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFadeOutTime", 0xaf0, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(bool, "bMuteActors", 0xaf6, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bFilterSpecificActors", 0xaf5, (DefaultValue, false));
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("vActorsToIgnore", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0xac0, -1, -1);
+    CVariable* field5 = AddReflectedField(cls, CStrId("vActorsToIgnore", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0xac0, -1, -1);
     field5->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field5->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 13);
 }

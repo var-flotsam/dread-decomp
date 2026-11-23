@@ -9,7 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -31,9 +31,9 @@ void fn_71007e8b58();
 namespace CFootstepPlatformComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpActivableEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x48, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("wpActivableEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x48, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpPartnerFootStepPlatformEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x88, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("wpPartnerFootStepPlatformEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x88, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD(CStrId, "sCallbackOnOpened", 0xe0, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(CStrId, "sCallbackOnClosed", 0xe8, (DefaultValue, CStrId(CStrId::Empty())));

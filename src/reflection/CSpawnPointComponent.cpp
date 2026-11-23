@@ -12,7 +12,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -65,15 +65,15 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bAllowSpawnInFrustum", 0x114, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bStartEnabled", 0x115, (DefaultValue, true), (Persistence, 0), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(bool, "bAutomanaged", 0x27c, (DefaultValue, false));
-    UnkReflField* field11 = AddReflectedField(cls, CStrId("wpSceneShapeId", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x120, -1, -1);
+    CVariable* field11 = AddReflectedField(cls, CStrId("wpSceneShapeId", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x120, -1, -1);
     field11->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
-    UnkReflField* field12 = AddReflectedField(cls, CStrId("wpCollisionSceneShapeId", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x170, -1, -1);
+    CVariable* field12 = AddReflectedField(cls, CStrId("wpCollisionSceneShapeId", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x170, -1, -1);
     field12->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
-    UnkReflField* field13 = AddReflectedField(cls, CStrId("wpNavigableShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x1b8, -1, -1);
+    CVariable* field13 = AddReflectedField(cls, CStrId("wpNavigableShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x1b8, -1, -1);
     field13->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
-    UnkReflField* field14 = AddReflectedField(cls, CStrId("wpAreaOfInterest", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x1f8, -1, -1);
+    CVariable* field14 = AddReflectedField(cls, CStrId("wpAreaOfInterest", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x1f8, -1, -1);
     field14->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
-    UnkReflField* field15 = AddReflectedField(cls, CStrId("wpAreaOfInterestEnd", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x238, -1, -1);
+    CVariable* field15 = AddReflectedField(cls, CStrId("wpAreaOfInterestEnd", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x238, -1, -1);
     field15->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FIELD(f32, "fTimeOnAOIEndToUseAsMainAOI", 0x278, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fSpawnFromXCellProbability", 0x2bc, (DefaultValue, 0.0f));
@@ -81,16 +81,16 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CSpawnPointComponent::EXCellSpawnPositionMode", "eXCellSpawnPositionMode", 0x2c4, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bUseDynamicSpawnPosition", 0x351, (DefaultValue, false));
     DREAD_REFLECTED_FIELD_OF("CSpawnPointComponent::EDynamicSpawnPositionMode", "eDynamicSpawnPositionMode", 0x354, (DefaultValue, 1));
-    UnkReflField* field22 = AddReflectedField(cls, CStrId("tDynamicSpawnPositions", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x358, -1, -1);
+    CVariable* field22 = AddReflectedField(cls, CStrId("tDynamicSpawnPositions", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x358, -1, -1);
     field22->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field22->attrs_0x70.Add<bool>(base::reflection::attr::bWeakLink(), true);
     DREAD_REFLECTED_FUNCTION("SetDynamicSpawnPositionOverride")
         fn_71011255e4(fn, "SetDynamicSpawnPositionOverride");
     DREAD_REFLECTED_FUNCTION_OF("ResetDynamicSpawnPositionOverride", &base::reflection::TypeObject<void>::object, 0, fn_7101132780);
-    UnkReflField* field23 = AddReflectedField(cls, CStrId("tXCellTransformTargets", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x2c8, -1, -1);
+    CVariable* field23 = AddReflectedField(cls, CStrId("tXCellTransformTargets", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x2c8, -1, -1);
     field23->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field23->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 3);
-    UnkReflField* field24 = AddReflectedField(cls, CStrId("wpXCellActivationAreaShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x2f0, -1, -1);
+    CVariable* field24 = AddReflectedField(cls, CStrId("wpXCellActivationAreaShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x2f0, -1, -1);
     field24->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FUNCTION_OF("_sCharClass_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71011327d8);
     DREAD_REFLECTED_FUNCTION("_sCharClass_SetterFunction")

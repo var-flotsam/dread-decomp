@@ -9,7 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -30,7 +30,7 @@ namespace CTutoExitLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sMissionLogTutoId", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpTriggerToDisable", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x10, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("wpTriggerToDisable", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x10, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

@@ -11,7 +11,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -32,7 +32,7 @@ namespace CLightsDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x58);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("vLights", true), &base::reflection::TypeObject<base::global::CRntVector<CLightInfo>>::object, 0x60, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("vLights", true), &base::reflection::TypeObject<base::global::CRntVector<CLightInfo>>::object, 0x60, -1, -1);
     field1->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateElement", true));
     field1->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteElement", true));
     DREAD_REFLECTED_FUNCTION("CreateElement") {

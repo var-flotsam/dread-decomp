@@ -10,7 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -34,9 +34,9 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fEventsWeightThreshold", 0x14, (DefaultValue, 0.0f), (Description, "Events Weight Threshold"));
     DREAD_REFLECTED_FIELD(bool, "bLaunchEvents", 0x68, (DefaultValue, true), (Description, "Can Launch Events"));
     DREAD_REFLECTED_FIELD(bool, "bAllowRootMotion", 0x69, (DefaultValue, true), (Description, "Allow Root Motion"));
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("vBones", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x18, -1, -1);
+    CVariable* field4 = AddReflectedField(cls, CStrId("vBones", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x18, -1, -1);
     field4->attrs.Add<const char*>(base::reflection::attr::Description(), "List of bone filters");
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("vBoneHierarchies", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x40, -1, -1);
+    CVariable* field5 = AddReflectedField(cls, CStrId("vBoneHierarchies", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x40, -1, -1);
     field5->attrs.Add<const char*>(base::reflection::attr::Description(), "List of bone hierarchies filters");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

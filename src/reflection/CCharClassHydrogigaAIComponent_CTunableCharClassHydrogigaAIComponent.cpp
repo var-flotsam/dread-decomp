@@ -9,7 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -78,7 +78,7 @@ namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass();
 namespace CCharClassHydrogigaAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("tTentacles", true), &base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTentacle>>>::object, 0x528, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("tTentacles", true), &base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTentacle>>>::object, 0x528, -1, -1);
     field0->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassHydrogigaBraidAttack, "oHydrogigaBraidAttackDef", 0x738);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassHydrogigaMaelstormAttack, "oHydrogigaMaelstormAttackDef", 0x830);

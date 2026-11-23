@@ -9,7 +9,7 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -33,7 +33,7 @@ void fn_7100acbea0(CFunction* fn, const char* name);
 namespace CWorldGraph {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("tNodes", true), &base::reflection::TypeObject<base::global::CRntVector<SWorldGraphNode>>::object, 0x30, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("tNodes", true), &base::reflection::TypeObject<base::global::CRntVector<SWorldGraphNode>>::object, 0x30, -1, -1);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "World Graph Nodes");
     field0->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateNode", true));
     field0->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteNode", true));

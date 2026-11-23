@@ -9,7 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -69,7 +69,7 @@ DREAD_REFLECTED_CLASS(CWaterNozzleComponent::CTunableWaterNozzle, base::tunable:
 namespace CWaterNozzleComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpWaterPool", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x2b0, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("wpWaterPool", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x2b0, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

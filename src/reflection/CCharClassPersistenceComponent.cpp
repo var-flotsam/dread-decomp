@@ -9,7 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -40,15 +40,15 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sBoolProperty_GetterFunction", &base::reflection::TypeObject<CGameBBPropID>::object, 0x101, fn_71009c9bec);
     DREAD_REFLECTED_FUNCTION("_sBoolProperty_SetterFunction")
         fn_71009c932c(fn, "_sBoolProperty_SetterFunction");
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("sBoolProperty", true), &base::reflection::TypeObject<CGameBBPropID>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("sBoolProperty", true), &base::reflection::TypeObject<CGameBBPropID>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_sIntProperty_GetterFunction", &base::reflection::TypeObject<CGameBBPropID>::object, 0x101, fn_71009c9cd8);
     DREAD_REFLECTED_FUNCTION("_sIntProperty_SetterFunction")
         fn_71009c94a0(fn, "_sIntProperty_SetterFunction");
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("sIntProperty", true), &base::reflection::TypeObject<CGameBBPropID>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("sIntProperty", true), &base::reflection::TypeObject<CGameBBPropID>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_sFloatProperty_GetterFunction", &base::reflection::TypeObject<CGameBBPropID>::object, 0x101, fn_71009c9dc4);
     DREAD_REFLECTED_FUNCTION("_sFloatProperty_SetterFunction")
         fn_71009c9614(fn, "_sFloatProperty_SetterFunction");
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("sFloatProperty", true), &base::reflection::TypeObject<CGameBBPropID>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("sFloatProperty", true), &base::reflection::TypeObject<CGameBBPropID>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_sSection_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71009c9eb0);
     DREAD_REFLECTED_FUNCTION("_sSection_SetterFunction")
         fn_71009c9788(fn, "_sSection_SetterFunction");

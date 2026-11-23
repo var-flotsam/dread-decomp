@@ -11,7 +11,7 @@
 #include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
@@ -25,11 +25,11 @@ extern template const base::reflection::CType* base::reflection::PointerType<gam
 
 // game::logic::collision::CCollider
 void fn_7100d3f7f4();
-void fn_71000e8118(UnkReflField* field, u64 index);
+void fn_71000e8118(CVariable* field, u64 index);
 namespace game::logic::collision::CCollider {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("pShape", true), base::reflection::PointerType<game::logic::collision::CShape*>::Get(), 0xffffffff, -1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("pShape", true), base::reflection::PointerType<game::logic::collision::CShape*>::Get(), 0xffffffff, -1, -1);
     [&] {
         DREAD_REFLECTED_FUNCTION_OF("_m_pShape_GetterFunction", base::reflection::PointerType<game::logic::collision::CShape*>::Get(), 0, fn_7100d3f7f4);
     }();
