@@ -85,7 +85,7 @@ static inline void ReadString_l1715d0(UnkPropBag* bag, const CStrId& id, UnkMode
     UnkBagValue_l1715d0* value = FindValue_l1715d0(bag, id);
     if (value != &Values_l1715d0(bag)[bag->values.count] && value->type == 's') {
         char text[0x100];
-        fn_710007c00c(&bag->lock, value->offset, 0);
+        CRntFile_Seek(&bag->lock, value->offset, 0);
         fn_710007ca94(&bag->lock, text);
         CRntString_AssignCString(out.Str(), text);
     }

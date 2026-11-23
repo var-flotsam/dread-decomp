@@ -43,7 +43,7 @@ bool fn_7100d62e3c(UnkPolygonCollectionShape* self, CRntFile* file) {
     fn_7100d6c288(self, file);
     fn_7100d62ec0(self, file);
     self->has_tree = true;
-    fn_710007c714(file, &self->has_tree, 1, 1);
+    CRntFile_Read(file, &self->has_tree, 1, 1);
     bool ok = true;
     if (self->has_tree)
         ok = reinterpret_cast<bool (*)(UnkNavMeshTree*, CRntFile*)>(fn_710010ddc4)(

@@ -85,7 +85,7 @@ bool fn_7101144178(UnkInventory* self, void* stream) {
     char name[0x200] = {};
     f32 amount = 0.0f;
     bool flag = false;
-    fn_710007cf30(stream, "sfb", name, &amount, &flag);
+    CRntFile_ReadFormat(stream, "sfb", name, &amount, &flag);
     fn_7101142a28(self, UnkInvItemId_ovb0094(CStrId(name, true)).item, flag, true, true, amount, 0.0f);
     return true;
 }

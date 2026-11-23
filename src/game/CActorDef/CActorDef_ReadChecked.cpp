@@ -18,6 +18,6 @@ struct UnkActorDefReader {
 
 bool fn_71002561fc(UnkActorDefReader* self, void* stream) {
     const char* name;
-    fn_710007cee4(stream, &name);
+    CRntFile_ReadCString(stream, &name);
     return self->vf_0x38(stream) && self->vf_0x40(stream);
 }

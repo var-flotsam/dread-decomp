@@ -32,7 +32,7 @@ UnkReflValue fn_710007e4e8(void*, char* obj, UnkReflValue* const* args) {
     } else {
         u64 n = length;
         const s32* src = blob + 1;
-        fn_710007c514(file, n, 1);
+        CRntFile_Reserve(file, n, 1);
         std::memcpy(file->data + file->position, src, n);
         file->position += n;
         read = n + 4;

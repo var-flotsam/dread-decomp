@@ -47,7 +47,7 @@ static inline __attribute__((always_inline)) void Build_b0261(UnkShapeHandle_b02
 UnkShapeHandle_b0261 fn_7100d46440(UnkCollisionFileReader* self, CRntFile* file) {
     UnkShapeHandle_b0261 result;
     const char* kind;
-    fn_710007cee4(file, &kind);
+    CRntFile_ReadCString(file, &kind);
     if (!strcmp(kind, "AABOX2D"))
         Build_b0261<0xc0, fn_7100d5e1b4>(&result, file);
     else if (!strcmp(kind, "SEGMENT2D"))

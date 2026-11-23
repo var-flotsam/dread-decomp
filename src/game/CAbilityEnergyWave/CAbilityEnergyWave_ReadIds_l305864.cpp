@@ -31,9 +31,9 @@ bool fn_7100305864(UnkWaveIds_l305864* self, UnkIdMessage_l305864* message) {
     const char* first;
     const char* second;
     const char* third;
-    fn_710007cee4(stream, &first);
-    fn_710007cee4(stream, &second);
-    fn_710007cee4(stream, &third);
+    CRntFile_ReadCString(stream, &first);
+    CRntFile_ReadCString(stream, &second);
+    CRntFile_ReadCString(stream, &third);
     {
         base::global::UnkStrId id(first, true);
         self->field_0x390 = static_cast<base::global::UnkStrId&&>(id);

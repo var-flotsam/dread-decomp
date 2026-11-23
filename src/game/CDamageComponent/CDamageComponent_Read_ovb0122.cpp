@@ -22,7 +22,7 @@ bool fn_71007aed6c(char* obj, const void* arg) {
     char a[0x80];
     char b[0x80];
     char c[0x80];
-    fn_710007cf30(const_cast<void*>(arg), "sss", a, b, c);
+    CRntFile_ReadFormat(const_cast<void*>(arg), "sss", a, b, c);
     if (a[0]) {
         CRntString text(a);
         self->kind_a = fn_7100d4bc00(&text);

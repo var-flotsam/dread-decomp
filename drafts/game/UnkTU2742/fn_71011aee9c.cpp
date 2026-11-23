@@ -36,6 +36,6 @@ void fn_71011aee9c(UnkKeyedFile_l1aee9c* self, const u64* key, u32 value) {
         offset = it->offset;
     else
         self->slots.EmplaceBack(UnkKeyedSlot_l1aee9c(offset, *key, 'u'));
-    fn_710007c00c(&self->file, offset, 0);
-    fn_710007c450(&self->file, &value, sizeof(value), 1);
+    CRntFile_Seek(&self->file, offset, 0);
+    CRntFile_WriteElements(&self->file, &value, sizeof(value), 1);
 }

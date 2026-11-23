@@ -150,9 +150,9 @@ void fn_7100a4c804(UnkColliderTrigger_b0058* self, const base::math::CVector3D* 
 void fn_7100a4c780(UnkColliderTrigger_b0058* self, base::global::CRntFile* file) {
     fn_7100a6081c(self, file);
     f32 x, z, y;  // stored as x, z, y
-    fn_710007c714(file, &x, 4, 1);
-    fn_710007c714(file, &z, 4, 1);
-    fn_710007c714(file, &y, 4, 1);
+    CRntFile_Read(file, &x, 4, 1);
+    CRntFile_Read(file, &z, 4, 1);
+    CRntFile_Read(file, &y, 4, 1);
     base::math::CVector3D size = {x, y, z};
     fn_7100a4c804(self, &size);
 }

@@ -52,7 +52,7 @@ static inline UnkBagValue_l16ed2c* End_l16ed2c(UnkPropBag& bag) {
 
 // Reads `size` bytes of the value `it` into `dest`.
 static inline void Read_l16ed2c(UnkPropBag& bag, const UnkBagValue_l16ed2c* it, void* dest, u64 size) {
-    fn_710007c00c(&bag.lock, it->offset, 0);
+    CRntFile_Seek(&bag.lock, it->offset, 0);
     fn_710007c70c(&bag.lock, dest, size);
 }
 

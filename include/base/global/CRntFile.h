@@ -34,23 +34,23 @@ static_assert(sizeof(CRntFile) == 0x38, "CRntFile layout");
 // 2 puts it on the last byte (`offset` is ignored). Returns false when the target is not inside
 // the contents (the position goes to their end) and when no block is allocated or `whence` is
 // another value (the position stays). Defined in src/base/global/CRntFile.cpp.
-bool fn_710007c00c(base::global::CRntFile* file, u64 offset, s32 whence);
+bool CRntFile_Seek(base::global::CRntFile* file, u64 offset, s32 whence);
 
 // Allocates the block (`size` bytes, the position 0), which Clang puts in the first call of the
 // write below as well; false when no allocator can be had. A block already there is
 // replaced without being freed (it leaks).
-bool fn_710007bf9c(base::global::CRntFile* file, s64 size);
+bool CRntFile_Allocate(base::global::CRntFile* file, s64 size);
 // Makes room for `count` elements of `size` bytes at the position, allocating the block when there
 // is none (and growing it, copying the contents over, when they don't fit).
-void fn_710007c514(base::global::CRntFile* file, s64 size, s64 count);
+void CRntFile_Reserve(base::global::CRntFile* file, s64 size, s64 count);
 // Writes `size` bytes at the position (growing the file), moves the position on; returns `size`.
-u64 fn_710007c3f0(base::global::CRntFile* file, const void* data, u64 size);
+u64 CRntFile_Write(base::global::CRntFile* file, const void* data, u64 size);
 // Writes `count` elements of `size` bytes at the position (growing the file), moves the position on;
 // returns the bytes written.
-u64 fn_710007c450(base::global::CRntFile* file, const void* data, u64 size, u64 count);
+u64 CRntFile_WriteElements(base::global::CRntFile* file, const void* data, u64 size, u64 count);
 // Writes `size` bytes of `value` at the position (growing the file); returns `size`.
-u64 fn_710007c4b8(base::global::CRntFile* file, s32 value, u64 size);
+u64 CRntFile_Fill(base::global::CRntFile* file, s32 value, u64 size);
 // Reads `count` elements of `size` bytes from the position into `dest`, or what is left of the
 // contents when that is less, swapping each element's bytes when `swap` is set (sizes 2, 4, 8);
 // moves the position on and returns the bytes read (0 at the end or when there is no block).
-u64 fn_710007c714(base::global::CRntFile* file, void* dest, u64 size, u64 count);
+u64 CRntFile_Read(base::global::CRntFile* file, void* dest, u64 size, u64 count);

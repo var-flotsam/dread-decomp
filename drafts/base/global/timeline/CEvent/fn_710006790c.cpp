@@ -91,12 +91,12 @@ void fn_710006790c(UnkTimelineEvent* event, CRntFile* file) {
     UnkReflTypedPtr obj;
     obj.type = fn_710009dcd8(self->GetClass(), self);
     obj.ptr = self;
-    fn_710007c714(file, &self->field_0x8, 4, 1);
+    CRntFile_Read(file, &self->field_0x8, 4, 1);
     s32 count = 0;
-    fn_710007c714(file, &count, 4, 1);
+    CRntFile_Read(file, &count, 4, 1);
     for (s32 i = 0; i < count; i++) {
         u64 hash;
-        fn_710007c714(file, &hash, 8, 1);
+        CRntFile_Read(file, &hash, 8, 1);
         const u64 key = hash;  // the member's name hash
         UnkEventClass_06790c* owner = reinterpret_cast<UnkEventClass_06790c*>(obj.type);
         UnkEventClass_06790c* cls = nullptr;
@@ -118,10 +118,10 @@ void fn_710006790c(UnkTimelineEvent* event, CRntFile* file) {
         case 0xBF34F79BBA0DEAF6:
         case 0x8C2DEEC131321516: {  // a string
             u16 length;
-            fn_710007c714(file, &length, 2, 1);
+            CRntFile_Read(file, &length, 2, 1);
             char text[0x80];
             if (length != 0)
-                fn_710007c714(file, text, length, 1);
+                CRntFile_Read(file, text, length, 1);
             text[length] = '\0';
             const char* str = text;
             UnkEventValue_06790c arg = {fn_71000081e8(), &str};
@@ -131,70 +131,70 @@ void fn_710006790c(UnkTimelineEvent* event, CRntFile* file) {
         case 0x3B98086A3ED2623D:
         case 0xB97CD894D76CACD6: {
             u32 value;
-            fn_710007c714(file, &value, 4, 1);
+            CRntFile_Read(file, &value, 4, 1);
             UnkEventValue_06790c arg = {fn_7100005178(), &value};
             SetField(field, &obj, &arg);
             break;
         }
         case 0x937459BA5ED68A51: {
             f32 value;
-            fn_710007c714(file, &value, 4, 1);
+            CRntFile_Read(file, &value, 4, 1);
             UnkEventValue_06790c arg = {fn_710000abbc(), &value};
             SetField(field, &obj, &arg);
             break;
         }
         case 0x291E3F130F064F1D: {
             s32 value;
-            fn_710007c714(file, &value, 4, 1);
+            CRntFile_Read(file, &value, 4, 1);
             UnkEventValue_06790c arg = {fn_7100014768(), &value};
             SetField(field, &obj, &arg);
             break;
         }
         case 0x6A0C7BDE338B1A2B: {
             bool value;
-            fn_710007c714(file, &value, 1, 1);
+            CRntFile_Read(file, &value, 1, 1);
             UnkEventValue_06790c arg = {fn_710000d228(), &value};
             SetField(field, &obj, &arg);
             break;
         }
         case 0x28230A7FDBF66651: {
             u64 name = ~0ull;
-            fn_710007c714(file, &name, 8, 1);
+            CRntFile_Read(file, &name, 8, 1);
             UnkEventValue_06790c arg = {fn_710000fd7c(), &name};
             SetField(field, &obj, &arg);
             break;
         }
         case 0x0D7B335721099BF9: {
             base::math::CVector3D value = {0.0f, 0.0f, 0.0f};
-            fn_710007c714(file, &value, 12, 1);
+            CRntFile_Read(file, &value, 12, 1);
             UnkEventValue_06790c arg = {fn_71000246e4(), &value};
             SetField(field, &obj, &arg);
             break;
         }
         case 0x7C0E083AF861F5A8: {
             UnkColor3F_06790c value = {1.0f, 1.0f, 1.0f};
-            fn_710007c714(file, &value, 12, 1);
+            CRntFile_Read(file, &value, 12, 1);
             UnkEventValue_06790c arg = {fn_7100067f5c(), &value};
             SetField(field, &obj, &arg);
             break;
         }
         case 0x313DF0831835525F: {
             base::math::CVector4D value = {0.0f, 0.0f, 0.0f, 0.0f};
-            fn_710007c714(file, &value, 16, 1);
+            CRntFile_Read(file, &value, 16, 1);
             UnkEventValue_06790c arg = {fn_71000248c4(), &value};
             SetField(field, &obj, &arg);
             break;
         }
         case 0x4048CBEEC15D3C0E: {
             base::color::CColor4F value(1.0f, 1.0f, 1.0f, 1.0f);
-            fn_710007c714(file, &value, 16, 1);
+            CRntFile_Read(file, &value, 16, 1);
             UnkEventValue_06790c arg = {fn_7100068204(), &value};
             SetField(field, &obj, &arg);
             break;
         }
         case 0xFC925429C459C462: {  // an enum: the member's word is written directly
             u32 value;
-            fn_710007c714(file, &value, 4, 1);
+            CRntFile_Read(file, &value, 4, 1);
             UnkReflTypedPtr member = fn_71000e755c(reinterpret_cast<UnkReflField*>(field), &obj);
             fn_710009dcd8(member.type, member.ptr);
             *static_cast<u32*>(member.ptr) = value;

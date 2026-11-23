@@ -125,7 +125,7 @@ bool fn_71007906cc(UnkGrabClass_l7906cc* self, CRntFile* file) {
     if (!result)
         return result;
     s32 count = 0;
-    fn_710007c714(file, &count, 4, 1);
+    CRntFile_Read(file, &count, 4, 1);
 
     base::UnkLinkedList<UnkGrabNode_l7906cc>& list = self->list;
     for (UnkGrabNode_l7906cc* node = list.head; node;) {
@@ -143,14 +143,14 @@ bool fn_71007906cc(UnkGrabClass_l7906cc* self, CRntFile* file) {
         const char* kind;
         const char* name;
         const char* other;
-        fn_710007cee4(file, &kind);
-        fn_710007cee4(file, &name);
-        fn_710007cee4(file, &other);
-        fn_710007c714(file, &info.flags.field_0x4, 4, 1);
-        fn_710007c714(file, &info.flags.field_0x8, 1, 1);
-        fn_710007c714(file, &info.flags.field_0x9, 1, 1);
-        fn_710007c714(file, &info.flags.field_0xb, 1, 1);
-        fn_710007c714(file, &info.flags.field_0xc, 1, 1);
+        CRntFile_ReadCString(file, &kind);
+        CRntFile_ReadCString(file, &name);
+        CRntFile_ReadCString(file, &other);
+        CRntFile_Read(file, &info.flags.field_0x4, 4, 1);
+        CRntFile_Read(file, &info.flags.field_0x8, 1, 1);
+        CRntFile_Read(file, &info.flags.field_0x9, 1, 1);
+        CRntFile_Read(file, &info.flags.field_0xb, 1, 1);
+        CRntFile_Read(file, &info.flags.field_0xc, 1, 1);
         info.field_0x8 = CStrId(name, true);
         info.field_0x10 = CStrId(other, true);
         info.kind = GrabKind_l7906cc(kind);

@@ -73,12 +73,12 @@ void fn_71008cf9f4(UnkDoorObject_l8cf9f4* self, CRntFile* file) {
     s32 areaLeft;
     s32 areaRight;
     const char* shieldEntity;
-    fn_710007c714(file, &minTimeOpened, 4, 1);
-    fn_710007c714(file, &maxDistanceOpened, 4, 1);
-    fn_710007c714(file, &stayOpen, 1, 1);
-    fn_710007cee4(file, &shieldEntity);
-    fn_710007c714(file, &areaLeft, 4, 1);
-    fn_710007c714(file, &areaRight, 4, 1);
+    CRntFile_Read(file, &minTimeOpened, 4, 1);
+    CRntFile_Read(file, &maxDistanceOpened, 4, 1);
+    CRntFile_Read(file, &stayOpen, 1, 1);
+    CRntFile_ReadCString(file, &shieldEntity);
+    CRntFile_Read(file, &areaLeft, 4, 1);
+    CRntFile_Read(file, &areaRight, 4, 1);
 
     Set<fn_710000d228>(self, fn_7100001570("bStayOpen", 9), &stayOpen);
     Set<fn_710000abbc>(self, fn_7100001570("fMinTimeOpened", 14), &minTimeOpened);

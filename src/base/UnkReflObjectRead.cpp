@@ -32,7 +32,7 @@ bool fn_71000edda0(const base::global::CRntFile* source, const UnkTypedObject* o
     UnkFileReader reader;
     fn_710007beac(&reader.file, source, 0x16, nullptr);
     reader.field_0x3c = flags;
-    fn_710007c00c(&reader.file, 0, 0);
+    CRntFile_Seek(&reader.file, 0, 0);
     reader.field_0x38 = 0;
     UnkReadTarget target;
     {

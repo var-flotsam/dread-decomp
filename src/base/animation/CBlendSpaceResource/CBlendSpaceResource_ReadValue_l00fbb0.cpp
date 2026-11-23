@@ -46,13 +46,13 @@ static inline bool Assign(const CType* type, UnkTypedRef* dst, UnkTypedRef src) 
 bool fn_710000fbb0(CRntFile* file, u32, UnkTypedRef* value, const base::global::CStrId*) {
     if (value->type == fn_710000fd7c()) {
         CName name(UnkNameHash(), -1);
-        fn_710007c714(file, &name, sizeof(name), 1);
+        CRntFile_Read(file, &name, sizeof(name), 1);
         Assign(value->type, value, {fn_710000fd7c(), &name});
         return true;
     }
     if (fn_710009d50c(value->type, static_cast<const CType*>(fn_710000ffd0()))) {
         if (UnkByteBuffer_00fbb0* buffer = static_cast<UnkByteBuffer_00fbb0*>(value->ptr)) {
-            fn_710007c714(file, buffer, sizeof(buffer->size), 1);
+            CRntFile_Read(file, buffer, sizeof(buffer->size), 1);
             u32 size = buffer->size;
             buffer->Reset();
             buffer->data = static_cast<u8*>(fn_7100083ba0(size, 0xf));
@@ -62,7 +62,7 @@ bool fn_710000fbb0(CRntFile* file, u32, UnkTypedRef* value, const base::global::
     }
     if (fn_710009d52c(value->type, fn_71000081e8())) {
         const char* text = nullptr;
-        fn_710007cee4(file, &text);
+        CRntFile_ReadCString(file, &text);
         Assign(value->type, value, {fn_71000081e8(), &text});
         return true;
     }
@@ -73,6 +73,6 @@ bool fn_710000fbb0(CRntFile* file, u32, UnkTypedRef* value, const base::global::
     if (fn_710007c1a4(file) - file->position < type->m_size)
         return false;
     type->m_fn_0x48(dst, file->data + file->position);
-    fn_710007c00c(file, type->m_size, 1);
+    CRntFile_Seek(file, type->m_size, 1);
     return true;
 }

@@ -80,47 +80,47 @@ bool fn_710073043c(UnkBillboardClass_l73043c* self, CRntFile* file) {
     bool result = fn_71011aced4(reinterpret_cast<UnkCollisionClassDef*>(self), file);
     if (result) {
         const char* name;
-        fn_710007cee4(file, &name);
+        CRntFile_ReadCString(file, &name);
         self->name = UnkStrId(name, true);
 
         s32 request_count = 0;
-        fn_710007c714(file, &request_count, 4, 1);
+        CRntFile_Read(file, &request_count, 4, 1);
         for (s32 i = 0; i < request_count; ++i) {
             UnkBillboardRequest_l73043c request;
             const char* id;
-            fn_710007cee4(file, &id);
+            CRntFile_ReadCString(file, &id);
             CStrId request_id(id, true);
             request.id = request_id;
-            fn_710007c714(file, &request.field_0x8, 4, 1);
-            fn_710007c714(file, &request.field_0xc, 4, 1);
-            fn_710007c714(file, &request.field_0x10, 4, 1);
-            fn_710007c714(file, &request.field_0x14, 1, 1);
-            fn_710007c714(file, &request.field_0x18, 4, 1);
-            fn_710007c714(file, &request.field_0x1c, 4, 1);
-            fn_710007c714(file, &request.field_0x20, 4, 1);
+            CRntFile_Read(file, &request.field_0x8, 4, 1);
+            CRntFile_Read(file, &request.field_0xc, 4, 1);
+            CRntFile_Read(file, &request.field_0x10, 4, 1);
+            CRntFile_Read(file, &request.field_0x14, 1, 1);
+            CRntFile_Read(file, &request.field_0x18, 4, 1);
+            CRntFile_Read(file, &request.field_0x1c, 4, 1);
+            CRntFile_Read(file, &request.field_0x20, 4, 1);
             fn_7100e1cd34(BillboardManager(), reinterpret_cast<UnkDropTarget_ovb0208*>(&self->name),
                           reinterpret_cast<UnkDropRequest_ovb0208*>(&request));
         }
 
         // The second name is read, but the id is built from the first one again, as in the original.
         const char* record_name;
-        fn_710007cee4(file, &record_name);
+        CRntFile_ReadCString(file, &record_name);
         self->record_name = UnkStrId(name, true);
 
         s32 record_count = 0;
-        fn_710007c714(file, &record_count, 4, 1);
+        CRntFile_Read(file, &record_count, 4, 1);
         for (s32 i = 0; i < record_count; ++i) {
             UnkBillboardRecord_l73043c record;
             const char* id;
-            fn_710007cee4(file, &id);
+            CRntFile_ReadCString(file, &id);
             CStrId record_id(id, true);
             record.id = record_id;
-            fn_710007c714(file, &record.field_0x8, 1, 1);
+            CRntFile_Read(file, &record.field_0x8, 1, 1);
             s32 offset_count = 0;
-            fn_710007c714(file, &offset_count, 4, 1);
+            CRntFile_Read(file, &offset_count, 4, 1);
             for (s32 j = 0; j < offset_count; ++j) {
                 UnkVec3f offset(0.0f, 0.0f, 0.0f);
-                fn_710007c714(file, &offset, 0xc, 1);
+                CRntFile_Read(file, &offset, 0xc, 1);
                 record.offsets.PushBackCopy(offset);
             }
             fn_7100e1cfec(BillboardManager(), static_cast<CStrId*>(static_cast<UnkStrIdBase*>(&self->record_name)), reinterpret_cast<UnkRecord_b218*>(&record));

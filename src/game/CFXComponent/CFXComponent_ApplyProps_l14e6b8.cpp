@@ -40,7 +40,7 @@ static inline UnkBagValue_l14e6b8* FindValue_l14e6b8(UnkPropBag& bag, const CStr
 static inline void ReadBool_l14e6b8(UnkPropBag& bag, const CStrId& id, bool* out) {
     UnkBagValue_l14e6b8* it = FindValue_l14e6b8(bag, id);
     if (it != &Values_l14e6b8(bag)[bag.values.count] && it->type == 'b') {
-        fn_710007c00c(&bag.lock, it->offset, 0);
+        CRntFile_Seek(&bag.lock, it->offset, 0);
         fn_710007c70c(&bag.lock, out, 1);
     }
 }

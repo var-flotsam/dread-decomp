@@ -23,7 +23,7 @@ u32 fn_7100939fd4(UnkSamusModelUpdater_l939fd4* self, UnkProp* p) {
         return fn_710093881c(reinterpret_cast<UnkMultiModelUpdater_l93881c*>(self), p);
     {
         const char* name;
-        fn_710007cee4(p->stream, &name);
+        CRntFile_ReadCString(p->stream, &name);
         CStrId id(name, true);
         fn_7100938ebc(self, reinterpret_cast<const u64*>(&id));
     }

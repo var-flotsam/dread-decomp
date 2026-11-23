@@ -118,7 +118,7 @@ void fn_710118cdfc(UnkIngameMenu_l18cdfc* self) {
     if (fn_7100dfb758(&results, "CurrentScenario.GetOnDeathOverrides", g_unk_710162e2ed)) {
         UnkScriptValue_l18cdfc* it = FindValue_l18cdfc(results, Key(0x1218));
         if (it != &Values_l18cdfc(results)[results.values.count] && it->type == 'b') {
-            fn_710007c00c(&results.lock, it->offset, 0);
+            CRntFile_Seek(&results.lock, it->offset, 0);
             fn_710007c70c(&results.lock, &overrides, 1);
         }
     }

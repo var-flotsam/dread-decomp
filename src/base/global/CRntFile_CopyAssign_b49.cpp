@@ -71,7 +71,7 @@ inline void Rewind(CRntFile* file) {
 
 }  // namespace
 
-CRntFile* fn_710007e258(CRntFile* self, const CRntFile* other) {
+CRntFile* CRntFile_CopyAssign(CRntFile* self, const CRntFile* other) {
     if (self != other) {
         UnkRntFileView_b49a1* view = reinterpret_cast<UnkRntFileView_b49a1*>(self);
         if (!view->borrowed && view->data) {

@@ -94,12 +94,12 @@ void fn_710112812c(CSpawnPointComponent* component, CRntFile* file) {
     const char* onEntityGenerated;
     const char* charClass;
     bool spawnOnFloor = false;
-    fn_710007cee4(file, &unused);
-    fn_710007cee4(file, &charClass);
-    fn_710007cee4(file, &startAnimation);
-    fn_710007cee4(file, &onBeforeGenerate);
-    fn_710007cee4(file, &onEntityGenerated);
-    fn_710007c714(file, &spawnOnFloor, 1, 1);
+    CRntFile_ReadCString(file, &unused);
+    CRntFile_ReadCString(file, &charClass);
+    CRntFile_ReadCString(file, &startAnimation);
+    CRntFile_ReadCString(file, &onBeforeGenerate);
+    CRntFile_ReadCString(file, &onEntityGenerated);
+    CRntFile_Read(file, &spawnOnFloor, 1, 1);
 
     {
         u64 key = fn_7100001570("sCharClass", 10);
@@ -127,15 +127,15 @@ void fn_710112812c(CSpawnPointComponent* component, CRntFile* file) {
     }
     if (HasMore(file)) {
         bool checkCollisions;
-        fn_710007c714(file, &checkCollisions, 1, 1);
+        CRntFile_Read(file, &checkCollisions, 1, 1);
         u64 key = fn_7100001570("bCheckCollisions", 16);
         Set<fn_710000d228>(self, key, &checkCollisions);
     }
     if (HasMore(file)) {
         f32 timeToActivate;
         s32 maxNumToGenerate;
-        fn_710007c714(file, &timeToActivate, 4, 1);
-        fn_710007c714(file, &maxNumToGenerate, 4, 1);
+        CRntFile_Read(file, &timeToActivate, 4, 1);
+        CRntFile_Read(file, &maxNumToGenerate, 4, 1);
         u64 key = fn_7100001570("fTimeToActivate", 15);
         Set<fn_710000abbc>(self, key, &timeToActivate);
         key = fn_7100001570("iMaxNumToGenerate", 17);
@@ -143,14 +143,14 @@ void fn_710112812c(CSpawnPointComponent* component, CRntFile* file) {
     }
     if (HasMore(file)) {
         const char* sceneShapeId;
-        fn_710007cee4(file, &sceneShapeId);
+        CRntFile_ReadCString(file, &sceneShapeId);
         u64 key = fn_7100001570("sSceneShapeId", 13);
         UnkFieldId_l12812c id(sceneShapeId, true);
         Set<fn_7100009658>(self, key, &id);
     }
     if (HasMore(file)) {
         const char* collisionSceneShapeId;
-        fn_710007cee4(file, &collisionSceneShapeId);
+        CRntFile_ReadCString(file, &collisionSceneShapeId);
         u64 key = fn_7100001570("sCollisionSceneShapeId", 22);
         UnkFieldId_l12812c id(collisionSceneShapeId, true);
         Set<fn_7100009658>(self, key, &id);
@@ -158,8 +158,8 @@ void fn_710112812c(CSpawnPointComponent* component, CRntFile* file) {
     if (HasMore(file)) {
         bool startEnabled;
         bool automanaged;
-        fn_710007c714(file, &startEnabled, 1, 1);
-        fn_710007c714(file, &automanaged, 1, 1);
+        CRntFile_Read(file, &startEnabled, 1, 1);
+        CRntFile_Read(file, &automanaged, 1, 1);
         u64 key = fn_7100001570("bStartEnabled", 13);
         Set<fn_710000d228>(self, key, &startEnabled);
         key = fn_7100001570("bAutomanaged", 12);
@@ -167,7 +167,7 @@ void fn_710112812c(CSpawnPointComponent* component, CRntFile* file) {
     }
     if (HasMore(file)) {
         const char* navigableShape;
-        fn_710007cee4(file, &navigableShape);
+        CRntFile_ReadCString(file, &navigableShape);
         u64 key = fn_7100001570("sNavigableShape", 15);
         UnkFieldId_l12812c id(navigableShape, true);
         Set<fn_7100009658>(self, key, &id);

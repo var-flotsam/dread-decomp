@@ -11,13 +11,13 @@
 struct UnkFileReader;
 struct UnkStrPair_0x10;
 
-s64 fn_710007cf30(void* stream, const char* format, ...);
-s64 fn_710007cee4(void*, const char**);  // The next string of the stream, in place.
+s64 CRntFile_ReadFormat(void* stream, const char* format, ...);
+s64 CRntFile_ReadCString(void*, const char**);  // The next string of the stream, in place.
 // Copy-constructs a file from another one (its contents copied into a block of its own).
 void fn_710007beac(base::global::CRntFile* self, const base::global::CRntFile* other, u32 flags, base::UnkAllocator* allocator);
 // The file's constructor over existing data.
 void fn_710007c080(base::global::CRntFile* file, void* data, u32 flags, u64 size);
 // Formatted stream write ("i" integer, "b" bool, "f" float, "s" string).
-s64 fn_710007cb4c(void* stream, const char* format, ...);
+s64 CRntFile_WriteFormat(void* stream, const char* format, ...);
 u64 fn_710007c70c(base::global::CRntFile* file, void* dest, u64 size);
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);

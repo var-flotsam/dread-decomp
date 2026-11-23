@@ -47,7 +47,7 @@ bool fn_710112bce8(UnkPropBag* bag, UnkPropKeyRef* ref, CStrId* out) {
     }
     if (it == end || it->type != 0x73)
         return false;
-    fn_710007c00c(&bag->file, it->offset, 0);
+    CRntFile_Seek(&bag->file, it->offset, 0);
     char buf[0x100];
     fn_710007ca94(&bag->file, buf);
     CStrId id(buf, true);

@@ -296,9 +296,9 @@ bool fn_710033652c(UnkSonarData_ovb0085* self, UnkSonarSource_ovb0085* source) {
     const char* model_path;
     const char* pulse_path;
     f32 scale = 1.0f;
-    fn_710007c714(file, &scale, 4, 1);
-    fn_710007cee4(file, &model_path);
-    fn_710007cee4(file, &pulse_path);
+    CRntFile_Read(file, &scale, 4, 1);
+    CRntFile_ReadCString(file, &model_path);
+    CRntFile_ReadCString(file, &pulse_path);
     self->scale = scale;
     if (UnkSonarModel_ovb0085* old = self->model)
         fn_71011a91c4(ModelManager(), old, 0);

@@ -117,17 +117,17 @@ static inline void PushBackMove(base::UnkStrIdVec* names, CStrId& id) {
 }
 
 bool fn_7100256268(UnkActorDefFile_ovb0118* self, base::global::CRntFile* file) {
-    fn_710007c714(file, &self->field_0x68, 1, 1);
-    fn_710007c714(file, &self->field_0x60, 1, 1);
-    fn_710007c714(file, &self->field_0x64, 4, 1);
-    fn_710007c714(file, &self->field_0x69, 1, 1);
-    fn_710007c714(file, &self->field_0x6a, 1, 1);
+    CRntFile_Read(file, &self->field_0x68, 1, 1);
+    CRntFile_Read(file, &self->field_0x60, 1, 1);
+    CRntFile_Read(file, &self->field_0x64, 4, 1);
+    CRntFile_Read(file, &self->field_0x69, 1, 1);
+    CRntFile_Read(file, &self->field_0x6a, 1, 1);
     s32 count;
-    fn_710007c714(file, &count, 4, 1);
+    CRntFile_Read(file, &count, 4, 1);
     self->names.Reserve(count);
     for (s32 i = 0; i < count; ++i) {
         const char* name;
-        fn_710007cee4(file, &name);
+        CRntFile_ReadCString(file, &name);
         CStrId id(name, true);
         PushBackMove(&self->names, id);
     }

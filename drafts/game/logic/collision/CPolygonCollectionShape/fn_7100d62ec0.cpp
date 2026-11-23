@@ -69,7 +69,7 @@ struct UnkPolygonVertex_ld62ec0 {
 
 template <class T>
 static inline void Read(CRntFile* file, T* value) {
-    fn_710007c714(file, value, sizeof(T), 1);
+    CRntFile_Read(file, value, sizeof(T), 1);
 }
 
 // Sets the outline count, building the new outlines and destroying the dropped ones.

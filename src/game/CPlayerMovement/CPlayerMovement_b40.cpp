@@ -26,7 +26,7 @@ UnkReflValue fn_71010dcf24(void*, char* obj, UnkReflValue* const* args) {
     else
         stream = arg;
     bool value = true;
-    fn_710007cf30(stream, "b", &value);
+    CRntFile_ReadFormat(stream, "b", &value);
     void** vtable = *reinterpret_cast<void***>(target);
     reinterpret_cast<void (*)(char*, bool)>(vtable[0x348 / 8])(target, value);
     s32 zero = 0;
@@ -54,7 +54,7 @@ UnkReflValue fn_71010dcfd0(void*, char* obj, UnkReflValue* const* args) {
     {
         char name[0x80];
         UnkVec2_b40a3 v = {};
-        fn_710007cf30(stream, "sff", name, &v.x, &v.y);
+        CRntFile_ReadFormat(stream, "sff", name, &v.x, &v.y);
         base::global::CStrId id(name, true);
         fn_710006c598(target + 0x708, &id, &v);
     }

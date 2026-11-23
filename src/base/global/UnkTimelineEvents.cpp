@@ -81,11 +81,11 @@ static_assert(__builtin_offsetof(UnkTimelineEvents, lists) == 0x28, "UnkTimeline
 // Reads the five counts, reserves each list, then the timed events and the four untimed lists.
 void fn_7100068f5c(UnkTimelineEvents* self, base::global::CRntFile* file) {
     u16 timed_count, count0, count1, count2, count3;
-    fn_710007c714(file, &timed_count, 2, 1);
-    fn_710007c714(file, &count0, 2, 1);
-    fn_710007c714(file, &count1, 2, 1);
-    fn_710007c714(file, &count2, 2, 1);
-    fn_710007c714(file, &count3, 2, 1);
+    CRntFile_Read(file, &timed_count, 2, 1);
+    CRntFile_Read(file, &count0, 2, 1);
+    CRntFile_Read(file, &count1, 2, 1);
+    CRntFile_Read(file, &count2, 2, 1);
+    CRntFile_Read(file, &count3, 2, 1);
     fn_710006981c(&self->timed, timed_count);
     self->lists[0].Grow(count0);
     self->lists[1].Grow(count1);
@@ -93,7 +93,7 @@ void fn_7100068f5c(UnkTimelineEvents* self, base::global::CRntFile* file) {
     self->lists[3].Grow(count3);
     for (u32 i = 0; i < timed_count; ++i) {
         u32 tenths;
-        fn_710007c714(file, &tenths, 4, 1);
+        CRntFile_Read(file, &tenths, 4, 1);
         f32 time = (f32)tenths * 0.1f;
         UnkTimelineEvent* e = fn_7100067848(file);
         UnkTimedEvents& t = self->timed;

@@ -90,9 +90,9 @@ bool fn_7100d68484(UnkOBoxShape2DRead_ovb0062* self, CRntFile* file) {
     f32 width = 0.0f;
     f32 height = 0.0f;
     if (file->position < file->size) {
-        fn_710007c714(file, &degrees, 4, 1);
-        fn_710007c714(file, &width, 4, 1);
-        fn_710007c714(file, &height, 4, 1);
+        CRntFile_Read(file, &degrees, 4, 1);
+        CRntFile_Read(file, &width, 4, 1);
+        CRntFile_Read(file, &height, 4, 1);
     }
     f32 radians = (f32)((f64)degrees * 3.141592653589793 / 180.0);
     u32 width_bits, height_bits;

@@ -27,13 +27,13 @@ u32 fn_710093881c(UnkMultiModelUpdater_l93881c* self, UnkProp* p) {
         return fn_7101171fcc(self, p);
     CRntFile* file = reinterpret_cast<CRntFile*>(p->stream);
     const char* name;
-    fn_710007cee4(file, &name);
+    CRntFile_ReadCString(file, &name);
     const char* path = nullptr;
     if (file->position < file->size)
-        fn_710007cee4(file, &path);
+        CRntFile_ReadCString(file, &path);
     const char* unused = nullptr;
     if (file->position < file->size)
-        fn_710007cee4(file, &unused);
+        CRntFile_ReadCString(file, &unused);
     CStrId name_id(name, true);
     CFilePathStrId path_id(UnkStrIdInline(), path, true);
     fn_710093852c(reinterpret_cast<UnkMultiModel_l93852c*>(self), &name_id, &path_id);

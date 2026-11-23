@@ -20,7 +20,7 @@ UnkReflValue fn_7101161298(void*, char* obj, UnkReflValue* const* args) {
     else
         stream = arg;
     const char* str;
-    fn_710007cee4(stream, &str);
+    CRntFile_ReadCString(stream, &str);
     CRntString_AssignCString(reinterpret_cast<base::global::CRntString*>(target + 0xb0), str);
     s32 zero = 0;
     const base::reflection::CType* type = fn_7100014768();

@@ -55,11 +55,11 @@ bool fn_71008626bc(UnkColliderContainer* self, base::global::CRntFile* stream) {
     const char* type_name;
     const char* kind_name;
     const char* extra;
-    fn_710007cee4(stream, &name);
-    fn_710007cee4(stream, &group);
-    fn_710007cee4(stream, &type_name);
-    fn_710007cee4(stream, &kind_name);
-    fn_710007cee4(stream, &extra);
+    CRntFile_ReadCString(stream, &name);
+    CRntFile_ReadCString(stream, &group);
+    CRntFile_ReadCString(stream, &type_name);
+    CRntFile_ReadCString(stream, &kind_name);
+    CRntFile_ReadCString(stream, &extra);
     CStrId type_id(type_name, true);
     u32 kind = 0;
     if (*kind_name) {
@@ -76,7 +76,7 @@ bool fn_71008626bc(UnkColliderContainer* self, base::global::CRntFile* stream) {
     collider->shape->vf_0x20(stream);
     if (stream->position < stream->size) {
         bool flag = false;
-        fn_710007c714(stream, &flag, 1, 1);
+        CRntFile_Read(stream, &flag, 1, 1);
         collider->vf_0x30(flag);
     }
     return true;

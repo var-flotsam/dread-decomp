@@ -38,7 +38,7 @@ static inline UnkCollisionShape* NewShape(u64 size) {
 // Reads a shape of the type named in the stream into `owner`; an unknown name reads nothing more.
 void fn_7100d462b4(void*, UnkShapeOwner* owner, void* stream) {
     const char* type;
-    fn_710007cee4(stream, &type);
+    CRntFile_ReadCString(stream, &type);
     UnkCollisionShape* shape;
     if (strcmp(type, "AABOX2D") == 0)
         shape = NewShape<fn_7100d5e1b4>(0xc0);

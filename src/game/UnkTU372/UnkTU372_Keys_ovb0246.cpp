@@ -63,11 +63,11 @@ struct UnkNavMeshReadItem_b0246 {
 void fn_71002b3524(UnkNavMeshItem* item, base::global::CRntFile* file) {
     UnkNavMeshReadItem_b0246* self = reinterpret_cast<UnkNavMeshReadItem_b0246*>(item);
     u32 count = 0;
-    fn_710007c714(file, &count, 4, 1);
+    CRntFile_Read(file, &count, 4, 1);
     self->cells.Reserve(count);
     for (s32 i = 0; i < (s32)count; i++) {
         u32 value;
-        fn_710007c714(file, &value, 4, 1);
+        CRntFile_Read(file, &value, 4, 1);
         *fn_71000d1d24(&self->cells, i) = (u16)value;
     }
 }

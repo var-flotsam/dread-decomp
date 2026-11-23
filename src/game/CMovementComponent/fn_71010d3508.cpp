@@ -82,13 +82,13 @@ bool fn_71010d32ec(UnkObj_71010d3508* self, const CRntString& name);
 
 u32 fn_71010d3508(UnkObj_71010d3508* self, UnkProp* p) {
     if (p->set && Is(p, Key(0x10b8)))
-        return fn_710007cf30(p->stream, "f", &self->field_0x7c) != 0;
+        return CRntFile_ReadFormat(p->stream, "f", &self->field_0x7c) != 0;
     if (!p->set && Is(p, Key(0x1528)))
-        return fn_710007cb4c(p->stream, "b", self->field_0xf9) != 0;
+        return CRntFile_WriteFormat(p->stream, "b", self->field_0xf9) != 0;
     if (!p->set && Is(p, Key(0x12c0)))
-        return fn_710007cb4c(p->stream, "b", self->field_0x104) != 0;
+        return CRntFile_WriteFormat(p->stream, "b", self->field_0x104) != 0;
     if (p->set && Is(p, Key(0x12c0)))
-        return fn_710007cf30(p->stream, "b", &self->field_0x104) != 0;
+        return CRntFile_ReadFormat(p->stream, "b", &self->field_0x104) != 0;
     const f32* m = self->actor->Matrix();
     f32 x = m[3], y = m[7], z = m[11];
     UnkVec3f pos;
@@ -96,64 +96,64 @@ u32 fn_71010d3508(UnkObj_71010d3508* self, UnkProp* p) {
     pos.y = y;
     pos.z = z;
     if (!p->set && Is(p, Key(0xcf0)))
-        return fn_710007cb4c(p->stream, "v", &pos) != 0;
+        return CRntFile_WriteFormat(p->stream, "v", &pos) != 0;
     if (IsName(p, CRntString("OriginPos")) && !p->set)
-        return fn_710007cb4c(p->stream, "o", &self->origin_pos) == 8;
+        return CRntFile_WriteFormat(p->stream, "o", &self->origin_pos) == 8;
     if (IsName(p, CRntString("OriginPos")) && p->set) {
         const UnkVec3f* v;
-        if (fn_710007cf30(p->stream, "o", &v) != 8)
+        if (CRntFile_ReadFormat(p->stream, "o", &v) != 8)
             return false;
         self->origin_pos = *v;
         return true;
     }
     if (IsName(p, CRntString("OriginAng")) && !p->set)
-        return fn_710007cb4c(p->stream, "o", &self->origin_ang) == 8;
+        return CRntFile_WriteFormat(p->stream, "o", &self->origin_ang) == 8;
     if (IsName(p, CRntString("OriginAng")) && p->set) {
         const UnkVec3f* v;
-        if (fn_710007cf30(p->stream, "o", &v) != 8)
+        if (CRntFile_ReadFormat(p->stream, "o", &v) != 8)
             return false;
         self->origin_ang = *v;
         return true;
     }
     if (!p->set && Is(p, Key(0x15a0)))
-        return fn_710007cb4c(p->stream, "f", (f64)self->field_0x100) != 0;
+        return CRntFile_WriteFormat(p->stream, "f", (f64)self->field_0x100) != 0;
     if (p->set && Is(p, Key(0x15a0)))
-        return fn_710007cf30(p->stream, "f", &self->field_0x100) != 0;
+        return CRntFile_ReadFormat(p->stream, "f", &self->field_0x100) != 0;
     if (Is(p, Key(0x1480)) && p->set) {
         UnkVec3f v;
         v.x = 0.0f;
         v.y = 0.0f;
         v.z = 0.0f;
-        fn_710007cf30(p->stream, "fff", &v.x, &v.y, &v.z);
+        CRntFile_ReadFormat(p->stream, "fff", &v.x, &v.y, &v.z);
         self->actor->vf_0xd8(&v, true);
         return true;
     }
     if (Is(p, Key(0x2038))) {
         f32 a, b, c, d;
-        fn_710007cf30(p->stream, "ffff", &a, &b, &c, &d);
+        CRntFile_ReadFormat(p->stream, "ffff", &a, &b, &c, &d);
         self->actor->SetField37c(a);
         self->actor->SetField388(b, c, d);
         return true;
     }
     if (!p->set && Is(p, Key(0xde0)))
-        return fn_710007cb4c(p->stream, "f", (f64)self->field_0x40) != 0;
+        return CRntFile_WriteFormat(p->stream, "f", (f64)self->field_0x40) != 0;
     if (!p->set && Is(p, Key(0x24b0)))
-        return fn_710007cb4c(p->stream, "f", (f64)self->field_0x58) != 0;
+        return CRntFile_WriteFormat(p->stream, "f", (f64)self->field_0x58) != 0;
     if (!p->set && Is(p, Key(0x1c50)))
-        return fn_710007cb4c(p->stream, "f", (f64)(self->actor ? self->actor->Matrix()[3] : 0.0f)) != 0;
+        return CRntFile_WriteFormat(p->stream, "f", (f64)(self->actor ? self->actor->Matrix()[3] : 0.0f)) != 0;
     if (!p->set && Is(p, Key(0x7a8)))
-        return fn_710007cb4c(p->stream, "f",
+        return CRntFile_WriteFormat(p->stream, "f",
                              (f64)(self->actor ? self->actor->node.GetAngle().y : 0.0f)) != 0;
     if (p->set && Is(p, Key(0xde0)))
-        return fn_710007cf30(p->stream, "f", &self->field_0x40) != 0;
+        return CRntFile_ReadFormat(p->stream, "f", &self->field_0x40) != 0;
     if (p->set && Is(p, Key(0x24b0)))
-        return fn_710007cf30(p->stream, "f", &self->field_0x58) != 0;
+        return CRntFile_ReadFormat(p->stream, "f", &self->field_0x58) != 0;
     if (Is(p, Key(0xc30)) && !p->set) {
         char buf[0x80];
-        fn_710007cf30(p->stream, "s", buf);
+        CRntFile_ReadFormat(p->stream, "s", buf);
         bool result = fn_71010d32ec(self, CRntString(buf));
-        fn_710007c00c(reinterpret_cast<CRntFile*>(p->stream), 0, 0);
-        fn_710007cb4c(p->stream, "b", result);
+        CRntFile_Seek(reinterpret_cast<CRntFile*>(p->stream), 0, 0);
+        CRntFile_WriteFormat(p->stream, "b", result);
         return true;
     }
     // The base handler takes the component and the property record: the object's first 0x40

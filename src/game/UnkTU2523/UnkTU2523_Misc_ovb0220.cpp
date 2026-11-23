@@ -82,7 +82,7 @@ struct UnkEntitySoundComponent;
 
 bool fn_7100d7cc68(UnkCueEntity_b0220* self, void* stream) {
     char buffer[128];
-    fn_710007cf30(stream, "s", buffer);
+    CRntFile_ReadFormat(stream, "s", buffer);
     base::global::CFilePathStrId path(buffer, true);
     UnkCueEntity_b0220* entity = self;
     for (;;) {

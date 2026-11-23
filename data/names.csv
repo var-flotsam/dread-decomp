@@ -2,6 +2,17 @@ address,name,name_source,reason
 0x71000003d4,CStrId_Construct,inferred,"constructs a string id from a C string: hashes it, finds it in the pool or inserts it"
 0x710000051c,CStrId_Destroy,inferred,"a string id's destructor, registered with __cxa_atexit for global ids"
 0x7100000850,CStrId_ConstructFromRntString,inferred,constructs a string id from a CRntString's text and cached key
+0x710007bf9c,CRntFile_Allocate,inferred,allocates the file's block of the given size and puts the position at 0; false when no allocator can be had
+0x710007c00c,CRntFile_Seek,inferred,"moves the read/write position: whence 0 sets it, 1 adds to it, 2 puts it on the last byte; false when the target is outside the contents"
+0x710007c3f0,CRntFile_Write,inferred,"writes bytes at the position, growing the file, and moves the position on"
+0x710007c450,CRntFile_WriteElements,inferred,"writes count elements of a size at the position, growing the file, and returns the bytes written"
+0x710007c4b8,CRntFile_Fill,inferred,"writes size bytes of a value at the position (memset), growing the file"
+0x710007c514,CRntFile_Reserve,inferred,"makes room for count elements of a size at the position, allocating or growing the block"
+0x710007c714,CRntFile_Read,inferred,"reads count elements of a size from the position, swapping each element's bytes when the swap flag is set"
+0x710007cb4c,CRntFile_WriteFormat,inferred,"the formatted write, the counterpart of the formatted read"
+0x710007cee4,CRntFile_ReadCString,inferred,points the output at the string at the position and moves past its terminator (at most 0x200 bytes)
+0x710007cf30,CRntFile_ReadFormat,inferred,"the formatted read: each format character reads one value of its type into the next argument, from the file's start"
+0x710007e258,CRntFile_CopyAssign,inferred,copy assignment of a file held in memory
 0x710007e6e4,CRntString_InitWithAllocator,inferred,builds an empty string that allocates from the given allocator (the first step of a string with inline storage)
 0x710007e704,CRntString_ConstructFromCString,inferred,"constructs a string from a C string: clears the fields, then copies the text with its CRC-64 key"
 0x710007e77c,CRntString_AssignCString,inferred,assigns a C string's text and its CRC-64 key through the text setter

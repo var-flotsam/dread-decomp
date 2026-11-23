@@ -49,7 +49,7 @@ UnkReflValue fn_7100f0edfc(char* obj, UnkReflValue* const* args) {
         stream = arg;
     {
         char name[0x100];
-        fn_710007cf30(stream, "s", name);
+        CRntFile_ReadFormat(stream, "s", name);
         base::UnkNamedEntry entry;
         CRntString_ConstructFromCString(&entry, name);
         s64 key = reinterpret_cast<base::global::CRntString*>(&entry)->key;

@@ -27,7 +27,7 @@ UnkReflValue fn_710115790c(void*, char* obj, UnkReflValue* const* args) {
         char name[0x80];
         bool a;
         bool b = false;
-        fn_710007cf30(stream, "sbb", name, &a, &b);
+        CRntFile_ReadFormat(stream, "sbb", name, &a, &b);
         u64 hash;
         fn_710006663c(&hash, name);
         u32 fa = a;

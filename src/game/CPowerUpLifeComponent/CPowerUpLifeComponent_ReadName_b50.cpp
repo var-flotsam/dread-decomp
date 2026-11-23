@@ -8,7 +8,7 @@ using base::global::UnkStrId;
 
 bool fn_71008e4f30(char* self, void* stream) {
     char text[0x80];
-    fn_710007cf30(stream, "s", text);
+    CRntFile_ReadFormat(stream, "s", text);
     *reinterpret_cast<UnkStrId*>(self + 0x3d0) = UnkStrId(text, true);
     return true;
 }

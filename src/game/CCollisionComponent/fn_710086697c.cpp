@@ -65,7 +65,7 @@ struct UnkCollisionComponentOwner {
 void fn_710086697c(UnkCollisionComponentOwner* self, base::global::CRntFile* stream,
                    base::global::CRntVector<UnkCollisionRecord>* records, base::global::CRntVector<UnkColliderNode*>* groups) {
     const char* name;
-    fn_710007cee4(stream, &name);
+    CRntFile_ReadCString(stream, &name);
     UnkManager_7100863a8c* manager = GetManager();
     UnkColliderNode* group;
     {
@@ -74,10 +74,10 @@ void fn_710086697c(UnkCollisionComponentOwner* self, base::global::CRntFile* str
     }
     fn_7100d35a98(reinterpret_cast<UnkEntry*>(group), 1);
     u32 count = 0;
-    fn_710007c714(stream, &count, 4, 1);
+    CRntFile_Read(stream, &count, 4, 1);
     for (u32 i = 0; i < count; ++i) {
         const char* member;
-        fn_710007cee4(stream, &member);
+        CRntFile_ReadCString(stream, &member);
         for (UnkCollisionRecord* r = records->data, *end = r + records->count; r != end; ++r) {
             s64 key;
             {

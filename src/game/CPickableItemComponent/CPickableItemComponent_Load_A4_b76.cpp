@@ -19,7 +19,7 @@ void fn_71009cf870(UnkPickableItem_A4_b76* self, CRntFile* file) {
         char second[0x200] = {};
         u32 value = 0;
         fn_710007ca94(file, first);
-        fn_710007c714(file, &value, 4, 1);
+        CRntFile_Read(file, &value, 4, 1);
         fn_710007ca94(file, second);
     }
 }

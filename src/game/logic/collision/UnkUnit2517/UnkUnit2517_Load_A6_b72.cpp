@@ -15,8 +15,8 @@ bool fn_7100d69428(UnkBoxShape2D_A6_b72* self, base::global::CRntFile* file) {
     base::math::CVector2D a = {};
     base::math::CVector2D b = {};
     if (file->position < file->size) {
-        fn_710007c714(file, &a, 8, 1);
-        fn_710007c714(file, &b, 8, 1);
+        CRntFile_Read(file, &a, 8, 1);
+        CRntFile_Read(file, &b, 8, 1);
     }
     UnkSegment2D seg(a, b);
     fn_7100125b44(&self->bounds, &seg);

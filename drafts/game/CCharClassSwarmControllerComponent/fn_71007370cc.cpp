@@ -42,10 +42,10 @@ struct UnkSwarmIdList_l7370cc {
     // Appends the ids the file lists: a count, then that many strings.
     void Read(CRntFile* file) {
         s32 n = 0;
-        fn_710007c714(file, &n, 4, 1);
+        CRntFile_Read(file, &n, 4, 1);
         for (s32 i = 0; i < n; ++i) {
             const char* str;
-            fn_710007cee4(file, &str);
+            CRntFile_ReadCString(file, &str);
             CStrId id(str, true);
             Add(id);
         }

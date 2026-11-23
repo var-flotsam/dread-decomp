@@ -98,13 +98,13 @@ void fn_710050e4dc(UnkPropBag* bag, const CStrId& key, const char* value) {
         offset = it->offset;
     self->AddName(key);
 
-    fn_710007c00c(&self->stream, offset, 0);
+    CRntFile_Seek(&self->stream, offset, 0);
     u64 length = __builtin_strlen(value) + 1;
     u64 size = length < kSlotSize ? length : kSlotSize;
-    fn_710007c3f0(&self->stream, value, size);
+    CRntFile_Write(&self->stream, value, size);
     self->AddName(key);
     if (length < kSlotSize)
-        fn_710007c4b8(&self->stream, 0, kSlotSize - size);
+        CRntFile_Fill(&self->stream, 0, kSlotSize - size);
 }
 
 }  // namespace unk_prop_bag

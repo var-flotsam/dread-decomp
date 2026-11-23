@@ -372,7 +372,7 @@ void fn_7101188c2c(UnkIngameMenu_l188c2c* self, f32 dt) {
         if (fn_7100dfb758(&results, "CurrentScenario.GetOnDeathOverrides", g_unk_710162e2ed)) {
             UnkScriptValue_l188c2c* it = FindValue_l188c2c(results, Key(0x1218));
             if (it != &Values_l188c2c(results)[results.values.count] && it->type == 'b') {
-                fn_710007c00c(&results.lock, it->offset, 0);
+                CRntFile_Seek(&results.lock, it->offset, 0);
                 fn_710007c70c(&results.lock, &overrides, 1);
             }
         }

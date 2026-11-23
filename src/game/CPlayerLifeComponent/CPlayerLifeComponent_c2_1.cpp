@@ -13,6 +13,6 @@ u32 fn_71011608b4(UnkObj_7101165a40* self, UnkProp* p);
 
 u32 fn_7101165a40(UnkObj_7101165a40* self, UnkProp* p) {
     if (!p->set && Is(p, Key(0xcf8)))
-        return fn_710007cb4c(p->stream, "i", self->field_0x314) != 0;
+        return CRntFile_WriteFormat(p->stream, "i", self->field_0x314) != 0;
     return fn_71011608b4(self, p);
 }

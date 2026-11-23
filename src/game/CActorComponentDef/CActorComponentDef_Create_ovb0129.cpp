@@ -37,13 +37,13 @@ static inline s32 Parse(UnkFileReader* reader, UnkReadTarget* target) {
 bool fn_710025435c(UnkReflObject* self, base::global::CRntFile* file) {
     s32 length = 0;
     UnkFileReader reader;
-    fn_710007c714(file, &length, 4, 1);
+    CRntFile_Read(file, &length, 4, 1);
     if (length < 1)
         return true;
     u64 position = file->position;
     fn_710007beac(&reader.file, file, 0x16, nullptr);
     reader.field_0x3c = 2;
-    fn_710007c00c(&reader.file, position, 0);
+    CRntFile_Seek(&reader.file, position, 0);
     fn_710000ccd8(&reader);
     UnkReadTarget target;
     {
@@ -59,7 +59,7 @@ bool fn_710025435c(UnkReflObject* self, base::global::CRntFile* file) {
     bool ok = false;
     if (reader.file.position < reader.file.size && reader.field_0x38 == 0)
         ok = Parse(&reader, &target) != 0;
-    fn_710007c00c(file, length, 1);
+    CRntFile_Seek(file, length, 1);
     for (u64 i = 0; i < target.count; ++i) {
         UnkReadEntry& e = target.entries[i];
         if (e.ops) {

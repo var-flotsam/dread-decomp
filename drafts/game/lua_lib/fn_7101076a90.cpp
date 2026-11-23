@@ -45,8 +45,8 @@ void fn_7101076a90(UnkLuaPropertyFile* self, const CStrId* name, const f32* valu
         offset = end_of_file;
         self->entries.EmplaceBack(UnkLuaPropertyEntry(end_of_file, name->data->Key(), 'v'));
     }
-    fn_710007c00c(&self->file, offset, 0);
-    fn_710007c450(&self->file, value, 0xc, 1);
+    CRntFile_Seek(&self->file, offset, 0);
+    CRntFile_WriteElements(&self->file, value, 0xc, 1);
 
     UnkIter<CStrId> names_first{self->names.data};
     UnkIter<CStrId> names_last = names_first + self->names.count;

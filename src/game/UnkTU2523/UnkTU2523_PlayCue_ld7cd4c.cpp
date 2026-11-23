@@ -24,7 +24,7 @@ struct UnkEntitySoundComponent;
 bool fn_7100d7cd4c(UnkCueEntity* self, void* stream) {
     f32 value;
     char buffer[128];
-    fn_710007cf30(stream, "sf", buffer, &value);
+    CRntFile_ReadFormat(stream, "sf", buffer, &value);
     base::global::CFilePathStrId path(buffer, true);
     f32 amount = value;
     UnkCueEntity* entity = self;

@@ -40,6 +40,6 @@ void fn_71011af240(UnkValueWriter_l1af240* self, const u64* key, u64 value) {
         offset = entry->offset;
     else
         self->entries.EmplaceBack(UnkValueEntry_l1af240(offset, *key, 0x55));
-    fn_710007c00c(&self->file, offset, 0);
-    fn_710007c450(&self->file, &value, sizeof(value), 1);
+    CRntFile_Seek(&self->file, offset, 0);
+    CRntFile_WriteElements(&self->file, &value, sizeof(value), 1);
 }

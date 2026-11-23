@@ -85,10 +85,10 @@ void fn_7100104600(void* self_) {
         fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(&s));
     }
     if (opened) {
-        fn_710007c00c(&file, 8, 0);
-        fn_710007c714(&file, self, 4, 1);
+        CRntFile_Seek(&file, 8, 0);
+        CRntFile_Read(&file, self, 4, 1);
         u32 count;
-        fn_710007c714(&file, &count, 4, 1);
+        CRntFile_Read(&file, &count, 4, 1);
         base::global::CRntVector<UnkCounter_ovb0259>& v = self->items;
         u32 n = count;
         if (v.count < n) {
@@ -101,8 +101,8 @@ void fn_7100104600(void* self_) {
         for (u32 i = 0; i < count; ++i) {
             const char* name;
             UnkCounter_ovb0259* e = fn_71001047e0(&v, i);
-            fn_710007cee4(&file, &name);
-            fn_710007c714(&file, &e->limit, 4, 1);
+            CRntFile_ReadCString(&file, &name);
+            CRntFile_Read(&file, &e->limit, 4, 1);
             e->count = 0;
             e->key = fn_7100106820(name);
         }

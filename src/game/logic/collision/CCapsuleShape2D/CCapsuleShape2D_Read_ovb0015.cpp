@@ -43,8 +43,8 @@ bool fn_7100d60094(UnkCapsuleShape2D_ovb0015* self, CRntFile* file) {
     f32 radius = 0.0f;
     f32 length = 0.0f;
     if (file->position < file->size) {
-        fn_710007c714(file, &radius, 4, 1);
-        fn_710007c714(file, &length, 4, 1);
+        CRntFile_Read(file, &radius, 4, 1);
+        CRntFile_Read(file, &length, 4, 1);
     }
     self->radius = radius;
     self->x = 0.0f;

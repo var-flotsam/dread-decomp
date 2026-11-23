@@ -96,18 +96,18 @@ bool fn_710078f9a8(UnkFXComponent_l78f9a8* self, CRntFile* file) {
     if (!result)
         return result;
     s32 count = 0;
-    fn_710007c714(file, &count, 4, 1);
+    CRntFile_Read(file, &count, 4, 1);
     self->paths.Clear();
     fn_710078fe5c(&self->paths, count);
     for (s32 i = 0; i < count; ++i) {
         const char* name;
-        fn_710007cee4(file, &name);
+        CRntFile_ReadCString(file, &name);
         u32 a;
-        fn_710007c714(file, &a, 4, 1);
+        CRntFile_Read(file, &a, 4, 1);
         u32 b;
-        fn_710007c714(file, &b, 4, 1);
+        CRntFile_Read(file, &b, 4, 1);
         bool is_list;
-        fn_710007c714(file, &is_list, 1, 1);
+        CRntFile_Read(file, &is_list, 1, 1);
         CFilePathStrId path(name, true);
         if (is_list) {
             GetManager();  // created before the list is looked up

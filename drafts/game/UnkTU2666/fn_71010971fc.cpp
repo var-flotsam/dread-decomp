@@ -30,7 +30,7 @@ void fn_71010971fc(UnkRecords_l0971fc* self, const u64* key, bool value) {
         std::find_if(begin, end, [id](const UnkRecord_l0971fc& r) { return r.key == id; });
     if (found == end) {
         u64 offset = fn_710007c1a4(&self->file);
-        fn_710007c450(&self->file, &value, sizeof(value), 1);
+        CRntFile_WriteElements(&self->file, &value, sizeof(value), 1);
         self->records.EmplaceBack(UnkRecord_l0971fc(offset, *key, 'b'));
     }
 }

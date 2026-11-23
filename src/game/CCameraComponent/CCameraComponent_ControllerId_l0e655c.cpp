@@ -21,7 +21,7 @@ struct UnkCamCtrl_l0e655c {
 
 s32 fn_71010e655c(void*, void* stream, UnkReflValue* out) {
     char name[0x80];
-    fn_710007cf30(stream, "s", name);
+    CRntFile_ReadFormat(stream, "s", name);
     UnkGameManager* manager = g_unk_7101d47310;
     UnkCamCtrl_l0e655c* controller;
     {

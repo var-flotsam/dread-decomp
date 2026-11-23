@@ -867,12 +867,12 @@ u32 refl_HashKeyFields(char* obj) {
     fn_710007be8c(&h, 0x16, nullptr);
     static base::global::CStrId s_id(UnkHashKeyTraits<Tag>::source());
     u64 v = *reinterpret_cast<u64*>(reinterpret_cast<char*>(s_id.data) + 0x30);
-    fn_710007c3f0(&h, &v, 8);
+    CRntFile_Write(&h, &v, 8);
     v = *reinterpret_cast<u64*>(*reinterpret_cast<char**>(obj + Off) + 0x30);
-    fn_710007c3f0(&h, &v, 8);
+    CRntFile_Write(&h, &v, 8);
     *reinterpret_cast<u32*>(&v) = (*reinterpret_cast<UnkHashKeySource**>(obj + Off + 8))->vf_0x38();
-    fn_710007c3f0(&h, &v, 4);
-    fn_710007c3f0(&h, obj + Off + 0x10, 4);
+    CRntFile_Write(&h, &v, 4);
+    CRntFile_Write(&h, obj + Off + 0x10, 4);
     void* t = h.data;
     u32 r = fn_710007b750(t, fn_710007c1a4(&h), -1);
     fn_710007c0e4(&h);

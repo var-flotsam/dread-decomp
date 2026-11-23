@@ -32,7 +32,7 @@ struct UnkKey12Array : base::global::CRntVector<UnkKey12> {
 // Reads the key count, then each key's 12 bytes into a new default key at the end.
 void fn_7100b8948c(UnkKey12Array* self, base::global::CRntFile* file) {
     u32 n;
-    fn_710007c714(file, &n, 4, 1);
+    CRntFile_Read(file, &n, 4, 1);
     u32 want = n;
     if (self->capacity < want)
         self->Grow(want);
@@ -45,6 +45,6 @@ void fn_7100b8948c(UnkKey12Array* self, base::global::CRntFile* file) {
         self->count = c;
         // The last key (the array's back(), which allows for an empty array).
         UnkKey12* end = self->data + self->count;
-        fn_710007c714(file, self->count == 0 ? end : end - 1, sizeof(UnkKey12), 1);
+        CRntFile_Read(file, self->count == 0 ? end : end - 1, sizeof(UnkKey12), 1);
     }
 }

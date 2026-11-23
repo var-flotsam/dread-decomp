@@ -43,6 +43,6 @@ void fn_71011af5e4(UnkValueWriter_l1af5e4* self, const u64* key, const void* val
     } else {
         offset = entry->offset;
     }
-    fn_710007c00c(&self->file, offset, 0);
-    fn_710007c450(&self->file, value, 8, 1);
+    CRntFile_Seek(&self->file, offset, 0);
+    CRntFile_WriteElements(&self->file, value, 8, 1);
 }

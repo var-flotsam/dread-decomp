@@ -91,7 +91,7 @@ bool fn_7100010274(CRntFile* file, UnkTypedRef* value) {
                         if (fn_710009d50c(reinterpret_cast<const CType*>(result.type), fn_7100010e58()))
                             read = *base::reflection::refl_ArgValue<u64>(&result);
                         if (read != 0) {
-                            fn_710007c00c(file, read, 1);
+                            CRntFile_Seek(file, read, 1);
                             ok = true;
                         }
                     }

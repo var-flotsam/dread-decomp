@@ -20,7 +20,7 @@ bool fn_7100d6c288(UnkShapeXform_b46a3* self, CRntFile* file) {
     v.y = 0.0f;
     v.z = 0.0f;
     if (file->position < file->size)
-        fn_710007c714(file, &v, sizeof(v), 1);
+        CRntFile_Read(file, &v, sizeof(v), 1);
     self->m[0][3] += v.x;
     self->m[1][3] += v.y;
     self->m[2][3] += v.z;

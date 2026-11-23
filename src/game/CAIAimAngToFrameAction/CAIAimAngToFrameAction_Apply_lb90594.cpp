@@ -77,7 +77,7 @@ void fn_7100b90594(UnkAimAngToFrame_lb90594* self) {
     UnkPropBag& bag = self->owner->props->bag;
     UnkPropValue_lb90594* it = FindValue_lb90594(bag, s_angle.data->Key());
     if (it != &Values_lb90594(bag)[bag.values.count] && it->type == 'f') {
-        fn_710007c00c(&bag.lock, it->offset, 0);
+        CRntFile_Seek(&bag.lock, it->offset, 0);
         fn_710007c70c(&bag.lock, &angle, 4);
         if (__builtin_isnan(angle))
             angle = 0.0f;

@@ -35,7 +35,7 @@ static_assert(__builtin_offsetof(UnkCameraCtrlProps_l0ee180, dest_dir) == 0x74, 
 // Reads a vector from the property's stream into `out`: 1 when it read one, else 0.
 static inline s32 ReadVec(UnkProp* p, UnkCameraVec_l0ee180* out) {
     UnkCameraVec_l0ee180* value;
-    if (fn_710007cf30(p->stream, "o", &value) != 8)
+    if (CRntFile_ReadFormat(p->stream, "o", &value) != 8)
         return 0;
     *out = *value;
     return 1;
@@ -43,19 +43,19 @@ static inline s32 ReadVec(UnkProp* p, UnkCameraVec_l0ee180* out) {
 
 s32 fn_71010ee180(UnkCameraCtrlProps_l0ee180* self, UnkProp* p) {
     if (unk_prop::IsName(p, CRntString("Pos")) && !p->set)
-        return fn_710007cb4c(p->stream, "o", &self->pos) == 8;
+        return CRntFile_WriteFormat(p->stream, "o", &self->pos) == 8;
     if (unk_prop::IsName(p, CRntString("Pos")) && p->set)
         return ReadVec(p, &self->pos);
     if (unk_prop::IsName(p, CRntString("DestPos")) && !p->set)
-        return fn_710007cb4c(p->stream, "o", &self->dest_pos) == 8;
+        return CRntFile_WriteFormat(p->stream, "o", &self->dest_pos) == 8;
     if (unk_prop::IsName(p, CRntString("DestPos")) && p->set)
         return ReadVec(p, &self->dest_pos);
     if (unk_prop::IsName(p, CRntString("Dir")) && !p->set)
-        return fn_710007cb4c(p->stream, "o", &self->dir) == 8;
+        return CRntFile_WriteFormat(p->stream, "o", &self->dir) == 8;
     if (unk_prop::IsName(p, CRntString("Dir")) && p->set)
         return ReadVec(p, &self->dir);
     if (unk_prop::IsName(p, CRntString("DestDir")) && !p->set)
-        return fn_710007cb4c(p->stream, "o", &self->dest_dir) == 8;
+        return CRntFile_WriteFormat(p->stream, "o", &self->dest_dir) == 8;
     if (unk_prop::IsName(p, CRntString("DestDir")) && p->set)
         return ReadVec(p, &self->dest_dir);
     return -1;

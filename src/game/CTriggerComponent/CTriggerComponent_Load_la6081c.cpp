@@ -97,17 +97,17 @@ void fn_7100a6081c(UnkColliderTrigger_b0058* component, CRntFile* file) {
     bool onEnterAlways = false;
     bool onExitAlways = false;
     bool onAllExitAlways = false;
-    fn_710007c714(file, &startEnabled, 1, 1);
-    fn_710007cee4(file, &onEnable);
-    fn_710007cee4(file, &onDisable);
-    fn_710007cee4(file, &onEnter);
-    fn_710007cee4(file, &onExit);
-    fn_710007cee4(file, &onAllExit);
-    fn_710007c714(file, &onEnableAlways, 1, 1);
-    fn_710007c714(file, &onDisableAlways, 1, 1);
-    fn_710007c714(file, &onEnterAlways, 1, 1);
-    fn_710007c714(file, &onExitAlways, 1, 1);
-    fn_710007c714(file, &onAllExitAlways, 1, 1);
+    CRntFile_Read(file, &startEnabled, 1, 1);
+    CRntFile_ReadCString(file, &onEnable);
+    CRntFile_ReadCString(file, &onDisable);
+    CRntFile_ReadCString(file, &onEnter);
+    CRntFile_ReadCString(file, &onExit);
+    CRntFile_ReadCString(file, &onAllExit);
+    CRntFile_Read(file, &onEnableAlways, 1, 1);
+    CRntFile_Read(file, &onDisableAlways, 1, 1);
+    CRntFile_Read(file, &onEnterAlways, 1, 1);
+    CRntFile_Read(file, &onExitAlways, 1, 1);
+    CRntFile_Read(file, &onAllExitAlways, 1, 1);
 
     {
         u64 key = fn_7100001570("sOnEnable", 9);
@@ -144,27 +144,27 @@ void fn_7100a6081c(UnkColliderTrigger_b0058* component, CRntFile* file) {
     // Fields newer files add, each read only while the file still has data.
     if (file->position < file->size) {
         bool checkAllEntities;
-        fn_710007c714(file, &checkAllEntities, 1, 1);
+        CRntFile_Read(file, &checkAllEntities, 1, 1);
         Set<fn_710000d228>(self, fn_7100001570("bCheckAllEntities", 17), &checkAllEntities);
     }
     if (file->position < file->size) {
         bool water;
-        fn_710007c714(file, &water, 1, 1);
+        CRntFile_Read(file, &water, 1, 1);
         Set<fn_710000d228>(self, fn_7100001570("bWater", 6), &water);
     }
     if (file->position < file->size) {
         bool slowDown;
-        fn_710007c714(file, &slowDown, 1, 1);
+        CRntFile_Read(file, &slowDown, 1, 1);
         Set<fn_710000d228>(self, fn_7100001570("bSlowDown", 9), &slowDown);
     }
     if (file->position < file->size) {
         bool persistentState;
-        fn_710007c714(file, &persistentState, 1, 1);
+        CRntFile_Read(file, &persistentState, 1, 1);
         Set<fn_710000d228>(self, fn_7100001570("bPersistentState", 16), &persistentState);
     }
     if (file->position < file->size) {
         const char* sfxType;
-        fn_710007cee4(file, &sfxType);
+        CRntFile_ReadCString(file, &sfxType);
         u64 key = fn_7100001570("sSfxType", 8);
         UnkFieldId_la6081c id(sfxType, true);
         Set<fn_7100009658>(self, key, &id);

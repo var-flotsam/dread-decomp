@@ -69,11 +69,11 @@ struct UnkTrackArray : base::global::CRntVector<UnkTrack*> {
 // CTrack the registry can create.
 void fn_710006b6e4(UnkTrackArray* self, base::global::CRntFile* file) {
     u32 n;
-    fn_710007c714(file, &n, 4, 1);
+    CRntFile_Read(file, &n, 4, 1);
     self->Grow(n);
     for (u32 i = 0; i < n; ++i) {
         u64 raw;
-        fn_710007c714(file, &raw, 8, 1);
+        CRntFile_Read(file, &raw, 8, 1);
         UnkVersionRegistry* registry = g_unk_7101d4c8d0;
         u64 id = raw;
         auto* type = reinterpret_cast<const base::reflection::CType*>(fn_71000a5118(registry, &id));

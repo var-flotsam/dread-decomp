@@ -35,12 +35,12 @@ bool fn_710009a430(UnkFlagsetType_b0068* self, const UnkReflFieldObject* obj, Un
     switch (self->size) {
     case 4: {
         u32 bits;
-        fn_710007c714(file, &bits, 4, 1);
+        CRntFile_Read(file, &bits, 4, 1);
         return Set(field, obj, fn_7100005178(), &bits);
     }
     case 8: {
         u64 bits;
-        fn_710007c714(file, &bits, 8, 1);
+        CRntFile_Read(file, &bits, 8, 1);
         return Set(field, obj, fn_7100010e58(), &bits);
     }
     default:

@@ -36,7 +36,7 @@ UnkReflValue fn_71009f0fc4(char* obj, UnkReflValue* const* args) {
     void* stream = ArgPtr_A6s_b63(args[0]);
     u8 value = 0;
     s32 one;
-    fn_710007cf30(stream, "b", &value);
+    CRntFile_ReadFormat(stream, "b", &value);
     u8 flag = value;
     if (UnkReflObject* gun = self->owner->gun) {
         if (fn_710009d50c(gun->vf_0x0(), reinterpret_cast<const CType*>(fn_7100857564())))

@@ -49,8 +49,8 @@ s32 fn_71000eda3c(UnkWriter_b0202* self) {
     if (last.flag) {
         base::global::CRntFile* file = self->file;
         u64 position = file->position;
-        fn_710007c00c(file, last.extra, 0);
-        fn_710007c00c(self->file, position, 0);
+        CRntFile_Seek(file, last.extra, 0);
+        CRntFile_Seek(self->file, position, 0);
     }
     Resize(self, self->count - 1);
     return 1;

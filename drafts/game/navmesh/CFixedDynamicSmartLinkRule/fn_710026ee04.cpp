@@ -76,13 +76,13 @@ void fn_710026ee04(UnkSmartLinkRuleTree_l26ee04* self, base::global::CRntFile* f
     const char* kind_name;
     u32 field_0x10;
     bool field_0x14;
-    fn_710007cee4(file, &direction_name);
-    fn_710007c714(file, &field_0x0, 1, 1);
-    fn_710007c714(file, &field_0x4, 4, 1);
-    fn_710007cee4(file, &comparison_name);
-    fn_710007cee4(file, &kind_name);
-    fn_710007c714(file, &field_0x10, 4, 1);
-    fn_710007c714(file, &field_0x14, 1, 1);
+    CRntFile_ReadCString(file, &direction_name);
+    CRntFile_Read(file, &field_0x0, 1, 1);
+    CRntFile_Read(file, &field_0x4, 4, 1);
+    CRntFile_ReadCString(file, &comparison_name);
+    CRntFile_ReadCString(file, &kind_name);
+    CRntFile_Read(file, &field_0x10, 4, 1);
+    CRntFile_Read(file, &field_0x14, 1, 1);
 
     u32 comparison;
     if (strcmp(comparison_name, "None") == 0)
@@ -138,7 +138,7 @@ void fn_710026ee04(UnkSmartLinkRuleTree_l26ee04* self, base::global::CRntFile* f
         normal = Words(0.0f, 0.0f);
     } else {
         const char* side;
-        fn_710007cee4(file, &side);
+        CRntFile_ReadCString(file, &side);
         if (strcmp(side, "LEFT") == 0)
             normal = Words(-Float(direction.y), Float(direction.x));
         else if (strcmp(side, "RIGHT") == 0)
@@ -169,7 +169,7 @@ void fn_710026ee04(UnkSmartLinkRuleTree_l26ee04* self, base::global::CRntFile* f
     }
 
     s32 child_count = 0;
-    fn_710007c714(file, &child_count, 4, 1);
+    CRntFile_Read(file, &child_count, 4, 1);
     for (s32 i = 0; i < child_count; ++i)
         fn_710026ee04(self, file, current);
 }

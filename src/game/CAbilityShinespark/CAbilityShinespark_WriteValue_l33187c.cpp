@@ -71,8 +71,8 @@ void unk_prop_bag::fn_710033187c(UnkPropBag* bag, const CStrId& key, f32 value) 
         self->entries.PushBackCopy(UnkRecordEntry(position, KeyOf(*id), 0x66));
     else
         position = it->position;
-    fn_710007c00c(&self->file, position, 0);
-    fn_710007c450(&self->file, &value, 4, 1);
+    CRntFile_Seek(&self->file, position, 0);
+    CRntFile_WriteElements(&self->file, &value, 4, 1);
     base::UnkStrIdVec* ids = &self->ids;
     if (FindId(ids, *id) == &ids->data[ids->count])
         ids->PushBack(*id);

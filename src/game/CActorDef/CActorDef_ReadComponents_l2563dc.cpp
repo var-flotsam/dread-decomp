@@ -32,15 +32,15 @@ static_assert(__builtin_offsetof(UnkActorDef_l2563dc, components) == 0xa0, "layo
 
 bool fn_71002563dc(UnkActorDef_l2563dc* self, base::global::CRntFile* file) {
     s32 count;
-    fn_710007c714(file, &count, 4, 1);
+    CRntFile_Read(file, &count, 4, 1);
     if (!self->loaded)
         self->components.Reserve(count);
     bool ok = true;
     for (s32 i = 0; i < count && ok; ++i) {
         const char* name;
         const char* type;
-        fn_710007cee4(file, &name);
-        fn_710007cee4(file, &type);
+        CRntFile_ReadCString(file, &name);
+        CRntFile_ReadCString(file, &type);
         UnkComponentDef_b0129* def;
         if (self->loaded) {
             CStrId key(name, true);

@@ -40,8 +40,8 @@ bool fn_7100d5e2f0(UnkAABoxShape2D_ovb0074* self, CRntFile* file) {
     f32 width = 0.0f;
     f32 height = 0.0f;
     if (file->position < file->size) {
-        fn_710007c714(file, &width, 4, 1);
-        fn_710007c714(file, &height, 4, 1);
+        CRntFile_Read(file, &width, 4, 1);
+        CRntFile_Read(file, &height, 4, 1);
     }
     f32 min_x = width * -0.5f;
     f32 min_y = height * -0.5f;
