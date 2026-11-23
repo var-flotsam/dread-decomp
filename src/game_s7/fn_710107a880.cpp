@@ -41,7 +41,8 @@ struct UnkPlayer {
     UnkInventory* inventory;
 };
 
-int fn_710107a880(void* /*lua_State*/) {
+namespace lua_bind {
+int GainAllItemsAndPowerUps(void* /*lua_State*/) {
     UnkPlayer* player = fn_7100dec788(g_unk_7101d47310);
     if (!player)
         return 0;
@@ -96,3 +97,4 @@ int fn_710107a880(void* /*lua_State*/) {
     fn_7100dffd48(g_unk_7101d47310);
     return 0;
 }
+}  // namespace lua_bind

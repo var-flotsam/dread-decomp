@@ -186,6 +186,8 @@ struct CAbilityComponent : UnkBaseComponent {
     T* Owner() const {
         return OwnerOf<T>(this);
     }
+    // Reflection's value operations (CType+0x28..+0x58), defined out of line.
+    static void refl_Construct(CAbilityComponent* self);
 };
 static_assert(__builtin_offsetof(CAbilityComponent, field_0x100) == 0x100, "CAbilityComponent layout");
 static_assert(sizeof(CAbilityComponent) == 0x108, "CAbilityComponent layout");

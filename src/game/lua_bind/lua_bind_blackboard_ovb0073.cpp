@@ -32,7 +32,8 @@ static inline void* Groups_ovb0073(UnkGameManager* manager) {
 }
 
 // Removes the group named by the argument.
-int fn_7101074410(lua_State* L) {
+namespace lua_bind {
+int SetDefaultPackage(lua_State* L) {
     UnkGameManager* manager = g_unk_7101d47310;
     const char* name;
     if (fn_71010c0270(L, "s", &name))
@@ -41,7 +42,7 @@ int fn_7101074410(lua_State* L) {
 }
 
 // Whether the game blackboard has the section named by the argument.
-int fn_7101074840(lua_State* L) {
+int ExistsProps(lua_State* L) {
     UnkGameManager* manager = g_unk_7101d47310;
     const char* name;
     bool has = false;
@@ -49,6 +50,7 @@ int fn_7101074840(lua_State* L) {
         has = fn_7101047208(&manager->field_0x968, CStrId(name, true));
     return fn_71010c0b40(L, "b", has);
 }
+}  // namespace lua_bind
 
 // A string id handle (fn_7100ae986c) on the stack, its id released when it goes.
 struct UnkLuaIdHandle_ovb0073 {
@@ -62,7 +64,8 @@ struct UnkLuaIdHandle_ovb0073 {
 };
 
 // Whether the game blackboard's section (first argument) has the name (second argument).
-int fn_7101074910(lua_State* L) {
+namespace lua_bind {
+int ExistsProp(lua_State* L) {
     UnkGameManager* manager = g_unk_7101d47310;
     const char* section;
     const char* name;
@@ -75,7 +78,7 @@ int fn_7101074910(lua_State* L) {
 
 // The blackboard named by the first argument ("savedata", "checkpoint" or "current"): selects the
 // slot named by the second.
-int fn_71010750e0(lua_State* L) {
+int DeleteSection(lua_State* L) {
     const char* which;
     const char* name;
     if (fn_71010c0270(L, "ss", &which, &name)) {
@@ -93,6 +96,7 @@ int fn_71010750e0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 // A list of strings (nodes linked through +0x30) filled by the argument reader's "S".
 struct UnkLuaNameList_ovb0073 : base::UnkVtableList<u8> {
@@ -119,7 +123,8 @@ struct UnkLuaNameList_ovb0073 : base::UnkVtableList<u8> {
 };
 
 // Creates the group named by the first argument with the names that follow.
-int fn_71010742f0(lua_State* L) {
+namespace lua_bind {
+int AddPackage(lua_State* L) {
     UnkGameManager* manager = g_unk_7101d47310;
     const char* name;
     UnkLuaNameList_ovb0073 names;
@@ -128,3 +133,4 @@ int fn_71010742f0(lua_State* L) {
                       reinterpret_cast<UnkNameList_b0026*>(&names));
     return 0;
 }
+}  // namespace lua_bind

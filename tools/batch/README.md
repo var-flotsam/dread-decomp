@@ -49,8 +49,10 @@ What changed from the kit the runs used, and why:
 What has been measured (details in `docs/JOURNAL.md`):
 
 - Every worker starts at about 100,000 tokens of context, so one-function workers cost two to eight times a
-  batch worker per match. Since 2026-11-14 a worker takes several functions of one unit (`--per-worker`);
-  not yet measured here.
+  batch worker per match. Since 2026-11-14 a worker takes several functions of one unit (`--per-worker`):
+  about 99,000 to 149,000 tokens per match on the first three batches (2026-11-15), about 100,000 to 250,000
+  on the sibling batches (2026-11-17/18), and about 73,000 and 116,000 on the two near-miss batches of
+  2026-11-23 (#629, #637).
 - 40-function test, 2026-11-12: giving workers the unit headers and the reflected members changed nothing
   (7 of 20 against 8 of 20 matches); about 310,000 Sonnet tokens per match.
 - Pilot of 50 ready boot-path functions of 130 to 600 bytes, 2026-11-12: 8 matches, 10 registers-only, about

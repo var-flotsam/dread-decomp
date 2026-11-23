@@ -63,7 +63,8 @@ static inline void SetSectionBool_l079ae0(CBlackboard* blackboard, CBlackboard::
     }
 }
 
-s32 fn_7101079ae0(lua_State* L) {
+namespace lua_bind {
+s32 SetDifficultyModesUnlocked(lua_State* L) {
     bool first;
     bool second;
     UnkPropBag bag;
@@ -91,3 +92,4 @@ s32 fn_7101079ae0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

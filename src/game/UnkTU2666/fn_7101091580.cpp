@@ -37,7 +37,8 @@ static inline s32 StackModeFromName(const char* name) {
     return 0x7fffffff;
 }
 
-s32 fn_7101091580(lua_State* L) {
+namespace lua_bind {
+s32 StopMusicPreset(lua_State* L) {
     const char* name = nullptr;
     const char* modeName = nullptr;
     if (fn_71010c0ad0(L, 0, 1, "s|s", &name, &modeName)) {
@@ -50,3 +51,4 @@ s32 fn_7101091580(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

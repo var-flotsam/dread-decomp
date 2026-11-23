@@ -27,7 +27,8 @@ using base::global::UnkStringData;
 using base::reflection::UnkReflValue;
 using unk_prop_bag::UnkPropBag;
 
-s32 fn_710108ea80(lua_State* L) {
+namespace lua_bind {
+s32 GetSetSurroundPan(lua_State* L) {
     UnkPropBag bag;
     fn_710033187c(&bag, CStrId("LR", true), 0.0f);
     fn_710033187c(&bag, CStrId("LF", true), 0.0f);
@@ -35,6 +36,7 @@ s32 fn_710108ea80(lua_State* L) {
     fn_710033187c(&bag, CStrId("RF", true), 0.0f);
     return fn_71010c0b40(L, "t", &bag);
 }
+}  // namespace lua_bind
 
 // ---- a pass over the game manager's entities ----
 
@@ -111,7 +113,8 @@ static inline void Send_b0165(UnkEntityTarget_b0165* target, UnkRequest_b0165* r
     reinterpret_cast<void (*)(UnkEntityTarget_b0165*, UnkRequest_b0165*)>(target->vtable[0x2e0 / 8])(target, request);
 }
 
-s32 fn_7101080060(lua_State* L) {
+namespace lua_bind {
+s32 KillCurrentBoss(lua_State* L) {
     if (fn_7101196fd8(g_unk_7101d47330))
         return 0;
     UnkAiMgr_b0165* ai = AiMgr_b0165();
@@ -152,3 +155,4 @@ s32 fn_7101080060(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

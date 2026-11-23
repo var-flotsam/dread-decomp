@@ -25,7 +25,8 @@ static inline void* FindObject(UnkGameManager* manager, const CStrId& id, u32 ki
     return fn_7100deba8c(manager, &hash, &kind);
 }
 
-int fn_7100fb99a0(lua_State* L) {
+namespace lua_bind {
+int AddWorldGraphLink(lua_State* L) {
     const char* name;
     const char* first_name;
     const char* second_name;
@@ -55,3 +56,4 @@ int fn_7100fb99a0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

@@ -106,9 +106,13 @@ class FamilyReads(unittest.TestCase):
         p.write_text(",".join(progress.FAMILY_COLUMNS) + "\n" + "".join(r + "\n" for r in rows), encoding="utf-8")
         return p
 
-    def test_the_tracked_file_has_the_header_only(self):
-        self.assertEqual(progress.FAMILY_READS.read_text(encoding="utf-8").splitlines(),
-                         [",".join(progress.FAMILY_COLUMNS)])
+    def test_the_tracked_file_has_the_header_and_rows_that_read(self):
+        lines = progress.FAMILY_READS.read_text(encoding="utf-8").splitlines()
+        self.assertEqual(lines[0], ",".join(progress.FAMILY_COLUMNS))
+        for row in progress.read_family_reads():
+            self.assertTrue(row["family"] and row["scope"] and row["date"])
+            self.assertIn(row["verdict"], ("pass", "fail"))
+            self.assertTrue(row["sample_size"].isdigit())
 
     def test_latest_read_of_a_family_decides(self):
         with tempfile.TemporaryDirectory() as d:

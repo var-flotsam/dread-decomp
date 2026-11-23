@@ -37,7 +37,8 @@ static inline UnkAttackEntry_l086370* GetEntry_l086370(CAttack* attack, u32 i) {
         fn_71003646b0(reinterpret_cast<UnkAttackTarget_A2_b68*>(attack->field_0x20), i));
 }
 
-s32 fn_7101086370(lua_State*) {
+namespace lua_bind {
+s32 SwitchSelectedAIAttackPreset(lua_State*) {
     UnkManager_71726af468* manager = g_unk_71726af468;
     if (!manager) {
         manager = static_cast<UnkManager_71726af468*>(fn_71000839a0(0x2610, 0x3f));
@@ -76,3 +77,4 @@ s32 fn_7101086370(lua_State*) {
     }
     return 0;
 }
+}  // namespace lua_bind
