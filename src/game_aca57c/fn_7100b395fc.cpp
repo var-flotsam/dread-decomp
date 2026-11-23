@@ -22,10 +22,10 @@ struct UnkRefObject {
     s32 ref_count;
 };
 
-struct UnkRefPtr {
+struct UnkRefPtr_b395fc {
     UnkRefObject* ptr;
 
-    __attribute__((always_inline)) ~UnkRefPtr() {
+    __attribute__((always_inline)) ~UnkRefPtr_b395fc() {
         if (UnkRefObject* p = ptr) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
@@ -66,7 +66,7 @@ struct UnkNamedWithId : UnkNamedBase_b395fc {
 };
 
 struct UnkNamedWithRef : UnkNamedBase_b395fc {
-    UnkRefPtr ref;
+    UnkRefPtr_b395fc ref;
 
     __attribute__((always_inline)) ~UnkNamedWithRef() { SetVtable(this, g_unk_7101a9cb48); }
 };

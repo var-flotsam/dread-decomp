@@ -47,7 +47,7 @@ static_assert(__builtin_offsetof(UnkFollowPlayer_b190, xform) == 0x38, "layout")
 static_assert(__builtin_offsetof(UnkFollowPlayer_b190, field_0x1d8) == 0x1d8, "layout");
 static_assert(__builtin_offsetof(UnkFollowPlayer_b190, abilities) == 0x2e0, "layout");
 
-struct UnkSubAreaMgr_b190 {
+struct UnkSubAreaMgr_b190_ovb0190 {
     u8 pad_0x0[0x11c];
     UnkVec3f field_0x11c;
     UnkVec3f field_0x128;
@@ -60,10 +60,10 @@ struct UnkSubAreaMgr_b190 {
     UnkSubArea* field_0x3f0;
     UnkSubArea* field_0x3f8;
 };
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, actor) == 0x148, "layout");
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x3f0) == 0x3f0, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ovb0190, actor) == 0x148, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ovb0190, field_0x3f0) == 0x3f0, "layout");
 
-void fn_7100ee6ae4(UnkSubAreaMgr_b190* self) {
+void fn_7100ee6ae4(UnkSubAreaMgr_b190_ovb0190* self) {
     UnkFollowPlayer_b190* player = reinterpret_cast<UnkFollowPlayer_b190*>(fn_7100dec788(g_unk_7101d47310));
     if (player) {
         UnkAnimationComponent* character = player->field_0x220;

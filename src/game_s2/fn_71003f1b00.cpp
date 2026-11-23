@@ -14,15 +14,15 @@ struct UnkComponent_3f1b00 {
     }
 };
 
-struct UnkSelf {
+struct UnkSelf_3f1b00 {
     u8 pad_0x0[8];
     UnkActor* field_0x8;
 };
 
 bool fn_71003f4bc0(UnkComponent_3f1b00* component);
-bool fn_71003f1ba8(UnkSelf* self, bool flag);
+bool fn_71003f1ba8(UnkSelf_3f1b00* self, bool flag);
 
-bool fn_71003f1b00(UnkSelf* self, void* arg, u32 mode) {
+bool fn_71003f1b00(UnkSelf_3f1b00* self, void* arg, u32 mode) {
     bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), arg, mode);
     ok &= fn_7100d7c990(self->field_0x8) != nullptr;
     if (UnkActor* owner = self->field_0x8) {

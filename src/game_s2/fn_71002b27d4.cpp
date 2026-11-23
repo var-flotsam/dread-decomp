@@ -12,7 +12,7 @@ struct UnkNode {
     UnkNode* next;
 };
 
-struct UnkTable {
+struct UnkTable_2b27d4 {
     u8 pad_0x0[8];
     f32 field_0x8;
     f32 field_0xc;
@@ -24,7 +24,7 @@ struct UnkTable {
 };
 
 // NON_MATCHING(minor): the final add has its operands swapped (s1 + s0 in the original; same value)
-f32 fn_71002b27d4(UnkTable* self, u32 a, u32 b, f32* value) {
+f32 fn_71002b27d4(UnkTable_2b27d4* self, u32 a, u32 b, f32* value) {
     u32 key = fn_71002874e0(a, b);
     if (self->count != 0) {
         u32 index = key % self->modulus;

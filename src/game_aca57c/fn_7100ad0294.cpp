@@ -12,17 +12,17 @@ struct UnkEntityObj {
     u8 unk_0x0[0x68];
     UnkModel* model;
 };
-struct UnkEntity {
+struct UnkEntity_ad0294 {
     u8 unk_0x0[0x18];
     UnkEntityObj* obj;
 };
 
-bool fn_7100ad00ac(UnkEntity* entity, u32 mode);
+bool fn_7100ad00ac(UnkEntity_ad0294* entity, u32 mode);
 bool fn_7100ec1454(UnkNavMeshManager* manager, UnkModel* a, UnkModel* b, bool flag_a, bool flag_b);
 
-static inline bool IsExcluded(UnkEntity* entity) { return entity->obj && fn_71002b005c(reinterpret_cast<UnkNavMeshCell*>(entity->obj)); }
+static inline bool IsExcluded(UnkEntity_ad0294* entity) { return entity->obj && fn_71002b005c(reinterpret_cast<UnkNavMeshCell*>(entity->obj)); }
 
-bool fn_7100ad0294(UnkEntity* self, bool force, u32 mode, UnkEntity* other) {
+bool fn_7100ad0294(UnkEntity_ad0294* self, bool force, u32 mode, UnkEntity_ad0294* other) {
     if (!other)
         return false;
     if (!force && (IsExcluded(self) || IsExcluded(other)))

@@ -87,7 +87,7 @@ struct UnkFixedArray {
     u8 storage[0x400];
 };
 
-struct UnkNavComponent {
+struct UnkNavComponent_da7e2c {
     void* field_0x0 = nullptr;
     bool field_0x8 = false;
     UnkMember_0x10 field_0x10{0x32, 0, 0x13, nullptr};
@@ -127,15 +127,15 @@ struct UnkNavComponent {
     bool field_0x2598 = false;
     UnkMember_0x25a0 field_0x25a0{0x40, 0, 4, nullptr};
 
-    __attribute__((always_inline)) UnkNavComponent() {
+    __attribute__((always_inline)) UnkNavComponent_da7e2c() {
         stateMachinePool.SetName(CStrId("NavComponentStateMachinePool", true));
     }
 };
 
-static_assert(__builtin_offsetof(UnkNavComponent, stateMachinePool) == 0xb88, "layout");
-static_assert(__builtin_offsetof(UnkNavComponent, field_0x2428) == 0x2428, "layout");
-static_assert(__builtin_offsetof(UnkNavComponent, field_0x25a0) == 0x25a0, "layout");
+static_assert(__builtin_offsetof(UnkNavComponent_da7e2c, stateMachinePool) == 0xb88, "layout");
+static_assert(__builtin_offsetof(UnkNavComponent_da7e2c, field_0x2428) == 0x2428, "layout");
+static_assert(__builtin_offsetof(UnkNavComponent_da7e2c, field_0x25a0) == 0x25a0, "layout");
 
-void fn_7100da7e2c(UnkNavComponent* self) {
-    new (self) UnkNavComponent();
+void fn_7100da7e2c(UnkNavComponent_da7e2c* self) {
+    new (self) UnkNavComponent_da7e2c();
 }

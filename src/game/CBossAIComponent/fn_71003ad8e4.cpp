@@ -24,14 +24,14 @@ struct UnkFlagObject {
     u8 field_0x50c;
 };
 
-struct UnkChild {
+struct UnkChild_3ad8e4 {
     u8 pad_0x0[0x10];
     void* field_0x10;
 };
 
 struct UnkHolder {
     u8 pad_0x0[0x48];
-    UnkChild* field_0x48;
+    UnkChild_3ad8e4* field_0x48;
 };
 
 struct UnkOwner {

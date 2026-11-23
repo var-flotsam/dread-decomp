@@ -25,7 +25,7 @@ struct UnkState_3f8210 {
     u8 field_0x5c;
 };
 
-struct UnkSelf {
+struct UnkSelf_3f8210 {
     u8 pad_0x0[0x30];
     void* field_0x30;
     u8 pad_0x38[0x14698];
@@ -35,7 +35,7 @@ struct UnkSelf {
 void fn_71003f9388(void* registry, void* id, u32 flag);
 void fn_7100a1782c(UnkTarget_3f8210* target, u32 flag);
 
-void fn_71003f8210(UnkSelf* self) {
+void fn_71003f8210(UnkSelf_3f8210* self) {
     UnkState_3f8210* state = &self->state;
     if (!state->field_0x4a && !state->field_0x4b && !state->field_0x4c) {
         state->field_0x4c = 1;

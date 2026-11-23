@@ -12,11 +12,11 @@
 
 using base::global::CStrId;
 
-struct UnkBoundObject_b260;
+struct UnkBoundObject_b260_ovb0260;
 struct UnkRemovedValue_b60;
 void fn_7100242ff8(void* map);
 
-struct UnkBoundObject_b260 {
+struct UnkBoundObject_b260_ovb0260 {
     u8 unk_0x0[0xc8];
     void* owner;  // 0xc8
     u8 unk_0xd0[0xe5];
@@ -25,7 +25,7 @@ struct UnkBoundObject_b260 {
 
 struct UnkIdNode_b260 {
     CStrId id;                      // 0x0
-    UnkBoundObject_b260* object;    // 0x8
+    UnkBoundObject_b260_ovb0260* object;    // 0x8
     UnkIdNode_b260* next;           // 0x10
 };
 
@@ -51,7 +51,7 @@ static_assert(__builtin_offsetof(UnkBoundMap_b260, map.head) == 0x50, "layout");
 void fn_7100262dd4(UnkBoundMap_b260* self) {
     self->vtable = reinterpret_cast<char*>(g_unk_7101a20c98) + 0x10;
     for (UnkIdNode_b260* node = self->map.head; node; node = node->next) {
-        UnkBoundObject_b260* object = node->object;
+        UnkBoundObject_b260_ovb0260* object = node->object;
         if (object->detached)
             continue;
         if (object->owner == self)

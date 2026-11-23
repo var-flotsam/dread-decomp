@@ -6,7 +6,7 @@
 #include "game/UnkTU307.h"
 #include "types.h"
 
-struct UnkBox {
+struct UnkBox_215f60 {
     u8 pad_0x0[0x8];
     UnkRange x;
     UnkRange y;
@@ -28,7 +28,7 @@ static inline void ExtendRange(UnkRange& r, f32 v) {
     }
 }
 
-void fn_7100215f60(UnkBox* self, const UnkPoint3& point) {
+void fn_7100215f60(UnkBox_215f60* self, const UnkPoint3& point) {
     ExtendRange(self->x, point.x);
     ExtendRange(self->y, point.y);
     ExtendRange(self->z, point.z);

@@ -10,15 +10,15 @@ struct UnkSource_4f05a0 {
     CStrId field_0x30;
 };
 
-struct UnkComponent {
+struct UnkComponent_4f05a0 {
     u8 pad_0x0[0x2a700];
     u8 field_0x2a700[1];
 };
 
-void fn_7100540238(UnkComponent* self, UnkSource_4f05a0* other);  // passes `other` to its base
+void fn_7100540238(UnkComponent_4f05a0* self, UnkSource_4f05a0* other);  // passes `other` to its base
 void fn_71004f0648(void* member, const CStrId& id);
 
-void fn_71004f05a0(UnkComponent* self, UnkSource_4f05a0* other) {
+void fn_71004f05a0(UnkComponent_4f05a0* self, UnkSource_4f05a0* other) {
     fn_7100540238(self, other);
     fn_71004f0648(self->field_0x2a700, CStrId(other->field_0x30));
 }

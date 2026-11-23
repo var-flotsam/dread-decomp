@@ -24,7 +24,7 @@ struct UnkActor_4ec294 {
     const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkActor_4ec294*)>(vtable[0])(this); }
 };
 
-struct __attribute__((packed)) UnkComponent {
+struct __attribute__((packed)) UnkComponent_4ec294 {
     u8 pad_0x0[0x10];
     UnkActor_4ec294* field_0x10;
     u8 pad_0x18[0x1600];
@@ -56,7 +56,7 @@ __attribute__((always_inline)) static inline void CreateEffect(UnkSceneObject*& 
     }
 }
 
-bool fn_71004ec294(UnkComponent* self, void* arg) {
+bool fn_71004ec294(UnkComponent_4ec294* self, void* arg) {
     UnkActorBlock* ref = reinterpret_cast<UnkActorBlock*>(reinterpret_cast<char*>(self) + 0x14738);
     // `arg` (x1) reaches the base initialiser untouched in the original (tools/forwarded_args.py).
     // Read as a flag here, as a word by the other callers.

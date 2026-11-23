@@ -183,14 +183,14 @@ static inline UnkValuePairRef<X, Y>* AssignFrom(UnkValuePairRef<X, Y>* self, Unk
 }
 
 // An id and four values; two ids and a value.
-struct UnkIdValues4 {
+struct UnkIdValues4_0d1fec {
     CStrId id;
     u32 field_0x8;
     u32 field_0xc;
     u32 field_0x10;
     u32 field_0x14;
 
-    UnkIdValues4& operator=(const UnkIdValues4& other) {
+    UnkIdValues4_0d1fec& operator=(const UnkIdValues4_0d1fec& other) {
         id = other.id;
         field_0x8 = other.field_0x8;
         field_0xc = other.field_0xc;
@@ -213,7 +213,7 @@ struct UnkIdsValue {
     }
 };
 
-using UnkIdIdValues4Pair = UnkValuePairRef<CStrId, UnkIdValues4>;
+using UnkIdIdValues4Pair = UnkValuePairRef<CStrId, UnkIdValues4_0d1fec>;
 using UnkIdIdsValuePair = UnkValuePairRef<CStrId, UnkIdsValue>;
 
 __attribute__((always_inline)) inline UnkAssignedString& UnkAssignedString::operator=(const UnkAssignedString& other) {

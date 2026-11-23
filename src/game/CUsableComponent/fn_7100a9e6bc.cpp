@@ -45,7 +45,7 @@ struct UnkState {
 };
 static_assert(sizeof(UnkState) == 0x70, "UnkState layout");
 
-struct UnkStateObject : UnkBaseComponent {
+struct UnkStateObject_a9e6bc : UnkBaseComponent {
     u8 field_0x40[0xa0];
     UnkRefObject* field_0xe0;
     UnkRefObject* field_0xe8;
@@ -66,8 +66,8 @@ struct UnkStateObject : UnkBaseComponent {
     u8 unk_0x520[0x10];
     UnkRefObject* field_0x530;
 };
-static_assert(__builtin_offsetof(UnkStateObject, states) == 0x1b0, "layout");
-static_assert(__builtin_offsetof(UnkStateObject, field_0x530) == 0x530, "layout");
+static_assert(__builtin_offsetof(UnkStateObject_a9e6bc, states) == 0x1b0, "layout");
+static_assert(__builtin_offsetof(UnkStateObject_a9e6bc, field_0x530) == 0x530, "layout");
 
 extern void* g_unk_7101a946c0[];
 
@@ -83,7 +83,7 @@ static inline void DestroyState(UnkState* state) {
     fn_71000a1c60(&state->field_0x18);
 }
 
-void fn_7100a9e6bc(UnkStateObject* self) {
+void fn_7100a9e6bc(UnkStateObject_a9e6bc* self) {
     self->vtable = &g_unk_7101a94220[2];
     self->listener_vtable = &g_unk_7101a77000[2];
     if (UnkRefObject* handle = self->field_0x530) {

@@ -11,9 +11,9 @@
 #include "game/behaviortree/CSetAnimDependsOnDirAction.h"
 #include "types.h"
 
-struct UnkNode {
+struct UnkNode_453eec {
     u8 pad_0x0[0x18];
-    UnkNode* field_0x18;
+    UnkNode_453eec* field_0x18;
 };
 
 struct UnkEffectSink;
@@ -34,7 +34,7 @@ struct UnkRecord_453eec {
     u8 pad_0x1144[0x2c];
     u32 field_0x1170;
     u8 pad_0x1174[4];
-    UnkNode* field_0x1178;
+    UnkNode_453eec* field_0x1178;
     u64 field_0x1180;
     u8 pad_0x1188[0x8];
     base::UnkAllocator* field_0x1190;
@@ -115,8 +115,8 @@ void fn_7100dcdce4(UnkManager* manager, s32 value, f32 scale);
 void fn_7100453eec(UnkRecord_453eec* self) {
     if (!self->field_0x30)
         return;
-    for (UnkNode* node = self->field_0x1178; node;) {
-        UnkNode* next = node->field_0x18;
+    for (UnkNode_453eec* node = self->field_0x1178; node;) {
+        UnkNode_453eec* next = node->field_0x18;
         self->field_0x1190->vf_0x48(node);
         node = next;
     }

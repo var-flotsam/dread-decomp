@@ -24,7 +24,7 @@ struct UnkBossCameraCtrl : UnkCameraCtrl {
 };
 static_assert(sizeof(UnkCameraCtrl) == 0x28, "UnkCameraCtrl placeholder layout");
 
-struct UnkOwner {
+struct UnkOwner_430830 {
     u8 pad_0x0[0x38];
     u8 field_0x38[1];
     u8 pad_0x39[0x207];
@@ -33,7 +33,7 @@ struct UnkOwner {
 
 struct UnkSelf {
     u8 pad_0x0[8];
-    UnkOwner* field_0x8;
+    UnkOwner_430830* field_0x8;
 };
 
 struct UnkBox_430830 {

@@ -41,7 +41,7 @@ struct UnkShape2;
 struct UnkShape4;
 struct UnkShape8;
 struct UnkShape40;
-struct UnkShape10 {
+struct UnkShape10_d56604 {
     char pad[0xa8];
     char field_0xa8[8];
 };
@@ -66,7 +66,7 @@ UnkFlags fn_7100d56930(UnkWorld* self, const UnkQueryBox* box, UnkShape2* shape,
 UnkFlags fn_7100d56b08(UnkWorld* self, const UnkQueryBox* box, UnkShape4* shape, const UnkMtx34* xf, void* arg, u32 arg2);
 UnkFlags fn_7100d56ec8(UnkWorld* self, const UnkQueryBox* box, UnkShape8* shape, const UnkMtx34* xf, void* arg, u32 arg2);
 UnkFlags fn_7100d570cc(UnkWorld* self, const UnkQueryBox* box, UnkShape40* shape, const UnkMtx34* xf, void* arg, u32 arg2);
-UnkFlags fn_7100d65b70(UnkShape10* shape, const UnkQueryBox* box, UnkLocalQuery* query);
+UnkFlags fn_7100d65b70(UnkShape10_d56604* shape, const UnkQueryBox* box, UnkLocalQuery* query);
 
 // NON_MATCHING(minor): in the inline type-0x10 case the local box translation, the query object's
 // field stores and the vtable load are scheduled in a different order; same instructions otherwise.
@@ -83,7 +83,7 @@ UnkFlags fn_7100d56604(UnkWorld* self, const UnkQueryBox* box, UnkShape* shape, 
     case 0x40:
         return fn_7100d570cc(self, box, ShapeCast<UnkShape40, 0x40>(shape), xf, arg, arg2);
     case 0x10: {
-        UnkShape10* s = ShapeCast<UnkShape10, 0x10>(shape);
+        UnkShape10_d56604* s = ShapeCast<UnkShape10_d56604, 0x10>(shape);
         UnkFlags result = NoFlags_d56604();
         UnkQueryBox local = *box;
         Vec3_d56604 t = xf->GetTranslation();

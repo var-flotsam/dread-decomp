@@ -96,34 +96,34 @@ void fn_7101196bf4(UnkOwner_b0188* self, bool release) {
 }
 
 // A registered callback; copied and moved with 8-byte copies.
-struct UnkCallback_kr {
+struct UnkCallback_kr_ovb0188 {
     void* object;
     void (*fn)();
 
-    UnkCallback_kr() : object(nullptr), fn(nullptr) {}
-    UnkCallback_kr(UnkCallback_kr&& o) {
+    UnkCallback_kr_ovb0188() : object(nullptr), fn(nullptr) {}
+    UnkCallback_kr_ovb0188(UnkCallback_kr_ovb0188&& o) {
         object = o.object;
         fn = o.fn;
     }
-    UnkCallback_kr& operator=(const UnkCallback_kr&) = default;
-    ~UnkCallback_kr() {}
+    UnkCallback_kr_ovb0188& operator=(const UnkCallback_kr_ovb0188&) = default;
+    ~UnkCallback_kr_ovb0188() {}
 };
 
 struct UnkCallbackList_b0188 {
     u8 pad_0x0[0x30];
-    base::global::CRntVector<UnkCallback_kr> callbacks;
+    base::global::CRntVector<UnkCallback_kr_ovb0188> callbacks;
 };
 
-__attribute__((noinline)) UnkCallback_kr* fn_71011998b4(base::global::CRntVector<UnkCallback_kr>* v, u32 index) {
+__attribute__((noinline)) UnkCallback_kr_ovb0188* fn_71011998b4(base::global::CRntVector<UnkCallback_kr_ovb0188>* v, u32 index) {
     return &v->GrowAt(index);
 }
 
 void fn_7101199818(void* manager, void* component) {
     UnkCallbackList_b0188* self = static_cast<UnkCallbackList_b0188*>(manager);
-    base::global::CRntVector<UnkCallback_kr>& list = self->callbacks;
+    base::global::CRntVector<UnkCallback_kr_ovb0188>& list = self->callbacks;
     u32 i = 0;
     while (i < list.count) {
-        UnkCallback_kr* e = fn_71011998b4(&list, i);
+        UnkCallback_kr_ovb0188* e = fn_71011998b4(&list, i);
         if (e->object != component) {
             ++i;
         } else {
@@ -131,8 +131,8 @@ void fn_7101199818(void* manager, void* component) {
             if (n > i) {
                 --n;
                 if (n > i) {
-                    UnkCallback_kr* dst = &list.data[i];
-                    UnkCallback_kr* src = &list.data[n];
+                    UnkCallback_kr_ovb0188* dst = &list.data[i];
+                    UnkCallback_kr_ovb0188* src = &list.data[n];
                     *dst = *src;
                 }
                 list.count = n;

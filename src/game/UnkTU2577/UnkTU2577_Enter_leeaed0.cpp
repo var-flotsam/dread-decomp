@@ -29,7 +29,7 @@ struct UnkSubareaRenderSetup;
 void fn_7100facb08(UnkSubareaRenderOwner* self, s32 kind, UnkSubareaRenderSetup* setup, bool flag,
                    UnkSubareaRenderOut* out);
 
-struct UnkSubAreaMgr_b190 {
+struct UnkSubAreaMgr_b190_leeaed0 {
     u8 pad_0x0[0x108];
     u32 field_0x108;
     u8 pad_0x10c[4];
@@ -46,13 +46,13 @@ struct UnkSubAreaMgr_b190 {
     u8 pad_0x98c[0x154];
     bool field_0xae0;
 };
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x3f0) == 0x3f0, "layout");
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x938) == 0x938, "layout");
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x960) == 0x960, "layout");
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x988) == 0x988, "layout");
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0xae0) == 0xae0, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_leeaed0, field_0x3f0) == 0x3f0, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_leeaed0, field_0x938) == 0x938, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_leeaed0, field_0x960) == 0x960, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_leeaed0, field_0x988) == 0x988, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_leeaed0, field_0xae0) == 0xae0, "layout");
 
-void fn_7100eeaed0(UnkSubAreaMgr_b190* self) {
+void fn_7100eeaed0(UnkSubAreaMgr_b190_leeaed0* self) {
     self->field_0x110 = 1;
     UnkGameManager* gm = g_unk_7101d47310;
     reinterpret_cast<UnkScenario*>(gm->field_0x608)->field_0x820->field_0x58 = false;

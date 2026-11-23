@@ -9,13 +9,13 @@ using base::reflection::CClass;
 struct UnkAIComponent_401a14 {
     virtual const CClass* vf_0x0();
 };
-struct UnkOwner {
+struct UnkOwner_401a14 {
     u8 unk_0x0[0x240];
     UnkAIComponent_401a14* component;
 };
 struct UnkSelf {
     u8 unk_0x0[0x18];
-    UnkOwner* owner;
+    UnkOwner_401a14* owner;
     u8 unk_0x20[0xc];
     s32 field_0x2c;
 };

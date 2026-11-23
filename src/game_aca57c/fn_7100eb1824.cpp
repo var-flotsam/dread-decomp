@@ -34,15 +34,15 @@ struct UnkReleasedStrId_eb1824 {
     }
 };
 
-struct UnkIdValues {
+struct UnkIdValues_eb1824 {
     UnkReleasedStrId_eb1824 id;
     u32 field_0x8;
     u32 field_0xc;
 };
 
-using UnkMovedIdValuesVector = base::global::CRntVector<UnkIdValues>;
+using UnkMovedIdValuesVector = base::global::CRntVector<UnkIdValues_eb1824>;
 
-using UnkIdValuesArrays = base::global::CRntSmallDictionary<UnkReleasedStrId_eb1824, base::global::CRntVector<UnkIdValues>>;
+using UnkIdValuesArrays = base::global::CRntSmallDictionary<UnkReleasedStrId_eb1824, base::global::CRntVector<UnkIdValues_eb1824>>;
 
 void fn_7100eb1824(UnkIdValuesArrays* self) {
     if (self->keys) {
@@ -84,7 +84,7 @@ void fn_7100eb166c(UnkIdValuesArrays* self) {
         }
         self->allocator->vf_0x48(self->keys);
     }
-    self->values = reinterpret_cast<base::global::CRntVector<UnkIdValues>*>(records);
+    self->values = reinterpret_cast<base::global::CRntVector<UnkIdValues_eb1824>*>(records);
     self->keys = ids;
     self->capacity = self->count;
 }
@@ -104,7 +104,7 @@ void fn_7100b48944(UnkIdValuesArrays* self, u32 n) {
         }
         self->allocator->vf_0x48(self->keys);
     }
-    self->values = reinterpret_cast<base::global::CRntVector<UnkIdValues>*>(records);
+    self->values = reinterpret_cast<base::global::CRntVector<UnkIdValues_eb1824>*>(records);
     self->keys = ids;
     self->capacity = n;
 }
