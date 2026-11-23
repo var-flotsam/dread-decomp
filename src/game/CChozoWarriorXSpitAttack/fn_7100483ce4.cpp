@@ -4,16 +4,16 @@
 // 10 over the first 0.7 seconds (+0x4c), then hands the angle in degrees to the owner's bag under "Angle"
 // and runs fn_7100483f20. Names and layouts are placeholders.
 #include "game_s2/UnkSpitAttack.h"
-#include "../../../src/game_s7/UnkPropBagS7.h"
+#include "../../game_s7/UnkPropBagS7.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "game/UnkActor.h"
 #include "types.h"
+#include "game/CModelUpdaterComponent.h"
 
 using base::global::CStrId;
 
 struct UnkEntity;
-bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 void fn_7100483f20(UnkSpitAttack* self, f32 dt);
 extern u64 g_unk_7101649880;
 extern "C" f32 atan2f(f32 y, f32 x);
@@ -76,11 +76,13 @@ void fn_7100483ce4(UnkSpitUpdate_b0266* self, f32 dt) {
     f32 k = Saturate(self->timer / 0.699999988f);
     f32 step = Lerp(3.0f, 10.0f, k) * dt;
     f32 current = self->angle;
-    f32 lo = current - step;
-    f32 hi = current + step;
-    f32 a = target > lo ? target : lo;
-    f32 b = target < hi ? target : hi;
-    self->angle = target > current ? b : a;
+    if (target > current) {
+        f32 hi = current + step;
+        self->angle = target < hi ? target : hi;
+    } else {
+        f32 lo = current - step;
+        self->angle = target > lo ? target : lo;
+    }
     if (void* bag = self->owner->field_0x220) {
         auto* props = reinterpret_cast<unk_prop_bag::UnkPropBag*>(static_cast<char*>(bag) + 0x80);
         CStrId id("Angle", true);
