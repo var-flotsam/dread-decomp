@@ -3,6 +3,12 @@ address,name,name_source,reason
 0x710000051c,CStrId_Destroy,inferred,"a string id's destructor, registered with __cxa_atexit for global ids"
 0x7100000850,CStrId_ConstructFromRntString,inferred,constructs a string id from a CRntString's text and cached key
 0x7100001570,StringCrc64,inferred,the 64-bit string hash behind CStrId and CName: a table-driven reflected CRC-64 with an all-ones initial value and no final xor
+0x7100005070,base::reflection::attr::Version,inferred,"returns the attribute key built from the string ""Version"" (the key's own name)"
+0x7100007e80,base::reflection::attr::Description,inferred,"returns the attribute key built from the string ""Description"" (the key's own name)"
+0x7100011040,base::reflection::attr::sBinaryDeserialize,inferred,"returns the attribute key built from the string ""sBinaryDeserialize"" (the key's own name)"
+0x710001b9f0,base::reflection::attr::XmlAttribute,inferred,"returns the attribute key built from the string ""XmlAttribute"" (the key's own name)"
+0x7100026bf0,base::reflection::attr::sSerializationType,inferred,"returns the attribute key built from the string ""sSerializationType"" (the key's own name)"
+0x7100075240,base::reflection::attr::DefaultValue,inferred,"returns the attribute key built from the string ""DefaultValue"" (the key's own name)"
 0x710007bf9c,CRntFile_Allocate,inferred,allocates the file's block of the given size and puts the position at 0; false when no allocator can be had
 0x710007c00c,CRntFile_Seek,inferred,"moves the read/write position: whence 0 sets it, 1 adds to it, 2 puts it on the last byte; false when the target is outside the contents"
 0x710007c3f0,CRntFile_Write,inferred,"writes bytes at the position, growing the file, and moves the position on"
@@ -61,9 +67,58 @@ address,name,name_source,reason
 0x7100083f74,StringHeap_Init,inferred,sets up the string heap's size classes from a table of block counts
 0x7100084030,StringHeap_Alloc,inferred,allocates a block from the string heap; the block's first field is the memory
 0x7100084144,StringHeap_Free,inferred,returns a block to the string heap
+0x710008f920,base::reflection::attr::Name,inferred,"returns the attribute key built from the string ""Name"" (the key's own name)"
+0x710008fa30,base::reflection::attr::UniqueId,inferred,"returns the attribute key built from the string ""UniqueId"" (the key's own name)"
+0x710008fb40,base::reflection::attr::DeleteElement,inferred,"returns the attribute key built from the string ""DeleteElement"" (the key's own name)"
+0x710008fc50,base::reflection::attr::EraseElement,inferred,"returns the attribute key built from the string ""EraseElement"" (the key's own name)"
+0x710008fd60,base::reflection::attr::CreateElement,inferred,"returns the attribute key built from the string ""CreateElement"" (the key's own name)"
+0x710008fe70,base::reflection::attr::InsertElement,inferred,"returns the attribute key built from the string ""InsertElement"" (the key's own name)"
+0x710008ff80,base::reflection::attr::AfterElementDeserialization,inferred,"returns the attribute key built from the string ""AfterElementDeserialization"" (the key's own name)"
+0x7100090090,base::reflection::attr::FixedCollection,inferred,"returns the attribute key built from the string ""FixedCollection"" (the key's own name)"
+0x71000901a0,base::reflection::attr::ElementKeyVariable,inferred,"returns the attribute key built from the string ""ElementKeyVariable"" (the key's own name)"
+0x71000903c0,base::reflection::attr::Required,inferred,"returns the attribute key built from the string ""Required"" (the key's own name)"
+0x71000904d0,base::reflection::attr::RntFilePackedParams,inferred,"returns the attribute key built from the string ""RntFilePackedParams"" (the key's own name)"
+0x7100090800,base::reflection::attr::bBinaryDumpable,inferred,"returns the attribute key built from the string ""bBinaryDumpable"" (the key's own name)"
+0x7100090910,base::reflection::attr::IsLink,inferred,"returns the attribute key built from the string ""IsLink"" (the key's own name)"
+0x7100090a20,base::reflection::attr::EditorVisible,inferred,"returns the attribute key built from the string ""EditorVisible"" (the key's own name)"
+0x7100090c40,base::reflection::attr::CharEditorVisible,inferred,"returns the attribute key built from the string ""CharEditorVisible"" (the key's own name)"
+0x7100090d50,base::reflection::attr::EventGroup,inferred,"returns the attribute key built from the string ""EventGroup"" (the key's own name)"
+0x7100090e60,base::reflection::attr::TrackGroup,inferred,"returns the attribute key built from the string ""TrackGroup"" (the key's own name)"
+0x7100091080,base::reflection::attr::MinValue,inferred,"returns the attribute key built from the string ""MinValue"" (the key's own name)"
+0x7100091190,base::reflection::attr::MaxValue,inferred,"returns the attribute key built from the string ""MaxValue"" (the key's own name)"
+0x71000912a0,base::reflection::attr::EmptyTrack,inferred,"returns the attribute key built from the string ""EmptyTrack"" (the key's own name)"
+0x71000913b0,base::reflection::attr::MinValueProperty,inferred,"returns the attribute key built from the string ""MinValueProperty"" (the key's own name)"
+0x71000914c0,base::reflection::attr::MaxValueProperty,inferred,"returns the attribute key built from the string ""MaxValueProperty"" (the key's own name)"
+0x71000916e0,base::reflection::attr::MinValueI,inferred,"returns the attribute key built from the string ""MinValueI"" (the key's own name)"
+0x71000917f0,base::reflection::attr::MaxValueI,inferred,"returns the attribute key built from the string ""MaxValueI"" (the key's own name)"
+0x7100091900,base::reflection::attr::Extension,inferred,"returns the attribute key built from the string ""Extension"" (the key's own name)"
+0x7100091c30,base::reflection::attr::DisplayName,inferred,"returns the attribute key built from the string ""DisplayName"" (the key's own name)"
+0x7100091d40,base::reflection::attr::TypeSelectionEnabled,inferred,"returns the attribute key built from the string ""TypeSelectionEnabled"" (the key's own name)"
+0x7100091e50,base::reflection::attr::SPointChClassSelectEnabled,inferred,"returns the attribute key built from the string ""SPointChClassSelectEnabled"" (the key's own name)"
+0x7100091f60,base::reflection::attr::AddNewItemButtonEnabled,inferred,"returns the attribute key built from the string ""AddNewItemButtonEnabled"" (the key's own name)"
+0x7100092070,base::reflection::attr::DeleteItemButtonEnabled,inferred,"returns the attribute key built from the string ""DeleteItemButtonEnabled"" (the key's own name)"
+0x71000924b0,base::reflection::attr::bEditorModeDataFlowInit,inferred,"returns the attribute key built from the string ""bEditorModeDataFlowInit"" (the key's own name)"
+0x71000925c0,base::reflection::attr::bSkipDataFlowOrder,inferred,"returns the attribute key built from the string ""bSkipDataFlowOrder"" (the key's own name)"
+0x71000926d0,base::reflection::attr::CompleteGameModelActionTreeFrom,inferred,"returns the attribute key built from the string ""CompleteGameModelActionTreeFrom"" (the key's own name)"
+0x7100092b10,base::reflection::attr::DisableListAddRemove,inferred,"returns the attribute key built from the string ""DisableListAddRemove"" (the key's own name)"
+0x7100092c20,base::reflection::attr::DisableListAdd,inferred,"returns the attribute key built from the string ""DisableListAdd"" (the key's own name)"
+0x7100093170,base::reflection::attr::ShowInConfig,inferred,"returns the attribute key built from the string ""ShowInConfig"" (the key's own name)"
+0x7100093280,base::reflection::attr::ShowInDevConfig,inferred,"returns the attribute key built from the string ""ShowInDevConfig"" (the key's own name)"
+0x7100093390,base::reflection::attr::DeprecatedVar,inferred,"returns the attribute key built from the string ""DeprecatedVar"" (the key's own name)"
+0x71000934b8,SetAttribute,inferred,"adds a value under an attribute key, or replaces the value already there; a new key only when the attribute registry allows it for the element's target"
 0x7100096524,AddReflectedField,inferred,"registers a member field of a class descriptor by name, type and offset, and returns its description"
 0x7100097550,AddReflectedFunction,inferred,adds a function of the given name to a class descriptor and returns its description; null if the class already has one by that name
 0x710009dd6c,TypeAttributes,inferred,"returns a type's attribute container (CType+0x80), creating it on first use"
+0x7100234410,base::reflection::attr::WidgetReadOnly,inferred,"returns the attribute key built from the string ""WidgetReadOnly"" (the key's own name)"
+0x7100234780,base::reflection::attr::SetRenderItemSelectionIdCall,inferred,"returns the attribute key built from the string ""SetRenderItemSelectionIdCall"" (the key's own name)"
+0x710025d990,base::reflection::attr::ePersistenceTarget,inferred,"returns the attribute key built from the string ""ePersistenceTarget"" (the key's own name)"
+0x710025daa0,base::reflection::attr::eLinkTarget,inferred,"returns the attribute key built from the string ""eLinkTarget"" (the key's own name)"
+0x710025dbb0,base::reflection::attr::bWeakLink,inferred,"returns the attribute key built from the string ""bWeakLink"" (the key's own name)"
+0x7100263720,base::reflection::attr::ePersistenceTargetExclude,inferred,"returns the attribute key built from the string ""ePersistenceTargetExclude"" (the key's own name)"
+0x7100324af0,base::reflection::attr::ControlFloatStep,inferred,"returns the attribute key built from the string ""ControlFloatStep"" (the key's own name)"
+0x7100324c00,base::reflection::attr::InternalTag,inferred,"returns the attribute key built from the string ""InternalTag"" (the key's own name)"
+0x7100324d10,base::reflection::attr::ControlIntStep,inferred,"returns the attribute key built from the string ""ControlIntStep"" (the key's own name)"
+0x71003ba540,base::reflection::attr::InternalDevTag,inferred,"returns the attribute key built from the string ""InternalDevTag"" (the key's own name)"
 0x71006e6d10,XParasiteAI_Reset,inferred,"runs the base's reset, then puts every member of the component back to its starting value"
 0x71006e73f4,XParasiteAI_PickWeightedChoice,inferred,picks one of four choices at random by the weights at +0x14728 and their mask
 0x71006e8208,XParasiteAI_SetEffectActive,inferred,starts (on) or stops (off) the effect of the current binding on the owner
@@ -73,6 +128,8 @@ address,name,name_source,reason
 0x71006ea9a4,XParasiteAI_SetPrey,inferred,points the weak handle at +0x14798 (the prey) at the given object and takes the prey's value
 0x71006eb628,XParasiteAI_AttractToPowerBomb,inferred,stores true under bIsBeingAttracted and the given position under v3PowerBombPos (property names from the unit's static initialiser)
 0x71006eb7cc,XParasiteAI_FindFarthestEntry,inferred,returns a counted reference to the usable entry whose actor is farthest from the owner's target
+0x710075a400,base::reflection::attr::DefaultPasteValue,inferred,"returns the attribute key built from the string ""DefaultPasteValue"" (the key's own name)"
+0x7100ed8b60,base::reflection::attr::FileFilter,inferred,"returns the attribute key built from the string ""FileFilter"" (the key's own name)"
 0x7100ee2aa0,CSubAreaManager_FindSubArea,inferred,"finds the sub-area in the manager array at +0x860 that matches the id, or null"
 0x7100ee2ebc,CSubAreaManager_LoadColliders,inferred,"reads the collision objects of a file and adds each, weakly referenced, to the manager's colliders under its name"
 0x7100ee327c,CSubAreaManager_LoadScenarioCollision,inferred,loads the scenario's collision file (name.bmscc) and then a second file of the same name when the path registry knows it
@@ -81,3 +138,8 @@ address,name,name_source,reason
 0x7100ee6d00,CSubAreaManager_ChangeSubAreaResources,inferred,works out the id lists and files that change from one sub-area to another (either may be null) and loads them
 0x7100eea4c8,SubArea_ApplyEnvironmentSettings,inferred,"hands a sub-area's settings for the slots set in the mask to the environment manager, or resets all three without a sub-area"
 0x7100eea618,SubArea_ApplyCameraSettings,inferred,hands a sub-area's camera settings to the main camera's controller when it is the CMetroidCameraCtrl one
+0x7100f9e870,base::reflection::attr::AssetType,inferred,"returns the attribute key built from the string ""AssetType"" (the key's own name)"
+0x7100f9e980,base::reflection::attr::BasePath,inferred,"returns the attribute key built from the string ""BasePath"" (the key's own name)"
+0x7100f9ea90,base::reflection::attr::FolderFilter,inferred,"returns the attribute key built from the string ""FolderFilter"" (the key's own name)"
+0x7100f9eba0,base::reflection::attr::FileNameOnly,inferred,"returns the attribute key built from the string ""FileNameOnly"" (the key's own name)"
+0x71010434d0,base::reflection::attr::eActorLinkToComponentLinkTransform,inferred,"returns the attribute key built from the string ""eActorLinkToComponentLinkTransform"" (the key's own name)"

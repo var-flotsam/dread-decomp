@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/lua_lib.h"
+#include "reflected/CGameObject.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -82,7 +83,7 @@ bool fn_7100fbf55c(UnkLuaPusher_b49a6* self, UnkTypedValue_b49a6* value) {
     bool ok;
     if (fn_710009d50c(reinterpret_cast<const CType*>(pointee), fn_71011c3868())) {
         ok = fn_71010befa0(L, *static_cast<void**>(value->ptr));
-    } else if (fn_710009d50c(reinterpret_cast<const CType*>(pointee), fn_7101043688())) {
+    } else if (fn_710009d50c(reinterpret_cast<const CType*>(pointee), CGameObject::refl_GetClass())) {
         ok = fn_71010befc0(L, *static_cast<void**>(value->ptr));
     } else {
         fn_7100fbd320(L, value, AsPointerType(value->type)->owned, mode);

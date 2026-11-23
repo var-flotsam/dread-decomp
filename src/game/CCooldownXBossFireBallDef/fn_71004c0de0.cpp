@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/CCooldownXBossFireBallDef.h"
 #include "game/UnkTUProperty.h"
+#include "reflected/CCooldownXBossFireBallDef.h"
 
 using namespace unk_static_init;
 
@@ -96,7 +97,7 @@ extern char g_unk_71726d6469[];
 
 void fn_71004c0de0() {
     InitHeaderIds(&g_unk_71726d7350.ids);
-    fn_71004b518c();
+    CCooldownXBossFireBallDef::refl_GetClass();
     fn_710009ec00(g_unk_71726d5820, g_unk_71726d7350.field_0x38);
     fn_71004b5628();
     fn_710009ec00(g_unk_71726d5821, g_unk_71726d7350.field_0x170);

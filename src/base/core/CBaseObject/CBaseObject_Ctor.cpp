@@ -1,12 +1,12 @@
 // base::core::CBaseObject's unit (unit 29 of tools/tu_map.py): the constructor of a class
 // (vtable g_unk_7101a196f0) that makes sure base::core::CBaseObject's class exists
-// (fn_7100023464), then runs fn_71000e7b5c over each 0xb0-byte entry of that class's array at
+// (CBaseObject::refl_GetClass), then runs fn_71000e7b5c over each 0xb0-byte entry of that class's array at
 // +0xe8 (g_unk_7101d4ea78, inside the getter's static) with the object's dynamic class and the
 // object as the context, as fn_7100023854 does. Names are placeholders.
 #include "base/UnkClassEntry.h"
 #include "base/reflection/CClass.h"
-#include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTU85.h"
+#include "reflected/base/core/CBaseObject.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -30,7 +30,7 @@ struct UnkBaseObject_7100024e38 {
 
 void fn_7100024e38(UnkBaseObject_7100024e38* self) {
     self->vtable = g_unk_7101a196f0 + 2;
-    fn_7100023464();
+    base::core::CBaseObject::refl_GetClass();
     const CClass* cls = self->vf_0x0();
     base::reflection::UnkReflArray* entries = &g_unk_7101d4ea78;
     asm("" : "+r"(entries));

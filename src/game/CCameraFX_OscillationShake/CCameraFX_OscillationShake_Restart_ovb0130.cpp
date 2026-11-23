@@ -4,9 +4,6 @@
 
 extern "C" int rand();
 
-// As src/game/CCameraFX_RandShake/CCameraFX_RandShake_Offset_ovb0131.cpp declares it.
-struct UnkRandShake_ovb0131;
-
 struct UnkShakeRange_ovb0130 {
     f32 base;
     f32 spread;
@@ -34,7 +31,7 @@ static inline f32 RandSign_ovb0130() { return (rand() & 1) ? 1.0f : -1.0f; }
 // fn_7100767a50: restarts the shake after the base (fn_71010f3e94), as the model updater's wobble
 // (fn_7101172de0, src/game/CModelUpdaterComponent/CModelUpdaterComponent_Model_ovb0032.cpp) does.
 void fn_7100767a50(UnkOscillationShake_ovb0130* self) {
-    fn_71010f3e94(reinterpret_cast<UnkRandShake_ovb0131*>(self));
+    fn_71010f3e94(reinterpret_cast<CCameraFX_Shake*>(self));
     for (int i = 0; i < 3; ++i) {
         self->base[i] = self->ranges[i].base;
         self->spread[i] = self->ranges[i].spread;

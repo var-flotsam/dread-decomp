@@ -259,11 +259,12 @@ python tools/gen_fields.py --member vBones     # every class with a member of th
 
 ### `tools/gen_classes.py`
 
-Class declarations for reflected classes, from the reflection tables: include/reflected/.
+Class declarations for reflected classes, from the reflection tables and two hand-kept tables: include/reflected/.
 
 ```sh
-python tools/gen_classes.py            # write include/reflected/ (and drop headers no longer listed)
+python tools/gen_classes.py            # write include/reflected/ (and drop headers no longer selected)
 python tools/gen_classes.py --check    # exit 1 if include/reflected/ is not what this would write
+python tools/gen_classes.py --rule     # how many classes the rule selects with no scope (writes nothing)
 ```
 
 ## Matching

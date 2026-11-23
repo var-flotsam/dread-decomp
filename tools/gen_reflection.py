@@ -238,12 +238,13 @@ def reflection_names(g: "Getter") -> dict[int, str]:
     return out
 
 
-# Declarations ReflectedFields.h already brings: the named attribute keys and the enum types of the typed ones.
+# Declarations ReflectedFields.h already brings: the typed attribute keys and their enum types. (The other keys'
+# address-named declarations stay until attribute_keys_by_name writes their calls by name.)
 KEY_DECL_RE = re.compile(r"^(?:const base::reflection::UnkReflAttrKey& fn_|extern base::reflection::CType g_unk_)([0-9a-f]+)(?:\(\))?;$")
 OBJECT_DECL_RE = re.compile(r"^extern base::reflection::CType g_unk_([0-9a-f]+);$")
 GETTER_DECL_RE = re.compile(r"^const base::reflection::C(?:Type|Class)\* fn_([0-9a-f]+)\(\);$")
 FIELD_MACRO_RE = re.compile(r"\bDREAD_REFLECTED_(?:FIELD|CLASS_FIELD|FIELD_OF|PROPERTY|READ_ONLY_PROPERTY)\(")  # ReflectedFields.h
-DECLARED_KEYS = set(refl_attrs.ATTRIBUTE_NAMES) | set(refl_attrs.TYPED_KEYS.values())
+DECLARED_KEYS = set(refl_attrs.TYPED_KEYS) | set(refl_attrs.TYPED_KEYS.values())
 
 
 def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_sources: dict[int, tuple[list[str], str]],
@@ -1027,20 +1028,16 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
     return chr(10).join(lines[:head] + first + lines[head:])
 
 
-# An attribute key's named getter (base/reflection/ReflectedFields.h): the name it registers.
-ATTR_KEY_RE = re.compile(r"^inline const UnkReflAttrKey& (\w+)\(\) \{ return fn_([0-9a-f]{10})\(\); \}$", re.M)
-
-
 def attribute_keys() -> dict[int, str]:
-    """{key getter: name} of the attribute keys ReflectedFields.h names (namespace base::reflection::attr)."""
-    text = (ROOT / "include" / "base" / "reflection" / "ReflectedFields.h").read_text(encoding="utf-8")
-    return {int(a, 16): name for name, a in ATTR_KEY_RE.findall(text)}
+    """{key getter: name} of the attribute keys whose getters are named by the string they register,
+    base::reflection::attr::<Name> (declared in base/reflection/ReflectedAttributes.h; data/names.csv): every key
+    but the typed ones (typed_attribute_keys)."""
+    return {a: name for a, name in refl_attrs.ATTRIBUTE_NAMES.items() if a not in refl_attrs.TYPED_KEYS}
 
 
 def attribute_keys_by_name(text: str, keys: dict[int, str]) -> str:
-    """`text` with each call of an attribute key's getter (attribute_keys) written by the key's name,
-    base::reflection::attr::<Name>() (an inline call of the same getter); the getter's own declaration goes once
-    nothing else names it by address."""
+    """`text` with each call of an attribute key's getter (attribute_keys) written by the getter's name,
+    base::reflection::attr::<Name>(); its address-named declaration goes once nothing else names it by address."""
     used = {int(a, 16) for a in re.findall(r"\bfn_([0-9a-f]{10})\(\)", text)} & set(keys)
     if not used:
         return text
@@ -1214,51 +1211,9 @@ def without_unused_usings(text: str) -> str:
     return chr(10).join(lines)
 
 
-# A class block of the namespace form, with its getter's macro.
-CLASS_BLOCK = re.compile(r"^namespace ([\w:]+) \{\n(.*?)^\}  // namespace \1\n"
-                         r"DREAD_REFLECTED_(CLASS|ROOT_CLASS)\(\1(?:, ([\w:]+))?\);$", re.M | re.S)
-REFL_DECLARATION = re.compile(r"^[^ ].*? refl_\w+\([^)]*\);$")
-REFL_DEFINITION = re.compile(r"^([^ ].*?) (refl_\w+\(.*)$")
-FIELD_OFFSET = re.compile(r'^(    DREAD_REFLECTED_(?:FIELD|CLASS_FIELD|FIELD_OF)\((?:"[^"]*"|[^,]+), "(\w+)", )(0x[0-9a-f]+|\d+)\b')
-
-
-def declared_class_block(name: str, body: str, sizes: dict[str, int], offsets: dict[tuple[str, str], int]) -> str | None:
-    """The namespace block of class `name` as its declared class's member definitions (tools/gen_classes.py):
-    sizeof and offsetof for the numbers the header asserts, the class type for the virtual calls; None
-    when a line has no such form."""
-    if "DestructorFirst" in body:
-        return None  # the header declares the getter-first virtual table
-    short = name.split("::")[-1]
-    out = []
-    for line in body.split(chr(10))[:-1]:
-        if REFL_DECLARATION.match(line):
-            continue  # declared by the class
-        if line == "struct refl_Description : ClassDescription {":
-            out.append(f"struct {name}::refl_Description : ClassDescription {{")
-            continue
-        m = re.fullmatch(r"    static constexpr u64 size = (0x[0-9a-f]+);", line)
-        if m:
-            if int(m.group(1), 16) != sizes.get(name):
-                return None
-            out.append(f"    static constexpr u64 size = sizeof({short});")
-            continue
-        m = FIELD_OFFSET.match(line)
-        if m:
-            if offsets.get((name, m.group(2))) != int(m.group(3), 0):
-                return None
-            out.append(f"{m.group(1)}offsetof({short}, {m.group(2)}){line[m.end():]}")
-            continue
-        m = REFL_DEFINITION.match(line)
-        if m:
-            # in a member's body the class is named without its namespace
-            line = f"{m.group(1)} {name}::{m.group(2)}"
-            line = line.replace("{ return ClassOf(obj); }", f"{{ return *static_cast<const {short}*>(obj)->vf_0x0(); }}")
-            line = line.replace("{ Destroy(obj); }", f"{{ static_cast<{short}*>(obj)->~{short}(); }}")
-        elif not (line.startswith(" ") or line in ("}", "};")):
-            return None
-        out.append(line)
-    return chr(10).join(out) + chr(10)
-
+# The declared-class form of a class block, as text (tools/dread/declared_class.py; tools/gen_classes.py
+# uses it too, without this module's binary dependencies).
+from dread.declared_class import CLASS_BLOCK, declared_class_block  # noqa: E402,F401
 
 def with_declared_classes(text: str, includes: dict[str, str], sizes: dict[str, int],
                           offsets: dict[tuple[str, str], int]) -> str:

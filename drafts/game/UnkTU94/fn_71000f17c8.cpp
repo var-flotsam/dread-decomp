@@ -208,10 +208,10 @@ bool fn_71000f17c8(UnkTypedRefWriter* self) {
     if (type && fn_710009d50c(reinterpret_cast<const UnkReflObject*>(type)->vf_0x0(), fn_7100096100()))
         cls = static_cast<CClass*>(const_cast<CType*>(type));
 
-    top->function = fn_71000979a0(cls, parent->field, fn_710008fd60());
+    top->function = fn_71000979a0(cls, parent->field, base::reflection::attr::CreateElement());
 
     const auto* attrs = reinterpret_cast<const UnkAttrSet_l0f17c8*>(&parent->field->attrs_0x70);
-    const UnkReflValue* found = attrs->Find(fn_710008ff80());
+    const UnkReflValue* found = attrs->Find(base::reflection::attr::AfterElementDeserialization());
     UnkOwnedValue_l0f17c8 names_value =
         found != attrs->End() ? UnkOwnedValue_l0f17c8(*found, false) : UnkOwnedValue_l0f17c8();
     if (names_value.type) {

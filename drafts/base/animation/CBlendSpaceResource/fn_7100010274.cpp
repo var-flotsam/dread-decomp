@@ -69,7 +69,7 @@ bool fn_7100010274(CRntFile* file, UnkTypedRef* value) {
             cls = static_cast<const CClass*>(type);
     }
     UnkReflValue attr = fn_710009ddd4(reinterpret_cast<UnkVersionEntry*>(const_cast<CType*>(value->type)),
-                                      fn_7100011040());
+                                      base::reflection::attr::sBinaryDeserialize());
     bool ok = false;
     if (cls && attr.type) {
         CStrId name(base::global::UnkStrIdInline{}, nullptr, false);

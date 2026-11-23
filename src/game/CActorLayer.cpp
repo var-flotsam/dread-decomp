@@ -111,9 +111,9 @@ static inline void AddByNameFunction(CClass* cls, const char* name, void (*setup
                                      const char* description) {
     if (CFunction* fn = AddReflectedFunction(cls, CStrId(name, true))) {
         setup(fn, name);
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), static_cast<const char*>(description));  // a fresh temporary
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), static_cast<const char*>(description));  // a fresh temporary
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sName", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sName", true));
     }
 }
 
@@ -131,22 +131,22 @@ void fn_71002584a0(CClass* cls) {
     AddGetter(cls, "_m_dctSublayers_GetterFunction", TypeOf(g_unk_71726a0628), fn_7100260928);
     CVariable* sublayers = AddReflectedField(cls, CStrId("dctSublayers", true), TypeOf(g_unk_71726a0628), 0xffffffff,
                                             cls->m_array_0x110.size() - 1, -1);
-    sublayers->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewSublayer", true));
-    sublayers->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteSublayerByName", true));
-    sublayers->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sName", true));
-    sublayers->attrs.Add<bool>(fn_7100234780(), true);
-    sublayers->attrs.Add<bool>(fn_7100092b10(), true);
-    sublayers->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterSublayerDeserialization");
-    sublayers->attrs_0x70.Add<s32>(fn_710025d990(), TypeOf(base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object), 2);
+    sublayers->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateNewSublayer", true));
+    sublayers->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteSublayerByName", true));
+    sublayers->attrs.Add<CStrId>(base::reflection::attr::ElementKeyVariable(), CStrId("sName", true));
+    sublayers->attrs.Add<bool>(base::reflection::attr::SetRenderItemSelectionIdCall(), true);
+    sublayers->attrs.Add<bool>(base::reflection::attr::DisableListAddRemove(), true);
+    sublayers->attrs_0x70.Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterSublayerDeserialization");
+    sublayers->attrs_0x70.Add<s32>(base::reflection::attr::ePersistenceTarget(), TypeOf(base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object), 2);
 
     AddGetter(cls, "_m_dctActorGroups_GetterFunction", TypeOf(g_unk_717269c300), fn_7100260950);
     CVariable* groups = AddReflectedField(cls, CStrId("dctActorGroups", true), TypeOf(g_unk_717269c300), 0xffffffff,
                                          cls->m_array_0x110.size() - 1, -1);
-    groups->attrs.Add<const char*>(fn_710008ff80(), "AfterActorGroupDeserialization");
-    groups->attrs.Add<s32>(fn_710025d990(), TypeOf(base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object), 2);
-    groups->attrs_0x70.Add<u32>(fn_710025daa0(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 0);
-    groups->attrs_0x70.Add<bool>(fn_710025dbb0(), true);
-    groups->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterActorGroupLinkDeserialization");
+    groups->attrs.Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterActorGroupDeserialization");
+    groups->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), TypeOf(base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object), 2);
+    groups->attrs_0x70.Add<u32>(base::reflection::attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 0);
+    groups->attrs_0x70.Add<bool>(base::reflection::attr::bWeakLink(), true);
+    groups->attrs_0x70.Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterActorGroupLinkDeserialization");
     groups->attrs_0x70.Add<s32>(fn_710025dcc0(), TypeOf(base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object), 1);
 
     AddHook(cls, "AfterActorGroupDeserialization", fn_710025915c);
