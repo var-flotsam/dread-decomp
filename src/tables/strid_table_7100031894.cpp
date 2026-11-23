@@ -24,7 +24,7 @@ struct UnkStrIdHashed {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
+                    StringPool_Release(pool, data);
                     pool = g_unk_7101d47108;
                 }
             }
@@ -34,7 +34,7 @@ struct UnkStrIdHashed {
 };
 
 using UnkStrIdH = UnkStrIdHashed<UnkTable_fn_71000406dc>;
-#define UNK_STRID(s) UnkStrIdH(s, sizeof(s) - 1, fn_7100001570(s, sizeof(s) - 1), true)
+#define UNK_STRID(s) UnkStrIdH(s, sizeof(s) - 1, StringCrc64(s, sizeof(s) - 1), true)
 
 template <class Tag>
 struct UnkStrIdTable {
@@ -1251,11 +1251,11 @@ UnkStrIdHashed<Tag>::UnkStrIdHashed(const char* str, u64 length, u64 hash, bool 
     data = nullptr;
     if (!g_unk_7101d47108)
         UnkEnsureStringPool();
-    data = fn_71000804f8(g_unk_7101d47108, hash);
+    data = StringPool_Find(g_unk_7101d47108, hash);
     if (data)
         ++data->ref_count;
     else
-        data = fn_71000801e4(g_unk_7101d47108, hash, str, length, flag);
+        data = StringPool_Insert(g_unk_7101d47108, hash, str, length, flag);
 }
 template UnkStrIdH::UnkStrIdHashed(const char* str, u64 length, u64 hash, bool flag);
 
