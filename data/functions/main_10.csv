@@ -2854,7 +2854,7 @@ address,size,name,name_source,subsystem,status
 0x710107dd00,320,lua_bind::DisableEntityComponent,string,script/bindings,O
 0x710107de40,368,lua_bind::TeleportEntityToStartPoint,string,script/bindings,O
 0x710107dfb0,676,lua_bind::TeleportEntityToLandmark,string,script/bindings,U
-0x710107e260,392,lua_bind::TeleportEntityToRawPos,string,script/bindings,U
+0x710107e260,392,lua_bind::TeleportEntityToRawPos,string,script/bindings,O
 0x710107e3f0,1092,lua_bind::Teleport,string,script/bindings,U
 0x710107e840,244,lua_bind::SetLandmarkTransform,string,script/bindings,O
 0x710107e940,204,lua_bind::GetLandmarkPosition,string,script/bindings,O

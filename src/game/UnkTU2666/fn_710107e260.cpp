@@ -1,16 +1,14 @@
 #include "base/global/CStrId.h"
+#include "game/CCameraComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct lua_State;
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-struct UnkWeakTarget;
-extern u32 g_unk_71727bebb8;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
-void fn_7100d7babc(void* self, bool flag);
-void fn_71010e46cc(void* self, u8 flag);
 
 struct UnkLuaVec3_b0164 {
     f32 x, y, z;
@@ -36,7 +34,7 @@ s32 fn_710107e260(lua_State* L) {
     u32 kind;
     const char* name;
     f32 yaw;
-    u8 flag;
+    bool flag;
     UnkLuaVec3_b0164 v;
     if (fn_71010c0270(L, "sfbffff", &name, &speed, &flag, &v.x, &v.y, &v.z, &yaw)) {
         UnkGameManager* manager = g_unk_7101d47310;
@@ -60,7 +58,7 @@ s32 fn_710107e260(lua_State* L) {
             target->vtable->vf_0xd8(target, &rot, true);
         }
         if (speed > 0.0f)
-            fn_7100d7babc(target, true);
+            fn_7100d7babc(reinterpret_cast<UnkWeakTarget*>(target), true, speed);
         if (flag) {
             void* camera = fn_7100defcec(g_unk_7101d47310);
             if (!camera)

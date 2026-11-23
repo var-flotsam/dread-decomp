@@ -15,4 +15,5 @@ void fn_71010e41e0(UnkCamComp2_ovb5* self, UnkCamEntry_ovb5* entry, bool flag);
 base::reflection::UnkReflObject* fn_71010e37f4(void* camera);
 void fn_71010e4168(void* holder, const base::global::CStrId* id, bool flag);
 void fn_71010e4a80(void* self, base::global::CStrId* id);
+void fn_71010e46cc(void* object, bool value);
 const base::reflection::CType* fn_71010df6c0();

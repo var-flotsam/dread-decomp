@@ -2,7 +2,7 @@
 // out a delay and then bring in one more object (with a sound); step 4 brings in the last two, applies the
 // text style and plays the closing sound. The text block's transition runs while it is in use. Names and
 // layouts are placeholders.
-#include "../../../src/game_s7/UnkGuiS7.h"
+#include "../../game_s7/UnkGuiS7.h"
 #include "base/global/CRntString.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -13,9 +13,7 @@
 
 using base::global::CRntString;
 
-struct UnkEnumType;
-extern UnkEnumType g_unk_71729f0228;
-extern UnkEnumType g_unk_71729f0278;
+using unk_static_init::UnkEnumType;
 
 // A text style's three numbers, copied as one.
 struct UnkTextParams_lb94bec {
@@ -34,12 +32,11 @@ struct UnkTextStyle_lb94bec {
 static_assert(__builtin_offsetof(UnkTextStyle_lb94bec, field_0x78) == 0x78, "UnkTextStyle_lb94bec layout");
 extern UnkTextStyle_lb94bec g_unk_7172769c08;  // the text style
 
-// A display object as far as this file uses it: its rest state at +0xa0.
+// A display object as far as this file uses it: its colour at +0xa0.
 struct UnkGuiObjView_lb94bec {
     u8 pad_0x0[0xa0];
-    u8 rest[0x14];  // 0xa0
+    unk_gui::UnkColor color;  // 0xa0
 };
-void fn_71011ce488(UnkGuiDisplayObject* self, const void* state);
 
 struct UnkTextBlock_lb94bec {
     u8 pad_0x0[0x50];
@@ -84,9 +81,9 @@ static inline bool ApplyStyle(UnkTextBlock_lb94bec* block, const UnkTextStyle_lb
     return changed;
 }
 
-// Brings an object in: back to its rest state, fully shown, fading in.
+// Brings an object in: back to its own colour, fully shown, fading in.
 static inline void BringIn(UnkGuiDisplayObject*& object) {
-    fn_71011ce488(object, reinterpret_cast<UnkGuiObjView_lb94bec*>(object)->rest);
+    fn_71011ce488(object, &reinterpret_cast<UnkGuiObjView_lb94bec*>(object)->color);
     fn_71011cec68(object, 1.0f);
     fn_71011ce208(object, 0.2f);
 }
@@ -106,6 +103,7 @@ static inline void RevealItem(UnkReveal_lb94bec* self, u32 index, f32 delay, f32
     }
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100b94bec(UnkReveal_lb94bec* self, f32 dt) {
     switch (self->step) {
     case 0:

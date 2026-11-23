@@ -3019,7 +3019,7 @@ address,size,name,name_source,subsystem,status
 0x7100b942c4,52,fn_7100b942c4,unknown,unknown,O
 0x7100b942f8,40,fn_7100b942f8,unknown,unknown,O
 0x7100b94320,2252,fn_7100b94320,unknown,gui?,m
-0x7100b94bec,736,fn_7100b94bec,unknown,unknown,U
+0x7100b94bec,736,fn_7100b94bec,unknown,unknown,m
 0x7100b94ecc,52,fn_7100b94ecc,unknown,unknown,O
 0x7100b94f00,40,fn_7100b94f00,unknown,unknown,O
 0x7100b94f28,92,fn_7100b94f28,unknown,engine/reflection?,O

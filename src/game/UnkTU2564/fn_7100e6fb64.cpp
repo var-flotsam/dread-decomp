@@ -2,7 +2,7 @@
 // ids, a word, a string with 0x40 bytes of storage and plain values). Names and layouts are placeholders.
 #include <new>
 
-#include "../../../src/game_aca57c/UnkBufferString.h"
+#include "../../game_aca57c/UnkBufferString.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -44,9 +44,6 @@ static_assert(sizeof(UnkMinimapRecord_le6fb64) == 0xc8, "UnkMinimapRecord_le6fb6
 
 typedef base::global::CRntSmallDictionary<CStrId, UnkMinimapRecord_le6fb64> UnkMinimapRecords_le6fb64;
 
-struct UnkIdsString40_b49;
-void fn_7100e6fdf4(base::global::CRntSmallDictionary<CStrId, UnkIdsString40_b49>* self);
-void fn_7100e6f940(void* array, u32 capacity);
 
 // Empties the array, resizes it to the other's count, then copies the other's records and keys.
 UnkMinimapRecords_le6fb64* fn_7100e6fb64(UnkMinimapRecords_le6fb64* self, const UnkMinimapRecords_le6fb64* other) {

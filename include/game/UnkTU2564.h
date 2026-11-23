@@ -3,9 +3,15 @@
 // UnkTU2564: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2564,
 // 0x7100e65204-0x7100e768b0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 void fn_7100e6c960(char*);  // The record's destructor.
+struct UnkIdsString40_b49;
+// Shrinks a dictionary of 0xc8-byte records to its count.
+// Grows a record array to `capacity`.
+void fn_7100e6f940(void* array, u32 capacity);
+void fn_7100e6fdf4(base::global::CRntSmallDictionary<base::global::CStrId, UnkIdsString40_b49>* self);
 extern base::global::UnkStrIdBase g_unk_71727c8018;
 extern base::global::CStrId g_unk_71727c82d8;
 extern base::global::CStrId g_unk_71727c82e0;

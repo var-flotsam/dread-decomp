@@ -8,6 +8,12 @@
 #include "base/math/UnkSegment2D.h"
 #include "types.h"
 
+namespace unk_gui {
+struct UnkColor;
+}
+// Sets the display object's colour.
+void fn_71011ce488(UnkGuiDisplayObject* self, const unk_gui::UnkColor* color);
+
 struct UnkSprite_spr;
 struct UnkDisplayContainer_l1d9e90;
 struct UnkChangeMenuStateButton_b48a3;
