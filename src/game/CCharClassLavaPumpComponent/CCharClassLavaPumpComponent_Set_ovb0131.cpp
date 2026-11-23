@@ -4,7 +4,7 @@
 // switches to the timed run down (+0x91, the time +0x94 is the tunable's +0x24 times +0x28). Unless
 // running down, the level goes to the floating prop (as fn_7100879fb0), then the key for full, partial
 // or zero level is played. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAnimationComponent.h"
 #include "game/CCharClassEventScenarioComponent.h"
 #include "game/UnkActor.h"

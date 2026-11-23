@@ -2,7 +2,7 @@
 // class is CXParasiteAIComponent). The names and layouts are placeholders.
 // Holds fn_71006ea3fc (a flag setter that mirrors the flag into the blackboard and the owner's
 // timeline component).
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"

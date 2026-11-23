@@ -3,7 +3,7 @@
 // to a point above the middle of the arena (mode 3), stored in its blackboard as a CVector3D.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CActorComponent.h"

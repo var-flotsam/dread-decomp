@@ -4,7 +4,7 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/sound/CMusicManager.h"

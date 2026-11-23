@@ -3,7 +3,7 @@
 // or behind a pointer for 9 or more entries or kind 1) through fn_710007cf30 into a field of the
 // component at 8, and return the int 1 as a reflected value. Names and layouts are placeholders.
 #include "../../game_s7/UnkPropS7.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

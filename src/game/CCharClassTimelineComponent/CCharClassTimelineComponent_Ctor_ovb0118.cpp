@@ -2,7 +2,7 @@
 // constructor fn_71011acd10, the vtable, a cleared word at +0x58, an empty id at +0x60 and the word
 // after it, then the enum default zero (a guarded static) at +0x70. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassComponent.h"
 #include "types.h"
 

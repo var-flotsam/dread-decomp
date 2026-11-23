@@ -3,7 +3,7 @@
 // +0x10 of the object at 8. The entry's value, unless it is gone or flagged at +0x1b5, first drops
 // its back pointer (+0xc8) to the owner and is handed to the game manager (fn_7100debc28); the node
 // is then erased (fn_71002430e8). Returns whether there was an entry. Names are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"

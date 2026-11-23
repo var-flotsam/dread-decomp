@@ -1,7 +1,7 @@
 // Asks the global registry (created on first use) for the value named by a fixed string id and the
 // string id at +0x510 (each use counted on its string data at 0x44; the first text defaults to
 // the empty string) and returns it; 0 when nothing is found.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkTunableRegistry.h"
 #include "game/CCharClassLifeComponent.h"
 #include "game/UnkNamedString.h"

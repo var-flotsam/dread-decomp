@@ -5,7 +5,7 @@
 #include <math.h>
 
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2510.h"

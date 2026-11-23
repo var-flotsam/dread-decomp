@@ -5,7 +5,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"

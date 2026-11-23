@@ -3,14 +3,14 @@
 // reflected function's move constructor, and a class attribute read with a default.
 //
 // The types here are local views of layouts the rest of the code only declares
-// (UnkReflArray in CClass.h, CFunction and UnkReflAttrs in UnkReflAttributes.h); the
+// (UnkReflArray in CClass.h, CFunction and UnkReflAttrs in ReflectedAttributes.h); the
 // static_asserts tie them together. Names are placeholders.
 #include <new>
 
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection/CClass.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflFunctionVtable.h"
 #include "game/UnkTU83.h"

@@ -1,7 +1,7 @@
 // A reflected getter (and fn_710117364c, the same query returning a bool): looks the named entry
 // up in the object's component at +0x50 and returns the translation of the 4x4 transform it fills
 // in, or zero when there is no component or no entry.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkTU253.h"

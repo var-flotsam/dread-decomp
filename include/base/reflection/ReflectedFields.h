@@ -12,7 +12,7 @@
 // why this is a statement-like macro and not a function. It is used in refl_AddFields(CClass* cls).
 
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTU36.h"  // base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, EditorModeDataFlow's enum type
 #include "game/UnkTU89.h"  // base::reflection::TypeObject<base::serialization::EPersistence>::object, Persistence's enum type
 #include "types.h"

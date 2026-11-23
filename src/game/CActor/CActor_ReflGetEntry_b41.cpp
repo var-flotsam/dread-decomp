@@ -2,7 +2,7 @@
 // fn_71010e791c (CCameraComponent): the entry stored under the id given (parallel arrays of values at
 // +0xa0 and keys at +0xa8, count at +0xb0 of the object at 8), null when there is none, described by
 // fn_710023e498. Names are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU341.h"
 #include "types.h"

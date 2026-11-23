@@ -2,7 +2,7 @@
 // (the machine of src/game/UnkStateMachineSet_b60.cpp: states 0 to 4, 5 for none). Names and layouts are
 // placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/CGrappleBeamComponent.h"
 #include "game/UnkStateMachineFind.h"

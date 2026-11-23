@@ -3,7 +3,7 @@
 // lightning slots sized from the beam's maximum length, and loads the lightning model (fn_7100817ffc).
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CWeaponMovement.h"
 #include "game/CGrappleBeamComponent.h"
 #include "types.h"

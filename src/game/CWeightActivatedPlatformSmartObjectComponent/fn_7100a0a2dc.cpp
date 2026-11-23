@@ -2,7 +2,7 @@
 // platform's state machine (+0x180) to its "none" state 6, clears the "Finished" flag in the current scenario's blackboard
 // section when it is stored there, and makes the linked usable component unusable. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CScenario.h"

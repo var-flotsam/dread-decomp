@@ -7,7 +7,7 @@
 // on again when remembered. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CFXComponent.h"

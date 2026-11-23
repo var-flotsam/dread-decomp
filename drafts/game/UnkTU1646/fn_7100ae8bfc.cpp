@@ -1,7 +1,7 @@
 // Unit 1646: brings blackboard data up to the current version, running each version's upgrade step in
 // turn from the stored version, then stores the version reached. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"

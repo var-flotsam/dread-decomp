@@ -9,7 +9,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkCallbackSet_7101a20950.h"
 #include "game/UnkRcObject.h"
 #include "game/UnkRcRef.h"

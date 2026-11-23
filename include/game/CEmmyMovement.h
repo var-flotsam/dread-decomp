@@ -3,7 +3,7 @@
 // CEmmyMovement: the movement of an E.M.M.I., as far as its search actions use it, and the functions of its
 // unit (tools/tu_map.py unit 814, 0x7100571348-0x7100571b18) that other files call. Names and layouts are
 // placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkNavMeshCell.h"
 #include "types.h"
 

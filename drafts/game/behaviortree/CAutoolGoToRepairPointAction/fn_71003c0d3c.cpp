@@ -3,7 +3,7 @@
 // repair point to go to (a parameter block of the vtable-0x7101a25b38 kind). Names and layouts are
 // placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkStateMachineFind.h"

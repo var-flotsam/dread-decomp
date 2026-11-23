@@ -2,7 +2,7 @@
 // missile plus tank collected, ten more once the archive flag g_unk_717275b148 is set, plus 30 on
 // difficulty 3 and 15 otherwise. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"

@@ -3,7 +3,7 @@
 // sanctuary) and its value the matching tunable; with the flag at +0x146d0 set the value is then cleared.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU2702.h"

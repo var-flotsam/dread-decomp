@@ -429,7 +429,7 @@ def name_aliases(name: str) -> list[str]:
     in a source written with base/reflection/ReflectedClass.h; refl_InitType<T>, the CEnumType, CFlagsetType,
     CPointerType or CCollectionType constructor instantiated for T; refl_GetType<T>, a pointer type's
     PointerType<T>::Get (base/reflection/CPointerType.h) or a plain type's PrimitiveType<T>::Get
-    (base/reflection/UnkReflPrimitiveType.h)."""
+    (base/reflection/PrimitiveType.h)."""
     if name.endswith("::refl_InitClass"):
         return [f"base::reflection::CClass::CClass<{name[:-len('::refl_InitClass')]}::refl_Description>"]
     # An enum's or a flag set's, written with base/reflection/ValueOps.h (tools/gen_types.py), is its

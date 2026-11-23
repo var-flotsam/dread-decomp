@@ -8,7 +8,7 @@
 #include "game/CCharClassEmmyValveComponent.h"
 #include "game/CScenario.h"
 #include "game/UnkAnimationComponent.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"

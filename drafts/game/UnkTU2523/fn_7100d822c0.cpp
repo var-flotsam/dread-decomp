@@ -4,7 +4,7 @@
 #include "base/core/CBaseObject.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTU604.h"
 #include "game/UnkTU63.h"
 #include "types.h"

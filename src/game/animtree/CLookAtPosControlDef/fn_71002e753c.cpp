@@ -4,7 +4,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkPair.h"
 #include "game/animtree/CAnimatedNodeDef.h"
 #include "types.h"

@@ -5,7 +5,7 @@
 // layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/reflection.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CBossAIComponent.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkSaveStationTunables_ovb0118.h"

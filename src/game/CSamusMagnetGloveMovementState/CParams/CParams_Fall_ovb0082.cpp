@@ -3,7 +3,7 @@
 // flag bit 0 and the time descriptor g_unk_710164b968, and passes it to the target at +0x8 (fn_710098ae04).
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1455.h"

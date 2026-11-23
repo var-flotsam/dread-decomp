@@ -8,7 +8,7 @@
 // locked (fn_7100332c80, as in CDoorLifeComponent.cpp), then fn_7100901260 runs. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CCharClassLavaPoolComponent.h"

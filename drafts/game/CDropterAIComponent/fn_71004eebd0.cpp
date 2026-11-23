@@ -7,7 +7,7 @@
 // all-flags mask. Names and layouts are placeholders.
 #include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CCollisionComponent.h"

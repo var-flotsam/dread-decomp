@@ -26,7 +26,7 @@
 #include "base/global/UnkStringPool.h"
 #include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CBlackboard.h"

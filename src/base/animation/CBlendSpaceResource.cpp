@@ -115,7 +115,7 @@ void fn_7100fc3320(const UnkParseContext* ctx, const CType* type) {
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/UnkStrPair.h"
 
 using base::global::CFilePathStrId;

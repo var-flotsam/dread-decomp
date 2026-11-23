@@ -2,7 +2,7 @@
 // game manager has for it and stores its string id in the reflected value `out`. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGameManager.h"

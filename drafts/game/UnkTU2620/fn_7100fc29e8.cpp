@@ -5,7 +5,7 @@
 #include "../../../lib/lua/lua.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "types.h"
 
 using base::global::CStrId;

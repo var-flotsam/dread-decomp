@@ -4,7 +4,7 @@
 // share of the duration is passed to the floating prop found for the actor (+0x30, fn_71007e4924;
 // cached at +0x88) through fn_710117ad18. Once the share is within 0.001 of zero both flags (+0x90,
 // +0x91) are cleared. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAnimationComponent.h"
 #include "game/CCharClassEventScenarioComponent.h"
 #include "game/CComponent.h"

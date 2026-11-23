@@ -3521,7 +3521,7 @@ def defined_outside(out: Path, also: tuple[str, ...] = ()) -> set[int]:
                 for t in VALUE_OPS_RE.findall(text):
                     skip |= named_value_ops().get(t, set())
                     # and its getter, when its description is keyed by T (refl_GetType<T>, base/reflection/CPointerType.h,
-                    # UnkReflPrimitiveType.h)
+                    # PrimitiveType.h)
                     if (f"base::reflection::PointerType<{t}>::Get();" in text
                             or f"base::reflection::PrimitiveType<{t}>::Get();" in text):
                         skip |= named_value_ops().get(("getter", t), set())

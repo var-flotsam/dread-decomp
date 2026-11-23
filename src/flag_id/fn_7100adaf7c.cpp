@@ -1,5 +1,5 @@
 // Builds a typed value whose type comes from a reflection getter.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

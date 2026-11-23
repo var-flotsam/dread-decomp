@@ -2,7 +2,7 @@
 // queries on the writer's context stack (a count and entries of 0xd8 bytes, each a context in use or
 // storage for one held in place, with the type of what the storage holds). Names and layouts are
 // placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkHeldType_f29a0.h"

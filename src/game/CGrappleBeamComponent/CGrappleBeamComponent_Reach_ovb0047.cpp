@@ -2,7 +2,7 @@
 // from the owner's position (the translation column of the transform at +0x38), or the point fn_710081b920 answers
 // when it is not zero, within fMaxLength, and beyond fMaxLengthToStartRetract only where the render manager
 // projects it (fn_7100219588). Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkGrappleAnswer_b50.h"
 #include "game/UnkGrappleVec3_ovb0047.h"
 #include "game/UnkRenderManager.h"

@@ -2,7 +2,7 @@
 // handler (fn_7101111dc8), a message with its flag at +0x20 set clears the bool property "bScared" of the
 // blackboard section g_unk_71726b7cb8 (blackboard at +0x1260, unless locked). Names are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU2702.h"

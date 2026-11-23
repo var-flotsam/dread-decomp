@@ -1,7 +1,7 @@
 // Unit 2553 (CGameManager::CTunableGameManager): sets the cooldown flag unless the blackboard says the
 // cooldown has finished, tells its watchers and stores it in the blackboard. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"

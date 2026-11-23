@@ -1,7 +1,7 @@
 // CGrabComponent unit (tools/tu_map.py, the name from reflection): a reflected getter of whether
 // either of the component's two links (+0xc8, +0xd0) holds a target (its +0x10), as a reflected
 // bool. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

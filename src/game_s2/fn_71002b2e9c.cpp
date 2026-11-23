@@ -3,7 +3,7 @@
 #include <new>
 
 #include "base/global/CRntVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU39.h"
 #include "types.h"

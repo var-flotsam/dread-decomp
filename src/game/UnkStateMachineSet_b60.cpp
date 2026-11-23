@@ -6,7 +6,7 @@
 // the id-0 path. Names are placeholders.
 #include "base/core/CBaseObject.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CActorComponent.h"
 #include "game/CCharClassEmmyValveComponent.h"
 #include "game/CCharClassEventPropComponent.h"

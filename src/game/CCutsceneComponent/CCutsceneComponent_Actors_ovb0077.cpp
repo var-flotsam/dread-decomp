@@ -15,7 +15,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CCutsceneComponent.h"

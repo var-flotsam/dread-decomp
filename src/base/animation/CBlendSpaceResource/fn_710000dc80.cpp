@@ -9,7 +9,7 @@
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBossAIComponent.h"

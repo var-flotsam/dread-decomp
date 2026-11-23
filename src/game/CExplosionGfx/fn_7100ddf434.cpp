@@ -4,7 +4,7 @@
 // integers and merges neighbours, unlike a copy of the whole vector). The three globals are
 // constants reached through the GOT (names unknown).
 #include "base/math/UnkZeroVector3.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CExplosionGfx.h"
 using base::global::CStrId;
 using base::reflection::CClass;

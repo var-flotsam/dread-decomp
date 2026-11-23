@@ -4,7 +4,7 @@
 #include "base/global/CName.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/ReflectedFields.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTU2536.h"
 #include "types.h"
 

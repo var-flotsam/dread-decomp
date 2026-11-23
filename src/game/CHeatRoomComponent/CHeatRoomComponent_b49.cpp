@@ -6,7 +6,7 @@
 // SubId) in the current scenario's section, and the room is refreshed (fn_7100a26828). Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CActorComponent.h"
 #include "game/CBlackboard.h"

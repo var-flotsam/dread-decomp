@@ -1,6 +1,6 @@
 // Functions in the CPoisonFlyAIComponent unit (tools/tu_map.py). Names and layouts are
 // placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CPoisonFlyAIComponent.h"

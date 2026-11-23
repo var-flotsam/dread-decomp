@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 #include "../../game_s2/UnkSpitSend.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineComponent.h"

@@ -3,7 +3,7 @@
 // below the tunable's +0x2c threshold the value becomes +0x24 minus itself, else 0. The tunable is
 // CTunableAutofocusAimCameraCtrl's global (src/reflection/CAutofocusAimCameraCtrl.cpp). Names and layouts
 // are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "types.h"
 
 extern base::reflection::UnkTunable g_unk_717270f910;

@@ -4,7 +4,7 @@
 // (fn_71008c1538), sets the word at +0x2fc and returns the base step's answer. Names and layouts
 // are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/CProjectileMovement.h"

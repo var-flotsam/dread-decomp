@@ -1,7 +1,7 @@
 // CCharClassKraidAttack's unit (tools/tu_map.py): a bool tunable of Kraid,
 // read by the attack's name through reflection (the field whose name hash matches), as 1.0 or 0.0;
 // 1.0 when there is no such field. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/UnkTU85.h"
 #include "types.h"

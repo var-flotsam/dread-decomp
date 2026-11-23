@@ -6,7 +6,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkStrIdTable.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CAutoolAIComponent.h"
 #include "game/CBlackboard.h"

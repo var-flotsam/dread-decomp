@@ -2,7 +2,7 @@
 // table, in the blackboard section g_unk_71726b7cb8 of the blackboard at +0x1260, unless the blackboard
 // is locked. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTUProperty.h"

@@ -7,7 +7,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTimelineCalls.h"
 
 namespace base::reflection {

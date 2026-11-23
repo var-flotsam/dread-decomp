@@ -1,6 +1,6 @@
 // base::reflection's unit (tools/tu_map.py unit 79): the reflected function's call (fn_710009ad50, which
 // converts the arguments to the parameter types first), its destructor (CFunction,
-// base/reflection/UnkReflAttributes.h: vtable g_unk_7101a1b460) and the growth of its parameter
+// base/reflection/ReflectedAttributes.h: vtable g_unk_7101a1b460) and the growth of its parameter
 // attribute containers (0x38 bytes each, at +0x88; fn_710009abf8 destroys one). Names and layouts
 // are placeholders.
 #include <new>
@@ -9,7 +9,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflFunctionVtable.h"
 #include "base/reflection/UnkReflValue.h"
@@ -97,7 +97,7 @@ struct UnkReflFunctionAttrs_ovb0102 {
     ~UnkReflFunctionAttrs_ovb0102() { fn_710009abf8(this); }
 };
 
-// CFunction (base/reflection/UnkReflAttributes.h) with the members its destructor releases.
+// CFunction (base/reflection/ReflectedAttributes.h) with the members its destructor releases.
 struct UnkReflFunctionData_ovb0102 {
     char* vtable;
     base::global::CRntVector<const void*> params;  // +0x8

@@ -1,7 +1,7 @@
 // Unit 2571: stores three counters under their names in the game manager's blackboard (section 0x229
 // of the reflection id table), unless the blackboard is locked. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"

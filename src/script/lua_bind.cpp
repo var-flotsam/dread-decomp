@@ -9,7 +9,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CHydrogigaAIComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkBufferStringPool.h"

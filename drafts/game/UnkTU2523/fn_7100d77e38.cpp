@@ -3,7 +3,7 @@
 // 0x158-byte block at +0x1b8. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTU604.h"
 #include "game/UnkTU63.h"
 #include "types.h"

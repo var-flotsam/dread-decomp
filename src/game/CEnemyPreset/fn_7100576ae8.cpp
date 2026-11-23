@@ -3,7 +3,7 @@
 // the two strings (each use counted on its string data at 0x44) and returns it; the default
 // -1 stays when nothing is found.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkTunableRegistry.h"
 #include "game/UnkNamedString.h"
 #include "types.h"

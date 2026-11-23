@@ -5,7 +5,7 @@
 // component (fn_7100405c7c) is asked (fn_71003fc314). Names and layouts are placeholders.
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/global/CRntVector.h"
 #include "game/CAISmartObjectComponent.h"
 #include "game/UnkTU341.h"

@@ -4,7 +4,7 @@
 // 0x710077f670-0x710078e268). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "types.h"
 f32 fn_7100789f5c(const base::global::CStrId* id);
 extern base::reflection::UnkTunable g_unk_7172716160;

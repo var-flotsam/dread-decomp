@@ -7,7 +7,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/math/CVector.h"
 #include "base/reflection/CClass.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"

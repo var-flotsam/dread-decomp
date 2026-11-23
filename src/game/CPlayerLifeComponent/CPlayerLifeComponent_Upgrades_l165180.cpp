@@ -2,7 +2,7 @@
 // does not have yet: marks each as applied there, then raises the maximum life by 100, or adds 10 to the
 // missile maximum and current counts. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CBossAIComponent.h"

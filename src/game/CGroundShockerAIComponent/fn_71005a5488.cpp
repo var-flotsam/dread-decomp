@@ -2,7 +2,7 @@
 // timer at +0x14738 from the tunable (+0x38) when it ran out while +0x14730 is set, faces the actor toward the
 // target (+-0.9999 along x) through its effect sink (+0x218) and +0x298, turns it (vf_0x348) when it looks the
 // other way, and resets the state at +0x14678 with the new direction. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2702.h"

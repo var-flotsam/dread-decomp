@@ -3,7 +3,7 @@
 // target's initial height and offset and their two corner indices) and the class's registration.
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 

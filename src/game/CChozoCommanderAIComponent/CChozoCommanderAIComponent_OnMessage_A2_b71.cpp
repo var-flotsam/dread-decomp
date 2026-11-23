@@ -4,7 +4,7 @@
 // at +0xb8 (virtual 0x188); message 0x2a clears the byte at +0x15d06 and calls fn_71004546e0. Always
 // returns true. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1370.h"

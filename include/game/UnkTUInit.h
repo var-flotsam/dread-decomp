@@ -12,7 +12,7 @@
 
 #include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTUProperty.h"
@@ -34,7 +34,7 @@ struct UnkReflType {
     void (*destroy)(UnkValue* value);
 };
 
-// A reflected type's getter (base/reflection/UnkReflAttributes.h declares the plain types',
+// A reflected type's getter (base/reflection/ReflectedAttributes.h declares the plain types',
 // base/reflection/UnkClassGetters.h the classes'), as the helpers see the type object: through
 // the placeholder layout above. The getters return a pointer to const CType or CClass.
 template <auto Getter>

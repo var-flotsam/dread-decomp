@@ -3,7 +3,7 @@
 // cutscene manager (g_unk_7101d47330, fn_71011986e0) about the path id at +0x150 of the object the argument
 // holds at +8 and returns the answer as a reflected bool. Names are placeholders.
 #include "base/global/CFilePathStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2730.h"
