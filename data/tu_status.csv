@@ -569,7 +569,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 567,0x71003beff0,0x71003bf4a0,CCharClassAutomperAIComponent,high,game/characters,matched,15,1188,15,0,0,0,0,0,0,1188,1188
 568,0x71003bf4a0,0x71003c04e0,behaviortree::CAutoolFollowPathAction,high,ai/behaviortree,partial,23,4160,21,0,0,0,0,2,0,1788,1788
 569,0x71003c04e0,0x71003c2a90,behaviortree::CAutoolGoToRepairPointAction,high,ai/behaviortree,partial,57,9644,50,1,1,0,0,6,0,4324,4748
-570,0x71003c2a90,0x71003c7458,CAutoolAIComponent,high,game/ai,partial,48,18884,40,0,0,0,0,8,0,6984,6984
+570,0x71003c2a90,0x71003c7458,CAutoolAIComponent,high,game/ai,partial,48,18884,41,0,0,0,0,7,0,7604,7604
 571,0x71003c7458,0x71003c8a78,CCharClassAutoolAIComponent,high,game/characters,matched,33,5664,33,0,0,0,0,0,0,5664,5664
 572,0x71003c8a78,0x71003d0d90,CAutsharpAIComponent,high,game/ai,partial,69,33516,52,4,0,0,0,13,0,12812,12812
 573,0x71003d0d90,0x71003d11d0,CAutsharpLifeComponent,high,game/components,matched,14,1076,14,0,0,0,0,0,0,1076,1076
