@@ -13,14 +13,14 @@ inline UnkByteFlags& GetEmptyFlags_d7c828() {
     return s;
 }
 
-struct UnkMask {
+struct UnkMask_d7c828 {
     u32 value;
-    UnkMask() : value(~GetEmptyFlags_d7c828().value & 0xff) {}
-    UnkMask(const UnkMask& o) : value(o.value) {}
+    UnkMask_d7c828() : value(~GetEmptyFlags_d7c828().value & 0xff) {}
+    UnkMask_d7c828(const UnkMask_d7c828& o) : value(o.value) {}
 };
 
-inline UnkMask& GetDefaultMask_d7c828() {
-    static UnkMask s;
+inline UnkMask_d7c828& GetDefaultMask_d7c828() {
+    static UnkMask_d7c828 s;
     return s;
 }
 

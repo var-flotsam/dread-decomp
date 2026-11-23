@@ -31,15 +31,15 @@ struct UnkObj_7100e01680 {
 };
 
 // A string id built from a string out of line and released like CStrId.
-struct UnkBuiltId {
+struct UnkBuiltId_e01680 {
     union {
         CStrId id;
     };
 
-    explicit UnkBuiltId(const UnkInlineString& str) {
+    explicit UnkBuiltId_e01680(const UnkInlineString& str) {
         CStrId_ConstructFromRntString(&id, *reinterpret_cast<const base::global::CRntString*>(&str), true);
     }
-    ~UnkBuiltId() { id.~CStrId(); }
+    ~UnkBuiltId_e01680() { id.~CStrId(); }
 };
 
 struct UnkHashedName {
@@ -50,7 +50,7 @@ struct UnkHashedName {
 // NON_MATCHING(minor): the id's stack slot (8 bytes higher in the original) and the order of the
 // final hash load against the start-point lookup's argument setup.
 void* fn_7100e01680(UnkObj_7100e01680* self) {
-    UnkBuiltId built(self->field_0x518);
+    UnkBuiltId_e01680 built(self->field_0x518);
     CStrId& id = built.id;
     UnkPropBag bag;
     if (fn_7100e03d78(&bag, "CurrentScenario.GetStartPointOverride", "")) {
@@ -62,7 +62,7 @@ void* fn_7100e01680(UnkObj_7100e01680* self) {
         s.field_0xc0 = 0;
         u64 key = fn_7100001570("StartPoint", 10);
         if (fn_7100e03f50(&bag, &key, &s, false) && s.str && *s.str) {
-            UnkBuiltId built_tmp(s);
+            UnkBuiltId_e01680 built_tmp(s);
             CStrId& tmp = built_tmp.id;
             // Move-assign: release the old id, then take over the new one.
             id.~CStrId();

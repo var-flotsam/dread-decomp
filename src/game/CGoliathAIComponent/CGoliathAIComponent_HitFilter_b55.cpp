@@ -7,21 +7,13 @@
 #include "base/global/CStrId.h"
 #include "game/CCollisionComponent.h"
 #include "game/CGoliathAIComponent.h"
+#include "game/UnkGoliathIdData_b55.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkCollisionContainer;
-
-struct UnkGoliathIdData_b55 {
-    u8 pad_0x0[0x10];
-    const char* text;  // a CRntString starts here
-    u8 pad_0x18[0x2c];
-    union {
-        s32 count;  // a union member: the original reloads around its stores
-    };
-};
 
 struct UnkGoliathOwner_b55 {
     u8 pad_0x0[0x2a0];

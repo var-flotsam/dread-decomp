@@ -16,6 +16,7 @@
 #include "game/CPhotoModeCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkMusicMode.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2571.h"
@@ -262,10 +263,6 @@ found:
                   UnkMaskOf<UnkMusicMaskTag>::All(), 1.0f);
 }
 
-struct UnkMusicMode {
-    u32 kind;
-    u32 field_0x4;
-};
 extern CRntString g_unk_71729dc3d8 __attribute__((visibility("hidden")));
 
 void fn_7100f178b4(UnkRewardsMode_b0242* self) {

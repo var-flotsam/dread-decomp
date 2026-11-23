@@ -7,26 +7,12 @@
 #include "base/global/CStrId.h"
 #include "game/UnkTU112.h"
 #include "game/UnkTU27.h"
+#include "game/UnkTunableEntry_b0235.h"
+#include "game/UnkTunableObjects_b0235.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-// As src/game/UnkTU112/UnkTU112_Tunables_ovb0235.cpp defines them.
-struct UnkTunableEntry_b0235 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    u8 pad_0x8[0x18];
-    u8 field_0x20;
-};
-
-struct UnkTunableObjects_b0235 {
-    UnkTunableEntry_b0235** objects;
-    u8 pad_0x8[8];
-    u32 count;  // 0x10
-};
 
 void fn_710013af08(UnkTunableObjects_b0235* self);
 bool fn_710013b0e0(UnkTunableRegistry* self, bool generate);

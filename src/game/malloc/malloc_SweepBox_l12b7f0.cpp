@@ -4,23 +4,12 @@
 #include <math.h>
 
 #include "base/math/CVectorOps.h"
+#include "game/UnkBox2D.h"
+#include "game/UnkSweep2D.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
-
-struct UnkSweep2D {
-    CVector2D start;
-    CVector2D end;
-    CVector2D delta;
-};
-
-struct UnkBox2D {
-    f32 x0;
-    f32 y0;
-    f32 x1;
-    f32 y1;
-};
 
 struct UnkContact2D {
     CVector3D point;

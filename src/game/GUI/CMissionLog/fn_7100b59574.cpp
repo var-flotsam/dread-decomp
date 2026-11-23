@@ -20,7 +20,7 @@ struct UnkMissionLogList {
     s32 count;  // 0x1c8
 };
 
-struct UnkMissionLogEntry {
+struct UnkMissionLogEntry_b59574 {
     u8 pad_0x0[0x8c];
     f32 width;   // 0x8c
     f32 height;  // 0x90
@@ -31,7 +31,7 @@ struct UnkMissionLogSelf {
     UnkMissionLogList* list;  // 0x238
 };
 
-UnkMissionLogEntry* fn_71011c08e4(UnkMissionLogList* list, CStrId* id, s32 mode, bool flag);
+UnkMissionLogEntry_b59574* fn_71011c08e4(UnkMissionLogList* list, CStrId* id, s32 mode, bool flag);
 struct UnkSprite_spr;
 
 void fn_7100b59574(UnkMissionLogSelf* self, UnkMissionLogRequest* request, bool flag) {
@@ -45,7 +45,7 @@ void fn_7100b59574(UnkMissionLogSelf* self, UnkMissionLogRequest* request, bool 
         ~IdStorage() {}
     } storage;
     new (&storage.id) CStrId(request->id);
-    UnkMissionLogEntry* entry = fn_71011c08e4(list, &storage.id, 2, flag);
+    UnkMissionLogEntry_b59574* entry = fn_71011c08e4(list, &storage.id, 2, flag);
     storage.id.~CStrId();
     UnkGuiEvent event;
     s32 next = count + 1;
@@ -53,7 +53,7 @@ void fn_7100b59574(UnkMissionLogSelf* self, UnkMissionLogRequest* request, bool 
         s32 kind = 0x2b;
         fn_710120235c(&event, reinterpret_cast<UnkGuiDisplayObject*>(self), &kind, nullptr);
     }
-    (*reinterpret_cast<void (***)(UnkMissionLogEntry*, UnkGuiEvent*)>(entry))[0xd8 / 8](entry, &event);
+    (*reinterpret_cast<void (***)(UnkMissionLogEntry_b59574*, UnkGuiEvent*)>(entry))[0xd8 / 8](entry, &event);
     base::math::CVector2D size;
     f32 height = entry->height;
     UnkSprite_spr* sprite = reinterpret_cast<UnkSprite_spr*>(self->list);

@@ -4,6 +4,8 @@
 #include <new>
 
 #include "base/global/CRntVector.h"
+#include "game/UnkPoint_ovb0229.h"
+#include "game/UnkVec2_ovb0229.h"
 #include "types.h"
 
 // A singly linked list of 4- or 8-byte values (count at +8, head and tail at +0x10/+0x18, nodes of
@@ -39,17 +41,6 @@ struct UnkSortedList_ovb0229 {
             ++count;
         }
     }
-};
-
-struct UnkPoint_ovb0229 {
-    u32 x;
-    u32 y;
-    UnkPoint_ovb0229(const UnkPoint_ovb0229& other) : x(other.x), y(other.y) {}
-};
-
-struct UnkVec2_ovb0229 {
-    f32 x;
-    f32 y;
 };
 
 using UnkPoints_ovb0229 = UnkSortedList_ovb0229<UnkPoint_ovb0229>;

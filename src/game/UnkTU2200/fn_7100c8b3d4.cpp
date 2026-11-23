@@ -7,56 +7,19 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkElem40Array_b42a3.h"
+#include "game/UnkElem40_b42a3.h"
+#include "game/UnkElemA0Array_b42a3.h"
+#include "game/UnkPathArray_b239.h"
 #include "game/UnkTU2200.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
-struct UnkElem40_b42a3 {
-    CStrId field_0x0;
-    u32 field_0x8;
-    CFilePathStrId field_0x10;
-    CStrId field_0x18;
-    CStrId field_0x20;
-    CStrId field_0x28;
-    u64 field_0x30;
-    u32 field_0x38;
-};
-
-struct UnkElem40Array_b42a3 {
-    UnkElem40_b42a3* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 struct UnkElemA0_b42a3;
 
-struct UnkElemA0Array_b42a3 {
-    UnkElemA0_b42a3* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 struct UnkPathEntry_b239;
-
-struct UnkPathArray_b239 {
-    UnkPathEntry_b239* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 field_0x18;
-    u64 field_0x20;
-};
 
 void fn_7100c8b688(UnkElemA0Array_b42a3* self, const UnkElemA0Array_b42a3* other);
 void fn_7100c8c108(UnkPathArray_b239* self, const UnkPathArray_b239* other);

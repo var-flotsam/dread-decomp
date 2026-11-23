@@ -3,16 +3,8 @@
 // the path towards fn_7100739c64's target (vf_0x2f8) and the state becomes 2. Names and layouts are placeholders.
 #include "game/CFlockingSwarmControllerComponent.h"
 #include "game/CRedenkiSwarmControllerComponent.h"
+#include "game/UnkVec3Result.h"
 #include "types.h"
-
-// As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b38.cpp defines it.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 struct UnkRedenkiSwarmController;
 bool fn_710065244c(UnkRedenkiSwarmController* self);

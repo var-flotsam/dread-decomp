@@ -8,7 +8,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkMagnetVec3_ovb0082 {
+struct UnkMagnetVec3_ovb0082_ovb0082 {
     f32 x, y, z;
 };
 
@@ -44,7 +44,7 @@ struct UnkMagnetParams_ovb0082 {
     u32 field_0x90;
     u32 field_0x94;
     u32 field_0x98;
-    UnkMagnetVec3_ovb0082 field_0x9c;
+    UnkMagnetVec3_ovb0082_ovb0082 field_0x9c;
 
     __attribute__((always_inline)) void CopyConstruct(const UnkMagnetParams_ovb0082* o) {
         vtable = reinterpret_cast<char*>(g_unk_7101a22cb8) + 0x10;

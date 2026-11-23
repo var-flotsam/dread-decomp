@@ -13,6 +13,8 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
 #include "game/CGameBlackboard.h"
+#include "game/UnkArrayRecord60.h"
+#include "game/UnkFreedArray.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -112,32 +114,6 @@ struct UnkOutOfLineValue28 : T {
 
 using UnkValue28A = UnkOutOfLineValue28<UnkKeyedStrIds, fn_71000df388>;
 using UnkValue28B = UnkOutOfLineValue28<UnkSecondPtrArray<UnkFreedVectorPair>, fn_7100e493f4>;
-
-// A table of 0x60-byte records holding two arrays (base::global::CRntVector's layout, freed when
-// destroyed) and four words.
-struct UnkFreedArray {
-    void* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    __attribute__((always_inline)) ~UnkFreedArray() {
-        if (data) {
-            count = 0;
-            allocator->vf_0x48(data);
-            capacity = 0;
-        }
-    }
-};
-
-struct UnkArrayRecord60 {
-    UnkFreedArray field_0x0;
-    UnkFreedArray field_0x28;
-    u32 field_0x50[4];
-};
 
 void fn_7100e572d8(const UnkIdRecordTable<UnkArrayRecord60>* self,
                    base::UnkIterValue<UnkArrayRecord60, UnkReleasedStrId>* out);

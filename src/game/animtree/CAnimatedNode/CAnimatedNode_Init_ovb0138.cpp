@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
+#include "game/UnkNodeOwner_ovb0138.h"
 #include "game/UnkTU1134.h"
 #include "game/animtree/CAnimTreeElement.h"
 #include "types.h"
@@ -23,11 +24,6 @@ struct UnkBoneFilter_ovb0138 {
 void fn_710070d7f0(UnkBoneFilter_ovb0138* self, void* skeleton);
 void fn_710070d7e8(UnkBoneFilter_ovb0138* self, void* value);
 void fn_710070d7e0(UnkBoneFilter_ovb0138* self, void* field);
-
-struct UnkNodeOwner_ovb0138 {
-    u8 pad_0x0[0x220];
-    u8* field_0x220;
-};
 
 struct UnkAnimatedNodeDefView_ovb0138 {
     u8 pad_0x0[0x18];

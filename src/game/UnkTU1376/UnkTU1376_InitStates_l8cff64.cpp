@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/CFXComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkStruct_71727313a4.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
 #include "game/UnkTU1376.h"
@@ -15,10 +16,6 @@
 
 using base::color::CColor4F;
 using base::global::CStrId;
-
-struct UnkStruct_71727313a4 {
-    CColor4F colours[3];
-};
 
 void fn_710115fe18(char*);
 

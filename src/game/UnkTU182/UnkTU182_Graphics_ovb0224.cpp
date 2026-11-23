@@ -2,15 +2,10 @@
 // src/engine/UnkGfxSlotSetters_b50.cpp): the constructor of a pooled graphics object's first 0xb8 bytes
 // and the refresh of the dirty slots of the three slot groups. Names and layouts are placeholders.
 #include "game/UnkGraphicsState.h"
+#include "game/UnkStaticZero_ovb0224.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU182.h"
 #include "types.h"
-
-// A zero whose constructor isn't constexpr, so the statics are guarded.
-struct UnkStaticZero_ovb0224 {
-    u32 value;
-    UnkStaticZero_ovb0224() : value(0) {}
-};
 
 inline const UnkStaticZero_ovb0224& FirstZero_ovb0224() {
     static UnkStaticZero_ovb0224 s_value asm("g_unk_716e34ae30");

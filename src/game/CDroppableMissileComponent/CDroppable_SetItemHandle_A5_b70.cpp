@@ -2,14 +2,11 @@
 // handle from the given id (fn_7100ae986c) and copy it into the component (+0xa8 or +0xb8). One template for the
 // four. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkStrIdHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-struct UnkStrIdHandle {
-    CStrId id;
-    void* field_0x8;
-};
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 
 template <u32 Offset>

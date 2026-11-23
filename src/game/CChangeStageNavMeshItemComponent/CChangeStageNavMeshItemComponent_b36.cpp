@@ -3,6 +3,7 @@
 #include "base/global/CRntVector.h"
 #include "game/CChangeStageNavMeshItemComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkNavMeshItemMember.h"
 #include "types.h"
 
 struct UnkNavMeshRegistry2 {
@@ -10,10 +11,6 @@ struct UnkNavMeshRegistry2 {
     void Release(void* handle) {
         reinterpret_cast<void (*)(UnkNavMeshRegistry2*, void*)>(vtable[0x48 / 8])(this, handle);
     }
-};
-
-struct UnkNavMeshItemMember {
-    void* handle;
 };
 
 struct UnkChangeStageNavMeshItem {

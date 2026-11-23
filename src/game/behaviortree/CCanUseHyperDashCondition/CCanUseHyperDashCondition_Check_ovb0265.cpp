@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CWeaponMovement.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkSphereList.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -80,11 +81,6 @@ struct UnkCommanderAttack {
 struct UnkSphereEntry {
     u8 pad_0x0[0x10];
     UnkReflObject* object;  // 0x10
-};
-
-struct UnkSphereList {
-    UnkSphereEntry** data;
-    u32 count;
 };
 
 template <const base::reflection::CClass* (*Getter)()>

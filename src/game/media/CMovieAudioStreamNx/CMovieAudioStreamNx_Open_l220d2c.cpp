@@ -11,17 +11,13 @@ enum SampleFormat : int;
 }  // namespace nn::audio
 #endif
 
+#include "base/AudioOutParameter.h"
 #include "types.h"
 
 void* fn_71001324b0(u64 align, u64 size);
 
 // The audio output types; the matching build's SDK headers have none (as in src/base/snd/CSoundSystemATK.cpp).
 namespace nn::audio {
-struct AudioOutParameter {
-    u32 sample_rate;
-    u16 channel_count;
-    u16 reserved;
-};
 struct AudioOut {
     u8 storage[0x168];
 };

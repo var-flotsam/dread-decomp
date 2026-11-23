@@ -3,6 +3,7 @@
 // (fn_7100023464), then runs fn_71000e7b5c over each 0xb0-byte entry of that class's array at
 // +0xe8 (g_unk_7101d4ea78, inside the getter's static) with the object's dynamic class and the
 // object as the context, as fn_7100023854 does. Names are placeholders.
+#include "base/UnkClassEntry.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTU85.h"
@@ -19,10 +20,6 @@ struct UnkNode;
 struct UnkClassEntryContext {
     const CClass* cls;
     UnkNode* object;
-};
-
-struct UnkClassEntry {
-    u8 data[0xb0];
 };
 
 struct UnkBaseObject_7100024e38 {

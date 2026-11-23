@@ -9,6 +9,7 @@
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkKraidCreatureVec.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
 
@@ -24,14 +25,6 @@ struct UnkAutsniperBlend_ovb0003 {
     s32 state;    // 0x1c
     f32 weight;   // 0x20
     f32 elapsed;  // 0x24
-};
-
-// As in src/game/CKraidBouncingCreaturesMovementComponent/CKraidBouncingCreaturesMovementComponent_3.cpp.
-struct UnkKraidCreatureVec {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
 };
 
 struct UnkAutsniperMover_ovb0003 {

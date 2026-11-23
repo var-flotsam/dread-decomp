@@ -2,6 +2,7 @@
 // object at +0x90 (taken when its vf_0x18 for the query reports kind 16) is hit by the query
 // (fn_7100116de0, 0, 1, scale 1), the query is handed on (fn_71006f9368). Names and layouts are
 // placeholders.
+#include "game/UnkQueryTag_b50.h"
 #include "game/UnkTU108.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
@@ -22,8 +23,6 @@ struct UnkQueryHolder_b50 {
     UnkQueryTarget_b50* target;
 };
 
-// An empty tag passed by value: it takes x1 without a value (the original leaves x1 as it is).
-struct UnkQueryTag_b50 : UnkLeftoverReg {};
 void fn_71006f9368(UnkQueryHolder_b50* self, UnkQueryTag_b50 tag, void* data, u32 mode);
 
 void fn_71006fadf0(UnkQueryHolder_b50* self, char* query, u32 mode) {

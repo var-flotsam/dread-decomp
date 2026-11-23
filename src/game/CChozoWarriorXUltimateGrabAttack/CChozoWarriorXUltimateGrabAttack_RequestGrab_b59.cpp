@@ -2,22 +2,10 @@
 // is 0xa5b49f7b9da7fb4c, ask the attack's state machine (+0x80) for state 4 (RequestState_b58 of
 // src/game/CSensorDoorComponent/UnkDoorStateMachine_b58.h, inlined). Names are placeholders.
 #include "../CSensorDoorComponent/UnkDoorStateMachine_b58.h"
-struct UnkGrabEventInfo_b59 {
-    u8 pad_0x0[0x30];
-    u64 id;
-};
-struct UnkGrabEventData_b59 {
-    u8 pad_0x0[0x38];
-    UnkGrabEventInfo_b59* info;
-};
-struct UnkGrabEventSrc_b59 {
-    u8 pad_0x0[0x10];
-    UnkGrabEventData_b59* data;
-};
-struct UnkGrabEvent_b59 {
-    u64 field_0x0;
-    UnkGrabEventSrc_b59* source;
-};
+#include "game/UnkGrabEventData_b59.h"
+#include "game/UnkGrabEventInfo_b59.h"
+#include "game/UnkGrabEventSrc_b59.h"
+#include "game/UnkGrabEvent_b59.h"
 
 template <u32 Offset>
 struct UnkGrabAttack_b59 {

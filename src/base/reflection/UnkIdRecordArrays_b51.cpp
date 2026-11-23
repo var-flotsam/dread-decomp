@@ -1,6 +1,7 @@
 // Two parallel arrays (0x18-byte records that start with an id, and a CStrId per record) that
 // share a count, a capacity and allocation flags; the same shape as the tunables' registry
 // (fn_710013ec80, src/base/UnkTunableRegistry.cpp). Names and layouts are placeholders.
+#include "base/UnkIdRecord18B.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
@@ -10,12 +11,6 @@ using base::UnkAllocator;
 using base::global::CStrId;
 
 
-struct UnkIdRecord18B {
-    CStrId id;
-    u64 field_0x8;
-    u32 field_0x10;
-    u16 field_0x14;
-};
 static_assert(sizeof(UnkIdRecord18B) == 0x18, "");
 
 

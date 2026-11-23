@@ -2,6 +2,8 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChangeStageNavMeshItemComponent.h"
+#include "game/UnkIdList.h"
+#include "game/UnkNamedObject_b190.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2611.h"
 #include "types.h"
@@ -15,12 +17,6 @@ struct UnkSubareaNamedEntry;
 struct UnkSubareaIdLists;
 struct UnkSubArea;
 
-// The six id lists a sub-area change fills; only the counts are read here.
-struct UnkIdList {
-    void* data;
-    u32 count;
-    u8 pad_0xc[0x1c];
-};
 struct UnkIdSet {
     UnkIdList field_0x0;
     UnkIdList field_0x28;
@@ -45,13 +41,6 @@ struct UnkSubAreaRecord_0x188 {
 struct UnkItem_b190 {
     u8 pad_0x0[0x10];
     CStrId id;  // 0x10
-};
-struct UnkNamedObject_b190 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    CStrId name;  // 0x8
-    UnkItem_b190** items;  // 0x10
-    u32 count;  // 0x18
 };
 struct UnkNamedObjectPtr_b190 {
     UnkNamedObject_b190* ptr;

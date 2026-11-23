@@ -17,7 +17,7 @@ struct UnkComponent {
 
 void* fn_7100083990_alloc();
 
-struct __attribute__((packed)) UnkRecord {
+struct __attribute__((packed)) UnkRecord_4076e4 {
     u64 words[6];
     u64 limit;
 };
@@ -37,7 +37,7 @@ void fn_71004076e4(UnkComponent* self) {
     At<u32>(self, 0x146e8) = 0xf;
     At<void*>(self, 0x146f0) = fn_7100083990_alloc();
     At<u8>(self, 0x146f8) = 0;
-    UnkRecord* record = &At<UnkRecord>(self, 0x146fc);
+    UnkRecord_4076e4* record = &At<UnkRecord_4076e4>(self, 0x146fc);
     __builtin_memset(record->words, 0, sizeof(record->words));
     record->limit = 0x7fffffff00000000ull;
     fn_710035d4e0(reinterpret_cast<char*>(self) + 0x14738);

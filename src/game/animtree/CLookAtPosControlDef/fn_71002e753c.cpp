@@ -5,16 +5,12 @@
 
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkPair.h"
 #include "game/animtree/CAnimatedNodeDef.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
-
-struct UnkPair {
-    u64 field_0x0;
-    u64 field_0x8;
-};
 
 struct UnkNode {
     void** vtable;

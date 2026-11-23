@@ -5,17 +5,10 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkGrapplePointDef.h"
 #include "types.h"
 
 using base::global::UnkStrId;
-
-struct UnkGrapplePointDef {
-    void** vtable;
-    u8 pad_0x8[0x14];
-    u32 field_0x1c;
-    u8 pad_0x20[0x48];
-    UnkStrId field_0x68;
-};
 
 void fn_71009bbbd8(UnkGrapplePointDef* self);
 extern void* g_unk_7101a880e8[];

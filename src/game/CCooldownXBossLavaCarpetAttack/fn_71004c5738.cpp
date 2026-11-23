@@ -5,15 +5,11 @@
 #include "base/global/UnkTwoStepStrId.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CCooldownXBossAttack.h"
+#include "game/UnkPacked.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
 
 using base::global::UnkStrId;
-
-template <class T>
-struct __attribute__((packed)) UnkPacked {
-    T v;
-};
 
 struct UnkNode {
     void** vtable;

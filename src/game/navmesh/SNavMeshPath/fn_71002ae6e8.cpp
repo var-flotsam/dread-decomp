@@ -2,16 +2,10 @@
 // (fn_71002ad4f4), copies the array of 16-bit words at +0x11984 (its length at +0x11980) and
 // re-applies the four entries of the block at +0x12a60 through the setters fn_71002ad688, fn_71002ad978
 // and fn_71002adbb0 (the first two take the field at +0x10 of their entry, or null) and a plain copy.
+#include "game/UnkBlock.h"
 #include "game/UnkNavMeshPath.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
-
-struct UnkBlock {
-    UnkWeakHandle* field_0x0;
-    UnkWeakHandle* field_0x8;
-    void* field_0x10;
-    void* field_0x18;
-};
 
 template <class T>
 static inline T& At(const void* base, u64 offset) {

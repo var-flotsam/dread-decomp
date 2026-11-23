@@ -4,13 +4,10 @@
 // (+0x3b0). Names and layouts are placeholders.
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkGrappleVec3_ovb0047.h"
 #include "types.h"
 
 struct UnkGrappleAnswer_b50;
-
-struct UnkGrappleVec3_ovb0047 {
-    f32 x, y, z;
-};
 
 struct UnkGrappleIdHolder_ovb0047 {
     u8 pad_0x0[0x30];

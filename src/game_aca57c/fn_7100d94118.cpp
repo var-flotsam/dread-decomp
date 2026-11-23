@@ -3,85 +3,22 @@
 // arguments) through fn_7100017390, a missing one is created through the map's vf_0x48. Either
 // way a new reference is returned. One map type per bucket accessor (fn_7100d94654 and others).
 #include "base/UnkCountedResource.h"
+#include "game/UnkBuckets.h"
+#include "game/UnkKeyObject.h"
+#include "game/UnkResourceEvent.h"
+#include "game/UnkResourceKey.h"
+#include "game/UnkResourceMap.h"
+#include "game/UnkResourceNode.h"
+#include "game/UnkShared54Ref.h"
 #include "types.h"
-
-struct UnkShared54Ref {
-    UnkCountedResource* ptr;
-
-    explicit UnkShared54Ref(UnkCountedResource* p) : ptr(nullptr) {
-        if (p) {
-            ++p->ref_count;
-            ptr = p;
-        }
-    }
-    ~UnkShared54Ref();
-
-    UnkShared54Ref& operator=(UnkCountedResource* p) {
-        if (ptr != p) {
-            if (p)
-                ++p->ref_count;
-            if (UnkCountedResource* old = ptr) {
-                if (--old->ref_count == 0)
-                    fn_710001737c(old);
-            }
-            ptr = p;
-        }
-        return *this;
-    }
-};
-
-struct UnkKeyObject {
-    u8 unk_0x0[0x30];
-    u32 hash_a;
-    u32 hash_b;
-};
-
-struct UnkResourceKey {
-    u64 field_0x0;
-    UnkKeyObject* object;
-};
-
-struct UnkResourceNode {
-    UnkKeyObject* key;
-    UnkCountedResource* value;
-    UnkResourceNode* next;
-};
 
 extern char unk_7101a19610[];
 
-struct UnkResourceEvent {
-    char* vtable;
-    u64 field_0x8;
-    u32 arg;
-    void* data;
-};
 struct UnkRefCounted;
 namespace base {
 struct UnkLoadRequest;
 }
 void fn_7100017390(UnkRefCounted* object, base::UnkLoadRequest* visitor);
-
-struct UnkBuckets {
-    UnkResourceNode** data;
-    u32 count;
-    u32 capacity;
-};
-
-template <class Tag>
-struct UnkResourceMap {
-    virtual UnkShared54Ref vf_0x0(const UnkResourceKey& key, u32 arg, void* data);  // find
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual UnkCountedResource* vf_0x48(const UnkResourceKey& key, u32 arg, void* data);
-
-    UnkBuckets buckets;
-};
 
 template <class Tag, UnkResourceNode** (*Bucket)(UnkBuckets*, u32)>
 __attribute__((always_inline)) static inline UnkShared54Ref GetOrCreate(UnkResourceMap<Tag>* self,

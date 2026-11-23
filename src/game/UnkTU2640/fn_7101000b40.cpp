@@ -2,25 +2,8 @@
 // 29-byte block: both arrays give up their buffers. Names and layouts are placeholders.
 #include "base/UnkCollectionIter.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU2640Array.h"
 #include "types.h"
-
-struct UnkTU2640Array {
-    void* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkTU2640Array(UnkTU2640Array&& other)
-        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
-          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
-        other.data = nullptr;
-        other.count = 0;
-        other.capacity = 0;
-    }
-};
 
 // Copied as one block of 29 bytes (packed: the copy skips the tail padding).
 struct __attribute__((packed)) UnkTU2640Block {

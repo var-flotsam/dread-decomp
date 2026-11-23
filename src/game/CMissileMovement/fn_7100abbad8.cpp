@@ -2,16 +2,10 @@
 // the list nearest first with the list's comparator (std::sort, fn_7100abbd40).
 // Results: 1 added, 2 full, 3 added and now full. Names and layouts are placeholders.
 #include "game/CAbilityShinespark.h"
+#include "game/UnkVisitResult_b0040.h"
 #include "types.h"
 
 #include <new>
-
-struct UnkVisitResult_b0040 {
-    s32 value;
-    UnkVisitResult_b0040(s32 v) : value(v) {}
-    UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
-    ~UnkVisitResult_b0040() {}
-};
 
 struct UnkEntry_7100abbd40;
 struct UnkCmp_7100abbd40;

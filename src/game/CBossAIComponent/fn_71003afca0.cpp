@@ -5,26 +5,21 @@
 #include "game/CInventoryComponent.h"
 #include "game/GUI/CIngameMenu.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStrIdHandle.h"
 #include "game/UnkTU2553.h"
 
 using base::global::CStrId;
 
-struct UnkStrIdHandle {
-    CStrId id;
-    void* field_0x8;
-    UnkStrIdHandle(const CStrId& id);  // fn_7100ae986c
-};
-
 void fn_7100301860(void* service, const UnkStrIdHandle& handle);
 
-struct UnkSubject {
+struct UnkSubject_3afca0 {
     u8 pad_0x0[0x518];
     CStrId field_0x518;
 };
 
 struct UnkSelf {
     u8 pad_0x0[0x14908];
-    UnkSubject* field_0x14908;
+    UnkSubject_3afca0* field_0x14908;
 };
 
 void fn_71003afca0(UnkSelf* self) {

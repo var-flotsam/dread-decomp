@@ -3,24 +3,16 @@
 // placeholders.
 #include "base/reflection.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkHeldType_f29a0.h"
+#include "game/UnkReflFieldObject.h"
 #include "game/UnkTU85.h"
 #include "game/UnkTU94.h"
+#include "game/UnkTypedRefEntry_f29a0.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
-// The functions of a held type (only the destroy slot is named).
-struct UnkHeldType_f29a0 {
-    u8 pad_0x0[0x40];
-    void (*destroy)(void* storage);
-};
-
-struct UnkTypedRefEntry_f29a0 {
-    void* context;
-    u8 storage[0xc8];
-    UnkHeldType_f29a0* storage_type;  // 0xd0
-};
 static_assert(sizeof(UnkTypedRefEntry_f29a0) == 0xd8, "entry layout");
 
 struct UnkTypedRefWriter {
@@ -29,12 +21,6 @@ struct UnkTypedRefWriter {
     alignas(8) u8 storage[sizeof(UnkTypedRefEntry_f29a0)];
 
     UnkTypedRefEntry_f29a0* entries() { return reinterpret_cast<UnkTypedRefEntry_f29a0*>(storage); }
-};
-
-// An object and its type, as the walk passes it on.
-struct UnkReflFieldObject {
-    char* type;
-    void* ptr;
 };
 
 // A typed reference to a value (a type and where the value is).

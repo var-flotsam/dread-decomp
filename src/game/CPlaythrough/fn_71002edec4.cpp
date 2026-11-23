@@ -3,16 +3,11 @@
 // (fn_7100083c00) and the holder's id is released like CStrId's destructor does.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringPool;
-
-struct UnkOwned {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-};
 
 struct UnkNode {
     u8 pad_0x0[0x8];

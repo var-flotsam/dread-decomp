@@ -8,6 +8,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkLabelTextObject.h"
 #include "game/UnkTU257.h"
 #include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
@@ -19,14 +20,6 @@ using base::math::CVector2D;
 struct UnkLabelTextNode {
     u8 unk_0x0[0x80];
     void* field_0x80;
-};
-struct UnkLabelTextObject {
-    u32 bits;  // the frame it was taken for in bits 12 to 15
-    u8 unk_0x4[0x117];
-    bool field_0x11b;
-    u8 unk_0x11c[0x14];
-    UnkLabelTextNode* node;  // 0x130
-    void* font;              // 0x138
 };
 static_assert(__builtin_offsetof(UnkLabelTextObject, font) == 0x138, "layout");
 

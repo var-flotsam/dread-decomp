@@ -7,7 +7,7 @@
 #include "game/UnkBossAIComponent.h"
 
 // The weak handle the holder refers to (base::UnkRefCounted's layout); its target is at +0x10.
-struct UnkTarget : base::UnkRefCounted {
+struct UnkTarget_49b874 : base::UnkRefCounted {
     void* field_0x10;
 };
 
@@ -32,7 +32,7 @@ void fn_710049b874(UnkComponent* self, void* arg) {
         }
         self->field_0x14a08 = 2;
     }
-    UnkTarget* target = static_cast<UnkTarget*>(self->field_0x14a10.ptr);
+    UnkTarget_49b874* target = static_cast<UnkTarget_49b874*>(self->field_0x14a10.ptr);
     if (target && target->field_0x10)
         fn_710049b920(self);
 }

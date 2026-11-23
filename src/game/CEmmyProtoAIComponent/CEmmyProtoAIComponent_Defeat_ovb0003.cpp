@@ -14,22 +14,11 @@
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMlogMessage_b42a1.h"
 #include "game/UnkTU811.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-// The message, as UnkEmmyDefeatedMessage_b42.cpp lays it out.
-struct UnkMlogMessage_b42a1 {
-    u32 kind;
-    base::global::CStrId text;
-    base::global::CRntVector<base::UnkStrIdMember> args;
-
-    __attribute__((always_inline)) UnkMlogMessage_b42a1(const CStrId& t) : kind(0), text(t), args(0xc) {}
-    __attribute__((always_inline)) ~UnkMlogMessage_b42a1() {
-        args.Free();
-    }
-};
 
 void fn_71004fc7ec(void* self, void* arg) {
     UnkMlogMessage_b42a1 message(CStrId("#MLOG_DEFEAT_PROTOEMMY_CAVE", true));

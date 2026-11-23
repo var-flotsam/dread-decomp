@@ -27,18 +27,18 @@ struct UnkStrIdField {
     }
 };
 
-struct UnkRefCounted {
+struct UnkRefCounted_a02c54 {
     virtual void vf0();
     virtual void vf8();
     virtual void Delete();
     s32 ref_count;
 };
 
-struct UnkRefPtr {
-    UnkRefCounted* ptr;
+struct UnkRefPtr_a02c54 {
+    UnkRefCounted_a02c54* ptr;
 
     void Release() {
-        if (UnkRefCounted* p = ptr) {
+        if (UnkRefCounted_a02c54* p = ptr) {
             if (--p->ref_count == 0)
                 p->Delete();
         }
@@ -60,8 +60,8 @@ struct UnkObj_7100a02c54 : UnkBaseComponent {
     UnkStrIdField field_0x98;
     UnkStrIdField field_0xa0;
     u8 pad_0xa8[0x8];
-    UnkRefPtr field_0xb0;
-    UnkRefPtr field_0xb8;
+    UnkRefPtr_a02c54 field_0xb0;
+    UnkRefPtr_a02c54 field_0xb8;
     u8 field_0xc0[0x8];
 };
 

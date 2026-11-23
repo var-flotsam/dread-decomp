@@ -19,6 +19,10 @@
 #include "game/CBossAIComponent.h"
 #include "game/CScenario.h"
 #include "game/GUI/CPopUpComposition.h"
+#include "game/UnkCamMask_b0101.h"
+#include "game/UnkPackRefTarget_b0163.h"
+#include "game/UnkPackRef_b0163.h"
+#include "game/UnkSlomoSettings.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU1643.h"
@@ -37,6 +41,7 @@
 #include "game/UnkTU437.h"
 #include "game/UnkTU785.h"
 #include "game/UnkTU794.h"
+#include "game/UnkVec.h"
 #include "game/lua_lib.h"
 #include "game/msapi/res/CRenderRes.h"
 #include "game/sound/CMusicManager.h"
@@ -149,20 +154,6 @@ void fn_7100c93aec(UnkMaskedId* self, u32 v);
 inline UnkMaskedId::UnkMaskedId() { fn_7100c939dc(this); }
 inline UnkMaskedId::UnkMaskedId(u32 v) { fn_7100c93aec(this, v); }
 struct UnkPackManager_b0163;
-struct UnkPackRefTarget_b0163 {
-    void** vtable;
-    s32 ref_count;  // 0x8
-};
-struct UnkPackRef_b0163 {
-    UnkPackRefTarget_b0163* ptr;
-    ~UnkPackRef_b0163() {
-        if (UnkPackRefTarget_b0163* p = ptr) {
-            __atomic_fetch_sub(&p->ref_count, 1, __ATOMIC_SEQ_CST);
-            if (__atomic_load_n(&p->ref_count, __ATOMIC_SEQ_CST) == 0)
-                reinterpret_cast<void (*)(UnkPackRefTarget_b0163*)>(p->vtable[0x10 / 8])(p);
-        }
-    }
-};
 struct UnkPackLoader_b0163;
 
 UnkPackRef_b0163 fn_7101197008(UnkPackManager_b0163* self, const CFilePathStrId& path, const UnkMaskedId& id,
@@ -248,7 +239,6 @@ s32 fn_7101086800(lua_State* L) {
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
 bool fn_7100089864(base::file::UnkFileDevice* self, const CFilePathStrId* path);
-void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 
 static inline base::file::UnkFileDevice* FileDevice_b0163() {
     if (!g_unk_7101d4d828) {
@@ -426,21 +416,9 @@ s32 fn_7101082100(lua_State* L) {
 
 struct UnkGun_ovb0091;
 struct UnkPlayer;
-struct UnkVec {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-};
 bool fn_710083e250(UnkGun_ovb0091* self, f32 value, bool flag);
 struct UnkGuiHolder_b0159;
 
-struct UnkSlomoSettings {
-    u8 pad_0x0[0x10];
-    u8 body[0x34];
-    union {
-        s32 ref_count;  // 0x44
-    };
-};
 struct UnkSlomoRef_b0163 {
     void* field_0x0;
     UnkSlomoSettings* settings;  // 0x8
@@ -499,13 +477,6 @@ s32 fn_7101094230(lua_State* L) {
 }
 
 struct UnkManager;
-// A bit mask passed by value (as src/game/CAnimatedCameraCtrl/CAnimatedCameraCtrl_Lifecycle_ovb0101.cpp).
-struct UnkCamMask_b0101 {
-    u32 bits;
-    UnkCamMask_b0101() : bits(0) {}
-    UnkCamMask_b0101(u32 b) : bits(b) {}
-    UnkCamMask_b0101(const UnkCamMask_b0101& o) : bits(o.bits) {}
-};
 void fn_7100eed4b0(void* manager, const CStrId* id, UnkCamMask_b0101 mask, bool enable, bool instant);
 
 struct UnkSubareaStaticZero_b0163 {

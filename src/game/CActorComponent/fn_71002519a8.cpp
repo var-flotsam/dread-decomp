@@ -5,7 +5,9 @@
 #include "base/UnkCloneCalls.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "game/CCharClassLiquidPoolComponent.h"
+#include "game/UnkRecord_0x40.h"
 #include "game/UnkTU23.h"
+#include "game/UnkValue_0x10.h"
 #include "types.h"
 
 struct UnkKeyedValues_71002519a8;
@@ -71,12 +73,6 @@ void fn_710079c3a4(UnkWordsByKey* a, const u64* key) {
         fn_710079ccb8(a, p);
 }
 
-// And over 0x40-byte records held at 8 in an object, with the key passed by value
-// (fn_7100015250, fn_7100015508).
-struct UnkRecord_0x40 {
-    u8 data[0x40];
-};
-
 struct UnkRecordsByKeyHolder_7100015250 {
     u64 field_0x0;
     base::UnkKeyedArray<UnkRecord_0x40, u64, UnkRecord_0x40> records;
@@ -111,11 +107,6 @@ bool fn_71001c147c(char* self, const u64* key) {
     return p != nullptr;
 }
 
-// The lookup and the removal over 0x10-byte values (fn_71009046bc, fn_7100904644) and 0x80-byte values
-// (fn_7100e6095c, fn_7100e608e0), each removal with its own out-of-line removal.
-struct UnkValue_0x10 {
-    u64 words[2];
-};
 struct UnkValue_0x80 {
     u64 words[16];
 };

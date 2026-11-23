@@ -3,12 +3,8 @@
 // (fn_71000f9d20, src/base/snd/CSoundSystemATK.cpp; s0 travels on untouched); nothing for the
 // invalid id 0x7fffffff. The handle is passed by value as a non-trivially copyable word. Names and
 // layouts are placeholders.
+#include "game/UnkSoundHandle_b46a1.h"
 #include "types.h"
-
-struct UnkSoundHandle_b46a1 {
-    u32 value;
-    UnkSoundHandle_b46a1(const UnkSoundHandle_b46a1& other) : value(other.value) {}
-};
 
 void fn_71000feff8(void* player, u32 id, UnkSoundHandle_b46a1 handle, f32 value);
 void fn_71000f9d20(void* player, UnkSoundHandle_b46a1 handle, f32 time);

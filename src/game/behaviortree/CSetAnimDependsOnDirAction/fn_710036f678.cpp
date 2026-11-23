@@ -6,16 +6,12 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkPacked.h"
 #include "game/behaviortree/CSetAnimDependsOnDirAction.h"
 #include "types.h"
 
 using base::global::UnkStrId;
 using base::global::UnkStrIdBase;
-
-template <class T>
-struct __attribute__((packed)) UnkPacked {
-    T v;
-};
 
 struct UnkInlineStr {
     u8 str[0x30];

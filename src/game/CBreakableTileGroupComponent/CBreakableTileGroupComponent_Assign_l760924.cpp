@@ -5,16 +5,13 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTileElem_ovb0028.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
 
-struct UnkTileElem_ovb0028 {
-    u64 a;
-    u64 b;
-};
 using UnkTileElemVector_ovb0028 = base::global::CRntVector<UnkTileElem_ovb0028>;
 
 struct UnkTileStatesMap_ovb0028 {

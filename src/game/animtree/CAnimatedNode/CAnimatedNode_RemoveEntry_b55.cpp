@@ -2,22 +2,10 @@
 // from the parallel arrays at +0xf0 of the object at +0x18 (the last entry is moved into its
 // slot). Names are placeholders.
 #include "base/UnkPairArrays.h"
+#include "game/UnkPairData.h"
+#include "game/UnkPairOwner.h"
+#include "game/UnkValueSource.h"
 #include "game/animtree/CAnimTreeElement.h"
-
-struct UnkValueSource {
-    u8 pad_0x0[0x30];
-    u64 field_0x30;
-};
-
-struct UnkPairData {
-    u8 pad_0x0[0xf0];
-    base::UnkPairArrays arrays;
-};
-
-struct UnkPairOwner {
-    u8 pad_0x0[0x18];
-    UnkPairData* field_0x18;
-};
 
 static inline u64* FindByValue(base::UnkPairArrays* a, u64 value) {
     for (u64 i = 0; i != a->count; ++i) {

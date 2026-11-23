@@ -1,4 +1,5 @@
 #include "game/CFrozenComponent.h"
+#include "game/UnkVec3Zero.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
@@ -34,18 +35,14 @@ struct UnkFrozenTarget {
     u8 links[0x8];  // 0x198
 };
 
-struct UnkFrozenOwner {
+struct UnkFrozenOwner_b34 {
     u8 unk_0x0[0x1b8];
     UnkFrozenTarget* target;
 };
 
-struct UnkVec3Zero {
-    f32 x, y, z;
-};
-
 struct CFrozenComponent2 {
     u8 unk_0x0[0x30];
-    UnkFrozenOwner* owner;
+    UnkFrozenOwner_b34* owner;
     u8 unk_0x38[0x360 - 0x38];
     UnkLinkList* link;  // 0x360
     u8 unk_0x368[0x39c - 0x368];

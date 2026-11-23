@@ -3,6 +3,7 @@
 // target's slot-0x178 callback unless that is disabled (0x1472c). Finally unregisters the id from the
 // manager and releases the counted reference at 0x146d0.
 #include "base/global/CRntVector.h"
+#include "game/UnkCounted.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU604.h"
 #include "types.h"
@@ -12,13 +13,7 @@ struct UnkTarget {
     void vf_0x178(void* id) { reinterpret_cast<void (*)(UnkTarget*, void*)>(vtable[47])(this, id); }
 };
 
-struct UnkCounted {
-    void** vtable;
-    u32 count;
-    void vf_0x10() { reinterpret_cast<void (*)(UnkCounted*)>(vtable[2])(this); }
-};
-
-struct UnkState {
+struct UnkState_3f8210 {
     UnkCounted* field_0x0;
     u8 pad_0x8[0x18];
     UnkTarget* field_0x20;
@@ -34,14 +29,14 @@ struct UnkSelf {
     u8 pad_0x0[0x30];
     void* field_0x30;
     u8 pad_0x38[0x14698];
-    UnkState state;
+    UnkState_3f8210 state;
 };
 
 void fn_71003f9388(void* registry, void* id, u32 flag);
 void fn_7100a1782c(UnkTarget* target, u32 flag);
 
 void fn_71003f8210(UnkSelf* self) {
-    UnkState* state = &self->state;
+    UnkState_3f8210* state = &self->state;
     if (!state->field_0x4a && !state->field_0x4b && !state->field_0x4c) {
         state->field_0x4c = 1;
         UnkManager_71726af468* manager = g_unk_71726af468;

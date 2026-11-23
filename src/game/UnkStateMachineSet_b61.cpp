@@ -14,6 +14,7 @@
 #include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkSmState_b61.h"
 #include "game/UnkStateMachineFind.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2772.h"
@@ -23,16 +24,6 @@
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-struct UnkSmState_b61 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10(s32 previous);  // entered
-    virtual void vf_0x18(s32 next);      // left
-    virtual void vf_0x20(f32 dt);        // updated
-    u64 field_0x8;
-    u32 id;
-};
 
 typedef UnkSmState_b61* __attribute__((aligned(4))) UnkSmStatePtr_b61;
 

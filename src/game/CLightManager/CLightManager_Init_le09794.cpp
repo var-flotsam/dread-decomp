@@ -6,7 +6,21 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkDirLightBase.h"
+#include "game/UnkDirLightObject.h"
+#include "game/UnkDirLightResRef.h"
+#include "game/UnkLightBase.h"
+#include "game/UnkLightNode.h"
+#include "game/UnkLightObject.h"
+#include "game/UnkLightResRef.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkSegmentLightBase.h"
+#include "game/UnkSegmentLightNode.h"
+#include "game/UnkSegmentLightObject.h"
+#include "game/UnkSegmentLightResRef.h"
+#include "game/UnkSpotLightBase.h"
+#include "game/UnkSpotLightObject.h"
+#include "game/UnkSpotLightResRef.h"
 #include "game/UnkTU2527.h"
 #include "game/UnkTU27.h"
 #include "game/UnkTU290.h"
@@ -17,189 +31,12 @@ using base::global::CFilePathStrId;
 using base::global::CRntVector;
 using base::global::CStrId;
 
-// The light objects, as the light components' files define them (src/game/CDirLightComponent.cpp,
-// src/game/CSpotLightComponent.cpp, src/game/COmniLightComponent.cpp,
-// src/game/CSegmentLightComponent.cpp).
-// The scene object's part at +0x20 with a virtual update (as COmniLightComponent.cpp's).
-struct UnkLightNode {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual void vf_0x68();
-    virtual void vf_0x70();
-    virtual void vf_0x78();
-    virtual void vf_0x80();
-    virtual void vf_0x88();
-    virtual void vf_0x90();
-};
-
-// A counted resource reference (base/UnkCountedResource.h).
-struct UnkDirLightResRef {
-    UnkCountedResource* ptr;
-
-    void Set(UnkCountedResource* p) {
-        if (ptr != p) {
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-    }
-};
-
-// The object's base at +8 (what the map is keyed by and the caller gets back).
-struct UnkDirLightBase {
-    u64 field_0x0;
-};
-
-// The 0x140-byte scene object.
-struct UnkDirLightObject {
-    void* vtable;
-    UnkDirLightBase base;          // 0x8
-    UnkDirLightResRef resource;    // 0x10
-    u8 pad_0x18[0x8];
-    UnkLightNode node;             // 0x20
-    u8 pad_0x28[0x70];
-    UnkDirLightResRef resource2;   // 0x98
-    u8 pad_0xa0[0xa0];
-};
 static_assert(sizeof(UnkDirLightObject) == 0x140, "UnkDirLightObject layout");
 
-// A counted resource reference (base/UnkCountedResource.h).
-struct UnkSpotLightResRef {
-    UnkCountedResource* ptr;
-
-    void Set(UnkCountedResource* p) {
-        if (ptr != p) {
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-    }
-};
-
-// The object's base at +8 (what the map is keyed by and the caller gets back).
-struct UnkSpotLightBase {
-    u64 field_0x0;
-};
-
-// The 0x140-byte scene object.
-struct UnkSpotLightObject {
-    void* vtable;
-    UnkSpotLightBase base;          // 0x8
-    UnkSpotLightResRef resource;    // 0x10
-    u8 pad_0x18[0x8];
-    UnkLightNode node;              // 0x20
-    u8 pad_0x28[0x70];
-    UnkSpotLightResRef resource2;   // 0x98
-    u8 pad_0xa0[0xa0];
-};
 static_assert(sizeof(UnkSpotLightObject) == 0x140, "UnkSpotLightObject layout");
 
-// A counted resource reference (base/UnkCountedResource.h), as src/game/UnkEnvironmentFade.cpp's.
-struct UnkLightResRef {
-    UnkCountedResource* ptr;
-
-    void Set(UnkCountedResource* p) {
-        if (ptr != p) {
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-    }
-};
-
-// The object's base at +8 (what the map is keyed by and the caller gets back).
-struct UnkLightBase {
-    u64 field_0x0;
-};
-
-// The 0x220-byte scene object.
-struct UnkLightObject {
-    void* vtable;
-    UnkLightBase base;          // 0x8
-    UnkLightResRef resource;    // 0x10
-    u8 pad_0x18[0x10];
-    UnkLightNode node;          // 0x28
-    u8 pad_0x30[0x70];
-    UnkLightResRef resource2;   // 0xa0
-    u8 pad_0xa8[0x178];
-};
 static_assert(sizeof(UnkLightObject) == 0x220, "UnkLightObject layout");
 
-// The scene object's part at +0x20 with a virtual update.
-struct UnkSegmentLightNode {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual void vf_0x68();
-    virtual void vf_0x70();
-    virtual void vf_0x78();
-    virtual void vf_0x80();
-    virtual void vf_0x88();
-    virtual void vf_0x90();
-};
-
-// A counted resource reference (base/UnkCountedResource.h).
-struct UnkSegmentLightResRef {
-    UnkCountedResource* ptr;
-
-    void Set(UnkCountedResource* p) {
-        if (ptr != p) {
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-    }
-};
-
-// The object's base at +8 (what the map is keyed by and the caller gets back).
-struct UnkSegmentLightBase {
-    u64 field_0x0;
-};
-
-// The 0x140-byte scene object.
-struct UnkSegmentLightObject {
-    void* vtable;
-    UnkSegmentLightBase base;            // 0x8
-    UnkSegmentLightResRef resource;      // 0x10
-    u8 pad_0x18[0x8];
-    UnkSegmentLightNode node;            // 0x20
-    u8 pad_0x28[0x70];
-    UnkSegmentLightResRef resource2;     // 0x98
-    u8 pad_0xa0[0xa0];
-};
 static_assert(sizeof(UnkSegmentLightObject) == 0x140, "UnkSegmentLightObject layout");
 
 // The render pool's maps of each kind of light (their own files define them).

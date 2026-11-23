@@ -7,6 +7,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/CRntString.h"
+#include "game/UnkMutexLock.h"
 #include "game/UnkTU2622.h"
 #include "game/UnkTU2768.h"
 #include "types.h"
@@ -46,13 +47,6 @@ void fn_710120320c(UnkUserDataOwner* self) {
     self->field_0x2a8 = false;
     self->field_0x2b0 = nullptr;
 }
-
-// Holds a mutex for its scope (through the engine's lock and unlock helpers).
-struct UnkMutexLock {
-    nn::os::MutexType* mutex;
-    explicit UnkMutexLock(nn::os::MutexType* m) : mutex(m) { fn_710006691c(m); }
-    ~UnkMutexLock() { fn_7100066920(mutex); }
-};
 
 // Signals a light event (a call of nn::os::SignalLightEvent).
 void fn_7100066698(nn::os::LightEventType* event);

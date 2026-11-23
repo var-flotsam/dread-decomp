@@ -1,16 +1,10 @@
 #include "game/CEnemyMovement.h"
+#include "game/UnkEmmyAI_b0193.h"
 #include "types.h"
 
 struct UnkEmmyOwner_b0193 {
     u8 unk_0x0[0x218];
     void* field_0x218;
-};
-
-struct UnkEmmyAI_b0193 {
-    u8 unk_0x0[0x30];
-    UnkEmmyOwner_b0193* field_0x30;
-    u8 unk_0x38[0x2a258 - 0x38];
-    bool field_0x2a258;
 };
 
 bool fn_710054ead0(UnkEmmyAI_b0193*);

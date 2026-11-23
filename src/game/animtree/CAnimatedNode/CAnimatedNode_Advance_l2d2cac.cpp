@@ -6,6 +6,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkMotionRule.h"
+#include "game/UnkNodeOwner_ovb0138.h"
 #include "game/UnkTU1134.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
@@ -18,11 +19,6 @@ struct UnkAnimatedNode_ovb0138;
 struct UnkAnimComponent_a994;
 struct UnkAnimTiming;
 struct UnkTrackObject_710117adc0;
-
-struct UnkNodeOwner_ovb0138 {
-    u8 pad_0x0[0x220];
-    u8* field_0x220;
-};
 
 f32 fn_710117a994(UnkAnimComponent_a994* self, const UnkAnimTiming* timing, f32 seconds, f32 rate);
 f32 fn_71010d6868();

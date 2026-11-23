@@ -14,6 +14,7 @@
 #include "game/CCameraCtrl.h"
 #include "game/CInputComponent.h"
 #include "game/CPhotoModeCameraCtrl.h"
+#include "game/UnkCameraEvent_b0058.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
@@ -209,10 +210,6 @@ void fn_71010ef204(UnkFreeCameraCtrl_b0058* self) {
 }
 
 struct UnkManager;
-struct UnkCameraEvent_b0058 {
-    s32 kind;
-    u32 unk_0x4;
-};
 void fn_7100eecf7c(void* manager, bool on, const UnkCameraEvent_b0058* event);
 struct UnkGrabCameraCtrl;
 extern CStrId g_unk_7172a04a38 __attribute__((visibility("hidden")));

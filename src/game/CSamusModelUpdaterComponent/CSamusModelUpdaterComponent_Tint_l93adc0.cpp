@@ -7,17 +7,10 @@
 #include "game/UnkTU247.h"
 #include "game/UnkTU2712.h"
 #include "game/UnkTU39.h"
+#include "game/UnkV4_b47.h"
 #include "types.h"
 
 using base::color::CColor4F;
-
-struct UnkV4_b47 {
-    f32 x, y, z, w;
-    UnkV4_b47() {}
-    UnkV4_b47(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
-    UnkV4_b47(const UnkV4_b47& o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
-};
-
 
 // What a model part's colour goes to (+0x150): its current value at +0xc4.
 struct UnkTintTarget_l93adc0 {

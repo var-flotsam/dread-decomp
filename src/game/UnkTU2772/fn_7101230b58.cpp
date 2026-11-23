@@ -1,13 +1,9 @@
 // nn::atk unit: constructor of an object with a base part, an intrusive list at +0xe0 and a sub-object at +0x138.
 // Names and layouts are placeholders.
+#include "game/UnkAtkListNode.h"
 #include "types.h"
 
 extern char g_unk_7101cb86b8[];
-
-struct UnkAtkListNode {
-    UnkAtkListNode* prev;
-    UnkAtkListNode* next;
-};
 
 struct UnkAtkObj {
     void* vtable;

@@ -3,15 +3,11 @@
 // 2: g_unk_7172a08b48, 4: g_unk_7172a08bb8) unless already listed, then likewise to the list of all (g_unk_7172a08c28).
 // Names and layouts are placeholders.
 #include "game/CFactionComponent.h"
+#include "game/UnkFaction_ovb0139.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 
-
-struct UnkFaction_ovb0139 {
-    u8 pad_0x0[0x70];
-    s32 kind;  // 0x70
-};
 
 static inline s32 IndexOf(UnkFactionList_ovb0139* list, UnkFaction_ovb0139* obj) {
     u32 i = 0;

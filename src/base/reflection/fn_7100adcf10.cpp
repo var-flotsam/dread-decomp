@@ -1,6 +1,8 @@
 // More per-TU static initialisers (helpers in game/UnkTUInit.h; see also fn_7100b04900.cpp):
 // some TUs' data has function records after the header, and collection and vector types are
 // registered for the reflected containers.
+#include "base/UnkArray_71729ce018.h"
+#include "base/UnkPair16.h"
 #include "base/UnkStrIdRegistry.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
@@ -22,6 +24,7 @@
 #include "game/CNavMeshItemComponent.h"
 #include "game/CWeightActivablePropComponent.h"
 #include "game/GUI/CDisplayObjectDef.h"
+#include "game/UnkElem188.h"
 #include "game/UnkTU1629.h"
 #include "game/UnkTU1632.h"
 #include "game/UnkTU1670.h"
@@ -583,13 +586,6 @@ void fn_7100da7050() {
 }
 
 
-struct UnkElem188 {
-    virtual void vf_0x0();
-    virtual ~UnkElem188();
-    UnkElem188(UnkElem188&& other);  // fn_7100d36688
-    u8 unk_0x8[0x180];
-};
-
 void fn_7100c77cd0() {
     InitHeader(g_unk_7172791e70);
     new (&g_unk_7172791e48) base::global::CRntVector<UnkElem188>(0xf);
@@ -598,11 +594,6 @@ void fn_7100c77cd0() {
     new (&g_unk_7172791e88) CStrId("ConeCollisionScene", true);
     fn_7100000250(CStrId_Destroy, &g_unk_7172791e88, &g_unk_7101a19000);
 }
-
-struct UnkPair16 {
-    u64 field_0x0;
-    u64 field_0x8;
-};
 
 void fn_7100da54b0() {
     InitHeader(g_unk_71727bc0f8);
@@ -618,17 +609,6 @@ void fn_7100da54b0() {
     g_unk_71727bbfd8.field_0x8 = 0;
 }
 
-
-// An array-like global: three zero words, a growth step of 10, flags 0xe and the default
-// allocator.
-struct UnkArray_71729ce018 {
-    u64 field_0x0;
-    u64 field_0x8;
-    u64 field_0x10;
-    u32 field_0x18;
-    u32 field_0x1c;
-    base::UnkAllocator* allocator;
-};
 
 void fn_7100ebefd0() {
     InitHeader(g_unk_71729ce040);

@@ -4,7 +4,7 @@
 #include "game/UnkTU1689.h"
 #include "types.h"
 
-struct UnkRefObject {
+struct UnkRefObject_b47f30 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -18,28 +18,28 @@ struct UnkString {
 };
 inline UnkString::~UnkString() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
 
-struct UnkInlineString {
+struct UnkInlineString_b47f30 {
     UnkString str;
     u8 buffer[0x38];
 
-    ~UnkInlineString() { fn_710007ed40(reinterpret_cast<base::global::CRntString*>(&str)); }
+    ~UnkInlineString_b47f30() { fn_710007ed40(reinterpret_cast<base::global::CRntString*>(&str)); }
 };
 
 struct UnkStringBase {
     void** vtable;
     u8 unk_0x8[0x20];
     UnkString field_0x28;
-    UnkInlineString field_0x70;
+    UnkInlineString_b47f30 field_0x70;
 
     ~UnkStringBase() { vtable = g_unk_7101a9c8e0 + 2; }
 };
 
 struct UnkStringHolder : UnkStringBase {
-    UnkRefObject* field_0xf0;
+    UnkRefObject_b47f30* field_0xf0;
 
     ~UnkStringHolder() {
         vtable = g_unk_7101a9cb48 + 2;
-        if (UnkRefObject* p = field_0xf0) {
+        if (UnkRefObject_b47f30* p = field_0xf0) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
         }

@@ -9,6 +9,8 @@
 #include "base/global/CStrId.h"
 #include "game/CGameManager/CTunableGameManager.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkPtrListNode.h"
+#include "game/UnkReloadCallback.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2768.h"
@@ -26,11 +28,6 @@ s32 fn_71012033b0(UnkUserDataOwner* self, const CRntString* scenario, const CRnt
                   const CRntString* scenario2, const CRntString* name2, UnkPtrList* blackboards, void (*fn)(),
                   bool b, const CRntString* project, const CRntString* s2, const CRntString* s3);
 
-// A list of pointers (vtable g_unk_7101aa9ac0), its nodes from `allocator` with `flags`.
-struct UnkPtrListNode {
-    void* value;
-    UnkPtrListNode* next;
-};
 struct UnkPtrList {
     void** vtable;
     // Union members: the original reloads the count, the tail and the allocator after storing a new
@@ -93,12 +90,6 @@ static inline T* Singleton_ldf7528(T*& instance) {
     }
     return instance;
 }
-
-// A load's callback: a context and a function.
-struct UnkReloadCallback {
-    void* context;
-    void* fn;
-};
 
 // The game manager's members the load uses (game/UnkGameManager.h leaves them as padding).
 struct UnkGameManagerLoad_ldf7528 {

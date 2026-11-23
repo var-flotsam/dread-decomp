@@ -2,27 +2,13 @@
 // takes the cell, side, kind and position (fn_71002871cc and fn_7100287298 in one).
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkNavPathNode.h"
+#include "game/UnkNavPathPoint.h"
 #include "game/UnkObject_0x100.h"
 #include "game/UnkTU367.h"
 #include "game/UnkTU376.h"
 #include "types.h"
 
-// Same layouts as src/game/navmesh/UnkNavPathNode.cpp.
-struct UnkNavPathPoint {
-    f32 x;
-    f32 y;
-};
-
-struct UnkNavPathNode {
-    u8 data[0x100];
-    u16 cell;
-    u8 side;
-    u32 kind;
-    u32 field_0x108;
-    UnkNavPathPoint pos;
-    f32 costs[3];
-    UnkNavPathNode* parent;
-};
 static_assert(sizeof(UnkNavPathNode) == 0x128, "UnkNavPathNode layout");
 
 void fn_710028720c(UnkNavPathNode* self, UnkNavMesh* mesh, u16 cell, u8 side, u32 kind, const UnkNavPathPoint* pos) {

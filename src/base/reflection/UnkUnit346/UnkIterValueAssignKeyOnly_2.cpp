@@ -4,16 +4,12 @@
 // keys by a file-path id, whose assignment follows CStrId's on its own pool. Names and layouts are
 // placeholders.
 #include "base/UnkCollectionIter.h"
+#include "base/UnkUnassignedElem.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 namespace {
-template <u64 Size>
-struct UnkUnassignedElem {
-    u64 words[Size / 8];
-    UnkUnassignedElem& operator=(const UnkUnassignedElem&) { return *this; }
-};
 }  // namespace
 
 // A file-path id's copy assignment, as CStrId's on g_unk_7101d47200 (outside an anonymous

@@ -5,16 +5,12 @@
 #include "game/CHydrogigaPolypsAttack.h"
 #include "game/CSamusMovementState/CParams.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkHandleTarget_ovb0082.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU50.h"
 #include "game/UnkTU811.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
-
-struct UnkHandleTarget_ovb0082 {
-    void* target;
-    u64 serial;
-};
 
 struct UnkHandle {
     UnkHandleTarget_ovb0082* target;
@@ -36,12 +32,12 @@ void fn_710092567c(void* target, void* actor);
 struct UnkAssignedSlot;
 struct CSamusAirMovementState;
 
-struct UnkMagnetSurfaceRef_ovb0082 {
+struct UnkMagnetSurfaceRef_ovb0082_ovb0082 {
     u8 pad_0x0[0x10];
     void* owner;
 };
 
-struct UnkMagnetMovement_ovb0082 {
+struct UnkMagnetMovement_ovb0082_ovb0082 {
     u8 pad_0x0[0x104];
     bool field_0x104;
     u8 pad_0x105[0xfb];
@@ -56,7 +52,7 @@ struct UnkMagnetSource_ovb0082 {
 struct UnkMagnetEnterState_ovb0082 {
     u8 pad_0x0[0x30];
     void* actor;
-    UnkMagnetMovement_ovb0082* movement;  // 0x38
+    UnkMagnetMovement_ovb0082_ovb0082* movement;  // 0x38
     UnkMagnetSource_ovb0082* source;      // 0x40
     u8 pad_0x48[0x160];
     f32 field_0x1a8;
@@ -65,7 +61,7 @@ struct UnkMagnetEnterState_ovb0082 {
     u32 field_0x1b8;
     u8 pad_0x1bc[0x28];
     u32 field_0x1e4;
-    UnkMagnetSurfaceRef_ovb0082* surface;  // 0x1e8
+    UnkMagnetSurfaceRef_ovb0082_ovb0082* surface;  // 0x1e8
     UnkAssignedSlot* field_0x1f0;
     u8 pad_0x1f8[0x140];
     UnkHandle rumble;  // 0x338

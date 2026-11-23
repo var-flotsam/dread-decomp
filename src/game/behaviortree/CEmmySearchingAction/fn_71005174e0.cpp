@@ -10,7 +10,7 @@
 
 using base::reflection::CClass;
 
-struct UnkMover {
+struct UnkMover_5174e0 {
     void** vtable;
     u8 pad_0x8[0x19d8];
     u64 field_0x19e0;
@@ -19,7 +19,7 @@ struct UnkMover {
 
 struct UnkOwner {
     u8 pad_0x0[0x1f0];
-    UnkMover* field_0x1f0;
+    UnkMover_5174e0* field_0x1f0;
     u8 pad_0x1f8[0xa0];
     void* field_0x298;
 };
@@ -63,9 +63,9 @@ void fn_71005174e0(UnkComponent* self, u32 arg) {
         params.field_0x1c = 1;
         fn_71006f4b0c(target, &params, 1);
     }
-    UnkMover* mover = self->field_0x18->field_0x1f0;
+    UnkMover_5174e0* mover = self->field_0x18->field_0x1f0;
     if (mover) {
-        if (fn_710009d50c(reinterpret_cast<const CClass* (*)(UnkMover*)>(mover->vtable[0])(mover), fn_71010c74e0())) {
+        if (fn_710009d50c(reinterpret_cast<const CClass* (*)(UnkMover_5174e0*)>(mover->vtable[0])(mover), fn_71010c74e0())) {
             mover->field_0x19e8 = 0;
             mover->field_0x19e0 = 0;
         }

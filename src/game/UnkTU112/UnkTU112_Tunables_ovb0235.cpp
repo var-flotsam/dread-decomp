@@ -7,7 +7,11 @@
 #include <string.h>
 
 #include "base/UnkHashStream.h"
+#include "base/UnkTunableField.h"
 #include "base/UnkTunableLine.h"
+#include "base/UnkTunableMember.h"
+#include "base/UnkTunableObject.h"
+#include "base/UnkTunableType.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
@@ -22,7 +26,9 @@
 #include "game/UnkTU112.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU85.h"
+#include "game/UnkTunableEntry_b0235.h"
 #include "game/UnkTunableFieldHandle.h"
+#include "game/UnkTunableObjects_b0235.h"
 #include "game/UnkTunableReflValue.h"
 #include "types.h"
 #include "base/UnkStrPair.h"
@@ -37,11 +43,6 @@ using base::reflection::UnkReflTypedPtr;
 // ---- the groups
 
 struct UnkTunableGroup;
-
-// What a group lists first: objects whose first word points back at the group.
-struct UnkTunableMember {
-    UnkTunableGroup* owner;
-};
 
 // A group of tunables (0x80 bytes): three lists, each with flags 0xf.
 struct UnkTunableGroup {
@@ -105,12 +106,6 @@ UnkTunableGroup_A1b71* fn_710013c2ac(UnkTunableGroupArrays_A1b71* self_, const C
 
 // ---- a tunable's field
 
-// A reflected field (0xb0 bytes): its type at +0x10.
-struct UnkTunableField {
-    u8 pad_0x0[0x10];
-    const base::reflection::CType* type;
-    u8 pad_0x18[0x98];
-};
 static_assert(sizeof(UnkTunableField) == 0xb0, "");
 
 bool fn_71000e750c(UnkTunableFieldHandle* field);  // whether the field can be read
@@ -146,27 +141,6 @@ UnkTunableLine fn_710013ab54(UnkTunableFieldHandle* field, const UnkReflTypedPtr
 
 // ---- setting a named tunable's field
 
-// A type descriptor as the lookups see it: its class (vtable slot 0) and its fields by name hash.
-struct UnkTunableType {
-    virtual const base::reflection::CType* GetClass();
-    u8 pad_0x8[0xe0];
-    UnkTunableField* fields;  // +0xe8
-    u64* keys;                // +0xf0
-    u32 count;                // +0xf8
-
-    UnkTunableField* End() { return fields + count; }
-    UnkTunableField* Find(u64 key) {
-        for (u64 i = 0; i < count; ++i)
-            if (keys[i] == key)
-                return &fields[i];
-        return End();
-    }
-};
-
-// The tunable object a header names: its class is vtable slot 0.
-struct UnkTunableObject {
-    virtual char* GetClass();
-};
 struct UnkTunableRegistry;
 
 // The field calls' argument: a value's type and where it is.
@@ -206,22 +180,6 @@ void fn_710013c4b4(UnkTunableRegistry* self, const char* name, const char* field
 extern UnkParseCallbacks g_unk_710b372778 __attribute__((visibility("hidden")));  // this unit's callbacks
 extern UnkStrPair_0x10 g_unk_710b372748 __attribute__((visibility("hidden")));    // the second tunables file
 extern base::reflection::CType g_unk_710b371c60;                                  // the registry's type
-
-// A registered tunable: its vf_0x18 prepares it; its flag at +0x20 marks it as read.
-struct UnkTunableEntry_b0235 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    u8 pad_0x8[0x18];
-    u8 field_0x20;
-};
-
-struct UnkTunableObjects_b0235 {
-    UnkTunableEntry_b0235** objects;
-    u8 pad_0x8[8];
-    u32 count;  // 0x10
-};
 
 // Parses the file into the target, starting from its last entry's node.
 static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {

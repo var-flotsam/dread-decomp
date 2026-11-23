@@ -38,14 +38,14 @@ struct UnkFXManager {
     const UnkFXManagerVt* vt;
 };
 
-struct UnkFXOwner {
+struct UnkFXOwner_l7ff210 {
     u8 pad_0x0[0x2a0];
     UnkFXManager* manager;  // 0x2a0
 };
 
 struct UnkFXComponentSelf {
     u8 pad_0x0[0x30];
-    UnkFXOwner* owner;  // 0x30
+    UnkFXOwner_l7ff210* owner;  // 0x30
 };
 
 void fn_71007ff210(UnkFXComponentSelf* self, const f32* color) {

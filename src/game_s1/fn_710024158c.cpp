@@ -6,17 +6,8 @@
 #include <new>
 
 #include "base/global/CRntVector.h"
+#include "game/UnkSlot.h"
 #include "types.h"
-
-template <class Tag>
-struct UnkSlot {
-    union {  // (the original reloads the array after each null store, as through a union)
-        void* ptr;
-    };
-
-    UnkSlot() : ptr(nullptr) {}
-    UnkSlot& operator=(const UnkSlot& other);  // fn_7100234f78
-};
 
 template <class Tag>
 struct UnkSlotArray {

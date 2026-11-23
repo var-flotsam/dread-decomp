@@ -13,17 +13,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkKraidCreatureVec.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
-
-// As in src/game/CKraidBouncingCreaturesMovementComponent/CKraidBouncingCreaturesMovementComponent_3.cpp.
-struct UnkKraidCreatureVec {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
-};
 
 struct UnkGoliathAI_b58a3;
 

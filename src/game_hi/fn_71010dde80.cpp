@@ -2,28 +2,15 @@
 // puts an entry before another at (nearly) the same depth when only the second one belongs to a
 // breakable tile group.
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkEntry_0x3c.h"
+#include "game/UnkInner_0x18.h"
+#include "game/UnkOwner_0x18.h"
 #include "types.h"
 
 using base::reflection::CClass;
 
 struct UnkReflObj {
     virtual const CClass* vf_0x0();
-};
-
-struct UnkInner_0x18 {
-    u8 pad_0x0[0x10];
-    UnkReflObj* field_0x10;
-};
-
-struct UnkOwner_0x18 {
-    u8 pad_0x0[0x10];
-    UnkInner_0x18* field_0x10;
-};
-
-struct UnkEntry_0x3c {
-    UnkOwner_0x18* field_0x0;
-    u8 pad_0x8[0x30];
-    f32 field_0x38;
 };
 
 namespace CBreakableTileGroup {

@@ -1,14 +1,10 @@
 // CPositionalSoundComponent unit: stores a new volume and passes it (at least 0.001) with a fade time to both
 // playing sound handles. Names and layouts are placeholders.
 #include "base/snd/UnkSound.h"
+#include "game/UnkSoundRef.h"
 #include "game/UnkTU101.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
-
-struct UnkSoundRef {
-    UnkSound* object;
-    s64 serial;
-};
 
 static inline UnkSound* GetSound_l14bfac(const UnkSoundHandle* handle) {
     if (handle->ref && handle->ref->serial == handle->serial && handle->serial != -1)

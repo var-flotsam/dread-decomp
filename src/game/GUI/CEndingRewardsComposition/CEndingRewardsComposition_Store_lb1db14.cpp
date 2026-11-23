@@ -12,6 +12,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkProfileSaveArg.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTypedValue.h"
@@ -22,11 +23,6 @@ using base::global::CStrId;
 using unk_static_init::UnkEnumType;
 
 extern UnkEnumType g_unk_7101d60e78;      // the flags' type
-
-struct UnkProfileSaveArg {
-    void* field_0x0;
-    void* field_0x8;
-};
 
 struct UnkEndingRewards_lb1db14 {
     u8 pad_0x0[0x2b8];

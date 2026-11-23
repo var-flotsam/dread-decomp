@@ -14,6 +14,9 @@
 #include "base/math/CVectorOps.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/spatial/COBox2D.h"
+#include "game/UnkContactSink.h"
+#include "game/UnkLocalQuery.h"
+#include "game/UnkNoContext.h"
 #include "game/UnkTU2509.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
@@ -41,9 +44,6 @@ static inline UnkColliderResult MakeContact(u32 value) {
 static inline UnkColliderResult Merge(const UnkColliderResult& a, const UnkColliderResult& b) {
     return MakeContact(a.bits | b.bits);
 }
-
-// An empty argument (its register is left as it is).
-struct UnkNoContext : UnkLeftoverReg {};
 
 struct UnkShapeTester_A5_b68;
 
@@ -86,12 +86,6 @@ struct UnkContactHit {
           field_0x28(o.field_0x28), flags(o.flags) {}
 };
 static_assert(sizeof(UnkContactHit) == 0x30, "UnkContactHit layout");
-
-struct UnkContactSink {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual UnkColliderResult vf_0x10(UnkContactHit hit);
-};
 
 struct UnkShape;
 // A shape's filter for the points of a point set and its filter for a single point; both are
@@ -406,19 +400,6 @@ UnkColliderResult fn_7100d54020(UnkNoContext, UnkContactPoint point, UnkShape* a
     result = sink ? sink->vf_0x10(hit) : MakeContact(3);
     return result;
 }
-
-// The query a polygon collection shape (type 0x10) runs for a shape placed in its frame: the
-// translation to report the points at, the collection's data and the sink. Same type as in
-// src/game_hi/fn_7100d56604.cpp (vtable at 0x7101aa8870).
-struct UnkLocalQuery {
-    virtual void vf_0x0();
-    CVector3D offset;
-    u16 field_0x14;
-    const void* field_0x18;
-    void* field_0x20;
-    UnkLocalQuery(const CVector3D& o, const void* p, void* a)
-        : offset(o), field_0x14(0), field_0x18(p), field_0x20(a) {}
-};
 
 // The 2D geometry of a type-8 shape: a position and two more words.
 struct UnkShape8Geometry {

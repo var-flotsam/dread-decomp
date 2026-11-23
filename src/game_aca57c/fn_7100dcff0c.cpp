@@ -5,7 +5,7 @@
 
 using base::UnkAllocator;
 
-struct UnkPairArray {
+struct UnkPairArray_dcff0c {
     void* values;
     void* ids;
     u32 count;
@@ -14,7 +14,7 @@ struct UnkPairArray {
     u32 flags;
     UnkAllocator* allocator;
 
-    UnkPairArray& operator=(UnkPairArray&& other) {
+    UnkPairArray_dcff0c& operator=(UnkPairArray_dcff0c&& other) {
         count = 0;
         allocator = other.allocator;
         ids = other.ids;
@@ -31,19 +31,19 @@ struct UnkPairArray {
 };
 
 struct UnkPairArrays {
-    UnkPairArray field_0x0;
-    UnkPairArray field_0x28;
-    UnkPairArray field_0x50;
-    UnkPairArray field_0x78;
+    UnkPairArray_dcff0c field_0x0;
+    UnkPairArray_dcff0c field_0x28;
+    UnkPairArray_dcff0c field_0x50;
+    UnkPairArray_dcff0c field_0x78;
     u64 field_0xa0;
 };
 
 void fn_7100dcff0c(UnkPairArrays* self, UnkPairArrays& other) {
     if (self == &other)
         return;
-    self->field_0x0 = static_cast<UnkPairArray&&>(other.field_0x0);
-    self->field_0x28 = static_cast<UnkPairArray&&>(other.field_0x28);
-    self->field_0x50 = static_cast<UnkPairArray&&>(other.field_0x50);
-    self->field_0x78 = static_cast<UnkPairArray&&>(other.field_0x78);
+    self->field_0x0 = static_cast<UnkPairArray_dcff0c&&>(other.field_0x0);
+    self->field_0x28 = static_cast<UnkPairArray_dcff0c&&>(other.field_0x28);
+    self->field_0x50 = static_cast<UnkPairArray_dcff0c&&>(other.field_0x50);
+    self->field_0x78 = static_cast<UnkPairArray_dcff0c&&>(other.field_0x78);
     self->field_0xa0 = other.field_0xa0;
 }

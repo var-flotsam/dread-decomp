@@ -1,9 +1,6 @@
 // The largest value returned by virtual slot 0x80 of the child objects in the array at +0x38 (0 when empty).
+#include "game_s2/UnkChild.h"
 #include "types.h"
-
-struct UnkChild {
-    void** vtable;
-};
 
 struct UnkParent {
     u8 pad_0x0[0x38];

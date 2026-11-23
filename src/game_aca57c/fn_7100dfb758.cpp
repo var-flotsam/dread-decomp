@@ -19,7 +19,7 @@ struct UnkStrStorage {
 };
 
 // A string (header of 0x30 bytes) with 0x100 bytes of inline storage.
-struct UnkStrBuffer {
+struct UnkStrBuffer_dfb758 {
     const char* data;
     u32 length;
     u8 pad_0xc[0x24];
@@ -28,13 +28,13 @@ struct UnkStrBuffer {
     // The string part (its constructor and destructor run by hand).
     base::global::CRntString* Str() { return reinterpret_cast<base::global::CRntString*>(this); }
 
-    UnkStrBuffer() {
+    UnkStrBuffer_dfb758() {
         fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
         storage.vtable = g_unk_7101a194b8 + 2;
         storage.field_0x108 = nullptr;
         storage.field_0x110 = 0;
     }
-    ~UnkStrBuffer() {
+    ~UnkStrBuffer_dfb758() {
         fn_710007ed40(Str());
         fn_710007ecd4(Str());
     }
@@ -50,7 +50,7 @@ s32 fn_71010c0cd0(lua_State* L, s32 count, char* buf, u32 size, UnkPropBag* resu
     char buf[0x200];                                                                 \
     if (!name)                                                                       \
         return false;                                                                \
-    UnkStrBuffer str;                                                                \
+    UnkStrBuffer_dfb758 str;                                                                \
     fn_710007e77c(str.Str(), name);                                                  \
     s32 n = 0;                                                                       \
     const char* p = str.data;                                                        \
@@ -61,7 +61,7 @@ s32 fn_71010c0cd0(lua_State* L, s32 count, char* buf, u32 size, UnkPropBag* resu
     }                                                                                \
     buf[n] = 0;                                                                      \
     {                                                                                \
-        UnkStrBuffer stripped;                                                       \
+        UnkStrBuffer_dfb758 stripped;                                                       \
         fn_710007e77c(stripped.Str(), buf);                                          \
         fn_710007eaa0(str.Str(), stripped.Str());                                    \
     }                                                                                \

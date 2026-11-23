@@ -1,16 +1,13 @@
 // Transforms a 4-component vector by a 4x4 float matrix (each result is a row dotted with the
 // vector). The result type has a user-provided copy constructor, so it is returned through the
 // hidden result pointer.
+#include "game/UnkMat4f.h"
 #include "types.h"
 
 struct UnkVec4f {
     f32 x, y, z, w;
     UnkVec4f() {}
     UnkVec4f(const UnkVec4f& o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
-};
-
-struct UnkMat4f {
-    f32 m[4][4];
 };
 
 UnkVec4f fn_7100078218(const UnkMat4f* m, const UnkVec4f* v) {

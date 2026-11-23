@@ -5,6 +5,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CFXComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkMeleeComponent.h"
+#include "game/UnkMeleeOwner.h"
 
 struct UnkWorld;
 
@@ -21,18 +23,6 @@ struct UnkMeleeNamePair {
 
 extern UnkMeleeNamePair g_unk_71727385c8 __attribute__((visibility("hidden")));
 extern UnkMeleeNamePair g_unk_71727385d8 __attribute__((visibility("hidden")));
-
-struct UnkMeleeOwner {
-    u8 pad_0x0[0x220];
-    UnkAnimationComponent* animation;
-    u8 pad_0x228[0x58];
-    UnkWorld* world;  // 0x280
-};
-
-struct UnkMeleeComponent {
-    u8 pad_0x0[0x30];
-    UnkMeleeOwner* owner;
-};
 
 void fn_7100929298(UnkMeleeComponent* self, u32 mode) {
     UnkWorld* world = self->owner->world;

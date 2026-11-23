@@ -6,19 +6,12 @@
 #include "base/UnkRefHandle.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU365.h"
+#include "game_s2/UnkTarget.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkEntry {
     u8 pad_0x0[0x48];
-};
-
-struct UnkTarget {
-    void** vtable;
-    u8 pad_0x8[0xa0];
-    UnkEntry* field_0xa8;
-    u32 field_0xb0;
-    s32 vf_0x18() { return reinterpret_cast<s32 (*)(UnkTarget*)>(vtable[3])(this); }
 };
 
 struct UnkLinkObject {
@@ -44,18 +37,18 @@ struct UnkRecord {
     base::UnkRefHandle field_0x5e0;
 };
 
-struct UnkRoot {
+struct UnkRoot_5528fc {
     u8 pad_0x0[0x10];
     UnkRecord* field_0x10;
 };
 
 struct UnkSelf {
     u8 pad_0x0[0x29558];
-    UnkRoot* field_0x29558;
+    UnkRoot_5528fc* field_0x29558;
 };
 
 bool fn_71005528fc(UnkSelf* self, void* arg) {
-    UnkRoot* root = self->field_0x29558;
+    UnkRoot_5528fc* root = self->field_0x29558;
     if (!root)
         return false;
     UnkRecord* record = root->field_0x10;

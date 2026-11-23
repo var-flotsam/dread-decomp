@@ -11,6 +11,7 @@
 #include "base/global/CRntStringAssign.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU57.h"
+#include "game/UnkUnit2669Tag.h"
 #include "types.h"
 #include "base/UnkVtableList.h"
 
@@ -41,7 +42,6 @@ struct UnkStackStr_ovb0245 {
 };
 
 struct UnkUnit2669Str;
-struct UnkUnit2669Tag : UnkLeftoverReg {};
 
 void fn_710109e0a0(UnkUnit2669Tag, void* source, UnkUnit2669Str* out_) {
     CRntString* out = reinterpret_cast<CRntString*>(out_);

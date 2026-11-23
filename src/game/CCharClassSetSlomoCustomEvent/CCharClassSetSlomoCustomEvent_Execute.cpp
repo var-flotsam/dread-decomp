@@ -2,17 +2,9 @@
 // settings (+0x18, count at +0x44) and hands them (+0x10 of that object) with the event's two values (+0xc,
 // +0x10) to the game manager's fn_7100df6d3c. Names and layouts are placeholders.
 #include "game/UnkGameManager.h"
+#include "game/UnkSlomoSettings.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
-
-struct UnkSlomoSettings {
-    u8 pad_0x0[0x10];
-    u8 body[0x34];
-    // A union member: no type-based alias info, so the settings pointer is reloaded after the increment.
-    union {
-        s32 ref_count;  // 0x44
-    };
-};
 
 struct UnkSetSlomoCustomEvent {
     u8 pad_0x0[0xc];

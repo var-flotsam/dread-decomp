@@ -5,13 +5,9 @@
 // placeholders.
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkLinkHandle_b54a1.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-struct UnkLinkHandle_b54a1 {
-    u8 pad_0x0[0x10];
-    void* target;
-};
 
 struct UnkLink_b54a1 {
     u8 pad_0x0[0x8];

@@ -8,6 +8,7 @@
 // layouts are placeholders.
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
+#include "game/UnkIdValueVecSize_b43a3.h"
 #include "game/UnkTU2599.h"
 #include "game/UnkTU2601.h"
 #include "types.h"
@@ -17,11 +18,6 @@
 template <char* Vtable>
 struct UnkIdValueVecTag_b43a3;
 
-// The value is 24 bytes in 0x7101cab338's class, 16 in the others'.
-template <char* Vtable>
-struct UnkIdValueVecSize_b43a3 {
-    static constexpr u64 value = 16;
-};
 template <>
 struct UnkIdValueVecSize_b43a3<g_unk_7101cab338> {
     static constexpr u64 value = 24;

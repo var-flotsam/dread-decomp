@@ -2,6 +2,7 @@
 // Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/CBreakableTileGroup.h"
+#include "game/UnkTileGroup.h"
 #include "types.h"
 
 struct UnkTileGroup;
@@ -25,25 +26,6 @@ struct UnkQueryObj {
 static_assert(sizeof(UnkQueryObj) == 0xa8, "UnkQueryObj placeholder layout");
 
 struct UnkTileCollider;
-
-struct UnkTileGroup {
-    u8 pad_0x0[0x14];
-    bool field_0x14;
-    u8 pad_0x15[0x3];
-    f32 field_0x18;
-    f32 field_0x1c;
-    f32 field_0x20;
-    s32 field_0x24;
-    s32 field_0x28;
-    u8 pad_0x2c[0x14];
-    u32 field_0x40;
-    UnkQueryObj* field_0x48;
-    u8 pad_0x50[0x8];
-    u32* field_0x58;
-    u8 pad_0x60[0x68];
-    u32 field_0xc8;
-    UnkTileCollider* field_0xd0;
-};
 
 using base::math::CVector3D;
 

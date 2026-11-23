@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAccessPointCommanderComponent.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/UnkCountedA5_b76.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU0.h"
@@ -28,14 +29,6 @@ void fn_7100a6b0f0(void* registration, void** slot);
 void fn_7100a6b280(void* registration, void** slot);
 void fn_7100a6ce48(void* self);  // the base destructor
 struct UnkManager;
-
-// As src/game/UnkStateMachineSetA5_b61.cpp declares them.
-struct UnkCountedA5_b76 : base::UnkRefCounted {
-    union {
-        void* field_0x10;
-        u64 raw_0x10;
-    };
-};
 
 using UnkRef = base::UnkRefPtrMember;
 

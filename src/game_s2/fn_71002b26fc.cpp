@@ -5,13 +5,13 @@
 #include "game/UnkTU361.h"
 #include "types.h"
 
-struct UnkNode {
+struct UnkNode_2b26fc {
     u32 hash;
     UnkIdKindKey key;
-    UnkNode* next;
+    UnkNode_2b26fc* next;
 };
 
-struct UnkNodeAllocator {
+struct UnkNodeAllocator_2b26fc {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -31,21 +31,21 @@ struct UnkHashTable {
     u8 unk_0x28[0x18];
     u32 lowest;
     u8 unk_0x44[4];
-    UnkNode* first;
-    UnkNodeAllocator* allocator;
+    UnkNode_2b26fc* first;
+    UnkNodeAllocator_2b26fc* allocator;
     u32 alloc_flags;
     u32 count;
     u32 field_0x60_count;
     u32 inserts;
 };
 
-UnkNode** fn_71002b288c(void* buckets, u32 index);
+UnkNode_2b26fc** fn_71002b288c(void* buckets, u32 index);
 
 void fn_71002b26fc(UnkHashTable* self, u16 id, u8 kind) {
     UnkIdKindKey key(id, kind);
     u32 hash = fn_71002874e0(key.id, key.kind);
     self->field_0x60_count++;
-    UnkNode* node = static_cast<UnkNode*>(self->allocator->vf_0x40(0x10, 8, self->alloc_flags));
+    UnkNode_2b26fc* node = static_cast<UnkNode_2b26fc*>(self->allocator->vf_0x40(0x10, 8, self->alloc_flags));
     if (node) {
         node->hash = hash;
         node->key = key;
@@ -56,7 +56,7 @@ void fn_71002b26fc(UnkHashTable* self, u16 id, u8 kind) {
     self->lowest = index < lowest ? index : lowest;
     if (index <= lowest)
         self->first = node;
-    UnkNode** head = fn_71002b288c(self->buckets, index);
+    UnkNode_2b26fc** head = fn_71002b288c(self->buckets, index);
     node->next = *head;
     *head = node;
     self->count++;

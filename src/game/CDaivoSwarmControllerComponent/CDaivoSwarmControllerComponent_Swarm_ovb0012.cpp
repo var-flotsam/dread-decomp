@@ -10,6 +10,8 @@
 #include "game/CRedenkiSwarmControllerComponent.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU1161.h"
+#include "game/UnkVec3Result.h"
+#include "game/UnkZeroVec_b0012.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -20,15 +22,6 @@ extern "C" int rand();
 #define UNK_VF8(n) virtual void vf_##n##_0(); virtual void vf_##n##_1(); virtual void vf_##n##_2(); \
     virtual void vf_##n##_3(); virtual void vf_##n##_4(); virtual void vf_##n##_5(); \
     virtual void vf_##n##_6(); virtual void vf_##n##_7();
-
-// As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b38.cpp defines it.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 // The object the swarm follows: its velocity at +0x70.
 struct UnkSwarmTarget_b0012 {
@@ -79,11 +72,6 @@ struct UnkDaivoTuning_b0012 {
 
 struct UnkSwarmPath_b0012 {
     u8 data[0x8];
-};
-
-struct UnkZeroVec_b0012 {
-    f32 x, y, z;
-    UnkZeroVec_b0012() : x(0.0f), y(0.0f), z(0.0f) {}
 };
 
 class UnkDaivoSwarm_b0012 {

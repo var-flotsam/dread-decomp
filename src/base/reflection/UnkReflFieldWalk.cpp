@@ -13,18 +13,13 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkReflFieldObject.h"
 #include "game/UnkTU85.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
 using base::reflection::UnkReflValue;
-
-// An object and its type, as the walk passes it on.
-struct UnkReflFieldObject {
-    char* type;
-    void* ptr;
-};
 
 // What the accessor's read takes besides the object (cleared by the walk).
 struct UnkReflReadArgs {

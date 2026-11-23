@@ -2,14 +2,10 @@
 // items. When both are set, a unit-wide count of live pairs drops by one and each item is handed back
 // to the render manager's pool (fn_71002199d8, layer 0) and cleared, the second first. Names and
 // layouts are placeholders.
+#include "game/UnkRenderItemPair_b64a2.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU441.h"
 #include "types.h"
-
-struct UnkRenderItemPair_b64a2 {
-    UnkItemBase_71011a91c4* first;
-    UnkItemBase_71011a91c4* second;
-};
 
 static inline __attribute__((always_inline)) void ReleasePair(UnkRenderItemPair_b64a2* self) {
     if (self->second && self->first) {

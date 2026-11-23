@@ -21,7 +21,6 @@ extern char g_unk_71729f0174[];
 struct UnkStateKey;
 void fn_7100fc9084(UnkEnumType* type, const CStrId& name);
 void fn_7100fc91a8(void* type);  // the type's destructor, as registered
-extern UnkStateKey g_unk_71729f0180;
 extern UnkEnumType g_unk_71729f0190;
 extern UnkEnumType g_unk_71729f0198;
 extern UnkEnumType g_unk_71729f01b8;

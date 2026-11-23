@@ -2,17 +2,13 @@
 // (std::function-like, its target at +0x20) and returns the result with z = 0.
 // Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "base/math/UnkSegment2D.h"
+#include "game/UnkVec3Result.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
 
 [[noreturn]] void fn_71001228e0();  // throws bad_function_call
-
-struct UnkVec2Result {
-    f32 x;
-    f32 y;
-    UnkVec2Result(const UnkVec2Result& o) : x(o.x), y(o.y) {}
-};
 
 struct UnkVec2Callable {
     virtual void vf_0();
@@ -22,14 +18,6 @@ struct UnkVec2Callable {
     virtual void vf_4();
     virtual void vf_5();
     virtual UnkVec2Result Call(const CVector2D& p);
-};
-
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
 };
 
 struct UnkVec2MapperOwner {

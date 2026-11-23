@@ -9,42 +9,13 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkSoundIdInstance.h"
+#include "game/UnkSoundIdListNode.h"
+#include "game/UnkSoundIdRef.h"
 #include "game/UnkTU223.h"
 #include "types.h"
 
 using base::UnkAllocator;
-
-// A playing instance: reference-counted (atomically, at +8), destroyed through its vtable.
-struct UnkSoundIdInstance {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    s32 ref_count;
-    u8 pad_0xc[0x20];
-    u32 state;  // 0x2c: 0xa and 0xc once it has finished
-};
-
-struct UnkSoundIdRef {
-    UnkSoundIdInstance* ptr;
-
-    UnkSoundIdRef(const UnkSoundIdRef& other) : ptr(other.ptr) {
-        if (ptr)
-            __atomic_fetch_add(&ptr->ref_count, 1, __ATOMIC_SEQ_CST);
-    }
-    ~UnkSoundIdRef() {
-        if (UnkSoundIdInstance* p = ptr) {
-            __atomic_fetch_sub(&p->ref_count, 1, __ATOMIC_SEQ_CST);
-            if (__atomic_load_n(&p->ref_count, __ATOMIC_SEQ_CST) == 0)
-                p->vf_0x10();
-        }
-    }
-};
-
-struct UnkSoundIdListNode {
-    u32 key;
-    UnkSoundIdRef ref;
-    UnkSoundIdListNode* next;
-};
 
 struct UnkSoundIdList : base::UnkLinkedList<UnkSoundIdListNode> {
     UnkSoundIdListNode* Find(u32 key) {

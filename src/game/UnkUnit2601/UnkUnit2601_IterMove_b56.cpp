@@ -6,10 +6,10 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2601.h"
 #include "types.h"
 
 struct UnkPartF84868_b56;
-void fn_7100f84868(UnkPartF84868_b56* self, const UnkPartF84868_b56* other);
 
 struct UnkPartF84868_b56 {
     u64 unk_0x0[5];

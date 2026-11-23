@@ -4,13 +4,12 @@
 // fn_710011e050.
 #include "base/UnkCloneHelpers.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTU108.h"
 #include "game/UnkTU2201.h"
 #include "game/UnkTU32.h"
 #include "base/reflection/TypeObject.h"
 namespace cutscene { enum class ETakePlayMode : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<cutscene::ETakePlayMode>::object asm("g_unk_7172794fb0");
-
-extern base::reflection::CType g_unk_7108b6da30;
 
 struct UnkIdTypePair;
 template <>

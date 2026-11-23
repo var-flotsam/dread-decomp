@@ -14,8 +14,10 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkObject_0x100.h"
+#include "game/UnkPoint_ovb0229.h"
 #include "game/UnkTU109.h"
 #include "game/UnkTU365.h"
+#include "game/UnkVec2_ovb0229.h"
 #include "types.h"
 
 // ---- The record array copy ----
@@ -158,17 +160,6 @@ struct UnkSortedList_ovb0229 {
             ++count;
         }
     }
-};
-
-struct UnkPoint_ovb0229 {
-    u32 x;
-    u32 y;
-    UnkPoint_ovb0229(const UnkPoint_ovb0229& other) : x(other.x), y(other.y) {}
-};
-
-struct UnkVec2_ovb0229 {
-    f32 x;
-    f32 y;
 };
 
 using UnkPoints_ovb0229 = UnkSortedList_ovb0229<UnkPoint_ovb0229>;

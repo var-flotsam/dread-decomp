@@ -5,19 +5,8 @@
 // the placement copied on a reset, the boundaries applied (fn_7100764a50) when enabled, and the
 // position kept at +0x270. Names and layouts are placeholders.
 #include "game/CCameraBoundaryCtrl.h"
+#include "game/UnkCamVec3_b0101.h"
 #include "types.h"
-
-struct UnkCamVec3_b0101 {
-    f32 x, y, z;
-    UnkCamVec3_b0101(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkCamVec3_b0101(const UnkCamVec3_b0101& o) : x(o.x), y(o.y), z(o.z) {}
-    UnkCamVec3_b0101& operator=(const UnkCamVec3_b0101& o) {
-        x = o.x;
-        y = o.y;
-        z = o.z;
-        return *this;
-    }
-};
 
 // A camera placement: a position and a direction.
 struct UnkCamPlacement_ovb0109 {

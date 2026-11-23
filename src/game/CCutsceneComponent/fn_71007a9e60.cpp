@@ -5,6 +5,7 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkCamMask_b0101.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2730.h"
@@ -16,13 +17,6 @@ using base::global::CStrId;
 struct UnkManager;
 
 
-// A bit mask passed by value (as src/game/CAnimatedCameraCtrl/CAnimatedCameraCtrl_Lifecycle_ovb0101.cpp).
-struct UnkCamMask_b0101 {
-    u32 bits;
-    UnkCamMask_b0101() : bits(0) {}
-    UnkCamMask_b0101(u32 b) : bits(b) {}
-    UnkCamMask_b0101(const UnkCamMask_b0101& o) : bits(o.bits) {}
-};
 void fn_7100eed7b0(void* manager, const base::UnkStrIdMember* name, UnkCamMask_b0101 mask, bool enable,
                    bool a, bool b);
 

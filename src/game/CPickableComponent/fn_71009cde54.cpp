@@ -2,25 +2,13 @@
 // their hash), else loads the chunk and, when that fails, formats and reports the error message.
 #include <stdarg.h>
 #include "base/global/CRntString.h"
+#include "game/UnkAllocator.h"
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
 #include "types.h"
 
-struct UnkAllocator {
-    virtual void vf0();
-    virtual void vf8();
-    virtual void vf10();
-    virtual void vf18();
-    virtual void vf20();
-    virtual void vf28();
-    virtual void vf30();
-    virtual void vf38();
-    virtual void* Alloc(u64 size, u64 align, u32 flags);
-    virtual void Free(void* p);
-};
-
-struct UnkStrStorage {
+struct UnkStrStorage_9cde54 {
     void* vtable;
     u8 pad_0x8[0x80];
     void* field_0x88;
@@ -34,7 +22,7 @@ struct UnkStrBuffer {
     u8 pad_0xc[0x14];
     u64 hash;
     u8 pad_0x28[0x8];
-    UnkStrStorage storage;
+    UnkStrStorage_9cde54 storage;
 
     // The string part (its constructor and destructor run by hand).
     base::global::CRntString* Str() { return reinterpret_cast<base::global::CRntString*>(this); }

@@ -6,15 +6,12 @@
 // then index + 1 elements, constructs the new ones (fn_71007582a4) and extends the count; then the
 // element is move-assigned (fn_7100758388). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkTileRecordElem_b43a2.h"
 #include "types.h"
 
 // Defined in src/game/CBreakableTileGroupComponent/CBreakableTileGroupComponent_b40.cpp.
 struct UnkTileRecord_bt;
 UnkTileRecord_bt* fn_7100758388(UnkTileRecord_bt* self, UnkTileRecord_bt* other);
-
-struct UnkTileRecordElem_b43a2 {
-    u8 unk_0x0[0x48];
-};
 
 void fn_71007613d8(base::global::CRntVector<UnkTileRecordElem_b43a2>* self, u32 capacity);
 void fn_71007582a4(UnkTileRecordElem_b43a2* self);

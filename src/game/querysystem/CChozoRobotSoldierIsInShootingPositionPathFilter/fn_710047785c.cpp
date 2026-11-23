@@ -2,16 +2,11 @@
 // and names the parameter with the string id built from its tag.
 #include "base/global/CStrId.h"
 #include "game/CCharClassScorpiusPoisonousGasAttack.h"
+#include "game/UnkQueryParam.h"
 #include "game/querysystem/CFilter.h"
 #include "types.h"
 
 using base::global::UnkStrId;
-
-struct UnkQueryParam {
-    void** vtable;
-    UnkStrId field_0x8;
-    // the base constructor initialises the rest
-};
 
 extern void* g_unk_7101a39568[];
 

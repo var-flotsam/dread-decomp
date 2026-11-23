@@ -2,13 +2,8 @@
 // holding two reference-counted pointers at its start): sets its vtable, releases both pointers of
 // every record and empties the array.
 #include "game/CAbilityShinespark.h"
+#include "game/UnkRecord.h"
 #include "game_s2/UnkWeakHandle.h"
-
-struct __attribute__((packed)) UnkRecord {
-    UnkRefObject* field_0x0;
-    UnkRefObject* field_0x8;
-    u8 pad_0x10[0x38];
-};
 
 struct __attribute__((packed)) UnkSelf {
     void** vtable;

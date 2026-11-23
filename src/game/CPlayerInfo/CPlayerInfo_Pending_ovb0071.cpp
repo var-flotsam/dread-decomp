@@ -20,6 +20,8 @@
 #include "game/UnkTU2577.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU50.h"
+#include "game/UnkTimedEntry_ovb0071.h"
+#include "game/UnkTimedHead_ovb0071.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "game/UnkGameBlackboard.h"
@@ -54,16 +56,6 @@ struct UnkHandle {
             return target->target;
         return nullptr;
     }
-};
-
-struct UnkTimedHead_ovb0071 {
-    u8 counter;
-    f32 time;
-};
-
-struct UnkTimedEntry_ovb0071 {
-    UnkTimedHead_ovb0071 head;
-    UnkKeyedStrIds properties;  // 0x8
 };
 
 using UnkTimedMap_ovb0071 = base::global::CRntSmallDictionary<base::global::CStrId, UnkTimedEntry_ovb0071>;

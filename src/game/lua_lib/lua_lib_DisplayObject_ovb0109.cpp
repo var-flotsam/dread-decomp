@@ -17,6 +17,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkLuaDisplayObject_ovb0109.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2676.h"
 #include "game/UnkTU2744.h"
@@ -27,14 +28,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
-
-// A display object as the scripts hold it: full userdata with the "__DisplayObjectType" metatable
-// holding a counted weak handle on the object.
-struct UnkLuaDisplayObject_ovb0109 {
-    UnkWeakHandle* handle;
-
-    UnkWeakTarget* Get() const { return handle ? handle->target : nullptr; }
-};
 
 static inline UnkLuaDisplayObject_ovb0109* ToDisplayObject(lua_State* L, int index) {
     return static_cast<UnkLuaDisplayObject_ovb0109*>(fn_71010a4740(L, index, "__DisplayObjectType"));
@@ -115,7 +108,7 @@ int fn_71010762d0(lua_State* L) {
 }
 
 // A reflected object as seen through its class getter (vtable slot 0).
-struct UnkReflObject_ovb0109 {
+struct UnkReflObject_ovb0109_ovb0109 {
     virtual char* GetClass();
 };
 
@@ -142,7 +135,7 @@ struct UnkGameObjectTyped_ovb0115;  // a typed pointer (src/game/lua_lib/lua_lib
 
 static inline char* AsClass(char* type) {
     return type && fn_710009d50c(reinterpret_cast<const base::reflection::CType*>(
-                                     reinterpret_cast<UnkReflObject_ovb0109*>(type)->GetClass()),
+                                     reinterpret_cast<UnkReflObject_ovb0109_ovb0109*>(type)->GetClass()),
                                  reinterpret_cast<const base::reflection::CType*>(fn_7100096100()))
                ? type
                : nullptr;
@@ -156,7 +149,7 @@ int fn_7101075c30(lua_State* L) {
         luaL_typerror(L, 1, "__DisplayObjectType");
         return 0;
     }
-    UnkReflObject_ovb0109* object = reinterpret_cast<UnkReflObject_ovb0109*>(ud->Get());
+    UnkReflObject_ovb0109_ovb0109* object = reinterpret_cast<UnkReflObject_ovb0109_ovb0109*>(ud->Get());
     if (!object)
         return 0;
     UnkLuaArgs_ovb0109* args = fn_710109ead0(L, 2);

@@ -18,6 +18,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkNavCallback_b0194.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU2568.h"
@@ -253,10 +254,6 @@ bool fn_7100ec154c(void* self_, const CVector2D* a, const CVector2D* b, u32 flag
 // ---- Nearest candidate by navigation distance ----
 
 struct UnkWeakHandle;
-struct UnkNavCallback_b0194 {
-    void* ctx;
-    void* fn;
-};
 
 // The navigation query as the AI builds it: only the members set here are named.
 struct UnkNavQuery {

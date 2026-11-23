@@ -1,11 +1,8 @@
 // Copy assignment of a 0x68-byte struct: trivially copyable blocks around one non-trivial
 // member at +0x28.
+#include "game/UnkStruct_0x28.h"
 #include "game/UnkTU83.h"
 #include "types.h"
-
-struct UnkStruct_0x28 {
-    u8 unk_0x0[0x28];
-};
 
 struct UnkBlock_0x20 {
     u64 field_0x0, field_0x8, field_0x10, field_0x18;

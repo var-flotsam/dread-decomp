@@ -12,8 +12,10 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/CGameObject.h"
+#include "game/UnkPoint_ovb0229.h"
 #include "game/UnkTU109.h"
 #include "game/UnkTU365.h"
+#include "game/UnkU16Array_b0228.h"
 #include "game/navmesh/CNavMesh.h"
 #include "types.h"
 
@@ -217,12 +219,6 @@ struct UnkSortedList_ovb0229 {
     Node* tail;
     base::UnkAllocator* allocator;
     u32 flags;
-};
-
-struct UnkPoint_ovb0229 {
-    u32 x;
-    u32 y;
-    UnkPoint_ovb0229(const UnkPoint_ovb0229& other) : x(other.x), y(other.y) {}
 };
 
 using UnkPoints_ovb0229 = UnkSortedList_ovb0229<UnkPoint_ovb0229>;
@@ -509,41 +505,6 @@ __attribute__((always_inline)) static inline void Swap(UnkFunction_b0228& self_r
 }
 
 void fn_71002a7bfc(UnkFunction_b0228* self, UnkFunction_b0228* other) { Swap(*self, *other); }
-
-// ---- fn_71002a1ff8 ----
-// A copy of a growable array of 16-bit values: same settings, own storage.
-struct UnkU16Array_b0228 {
-    u16* data;                      // 0x0
-    u32 count;                      // 0x8
-    u32 capacity;                   // 0xc
-    u32 step;                       // 0x10
-    bool field_0x14;                // 0x14
-    u32 flags;                      // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-
-    UnkU16Array_b0228(const UnkU16Array_b0228& o) {
-        data = nullptr;
-        count = 0;
-        capacity = 0;
-        step = o.step;
-        field_0x14 = o.field_0x14;
-        flags = o.flags;
-        allocator = o.allocator;
-        u32 cap = o.capacity;
-        u16* p = nullptr;
-        if (cap) {
-            p = static_cast<u16*>(allocator->vf_0x40((u64)cap * 2, 8, flags));
-            if (data) {
-                __builtin_memcpy(p, data, (u64)count * 2);
-                allocator->vf_0x48(data);
-            }
-            data = p;
-            capacity = cap;
-        }
-        __builtin_memcpy(p, o.data, (u64)o.count * 2);
-        count = o.count;
-    }
-};
 
 // The sub-object copied by fn_710027ebe4.
 struct UnkNavMeshEdge;

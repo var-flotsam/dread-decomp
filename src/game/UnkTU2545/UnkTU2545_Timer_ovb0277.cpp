@@ -8,6 +8,7 @@
 #include "game/CBossAIComponent.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkHms.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU58.h"
 #include "game/nn/time.h"
@@ -16,12 +17,6 @@
 #include "game/UnkTU2747.h"
 #include "types.h"
 #include "game/UnkMask.h"
-
-struct UnkHms {
-    u32 hours;
-    u32 minutes;
-    u32 seconds;
-};
 
 struct UnkWideStr_0x20;
 using UnkGuiObj = UnkGuiDisplayObject;

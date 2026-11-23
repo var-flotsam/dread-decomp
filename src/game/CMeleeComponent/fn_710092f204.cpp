@@ -25,7 +25,7 @@ struct UnkInventory;
 
 using UnkStateSet = UnkAnimationComponent;
 
-struct UnkOwner {
+struct UnkOwner_92f204 {
     u8 unk_0x0[0x220];
     UnkStateSet* states;
     u8 unk_0x228[0x48];
@@ -34,7 +34,7 @@ struct UnkOwner {
 
 struct UnkMelee {
     u8 unk_0x0[0x30];
-    UnkOwner* owner;
+    UnkOwner_92f204* owner;
 };
 
 // NON_MATCHING(minor): the original tests kind 5 before kind 2, keeps a copy of the selection per

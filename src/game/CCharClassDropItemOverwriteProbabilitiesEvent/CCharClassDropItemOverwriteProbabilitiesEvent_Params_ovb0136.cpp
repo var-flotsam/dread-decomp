@@ -14,81 +14,15 @@
 #include "game/CCharClassDropItemCrazyEvent.h"
 #include "game/CCharClassDropItemOverwriteProbabilitiesEvent.h"
 #include "game/SDropProbabilities.h"
+#include "game/UnkDropItemDef_ovb0136.h"
+#include "game/UnkDropItemName_ovb0136.h"
+#include "game/UnkDropItemParams_ovb0136.h"
+#include "game/UnkDropItemVec3_ovb0136.h"
 #include "game/UnkTU83.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-// A string id assigned like CStrId; the old one is released in two steps (the original reloads
-// `data` and the count after the decrement).
-struct UnkDropItemName_ovb0136 {
-    UnkStringData* data;
-    UnkDropItemName_ovb0136& operator=(const UnkDropItemName_ovb0136& other) {
-        if (data != other.data) {
-            UnkStringData* d = other.data;
-            UnkStringPool* pool = g_unk_7101d47108;
-            if (d != &pool->empty)
-                ++d->ref_count;
-            if (data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0)
-                    fn_71000803a4(pool, data);
-            }
-            data = d;
-        }
-        return *this;
-    }
-};
-
-struct UnkDropItemVec3_ovb0136 {
-    f32 x, y, z;
-    UnkDropItemVec3_ovb0136& operator=(const UnkDropItemVec3_ovb0136& other) {
-        u64 xy;
-        u32 w;
-        __builtin_memcpy(&xy, &other, 8);
-        __builtin_memcpy(&w, &other.z, 4);
-        __builtin_memcpy(this, &xy, 8);
-        __builtin_memcpy(&z, &w, 4);
-        return *this;
-    }
-};
-
-// The drop spawn settings (0x90 bytes; as CDropComponent passes them to its spawn), built by
-// fn_71007c7ddc.
-struct UnkDropItemParams_ovb0136 {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-    u32 field_0xc;
-    u32 field_0x10[7];
-    u8 pad_0x2c[8];
-    u32 field_0x34[4];
-    u8 pad_0x44[0xc];
-    u32 field_0x50[3];
-    u8 pad_0x5c[4];
-    UnkDropItemName_ovb0136 name;      // 0x60
-    UnkDropItemVec3_ovb0136 field_0x68;
-    UnkDropItemVec3_ovb0136 field_0x74;
-    u32 item;                           // 0x80
-    u32 kind;                           // 0x84
-    u8 field_0x88;
-    u8 field_0x89;
-    u8 field_0x8a;
-
-    UnkDropItemParams_ovb0136() { fn_71007c7ddc(this); }
-};
-
-// An item definition: a counted object with its name at +0x10.
-struct UnkDropItemDef_ovb0136 {
-    u8 pad_0x0[0x10];
-    const char* name;
-    u8 pad_0x18[0x2c];
-    // A union member: the definition pointer is reloaded after the increment.
-    union {
-        u32 ref_count;  // 0x44
-    };
-};
 
 static inline u32 ItemId(UnkDropItemDef_ovb0136* const& def) {
     if ((u64)def != (u64)&g_unk_7101d47108->empty) {

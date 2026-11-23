@@ -9,14 +9,14 @@
 
 using base::reflection::UnkReflObject;
 
-struct UnkOwner {
+struct UnkOwner_CInfesterFleeFromTargetAction {
     u8 pad_0x0[0x1f0];
     UnkReflObject* field_0x1f0;
 };
 
 struct UnkFleeAction {
     u8 pad_0x0[0x18];
-    UnkOwner* field_0x18;
+    UnkOwner_CInfesterFleeFromTargetAction* field_0x18;
     u8 pad_0x20[0x18];
     void* field_0x38;
     u8 pad_0x40[0x19];
@@ -26,7 +26,7 @@ struct UnkFleeAction {
 
 void fn_71005c8780(UnkFleeAction* self) {
     fn_7100394bd4(self);
-    UnkOwner* owner = self->field_0x18;
+    UnkOwner_CInfesterFleeFromTargetAction* owner = self->field_0x18;
     *reinterpret_cast<u16*>(&self->field_0x59) = 0;
     UnkReflObject* movement = owner->field_0x1f0;
     UnkReflObject* cast = nullptr;

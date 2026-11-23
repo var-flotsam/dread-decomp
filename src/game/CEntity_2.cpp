@@ -14,6 +14,7 @@
 #include "game/CRumbleComponent.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkHandle.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2523.h"
@@ -69,10 +70,6 @@ void fn_7100d7b394(UnkEntityComponents* self, void* a) {
 // component's handle, or the empty handle when the entity has no such component.
 struct UnkSoundRef;
 struct UnkHandleTarget;
-struct UnkHandle {
-    UnkHandleTarget* target;
-    u64 serial;
-};
 
 struct UnkEntitySoundComponent;
 struct CRumbleComponent;

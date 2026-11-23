@@ -20,10 +20,12 @@
 #include "game/CSamusGroundMovementState/CParams.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkDesc16_ovb0004.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkMotionRule.h"
+#include "game/UnkSamusSettings.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1455.h"
 #include "game/UnkTU1501.h"
@@ -31,6 +33,8 @@
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU39.h"
+#include "game/UnkTrackOptional.h"
+#include "game/UnkTrackTiming.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -39,18 +43,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 // ---- shared declarations ----
-
-// The Samus settings object of src/game/CSamusMovement.cpp (reached through the GOT).
-struct UnkSamusSettings {
-    u8 pad_0x0[0x24];
-    f32 field_0x24;
-    f32 field_0x28;
-    u8 pad_0x2c[0x8];
-    u32 field_0x34;
-    u32 field_0x38;
-    u8 pad_0x3c[0x3c];
-    bool field_0x78;
-};
 
 extern const base::global::CStrId g_unk_717273b7c0 __attribute__((visibility("hidden")));  // the slide collider's name
 extern const CStrId g_unk_717273b7b8 __attribute__((visibility("hidden")));
@@ -470,15 +462,6 @@ struct __attribute__((packed, aligned(4))) UnkTrackBlend {
 };
 static_assert(sizeof(UnkTrackBlend) == 0xc, "UnkTrackBlend layout");
 
-struct UnkTrackOptional {
-    u64 bits;
-};
-
-struct UnkTrackTiming {
-    s64 id;
-    UnkTrackOptional duration;
-};
-
 struct UnkTrackTransition {
     u64 state;
     UnkTrackTiming timing;
@@ -538,10 +521,6 @@ bool fn_71009954ec(UnkSlideState_ovb0004* self, UnkTrackTransition* out) {
 }
 
 // ---- fn_7100994c08: an event while sliding ----
-
-struct UnkDesc16_ovb0004 {
-    u64 a, b;
-};
 
 // A movement transition: an id (-1 for none), the two descriptors of UnkSpitSend.h and a mask.
 struct UnkMoveTransition_ovb0004 {

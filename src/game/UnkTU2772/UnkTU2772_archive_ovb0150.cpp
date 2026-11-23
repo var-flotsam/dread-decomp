@@ -1,7 +1,10 @@
 // nn::atk-ish unit 2772: sound-archive loading (items, groups and their waves), the audio renderer work-buffer
 // size, a flag-copy helper and the mixer's per-frame lock/update. Names and layouts are placeholders.
 #include <nn/os.h>
+#include "game/UnkAtkInfo_b0150.h"
+#include "game/UnkAtkItemRefs.h"
 
+#include "game/UnkAtkWave_b0150.h"
 #include "game/UnkTU2772.h"
 #include "game/UnkTU99.h"
 #include "types.h"
@@ -99,13 +102,6 @@ struct UnkAtkLoader {
     UnkAtkArchive* archive;  // 0x8
 };
 
-struct UnkAtkInfo_b0150 {
-    s32 field_0x0;
-    u32 count;  // 0x4
-    u8 flag;    // 0x8
-    u8 pad_0x9[7];
-};
-
 struct UnkAtkInfoFull_b0150 {
     UnkAtkInfo_b0150 head;
     u8 pad_0x10[0x1c];
@@ -150,11 +146,6 @@ void* fn_7101211fc8(UnkAtkLoader* self, u32 id, UnkAtkHeap_b0150* heap, void* ar
     self->Register(file_id, buf);
     return buf;
 }
-
-struct UnkAtkWave_b0150 {
-    u8 pad_0x0[0x18];
-    u8 flag;  // 0x18
-};
 
 struct UnkAtkWaveBody_b0150 {
     u32 pad_0x0[2];
@@ -272,13 +263,6 @@ bool fn_7101211a64(UnkAtkLoader* self, u32 id, void* heap, u32 flags, void* arg)
 
 struct UnkAtkItemRefs;
 struct UnkAtkLoaderObject_b0148;
-
-struct UnkAtkItemRefs {
-    u32 field_0x0;
-    u32 ids[4];  // 0x4
-    u32 field_0x14;
-    u16 field_0x18;
-};
 
 void fn_71012124d8(UnkAtkLoader* self, u32 id, void* arg) {
     alignas(8) u32 file_id;

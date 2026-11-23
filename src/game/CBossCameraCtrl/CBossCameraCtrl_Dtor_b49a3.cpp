@@ -4,19 +4,9 @@
 #include "base/global/CRntVector.h"
 #include "game/CBossCameraCtrl.h"
 #include "game/CCameraBoundaryCtrl.h"
+#include "game/UnkRefSlot_b49a3.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-// A counted reference whose destructor keeps the pointer in a register (UnkRefPtr reloads it).
-struct UnkRefSlot_b49a3 {
-    UnkRefObject* ptr;
-    ~UnkRefSlot_b49a3() {
-        if (UnkRefObject* p = ptr) {
-            if (--p->ref_count == 0)
-                p->vf_0x10();
-        }
-    }
-};
 
 struct UnkBossCameraCtrl_b49a3 {
     void** vtable;

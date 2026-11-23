@@ -8,6 +8,10 @@
 #include "base/global/CRntVector.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkRegistryHandler_b0248.h"
+#include "game/UnkRegistryNode_b0248.h"
+#include "game/UnkRegistryString_b0248.h"
+#include "game/UnkRegistry_b0248.h"
 #include "game/UnkTU63.h"
 #include "types.h"
 #include "base/UnkVtableList.h"
@@ -21,11 +25,6 @@ union UnkPairSlot_b0248 {
     UnkStrIdPathPair pair;
     UnkPairSlot_b0248() {}
     ~UnkPairSlot_b0248() {}
-};
-
-struct UnkRegistryString_b0248 {
-    u8 pad_0x0[0x30];
-    u64 hash;  // 0x30
 };
 
 // A path id and the link to the next one.
@@ -58,44 +57,6 @@ struct UnkFilePathList_b0248 : base::UnkVtableList<UnkListedPath_b0248> {
 struct UnkListedPair_b0248 {
     UnkStrIdPathPair pair;
     UnkListedPair_b0248* next;
-};
-
-class UnkRegistryHandler_b0248 {
-public:
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual const void* vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual void vf_0x68();
-    virtual void vf_0x70();
-    virtual void vf_0x78();
-    virtual u32 vf_0x80(UnkListedPath_b0248* path, u32 a, bool b, u32 c, UnkFilePathList_b0248* out);
-};
-
-struct UnkRegistryNode_b0248 {
-    UnkRegistryString_b0248* key;
-    UnkRegistryHandler_b0248* value;  // 0x8
-    u8 pad_0x10[0x10];
-    UnkRegistryNode_b0248* next;  // 0x20
-};
-
-struct UnkRegistry_b0248 {
-    u8 pad_0x0[0x18];
-    UnkRegistryNode_b0248** buckets;  // 0x18
-    u32 count;                        // 0x20
-    u32 capacity;                     // 0x24
-    u8 pad_0x28[0x38];
-    void* context;                    // 0x60
-    void (*on_error)(void* context, UnkRegistryHandler_b0248* handler, u32 result);  // 0x68
 };
 
 struct UnkRegistryKey_b0248 {

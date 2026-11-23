@@ -7,6 +7,8 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CGrabComponent.h"
 #include "game/CUsableComponent.h"
+#include "game/UnkDesc16_ovb0004.h"
+#include "game/UnkMatrix4_b0233.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU341.h"
@@ -20,10 +22,6 @@ struct __attribute__((packed, aligned(4))) UnkTrackBlend {
     f32 value;
 };
 static_assert(sizeof(UnkTrackBlend) == 0xc, "UnkTrackBlend layout");
-
-struct UnkDesc16_ovb0004 {
-    u64 a, b;
-};
 
 // A movement transition: an id (-1 for none), the two descriptors of UnkSpitSend.h and a mask.
 struct UnkMoveTransition_ovb0004 {
@@ -62,10 +60,6 @@ struct UnkLeaveParams_l9968ec {
     }
 };
 static_assert(sizeof(UnkLeaveParams_l9968ec) == 0x48, "layout");
-
-struct UnkMatrix4_b0233 {
-    f32 m[16];
-};
 
 struct UnkTeleporterActor_b0233;
 struct UnkTeleporterObject_b0233;

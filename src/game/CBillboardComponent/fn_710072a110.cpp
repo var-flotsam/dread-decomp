@@ -6,15 +6,8 @@
 #include "../../../lib/libcxx/sort.h"
 #include "../../game_s7/UnkIter.h"
 #include "game/UnkTU1161.h"
+#include "game/UnkVec3Result.h"
 #include "types.h"
-
-// Returned through x8, so the original's result type is not trivially copyable.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 struct UnkObj_710072a110;
 struct UnkParent_71007455dc;

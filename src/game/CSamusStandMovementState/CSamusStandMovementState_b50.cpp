@@ -2,14 +2,9 @@
 // of the animation to play from the movement (+0x38): with a positive speed (+0x7c) the moving one,
 // unless the settings' +0x79 allows the alternative and fn_71009ea3e4 holds while fn_71009ea664
 // doesn't; standing, one of two by the flag at +0x7e4. Always true. Names and layouts are placeholders.
+#include "game/UnkSamusSettings.h"
 #include "game/UnkTU1501.h"
 #include "types.h"
-
-// The settings object of src/game/CSamusMovement.cpp (reached through the GOT); +0x79 is read here.
-struct UnkSamusSettings {
-    u8 pad_0x0[0x78];
-    bool field_0x78;
-};
 
 struct UnkSamusMove_b50a5 {
     u8 unk_0x0[0x7c];

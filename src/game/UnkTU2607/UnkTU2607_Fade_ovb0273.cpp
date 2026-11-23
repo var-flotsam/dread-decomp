@@ -10,6 +10,7 @@
 #include "base/math/CVector.h"
 #include "base/math/CVectorOps.h"
 #include "base/reflection.h"
+#include "game/UnkFadeColor.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU290.h"
@@ -32,7 +33,7 @@ struct UnkEnvFadeColorChannel {
 
 constexpr u32 kFadeChannels = 29;
 
-struct UnkFadeLayout {
+struct UnkFadeLayout_ovb0273 {
     u8 pad_0x0[0x54];
     UnkEnvFadeColorChannel c3;  // 0x54
     UnkVector4D from4;          // 0x84
@@ -74,14 +75,14 @@ struct UnkFadeLayout {
         return t;
     }
 };
-static_assert(__builtin_offsetof(UnkFadeLayout, from6) == 0xe4, "UnkFadeLayout placeholder layout");
-static_assert(__builtin_offsetof(UnkFadeLayout, from9) == 0x16c, "UnkFadeLayout placeholder layout");
-static_assert(__builtin_offsetof(UnkFadeLayout, c13) == 0x1d4, "UnkFadeLayout placeholder layout");
-static_assert(__builtin_offsetof(UnkFadeLayout, c18) == 0x240, "UnkFadeLayout placeholder layout");
-static_assert(__builtin_offsetof(UnkFadeLayout, progress) == 0x348, "UnkFadeLayout placeholder layout");
-static_assert(__builtin_offsetof(UnkFadeLayout, done) == 0x430, "UnkFadeLayout placeholder layout");
+static_assert(__builtin_offsetof(UnkFadeLayout_ovb0273, from6) == 0xe4, "UnkFadeLayout_ovb0273 placeholder layout");
+static_assert(__builtin_offsetof(UnkFadeLayout_ovb0273, from9) == 0x16c, "UnkFadeLayout_ovb0273 placeholder layout");
+static_assert(__builtin_offsetof(UnkFadeLayout_ovb0273, c13) == 0x1d4, "UnkFadeLayout_ovb0273 placeholder layout");
+static_assert(__builtin_offsetof(UnkFadeLayout_ovb0273, c18) == 0x240, "UnkFadeLayout_ovb0273 placeholder layout");
+static_assert(__builtin_offsetof(UnkFadeLayout_ovb0273, progress) == 0x348, "UnkFadeLayout_ovb0273 placeholder layout");
+static_assert(__builtin_offsetof(UnkFadeLayout_ovb0273, done) == 0x430, "UnkFadeLayout_ovb0273 placeholder layout");
 
-static inline UnkFadeLayout* L(UnkEnvironmentFade* self) { return reinterpret_cast<UnkFadeLayout*>(self); }
+static inline UnkFadeLayout_ovb0273* L(UnkEnvironmentFade* self) { return reinterpret_cast<UnkFadeLayout_ovb0273*>(self); }
 
 // A vector of four faded from `from` to `to`.
 static inline UnkVector4D FadeLerp4(f32 t, const UnkVector4D& from, const UnkVector4D& to) {
@@ -98,7 +99,7 @@ static inline f32 NonNegative(f32 v) { return v <= 0.0f ? 0.0f : v; }
 
 // Channel 3: the colour sent to the pass parameter 0x86fdd4eeb6de9890.
 void fn_7100f9a2cc(f32 dt, UnkEnvironmentFade* fade) {
-    UnkFadeLayout* self = L(fade);
+    UnkFadeLayout_ovb0273* self = L(fade);
     f32 t = self->Step(3, dt);
     UnkVector4D r = FadeLerp4(t, self->c3.now, self->c3.to);
     UnkVector4D v(r);
@@ -110,7 +111,7 @@ void fn_7100219e6c(UnkRenderManager* self, const CColor4F* color);
 
 // Channel 4: a colour, each component at least zero, to the render manager.
 void fn_7100f9a408(f32 dt, UnkEnvironmentFade* fade) {
-    UnkFadeLayout* self = L(fade);
+    UnkFadeLayout_ovb0273* self = L(fade);
     f32 t = self->Step(4, dt);
     UnkVector4D r = FadeLerp4(t, self->from4, self->to4);
     CColor4F color;
@@ -121,16 +122,9 @@ void fn_7100f9a408(f32 dt, UnkEnvironmentFade* fade) {
     fn_7100219e6c(g_unk_7101d47300, &color);
 }
 
-struct UnkFadeColor {
-    f32 r;
-    f32 g;
-    f32 b;
-    f32 a;
-};
-
 // Channel 6: a colour, each component at least zero, as the vector the render manager's layer 1 takes.
 void fn_7100f9a6d8(f32 dt, UnkEnvironmentFade* fade) {
-    UnkFadeLayout* self = L(fade);
+    UnkFadeLayout_ovb0273* self = L(fade);
     f32 t = self->Step(6, dt);
     UnkVector4D r = FadeLerp4(t, self->from6, self->to6);
     CColor4F color;
@@ -145,7 +139,7 @@ void fn_7100f9a6d8(f32 dt, UnkEnvironmentFade* fade) {
 
 // Channel 13: fades the colour in place (from itself to its end) and flags the first parameter block.
 void fn_7100f9ada4(f32 dt, UnkEnvironmentFade* fade) {
-    UnkFadeLayout* self = L(fade);
+    UnkFadeLayout_ovb0273* self = L(fade);
     f32 t = self->Step(13, dt);
     UnkVector4D r = FadeLerp4(t, self->c13.now, self->c13.to);
     Assign(self->c13.now, r);
@@ -154,7 +148,7 @@ void fn_7100f9ada4(f32 dt, UnkEnvironmentFade* fade) {
 
 // Channel 18: the colour sent to the pass parameter 0xdaafacbdfd7d600f.
 void fn_7100f9aeec(f32 dt, UnkEnvironmentFade* fade) {
-    UnkFadeLayout* self = L(fade);
+    UnkFadeLayout_ovb0273* self = L(fade);
     f32 t = self->Step(18, dt);
     UnkVector4D r = FadeLerp4(t, self->c18.now, self->c18.to);
     UnkVector4D v(r);
@@ -192,7 +186,7 @@ static inline u32 Bits(f32 v) {
 // Channel 9: the blended pair goes to the light object, the first into its target's +0x7c and the second
 // to its member at +0x28.
 void fn_7100f9ac60(f32 dt, UnkEnvironmentFade* fade) {
-    UnkFadeLayout* self = L(fade);
+    UnkFadeLayout_ovb0273* self = L(fade);
     f32 t = self->Step(9, dt);
     UnkEnvManager* manager = static_cast<UnkEnvManager*>(g_unk_7101d47368);
     if (!manager) {

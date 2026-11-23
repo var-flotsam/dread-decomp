@@ -7,15 +7,9 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CAnimationResource.h"
+#include "game/UnkPathPairTemp_b45a1.h"
 #include "game/UnkTU25.h"
 #include "types.h"
-
-// The id and path pair, destroyed out of line.
-struct UnkPathPairTemp_b45a1 {
-    void* id;
-    void* path;
-    ~UnkPathPairTemp_b45a1() { fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(this)); }
-};
 
 struct UnkCurveObject_b45a1 {
     virtual ~UnkCurveObject_b45a1();

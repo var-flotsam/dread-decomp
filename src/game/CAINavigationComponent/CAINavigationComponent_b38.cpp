@@ -13,7 +13,7 @@ using base::reflection::UnkReflValue;
 
 extern base::reflection::CClass g_unk_717270d1c0;
 
-struct UnkQuery {
+struct UnkQuery_b38 {
     void** vtable;
     u32 field_0x8;
     u32 field_0xc;
@@ -28,7 +28,7 @@ struct UnkQuery {
     u8 pad_0x31[3];
     u32 field_0x34;
 
-    UnkQuery() {
+    UnkQuery_b38() {
         vtable = g_unk_7101a24b58 + 2;
         __builtin_memset(&field_0x8, 0, 13);
         field_0x1c = 0;
@@ -80,7 +80,7 @@ void fn_71006f4d84(UnkNavSelf* self, const UnkMatrix44* xform, const u8* flags) 
     const UnkNavValue* value = base::reflection::refl_ArgValue<UnkNavValue>(v);
     if (!value || !value->field_0x14)
         return;
-    UnkQuery query;
+    UnkQuery_b38 query;
     const UnkMatrix44& m = fn_710002614c(xform);
     u32 x = AsU32(m.m[2]);
     u32 y = AsU32(m.m[6]);

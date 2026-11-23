@@ -5,15 +5,9 @@
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntString.h"
+#include "game/UnkBlob_u71.h"
 #include "game/UnkTU25.h"
 #include "types.h"
-
-// A block that is either owned (copied on assignment) or borrowed.
-struct UnkBlob_u71 {
-    u32 size;
-    void* data;  // 0x8
-    bool owns;   // 0x10
-};
 
 UnkBlob_u71* fn_7100094910(UnkBlob_u71* self, const UnkBlob_u71* other) {
     if (self->owns) {

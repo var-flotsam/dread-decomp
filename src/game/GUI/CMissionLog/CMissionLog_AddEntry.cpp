@@ -2,13 +2,8 @@
 // 0x270 for entries of kind 2, else at 0x248) with fn_7100b593d0, then refreshes the log (fn_7100b59690).
 // Names and layouts are placeholders.
 #include "game/GUI/UnkMissionLogRecords.h"
+#include "game/UnkMissionLog.h"
 #include "types.h"
-
-struct UnkMissionLog {
-    u8 pad_0x0[0x248];
-    u8 entries_0x248[0x28];
-    u8 entries_0x270[0x28];
-};
 
 bool fn_7100b59690(UnkMissionLog* self, bool flag);
 

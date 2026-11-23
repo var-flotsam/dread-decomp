@@ -3,7 +3,9 @@
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
+#include "game/UnkEntry_bbd.h"
 #include "game/UnkTU1160.h"
+#include "game/UnkVec3_1161_b42.h"
 #include "types.h"
 
 extern void* g_unk_7101a6da30[];
@@ -16,13 +18,6 @@ struct UnkHolder_1161_b42 {
     base::global::CRntVector<void*> items;  // 0xb8
     u8 pad_0xe0[0x8];
     UnkMember_e8_b42* member() { return reinterpret_cast<UnkMember_e8_b42*>(reinterpret_cast<char*>(this) + 0xe8); }
-};
-
-// Declared as src/game/CBillboardComponent/CBillboardComponent_b40.cpp does: the destructor of
-// that unit's 0x148-byte entries.
-struct UnkEntry_bbd {
-    u8 data[0x148];
-    ~UnkEntry_bbd() asm("fn_7100745b24");
 };
 
 // Clang 9 ignores the asm label on a destructor and emits its mangled symbols, so this alias gives
@@ -52,13 +47,6 @@ struct UnkPoint_1161_b42 {
     base::math::CVector3D local;  // 0x30
     u8 pad_0x3c[0xe0];
     base::math::CVector3D offset;  // 0x11c
-};
-
-// Returned in memory: the vector type has a user-written copy constructor.
-struct UnkVec3_1161_b42 {
-    f32 x, y, z;
-    UnkVec3_1161_b42(f32 x, f32 y, f32 z) : x(x), y(y), z(z) {}
-    UnkVec3_1161_b42(const UnkVec3_1161_b42& o) : x(o.x), y(o.y), z(o.z) {}
 };
 
 UnkVec3_1161_b42 fn_7100745f80(const UnkPoint_1161_b42* self) {

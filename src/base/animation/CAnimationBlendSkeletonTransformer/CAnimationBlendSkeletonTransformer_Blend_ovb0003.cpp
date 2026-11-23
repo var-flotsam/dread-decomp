@@ -13,6 +13,7 @@
 // Names and layouts are placeholders.
 #include <memory>
 #include <new>
+#include "base/UnkKeyedEntry.h"
 
 #include "base/UnkMatrix44.h"
 #include "game/UnkTU23.h"
@@ -125,10 +126,6 @@ void fn_7100003344(UnkBlendOwner_ovb0003* self) {
     }
     self->entries.Clear();
 }
-
-struct UnkKeyedEntry {
-    u8 data[0x40];
-};
 
 struct UnkKeyedTable {
     void* vtable;

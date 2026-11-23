@@ -16,6 +16,7 @@
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshHit.h"
+#include "game/UnkNavMeshHits.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU107.h"
@@ -27,6 +28,7 @@
 #include "game/UnkTU376.h"
 #include "game/UnkTU55.h"
 #include "game/UnkTU56.h"
+#include "game/malloc.h"
 #include "game/navmesh/CDynamicSmartLinkRules.h"
 #include "game/navmesh/CNavMesh.h"
 #include "types.h"
@@ -262,31 +264,6 @@ struct UnkNavMeshRay {
 // The best side found so far: the cell, the side and the closest point on it. Its constructor
 // (fn_7100287598) and destructor (fn_710028760c, empty) are out of line; it is copied word by word.
 
-// A list of hits with room for a fixed number (not known here) after the count.
-struct UnkNavMeshHits {
-    u32 count;
-
-    UnkNavMeshHit* items() { return reinterpret_cast<UnkNavMeshHit*>(&count + 1); }
-    void Clear() {
-        for (u64 i = 0; i < count; ++i)
-            items()[i].~UnkNavMeshHit();
-        count = 0;
-    }
-    // The hit at `i`, constructing the ones up to it first when the list is shorter.
-    UnkNavMeshHit& At(u64 i) {
-        if (i >= count) {
-            for (u32 j = count; j < i + 1; ++j)
-                new (&items()[j]) UnkNavMeshHit;
-            count = i + 1;
-        }
-        return items()[i];
-    }
-    void Push(const UnkNavMeshHit& hit) {
-        new (&items()[count]) UnkNavMeshHit(hit);
-        ++count;
-    }
-};
-
 struct UnkDirectionFilter;  // src/game/UnkDirectionFilter.cpp
 
 // The closure of the per-side visitor fn_710027c298 (a lambda of fn_710027bbf0, capturing by
@@ -379,7 +356,6 @@ void fn_710027c134(const UnkNavMeshRayProbe* self, UnkNavMeshBox* box, f32 dx, f
 struct UnkRegion_710027a41c;      // a cell record (src/game/navmesh/CNavMesh/fn_710027a41c.cpp)
 struct UnkSegment2D_71001262e0;   // a segment's two points (src/game/malloc/fn_71001262e0.cpp)
 
-f32 fn_71001262e0(const UnkSegment2D_71001262e0* seg, const CVector2D* p, CVector2D* closest, f32* t);
 bool fn_71006f379c(const UnkDirectionFilter* self, const UnkSegment2D* seg);
 bool fn_71002afc84(const Cell* cell, const u8* side, u32 flags);
 

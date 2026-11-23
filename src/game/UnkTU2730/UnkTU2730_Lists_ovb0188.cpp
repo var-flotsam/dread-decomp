@@ -17,7 +17,9 @@
 #include "game/CPlayerInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerNamedDef.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkSubAreaDropTargetView.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1643.h"
 #include "game/UnkTU23.h"
@@ -224,11 +226,6 @@ void fn_71011990e8(UnkIdHolder_b0188* self) {
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-struct UnkGameManagerNamedDef : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedName name;
-};
 
 const UnkSubId_7100fc4b34& fn_710119a610(UnkQualifiedName* self, const void* path);
 bool fn_7100a68fb0(CBlackboard::CSection* section, const void* name, u32* out);
@@ -518,16 +515,6 @@ struct UnkPlayer;
 struct UnkComponentOwner;
 
 struct UnkDropTarget;
-struct UnkSubAreaDropTargetView {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38(u32 a, u32 b);
-};
 
 void fn_7100d7ae80(UnkComponentOwner* self);
 void fn_7101192a4c(void* self);

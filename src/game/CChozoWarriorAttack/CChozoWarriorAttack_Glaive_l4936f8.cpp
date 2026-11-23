@@ -12,6 +12,8 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU54.h"
+#include "game/UnkTileOutline.h"
+#include "game/UnkTilePoint.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
@@ -22,25 +24,6 @@ using base::math::CVector3D;
 
 struct UnkVec3;
 
-// An outline: its points (fn_7100118b94 appends one), a z, flags, its bounds and a word; the
-// outline set copies it (0x48 bytes).
-struct UnkTilePoint {
-    f32 x, y, z;
-};
-struct UnkTileOutline {
-    base::global::CRntVector<UnkTilePoint> points;
-    f32 field_0x28;
-    bool field_0x2c;
-    bool field_0x2d;
-    base::math::CVector2D min;
-    base::math::CVector2D max;
-    u32 field_0x40;
-
-    UnkTileOutline()
-        : points(7), field_0x28(0.0f), field_0x2c(false), field_0x2d(true), min{3.4028235e38f, 3.4028235e38f},
-          max{-3.4028235e38f, -3.4028235e38f}, field_0x40(0) {}
-    ~UnkTileOutline() { points.Free(); }
-};
 static_assert(sizeof(UnkTileOutline) == 0x48, "UnkTileOutline placeholder layout");
 
 __attribute__((visibility("hidden"))) extern CStrId g_unk_71726d0890;  // the glaive collider's name

@@ -6,15 +6,15 @@
 extern void* g_unk_7101a8ad08[];
 extern void* g_unk_7101a8ad38[];
 
-struct UnkPair16 {
+struct UnkPair16_b35 {
     u64 a;
     u64 b;
 };
 struct UnkVariableAngleLaunchConfig {
     void** vtable;
-    UnkPair16 base_0x8;
-    UnkPair16 field_0x18;
-    UnkPair16 field_0x28;
+    UnkPair16_b35 base_0x8;
+    UnkPair16_b35 field_0x18;
+    UnkPair16_b35 field_0x28;
 };
 
 static inline __attribute__((always_inline)) UnkVariableAngleLaunchConfig* CopyConfig(
@@ -22,7 +22,7 @@ static inline __attribute__((always_inline)) UnkVariableAngleLaunchConfig* CopyC
     self->vtable = &g_unk_7101a8ad08[2];
     self->base_0x8 = other->base_0x8;
     self->vtable = &g_unk_7101a8ad38[2];
-    __builtin_memcpy(&self->field_0x18, &other->field_0x18, 2 * sizeof(UnkPair16));
+    __builtin_memcpy(&self->field_0x18, &other->field_0x18, 2 * sizeof(UnkPair16_b35));
     return self;
 }
 

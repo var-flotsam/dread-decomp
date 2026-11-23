@@ -13,14 +13,14 @@ struct UnkFXName {
     u64 hash;
 };
 
-struct UnkFXEntry {
+struct UnkFXEntry_01152b90 {
     UnkComponent* effect;
     u8 pad_0x8[0x18];
 };
 
 struct UnkObject {
     u8 pad_0x0[0x50];
-    UnkFXEntry* values;
+    UnkFXEntry_01152b90* values;
     UnkFXName** names;
     u32 count;
 };
@@ -28,7 +28,7 @@ struct UnkObject {
 // NON_MATCHING(minor): the original compares the slot with the end before testing it for null (in its
 // conditional compare); same behaviour.
 UnkComponent* fn_7101152b90(UnkObject* self, u64 hash) {
-    UnkFXEntry* slot = [&] {
+    UnkFXEntry_01152b90* slot = [&] {
         for (u32 i = 0; i < self->count; ++i)
             if (self->names[i]->hash == hash)
                 return &self->values[i];
@@ -88,7 +88,7 @@ void fn_7101152c0c(UnkObject* self, void* effect, u32 on, u32 restart) {
 // NON_MATCHING(minor): as fn_7101152b90, the slot is tested for null before the end, and the effect's
 // flag is compared as a bool where the original tests it as a byte; same behaviour.
 void fn_710114fe8c(UnkObject* self, u64 hash, u32 on, u32 restart) {
-    UnkFXEntry* slot = [&] {
+    UnkFXEntry_01152b90* slot = [&] {
         for (u32 i = 0; i < self->count; ++i)
             if (self->names[i]->hash == hash)
                 return &self->values[i];

@@ -8,7 +8,7 @@ struct UnkShape;
 
 extern u64 g_unk_717273caf0 __attribute__((visibility("hidden")));
 
-struct UnkMovementShape {
+struct UnkMovementShape_b34 {
     u8 unk_0x0[0x20];
     u64 field_0x20;
 };
@@ -20,7 +20,7 @@ struct CSamusMovementState {
 
 // Whether the owner's shape no longer carries the default id g_unk_717273caf0.
 bool fn_71009b2d0c(CSamusMovementState* self) {
-    UnkMovementShape* shape = reinterpret_cast<UnkMovementShape*>(fn_7100976588(self->owner));
+    UnkMovementShape_b34* shape = reinterpret_cast<UnkMovementShape_b34*>(fn_7100976588(self->owner));
     return shape->field_0x20 != g_unk_717273caf0;
 }
 

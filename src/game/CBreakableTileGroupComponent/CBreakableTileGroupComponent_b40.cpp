@@ -4,12 +4,8 @@
 // through their vtables first). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTileEntry_bt.h"
 #include "types.h"
-
-struct UnkTileEntry_bt {
-    virtual ~UnkTileEntry_bt();
-    u8 pad_0x8[0x38];
-};
 
 struct UnkTileRecord_bt {
     u32 field_0x0;

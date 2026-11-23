@@ -10,6 +10,7 @@
 #include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
+#include "game/UnkTimeline.h"
 #include "types.h"
 
 // The motion fn_71007142e8 initialises: the time it ends on at +0x2c.
@@ -20,12 +21,6 @@ struct UnkStruct_71007142e8 {
 };
 
 struct UnkMotionTracks;
-struct UnkTimeline {
-    u8 pad_0x0[0x24];
-    s32 frame_count;
-    u8 pad_0x28[0x58];
-    UnkMotionTracks* tracks;  // 0x80
-};
 
 struct UnkYamplotXAI_l6ef568;
 void fn_71006f3288(UnkYamplotXAI_l6ef568* self);

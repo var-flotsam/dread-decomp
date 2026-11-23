@@ -17,6 +17,7 @@
 #include "base/input/UnkRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/CActorComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CBossAIComponent.h"
@@ -25,6 +26,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkModeFlags.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
@@ -126,11 +128,6 @@ struct UnkGameManagerPrompt_ovb0168 {
     UnkPromptHolder_ovb0168* holder;
 };
 
-struct UnkModeFlags {
-    u8 unk_0x0[0xb8];
-    bool field_0xb8;
-};
-
 struct UnkPromptCallback_ovb0168 {
     void* owner;
     void (*fn)(void*);
@@ -166,8 +163,6 @@ using base::global::CFilePathStrId;
 
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
-
-void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 
 void fn_7101187e2c() {
     base::file::UnkFileDevice* device = g_unk_7101d4d828;

@@ -14,6 +14,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/CType.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU57.h"
@@ -27,7 +28,6 @@ using base::reflection::UnkTypedRef;
 
 using UnkString100 = UnkBufferString<0x100, g_unk_7101a194b8>;
 
-bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const base::reflection::UnkTypedRef* src);
 struct UnkFormatSource;
 UnkString100 fn_7100adc570(UnkFormatSource* self);
 void fn_710007e7d8(CRntString* self, const char* str, bool borrowed);

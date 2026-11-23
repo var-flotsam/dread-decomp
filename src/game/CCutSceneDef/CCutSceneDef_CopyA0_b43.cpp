@@ -5,6 +5,7 @@
 // capacity grows to the next multiple of the step, and a count that can't grow hangs, as in
 // base::global::CRntVector::PushBack. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkElemA0Array_b42a3.h"
 #include "game/UnkTU2200.h"
 #include "types.h"
 
@@ -13,16 +14,6 @@
 // As src/game/CCutSceneDef/CCutSceneDef_b42.cpp declares them.
 struct UnkElemA0_b42a3 {
     u8 unk_0x0[0xa0];
-};
-
-struct UnkElemA0Array_b42a3 {
-    UnkElemA0_b42a3* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
 };
 
 void fn_7100c8bba4(UnkElemA0_b42a3* self, const UnkElemA0_b42a3* other);  // the element's copy constructor

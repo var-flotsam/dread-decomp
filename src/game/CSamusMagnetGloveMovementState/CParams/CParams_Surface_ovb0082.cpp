@@ -4,13 +4,9 @@
 // handle at +0x338 still refers to. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkHandleTarget_ovb0082.h"
 #include "game/UnkTU50.h"
 #include "types.h"
-
-struct UnkHandleTarget_ovb0082 {
-    void* target;
-    u64 serial;
-};
 
 struct UnkHandle {
     UnkHandleTarget_ovb0082* target;

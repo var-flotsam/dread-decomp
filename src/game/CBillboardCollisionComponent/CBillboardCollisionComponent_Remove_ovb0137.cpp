@@ -4,8 +4,10 @@
 #include "base/global/CRntVector.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkMatrix44_7100078c9c.h"
 #include "game/UnkTU1159.h"
 #include "game/UnkTU54.h"
+#include "game/UnkVec3Result.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -38,18 +40,6 @@ struct UnkBillboardMap_ovb0137 {
     }
 };
 
-struct UnkMatrix44_7100078c9c {
-    f32 m[16];
-};
-
-// Returned through x8, so the original's result type is not trivially copyable.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 struct UnkStruct_71007455dc;
 struct UnkSwarmMember_ovb6;
 

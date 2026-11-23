@@ -19,6 +19,8 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkDoorList_b0193.h"
+#include "game/UnkEmmyAI_b0193.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkNavMeshCell.h"
@@ -61,11 +63,6 @@ struct UnkEmmyOwner_b0193 {
 struct UnkEmmyOther_b0193 {
     u8 unk_0x0[0x34];
     u8 field_0x34;
-};
-
-struct UnkEmmyAI_b0193 {
-    u8 unk_0x0[0x30];
-    UnkEmmyOwner_b0193* field_0x30;
 };
 
 void fn_710110fbc4(UnkEmmyAI_b0193* self, UnkEmmyOther_b0193* other);
@@ -309,10 +306,6 @@ struct UnkEmmyRelaxAI_b59;
 struct UnkFlagged;
 struct UnkShape;
 
-struct UnkDoorList_b0193 {
-    base::reflection::UnkReflObject** items;
-    u32 count;
-};
 bool fn_7100d57f44(UnkShape* shape, UnkCollisionObject* object, void* a, u32 b);
 
 struct UnkDoorOwner_b0193 {

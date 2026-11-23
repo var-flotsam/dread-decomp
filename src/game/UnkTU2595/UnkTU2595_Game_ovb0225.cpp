@@ -6,21 +6,13 @@
 #include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSingleton2595_b0225.h"
 #include "game/UnkTU2595.h"
 #include "game/UnkTU2656.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/UnkMask.h"
-
-struct UnkSingleton2595_b0225 {
-    u8 pad_0x0[0x59];
-    bool field_0x59;
-    u8 pad_0x5a[0x6];
-
-    UnkSingleton2595_b0225();  // fn_7100ec7aec
-};
-
 
 struct UnkSingleton2595_b49a6;
 

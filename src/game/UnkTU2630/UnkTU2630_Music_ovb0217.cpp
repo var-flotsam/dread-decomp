@@ -2,24 +2,13 @@
 // while its state is 5. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkMusicMgr_b0217.h"
+#include "game/UnkMusicState_b0217.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
-struct UnkMusicState_b0217 {
-    u8 pad_0x0[0x10];
-    s32 state;  // 0x10
-};
-
 struct UnkMgr_0xf18;
-
-struct UnkMusicMgr_b0217 {
-    u8 pad_0x0[0x2f8];
-    UnkMusicState_b0217* field_0x2f8;
-    u8 pad_0x300[0x8c];
-    s32 field_0x38c;
-    u8 pad_0x390[0xb88];
-};
 
 void fn_7100fcefec() {
     if (!g_unk_71726bc560) {

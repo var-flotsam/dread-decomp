@@ -6,16 +6,12 @@
 #include "game/CAutsharpAIComponent.h"
 #include "game/CShockWaveComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkShockWaveMember.h"
 #include "game/UnkTU604.h"
 #include "types.h"
 #include "base/UnkVtableList.h"
 
 struct UnkShockWaveMember;
-
-struct UnkShockWaveMember {
-    u8 unk_0x0[0x210];
-    ~UnkShockWaveMember() { fn_71003cc474(this); }
-};
 
 struct UnkShockWaveNode {
     u64 field_0x0;

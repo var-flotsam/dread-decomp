@@ -4,15 +4,11 @@
 // through their virtual destructor), then append a copy of each entry (fn_7100246ba8). Names and
 // layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkEntry_b41a1.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 // The move constructor, typed as CCentralUnitComponent's 0x40-byte half (one declaration per symbol).
-
-struct UnkEntry_b41a1 {
-    virtual ~UnkEntry_b41a1();
-    u8 pad_0x8[0x38];
-};
 
 void fn_7100246a94(base::global::CRntVector<UnkEntry_b41a1>* self, const base::global::CRntVector<UnkEntry_b41a1>* other) {
     self->data = nullptr;

@@ -10,7 +10,7 @@
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
-struct UnkComponent {
+struct UnkComponent_b61 {
     u8 pad_0x0[0xb];
     u8 field_0xb;
 };
@@ -29,13 +29,13 @@ struct UnkBeamBurstAttack_b61a2 {
     u8 pad_0x0[0x8];
     UnkBeamBurstOwner_b61a2* owner;
     u8 pad_0x10[0x50];
-    UnkComponent* field_0x60;
+    UnkComponent_b61* field_0x60;
 };
 
 // The component with the hash, looked up once and cached at +0x60 (null when the kind check rejects it).
-static inline UnkComponent* Find_b61a2(UnkBeamBurstAttack_b61a2* self, UnkObject* object) {
+static inline UnkComponent_b61* Find_b61a2(UnkBeamBurstAttack_b61a2* self, UnkObject* object) {
     if (object && !self->field_0x60) {
-        UnkComponent* component = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+        UnkComponent_b61* component = reinterpret_cast<UnkComponent_b61*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
                                                                                 0x801aa095101c1236ull));
         if (component)
             component = fn_710114e680(object, component->field_0xb) ? component : nullptr;
@@ -53,7 +53,7 @@ void fn_7100429384(UnkBeamBurstAttack_b61a2* self) {
         fn_7100a2cb7c(timeline, &id.hash, &mask.id, false, -1.0f);
     }
     UnkObject* object = self->owner->field_0x280;
-    if (UnkComponent* component = Find_b61a2(self, object)) {
+    if (UnkComponent_b61* component = Find_b61a2(self, object)) {
         asm("" : "+r"(object));
         if (object) {
             auto* sw = reinterpret_cast<UnkSwitchObject*>(component);

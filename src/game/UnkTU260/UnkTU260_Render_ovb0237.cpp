@@ -4,10 +4,12 @@
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkBindList_b0237.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU179.h"
 #include "game/UnkTU182.h"
 #include "game/UnkTU259.h"
+#include "game/UnkU64P_b0237.h"
 #include "types.h"
 #include "game/UnkTU151.h"
 
@@ -42,9 +44,6 @@ void fn_71001d09a8(UnkRenderTargetA1* target);
 void fn_71001d09b8(UnkRenderTargetA1* target, f32 a, f32 b);
 void fn_71001d09d0(UnkRenderTargetA1* target, f32 a);
 
-struct __attribute__((packed)) UnkU64P_b0237 {
-    u64 v;
-};
 extern u32 g_unk_716e595ff4;
 extern u32 g_unk_716e595ff8;
 f32 fn_71001d0ac0(UnkRenderTargetA1* target);
@@ -72,12 +71,6 @@ f32 fn_71001d0a34(UnkRenderTargetA1* target);
 void fn_710014cff0(UnkSetupSub_b0237* sub, void* a, void* b, u32 c);
 
 
-// The list handed to fn_71001cdba4: a count, packed 8-byte entries and a trailing pointer.
-struct UnkBindList_b0237 {
-    u32 count;
-    UnkU64P_b0237 items[16];
-    void* tail;
-};
 static_assert(sizeof(UnkBindList_b0237) == 0x90, "UnkBindList_b0237 layout");
 
 struct UnkFlags_b0237 {

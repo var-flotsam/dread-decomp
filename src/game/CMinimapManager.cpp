@@ -19,6 +19,9 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMinimapDrawList.h"
+#include "game/UnkMinimapStatics.h"
+#include "game/UnkMinimapView.h"
 #include "game/UnkTU254.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
@@ -215,7 +218,7 @@ using UnkMinimapItemList = UnkMinimapPtrVector<UnkMinimapItem>;
 
 // A marker the map draws where its box overlaps the view: a kind (0x10) that picks its colour, the
 // shape it draws (0x18), its box and a word passed along.
-struct UnkMinimapMarker {
+struct UnkMinimapMarker_CMinimapManager {
     u8 unk_0x0[0x10];
     u8 kind[0x8];
     u8 shape[0x50];
@@ -270,13 +273,6 @@ struct UnkMinimapRef {
     UnkMapMenuController* target;
 };
 
-// The map's on-screen viewport: a node at 0x18 (fn_710020a5a0 scales it, fn_710020a4c4 places it), a
-// dirty flag and the view whose rectangle (position, size) fn_71001c36c0 applies.
-struct UnkMinimapView {
-    u8 unk_0x0[0x90];
-    base::math::CVector2D pos;
-    base::math::CVector2D size;
-};
 struct UnkMinimapViewport;
 struct UnkMinimapViewport {
     u8 unk_0x0[0x18];
@@ -339,7 +335,7 @@ struct UnkMinimapOwner {
     u8 unk_0xd63fd0[0x1f0];
     f32 field_0xd641c0;
     u8 unk_0xd641c4[0x1c];
-    UnkMinimapPtrVector<UnkMinimapMarker> markers;
+    UnkMinimapPtrVector<UnkMinimapMarker_CMinimapManager> markers;
     u8 unk_0xd64208[0xc0];
     base::global::CRntVector<base::global::CStrId> hidden_kinds;
     u8 unk_0xd642f0[0x28];
@@ -367,30 +363,11 @@ static_assert(__builtin_offsetof(UnkMinimapOwner, pass_items) == 0xd64318, "UnkM
 static_assert(__builtin_offsetof(UnkMinimapOwner, regions) == 0xd643b8, "UnkMinimapOwner layout");
 static_assert(__builtin_offsetof(UnkMinimapOwner, scale) == 0xd643e4, "UnkMinimapOwner layout");
 
-// A draw list (0x28 bytes): its entries and their count, reset at the start of each pass.
-struct UnkMinimapDrawList {
-    void* data;
-    u32 count;
-    u8 unk_0xc[0x1c];
-};
-
 // A list's entries as a pointer and a 64-bit count, as the scene objects take them.
 struct UnkMinimapSpan : UnkSceneSpan {
     UnkMinimapSpan(const UnkMinimapDrawList& list) : UnkSceneSpan{list.data, list.count} {}
 };
 
-// The unit's statics, which the compiler merged into one block (addressed from one base): the map
-// cell size at 0x71729cdaa4 (a guarded function-local static of fn_7100e91d68), its guard at
-// 0x71729cdb10 and the four draw lists at 0x71729cdba0. Declared from the 8-aligned word before
-// the cell size so the guard and the lists keep their natural alignment.
-struct UnkMinimapStatics {
-    u8 unk_0x0[0x4];
-    f32 cell_size;
-    u8 unk_0x8[0x68];
-    u64 cell_size_guard;
-    u8 unk_0x78[0x88];
-    UnkMinimapDrawList lists[4];
-};
 static_assert(__builtin_offsetof(UnkMinimapStatics, cell_size_guard) == 0x70, "UnkMinimapStatics layout");
 static_assert(__builtin_offsetof(UnkMinimapStatics, lists) == 0x100, "UnkMinimapStatics layout");
 
@@ -662,7 +639,7 @@ void fn_7100ea3f7c(UnkMinimapOwner* self) {
     UnkIngameMenuHud* pause = fn_7100deac84(g_unk_7101d47310)->field_0x2d0;
     if (pause && pause->field_0x236)
         return;
-    for (UnkMinimapMarker* marker : self->markers) {
+    for (UnkMinimapMarker_CMinimapManager* marker : self->markers) {
         if (marker->box.max_x >= self->view.min_x && marker->box.min_x <= self->view.max_x &&
             marker->box.max_y >= self->view.min_y && marker->box.min_y <= self->view.max_y) {
             UnkMinimapDrawList* lists = g_unk_71729cdaa0.lists;
@@ -836,7 +813,7 @@ static_assert(sizeof(UnkMinimapBuffer) == 0x20, "UnkMinimapBuffer layout");
 
 // A block of view settings (two copies: 0x98 and 0xd0). UnkMinimapOwner reads the first one's
 // screen position (0xa4), size (0xac) and zoom (0xbc).
-struct UnkMinimapSettings {
+struct UnkMinimapSettings_CMinimapManager {
     f32 field_0x0 = 0.0f;
     f32 field_0x4 = 150.0f;
     f32 field_0x8 = 1.0f;
@@ -852,7 +829,7 @@ struct UnkMinimapSettings {
     f32 field_0x30 = 3.0f;
     bool field_0x34 = true;
 };
-static_assert(sizeof(UnkMinimapSettings) == 0x38, "UnkMinimapSettings layout");
+static_assert(sizeof(UnkMinimapSettings_CMinimapManager) == 0x38, "UnkMinimapSettings_CMinimapManager layout");
 
 // One map cell (0x48 bytes; 195000 of them).
 struct UnkMinimapCell {
@@ -930,7 +907,7 @@ struct UnkMinimapManager {
     u64 field_0x68;
     u64 field_0x70;
     UnkMinimapBuffer field_0x78;
-    UnkMinimapSettings settings[2];  // 0x98, 0xd0
+    UnkMinimapSettings_CMinimapManager settings[2];  // 0x98, 0xd0
     u32 field_0x108;
     UnkMinimapEmptyId field_0x110;
     UnkMinimapCell cells[195000];  // 0x118
@@ -1035,8 +1012,8 @@ void fn_7100e8c114(UnkMinimapManager* self) {
     self->field_0x70 = 0;
     self->vtable = g_unk_7101ca9e38 + 2;
     new (&self->field_0x78) UnkMinimapBuffer;
-    new (&self->settings[0]) UnkMinimapSettings;
-    new (&self->settings[1]) UnkMinimapSettings;
+    new (&self->settings[0]) UnkMinimapSettings_CMinimapManager;
+    new (&self->settings[1]) UnkMinimapSettings_CMinimapManager;
     self->field_0x108 = 0;
     new (&self->field_0x110) UnkMinimapEmptyId;
     for (UnkMinimapCell& c : self->cells)

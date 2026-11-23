@@ -5,29 +5,22 @@
 // 64-bit keys with 8-byte elements (fn_71000d87c8, fn_71000d8dfc, fn_71000da1b0, fn_71000da828),
 // and 0x30-byte elements compared by fn_710007f120 (fn_71000df9dc, fn_71000dfd00).
 #include "base/UnkCollectionIter.h"
+#include "base/UnkCompared_0x18.h"
+#include "base/UnkCompared_0x30.h"
 #include "base/reflection.h"
+#include "game/UnkCompared_0x28b.h"
+#include "game/UnkKey64.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
 using base::UnkIterValue;
 
-struct UnkCompared_0x18 {
-    u64 words[3];
-};
 inline bool operator==(const UnkCompared_0x18& a, const UnkCompared_0x18& b) { return fn_71000a1ed4(&a, &b); }
 
-struct UnkCompared_0x30 {
-    u64 words[6];
-};
 inline bool operator==(const UnkCompared_0x30& a, const UnkCompared_0x30& b) { return fn_710007f120(&a, &b); }
 
 using UnkIterValue_0x18 = UnkIterValue<UnkCompared_0x18>;
-// A 64-bit key compared through its own operator (a plain u64 index loads it earlier).
-struct UnkKey64 {
-    u64 value;
-    bool operator!=(const UnkKey64& o) const { return value != o.value; }
-};
 using UnkIterValueU64 = UnkIterValue<u64, UnkKey64>;
 using UnkIterValue_0x30 = UnkIterValue<UnkCompared_0x30>;
 
@@ -68,10 +61,6 @@ bool fn_7100247830(const UnkIterValueKey64_0x28& a, const UnkIterValueKey64_0x28
 
 bool fn_7100247f10(const UnkIterValueKey64_0x28& a, const UnkIterValueKey64_0x28& b) { return a == b; }
 
-// 0x28-byte elements compared by fn_7100d883f0 with 64-bit keys (fn_7100d89094, fn_7100d89774).
-struct UnkCompared_0x28b {
-    u64 words[5];
-};
 bool fn_7100d883f0(const UnkCompared_0x28b* a, const UnkCompared_0x28b* b);
 inline bool operator==(const UnkCompared_0x28b& a, const UnkCompared_0x28b& b) { return fn_7100d883f0(&a, &b); }
 using UnkIterValueKey64_0x28b = UnkIterValue<UnkCompared_0x28b, UnkKey64>;

@@ -30,6 +30,8 @@
 #include "game/UnkGuiLabel.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkNumberText_b41a3.h"
+#include "game/UnkStrIdHandle.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU1686.h"
 #include "game/UnkTU2553.h"
@@ -149,9 +151,6 @@ int fn_710109a820(lua_State* L) {
 }
 
 struct UnkWideStr_0x20;
-struct UnkNumberText_b41a3 {
-    u8 unk_0x0[0x20];
-};
 
 int fn_71010998b0(lua_State* L) {
     UnkGuiDisplayObject* object = fn_710109b870(L, 1);
@@ -194,12 +193,6 @@ int fn_7101099d60(lua_State* L) {
     }
     return 0;
 }
-
-struct UnkStrIdHandle {
-    CStrId id;
-    void* field_0x8;
-    UnkStrIdHandle(const CStrId& id);  // fn_7100ae986c
-};
 
 int fn_710109aee0(lua_State* L) {
     const char* name = g_unk_710162e2ed;

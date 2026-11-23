@@ -65,13 +65,13 @@ UnkAbility* fn_7100df59cc(UnkPlayer* self) {
 
 // Whether the ability is in state 6: its state at 0xb4, or while that is 7 the state of its
 // object at 0x20 (when there is one).
-struct UnkAbilityState {
+struct UnkAbilityState_df5308 {
     u8 unk_0x0[0x10];
     s32 state;
 };
 struct UnkStatefulAbility : UnkAbility {
     u8 unk_0x8[0x18];
-    UnkAbilityState* sub;
+    UnkAbilityState_df5308* sub;
     u8 unk_0x28[0x8c];
     s32 state;
 

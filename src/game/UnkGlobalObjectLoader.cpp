@@ -15,15 +15,11 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkEntry_0x30.h"
 #include "game/UnkTU56.h"
 #include "types.h"
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
-
-// A string (base::global::CRntString's layout), as src/game_hi/fn_71011b69d8.cpp names it.
-struct UnkEntry_0x30 {
-    u8 data[0x30];
-};
 
 // The id and path pair (base/UnkStrIdPathPair.h) that fn_710008d4c0 builds and fn_710008d8e8
 // destroys, as src/game_hi/fn_71011b69d8.cpp names it.

@@ -4,13 +4,9 @@
 // (fn_7100d88548, src/game/CEntity/CEntity_VectorCopy_b43.cpp). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CDemolitionBlockComponent.h"
+#include "game/UnkEntry_b43a3.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
-
-struct UnkEntry_b43a3 {
-    virtual ~UnkEntry_b43a3();
-    u8 pad_0x8[0x38];
-};
 
 base::global::CRntVector<UnkEntry_b43a3>* fn_7100d88824(base::global::CRntVector<UnkEntry_b43a3>* self,
                                                const base::global::CRntVector<UnkEntry_b43a3>* other) {

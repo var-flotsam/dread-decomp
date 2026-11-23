@@ -14,6 +14,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkSoundRef.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2725.h"
 #include "game/UnkTU2744.h"
@@ -28,10 +29,6 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringEntry;
 
-struct UnkSoundRef {
-    UnkSound* object;
-    s64 serial;
-};
 extern void* g_unk_7101cb51b8[];               // the menu's vtable
 
 struct UnkCompared_0x30;

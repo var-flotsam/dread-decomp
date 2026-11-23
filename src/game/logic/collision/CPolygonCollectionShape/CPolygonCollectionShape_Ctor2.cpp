@@ -6,13 +6,10 @@
 
 #include "base/global/CRntVector.h"
 #include "game/UnkTU109.h"
+#include "game/UnkTileOutlineList.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game/logic/collision/CShape.h"
 #include "types.h"
-
-struct UnkTileOutlineList {
-    u8 data[0x40];
-};
 
 struct UnkPolygonCollectionShapeView2 {
     char* vtable;

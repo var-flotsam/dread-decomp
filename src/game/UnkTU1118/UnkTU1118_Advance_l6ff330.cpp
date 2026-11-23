@@ -1,26 +1,8 @@
 // Unit 1118: steps the state's selection by its step, wrapping or bouncing at the ends of the list as
 // its mode says, records whether the item there is ready and selects it. Names and layouts are placeholders.
+#include "game/UnkListObject_b0169.h"
+#include "game/UnkReadyObject_b0169.h"
 #include "types.h"
-
-// An object the state asks whether it is ready.
-struct UnkReadyObject_b0169 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual bool vf_0x20();
-};
-
-// A list-like object: ready, size and element accessors.
-struct UnkListObject_b0169 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual bool vf_0x20();
-    virtual s32 vf_0x28();
-    virtual UnkReadyObject_b0169* vf_0x30(s32 index);
-};
 
 struct UnkAIStateSelect_b0169;
 bool fn_71006fe16c(UnkAIStateSelect_b0169* self, s32 index);

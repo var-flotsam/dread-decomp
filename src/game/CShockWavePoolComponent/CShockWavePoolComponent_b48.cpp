@@ -5,16 +5,12 @@
 #include "base/global/CRntVector.h"
 #include "game/CComponent.h"
 #include "game/CSpitclawkAIComponent.h"
+#include "game/UnkShockWavePoolMember.h"
 #include "types.h"
 
 struct UnkParent;
 void fn_71009f5730(char* self);
 struct UnkShockWavePoolMember;
-
-struct UnkShockWavePoolMember {
-    u8 unk_0x0[0x228];
-    ~UnkShockWavePoolMember() { fn_71006c9404(this); }
-};
 
 // A freshly constructed member (fn_71009f5730).
 struct UnkShockWavePoolFreshB48 : UnkShockWavePoolMember {

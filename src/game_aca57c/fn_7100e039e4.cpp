@@ -2,13 +2,8 @@
 // words at 0x30) and, when it has a value and fn_7100decab0 gives a target with an object at
 // 0x248, hands the value to fn_71010e4998.
 #include "game/UnkGameManager.h"
+#include "game/UnkKeyObject.h"
 #include "types.h"
-
-struct UnkKeyObject {
-    u8 unk_0x0[0x30];
-    u32 hash_a;
-    u32 hash_b;
-};
 
 struct UnkMapNode {
     UnkKeyObject* key;

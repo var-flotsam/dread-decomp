@@ -14,20 +14,13 @@
 #include "game/CComponent.h"
 #include "game/CGunComponent.h"
 #include "game/CHydrogigaPolypsAttack.h"
+#include "game/UnkSmOther_b60.h"
+#include "game/UnkSmState_b60.h"
 #include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1450.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
-
-struct UnkSmState_b60 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10(s32 previous);  // entered
-    virtual void vf_0x18(s32 next);      // left
-    u64 field_0x8;
-    u32 id;
-};
 
 typedef UnkSmState_b60* __attribute__((aligned(4))) UnkSmStatePtr_b60;
 
@@ -245,11 +238,6 @@ void fn_71007b3204(UnkGuardedSm_b60* self) {
         return;
     RequestState_b60<3, 4>(&self->machine, 2);
 }
-
-struct UnkSmOther_b60 {
-    u8 pad_0x0[0x3a8];
-    bool field_0x3a8;
-};
 
 void fn_7100980cd0(UnkSmOwner_b60<0x30>* self) {
     if (fn_710097f198(reinterpret_cast<UnkSmBase_b60*>(self))->field_0x3a8)

@@ -15,6 +15,8 @@
 #include "game/CCameraCtrl.h"
 #include "game/CInputComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkCamMask_b0101.h"
+#include "game/UnkCamVec3_b0101.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
@@ -45,18 +47,6 @@ s32 fn_71010ec868(const char* name) {
 }
 
 // ----
-
-struct UnkCamVec3_b0101 {
-    f32 x, y, z;
-    UnkCamVec3_b0101(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkCamVec3_b0101(const UnkCamVec3_b0101& o) : x(o.x), y(o.y), z(o.z) {}
-    UnkCamVec3_b0101& operator=(const UnkCamVec3_b0101& o) {
-        x = o.x;
-        y = o.y;
-        z = o.z;
-        return *this;
-    }
-};
 
 // A camera placement: a position and a direction.
 struct UnkCamPlacement_b0101 {
@@ -126,14 +116,6 @@ void fn_71010ea3e4(UnkAnimatedCameraCtrl_b0101* self, bool reset) {
 
 struct UnkManager;
 
-// A bit mask passed by value (copied into a temporary), and its two guarded constants (as in
-// src/game/UnkLoadingScreen.cpp).
-struct UnkCamMask_b0101 {
-    u32 bits;
-    UnkCamMask_b0101() : bits(0) {}
-    UnkCamMask_b0101(u32 b) : bits(b) {}
-    UnkCamMask_b0101(const UnkCamMask_b0101& o) : bits(o.bits) {}
-};
 template <class T>
 struct UnkCamMaskOf_b0101 {
     static const UnkCamMask_b0101& None() {

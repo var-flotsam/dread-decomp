@@ -5,6 +5,8 @@
 // and fn_71000113b0.cpp) and a factory object, three string ids and two callbacks; fn_710001fc00
 // registers the three, each with a factory created on first use (their deleting destructors are in
 // src/game_s1/fn_7100022518.cpp). Names and layouts are placeholders.
+#include "base/UnkRegistryCallback.h"
+#include "base/UnkRegistryEntryHead.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CAnimationResource.h"
@@ -64,21 +66,6 @@ struct UnkRegistryEntryId {
 // A resource category: its id comes first.
 struct UnkRegistryDesc {
     CStrId id;
-};
-
-// Copied member by member (the original reloads the source after each store).
-struct UnkRegistryCallback {
-    void* context;
-    void (*function)();
-
-    UnkRegistryCallback(void* context, void (*function)()) : context(context), function(function) {}
-    UnkRegistryCallback(const UnkRegistryCallback& other) : context(other.context), function(other.function) {}
-};
-
-// The descriptor and its factory, set together (and copied as one block).
-struct UnkRegistryEntryHead {
-    UnkRegistryDesc* desc;
-    void* factory;
 };
 
 // The entry (0x48 bytes): the head of base::res's type record (UnkResDesc) with a factory in place

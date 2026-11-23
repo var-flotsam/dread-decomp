@@ -6,11 +6,8 @@
 #include "game/CMissileBaseGun.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkLinked.h"
 #include "types.h"
-
-struct UnkLinked {
-    void* owner;
-};
 
 // A vector of plain values whose destructor frees the array.
 template <class T>

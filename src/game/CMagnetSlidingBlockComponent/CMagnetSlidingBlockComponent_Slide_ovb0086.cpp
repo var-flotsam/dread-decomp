@@ -14,6 +14,7 @@
 #include "game/CMagnetSlidingBlockComponent.h"
 #include "game/CMaterialFXComponent.h"
 #include "game/UnkBroadphaseObject.h"
+#include "game/UnkMagnetColorChange_b0086.h"
 #include "game/UnkTU218.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU50.h"
@@ -294,22 +295,7 @@ struct UnkMagnetModelComponent_b0086 {
     UnkMagnetModel_b0086* model;  // 0x50
 };
 
-// A material colour change as fn_71009272c4 builds it (kind at +0, a string id at +0x38).
-struct UnkMagnetColorChange_b0086 {
-    u32 kind;
-    u8 pad_0x4[0x34];
-    union {
-        base::UnkStrIdMember id;  // 0x38
-    };
-    u8 pad_0x40[0x18];
-
-    UnkMagnetColorChange_b0086() {}  // built by fn_71009272c4
-    ~UnkMagnetColorChange_b0086() { id.~UnkStrIdMemberOf(); }
-};
-
 struct UnkMagnetFx_b0086;
-void fn_71009272c4(UnkMagnetColorChange_b0086* self, u32 index, bool flag, const UnkVector4D* from,
-                   const UnkVector4D* to, f32 time);
 
 struct UnkMagnetOwner4_b0086 {
     u8 pad_0x0[0x228];

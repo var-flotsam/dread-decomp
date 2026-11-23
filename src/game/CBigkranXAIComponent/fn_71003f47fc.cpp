@@ -12,14 +12,14 @@ using base::reflection::CClass;
 
 typedef u64 u64_a4 __attribute__((aligned(4)));
 
-struct UnkComponent {
+struct UnkComponent_3f47fc {
     void** vtable;
-    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkComponent*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkComponent_3f47fc*)>(vtable[0])(this); }
 };
 
 struct UnkSelf {
     u8 pad_0x0[0x10];
-    UnkComponent* field_0x10;
+    UnkComponent_3f47fc* field_0x10;
     u8 pad_0x18[0x1600];
     u32 field_0x1618;
     u8 pad_0x161c[0x1339c];
@@ -55,8 +55,8 @@ __attribute__((always_inline)) static inline u32 Initialise(UnkSelf* self, void*
     char* base = reinterpret_cast<char*>(self);
     // The step gets the caller's `arg` (x1), which the original hands it untouched.
     u32 result = CallStep(Step, self, arg);
-    UnkComponent* object = self->field_0x10;
-    UnkComponent* component = nullptr;
+    UnkComponent_3f47fc* object = self->field_0x10;
+    UnkComponent_3f47fc* component = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), Getter()))
         component = object;
     u64* slot = reinterpret_cast<u64*>(base + Component);

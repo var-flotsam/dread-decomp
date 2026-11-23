@@ -3,8 +3,11 @@
 // Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "base/reflection/CClass.h"
+#include "game/UnkBvhBox.h"
+#include "game/UnkBvhShape.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
+#include "game/UnkVisitResult_b0040.h"
 #include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 
@@ -14,14 +17,6 @@ using base::reflection::UnkReflObject;
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
-// The "skip" result and its guard (shared with the other visitors).
-struct UnkVisitResult_b0040 {
-    s32 value;
-    UnkVisitResult_b0040(s32 v) : value(v) {}
-    UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
-    ~UnkVisitResult_b0040() {}
-};
-
 static inline void InitSkip() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726a4780), __ATOMIC_ACQUIRE) & 1), 0)) {
         if (__cxa_guard_acquire(&g_unk_71726a4780)) {
@@ -30,39 +25,6 @@ static inline void InitSkip() {
         }
     }
 }
-
-// A shape placed in a tree query (as in src/game_hi/fn_7100d5bfbc.cpp): its cached 2D bounds,
-// refreshed through vf_0x98 when marked dirty.
-struct UnkBvhBox {
-    f32 minX, minY, maxX, maxY;
-};
-
-struct UnkBvhShape {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual void vf_0x68();
-    virtual void vf_0x70();
-    virtual void vf_0x78();
-    virtual void vf_0x80();
-    virtual void vf_0x88();
-    virtual void vf_0x90();
-    virtual void RefreshBounds();  // vf_0x98
-    u8 unk_0x8[0x38];
-    UnkBvhBox bounds;  // 0x40
-    u8 unk_0x50[0x10];
-    bool boundsDirty;  // 0x60
-};
 
 struct UnkCollider_d5c1d0 {
     virtual void vf_0x0();

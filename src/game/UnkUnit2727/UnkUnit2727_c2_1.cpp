@@ -3,16 +3,12 @@
 // and otherwise to the game manager (g_unk_7101d47310). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkObj_71011a50cc.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2538.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2737.h"
 #include "types.h"
-
-struct UnkObj_71011a50cc {
-    u8 unk_0x0[0x98];
-    UnkObj_71011a50cc();  // fn_71011a50cc
-};
 
 void fn_7101197e2c(void* gui, f32 value);
 void fn_7100dec1d8(UnkGameManager* self, f32 value, bool flag);

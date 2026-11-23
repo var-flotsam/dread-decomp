@@ -11,6 +11,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkListEntry_b0236.h"
 #include "game/UnkTU92.h"
 #include "types.h"
 
@@ -24,15 +25,6 @@ void fn_71000a1a24(UnkReflValue* out, const UnkTypedRef* v, u32 by_ref, u32 kind
 
 // One entry of the listing (0x68 bytes). The list keeps them after a 4-byte count, so they are only 4-aligned.
 #pragma pack(push, 4)
-struct UnkListEntry_b0236 {
-    UnkReflValue value;       // 0x0
-    UnkReflTypedPtr typed;    // 0x18
-    u32 kind;                 // 0x28
-    u32 pad_0x2c;
-    UnkReflValue field_0x30;
-    UnkReflValue field_0x48;
-    u64 field_0x60;
-};
 
 struct UnkEntryList_b0236 {
     u32 count;

@@ -3,22 +3,9 @@
 // Names and layouts are placeholders.
 #include "game/CFlockingSwarmControllerComponent.h"
 #include "game/CRedenkiSwarmControllerComponent.h"
+#include "game/UnkVec3Result.h"
+#include "game/UnkZeroVec_b0012.h"
 #include "types.h"
-
-// As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b38.cpp defines it.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
-
-// As src/game/CDaivoSwarmControllerComponent/CDaivoSwarmControllerComponent_Swarm_ovb0012.cpp defines it.
-struct UnkZeroVec_b0012 {
-    f32 x, y, z;
-    UnkZeroVec_b0012() : x(0.0f), y(0.0f), z(0.0f) {}
-};
 
 class UnkDaivoSwarm_b0012;
 struct UnkSwarmPath_b0012;

@@ -14,6 +14,7 @@
 #include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
 #include "game/CActorComponentDef.h"
 #include "game/CComponent.h"
 #include "game/CSpawnPointComponent.h"
@@ -194,8 +195,6 @@ bool fn_710112c3dc(CSpawnPointComponent* self) {
 
 extern CStrId g_unk_7172a086a8 __attribute__((visibility("hidden")));                    // the class id
 extern base::reflection::CType g_unk_7172a086d8 __attribute__((visibility("hidden")));  // its type
-
-UnkReflObject* fn_710024e2e8(UnkGameManagerIdList* list, void* key);
 
 UnkReflObject* fn_7101126814(const CStrId* id) {
     UnkGameManagerIdList* list = fn_7100de94cc(g_unk_7101d47310, reinterpret_cast<const u64*>(&g_unk_7172a086a8));

@@ -18,6 +18,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkPathPairTemp_b45a1.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2527.h"
 #include "game/UnkTU27.h"
@@ -28,13 +29,6 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
-
-// The id and path pair built from a path, destroyed out of line.
-struct UnkPathPairTemp_b45a1 {
-    void* id;
-    void* path;
-    ~UnkPathPairTemp_b45a1() { fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(this)); }
-};
 
 struct UnkAssetResRef {
     UnkCountedResource* ptr;

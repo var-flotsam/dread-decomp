@@ -5,6 +5,9 @@
 #include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkMediaCollector.h"
+#include "game/UnkMediaStream.h"
+#include "game/UnkMediaStreamList.h"
 #include "game/UnkTU327.h"
 #include "types.h"
 
@@ -12,26 +15,6 @@
 // list in x0 and the stream in x1, so it is called through a cast.
 struct UnkMovieEmpty_b50;
 struct UnkMovieEventOwner_b50;
-
-struct UnkMediaStream {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual const base::reflection::CType* vf_0x18();
-};
-
-struct UnkMediaStreamList {
-    u8 pad_0x0[0x30];
-    s32 kind;  // 0x30
-    u8 pad_0x34[0x2c];
-    UnkMediaStream** items;  // 0x60
-    u32 count;               // 0x68
-};
-
-struct UnkMediaCollector {
-    u8 pad_0x0[0x68];
-    u8 field_0x68[1];
-};
 
 // Declared with this item type in src/base/UnkUnit322/UnkUnit322_Dispatch.cpp.
 struct UnkItem322;

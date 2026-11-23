@@ -53,7 +53,7 @@ inline bool FlagAt(const void* p, u64 offset) {
 struct UnkSubAreaName {
     CStrId name;
 };
-struct UnkSubAreaManagerView {
+struct UnkSubAreaManagerView_lua_bind {
     u8 pad_0x0[0x3f0];
     UnkSubAreaName* current;
 };
@@ -104,7 +104,7 @@ int fn_71010945d0(lua_State* L) {
 
 // lua_bind::GetCurrentSubAreaId: the current sub-area's name, or the empty one's.
 int fn_7101094e20(lua_State* L) {
-    auto* m = static_cast<UnkSubAreaManagerView*>(GetOrCreate<void,
+    auto* m = static_cast<UnkSubAreaManagerView_lua_bind*>(GetOrCreate<void,
                                                   0xae8>(reinterpret_cast<void*&>(g_unk_7101d47360), fn_7100ee1f34));
     const CStrId& id = m->current ? m->current->name : base::global::CStrId::Empty();
     const CRntString& str = base::reflection::refl_RntStringOf(id);

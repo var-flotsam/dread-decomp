@@ -70,14 +70,14 @@ struct UnkRecordRef {
     UnkRecordRest* rest;
 };
 
-struct UnkRecord {
+struct UnkRecord_c8e414 {
     u32 first;
     UnkRecordRest rest;
 };
 
 struct UnkHolder_7100c8e414 {
     union {
-        UnkRecord record;
+        UnkRecord_c8e414 record;
         UnkRecordRef ref;
     };
     s32 state;
@@ -88,7 +88,7 @@ void fn_7100c8e414(UnkHolder_7100c8e414* self, UnkHolder_7100c8e414* other) {
     switch (other->state) {
     case 1:
         self->state = 1;
-        new (&self->record) UnkRecord(static_cast<UnkRecord&&>(other->record));
+        new (&self->record) UnkRecord_c8e414(static_cast<UnkRecord_c8e414&&>(other->record));
         break;
     case 2:
         self->state = 1;

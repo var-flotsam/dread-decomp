@@ -2,6 +2,8 @@
 // size) at position against each collider in the movement's list (+0x530) and hands every hit to the bomb
 // hit handler (fn_7100aaaaf4), tiles to the movement's vf_0x2b0. Names and layouts are placeholders.
 #include "game/CBombMovement.h"
+#include "game/UnkLavaDropsShape_A2_b71.h"
+#include "game/UnkMatrix44_7100078c9c.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU437.h"
 #include "game/UnkTU54.h"
@@ -12,19 +14,7 @@
 extern void* g_unk_7101a956b8[];
 extern const u8 g_unk_710164b850[] __attribute__((visibility("hidden")));
 
-struct UnkMatrix44_7100078c9c {
-    f32 m[16];
-};
-
 struct UnkLavaDropsShape_A2_b71;
-
-struct UnkLavaDropsShape_A2_b71 {
-    u8 pad_0x0[0x8];
-    u8 body[0xa8];
-
-    UnkLavaDropsShape_A2_b71(const void* source, f32 size) { fn_7100d6169c(this, source, size); }
-    ~UnkLavaDropsShape_A2_b71() { fn_7100d61750(this); }
-};
 
 static inline void ReleaseRef_lab13c8(UnkRefObject* p) {
     if (p && --p->ref_count == 0)

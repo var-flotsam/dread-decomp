@@ -5,22 +5,22 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-struct UnkRefObj {
+struct UnkRefObj_l21d238 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
     s32 ref_count;
 };
 
-static inline void RefAdd(UnkRefObj* o) { __atomic_fetch_add(&o->ref_count, 1, __ATOMIC_SEQ_CST); }
-static inline void RefRelease(UnkRefObj* o) {
+static inline void RefAdd(UnkRefObj_l21d238* o) { __atomic_fetch_add(&o->ref_count, 1, __ATOMIC_SEQ_CST); }
+static inline void RefRelease(UnkRefObj_l21d238* o) {
     __atomic_fetch_sub(&o->ref_count, 1, __ATOMIC_SEQ_CST);
     if (__atomic_load_n(&o->ref_count, __ATOMIC_SEQ_CST) == 0)
         o->vf_0x10();
 }
 
 struct UnkRef {
-    UnkRefObj* ptr;
+    UnkRefObj_l21d238* ptr;
     UnkRef() : ptr(nullptr) {}
     UnkRef(const UnkRef& o) : ptr(o.ptr) {
         if (ptr)
@@ -31,7 +31,7 @@ struct UnkRef {
             RefRelease(ptr);
     }
     UnkRef& operator=(const UnkRef& o) {
-        UnkRefObj* p = o.ptr;
+        UnkRefObj_l21d238* p = o.ptr;
         if (p)
             RefAdd(p);
         if (ptr)

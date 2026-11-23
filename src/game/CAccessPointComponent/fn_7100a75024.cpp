@@ -9,19 +9,10 @@
 #include "base/UnkCollectionIter.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
+#include "game/UnkIdVecEntry.h"
 #include "types.h"
 
 using base::global::UnkStringData;
-
-struct UnkIdVecEntry {
-    UnkMovedStrId key;
-    base::UnkStrIdVec ids;
-
-    __attribute__((always_inline)) UnkIdVecEntry(UnkIdVecEntry&& other)
-        : key(static_cast<UnkMovedStrId&&>(other.key)), ids(other.ids) {}
-    __attribute__((always_inline)) UnkIdVecEntry(UnkMovedStrId&& key, const base::UnkStrIdVec& ids)
-        : key(static_cast<UnkMovedStrId&&>(key)), ids(ids) {}
-};
 
 void fn_7100a74f04(UnkIdVecEntry* self, UnkIdVecEntry* other) {
     new (self) UnkIdVecEntry(static_cast<UnkIdVecEntry&&>(*other));

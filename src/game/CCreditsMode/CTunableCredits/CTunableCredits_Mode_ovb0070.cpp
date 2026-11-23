@@ -5,9 +5,12 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkCreditsNode_ovb0070.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkMusicMode.h"
+#include "game/UnkObj_71011a50cc.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2538.h"
 #include "game/UnkTU2553.h"
@@ -50,11 +53,6 @@ struct UnkCreditsLine_ovb0070 {
     UnkGuiText string;  // 0x28
 };
 
-struct UnkCreditsNode_ovb0070 {
-    UnkCreditsLine_ovb0070* line;
-    UnkCreditsNode_ovb0070* next;
-};
-
 struct UnkCreditsMode_ovb0070 {
     u8 pad_0x0[0x50];
     f32 time;   // 0x50
@@ -90,20 +88,10 @@ void fn_7101184028(UnkCreditsMode_ovb0070* self) {
 
 void fn_71011843d0(UnkCreditsMode_ovb0070* self, f32 dt);
 
-struct UnkObj_71011a50cc {
-    u8 unk_0x0[0x98];
-    UnkObj_71011a50cc();  // fn_71011a50cc
-};
-
 struct UnkSoundMgr;
 struct UnkTunable;
-// A mode word passed by address (the word after it is not set).
-struct UnkMusicMode {
-    u32 kind;
-    u32 field_0x4;
-};
 
-struct UnkCreditsMenu_ovb0070 {
+struct UnkCreditsMenu_ovb0070_ovb0070 {
     u8 pad_0x0[0x60];
     u32 state;
 };
@@ -121,7 +109,7 @@ void fn_71011841b4(UnkCreditsMode_ovb0070* self, f32 dt) {
             if (flags & 0x20) {
                 fn_7100deac9c(manager, CRntString("REWARDS"));
             } else {
-                auto* menu = static_cast<UnkCreditsMenu_ovb0070*>(fn_7100deab70(manager, CRntString("MAINMENU")));
+                auto* menu = static_cast<UnkCreditsMenu_ovb0070_ovb0070*>(fn_7100deab70(manager, CRntString("MAINMENU")));
                 if (menu)
                     menu->state = 7;
                 fn_7100deac9c(g_unk_7101d47310, CRntString("MAINMENU"));

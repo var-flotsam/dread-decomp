@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkChainedMap.h"
+#include "base/UnkMap11_ovb56.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU57.h"
@@ -20,12 +21,6 @@ struct UnkEntry_0x30;
 void fn_7100f9bf8c(void* self, const UnkEntry_0x30* path);
 void fn_7100f947b0(void* self, const UnkEntry_0x30* path);
 void fn_7100f89450(void*, const UnkEntry_0x30* path);
-
-// As src/base/reflection/reflection_environment_ovb0056.cpp defines it: a chained map started with 11
-// buckets.
-struct UnkMap11_ovb56 : UnkChainedMap {
-    __attribute__((always_inline)) UnkMap11_ovb56() { ResizeBuckets(11); }
-};
 
 // An owned object made of one such map (0x48 bytes).
 struct UnkOwnedMap_ld8d154 {

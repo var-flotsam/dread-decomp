@@ -6,6 +6,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBombGun.h"
 #include "game/CSpawnGroupComponent.h"
+#include "game/UnkSubAreaEntity.h"
+#include "game/UnkSubAreaEntityList.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU2668.h"
 #include "game/operator_new.h"
@@ -25,15 +27,6 @@ struct UnkSubAreaMgr_b190 {
     base::UnkStrIdVec loaded;  // 0x338
 };
 static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, loaded) == 0x338, "layout");
-
-struct UnkSubAreaEntity {
-    u8 pad_0x0[0x10];
-    base::reflection::UnkReflObject* field_0x10;
-};
-struct UnkSubAreaEntityList {
-    UnkSubAreaEntity** data;
-    u32 count;
-};
 
 bool fn_710119e4ec(UnkSubAreaGuiCache* self, const CStrId* id, bool flag);
 void fn_710111b040(base::reflection::UnkReflObject* component, const CStrId* id);

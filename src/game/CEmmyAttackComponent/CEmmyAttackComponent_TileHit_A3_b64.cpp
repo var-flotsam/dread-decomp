@@ -9,14 +9,10 @@
 #include "game/CBreakableTileGroup.h"
 #include "game/CGrabComponent.h"
 #include "game/UnkTU39.h"
+#include "game/UnkTileQuery_A3_b64.h"
 #include "types.h"
 
 struct UnkQueryObj;
-
-struct UnkTileQuery_A3_b64 {
-    u8 pad_0x0[0x38];
-    u32 kind;
-};
 
 struct UnkTileHitLink1_A3_b64 {
     u8 pad_0x0[0x10];

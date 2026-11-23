@@ -4,6 +4,7 @@
 #include "base/global/CRntFile.h"
 #include "base/reflection/CClass.h"
 #include "game/UnkTU80.h"
+#include "game/UnkWriter_b0202.h"
 #include "types.h"
 
 struct UnkWriterEntry_b0202 {
@@ -14,12 +15,6 @@ struct UnkWriterEntry_b0202 {
 };
 static_assert(sizeof(UnkWriterEntry_b0202) == 0x20, "entry");
 
-struct UnkWriter_b0202 {
-    u32 count;
-    u8 entries_0x4[0xc80];
-    u8 pad_0xc84[4];
-    base::global::CRntFile* file;  // 0xc88
-};
 static_assert(__builtin_offsetof(UnkWriter_b0202, file) == 0xc88, "writer");
 
 static inline UnkWriterEntry_b0202* Entries(UnkWriter_b0202* self) {

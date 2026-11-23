@@ -7,18 +7,16 @@
 #include <nn/os.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "base/UnkPlayingRef_ovb0074.h"
+#include "base/UnkSoundSettings_ovb0074.h"
 #include "base/global/CStrId.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/UnkPlayingHandle_ovb0074.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU99.h"
 #include "types.h"
 
 using base::global::UnkStringData;
-
-struct UnkSoundSettings_ovb0074 {
-    u8 pad_0x0[0x21];
-    bool flags[8];  // 0x21
-};
 
 struct UnkSoundSystemFlags_ovb0074 {
     void** vtable;
@@ -106,19 +104,6 @@ struct UnkPlayingSound_ovb0074 {
     u32 variant;  // 0xd8
     u8 pad_0xdc[0x11b - 0xdc];
     bool field_0x11b;
-};
-
-struct UnkPlayingRef_ovb0074 {
-    UnkPlayingSound_ovb0074* sound;
-    u64 serial;
-};
-
-struct UnkPlayingHandle_ovb0074 {
-    UnkPlayingRef_ovb0074* ref;
-    u64 serial;
-
-    bool IsValid() const { return ref && serial != ~0ull && ref->serial == serial; }
-    UnkPlayingSound_ovb0074* Get() const { return IsValid() ? ref->sound : nullptr; }
 };
 
 struct UnkSoundDesc_ovb0074 {

@@ -9,6 +9,7 @@
 #include "base/math/UnkZeroVector3.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkRumbleTarget_ovb0083.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -42,11 +43,6 @@ struct UnkRumbleStrId_ovb0083 {
             data = &pool->empty;
         }
     }
-};
-
-struct UnkRumbleTarget_ovb0083 {
-    void* rumble;
-    s64 id;
 };
 
 // A rumble the component started (0x68 bytes).

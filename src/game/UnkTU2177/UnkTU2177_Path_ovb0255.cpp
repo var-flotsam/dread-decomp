@@ -1,18 +1,14 @@
 // Unit 2177 (no class name): paths in the world path pool. fn_7100c66b50 replaces one path inner
 // entries with another, fn_7100c77a9c tests a path (on a copy with a reset bounding box) against a
 // target, and fn_7100c778f8 keeps the nearer of two targets that pass. Names and layouts are placeholders.
+#include "base/UnkEntry108.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU109.h"
 #include "game/UnkTU365.h"
+#include "game/UnkVisitResult_b0040.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkEntry108 {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-};
 
 struct UnkEntryArray108;
 void fn_7100119f3c(UnkEntryArray108* self, u32 index);
@@ -153,12 +149,6 @@ __attribute__((always_inline)) inline UnkAssignedSlot& UnkAssignedSlot::operator
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
-struct UnkVisitResult_b0040 {
-    s32 value;
-    UnkVisitResult_b0040(s32 v) : value(v) {}
-    UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
-    ~UnkVisitResult_b0040() {}
-};
 
 static inline UnkVisitResult_b0040 Skip_b0040() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726a4780), __ATOMIC_ACQUIRE) & 1), 0)) {

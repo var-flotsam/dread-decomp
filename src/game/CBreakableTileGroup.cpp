@@ -14,6 +14,8 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CBreakableTileGroup.h"
 #include "game/CGrabComponent.h"
+#include "game/UnkCollisionShape.h"
+#include "game/UnkHelper.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU109.h"
 #include "game/UnkTU1501.h"
@@ -22,6 +24,10 @@
 #include "game/UnkTU315.h"
 #include "game/UnkTU54.h"
 #include "game/UnkTU811.h"
+#include "game/UnkTileGroup.h"
+#include "game/UnkTileOutline.h"
+#include "game/UnkTileOutlineList.h"
+#include "game/UnkTilePoint.h"
 #include "game/logic/collision/CAABoxShape2D.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -58,17 +64,6 @@ struct UnkQueryObj {
     u8 pad_0x50[0x58];
 };
 static_assert(sizeof(UnkQueryObj) == 0xa8, "UnkQueryObj placeholder layout");
-
-struct UnkTileGroup {
-    u8 pad_0x0[0x10];
-    u32 field_0x10;  // the group's id
-    bool field_0x14;
-    u8 pad_0x15[0xb];
-    f32 field_0x20;  // z of every tile
-    u8 pad_0x24[0x1c];
-    u32 field_0x40;           // the tile count
-    UnkQueryObj* field_0x48;  // the tiles
-};
 
 static const u64 kNoRenderObject = 0xffffffff;
 
@@ -107,9 +102,6 @@ struct UnkBox2D {
 
     UnkBox2D(f32 min_x_, f32 min_y_, f32 max_x_, f32 max_y_)
         : min_x(min_x_), min_y(min_y_), max_x(max_x_), max_y(max_y_) {}
-};
-struct UnkCollisionShape {
-    u8 data[0xc0];
 };
 
 // The hits of a collision query: an inline array of up to eight 0x48-byte records after the count,
@@ -160,13 +152,6 @@ struct __attribute__((packed)) UnkHitList {
     UnkHitRecord* end() { return reinterpret_cast<UnkHitRecord*>(storage + count * sizeof(UnkHitRecord)); }
 };
 
-// The player's +0x208: a movement helper.
-struct UnkHelper {
-    void** vtable;
-
-    bool vf_0x3b8() { return reinterpret_cast<bool (*)(UnkHelper*)>(vtable[0x3b8 / 8])(this); }
-};
-
 struct UnkPlayer {
     u8 pad_0x0[0x1f0];
     void* field_0x1f0;
@@ -201,7 +186,6 @@ struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
 void* fn_7100c9ff5c(void* p);
-UnkVec3f fn_71009ebe68(UnkHelper* helper);
 
 static inline void SetIdentity(UnkMatrix44* m) {
     *m = UnkMatrix44{};
@@ -500,25 +484,6 @@ struct UnkTileGrid {
 };
 static_assert(__builtin_offsetof(UnkTileGrid, field_0xd8) == 0xd8, "UnkTileGrid placeholder layout");
 
-// An outline: its points (fn_7100118b94 appends one), a z, flags, its bounds and a word; the
-// outline set copies it (0x48 bytes).
-struct UnkTilePoint {
-    f32 x, y, z;
-};
-struct UnkTileOutline {
-    base::global::CRntVector<UnkTilePoint> points;
-    f32 field_0x28;
-    bool field_0x2c;
-    bool field_0x2d;
-    base::math::CVector2D min;
-    base::math::CVector2D max;
-    u32 field_0x40;
-
-    UnkTileOutline()
-        : points(7), field_0x28(0.0f), field_0x2c(false), field_0x2d(true), min{3.4028235e38f, 3.4028235e38f},
-          max{-3.4028235e38f, -3.4028235e38f}, field_0x40(0) {}
-    ~UnkTileOutline() { points.Free(); }
-};
 static_assert(sizeof(UnkTileOutline) == 0x48, "UnkTileOutline placeholder layout");
 
 // The first cell of each region fn_7100ca2f9c accepted: a count and up to 100 cell positions;
@@ -534,11 +499,6 @@ struct UnkTileSeeds {
         }
         return data[i];
     }
-};
-
-// A scratch outline list fn_7100ca1180 builds and destroys (fn_7100123eb4, fn_7100123fb0).
-struct UnkTileOutlineList {
-    u8 data[0x40];
 };
 
 struct UnkEntry;

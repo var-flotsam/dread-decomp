@@ -10,6 +10,7 @@
 #include "game/CCharacterMovement.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
+#include "game/UnkMeleeRequest_l1065bc.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -24,14 +25,6 @@ struct UnkMeleeAttack_l1065bc {
     f32 max_distance;  // 0x4f8, negative: the two radii
 };
 static_assert(__builtin_offsetof(UnkMeleeAttack_l1065bc, max_dx) == 0x4f4, "UnkMeleeAttack_l1065bc layout");
-
-struct UnkMeleeRequest_l1065bc {
-    u64 key;  // 0x0
-    u8 pad_0x8[0x1c];
-    u32 field_0x24;
-    u8 pad_0x28[0x8];
-    CStrId id;  // 0x30
-};
 
 struct UnkMeleeSelf_l1065bc {
     u8 pad_0x0[0x30];

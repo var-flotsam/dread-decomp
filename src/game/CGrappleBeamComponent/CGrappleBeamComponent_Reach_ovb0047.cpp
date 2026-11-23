@@ -3,6 +3,8 @@
 // when it is not zero, within fMaxLength, and beyond fMaxLengthToStartRetract only where the render manager
 // projects it (fn_7100219588). Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkGrappleAnswer_b50.h"
+#include "game/UnkGrappleVec3_ovb0047.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU315.h"
 #include "game/CGrappleBeamComponent.h"
@@ -10,15 +12,6 @@
 
 using base::reflection::UnkTunable;
 
-// The answer of fn_710081b920 (src/game/CGrappleBeamComponent/CGrappleBeamComponent_b50.cpp), here read as
-// a position.
-struct UnkGrappleAnswer_b50 {
-    void* field_0x0;
-    u32 field_0x8;
-
-    UnkGrappleAnswer_b50() : field_0x0(nullptr), field_0x8(0) {}
-    UnkGrappleAnswer_b50(const UnkGrappleAnswer_b50& other);
-};
 struct UnkGrappleBeam_b50;
 UnkGrappleAnswer_b50 fn_710081b920(UnkGrappleBeam_b50* self);
 
@@ -27,11 +20,6 @@ struct UnkGrappleTunable_ovb0047 {
     u8 pad_0x0[0x2c];
     f32 max_length;  // 0x2c, fMaxLength
     f32 max_length_to_start_retract;  // 0x30, fMaxLengthToStartRetract
-};
-
-struct UnkGrappleVec3_ovb0047 {
-    f32 x, y, z;
-    bool IsZero() const { return x == 0.0f && y == 0.0f && z == 0.0f; }
 };
 
 struct UnkGrappleTransform_ovb0047 {

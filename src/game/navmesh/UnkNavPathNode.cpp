@@ -4,29 +4,13 @@
 // placeholders.
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkNavPathNode.h"
+#include "game/UnkNavPathPoint.h"
 #include "game/UnkObject_0x100.h"
 #include "game/UnkTU367.h"
 #include "game/UnkTU376.h"
 #include "types.h"
 
-// A node's position (src/game/navmesh/UnkNavMeshQueryState.cpp).
-struct UnkNavPathPoint {
-    f32 x;
-    f32 y;
-};
-
-// The node: the payload, then the cell, side and kind, a word, the position, the three costs and the
-// parent (0x128 bytes).
-struct UnkNavPathNode {
-    u8 data[0x100];
-    u16 cell;
-    u8 side;
-    u32 kind;
-    u32 field_0x108;
-    UnkNavPathPoint pos;
-    f32 costs[3];
-    UnkNavPathNode* parent;
-};
 static_assert(sizeof(UnkNavPathNode) == 0x128, "UnkNavPathNode layout");
 
 // An empty node: no cell (0xffff) and no side (0xff), everything after zero.

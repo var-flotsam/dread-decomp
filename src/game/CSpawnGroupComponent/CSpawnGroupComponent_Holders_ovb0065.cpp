@@ -25,6 +25,8 @@
 #include "game/CScenario.h"
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkRefObj_c3.h"
+#include "game/UnkRef_c3.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
@@ -55,27 +57,11 @@ struct UnkCountedSpawn_ovb0065 : base::UnkRefCounted {
     void* field_0x10;
 };
 
-struct UnkRef {
+struct UnkRef_ovb0065 {
     UnkCountedSpawn_ovb0065* ptr;
-    ~UnkRef() {
+    ~UnkRef_ovb0065() {
         if (ptr && --ptr->ref_count == 0)
             delete ptr;
-    }
-};
-
-// The counted reference fn_71003df480 returns (as src/game/CSpawnPointComponent/CSpawnPointComponent_c3_1.cpp).
-struct UnkRefObj_c3 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();  // destroys the object
-    s32 refs;
-};
-
-struct UnkRef_c3 {
-    UnkRefObj_c3* p;
-    ~UnkRef_c3() {
-        if (p && --p->refs == 0)
-            p->vf_0x10();
     }
 };
 
@@ -100,7 +86,7 @@ static inline void Resolve(UnkSpawnHolder_ovb0065* holder) {
 
 UnkReflValue fn_710112008c(UnkSpawnHolder_ovb0065* holder) {
     Resolve(holder);
-    UnkRef ref;
+    UnkRef_ovb0065 ref;
     ref.ptr = nullptr;
     if (auto* p = static_cast<UnkCountedSpawn_ovb0065*>(holder->handle.ptr)) {
         ++p->ref_count;

@@ -2,12 +2,8 @@
 // positive and the first has a position object whose squared distance to the second's position
 // (values at 0x44, 0x54, 0x64) is not below the squared radius.
 #include "game/UnkActor.h"
+#include "game/UnkRadius.h"
 #include "types.h"
-
-struct UnkRadius {
-    u8 pad_0x0[0x14];
-    f32 field_0x14;
-};
 
 u32 fn_71002c46d4(UnkRadius* self, UnkActor* first, UnkActor* second) {
     if (self->field_0x14 > 0.0f) {

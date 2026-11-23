@@ -12,6 +12,9 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
 #include "game/CGameBlackboard.h"
+#include "game/UnkArrayRecord60.h"
+#include "game/UnkFreedArray.h"
+#include "game/UnkTwoWords.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -144,32 +147,6 @@ void fn_7100e58e40(const UnkIdRecordTable<UnkValue28B>* self, base::UnkIterValue
     End(self, out);
 }
 
-// A table of 0x60-byte records holding two arrays (base::global::CRntVector's layout, freed when
-// destroyed) and four words.
-struct UnkFreedArray {
-    void* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    __attribute__((always_inline)) ~UnkFreedArray() {
-        if (data) {
-            count = 0;
-            allocator->vf_0x48(data);
-            capacity = 0;
-        }
-    }
-};
-
-struct UnkArrayRecord60 {
-    UnkFreedArray field_0x0;
-    UnkFreedArray field_0x28;
-    u32 field_0x50[4];
-};
-
 void fn_7100e572d8(const UnkIdRecordTable<UnkArrayRecord60>* self,
                    base::UnkIterValue<UnkArrayRecord60, UnkReleasedStrId>* out) {
     Begin(self, out);
@@ -183,11 +160,6 @@ void fn_7100e573b0(const UnkIdRecordTable<UnkArrayRecord60>* self,
 void fn_7100d86fe8(const UnkIdRecordTable<u64>* self, base::UnkIterValue<u64, UnkReleasedStrId>* out) {
     Begin(self, out);
 }
-// The same for a table of two-word values, in another unit.
-struct UnkTwoWords {
-    u64 first;
-    u64 second;
-};
 
 void fn_7100905138(const UnkIdRecordTable<UnkTwoWords>* self, base::UnkIterValue<UnkTwoWords, UnkReleasedStrId>* out) {
     Begin(self, out);

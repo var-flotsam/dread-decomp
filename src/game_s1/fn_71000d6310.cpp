@@ -2,6 +2,7 @@
 // data (the comments are adapted from the original's): fn_71000d6310, fn_71000d73b8. Move-assignment of a pair of an id
 // and a record held either in place or by reference (state 2), from another such pair: the id is moved (released,
 // taken, the other's left empty) and the record assigned out of line (fn_71000a1ba4).
+#include "base/UnkAssignedRecord_a1ba4.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection.h"
@@ -47,10 +48,6 @@ __attribute__((always_inline)) static inline UnkValuePairRef<UnkStrIdTwoStep, Y>
     return self;
 }
 
-struct UnkAssignedRecord_a1ba4 {
-    u64 unk_0x0[0x18 / 8];
-    UnkAssignedRecord_a1ba4& operator=(const UnkAssignedRecord_a1ba4& other);
-};
 __attribute__((always_inline)) inline UnkAssignedRecord_a1ba4& UnkAssignedRecord_a1ba4::operator=(
     const UnkAssignedRecord_a1ba4& other) {
     fn_71000a1ba4(this, &other);

@@ -1,14 +1,10 @@
 // Return copies of a pair of static ids: a string id and a file path id.
+#include "base/UnkIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-struct UnkIdPathPair {
-    CStrId id;
-    CFilePathStrId path;
-};
 
 extern CStrId g_unk_717272cf80 __attribute__((visibility("hidden")));
 extern CFilePathStrId g_unk_717272cf88 __attribute__((visibility("hidden")));

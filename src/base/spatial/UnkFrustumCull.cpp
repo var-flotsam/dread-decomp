@@ -3,19 +3,14 @@
 // remembers the plane that last rejected it and the test starts there, walking the planes in the
 // order a next-plane table gives. Names and layouts are placeholders.
 // Holds fn_71001bab30 and the frustum's update, fn_71001b83f8.
+#include "base/UnkPlane.h"
+#include "game/UnkPoolBox.h"
 #include "game/UnkTU204.h"
 #include "game/UnkTU225.h"
 #include "game/UnkTU244.h"
+#include "game/UnkTU307.h"
 #include "game/UnkTU308.h"
 #include "types.h"
-
-// A plane: its normal and its distance term.
-struct UnkPlane {
-    f32 x;
-    f32 y;
-    f32 z;
-    f32 d;
-};
 
 struct UnkFrustumView {
     u8 pad_0x0[0x178];
@@ -86,24 +81,7 @@ void fn_71001691ac(UnkCullObject* self);  // its constructor
 
 // ---- The view's constructor (fn_71001b76ec) ----
 
-// A box with virtual accessors (0x20 bytes): its minimum and maximum corners. The same class as
-// src/game/UnkSpherePool.cpp's (its base constructor and vtable are shared).
-struct UnkPoolBox {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void SetMin(const UnkVec3f* v);  // vf_0x28
-    virtual void SetMax(const UnkVec3f* v);  // vf_0x30
-    virtual UnkVec3f GetMin();               // vf_0x38
-    virtual UnkVec3f GetMax();               // vf_0x40
-    UnkVec3f min;
-    UnkVec3f max;
-};
-
-// The box's base constructor, and the vtable of the box class (GOT 0x7101cc7410).
-void fn_7100215dcc(UnkPoolBox* self, const UnkVec3f* min, const UnkVec3f* max);
+// The vtable of the box class (GOT 0x7101cc7410).
 extern const char g_unk_7101a20090[];
 
 // A box and its corners quantised to tenths (0x38 bytes).

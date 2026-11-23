@@ -14,6 +14,7 @@
 #include "base/snd/UnkSound.h"
 #include "game/CBlackboard.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkDialogDef.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -68,12 +69,6 @@ struct UnkAdamDialog {
 };
 static_assert(__builtin_offsetof(UnkAdamDialog, field_0x98) == 0x98, "UnkAdamDialog placeholder layout");
 
-// A property seen as a definition whose qualified id (game/UnkGameBlackboard.h) is built on first
-// use (as in src/game/CGameManager.cpp).
-struct UnkDialogDef : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedId qid;
-};
 static inline const UnkQualifiedId& Qid(UnkDialogDef& def) {
     if (def.qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&def.qid, &def, base::global::CStrId::Empty());

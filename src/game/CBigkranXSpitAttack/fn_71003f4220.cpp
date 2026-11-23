@@ -3,6 +3,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/TypeObject.h"
+#include "game/UnkWord12.h"
 
 using namespace unk_static_init;
 
@@ -24,10 +25,6 @@ extern UnkConversion g_unk_71726c2818;
 extern UnkConversion g_unk_71726c2838;
 void fn_71003f3ae8() __attribute__((visibility("hidden")));
 void fn_71003f3af4() __attribute__((visibility("hidden")));
-struct UnkWord12 {
-    u64 field_0x0;
-    u32 field_0x8;
-};
 extern UnkWord12 g_unk_71726c2858;
 
 void fn_71003f4220() {

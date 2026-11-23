@@ -3,7 +3,11 @@
 // that share a count, a capacity and a growth step (fn_710013ac14 builds them; fn_710013c2ac
 // appends; src/game_lo/fn_710013c3c8.cpp looks a group up). Names and layouts are placeholders
 // inferred from the code.
+#include "base/UnkTunableField.h"
 #include "base/UnkTunableLine.h"
+#include "base/UnkTunableMember.h"
+#include "base/UnkTunableObject.h"
+#include "base/UnkTunableType.h"
 #include "base/global/CRntVector.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CStrId.h"
@@ -20,11 +24,6 @@ using base::global::CRntVector;
 using base::global::CStrId;
 
 struct UnkTunableGroup;
-
-// What a group lists first: objects whose first word points back at the group.
-struct UnkTunableMember {
-    UnkTunableGroup* owner;
-};
 
 struct UnkTunableGroup {
     CRntVector<UnkTunableMember*> members;  // flags 0xf, like the two other lists
@@ -144,41 +143,12 @@ void fn_710007f6dc(CRntString* self);                           // trims both en
 // The string's key (its CRC-64) into *out.
 // A copy of `str` with every `from` replaced by `to`.
 
-// The tunable object a header names: its class is vtable slot 0.
-struct UnkTunableObject {
-    virtual char* GetClass();
-};
 struct UnkTunableRegistry;
 
-// A reflected field (0xb0 bytes): its type at +0x10.
-struct UnkTunableField {
-    u8 pad_0x0[0x10];
-    const base::reflection::CType* type;
-    u8 pad_0x18[0x10];
-    void* field_0x28;  // the accessor; without one fn_71000e74bc decides whether it can be set
-    u8 pad_0x30[0x80];
-};
 static_assert(sizeof(UnkTunableField) == 0xb0, "");
 
-// A type descriptor as the lookups see it: its class (vtable slot 0) and its fields by name hash.
-struct UnkTunableType {
-    virtual const base::reflection::CType* GetClass();
-    u8 pad_0x8[0xe0];
-    UnkTunableField* fields;  // +0xe8
-    u64* keys;                // +0xf0
-    u32 count;                // +0xf8
-
-    UnkTunableField* End() { return fields + count; }
-    UnkTunableField* Find(u64 key) {
-        for (u64 i = 0; i < count; ++i)
-            if (keys[i] == key)
-                return &fields[i];
-        return End();
-    }
-};
-
 // The field calls' argument: a value's type and where it is.
-struct UnkTunableValue {
+struct UnkTunableValue_UnkTunableRegistry {
     const void* type;
     void* value;
 };
@@ -192,11 +162,11 @@ bool fn_71000e74bc(UnkReflField* field);  // whether a field without an accessor
 UnkReflTypedPtr fn_71000e755c(UnkReflField* field, const UnkReflTypedPtr* obj);
 UnkEnumType* fn_710009ffd4();  // base::global::TRntString256's type
 
-static inline void SetField(UnkTunableField* field, UnkReflTypedPtr* obj, UnkTunableValue* value) {
+static inline void SetField(UnkTunableField* field, UnkReflTypedPtr* obj, UnkTunableValue_UnkTunableRegistry* value) {
     fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
                   reinterpret_cast<UnkReflValueArg*>(value));
 }
-static inline void GetField(UnkTunableField* field, UnkReflTypedPtr* obj, UnkTunableValue* value) {
+static inline void GetField(UnkTunableField* field, UnkReflTypedPtr* obj, UnkTunableValue_UnkTunableRegistry* value) {
     fn_71000e79a8(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
                   reinterpret_cast<UnkReflValueArg*>(value));
 }
@@ -363,7 +333,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                 case 'b': {
                     u8 v = 0;  // a bool, tested as a byte
                     UnkReflTypedPtr obj = Typed(type, object);
-                    UnkTunableValue arg = {fn_710000d228(), &v};
+                    UnkTunableValue_UnkTunableRegistry arg = {fn_710000d228(), &v};
                     GetField(field, &obj, &arg);
                     fn_710007e77c(value.Str(), v != 0 ? "true" : "false");
                     break;
@@ -371,7 +341,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                 case 'f': {
                     f32 v = 0.0f;
                     UnkReflTypedPtr obj = Typed(type, object);
-                    UnkTunableValue arg = {fn_710000abbc(), &v};
+                    UnkTunableValue_UnkTunableRegistry arg = {fn_710000abbc(), &v};
                     GetField(field, &obj, &arg);
                     sprintf(text, "%f", (f64)v);
                     fn_710007e77c(value.Str(), text);
@@ -380,7 +350,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                 case 'i': {
                     s32 v = 0;
                     UnkReflTypedPtr obj = Typed(type, object);
-                    UnkTunableValue arg = {fn_7100014768(), &v};
+                    UnkTunableValue_UnkTunableRegistry arg = {fn_7100014768(), &v};
                     GetField(field, &obj, &arg);
                     sprintf(text, "%i", v);
                     fn_710007e77c(value.Str(), text);
@@ -389,7 +359,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                 case 's': {
                     UnkTunableLine v;
                     UnkReflTypedPtr obj = Typed(type, object);
-                    UnkTunableValue arg = {fn_710009ffd4(), &v};
+                    UnkTunableValue_UnkTunableRegistry arg = {fn_710009ffd4(), &v};
                     GetField(field, &obj, &arg);
                     value = v;
                     break;
@@ -397,7 +367,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                 case 'v': {
                     base::math::CVector3D v = {0.0f, 0.0f, 0.0f};
                     UnkReflTypedPtr obj = Typed(type, object);
-                    UnkTunableValue arg = {fn_71000246e4(), &v};
+                    UnkTunableValue_UnkTunableRegistry arg = {fn_71000246e4(), &v};
                     GetField(field, &obj, &arg);
                     sprintf(text, "V3D(%f,%f,%f)", (f64)v.x, (f64)v.y, (f64)v.z);
                     fn_710007e77c(value.Str(), text);
@@ -421,27 +391,27 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
             case 'b': {
                 UnkReflTypedPtr obj = Typed(type, object);
                 bool v = (value.Data()[0] | 0x20) == 't';
-                UnkTunableValue arg = {fn_710000d228(), &v};
+                UnkTunableValue_UnkTunableRegistry arg = {fn_710000d228(), &v};
                 SetField(field, &obj, &arg);
                 break;
             }
             case 'f': {
                 UnkReflTypedPtr obj = Typed(type, object);
                 f32 v = (f32)atof(value.Data());
-                UnkTunableValue arg = {fn_710000abbc(), &v};
+                UnkTunableValue_UnkTunableRegistry arg = {fn_710000abbc(), &v};
                 SetField(field, &obj, &arg);
                 break;
             }
             case 'i': {
                 UnkReflTypedPtr obj = Typed(type, object);
                 s32 v = atoi(value.Data());
-                UnkTunableValue arg = {fn_7100014768(), &v};
+                UnkTunableValue_UnkTunableRegistry arg = {fn_7100014768(), &v};
                 SetField(field, &obj, &arg);
                 break;
             }
             case 's': {
                 UnkReflTypedPtr obj = Typed(type, object);
-                UnkTunableValue arg = {fn_710009ffd4(), &value};
+                UnkTunableValue_UnkTunableRegistry arg = {fn_710009ffd4(), &value};
                 SetField(field, &obj, &arg);
                 break;
             }
@@ -479,7 +449,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                             v.z = (f32)atof(t->next->text.Data());
                     }
                 }
-                UnkTunableValue arg = {fn_71000246e4(), &v};
+                UnkTunableValue_UnkTunableRegistry arg = {fn_71000246e4(), &v};
                 SetField(field, &obj, &arg);
                 fn_71000fc7cc(&tokens);
                 break;

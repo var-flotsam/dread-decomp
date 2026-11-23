@@ -4,18 +4,10 @@
 // countdown at +0x6c0: when not negative it runs down by `dt` and, at zero or below, is parked at -1.
 // The second clears +0x6cc first. Names and layouts are placeholders.
 #include "game/CEmmyGrabSamusAttack.h"
+#include "game/UnkColorIn_710050f26c.h"
+#include "game/UnkRGB_710050f26c.h"
 #include "types.h"
 
-// The colour types of fn_710050f26c, as CEmmyGrabSamusAttack_Tick_b54.cpp names them.
-struct UnkRGB_710050f26c {
-    f32 r;
-    f32 g;
-    f32 b;
-};
-struct UnkColorIn_710050f26c {
-    UnkRGB_710050f26c rgb;
-    f32 a;
-};
 struct UnkColor_710050f26c {
     f32 r;
     f32 g;

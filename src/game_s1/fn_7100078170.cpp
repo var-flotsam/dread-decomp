@@ -1,15 +1,12 @@
 // Transforms a point by a 4x4 float matrix with the perspective divide: the translation column
 // is added to each row's dot product and every component is scaled by 1 / w.
+#include "game/UnkMat4f.h"
 #include "types.h"
 
 struct UnkVec3f {
     f32 x, y, z;
     UnkVec3f() {}
     UnkVec3f(const UnkVec3f& o) : x(o.x), y(o.y), z(o.z) {}
-};
-
-struct UnkMat4f {
-    f32 m[4][4];
 };
 
 UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v) {

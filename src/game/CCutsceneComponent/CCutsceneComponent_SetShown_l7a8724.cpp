@@ -6,6 +6,10 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCutsceneComponent.h"
+#include "game/UnkActorLink_l7a58c0.h"
+#include "game/UnkActorRef_l7a58c0.h"
+#include "game/UnkCutsceneEntry_l7a58c0.h"
+#include "game/UnkCutsceneList_l7a58c0.h"
 #include "game/UnkTU2661.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -23,44 +27,10 @@ struct UnkCutsceneActor_l7a58c0 {
 };
 static_assert(__builtin_offsetof(UnkCutsceneActor_l7a58c0, field_0x1b3) == 0x1b3, "layout");
 
-// The object an entry's handle refers to: the actor at +0x10.
-struct UnkActorRef_l7a58c0 : base::UnkRefCounted {
-    UnkCutsceneActor_l7a58c0* actor;  // 0x10
-};
-
-struct UnkCutsceneList_l7a58c0 {
-    u8 pad_0x0[0x130];
-    u32 count;  // 0x130
-    u8 pad_0x134[0x44];
-    UnkCutsceneEntry_A5_b65* current;  // 0x178
-};
 static_assert(__builtin_offsetof(UnkCutsceneList_l7a58c0, current) == 0x178, "layout");
 
-// A lazily resolved reference to an actor: the reflected value naming it, the state (1: not yet resolved,
-// 2: resolved) and the handle.
-struct UnkActorLink_l7a58c0 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual bool vf_0x20();
-    UnkErasedVector source;     // 0x8
-    u32 state;                  // 0x30
-    u32 pad_0x34;
-    base::UnkRefHandle handle;  // 0x38
-};
 static_assert(sizeof(UnkActorLink_l7a58c0) == 0x40, "layout");
 
-// The 0x88-byte entry the cutscene component keeps per actor.
-struct UnkCutsceneEntry_l7a58c0 {
-    virtual void vf_0x0();
-    base::global::CRntVector<u8> flags;  // 0x8: one per place in the list
-    CStrId name;                         // 0x30
-    UnkActorLink_l7a58c0 link;           // 0x38
-    UnkCutsceneList_l7a58c0* list;       // 0x78
-    u8 field_0x80;
-    u8 field_0x81;
-};
 static_assert(__builtin_offsetof(UnkCutsceneEntry_l7a58c0, field_0x81) == 0x81, "layout");
 
 static inline UnkCutsceneActor_l7a58c0* Actor(const base::UnkRefHandle& handle) {

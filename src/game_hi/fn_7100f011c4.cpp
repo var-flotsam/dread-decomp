@@ -48,12 +48,12 @@ struct UnkList : base::UnkLinkedList<UnkListNode> {
     }
 };
 
-struct UnkHashNode {
+struct UnkHashNode_f011c4 {
     u32 key;
     u8 pad_0x4[0x14];
     bool field_0x18;
     u8 pad_0x19[0x17];
-    UnkHashNode* next;
+    UnkHashNode_f011c4* next;
 };
 
 // An object holding a scene item at +0x18 (hidden for flagged ids).
@@ -64,7 +64,7 @@ struct UnkItemHolder {
 
 struct UnkStruct_0x128 {
     u8 pad_0x0[0x10];
-    UnkHashNode** buckets;
+    UnkHashNode_f011c4** buckets;
     u32 field_0x18;
     u32 bucket_count;
     u8 pad_0x20[0x60];
@@ -77,9 +77,9 @@ struct UnkStruct_0x128 {
     u8 pad_0x118[0x9];
     bool field_0x121;
 
-    UnkHashNode* Get(u32 key) {
+    UnkHashNode_f011c4* Get(u32 key) {
         u32 i = key % bucket_count;
-        UnkHashNode* n = buckets[i];
+        UnkHashNode_f011c4* n = buckets[i];
         while (n->key != key)
             n = n->next;
         return n;

@@ -12,6 +12,7 @@
 #include "base/math/UnkSegment2D.h"
 #include "game/CMinimapData.h"
 #include "game/SLogicPathNode.h"
+#include "game/UnkMinimapPathPoint.h"
 #include "game/UnkTU2563.h"
 #include "game/malloc.h"
 #include "game_s2/UnkItem50.h"
@@ -40,11 +41,6 @@ void fn_7100e62e24(base::global::CRntVector<UnkMinimapEntry_0x138>* self, u32 n)
     self->count = n;
 }
 
-// A point of the marker's path, handed back in memory (a user-provided destructor makes it so).
-struct UnkMinimapPathPoint {
-    CVector3D v;
-    ~UnkMinimapPathPoint() {}
-};
 static inline void Project(CVector2D* out, const UnkMinimapPathPoint& point) {
     fn_710007b430(out, &point.v);
 }

@@ -26,6 +26,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/UnkBufferStringPool.h"
+#include "game/UnkPathPairTemp_b45a1.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU25.h"
@@ -721,13 +722,6 @@ UnkSoundHandle fn_710102540c(UnkDropTarget* self, const UnkStrIdPathPair* ids, c
 }
 
 // The id and path pair (base/UnkStrIdPathPair.h) the reader opens.
-
-// The id and path pair built from a resource's path, destroyed out of line.
-struct UnkPathPairTemp_b45a1 {
-    void* id;
-    void* path;
-    ~UnkPathPairTemp_b45a1() { fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(this)); }
-};
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
 

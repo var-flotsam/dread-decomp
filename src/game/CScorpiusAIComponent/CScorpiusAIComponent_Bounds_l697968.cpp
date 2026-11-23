@@ -3,18 +3,11 @@
 // component, and higher while the owner plays one of the mask tracks. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkAabb.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2702.h"
+#include "game/UnkVec3.h"
 #include "types.h"
-
-struct UnkVec3 {
-    f32 x, y, z;
-};
-
-struct UnkAabb {
-    UnkVec3 min;
-    UnkVec3 max;
-};
 
 struct UnkScorpiusLink_l697968 {
     u8 pad_0x0[0x1a0];

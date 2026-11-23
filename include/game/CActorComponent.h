@@ -4,8 +4,10 @@
 // 0x710024e2e8-0x7100252568). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CRntFile.h"
+#include "base/reflection/CClass.h"
 #include "types.h"
 
+struct UnkGameManagerIdList;
 struct UnkSelf_cu41;
 struct UnkPickableItem_A4_b76;
 struct UnkBaseComponent;
@@ -23,3 +25,4 @@ void fn_710024facc(UnkSmBase_b60*);
 void fn_710024f6d4(UnkBaseComponent* self);
 void fn_710024fc0c(UnkPickableItem_A4_b76* self, base::global::CRntFile* file);
 void fn_710024fad0(UnkSelf_cu41* self);
+base::reflection::UnkReflObject* fn_710024e2e8(UnkGameManagerIdList* list, void* key);

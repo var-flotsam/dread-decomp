@@ -6,6 +6,8 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkTU108.h"
+#include "game/UnkTileOutline.h"
+#include "game/UnkTilePoint.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
 
@@ -16,24 +18,6 @@ struct UnkVec3;
 struct UnkPointSet_b61;
 void* fn_71003e6530(void* owner, const UnkVec2* origin, const UnkVec2* dir, void* sink, f32 radius, f32 limit);
 
-struct UnkTilePoint {
-    f32 x, y, z;
-};
-
-struct UnkTileOutline {
-    base::global::CRntVector<UnkTilePoint> points;
-    f32 field_0x28;
-    bool field_0x2c;
-    bool field_0x2d;
-    base::math::CVector2D min;
-    base::math::CVector2D max;
-    u32 field_0x40;
-
-    UnkTileOutline()
-        : points(7), field_0x28(0.0f), field_0x2c(false), field_0x2d(true), min{3.4028235e38f, 3.4028235e38f},
-          max{-3.4028235e38f, -3.4028235e38f}, field_0x40(0) {}
-    ~UnkTileOutline() { points.Free(); }
-};
 static_assert(sizeof(UnkTileOutline) == 0x48, "UnkTileOutline placeholder layout");
 
 struct UnkBigFistShape_l3e7d54 {

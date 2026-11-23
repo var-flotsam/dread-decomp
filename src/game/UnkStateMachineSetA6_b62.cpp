@@ -2,6 +2,7 @@
 // src/game/UnkStateMachineSet_b61.cpp, copied here: the machine of src/game/UnkStateMachineUpdate_b59.cpp
 // embedded at some offset, followed by a "busy" flag at +0xa8). One template per (last state, "none"
 // value), instantiated per component and machine offset. Names are placeholders.
+#include "game/UnkSaveGamePair_b54.h"
 #include "game/UnkUsableKeys.h"
 #include "base/global/CRntString.h"
 #include "../game_aca57c/UnkBufferString.h"
@@ -350,10 +351,6 @@ void fn_7100aa2570(UnkUsableDialog_A6_b62* self, bool show) {
 // user's name as strings with 0x40 bytes of storage, and a callback (this, a function of the unit).
 using base::global::CRntString;
 
-struct UnkSaveGamePair_b54 {
-    u64 first;
-    u64 second;
-};
 using UnkString40_A6_b62 = UnkBufferString<0x40, g_unk_7101a1b678>;
 
 typedef u32 UnkAliasU32_A6_b62;

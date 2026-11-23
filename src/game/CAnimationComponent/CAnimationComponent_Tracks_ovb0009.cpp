@@ -18,9 +18,14 @@
 #include "game/CActorComponent.h"
 #include "game/CAnimationComponent.h"
 #include "game/CComponent.h"
+#include "game/UnkAnimTime_ovb0009.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkMtx44_b46a2.h"
+#include "game/UnkS12.h"
+#include "game/UnkS16.h"
+#include "game/UnkSlomoFlags.h"
 #include "game/UnkTU1134.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1643.h"
@@ -30,6 +35,7 @@
 #include "game/UnkTU2689.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU83.h"
+#include "game/UnkTimelineId.h"
 #include "game/UnkXformNode.h"
 #include "game/animtree/CAnimTreeElement.h"
 #include "game/animtree/CAnimatedNode.h"
@@ -64,12 +70,6 @@ struct UnkFlags_7101176ea8 {
     }
 };
 
-// A time on an animation's clock (src/game/UnkAnimTime.cpp): unit 1 is seconds.
-struct UnkAnimTime_ovb0009 {
-    f32 value;
-    s32 unit;
-};
-
 // Built out of line in the original (returned in a register), so it is stored as one word.
 static inline UnkAnimTime_ovb0009 Seconds(f32 value) {
     UnkAnimTime_ovb0009 t;
@@ -77,17 +77,6 @@ static inline UnkAnimTime_ovb0009 Seconds(f32 value) {
     t.unit = 1;
     return t;
 }
-
-// A key and a time.
-struct UnkS16 {
-    u64 key;
-    UnkAnimTime_ovb0009 time;
-};
-
-// A blend descriptor (g_unk_7172769740, g_unk_7172769770).
-struct UnkS12 {
-    u32 a, b, c;
-};
 
 static inline const UnkS16& DefaultTime() { return reinterpret_cast<const UnkS16&>(g_unk_710164b968); }
 static inline const UnkS12& DefaultBlend() { return reinterpret_cast<const UnkS12&>(g_unk_7172769740); }
@@ -292,10 +281,6 @@ f32 fn_7101178134(UnkAnimationComponent* self, u64 key) {
     return end - fn_710070d890(track);
 }
 
-struct UnkTimelineId {
-    u64 value;
-};
-
 struct UnkTimelineHeader {
     u8 pad_0x0[0x40];
     UnkTimelineId id;
@@ -313,7 +298,7 @@ UnkTimelineId fn_7101177be0(UnkAnimationComponent* self, u64 key) {
                                 : g_unk_7101647910;
 }
 
-struct UnkTimelineEvents {
+struct UnkTimelineEvents_ovb0009 {
     u8 pad_0x0[0x120];
     UnkReflObject** events;
     u32 count;
@@ -322,7 +307,7 @@ struct UnkTimelineEvents {
 // Whether the first track's timeline has a CCharClassInvertRotationEvent.
 bool fn_7101178e74(UnkAnimationComponent* self) {
     UnkTrack* track = self->field_0x40->field_0xc8.values[0]->field_0x70;
-    UnkTimelineEvents* timeline = reinterpret_cast<UnkTimelineEvents*>(fn_710070d4e8(track));
+    UnkTimelineEvents_ovb0009* timeline = reinterpret_cast<UnkTimelineEvents_ovb0009*>(fn_710070d4e8(track));
     if (!timeline)
         return false;
     for (UnkReflObject** it = timeline->events; it < timeline->events + timeline->count; ++it) {
@@ -491,10 +476,6 @@ s32 fn_710117a018(UnkAnimComponent_a018* self, void* stream) {
 }
 
 // ---- Action sets ----------------------------------------------------------------------------
-
-struct UnkMtx44_b46a2 {
-    f32 m[16];
-};
 
 UnkVec3f fn_710007a320(const UnkVec3f* v, f32 angle);
 
@@ -742,13 +723,6 @@ void fn_7101176bec(UnkAnimComponent_b1c* self) {
 // ---- Slow motion ------------------------------------------------------------------------------
 
 struct UnkPlayer;
-
-// The slow-motion flags as bytes of the game manager's word at +0xc4.
-struct UnkSlomoFlags {
-    bool enabled;  // 0xc4
-    u8 unk_0xc5;
-    bool paused;  // 0xc6
-};
 
 struct UnkWaterState {
     u8 pad_0x0[0x70];

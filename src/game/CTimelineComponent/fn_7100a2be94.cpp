@@ -1,17 +1,9 @@
 // Whether an id is known to a keyed table: queued for addition, or already in the table.
 // It first initialises two function-local static masks it doesn't use.
+#include "game/UnkMaskA.h"
+#include "game/UnkMaskB.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
-
-struct UnkMaskA {
-    u32 value;
-    UnkMaskA() : value(0) {}
-};
-
-struct UnkMaskB {
-    u32 value;
-    UnkMaskB(u8 v) : value(v) {}
-};
 
 inline const UnkMaskA& UnkMaskNone_7101d57cc8() {
     static UnkMaskA s_none;

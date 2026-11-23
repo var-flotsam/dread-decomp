@@ -1,6 +1,7 @@
 // base::reflection's unit (tools/tu_map.py, unit 2610): sets an object's two named ids (+0x10, +0x18),
 // builds their "subarea_..." file-path id (fn_7100fa6ad0) into +0x20 and resets the value at +0xc8 and
 // the two flags after it. Names and layouts are placeholders.
+#include "base/UnkPathId_lfa6ad0.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -11,13 +12,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 struct UnkNamedId_lfa6ad0;
-
-// A file-path id built from a string; returned in memory.
-struct UnkPathId_lfa6ad0 {
-    base::global::UnkFilePathStrIdBase id;
-    explicit UnkPathId_lfa6ad0(const CRntString& str) { fn_710001a270(&id, str, true); }
-    UnkPathId_lfa6ad0(const UnkPathId_lfa6ad0& other);
-};
 
 UnkPathId_lfa6ad0 fn_7100fa6ad0(void* self, const UnkNamedId_lfa6ad0* area, const UnkNamedId_lfa6ad0* first,
                                 const UnkNamedId_lfa6ad0* second);

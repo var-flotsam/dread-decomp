@@ -160,7 +160,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through 85fa6cf86df8b16ec1db55a3d9c2410d82c01173 -->
+<!-- journal_sync: through ec2bc7334f9fc5f48c20358e9ab9630de8dabf15 -->
+
+**Move identically copied types and shared declarations into headers (#617, 2026-11-22).**
+
+Header consolidation, done in the cloud while the self-hosted runner is down. No function changes status: every object is byte-identical.
+
+- **Types (526 names, 794 copies removed).** Every struct, class or union that two or more hand-written sources defined with the same text (`tools/struct_check.py --kind same`) now lives once, in `include/<dir>/<Name>.h` (521 new headers, 5 reused existing ones), and each source includes it. Same-text names went from 750 to 224, and definitions beyond the first from 2,818 to 2,022. Each header includes only what it needs to compile on its own (`types.h`, or the smallest subset of the includes its users share). The comments the copies carried were merged into the header, except one-line pointers to another copy ("as src/x.cpp has it"), which no longer apply.
+- **Declarations (25 symbols).** `tools/decl_plan.py --write` followed by `tools/hub_migrate.py --plan` moved these into their unit headers. 17 symbols that a first run left half-moved (a file kept a local copy with a different type, so `decl_check` would have failed) are excluded and left as they were. Comments on the removed copies moved to the header declarations. Multi-file symbols went from 288 to 271, and extra copies from 626 to 586.
+
+**What was left and why.** 224 same-text types remain. Most of their headers do not compile alone because a member type is still defined locally with a different text in each file, or the name is a template specialisation. Those need the 493 differing-text types reconciled by hand first. The remaining declaration debt is mostly types that the files do not agree on (98) and globals in no unit's data span (83), as `decl_plan.py` reports.
+
+**Method (reusable).** No dump was available, so the evidence is stronger than trymatch: all 9,769 sources, generated ones included, were compiled with the project compiler (Clang 9.0.1, `tools/buildcfg.py` flags) before and after, and the SHA-256 of every object file is identical. The type move is a small script that does this per group and keeps an edit only when the object is unchanged. It runs to a fixed point in four passes. `hub_migrate.py` ran with `baseline.trymatch` swapped for the same object-hash compile. Neither script is in this PR; they can become a tool if this is worth repeating.
 
 **Give the scene registry one layout and match its constructor (#611, 2026-11-21).**
 

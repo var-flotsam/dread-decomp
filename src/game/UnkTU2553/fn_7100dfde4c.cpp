@@ -8,6 +8,7 @@
 #include "game/CGameManager/CTunableGameManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkPtrListNode.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2727.h"
@@ -20,11 +21,6 @@ using base::global::CStrId;
 
 struct UnkUserDataOwner;
 
-// A list of pointers (vtable g_unk_7101aa9ac0), its nodes from `allocator` with `flags`.
-struct UnkPtrListNode {
-    void* value;
-    UnkPtrListNode* next;
-};
 struct UnkPtrList {
     void** vtable;
     // Union members: the original reloads the count, the tail and the allocator after storing a new

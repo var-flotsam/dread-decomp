@@ -2,11 +2,10 @@
 // current pair refers to that node's key and element, or is reset when the list is empty. Names and layouts
 // are placeholders.
 #include "game/UnkTU2640.h"
+#include "game/UnkTU2640Elem.h"
+#include "game/UnkTU2640List.h"
+#include "game/UnkTU2640Node.h"
 #include "types.h"
-
-struct UnkTU2640Elem {
-    u64 field_0x0[6];
-};
 
 // A (key, element) pair whose destructor is out of line (one per list type).
 template <void (*Destroy)(char*)>
@@ -15,18 +14,6 @@ struct UnkTU2640Pair {
     UnkTU2640Elem element;
 
     ~UnkTU2640Pair() { Destroy(reinterpret_cast<char*>(this)); }
-};
-
-// The node is laid out as the pair it holds, followed by the link.
-struct UnkTU2640Node {
-    u64 key;
-    UnkTU2640Elem element;
-    UnkTU2640Node* next;
-};
-
-struct UnkTU2640List {
-    u8 pad_0x0[0x40];
-    UnkTU2640Node* head;
 };
 
 // The iterator: its node, and the current pair, which is empty, owns a copy, or refers to the node's key

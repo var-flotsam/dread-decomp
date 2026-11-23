@@ -3,6 +3,7 @@
 // capacity (the values moved with fn_71000a179c and destroyed with fn_71000a1c60, as the array's
 // reallocation does), then each value appended with fn_7100095e98 (fn_7100095acc). Names are
 // placeholders.
+#include "base/UnkReflValueElem_7100095acc.h"
 #include "base/global/CRntVector.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
@@ -10,13 +11,6 @@
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-struct UnkReflValueElem_7100095acc {
-    UnkReflValue value;
-
-    UnkReflValueElem_7100095acc(UnkReflValueElem_7100095acc&& other) { fn_71000a179c(&value, &other.value); }
-    ~UnkReflValueElem_7100095acc() { fn_71000a1c60(&value); }
-};
 
 using UnkReflValueVector_7100095acc = base::global::CRntVector<UnkReflValueElem_7100095acc>;
 

@@ -18,7 +18,7 @@
 
 using base::global::CStrId;
 
-struct UnkState {
+struct UnkState_CDoorLifeComponent {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10(s32 previous);  // entered
@@ -28,27 +28,27 @@ struct UnkState {
 };
 
 // The states are only 4-aligned after the count.
-typedef UnkState* __attribute__((aligned(4))) UnkStatePtr;
+typedef UnkState_CDoorLifeComponent* __attribute__((aligned(4))) UnkStatePtr;
 
 // A state machine whose state change can be held back (field_0xa8).
-struct UnkStateMachine {
+struct UnkStateMachine_CDoorLifeComponent {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
     virtual void vf_0x18();
-    virtual void vf_0x20(UnkState* previous, UnkState* next);  // after entering
-    virtual void vf_0x28(UnkState* current, UnkState* next);   // after leaving
+    virtual void vf_0x20(UnkState_CDoorLifeComponent* previous, UnkState_CDoorLifeComponent* next);  // after entering
+    virtual void vf_0x28(UnkState_CDoorLifeComponent* current, UnkState_CDoorLifeComponent* next);   // after leaving
 
     u64 field_0x8;
-    UnkState* current;
-    UnkState* previous;
+    UnkState_CDoorLifeComponent* current;
+    UnkState_CDoorLifeComponent* previous;
     u32 count;
     UnkStatePtr states[16];
     s32 pending;
     bool field_0xa8;
 };
 
-static inline UnkState* FindState(UnkStateMachine* self, s32 id) {
+static inline UnkState_CDoorLifeComponent* FindState(UnkStateMachine_CDoorLifeComponent* self, s32 id) {
     for (UnkStatePtr *p = self->states, *e = p + self->count; p != e; ++p) {
         if ((*p)->id == id)
             return *p;
@@ -58,18 +58,18 @@ static inline UnkState* FindState(UnkStateMachine* self, s32 id) {
 
 // Asks for the state `id`: unless changes are held back, the state with that id (if any and not the
 // current one) is entered at once and the request cleared.
-static inline void RequestState(UnkStateMachine* self, s32 id) {
+static inline void RequestState(UnkStateMachine_CDoorLifeComponent* self, s32 id) {
     self->pending = id;
     if (self->field_0xa8)
         return;
-    UnkState* current = self->current;
+    UnkState_CDoorLifeComponent* current = self->current;
     if (!current || current->id != id) {
-        if (UnkState* next = FindState(self, id)) {
+        if (UnkState_CDoorLifeComponent* next = FindState(self, id)) {
             if (current) {
                 current->vf_0x18(id);
                 self->vf_0x28(self->current, next);
             }
-            UnkState* prev = self->current;
+            UnkState_CDoorLifeComponent* prev = self->current;
             self->current = next;
             self->previous = prev;
             next->vf_0x10(prev ? prev->id : 0x7fffffff);
@@ -89,7 +89,7 @@ struct UnkDoorLife {
     u8 pad_0x0[0x40c];
     s32 field_0x40c;  // the state written to the blackboard
     u8 pad_0x410[0x10];
-    UnkStateMachine field_0x420;
+    UnkStateMachine_CDoorLifeComponent field_0x420;
     u8 pad_0x4d0[0x154];
     f32 field_0x624;
     u8 pad_0x628[0x48];
@@ -148,7 +148,7 @@ static inline UnkDoorPropertyValue* FindValue(UnkDoorLife* self, base::global::U
 bool fn_71008d586c(UnkDoorLife* self, bool force, bool notify, const CStrId* id) {
     if (id->data != &g_unk_7101d47108->empty)
         fn_710002fd10(&self->field_0xa18, const_cast<CStrId*>(id));
-    if (UnkState* current = self->field_0x420.current) {
+    if (UnkState_CDoorLifeComponent* current = self->field_0x420.current) {
         switch (current->id) {
         case 1:
             if (force || fn_71008d5c1c(self))

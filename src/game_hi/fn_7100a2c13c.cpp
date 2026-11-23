@@ -18,7 +18,7 @@ struct UnkTimelineCharClass {
     UnkCountedResource* actions;
 };
 
-struct UnkTimelineOwner {
+struct UnkTimelineOwner_a2c13c {
     u8 pad_0x0[0x28];
     base::reflection::UnkReflObject* char_class;
     u8 pad_0x30[0x210];
@@ -27,11 +27,11 @@ struct UnkTimelineOwner {
 
 struct UnkTimelineComponentOwner {
     u8 pad_0x0[0x30];
-    UnkTimelineOwner* owner;
+    UnkTimelineOwner_a2c13c* owner;
 };
 
 UnkTimelineResourceEntry* fn_7100a2c13c(UnkTimelineComponent* self, const u64* id) {
-    UnkTimelineOwner* owner = reinterpret_cast<UnkTimelineComponentOwner*>(self)->owner;
+    UnkTimelineOwner_a2c13c* owner = reinterpret_cast<UnkTimelineComponentOwner*>(self)->owner;
     base::reflection::UnkReflObject* object = owner->char_class;
     if (!fn_710009d50c(object->vf_0x0(), fn_71011abbd4()))
         object = nullptr;

@@ -4,13 +4,9 @@
 // first, printed red first (fn_71000efb50).
 // Names and layouts are placeholders.
 #include <stdio.h>
+#include "game/UnkTextWriter_71000ef9cc.h"
 
 #include "types.h"
-
-struct UnkTextWriter_71000ef9cc {
-    u8 unk_0x0[0xc];
-    char text[0x200];
-};
 
 struct UnkFloat4_71000efa94 {
     f32 x, y, z, w;

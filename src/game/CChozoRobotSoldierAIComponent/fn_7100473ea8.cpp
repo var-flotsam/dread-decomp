@@ -3,6 +3,7 @@
 // at or below the goal), else the base's (fn_710110f318). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
+#include "game/UnkNavMeshHits.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU2702.h"
 #include "game/navmesh/CNavMesh.h"
@@ -18,9 +19,6 @@ struct UnkNavMeshCallback {
 
 struct UnkDirectionFilter;
 struct UnkNavMeshSideSegment;
-struct UnkNavMeshHits {
-    u32 count;
-};
 
 using UnkNavSideFilter = UnkNavMeshCallback<bool, u16, u8, void*, void*, u64, u32, u32>;
 using UnkNavSideVerdict = UnkNavMeshCallback<s32, UnkNavMeshSideSegment*>;

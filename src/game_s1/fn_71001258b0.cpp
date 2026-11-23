@@ -3,14 +3,8 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkTUHeaderRev.h"
 #include "game/UnkTUInit.h"
-
-// The header built the other way round: "sources" first, the word last.
-struct UnkTUHeaderRev {
-    u32 field_0x0;
-    CStrId sources;
-    CStrId binaries;
-};
 
 __attribute__((always_inline)) static inline void InitHeaderRev(UnkTUHeaderRev& h) {
     new (&h.sources) CStrId("sources", true);

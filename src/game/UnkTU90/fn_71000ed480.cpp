@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU56.h"
+#include "game/UnkWriter_b0202.h"
 #include "types.h"
 #include "base/reflection.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
@@ -18,11 +19,6 @@ using base::reflection::UnkReflValue;
 using base::reflection::UnkReflValueRef;
 
 using UnkString200 = UnkBufferString<0x200, g_unk_7101a1a5a8>;
-
-struct UnkWriter_b0202 {
-    u8 pad_0x0[0xc88];
-    base::global::CRntFile* file;  // 0xc88
-};
 
 // Destroys the reflected value.
 struct UnkValueGuard_b0202 {

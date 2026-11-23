@@ -13,6 +13,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTitleScreenB.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -35,15 +36,6 @@ struct UnkTitleScreenA {
     bool notify;
     u8 pad_0x26[2];
     f32 field_0x28;
-};
-
-struct UnkTitleScreenB {
-    void* vtable;
-    UnkGuiDisplayObject* root;  // 0x8
-    u8 pad_0x10[4];
-    u32 field_0x14;
-    f32 delay;  // 0x18
-    bool done;  // 0x1c
 };
 
 void fn_7100b53fa0(UnkTitleScreenA* self);

@@ -10,16 +10,12 @@
 #include "game/CHydrogigaZiplineRailComponent.h"
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStrIdHandle.h"
 #include "game/UnkTU883.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-// As src/game/CInventoryComponent/CInventoryComponent_b40.cpp declares it.
-struct UnkStrIdHandle {
-    CStrId id;
-    void* field_0x8;
-};
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 
 // The handle, built in place by fn_7100ae986c and released on leaving the scope.

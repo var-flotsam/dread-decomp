@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkBucketSet.h"
+#include "game/UnkTU88.h"
 #include "types.h"
 
 // ---- the registry's set of named nodes (the type map at +0x60 of the registry) ----
@@ -27,7 +28,6 @@ static_assert(sizeof(UnkSetNode_b257j) == 0x60, "node layout");
 using UnkNamedSet_b257j = base::global::UnkBucketSet<UnkSetNode_b257j>;
 
 UnkSetNode_b257j** fn_71000ec52c(UnkNamedSet_b257j* set, u32 index);
-void fn_71000ea064(void* list);
 
 // Destroys a node: its list, its name, then the node itself.
 static inline __attribute__((always_inline)) void DestroyNode_b257j(UnkNamedSet_b257j* set, UnkSetNode_b257j* node) {

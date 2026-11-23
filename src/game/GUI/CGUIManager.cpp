@@ -20,9 +20,11 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkRefSource_71011b69d8.h"
 #include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU56.h"
+#include "game/UnkTag_71011b69d8.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "UnkClone.h"
@@ -255,14 +257,7 @@ static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {
     fn_710000f750(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr);
 }
 
-// The loaded composition, as src/game_hi/fn_71011b69d8.cpp declares it (a display-object
-// container; vf_0x10 is its deleting destructor, vf_0x28 its weak-handle slot).
-struct UnkTag_71011b69d8 : UnkLeftoverReg {};
 struct UnkRefHandle_71011b69d8;
-struct UnkRefSource_71011b69d8 {
-    virtual void vf_0x0(); virtual void vf_0x8(); virtual void vf_0x10(); virtual void vf_0x18(); virtual void vf_0x20();
-    virtual UnkRefHandle_71011b69d8* vf_0x28();
-};
 
 // The std::unique_ptr the file is read into.
 struct UnkOwnedSource {

@@ -9,6 +9,7 @@
 #include "base/global/CRntVector.h"
 #include "base/snd/UnkSoundSystemATK.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkSoundHandle_b46a1.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU99.h"
 
@@ -19,10 +20,6 @@ using base::snd::UnkSoundSystemATK;
 void QueueSoundCommand(UnkSoundSystemATK* self, s32 command, __attribute__((noescape)) const void* payload) asm(
     "_Z13fn_71000faac4PN4base3snd17UnkSoundSystemATKEiPKv");
 
-struct UnkSoundHandle_b46a1 {
-    u32 value;
-    UnkSoundHandle_b46a1(const UnkSoundHandle_b46a1& other) : value(other.value) {}
-};
 extern const f32 g_unk_71016479f8[] __attribute__((visibility("hidden")));  // level values
 
 struct UnkSndChannelVoice_o0301 {

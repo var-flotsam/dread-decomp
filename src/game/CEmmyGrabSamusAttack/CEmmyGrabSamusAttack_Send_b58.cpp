@@ -15,16 +15,13 @@
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "../UnkNamedSend_b54.h"
+#include "game/UnkGrabVec_b58a3.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkPlayer;
 
 struct UnkEmmyRegistry_b55;
-
-struct UnkGrabVec_b58a3 {
-    f32 x, y, z;
-};
 
 struct UnkGrabPart_b58a3 {
     void** vtable;

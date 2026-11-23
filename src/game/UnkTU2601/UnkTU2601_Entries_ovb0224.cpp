@@ -11,13 +11,13 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2601.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
 
 struct UnkPartF84868_b56;
-void fn_7100f84868(UnkPartF84868_b56* self, const UnkPartF84868_b56* other);
 
 struct UnkWords16_ovb0224 {
     u64 a, b;

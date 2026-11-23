@@ -4,6 +4,11 @@
 // layouts are placeholders.
 #include "game/CFXComponent.h"
 #include "game/CProjectileMovement.h"
+#include "game/UnkAcidBlobDef_ovb0135.h"
+#include "game/UnkAcidBlobOwner_ovb0135.h"
+#include "game/UnkAcidBlobPart_ovb0135.h"
+#include "game/UnkAcidBlobTarget_ovb0135.h"
+#include "game/UnkAcidBlob_ovb0135.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU133.h"
 #include "game/UnkXformNode.h"
@@ -13,58 +18,8 @@ struct UnkObject;
 struct UnkPart;
 extern "C" f32 atan2f(f32 y, f32 x);
 
-struct UnkAcidBlobPart_ovb0135 {
-    u8 pad_0x0[0xb];
-    u8 kind;  // 0xb
-};
-
-struct UnkAcidBlobOwner_ovb0135 {
-    u8 pad_0x0[0x38];
-    UnkXform xform;  // 0x38: the position is its translation
-    u8 pad_0x94[0x1ec];
-    UnkObject* model;  // 0x280
-    u8 pad_0x288[0x138];
-    bool dirty;  // 0x3c0
-
-    UnkXform* Xform() { return &xform; }
-};
 static_assert(__builtin_offsetof(UnkAcidBlobOwner_ovb0135, dirty) == 0x3c0, "layout");
 
-struct UnkAcidBlobDef_ovb0135 {
-    u8 pad_0x0[0x11a];
-    bool follow;  // 0x11a
-    u8 pad_0x11b;
-    f32 follow_scale;  // 0x11c
-    u8 pad_0x120[0x14];
-    f32 spin;  // 0x134
-};
-
-struct UnkAcidBlobTarget_ovb0135 {
-    u8 pad_0x0[0x10];
-    void* actor;  // 0x10
-};
-
-
-struct UnkAcidBlob_ovb0135 {
-    u8 pad_0x0[0x30];
-    UnkAcidBlobOwner_ovb0135* owner;  // 0x30
-    u8 pad_0x38[0xd4];
-    f32 dir_x;  // 0x10c
-    f32 dir_y;  // 0x110
-    f32 dir_z;  // 0x114
-    u8 pad_0x118[0x118];
-    UnkAcidBlobTarget_ovb0135* target;  // 0x230
-    u8 pad_0x238[0x280];
-    f32 vel_x;  // 0x4b8
-    f32 vel_y;  // 0x4bc
-    f32 vel_z;  // 0x4c0
-    u8 pad_0x4c4[0xad];
-    bool landed;  // 0x571
-    u8 pad_0x572[0x5e];
-    UnkAcidBlobDef_ovb0135* def;  // 0x5d0
-    u8 pad_0x5d8[0x10];
-    s32 size_step;  // 0x5e8
-};
 static_assert(__builtin_offsetof(UnkAcidBlob_ovb0135, def) == 0x5d0, "layout");
 
 // Places the owner's trail part (fn_7101152b90) at the owner, turned along the direction at +0x10c.

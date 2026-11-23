@@ -4,14 +4,8 @@
 #include <string.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkGfxHeap.h"
 #include "types.h"
-
-struct UnkGfxHeap {
-    u8 pool[0x100];
-    u64 base;  // 0x100
-    u8 pad_0x108[0x18];
-    void* space;  // 0x120
-};
 
 // Allocates `size` bytes (at least 0x10) at an alignment, copying the old block's `size` bytes when
 // there is one; the old block is not freed.

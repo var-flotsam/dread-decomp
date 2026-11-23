@@ -10,6 +10,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/reflection.h"
+#include "engine/UnkStartupFlags.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CBossAIComponent.h"
 #include "game/CDizzeanSwarmControllerComponent.h"
@@ -115,12 +116,6 @@ void fn_7100fb7a14(void* self);
 
 struct UnkLoadingScreen;  // src/game/UnkLoadingScreen.cpp
 void fn_7100e0f984(UnkLoadingScreen* self);
-
-// The two flags the main function passes (src/engine/HostArguments.cpp).
-struct UnkStartupFlags {
-    bool field_0x0;
-    u8 field_0x1;
-};
 
 // The root path is not used.
 void fn_7100adfb20(const UnkStartupFlags* flags, CFilePathStrId root) {
