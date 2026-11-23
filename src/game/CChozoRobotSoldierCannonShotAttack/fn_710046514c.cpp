@@ -26,7 +26,7 @@ struct UnkTarget_46514c {
     UnkHelper* field_0x208;
 };
 
-struct UnkOwner {
+struct UnkOwner_46514c {
     u8 pad_0x0[0x38];
     u8 field_0x38[0xc];
     u32 field_0x44;
@@ -38,7 +38,7 @@ struct UnkOwner {
 
 struct UnkSelf {
     u8 pad_0x0[0x8];
-    UnkOwner* field_0x8;
+    UnkOwner_46514c* field_0x8;
 };
 
 // The matrix of the transform at +0x38 of an actor (fn_710002614c), as its 16 floats.

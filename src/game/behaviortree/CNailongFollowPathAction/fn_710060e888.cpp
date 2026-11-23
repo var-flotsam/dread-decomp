@@ -19,7 +19,7 @@ struct UnkValue_60e888 {
     u32 field_0xac;
 };
 
-struct UnkRecord {
+struct UnkRecord_60e888 {
     UnkEntry* field_0x0;
     u8 pad_0x8[8];
     UnkValue_60e888* field_0x10;
@@ -48,7 +48,7 @@ u32 fn_710060e888(UnkComponent* self) {
     UnkNavigation* target = fn_71010fccf8(object);
     UnkSource* source = self->field_0x18->field_0x1f0;
     if (object && target && source) {
-        UnkRecord* record = static_cast<UnkRecord*>(target->field_0xb0);
+        UnkRecord_60e888* record = static_cast<UnkRecord_60e888*>(target->field_0xb0);
         if (record->field_0x0 && record->field_0x0->field_0x10 && record->field_0x0->field_0x10->field_0x10 == 2 &&
             record->field_0x10) {
             UnkCopy* dst = reinterpret_cast<UnkCopy*>(reinterpret_cast<char*>(object) + 0x14678);

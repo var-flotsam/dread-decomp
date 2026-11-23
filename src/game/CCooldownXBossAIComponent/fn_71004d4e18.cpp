@@ -17,7 +17,7 @@ struct UnkBoxed_4d4e18 {
     UnkPositioned* field_0x30;
 };
 
-struct UnkBox {
+struct UnkBox_4d4e18 {
     f32 min_x;
     f32 min_y;
     u32 z;
@@ -26,7 +26,7 @@ struct UnkBox {
     f32 max_z;
 };
 
-void fn_71004d4e18(UnkBoxed_4d4e18* self, UnkBox* box) {
+void fn_71004d4e18(UnkBoxed_4d4e18* self, UnkBox_4d4e18* box) {
     if (!fn_7100d7c990(reinterpret_cast<UnkActor*>(self->field_0x30)))
         return;
     UnkPositioned* p = self->field_0x30;
@@ -35,7 +35,7 @@ void fn_71004d4e18(UnkBoxed_4d4e18* self, UnkBox* box) {
     u32 z = p->field_0x64;
     f32 zf;
     __builtin_memcpy(&zf, &z, 4);
-    UnkBox result;
+    UnkBox_4d4e18 result;
     result.min_x = x + -1150.0f;
     result.min_y = y + -650.0f;
     result.z = z;

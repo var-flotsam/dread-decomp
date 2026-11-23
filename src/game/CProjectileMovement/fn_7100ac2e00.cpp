@@ -12,7 +12,7 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 // Reference counted through a virtual release (count at +0x8, vf_0x10 deletes).
-struct UnkRefObject {
+struct UnkRefObject_ac2e00 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -26,13 +26,13 @@ struct UnkComponent_0x5b8_ac2e00 {
     UnkStringData* field_0x490;  // CFilePathStrId
     UnkStringData* field_0x498;  // CFilePathStrId
     u8 unk_0x4a0[0x8];
-    UnkRefObject* field_0x4a8;
-    UnkRefObject* field_0x4b0;
+    UnkRefObject_ac2e00* field_0x4a8;
+    UnkRefObject_ac2e00* field_0x4b0;
     u8 unk_0x4b8[0x18];
-    UnkRefObject* field_0x4d0;
+    UnkRefObject_ac2e00* field_0x4d0;
     u8 unk_0x4d8[0x50];
-    UnkRefObject* field_0x528;
-    UnkRefObject* field_0x530;
+    UnkRefObject_ac2e00* field_0x528;
+    UnkRefObject_ac2e00* field_0x530;
     u8 unk_0x538[0x48];
     UnkStringData* field_0x580;  // CStrId
     UnkStringData* field_0x588;  // CFilePathStrId
@@ -59,7 +59,7 @@ static inline void ReleaseId(UnkStringData** id, UnkStringPool** global_pool) {
     }
 }
 
-static inline void Release(UnkRefObject* p) {
+static inline void Release(UnkRefObject_ac2e00* p) {
     if (p && --p->ref_count == 0)
         p->vf_0x10();
 }

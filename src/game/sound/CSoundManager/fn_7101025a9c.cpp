@@ -13,14 +13,14 @@ struct UnkOwnedObj_7101025a9c {
 };
 
 // An owning pointer: cleared, then its object deleted.
-struct UnkOwnedPtr {
+struct UnkOwnedPtr_01025a9c {
     // A union member (no type-based alias info): the array is reloaded after the pointer is
     // cleared.
     union {
         UnkOwnedObj_7101025a9c* ptr;
     };
 
-    ~UnkOwnedPtr() {
+    ~UnkOwnedPtr_01025a9c() {
         UnkOwnedObj_7101025a9c* p = ptr;
         ptr = nullptr;
         if (p)
@@ -48,7 +48,7 @@ struct UnkTable_0x28_01025a9c {
 
 struct UnkObject_7101025a9c : UnkBase_0x58 {
     union {
-        base::global::CRntVector<UnkOwnedPtr> objects;
+        base::global::CRntVector<UnkOwnedPtr_01025a9c> objects;
     };
     // Destroyed before the array above, so both are destroyed by hand.
     union {

@@ -26,7 +26,7 @@ struct UnkFollowActor_b190 {
 static_assert(__builtin_offsetof(UnkFollowActor_b190, pos_x) == 0x44, "layout");
 static_assert(__builtin_offsetof(UnkFollowActor_b190, field_0x220) == 0x220, "layout");
 
-struct UnkSubAreaMgr_b190 {
+struct UnkSubAreaMgr_b190_ee5bc4 {
     u8 pad_0x0[0x11c];
     UnkVec3f field_0x11c;
     u8 pad_0x128[0xc];
@@ -35,10 +35,10 @@ struct UnkSubAreaMgr_b190 {
     UnkFollowActor_b190* actor;  // 0x148
     bool active;                 // 0x150
 };
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x134) == 0x134, "layout");
-static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, actor) == 0x148, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ee5bc4, field_0x134) == 0x134, "layout");
+static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ee5bc4, actor) == 0x148, "layout");
 
-void fn_7100ee5bc4(UnkSubAreaMgr_b190* self) {
+void fn_7100ee5bc4(UnkSubAreaMgr_b190_ee5bc4* self) {
     UnkFollowActor_b190* actor = self->actor;
     if (actor && self->active) {
         UnkAnimationComponent* character = actor->field_0x220;

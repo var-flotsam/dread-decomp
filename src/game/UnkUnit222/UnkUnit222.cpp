@@ -3,7 +3,7 @@
 #include "game/UnkTU222.h"
 #include "types.h"
 
-struct UnkEntry_0x98 {
+struct UnkEntry_0x98_UnkUnit222 {
     u8 unk_0x0[0x98];
 };
 
@@ -18,20 +18,20 @@ struct UnkOwner_710019b9c8 {
 
 struct Unk_710019b9c8 {
     UnkOwner_710019b9c8* owner;  // 0x0
-    UnkEntry_0x98* entries;      // 0x8
+    UnkEntry_0x98_UnkUnit222* entries;      // 0x8
     u8 unk_0x10[0x8];
     u32 entry_count;  // 0x18
     u8 unk_0x1c[0x14];
     bool done;  // 0x30
 };
 
-void fn_7100195114(UnkEntry_0x98* entry);
+void fn_7100195114(UnkEntry_0x98_UnkUnit222* entry);
 void fn_710019b304(UnkChild_710019b304* child);
 
 void fn_710019b9c8(Unk_710019b9c8* self) {
     if (self->done)
         return;
-    for (UnkEntry_0x98 *it = self->entries, *end = it + self->entry_count; it != end; ++it)
+    for (UnkEntry_0x98_UnkUnit222 *it = self->entries, *end = it + self->entry_count; it != end; ++it)
         fn_7100195114(it);
     self->done = true;
     UnkOwner_710019b9c8* owner = self->owner;

@@ -35,7 +35,7 @@ struct UnkObjClass {
     u32 count;  // 0xf8
 };
 
-struct UnkObj {
+struct UnkObj_ovb0265 {
     virtual UnkObjClass* GetClass();
 };
 
@@ -44,7 +44,7 @@ struct UnkObjValue {
     void* value;
 };
 
-void fn_7101043f74(UnkObj* self, UnkPropBag* bag) {
+void fn_7101043f74(UnkObj_ovb0265* self, UnkPropBag* bag) {
     UnkReflTypedPtr typed;
     typed.type = reinterpret_cast<char*>(self->GetClass());
     typed.ptr = self;

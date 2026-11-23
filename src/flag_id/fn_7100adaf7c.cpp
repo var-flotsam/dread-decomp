@@ -12,12 +12,12 @@ struct UnkPayload_adaf7c {
     s32 kind;
 };
 
-struct UnkHolder {
+struct UnkHolder_adaf7c {
     u8 unk_0x0[0x8];
     UnkPayload_adaf7c* payload;
 };
 
-UnkReflValue fn_7100adaf7c(void* self, const UnkHolder* holder) {
+UnkReflValue fn_7100adaf7c(void* self, const UnkHolder_adaf7c* holder) {
     void* data = holder->payload;
     if (holder->payload->kind == 2)
         data = holder->payload->data;

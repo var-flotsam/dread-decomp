@@ -35,13 +35,13 @@ struct UnkCallback {
     }
 };
 
-struct UnkRecord : UnkComponent {
+struct UnkRecord_4faad4 : UnkComponent {
     UnkCallback field_0x2a6f8;
 };
 
 void fn_71004fd50c();
 
-void fn_71004faad4(UnkRecord* self) {
+void fn_71004faad4(UnkRecord_4faad4* self) {
     fn_710053e5c0(self);
     self->vtable = g_unk_7101a45710 + 2;
     new (&self->field_0x2a6f8) UnkCallback(self);

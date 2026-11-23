@@ -155,14 +155,14 @@ struct UnkAITracked {
     UnkAITrackedVtbl* vtable;
 };
 
-struct UnkAIComponent;
+struct UnkAIComponent_CAIComponent;
 struct UnkAIComponentVtbl {
     u8 pad_0x0[0x7a8];
-    bool (*vf_0x7a8)(UnkAIComponent* self, UnkAIPathCandidates* candidates);
-    s32 (*vf_0x7b0)(UnkAIComponent* self, UnkAIPathCandidates* candidates, UnkAIPathPoint_CAIComponent* point);
+    bool (*vf_0x7a8)(UnkAIComponent_CAIComponent* self, UnkAIPathCandidates* candidates);
+    s32 (*vf_0x7b0)(UnkAIComponent_CAIComponent* self, UnkAIPathCandidates* candidates, UnkAIPathPoint_CAIComponent* point);
 };
 
-struct UnkAIComponent {
+struct UnkAIComponent_CAIComponent {
     UnkAIComponentVtbl* vtable;
     u8 pad_0x8[0x28];
     UnkActor* owner;
@@ -173,16 +173,16 @@ struct UnkAIComponent {
     u8 pad_0x160c[0x4];
     UnkAIPathFlags* field_0x1610;
 };
-static_assert(__builtin_offsetof(UnkAIComponent, follower) == 0x68, "UnkAIComponent placeholder layout");
-static_assert(__builtin_offsetof(UnkAIComponent, last_side) == 0x1600, "UnkAIComponent placeholder layout");
-static_assert(__builtin_offsetof(UnkAIComponent, field_0x1610) == 0x1610, "UnkAIComponent placeholder layout");
+static_assert(__builtin_offsetof(UnkAIComponent_CAIComponent, follower) == 0x68, "UnkAIComponent_CAIComponent placeholder layout");
+static_assert(__builtin_offsetof(UnkAIComponent_CAIComponent, last_side) == 0x1600, "UnkAIComponent_CAIComponent placeholder layout");
+static_assert(__builtin_offsetof(UnkAIComponent_CAIComponent, field_0x1610) == 0x1610, "UnkAIComponent_CAIComponent placeholder layout");
 
 struct UnkStruct_7100286798;  // the query as src/game_lo/fn_7100286798.cpp names it
 struct UnkActor_7100286798;
 struct UnkStruct_7100286624;  // the query as src/game_lo/fn_7100286624.cpp names it
 
 bool fn_7100ebfa6c(UnkNavMeshManager* self, UnkNavQuery* query, void* path);
-bool fn_7101109e8c(UnkAIComponent* self, UnkNavMeshHit* side);
+bool fn_7101109e8c(UnkAIComponent_CAIComponent* self, UnkNavMeshHit* side);
 
 // The component's handlers the query calls back.
 void fn_7100708034(void* self, void* a1, void* a2, void* a3, void* a4, void* a5, void* a6, void* a7, u32 a8);
@@ -219,7 +219,7 @@ static inline CVector3D UnkTranslation(const UnkActor* actor) {
 // NON_MATCHING(minor): register allocation (the frame is 0x10 larger), and the callbacks are stored
 // in another order, the null case without the original's shared tail; the same calls with the same
 // arguments in the same order, and the same locals at the same offsets.
-bool fn_7101103080(UnkAIComponent* self, void* path, UnkAIPathPoint_CAIComponent* point, UnkAIPathCandidates* candidates) {
+bool fn_7101103080(UnkAIComponent_CAIComponent* self, void* path, UnkAIPathPoint_CAIComponent* point, UnkAIPathCandidates* candidates) {
     if (candidates)
         for (UnkAIPathCandidate& c : candidates->c)
             c.Reset();

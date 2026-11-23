@@ -49,22 +49,22 @@ struct UnkLevelB : UnkLevelA {
     }
 };
 
-struct UnkLevelC : UnkLevelB {
+struct UnkLevelC_2e5e80 : UnkLevelB {
     UnkPair field_0x28;
     u32 field_0x38;
     u8 pad_0x3c[4];
 
-    UnkLevelC(UnkLevelC& other) : UnkLevelB(other) {
+    UnkLevelC_2e5e80(UnkLevelC_2e5e80& other) : UnkLevelB(other) {
         vtable = g_unk_7101a21fc8 + 2;
         field_0x28 = other.field_0x28;
         field_0x38 = other.field_0x38;
     }
 };
 
-struct UnkLevelD_2e5e80 : UnkLevelC {
+struct UnkLevelD_2e5e80 : UnkLevelC_2e5e80 {
     base::UnkPooledString field_0x40;
 
-    UnkLevelD_2e5e80(UnkLevelD_2e5e80& other) : UnkLevelC(other) {
+    UnkLevelD_2e5e80(UnkLevelD_2e5e80& other) : UnkLevelC_2e5e80(other) {
         vtable = g_unk_7101a21ef0 + 2;
         MoveId(field_0x40, other.field_0x40);
     }

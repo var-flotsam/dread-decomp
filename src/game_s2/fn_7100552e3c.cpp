@@ -12,14 +12,14 @@ struct UnkTunables {
     f32 field_0x110;
 };
 
-struct UnkSelf {
+struct UnkSelf_552e3c {
     u8 pad_0x0[0x29ee0];
     UnkProvider* field_0x29ee0;
 };
 
 extern "C" int rand();
 
-f32 fn_7100552e3c(UnkSelf* self) {
+f32 fn_7100552e3c(UnkSelf_552e3c* self) {
     alignas(16) f32 values[4];
     values[1] = self->field_0x29ee0->vf_0xd8()->field_0x108;
     f32* p = &values[1];
