@@ -2,6 +2,7 @@
 // src/game/UnkStateMachineUpdateA5_b62.cpp, copied here) on the object itself: applies the pending
 // state, then updates the current state and applies what it asked for, at most ten times, while
 // marked busy. Names are placeholders.
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 struct UnkSmState_ovb0262c {
@@ -39,24 +40,14 @@ struct UnkSmOwner_ovb0262c {
     UnkSmMachine_ovb0262c machine;
 };
 
-__attribute__((always_inline)) static inline bool FindState_ovb0262c(UnkSmMachine_ovb0262c* self, u32 id,
-                                                               UnkSmState_ovb0262c*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_ovb0262c);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_ovb0262c* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_ovb0262c)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_ovb0262c(UnkSmMachine_ovb0262c* self, u32 id, UnkSmState_ovb0262c*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_ovb0262c(UnkSmMachine_ovb0262c* self, u32 id,
-                                                                 UnkSmState_ovb0262c* current) {
+static inline void SwitchState_ovb0262c(UnkSmMachine_ovb0262c* self, u32 id, UnkSmState_ovb0262c* current) {
     if (!current || current->id != id) {
         UnkSmState_ovb0262c* found;
         UnkSmState_ovb0262c* next;
@@ -68,9 +59,7 @@ __attribute__((always_inline)) static inline void SwitchState_ovb0262c(UnkSmMach
             if (id != 0)
                 goto done;
             enter = false;
-            asm("" : "+r"(enter));
             next = nullptr;
-            asm("" : "+r"(next));
         }
         if (current) {
             current->vf_0x18(id);
@@ -91,7 +80,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void Apply_ovb0262c(UnkSmMachine_ovb0262c* self) {
+static inline void Apply_ovb0262c(UnkSmMachine_ovb0262c* self) {
     u32 id = self->pending;
     if (id > Last)
         return;

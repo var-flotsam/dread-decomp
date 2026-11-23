@@ -78,9 +78,9 @@ static_assert(sizeof(UnkMsg_l457274) == 0x38, "UnkMsg_l457274 layout");
 
 struct UnkMsgHandler_l457274 {
     void* context;
-    bool (*fn)(void* context, UnkMsg_l457274 msg);
+    u32 (*fn)(void* context, UnkMsg_l457274 msg);
 };
 
-bool fn_7100457274(UnkMsgHandler_l457274* handler, const UnkMsg_l457274& msg) {
+u32 fn_7100457274(UnkMsgHandler_l457274* handler, const UnkMsg_l457274& msg) {
     return handler->fn(handler->context, msg);
 }
