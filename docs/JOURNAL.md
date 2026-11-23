@@ -104,6 +104,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - `!` on a bool callee's result: the original's byte-wide NOT (`mvn`) against our 1-bit `eor #1` is codegen, out of the permuter's reach; the permuter's yield on 95%+ fuzzy near misses is about 2% (6 of 346): [overnight permuter run](#session-log-newest-first).
 - A generated clone that declares an element assignment `void` while its definition must return the destination: list it in `gen_clones.py`'s `ASSIGN_RETURNS_DST`, not a cast: [two held drafts land](#session-log-newest-first).
 - A placeholder byte array that moves the anchor register when split into flat fields can be an embedded object: the pooled map's +0x10..0x38 is a `CRntVector`, and that nested layout with typed stores matched: [scene registry layout](#session-log-newest-first).
+- A function that a generated source reaches through a hand-written header's declaration cannot be renamed until that generator emits the name: grep `src/tables`, `src/clones` and `src/reflection*` before renaming a hub: [Name the CRntString functions](#session-log-newest-first) (#614).
+- A header-only type move is safe when each edited source's object hashes the same before and after (Clang 9.0.1 with the project flags); partial views of one type merge into the union of their fields where they agree at every overlapping offset: [Reconcile differing copies of shared types](#session-log-newest-first) (#618).
 
 **Port: shaders**
 - `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
@@ -160,7 +162,126 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through ec2bc7334f9fc5f48c20358e9ab9630de8dabf15 -->
+<!-- journal_sync: through ca6b82cb4a09e36c7b73e203edbfa6e62f05dbb1 -->
+
+**Name eight sub-area manager functions (#621, 2026-11-23).**
+
+**Name eight sub-area manager functions (rename batch 6).** Each name comes from what the matched source's comment says the function does, given through `tools/rename.py` with its reason in `data/names.csv`:
+
+- `CSubAreaManager_Reset`
+- `CSubAreaManager_SetCurrentSubArea`
+- `CSubAreaManager_LoadScenarioCollision`
+- `CSubAreaManager_LoadColliders`
+- `CSubAreaManager_FindSubArea`
+- `CSubAreaManager_ChangeSubAreaResources`
+- `SubArea_ApplyEnvironmentSettings` and `SubArea_ApplyCameraSettings` (these take the sub-area, not the manager)
+
+The renames change 13 files and no code.
+
+**Left with their placeholders:** the unit's other functions (in `src/game/UnkTU2577/`). Their file names suggest roles, such as follow, fade and requests, but nothing in their source pins those down yet.
+
+**Checked:** `rename.py --check` (77 names), `decl_check --strict`, `struct_check`, `lost_matches` (none lost) and `policy_check` pass. Every changed source and all 64 includers of `game/UnkTU2577.h` compile syntax-only with Clang 18 and the project flags. No generated source uses these names.
+
+**Name the CRntFile functions (#620, 2026-11-23).**
+
+**Name the CRntFile functions (rename batch 5).** 11 functions of `base::global::CRntFile`, the file held in memory, get inferred names through `tools/rename.py`, each with its reason in `data/names.csv`. The names follow what `include/base/global/CRntFile.h` and the unit's sources already say each function does. This PR is independent of #614 and #616.
+
+- Position and block: `CRntFile_Seek`, `CRntFile_Allocate`, `CRntFile_Reserve`.
+- Writes: `CRntFile_Write`, `CRntFile_WriteElements`, `CRntFile_Fill`, `CRntFile_WriteFormat`.
+- Reads: `CRntFile_Read`, `CRntFile_ReadCString`, `CRntFile_ReadFormat`.
+- `CRntFile_CopyAssign`.
+
+The renames touch 177 hand-written files and change no code. In `data/functions/`, only the 11 rows' `name` and `name_source` change. No generated source depends on these names through a hand-written header.
+
+**Left with its placeholder:** the reflected `LoadBinary` invoker (0x710007e4e8), because the `refl_` prefix is reserved for generated names.
+
+**Checked:** `rename.py --check`, `decl_check --strict --base origin/main`, `struct_check`, `lost_matches` (none lost) and `policy_check` pass. All 9,528 sources outside `src/lifted/` were compiled syntax-only with the system Clang 18 and the project flags. The same 45 failures appear on main, so the renames add no compile error. `check.py --update` runs in CI's `check` job.
+
+**Name the CRntString functions (#614, 2026-11-23).**
+
+**Name the CRntString functions (rename batch 3).** 35 free functions of `base::global::CRntString`'s unit get inferred names through `tools/rename.py`. Each name has its reason in `data/names.csv`, read from what our own matched source and header comments say the function does. They use the `CRntString_` prefix because the functions stay free functions at global scope; a rename keeps the scope.
+
+- Construction and lifetime: `CRntString_InitWithAllocator`, `_ConstructFromCString`, `_CopyConstruct`, `_MoveConstruct`, `_ConstructFromStrId`, `_Destroy`, `_Clear`.
+- Assignment: `_SetText` (the text setter every assignment goes through), `_Assign`, `_AssignCString`, `_AssignPrefix`, `_AssignStrId`.
+- Concatenation and append: `_Concat`, `_ConcatCString`, `_ConcatCStringFirst`, `_Append`, `_AppendChars`, `_AppendCString`, `_AppendChar`, `_AppendFloat`.
+- Comparison and search: `_EqualsCString`, `_EqualsIgnoreCase`, `_EqualsIgnoreCaseN`, `_KeysDiffer`, `_Less`, `_FindChar`, `_FindLastChar`, `_Find`, `_Contains`, `_ContainsString`, `_StartsWith`, `_EndsWith`.
+- Trimming: `_Trim`, `_TrimStart`, `_TrimEnd`.
+
+The renames touch 458 hand-written files and change no code. Comments keep naming callees by address, and generated sources keep the placeholders. In `data/functions/`, only the 35 rows' `name` and `name_source` change.
+
+**Left with their placeholders:** the two integer appenders (0x710007f634, 0x710007f688), because which integer format each uses isn't clear. Also 0x710007fbf8, 0x710007f120, the pool-buffer pair 0x710007ecb4/0x710007edac, 0x710007eba0 and 0x710007e7d8. Not in this batch: the default allocator getter (0x7100083990) and the string CRC-64 (0x7100001570). Generated tables call both through hand-written headers (`CStrId.h`, `CRntVector.h`), so renaming them needs those generators re-run, which needs the game files.
+
+**How it was checked** (in a cloud session, which has no game files and no Clang 9):
+- `rename.py --check`: 47 names, 0 problems. `decl_check --strict --base origin/main`, `struct_check`, `lost_matches` (none lost), `policy_check` and `gen_commands --check` pass. The tool tests pass (910 tests).
+- Every source outside `src/lifted/` (9,528 files) was compiled syntax-only with the system Clang 18 and the project flags. The same 45 files fail on main and on this branch, for Clang 18 reasons that predate this change: layout static_asserts and `port/runtime`. So the renames add no compile error. Lifted files declare their callees themselves.
+- `check.py --update` (no REGRESSION) has not been run, because it needs the game files. It runs in CI's `check` job once the runner is back.
+
+**Reusable:** a function that a generated source reaches through a hand-written header's declaration can't be renamed until that generator emits the name. Before renaming a hub, grep `src/tables`, `src/clones` and `src/reflection*` for uses that have no local declaration.
+
+**Name the string id and string pool functions (#616, 2026-11-23).**
+
+**Name the string id and string pool functions (rename batch 4).** This is independent of #614. It gives 11 functions inferred names through `tools/rename.py`, each with its reason in `data/names.csv`. The names come from what our own matched sources and header comments say each function does.
+
+- String id: `CStrId_Construct` (from a C string), `CStrId_ConstructFromRntString`, `CStrId_Destroy` (registered with `__cxa_atexit` for global ids).
+- String pool: `StringPool_Bucket`, `StringPool_InitHeap`.
+- String heap: `StringHeap_Init`, `StringHeap_Alloc`, `StringHeap_Free`.
+- Pool buffer: `StringBuffer_Construct`, `StringBuffer_Assign`, `StringBuffer_Differs`.
+
+The rename touches 211 hand-written files and changes no code. In `data/functions/`, only the 11 rows' `name` and `name_source` change.
+
+**Held:** the pool's release (0x71000803a4), find (0x71000804f8) and insert (0x71000801e4). The generated `src/tables/strid_table_7100031894.cpp` calls them through `CStrId.h`'s declarations, so renaming them now breaks its compile. They can be renamed once `gen_tables.py` emits names and has been re-run, which needs the game files. The same limit applies to the default allocator getter and the CRC-64 (#614).
+
+**How it was checked** (in a cloud session, which has no game files): `rename.py --check`, `decl_check --strict --base origin/main`, `struct_check`, `lost_matches` (none lost) and `policy_check` pass. All 9,528 sources outside `src/lifted/` were compiled syntax-only with the system Clang 18 and the project flags, with the same 45 failures as main, so the rename adds no compile error. `check.py --update` waits for CI's `check` job on the runner.
+
+**Make 293 build-fail drafts compile by fixing their relative includes (#615, 2026-11-23).**
+
+This touches drafts only. No built or counted code changes.
+
+- 326 rows of `drafts/INDEX.csv` are graded `build fails`. That is 321 KB, the largest block of drafts that has never been diffed. 305 of them failed for one reason: an `#include "../../game_s2/UnkSpitSend.h"`-style path, relative to the `src/` folder the draft was written in. From `drafts/` that path points at nothing. Most came from lean batches (`lean-r2kg`, `lean-fam0a`, `lean-r2ki`, `lean-sib3`, `lean-sib2`) that wrote drafts directly, without going through `drafts.py add`, which rehomes includes.
+- 302 files now have each such include rewritten to the same header's path from the draft's own folder (325 includes in all). No other line changes.
+- Compiled with the project's Clang 9.0.1 and `buildcfg.cxx_command`: **293 of the 326 build** (283 KB). 33 still fail on real errors: a missing member, a wrong overload, or a header that only ever existed in `build/lean/scratch`.
+
+Not done here: grading. `drafts.py grade --write` needs the original binary, so these rows stay `build fails` in the index until the owner's PC runs it (planned for tonight). After that, the registers-only ones go to `permute.py` and `equiv_test.py` as usual.
+
+Reusable: a batch that writes drafts directly should go through `drafts.py add`, or at least rehome its includes the same way.
+
+---
+_Generated by [Claude Code](https://claude.ai/code)_
+
+**Bring docs in line with the readable-matching metric and the port hold (#613, 2026-11-23).**
+
+Docs clean-up, following the audit of 2026-11-14. No source, generator output or rule changes. Every tool in `tools/` is still referenced and tested, so none were removed.
+
+- **Metric wording (owner, 2026-11-17, #560).** `README.md` and the status card text in `tools/status_card.py` still called hand-typed code the metric and said generated code "does not count". They now say readable, matching code counts whoever or whatever wrote it, and generated code counts once its text reads as source. The README card itself is regenerated by the merging session (`tools/status_card.py --write`). The README's list of generated directories gains `src/tables/`.
+- **Boot path figures.** The PR template and `CONTRIBUTING.md` asked for `tools/progress.py --slice boot` before and after. They now ask for `--quality`, since the boot path has no priority while the port is on hold. The README says the same.
+- **`drafts/README.md`** kept "unless the port needs it". It now says that exception no longer applies since the hold.
+- **Section links.** `drafts/README.md`, `tools/batch/README.md` and `tools/equiv_test.py` pointed at `CLAUDE.md`, "Completion". That section is now called "Purpose and completion".
+- **`docs/known_declaration_faults.md`.** Checked every entry against the tree with `tools/decl_check.py --symbol` and `--list` (2026-11-22):
+  - Removed 13 wrong-type or wrong-parameter entries whose declarations now have the original's shape, or that have no hand-written declaration left: `fn_71011d9e90`, `fn_71010e655c`, `fn_7100362324`, `fn_710000f750`, `fn_71011a3574`, `fn_7100ef0cdc`, `fn_7100ef11f4`, `fn_7100004578`, `fn_71007616e8`, `fn_710076438c`, `fn_710014580c`, `fn_71010d4234`, `fn_7100ca7a64`, `fn_71001cde84`, `fn_71000e88c0`.
+  - Cut the "could not move" lists to the symbols that are still declared in more than one file: 27 functions of 49 and 16 globals of 27.
+  - Folded the seven-pass history into one paragraph (the journal has the details) and updated the counts to today's: 288 multi-file symbols, 626 extra copies, 1,121 definition-type differences.
+
+Not changed here: `docs/HANDOFF.md`. Only the merging session edits it, and parts of it are out of date since 2026-11-17: the boot-path-first next steps, the hand-typed row, six port rows, the "Direction" section, and the open-decisions replay. A list of each stale part, with today's figures, is in the project thread for the merging session.
+
+**Reconcile differing copies of shared types into headers or distinct names (#618, 2026-11-23).**
+
+Follow-up to #617, done in the cloud while the self-hosted runner was down. It works on the type names that hand-written sources define with **different** texts. No function changes status, and every object is byte-identical.
+
+| `tools/struct_check.py` | after #617 | this PR |
+|---|---|---|
+| names defined in more than one file | 717 | 460 |
+| definitions beyond the first | 2,022 | 1,253 |
+| names with differing texts | 493 | 336 |
+| names with the same text everywhere | 224 | 124 |
+
+Two operations:
+
+- **Merging partial views (261 new headers).** Most differing copies are each file's partial view of one object: the same members at the same offsets, with different spans written as padding. Each definition was read as Clang lays it out (`-fdump-record-layouts`, plus a `sizeof` probe per field) and split into members from its text. Definitions were merged greedily (the most common text first) when they agree wherever they overlap. Agreement means the same declared type and name at the same offset, the same bases and keyword, and one virtual list a prefix of the other. Padding arrays count as gaps. The merged layout goes in `include/<dir>/<Name>.h`: the union of the fields, gaps written `u8 pad_0x..[..]`, sized to the largest copy. When one copy already holds the whole merged layout, its text is used as written. Each merged source loses its copy and includes the header. After the differing names, the same-text names that #617 could not move went through the same tool and `type_migrate`; most of them failed then because a member type was still local.
+- **Separate names for separate objects (272 renames).** Where copies conflict, for example `UnkVec3` as three `f32` in one file and three `u32` in another, or `UnkOwner` with 40 different layouts, they are different objects that share a placeholder. The most common text keeps the name. Each other copy is renamed in its own file to `<Name>_<suffix>`, using the same unit-local suffix convention the tree already has (`_l308d0c`, `_ovb0122`, or the file's first function address). A byte-identical object also proves the type appears in no symbol. These names are still placeholders, not inferred names.
+
+**What was left and why.** 336 names still differ. Most of these are conflicts where the type is in a mangled signature, so a rename would change a symbol. Others are a header copy that is a steering form (`union { s32 ref_count; }` against plain `s32 ref_count`), or two names for one field at the same offset (`sound` / `object`). Changing those needs edits to code, not just headers. Templates and specialisations were not touched. About 60 edits were backed out because they would have made a name worse under `struct_check --base` (a header's text differed from a leftover copy, or a rename changed a type in another copy's members) or under `decl_check` (a rename changed a declared result type).
+
+**Method (reusable).** Every edit was kept only when the edited source's object file hashed the same as before (Clang 9.0.1, `tools/buildcfg.py` flags). At the end, all 9,769 sources, generated ones included, were rebuilt and compared by SHA-256 against #617's head: all identical. The scripts (`type_merge.py`, `type_rename.py`, `fix_worse.py`, `objhash2.py`) are in the project's shared folder, not in this PR. They could become a tool if this kind of pass is worth repeating.
 
 **Move identically copied types and shared declarations into headers (#617, 2026-11-22).**
 
