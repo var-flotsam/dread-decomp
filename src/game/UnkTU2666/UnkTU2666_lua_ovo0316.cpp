@@ -25,6 +25,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CCameraComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
@@ -146,7 +147,6 @@ s32 fn_710107d500(lua_State* L) {
 }
 
 struct UnkScenarioObject_ovb0032;
-void fn_71010e46cc(void* object, bool value);
 
 inline void* FindByName_b0163(UnkGameManager* manager, const char* name) {
     u32 kind_value = g_unk_71727bebb8;

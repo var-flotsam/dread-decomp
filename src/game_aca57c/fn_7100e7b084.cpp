@@ -12,6 +12,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection.h"
 #include "game/UnkBufferStringPool.h"
+#include "game/UnkTU2564.h"
 #include "types.h"
 
 using UnkString200 = UnkBufferString<0x200, g_unk_7101a1a5a8>;
@@ -249,7 +250,6 @@ struct UnkIdTable {
     u32 step;
 };
 
-void fn_7100e6f940(void* self, u32 capacity);
 
 template <class Value, class Ref>
 __attribute__((always_inline)) static inline Value* Insert(UnkIdTable<Value>* self, const CStrId* key, Ref value) {

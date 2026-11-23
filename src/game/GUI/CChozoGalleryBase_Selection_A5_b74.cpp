@@ -57,7 +57,6 @@ struct UnkStateSink;
 struct UnkStateKey;
 struct UnkEnumType;
 extern UnkEnumType g_unk_71729f0220;
-extern UnkEnumType g_unk_71729f0228;
 
 // The selected entry's "selection lost" animation (hidden entries show their hidden state instead).
 static inline __attribute__((always_inline)) void Deselect_A5_b74(UnkGallery_A5_b74* self) {

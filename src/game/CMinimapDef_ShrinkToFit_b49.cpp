@@ -98,7 +98,7 @@ __attribute__((always_inline)) static inline void ShrinkToFit(UnkKeyedArray<T>* 
 static inline void DestroyIdsString40(UnkIdsString40_b49* p) { fn_7100e6c960(reinterpret_cast<char*>(p)); }
 static inline void DestroyIdWords4(UnkIdWords4* p) { p->~UnkIdWords4(); }
 
-void fn_7100e6fdf4(UnkKeyedArray<UnkIdsString40_b49>* self) { ShrinkToFit<UnkIdsString40_b49, DestroyIdsString40>(self); }
+void fn_7100e6fdf4(base::global::CRntSmallDictionary<CStrId, UnkIdsString40_b49>* self) { ShrinkToFit<UnkIdsString40_b49, DestroyIdsString40>(self); }
 void fn_7100e71e04(UnkKeyedArray<UnkIdWords4>* self) { ShrinkToFit<UnkIdWords4, DestroyIdWords4>(self); }
 
 // The 0xc8-byte record's default constructor (fn_7100e6dfbc): the three ids empty, the string built
