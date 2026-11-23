@@ -53,7 +53,8 @@ static inline void SetSectionString(CBlackboard* blackboard, const CStrId& secti
     }
 }
 
-int fn_7101074d80(lua_State* L) {
+namespace lua_bind {
+int SetProp(lua_State* L) {
     UnkGameManager* manager = g_unk_7101d47310;
     const char* section = luaL_checkstring(L, 1);
     const char* name = luaL_checkstring(L, 2);
@@ -88,3 +89,4 @@ int fn_7101074d80(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

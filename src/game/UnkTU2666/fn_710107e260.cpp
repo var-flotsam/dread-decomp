@@ -29,7 +29,8 @@ struct UnkTarget_b0164 {
     UnkTargetVTable_b0164* vtable;
 };
 
-s32 fn_710107e260(lua_State* L) {
+namespace lua_bind {
+s32 TeleportEntityToRawPos(lua_State* L) {
     f32 speed;
     u32 kind;
     const char* name;
@@ -69,3 +70,4 @@ s32 fn_710107e260(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

@@ -116,21 +116,23 @@ struct UnkPlayerImpact_b0163 {
     }                                                                                            \
     return 0;
 
-s32 fn_7101096540(lua_State* L) {
+namespace lua_bind {
+s32 ImpactPlayerRightEmmyWave(lua_State* L) {
     IMPACT_BODY(g_unk_71726dda50, "emmywave_impact", 1.0f, 1.0f)
 }
 
-s32 fn_71010963e0(lua_State* L) {
+s32 ImpactPlayerLeftEmmyWave(lua_State* L) {
     IMPACT_BODY(g_unk_71726dda50, "emmywave_impact", -1.0f, 1.0f)
 }
 
-s32 fn_7101096800(lua_State* L) {
+s32 ImpactPlayerRightIce(lua_State* L) {
     IMPACT_BODY(*reinterpret_cast<CStrId*>(&g_unk_71726dbf68), "frozen_impact", 1.0f, 1.0f)
 }
 
-s32 fn_71010966a0(lua_State* L) {
+s32 ImpactPlayerLeftIce(lua_State* L) {
     IMPACT_BODY(*reinterpret_cast<CStrId*>(&g_unk_71726dbf68), "frozen_impact", -1.0f, 1.0f)
 }
+}  // namespace lua_bind
 
 #include <new>
 
@@ -160,7 +162,8 @@ UnkPackRef_b0163 fn_7101197008(UnkPackManager_b0163* self, const CFilePathStrId&
                                bool flag);
 void fn_7101192ae8(UnkPackLoader_b0163* self);
 
-s32 fn_7101088470(lua_State* L) {
+namespace lua_bind {
+s32 LaunchCutscene(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         {
@@ -186,7 +189,7 @@ s32 fn_7101088470(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101088a60(lua_State* L) {
+s32 LaunchCutsceneSyncLoad(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         {
@@ -211,13 +214,15 @@ s32 fn_7101088a60(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkGuiEntry_b0163 {
     u8 pad_0x0[0x10];
     void* composition;  // 0x10
 };
 
-s32 fn_7101086800(lua_State* L) {
+namespace lua_bind {
+s32 HUDShowMessage(lua_State* L) {
     bool result = false;
     if (fn_7100deac84(g_unk_7101d47310)) {
         const char* first = nullptr;
@@ -235,6 +240,7 @@ s32 fn_7101086800(lua_State* L) {
     }
     return fn_71010c0b40(L, "b", result);
 }
+}  // namespace lua_bind
 
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
@@ -249,7 +255,8 @@ static inline base::file::UnkFileDevice* FileDevice_b0163() {
     return g_unk_7101d4d828;
 }
 
-s32 fn_7101092e90(lua_State* L) {
+namespace lua_bind {
+s32 LoadPackSync(lua_State* L) {
     const char* name;
     bool result = false;
     if (fn_71010c0270(L, "s", &name)) {
@@ -267,7 +274,7 @@ s32 fn_7101092e90(lua_State* L) {
     return fn_71010c0b40(L, "b", result);
 }
 
-s32 fn_7101092ff0(lua_State* L) {
+s32 UnloadPack(lua_State* L) {
     const char* name;
     bool flag;
     bool result = false;
@@ -285,11 +292,13 @@ s32 fn_7101092ff0(lua_State* L) {
     }
     return fn_71010c0b40(L, "b", result);
 }
+}  // namespace lua_bind
 
 int lua_type(lua_State* L, int idx);
 void fn_7100da62a4(void* self, const CFilePathStrId* path, bool value);
 
-s32 fn_7101088320(lua_State* L) {
+namespace lua_bind {
+s32 SetLoadingMode(lua_State* L) {
     const char* name;
     if (fn_71010c0ad0(L, 0, 1, "s", &name)) {
         bool value = true;
@@ -306,6 +315,7 @@ s32 fn_7101088320(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 void fn_7100df2a6c(UnkGameManager* self, const CRntString& a, const CRntString& b, const CRntString& c,
                    const CStrId& d, s32 value);
@@ -315,7 +325,8 @@ struct UnkModeHolder_b0163 {
     char name[1];  // 0x8
 };
 
-s32 fn_7101082860(lua_State* L) {
+namespace lua_bind {
+s32 StartPrologue(lua_State* L) {
     const char* first = nullptr;
     const char* second = nullptr;
     const char* third = nullptr;
@@ -338,7 +349,7 @@ s32 fn_7101082860(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101091420(lua_State* L) {
+s32 StopMusic(lua_State* L) {
     bool flag = false;
     const char* name = nullptr;
     if (fn_71010c0ad0(L, 0, 1, "b|s", &flag, &name)) {
@@ -353,6 +364,7 @@ s32 fn_7101091420(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkStrIdHandle {
     union {
@@ -364,7 +376,8 @@ struct UnkStrIdHandle {
 };
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 
-s32 fn_7101081f90(lua_State* L) {
+namespace lua_bind {
+s32 WriteToGameBlackboard(lua_State* L) {
     UnkTypedValue v;
     const char* name;
     bool value;
@@ -389,7 +402,7 @@ s32 fn_7101081f90(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101082100(lua_State* L) {
+s32 WriteToGameBlackboardSection(lua_State* L) {
     const char* key_name;
     UnkTypedValue v;
     const char* section_name;
@@ -413,6 +426,7 @@ s32 fn_7101082100(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkGun_ovb0091;
 struct UnkPlayer;
@@ -443,7 +457,8 @@ struct UnkPlayerView_b0163 {
     void* field_0x2b0;
 };
 
-s32 fn_7101094230(lua_State* L) {
+namespace lua_bind {
+s32 OnMeleeTutorial(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -475,6 +490,7 @@ s32 fn_7101094230(lua_State* L) {
     fn_7100e038b0(g_unk_7101d47310, &g_unk_7172a01958, &direction, 0);
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkManager;
 void fn_7100eed4b0(void* manager, const CStrId* id, UnkCamMask_b0101 mask, bool enable, bool instant);
@@ -504,7 +520,8 @@ static inline void* SubareaManager_b0163() {
     return manager;
 }
 
-s32 fn_7101083e40(lua_State* L) {
+namespace lua_bind {
+s32 SetSubAreaLocked(lua_State* L) {
     const char* name;
     bool enable;
     if (fn_71010c0270(L, "sb", &name, &enable)) {
@@ -515,7 +532,7 @@ s32 fn_7101083e40(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101083c30(lua_State* L) {
+s32 SetSubAreaEnabled(lua_State* L) {
     const char* name;
     bool enable;
     bool instant;
@@ -526,6 +543,7 @@ s32 fn_7101083c30(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkRcTarget_b0163 {
     void** vtable;
@@ -564,7 +582,8 @@ struct UnkRcBinding_b0163 {
 UnkRc_b0163 fn_710021cc9c(UnkPlayer* self, const UnkStrPair_0x10* path, u32 a, bool b);
 void* fn_710021dee4();
 
-s32 fn_7101095780(lua_State* L) {
+namespace lua_bind {
+s32 PlayFullScreenMovie(lua_State* L) {
     UnkRc_b0163 ref;
     const char* name;
     bool first = false;
@@ -586,6 +605,7 @@ s32 fn_7101095780(lua_State* L) {
     UnkRcBinding_b0163 binding = {fn_710021dee4(), &ref};
     return fn_7100fbd320(L, &binding, 0, 2);
 }
+}  // namespace lua_bind
 
 inline void* FindByName_b0163(UnkGameManager* manager, const char* name) {
     u32 kind_value = g_unk_71727bebb8;
@@ -603,7 +623,8 @@ void fn_71010c7284(UnkCommand_b0163* self, const CStrId* id, const CRntString* t
 void fn_71010bf250(lua_State* L, s32 kind, const char* name, base::global::CRntFile* file);
 void fn_7100233a38(void* object, UnkCommand_b0163* command);
 
-s32 fn_710107d380(lua_State* L) {
+namespace lua_bind {
+s32 SendMsgToEntity(lua_State* L) {
     const char* object_name;
     const char* id_name;
     const char* text_name;
@@ -630,7 +651,7 @@ s32 fn_710107d380(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101082270(lua_State* L) {
+s32 GetFromGameBlackboard(lua_State* L) {
     const char* name;
     bool value = false;
     if (!fn_71010c0270(L, "s", &name))
@@ -651,7 +672,7 @@ s32 fn_7101082270(lua_State* L) {
     return fn_71010c0b40(L, "b", value);
 }
 
-s32 fn_7101088bc0(lua_State* L) {
+s32 LaunchCutsceneAtFrame(lua_State* L) {
     const char* name;
     s32 frames;
     if (fn_71010c0270(L, "si", &name, &frames)) {
@@ -678,6 +699,7 @@ s32 fn_7101088bc0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkResourceManager;
 bool fn_71002f70b0(UnkResourceManager* self, const CStrId* first, const CStrId* second);
@@ -762,7 +784,8 @@ static inline UnkRegistry_0x70* Registry_b0163() {
     return reg;
 }
 
-s32 fn_7101079770(lua_State*) {
+namespace lua_bind {
+s32 FormatSavedGames(lua_State*) {
     UnkPairList_b0163 list;
     {
         UnkRegistry_0x70* registry = Registry_b0163();
@@ -779,3 +802,4 @@ s32 fn_7101079770(lua_State*) {
     fn_7100133020();
     return 0;
 }
+}  // namespace lua_bind

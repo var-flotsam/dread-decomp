@@ -26,7 +26,8 @@ static inline void CopyLower(char* dst, const char* src) {
     }
 }
 
-s32 fn_7101077a70(lua_State* L) {
+namespace lua_bind {
+s32 SetLanguageAndRegionDebug(lua_State* L) {
     const char* name;
     char lower[0x80];
     if (fn_71010c0270(L, "s", &name)) {
@@ -49,3 +50,4 @@ s32 fn_7101077a70(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind

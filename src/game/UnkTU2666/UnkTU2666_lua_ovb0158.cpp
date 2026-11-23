@@ -46,7 +46,8 @@ inline void* FindByName_b0158(UnkGameManager* manager, const char* name) {
 
 struct UnkEntityState;
 
-s32 fn_710107d9e0(lua_State* L) {
+namespace lua_bind {
+s32 EnableEntity(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -57,7 +58,7 @@ s32 fn_710107d9e0(lua_State* L) {
     return 0;
 }
 
-s32 fn_710107da80(lua_State* L) {
+s32 DisableEntity(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -68,13 +69,14 @@ s32 fn_710107da80(lua_State* L) {
     return 0;
 }
 
-s32 fn_710107ec40(lua_State* L) {
+s32 Exists(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
     void* object = FindByName_b0158(g_unk_7101d47310, name);
     return fn_71010c0b40(L, "b", object != nullptr);
 }
+}  // namespace lua_bind
 
 struct UnkVtable_b0158 {
     void (*slots[0x80])(void* self);
@@ -83,7 +85,8 @@ struct UnkVirtual_b0158 {
     UnkVtable_b0158* vtable;
 };
 
-s32 fn_710107db20(lua_State* L) {
+namespace lua_bind {
+s32 DeleteEntity(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -93,6 +96,7 @@ s32 fn_710107db20(lua_State* L) {
     static_cast<UnkVirtual_b0158*>(object)->vtable->slots[0xe0 / 8](object);
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkWeakTarget;
 struct UnkThermalComponent_ovb0097;
@@ -100,7 +104,8 @@ struct UnkStruct_710024fa0c;
 void fn_710111b634(void* p);
 void fn_7101152008(void* p, bool value);
 
-s32 fn_71010847d0(lua_State* L) {
+namespace lua_bind {
+s32 OnTeleportApproached(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         void* object = FindByName_b0158(g_unk_7101d47310, name);
@@ -112,7 +117,7 @@ s32 fn_71010847d0(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101084d30(lua_State* L) {
+s32 DisableSpawnGroup(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -126,7 +131,7 @@ s32 fn_7101084d30(lua_State* L) {
     return 1;
 }
 
-s32 fn_7101084dd0(lua_State* L) {
+s32 ResetSpawnGroup(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -140,7 +145,7 @@ s32 fn_7101084dd0(lua_State* L) {
     return 1;
 }
 
-s32 fn_710107fbb0(lua_State* L) {
+s32 PrintAnims(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         void* object = FindByName_b0158(g_unk_7101d47310, name);
@@ -152,7 +157,7 @@ s32 fn_710107fbb0(lua_State* L) {
     return 0;
 }
 
-s32 fn_710108fbd0(lua_State* L) {
+s32 SetActorSelectedFXEnabled(lua_State* L) {
     const char* name;
     bool flag;
     if (fn_71010c0270(L, "sb", &name, &flag)) {
@@ -164,13 +169,15 @@ s32 fn_710108fbd0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkFlagTarget_b0158 {
     u8 pad_0x0[0x13f];
     bool field_0x13f;
 };
 
-s32 fn_7101084f20(lua_State* L) {
+namespace lua_bind {
+s32 DesaturateSpawnGroup(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -184,7 +191,7 @@ s32 fn_7101084f20(lua_State* L) {
     return 1;
 }
 
-s32 fn_7101084e70(lua_State* L) {
+s32 SaturateSpawnGroup(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -197,13 +204,15 @@ s32 fn_7101084e70(lua_State* L) {
     }
     return 1;
 }
+}  // namespace lua_bind
 
 struct UnkUserDataOwner;
 
 bool fn_7101203760(UnkUserDataOwner* self);
 bool fn_7100dfe364(UnkGameManager* self);
 
-s32 fn_7101079200(lua_State* L) {
+namespace lua_bind {
+s32 IsSaveDataBusy(lua_State* L) {
     UnkUserDataOwner* owner = g_unk_7101d47308;
     if (!owner) {
         owner = static_cast<UnkUserDataOwner*>(fn_71000839a0(0x2b8, 0x3f));
@@ -215,13 +224,15 @@ s32 fn_7101079200(lua_State* L) {
         value = fn_7100dfe364(g_unk_7101d47310);
     return fn_71010c0b40(L, "b", value);
 }
+}  // namespace lua_bind
 
 struct UnkIngameGui_b0158 {
     u8 pad_0x0[0xb8];
     CRntString field_0xb8;
 };
 
-s32 fn_7101077f30(lua_State* L) {
+namespace lua_bind {
+s32 SetIngameMenuNextGUIPath(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         UnkGameManager* manager = g_unk_7101d47310;
@@ -234,7 +245,7 @@ s32 fn_7101077f30(lua_State* L) {
     return 0;
 }
 
-s32 fn_71010785e0(lua_State* L) {
+s32 LoadGameFromAssets(lua_State* L) {
     const char* name;
     bool value = false;
     if (fn_71010c0270(L, "s", &name)) {
@@ -247,7 +258,7 @@ s32 fn_71010785e0(lua_State* L) {
     return fn_71010c0b40(L, "b", value);
 }
 
-s32 fn_7101078a90(lua_State* L) {
+s32 SaveGameToSnapshot(lua_State* L) {
     const char* name;
     bool value = false;
     if (fn_71010c0270(L, "s", &name) && fn_7100dfbe3c(g_unk_7101d47310)) {
@@ -261,7 +272,7 @@ s32 fn_7101078a90(lua_State* L) {
     return fn_71010c0b40(L, "b", value);
 }
 
-s32 fn_7101078ef0(lua_State* L) {
+s32 LoadProfile(lua_State* L) {
     const char* name;
     bool flag;
     s32 result = 5;
@@ -275,7 +286,7 @@ s32 fn_7101078ef0(lua_State* L) {
     return fn_71010c0b40(L, "i", result);
 }
 
-s32 fn_7101079030(lua_State* L) {
+s32 GetProfileDescription(lua_State* L) {
     const char* name;
     if (!fn_71010c0270(L, "s", &name))
         return 0;
@@ -295,13 +306,15 @@ s32 fn_7101079030(lua_State* L) {
     CRntString_Destroy(&result.string);
     return ret;
 }
+}  // namespace lua_bind
 
 struct UnkSoundMgr;
 struct UnkPathNode_CEntity_2;
 
 void fn_7100df21e8(UnkGameManager* self, CStrId* id);
 
-s32 fn_710107d2d0(lua_State* L) {
+namespace lua_bind {
+s32 SetCameraEnemy(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         UnkGameManager* manager = g_unk_7101d47310;
@@ -311,7 +324,7 @@ s32 fn_710107d2d0(lua_State* L) {
     return 0;
 }
 
-s32 fn_71010940c0(lua_State* L) {
+s32 StopCameraFXPreset(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         UnkGameManager* manager = g_unk_7101d47310;
@@ -321,7 +334,7 @@ s32 fn_71010940c0(lua_State* L) {
     return 0;
 }
 
-s32 fn_710107d150(lua_State* L) {
+s32 DeleteLogicCamera(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name) == 1) {
         UnkGameManager* manager = g_unk_7101d47310;
@@ -331,7 +344,7 @@ s32 fn_710107d150(lua_State* L) {
     return 0;
 }
 
-s32 fn_710108b360(lua_State* L) {
+s32 PreloadSound(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
         UnkSoundMgr* sound = g_unk_7101d4d820;
@@ -340,12 +353,14 @@ s32 fn_710108b360(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkScriptManager_ovb0085;
 
 bool fn_7100219c7c(UnkRenderManager* self, u64 layer, bool arg);
 
-s32 fn_7101082f00(lua_State* L) {
+namespace lua_bind {
+s32 SetSceneGroupEnabledByName(lua_State* L) {
     const char* name;
     bool enable;
     if (fn_71010c0270(L, "sb", &name, &enable)) {
@@ -356,7 +371,7 @@ s32 fn_7101082f00(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101082df0(lua_State* L) {
+s32 HideScenarioItemByName(lua_State* L) {
     const char* name;
     bool enable;
     bool flag = true;
@@ -368,7 +383,7 @@ s32 fn_7101082df0(lua_State* L) {
     return 0;
 }
 
-s32 fn_7101082f90(lua_State* L) {
+s32 GetSceneGroupEnabledByName(lua_State* L) {
     const char* name;
     bool result = false;
     if (fn_71010c0270(L, "s", &name, &result)) {
@@ -377,10 +392,12 @@ s32 fn_7101082f90(lua_State* L) {
     }
     return fn_71010c0b40(L, "b", result);
 }
+}  // namespace lua_bind
 
 u32 fn_710109e1ac(UnkScriptManager_ovb0085* self, const base::UnkNamedEntry* key, bool, bool flag);
 
-s32 fn_71010772c0(lua_State* L) {
+namespace lua_bind {
+s32 ImportLibrary(lua_State* L) {
     bool flag = true;
     const char* name;
     if (fn_71010c0270(L, "s|b", &name, &flag)) {
@@ -397,6 +414,7 @@ s32 fn_71010772c0(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkSettings_b0158 {
     void* field_0x0 = nullptr;
@@ -407,7 +425,8 @@ struct UnkSettings_b0158 {
     u64 field_0x28;
 };
 
-s32 fn_7101085480(lua_State* L) {
+namespace lua_bind {
+s32 SetSendReports(lua_State* L) {
     bool flag = true;
     if (fn_71010c0270(L, "b", &flag)) {
         UnkSettings_b0158* settings = g_unk_71726bc568;
@@ -426,6 +445,7 @@ s32 fn_7101085480(lua_State* L) {
     }
     return 0;
 }
+}  // namespace lua_bind
 
 struct UnkInventory;
 struct UnkPlayer;
@@ -448,14 +468,16 @@ static inline f64 ItemAmount_b0158(UnkPropertyEx<>& item) {
     return amount;
 }
 
-s32 fn_710107c710(lua_State* L) {
+namespace lua_bind {
+s32 GetVariaSuitOn(lua_State* L) {
     return fn_71010c0b40(L, "f", ItemAmount_b0158(g_unk_717275a498));
 }
 
-s32 fn_710107c7b0(lua_State* L) {
+s32 GetGravitySuitOn(lua_State* L) {
     return fn_71010c0b40(L, "f", ItemAmount_b0158(g_unk_717275a458));
 }
 
-s32 fn_710107c850(lua_State* L) {
+s32 GetHyperSuitOn(lua_State* L) {
     return fn_71010c0b40(L, "f", ItemAmount_b0158(g_unk_717275a418));
 }
+}  // namespace lua_bind
