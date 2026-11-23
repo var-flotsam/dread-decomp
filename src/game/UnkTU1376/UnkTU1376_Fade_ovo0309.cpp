@@ -17,7 +17,6 @@ using base::color::CColor4F;
 using base::math::CVector4D;
 
 struct UnkDoorLifeA5_b61;
-void* fn_71008d89b0(void* owner);
 
 struct UnkGameManagerIdKey_b0251 {
     u8 pad_0x0[0x30];
