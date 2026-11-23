@@ -473,6 +473,7 @@ drafts/: file a function that does not match yet, regrade what is there, move a 
 python tools/drafts.py --version 2.1.0 add FILE.cpp ADDR --from TAG [--note TEXT] [--replace] [--remove]
 python tools/drafts.py --version 2.1.0 grade [FILE.cpp ...] [--from TAG] [--write] [--jobs N]
 python tools/drafts.py --version 2.1.0 promote FILE.cpp [...] [--write]
+python tools/drafts.py absorb DRAFT.cpp [...] --into src/FILE.cpp [--write]
 ```
 
 ### `tools/fakematch.py`
