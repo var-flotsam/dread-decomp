@@ -4,7 +4,7 @@
 // 0x7100110c54-0x71001239b0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/CClass.h"
 #include "types.h"
 

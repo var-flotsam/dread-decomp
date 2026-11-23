@@ -8,7 +8,7 @@
 #include "base/core/CBaseObject.h"
 #include "base/global/CRntString.h"
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTunableReflValue.h"
 #include "types.h"

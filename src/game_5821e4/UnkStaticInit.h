@@ -12,7 +12,7 @@
 #include "base/UnkStrIdRegistry.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkStaticInitIds.h"
@@ -89,7 +89,7 @@ struct UnkEnumType {
 // The conversion record and fn_71000a16c4 are declared in base/reflection/UnkReflConverter.h.
 using UnkConversion = ::UnkConverter;
 
-// A reflected type's getter (base/reflection/UnkReflAttributes.h declares the plain types'), as
+// A reflected type's getter (base/reflection/ReflectedAttributes.h declares the plain types'), as
 // the helpers see the type object: through the placeholder layout above.
 template <const base::reflection::CType* (*Getter)()>
 __attribute__((always_inline)) inline UnkEnumType* TypeOf() {

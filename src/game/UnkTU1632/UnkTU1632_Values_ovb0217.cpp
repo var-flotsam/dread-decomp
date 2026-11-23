@@ -15,7 +15,7 @@
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CType.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTUInit.h"

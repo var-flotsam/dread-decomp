@@ -92,7 +92,7 @@ bool fn_710009d7a8(const base::reflection::CType* type, base::reflection::UnkTyp
 
 // ---- fn_710009ec00: registering a type ----
 
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 
 extern void* g_unk_7101d5bdc0;  // the registry's list of types (linked through CType+0x88)
 using base::reflection::UnkReflAttrKey;

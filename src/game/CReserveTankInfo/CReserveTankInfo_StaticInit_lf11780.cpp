@@ -5,7 +5,7 @@
 
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/CReserveTankInfo.h"

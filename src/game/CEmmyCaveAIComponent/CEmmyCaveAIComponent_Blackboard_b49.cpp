@@ -4,7 +4,7 @@
 // CEventScenarioComponent_b46.cpp) and marks +0x29eb8 when it is set; the writer runs its base routine
 // and stores false under it unless the blackboard is locked. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CEmmyCaveAIComponent.h"

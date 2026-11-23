@@ -8,7 +8,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/CType.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTU80.h"
 #include "types.h"
 

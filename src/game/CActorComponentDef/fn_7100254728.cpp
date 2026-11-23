@@ -3,7 +3,7 @@
 // setter that ignores its argument (fn_7100254770, fn_71002547cc). Called only through their
 // function descriptors.
 
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

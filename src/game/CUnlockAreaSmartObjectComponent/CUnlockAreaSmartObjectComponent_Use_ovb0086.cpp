@@ -6,7 +6,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CGrabComponent.h"
 #include "game/CInputComponent.h"
 #include "game/UnkAnimationComponent.h"

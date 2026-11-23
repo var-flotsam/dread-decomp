@@ -5,7 +5,7 @@
 // of +0x94 set. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1370.h"

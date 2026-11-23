@@ -3,7 +3,7 @@
 // SetLife (slot 0x168). Returns 1 when the life dropped, or the damage was meant to kill one that ignores death,
 // or the enemy tunable at +0x21 is set; then the death handling (slot 0x1b8). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 

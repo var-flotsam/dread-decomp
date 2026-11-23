@@ -6,7 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/input/UnkRumbleManager.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CBlackboard.h"
 #include "game/CBossAIComponent.h"

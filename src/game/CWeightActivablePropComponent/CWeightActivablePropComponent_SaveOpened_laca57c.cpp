@@ -2,7 +2,7 @@
 // (g_unk_7172755b08) in the blackboard section of the current scenario, unless the blackboard is locked.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CWeightActivablePropComponent.h"

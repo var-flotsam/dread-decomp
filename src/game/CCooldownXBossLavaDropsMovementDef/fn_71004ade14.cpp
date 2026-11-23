@@ -1,7 +1,7 @@
 // Reflection fields of CCharClassCooldownXBossLavaDropsAttack. Written from the refl_attrs draft;
 // one field type getter lives in this class's translation unit.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCooldownXBossLavaDropsMovementDef.h"
 using base::global::CStrId;
 using base::reflection::CClass;

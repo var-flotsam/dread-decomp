@@ -6,7 +6,7 @@
 // CEventScenarioComponent_b46.cpp; fn_71010474f4 is src/game/CBlackboard.cpp's, here given the section
 // itself). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CScenario.h"

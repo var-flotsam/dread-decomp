@@ -3,7 +3,7 @@
 // motion for the player), moves the body, drops the held links once their target is gone, runs the
 // timed wall push and hands the body's position to the owner. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityLayout.h"
 #include "game/UnkAnimationComponent.h"

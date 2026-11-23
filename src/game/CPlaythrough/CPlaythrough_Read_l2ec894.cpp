@@ -8,7 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"

@@ -6,7 +6,7 @@
 // otherwise the flag at +0x121e is stored in the blackboard section (as fn_71006395fc in
 // CPoisonFlyAIComponent_b36.cpp). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CBehaviorTreeAIComponent.h"

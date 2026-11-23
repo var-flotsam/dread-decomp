@@ -8,19 +8,17 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
-#include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
 namespace base::core { class CAssetLink; }
 template <> base::reflection::CType base::reflection::TypeObject<base::core::CAssetLink>::object asm("g_unk_7101d4ec50");

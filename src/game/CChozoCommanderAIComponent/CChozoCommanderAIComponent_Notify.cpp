@@ -2,7 +2,7 @@
 // (+0x2a of g_unk_71726c91d0) is on and the owner's (+0x30) +0x278 object points at this
 // component's part at +0x14bf0 (through its +0x1a0), hands that part to fn_710042eb58. Names are
 // placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "types.h"
 
 extern base::reflection::UnkTunable g_unk_71726c91d0;

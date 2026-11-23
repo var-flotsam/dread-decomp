@@ -6,7 +6,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
 #include "game/CBossAIComponent.h"

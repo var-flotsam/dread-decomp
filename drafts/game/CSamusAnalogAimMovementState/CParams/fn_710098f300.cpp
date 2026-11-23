@@ -4,7 +4,7 @@
 // (fn_7100976944) after refreshing the owner's transform. Names and layouts are placeholders.
 #include "../../../../src/game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkTU1730.h"
 #include "types.h"
 

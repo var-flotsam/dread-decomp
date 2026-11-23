@@ -2,7 +2,7 @@
 // of four tunable values and the matching unit-static id by the two flags at +0x5d8 and +0x5d9, and, when
 // the owner's +0x40 is not zero, a push to the side it points. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU55.h"

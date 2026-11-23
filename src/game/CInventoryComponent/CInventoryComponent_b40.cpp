@@ -2,7 +2,7 @@
 // amount the inventory's map holds under the id given as argument (through a string-id handle,
 // fn_7100ae986c), 0 when there is none, as a reflected float. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkStrIdHandle.h"
 #include "types.h"

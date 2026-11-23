@@ -1,7 +1,7 @@
 // CBasicLifeComponent's unit (tools/tu_map.py unit 1354): the hit handler. Scales the hit by the damage factors, lets the
 // component accept (vf_0x1d8, vf_0x1e0) or reject (vf_0x1e8) it, otherwise resolves it (vf_0x1a8). Names and layouts
 // are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CActorComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/UnkTU1370.h"

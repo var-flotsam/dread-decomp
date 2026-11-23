@@ -2,7 +2,7 @@
 // base end, hands the navigation a kind-5 parameter block, clears the owner's flag at +0x13d2 and, when the
 // owner's blackboard flag is set, clears it; then drops the weak handle at +0xc0. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkBehaviorTree.h"

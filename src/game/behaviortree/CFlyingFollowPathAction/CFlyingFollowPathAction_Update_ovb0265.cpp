@@ -4,7 +4,7 @@
 // character class (+0x220) is on a track and +0x71 is set, the track change is requested once (+0x50 tells
 // whether the track is the action's); then the state (2 or 6) follows the navigation's (+0x298) path record.
 // Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAnimationComponent.h"
 #include "types.h"

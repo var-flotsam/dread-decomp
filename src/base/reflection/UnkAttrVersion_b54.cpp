@@ -1,7 +1,7 @@
 // The "Version" attribute of a registered file type, split into (major, minor) halfwords
 // (called by fn_710000ccd8 in src/base/animation/CBlendSpaceResource.cpp). Names are placeholders.
 #include "base/reflection/CType.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU85.h"

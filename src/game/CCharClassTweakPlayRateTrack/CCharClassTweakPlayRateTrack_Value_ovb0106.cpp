@@ -1,7 +1,7 @@
 // CCharClassTweakPlayRateTrack's unit (tools/tu_map.py unit 2163): a float field of the track read by
 // name through reflection (the field of its class whose name hash matches). Names and layouts are
 // placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/UnkTU85.h"
 #include "types.h"

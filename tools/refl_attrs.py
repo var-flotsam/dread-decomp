@@ -1,7 +1,7 @@
 """Reconstruct reflection attribute and member-field functions (a class getter's x3/x4).
 
 Both kinds receive the class descriptor and are sequences of two statement forms
-(include/base/reflection/UnkReflAttributes.h):
+(include/base/reflection/ReflectedAttributes.h):
 
   class attribute:  TypeAttributes(cls)->Add<T>(KEY(), value);
   member field:     CVariable* field0 = AddReflectedField(cls, CStrId("name", true), TYPE(), offset, -1, -1);
@@ -40,7 +40,7 @@ CSTRID_CTOR = 0x71000003D4
 CSTRID_RELEASE = 0x71000803A4  # inlined ~CStrId
 GLOBAL_CSTRID = 0x7101D470E0   # g_unk_7101d470e0
 EMPTY_RNT_STRING = 0x7101D58D10  # g_unk_7101d58d10, base::global::CRntString::Empty()
-# Field names declared with an accessor in base/reflection/UnkReflAttributes.h.
+# Field names declared with an accessor in base/reflection/ReflectedAttributes.h.
 NAMED_FIELD_NAMES = {0x7101D5A450: "base::reflection::KeyFieldName()",
                      0x7101D5A458: "base::reflection::ElementFieldName()"}
 TUNABLE_REGISTRY = 0x7101D47350  # g_unk_7101d47350, the global tunable registry
@@ -80,7 +80,7 @@ VALUE_TYPES = {0x7100005178: "u32", 0x7100014768: "s32", 0x71000081E8: "const ch
                0x710000AD9C: "base::global::CFilePathStrId", 0x710000FD7C: "base::global::CName"}
 
 PRELUDE = [
-    '#include "base/reflection/UnkReflAttributes.h"',
+    '#include "base/reflection/ReflectedAttributes.h"',
     "using base::global::CStrId;",
     "using base::reflection::CClass;",
     "using base::reflection::CVariable;",

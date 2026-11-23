@@ -11,7 +11,7 @@
 #include "../../game_s7/UnkPropBagS7.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCollisionComponent.h"
 #include "game/CFrozenComponent.h"
 #include "game/CObsydomithonAttack.h"

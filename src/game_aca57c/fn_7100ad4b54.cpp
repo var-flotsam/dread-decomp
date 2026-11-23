@@ -8,7 +8,7 @@
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"  // the type getters (refl_GetType<T>)
+#include "base/reflection/ReflectedAttributes.h"  // the type getters (refl_GetType<T>)
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBossAIComponent.h"
@@ -34,7 +34,7 @@ __attribute__((always_inline)) static inline UnkReflValue MakeValue(const CType*
 }
 
 // fn_7100014768 (int), fn_7100005178 (unsigned), fn_710000abbc (float), fn_710000d228 (bool) and
-// fn_71000246e4 (CVector3D) are the type getters UnkReflAttributes.h declares.
+// fn_71000246e4 (CVector3D) are the type getters ReflectedAttributes.h declares.
 
 UnkReflValue fn_7100ad4b54() {
     u32 value = g_unk_7172756b90;

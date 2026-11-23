@@ -4,7 +4,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTimelineComponent.h"

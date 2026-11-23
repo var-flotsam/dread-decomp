@@ -4,7 +4,7 @@
 // value; and a getter of the entry stored under the id given (parallel arrays of values at +0x80 and
 // keys at +0x88, count at +0x90 of the component at 8), null when there is none, described by
 // fn_71010df6c0. Names are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CCameraComponent.h"
 #include "types.h"

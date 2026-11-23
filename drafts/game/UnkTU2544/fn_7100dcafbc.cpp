@@ -6,7 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGuiRoot.h"

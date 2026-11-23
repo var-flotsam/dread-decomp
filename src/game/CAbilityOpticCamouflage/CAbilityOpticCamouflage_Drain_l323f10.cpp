@@ -2,7 +2,7 @@
 // energy drains at the tunable's rate (faster while fn_7100a1f84c holds); once it is empty, life drains
 // too (never below 1), and the cloak's timeline event follows the energy running out or coming back.
 // Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityOpticCamouflage.h"
 #include "game/CSpecialEnergyComponent.h"
 #include "game/UnkGameManager.h"

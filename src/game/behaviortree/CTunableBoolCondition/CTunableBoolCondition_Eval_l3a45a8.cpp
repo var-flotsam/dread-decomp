@@ -3,7 +3,7 @@
 // global tunable registry and the field read through reflection. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkTunableRegistry.h"
 #include "game/UnkTU57.h"

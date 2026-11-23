@@ -2,7 +2,7 @@
 // (fn_710084e848), this class's vtable (g_unk_7101a784a8), its default state, and the node
 // registration fn_7100023854 last. Names and layouts are placeholders.
 #include "base/core/CBaseObject.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CMissileBaseGun.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"

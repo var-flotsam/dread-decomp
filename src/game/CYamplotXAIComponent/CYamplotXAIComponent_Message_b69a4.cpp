@@ -2,7 +2,7 @@
 // after the base handler, a message with its flag at +0x20 set clears the bool property "bCombat" of the
 // blackboard section g_unk_71726b7cb8. Names are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU2702.h"

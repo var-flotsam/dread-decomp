@@ -5,7 +5,7 @@
 // (fn_710080c5d4), then the type id is sent (fn_71005aa108, tail call). Names are placeholders.
 #include <stdlib.h>
 
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CHecathonPlanktonFXComponent.h"
 #include "game/UnkManager_71726af468.h"

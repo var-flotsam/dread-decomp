@@ -35,7 +35,7 @@ UnkBlob_u71* fn_7100094910(UnkBlob_u71* self, const UnkBlob_u71* other) {
 }
 
 // The reflection type descriptor for a value-type id (0x49 to 0x79), or null.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 
 using base::reflection::CType;
 

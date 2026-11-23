@@ -1,10 +1,10 @@
 #pragma once
 
-// The global tunable registry (UnkTunableRegistry in base/reflection/UnkReflAttributes.h), created
+// The global tunable registry (UnkTunableRegistry in base/reflection/ReflectedAttributes.h), created
 // on first use by the CTunable* field functions and read by the hand-written tunable initialisers.
 
 #include "base/global/CRntVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 extern base::reflection::UnkTunableRegistry* g_unk_7101d47350;
 
 namespace base::reflection {

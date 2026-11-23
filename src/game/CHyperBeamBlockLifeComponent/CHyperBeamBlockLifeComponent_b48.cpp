@@ -5,7 +5,7 @@
 // +0x278, values at +0x268) as in CEventScenarioComponent_b46.cpp, the setter as in CDoorLifeComponent.cpp.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CItemLifeComponent.h"

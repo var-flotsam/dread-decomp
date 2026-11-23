@@ -6,7 +6,7 @@
 // fn_7100fd9e94 / fn_7100fd9e9c. Return whether it was found. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager.h"

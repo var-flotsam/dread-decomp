@@ -12,7 +12,7 @@
 #include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/SCameraRailNode.h"
 #include "game/UnkTU108.h"

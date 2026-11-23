@@ -2,7 +2,7 @@
 // argument's value in and returns an empty value. Like base::reflection::refl_SetFieldValue, for
 // an 8-byte struct copied member by member. Called only through its function descriptor.
 
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CActorComponent.h"
 #include "game/CSamusModelUpdaterComponent.h"

@@ -4,7 +4,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiFrames.h"

@@ -1,7 +1,7 @@
 // Unit 346 (base::reflection): a reflected function's invoker (fn_71002609ac, set up by
 // fn_71002592d0 in src/reflection/function_inits_00.cpp) that sets the bool at +0x78 of the
 // object at +8 and answers the empty status {0, 0, 2, 1}. Names are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

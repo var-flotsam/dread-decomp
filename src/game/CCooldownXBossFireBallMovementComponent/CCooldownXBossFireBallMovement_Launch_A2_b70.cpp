@@ -3,7 +3,7 @@
 // g_unk_7172716160, fn_71008c1538), copies the unit's static string id into +0xb8 and sets bit 26 of the
 // flags at +0xb4 (as CSentenceSphereMovement_Launch_A2_b70.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
 #include "types.h"

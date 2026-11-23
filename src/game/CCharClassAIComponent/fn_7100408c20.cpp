@@ -7,7 +7,7 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CEnumType.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CEnemyPreset.h"
 #include "game/SDeathImpactDisplacement.h"

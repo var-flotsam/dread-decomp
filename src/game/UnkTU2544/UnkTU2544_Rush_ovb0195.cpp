@@ -5,7 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAbilityShinespark.h"

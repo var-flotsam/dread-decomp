@@ -4,7 +4,7 @@
 // negated when first < second. Below the Scorpius tunable's value at +0x28 that limit is
 // returned, else the distance plus 15. Names and layout are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "types.h"

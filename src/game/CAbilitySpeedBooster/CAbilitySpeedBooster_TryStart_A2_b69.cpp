@@ -4,7 +4,7 @@
 // (fn_7100030dec) when the list is not empty, else the tunable's +0x2c (g_unk_71726b0fc0).
 // Names and layouts are placeholders.
 #include "game/CAbilitySpeedBooster.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbility.h"
 #include "game/UnkFloatList_b46a1.h"
 #include "game/UnkTU39.h"

@@ -3,7 +3,7 @@
 // 8, and returns the int 0 as a reflected value. Names are placeholders.
 #include "../../game_s7/UnkPropS7.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

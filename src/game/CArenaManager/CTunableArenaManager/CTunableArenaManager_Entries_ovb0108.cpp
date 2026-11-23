@@ -10,7 +10,7 @@
 #include "base/UnkStrIdTable.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CArenaManager/CTunableArenaManager.h"
 #include "game/CBlackboard.h"

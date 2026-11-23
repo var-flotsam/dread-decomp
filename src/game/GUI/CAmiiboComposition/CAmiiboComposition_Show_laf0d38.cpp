@@ -3,7 +3,7 @@
 // time, it stores the flag and opens the "#GUI_AMIIBO_FTUE" message instead. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/GUI/CPopUpComposition.h"

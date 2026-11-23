@@ -4,7 +4,7 @@
 // (+0x2cf8) switches to it, as the door state machine does (12 pending meanwhile, 15 for none after).
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkGameManager.h"

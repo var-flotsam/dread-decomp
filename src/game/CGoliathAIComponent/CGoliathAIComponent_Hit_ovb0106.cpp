@@ -3,7 +3,7 @@
 // field whose name hash matches, among the tunable class's fields). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/CCharClassTweakPlayRateTrack.h"

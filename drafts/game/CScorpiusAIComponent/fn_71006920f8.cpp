@@ -4,7 +4,7 @@
 // entry when the list is full. Names and layouts are placeholders.
 #include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntVector.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/UnkActor.h"

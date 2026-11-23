@@ -1,7 +1,7 @@
 // CUsableComponent's unit: reflected functions' invokers that pass their two arguments (as pointers) to a
 // virtual of the object at +8 (slots 0x278 and 0x280) and return the int it answers, the shape of
 // ../CPickableItemComponent/CPickableItemComponent_ReflInvokers_A6_b63.cpp. Names are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

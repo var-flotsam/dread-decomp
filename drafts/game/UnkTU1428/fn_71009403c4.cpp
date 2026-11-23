@@ -1,7 +1,7 @@
 // CMorphBallMovement's unit (hint only): a speed scale picked by the movement's state, reduced in slow motion and
 // raised while the player's speed booster ability asks for it. Names and layouts are placeholders.
 
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilitySpeedBooster.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"

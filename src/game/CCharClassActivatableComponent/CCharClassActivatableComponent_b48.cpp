@@ -6,7 +6,7 @@
 // the flag is found, switches the entity at +0x18 to it (fn_7100232864) and sets +0x7c to 1. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CActorComponent.h"
 #include "game/CBlackboard.h"

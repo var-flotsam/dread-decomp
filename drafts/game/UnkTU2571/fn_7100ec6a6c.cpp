@@ -8,7 +8,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "engine/scene/UnkToggle.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"

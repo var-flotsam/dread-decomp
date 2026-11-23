@@ -4,7 +4,7 @@
 // (fn_71010472e0, as in CMultiLockOnBlockComponent_b48.cpp); the setter as in
 // src/game/CDoorLifeComponent.cpp. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CMultiLockOnBlockComponent.h"

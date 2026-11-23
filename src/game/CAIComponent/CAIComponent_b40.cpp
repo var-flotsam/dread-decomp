@@ -1,7 +1,7 @@
 // CAIComponent unit (tools/tu_map.py, the name from reflection): a reflected function that passes its first two
 // arguments (null when an argument has no type; inline, or behind a pointer for values over 8 bytes or
 // kind 1) to fn_710110a82c on the object at 8 and returns the int 0 as a reflected value. Names are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU2702.h"
 #include "types.h"

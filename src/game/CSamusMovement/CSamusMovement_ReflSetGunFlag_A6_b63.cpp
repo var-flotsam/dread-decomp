@@ -3,7 +3,7 @@
 // +0x2a8 is a CSamusGunComponent, passes it to fn_710085b76c; it returns the int 1. Names are placeholders.
 #include "../../game_s7/UnkPropS7.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CSamusGunComponent.h"

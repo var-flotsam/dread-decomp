@@ -1,7 +1,7 @@
 // CChozoCommanderBeamBurstAttack unit (tools/tu_map.py unit 646): hits a target's life component (+0x1b8)
 // with a damage request built from the hit (its collider and four points), the attack owner's and its
 // target's weak handles and one of two tunable damage values. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU2523.h"

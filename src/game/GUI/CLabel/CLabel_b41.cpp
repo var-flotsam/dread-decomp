@@ -2,7 +2,7 @@
 // the names of the label's two layout values (+0x2b4 and +0x328, game/UnkGuiLabel.h) as reflected
 // string ids, named by fn_7100b87ac0 and fn_7100b87b10. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

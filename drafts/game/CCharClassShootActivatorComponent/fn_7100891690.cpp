@@ -2,7 +2,7 @@
 // base update, runs the activation timer (+0x4bc) down to zero within the duration (+0x4b0), calling slot 0x1f0
 // while it runs and 0x218 once it reaches the duration; while the sound fades (+0x570) lowers its volume with the
 // remaining share, and stops it on the owner when the fade is over. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CCharClassShootActivatorComponent.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"

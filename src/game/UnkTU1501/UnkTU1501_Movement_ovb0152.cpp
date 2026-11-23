@@ -8,7 +8,7 @@
 #include "base/UnkPooledStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityGhostAura.h"

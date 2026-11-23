@@ -1,6 +1,6 @@
 // CCharClassAttackComponent (unit 1185): a float tunable read by the name of the component's id through
 // reflection, rounded down; zero when the tunable class has no such field. Names and layouts are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassAttackComponent.h"

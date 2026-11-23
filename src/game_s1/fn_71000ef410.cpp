@@ -4,7 +4,7 @@
 // and registers both.
 #include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
 #include "game/UnkTU92.h"
 #include "game/UnkTUInit.h"
@@ -14,7 +14,7 @@
 
 using base::global::CStrId;
 
-// The reflected int and unsigned types (base/reflection/UnkReflAttributes.h), seen through the
+// The reflected int and unsigned types (base/reflection/ReflectedAttributes.h), seen through the
 // placeholder.
 template <const base::reflection::CType* (*Getter)()>
 static inline UnkEnumInfo* TypeOf() {

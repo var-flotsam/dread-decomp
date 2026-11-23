@@ -2,7 +2,7 @@
 // automanaged, stores false for its "Enabled" property in the current scenario's blackboard section.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CActorComponent.h"
 #include "game/CBlackboard.h"

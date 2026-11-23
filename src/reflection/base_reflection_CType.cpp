@@ -5,14 +5,12 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
-#include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/PrimitiveType.h"
 #include "base/reflection/ReflectedFields.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();

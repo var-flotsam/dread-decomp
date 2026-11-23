@@ -2,7 +2,7 @@
 // passes its first two arguments (null when an argument has no type; inline, or behind a pointer for
 // values over 8 bytes or kind 1) to fn_710117b1c8 on the object at 8 and returns the int 1 as a
 // reflected value. Names are placeholders.
-#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAnimationComponent.h"
 #include "types.h"
