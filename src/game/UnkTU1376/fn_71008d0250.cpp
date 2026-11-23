@@ -5,6 +5,8 @@
 #include "base/global/CStrId.h"
 #include "game/CLifeComponent.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkDoorLifeTunable.h"
+#include "game/UnkDoorShieldIds.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkStateMachineFind.h"
@@ -15,32 +17,13 @@
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_s2/UnkSpitSend.h"
 
 using base::global::CStrId;
 
 struct UnkFlagTarget;
 
-// As src/game/CDoorShieldLifeComponent/CDoorShieldLifeComponent_Shield_ovb0001.cpp declares them.
-struct UnkDoorShieldLife6_ovb0001;
-void fn_71008d0a08(UnkDoorShieldLife6_ovb0001* self, const void* animation, bool reverse, bool loop);
-
-struct UnkDoorShieldFlags_ovb0001 {
-    u8 pad_0x0[0x30];
-    u64 name;  // 0x30
-};
-
-extern UnkDoorShieldFlags_ovb0001* g_unk_7172731790 __attribute__((visibility("hidden")));
-extern UnkDoorShieldFlags_ovb0001* g_unk_7172731798 __attribute__((visibility("hidden")));
-// The shield's open and close animations.
-extern const u64 g_unk_71727317a0[2] __attribute__((visibility("hidden")));
 extern const u64 g_unk_7172731788 __attribute__((visibility("hidden")));
-
-struct UnkDoorSettings_l8d0250 {
-    u8 pad_0x0[0x2c];
-    bool field_0x2c;
-};
-extern UnkDoorSettings_l8d0250 g_unk_7172731368;
 
 struct UnkDoorIdHolder_l8d0250 {
     u8 pad_0x0[0x30];
@@ -123,7 +106,6 @@ static_assert(__builtin_offsetof(UnkDoorLife_l8d0250, keys) == 0xaf8, "layout");
 
 void fn_71008d07f8(UnkDoorLife_l8d0250* self);
 bool fn_71008d0db4(UnkDoorLife_l8d0250* self);
-void* fn_71008d89b0(UnkDoorOwner_l8d0250* owner);
 
 static inline UnkDoorState_l8d0250* FindState(UnkDoorStateMachine_l8d0250* self, s32 id) {
     return FindStateById(self->states, self->count, id);
@@ -190,8 +172,8 @@ void fn_71008d0250(UnkDoorLife_l8d0250* self) {
     if (self->owner->flags) {
         if (!self->field_0x41f)
             PlayShield(self, &g_unk_7172731788, false);
-        PlayShield(self, &g_unk_71727317a0[0], self->field_0xaea);
-        PlayShield(self, &g_unk_71727317a0[1], self->field_0xaeb);
+        PlayShield(self, &g_unk_71727317a0.open, self->field_0xaea);
+        PlayShield(self, &g_unk_71727317a0.close, self->field_0xaeb);
         if (UnkFlagTarget* target = self->owner->flags) {
             name = g_unk_7172731790->name;
             fn_7101172780(target, reinterpret_cast<const char*>(&name));
@@ -209,7 +191,7 @@ void fn_71008d0250(UnkDoorLife_l8d0250* self) {
 
     self->field_0x7c4 = fn_71008d0db4(self);
 
-    if (g_unk_7172731368.field_0x2c || self->field_0x419 || (!self->field_0x41c && self->field_0x41a)) {
+    if (g_unk_7172731368.bForceAllDoorsOpened || self->field_0x419 || (!self->field_0x41c && self->field_0x41a)) {
         if (!self->field_0x41c) {
             void* animation = self->owner->animation;
             u64 hash = reinterpret_cast<UnkDoorIdHolder_l8d0250*>(GameManagerIdTable().field_0x1b40.data)->hash;
