@@ -167,6 +167,20 @@ class TableErrors(unittest.TestCase):
         self.assertIn("    bool bOn = true;  // 0x1c", gc.class_lines("CLeaf", TYPES, FIELDS, ok)[0])
 
 
+class TrackedFilesOnly(unittest.TestCase):
+    def test_check_runs_without_capstone(self):
+        # CI's policy job runs `gen_classes.py --check` with no capstone and no game data.
+        import subprocess
+        import sys
+        from pathlib import Path
+        root = Path(gc.__file__).resolve().parent.parent
+        code = ("import sys, runpy; sys.modules['capstone'] = None; sys.argv = ['gen_classes.py', '--check']; "
+                "runpy.run_path('tools/gen_classes.py', run_name='__main__')")
+        run = subprocess.run([sys.executable, "-c", code], cwd=root, capture_output=True, text=True)
+        self.assertNotIn("capstone", run.stderr)
+        self.assertNotIn("Traceback", run.stderr)
+
+
 class Selection(unittest.TestCase):
     def test_rule_and_scope(self):
         body = BLOCK.split("namespace CLeaf {\n", 1)[1].split("}  // namespace")[0]

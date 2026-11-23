@@ -67,7 +67,11 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+# Tracked files and the standard library only: CI's policy job runs --check without game data or capstone.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from dread.declared_class import CLASS_BLOCK, declared_class_block  # noqa: E402
+
+ROOT =Path(__file__).resolve().parent.parent
 OUT = ROOT / "include" / "reflected"
 TYPES = ROOT / "data" / "reflection_types.csv"
 FIELDS = ROOT / "data" / "reflection_fields.csv"
@@ -371,14 +375,12 @@ DECLARED_FORM = re.compile(r"^DREAD_REFLECTED_DECLARED_(?:ROOT_)?CLASS\(([\w:]+)
 
 def reflection_blocks() -> tuple[set[str], dict[str, str]]:
     """(classes src/reflection/ already writes in the declared form, {class: body} of the namespace-form blocks)."""
-    import gen_reflection as gr
-
     done: set[str] = set()
     blocks: dict[str, str] = {}
     for f in sorted(REFLECTION.glob("*.cpp")):
         text = f.read_text(encoding="utf-8")
         done.update(DECLARED_FORM.findall(text))
-        for m in gr.CLASS_BLOCK.finditer(text):
+        for m in CLASS_BLOCK.finditer(text):
             blocks[m.group(1)] = m.group(2)
     return done, blocks
 
@@ -386,8 +388,6 @@ def reflection_blocks() -> tuple[set[str], dict[str, str]]:
 def problems(name: str, types: dict[str, dict], fields: dict, extra: Extra,
              refl: tuple[set[str], dict[str, str]]) -> list[str]:
     """Why the rule does not select `name` (empty: it does)."""
-    import gen_reflection as gr
-
     done, blocks = refl
     sizes = {t: int(r["size"], 16) for t, r in types.items() if r["size"]}
     offsets = {(c, n): off for c, fs in fields.items() for off, n, _ in fs}
@@ -402,7 +402,7 @@ def problems(name: str, types: dict[str, dict], fields: dict, extra: Extra,
         except LayoutError as e:
             out.append(str(e))
             continue
-        if b not in done and (b not in blocks or gr.declared_class_block(b, blocks[b], sizes, offsets) is None):
+        if b not in done and (b not in blocks or declared_class_block(b, blocks[b], sizes, offsets) is None):
             out.append(f"{b}: its reflection source does not convert to the declared form")
     return out
 
