@@ -81,7 +81,7 @@ static inline void SetTunable(UnkScorpiusObject_l6920f8* obj, u64 key, f32* in) 
     typed.ptr = obj;
     UnkScorpiusValue_l6920f8 value = {fn_710000abbc(), in};
     if (UnkScorpiusField_l6920f8* field = cls->FindField(key))
-        fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        fn_71000e7a80(reinterpret_cast<CVariable*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
 }
 

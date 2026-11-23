@@ -18,7 +18,7 @@ using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CType;
 using base::reflection::UnkReflAttrKey;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkReflObject;
 using base::reflection::UnkReflValue;
@@ -51,7 +51,7 @@ struct UnkEnumNames : base::global::CRntVector<UnkEnumName> {
 
 struct UnkEnumType;
 UnkEnumNames fn_710009b050(const UnkEnumType* type);
-CFunction* fn_71000979a0(CClass* self, UnkReflField* field, const UnkReflAttrKey& key);
+CFunction* fn_71000979a0(CClass* self, CVariable* field, const UnkReflAttrKey& key);
 
 // An attribute's value: its type, and the value inline when it fits in 8 bytes (else through
 // field_0x0).
@@ -139,7 +139,7 @@ static inline const UnkAttrSet_l08ef70* ParamAttrs(CFunction* function, u32 inde
 
 // `self` and `node` are not read here.
 void fn_710008ef70(void* self, void* node, UnkClassField_l08ef70* field, CClass* cls) {
-    CFunction* create = fn_71000979a0(cls, reinterpret_cast<UnkReflField*>(field), fn_710008fd60());
+    CFunction* create = fn_71000979a0(cls, reinterpret_cast<CVariable*>(field), fn_710008fd60());
     if (!create)
         return;
     const CType* collection = fn_710009c640(field->type);

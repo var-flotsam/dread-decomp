@@ -24,7 +24,7 @@ using base::global::UnkStringPool;
 using base::reflection::CClass;
 using base::reflection::CType;
 using base::reflection::UnkReflAttrKey;
-using base::reflection::UnkReflField;
+using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkReflObject;
 using base::reflection::UnkReflObjectB;
@@ -58,7 +58,7 @@ struct UnkReaderContext_l0f17c8 {
     UnkReflValue value;               // 0x8
     UnkReaderContext_l0f17c8* parent;  // 0x20
     u8 pad_0x28[0x58];
-    UnkReflField* field;        // 0x80
+    CVariable* field;        // 0x80
     CFunction* function;  // 0x88
     UnkReflObjectB* call;       // 0x90
     bool field_0x98;
@@ -188,7 +188,7 @@ inline void AppendArg_l0f17c8(CRntVector<T>& args, T&& value) {
 struct UnkReflFunctionEx_7100095bdc;
 void fn_7100095684(UnkReflFunctionEx_7100095bdc* self, void* owner, const UnkReflValue* value, void* x3);
 void* fn_71000978e4(char* cls, const CStrId* name);
-CFunction* fn_71000979a0(CClass* self, UnkReflField* field, const UnkReflAttrKey& key);
+CFunction* fn_71000979a0(CClass* self, CVariable* field, const UnkReflAttrKey& key);
 
 bool fn_71000f17c8(UnkTypedRefWriter* self) {
     auto* top = static_cast<UnkReaderContext_l0f17c8*>(self->entries()[self->count - 1].context);

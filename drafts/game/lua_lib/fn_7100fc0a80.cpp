@@ -127,7 +127,7 @@ void fn_7100fc0a80(lua_State* L, UnkTypedPair_ovb0016* value, CStrId* name) {
         UnkReflFieldObject target = {fn_710009dcd8(type, obj), obj};
         UnkReflValueArg arg;
         fn_71000a1710(&arg, &v);
-        fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), &target, &arg);
+        fn_71000e7a80(reinterpret_cast<CVariable*>(field), &target, &arg);
         fn_71000a1c60(&v);
         return;
     }

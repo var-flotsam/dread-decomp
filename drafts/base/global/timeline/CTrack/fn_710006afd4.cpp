@@ -21,7 +21,7 @@ UnkEnumType* fn_7100067f5c();  // "base::color::CColor3F"
 UnkEnumType* fn_7100068204();  // "base::color::CColor4F"
 // As src/base/reflection/CFlagsetType/CFlagsetType_Read_ovb0068.cpp defines it.
 struct UnkFlagsetType_b0068;
-bool fn_710009a430(UnkFlagsetType_b0068* self, const UnkReflFieldObject* obj, UnkReflField* field, CRntFile* file);
+bool fn_710009a430(UnkFlagsetType_b0068* self, const UnkReflFieldObject* obj, CVariable* field, CRntFile* file);
 // As src/base/reflection/UnkUnit85/UnkFieldPointee.cpp defines it: the member object a field of `owner` holds.
 struct UnkReflFieldInfo;
 struct UnkFieldOwner;
@@ -79,7 +79,7 @@ static inline UnkReflTypedPtr Typed_l06afd4(char* type, void* obj) {
 }
 
 static inline void Set_l06afd4(UnkTrackField_l06afd4* field, UnkReflTypedPtr* obj, UnkTrackValue_l06afd4* value) {
-    fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
+    fn_71000e7a80(reinterpret_cast<CVariable*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
                   reinterpret_cast<UnkReflValueArg*>(value));
 }
 
@@ -146,7 +146,7 @@ void fn_710006afd4(UnkTrack* track, CRntFile* file) {
             if (flags && !fn_710009d50c(flags->GetClass(), fn_710009a11c()))
                 flags = nullptr;
             fn_710009a430(reinterpret_cast<UnkFlagsetType_b0068*>(flags), reinterpret_cast<const UnkReflFieldObject*>(&obj),
-                          reinterpret_cast<UnkReflField*>(field), file);
+                          reinterpret_cast<CVariable*>(field), file);
             break;
         }
         case TypeId(0x4048cbeec15d3c0e): {

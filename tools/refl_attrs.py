@@ -4,7 +4,7 @@ Both kinds receive the class descriptor and are sequences of two statement forms
 (include/base/reflection/UnkReflAttributes.h):
 
   class attribute:  TypeAttributes(cls)->Add<T>(KEY(), value);
-  member field:     UnkReflField* field0 = AddReflectedField(cls, CStrId("name", true), TYPE(), offset, -1, -1);
+  member field:     CVariable* field0 = AddReflectedField(cls, CStrId("name", true), TYPE(), offset, -1, -1);
                     field0->attrs.Add<T>(KEY(), value);   // zero or more
 
 and, at the end of the CTunable* classes' field functions, a registration with a global
@@ -83,7 +83,7 @@ PRELUDE = [
     '#include "base/reflection/UnkReflAttributes.h"',
     "using base::global::CStrId;",
     "using base::reflection::CClass;",
-    "using base::reflection::UnkReflField;",
+    "using base::reflection::CVariable;",
     "using base::reflection::CFunction;",
     "using base::reflection::UnkTunable;",
     "using base::reflection::UnkTunableRegistry;",
@@ -701,7 +701,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             return None
         var = f"field{fields}"
         fields += 1
-        body.append(f"    UnkReflField* {var} = AddReflectedField(cls, {name_expr}, "
+        body.append(f"    CVariable* {var} = AddReflectedField(cls, {name_expr}, "
                     f"{type_expr}, {off[1]:#x}, {index[0]}, {index[1]});")
         i = j + 1
         while True:
@@ -766,7 +766,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             index = index_expr(evs[k].regs.get("1")) if k < n else None
             if vals or k >= n or evs[k].target in NOT_KEYS or evs[k].target <= 0 or index is None:
                 return None
-            decls.append(f"void fn_{evs[k].target:x}(UnkReflField* field, u64 index);")
+            decls.append(f"void fn_{evs[k].target:x}(CVariable* field, u64 index);")
             body.append(f"    fn_{evs[k].target:x}(base::reflection::refl_FindField(cls, "
                         f"base::global::CName({c_string(name)})), {index});")
             i = k + 1
@@ -1094,7 +1094,7 @@ ATTRIBUTE_NAMES = {  # attribute key getter -> the name it registers (attr:: in 
     0x7100f9eba0: "FileNameOnly", 0x71010434d0: "eActorLinkToComponentLinkTransform",
 }
 TYPED_KEYS = {0x710000BF80: 0x7101D679F0, 0x71000923A0: 0x7101D55008}  # key -> its enum type (TypedAttrKey)
-FIELD_RE = re.compile(r'^    UnkReflField\* (field\d+) = AddReflectedField\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\), '
+FIELD_RE = re.compile(r'^    CVariable\* (field\d+) = AddReflectedField\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\), '
                       r'(?:fn_([0-9a-f]{10})\(\)|&g_unk_([0-9a-f]{10})), (0x[0-9a-f]+, -1, -1|0xffffffff, '
                       r'cls->m_array_0x110\.size\(\) - [12], (?:cls->m_array_0x110\.size\(\) - 1|-1))\);$')
 PROPERTY_TAILS = {  # a property's offset and accessor indices -> its macro (ReflectedFields.h)

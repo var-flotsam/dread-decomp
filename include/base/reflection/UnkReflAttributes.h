@@ -37,7 +37,7 @@ struct UnkReflAttrKey {
 };
 static_assert(sizeof(UnkReflAttrKey) == 0x18, "UnkReflAttrKey layout");
 struct UnkReflAttrs;    // 0x38 bytes, created on first use
-struct UnkReflField;    // a member field descriptor; its attributes are at +0x38
+struct CVariable;    // a member field descriptor; its attributes are at +0x38
 // A reflected function (0xb8 bytes, in CClass+0x110). Getter/setter-backed fields register
 // one getter and one setter function and then a field that refers to them by index.
 struct CFunction;
@@ -81,7 +81,7 @@ void fn_71000934b8(base::reflection::UnkReflAttrs* attrs, const base::reflection
                    const base::reflection::UnkReflValueRef& value);
 
 // Register a member field: name, type, offset in the object. The two -1s are unknown.
-base::reflection::UnkReflField* AddReflectedField(base::reflection::CClass* cls, base::global::CStrId name,
+base::reflection::CVariable* AddReflectedField(base::reflection::CClass* cls, base::global::CStrId name,
                                               const base::reflection::CType* type, u64 offset, s64 unk_4,
                                               s64 unk_5);
 
@@ -123,7 +123,7 @@ inline const base::global::CRntString& refl_RntStringOf(const base::global::CStr
 
 // A class's member field by name (CClass+0xe8: fields of 0xb0 bytes, keyed by the name's
 // hash), or null.
-inline UnkReflField* refl_FindField(CClass* cls, const base::global::CName& name) {
+inline CVariable* refl_FindField(CClass* cls, const base::global::CName& name) {
     struct Fields {
         struct Slot {
             u8 bytes[0xb0];
@@ -141,7 +141,7 @@ inline UnkReflField* refl_FindField(CClass* cls, const base::global::CName& name
     };
     Fields& fields = *reinterpret_cast<Fields*>(&cls->m_array_0xe8);
     auto* it = fields.Find(name.hash);
-    return it == &fields.data[fields.count] ? nullptr : reinterpret_cast<UnkReflField*>(it);
+    return it == &fields.data[fields.count] ? nullptr : reinterpret_cast<CVariable*>(it);
 }
 
 // A list value (base::global::CRntVector's layout) built from an initializer list, moved into a
@@ -394,7 +394,7 @@ struct UnkReflAttrs {
     }
 };
 
-struct UnkReflField {
+struct CVariable {
     u8 unk_0x0[0x38];
     UnkReflAttrs attrs;
     UnkReflAttrs attrs_0x70;  // a second container (e.g. "TypeSelectionEnabled" on vector fields)
