@@ -30,7 +30,7 @@ struct UnkUnit1441Start_A4_b74 {
     char* field_0x40;
     u8 pad_0x48[0x88];
     UnkUnit1441TrackLink_A4_b74 link;  // 0xd0
-    UnkWeakHandle* handle;             // 0xe8
+    UnkWeakRef handle;             // 0xe8
     u8 pad_0xf0[0xc];
     u32 field_0xfc;
     u32 field_0x100;
@@ -45,18 +45,18 @@ void fn_7100969604(UnkUnit1441Start_A4_b74* self) {
         UnkUnit1441TrackLink_A4_b74* link = &self->link;
         link->context = self;
         link->callback = fn_7100969e84;
-        if (UnkWeakHandle* handle = self->handle) {
+        if (UnkWeakHandle* handle = self->handle.handle) {
             if (UnkWeakTarget* target = handle->target)
                 fn_710117b3f0(target, link);
-            if (UnkWeakHandle* p = self->handle) {
+            if (UnkWeakHandle* p = self->handle.handle) {
                 if (--p->ref_count == 0)
                     p->vf_0x10();
-                self->handle = nullptr;
+                self->handle.handle = nullptr;
             }
         }
         asm("" : "+r"(self));
         fn_7100316018(track, &self->handle);
-        fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+        fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
     self->field_0xfc = 0;
     self->field_0x100 = *reinterpret_cast<u32*>(self->field_0x40 + 0x1ac);

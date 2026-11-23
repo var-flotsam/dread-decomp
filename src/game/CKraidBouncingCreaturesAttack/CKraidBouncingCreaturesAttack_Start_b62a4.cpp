@@ -57,7 +57,7 @@ struct UnkKraidBouncingAttack_b62a4 {
     f32 time;
     bool field_0x44;
     UnkKraidBouncingLink_b62a4 link;
-    UnkWeakHandle* handle;
+    UnkWeakRef handle;
 };
 
 static inline __attribute__((always_inline)) void Send_b62a4(void* target, u64 hash, u64 kind, u32 m) {
@@ -74,19 +74,19 @@ void fn_71005f2cf0(UnkKraidBouncingAttack_b62a4* self) {
     link->context = self;
     link->callback = fn_71005f3e4c;
     UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(self->owner + 0x220);
-    if (UnkWeakHandle* handle = self->handle) {
+    if (UnkWeakHandle* handle = self->handle.handle) {
         if (UnkWeakTarget* target = handle->target)
             fn_710117b3f0(target, link);
-        if (UnkWeakHandle* p = self->handle) {
+        if (UnkWeakHandle* p = self->handle.handle) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
-            self->handle = nullptr;
+            self->handle.handle = nullptr;
         }
     }
     if (track) {
         asm("" : "+r"(self));
         fn_7100316018(track, &self->handle);
-        fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+        fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
     UnkReflObject* ai = *reinterpret_cast<UnkReflObject**>(self->owner + 0x240);
     UnkReflObject* kraid = ai && fn_710009d50c(ai->vf_0x0(), fn_71005fac74()) ? ai : nullptr;

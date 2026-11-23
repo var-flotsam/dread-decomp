@@ -607,7 +607,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100436c80,376,drafts/game/CChozoCommanderKiStrikeAttack/fn_7100436c80.cpp,operations,35.1,61,lean-sib2,y must be held as an integer (x21) across both calls and the spot base kept as one pointer (+0x15d1c); a UnkVe
 0x7100438a44,208,drafts/game/CChozoCommanderPowerPulseAttack/fn_7100438a44.cpp,conditions,23.1,40,lean,
 0x710043bdd4,688,drafts/game/CChozoCommanderTriComboAttack/fn_710043bdd4.cpp,registers or order,97.1,5,lean-r2ki,float register choice in the reach offset (s3 vs s0); five instructions
-0x710043c21c,940,drafts/game/CChozoCommanderTriComboAttack/fn_710043c21c.cpp,match,100.0,0,lean-r2kg,weak handle at +0x78 loaded after the link stores (orig before) and addressed pre-indexed; hoisting the load s
 0x710043de14,976,drafts/game/CChozoCommanderUltimateGrabAttack/fn_710043de14.cpp,operations,7.8,206,lean-r2ke,property list at +0x88: original stores count and INT_MAX capacity separately (capacity via list pointer); sto
 0x710043f9cc,824,drafts/game/CChozoCommanderUltimateGrabAttack/fn_710043f9cc.cpp,operations,39.8,119,lean-r2ki,original moves the grabbed actor's position as 32-bit integer words (ldr/stp w; fmov for the arithmetic); ours
 0x710043fd04,672,drafts/game/CChozoCommanderUltimateGrabAttack/fn_710043fd04.cpp,operations,19.6,133,lean-r2ki,kind-12 path with +0x6d0 <= 0: original duplicates the player-table load (index w1 sxtw); ours merges it with
@@ -641,7 +640,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100476618,856,drafts/game/querysystem/CChozoRobotSoldierIsInFrustumFilter/fn_7100476618.cpp,operations,13.6,184,lean-r2ki,213 vs 214 insns; original keeps y in w22 across the call (fmov pair); player check made twice (lazy manager i
 0x71004799b8,444,drafts/game/CChozoRobotSoldierBeamMovementComponent/fn_71004799b8.cpp,calls,74.8,27,lean-fam0a,original calls fn_710007b444 with bl+ret (ours tail-calls) and reloads +0x40 after the byte store at +0x49
 0x71004819c8,788,drafts/game/CChozoWarriorXGlaiveSpinAttack/fn_71004819c8.cpp,operations,78.2,43,lean-sib3,stack slots: ours shares two arg slots (frame 0x80 vs 0x90; sibling fn_71006ed934 used a goto); matrix loads s
-0x7100482624,848,drafts/game/CChozoWarriorXLandAttack/fn_7100482624.cpp,match,100.0,0,lean-sib3,handle slot &self->handle folded into x19 with pre-indexed ldr (orig keeps self; add x1;x19;#0x60); sibling fn
 0x7100482aec,1072,drafts/game/CChozoWarriorXLandAttack/fn_7100482aec.cpp,registers or order,95.9,11,lean-sib3,empty-id compare operands swapped and fallback id in x22 not x21; one add scheduled after a store before fn_71
 0x7100483ce4,572,drafts/game/CChozoWarriorXSpitAttack/fn_7100483ce4.cpp,operations,99.3,1,overnight,
 0x7100484b10,1464,drafts/game/CChozoWarriorXSpitAttack/fn_7100484b10.cpp,calls,11.9,321,lean-r2ki,block layout: the cast block lands after the aim setup instead of after the create path; string-pool check bra
@@ -729,8 +727,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100515904,964,drafts/game/behaviortree/CEmmyPatrolBaseAction/fn_7100515904.cpp,control flow,22.8,181,lean-sib4,state 2/1 dispatch order and tail duplication; 0x2a250 address hoisted in original; +0x120 arg hoisted
 0x7100515ffc,532,drafts/game/behaviortree/CEmmyPatrolBaseAction/fn_7100515ffc.cpp,registers or order,94.0,8,lean-r2kg,zero-fill loop: original reloads data each pass and is not unrolled; ours unrolls by 2 (value-initialised poin
 0x7100516f9c,1348,drafts/game/behaviortree/CEmmySearchingAction/fn_7100516f9c.cpp,operations,17.2,277,lean-r2kc,same code except addressing: the original reaches the two local static sound descs through the unit-internal p
-0x7100518684,1080,drafts/game/behaviortree/CEmmySearchingAction/fn_7100518684.cpp,match,100.0,0,lean-r2kc,self is folded into a pre-indexed ldr [x19;#0x58]! for the handle (the matched sibling CBigFistAttack_Start_A2
-0x7100518abc,1080,drafts/game/behaviortree/CEmmySearchingAction/fn_7100518abc.cpp,match,100.0,0,lean-r2kc,self dies after the link setup so &self->link.handle becomes a pre-indexed ldr [x19;#0x58]! (CBigFistAttack_St
 0x710051b5a8,1372,drafts/game/behaviortree/CEmmySearchingAction/fn_710051b5a8.cpp,control flow,7.0,318,lean,
 0x710051c018,1336,drafts/game/behaviortree/CEmmySearchingAction/fn_710051c018.cpp,calls,13.8,283,lean-r2kc,logic complete but block layout differs: the original places the movement-target (mode 4) play path after the
 0x710053f510,2700,drafts/game/UnkTU811/fn_710053f510.cpp,control flow,0.9,668,lean-r6k,all members inline and calls line up (branches 87 vs 86); but the original keeps member-group base pointers (t

@@ -54,7 +54,7 @@ struct UnkCollisionStart_A4_b75 {
     u64 field_0xd0;
     u8 pad_0xd8[0x30];
     UnkCollisionTrackLink_A4_b75 link;  // 0x108
-    UnkWeakHandle* handle;              // 0x120
+    UnkWeakRef handle;              // 0x120
     bool field_0x128;
 };
 
@@ -74,19 +74,19 @@ void fn_7100860ee0(UnkCollisionStart_A4_b75* self) {
     link->context = self;
     link->callback = fn_7100866c4c;
     UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(self->owner + 0x220);
-    if (UnkWeakHandle* handle = self->handle) {
+    if (UnkWeakHandle* handle = self->handle.handle) {
         if (UnkWeakTarget* target = handle->target)
             fn_710117b3f0(target, link);
-        if (UnkWeakHandle* p = self->handle) {
+        if (UnkWeakHandle* p = self->handle.handle) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
-            self->handle = nullptr;
+            self->handle.handle = nullptr;
         }
     }
     if (track) {
         asm("" : "+r"(self));
         fn_7100316018(track, &self->handle);
-        fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+        fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
     self->field_0x128 = false;
 }

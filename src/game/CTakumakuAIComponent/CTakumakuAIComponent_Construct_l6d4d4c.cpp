@@ -20,10 +20,10 @@ struct UnkTakumakuSettings {
     u32 flags;
 };
 
-struct UnkWeakRef {
+struct UnkWeakRef_l6d4d4c {
     UnkWeakHandle* handle;
 
-    __attribute__((always_inline)) explicit UnkWeakRef(UnkWeakTarget* target) {
+    __attribute__((always_inline)) explicit UnkWeakRef_l6d4d4c(UnkWeakTarget* target) {
         UnkWeakHandle* found = target ? GetWeakHandle(target) : nullptr;
         handle = nullptr;
         AssignRef(&handle, found);
@@ -31,8 +31,8 @@ struct UnkWeakRef {
 };
 
 struct UnkTakumakuRequest {
-    UnkWeakRef owner;
-    UnkWeakRef other;
+    UnkWeakRef_l6d4d4c owner;
+    UnkWeakRef_l6d4d4c other;
     UnkTakumakuSettings settings;
     u32 field_0x40;
 

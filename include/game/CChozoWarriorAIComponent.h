@@ -23,3 +23,9 @@ extern base::global::CStrId g_unk_71726d1270 __attribute__((visibility("hidden")
 extern UnkChozoWarriorKind_b67a2* g_unk_71726d1260 __attribute__((visibility("hidden")));
 extern void* g_unk_7101a3cbc8[];
 bool fn_710049cbd8(UnkWarriorAI* ai);
+
+namespace base::reflection {
+struct UnkReflObject;
+}
+struct UnkStrIdOut_b0266;  // a string id returned in memory; its users define it
+UnkStrIdOut_b0266 fn_710049c59c(base::reflection::UnkReflObject* ai);

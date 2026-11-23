@@ -22,7 +22,7 @@ struct UnkFrozenStart_A4_b74 {
     char* owner;
     u8 pad_0x38[0x10];
     UnkFrozenTrackLink_A4_b74 link;  // 0x48
-    UnkWeakHandle* handle;           // 0x60
+    UnkWeakRef handle;           // 0x60
 };
 
 void fn_71007f9258(UnkFrozenStart_A4_b74* self) {
@@ -33,18 +33,18 @@ void fn_71007f9258(UnkFrozenStart_A4_b74* self) {
     link->context = self;
     link->callback = fn_71007fb694;
     UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(self->owner + 0x220);
-    if (UnkWeakHandle* handle = self->handle) {
+    if (UnkWeakHandle* handle = self->handle.handle) {
         if (UnkWeakTarget* target = handle->target)
             fn_710117b3f0(target, link);
-        if (UnkWeakHandle* p = self->handle) {
+        if (UnkWeakHandle* p = self->handle.handle) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
-            self->handle = nullptr;
+            self->handle.handle = nullptr;
         }
     }
     if (!track)
         return;
     asm("" : "+r"(self));
     fn_7100316018(track, &self->handle);
-    fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+    fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
 }

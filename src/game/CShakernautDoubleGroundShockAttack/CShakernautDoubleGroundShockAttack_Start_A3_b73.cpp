@@ -37,7 +37,7 @@ struct UnkShakernautAttack_A3_b73 {
     u32 field_0x30;
     u32 field_0x34;
     UnkShakernautTrackLink_A3_b73 link;  // 0x38
-    UnkWeakHandle* handle;               // 0x50
+    UnkWeakRef handle;               // 0x50
     UnkWeakTarget* anim;                 // 0x58
     u32 field_0x60;
 };
@@ -61,19 +61,19 @@ void fn_71006a441c(UnkShakernautAttack_A3_b73* self) {
     link->context = self;
     link->callback = fn_71006a5d94;
     UnkWeakTarget* track = self->anim;
-    if (UnkWeakHandle* handle = self->handle) {
+    if (UnkWeakHandle* handle = self->handle.handle) {
         if (UnkWeakTarget* target = handle->target)
             fn_710117b3f0(target, link);
-        if (UnkWeakHandle* p = self->handle) {
+        if (UnkWeakHandle* p = self->handle.handle) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
-            self->handle = nullptr;
+            self->handle.handle = nullptr;
         }
     }
     if (track) {
         asm("" : "+r"(self));
         fn_7100316018(track, &self->handle);
-        fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
+        fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
     self->field_0x60 = 0;
 }

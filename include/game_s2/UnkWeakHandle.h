@@ -25,6 +25,11 @@ struct UnkWeakHandle : UnkRefObject {
     UnkWeakTarget* target;
 };
 
+// A slot that refers to an object through its weak handle (fn_7100316018 fills it).
+struct UnkWeakRef {
+    UnkWeakHandle* handle;
+};
+
 // An object that can be pointed at through a weak handle.
 struct UnkWeakTarget {
     virtual void vf_0x0();

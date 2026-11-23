@@ -3,6 +3,6 @@
 #include "game/CAbilityGhostAura.h"
 #include "game_s2/UnkWeakHandle.h"
 
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out) {
-    AssignRef(out, GetWeakHandle(self));
+void fn_7100316018(UnkWeakTarget* self, UnkWeakRef* out) {
+    AssignRef(&out->handle, GetWeakHandle(self));
 }

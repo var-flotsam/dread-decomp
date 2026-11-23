@@ -10,3 +10,5 @@ extern void* g_unk_7101a47f48[];
 extern void* g_unk_7101a47e90[];
 extern void* g_unk_7101a47fa8[];
 extern UnkPropertyName g_unk_71726df1a8;
+
+void fn_710051d568();  // The search animation's listener callback.
