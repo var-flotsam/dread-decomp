@@ -23,10 +23,33 @@ class Quality(unittest.TestCase):
     def test_every_row_has_a_label_and_the_line_names_both_qualities(self):
         q = {k: {"functions": 10, "bytes": 100} for k in progress.QUALITIES}
         line = progress.quality_line(q, {"bytes": 600})
-        self.assertIn("byte-matching and readable **16.67%** (10 functions)", line)
-        self.assertIn("byte-matching but not readable yet 33.33%", line)
+        self.assertIn("matching and clean in form **16.67%** (10 functions; byte-matching, hand-written, no steering "
+                      "form 16.67%, plus generated, read and passed 0.00%)", line)
+        self.assertIn("byte-matching but not clean in form yet 33.33%", line)
         self.assertIn("identical behaviour with other bytes 16.67%", line)
+        self.assertNotIn("readable", line)
         self.assertEqual(set(q), set(progress.QUALITIES))
+
+    def test_the_headline_adds_generated_read_and_passed(self):
+        q = {k: {"functions": 10, "bytes": 100} for k in progress.QUALITIES}
+        n = {"read_passed": {"functions": 5, "bytes": 50}}
+        self.assertEqual(progress.headline(q, n), {"functions": 15, "bytes": 150})
+        self.assertEqual(progress.headline(q, None), {"functions": 10, "bytes": 100})
+        line = progress.quality_line(q, {"bytes": 600}, n)
+        self.assertIn("matching and clean in form **25.00%** (15 functions; byte-matching, hand-written, no steering "
+                      "form 16.67%, plus generated, read and passed 8.33%)", line)
+        self.assertIn("byte-matching but not clean in form yet 25.00% (generated source not yet read 8.33%", line)
+
+    def test_the_card_and_the_daily_record_read_the_new_line_and_the_old(self):
+        import daily
+        import status_card
+        q = {k: {"functions": 1_000, "bytes": 100} for k in progress.QUALITIES}
+        new = progress.quality_line(q, {"bytes": 800}, {"read_passed": {"functions": 234, "bytes": 0}})
+        old = "Completeness ...: byte-matching and readable **17.55%** (11,264 functions); byte-matching but"
+        self.assertEqual(daily.finished_from_handoff(new), (12.5, 1234))
+        self.assertEqual(status_card.finished(new), {"pct": 12.5, "functions": 1234})
+        self.assertEqual(daily.finished_from_handoff(old), (17.55, 11264))
+        self.assertEqual(status_card.finished(old), {"pct": 17.55, "functions": 11264})
 
     def test_the_steering_forms_are_fakematch_s(self):
         import fakematch
