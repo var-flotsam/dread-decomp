@@ -59,7 +59,7 @@ inline void Append(UnkResPathVec* v, const CFilePathStrId& id) {
     u32 c = v->capacity;
     if (c <= n && v->step != 0)
         c = (n / v->step + 1) * v->step;
-    if ((s32)c <= (s32)n)
+    if ((s32)n >= (s32)c)
         for (;;) {
         }
     fn_7100018450(v, c);

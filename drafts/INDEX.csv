@@ -616,7 +616,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71004519b8,1712,drafts/game/CChozoCommanderAIComponent/fn_71004519b8.cpp,operations,0.2,425,lean-fam0a,stack frame 0x110 vs 0xe0 (x28 spill): ours shares stack slots between the shield and stage-change locals; opc
 0x710045332c,2648,drafts/game/CChozoCommanderAIComponent/fn_710045332c.cpp,operations,40.6,391,lean-r6kb,frame 0x10 smaller (send mode/id slots shared; original keeps 5 separate 8-byte slots below the motion block);
 0x71004563f8,448,drafts/game/CChozoCommanderAIComponent/fn_71004563f8.cpp,operations,47.8,58,lean-o2,velocity stores addressed through step+0x60 (pre-index x20) and z store not delayed; load scheduling
-0x7100457274,796,drafts/game/CChozoCommanderAIComponent/fn_7100457274.cpp,operations,99.5,1,lean-ob2,only w27/w28 swapped (count vs grown capacity in the inlined copy loop); KIND says operations because cmp oper
 0x7100459fb4,840,drafts/game/CChozoCommanderEnergyShardsSphereMovementComponent/fn_7100459fb4.cpp,control flow,70.0,61,lean-sib4,StepToward clamp selects: original fcmp v;lo/gt and v;hi/mi with fcsel le; ours swaps compare operands; one ju
 0x710045a2fc,1112,drafts/game/CChozoCommanderEnergyShardsSphereMovementComponent/fn_710045a2fc.cpp,registers or order,98.9,3,lean-r2ki,scheduling: pos.z load placed before the first fadd of the random offset (one register)
 0x710045be3c,828,drafts/game/CChozoCommanderSentenceSphereMovementComponent/fn_710045be3c.cpp,operations,36.5,131,lean-sib3,target x/y kept in registers in original (ours reloads from stack); owner/blocker x loaded as int bits; first
@@ -641,7 +640,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71004799b8,444,drafts/game/CChozoRobotSoldierBeamMovementComponent/fn_71004799b8.cpp,calls,74.8,27,lean-fam0a,original calls fn_710007b444 with bl+ret (ours tail-calls) and reloads +0x40 after the byte store at +0x49
 0x71004819c8,788,drafts/game/CChozoWarriorXGlaiveSpinAttack/fn_71004819c8.cpp,operations,78.2,43,lean-sib3,stack slots: ours shares two arg slots (frame 0x80 vs 0x90; sibling fn_71006ed934 used a goto); matrix loads s
 0x7100482aec,1072,drafts/game/CChozoWarriorXLandAttack/fn_7100482aec.cpp,registers or order,95.9,11,lean-sib3,empty-id compare operands swapped and fallback id in x22 not x21; one add scheduled after a store before fn_71
-0x7100483ce4,572,drafts/game/CChozoWarriorXSpitAttack/fn_7100483ce4.cpp,operations,99.3,1,overnight,
 0x7100484b10,1464,drafts/game/CChozoWarriorXSpitAttack/fn_7100484b10.cpp,calls,11.9,321,lean-r2ki,block layout: the cast block lands after the aim setup instead of after the create path; string-pool check bra
 0x71004885b0,992,drafts/game/CChozoWarriorXUltimateGrabAttack/fn_71004885b0.cpp,control flow,20.2,197,lean-r2ki,the four null checks fold into a cmp/ccmp chain where the original keeps separate cbz (with the ai check dupli
 0x7100488990,928,drafts/game/CChozoWarriorXUltimateGrabAttack/fn_7100488990.cpp,operations,40.9,133,lean-r2kd,player-hash selection: original keeps a separate table load for the default kinds and branches the hit paths d
@@ -992,7 +990,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71006f4668,968,drafts/game/CAINavigationComponent/fn_71006f4668.cpp,registers or order,95.0,12,lean-fam0a,registers only: owner pointer kept in x0 vs x8 at the track query; and the owner reload after the movement sto
 0x71006f4b0c,592,drafts/game/CAINavigationComponent/fn_71006f4b0c.cpp,control flow,34.2,96,pilot50,control flow: state-switch search/found merging; branch order
 0x71006f8120,904,drafts/game/UnkTU1115/fn_71006f8120.cpp,control flow,3.5,208,lean-r2kc,original keeps the copies count and data null-test across the call to fn_71006f84a8 (no reload; likely callee
-0x71006f8944,432,drafts/game/UnkTU1115/fn_71006f8944.cpp,operations,99.1,1,overnight,
 0x71006f9148,428,drafts/game/UnkTU1115/fn_71006f9148.cpp,operations,39.3,64,lean-r2kc,index erase: original forms the element index with ubfx (one extra insn) where ours folds uxtw; rest lines up
 0x71006f9980,456,drafts/game/UnkTU1115/fn_71006f9980.cpp,operations,94.7,6,lean-r2kc,erase-by-key: original skips the search on an empty index first and indexes the swap stores with the 64-bit po
 0x71006fa0fc,1140,drafts/game/UnkTU1115/fn_71006fa0fc.cpp,control flow,0.7,283,lean-r2ki,control flow: block order after the record finds; original spills the table pointer around the list free (fram
@@ -1047,7 +1044,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710073fea8,2040,drafts/game/CFlockingSwarmControllerComponent/fn_710073fea8.cpp,control flow,2.2,471,lean-r2kh,calls now line up; frame 0x10 smaller; the vector data pointer kept in more stack slots in the original; eleme
 0x71007410a4,424,drafts/game/CFlockingSwarmControllerComponent/fn_71007410a4.cpp,operations,21.7,81,lean-oc1,grow loop: original spills index and walks from the name member (+0x30); ours keeps index in a register
 0x710074124c,2140,drafts/game/CFlockingSwarmControllerComponent/fn_710074124c.cpp,control flow,8.8,488,lean-r6kb,same calls and math; but block placement (cruise block out of line); register/spill choices and flag-word load
-0x7100741aa8,544,drafts/game/CFlockingSwarmControllerComponent/fn_7100741aa8.cpp,conditions,98.5,2,lean-sib2,one compare operand order in the erase loop guard (cmp count-1;i vs i;count-1); likely fixed by writing j < co
+0x7100741aa8,544,drafts/game/CFlockingSwarmControllerComponent/fn_7100741aa8.cpp,match,100.0,0,lean-sib2,passes tools/equiv_test.py; held: 1 declaration problem: src/game/CFlockingSwarmControllerComponent/fn_7100741aa8.cpp:83 fn_7100741aa8: defined as void fn_7100741aa8(UnkSwarmCtrl_l741aa8*; f32) -> declared elsewhere with other type...
 0x7100741cc8,1480,drafts/game/CFlockingSwarmControllerComponent/fn_7100741cc8.cpp,registers or order,78.9,78,lean-fam0a,scheduling of the desired-velocity loads and float register choice; same instructions
 0x7100742290,432,drafts/game/CFlockingSwarmControllerComponent/fn_7100742290.cpp,operations,68.5,34,lean-r2kh,stack layout only: frame 0xb0 vs 0xa0; the projected point and the copied normal (+0x94) should share one slot
 0x7100744e4c,356,drafts/game/UnkTU1159/fn_7100744e4c.cpp,registers or order,98.9,1,overnight,
@@ -1808,7 +1805,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100ee1840,1780,drafts/game/UnkTU2577/fn_7100ee1840.cpp,calls,15.6,371,lean-r2kd,block layout of the CStrId move-assign release (original keeps fn_71000803a4 inline for prefixes 1-5 and the l
 0x7100ee29a0,256,drafts/game/UnkTU2577/fn_7100ee29a0.cpp,control flow,25.0,43,lean-b1,original keeps null path of node->object before virtual call; clang drops it; loop shape and ccmp differ
 0x7100ee62bc,1480,drafts/game/UnkTU2577/fn_7100ee62bc.cpp,control flow,26.5,266,fable1,
-0x7100ee7808,1644,drafts/game/UnkTU2577/fn_7100ee7808.cpp,conditions,99.0,4,lean-r2kf,after appending a path the original reloads the count before incrementing (typed copy keeps it in a register;
 0x7100ee8470,968,drafts/game/UnkTU2577/fn_7100ee8470.cpp,control flow,44.6,127,fable1,
 0x7100ee8838,1644,drafts/game/UnkTU2577/fn_7100ee8838.cpp,calls,15.3,139,fable1,
 0x7100ee9488,616,drafts/game/UnkTU2577/fn_7100ee9488.cpp,operations,69.5,47,fable1,
@@ -2061,7 +2057,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7101110330,400,drafts/game/UnkTU2702/fn_7101110330.cpp,control flow,30.1,69,lean-b2,block layout of the tail-trim loop (original has one loop head; ours duplicates it) and unlink search
 0x7101110964,812,drafts/game/UnkTU2702/fn_7101110964.cpp,operations,62.6,76,lean-oc1,stack layout: the inlined send helper puts mode/range/desc/mask above the query (original: below the strings;
 0x7101110fcc,148,drafts/game/UnkTU2702/fn_7101110fcc.cpp,control flow,21.6,27,lean-b2,original reloads node kind after first compare and stores before loading position; compiler tests kind 4 first
-0x7101111744,356,drafts/game/UnkTU2702/fn_7101111744.cpp,operations,98.9,1,lean-b2,event-kind compare: original reloads kind after the float-pair store and keeps the flag test first; Clang thre
 0x71011118a8,892,drafts/game/UnkTU2702/fn_71011118a8.cpp,operations,7.2,197,lean-r2kh,frame 0x10 larger; 10 fewer insns; original keeps distance in a GPR; fn_710035e8d8 declared param types (u32*/
 0x7101111dc8,628,drafts/game/UnkTU2702/fn_7101111dc8.cpp,operations,39.5,94,lean-oc2,one instruction short before the tail (not located); distance math scheduling and tunable GOT load hoisted abo
 0x7101113b40,420,drafts/game/UnkTU2702/fn_7101113b40.cpp,operations,10.1,94,lean-o2,ours keeps &set.callbacks live in a callee-saved reg (pre-indexed store); original recomputes it; store schedu

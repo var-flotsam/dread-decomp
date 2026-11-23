@@ -194,23 +194,11 @@ struct UnkOwnerState_b152 {
 };
 void fn_71010d9a1c(UnkMove_b152* self, UnkOwnerState_b152* arg);
 
-struct UnkBlock5220_b152 {
-    u8 field_0x0;
-    u8 pad_0x1[0x147];
-    f32 field_0x148;
-    u8 pad_0x14c[0x2c];
-    u8 field_0x178;
-    u8 pad_0x179[0xb7];
-    u64 field_0x230;
-};
-
 void fn_71009e9390(UnkMove_b152* self, UnkOwnerState_b152* other) {
-    UnkBlock5220_b152* block = reinterpret_cast<UnkBlock5220_b152*>(reinterpret_cast<u8*>(self) + 0x5220);
     fn_71010d9a1c(self, other);
     self->field_0x2308 = 0;
     if (other) {
-        f32 pending = other->field_0x210 ? 0.0f : -1.0f;
-        __builtin_memcpy(&block->field_0x148, &pending, sizeof(pending));
+        self->field_0x5368 = other->field_0x210 ? 0.0f : -1.0f;
         self->field_0x51a8 = 0.27f;
         if (UnkMove_b152* p = other->field_0x210) {
             u8 b = p->field_0x2608;
@@ -226,11 +214,11 @@ void fn_71009e9390(UnkMove_b152* self, UnkOwnerState_b152* other) {
             }
         }
     } else {
-        block->field_0x148 = -1.0f;
+        self->field_0x5368 = -1.0f;
     }
-    block->field_0x0 = 1;
-    block->field_0x178 = 0;
-    block->field_0x230 = 0;
+    self->field_0x5220 = 1;
+    self->field_0x5398 = 0;
+    self->field_0x5450 = 0;
     __builtin_memset(self->field_0x2cdc, 0, sizeof(self->field_0x2cdc));
 }
 

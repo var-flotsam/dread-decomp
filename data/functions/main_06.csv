@@ -5990,7 +5990,7 @@ address,size,name,name_source,subsystem,status
 0x71006f84a8,508,fn_71006f84a8,unknown,unknown,O
 0x71006f86a4,32,fn_71006f86a4,unknown,unknown,O
 0x71006f86c4,640,fn_71006f86c4,unknown,game/world?,U
-0x71006f8944,432,fn_71006f8944,unknown,unknown,U
+0x71006f8944,432,fn_71006f8944,unknown,unknown,O
 0x71006f8af4,428,fn_71006f8af4,unknown,unknown,O
 0x71006f8ca0,416,fn_71006f8ca0,unknown,script/bindings?,O
 0x71006f8e40,228,fn_71006f8e40,unknown,script/bindings?,O

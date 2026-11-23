@@ -3855,7 +3855,7 @@ address,size,name,name_source,subsystem,status
 0x7100ee6d00,1076,CSubAreaManager_ChangeSubAreaResources,inferred,engine/reflection?,M
 0x7100ee7134,772,fn_7100ee7134,unknown,unknown,O
 0x7100ee7438,976,fn_7100ee7438,unknown,engine/reflection?,U
-0x7100ee7808,1644,fn_7100ee7808,unknown,engine/reflection?,U
+0x7100ee7808,1644,fn_7100ee7808,unknown,engine/reflection?,O
 0x7100ee7e74,464,fn_7100ee7e74,unknown,unknown,O
 0x7100ee8044,1068,fn_7100ee8044,unknown,engine/reflection?,M
 0x7100ee8470,968,fn_7100ee8470,unknown,engine/reflection?,U
