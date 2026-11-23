@@ -41,7 +41,7 @@ void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_71011a19a4(void* scenario);
 void fn_71011a1d00(void* scenario);
 void fn_7101196f4c(void* self);
-void fn_7100ee34f0(UnkManager* self);
+void CSubAreaManager_Reset(UnkManager* self);
 void fn_71011a4f1c(void* self);
 void fn_7100e1480c(char* self);
 void fn_7100274b48(void* self);
@@ -133,7 +133,7 @@ void fn_71011a12b0(UnkScenario_l1a12b0* self) {
     for (UnkListedPath* node = self->paths.head; node; node = node->next)
         fn_7100108094(g_unk_7101d4d820, reinterpret_cast<UnkPathNode*>(node));
     self->paths.ClearDestroying();
-    fn_7100ee34f0(Instance<UnkManager, void, fn_7100ee1f34>(g_unk_7101d47360, 0xae8));
+    CSubAreaManager_Reset(Instance<UnkManager, void, fn_7100ee1f34>(g_unk_7101d47360, 0xae8));
     ReleaseGui(self->gui_a);
     ReleaseGui(self->gui_b);
 

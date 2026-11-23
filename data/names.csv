@@ -68,3 +68,11 @@ address,name,name_source,reason
 0x71006ea9a4,XParasiteAI_SetPrey,inferred,points the weak handle at +0x14798 (the prey) at the given object and takes the prey's value
 0x71006eb628,XParasiteAI_AttractToPowerBomb,inferred,stores true under bIsBeingAttracted and the given position under v3PowerBombPos (property names from the unit's static initialiser)
 0x71006eb7cc,XParasiteAI_FindFarthestEntry,inferred,returns a counted reference to the usable entry whose actor is farthest from the owner's target
+0x7100ee2aa0,CSubAreaManager_FindSubArea,inferred,"finds the sub-area in the manager array at +0x860 that matches the id, or null"
+0x7100ee2ebc,CSubAreaManager_LoadColliders,inferred,"reads the collision objects of a file and adds each, weakly referenced, to the manager's colliders under its name"
+0x7100ee327c,CSubAreaManager_LoadScenarioCollision,inferred,loads the scenario's collision file (name.bmscc) and then a second file of the same name when the path registry knows it
+0x7100ee34f0,CSubAreaManager_Reset,inferred,"releases the manager's ids, leaves the current and previous sub-areas, handles the queued requests, has the loaded ids dropped and empties the arrays"
+0x7100ee4f84,CSubAreaManager_SetCurrentSubArea,inferred,"makes the given sub-area the current one, unless it already is and force is unset"
+0x7100ee6d00,CSubAreaManager_ChangeSubAreaResources,inferred,works out the id lists and files that change from one sub-area to another (either may be null) and loads them
+0x7100eea4c8,SubArea_ApplyEnvironmentSettings,inferred,"hands a sub-area's settings for the slots set in the mask to the environment manager, or resets all three without a sub-area"
+0x7100eea618,SubArea_ApplyCameraSettings,inferred,hands a sub-area's camera settings to the main camera's controller when it is the CMetroidCameraCtrl one

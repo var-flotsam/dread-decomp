@@ -12,7 +12,7 @@ using base::global::CStrId;
 
 struct CSubAreaManager;
 struct UnkSubArea;
-void fn_7100ee4f84(CSubAreaManager* self, UnkSubArea* area, bool force, bool flag);
+void CSubAreaManager_SetCurrentSubArea(CSubAreaManager* self, UnkSubArea* area, bool force, bool flag);
 
 // The pooled string a CStrId points to, as far as its hash at +0x30.
 struct UnkStrIdData_leed85c {
@@ -48,5 +48,5 @@ void fn_7100eed85c(UnkSubAreaMgr_leed85c* self, const CStrId* id, bool force, bo
         self->current = nullptr;
         return;
     }
-    fn_7100ee4f84(reinterpret_cast<CSubAreaManager*>(self), reinterpret_cast<UnkSubArea*>(found), force, flag);
+    CSubAreaManager_SetCurrentSubArea(reinterpret_cast<CSubAreaManager*>(self), reinterpret_cast<UnkSubArea*>(found), force, flag);
 }

@@ -37,7 +37,7 @@ struct UnkRefPtrArray;
 
 void fn_7100108030(UnkSoundSystem_b65a1* self, bool a, bool b);
 void fn_7101196bf4(UnkOwner_b0188* self, bool release);
-void fn_7100ee34f0(CSubAreaManager* self);
+void CSubAreaManager_Reset(CSubAreaManager* self);
 void fn_71010e3704(void* self);
 void fn_7100debf3c(UnkGameManager* self);
 void fn_710008989c(base::file::UnkFileDevice* self);
@@ -166,7 +166,7 @@ void fn_7100defe10(UnkGameManager* self) {
     fn_7101196bf4(static_cast<UnkOwner_b0188*>(g_unk_7101d47330), true);
     fn_710105383c(view->field_0x1078);
     fn_7101053968(view->field_0x1078, &g_unk_710164bdb4, &g_unk_710164bdb4, 0.0f, 0.0f, 0.0f);
-    fn_7100ee34f0(static_cast<CSubAreaManager*>(Instance(reinterpret_cast<void*&>(g_unk_7101d47360), 0xae8,
+    CSubAreaManager_Reset(static_cast<CSubAreaManager*>(Instance(reinterpret_cast<void*&>(g_unk_7101d47360), 0xae8,
                                                          fn_7100ee1f34)));
     if (UnkGameManagerTarget* target = fn_7100decab0(self))
         if (void* object = target->field_0x248)

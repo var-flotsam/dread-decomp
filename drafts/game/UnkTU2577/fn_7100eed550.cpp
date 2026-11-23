@@ -26,9 +26,9 @@ struct UnkObjMgrB_b189;
 struct UnkRecB_b189;
 
 base::reflection::UnkReflObject* fn_7100d786c0(void* entity);  // its "CAMERA" component
-UnkSubAreaEntry_lee2aa0* fn_7100ee2aa0(UnkSubAreaMgr_lee2aa0* self, const CStrId* id);
+UnkSubAreaEntry_lee2aa0* CSubAreaManager_FindSubArea(UnkSubAreaMgr_lee2aa0* self, const CStrId* id);
 UnkRecB_b189* fn_7100ee2d84(UnkObjMgrB_b189* manager, const CStrId* id);
-void fn_7100ee4f84(CSubAreaManager* self, UnkSubArea* area, bool force, bool flag);
+void CSubAreaManager_SetCurrentSubArea(CSubAreaManager* self, UnkSubArea* area, bool force, bool flag);
 
 // A shape whose kind 0x10 is the polygon one; the polygon's area is at +0xa8.
 struct UnkShape_ed550 {
@@ -146,11 +146,11 @@ void fn_7100eed550(UnkSubAreaMgr_ed550* self, UnkSubArea* area, const UnkMask& m
         if (!fn_7100d65fb0(polygon->field_0xa8, &pos))
             continue;
         UnkSubAreaEntry_lee2aa0* entry =
-            fn_7100ee2aa0(reinterpret_cast<UnkSubAreaMgr_lee2aa0*>(self), &actor->field_0x20);
+            CSubAreaManager_FindSubArea(reinterpret_cast<UnkSubAreaMgr_lee2aa0*>(self), &actor->field_0x20);
         if (entry && !reinterpret_cast<UnkSubAreaEntry_ed550*>(entry)->field_0x105)
             found = actor;
     }
 
     if (UnkRecB_b189* next = fn_7100ee2d84(reinterpret_cast<UnkObjMgrB_b189*>(self), &found->field_0x20))
-        fn_7100ee4f84(reinterpret_cast<CSubAreaManager*>(self), reinterpret_cast<UnkSubArea*>(next), false, false);
+        CSubAreaManager_SetCurrentSubArea(reinterpret_cast<CSubAreaManager*>(self), reinterpret_cast<UnkSubArea*>(next), false, false);
 }

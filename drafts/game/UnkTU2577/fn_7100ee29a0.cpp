@@ -11,7 +11,7 @@ using base::global::CStrId;
 
 struct UnkSubAreaMgr_lee2aa0;
 struct UnkSubAreaEntry_lee2aa0;
-UnkSubAreaEntry_lee2aa0* fn_7100ee2aa0(UnkSubAreaMgr_lee2aa0* self, const CStrId* id);
+UnkSubAreaEntry_lee2aa0* CSubAreaManager_FindSubArea(UnkSubAreaMgr_lee2aa0* self, const CStrId* id);
 
 struct UnkShapeComponent_lee29a0 {
     virtual void vf_0x0();
@@ -82,7 +82,7 @@ UnkObject_lee29a0* fn_7100ee29a0(UnkSubAreaMgr_lee29a0* self, const base::math::
         if (!fn_7100d65fb0(shape->field_0xa8, point))
             continue;
         UnkLockedFlag_lee29a0* area = reinterpret_cast<UnkLockedFlag_lee29a0*>(
-            fn_7100ee2aa0(reinterpret_cast<UnkSubAreaMgr_lee2aa0*>(self), &object->field_0x20));
+            CSubAreaManager_FindSubArea(reinterpret_cast<UnkSubAreaMgr_lee2aa0*>(self), &object->field_0x20));
         if (area && !area->locked)
             result = object;
     }

@@ -68,8 +68,8 @@ void fn_7100eeaed0(UnkSubAreaMgr_b190* self) {
         fn_710024fa0c(reinterpret_cast<UnkStruct_710024fa0c*>(fn_7100defcec(gm)), false);
         fn_7100ee6ae4(reinterpret_cast<CSubAreaManager*>(self));
     } else {
-        fn_7100eea4c8(UnkSubAreaTag(), self->field_0x3f0, false, false, UnkMask(0x1c0));
-        fn_7100eea618(UnkSubAreaTag(), self->field_0x3f0, false);
+        SubArea_ApplyEnvironmentSettings(UnkSubAreaTag(), self->field_0x3f0, false, false, UnkMask(0x1c0));
+        SubArea_ApplyCameraSettings(UnkSubAreaTag(), self->field_0x3f0, false);
         fn_7100fac120(self->field_0x3f0, UnkMaskOf<UnkSubAreaMaskTag>::All(), true, false, self->field_0x3f8, false);
     }
     self->field_0x960.count = 0;
