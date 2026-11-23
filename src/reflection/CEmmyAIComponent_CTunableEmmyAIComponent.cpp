@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -38,7 +38,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 // CEmmyAIComponent::CTunableEmmyAIComponent
 namespace CEmmyAIComponent::CTunableEmmyAIComponent { extern bool refl_fields_added asm("g_unk_71726e0bb0"); }
 void fn_7100564f50();
-void fn_710053b4fc(UnkReflFunction* fn, const char* name);
+void fn_710053b4fc(CFunction* fn, const char* name);
 namespace CEmmyAIComponent::CTunableEmmyAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726e0aa8"); }
 void fn_710053b678(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CEmmyAIComponent::CTunableEmmyAIComponent {
@@ -146,28 +146,28 @@ DREAD_REFLECTED_CLASS(CEmmyAIComponent::CTunableEmmyAIComponent, base::tunable::
 
 // CEmmyAIComponent
 void fn_7100565044();
-void fn_710053d6e8(UnkReflFunction* fn, const char* name);
+void fn_710053d6e8(CFunction* fn, const char* name);
 void fn_7100565114();
-void fn_710053d864(UnkReflFunction* fn, const char* name);
+void fn_710053d864(CFunction* fn, const char* name);
 void fn_71005651f8();
-void fn_710053d9e0(UnkReflFunction* fn, const char* name);
+void fn_710053d9e0(CFunction* fn, const char* name);
 void fn_71005652f8();
-void fn_710053db5c(UnkReflFunction* fn, const char* name);
+void fn_710053db5c(CFunction* fn, const char* name);
 void fn_71005653dc();
-void fn_710053dcd8(UnkReflFunction* fn, const char* name);
+void fn_710053dcd8(CFunction* fn, const char* name);
 void fn_71005654e4();
-void fn_710053de54(UnkReflFunction* fn, const char* name);
+void fn_710053de54(CFunction* fn, const char* name);
 void fn_71005655dc();
-void fn_710053dfd0(UnkReflFunction* fn, const char* name);
+void fn_710053dfd0(CFunction* fn, const char* name);
 void fn_71005656c0();
-void fn_710053e14c(UnkReflFunction* fn, const char* name);
+void fn_710053e14c(CFunction* fn, const char* name);
 void fn_71005657a4();
-void fn_710053e2c8(UnkReflFunction* fn, const char* name);
+void fn_710053e2c8(CFunction* fn, const char* name);
 void fn_7100565888();
-void fn_710053e444(UnkReflFunction* fn, const char* name);
+void fn_710053e444(CFunction* fn, const char* name);
 void fn_7100565954();
 void fn_7100565b44();
-void fn_71005659a8(UnkReflFunction* fn);
+void fn_71005659a8(CFunction* fn);
 void fn_7100565c1c();
 void fn_7100565c50();
 namespace CEmmyAIComponent {

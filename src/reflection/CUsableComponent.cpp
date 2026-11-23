@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -21,10 +21,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CUsableComponent
-void fn_7100a9c458(UnkReflFunction* fn, const char* name);
-void fn_7100a9c50c(UnkReflFunction* fn, const char* name);
-void fn_7100a9c5c0(UnkReflFunction* fn, const char* name);
-void fn_7100a9c674(UnkReflFunction* fn, const char* name);
+void fn_7100a9c458(CFunction* fn, const char* name);
+void fn_7100a9c50c(CFunction* fn, const char* name);
+void fn_7100a9c5c0(CFunction* fn, const char* name);
+void fn_7100a9c674(CFunction* fn, const char* name);
 namespace CUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

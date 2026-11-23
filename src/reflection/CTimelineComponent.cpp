@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,8 +24,8 @@ template <> base::reflection::CType base::reflection::TypeObject<void>::object a
 
 // CTimelineComponent
 void fn_7100a2dbb4();
-void fn_7100a2d930(UnkReflFunction* fn);
-void fn_7100a2a998(UnkReflFunction* fn, const char* name);
+void fn_7100a2d930(CFunction* fn);
+void fn_7100a2a998(CFunction* fn, const char* name);
 namespace CTimelineComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

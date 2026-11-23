@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,29 +24,29 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassModifyColliderStateBaseTrack
 void fn_7100d206e4();
-void fn_7100d1dcc4(UnkReflFunction* fn, const char* name);
+void fn_7100d1dcc4(CFunction* fn, const char* name);
 void fn_7100d207f4();
-void fn_7100d1de40(UnkReflFunction* fn, const char* name);
+void fn_7100d1de40(CFunction* fn, const char* name);
 void fn_7100d2089c();
-void fn_7100d1dfbc(UnkReflFunction* fn, const char* name);
+void fn_7100d1dfbc(CFunction* fn, const char* name);
 void fn_7100d209ac();
-void fn_7100d1e138(UnkReflFunction* fn, const char* name);
+void fn_7100d1e138(CFunction* fn, const char* name);
 void fn_7100d20a54();
-void fn_7100d1e2b4(UnkReflFunction* fn, const char* name);
+void fn_7100d1e2b4(CFunction* fn, const char* name);
 void fn_7100d20b64();
-void fn_7100d1e430(UnkReflFunction* fn, const char* name);
+void fn_7100d1e430(CFunction* fn, const char* name);
 void fn_7100d20c0c();
-void fn_7100d1e5ac(UnkReflFunction* fn, const char* name);
+void fn_7100d1e5ac(CFunction* fn, const char* name);
 void fn_7100d20d1c();
-void fn_7100d1e728(UnkReflFunction* fn, const char* name);
+void fn_7100d1e728(CFunction* fn, const char* name);
 void fn_7100d20dc4();
-void fn_7100d1e8a4(UnkReflFunction* fn, const char* name);
+void fn_7100d1e8a4(CFunction* fn, const char* name);
 void fn_7100d20ed4();
-void fn_7100d1ea20(UnkReflFunction* fn, const char* name);
+void fn_7100d1ea20(CFunction* fn, const char* name);
 void fn_7100d20f7c();
-void fn_7100d1eb9c(UnkReflFunction* fn, const char* name);
+void fn_7100d1eb9c(CFunction* fn, const char* name);
 void fn_7100d2108c();
-void fn_7100d1ed18(UnkReflFunction* fn, const char* name);
+void fn_7100d1ed18(CFunction* fn, const char* name);
 namespace CCharClassModifyColliderStateBaseTrack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

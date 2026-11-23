@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -26,13 +26,13 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CModelUpdaterComponent
 void fn_7101174534();
-void fn_71011704b4(UnkReflFunction* fn, const char* name);
-void fn_7101170630(UnkReflFunction* fn, const char* name);
-void fn_71011706e4(UnkReflFunction* fn, const char* name);
-void fn_7101170798(UnkReflFunction* fn, const char* name);
-void fn_710117084c(UnkReflFunction* fn, const char* name);
-void fn_7101170900(UnkReflFunction* fn, const char* name);
-void fn_71011709b4(UnkReflFunction* fn, const char* name);
+void fn_71011704b4(CFunction* fn, const char* name);
+void fn_7101170630(CFunction* fn, const char* name);
+void fn_71011706e4(CFunction* fn, const char* name);
+void fn_7101170798(CFunction* fn, const char* name);
+void fn_710117084c(CFunction* fn, const char* name);
+void fn_7101170900(CFunction* fn, const char* name);
+void fn_71011709b4(CFunction* fn, const char* name);
 void fn_7101174a28();
 namespace CModelUpdaterComponent {
 void refl_AddAttributes(CClass*) {}

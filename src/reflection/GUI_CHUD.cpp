@@ -12,7 +12,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -22,7 +22,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // GUI::CHUD
-void fn_71011dd184(UnkReflFunction* fn, const char* name);
+void fn_71011dd184(CFunction* fn, const char* name);
 namespace GUI::CHUD {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

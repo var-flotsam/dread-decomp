@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -31,7 +31,7 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 
 // CEmmySancAIComponent
 void fn_71005003fc();
-void fn_7100500260(UnkReflFunction* fn);
+void fn_7100500260(CFunction* fn);
 void fn_71005004a4();
 namespace CEmmySancAIComponent {
 void refl_AddAttributes(CClass*) {}

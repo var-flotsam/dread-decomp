@@ -6,7 +6,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 #include "base/reflection/UnkReflPrimitiveType.h"
@@ -25,32 +25,32 @@ void fn_71011fe24c();
 void fn_71011fe338();
 void fn_71011fe48c();
 
-void fn_71011fc188(UnkReflFunction* fn, const char* name) {
+void fn_71011fc188(CFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_71011fdfc4);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
-void fn_71011fc304(UnkReflFunction* fn, const char* name) {
+void fn_71011fc304(CFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_71011fe074);
     fn->params.PushBack(&base::reflection::PrimitiveType<int>::Get());
 }
 
-void fn_71011fc480(UnkReflFunction* fn, const char* name) {
+void fn_71011fc480(CFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_71011fe160);
     fn->params.PushBack(&base::reflection::PrimitiveType<int>::Get());
 }
 
-void fn_71011fc5fc(UnkReflFunction* fn, const char* name) {
+void fn_71011fc5fc(CFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_71011fe24c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
-void fn_71011fc778(UnkReflFunction* fn, const char* name) {
+void fn_71011fc778(CFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_71011fe338);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
-void fn_71011fc8f4(UnkReflFunction* fn, const char* name) {
+void fn_71011fc8f4(CFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_71011fe48c);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }

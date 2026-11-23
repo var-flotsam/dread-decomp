@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -54,9 +54,9 @@ DREAD_REFLECTED_CLASS(CCharClassSoundTriggerComponent, CCharClassBaseTriggerComp
 
 // CSoundTrigger
 void fn_7100718544();
-void fn_7100717e9c(UnkReflFunction* fn, const char* name);
+void fn_7100717e9c(CFunction* fn, const char* name);
 void fn_71007185d0();
-void fn_7100718010(UnkReflFunction* fn, const char* name);
+void fn_7100718010(CFunction* fn, const char* name);
 namespace CSoundTrigger {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

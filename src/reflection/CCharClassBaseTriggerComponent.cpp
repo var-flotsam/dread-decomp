@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -50,9 +50,9 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassBaseTriggerComponent, CCharClassActivatableComponent);
 
 // CBaseTriggerComponent
-void fn_7100a46978(UnkReflFunction* fn, const char* name);
+void fn_7100a46978(CFunction* fn, const char* name);
 void fn_7100a4953c();
-void fn_71003540d8(UnkReflFunction* fn);
+void fn_71003540d8(CFunction* fn);
 namespace CBaseTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

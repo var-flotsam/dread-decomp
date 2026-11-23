@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -32,37 +32,37 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // CSpotLightComponent
 void fn_71008f9c3c();
-void fn_71008f76e8(UnkReflFunction* fn, const char* name);
+void fn_71008f76e8(CFunction* fn, const char* name);
 void fn_71008f9cec();
-void fn_71008f7864(UnkReflFunction* fn, const char* name);
+void fn_71008f7864(CFunction* fn, const char* name);
 void fn_71008f9dc0();
-void fn_71008f79e0(UnkReflFunction* fn, const char* name);
+void fn_71008f79e0(CFunction* fn, const char* name);
 void fn_71008f9ee0();
-void fn_71008f7b5c(UnkReflFunction* fn, const char* name);
+void fn_71008f7b5c(CFunction* fn, const char* name);
 void fn_71008fa018();
-void fn_71008f7cd8(UnkReflFunction* fn, const char* name);
+void fn_71008f7cd8(CFunction* fn, const char* name);
 void fn_71008fa0c0();
-void fn_71008f7e54(UnkReflFunction* fn, const char* name);
+void fn_71008f7e54(CFunction* fn, const char* name);
 void fn_71008fa168();
-void fn_71008f7fd0(UnkReflFunction* fn, const char* name);
+void fn_71008f7fd0(CFunction* fn, const char* name);
 void fn_71008fa23c();
-void fn_71008f814c(UnkReflFunction* fn, const char* name);
+void fn_71008f814c(CFunction* fn, const char* name);
 void fn_71008fa2f4();
-void fn_71008f82c8(UnkReflFunction* fn, const char* name);
+void fn_71008f82c8(CFunction* fn, const char* name);
 void fn_71008fa3b0();
-void fn_71008f8444(UnkReflFunction* fn, const char* name);
+void fn_71008f8444(CFunction* fn, const char* name);
 void fn_71008fa458();
-void fn_71008f85c0(UnkReflFunction* fn, const char* name);
+void fn_71008f85c0(CFunction* fn, const char* name);
 void fn_71008fa500();
-void fn_71008f873c(UnkReflFunction* fn, const char* name);
+void fn_71008f873c(CFunction* fn, const char* name);
 void fn_71008fa5a8();
-void fn_71008f88b8(UnkReflFunction* fn, const char* name);
+void fn_71008f88b8(CFunction* fn, const char* name);
 void fn_71008fa660();
-void fn_71008f8a34(UnkReflFunction* fn, const char* name);
+void fn_71008f8a34(CFunction* fn, const char* name);
 void fn_71008fa708();
-void fn_71008f8bb0(UnkReflFunction* fn, const char* name);
+void fn_71008f8bb0(CFunction* fn, const char* name);
 void fn_71008fa834();
-void fn_71008f8d2c(UnkReflFunction* fn, const char* name);
+void fn_71008f8d2c(CFunction* fn, const char* name);
 namespace CSpotLightComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

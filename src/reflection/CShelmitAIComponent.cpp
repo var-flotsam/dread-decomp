@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -24,7 +24,7 @@ template <> base::reflection::CType base::reflection::TypeObject<EShellState>::o
 
 // CShelmitAIComponent
 void fn_71006bcb7c();
-void fn_71006b9d50(UnkReflFunction* fn, const char* name);
+void fn_71006b9d50(CFunction* fn, const char* name);
 namespace CShelmitAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -22,9 +22,9 @@ using base::reflection::DestroyDestructorFirst;
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CLogicPathNavMeshItemComponent
-void fn_71009bcc50(UnkReflFunction* fn, const char* name);
+void fn_71009bcc50(CFunction* fn, const char* name);
 void fn_71009bd120();
-void fn_7100500260(UnkReflFunction* fn);
+void fn_7100500260(CFunction* fn);
 namespace CLogicPathNavMeshItemComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

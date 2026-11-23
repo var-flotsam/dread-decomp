@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -36,7 +36,7 @@ namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CCentralUnitComponent
-void fn_710076e66c(UnkReflFunction* fn, const char* name);
+void fn_710076e66c(CFunction* fn, const char* name);
 void fn_710077b704();
 void fn_710077b740();
 void fn_710077b774();
@@ -44,7 +44,7 @@ void fn_710077b7a8();
 void fn_710077b7dc();
 void fn_710077b810();
 void fn_710077b844();
-void fn_710076e7e8(UnkReflFunction* fn, const char* name);
+void fn_710076e7e8(CFunction* fn, const char* name);
 namespace CCentralUnitComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

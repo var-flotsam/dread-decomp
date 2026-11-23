@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,9 +25,9 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 // CLogicDroppedItemManager::CTunableDroppableBillboard
 namespace CLogicDroppedItemManager::CTunableDroppableBillboard { extern bool refl_fields_added asm("g_unk_71727c1320"); }
 void fn_7100e2f79c();
-void fn_7100e20c1c(UnkReflFunction* fn, const char* name);
+void fn_7100e20c1c(CFunction* fn, const char* name);
 void fn_7100e2f894();
-void fn_7100e20d98(UnkReflFunction* fn, const char* name);
+void fn_7100e20d98(CFunction* fn, const char* name);
 namespace CLogicDroppedItemManager::CTunableDroppableBillboard { extern UnkTunable refl_tunable asm("g_unk_71727c10c8"); }
 void fn_7100e20f14(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CLogicDroppedItemManager::CTunableDroppableBillboard {

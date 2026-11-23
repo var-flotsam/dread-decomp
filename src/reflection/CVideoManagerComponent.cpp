@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -26,9 +26,9 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CVideoManagerComponent
 void fn_7100aa8ef8();
-void fn_7100aa7c00(UnkReflFunction* fn, const char* name);
+void fn_7100aa7c00(CFunction* fn, const char* name);
 void fn_7100aa8fa0();
-void fn_7100aa7d7c(UnkReflFunction* fn, const char* name);
+void fn_7100aa7d7c(CFunction* fn, const char* name);
 void fn_7100aa9048();
 void fn_7100aa9090();
 namespace CVideoManagerComponent {

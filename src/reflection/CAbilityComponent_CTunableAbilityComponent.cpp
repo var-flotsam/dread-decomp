@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -76,14 +76,14 @@ DREAD_REFLECTED_CLASS(CAbilityComponent::CTunableAbilityComponent, base::tunable
 
 // CAbilityComponent
 void fn_7100302530();
-void fn_71002fc5c0(UnkReflFunction* fn, const char* name);
+void fn_71002fc5c0(CFunction* fn, const char* name);
 void fn_71003028f0();
-void fn_71003025c0(UnkReflFunction* fn);
-void fn_71002fc73c(UnkReflFunction* fn, const char* name);
+void fn_71003025c0(CFunction* fn);
+void fn_71002fc73c(CFunction* fn, const char* name);
 void fn_7100302aa4();
-void fn_71002fc8b4(UnkReflFunction* fn, const char* name);
+void fn_71002fc8b4(CFunction* fn, const char* name);
 void fn_7100302eb0();
-void fn_7100302d14(UnkReflFunction* fn);
+void fn_7100302d14(CFunction* fn);
 namespace CAbilityComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

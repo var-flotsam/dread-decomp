@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,7 +23,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassModelUpdaterComponent
 void fn_710079252c();
-void fn_7100792280(UnkReflFunction* fn, const char* name);
+void fn_7100792280(CFunction* fn, const char* name);
 namespace CCharClassModelUpdaterComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

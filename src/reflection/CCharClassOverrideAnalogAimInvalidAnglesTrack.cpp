@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,9 +23,9 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // CCharClassOverrideAnalogAimInvalidAnglesTrack
 void fn_7100c431fc();
-void fn_7100c42dd8(UnkReflFunction* fn, const char* name);
+void fn_7100c42dd8(CFunction* fn, const char* name);
 void fn_7100c432bc();
-void fn_7100c42f54(UnkReflFunction* fn, const char* name);
+void fn_7100c42f54(CFunction* fn, const char* name);
 namespace CCharClassOverrideAnalogAimInvalidAnglesTrack {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Override Analog Aim Invalid Angles");

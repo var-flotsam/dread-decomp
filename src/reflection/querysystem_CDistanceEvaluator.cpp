@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,9 +23,9 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // querysystem::CDistanceEvaluator
 void fn_71002bbee8();
-void fn_71002bb714(UnkReflFunction* fn, const char* name);
+void fn_71002bb714(CFunction* fn, const char* name);
 void fn_71002bbf78();
-void fn_71002bb890(UnkReflFunction* fn, const char* name);
+void fn_71002bb890(CFunction* fn, const char* name);
 namespace querysystem::CDistanceEvaluator {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

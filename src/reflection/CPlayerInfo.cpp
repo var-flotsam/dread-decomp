@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -27,24 +27,24 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 
 // CPlayerInfo
 void fn_7100f0ed90();
-void fn_7100f07cf0(UnkReflFunction* fn, const char* name);
-void fn_7100f07da4(UnkReflFunction* fn, const char* name);
+void fn_7100f07cf0(CFunction* fn, const char* name);
+void fn_7100f07da4(CFunction* fn, const char* name);
 void fn_7100f0ef94();
-void fn_7100f07e58(UnkReflFunction* fn, const char* name);
-void fn_7100f07f0c(UnkReflFunction* fn, const char* name);
-void fn_7100f07fc0(UnkReflFunction* fn, const char* name);
+void fn_7100f07e58(CFunction* fn, const char* name);
+void fn_7100f07f0c(CFunction* fn, const char* name);
+void fn_7100f07fc0(CFunction* fn, const char* name);
 void fn_7100f0f0e0();
-void fn_7100f08074(UnkReflFunction* fn, const char* name);
-void fn_7100f08128(UnkReflFunction* fn, const char* name);
-void fn_7100f081dc(UnkReflFunction* fn, const char* name);
-void fn_7100f08290(UnkReflFunction* fn, const char* name);
-void fn_7100f08344(UnkReflFunction* fn, const char* name);
-void fn_7100f083f8(UnkReflFunction* fn, const char* name);
-void fn_7100f084ac(UnkReflFunction* fn, const char* name);
-void fn_7100f08560(UnkReflFunction* fn, const char* name);
-void fn_7100f08614(UnkReflFunction* fn, const char* name);
+void fn_7100f08074(CFunction* fn, const char* name);
+void fn_7100f08128(CFunction* fn, const char* name);
+void fn_7100f081dc(CFunction* fn, const char* name);
+void fn_7100f08290(CFunction* fn, const char* name);
+void fn_7100f08344(CFunction* fn, const char* name);
+void fn_7100f083f8(CFunction* fn, const char* name);
+void fn_7100f084ac(CFunction* fn, const char* name);
+void fn_7100f08560(CFunction* fn, const char* name);
+void fn_7100f08614(CFunction* fn, const char* name);
 void fn_7100f0f428();
-void fn_71003540d8(UnkReflFunction* fn);
+void fn_71003540d8(CFunction* fn);
 namespace CPlayerInfo {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

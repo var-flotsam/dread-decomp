@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,13 +23,13 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CActorComponentDef
 void fn_7100254640();
-void fn_71002530c0(UnkReflFunction* fn, const char* name);
+void fn_71002530c0(CFunction* fn, const char* name);
 void fn_71002546d0();
-void fn_710025323c(UnkReflFunction* fn, const char* name);
+void fn_710025323c(CFunction* fn, const char* name);
 void fn_7100254728();
-void fn_71002533b8(UnkReflFunction* fn, const char* name);
+void fn_71002533b8(CFunction* fn, const char* name);
 void fn_7100254784();
-void fn_7100253534(UnkReflFunction* fn, const char* name);
+void fn_7100253534(CFunction* fn, const char* name);
 namespace CActorComponentDef {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x70200u);

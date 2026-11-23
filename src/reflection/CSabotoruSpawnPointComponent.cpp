@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -29,9 +29,9 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 
 // CSabotoruSpawnPointComponent
 void fn_7100a1c60c();
-void fn_7100a1bef8(UnkReflFunction* fn, const char* name);
+void fn_7100a1bef8(CFunction* fn, const char* name);
 void fn_7100a1c878();
-void fn_7100a1c06c(UnkReflFunction* fn, const char* name);
+void fn_7100a1c06c(CFunction* fn, const char* name);
 namespace CSabotoruSpawnPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

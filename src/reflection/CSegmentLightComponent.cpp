@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,17 +25,17 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 
 // CSegmentLightComponent
 void fn_71008f49e4();
-void fn_71008f36b4(UnkReflFunction* fn, const char* name);
+void fn_71008f36b4(CFunction* fn, const char* name);
 void fn_71008f4c34();
-void fn_71008f3830(UnkReflFunction* fn, const char* name);
+void fn_71008f3830(CFunction* fn, const char* name);
 void fn_71008f4db0();
-void fn_71008f39ac(UnkReflFunction* fn, const char* name);
+void fn_71008f39ac(CFunction* fn, const char* name);
 void fn_71008f4e60();
-void fn_71008f3b28(UnkReflFunction* fn, const char* name);
+void fn_71008f3b28(CFunction* fn, const char* name);
 void fn_71008f4f34();
-void fn_71008f3ca4(UnkReflFunction* fn, const char* name);
+void fn_71008f3ca4(CFunction* fn, const char* name);
 void fn_71008f4fdc();
-void fn_71008f3e20(UnkReflFunction* fn, const char* name);
+void fn_71008f3e20(CFunction* fn, const char* name);
 namespace CSegmentLightComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

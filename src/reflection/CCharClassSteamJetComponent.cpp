@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -70,19 +70,19 @@ DREAD_REFLECTED_CLASS(CCharClassSteamJetComponent, CCharClassBaseDamageTriggerCo
 
 // CSteamJetComponent
 void fn_710089fcb4();
-void fn_710089d17c(UnkReflFunction* fn, const char* name);
+void fn_710089d17c(CFunction* fn, const char* name);
 void fn_710089fd6c();
-void fn_710089d2f8(UnkReflFunction* fn, const char* name);
+void fn_710089d2f8(CFunction* fn, const char* name);
 void fn_710089fe14();
-void fn_710089d474(UnkReflFunction* fn, const char* name);
+void fn_710089d474(CFunction* fn, const char* name);
 void fn_710089fee0();
-void fn_710089d5f0(UnkReflFunction* fn, const char* name);
+void fn_710089d5f0(CFunction* fn, const char* name);
 void fn_710089ffa4();
-void fn_710089d76c(UnkReflFunction* fn, const char* name);
+void fn_710089d76c(CFunction* fn, const char* name);
 void fn_71008a0044();
-void fn_710089d8e8(UnkReflFunction* fn, const char* name);
+void fn_710089d8e8(CFunction* fn, const char* name);
 void fn_71008a00d4();
-void fn_710089da64(UnkReflFunction* fn, const char* name);
+void fn_710089da64(CFunction* fn, const char* name);
 namespace CSteamJetComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

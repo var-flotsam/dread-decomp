@@ -11,7 +11,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -31,11 +31,11 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CAIComponent
 void fn_7101115758();
-void fn_71011155bc(UnkReflFunction* fn);
-void fn_71010f7d90(UnkReflFunction* fn, const char* name);
-void fn_71010f7f0c(UnkReflFunction* fn, const char* name);
+void fn_71011155bc(CFunction* fn);
+void fn_71010f7d90(CFunction* fn, const char* name);
+void fn_71010f7f0c(CFunction* fn, const char* name);
 void fn_7101115c1c();
-void fn_71010f7fc0(UnkReflFunction* fn, const char* name);
+void fn_71010f7fc0(CFunction* fn, const char* name);
 namespace CAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

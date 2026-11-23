@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -27,9 +27,9 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 
 // CGobblerSpawnPointComponent
 void fn_7100a1a994();
-void fn_7100a1a1e8(UnkReflFunction* fn, const char* name);
+void fn_7100a1a1e8(CFunction* fn, const char* name);
 void fn_7100a1ac00();
-void fn_7100a1a35c(UnkReflFunction* fn, const char* name);
+void fn_7100a1a35c(CFunction* fn, const char* name);
 namespace CGobblerSpawnPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -23,9 +23,9 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CPlayerMovement
 void fn_71010dced0();
-void fn_71010d74bc(UnkReflFunction* fn, const char* name);
-void fn_71010d7570(UnkReflFunction* fn, const char* name);
-void fn_71010d7624(UnkReflFunction* fn, const char* name);
+void fn_71010d74bc(CFunction* fn, const char* name);
+void fn_71010d7570(CFunction* fn, const char* name);
+void fn_71010d7624(CFunction* fn, const char* name);
 namespace CPlayerMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

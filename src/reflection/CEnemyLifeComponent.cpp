@@ -10,7 +10,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
-using base::reflection::UnkReflFunction;
+using base::reflection::CFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
@@ -25,7 +25,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CEnemyLifeComponent
 void fn_710115dae8();
-void fn_7101159e64(UnkReflFunction* fn, const char* name);
+void fn_7101159e64(CFunction* fn, const char* name);
 namespace CEnemyLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
