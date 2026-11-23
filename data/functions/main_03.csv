@@ -4299,7 +4299,7 @@ address,size,name,name_source,subsystem,status
 0x71003c2c8c,356,CAutoolAIComponent::refl_InitClass,reflection,game/ai,O
 0x71003c2df0,428,fn_71003c2df0,unknown,game/ai?,O
 0x71003c2f9c,384,base::reflection::refl_InitType<CAutoolAIComponent::EThrusterMode>,reflection,engine/reflection,O
-0x71003c311c,620,fn_71003c311c,unknown,game/ai?,U
+0x71003c311c,620,fn_71003c311c,unknown,game/ai?,O
 0x71003c3388,36,fn_71003c3388,unknown,game/ai?,O
 0x71003c33ac,120,fn_71003c33ac,unknown,game/ai?,O
 0x71003c3424,584,fn_71003c3424,unknown,game/ai?,O
