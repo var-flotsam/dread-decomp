@@ -28,6 +28,6 @@ void fn_7101037740(UnkAudioPreset_l037740* self) {
         return;
     for (UnkPathListPair_l037740& pair : self->items) {
         for (u32 i = 0; i < pair.first.count; ++i)
-            fn_7100108094(g_unk_7101d4d820, reinterpret_cast<UnkPathNode*>(&pair.first.data[i]));
+            fn_7100108094(g_unk_7101d4d820, reinterpret_cast<UnkPathNode_CEntity_2*>(&pair.first.data[i]));
     }
 }

@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkRecord_0x40.h"
+#include "game/UnkSlotsInfo_ovb0176.h"
 #include "game/UnkTU222.h"
 #include "game/UnkTU58.h"
 #include "types.h"
@@ -11,26 +12,6 @@
 using base::global::CStrId;
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
-
-struct UnkBoneArray;
-
-struct UnkSlotObject_ovb0215 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10(f32 dt);
-};
-
-struct UnkSlotsInfo_ovb0176 {
-    u8 pad_0x0[0x30];
-    u32 count;  // 0x30
-    u8 pad_0x34[0x1c];
-    UnkSlotObject_ovb0215** objects;  // 0x50
-    u8 pad_0x58[0x28];
-    UnkBoneArray* bones;  // 0x80
-    u8 pad_0x88[0x48];
-    u32 frame;  // 0xd0
-};
-static_assert(__builtin_offsetof(UnkSlotsInfo_ovb0176, frame) == 0xd0, "layout");
 
 void fn_7100199370(UnkSlotsInfo_ovb0176* info, f32 dt) {
     fn_710019b9c8(info->bones);

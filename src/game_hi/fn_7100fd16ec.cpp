@@ -10,13 +10,10 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/UnkMgr_0xf18.h"
 
 struct UnkRequest {
     u8 data[0xc];
-};
-
-struct UnkMgr_0xf18 {
-    u8 data[0xf18];
 };
 
 static inline UnkMgr_0xf18* GetMgr() {

@@ -4,7 +4,7 @@
 #include "base/UnkKeyedEntry.h"
 #include "types.h"
 
-struct UnkKeyedTable {
+struct UnkKeyedTable_b48 {
     void* vtable;
     UnkKeyedEntry* entries;  // 0x8
     void** keys;             // 0x10
@@ -15,7 +15,7 @@ struct UnkKeyedTable {
 
 // The keys are pointer-sized handles (-1 when none): the original reloads the cursor after the
 // store through the key.
-bool fn_7100015570(UnkKeyedTable* self, void** key, UnkKeyedEntry** entry) {
+bool fn_7100015570(UnkKeyedTable_b48* self, void** key, UnkKeyedEntry** entry) {
     *key = reinterpret_cast<void*>(~0ull);
     *entry = nullptr;
     UnkKeyedEntry* entries = self->entries;

@@ -10,7 +10,7 @@
 #include "types.h"
 
 struct UnkAimUpdate_b49;
-struct UnkSamusGunComponent;
+struct UnkSamusGunComponent_b50;
 
 struct UnkAimPlayer_l34a7b4 {
     u8 pad_0x0[0x3a8];
@@ -25,7 +25,7 @@ struct UnkAimOwner_l34a7b4 {
     u8 pad_0x210[0x220 - 0x210];
     UnkAnimationComponent* animation;  // 0x220
     u8 pad_0x228[0x2a8 - 0x228];
-    UnkSamusGunComponent* gun;  // 0x2a8
+    UnkSamusGunComponent_b50* gun;  // 0x2a8
 };
 
 struct UnkAimTunable_l34a7b4 {
@@ -96,7 +96,7 @@ void fn_710034a7b4(UnkAimUpdate_b49* aim_update, f32 value) {
                 if (animation && fn_710117b348(animation, fn_7100d038f8()))
                     self->limit = Max(self->tunable->limit_blend, self->limit);
             }
-            UnkSamusGunComponent* gun = self->owner->gun;
+            UnkSamusGunComponent_b50* gun = self->owner->gun;
             if (gun && fn_710084088c(gun))
                 self->limit = Max(self->tunable->limit_gun, self->limit);
             if (player->field_0x7e4)

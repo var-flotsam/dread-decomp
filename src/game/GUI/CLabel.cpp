@@ -87,20 +87,20 @@ struct UnkLabelGroupNode {
     UnkLabelGroupNode* next;
 };
 
-struct UnkLabel {
+struct UnkLabel_CLabel {
     u8 unk_0x0[0x13c];
     s32 field_0x13c;
     s32 field_0x140;  // 0x7fffffff when unset: field_0x13c is used instead
     u8 unk_0x144[0x18c];
     UnkLabelGroupNode* groups;  // +0x2d0
 };
-static_assert(__builtin_offsetof(UnkLabel, groups) == 0x2d0, "UnkLabel placeholder layout");
+static_assert(__builtin_offsetof(UnkLabel_CLabel, groups) == 0x2d0, "UnkLabel_CLabel placeholder layout");
 
 UnkLabelSource* fn_71011b9fac(UnkGuiRoot* root, const void* key);
 void fn_71011baa38(UnkGuiRoot* root, char* source, UnkLabelViewport** out, s32 frame);
 
 // The label's depth: field_0x140, or field_0x13c while it is unset.
-static inline s32 Depth(const UnkLabel* self) {
+static inline s32 Depth(const UnkLabel_CLabel* self) {
     s32 depth = self->field_0x140;
     if (depth == 0x7fffffff)
         depth = self->field_0x13c;
@@ -127,7 +127,7 @@ static inline void SetViewSize(UnkLabelViewport* viewport, const CVector2D& size
 // viewport from the GUI root, placed, sized and scaled; then each viewport is shown at the label's
 // depth (field_0x140, else field_0x13c) less one. The current frame is the label's derived state's
 // (fn_71011cde14, with the label seen as the display object it is).
-void fn_71011ee5a8(UnkLabel* self) {
+void fn_71011ee5a8(UnkLabel_CLabel* self) {
     UnkGuiObjectState* composition = fn_71011cde14(reinterpret_cast<UnkGuiDisplayObject*>(self));
     if (composition->frame == 0x7fffffff)
         return;
@@ -322,7 +322,7 @@ struct UnkLabelLine {
 };
 static_assert(sizeof(UnkLabelLine) == 0x38, "UnkLabelLine placeholder layout");
 
-// The label as its layout sees it (UnkLabel above, src/game/GUI/CLabel/fn_71011ebdb4.cpp's constructor).
+// The label as its layout sees it (UnkLabel_CLabel above, src/game/GUI/CLabel/fn_71011ebdb4.cpp's constructor).
 struct UnkLabelLayout {
     virtual void vf_0x0();
     virtual void vf_0x8();
@@ -809,7 +809,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
         saved_glyphs.Free();
         run_start += advance_x;
     }
-    fn_71011ee5a8(reinterpret_cast<UnkLabel*>(self));
+    fn_71011ee5a8(reinterpret_cast<UnkLabel_CLabel*>(self));
     if (self->field_0x185)
         self->vf_0xa8(state->frame);
     self->dirty = false;

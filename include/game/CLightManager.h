@@ -9,10 +9,10 @@
 struct UnkReflType;
 struct UnkTUHeaderFnsClass;
 struct UnkListedObj;
-struct UnkPtrList;
+struct UnkPtrList_e0babc;
 void fn_7100e08768();
 void fn_7100e08d4c();
-UnkListedObj** fn_7100e0a5ec(UnkPtrList* list, u32 index);
+UnkListedObj** fn_7100e0a5ec(UnkPtrList_e0babc* list, u32 index);
 extern char g_unk_71727bf9b0;
 extern char g_unk_71727bf9b1;
 extern char g_unk_71727bf9b2;

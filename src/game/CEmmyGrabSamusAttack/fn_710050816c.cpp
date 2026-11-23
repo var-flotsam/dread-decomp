@@ -4,11 +4,11 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
-struct UnkNameHolder {
+struct UnkNameHolder_50816c {
     u64 hash;
 };
 
-u32 fn_710050816c(UnkNameHolder* self) {
+u32 fn_710050816c(UnkNameHolder_50816c* self) {
     if (StringCrc64("water", 5) == self->hash)
         return 1;
     if (StringCrc64("speedbooster", 12) == self->hash)

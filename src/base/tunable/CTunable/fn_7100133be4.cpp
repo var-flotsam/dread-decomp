@@ -14,13 +14,13 @@ struct UnkString30_133be4 {
     __attribute__((always_inline)) ~UnkString30_133be4() { CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(this)); }
 };
 
-struct UnkIdsString {
+struct UnkIdsString_133be4 {
     UnkStrIdTwoStep field_0x0;
     UnkStrIdTwoStep field_0x8;
     UnkStrIdTwoStep field_0x10;
     UnkString30_133be4 field_0x18;
 
-    __attribute__((always_inline)) ~UnkIdsString() { CRntString_Clear(reinterpret_cast<CRntString*>(&field_0x18)); }
+    __attribute__((always_inline)) ~UnkIdsString_133be4() { CRntString_Clear(reinterpret_cast<CRntString*>(&field_0x18)); }
 };
 
-void fn_7100133be4(UnkIdsString* self) { self->~UnkIdsString(); }
+void fn_7100133be4(UnkIdsString_133be4* self) { self->~UnkIdsString_133be4(); }

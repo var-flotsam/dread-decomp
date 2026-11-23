@@ -16,16 +16,12 @@
 #include "game/CShockWaveComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGoliathTunables_gla.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
 struct UnkBigFistAI_gla;
-
-struct UnkGoliathTunables_gla {
-    u8 pad_0x0[0x30];
-    f32 distance;
-};
 
 static inline UnkBigFistAI_gla* BigFistAI_gla(UnkActor* actor) {
     UnkReflObject* ai = static_cast<UnkReflObject*>(actor->field_0x240);

@@ -116,7 +116,7 @@ struct UnkPair_8947b8 {
     UnkEntry entry;
 };
 
-struct UnkPairRef {
+struct UnkPairRef_8947b8 {
     u32* value;
     UnkEntry* entry;
 };
@@ -128,7 +128,7 @@ struct UnkHolder {
 
     UnkPair_8947b8& Pair() { return *reinterpret_cast<UnkPair_8947b8*>(storage); }
     const UnkPair_8947b8& Pair() const { return *reinterpret_cast<const UnkPair_8947b8*>(storage); }
-    const UnkPairRef& Ref() const { return *reinterpret_cast<const UnkPairRef*>(storage); }
+    const UnkPairRef_8947b8& Ref() const { return *reinterpret_cast<const UnkPairRef_8947b8*>(storage); }
     u32& Value() { return kind == 2 ? *Ref().value : Pair().value; }
     UnkEntry& Entry() { return kind == 2 ? *Ref().entry : Pair().entry; }
     const u32& Value() const { return kind == 2 ? *Ref().value : Pair().value; }

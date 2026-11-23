@@ -17,13 +17,13 @@
 
 
 
-struct Vec2 {
+struct Vec2_ebfa7c {
     f32 x;
     f32 y;
-    Vec2() {}
-    Vec2(f32 x_, f32 y_) : x(x_), y(y_) {}
-    Vec2(const Vec2&);
-    Vec2& operator=(const Vec2& o) {
+    Vec2_ebfa7c() {}
+    Vec2_ebfa7c(f32 x_, f32 y_) : x(x_), y(y_) {}
+    Vec2_ebfa7c(const Vec2_ebfa7c&);
+    Vec2_ebfa7c& operator=(const Vec2_ebfa7c& o) {
         x = o.x;
         y = o.y;
         return *this;
@@ -41,11 +41,11 @@ using Mesh = UnkNavMesh;
 struct Result {
     u16 field_0x0;
     u8 field_0x2;
-    Vec2 field_0x4;
-    Vec2 field_0xc;
-    Vec2 field_0x14;
-    Vec2 field_0x1c;
-    Vec2 field_0x24;
+    Vec2_ebfa7c field_0x4;
+    Vec2_ebfa7c field_0xc;
+    Vec2_ebfa7c field_0x14;
+    Vec2_ebfa7c field_0x1c;
+    Vec2_ebfa7c field_0x24;
     f32 field_0x2c;
     Result()
         : field_0x0(0xffff), field_0x2(0xff), field_0x4(0.0f, 0.0f), field_0xc(0.0f, 0.0f),
@@ -65,25 +65,25 @@ struct Result {
 
 
 
-Vec2 fn_7100125a64(Vec2*);
+Vec2_ebfa7c fn_7100125a64(Vec2_ebfa7c*);
 bool fn_71002afcd8(Cell*, Edge*, u32);
-Vec2* fn_710027a410(Mesh*, u16);
+Vec2_ebfa7c* fn_710027a410(Mesh*, u16);
 
-// Vec2 has CVector2D's layout (it only adds the out-of-line copy constructor); fn_710007b430 reads
+// Vec2_ebfa7c has CVector2D's layout (it only adds the out-of-line copy constructor); fn_710007b430 reads
 // only the x and y of its source.
-static inline base::math::CVector2D* AsV2(Vec2* v) { return reinterpret_cast<base::math::CVector2D*>(v); }
-static inline const base::math::CVector3D* AsV3(Vec2* v) { return reinterpret_cast<const base::math::CVector3D*>(v); }
+static inline base::math::CVector2D* AsV2(Vec2_ebfa7c* v) { return reinterpret_cast<base::math::CVector2D*>(v); }
+static inline const base::math::CVector3D* AsV3(Vec2_ebfa7c* v) { return reinterpret_cast<const base::math::CVector3D*>(v); }
 
-static inline f32 DistSq(const Vec2& a, const Vec2& b) {
+static inline f32 DistSq(const Vec2_ebfa7c& a, const Vec2_ebfa7c& b) {
     f32 dx = a.x - b.x;
     f32 dy = a.y - b.y;
     return dx * dx + dy * dy;
 }
 
-bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 flags, f32 b) {
+bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2_ebfa7c* pos, Result* out, f32 a, u32 flags, f32 b) {
     if (self->navmesh == nullptr)
         return false;
-    Vec2 p;
+    Vec2_ebfa7c p;
     p.x = pos->x;
     p.y = pos->y;
     s32 ret = 0;
@@ -92,7 +92,7 @@ bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 f
         ret = fn_7100ebfd4c(self, pos, cellId, out, flags, a, b);
         Mesh* mesh = self->navmesh;
         Cell* cell = fn_710027a328(mesh, cellId);
-        Vec2 dir = fn_7100125a64(pos);
+        Vec2_ebfa7c dir = fn_7100125a64(pos);
         for (u8 i = 0; i < cell->field_0x10; ++i) {
             Edge* edge = fn_71002afbe4(cell, &i);
             if (!fn_71002afcd8(cell, edge, flags))
@@ -101,20 +101,20 @@ bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 f
             if (!(d >= 1.0f))
                 continue;
             IdPair ids = fn_71002afe60(cell, &i);
-            Vec2* v0 = fn_710027a410(mesh, ids.a);
-            Vec2* v1 = fn_710027a410(mesh, ids.b);
+            Vec2_ebfa7c* v0 = fn_710027a410(mesh, ids.a);
+            Vec2_ebfa7c* v1 = fn_710027a410(mesh, ids.b);
             Segment seg(*AsV2(v0), *AsV2(v1));
-            // Vec2 has CVector2D's layout (it only adds the out-of-line copy constructor).
+            // Vec2_ebfa7c has CVector2D's layout (it only adds the out-of-line copy constructor).
             if (!fn_7100125c64(&seg, reinterpret_cast<const base::math::CVector2D*>(&p), false, 0.0f))
                 continue;
             Result r;
             if (fn_7100ebfd4c(self, pos, edge->field_0x2, &r, flags, a, b)) {
                 bool closer = true;
                 if (ret) {
-                    Vec2 t0;
+                    Vec2_ebfa7c t0;
                     fn_710007b430(AsV2(&t0), AsV3(&r.field_0x4));
                     f32 d0 = DistSq(p, t0);
-                    Vec2 t1;
+                    Vec2_ebfa7c t1;
                     fn_710007b430(AsV2(&t1), AsV3(&out->field_0x4));
                     closer = d0 < DistSq(p, t1);
                 }
@@ -172,14 +172,14 @@ struct UnkNavHit_bfd4c {
     u16 cell;
     u8 side;
     u8 pad_0x3;
-    Vec2 point;  // 0x4
+    Vec2_ebfa7c point;  // 0x4
     u8 pad_0xc[0x20];
     u32 flags;  // 0x2c
 };
 
 bool fn_710027c7c4(Mesh* mesh, u16* cell, u8* side, u32 flags, f32 limit);
 
-bool fn_7100ebfd4c(UnkNavMeshManager* self, Vec2* pos, u16 cell_id, Result* result, u32 flags, f32 a, f32 b) {
+bool fn_7100ebfd4c(UnkNavMeshManager* self, Vec2_ebfa7c* pos, u16 cell_id, Result* result, u32 flags, f32 a, f32 b) {
     UnkNavHit_bfd4c* out = reinterpret_cast<UnkNavHit_bfd4c*>(result);
     u16 cell_slot = cell_id;
     Mesh* mesh = self->navmesh;
@@ -191,8 +191,8 @@ bool fn_7100ebfd4c(UnkNavMeshManager* self, Vec2* pos, u16 cell_id, Result* resu
         u8 side = 0;
         while (side < cell->field_0x10) {
             UnkNavMeshSidePair ids = fn_71002afe60(cell, &side);
-            Vec2* v0 = fn_710027a410(mesh, ids.a);
-            Vec2* v1 = fn_710027a410(mesh, ids.b);
+            Vec2_ebfa7c* v0 = fn_710027a410(mesh, ids.a);
+            Vec2_ebfa7c* v1 = fn_710027a410(mesh, ids.b);
             Segment seg(*reinterpret_cast<base::math::CVector2D*>(v0), *reinterpret_cast<base::math::CVector2D*>(v1));
             if (fn_710012bcd0(reinterpret_cast<const UnkSweep2D*>(pos), &seg,
                               reinterpret_cast<UnkContact2D*>(&out->point))) {
@@ -218,7 +218,7 @@ bool fn_7100ebfd4c(UnkNavMeshManager* self, Vec2* pos, u16 cell_id, Result* resu
                 hit_flags |= 6;
                 out->flags = hit_flags;
                 out->side = hit_side;
-                Vec2 d = fn_7100125a64(pos);
+                Vec2_ebfa7c d = fn_7100125a64(pos);
                 f32 sx = d.x * 0.01f;
                 f32 sy = d.y * 0.01f;
                 f32 nx = out->point.x - sx;

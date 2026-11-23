@@ -109,7 +109,7 @@ bool fn_7100712e04(UnkAltActionPlayer_l712e04* self) {
             return false;
     }
     if (UnkGunComponent* gun = owner->gun) {
-        if (fn_710084088c(reinterpret_cast<UnkSamusGunComponent*>(gun)))
+        if (fn_710084088c(reinterpret_cast<UnkSamusGunComponent_b50*>(gun)))
             return false;
         UnkReflObject* beam = fn_71008407d8(gun);
         if (beam && fn_710009d50c(beam->vf_0x0(), fn_7100832034()))

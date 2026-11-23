@@ -7,19 +7,19 @@
 #include "game_s2/UnkKeyBody.h"
 #include "types.h"
 
-struct UnkRefCounted {
+struct UnkRefCounted_2f7324 {
     u8 pad_0x0[0x54];
     s32 field_0x54;
 };
 
 struct UnkRef {
-    UnkRefCounted* field_0x0;
+    UnkRefCounted_2f7324* field_0x0;
     ~UnkRef() {}
 };
 
 struct UnkNode {
     UnkKeyBody* field_0x0;
-    UnkRefCounted* field_0x8;
+    UnkRefCounted_2f7324* field_0x8;
     UnkNode* field_0x10;
 };
 
@@ -33,16 +33,16 @@ struct UnkTable {
     virtual void vf_0x30();
     virtual void vf_0x38();
     virtual void vf_0x40();
-    virtual UnkRefCounted* vf_0x48(UnkKey* key, u32 a, void* b);
+    virtual UnkRefCounted_2f7324* vf_0x48(UnkKey* key, u32 a, void* b);
     u8 field_0x8[8];
     u32 field_0x10;
     u32 field_0x14;
 };
 
-void fn_7100017390(UnkRefCounted* object, base::UnkLoadRequest* visitor);
+void fn_7100017390(UnkRefCounted_2f7324* object, base::UnkLoadRequest* visitor);
 
 UnkRef fn_71002f7324(UnkTable* self, UnkKey* key, u32 a, void* b) {
-    UnkRefCounted* found;
+    UnkRefCounted_2f7324* found;
     if (self->field_0x10) {
         u32 h = key->field_0x8->field_0x30 ^ key->field_0x8->field_0x34;
         u32 index = h % self->field_0x14;

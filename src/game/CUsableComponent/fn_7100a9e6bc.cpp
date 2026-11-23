@@ -15,7 +15,7 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-struct UnkRefObject {
+struct UnkRefObject_a9e6bc {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -37,18 +37,18 @@ struct UnkDelegate {
     }
 };
 
-struct UnkState {
+struct UnkState_a9e6bc {
     void** vtable;
     u8 unk_0x8[0x10];
     base::reflection::UnkReflValue field_0x18;
     UnkDelegate delegates[4];
 };
-static_assert(sizeof(UnkState) == 0x70, "UnkState layout");
+static_assert(sizeof(UnkState_a9e6bc) == 0x70, "UnkState_a9e6bc layout");
 
 struct UnkStateObject_a9e6bc : UnkBaseComponent {
     u8 field_0x40[0xa0];
-    UnkRefObject* field_0xe0;
-    UnkRefObject* field_0xe8;
+    UnkRefObject_a9e6bc* field_0xe0;
+    UnkRefObject_a9e6bc* field_0xe8;
     u8 unk_0xf0[0x10];
     void** machine_vtable;  // the state machine at +0x100
     u8 unk_0x108[0x8];
@@ -56,27 +56,27 @@ struct UnkStateObject_a9e6bc : UnkBaseComponent {
     u64 field_0x118;
     u32 field_0x120;
     u8 unk_0x124[0x8c];
-    UnkState states[7];
+    UnkState_a9e6bc states[7];
     u8 unk_0x4c0[0x8];
     UnkStringData* field_0x4c8;  // CStrId
     UnkOwnedStrIdTable field_0x4d0;
     u8 unk_0x4f8[0x18];
-    UnkRefObject* field_0x510;
+    UnkRefObject_a9e6bc* field_0x510;
     void** listener_vtable;  // a listener at +0x518
     u8 unk_0x520[0x10];
-    UnkRefObject* field_0x530;
+    UnkRefObject_a9e6bc* field_0x530;
 };
 static_assert(__builtin_offsetof(UnkStateObject_a9e6bc, states) == 0x1b0, "layout");
 static_assert(__builtin_offsetof(UnkStateObject_a9e6bc, field_0x530) == 0x530, "layout");
 
 extern void* g_unk_7101a946c0[];
 
-static inline void Release(UnkRefObject* p) {
+static inline void Release(UnkRefObject_a9e6bc* p) {
     if (p && --p->ref_count == 0)
         p->vf_0x10();
 }
 
-static inline void DestroyState(UnkState* state) {
+static inline void DestroyState(UnkState_a9e6bc* state) {
     for (int i = 3; i >= 0; --i)
         state->delegates[i].~UnkDelegate();
     state->vtable = &g_unk_7101a946c0[2];
@@ -86,7 +86,7 @@ static inline void DestroyState(UnkState* state) {
 void fn_7100a9e6bc(UnkStateObject_a9e6bc* self) {
     self->vtable = &g_unk_7101a94220[2];
     self->listener_vtable = &g_unk_7101a77000[2];
-    if (UnkRefObject* handle = self->field_0x530) {
+    if (UnkRefObject_a9e6bc* handle = self->field_0x530) {
         if (void* target = reinterpret_cast<UnkHandle*>(handle)->target)
             fn_7100a2d4d0(target, &self->listener_vtable);
     }

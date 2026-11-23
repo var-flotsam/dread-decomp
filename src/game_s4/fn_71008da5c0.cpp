@@ -53,7 +53,7 @@ void fn_710086e288(UnkIdRecord_0x28* self) {
         self->ids[i].~UnkStrIdTwoStep();
 }
 
-struct UnkIdObject {
+struct UnkIdObject_8da5c0 {
     void* vtable;
     u8 pad_0x8[0x50];
     UnkPathIdTwoStep field_0x58;
@@ -61,7 +61,7 @@ struct UnkIdObject {
 };
 
 // A destructor: releases the ids, then runs the base destructor.
-void fn_71009cc6cc(UnkIdObject* self) {
+void fn_71009cc6cc(UnkIdObject_8da5c0* self) {
     self->vtable = g_unk_7101a89160 + 2;
     for (int i = 6; i-- > 0;)
         self->ids[i].~UnkStrIdTwoStep();

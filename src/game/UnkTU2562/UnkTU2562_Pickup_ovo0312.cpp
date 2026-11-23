@@ -98,7 +98,7 @@ int fn_7100e225e4(void* self, u32 a, UnkDropTarget_ovb0208* target, u32 b, u32 c
 
 struct UnkPlayer;
 struct UnkDroppedItemManager;
-struct UnkDroppedItem;
+struct UnkDroppedItem_e2f9a4;
 struct UnkDropPlayer_ovb0208;
 
 struct UnkDropAbility_o0312 {
@@ -163,7 +163,7 @@ static inline void* Holder(UnkDropPlayer_o0312* player) {
     return ability->holder->object;
 }
 
-void fn_7100e2e8a4(UnkDroppedItemManager* self_, UnkDroppedItem* item_, void* arg_, u32 flags) {
+void fn_7100e2e8a4(UnkDroppedItemManager* self_, UnkDroppedItem_e2f9a4* item_, void* arg_, u32 flags) {
     auto* self = reinterpret_cast<UnkDropManager_o0312*>(self_);
     auto* item = reinterpret_cast<UnkDropPickup_o0312*>(item_);
     auto* arg = static_cast<UnkDropActor_o0312*>(arg_);

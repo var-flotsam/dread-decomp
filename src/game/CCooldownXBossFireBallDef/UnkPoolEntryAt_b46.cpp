@@ -3,7 +3,7 @@
 #include "types.h"
 
 struct UnkEntry;
-struct UnkPool;
+struct UnkPool_4cb554;
 
 struct UnkPoolRow_b46a1 {
     void* data;
@@ -19,7 +19,7 @@ struct UnkPoolImpl_b46a1 {
     u32 count;
 };
 
-UnkEntry* fn_71004ba10c(UnkPool* pool, u32 index, u32 flag) {
+UnkEntry* fn_71004ba10c(UnkPool_4cb554* pool, u32 index, u32 flag) {
     UnkPoolImpl_b46a1* self = reinterpret_cast<UnkPoolImpl_b46a1*>(pool);
     if (index < self->count && flag < self->rows[index].count)
         return reinterpret_cast<UnkEntry*>(*fn_71004ba164(&self->rows[index], flag));

@@ -732,7 +732,7 @@ void fn_71006572f0(UnkRedenkiStates_ovb0084* self, u32 state, bool keep) {
 // to the path (fn_71010592b0, fn_7100739bdc). ----
 
 struct UnkObject_71002ad0dc;
-struct UnkMinimapPath;
+struct UnkMinimapPath_CMinimapData;
 
 struct UnkRedenkiPathPoint_ovb0084 {
     virtual void vf_0x0();
@@ -767,7 +767,7 @@ bool fn_7100658310(UnkRedenkiSwarm_ovb0084* self, UnkRedenkiPath_ovb0084* path, 
     if (found) {
         UnkRedenkiPath_ovb0084* route = reinterpret_cast<UnkRedenkiPath_ovb0084*>(scratch.path);
         for (u32 i = 1; i < route->Count(); i++) {
-            fn_71010592b0(reinterpret_cast<UnkMinimapPath*>(path), route->Point(i)->Position());
+            fn_71010592b0(reinterpret_cast<UnkMinimapPath_CMinimapData*>(path), route->Point(i)->Position());
             fn_7100739bdc(self, path->Count() - 1, path);
         }
     }
@@ -1019,7 +1019,7 @@ f32 fn_710065aa30(UnkRedenkiCtrl_Speed_ovb0084* self) {
 
 struct UnkSelf;
 struct UnkTarget;
-struct UnkMessage;
+struct UnkMessage_579d08;
 struct UnkSwarmMember_ovb6;
 struct UnkRedenkiController_b55;
 extern char g_unk_710164a438[];
@@ -1050,7 +1050,7 @@ struct UnkRedenkiMemberFx_ovb0084 {
 bool fn_710065ab50(UnkRedenkiHandler_ovb0084* self, UnkRedenkiMemberFx_ovb0084* member,
                    UnkRedenkiMessage_ovb0084* message) {
     UnkTarget* target = reinterpret_cast<UnkTarget*>(member);
-    if (fn_710074ddd8(reinterpret_cast<UnkSelf*>(self), target, reinterpret_cast<UnkMessage*>(message)))
+    if (fn_710074ddd8(reinterpret_cast<UnkSelf*>(self), target, reinterpret_cast<UnkMessage_579d08*>(message)))
         return true;
     if (message->type->id == 0xfab221522cf4e099ull && fn_7100744e1c(reinterpret_cast<UnkSwarmMember_ovb6*>(member)))
         fn_7100655280(reinterpret_cast<UnkRedenkiController_b55*>(self), target);

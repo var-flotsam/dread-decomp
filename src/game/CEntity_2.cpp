@@ -377,9 +377,9 @@ void fn_7100d7822c(UnkActor_710023259c* from, UnkActor_710023259c* to, const Unk
 
 // Stops the entity's sounds and releases its list of loaded paths (+0x358, freed through the
 // allocator at +0x368) after handing each to the sound manager.
-struct UnkPathNode {
+struct UnkPathNode_CEntity_2 {
     base::global::CFilePathStrId path;
-    UnkPathNode* next;
+    UnkPathNode_CEntity_2* next;
 };
 struct UnkPathAllocator {
     virtual void vf_0x0();
@@ -391,8 +391,8 @@ struct UnkEntityPaths {
     u8 pad_0x2c0[0x350 - 0x2c0];
     u32 path_count;
     u8 pad_0x354[4];
-    UnkPathNode* head;
-    UnkPathNode* tail;
+    UnkPathNode_CEntity_2* head;
+    UnkPathNode_CEntity_2* tail;
     UnkPathAllocator* allocator;
 };
 struct UnkSoundMgr;
@@ -400,10 +400,10 @@ void fn_7100232bf0(UnkEntityPaths* self);
 
 void fn_7100d78108(UnkEntityPaths* self) {
     if (self->sound) fn_7100719064(self->sound, true, true, true, true);
-    for (UnkPathNode* n = self->head; n; n = n->next)
+    for (UnkPathNode_CEntity_2* n = self->head; n; n = n->next)
         fn_7100108094(g_unk_7101d4d820, n);
-    for (UnkPathNode* n = self->head; n;) {
-        UnkPathNode* next = n->next;
+    for (UnkPathNode_CEntity_2* n = self->head; n;) {
+        UnkPathNode_CEntity_2* next = n->next;
         base::global::UnkStringData*& data = n->path.data;
         if (base::global::UnkStringPool* pool = g_unk_7101d47200) {
             if (data && data != &pool->empty) {
@@ -446,16 +446,16 @@ UnkVec3f fn_7100d7c7a0(const UnkEntityCollided* self) {
 // The entity's destructor body: releases the counted object at +0x398, empties both node lists
 // (+0x348 of paths, +0x318), then runs the base destructor.
 extern void* g_unk_7101aa8e80[];
-struct UnkCounted {
+struct UnkCounted_CEntity_2 {
     virtual void vf_0x0();
     u32 count;
-    void Destroy() { (*reinterpret_cast<void (**)(UnkCounted*)>(*reinterpret_cast<char**>(this) + 0x10))(this); }
+    void Destroy() { (*reinterpret_cast<void (**)(UnkCounted_CEntity_2*)>(*reinterpret_cast<char**>(this) + 0x10))(this); }
 };
 struct UnkNode {
     void* value;
     UnkNode* next;
 };
-struct UnkNodeList {
+struct UnkNodeList_CEntity_2 {
     void** vtable;
     u32 count;
     UnkNode* head;
@@ -465,8 +465,8 @@ struct UnkNodeList {
 struct UnkPathList {
     void** vtable;
     u32 count;
-    UnkPathNode* head;
-    UnkPathNode* tail;
+    UnkPathNode_CEntity_2* head;
+    UnkPathNode_CEntity_2* tail;
     UnkPathAllocator* allocator;
 };
 struct UnkEntityDtor {
@@ -474,23 +474,23 @@ struct UnkEntityDtor {
     u8 pad_0x8[0x8];
     void** vtable_0x10;
     u8 pad_0x18[0x318 - 0x18];
-    UnkNodeList nodes;  // 0x318
+    UnkNodeList_CEntity_2 nodes;  // 0x318
     u8 pad_0x340[0x8];
     UnkPathList paths;  // 0x348
     u8 pad_0x370[0x398 - 0x370];
-    UnkCounted* counted;
+    UnkCounted_CEntity_2* counted;
 };
 void fn_7100231e80(UnkEntityDtor* self);
 
 void fn_7100d7cecc(UnkEntityDtor* self) {
     self->vtable = g_unk_7101aa8e80 + 2;
     self->vtable_0x10 = g_unk_7101aa8e80 + 45;
-    if (UnkCounted* c = self->counted) {
+    if (UnkCounted_CEntity_2* c = self->counted) {
         if (c->count-- == 1) c->Destroy();
     }
     self->paths.vtable = g_unk_7101a1b030 + 2;
-    for (UnkPathNode* n = self->paths.head; n;) {
-        UnkPathNode* next = n->next;
+    for (UnkPathNode_CEntity_2* n = self->paths.head; n;) {
+        UnkPathNode_CEntity_2* next = n->next;
         base::global::UnkStringData*& data = n->path.data;
         if (base::global::UnkStringPool* pool = g_unk_7101d47200) {
             if (data && data != &pool->empty) {

@@ -39,7 +39,7 @@ using base::math::CVector3D;
 // The navmesh manager unit's position and query result, as src/game_hi/fn_7100ebfa7c.cpp names
 // them in its declaration of fn_7100ebfd4c (local types there); this file builds them with the
 // layouts below.
-struct Vec2;
+struct Vec2_ebfa7c;
 struct Result;
 
 // The query result fn_7100ebfd4c fills (Result's layout): the cell and side found, then points.
@@ -329,7 +329,7 @@ void fn_710027c134(const UnkNavMeshRayProbe* self, UnkNavMeshBox* box, f32 dx, f
     r.field_0x24 = {0, 0};
     r.field_0x2c = 0;
     f32 x, y;
-    if (fn_7100ebfd4c(GetManager(), reinterpret_cast<Vec2*>(&ray.start), *self->cell, reinterpret_cast<Result*>(&r),
+    if (fn_7100ebfd4c(GetManager(), reinterpret_cast<Vec2_ebfa7c*>(&ray.start), *self->cell, reinterpret_cast<Result*>(&r),
                       *self->flags, 0.0f, -1.0f)) {
         fn_710027c298(self->visitor, r.cell, r.side);
         if (self->hit->IsValid())
@@ -624,7 +624,7 @@ bool fn_710027dab8(UnkNavMesh* mesh, const CVector2D* point, u16 cell, u32 flags
         r.field_0x1c = {0, 0};
         r.field_0x24 = {0, 0};
         r.field_0x2c = 0;
-        if (fn_7100ebfd4c(GetManager(), reinterpret_cast<Vec2*>(&ray.start), cell, reinterpret_cast<Result*>(&r), flags,
+        if (fn_7100ebfd4c(GetManager(), reinterpret_cast<Vec2_ebfa7c*>(&ray.start), cell, reinterpret_cast<Result*>(&r), flags,
                           0.0f, -1.0f)) {
             UnkNavMeshHit hit;
             hit.cell = r.cell;

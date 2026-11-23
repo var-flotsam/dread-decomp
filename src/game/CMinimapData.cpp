@@ -138,22 +138,22 @@ static_assert(sizeof(UnkMinimapPathNode) == 0x20, "UnkMinimapPathNode placeholde
 // A path the dashed-line mesh draws (src/game/UnkDashedPathMesh.cpp): its points, whether its
 // bounds are stale and the bounds. Its vtable is game_s2/UnkItem50.h's (the logic path's,
 // src/game/SLogicPathNode/).
-struct UnkMinimapPath {
+struct UnkMinimapPath_CMinimapData {
     void** vtable;
     base::global::CRntVector<UnkMinimapPathNode> nodes;
     bool dirty;
     f32 bounds[6];
 
-    UnkMinimapPath() : vtable(g_unk_7101cac938 + 2), nodes(0xf), dirty(true), bounds() {}
-    ~UnkMinimapPath() {
+    UnkMinimapPath_CMinimapData() : vtable(g_unk_7101cac938 + 2), nodes(0xf), dirty(true), bounds() {}
+    ~UnkMinimapPath_CMinimapData() {
         vtable = g_unk_7101cac938 + 2;
         nodes.Free();
     }
 };
-static_assert(sizeof(UnkMinimapPath) == 0x50, "UnkMinimapPath placeholder layout");
+static_assert(sizeof(UnkMinimapPath_CMinimapData) == 0x50, "UnkMinimapPath_CMinimapData placeholder layout");
 
 // A rectangle (its two corners) and the mesh at +0x18 that draws its diagonal.
-struct UnkMinimapRect {
+struct UnkMinimapRect_CMinimapData {
     CVector2D min;
     CVector2D max;
     u8 unk_0x10[0x8];
@@ -162,8 +162,8 @@ struct UnkMinimapRect {
 
 // Draws the rectangle's diagonal as a dashed arrow, 300 wide, dashes of 200 with gaps of 100, at a
 // depth of -100.
-void fn_7100e3d8a8(UnkMinimapRect* self) {
-    UnkMinimapPath path;
+void fn_7100e3d8a8(UnkMinimapRect_CMinimapData* self) {
+    UnkMinimapPath_CMinimapData path;
     CVector3D p = {self->min.x, self->min.y, 0.0f};
     fn_71010592b0(&path, &p);
     f32 y = self->min.y + (self->max.y - self->min.y);

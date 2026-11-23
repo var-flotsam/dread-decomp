@@ -124,7 +124,7 @@ UnkNavMeshHit fn_7100979cd4(UnkProbeMovement_l979cd4* self, const CVector3D* pos
     UnkProbePoint_l979cd4 end(from.x + dir.x * 4000.0f, from.y + dir.y * 4000.0f);
     UnkProbeSegment_l979cd4 segment(start, end);
     UnkProbeResult_l979cd4 result;
-    if (fn_7100ebfa7c(NavMeshManager(), reinterpret_cast<Vec2*>(&segment), reinterpret_cast<Result*>(&result),
+    if (fn_7100ebfa7c(NavMeshManager(), reinterpret_cast<Vec2_ebfa7c*>(&segment), reinterpret_cast<Result*>(&result),
                       halfWidth, flags, -1.0f)) {
         hit.cell = result.cell;
         hit.side = result.side;

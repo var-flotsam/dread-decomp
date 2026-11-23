@@ -66,5 +66,5 @@ void fn_710078f700(UnkFXComponent_l78f700* self) {
         fn_71011aa5a4(cache, &path);
     }
     self->paths.Free();
-    fn_71011acd74(reinterpret_cast<UnkIdObject*>(self));
+    fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(self));
 }

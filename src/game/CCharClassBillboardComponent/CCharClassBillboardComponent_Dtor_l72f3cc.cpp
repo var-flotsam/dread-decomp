@@ -71,5 +71,5 @@ void fn_710072f3cc(UnkBillboardComponent_l72f1a4* self) {
     self->field_0xa8.~CStrId();
     self->field_0x70.~CFilePathStrId();
     self->field_0x68.~CFilePathStrId();
-    fn_71011acd74(reinterpret_cast<UnkIdObject*>(self));
+    fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(self));
 }

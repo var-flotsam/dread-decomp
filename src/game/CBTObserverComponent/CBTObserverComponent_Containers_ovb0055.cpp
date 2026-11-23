@@ -618,7 +618,7 @@ void fn_7100ca6dd0(UnkObserverReset_ovb0055* self) {
 // ---- Destruction and set-up ----
 
 struct UnkLinkList;
-struct UnkCallback;
+struct UnkCallback_ac3184;
 
 // The group map's buckets and list (destroyed last) ...
 struct UnkObserverGroupsBase_ovb0055 {
@@ -737,7 +737,7 @@ static inline void Attach(void** link, void* manager, u32 offset) {
     }
     void* list = static_cast<char*>(manager) + offset;
     *link = list;
-    fn_71005c41bc(list, reinterpret_cast<UnkCallback*>(link));
+    fn_71005c41bc(list, reinterpret_cast<UnkCallback_ac3184*>(link));
 }
 
 // Loads the ten block models and hooks up the three callbacks.

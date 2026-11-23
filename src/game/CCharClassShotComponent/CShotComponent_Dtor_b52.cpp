@@ -9,7 +9,7 @@
 #include "types.h"
 
 // Signature as src/game/CCharClassCollisionComponent/CCharClassCollisionComponent.cpp declares it.
-struct UnkIdObject;
+struct UnkIdObject_8da5c0;
 
 struct UnkCShotComponent_b52 : UnkBaseComponent {
     u8 pad_0x40[0x18];
@@ -19,7 +19,7 @@ struct UnkCShotComponent_b52 : UnkBaseComponent {
 __attribute__((always_inline)) static inline void Destroy_b52(UnkCShotComponent_b52* self) {
     self->vtable = g_unk_7101a8ab40 + 2;
     self->list.~UnkOwnedList();
-    fn_71011acd74(reinterpret_cast<UnkIdObject*>(self));
+    fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(self));
 }
 
 void fn_71009f8bcc(UnkCShotComponent_b52* self) {

@@ -105,7 +105,7 @@ void fn_7100ed55d4(UnkShotManager_led55d4* self) {
 
     u32 n = self->field_0x1238.capacity;
     for (u32 i = 0; i < n; ++i) {
-        UnkPtrList* list = reinterpret_cast<UnkPtrList*>(&self->field_0x1238);
+        UnkPtrList_e0babc* list = reinterpret_cast<UnkPtrList_e0babc*>(&self->field_0x1238);
         fn_7100e0bc40(LightManager(), *fn_7100e0a5ec(list, i));
         *fn_7100e0a5ec(list, i) = nullptr;
     }

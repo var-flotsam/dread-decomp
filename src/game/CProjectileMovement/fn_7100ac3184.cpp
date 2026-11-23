@@ -46,9 +46,9 @@ struct UnkDefinition {
     CStrId field_0x110;
 };
 
-struct UnkCallback;
+struct UnkCallback_ac3184;
 
-struct UnkCallback {
+struct UnkCallback_ac3184 {
     void* dispatcher;
     void* object;
     void* function;
@@ -97,7 +97,7 @@ struct UnkComponent_0x5d0 {
     u8 unk_0x57a[0x6];
     u8 field_0x580[0x18];
     CStrId field_0x598;
-    UnkCallback field_0x5a0;
+    UnkCallback_ac3184 field_0x5a0;
     u8 unk_0x5b8[0x10];
     UnkDefinition* field_0x5c8;
 };

@@ -6,9 +6,9 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
-struct UnkCallback;
+struct UnkCallback_ac3184;
 struct UnkZiplineRailPart_b49;
-void fn_71005c41bc(void*, UnkCallback*);  // Registers.
+void fn_71005c41bc(void*, UnkCallback_ac3184*);  // Registers.
 UnkZiplineRailPart_b49* fn_71005c3084(void* object);
 void fn_71005c4828(void*, void**);  // Unregisters.
 extern base::global::CStrId g_unk_71726eb440 __attribute__((visibility("hidden")));

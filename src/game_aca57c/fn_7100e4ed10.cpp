@@ -10,24 +10,24 @@
 using namespace base::global;
 
 // The arrays' elements are plain values; only their storage is freed.
-struct UnkArray : base::global::CRntVector<u32> {
-    ~UnkArray() { Free(); }
+struct UnkArray_e4ed10 : base::global::CRntVector<u32> {
+    ~UnkArray_e4ed10() { Free(); }
 };
 
-struct UnkRecordA8 {
-    UnkArray field_0x0;
+struct UnkRecordA8_e4ed10 {
+    UnkArray_e4ed10 field_0x0;
     u8 unk_0x28[0x20];
-    UnkArray field_0x48;
-    UnkArray field_0x70;
+    UnkArray_e4ed10 field_0x48;
+    UnkArray_e4ed10 field_0x70;
     u8 unk_0x98[0x10];
 };
-static_assert(sizeof(UnkRecordA8) == 0xa8, "UnkRecordA8 layout");
+static_assert(sizeof(UnkRecordA8_e4ed10) == 0xa8, "UnkRecordA8_e4ed10 layout");
 
 struct UnkRecord80 {
     u8 unk_0x0[0x10];
     UnkStrIdTwoStep field_0x10;
-    UnkArray field_0x18;
-    UnkArray field_0x40;
+    UnkArray_e4ed10 field_0x18;
+    UnkArray_e4ed10 field_0x40;
     u8 unk_0x68[0x18];
 };
 static_assert(sizeof(UnkRecord80) == 0x80, "UnkRecord80 layout");
@@ -55,7 +55,7 @@ __attribute__((always_inline)) static inline void Clear(UnkRecordIdArray<Record>
 // NON_MATCHING(minor): in the records loop the original addresses the record's fields from
 // its last array's allocator (record + 0x90); ours from the record itself, which takes one more
 // register.
-void fn_7100e4ed10(UnkRecordIdArray<UnkRecordA8>* self) { Clear(self); }
+void fn_7100e4ed10(UnkRecordIdArray<UnkRecordA8_e4ed10>* self) { Clear(self); }
 // NON_MATCHING(minor): as fn_7100e4ed10 (the original's base is record + 0x60, ours
 // record + 0x38).
 void fn_7100e4eb8c(UnkRecordIdArray<UnkRecord80>* self) { Clear(self); }
@@ -65,8 +65,8 @@ struct UnkIdsArraysRecord {
     UnkStrIdTwoStep field_0x0;
     u8 unk_0x8[0x10];
     UnkStrIdTwoStep field_0x18;
-    UnkArray field_0x20;
-    UnkArray field_0x48;
+    UnkArray_e4ed10 field_0x20;
+    UnkArray_e4ed10 field_0x48;
 
     __attribute__((always_inline)) ~UnkIdsArraysRecord() {}
 };

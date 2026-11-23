@@ -240,7 +240,7 @@ struct UnkKeyOwner_b0200 {
 };
 
 // As src/game/CMinimapManager/fn_7100ea5c40.cpp declares it.
-struct UnkRecord;
+struct UnkRecord_e9bf60;
 struct UnkRecordBuckets;
 UnkKeyIter_b0200 fn_7100eb39f0(UnkKeyBuckets_b0200* buckets, const CStrId* key);
 void fn_7100e94608(UnkKeyOwner_b0200* self, UnkNoArg, void* arg, void* value);

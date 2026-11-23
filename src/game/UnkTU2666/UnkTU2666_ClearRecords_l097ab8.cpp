@@ -6,11 +6,11 @@
 #include "base/tunable/CTunable.h"
 #include "types.h"
 
-struct UnkIdsString;
+struct UnkIdsString_133be4;
 
 struct UnkRecord_l097ab8 {
     u8 pad_0x0[0x160];
-    ~UnkRecord_l097ab8() { fn_7100133be4(reinterpret_cast<UnkIdsString*>(this)); }
+    ~UnkRecord_l097ab8() { fn_7100133be4(reinterpret_cast<UnkIdsString_133be4*>(this)); }
 };
 
 struct UnkRecordArrays_l097ab8 {

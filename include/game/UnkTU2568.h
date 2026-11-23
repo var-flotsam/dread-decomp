@@ -9,8 +9,8 @@
 struct UnkNavMeshNodePool_0x70;
 struct Result;
 struct UnkNavMeshManager;
-struct Vec2;
+struct Vec2_ebfa7c;
 
 extern void* g_unk_7101ca9f90[];
-bool fn_7100ebfd4c(UnkNavMeshManager*, Vec2*, u16, Result*, u32, f32, f32);
+bool fn_7100ebfd4c(UnkNavMeshManager*, Vec2_ebfa7c*, u16, Result*, u32, f32, f32);
 void fn_7100ebf2fc(UnkNavMeshNodePool_0x70* self, u32 count, u32 unused, u32 flags, base::UnkAllocator* allocator);

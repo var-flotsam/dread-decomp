@@ -847,10 +847,10 @@ bool fn_7100489130(UnkSmGrab_A1_b64<0x80>* self, UnkSmGrabMsg_A1_b64* msg) {
 // CAbilityMultiLockon's unit (machine +0x3f0, none 0x7fffffff): the start, after the base step: state 2,
 // the flags cleared, the gun component's current gun name kept, the lock-on gun selected (the hidden id
 // g_unk_71726af978), the gun told when it is of its class, then the owner's object at +0x208 stepped.
-struct UnkSamusGunComponent;
+struct UnkSamusGunComponent_b50;
 struct UnkComponent;
 struct UnkSamusGun_b58;
-const base::global::CStrId& fn_7100840844(UnkSamusGunComponent*);
+const base::global::CStrId& fn_7100840844(UnkSamusGunComponent_b50*);
 using base::global::CStrId;
 extern const base::global::CStrId g_unk_71726af978 __attribute__((visibility("hidden")));
 
@@ -862,7 +862,7 @@ struct UnkSmLockonOwner_A1_b64 {
     u8 pad_0x0[0x208];
     void* field_0x208;
     u8 pad_0x210[0x2a8 - 0x210];
-    UnkSamusGunComponent* gun;
+    UnkSamusGunComponent_b50* gun;
 };
 
 // A lock-on target: two weak handles (the owner's actor and the target) and the target's id.
@@ -907,7 +907,7 @@ void fn_7100319cb8(UnkSmLockon_A1_b64* self, s32 kind) {
     fn_71002f9f18(self, kind);
     RequestState_A1_b64<7, 0x7fffffff>(&self->machine, 2);
     self->field_0x5f0 = 0;
-    UnkSamusGunComponent* gun = self->owner->gun;
+    UnkSamusGunComponent_b50* gun = self->owner->gun;
     self->previous = fn_7100840844(gun);
     fn_710083f32c(gun, &g_unk_71726af978, false, true, false);
     if (gun) {
@@ -924,7 +924,7 @@ void fn_7100319cb8(UnkSmLockon_A1_b64* self, s32 kind) {
 void fn_710031c208(UnkSmLockon_A1_b64*);
 
 void fn_710031c530(UnkSmLockon_A1_b64* self) {
-    UnkSamusGunComponent* gun = self->owner->gun;
+    UnkSamusGunComponent_b50* gun = self->owner->gun;
     if (!fn_710084088c(gun) || fn_7100840844(gun).data != g_unk_71726af978.data) {
         RequestState_A1_b64<7, 0x7fffffff>(&self->machine, 1);
         return;
@@ -958,7 +958,7 @@ void fn_7100725610(UnkSmLockonAI_A1_b64*, UnkWeakTarget*);
 void fn_7100319e98(UnkSmLockon_A1_b64* self) {
     fn_71002fa068(self);
     RequestState_A1_b64<7, 0x7fffffff>(&self->machine, 1);
-    UnkSamusGunComponent* gun = self->owner->gun;
+    UnkSamusGunComponent_b50* gun = self->owner->gun;
     fn_710083f32c(gun, &self->previous, false, true, false);
     if (gun) {
         UnkSmGunClass_A1_b64* object = reinterpret_cast<UnkSmGunClass_A1_b64*>(gun);
