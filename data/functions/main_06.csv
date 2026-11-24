@@ -2095,7 +2095,7 @@ address,size,name,name_source,subsystem,status
 0x71006554a0,1740,fn_71006554a0,unknown,game/components?,U
 0x7100655b6c,788,fn_7100655b6c,unknown,game/components?,U
 0x7100655e80,952,fn_7100655e80,unknown,game/components?,O
-0x7100656238,276,CRedenkiSwarmControllerComponent_SetStateIfTargetBeyondHareDistance,inferred,game/components?,O
+0x7100656238,276,fn_7100656238,unknown,game/components?,O
 0x710065634c,2180,fn_710065634c,unknown,game/components?,U
 0x7100656bd0,224,fn_7100656bd0,unknown,game/components?,O
 0x7100656cb0,248,fn_7100656cb0,unknown,game/components?,U
@@ -2130,7 +2130,7 @@ address,size,name,name_source,subsystem,status
 0x710065ad24,36,fn_710065ad24,unknown,game/components?,O
 0x710065ad48,132,fn_710065ad48,unknown,game/components?,O
 0x710065adcc,32,fn_710065adcc,unknown,game/components?,O
-0x710065adec,560,CRedenkiSwarmControllerComponent_UpdateChaseAndStartChargeInRange,inferred,game/components?,O
+0x710065adec,560,fn_710065adec,unknown,game/components?,O
 0x710065b01c,72,fn_710065b01c,unknown,game/components?,O
 0x710065b064,8,CRedenkiSwarmControllerComponent::refl_Equals,reflection,game/components,O
 0x710065b06c,8,CRedenkiSwarmControllerComponent::refl_Hash,reflection,game/components,O

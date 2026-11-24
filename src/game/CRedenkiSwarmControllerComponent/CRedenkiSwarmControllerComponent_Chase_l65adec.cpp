@@ -102,7 +102,7 @@ struct UnkRedenkiController_l65adec {
     bool vf_0x300() { return reinterpret_cast<bool (*)(UnkRedenkiController_l65adec*)>(vtable[0x300 / 8])(this); }
 };
 
-void CRedenkiSwarmControllerComponent_UpdateChaseAndStartChargeInRange(UnkRedenkiController_l65adec* self, f32 dt) {
+void fn_710065adec(UnkRedenkiController_l65adec* self, f32 dt) {
     bool leave = fn_710065634c(reinterpret_cast<UnkDaivoSwarm_b0012*>(self));
     UnkParent_71007455dc* parent = fn_7100739c64(reinterpret_cast<UnkSwarmUpdate_b65a4*>(self));
     UnkRedenkiTarget_l65adec* target = reinterpret_cast<UnkRedenkiTarget_l65adec*>(parent);

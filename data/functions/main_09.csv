@@ -1305,7 +1305,7 @@ address,size,name,name_source,subsystem,status
 0x7100931804,472,fn_7100931804,unknown,game/components?,O
 0x71009319dc,600,fn_71009319dc,unknown,game/components?,U
 0x7100931c34,288,fn_7100931c34,unknown,game/components?,O
-0x7100931d54,280,CMeleeComponent_SpawnBlockFXAtPosition,inferred,game/components?,O
+0x7100931d54,280,fn_7100931d54,unknown,game/components?,O
 0x7100931e6c,28,fn_7100931e6c,unknown,game/components?,O
 0x7100931e88,132,fn_7100931e88,unknown,game/components?,O
 0x7100931f0c,20,base::reflection::ValueOps<CMeleeComponent::EMeleeTrailFXType>::Equals,reflection,engine/reflection,O

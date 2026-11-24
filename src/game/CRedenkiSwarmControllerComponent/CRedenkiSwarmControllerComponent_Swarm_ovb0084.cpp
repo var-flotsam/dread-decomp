@@ -541,7 +541,7 @@ struct UnkRedenkiClose_ovb0084 {
     }
 };
 
-void CRedenkiSwarmControllerComponent_SetStateIfTargetBeyondHareDistance(UnkRedenkiClose_ovb0084* self) {
+void fn_7100656238(UnkRedenkiClose_ovb0084* self) {
     bool leave = fn_710065634c(reinterpret_cast<UnkDaivoSwarm_b0012*>(self));
     UnkRedenkiTarget_ovb0084* target = reinterpret_cast<UnkRedenkiTarget_ovb0084*>(
         fn_7100739c64(reinterpret_cast<UnkSwarmUpdate_b65a4*>(self)));

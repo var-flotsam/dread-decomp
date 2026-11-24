@@ -296,7 +296,7 @@ static inline UnkModelManager* ModelManager() {
     return g_unk_71726b0cd8;
 }
 
-void CMeleeComponent_SpawnBlockFXAtPosition(void* self, const UnkMeleeHit_ovb0041* hit) {
+void fn_7100931d54(void* self, const UnkMeleeHit_ovb0041* hit) {
     UnkVec3f at = hit->position;
     UnkModelManager* manager = ModelManager();
     UnkVec3f position = at;
