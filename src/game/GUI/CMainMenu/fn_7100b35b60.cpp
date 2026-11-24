@@ -118,7 +118,7 @@ static inline base::reflection::UnkReflObject* Owner(UnkMainMenu_lb35b60* self) 
     return reinterpret_cast<base::reflection::UnkReflObject*>(self);
 }
 
-void fn_7100b35b60(UnkMainMenu_lb35b60* self, UnkMenuEvent_lb35b60* ev) {
+void CMainMenu_HandleGuiEvent(UnkMainMenu_lb35b60* self, UnkMenuEvent_lb35b60* ev) {
     if (ev->handled || !self->active || ev->field_0x20 == 1 || self->lock->locked)
         return;
 

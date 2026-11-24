@@ -6,5 +6,5 @@
 #include "types.h"
 
 struct UnkMagnetSlidingBlockRail_ovb0097;
-void fn_7100922e30(UnkMagnetSlidingBlockRail_ovb0097* self, bool on);
-void fn_7100922f28(UnkMagnetSlidingBlockRail_ovb0097* self, f32 alpha);
+void CMagnetSlidingBlockRailComponent_SetMaterialOnState(UnkMagnetSlidingBlockRail_ovb0097* self, bool on);
+void CMagnetSlidingBlockRailComponent_SetMaterialColorGreen(UnkMagnetSlidingBlockRail_ovb0097* self, f32 alpha);

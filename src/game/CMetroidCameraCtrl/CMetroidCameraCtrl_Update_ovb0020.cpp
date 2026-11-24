@@ -34,7 +34,7 @@ struct UnkMetroidCameraCtrl_ovb0020 {
     f32 field_0x308;
 };
 
-void fn_7100935d40(UnkMetroidCameraCtrl_ovb0020* self) {
+void CMetroidCameraCtrl_ResetVectorsAndArmRerunCounter(UnkMetroidCameraCtrl_ovb0020* self) {
     self->field_0x304 = 3;
     f32 now = fn_7100080eac(g_unk_7101d47328);
     self->field_0x308 = now;

@@ -172,7 +172,7 @@ void fn_7101201b44(UnkList_ovb0059* self) {
     self->vf_0x18();
 }
 
-void fn_71012015a0(UnkList_ovb0059* self, const CStrId* id) {
+void CList_SelectItemById(UnkList_ovb0059* self, const CStrId* id) {
     self->SelectById(*id);
     Apply(self);
 }
@@ -234,7 +234,7 @@ void fn_71012018cc(UnkList_ovb0059* self) {
     }
 }
 
-void fn_71011ff64c(UnkList_ovb0059* self) {
+void CList_OnSelectionLost(UnkList_ovb0059* self) {
     fn_71011cf630(reinterpret_cast<UnkGuiButtonFocus_ovb0000*>(self));
     if (!self->bDebugBehaviour)
         fn_710002ffb4(&g_unk_717271e8f8->field_0xca8, &g_unk_7172a10df0);
@@ -253,7 +253,7 @@ void fn_71011ff64c(UnkList_ovb0059* self) {
     fn_7101202488(&event);
 }
 
-void fn_71011ff79c(UnkList_ovb0059* self) {
+void CList_SelectPendingOrFirstAndNotifySelected(UnkList_ovb0059* self) {
     fn_71011d9ab4(reinterpret_cast<UnkGuiButtonFocus_ovb0000*>(self));
     if (!self->bDebugBehaviour)
         fn_710002ffb4(&g_unk_717271e8f8->field_0xca8, &g_unk_7172a10df0);
@@ -275,7 +275,7 @@ void fn_71011ff79c(UnkList_ovb0059* self) {
     self->Notify("OnSelected");
 }
 
-UnkList_ovb0059* fn_7101201668() {
+UnkList_ovb0059* CList_CreateListComposition() {
     UnkGuiRoot* root = g_unk_717271e8f8;
     UnkList_ovb0059* list;
     {

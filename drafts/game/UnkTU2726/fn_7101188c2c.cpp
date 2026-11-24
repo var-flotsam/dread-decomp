@@ -448,7 +448,7 @@ void fn_7101188c2c(UnkIngameMenu_l188c2c* self, f32 dt) {
         UnkGameOverGui_l188c2c* gui = &g_unk_7172a0b870;
         UnkPromptCallback_l188c2c yes = {self, fn_710118fd20};
         UnkPromptCallback_l188c2c no = {self, fn_710118fd24};
-        fn_7100b5fde0(reinterpret_cast<UnkGuiComposition_ovb0090*>(prompt), &gui->text, &gui->accept, &gui->back,
+        CPopUpComposition_ShowAcceptBackPrompt(reinterpret_cast<UnkGuiComposition_ovb0090*>(prompt), &gui->text, &gui->accept, &gui->back,
                       reinterpret_cast<const UnkMapCallback_ovb0090*>(&yes),
                       reinterpret_cast<const UnkMapCallback_ovb0090*>(&no), 0, 0.0f);
         fn_710020ac34(reinterpret_cast<UnkToggle*>(gui->field_0x80->toggle), false);

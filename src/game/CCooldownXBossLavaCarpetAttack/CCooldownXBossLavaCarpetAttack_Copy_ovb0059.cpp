@@ -162,7 +162,7 @@ void fn_71004c5820(UnkLavaAttack_ovb0059* self, const UnkLavaAttack_ovb0059* oth
     self->listener.handle = nullptr;
     AssignRef(&self->listener.handle, other->listener.handle);
     __builtin_memcpy(self->field_0x90, other->field_0x90, 12);
-    fn_7100d62b68(reinterpret_cast<char*>(self->field_0xa0), reinterpret_cast<const char*>(other->field_0xa0));
+    CPolygonCollectionShape_CopyConstruct(reinterpret_cast<char*>(self->field_0xa0), reinterpret_cast<const char*>(other->field_0xa0));
     __builtin_memcpy(self->field_0x1c0, other->field_0x1c0, 24);
     u64 i = 0;
     for (; i < other->records.count; ++i)

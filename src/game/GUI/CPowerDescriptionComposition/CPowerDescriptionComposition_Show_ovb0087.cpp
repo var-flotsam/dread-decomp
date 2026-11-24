@@ -109,7 +109,7 @@ static inline void PlayAnimation(UnkGuiDisplayObject* object, const char* name, 
     (*reinterpret_cast<Fn*>(*reinterpret_cast<char**>(object) + 0x1e8))(object, name, flags);
 }
 
-void fn_7100b63ef4(UnkPowerDescCompositionScroll* self, UnkPowerDescScrollEvent* event) {
+void CPowerDescriptionComposition_ScrollDescriptionOnInputEvent(UnkPowerDescCompositionScroll* self, UnkPowerDescScrollEvent* event) {
     fn_71011cf39c(reinterpret_cast<UnkChangeMenuStateButton_b48a3*>(self),
                   reinterpret_cast<UnkGuiEvent_b48a3*>(event));
     if (self->scroll_bar->visible) {
@@ -178,7 +178,7 @@ static inline UnkGuiDisplayObject* AsContainer(UnkGuiDisplayObject* obj) {
                : nullptr;
 }
 
-void fn_7100b63ca4(UnkPowerDescCompositionShow* self) {
+void CPowerDescriptionComposition_Show(UnkPowerDescCompositionShow* self) {
     fn_71011cdce8(self->AsObject(), true);
     fn_71011cdc30(self->AsObject(), true);
     if (UnkWeakHandle* focus = g_unk_717271e8f8->field_0x230) {

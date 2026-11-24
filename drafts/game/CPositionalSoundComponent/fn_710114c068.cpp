@@ -25,7 +25,7 @@ using base::global::CStrId;
 struct UnkPositionalSound_ovb56;
 struct UnkSoundObject_b50;
 struct UnkSoundMgr;
-const char* fn_710114be28(UnkPositionalSound_ovb56* self);
+const char* CPositionalSoundComponent_PickRandomSoundPath(UnkPositionalSound_ovb56* self);
 
 struct UnkPositionalUpdate_l14c068;
 void fn_7100108084(UnkSoundMgr* mgr, base::math::CVector3D* a, base::math::CVector3D* b, base::math::CVector3D* c);
@@ -110,7 +110,7 @@ inline void Stop_l14c068(UnkPositionalUpdate_l14c068* self, UnkSoundHandle* hand
 
 // Starts a new sound from one of the component's paths into the handle of `first` (0x88) or the other one.
 inline void Start_l14c068(UnkPositionalUpdate_l14c068* self, bool first) {
-    const char* picked = fn_710114be28(reinterpret_cast<UnkPositionalSound_ovb56*>(self));
+    const char* picked = CPositionalSoundComponent_PickRandomSoundPath(reinterpret_cast<UnkPositionalSound_ovb56*>(self));
     if (!CRntString_KeysDiffer(reinterpret_cast<const CRntString*>(picked),
                                reinterpret_cast<const CRntString*>(Use_l14c068(&GameManagerIdTable().field_0x5f8))))
         return;

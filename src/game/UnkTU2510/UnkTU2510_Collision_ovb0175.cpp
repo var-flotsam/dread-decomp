@@ -470,7 +470,7 @@ UnkColliderResult fn_7100d57ab4(UnkCollider* a, UnkCollider* b, void* c, u32 d) 
 template <u32 Offset>
 struct UnkWeakRefAt;
 void fn_710092ef94(UnkWeakRefAt<0>* self, UnkWeakTarget* other);
-void fn_710092f0b4(UnkWeakRefAt<8>* self, UnkWeakTarget* other);
+void CMeleeComponent_SetSecondWeakTargetAndFlag(UnkWeakRefAt<8>* self, UnkWeakTarget* other);
 
 struct UnkHitRef_597b4 {
     UnkRefObject* ptr;
@@ -551,7 +551,7 @@ UnkColliderResult fn_7100d597b4(UnkSelf_597b4* self, const UnkQueryIn_597b4* q) 
     desc.values[8] = q->values[8];
     desc.values[9] = q->values[9];
     desc.values[10] = q->flags;
-    fn_710092f0b4(reinterpret_cast<UnkWeakRefAt<8>*>(&desc), self->second);
+    CMeleeComponent_SetSecondWeakTargetAndFlag(reinterpret_cast<UnkWeakRefAt<8>*>(&desc), self->second);
     u32 r;
     if (fn_710009d52c(self->target->vf_0x0(), fn_7100d361c0())) {
         UnkReflObject* obj = self->target;

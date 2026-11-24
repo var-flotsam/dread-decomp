@@ -37,7 +37,7 @@ static inline UnkReflType* AsUnk(base::reflection::CType* t) {
     return reinterpret_cast<UnkReflType*>(t);
 }
 
-void fn_7100932100() {
+void CMeleeComponent_InitStatics() {
     UnkMeleeTU& tu = g_unk_7172738588;
     InitHeader(tu.header);
     new (&tu.mb2) CStrId("mb2", true);

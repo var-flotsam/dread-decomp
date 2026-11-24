@@ -84,7 +84,7 @@ struct UnkOBoxShape2DRead_ovb0062 {
 // angle in degrees and its size (all zero once the file is exhausted): the box is centred on the
 // origin, its axes turned by the angle, which is kept as the offset with a zero angle, and the shape
 // updates itself (slot 0x80). The size is stored as read, without a float type.
-bool fn_7100d68484(UnkOBoxShape2DRead_ovb0062* self, CRntFile* file) {
+bool COBoxShape2D_ReadFromRntFile(UnkOBoxShape2DRead_ovb0062* self, CRntFile* file) {
     fn_7100d6c288(reinterpret_cast<UnkPolygonCollectionShape*>(self), file);
     f32 degrees = 0.0f;
     f32 width = 0.0f;

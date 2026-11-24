@@ -10,7 +10,7 @@ struct UnkWeakTargetSlot_A5_b63 {
     u32 flags;  // 0x3c
 };
 
-void fn_710092f0b4(UnkWeakTargetSlot_A5_b63* self, UnkWeakTarget* target) {
+void CMeleeComponent_SetSecondWeakTargetAndFlag(UnkWeakTargetSlot_A5_b63* self, UnkWeakTarget* target) {
     if (!target) {
         ResetRef(&self->handle);
         return;

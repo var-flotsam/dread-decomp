@@ -65,7 +65,7 @@ static inline __attribute__((always_inline)) void Move(UnkScenarioList_b52& from
 }
 
 // Moves `object` from the list at +0x380 to the one at +0x310 (once).
-void fn_71011a28e8(UnkScenarioLists_b52* self, void* object) {
+void CScenario_MoveObjectFromList380ToList310(UnkScenarioLists_b52* self, void* object) {
     Move(self->list_0x380, self->list_0x310, reinterpret_cast<u64>(object));
 }
 

@@ -80,7 +80,7 @@ struct UnkSoundIdResource_b0038 {
 using UnkSoundIdTable_b0038 = base::global::CRntSmallDictionary<CStrId, UnkSoundIdResource_b0038>;
 
 // Moves both arrays into ones of exactly `count` entries (the records copied, then destroyed).
-void fn_710102a344(UnkSoundIdTable_b0038* self) {
+void CSoundManager_ShrinkIdResourceDictionaryToFit(UnkSoundIdTable_b0038* self) {
     if (self->count == self->capacity)
         return;
     auto* records = static_cast<UnkSoundIdResource_b0038*>(
@@ -134,7 +134,7 @@ struct UnkSoundKeyId_b0038 {
 };
 
 // Grows both arrays to `capacity` entries (the records copied, then destroyed).
-void fn_7101029ec8(UnkSoundIdTable_b0038* self, u32 capacity) {
+void CSoundManager_ReserveStrIdRecordDictionary(UnkSoundIdTable_b0038* self, u32 capacity) {
     if (self->capacity >= capacity)
         return;
     auto* records = static_cast<UnkSoundIdResource_b0038*>(
@@ -173,7 +173,7 @@ __attribute__((always_inline)) static inline void CopyId(CStrId* dst, const CStr
 __attribute__((always_inline)) static inline UnkSoundIdResource_b0038* Add(UnkSoundIdTable_b0038* self, const CStrId* key,
                                             const UnkSoundIdResource_b0038* record) {
     if (self->count == self->capacity)
-        fn_7101029ec8(self, self->count + self->step);
+        CSoundManager_ReserveStrIdRecordDictionary(self, self->count + self->step);
     CopyId(&self->keys[self->count], key);
     new (&self->values[self->count]) UnkSoundIdResource_b0038(*record);
     u32 n = ++self->count;
@@ -200,7 +200,7 @@ void fn_7101029d40(UnkSoundIdTable_b0038* self, const UnkSoundIdTable_b0038* oth
     self->step = other->step;
     self->flags = other->flags;
     self->allocator = other->allocator;
-    fn_7101029ec8(self, other->count);
+    CSoundManager_ReserveStrIdRecordDictionary(self, other->count);
     self->count = other->count;
     for (u64 i = 0; i < self->count; ++i) {
         UnkSoundIdResource_b0038* dst = &self->values[i];
@@ -370,7 +370,7 @@ struct UnkSoundOwnedPtr_b0038 {
 using UnkSoundOwnedArray_b0038 = base::global::CRntVector<UnkSoundOwnedPtr_b0038>;
 
 // The array of owning pointers: its constructor with room for `capacity`, and its Free.
-void fn_7101028988(UnkSoundOwnedArray_b0038* self, u32 capacity, u32 flags) {
+void CSoundManager_ConstructOwnedPtrVectorWithCapacity(UnkSoundOwnedArray_b0038* self, u32 capacity, u32 flags) {
     new (self) UnkSoundOwnedArray_b0038(flags);
     self->Reserve(capacity);
 }
@@ -388,7 +388,7 @@ static_assert(__builtin_offsetof(UnkSoundOwnerObject_b0038, table) == 0x80, "");
 __attribute__((always_inline)) static inline void Construct(UnkSoundOwnerObject_b0038* self) {
     fn_7100016ad8(self);
     self->vtable = g_unk_7101cac688 + 2;
-    fn_7101028988(&self->objects, 0x40, 0xb);
+    CSoundManager_ConstructOwnedPtrVectorWithCapacity(&self->objects, 0x40, 0xb);
     self->table.values = nullptr;
     self->table.keys = nullptr;
     self->table.count = 0;
@@ -423,7 +423,7 @@ struct UnkSoundTableObject_b0038 {
 };
 static_assert(__builtin_offsetof(UnkSoundTableObject_b0038, table) == 0x68, "");
 
-void fn_7101023378(UnkSoundTableObject_b0038* self) {
+void CSoundManager_Construct(UnkSoundTableObject_b0038* self) {
     self->vtable = g_unk_7101cac6c8 + 2;
     self->vtable2 = g_unk_7101cac6e8 + 2;
     fn_710102849c(self->buckets, nullptr, 0xe);

@@ -269,7 +269,7 @@ void fn_7100a866bc(UnkUsableSm_b61* self) {
 // CCharClassLockOnMissileMovement's unit (machine at +0x760): after a base call, requests a state and
 // resets the movement.
 struct UnkLockOnSm_b61;
-void fn_7100aba644(UnkLockOnSm_b61*);
+void CMissileMovement_SetVelocityFromInitialSpeed(UnkLockOnSm_b61*);
 void fn_7100aba68c(UnkLockOnSm_b61*);
 void CCharClassLockOnMissileMovement_HandLockToMultiLockonAbility(UnkLockOnSm_b61*);
 void fn_7100ab9838(void*);
@@ -298,7 +298,7 @@ struct UnkLockOnSm_b61 {
 };
 
 void fn_7100ab6954(UnkLockOnSm_b61* self) {
-    fn_7100aba644(self);
+    CMissileMovement_SetVelocityFromInitialSpeed(self);
     RequestState_b61<7, 0x7fffffff>(&self->machine, 2);
     self->field_0x678 = fn_71012395a0() & 3;
     self->field_0x868 = false;

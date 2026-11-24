@@ -34,7 +34,7 @@ static inline __attribute__((always_inline)) UnkReflValue InvokeStage(char* obj,
     UnkSourceArg* arg = args[1].type ? const_cast<UnkSourceArg*>(refl_ArgValue<UnkSourceArg>(&args[1])) : nullptr;
     if (UnkReflObject* src = fn_71009c0e24(owner, (*desc)->id)) {
         if (fn_710009d50c(src->vf_0x0(), GetClass()))
-            fn_71009c5ab8(reinterpret_cast<UnkSource*>(src), arg);
+            CNavMeshItemStage_AppendIdEntry(reinterpret_cast<UnkSource*>(src), arg);
     }
     return refl_EmptyValue();
 }

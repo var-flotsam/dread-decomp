@@ -25,7 +25,7 @@ struct UnkScrollEntryRenderer {
     UnkScrollEntryNodeList list;  // 0x238
 };
 
-void fn_7100b752b8(UnkScrollEntryRenderer* self) {
+void CScrollMenuEntryItemRenderer_Destroy(UnkScrollEntryRenderer* self) {
     self->vtable = &g_unk_7101a9ebd8[2];
     self->list.~UnkScrollEntryNodeList();
     fn_71011d8e90(reinterpret_cast<UnkGuiDisplayObject*>(self));  // the base part's destructor

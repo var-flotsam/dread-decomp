@@ -16,7 +16,7 @@ struct UnkProjectileMovement4_b46a3 {
     UnkProjectileLink4_b46a3* link;  // 0x5c8
 };
 
-UnkVec3f fn_7100ac419c(UnkProjectileMovement4_b46a3* self, f32 t) {
+UnkVec3f CProjectileMovement_ComputeFrictionVelocityDelta(UnkProjectileMovement4_b46a3* self, f32 t) {
     f32 x = self->vel_x;
     f32 y = self->vel_y;
     f32 z = -self->vel_z;

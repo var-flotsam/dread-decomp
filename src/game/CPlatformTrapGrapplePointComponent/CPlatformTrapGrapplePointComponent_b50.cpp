@@ -38,7 +38,7 @@ struct UnkTrapPull_b50 {
 void* fn_710082bd74(void* owner);
 bool fn_7100aca464(void* state);
 
-bool fn_710082bcf4(UnkTrapPull_b50* self, void* arg, UnkTrapPullMessage_b50* msg) {
+bool CPlatformTrapGrapplePointComponent_CheckPullFromGrappleCollider(UnkTrapPull_b50* self, void* arg, UnkTrapPullMessage_b50* msg) {
     if (!fn_710082cb24(self, arg, msg) || fn_7100aca464(fn_710082bd74(self->owner)))
         return false;
     UnkTrapPullSource_b50* source = msg->sender->field_0x10;

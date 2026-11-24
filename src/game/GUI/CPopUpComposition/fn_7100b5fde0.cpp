@@ -108,7 +108,7 @@ static inline UnkGuiDisplayObject* FindLabel(UnkPopUp_b5fde0* self, u8* id) {
 }
 
 // Returns true. The shared declaration (game/GUI/CPopUpComposition.h) still gives it no result.
-bool fn_7100b5fde0(UnkGuiComposition_ovb0090* gui, const base::global::CStrId* text, const base::global::CStrId* accept, const base::global::CStrId* back,
+bool CPopUpComposition_ShowAcceptBackPrompt(UnkGuiComposition_ovb0090* gui, const base::global::CStrId* text, const base::global::CStrId* accept, const base::global::CStrId* back,
                    const UnkMapCallback_ovb0090* on_accept, const UnkMapCallback_ovb0090* on_back, u32 mode,
                    f32 time) {
     UnkPopUp_b5fde0* self = reinterpret_cast<UnkPopUp_b5fde0*>(gui);

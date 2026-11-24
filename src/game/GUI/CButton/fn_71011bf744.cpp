@@ -18,7 +18,7 @@
 using base::global::CStrId;
 
 struct UnkList_ovb0059;
-void fn_71012015a0(UnkList_ovb0059* self, const CStrId* id);
+void CList_SelectItemById(UnkList_ovb0059* self, const CStrId* id);
 char* fn_7101201658(char* p0);
 
 // A GUI::CList as this function uses it.
@@ -41,7 +41,7 @@ static_assert(__builtin_offsetof(UnkButtonList_l1bf744, field_0x248) == 0x248, "
 
 // Selects the list's entry with the given name.
 inline void SelectByName(UnkButtonList_l1bf744* list, CStrId name) {
-    fn_71012015a0(reinterpret_cast<UnkList_ovb0059*>(list), &name);
+    CList_SelectItemById(reinterpret_cast<UnkList_ovb0059*>(list), &name);
 }
 
 // The object a path names, as far as this function reads it.

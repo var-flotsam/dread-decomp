@@ -67,7 +67,7 @@ static inline void SetValue(CBlackboard* blackboard, const CStrId& section, cons
 }
 
 // `dt` (s0) reaches the base update untouched in the original.
-void fn_7100b5ddf0(UnkNewGameButton* self, f32 dt) {
+void CNewGameButton_UpdateAndCreatePendingNewGame(UnkNewGameButton* self, f32 dt) {
     fn_71011d8fe4(reinterpret_cast<UnkNewGameScreen*>(self), dt);
     if (!self->field_0x2a1 || fn_7101053a98(g_unk_7101d47310->field_0x1040))
         return;

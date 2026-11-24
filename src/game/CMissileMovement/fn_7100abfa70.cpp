@@ -16,7 +16,7 @@ extern UnkStatics_0x30 g_unk_7172755840 __attribute__((visibility("hidden")));
 extern char g_unk_7172755838[];
 extern char g_unk_7172754e40[];
 
-void fn_7100abfa70() {
+void CMissileMovement_InitStatics() {
     InitHeaderIds(&g_unk_7172754e48.ids);
     fn_7100ab9ae0();
     fn_710009ec00(g_unk_7172754e40, g_unk_7172754e48.field_0x28);

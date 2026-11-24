@@ -31,7 +31,7 @@ struct UnkAIIdLists_b41a3 {
     void* field_0x1610;
 };
 
-void* fn_7100912674(const CStrId* id);
+void* CLogicPathComponent_FindById(const CStrId* id);
 
 static inline __attribute__((always_inline)) void Append_b41a3(UnkIdList_b41a3* list, const CStrId* id) {
     new (&list->ids[list->count]) CStrId(*id);
@@ -50,7 +50,7 @@ UnkReflValue fn_7101115758(void*, char* obj, UnkReflValue* const* args) {
     else
         id = reinterpret_cast<const CStrId*>(&a[1]);
     void* entries = target->field_0x1610;
-    if (entries && fn_7100413fe0(entries) > static_cast<s32>(index) && fn_7100912674(id)) {
+    if (entries && fn_7100413fe0(entries) > static_cast<s32>(index) && CLogicPathComponent_FindById(id)) {
         u32 n = index + 1;
         if (n > target->list_count) {
             for (u64 i = target->list_count; i < n; ++i)
@@ -72,7 +72,7 @@ UnkReflValue fn_71011158f8(void*, char* obj, UnkReflValue* const* args) {
         id = static_cast<const CStrId*>(a->field_0x0);
     else
         id = reinterpret_cast<const CStrId*>(a);
-    if (fn_7100912674(id))
+    if (CLogicPathComponent_FindById(id))
         Append_b41a3(&target->lists[3], id);
     return base::reflection::refl_EmptyValue();
 }

@@ -171,7 +171,7 @@ void CMagnetSlidingBlockComponent_RestoreFinishedMovementFromBlackboard(UnkMagne
     self->glow = 1.0f;
     self->field_0x348 = 0;
     if (void* rail = RailObject(self))
-        fn_7100922f28(fn_710091f6bc(rail), self->glow);
+        CMagnetSlidingBlockRailComponent_SetMaterialColorGreen(fn_710091f6bc(rail), self->glow);
     self->machine.Request(4, 6);
     AddKey(self, &g_unk_71727375d8);
 }

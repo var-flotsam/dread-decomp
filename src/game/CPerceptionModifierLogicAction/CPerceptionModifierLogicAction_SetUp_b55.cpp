@@ -62,7 +62,7 @@ static inline CVector3D Column(char* actor) {
     return v;
 }
 
-void fn_7100a5120c(UnkPerceptionModifierAction_b55* self) {
+void CPerceptionModifierLogicAction_SendPerceivedActorToAIManagerByMode(UnkPerceptionModifierAction_b55* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     switch (self->mode) {
     case 0: {
