@@ -5533,7 +5533,7 @@ address,size,name,name_source,subsystem,status
 0x71000e9a3c,64,fn_71000e9a3c,unknown,unknown,O
 0x71000e9a7c,508,fn_71000e9a7c,unknown,unknown,O
 0x71000e9c78,232,fn_71000e9c78,unknown,unknown,O
-0x71000e9d60,416,fn_71000e9d60,unknown,unknown,U
+0x71000e9d60,416,fn_71000e9d60,unknown,unknown,O
 0x71000e9f00,280,fn_71000e9f00,unknown,unknown,O
 0x71000ea018,76,fn_71000ea018,unknown,engine/base?,O
 0x71000ea064,264,fn_71000ea064,unknown,unknown,O
