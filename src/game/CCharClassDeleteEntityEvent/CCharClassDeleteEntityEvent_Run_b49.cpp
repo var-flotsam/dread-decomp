@@ -41,7 +41,7 @@ static inline UnkManager_71726af468* GetManager() {
     return manager;
 }
 
-void fn_7100cb23c8(UnkDeleteEntityEvent* self, UnkDeleteEntityContext* context) {
+void CCharClassDeleteEntityEvent_DeleteActorAfterTimeToDelete(UnkDeleteEntityEvent* self, UnkDeleteEntityContext* context) {
     UnkDeleteEntityActor* actor = context->actor;
     if (!actor)
         return;

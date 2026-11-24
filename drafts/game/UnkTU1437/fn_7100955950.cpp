@@ -119,7 +119,7 @@ static inline bool IsPlaying(UnkAnimationComponent* animation, const CStrId& id)
 }
 
 static inline bool IsPlayingName(UnkAnimationComponent* animation, const CStrId& id) {
-    return fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(animation),
+    return CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(animation),
                          reinterpret_cast<UnkCls_710117af10**>(const_cast<CStrId*>(&id)), false);
 }
 

@@ -23,7 +23,7 @@ extern char g_unk_717274b030;
 extern char g_unk_717274b031;
 extern UnkReflType g_unk_717274b1a8 __attribute__((visibility("hidden")));
 
-void fn_7100a4b640() {
+void CCharClassDamageTriggerComponent_InitStatics() {
     UnkCharClassDamageTriggerTU& tu = g_unk_717274b038;
     InitHeader(tu.header);
     tu.range[0] = -1.0f;

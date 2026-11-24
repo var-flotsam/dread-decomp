@@ -271,7 +271,7 @@ void fn_7100a866bc(UnkUsableSm_b61* self) {
 struct UnkLockOnSm_b61;
 void fn_7100aba644(UnkLockOnSm_b61*);
 void fn_7100aba68c(UnkLockOnSm_b61*);
-void fn_7100ab6bb8(UnkLockOnSm_b61*);
+void CCharClassLockOnMissileMovement_HandLockToMultiLockonAbility(UnkLockOnSm_b61*);
 void fn_7100ab9838(void*);
 
 struct UnkLockOnItem_b61 {
@@ -311,7 +311,7 @@ void fn_7100ab6a60(UnkLockOnSm_b61* self) {
     bool* done = &self->field_0x132f8;
     asm("" : "+r"(done));
     if (*done)
-        fn_7100ab6bb8(self);
+        CCharClassLockOnMissileMovement_HandLockToMultiLockonAbility(self);
     if (UnkLockOnItem_b61* item = self->field_0x858) {
         fn_71002199d8(g_unk_7101d47300, reinterpret_cast<UnkItemBase_71011a91c4*>(item->item), 0);
         self->field_0x858 = nullptr;

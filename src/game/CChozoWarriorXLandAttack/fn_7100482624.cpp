@@ -124,7 +124,7 @@ void fn_7100482624(UnkLandAttack_l482624* self) {
     mode.id = 2;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, track, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(animation, track, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 
     f32 high = 0.0f;
     f32 low = 0.0f;

@@ -196,7 +196,7 @@ void fn_7101169448(UnkPlayerLife_l169448* self) {
         u64 hash = track->field_0x2b8->hash;
         mode.id = 1;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(track, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(track, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     }
     if (self->Target()) {
         MoveOwnerToTarget(self);

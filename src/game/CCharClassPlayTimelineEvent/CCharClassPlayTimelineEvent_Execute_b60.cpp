@@ -29,7 +29,7 @@ struct UnkTrackActionValue_b60 {
     u32 value;
 };
 
-void fn_7100bc8d50(UnkPlayTimelineEvent_b60* self, UnkPlayTimelineTarget_b60* target) {
+void CCharClassPlayTimelineEvent_PlayNamedTimelineOnActor(UnkPlayTimelineEvent_b60* self, UnkPlayTimelineTarget_b60* target) {
     if (self->timeline == &g_unk_7101d47108->empty)
         return;
     UnkActor* actor = target->actor;

@@ -58,7 +58,7 @@ static inline __attribute__((always_inline)) void CreateFanEffect(UnkFanEffects_
     fn_7100207be8(node, reinterpret_cast<const UnkVec3f*>(&v));
 }
 
-void fn_710087f138(UnkFanEffects_A4_b75* self) {
+void CCharClassFanComponent_RecreateHurricaneFX(UnkFanEffects_A4_b75* self) {
     goto start;
     base::math::CVector3D v;
 start:
@@ -66,7 +66,7 @@ start:
         self, 800.0f, v);
 }
 
-void fn_710087f22c(UnkFanEffects_A4_b75* self) {
+void CCharClassFanComponent_RecreateWindEffect(UnkFanEffects_A4_b75* self) {
     goto start;
     base::math::CVector3D v;
 start:

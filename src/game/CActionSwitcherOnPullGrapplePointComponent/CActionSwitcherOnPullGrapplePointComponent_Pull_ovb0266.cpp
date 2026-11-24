@@ -52,7 +52,7 @@ void CActionSwitcherOnPullGrapplePointComponent_PlayPullOrDetachAction(UnkPull_b
         hash_b = self->field_0x90->holder->hash;
         mode_b.id = 0;
         mask_b.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, hash_b, 0xf4061ff25a2163d6ull, &mode_b, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(animation, hash_b, 0xf4061ff25a2163d6ull, &mode_b, &g_unk_710164b958, &g_unk_7172769740,
                       &mask_b);
         break;
     case 1:
@@ -62,7 +62,7 @@ void CActionSwitcherOnPullGrapplePointComponent_PlayPullOrDetachAction(UnkPull_b
         hash_a = self->field_0xa0->hash;
         mode_a.id = 0;
         mask_a.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, hash_a, 0xf4061ff25a2163d6ull, &mode_a, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(animation, hash_a, 0xf4061ff25a2163d6ull, &mode_a, &g_unk_710164b958, &g_unk_7172769740,
                       &mask_a);
         self->done = true;
         fn_710082cee4(reinterpret_cast<UnkPullableGrapplePoint_b54*>(self), false);

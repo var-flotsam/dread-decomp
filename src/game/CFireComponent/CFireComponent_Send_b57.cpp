@@ -75,7 +75,7 @@ bool fn_7100831aa0(UnkFireComponent_b57* self, UnkFireMessage_b57* message, void
             UnkDesc_SpitSend* desc = record->bBufferInputActionSynchronized ? reinterpret_cast<UnkDesc_SpitSend*>(&g_unk_7172769758) : &g_unk_7172769740;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, desc, &mask);
+            CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, desc, &mask);
         }
     }
     return applies;

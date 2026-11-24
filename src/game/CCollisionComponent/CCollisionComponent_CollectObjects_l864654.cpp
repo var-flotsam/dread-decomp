@@ -82,7 +82,7 @@ struct UnkCollisionContainer_l864654 {
     u32 recordCount;                      // 0x50
 };
 
-void fn_7100864654(UnkCollisionContainer_l864654* self, u32 mask,
+void CCollisionComponent_CollectObjectsByMask(UnkCollisionContainer_l864654* self, u32 mask,
                    base::global::CRntVector<UnkCollisionShape_l864654*>* out, bool all) {
     out->Reserve(self->recordCount);
     for (u64 i = 0; i < self->recordCount; ++i) {

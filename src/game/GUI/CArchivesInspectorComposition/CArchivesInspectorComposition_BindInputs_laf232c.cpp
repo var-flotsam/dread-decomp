@@ -12,7 +12,7 @@ struct UnkArchivesInspector_laf232c {
     f32 timer;  // 0x30c
 
     void fn_7100af2508(UnkArchivesInput_ovb0043* input);
-    void fn_7100af25dc(UnkArchivesInput_ovb0043* input);
+    void CArchivesInspectorComposition_ToggleShowHide(UnkArchivesInput_ovb0043* input);
     void fn_7100af2648(UnkArchivesInput_ovb0043* input);
     void fn_7100af26fc(UnkArchivesInput_ovb0043* input);
 };
@@ -27,7 +27,7 @@ void fn_7100af232c(UnkArchivesInspector_laf232c* self) {
         fn_7100af30a0(self, &id, std::bind(&UnkArchivesInspector_laf232c::fn_7100af2508, self, _1), nullptr, 2);
     id = 0x17;
     if (self)
-        fn_7100af30a0(self, &id, std::bind(&UnkArchivesInspector_laf232c::fn_7100af25dc, self, _1), nullptr, 2);
+        fn_7100af30a0(self, &id, std::bind(&UnkArchivesInspector_laf232c::CArchivesInspectorComposition_ToggleShowHide, self, _1), nullptr, 2);
     id = 0x14;
     if (self)
         fn_7100af30a0(self, &id, std::bind(&UnkArchivesInspector_laf232c::fn_7100af2648, self, _1), nullptr, 2);

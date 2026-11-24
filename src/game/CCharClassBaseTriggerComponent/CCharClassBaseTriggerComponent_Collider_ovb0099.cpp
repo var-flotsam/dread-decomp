@@ -105,7 +105,7 @@ static inline UnkManager_7100863a8c* Manager() {
 // Hands the old collider back to the manager, has it create a new one named after the actor and
 // sets it up with `shape` (placed at `transform` when the game manager allows it); `swept` picks
 // the shape setter.
-void fn_7100a48c3c(UnkBaseTrigger* self, void* shape, const UnkMatrix44* transform, bool swept, u32 value) {
+void CCharClassBaseTriggerComponent_RecreateColliderFromShape(UnkBaseTrigger* self, void* shape, const UnkMatrix44* transform, bool swept, u32 value) {
     if (self->collider) {
         fn_7100d46c60(Manager(), reinterpret_cast<UnkCollisionObject*>(self->collider));
         self->collider = nullptr;
@@ -162,7 +162,7 @@ void fn_7100a46e9c(UnkBaseTrigger* self) {
         break;
     }
     if (UnkBaseTriggerLogicShape* shape = FindLogicShape(actor))
-        fn_7100a48c3c(self, shape->shape, &actor->transform, false, self->field_0x80);
+        CCharClassBaseTriggerComponent_RecreateColliderFromShape(self, shape->shape, &actor->transform, false, self->field_0x80);
 }
 
 // The collider (+0x88) as the bounds test reads it: a box (+0x40 min, +0x48 max) that vf_0x98
@@ -219,7 +219,7 @@ static inline bool BelowMax(f32 v, f32 max) {
 }
 
 // Whether the point is inside the shape's box, with a margin of one unit.
-bool fn_7100a47e00(UnkBaseTriggerBounds* self, const UnkTriggerPoint* point) {
+bool CCharClassBaseTriggerComponent_IsPointInColliderBounds(UnkBaseTriggerBounds* self, const UnkTriggerPoint* point) {
     UnkTriggerShape* shape = self->shape;
     if (!shape)
         return false;

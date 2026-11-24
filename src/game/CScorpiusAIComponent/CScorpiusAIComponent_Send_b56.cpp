@@ -42,5 +42,5 @@ void fn_7100697f44(UnkScorpiusAI_b56a3* self, f32 value) {
     UnkScorpiusArg_b56a3 arg(MakeFloat_b56a3(value));
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0xea4b14555468f96a, 0x722b01c64fe0ffe0, &mode, &arg, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, 0xea4b14555468f96a, 0x722b01c64fe0ffe0, &mode, &arg, &g_unk_7172769740, &mask);
 }

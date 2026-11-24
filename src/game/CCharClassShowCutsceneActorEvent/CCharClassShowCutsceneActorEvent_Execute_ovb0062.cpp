@@ -19,7 +19,7 @@ using base::global::CStrId;
 struct UnkStruct_71002334fc;
 struct UnkResetOwner;
 
-void fn_7100cda490(UnkCutsceneActorEvent_ovb0062* self, UnkCutsceneActorEntity_ovb0062** owner) {
+void CCharClassShowCutsceneActorEvent_ShowNamedActorOrOwner(UnkCutsceneActorEvent_ovb0062* self, UnkCutsceneActorEntity_ovb0062** owner) {
     if (!*owner)
         return;
     if (self->actor.data != &g_unk_7101d47108->empty) {

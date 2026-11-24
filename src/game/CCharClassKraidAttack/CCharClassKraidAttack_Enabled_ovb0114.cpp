@@ -76,7 +76,7 @@ struct UnkKraidAttack_ovb0114 {
     UnkKraidAttackStrData_ovb0114* name;  // 0x38
 };
 
-f32 fn_71005dbe2c(UnkKraidAttack_ovb0114* self) {
+f32 CCharClassKraidAttack_GetBoolTunableForNameAsFloat(UnkKraidAttack_ovb0114* self) {
     bool enabled = true;
     UnkKraidAttackObject_ovb0114* tunable = reinterpret_cast<UnkKraidAttackObject_ovb0114*>(&g_unk_71726f3440);
     Get(tunable, self->name->key, &enabled);

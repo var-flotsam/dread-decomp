@@ -23,7 +23,7 @@ struct UnkStopChargeEvent_b47a3 {
 
 void fn_710083e33c(UnkChargeComponent_b47a3* charge, bool flag);
 
-void fn_7100ce29e0(UnkStopChargeEvent_b47a3* self, UnkChargeActor_b47a3** actor) {
+void CCharClassStopChargeEvent_StopActorChargeWithShotIfCharged(UnkStopChargeEvent_b47a3* self, UnkChargeActor_b47a3** actor) {
     if (!*actor)
         return;
     UnkChargeComponent_b47a3* charge = (*actor)->charge;

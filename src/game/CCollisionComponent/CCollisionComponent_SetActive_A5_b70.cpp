@@ -42,5 +42,5 @@ void fn_7100866668(UnkCollisionContainer* self) {
         }
     }
     if (*reinterpret_cast<bool*>(raw + 0x128))
-        fn_71008615b4(self);
+        CCollisionComponent_SyncAnimationColliderTracks(self);
 }

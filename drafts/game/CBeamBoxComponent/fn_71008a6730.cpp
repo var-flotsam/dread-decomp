@@ -138,7 +138,7 @@ void fn_71008a6730(UnkBeamBox_l8a6730* self) {
         if (holder && self->track.data != &g_unk_7101d47108->empty) {
             mode.id = 0;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(holder, self->track.data->Key(), 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(holder, self->track.data->Key(), 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                           &g_unk_717276974c, &mask);
         } else {
             UnkBeamBoxVec3_l8a6730 pos = {saved.x, saved.y, 0.0f};

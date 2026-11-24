@@ -134,7 +134,7 @@ void fn_71006927ec(UnkScorpiusAI_l6927ec* self) {
         mode.id = 0x82;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, 0xea4b14555468f96aull, 0x722b01c64fe0ffe0ull, &mode, &g_unk_710164b968,
+        CAnimationComponent_SendActionToTrack(animation, 0xea4b14555468f96aull, 0x722b01c64fe0ffe0ull, &mode, &g_unk_710164b968,
                       &g_unk_7172769740, &mask);
         unk_prop_bag::fn_710033187c(reinterpret_cast<unk_prop_bag::UnkPropBag*>(self->owner->animation->field_0x80),
                                     g_unk_7172704220, self->field_0x14d04);

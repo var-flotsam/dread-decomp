@@ -30,31 +30,31 @@ bool fn_71003fdbec(UnkCannonAI_l3fdbec* self) {
         hash = StringCrc64("shot_cave", 9);
         mode_cave.id = 2;
         mask_cave.id = UnkAll_SpitSend().value;
-        return fn_7101176690(cls, hash, 0xf4061ff25a2163d6, &mode_cave, &g_unk_710164b958, &g_unk_7172769740,
+        return CAnimationComponent_SendActionToTrack(cls, hash, 0xf4061ff25a2163d6, &mode_cave, &g_unk_710164b958, &g_unk_7172769740,
                              &mask_cave);
     case 1:
         hash = StringCrc64("shot_magma", 10);
         mode_magma.id = 2;
         mask_magma.id = UnkAll_SpitSend().value;
-        return fn_7101176690(cls, hash, 0xf4061ff25a2163d6, &mode_magma, &g_unk_710164b958, &g_unk_7172769740,
+        return CAnimationComponent_SendActionToTrack(cls, hash, 0xf4061ff25a2163d6, &mode_magma, &g_unk_710164b958, &g_unk_7172769740,
                              &mask_magma);
     case 2:
         hash = StringCrc64("shot_lab", 8);
         mode_lab.id = 2;
         mask_lab.id = UnkAll_SpitSend().value;
-        return fn_7101176690(cls, hash, 0xf4061ff25a2163d6, &mode_lab, &g_unk_710164b958, &g_unk_7172769740,
+        return CAnimationComponent_SendActionToTrack(cls, hash, 0xf4061ff25a2163d6, &mode_lab, &g_unk_710164b958, &g_unk_7172769740,
                              &mask_lab);
     case 3:
         hash = StringCrc64("shot_forest", 11);
         mode_forest.id = 2;
         mask_forest.id = UnkAll_SpitSend().value;
-        return fn_7101176690(cls, hash, 0xf4061ff25a2163d6, &mode_forest, &g_unk_710164b958, &g_unk_7172769740,
+        return CAnimationComponent_SendActionToTrack(cls, hash, 0xf4061ff25a2163d6, &mode_forest, &g_unk_710164b958, &g_unk_7172769740,
                              &mask_forest);
     case 4:
         hash = StringCrc64("shot_sanc", 9);
         mode_sanc.id = 2;
         mask_sanc.id = UnkAll_SpitSend().value;
-        return fn_7101176690(cls, hash, 0xf4061ff25a2163d6, &mode_sanc, &g_unk_710164b958, &g_unk_7172769740,
+        return CAnimationComponent_SendActionToTrack(cls, hash, 0xf4061ff25a2163d6, &mode_sanc, &g_unk_710164b958, &g_unk_7172769740,
                              &mask_sanc);
     }
     return false;

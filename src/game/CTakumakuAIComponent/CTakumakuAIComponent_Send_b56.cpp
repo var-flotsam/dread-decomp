@@ -49,7 +49,7 @@ static inline __attribute__((always_inline)) bool Send_b56a3(UnkAnimationCompone
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    return fn_7101176690(target, hash, 0xbb2ee0d16add63b8, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    return CAnimationComponent_SendActionToTrack(target, hash, 0xbb2ee0d16add63b8, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
 // When the sub-object has the entry 0x11d3e6cd2e9cb1a1 and the tunable is set, sends it; when that

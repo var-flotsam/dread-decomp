@@ -13,7 +13,7 @@ struct UnkSclawkOwner_ovb0136 {
     UnkAnimationComponent* field_0x220;
 };
 
-const CStrId* fn_710067be80(void* self, UnkSclawkOwner_ovb0136* owner) {
+const CStrId* CCharClassSclawkLifeComponent_GetDeathAnimId(void* self, UnkSclawkOwner_ovb0136* owner) {
     UnkAnimationComponent* anim = owner->field_0x220;
     f32 t = fn_7101177ea0(anim, 0xf4061ff25a2163d6);
     static CStrId s_death("death", true);

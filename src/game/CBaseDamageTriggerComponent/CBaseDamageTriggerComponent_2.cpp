@@ -29,7 +29,7 @@ struct UnkBaseDamageTrigger2 {
     bool field_0xbe0;
 };
 
-void fn_7100a45e00(UnkBaseDamageTrigger2* self, f32 dt) {
+void CBaseDamageTriggerComponent_RestartDamageAndAdvanceTime(UnkBaseDamageTrigger2* self, f32 dt) {
     if (self->state > 1 || self->field_0xbc4 <= 0.0f || self->field_0xbc8 <= 0.0f)
         return;
     self->field_0xbdc = 0.0f;

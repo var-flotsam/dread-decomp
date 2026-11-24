@@ -134,7 +134,7 @@ static inline void Play_l981c6c(UnkUnit1452_b56* self, const Request& request, b
     UnkAnimationComponent* animation = Animation_l981c6c(self);
     UnkAnimRequest_l981c6c play(request.id, request.time, request.blend, request.flags | (flag ? 0x11u : 0x10u),
                                 request.mask);
-    fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
+    CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
                   reinterpret_cast<const UnkRequest_7101176ea8*>(&play), 0xf4061ff25a2163d6);
 }
 

@@ -91,7 +91,7 @@ void fn_71008d2d1c(UnkDoor_l8d2d1c* self) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, GameManagerIdTable().field_0xb08.data->Key(), 0xf4061ff25a2163d6, &mode,
+    CAnimationComponent_SendActionToTrack(animation, GameManagerIdTable().field_0xb08.data->Key(), 0xf4061ff25a2163d6, &mode,
                   &g_unk_710164b958, &g_unk_7172769740, &mask);
     RequestState_b58(&self->state_machine, 2);
 }

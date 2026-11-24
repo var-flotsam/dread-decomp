@@ -20,7 +20,7 @@ static inline __attribute__((always_inline)) void Send_b56a3(UnkShootAttack_b56a
     mode.id = 2;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
 void fn_71005c70e0(UnkShootAttack_b56a3* self, const CStrId* id) { Send_b56a3(self, id); }

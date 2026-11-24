@@ -325,7 +325,7 @@ s32 fn_71006d1394(UnkTakumakuChase_l6d1394* self) {
         mode.id = 0;
         UnkReflTypeIdArg mask;
         mask.id = UnkGrabClassDefaultMask();
-        if (fn_7101176690(animation, turn.data->Key(), 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+        if (CAnimationComponent_SendActionToTrack(animation, turn.data->Key(), 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                           &g_unk_7172769740, &mask)) {
             if (self->turns > 0 && --self->turns == 0)
                 self->ai->field_0x14758 = true;

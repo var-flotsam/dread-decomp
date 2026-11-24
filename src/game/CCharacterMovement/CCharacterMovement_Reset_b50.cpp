@@ -21,7 +21,7 @@ struct UnkCharacterMovementReset {
 
 void fn_71010d2f84(UnkCharacterMovementReset* self, bool flag);
 
-void fn_71009786a8(UnkCharacterMovementReset* self, bool flag) {
+void CCharacterMovement_Reset(UnkCharacterMovementReset* self, bool flag) {
     fn_71010d2f84(self, flag);
     for (u64 i = 0; i < self->count; i++) {
         if (UnkRefObject* p = self->contacts[i].ref) {

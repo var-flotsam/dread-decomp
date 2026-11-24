@@ -121,7 +121,7 @@ void fn_71008e3410(UnkPowerBombBlockLifeRestore_l8e3410* self, CBlackboard* blac
             mode.id = 0;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_717276974c, &mask);
+            CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_717276974c, &mask);
         }
     }
     fn_7100d7c828(reinterpret_cast<UnkActor*>(self->owner), &g_unk_710164b198, false);

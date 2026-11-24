@@ -38,7 +38,7 @@ struct UnkS12 { u64 a; u32 b; };
 
 struct UnkStruct_7101176ea8;
 
-bool fn_7101176690(UnkStruct_7101176690* self, void* arg, u64 key, const u32& flags, const UnkS16& a,
+bool CAnimationComponent_SendActionToTrack(UnkStruct_7101176690* self, void* arg, u64 key, const u32& flags, const UnkS16& a,
                    const UnkS12& b, const u32& c) {
     void* r = fn_7101176d34(reinterpret_cast<UnkStruct_7101176ea8*>(self), arg);
     UnkMap_7101176690* m = self->field_0x40;

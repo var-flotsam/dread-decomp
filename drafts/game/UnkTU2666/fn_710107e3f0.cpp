@@ -252,7 +252,7 @@ int fn_710107e3f0(lua_State* L) {
         u64 hash = animation->desc->hash;
         mode.id = 1;
         mask.id = UnkTeleportDefaultMask();
-        fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);
     }
     return 0;
 }

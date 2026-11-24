@@ -144,7 +144,7 @@ static inline bool PlayReverse(UnkEnemyMovement_l0cab4c* self, bool flag) {
         CRntString reversed = CRntString_Concat(name.Str(), suffix.Str());
         fn_7100066630(&key, &reversed);
     }
-    s32 done = static_cast<s32>(fn_710070d89c(fn_71011771e0(animation, kMainTrack)));
+    s32 done = static_cast<s32>(fn_710070d89c(CAnimationComponent_FindTrackByNameHash(animation, kMainTrack)));
     UnkTrackLength_l0cab4c* track = static_cast<UnkTrackLength_l0cab4c*>(fn_7101177d2c(animation, kMainTrack));
     UnkTurnTiming_l0cab4c timing;
     timing.start = 0;

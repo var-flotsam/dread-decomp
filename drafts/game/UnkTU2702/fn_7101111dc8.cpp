@@ -109,7 +109,7 @@ u32 fn_7101111dc8(UnkNailongAI_b46a2* ai, UnkNailongMsg_b46a2* message) {
     mode.id = 2;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, reinterpret_cast<UnkTrackId_1111dc8*>(track.data)->hash, 0xf4061ff25a2163d6, &mode,
+    CAnimationComponent_SendActionToTrack(animation, reinterpret_cast<UnkTrackId_1111dc8*>(track.data)->hash, 0xf4061ff25a2163d6, &mode,
                   &g_unk_710164b958, &g_unk_7172769740, &mask);
     return 0;
 }

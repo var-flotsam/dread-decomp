@@ -121,19 +121,19 @@ void fn_7100634de0(UnkPoisonFlyDetected_l634de0* self) {
             self->reaction = 0x5e8166aba0571043;
             mode_a_same.id = 0;
             mask_a_same.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x5e8166aba0571043, kind, &mode_a_same, &g_unk_710164b958, &g_unk_7172769740,
+            CAnimationComponent_SendActionToTrack(animation, 0x5e8166aba0571043, kind, &mode_a_same, &g_unk_710164b958, &g_unk_7172769740,
                           &mask_a_same);
         } else {
             self->reaction = 0x0f844a14fa1bf449;
             if (fn_710117b348(static_cast<UnkAnimationComponent*>(animation), fn_7100d2b3a8())) {
                 mode_a_turn.id = 0;
                 mask_a_turn.id = UnkAll_SpitSend().value;
-                fn_7101176690(animation, 0x0f844a14fa1bf449, kind, &mode_a_turn, &g_unk_710164b968, &g_unk_7172769770,
+                CAnimationComponent_SendActionToTrack(animation, 0x0f844a14fa1bf449, kind, &mode_a_turn, &g_unk_710164b968, &g_unk_7172769770,
                               &mask_a_turn);
             } else {
                 mode_a_other.id = 0;
                 mask_a_other.id = UnkAll_SpitSend().value;
-                fn_7101176690(animation, 0x0f844a14fa1bf449, kind, &mode_a_other, &g_unk_710164b958, &g_unk_7172769740,
+                CAnimationComponent_SendActionToTrack(animation, 0x0f844a14fa1bf449, kind, &mode_a_other, &g_unk_710164b958, &g_unk_7172769740,
                               &mask_a_other);
             }
         }
@@ -146,19 +146,19 @@ void fn_7100634de0(UnkPoisonFlyDetected_l634de0* self) {
         if (fn_710117b348(static_cast<UnkAnimationComponent*>(animation), fn_7100d2b3a8())) {
             mode_b_turn.id = 0;
             mask_b_turn.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x1e4b917f54b4f6f2, kind, &mode_b_turn, &g_unk_710164b968, &g_unk_7172769770,
+            CAnimationComponent_SendActionToTrack(animation, 0x1e4b917f54b4f6f2, kind, &mode_b_turn, &g_unk_710164b968, &g_unk_7172769770,
                           &mask_b_turn);
         } else {
             mode_b_other.id = 0;
             mask_b_other.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x1e4b917f54b4f6f2, kind, &mode_b_other, &g_unk_710164b958, &g_unk_7172769740,
+            CAnimationComponent_SendActionToTrack(animation, 0x1e4b917f54b4f6f2, kind, &mode_b_other, &g_unk_710164b958, &g_unk_7172769740,
                           &mask_b_other);
         }
     } else {
         self->reaction = 0x1720955b012a5867;
         mode_b_same.id = 0;
         mask_b_same.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, 0x1720955b012a5867, kind, &mode_b_same, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(animation, 0x1720955b012a5867, kind, &mode_b_same, &g_unk_710164b958, &g_unk_7172769740,
                       &mask_b_same);
     }
 }

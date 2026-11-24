@@ -29,7 +29,7 @@ template <>
 base::reflection::UnkReflObject*
 base::reflection::refl_FindTyped<UnkRefl_fn_7100a4df20>(void*);
 
-void fn_7100a4dffc(void* holder);
+void CCameraToRailLogicAction_RemoveRailCameras(void* holder);
 
 struct UnkCameraToRailAction_b53 {
     void* vtable;
@@ -41,7 +41,7 @@ static inline char* IdTable() {
     return reinterpret_cast<char*>(&base::reflection::refl_GetSingleton());
 }
 
-void fn_7100a4dd3c(UnkCameraToRailAction_b53* self) {
+void CCameraToRailLogicAction_SwitchCameraToOrFromRail(UnkCameraToRailAction_b53* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     bool enable = self->enable;
     void* holder = fn_7100defcec(g_unk_7101d47310);
@@ -59,7 +59,7 @@ void fn_7100a4dd3c(UnkCameraToRailAction_b53* self) {
     } else {
         if (!holder)
             return;
-        fn_7100a4dffc(holder);
+        CCameraToRailLogicAction_RemoveRailCameras(holder);
         fn_71010e4168(holder, reinterpret_cast<const CStrId*>(IdTable() + 0x17e0), false);
     }
 }

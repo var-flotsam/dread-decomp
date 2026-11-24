@@ -48,7 +48,7 @@ void fn_71004c8120(UnkLavaDrops_b59* self) {
         mode.id = 0;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(anim, 0x667fbf1d7bb5877b, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(anim, 0x667fbf1d7bb5877b, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask);
     }
 timeline:

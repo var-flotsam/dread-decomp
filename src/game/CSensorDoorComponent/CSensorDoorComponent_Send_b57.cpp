@@ -47,7 +47,7 @@ static inline __attribute__((always_inline)) void Send_b57(UnkSensorDoor_b57* se
         fn_710117ae38(target, base::global::CName(c).hash, false) ? &g_unk_7172769794 : &g_unk_7172769740;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, desc, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, desc, &mask);
     if (void* weak = fn_71002b3b84(reinterpret_cast<UnkWeakTarget*>(self->owner)))
         fn_71009c0f1c(weak, weak_hash);
     self->field_0x1ec = 0;

@@ -156,7 +156,7 @@ static inline void Send(void* target, u64 hash, UnkReflTypeIdArg* request, u32 m
                         const void* desc = &g_unk_710164b958) {
     request->id = mode;
     mask->id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6, request, desc, &g_unk_7172769740, mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, request, desc, &g_unk_7172769740, mask);
 }
 
 void fn_71008be4e0(UnkCommanderXLife_l8be4e0* self) {

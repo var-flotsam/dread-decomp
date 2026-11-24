@@ -38,7 +38,7 @@ static inline void* SubAreaManager() {
     return manager;
 }
 
-void fn_7100cd9814(UnkSetSubAreaSetupEvent_ovb0136* self) {
+void CCharClassSetSubAreaSetupEvent_Apply(UnkSetSubAreaSetupEvent_ovb0136* self) {
     if (self->setup.data == &g_unk_7101d47108->empty)
         return;
     if (self->subArea.data == &g_unk_7101d47108->empty) {

@@ -19,7 +19,7 @@ struct UnkCaptionVoiceEvent {
     bool c;
 };
 
-void fn_7100bc4d0c(UnkCaptionVoiceEvent* self) {
+void CCharClassPlayCaptionVoiceEvent_PlayCaptionVoice(UnkCaptionVoiceEvent* self) {
     void* player = g_unk_7172758b20;
     if (!player) {
         player = fn_71000839a0(0x40, 0x3f);

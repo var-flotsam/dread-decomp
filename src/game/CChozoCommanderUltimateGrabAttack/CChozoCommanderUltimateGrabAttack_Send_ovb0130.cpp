@@ -54,7 +54,7 @@ bool fn_7100440140(UnkUltimateGrab_ovb0130* self, s32 kind, f32 value) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    return fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &param, &mask);
+    return CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &param, &mask);
 }
 
 extern const u64 g_unk_7101649598[] __attribute__((visibility("hidden")));  // a hash per kind
@@ -84,7 +84,7 @@ bool fn_710043ffa4(UnkUltimateGrab_ovb0130* self, s32 kind, f32 value) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    return fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &param, &mask);
+    return CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &param, &mask);
 }
 
 struct UnkSmState_ovb0130 {

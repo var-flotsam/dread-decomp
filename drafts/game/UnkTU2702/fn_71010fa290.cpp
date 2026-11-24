@@ -32,7 +32,7 @@ void fn_710088d004(void* set, void** slot);
 void fn_7101115fc4(void* self, void* arg);
 void fn_7101115fd0(void* self, void* arg);
 void fn_7101115fdc(void* self, void* arg);
-UnkCollisionObject* fn_7100863814(UnkCollisionContainer* self, const CStrId* id, const u32* extra);
+UnkCollisionObject* CCollisionComponent_AddFlagsToFirstObjectWithId(UnkCollisionContainer* self, const CStrId* id, const u32* extra);
 
 extern CStrId g_unk_7172a06340 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a06348 __attribute__((visibility("hidden")));
@@ -288,7 +288,7 @@ void fn_71010fa290(char* object) {
     if (UnkCollision_l0fa290* collision = self->owner->collision) {
         if (!(self->tunable->sight_radius >= 0.0f)) {
             u32 flags = 0x10000000;
-            fn_7100863814(reinterpret_cast<UnkCollisionContainer*>(collision), &g_unk_7172a06340, &flags);
+            CCollisionComponent_AddFlagsToFirstObjectWithId(reinterpret_cast<UnkCollisionContainer*>(collision), &g_unk_7172a06340, &flags);
         } else if (!fn_71008640a4(reinterpret_cast<UnkCollisionContainer*>(collision), &g_unk_7172a06348)) {
             const CStrId& group = base::reflection::refl_GetStrIdTable<0x7100031894>().ids[0x13e];
             UnkCollider_l0fa290* collider =

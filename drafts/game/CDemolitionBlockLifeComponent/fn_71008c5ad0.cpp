@@ -342,7 +342,7 @@ void fn_71008c5ad0(UnkDemolitionBlockLoad* self, CBlackboard* blackboard) {
             if (fn_7101176e78(static_cast<UnkStruct_7101176ea8*>(animation), reinterpret_cast<void*>(hash), nullptr)) {
                 mode.id = 0;
                 mask.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-                fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_717276974c,
+                CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_717276974c,
                               &mask);
             }
         }

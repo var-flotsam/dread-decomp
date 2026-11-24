@@ -113,7 +113,7 @@ static inline bool IsEmpty(const CStrId& id) {
 }
 
 static inline bool HasTrack(UnkAnimationComponent* anim, const CStrId& name) {
-    return fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(anim),
+    return CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(anim),
                          reinterpret_cast<UnkCls_710117af10**>(const_cast<CStrId*>(&name)), false);
 }
 

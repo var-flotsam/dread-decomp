@@ -174,7 +174,7 @@ void fn_7101108280(UnkLeapAI_l108280* self, UnkLeapActor_l108280* target) {
     mode.id = 1;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    if (fn_7101176690(actions, name.Str()->key, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+    if (CAnimationComponent_SendActionToTrack(actions, name.Str()->key, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask))
         return;
     u64 plain = GameManagerIdTable().field_0x13f8.data->Key();
@@ -182,7 +182,7 @@ void fn_7101108280(UnkLeapAI_l108280* self, UnkLeapActor_l108280* target) {
     plainMode.id = 1;
     base::reflection::UnkReflTypeIdArg plainMask;
     plainMask.id = UnkAll_SpitSend().value;
-    if (!fn_7101176690(actions, plain, 0xf4061ff25a2163d6, &plainMode, &g_unk_710164b958, &g_unk_7172769740,
+    if (!CAnimationComponent_SendActionToTrack(actions, plain, 0xf4061ff25a2163d6, &plainMode, &g_unk_710164b958, &g_unk_7172769740,
                        &plainMask))
         return;
 

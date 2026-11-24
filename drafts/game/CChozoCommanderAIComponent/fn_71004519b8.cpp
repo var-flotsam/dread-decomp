@@ -138,7 +138,7 @@ static inline void Send(void* target, u64 hash, base::reflection::UnkReflTypeIdA
                         base::reflection::UnkReflTypeIdArg* mask) {
     mode->id = 0;
     mask->id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b958, &g_unk_7172769740, mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b958, &g_unk_7172769740, mask);
 }
 
 static const u64 kShieldHitId = 0x8d1b8dfce0a09065;

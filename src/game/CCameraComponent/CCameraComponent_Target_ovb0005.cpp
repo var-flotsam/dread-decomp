@@ -171,7 +171,7 @@ struct UnkPlayerView_ovb5 {
     UnkAnimationComponent* field_0x220;
 };
 
-f32 fn_71010e49c8(UnkCamComp3_ovb5* self, UnkPlayer* target, const CVector3D* pos, f32 margin) {
+f32 CCameraComponent_GetTargetDepthDistance(UnkCamComp3_ovb5* self, UnkPlayer* target, const CVector3D* pos, f32 margin) {
     if (!(self->field_0x4c < 0.0f))
         return self->field_0x4c;
     if (!target)

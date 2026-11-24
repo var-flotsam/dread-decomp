@@ -123,7 +123,7 @@ void fn_710042ac8c(UnkShardsAttack_42ac8c* self) {
     // The ends of the commander's range.
     f32 start;
     f32 end;
-    fn_71010fc31c(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(commander), &start);
+    CAIComponent_GetPathFirstLegStartX(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(commander), &start);
     fn_71010fc284(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(commander), &end);
     f32 x = start + (end - start) * 0.5f;
     f32 y = self->owner->field_0x54 + self->tuning->height;

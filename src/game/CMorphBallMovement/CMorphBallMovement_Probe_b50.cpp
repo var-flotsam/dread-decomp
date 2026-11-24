@@ -13,7 +13,7 @@ using base::math::CVector3D;
 
 // `arg` (x1) reaches fn_7100978f58 untouched in the original (tools/forwarded_args.py).
 void fn_710094014c(char* self, const void* arg) {
-    fn_7100978f58(self, arg);
+    CCharacterMovement_SetOwnerPositionDroppedToGround(self, arg);
     UnkProbeResult result;
     result.field_0x0 = 0;
     result.field_0x8 = 0;

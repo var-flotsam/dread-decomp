@@ -112,7 +112,7 @@ void fn_7100a787cc(UnkCapsule_la787cc* self) {
     u64 hash = self->config->field_0x1d8->hash;
     mode.id = 0;
     mask.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     self->listener.owner = self;
     self->listener.callback = fn_7100a78e44;
     UnkCapsuleListener_la787cc* link = &self->listener;
@@ -140,5 +140,5 @@ void fn_7100a787cc(UnkCapsule_la787cc* self) {
     u64 hash2 = self->config->field_0x1e8->hash;
     mode2.id = 2;
     mask2.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-    fn_7101176690(target2, hash2, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
+    CAnimationComponent_SendActionToTrack(target2, hash2, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
 }

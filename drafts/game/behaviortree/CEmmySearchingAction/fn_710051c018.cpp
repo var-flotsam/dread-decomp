@@ -150,17 +150,17 @@ void fn_710051c018(UnkEmmySearchingAction_b0068* action, bool* fromTarget, bool*
         if (fn_7100979ef0(movement)) {
             modeA.id = 0;
             maskA.id = UnkAll_SpitSend().value;
-            sent = fn_7101176690(animation, 0x33723105a0f4830b, 0xf4061ff25a2163d6, &modeA, &g_unk_710164b958,
+            sent = CAnimationComponent_SendActionToTrack(animation, 0x33723105a0f4830b, 0xf4061ff25a2163d6, &modeA, &g_unk_710164b958,
                                  &g_unk_7172769740, &maskA);
         } else if (fn_71005717d4(movement, movement->field_0x9e4)) {
             modeB.id = 0;
             maskB.id = UnkAll_SpitSend().value;
-            sent = fn_7101176690(animation, 0x0318db99da3da690, 0xf4061ff25a2163d6, &modeB, &g_unk_710164b958,
+            sent = CAnimationComponent_SendActionToTrack(animation, 0x0318db99da3da690, 0xf4061ff25a2163d6, &modeB, &g_unk_710164b958,
                                  &g_unk_7172769740, &maskB);
         } else {
             modeC.id = 0;
             maskC.id = UnkAll_SpitSend().value;
-            sent = fn_7101176690(animation, 0x7a4ea211f0e3ce50, 0xf4061ff25a2163d6, &modeC, &g_unk_710164b958,
+            sent = CAnimationComponent_SendActionToTrack(animation, 0x7a4ea211f0e3ce50, 0xf4061ff25a2163d6, &modeC, &g_unk_710164b958,
                                  &g_unk_7172769740, &maskC);
         }
         if (sent) {

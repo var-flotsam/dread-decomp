@@ -45,7 +45,7 @@ struct UnkInnerVec_col {
 typedef base::global::CRntVector<UnkInnerVec_col> UnkOuterVec_col;
 
 // Appends a copy of an inner array.
-void fn_7100d43e70(UnkOuterVec_col* self, const UnkInnerVec_col* value) {
+void CCollider_PushBackArrayCopy(UnkOuterVec_col* self, const UnkInnerVec_col* value) {
     self->PushBackCopy(*value);
 }
 
@@ -61,5 +61,5 @@ void fn_7100d43d50(UnkOuterVec_col* self, const UnkOuterVec_col* other) {
     self->allocator = other->allocator;
     self->Reserve(other->capacity);
     for (const UnkInnerVec_col *p = other->data, *end = p + other->count; p != end; ++p)
-        fn_7100d43e70(self, p);
+        CCollider_PushBackArrayCopy(self, p);
 }

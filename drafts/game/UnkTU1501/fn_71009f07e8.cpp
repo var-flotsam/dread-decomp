@@ -86,7 +86,7 @@ void fn_71009f07e8(UnkSamusMovement_l9f07e8* self) {
     request.flags |= 2;
     UnkMoveMode_l9f07e8* state = self->field_0x2d08;
     if (state && state->mode == 2) {
-        fn_7101176ea8(self->owner->animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&request),
+        CAnimationComponent_SendActionRequestRecordToTrack(self->owner->animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&request),
                       0xf4061ff25a2163d6);
     } else {
         UnkAirTarget_B71a6* machine = reinterpret_cast<UnkAirTarget_B71a6*>(self->field_0x2cf8);

@@ -42,7 +42,7 @@ static inline __attribute__((always_inline)) void Send_b57a4(void* target, u64 h
     mode.id = m;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
 // The base attack update, typed as an opaque attack (one declaration for every caller).

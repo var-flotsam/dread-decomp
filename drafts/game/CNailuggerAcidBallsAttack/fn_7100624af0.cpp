@@ -86,7 +86,7 @@ void fn_7100624af0(UnkAcidBallsAttack_l624af0* self) {
         UnkAcidBallsParams_l624af0 params;
         turn_mode.id = 10;
         turn_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, 0xb3feb6d516806342ull, kind, &turn_mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(animation, 0xb3feb6d516806342ull, kind, &turn_mode, &g_unk_710164b958, &g_unk_7172769740,
                       &turn_mask);
         params.field_0x30 = false;
         params.field_0x20 = 0;
@@ -108,7 +108,7 @@ void fn_7100624af0(UnkAcidBallsAttack_l624af0* self) {
         base::reflection::UnkReflTypeIdArg mask;
         mode.id = 2;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, 0xcb24643fce5b5852ull, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(animation, 0xcb24643fce5b5852ull, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
         break;
     }
 

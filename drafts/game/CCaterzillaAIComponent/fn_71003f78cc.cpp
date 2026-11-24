@@ -34,7 +34,7 @@ struct UnkEntry_b41a1 {
 void fn_7100246a94(base::global::CRntVector<UnkEntry_b41a1>* self, const base::global::CRntVector<UnkEntry_b41a1>* other);
 void fn_71003f7034(UnkCaterzillaAI_l3f7034* self, bool first, bool second);
 UnkCaterzillaMode_ovb0054* fn_71003f7fa0(UnkCaterzillaActor_ovb0054* actor);
-bool fn_7100a17628(UnkCaterzillaSpawn3_ovb0054* self, const CVector2D* pos, u32 index, const CVector2D* dir);
+bool CCaterzillaSpawnPointComponent_IsHomeLandmarkNotInLineWithDir(UnkCaterzillaSpawn3_ovb0054* self, const CVector2D* pos, u32 index, const CVector2D* dir);
 
 struct UnkCaterzillaAI_l3f78cc;
 struct UnkCaterzillaSpawn_l3f78cc;
@@ -228,7 +228,7 @@ void fn_71003f78cc(UnkCaterzillaAI_l3f78cc* self, f32 dt) {
     CVector2D pos, dir;
     Planar(&pos, Position(self->owner));
     Planar(&dir, Front(self->owner));
-    bool blocked = fn_7100a17628(reinterpret_cast<UnkCaterzillaSpawn3_ovb0054*>(current), &pos, index, &dir);
+    bool blocked = CCaterzillaSpawnPointComponent_IsHomeLandmarkNotInLineWithDir(reinterpret_cast<UnkCaterzillaSpawn3_ovb0054*>(current), &pos, index, &dir);
     fn_71003f7488(self, !blocked, value);
 
     CGameLink<CActor> link = LinkAt(self->spawn, index);

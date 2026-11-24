@@ -95,7 +95,7 @@ void fn_71003493d8(UnkAimComponent_l3493d8* self, UnkAimInfo_l3493d8* info, f32 
         return;
     }
     UnkAnimationComponent* animation = self->owner->animation;
-    UnkTrackAction* action = fn_710070d500(fn_71011771e0(animation, 0xf4061ff25a2163d6));
+    UnkTrackAction* action = fn_710070d500(CAnimationComponent_FindTrackByNameHash(animation, 0xf4061ff25a2163d6));
     f32 angle;
     if (action && fn_710009d50c(action->vf_0x18(), fn_7100c9a598())) {
         angle = base;

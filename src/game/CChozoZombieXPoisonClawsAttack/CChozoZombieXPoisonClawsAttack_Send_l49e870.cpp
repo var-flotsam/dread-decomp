@@ -13,7 +13,7 @@ static inline void Send(void* target, u64 hash, base::reflection::UnkReflTypeIdA
                         const void* b, base::reflection::UnkReflTypeIdArg* mask) {
     mode->id = 2;
     mask->id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6ull, mode, a, b, mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6ull, mode, a, b, mask);
 }
 
 void fn_710049e870(UnkPoisonClaws_l49e870* self, u64 hash, bool flag) {

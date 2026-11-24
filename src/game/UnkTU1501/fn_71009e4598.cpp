@@ -134,6 +134,6 @@ void fn_71009e4598(UnkSamusMovementUpdate* movement) {
     }
 
     if (request.id != -1)
-        fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
+        CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
                       reinterpret_cast<const UnkRequest_7101176ea8*>(&request), 0xf4061ff25a2163d6);
 }
