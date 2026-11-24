@@ -51,7 +51,7 @@ void fn_71004cc42c(UnkWindTunnelEnd_ovb0265* self) {
     UnkReflObject* ai = static_cast<UnkReflObject*>(self->owner->field_0x240);
     if (ai && fn_710009d50c(ai->vf_0x0(), fn_71004cf318()))
         fn_71004d432c(reinterpret_cast<UnkCooldownAI_ovb0265*>(ai), 0);
-    if (auto* container = *reinterpret_cast<UnkCollisionContainer**>(reinterpret_cast<char*>(self->owner) + 0x2a0)) {
+    if (UnkCollisionContainer* container = self->owner->field_0x2a0) {
         if (UnkCollisionObject* object = fn_71008640a4(container, &g_unk_71726d8108))
             fn_7100d35a98(reinterpret_cast<UnkEntry*>(object), false);
     }

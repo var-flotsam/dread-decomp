@@ -254,7 +254,7 @@ s32 fn_7101092ca0(lua_State* L) {
 
 static inline const UnkQualifiedId& GetQualifiedId_b0162(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
-    if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+    if (qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
     return qid;
 }
@@ -267,7 +267,7 @@ static inline void SetFlag_b0162(UnkPropertyEx<>& property) {
     CBlackboard* blackboard = &manager->field_0x968;
     const CStrId& section_id = GameManagerIdTable().field_0x1148;
     UnkQualifiedId& qid = ItemQualifiedId(property);
-    if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+    if (qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&qid, ItemSource(property), g_unk_7101d470e0);
     bool value = true;
     if (CBlackboard::CSection* section = fn_71010472e0(blackboard, section_id)) {

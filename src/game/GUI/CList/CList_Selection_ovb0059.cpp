@@ -180,7 +180,7 @@ void fn_71012015a0(UnkList_ovb0059* self, const CStrId* id) {
 void fn_7101201a70(UnkList_ovb0059* self, UnkSmArg_A6_b62* arg) {
     fn_71011d9a44(reinterpret_cast<UnkSmBase_A6_b62*>(self), arg);
     UnkWeakHandle* handle = *reinterpret_cast<UnkWeakHandle**>(arg);
-    void* target = handle ? *reinterpret_cast<void**>(reinterpret_cast<u8*>(handle) + 0x10) : nullptr;
+    void* target = handle ? handle->target : nullptr;
     if (target == self->ItemAt(self->selected))
         fn_7101200790(self);
 }

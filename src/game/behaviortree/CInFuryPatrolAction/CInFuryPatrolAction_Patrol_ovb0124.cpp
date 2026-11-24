@@ -25,7 +25,7 @@ using base::global::CStrId;
 
 inline CStrId* FlagName_ovb0124() {
     static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");
-    return reinterpret_cast<CStrId*>(reinterpret_cast<u8*>(&s_table) + 0x8f0);
+    return &s_table.field_0x8f0;
 }
 
 struct UnkPatrolOwner_ovb0124 {

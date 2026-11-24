@@ -61,6 +61,6 @@ void fn_7100a86138(UnkMapAcquisitionQ_ovb0090* self, f32 dt) {
     AskSaveQuestion(reinterpret_cast<UnkMapAcquisition_b50a5*>(self), fn_7100a88610, fn_7100a8861c);
 }
 
-void fn_7100a86d00(UnkMapAcquisition_b50a5* self) {
+void CMapAcquisitionComponent_AskSaveQuestion(UnkMapAcquisition_b50a5* self) {
     AskSaveQuestion(self, fn_7100a88640, fn_7100a88644);
 }

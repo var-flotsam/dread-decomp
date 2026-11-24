@@ -24,7 +24,7 @@ struct UnkChainReactionSwitcher_b54 {
 };
 
 static inline u64 StrIdHash_b54(const base::global::CStrId& id) {
-    return *reinterpret_cast<u64*>(reinterpret_cast<char*>(id.data) + 0x30);
+    return id.data->Key();
 }
 
 void fn_7100876a38(UnkChainReactionSwitcher_b54* self, const base::global::CStrId& first,

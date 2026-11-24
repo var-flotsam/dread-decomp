@@ -17,5 +17,5 @@ static inline void SetKey(UnkGuiKeyList* list, bool on, base::global::CStrId* ke
         fn_710002ffb4(list, key);
 }
 
-void fn_71003448d4(UnkAimKeyListOwner* self, bool on, base::global::CStrId* key) { SetKey(&self->list_0x6e8, on, key); }
+void CAimComponent_ForceAimPressed(UnkAimKeyListOwner* self, bool on, base::global::CStrId* key) { SetKey(&self->list_0x6e8, on, key); }
 void fn_71003448ec(UnkAimKeyListOwner* self, bool on, base::global::CStrId* key) { SetKey(&self->list_0x798, on, key); }

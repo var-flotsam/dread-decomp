@@ -134,7 +134,7 @@ struct UnkObsydomithonEvent_b0119 {
 };
 
 static inline u64 IdHash(const CStrId& id) {
-    return *reinterpret_cast<u64*>(reinterpret_cast<char*>(id.data) + 0x30);
+    return id.data->Key();
 }
 
 bool fn_710062a120(UnkObsydomithonAttack_b0119* self, UnkObsydomithonEvent_b0119* event) {

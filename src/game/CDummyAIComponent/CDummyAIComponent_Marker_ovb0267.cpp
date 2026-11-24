@@ -77,7 +77,7 @@ void fn_71003b1a18(UnkDummyComp_ovb0267* self, const f32* color) {
         UnkRenderManager* manager = g_unk_7101d47300;
         UnkSceneObject* effect = nullptr;
         fn_7100149930(manager->field_0x218, nullptr, &effect, &base::global::CStrId::Empty());
-        fn_7100219ae0(manager, effect ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(effect) + 8) : nullptr, 0);
+        fn_7100219ae0(manager, effect ? &effect->field_0x8 : nullptr, 0);
         marker->effect = effect;
         fn_710014826c(effect, 6, 0x28, UnkColorArg_710050f26c(color), true, width);
     }

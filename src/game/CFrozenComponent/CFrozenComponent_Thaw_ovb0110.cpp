@@ -49,7 +49,7 @@ struct UnkFrozenOwner_ov110 {
 
 // The string data's hash (+0x30).
 static inline u64 Hash_ov110(const CStrId& id) {
-    return *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(id.data) + 0x30);
+    return id.data->Key();
 }
 
 struct UnkFrozenComponent_ov110 {

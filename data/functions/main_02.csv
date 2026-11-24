@@ -2451,7 +2451,7 @@ address,size,name,name_source,subsystem,status
 0x71002520e8,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::End",reflection,engine/reflection,O
 0x71002520fc,152,fn_71002520fc,unknown,unknown,O
 0x7100252194,168,fn_7100252194,unknown,unknown,O
-0x7100252240,808,fn_7100252240,unknown,engine/reflection?,O
+0x7100252240,808,CActorComponent_InitStatics,inferred,engine/reflection?,O
 0x7100252568,88,CActorComponentDef::refl_AddAttributes,reflection,game,O
 0x71002525c0,244,CActorComponentDef::refl_GetClass,reflection,game,O
 0x71002526b4,2184,CActorComponentDef::refl_AddFields,reflection,game,O
@@ -2504,7 +2504,7 @@ address,size,name,name_source,subsystem,status
 0x7100254fdc,380,fn_7100254fdc,unknown,game?,O
 0x7100255158,272,fn_7100255158,unknown,game?,O
 0x7100255268,60,fn_7100255268,unknown,game?,O
-0x71002552a4,144,fn_71002552a4,unknown,game?,O
+0x71002552a4,144,CActorDef_FindComponentByType,inferred,game?,O
 0x7100255334,52,fn_7100255334,unknown,game?,O
 0x7100255368,52,fn_7100255368,unknown,game?,O
 0x710025539c,2380,fn_710025539c,unknown,game?,U
@@ -2512,7 +2512,7 @@ address,size,name,name_source,subsystem,status
 0x7100256184,120,fn_7100256184,unknown,game?,O
 0x71002561fc,108,fn_71002561fc,unknown,game?,O
 0x7100256268,372,fn_7100256268,unknown,game?,O
-0x71002563dc,784,fn_71002563dc,unknown,game?,O
+0x71002563dc,784,CActorDef_ReadComponents,inferred,game?,O
 0x71002566ec,32,fn_71002566ec,unknown,game?,O
 0x710025670c,28,fn_710025670c,unknown,game?,O
 0x7100256728,128,fn_7100256728,unknown,game?,O
@@ -5766,9 +5766,9 @@ address,size,name,name_source,subsystem,status
 0x71002ef4e4,100,fn_71002ef4e4,unknown,unknown,O
 0x71002ef548,116,fn_71002ef548,unknown,unknown,O
 0x71002ef5bc,176,fn_71002ef5bc,unknown,unknown,O
-0x71002ef66c,568,fn_71002ef66c,unknown,engine/reflection?,O
+0x71002ef66c,568,CPlaythrough_TruncateRecords,inferred,engine/reflection?,O
 0x71002ef8a4,400,fn_71002ef8a4,unknown,unknown,O
-0x71002efa40,1324,fn_71002efa40,unknown,unknown,O
+0x71002efa40,1324,CPlaythrough_InitStatics,inferred,unknown,O
 0x71002eff6c,88,CPlaythroughDef::refl_AddAttributes,reflection,game/core,O
 0x71002effc4,244,CPlaythroughDef::refl_GetClass,reflection,game/core,O
 0x71002f00b8,1100,CPlaythroughDef::refl_AddFields,reflection,game/core,O
@@ -5792,13 +5792,13 @@ address,size,name,name_source,subsystem,status
 0x71002f20e0,480,fn_71002f20e0,unknown,engine/reflection?,O
 0x71002f22c0,220,fn_71002f22c0,unknown,engine/reflection?,O
 0x71002f239c,220,fn_71002f239c,unknown,engine/reflection?,O
-0x71002f2478,372,fn_71002f2478,unknown,engine/reflection?,O
+0x71002f2478,372,CPlaythroughDef_GetCheckpointTagsString,inferred,engine/reflection?,O
 0x71002f25ec,304,fn_71002f25ec,unknown,engine/reflection?,O
 0x71002f271c,600,fn_71002f271c,unknown,engine/reflection?,U
 0x71002f2974,288,fn_71002f2974,unknown,engine/reflection?,O
 0x71002f2a94,464,fn_71002f2a94,unknown,engine/reflection?,O
 0x71002f2c64,204,fn_71002f2c64,unknown,engine/reflection?,O
-0x71002f2d30,52,fn_71002f2d30,unknown,engine/reflection?,O
+0x71002f2d30,52,CPlaythroughDef_FindCheckpointDef,inferred,engine/reflection?,O
 0x71002f2d64,28,fn_71002f2d64,unknown,engine/reflection?,O
 0x71002f2d80,312,fn_71002f2d80,unknown,engine/reflection?,O
 0x71002f2eb8,36,fn_71002f2eb8,unknown,engine/reflection?,O
@@ -5964,7 +5964,7 @@ address,size,name,name_source,subsystem,status
 0x71002f6068,36,fn_71002f6068,unknown,engine/reflection?,O
 0x71002f608c,120,fn_71002f608c,unknown,unknown,O
 0x71002f6104,112,fn_71002f6104,unknown,unknown,O
-0x71002f6180,908,fn_71002f6180,unknown,engine/reflection?,O
+0x71002f6180,908,CPlaythroughDef_InitStatics,inferred,engine/reflection?,O
 0x71002f650c,192,fn_71002f650c,unknown,unknown,O
 0x71002f65cc,8,fn_71002f65cc,unknown,unknown,O
 0x71002f65d4,36,fn_71002f65d4,unknown,unknown,O

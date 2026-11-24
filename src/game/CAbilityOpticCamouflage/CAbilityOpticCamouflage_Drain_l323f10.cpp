@@ -17,7 +17,7 @@ struct UnkLifeValues;
 struct UnkTarget429;
 
 bool fn_71011601b8(UnkLifeValues* self, f32 amount);
-void fn_7100324060(UnkOpticAbility_ovb0059* self, f32 dt);
+void CAbilityOpticCamouflage_PulseModelColor(UnkOpticAbility_ovb0059* self, f32 dt);
 
 extern const u64 g_unk_7101648e28;  // the timeline event played when the energy runs out
 extern const u64 g_unk_7101648e30;  // the one played when it comes back
@@ -93,7 +93,7 @@ struct UnkOpticAbility_l323f10 {
     bool out_of_energy;  // 0x398
 };
 
-void fn_7100323f10(UnkOpticAbility_l323f10* self, f32 dt) {
+void CAbilityOpticCamouflage_ConsumeEnergyAndDamageLife(UnkOpticAbility_l323f10* self, f32 dt) {
     UnkOpticOwner_l323f10* owner = self->owner;
     if (owner->part) {
         if (UnkOpticEnergy_l323f10* energy = owner->part->energy) {
@@ -127,5 +127,5 @@ void fn_7100323f10(UnkOpticAbility_l323f10* self, f32 dt) {
             }
         }
     }
-    fn_7100324060(reinterpret_cast<UnkOpticAbility_ovb0059*>(self), dt);
+    CAbilityOpticCamouflage_PulseModelColor(reinterpret_cast<UnkOpticAbility_ovb0059*>(self), dt);
 }

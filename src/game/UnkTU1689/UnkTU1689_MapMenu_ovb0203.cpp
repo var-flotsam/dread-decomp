@@ -167,7 +167,11 @@ struct UnkMapMenuController_ovb0203 {
     u8 pad_0x93c[0x80];
     s32 field_0x9bc;  // 0x9bc
     bool field_0x9c0;  // 0x9c0
-    u8 pad_0x9c1[0x7e7];
+    u8 pad_0x9c1[0x1e7];
+    UnkMenuListener_ovb0203 field_0xba8;  // 0xba8
+    u8 pad_0xbb0[0x100];
+    UnkMenuListener_ovb0203 field_0xcb0;  // 0xcb0
+    u8 pad_0xcb8[0x4f0];
     UnkMenuListener_ovb0203* field_0x11a8;  // 0x11a8
 };
 
@@ -508,9 +512,9 @@ void fn_7100b42148(UnkMapMenuController_ovb0203* self, void* arg) {
     UnkMenuListener_ovb0203* listener;
     if (flag) {
         fn_7100b422a8();
-        listener = reinterpret_cast<UnkMenuListener_ovb0203*>(reinterpret_cast<char*>(self) + 0xcb0);
+        listener = &self->field_0xcb0;
     } else {
-        listener = reinterpret_cast<UnkMenuListener_ovb0203*>(reinterpret_cast<char*>(self) + 0xba8);
+        listener = &self->field_0xba8;
     }
     fn_7100b42be0(listener, arg);
     self->field_0x11a8 = listener;

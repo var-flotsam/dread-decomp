@@ -194,7 +194,10 @@ hang:
 }
 
 struct UnkRenderPool;
-struct UnkSceneObject_b0181;
+struct UnkSceneObject_b0181 {
+    u8 pad_0x0[0x10];
+    u8 field_0x10[0x8];  // what the render pool names the node after (fn_7100b74b9c)
+};
 
 // An entry (0x18 bytes) that owns a scene node: dropped from the render manager when destroyed.
 struct UnkNodeEntry_b0181 {
@@ -250,7 +253,7 @@ UnkNodeEntry_b0181* fn_7101068980(base::global::CRntVector<UnkNodeEntry_b0181>* 
         entry->field_0xc = second;
         UnkRenderManager* manager = g_unk_7101d47300;
         UnkSceneNode* node = nullptr;
-        fn_7100b74b9c(manager->field_0x218, reinterpret_cast<u8*>(owner) + 0x10, &node, &base::global::CStrId::Empty());
+        fn_7100b74b9c(manager->field_0x218, owner->field_0x10, &node, &base::global::CStrId::Empty());
         fn_7100219ae0(manager, node, 0);
         entry->node = node;
     }

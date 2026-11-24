@@ -33,7 +33,7 @@ struct UnkLockOnMovement_ovb0121 {
 struct UnkAbility;
 struct UnkAbilitySet;
 // The ability named by the id `id` points at (src/game/CProjectileMovement/CProjectileMovement_HitAbility_b46.cpp).
-void fn_710031c7b8(UnkReflObject* ability, void* lock);
+void CAbilityMultiLockon_AddFadingObject(UnkReflObject* ability, void* lock);
 
 void fn_7100ab6bb8(UnkLockOnMovement_ovb0121* self) {
     if (!self->lock)
@@ -51,7 +51,7 @@ void fn_7100ab6bb8(UnkLockOnMovement_ovb0121* self) {
         return;
     if (!fn_710009d50c(ability->vf_0x0(), fn_7100316638()))
         return;
-    fn_710031c7b8(ability, self->lock);
+    CAbilityMultiLockon_AddFadingObject(ability, self->lock);
     self->lock = nullptr;
 }
 
@@ -113,7 +113,7 @@ bool fn_7100ab6828(UnkLockOnInit_ovb0121* self) {
         UnkRenderManager* manager = g_unk_7101d47300;
         UnkSceneObject* effect = nullptr;
         fn_7100149930(manager->field_0x218, nullptr, &effect, &base::global::CStrId::Empty());
-        fn_7100219ae0(manager, effect ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(effect) + 8) : nullptr, 0);
+        fn_7100219ae0(manager, effect ? &effect->field_0x8 : nullptr, 0);
         self->effect = effect;
         if (effect) {
             fn_71001be020(effect->field_0x130, g_unk_7172754a68);

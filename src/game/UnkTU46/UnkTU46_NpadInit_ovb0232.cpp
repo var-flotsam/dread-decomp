@@ -67,5 +67,5 @@ void fn_710006daf0(UnkSoundGroup_710006cdb8* self_) {
     for (u32 i = 1; i < 9; ++i)
         self->modes[i] = 1;
     u64 pair = 0x200000001ULL;
-    __builtin_memcpy(reinterpret_cast<u8*>(self) + 0xc, &pair, 8);
+    __builtin_memcpy(&self->field_0xc, &pair, 8);
 }

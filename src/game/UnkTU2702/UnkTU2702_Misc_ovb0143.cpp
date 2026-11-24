@@ -362,7 +362,7 @@ CAttack* fn_7101105148(UnkAttackListSelf_b0143* self, const char* name) {
             {
                 base::global::CRntString key(name);
                 id = NameKey(attackName);
-                keyId = *reinterpret_cast<u64*>(reinterpret_cast<u8*>(&key) + 0x20);
+                keyId = key.key;
             }
             if (id == keyId)
                 return *it;
@@ -374,7 +374,7 @@ CAttack* fn_7101105148(UnkAttackListSelf_b0143* self, const char* name) {
 
 
 struct UnkCancelAttack_ovb0128;
-void* fn_7100362324(UnkCancelAttack_ovb0128*, u32);
+void* CAttack_GetPreset(UnkCancelAttack_ovb0128*, u32);
 
 typedef UnkCancelAttack_ovb0128* UnkCancelPtr_b0143 __attribute__((aligned(4)));
 
@@ -394,7 +394,7 @@ void fn_710110bb4c(UnkCancelSelf_b0143* self, void* arg, u32 id, bool) {
         UnkCancelPtr_b0143* list = reinterpret_cast<UnkCancelPtr_b0143*>(reinterpret_cast<u8*>(self) + 0x161c);
         UnkCancelPtr_b0143* it = list;
         do {
-            if (u8* found = static_cast<u8*>(fn_7100362324(*it, id)))
+            if (u8* found = static_cast<u8*>(CAttack_GetPreset(*it, id)))
                 total += found[0x10];
             ++it;
         } while (it != list + self->count);
@@ -492,6 +492,7 @@ struct UnkBounds_b0143 {
 
 struct UnkBoundsSource_b0143 {
     void** vtable;
+    u8 field_0x8[1];  // what vf_0x28 is passed
     UnkBounds_b0143 vf_0x28(void* arg) {
         return reinterpret_cast<UnkBounds_b0143 (*)(UnkBoundsSource_b0143*, void*)>(vtable[0x28 / 8])(this, arg);
     }
@@ -541,7 +542,7 @@ UnkVec2_b0143 fn_710110f254(UnkBoundsSelf_b0143* self) {
         return result;
     }
     UnkBoundsSource_b0143* source = part->field_0x158;
-    UnkBounds_b0143 bounds = source->vf_0x28(reinterpret_cast<u8*>(source) + 8);
+    UnkBounds_b0143 bounds = source->vf_0x28(source->field_0x8);
     base::math::CVector3D d = {bounds.max_x - bounds.min_x, bounds.max_y - bounds.min_y, bounds.max_z - bounds.min_z};
     fn_710007b430(reinterpret_cast<base::math::CVector2D*>(&result), &d);
     if (UnkBoundsShift_b0143* shift = self->field_0x1610) {

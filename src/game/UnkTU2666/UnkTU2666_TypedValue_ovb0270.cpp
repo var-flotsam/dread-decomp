@@ -76,7 +76,7 @@ s32 fn_7101095cf0(lua_State* L) {
         const CType* type;
         {
                 UnkVersionRegistry* registry = g_unk_7101d4c8d0;
-                u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<u8*>(id.data) + 0x30);
+                u64 hash = id.data->Key();
                 type = reinterpret_cast<const CType*>(fn_71000a5118(registry, &hash));
         }
         if (type) {

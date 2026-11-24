@@ -22,7 +22,7 @@ void fn_7100a84880(void* p);
 void fn_7100a848f8(void* p);
 extern char g_unk_7172750e10;
 
-void fn_7100a88650() {
+void CMapAcquisitionComponent_InitStatics() {
     UnkMapAcquisitionTU& tu = g_unk_7172750e58;
     InitHeader(tu.header);
     new (&g_unk_7172750da0) CStrId("MAP", true);

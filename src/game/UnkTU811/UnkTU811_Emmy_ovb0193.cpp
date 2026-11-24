@@ -219,6 +219,13 @@ struct UnkChaseAI_b0193 {
     UnkChaseOwner_b0193* field_0x30;
     u8 unk_0x38[0x1260 - 0x38];
     CBlackboard field_0x1260;
+    u8 unk_0x1350[0x29418 - 0x1350];
+    u8 field_0x29418[0x29f26 - 0x29418];  // a timer (fn_710002fb70)
+    bool field_0x29f26;
+    u8 unk_0x29f27[0x2a258 - 0x29f27];
+    bool field_0x2a258;
+    u8 unk_0x2a259[0x2a6f0 - 0x2a259];
+    bool field_0x2a6f0;
 };
 struct UnkChaseArgs_b0193 {
     u8 unk_0x0[0x4c];
@@ -226,10 +233,9 @@ struct UnkChaseArgs_b0193 {
 };
 
 bool fn_71005579b0(UnkChaseAI_b0193* self, UnkChaseArgs_b0193* args) {
-    u8* flags = (u8*)self + 0x29f26;
     bool ready = false;
-    if (fn_7101110268(self) && !flags[0x7ca])
-        ready = flags[0x332] == 0;
+    if (fn_7101110268(self) && !self->field_0x2a6f0)
+        ready = self->field_0x2a258 == 0;
     UnkAnimationComponent* track = self->field_0x30->field_0x220;
     if (track) {
         if (!(ready & !fn_710117b348(track, fn_7100c18138())))
@@ -240,9 +246,9 @@ bool fn_71005579b0(UnkChaseAI_b0193* self, UnkChaseArgs_b0193* args) {
     UnkTracked_b0193* tracked = self->field_0x30->field_0x1f8;
     UnkNavMeshCell* cell;
     if (!(tracked && (cell = tracked->vtbl->vf_0x2d0(tracked)) && fn_71002b005c(cell))) {
-        if (fn_710002fb70((u8*)self + 0x29418))
+        if (fn_710002fb70(self->field_0x29418))
             return false;
-        if (flags[0])
+        if (self->field_0x29f26)
             return false;
     }
     if (args->field_0x4c)

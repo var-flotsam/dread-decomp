@@ -341,7 +341,7 @@ void fn_71010e87b8(UnkAnimatedCameraStart_b0101* self, UnkCamArg_b0101* arg) {
         self->field_0x518 = false;
         self->field_0x54c = false;
         self->field_0x580 = false;
-        __builtin_memset(reinterpret_cast<u8*>(self) + 0x584, 0, 0x10);
+        __builtin_memset(self->field_0x584, 0, 0x10);
         self->field_0x260 = 0.01f;
         self->field_0x658 = false;
         if (self->field_0x510.data != &g_unk_7101d47108->empty)

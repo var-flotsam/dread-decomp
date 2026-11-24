@@ -27,12 +27,12 @@ struct UnkInlineString80_A2_b74 {
 };
 
 struct UnkPlaythroughDef_A2_b74;
-UnkInlineString80_A2_b74 fn_71002f2478(UnkPlaythroughDef_A2_b74* self);
+UnkInlineString80_A2_b74 CPlaythroughDef_GetCheckpointTagsString(UnkPlaythroughDef_A2_b74* self);
 struct UnkEnumType;
 UnkEnumType* fn_710009fb38();  // as CGameManager.cpp declares it
 
 UnkReflValue fn_71002f4f44(void*, char* obj) {
-    UnkInlineString80_A2_b74 tags = fn_71002f2478(*reinterpret_cast<UnkPlaythroughDef_A2_b74**>(obj + 8));
+    UnkInlineString80_A2_b74 tags = CPlaythroughDef_GetCheckpointTagsString(*reinterpret_cast<UnkPlaythroughDef_A2_b74**>(obj + 8));
     const CType* type = reinterpret_cast<const CType*>(fn_710009fb38());
     UnkReflValue r;
     r.kind = 2;

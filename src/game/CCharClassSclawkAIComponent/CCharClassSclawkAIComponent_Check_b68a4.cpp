@@ -43,7 +43,7 @@ u32 fn_710067b8b8(void* self, UnkSclawkOwner_b68a4* owner, void* arg, UnkSclawkS
         goto ret4;
     {
         UnkSclawkId_b68a4 id(*reinterpret_cast<const UnkSclawkId_b68a4*>(fn_7101177ae8(anim, 0xf4061ff25a2163d6)));
-        if (*reinterpret_cast<u64*>(reinterpret_cast<char*>(id.data) + 0x30) == 0x1cdf12aa84de383c) {
+        if (id.data->Key() == 0x1cdf12aa84de383c) {
             four = !(state->field_0xb6 & 4);
             result = 5;
         } else {

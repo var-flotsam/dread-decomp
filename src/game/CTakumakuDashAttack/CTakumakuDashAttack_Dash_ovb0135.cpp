@@ -295,7 +295,7 @@ bool fn_71006d0494(UnkTakumakuDash_ovb0135* self, const UnkTakumakuMessage_ovb01
             if (!fn_71006d58b0(self->ai, id) && !fn_71006d58f4(self->ai, id))
                 return true;
             UnkTakumakuId_ovb0135 hash;
-            hash.value = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(id->data) + 0x30);
+            hash.value = id->data->Key();
             fn_71006d0244(self, &hash);
         }
         self->next = 4;

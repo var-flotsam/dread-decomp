@@ -32,6 +32,10 @@ struct UnkGuiOwner_gdo {
 struct UnkGuiParams_gdo {
     u8 unk_0x0[8];
     bool dirty;
+    u8 unk_0x9[0x13];
+    f32 field_0x1c;  // the first block's float
+    u8 unk_0x20[0x10];
+    u32 field_0x30;  // the second block's word
 };
 
 UnkGuiParams_gdo* fn_71011ce0d8(UnkGuiDisplayObject* self);
@@ -105,7 +109,7 @@ UnkResult_0x18_gdo fn_71011d5c64(void*, UnkGuiOwner_gdo* owner, UnkValueSource_g
     UnkGuiDisplayObject* target = owner->target;
     f32 value = PickArg_gdo<f32>(src);
     UnkGuiParams_gdo* params = fn_71011ce0d8(target);
-    f32* field = reinterpret_cast<f32*>(reinterpret_cast<char*>(params) + 0x1c);
+    f32* field = &params->field_0x1c;
     f32 old = *field;
     *field = value;
     if (value > 0.0f && old <= 0.0f)
@@ -120,7 +124,7 @@ UnkResult_0x18_gdo fn_71011d61b4(void*, UnkGuiOwner_gdo* owner, UnkValueSource_g
     UnkGuiDisplayObject* target = owner->target;
     u32 value = PickArg_gdo<u32>(src);
     UnkGuiParams_gdo* params = fn_71011ce24c(target);
-    *reinterpret_cast<u32*>(reinterpret_cast<char*>(params) + 0x30) = value;
+    params->field_0x30 = value;
     params->dirty = true;
     target->vf_0xa0();
     return Done_gdo();

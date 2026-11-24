@@ -38,7 +38,7 @@ struct UnkTempObject_o0309 {
 
 struct UnkShapeInner_o0309 {
     void** vtable;
-    u8 pad_0x8[0x20];
+    u8 field_0x8[0x20];
 };
 struct UnkShape {
     u8 pad_0x0[0x158];
@@ -85,7 +85,7 @@ UnkVec3f fn_7100973658(UnkUnit1444_o0309* self) {
         }
         UnkShapeInner_o0309* shape = fn_7100976588(static_cast<UnkFlagged*>(self->field_0x38))->field_0x158;
         UnkVec3f depth = reinterpret_cast<UnkVec3f (*)(UnkShapeInner_o0309*, void*)>(shape->vtable[0x28 / 8])(
-            shape, reinterpret_cast<u8*>(shape) + 8);
+            shape, shape->field_0x8);
         result.x = px - nx * depth.y;
         result.y = py - ny * depth.y;
         result.z = 0.0f - 0.0f * depth.y;

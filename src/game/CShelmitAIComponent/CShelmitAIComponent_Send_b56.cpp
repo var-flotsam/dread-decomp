@@ -33,7 +33,7 @@ void fn_71006bc004(UnkShelmitAI_b56a3* self) {
     }
     if (UnkShelmitObject_b56a3* obj = self->owner->field_0x1b8) {
         f32 v = obj->field_0x54;
-        f32 cap = *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_717272fd38) + 0x1ec);
+        f32 cap = g_unk_717272fd38.field_0x1ec;
         obj->vf_0x170(v < cap ? v : cap);
         obj->vf_0x168(obj->field_0x50, true);
     }

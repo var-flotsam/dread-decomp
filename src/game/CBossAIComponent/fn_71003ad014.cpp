@@ -25,9 +25,11 @@ struct UnkCameraOwner {
     void** vtable;
     u8 pad_0x8[0x28];
     void* field_0x30;
+    u8 pad_0x38[0x148d8 - 0x38];
+    UnkCameraState field_0x148d8;
 
     void vf_0x830() { reinterpret_cast<void (*)(UnkCameraOwner*)>(vtable[0x830 / 8])(this); }
-    UnkCameraState* state() { return reinterpret_cast<UnkCameraState*>(reinterpret_cast<char*>(this) + 0x148d8); }
+    UnkCameraState* state() { return &field_0x148d8; }
 };
 
 struct UnkCameraCtrl {

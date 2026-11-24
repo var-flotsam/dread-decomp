@@ -29,11 +29,6 @@ struct UnkGlobal {
     u32 field_0x28;
 };
 
-struct UnkGlobal2 {
-    u8 pad_0x0[0x40];
-    u32 field_0x40;
-};
-
 struct UnkActor {
     void** vtable;
     const CClass* vf_0x0(f32 value) { return reinterpret_cast<const CClass* (*)(UnkActor*, f32)>(vtable[0])(this, value); }

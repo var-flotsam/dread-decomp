@@ -118,7 +118,7 @@ void fn_7101149354(UnkInvSection_ovb0094* self, const base::global::CRntString& 
 // The item's qualified id, built on first use (as src/game_s7/fn_7100fc4b34.cpp's).
 static inline UnkQualifiedId& Qid_ovb0094(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
-    if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+    if (qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }

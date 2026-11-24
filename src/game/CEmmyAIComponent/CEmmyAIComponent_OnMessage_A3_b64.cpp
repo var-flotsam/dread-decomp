@@ -30,9 +30,9 @@ struct UnkEmmyMsgAI_A3_b64 {
 
 void fn_710054efb0(UnkEmmyMsgAI_A3_b64* self, u32 kind, f32 value);
 
-// The owner's part at +0x260 (not spelled out in UnkActor).
+// The owner's part at +0x260.
 static inline void* Part260_A3_b64(UnkActor* owner) {
-    return *reinterpret_cast<void**>(reinterpret_cast<char*>(owner) + 0x260);
+    return owner->field_0x260;
 }
 
 bool fn_71005519cc(UnkEmmyMsgAI_A3_b64* self, const u64* message) {
@@ -56,6 +56,6 @@ bool fn_71005519cc(UnkEmmyMsgAI_A3_b64* self, const u64* message) {
         record->field_0x800 = true;
         return false;
     }
-    fn_710054efb0(self, 2, *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_71726e0aa8) + 0xec));
+    fn_710054efb0(self, 2, g_unk_71726e0aa8.field_0xec);
     return false;
 }

@@ -39,6 +39,6 @@ void fn_7100826634(UnkGrappleSwitch_b56* self, void* arg, s32 state) {
         return;
     base::global::UnkStringData* id = *slot;
     if (id != &g_unk_7101d47108->empty)
-        UnkSpitSend(self->owner->field_0x220, *reinterpret_cast<u64*>(reinterpret_cast<char*>(id) + 0x30),
+        UnkSpitSend(self->owner->field_0x220, id->Key(),
                     0xf4061ff25a2163d6);
 }

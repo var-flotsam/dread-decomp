@@ -7,6 +7,7 @@
 // +0x190. Only the members the callers share are spelled out; the names and the layout are
 // placeholders.
 
+#include "game/UnkGuiItemState.h"
 #include "types.h"
 
 namespace base::math {
@@ -43,7 +44,11 @@ struct UnkGuiDisplayObject {
     bool field_0x74;  // active: the flags below take effect only while it is set
     u8 pad_0x75;
     bool field_0x76;  // shown
-    u8 pad_0x77[0x3d];
+    u8 pad_0x77;
+    UnkGuiItemState field_0x78;  // the anchor state (fn_71011f6240 takes it)
+    u8 pad_0x9c[0x4];
+    f32 field_0xa0[4];  // four floats with reflected setters; a button's sprite's last is its alpha
+    u8 pad_0xb0[0x4];
     bool field_0xb4;  // the flag fn_71011cdce8 sets
     u8 pad_0xb5[0x8f];
     u32 field_0x144;  // change bits (fn_71011cdce8 sets 0x40)

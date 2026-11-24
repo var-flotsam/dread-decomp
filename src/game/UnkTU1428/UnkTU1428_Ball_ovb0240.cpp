@@ -233,6 +233,8 @@ struct UnkHitNode_dcf0 {
 };
 struct UnkHitInfo_dcf0 {
     UnkHitNode_dcf0* field_0x0;
+    u8 pad_0x8[0xc];
+    u8 field_0x14[1];  // the query
 };
 
 struct UnkMorphBallActor_dcf0 {
@@ -267,7 +269,7 @@ UnkHitFlags_b152 fn_710094dcf0(UnkMorphBall_dcf0* self, UnkHitInfo_dcf0* hit) {
             flags |= 1;
             result.bits = flags;
         }
-        if (UnkQueryObj* object = fn_7100ca2048(tile, reinterpret_cast<u8*>(hit) + 0x14, 1)) {
+        if (UnkQueryObj* object = fn_7100ca2048(tile, hit->field_0x14, 1)) {
             UnkHitFlags_b152 more = fn_7100301c0c(self->actor->field_0x2e0, object, hit);
             result.bits = more.bits | flags;
         }

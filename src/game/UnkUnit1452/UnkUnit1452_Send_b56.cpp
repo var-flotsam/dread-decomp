@@ -59,7 +59,7 @@ void fn_7100980234(UnkUnit1452_b56* self, UnkUnit1452Message_b56* msg) {
     base::global::UnkStringData* id = msg->field_0x10;
     if (id == &g_unk_7101d47108->empty)
         return;
-    u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(id) + 0x30);
+    u64 hash = id->Key();
     base::reflection::UnkReflTypeIdArg mask;
     SendParams_b56(target, hash, {2}, {-1, 0.18f, 1}, &mask);
 }

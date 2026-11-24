@@ -112,6 +112,8 @@ struct UnkMarkersHashed_ovb0124 {
 struct UnkMarkersPanelState_ovb0124 {
     u8 pad_0x0[0x11];
     bool closed;  // 0x11
+    u8 pad_0x12[0x6];
+    base::UnkDeferredSet<void> field_0x18;
 };
 
 struct UnkMarkersRegView_ovb0124 {
@@ -158,7 +160,7 @@ void fn_7100afd4c0(UnkMarkersDialog_ovb0124* self) {
                 fn_71004f3ea4(r->set, r);
                 r->set = nullptr;
             }
-            r->set = reinterpret_cast<base::UnkDeferredSet<void>*>(reinterpret_cast<char*>(state) + 0x18);
+            r->set = &state->field_0x18;
             fn_71004f3cf0(r->set, r);
             return;
         }

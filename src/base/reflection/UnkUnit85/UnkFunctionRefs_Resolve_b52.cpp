@@ -34,8 +34,8 @@ static inline __attribute__((always_inline)) void Resolve(UnkTypedWord_b52* slot
         slot->type = nullptr;
     }
     if (type->m_fn_0x30) {
-        // Stored as a plain pointer: the constructor is reloaded after this store.
-        *reinterpret_cast<const CType**>(reinterpret_cast<u8*>(slot) + 8) = type;
+        // The constructor is reloaded after this store.
+        slot->type = type;
         type->m_fn_0x30(slot, &fn);
     }
 }

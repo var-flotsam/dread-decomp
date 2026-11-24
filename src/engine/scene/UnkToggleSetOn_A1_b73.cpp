@@ -10,6 +10,6 @@ void fn_7100208ca8(char* p, bool on) {
         if (self->listener_0x8)
             fn_71001eef58(self->listener_0x8, self, on && self->flag_0xf9);
         if (!self->flag_0xf8)
-            fn_71001933cc(*reinterpret_cast<void**>(reinterpret_cast<char*>(self->src_0x108) + 0x78));
+            fn_71001933cc(self->src_0x108->field_0x78);
     }
 }

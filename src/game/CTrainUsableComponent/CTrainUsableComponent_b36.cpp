@@ -39,9 +39,9 @@ static inline UnkTrainUsableClass* GetTrainClass(UnkTrainUsable* self) {
         return cls->ids[Second];                          \
     }
 
-TRAIN_SIDE_ID(fn_7100a99878, 0, 1)
-TRAIN_SIDE_ID(fn_7100a998e8, 2, 3)
-TRAIN_SIDE_ID(fn_7100a99958, 5, 4)
-TRAIN_SIDE_ID(fn_7100a999c8, 6, 7)
-TRAIN_SIDE_ID(fn_7100a99a38, 9, 8)
-TRAIN_SIDE_ID(fn_7100a99aa8, 11, 10)
+TRAIN_SIDE_ID(CTrainUsableComponent_GetUsableAction, 0, 1)
+TRAIN_SIDE_ID(CTrainUsableComponent_GetUsableLevelChangeAction, 2, 3)
+TRAIN_SIDE_ID(CTrainUsableComponent_GetUseInitAction, 5, 4)
+TRAIN_SIDE_ID(CTrainUsableComponent_GetUseAction, 6, 7)
+TRAIN_SIDE_ID(CTrainUsableComponent_GetUseLevelChangeAction, 9, 8)
+TRAIN_SIDE_ID(CTrainUsableComponent_GetUseEndAction, 11, 10)

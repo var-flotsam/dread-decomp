@@ -1,6 +1,7 @@
 // A movement component's floor height: from the owner's polygon collection (type 16) when it has
 // the polygon the component refers to, plus the height of the owner's shape; else its own value.
 #include "base/UnkMatrix44.h"
+#include "game/UnkPool_0x48.h"
 #include "game/UnkTU109.h"
 #include "game/logic/collision/CCollider.h"
 #include "types.h"
@@ -20,6 +21,7 @@ struct UnkCollection_c4 {
     virtual void vf_2();
     virtual s32 GetType();
     u8 pad_0x8[0xa0];
+    UnkPool_0x48 field_0xa8;  // the polygons (fn_710012431c)
 };
 
 struct UnkOwnerShape_c4 {
@@ -55,7 +57,7 @@ void fn_71010d1ca4(UnkMovementComponent_c4* self, UnkHeightOut_c4* out) {
     UnkCollection_c4* polygons = collection->GetType() == 16 ? collection : nullptr;
     if (polygons) {
         UnkPolygon_c4* polygon = reinterpret_cast<UnkPolygon_c4*>(
-            fn_710012431c(reinterpret_cast<UnkPool_0x48*>(reinterpret_cast<u8*>(polygons) + 0xa8), self->polygon));
+            fn_710012431c(&polygons->field_0xa8, self->polygon));
         if (polygon) {
             UnkMatrix44 m = fn_7100d36a2c(reinterpret_cast<UnkShape*>(self->owner ? self->owner->shape : nullptr));
             out->height = m.m[11] + polygon->height;

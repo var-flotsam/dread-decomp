@@ -10,6 +10,7 @@
 #include "game/CFXComponent.h"
 #include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkModel.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU127.h"
@@ -99,7 +100,7 @@ void fn_7100817ffc(UnkGrappleBeamLightning_ovb0047* self) {
         CFilePathStrId id("actors/weapons/grapplebeam/models/grapplelightning_1.bcmdl", true);
         model = nullptr;
         fn_71006cae2c(manager->field_0x218, id, &model, &base::global::CStrId::Empty());
-        fn_7100219ae0(manager, model ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(model) + 8) : nullptr, 0);
+        fn_7100219ae0(manager, model ? &model->field_0x8 : nullptr, 0);
         self->lightning_model = model;
     }
     fn_71001436a0(self->lightning_model, 0);

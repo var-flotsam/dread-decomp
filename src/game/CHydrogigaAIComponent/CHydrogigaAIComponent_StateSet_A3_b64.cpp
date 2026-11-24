@@ -112,8 +112,7 @@ struct UnkHydrogigaSm_A3_b64 {
 };
 
 #define UNK_HYDROGIGA_REQUEST_A3_B64(owner, id)                                                               \
-    RequestStateAt_A3_b64<6, 7, true>(                                                                         \
-        &(owner)->machine, reinterpret_cast<UnkSmStatePtr_A3_b64*>(reinterpret_cast<char*>(owner) + 0x14ccc), id)
+    RequestStateAt_A3_b64<6, 7, true>(&(owner)->machine, (owner)->machine.states, id)
 
 // Once the timer reaches 0.5, sets g_unk_710164a0e8 to the all-flags mask on the owner's timeline (+0x2e8)
 // and asks for state 1.

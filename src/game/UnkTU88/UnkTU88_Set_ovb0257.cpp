@@ -20,7 +20,9 @@
 struct UnkSetNode_b257j {
     base::global::CStrId name;  // 0x0
     base::global::CRntVector<void*> list;  // 0x8
-    u8 pad_0x30[0x28];
+    u8 pad_0x30[0x1c];
+    u32 field_0x4c;
+    u8 pad_0x50[0x8];
     UnkSetNode_b257j* next;  // 0x58
 };
 static_assert(sizeof(UnkSetNode_b257j) == 0x60, "node layout");
@@ -127,10 +129,9 @@ static inline u32 IdHash_b257j(const UnkStringData* data) {
 }
 
 struct UnkResRegistryFull_b257j {
-    u8 pad_0x0[0x60];
-    UnkSetNode_b257j** type_buckets;  // 0x60
-    u32 type_count;  // 0x68
-    u32 type_modulus;  // 0x6c
+    u8 pad_0x0[0x10];
+    u8 field_0x10[0x50];  // a set of resource paths (fn_71000eca70)
+    UnkNamedSet_b257j types;  // 0x60
 };
 
 // ---- a resource leaving the registry ----
@@ -150,14 +151,14 @@ void fn_71000eb628(UnkResRegistry* registry, UnkResObject_b257j* object) {
     if (!fn_710009d50c(object->vf_0x0(), fn_71000e8a5c()))
         return;
     UnkResPathId path(object->path);
-    fn_71000eca70(reinterpret_cast<char*>(self) + 0x10, &path);
-    UnkNamedSet_b257j* types = reinterpret_cast<UnkNamedSet_b257j*>(reinterpret_cast<char*>(self) + 0x60);
+    fn_71000eca70(self->field_0x10, &path);
+    UnkNamedSet_b257j* types = &self->types;
     UnkSetNode_b257j* previous = nullptr;
     UnkSetNode_b257j* node = nullptr;
     u32 bucket = -1;
-    if (self->type_count != 0) {
-        u32 h = IdHash_b257j(object->type) % self->type_modulus;
-        if (h < self->type_count) {
+    if (self->types.buckets.count != 0) {
+        u32 h = IdHash_b257j(object->type) % self->types.buckets.capacity;
+        if (h < self->types.buckets.count) {
             bucket = h;
             node = *fn_71000ec52c(types, bucket);
             if (node) {
@@ -175,7 +176,7 @@ void fn_71000eb628(UnkResRegistry* registry, UnkResObject_b257j* object) {
     }
     u32 version = types->version;
     fn_71000eca70(&node->list, &path);
-    if (*reinterpret_cast<u32*>(reinterpret_cast<char*>(node) + 0x4c) == 0) {
+    if (node->field_0x4c == 0) {
         UnkSetIter_b257j it;
         it.node = node;
         it.previous = previous;

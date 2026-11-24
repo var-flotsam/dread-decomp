@@ -39,7 +39,7 @@ UnkReflType* fn_710024f5b8();
 // base::reflection::refl_GetType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>
 UnkReflType* fn_7100229060();
 
-void fn_7100252240() {
+void CActorComponent_InitStatics() {
     InitHeader(g_unk_717269fed8);
     fn_710024e3c8();
     fn_710009ec00(&g_unk_717269f588, TUType<0x20>(g_unk_717269fed8));

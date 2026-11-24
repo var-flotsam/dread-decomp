@@ -246,7 +246,7 @@ void fn_7100980cd0(UnkSmOwner_b60<0x30>* self) {
 
 // Requests that depend on the current state.
 static inline u32 StateId_b60(UnkSmState_b60* state) {
-    return *reinterpret_cast<u32*>(reinterpret_cast<char*>(state) + 0x10);
+    return state->id;
 }
 
 void fn_71008189a4(UnkSmOwner_b60<0x480>* self) {

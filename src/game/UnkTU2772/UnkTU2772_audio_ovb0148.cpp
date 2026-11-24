@@ -20,6 +20,10 @@ struct UnkAtkListLink_b0148 {
 struct UnkAtkVoiceArr_b0148 {
     u8 pad_0x0[0x1c4];
     s32 count;  // 0x1c4
+    u8 pad_0x1c8[0xa0];
+    u32 field_0x268;
+    u8 pad_0x26c[0x14];
+    u64 field_0x280;
 };
 
 
@@ -74,7 +78,7 @@ void fn_710122eb34(UnkAtkVoiceArr_b0148* self, u8 v) {
 
 void fn_710122d6a4(UnkAtkVoiceArr_b0148* self, u32 v) {
     s32 n = self->count;
-    *reinterpret_cast<u32*>(reinterpret_cast<u8*>(self) + 0x268) = v;
+    self->field_0x268 = v;
     for (s64 i = 0; i < n; i++)
         *reinterpret_cast<u32*>(reinterpret_cast<u8*>(self) + i * 0xe0 + 0x80) = v;
 }
@@ -83,7 +87,7 @@ void fn_710122e04c(UnkAtkVoiceArr_b0148* self, u64 v) {
     s32 n = self->count;
     if (n < 1)
         return;
-    *reinterpret_cast<u64*>(reinterpret_cast<u8*>(self) + 0x280) = v;
+    self->field_0x280 = v;
     for (s64 i = 0; i < n; i++)
         *reinterpret_cast<u64*>(reinterpret_cast<u8*>(self) + i * 0xe0 + 0xa8) = v;
 }

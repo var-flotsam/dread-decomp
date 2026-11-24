@@ -129,7 +129,7 @@ void fn_71009e9268(UnkMove_b152* self, bool flag) {
     block->field_0x34 = 0;
     small->field_0x6 = 0;
     block->field_0x88 = 0;
-    if (void* gui = *reinterpret_cast<void**>(reinterpret_cast<u8*>(self->actor) + 0x1d8)) {
+    if (void* gui = self->actor->field_0x1d8) {
         fn_710002ffb4(reinterpret_cast<UnkGuiKeyList*>(reinterpret_cast<u8*>(gui) + 0xb10),
                       reinterpret_cast<base::global::CStrId*>(&g_unk_7172740ff0));
         fn_710002ffb4(reinterpret_cast<UnkGuiKeyList*>(reinterpret_cast<u8*>(gui) + 0xbc0),

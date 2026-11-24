@@ -20,7 +20,8 @@ struct UnkPart_2ccbe0 {
 };
 
 struct UnkRecord_2ccbe0 {
-    u8 pad_0x0[0x50];
+    u8 pad_0x0[0x8];
+    UnkPart_2ccbe0 field_0x8;  // inline unless the mode is 2 (then a pointer to it)
     u32 field_0x50;
 };
 
@@ -31,7 +32,7 @@ static inline a_u32* FirstOf(UnkRecord_2ccbe0* record) {
 }
 
 static inline UnkPart_2ccbe0* PartOf(UnkRecord_2ccbe0* record) {
-    UnkPart_2ccbe0* part = reinterpret_cast<UnkPart_2ccbe0*>(reinterpret_cast<char*>(record) + 8);
+    UnkPart_2ccbe0* part = &record->field_0x8;
     return record->field_0x50 == 2 ? *reinterpret_cast<UnkPart_2ccbe0**>(part) : part;
 }
 
