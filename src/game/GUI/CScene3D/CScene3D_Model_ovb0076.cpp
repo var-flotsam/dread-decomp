@@ -294,7 +294,7 @@ static inline __attribute__((always_inline)) void Clear_ovb0076(UnkChainedMap* m
     }
 }
 
-void CScene3D_ClearStrIdMaps(UnkScene3DMaps_ovb0076* self) {
+void fn_7100b73454(UnkScene3DMaps_ovb0076* self) {
     Clear_ovb0076(&self->first);
     Clear_ovb0076(&self->second);
 }
@@ -334,7 +334,7 @@ static inline void Unload_ovb0076(base::file::UnkFileDevice* device, const UnkSc
 void fn_7100b72f64(UnkScene3D_ovb0076* self) {
     if (self->frame != 0x7fffffff) {
         fn_71011f5cd0(fn_71011b7a4c(g_unk_717271e8f8, self->frame));
-        CScene3D_ClearStrIdMaps(&self->maps);
+        fn_7100b73454(&self->maps);
         fn_71002191a4(g_unk_7101d47300, 4);
         self->frame = 0x7fffffff;
     }

@@ -37,14 +37,15 @@ struct UnkMagnetRumbleState_ovb0082 {
 };
 static_assert(__builtin_offsetof(UnkMagnetRumbleState_ovb0082, rumble) == 0x338, "layout");
 
-void CParams_StartRumbleIfNotPlaying(UnkMagnetRumbleState_ovb0082* self);
+struct UnkMagnetLoopState_ovb0082;  // the same state, as CParams_Loop_ovb0082.cpp lays it out
+void fn_71009aefb8(UnkMagnetLoopState_ovb0082* self);
 
 void fn_71009ab0cc(UnkMagnetRumbleState_ovb0082* self) {
     if (!self->surface || !self->surface->owner)
         return;
     UnkAnimationComponent* animation = self->surface->owner->animation;
     if (animation && fn_710117b348(animation, fn_7100befa38())) {
-        CParams_StartRumbleIfNotPlaying(self);
+        fn_71009aefb8(reinterpret_cast<UnkMagnetLoopState_ovb0082*>(self));
         return;
     }
     if (self->rumble.Get() != g_unk_7101d586c0.Get())

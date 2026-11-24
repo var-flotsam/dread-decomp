@@ -382,7 +382,7 @@ UnkNavElemVector_ovb0100* fn_71009c09a8(UnkNavElemMap_ovb0100* self, UnkNavElemV
 }
 
 // Shrinks both arrays to the count.
-__attribute__((noinline)) void CNavMeshItemComponent_ShrinkStrIdArrayMapToCount(UnkNavElemMap_ovb0100* self) {
+__attribute__((noinline)) void fn_71009c45d4(UnkNavElemMap_ovb0100* self) {
     if (self->count == self->capacity)
         return;
     auto* values = static_cast<UnkNavElemVector_ovb0100*>(
@@ -444,7 +444,7 @@ UnkNavElemMap_ovb0100* fn_71009c4308(UnkNavElemMap_ovb0100* self, const UnkNavEl
         return self;
     fn_71009c44c8(self);
     if (other->count != self->capacity) {
-        CNavMeshItemComponent_ShrinkStrIdArrayMapToCount(self);
+        fn_71009c45d4(self);
         fn_71009c4158(reinterpret_cast<UnkIdMap<UnkOwnedList>*>(self), other->count);
     }
     self->count = other->count;

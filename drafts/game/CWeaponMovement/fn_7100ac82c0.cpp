@@ -57,7 +57,7 @@ struct UnkHit_lac82c0 {
 static_assert(sizeof(UnkHit_lac82c0) == 0x48, "layout");
 
 void SetWeakRefAt0ToObjectHandle(UnkHit_lac82c0* hit, void* source);
-void CMeleeComponent_SetSecondWeakTargetAndFlag(UnkHit_lac82c0* hit, void* weapon);
+void fn_710092f0b4(UnkHit_lac82c0* hit, void* weapon);
 
 struct UnkMoverState_lac82c0 {
     u8 pad_0x0[0x10c];
@@ -186,7 +186,7 @@ s32 fn_7100ac82c0(UnkSplash_b59a4* self_, void* other_) {
     if (self->owner->damage_handler) {
         UnkHit_lac82c0 hit(self->request.params);
         SetWeakRefAt0ToObjectHandle(&hit, self->request.field_0x60);
-        CMeleeComponent_SetSecondWeakTargetAndFlag(&hit, self->request.field_0x98);
+        fn_710092f0b4(&hit, self->request.field_0x98);
         result = self->owner->damage_handler->Take(Target(self->request.mover), &hit, self->request.field_0x98,
                                                    false);
     } else {
