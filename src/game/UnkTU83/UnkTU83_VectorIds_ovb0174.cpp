@@ -614,7 +614,7 @@ __attribute__((always_inline)) static inline void InitSet(UnkFileCacheSet* s) {
     s->nodes.field_0x3c = false;
 }
 
-void ConstructTypeRegistry(UnkVersionRegistry* self_) {
+void fn_71000a4598(UnkVersionRegistry* self_) {
     auto* self = reinterpret_cast<UnkVersionRegistryLayout_b0174*>(self_);
     self->vtable = g_unk_7101a1b828 + 0x10;
     InitSet(&self->set_a);
