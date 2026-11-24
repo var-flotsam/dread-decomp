@@ -79,7 +79,7 @@ using base::reflection::UnkReflTypeIdArg;
 static inline void Send(void* target, u64 hash, UnkReflTypeIdArg* request, u32 mode, UnkReflTypeIdArg* mask) {
     request->id = mode;
     mask->id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6, request, &g_unk_710164b958, &g_unk_7172769740, mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, request, &g_unk_710164b958, &g_unk_7172769740, mask);
 }
 
 // The actor named `name`.

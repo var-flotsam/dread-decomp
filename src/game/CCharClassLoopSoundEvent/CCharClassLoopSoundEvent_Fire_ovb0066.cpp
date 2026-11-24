@@ -36,7 +36,7 @@ void fn_7100cdc910(UnkLoopSoundEvent_ovb0066* self, UnkStrIdMemberOf<g_unk_7101d
                    UnkStrIdMember* sound, const CStrId* a, const CStrId* b, f32 f0, f32 f1, f32 f2, f32 f3,
                    bool c, bool d, f32 f4, f32 f5, f32 f6, f32 f7, bool e, bool g, f32 f8, void* arg);
 
-void fn_7100cc7a78(UnkLoopSoundEvent_ovb0066* self, void* arg) {
+void CCharClassLoopSoundEvent_PlayLoopSound(UnkLoopSoundEvent_ovb0066* self, void* arg) {
     if (fn_7101198688(g_unk_7101d47330))
         return;
     if (fn_7100deabe4(g_unk_7101d47310))

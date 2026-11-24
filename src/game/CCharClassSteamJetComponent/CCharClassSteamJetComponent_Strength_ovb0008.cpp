@@ -148,7 +148,7 @@ static inline const UnkQualifiedId& ItemId(UnkPropertyEx<>& item) {
     return qid;
 }
 
-bool fn_710089f7a8(UnkSteamJet_ovb0008* self) {
+bool CCharClassSteamJetComponent_IsActiveUnlessPlayerHasVariaOrGravitySuit(UnkSteamJet_ovb0008* self) {
     u8 active = self->active;
     bool result = active;
     if (self->desc && self->desc->hurts) {

@@ -61,11 +61,11 @@ start:
     if (--self->hits != 0) {
         mode1.id = 2;
         mask1.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, track, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740, &mask1);
+        CAnimationComponent_SendActionToTrack(cls, track, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740, &mask1);
     } else {
         mode2.id = 1;
         mask2.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, 0xb60395f638ac5184, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(cls, 0xb60395f638ac5184, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740,
                       &mask2);
     }
     return true;

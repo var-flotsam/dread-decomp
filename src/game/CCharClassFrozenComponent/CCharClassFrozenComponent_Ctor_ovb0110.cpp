@@ -23,7 +23,7 @@ struct UnkCharClassFrozen_ov110 {
 };
 static_assert(__builtin_offsetof(UnkCharClassFrozen_ov110, ids) == 0x60, "layout");
 
-void fn_71007ee4c8(UnkFrozenIceBase_b44a2* base) {
+void CCharClassFrozenComponent_ConstructBase(UnkFrozenIceBase_b44a2* base) {
     UnkCharClassFrozen_ov110* self = reinterpret_cast<UnkCharClassFrozen_ov110*>(base);
     fn_71011acd10(reinterpret_cast<UnkStruct_71008bca30*>(self));
     self->vtable = reinterpret_cast<u64>(&g_unk_7101a73dc0[2]);

@@ -8,7 +8,7 @@ struct UnkPlayerMovement_c4;
 struct UnkMovementTimer_c4;
 struct UnkMovementTarget_c4;
 // The base reset (not decompiled yet).
-void fn_71009786a8(UnkPlayerMovement_c4* self, bool flag);
+void CCharacterMovement_Reset(UnkPlayerMovement_c4* self, bool flag);
 // Clears the timer at +0x708 (not decompiled yet).
 void fn_710006c434(UnkMovementTimer_c4* timer);
 // Sends the id to the target at +0x220 of the owner (not decompiled yet).
@@ -53,7 +53,7 @@ static inline const base::global::CStrId& ResetId_c4() {
 }
 
 void CPlayerMovement_Reset(UnkPlayerMovement_c4* self, u32 flags) {
-    fn_71009786a8(self, flags & 1);
+    CCharacterMovement_Reset(self, flags & 1);
     if (UnkMovementFlag_c4* flag = self->owner->flag)
         flag->value = 1;
     self->field_0x7c8 = 0;

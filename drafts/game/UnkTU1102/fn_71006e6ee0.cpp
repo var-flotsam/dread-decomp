@@ -239,7 +239,7 @@ void fn_71006e6ee0(UnkXParasiteAI* self) {
             UnkXParasiteAnimStart_l6e6ee0 start(frame);
             UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, key, 0xf4061ff25a2163d6, reinterpret_cast<UnkReflTypeIdArg*>(&mode),
+            CAnimationComponent_SendActionToTrack(animation, key, 0xf4061ff25a2163d6, reinterpret_cast<UnkReflTypeIdArg*>(&mode),
                           &g_unk_710164b958, &start, &mask);
         }
     }

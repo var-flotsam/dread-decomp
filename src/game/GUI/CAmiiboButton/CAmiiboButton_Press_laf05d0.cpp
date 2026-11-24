@@ -58,5 +58,5 @@ void fn_7100af05d0(UnkObj_7100af65b4* self) {
     if (reason)
         ShowMessage_laf05d0(*reason);
     else
-        fn_7100af65b4(self);
+        CChangeMenuStateButton_SendNewStateIdxMessage(self);
 }

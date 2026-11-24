@@ -14,7 +14,7 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-f32 fn_7100977c88(void*, char* owner);
+f32 CCharacterMovement_GetNegatedShapeBoundsMinY(void*, char* owner);
 
 // A body: its vtable slot 0x2a8 gives what its height is measured from.
 struct UnkGrabBody_l43f9cc {
@@ -156,8 +156,8 @@ void fn_710043f9cc(UnkUltimateGrab_l43f9cc* self, UnkGrabPlan_l43f9cc* plan, f32
     plan->ground = hit.point;
     f32 x = plan->back.x;
     UnkVec3f side((f32)((x > 0.0f) - (x < 0.0f)) * 300.0f, 0.0f, 0.0f);
-    UnkVec3f own_lift = Add(side, UnkVec3f(0.0f, fn_7100977c88(body, own_base), 0.0f));
-    UnkVec3f player_lift = Add(side, UnkVec3f(0.0f, fn_7100977c88(player_body, player_base), 0.0f));
+    UnkVec3f own_lift = Add(side, UnkVec3f(0.0f, CCharacterMovement_GetNegatedShapeBoundsMinY(body, own_base), 0.0f));
+    UnkVec3f player_lift = Add(side, UnkVec3f(0.0f, CCharacterMovement_GetNegatedShapeBoundsMinY(player_body, player_base), 0.0f));
     plan->lifted = Add(plan->ground, own_lift);
     plan->target = Add(offset, Add(plan->ground, player_lift));
 }

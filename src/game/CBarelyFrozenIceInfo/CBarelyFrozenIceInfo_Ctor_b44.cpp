@@ -33,7 +33,7 @@ struct UnkFrozenIceInfo_b44a2 {
 };
 
 void fn_71007f3100(UnkFrozenIceInfo_b44a2* self) {
-    fn_71007ee4c8(reinterpret_cast<UnkFrozenIceBase_b44a2*>(self));
+    CCharClassFrozenComponent_ConstructBase(reinterpret_cast<UnkFrozenIceBase_b44a2*>(self));
     self->vtable = g_unk_7101a73e38 + 2;
     self->field_0xa0 = 0;
     self->field_0xa4 = 0;

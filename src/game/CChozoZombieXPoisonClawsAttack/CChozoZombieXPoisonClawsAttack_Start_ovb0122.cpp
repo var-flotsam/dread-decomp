@@ -4,13 +4,13 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkAttack.h"
 #include "game/UnkMotionRule.h"
+#include "game/UnkStruct_71007142e8.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTimeline.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
 
 // As src/game/CInfesterReloadAttack/CInfesterReloadAttack_Start_A3_b73.cpp declares them.
 struct UnkAttackBase;
@@ -80,17 +80,10 @@ void fn_710049e6b8(UnkPoisonClawsStart_ovb0122* self) {
     fn_71006f4b0c(nav, &params, 1);
 }
 
-
 // As src/game/CTakumakuAIComponent/CTakumakuAIComponent_Layer_ovb0012.cpp declares it (the key is a hash).
 struct UnkStruct_7101176ea8;
 
 // As src/game/CSamusFloorSlideMovementState/CParams/CParams_Slide_ovb0004.cpp defines them.
-struct UnkStruct_71007142e8 {
-    u8 pad_0x0[0x2c];
-    f32 field_0x2c;
-    u8 pad_0x30[0x40];
-};
-
 struct UnkMotionTracks;
 
 struct UnkPoisonClawsOwner_ovb0122 {
@@ -120,5 +113,5 @@ void fn_710049e578(UnkPoisonClawsAttack_ovb0122* self) {
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
-    self->field_0x60 = motion.field_0x2c;
+    self->field_0x60 = motion.xform.m[2][3];
 }

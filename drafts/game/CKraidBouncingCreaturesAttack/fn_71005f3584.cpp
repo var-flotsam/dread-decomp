@@ -64,7 +64,7 @@ static inline void Send(void* animation, u64 hash, u32 m, base::reflection::UnkR
                         base::reflection::UnkReflTypeIdArg* mask) {
     mode->id = m;
     mask->id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, hash, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b958, &g_unk_7172769740, mask);
+    CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b958, &g_unk_7172769740, mask);
 }
 
 bool fn_71005f3584(UnkKraidBouncingAttack_l5f3584* self, const UnkKraidBouncingEvent_l5f3584* event) {

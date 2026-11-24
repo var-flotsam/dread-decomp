@@ -436,5 +436,5 @@ bool fn_7100dadf20() {
         return false;
     UnkStruct_710117af10* animation = player->animation;
     CStrId name("fallend", true);
-    return !fn_710117af10(animation, reinterpret_cast<UnkCls_710117af10**>(&name), false);
+    return !CAnimationComponent_IsPlayingActionNameContaining(animation, reinterpret_cast<UnkCls_710117af10**>(&name), false);
 }

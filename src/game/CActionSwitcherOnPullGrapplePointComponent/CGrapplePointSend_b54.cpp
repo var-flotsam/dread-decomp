@@ -55,7 +55,7 @@ void CActionSwitcherOnPullGrapplePointComponent_PlayGrappleAttachAction(UnkGrapp
         UnkSpitSend(self->owner->field_0x220, StrIdHash_b54(id), 0xf4061ff25a2163d6);
 }
 
-void fn_7100826090(UnkGrapplePoint_b54* self, s32 state) {
+void CActionSwitcherOnPullGrapplePointComponent_SendActionOnPullOnState1(UnkGrapplePoint_b54* self, s32 state) {
     UnkPullableGrapplePoint_b54* base = reinterpret_cast<UnkPullableGrapplePoint_b54*>(self);
     fn_710082cacc(base, state);
     if (state != 1)

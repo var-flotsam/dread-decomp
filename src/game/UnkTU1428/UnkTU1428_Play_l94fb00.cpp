@@ -58,6 +58,6 @@ void fn_710094fb00(UnkPlay_l94fb00* self) {
     request.desc[0] = desc2->words[0];
     request.desc[1] = desc2->words[1];
     request.flags |= 2;
-    fn_7101176ea8(self->owner->animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&request),
+    CAnimationComponent_SendActionRequestRecordToTrack(self->owner->animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&request),
                   0xf4061ff25a2163d6);
 }

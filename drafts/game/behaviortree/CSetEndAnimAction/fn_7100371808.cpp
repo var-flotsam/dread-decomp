@@ -62,7 +62,7 @@ s32 fn_7100371808(UnkSetEndAnimAction_l371808* self) {
                                                       : static_cast<const void*>(&g_unk_7172769740);
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            self->started = fn_7101176690(animation, hash, track, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode),
+            self->started = CAnimationComponent_SendActionToTrack(animation, hash, track, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode),
                                           &g_unk_710164b958, desc, &mask) ||
                             fn_710117ae38(animation, hash, false);
         }

@@ -128,7 +128,7 @@ void fn_71007fa144(UnkFrozenComponent* component, f32 time) {
     UnkStruct_7101176ea8* player = reinterpret_cast<UnkStruct_7101176ea8*>(animation);
     const UnkRequest_7101176ea8* play = reinterpret_cast<const UnkRequest_7101176ea8*>(&request);
     if (!IsEmpty_l7fa144(track))
-        fn_7101176ea8(player, play, track.data->Key());
+        CAnimationComponent_SendActionRequestRecordToTrack(player, play, track.data->Key());
     else
-        fn_7101176ea8(player, play, kEmptyKey);
+        CAnimationComponent_SendActionRequestRecordToTrack(player, play, kEmptyKey);
 }

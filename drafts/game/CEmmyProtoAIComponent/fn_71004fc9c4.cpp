@@ -56,14 +56,14 @@ bool fn_71004fc9c4(UnkEmmyProtoAI_l4fc9c4* self) {
         mode.id = 0;
         UnkTrackStart_l4fc9c4 from(start);
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(character, hash, kTrackKind, &mode, &g_unk_710164b958, &from, &mask);
+        CAnimationComponent_SendActionToTrack(character, hash, kTrackKind, &mode, &g_unk_710164b958, &from, &mask);
     } else {
         u64 hash = base::global::CName("ncu_chasenear-scratchloop_end_turn").hash;
         base::reflection::UnkReflTypeIdArg mode;
         mode.id = 0;
         UnkTrackStart_l4fc9c4 from(start);
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(character, hash, kTrackKind, &mode, &g_unk_710164b958, &from, &mask);
+        CAnimationComponent_SendActionToTrack(character, hash, kTrackKind, &mode, &g_unk_710164b958, &from, &mask);
     }
     return true;
 }

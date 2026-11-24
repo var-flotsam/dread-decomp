@@ -170,7 +170,7 @@ void fn_7100428d50(UnkBeamBurstUpdate_l428d50* self, f32 dt) {
             mode.id = 0;
             UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0xba65be312e2807a6, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0xba65be312e2807a6, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                           &g_unk_7172769758, &mask);
             fn_7100427580(self);
             self->state = 2;
@@ -236,7 +236,7 @@ void fn_7100428d50(UnkBeamBurstUpdate_l428d50* self, f32 dt) {
             arg.field_0x4 = 1;
             arg.value = self->fired_value;
             fired_mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0xf08bac6b45a8080e, 0xf4061ff25a2163d6, &fired_mode, &g_unk_710164b958, &arg,
+            CAnimationComponent_SendActionToTrack(animation, 0xf08bac6b45a8080e, 0xf4061ff25a2163d6, &fired_mode, &g_unk_710164b958, &arg,
                           &fired_mask);
             self->fired = false;
         }

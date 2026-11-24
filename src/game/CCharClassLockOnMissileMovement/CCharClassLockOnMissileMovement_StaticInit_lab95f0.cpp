@@ -45,7 +45,7 @@ extern UnkConversion g_unk_7172754a18;
 void fn_7100ab8dfc() __attribute__((visibility("hidden")));
 void fn_7100ab8e08() __attribute__((visibility("hidden")));
 
-void fn_7100ab95f0() {
+void CCharClassLockOnMissileMovement_InitStatics() {
     InitHeaderIds(&g_unk_7172754a38.ids);
     fn_7100ab4bc0();
     fn_710009ec00(g_unk_7172754860, g_unk_7172754a38.field_0x48);

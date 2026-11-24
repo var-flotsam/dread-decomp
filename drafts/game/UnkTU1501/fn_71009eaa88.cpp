@@ -69,7 +69,7 @@ static inline void Play(UnkSamusMovement_l9eaa88* self, const CStrId& action, ba
         u64 key = action.data->Key();
         mode->id = 0;
         mask->id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-        fn_7101176690(animation, key, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b968, &g_unk_7172769740, mask);
+        CAnimationComponent_SendActionToTrack(animation, key, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b968, &g_unk_7172769740, mask);
     }
 }
 

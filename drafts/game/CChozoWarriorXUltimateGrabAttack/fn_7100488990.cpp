@@ -99,7 +99,7 @@ bool fn_7100488990(UnkUltGrab_488990* self, s32 kind, f32 value) {
     mode.id = 10;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    if (!fn_7101176690(owner_target, owner_hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &param,
+    if (!CAnimationComponent_SendActionToTrack(owner_target, owner_hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &param,
                        &mask))
         return false;
 
@@ -107,6 +107,6 @@ bool fn_7100488990(UnkUltGrab_488990* self, s32 kind, f32 value) {
     player_mode.id = 10;
     base::reflection::UnkReflTypeIdArg player_mask;
     player_mask.id = UnkAll_SpitSend().value;
-    return fn_7101176690(player_target, player_hash, 0xf4061ff25a2163d6, &player_mode, &g_unk_710164b968,
+    return CAnimationComponent_SendActionToTrack(player_target, player_hash, 0xf4061ff25a2163d6, &player_mode, &g_unk_710164b968,
                          &param, &player_mask);
 }

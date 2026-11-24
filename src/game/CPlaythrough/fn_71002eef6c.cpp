@@ -44,11 +44,11 @@ void fn_71002eeef8(UnkValuesByKey* a, const u64* key) { RemoveKey<CPlaythrough_E
 
 // The same removal in three other units, each with its own out-of-line removal.
 u64* fn_7100d86e94(UnkValuesByKey* a, u64* value);
-u64* fn_7101048588(UnkValuesByKey* a, u64* value);
+u64* CBlackboard_SwapRemoveSectionArrayEntry(UnkValuesByKey* a, u64* value);
 u64* CComponent_SwapEraseStrIdKeyedEntry(UnkValuesByKey* a, u64* value);
 
 void fn_7100d86490(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_7100d86e94>(a, key); }
 
-void fn_710104aad8(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_7101048588>(a, key); }
+void fn_710104aad8(UnkValuesByKey* a, const u64* key) { RemoveKey<CBlackboard_SwapRemoveSectionArrayEntry>(a, key); }
 
 void fn_71010c62d8(UnkValuesByKey* a, const u64* key) { RemoveKey<CComponent_SwapEraseStrIdKeyedEntry>(a, key); }

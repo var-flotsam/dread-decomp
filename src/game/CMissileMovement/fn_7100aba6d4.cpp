@@ -77,7 +77,7 @@ bool fn_7100aba6d4(UnkMissileMovement_laba6d4* self, UnkMissileTarget_laba6d4* t
     UnkReflObject* component = object->component;
     if (!component || !fn_710009d50c(component->vf_0x0(), fn_710085fc44()))
         return false;
-    UnkCollisionRecord* record = fn_710086411c(reinterpret_cast<UnkCollisionContainer*>(component),
+    UnkCollisionRecord* record = CCollisionComponent_FindRecordByObject(reinterpret_cast<UnkCollisionContainer*>(component),
                                                reinterpret_cast<UnkCollisionObject*>(object));
     if (!record)
         return false;

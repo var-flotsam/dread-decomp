@@ -9,15 +9,11 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkMotionRule.h"
+#include "game/UnkStruct_71007142e8.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTimeline.h"
 #include "types.h"
-
-struct UnkStruct_71007142e8 {
-    f32 m[12];
-    u8 pad_0x30[0x40];
-};
 
 struct UnkMotionTracks;
 
@@ -27,13 +23,13 @@ f32 CAbilityGhostAura_ComputeTimelineTranslationLength(UnkTimeline* timeline) {
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
-    f32 x = motion.m[3];
-    f32 y = motion.m[7];
-    f32 z = motion.m[11];
+    f32 x = motion.xform.m[0][3];
+    f32 y = motion.xform.m[1][3];
+    f32 z = motion.xform.m[2][3];
     return sqrtf(x * x + y * y + z * z);
 }
 
-f32 fn_7100977c88(void*, char* owner);
+f32 CCharacterMovement_GetNegatedShapeBoundsMinY(void*, char* owner);
 
 // A collider as this function reads it: its bounds, refreshed through vf_0x98 while `dirty` is set.
 struct UnkGhostAuraCollider_l308d0c {
@@ -107,7 +103,7 @@ static inline f32 Height(UnkTimeline* timeline) {
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags(2);
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, frames);
-    return fabsf(motion.m[11]);
+    return fabsf(motion.xform.m[2][3]);
 }
 
 // Measures the height of animation `name` into *height unless it was measured already.
@@ -143,13 +139,13 @@ void fn_7100308d0c(UnkGhostAura_l308d0c* self) {
             UnkGhostAuraCollider_l308d0c* a =
                 reinterpret_cast<UnkGhostAuraCollider_l308d0c*>(fn_71008640a4(collision, &g_unk_71726af4a8));
             if (a != nullptr) {
-                self->field_0x488 = fn_7100977c88(source, reinterpret_cast<char*>(a));
+                self->field_0x488 = CCharacterMovement_GetNegatedShapeBoundsMinY(source, reinterpret_cast<char*>(a));
                 self->half_width = HalfWidth(a);
             }
             UnkGhostAuraCollider_l308d0c* b =
                 reinterpret_cast<UnkGhostAuraCollider_l308d0c*>(fn_71008640a4(collision, &g_unk_71726af4b0));
             if (b != nullptr) {
-                self->field_0x48c = fn_7100977c88(source, reinterpret_cast<char*>(b));
+                self->field_0x48c = CCharacterMovement_GetNegatedShapeBoundsMinY(source, reinterpret_cast<char*>(b));
                 f32 width = HalfWidth(b);
                 self->half_width = self->half_width > width ? self->half_width : width;
             }

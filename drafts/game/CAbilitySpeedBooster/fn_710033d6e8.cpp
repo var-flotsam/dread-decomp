@@ -230,7 +230,7 @@ void fn_710033d6e8(UnkSpeedBoosterContacts_l33d6e8* self, UnkContactList_l33d6e8
                 f32 gauge = mover->field_0x118;
                 if (!(gauge + 0.001f < 0.0f) && gauge - 0.001f <= 0.0f) {
                     UnkTrackParams_l33d6e8 request = fn_71009767f4(reinterpret_cast<UnkTrackMovement_ovb0021*>(mover), true);
-                    fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(actor->animation),
+                    CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(actor->animation),
                                   reinterpret_cast<const UnkRequest_7101176ea8*>(&request), 0xf4061ff25a2163d6ull);
                     decided = true;
                     end_boost = any;

@@ -10,6 +10,7 @@
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "types.h"
+#include "game/UnkStruct_71007142e8.h"
 
 struct UnkActorTarget;
 struct UnkStruct_7101176ea8;
@@ -18,11 +19,6 @@ struct UnkGoliathAI5_ovb0106;
 void CGoliathAIComponent_WriteAnimSpeedMultiplierToTunable(UnkGoliathAI5_ovb0106* self);
 struct UnkGoliathXBombsAttack_l5858c4;
 void CGoliathXBurstProjectionBombsAttack_CacheTimelineMotionValues(UnkGoliathXBombsAttack_l5858c4* self);
-
-struct UnkStruct_71007142e8 {
-    f32 m[12];
-    u8 pad_0x30[0x40];
-};
 
 struct UnkMotionTracks;
 
@@ -70,7 +66,7 @@ void fn_7100588474(UnkGoliathXAI_l588474* self) {
             UnkMotionTracks* tracks = timeline->tracks;
             parts.bits = UnkFlagsAll_71007142e8().bits;
             fn_7100b8b3bc(timeline, &motion, tracks, &parts.bits, 0.0f, timeline->frame_count);
-            self->motion_height = motion.m[11];
+            self->motion_height = motion.xform.m[2][3];
         }
         if (reinterpret_cast<UnkGoliathModeFlags_l588474*>(g_unk_71726bc570)->calm) {
             UnkActorTarget* target = static_cast<UnkActorTarget*>(self->owner->field_0x220);
@@ -82,7 +78,7 @@ void fn_7100588474(UnkGoliathXAI_l588474* self) {
             value.id = 0x82;
             base::reflection::UnkReflTypeIdArg arg;
             arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-            fn_7101176690(target, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
+            CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
         }
     }
     CGoliathXBurstProjectionBombsAttack_CacheTimelineMotionValues(reinterpret_cast<UnkGoliathXBombsAttack_l5858c4*>(self->bombs));

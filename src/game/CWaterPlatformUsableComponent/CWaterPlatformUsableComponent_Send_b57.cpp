@@ -46,7 +46,7 @@ void fn_7100aa6898(UnkWaterPlatformSend_b57* self) {
         mode.id = 0;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, 0x6a17390fc912b900, 0x94b6e812cbf3fb75, &mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(target, 0x6a17390fc912b900, 0x94b6e812cbf3fb75, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask);
     }
     self->field_0x5c6 = false;

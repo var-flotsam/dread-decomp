@@ -8,7 +8,7 @@
 
 using base::global::CStrId;
 
-UnkCollisionObject* fn_7100863814(UnkCollisionContainer* self, const CStrId* id, const u32* extra);
+UnkCollisionObject* CCollisionComponent_AddFlagsToFirstObjectWithId(UnkCollisionContainer* self, const CStrId* id, const u32* extra);
 void fn_71008639a8(UnkCollisionContainer* self, const CStrId* id, const u32* extra);
 
 // A list of record ids and the flags it applies to them.
@@ -78,6 +78,6 @@ void fn_7100861bb4(UnkCollisionContainer* self, void* track) {
         u32 lost = old & ~flags;
         fn_71008639a8(self, &Node(self, i)->name, &lost);
         u32 gained = flags;
-        fn_7100863814(self, &Node(self, i)->name, &gained);
+        CCollisionComponent_AddFlagsToFirstObjectWithId(self, &Node(self, i)->name, &gained);
     }
 }

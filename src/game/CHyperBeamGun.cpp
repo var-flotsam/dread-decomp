@@ -177,7 +177,7 @@ void fn_71008449ec(UnkHyperBeamGun* self, bool charged, bool cancelled) {
             void* target = self->owner->field_0x220;
             value.id = 0;
             type_id.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-            fn_7101176690(target, 0x90b0b24b6a6a9e1dull, 0xf4061ff25a2163d6ull, &value, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(target, 0x90b0b24b6a6a9e1dull, 0xf4061ff25a2163d6ull, &value, &g_unk_710164b958,
                           &g_unk_7172769740, &type_id);
         }
     }

@@ -146,7 +146,7 @@ static inline void SendTrack(void* anim, u64 kind, u32 flag, UnkReflTypeIdArg& m
     mode.id = 0;
     const u64& hash = flag == 0 ? g_unk_7101649ad0 : g_unk_7101649ad8;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(anim, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(anim, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
 void fn_71004c65c4(UnkLavaDropsAttack_l4c65c4* self) {

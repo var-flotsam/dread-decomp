@@ -128,7 +128,7 @@ void fn_710099ee20(UnkGroundState_l99* self) {
 
     UnkGroundTargetMode_l99* mode = self->target->mode;
     if (mode && mode->mode == 2) {
-        fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
+        CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
                       reinterpret_cast<const UnkRequest_7101176ea8*>(&params), 0xf4061ff25a2163d6);
         return;
     }

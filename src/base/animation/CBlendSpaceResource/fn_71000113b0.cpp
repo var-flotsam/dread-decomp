@@ -86,7 +86,7 @@ void CBlendSpaceResource_InitStatics() {
         const char* sources0[2];
         sources0[0] = ".mbls";
         sources0[1] = ".mblst";
-        CAnimationResource_ConstructResourceFormat(&types[0], "base::animation::CBlendSpaceResource", ".bmbls", sources0, 2);
+        fn_7100004578(&types[0], "base::animation::CBlendSpaceResource", ".bmbls", sources0, 2);
         CAnimationResource_ConstructResourceTypeFromFormats(g_unk_7101d4c138, "blendspace", types, 1);
         fn_7100004a44(&types[0]);
     }

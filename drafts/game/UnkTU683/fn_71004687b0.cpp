@@ -75,7 +75,7 @@ inline bool Send_l4687b0(void* target) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    return fn_7101176690(target, 0xfb7d4bc21bc9379a, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+    return CAnimationComponent_SendActionToTrack(target, 0xfb7d4bc21bc9379a, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                          &g_unk_7172769740, &mask);
 }
 

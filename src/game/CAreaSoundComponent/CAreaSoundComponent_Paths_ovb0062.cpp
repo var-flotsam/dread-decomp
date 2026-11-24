@@ -79,7 +79,6 @@ void CAreaSoundComponent_ListenerThunk_ClearHandleForSound(u8* listener, UnkSoun
     Forget_ovb0062(reinterpret_cast<UnkAreaSoundHandles_ovb0062*>(reinterpret_cast<u64>(listener) - 0xad0), sound);
 }
 
-struct UnkSoundObject_b50;
 void fn_71007181b8(void* self);
 extern char g_unk_7101cb48a0[];  // CAreaSoundComponent's vtables
 
@@ -124,7 +123,7 @@ void fn_71011804b0(UnkAreaSoundDtor_ovb0062* self) {
         sound = GetSound_ovb0062(&self->handles[1]);
     }
     if (handle) {
-        fn_7100106024(reinterpret_cast<UnkSoundObject_b50*>(sound), nullptr);
+        fn_7100106024(reinterpret_cast<UnkSound*>(sound), nullptr);
         *handle = g_unk_7108b6c460;
     }
     Release_ovb0062(&self->paths[2]);

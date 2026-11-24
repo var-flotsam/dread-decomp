@@ -28,7 +28,7 @@ struct UnkYamplotActor_b67a4 {
     base::reflection::UnkReflObject* ai;  // 0x240
 };
 
-const UnkYamplotPick_b67a4* fn_71006eec40(void* self, UnkYamplotActor_b67a4* actor, void* a, void* b) {
+const UnkYamplotPick_b67a4* CCharClassYamplotXAIComponent_PickPushOnairId(void* self, UnkYamplotActor_b67a4* actor, void* a, void* b) {
     UnkYamplotData_b67a4* data = actor->data;
     base::reflection::UnkReflObject* ai = actor->ai;
     UnkYamplotAIState_b67a4* cast = ai && fn_710009d50c(ai->vf_0x0(), fn_71006ef064())

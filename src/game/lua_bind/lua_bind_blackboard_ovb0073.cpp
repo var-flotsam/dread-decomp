@@ -19,7 +19,7 @@ using base::global::CStrId;
 struct UnkBlackboardGroups_b0026;
 struct UnkNameList_b0026;
 struct UnkSectionGroup_b0026;
-UnkSectionGroup_b0026* fn_7101048820(UnkBlackboardGroups_b0026* self, const CStrId& key, UnkNameList_b0026* list);
+UnkSectionGroup_b0026* CBlackboard_CreateGroupWithNames(UnkBlackboardGroups_b0026* self, const CStrId& key, UnkNameList_b0026* list);
 class UnkKeyedSlots_b48a3;
 void fn_7101048280(UnkKeyedSlots_b48a3* self, const u64* key);
 struct UnkStrIdHandle;
@@ -129,7 +129,7 @@ int AddPackage(lua_State* L) {
     const char* name;
     UnkLuaNameList_ovb0073 names;
     if (fn_71010c0270(L, "sS", &name, &names))
-        fn_7101048820(reinterpret_cast<UnkBlackboardGroups_b0026*>(Groups_ovb0073(manager)), CStrId(name, true),
+        CBlackboard_CreateGroupWithNames(reinterpret_cast<UnkBlackboardGroups_b0026*>(Groups_ovb0073(manager)), CStrId(name, true),
                       reinterpret_cast<UnkNameList_b0026*>(&names));
     return 0;
 }

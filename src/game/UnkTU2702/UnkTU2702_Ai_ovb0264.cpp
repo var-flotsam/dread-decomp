@@ -354,7 +354,7 @@ void fn_710110e3dc(UnkStartSelf_i* self) {
     if (void* target = self->owner->field_0x220) {
         value.id = 2;
         arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-        fn_7101176690(target, 0x3951592af38cb532, 0xf4061ff25a2163d6, &value, &g_unk_710164b968,
+        CAnimationComponent_SendActionToTrack(target, 0x3951592af38cb532, 0xf4061ff25a2163d6, &value, &g_unk_710164b968,
                       &g_unk_7172769740, &arg);
         fn_7101176a88(reinterpret_cast<UnkActorTarget*>(target), 1);
     }

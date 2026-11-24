@@ -36,9 +36,9 @@
 #include "game/behaviortree/CBehavior.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
+#include "game/UnkSoundRef.h"
 
 using base::global::CStrId;
-
 
 struct UnkEmmyAI_b0193;
 struct UnkEmmyActor_b0193;
@@ -64,11 +64,6 @@ void fn_7100545570(UnkEmmyAI_b0193* self, UnkEmmyOther_b0193* other) {
     }
     fn_71005455e8(self);
 }
-
-
-
-
-
 
 struct UnkAII_b0144;
 struct UnkPathPoint_b67a4;
@@ -122,8 +117,6 @@ bool fn_71005540d8(UnkPathAI_b0193* self) {
     return ax * dir.x + ay * dir.y + az * dir.z < 0.0f;
 }
 
-
-
 // ---- 710055749c
 
 struct UnkNavVtbl_b0193;
@@ -147,13 +140,7 @@ bool fn_710055749c(UnkNavAI_b0193* self, const base::math::CVector2D* point, u16
 }
 
 // ---- 71005593f0
-struct UnkSound;
 struct UnkShipRechargeEntity_b49a4;
-struct UnkSoundRef {
-    UnkSound* object;
-    s64 serial;
-};
-
 static inline UnkSound* GetSound_b0193(const UnkSoundHandle* handle) {
     if (handle->ref && handle->ref->serial == handle->serial && handle->serial != -1)
         return handle->ref->object;
@@ -286,8 +273,6 @@ void fn_7100541e64(UnkHandleAI_b0193* self) {
     RELEASE_HANDLE_b0193(self, effects, 3)
 }
 
-
-
 using base::global::CStrId;
 
 struct UnkEmmyRelaxAI_b59;
@@ -342,7 +327,6 @@ bool fn_710054782c(UnkEmmyRelaxAI_b59* self_) {
     }
     return found & 1;
 }
-
 
 // ---- 7100545138
 

@@ -88,7 +88,7 @@ static inline bool Contains_ovb0122(UnkFan_ovb0122* self, UnkFanBomb_ovb0122* bo
     return false;
 }
 
-void fn_710087ea38(UnkFan_A4_b74* fan) {
+void CCharClassFanComponent_AddBombsInAreaToList(UnkFan_A4_b74* fan) {
     UnkFan_ovb0122* self = reinterpret_cast<UnkFan_ovb0122*>(fan);
     if (!self->shape)
         return;

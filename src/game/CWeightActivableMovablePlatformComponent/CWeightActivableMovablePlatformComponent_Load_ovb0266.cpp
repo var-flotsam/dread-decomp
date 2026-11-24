@@ -97,7 +97,7 @@ void fn_71009533fc(UnkWeightPlatform_b0266* self) {
             mode.id = 0;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, hash, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958, &g_unk_717276974c, &mask);
+            CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958, &g_unk_717276974c, &mask);
             if (void* object = fn_71002b3b84(self->owner)) {
                 u64 id;
                 if (self->def->field_0x70) {

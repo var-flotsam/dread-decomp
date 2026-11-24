@@ -3801,8 +3801,8 @@ address,size,name,name_source,subsystem,status
 0x71005c9d44,772,CCharClassInfesterAIComponent::refl_AddFields,reflection,game/characters,O
 0x71005ca048,352,CCharClassInfesterAIComponent::refl_InitClass,reflection,game/characters,O
 0x71005ca1a8,208,fn_71005ca1a8,unknown,game/characters?,O
-0x71005ca278,140,fn_71005ca278,unknown,game/characters?,O
-0x71005ca304,148,fn_71005ca304,unknown,game/characters?,O
+0x71005ca278,140,CCharClassInfesterAIComponent_Destroy,inferred,game/characters?,O
+0x71005ca304,148,CCharClassInfesterAIComponent_DestroyAndDelete,inferred,game/characters?,O
 0x71005ca398,8,fn_71005ca398,unknown,game/characters?,O
 0x71005ca3a0,8,fn_71005ca3a0,unknown,game/characters?,O
 0x71005ca3a8,28,fn_71005ca3a8,unknown,game/characters?,O
@@ -3822,7 +3822,7 @@ address,size,name,name_source,subsystem,status
 0x71005ca460,28,CCharClassInfesterAIComponent::refl_TypeOf,reflection,game/characters,O
 0x71005ca47c,44,CCharClassInfesterAIComponent::refl_Construct,reflection,game/characters,O
 0x71005ca4a8,12,CCharClassInfesterAIComponent::refl_Destroy,reflection,game/characters,O
-0x71005ca4c0,436,fn_71005ca4c0,unknown,engine/reflection?,O
+0x71005ca4c0,436,CCharClassInfesterAIComponent_InitStatics,inferred,engine/reflection?,O
 0x71005ca674,4,CInfesterAIComponent::refl_AddAttributes,reflection,game/ai,O
 0x71005ca678,244,CInfesterAIComponent::refl_GetClass,reflection,game/ai,O
 0x71005ca76c,4,CInfesterAIComponent::refl_AddFields,reflection,game/ai,O
@@ -4337,7 +4337,7 @@ address,size,name,name_source,subsystem,status
 0x71005dbdd4,48,fn_71005dbdd4,unknown,game/characters?,O
 0x71005dbe04,4,fn_71005dbe04,unknown,game/characters?,O
 0x71005dbe08,36,fn_71005dbe08,unknown,game/characters?,O
-0x71005dbe2c,260,fn_71005dbe2c,unknown,game/characters?,O
+0x71005dbe2c,260,CCharClassKraidAttack_GetBoolTunableForNameAsFloat,inferred,game/characters?,O
 0x71005dbf30,28,fn_71005dbf30,unknown,game/characters?,O
 0x71005dbf4c,12,CCharClassKraidAttack::refl_Equals,reflection,game/characters,O
 0x71005dbf58,8,CCharClassKraidAttack::refl_Hash,reflection,game/characters,O
@@ -4663,7 +4663,7 @@ address,size,name,name_source,subsystem,status
 0x71005e47e4,28,CCharClassKraidBouncingCreaturesAttack::refl_TypeOf,reflection,game/characters,O
 0x71005e4800,4,CCharClassKraidBouncingCreaturesAttack::refl_Construct,reflection,game/characters,O
 0x71005e4804,12,CCharClassKraidBouncingCreaturesAttack::refl_Destroy,reflection,game/characters,O
-0x71005e4810,1512,fn_71005e4810,unknown,game/characters?,O
+0x71005e4810,1512,CBouncingCreaturesLaunchPattern_InitStatics,inferred,game/characters?,O
 0x71005e4df8,4,CCharClassKraidFierceSwipeAttack::refl_AddAttributes,reflection,game/characters,O
 0x71005e4dfc,244,CCharClassKraidFierceSwipeAttack::refl_GetClass,reflection,game/characters,O
 0x71005e4ef0,4,CCharClassKraidFierceSwipeAttack::refl_AddFields,reflection,game/characters,O

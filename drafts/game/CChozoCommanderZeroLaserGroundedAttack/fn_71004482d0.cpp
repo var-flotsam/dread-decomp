@@ -33,7 +33,7 @@ bool fn_7100b8fa7c(UnkAimAction* action, f32* angle, const UnkMatrix44* matrix, 
 f32 fn_71004482d0(UnkZeroLaserAttack* self, bool flag) {
     f32 result = 0.0f;
     if (self->field_0x8->field_0x220) {
-        UnkAimAction* action = fn_710070d500(fn_71011771e0(self->field_0x8->field_0x220, 0xf4061ff25a2163d6));
+        UnkAimAction* action = fn_710070d500(CAnimationComponent_FindTrackByNameHash(self->field_0x8->field_0x220, 0xf4061ff25a2163d6));
         if (action && fn_710009d50c(action->vf_0x18(), fn_7100b8f4e8())) {
             f32 angle = 0.0f;
             const UnkMatrix44* matrix =

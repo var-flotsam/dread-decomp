@@ -38,7 +38,7 @@ void fn_71006a7afc(UnkShakernautLaserPlay_l6a7afc* self, CStrId id, bool plain) 
         animation_plain = self->animation;
         mode_plain.id = 2;
         mask_plain.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation_plain, hash_plain, 0xf4061ff25a2163d6, &mode_plain, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(animation_plain, hash_plain, 0xf4061ff25a2163d6, &mode_plain, &g_unk_710164b958,
                       &g_unk_7172769740, &mask_plain);
         break;
     default: {
@@ -58,7 +58,7 @@ void fn_71006a7afc(UnkShakernautLaserPlay_l6a7afc* self, CStrId id, bool plain) 
         mode.id = 2;
         u64 key = hash;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, key, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(animation, key, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask);
         break;
     }

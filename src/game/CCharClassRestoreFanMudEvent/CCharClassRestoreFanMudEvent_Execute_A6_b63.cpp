@@ -11,7 +11,7 @@
 
 struct UnkWeakTarget;
 
-void fn_7100bcda3c(void* self) {
+void CCharClassRestoreFanMudEvent_SetRestoreOnFanCooldownTimeline(void* self) {
     base::reflection::UnkReflTypeIdArg mask;
     u64 key;
     alignas(8) u32 kind;

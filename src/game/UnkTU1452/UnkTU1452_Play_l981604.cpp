@@ -55,5 +55,5 @@ void fn_7100981604(UnkUnit1452_b56* self, bool flag) {
     u32 mask = UnkAll_SpitSend().value;
     UnkStruct_7101176ea8* animation = reinterpret_cast<UnkAnimOwner_l981604*>(fn_710097f1b8(self))->animation;
     UnkAnimRequest_l981604 req(id, time, blend, flag ? 0x11u : 0x10u, mask);
-    fn_7101176ea8(animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&req), 0xf4061ff25a2163d6);
+    CAnimationComponent_SendActionRequestRecordToTrack(animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&req), 0xf4061ff25a2163d6);
 }

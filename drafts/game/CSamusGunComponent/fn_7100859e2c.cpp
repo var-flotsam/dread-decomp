@@ -91,7 +91,7 @@ void fn_7100859e2c(UnkSamusGun_l859e2c* self, bool aiming) {
         hash = fn_710085a1e8(self);
         focus_value.id = 0x80;
         focus_type.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-        fn_7101176690(animation, hash, 0x5d523009b8f43e5f, &focus_value, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(animation, hash, 0x5d523009b8f43e5f, &focus_value, &g_unk_710164b958, &g_unk_7172769740,
                       &focus_type);
     }
     return;
@@ -102,7 +102,7 @@ aim:
     hash = CSamusGunComponent_GetPrimaryWeaponKey(self);
     aim_value.id = 0x80;
     aim_type.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-    fn_7101176690(animation, hash, 0x5d523009b8f43e5f, &aim_value, &g_unk_710164b958, &g_unk_717276974c,
+    CAnimationComponent_SendActionToTrack(animation, hash, 0x5d523009b8f43e5f, &aim_value, &g_unk_710164b958, &g_unk_717276974c,
                   &aim_type);
     return;
 idle:
@@ -110,6 +110,6 @@ idle:
     hash = fn_710085a1e8(self);
     idle_value.id = 0x80;
     idle_type.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-    fn_7101176690(animation, hash, 0x5d523009b8f43e5f, &idle_value, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(animation, hash, 0x5d523009b8f43e5f, &idle_value, &g_unk_710164b958, &g_unk_7172769740,
                   &idle_type);
 }

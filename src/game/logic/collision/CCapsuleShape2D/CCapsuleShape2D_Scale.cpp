@@ -29,7 +29,7 @@ struct UnkScaledCapsuleShape2D {
     f32 field_0xb4;
 };
 
-void fn_7100d601a0(UnkScaledCapsuleShape2D* self, const CVector2D* scale) {
+void CCapsuleShape2D_ScaleRadiusAndHalfHeight(UnkScaledCapsuleShape2D* self, const CVector2D* scale) {
     self->field_0xb4 = scale->x * self->field_0xb4;
     self->field_0xb0 = scale->y * self->field_0xb0;
     self->vf_0x80();

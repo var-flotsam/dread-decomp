@@ -18,7 +18,7 @@ static inline UnkVec3_cs Add_A5_b70(const UnkVec3_cs& a, const UnkVec3_cs& b) {
     return {a.x + b.x, a.y + b.y, a.z + b.z};
 }
 
-UnkReflValue fn_71007ad814(void*, char* obj) {
+UnkReflValue CCutsceneComponent_InvokeSetupCurrentTakePositions(void*, char* obj) {
     UnkCutsceneComponent_cs* self = *reinterpret_cast<UnkCutsceneComponent_cs**>(obj + 8);
     UnkCutsceneObject_cs* object = self->object;
     const base::global::CStrId* name = object->take ? object->take->name : &base::global::CStrId::Empty();

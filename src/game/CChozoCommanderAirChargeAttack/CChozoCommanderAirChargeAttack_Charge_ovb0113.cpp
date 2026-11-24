@@ -16,6 +16,7 @@
 #include "game_s2/UnkParams.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "types.h"
+#include "game/UnkStruct_71007142e8.h"
 
 using base::reflection::UnkReflObject;
 
@@ -75,11 +76,6 @@ bool CChozoCommanderAirChargeAttack_CanStart(UnkChargeAttack_ovb0113* self, void
 // (src/game/CChozoCommanderHypersparkAttack/CChozoCommanderHypersparkAttack_Aim_ovb0023.cpp) does.
 struct UnkStruct_7101176ea8;
 
-struct UnkStruct_71007142e8 {
-    f32 m[12];
-    u8 pad_0x30[0x40];
-};
-
 struct UnkMotionTracks;
 
 struct UnkChargeOwner_ovb0113 {
@@ -112,9 +108,9 @@ void CChozoCommanderAirChargeAttack_ComputeTimelineMotionOffset(UnkChargeAttack2
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
-    f32 x = motion.m[3];
-    f32 y = motion.m[7];
-    f32 z = motion.m[11];
+    f32 x = motion.xform.m[0][3];
+    f32 y = motion.xform.m[1][3];
+    f32 z = motion.xform.m[2][3];
     self->end_x = x;
     self->end_y = y;
     self->end_z = z;
@@ -199,7 +195,7 @@ void fn_7100425998(UnkChargeAttack3_ovb0113* self) {
     value.id = 0;
     UnkReflTypeIdArg arg;
     arg.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-    fn_7101176690(actions, 0x6fb3d416bd10ce27, 0xf4061ff25a2163d6, &value, &g_unk_710164b958,
+    CAnimationComponent_SendActionToTrack(actions, 0x6fb3d416bd10ce27, 0xf4061ff25a2163d6, &value, &g_unk_710164b958,
                   &g_unk_7172769740, &arg);
     self->state = 2;
     self->field_0x14 = false;

@@ -76,7 +76,7 @@ void fn_7100a0c60c(UnkWap_la0c60c* self) {
     CVector4D colour;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(animation, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 
     if (UnkWapLink_la0c60c* link = self->link) {
         if (UnkSmartObjectActor* object = link->object) {

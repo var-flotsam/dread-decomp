@@ -58,7 +58,7 @@ void fn_710082c28c(UnkTrapGrapple_l82c28c* self, void* arg, s32 state) {
         request.blend_value = value;
         request.flags = 0x400;
         request.mask = mask;
-        fn_7101176ea8(self->owner->animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&request),
+        CAnimationComponent_SendActionRequestRecordToTrack(self->owner->animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&request),
                       0xf4061ff25a2163d6);
     }
 }

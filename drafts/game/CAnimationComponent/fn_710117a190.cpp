@@ -18,14 +18,14 @@ void fn_7100143618(UnkAnimEffect* self, bool flag, f32 value);
 
 __attribute__((visibility("hidden"))) extern u32 g_unk_7172a0ae60;  // flag bits a new matrix clears
 
-void fn_710117ecb0(base::UnkCountedDeferredWalk<void>* walk);
+void CAnimationComponent_EndListenersWalk(base::UnkCountedDeferredWalk<void>* walk);
 void fn_710117eb1c(base::UnkCountedDeferredSet<void>* self, void* value);
 
 // A walk over the component's listeners (+0x438); ending the last one applies the changes made
 // meanwhile (fn_710117ecb0).
 struct UnkAnimListenersWalk_a190 : base::UnkCountedDeferredWalk<void> {
     using UnkCountedDeferredWalk::UnkCountedDeferredWalk;
-    ~UnkAnimListenersWalk_a190() { fn_710117ecb0(this); }
+    ~UnkAnimListenersWalk_a190() { CAnimationComponent_EndListenersWalk(this); }
 };
 struct UnkPairOwner;
 struct UnkValueSource;

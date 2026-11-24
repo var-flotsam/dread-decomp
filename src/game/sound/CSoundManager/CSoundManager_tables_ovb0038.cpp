@@ -38,6 +38,7 @@
 #include "types.h"
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
+#include "game/UnkSoundRef.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -613,7 +614,6 @@ UnkSoundU32OwnedPair_b0038* fn_710102ade4(UnkSoundU32OwnedPair_b0038* self, UnkS
 // the shape of src/game/CMinimapData/UnkStrIdIterBeginEnd_A6_b75.h. Names and layouts are
 // placeholders.
 
-
 struct alignas(8) UnkSoundRecord18_b0038 {
     u8 data[0x18];
     ~UnkSoundRecord18_b0038() { fn_7100026f70(reinterpret_cast<UnkIdPair*>(this)); }
@@ -682,11 +682,6 @@ void fn_7101025560(UnkDropTarget* self, const UnkStrIdPathPair* ids, f32 blend, 
 }
 
 struct UnkSoundMgr;
-
-struct UnkSoundRef {
-    void* object;
-    s64 serial;
-};
 
 struct UnkSoundRequest_b50;  // src/game/CAudioComponent/CAudioComponent_b50.cpp
 

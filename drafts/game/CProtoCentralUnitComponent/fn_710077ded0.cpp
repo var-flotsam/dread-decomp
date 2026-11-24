@@ -67,6 +67,6 @@ void fn_710077ded0(UnkProtoCentralUnit_ovb0265* self, s32 message) {
         return;
     mode.id = 0;
     mask.id = base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>();
-    fn_7101176690(animation, 0xe43bbd07b9e307b9, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(animation, 0xe43bbd07b9e307b9, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                   &mask);
 }

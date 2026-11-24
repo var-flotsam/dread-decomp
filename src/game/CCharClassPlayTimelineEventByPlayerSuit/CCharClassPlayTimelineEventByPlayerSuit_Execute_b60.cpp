@@ -52,7 +52,7 @@ static inline const UnkQualifiedId& ItemId_b60(UnkPropertyEx<>& item) {
     return qid;
 }
 
-void fn_7100bc9d0c(UnkPlayTimelineBySuitEvent_b60* self, UnkPlayTimelineBySuitTarget_b60* target) {
+void CCharClassPlayTimelineEventByPlayerSuit_PlayTimelineOfBestOwnedSuit(UnkPlayTimelineBySuitEvent_b60* self, UnkPlayTimelineBySuitTarget_b60* target) {
     if (self->ids[0] == &g_unk_7101d47108->empty || self->ids[1] == &g_unk_7101d47108->empty ||
         self->ids[2] == &g_unk_7101d47108->empty || self->ids[3] == &g_unk_7101d47108->empty)
         return;

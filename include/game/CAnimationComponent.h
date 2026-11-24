@@ -34,8 +34,8 @@ struct UnkTakumakuComponent;
 void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
 void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 bool fn_7101178e6c(UnkTakumakuComponent* component, u32 kind);
-bool fn_710117af10(UnkStruct_710117af10*, UnkCls_710117af10**, bool);
-bool fn_7101176ea8(UnkStruct_7101176ea8* self, const UnkRequest_7101176ea8* req, u64 key);
+bool CAnimationComponent_IsPlayingActionNameContaining(UnkStruct_710117af10*, UnkCls_710117af10**, bool);
+bool CAnimationComponent_SendActionRequestRecordToTrack(UnkStruct_7101176ea8* self, const UnkRequest_7101176ea8* req, u64 key);
 void* fn_7101176e0c(UnkStruct_7101176ea8* self, u64 a, u64 b);
 void fn_710117abfc(void* target, bool, void* a2, u64 id);
 void fn_710117ad18(UnkActionSwitcherAnimation_b48* self, bool flag, f32 value);
@@ -52,7 +52,7 @@ void fn_710117ab64(UnkAnimationComponent* self, bool, const void* arg);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void* fn_7101177d2c(UnkAnimationComponent* self, u64 key);
 bool fn_7101179c3c(UnkAnimationComponent* self, u64 key);
-UnkTrack* fn_71011771e0(void* handle, u64 key);
+UnkTrack* CAnimationComponent_FindTrackByNameHash(void* handle, u64 key);
 bool fn_71011782ec(UnkAnimationComponent* self, u64 key);
 void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);  // The entry for a key (a name's hash).
 s32 fn_7101177da8(void* object, u64 hash);
@@ -70,7 +70,7 @@ void fn_71011787dc(UnkAnimTags_ovb0010* self, bool flag);
 void fn_7101178e08(UnkActorTarget* target, u32 value, bool apply, bool flag, f32 time);
 bool fn_7101176e78(UnkStruct_7101176ea8* self, void* key, void** out);
 void fn_710117eb1c(base::UnkCountedDeferredSet<void>* self, void* value);
-void fn_710117ecb0(base::UnkCountedDeferredWalk<void>* walk);
+void CAnimationComponent_EndListenersWalk(base::UnkCountedDeferredWalk<void>* walk);
 void fn_7101179d08(UnkAnimationComponent* self, UnkStruct_71007142e8* motion, const void* key);
 
 struct UnkAnimationComponent;

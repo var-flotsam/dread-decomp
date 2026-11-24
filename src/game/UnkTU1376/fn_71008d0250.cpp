@@ -199,7 +199,7 @@ void fn_71008d0250(UnkDoorLife_l8d0250* self) {
             mode.id = 0x82;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);
+            CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);
         }
         fn_71008d0ef4(self);
     }

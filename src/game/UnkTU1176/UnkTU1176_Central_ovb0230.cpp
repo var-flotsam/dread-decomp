@@ -703,7 +703,7 @@ void fn_710077045c() {
         range.field_0x8 = 0x40000000;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, 0xa218d351a57ec697, 0x5d523009b8f43e5f, &value, &g_unk_710164b958, &range, &mask);
+        CAnimationComponent_SendActionToTrack(target, 0xa218d351a57ec697, 0x5d523009b8f43e5f, &value, &g_unk_710164b958, &range, &mask);
     }
 }
 
@@ -744,7 +744,7 @@ void fn_71007727f0(UnkCentralUnit* unit) {
         range.field_0x8 = 0x40000000;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, 0xbe3a59363755d886, 0x5d523009b8f43e5f, &value, &g_unk_710164b968, &range, &mask);
+        CAnimationComponent_SendActionToTrack(target, 0xbe3a59363755d886, 0x5d523009b8f43e5f, &value, &g_unk_710164b968, &range, &mask);
     }
 }
 

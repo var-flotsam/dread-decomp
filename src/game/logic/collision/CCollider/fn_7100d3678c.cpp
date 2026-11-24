@@ -87,7 +87,7 @@ static inline void CopyBox(UnkBox_ld3678c& dst, const UnkBox_ld3678c& src) {
     dst.max_y = src.max_y;
 }
 
-void fn_7100d3678c(UnkBroadphaseObject_ld3678c* self, UnkBroadphaseObject_ld3678c* other) {
+void CCollider_MoveConstructBroadphaseObject(UnkBroadphaseObject_ld3678c* self, UnkBroadphaseObject_ld3678c* other) {
     fn_7101043904(self);
     self->vtable = g_unk_7101aa84e0 + 0x10;
     self->field_0x10 = other->field_0x10;

@@ -8,6 +8,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkMat4f.h"
 #include "game/UnkMotionRule.h"
+#include "game/UnkStruct_71007142e8.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU54.h"
@@ -20,12 +21,6 @@ using base::global::CStrId;
 extern __attribute__((visibility("hidden"))) const UnkVec3f g_unk_710164a030;
 
 // As src/game/CSamusFloorSlideMovementState/CParams/CParams_Slide_ovb0004.cpp defines them.
-struct UnkStruct_71007142e8 {
-    u8 pad_0x0[0x2c];
-    f32 field_0x2c;
-    u8 pad_0x30[0x40];
-};
-
 struct UnkMotionTracks;
 
 struct UnkGoliathMotion_l590cc0 {

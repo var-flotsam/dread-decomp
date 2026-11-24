@@ -158,7 +158,7 @@ u64 fn_7100b8a428(CRntFile* file, void* out);
 void fn_7100b8c2cc(char* map, u32 buckets, u32 nodes);
 void fn_7100b8c420(UnkActionSet_b0104* self, CRntFile* file);
 
-bool fn_7100b8c1a0(UnkActionSet_b0104* self) {
+bool CActionSet_LoadFromFile(UnkActionSet_b0104* self) {
     CRntFile file;
     fn_710007be8c(&file, 0x16, nullptr);
     bool opened;

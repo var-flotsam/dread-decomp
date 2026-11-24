@@ -22,7 +22,7 @@ void fn_7100732900() __attribute__((visibility("hidden")));
 void fn_710073290c() __attribute__((visibility("hidden")));
 extern char g_unk_71727104f8[];
 
-void fn_7100732a50() {
+void CCharClassFlockingSwarmControllerComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172710500.ids);
     InitEnum(&base::reflection::TypeObject<CCharClassFlockingSwarmControllerComponent::SRotationMode, UnkEnumType>::object, "CCharClassFlockingSwarmControllerComponent::SRotationMode", fn_71007314ec, fn_71007313a0,
              g_unk_71727104b0, &g_unk_71727104b8, fn_7100732900, &g_unk_71727104d8, fn_710073290c);

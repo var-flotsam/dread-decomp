@@ -23,7 +23,7 @@ struct UnkChangeSetupAction_b53 {
     bool bPush;
 };
 
-void fn_7100a37690(UnkChangeSetupAction_b53* self) {
+void CChangeSetupLogicAction_SubmitSetupChange(UnkChangeSetupAction_b53* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     if (self->id.data == &g_unk_7101d47108->empty)
         return;

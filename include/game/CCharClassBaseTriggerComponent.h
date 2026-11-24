@@ -15,6 +15,6 @@ void fn_7100a46a68(char*);
 bool fn_7100a46e00(UnkSteamJetComponent*, UnkSteamJetArg*);
 void fn_7100a474f8(UnkFan_A4_b74*, f32);
 void fn_7100a46e78(CFreezeRoomComponent* self);
-bool fn_7100a47e00(UnkMagmaArea_b50*, const base::math::CVector2D*);
+bool CCharClassBaseTriggerComponent_IsPointInColliderBounds(UnkMagmaArea_b50*, const base::math::CVector2D*);
 void fn_7100a46b64(char*);
 extern void* g_unk_7101a8ebc8[];
