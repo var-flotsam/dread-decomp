@@ -7,59 +7,56 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassFulmiteBellyMineAIComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFulmiteBellyMineAIComponent
-namespace CCharClassFulmiteBellyMineAIComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fLifeTime", 0x50c, (DefaultValue, 5.0f));
-    DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", 0x510, (DefaultValue, 100.0f));
-    DREAD_REFLECTED_FIELD(f32, "fTimeToExplosion", 0x514, (DefaultValue, 0.1f));
-    DREAD_REFLECTED_FIELD(f32, "fTimeAtMaxRadiusExplosion", 0x518, (DefaultValue, 0.2f));
-    DREAD_REFLECTED_FIELD(f32, "fDamageFulmiteBellyMineExplosion", 0x51c, (DefaultValue, 50.0f));
-    DREAD_REFLECTED_FIELD(f32, "fNormalXFactor", 0x520, (DefaultValue, 1.2f));
-    DREAD_REFLECTED_FIELD(f32, "fNormalYFactor", 0x524, (DefaultValue, 0.3f));
-    DREAD_REFLECTED_FIELD(f32, "fUpsideDownXFactor", 0x528, (DefaultValue, 100.0f));
-    DREAD_REFLECTED_FIELD(f32, "fUpsideDownYFactor", 0x52c, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fInWallXFactor", 0x530, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fInWallYFactor", 0x534, (DefaultValue, 0.1f));
-    DREAD_REFLECTED_FIELD(u32, "uGroundRebounds", 0x538, (DefaultValue, 1));
-    DREAD_REFLECTED_FIELD(f32, "fWallImpulseXFactor", 0x53c, (DefaultValue, 0.25f));
-    DREAD_REFLECTED_FIELD(f32, "fWallImpulseYFactor", 0x540, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fGroundImpulseXFactor", 0x544, (DefaultValue, 0.5f));
-    DREAD_REFLECTED_FIELD(f32, "fGroundImpulseYFactor", 0x548, (DefaultValue, 0.25f));
-    DREAD_REFLECTED_FIELD(bool, "bPlayReboundActions", 0x54c, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(f32, "fImpulseVelocityXLimit", 0x550, (DefaultValue, 300.0f));
-    DREAD_REFLECTED_FIELD(f32, "fImpulseVelocityYLimit", 0x554, (DefaultValue, 300.0f));
-    DREAD_REFLECTED_FIELD(f32, "fTimeToShowBeforeExplosionFX", 0x558, (DefaultValue, 0.8f));
-    DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenBeeps", 0x55c, (DefaultValue, 0.4f));
-    DREAD_REFLECTED_FIELD(f32, "fMaxTimeBetweenBeeps", 0x560, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMinBeepVolume", 0x564, (DefaultValue, 0.3f));
-    DREAD_REFLECTED_FIELD(f32, "fMaxBeepVolume", 0x568, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMinBeepPitch", 0x56c, (DefaultValue, 0.6f));
-    DREAD_REFLECTED_FIELD(f32, "fMaxBeepPitch", 0x570, (DefaultValue, 1.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassFulmiteBellyMineAIComponent::refl_AddAttributes(CClass*) {}
+void CCharClassFulmiteBellyMineAIComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fLifeTime", offsetof(CCharClassFulmiteBellyMineAIComponent, fLifeTime), (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", offsetof(CCharClassFulmiteBellyMineAIComponent, fExplosionRadius), (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToExplosion", offsetof(CCharClassFulmiteBellyMineAIComponent, fTimeToExplosion), (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeAtMaxRadiusExplosion", offsetof(CCharClassFulmiteBellyMineAIComponent, fTimeAtMaxRadiusExplosion), (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fDamageFulmiteBellyMineExplosion", offsetof(CCharClassFulmiteBellyMineAIComponent, fDamageFulmiteBellyMineExplosion), (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fNormalXFactor", offsetof(CCharClassFulmiteBellyMineAIComponent, fNormalXFactor), (DefaultValue, 1.2f));
+    DREAD_REFLECTED_FIELD(f32, "fNormalYFactor", offsetof(CCharClassFulmiteBellyMineAIComponent, fNormalYFactor), (DefaultValue, 0.3f));
+    DREAD_REFLECTED_FIELD(f32, "fUpsideDownXFactor", offsetof(CCharClassFulmiteBellyMineAIComponent, fUpsideDownXFactor), (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fUpsideDownYFactor", offsetof(CCharClassFulmiteBellyMineAIComponent, fUpsideDownYFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInWallXFactor", offsetof(CCharClassFulmiteBellyMineAIComponent, fInWallXFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInWallYFactor", offsetof(CCharClassFulmiteBellyMineAIComponent, fInWallYFactor), (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(u32, "uGroundRebounds", offsetof(CCharClassFulmiteBellyMineAIComponent, uGroundRebounds), (DefaultValue, 1));
+    DREAD_REFLECTED_FIELD(f32, "fWallImpulseXFactor", offsetof(CCharClassFulmiteBellyMineAIComponent, fWallImpulseXFactor), (DefaultValue, 0.25f));
+    DREAD_REFLECTED_FIELD(f32, "fWallImpulseYFactor", offsetof(CCharClassFulmiteBellyMineAIComponent, fWallImpulseYFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fGroundImpulseXFactor", offsetof(CCharClassFulmiteBellyMineAIComponent, fGroundImpulseXFactor), (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fGroundImpulseYFactor", offsetof(CCharClassFulmiteBellyMineAIComponent, fGroundImpulseYFactor), (DefaultValue, 0.25f));
+    DREAD_REFLECTED_FIELD(bool, "bPlayReboundActions", offsetof(CCharClassFulmiteBellyMineAIComponent, bPlayReboundActions), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fImpulseVelocityXLimit", offsetof(CCharClassFulmiteBellyMineAIComponent, fImpulseVelocityXLimit), (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fImpulseVelocityYLimit", offsetof(CCharClassFulmiteBellyMineAIComponent, fImpulseVelocityYLimit), (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToShowBeforeExplosionFX", offsetof(CCharClassFulmiteBellyMineAIComponent, fTimeToShowBeforeExplosionFX), (DefaultValue, 0.8f));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenBeeps", offsetof(CCharClassFulmiteBellyMineAIComponent, fMinTimeBetweenBeeps), (DefaultValue, 0.4f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeBetweenBeeps", offsetof(CCharClassFulmiteBellyMineAIComponent, fMaxTimeBetweenBeeps), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinBeepVolume", offsetof(CCharClassFulmiteBellyMineAIComponent, fMinBeepVolume), (DefaultValue, 0.3f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxBeepVolume", offsetof(CCharClassFulmiteBellyMineAIComponent, fMaxBeepVolume), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinBeepPitch", offsetof(CCharClassFulmiteBellyMineAIComponent, fMinBeepPitch), (DefaultValue, 0.6f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxBeepPitch", offsetof(CCharClassFulmiteBellyMineAIComponent, fMaxBeepPitch), (DefaultValue, 1.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x578;
+bool CCharClassFulmiteBellyMineAIComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassFulmiteBellyMineAIComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassFulmiteBellyMineAIComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFulmiteBellyMineAIComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassFulmiteBellyMineAIComponent::refl_Destroy(void* obj) { static_cast<CCharClassFulmiteBellyMineAIComponent*>(obj)->~CCharClassFulmiteBellyMineAIComponent(); }
+struct CCharClassFulmiteBellyMineAIComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassFulmiteBellyMineAIComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassFulmiteBellyMineAIComponent
-DREAD_REFLECTED_CLASS(CCharClassFulmiteBellyMineAIComponent, CCharClassBehaviorTreeAIComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassFulmiteBellyMineAIComponent, CCharClassBehaviorTreeAIComponent);
+#pragma GCC diagnostic pop

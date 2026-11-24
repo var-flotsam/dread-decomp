@@ -7,64 +7,61 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassUsableComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassUsableComponent
-namespace CCharClassUsableComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fGrabInterpTime", 0x198, (DefaultValue, 5.0f), (Description, "Grab interpolation time"));
-    DREAD_REFLECTED_FIELD(f32, "fUseTime", 0x19c, (DefaultValue, 0.0f), (Description, "Interaction time"));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sUseQuestionID", 0x58, (DefaultValue, ""), (Description, "Use question ID"));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sCanNotUseID", 0x88, (DefaultValue, ""), (Description, "Can not use ID"));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sUseSuccessMessage", 0xb8, (DefaultValue, ""), (Description, "Use Success Message"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftAction", 0xe8, (DefaultValue, "leftuseinit"), (Description, "Left prepare use animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightAction", 0xf0, (DefaultValue, "rightuseinit"), (Description, "Right prepare use animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseInitAction", 0x100, (DefaultValue, ""), (Description, "Begin interaction animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseAction", 0x110, (DefaultValue, ""), (Description, "Interaction use animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseLevelChangeAction", 0x120, (DefaultValue, ""), (Description, "Interaction level change use animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseEndAction", 0x130, (DefaultValue, ""), (Description, "End interaction animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseIdleAction", 0x140, (DefaultValue, base::global::CRntString(base::reflection::refl_RntStringOf(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[1181]))), (Description, "Idle animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsablePrepareToUseAction", 0xf8, (DefaultValue, ""), (Description, "Usable Prepare To Use animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableInitAction", 0x108, (DefaultValue, ""), (Description, "Begin usable animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableAction", 0x118, (DefaultValue, ""), (Description, "Usable animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeAction", 0x128, (DefaultValue, ""), (Description, "Usable level change animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableEndAction", 0x138, (DefaultValue, ""), (Description, "End usable animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableIdleAction", 0x148, (DefaultValue, base::global::CRntString(base::reflection::refl_RntStringOf(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[1181]))), (Description, "Idle animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseDiscoverRightAction", 0x158, (DefaultValue, ""), (Description, "Discover right animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseDiscoverLeftAction", 0x160, (DefaultValue, ""), (Description, "Discover left animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableDiscoverAction", 0x168, (DefaultValue, ""), (Description, "Discover usable animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableUndiscoverAction", 0x150, (DefaultValue, ""), (Description, "UnDiscover usable animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftAfterDiscoverAction", 0x170, (DefaultValue, ""), (Description, "Left prepare use animation after discover"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightAfterDiscoverAction", 0x178, (DefaultValue, ""), (Description, "Right prepare use animation after discover"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseReadyToSaveBackgroundAction", 0x180, (DefaultValue, ""), (Description, "Ready to save on background use animation after using station"));
-    DREAD_REFLECTED_FIELD(f32, "fDiscoverInterpTime", 0x1a0, (DefaultValue, 0.666f), (Description, "Interaction time to reposition Samus when the Station has been discovered"));
-    DREAD_REFLECTED_FIELD(f32, "fStationUseInterpTime", 0x1a4, (DefaultValue, 0.75f), (Description, "Interaction time to reposition Samus when the Station has already been used"));
-    DREAD_REFLECTED_FIELD(f32, "fStationNotUsedInterpTime", 0x1a8, (DefaultValue, 1.0f), (Description, "Interaction time to reposition Samus when the Station has not been used"));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sStartLevelMusicID", 0x190, (Description, "Start Level Music link"));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSaveSoundID", 0x188, (Description, "Save Sound link"));
-    DREAD_REFLECTED_FIELD(f32, "fPostponeFadeInTime", 0x1ac, (DefaultValue, 0.01f), (Description, "Delay time to fade in"));
-    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", 0x1b0, (DefaultValue, 1.0f), (Description, "Fade in time"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassUsableComponent::refl_AddAttributes(CClass*) {}
+void CCharClassUsableComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fGrabInterpTime", offsetof(CCharClassUsableComponent, fGrabInterpTime), (DefaultValue, 5.0f), (Description, "Grab interpolation time"));
+    DREAD_REFLECTED_FIELD(f32, "fUseTime", offsetof(CCharClassUsableComponent, fUseTime), (DefaultValue, 0.0f), (Description, "Interaction time"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sUseQuestionID", offsetof(CCharClassUsableComponent, sUseQuestionID), (DefaultValue, ""), (Description, "Use question ID"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sCanNotUseID", offsetof(CCharClassUsableComponent, sCanNotUseID), (DefaultValue, ""), (Description, "Can not use ID"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sUseSuccessMessage", offsetof(CCharClassUsableComponent, sUseSuccessMessage), (DefaultValue, ""), (Description, "Use Success Message"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftAction", offsetof(CCharClassUsableComponent, sUsePrepareLeftAction), (DefaultValue, "leftuseinit"), (Description, "Left prepare use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightAction", offsetof(CCharClassUsableComponent, sUsePrepareRightAction), (DefaultValue, "rightuseinit"), (Description, "Right prepare use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseInitAction", offsetof(CCharClassUsableComponent, sUseInitAction), (DefaultValue, ""), (Description, "Begin interaction animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseAction", offsetof(CCharClassUsableComponent, sUseAction), (DefaultValue, ""), (Description, "Interaction use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseLevelChangeAction", offsetof(CCharClassUsableComponent, sUseLevelChangeAction), (DefaultValue, ""), (Description, "Interaction level change use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseEndAction", offsetof(CCharClassUsableComponent, sUseEndAction), (DefaultValue, ""), (Description, "End interaction animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseIdleAction", offsetof(CCharClassUsableComponent, sUseIdleAction), (DefaultValue, base::global::CRntString(base::reflection::refl_RntStringOf(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[1181]))), (Description, "Idle animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsablePrepareToUseAction", offsetof(CCharClassUsableComponent, sUsablePrepareToUseAction), (DefaultValue, ""), (Description, "Usable Prepare To Use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableInitAction", offsetof(CCharClassUsableComponent, sUsableInitAction), (DefaultValue, ""), (Description, "Begin usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableAction", offsetof(CCharClassUsableComponent, sUsableAction), (DefaultValue, ""), (Description, "Usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeAction", offsetof(CCharClassUsableComponent, sUsableLevelChangeAction), (DefaultValue, ""), (Description, "Usable level change animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableEndAction", offsetof(CCharClassUsableComponent, sUsableEndAction), (DefaultValue, ""), (Description, "End usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableIdleAction", offsetof(CCharClassUsableComponent, sUsableIdleAction), (DefaultValue, base::global::CRntString(base::reflection::refl_RntStringOf(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[1181]))), (Description, "Idle animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseDiscoverRightAction", offsetof(CCharClassUsableComponent, sUseDiscoverRightAction), (DefaultValue, ""), (Description, "Discover right animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseDiscoverLeftAction", offsetof(CCharClassUsableComponent, sUseDiscoverLeftAction), (DefaultValue, ""), (Description, "Discover left animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableDiscoverAction", offsetof(CCharClassUsableComponent, sUsableDiscoverAction), (DefaultValue, ""), (Description, "Discover usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableUndiscoverAction", offsetof(CCharClassUsableComponent, sUsableUndiscoverAction), (DefaultValue, ""), (Description, "UnDiscover usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftAfterDiscoverAction", offsetof(CCharClassUsableComponent, sUsePrepareLeftAfterDiscoverAction), (DefaultValue, ""), (Description, "Left prepare use animation after discover"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightAfterDiscoverAction", offsetof(CCharClassUsableComponent, sUsePrepareRightAfterDiscoverAction), (DefaultValue, ""), (Description, "Right prepare use animation after discover"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseReadyToSaveBackgroundAction", offsetof(CCharClassUsableComponent, sUseReadyToSaveBackgroundAction), (DefaultValue, ""), (Description, "Ready to save on background use animation after using station"));
+    DREAD_REFLECTED_FIELD(f32, "fDiscoverInterpTime", offsetof(CCharClassUsableComponent, fDiscoverInterpTime), (DefaultValue, 0.666f), (Description, "Interaction time to reposition Samus when the Station has been discovered"));
+    DREAD_REFLECTED_FIELD(f32, "fStationUseInterpTime", offsetof(CCharClassUsableComponent, fStationUseInterpTime), (DefaultValue, 0.75f), (Description, "Interaction time to reposition Samus when the Station has already been used"));
+    DREAD_REFLECTED_FIELD(f32, "fStationNotUsedInterpTime", offsetof(CCharClassUsableComponent, fStationNotUsedInterpTime), (DefaultValue, 1.0f), (Description, "Interaction time to reposition Samus when the Station has not been used"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sStartLevelMusicID", offsetof(CCharClassUsableComponent, sStartLevelMusicID), (Description, "Start Level Music link"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSaveSoundID", offsetof(CCharClassUsableComponent, sSaveSoundID), (Description, "Save Sound link"));
+    DREAD_REFLECTED_FIELD(f32, "fPostponeFadeInTime", offsetof(CCharClassUsableComponent, fPostponeFadeInTime), (DefaultValue, 0.01f), (Description, "Delay time to fade in"));
+    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", offsetof(CCharClassUsableComponent, fFadeInTime), (DefaultValue, 1.0f), (Description, "Fade in time"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x1b8;
+bool CCharClassUsableComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassUsableComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassUsableComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassUsableComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassUsableComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassUsableComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassUsableComponent::refl_Destroy(void* obj) { static_cast<CCharClassUsableComponent*>(obj)->~CCharClassUsableComponent(); }
+void* CCharClassUsableComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassUsableComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassUsableComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassUsableComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -75,5 +72,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassUsableComponent
-DREAD_REFLECTED_CLASS(CCharClassUsableComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassUsableComponent, CCharClassComponent);
+#pragma GCC diagnostic pop

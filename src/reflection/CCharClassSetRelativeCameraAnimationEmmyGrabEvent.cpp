@@ -7,38 +7,31 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassSetRelativeCameraAnimationEmmyGrabEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSetRelativeCameraAnimationEmmyGrabEvent
 extern CStrId* g_unk_716e454178[];
-namespace CCharClassSetRelativeCameraAnimationEmmyGrabEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassSetRelativeCameraAnimationEmmyGrabEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Relative Camera Animation Emmy Grab");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Camera", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeAnimationPath", 0x70, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())), (Extension, CStrId(*g_unk_716e454178[6])));
-    DREAD_REFLECTED_FIELD(f32, "fAlternativeCameraDistanceThreshold", 0x78, (DefaultValue, 50.0f));
+void CCharClassSetRelativeCameraAnimationEmmyGrabEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeAnimationPath", offsetof(CCharClassSetRelativeCameraAnimationEmmyGrabEvent, sAlternativeAnimationPath), (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())), (Extension, CStrId(*g_unk_716e454178[6])));
+    DREAD_REFLECTED_FIELD(f32, "fAlternativeCameraDistanceThreshold", offsetof(CCharClassSetRelativeCameraAnimationEmmyGrabEvent, fAlternativeCameraDistanceThreshold), (DefaultValue, 50.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x80;
+bool CCharClassSetRelativeCameraAnimationEmmyGrabEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassSetRelativeCameraAnimationEmmyGrabEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassSetRelativeCameraAnimationEmmyGrabEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetRelativeCameraAnimationEmmyGrabEvent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassSetRelativeCameraAnimationEmmyGrabEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetRelativeCameraAnimationEmmyGrabEvent*>(obj)->~CCharClassSetRelativeCameraAnimationEmmyGrabEvent(); }
+struct CCharClassSetRelativeCameraAnimationEmmyGrabEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassSetRelativeCameraAnimationEmmyGrabEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -49,5 +42,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassSetRelativeCameraAnimationEmmyGrabEvent
-DREAD_REFLECTED_CLASS(CCharClassSetRelativeCameraAnimationEmmyGrabEvent, CCharClassSetRelativeCameraAnimationBaseEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassSetRelativeCameraAnimationEmmyGrabEvent, CCharClassSetRelativeCameraAnimationBaseEvent);
+#pragma GCC diagnostic pop

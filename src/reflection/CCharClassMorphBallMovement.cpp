@@ -7,43 +7,40 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassMorphBallMovement.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMorphBallMovement
-namespace CCharClassMorphBallMovement {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fSlopeExitFrictionFactorTime", 0x9c, (DefaultValue, 0.3f), (Description, "When moving out of a slope, time while we alter friction"));
-    DREAD_REFLECTED_FIELD(f32, "fSlopeExitFrictionFactor", 0xa0, (DefaultValue, 3.0f), (Description, "When moving out of a slope, altered friction we apply"));
-    DREAD_REFLECTED_FIELD(CStrId, "sSlopeAccelerationFunction", 0xa8, (DefaultValue, ""), (Description, "Function to use when accelerating through the slope"));
-    DREAD_REFLECTED_FIELD(f32, "fSlopeTimeToAccelerate", 0xb0, (DefaultValue, 1.0f), (Description, "Time it takes to fully accelerate through the slope"));
-    DREAD_REFLECTED_FIELD(f32, "fSlopeMinImpulse", 0xb4, (DefaultValue, 5000.0f), (Description, "Minimum impulse when on a slope"));
-    DREAD_REFLECTED_FIELD(f32, "fSlopeMaxImpulse", 0xb8, (DefaultValue, 10000.0f), (Description, "Maximum impulse when on a slope"));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sMovementAudioPreset", 0xc0, (DefaultValue, ""), (Description, "Movement Audio Preset"));
-    DREAD_REFLECTED_FIELD(f32, "fInitialSpeedDiffDecrease", 0xc8, (DefaultValue, 200.0f), (Description, "Initial Speed Decrease per Second"));
-    DREAD_REFLECTED_FIELD(f32, "fMaxInitialSpeedDiff", 0xcc, (DefaultValue, 400.0f), (Description, "Max allowed Initial Speed. Higher values are clamped."));
-    DREAD_REFLECTED_FIELD(f32, "fOnAirImpulseFactor", 0xd0, (DefaultValue, 0.75f), (Description, "Factor to apply as Drag to the previous Impulse when on air"));
-    DREAD_REFLECTED_FIELD(f32, "fXImpulseStrenght", 0xd4, (DefaultValue, 2000.0f), (Description, "Strength of the X impulse on Input."));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassMorphBallMovement::refl_AddAttributes(CClass*) {}
+void CCharClassMorphBallMovement::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fSlopeExitFrictionFactorTime", offsetof(CCharClassMorphBallMovement, fSlopeExitFrictionFactorTime), (DefaultValue, 0.3f), (Description, "When moving out of a slope, time while we alter friction"));
+    DREAD_REFLECTED_FIELD(f32, "fSlopeExitFrictionFactor", offsetof(CCharClassMorphBallMovement, fSlopeExitFrictionFactor), (DefaultValue, 3.0f), (Description, "When moving out of a slope, altered friction we apply"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSlopeAccelerationFunction", offsetof(CCharClassMorphBallMovement, sSlopeAccelerationFunction), (DefaultValue, ""), (Description, "Function to use when accelerating through the slope"));
+    DREAD_REFLECTED_FIELD(f32, "fSlopeTimeToAccelerate", offsetof(CCharClassMorphBallMovement, fSlopeTimeToAccelerate), (DefaultValue, 1.0f), (Description, "Time it takes to fully accelerate through the slope"));
+    DREAD_REFLECTED_FIELD(f32, "fSlopeMinImpulse", offsetof(CCharClassMorphBallMovement, fSlopeMinImpulse), (DefaultValue, 5000.0f), (Description, "Minimum impulse when on a slope"));
+    DREAD_REFLECTED_FIELD(f32, "fSlopeMaxImpulse", offsetof(CCharClassMorphBallMovement, fSlopeMaxImpulse), (DefaultValue, 10000.0f), (Description, "Maximum impulse when on a slope"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sMovementAudioPreset", offsetof(CCharClassMorphBallMovement, sMovementAudioPreset), (DefaultValue, ""), (Description, "Movement Audio Preset"));
+    DREAD_REFLECTED_FIELD(f32, "fInitialSpeedDiffDecrease", offsetof(CCharClassMorphBallMovement, fInitialSpeedDiffDecrease), (DefaultValue, 200.0f), (Description, "Initial Speed Decrease per Second"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxInitialSpeedDiff", offsetof(CCharClassMorphBallMovement, fMaxInitialSpeedDiff), (DefaultValue, 400.0f), (Description, "Max allowed Initial Speed. Higher values are clamped."));
+    DREAD_REFLECTED_FIELD(f32, "fOnAirImpulseFactor", offsetof(CCharClassMorphBallMovement, fOnAirImpulseFactor), (DefaultValue, 0.75f), (Description, "Factor to apply as Drag to the previous Impulse when on air"));
+    DREAD_REFLECTED_FIELD(f32, "fXImpulseStrenght", offsetof(CCharClassMorphBallMovement, fXImpulseStrenght), (DefaultValue, 2000.0f), (Description, "Strength of the X impulse on Input."));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xd8;
+bool CCharClassMorphBallMovement::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassMorphBallMovement::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassMorphBallMovement::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMorphBallMovement*>(obj)->refl_GetDynamicClass(); }
+void CCharClassMorphBallMovement::refl_CopyConstruct(void*, const void*) {}
+void CCharClassMorphBallMovement::refl_MoveConstruct(void*, const void*) {}
+void CCharClassMorphBallMovement::refl_Destroy(void* obj) { static_cast<CCharClassMorphBallMovement*>(obj)->~CCharClassMorphBallMovement(); }
+void* CCharClassMorphBallMovement::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassMorphBallMovement::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassMorphBallMovement::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassMorphBallMovement);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -54,5 +51,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassMorphBallMovement
-DREAD_REFLECTED_CLASS(CCharClassMorphBallMovement, CCharClassPlayerMovement);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassMorphBallMovement, CCharClassPlayerMovement);
+#pragma GCC diagnostic pop
