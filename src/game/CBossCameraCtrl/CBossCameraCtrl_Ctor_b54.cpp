@@ -43,6 +43,6 @@ inline UnkBossCameraCtrl_b54::UnkBossCameraCtrl_b54() : list(0xf) {
     field_0x9c = 1;
 }
 
-void fn_710074ef00(UnkBossCameraCtrl_b54* self) {
+void CBossCameraCtrl_Construct(UnkBossCameraCtrl_b54* self) {
     new (self) UnkBossCameraCtrl_b54;
 }
