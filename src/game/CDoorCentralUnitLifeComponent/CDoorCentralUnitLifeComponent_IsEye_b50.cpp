@@ -11,7 +11,7 @@ struct UnkDoorPart {
     UnkStringData* name;  // 0x20
 };
 
-bool fn_71008ca968(void*, const UnkDoorPart* part) {
+bool CDoorCentralUnitLifeComponent_IsPartNamedEye(void*, const UnkDoorPart* part) {
     static CStrId s_eye("eye", true);
     return part && part->name == s_eye.data;
 }

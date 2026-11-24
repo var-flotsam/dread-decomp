@@ -15,7 +15,7 @@
 struct UnkCentralUnitPart_l405d58;
 struct UnkRinkaUnit_b61;
 void* fn_7100405ba0(void* object);
-void fn_710066008c(UnkRinkaUnit_b61* self, u32 a, u32 b);
+void CRinkaUnitComponent_SetKindAndRequestState2(UnkRinkaUnit_b61* self, u32 a, u32 b);
 
 // The central unit's tunable (CTunableCharClassCentralUnitAIComponent).
 extern base::reflection::UnkTunable g_unk_71726c42a0;
@@ -87,6 +87,6 @@ bool fn_7100405d58(UnkCentralUnitAI_l405d58* self, u32 index, u32 value) {
         reinterpret_cast<const UnkCentralUnitTunable_l405d58*>(&g_unk_71726c42a0);
     if (part && !tunable->bAllowSimultaneousRinkas)
         return false;
-    fn_710066008c(static_cast<UnkRinkaUnit_b61*>(shot), self->field_0x14730, value);
+    CRinkaUnitComponent_SetKindAndRequestState2(static_cast<UnkRinkaUnit_b61*>(shot), self->field_0x14730, value);
     return true;
 }

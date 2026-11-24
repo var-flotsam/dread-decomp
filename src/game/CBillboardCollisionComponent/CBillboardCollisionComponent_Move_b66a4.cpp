@@ -41,7 +41,7 @@ struct UnkBillboardCollision_b66a4 {
     base::global::CRntVector<UnkCounter_b66a4> counters;  // 0x190
 };
 
-void fn_7100725cc0(UnkBillboardCollision_b66a4* self, UnkBillboardKey_b66a4* key, u32 id) {
+void CBillboardCollisionComponent_MoveMappedKeyCountToId(UnkBillboardCollision_b66a4* self, UnkBillboardKey_b66a4* key, u32 id) {
     if (self->map.Find(key) != self->map.values + self->map.count) {
         --*reinterpret_cast<u32*>(&self->counters.GrowAt(key->info->id));
         ++*reinterpret_cast<u32*>(&self->counters.GrowAt(id));

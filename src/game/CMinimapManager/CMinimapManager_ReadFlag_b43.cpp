@@ -36,7 +36,7 @@ __attribute__((always_inline)) inline void GetFlag(CBlackboard* set, const CStrI
         fn_710006d11c(s, &name.id, out);
 }
 
-void fn_7100e99950(UnkMinimapTunable_b43a3* self) {
+void CMinimapManager_ReadFlagFromBlackboard(UnkMinimapTunable_b43a3* self) {
     CBlackboard* blackboard = &g_unk_7101d47310->field_0x968;
     self->flag = false;
     GetFlag(blackboard, g_unk_71727cc990, SubId(g_unk_71727c9f88, self->name), &self->flag);

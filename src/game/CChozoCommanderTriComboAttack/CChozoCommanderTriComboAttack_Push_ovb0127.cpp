@@ -50,7 +50,7 @@ static inline const UnkMatrix44& Matrix(UnkActor* actor) {
     return fn_710002614c(reinterpret_cast<const UnkMatrix44*>(actor->field_0x38));
 }
 
-void fn_710043bc98(CAttack* self, void* arg, UnkTriComboResult_ovb0127* result) {
+void CChozoCommanderTriComboAttack_FillResultIfTargetOnFacedSideOfCollider(CAttack* self, void* arg, UnkTriComboResult_ovb0127* result) {
     UnkPlayerMovementSource* colliders =
         reinterpret_cast<UnkTriComboOwner_ovb0127*>(self->field_0x8)->colliders;
     auto* collider = colliders ? static_cast<UnkTriComboCollider_ovb0127*>(fn_710086406c(colliders, g_unk_71726c8520))

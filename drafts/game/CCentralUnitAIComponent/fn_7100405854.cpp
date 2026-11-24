@@ -16,7 +16,7 @@ struct UnkCentralUnitPart_l405854;
 struct UnkRinkaUnit_b61;
 void* fn_7100405ba0(void* object);
 void* fn_7100405c7c(void* object);
-void fn_710065ff7c(UnkRinkaUnit_b61* self, u32 a);
+void CRinkaUnitComponent_RequestState2WithOwnRinkaType(UnkRinkaUnit_b61* self, u32 a);
 template <u32 Offset>
 struct UnkSmOwner_A2_b63;
 bool fn_71003fc314(UnkSmOwner_A2_b63<0x14978>* self);
@@ -120,7 +120,7 @@ bool fn_7100405854(UnkCentralUnitAI_l405854* self, u32 index) {
         const UnkCentralUnitTunable_l405854* tunable =
             reinterpret_cast<const UnkCentralUnitTunable_l405854*>(&g_unk_71726c42a0);
         if (!part || tunable->bAllowSimultaneousRinkas) {
-            fn_710065ff7c(static_cast<UnkRinkaUnit_b61*>(rinka), self->field_0x14730);
+            CRinkaUnitComponent_RequestState2WithOwnRinkaType(static_cast<UnkRinkaUnit_b61*>(rinka), self->field_0x14730);
             return true;
         }
     }

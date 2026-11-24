@@ -177,7 +177,7 @@ struct UnkGoliathAI4_ovb0106 {
     }
 };
 
-f32 fn_7100591b54(UnkGoliathAI4_ovb0106* self) {
+f32 CGoliathAIComponent_GetGlobalReflectedFloatByName(UnkGoliathAI4_ovb0106* self) {
     f32 v = 0.0f;
     u64 key = self->Named()->name->key;
     UnkGoliathObject_ovb0106* tunable = reinterpret_cast<UnkGoliathObject_ovb0106*>(&g_unk_7172716160);
@@ -200,7 +200,7 @@ struct UnkGoliathAI5_ovb0106 {
 
 void fn_71003ad278(UnkGoliathAI5_ovb0106* self);
 
-void fn_7100590e68(UnkGoliathAI5_ovb0106* self) {
+void CGoliathAIComponent_WriteAnimSpeedMultiplierToTunable(UnkGoliathAI5_ovb0106* self) {
     fn_71003ad278(self);
     if (UnkGoliathSource_ovb0106* source = self->field_0x14a30) {
         u64 key = g_unk_71726e6750.name->key;

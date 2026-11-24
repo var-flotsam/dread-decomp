@@ -71,13 +71,13 @@ void fn_7100da1730(UnkLightsArray_b42a3* self, const UnkLightsRecord_lda1730* va
         if ((s32)capacity <= (s32)index)
             for (;;) {
             }
-        fn_7100da1508(self, capacity);
+        CLightsDef_ReserveLights(self, capacity);
         // The end slot, taken from the array's own element type.
         slot = reinterpret_cast<UnkLightsRecord_lda1730*>(&self->data[self->count]);
     } else {
         if (capacity <= n && self->step != 0)
             capacity = (n / self->step + 1) * self->step;
-        fn_7100da1508(self, capacity);
+        CLightsDef_ReserveLights(self, capacity);
         for (u32 i = self->count - 1; i >= index; --i) {
             UnkLightsRecord_lda1730* q = &Records(self)[i];
             new (q + 1) UnkLightsRecord_lda1730(static_cast<UnkLightsRecord_lda1730&&>(*q));

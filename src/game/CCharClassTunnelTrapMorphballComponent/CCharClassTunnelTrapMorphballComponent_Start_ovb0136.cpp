@@ -184,7 +184,7 @@ bool fn_7100a44788(UnkTunnelTrapComponent2_ovb0136* self, const s32* state) {
         auto* target = reinterpret_cast<UnkTunnelTrapTarget_ovb0136*>(
             *fn_71002a76a4(reinterpret_cast<UnkBreakablePart*>(it)));
         if (void* obj = fn_7100751520(target ? target->field_0x10 : nullptr))
-            fn_710076351c(obj);
+            CBreakableVignetteComponent_Break(obj);
     }
     UnkForcedMovementTarget_A5_b68* forced = Player()->field_0x200;
     if (!forced)

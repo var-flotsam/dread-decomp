@@ -18,7 +18,7 @@ struct UnkHomingMovement {
 
 void fn_7100ac41e0(UnkHomingMovement* self, void* ctx, f32 dt);
 
-void fn_7100ac216c(UnkHomingMovement* self, void* ctx, f32 dt) {
+void CHomingMovement_SetVelocityFromDirectionAndSpeed(UnkHomingMovement* self, void* ctx, f32 dt) {
     f32 speed = self->tunable->speed;
     f32 x = self->dir[0], y = self->dir[1], z = self->dir[2];
     f32 vx = speed * x, vy = speed * y, vz = speed * z;

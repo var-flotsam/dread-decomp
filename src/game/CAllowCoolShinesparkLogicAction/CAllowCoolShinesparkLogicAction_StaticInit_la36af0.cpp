@@ -52,7 +52,7 @@ void fn_7100a32e0c(UnkReflType* self, const CStrId& name, UnkReflType* base, voi
 UnkReflType* fn_7100a32f90();
 void fn_7100a3306c(UnkReflType* self, const CStrId& name, void* a, void* b);
 
-void fn_7100a36af0() {
+void CAllowCoolShinesparkLogicAction_InitStatics() {
     InitHeader(g_unk_7172748548.header);
     fn_7100a30cd4();
     fn_710009ec00(&g_unk_71727474d0, &g_unk_7172748548.type);

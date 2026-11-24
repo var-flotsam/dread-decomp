@@ -131,7 +131,7 @@ static inline void AddKey(UnkMagnetSlidingBlock_l91ec2c* self, CStrId* key) {
     bool before = fn_710002fb70(list);
     fn_710002fd10(list, key);
     if (before != fn_710002fb70(list))
-        fn_7100920f40(reinterpret_cast<UnkMagnetSlidingBlock_b0086*>(self), !fn_710002fb70(list));
+        CMagnetSlidingBlockComponent_SetCollidersAndSpeed(reinterpret_cast<UnkMagnetSlidingBlock_b0086*>(self), !fn_710002fb70(list));
 }
 
 // The name of `property` in the map's values (the value past the last when the map lacks it).
@@ -160,7 +160,7 @@ static inline void InitProperties(UnkReflRegistryMap* properties, CStrId name) {
     base::reflection::refl_RegistryMapInit<UnkRefl_fn_710091ef38>(properties, name);
 }
 
-void fn_710091ec2c(UnkMagnetSlidingBlock_l91ec2c* self, CBlackboard* blackboard) {
+void CMagnetSlidingBlockComponent_RestoreFinishedMovementFromBlackboard(UnkMagnetSlidingBlock_l91ec2c* self, CBlackboard* blackboard) {
     InitProperties(&self->properties, self->info->name);
 
     bool used = false;

@@ -83,7 +83,7 @@ struct UnkElectricGeneratorUpd_ovb0120 {
     CVector4D blackout;  // 0x57c
 };
 
-void fn_7100a7d594(UnkElectricGeneratorUpd_ovb0120* self) {
+void CElectricGeneratorComponent_SetBlackOutLevelAndPlayerOffset(UnkElectricGeneratorUpd_ovb0120* self) {
     fn_7100aa3264(self);
     {
         u64 hash = StringCrc64("BLACKOUT_LEVEL", 14);

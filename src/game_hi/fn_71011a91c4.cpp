@@ -88,7 +88,7 @@ struct UnkStruct_71011a91c4 {
     }
 };
 
-bool fn_710104ddcc(UnkHandler_71011a91c4* h, UnkItem_71011a91c4* item);
+bool CFXPool_ReleaseObject(UnkHandler_71011a91c4* h, UnkItem_71011a91c4* item);
 
 static inline UnkRes_71011a91c4* CastRes_71011a91c4(UnkRes_71011a91c4* r) {
     if (!r)
@@ -109,7 +109,7 @@ static inline bool TryQueue_71011a91c4(UnkStruct_71011a91c4* self, UnkItem_71011
             break;
     if (!n)
         return false;
-    if (!fn_710104ddcc(n->value, item))
+    if (!CFXPool_ReleaseObject(n->value, item))
         return false;
     s32 busy = n->value->vf_0x20();
     u32 state = fn_710104de7c(n->value);

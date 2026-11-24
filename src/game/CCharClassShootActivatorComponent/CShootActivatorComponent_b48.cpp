@@ -48,7 +48,7 @@ struct UnkShootActivator_b48 {
     u32 count;
 };
 
-void fn_7100891b08(UnkShootActivator_b48* self) {
+void CCharClassShootActivatorComponent_PlaySoundIfUsedInBlackboard(UnkShootActivator_b48* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     CBlackboard::CSection* section = fn_71010472e0(&manager->field_0x968, fn_71011a2fbc(manager->field_0x608));
     if (!section)

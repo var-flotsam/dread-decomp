@@ -119,7 +119,7 @@ static inline void SetBool_la7d13c(CBlackboard* blackboard, CBlackboard::CSectio
     }
 }
 
-void fn_7100a7d13c(UnkElectricGenerator_la7d13c* self) {
+void CElectricGeneratorComponent_SwitchOnAffectedSubAreas(UnkElectricGenerator_la7d13c* self) {
     UnkSubAreaManager_la7d13c* manager = SubAreaManager_la7d13c();
     auto* records = reinterpret_cast<base::global::CRntVector<UnkGeneratorRecord_ovb0120>*>(&manager->records);
     base::global::CRntVector<base::UnkStrIdMember>* ids = &self->ids;

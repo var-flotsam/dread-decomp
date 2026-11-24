@@ -25,7 +25,7 @@ using unk_flag_list::UnkFlagListKey;
 struct UnkAutofocusCtrl_b54;
 void fn_7100723408(UnkAutofocusCtrl_b54* self);
 void fn_7100723464(UnkCameraCtrl* ctrl);
-void fn_7100723120(void* holder);
+void CAutofocusAimCameraCtrl_RemoveAllFromCameraList(void* holder);
 
 extern UnkFlagListKey g_unk_71727bc7d0 __attribute__((visibility("hidden")));
 
@@ -103,7 +103,7 @@ void fn_7100dae000(UnkAimMode_ldae000* self, bool enable) {
         if (IsAutofocus(CurrentCamera(holder)))
             fn_7100723464(AsAutofocus(CurrentCamera(holder)));
         else
-            fn_7100723120(holder);
+            CAutofocusAimCameraCtrl_RemoveAllFromCameraList(holder);
         if (input)
             fn_7100872858(input, &g_unk_71727bc7d0);
     }

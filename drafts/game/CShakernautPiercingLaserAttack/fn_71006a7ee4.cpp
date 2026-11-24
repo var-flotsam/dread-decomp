@@ -108,7 +108,7 @@ void fn_71006a7448(UnkShakernautLaserState_ovb0037* self, s32 state);
 
 void fn_71006a89b4(UnkShakernautLaser_l6a7ee4* self);
 bool fn_71006a8d94(UnkShakernautLaser_l6a7ee4* self);
-void fn_71006a8e94(UnkShakernautLaser_l6a7ee4* self);
+void CShakernautPiercingLaserAttack_PlayLaserToGroundShockInitByFacing(UnkShakernautLaser_l6a7ee4* self);
 void fn_71006a84dc(UnkShakernautLaser_l6a7ee4* self, UnkVec3f target, f32 dt);
 void fn_71006a8760(UnkShakernautLaser_l6a7ee4* self);
 bool fn_71006b03f4(UnkShakernautAI_l6a7ee4* ai, UnkVec3f aim, UnkVec3f* out, f32 blend);
@@ -225,7 +225,7 @@ void fn_71006a7ee4(UnkShakernautLaser_l6a7ee4* self, f32 dt) {
         if (fn_71006a8d94(self)) {
             if (self->effect)
                 self->effect->vf_0x60(false);
-            fn_71006a8e94(self);
+            CShakernautPiercingLaserAttack_PlayLaserToGroundShockInitByFacing(self);
         }
         return;
     case 6:

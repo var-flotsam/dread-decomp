@@ -12,7 +12,7 @@ struct UnkListener_b40;
 struct UnkPlayerMovement;
 
 void fn_71010d7c8c(UnkPlayerMovement* self, bool value);
-void fn_7100325184(UnkWeakTarget* self, UnkWeakHandle** out);
+void CAbilityOpticCamouflage_GetWeakHandle(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710083b0b4(void*, void*);
 
 struct UnkOpticFlags_l323e10 {
@@ -81,7 +81,7 @@ void fn_7100323e10(UnkOpticAbility_l323e10* self, s32 kind) {
     }
 attach:
     if (gun) {
-        fn_7100325184(gun, &self->link);
+        CAbilityOpticCamouflage_GetWeakHandle(gun, &self->link);
         fn_710083b0b4(self->link ? self->link->target : nullptr, listener);
     }
     if (UnkOpticPart_l323e10* part = self->owner->actor->part) {

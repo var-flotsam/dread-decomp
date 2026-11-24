@@ -197,7 +197,7 @@ struct UnkPlatformEvent_ovb0103 {
     CStrId name;  // 0x30
 };
 
-bool fn_7100a0ab24(UnkPlatform_ovb0103* self, UnkPlatformEvent_ovb0103* event) {
+bool CWeightActivatedPlatformSmartObjectComponent_PassArgNameToLinkedUserAndRequestState3(UnkPlatform_ovb0103* self, UnkPlatformEvent_ovb0103* event) {
     fn_7100a046ec(self);
     UnkPlayer* player = fn_7100dec788(g_unk_7101d47310);
     if (!player || !self->link || !self->link->object)

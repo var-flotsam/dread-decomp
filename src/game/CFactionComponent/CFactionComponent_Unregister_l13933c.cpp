@@ -59,7 +59,7 @@ static inline void RemoveIfListed(UnkFactionList_ovb0139* list, UnkFaction_ovb01
     }
 }
 
-void fn_710113933c(UnkFaction_ovb0139* self) {
+void CFactionComponent_RemoveFromFactionList(UnkFaction_ovb0139* self) {
     if (fn_7100deabe4(g_unk_7101d47310))
         return;
     s32 kind = self->kind;

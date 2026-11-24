@@ -88,7 +88,7 @@ static_assert(__builtin_offsetof(UnkBossAI_l3b0754, combat_id) == 0x14950, "layo
 
 void fn_71003b0300(UnkBossAI_l3b0754* self);
 
-void fn_71003b0754(UnkBossAI_l3b0754* self) {
+void CBossAIComponent_OnStartCombat(UnkBossAI_l3b0754* self) {
     bool active = self->active;
     self->field_0x148dc = 0;
     if (!active) {

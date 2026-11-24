@@ -25,7 +25,7 @@ struct UnkHitTarget_b47 {
     void* field_0x10;
 };
 
-void fn_710049ab8c(UnkWarriorAI_b47* self, UnkHitTarget_b47* const* hit, bool* found) {
+void CChozoWarriorAIComponent_FindBlockGhostAuraHit(UnkWarriorAI_b47* self, UnkHitTarget_b47* const* hit, bool* found) {
     if (*found)
         return;
     UnkCollisionContainer* collision = self->owner->field_0x2a0;

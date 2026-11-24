@@ -29,10 +29,10 @@ static inline UnkModelManager* GetManager() {
 static inline void PreloadFx(const char* path, u32 kind) {
     UnkFxCache* cache = reinterpret_cast<UnkFxCache*>(GetManager());
     CFilePathStrId id(path, true);
-    fn_7100851bc0(cache, &id, kind, false);
+    CPlasmaBeamGun_PreloadParticleFxPool(cache, &id, kind, false);
 }
 
-void fn_710085e1c8(UnkSPBGun* self) {
+void CSPBGun_RegisterExplosionFx(UnkSPBGun* self) {
     fn_710083593c(self);
     if (self->fx_registered)
         return;
@@ -48,7 +48,7 @@ static inline void ReleaseFx(const char* path) {
 }
 
 // The other way round: after the base step, unregisters the two effects again.
-void fn_710085e328(UnkSPBGun* self) {
+void CSPBGun_ReleaseExplosionFx(UnkSPBGun* self) {
     fn_7100835940(self);
     if (!self->fx_registered)
         return;

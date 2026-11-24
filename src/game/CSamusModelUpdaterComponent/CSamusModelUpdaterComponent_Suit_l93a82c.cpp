@@ -79,13 +79,13 @@ static inline UnkModelName_l93a82c SuitModel_l93a82c(UnkInventory* inventory) {
     return UnkModelName_l93a82c("Default", 7, kDefaultHash, true);
 }
 
-void fn_710093a82c(UnkSamusModelUpdater_l93a82c* self) {
+void CSamusModelUpdaterComponent_SelectSuitModelFromInventory(UnkSamusModelUpdater_l93a82c* self) {
     if (self->suit_pending) {
         UnkInventory* inventory = self->owner->inventory;
         if (!inventory)
             inventory = static_cast<UnkInventory*>(fn_7100df55e4(g_unk_7101d47310));
         UnkModelName_l93a82c model = SuitModel_l93a82c(inventory);
-        fn_7100938ebc(self, reinterpret_cast<const u64*>(&model));
+        CMultiModelUpdaterComponent_SelectModelByName(self, reinterpret_cast<const u64*>(&model));
     }
     if (UnkInventory* inventory = self->owner->inventory) {
         bool has_energy = HasItem_l93a82c(inventory, g_unk_717275ac18);

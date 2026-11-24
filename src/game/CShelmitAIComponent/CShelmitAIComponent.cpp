@@ -28,13 +28,13 @@ struct UnkShelmitAI {
 
 // Declared as its other caller declares it (src/game/CGobblerAIComponent/fn_71005820c4.cpp); it also takes dt.
 struct UnkGobblerComponent;
-void fn_71006ba7ec(UnkShelmitAI* self, f32 dt);
-void fn_71006ba90c(UnkShelmitAI* self);
+void CShelmitAIComponent_UpdateGrappledTimeAndCooldown(UnkShelmitAI* self, f32 dt);
+void CShelmitAIComponent_ApplyPlatformRotationSpeedFromEntitySpeed(UnkShelmitAI* self);
 
-void fn_71006ba718(UnkShelmitAI* self, f32 dt) {
+void CShelmitAIComponent_UpdateGrappleCrystalAndPlatformRotation(UnkShelmitAI* self, f32 dt) {
     fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);
     fn_71006ba194(self);
-    fn_71006ba7ec(self, dt);
+    CShelmitAIComponent_UpdateGrappledTimeAndCooldown(self, dt);
     f32 rate = self->field_0x146c8.rate;
     if (!(rate + 0.001f >= 0.0f && rate - 0.001f <= 0.0f)) {
         UnkShelmitBlock* block = &self->field_0x146c8;
@@ -47,8 +47,8 @@ void fn_71006ba718(UnkShelmitAI* self, f32 dt) {
                 block->rate = 0.0f;
             }
             block->field_0xd4 = v;
-            fn_71006badf4(self, v);
+            CShelmitAIComponent_ApplyCrystalEmissiveFactor(self, v);
         }
     }
-    fn_71006ba90c(self);
+    CShelmitAIComponent_ApplyPlatformRotationSpeedFromEntitySpeed(self);
 }

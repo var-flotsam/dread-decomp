@@ -22,7 +22,7 @@ struct UnkBoundsComponent {
 static inline f32 Min(f32 a, f32 b) { return a < b ? a : b; }
 static inline f32 Max(f32 a, f32 b) { return a > b ? a : b; }
 
-void fn_71005c00fc(UnkBoundsComponent* self, UnkAabb* out) {
+void CHydrogigaAIComponent_ExtendBoundsToPointAboveOwner(UnkBoundsComponent* self, UnkAabb* out) {
     fn_71011061d0(self, out);
     UnkTransformOwner* o = self->field_0x30;
     UnkVec3 p = {o->x, o->y, o->z};

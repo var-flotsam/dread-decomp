@@ -17,7 +17,7 @@ void fn_71008230c8(UnkProperty* p);
 void fn_7100821f40(void* p);
 extern char g_unk_7172723620[];
 
-void fn_71008232c0() {
+void CGrapplePointComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172723668.ids);
     InitId(&g_unk_71727235c8, "GRAPPLE");
     InitProperty(&g_unk_71727235d0, g_unk_7101a75830, g_unk_71726db788, "Used", TypeOf<fn_710000d228>(),

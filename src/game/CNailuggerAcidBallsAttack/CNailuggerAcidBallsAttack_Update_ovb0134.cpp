@@ -61,7 +61,7 @@ void fn_71006250c0(UnkNailAttack_ovb0134* self, UnkNailPatternEntry_ovb0134* ent
                    __attribute__((noescape)) base::UnkPooledString* name);
 void fn_7100624fe0(UnkNailAttack_ovb0134* self, s32 state);
 
-void fn_7100624e44(UnkNailAttack_ovb0134* self, f32 dt) {
+void CNailuggerAcidBallsAttack_UpdateChargeThenPatternEntries(UnkNailAttack_ovb0134* self, f32 dt) {
     fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     UnkReflObject* component = static_cast<UnkReflObject*>(self->owner->field_0x240);
     UnkReflObject* ai = nullptr;

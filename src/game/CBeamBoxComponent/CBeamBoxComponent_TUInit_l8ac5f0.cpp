@@ -54,7 +54,7 @@ void fn_71008a52c0();
 const base::reflection::CType* fn_71008a57c8();
 void fn_71008a58a4(UnkReflType* self, const CStrId& name, void* a, void* b);
 
-void fn_71008ac5f0() {
+void CBeamBoxComponent_InitStatics() {
     UnkBeamBoxTU_l8ac5f0& tu = g_unk_717272eb48;
     InitHeader(tu.header);
     new (&g_unk_717272e160) CStrId("BEAMBOX", true);

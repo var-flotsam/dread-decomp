@@ -49,9 +49,9 @@ struct UnkQidPair_b55 : UnkQidPairBase_b55 {
     }
 };
 
-void fn_7100f10c4c(UnkQidPair_b55<g_unk_7101caa520>* self) {
+void CReserveTankInfo_ConstructLifeTank(UnkQidPair_b55<g_unk_7101caa520>* self) {
     new (self) UnkQidPair_b55<g_unk_7101caa520>(Qid_b55(g_unk_71729dbc40), Qid_b55(g_unk_71729dbc80));
 }
-void fn_7100f10f20(UnkQidPair_b55<g_unk_7101caa5c0>* self) {
+void CReserveTankInfo_ConstructMissileTankInfo(UnkQidPair_b55<g_unk_7101caa5c0>* self) {
     new (self) UnkQidPair_b55<g_unk_7101caa5c0>(Qid_b55(g_unk_71729dbd40), Qid_b55(g_unk_71729dbd80));
 }

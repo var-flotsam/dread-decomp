@@ -100,7 +100,7 @@ static inline UnkModelManager* ModelManager() {
     return g_unk_71726b0cd8;
 }
 
-void fn_710058a6e4(UnkGoliathBombMovement_l58a6e4* self) {
+void CGoliathXBurstProjectionBombMovement_SpawnBombOrTrackerFxAtOwner(UnkGoliathBombMovement_l58a6e4* self) {
     fn_7100ac77c0();
     if (UnkBombTarget_l58a6e4* target = self->target) {
         if (UnkGoliathXActor_l58a6e4* actor = target->actor) {

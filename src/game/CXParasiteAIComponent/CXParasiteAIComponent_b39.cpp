@@ -32,7 +32,7 @@ void fn_71006e7754(UnkXParasiteAI* self) {
 
 // Whether the parasite may act: reads the blackboard flag (into +0x146eb) first; false while that flag
 // is set or the link chain leads to an object, else unless the state is 2 or 8.
-bool fn_71006eb590(UnkXParasiteAI* self) {
+bool CXParasiteAIComponent_ReadIsBeingAttractedAndCheckAvailable(UnkXParasiteAI* self) {
     if (CBlackboard::CSection* section = fn_7101047270(&self->blackboard, g_unk_71726b7cb8))
         fn_710006d11c(section, &g_unk_717270b8e0, &self->field_0x146eb);
     bool busy = self->field_0x146eb || (self->field_0x14798 && self->field_0x14798->target);

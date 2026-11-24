@@ -73,7 +73,7 @@ static inline UnkItemBase_71011a91c4* Item_ovb0081(UnkModel* model) {
     return model ? reinterpret_cast<UnkItemBase_71011a91c4*>(reinterpret_cast<char*>(model) + 8) : nullptr;
 }
 
-void fn_71008035ec(UnkAreaFXSet_ovb0081* self) {
+void CAreaFXComponent_ClearModelSlots(UnkAreaFXSet_ovb0081* self) {
     fn_71009f194c(reinterpret_cast<char*>(self));
     if (self->shared) {
         for (u64 i = 0; i < 400; ++i)
@@ -84,7 +84,7 @@ void fn_71008035ec(UnkAreaFXSet_ovb0081* self) {
         self->Model(i) = nullptr;
 }
 
-void fn_71008038cc(UnkAreaFXSet_ovb0081* self) {
+void CAreaFXComponent_ReleaseModels(UnkAreaFXSet_ovb0081* self) {
     if (self->shared) {
         for (u64 i = 0; i < 400; ++i) {
             fn_7100219e58(g_unk_7101d47300, self->entries[i], false);
@@ -114,7 +114,7 @@ void fn_7100803394(UnkAreaFXSet_ovb0081* self) {
     }
 }
 
-bool fn_7100803490(UnkAreaFXSet_ovb0081* self, void* arg) {
+bool CAreaFXComponent_InitFromCharClassAndLoadModel(UnkAreaFXSet_ovb0081* self, void* arg) {
     bool result = fn_71010c41bc(reinterpret_cast<UnkBaseComponent*>(self), arg);
     UnkReflObject* def = self->def;
     self->def = def && fn_710009d50c(def->vf_0x0(), fn_7100804314()) ? def : nullptr;
@@ -135,7 +135,7 @@ bool fn_7100803490(UnkAreaFXSet_ovb0081* self, void* arg) {
     return result;
 }
 
-void fn_71008036a8(UnkAreaFXSet_ovb0081* self) {
+void CAreaFXComponent_LoadModels(UnkAreaFXSet_ovb0081* self) {
     if (self->shared) {
         UnkRenderManager* manager = g_unk_7101d47300;
         {

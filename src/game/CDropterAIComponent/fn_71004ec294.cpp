@@ -58,7 +58,7 @@ __attribute__((always_inline)) static inline void CreateEffect(UnkSceneObject*& 
     }
 }
 
-bool fn_71004ec294(UnkComponent_4ec294* self, void* arg) {
+bool CDropterAIComponent_InitDiveAttackAndCreateEffects(UnkComponent_4ec294* self, void* arg) {
     UnkActorBlock* ref = &self->field_0x14738;
     // `arg` (x1) reaches the base initialiser untouched in the original (tools/forwarded_args.py).
     // Read as a flag here, as a word by the other callers.

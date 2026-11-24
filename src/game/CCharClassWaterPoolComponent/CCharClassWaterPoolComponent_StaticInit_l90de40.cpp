@@ -74,7 +74,7 @@ extern base::reflection::CType g_unk_7172734a68;
 void fn_7100908230(CType* self, const CStrId& name, void* a, void* b);
 extern char g_unk_7172734bd8[];
 
-void fn_710090de40() {
+void CCharClassWaterPoolComponent_InitStatics() {
     UnkWaterPoolTU& tu = g_unk_7172735060;
     InitHeader(tu.header);
     tu.field_0x30 = -1.0f;

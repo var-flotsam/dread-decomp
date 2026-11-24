@@ -116,10 +116,10 @@ struct UnkPlayerInfoMsg_ovb0071 {
     bool field_0xc;
 };
 
-UnkTimedEntry_ovb0071* fn_7100f0ca9c(UnkTimedMap_ovb0071* self, UnkTimedEntry_ovb0071* it);
+UnkTimedEntry_ovb0071* CPlayerInfo_EraseTimedEntry(UnkTimedMap_ovb0071* self, UnkTimedEntry_ovb0071* it);
 void fn_7100841270(void* target, void** slot);
 void fn_7100f0c248(UnkPlayerInfo_ovb0071* self, const CVector3D* pos, f32 time);
-void fn_7100f0c988(UnkPlayerInfo_ovb0071* self, f32 dt);
+void CPlayerInfo_TickTimedEntries(UnkPlayerInfo_ovb0071* self, f32 dt);
 void fn_7100f0d88c(UnkPlayerInfo_ovb0071* self);
 void fn_7100f0be58(UnkPlayerInfo_ovb0071* self, bool flag);
 
@@ -140,7 +140,7 @@ static inline const UnkQualifiedId& GetQualifiedId_ovb0071(UnkPropertyEx<>& item
     return qid;
 }
 
-bool fn_7100f0e100(UnkPlayerInfo_ovb0071* self, UnkPlayerInfoMsg_ovb0071 msg) {
+bool CPlayerInfo_RefreshHasItemFlagOnMessage(UnkPlayerInfo_ovb0071* self, UnkPlayerInfoMsg_ovb0071 msg) {
     const UnkQualifiedId& item = GetQualifiedId_ovb0071(g_unk_717275a458);
     if (msg.id.data == item.id.data) {
         char* player = reinterpret_cast<char*>(fn_7100dec788(g_unk_7101d47310));
@@ -173,13 +173,13 @@ u32 fn_7100f0d7b0(UnkPlayerInfo_ovb0071* self, void* source, const CVector3D* po
     return self->count;
 }
 
-void fn_7100f0c988(UnkPlayerInfo_ovb0071* self, f32 dt) {
+void CPlayerInfo_TickTimedEntries(UnkPlayerInfo_ovb0071* self, f32 dt) {
     UnkTimedMap_ovb0071& map = self->timed;
     for (UnkTimedEntry_ovb0071* it = map.values; map.values + map.count != it;) {
         UnkTimedEntry_ovb0071* next = it + 1;
         if (it->head.counter && !fn_7100eef674(Manager_ovb0071())) {
             if (--it->head.counter == 0 && it->properties.count == 0)
-                next = fn_7100f0ca9c(&map, it);
+                next = CPlayerInfo_EraseTimedEntry(&map, it);
         } else {
             it->head.time += dt;
         }

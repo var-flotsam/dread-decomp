@@ -96,7 +96,7 @@ static inline UnkCamNode_l723120* Erase(UnkCameraOwner_l723120* self, UnkCamNode
     return next;
 }
 
-void fn_7100723120(void* owner) {
+void CAutofocusAimCameraCtrl_RemoveAllFromCameraList(void* owner) {
     UnkCameraOwner_l723120* self = static_cast<UnkCameraOwner_l723120*>(owner);
     UnkCamNode_l723120* node = self->head;
     while (node) {

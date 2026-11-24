@@ -30,7 +30,7 @@ void fn_710113f52c() __attribute__((visibility("hidden")));
 extern char g_unk_7101cb33a8[];
 void fn_710113ad50(void* list);
 
-void fn_710113f730() {
+void CGrabComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172a090e8.ids);
     InitId(&g_unk_7172a090e8.field_0x18, "grab");
     InitId(&g_unk_7172a090e8.field_0x20, "Grab");

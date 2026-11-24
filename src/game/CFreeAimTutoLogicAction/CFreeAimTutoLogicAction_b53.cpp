@@ -26,7 +26,7 @@ struct UnkTutorialComposition;
 struct UnkTutorialRequest;
 
 struct UnkDemolitionBlockLife_b48;
-bool fn_71008c5970(UnkDemolitionBlockLife_b48* self);
+bool CDemolitionBlockLifeComponent_GetBlackboardDeadFlag(UnkDemolitionBlockLife_b48* self);
 
 struct UnkRefl_fn_710031cd8c;
 template <>
@@ -68,7 +68,7 @@ u32 fn_7100a3da50(UnkFreeAimTutoLogicAction_b53* self) {
             asm("" : "+r"(target));
             auto* life = reinterpret_cast<UnkDemolitionBlockLife_b48*>(
                 base::reflection::refl_FindTyped<UnkRefl_fn_710031cd8c>(At(target, 0x10)));
-            if (life && fn_71008c5970(life))
+            if (life && CDemolitionBlockLifeComponent_GetBlackboardDeadFlag(life))
                 return 1;
         }
     }

@@ -70,7 +70,7 @@ static inline f32 ScaledAmount(f32 amount, f32 scale) {
 }
 
 // The drop's amount; in game mode 3 scaled by the item's multiplier and rounded away from zero.
-f32 fn_71007bffe4(CDrop* self) {
+f32 CDrop_GetEasyModeScaledAmount(CDrop* self) {
     if (fn_7100dffc58(g_unk_7101d47310) == 3) {
         base::global::UnkStringData* item = self->item.data;
         if (item == g_unk_71727c1048.data)

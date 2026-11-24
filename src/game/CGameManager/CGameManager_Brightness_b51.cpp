@@ -5,7 +5,7 @@
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
-void fn_7100df9358(void* self, u32 index, s32 level) {
+void CGameManager_SetSceneBrightness(void* self, u32 index, s32 level) {
     if (level < 0)
         return;
     f32 v = level < 11 ? (f32)level * 0.1f + 0.0f : (f32)(level - 10) * 0.1f + 1.0f;

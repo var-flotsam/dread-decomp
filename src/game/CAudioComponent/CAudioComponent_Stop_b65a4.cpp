@@ -76,10 +76,10 @@ static inline void Forget_b65a4(UnkAudioStop_b65a4<Offset>* self, UnkSoundObject
     }
 }
 
-void fn_71007195bc(UnkAudioStop_b65a4<0x48>* self, UnkSoundObject_b50* object) {
+void CAudioComponent_ForgetSoundObject(UnkAudioStop_b65a4<0x48>* self, UnkSoundObject_b50* object) {
     Forget_b65a4(self, object);
 }
 
-void fn_71007196d4(UnkAudioStop_b65a4<0x8>* self, UnkSoundObject_b50* object) {
+void CAudioComponent_MarkSoundObjectStopped_FromBase0x40(UnkAudioStop_b65a4<0x8>* self, UnkSoundObject_b50* object) {
     Forget_b65a4(self, object);
 }

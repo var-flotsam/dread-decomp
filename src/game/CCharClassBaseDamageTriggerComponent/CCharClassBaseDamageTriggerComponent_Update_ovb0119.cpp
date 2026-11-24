@@ -21,7 +21,7 @@ struct UnkGfxFrameSource;
 
 struct UnkDamageTrigger_b0119;
 void fn_7100a470e8(UnkDamageTrigger_b0119* self, void* arg);
-f32 fn_7100f0ec68(void* table, void* key);
+f32 CPlayerInfo_LookupTimedEntryFloat(void* table, void* key);
 struct UnkBaseDamageTrigger2;
 void fn_7100a45e00(UnkBaseDamageTrigger2* self, f32 dt);
 
@@ -61,7 +61,7 @@ void fn_7100a45cf0(UnkDamageTrigger_b0119* self, void* arg) {
         return;
     char* table = reinterpret_cast<char*>(g_unk_7101d47310) + 0x38;
     UnkReflObject* cls = CharClass(self->owner->char_class);
-    f32 t = fn_7100f0ec68(table, reinterpret_cast<char*>(cls) + 0x98);
+    f32 t = CPlayerInfo_LookupTimedEntryFloat(table, reinterpret_cast<char*>(cls) + 0x98);
     t -= *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(g_unk_7101d47328) + 0x30);
     fn_7100a45e00(reinterpret_cast<UnkBaseDamageTrigger2*>(self), !(t < 0.0f) ? t : 0.0f);
     if (self->vf_0x1e8())

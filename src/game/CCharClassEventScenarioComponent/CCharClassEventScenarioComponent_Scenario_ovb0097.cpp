@@ -214,7 +214,7 @@ void fn_71007e0d60(UnkEventScenario_ovb0097* self) {
 }
 
 // Rebuilds the timer array: one timer per entry of the array at +0x108, each starting at -1.
-void fn_71007e2cf4(UnkEventScenario_ovb0097* self) {
+void CCharClassEventScenarioComponent_RebuildTimerArray(UnkEventScenario_ovb0097* self) {
     auto* timers = reinterpret_cast<UnkScenarioTimers_ovb0097*>(&self->timers);
     timers->count = 0;
     for (u32 i = 0; i < self->field_0x108.count; ++i)
@@ -252,7 +252,7 @@ void fn_71007e3a8c(UnkEventScenario_ovb0097* self) {
     RandomizeEntries(self);
 }
 
-void fn_71007e3b60(UnkEventScenario_ovb0097* self) {
+void CCharClassEventScenarioComponent_DropRegistrationsAndRedrawRandoms(UnkEventScenario_ovb0097* self) {
     Deactivate(self);
     if (self->reg_0x40.set) {
         fn_71004f3ea4(self->reg_0x40.set, &self->reg_0x40);
@@ -306,7 +306,7 @@ void fn_71007e4328(UnkEventScenario_ovb0097* self, void* shape, const UnkMatrix4
 }
 
 // The timer at `index`, growing the array to cover it first (CRntVector::GrowAt, out of line).
-__attribute__((flatten)) UnkScenarioTimer_ovb0097& fn_71007e45dc(base::global::CRntVector<UnkScenarioTimer_ovb0097>* self,
+__attribute__((flatten)) UnkScenarioTimer_ovb0097& CCharClassEventScenarioComponent_GetOrGrowTimerAt(base::global::CRntVector<UnkScenarioTimer_ovb0097>* self,
                                                                  u32 index) {
     return self->GrowAt(index);
 }
@@ -319,7 +319,7 @@ struct __attribute__((packed)) UnkScenarioIdList_ovb0097 {
 static_assert(sizeof(UnkScenarioIdList_ovb0097) == 0x24, "UnkScenarioIdList_ovb0097 layout");
 
 // Sets the count: new ids are the empty string, dropped ones are released.
-void fn_71007e572c(UnkScenarioIdList_ovb0097* self, u32 n) {
+void CCharClassEventScenarioComponent_ResizeStrIdList(UnkScenarioIdList_ovb0097* self, u32 n) {
     if (self->count < n) {
         for (u32 i = self->count; i < n; ++i) {
             CStrId* id = &self->ids[i];

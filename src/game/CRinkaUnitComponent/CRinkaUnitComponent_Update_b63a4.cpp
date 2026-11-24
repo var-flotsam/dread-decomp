@@ -106,7 +106,7 @@ static inline void Update_B63a4(UnkSmMachine_B63a4* self, f32 dt) {
 }
 
 
-void fn_710065fb20(UnkSmOwner_B63a4<0x1a8>* self, f32 dt) {
+void CRinkaUnitComponent_UpdateStateMachine(UnkSmOwner_B63a4<0x1a8>* self, f32 dt) {
     fn_71010c4234(reinterpret_cast<char*>(self));
     Update_B63a4<3, 4>(&self->machine, dt);
 }

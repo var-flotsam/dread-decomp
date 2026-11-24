@@ -20,7 +20,7 @@ struct UnkParamHolder_b42 {
     UnkParamBlock_b42 block;  // 0x8
 };
 
-void fn_71009b0580(UnkParamHolder_b42* self, const UnkParamBlock_b42* block) {
+void CSamusMovementState_CopyBlockUnlessIdUnset(UnkParamHolder_b42* self, const UnkParamBlock_b42* block) {
     if (*reinterpret_cast<const s64*>(block->head.id) == -1)
         return;
     UnkParamBlock_b42& b = self->block;

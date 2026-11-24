@@ -24,7 +24,7 @@ void fn_7100146e0c(UnkSwitchObject* self, bool enable);
 struct UnkBurstBombKey_l58b5ec;
 extern UnkBurstBombKey_l58b5ec g_unk_710164a020;  // reached through the GOT
 
-void fn_710058beec(UnkBombVector_b49* self, const UnkBombValue_b49* values, u64 count, u32 step,
+void CGoliathXBurstProjectionBombMovement_ConstructVec3ArrayFromValues(UnkBombVector_b49* self, const UnkBombValue_b49* values, u64 count, u32 step,
                    base::UnkAllocator* allocator, u32 flags);
 
 // Takes over other's array, leaving it empty (CRntVector's move assignment).
@@ -99,7 +99,7 @@ static inline UnkModelManager* ModelManager() {
     return g_unk_71726b0cd8;
 }
 
-void fn_710058b5ec(UnkGoliathBombMovement_l58b5ec* self) {
+void CGoliathXBurstProjectionBombMovement_RecordOwnerPositionAndShowNextModel(UnkGoliathBombMovement_l58b5ec* self) {
     UnkActor* owner = self->owner;
     self->field_0xd7c = UnkVec3f(owner->field_0x44, owner->field_0x54, owner->field_0x64);
     self->field_0x4f4 = 0;
@@ -112,7 +112,7 @@ void fn_710058b5ec(UnkGoliathBombMovement_l58b5ec* self) {
         UnkBombVector_b49 directions;
         const UnkVec3f values[4] = {UnkVec3f(1.0f, 0.0f, 0.0f), UnkVec3f(-1.0f, 0.0f, 0.0f), UnkVec3f(0.0f, 1.0f, 0.0f),
                                     UnkVec3f(0.0f, -1.0f, 0.0f)};
-        fn_710058beec(&directions, reinterpret_cast<const UnkBombValue_b49*>(values), 4, 10, nullptr, 0xf);
+        CGoliathXBurstProjectionBombMovement_ConstructVec3ArrayFromValues(&directions, reinterpret_cast<const UnkBombValue_b49*>(values), 4, 10, nullptr, 0xf);
         MoveAssign(&self->directions, &directions);
         Free(&directions);
     }

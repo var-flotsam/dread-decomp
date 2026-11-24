@@ -24,7 +24,7 @@ void CBossCameraCtrl_Destroy(UnkBossCameraCtrl_b49a3* self) {
     Destroy_b49a3(self);
 }
 
-void CBossCameraCtrl_DeletingDestroy(UnkBossCameraCtrl_b49a3* self) {
+void CBossCameraCtrl_DestroyAndDelete(UnkBossCameraCtrl_b49a3* self) {
     Destroy_b49a3(self);
     operator delete(self);
 }

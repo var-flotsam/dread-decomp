@@ -67,10 +67,10 @@ struct UnkSelf_71004cb554 {
 
 struct UnkTunable;
 
-UnkEntry_71004cb554* fn_71004ba10c(UnkPool_4cb554* pool, u32 index, u32 flag);
+UnkEntry_71004cb554* CCooldownXBossFireBallDef_GetRowColumnEntryOrNull(UnkPool_4cb554* pool, u32 index, u32 flag);
 void fn_71004d1fe8(UnkActor_71004cb554* actor);
 
-void fn_71004cb554(UnkSelf_71004cb554* self) {
+void CCooldownXBossWindTunnelAttack_ResetAndPickEntryIndex(UnkSelf_71004cb554* self) {
     fn_71004c1944(self);
     self->field_0x8c = 0;
     self->field_0x90 = 0;
@@ -87,7 +87,7 @@ void fn_71004cb554(UnkSelf_71004cb554* self) {
         picked = (fn_71012395a0() & 0x7fff) % count;
     self->field_0x7c = picked;
     self->field_0x80 = 0;
-    UnkEntry_71004cb554* entry = fn_71004ba10c(self->field_0x68, picked, 0);
+    UnkEntry_71004cb554* entry = CCooldownXBossFireBallDef_GetRowColumnEntryOrNull(self->field_0x68, picked, 0);
     f32 value = entry ? entry->field_0x30 : 0.0f;
     UnkOwner_71004cb554* owner = self->field_0x8;
     self->field_0x74 = value;

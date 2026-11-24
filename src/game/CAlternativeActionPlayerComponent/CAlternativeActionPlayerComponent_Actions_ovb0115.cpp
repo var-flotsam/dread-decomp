@@ -46,7 +46,7 @@ struct UnkAltActionClear_ovb0115 {
     UnkAltActionRemoveSet_ovb0115* set;  // 0x90
 };
 
-bool fn_7100712538(UnkAltActionClear_ovb0115* self, UnkAltActionMsg_ovb0115* msg) {
+bool CAlternativeActionPlayerComponent_ClearEntriesOnMessage(UnkAltActionClear_ovb0115* self, UnkAltActionMsg_ovb0115* msg) {
     if (msg->type->hash != 0xf4061ff25a2163d6ull || msg->kind != 2)
         return true;
     if (self->ids && self->count) {
@@ -91,7 +91,7 @@ using UnkAltActionArrays_ovb0115 = base::global::CRntSmallDictionary<CStrId, Unk
 struct UnkAltActionArrays_A3_b74;
 
 // Grows both arrays to `capacity`: the rectangles are copied, the ids moved.
-void fn_710071263c(UnkAltActionArrays_A3_b74* arrays, u32 capacity) {
+void CAlternativeActionPlayerComponent_ReserveEntryArrays(UnkAltActionArrays_A3_b74* arrays, u32 capacity) {
     UnkAltActionArrays_ovb0115* self = reinterpret_cast<UnkAltActionArrays_ovb0115*>(arrays);
     if (self->capacity >= capacity)
         return;
@@ -166,7 +166,7 @@ struct UnkAltActionAbort_ovb0115 {
 };
 
 // Asks the owner's CCharClassTweakAbortAlternativeActionTrack for an animation request and plays it.
-void fn_7100711c88(UnkAltActionAbort_ovb0115* self) {
+void CAlternativeActionPlayerComponent_RequestAbortTrackAnimation(UnkAltActionAbort_ovb0115* self) {
     UnkAltRequest_ovb0115 request;
     const UnkAltDesc_ovb0115* desc = reinterpret_cast<const UnkAltDesc_ovb0115*>(&g_unk_710164b958);
     u64 desc0 = desc->words[0];
@@ -209,7 +209,7 @@ struct alignas(8) UnkAltFlags_ovb0115 {
 
 // An animation request with a name.
 struct UnkAltNamedRequest_ovb0115;
-void fn_71007121e0(UnkAltNamedRequest_ovb0115* self, const CStrId& name, const UnkAltFlags_ovb0115& flags, UnkAltDesc_ovb0115c desc,
+void CAlternativeActionPlayerComponent_InitRequestFromStrId(UnkAltNamedRequest_ovb0115* self, const CStrId& name, const UnkAltFlags_ovb0115& flags, UnkAltDesc_ovb0115c desc,
                    UnkAltBlend_ovb0115c blend);
 struct UnkAltNamedRequest_ovb0115 {
     u64 id;
@@ -224,7 +224,7 @@ struct UnkAltNamedRequest_ovb0115 {
 
     UnkAltNamedRequest_ovb0115(const CStrId& name, const UnkAltFlags_ovb0115& flags, UnkAltDesc_ovb0115c desc,
                                UnkAltBlend_ovb0115c blend) {
-        fn_71007121e0(this, name, flags, desc, blend);
+        CAlternativeActionPlayerComponent_InitRequestFromStrId(this, name, flags, desc, blend);
     }
     // The name's release, decrement and test in two steps.
     ~UnkAltNamedRequest_ovb0115() {
@@ -244,7 +244,7 @@ struct UnkAltNamedRequest_ovb0115 {
 // Builds a request for the animation `name` (its hash is the id) with an empty name.
 // Weak so that its caller in this file cannot see that it leaves the name alone: the original reloads the
 // caller's temporary id after the call.
-__attribute__((weak)) void fn_71007121e0(UnkAltNamedRequest_ovb0115* self, const CStrId& name, const UnkAltFlags_ovb0115& flags, UnkAltDesc_ovb0115c desc,
+__attribute__((weak)) void CAlternativeActionPlayerComponent_InitRequestFromStrId(UnkAltNamedRequest_ovb0115* self, const CStrId& name, const UnkAltFlags_ovb0115& flags, UnkAltDesc_ovb0115c desc,
                    UnkAltBlend_ovb0115c blend) {
     u64 id = name.data->Key();
     u32 f = flags.value;
@@ -290,7 +290,7 @@ struct UnkAltActionPlay_ovb0115 {
 
 // While the entry for `id` is idle, its chance builds up by `step` (up to `max`) until a random draw
 // falls below it; then its animation is requested.
-void fn_7100711fe8(UnkAltActionPlay_ovb0115* self, const CStrId& id, f32 step, f32 max) {
+void CAlternativeActionPlayerComponent_TryPlayActionByAccumulatedChance(UnkAltActionPlay_ovb0115* self, const CStrId& id, f32 step, f32 max) {
     UnkAltRect_ovb0115c* rect = self->Find(id);
     if (rect == self->End() || rect->v[2] != 0.0f)
         return;

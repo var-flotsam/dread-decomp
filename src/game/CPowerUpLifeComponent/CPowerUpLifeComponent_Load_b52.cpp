@@ -45,7 +45,7 @@ struct UnkPowerUpLife_b52 {
     CStrId name;
 };
 
-void fn_71008e4e40(UnkPowerUpLife_b52* self) {
+void CPowerUpLifeComponent_ResolveLinkFromName(UnkPowerUpLife_b52* self) {
     if (self->ref && self->ref->field_0x10)
         return;
     UnkPowerUpLifeName_b52* name = reinterpret_cast<UnkPowerUpLifeName_b52*>(self->name.data);

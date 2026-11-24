@@ -90,7 +90,7 @@ static inline s32 SetEntitySound_b0163(lua_State* L) {
     UnkEntitySoundComponent* component = entity->field_0x2b8;
     UnkSoundHandle handle;
     new (&slot.path) CFilePathStrId(sound_name, true);
-    handle = fn_710071a338(component, &slot.path);
+    handle = CAudioComponent_FindSoundHandleByPath(component, &slot.path);
     slot.path.~CFilePathStrId();
     UnkSoundRef_b0163* ref = reinterpret_cast<UnkSoundRef_b0163*>(handle.ref);
     if (ref && handle.serial != -1 && ref->serial == handle.serial && ref->sound) {

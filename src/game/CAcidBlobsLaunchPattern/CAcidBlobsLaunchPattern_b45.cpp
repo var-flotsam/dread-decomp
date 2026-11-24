@@ -17,7 +17,7 @@ struct UnkAcidBlobsPattern_b45a2 {
     u32 count;
 };
 
-u64 fn_71005d6c38(UnkAcidBlobsPattern_b45a2* self, u32 row, u32 column) {
+u64 CAcidBlobsLaunchPattern_GetEntryAtRowColumn(UnkAcidBlobsPattern_b45a2* self, u32 row, u32 column) {
     if (row < self->count && column < self->rows[row].count)
         return *fn_71005d6c90(&self->rows[row], column);
     return 0;

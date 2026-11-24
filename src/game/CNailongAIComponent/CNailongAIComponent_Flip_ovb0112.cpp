@@ -26,7 +26,7 @@ struct UnkNailongFlip_ovb0112 {
 };
 static_assert(__builtin_offsetof(UnkNailongFlip_ovb0112, direction) == 0x148dc, "layout");
 
-void fn_7100621630(UnkNailongFlip_ovb0112* self) {
+void CNailongAIComponent_FlipDirectionToOwnerTransform(UnkNailongFlip_ovb0112* self) {
     const UnkMatrix44& m = fn_710002614c(&self->owner->xform);
     f32 x = m.m[2], y = m.m[6];
     f32 dir = self->direction;

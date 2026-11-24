@@ -21,7 +21,7 @@ struct UnkPlayerInfoValue_ovb0071 {
     u8 raw[0xb0];
 };
 
-UnkPlayerInfoValue_ovb0071* fn_7100f0eaec(UnkPropertyArrays* self, UnkPlayerInfoValue_ovb0071* it) {
+UnkPlayerInfoValue_ovb0071* CPlayerInfo_ErasePropertyArraysEntry(UnkPropertyArrays* self, UnkPlayerInfoValue_ovb0071* it) {
     u32 index = it - static_cast<UnkPlayerInfoValue_ovb0071*>(self->values);
     fn_710002f67c(&static_cast<UnkPlayerInfoValue_ovb0071*>(self->values)[index]);
     self->ids[index].Reset();
@@ -42,7 +42,7 @@ UnkPlayerInfoValue_ovb0071* fn_7100f0eaec(UnkPropertyArrays* self, UnkPlayerInfo
 
 using UnkTimedMap_ovb0071 = base::global::CRntSmallDictionary<CStrId, UnkTimedEntry_ovb0071>;
 
-UnkTimedEntry_ovb0071* fn_7100f0ca9c(UnkTimedMap_ovb0071* self, UnkTimedEntry_ovb0071* it) {
+UnkTimedEntry_ovb0071* CPlayerInfo_EraseTimedEntry(UnkTimedMap_ovb0071* self, UnkTimedEntry_ovb0071* it) {
     u32 index = it - self->values;
     fn_7100f0e85c(&self->values[index]);
     self->keys[index].Reset();
@@ -60,7 +60,7 @@ UnkTimedEntry_ovb0071* fn_7100f0ca9c(UnkTimedMap_ovb0071* self, UnkTimedEntry_ov
     return &self->values[index];
 }
 
-void fn_7100f0f7b4(UnkTimedMap_ovb0071* self, u32 capacity) {
+void CPlayerInfo_ReserveTimedEntryMap(UnkTimedMap_ovb0071* self, u32 capacity) {
     if (self->capacity < capacity) {
         UnkTimedEntry_ovb0071* values = static_cast<UnkTimedEntry_ovb0071*>(
             self->allocator->vf_0x40((u64)capacity * sizeof(UnkTimedEntry_ovb0071), 8, self->flags));

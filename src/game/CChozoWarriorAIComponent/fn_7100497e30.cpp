@@ -5,7 +5,7 @@
 #include "game/UnkStrIdTriple.h"
 #include "types.h"
 
-void fn_7100497e30(UnkStrIdTriple* self) { self->~UnkStrIdTriple(); }
+void CChozoWarriorAIComponent_DestroyStrIdTriple(UnkStrIdTriple* self) { self->~UnkStrIdTriple(); }
 
 void fn_7100726674(UnkStrIdTriple* self) { self->~UnkStrIdTriple(); }
 

@@ -17,7 +17,7 @@
 using base::math::CVector3D;
 
 struct UnkEnemyMovement_b45a2;
-f32 fn_7100964f8c(UnkEnemyMovement_b45a2* self, UnkActor* actor);
+f32 CCharClassEnemyMovement_GetAngularSpeed(UnkEnemyMovement_b45a2* self, UnkActor* actor);
 void* fn_71007ea32c(void* actor);
 void fn_71000769f0(UnkMatrix44* out, const void* a, const void* b, const void* c, const void* d);
 extern const CVector3D g_unk_710164ceac __attribute__((visibility("hidden")));
@@ -95,7 +95,7 @@ UnkVec3f fn_71010cd7ec(UnkEnemyMovement_l0cd7ec* self, const UnkVec3f* current, 
 
     const UnkMatrix44& world = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->owner->field_0x38));
     f32 angle = AngleBetween(Column(world, 2), self->direction);
-    f32 step = fn_7100964f8c(reinterpret_cast<UnkEnemyMovement_b45a2*>(self->char_class), self->owner) * dt / angle;
+    f32 step = CCharClassEnemyMovement_GetAngularSpeed(reinterpret_cast<UnkEnemyMovement_b45a2*>(self->char_class), self->owner) * dt / angle;
     step = step < 1.0f ? step : 1.0f;
 
     if (Differs(fabsf(Dot(Column(rotation, 1), self->direction)), 1.0f, 0.001f)) {

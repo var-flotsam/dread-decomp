@@ -40,7 +40,7 @@ inline const CStrId& ForcedMovementAreaId() {
     return s_id;
 }
 
-void fn_71007ed4f0() {
+void CForcedMovementAreaComponent_InitStatics() {
     UnkStatics_71007ed4f0& tu = g_unk_717271fd98;
     InitHeaderIds(&tu.ids);
     InitId(&tu.turnoff, "turnoff");

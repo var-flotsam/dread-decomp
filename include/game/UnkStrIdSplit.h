@@ -58,7 +58,7 @@ static_assert(__builtin_offsetof(UnkStrPieceList, blocks) == 0x40, "UnkStrPieceL
 extern char g_unk_7101a74458[];  // the list's vtable (reached through the GOT)
 void fn_71007fcdf4(const char* text, const char* separators, UnkStrPieceList* out);
 void fn_71007fd1dc(UnkStrPieceList* self);
-void fn_71007fd04c(base::UnkStrIdVec* self, u32 capacity);  // reserve
+void CCharClassFrozenAsPlatformComponent_ResizeStrIdVector(base::UnkStrIdVec* self, u32 capacity);  // reserve
 
 // The ids of the comma-separated parts of `name`, replacing `out`'s.
 __attribute__((always_inline)) inline void UnkSplitStrIds(const base::global::CStrId* name, base::UnkStrIdVec* out) {
@@ -81,7 +81,7 @@ __attribute__((always_inline)) inline void UnkSplitStrIds(const base::global::CS
     out->count = 0;
     u32 n = list.count;
     if (n) {
-        fn_71007fd04c(out, n);
+        CCharClassFrozenAsPlatformComponent_ResizeStrIdVector(out, n);
         for (u64 i = 0; i != n; ++i) {
             UnkStrPiece* piece = list.At(i);
             alignas(8) u8 raw[sizeof(base::global::CStrId)];

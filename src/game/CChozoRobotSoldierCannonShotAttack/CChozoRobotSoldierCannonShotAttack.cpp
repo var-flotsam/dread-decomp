@@ -37,7 +37,7 @@ __attribute__((always_inline)) static inline void ConstructCannonShotAttack(UnkC
     __builtin_memset(self->field_0x50, 0, sizeof(self->field_0x50));
 }
 
-void fn_7100464980(UnkCannonShotAttack* self) {
+void CChozoRobotSoldierCannonShotAttack_Construct(UnkCannonShotAttack* self) {
     ConstructCannonShotAttack(self);
 }
 

@@ -27,5 +27,5 @@ void fn_71007ff654(UnkSelf_af41* self) {
             self->owner->vf_0xd0(self->pos, true);
         }
     }
-    fn_7100802108(self);
+    CAreaFXComponent_SyncOwnerAngleToStored(self);
 }

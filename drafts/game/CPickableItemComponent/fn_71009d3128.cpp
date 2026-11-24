@@ -24,7 +24,7 @@
 using base::global::CRntVector;
 using base::global::CStrId;
 
-bool fn_71009d2dc0(const CStrId& scenario);
+bool CPickableItemComponent_IsScenarioArchiveLocked(const CStrId& scenario);
 
 struct UnkStrIdHandle {
     CStrId id;
@@ -133,7 +133,7 @@ bool fn_71009d3128(UnkPickableItem_l9d3128* self) {
         if (CBlackboard::CSection* section = fn_7101047270(blackboard, scenario))
             fn_7100395a30(section, &name, &max);
     }
-    if (max > 0 && picked == max && fn_71009d2dc0(scenario)) {
+    if (max > 0 && picked == max && CPickableItemComponent_IsScenarioArchiveLocked(scenario)) {
         CBlackboard* profile = &g_unk_7101d47310->field_0x820;
         SetFlag(profile, ArchivesSectionId(), Qid(g_unk_717275ad68), true);
         UnkScenarioList_l9d3128 scenarios;

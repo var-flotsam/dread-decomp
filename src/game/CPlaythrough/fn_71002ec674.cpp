@@ -45,7 +45,7 @@ struct UnkRecordArrays_l2ec674 {
 struct UnkKeyedValues_71002eef6c;
 using UnkValuesByKey = base::UnkKeyedArray<UnkKeyedValues_71002eef6c, u64, u64>;
 
-u64* fn_71002ec674(UnkValuesByKey* a, u64* value) {
+u64* CPlaythrough_EraseKeyedRecordSwapLast(UnkValuesByKey* a, u64* value) {
     UnkRecordArrays_l2ec674* self = reinterpret_cast<UnkRecordArrays_l2ec674*>(a);
     u32 index = static_cast<u32>(reinterpret_cast<UnkRecordPtr_l2ec674*>(value) - self->records);
     self->records[index].~unique_ptr();

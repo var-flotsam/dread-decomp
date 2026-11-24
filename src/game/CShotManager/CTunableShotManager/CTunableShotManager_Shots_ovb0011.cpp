@@ -141,7 +141,7 @@ static inline char* LightManager_b0011() {
 }
 
 // Takes a light from the light manager for each of the light list's slots, switched off.
-void fn_7100ed54fc(UnkShotManager_b0011* self) {
+void CShotManager_AcquireShotLights(UnkShotManager_b0011* self) {
     u32 n = self->field_0x1238.capacity;
     for (u32 i = 0; i < n; ++i) {
         UnkPtrList_e0babc* list = reinterpret_cast<UnkPtrList_e0babc*>(&self->field_0x1238);
@@ -165,7 +165,7 @@ static inline UnkModelManager* ModelManager_b0011() {
 }
 
 // Stops every live effect and hands its explosion's three models to the model manager.
-void fn_7100ed7144(UnkShotManager_b0011* self) {
+void CShotManager_StopLiveEffects(UnkShotManager_b0011* self) {
     for (UnkShotEffect_b0011 *e = self->field_0x30.data, *end = e + self->field_0x30.count; e != end; ++e) {
         if (!e->state.live)
             continue;
@@ -200,7 +200,7 @@ void fn_7100ed7634(UnkShotManager_b0011* self) {
 }
 
 // Appends a copy of an effect.
-void fn_7100ede44c(base::global::CRntVector<UnkShotEffect_b0011>* self, const UnkShotEffect_b0011* effect) {
+void CShotManager_AppendEffectCopy(base::global::CRntVector<UnkShotEffect_b0011>* self, const UnkShotEffect_b0011* effect) {
     self->PushBackCopy(*effect);
 }
 
@@ -447,20 +447,20 @@ struct UnkRefRecord18_b0011 {
     u32 field_0x10;
 };
 using UnkRefRecord18Vec_b0011 = UnkCopyVec_b0011<UnkRefRecord18_b0011>;
-void fn_710085c338(UnkRefRecord18Vec_b0011* self, u32 n);
+void CSamusGunComponent_ReserveRefEntryVector(UnkRefRecord18Vec_b0011* self, u32 n);
 template <>
 inline void UnkRefRecord18Vec_b0011::Reserve(u32 n) {
-    fn_710085c338(this, n);
+    CSamusGunComponent_ReserveRefEntryVector(this, n);
 }
 
-void fn_7100ede32c(UnkRefRecord10Vec_b0011* self, const UnkRefRecord10Vec_b0011* other) { self->CopyFrom(*other); }
+void CShotManager_CopyConstructRefPtrAndWordVector(UnkRefRecord10Vec_b0011* self, const UnkRefRecord10Vec_b0011* other) { self->CopyFrom(*other); }
 
 void fn_7100ede1f0(UnkRefRecord18Vec_b0011* self, const UnkRefRecord18Vec_b0011* other) { self->CopyFrom(*other); }
 
 struct UnkShotWeakTarget_b0011;
 
 // Copy assignment: cleared, reserved to the other's capacity, and each element appended.
-base::global::CRntVector<UnkShotWeakRef_b0011>* fn_7100eddaac(base::global::CRntVector<UnkShotWeakRef_b0011>* self,
+base::global::CRntVector<UnkShotWeakRef_b0011>* CShotManager_CopyAssignWeakRefVector(base::global::CRntVector<UnkShotWeakRef_b0011>* self,
                                                      const base::global::CRntVector<UnkShotWeakRef_b0011>* other) {
     if (self != other) {
         self->Clear();
@@ -480,7 +480,7 @@ static inline void ReallocShots_b0011(base::global::CRntVector<UnkObj290_b43a3>*
     if (UnkObj290_b43a3* old = self->data) {
         UnkObj290_b43a3* dst = p;
         for (u32 i = 0; i < self->count; ++i) {
-            fn_7100eddc68(dst, old);
+            CShotManager_CopyConstructElement290(dst, old);
             old->vf_0x0();
             ++dst;
             ++old;
@@ -493,7 +493,7 @@ static inline void ReallocShots_b0011(base::global::CRntVector<UnkObj290_b43a3>*
 
 // Copy assignment of the shots: each is destroyed, then the array is grown to the other's
 // capacity and the other's shots appended (with PushBack's growth).
-base::global::CRntVector<UnkObj290_b43a3>* fn_7100edd784(base::global::CRntVector<UnkObj290_b43a3>* self,
+base::global::CRntVector<UnkObj290_b43a3>* CShotManager_AssignObj290Vector(base::global::CRntVector<UnkObj290_b43a3>* self,
                                                base::global::CRntVector<UnkObj290_b43a3>* other) {
     if (self != other) {
         for (u64 i = 0; i < self->count; ++i)
@@ -515,7 +515,7 @@ base::global::CRntVector<UnkObj290_b43a3>* fn_7100edd784(base::global::CRntVecto
                 ReallocShots_b0011(self, new_capacity);
                 n = self->count;
             }
-            fn_7100eddc68(&self->data[n], p);
+            CShotManager_CopyConstructElement290(&self->data[n], p);
             ++self->count;
         }
     }

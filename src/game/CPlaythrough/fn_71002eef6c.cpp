@@ -29,7 +29,7 @@ u64* fn_71010c634c(UnkValuesByKey* a, const u64* key) {
 }
 
 u64* fn_71002332e0(UnkValuesByKey* a, u64* value);
-u64* fn_71002ec674(UnkValuesByKey* a, u64* value);
+u64* CPlaythrough_EraseKeyedRecordSwapLast(UnkValuesByKey* a, u64* value);
 
 template <u64* (*Remove)(UnkValuesByKey*, u64*)>
 __attribute__((always_inline)) static inline void RemoveKey(UnkValuesByKey* a, const u64* key) {
@@ -40,15 +40,15 @@ __attribute__((always_inline)) static inline void RemoveKey(UnkValuesByKey* a, c
 
 void fn_7100251934(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_71002332e0>(a, key); }
 
-void fn_71002eeef8(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_71002ec674>(a, key); }
+void fn_71002eeef8(UnkValuesByKey* a, const u64* key) { RemoveKey<CPlaythrough_EraseKeyedRecordSwapLast>(a, key); }
 
 // The same removal in three other units, each with its own out-of-line removal.
 u64* fn_7100d86e94(UnkValuesByKey* a, u64* value);
 u64* fn_7101048588(UnkValuesByKey* a, u64* value);
-u64* fn_71010c6cdc(UnkValuesByKey* a, u64* value);
+u64* CComponent_SwapEraseStrIdKeyedEntry(UnkValuesByKey* a, u64* value);
 
 void fn_7100d86490(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_7100d86e94>(a, key); }
 
 void fn_710104aad8(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_7101048588>(a, key); }
 
-void fn_71010c62d8(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_71010c6cdc>(a, key); }
+void fn_71010c62d8(UnkValuesByKey* a, const u64* key) { RemoveKey<CComponent_SwapEraseStrIdKeyedEntry>(a, key); }

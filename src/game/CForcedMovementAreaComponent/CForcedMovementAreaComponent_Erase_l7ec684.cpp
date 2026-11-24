@@ -18,7 +18,7 @@ struct UnkIdVecArray_l7ec684 {
     u32 capacity;
 };
 
-void* fn_71007ec684(char* array, void* it) {
+void* CForcedMovementAreaComponent_EraseIdRefVecEntry(char* array, void* it) {
     UnkIdVecArray_l7ec684* self = reinterpret_cast<UnkIdVecArray_l7ec684*>(array);
     u32 index = static_cast<UnkRefPtrVec_l7ec684*>(it) - self->records;
     self->records[index].Free();

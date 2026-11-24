@@ -85,13 +85,13 @@ struct UnkTileStateEvent {
 // A zero vector in .rodata (the rotation of a tile's render object).
 extern const UnkVec3f g_unk_710164ba64 __attribute__((visibility("hidden")));
 
-void fn_7100c9ea2c(UnkQueryObj* self);
+void CBreakableTileGroup_RecreateTileRenderObjectFromTypeModel(UnkQueryObj* self);
 void fn_7100c9eb08(UnkQueryObj* self, s32 old_state, s32 new_state, bool a, bool b);
 void fn_7100ca0118(UnkTileEventSet* set, const void* event);
 void fn_7100ca34f0(UnkTileGroup* self);
 void fn_7100ca34f4(UnkTileGroup* self, u32 a, u32 b);
 f32 fn_7100ca6af8(u32 type);
-void fn_7100ca7388(UnkGameManagerSub_0x1af8* self, u32 group, u32 a, u32 b);
+void CBTObserverComponent_NotifyListenerAndObserverById(UnkGameManagerSub_0x1af8* self, u32 group, u32 a, u32 b);
 
 // The tile size (a float in .rodata, reached through the GOT).
 extern const f32 g_unk_710164ba70;
@@ -298,7 +298,7 @@ void fn_7100c9e6ac(UnkQueryObj* self, u32 state, bool a, bool b) {
     s32 old_state = self->state;
     self->state = state;
     if (state == 1) {
-        fn_7100c9ea2c(self);
+        CBreakableTileGroup_RecreateTileRenderObjectFromTypeModel(self);
         if (self->field_0x48 != kNoRenderObject) {
             UnkVec3f pos(0.0f, 0.0f, 0.0f);
             UnkVec3f scale(1.0f, 1.0f, 1.0f);
@@ -320,7 +320,7 @@ void fn_7100c9e6ac(UnkQueryObj* self, u32 state, bool a, bool b) {
     fn_7100c9eb08(self, old_state, self->state, a, b);
     if (state == 2) {
         fn_7100ca34f0(self->field_0x30);
-        fn_7100ca7388(g_unk_7101d47310->field_0x1af8, self->field_0x30->field_0x10, self->field_0x8,
+        CBTObserverComponent_NotifyListenerAndObserverById(g_unk_7101d47310->field_0x1af8, self->field_0x30->field_0x10, self->field_0x8,
                       self->field_0xc);
     }
     UnkTileStateEvent event(self->field_0x30->field_0x10, self->field_0x0, old_state, self->state);

@@ -273,7 +273,7 @@ UnkThermalSlot_b0237* fn_7100a94ac4(UnkThermalSlot_b0237* self, UnkThermalSlot_b
 
 
 void fn_7100a95868(UnkCallbackSetVector* v, const UnkCallbackSetElem* value) {
-    v->PushBackCopy<fn_7100a956b8>(*value);
+    v->PushBackCopy<CCharClassWaterPoolComponent_ReserveCallbackSetArray>(*value);
 }
 
 struct UnkSetElem_b0237 {
@@ -323,8 +323,8 @@ struct UnkSetVector_b0237 {
             u32 n = capacity;
             if (n <= index && step != 0)
                 n = (index / step + 1) * step;
-            fn_7100a956b8(reinterpret_cast<UnkCallbackSetVector*>(this), n);
-            fn_7100a956b8(reinterpret_cast<UnkCallbackSetVector*>(this), index + 1);
+            CCharClassWaterPoolComponent_ReserveCallbackSetArray(reinterpret_cast<UnkCallbackSetVector*>(this), n);
+            CCharClassWaterPoolComponent_ReserveCallbackSetArray(reinterpret_cast<UnkCallbackSetVector*>(this), index + 1);
             for (u32 i = count; i < index + 1; ++i)
             {
                 UnkSetElem_b0237* e = &data[i];

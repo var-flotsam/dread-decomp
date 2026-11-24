@@ -80,7 +80,7 @@ void fn_71009d4a10(UnkPickPool_ovb0094* self, u32 n) {
     }
 }
 
-UnkPickEntry_ovb0094* fn_71009d4940(UnkPickPool_ovb0094* self, const u64& key, UnkPickEntry_ovb0094& value) {
+UnkPickEntry_ovb0094* CPickableItemComponent_AppendKeyedEntry(UnkPickPool_ovb0094* self, const u64& key, UnkPickEntry_ovb0094& value) {
     if (self->count == self->capacity)
         fn_71009d4a10(self, self->count + self->step);
     __builtin_memcpy(&self->keys[self->count], &key, sizeof(u64));
@@ -90,10 +90,10 @@ UnkPickEntry_ovb0094* fn_71009d4940(UnkPickPool_ovb0094* self, const u64& key, U
     return self->count ? end - 1 : self->values;
 }
 
-UnkPickEntry_ovb0094* fn_71009d42e8(UnkPickPool_ovb0094* self, UnkPickEntry_ovb0094* entry);
+UnkPickEntry_ovb0094* CPickableItemComponent_RemoveEntrySwapWithLast(UnkPickPool_ovb0094* self, UnkPickEntry_ovb0094* entry);
 
 // Removes the entry (swapping the last one into its place).
-UnkPickEntry_ovb0094* fn_71009d42e8(UnkPickPool_ovb0094* self, UnkPickEntry_ovb0094* entry) {
+UnkPickEntry_ovb0094* CPickableItemComponent_RemoveEntrySwapWithLast(UnkPickPool_ovb0094* self, UnkPickEntry_ovb0094* entry) {
     u32 index = entry - self->values;
     self->values[index].Reset();
     u32 last = self->count - 1;
@@ -124,13 +124,13 @@ static inline UnkPickEntry_ovb0094* Find_ovb0094(UnkPickPool_ovb0094* pool, cons
 }
 
 // Drops the entries whose objects (fn_7100751520 on the key) have their flag at +0x39 set.
-void fn_71009cf780(UnkPickItem_ovb0094* self) {
+void CPickableItemComponent_RemoveEntriesWithFlaggedTargets(UnkPickItem_ovb0094* self) {
     for (u64* it = self->pool.keys; it != self->pool.keys + self->pool.count;) {
         auto* target = static_cast<UnkPickTarget_ovb0094*>(fn_7100751520(reinterpret_cast<void*>(*it)));
         if (target && target->field_0x39) {
             UnkPickEntry_ovb0094* entry = Find_ovb0094(&self->pool, *it);
             if (entry != &self->pool.values[self->pool.count])
-                fn_71009d42e8(&self->pool, entry);
+                CPickableItemComponent_RemoveEntrySwapWithLast(&self->pool, entry);
         } else {
             ++it;
         }
@@ -162,7 +162,7 @@ struct UnkPickTimed_ovb0094 {
 static_assert(__builtin_offsetof(UnkPickTimed_ovb0094, elapsed) == 0x1b4, "UnkPickTimed_ovb0094 layout");
 
 // Advances the timer at +0x1b4; once it reaches the duration, finishes the item.
-void fn_71009d0570(UnkPickTimed_ovb0094* self, f32 dt) {
+void CPickableItemComponent_TickTimeToCanBePicked(UnkPickTimed_ovb0094* self, f32 dt) {
     f32 elapsed = self->elapsed + dt;
     f32 duration = self->duration;
     self->elapsed = elapsed;
@@ -282,7 +282,7 @@ static inline void AddToLists_ovb0094(UnkPickPicked_ovb0094* self) {
 }
 
 // Marks the item picked in the blackboard, shows the entity and hands the item to its lists.
-void fn_71009d383c(UnkPickPicked_ovb0094* self) {
+void CPickableItemComponent_MarkUnveiled(UnkPickPicked_ovb0094* self) {
     StorePicked_ovb0094(self);
     fn_71002334fc(static_cast<UnkStruct_71002334fc*>(self->entity), true);
     fn_7100232864(static_cast<UnkEntityState*>(self->entity), true);
@@ -376,7 +376,7 @@ void fn_71009d0404(UnkPickPlaced_ovb0094* self) {
 bool fn_71009d2be0(UnkPickPicked_ovb0094* self, u64 key) {
     UnkPickEntry_ovb0094* entry = Find_ovb0094(&self->pool, key);
     if (entry != &self->pool.values[self->pool.count])
-        fn_71009d42e8(&self->pool, entry);
+        CPickableItemComponent_RemoveEntrySwapWithLast(&self->pool, entry);
     if (self->pool.count == 0 && !self->tile) {
         self->field_0x12b = true;
         StorePickedFirst_ovb0094(self);

@@ -85,7 +85,7 @@ static inline f32 Ramp(f32 min, f32 max, f32 amount) {
     return Clamp(min + max * amount, min, max);
 }
 
-void fn_71008923cc(UnkShootActivator_ovb0126* self, f32 amount) {
+void CCharClassShootActivatorComponent_PlayOrSetSoundPitchVolumeByAmount(UnkShootActivator_ovb0126* self, f32 amount) {
     if (self->sound.Playing()) {
         __builtin_memset(&self->field_0x570, 0, 1);
         auto* tunable = reinterpret_cast<UnkShootTunable_ovb0126*>(&g_unk_717272c450);

@@ -18,7 +18,7 @@ struct UnkNailuggerAcidBallRequest {
 
 extern CStrId g_unk_71726f8838 __attribute__((visibility("hidden")));
 
-void fn_7100626c90(void* self, UnkNailuggerAcidBallRequest* request) {
+void CNailuggerAcidBallMovementComponent_FillSpitDamageRequest(void* self, UnkNailuggerAcidBallRequest* request) {
     fn_71008c1538(reinterpret_cast<UnkRequest*>(request),
                   *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_7172716160) + 0x41c));
     request->id = g_unk_71726f8838;

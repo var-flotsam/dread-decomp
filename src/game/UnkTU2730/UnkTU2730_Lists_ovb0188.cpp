@@ -300,7 +300,7 @@ struct UnkEventSourceCount_b0188 {
 void fn_7101198348(UnkEventSource_b0188* self) {
     if (!self->pending)
         return;
-    u32 id = fn_7100f0cc48(reinterpret_cast<UnkEventTable_b0188*>(reinterpret_cast<u8*>(g_unk_7101d47310) + 0x38), self->pending);
+    u32 id = CPlayerInfo_LookupBindingInSelectedSlot(reinterpret_cast<UnkEventTable_b0188*>(reinterpret_cast<u8*>(g_unk_7101d47310) + 0x38), self->pending);
     s32 count = reinterpret_cast<UnkEventSourceCount_b0188*>(self)->count;
     for (s32 i = 0; count != i; ++i) {
         // keeps the entry index in a register instead of a stepped pointer, as the original does

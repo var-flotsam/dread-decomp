@@ -100,7 +100,7 @@ struct UnkSPBGun_l85db1c {
 bool fn_710085ddb4(UnkSPBGun_l85db1c* self, UnkSPBShot_l85db1c* shot, const UnkBeamVec_ovb0138* pos,
                    const UnkBeamVec_ovb0138* dir, const UnkBeamVec_ovb0138* side, u32 id);
 
-bool fn_710085db1c(UnkSPBGun_l85db1c* self, UnkSPBShot_l85db1c* shot) {
+bool CSPBGun_FireShotSpread(UnkSPBGun_l85db1c* self, UnkSPBShot_l85db1c* shot) {
     self->shot = *shot;
     if (!self->owner || !self->vf_0x48())
         return false;

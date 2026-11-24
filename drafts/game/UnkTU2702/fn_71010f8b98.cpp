@@ -31,7 +31,7 @@ void fn_71010f9264(UnkListSets_l0f9264* self);
 void fn_710088c874(void* set, void** slot);
 void fn_71011146c0(UnkCallbackSetVector* v, u32 size);
 void fn_7101046ac0(void* blackboard);
-void fn_71007e572c(void* self, bool flag);
+void CCharClassEventScenarioComponent_ResizeStrIdList(void* self, bool flag);
 void fn_71010d78e4(void* self);
 
 template <u32 Next>
@@ -347,7 +347,7 @@ void fn_71010f8b98(UnkAIComponentD_l0f8b98* self) {
     FreeSets(&self->sets);
     self->callbacks.~UnkCallbackListShort();
     fn_7101046ac0(self->blackboard);
-    fn_71007e572c(self->field_0x1224, false);
+    CCharClassEventScenarioComponent_ResizeStrIdList(self->field_0x1224, false);
     self->pool_list.~UnkWidePoolList_b44a3();
     fn_71010d78e4(self->field_0x68);
     fn_71010c4194(reinterpret_cast<UnkBaseComponent*>(self));

@@ -82,7 +82,7 @@ struct UnkTunableTable_ovb0113 {
     }
 };
 
-void fn_7100e050b0(UnkRecordTable_b43a3* self) {
+void CGameManager_ClearStrIdKeyedOwnedTable(UnkRecordTable_b43a3* self) {
     reinterpret_cast<UnkTunableTable_ovb0113*>(self)->Clear();
 }
 

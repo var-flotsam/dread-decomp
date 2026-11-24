@@ -13,7 +13,7 @@ struct UnkSubAreaRecords {
     u32 count;
 };
 
-UnkSubAreaRecord* fn_7100eeb6f8(UnkSubAreaRecords* self, const u64* key) {
+UnkSubAreaRecord* CSubAreaManager_FindRecordByKey(UnkSubAreaRecords* self, const u64* key) {
     for (UnkSubAreaRecord *it = self->data, *end = self->data + self->count; it != end; ++it)
         if (it->key == *key)
             return it;

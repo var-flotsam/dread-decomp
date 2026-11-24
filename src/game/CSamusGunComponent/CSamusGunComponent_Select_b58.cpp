@@ -15,10 +15,10 @@
 using base::reflection::UnkReflObject;
 
 struct UnkEnergyGun_b52;
-u64 fn_7100859798(UnkEnergyGun_b52* self);
+u64 CSamusGunComponent_GetSecondaryWeaponSelectKey(UnkEnergyGun_b52* self);
 
 struct UnkSamusGun_b58;
-u64 fn_710085961c(UnkSamusGun_b58* self);
+u64 CSamusGunComponent_GetPrimaryWeaponKey(UnkSamusGun_b58* self);
 
 struct UnkSamusGunOwner_b58 {
     u8 pad_0x0[0x220];
@@ -36,8 +36,8 @@ void fn_710085a2f4(UnkSamusGun_b58* self, bool secondary) {
     UnkReflObject* target = self->owner->field_0x220;
     if (target && fn_710009d50c(target->vf_0x0(), fn_7100713bb0())) {
         self->field_0x384 = 0;
-        u64 hash = secondary ? fn_7100859798(reinterpret_cast<UnkEnergyGun_b52*>(self))
-                             : fn_710085961c(self);
+        u64 hash = secondary ? CSamusGunComponent_GetSecondaryWeaponSelectKey(reinterpret_cast<UnkEnergyGun_b52*>(self))
+                             : CSamusGunComponent_GetPrimaryWeaponKey(self);
         base::reflection::UnkReflTypeIdArg mode;
         mode.id = 0x80;
         base::reflection::UnkReflTypeIdArg mask;

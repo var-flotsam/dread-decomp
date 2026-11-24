@@ -28,7 +28,7 @@ extern const CVector3D g_unk_710164a918 __attribute__((visibility("hidden")));
 extern const CVector3D g_unk_710164a924 __attribute__((visibility("hidden")));
 extern const CVector4D g_unk_7101a6d028 __attribute__((visibility("hidden")));
 extern const CVector4D g_unk_7101a6d038 __attribute__((visibility("hidden")));
-void fn_7100723120(void* holder);
+void CAutofocusAimCameraCtrl_RemoveAllFromCameraList(void* holder);
 
 struct UnkAutofocusTunable_l722ab8 {
     u8 pad_0x0[0x24];
@@ -208,7 +208,7 @@ void fn_7100722ab8(UnkAutofocusCtrl_l722ab8* self, f32 dt) {
     }
     if (t > 1.0f && self->pending) {
         void* holder = fn_7100defcec(g_unk_7101d47310);
-        fn_7100723120(holder);
+        CAutofocusAimCameraCtrl_RemoveAllFromCameraList(holder);
         fn_71010e4168(holder, reinterpret_cast<const CStrId*>(IdTable() + 0x17e0), false);
     }
     self->elapsed = self->elapsed + dt;

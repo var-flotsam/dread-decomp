@@ -81,7 +81,7 @@ static inline void* Current(UnkScorpiusAI_l696258* self) {
     return fn_7101105970(reinterpret_cast<UnkScorpiusAI_b69a4*>(self));
 }
 
-void fn_7100696258(UnkScorpiusAI_l696258* self, UnkScorpiusOther_l696258* other, u32 id) {
+void CScorpiusAIComponent_MovePoisonousGasAttackToListFront(UnkScorpiusAI_l696258* self, UnkScorpiusOther_l696258* other, u32 id) {
     fn_710110bc0c(self, other, id, 2, 6);
     if (self->phase != 2)
         return;

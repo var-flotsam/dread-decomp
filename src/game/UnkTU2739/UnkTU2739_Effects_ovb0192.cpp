@@ -207,8 +207,8 @@ static inline UnkFxCache* FxCache() {
 // Preloads the effects of a kind (0, 3, 4 or 8) through the effect cache; other kinds do nothing.
 void fn_71011aa0d4(void* unused, u32 kind, const CFilePathStrId* path, u32 count, bool flag) {
     switch (kind) {
-        PRELOAD_CASE(0, fn_7100851bc0)
-        PRELOAD_CASE(3, fn_7100851d6c)
+        PRELOAD_CASE(0, CPlasmaBeamGun_PreloadParticleFxPool)
+        PRELOAD_CASE(3, CPlasmaBeamGun_PreloadModelFxPool)
         PRELOAD_CASE(4, fn_71011aa25c)
         PRELOAD_CASE(8, fn_71011aa400)
     }

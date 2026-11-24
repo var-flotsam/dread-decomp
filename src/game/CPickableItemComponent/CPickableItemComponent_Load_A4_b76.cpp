@@ -12,7 +12,7 @@ void fn_710007ca94(CRntFile* file, char* buf);
 
 struct UnkPickableItem_A4_b76;
 
-void fn_71009cf870(UnkPickableItem_A4_b76* self, CRntFile* file) {
+void CPickableItemComponent_ReadBaseAndSkipTrailingFields(UnkPickableItem_A4_b76* self, CRntFile* file) {
     fn_710024fc0c(self, file);
     if (file->position < file->size) {
         char first[0x200] = {};

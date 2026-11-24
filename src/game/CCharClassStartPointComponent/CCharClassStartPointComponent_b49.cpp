@@ -13,7 +13,7 @@ using base::reflection::UnkReflObject;
 extern char g_unk_7172a0a650[] __attribute__((visibility("hidden")));
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
-bool fn_710116bb80(char* self, void* arg) {
+bool CCharClassStartPointComponent_CopyProjectOnFloorFromCharClass(char* self, void* arg) {
     bool r = fn_71010c41bc(reinterpret_cast<UnkBaseComponent*>(self), arg);
     if (r) {
         UnkReflObject* o = *reinterpret_cast<UnkReflObject**>(self + 0x10);

@@ -23,7 +23,7 @@ struct UnkPointB56 {
 };
 
 struct UnkAutoolB56;
-bool fn_71003c6a5c(UnkAutoolB56* self, const UnkPointB56& pos);
+bool CAutoolAIComponent_ResetEntryAtPoint(UnkAutoolB56* self, const UnkPointB56& pos);
 
 void fn_71003c29e8();
 
@@ -80,5 +80,5 @@ void fn_71003c1e04(UnkAutoolGoToRepairPoint_l3c1e04* self) {
         CStrId key("v3WaypointPos", true);
         fn_710039525c(reinterpret_cast<UnkSelf*>(self), &key, reinterpret_cast<base::math::CVector3D*>(&pos));
     }
-    fn_71003c6a5c(ai, pos);
+    CAutoolAIComponent_ResetEntryAtPoint(ai, pos);
 }

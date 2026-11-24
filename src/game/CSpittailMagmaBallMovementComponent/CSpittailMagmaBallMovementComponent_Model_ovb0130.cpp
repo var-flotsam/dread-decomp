@@ -112,7 +112,7 @@ struct UnkSpittailMovement_ovb0130 {
 
 // fn_71006ca2ac: after the base step (fn_71006df774) the flag at +0x5d8 is cleared, and the ball's handle is
 // appended to the spawning CVulkranAIComponent's list (+0x14760) when the spawner's actor has one.
-void fn_71006ca2ac(UnkSpittailMovement_ovb0130* self) {
+void CSpittailMagmaBallMovementComponent_BeginPlay(UnkSpittailMovement_ovb0130* self) {
     CVulkranMagmaBallMovementComponent_BeginPlay(self);
     self->field_0x5d8 = false;
     UnkSpittailLink_ovb0130* link = self->spawner;
@@ -175,7 +175,7 @@ static inline UnkSceneNode* Node_ovb0130(UnkModel* model) {
     return model ? &model->field_0x8 : nullptr;
 }
 
-bool fn_71006ca3fc(UnkSpittailBall_ovb0130* self, UnkKraidCreatureArg* arg) {
+bool CSpittailMagmaBallMovementComponent_CacheCharClassAndCreateModel(UnkSpittailBall_ovb0130* self, UnkKraidCreatureArg* arg) {
     bool result = fn_71006df684(reinterpret_cast<UnkVulkranMagmaBallMovement*>(self), arg);
     UnkReflObject* obj = self->field_0x10;
     if (!obj || !fn_710009d50c(obj->vf_0x0(), fn_71006c9848())) {

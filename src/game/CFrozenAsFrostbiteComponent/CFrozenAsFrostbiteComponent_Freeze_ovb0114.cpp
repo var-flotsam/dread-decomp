@@ -100,7 +100,7 @@ void fn_71007f97ec(UnkFrozenAsFrostbite_ovb0114* self);  // the base method
 
 // After the base method: while frozen, gives the actor's timeline the definition's id; clears the
 // count and +0x3bc, runs request 2 on the actor's slots, and hands every object back to the manager.
-void fn_71007f4278(UnkFrozenAsFrostbite_ovb0114* self) {
+void CFrozenAsFrostbiteComponent_ResetFrostbiteAndReleaseIceObjects(UnkFrozenAsFrostbite_ovb0114* self) {
     fn_71007f97ec(self);
     if (self->count >= 1) {
         AddKey(self->actor, self->def->holder->id);
@@ -163,7 +163,7 @@ static inline void ReleaseObjects(UnkFrozenAsFrostbite_ovb0114* self) {
     self->objects.count = 0;
 }
 
-void fn_71007f4378(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
+void CFrozenAsFrostbiteComponent_UpdateBarelyIceObjects(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
     if (self->field_0x3c4 > 0.0f) {
         self->field_0x3c4 -= dt;

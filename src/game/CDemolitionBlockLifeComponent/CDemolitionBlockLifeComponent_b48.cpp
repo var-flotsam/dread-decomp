@@ -24,7 +24,7 @@ struct UnkDemolitionBlockLife_b48 {
     u32 count;
 };
 
-bool fn_71008c5970(UnkDemolitionBlockLife_b48* self) {
+bool CDemolitionBlockLifeComponent_GetBlackboardDeadFlag(UnkDemolitionBlockLife_b48* self) {
     bool value = false;
     {
         UnkGameManager* manager = g_unk_7101d47310;

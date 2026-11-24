@@ -16,8 +16,8 @@
 struct UnkGrabComponent_ovb0057;
 struct UnkGrabActor_ovb0057;
 struct UnkGrabRequest_ovb0057;
-UnkGrabRequest_ovb0057* fn_710113d378(UnkGrabComponent_ovb0057* self, UnkGrabActor_ovb0057* other);
-void fn_710113ee18(UnkGrabComponent_ovb0057* self);
+UnkGrabRequest_ovb0057* CGrabComponent_FindRequestAcceptingActor(UnkGrabComponent_ovb0057* self, UnkGrabActor_ovb0057* other);
+void CGrabComponent_RequestAnimAndClearTarget(UnkGrabComponent_ovb0057* self);
 void fn_710113b8cc(UnkGrabComponent_ovb0057* self);
 void fn_710113c304(UnkGrabComponent_ovb0057* self);
 void fn_710113def8(UnkGrabComponent_ovb0057* self, f32 dt);
@@ -107,11 +107,11 @@ static inline f32 GrabDt(UnkGrabActor_b3e82c* actor, f32 dt) {
 void fn_710113e82c(UnkGrabComponent_b3e82c* self, f32 dt) {
     if (self->target_set) {
         bool grabbable = Target(self->target) && CanBeGrabbed(self->owner) &&
-                         fn_710113d378(self->Grab(), reinterpret_cast<UnkGrabActor_ovb0057*>(Target(self->target)));
+                         CGrabComponent_FindRequestAcceptingActor(self->Grab(), reinterpret_cast<UnkGrabActor_ovb0057*>(Target(self->target)));
         if (grabbable != self->target_set) {
             self->target_set = grabbable;
             if (!grabbable)
-                fn_710113ee18(self->Grab());
+                CGrabComponent_RequestAnimAndClearTarget(self->Grab());
         }
     }
 

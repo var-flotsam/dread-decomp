@@ -34,6 +34,6 @@ void fn_71011acd74(UnkObject_71011ace00& self) {
     self.~UnkObject_71011ace00();
 }
 
-void fn_71011ace00(UnkObject_71011ace00& self) {
+void CCharClassComponent_DestroyAndDelete(UnkObject_71011ace00& self) {
     delete &self;
 }

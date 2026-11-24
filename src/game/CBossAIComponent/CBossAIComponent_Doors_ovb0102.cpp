@@ -281,7 +281,7 @@ bool fn_710110c7f8(UnkBossAITimers_ovb0102* self, bool arg);
 
 // Advances the active/inactive timers by `dt`. Becoming active runs fn_71003ad8e4; becoming
 // inactive while the boss camera is in control asks the scenario to activate the default camera.
-void fn_71003ad7ec(UnkBossAITimers_ovb0102* self, f32 dt) {
+void CBossAIComponent_UpdateTimersAndRestoreDefaultCamera(UnkBossAITimers_ovb0102* self, f32 dt) {
     bool active = fn_710110c7f8(self, false);
     f32 was = self->active_time;
     self->active = active;

@@ -69,7 +69,7 @@ struct UnkAreaRefs_ovb0124 {
 // allocator: 0x20
 using UnkAreaMap_ovb0124 = base::global::CRntSmallDictionary<base::UnkStrIdMember, UnkAreaRefs_ovb0124>;
 
-__attribute__((noinline)) void fn_71007e9580(void* p) {
+__attribute__((noinline)) void CForcedMovementAreaComponent_ClearStrIdRefArrayMap(void* p) {
     UnkAreaMap_ovb0124* self = static_cast<UnkAreaMap_ovb0124*>(p);
     if (self->keys) {
         for (u64 i = 0; i < self->count; ++i)
@@ -90,7 +90,7 @@ struct UnkAreaMapOwned_ovb0124 {
     UnkAreaMap_ovb0124 map;
 
     ~UnkAreaMapOwned_ovb0124() {
-        fn_71007e9580(&map);
+        CForcedMovementAreaComponent_ClearStrIdRefArrayMap(&map);
         if (map.keys)
             map.allocator->vf_0x48(map.keys);
         if (map.values)
@@ -187,7 +187,7 @@ static inline bool InShape_ovb0124(UnkShapeTester_A5_b68* tester, void* shape, c
     return fn_7100d572f8(tester, shape, point, offset, 0).flags & 1;
 }
 
-void fn_71007e98c8(UnkForcedArea_ovb0124* self) {
+void CForcedMovementAreaComponent_SetOffsetSideFromShapeTest(UnkForcedArea_ovb0124* self) {
     UnkDoorRegistry_b61* reg = g_unk_71726bee10;
     if (!reg) {
         reg = static_cast<UnkDoorRegistry_b61*>(fn_71000839a0(4, 0x3f));
@@ -271,7 +271,7 @@ static_assert(__builtin_offsetof(UnkForcedAreaUpdate_ovb0124, timer) == 0xe8, "l
 
 void fn_71007e9ba4(UnkForcedAreaUpdate_ovb0124* self, UnkAreaHit_ovb0124* hit, void* collision);
 
-void fn_71007e9a60(UnkForcedAreaUpdate_ovb0124* self, f32 dt) {
+void CForcedMovementAreaComponent_FlushPendingHitsAndTickTimer(UnkForcedAreaUpdate_ovb0124* self, f32 dt) {
     if (self->ref_count) {
         for (UnkRefObject** it = self->refs; it != self->refs + self->ref_count; ++it) {
             UnkAreaHit_ovb0124* hit = reinterpret_cast<UnkAreaHitRef_ovb0124*>(*it)->hit;
@@ -500,7 +500,7 @@ struct UnkAreaShaped_ovb0124 {
     UnkShape* shape;
 };
 
-bool fn_71007ec35c(UnkForcedAreaQuery_ovb0124* self, const CStrId* name) {
+bool CForcedMovementAreaComponent_QueryNamedColliderHit(UnkForcedAreaQuery_ovb0124* self, const CStrId* name) {
     UnkGameManagerSub_0x608* scenario = g_unk_7101d47310->field_0x608;
     UnkTree* tree = scenario ? static_cast<UnkTree*>(scenario->field_0x820) : nullptr;
     UnkMatrix44_7100078c9c xf = fn_7100078cd8(self->owner->Position());
@@ -558,7 +558,7 @@ static inline bool Overlaps_ovb0124(UnkAreaCollider_ovb0124* collider, const Unk
            AtLeast_ovb0124(b.min_y, box->max_y) && AtMost_ovb0124(b.max_y, box->min_y);
 }
 
-bool fn_71007ecc08(UnkForcedAreaBounds_ovb0124* self, const UnkAreaBox_ovb0124* box) {
+bool CForcedMovementAreaComponent_DoorOrForceMovementBoundsOverlapBox(UnkForcedAreaBounds_ovb0124* self, const UnkAreaBox_ovb0124* box) {
     void* object = fn_710043acb4(self->owner);
     if (!object)
         return false;

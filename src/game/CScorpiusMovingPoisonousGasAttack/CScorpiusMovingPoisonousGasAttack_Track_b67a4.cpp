@@ -60,7 +60,7 @@ static inline u32 AsU32_b67a4(const f32& value) {
     return bits;
 }
 
-bool fn_71006895a0(UnkGasTrackAttack_b67a4* self, const UnkGasTrackEvent_b67a4* event) {
+bool CScorpiusMovingPoisonousGasAttack_OnEventSendFacingToTarget(UnkGasTrackAttack_b67a4* self, const UnkGasTrackEvent_b67a4* event) {
     if (event->type == 2 && event->source->desc->kind == g_unk_7172703310) {
         UnkActor* owner = self->owner;
         if (owner) {

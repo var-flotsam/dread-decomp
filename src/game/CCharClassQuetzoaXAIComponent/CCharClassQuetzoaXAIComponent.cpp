@@ -5,7 +5,7 @@
 #include "game/UnkBossAIComponent.h"
 #include "types.h"
 
-void fn_71006490e8(void* self);
+void CCharClassQuetzoaAIComponent_ConstructBase(void* self);
 void fn_710063d208(void* self);
 extern void* g_unk_7101a58e88[];
 
@@ -15,7 +15,7 @@ struct UnkQuetzoaXDef : UnkBossAIComponent {
 };
 
 void fn_710063eedc(UnkQuetzoaXDef* self) {
-    fn_71006490e8(self);
+    CCharClassQuetzoaAIComponent_ConstructBase(self);
     self->vtable = g_unk_7101a58e88 + 2;
     fn_710063d208(self->field_0x710);
     self->field_0x4e0 = 1.2f;

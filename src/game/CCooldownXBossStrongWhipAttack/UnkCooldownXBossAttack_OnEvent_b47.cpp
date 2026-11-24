@@ -49,5 +49,5 @@ static inline bool OnEvent_b47(UnkCooldownXBossAttack_b47* self, const UnkEvent_
     return true;
 }
 
-bool fn_71004cb0e8(UnkCooldownXBossAttack_b47* self, const UnkEvent_b47* event) { return OnEvent_b47<0>(self, event); }
+bool CCooldownXBossStrongWhipAttack_OnMatchingEventSetTimer(UnkCooldownXBossAttack_b47* self, const UnkEvent_b47* event) { return OnEvent_b47<0>(self, event); }
 bool fn_71004c31f8(UnkCooldownXBossAttack_b47* self, const UnkEvent_b47* event) { return OnEvent_b47<1>(self, event); }

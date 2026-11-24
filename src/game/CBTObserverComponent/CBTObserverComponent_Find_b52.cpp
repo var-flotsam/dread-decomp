@@ -45,7 +45,7 @@ struct UnkOwner_7100ca7634 {
     UnkMap_7100ca7634 map;  // +0x8
 };
 
-void* fn_7100ca7634(UnkOwner_7100ca7634* self, const CStrId* key) {
+void* CBTObserverComponent_FindGroupByStrId(UnkOwner_7100ca7634* self, const CStrId* key) {
     UnkNode_7100ca7634* n = self->map.Find(*key);
     return n ? n->value : nullptr;
 }

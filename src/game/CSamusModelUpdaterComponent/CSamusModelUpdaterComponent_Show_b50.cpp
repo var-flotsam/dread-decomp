@@ -11,11 +11,11 @@
 
 using base::global::CRntString;
 
-void fn_710093a130(char* self, char* entry, CRntString* out);
+void CSamusModelUpdaterComponent_RemapMeshNameToCurrentSuit(char* self, char* entry, CRntString* out);
 
 static inline __attribute__((always_inline)) void ShowPart(char* self, char* entry, bool value) {
     UnkBufferString<0x40, g_unk_7101a1b678> name;
-    fn_710093a130(self, entry + 0x10, name.Str());
+    CSamusModelUpdaterComponent_RemapMeshNameToCurrentSuit(self, entry + 0x10, name.Str());
     if (char* c = *reinterpret_cast<char**>(self + 0x50)) {
         u64 hash;
         CRntString copy(*name.Str());

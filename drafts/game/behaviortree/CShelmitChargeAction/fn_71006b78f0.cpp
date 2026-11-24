@@ -12,7 +12,7 @@
 #include "types.h"
 
 struct UnkShelmitAI_b35;
-void fn_71006ba4a8(UnkShelmitAI_b35* self, f32 dt);
+void CShelmitAIComponent_BlendCrystalEmissiveToMax(UnkShelmitAI_b35* self, f32 dt);
 
 struct UnkShelmitChargeCharClass_l6b78f0 : base::reflection::UnkReflObject {
     u8 pad_0x8[0x618 - 0x8];
@@ -110,7 +110,7 @@ bool fn_71006b78f0(UnkShelmitChargeAction_l6b78f0* self, UnkShelmitChargeEvent_l
                 self->stage = 3;
                 if ((charClass != nullptr) & isShelmit) {
                     self->field_0x54 = charClass->field_0x640;
-                    fn_71006ba4a8(reinterpret_cast<UnkShelmitAI_b35*>(ai), self->field_0x54);
+                    CShelmitAIComponent_BlendCrystalEmissiveToMax(reinterpret_cast<UnkShelmitAI_b35*>(ai), self->field_0x54);
                 }
             }
         }

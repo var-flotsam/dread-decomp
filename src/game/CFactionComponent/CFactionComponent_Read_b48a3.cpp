@@ -12,14 +12,14 @@ struct UnkFactionKey_b48a3 {
 };
 
 struct UnkFactionComponent_b48a3;
-bool fn_710113906c(UnkFactionComponent_b48a3* self, UnkFactionKey_b48a3* key);
+bool CFactionComponent_TrySetFactionFromName(UnkFactionComponent_b48a3* self, UnkFactionKey_b48a3* key);
 
-void fn_7101139014(UnkFactionComponent_b48a3* self, void* stream) {
+void CFactionComponent_ReadFactionName(UnkFactionComponent_b48a3* self, void* stream) {
     fn_710024fc08();
     const char* name;
     CRntFile_ReadCString(stream, &name);
     UnkFactionKey_b48a3 key;
     CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(&key), name);
-    fn_710113906c(self, &key);
+    CFactionComponent_TrySetFactionFromName(self, &key);
     CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(&key));
 }

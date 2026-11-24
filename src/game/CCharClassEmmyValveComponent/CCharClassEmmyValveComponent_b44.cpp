@@ -16,7 +16,7 @@ struct UnkValveRecord_b44a2 {
     UnkOwnedStrIdTable field_0x10;
 };
 
-void fn_71007b4578(UnkValveRecord_b44a2* self) {
+void CCharClassEmmyValveComponent_DestroyNamedStrIdTable(UnkValveRecord_b44a2* self) {
     self->field_0x10.~UnkOwnedStrIdTable();
     if (UnkStringPool* pool = g_unk_7101d47108) {
         UnkStringData** id = &self->field_0x8;

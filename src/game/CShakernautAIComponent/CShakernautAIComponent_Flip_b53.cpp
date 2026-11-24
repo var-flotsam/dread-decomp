@@ -44,7 +44,7 @@ struct UnkShakernautAIComponent_b53 {
     UnkShakernautSide_b53 state;
 };
 
-void fn_71006b0d44(UnkShakernautAIComponent_b53* self) {
+void CShakernautAIComponent_FlipDirectionAndSide(UnkShakernautAIComponent_b53* self) {
     UnkShakernautSide_b53* s = &self->state;
     fn_710110ca7c(self);
     s->field_0x14 = s->owner->field_0x724;

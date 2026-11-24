@@ -40,7 +40,7 @@ struct UnkOwner_sna {
     UnkShakernaut_sna* target;
 };
 
-void fn_71006b1ddc(UnkShakernaut_sna* self, const base::math::CVector3D* v);
+void CShakernautAIComponent_SetFacingDirection(UnkShakernaut_sna* self, const base::math::CVector3D* v);
 
 UnkResult_0x18_sna fn_71006b22a4(void*, UnkOwner_sna* owner, UnkValueSource_sna** source) {
     UnkValueSource_sna* src = *source;
@@ -54,7 +54,7 @@ UnkResult_0x18_sna fn_71006b22a4(void*, UnkOwner_sna* owner, UnkValueSource_sna*
     v.x = p->x;
     v.y = p->y;
     v.z = p->z;
-    fn_71006b1ddc(target, &v);
+    CShakernautAIComponent_SetFacingDirection(target, &v);
     UnkResult_0x18_sna result = {};
     result.kind_and_flag = 0x100000002;
     return result;
@@ -158,7 +158,7 @@ struct UnkShakernautAI2_sna {
     UnkShakernautActor2_sna* actor;  // 0x30
 };
 
-bool fn_71006b1f04(UnkShakernautAI2_sna* self) {
+bool CShakernautAIComponent_IsTargetAboveMovementLimit(UnkShakernautAI2_sna* self) {
     UnkEnemyMovement_sna* movement = self->actor->movement;
     if (movement && fn_710009d50c(movement->vf_0x0(), fn_71010c74e0()) && fn_71010cc3a4(movement) == 1) {
         f32 limit = movement->limit;

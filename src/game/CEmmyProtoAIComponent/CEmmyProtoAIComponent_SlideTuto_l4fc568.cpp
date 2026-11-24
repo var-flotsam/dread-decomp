@@ -32,7 +32,7 @@ struct UnkEmmyProto_l4fc568 {
     bool slideTutoShown;  // 0x2a708
 };
 
-void fn_71004fc568(UnkEmmyProto_l4fc568* self, bool show) {
+void CEmmyProtoAIComponent_ShowFloorSlideTutorial(UnkEmmyProto_l4fc568* self, bool show) {
     if (!show)
         return;
     UnkTutorialHolder_l4fc568* holder = static_cast<UnkTutorialHolder_l4fc568*>(g_unk_7101d47310->field_0x2270);

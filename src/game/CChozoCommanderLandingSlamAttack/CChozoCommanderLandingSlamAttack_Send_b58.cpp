@@ -46,7 +46,7 @@ struct UnkLandingSlam_b58 {
     s32 stage;
 };
 
-void fn_7100437c44(UnkLandingSlam_b58* self) {
+void CChozoCommanderLandingSlamAttack_EnterStage1(UnkLandingSlam_b58* self) {
     self->field_0x14 = 0;
     base::reflection::UnkReflTypeIdArg value;
     UnkParams5Rate_b58 params;

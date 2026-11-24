@@ -18,7 +18,7 @@ struct __attribute__((packed)) UnkScenarioIdList_ovb0097 {
 };
 static_assert(sizeof(UnkScenarioIdList_ovb0097) == 0x24, "UnkScenarioIdList_ovb0097 layout");
 
-void fn_71007e572c(UnkScenarioIdList_ovb0097* self, u32 n);
+void CCharClassEventScenarioComponent_ResizeStrIdList(UnkScenarioIdList_ovb0097* self, u32 n);
 
 UnkScenarioIdList_ovb0097* fn_71007e4df4(CRntVector<UnkScenarioIdList_ovb0097>* self) {
     u32 n = self->count + 1;
@@ -31,7 +31,7 @@ UnkScenarioIdList_ovb0097* fn_71007e4df4(CRntVector<UnkScenarioIdList_ovb0097>* 
                 for (u64 j = 0; j < old->count; ++j)
                     new (&dst->ids[j]) CStrId(old->ids[j]);
                 dst->count = old->count;
-                fn_71007e572c(old, 0);
+                CCharClassEventScenarioComponent_ResizeStrIdList(old, 0);
             }
             self->allocator->vf_0x48(self->data);
         }

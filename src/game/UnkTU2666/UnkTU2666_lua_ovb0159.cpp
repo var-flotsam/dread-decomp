@@ -149,7 +149,7 @@ s32 SetMinimapRegionVisited(lua_State* L) {
         return 0;
     if (void* object = FindByName(g_unk_7101d47310, name)) {
         if (UnkTracker* tracker = fn_710028aca8(object)) {
-            fn_7100e95038(g_unk_7101d47310->field_0x2228, reinterpret_cast<UnkTrackerFields_b0159*>(tracker)->field_0x30);
+            CMinimapManager_SetRegionVisited(g_unk_7101d47310->field_0x2228, reinterpret_cast<UnkTrackerFields_b0159*>(tracker)->field_0x30);
             return 0;
         }
     }
@@ -162,7 +162,7 @@ s32 SetMinimapRegionVisible(lua_State* L) {
         return 0;
     if (void* object = FindByName(g_unk_7101d47310, name)) {
         if (UnkTracker* tracker = fn_710028aca8(object)) {
-            fn_7100e950b4(g_unk_7101d47310->field_0x2228, reinterpret_cast<UnkTrackerFields_b0159*>(tracker)->field_0x30);
+            CMinimapManager_SetRegionVisible(g_unk_7101d47310->field_0x2228, reinterpret_cast<UnkTrackerFields_b0159*>(tracker)->field_0x30);
             return 0;
         }
     }

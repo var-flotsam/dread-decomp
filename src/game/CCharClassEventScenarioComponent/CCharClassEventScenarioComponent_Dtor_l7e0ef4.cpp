@@ -17,12 +17,12 @@ using base::UnkStrIdMember;
 struct UnkManager_7100863a8c;
 struct UnkCollisionObject;
 struct UnkScenarioIdList_ovb0097;
-void fn_71007e572c(UnkScenarioIdList_ovb0097* self, u32 n);
+void CCharClassEventScenarioComponent_ResizeStrIdList(UnkScenarioIdList_ovb0097* self, u32 n);
 
 // A small list of string ids (0x24 bytes) that is emptied when it goes away.
 struct UnkIdList_l7e0ef4 {
     u8 pad_0x0[0x24];
-    ~UnkIdList_l7e0ef4() { fn_71007e572c(reinterpret_cast<UnkScenarioIdList_ovb0097*>(this), 0); }
+    ~UnkIdList_l7e0ef4() { CCharClassEventScenarioComponent_ResizeStrIdList(reinterpret_cast<UnkScenarioIdList_ovb0097*>(this), 0); }
 };
 
 // A scenario entry (0x28 bytes): its list of id lists.

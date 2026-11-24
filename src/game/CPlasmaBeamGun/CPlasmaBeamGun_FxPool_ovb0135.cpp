@@ -60,11 +60,11 @@ static inline void Fill(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* pat
     }
 }
 
-void fn_71008523c4(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* path, u32 count) {
+void CPlasmaBeamGun_FillParticleFxPool(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* path, u32 count) {
     Fill<UnkSwitchObject, void*, fn_7100339d48, fn_7100146dac>(self, path, count);
 }
 
-void fn_7100852698(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* path, u32 count) {
+void CPlasmaBeamGun_FillModelFxPool(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* path, u32 count) {
     Fill<UnkSonarModel_ovb0085, void*, fn_7100339900, fn_7100145e94>(self, path, count);
 }
 
@@ -113,12 +113,12 @@ static inline void Preload(UnkFxCache* cache, const CFilePathStrId* path, u32 co
     map->Insert(*path, pool);
 }
 
-void fn_7100851bc0(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool flag) {
-    Preload<fn_71008523c4>(cache, path, kind, flag);
+void CPlasmaBeamGun_PreloadParticleFxPool(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool flag) {
+    Preload<CPlasmaBeamGun_FillParticleFxPool>(cache, path, kind, flag);
 }
 
-void fn_7100851d6c(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool flag) {
-    Preload<fn_7100852698>(cache, path, kind, flag);
+void CPlasmaBeamGun_PreloadModelFxPool(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool flag) {
+    Preload<CPlasmaBeamGun_FillModelFxPool>(cache, path, kind, flag);
 }
 
 void CPowerBeamGun_PreloadEffects(UnkPlasmaBeamGun_ovb0135* self);
@@ -148,9 +148,9 @@ static inline void ReleaseFx(const char* path) {
 
 void CPlasmaBeamGun_PreloadEffects(UnkPlasmaBeamGun_ovb0135* self) {
     if (!self->fx_registered) {
-        PreloadFx<fn_7100851bc0>("actors/weapons/plasmabeam/fx/explosion.bcptl", 0xf);
-        PreloadFx<fn_7100851bc0>("actors/weapons/plasmabeam/fx/minor_explosion.bcptl", 0xc);
-        PreloadFx<fn_7100851d6c>("actors/weapons/plasmabeam/fx/explosion_game.bcmdl", 0xc);
+        PreloadFx<CPlasmaBeamGun_PreloadParticleFxPool>("actors/weapons/plasmabeam/fx/explosion.bcptl", 0xf);
+        PreloadFx<CPlasmaBeamGun_PreloadParticleFxPool>("actors/weapons/plasmabeam/fx/minor_explosion.bcptl", 0xc);
+        PreloadFx<CPlasmaBeamGun_PreloadModelFxPool>("actors/weapons/plasmabeam/fx/explosion_game.bcmdl", 0xc);
         self->fx_registered = true;
     }
     CPowerBeamGun_PreloadEffects(self);

@@ -44,7 +44,7 @@ struct UnkCoolShinesparkAction_ovb0137 {
 };
 
 // After the base step, hands the player's shinespark ability the two lists as bit masks.
-void fn_7100a333e0(UnkCoolShinesparkAction_ovb0137* self, UnkCoolShinesparkPlayer_ovb0137* player) {
+void CAllowCoolShinesparkLogicAction_ApplyAllowedMasksToPlayerAbility(UnkCoolShinesparkAction_ovb0137* self, UnkCoolShinesparkPlayer_ovb0137* player) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     if (!player->field_0x208 && !player->field_0x210)
         return;

@@ -37,7 +37,7 @@ void fn_710063904c(UnkOwner_710063904c* self) {
     self->Destroy();
 }
 
-void fn_71006390f0(UnkOwner_710063904c* self) {
+void CPoisonFlyAIComponent_DestroyAndDelete(UnkOwner_710063904c* self) {
     self->Destroy();
     operator delete(self);
 }

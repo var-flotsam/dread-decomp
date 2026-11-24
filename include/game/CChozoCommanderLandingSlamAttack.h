@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkSlamAttack_A2_b72;
-void fn_7100437c44(UnkSlamAttack_A2_b72* self);
+void CChozoCommanderLandingSlamAttack_EnterStage1(UnkSlamAttack_A2_b72* self);
