@@ -42,7 +42,7 @@ bool fn_7100707df4(char* self, UnkPathPoint_b67a4* out) {
                 __builtin_memcpy(&xy, p, 8);
                 __builtin_memcpy(&z, p + 8, 4);
                 __builtin_memcpy(out, &xy, 8);
-                __builtin_memcpy(reinterpret_cast<char*>(out) + 8, &z, 4);
+                __builtin_memcpy(&out->z, &z, 4);
                 return true;
             }
         }

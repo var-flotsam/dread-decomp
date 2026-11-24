@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkModel.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
 #include "types.h"
@@ -33,7 +34,7 @@ struct UnkChozombieFX_ovb0130 {
 static_assert(__builtin_offsetof(UnkChozombieFX_ovb0130, model) == 0x2d8, "layout");
 
 static inline UnkSceneNode* Node_ovb0130(UnkModel* model) {
-    return model ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(model) + 8) : nullptr;
+    return model ? &model->field_0x8 : nullptr;
 }
 
 bool fn_710080706c(UnkChozombieFX_ovb0130* self, void* arg) {

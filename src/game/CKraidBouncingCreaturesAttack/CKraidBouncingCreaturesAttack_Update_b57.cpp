@@ -64,6 +64,6 @@ void fn_71005f2f5c(UnkKraidBouncingAttack_b57a4* self, f32 dt) {
     if (!*fn_71005e2c08(&lists[index], slot))
         return;
     const CStrId* id = self->field_0x30->vf_0x18(self->owner);
-    u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(id->data) + 0x30);
+    u64 hash = id->data->Key();
     Send_b57a4(self->owner->field_0x220, hash, 0xf4061ff25a2163d6, 2);
 }

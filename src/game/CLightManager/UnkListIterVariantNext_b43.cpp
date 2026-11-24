@@ -14,7 +14,8 @@ void fn_7100ff7828(char*);
 // in the others.
 template <u32 N>
 struct UnkListNode_b43a3 {
-    u8 unk_0x0[N];
+    u8 unk_0x0[0x8];
+    u8 field_0x8[N - 0x8];
     UnkListNode_b43a3* next;
 };
 
@@ -67,7 +68,7 @@ struct UnkListIter_b43a3 {
         UnkListNode_b43a3<N>* n = node->next;
         node = n;
         if (n)
-            variant.SetPair(n, reinterpret_cast<u8*>(n) + 8);
+            variant.SetPair(n, n->field_0x8);
         else
             variant.Reset();
     }

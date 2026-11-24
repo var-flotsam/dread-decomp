@@ -31,7 +31,8 @@ struct UnkMediaObject_b0217 {
     base::global::CStrId id;       // 0x20
     u8 pad_0x28[0x38];
     base::global::CRntVector<UnkMovieTrack_b0217*> tracks;  // 0x60
-    u8 pad_0x88[0x648];
+    u8 field_0x88[1];  // a table (fn_71002204d8)
+    u8 pad_0x89[0x647];
     base::global::CRntVector<u8> list_0x6d0;
     base::global::CRntVector<u8> list_0x6f8;
     base::global::CRntVector<u8> list_0x720;
@@ -69,7 +70,7 @@ void fn_710021e874(UnkRefObj* obj) {
     self->list_0x720.Free();
     self->list_0x6f8.Free();
     self->list_0x6d0.Free();
-    fn_71002204d8(reinterpret_cast<u8*>(self) + 0x88, 0);
+    fn_71002204d8(self->field_0x88, 0);
     if (self->tracks.data) {
         for (u64 i = 0; i < self->tracks.count; i++) {
             if (UnkMovieTrack_b0217* track = self->tracks.data[i]) {

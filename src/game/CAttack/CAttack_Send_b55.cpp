@@ -70,5 +70,5 @@ void fn_7100362a50(UnkAttack_b55* self) {
     if (id.data == &g_unk_7101d47108->empty)
         id = target->field_0x2b8;
     if (id.data != &g_unk_7101d47108->empty)
-        SendMode_b55(target, *reinterpret_cast<u64*>(reinterpret_cast<char*>(id.data) + 0x30), 2);
+        SendMode_b55(target, id.data->Key(), 2);
 }

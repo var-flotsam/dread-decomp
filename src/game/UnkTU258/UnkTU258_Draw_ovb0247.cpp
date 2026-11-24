@@ -303,6 +303,8 @@ struct UnkSubmitGroup_b0247 {
     u8 pad_0x0[0x34];
     u32 count;  // 0x34
     u8* elements;  // 0x38
+    u8 pad_0x40[0x48];
+    UnkMatrix44 field_0x88;  // 0x88
 };
 
 struct UnkSubmitList_b0247 {
@@ -329,7 +331,7 @@ void fn_71001c4894(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
             fn_710016b0ec(reinterpret_cast<UnkNamedEntries_710016b194*>(list), i));
         if (!group)
             continue;
-        self->field_0x317ab28 = reinterpret_cast<const UnkMatrix44*>(reinterpret_cast<u8*>(group) + 0x88);
+        self->field_0x317ab28 = &group->field_0x88;
         u64 size = (u64)group->count * 0x20;
         for (u64 off = 0; off != size; off += 0x20) {
             u8* element = group->elements + off;

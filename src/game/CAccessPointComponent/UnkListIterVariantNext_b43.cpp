@@ -12,7 +12,8 @@ void fn_7100a72af4(UnkNamedIds* self);
 void fn_7100a73894(UnkNamedIds* self);
 
 struct UnkListNode_b43a2 {
-    u8 unk_0x0[0x30];
+    u8 unk_0x0[0x8];
+    u8 field_0x8[0x28];  // the payload
     UnkListNode_b43a2* next;
 };
 
@@ -65,7 +66,7 @@ struct UnkListIter_b43a2 {
         UnkListNode_b43a2* n = node->next;
         node = n;
         if (n)
-            variant.SetPair(n, reinterpret_cast<u8*>(n) + 8);
+            variant.SetPair(n, n->field_0x8);
         else
             variant.Reset();
     }

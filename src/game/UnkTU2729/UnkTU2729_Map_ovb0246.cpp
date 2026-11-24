@@ -87,12 +87,14 @@ struct UnkPooledCache_b0246 {
     void* vtable_0x8;
     UnkPooledMap_b0246 first;  // 0x10
     UnkPooledMap_b0246 second;  // 0xa0
+    u8 field_0x130[1];          // the member fn_7101192ee8 takes
 };
+static_assert(__builtin_offsetof(UnkPooledCache_b0246, field_0x130) == 0x130, "UnkPooledCache_b0246 layout");
 
 void fn_7101192dc4(UnkPooledCache_b0246* self) {
     self->vtable_0x0 = g_unk_7101cb5270 + 0x10;
     self->vtable_0x8 = g_unk_7101cb5270 + 0x60;
-    fn_7101192ee8(reinterpret_cast<u8*>(self) + 0x130);
+    fn_7101192ee8(self->field_0x130);
     Release_b0246(&self->second, fn_71011954cc);
     Release_b0246(&self->first, fn_71011951e8);
 }

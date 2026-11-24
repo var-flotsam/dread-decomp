@@ -71,7 +71,8 @@ void fn_7100ac38fc(UnkProjectileMovementVel_ovb0046* self) {
 struct UnkFxObject_ovb0041;
 
 struct UnkSpawnedFx_ovb0046 {
-    u8 pad_0x0[0x108];
+    u8 pad_0x0[0x28];
+    u8 field_0x28[0xe0];
     f32 field_0x108;
     u8 pad_0x10c[0x4e];
     bool field_0x15a;
@@ -111,7 +112,7 @@ void fn_7100ac46f0(UnkProjectileFx_ovb0046* self, const UnkVec3f* at, const UnkV
     UnkSpawnedFx_ovb0046* spawned = reinterpret_cast<UnkSpawnedFx_ovb0046*>(fx);
     spawned->field_0x15a = false;
     spawned->field_0x108 = 1.0f;
-    fn_71002093c8(reinterpret_cast<char*>(fx) + 0x28, false);
+    fn_71002093c8(spawned->field_0x28, false);
 }
 
 

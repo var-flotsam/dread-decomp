@@ -7,8 +7,16 @@
 #include "types.h"
 
 struct UnkManager_71726af468 {
-    u8 pad_0x0[0x330];
-    u8 field_0x330[0x2610 - 0x330];  // the registry at +0x330
+    u8 pad_0x0[0x80];
+    u8 field_0x80[0xb8];  // a registry the dive attacks query (fn_710063c10c)
+    u8 pad_0x138[0x2b8 - 0x138];
+    u8 field_0x2b8[0x330 - 0x2b8];  // a set of values (fn_71005ac994 removes one)
+    u8 field_0x330[0x38];  // the registry at +0x330
+    u8 field_0x368[0x5e0 - 0x368];  // a registry Vulkran registers with (fn_71006ded20)
+    u8 field_0x5e0[0x348];  // the list actors are handed to (fn_71006a23c4, fn_71006a22b0)
+    u8 pad_0x928[0x2410 - 0x928];
+    void* field_0x2410;
+    u8 pad_0x2418[0x2610 - 0x2418];
 };
 extern UnkManager_71726af468* g_unk_71726af468;  // the manager instance
 void fn_7100da7e2c(UnkManager_71726af468* self);  // constructor

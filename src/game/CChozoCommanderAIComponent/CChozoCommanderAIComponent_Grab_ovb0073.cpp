@@ -184,7 +184,7 @@ void fn_7100454fc8(UnkCommanderAI_ovb0073* self) {
     fn_7100ed78c0(g_unk_71726af0b0);
     if (self->field_0x1140 == 0 && self->actor) {
         if (UnkCommanderTimer_ovb0073* timer = self->actor->timer) {
-            f32 delay = *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_717272fd38) + 0x94);
+            f32 delay = g_unk_717272fd38.field_0x94;
             if (timer->time - delay >= timer->limit)
                 timer->Fire(true);
         }

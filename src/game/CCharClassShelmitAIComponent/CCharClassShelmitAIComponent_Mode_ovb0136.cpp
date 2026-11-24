@@ -47,7 +47,7 @@ u32 fn_71006b92b8(void* self, UnkActor* actor, UnkActor* other, const UnkShelmit
     if (track && fn_710117b348(track, fn_7100bfca98()))
         return 1;
     if (name.data != &g_unk_7101d47108->empty &&
-        *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(name.data) + 0x30) == 0xae488c85e788b697)
+        name.data->Key() == 0xae488c85e788b697)
         return 0;
     if (ai && !fn_71006bc178(reinterpret_cast<UnkShelmitAI_sis*>(ai)))
         return 4;

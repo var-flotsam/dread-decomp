@@ -26,13 +26,15 @@ struct UnkBumpState {
 struct UnkWarLotusAI {
     u8 pad_0x0[0x30];
     UnkActor* owner;
+    u8 pad_0x38[0x146d0 - 0x38];
+    UnkBumpState field_0x146d0;
 };
 
 // The base reset (declared elsewhere without its argument; called with it).
 #include "game/UnkBehaviorTree.h"
 
 static inline UnkBumpState* BumpOf(UnkWarLotusAI* self) {
-    return reinterpret_cast<UnkBumpState*>(reinterpret_cast<char*>(self) + 0x146d0);
+    return &self->field_0x146d0;
 }
 
 static inline unk_prop_bag::UnkPropBag* BagOf(UnkAnimationComponent* track) {

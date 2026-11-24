@@ -44,10 +44,6 @@ struct UnkBeamHitInfo_l479708 {
     u8 flags;  // 0x3d
 };
 
-struct UnkBeamAI_l479708 {
-    virtual const base::reflection::CType* vf_0x0();
-};
-
 struct UnkBeamAIListener_l479708 {
     virtual void vf_0x0();
     virtual void vf_0x8();
@@ -68,6 +64,12 @@ struct UnkBeamAIListener_l479708 {
     virtual void vf_0x80();
     virtual void vf_0x88();
     virtual void vf_0x90(UnkActor* owner, UnkActor* other);
+};
+
+struct UnkBeamAI_l479708 {
+    virtual const base::reflection::CType* vf_0x0();
+    u8 pad_0x8[0x149a0];
+    UnkBeamAIListener_l479708 field_0x149a8;
 };
 
 struct UnkBeamHit_l479708 {
@@ -153,8 +155,7 @@ bool fn_7100479708(UnkSoldierBeam_l479708* self, UnkActor* other, void* a2, void
                 if (UnkActor* actor = link->actor) {
                     if (auto* ai = static_cast<UnkBeamAI_l479708*>(actor->field_0x240)) {
                         if (fn_710009d50c(ai->vf_0x0(), fn_710046ea2c())) {
-                            auto* listener = reinterpret_cast<UnkBeamAIListener_l479708*>(
-                                reinterpret_cast<u8*>(ai) + 0x149a8);
+                            UnkBeamAIListener_l479708* listener = &ai->field_0x149a8;
                             listener->vf_0x90(self->owner, other);
                         }
                     }

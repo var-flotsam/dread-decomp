@@ -267,7 +267,7 @@ bool fn_71010dc968(UnkPlayerMovementD_b0204* self, UnkRequest_b0204* req) {
     if (req->field_0xb8 != g_unk_71726dbf68) {
         fn_71010d7d0c(self, 3);
     } else {
-        const f32* charge = reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_71726e0aa8) + 0xd8);
+        const f32* charge = g_unk_71726e0aa8.field_0xd8;
         fn_71010da220(self, charge[0], charge[1],
                       *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_7172a03d80) + 0x60));
     }
@@ -324,8 +324,7 @@ void fn_71010da7e8(UnkMoveHold_b0204* self, f32 dt) {
                 }
             }
             self->field_0x18a8 += dt;
-            if (self->field_0x18a8 >=
-                *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_71726e0aa8) + 0xa4))
+            if (self->field_0x18a8 >= g_unk_71726e0aa8.field_0xa4)
                 fn_71010d80e8(reinterpret_cast<UnkPlayerMovementD_b0204*>(self), 0);
         }
     } else {

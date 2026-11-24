@@ -35,7 +35,7 @@ struct UnkGoliathAttack_b56a3 {
 
 void fn_710058e94c(UnkGoliathAttack_b56a3* self) {
     UnkGoliathTarget_b56a3* target = self->owner->field_0x220;
-    u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(target->field_0x2b8.data) + 0x30);
+    u64 hash = target->field_0x2b8.data->Key();
     base::reflection::UnkReflTypeIdArg mode;
     mode.id = 1;
     base::reflection::UnkReflTypeIdArg mask;

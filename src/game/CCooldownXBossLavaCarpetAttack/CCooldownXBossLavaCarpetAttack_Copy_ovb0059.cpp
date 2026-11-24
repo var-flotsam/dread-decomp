@@ -78,9 +78,7 @@ struct UnkLavaRecords_ovb0059 {
     UnkLavaRecord_ovb0059 data[30];
 
     // The records as raw slots, 4 bytes in.
-    UnkLavaRecord_ovb0059* Slots() {
-        return reinterpret_cast<UnkLavaRecord_ovb0059*>(reinterpret_cast<u8*>(this) + 4);
-    }
+    UnkLavaRecord_ovb0059* Slots() { return data; }
 };
 
 struct UnkLavaListener_ovb0059 {

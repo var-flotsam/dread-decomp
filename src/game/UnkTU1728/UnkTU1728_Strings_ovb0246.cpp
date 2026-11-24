@@ -165,13 +165,13 @@ struct UnkElem28_b0246 {
 struct UnkTimelineThing_b0246 {
     base::global::CStrId name;  // 0x0
     base::global::CRntVector<UnkElem28_b0246> elements;  // 0x8
-    u8 pad_0x30[0xc8];
+    u8 field_0x30[0xc8];
     UnkOwnedList owned;  // 0xf8
 };
 
 void fn_7100b8b7e8(UnkTimelineThing_b0246* self) {
     self->owned.~UnkOwnedList();
-    fn_7100b8aa94(reinterpret_cast<u8*>(self) + 0x30);
+    fn_7100b8aa94(self->field_0x30);
     self->elements.Free();
     self->name.Reset();
 }

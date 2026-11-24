@@ -6,6 +6,7 @@
 // Only the members the definition touches are spelled out; names and layout are placeholders.
 
 #include "base/UnkCloneCalls.h"
+#include "game/UnkRenderManager.h"
 #include "types.h"
 
 struct UnkSwitchOwner {
@@ -14,7 +15,9 @@ struct UnkSwitchOwner {
 };
 
 struct UnkSwitchObject {
-    u8 pad_0x0[0x28];
+    u8 pad_0x0[0x8];
+    UnkSceneNode field_0x8;  // the node the render manager puts on a layer
+    u8 pad_0x20[0x8];
     u8 field_0x28[0xf9];
     bool field_0x121;
     u8 pad_0x122[0x3e];

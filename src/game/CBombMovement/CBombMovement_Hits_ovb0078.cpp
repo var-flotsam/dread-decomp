@@ -116,7 +116,7 @@ void fn_7100aaa6d0(UnkBombMovementState_ovb0078* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     UnkActor* owner = self->owner;
     UnkVec3f pos(owner->field_0x44, owner->field_0x54, owner->field_0x64);
-    fn_710056a010(reinterpret_cast<char*>(manager) + 0x20a8, &pos);
+    fn_710056a010(manager->field_0x20a8, &pos);
 }
 
 struct UnkPlayer;

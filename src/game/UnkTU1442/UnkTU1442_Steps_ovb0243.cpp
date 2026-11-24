@@ -411,7 +411,9 @@ struct UnkUnit1442Turn {
     u8 pad_0x0[0x30];
     UnkOwner_b720* owner;  // 0x30
     UnkTarget_b720* target;  // 0x38
-    u8 pad_0x40[0xb08];
+    u8 pad_0x40[0xfd];
+    u8 field_0x13d;
+    u8 pad_0x13e[0xa0a];
     UnkObject_0x100 object;  // 0xb48
 };
 
@@ -432,7 +434,7 @@ void fn_710096b720(UnkUnit1442Turn* self) {
     fn_710096d788(reinterpret_cast<char*>(self), &a, reinterpret_cast<char*>(found.raw), &out, false);
     u8* raw = found.raw;
     if (*reinterpret_cast<s16*>(raw + 2) != -1 && *reinterpret_cast<s16*>(raw + 0x1e) != -1) {
-        *(reinterpret_cast<u8*>(self) + 0x13d) = 0;
+        self->field_0x13d = 0;
         fn_71002b5c90(&self->object, found.get());
         if (fn_710096ccb4(reinterpret_cast<char*>(self)))
             return;

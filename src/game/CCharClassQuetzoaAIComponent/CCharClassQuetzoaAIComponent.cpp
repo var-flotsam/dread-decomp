@@ -20,7 +20,7 @@ __attribute__((always_inline)) static inline void ConstructQuetzoa(UnkQuetzoaDef
     fn_7100642cd0(self->field_0x528);
     fn_7100643980(self->field_0x618);
     reinterpret_cast<u8*>(self)[0x50c] = 1;
-    *reinterpret_cast<float*>(reinterpret_cast<u8*>(self) + 0x4e0) = 0.8f;
+    self->field_0x4e0 = 0.8f;
     self->field_0x4fc = 0x101;
 }
 

@@ -68,7 +68,7 @@ void fn_710042ce00(UnkHypersparkStart_A2_b73* self) {
     self->field_0x6c = owner->field_0x54;
     self->field_0x58 = 0;
     UnkEffectSink* sink = static_cast<UnkEffectSink*>(owner->field_0x218);
-    auto* collision = *reinterpret_cast<UnkCollisionContainer**>(reinterpret_cast<char*>(owner) + 0x2a0);
+    UnkCollisionContainer* collision = owner->field_0x2a0;
     if (sink && collision) {
         UnkHypersparkParams_A2_b73 params;
         params.field_0xc = 0;

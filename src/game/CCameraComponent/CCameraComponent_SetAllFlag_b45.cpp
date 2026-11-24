@@ -3,7 +3,10 @@
 // store, as in the original. Names and layouts are placeholders.
 #include "types.h"
 
-struct UnkCameraEntry_b45a3;
+struct UnkCameraEntry_b45a3 {
+    u8 pad_0x0[0x98];
+    u8 field_0x98;
+};
 
 struct UnkCameraList_b45a3 {
     u8 pad_0x0[0x80];
@@ -13,7 +16,7 @@ struct UnkCameraList_b45a3 {
 };
 
 static inline void SetFlag(UnkCameraEntry_b45a3* entry, bool value) {
-    *(reinterpret_cast<u8*>(entry) + 0x98) = value;
+    entry->field_0x98 = value;
 }
 
 void fn_71010e380c(UnkCameraList_b45a3* self, bool value) {

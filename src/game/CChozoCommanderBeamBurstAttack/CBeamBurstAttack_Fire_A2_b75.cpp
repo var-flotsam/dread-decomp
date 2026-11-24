@@ -79,7 +79,7 @@ struct UnkBeamBurstFire_A2_b75 {
 };
 
 static inline f32 PosX_A2_b75(UnkActor* actor) {
-    return *reinterpret_cast<f32*>(reinterpret_cast<char*>(actor) + 0x44);
+    return actor->field_0x44;
 }
 
 void fn_7100429d10(UnkBeamBurstFire_A2_b75* self) {
@@ -139,7 +139,7 @@ send:
         fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
     self->field_0xa8 = false;
-    UnkWorld* world = *reinterpret_cast<UnkWorld**>(reinterpret_cast<char*>(self->owner) + 0x280);
+    UnkWorld* world = static_cast<UnkWorld*>(self->owner->field_0x280);
     if (world && self->component &&
         reinterpret_cast<bool (*)(UnkBeamBurstComponent_A2_b75*)>(self->component->vtable[0x58 / 8])(self->component)) {
         fn_7100145e94(reinterpret_cast<UnkSwitchObject*>(self->component), false);

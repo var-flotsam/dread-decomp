@@ -25,7 +25,7 @@ struct UnkDef_7100fc4b34 : UnkIdSource {
 };
 
 static inline const UnkQualifiedId& Qid(UnkDef_7100fc4b34& def) {
-    if ((u64)def.qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+    if (def.qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&def.qid, &def, base::global::CStrId::Empty());
     return def.qid;
 }
@@ -33,7 +33,7 @@ static inline const UnkQualifiedId& Qid(UnkDef_7100fc4b34& def) {
 // An item's qualified id (game/UnkItemProperties.h), built on first use like a definition's.
 static inline const UnkQualifiedId& Qid(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
-    if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+    if (qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }

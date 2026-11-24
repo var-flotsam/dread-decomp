@@ -291,7 +291,7 @@ void fn_7100772cf8(UnkCentral_b0230* self, const CStrId* name) {
     UnkGameManager* manager = g_unk_7101d47310;
     u32 kind_value = g_unk_71727bebb8;
     {
-        u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(name->data) + 0x30);
+        u64 key = name->data->Key();
         kind = kind_value;
         found = fn_7100debbc8(manager, &key, &kind);
     }
@@ -303,9 +303,9 @@ void fn_7100772cf8(UnkCentral_b0230* self, const CStrId* name) {
     base::UnkRefHandle* to_handle = reinterpret_cast<base::UnkRefHandle*>(reinterpret_cast<u8*>(self) + 0x578);
     fn_710031d208(to_handle, from_handle);
     u32 tmp_state = tmp.state;
-    UnkErasedVector* to = reinterpret_cast<UnkErasedVector*>(reinterpret_cast<u8*>(self) + 0x548);
+    UnkErasedVector* to = reinterpret_cast<UnkErasedVector*>(&src->items);
     const UnkErasedVector* from = reinterpret_cast<const UnkErasedVector*>(&tmp.items);
-    __builtin_memcpy(reinterpret_cast<u8*>(self) + 0x570, &tmp_state, 4);
+    __builtin_memcpy(&src->state, &tmp_state, 4);
     fn_710023b29c(to, from);
     tmp.state = 0;
     fn_7100ad3588(reinterpret_cast<UnkErasedVector*>(&tmp.items));
@@ -537,7 +537,7 @@ void fn_7100775358(UnkCentralUnit_b49* unit) {
         {
             base::global::CStrId id("Door015 (CG-CG)", true);
             u32 kind_value = g_unk_71727bebb8;
-            key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(id.data) + 0x30);
+            key = id.data->Key();
             kind = kind_value;
             found = static_cast<UnkWeakTarget*>(fn_7100deba8c(manager, &key, &kind));
         }
@@ -669,7 +669,7 @@ struct UnkEnergyPlayer_b0230 {
 // An item's qualified id, built on first use.
 static inline const UnkQualifiedId& ItemId_b0230(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
-    if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+    if (qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }

@@ -74,6 +74,6 @@ void fn_7100802108(UnkSelf_af41* p) {
         Near_ovb0081(a.z, self->angle[2]))
         return;
     if (UnkFlagHolder_ovb0081* holder = self->owner->field_0x240)
-        *((u8*)holder + 0x16e6) = 1;
+        holder->field_0x16e6 = 1;
     self->owner->vf_0xd8(self->angle, true);
 }

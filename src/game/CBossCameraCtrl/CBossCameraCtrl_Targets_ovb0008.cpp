@@ -218,7 +218,7 @@ static inline UnkManagerSub_ovb0008* ManagerSub() {
         fn_7100da7e2c(manager);
         g_unk_71726af468 = manager;
     }
-    return *reinterpret_cast<UnkManagerSub_ovb0008**>(reinterpret_cast<char*>(manager) + 0x2410);
+    return static_cast<UnkManagerSub_ovb0008*>(manager->field_0x2410);
 }
 
 bool fn_710074f91c(UnkBossCameraCtrl_ovb0008* self) {

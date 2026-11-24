@@ -666,7 +666,7 @@ void fn_71004c7ee4(UnkSmLava_A1_b64* self, f32 dt) {
             }
         }
     }
-    UnkWorld* world = *reinterpret_cast<UnkWorld**>(reinterpret_cast<char*>(self->actor) + 0x280);
+    UnkWorld* world = static_cast<UnkWorld*>(self->actor->field_0x280);
     UnkSmLavaSink_A1_b64* part = reinterpret_cast<UnkSmLavaSink_A1_b64*>(fn_7101152b90(world, 0x5659b769f8e44087));
     part->vf_0x10(&self->position);
     self->sink->vf_0x10(&self->position);
