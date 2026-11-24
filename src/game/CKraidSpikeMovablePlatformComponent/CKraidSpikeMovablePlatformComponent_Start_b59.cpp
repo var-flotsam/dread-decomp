@@ -20,7 +20,7 @@ struct UnkSpikePlatformStart_b59a4 {
     f32 field_0x264;
 };
 
-void fn_7100608bb4(UnkSpikePlatformStart_b59a4* self) {
+void CKraidSpikeMovablePlatformComponent_StickToWall(UnkSpikePlatformStart_b59a4* self) {
     if (self->field_0x260)
         return;
     self->field_0x260 = true;

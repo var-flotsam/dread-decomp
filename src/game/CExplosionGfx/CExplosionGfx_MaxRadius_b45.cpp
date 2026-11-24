@@ -6,7 +6,7 @@
 
 static inline f32 Max(f32 a, f32 b) { return a > b ? a : b; }
 
-f32 fn_7100de1388(const CExplosionGfx* self) {
+f32 CExplosionGfx_GetMaxOfLengthAndRandomDelay(const CExplosionGfx* self) {
     f32 m = Max(self->fLength, Max(self->vRandomDelay[0], self->vRandomDelay[1]));
     return m < 0.0f ? 0.0f : m;
 }

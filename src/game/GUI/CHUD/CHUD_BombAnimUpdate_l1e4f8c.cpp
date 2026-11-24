@@ -60,7 +60,7 @@ static inline void SendEvent(UnkGuiDisplayObject* item, const char* event) {
     (*reinterpret_cast<Fn**>(item))[0x1e8 / 8](item, event, false);
 }
 
-void fn_71011e4f8c(UnkBombAnim_4f8c* self) {
+void CHUD_AdvanceBombCounterAnimation(UnkBombAnim_4f8c* self) {
     s32 count = self->to;
     f32 delta = reinterpret_cast<UnkFrameTimer_4f8c*>(g_unk_7101d47328)->delta;
     self->elapsed += delta * self->speed;

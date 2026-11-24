@@ -46,7 +46,7 @@ void fn_71011d76dc(UnkReflType* self, const CStrId& name, UnkReflType* base, voi
 void fn_71011d7358();
 void fn_71011d793c(UnkReflType* self, const CStrId& name, void* a, void* b);
 
-void fn_71011dc920() {
+void CDisplayObjectContainer_InitStatics() {
     InitHeader(g_unk_7172a0f100);
     fn_710009ec00(&g_unk_7172a0e6a0, refl_TypeOf<fn_71011d6a04>());
     fn_710009ec00(&g_unk_7172a0e6a1, refl_TypeOf<fn_71011bcf1c>());

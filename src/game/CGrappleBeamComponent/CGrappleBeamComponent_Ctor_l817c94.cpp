@@ -16,7 +16,7 @@ extern void* g_unk_7101a75570[];  // the states' vtable
 extern void* g_unk_7101a75620[];  // the state machine's vtable
 
 struct UnkGrappleBeamLightning_ovb0047;
-void fn_7100817ffc(UnkGrappleBeamLightning_ovb0047* self);
+void CGrappleBeamComponent_LoadLightningModel(UnkGrappleBeamLightning_ovb0047* self);
 
 struct UnkGrappleTunable_l817c94 {
     u8 pad_0x0[0x2c];
@@ -139,5 +139,5 @@ void fn_7100817c94(UnkGrappleBeam_l817c94* self) {
     self->lightning = nullptr;
     const UnkGrappleTunable_l817c94* tunable = reinterpret_cast<const UnkGrappleTunable_l817c94*>(&g_unk_71727232d8);
     self->lightning_count = static_cast<u32>(tunable->max_length / 20.0f + 20.0f);
-    fn_7100817ffc(reinterpret_cast<UnkGrappleBeamLightning_ovb0047*>(self));
+    CGrappleBeamComponent_LoadLightningModel(reinterpret_cast<UnkGrappleBeamLightning_ovb0047*>(self));
 }

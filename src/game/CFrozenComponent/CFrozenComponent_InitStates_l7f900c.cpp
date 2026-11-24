@@ -85,7 +85,7 @@ static inline void Bind(UnkFrozenComponent_l7f900c* self, UnkFrozenState_l7f900c
     self->machine.Add(state);
 }
 
-bool fn_71007f900c(void* component, void* arg) {
+bool CFrozenComponent_CacheCharClassAndRegisterStates(void* component, void* arg) {
     UnkFrozenComponent_l7f900c* self = static_cast<UnkFrozenComponent_l7f900c*>(component);
     if (!fn_71010c41bc(static_cast<UnkBaseComponent*>(component), arg))
         return false;

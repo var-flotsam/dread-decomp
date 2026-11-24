@@ -161,12 +161,12 @@ char* fn_71010c4234(char*);
 UNK_SM_UPDATE_AFTER2_A5_B62(710091f798, 0x280, 5, 6)
 
 // CFrozenComponent's unit: then the unit's own update.
-void fn_71007f9d7c(UnkSmOwner_A5_b62<0x228>*, f32);
+void CFrozenComponent_TickLayerWeightLerp(UnkSmOwner_A5_b62<0x228>*, f32);
 
 void fn_71007f9910(UnkSmOwner_A5_b62<0x228>* self, f32 dt) {
     fn_71010c4234(reinterpret_cast<char*>(self));
     Update_A5_b62<4, 5>(&self->machine, dt);
-    fn_71007f9d7c(self, dt);
+    CFrozenComponent_TickLayerWeightLerp(self, dt);
 }
 
 

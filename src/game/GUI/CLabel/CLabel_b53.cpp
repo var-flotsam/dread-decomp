@@ -23,7 +23,7 @@ static inline UnkGuiObjectState* State(UnkLabelFontView_b53* self) {
 
 static inline void* Font(UnkLabelFontView_b53* self) {
     if (!self->font && State(self)->frame != 0x7fffffff && self->font_path.data != &g_unk_7101d47108->empty) {
-        auto lookup = reinterpret_cast<void* (*)(UnkGuiRoot*, const base::UnkStrIdMember*)>(fn_71011b882c);
+        auto lookup = reinterpret_cast<void* (*)(UnkGuiRoot*, const base::UnkStrIdMember*)>(CGUIManager_GetOrLoadCachedByPath);
         self->font = lookup(g_unk_717271e8f8, &self->font_path);
     }
     return self->font;

@@ -50,7 +50,7 @@ static inline bool NotNearZero(f32 v) {
     return !(v + 0.1f >= 0.0f) || !(v - 0.1f <= 0.0f);
 }
 
-void fn_7100742440(UnkSwarmCtrl_hue_ovb0063* self, s32 index) {
+void CFlockingSwarmControllerComponent_UpdateMemberRotation(UnkSwarmCtrl_hue_ovb0063* self, s32 index) {
     UnkSwarmClassData_hue_ovb0063* data = reinterpret_cast<UnkSwarmClassData_hue_ovb0063*>(self->klass);
     if (data)
         data = self->klass->data;

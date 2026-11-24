@@ -79,7 +79,7 @@ struct UnkDoorShieldStore_A4_b76 {
     }
 };
 
-void fn_71008db4e4(UnkDoorShieldStore_A4_b76* self) {
+void CDoorShieldLifeComponent_WriteChangeWhenVisibleAndNextStateToBlackboard(UnkDoorShieldStore_A4_b76* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     CBlackboard* blackboard = &manager->field_0x968;
     {

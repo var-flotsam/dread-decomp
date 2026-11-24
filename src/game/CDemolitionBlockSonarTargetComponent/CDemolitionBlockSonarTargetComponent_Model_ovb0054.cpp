@@ -39,7 +39,7 @@ struct UnkSonarTarget_ovb0054 {
 };
 
 // By reference, like the deleting form.
-void fn_7100a0f7b4(UnkSonarTarget_ovb0054& self) {
+void CDemolitionBlockSonarTargetComponent_Destroy(UnkSonarTarget_ovb0054& self) {
     self.vtable = reinterpret_cast<void**>(g_unk_7101a8b8f0 + 0x10);
     self.entries.Free();
     if (UnkRefObject* p = self.ref) {
@@ -53,7 +53,7 @@ struct UnkDemolitionModelHolder;
 
 // Constructs the model named `name`.
 void fn_710014569c(void* self, base::global::CStrId* name);
-bool fn_7100a0fff0(UnkDemolitionModelHolder* self, const CFilePathStrId& path);
+bool CDemolitionBlockSonarTargetComponent_LoadModelFromPath(UnkDemolitionModelHolder* self, const CFilePathStrId& path);
 
 struct UnkSonarModel_ovb0054 {
     virtual void vf_0x0();
@@ -70,7 +70,7 @@ UnkSceneNode* fn_7100a0feac(UnkRenderPool* pool, CFilePathStrId* path, UnkOverla
     UnkSceneNode* result = nullptr;
     if (model) {
         if (path->data != &g_unk_7101d47200->empty &&
-            !fn_7100a0fff0(reinterpret_cast<UnkDemolitionModelHolder*>(model), *path)) {
+            !CDemolitionBlockSonarTargetComponent_LoadModelFromPath(reinterpret_cast<UnkDemolitionModelHolder*>(model), *path)) {
             reinterpret_cast<UnkSonarModel_ovb0054*>(model)->vf_0x8();
             return nullptr;
         }

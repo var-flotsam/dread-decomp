@@ -51,7 +51,7 @@ struct UnkDoorShieldLifeObj_ovb0001 {
 };
 static_assert(__builtin_offsetof(UnkDoorShieldLifeObj_ovb0001, field_0x490) == 0x490, "layout");
 
-void fn_71008de2fc(UnkDoorShieldLifeObj_ovb0001* self) {
+void CDoorShieldLifeComponent_Construct(UnkDoorShieldLifeObj_ovb0001* self) {
     fn_71008e04e8(reinterpret_cast<UnkLifeComponent_A5_b71*>(self));
     self->vtable = &g_unk_7101a7ebf8[2];
     new (&self->name) CRntString("");

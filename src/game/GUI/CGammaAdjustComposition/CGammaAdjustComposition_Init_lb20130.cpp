@@ -28,7 +28,7 @@ static inline UnkGuiDisplayObject* As(UnkGuiDisplayObject* obj) {
                : nullptr;
 }
 
-void fn_7100b20130(UnkGammaAdjustComposition_lb20130* self) {
+void CGammaAdjustComposition_FindContentAndGammaSliderParts(UnkGammaAdjustComposition_lb20130* self) {
     fn_71011d9b3c(reinterpret_cast<UnkPanel_71011dfeb0*>(self));
     if (!self->content)
         self->content = As<fn_71011d7b84>(

@@ -87,7 +87,7 @@ extern UnkConversion g_unk_71726f15f8;
 void fn_71005ecf00() __attribute__((visibility("hidden")));
 extern char g_unk_71726f1618[];
 
-void fn_71005ef820() {
+void CKraidSpinningNailsDef_InitStatics() {
     InitHeaderIds(&g_unk_71726f20c0.ids);
     fn_71005e742c();
     fn_710009ec00(g_unk_71726f0b08, g_unk_71726f20c0.field_0x30);

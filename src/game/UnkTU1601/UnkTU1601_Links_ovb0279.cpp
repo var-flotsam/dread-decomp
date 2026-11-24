@@ -106,7 +106,7 @@ void fn_7100a925a0(UnkThermalDevice_A5_b73* component) {
             door->field_0x408 = 1;
             door->field_0x40c = kind;
         }
-        fn_71008db4e4(reinterpret_cast<UnkDoorShieldStore_A4_b76*>(door));
+        CDoorShieldLifeComponent_WriteChangeWhenVisibleAndNextStateToBlackboard(reinterpret_cast<UnkDoorShieldStore_A4_b76*>(door));
     }
     CallScript(self, &self->script_b);
 }
@@ -131,7 +131,7 @@ void fn_7100a92424(UnkThermalDevice_b0279* self) {
             door->field_0x40c = 1;
             door->field_0x408 = 1;
         }
-        fn_71008db4e4(reinterpret_cast<UnkDoorShieldStore_A4_b76*>(door));
+        CDoorShieldLifeComponent_WriteChangeWhenVisibleAndNextStateToBlackboard(reinterpret_cast<UnkDoorShieldStore_A4_b76*>(door));
     }
     CallScript(self, &self->script_a);
 }

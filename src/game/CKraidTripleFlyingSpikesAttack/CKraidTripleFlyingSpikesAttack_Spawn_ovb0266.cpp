@@ -63,7 +63,7 @@ struct UnkKraidTripleAttack_b0266 {
 };
 
 UnkSpikeComponent_b0266* fn_71005f55a4(UnkSpikeActor_b0266* actor);
-void fn_710060887c(UnkSpikeComponent_b0266* component);
+void CKraidSpikeMovablePlatformComponent_ResetStateAndRecordOwnerPosition(UnkSpikeComponent_b0266* component);
 
 UnkSpikeActor_b0266* fn_71005f8148(UnkKraidTripleAttack_b0266* self, const UnkVec3f* position, CStrId* id) {
     UnkSpikeActor_b0266* actor;
@@ -111,6 +111,6 @@ UnkSpikeActor_b0266* fn_71005f8148(UnkKraidTripleAttack_b0266* self, const UnkVe
         actor->vf_0x118(&actor->xform, &mode);
     }
     actor->field_0x3c0 = true;
-    fn_710060887c(component);
+    CKraidSpikeMovablePlatformComponent_ResetStateAndRecordOwnerPosition(component);
     return actor;
 }

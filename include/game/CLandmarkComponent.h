@@ -7,4 +7,4 @@
 #include "types.h"
 
 struct UnkLuaNode_b0160;
-UnkLuaNode_b0160* fn_71008a3288(const base::global::CStrId* id);
+UnkLuaNode_b0160* CLandmarkComponent_FindById(const base::global::CStrId* id);

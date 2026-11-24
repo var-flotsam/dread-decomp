@@ -164,7 +164,7 @@ template <>
 base::reflection::UnkReflObject*
 base::reflection::refl_FindTyped<UnkRefl_fn_71007bb940>(void*);
 
-void fn_7100a3d920(UnkFreeAimTutoAction_b53* self) {
+void CFreeAimTutoLogicAction_RegisterPlayerAndItemCallbacks(UnkFreeAimTutoAction_b53* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     self->player_reg.obj = self;
     self->player_reg.fn = &fn_7100a3dc44;

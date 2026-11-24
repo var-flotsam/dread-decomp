@@ -38,7 +38,7 @@ struct UnkGuiIdText_b44a3 {
     ~UnkGuiIdText_b44a3() { CRntString_Destroy(&str); }
 };
 
-UnkGuiIdText_b44a3 fn_71011cd4f8(const UnkGuiNamedNode_b44a3* self) {
+UnkGuiIdText_b44a3 CDisplayObject_GetFullName(const UnkGuiNamedNode_b44a3* self) {
     UnkGuiIdText_b44a3 name(&self->id);
     for (const UnkGuiNamedNode_b44a3* n = self->parent; n; n = n->parent) {
         ++n->id->reads;

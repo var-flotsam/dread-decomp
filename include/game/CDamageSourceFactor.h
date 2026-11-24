@@ -8,5 +8,5 @@
 struct UnkRobotSoldierTable_A2_b69;
 void fn_71008c2da8(void* member);
 void fn_71008c2de0(void* member);
-f32 fn_71008c2de8(UnkRobotSoldierTable_A2_b69* table, u32 flags);
+f32 CDamageSourceFactor_GetFactorForDamageFlags(UnkRobotSoldierTable_A2_b69* table, u32 flags);
 extern void* g_unk_7101a7e198[];

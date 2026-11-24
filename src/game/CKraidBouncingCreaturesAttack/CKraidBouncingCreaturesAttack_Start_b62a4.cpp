@@ -68,7 +68,7 @@ static inline __attribute__((always_inline)) void Send_b62a4(void* target, u64 h
     CAnimationComponent_SendActionToTrack(target, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
-void fn_71005f2cf0(UnkKraidBouncingAttack_b62a4* self) {
+void CKraidBouncingCreaturesAttack_StartAndPickPattern(UnkKraidBouncingAttack_b62a4* self) {
     fn_71005f2018(reinterpret_cast<char*>(self));
     UnkKraidBouncingLink_b62a4* link = &self->link;
     link->context = self;

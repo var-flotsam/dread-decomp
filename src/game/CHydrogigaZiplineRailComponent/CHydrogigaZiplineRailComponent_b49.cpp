@@ -44,7 +44,7 @@ struct UnkZiplineRail_b49 {
     u32 count;
 };
 
-void fn_710091d2fc(UnkZiplineRail_b49* self) {
+void CHydrogigaZiplineRailComponent_ApplyHydrogigaDeadFromBlackboard(UnkZiplineRail_b49* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     CBlackboard* blackboard = &manager->field_0x968;
     UnkGameManagerSub_0x608* scenario = manager->field_0x608;
@@ -57,7 +57,7 @@ void fn_710091d2fc(UnkZiplineRail_b49* self) {
     }
     if (dead) {
         self->dead = true;
-        fn_710091d4bc(self);
+        CHydrogigaZiplineRailComponent_ApplyDeadState(self);
     }
     if (self->count) {
         bool value = self->dead;

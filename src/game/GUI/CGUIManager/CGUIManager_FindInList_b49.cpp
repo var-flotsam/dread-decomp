@@ -23,7 +23,7 @@ struct UnkGuiListOwner_b49 {
 
 void* fn_7100b7e994(UnkGuiListEntry_b49* entry, u64 key);
 
-void* fn_71011b9fac(UnkGuiListOwner_b49* self, u64 key) {
+void* CGUIManager_FindInEntryListByKey(UnkGuiListOwner_b49* self, u64 key) {
     for (UnkGuiListNode_b49* node = self->holder->head; node; node = node->next) {
         if (void* found = fn_7100b7e994(node->entry, key))
             return found;

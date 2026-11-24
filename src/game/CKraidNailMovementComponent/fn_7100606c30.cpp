@@ -15,7 +15,7 @@ struct UnkStatics_7100606c30 {
 extern UnkStatics_7100606c30 g_unk_71726f4320 __attribute__((visibility("hidden")));
 extern char g_unk_71726f4318[];
 
-void fn_7100606c30() {
+void CKraidNailMovementComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726f4320.ids);
     InitId(&g_unk_71726f4320.field_0x18, "fDamageKraidSpinningNails");
     InitClassId(&g_unk_71726f4320.field_0x20, "CKraidNailMovementComponent");

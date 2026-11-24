@@ -101,7 +101,7 @@ static inline void PlayFade(void* effects) {
     fn_7101053850(effects, &origin, 1, 2.0f, 1.0f);
 }
 
-void fn_7100b033ac(UnkDifficultyButton* self) {
+void CDifficultyButton_MarkMainMenuSlotAndStoreNewUuid(UnkDifficultyButton* self) {
     fn_7100fc9d78(g_unk_717275c380, reinterpret_cast<UnkStateKey*>(&g_unk_71729f01d0), self);
     const CRntString& current = reinterpret_cast<UnkDifficultyProfile_lb033ac*>(g_unk_7101d47310)->difficulty;
     u64 slot;

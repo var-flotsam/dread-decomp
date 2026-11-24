@@ -4,7 +4,7 @@
 #include "types.h"
 
 void* fn_7100b06c00(void* element, void* key);
-void* fn_7100b0694c(void* element, void* key);
+void* CDisplayObjectDef_FindDescendantByIdIgnoreCase(void* element, void* key);
 
 struct UnkUnit1717Vector_A5_b69 {
     u8 pad_0x0[0x8];
@@ -24,7 +24,7 @@ void* fn_7100b774e4(UnkUnit1717Vector_A5_b69* self, void* key) {
 
 void* fn_7100b77554(UnkUnit1717Vector_A5_b69* self, void* key) {
     for (void** it = self->begin(); it != self->end(); ++it)
-        if (void* found = fn_7100b0694c(*it, key))
+        if (void* found = CDisplayObjectDef_FindDescendantByIdIgnoreCase(*it, key))
             return found;
     return nullptr;
 }

@@ -174,7 +174,7 @@ struct UnkSelf;
 void fn_71005f662c(void* entry, u64 source);
 void fn_71005f2614(void* entry, u64 source);
 void fn_71005f4208(void* entry, u64 source);
-void fn_71005f122c(void* entry, u64 source);
+void CKraidAcidBlobsAttack_SetCharClassAndPickLaunchPattern(void* entry, u64 source);
 void fn_71005f50b0(void* entry, u64 source);
 void fn_71005f7d00(void* entry, u64 source);
 void fn_71005f2c90(void* entry, u64 source);
@@ -201,7 +201,7 @@ u32 CKraidAIComponent_InitAndRegisterAttacks(char* self, void* arg) {
     Register_kr(self, 0x14a38, fn_71005f662c, 0x630);
     Register_kr(self, 0x14aa0, fn_71005f2614, 0x770);
     Register_kr(self, 0x14ad8, fn_71005f4208, 0x860);
-    Register_kr(self, 0x14b30, fn_71005f122c, 0x950);
+    Register_kr(self, 0x14b30, CKraidAcidBlobsAttack_SetCharClassAndPickLaunchPattern, 0x950);
     Register_kr(self, 0x14b80, fn_71005f50b0, 0xa88);
     Register_kr(self, 0x14bc0, fn_71005f7d00, 0xb90);
     Register_kr(self, 0x14c00, fn_71005f2c90, 0xc98);

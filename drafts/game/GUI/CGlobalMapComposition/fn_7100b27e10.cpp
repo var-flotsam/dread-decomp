@@ -37,7 +37,7 @@ struct UnkMapNameId {
     }
 };
 
-UnkMapNameId fn_7100b22e50(const CStrId& scenario);
+UnkMapNameId CGlobalMapComposition_GetMapNameIdForId(const CStrId& scenario);
 
 struct UnkMapState {
     virtual void vf_0x0();
@@ -135,10 +135,10 @@ void fn_7100b27e10(UnkGlobalMapView* self, f32 dt) {
         UnkGuiDisplayObject* area = GlobalMapContainer(fn_71011d98ec(self->root, self->area_name.data->Key()));
         UnkGuiDisplayObject* map;
         if (self->scenario.data != &g_unk_7101d47108->empty) {
-            UnkMapNameId name = fn_7100b22e50(self->scenario);
+            UnkMapNameId name = CGlobalMapComposition_GetMapNameIdForId(self->scenario);
             map = GlobalMapContainer(fn_71011d98ec(self->root, name.data->Key()));
         } else {
-            UnkMapNameId name = fn_7100b22e50(self->next_scenario);
+            UnkMapNameId name = CGlobalMapComposition_GetMapNameIdForId(self->next_scenario);
             map = GlobalMapContainer(fn_71011d98ec(self->root, name.data->Key()));
         }
         if (area)

@@ -13,7 +13,7 @@ struct UnkGuiLabelFont {
     u64 field_0x298;
 };
 
-void fn_71011ed150(UnkGuiDisplayObject* label, const CStrId& font) {
+void CLabel_SetFont(UnkGuiDisplayObject* label, const CStrId& font) {
     UnkGuiLabelFont* self = reinterpret_cast<UnkGuiLabelFont*>(label);
     if (font.data != self->font.data) {
         self->font = font;

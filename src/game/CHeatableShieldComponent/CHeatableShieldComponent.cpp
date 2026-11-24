@@ -9,7 +9,7 @@
 #include "types.h"
 
 struct UnkStateObject;
-void fn_710086abb4(void* self);
+void CHeatableShieldComponent_InitListSets(void* self);
 
 struct UnkHeatableShield : UnkBaseComponent {
     u64 field_0x40;
@@ -32,7 +32,7 @@ void fn_710086cab8(UnkHeatableShield* self) {
     self->field_0x58 = 10;
     self->field_0x5c = 0xe;
     self->field_0x60 = GetDefaultAllocator();
-    fn_710086abb4(self->field_0x68);
+    CHeatableShieldComponent_InitListSets(self->field_0x68);
     self->field_0x270 = 0;
     self->field_0x268 = 0;
     reinterpret_cast<void (*)(UnkHeatableShield*)>(self->vtable[3])(self);

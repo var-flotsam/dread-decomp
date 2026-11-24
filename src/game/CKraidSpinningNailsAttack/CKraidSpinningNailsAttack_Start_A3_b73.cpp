@@ -38,7 +38,7 @@ struct UnkKraidNailsAttack_A3_b73 {
     char* set;  // 0x60
 };
 
-void fn_71005f668c(UnkKraidNailsAttack_A3_b73* self) {
+void CKraidSpinningNailsAttack_StartAndSelectPattern(UnkKraidNailsAttack_A3_b73* self) {
     fn_71005f2018(reinterpret_cast<char*>(self));
     UnkKraidNailsLink_A3_b73* link = &self->link;
     link->context = self;

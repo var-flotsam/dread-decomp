@@ -23,7 +23,7 @@ using base::reflection::UnkReflValue;
 
 struct UnkHeatableEntryD_b0080;
 struct UnkHeatableExtra_b0080;
-void fn_710086ae60(UnkHeatableExtra_b0080* self);
+void CHeatableShieldComponent_ReleaseListSets(UnkHeatableExtra_b0080* self);
 struct UnkHeatableValue_0xd0;
 
 struct UnkHeatableEntryD_b0080 {
@@ -44,7 +44,7 @@ static_assert(__builtin_offsetof(UnkHeatableShieldD_b0080, extra) == 0x68, "layo
 
 void fn_710086ad24(UnkHeatableShieldD_b0080* self) {
     self->vtable = g_unk_7101a7a260 + 2;
-    fn_710086ae60(reinterpret_cast<UnkHeatableExtra_b0080*>(self->extra));
+    CHeatableShieldComponent_ReleaseListSets(reinterpret_cast<UnkHeatableExtra_b0080*>(self->extra));
     if (self->keys) {
         for (u32 i = 0; i < self->count; ++i)
             self->keys[i].~UnkStrIdMemberOf();
@@ -74,7 +74,7 @@ struct UnkHeatableGroups_b0080 {
     UnkHeatableGroup_b0080 groups[4];
 };
 
-__attribute__((flatten)) void fn_710086abb4(UnkHeatableGroups_b0080* self) {
+__attribute__((flatten)) void CHeatableShieldComponent_InitListSets(UnkHeatableGroups_b0080* self) {
     new (self) UnkHeatableGroups_b0080;
 }
 
@@ -103,7 +103,7 @@ struct UnkHeatableEntry_b0080 {
 };
 static_assert(sizeof(UnkHeatableEntry_b0080) == 0xd0, "layout");
 
-__attribute__((flatten)) void fn_710086dbb0(UnkHeatableEntry_b0080* self, const UnkHeatableEntry_b0080* other) {
+__attribute__((flatten)) void CHeatableShieldComponent_CopyConstructEntry(UnkHeatableEntry_b0080* self, const UnkHeatableEntry_b0080* other) {
     new (self) UnkHeatableEntry_b0080(*other);
 }
 

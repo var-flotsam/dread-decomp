@@ -39,12 +39,12 @@ struct UnkFrozenComponent {
     UnkFrozenDef* def;
 };
 
-void fn_71007fa144(UnkFrozenComponent* self, f32 time);
+void CFrozenComponent_PlayFreezeInitAction(UnkFrozenComponent* self, f32 time);
 
-void fn_71007fa0c4(UnkFrozenComponent* self) {
+void CFrozenComponent_BeginFreeze(UnkFrozenComponent* self) {
     f32 time = self->def->duration - self->def->elapsed;
     self->field_0x40 = time;
-    fn_71007fa144(self, time);
+    CFrozenComponent_PlayFreezeInitAction(self, time);
     UnkActor* actor = reinterpret_cast<UnkActor*>(self->actor);
     u64 id = self->def->timeline->id;
     fn_7100d7c828(actor, &id, false);

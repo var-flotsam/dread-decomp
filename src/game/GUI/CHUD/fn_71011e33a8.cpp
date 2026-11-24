@@ -34,7 +34,7 @@ struct UnkHudOwnedPtr;
 // Hands a new object to the array (the array's out-of-line EmplaceBack).
 static inline void Add(base::global::CRntVector<UnkHudOwnedPtr>* list, UnkHudOwned_33a8* object) {
     UnkHudOwnedRef_33a8 owned(object);
-    fn_71011e7700(list, reinterpret_cast<UnkHudOwnedPtr*>(&owned));
+    CHUD_EmplaceBackOwnedPtr(list, reinterpret_cast<UnkHudOwnedPtr*>(&owned));
 }
 
 // The count animation's vtable (reached through the GOT).

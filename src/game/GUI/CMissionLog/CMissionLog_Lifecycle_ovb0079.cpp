@@ -77,7 +77,7 @@ void fn_7100b59f20(UnkMissionLogEvent_ovb0079* self) {
     UnkGuiEvent event;
     fn_710120235c(&event, reinterpret_cast<UnkGuiDisplayObject*>(self), &kind, nullptr);
     self->field_0x298->field_0x260 = g_unk_7172765068;
-    fn_7100b018fc(self->field_0x298, &event);
+    CDialogComposition_PassEventToLabelOrClosePage(self->field_0x298, &event);
     UnkMissionLogTarget_ovb0079* owner = self->field_0x298;
     void** slot = &self->callback_set;
     if (*slot) {

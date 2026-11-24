@@ -178,7 +178,7 @@ struct UnkGunReleaseArgs_ovb0091 {
 };
 void fn_7100831dcc(void* object, UnkGunWeapon_ovb0091* weapon, bool flag, const UnkGunReleaseArgs_ovb0091* args);
 struct UnkSecondaryGun_l83b83c;  // the gun it adds (CGunComponent_AddSecondary_l83b83c.cpp)
-UnkSecondaryGun_l83b83c* fn_710083b83c(char* self, const char* a, const char* b, const char* c, f32 value, const char* d,
+UnkSecondaryGun_l83b83c* CGunComponent_CreateGunByTypeNameAndAddToSlot(char* self, const char* a, const char* b, const char* c, f32 value, const char* d,
                    const char* e, const char* f, const char* g, const char* h, s32 i, s32 j);
 
 struct UnkGunTunable_ovb0091 {
@@ -291,7 +291,7 @@ void fn_71008395f0(UnkGun_ovb0091* self) {
     CallAll(self->secondary, 0x148);
 }
 
-void fn_7100839924(UnkSamusGun_ovb0070* gun) {
+void CGunComponent_ResetChargeAndMode(UnkSamusGun_ovb0070* gun) {
     UnkGun_ovb0091* self = AsGun(gun);
     fn_71010c4228(reinterpret_cast<UnkParent*>(self));
     self->field_0x12c = 0.0f;
@@ -316,7 +316,7 @@ void fn_7100839924(UnkSamusGun_ovb0070* gun) {
 }
 
 // Always inlined: fn_7100839d70 has it inlined, and it is defined on its own too.
-__attribute__((always_inline)) void fn_7100839f68(UnkGun_ovb0091* self, const CStrId& id) {
+__attribute__((always_inline)) void CGunComponent_CancelPendingIdOrPopQueuedId(UnkGun_ovb0091* self, const CStrId& id) {
     UnkGunWeapon_ovb0091* weapon = self->alt;
     if (!weapon)
         return;
@@ -481,7 +481,7 @@ bool fn_710083e250(UnkGun_ovb0091* self, f32 value, bool flag) {
 
 // Ends a walk over the listeners: once the walk count is back to zero, the removed entries leave the list
 // and the added ones join it (as fn_710113831c).
-void fn_7100841c4c(base::UnkCountedDeferredWalk<void>* walk) {
+void CGunComponent_EndListenerWalkApplyPending(base::UnkCountedDeferredWalk<void>* walk) {
     --walk->set->lock;
     base::UnkCountedDeferredSet<void>* listeners = walk->set;
     if (listeners->lock > 0)
@@ -524,7 +524,7 @@ void fn_710083e33c(UnkChargeComponent_b47a3* charge, bool notify) {
                 if (!listener || !listener->callback || !listener->callback(listener->object, true))
                     fn_7100841838(&self->listeners, listener);
             }
-            fn_7100841c4c(&walk);
+            CGunComponent_EndListenerWalkApplyPending(&walk);
         }
     }
     CancelCharge(self);
@@ -594,7 +594,7 @@ bool fn_7100840064(char* self, const void* stream) {
     CRntFile_Read(file, &i, 4, 1);
     CRntFile_Read(file, &j, 4, 1);
     fn_710007ca94(file, h);
-    fn_710083b83c(self, a, b, c, value, d, e, h, f, g, i, j);
+    CGunComponent_CreateGunByTypeNameAndAddToSlot(self, a, b, c, value, d, e, h, f, g, i, j);
     return true;
 }
 
@@ -619,7 +619,7 @@ void fn_7100839d70(UnkGun_ovb0091* self) {
         VCall<void>(self->alt, 0x38);
     if (self->main)
         VCall<void>(self->main, 0x38);
-    fn_7100839f68(self, GameManagerIdTable().field_0x1240);
+    CGunComponent_CancelPendingIdOrPopQueuedId(self, GameManagerIdTable().field_0x1240);
     fn_710083a034(self, false, false);
     if (void* object = fn_710083a2ac(self->actor))
         fn_710093aad0(object);

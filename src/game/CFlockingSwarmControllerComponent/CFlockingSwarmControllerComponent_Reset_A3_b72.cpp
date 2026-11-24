@@ -50,7 +50,7 @@ struct UnkFlockingSwarm2_A3_b72 {
 void fn_7100748424(UnkFlockingSwarm2_A3_b72* self);
 void fn_7100738164(void* list, u32 count);
 
-void fn_710073807c(UnkFlockingSwarm2_A3_b72* self) {
+void CFlockingSwarmControllerComponent_ResetAndResizeMemberLists(UnkFlockingSwarm2_A3_b72* self) {
     fn_7100748424(self);
     self->current = -1;
     u32 count = self->klass->data->member_count;
