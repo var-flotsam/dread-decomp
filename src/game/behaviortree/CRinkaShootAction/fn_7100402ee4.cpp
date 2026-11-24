@@ -3,13 +3,11 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/UnkAIComponent.h"
 #include "types.h"
 
 using base::reflection::CClass;
 
-struct UnkAIComponent {
-    virtual const CClass* vf_0x0();
-};
 struct UnkOwner_7100402ee4 {
     u8 unk_0x0[0x240];
     UnkAIComponent* component;
