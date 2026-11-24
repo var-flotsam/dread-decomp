@@ -37,6 +37,20 @@ struct UnkBigFistStart_A2_b72 {
 
 static inline UnkReflObject* Ai_A2_b72(char* owner) { return *reinterpret_cast<UnkReflObject**>(owner + 0x240); }
 
+struct UnkBigFistAI_A2_b72 {
+    u8 pad_0x0[0x14a28];
+    bool field_0x14a28;  // 0x14a28
+};
+
+// Takes the link off the object the handle refers to, if any, and drops the handle.
+static inline void UnhookTrackLink_A2_b72(UnkBigFistStart_A2_b72* self, UnkBigFistTrackLink_A2_b72* link) {
+    if (UnkWeakHandle* handle = self->handle.handle) {
+        if (UnkWeakTarget* target = handle->target)
+            fn_710117b3f0(target, link);
+        ResetRef(&self->handle.handle);
+    }
+}
+
 void fn_71003e0aac(UnkBigFistStart_A2_b72* self) {
     fn_71003608ac(reinterpret_cast<UnkAttackBase*>(self));
     self->field_0x30 = 1;
@@ -45,27 +59,18 @@ void fn_71003e0aac(UnkBigFistStart_A2_b72* self) {
     link->context = self;
     link->callback = fn_71003e181c;
     UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(self->owner + 0x220);
-    if (UnkWeakHandle* handle = self->handle.handle) {
-        if (UnkWeakTarget* target = handle->target)
-            fn_710117b3f0(target, link);
-        if (UnkWeakHandle* p = self->handle.handle) {
-            if (--p->ref_count == 0)
-                p->vf_0x10();
-            self->handle.handle = nullptr;
-        }
-    }
+    UnhookTrackLink_A2_b72(self, link);
     if (track) {
-        asm("" : "+r"(self));
         CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
         fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
     bool fired = false;
     UnkReflObject* ai = Ai_A2_b72(self->owner);
     if (ai && fn_710009d50c(ai->vf_0x0(), fn_71003e70dc())) {
-        bool& pending = *reinterpret_cast<bool*>(reinterpret_cast<char*>(ai) + 0x14a28);
-        if (pending) {
+        UnkBigFistAI_A2_b72* big_fist = reinterpret_cast<UnkBigFistAI_A2_b72*>(ai);
+        if (big_fist->field_0x14a28) {
             fn_7101178010(*reinterpret_cast<void**>(self->owner + 0x220), 0xf4061ff25a2163d6ull, false, 30.0f);
-            pending = false;
+            big_fist->field_0x14a28 = false;
             fired = true;
         }
     }

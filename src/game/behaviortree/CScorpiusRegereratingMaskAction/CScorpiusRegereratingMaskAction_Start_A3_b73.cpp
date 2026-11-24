@@ -56,12 +56,8 @@ struct UnkMaskStart_A3_b73 {
     UnkWeakRef handle;         // 0x50
 };
 
-void fn_710068ce30(UnkMaskStart_A3_b73* self) {
-    fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
-    UnkWeakTarget* track = reinterpret_cast<UnkWeakTarget*>(self->owner->field_0x220);
-    UnkMaskTrackLink_A3_b73* link = &self->link;
-    link->context = self;
-    link->callback = fn_710068db84;
+// Takes the callback link off the track it is hooked to and drops the handle to that track.
+static inline void UnhookTrackLink(UnkMaskStart_A3_b73* self, UnkMaskTrackLink_A3_b73* link) {
     if (UnkWeakHandle* handle = self->handle.handle) {
         if (UnkWeakTarget* target = handle->target)
             fn_710117b3f0(target, link);
@@ -71,8 +67,16 @@ void fn_710068ce30(UnkMaskStart_A3_b73* self) {
             self->handle.handle = nullptr;
         }
     }
+}
+
+void fn_710068ce30(UnkMaskStart_A3_b73* self) {
+    fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
+    UnkWeakTarget* track = reinterpret_cast<UnkWeakTarget*>(self->owner->field_0x220);
+    UnkMaskTrackLink_A3_b73* link = &self->link;
+    link->context = self;
+    link->callback = fn_710068db84;
+    UnhookTrackLink(self, link);
     if (track) {
-        asm("" : "+r"(self));
         CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
         fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }

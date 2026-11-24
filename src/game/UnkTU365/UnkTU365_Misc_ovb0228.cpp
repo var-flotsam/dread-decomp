@@ -327,22 +327,48 @@ void fn_71002a5fe8(UnkPoints_ovb0229* list, const UnkPoint_ovb0229* point, UnkPo
     auto* self = reinterpret_cast<UnkPairListK_b0228*>(list);
     auto* value = reinterpret_cast<const UnkPairValue_b0228*>(point);
     auto* pos = reinterpret_cast<UnkPairNodeK_b0228*>(node_pos);
-    if (!self->head)
-        return;
     UnkPairNodeK_b0228* prev = nullptr;
-    UnkPairNodeK_b0228* cur = self->head;
-    while (cur != pos) {
-        prev = cur;
-        cur = cur->next;
-        if (!cur)
-            return;
-    }
-    // Keeps the predecessor test after the search instead of being threaded into it.
-    asm("" : "+r"(prev));
-    if (prev) {
-        u32 n = self->count;
-        UnkPairNodeK_b0228* node = self->Alloc();
-        if (n == 0) {
+    for (UnkPairNodeK_b0228* cur = self->head; cur; prev = cur, cur = cur->next) {
+        if (cur != pos)
+            continue;
+        // Found: insert after the predecessor, or at the front when there is none.
+        if (prev) {
+            u32 n = self->count;
+            UnkPairNodeK_b0228* node = self->Alloc();
+            if (n == 0) {
+                if (!node)
+                    return;
+                node->first = value->first;
+                node->second = value->second;
+                node->next = nullptr;
+                if (self->count == 0) {
+                    self->head = node;
+                    self->tail = node;
+                    self->count = 1;
+                    return;
+                }
+                self->tail->next = node;
+                node->next = nullptr;
+                goto set_tail;
+            }
+            if (!node)
+                return;
+            node->first = value->first;
+            node->second = value->second;
+            node->next = nullptr;
+            {
+                UnkPairNodeK_b0228* after = prev->next;
+                prev->next = node;
+                node->next = after;
+                if (after)
+                    goto bump;
+            }
+        set_tail:
+            self->tail = node;
+        bump:
+            self->count = self->count + 1;
+        } else {
+            UnkPairNodeK_b0228* node = self->Alloc();
             if (!node)
                 return;
             node->first = value->first;
@@ -354,42 +380,11 @@ void fn_71002a5fe8(UnkPoints_ovb0229* list, const UnkPoint_ovb0229* point, UnkPo
                 self->count = 1;
                 return;
             }
-            self->tail->next = node;
-            node->next = nullptr;
-            goto set_tail;
-        }
-        if (!node)
-            return;
-        node->first = value->first;
-            node->second = value->second;
-        node->next = nullptr;
-        {
-            UnkPairNodeK_b0228* after = prev->next;
-            prev->next = node;
-            node->next = after;
-            if (after)
-                goto bump;
-        }
-    set_tail:
-        self->tail = node;
-    bump:
-        self->count = self->count + 1;
-    } else {
-        UnkPairNodeK_b0228* node = self->Alloc();
-        if (!node)
-            return;
-        node->first = value->first;
-            node->second = value->second;
-        node->next = nullptr;
-        if (self->count == 0) {
+            node->next = self->head;
             self->head = node;
-            self->tail = node;
-            self->count = 1;
-            return;
+            self->count = self->count + 1;
         }
-        node->next = self->head;
-        self->head = node;
-        self->count = self->count + 1;
+        return;
     }
 }
 

@@ -40,10 +40,16 @@ struct UnkShardsFragmentMover_A2_b71 {
     u32 state;  // 0xc8
 };
 
+// The part of the tunables (g_unk_7172716160) this function reads: the value given to the damage request.
+struct UnkShardsTunables_710045984c {
+    u8 pad_0x0[0xa0];
+    f32 field_0xa0;  // 0xa0
+};
+
 void fn_710045984c(UnkShardsFragment_A2_b71* fragment, UnkShardsFragmentMover_A2_b71* self) {
     self->state = 1;
     fn_71008c1538(reinterpret_cast<UnkRequest*>(self),
-                  *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_7172716160) + 0xa0));
+                  reinterpret_cast<const UnkShardsTunables_710045984c&>(g_unk_7172716160).field_0xa0);
     self->id = g_unk_71726c9c80;
     self->flags |= 0x4000000;
     if (fragment->field_0x40 > 0.0f) {

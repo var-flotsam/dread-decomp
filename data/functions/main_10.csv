@@ -3117,7 +3117,7 @@ address,size,name,name_source,subsystem,status
 0x710108e600,28,lua_bind::GetMusicInMenuMultiplier,string,script/bindings,O
 0x710108e620,84,lua_bind::PauseSounds,string,script/bindings,O
 0x710108e680,88,lua_bind::PauseEnvironment,string,script/bindings,O
-0x710108e6e0,916,lua_bind::PlayPresetSound,string,script/bindings,U
+0x710108e6e0,916,lua_bind::PlayPresetSound,string,script/bindings,O
 0x710108ea80,552,lua_bind::GetSetSurroundPan,string,script/bindings,O
 0x710108ecb0,16,lua_bind::GetSetFrontByPass,string,script/bindings,O
 0x710108ecc0,112,lua_bind::EnableEnvironmentSounds,string,script/bindings,O

@@ -70,8 +70,10 @@ void fn_71002adc8c(UnkObject_71002adc8c* self) {
     self->field_0x11980 = 0;
     self->field_0x8 = false;
     fn_71002ad688(reinterpret_cast<UnkNavMeshPath*>(self), nullptr);
-    if (base::UnkRefCounted* h = self->field_0x12a68.ptr) {
-        if (*reinterpret_cast<void**>(reinterpret_cast<char*>(h) + 0x10)) {
+    // The handle at +0x12a68 is a weak handle: the registrations are only removed while its
+    // target is still alive.
+    if (UnkWeakHandle* handle = reinterpret_cast<UnkWeakHandle*>(self->field_0x12a68.ptr)) {
+        if (handle->target) {
             self->field_0x129e8.Unregister();
             self->field_0x12a00.Unregister();
             self->field_0x12a18.Unregister();
