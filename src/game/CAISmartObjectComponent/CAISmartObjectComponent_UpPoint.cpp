@@ -28,7 +28,7 @@ struct UnkUnit443Self {
     UnkUnit443Params* params;
 };
 
-UnkUnit443Vec3 fn_7100360130(const UnkUnit443Self* self) {
+UnkUnit443Vec3 CAISmartObjectComponent_GetUseOffsetPosition(const UnkUnit443Self* self) {
     UnkUnit443Owner* owner = self->owner;
     UnkUnit443Vec3 pos(owner->xform.m[3], owner->xform.m[7], owner->xform.m[11]);
     const UnkMatrix44& m = fn_710002614c(&owner->xform);

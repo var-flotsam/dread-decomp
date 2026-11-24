@@ -26,7 +26,7 @@ struct UnkMovieAudioWorker_b68a1 {
 void* SleepFor_b68a1(u64 value) asm("_Z13fn_71000810b0j");
 void fn_7100221d48(UnkMovieAudioStream_b68a1* stream);
 
-void fn_710022162c(UnkMovieAudioWorker_b68a1* self) {
+void CMovieAudioStreamNx_ThreadMain(UnkMovieAudioWorker_b68a1* self) {
     UnkMovieAudioStream_b68a1* stream = self->stream;
     while (__atomic_load_n(&self->state, __ATOMIC_ACQUIRE) != 3) {
         if (stream->stopping && !(stream->flags & 4))

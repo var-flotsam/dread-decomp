@@ -129,7 +129,7 @@ void fn_71006c0b98(UnkSluggerStart_l6c0b98* self) {
                 self->handle = nullptr;
             }
         }
-        fn_7100316018(reinterpret_cast<UnkWeakTarget*>(animation), &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(reinterpret_cast<UnkWeakTarget*>(animation), &self->handle);
         fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
     }
     UnkVec3f angles = self->owner->xform.GetAngle();

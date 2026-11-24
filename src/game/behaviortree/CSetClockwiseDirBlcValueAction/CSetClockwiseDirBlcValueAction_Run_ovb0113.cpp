@@ -62,7 +62,7 @@ struct UnkClockwiseAction_ovb0113 {
     f32 value;       // 0x38
 };
 
-s32 fn_71003746d8(UnkClockwiseAction_ovb0113* self) {
+s32 CSetClockwiseDirBlcValueAction_SetPropToSignedMultiplierByTargetDir(UnkClockwiseAction_ovb0113* self) {
     UnkFloorActor_ovb0113* target = reinterpret_cast<UnkFloorActor_ovb0113*>(fn_7100d7c990(self->actor));
     UnkFloorActor_ovb0113* actor = reinterpret_cast<UnkFloorActor_ovb0113*>(self->actor);
     UnkFloor_ovb0113* floor = actor->floor;

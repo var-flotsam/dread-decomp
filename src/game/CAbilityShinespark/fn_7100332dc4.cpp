@@ -38,7 +38,7 @@ inline void Append(UnkPropertyArrays& props, const CStrId& key, const UnkReflVal
     ++props.count;
 }
 
-void fn_7100332dc4(UnkValueMap_7100332c80* map, const u64* key_, const UnkTypedRef* value) {
+void CAbilityShinespark_SetOrAddSectionPropertyValue(UnkValueMap_7100332c80* map, const u64* key_, const UnkTypedRef* value) {
     UnkSectionData* self = reinterpret_cast<UnkSectionData*>(map);
     const CStrId& key = *reinterpret_cast<const CStrId*>(key_);
     UnkPropertyArrays& props = self->properties;

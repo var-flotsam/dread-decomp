@@ -99,7 +99,7 @@ void fn_71003308b0(UnkShinespark_l3308b0* self) {
         ResetRef(&self->animation);
     }
     if (animation) {
-        fn_7100316018(reinterpret_cast<UnkWeakTarget*>(animation), &self->animation);
+        CAbilityGhostAura_AssignWeakHandleToRef(reinterpret_cast<UnkWeakTarget*>(animation), &self->animation);
         fn_710117b3e8(self->animation ? self->animation->target : nullptr, self->link);
     }
     self->launch = (u64)-1;

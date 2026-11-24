@@ -5,7 +5,7 @@
 #include "game/CAbilityLayout.h"
 #include "types.h"
 
-void fn_71003020f0(CAbilityComponent* self, CAbility* except) {
+void CAbilityEnergyWave_NotifyOtherAbilitiesInStateAtLeast3(CAbilityComponent* self, CAbility* except) {
     u32 count = self->abilities.count;
     if (count == 0)
         return;

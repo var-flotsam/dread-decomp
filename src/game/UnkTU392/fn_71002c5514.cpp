@@ -12,7 +12,7 @@ struct UnkShapedEvaluator_A2_b68;
 template <class T>
 struct UnkFrameVector;
 
-f32 fn_71002b80ec(UnkShapedEvaluator_A2_b68* self, void* a, void* b);
+f32 CEvaluator_ComputeWeightedScore(UnkShapedEvaluator_A2_b68* self, void* a, void* b);
 
 struct UnkTU392Source {
     u8 pad_0x0[0x10];
@@ -92,7 +92,7 @@ void* fn_71002c5514(UnkTU392Ranker* self) {
         for (u32 i = 0; i < self->rules->evaluator_count; ++i) {
             UnkShapedEvaluator_A2_b68* ev = self->rules->evaluators[i];
             if (ev) {
-                f32 score = fn_71002b80ec(ev, self->context, e->source ? e->source->subject : nullptr);
+                f32 score = CEvaluator_ComputeWeightedScore(ev, self->context, e->source ? e->source->subject : nullptr);
                 *fn_71000d4a50(e->Scores(), i) = score;
                 total += score;
             }

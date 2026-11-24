@@ -202,7 +202,7 @@ void fn_71001c5b74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
             tmp.w = a.w;
             fn_710015e1f0(self->field_0x317af68, 1, location, 4, &tmp.x);
         }
-        fn_71001a7bfc(item, 2);
+        SAlpha_ApplyMaterialStateByFlags(item, 2);
     }
     if (fn_7100159c80()) {
         self->field_0x317add0++;

@@ -39,6 +39,6 @@ struct UnkObject_71003a3bfc : UnkBase_7100394530 {
     ~UnkObject_71003a3bfc() { vtable = &g_unk_7101a28ac0[2]; }
 };
 
-void fn_7100372c24(UnkObject_7100372c24& self) { delete &self; }
+void CAttackAction_DestroyAndDelete(UnkObject_7100372c24& self) { delete &self; }
 
 void fn_71003a3bfc(UnkObject_71003a3bfc& self) { delete &self; }

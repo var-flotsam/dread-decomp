@@ -4,4 +4,4 @@
 // 0x710026ca80-0x710026d6d0). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
-u32 fn_710026d2e4(const char* text);
+u32 CDynamicSmartLinkRules_ParseSmartLinkKindMask(const char* text);

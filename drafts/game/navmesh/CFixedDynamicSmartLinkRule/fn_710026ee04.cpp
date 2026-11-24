@@ -18,7 +18,7 @@ struct UnkSmartLinkRuleTree_l26ee04 {
     UnkNavRuleValue_A1_b75 root;  // 0x20
 };
 
-s32 fn_710026f548(const char* name);
+s32 CFixedDynamicSmartLinkRule_ParseSolidPortalHoleKindName(const char* name);
 
 // The twelve diagonal directions, from 27 degrees round to 333 (set by the unit's initialiser).
 extern CVector2D g_unk_71726a4368[12] __attribute__((visibility("hidden")));
@@ -94,7 +94,7 @@ void fn_710026ee04(UnkSmartLinkRuleTree_l26ee04* self, base::global::CRntFile* f
     else
         comparison = 3;
 
-    s32 kind = fn_710026f548(kind_name);
+    s32 kind = CFixedDynamicSmartLinkRule_ParseSolidPortalHoleKindName(kind_name);
 
     UnkWords2_l26ee04 direction;
     if (strcmp(direction_name, "UP") == 0) {

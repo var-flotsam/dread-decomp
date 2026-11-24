@@ -27,7 +27,7 @@ UnkFxPooledObject* fn_710104dc8c(UnkFxObjectPool* self);
 
 struct UnkSonarModel_ovb0085;
 // As src/game/CScorpiusFXComponent/CScorpiusFXComponent_Gas_ovb0008.cpp declares it (it returns the node).
-void* fn_7100339900(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,
+void* CAbilitySonar_CreateModelInRenderPool(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,
                     const CStrId* name);
 
 // A node of the manager's map: a path's string and its pool.
@@ -121,7 +121,7 @@ void* fn_7100846678(void* owner, const void* p, u32 layer, u32 mode) {
         return object;
     UnkRenderManager* render = g_unk_7101d47300;
     UnkOverlayModel* model = nullptr;
-    fn_7100339900(render->field_0x218, path, reinterpret_cast<UnkSonarModel_ovb0085**>(&model),
+    CAbilitySonar_CreateModelInRenderPool(render->field_0x218, path, reinterpret_cast<UnkSonarModel_ovb0085**>(&model),
                   &g_unk_7101d470e0);
     fn_7100219ae0(render, model ? &model->node : nullptr, layer);
     return model;

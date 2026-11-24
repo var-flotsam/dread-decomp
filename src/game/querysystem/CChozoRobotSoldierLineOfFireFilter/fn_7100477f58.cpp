@@ -10,7 +10,7 @@ using base::global::UnkStrId;
 extern void* g_unk_7101a39598[];
 
 void fn_7100477f58(UnkQueryParam* self) {
-    fn_71002bedc8(self);
+    CFilter_Construct(self);
     self->vtable = &g_unk_7101a39598[2];
     self->field_0x8 = UnkStrId("LINE_OF_FIRE", true);
 }

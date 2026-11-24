@@ -129,7 +129,7 @@ void fn_7100518684(UnkEmmySearchingAction_l518684* self) {
         link->callback = fn_710051d568;
         DetachAnimation_l518684(self, link);
         if (animation) {
-            fn_7100316018(animation, &self->ref);
+            CAbilityGhostAura_AssignWeakHandleToRef(animation, &self->ref);
             fn_710117b3e8(self->ref.handle ? self->ref.handle->target : nullptr, link);
         }
     } else {

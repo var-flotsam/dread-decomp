@@ -16,7 +16,7 @@ static inline __attribute__((always_inline)) void Destroy(UnkLinkGroups* self) {
         self->groups[i].~UnkLinkGroup();
 }
 
-void fn_710027514c(UnkLinkGroups* self) {
+void CNavMesh_DestroyLinkGroups(UnkLinkGroups* self) {
     Destroy(self);
 }
 
@@ -26,6 +26,6 @@ static inline __attribute__((always_inline)) void Construct(UnkLinkGroups* self)
         new (&self->groups[i]) UnkLinkGroup;
 }
 
-void fn_710027497c(UnkLinkGroups* self) {
+void CNavMesh_ConstructLinkGroups(UnkLinkGroups* self) {
     Construct(self);
 }

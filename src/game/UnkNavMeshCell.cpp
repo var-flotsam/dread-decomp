@@ -52,7 +52,7 @@ UnkNavMeshSidePair fn_71002afe60(UnkNavMeshCell* cell, u8* index) {
 struct UnkNavMesh;
 struct Vec2_ebfa7c;
 using Mesh = UnkNavMesh;
-Vec2_ebfa7c* fn_710027a410(Mesh* mesh, u16 index);  // the mesh's vertex (src/game/navmesh/CNavMesh/fn_710027a410.cpp)
+Vec2_ebfa7c* CNavMesh_GetVertex(Mesh* mesh, u16 index);  // the mesh's vertex (src/game/navmesh/CNavMesh/fn_710027a410.cpp)
 
 // The cell as the side lookup reads it: the vertex ids, their count and the mesh.
 struct UnkNavMeshCellSides {
@@ -75,13 +75,13 @@ bool fn_71002afea8(const UnkNavMeshCell* cell, const u8* side, UnkNavMeshSideSeg
             if (i < count) {
                 u32 n = i + 1;
                 const base::math::CVector2D* a =
-                    reinterpret_cast<const base::math::CVector2D*>(fn_710027a410(c->mesh, c->vertices[i]));
+                    reinterpret_cast<const base::math::CVector2D*>(CNavMesh_GetVertex(c->mesh, c->vertices[i]));
                 out->start.x = a->x;
                 out->field_0x10 = -1.0f;
                 out->start.y = a->y;
                 u64 next = n < count ? (u64)i + 1 : 0;
                 const base::math::CVector2D* b =
-                    reinterpret_cast<const base::math::CVector2D*>(fn_710027a410(c->mesh, c->vertices[next]));
+                    reinterpret_cast<const base::math::CVector2D*>(CNavMesh_GetVertex(c->mesh, c->vertices[next]));
                 out->end.x = b->x;
                 out->end.y = b->y;
                 out->field_0x10 = -1.0f;

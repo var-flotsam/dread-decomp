@@ -63,7 +63,7 @@ struct UnkSwitchModesAction_A2_b75 {
     UnkWeakRef handle;           // 0xb0
 };
 
-void fn_710036b578(UnkSwitchModesAction_A2_b75* self) {
+void CSwitchBetweenAIModesAction_Start(UnkSwitchModesAction_A2_b75* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     UnkActor* owner = self->owner;
     if (!(self->ai = static_cast<UnkSwitchModesAI_A2_b75*>(owner->field_0x240)))
@@ -106,7 +106,7 @@ void fn_710036b578(UnkSwitchModesAction_A2_b75* self) {
     }
     if (track) {
         asm("" : "+r"(self));
-        fn_7100316018(track, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
         fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
     self->current = self->name;

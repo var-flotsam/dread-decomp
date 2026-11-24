@@ -46,7 +46,7 @@ struct UnkCommanderXListener_l8bf4fc {
     }
     void Listen(UnkWeakTarget* target) {
         Unlisten();
-        fn_7100316018(target, &link);
+        CAbilityGhostAura_AssignWeakHandleToRef(target, &link);
         fn_710117b3e8(link ? link->target : nullptr, this);
     }
 };

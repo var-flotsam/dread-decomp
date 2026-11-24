@@ -109,7 +109,7 @@ void fn_710015a680(u32 value);
 u32 fn_7100167cc0(u32 index);
 void fn_710015e1f0(void* state, u32 stage, u64 location, u32 count, const f32* values);
 bool fn_71001aa0b4(void* program, u32 stage, u32 id, u64* location);
-void fn_71001a7bfc(UnkRenderItem_b0247* item, u32 mode);
+void SAlpha_ApplyMaterialStateByFlags(UnkRenderItem_b0247* item, u32 mode);
 bool fn_7100196e80(UnkRenderCmd_b0247* cmd);
 void fn_710015ab00(u32 value);
 void fn_71001d010c(UnkGfx258_b0247* self, UnkRenderItem_b0247* item, bool flag);
@@ -196,7 +196,7 @@ void fn_71001c5b74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
             tmp.w = a.w;
             fn_710015e1f0(self->field_0x317af68, 1, location, 4, &tmp.x);
         }
-        fn_71001a7bfc(item, 2);
+        SAlpha_ApplyMaterialStateByFlags(item, 2);
     }
     if (fn_7100159c80()) {
         self->field_0x317add0++;

@@ -29,12 +29,12 @@ struct UnkSelf {
 
 #define UNK_NEAR(a, b) ((a) - 0.001f <= (b) && (a) + 0.001f >= (b))
 
-bool fn_71003a1014(UnkSelf* self) {
+bool CIsFacingToPos_IsPosInFront(UnkSelf* self) {
     CVector3D p;
     p.x = 0;
     p.y = 0;
     p.z = 0;
-    fn_710039525c(self, self->field_0x38, &p);
+    CBehavior_LoadVector3DValue(self, self->field_0x38, &p);
     self->field_0x40.x = p.x;
     self->field_0x40.y = p.y;
     self->field_0x40.z = p.z;

@@ -11,7 +11,7 @@ struct UnkLimits_2bca94 {
     f32 field_0x24;
 };
 
-f32 fn_71002bca94(UnkLimits_2bca94* self, UnkActor* first, UnkActor* second) {
+f32 CDistanceToTargetEvaluator_ComputeNormalizedProximity(UnkLimits_2bca94* self, UnkActor* first, UnkActor* second) {
     f32 result = 0.0f;
     UnkActor* target = fn_7100d7c990(first);
     if (target) {

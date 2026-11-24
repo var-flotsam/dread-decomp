@@ -17,7 +17,7 @@ struct UnkQueryParam {
     bool field_0x10;
 };
 
-void fn_71002bedc8(UnkQueryParam* self) {
+void CFilter_Construct(UnkQueryParam* self) {
     self->vtable = g_unk_7101a21348 + 0x10;
     new (&self->name) UnkStrId("XXXX", true);
     self->field_0x10 = false;

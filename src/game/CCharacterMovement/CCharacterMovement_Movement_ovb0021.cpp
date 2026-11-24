@@ -195,7 +195,7 @@ UnkNavMeshCell* fn_7100979b30(UnkCharacterMovementCell_ovb0021* self) {
             CVector2D query;
             query.x = point.x;
             query.y = point.y;
-            self->cell = fn_710027a41c(mesh, &query, 0);
+            self->cell = CNavMesh_FindCellIndexAtPoint(mesh, &query, 0);
         }
     }
     if (self->cell == 0xffff)

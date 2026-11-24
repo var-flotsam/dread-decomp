@@ -11,7 +11,7 @@ struct UnkRange_39dd34 {
     f32 field_0x38;
 };
 
-bool fn_710039dd34(UnkRange_39dd34* self) {
+bool CIsTargetAtDistanceCondition_IsTargetWithinDistance(UnkRange_39dd34* self) {
     UnkActor* target = fn_7100d7c990(self->field_0x18);
     if (!target)
         return false;

@@ -107,7 +107,7 @@ void fn_71008a733c(UnkBeamBox_l8a733c* self, f32 dt) {
                 ResetRef(&self->handle);
             }
             if (tracks) {
-                fn_7100316018(tracks, &self->handle);
+                CAbilityGhostAura_AssignWeakHandleToRef(tracks, &self->handle);
                 fn_710117b3e8(self->handle ? self->handle->target : nullptr, self->link);
             }
         } else {

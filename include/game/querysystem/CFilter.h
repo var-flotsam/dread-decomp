@@ -7,5 +7,5 @@
 
 struct UnkUnit392Filter_b69;
 struct UnkQueryParam;
-void fn_71002bedc8(UnkQueryParam* self);
+void CFilter_Construct(UnkQueryParam* self);
 int fn_71002bee84(UnkUnit392Filter_b69* filter, void* context, void* arg);

@@ -31,7 +31,7 @@ struct UnkCannonTrackLink_l3fbe0c {
                 fn_710117b3f0(target, this);
             ResetRef(&handle);
         }
-        fn_7100316018(track, &handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(track, &handle);
         fn_710117b3e8(handle ? handle->target : nullptr, this);
     }
 };

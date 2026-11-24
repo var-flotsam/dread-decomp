@@ -27,7 +27,7 @@ void fn_71003aaad0(UnkPendingList_A2_b69* self) {
     if (self->head) {
         for (UnkPendingEntry_A2_b69* e = self->head; e; e = e->next)
             if (e->key)
-                fn_7100394b30(e->key, 0.0f, 7);
+                CBehavior_AdvanceStatus(e->key, 0.0f, 7);
         for (UnkPendingEntry_A2_b69* e = self->head; e;) {
             UnkPendingEntry_A2_b69* next = e->next;
             self->allocator->vf_0x48(e);

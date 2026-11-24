@@ -79,7 +79,7 @@ struct UnkBuiltId_l6e2b9c {
 bool fn_71006e2b9c(UnkGoToPoint_l6e2b9c* self) {
     UnkBufferString<0x100, g_unk_7101a194b8> name;
     if (self->entity_key.data != &g_unk_7101d47108->empty &&
-        fn_7100395044(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->entity_key,
+        CBehavior_ReadStringProperty(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->entity_key,
                       reinterpret_cast<UnkInlineString_A2_b72*>(&name))) {
         UnkGameManager* manager = g_unk_7101d47310;
         UnkActor* found;
@@ -135,7 +135,7 @@ bool fn_71006e2b9c(UnkGoToPoint_l6e2b9c* self) {
             return true;
         }
     } else if (self->point_key.data != &g_unk_7101d47108->empty &&
-               fn_710039525c(reinterpret_cast<UnkSelf*>(self), &self->point_key, &self->target)) {
+               CBehavior_LoadVector3DValue(reinterpret_cast<UnkSelf*>(self), &self->point_key, &self->target)) {
         return true;
     }
     UnkReflObject* ai = static_cast<UnkReflObject*>(self->owner->field_0x240);

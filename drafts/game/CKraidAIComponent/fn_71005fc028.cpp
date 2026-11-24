@@ -309,7 +309,7 @@ void fn_71005fc028(UnkKraidAI_l5fc028* self) {
                 fn_710117b3f0(old->target, listener);
             ResetRef(&listener->target);
         }
-        fn_7100316018(reinterpret_cast<UnkWeakTarget*>(tree), reinterpret_cast<UnkWeakRef*>(&listener->target));
+        CAbilityGhostAura_AssignWeakHandleToRef(reinterpret_cast<UnkWeakTarget*>(tree), reinterpret_cast<UnkWeakRef*>(&listener->target));
         fn_710117b3e8(listener->target ? listener->target->target : nullptr, listener);
     }
     area->field_0x120 = 0;

@@ -17,7 +17,7 @@ __attribute__((always_inline)) static inline void Construct(Self* self, const ch
     self->field_0x8 = UnkStrId(name, true);
 }
 
-void fn_710047785c(UnkQueryParam* self) { Construct<UnkQueryParam, fn_71002bedc8, g_unk_7101a39568>(self, "IN_MELEE_PATH"); }
+void fn_710047785c(UnkQueryParam* self) { Construct<UnkQueryParam, CFilter_Construct, g_unk_7101a39568>(self, "IN_MELEE_PATH"); }
 
 // Two constructors of an object named "PoisonousGas" in another unit, above their own base
 // (fn_7100681a6c), with the name at 0xc8.

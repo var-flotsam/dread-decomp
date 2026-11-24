@@ -68,7 +68,7 @@ static inline bool Near(f32 a, f32 b) {
     return a + -0.001f <= b && a + 0.001f >= b;
 }
 
-bool fn_710039c074(UnkFloatCondition_ovb0121c* self) {
+bool CFloatCondition_EvaluateComparison(UnkFloatCondition_ovb0121c* self) {
     f32 a = self->a.value;
     f32 b = 0.0f;
     Resolve(self, self->a, &a);

@@ -146,7 +146,7 @@ void fn_7100344190(UnkAimBind_l344190* self) {
     }
     if (UnkWeakTarget* animation = self->owner->animation) {
         self->animation_link.Release<fn_710117b3f0>();
-        fn_7100316018(animation, &self->animation_link.handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(animation, &self->animation_link.handle);
         fn_710117b3e8(self->animation_link.Target(), self->animation_link.node);
     }
 }

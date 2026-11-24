@@ -134,7 +134,7 @@ void fn_71009b1ae8(UnkSamusState_l9b1ae8* self, const u64* event) {
                     link->handle = nullptr;
                 }
             }
-            fn_7100316018(track, &link->handle);
+            CAbilityGhostAura_AssignWeakHandleToRef(track, &link->handle);
             fn_710117b3e8(Target(link->handle), link);
         }
         return;

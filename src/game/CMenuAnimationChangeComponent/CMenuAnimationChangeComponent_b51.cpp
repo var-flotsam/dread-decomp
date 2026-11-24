@@ -42,6 +42,6 @@ void fn_7100932b48(UnkMenuAnimChange* self) {
         }
     }
     // The slot is addressed by its offset.
-    fn_7100316018(track, reinterpret_cast<UnkWeakRef*>(reinterpret_cast<char*>(self) + 0x58));
+    CAbilityGhostAura_AssignWeakHandleToRef(track, reinterpret_cast<UnkWeakRef*>(reinterpret_cast<char*>(self) + 0x58));
     fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
 }

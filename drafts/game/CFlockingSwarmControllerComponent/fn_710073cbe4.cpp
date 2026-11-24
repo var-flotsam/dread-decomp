@@ -57,10 +57,10 @@ bool fn_710073cbe4(UnkSwarmComponent_l73cbe4* self, const CVector2D* from, const
                    bool any_side) {
     UnkNavMeshManager* manager = NavMeshManager();
     UnkNavMesh* mesh = manager->navmesh;
-    u16 from_cell = fn_710027a41c(mesh, from, 0);
+    u16 from_cell = CNavMesh_FindCellIndexAtPoint(mesh, from, 0);
     if (from_cell == 0xffff)
         return false;
-    u16 to_cell = fn_710027a41c(mesh, to, 0);
+    u16 to_cell = CNavMesh_FindCellIndexAtPoint(mesh, to, 0);
     if (to_cell == 0xffff)
         return false;
 

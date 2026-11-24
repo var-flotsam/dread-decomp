@@ -54,7 +54,7 @@ struct UnkKeyedValues_7100332c80 {
     }
 };
 
-void fn_7100332dc4(UnkValueMap_7100332c80* map, const u64* key, const base::reflection::UnkTypedRef* value);
+void CAbilityShinespark_SetOrAddSectionPropertyValue(UnkValueMap_7100332c80* map, const u64* key, const base::reflection::UnkTypedRef* value);
 
 void fn_7100332c80(UnkKeyedValues_7100332c80* self, const u64* key, const base::reflection::UnkTypedRef* value) {
     base::reflection::UnkTypedRef dst;
@@ -71,7 +71,7 @@ void fn_7100332c80(UnkKeyedValues_7100332c80* self, const u64* key, const base::
             }
         }
     }
-    fn_7100332dc4(&self->map, key, value);
+    CAbilityShinespark_SetOrAddSectionPropertyValue(&self->map, key, value);
     self->dirty = 1;
     if (self->field_0x10)
         self->field_0x10->field_0x60 = 1;

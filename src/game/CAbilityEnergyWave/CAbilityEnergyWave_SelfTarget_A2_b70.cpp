@@ -22,7 +22,7 @@ static inline UnkEnergyWaveTargetComp_b49* InputOf(UnkBaseComponent* component) 
 
 
 bool fn_71002fd774(CAbilityComponent* self) {
-    fn_71002fd814(self->Owner<UnkWaveOwner_A2_b70>(), &self->life);
+    CAbilityEnergyWave_RefreshOwnerComponentHandle(self->Owner<UnkWaveOwner_A2_b70>(), &self->life);
     for (CAbility **it = self->begin(), **end = self->end(); it != end; ++it)
         (*it)->Virtual(0x40);
     void* link = &self->input;

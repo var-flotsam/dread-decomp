@@ -76,12 +76,12 @@ struct UnkSmartLinkEntry_b49a1 {
 };
 
 struct UnkSmartLinkMap_b49a1;
-UnkSmartLinkEntry_b49a1* fn_7100268c64(UnkSmartLinkMap_b49a1* self, u32 key);  // find or add
+UnkSmartLinkEntry_b49a1* CDynamicSmartLinkGroup_GetLinkEntryGrowingToIndex(UnkSmartLinkMap_b49a1* self, u32 key);  // find or add
 
 void fn_7100267cfc(UnkSmartLinkMap_b49a1* self, const u32* key, const UnkSmartLinkEntry_b49a1* value) {
-    *fn_7100268c64(self, *key) = *value;
+    *CDynamicSmartLinkGroup_GetLinkEntryGrowingToIndex(self, *key) = *value;
 }
 
 void fn_7100267dcc(UnkSmartLinkMap_b49a1* self, const u32* key, UnkSmartLinkEntry_b49a1* value) {
-    *fn_7100268c64(self, *key) = static_cast<UnkSmartLinkEntry_b49a1&&>(*value);
+    *CDynamicSmartLinkGroup_GetLinkEntryGrowingToIndex(self, *key) = static_cast<UnkSmartLinkEntry_b49a1&&>(*value);
 }

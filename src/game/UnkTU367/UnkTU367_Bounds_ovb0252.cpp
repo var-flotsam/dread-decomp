@@ -7,7 +7,7 @@
 struct UnkNavMesh;
 struct Vec2_ebfa7c;
 using Mesh = UnkNavMesh;
-Vec2_ebfa7c* fn_710027a410(Mesh* mesh, u16 index);
+Vec2_ebfa7c* CNavMesh_GetVertex(Mesh* mesh, u16 index);
 
 struct UnkNavMeshBounds_b0252 {
     f32 min_x, min_y, max_x, max_y;
@@ -25,7 +25,7 @@ struct UnkNavMeshCellBounds_b0252 {
 };
 
 static inline const base::math::CVector2D* Vertex(UnkNavMeshCellBounds_b0252* c, u32 i) {
-    return reinterpret_cast<const base::math::CVector2D*>(fn_710027a410(c->mesh, c->vertices[i]));
+    return reinterpret_cast<const base::math::CVector2D*>(CNavMesh_GetVertex(c->mesh, c->vertices[i]));
 }
 
 UnkNavMeshBounds_b0252 fn_71002aff5c(UnkNavMeshCellBounds_b0252* self) {

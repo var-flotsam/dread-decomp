@@ -51,7 +51,7 @@ struct UnkSetAnimationForImpact_b55 {
     bool field_0x4a;
 };
 
-void fn_710036de14(UnkSetAnimationForImpact_b55* self) {
+void CSetAnimationForImpact_SelectFrontOrBackImpactAndSend(UnkSetAnimationForImpact_b55* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->field_0x4a = false;
     UnkImpactSource_b55* source = self->owner->field_0x1d0;

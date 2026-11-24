@@ -64,7 +64,7 @@ void fn_7100ebf278(UnkNavMeshManager* self);  // constructor (game_hi/fn_7100ebf
 // The index of the mesh's cell (0x70-byte entry at +0x290) that contains `point`, found through the
 // bounding-box tree at +0x400 when there is one, if the cell accepts `flags`; 0xffff otherwise.
 // Defined in src/game/navmesh/CNavMesh/fn_710027a41c.cpp.
-u16 fn_710027a41c(UnkNavMesh* self, const base::math::CVector2D* point, u32 flags);
+u16 CNavMesh_FindCellIndexAtPoint(UnkNavMesh* self, const base::math::CVector2D* point, u32 flags);
 
 // Probes the navigation mesh from a point (src/game_hi/fn_7100ebfa7c.cpp; its point and result types are local there).
 struct Vec2_ebfa7c;

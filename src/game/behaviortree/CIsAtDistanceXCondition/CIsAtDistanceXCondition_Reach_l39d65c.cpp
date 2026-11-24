@@ -25,12 +25,12 @@ struct UnkSelf;
 
 // Fetches the position the key names.
 static inline void Fetch_l39d65c(void* self, u8* key, CVector3D* out) {
-    fn_710039525c(static_cast<UnkSelf*>(self), key, out);
+    CBehavior_LoadVector3DValue(static_cast<UnkSelf*>(self), key, out);
 }
 
 #define UNK_NEAR(a, b) ((a) - 0.001f <= (b) && (a) + 0.001f >= (b))
 
-bool fn_710039d65c(UnkDistanceCond_l39d65c* self) {
+bool CIsAtDistanceXCondition_IsSecondPosWithinXDistanceOfFirst(UnkDistanceCond_l39d65c* self) {
     CVector3D a;
     a.x = 0;
     a.y = 0;

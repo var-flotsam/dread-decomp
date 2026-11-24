@@ -24,7 +24,7 @@ struct UnkAreaOfInterestCondition_b67a2 {
     UnkActor* owner;
 };
 
-bool fn_710039ea88(UnkAreaOfInterestCondition_b67a2* self) {
+bool CIsTargetInsideAreaOfInterestCondition_CheckTargetInsideArea(UnkAreaOfInterestCondition_b67a2* self) {
     UnkAreaOfInterest_b67a2* area = fn_7101102f3c(self->owner->field_0x240);
     UnkActor* target = fn_7100d7c990(self->owner);
     CVector2D point;

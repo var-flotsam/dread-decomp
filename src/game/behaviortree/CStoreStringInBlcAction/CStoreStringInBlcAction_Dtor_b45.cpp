@@ -15,13 +15,13 @@ struct base::UnkDtorTraits<CStoreStringInBlcActionDtorTag_b45a1> {
     static void base(char* self) { fn_7100393ea0(self); }
 };
 
-__attribute__((flatten)) void fn_7100377074(char* self) {
+__attribute__((flatten)) void CStoreStringInBlcAction_Destroy(char* self) {
     base::refl_Dtor<CStoreStringInBlcActionDtorTag_b45a1, base::UnkMemberAt<base::global::CRntString, 0x38>,
                     base::UnkStrIdAt<0x30>>(self);
 }
 
 // The deleting form.
-__attribute__((flatten)) void fn_71003770f4(char* self) {
+__attribute__((flatten)) void CStoreStringInBlcAction_DestroyAndDelete(char* self) {
     base::refl_DeletingDtor<CStoreStringInBlcActionDtorTag_b45a1,
                             base::UnkMemberAt<base::global::CRntString, 0x38>, base::UnkStrIdAt<0x30>>(self);
 }

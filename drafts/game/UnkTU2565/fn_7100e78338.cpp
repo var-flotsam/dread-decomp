@@ -45,7 +45,7 @@ static_assert(__builtin_offsetof(UnkOffMeshGrid_le78338, size) == 0x5f60, "");
 
 // Whether the point lies on the navigation mesh (the query finds a polygon).
 inline bool IsOnMesh(UnkNavMesh* navmesh, const CVector2D& point) {
-    return fn_710027a41c(navmesh, &point, 1) != 0xffff;
+    return CNavMesh_FindCellIndexAtPoint(navmesh, &point, 1) != 0xffff;
 }
 
 // Whether the point moved by the offset lies on the navigation mesh.

@@ -7,10 +7,10 @@
 using base::global::UnkStrId;
 
 extern void* g_unk_7101a395c8[];
-void fn_71002c45f8(UnkQueryParam* self);
+void CMinTargetDistanceFilter_Construct(UnkQueryParam* self);
 
 void fn_710047865c(UnkQueryParam* self) {
-    fn_71002c45f8(self);
+    CMinTargetDistanceFilter_Construct(self);
     self->vtable = &g_unk_7101a395c8[2];
     self->field_0x8 = UnkStrId("CRS_MIN_TARGET_DIST", true);
 }

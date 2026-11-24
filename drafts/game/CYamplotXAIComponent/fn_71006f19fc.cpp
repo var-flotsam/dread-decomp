@@ -29,7 +29,7 @@ u32 fn_7100413fd0(UnkSource_7100286798* self);
 
 struct Mesh;
 struct Vec2;
-Vec2* fn_710027a410(Mesh* mesh, u16 index);
+Vec2* CNavMesh_GetVertex(Mesh* mesh, u16 index);
 
 bool fn_710027c460(UnkNavMesh* self, u16 cell, u8 side, bool forward, const CVector2D* widths, u32 flags,
                    u16* out_cell, u8* out_side);
@@ -127,9 +127,9 @@ static inline UnkNavMeshManager* NavManager_l6f19fc() {
 static inline UnkSegment2D SideSegment_l6f19fc(UnkNavMeshManager* manager, u16 cell, u8* side) {
     UnkNavMeshSidePair ends = fn_71002afe60(fn_710027a33c(manager->navmesh, cell), side);
     const CVector2D* a =
-        reinterpret_cast<const CVector2D*>(fn_710027a410(reinterpret_cast<Mesh*>(manager->navmesh), ends.a));
+        reinterpret_cast<const CVector2D*>(CNavMesh_GetVertex(reinterpret_cast<Mesh*>(manager->navmesh), ends.a));
     const CVector2D* b =
-        reinterpret_cast<const CVector2D*>(fn_710027a410(reinterpret_cast<Mesh*>(manager->navmesh), ends.b));
+        reinterpret_cast<const CVector2D*>(CNavMesh_GetVertex(reinterpret_cast<Mesh*>(manager->navmesh), ends.b));
     return UnkSegment2D(*a, *b);
 }
 
@@ -153,7 +153,7 @@ bool fn_71006f19fc(UnkYamplot_l6f19fc* self, u32 mode, const CVector2D* point, f
     CVector2D pos{point->x, point->y};
     UnkVec2f_A5 dir = fn_71010c9a1c(self->owner->movement);
     UnkNavMesh* mesh = NavManager_l6f19fc()->navmesh;
-    u16 cell = fn_710027a41c(mesh, &pos, 0);
+    u16 cell = CNavMesh_FindCellIndexAtPoint(mesh, &pos, 0);
     UnkNavHitList_l6f19fc hits;
     UnkNavSideFilter no_filter{nullptr, nullptr};
     UnkNavSideVerdict no_verdict{nullptr, nullptr};

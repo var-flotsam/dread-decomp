@@ -162,7 +162,7 @@ fallback:
 struct UnkEnumType;
 UnkEnumType* fn_710009ffd4();
 
-bool fn_7100395044(UnkSelf* behavior, UnkBehaviorName_ovb0265* name, CRntString* out) {
+bool CBehavior_ReadStringProperty(UnkSelf* behavior, UnkBehaviorName_ovb0265* name, CRntString* out) {
     UnkBehavior_ovb0265* self = reinterpret_cast<UnkBehavior_ovb0265*>(behavior);
     UnkBehaviorActor_ovb0265* actor = self->actor;
     UnkBehaviorAI_ovb0265* ai = actor ? actor->ai : nullptr;
@@ -183,7 +183,7 @@ bool fn_7100395044(UnkSelf* behavior, UnkBehaviorName_ovb0265* name, CRntString*
 // The same for a vector.
 bool fn_7100395d3c(CBlackboard::CSection* section, const CStrId* name, base::math::CVector3D* out);
 
-bool fn_710039525c(UnkSelf* behavior, UnkBehaviorName_ovb0265* name, base::math::CVector3D* out) {
+bool CBehavior_LoadVector3DValue(UnkSelf* behavior, UnkBehaviorName_ovb0265* name, base::math::CVector3D* out) {
     UnkBehavior_ovb0265* self = reinterpret_cast<UnkBehavior_ovb0265*>(behavior);
     UnkBehaviorActor_ovb0265* actor = self->actor;
     UnkBehaviorAI_ovb0265* ai = actor ? actor->ai : nullptr;

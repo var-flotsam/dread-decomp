@@ -55,7 +55,7 @@ void fn_7100969604(UnkUnit1441Start_A4_b74* self) {
             }
         }
         asm("" : "+r"(self));
-        fn_7100316018(track, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
         fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
     self->field_0xfc = 0;

@@ -132,7 +132,7 @@ u32 fn_71003e3ab4(UnkBigFistChangeToFlee_l3e3ab4* self) {
         ResetRef(&self->handle);
     }
     if (tracked) {
-        fn_7100316018(tracked, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(tracked, &self->handle);
         fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
     }
 

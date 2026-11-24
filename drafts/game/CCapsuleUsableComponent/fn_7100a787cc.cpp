@@ -11,7 +11,7 @@ struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b958;
 extern UnkDesc_SpitSend g_unk_7172769740;
 
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
+void CAbilityGhostAura_AssignWeakHandleToRef(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_7100a78e44(void* self);
 
@@ -128,7 +128,7 @@ void fn_7100a787cc(UnkCapsule_la787cc* self) {
     }
     asm("" : "+r"(self));
     if (track) {
-        fn_7100316018(track, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
         fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
     }
     UnkCapsuleCounted_la787cc* c2 = self->second.Get();

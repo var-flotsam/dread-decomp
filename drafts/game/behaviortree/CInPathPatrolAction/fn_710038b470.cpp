@@ -45,7 +45,7 @@ struct UnkInPathPatrolListener_l38b470 {
                 fn_710117b3f0(old, this);
             ResetRef(&watched);
         }
-        fn_7100316018(target, &watched);
+        CAbilityGhostAura_AssignWeakHandleToRef(target, &watched);
         fn_710117b3e8(watched ? watched->target : nullptr, this);
     }
 };
@@ -140,7 +140,7 @@ void fn_710038b470(UnkInPathPatrol_l38b470* self) {
             fn_710117b3f0(target, &self->listener);
         ResetRef(&self->listener.watched);
     }
-    fn_7100316018(reinterpret_cast<UnkWeakTarget*>(animation), &self->listener.watched);
+    CAbilityGhostAura_AssignWeakHandleToRef(reinterpret_cast<UnkWeakTarget*>(animation), &self->listener.watched);
     fn_710117b3e8(self->listener.watched ? self->listener.watched->target : nullptr, &self->listener);
     self->field_0xa5 = false;
 }

@@ -32,7 +32,7 @@ void fn_710035d0ac() __attribute__((visibility("hidden")));
 void fn_710035d0b8() __attribute__((visibility("hidden")));
 extern char g_unk_71726b2070[];
 
-void fn_710035d230() {
+void SDeathImpactDisplacement_InitStatics() {
     InitHeaderIds(&g_unk_71726b2078.ids);
     InitEnum(&reinterpret_cast<UnkEnumType&>(base::reflection::TypeObject<ECutPathMode>::object), "ECutPathMode", fn_710035c5fc, fn_710035c4b0,
              g_unk_71726b1ec8, &g_unk_71726b1ed0, fn_710035d094, &g_unk_71726b1ef0, fn_710035d0a0);

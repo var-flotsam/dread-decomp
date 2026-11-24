@@ -14,7 +14,7 @@ struct UnkSelf {
     f32 field_0x5c;
 };
 
-u32 fn_7100392704(UnkSelf* self, f32 delta) {
+u32 CStopWatchAction_AccumulateElapsedTimeAndCheckLimit(UnkSelf* self, f32 delta) {
     f32 elapsed = 0.0f;
     fn_7100394e2c(self, self->sElapsedTime, &elapsed);
     elapsed = elapsed + delta;

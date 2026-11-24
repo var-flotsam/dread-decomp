@@ -25,7 +25,7 @@ using base::global::CStrId;
 struct UnkFxPooledObject;
 struct UnkSonarModel_ovb0085;
 // As src/game/CScorpiusFXComponent/CScorpiusFXComponent_Gas_ovb0008.cpp declares it (it returns the node).
-void* fn_7100339900(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,
+void* CAbilitySonar_CreateModelInRenderPool(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,
                     const CStrId* name);
 // As src/game/CGrappleBeamComponent/CGrappleBeamComponent_Effects_ovb0047.cpp declares it.
 
@@ -61,11 +61,11 @@ static inline void Fill(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* pat
 }
 
 void CPlasmaBeamGun_FillParticleFxPool(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* path, u32 count) {
-    Fill<UnkSwitchObject, void*, fn_7100339d48, fn_7100146dac>(self, path, count);
+    Fill<UnkSwitchObject, void*, CAbilitySonar_CreateSwitchObjectInRenderPool, fn_7100146dac>(self, path, count);
 }
 
 void CPlasmaBeamGun_FillModelFxPool(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* path, u32 count) {
-    Fill<UnkSonarModel_ovb0085, void*, fn_7100339900, fn_7100145e94>(self, path, count);
+    Fill<UnkSonarModel_ovb0085, void*, CAbilitySonar_CreateModelInRenderPool, fn_7100145e94>(self, path, count);
 }
 
 // The effect cache (the model manager, game/UnkModelManager.h) keeps one pool per effect path, in a

@@ -180,7 +180,7 @@ struct UnkSmartLinkMap_b49a1;
 
 // The entry at `index`; when growing is allowed (field_0x14), an index past the end grows the array
 // to the step's next multiple and then to index + 1 entries, value-initialising the new ones.
-UnkSmartLinkEntry_ovb0128* fn_7100268c64(UnkSmartLinkMap_b49a1* map, u32 index) {
+UnkSmartLinkEntry_ovb0128* CDynamicSmartLinkGroup_GetLinkEntryGrowingToIndex(UnkSmartLinkMap_b49a1* map, u32 index) {
     base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* self = reinterpret_cast<base::global::CRntVector<UnkSmartLinkEntry_ovb0128>*>(map);
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;

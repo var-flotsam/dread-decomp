@@ -5,7 +5,7 @@
 #include "game/UnkRadius.h"
 #include "types.h"
 
-bool fn_71002c36d0(UnkRadius* self, UnkActor* first, UnkActor* second) {
+bool CMaxTargetDistanceFilter_IsNotWithinMaxTargetDistance(UnkRadius* self, UnkActor* first, UnkActor* second) {
     if (self->field_0x14 > 0.0f) {
         UnkActor* target = fn_7100d7c990(first);
         if (target) {

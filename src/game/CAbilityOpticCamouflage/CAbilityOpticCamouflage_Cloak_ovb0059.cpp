@@ -135,7 +135,7 @@ void CAbilityOpticCamouflage_Destroy(UnkOpticAbility_ovb0059* self) {
         if (link && --link->ref_count == 0)
             link->vf_0x10();
     }
-    fn_71002fa2bc(self);
+    CAbility_Destroy(self);
 }
 
 void CAbilityOpticCamouflage_PulseModelColor(UnkOpticAbility_ovb0059* self, f32 dt) {

@@ -41,7 +41,7 @@ UnkEnumType* fn_71002bd4d8();
 void fn_71002bfeac() __attribute__((visibility("hidden")));
 extern char g_unk_71726a62d0[];
 
-void fn_71002c0f70() {
+void CFilter_InitStatics() {
     InitHeaderIds(&g_unk_71726a6828.ids);
     fn_710009ec00(g_unk_71726a5eb0, fn_71002bda60());
     fn_710009ec00(g_unk_71726a5eb1, fn_71002bd4d8());

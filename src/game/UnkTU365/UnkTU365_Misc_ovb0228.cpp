@@ -508,7 +508,7 @@ struct UnkNavMeshEdge;
 struct UnkSubObject_b0228 {
     alignas(8) u8 data[0x28];
     UnkSubObject_b0228(const UnkSubObject_b0228& o) {
-        fn_710027ebe4(reinterpret_cast<base::global::CRntVector<UnkNavMeshEdge>*>(this),
+        CNavMesh_CopyConstructEdgeArray(reinterpret_cast<base::global::CRntVector<UnkNavMeshEdge>*>(this),
                       reinterpret_cast<const base::global::CRntVector<UnkNavMeshEdge>*>(&o));
     }
 };
@@ -542,7 +542,7 @@ void fn_71002a1ff8(UnkRecordArray_b0228* self, const UnkRecord_b0228* value) {
     if ((s32)n >= (s32)cap)
         for (;;) {
         }
-    fn_7100279600(reinterpret_cast<base::global::CRntVector<UnkNavLoadCell>*>(self), cap);
+    CNavMesh_ReserveCellArray(reinterpret_cast<base::global::CRntVector<UnkNavLoadCell>*>(self), cap);
     new (&self->data[self->count]) UnkRecord_b0228(*value);
     self->count = self->count + 1;
 }

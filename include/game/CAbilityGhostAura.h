@@ -24,7 +24,7 @@ extern void* g_unk_7101a22cb8[];
 extern void* g_unk_7101a22d18[];
 extern char g_unk_7101a22ce8[];
 struct UnkWeakRef;
-void fn_7100316018(UnkWeakTarget* self, UnkWeakRef* out);
+void CAbilityGhostAura_AssignWeakHandleToRef(UnkWeakTarget* self, UnkWeakRef* out);
 CGrappleBeamGun* fn_710030c5fc(UnkAuraGunOwner* self, const base::global::CStrId& id);
 extern void* g_unk_7101a22a88[];
 extern f32 g_unk_7101a22a70;

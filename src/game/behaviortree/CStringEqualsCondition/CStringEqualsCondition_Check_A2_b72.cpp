@@ -39,11 +39,11 @@ struct UnkStringEqualsCondition_A2_b72 {
     CStrId sBlackboardValue;
 };
 
-bool fn_71003a3c88(UnkStringEqualsCondition_A2_b72* self) {
+bool CStringEqualsCondition_CheckBlackboardValueEqualsRawValue(UnkStringEqualsCondition_A2_b72* self) {
     if (self->sBlackboardValue.data == &g_unk_7101d47108->empty)
         return false;
     UnkInlineString_A2_b72 str;
-    fn_7100395044(self, &self->sBlackboardValue, &str);
+    CBehavior_ReadStringProperty(self, &self->sBlackboardValue, &str);
     return fn_710007f120(reinterpret_cast<const UnkCompared_0x30*>(str.str),
                          reinterpret_cast<const UnkCompared_0x30*>(self->sRawValue));
 }

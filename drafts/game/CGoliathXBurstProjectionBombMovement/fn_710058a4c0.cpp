@@ -25,7 +25,7 @@ struct UnkGoliathXBombFx_l58a4c0 {
 static inline UnkSwitchObject* CreateOnLayer0(const CFilePathStrId* path) {
     UnkRenderManager* render = g_unk_7101d47300;
     UnkSwitchObject* object = nullptr;
-    fn_7100339d48(render->field_0x218, path, &object, &g_unk_7101d470e0);
+    CAbilitySonar_CreateSwitchObjectInRenderPool(render->field_0x218, path, &object, &g_unk_7101d470e0);
     fn_7100219ae0(render, object ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<u8*>(object) + 8) : nullptr,
                   0);
     return object;

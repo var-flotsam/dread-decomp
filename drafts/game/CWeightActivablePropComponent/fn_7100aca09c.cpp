@@ -86,7 +86,7 @@ void fn_7100aca09c(UnkWeightProp_aca09c* self) {
                 fn_710117b3f0(target, link);
             ResetRef(&self->handle);
         }
-        fn_7100316018(animation, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(animation, &self->handle);
         fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
     }
     open_mode.id = 1;

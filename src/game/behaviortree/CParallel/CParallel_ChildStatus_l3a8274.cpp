@@ -102,7 +102,7 @@ static void Finish(UnkParallel_l3a8274* self) {
     self->state = Status;
 }
 
-void fn_71003a8274(UnkParallel_l3a8274* self, UnkSelectorNode_A2_b68* child, s32 status) {
+void CParallel_RemoveChildAndApplyResultPolicy(UnkParallel_l3a8274* self, UnkSelectorNode_A2_b68* child, s32 status) {
     fn_7100394bd8(reinterpret_cast<UnkNode_7100394bd8*>(self), child, status);
     UnkParallelEntry_l3a8274* entry = self->Find(child);
     if (!entry)
