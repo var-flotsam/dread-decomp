@@ -64,7 +64,7 @@ static inline void Release(UnkCountedResource* resource) {
 
 void fn_71001a60e4(UnkMaterial_l1a60e4* self) {
     self->vtable = g_unk_7101a1e388 + 2;
-    fn_71001a6418(reinterpret_cast<UnkMaterialReset_ovb0098*>(self));
+    SAlpha_UnregisterAndClearMaterial(reinterpret_cast<UnkMaterialReset_ovb0098*>(self));
     if (self->ids.data) {
         for (u64 i = 0; i < self->ids.count; ++i)
             self->ids.data[i].Reset();

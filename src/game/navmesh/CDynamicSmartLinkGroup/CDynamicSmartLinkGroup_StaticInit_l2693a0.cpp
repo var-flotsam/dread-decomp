@@ -56,7 +56,7 @@ static inline void* AsType(const CType* type) {
     return const_cast<CType*>(type);
 }
 
-void fn_71002693a0() {
+void CDynamicSmartLinkGroup_InitStatics() {
     InitHeaderFns(g_unk_71726a2a08);
 
     fn_7100264814();

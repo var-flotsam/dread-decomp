@@ -104,12 +104,12 @@ static_assert(__builtin_offsetof(UnkAbility_ovb0095, holders) == 0xe8, "layout")
 
 // CAbility's destructor: its six value holders (last first), the member at +0x10, then the base
 // destructor fn_7101043934.
-void fn_71002fa2bc(UnkOpticAbility_ovb0059* self) {
+void CAbility_Destroy(UnkOpticAbility_ovb0059* self) {
     reinterpret_cast<UnkAbility_ovb0095*>(self)->DestroyMembers();
 }
 
 // The deleting destructor.
-void fn_71002fa3f4(UnkAbility_ovb0095* self) {
+void CAbility_DestroyAndDelete(UnkAbility_ovb0095* self) {
     self->DestroyMembers();
     operator delete(self);
 }

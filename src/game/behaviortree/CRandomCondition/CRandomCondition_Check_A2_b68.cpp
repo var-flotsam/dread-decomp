@@ -16,7 +16,7 @@ struct UnkRandomCondition_A2_b68 {
     base::global::CStrId property;
 };
 
-bool fn_710039f194(UnkRandomCondition_A2_b68* self) {
+bool CRandomCondition_RollChanceAgainstValue(UnkRandomCondition_A2_b68* self) {
     f32 probability = self->probability;
     if (self->property.data != &g_unk_7101d47108->empty)
         fn_7100394e2c(reinterpret_cast<UnkSelf*>(self), &self->property, &probability);

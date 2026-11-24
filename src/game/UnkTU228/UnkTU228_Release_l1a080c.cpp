@@ -137,7 +137,7 @@ void fn_71001a080c(UnkDecalResourceMgr* mgr_, UnkDecalResource* resource) {
 
     if (material->source->vf_0x20() == 1)
         mgr->field_0xbc--;
-    fn_71001a6418(reinterpret_cast<UnkMaterialReset_ovb0098*>(material));
+    SAlpha_UnregisterAndClearMaterial(reinterpret_cast<UnkMaterialReset_ovb0098*>(material));
     material->vf_0x8();
 
     UnkVoicePool_b56* pool = reinterpret_cast<UnkVoicePool_b56*>(mgr->pool);

@@ -22,7 +22,7 @@ void fn_71003a879c() __attribute__((visibility("hidden")));
 void fn_71003a87a8() __attribute__((visibility("hidden")));
 extern char g_unk_71726bbd10[];
 
-void fn_71003a8a80() {
+void CParallel_InitStatics() {
     InitHeaderIds(&g_unk_71726bbd18.ids);
     InitEnum(&base::reflection::TypeObject<behaviortree::CParallel::EPolicy, UnkEnumType>::object, "behaviortree::CParallel::EPolicy", fn_71003a76bc, fn_71003a7570,
              g_unk_71726bbcc8, &g_unk_71726bbcd0, fn_71003a879c, &g_unk_71726bbcf0, fn_71003a87a8);

@@ -67,7 +67,7 @@ struct UnkMovieAudioOut {
 static_assert(__builtin_offsetof(UnkMovieAudioOut, format) == 0x230, "layout");
 static_assert(__builtin_offsetof(UnkMovieAudioOut, opened) == 0x2b1, "layout");
 
-s32 fn_7100220d2c(UnkMovieAudioOut* self, s32 sampleRate, s32 channels, bool* outResampling) {
+s32 CMovieAudioStreamNx_OpenAudioOut(UnkMovieAudioOut* self, s32 sampleRate, s32 channels, bool* outResampling) {
     if (outResampling == nullptr)
         return 0x100b;
 

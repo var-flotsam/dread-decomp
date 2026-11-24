@@ -83,7 +83,7 @@ void fn_71006e3fd8(UnkXParasiteTransform_ovb0130* self) {
     alignas(8) u32 kind;
     UnkInlineString_ovb0130 str;
     if (self->target.data != &g_unk_7101d47108->empty &&
-        reinterpret_cast<UnkResolveFn_ovb0130>(fn_7100395044)(
+        reinterpret_cast<UnkResolveFn_ovb0130>(CBehavior_ReadStringProperty)(
             reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->target,
             reinterpret_cast<UnkInlineString_A2_b72*>(&str))) {
         UnkGameManager* manager = g_unk_7101d47310;

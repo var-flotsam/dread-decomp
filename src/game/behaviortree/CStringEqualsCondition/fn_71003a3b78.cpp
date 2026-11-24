@@ -14,7 +14,7 @@ struct UnkObj_3a3b78 {
 
 void fn_7100394530(void*);
 
-void fn_71003a3b78(UnkObj_3a3b78* self) {
+void CStringEqualsCondition_Destroy(UnkObj_3a3b78* self) {
     self->vtable = &g_unk_7101a28ac0[2];
     self->field_0x68.~UnkStrIdTwoStep();
     CRntString_Destroy(&self->field_0x38);

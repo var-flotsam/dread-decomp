@@ -45,7 +45,7 @@ struct UnkBuiltId_l375e84 {
     ~UnkBuiltId_l375e84() { id.~CStrId(); }
 };
 
-s32 fn_7100375e84(UnkStorePosInBlc_l375e84* self) {
+s32 CStorePosInBlcAction_StoreEntityPositionInProp(UnkStorePosInBlc_l375e84* self) {
     alignas(8) u32 kind;
     UnkActor* actor = self->owner;
     UnkBlcValue_l375e84 value;
@@ -59,7 +59,7 @@ s32 fn_7100375e84(UnkStorePosInBlc_l375e84* self) {
     if (useTarget) {
         actor = fn_7100d7c990(self->owner);
     } else if (self->source.data != &g_unk_7101d47108->empty &&
-               reinterpret_cast<UnkResolveFn_l375e84>(fn_7100395044)(
+               reinterpret_cast<UnkResolveFn_l375e84>(CBehavior_ReadStringProperty)(
                    reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->source,
                    reinterpret_cast<UnkInlineString_A2_b72*>(&value))) {
         // The entity the game manager knows by the value's id.

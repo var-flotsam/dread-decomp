@@ -80,7 +80,7 @@ void fn_710036cf68(UnkSetAnimAction_l36cf68* self) {
     self->started = false;
     UnkInlineString_l36cf68 name(&self->name);
     if (self->name_ref.data != &g_unk_7101d47108->empty)
-        fn_7100395044(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self),
+        CBehavior_ReadStringProperty(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self),
                       static_cast<CStrId*>(static_cast<base::global::UnkStrIdBase*>(&self->name_ref)),
                       reinterpret_cast<UnkInlineString_A2_b72*>(&name));
 

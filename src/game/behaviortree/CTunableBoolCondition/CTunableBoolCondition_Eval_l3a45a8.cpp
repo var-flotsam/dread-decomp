@@ -107,7 +107,7 @@ static inline bool Get(UnkTunableObject_l3a45a8* obj, u64 key, bool* out) {
     return false;
 }
 
-bool fn_71003a45a8(UnkTunableBoolCondition_l3a45a8* self) {
+bool CTunableBoolCondition_GetTunableValueOrDefault(UnkTunableBoolCondition_l3a45a8* self) {
     bool value = self->value;
     if (self->group.data != &g_unk_7101d47108->empty && self->name.data != &g_unk_7101d47108->empty) {
         UnkTunableTable_l3a45a8* table = reinterpret_cast<UnkTunableTable_l3a45a8*>(Registry());

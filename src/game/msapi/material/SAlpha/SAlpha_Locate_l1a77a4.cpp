@@ -66,7 +66,7 @@ struct UnkMaterialValuesVector_l1a77a4 : base::global::CRntVector<UnkMaterialVal
         if (field_0x14 && n <= index) {
             if (capacity <= index && step != 0)
                 Reserve((index / step + 1) * step);
-            fn_71001a9bd0(reinterpret_cast<UnkMaterialValuesVector*>(this), index + 1);
+            SAlpha_ResizeValueBlockArray(reinterpret_cast<UnkMaterialValuesVector*>(this), index + 1);
         }
         return data[index];
     }

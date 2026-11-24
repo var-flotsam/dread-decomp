@@ -109,7 +109,7 @@ void CScorpiusFXComponent_CreateGasEffects(UnkScorpiusFX_ovb0008* self) {
         ModelManager();
         UnkRenderManager* render = g_unk_7101d47300;
         UnkSwitchObject* gas = nullptr;
-        fn_7100339d48(render->field_0x218, &s_path, &gas, &base::global::CStrId::Empty());
+        CAbilitySonar_CreateSwitchObjectInRenderPool(render->field_0x218, &s_path, &gas, &base::global::CStrId::Empty());
         fn_7100219ae0(render, gas ? &gas->field_0x8 : nullptr, 0);
         UnkSwitchObject* item = gas;
         fn_7100146dac(item, false);

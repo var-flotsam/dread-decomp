@@ -6,7 +6,7 @@
 
 using UnkKeyedWords_b52 = base::global::CRntSmallDictionary<u32, u32>;
 
-u32* fn_710033140c(UnkKeyedWords_b52* self, const u32* key, const u32* value) {
+u32* CAbilityShinespark_AppendU32DictionaryEntry(UnkKeyedWords_b52* self, const u32* key, const u32* value) {
     if (self->count == self->capacity)
         self->Grow(self->step + self->count);
     u32* key_slot = &self->keys[self->count];

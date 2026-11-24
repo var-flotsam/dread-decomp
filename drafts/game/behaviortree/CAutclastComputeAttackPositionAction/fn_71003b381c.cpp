@@ -18,7 +18,7 @@ using base::math::CVector2D;
 struct Vec2;
 struct Result;
 bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 flags, f32 b);
-Vec2* fn_710027a410(UnkNavMesh* mesh, u16 index);
+Vec2* CNavMesh_GetVertex(UnkNavMesh* mesh, u16 index);
 bool fn_710027c460(UnkNavMesh* self, u16 cell, u8 side, bool forward, const CVector2D* widths, u32 flags,
                    u16* out_cell, u8* out_side);
 struct UnkSource_7100286798;
@@ -112,7 +112,7 @@ inline f32 Dot_l3b381c(const UnkVec2Result& a, const UnkVec2Result& b) {
 }
 
 inline const CVector2D& Vertex_l3b381c(UnkNavMesh* mesh, u16 index) {
-    return *reinterpret_cast<const CVector2D*>(fn_710027a410(mesh, index));
+    return *reinterpret_cast<const CVector2D*>(CNavMesh_GetVertex(mesh, index));
 }
 
 bool fn_71003b381c(UnkAutclastAction_l3b381c* self, u32 index, const UnkAutclastPath_l3b381c* path,

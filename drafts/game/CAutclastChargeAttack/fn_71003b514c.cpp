@@ -45,7 +45,7 @@ struct UnkPlayerMovementCache;
 struct UnkSource_7100286798;
 void* fn_71010d7a6c(UnkPlayerMovementCache* self);
 u32 fn_7100413fd0(UnkSource_7100286798* self);
-const CVector2D* fn_710027a410(UnkNavMesh* mesh, u16 index);
+const CVector2D* CNavMesh_GetVertex(UnkNavMesh* mesh, u16 index);
 
 // What fn_7100d7c990 hands back: the target, with its movement cache at +0x200.
 struct UnkAutclastTarget {
@@ -119,7 +119,7 @@ inline UnkNavMeshManager* NavMeshManager() {
 
 inline UnkSegment2D SideSegment(UnkNavMesh* mesh, u16 cell, u8* side) {
     UnkNavMeshSidePair pair = fn_71002afe60(fn_710027a33c(mesh, cell), side);
-    return UnkSegment2D(*fn_710027a410(mesh, pair.a), *fn_710027a410(mesh, pair.b));
+    return UnkSegment2D(*CNavMesh_GetVertex(mesh, pair.a), *CNavMesh_GetVertex(mesh, pair.b));
 }
 
 bool fn_71003b514c(UnkActor* actor, const CVector2D* from, const CVector2D* dir) {

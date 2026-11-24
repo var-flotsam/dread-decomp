@@ -45,7 +45,7 @@ struct UnkQuery_710027a41c {
     u16 result;
 };
 
-u16 fn_710027a41c(UnkNavMesh* mesh, const CVector2D* point, u32 arg) {
+u16 CNavMesh_FindCellIndexAtPoint(UnkNavMesh* mesh, const CVector2D* point, u32 arg) {
     UnkOwner_710027a41c* self = reinterpret_cast<UnkOwner_710027a41c*>(mesh);
     if (self->node_count == 0) {
         for (u16 i = 0; i < self->region_count; i++) {

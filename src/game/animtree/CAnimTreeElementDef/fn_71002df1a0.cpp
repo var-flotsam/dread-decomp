@@ -41,7 +41,7 @@ extern UnkConversion g_unk_71726aa518;
 UnkEnumType* fn_71002dbffc();
 void fn_71002de038() __attribute__((visibility("hidden")));
 
-void fn_71002df1a0() {
+void CAnimTreeElementDef_InitStatics() {
     InitHeaderIds(&g_unk_71726aaa88.ids);
     fn_71002dbcf4();
     fn_710009ec00(g_unk_71726aa118, g_unk_71726aaa88.field_0x20);

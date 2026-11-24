@@ -155,7 +155,7 @@ void fn_71001a8f48(UnkMatStage_ovb0098* self) {
 struct UnkMatStageVector_ovb0098 : base::global::CRntVector<UnkMatStage_ovb0098> {};
 
 // Grows the array to hold n stages, moving them over and destroying the old ones.
-void fn_71001a7a2c(UnkMatStageVector_ovb0098* v, u32 n) {
+void SAlpha_ReserveStageArray(UnkMatStageVector_ovb0098* v, u32 n) {
     if (v->capacity < n) {
         UnkMatStage_ovb0098* p =
             static_cast<UnkMatStage_ovb0098*>(v->allocator->vf_0x40((u64)n * sizeof(UnkMatStage_ovb0098), 8, v->flags));
@@ -241,7 +241,7 @@ struct UnkMaterialValuesVector : base::global::CRntVector<UnkMaterialValues> {
 void fn_71001a97fc(UnkMaterialValues* self);
 
 // Grows the array to n elements, default-constructing the new ones.
-void fn_71001a9bd0(UnkMaterialValuesVector* v, u32 n) {
+void SAlpha_ResizeValueBlockArray(UnkMaterialValuesVector* v, u32 n) {
     v->Reserve(n);
     for (u32 i = v->count; i < n; ++i)
         fn_71001a97fc(&v->data[i]);
@@ -272,7 +272,7 @@ struct UnkMaterialReset_ovb0098 {
 static_assert(__builtin_offsetof(UnkMaterialReset_ovb0098, ids) == 0x3a8, "UnkMaterialReset_ovb0098 layout");
 
 // Unregisters the material, drops its resources and destroys its value blocks, passes and ids.
-void fn_71001a6418(UnkMaterialReset_ovb0098* self) {
+void SAlpha_UnregisterAndClearMaterial(UnkMaterialReset_ovb0098* self) {
     if (self->handle) {
         fn_7100169f34(unk_710b372d68, &self->key);
         self->handle = nullptr;
@@ -343,7 +343,7 @@ static inline void SetInts(void* state, u32 stage, const UnkMatUniform_ovb0098* 
 }
 
 // Sets every block of the list as a uniform of each stage that has it, on the material's program.
-__attribute__((noinline)) void fn_71001a7f50(UnkMatProgramOwner_ovb0098* self, UnkMatUniforms_ovb0098* list) {
+__attribute__((noinline)) void SAlpha_ApplyValueBlockUniforms(UnkMatProgramOwner_ovb0098* self, UnkMatUniforms_ovb0098* list) {
     if (!self->program)
         return;
     UnkMatUniform_ovb0098* it = list->data;
@@ -439,7 +439,7 @@ static inline UnkMatProgramOwner_ovb0098* AsProgramOwner(UnkMatStateOwner_ovb009
 }
 
 // Applies the parts of the state that `flags` names; bits 6 and 9 also go through each pass.
-void fn_71001a7bfc(UnkMatStateOwner_ovb0098* self, u32 flags) {
+void SAlpha_ApplyMaterialStateByFlags(UnkMatStateOwner_ovb0098* self, u32 flags) {
     if (flags & 2) {
         fn_710015a3e0(self->field_0x30);
         if (self->field_0x30) {
@@ -472,11 +472,11 @@ void fn_71001a7bfc(UnkMatStateOwner_ovb0098* self, u32 flags) {
     if (flags & 0x80)
         fn_71001a7dc8(self);
     if (flags & 0x40)
-        fn_71001a7f50(AsProgramOwner(self), &self->uniforms);
+        SAlpha_ApplyValueBlockUniforms(AsProgramOwner(self), &self->uniforms);
     if (flags & ~0x13fu) {
         for (UnkMatStatePass_ovb0098* p = self->passes; p != self->passes + self->pass_count; ++p) {
             if (flags & 0x40)
-                fn_71001a7f50(AsProgramOwner(self), &p->uniforms);
+                SAlpha_ApplyValueBlockUniforms(AsProgramOwner(self), &p->uniforms);
             if (flags & 0x200)
                 fn_71001a80b4(self, p->id, p->stages);
         }
@@ -541,7 +541,7 @@ static inline bool Readable(UnkReadField_ovb0098* f) {
 
 // Reads the object's fields from the file in order: strings (char const*) as their text, plain
 // values, enums and flag sets as their bytes. The first argument is not read.
-void fn_71001a69a0(UnkNoArg, CRntFile* file, void* dst) {
+void SAlpha_ReadReflectedFieldsFromFile(UnkNoArg, CRntFile* file, void* dst) {
     UnkReadObject_ovb0098* obj = static_cast<UnkReadObject_ovb0098*>(dst);
     UnkReadClass_ovb0098* cls = obj->GetClass();
     for (UnkReadField_ovb0098* f = cls->fields; f != cls->fields + cls->count; ++f) {
@@ -609,7 +609,7 @@ __attribute__((always_inline)) static inline void AddClass(char* list) {
     fn_710009ec00(list, &g_unk_716e352938[Index]);
 }
 
-void fn_71001a9d30() {
+void SAlpha_InitStatics() {
     InitHeader(g_unk_716e3528b0);
     InitEnum(reinterpret_cast<UnkReflType*>(&base::reflection::TypeObject<msapi::material::ETranslucencyType>::object), "msapi::material::ETranslucencyType", fn_71001a1680,
              reinterpret_cast<void (*)()>(fn_71001a12f4));

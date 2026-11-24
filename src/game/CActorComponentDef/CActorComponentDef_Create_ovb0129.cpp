@@ -91,7 +91,7 @@ struct UnkDefFactory_b0129 {
 };
 
 // Creates the definition registered for a component class (fn_7100253834), named `name`.
-UnkComponentDef_b0129* fn_7100253988(const base::UnkStrIdMember& name, const UnkKeyId_b0129& type) {
+UnkComponentDef_b0129* CActorComponentDef_CreateByTypeId(const base::UnkStrIdMember& name, const UnkKeyId_b0129& type) {
     auto* cls = reinterpret_cast<UnkDefFactory_b0129*>(fn_7100253834(&type));
     if (!cls || !fn_710009d50c(reinterpret_cast<const base::reflection::CType*>(cls), ComponentDefType()) ||
         !cls->construct)

@@ -37,8 +37,8 @@ UnkNavMeshCell* fn_710027a33c(UnkNavMesh* mesh, u16 key) {
             if (capacity <= index && cells->step != 0)
                 capacity = (index / cells->step + 1) * cells->step;
             auto* vector = reinterpret_cast<base::global::CRntVector<UnkNavLoadCell>*>(cells);
-            fn_7100279600(vector, capacity);
-            fn_7100279600(vector, index + 1);
+            CNavMesh_ReserveCellArray(vector, capacity);
+            CNavMesh_ReserveCellArray(vector, index + 1);
             u32 count = cells->count;
             if (count <= index) {
                 // Counted down from the number of new cells.

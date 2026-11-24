@@ -79,7 +79,7 @@ static_assert(__builtin_offsetof(UnkNavCellData, edges) == 0x30, "UnkNavCellData
 static_assert(__builtin_offsetof(UnkNavCellData, mesh) == 0x58, "UnkNavCellData placeholder layout");
 
 // The position of vertex `id` of the mesh (src/game_hi/fn_7100ebfa7c.cpp; a CVector2D).
-Vec2_ebfa7c* fn_710027a410(Mesh*, u16);
+Vec2_ebfa7c* CNavMesh_GetVertex(Mesh*, u16);
 
 // The record values of a side with no edge in the file: no neighbour and no flags.
 extern const u16 g_unk_7101648ce8 __attribute__((visibility("hidden")));
@@ -108,10 +108,10 @@ static inline UnkSideEnds SideEnds(const UnkNavCellData* cell, const u8& side) {
 // The unit direction of side `side` of the cell and its length.
 static inline f32 SideDirection(UnkNavCellData* cell, Mesh* mesh, const u8& side, CVector2D* dir) {
     UnkSideEnds ends = SideEnds(cell, side);
-    const CVector2D* a = reinterpret_cast<const CVector2D*>(fn_710027a410(mesh, ends.a));
+    const CVector2D* a = reinterpret_cast<const CVector2D*>(CNavMesh_GetVertex(mesh, ends.a));
     f32 ax = a->x;
     f32 ay = a->y;
-    const CVector2D* b = reinterpret_cast<const CVector2D*>(fn_710027a410(mesh, ends.b));
+    const CVector2D* b = reinterpret_cast<const CVector2D*>(CNavMesh_GetVertex(mesh, ends.b));
     f32 dx = b->x - ax;
     f32 dy = b->y - ay;
     f32 len = sqrtf(dx * dx + dy * dy);

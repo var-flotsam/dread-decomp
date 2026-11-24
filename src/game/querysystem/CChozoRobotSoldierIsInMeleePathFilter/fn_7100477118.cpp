@@ -10,7 +10,7 @@ using base::global::UnkStrId;
 extern void* g_unk_7101a39538[];
 
 void fn_7100477118(UnkQueryParam* self) {
-    fn_71002bedc8(self);
+    CFilter_Construct(self);
     self->vtable = &g_unk_7101a39538[2];
     self->field_0x8 = UnkStrId("IN_MELEE_PATH", true);
 }

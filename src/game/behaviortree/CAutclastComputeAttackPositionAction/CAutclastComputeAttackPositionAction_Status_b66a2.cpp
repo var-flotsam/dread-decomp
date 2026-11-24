@@ -7,6 +7,6 @@ struct UnkAutclastComputeAttackPositionAction_b66a2 {
     bool done;
 };
 
-s32 fn_71003b3800(UnkAutclastComputeAttackPositionAction_b66a2* self) {
+s32 CAutclastComputeAttackPositionAction_GetStatus(UnkAutclastComputeAttackPositionAction_b66a2* self) {
     return self->done ? 5 : 6;
 }

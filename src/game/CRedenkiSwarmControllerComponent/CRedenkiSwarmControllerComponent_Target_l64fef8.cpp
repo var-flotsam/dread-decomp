@@ -81,7 +81,7 @@ static inline UnkNavMeshManager* NavMeshManager() {
 // Whether the navmesh cell under `point` exists and lacks flag 2.
 static inline bool OnWalkableCell(const base::math::CVector2D* point) {
     UnkNavMesh* mesh = NavMeshManager()->navmesh;
-    u16 cell = fn_710027a41c(mesh, point, 0);
+    u16 cell = CNavMesh_FindCellIndexAtPoint(mesh, point, 0);
     return cell != 0xffff && !(fn_71002b009c(fn_710027a33c(mesh, cell)) & 2);
 }
 

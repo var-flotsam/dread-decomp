@@ -111,7 +111,7 @@ static inline void Hook(UnkQuetzoaAI_l64b3f4* self) {
         }
     }
     if (target) {
-        fn_7100316018(target, &dodge->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(target, &dodge->handle);
         fn_710117b3e8(dodge->handle ? dodge->handle->target : nullptr, &dodge->link);
     }
 }

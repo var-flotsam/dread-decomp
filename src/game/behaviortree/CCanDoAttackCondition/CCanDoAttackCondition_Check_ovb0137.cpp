@@ -92,7 +92,7 @@ struct UnkCanDoAttack_ovb0137 {
 // Whether the attack (the one named at +0x38, or the AI's current one) can be done: its check (slot
 // 0x58) holds on a query for the actor in the AI's mode, and the actor is not turning (or is aborting
 // a turn).
-bool fn_710039865c(UnkCanDoAttack_ovb0137* self) {
+bool CCanDoAttackCondition_CheckAttackCanBeDone(UnkCanDoAttack_ovb0137* self) {
     UnkActor* target = self->actor ? fn_7100d7c990(reinterpret_cast<UnkActor*>(self->actor)) : nullptr;
     UnkCanAttackAI_ovb0137* ai = self->actor ? self->actor->ai : nullptr;
     UnkAnimationComponent* animation = self->actor ? self->actor->animation : nullptr;

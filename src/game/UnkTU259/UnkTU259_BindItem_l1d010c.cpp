@@ -91,7 +91,7 @@ void fn_71001d010c(UnkGfx_l1d010c* self, UnkDrawItem_l1d010c* item, bool flag) {
         self->field_0x31836ac = 0;
     bool bound = fn_71001cc608(reinterpret_cast<UnkGraphicsSystem*>(self), program);
     auto* state = static_cast<UnkUniformTables*>(fn_71001aa028(program));
-    fn_71001a7bfc(reinterpret_cast<UnkRenderItem_b0247*>(item), 0x7ff);
+    SAlpha_ApplyMaterialStateByFlags(reinterpret_cast<UnkRenderItem_b0247*>(item), 0x7ff);
     for (UnkNamedConstant_l1d010c* constant = self->constants;
          constant != &self->constants[self->constant_count]; constant++) {
         if (constant->name == &g_unk_7101d47108->empty)

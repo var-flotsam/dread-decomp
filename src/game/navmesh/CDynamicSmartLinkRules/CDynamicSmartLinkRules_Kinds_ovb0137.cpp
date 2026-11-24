@@ -73,7 +73,7 @@ static inline s32 SmartLinkKind(const CRntString* part) {
 }
 
 // The smart-link kinds named in `text` (split at "|"): "Tunnel" is bit 0, "Water" bit 1, "All" every bit.
-s32 fn_710026d2e4(const char* text) {
+s32 CDynamicSmartLinkRules_ParseSmartLinkKindMask(const char* text) {
     UnkSmartLinkParts_ovb0137& parts = SmartLinkParts_ovb0137();
     for (UnkListNode<0x30>* node = parts.head; node;) {
         UnkListNode<0x30>* next = node->next;

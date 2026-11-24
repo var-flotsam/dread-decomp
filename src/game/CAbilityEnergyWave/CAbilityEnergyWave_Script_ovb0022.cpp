@@ -50,7 +50,7 @@ struct UnkEnergyWaveFxComp_b49;
 extern char g_unk_7101648d28[];
 extern const u64 g_unk_7101648d18;
 
-bool fn_71003010e0(CAbilityComponent* self, const CStrId* id, bool notify, bool);
+bool CAbilityEnergyWave_SelectAbilityByName(CAbilityComponent* self, const CStrId* id, bool notify, bool);
 
 // A pointer argument's value: null without a type.
 template <class T>
@@ -71,6 +71,6 @@ static inline UnkReflValue BoolValue(bool value) {
 UnkReflValue fn_7100302c14(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* a = args[0];
     CAbilityComponent* self = *reinterpret_cast<CAbilityComponent**>(obj + 8);
-    return BoolValue(fn_71003010e0(self, ArgPtr<CStrId>(&a[0]), *base::reflection::refl_ArgValue<u8>(&a[1]) != 0,
+    return BoolValue(CAbilityEnergyWave_SelectAbilityByName(self, ArgPtr<CStrId>(&a[0]), *base::reflection::refl_ArgValue<u8>(&a[1]) != 0,
                                    *base::reflection::refl_ArgValue<bool>(&a[2])));
 }

@@ -6,7 +6,7 @@
 #include "types.h"
 
 struct UnkKeyedWords_b52;
-u32* fn_710033140c(UnkKeyedWords_b52* self, const u32* key, const u32* value);
+u32* CAbilityShinespark_AppendU32DictionaryEntry(UnkKeyedWords_b52* self, const u32* key, const u32* value);
 
 struct UnkShinesparkBegin_A2_b72 {
     u8 pad_0x0[0x400];
@@ -17,7 +17,7 @@ struct UnkShinesparkBegin_A2_b72 {
 static inline __attribute__((always_inline)) void Add_A2_b72(UnkKeyedWords_b52* list, u32 k, u32 v) {
     u32 key = k;
     u32 value = v;
-    fn_710033140c(list, &key, &value);
+    CAbilityShinespark_AppendU32DictionaryEntry(list, &key, &value);
 }
 
 void fn_7100331350(UnkShinesparkBegin_A2_b72* self, f32 a, f32 b) {

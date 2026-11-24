@@ -148,7 +148,7 @@ void CAbilitySpeedBooster_DestroyAndDelete(UnkSpeedBooster_ovb0088* self) {
 // The complete destructor: the members, then CAbility's destructor.
 void CAbilitySpeedBooster_Destroy(UnkSpeedBooster_ovb0088* self) {
     DestroySpeedBooster(self);
-    fn_71002fa2bc(reinterpret_cast<UnkOpticAbility_ovb0059*>(self));
+    CAbility_Destroy(reinterpret_cast<UnkOpticAbility_ovb0059*>(self));
 }
 
 extern const u64 g_unk_7101649008;  // the timeline key of the boost's start

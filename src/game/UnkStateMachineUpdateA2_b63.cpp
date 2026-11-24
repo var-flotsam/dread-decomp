@@ -271,8 +271,8 @@ struct UnkSmAbility3_A2_b63 {
     UnkSmMachine_A2_b63 machine;
 };
 
-void fn_7100328b3c(UnkSmAbility3_A2_b63*);
-void fn_7100328e68(UnkSmAbility3_A2_b63*, f32);
+void CAbilityShinespark_RequestState2(UnkSmAbility3_A2_b63*);
+void CAbilityShinespark_UpdateModelUpdaterPulse(UnkSmAbility3_A2_b63*, f32);
 
 void fn_7100328784(UnkSmAbility3_A2_b63* self, f32 dt) {
     UnkSmState_A2_b63* current = self->machine.current;
@@ -290,7 +290,7 @@ void fn_7100328784(UnkSmAbility3_A2_b63* self, f32 dt) {
                     typedef void (*ActivateFn)(UnkAbility*, u32);
                     (*reinterpret_cast<ActivateFn**>(other))[0xa0 / 8](other, 1);
                 }
-                fn_7100328b3c(self);
+                CAbilityShinespark_RequestState2(self);
             }
         }
     }
@@ -310,7 +310,7 @@ void fn_7100328784(UnkSmAbility3_A2_b63* self, f32 dt) {
         Update_A2_b63<5, 6>(&self->machine, dt);
         UnkSmState_A2_b63* now = self->machine.current;
         if (!now || now->id != 1)
-            fn_7100328e68(self, dt);
+            CAbilityShinespark_UpdateModelUpdaterPulse(self, dt);
     }
 }
 

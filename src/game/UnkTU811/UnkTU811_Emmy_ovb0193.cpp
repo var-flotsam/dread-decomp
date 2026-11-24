@@ -141,7 +141,7 @@ bool fn_710055749c(UnkNavAI_b0193* self, const base::math::CVector2D* point, u16
     }
     UnkNavMesh* mesh = manager->navmesh;
     if (mesh && fn_71002b005c(fn_710027a33c(mesh, id)) &&
-        !fn_71002b005c(fn_710027a33c(mesh, fn_710027a41c(mesh, point, 1))))
+        !fn_71002b005c(fn_710027a33c(mesh, CNavMesh_FindCellIndexAtPoint(mesh, point, 1))))
         return false;
     return self->vtable[0x568 / 8](self, id, a3, a4, a5, a6, a7, a8);
 }

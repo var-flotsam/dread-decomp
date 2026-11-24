@@ -22,7 +22,7 @@ extern UnkConversion g_unk_71726a90e0;
 void fn_71002d3ef4() __attribute__((visibility("hidden")));
 void fn_71002d3f00() __attribute__((visibility("hidden")));
 
-void fn_71002d4770() {
+void CAnimatedNodeDef_InitStatics() {
     InitHeaderIds(&g_unk_71726a9100.ids);
     fn_71002d32f8();
     fn_710009ec00(g_unk_71726a8f98, g_unk_71726a9100.field_0x20);

@@ -10,7 +10,7 @@ struct UnkTarget429 {
     f32 field_0x44;
 };
 
-void fn_710030171c(CAbilityComponent* self, f32 amount) {
+void CAbilityEnergyWave_ApplyClampedAmountToHandleTarget(CAbilityComponent* self, f32 amount) {
     UnkWeakHandle* life = self->life;
     if (life == nullptr) {
         return;

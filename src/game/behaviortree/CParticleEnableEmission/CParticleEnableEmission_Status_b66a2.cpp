@@ -23,7 +23,7 @@ struct UnkParticleEnableEmission_b66a2 {
     UnkParticleEmissionTarget_b66a2* target;
 };
 
-s32 fn_7100378590(UnkParticleEnableEmission_b66a2* self) {
+s32 CParticleEnableEmission_GetStatusAwaitingEmissionStop(UnkParticleEnableEmission_b66a2* self) {
     if (!self->started) {
         return 6;
     }

@@ -4,7 +4,7 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game_s2/UnkWeakHandle.h"
 
-void fn_71002fd814(void* owner, UnkWeakHandle** holder) {
+void CAbilityEnergyWave_RefreshOwnerComponentHandle(void* owner, UnkWeakHandle** holder) {
     if (!*holder || !(*holder)->target) {
         UnkWeakTarget* target = fn_7100303054(owner);
         UnkWeakHandle* handle = target ? GetWeakHandle(target) : nullptr;

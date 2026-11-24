@@ -13,7 +13,7 @@ struct UnkSelf;
 struct UnkStruct_0x68;
 struct UnkHandler_390860;
 struct UnkMessage;
-u32 fn_7100390860(UnkHandler_390860* self, UnkMessage* message);  // fn_7100390860.cpp
+u32 CScaredAction_SetStateFromMessageId(UnkHandler_390860* self, UnkMessage* message);  // fn_7100390860.cpp
 
 struct UnkScaredLink_b49 {
     u8 pad_0x0[0x8];
@@ -37,14 +37,14 @@ struct UnkScaredAction_b49 {
     UnkWeakHandle* handle;
 };
 
-void fn_710038ff68(UnkScaredAction_b49* self) {
+void CScaredAction_StartAndSubscribeMessageHandler(UnkScaredAction_b49* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->state = 1;
     UnkScaredOwner_b49* owner = self->owner;
     if (owner && owner->animation) {
         UnkScaredLink_b49* link = &self->link;
         link->context = self;
-        link->callback = reinterpret_cast<void (*)()>(fn_7100390860);
+        link->callback = reinterpret_cast<void (*)()>(CScaredAction_SetStateFromMessageId);
         // Read again after the link's stores (addressed by offset, as the original reloads it).
         UnkWeakTarget* animation = *reinterpret_cast<UnkWeakTarget**>(reinterpret_cast<char*>(owner) + 0x220);
         if (UnkWeakHandle* handle = self->handle) {
@@ -57,7 +57,7 @@ void fn_710038ff68(UnkScaredAction_b49* self) {
         }
     take:
         if (animation) {
-            fn_7100316018(animation, reinterpret_cast<UnkWeakRef*>(reinterpret_cast<char*>(self) + 0x50));
+            CAbilityGhostAura_AssignWeakHandleToRef(animation, reinterpret_cast<UnkWeakRef*>(reinterpret_cast<char*>(self) + 0x50));
             fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
         }
     }

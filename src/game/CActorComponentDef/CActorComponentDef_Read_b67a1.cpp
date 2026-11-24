@@ -18,7 +18,7 @@ struct UnkComponentDefRead_b67a1 {
     s32 field_0x1c;
 };
 
-bool fn_7100253af0(UnkComponentDefRead_b67a1* self, base::global::CRntFile* file) {
+bool CActorComponentDef_ReadFromFile(UnkComponentDefRead_b67a1* self, base::global::CRntFile* file) {
     s32 first = 0;
     s32 second = -1;
     CRntFile_Read(file, &first, 4, 1);

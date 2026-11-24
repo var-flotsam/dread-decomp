@@ -105,7 +105,7 @@ struct UnkDamageActor_b0258e {
 };
 
 struct UnkRequest;
-f32 fn_7100305c24(void* stats);
+f32 CAbilityEnergyWave_GetWeaponBoostDamageMult(void* stats);
 
 __attribute__((noinline)) void fn_7100ecdcb0(UnkAttackData_b0258e* a, UnkDamageReq_b0258e* req, UnkDamageActor_b0258e* actor, const u32* pos,
                    const u32* dir, f32 value) {
@@ -118,7 +118,7 @@ __attribute__((noinline)) void fn_7100ecdcb0(UnkAttackData_b0258e* a, UnkDamageR
             if (fn_710009d50c(owner->vf_0x0(), fn_71011abbd4()))
                 cls = reinterpret_cast<char*>(owner);
         }
-        scale *= fn_7100305c24(cls + 0x98);
+        scale *= CAbilityEnergyWave_GetWeaponBoostDamageMult(cls + 0x98);
     } else if (flags & 0x8000400) {
         scale *= a->field_0x10;
     }

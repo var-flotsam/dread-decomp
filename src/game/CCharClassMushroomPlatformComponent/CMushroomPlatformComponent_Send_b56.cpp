@@ -77,7 +77,7 @@ void fn_710088b8d0(UnkMushroomLinked_b56* self) {
         UnkSpitSend(track, 0x5c812431a6579adc, 0xf4061ff25a2163d6);
         void* link = self->link;
         Unhook_b56(self);
-        fn_7100316018(track, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
         fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     } else {
         Unhook_b56(self);

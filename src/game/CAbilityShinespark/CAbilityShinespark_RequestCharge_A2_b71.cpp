@@ -92,7 +92,7 @@ static inline void RequestState_A2_b71(UnkSmMachine_A2_b71* self, u32 id) {
 struct UnkShinespark2_b55;
 void fn_710032dfdc(UnkShinespark2_b55* self);
 
-void fn_7100328b3c(UnkSmOwner_A2_b71<0x6a0>* self) {
+void CAbilityShinespark_RequestState2(UnkSmOwner_A2_b71<0x6a0>* self) {
     UnkSmState_A2_b71* current = self->machine.current;
     if (current && current->id == 2) {
         fn_710032dfdc(reinterpret_cast<UnkShinespark2_b55*>(self));

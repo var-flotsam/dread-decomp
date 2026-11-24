@@ -36,7 +36,7 @@ struct UnkSwitchAIModes_b49 {
     UnkWeakHandle* handle;
 };
 
-void fn_710036bd8c(UnkSwitchAIModes_b49* self, u32 result) {
+void CSwitchBetweenAIModesAction_End(UnkSwitchAIModes_b49* self, u32 result) {
     fn_7100394bd4(self);
     if (result == 5) {
         if (!self->played) {

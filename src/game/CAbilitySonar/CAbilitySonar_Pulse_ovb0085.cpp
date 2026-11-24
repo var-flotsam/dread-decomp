@@ -228,13 +228,13 @@ __attribute__((always_inline)) inline void* Create(UnkRenderPool* pool, const CF
 static inline void PrepareModel(UnkSonarModel_ovb0085* object) { fn_71001c08d8(object->field_0x130); }
 static inline void PrepareSwitch(UnkSwitchObject* object) { fn_71002084a8(object->field_0x28); }
 
-void* fn_7100339900(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,
+void* CAbilitySonar_CreateModelInRenderPool(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,
                     const CStrId* name) {
     return Create<UnkSonarModel_ovb0085, fn_7100145bdc, 0x248, fn_7100339a50>(pool, path, out, name, PrepareModel);
 }
 
 // Declared with a void result in src/game/CScorpiusFXComponent/CScorpiusFXComponent_Gas_ovb0008.cpp.
-void* fn_7100339d48(UnkRenderPool* pool, const CFilePathStrId* path, UnkSwitchObject** out, const CStrId* name) {
+void* CAbilitySonar_CreateSwitchObjectInRenderPool(UnkRenderPool* pool, const CFilePathStrId* path, UnkSwitchObject** out, const CStrId* name) {
     return Create<UnkSwitchObject, fn_710014699c, 0x248, fn_7100339ea0>(pool, path, out, name, PrepareSwitch);
 }
 
@@ -250,7 +250,7 @@ static inline UnkModelManager* ModelManager() {
 
 // Creates the sonar's model from `path` (the model manager created first, on first use), puts its scene
 // node on layer 0 and switches it off (vf_0x90, vf_0x40).
-UnkSonarModel_ovb0085* fn_7100336760(UnkAbilitySonar_ovb0085* self, const CFilePathStrId* path) {
+UnkSonarModel_ovb0085* CAbilitySonar_CreateModelFromPath(UnkAbilitySonar_ovb0085* self, const CFilePathStrId* path) {
     if (!g_unk_71726b0cd8) {
         UnkModelManager* m = static_cast<UnkModelManager*>(fn_71000839a0(0x1e8, 0x3f));
         fn_71011a870c(m);
@@ -258,7 +258,7 @@ UnkSonarModel_ovb0085* fn_7100336760(UnkAbilitySonar_ovb0085* self, const CFileP
     }
     UnkRenderManager* render = g_unk_7101d47300;
     UnkSonarModel_ovb0085* model = nullptr;
-    fn_7100339900(render->field_0x218, path, &model, &base::global::CStrId::Empty());
+    CAbilitySonar_CreateModelInRenderPool(render->field_0x218, path, &model, &base::global::CStrId::Empty());
     fn_7100219ae0(render, model ? &model->node : nullptr, 0);
     UnkSonarModel_ovb0085* created = model;
     if (created) {
@@ -304,7 +304,7 @@ bool fn_710033652c(UnkSonarData_ovb0085* self, UnkSonarSource_ovb0085* source) {
         fn_71011a91c4(ModelManager(), old, 0);
     {
         CFilePathStrId path(model_path, true);
-        self->model = fn_7100336760(reinterpret_cast<UnkAbilitySonar_ovb0085*>(self), &path);
+        self->model = CAbilitySonar_CreateModelFromPath(reinterpret_cast<UnkAbilitySonar_ovb0085*>(self), &path);
     }
     if (UnkSwitchObject* old = self->pulse)
         fn_71011a91c4(ModelManager(), old, 0);
@@ -312,7 +312,7 @@ bool fn_710033652c(UnkSonarData_ovb0085* self, UnkSonarSource_ovb0085* source) {
     ModelManager();
     UnkRenderManager* render = g_unk_7101d47300;
     pulse = nullptr;
-    fn_7100339d48(render->field_0x218, &path, &pulse, &base::global::CStrId::Empty());
+    CAbilitySonar_CreateSwitchObjectInRenderPool(render->field_0x218, &path, &pulse, &base::global::CStrId::Empty());
     fn_7100219ae0(render, pulse ? &pulse->field_0x8 : nullptr, 0);
     UnkSwitchObject* created = pulse;
     if (created) {

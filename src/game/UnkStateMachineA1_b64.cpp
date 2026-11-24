@@ -333,7 +333,7 @@ struct UnkSmShinespark_A1_b64 {
     UnkSmMachine_A1_b64 machine;
 };
 
-void fn_710032f4cc(UnkSmShinespark_A1_b64*, const CVector3D&);
+void CAbilityShinespark_SnapDirectionToTunableAngle(UnkSmShinespark_A1_b64*, const CVector3D&);
 void fn_710032f35c(UnkSmShinespark_A1_b64*, const CVector3D&, f32);
 
 void fn_710032f810(UnkSmShinespark_A1_b64* self, f32 dt) {
@@ -345,7 +345,7 @@ void fn_710032f810(UnkSmShinespark_A1_b64* self, f32 dt) {
         if (dir.z <= 0.2f || angle > limit)
             self->flag = false;
     }
-    fn_710032f4cc(self, dir);
+    CAbilityShinespark_SnapDirectionToTunableAngle(self, dir);
     fn_710032f35c(self, dir, dt);
     self->timer -= dt;
     if (self->timer <= 0.0f)

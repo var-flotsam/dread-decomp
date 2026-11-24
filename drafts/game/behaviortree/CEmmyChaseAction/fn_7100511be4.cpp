@@ -207,7 +207,7 @@ void fn_7100511be4(UnkEmmyChaseAction_l511be4* self) {
         ResetRef(&self->animation);
     }
     if (target) {
-        fn_7100316018(target, &self->animation);
+        CAbilityGhostAura_AssignWeakHandleToRef(target, &self->animation);
         fn_710117b3e8(self->animation ? self->animation->target : nullptr, listener);
     }
 

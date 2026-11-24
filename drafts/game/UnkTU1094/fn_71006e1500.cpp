@@ -114,7 +114,7 @@ void fn_71006e1500(UnkWander_l6e1500* self) {
     bool found = false;
     fn_7100394bdc(reinterpret_cast<UnkSelf*>(self), reinterpret_cast<UnkBehaviorName_ovb0265*>(&g_unk_717270aee0.flag),
                   &found, &g_unk_7101d470e0, false);
-    if (found || !fn_710039525c(reinterpret_cast<UnkSelf*>(self), g_unk_717270aea0, &pos)) {
+    if (found || !CBehavior_LoadVector3DValue(reinterpret_cast<UnkSelf*>(self), g_unk_717270aea0, &pos)) {
         UnkWanderHolder_l6e1500* holder = static_cast<UnkWanderHolder_l6e1500*>(fn_7100defcec(g_unk_7101d47310));
         if (holder) {
             UnkWanderNode_l6e1500* node = holder->node;

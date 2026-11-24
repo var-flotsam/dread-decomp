@@ -54,7 +54,7 @@ static inline void SetKindFromId(char* self, const CStrId& id) {
 }
 
 void fn_71004145a8(char* self, const CStrId& id) { SetKindFromId<0x1f0, fn_7100415050, fn_710041518c>(self, id); }
-void fn_71004146b4(char* self, const CStrId& id) { SetKindFromId<0x200, fn_710026d2e4, fn_710041527c>(self, id); }
+void fn_71004146b4(char* self, const CStrId& id) { SetKindFromId<0x200, CDynamicSmartLinkRules_ParseSmartLinkKindMask, fn_710041527c>(self, id); }
 void fn_71004147c0(char* self, const CStrId& id) { SetKindFromId<0x210, fn_710041536c, fn_710041545c>(self, id); }
 void fn_71004148cc(char* self, const CStrId& id) { SetKindFromId<0x220, fn_710041536c, fn_710041545c>(self, id); }
 

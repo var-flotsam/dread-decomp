@@ -72,13 +72,13 @@ void fn_71003c1e04(UnkAutoolGoToRepairPoint_l3c1e04* self) {
             fn_710117b3f0(old, &listener);
         ResetRef(&listener.handle);
     }
-    fn_7100316018(target, &listener.handle);
+    CAbilityGhostAura_AssignWeakHandleToRef(target, &listener.handle);
     fn_710117b3e8(listener.handle ? listener.handle->target : nullptr, &listener);
 
     pos = {0.0f, 0.0f, 0.0f};
     {
         CStrId key("v3WaypointPos", true);
-        fn_710039525c(reinterpret_cast<UnkSelf*>(self), &key, reinterpret_cast<base::math::CVector3D*>(&pos));
+        CBehavior_LoadVector3DValue(reinterpret_cast<UnkSelf*>(self), &key, reinterpret_cast<base::math::CVector3D*>(&pos));
     }
     CAutoolAIComponent_ResetEntryAtPoint(ai, pos);
 }

@@ -83,7 +83,7 @@ void fn_7100711e20(UnkAltAction_A3_b74* self, const base::global::CStrId* id, f3
     }
     asm("" : "+r"(self));
     if (track) {
-        fn_7100316018(track, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
         fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
     if (!self->set) {

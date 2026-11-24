@@ -21,7 +21,7 @@ struct UnkStruct_71007142e8 {
 
 struct UnkMotionTracks;
 
-f32 fn_7100308950(UnkTimeline* timeline) {
+f32 CAbilityGhostAura_ComputeTimelineTranslationLength(UnkTimeline* timeline) {
     UnkStruct_71007142e8 motion;
     fn_71007142e8(&motion);
     UnkMotionTracks* tracks = timeline->tracks;
@@ -135,7 +135,7 @@ void fn_7100308d0c(UnkGhostAura_l308d0c* self) {
         if (components->animations != nullptr) {
             void* timeline = fn_7101176e0c(components->animations, 0x30d6af40e0eb8a80ULL, ~0ULL);
             if (timeline != nullptr)
-                self->field_0x480 = fn_7100308950(static_cast<UnkTimeline*>(timeline));
+                self->field_0x480 = CAbilityGhostAura_ComputeTimelineTranslationLength(static_cast<UnkTimeline*>(timeline));
         }
         void* source = components->field_0x1f8;
         UnkCollisionContainer* collision = components->collision;

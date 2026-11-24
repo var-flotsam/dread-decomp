@@ -32,10 +32,10 @@ struct UnkObject_710026eb5c : UnkBase_0x20 {
 };
 static_assert(__builtin_offsetof(UnkObject_710026eb5c, field_0x88) == 0x88, "");
 
-void fn_710026ea4c(UnkObject_710026eb5c& self) {
+void CFixedDynamicSmartLinkRule_Destroy(UnkObject_710026eb5c& self) {
     self.~UnkObject_710026eb5c();
 }
 
-void fn_710026eb5c(UnkObject_710026eb5c& self) {
+void CFixedDynamicSmartLinkRule_DestroyAndDelete(UnkObject_710026eb5c& self) {
     delete &self;
 }

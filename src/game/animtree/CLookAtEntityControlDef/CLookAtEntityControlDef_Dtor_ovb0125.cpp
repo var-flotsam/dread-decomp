@@ -27,7 +27,7 @@ struct UnkLookAtDef_ovb0125 {
     CStrId sEntity;
 };
 
-void fn_71002e5c40(UnkLookAtDef_ovb0125* self) {
+void CLookAtEntityControlDef_DestroyAndDelete(UnkLookAtDef_ovb0125* self) {
     self->vtable = g_unk_7101a21ef0 + 2;
     self->sEntity.Reset();
     self->vtable = g_unk_7101a21af8 + 2;

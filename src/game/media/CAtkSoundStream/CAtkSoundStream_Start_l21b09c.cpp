@@ -73,7 +73,7 @@ struct UnkPlayingSound_ovb0074;
 struct UnkSoundMgr;
 
 struct UnkAtkSoundStream_ovb0008;
-void fn_710021b2ac(UnkAtkSoundStream_ovb0008* self);
+void CAtkSoundStream_ThreadWaitForState3(UnkAtkSoundStream_ovb0008* self);
 
 struct UnkAtkStreamSource_l21b09c {
     u8 pad_0x0[0x20];
@@ -97,9 +97,9 @@ inline UnkPlayingSound_ovb0074* PlayingSound_l21b09c(const UnkPlayingHandle_ovb0
 
 struct UnkMovieStreamNx_ovb0003;
 
-void fn_710021b09c(UnkAtkSoundStream_l21b09c* self) {
+void CAtkSoundStream_StartThreadAndPlaySound(UnkAtkSoundStream_l21b09c* self) {
     fn_710021b7c4(reinterpret_cast<UnkMovieStreamNx_ovb0003*>(self));
-    fn_7100066744(self->thread, "AtkSoundStream Thread", reinterpret_cast<void (*)(void*)>(fn_710021b2ac), 0, 0x10,
+    fn_7100066744(self->thread, "AtkSoundStream Thread", reinterpret_cast<void (*)(void*)>(CAtkSoundStream_ThreadWaitForState3), 0, 0x10,
                   self);
     UnkStreamDesc_l21b09c desc;
     desc.group = 1;

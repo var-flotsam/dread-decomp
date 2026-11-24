@@ -208,7 +208,7 @@ void fn_71005447a0(UnkEmmyAI_l5447a0* self) {
                 fn_710117b3f0(handle->target, listener);
             ResetRef(&listener->handle);
         }
-        fn_7100316018(animation, &listener->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(animation, &listener->handle);
         fn_710117b3e8(listener->handle ? listener->handle->target : nullptr, listener);
     }
 

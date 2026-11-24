@@ -22,13 +22,13 @@ struct base::UnkDtorTraits<CGoToPointActionDtorTag_b45a1> {
     static void base(char* self) { fn_7100393ea0(self); }
 };
 
-__attribute__((flatten)) void fn_7100380870(char* self) {
+__attribute__((flatten)) void CGoToPointAction_Destroy(char* self) {
     base::refl_Dtor<CGoToPointActionDtorTag_b45a1, base::UnkMemberAt<UnkPathMember_b45a1, 0x50>,
                     base::UnkStrIdAt<0x30>>(self);
 }
 
 // The deleting form.
-__attribute__((flatten)) void fn_71003808f0(char* self) {
+__attribute__((flatten)) void CGoToPointAction_DestroyAndDelete(char* self) {
     base::refl_DeletingDtor<CGoToPointActionDtorTag_b45a1, base::UnkMemberAt<UnkPathMember_b45a1, 0x50>,
                             base::UnkStrIdAt<0x30>>(self);
 }

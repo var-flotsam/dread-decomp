@@ -9,8 +9,8 @@ using base::global::UnkStrId;
 
 extern void* g_unk_7101a21498[];
 
-void fn_71002c45f8(UnkQueryParam* self) {
-    fn_71002bedc8(self);
+void CMinTargetDistanceFilter_Construct(UnkQueryParam* self) {
+    CFilter_Construct(self);
     self->vtable = &g_unk_7101a21498[2];
     self->field_0x14 = 0;
     self->field_0x8 = UnkStrId("MIN_TARGET_DIST", true);

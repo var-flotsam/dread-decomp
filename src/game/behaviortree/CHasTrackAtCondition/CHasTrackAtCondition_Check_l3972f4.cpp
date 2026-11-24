@@ -29,7 +29,7 @@ struct UnkHasTrackAtCondition_l3972f4 {
     UnkTrackData_l3972f4* data;  // 0x38
 };
 
-bool fn_71003972f4(UnkHasTrackAtCondition_l3972f4* self) {
+bool CHasTrackAtCondition_Check(UnkHasTrackAtCondition_l3972f4* self) {
     if (UnkActor* owner = self->owner) {
         if (auto* animation = static_cast<UnkAnimationComponent*>(owner->field_0x220)) {
             UnkVersionRegistry* registry = g_unk_7101d4c8d0;

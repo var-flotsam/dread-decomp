@@ -128,7 +128,7 @@ static inline UnkNavMeshManager* NavManager() {
 }
 
 static inline bool IsWalkable(UnkNavMesh* mesh, const base::math::CVector2D& p) {
-    u16 cell = fn_710027a41c(mesh, &p, 0);
+    u16 cell = CNavMesh_FindCellIndexAtPoint(mesh, &p, 0);
     return cell != 0xffff && fn_71002b005c(fn_710027a328(mesh, cell));
 }
 

@@ -238,8 +238,8 @@ bool fn_7100ec1644(UnkNavMeshManager* self, u16 a, u16 b, u32 flags, u32 extra) 
 bool fn_7100ec154c(void* self_, const CVector2D* a, const CVector2D* b, u32 flags, u32 extra) {
     UnkNavMeshManager* self = static_cast<UnkNavMeshManager*>(self_);
     if (self->navmesh) {
-        u16 from_id = fn_710027a41c(self->navmesh, a, 1);
-        u16 to_id = fn_710027a41c(self->navmesh, b, 1);
+        u16 from_id = CNavMesh_FindCellIndexAtPoint(self->navmesh, a, 1);
+        u16 to_id = CNavMesh_FindCellIndexAtPoint(self->navmesh, b, 1);
         if (from_id != 0xffff && to_id != 0xffff && self->navmesh) {
             UnkNavCellData_a1644* from =
                 reinterpret_cast<UnkNavCellOwner_a1644*>(fn_710027a33c(self->navmesh, from_id))->data;

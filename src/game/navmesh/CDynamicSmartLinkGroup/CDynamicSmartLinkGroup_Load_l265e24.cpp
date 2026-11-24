@@ -76,7 +76,7 @@ static inline bool IsSmartLinkFile(const CFilePathStrId& path) {
     return path.data != &g_unk_7101d47200->empty && CRntString_Contains(&path.data->String(), ".bmslink");
 }
 
-bool fn_7100265e24(UnkSmartLinkGroup_l265e24* self) {
+bool CDynamicSmartLinkGroup_LoadFromFileAndResolveLinks(UnkSmartLinkGroup_l265e24* self) {
     {
         UnkPathPairTemp_b45a1 s = fn_710001ab24(self->field_0x8);
         self->path = *reinterpret_cast<const CFilePathStrId*>(&s.path);

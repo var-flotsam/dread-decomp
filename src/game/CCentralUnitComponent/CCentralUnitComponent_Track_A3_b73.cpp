@@ -54,7 +54,7 @@ u32 fn_7100773b74(UnkCentralUnitTrack_A3_b73* self, void* other) {
                         }
                     }
                     asm("" : "+r"(self));
-                    fn_7100316018(track, &self->handle);
+                    CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
                     fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
                 }
             }

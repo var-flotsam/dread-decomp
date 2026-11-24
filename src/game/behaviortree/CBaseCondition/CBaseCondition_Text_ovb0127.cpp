@@ -31,7 +31,7 @@ struct UnkBaseCondition_ovb0127 {
 
 // The condition's description: the base one, "NOT " in front when negated, then the results it
 // maps success and failure to when they aren't the defaults.
-CRntString fn_7100394588(UnkBaseCondition_ovb0127* self) {
+CRntString CBaseCondition_BuildDescriptionText(UnkBaseCondition_ovb0127* self) {
     CRntString text = self->vf_0xa8();
     if (self->negated) {
         CRntString negated = CRntString_ConcatCStringFirst("NOT ", &text);
