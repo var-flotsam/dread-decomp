@@ -7,7 +7,7 @@
 
 using base::global::CStrId;
 
-CStrId fn_7100a85ae0() {
+CStrId CMapAcquisitionComponent_GetCurrentScenarioSectionId() {
     UnkGameManager* manager = g_unk_7101d47310;
     if (manager->field_0x608)
         return fn_71011a2fbc(manager->field_0x608);

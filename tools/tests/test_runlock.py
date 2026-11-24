@@ -16,13 +16,15 @@ from dread import runlock
 
 TOOLS = Path(__file__).resolve().parent.parent
 
-# A second process: takes the lock on argv[1], says so, holds it for argv[2] seconds, releases it.
+# A second process: takes the lock on argv[1], says so with its own pid, holds it for argv[2] seconds, releases it.
+# The pid comes from the child itself, not Popen.pid: under a Windows venv, python.exe is a launcher that starts
+# the real interpreter as a second process, so Popen.pid is not the pid that holds the lock.
 HOLDER = """
-import sys, time
+import os, sys, time
 sys.path.insert(0, {tools!r})
 from dread import runlock
 with runlock.RunLock(sys.argv[1], "holder", wait=0):
-    print("held", flush=True)
+    print("held", os.getpid(), flush=True)
     time.sleep(float(sys.argv[2]))
 """
 
@@ -45,14 +47,16 @@ class RunLockTest(unittest.TestCase):
         kw.setdefault("report_every", 0.3)
         return runlock.RunLock(self.dir, "check.py", wait=wait, worktree=self.tmp.name, say=self.lines.append, **kw)
 
-    def hold(self, seconds: float) -> subprocess.Popen:
-        """Start a process that holds the lock for `seconds`; returns once it holds it."""
+    def hold(self, seconds: float) -> tuple[subprocess.Popen, int]:
+        """Start a process that holds the lock for `seconds`; returns it and the pid that holds the lock,
+        once it holds it."""
         env = {k: v for k, v in os.environ.items() if k != runlock.ENV}
         p = subprocess.Popen([sys.executable, "-c", HOLDER.format(tools=str(TOOLS)), str(self.dir), str(seconds)],
                              stdout=subprocess.PIPE, text=True, env=env)
         self.addCleanup(lambda: (p.kill(), p.wait(), p.stdout.close()))
-        self.assertEqual(p.stdout.readline().strip(), "held")
-        return p
+        word, pid = p.stdout.readline().split()
+        self.assertEqual(word, "held")
+        return p, int(pid)
 
     def write_holder(self, **over) -> runlock.Holder:
         h = runlock.Holder(pid=os.getpid(), host=runlock.socket.gethostname(), worktree="/elsewhere",
@@ -71,7 +75,7 @@ class RunLockTest(unittest.TestCase):
         self.assertNotIn(runlock.ENV, os.environ)
 
     def test_second_process_waits_then_runs(self):
-        p = self.hold(1.0)
+        p, pid = self.hold(1.0)
         start = time.monotonic()
         with self.lock(30):
             waited = time.monotonic() - start
@@ -80,18 +84,18 @@ class RunLockTest(unittest.TestCase):
         self.assertGreater(waited, 0.3)
         self.assertEqual(p.wait(10), 0)
         self.assertTrue(self.lines, "no waiting line")
-        self.assertIn(f"pid {p.pid}", self.lines[0])
+        self.assertIn(f"pid {pid}", self.lines[0])
         self.assertIn("waiting", self.lines[0])
         # One line per report period, not one per poll.
         self.assertLess(len(self.lines), waited / 0.3 + 2)
 
     def test_timeout_message(self):
-        p = self.hold(30)
+        _, pid = self.hold(30)
         with self.assertRaises(runlock.Busy) as cm:
             self.lock(0.5).acquire()
         msg = str(cm.exception)
         self.assertIn("gave up after", msg)
-        self.assertIn(f"pid {p.pid}", msg)
+        self.assertIn(f"pid {pid}", msg)
         self.assertIn("--wait", msg)
         self.assertTrue((self.dir / runlock.LOCK_NAME).exists(), "the holder's lock must stay")
 
