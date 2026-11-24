@@ -56,7 +56,7 @@ static inline f32 Sign(f32 v) { return (f32)((v > 0.0f) - (v < 0.0f)); }
 
 static inline bool Near(f32 a, f32 b, f32 eps) { return a - eps <= b && a + eps >= b; }
 
-void fn_71009b601c(UnkSideEnemyMovement_l9b601c* self) {
+void CSideEnemyMovement_ApplyInitialDir(UnkSideEnemyMovement_l9b601c* self) {
     // The four flag ids get stack slots of their own, as in fn_71009b6b6c: declared ahead of the body.
     goto start;
     UnkShakernautId_b53 clear_b;

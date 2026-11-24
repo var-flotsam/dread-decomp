@@ -59,7 +59,7 @@ void fn_710114bc94(UnkPositionalSound_ovb56* self) {
 
 // Stops the sound of the active handle (the first with the flag at +0xa8 set, fading by +0xbc; the
 // second otherwise) and empties that handle.
-void fn_710114bd84(UnkPositionalSound_ovb56* self) {
+void CPositionalSoundComponent_StopActiveSound(UnkPositionalSound_ovb56* self) {
     if (self->bLoop) {
         if (UnkSound* sound = GetSound_ovb56(&self->handles[0])) {
             fn_7100105a80(sound, self->fFadeOutTime, 0.0f);
@@ -109,7 +109,7 @@ static inline const char* Use_ovb56(const CFilePathStrId* path) {
 }
 
 // A random one of the non-empty paths (the table's default path when there is none), counted as used.
-const char* fn_710114be28(UnkPositionalSound_ovb56* self) {
+const char* CPositionalSoundComponent_PickRandomSoundPath(UnkPositionalSound_ovb56* self) {
     s32 found = 0;
     for (s32 i = 0; i < self->path_count; ++i) {
         if (self->paths[i].data != &g_unk_7101d47200->empty)

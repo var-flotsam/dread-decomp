@@ -69,7 +69,7 @@ static inline void ShowArrow(UnkMissionLogRef_l58428* const& arrow) {
     SendEvent(Get(arrow), "ContinueArrowLoop", false);
 }
 
-void fn_7100b58428(UnkMissionLog_l58428* self) {
+void CMissionLog_UpdatePageArrowsAndCloseLabel(UnkMissionLog_l58428* self) {
     fn_71011d9050(self);
     if (!self->field_0xb4)
         return;

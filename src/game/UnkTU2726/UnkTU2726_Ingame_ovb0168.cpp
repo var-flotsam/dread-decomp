@@ -153,7 +153,7 @@ void fn_710118a4c0(UnkIngameMenu_ovb0168b* self) {
     CStrId text(g_unk_71726bc570->field_0xb8 ? "#GUI_BOSSRUSH_PROMPT_QUIT_BOSSRUSH" : "#GUI_OPTIONS_PROMPT_QUIT", true);
     UnkPromptCallback_ovb0168 yes = {self, fn_710118fd28};
     UnkPromptCallback_ovb0168 no = {self, fn_710118fd2c};
-    fn_7100b5fde0(reinterpret_cast<UnkGuiComposition_ovb0090*>(prompt), &text,
+    CPopUpComposition_ShowAcceptBackPrompt(reinterpret_cast<UnkGuiComposition_ovb0090*>(prompt), &text,
                   reinterpret_cast<const CStrId*>(g_unk_7172a0b890 + 8), reinterpret_cast<const CStrId*>(g_unk_7172a0b890),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&yes),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&no), 0, 1.0f);

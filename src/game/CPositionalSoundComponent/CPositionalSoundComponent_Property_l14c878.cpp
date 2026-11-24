@@ -27,7 +27,7 @@ struct UnkPositionalSound_l14c878 {
 };
 static_assert(__builtin_offsetof(UnkPositionalSound_l14c878, bLoop) == 0xa8, "layout");
 
-u32 fn_710114c878(UnkPositionalSound_l14c878* self, UnkProp* p) {
+u32 CPositionalSoundComponent_ReadProperty(UnkPositionalSound_l14c878* self, UnkProp* p) {
     if (Is(p, Key(0x1498)) && p->set) {
         CRntFile_ReadFormat(p->stream, "ffff", &self->fVol, &self->fPitch, &self->fMinAtt,
                       &self->fMaxAtt);

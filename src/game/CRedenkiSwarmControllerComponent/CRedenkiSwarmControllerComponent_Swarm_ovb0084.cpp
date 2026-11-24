@@ -145,7 +145,7 @@ struct UnkRedenkiFullReset_ovb0084 {
 
 void CFlockingSwarmControllerComponent_ResetAndResizeMemberLists(UnkRedenkiFullReset_ovb0084* self);
 
-void fn_710064f184(UnkRedenkiFullReset_ovb0084* self) {
+void CRedenkiSwarmControllerComponent_ResetStateAndResizeGroupArrays(UnkRedenkiFullReset_ovb0084* self) {
     CFlockingSwarmControllerComponent_ResetAndResizeMemberLists(self);
     self->state = 0;
     fn_710073f7bc(reinterpret_cast<UnkRedenkiSwarmController*>(self), 0);
@@ -364,7 +364,7 @@ static inline bool PlayerFlag() {
     return flags->field_0xc4;
 }
 
-void fn_7100652288(UnkRedenkiStart_ovb0084* self) {
+void CRedenkiSwarmControllerComponent_InitTimersAndBuildPath(UnkRedenkiStart_ovb0084* self) {
     UnkSwarmPoint_b65a4 point;
     UnkRedenkiChain1_ovb0084* c1 = self->field_0xe8;
     UnkRedenkiBillboard_ovb0084* billboard = nullptr;
@@ -635,7 +635,7 @@ struct UnkRedenkiAttack_ovb0084 {
     UnkRedenkiAttackTuning_ovb0084* tuning;  // 0x560
 };
 
-void fn_7100656da8(UnkRedenkiAttack_ovb0084* self) {
+void CRedenkiSwarmControllerComponent_EnterState4(UnkRedenkiAttack_ovb0084* self) {
     s32 count = self->data->list->count;
     for (s32 i = 0; i < count; i++)
         self->groupFlags.SetAt(i, false);
@@ -723,7 +723,7 @@ void fn_71006572f0(UnkRedenkiStates_ovb0084* self, u32 state, bool keep) {
         self->Enter(0x320);
         return;
     case 4:
-        fn_7100656da8(reinterpret_cast<UnkRedenkiAttack_ovb0084*>(self));
+        CRedenkiSwarmControllerComponent_EnterState4(reinterpret_cast<UnkRedenkiAttack_ovb0084*>(self));
         return;
     }
 }
@@ -985,7 +985,7 @@ struct UnkRedenkiCtrl_Speed_ovb0084 {
     UnkRedenkiTuning_ovb0084* tuning;  // 0x560
 };
 
-f32 fn_710065aa30(UnkRedenkiCtrl_Speed_ovb0084* self) {
+f32 CRedenkiSwarmControllerComponent_GetSpeedForState(UnkRedenkiCtrl_Speed_ovb0084* self) {
     f32 result = self->field_0x1a4;
     if (self->mode != 2)
         return result;

@@ -37,7 +37,7 @@ struct UnkPhotoModeCameraCtrl_A4_b76 {
 };
 static_assert(__builtin_offsetof(UnkPhotoModeCameraCtrl_A4_b76, field_0xbe4) == 0xbe4, "layout");
 
-void fn_71009ca94c(UnkPhotoModeCameraCtrl_A4_b76* self) {
+void CPhotoModeCameraCtrl_Construct(UnkPhotoModeCameraCtrl_A4_b76* self) {
     fn_71010ed044(reinterpret_cast<UnkBase_7100763ed4*>(self));
     self->vtable = &g_unk_7101a89018[2];
     new (&self->list) base::global::CRntVector<u8>(0xf);

@@ -8,7 +8,7 @@
 #include "types.h"
 
 struct UnkCannonBeam_b62a2;
-void fn_7100ac4dc4(UnkCannonBeam_b62a2* self);
+void CProjectileMovement_AddTimelineEntriesAndSetHitPos(UnkCannonBeam_b62a2* self);
 
 struct UnkCannonBeam_b62a2 {
     u8 pad_0x0[0x30];
@@ -29,7 +29,7 @@ __attribute__((always_inline)) static inline void SetImpact_b62a2(UnkCannonBeam_
 }
 
 void CCentralUnitCannonBeamMovementComponent_SetImpactTimelineEvent(UnkCannonBeam_b62a2* self) {
-    fn_7100ac4dc4(self);
+    CProjectileMovement_AddTimelineEntriesAndSetHitPos(self);
     auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8);
     if (!timeline)
         return;

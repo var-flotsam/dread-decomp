@@ -39,7 +39,7 @@ struct UnkMapCallback_ovb0090;
 // Puts a question up on the composition with its accept and back texts and callbacks.
 inline void AskQuestion_la6faf0(UnkGuiComposition_ovb0090* gui, const CStrId& text, const CStrId& accept,
                                 const CStrId& back, UnkApCallback_la6faf0 on_accept, UnkApCallback_la6faf0 on_back) {
-    fn_7100b5fde0(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&on_accept),
+    CPopUpComposition_ShowAcceptBackPrompt(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&on_accept),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&on_back), 0, -1.0f);
 }
 

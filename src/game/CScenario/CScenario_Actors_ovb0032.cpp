@@ -54,7 +54,7 @@ static_assert(__builtin_offsetof(UnkScenario_ovb0032, field_0x3f0) == 0x3f0, "Un
 
 // The moves between the lists at +0x310 and +0x380 (src/game/CScenario/CScenario_Lists_b52.cpp).
 struct UnkScenarioLists_b52;
-void fn_71011a28e8(UnkScenarioLists_b52* self, void* object);
+void CScenario_MoveObjectFromList380ToList310(UnkScenarioLists_b52* self, void* object);
 void fn_71011a2c40(UnkScenarioLists_b52* self, void* object);
 
 // Removes the first node holding `value` and frees it (as src/game/CScenario/CScenario_Lists_b52.cpp).
@@ -110,7 +110,7 @@ void fn_71011a2770(UnkGameManagerSub_0x608* scenario, void* object_) {
     if (!object)
         return;
     if (self->field_0x3f0) {
-        fn_71011a28e8(reinterpret_cast<UnkScenarioLists_b52*>(self), object);
+        CScenario_MoveObjectFromList380ToList310(reinterpret_cast<UnkScenarioLists_b52*>(self), object);
         return;
     }
     u64 value = reinterpret_cast<u64>(object);
@@ -173,7 +173,7 @@ struct UnkStartPointKey;
 
 // The nearest actor of the list at +0x2a0 to the point `key` that fn_7100774014 accepts and whose
 // name doesn't start with "ST_DEBUG_", or null.
-UnkStartPoint_CGameManager* fn_71011a2e54(UnkGameManagerSub_0x608* scenario, const UnkStartPointKey* key) {
+UnkStartPoint_CGameManager* CScenario_FindNearestNonDebugActorToPoint(UnkGameManagerSub_0x608* scenario, const UnkStartPointKey* key) {
     auto* self = reinterpret_cast<UnkScenario_ovb0032*>(scenario);
     auto* point = reinterpret_cast<const UnkVec3f*>(key);
     const CStrId& prefix = DebugPrefix_ovb0032();
@@ -225,7 +225,7 @@ struct UnkScenarioLayer_ovb0032 {
 static_assert(sizeof(UnkScenarioLayer_ovb0032) == 0xc8, "UnkScenarioLayer_ovb0032 layout");
 
 // The value stored under `*key` in layer `index`, or null.
-void* fn_71011a3234(UnkScenarioLayer_ovb0032* layers, u32 index, UnkScenarioKey_ovb0032* const* key) {
+void* CScenario_FindLayerValueByKey(UnkScenarioLayer_ovb0032* layers, u32 index, UnkScenarioKey_ovb0032* const* key) {
     UnkScenarioLayer_ovb0032* layer = &layers[index];
     fn_710025bda0(layer->field_0x20);
     UnkScenarioNode_ovb0032* node = nullptr;

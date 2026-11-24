@@ -39,7 +39,7 @@ struct UnkRockDiverAI_b0105 {
     UnkRockDiverTrack_b0105 track;  // 0x146c8
 };
 
-void fn_710066369c(UnkRockDiverAI_b0105* self, f32 dt) {
+void CRockDiverAIComponent_UpdateCloseWingsRatio(UnkRockDiverAI_b0105* self, f32 dt) {
     fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);
     if (self->track.state != 1)
         return;

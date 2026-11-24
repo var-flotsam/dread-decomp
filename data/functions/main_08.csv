@@ -940,7 +940,7 @@ address,size,name,name_source,subsystem,status
 0x710082bc24,36,fn_710082bc24,unknown,game/components?,O
 0x710082bc48,112,fn_710082bc48,unknown,game/components?,O
 0x710082bcb8,60,fn_710082bcb8,unknown,game/components?,O
-0x710082bcf4,128,fn_710082bcf4,unknown,game/components?,O
+0x710082bcf4,128,CPlatformTrapGrapplePointComponent_CheckPullFromGrappleCollider,inferred,game/components?,O
 0x710082bd74,220,fn_710082bd74,unknown,game/components?,O
 0x710082be50,116,fn_710082be50,unknown,game/components?,O
 0x710082bec4,268,fn_710082bec4,unknown,game/components?,O
@@ -1845,7 +1845,7 @@ address,size,name,name_source,subsystem,status
 0x71008564e8,100,fn_71008564e8,unknown,game?,O
 0x710085654c,92,fn_710085654c,unknown,game?,O
 0x71008565a8,336,fn_71008565a8,unknown,game?,O
-0x71008566f8,244,fn_71008566f8,unknown,game?,O
+0x71008566f8,244,CPowerBombGun_TriggerBombEmptyPulseWhenEmpty,inferred,game?,O
 0x71008567ec,940,fn_71008567ec,unknown,game?,U
 0x7100856b98,220,fn_7100856b98,unknown,game?,O
 0x7100856c74,32,fn_7100856c74,unknown,game?,O
@@ -2898,7 +2898,7 @@ address,size,name,name_source,subsystem,status
 0x71008845f0,4,fn_71008845f0,unknown,game/components?,O
 0x71008845f4,4,fn_71008845f4,unknown,game/components?,O
 0x71008845f8,4,fn_71008845f8,unknown,game/components?,O
-0x71008845fc,224,fn_71008845fc,unknown,game/components?,O
+0x71008845fc,224,CMultiLockOnPointComponent_MarkLockedInBlockOnHit,inferred,game/components?,O
 0x71008846dc,220,fn_71008846dc,unknown,game/components?,O
 0x71008847b8,28,fn_71008847b8,unknown,game/components?,O
 0x71008847d4,132,fn_71008847d4,unknown,game/components?,O

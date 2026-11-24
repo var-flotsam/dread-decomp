@@ -63,7 +63,7 @@ struct UnkShotKeys_ovb0066 {
     u32 count;
 };
 
-bool fn_71009f9588(UnkShotComponent_ovb0066* self, void* a, void* b, void* c, bool d, bool e,
+bool CShotComponent_TryLaunchShotConfigs(UnkShotComponent_ovb0066* self, void* a, void* b, void* c, bool d, bool e,
                    const UnkShotKeys_ovb0066* keys, f32 g, void* f) {
     if (!self->def)
         return false;

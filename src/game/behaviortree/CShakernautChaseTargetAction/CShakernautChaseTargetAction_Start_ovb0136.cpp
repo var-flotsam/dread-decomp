@@ -66,7 +66,7 @@ struct UnkShakernautChase_ovb0136 {
     f32 fMaxDist;
 };
 
-void fn_71006aa9e0(UnkShakernautChase_ovb0136* self) {
+void CShakernautChaseTargetAction_StartAndSetChaseRange(UnkShakernautChase_ovb0136* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->field_0x4c = 0;
     if (__builtin_expect(self->field_0x50 != 2, 1)) {

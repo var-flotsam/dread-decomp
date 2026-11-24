@@ -69,7 +69,7 @@ static inline void EraseAt(base::global::CRntVector<UnkShotWeakRef>* v, u32 i) {
     }
 }
 
-void fn_7101023c3c(UnkSoundManager_ovb0039* self, f32 dt) {
+void CSoundManager_UpdateSoundSystemAndPruneDeadRefs(UnkSoundManager_ovb0039* self, f32 dt) {
     bool game_running = !fn_7100decc5c(g_unk_7101d47310);
     fn_7100108290(g_unk_7101d4d820, game_running);
     bool render_running = !fn_7100219970(g_unk_7101d47300);
@@ -159,8 +159,8 @@ static inline void CopyId(CStrId* dst, const CStrId* src) {
         ++data->ref_count;
 }
 
-void fn_710102a344(UnkSoundPairList_ovb0039* self);
-void fn_7101029ec8(UnkSoundPairList_ovb0039* self, u32 n);
+void CSoundManager_ShrinkIdResourceDictionaryToFit(UnkSoundPairList_ovb0039* self);
+void CSoundManager_ReserveStrIdRecordDictionary(UnkSoundPairList_ovb0039* self, u32 n);
 
 UnkSoundPairList_ovb0039* fn_710102a0ec(UnkSoundPairList_ovb0039* self, const UnkSoundPairList_ovb0039* other) {
     if (self == other)
@@ -175,8 +175,8 @@ UnkSoundPairList_ovb0039* fn_710102a0ec(UnkSoundPairList_ovb0039* self, const Un
     }
     self->count = 0;
     if (other->count != self->capacity) {
-        fn_710102a344(self);
-        fn_7101029ec8(self, other->count);
+        CSoundManager_ShrinkIdResourceDictionaryToFit(self);
+        CSoundManager_ReserveStrIdRecordDictionary(self, other->count);
     }
     self->count = other->count;
     for (u64 i = 0; i < self->count; ++i)

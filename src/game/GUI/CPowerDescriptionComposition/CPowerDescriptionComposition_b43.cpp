@@ -34,7 +34,7 @@ static inline void PlayAnimation_b43a3(UnkGuiDisplayObject* object, const char* 
     (*reinterpret_cast<Fn*>(*reinterpret_cast<char**>(object) + 0x1e8))(object, name, flags);
 }
 
-void fn_7100b63bc4(UnkPowerDescComposition_b43a3* self) {
+void CPowerDescriptionComposition_ResetScrollBarAndArrows(UnkPowerDescComposition_b43a3* self) {
     fn_71011d9050(self);
     if (!self->active || !self->pages || !self->source)
         return;

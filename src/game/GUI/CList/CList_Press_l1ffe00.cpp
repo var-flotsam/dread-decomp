@@ -78,7 +78,7 @@ inline const char* Text(const CStrId& id) {
 
 void fn_71011cf704(UnkList_l1ffe00* self, UnkListEvent_l1ffe00* event);
 
-void fn_71011ffe00(UnkList_l1ffe00* self, UnkListEvent_l1ffe00* event) {
+void CList_SelectEventSourceItemAndSendActivation(UnkList_l1ffe00* self, UnkListEvent_l1ffe00* event) {
     fn_71011cf704(self, event);
     if (self->count == 0 || event->handled)
         return;

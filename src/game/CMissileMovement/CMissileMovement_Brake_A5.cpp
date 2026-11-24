@@ -8,10 +8,10 @@
 
 struct UnkProjectileMovement4_b46a3;
 
-UnkVec3f fn_7100ac419c(UnkProjectileMovement4_b46a3* self, f32 t);
+UnkVec3f CProjectileMovement_ComputeFrictionVelocityDelta(UnkProjectileMovement4_b46a3* self, f32 t);
 
 UnkVec3f fn_7100abac88(UnkProjectileMovement4_b46a3* self, f32 t) {
-    UnkVec3f v = fn_7100ac419c(self, t);
+    UnkVec3f v = CProjectileMovement_ComputeFrictionVelocityDelta(self, t);
     if (fn_7100ed77a0(g_unk_71726af0b0))
         v.z = 0.0f;
     return v;

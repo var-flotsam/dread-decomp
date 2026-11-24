@@ -63,7 +63,7 @@ void fn_7100dd686c(UnkCounterPanel_b0232* self) {
             if (self->count) {
                 UnkDropTarget* target = g_unk_7101d47318;
                 UnkCopiedIds_b0232 ids(&g_unk_71727bdfb0);
-                fn_7101024e28(target, reinterpret_cast<const UnkStrIdPathPair*>(&ids), nullptr, false);
+                CSoundManager_PlayPresetFromIdPath(target, reinterpret_cast<const UnkStrIdPathPair*>(&ids), nullptr, false);
             }
         }
     }

@@ -60,7 +60,7 @@ bool fn_7100a70710(UnkAp_la70710* self, UnkWeakTarget* user) {
         CStrId text("#GUI_SAVESTATION_QUESTION", true);
         UnkApCallback_la70710 accept_callback = {self, fn_7100a74680};
         UnkApCallback_la70710 back_callback = {self, fn_7100a74684};
-        fn_7100b5fde0(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
+        CPopUpComposition_ShowAcceptBackPrompt(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                       reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
         return false;
     }

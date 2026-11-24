@@ -335,5 +335,5 @@ __attribute__((noinline)) void CMagnetSlidingBlockComponent_SendMaterialColorCha
     UnkVector4D vfrom = fn_7100030878(&from);
     fn_71009272c4(&change, i, false, &vto, &vfrom, 0.1f);
     change.kind = 2;
-    fn_7100926aa0(fx, &change);
+    CMaterialFXComponent_AddOrReplaceColorChange(fx, &change);
 }

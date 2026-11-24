@@ -16,7 +16,7 @@ struct UnkLifeValues_b49 {
     }
 };
 
-bool fn_7101160214(UnkLifeValues_b49* self, f32 fraction) {
+bool CLifeComponent_RemoveLifePct(UnkLifeValues_b49* self, f32 fraction) {
     bool changed = false;
     f32 amount = self->max_life * fraction;
     if (amount > 0.0f) {

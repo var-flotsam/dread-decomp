@@ -16,7 +16,7 @@ struct UnkSpecialEnergyComponent;
 struct UnkLifeValues;
 struct UnkTarget429;
 
-bool fn_71011601b8(UnkLifeValues* self, f32 amount);
+bool CLifeComponent_SubtractLifeAmount(UnkLifeValues* self, f32 amount);
 void CAbilityOpticCamouflage_PulseModelColor(UnkOpticAbility_ovb0059* self, f32 dt);
 
 extern const u64 g_unk_7101648e28;  // the timeline event played when the energy runs out
@@ -108,7 +108,7 @@ void CAbilityOpticCamouflage_ConsumeEnergyAndDamageLife(UnkOpticAbility_l323f10*
                     f32 damage = amount >= limit ? limit : amount;
                     if (amount <= 0.0f)
                         damage = 0.0f;
-                    fn_71011601b8(reinterpret_cast<UnkLifeValues*>(life), damage);
+                    CLifeComponent_SubtractLifeAmount(reinterpret_cast<UnkLifeValues*>(life), damage);
                 }
             }
             fn_7100a1feac(reinterpret_cast<UnkTarget429*>(energy),

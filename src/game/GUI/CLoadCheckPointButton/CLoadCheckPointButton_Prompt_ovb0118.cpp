@@ -34,7 +34,7 @@ struct UnkButtonCallback_ovb0118 {
 struct UnkGuiComposition_ovb0090;
 struct UnkMapCallback_ovb0090;
 
-void fn_7100b33bcc(UnkLoadCheckPointButton_ovb0118* self) {
+void CLoadCheckPointButton_ShowLoadCheckpointPrompt(UnkLoadCheckPointButton_ovb0118* self) {
     UnkGuiRef_ovb0118* ref = static_cast<UnkGuiRef_ovb0118*>(g_unk_7101d47310->field_0x2258);
     if (!ref)
         return;
@@ -46,7 +46,7 @@ void fn_7100b33bcc(UnkLoadCheckPointButton_ovb0118* self) {
     CStrId accept("#GUI_A_ACCEPT", true);
     UnkButtonCallback_ovb0118 accept_callback = {self, fn_7100b33ee0};
     UnkButtonCallback_ovb0118 back_callback = {self, fn_7100b33ee4};
-    fn_7100b5fde0(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
+    CPopUpComposition_ShowAcceptBackPrompt(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
 }
 

@@ -17,12 +17,17 @@ struct UnkSurvivalState_b46a3 {
     s32 stage;  // 0x100
 };
 
+struct UnkTunableView_7100dca1bc {
+    u8 pad_0x0[0x34];
+    s32 field_0x34;  // 0x34
+};
+
 bool fn_7100dca1bc(UnkSurvivalState_b46a3* self) {
     if (self->field_0xbb) {
         if (self->stage != 12)
             return false;
         s32 progress = self->progress;
-        return progress >= *reinterpret_cast<s32*>(reinterpret_cast<char*>(&g_unk_71727bd078) + 0x34) * 12 - 1;
+        return progress >= reinterpret_cast<UnkTunableView_7100dca1bc*>(&g_unk_71727bd078)->field_0x34 * 12 - 1;
     }
     if (self->field_0xba)
         return false;

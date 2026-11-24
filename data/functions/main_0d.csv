@@ -2958,7 +2958,7 @@ address,size,name,name_source,subsystem,status
 0x7100d6294c,220,fn_7100d6294c,unknown,game?,O
 0x7100d62a28,220,fn_7100d62a28,unknown,game?,O
 0x7100d62b04,100,fn_7100d62b04,unknown,game?,m
-0x7100d62b68,112,fn_7100d62b68,unknown,game?,O
+0x7100d62b68,112,CPolygonCollectionShape_CopyConstruct,inferred,game?,O
 0x7100d62bd8,100,fn_7100d62bd8,unknown,game?,O
 0x7100d62c3c,108,fn_7100d62c3c,unknown,game?,O
 0x7100d62ca8,76,fn_7100d62ca8,unknown,game?,O
@@ -2968,10 +2968,10 @@ address,size,name,name_source,subsystem,status
 0x7100d62e3c,132,fn_7100d62e3c,unknown,game?,O
 0x7100d62ec0,1324,fn_7100d62ec0,unknown,game?,U
 0x7100d633ec,164,fn_7100d633ec,unknown,game?,O
-0x7100d63490,116,fn_7100d63490,unknown,game?,O
+0x7100d63490,116,CPolygonCollectionShape_GetTranslatedBoundingBox,inferred,game?,O
 0x7100d63504,4,fn_7100d63504,unknown,game?,O
 0x7100d63508,4,fn_7100d63508,unknown,game?,O
-0x7100d6350c,124,fn_7100d6350c,unknown,game?,O
+0x7100d6350c,124,CPolygonCollectionShape_Clone,inferred,game?,O
 0x7100d63588,48,fn_7100d63588,unknown,game?,O
 0x7100d635b8,8,fn_7100d635b8,unknown,game?,O
 0x7100d635c0,8,fn_7100d635c0,unknown,game?,O
@@ -3058,7 +3058,7 @@ address,size,name,name_source,subsystem,status
 0x7100d683c0,156,fn_7100d683c0,unknown,game?,O
 0x7100d6845c,4,fn_7100d6845c,unknown,game?,O
 0x7100d68460,36,fn_7100d68460,unknown,game?,O
-0x7100d68484,316,fn_7100d68484,unknown,game?,O
+0x7100d68484,316,COBoxShape2D_ReadFromRntFile,inferred,game?,O
 0x7100d685c0,148,fn_7100d685c0,unknown,game?,O
 0x7100d68654,196,fn_7100d68654,unknown,game?,m
 0x7100d68718,28,fn_7100d68718,unknown,game?,O
@@ -4686,7 +4686,7 @@ address,size,name,name_source,subsystem,status
 0x7100da2fb0,368,fn_7100da2fb0,unknown,game/ai?,O
 0x7100da3120,560,fn_7100da3120,unknown,game/ai?,O
 0x7100da3350,36,fn_7100da3350,unknown,game/ai?,O
-0x7100da3374,700,fn_7100da3374,unknown,game/ai?,O
+0x7100da3374,700,CLockRoomLogicAction_LockAccessPointRoom,inferred,game/ai?,O
 0x7100da3630,220,fn_7100da3630,unknown,game/ai?,O
 0x7100da370c,28,fn_7100da370c,unknown,game/ai?,O
 0x7100da3728,12,CLockRoomLogicAction::refl_Equals,reflection,game/ai,O

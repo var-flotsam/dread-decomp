@@ -372,7 +372,7 @@ void fn_71011697a0(UnkPlayerLife_ovb0049* self, f32 shards) {
     self->field_0x31c = fn_7101142988(inventory, ItemId(g_unk_717275a0d8), 0.0f) == 16.0f;
 }
 
-void fn_7101169a18(UnkPlayerLife_ovb0049* self, bool flag) {
+void CPlayerLifeComponent_ForceDeath(UnkPlayerLife_ovb0049* self, bool flag) {
     if (self->state == 2)
         return;
     self->life = 0.0f;

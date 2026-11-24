@@ -25,7 +25,7 @@ struct UnkShakernautShockAttack_ovb0020 {
     f32 timer;  // 0x60
 };
 
-void fn_71006a515c(UnkShakernautShockAttack_ovb0020* self, f32 dt) {
+void CShakernautDoubleGroundShockAttack_UpdateChargeTimerToShot(UnkShakernautShockAttack_ovb0020* self, f32 dt) {
     fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     u32 state = self->state;
     if (state != 5 && state != 6)

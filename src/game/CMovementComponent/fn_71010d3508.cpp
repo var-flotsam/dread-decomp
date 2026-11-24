@@ -78,9 +78,9 @@ struct UnkObj_71010d3508 {
     bool field_0x104;
 };
 
-bool fn_71010d32ec(UnkObj_71010d3508* self, const CRntString& name);
+bool CMovementComponent_HasOppositeSignToNamedEntity(UnkObj_71010d3508* self, const CRntString& name);
 
-u32 fn_71010d3508(UnkObj_71010d3508* self, UnkProp* p) {
+u32 CMovementComponent_ReadWriteProperty(UnkObj_71010d3508* self, UnkProp* p) {
     if (p->set && Is(p, Key(0x10b8)))
         return CRntFile_ReadFormat(p->stream, "f", &self->field_0x7c) != 0;
     if (!p->set && Is(p, Key(0x1528)))
@@ -151,7 +151,7 @@ u32 fn_71010d3508(UnkObj_71010d3508* self, UnkProp* p) {
     if (Is(p, Key(0xc30)) && !p->set) {
         char buf[0x80];
         CRntFile_ReadFormat(p->stream, "s", buf);
-        bool result = fn_71010d32ec(self, CRntString(buf));
+        bool result = CMovementComponent_HasOppositeSignToNamedEntity(self, CRntString(buf));
         CRntFile_Seek(reinterpret_cast<CRntFile*>(p->stream), 0, 0);
         CRntFile_WriteFormat(p->stream, "b", result);
         return true;

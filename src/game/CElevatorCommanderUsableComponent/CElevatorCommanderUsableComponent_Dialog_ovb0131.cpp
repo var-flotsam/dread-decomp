@@ -57,7 +57,7 @@ void CElevatorCommanderUsableComponent_ShowElevatorCommanderQuestion(UnkElevator
     CStrId text("#SKYBASE_ELEVATOR_COMMANDER", true);
     UnkElevatorCallback_ovb0131 accept_callback = {self, fn_7100a80e14};
     UnkElevatorCallback_ovb0131 back_callback = {self, fn_7100a80e20};
-    fn_7100b5fde0(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
+    CPopUpComposition_ShowAcceptBackPrompt(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
 }
 

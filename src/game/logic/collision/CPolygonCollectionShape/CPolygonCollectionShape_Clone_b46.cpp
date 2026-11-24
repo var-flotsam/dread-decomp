@@ -23,7 +23,7 @@ struct UnkPolygonShape_b46a3 {
 
 struct UnkPolygonCollectionShape_b42a3;  // CPolygonCollectionShape_b42.cpp
 
-UnkPolygonShape_b46a3* fn_7100d6350c(const UnkPolygonShape_b46a3* other) {
+UnkPolygonShape_b46a3* CPolygonCollectionShape_Clone(const UnkPolygonShape_b46a3* other) {
     auto* self = static_cast<UnkPolygonShape_b46a3*>(__builtin_operator_new(0x120));
     fn_7100d6c0e4(reinterpret_cast<UnkPolygonCollectionShape_b42a3*>(self),
                   reinterpret_cast<const UnkPolygonCollectionShape_b42a3*>(other));

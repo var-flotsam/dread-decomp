@@ -18,7 +18,7 @@ struct UnkMissionLogRecord_ovb0079 {
     base::UnkStrIdVec ids;
 };
 
-void fn_7100b593d0(UnkElem38Array* self, const UnkElem38* value) {
+void CMissionLog_EntriesPushBack(UnkElem38Array* self, const UnkElem38* value) {
     u32 n = self->count;
     u32 c = self->capacity;
     if (c <= n && self->step != 0)

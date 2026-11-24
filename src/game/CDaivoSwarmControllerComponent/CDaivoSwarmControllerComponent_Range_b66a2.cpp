@@ -17,7 +17,7 @@ struct UnkDaivoSwarmController_b66a2 {
     bool has_params;
 };
 
-f32 fn_710065aa30(UnkDaivoSwarmController_b66a2* self);
+f32 CRedenkiSwarmControllerComponent_GetSpeedForState(UnkDaivoSwarmController_b66a2* self);
 
 f32 CDaivoSwarmControllerComponent_GetSpeedForMode(UnkDaivoSwarmController_b66a2* self) {
     f32 range = 0.0f;
@@ -32,7 +32,7 @@ f32 CDaivoSwarmControllerComponent_GetSpeedForMode(UnkDaivoSwarmController_b66a2
         range = 600.0f;
         break;
     case 2:
-        range = fn_710065aa30(self);
+        range = CRedenkiSwarmControllerComponent_GetSpeedForState(self);
         break;
     }
     return range;

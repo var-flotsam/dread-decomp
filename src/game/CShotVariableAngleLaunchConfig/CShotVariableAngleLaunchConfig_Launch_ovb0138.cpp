@@ -47,7 +47,7 @@ static inline f32 Lerp(f32 t, f32 a, f32 b) {
     return (1.0f - t) * a + t * b;
 }
 
-bool fn_71009feb78(UnkVariableAngleConfig_ovb0138* self, const UnkVec3f* target, const UnkVec3f* direction,
+bool CShotVariableAngleLaunchConfig_SetUpLaunch(UnkVariableAngleConfig_ovb0138* self, const UnkVec3f* target, const UnkVec3f* direction,
                    const UnkVec3f* origin, bool a, bool b, UnkVariableAngleLaunch_ovb0138* out, f32 value) {
     if (!CShotLaunchConfig_SetUpLaunch(self, target, direction, origin, a, b, reinterpret_cast<UnkShotLaunch_ovb0090*>(out), value))
         return false;

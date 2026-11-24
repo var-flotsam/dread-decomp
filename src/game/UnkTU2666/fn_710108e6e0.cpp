@@ -93,7 +93,7 @@ int fn_710108e6e0(lua_State* L) {
             fn_71000267f8(preset.Resource(), ids.ids);
         }
         if (preset.IsSet())
-            fn_7101024e28(g_unk_7101d47318, reinterpret_cast<const UnkStrIdPathPair*>(&preset), nullptr, 0);
+            CSoundManager_PlayPresetFromIdPath(g_unk_7101d47318, reinterpret_cast<const UnkStrIdPathPair*>(&preset), nullptr, 0);
     }
     preset.Release();
     return 0;

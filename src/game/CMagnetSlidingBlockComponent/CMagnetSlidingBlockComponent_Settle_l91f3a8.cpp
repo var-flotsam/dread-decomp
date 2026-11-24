@@ -141,7 +141,7 @@ void fn_710091f3a8(UnkMagnetSlidingBlock_l91f3a8* self) {
             if (self->flags->used_up) {
                 AddKey(self, &g_unk_71727375d8);
                 if (RailObject(self))
-                    fn_7100922e30(fn_710091f6bc(RailObject(self)), false);
+                    CMagnetSlidingBlockRailComponent_SetMaterialOnState(fn_710091f6bc(RailObject(self)), false);
             } else {
                 self->machine.Request(5, 6);
             }

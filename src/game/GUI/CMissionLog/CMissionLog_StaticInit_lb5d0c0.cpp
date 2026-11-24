@@ -46,7 +46,7 @@ UnkEnumType* fn_7100b5590c();
 void fn_7100b559e8(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_7172764ba0[];
 
-void fn_7100b5d0c0() {
+void CMissionLog_InitStatics() {
     InitHeaderIds(&g_unk_7172764fe8.ids);
     g_unk_7172764fe8.field_0xd0 = -1.0f;
     g_unk_7172764fe8.field_0xd4 = -1.0f;

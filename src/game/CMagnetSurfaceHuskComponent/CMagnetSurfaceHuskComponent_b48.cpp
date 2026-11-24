@@ -27,7 +27,7 @@ struct UnkMagnetSurfaceHusk_b48 {
 
 void fn_7100925348(UnkMagnetSurfaceHusk_b48* self, bool breakable);
 
-void fn_7100925244(UnkMagnetSurfaceHusk_b48* self, CBlackboard* blackboard) {
+void CMagnetSurfaceHuskComponent_ReadBreakableFromBlackboard(UnkMagnetSurfaceHusk_b48* self, CBlackboard* blackboard) {
     CBlackboard::CSection* section = fn_71010472e0(blackboard, fn_71011a2fbc(g_unk_7101d47310->field_0x608));
     if (!section)
         return;

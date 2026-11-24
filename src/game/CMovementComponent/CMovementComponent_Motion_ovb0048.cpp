@@ -130,7 +130,7 @@ static inline UnkVec3f Cross(f32 ax, f32 ay, f32 az, f32 bx, f32 by, f32 bz) {
     return r;
 }
 
-UnkVec3f fn_71010d252c(bool flag, const UnkContact_ovb0048* contact) {
+UnkVec3f CMovementComponent_GetContactTangent(bool flag, const UnkContact_ovb0048* contact) {
     f32 x = 0.0f, y = 1.0f, z = 0.0f;
     if (contact && !flag && contact->shape && contact->shape->field_0x10) {
         x = -contact->normal_x;
@@ -504,7 +504,7 @@ struct UnkMovementSide_ovb0048 {
 
 // Whether the entity named `name` faces the other way from this component (signs of the floats
 // at +0x58 of both differ).
-bool fn_71010d32ec(UnkObj_71010d3508* obj, const CRntString& name) {
+bool CMovementComponent_HasOppositeSignToNamedEntity(UnkObj_71010d3508* obj, const CRntString& name) {
     UnkMovementSide_ovb0048* self = reinterpret_cast<UnkMovementSide_ovb0048*>(obj);
     UnkGameManager* manager = g_unk_7101d47310;
     UnkFoundEntity_ovb0048* entity;
@@ -547,7 +547,7 @@ struct UnkResetMovement_ovb0048 {
 static_assert(__builtin_offsetof(UnkResetMovement_ovb0048, speed) == 0x118, "layout");
 
 // Takes the position (bit 0: velocity cleared) and the angles and facing (bit 1) of a transform.
-void fn_71010d45b8(UnkResetMovement_ovb0048* self, UnkXform* xform, const u32* what) {
+void CMovementComponent_SetPositionAndAngleFromXform(UnkResetMovement_ovb0048* self, UnkXform* xform, const u32* what) {
     if (*what & 1) {
         self->position = xform->GetTranslation();
         self->velocity = *reinterpret_cast<const UnkVec3f*>(&g_unk_7101647790);

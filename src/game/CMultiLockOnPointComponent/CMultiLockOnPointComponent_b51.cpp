@@ -37,7 +37,7 @@ struct UnkLockOnPoint {
     base::UnkRefHandle handle;  // 0x78
 };
 
-bool fn_71008845fc(UnkLockOnPoint* self, void* sender, UnkLockOnHit* hit) {
+bool CMultiLockOnPointComponent_MarkLockedInBlockOnHit(UnkLockOnPoint* self, void* sender, UnkLockOnHit* hit) {
     if (!(hit->flags & 4) || self->field_0x3d)
         return false;
     if (self->state == 1) {

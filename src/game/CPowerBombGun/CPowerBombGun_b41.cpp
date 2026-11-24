@@ -28,7 +28,7 @@ static inline bool Has_pb41(UnkInventory* inventory, UnkPropertyEx<>& item) {
     return fn_71011428bc(inventory, qid);
 }
 
-void fn_71008566f8(UnkSelf_pb41* self) {
+void CPowerBombGun_TriggerBombEmptyPulseWhenEmpty(UnkSelf_pb41* self) {
     typedef f32 (*AmountFn)(UnkSelf_pb41*);
     if (!(reinterpret_cast<AmountFn>(self->vtable[0x1e0 / 8])(self) <= 0.0f))
         return;

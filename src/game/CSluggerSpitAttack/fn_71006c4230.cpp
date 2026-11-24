@@ -32,7 +32,7 @@ void fn_71006c3b90() __attribute__((visibility("hidden")));
 using UnkVec3 = base::math::CVector3D;
 extern UnkVec3 g_unk_7172707b90;
 
-void fn_71006c4230() {
+void CSluggerSpitAttack_InitStatics() {
     InitHeaderIds(&g_unk_7172707ba0.ids);
     fn_71006c01d4();
     fn_710009ec00(g_unk_7172707a28, g_unk_7172707ba0.field_0x58);

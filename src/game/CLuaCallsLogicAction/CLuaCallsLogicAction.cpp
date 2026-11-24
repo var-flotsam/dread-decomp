@@ -27,9 +27,9 @@ struct CLuaCallsLogicAction : UnkLogicActionBase {
     ~CLuaCallsLogicAction() { vtable = g_unk_7101a8f358 + 2; }
 };
 
-void fn_7100a50508(CLuaCallsLogicAction* self) { self->~CLuaCallsLogicAction(); }
+void CLuaCallsLogicAction_Destroy(CLuaCallsLogicAction* self) { self->~CLuaCallsLogicAction(); }
 
-void fn_7100a5054c(CLuaCallsLogicAction* self) {
+void CLuaCallsLogicAction_DestroyAndDelete(CLuaCallsLogicAction* self) {
     self->~CLuaCallsLogicAction();
     operator delete(self);
 }

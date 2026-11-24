@@ -78,7 +78,7 @@ static inline void Place_ovb0113(UnkGuiDisplayObject* obj, s32 v) {
         obj, v, false);
 }
 
-void fn_7100b7cad8(UnkSlotSelected_ovb0113* self, UnkGuiEvent_b49* event) {
+void CSlotSelectedComposition_RefreshNewContentIndicator(UnkSlotSelected_ovb0113* self, UnkGuiEvent_b49* event) {
     UnkGuiDisplayObject* obj = reinterpret_cast<UnkGuiDisplayObject*>(self);
     fn_71011d99e4(obj, event);
     if (reinterpret_cast<UnkSlotSelectedBody_ovb0113*>(self)->field_0x230)
