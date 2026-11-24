@@ -22,7 +22,7 @@ struct UnkActorDefFactory;
 struct UnkPowerUpLifeEntry_b52;
 struct UnkPowerUpLifeType_b52;
 
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 
 // The two creature actor definitions.
 extern CStrId g_unk_71726f2bb8[2] __attribute__((visibility("hidden")));
@@ -142,7 +142,7 @@ void fn_71005f31e4(UnkKraidBouncingAttack_l5f31e4* self) {
             position = UnkVec3f(point.m[3], point.m[7], point.m[11]);
 
         f32 angle = launch->angle * 3.141592653589793 / 180.0;
-        UnkVec3f dir = fn_710007a390(UnkVec3f(1.0f, 0.0f, 0.0f), angle);
+        UnkVec3f dir = RotateVec3AboutZ(UnkVec3f(1.0f, 0.0f, 0.0f), angle);
         if (self->owner->xform.GetMatrix().m[2] < 0.0f)
             dir.x = -dir.x;
         f32 inv = InvLengthEps(dir);

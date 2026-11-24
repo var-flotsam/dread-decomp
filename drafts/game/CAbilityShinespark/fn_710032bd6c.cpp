@@ -131,7 +131,7 @@ bool fn_710032bd6c(UnkShinespark_l32bd6c* self, const UnkVec3f* from, UnkVec3f* 
         base::math::CVector3D sweep = {x, y, z};
         u32 mask = movement->mask;
         UnkShape* shape = collider->shape;
-        UnkMatrix44_7100078c9c xf = fn_7100078cd8(point);
+        UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(point);
         base::math::CVector2D sweep2;
         fn_710007b430(&sweep2, &sweep);
         if (fn_7100d5babc(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf),

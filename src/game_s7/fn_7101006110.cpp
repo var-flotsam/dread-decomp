@@ -262,7 +262,7 @@ UnkEnumType* fn_7100fed490();
 extern char g_unk_71729f3cd2[];
 UnkEnumType* fn_7100fed56c();
 
-void fn_7101006110() {
+void InitSoundMusicTypeStatics() {
     InitHeaderIds(&g_unk_71729f80d8.ids);
     {
         CStrId n("sound::TMusicFile", true);

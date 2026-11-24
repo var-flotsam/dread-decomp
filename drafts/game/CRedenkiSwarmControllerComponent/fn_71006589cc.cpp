@@ -21,7 +21,7 @@ struct UnkStruct_71007455dc;
 UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
 void fn_710074566c(UnkStruct_71007455dc* self, const f32* pos);
 void fn_71007456fc(UnkTarget* target, u8 value);
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 
 __attribute__((visibility("hidden"))) extern const UnkVec3f g_unk_710164a3fc;
 
@@ -106,7 +106,7 @@ void fn_71006589cc(UnkRedenkiController_l6589cc* self, UnkRedenkiMember_l6589cc*
     f32 dy = targetY - pos.y;
     f32 current = member->heading;
     f32 facingAngle = current * 6.2831855f / 255.0f;
-    UnkVec3f facing = fn_710007a390(g_unk_710164a3fc, facingAngle);
+    UnkVec3f facing = RotateVec3AboutZ(g_unk_710164a3fc, facingAngle);
     UnkVec3f toTarget(dx, dy, 0.0f);
     f32 distance = Length(toTarget);
     f32 inv = 1.0f / distance;
@@ -117,7 +117,7 @@ void fn_71006589cc(UnkRedenkiController_l6589cc* self, UnkRedenkiMember_l6589cc*
         f32 side = Sign(dir.x * groupDir.y - dir.y * groupDir.x);
         f32 angle = 3.1415927f - AngleBetween(dir, groupDir);
         angle = !(angle >= 0.7853982f) ? angle : 0.7853982f;
-        dir = fn_710007a390(groupDir, -(angle * side));
+        dir = RotateVec3AboutZ(groupDir, -(angle * side));
     }
 
     f32 turnRate = self->TurnRate(AngleBetween(dir, facing));
@@ -154,7 +154,7 @@ void fn_71006589cc(UnkRedenkiController_l6589cc* self, UnkRedenkiMember_l6589cc*
         f32 boost = along < 0.0f ? 0.9f : 1.1f;
         move *= boost;
     }
-    UnkVec3f forward = fn_710007a390(g_unk_710164a3fc, facingAngle);
+    UnkVec3f forward = RotateVec3AboutZ(g_unk_710164a3fc, facingAngle);
     if (move > distance)
         move = distance;
     pos.x = forward.x * move + pos.x;

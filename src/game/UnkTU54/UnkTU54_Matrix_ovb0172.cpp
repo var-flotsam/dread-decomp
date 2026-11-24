@@ -10,7 +10,7 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-UnkQuatRet_b0172 fn_71000772fc(const UnkMatrix44* mat) {
+UnkQuatRet_b0172 MatrixToQuaternion(const UnkMatrix44* mat) {
     UnkQuatRet_b0172 q;
     const f32* m = mat->m;
     f32 m00 = m[0], m11 = m[5];

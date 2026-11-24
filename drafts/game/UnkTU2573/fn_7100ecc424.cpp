@@ -162,7 +162,7 @@ void fn_7100ecc424(UnkShot_lecc424* self, const UnkShotParams_lecc424* params, U
     self->velocity = CVector3D{speed * direction.x, speed * direction.y, speed * direction.z};
     f32 angle = atan2f(direction.y, direction.x);
     self->angle = angle < 0.0f ? angle + 6.28318548f : angle;
-    UnkCopyMatrix(&self->rotation, fn_7100078d8c(self->angle));
+    UnkCopyMatrix(&self->rotation, MakeRotationMatrixZ(self->angle));
 
     self->spin = Random(0.0f, 6.28318548f);
     self->field_0xdc = self->field_0xd0;

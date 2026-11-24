@@ -137,7 +137,7 @@ void fn_7100a0bee0(UnkPlatformUpdate_A5_b76* self, f32 dt) {
             f32 progress = done / (f32)total;
             UnkPlatformSlotsOwner_A5_b76* owner = self->entity->slots->owner;
             u32 slot = self->slot;
-            base::color::CColor4F color = fn_710003088c(progress * progress, self->from, self->to);
+            base::color::CColor4F color = LerpColor4FClampedNonNegative(progress * progress, self->from, self->to);
             fn_71001c2764(owner->slots, slot, 1, reinterpret_cast<const base::math::CVector4D*>(&color), 1, true);
             fn_7100a09bf8(self, false, progress);
         } else if (fn_710117ae38(animation, SingletonKey_A5_b76(0x1dc0)->hash, false)) {
@@ -174,7 +174,7 @@ void fn_7100a0b480(UnkPlatformUpdate_A5_b76* self) {
             f32 progress = done / (f32)total;
             UnkPlatformSlotsOwner_A5_b76* owner = self->entity->slots->owner;
             u32 slot = self->slot;
-            base::color::CColor4F color = fn_710003088c(progress * progress, self->to, self->from);
+            base::color::CColor4F color = LerpColor4FClampedNonNegative(progress * progress, self->to, self->from);
             fn_71001c2764(owner->slots, slot, 1, reinterpret_cast<const base::math::CVector4D*>(&color), 1, true);
             fn_7100a09bf8(self, false, 1.0f - progress);
         }

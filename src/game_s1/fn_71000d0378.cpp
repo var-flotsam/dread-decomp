@@ -371,7 +371,7 @@ struct UnkResWord {
     u64 field_0x8;
 };
 
-void fn_71001d7444(UnkIdTable<UnkResWord>* self) {
+void ClearStrIdKeyedCountedResourceTable(UnkIdTable<UnkResWord>* self) {
     if (self->keys && self->count) {
         for (u64 i = 0; i < self->count; ++i)
             self->keys[i].~UnkReleasedStrId();

@@ -180,7 +180,7 @@ u32 fn_71004519b8(UnkCommanderAI_l4519b8* self, UnkCommanderHit_l4519b8* hit) {
                     if (hit->source) {
                         UnkMatrix44 inverse = fn_7100078314(&fn_710002614c(&self->owner->transform));
                         UnkVec3f at = Translation(*hit->source->vf_0x70());
-                        *pos = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&inverse), &at);
+                        *pos = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&inverse), &at);
                     }
                     self->field_0x15ef4 = hit->field_0x78;
                     self->field_0x15ef8 = hit->field_0x7c;

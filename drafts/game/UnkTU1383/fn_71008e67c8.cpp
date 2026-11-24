@@ -119,7 +119,7 @@ void fn_71008e67c8(UnkPlace_l8e67c8* self) {
     UnkPlaceTarget_l8e67c8* target = self->target;
     UnkMatrix44 m = fn_71000127c8(fn_7100078e54(angle.x, angle.y, angle.z),
                                   fn_7100078e54(offset.x, offset.y, offset.z));
-    UnkVec3f pos = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&m), &g_unk_710164b1b0);
+    UnkVec3f pos = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&m), &g_unk_710164b1b0);
     UnkPlaceObject_l8e67c8* object = target->object;
     UnkPlaceNode_l8e67c8* node = object->node;
     node->pos = pos;

@@ -2,6 +2,6 @@
 // placeholders.
 #include "types.h"
 
-f32 fn_7100076850(f32 t) {
+f32 SmoothStepCubic(f32 t) {
     return t * 3.0f * t + t * -2.0f * t * t;
 }

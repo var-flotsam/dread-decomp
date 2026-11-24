@@ -123,7 +123,7 @@ UnkReflValue fn_71008dcbb8(void*, char* obj) {
     fn_71008d5200(Target(obj));
     return MakeValue<fn_7100014768, s32>(1);
 }
-UnkReflValue fn_71007adbe8(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_71007aa610(Target(obj))); }
+UnkReflValue InvokeCutsceneComponentTryLaunchCutscene(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_71007aa610(Target(obj))); }
 UnkReflValue fn_71008dcc08(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_71008d0ef4(Target(obj))); }
 
 UnkReflValue fn_7101132928(void*, char* obj) {

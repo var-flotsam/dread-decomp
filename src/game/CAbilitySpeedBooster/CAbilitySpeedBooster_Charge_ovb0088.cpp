@@ -292,7 +292,7 @@ done:
 // ---- The glow ----
 
 static inline UnkV4_b47 operator*(const UnkV4_b47& a, f32 s) { return fn_7100030830(&a, s); }
-static inline UnkV4_b47 operator+(const UnkV4_b47& a, const UnkV4_b47& b) { return fn_7100030770(&a, &b); }
+static inline UnkV4_b47 operator+(const UnkV4_b47& a, const UnkV4_b47& b) { return AddVec4ClampedNonNegative(&a, &b); }
 
 extern const UnkV4_b47 g_unk_7101647c3c __attribute__((visibility("hidden")));  // the glow colours
 extern const UnkV4_b47 g_unk_7101647b4c __attribute__((visibility("hidden")));

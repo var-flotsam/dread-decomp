@@ -94,7 +94,7 @@ void fn_71010f68bc();
 extern char g_unk_7172a05e78[];
 extern char g_unk_7172a05e79[];
 
-void fn_7101116680() {
+void InitELOSModeAndSFallBackPathStatics() {
     InitHeaderIds(&g_unk_7172a062c0.ids);
     g_unk_7172a062c0.field_0x100 = -1.0f;
     g_unk_7172a062c0.field_0x104 = -1.0f;

@@ -10,7 +10,7 @@ using base::global::CRntFile;
 
 // Reads a line of at most `size` bytes from the position into the zeroed buffer; "\r" ends it as a
 // "\n" (the byte after it is skipped too). False when nothing was read.
-bool fn_710007c9e8(CRntFile* file, char* buffer, u32 size) {
+bool ReadRntFileLine(CRntFile* file, char* buffer, u32 size) {
     u64 limit = size;
     memset(buffer, 0, limit);
     u64 n = 0;

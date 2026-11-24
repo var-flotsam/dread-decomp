@@ -17,7 +17,7 @@ struct UnkWaterLevelChange {
 
 f32 fn_7100a68874(char* object) {
     UnkWaterLevelChange* change = reinterpret_cast<UnkWaterLevelChange*>(object);
-    f32 t = fn_7100076850(change->elapsed / change->duration);
+    f32 t = SmoothStepCubic(change->elapsed / change->duration);
     f32 start = change->startLevel;
     f32 end = change->endLevel;
     if (t >= 1.0f)

@@ -15,7 +15,7 @@ extern u8 g_unk_7108b6d7a8[];
 void fn_710010f870(void*);
 void fn_710010fe28(void* obj, CStrId* name, void* a, void* b, void (*factory)(void*), void* c);
 
-void fn_7100110b90() {
+void InitCOBox2DStatics() {
     {
         CStrId name("base::spatial::COBox2D", true);
         fn_710010fe28(g_unk_7108b6d670, &name, nullptr, nullptr, fn_710010f870, nullptr);

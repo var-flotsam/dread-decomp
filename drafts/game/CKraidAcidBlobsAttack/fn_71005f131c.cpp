@@ -100,7 +100,7 @@ struct alignas(8) UnkAcidBlobType_l5f131c {
 
 u64 CAcidBlobsLaunchPattern_GetEntryAtRowColumn(UnkAcidBlobsPattern_b45a2* self, u32 row, u32 column);
 UnkAcidBlobMovement_l5f131c* fn_71005f190c(UnkActor* actor);  // the blob's "MOVEMENT" component
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 void fn_7100604cb8(UnkAcidBlobMovement_l5f131c* movement);
 
 extern char g_unk_710164a130[];  // the model point the blobs leave from
@@ -196,7 +196,7 @@ static void LaunchNext(UnkAcidBlobsAttack_l5f131c* self, UnkKraidAI_l5f131c* kra
     f32 c = cosf(angle);
     f32 launch = sqrtf(fabsf(num / (c * (c * (rise * -2.0f)))));
 
-    UnkVec3f dir = fn_710007a390(UnkVec3f(1.0f, 0.0f, 0.0f), angle);
+    UnkVec3f dir = RotateVec3AboutZ(UnkVec3f(1.0f, 0.0f, 0.0f), angle);
     if (fn_710002614c(reinterpret_cast<const UnkMatrix44*>(owner->field_0x38)).m[2] < 0.0f)
         dir.x = -dir.x;
     f32 inv = 1.0f / (sqrtf(dir.x * dir.x + dir.y * dir.y + dir.z * dir.z) + 0.0001f);

@@ -30,7 +30,7 @@ struct UnkMatrix44Words {
     UnkMatrix44Words(const UnkMatrix44Words& other);
 };
 
-UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src);
+UnkMatrix44Words CopyMatrixWithoutTranslation(const UnkMatrix44Words* src);
 void fn_710007839c(UnkMatrix44* m);
 
 struct UnkSwitchObject;
@@ -118,9 +118,9 @@ void fn_710110893c(UnkHitAI_l10893c* self, void* sender, const UnkHitMessage_l10
     const UnkMatrix44& m = owner->transform;
     UnkVec3f local(position.x - m.m[3], position.y - m.m[7], position.z - m.m[11]);
     UnkMatrix44Words inverse =
-        fn_7100076dc4(reinterpret_cast<const UnkMatrix44Words*>(&fn_710002614c(&owner->transform)));
+        CopyMatrixWithoutTranslation(reinterpret_cast<const UnkMatrix44Words*>(&fn_710002614c(&owner->transform)));
     fn_710007839c(reinterpret_cast<UnkMatrix44*>(&inverse));
-    UnkVec3f moved = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&inverse), &local);
+    UnkVec3f moved = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&inverse), &local);
     local = moved;
     UnkVec3f offset = moved;
     UnkVec3f turn(0.0f, -1.5707964f, angle);

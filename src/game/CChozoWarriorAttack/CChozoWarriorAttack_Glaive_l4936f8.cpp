@@ -96,7 +96,7 @@ static inline void AddPoint(UnkTileOutline* outline, UnkTilePoint& point, CVecto
 // The glaive's tip: `length` along the hand's -y axis, through the hand's matrix `m`.
 static inline UnkVec3f TipOf(const UnkMatrix44& m, f32 length) {
     UnkVec3f along(0.0f, -length, 0.0f);
-    return fn_7100078170(reinterpret_cast<const UnkMat4f*>(&m), &along);
+    return TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&m), &along);
 }
 
 void CChozoWarriorAttack_UpdateSweptTriangleCollider(UnkChozoWarriorAttack_l4936f8* self) {

@@ -79,7 +79,7 @@ static inline UnkActor* Actor(UnkBatalloonOwner_ovb0132* owner) {
 }
 
 static inline UnkVec3f Facing(const UnkVec3f& angles) {
-    return fn_710007a220(&angles);
+    return WrapAngles3ToPi(&angles);
 }
 
 // Turns the owner to face along its movement's up vector, pitched towards the side the actor it

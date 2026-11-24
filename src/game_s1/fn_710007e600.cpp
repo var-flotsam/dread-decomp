@@ -15,7 +15,7 @@ extern u8 g_unk_7101d58d08[];
 void fn_710007bb30(void*);
 void fn_710007bc54(void* obj, CStrId* name, void* a, void* b, void (*factory)(void*), void* c);
 
-void fn_710007e600() {
+void InitCRntFileTypeStatics() {
     {
         CStrId name("base::global::CRntFile", true);
         fn_710007bc54(g_unk_7101d58bd0, &name, nullptr, nullptr, fn_710007bb30, nullptr);

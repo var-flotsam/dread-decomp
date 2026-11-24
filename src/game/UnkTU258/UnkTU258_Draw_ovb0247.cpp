@@ -212,7 +212,7 @@ void fn_71001c5b74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
 
 struct UnkCachedMatrix_7100196674;  // src/game_s1/fn_7100196674.cpp
 struct UnkSize_7100196674;
-UnkMatrix44* fn_7100196674(UnkCachedMatrix_7100196674* self, const UnkSize_7100196674* size);
+UnkMatrix44* GetCachedXformMatrixAdjustedByAspectRatio(UnkCachedMatrix_7100196674* self, const UnkSize_7100196674* size);
 extern const base::math::CVector4D g_unk_7101647b1c __attribute__((visibility("hidden")));
 
 void fn_71001c5114(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
@@ -229,7 +229,7 @@ void fn_71001c5114(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
         self->field_0x3183650 = cmd->field_0xfc;
     }
     fn_710015f770(0, cmd->field_0xa8, true);
-    const UnkMatrix44* matrix = fn_7100196674(reinterpret_cast<UnkCachedMatrix_7100196674*>(cmd),
+    const UnkMatrix44* matrix = GetCachedXformMatrixAdjustedByAspectRatio(reinterpret_cast<UnkCachedMatrix_7100196674*>(cmd),
                                               reinterpret_cast<const UnkSize_7100196674*>(self->field_0x317aa08));
     fn_710015e4b0(self->field_0x317af68, 0, self->field_0x317ae18, 4, 1, matrix, 1);
     u64 location;

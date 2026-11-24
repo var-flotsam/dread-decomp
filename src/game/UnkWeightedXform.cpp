@@ -10,5 +10,5 @@
 
 // The transform's translation rotated by `m`, which holds three angles where its callers say a matrix.
 UnkVec3f fn_7100714d78(const UnkXform* self, const UnkMatrix44* m) {
-    return fn_710007a400(self->GetTranslation(), *reinterpret_cast<const UnkVec3f*>(m));
+    return RotateVec3ByAngles(self->GetTranslation(), *reinterpret_cast<const UnkVec3f*>(m));
 }

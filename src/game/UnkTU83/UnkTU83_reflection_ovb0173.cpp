@@ -270,7 +270,7 @@ void fn_71000df22c(UnkKeyedStrIds* self, u32 capacity) {
 
 template <class V>
 struct UnkStrIdTable;
-void fn_71000df5ec(UnkStrIdTable<u32>* self);
+void ShrinkU32StrIdTableToFit(UnkStrIdTable<u32>* self);
 
 // A new reference to an id, stored bytewise (no alias info: the original reloads after it).
 static inline void CopyId(base::global::UnkStringData** dst, base::global::UnkStringData* const* src) {
@@ -289,7 +289,7 @@ UnkKeyedStrIds* fn_71000df484(UnkKeyedStrIds* self, const UnkKeyedStrIds* other)
         }
         self->count = 0;
         if (other->count != self->capacity) {
-            fn_71000df5ec(reinterpret_cast<UnkStrIdTable<u32>*>(self));
+            ShrinkU32StrIdTableToFit(reinterpret_cast<UnkStrIdTable<u32>*>(self));
             fn_71000df22c(self, other->count);
         }
         __builtin_memcpy(self->keys, other->keys, (u64)other->count * sizeof(u32));

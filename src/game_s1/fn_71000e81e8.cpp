@@ -18,11 +18,11 @@ struct UnkHashed_71000e81e8 {
 
 u32 fn_710009ebb4(void* ref);
 
-s32 fn_71000e81e8(UnkHashed_71000e81e8* self) {
+s32 ComputeClassFieldChecksum(UnkHashed_71000e81e8* self) {
     UnkScopedHashStream s(0x16, nullptr);
     s.Begin(0xc);
     s.Put(self->inner_0x0->field_0x30);
     s.Put(fn_710009ebb4(self->ref_0x10));
-    s.Put(fn_7100093bb8(self->sub_0x38));
+    s.Put(HashFlaggedAttributeKeysAndValues(self->sub_0x38));
     return s.Finish();
 }

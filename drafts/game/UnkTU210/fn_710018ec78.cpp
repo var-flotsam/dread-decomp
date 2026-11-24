@@ -125,7 +125,7 @@ void fn_710018ec78(UnkQuadEmitter_18f654* self, const UnkVec3f* direction) {
     CVector3D fwd = MakeVector(0.0f, 1.0f, 0.0f);
     UnkVec3f dir = *direction;
     if (!self->worldSpace) {
-        dir = fn_7100077c04(self->transform, dir);
+        dir = TransformDirectionByMatrix3x3(self->transform, dir);
         f32 inv = InvLengthEps(dir);
         dir.x = dir.x * inv;
         dir.y = inv * dir.y;

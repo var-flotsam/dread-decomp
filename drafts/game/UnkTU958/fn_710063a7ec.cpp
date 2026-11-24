@@ -270,7 +270,7 @@ bool fn_710063a7ec(UnkSelf_l63a7ec* self, UnkNearEntity_l63ab04* ignore, const U
     UnkMovement_l63a7ec* movement = self->owner->params->movement;
     u32 mask = movement->collision_mask;
     CVector2D start = {from.x - dir.x * margin, from.y - dir.y * margin};
-    UnkMatrix44_7100078c9c xf = fn_7100078cd8(UnkVec3f(start.x, start.y, 0.0f));
+    UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(UnkVec3f(start.x, start.y, 0.0f));
     UnkShapeHolder_l63a7ec* holder = reinterpret_cast<UnkShapeHolder_l63a7ec*>(
         fn_7100976588(reinterpret_cast<UnkFlagged*>(self->owner->params->movement)));
     {

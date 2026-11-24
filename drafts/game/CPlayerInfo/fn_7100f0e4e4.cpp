@@ -82,7 +82,7 @@ struct UnkPlayerProps_lf0e4e4 {
         if (count == capacity)
             fn_7100f0f980(reinterpret_cast<UnkPropertyArrays*>(this), count + step);
         new (&ids[count]) CStrId(key);
-        fn_710002f588(&values[count], &value);
+        ConstructIdListCopyingNodesAndMovingCallbacks(&values[count], &value);
         u32 n = ++count;
         UnkPlayerValue_lf0e4e4* end = &values[n];
         UnkPlayerValue_lf0e4e4* added = n ? &end[-1] : end;

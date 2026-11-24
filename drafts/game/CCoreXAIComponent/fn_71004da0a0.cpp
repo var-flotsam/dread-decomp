@@ -23,7 +23,7 @@ using base::reflection::UnkReflObject;
 
 struct UnkBossAI_l3ae15c;
 void fn_71003ae15c(UnkBossAI_l3ae15c* self, f32 dt);
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 
 extern u64 g_unk_7101649bd8;  // the timeline id of the missile volley
 
@@ -243,7 +243,7 @@ void fn_71004da0a0(UnkCoreXAI_l4da0a0* self, f32 dt) {
         if (angle > max_turn) {
             const UnkVec3f up(0.0f, 0.0f, 1.0f);
             f32 turn = Dot(dir, Cross(heading, Negated(up))) < 0.0f ? -max_turn : max_turn;
-            UnkVec3f turned = fn_710007a390(heading, turn);
+            UnkVec3f turned = RotateVec3AboutZ(heading, turn);
             accel = s->params->turn_accel;
             dir.x = turned.x;
             dir.y = turned.y;

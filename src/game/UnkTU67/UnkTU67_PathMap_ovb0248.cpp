@@ -78,14 +78,14 @@ struct UnkPooledPathMap_b0248 {
 static_assert(__builtin_offsetof(UnkPooledPathMap_b0248, ids) == 0x88, "layout");
 static_assert(__builtin_offsetof(UnkPooledPathMap_b0248, free_list) == 0x58, "layout");
 
-void fn_710008c2cc(UnkPooledPathMap_b0248* self);
+void ClearStringKeyedListMapNodes(UnkPooledPathMap_b0248* self);
 
 void fn_710008b924(UnkPooledPathMap_b0248* self) {
     self->ids.Clear();
-    fn_710008c2cc(self);
+    ClearStringKeyedListMapNodes(self);
     self->ids.Free();
     self->field_0x84 = true;
-    fn_710008c2cc(self);
+    ClearStringKeyedListMapNodes(self);
     self->allocator = nullptr;
     self->vtable = g_unk_7101a1a4c8 + 0x10;
     if (void* buffer = self->free_list.buffer) {
@@ -93,12 +93,12 @@ void fn_710008b924(UnkPooledPathMap_b0248* self) {
         self->pool_allocator->vf_0x48(buffer);
         self->pool_allocator = nullptr;
     }
-    fn_710008c2cc(self);
+    ClearStringKeyedListMapNodes(self);
     self->buckets.Free();
 }
 
 // The list of all nodes runs through +0x30.
-void fn_710008c2cc(UnkPooledPathMap_b0248* self) {
+void ClearStringKeyedListMapNodes(UnkPooledPathMap_b0248* self) {
     if (!self->count)
         return;
     for (UnkPathNode_b0248* n = self->head; n;) {

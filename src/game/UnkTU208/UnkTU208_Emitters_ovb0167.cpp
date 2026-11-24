@@ -364,7 +364,7 @@ static inline void Update(UnkFrameUpdater_ovb0167* self, u32 id) {
     UnkVec3f* position = &positions->values[id];
     UnkVec3f* old_angles = self->angles->values;
     UnkVec3f* velocity = &self->velocities->values[id];
-    positions->values[id] = fn_7100078170(static_cast<const UnkMat4f*>(frame), position);
+    positions->values[id] = TransformPointByMatrixWithPerspectiveDivide(static_cast<const UnkMat4f*>(frame), position);
     UnkVec3Target_ovb0167* angles = self->angles;
     {
         UnkVec3f delta = fn_7100076acc(static_cast<const UnkXform*>(frame));
@@ -372,7 +372,7 @@ static inline void Update(UnkFrameUpdater_ovb0167* self, u32 id) {
         angles->values[id] = UnkVec3f(old.x + delta.x, old.y + delta.y, old.z + delta.z);
     }
     UnkVec3Target_ovb0167* velocities = self->velocities;
-    velocities->values[id] = fn_7100077c04(*static_cast<const UnkMatrix44*>(frame), *velocity);
+    velocities->values[id] = TransformDirectionByMatrix3x3(*static_cast<const UnkMatrix44*>(frame), *velocity);
 }
 
 void fn_710016c1c8(UnkFrameUpdater_ovb0167* self, u32 id) {

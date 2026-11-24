@@ -200,7 +200,7 @@ void fn_710097d3f8(UnkSelf_l97d3f8* self, const UnkAim_l97d3f8* aim) {
         reinterpret_cast<UnkCollider_l97d3f8*>(fn_7100976588(reinterpret_cast<UnkFlagged*>(body)));
     UnkVec3f at(aim->at_x, aim->at_y, aim->at_z);
     UnkHitList_l97d3f8 hits;
-    if (!Query(tree, body->mask, collider->shape, fn_7100078cd8(at), &hits))
+    if (!Query(tree, body->mask, collider->shape, BuildTranslationMatrixFromVec3(at), &hits))
         return;
     if (hits.count > 2)
         return;

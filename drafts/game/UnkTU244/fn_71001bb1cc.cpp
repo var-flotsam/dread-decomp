@@ -14,8 +14,8 @@ struct UnkMat4f {
 
 struct UnkFlipState_b0151;
 
-UnkMatrix44 fn_7100079a9c(f32 left, f32 right, f32 bottom, f32 top, f32 near, f32 far);
-UnkMat4f fn_7100079a04(f32 fov, f32 aspect, f32 near_z, f32 far_z);
+UnkMatrix44 MakeOrthoProjectionMatrixZeroToOne(f32 left, f32 right, f32 bottom, f32 top, f32 near, f32 far);
+UnkMat4f MakePerspectiveFovMatrix(f32 fov, f32 aspect, f32 near_z, f32 far_z);
 void fn_710015bf00(bool keep, UnkFlipState_b0151* state);
 void fn_710015bef0(UnkMat4f* m, f32 value);
 
@@ -98,20 +98,20 @@ void fn_71001bb1cc(UnkCamera_l1bb1cc* self, const UnkViewport_l1bb1cc* viewport,
         scale = !(scale < 1.0f) ? scale : 1.0f;
         f32 width = viewport->width;
         f32 height = viewport->height;
-        CopyMatrix(&projection, fn_7100079a9c(width * -0.5f * scale, width * 0.5f * scale, height * -0.5f * scale,
+        CopyMatrix(&projection, MakeOrthoProjectionMatrixZeroToOne(width * -0.5f * scale, width * 0.5f * scale, height * -0.5f * scale,
                                               height * 0.5f * scale, self->near, self->far)
                                     .m);
         CopyMatrix(&view, &self->settings->view.m[0][0]);
     } else {
         f32 aspect = (f32)viewport->width / (f32)viewport->height;
         f32 fov = fn_7100217ee0(self->fov, aspect);
-        projection = fn_7100079a04((f32)(fov * 3.141592653589793 / 180.0), aspect, 1.0f, 10000000.0f);
+        projection = MakePerspectiveFovMatrix((f32)(fov * 3.141592653589793 / 180.0), aspect, 1.0f, 10000000.0f);
         fn_710015bf00(false, reinterpret_cast<UnkFlipState_b0151*>(&projection));
         CopyMatrix(&view, &self->settings->view.m[0][0]);
         fn_710015bef0(&view, self->field_0x94 * self->field_0x98);
     }
-    UnkVec3f in_view = fn_7100078170(&view, pos);
-    UnkVec3f clip = fn_7100078170(&projection, &in_view);
+    UnkVec3f in_view = TransformPointByMatrixWithPerspectiveDivide(&view, pos);
+    UnkVec3f clip = TransformPointByMatrixWithPerspectiveDivide(&projection, &in_view);
     *out_x = viewport->x + (s32)((clip.x + 1.0f) * viewport->width * 0.5f);
     *out_y = viewport->y + (s32)((1.0f - clip.y) * viewport->height * 0.5f);
 }

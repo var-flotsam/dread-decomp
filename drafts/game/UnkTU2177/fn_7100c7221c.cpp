@@ -84,7 +84,7 @@ bool fn_7100c7221c(void* self, const UnkSegment2D* segment, UnkStruct_0x48* slot
         if ((world != nullptr) & (world->vf_0x18() == 0x10)) {
             if (!nodes->At(i).field_0x3c)
                 continue;
-            UnkStruct_0x48* nodeSlot = fn_710012431c(&world->pool, nodes->At(i).handle);
+            UnkStruct_0x48* nodeSlot = ResolveHandleToPoolSlot(&world->pool, nodes->At(i).handle);
             base::math::CVector2D point;
             fn_710007b430(&point, &nodes->At(i).pos);
             bool onSegment = fn_7100125c64(segment, &point, true, 0.01f);

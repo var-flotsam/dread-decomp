@@ -48,7 +48,7 @@ static inline void Unlink(UnkTransformNode* self) {
     }
 }
 
-void fn_710002572c(void* member) {
+void DetachTreeNodeFromParentAndChildren(void* member) {
     UnkTransformNode* self = static_cast<UnkTransformNode*>(member);
     if (self->parent) {
         Unlink(self);
@@ -75,7 +75,7 @@ void fn_71000257e0(UnkTransformNode* self, bool reset) {
         return;
     Unlink(self);
     if (reset) {
-        fn_7100025a98(self->unk_0x20 + 0x8);
+        ResetXformToIdentity(self->unk_0x20 + 0x8);
         fn_7100025bd0(self);
     }
     if (self->slot < 0)

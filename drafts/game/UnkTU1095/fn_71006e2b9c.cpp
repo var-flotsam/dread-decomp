@@ -32,7 +32,7 @@ struct UnkMatrix44Words {
     UnkMatrix44Words() {}
     UnkMatrix44Words(const UnkMatrix44Words& other);
 };
-UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src);
+UnkMatrix44Words CopyMatrixWithoutTranslation(const UnkMatrix44Words* src);
 
 // The address of a temporary, for the callees that take their matrix by pointer.
 template <class T>
@@ -118,9 +118,9 @@ bool fn_71006e2b9c(UnkGoToPoint_l6e2b9c* self) {
                         self->target.y = m.m[7];
                         self->target.z = m.m[11];
                         // The offset turned by the node's rotation (the matrix without its translation).
-                        UnkVec3f moved = fn_7100078170(
+                        UnkVec3f moved = TransformPointByMatrixWithPerspectiveDivide(
                             reinterpret_cast<const UnkMat4f*>(
-                                AddressOf(fn_7100076dc4(reinterpret_cast<const UnkMatrix44Words*>(&m)))),
+                                AddressOf(CopyMatrixWithoutTranslation(reinterpret_cast<const UnkMatrix44Words*>(&m)))),
                             fn_710110f230(ai));
                         self->target.x = moved.x + self->target.x;
                         self->target.y = moved.y + self->target.y;

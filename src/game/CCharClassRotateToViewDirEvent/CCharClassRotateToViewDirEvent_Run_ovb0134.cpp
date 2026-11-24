@@ -79,7 +79,7 @@ struct UnkRotateEvent_ovb0134 {
 // The facing for a yaw angle.
 static inline UnkVec3f FacingForYaw(f32 yaw) {
     UnkVec3f angles(0.0f, yaw, 0.0f);
-    return fn_710007a220(&angles);
+    return WrapAngles3ToPi(&angles);
 }
 
 void fn_7100ccf664(UnkRotateEvent_ovb0134* self, UnkActorRef_ovb0134* ref) {

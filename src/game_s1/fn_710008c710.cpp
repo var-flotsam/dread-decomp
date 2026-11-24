@@ -15,7 +15,7 @@ extern u8 g_unk_7101d597e0[];
 void fn_710008b6d4(void*);
 void fn_710008b72c(void* obj, CStrId* name, void* a, void* b, void (*factory)(void*), void* c);
 
-void fn_710008c710() {
+void RegisterCPackSetManagerClass() {
     {
         CStrId name("base::file::CPackSetManager", true);
         fn_710008b72c(g_unk_7101d596a8, &name, nullptr, nullptr, fn_710008b6d4, nullptr);

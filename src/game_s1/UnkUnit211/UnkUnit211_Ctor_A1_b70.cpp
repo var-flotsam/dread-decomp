@@ -68,7 +68,7 @@ void fn_7100192994(void* p) {
     self->v0.field_0x14 = true;
     self->v0.flags = 0x1a;
     self->v0.allocator = GetDefaultAllocator();
-    fn_71000231f4(&self->v0, 0x10);
+    ReserveCountedRefVector(&self->v0, 0x10);
     self->field_0x70 = 0;
     self->field_0x78 = 0;
     self->field_0x80 = 1.0f / 30.0f;

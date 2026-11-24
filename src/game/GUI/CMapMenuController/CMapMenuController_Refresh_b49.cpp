@@ -22,7 +22,7 @@ struct UnkIdPair_b49 {
 
     UnkIdPair_b49() {
         __builtin_memset(this, 0, sizeof(*this));
-        fn_7100a8e07c(reinterpret_cast<UnkIdPair_7100a8e07c*>(this));
+        ConstructEmptyStrIdPair(reinterpret_cast<UnkIdPair_7100a8e07c*>(this));
     }
     ~UnkIdPair_b49() {
         second.Reset();

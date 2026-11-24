@@ -49,7 +49,7 @@ void fn_71008c07c8(UnkEnumType* type, const CStrId& name, void (*factory)(), voi
 void fn_71008c0af4(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71002174c8(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100217914(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
-void fn_71008c18b0() {
+void InitEDamageTypeAndEForcedDamageModeStatics() {
     InitHeaderIds(&g_unk_71727306e0.ids);
     InitEnum(&base::reflection::TypeObject<EDamageType, UnkEnumType>::object, "EDamageType", fn_71008c07c8, fn_71008c04fc,
              g_unk_7172730538, &g_unk_7172730540, fn_71008c1798, &g_unk_7172730560, fn_71008c17a4);
@@ -57,7 +57,7 @@ void fn_71008c18b0() {
              g_unk_7172730698, &g_unk_71727306a0, fn_71008c17b0, &g_unk_71727306c0, fn_71008c17bc);
 }
 
-void fn_7100217bb0() {
+void InitMaterialConstantColorAndLightPresetStatics() {
     InitHeaderIds(&g_unk_716e599400.ids);
     InitEnum(&base::reflection::TypeObject<engine::utils::EMaterialConstantColor, UnkEnumType>::object, "engine::utils::EMaterialConstantColor", fn_71002174c8, fn_710021701c,
              g_unk_716e599258, &g_unk_716e599260, fn_7100217a94, &g_unk_716e599280, fn_7100217aa0);

@@ -97,7 +97,7 @@ u32 fn_710059c04c(UnkGooplotAI_l59c04c* self, UnkGooplotMsg_l59c04c* msg) {
                             self->angle.x = self->saved_heading;
                             self->angle.y = 1.5707964f;
                             self->angle.z = 0.0f;
-                            fn_710007a220(&self->angle);
+                            WrapAngles3ToPi(&self->angle);
                             self->field_0x14873 = true;
                             self->field_0x146c8 = true;
                             self->field_0x14871 = false;

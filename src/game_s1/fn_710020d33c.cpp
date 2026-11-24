@@ -4,7 +4,7 @@
 // copy of the new scale to the target (fn_71001c1f9c).
 #include "game/UnkXformNode.h"
 
-void fn_71001c1f9c(UnkXformTarget* target, const UnkVec3f* scale);
+void SetScaleRescalingSphereAndHolderMatrix(UnkXformTarget* target, const UnkVec3f* scale);
 
 void fn_710020d33c(UnkXformNode* self, const UnkVec3f* v) {
     UnkVec3f cur = self->GetScale();
@@ -18,6 +18,6 @@ void fn_710020d33c(UnkXformNode* self, const UnkVec3f* v) {
         UnkXformTarget* target = self->target_0x108;
         self->flags_0x70 = (self->flags_0x70 & ~0xcu) | 4;
         UnkVec3f scale = self->scale_0x64;
-        fn_71001c1f9c(target, &scale);
+        SetScaleRescalingSphereAndHolderMatrix(target, &scale);
     }
 }

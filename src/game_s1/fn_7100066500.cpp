@@ -16,7 +16,7 @@ extern u8 g_unk_7101d57850[];
 extern u8 g_unk_7101d57988[];
 void fn_7100065d24(void*);
 void fn_7100065d78(void* obj, CStrId* name, void* a, void* b, void (*factory)(void*), void* c);
-void fn_7100066500() {
+void CLut_InitStatics() {
     new (&g_unk_7101d57990[0]) CStrId("sources", true);
     fn_7100000250(CStrId_Destroy, &g_unk_7101d57990[0], &g_unk_7101a19000);
     new (&g_unk_7101d57990[1]) CStrId("binaries", true);

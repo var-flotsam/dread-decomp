@@ -15,7 +15,7 @@ extern void* unk_7101a1e6e0[];
 template <class Value>
 struct UnkIdTable;
 struct UnkResWord;
-void fn_71001d7444(UnkIdTable<UnkResWord>* self);
+void ClearStrIdKeyedCountedResourceTable(UnkIdTable<UnkResWord>* self);
 void fn_71001c943c(char* map);
 
 // Members destroyed out of line.
@@ -99,7 +99,7 @@ struct UnkGfxIdTable_l1c9070 {
     base::UnkAllocator* allocator;  // 0x20
 
     ~UnkGfxIdTable_l1c9070() {
-        fn_71001d7444(reinterpret_cast<UnkIdTable<UnkResWord>*>(this));
+        ClearStrIdKeyedCountedResourceTable(reinterpret_cast<UnkIdTable<UnkResWord>*>(this));
         if (keys)
             allocator->vf_0x48(keys);
         if (values)

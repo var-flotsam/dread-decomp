@@ -27,7 +27,7 @@ __attribute__((visibility("hidden"))) extern const u8 g_unk_710164a398[];  // th
 __attribute__((visibility("hidden"))) extern CStrId g_unk_71726fa878;      // the projectile's definition
 
 void* fn_710063df28(void* owner);  // refl_FindTyped of "MOVEMENT".
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 void fn_71000769f0(UnkMatrix44* out, const void* a, const void* b, const void* c, const void* d);
 
 struct UnkActorDefName_l63d920 {
@@ -129,7 +129,7 @@ void fn_710063d920(UnkQuetzoaXMultiTargetAttack_l63d920* self) {
         fn_710009d50c(char_class->vf_0x0(), fn_7100640b04()) ? static_cast<UnkProjectileClass_l63d920*>(char_class)
                                                               : nullptr;
     f32 spread = DegToRad(cls->spread);
-    UnkVec3f aim = fn_710007a390(dir, self->side * spread);
+    UnkVec3f aim = RotateVec3AboutZ(dir, self->side * spread);
     aim = Normalized(aim);
     self->side = -self->side;
 

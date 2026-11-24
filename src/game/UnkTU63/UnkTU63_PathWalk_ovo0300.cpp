@@ -39,7 +39,7 @@ struct UnkFilePathList_b0248 : base::UnkVtableList<UnkListedPath_b0248> {
     }
 };
 
-bool fn_7100087b0c(UnkRegistry_b0248* self, UnkRegistryHandler_b0248* handler, UnkListedPath_b0248* path, u32 depth,
+bool ListRegistryHandlerPathsAtDepth(UnkRegistry_b0248* self, UnkRegistryHandler_b0248* handler, UnkListedPath_b0248* path, u32 depth,
                    UnkFilePathList_b0248* out) {
     if (depth == 0) {
         u32 result = handler->vf_0x80(path, 0, true, 0, out);
@@ -57,7 +57,7 @@ bool fn_7100087b0c(UnkRegistry_b0248* self, UnkRegistryHandler_b0248* handler, U
         for (UnkListedPath_b0248* n = children.head; n; n = n->next) {
             if (!ok)
                 break;
-            ok = fn_7100087b0c(self, handler, n, depth - 1, out);
+            ok = ListRegistryHandlerPathsAtDepth(self, handler, n, depth - 1, out);
         }
     } else if (result != 1 && self->on_error) {
         self->on_error(self->context, handler, result);

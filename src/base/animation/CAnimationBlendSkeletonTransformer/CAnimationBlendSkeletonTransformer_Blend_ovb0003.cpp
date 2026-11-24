@@ -143,7 +143,7 @@ struct UnkBlendSkeleton_ovb0003 {
     UnkU64Array_b47* bones;  // 0x80
 };
 
-bool fn_7100015570(UnkKeyedTable_b48* self, void** key, UnkKeyedEntry** entry);
+bool GetNextKeyedTableKeyAndEntry(UnkKeyedTable_b48* self, void** key, UnkKeyedEntry** entry);
 s32 fn_710019ba50(UnkU64Array_b47* self, const u64* key);
 void fn_7100015094(void* self, const void* other);
 void fn_7100015124(void* self, const void* other);
@@ -192,7 +192,7 @@ void fn_7100003afc(UnkBlendTransformer_ovb0003* self, void* out) {
         void* key = reinterpret_cast<void*>(~0ull);
         UnkKeyedEntry* entry = nullptr;
         self->table.cursor = self->table.entries;
-        while (fn_7100015570(&self->table, &key, &entry)) {
+        while (GetNextKeyedTableKeyAndEntry(&self->table, &key, &entry)) {
             UnkMatrix44* m = fn_7100015508(out, reinterpret_cast<u64>(key));
             if (!m)
                 continue;

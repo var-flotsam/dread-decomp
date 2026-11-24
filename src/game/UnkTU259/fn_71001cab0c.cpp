@@ -47,7 +47,7 @@ static inline void Append(CRntVector<UnkResRef>& vector, const UnkResRef& value)
     if ((s32)n >= (s32)capacity)
         for (;;) {
         }
-    fn_71000231f4(reinterpret_cast<CRntVector<u8>*>(&vector), capacity);
+    ReserveCountedRefVector(reinterpret_cast<CRntVector<u8>*>(&vector), capacity);
     UnkResRef* slot = new (&vector.data[vector.count]) UnkResRef();
     *slot = value;
     ++vector.count;

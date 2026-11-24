@@ -30,7 +30,7 @@ void fn_7100a0eb24(UnkModelPlacer_b0211* self) {
     UnkRenderManager* manager = g_unk_7101d47300;
     u64 model = self->model;
     UnkVec2Result_b0211 pos = self->vf_0x0();
-    UnkMatrix44_7100078c9c m = fn_7100078cd8(UnkVec3f(pos.x, pos.y, 0.0f));
+    UnkMatrix44_7100078c9c m = BuildTranslationMatrixFromVec3(UnkVec3f(pos.x, pos.y, 0.0f));
     fn_7100219dd0(manager, model, reinterpret_cast<const UnkMatrix44*>(&m), 1, 1, &self->instance, 0);
 }
 

@@ -19,7 +19,7 @@ struct UnkMatrix44Words {
     UnkMatrix44Words(const UnkMatrix44Words& other);
 };
 
-UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src);
+UnkMatrix44Words CopyMatrixWithoutTranslation(const UnkMatrix44Words* src);
 
 struct UnkAIFollowName {
     u8 pad_0x0[0x30];
@@ -96,7 +96,7 @@ static inline bool FindShape(UnkEntity* shapes, base::global::UnkStringData* sha
 }
 
 static inline UnkVec3f Rotate(const UnkMatrix44Words& rotation, const UnkVec3f& v) {
-    return fn_7100078170(reinterpret_cast<const UnkMat4f*>(&rotation), &v);
+    return TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&rotation), &v);
 }
 
 struct UnkStartSelf_i;
@@ -119,7 +119,7 @@ void fn_710110e554(UnkStartSelf_i* component) {
             if (FindShape(shapes, shape, &frame)) {
                 self->pos = TranslationOf(frame);
                 UnkVec3f offset =
-                    Rotate(fn_7100076dc4(reinterpret_cast<const UnkMatrix44Words*>(&frame)), self->anchor->offset);
+                    Rotate(CopyMatrixWithoutTranslation(reinterpret_cast<const UnkMatrix44Words*>(&frame)), self->anchor->offset);
                 self->pos.x = offset.x + self->pos.x;
                 self->pos.y = offset.y + self->pos.y;
                 self->pos.z = offset.z + self->pos.z;

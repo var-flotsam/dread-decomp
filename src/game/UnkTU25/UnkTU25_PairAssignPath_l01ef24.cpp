@@ -56,7 +56,7 @@ struct UnkPair_l01ef24 {
     UnkPairPath_l01ef24 path;
 };
 
-UnkPair_l01ef24* fn_710001ef24(UnkPair_l01ef24* self, const UnkInlineString* other) {
+UnkPair_l01ef24* AssignAssetIdFromString(UnkPair_l01ef24* self, const UnkInlineString* other) {
     if (reinterpret_cast<const void*>(other) != reinterpret_cast<const void*>(self)) {
         UnkPathIdsFromText ids(*reinterpret_cast<const base::global::CRntString*>(other));
         self->id = static_cast<base::UnkStrIdMember&&>(ids.ids.id);

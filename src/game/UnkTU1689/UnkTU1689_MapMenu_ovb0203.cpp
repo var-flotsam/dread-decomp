@@ -519,7 +519,7 @@ struct UnkIdPair_b49 {
     union {
         CStrId second;
     };
-    UnkIdPair_b49() { fn_7100a8e07c(reinterpret_cast<UnkIdPair_7100a8e07c*>(this)); }
+    UnkIdPair_b49() { ConstructEmptyStrIdPair(reinterpret_cast<UnkIdPair_7100a8e07c*>(this)); }
     ~UnkIdPair_b49() {
         second.Reset();
         first.~CStrId();

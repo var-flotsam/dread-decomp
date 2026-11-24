@@ -18,8 +18,8 @@ UnkVec3f fn_7100079b18(UnkXform* x, f32 hint) {
     UnkVec3f a(0.0f, 0.0f, 0.0f);
     UnkVec3f b(0.0f, 0.0f, 0.0f);
     fn_7100077038(x, &a, &b, hint);
-    a = fn_710007a220(&a);
-    b = fn_710007a220(&b);
+    a = WrapAngles3ToPi(&a);
+    b = WrapAngles3ToPi(&b);
     if (!Near(a.z, hint)) {
         if (Near(b.z, hint))
             return b;

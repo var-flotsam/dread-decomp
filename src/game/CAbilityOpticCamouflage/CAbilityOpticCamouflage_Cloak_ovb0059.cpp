@@ -38,7 +38,7 @@ extern const UnkV4_b47 g_unk_7101648e38 __attribute__((visibility("hidden")));  
 extern const UnkV4_b47 g_unk_7101648e48 __attribute__((visibility("hidden")));  // the other one
 
 static inline UnkV4_b47 operator*(const UnkV4_b47& a, f32 s) { return fn_7100030830(&a, s); }
-static inline UnkV4_b47 operator+(const UnkV4_b47& a, const UnkV4_b47& b) { return fn_7100030770(&a, &b); }
+static inline UnkV4_b47 operator+(const UnkV4_b47& a, const UnkV4_b47& b) { return AddVec4ClampedNonNegative(&a, &b); }
 
 struct UnkEnergyPart_ovb0059 {
     u8 pad_0x0[0x10];

@@ -32,7 +32,7 @@ void fn_710001449c();
 void fn_7100014be4() HIDDEN;
 void fn_7100014bf0() HIDDEN;
 
-void fn_7100014c70() {
+void RegisterEBlendFunctionEnum() {
     {
         CStrId name("base::animation::EBlendFunction", true);
         fn_71000145e8(&base::reflection::TypeObject<base::animation::EBlendFunction, UnkEnumInfo>::object, &name, fn_710001449c, nullptr);

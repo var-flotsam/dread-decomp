@@ -120,7 +120,7 @@ void fn_710106b2bc(UnkCutscene* self, f32 frame) {
         return;
     }
     fn_710020ac34(&root->screen->fade, true);
-    base::color::CColor4F color = fn_710003088c((pos - ev->start) / (ev->end - ev->start),
+    base::color::CColor4F color = LerpColor4FClampedNonNegative((pos - ev->start) / (ev->end - ev->start),
                                                 UnkColorFromPacked(ev->from), UnkColorFromPacked(ev->to));
     fn_710019c4fc(static_cast<UnkGuiRoot_CCutscene*>(g_unk_7101d47330)->screen->fade_holder->layer, &color);
 }

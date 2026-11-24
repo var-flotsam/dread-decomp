@@ -148,7 +148,7 @@ void fn_71010efa58(UnkFreeCameraCtrl_l0efa58* self) {
             else if (look.pitch < -0.01f)
                 angle = stick * look.pitch;
             UnkMatrix44 m = fn_710007966c(&right, angle);
-            UnkVec3f r = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&m),
+            UnkVec3f r = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&m),
                                        reinterpret_cast<const UnkVec3f*>(&self->forward));
             self->forward.x = r.x;
             self->forward.y = r.y;
@@ -172,7 +172,7 @@ void fn_71010efa58(UnkFreeCameraCtrl_l0efa58* self) {
             f32 angle = self->pitch > 0.0f ? -0.00125f : 0.00125f;
             CVector3D old = self->forward;
             UnkMatrix44 m = fn_710007966c(&right, rate * angle);
-            UnkVec3f r = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&m),
+            UnkVec3f r = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&m),
                                        reinterpret_cast<const UnkVec3f*>(&self->forward));
             self->forward.x = r.x;
             self->forward.y = r.y;

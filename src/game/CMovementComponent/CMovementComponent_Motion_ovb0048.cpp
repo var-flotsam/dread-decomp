@@ -220,7 +220,7 @@ UnkVec3f fn_71010d2b08(UnkMovement2_ovb0048* self) {
     if (UnkAnimationComponent* animation = self->owner->animation) {
         UnkMotion_ovb0048 motion;
         fn_7101179d08(animation, reinterpret_cast<UnkStruct_71007142e8*>(&motion), &g_unk_717270ec68);
-        v = fn_7100077c04(motion.Matrix(), v);
+        v = TransformDirectionByMatrix3x3(motion.Matrix(), v);
     }
     return v;
 }

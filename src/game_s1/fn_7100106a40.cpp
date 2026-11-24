@@ -32,7 +32,7 @@ void fn_71001069b4() HIDDEN;
 void fn_71001069c0() HIDDEN;
 void fn_71001066a0(UnkEnumInfo* obj, CStrId* name, void (*fn)(), void* a);
 
-void fn_7100106a40() {
+void RegisterESoundGroupIdsEnumType() {
     {
         CStrId name("base::snd::ESoundGroupIds", true);
         fn_71001066a0(&base::reflection::TypeObject<base::snd::ESoundGroupIds, UnkEnumInfo>::object, &name, fn_71001061f4, nullptr);

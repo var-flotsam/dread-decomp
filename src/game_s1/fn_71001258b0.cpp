@@ -20,7 +20,7 @@ extern char g_unk_7108b6feb0;
 void fn_7100123d30(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_71001239b0();
 
-void fn_71001258b0() {
+void InitCPolygonCollection2DStatics() {
     InitHeaderRev(g_unk_7108b6feb8);
     InitClass(&g_unk_7108b6fd78, "base::spatial::CPolygonCollection2D", fn_7100123d30, fn_71001239b0);
     fn_710009ec00(&g_unk_7108b6feb0, &g_unk_7108b6fd78);
