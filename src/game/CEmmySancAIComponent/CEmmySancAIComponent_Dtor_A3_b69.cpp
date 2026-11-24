@@ -7,17 +7,18 @@
 #include "game/CEmmySancAIComponent.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU811.h"
+#include "game/UnkEmmyAIComponent.h"
 #include "types.h"
 
 // As src/game/CEmmyCaveAIComponent/fn_71004f0428.cpp declares it.
-struct UnkComponent;
+struct UnkEmmyAIComponent;
 
 struct UnkSancDtor_A3_b69;
 
 template <>
 struct base::UnkDtorTraits<UnkSancDtor_A3_b69> {
     static char* vtable() { return reinterpret_cast<char*>(g_unk_7101a46180); }
-    static void base(char* self) { fn_710053f510(reinterpret_cast<UnkComponent*>(self)); }
+    static void base(char* self) { fn_710053f510(reinterpret_cast<UnkEmmyAIComponent*>(self)); }
 };
 
 template <>
