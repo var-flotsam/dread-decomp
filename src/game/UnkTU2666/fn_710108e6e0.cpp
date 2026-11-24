@@ -12,6 +12,7 @@
 #include "game/UnkTU57.h"
 #include "game/sound/CSoundManager.h"
 #include "types.h"
+#include "game/UnkBufferStringPool.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
@@ -20,7 +21,6 @@ using base::global::CStrId;
 struct lua_State;
 
 // The vtable of the allocator that follows a string with 0x80 bytes of inline storage.
-extern void* g_unk_7101a1b750[];
 
 // A string with 0x80 bytes of inline storage (0xc8 bytes).
 struct UnkInlineString_l08e6e0 {
@@ -72,7 +72,10 @@ inline UnkInlineString_l08e6e0 ReplaceHashes(const CRntString& str) {
     text[length] = '\0';
     for (u32 i = 0; i < length; ++i) {
         char c = str.data[i];
-        text[i] = c == '#' ? '/' : c;
+        if (c == '#')
+            text[i] = '/';
+        else
+            text[i] = c;
     }
     return UnkInlineString_l08e6e0(text);
 }
