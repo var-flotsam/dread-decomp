@@ -264,7 +264,8 @@ Class declarations for reflected classes, from the reflection tables and two han
 ```sh
 python tools/gen_classes.py            # write include/reflected/ (and drop headers no longer selected)
 python tools/gen_classes.py --check    # exit 1 if include/reflected/ is not what this would write
-python tools/gen_classes.py --rule     # how many classes the rule selects with no scope (writes nothing)
+python tools/gen_classes.py --rule     # how many classes the rule selects with no scope, and why not the rest
+python tools/gen_classes.py --views    # declared classes whose hand-written unit still defines Unk... types
 ```
 
 ## Matching

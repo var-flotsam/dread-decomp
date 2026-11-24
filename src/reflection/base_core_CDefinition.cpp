@@ -7,33 +7,31 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/base/core/CDefinition.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // base::core::CDefinition
-namespace base::core::CDefinition {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sLabel", 0x58, (Description, base::global::CRntString("Definition Label")));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void base::core::CDefinition::refl_AddAttributes(CClass*) {}
+void base::core::CDefinition::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sLabel", offsetof(CDefinition, sLabel), (Description, base::global::CRntString("Definition Label")));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x60;
+bool base::core::CDefinition::refl_Equals(const void*, const void*) { return false; }
+s32 base::core::CDefinition::refl_Hash() { return -1; }
+const base::reflection::CType& base::core::CDefinition::refl_TypeOf(const void* obj) { return *static_cast<const CDefinition*>(obj)->vf_0x0(); }
+void base::core::CDefinition::refl_Destroy(void* obj) { static_cast<CDefinition*>(obj)->~CDefinition(); }
+struct base::core::CDefinition::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CDefinition);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace base::core::CDefinition
-DREAD_REFLECTED_CLASS(base::core::CDefinition, base::core::CAsset);
+DREAD_REFLECTED_DECLARED_CLASS(base::core::CDefinition, base::core::CAsset);
+#pragma GCC diagnostic pop

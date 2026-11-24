@@ -7,24 +7,22 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CFXComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CFXComponent
 void fn_710114dc08(CFunction* fn, const char* name);
 void fn_710114dcbc(CFunction* fn, const char* name);
-namespace CFXComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fSelectedHighRadius", 0x118, (DefaultValue, 250.0f));
-    DREAD_REFLECTED_FIELD(f32, "fSelectedLowRadius", 0x114, (DefaultValue, 350.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CFXComponent::refl_AddAttributes(CClass*) {}
+void CFXComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fSelectedHighRadius", offsetof(CFXComponent, fSelectedHighRadius), (DefaultValue, 250.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSelectedLowRadius", offsetof(CFXComponent, fSelectedLowRadius), (DefaultValue, 350.0f));
     DREAD_REFLECTED_FUNCTION("SetEffectEmissionEnabled") {
         fn_710114dc08(fn, "SetEffectEmissionEnabled");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
@@ -36,17 +34,16 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x1b0;
+bool CFXComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CFXComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CFXComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFXComponent*>(obj)->vf_0x0(); }
+void CFXComponent::refl_CopyConstruct(void*, const void*) {}
+void CFXComponent::refl_MoveConstruct(void*, const void*) {}
+void CFXComponent::refl_Destroy(void* obj) { static_cast<CFXComponent*>(obj)->~CFXComponent(); }
+void* CFXComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CFXComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CFXComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CFXComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -57,8 +54,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CFXComponent
-DREAD_REFLECTED_CLASS(CFXComponent, CSceneComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CFXComponent, CSceneComponent);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

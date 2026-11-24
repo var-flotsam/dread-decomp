@@ -7,39 +7,33 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/CBasicLifeComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CBasicLifeComponent
 void fn_71008a3a04(CFunction* fn, const char* name);
-namespace CBasicLifeComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CBasicLifeComponent::refl_AddAttributes(CClass*) {}
+void CBasicLifeComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("AddDamageSource") {
         fn_71008a3a04(fn, "AddDamageSource");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Add Damage source (POWER_BEAM, CHARGE_BEAM, ...)"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x280;
+bool CBasicLifeComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CBasicLifeComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CBasicLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBasicLifeComponent*>(obj)->vf_0x0(); }
+void CBasicLifeComponent::refl_Destroy(void* obj) { static_cast<CBasicLifeComponent*>(obj)->~CBasicLifeComponent(); }
+struct CBasicLifeComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CBasicLifeComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CBasicLifeComponent
-DREAD_REFLECTED_CLASS(CBasicLifeComponent, CLifeComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CBasicLifeComponent, CLifeComponent);

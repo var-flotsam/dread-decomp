@@ -13,10 +13,9 @@ using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CLightingComponent.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CCharClassLightingComponent
@@ -56,20 +55,18 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassLightingComponent, CCharClassComponent);
 
 // CLightingComponent
-namespace CLightingComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x90;
+void CLightingComponent::refl_AddAttributes(CClass*) {}
+void CLightingComponent::refl_AddFields(CClass*) {}
+bool CLightingComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CLightingComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CLightingComponent::refl_TypeOf(const void* obj) { return *static_cast<const CLightingComponent*>(obj)->vf_0x0(); }
+void CLightingComponent::refl_CopyConstruct(void*, const void*) {}
+void CLightingComponent::refl_MoveConstruct(void*, const void*) {}
+void CLightingComponent::refl_Destroy(void* obj) { static_cast<CLightingComponent*>(obj)->~CLightingComponent(); }
+void* CLightingComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CLightingComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CLightingComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CLightingComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -80,5 +77,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CLightingComponent
-DREAD_REFLECTED_CLASS(CLightingComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CLightingComponent, CComponent);

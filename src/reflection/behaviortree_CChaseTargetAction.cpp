@@ -7,43 +7,40 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CChaseTargetAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CChaseTargetAction
-namespace behaviortree::CChaseTargetAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bMaintainViewDirOnReached", 0x48, (DefaultValue, false), (Description, "Maintain View Dir On Reached"));
-    DREAD_REFLECTED_FIELD(bool, "bIgnoreTargetAccesible", 0x49, (DefaultValue, false), (Description, "Ignore target accessible"));
-    DREAD_REFLECTED_FIELD(bool, "bAccessibleIfReachable", 0x4a, (DefaultValue, true), (Description, "Target is considered accessible if she's reachable"));
-    DREAD_REFLECTED_FIELD(bool, "bCheckTargetAccesibleStandingAbovePath", 0x50, (DefaultValue, false), (Description, ""));
-    DREAD_REFLECTED_FIELD(f32, "fTargetAccesibleMaxHeight", 0x4c, (DefaultValue, -1.0f), (Description, "Max target heigth over navigable path to be accesible (-1 for infinity)"));
-    DREAD_REFLECTED_FIELD(bool, "bGotoMovingIfNotInFrustum", 0x51, (DefaultValue, false), (Description, "Goto Moving If Not In Frustum"));
-    DREAD_REFLECTED_FIELD(bool, "bAllowTargetToJumpOver", 0x52, (DefaultValue, true), (Description, "Allow Target To Jump Over"));
-    DREAD_REFLECTED_FIELD(f32, "fMovingToIdleLimitsOffset", 0x54, (DefaultValue, 100.0f), (Description, "Moving to Idle limits offset"));
-    DREAD_REFLECTED_FIELD(bool, "bIgnoreNextAttackTimeOnIdle", 0x58, (DefaultValue, false), (Description, "Reset Next Attack Time On Idle"));
-    DREAD_REFLECTED_FIELD(bool, "bFaceObstacleFreeTargetSide", 0x59, (DefaultValue, false), (Description, "Face target's side free of obstacles (e.g. to launch projectiles)"));
-    DREAD_REFLECTED_FIELD(bool, "bUseRandomCenter", 0x5a, (DefaultValue, false), (Description, ""));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CChaseTargetAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CChaseTargetAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bMaintainViewDirOnReached", offsetof(CChaseTargetAction, bMaintainViewDirOnReached), (DefaultValue, false), (Description, "Maintain View Dir On Reached"));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreTargetAccesible", offsetof(CChaseTargetAction, bIgnoreTargetAccesible), (DefaultValue, false), (Description, "Ignore target accessible"));
+    DREAD_REFLECTED_FIELD(bool, "bAccessibleIfReachable", offsetof(CChaseTargetAction, bAccessibleIfReachable), (DefaultValue, true), (Description, "Target is considered accessible if she's reachable"));
+    DREAD_REFLECTED_FIELD(bool, "bCheckTargetAccesibleStandingAbovePath", offsetof(CChaseTargetAction, bCheckTargetAccesibleStandingAbovePath), (DefaultValue, false), (Description, ""));
+    DREAD_REFLECTED_FIELD(f32, "fTargetAccesibleMaxHeight", offsetof(CChaseTargetAction, fTargetAccesibleMaxHeight), (DefaultValue, -1.0f), (Description, "Max target heigth over navigable path to be accesible (-1 for infinity)"));
+    DREAD_REFLECTED_FIELD(bool, "bGotoMovingIfNotInFrustum", offsetof(CChaseTargetAction, bGotoMovingIfNotInFrustum), (DefaultValue, false), (Description, "Goto Moving If Not In Frustum"));
+    DREAD_REFLECTED_FIELD(bool, "bAllowTargetToJumpOver", offsetof(CChaseTargetAction, bAllowTargetToJumpOver), (DefaultValue, true), (Description, "Allow Target To Jump Over"));
+    DREAD_REFLECTED_FIELD(f32, "fMovingToIdleLimitsOffset", offsetof(CChaseTargetAction, fMovingToIdleLimitsOffset), (DefaultValue, 100.0f), (Description, "Moving to Idle limits offset"));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreNextAttackTimeOnIdle", offsetof(CChaseTargetAction, bIgnoreNextAttackTimeOnIdle), (DefaultValue, false), (Description, "Reset Next Attack Time On Idle"));
+    DREAD_REFLECTED_FIELD(bool, "bFaceObstacleFreeTargetSide", offsetof(CChaseTargetAction, bFaceObstacleFreeTargetSide), (DefaultValue, false), (Description, "Face target's side free of obstacles (e.g. to launch projectiles)"));
+    DREAD_REFLECTED_FIELD(bool, "bUseRandomCenter", offsetof(CChaseTargetAction, bUseRandomCenter), (DefaultValue, false), (Description, ""));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xe0;
+bool behaviortree::CChaseTargetAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CChaseTargetAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CChaseTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CChaseTargetAction*>(obj)->vf_0x0(); }
+void behaviortree::CChaseTargetAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CChaseTargetAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CChaseTargetAction::refl_Destroy(void* obj) { static_cast<CChaseTargetAction*>(obj)->~CChaseTargetAction(); }
+void* behaviortree::CChaseTargetAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CChaseTargetAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CChaseTargetAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CChaseTargetAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -54,5 +51,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CChaseTargetAction
-DREAD_REFLECTED_CLASS(behaviortree::CChaseTargetAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CChaseTargetAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

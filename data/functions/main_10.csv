@@ -4813,7 +4813,7 @@ address,size,name,name_source,subsystem,status
 0x71010f3614,244,CCameraFX_Shake::refl_GetClass,reflection,game,O
 0x71010f3708,1172,CCameraFX_Shake::refl_AddFields,reflection,game,O
 0x71010f3b9c,388,CCameraFX_Shake::refl_InitClass,reflection,game,O
-0x71010f3d20,116,fn_71010f3d20,unknown,game?,O
+0x71010f3d20,116,CCameraFX_Shake::CCameraFX_Shake,inferred,game?,O
 0x71010f3d94,124,fn_71010f3d94,unknown,game?,O
 0x71010f3e10,132,fn_71010f3e10,unknown,game?,O
 0x71010f3e94,12,fn_71010f3e94,unknown,game?,O

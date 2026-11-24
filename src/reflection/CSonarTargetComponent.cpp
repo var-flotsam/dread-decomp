@@ -5,25 +5,21 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CSonarTargetComponent.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CSonarTargetComponent
-namespace CSonarTargetComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x40;
+void CSonarTargetComponent::refl_AddAttributes(CClass*) {}
+void CSonarTargetComponent::refl_AddFields(CClass*) {}
+bool CSonarTargetComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CSonarTargetComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CSonarTargetComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSonarTargetComponent*>(obj)->vf_0x0(); }
+void CSonarTargetComponent::refl_Destroy(void* obj) { static_cast<CSonarTargetComponent*>(obj)->~CSonarTargetComponent(); }
+void* CSonarTargetComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CSonarTargetComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CSonarTargetComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSonarTargetComponent);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -32,8 +28,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CSonarTargetComponent
-DREAD_REFLECTED_CLASS(CSonarTargetComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CSonarTargetComponent, CComponent);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

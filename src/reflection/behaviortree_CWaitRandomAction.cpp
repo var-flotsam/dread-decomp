@@ -7,33 +7,30 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CWaitRandomAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CWaitRandomAction
-namespace behaviortree::CWaitRandomAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fRandomOffset", 0x54, (DefaultValue, 1.0f), (Description, "Random offset"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CWaitRandomAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CWaitRandomAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fRandomOffset", offsetof(CWaitRandomAction, fRandomOffset), (DefaultValue, 1.0f), (Description, "Random offset"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x58;
+bool behaviortree::CWaitRandomAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CWaitRandomAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CWaitRandomAction::refl_TypeOf(const void* obj) { return *static_cast<const CWaitRandomAction*>(obj)->vf_0x0(); }
+void behaviortree::CWaitRandomAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CWaitRandomAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CWaitRandomAction::refl_Destroy(void* obj) { static_cast<CWaitRandomAction*>(obj)->~CWaitRandomAction(); }
+void* behaviortree::CWaitRandomAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CWaitRandomAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CWaitRandomAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CWaitRandomAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,5 +41,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CWaitRandomAction
-DREAD_REFLECTED_CLASS(behaviortree::CWaitRandomAction, behaviortree::CWaitAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CWaitRandomAction, behaviortree::CWaitAction);
+#pragma GCC diagnostic pop

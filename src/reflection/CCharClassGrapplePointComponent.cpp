@@ -12,36 +12,33 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CCharClassGrapplePointComponent.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CCharClassGrapplePointComponent
 void fn_7100816d34();
 void fn_71008169ac(CFunction* fn, const char* name);
-namespace CCharClassGrapplePointComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassGrapplePointComponent::refl_AddAttributes(CClass*) {}
+void CCharClassGrapplePointComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_bAutoEnableGlow_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100816d34);
     DREAD_REFLECTED_FUNCTION("_m_bAutoEnableGlow_SetterFunction")
         fn_71008169ac(fn, "_m_bAutoEnableGlow_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bAutoEnableGlow", (DefaultValue, true), (Description, "Auto enable glow fx?"));
-    DREAD_REFLECTED_FIELD(CStrId, "sGrappleDragWide", 0x60, (DefaultValue, ""), (Description, "Grapple Draw Animation Override"));
+    DREAD_REFLECTED_FIELD(CStrId, "sGrappleDragWide", offsetof(CCharClassGrapplePointComponent, sGrappleDragWide), (DefaultValue, ""), (Description, "Grapple Draw Animation Override"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x68;
+bool CCharClassGrapplePointComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassGrapplePointComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGrapplePointComponent*>(obj)->vf_0x0(); }
+void CCharClassGrapplePointComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassGrapplePointComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassGrapplePointComponent::refl_Destroy(void* obj) { static_cast<CCharClassGrapplePointComponent*>(obj)->~CCharClassGrapplePointComponent(); }
+void* CCharClassGrapplePointComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassGrapplePointComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassGrapplePointComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassGrapplePointComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -52,5 +49,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassGrapplePointComponent
-DREAD_REFLECTED_CLASS(CCharClassGrapplePointComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassGrapplePointComponent, CCharClassComponent);
+#pragma GCC diagnostic pop

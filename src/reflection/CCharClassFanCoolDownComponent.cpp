@@ -12,28 +12,24 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "reflected/CCharClassFanCoolDownComponent.h"
+#include "reflected/CFanCoolDownComponent.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CCharClassFanCoolDownComponent
-namespace CCharClassFanCoolDownComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x58;
+void CCharClassFanCoolDownComponent::refl_AddAttributes(CClass*) {}
+void CCharClassFanCoolDownComponent::refl_AddFields(CClass*) {}
+bool CCharClassFanCoolDownComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassFanCoolDownComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassFanCoolDownComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFanCoolDownComponent*>(obj)->vf_0x0(); }
+void CCharClassFanCoolDownComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassFanCoolDownComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassFanCoolDownComponent::refl_Destroy(void* obj) { static_cast<CCharClassFanCoolDownComponent*>(obj)->~CCharClassFanCoolDownComponent(); }
+void* CCharClassFanCoolDownComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassFanCoolDownComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassFanCoolDownComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassFanCoolDownComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,31 +40,28 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassFanCoolDownComponent
-DREAD_REFLECTED_CLASS(CCharClassFanCoolDownComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassFanCoolDownComponent, CCharClassComponent);
 
 // CFanCoolDownComponent
 void fn_7100880ea4();
 void fn_7100880ed8();
 void fn_7100880f0c();
-namespace CFanCoolDownComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CFanCoolDownComponent::refl_AddAttributes(CClass*) {}
+void CFanCoolDownComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("StartFan", &base::reflection::TypeObject<void>::object, 0, fn_7100880ea4);
     DREAD_REFLECTED_FUNCTION_OF("BlockFan", &base::reflection::TypeObject<void>::object, 0, fn_7100880ed8);
     DREAD_REFLECTED_FUNCTION_OF("StopFan", &base::reflection::TypeObject<void>::object, 0, fn_7100880f0c);
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x48;
+bool CFanCoolDownComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CFanCoolDownComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CFanCoolDownComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFanCoolDownComponent*>(obj)->vf_0x0(); }
+void CFanCoolDownComponent::refl_CopyConstruct(void*, const void*) {}
+void CFanCoolDownComponent::refl_MoveConstruct(void*, const void*) {}
+void CFanCoolDownComponent::refl_Destroy(void* obj) { static_cast<CFanCoolDownComponent*>(obj)->~CFanCoolDownComponent(); }
+void* CFanCoolDownComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CFanCoolDownComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CFanCoolDownComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CFanCoolDownComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -79,5 +72,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CFanCoolDownComponent
-DREAD_REFLECTED_CLASS(CFanCoolDownComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CFanCoolDownComponent, CComponent);

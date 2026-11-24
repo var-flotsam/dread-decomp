@@ -13,7 +13,8 @@ conflicting signatures. This writes the one declaration of each getter, read fro
 data/functions/*.csv (the rows whose name ends in `::refl_GetClass` and whose name_source is
 `reflection`), sorted by address, with the class name as a trailing comment. The getter of a class
 tools/gen_classes.py declares (include/reflected/) is left out: it is the class's static member
-T::refl_GetClass, and a caller includes the class's header instead. CClass is only
+T::refl_GetClass, and a caller includes the class's header instead (while a hand-written source
+still calls the getter as fn_<addr>, its declaration stays here). CClass is only
 forward-declared, so including the header is cheap; sources that use the descriptor's members
 include base/reflection/CClass.h as well.
 
@@ -27,6 +28,7 @@ Output is deterministic. Regenerate, never edit it.
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 
@@ -90,6 +92,22 @@ def render(rows: list[tuple[int, str]], declared: frozenset[str] | set[str] = fr
     return "\n".join(lines) + "\n"
 
 
+# Generated sources declare the getters they call themselves (their own generators').
+GENERATED = ("src/reflection/", "src/reflection_types/", "src/reflection_statics/", "src/clones/", "src/tables/",
+             "src/lifted/", "include/reflected/", "include/base/reflection/UnkClassGetters.h")
+
+
+def hand_written_names() -> set[str]:
+    """Every fn_<addr> a hand-written source under src/ or include/ names."""
+    out: set[str] = set()
+    pat = re.compile(r"\bfn_71[0-9a-f]{8}\b")
+    for top, glob in (("src", "*.cpp"), ("include", "*.h")):
+        for p in (ROOT / top).rglob(glob):
+            if not p.relative_to(ROOT).as_posix().startswith(GENERATED):
+                out.update(pat.findall(p.read_text(encoding="utf-8", errors="replace")))
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", help="ignored; accepted for uniformity with the other generators")
@@ -100,6 +118,10 @@ def main() -> int:
     import gen_classes
 
     declared = set(gen_classes.declared_classes())
+    # A declared class's getter stays here while a hand-written source still calls it by address: the
+    # caller would otherwise need the class's header (left for the caller's own next change).
+    named = hand_written_names()
+    declared = {c for a, c in rows if c in declared and f"fn_{a:010x}" not in named}
     text = render(rows, declared)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(text, encoding="utf-8", newline="\n")

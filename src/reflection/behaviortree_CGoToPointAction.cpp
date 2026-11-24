@@ -7,38 +7,35 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CGoToPointAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CGoToPointAction
-namespace behaviortree::CGoToPointAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sTargetPos", 0x30, (DefaultValue, ""), (Description, "Desired position"));
-    DREAD_REFLECTED_FIELD(bool, "bUpdateEachTick", 0x39, (DefaultValue, false), (Description, "Should refresh destination with target pos value"));
-    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", 0x12aec, (DefaultValue, 10.0f), (Description, "Reached distance"));
-    DREAD_REFLECTED_FIELD(bool, "bLookAtDir", 0x38, (DefaultValue, true), (Description, "Should look at direction"));
-    DREAD_REFLECTED_FIELD(bool, "bForceStop", 0x12af0, (DefaultValue, true), (Description, "Force stop when finishing the action"));
-    DREAD_REFLECTED_FIELD(bool, "bResetParams", 0x12af1, (DefaultValue, false), (Description, "Reset movement state params"));
-    DREAD_REFLECTED_FIELD(bool, "bCheckIfSmartLink", 0x12af2, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bGeneratePathOnly", 0x12af4, (DefaultValue, false));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CGoToPointAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CGoToPointAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sTargetPos", offsetof(CGoToPointAction, sTargetPos), (DefaultValue, ""), (Description, "Desired position"));
+    DREAD_REFLECTED_FIELD(bool, "bUpdateEachTick", offsetof(CGoToPointAction, bUpdateEachTick), (DefaultValue, false), (Description, "Should refresh destination with target pos value"));
+    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", offsetof(CGoToPointAction, fReachedDistance), (DefaultValue, 10.0f), (Description, "Reached distance"));
+    DREAD_REFLECTED_FIELD(bool, "bLookAtDir", offsetof(CGoToPointAction, bLookAtDir), (DefaultValue, true), (Description, "Should look at direction"));
+    DREAD_REFLECTED_FIELD(bool, "bForceStop", offsetof(CGoToPointAction, bForceStop), (DefaultValue, true), (Description, "Force stop when finishing the action"));
+    DREAD_REFLECTED_FIELD(bool, "bResetParams", offsetof(CGoToPointAction, bResetParams), (DefaultValue, false), (Description, "Reset movement state params"));
+    DREAD_REFLECTED_FIELD(bool, "bCheckIfSmartLink", offsetof(CGoToPointAction, bCheckIfSmartLink), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bGeneratePathOnly", offsetof(CGoToPointAction, bGeneratePathOnly), (DefaultValue, false));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x12af8;
+bool behaviortree::CGoToPointAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CGoToPointAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CGoToPointAction::refl_TypeOf(const void* obj) { return *static_cast<const CGoToPointAction*>(obj)->vf_0x0(); }
+void behaviortree::CGoToPointAction::refl_Destroy(void* obj) { static_cast<CGoToPointAction*>(obj)->~CGoToPointAction(); }
+void* behaviortree::CGoToPointAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CGoToPointAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CGoToPointAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CGoToPointAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -47,5 +44,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CGoToPointAction
-DREAD_REFLECTED_CLASS(behaviortree::CGoToPointAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CGoToPointAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

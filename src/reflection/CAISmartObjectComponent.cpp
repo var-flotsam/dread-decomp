@@ -7,35 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CAISmartObjectComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CAISmartObjectComponent
-namespace CAISmartObjectComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fResetTime", 0x48, (DefaultValue, 1.0f), (Description, "Time to wait before being able to use it again"));
-    DREAD_REFLECTED_FIELD(f32, "fUseTime", 0x4c, (DefaultValue, 1.0f), (Description, "Use time"));
-    DREAD_REFLECTED_FIELD(s32, "iSpawnDirection", 0x54, (DefaultValue, -1), (Description, "Spawn direction in X world axis"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CAISmartObjectComponent::refl_AddAttributes(CClass*) {}
+void CAISmartObjectComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fResetTime", offsetof(CAISmartObjectComponent, fResetTime), (DefaultValue, 1.0f), (Description, "Time to wait before being able to use it again"));
+    DREAD_REFLECTED_FIELD(f32, "fUseTime", offsetof(CAISmartObjectComponent, fUseTime), (DefaultValue, 1.0f), (Description, "Use time"));
+    DREAD_REFLECTED_FIELD(s32, "iSpawnDirection", offsetof(CAISmartObjectComponent, iSpawnDirection), (DefaultValue, -1), (Description, "Spawn direction in X world axis"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x60;
+bool CAISmartObjectComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CAISmartObjectComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CAISmartObjectComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAISmartObjectComponent*>(obj)->vf_0x0(); }
+void CAISmartObjectComponent::refl_CopyConstruct(void*, const void*) {}
+void CAISmartObjectComponent::refl_MoveConstruct(void*, const void*) {}
+void CAISmartObjectComponent::refl_Destroy(void* obj) { static_cast<CAISmartObjectComponent*>(obj)->~CAISmartObjectComponent(); }
+void* CAISmartObjectComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CAISmartObjectComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CAISmartObjectComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CAISmartObjectComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -46,5 +43,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CAISmartObjectComponent
-DREAD_REFLECTED_CLASS(CAISmartObjectComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CAISmartObjectComponent, CComponent);
+#pragma GCC diagnostic pop

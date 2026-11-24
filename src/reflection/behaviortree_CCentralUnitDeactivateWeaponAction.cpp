@@ -7,33 +7,30 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CCentralUnitDeactivateWeaponAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CCentralUnitDeactivateWeaponAction
-namespace behaviortree::CCentralUnitDeactivateWeaponAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(s32, "iSpawnPointIndex", 0x2c, (DefaultValue, -1), (Description, "Spawn Point Actor Index"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CCentralUnitDeactivateWeaponAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CCentralUnitDeactivateWeaponAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(s32, "iSpawnPointIndex", offsetof(CCentralUnitDeactivateWeaponAction, iSpawnPointIndex), (DefaultValue, -1), (Description, "Spawn Point Actor Index"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x30;
+bool behaviortree::CCentralUnitDeactivateWeaponAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CCentralUnitDeactivateWeaponAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CCentralUnitDeactivateWeaponAction::refl_TypeOf(const void* obj) { return *static_cast<const CCentralUnitDeactivateWeaponAction*>(obj)->vf_0x0(); }
+void behaviortree::CCentralUnitDeactivateWeaponAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CCentralUnitDeactivateWeaponAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CCentralUnitDeactivateWeaponAction::refl_Destroy(void* obj) { static_cast<CCentralUnitDeactivateWeaponAction*>(obj)->~CCentralUnitDeactivateWeaponAction(); }
+void* behaviortree::CCentralUnitDeactivateWeaponAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CCentralUnitDeactivateWeaponAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CCentralUnitDeactivateWeaponAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCentralUnitDeactivateWeaponAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,5 +41,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CCentralUnitDeactivateWeaponAction
-DREAD_REFLECTED_CLASS(behaviortree::CCentralUnitDeactivateWeaponAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CCentralUnitDeactivateWeaponAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

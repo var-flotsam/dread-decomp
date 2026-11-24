@@ -12,12 +12,9 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "reflected/CCharClassPersistenceComponent.h"
 class CGameBBPropID;
 template <> base::reflection::CType base::reflection::TypeObject<CGameBBPropID>::object asm("g_unk_717275b580");
 namespace base::global { class CStrId; }
@@ -32,9 +29,8 @@ void fn_71009c9dc4();
 void fn_71009c9614(CFunction* fn, const char* name);
 void fn_71009c9eb0();
 void fn_71009c9788(CFunction* fn, const char* name);
-namespace CCharClassPersistenceComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CCharClassPersistenceComponent::refl_AddAttributes(CClass*) {}
+void CCharClassPersistenceComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sBoolProperty_GetterFunction", &base::reflection::TypeObject<CGameBBPropID>::object, 0x101, fn_71009c9bec);
     DREAD_REFLECTED_FUNCTION("_sBoolProperty_SetterFunction")
         fn_71009c932c(fn, "_sBoolProperty_SetterFunction");
@@ -52,17 +48,16 @@ void refl_AddFields(CClass* cls) {
         fn_71009c9788(fn, "_sSection_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sSection", (DefaultValue, ""));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x90;
+bool CCharClassPersistenceComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassPersistenceComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassPersistenceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPersistenceComponent*>(obj)->vf_0x0(); }
+void CCharClassPersistenceComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassPersistenceComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassPersistenceComponent::refl_Destroy(void* obj) { static_cast<CCharClassPersistenceComponent*>(obj)->~CCharClassPersistenceComponent(); }
+void* CCharClassPersistenceComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassPersistenceComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassPersistenceComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassPersistenceComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -73,5 +68,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassPersistenceComponent
-DREAD_REFLECTED_CLASS(CCharClassPersistenceComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassPersistenceComponent, CCharClassComponent);

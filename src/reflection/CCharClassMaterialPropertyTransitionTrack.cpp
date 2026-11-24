@@ -7,53 +7,48 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassMaterialPropertyTransitionTrack.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMaterialPropertyTransitionTrack
-namespace CCharClassMaterialPropertyTransitionTrack {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassMaterialPropertyTransitionTrack::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Material Property Transition");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Material", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fColorR1", 0x18, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fColorG1", 0x1c, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fColorB1", 0x20, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fAlpha1", 0x24, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sName1", 0x28, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sProperty1", 0x30, (DefaultValue, CStrId("Constant0Color", true)));
-    DREAD_REFLECTED_FIELD(f32, "fColorR2", 0x38, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fColorG2", 0x3c, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fColorB2", 0x40, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fAlpha2", 0x44, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sName2", 0x48, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sProperty2", 0x50, (DefaultValue, CStrId("Constant0Color", true)));
-    DREAD_REFLECTED_FIELD(f32, "fColorR3", 0x58, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fColorG3", 0x5c, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fColorB3", 0x60, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fAlpha3", 0x64, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sName3", 0x68, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sProperty3", 0x70, (DefaultValue, CStrId("Constant0Color", true)));
-    DREAD_REFLECTED_FIELD(f32, "fIn", 0x78, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fOut", 0x7c, (DefaultValue, 0.0f));
+void CCharClassMaterialPropertyTransitionTrack::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fColorR1", offsetof(CCharClassMaterialPropertyTransitionTrack, fColorR1), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorG1", offsetof(CCharClassMaterialPropertyTransitionTrack, fColorG1), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorB1", offsetof(CCharClassMaterialPropertyTransitionTrack, fColorB1), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAlpha1", offsetof(CCharClassMaterialPropertyTransitionTrack, fAlpha1), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sName1", offsetof(CCharClassMaterialPropertyTransitionTrack, sName1), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sProperty1", offsetof(CCharClassMaterialPropertyTransitionTrack, sProperty1), (DefaultValue, CStrId("Constant0Color", true)));
+    DREAD_REFLECTED_FIELD(f32, "fColorR2", offsetof(CCharClassMaterialPropertyTransitionTrack, fColorR2), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorG2", offsetof(CCharClassMaterialPropertyTransitionTrack, fColorG2), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorB2", offsetof(CCharClassMaterialPropertyTransitionTrack, fColorB2), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAlpha2", offsetof(CCharClassMaterialPropertyTransitionTrack, fAlpha2), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sName2", offsetof(CCharClassMaterialPropertyTransitionTrack, sName2), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sProperty2", offsetof(CCharClassMaterialPropertyTransitionTrack, sProperty2), (DefaultValue, CStrId("Constant0Color", true)));
+    DREAD_REFLECTED_FIELD(f32, "fColorR3", offsetof(CCharClassMaterialPropertyTransitionTrack, fColorR3), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorG3", offsetof(CCharClassMaterialPropertyTransitionTrack, fColorG3), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorB3", offsetof(CCharClassMaterialPropertyTransitionTrack, fColorB3), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAlpha3", offsetof(CCharClassMaterialPropertyTransitionTrack, fAlpha3), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sName3", offsetof(CCharClassMaterialPropertyTransitionTrack, sName3), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sProperty3", offsetof(CCharClassMaterialPropertyTransitionTrack, sProperty3), (DefaultValue, CStrId("Constant0Color", true)));
+    DREAD_REFLECTED_FIELD(f32, "fIn", offsetof(CCharClassMaterialPropertyTransitionTrack, fIn), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fOut", offsetof(CCharClassMaterialPropertyTransitionTrack, fOut), (DefaultValue, 0.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x80;
+bool CCharClassMaterialPropertyTransitionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassMaterialPropertyTransitionTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassMaterialPropertyTransitionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMaterialPropertyTransitionTrack*>(obj)->vf_0x0(); }
+void CCharClassMaterialPropertyTransitionTrack::refl_Destroy(void* obj) { static_cast<CCharClassMaterialPropertyTransitionTrack*>(obj)->~CCharClassMaterialPropertyTransitionTrack(); }
+struct CCharClassMaterialPropertyTransitionTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassMaterialPropertyTransitionTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -62,5 +57,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassMaterialPropertyTransitionTrack
-DREAD_REFLECTED_CLASS(CCharClassMaterialPropertyTransitionTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassMaterialPropertyTransitionTrack, base::global::timeline::CTrack);
+#pragma GCC diagnostic pop

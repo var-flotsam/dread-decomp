@@ -9,31 +9,27 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/querysystem/CEvaluator.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // querysystem::CEvaluator
-namespace querysystem::CEvaluator {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fWeight", 0x10, (DefaultValue, 100.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sFunction", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void querysystem::CEvaluator::refl_AddAttributes(CClass*) {}
+void querysystem::CEvaluator::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fWeight", offsetof(CEvaluator, fWeight), (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sFunction", offsetof(CEvaluator, sFunction), (DefaultValue, CStrId(CStrId::Empty())));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool querysystem::CEvaluator::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 querysystem::CEvaluator::refl_Hash() { return -1; }
+const base::reflection::CType& querysystem::CEvaluator::refl_TypeOf(const void* obj) { return *static_cast<const CEvaluator*>(obj)->vf_0x0(); }
+void querysystem::CEvaluator::refl_Destroy(void* obj) { static_cast<CEvaluator*>(obj)->~CEvaluator(); }
+struct querysystem::CEvaluator::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CEvaluator);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -42,8 +38,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace querysystem::CEvaluator
-DREAD_REFLECTED_ROOT_CLASS(querysystem::CEvaluator);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(querysystem::CEvaluator);
+#pragma GCC diagnostic pop
 
 void fn_71002b82f4();
 void fn_71002b835c();

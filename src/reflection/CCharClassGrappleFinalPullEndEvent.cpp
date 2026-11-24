@@ -7,36 +7,29 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassGrappleFinalPullEndEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGrappleFinalPullEndEvent
-namespace CCharClassGrappleFinalPullEndEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassGrappleFinalPullEndEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Grapple Final Pull End");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Samus", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
+void CCharClassGrappleFinalPullEndEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", offsetof(CCharClassGrappleFinalPullEndEvent, sAction), (DefaultValue, CStrId(CStrId::Empty())));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
+bool CCharClassGrappleFinalPullEndEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassGrappleFinalPullEndEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassGrappleFinalPullEndEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGrappleFinalPullEndEvent*>(obj)->vf_0x0(); }
+void CCharClassGrappleFinalPullEndEvent::refl_Destroy(void* obj) { static_cast<CCharClassGrappleFinalPullEndEvent*>(obj)->~CCharClassGrappleFinalPullEndEvent(); }
+struct CCharClassGrappleFinalPullEndEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassGrappleFinalPullEndEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -47,5 +40,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassGrappleFinalPullEndEvent
-DREAD_REFLECTED_CLASS(CCharClassGrappleFinalPullEndEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassGrappleFinalPullEndEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

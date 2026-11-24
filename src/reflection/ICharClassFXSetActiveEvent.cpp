@@ -7,36 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/ICharClassFXSetActiveEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // ICharClassFXSetActiveEvent
-namespace ICharClassFXSetActiveEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void ICharClassFXSetActiveEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "FX Set Emission Enabled Interface");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("FX", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bActive", 0x18, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bDisableOnEmpty", 0x19, (DefaultValue, false), (Persistence, 0));
-    DREAD_REFLECTED_FIELD(bool, "bDeleteOnEmpty", 0x1a, (DefaultValue, false));
+void ICharClassFXSetActiveEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sName", offsetof(ICharClassFXSetActiveEvent, sName), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bActive", offsetof(ICharClassFXSetActiveEvent, bActive), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bDisableOnEmpty", offsetof(ICharClassFXSetActiveEvent, bDisableOnEmpty), (DefaultValue, false), (Persistence, 0));
+    DREAD_REFLECTED_FIELD(bool, "bDeleteOnEmpty", offsetof(ICharClassFXSetActiveEvent, bDeleteOnEmpty), (DefaultValue, false));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool ICharClassFXSetActiveEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 ICharClassFXSetActiveEvent::refl_Hash() { return -1; }
+const base::reflection::CType& ICharClassFXSetActiveEvent::refl_TypeOf(const void* obj) { return *static_cast<const ICharClassFXSetActiveEvent*>(obj)->vf_0x0(); }
+void ICharClassFXSetActiveEvent::refl_Destroy(void* obj) { static_cast<ICharClassFXSetActiveEvent*>(obj)->~ICharClassFXSetActiveEvent(); }
+struct ICharClassFXSetActiveEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(ICharClassFXSetActiveEvent);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -45,5 +41,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace ICharClassFXSetActiveEvent
-DREAD_REFLECTED_CLASS(ICharClassFXSetActiveEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(ICharClassFXSetActiveEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

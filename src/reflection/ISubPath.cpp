@@ -5,25 +5,19 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/ISubPath.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // ISubPath
-namespace ISubPath {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x8;
+void ISubPath::refl_AddAttributes(CClass*) {}
+void ISubPath::refl_AddFields(CClass*) {}
+bool ISubPath::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 ISubPath::refl_Hash() { return -1; }
+const base::reflection::CType& ISubPath::refl_TypeOf(const void* obj) { return *static_cast<const ISubPath*>(obj)->vf_0x0(); }
+void ISubPath::refl_Destroy(void* obj) { static_cast<ISubPath*>(obj)->~ISubPath(); }
+struct ISubPath::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(ISubPath);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -32,5 +26,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace ISubPath
-DREAD_REFLECTED_ROOT_CLASS(ISubPath);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(ISubPath);

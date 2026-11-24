@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/COmniLightComponent.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
@@ -35,9 +32,8 @@ void fn_71008f22e4();
 void fn_71008f1504(CFunction* fn, const char* name);
 void fn_71008f238c();
 void fn_71008f1680(CFunction* fn, const char* name);
-namespace COmniLightComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void COmniLightComponent::refl_AddAttributes(CClass*) {}
+void COmniLightComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_fAttMin_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008f1f54);
     DREAD_REFLECTED_FUNCTION("_fAttMin_SetterFunction")
         fn_71008f0d98(fn, "_fAttMin_SetterFunction");
@@ -67,17 +63,16 @@ void refl_AddFields(CClass* cls) {
         fn_71008f1680(fn, "_fShadowScl_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fShadowScl", (DefaultValue, 1.0f), (MinValue, 0.01f), (MaxValue, 1.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x60;
+bool COmniLightComponent::refl_Equals(const void*, const void*) { return false; }
+s32 COmniLightComponent::refl_Hash() { return -1; }
+const base::reflection::CType& COmniLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const COmniLightComponent*>(obj)->vf_0x0(); }
+void COmniLightComponent::refl_CopyConstruct(void*, const void*) {}
+void COmniLightComponent::refl_MoveConstruct(void*, const void*) {}
+void COmniLightComponent::refl_Destroy(void* obj) { static_cast<COmniLightComponent*>(obj)->~COmniLightComponent(); }
+void* COmniLightComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* COmniLightComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct COmniLightComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(COmniLightComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -88,5 +83,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace COmniLightComponent
-DREAD_REFLECTED_CLASS(COmniLightComponent, CBaseLightComponent);
+DREAD_REFLECTED_DECLARED_CLASS(COmniLightComponent, CBaseLightComponent);

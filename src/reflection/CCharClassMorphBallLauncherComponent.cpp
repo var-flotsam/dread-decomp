@@ -7,38 +7,35 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassMorphBallLauncherComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMorphBallLauncherComponent
-namespace CCharClassMorphBallLauncherComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fTimeShootSequence", 0x58, (DefaultValue, 0.0f), (Description, "Time it takes from bomb placement until shot is performed"));
-    DREAD_REFLECTED_FIELD(f32, "fTimeRepositioningEntities", 0x5c, (DefaultValue, 0.0f), (Description, "Time it takes to re-position MorphBall and bomb during the shoot sequence"));
-    DREAD_REFLECTED_FIELD(f32, "fTimeToAccelerateCannon", 0x60, (DefaultValue, 0.0f), (Description, "Time it takes for the cannon to reach its maximum rotation speed"));
-    DREAD_REFLECTED_FIELD(f32, "fMinCannonActionPlayRate", 0x64, (DefaultValue, 0.0f), (Description, "Minimum play rate for cannon's layer"));
-    DREAD_REFLECTED_FIELD(f32, "fMaxCannonActionPlayRate", 0x68, (DefaultValue, 0.0f), (Description, "Maximum play rate for cannon's layer"));
-    DREAD_REFLECTED_FIELD(CStrId, "sCannonActionPlayRateEasingFunction", 0x70, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Easing function to apply when transitioning from minimum to maximum play rate on cannon's layer"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassMorphBallLauncherComponent::refl_AddAttributes(CClass*) {}
+void CCharClassMorphBallLauncherComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fTimeShootSequence", offsetof(CCharClassMorphBallLauncherComponent, fTimeShootSequence), (DefaultValue, 0.0f), (Description, "Time it takes from bomb placement until shot is performed"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeRepositioningEntities", offsetof(CCharClassMorphBallLauncherComponent, fTimeRepositioningEntities), (DefaultValue, 0.0f), (Description, "Time it takes to re-position MorphBall and bomb during the shoot sequence"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToAccelerateCannon", offsetof(CCharClassMorphBallLauncherComponent, fTimeToAccelerateCannon), (DefaultValue, 0.0f), (Description, "Time it takes for the cannon to reach its maximum rotation speed"));
+    DREAD_REFLECTED_FIELD(f32, "fMinCannonActionPlayRate", offsetof(CCharClassMorphBallLauncherComponent, fMinCannonActionPlayRate), (DefaultValue, 0.0f), (Description, "Minimum play rate for cannon's layer"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxCannonActionPlayRate", offsetof(CCharClassMorphBallLauncherComponent, fMaxCannonActionPlayRate), (DefaultValue, 0.0f), (Description, "Maximum play rate for cannon's layer"));
+    DREAD_REFLECTED_FIELD(CStrId, "sCannonActionPlayRateEasingFunction", offsetof(CCharClassMorphBallLauncherComponent, sCannonActionPlayRateEasingFunction), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Easing function to apply when transitioning from minimum to maximum play rate on cannon's layer"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x78;
+bool CCharClassMorphBallLauncherComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassMorphBallLauncherComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassMorphBallLauncherComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMorphBallLauncherComponent*>(obj)->vf_0x0(); }
+void CCharClassMorphBallLauncherComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassMorphBallLauncherComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassMorphBallLauncherComponent::refl_Destroy(void* obj) { static_cast<CCharClassMorphBallLauncherComponent*>(obj)->~CCharClassMorphBallLauncherComponent(); }
+void* CCharClassMorphBallLauncherComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassMorphBallLauncherComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassMorphBallLauncherComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassMorphBallLauncherComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -49,5 +46,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassMorphBallLauncherComponent
-DREAD_REFLECTED_CLASS(CCharClassMorphBallLauncherComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassMorphBallLauncherComponent, CCharClassComponent);
+#pragma GCC diagnostic pop

@@ -7,39 +7,36 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CBatalloonGoToTargetAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CBatalloonGoToTargetAction
-namespace behaviortree::CBatalloonGoToTargetAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fAcceleration", 0x2c, (DefaultValue, 9999.0f));
-    DREAD_REFLECTED_FIELD(f32, "fSpeedMultiplier", 0x30, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fHareDistance", 0x34, (DefaultValue, 50.0f));
-    DREAD_REFLECTED_FIELD(bool, "bLookAtMoveDir", 0x38, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bIgnoreCollisionInPath", 0x39, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bUseSteering", 0x3a, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bRestartnOnPush", 0x3b, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bUseDesiredViewDirAsInitialDir", 0x3c, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bUpdatePath", 0x3d, (DefaultValue, false));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CBatalloonGoToTargetAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CBatalloonGoToTargetAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fAcceleration", offsetof(CBatalloonGoToTargetAction, fAcceleration), (DefaultValue, 9999.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedMultiplier", offsetof(CBatalloonGoToTargetAction, fSpeedMultiplier), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHareDistance", offsetof(CBatalloonGoToTargetAction, fHareDistance), (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(bool, "bLookAtMoveDir", offsetof(CBatalloonGoToTargetAction, bLookAtMoveDir), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreCollisionInPath", offsetof(CBatalloonGoToTargetAction, bIgnoreCollisionInPath), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bUseSteering", offsetof(CBatalloonGoToTargetAction, bUseSteering), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bRestartnOnPush", offsetof(CBatalloonGoToTargetAction, bRestartnOnPush), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bUseDesiredViewDirAsInitialDir", offsetof(CBatalloonGoToTargetAction, bUseDesiredViewDirAsInitialDir), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bUpdatePath", offsetof(CBatalloonGoToTargetAction, bUpdatePath), (DefaultValue, false));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x12af8;
+bool behaviortree::CBatalloonGoToTargetAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CBatalloonGoToTargetAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CBatalloonGoToTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CBatalloonGoToTargetAction*>(obj)->vf_0x0(); }
+void behaviortree::CBatalloonGoToTargetAction::refl_Destroy(void* obj) { static_cast<CBatalloonGoToTargetAction*>(obj)->~CBatalloonGoToTargetAction(); }
+void* behaviortree::CBatalloonGoToTargetAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CBatalloonGoToTargetAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CBatalloonGoToTargetAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CBatalloonGoToTargetAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -48,5 +45,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CBatalloonGoToTargetAction
-DREAD_REFLECTED_CLASS(behaviortree::CBatalloonGoToTargetAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CBatalloonGoToTargetAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

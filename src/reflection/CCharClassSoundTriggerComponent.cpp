@@ -12,31 +12,27 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "reflected/CCharClassSoundTriggerComponent.h"
+#include "reflected/CSoundTrigger.h"
 namespace base::snd { enum class EReverbIntensity : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::snd::EReverbIntensity>::object asm("g_unk_7108b6cc88");
 namespace base::snd { enum class ELowPassFilter : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::snd::ELowPassFilter>::object asm("g_unk_7108b6cde8");
 
 // CCharClassSoundTriggerComponent
-namespace CCharClassSoundTriggerComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x60;
+void CCharClassSoundTriggerComponent::refl_AddAttributes(CClass*) {}
+void CCharClassSoundTriggerComponent::refl_AddFields(CClass*) {}
+bool CCharClassSoundTriggerComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassSoundTriggerComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassSoundTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSoundTriggerComponent*>(obj)->vf_0x0(); }
+void CCharClassSoundTriggerComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassSoundTriggerComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassSoundTriggerComponent::refl_Destroy(void* obj) { static_cast<CCharClassSoundTriggerComponent*>(obj)->~CCharClassSoundTriggerComponent(); }
+void* CCharClassSoundTriggerComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassSoundTriggerComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassSoundTriggerComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassSoundTriggerComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -47,17 +43,15 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassSoundTriggerComponent
-DREAD_REFLECTED_CLASS(CCharClassSoundTriggerComponent, CCharClassBaseTriggerComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassSoundTriggerComponent, CCharClassBaseTriggerComponent);
 
 // CSoundTrigger
 void fn_7100718544();
 void fn_7100717e9c(CFunction* fn, const char* name);
 void fn_71007185d0();
 void fn_7100718010(CFunction* fn, const char* name);
-namespace CSoundTrigger {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CSoundTrigger::refl_AddAttributes(CClass*) {}
+void CSoundTrigger::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_eReverb_GetterFunction", &base::reflection::TypeObject<base::snd::EReverbIntensity>::object, 0, fn_7100718544);
     DREAD_REFLECTED_FUNCTION("_m_eReverb_SetterFunction")
         fn_7100717e9c(fn, "_m_eReverb_SetterFunction");
@@ -69,15 +63,14 @@ void refl_AddFields(CClass* cls) {
     CVariable* field1 = AddReflectedField(cls, CStrId("iLowPassFilter", true), &base::reflection::TypeObject<base::snd::ELowPassFilter>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<base::snd::ELowPassFilter>::object, 0);
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xad0;
+bool CSoundTrigger::refl_Equals(const void*, const void*) { return false; }
+s32 CSoundTrigger::refl_Hash() { return -1; }
+const base::reflection::CType& CSoundTrigger::refl_TypeOf(const void* obj) { return *static_cast<const CSoundTrigger*>(obj)->vf_0x0(); }
+void CSoundTrigger::refl_Destroy(void* obj) { static_cast<CSoundTrigger*>(obj)->~CSoundTrigger(); }
+void* CSoundTrigger::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CSoundTrigger::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CSoundTrigger::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSoundTrigger);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -86,8 +79,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CSoundTrigger
-DREAD_REFLECTED_CLASS(CSoundTrigger, CBaseTriggerComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CSoundTrigger, CBaseTriggerComponent);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

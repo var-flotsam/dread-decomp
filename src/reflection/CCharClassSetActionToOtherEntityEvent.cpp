@@ -7,41 +7,34 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassSetActionToOtherEntityEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSetActionToOtherEntityEvent
-namespace CCharClassSetActionToOtherEntityEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassSetActionToOtherEntityEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Action To Other Entity");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Actions", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sEntity", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bForce", 0x18, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(s32, "iFrame", 0x1c, (DefaultValue, 0), (MinValue, 0.0f), (MaxValue, 100000.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sEntityAction", 0x20, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bIsAttack", 0x28, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fProbability", 0x2c, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
+void CCharClassSetActionToOtherEntityEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sEntity", offsetof(CCharClassSetActionToOtherEntityEvent, sEntity), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bForce", offsetof(CCharClassSetActionToOtherEntityEvent, bForce), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(s32, "iFrame", offsetof(CCharClassSetActionToOtherEntityEvent, iFrame), (DefaultValue, 0), (MinValue, 0.0f), (MaxValue, 100000.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sEntityAction", offsetof(CCharClassSetActionToOtherEntityEvent, sEntityAction), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bIsAttack", offsetof(CCharClassSetActionToOtherEntityEvent, bIsAttack), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fProbability", offsetof(CCharClassSetActionToOtherEntityEvent, fProbability), (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x30;
+bool CCharClassSetActionToOtherEntityEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassSetActionToOtherEntityEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassSetActionToOtherEntityEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetActionToOtherEntityEvent*>(obj)->vf_0x0(); }
+void CCharClassSetActionToOtherEntityEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetActionToOtherEntityEvent*>(obj)->~CCharClassSetActionToOtherEntityEvent(); }
+struct CCharClassSetActionToOtherEntityEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassSetActionToOtherEntityEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -52,5 +45,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassSetActionToOtherEntityEvent
-DREAD_REFLECTED_CLASS(CCharClassSetActionToOtherEntityEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassSetActionToOtherEntityEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

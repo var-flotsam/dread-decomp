@@ -8,6 +8,7 @@
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/UnkTunableRegistry.h"
+#include "reflected/CCharClassLavaPumpComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
@@ -16,25 +17,21 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassLavaPumpComponent
-namespace CCharClassLavaPumpComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x58;
+void CCharClassLavaPumpComponent::refl_AddAttributes(CClass*) {}
+void CCharClassLavaPumpComponent::refl_AddFields(CClass*) {}
+bool CCharClassLavaPumpComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassLavaPumpComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassLavaPumpComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLavaPumpComponent*>(obj)->vf_0x0(); }
+void CCharClassLavaPumpComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassLavaPumpComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassLavaPumpComponent::refl_Destroy(void* obj) { static_cast<CCharClassLavaPumpComponent*>(obj)->~CCharClassLavaPumpComponent(); }
+void* CCharClassLavaPumpComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassLavaPumpComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassLavaPumpComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassLavaPumpComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -45,8 +42,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassLavaPumpComponent
-DREAD_REFLECTED_CLASS(CCharClassLavaPumpComponent, CCharClassActivatableComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassLavaPumpComponent, CCharClassActivatableComponent);
 
 // CLavaPumpComponent
 namespace CLavaPumpComponent {

@@ -7,46 +7,39 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassForceEnableSubareaEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassForceEnableSubareaEvent
-namespace CCharClassForceEnableSubareaEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassForceEnableSubareaEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Subarea Force Enable");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Subarea", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sSubareaID", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bAllSubareaItems", 0x18, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bScenarioCollider", 0x19, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bLightGroup", 0x1a, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bSoundGroup", 0x1b, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bSceneGroup", 0x1c, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bLogicEntityGroup", 0x1d, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bBreakableTileGroupGroup", 0x1e, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bEnvironmentPreset", 0x1f, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bEnvironmentSoundPreset", 0x20, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bEnvironmentMusicPreset", 0x21, (DefaultValue, false));
+void CCharClassForceEnableSubareaEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sSubareaID", offsetof(CCharClassForceEnableSubareaEvent, sSubareaID), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bAllSubareaItems", offsetof(CCharClassForceEnableSubareaEvent, bAllSubareaItems), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bScenarioCollider", offsetof(CCharClassForceEnableSubareaEvent, bScenarioCollider), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bLightGroup", offsetof(CCharClassForceEnableSubareaEvent, bLightGroup), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bSoundGroup", offsetof(CCharClassForceEnableSubareaEvent, bSoundGroup), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bSceneGroup", offsetof(CCharClassForceEnableSubareaEvent, bSceneGroup), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bLogicEntityGroup", offsetof(CCharClassForceEnableSubareaEvent, bLogicEntityGroup), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bBreakableTileGroupGroup", offsetof(CCharClassForceEnableSubareaEvent, bBreakableTileGroupGroup), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bEnvironmentPreset", offsetof(CCharClassForceEnableSubareaEvent, bEnvironmentPreset), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bEnvironmentSoundPreset", offsetof(CCharClassForceEnableSubareaEvent, bEnvironmentSoundPreset), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bEnvironmentMusicPreset", offsetof(CCharClassForceEnableSubareaEvent, bEnvironmentMusicPreset), (DefaultValue, false));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x28;
+bool CCharClassForceEnableSubareaEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassForceEnableSubareaEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassForceEnableSubareaEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceEnableSubareaEvent*>(obj)->vf_0x0(); }
+void CCharClassForceEnableSubareaEvent::refl_Destroy(void* obj) { static_cast<CCharClassForceEnableSubareaEvent*>(obj)->~CCharClassForceEnableSubareaEvent(); }
+struct CCharClassForceEnableSubareaEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassForceEnableSubareaEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -57,5 +50,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassForceEnableSubareaEvent
-DREAD_REFLECTED_CLASS(CCharClassForceEnableSubareaEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassForceEnableSubareaEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

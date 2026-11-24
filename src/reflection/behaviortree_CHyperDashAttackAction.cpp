@@ -7,35 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CHyperDashAttackAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CHyperDashAttackAction
-namespace behaviortree::CHyperDashAttackAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sAttack", 0x30, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())), (Description, base::global::CRntString("Selected attack")));
-    DREAD_REFLECTED_FIELD(CStrId, "sAttackBlc", 0x60, (DefaultValue, ""), (Description, "Selected attack (from blackboard)"));
-    DREAD_REFLECTED_FIELD(bool, "bWaitOnAbort", 0x68, (DefaultValue, true), (Description, "Waits for the end of the attack before aborting the action"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CHyperDashAttackAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CHyperDashAttackAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sAttack", offsetof(CHyperDashAttackAction, sAttack), (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())), (Description, base::global::CRntString("Selected attack")));
+    DREAD_REFLECTED_FIELD(CStrId, "sAttackBlc", offsetof(CHyperDashAttackAction, sAttackBlc), (DefaultValue, ""), (Description, "Selected attack (from blackboard)"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitOnAbort", offsetof(CHyperDashAttackAction, bWaitOnAbort), (DefaultValue, true), (Description, "Waits for the end of the attack before aborting the action"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xc8;
+bool behaviortree::CHyperDashAttackAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CHyperDashAttackAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CHyperDashAttackAction::refl_TypeOf(const void* obj) { return *static_cast<const CHyperDashAttackAction*>(obj)->vf_0x0(); }
+void behaviortree::CHyperDashAttackAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CHyperDashAttackAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CHyperDashAttackAction::refl_Destroy(void* obj) { static_cast<CHyperDashAttackAction*>(obj)->~CHyperDashAttackAction(); }
+void* behaviortree::CHyperDashAttackAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CHyperDashAttackAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CHyperDashAttackAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CHyperDashAttackAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -46,5 +43,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CHyperDashAttackAction
-DREAD_REFLECTED_CLASS(behaviortree::CHyperDashAttackAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CHyperDashAttackAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

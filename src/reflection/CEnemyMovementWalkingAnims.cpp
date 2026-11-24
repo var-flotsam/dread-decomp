@@ -7,39 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CEnemyMovementWalkingAnims.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CEnemyMovementWalkingAnims
-namespace CEnemyMovementWalkingAnims {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sRelaxAnim", 0x8, (DefaultValue, CStrId("relax", true)));
-    DREAD_REFLECTED_FIELD(CStrId, "sFrontAnim", 0x10, (DefaultValue, CStrId("walk", true)));
-    DREAD_REFLECTED_FIELD(CStrId, "sBackAnim", 0x18, (DefaultValue, CStrId("back", true)));
-    DREAD_REFLECTED_FIELD(CStrId, "sFrontInitAnim", 0x20, (DefaultValue, CStrId("walkinit", true)));
-    DREAD_REFLECTED_FIELD(CStrId, "sBackInitAnim", 0x28, (DefaultValue, CStrId("backinit", true)));
-    DREAD_REFLECTED_FIELD(CStrId, "sFrontEndAnim", 0x30, (DefaultValue, CStrId("walkend", true)));
-    DREAD_REFLECTED_FIELD(CStrId, "sBackEndAnim", 0x38, (DefaultValue, CStrId("backend", true)));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CEnemyMovementWalkingAnims::refl_AddAttributes(CClass*) {}
+void CEnemyMovementWalkingAnims::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sRelaxAnim", offsetof(CEnemyMovementWalkingAnims, sRelaxAnim), (DefaultValue, CStrId("relax", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sFrontAnim", offsetof(CEnemyMovementWalkingAnims, sFrontAnim), (DefaultValue, CStrId("walk", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackAnim", offsetof(CEnemyMovementWalkingAnims, sBackAnim), (DefaultValue, CStrId("back", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sFrontInitAnim", offsetof(CEnemyMovementWalkingAnims, sFrontInitAnim), (DefaultValue, CStrId("walkinit", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackInitAnim", offsetof(CEnemyMovementWalkingAnims, sBackInitAnim), (DefaultValue, CStrId("backinit", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sFrontEndAnim", offsetof(CEnemyMovementWalkingAnims, sFrontEndAnim), (DefaultValue, CStrId("walkend", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackEndAnim", offsetof(CEnemyMovementWalkingAnims, sBackEndAnim), (DefaultValue, CStrId("backend", true)));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x40;
+bool CEnemyMovementWalkingAnims::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CEnemyMovementWalkingAnims::refl_Hash() { return -1; }
+const base::reflection::CType& CEnemyMovementWalkingAnims::refl_TypeOf(const void* obj) { return *static_cast<const CEnemyMovementWalkingAnims*>(obj)->vf_0x0(); }
+void CEnemyMovementWalkingAnims::refl_Destroy(void* obj) { static_cast<CEnemyMovementWalkingAnims*>(obj)->~CEnemyMovementWalkingAnims(); }
+struct CEnemyMovementWalkingAnims::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CEnemyMovementWalkingAnims);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -50,5 +43,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CEnemyMovementWalkingAnims
-DREAD_REFLECTED_ROOT_CLASS(CEnemyMovementWalkingAnims);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(CEnemyMovementWalkingAnims);
+#pragma GCC diagnostic pop

@@ -1241,6 +1241,24 @@ def with_declared_classes(text: str, includes: dict[str, str], sizes: dict[str, 
     return new
 
 
+# Prelude names only the namespace form's TypeOf and Destroy use: a file in the declared form that no longer names
+# one loses its `using` line (the final pass).
+DECLARED_FORM_USINGS = ("ClassOf", "ClassOfDestructorFirst", "Destroy", "DestroyDestructorFirst")
+
+
+def without_unused_declared_usings(text: str) -> str:
+    """`text` without the `using base::reflection::<name>;` lines of DECLARED_FORM_USINGS it does not otherwise
+    name, when it writes a class in the declared form."""
+    if not re.search(r"^DREAD_REFLECTED_DECLARED_", text, re.M):
+        return text
+    lines = text.split(chr(10))
+    for name in DECLARED_FORM_USINGS:
+        using = f"using base::reflection::{name};"
+        if using in lines and not any(re.search(rf"\b{name}\b", line) for line in lines if line != using):
+            lines.remove(using)
+    return chr(10).join(lines)
+
+
 def unconverted_classes(texts: list[str], includes: dict[str, str]) -> list[str]:
     """The declared classes (`includes`) whose getter no text writes in the declared form: their source kept
     the namespace form, which their header's class would clash with."""
@@ -1785,7 +1803,7 @@ def main() -> int:
     for f in sorted(OUT.glob("*.cpp")):
         old = f.read_text(encoding="utf-8")
         new = without_unused_usings(with_registry_include(class_statics_by_name(functions_in_one_line(typed_keys_by_name(old, typed_keys)))))
-        new = with_declared_classes(new, *declared)
+        new = without_unused_declared_usings(with_declared_classes(new, *declared))
         if new != old:
             f.write_text(new, encoding="utf-8", newline=chr(10))
     missed = unconverted_classes([f.read_text(encoding="utf-8") for f in OUT.glob("*.cpp")], declared[0])

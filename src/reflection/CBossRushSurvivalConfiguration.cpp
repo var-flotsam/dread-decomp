@@ -9,37 +9,33 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CBossRushDebugTime.h"
+#include "reflected/CBossRushSurvivalConfiguration.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CBossRushSurvivalConfiguration
-namespace CBossRushSurvivalConfiguration {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fBossKilledAddedTime", 0x8, (DefaultValue, 30.0f));
-    DREAD_REFLECTED_FIELD(f32, "fBossKilledNoDamageAddedTime", 0xc, (DefaultValue, 30.0f));
-    DREAD_REFLECTED_FIELD(f32, "fLoopCompletedAddedTime", 0x10, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fCommanderStage1AddedTime", 0x14, (DefaultValue, 45.0f));
-    DREAD_REFLECTED_FIELD(f32, "fCommanderStage2AddedTime", 0x18, (DefaultValue, 45.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CBossRushSurvivalConfiguration::refl_AddAttributes(CClass*) {}
+void CBossRushSurvivalConfiguration::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fBossKilledAddedTime", offsetof(CBossRushSurvivalConfiguration, fBossKilledAddedTime), (DefaultValue, 30.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBossKilledNoDamageAddedTime", offsetof(CBossRushSurvivalConfiguration, fBossKilledNoDamageAddedTime), (DefaultValue, 30.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLoopCompletedAddedTime", offsetof(CBossRushSurvivalConfiguration, fLoopCompletedAddedTime), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCommanderStage1AddedTime", offsetof(CBossRushSurvivalConfiguration, fCommanderStage1AddedTime), (DefaultValue, 45.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCommanderStage2AddedTime", offsetof(CBossRushSurvivalConfiguration, fCommanderStage2AddedTime), (DefaultValue, 45.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CBossRushSurvivalConfiguration::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CBossRushSurvivalConfiguration::refl_Hash() { return -1; }
+const base::reflection::CType& CBossRushSurvivalConfiguration::refl_TypeOf(const void* obj) { return *static_cast<const CBossRushSurvivalConfiguration*>(obj)->vf_0x0(); }
+void CBossRushSurvivalConfiguration::refl_Destroy(void* obj) { static_cast<CBossRushSurvivalConfiguration*>(obj)->~CBossRushSurvivalConfiguration(); }
+struct CBossRushSurvivalConfiguration::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CBossRushSurvivalConfiguration);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -50,28 +46,24 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CBossRushSurvivalConfiguration
-DREAD_REFLECTED_ROOT_CLASS(CBossRushSurvivalConfiguration);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(CBossRushSurvivalConfiguration);
+#pragma GCC diagnostic pop
 
 // CBossRushDebugTime
-namespace CBossRushDebugTime {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(s32, "iDebugTimeHours", 0x8, (DefaultValue, 0));
-    DREAD_REFLECTED_FIELD(s32, "iDebugTimeMinutes", 0xc, (DefaultValue, 0));
-    DREAD_REFLECTED_FIELD(s32, "iDebugTimeSeconds", 0x10, (DefaultValue, 0));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CBossRushDebugTime::refl_AddAttributes(CClass*) {}
+void CBossRushDebugTime::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(s32, "iDebugTimeHours", offsetof(CBossRushDebugTime, iDebugTimeHours), (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iDebugTimeMinutes", offsetof(CBossRushDebugTime, iDebugTimeMinutes), (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iDebugTimeSeconds", offsetof(CBossRushDebugTime, iDebugTimeSeconds), (DefaultValue, 0));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
+bool CBossRushDebugTime::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CBossRushDebugTime::refl_Hash() { return -1; }
+const base::reflection::CType& CBossRushDebugTime::refl_TypeOf(const void* obj) { return *static_cast<const CBossRushDebugTime*>(obj)->vf_0x0(); }
+void CBossRushDebugTime::refl_Destroy(void* obj) { static_cast<CBossRushDebugTime*>(obj)->~CBossRushDebugTime(); }
+struct CBossRushDebugTime::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CBossRushDebugTime);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -82,8 +74,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CBossRushDebugTime
-DREAD_REFLECTED_ROOT_CLASS(CBossRushDebugTime);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(CBossRushDebugTime);
+#pragma GCC diagnostic pop
 
 // CBossRushManager::CTunableBossRushManager
 namespace CBossRushManager::CTunableBossRushManager {

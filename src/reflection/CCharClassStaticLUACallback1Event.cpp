@@ -7,37 +7,30 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassStaticLUACallback1Event.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassStaticLUACallback1Event
-namespace CCharClassStaticLUACallback1Event {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassStaticLUACallback1Event::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Static LUA Callback1");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Lua", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sLUAFunction", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sParam1", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
+void CCharClassStaticLUACallback1Event::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sLUAFunction", offsetof(CCharClassStaticLUACallback1Event, sLUAFunction), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sParam1", offsetof(CCharClassStaticLUACallback1Event, sParam1), (DefaultValue, CStrId(CStrId::Empty())));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CCharClassStaticLUACallback1Event::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassStaticLUACallback1Event::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassStaticLUACallback1Event::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStaticLUACallback1Event*>(obj)->vf_0x0(); }
+void CCharClassStaticLUACallback1Event::refl_Destroy(void* obj) { static_cast<CCharClassStaticLUACallback1Event*>(obj)->~CCharClassStaticLUACallback1Event(); }
+struct CCharClassStaticLUACallback1Event::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassStaticLUACallback1Event);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -48,8 +41,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassStaticLUACallback1Event
-DREAD_REFLECTED_CLASS(CCharClassStaticLUACallback1Event, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassStaticLUACallback1Event, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

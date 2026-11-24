@@ -7,38 +7,35 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassActionSwitcherOnPullGrapplePointComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassActionSwitcherOnPullGrapplePointComponent
-namespace CCharClassActionSwitcherOnPullGrapplePointComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sGrappleCollider", 0x78, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Name of the Collider to use as a grapple point"));
-    DREAD_REFLECTED_FIELD(f32, "fGrappleMinAlignmentX", 0xa0, (DefaultValue, 0.98f), (Description, "Minimum grapple hit dot X-axis to allow grappling"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionOnGrappleAttach", 0x80, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when grapple beam attaches"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPullStart", 0x88, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when player starts pulling"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPullAbort", 0x90, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when player stops pulling"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionOnGrappleDetach", 0x98, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when grapple beam detaches without performing the pull"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassActionSwitcherOnPullGrapplePointComponent::refl_AddAttributes(CClass*) {}
+void CCharClassActionSwitcherOnPullGrapplePointComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sGrappleCollider", offsetof(CCharClassActionSwitcherOnPullGrapplePointComponent, sGrappleCollider), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Name of the Collider to use as a grapple point"));
+    DREAD_REFLECTED_FIELD(f32, "fGrappleMinAlignmentX", offsetof(CCharClassActionSwitcherOnPullGrapplePointComponent, fGrappleMinAlignmentX), (DefaultValue, 0.98f), (Description, "Minimum grapple hit dot X-axis to allow grappling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnGrappleAttach", offsetof(CCharClassActionSwitcherOnPullGrapplePointComponent, sActionOnGrappleAttach), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when grapple beam attaches"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPullStart", offsetof(CCharClassActionSwitcherOnPullGrapplePointComponent, sActionOnPullStart), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when player starts pulling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPullAbort", offsetof(CCharClassActionSwitcherOnPullGrapplePointComponent, sActionOnPullAbort), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when player stops pulling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnGrappleDetach", offsetof(CCharClassActionSwitcherOnPullGrapplePointComponent, sActionOnGrappleDetach), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when grapple beam detaches without performing the pull"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xa8;
+bool CCharClassActionSwitcherOnPullGrapplePointComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassActionSwitcherOnPullGrapplePointComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassActionSwitcherOnPullGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActionSwitcherOnPullGrapplePointComponent*>(obj)->vf_0x0(); }
+void CCharClassActionSwitcherOnPullGrapplePointComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassActionSwitcherOnPullGrapplePointComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassActionSwitcherOnPullGrapplePointComponent::refl_Destroy(void* obj) { static_cast<CCharClassActionSwitcherOnPullGrapplePointComponent*>(obj)->~CCharClassActionSwitcherOnPullGrapplePointComponent(); }
+void* CCharClassActionSwitcherOnPullGrapplePointComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassActionSwitcherOnPullGrapplePointComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassActionSwitcherOnPullGrapplePointComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassActionSwitcherOnPullGrapplePointComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -49,5 +46,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassActionSwitcherOnPullGrapplePointComponent
-DREAD_REFLECTED_CLASS(CCharClassActionSwitcherOnPullGrapplePointComponent, CCharClassPullableGrapplePointComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassActionSwitcherOnPullGrapplePointComponent, CCharClassPullableGrapplePointComponent);
+#pragma GCC diagnostic pop

@@ -7,32 +7,25 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/CCharClassIgnoreSecondaryGun.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassIgnoreSecondaryGun
-namespace CCharClassIgnoreSecondaryGun {
-void refl_AddAttributes(CClass* cls) {
+void CCharClassIgnoreSecondaryGun::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Secondary Gun");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Ignore", true));
 }
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
+void CCharClassIgnoreSecondaryGun::refl_AddFields(CClass*) {}
+bool CCharClassIgnoreSecondaryGun::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassIgnoreSecondaryGun::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassIgnoreSecondaryGun::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSecondaryGun*>(obj)->vf_0x0(); }
+void CCharClassIgnoreSecondaryGun::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreSecondaryGun*>(obj)->~CCharClassIgnoreSecondaryGun(); }
+struct CCharClassIgnoreSecondaryGun::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassIgnoreSecondaryGun);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -41,5 +34,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassIgnoreSecondaryGun
-DREAD_REFLECTED_CLASS(CCharClassIgnoreSecondaryGun, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassIgnoreSecondaryGun, base::global::timeline::CTrack);

@@ -14,11 +14,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/game/logic/collision/CShape.h"
 namespace base::math { class CVector3D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -28,9 +25,8 @@ void fn_7100d6e0d4();
 void fn_7100d69d64(CFunction* fn, const char* name);
 void fn_7100d6e19c();
 void fn_7100d69ee0(CFunction* fn, const char* name);
-namespace game::logic::collision::CShape {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void game::logic::collision::CShape::refl_AddAttributes(CClass*) {}
+void game::logic::collision::CShape::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_vPos_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0, fn_7100d6e0d4);
     DREAD_REFLECTED_FUNCTION("_vPos_SetterFunction")
         fn_7100d69d64(fn, "_vPos_SetterFunction");
@@ -40,14 +36,12 @@ void refl_AddFields(CClass* cls) {
         fn_7100d69ee0(fn, "_m_bIsSolid_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bIsSolid", (DefaultValue, true));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xa8;
+bool game::logic::collision::CShape::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 game::logic::collision::CShape::refl_Hash() { return -1; }
+const base::reflection::CType& game::logic::collision::CShape::refl_TypeOf(const void* obj) { return *static_cast<const CShape*>(obj)->vf_0x0(); }
+void game::logic::collision::CShape::refl_Destroy(void* obj) { static_cast<CShape*>(obj)->~CShape(); }
+struct game::logic::collision::CShape::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CShape);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -56,8 +50,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace game::logic::collision::CShape
-DREAD_REFLECTED_ROOT_CLASS(game::logic::collision::CShape);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(game::logic::collision::CShape);
 
 void fn_7100d6c4d8();
 void fn_7100d6c540();

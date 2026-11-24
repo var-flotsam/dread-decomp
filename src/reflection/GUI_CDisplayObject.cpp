@@ -12,12 +12,9 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "reflected/GUI/CDisplayObject.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
@@ -113,9 +110,8 @@ void fn_71011cc1e8(CFunction* fn, const char* name);
 void fn_71011d62fc();
 void fn_71011cc364(CFunction* fn, const char* name);
 void fn_71011cc4e0(CFunction* fn, const char* name);
-namespace GUI::CDisplayObject {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void GUI::CDisplayObject::refl_AddAttributes(CClass*) {}
+void GUI::CDisplayObject::refl_AddFields(CClass* cls) {
     [&] {
         DREAD_REFLECTED_FUNCTION_OF("ForceRedraw", &base::reflection::TypeObject<void>::object, 0, fn_71011d3514);
         DREAD_REFLECTED_FUNCTION("SetEventHandler") {
@@ -372,18 +368,16 @@ void refl_AddFields(CClass* cls) {
             fn_71011cc4e0(fn, "ChangeSkinStateWithStrId");
     }();
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x190;
+bool GUI::CDisplayObject::refl_Equals(const void*, const void*) { return false; }
+s32 GUI::CDisplayObject::refl_Hash() { return -1; }
+const base::reflection::CType& GUI::CDisplayObject::refl_TypeOf(const void* obj) { return *static_cast<const CDisplayObject*>(obj)->vf_0x0(); }
+void GUI::CDisplayObject::refl_Destroy(void* obj) { static_cast<CDisplayObject*>(obj)->~CDisplayObject(); }
+struct GUI::CDisplayObject::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CDisplayObject);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace GUI::CDisplayObject
-DREAD_REFLECTED_CLASS(GUI::CDisplayObject, CGameObject);
+DREAD_REFLECTED_DECLARED_CLASS(GUI::CDisplayObject, CGameObject);

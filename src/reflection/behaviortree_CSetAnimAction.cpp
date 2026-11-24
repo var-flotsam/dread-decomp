@@ -7,43 +7,40 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CSetAnimAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSetAnimAction
-namespace behaviortree::CSetAnimAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sAnim", 0x30, (DefaultValue, ""), (Description, "Animation to set"));
-    DREAD_REFLECTED_FIELD(CStrId, "sAnimProp", 0x38, (DefaultValue, ""), (Description, "Animation to set (from blackboard)"));
-    DREAD_REFLECTED_FIELD(CStrId, "sTimelineStart", 0x50, (DefaultValue, ""), (Description, "Timeline to start"));
-    DREAD_REFLECTED_FIELD(CStrId, "sTimelineEnd", 0x58, (DefaultValue, ""), (Description, "Timeline to end"));
-    DREAD_REFLECTED_FIELD(bool, "bForce", 0x40, (DefaultValue, false), (Description, "Force set anim"));
-    DREAD_REFLECTED_FIELD(bool, "bUpdateModel", 0x41, (DefaultValue, false), (Description, "Force update model"));
-    DREAD_REFLECTED_FIELD(bool, "bWaitAnimEnd", 0x42, (DefaultValue, false), (Description, "Wait for animation end"));
-    DREAD_REFLECTED_FIELD(bool, "bWaitIfFrozen", 0x43, (DefaultValue, true), (Description, "Wait if frozen"));
-    DREAD_REFLECTED_FIELD(bool, "bSyncWithCurrent", 0x61, (DefaultValue, false), (Description, "Sync target animation with current [false]"));
-    DREAD_REFLECTED_FIELD(s32, "iMinRandSuffix", 0x44, (DefaultValue, -1), (Description, "Minimum suffix value. -1 means not to use suffix [-1]"));
-    DREAD_REFLECTED_FIELD(s32, "iMaxRandSuffix", 0x48, (DefaultValue, -1), (Description, "Maximum suffix value. -1 means not to use suffix [-1]"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CSetAnimAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CSetAnimAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sAnim", offsetof(CSetAnimAction, sAnim), (DefaultValue, ""), (Description, "Animation to set"));
+    DREAD_REFLECTED_FIELD(CStrId, "sAnimProp", offsetof(CSetAnimAction, sAnimProp), (DefaultValue, ""), (Description, "Animation to set (from blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTimelineStart", offsetof(CSetAnimAction, sTimelineStart), (DefaultValue, ""), (Description, "Timeline to start"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTimelineEnd", offsetof(CSetAnimAction, sTimelineEnd), (DefaultValue, ""), (Description, "Timeline to end"));
+    DREAD_REFLECTED_FIELD(bool, "bForce", offsetof(CSetAnimAction, bForce), (DefaultValue, false), (Description, "Force set anim"));
+    DREAD_REFLECTED_FIELD(bool, "bUpdateModel", offsetof(CSetAnimAction, bUpdateModel), (DefaultValue, false), (Description, "Force update model"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitAnimEnd", offsetof(CSetAnimAction, bWaitAnimEnd), (DefaultValue, false), (Description, "Wait for animation end"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitIfFrozen", offsetof(CSetAnimAction, bWaitIfFrozen), (DefaultValue, true), (Description, "Wait if frozen"));
+    DREAD_REFLECTED_FIELD(bool, "bSyncWithCurrent", offsetof(CSetAnimAction, bSyncWithCurrent), (DefaultValue, false), (Description, "Sync target animation with current [false]"));
+    DREAD_REFLECTED_FIELD(s32, "iMinRandSuffix", offsetof(CSetAnimAction, iMinRandSuffix), (DefaultValue, -1), (Description, "Minimum suffix value. -1 means not to use suffix [-1]"));
+    DREAD_REFLECTED_FIELD(s32, "iMaxRandSuffix", offsetof(CSetAnimAction, iMaxRandSuffix), (DefaultValue, -1), (Description, "Maximum suffix value. -1 means not to use suffix [-1]"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x68;
+bool behaviortree::CSetAnimAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CSetAnimAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CSetAnimAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetAnimAction*>(obj)->vf_0x0(); }
+void behaviortree::CSetAnimAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CSetAnimAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CSetAnimAction::refl_Destroy(void* obj) { static_cast<CSetAnimAction*>(obj)->~CSetAnimAction(); }
+void* behaviortree::CSetAnimAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CSetAnimAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CSetAnimAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSetAnimAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -54,5 +51,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CSetAnimAction
-DREAD_REFLECTED_CLASS(behaviortree::CSetAnimAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CSetAnimAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop
