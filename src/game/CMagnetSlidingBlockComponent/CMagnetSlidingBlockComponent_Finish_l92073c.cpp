@@ -100,7 +100,7 @@ static inline void SetSectionBool(CBlackboard* blackboard, const CStrId& section
 void fn_710092073c(UnkMagnetSlidingBlock_l92073c* self) {
     self->glow = 1.0f;
     if (void* rail = RailObject(self))
-        fn_7100922f28(fn_710091f6bc(rail), self->glow);
+        CMagnetSlidingBlockRailComponent_SetMaterialColorGreen(fn_710091f6bc(rail), self->glow);
     self->field_0x410 = 0;
     self->timer = self->duration;
 
@@ -109,7 +109,7 @@ void fn_710092073c(UnkMagnetSlidingBlock_l92073c* self) {
 
     if (self->flags->used_up) {
         if (RailObject(self))
-            fn_7100922e30(fn_710091f6bc(RailObject(self)), false);
+            CMagnetSlidingBlockRailComponent_SetMaterialOnState(fn_710091f6bc(RailObject(self)), false);
 
         UnkGameManager* manager = g_unk_7101d47310;
         CBlackboard* blackboard = &manager->field_0x968;

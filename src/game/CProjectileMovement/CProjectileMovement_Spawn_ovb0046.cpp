@@ -165,7 +165,7 @@ struct UnkProjectileUpdate_ovb0046 {
 };
 static_assert(__builtin_offsetof(UnkProjectileUpdate_ovb0046, def) == 0x5c8, "layout");
 
-bool fn_7100ac3ff4(UnkProjectileUpdate_ovb0046* self, void* target);
+bool CProjectileMovement_CheckDestroyOnImpactSpeedBooster(UnkProjectileUpdate_ovb0046* self, void* target);
 
 static inline UnkVec3f* Ptr(const UnkVec3f& v) { return const_cast<UnkVec3f*>(&v); }
 
@@ -178,7 +178,7 @@ bool fn_7100ac3efc(UnkProjectileUpdate_ovb0046* self, void* arg) {
     if (!moved)
         return false;
     if (!self->def->field_0x118) {
-        if (!fn_7100ac3ff4(self, self->field_0x528))
+        if (!CProjectileMovement_CheckDestroyOnImpactSpeedBooster(self, self->field_0x528))
             return true;
         self->vf_0x348(self->field_0x53c, Ptr(((UnkVec3f(*)(const UnkVec3f&))fn_710007a7f0)(self->field_0x548)),
                        g_unk_710164b89c, &g_unk_7101d470e8);

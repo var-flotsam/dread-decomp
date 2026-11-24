@@ -123,7 +123,7 @@ static inline void FreeNodes(UnkScenarioList_l1a1e34& list) {
     list.tail = nullptr;
 }
 
-void fn_71011a1e34(UnkScenario_l1a1e34* self) {
+void CScenario_ClearActorLists(UnkScenario_l1a1e34* self) {
     self->field_0x3f0 = true;
     for (UnkScenarioList_l1a1e34::Node* n = self->list_0x2a0.head; n; n = n->next) {
         UnkScenarioActor_l1a1e34* actor = reinterpret_cast<UnkScenarioActor_l1a1e34*>(n->value);

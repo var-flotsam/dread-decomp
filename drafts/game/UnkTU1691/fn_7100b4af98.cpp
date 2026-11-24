@@ -98,7 +98,7 @@ void fn_7100b4af98(UnkClearRecordButton_lb4af98* self) {
     }
     UnkClearRecordCallback_lb4af98 accept_callback = {self, fn_7100b4cbb4};
     UnkClearRecordCallback_lb4af98 back_callback = {self, fn_7100b4cc3c};
-    fn_7100b5fde0(reinterpret_cast<UnkGuiComposition_ovb0090*>(popup), text.Id(), &accept, &back,
+    CPopUpComposition_ShowAcceptBackPrompt(reinterpret_cast<UnkGuiComposition_ovb0090*>(popup), text.Id(), &accept, &back,
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
 }

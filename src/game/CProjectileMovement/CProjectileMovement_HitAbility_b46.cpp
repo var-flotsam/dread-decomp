@@ -64,7 +64,7 @@ static inline bool InState6(UnkAbility* a) {
     return a && reinterpret_cast<UnkHitAbility_b46a3*>(a)->GetState() == 6;
 }
 
-bool fn_7100ac3ff4(UnkProjectileMovement5_b46a3* self, UnkWeakHandle** hit) {
+bool CProjectileMovement_CheckDestroyOnImpactSpeedBooster(UnkProjectileMovement5_b46a3* self, UnkWeakHandle** hit) {
     if (!self->link->check_abilities)
         return false;
     UnkWeakHandle* handle = *hit;

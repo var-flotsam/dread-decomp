@@ -58,7 +58,7 @@ static inline UnkRailMaterial_ovb0097* FindMaterial(UnkRailModel_ovb0097* model,
     return reinterpret_cast<UnkRailMaterials_ovb0097*>(model->slots->info)->entries[i];
 }
 
-void fn_7100922e30(UnkMagnetSlidingBlockRail_ovb0097* self, bool on) {
+void CMagnetSlidingBlockRailComponent_SetMaterialOnState(UnkMagnetSlidingBlockRail_ovb0097* self, bool on) {
     if (self->on == on)
         return;
     self->on = on;
@@ -69,7 +69,7 @@ void fn_7100922e30(UnkMagnetSlidingBlockRail_ovb0097* self, bool on) {
     fn_71001c3040(self->owner->model->model->slots, 0x700c49f3f0afc866, 0, &color.r, 1, 0.1f);
 }
 
-void fn_7100922f28(UnkMagnetSlidingBlockRail_ovb0097* self, f32 alpha) {
+void CMagnetSlidingBlockRailComponent_SetMaterialColorGreen(UnkMagnetSlidingBlockRail_ovb0097* self, f32 alpha) {
     u32 index;
     UnkRailMaterial_ovb0097* mat = FindMaterial(self->owner->model->model, index);
     CColor4F color = MaterialColor(mat);

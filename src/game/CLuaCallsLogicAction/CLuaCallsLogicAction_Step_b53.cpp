@@ -42,7 +42,7 @@ struct UnkLuaCallsAction_b53 {
     bool flag;            // 0x78
 };
 
-void fn_7100a50598(UnkLuaCallsAction_b53* self, void* arg) {
+void CLuaCallsLogicAction_CallScriptCallback(UnkLuaCallsAction_b53* self, void* arg) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     const char* function = self->function.data;
     if (!function || !*function)

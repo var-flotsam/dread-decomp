@@ -29,7 +29,7 @@ static_assert(__builtin_offsetof(UnkLifeComp_l1608b4, field_0xe4) == 0xe4, "layo
 // The parameter type is the one src/game/CPlayerLifeComponent/CPlayerLifeComponent_c2_1.cpp declares.
 struct UnkObj_7101165a40;
 
-u32 fn_71011608b4(UnkObj_7101165a40* component, UnkProp* p) {
+u32 CLifeComponent_ReadWriteProperty(UnkObj_7101165a40* component, UnkProp* p) {
     UnkLifeComp_l1608b4* self = reinterpret_cast<UnkLifeComp_l1608b4*>(component);
     if (!p->set && Is(p, Key(0x1720)))
         return CRntFile_WriteFormat(p->stream, "f", (f64)self->life) != 0;

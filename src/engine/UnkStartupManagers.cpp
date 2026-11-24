@@ -57,7 +57,7 @@ struct UnkUserDataOwner;  // src/game/CGameManager.cpp
 void fn_7101203248(UnkUserDataOwner* self);
 
 struct UnkDropTarget;  // src/game/CLogicDroppedItemManager.cpp
-void fn_7101023378(UnkDropTarget* self);
+void CSoundManager_Construct(UnkDropTarget* self);
 // Its start-up step is virtual (slot 0x18).
 struct UnkDropTargetView {
     virtual void vf_0x0();
@@ -120,7 +120,7 @@ void fn_7100e0f984(UnkLoadingScreen* self);
 // The root path is not used.
 void fn_7100adfb20(const UnkStartupFlags* flags, CFilePathStrId root) {
     fn_7101203248(Singleton<UnkUserDataOwner, 0x2b8, 0x3f, fn_710120320c>(g_unk_7101d47308));
-    reinterpret_cast<UnkDropTargetView*>(Singleton<UnkDropTarget, 0x98, 0xb, fn_7101023378>(g_unk_7101d47318))
+    reinterpret_cast<UnkDropTargetView*>(Singleton<UnkDropTarget, 0x98, 0xb, CSoundManager_Construct>(g_unk_7101d47318))
         ->vf_0x18();
     fn_7100fd4db8(Singleton<void, 0xf18, 0x3f, fn_7100fd3804>(reinterpret_cast<void*&>(g_unk_71726bc560)),
                   flags->field_0x0);

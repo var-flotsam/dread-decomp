@@ -13,7 +13,7 @@
 using base::global::CStrId;
 
 struct UnkScenario_l1a1e34;
-void fn_71011a1e34(UnkScenario_l1a1e34* self);
+void CScenario_ClearActorLists(UnkScenario_l1a1e34* self);
 
 struct UnkBoundObject_l1a19a4 {
     u8 pad_0x0[0xc8];
@@ -92,7 +92,7 @@ struct UnkScenario_l1a19a4 {
 
 void fn_71011a19a4(void* scenario) {
     UnkScenario_l1a19a4* self = static_cast<UnkScenario_l1a19a4*>(scenario);
-    fn_71011a1e34(reinterpret_cast<UnkScenario_l1a1e34*>(self));
+    CScenario_ClearActorLists(reinterpret_cast<UnkScenario_l1a1e34*>(self));
     for (UnkScenarioLayer_l1a19a4& layer : self->layers) {
         for (UnkBoundMap_l1a19a4 *it = layer.entries, *end = layer.entries + layer.count; it != end; ++it)
         {

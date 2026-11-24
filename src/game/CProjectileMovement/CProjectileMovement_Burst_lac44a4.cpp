@@ -66,7 +66,7 @@ static inline UnkModelManager* ModelManager() {
     return g_unk_71726b0cd8;
 }
 
-void fn_7100ac44a4(UnkProjectileBurst_lac44a4* self, const UnkVec3f* at, const UnkVec3f* angle,
+void CProjectileMovement_SpawnCollisionFXAndCameraFX(UnkProjectileBurst_lac44a4* self, const UnkVec3f* at, const UnkVec3f* angle,
                    const UnkVec3f* dir, const UnkBurstPath_lac44a4* path) {
     if (self->effect.data != &g_unk_7101d47200->empty) {
         UnkVec3f angles = *angle;

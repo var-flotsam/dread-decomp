@@ -59,7 +59,7 @@ void fn_7100b5db6c(UnkNewGameButton_ovb0137* self) {
     CStrId accept("#GUI_A_ACCEPT", true);
     UnkNewGameCallback_ovb0137 accept_callback = {self, fn_7100b5e204};
     UnkNewGameCallback_ovb0137 back_callback = {self, fn_7100b5e200};
-    fn_7100b5fde0(reinterpret_cast<UnkGuiComposition_ovb0090*>(popup), &text, &accept, &back,
+    CPopUpComposition_ShowAcceptBackPrompt(reinterpret_cast<UnkGuiComposition_ovb0090*>(popup), &text, &accept, &back,
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
 }
@@ -67,7 +67,7 @@ void fn_7100b5db6c(UnkNewGameButton_ovb0137* self) {
 // The first confirmation: the main menu's display switched off (fn_71011cf2a4), the button's flag at
 // +0x2a1 cleared, and "#GUI_FILEMENU_PROMPT_NEWGAME_CONFIRM_1" put up with the callbacks fn_7100b5e1fc
 // and fn_7100b5e200.
-void fn_7100b5d9a0(UnkNewGameButton_ovb0137* self) {
+void CNewGameButton_ShowFirstNewGameConfirmPrompt(UnkNewGameButton_ovb0137* self) {
     UnkReflObject* menu = fn_7100e033a8(g_unk_7101d47310);
     if (!menu || !fn_710009d50c(menu->vf_0x0(), fn_7100b34230()))
         return;
@@ -82,7 +82,7 @@ void fn_7100b5d9a0(UnkNewGameButton_ovb0137* self) {
     CStrId accept("#GUI_A_ACCEPT", true);
     UnkNewGameCallback_ovb0137 accept_callback = {self, fn_7100b5e1fc};
     UnkNewGameCallback_ovb0137 back_callback = {self, fn_7100b5e200};
-    fn_7100b5fde0(reinterpret_cast<UnkGuiComposition_ovb0090*>(popup), &text, &accept, &back,
+    CPopUpComposition_ShowAcceptBackPrompt(reinterpret_cast<UnkGuiComposition_ovb0090*>(popup), &text, &accept, &back,
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
 }

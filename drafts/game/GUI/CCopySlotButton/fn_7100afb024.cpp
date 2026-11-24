@@ -116,7 +116,7 @@ void fn_7100afb024(UnkCopySlotButton_ovb0131* self) {
         CStrId text(prompt->data ? prompt->data : g_unk_710162e2ed, true);
         UnkCopySlotCallback_ovb0131 accept_callback = {self, fn_7100afb870};
         UnkCopySlotCallback_ovb0131 back_callback = {self, fn_7100afb874};
-        fn_7100b5fde0(reinterpret_cast<UnkGuiComposition_ovb0090*>(popup), &text, &accept, &back,
+        CPopUpComposition_ShowAcceptBackPrompt(reinterpret_cast<UnkGuiComposition_ovb0090*>(popup), &text, &accept, &back,
                       reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                       reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
     }

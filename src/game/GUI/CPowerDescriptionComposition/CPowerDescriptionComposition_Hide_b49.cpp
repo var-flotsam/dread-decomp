@@ -70,7 +70,7 @@ static inline UnkGuiDisplayObject* AsContainer(UnkGuiDisplayObject* obj) {
                : nullptr;
 }
 
-void fn_7100b6404c(UnkPowerDescCompositionHide* self, UnkGuiHideEvent* event) {
+void CPowerDescriptionComposition_SendOnHideAndResetMusic(UnkPowerDescCompositionHide* self, UnkGuiHideEvent* event) {
     if (event->handled)
         return;
     if (!self->hidden) {

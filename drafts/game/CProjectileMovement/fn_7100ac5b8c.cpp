@@ -15,7 +15,7 @@
 using base::reflection::CClass;
 
 struct UnkProjectileMovement5_b46a3;
-bool fn_7100ac3ff4(UnkProjectileMovement5_b46a3* self, UnkWeakHandle** hit);
+bool CProjectileMovement_CheckDestroyOnImpactSpeedBooster(UnkProjectileMovement5_b46a3* self, UnkWeakHandle** hit);
 s32 fn_710113912c(void* object);
 
 struct UnkContactActor {
@@ -282,7 +282,7 @@ bool fn_7100ac5b8c(UnkProjectileMovement_lac5b8c* self, UnkContactList* contacts
                         if (!(it->Entity()->vf_0x58() & 0x800000) && !(it->Entity()->vf_0x58() & 0x40) &&
                             self->vf_0x330(collision->actor, args, &contact, it->SourceTarget()))
                             return true;
-                    } else if (fn_7100ac3ff4(reinterpret_cast<UnkProjectileMovement5_b46a3*>(self),
+                    } else if (CProjectileMovement_CheckDestroyOnImpactSpeedBooster(reinterpret_cast<UnkProjectileMovement5_b46a3*>(self),
                                              reinterpret_cast<UnkWeakHandle**>(&it->object)) ||
                                self->vf_0x330(collision->actor, args, &contact, it->SourceTarget())) {
                         return true;

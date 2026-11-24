@@ -85,7 +85,7 @@ inline const char* Text(const CStrId& id) {
     return text ? text : g_unk_710162e2ed;
 }
 
-void fn_71011ffb8c(UnkList_l1ffb8c* self, UnkListEvent_l1ffb8c* event) {
+void CList_ActivateSelectedItem(UnkList_l1ffb8c* self, UnkListEvent_l1ffb8c* event) {
     fn_71011cf70c(reinterpret_cast<UnkGallery_A5_b75*>(self));
     if (self->count == 0 || event->handled)
         return;

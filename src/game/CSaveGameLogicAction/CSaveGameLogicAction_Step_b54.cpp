@@ -74,7 +74,7 @@ struct UnkSaveGameAction_b54 {
     }
 };
 
-void fn_7100a41680(UnkSaveGameAction_b54* self) {
+void CSaveGameLogicAction_SaveCheckpointForDestination(UnkSaveGameAction_b54* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     if (g_unk_71726bc570->field_0xb8)
         return;

@@ -1405,7 +1405,7 @@ address,size,name,name_source,subsystem,status
 0x7100633de0,376,behaviortree::CPoisonFlyChasePlayerAction::refl_InitClass,reflection,ai/behaviortree,O
 0x7100633f58,44,fn_7100633f58,unknown,ai/behaviortree?,O
 0x7100633f84,120,fn_7100633f84,unknown,ai/behaviortree?,O
-0x7100633ffc,376,fn_7100633ffc,unknown,ai/behaviortree?,O
+0x7100633ffc,376,CPoisonFlyChasePlayerAction_SendChase,inferred,ai/behaviortree?,O
 0x7100634174,2068,fn_7100634174,unknown,ai/behaviortree?,U
 0x7100634988,8,fn_7100634988,unknown,ai/behaviortree?,O
 0x7100634990,28,fn_7100634990,unknown,ai/behaviortree?,O
@@ -1731,7 +1731,7 @@ address,size,name,name_source,subsystem,status
 0x7100642248,28,CQuetzoaMultiTargetProjectileMovementComponent::refl_TypeOf,reflection,game/components,O
 0x7100642264,112,CQuetzoaMultiTargetProjectileMovementComponent::refl_Construct,reflection,game/components,O
 0x71006422d4,12,CQuetzoaMultiTargetProjectileMovementComponent::refl_Destroy,reflection,game/components,O
-0x71006422e0,304,fn_71006422e0,unknown,game/components?,O
+0x71006422e0,304,CQuetzoaMultiTargetProjectileMovementComponent_InitStatics,inferred,game/components?,O
 0x7100642410,4,CCharClassQuetzoaChargeAttack::CTunableCharClassQuetzoaChargeAttack::refl_AddAttributes,reflection,game/characters,O
 0x7100642414,244,CCharClassQuetzoaChargeAttack::CTunableCharClassQuetzoaChargeAttack::refl_GetClass,reflection,game/characters,O
 0x7100642508,304,CCharClassQuetzoaChargeAttack::CTunableCharClassQuetzoaChargeAttack::refl_AddFields,reflection,game/characters,O
@@ -2062,7 +2062,7 @@ address,size,name,name_source,subsystem,status
 0x710064ee9c,352,CRedenkiSwarmControllerComponent::refl_InitClass,reflection,game/components,O
 0x710064effc,280,fn_710064effc,unknown,game/components?,O
 0x710064f114,112,fn_710064f114,unknown,game/components?,O
-0x710064f184,560,fn_710064f184,unknown,game/components?,O
+0x710064f184,560,CRedenkiSwarmControllerComponent_ResetStateAndResizeGroupArrays,inferred,game/components?,O
 0x710064f3b4,120,fn_710064f3b4,unknown,game/components?,O
 0x710064f42c,1836,fn_710064f42c,unknown,game/components?,U
 0x710064fb58,4,fn_710064fb58,unknown,game/components?,O
@@ -2081,7 +2081,7 @@ address,size,name,name_source,subsystem,status
 0x7100650d20,84,fn_7100650d20,unknown,game/components?,O
 0x7100650d74,1012,fn_7100650d74,unknown,game/components?,U
 0x7100651168,4384,fn_7100651168,unknown,game/components?,U
-0x7100652288,452,fn_7100652288,unknown,game/components?,O
+0x7100652288,452,CRedenkiSwarmControllerComponent_InitTimersAndBuildPath,inferred,game/components?,O
 0x710065244c,140,fn_710065244c,unknown,game/components?,O
 0x71006524d8,124,fn_71006524d8,unknown,game/components?,O
 0x7100652554,2204,fn_7100652554,unknown,game/components?,U
@@ -2095,11 +2095,11 @@ address,size,name,name_source,subsystem,status
 0x71006554a0,1740,fn_71006554a0,unknown,game/components?,U
 0x7100655b6c,788,fn_7100655b6c,unknown,game/components?,U
 0x7100655e80,952,fn_7100655e80,unknown,game/components?,O
-0x7100656238,276,fn_7100656238,unknown,game/components?,O
+0x7100656238,276,CRedenkiSwarmControllerComponent_SetStateIfTargetBeyondHareDistance,inferred,game/components?,O
 0x710065634c,2180,fn_710065634c,unknown,game/components?,U
 0x7100656bd0,224,fn_7100656bd0,unknown,game/components?,O
 0x7100656cb0,248,fn_7100656cb0,unknown,game/components?,U
-0x7100656da8,404,fn_7100656da8,unknown,game/components?,O
+0x7100656da8,404,CRedenkiSwarmControllerComponent_EnterState4,inferred,game/components?,O
 0x7100656f3c,948,fn_7100656f3c,unknown,game/components?,U
 0x71006572f0,336,fn_71006572f0,unknown,game/components?,O
 0x7100657440,56,fn_7100657440,unknown,game/components?,O
@@ -2119,7 +2119,7 @@ address,size,name,name_source,subsystem,status
 0x710065a514,660,fn_710065a514,unknown,game/components?,U
 0x710065a7a8,52,fn_710065a7a8,unknown,game/components?,O
 0x710065a7dc,596,fn_710065a7dc,unknown,game/components?,O
-0x710065aa30,192,fn_710065aa30,unknown,game/components?,O
+0x710065aa30,192,CRedenkiSwarmControllerComponent_GetSpeedForState,inferred,game/components?,O
 0x710065aaf0,40,fn_710065aaf0,unknown,game/components?,O
 0x710065ab18,28,fn_710065ab18,unknown,game/components?,O
 0x710065ab34,28,fn_710065ab34,unknown,game/components?,O
@@ -2130,7 +2130,7 @@ address,size,name,name_source,subsystem,status
 0x710065ad24,36,fn_710065ad24,unknown,game/components?,O
 0x710065ad48,132,fn_710065ad48,unknown,game/components?,O
 0x710065adcc,32,fn_710065adcc,unknown,game/components?,O
-0x710065adec,560,fn_710065adec,unknown,game/components?,O
+0x710065adec,560,CRedenkiSwarmControllerComponent_UpdateChaseAndStartChargeInRange,inferred,game/components?,O
 0x710065b01c,72,fn_710065b01c,unknown,game/components?,O
 0x710065b064,8,CRedenkiSwarmControllerComponent::refl_Equals,reflection,game/components,O
 0x710065b06c,8,CRedenkiSwarmControllerComponent::refl_Hash,reflection,game/components,O
@@ -2385,7 +2385,7 @@ address,size,name,name_source,subsystem,status
 0x710066331c,36,fn_710066331c,unknown,game/ai?,O
 0x7100663340,120,fn_7100663340,unknown,game/ai?,O
 0x71006633b8,740,fn_71006633b8,unknown,game/ai?,U
-0x710066369c,228,fn_710066369c,unknown,game/ai?,O
+0x710066369c,228,CRockDiverAIComponent_UpdateCloseWingsRatio,inferred,game/ai?,O
 0x7100663780,948,fn_7100663780,unknown,game/ai?,O
 0x7100663b34,92,fn_7100663b34,unknown,game/ai?,O
 0x7100663b90,356,fn_7100663b90,unknown,game/ai?,O
@@ -4143,7 +4143,7 @@ address,size,name,name_source,subsystem,status
 0x71006a45e8,1932,fn_71006a45e8,unknown,game/ai?,U
 0x71006a4d74,716,fn_71006a4d74,unknown,game/ai?,U
 0x71006a5040,284,fn_71006a5040,unknown,game/ai?,O
-0x71006a515c,252,fn_71006a515c,unknown,game/ai?,O
+0x71006a515c,252,CShakernautDoubleGroundShockAttack_UpdateChargeTimerToShot,inferred,game/ai?,O
 0x71006a5258,912,fn_71006a5258,unknown,game/ai?,O
 0x71006a55e8,100,fn_71006a55e8,unknown,game/ai?,O
 0x71006a564c,28,fn_71006a564c,unknown,game/ai?,O
@@ -4181,7 +4181,7 @@ address,size,name,name_source,subsystem,status
 0x71006a5d6c,20,base::reflection::ValueOps<CShakernautDoubleGroundShockAttack::ESide>::CopyAssign,reflection,engine/reflection,O
 0x71006a5d80,20,base::reflection::ValueOps<CShakernautDoubleGroundShockAttack::ESide>::MoveAssign,reflection,engine/reflection,O
 0x71006a5d94,8,fn_71006a5d94,unknown,game/ai?,O
-0x71006a5da0,1420,fn_71006a5da0,unknown,game/ai?,O
+0x71006a5da0,1420,CShakernautDoubleGroundShockAttack_InitStatics,inferred,game/ai?,O
 0x71006a632c,4,CShakernautPiercingLaserAttack::refl_AddAttributes,reflection,game/ai,O
 0x71006a6330,244,CShakernautPiercingLaserAttack::refl_GetClass,reflection,game/ai,O
 0x71006a6424,4,CShakernautPiercingLaserAttack::refl_AddFields,reflection,game/ai,O
@@ -4247,7 +4247,7 @@ address,size,name,name_source,subsystem,status
 0x71006aa004,244,behaviortree::CShakernautChaseTargetAction::refl_GetClass,reflection,ai/behaviortree,O
 0x71006aa0f8,1892,behaviortree::CShakernautChaseTargetAction::refl_AddFields,reflection,ai/behaviortree,O
 0x71006aa85c,388,behaviortree::CShakernautChaseTargetAction::refl_InitClass,reflection,ai/behaviortree,O
-0x71006aa9e0,404,fn_71006aa9e0,unknown,ai/behaviortree?,O
+0x71006aa9e0,404,CShakernautChaseTargetAction_StartAndSetChaseRange,inferred,ai/behaviortree?,O
 0x71006aab74,3344,fn_71006aab74,unknown,ai/behaviortree?,U
 0x71006ab884,96,fn_71006ab884,unknown,ai/behaviortree?,O
 0x71006ab8e4,196,fn_71006ab8e4,unknown,ai/behaviortree?,O
@@ -4680,7 +4680,7 @@ address,size,name,name_source,subsystem,status
 0x71006c083c,144,fn_71006c083c,unknown,game/ai?,m
 0x71006c08cc,100,fn_71006c08cc,unknown,game/ai?,O
 0x71006c0930,284,fn_71006c0930,unknown,game/ai?,O
-0x71006c0a4c,332,fn_71006c0a4c,unknown,game/ai?,O
+0x71006c0a4c,332,CSluggerSpitAttack_SelectAcidballInitAnim,inferred,game/ai?,O
 0x71006c0b98,672,fn_71006c0b98,unknown,game/ai?,U
 0x71006c0e38,524,fn_71006c0e38,unknown,game/ai?,O
 0x71006c1044,196,fn_71006c1044,unknown,game/ai?,O
@@ -4722,7 +4722,7 @@ address,size,name,name_source,subsystem,status
 0x71006c41ec,20,base::reflection::ValueOps<CSluggerSpitAttack::EState>::CopyAssign,reflection,engine/reflection,O
 0x71006c4200,20,base::reflection::ValueOps<CSluggerSpitAttack::EState>::MoveAssign,reflection,engine/reflection,O
 0x71006c4214,24,fn_71006c4214,unknown,game/ai?,O
-0x71006c4230,760,fn_71006c4230,unknown,engine/reflection?,O
+0x71006c4230,760,CSluggerSpitAttack_InitStatics,inferred,engine/reflection?,O
 0x71006c4528,4,behaviortree::CSluggerGoToPlatformEdgeAction::refl_AddAttributes,reflection,ai/behaviortree,O
 0x71006c452c,244,behaviortree::CSluggerGoToPlatformEdgeAction::refl_GetClass,reflection,ai/behaviortree,O
 0x71006c4620,4,behaviortree::CSluggerGoToPlatformEdgeAction::refl_AddFields,reflection,ai/behaviortree,O

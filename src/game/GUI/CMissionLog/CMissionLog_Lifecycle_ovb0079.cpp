@@ -108,7 +108,7 @@ struct UnkMissionLogButtonText_ovb0079 {
     char32_t text[1];
 };
 
-void fn_7100b599f0(void* self, u32 index, const UnkMissionLogButtonText_ovb0079* text,
+void CMissionLog_SetButtonNameAndText(void* self, u32 index, const UnkMissionLogButtonText_ovb0079* text,
                    UnkMissionLogButton_ovb0079* button) {
     if (!button)
         return;

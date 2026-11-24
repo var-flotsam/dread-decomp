@@ -23,7 +23,7 @@ struct UnkPickableComponent_b45a2 {
     UnkPickableDef_b45a2* def;  // 0x90
 };
 
-void fn_71009ce12c(UnkPickableComponent_b45a2* self) {
+void CPickableComponent_SendOnPickCaption(UnkPickableComponent_b45a2* self) {
     base::global::UnkStringData** name = &self->def->name;
     if (*name != &g_unk_7101d47108->empty) {
         auto* entry = static_cast<UnkPickableEntry_b45a2*>(g_unk_7101d47310->field_0x2258);

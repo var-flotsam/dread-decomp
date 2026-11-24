@@ -36,9 +36,9 @@ static inline void Destroy(UnkLogicCameraComponent_ovb0106* self) {
 }
 
 // The destructor and the deleting destructor.
-void fn_7100910984(UnkLogicCameraComponent_ovb0106* self) { Destroy(self); }
+void CLogicCameraComponent_Destroy(UnkLogicCameraComponent_ovb0106* self) { Destroy(self); }
 
-void fn_7100910a6c(UnkLogicCameraComponent_ovb0106* self) {
+void CLogicCameraComponent_DestroyAndDelete(UnkLogicCameraComponent_ovb0106* self) {
     Destroy(self);
     operator delete(self);
 }

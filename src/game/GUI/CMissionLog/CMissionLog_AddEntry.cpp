@@ -5,10 +5,10 @@
 #include "game/UnkMissionLog.h"
 #include "types.h"
 
-bool fn_7100b59690(UnkMissionLog* self, bool flag);
+bool CMissionLog_StoreEntryListsInBlackboards(UnkMissionLog* self, bool flag);
 
-void fn_7100b59c10(UnkMissionLog* self, const u32* entry) {
+void CMissionLog_AddRecordAndStoreLists(UnkMissionLog* self, const u32* entry) {
     u8* array = *entry != 2 ? self->entries_0x248 : self->entries_0x270;
-    fn_7100b593d0((UnkElem38Array*)array, (const UnkElem38*)entry);
-    fn_7100b59690(self, false);
+    CMissionLog_EntriesPushBack((UnkElem38Array*)array, (const UnkElem38*)entry);
+    CMissionLog_StoreEntryListsInBlackboards(self, false);
 }

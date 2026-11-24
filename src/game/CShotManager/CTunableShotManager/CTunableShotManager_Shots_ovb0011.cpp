@@ -108,7 +108,7 @@ UnkSoundHandle fn_7100ed6a10(UnkShotManager_b0011* self, u32 type, u32 variant) 
     if (UnkPlayer* player = fn_7100dec788(g_unk_7101d47310))
         return reinterpret_cast<UnkPlayFn_b0011>(&fn_7100d7c45c)(reinterpret_cast<UnkEntityWithSound*>(player), ids,
                                                                  nullptr, false);
-    return fn_7101024e28(g_unk_7101d47318, ids, nullptr, false);
+    return CSoundManager_PlayPresetFromIdPath(g_unk_7101d47318, ids, nullptr, false);
 }
 
 // Stops the sound of a shot type and variant (the drop manager's with a 0.2 blend).

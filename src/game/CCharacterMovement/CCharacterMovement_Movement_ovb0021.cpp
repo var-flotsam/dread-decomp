@@ -788,7 +788,7 @@ struct UnkCharacterMovementXform_ovb0021 {
 };
 static_assert(__builtin_offsetof(UnkCharacterMovementXform_ovb0021, previous) == 0x338, "layout");
 
-void fn_71010d45b8(UnkCharacterMovementXform_ovb0021* self, UnkXform* xform, const u32* changed);
+void CMovementComponent_SetPositionAndAngleFromXform(UnkCharacterMovementXform_ovb0021* self, UnkXform* xform, const u32* changed);
 
 // Read untyped: the original reloads the mask after the translation is stored.
 static inline u32 Changed(const u32* changed) {
@@ -799,7 +799,7 @@ static inline u32 Changed(const u32* changed) {
 
 // Takes the translation (bit 0 of `changed`) and the angles (bit 1) of `xform` into both poses.
 void fn_7100979854(UnkCharacterMovementXform_ovb0021* self, UnkXform* xform, const u32* changed) {
-    fn_71010d45b8(self, xform, changed);
+    CMovementComponent_SetPositionAndAngleFromXform(self, xform, changed);
     if (Changed(changed) & 1) {
         self->current.SetTranslation(xform->GetTranslation());
         self->previous.SetTranslation(xform->GetTranslation());

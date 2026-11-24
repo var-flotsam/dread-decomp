@@ -4,7 +4,7 @@
 #include "types.h"
 
 struct UnkRedenkiFullReset_ovb0084;
-void fn_710064f184(UnkRedenkiFullReset_ovb0084* self);
+void CRedenkiSwarmControllerComponent_ResetStateAndResizeGroupArrays(UnkRedenkiFullReset_ovb0084* self);
 
 struct UnkDaivoMember_l4e0718 {
     u8 pad_0x0[0x25];
@@ -53,7 +53,7 @@ struct UnkDaivoSwarm_l4e0718 {
 };
 
 void fn_71004e0718(UnkDaivoSwarm_l4e0718* self) {
-    fn_710064f184(reinterpret_cast<UnkRedenkiFullReset_ovb0084*>(self));
+    CRedenkiSwarmControllerComponent_ResetStateAndResizeGroupArrays(reinterpret_cast<UnkRedenkiFullReset_ovb0084*>(self));
     f32 value = self->vf_0x208();
     self->field_0x2bc = value;
     self->field_0x1a4 = value;

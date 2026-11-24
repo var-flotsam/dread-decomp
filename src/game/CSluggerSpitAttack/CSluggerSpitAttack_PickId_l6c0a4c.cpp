@@ -34,7 +34,7 @@ struct UnkSluggerSpitAttack_PickId {
     UnkActor* owner;
 };
 
-const CStrId* fn_71006c0a4c(UnkSluggerSpitAttack_PickId* self) {
+const CStrId* CSluggerSpitAttack_SelectAcidballInitAnim(UnkSluggerSpitAttack_PickId* self) {
     if (!self->owner)
         return &base::global::CStrId::Empty();
     UnkAnimationComponent* anim = static_cast<UnkAnimationComponent*>(self->owner->field_0x220);

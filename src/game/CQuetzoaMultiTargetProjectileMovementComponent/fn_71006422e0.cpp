@@ -13,7 +13,7 @@ struct UnkStatics_71006422e0 {
 extern UnkStatics_71006422e0 g_unk_71726fae00 __attribute__((visibility("hidden")));
 extern char g_unk_71726fadf8[];
 
-void fn_71006422e0() {
+void CQuetzoaMultiTargetProjectileMovementComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726fae00.ids);
     InitClassId(&g_unk_71726fae00.field_0x18, "QuetzoaMultiTargetProjectileMovementComponent");
     fn_71006411c4();

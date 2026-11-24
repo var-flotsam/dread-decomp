@@ -192,7 +192,7 @@ UnkSoundHandle fn_7100fc9d78(UnkStateSink* self, UnkStateKey* event, void* state
     UnkSelectedIds_ovb56 ids = fn_7100fc9e58(selector, event, UnkTypedObject_ovb56(source));
     UnkSoundHandle handle;
     if (ids.id != &g_unk_7101d47108->empty && ids.path != &g_unk_7101d47200->empty)
-        handle = fn_7101024e28(g_unk_7101d47318, reinterpret_cast<const UnkStrIdPathPair*>(&ids), nullptr, false);
+        handle = CSoundManager_PlayPresetFromIdPath(g_unk_7101d47318, reinterpret_cast<const UnkStrIdPathPair*>(&ids), nullptr, false);
     else
         handle = {nullptr, -1};
     return handle;

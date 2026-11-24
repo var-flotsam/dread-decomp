@@ -27,7 +27,7 @@ static inline UnkGuiObj* Label(UnkRumbleTunableButton_ovb0085* self) {
     return fn_71011c08dc(reinterpret_cast<UnkMissionLogButton_ovb0079*>(self));
 }
 
-void fn_7100b65b94(UnkRumbleTunableButton_ovb0085* self) {
+void CRumbleTunableButton_RefreshRumbleOnOffLabel(UnkRumbleTunableButton_ovb0085* self) {
     fn_71011bfd28(self);
     UnkRumbleManager* manager = g_unk_7101d47348;
     if (!manager) {

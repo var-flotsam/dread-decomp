@@ -58,7 +58,7 @@ inline UnkSound* GetSoundObject_l024e28(const UnkSoundHandle* handle) {
     return nullptr;
 }
 
-UnkSoundHandle fn_7101024e28(UnkDropTarget* self, const UnkStrIdPathPair* ids, void* a, u32 b) {
+UnkSoundHandle CSoundManager_PlayPresetFromIdPath(UnkDropTarget* self, const UnkStrIdPathPair* ids, void* a, u32 b) {
     const UnkSoundSource_l024e28* source = reinterpret_cast<const UnkSoundSource_l024e28*>(ids);
     UnkAudioPreset_l024e28* preset = nullptr;
     if (source->id.data != &g_unk_7101d47108->empty && source->path.data != &g_unk_7101d47200->empty) {
