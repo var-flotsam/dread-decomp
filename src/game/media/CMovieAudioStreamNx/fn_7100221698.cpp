@@ -90,12 +90,12 @@ static inline s32 Open(UnkAudioStream_l221698* self, s32 format, s32 channels, b
 
     self->sample_rate = 48000;
     self->bytes_per_frame = self->out_channels * 2;
-    s32 result = fn_7100220d2c(self->decoder, self->format, self->out_channels, &self->resampling);
+    s32 result = CMovieAudioStreamNx_OpenAudioOut(self->decoder, self->format, self->out_channels, &self->resampling);
     if (result == 0)
         self->ready = true;
     return result;
 }
 
-s32 fn_7100221698(UnkPlayer_7100221938* self, u32 format, u32 channels, bool flag) {
+s32 CMovieAudioStreamNx_AllocateBuffersAndOpenAudioOut(UnkPlayer_7100221938* self, u32 format, u32 channels, bool flag) {
     return Open(reinterpret_cast<UnkAudioStream_l221698*>(self), format, channels, flag);
 }

@@ -46,13 +46,13 @@ struct UnkDebugText_ovb0128 {
     ~UnkDebugText_ovb0128() { CRntString_Destroy(&str); }
 };
 
-UnkDebugText_ovb0128 fn_7100376104(UnkStorePosInBlc_ovb0128* self) {
+UnkDebugText_ovb0128 CStorePosInBlcAction_BuildDebugText(UnkStorePosInBlc_ovb0128* self) {
     UnkDebugBuffer_ovb0128 text(g_unk_710162e2ed);
     UnkDebugBuffer_ovb0128 source;
     if (self->source.data == &g_unk_7101d47108->empty) {
         CRntString_AssignCString(source.Str(), "Owner");
     } else if (!reinterpret_cast<bool (*)(UnkStringEqualsCondition_A2_b72*, CStrId*, UnkInlineString_A2_b72*)>(
-                   fn_7100395044)(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->source,
+                   CBehavior_ReadStringProperty)(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->source,
                                   reinterpret_cast<UnkInlineString_A2_b72*>(&source))) {
         CRntString_AssignCString(source.Str(), "Unknown");
     }

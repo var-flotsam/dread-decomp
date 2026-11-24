@@ -106,7 +106,7 @@ UnkParent_71007455dc* fn_7100739c64(UnkSwarmUpdate_b65a4* update) {
             UnkVec3Result pos = fn_7100745e24(reinterpret_cast<UnkParent_71007455dc*>(member));
             CVector2D point;
             fn_710007b430(&point, reinterpret_cast<const CVector3D*>(&pos));
-            u16 cell = fn_710027a41c(mesh, &point, 0);
+            u16 cell = CNavMesh_FindCellIndexAtPoint(mesh, &point, 0);
             if (best_cell != 0xffff && cell == 0xffff)
                 continue;
             best_distance = member->distance;

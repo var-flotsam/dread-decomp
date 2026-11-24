@@ -83,7 +83,7 @@ struct UnkEmmyAnimLink_l51c018 {
     void Attach(UnkWeakTarget* animation) {
         Detach();
         if (animation) {
-            fn_7100316018(animation, &handle);
+            CAbilityGhostAura_AssignWeakHandleToRef(animation, &handle);
             fn_710117b3e8(handle ? handle->target : nullptr, this);
         }
     }

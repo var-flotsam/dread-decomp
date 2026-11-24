@@ -13,7 +13,7 @@
 #include "types.h"
 
 struct UnkLinkGroups;
-void fn_710027514c(UnkLinkGroups* self);
+void CNavMesh_DestroyLinkGroups(UnkLinkGroups* self);
 
 // The table clears (CNavMesh_Misc_ovb0018.cpp, UnkNavLoadMapClear_A1_b76.cpp, src/clones/).
 struct UnkNavTablesE5a0;
@@ -110,6 +110,6 @@ void fn_7100274b48(UnkNavMesh_l274b48* self) {
     self->field_0x2e8.~UnkNavTable_l274b48();
     self->vertices.Free();
     self->cells.Free();
-    fn_710027514c(reinterpret_cast<UnkLinkGroups*>(self->field_0x10));
+    CNavMesh_DestroyLinkGroups(reinterpret_cast<UnkLinkGroups*>(self->field_0x10));
     fn_7101043934(reinterpret_cast<UnkCameraCtrl_ovb0049*>(self));
 }

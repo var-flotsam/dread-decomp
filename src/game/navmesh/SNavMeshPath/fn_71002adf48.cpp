@@ -25,7 +25,7 @@ static inline s16* Find(s16* first, s16* last, s16 id) {
     return last;
 }
 
-void fn_71002adf48(UnkNavMeshPathIds* self, s16 id) {
+void SNavMeshPath_AddUniqueId(UnkNavMeshPathIds* self, s16 id) {
     self->changed = true;
     if (id == -1)
         return;

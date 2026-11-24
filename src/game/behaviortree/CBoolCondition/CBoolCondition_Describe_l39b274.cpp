@@ -29,7 +29,7 @@ struct UnkText_l39b274 {
     UnkText_l39b274() {}
 };
 
-UnkText_l39b274 fn_710039b274(UnkBoolCondition_l39b274* self) {
+UnkText_l39b274 CBoolCondition_DescribeValueAsText(UnkBoolCondition_l39b274* self) {
     UnkText_l39b274 text;
     CRntString_ConstructFromCString(reinterpret_cast<base::UnkNamedEntry*>(&text), g_unk_710162e2ed);
     if (self->property != reinterpret_cast<UnkBoolPropertyName_l39b274*>(&g_unk_7101d47108->empty)) {

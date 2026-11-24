@@ -385,7 +385,7 @@ void fn_71010fe740(UnkResetAI_l0fe740* self) {
             }
         }
         if (target) {
-            fn_7100316018(target, &link->handle);
+            CAbilityGhostAura_AssignWeakHandleToRef(target, &link->handle);
             fn_710117b3e8(link->handle ? link->handle->target : nullptr, link);
         }
     }

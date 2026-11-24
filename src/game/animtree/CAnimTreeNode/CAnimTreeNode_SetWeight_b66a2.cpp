@@ -16,7 +16,7 @@ struct UnkAnimTreeNodeView_b66a2 {
     UnkAnimTreeChild_b66a2** children;
 };
 
-void fn_71002df91c(UnkAnimTreeChild_b66a2* child, bool flag);
+void CAnimTreeNode_RecomputeGlobalWeightOptionallyRecursive(UnkAnimTreeChild_b66a2* child, bool flag);
 
 void fn_71002dfaf0_b66a2(UnkLayerNode* node, u32 index, f32 dt, bool b)
     asm("_Z13fn_71002dfaf0P12UnkLayerNodebfb");
@@ -25,6 +25,6 @@ void fn_71002dfaf0_b66a2(UnkLayerNode* node, u32 index, f32 dt, bool b) {
     UnkAnimTreeChild_b66a2* child = reinterpret_cast<UnkAnimTreeNodeView_b66a2*>(node)->children[index];
     child->weight = dt;
     if (b) {
-        fn_71002df91c(child, true);
+        CAnimTreeNode_RecomputeGlobalWeightOptionallyRecursive(child, true);
     }
 }

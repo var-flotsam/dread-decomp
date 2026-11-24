@@ -39,7 +39,7 @@ struct UnkSmartLinkEntryArray {
     u32 step;
 };
 
-void fn_7100273ad4(UnkSmartLinkEntryArray* self, UnkSmartLinkEntry* value) {
+void CFixedDynamicSmartLinkRule_PushBackEntryByMove(UnkSmartLinkEntryArray* self, UnkSmartLinkEntry* value) {
     u32 n = self->count;
     u32 capacity = self->capacity;
     if (capacity <= n && self->step != 0)

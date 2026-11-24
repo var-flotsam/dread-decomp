@@ -22,7 +22,7 @@ struct UnkStopWatch_A2_b72 {
     f32 field_0x5c;
 };
 
-void fn_7100392648(UnkStopWatch_A2_b72* self) {
+void CStopWatchAction_InitTimeLimitFromMinMax(UnkStopWatch_A2_b72* self) {
     UnkSelf* s = reinterpret_cast<UnkSelf*>(self);
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     f32 elapsed = 0.0f;

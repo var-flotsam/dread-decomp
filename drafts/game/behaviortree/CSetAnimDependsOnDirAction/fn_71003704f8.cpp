@@ -66,7 +66,7 @@ void fn_710036f938(UnkSetAnimDependsOnDir_l3704f8* self);
 // Resolves `property` into `name` when it is set, then appends the number when there is one.
 static inline void ResolveName(UnkSetAnimDependsOnDir_l3704f8* self, CStrId* property, UnkAnimName_l3704f8* name) {
     if (property->data != &g_unk_7101d47108->empty)
-        fn_7100395044(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), property,
+        CBehavior_ReadStringProperty(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), property,
                       reinterpret_cast<UnkInlineString_A2_b72*>(name));
     if (self->number >= 0)
         fn_710007f634(name->Str(), self->number);

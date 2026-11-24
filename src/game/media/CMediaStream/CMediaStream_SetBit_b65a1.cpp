@@ -10,7 +10,7 @@ struct UnkMediaStream_b65a1 {
     u32 flags;
 };
 
-void fn_710021b860(UnkMediaStream_b65a1* self, u32 index, bool on) {
+void CMediaStream_SetFlagBitNotifyOnChange(UnkMediaStream_b65a1* self, u32 index, bool on) {
     u32 flags = self->flags;
     u32 bit = 1u << index;
     bool was = (flags & bit) != 0;

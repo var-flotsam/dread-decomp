@@ -115,7 +115,7 @@ void fn_7100286c8c(UnkNavQuery* self, UnkNavMesh* mesh) {
     if (!mesh)
         return;
     if (self->start_cell == -1)
-        self->start_cell = fn_710027a41c(mesh, &self->start, 0);
+        self->start_cell = CNavMesh_FindCellIndexAtPoint(mesh, &self->start, 0);
     UnkNavActor* actor = self->actor;
     UnkNavGroupInfo* info = actor && actor->component ? fn_710110c3d8(actor->component) : nullptr;
     UnkNavMeshManager* manager = UnkNavManager();
@@ -129,7 +129,7 @@ void fn_7100286c8c(UnkNavQuery* self, UnkNavMesh* mesh) {
         return;
     u16 cell = self->goal_cell;
     if (cell == 0xffff) {
-        cell = fn_710027a41c(mesh, &self->goal, self->flags);
+        cell = CNavMesh_FindCellIndexAtPoint(mesh, &self->goal, self->flags);
         self->goal_cell = cell;
     }
     if (!(self->field_0x158 & 2))

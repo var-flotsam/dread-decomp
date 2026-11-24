@@ -41,7 +41,7 @@ UnkEnumType* fn_71003648fc();
 void fn_7100367d78() __attribute__((visibility("hidden")));
 extern char g_unk_71726b2a78[];
 
-void fn_7100368d80() {
+void CAttackPreset_InitStatics() {
     InitHeaderIds(&g_unk_71726b30e0.ids);
     fn_710009ec00(g_unk_71726b2658, fn_7100364820());
     fn_710009ec00(g_unk_71726b2659, fn_71003648fc());

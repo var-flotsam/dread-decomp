@@ -67,7 +67,7 @@ void fn_71005b39d8(UnkBraidStart_ovb0132* self) {
             }
         }
         asm("" : "+r"(self));  // as src/game/CChozoCommanderHypersparkAttack/CHypersparkAttack_Start_A2_b73.cpp
-        fn_7100316018(track, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
         fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
         owner = self->owner;
     }

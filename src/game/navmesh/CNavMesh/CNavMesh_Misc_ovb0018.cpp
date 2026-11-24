@@ -17,7 +17,7 @@
 #include "types.h"
 
 struct UnkLinkGroups;  // the member at +0x10 (src/game/navmesh/CNavMesh/fn_710027514c.cpp)
-void fn_710027497c(UnkLinkGroups* self);
+void CNavMesh_ConstructLinkGroups(UnkLinkGroups* self);
 
 struct UnkNavLoadCell;
 
@@ -66,9 +66,9 @@ static_assert(__builtin_offsetof(UnkNavMesh47f8, tree) == 0x400, "UnkNavMesh47f8
 void fn_71002747f8(UnkNavMesh47f8* self) {
     fn_7101043904(self);
     self->vtable = reinterpret_cast<void**>(g_unk_7101a20e58 + 0x10);
-    fn_710027497c(reinterpret_cast<UnkLinkGroups*>(self->field_0x10));
+    CNavMesh_ConstructLinkGroups(reinterpret_cast<UnkLinkGroups*>(self->field_0x10));
     new (&self->cells) base::global::CRntVector<UnkNavLoadCell>(0x57);
-    fn_7100279600(&self->cells, 0);
+    CNavMesh_ReserveCellArray(&self->cells, 0);
     new (&self->vertices) base::global::CRntVector<u8>(0x57);
     self->field_0x2e0 = 0;
     new (&self->field_0x2e8) UnkNavMeshMap47f8();
@@ -337,7 +337,7 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 struct UnkNavLoadRecordMaps;  // the bucket, as src/game/navmesh/CNavMesh.cpp names it
-void fn_710027f8ac(UnkNavLoadRecordMaps* self);
+void CNavMesh_ClearMapOfRecordListMaps(UnkNavLoadRecordMaps* self);
 
 // A bucket (0x28 bytes): two arrays from its allocator, emptied by fn_710027f8ac before they are freed.
 struct UnkNavBucketE93c {
@@ -347,7 +347,7 @@ struct UnkNavBucketE93c {
     base::UnkAllocator* allocator;  // +0x20
 
     ~UnkNavBucketE93c() {
-        fn_710027f8ac(reinterpret_cast<UnkNavLoadRecordMaps*>(this));
+        CNavMesh_ClearMapOfRecordListMaps(reinterpret_cast<UnkNavLoadRecordMaps*>(this));
         if (field_0x8)
             allocator->vf_0x48(field_0x8);
         if (field_0x0)
@@ -422,7 +422,7 @@ struct UnkNavCellRecord9600 {
         vertices.Reserve(other.capacity);
         __builtin_memcpy(vertices.data, other.data, (u64)other.count * sizeof(u16));
         vertices.count = other.count;
-        fn_710027ebe4(&Edges(), &src.Edges());
+        CNavMesh_CopyConstructEdgeArray(&Edges(), &src.Edges());
         // The last three words are copied as one block.
         __builtin_memcpy(&field_0x58, &src.field_0x58, 0x18);
     }
@@ -431,7 +431,7 @@ struct UnkNavCellRecord9600 {
 static_assert(sizeof(UnkNavCellRecord9600) == 0x70, "UnkNavCellRecord9600 layout");
 
 // The cell array's reserve: the cells are moved into the new array one by one.
-void fn_7100279600(base::global::CRntVector<UnkNavLoadCell>* self, u32 capacity) {
+void CNavMesh_ReserveCellArray(base::global::CRntVector<UnkNavLoadCell>* self, u32 capacity) {
     auto* v = reinterpret_cast<base::global::CRntVector<UnkNavCellRecord9600>*>(self);
     if (v->capacity < capacity) {
         auto* p = static_cast<UnkNavCellRecord9600*>(
@@ -467,7 +467,7 @@ struct alignas(8) UnkNavItem9dd4 {
 };
 
 // The item array's element accessor (it grows the array to cover the index).
-__attribute__((flatten)) UnkNavMeshItem* fn_7100279dd4(base::global::CRntVector<UnkNavMeshItem>* self, u32 index) {
+__attribute__((flatten)) UnkNavMeshItem* CNavMesh_GrowItemArrayAt(base::global::CRntVector<UnkNavMeshItem>* self, u32 index) {
     return reinterpret_cast<base::global::CRntVector<UnkNavItem9dd4>*>(self)->GrowAt(index).Get();
 }
 
@@ -497,7 +497,7 @@ struct UnkNavEdgeCopyEbe4 {
 static_assert(sizeof(UnkNavEdgeCopyEbe4) == sizeof(UnkNavMeshEdge), "UnkNavEdgeCopyEbe4 layout");
 
 // The edge array's copy constructor: the other's settings, its capacity, then its edges one by one.
-__attribute__((flatten)) void fn_710027ebe4(base::global::CRntVector<UnkNavMeshEdge>* self, const base::global::CRntVector<UnkNavMeshEdge>* other) {
+__attribute__((flatten)) void CNavMesh_CopyConstructEdgeArray(base::global::CRntVector<UnkNavMeshEdge>* self, const base::global::CRntVector<UnkNavMeshEdge>* other) {
     auto* dst = reinterpret_cast<base::global::CRntVector<UnkNavEdgeCopyEbe4>*>(self);
     auto* src = reinterpret_cast<const base::global::CRntVector<UnkNavEdgeCopyEbe4>*>(other);
     dst->data = nullptr;

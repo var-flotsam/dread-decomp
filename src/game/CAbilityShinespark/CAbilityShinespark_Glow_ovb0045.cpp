@@ -60,7 +60,7 @@ struct UnkShinesparkGlow_b0045 {
 
 struct UnkSmAbility3_A2_b63;
 
-void fn_7100328e68(UnkSmAbility3_A2_b63* ability, f32 dt) {
+void CAbilityShinespark_UpdateModelUpdaterPulse(UnkSmAbility3_A2_b63* ability, f32 dt) {
     UnkShinesparkGlow_b0045* self = reinterpret_cast<UnkShinesparkGlow_b0045*>(ability);
     self->glow_time += dt;
     UnkReflObject* comp = self->link->actor->model_updater;

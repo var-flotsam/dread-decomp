@@ -19,7 +19,7 @@ struct UnkStatics_71002e0370 {
 extern UnkStatics_71002e0370 g_unk_71726aadc8 __attribute__((visibility("hidden")));
 extern char g_unk_71726aad40[];
 
-void fn_71002e0370() {
+void CAnimTreeRes_InitStatics() {
     InitHeaderIds(&g_unk_71726aadc8.ids);
     g_unk_71726aadc8.field_0x20 = {{0, 0, 0}, fn_710000cf00, {0, 0}};
     g_unk_71726aadc8.field_0x50 = {{0, 0, 0}, fn_710000d470, {0, 0}};

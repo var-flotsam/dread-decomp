@@ -9,7 +9,7 @@
 #include "types.h"
 
 struct UnkMovieStreamNx_ovb0265;
-void fn_7100225ef8(UnkMovieStreamNx_ovb0265* self);
+void CMovieStreamNx_ClearQueues(UnkMovieStreamNx_ovb0265* self);
 
 struct UnkAudioStreamBuffers {
     void** vtable;
@@ -33,7 +33,7 @@ static inline void DestroyAll(base::global::CRntVector<movie::Buffer>& list) {
 }
 
 void fn_7100221b3c(UnkAudioStreamBuffers* self) {
-    fn_7100225ef8(reinterpret_cast<UnkMovieStreamNx_ovb0265*>(self));
+    CMovieStreamNx_ClearQueues(reinterpret_cast<UnkMovieStreamNx_ovb0265*>(self));
     nn::os::MutexType* mutex = &self->mutex;
     fn_710006691c(mutex);
     DestroyAll(self->queued);

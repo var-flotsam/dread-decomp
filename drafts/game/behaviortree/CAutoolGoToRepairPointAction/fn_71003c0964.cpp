@@ -34,7 +34,7 @@ void fn_71003c0964(UnkAutoolGoToRepairPoint_l3c0964* self) {
     bool found;
     {
         CStrId key("v3SmartObjectPos", true);
-        found = fn_710039525c(reinterpret_cast<UnkSelf*>(self), &key, &pos);
+        found = CBehavior_LoadVector3DValue(reinterpret_cast<UnkSelf*>(self), &key, &pos);
     }
     if (found) {
         RequestState_A5_b73<15, 7>(&self->machine, 1);

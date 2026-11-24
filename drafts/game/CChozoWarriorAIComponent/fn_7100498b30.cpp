@@ -172,7 +172,7 @@ void fn_7100498b30(UnkChozoWarriorAI_l498b30* self) {
         ResetRef(&self->handle);
     }
     if (track) {
-        fn_7100316018(track, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
         fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
     }
 

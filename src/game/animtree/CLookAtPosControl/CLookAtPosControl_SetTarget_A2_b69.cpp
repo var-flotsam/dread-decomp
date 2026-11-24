@@ -19,7 +19,7 @@ struct UnkLookAtPosControl_b69 {
 
 bool fn_71002d603c(UnkLookAtPosControl_b69* self);
 
-void fn_71002e6794(UnkLookAtPosControl_b69* self, const CVector3D& pos, f32 time) {
+void CLookAtPosControl_SetTargetPos(UnkLookAtPosControl_b69* self, const CVector3D& pos, f32 time) {
     self->target = pos + self->offset;
     self->time = !(time <= 0.0f) ? time : self->default_time;
     if (!fn_71002d603c(self))

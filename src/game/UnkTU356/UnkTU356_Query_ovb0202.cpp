@@ -75,7 +75,7 @@ struct UnkNavMeshPathIds;
 bool fn_71002814e8(UnkNavQueryState_b0202* self);
 void fn_7100281290(UnkNavQueryState_b0202* self);
 bool fn_7100281a24(UnkNavQueryState_b0202* self, UnkNavPathNode* node, UnkNavMeshPathIds* path);
-void fn_71002adf48(UnkNavMeshPathIds* self, s16 id);
+void SNavMeshPath_AddUniqueId(UnkNavMeshPathIds* self, s16 id);
 
 bool fn_71002811b4(UnkNavQueryState_b0202* self, void* unused, UnkNavMeshPathIds* path) {
     fn_7100281290(self);
@@ -93,10 +93,10 @@ bool fn_71002811b4(UnkNavQueryState_b0202* self, void* unused, UnkNavMeshPathIds
     }
     if (!fn_7100281a24(self, node, path))
         return false;
-    u16 cell = fn_710027a41c(reinterpret_cast<UnkNavMesh*>(self->mesh),
+    u16 cell = CNavMesh_FindCellIndexAtPoint(reinterpret_cast<UnkNavMesh*>(self->mesh),
                              reinterpret_cast<base::math::CVector2D*>(reinterpret_cast<u8*>(self) + 0x5dca4), 1);
     if ((u16)~cell != 0)
-        fn_71002adf48(path, cell);
+        SNavMeshPath_AddUniqueId(path, cell);
     return true;
 }
 

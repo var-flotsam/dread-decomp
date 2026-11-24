@@ -20,7 +20,7 @@
 #include "game/navmesh/CDynamicSmartLinkRules.h"
 #include "types.h"
 
-s32 fn_710026f548(const char* name) {
+s32 CFixedDynamicSmartLinkRule_ParseSolidPortalHoleKindName(const char* name) {
     if (strcmp(name, "None") == 0)
         return 0;
     if (strcmp(name, "Solid") == 0)
@@ -102,7 +102,7 @@ static inline s32 LinkKind(const char* name) {
     return 4;
 }
 
-void fn_710026ebe8(UnkSmartLinkRuleData_ovb0112* self, base::global::CRntFile* file) {
+void CFixedDynamicSmartLinkRule_ReadFromRntFile(UnkSmartLinkRuleData_ovb0112* self, base::global::CRntFile* file) {
     const char* kind;
     const char* from;
     const char* to;
@@ -123,8 +123,8 @@ void fn_710026ebe8(UnkSmartLinkRuleData_ovb0112* self, base::global::CRntFile* f
         base::global::UnkStrId id(name, true);
         self->field_0x88 = static_cast<base::global::UnkStrId&&>(id);
     }
-    self->field_0x74 = fn_710026d2e4(from);
-    self->field_0x7c = fn_710026d2e4(to);
+    self->field_0x74 = CDynamicSmartLinkRules_ParseSmartLinkKindMask(from);
+    self->field_0x7c = CDynamicSmartLinkRules_ParseSmartLinkKindMask(to);
     if (*kind)
         self->link_kind = LinkKind(kind);
     fn_710026ee04(self, file, nullptr);
@@ -242,12 +242,12 @@ void fn_71002737b0(UnkNavRuleValues_A1_b75* self, const UnkNavRuleValue_A1_b75* 
 }
 
 struct UnkSmartLinkEntry;
-void fn_7100273ad4(UnkSmartLinkEntryArray* self, UnkSmartLinkEntry* value);
+void CFixedDynamicSmartLinkRule_PushBackEntryByMove(UnkSmartLinkEntryArray* self, UnkSmartLinkEntry* value);
 
 void fn_7100273940(UnkNavRuleValues_A1_b75* self, UnkNavRuleValue_A1_b75* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
-        fn_7100273ad4(reinterpret_cast<UnkSmartLinkEntryArray*>(self), reinterpret_cast<UnkSmartLinkEntry*>(value));
+        CFixedDynamicSmartLinkRule_PushBackEntryByMove(reinterpret_cast<UnkSmartLinkEntryArray*>(self), reinterpret_cast<UnkSmartLinkEntry*>(value));
         return;
     }
     u32 capacity = self->capacity;

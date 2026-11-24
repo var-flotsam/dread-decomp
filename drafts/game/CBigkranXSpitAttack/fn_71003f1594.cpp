@@ -164,7 +164,7 @@ void fn_71003f1594(UnkSpitStart_l3f1594* self) {
                     hook->handle = nullptr;
                 }
             }
-            fn_7100316018(reinterpret_cast<UnkWeakTarget*>(animation), &hook->handle);
+            CAbilityGhostAura_AssignWeakHandleToRef(reinterpret_cast<UnkWeakTarget*>(animation), &hook->handle);
             fn_710117b3e8(hook->handle ? hook->handle->target : nullptr, link);
         }
     }

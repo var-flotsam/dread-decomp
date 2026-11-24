@@ -199,7 +199,7 @@ void fn_7100220140(UnkMedia324* self) {
     }
     fn_7100066698(&self->ready);
     for (UnkMediaTrack330 **it = self->tracks, **end = it + self->track_count; it != end; ++it)
-        fn_710021b860(*it, false, false);
+        CMediaStream_SetFlagBitNotifyOnChange(*it, false, false);
 }
 
 bool fn_71000666a0(nn::os::LightEventType* event, u32 milliseconds);

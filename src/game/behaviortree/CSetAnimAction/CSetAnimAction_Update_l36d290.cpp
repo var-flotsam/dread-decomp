@@ -44,14 +44,14 @@ struct UnkSetAnimAction_l36d290 {
 struct UnkStringEqualsCondition_A2_b72;
 struct UnkInlineString_A2_b72;
 
-u32 fn_710036d290(UnkSetAnimAction_l36d290* self) {
+u32 CSetAnimAction_WaitForAnimEnd(UnkSetAnimAction_l36d290* self) {
     if (!self->field_0x60)
         return 6;
     if (!self->bWaitAnimEnd)
         return 5;
     UnkAnimName_l36d290 name(&self->name);
     if (self->name_property.data != &g_unk_7101d47108->empty)
-        fn_7100395044(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->name_property,
+        CBehavior_ReadStringProperty(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->name_property,
                       reinterpret_cast<UnkInlineString_A2_b72*>(&name));
     if (self->number >= 0)
         fn_710007f634(name.Str(), self->number);

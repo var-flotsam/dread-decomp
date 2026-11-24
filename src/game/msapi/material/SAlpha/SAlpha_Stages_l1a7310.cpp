@@ -14,7 +14,7 @@ struct UnkMatStageVector_ovb0098;
 struct UnkMaterialDef_l1a5aa4;
 
 // As src/game/msapi/material/SAlpha.cpp and the files under SAlpha/ declare and define them.
-void fn_71001a7a2c(UnkMatStageVector_ovb0098* v, u32 n);  // Reserve
+void SAlpha_ReserveStageArray(UnkMatStageVector_ovb0098* v, u32 n);  // Reserve
 void fn_71001a5aa4(UnkMaterialDef_l1a5aa4* self);        // A stage's constructor
 
 struct UnkStage_l1a7310 {
@@ -33,7 +33,7 @@ struct UnkMaterialView_l1a7310 {
 };
 
 static inline void Reserve(UnkStages_l1a7310* stages, u32 n) {
-    fn_71001a7a2c(reinterpret_cast<UnkMatStageVector_ovb0098*>(stages), n);
+    SAlpha_ReserveStageArray(reinterpret_cast<UnkMatStageVector_ovb0098*>(stages), n);
 }
 
 // Adds a default stage and returns it.
@@ -55,6 +55,6 @@ void fn_71001a7310(UnkMaterial* self, CRntFile* file, base::global::CRntVector<u
     CRntFile_Read(file, &count, sizeof(count), 1);
     Reserve(stages, count);
     for (s32 i = 0; i < count; ++i)
-        fn_71001a69a0(UnkNoArg(), file, &AddStage(stages));
+        SAlpha_ReadReflectedFieldsFromFile(UnkNoArg(), file, &AddStage(stages));
     reinterpret_cast<UnkMaterialView_l1a7310*>(self)->stage_count = count;
 }

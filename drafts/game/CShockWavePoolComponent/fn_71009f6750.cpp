@@ -34,7 +34,7 @@ bool fn_710027b780(UnkNavMesh* mesh, const CVector2D* point, u32 flags, u64 filt
 bool fn_710027c460(UnkNavMesh* self, u16 cell, u8 side, bool forward, const CVector2D* widths, u32 flags,
                    u16* out_cell, u8* out_side);
 struct Vec2;
-Vec2* fn_710027a410(UnkNavMesh* mesh, u16 index);
+Vec2* CNavMesh_GetVertex(UnkNavMesh* mesh, u16 index);
 bool fn_71002afc84(UnkNavMeshCell* cell, const u8* index, u32 flags);
 
 // The direction the found sides must face: none here (any angle, cosine -1).
@@ -101,7 +101,7 @@ inline f32 Dot_l9f6750(const UnkVec2Result& a, const CVector2D& b) {
 void fn_71009f6750(UnkShockWavePool_l9f6750* self, const CVector2D* point, const CVector2D* start,
                    const CVector2D* dir, bool* out) {
     UnkNavMesh* mesh = NavManager_l9f6750()->navmesh;
-    u16 cell = fn_710027a41c(mesh, point, 0);
+    u16 cell = CNavMesh_FindCellIndexAtPoint(mesh, point, 0);
     UnkShockHits_l9f6750 hits;
     if (cell == 0xffff) {
         *out = false;
@@ -150,8 +150,8 @@ void fn_71009f6750(UnkShockWavePool_l9f6750* self, const CVector2D* point, const
         bool walking = true;
         while (walking && front_left > 0.0f) {
             UnkNavMeshSidePair ends = fn_71002afe60(fn_710027a328(mesh, front_cell), &front_side);
-            UnkSegment2D edge(*reinterpret_cast<CVector2D*>(fn_710027a410(mesh, ends.a)),
-                              *reinterpret_cast<CVector2D*>(fn_710027a410(mesh, ends.b)));
+            UnkSegment2D edge(*reinterpret_cast<CVector2D*>(CNavMesh_GetVertex(mesh, ends.a)),
+                              *reinterpret_cast<CVector2D*>(CNavMesh_GetVertex(mesh, ends.b)));
             f32 length = Distance_l9f6750(edge.end, front_from);
             if (length >= front_left)
                 break;
@@ -166,8 +166,8 @@ void fn_71009f6750(UnkShockWavePool_l9f6750* self, const CVector2D* point, const
             front_cell = next_cell;
             front_side = next_side;
             UnkNavMeshSidePair next_ends = fn_71002afe60(fn_710027a328(mesh, front_cell), &front_side);
-            UnkSegment2D next(*reinterpret_cast<CVector2D*>(fn_710027a410(mesh, next_ends.a)),
-                              *reinterpret_cast<CVector2D*>(fn_710027a410(mesh, next_ends.b)));
+            UnkSegment2D next(*reinterpret_cast<CVector2D*>(CNavMesh_GetVertex(mesh, next_ends.a)),
+                              *reinterpret_cast<CVector2D*>(CNavMesh_GetVertex(mesh, next_ends.b)));
             front_from = next.start;
             if (Dot_l9f6750(fn_7100125e78(&next), *dir) > 0.99f)
                 continue;
@@ -190,8 +190,8 @@ void fn_71009f6750(UnkShockWavePool_l9f6750* self, const CVector2D* point, const
         bool walking = true;
         while (walking && half > 0.0f) {
             UnkNavMeshSidePair ends = fn_71002afe60(fn_710027a328(mesh, cell), &back_side);
-            UnkSegment2D edge(*reinterpret_cast<CVector2D*>(fn_710027a410(mesh, ends.a)),
-                              *reinterpret_cast<CVector2D*>(fn_710027a410(mesh, ends.b)));
+            UnkSegment2D edge(*reinterpret_cast<CVector2D*>(CNavMesh_GetVertex(mesh, ends.a)),
+                              *reinterpret_cast<CVector2D*>(CNavMesh_GetVertex(mesh, ends.b)));
             f32 length = Distance_l9f6750(edge.start, from);
             if (length >= half)
                 break;
@@ -206,8 +206,8 @@ void fn_71009f6750(UnkShockWavePool_l9f6750* self, const CVector2D* point, const
             cell = next_cell;
             back_side = next_side;
             UnkNavMeshSidePair next_ends = fn_71002afe60(fn_710027a328(mesh, cell), &back_side);
-            UnkSegment2D next(*reinterpret_cast<CVector2D*>(fn_710027a410(mesh, next_ends.a)),
-                              *reinterpret_cast<CVector2D*>(fn_710027a410(mesh, next_ends.b)));
+            UnkSegment2D next(*reinterpret_cast<CVector2D*>(CNavMesh_GetVertex(mesh, next_ends.a)),
+                              *reinterpret_cast<CVector2D*>(CNavMesh_GetVertex(mesh, next_ends.b)));
             from = next.end;
             if (Dot_l9f6750(fn_7100125e78(&next), *dir) > 0.99f)
                 continue;

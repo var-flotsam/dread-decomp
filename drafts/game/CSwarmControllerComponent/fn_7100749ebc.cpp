@@ -104,8 +104,8 @@ bool fn_7100749ebc(UnkSwarmController_l749ebc* self, const UnkSwarmSlot_l749ebc*
     fn_710007b430(&to, neighbour->GetPosition());
 
     UnkNavMesh* mesh = NavMeshManager()->navmesh;
-    u16 fromCell = fn_710027a41c(mesh, &from, 0);
-    u16 toCell = fn_710027a41c(mesh, &to, 0);
+    u16 fromCell = CNavMesh_FindCellIndexAtPoint(mesh, &from, 0);
+    u16 toCell = CNavMesh_FindCellIndexAtPoint(mesh, &to, 0);
     if (fromCell == 0xffff || toCell == 0xffff)
         return false;
     UnkNavMeshCell* a = fn_710027a328(mesh, fromCell);

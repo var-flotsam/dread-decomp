@@ -34,7 +34,7 @@ void fn_710026a1c0();
 UnkReflType* fn_710026a6c8();
 void fn_710026a7a4(UnkReflType* self, const CStrId& name, void* a, void* b);
 
-void fn_710026c780() {
+void CDynamicSmartLinkRule_InitStatics() {
     InitHeader(g_unk_71726a3680);
     fn_71002696e4();
     fn_710009ec00(&g_unk_71726a2d30, TUType<0x20>(g_unk_71726a3680));

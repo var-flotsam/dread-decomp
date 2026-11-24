@@ -101,7 +101,7 @@ void* CWorldGraph_InsertNodeAt(UnkWorldGraph_b0101* self, u32 index, const base:
     base::math::CVector2D point;
     fn_710007b430(&point, pos);
     UnkNavMesh* mesh = NavManager()->navmesh;
-    u16 cell_index = fn_710027a41c(mesh, &point, 1);
+    u16 cell_index = CNavMesh_FindCellIndexAtPoint(mesh, &point, 1);
     UnkNavMeshCell* cell = cell_index != 0xffff ? fn_710027a328(mesh, cell_index) : nullptr;
     alignas(8) u8 node[0x80];
     base::global::CRntVector<UnkWorldGraphNode_b0101>* nodes = &self->nodes;
@@ -124,7 +124,7 @@ __attribute__((disable_tail_calls)) void* CWorldGraph_FindOrAddNodeById(UnkWorld
             return fn_7100acc418(reinterpret_cast<UnkWorldGraphArray*>(nodes), i);
     }
     UnkNavMesh* mesh = NavManager()->navmesh;
-    u16 cell_index = fn_710027a41c(mesh, point, 1);
+    u16 cell_index = CNavMesh_FindCellIndexAtPoint(mesh, point, 1);
     if (cell_index == 0xffff)
         return nullptr;
     UnkNavMeshCell* cell = fn_710027a328(mesh, cell_index);

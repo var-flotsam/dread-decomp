@@ -120,7 +120,7 @@ void fn_71004d99d4(UnkCoreXAI_A2_b73* self) {
         }
     }
     asm("" : "+r"(state));
-    fn_7100316018(track, &state->handle);
+    CAbilityGhostAura_AssignWeakHandleToRef(track, &state->handle);
     fn_710117b3e8(state->handle.handle ? state->handle.handle->target : nullptr, link);
     if (flags->field_0x11c)
         flags->field_0x114 = true;

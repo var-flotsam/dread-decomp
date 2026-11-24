@@ -98,7 +98,7 @@ u32 fn_710038dffc(UnkStopInIdleAction_l38dffc* self, f32 dt) {
 
             UnkIdleAnimName_l38dffc name(&self->anim);
             if (self->anim_property.data != &g_unk_7101d47108->empty)
-                fn_7100395044(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->anim_property,
+                CBehavior_ReadStringProperty(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->anim_property,
                               reinterpret_cast<UnkInlineString_A2_b72*>(&name));
             const char* str = name.Str()->data;
             if (str && *str && self->owner) {
@@ -126,7 +126,7 @@ u32 fn_710038dffc(UnkStopInIdleAction_l38dffc* self, f32 dt) {
     if (self->play_anim) {
         UnkIdleAnimName_l38dffc name(&self->anim);
         if (self->anim_property.data != &g_unk_7101d47108->empty)
-            fn_7100395044(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->anim_property,
+            CBehavior_ReadStringProperty(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->anim_property,
                           reinterpret_cast<UnkInlineString_A2_b72*>(&name));
         u32 status = 5;
         if (self->owner) {

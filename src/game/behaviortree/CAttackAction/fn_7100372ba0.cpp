@@ -13,7 +13,7 @@ struct UnkObj_372ba0 {
     UnkStrIdTwoStep field_0x60;
 };
 
-void fn_7100372ba0(UnkObj_372ba0* self) {
+void CAttackAction_Destroy(UnkObj_372ba0* self) {
     self->vtable = &g_unk_7101a25010[2];
     self->field_0x60.~UnkStrIdTwoStep();
     CRntString_Destroy(&self->sAttack);

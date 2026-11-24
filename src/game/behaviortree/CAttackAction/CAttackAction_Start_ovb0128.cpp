@@ -48,13 +48,13 @@ struct UnkCommanderPlayer_b67a2;
 
 // The owner's attack player.
 
-void fn_7100372864(UnkAttackAction_ovb0128* self) {
+void CAttackAction_StartAttack(UnkAttackAction_ovb0128* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->started = false;
     // A copy of the string at +0x30 (only its string part is read).
     UnkAttackName_ovb0128 name(*reinterpret_cast<const UnkAttackName_ovb0128*>(&self->name));
     if (self->name_property.data != &g_unk_7101d47108->empty)
-        fn_7100395044(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->name_property,
+        CBehavior_ReadStringProperty(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->name_property,
                       reinterpret_cast<UnkInlineString_A2_b72*>(&name));
     UnkAttackAI_ovb0128* ai = self->actor ? self->actor->ai : nullptr;
     void* attack;

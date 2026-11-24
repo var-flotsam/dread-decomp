@@ -18,7 +18,7 @@ struct UnkDistanceEvaluator_A2_b71 {
     f32 max;  // 0x24
 };
 
-f32 fn_71002bba34(UnkDistanceEvaluator_A2_b71* self, UnkDistanceTransform_A2_b71* a,
+f32 CDistanceEvaluator_ScoreDistanceBetweenPositions(UnkDistanceEvaluator_A2_b71* self, UnkDistanceTransform_A2_b71* a,
                   UnkDistanceTransform_A2_b71* b) {
     if (!(self->min >= 0.0f) || !(self->max > 0.0f && self->min < self->max))
         return 0.0f;

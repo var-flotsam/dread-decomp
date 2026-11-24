@@ -34,12 +34,12 @@ struct UnkAutsharpAI_b47 {
     UnkListLink_b47 link;  // 0x146f0
 };
 
-void fn_71003c8cd8(UnkAutsharpAI_b47* self) {
+void CAutsharpAIComponent_Destroy(UnkAutsharpAI_b47* self) {
     self->vtable = &g_unk_7101a2d9e8[2];
     self->link.~UnkListLink_b47();
     fn_7100661914(reinterpret_cast<UnkAutsharpAIBase_b47*>(self));
 }
-void fn_71003c8d40(UnkAutsharpAI_b47* self) {
-    fn_71003c8cd8(self);
+void CAutsharpAIComponent_DestroyAndDelete(UnkAutsharpAI_b47* self) {
+    CAutsharpAIComponent_Destroy(self);
     __builtin_operator_delete(self);
 }

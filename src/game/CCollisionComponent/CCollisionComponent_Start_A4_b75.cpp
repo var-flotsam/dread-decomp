@@ -85,7 +85,7 @@ void fn_7100860ee0(UnkCollisionStart_A4_b75* self) {
     }
     if (track) {
         asm("" : "+r"(self));
-        fn_7100316018(track, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
         fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
     }
     self->field_0x128 = false;

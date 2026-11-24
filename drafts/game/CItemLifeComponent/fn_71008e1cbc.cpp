@@ -76,7 +76,7 @@ void fn_71008e1cbc(UnkItemLife_l8e1cbc* self, u32 kind, UnkHitInfo_A5_b63* info)
         self->listener.owner = self;
         self->listener.callback = fn_71008e2a74;
         self->Unhook();
-        fn_7100316018(animation, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(animation, &self->handle);
         fn_710117b3e8(self->handle ? self->handle->target : nullptr, &self->listener);
         self->info = info;
         base::reflection::refl_EmitU32(animation, 0xc567047b7a4bf0cf, 0xf4061ff25a2163d6, 1, &g_unk_710164b958,

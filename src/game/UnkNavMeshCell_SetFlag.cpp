@@ -12,6 +12,6 @@ void fn_71002af93c(UnkNavMeshCell* self, bool flag) {
     }
     self->flag = flag;
     if (self->owner != nullptr) {
-        fn_710027da54(self->owner, self->Id(), flag);
+        CNavMesh_NotifyCellFlagChanged(self->owner, self->Id(), flag);
     }
 }

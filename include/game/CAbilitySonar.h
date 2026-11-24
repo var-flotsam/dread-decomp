@@ -10,5 +10,5 @@
 struct UnkIdPathPair_7100333544;
 struct UnkRenderPool;
 struct UnkSwitchObject;
-void* fn_7100339d48(UnkRenderPool* pool, const base::global::CFilePathStrId* path, UnkSwitchObject** out, const base::global::CStrId* name);
+void* CAbilitySonar_CreateSwitchObjectInRenderPool(UnkRenderPool* pool, const base::global::CFilePathStrId* path, UnkSwitchObject** out, const base::global::CStrId* name);
 void fn_7100333544(UnkIdPathPair_7100333544* self);

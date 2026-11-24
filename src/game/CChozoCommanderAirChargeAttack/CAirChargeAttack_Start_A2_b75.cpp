@@ -91,6 +91,6 @@ void fn_7100425b98(UnkAirChargeAttack_A2_b75* self, f32 dt) {
     if (!track)
         return;
     asm("" : "+r"(self));
-    fn_7100316018(track, &self->handle);
+    CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
     fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
 }

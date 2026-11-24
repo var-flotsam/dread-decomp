@@ -48,7 +48,7 @@ const base::reflection::CType* fn_710026dbb4();  // refl_GetType<...CRntVector<S
 const base::reflection::CType* fn_710026e198();
 const base::reflection::CType* fn_710026e77c();
 
-void fn_71002740e0() {
+void CFixedDynamicSmartLinkRule_InitStatics() {
     UnkStatics_l2740e0& s = g_unk_71726a4350;
     InitHeader(s.header);
     s.directions[0] = {0.89442718f, 0.44721359f};

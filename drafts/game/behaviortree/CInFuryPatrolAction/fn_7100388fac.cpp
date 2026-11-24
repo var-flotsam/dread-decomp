@@ -202,7 +202,7 @@ void fn_7100388fac(UnkPatrolAction_l388fac* self) {
             self->listener.link = nullptr;
         }
     }
-    fn_7100316018(reinterpret_cast<UnkWeakTarget*>(animations), &self->listener.link);
+    CAbilityGhostAura_AssignWeakHandleToRef(reinterpret_cast<UnkWeakTarget*>(animations), &self->listener.link);
     fn_710117b3e8(self->listener.link ? self->listener.link->target : nullptr, &self->listener);
     self->moving = false;
     if (fn_71010cc3a4(movement) == 4)

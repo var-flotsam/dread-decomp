@@ -652,7 +652,7 @@ bool fn_710027bbf0(UnkNavMesh* mesh, const CVector2D* point, u32 flags, u64 filt
     f32 best_distance = 3.4028235e38f;
     UnkNavMeshVisitor visitor = {mesh,      &best_distance, &best,      point,       &flags,       arg_0x28,
                                  arg_0x30, arg_0x38,       direction, &filter_arg, &filter_arg2, &filter_arg3};
-    u16 start = fn_710027a41c(mesh, point, 1);
+    u16 start = CNavMesh_FindCellIndexAtPoint(mesh, point, 1);
     if (start != 0xffff) {
         UnkNavMeshIdList<1024> candidates;
         UnkNavMeshIdList<1024> pending;
@@ -924,7 +924,7 @@ __attribute__((always_inline)) static inline void CopyCell(UnkNavLoadCell* dst, 
     dst->vertices.Reserve(src.vertices.capacity);
     __builtin_memcpy(dst->vertices.data, src.vertices.data, (u64)src.vertices.count * sizeof(u16));
     dst->vertices.count = src.vertices.count;
-    fn_710027ebe4(&dst->edges, &src.edges);
+    CNavMesh_CopyConstructEdgeArray(&dst->edges, &src.edges);
     dst->field_0x58 = src.field_0x58;
     dst->field_0x60 = src.field_0x60;
     dst->item = src.item;
@@ -994,7 +994,7 @@ union UnkNavLoadItemBuf {
 };
 
 // The item array's element accessor (it grows a growable array to cover the index).
-UnkNavMeshItem* fn_7100279dd4(base::global::CRntVector<UnkNavMeshItem>* self, u32 index);
+UnkNavMeshItem* CNavMesh_GrowItemArrayAt(base::global::CRntVector<UnkNavMeshItem>* self, u32 index);
 
 // An entry of an item's list (UnkNavMeshItemEntry's layout): a key, a counted weak handle and a
 // value.
@@ -1115,9 +1115,9 @@ static inline base::global::CRntVector<UnkWordObject>* AsWordObjects(base::globa
 using UnkNavLoadRecordMap = UnkNavLoadMap<base::global::CRntVector<UnkNavLoadPathRecord>>;
 using UnkNavLoadRecordMaps = UnkNavLoadMap<UnkNavLoadRecordMap>;
 using UnkNavLoadCellRecordMap = UnkNavLoadMap<base::global::CRntVector<UnkNavLoadSlot360>>;
-void fn_710027f348(UnkNavLoadMap<UnkNavLoadCellRecordMap>* self, u32 capacity);
-void fn_710027f8ac(UnkNavLoadRecordMaps* self);  // releases the keys and empties the values
-void fn_710027f9d0(base::global::CRntVector<UnkNavLoadRecordMaps>* self, u32 capacity);
+void CNavMesh_ReserveCellRecordMapMap(UnkNavLoadMap<UnkNavLoadCellRecordMap>* self, u32 capacity);
+void CNavMesh_ClearMapOfRecordListMaps(UnkNavLoadRecordMaps* self);  // releases the keys and empties the values
+void CNavMesh_ReserveRecordMapArray(base::global::CRntVector<UnkNavLoadRecordMaps>* self, u32 capacity);
 void fn_710027fb10(UnkNavLoadRecordMap* self);  // the same for the inner maps
 void fn_710027fc88(UnkNavLoadRecordMaps* self, u32 capacity);
 
@@ -1167,13 +1167,13 @@ static_assert(__builtin_offsetof(UnkNavLoadMesh, tree) == 0x400, "UnkNavLoadMesh
 // The cell at `index`, growing a growable array to cover it.
 __attribute__((always_inline)) static inline UnkNavLoadCell* CellAt(UnkNavLoadMesh* m, u32 index) {
     return GrowAt(
-        &m->cells, index, [](base::global::CRntVector<UnkNavLoadCell>* v, u32 n) { fn_7100279600(v, n); },
+        &m->cells, index, [](base::global::CRntVector<UnkNavLoadCell>* v, u32 n) { CNavMesh_ReserveCellArray(v, n); },
         [](UnkNavLoadCell* c) { fn_71002af630(AsCell(c)); });
 }
 
 __attribute__((always_inline)) static inline UnkNavLoadItem* ItemAt(UnkNavLoadMesh* m, u32 index) {
     return reinterpret_cast<UnkNavLoadItem*>(
-        fn_7100279dd4(reinterpret_cast<base::global::CRntVector<UnkNavMeshItem>*>(&m->items), index));
+        CNavMesh_GrowItemArrayAt(reinterpret_cast<base::global::CRntVector<UnkNavMeshItem>*>(&m->items), index));
 }
 
 // The members the three record lists share: three words narrowed to flags and counters, two
@@ -1202,8 +1202,8 @@ __attribute__((always_inline)) static inline void ReadRecordBody(UnkNavLoadRecor
     r->field_0xc = point0;
     Read(f, &point1, 0xc);
     r->field_0x28 = point1;
-    r->field_0x18 = fn_710026d2e4(ReadName(f));
-    r->field_0x34 = fn_710026d2e4(ReadName(f));
+    r->field_0x18 = CDynamicSmartLinkRules_ParseSmartLinkKindMask(ReadName(f));
+    r->field_0x34 = CDynamicSmartLinkRules_ParseSmartLinkKindMask(ReadName(f));
     UnkNavLoadId id(ReadName(f));
     r->field_0x38 = id.id;
 }
@@ -1301,12 +1301,12 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
         s32 ncells = 0;
         Read(f, &ncells, 4);
         if (ncells > 0) {
-            fn_7100279600(&m->cells, ncells);
-            fn_7100279600(&m->cells, ncells);
+            CNavMesh_ReserveCellArray(&m->cells, ncells);
+            CNavMesh_ReserveCellArray(&m->cells, ncells);
             for (s32 i = 0; i < ncells; ++i) {
                 {
                     UnkNavLoadCellBuf cell;
-                    fn_7100279600(&m->cells, GrownCapacity(&m->cells));
+                    CNavMesh_ReserveCellArray(&m->cells, GrownCapacity(&m->cells));
                     CopyCell(&m->cells.data[m->cells.count], cell.cell);
                     ++m->cells.count;
                 }
@@ -1425,7 +1425,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             if (!outer.Contains(key.id)) {
                 base::UnkAllocator* a = GetDefaultAllocator();
                 if (outer.count == outer.capacity)
-                    fn_710027f348(&outer, outer.step + outer.count);
+                    CNavMesh_ReserveCellRecordMapMap(&outer, outer.step + outer.count);
                 InitMap(outer.AppendKey(key.id), a);
                 ++outer.count;
             }
@@ -1481,14 +1481,14 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                 {
                     UnkNavLoadRecordMaps tmp;
                     InitMap(&tmp, GetDefaultAllocator());
-                    fn_710027f9d0(graphs, GrownCapacity(graphs));
+                    CNavMesh_ReserveRecordMapArray(graphs, GrownCapacity(graphs));
                     MoveMap(&graphs->data[graphs->count], &tmp);
                     ++graphs->count;
-                    DestroyMap(&tmp, [](UnkNavLoadRecordMaps* p) { fn_710027f8ac(p); });
+                    DestroyMap(&tmp, [](UnkNavLoadRecordMaps* p) { CNavMesh_ClearMapOfRecordListMaps(p); });
                 }
                 UnkNavLoadRecordMaps* graph = GrowAt(
                     graphs, graphs->count - 1,
-                    [](base::global::CRntVector<UnkNavLoadRecordMaps>* v, u32 n) { fn_710027f9d0(v, n); },
+                    [](base::global::CRntVector<UnkNavLoadRecordMaps>* v, u32 n) { CNavMesh_ReserveRecordMapArray(v, n); },
                     [](UnkNavLoadRecordMaps* p) { InitMap(p, GetDefaultAllocator()); });
                 s32 nnodes = 0;
                 Read(f, &nnodes, 4);

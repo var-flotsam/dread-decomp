@@ -12,7 +12,7 @@ using base::global::CStrId;
 
 struct UnkMapData;
 
-void fn_7100301860(CAbilityComponent* self, const CStrId* id) {
+void CAbilityEnergyWave_EnableAbilitiesMatchingId(CAbilityComponent* self, const CStrId* id) {
     for (CAbility** it = self->begin(); it != self->end(); ++it) {
         CAbility* ability = *it;
         UnkAbilityDef* def = ability->def;

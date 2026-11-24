@@ -72,7 +72,7 @@ struct UnkBoostStats_l305c24 {
     base::global::CStrId name;
 };
 
-f32 fn_7100305c24(void* object) {
+f32 CAbilityEnergyWave_GetWeaponBoostDamageMult(void* object) {
     auto* stats = static_cast<UnkBoostStats_l305c24*>(object);
     f32 v = 1.0f;
     if (stats->name.data != &g_unk_7101d47108->empty) {

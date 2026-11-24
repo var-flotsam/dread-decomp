@@ -16,7 +16,7 @@ struct UnkAnimTreeDef401 {
     UnkEntry401* cursor;  // 0xa0
 };
 
-bool fn_71002d82f4(UnkAnimTreeDef401* self, UnkEntry401** out) {
+bool CAnimTreeDef_GetNextLink(UnkAnimTreeDef401* self, UnkEntry401** out) {
     UnkEntry401* end = self->entries + self->count;
     if (self->cursor != end) {
         *out = self->cursor;
@@ -55,10 +55,10 @@ struct UnkAnimTreeDefPtrs401 {
     void** second_cursor;  // 0x70
 };
 
-bool fn_71002d8274(UnkAnimTreeDefPtrs401* self, void** out) {
+bool CAnimTreeDef_GetNextNode(UnkAnimTreeDefPtrs401* self, void** out) {
     return NextPtr401(&self->first, &self->first_cursor, out);
 }
 
-bool fn_71002d82b4(UnkAnimTreeDefPtrs401* self, void** out) {
+bool CAnimTreeDef_NextControl(UnkAnimTreeDefPtrs401* self, void** out) {
     return NextPtr401(&self->second, &self->second_cursor, out);
 }

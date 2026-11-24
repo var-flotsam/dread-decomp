@@ -57,7 +57,7 @@ inline UnkLookAtTarget_b2e55e8* LookAtTarget(UnkLookAtEntityControl_b2e55e8* sel
 void fn_71002e55e8(UnkLookAtEntityControl_b2e55e8* self, f32 dt) {
     UnkLookAtTarget_b2e55e8* target = LookAtTarget(self);
     UnkVec3f pos = target ? PositionOf(target) : UnkVec3f(0.0f, 0.0f, 0.0f);
-    fn_71002e6794(reinterpret_cast<UnkLookAtPosControl_b69*>(self), reinterpret_cast<const base::math::CVector3D&>(pos),
+    CLookAtPosControl_SetTargetPos(reinterpret_cast<UnkLookAtPosControl_b69*>(self), reinterpret_cast<const base::math::CVector3D&>(pos),
                   -1.0f);
     fn_71002e681c(self, dt);
 }

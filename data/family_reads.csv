@@ -1,2 +1,3 @@
 family,scope,generator_commit,date,sample_size,verdict,reader,notes
 reflection,src/reflection/*.cpp,aae2923b0d0e,2026-11-23,20,fail,"independent agent, random.Random(20261123)","12 of 20 fail (5 on the most lenient reading): the class's own type never appears in Destroy/TypeOf; CClass's signature carries fn_ and Unk names and the size is a bare number; fields are placed by bare offsets; attribute helpers alias fn_<addr> functions"
+reflection,src/reflection/*.cpp,667037e7695c,2026-11-24,20,fail,"independent agent","6 of 20 passed; failures all from shared pieces: CClass constructor template and traits placeholders in include/base/reflection/CClass.h, `vf_0x0()` in refl_TypeOf, attribute/field helper types and twelve `fn_<addr>` type getters"
