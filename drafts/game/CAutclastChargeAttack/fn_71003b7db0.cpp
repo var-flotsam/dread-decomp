@@ -23,7 +23,7 @@ struct UnkFxPooledObject {
 
 struct UnkFxObjectPool;
 
-UnkFxPooledObject* fn_710104dc00(UnkFxObjectPool* self);
+UnkFxPooledObject* CFXPool_AcquireFreeObject(UnkFxObjectPool* self);
 UnkFxPooledObject* fn_710104dc8c(UnkFxObjectPool* self);
 
 // A node of the manager's first map: a pool per file path.
@@ -95,7 +95,7 @@ static inline UnkFxPooledObject* TakePooled(UnkModelManager* self, const UnkStri
         return nullptr;
     UnkFxPooledObject* fx;
     if (mode == 1) {
-        fx = fn_710104dc00(node->pool);
+        fx = CFXPool_AcquireFreeObject(node->pool);
     } else {
         fx = fn_710104dc8c(node->pool);
         UnkFxList_l3b7db0* list = reinterpret_cast<UnkFxList_l3b7db0*>(&self->field_0xc0);

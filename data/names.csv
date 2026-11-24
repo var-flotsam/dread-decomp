@@ -404,12 +404,20 @@ address,name,name_source,reason
 0x7100ee6d00,CSubAreaManager_ChangeSubAreaResources,inferred,works out the id lists and files that change from one sub-area to another (either may be null) and loads them
 0x7100eea4c8,SubArea_ApplyEnvironmentSettings,inferred,"hands a sub-area's settings for the slots set in the mask to the environment manager, or resets all three without a sub-area"
 0x7100eea618,SubArea_ApplyCameraSettings,inferred,hands a sub-area's camera settings to the main camera's controller when it is the CMetroidCameraCtrl one
+0x7100f10e18,CReserveTankInfo_ConstructSpecialEnergyTankInfo,inferred,"builds a CReserveTankInfo (base vtable 0x7101caa4d0) with the ITEM_RESERVE_TANK_SPECIAL_ENERGY_ACTIVE and _FULL ids and a cleared flag +0x30, vtable 0x7101caa570; CPlayerInfo builds it at +0x180"
+0x7100f10f20,CReserveTankInfo_ConstructMissileTankInfo,inferred,"builds a CReserveTankInfo (base vtable 0x7101caa4d0) with the ITEM_RESERVE_TANK_MISSILE_ACTIVE and _FULL ids, then vtable 0x7101caa5c0; CPlayerInfo builds it at +0x1b8"
 0x7100f9e870,base::reflection::attr::AssetType,inferred,"returns the attribute key built from the string ""AssetType"" (the key's own name)"
 0x7100f9e980,base::reflection::attr::BasePath,inferred,"returns the attribute key built from the string ""BasePath"" (the key's own name)"
 0x7100f9ea90,base::reflection::attr::FolderFilter,inferred,"returns the attribute key built from the string ""FolderFilter"" (the key's own name)"
 0x7100f9eba0,base::reflection::attr::FileNameOnly,inferred,"returns the attribute key built from the string ""FileNameOnly"" (the key's own name)"
 0x71010434d0,base::reflection::attr::eActorLinkToComponentLinkTransform,inferred,"returns the attribute key built from the string ""eActorLinkToComponentLinkTransform"" (the key's own name)"
+0x710104dc00,CFXPool_AcquireFreeObject,inferred,"in the CFXPool::CDefinition unit: returns the first object of the array at +0x10 whose bit in the in-use mask at +0x38 is clear, after vf_0x118 on it and setting the bit; null when all 32 bits or objects are used"
+0x710104ddcc,CFXPool_ReleaseObject,inferred,"in the CFXPool::CDefinition unit: finds the given object in the array at +0x10; if found calls its vf_0x40(false) and vf_0x110, clears its bit in the in-use mask at +0x38 and returns true, else false"
+0x71010532e0,CLogicCamera_InitStatics,inferred,"the unit's static initialiser (tu_map unit 2655): header ids, the Controller, Static, Position, Dir, FovX, MinExtraZDist, MaxExtraZDist, DefaultInterp ids, the class, its pointer types, CGameLink<CLogicCamera> and three conversions"
+0x71010d7b88,CPlayerMovement_Reset,inferred,"runs the CCharacterMovement base reset fn_71009786a8 and clears the movement state (+0x7c, +0x6e8, +0x700, +0x7b8, +0x7c8, +0x7e4, timer +0x708); CMorphBallMovement's reset calls it as its base"
+0x71010ef0ec,CFreeCameraCtrl_Construct,inferred,"the plain constructor: camera ctrl base ctor fn_71010ed044, the CFreeCameraCtrl vtable g_unk_7101cb1860 as in refl_Construct, the array at +0x1d8, the input member named FreeCameraCtrl, angle 45"
 0x71010f3d20,CCameraFX_Shake::CCameraFX_Shake,inferred,the out-of-line constructor of CCameraFX_Shake: refl_Construct of RandShake and OscillationShake call it on the new object before storing the subclass's virtual table
+0x71011275d8,CSpawnPointComponent_OnEntityGenerated,inferred,"for a spawned actor: checks iMaxNumToGenerate +0x110, tells the +0x60 link's object (vf 0x178) with the owner's name, calls the Lua function sOnEntityGenerated +0xd8 with owner and actor"
 0x71011a6c9c,CTeamManager_UpdateTargetDistances,inferred,sets each node of the member list (at +0 of the manager) to the planar (2D) distance between the member's position and that of the actor fn_7100d7c990 gives for it
 0x71011a6d50,CTeamManager_RebuildSortedList,inferred,"empties the sorted list at +0x70, then inserts each member whose component fn_710024fbc8 accepts, with the value fn_710110587c makes of it"
 0x71011a726c,CTeamManager_AddMember,inferred,"appends a node with a weak handle to the target (value FLT_MAX, flag clear) unless a node for that target is already in the member list"

@@ -1686,9 +1686,9 @@ address,size,name,name_source,subsystem,status
 0x710104da24,92,fn_710104da24,unknown,game?,O
 0x710104da80,192,fn_710104da80,unknown,game?,O
 0x710104db40,192,fn_710104db40,unknown,game?,O
-0x710104dc00,140,fn_710104dc00,unknown,game?,O
+0x710104dc00,140,CFXPool_AcquireFreeObject,inferred,game?,O
 0x710104dc8c,320,fn_710104dc8c,unknown,game?,U
-0x710104ddcc,176,fn_710104ddcc,unknown,game?,O
+0x710104ddcc,176,CFXPool_ReleaseObject,inferred,game?,O
 0x710104de7c,32,fn_710104de7c,unknown,game?,O
 0x710104de9c,108,fn_710104de9c,unknown,game?,O
 0x710104df08,368,fn_710104df08,unknown,game?,O
@@ -1868,7 +1868,7 @@ address,size,name,name_source,subsystem,status
 0x71010530d0,92,fn_71010530d0,unknown,unknown,O
 0x710105312c,412,fn_710105312c,unknown,game?,O
 0x71010532c8,20,fn_71010532c8,unknown,unknown,O
-0x71010532e0,880,fn_71010532e0,unknown,engine/reflection?,O
+0x71010532e0,880,CLogicCamera_InitStatics,inferred,engine/reflection?,O
 0x7101053650,464,fn_7101053650,unknown,engine/reflection?,O
 0x7101053820,28,fn_7101053820,unknown,unknown,O
 0x710105383c,20,fn_710105383c,unknown,script/bindings?,O
@@ -4344,7 +4344,7 @@ address,size,name,name_source,subsystem,status
 0x71010d7aac,64,fn_71010d7aac,unknown,game/player?,O
 0x71010d7aec,60,fn_71010d7aec,unknown,game/player?,O
 0x71010d7b28,96,fn_71010d7b28,unknown,game/player?,O
-0x71010d7b88,260,fn_71010d7b88,unknown,game/player?,O
+0x71010d7b88,260,CPlayerMovement_Reset,inferred,game/player?,O
 0x71010d7c8c,36,fn_71010d7c8c,unknown,game/player?,O
 0x71010d7cb0,16,fn_71010d7cb0,unknown,game/player?,O
 0x71010d7cc0,76,fn_71010d7cc0,unknown,game/player?,O
@@ -4669,7 +4669,7 @@ address,size,name,name_source,subsystem,status
 0x71010eee94,244,CFreeCameraCtrl::refl_GetClass,reflection,game,O
 0x71010eef88,4,CFreeCameraCtrl::refl_AddFields,reflection,game,O
 0x71010eef8c,352,CFreeCameraCtrl::refl_InitClass,reflection,game,O
-0x71010ef0ec,280,fn_71010ef0ec,unknown,game?,O
+0x71010ef0ec,280,CFreeCameraCtrl_Construct,inferred,game?,O
 0x71010ef204,248,fn_71010ef204,unknown,game?,O
 0x71010ef2fc,36,fn_71010ef2fc,unknown,game?,O
 0x71010ef320,252,fn_71010ef320,unknown,game?,O

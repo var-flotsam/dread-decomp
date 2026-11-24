@@ -13,8 +13,8 @@ using base::global::UnkStringPool;
 
 // The base class's constructor (stores its vtable and clears the word at +8).
 void fn_7100f10c4c(void* self);
-void fn_7100f10e18(void* self);
-void fn_7100f10f20(void* self);
+void CReserveTankInfo_ConstructSpecialEnergyTankInfo(void* self);
+void CReserveTankInfo_ConstructMissileTankInfo(void* self);
 void fn_7100f0f4d0();
 
 // A string id copied from a global id, its count incremented unless it is the pool's empty string.
@@ -139,8 +139,8 @@ void fn_7100f086c8(UnkPlayerInfo* self) {
     self->field_0x144[0] = 0.0f;
     self->field_0x144[1] = 0.0f;
     fn_7100f10c4c(self->field_0x150);
-    fn_7100f10e18(self->field_0x180);
-    fn_7100f10f20(self->field_0x1b8);
+    CReserveTankInfo_ConstructSpecialEnergyTankInfo(self->field_0x180);
+    CReserveTankInfo_ConstructMissileTankInfo(self->field_0x1b8);
     self->field_0x1e8.field_0x0 = nullptr;
     self->field_0x1e8.owner = self;
     self->field_0x1e8.function = fn_7100f0f4d0;

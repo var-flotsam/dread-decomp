@@ -46,7 +46,7 @@ extern UnkConversion g_unk_71729fde90;
 UnkEnumType* fn_7100231c1c();
 void fn_7101052448() __attribute__((visibility("hidden")));
 
-void fn_71010532e0() {
+void CLogicCamera_InitStatics() {
     InitHeaderIds(&g_unk_71729fdfc0.ids);
     InitId(&g_unk_71729fdfc0.field_0x18, "Controller");
     InitId(&g_unk_71729fdfc0.field_0x20, "Static");

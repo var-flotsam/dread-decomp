@@ -265,8 +265,8 @@ address,size,name,name_source,subsystem,status
 0x7100f10bfc,80,fn_7100f10bfc,unknown,game?,O
 0x7100f10c4c,260,fn_7100f10c4c,unknown,game?,O
 0x7100f10d50,200,fn_7100f10d50,unknown,game?,O
-0x7100f10e18,264,fn_7100f10e18,unknown,game?,O
-0x7100f10f20,260,fn_7100f10f20,unknown,game?,O
+0x7100f10e18,264,CReserveTankInfo_ConstructSpecialEnergyTankInfo,inferred,game?,O
+0x7100f10f20,260,CReserveTankInfo_ConstructMissileTankInfo,inferred,game?,O
 0x7100f11024,28,fn_7100f11024,unknown,game?,O
 0x7100f11040,8,fn_7100f11040,unknown,game?,O
 0x7100f11048,36,fn_7100f11048,unknown,game?,O
