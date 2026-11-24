@@ -50,7 +50,7 @@ extern UnkTunable g_unk_71726ca688;
 extern void* g_unk_7101a38178[];
 extern char g_unk_71726ca6c1[];
 
-void fn_7100461590() {
+void CChozoRobotSoldierCannonShotPattern_InitStatics() {
     InitHeaderIds(&g_unk_71726cad28.ids);
     fn_710045cd20();
     fn_710009ec00(g_unk_71726ca260, g_unk_71726cad28.field_0x40);

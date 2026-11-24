@@ -5,7 +5,7 @@
 #include "../CChozoRobotSoldierDashSlashAttack/UnkRobotSoldierAttack_b49.h"
 #include "game/CAttack.h"
 
-u8 fn_710046a394(UnkDashSlashAttack_b49* self, void* a, u32 b) {
+u8 CChozoRobotSoldierUppercutAttack_CanStart(UnkDashSlashAttack_b49* self, void* a, u32 b) {
     bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), a, b);
     if (!ok)
         return false;

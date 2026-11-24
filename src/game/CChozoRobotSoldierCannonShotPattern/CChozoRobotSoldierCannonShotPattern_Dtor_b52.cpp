@@ -23,7 +23,7 @@ void fn_710045ee74(UnkCannonShotComponent_b52* self) {
     Destroy_b52(self);
 }
 
-void fn_710045ef18(UnkCannonShotComponent_b52* self) {
+void CCharClassChozoRobotSoldierCannonShotAttack_DestroyAndDelete(UnkCannonShotComponent_b52* self) {
     Destroy_b52(self);
     operator delete(self);
 }

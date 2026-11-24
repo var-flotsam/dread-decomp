@@ -21,7 +21,7 @@ struct UnkStatics_710045cb00 {
 extern UnkStatics_710045cb00 g_unk_71726ca0c8 __attribute__((visibility("hidden")));
 extern char g_unk_71726ca0c0[];
 
-void fn_710045cb00() {
+void CChozoCommanderSentenceSphereMovementComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726ca0c8.ids);
     g_unk_71726ca0c8.field_0x50[0] = -1.0f;
     g_unk_71726ca0c8.field_0x50[1] = -1.0f;

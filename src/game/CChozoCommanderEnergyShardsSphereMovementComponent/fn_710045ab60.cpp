@@ -18,7 +18,7 @@ struct UnkStatics_710045ab60 {
 extern UnkStatics_710045ab60 g_unk_71726c9de0 __attribute__((visibility("hidden")));
 extern char g_unk_71726c9dd8[];
 
-void fn_710045ab60() {
+void CChozoCommanderEnergyShardsSphereMovementComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726c9de0.ids);
     g_unk_71726c9de0.field_0x38[0] = -1.0f;
     g_unk_71726c9de0.field_0x38[1] = -1.0f;

@@ -22,7 +22,7 @@ struct UnkShardsSphereMover_A2_b71 {
     u32 state;  // 0xc8
 };
 
-void fn_710045a8b4(void*, UnkShardsSphereMover_A2_b71* self) {
+void CChozoCommanderEnergyShardsSphereMovementComponent_SetDamage(void*, UnkShardsSphereMover_A2_b71* self) {
     self->state = 1;
     fn_71008c1538(reinterpret_cast<UnkRequest*>(self),
                   *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_7172716160) + 0xa4));

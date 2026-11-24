@@ -21,11 +21,11 @@ struct UnkZeroLaserGroundedAttack_b49 {
 };
 static_assert(__builtin_offsetof(UnkZeroLaserGroundedAttack_b49, listener) == 0xa0, "layout");
 
-void fn_71004488b8(UnkZeroLaserGroundedAttack_b49* self) {
+void CChozoCommanderZeroLaserGroundedAttack_Destroy(UnkZeroLaserGroundedAttack_b49* self) {
     self->Destroy();
 }
 
-void fn_7100448964(UnkZeroLaserGroundedAttack_b49* self) {
+void CChozoCommanderZeroLaserGroundedAttack_DestroyAndDelete(UnkZeroLaserGroundedAttack_b49* self) {
     self->Destroy();
     operator delete(self);
 }

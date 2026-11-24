@@ -40,7 +40,7 @@ bool fn_71004795cc(UnkSoldierBeam_b60a2* self, u64 a, u64 b, u64 c, u64 d) {
 }
 
 // The same without the base test.
-bool fn_7100479480(UnkSoldierBeam_b60a2* self) {
+bool CChozoRobotSoldierBeamMovementComponent_TriggerImpact(UnkSoldierBeam_b60a2* self) {
     if (self->field_0x5da)
         return true;
     self->field_0x5da = true;

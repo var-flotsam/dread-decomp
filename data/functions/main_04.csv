@@ -1467,8 +1467,8 @@ address,size,name,name_source,subsystem,status
 0x71004482d0,352,fn_71004482d0,unknown,game/ai?,U
 0x7100448430,1132,fn_7100448430,unknown,game/ai?,U
 0x710044889c,28,fn_710044889c,unknown,game/ai?,O
-0x71004488b8,172,fn_71004488b8,unknown,game/ai?,O
-0x7100448964,180,fn_7100448964,unknown,game/ai?,O
+0x71004488b8,172,CChozoCommanderZeroLaserGroundedAttack_Destroy,inferred,game/ai?,O
+0x7100448964,180,CChozoCommanderZeroLaserGroundedAttack_DestroyAndDelete,inferred,game/ai?,O
 0x7100448a18,12,CChozoCommanderZeroLaserGroundedAttack::refl_Equals,reflection,game/ai,O
 0x7100448a24,8,CChozoCommanderZeroLaserGroundedAttack::refl_Hash,reflection,game/ai,O
 0x7100448a2c,28,CChozoCommanderZeroLaserGroundedAttack::refl_TypeOf,reflection,game/ai,O
@@ -1756,7 +1756,7 @@ address,size,name,name_source,subsystem,status
 0x710045a2fc,1112,fn_710045a2fc,unknown,game/components?,U
 0x710045a754,296,fn_710045a754,unknown,game/components?,O
 0x710045a87c,56,fn_710045a87c,unknown,game/components?,O
-0x710045a8b4,168,fn_710045a8b4,unknown,game/components?,O
+0x710045a8b4,168,CChozoCommanderEnergyShardsSphereMovementComponent_SetDamage,inferred,game/components?,O
 0x710045a95c,220,fn_710045a95c,unknown,game/components?,O
 0x710045aa38,8,fn_710045aa38,unknown,game/components?,O
 0x710045aa40,28,fn_710045aa40,unknown,game/components?,O
@@ -1766,7 +1766,7 @@ address,size,name,name_source,subsystem,status
 0x710045aaf0,28,CChozoCommanderEnergyShardsSphereMovementComponent::refl_TypeOf,reflection,game/components,O
 0x710045ab0c,68,CChozoCommanderEnergyShardsSphereMovementComponent::refl_Construct,reflection,game/components,O
 0x710045ab50,12,CChozoCommanderEnergyShardsSphereMovementComponent::refl_Destroy,reflection,game/components,O
-0x710045ab60,404,fn_710045ab60,unknown,game/components?,O
+0x710045ab60,404,CChozoCommanderEnergyShardsSphereMovementComponent_InitStatics,inferred,game/components?,O
 0x710045acf4,4,CChozoCommanderSentenceSphereLifeComponent::refl_AddAttributes,reflection,game/components,O
 0x710045acf8,244,CChozoCommanderSentenceSphereLifeComponent::refl_GetClass,reflection,game/components,O
 0x710045adec,4,CChozoCommanderSentenceSphereLifeComponent::refl_AddFields,reflection,game/components,O
@@ -1796,12 +1796,12 @@ address,size,name,name_source,subsystem,status
 0x710045b718,100,fn_710045b718,unknown,game/components?,O
 0x710045b77c,4,fn_710045b77c,unknown,game/components?,O
 0x710045b780,352,fn_710045b780,unknown,game/components?,O
-0x710045b8e0,392,fn_710045b8e0,unknown,game/components?,O
+0x710045b8e0,392,CChozoCommanderSentenceSphereMovementComponent_ApplyRadius,inferred,game/components?,O
 0x710045ba68,556,fn_710045ba68,unknown,game/components?,U
 0x710045bc94,24,fn_710045bc94,unknown,game/components?,O
 0x710045bcac,92,fn_710045bcac,unknown,game/components?,O
 0x710045bd08,8,fn_710045bd08,unknown,game/components?,O
-0x710045bd10,300,fn_710045bd10,unknown,game/components?,O
+0x710045bd10,300,CChozoCommanderSentenceSphereMovementComponent_GetClampedTargetPosition,inferred,game/components?,O
 0x710045be3c,828,fn_710045be3c,unknown,game/components?,U
 0x710045c178,4,fn_710045c178,unknown,game/components?,O
 0x710045c17c,1024,fn_710045c17c,unknown,game/components?,U
@@ -1809,7 +1809,7 @@ address,size,name,name_source,subsystem,status
 0x710045c580,104,fn_710045c580,unknown,game/components?,O
 0x710045c5e8,756,fn_710045c5e8,unknown,game/components?,U
 0x710045c8dc,84,fn_710045c8dc,unknown,game/components?,O
-0x710045c930,156,fn_710045c930,unknown,game/components?,O
+0x710045c930,156,CChozoCommanderSentenceSphereMovementComponent_SetDamage,inferred,game/components?,O
 0x710045c9cc,8,fn_710045c9cc,unknown,game/components?,O
 0x710045c9d4,28,fn_710045c9d4,unknown,game/components?,O
 0x710045c9f0,132,fn_710045c9f0,unknown,game/components?,O
@@ -1818,7 +1818,7 @@ address,size,name,name_source,subsystem,status
 0x710045ca84,28,CChozoCommanderSentenceSphereMovementComponent::refl_TypeOf,reflection,game/components,O
 0x710045caa0,72,CChozoCommanderSentenceSphereMovementComponent::refl_Construct,reflection,game/components,O
 0x710045cae8,12,CChozoCommanderSentenceSphereMovementComponent::refl_Destroy,reflection,game/components,O
-0x710045cb00,540,fn_710045cb00,unknown,game/components?,O
+0x710045cb00,540,CChozoCommanderSentenceSphereMovementComponent_InitStatics,inferred,game/components?,O
 0x710045cd1c,4,CChozoRobotSoldierCannonShotPattern::refl_AddAttributes,reflection,game,O
 0x710045cd20,240,CChozoRobotSoldierCannonShotPattern::refl_GetClass,reflection,game,O
 0x710045ce10,548,CChozoRobotSoldierCannonShotPattern::refl_AddFields,reflection,game,O
@@ -1845,9 +1845,9 @@ address,size,name,name_source,subsystem,status
 0x710045eb2c,244,CCharClassChozoRobotSoldierCannonShotAttack::refl_GetClass,reflection,game/characters,O
 0x710045ec20,148,CCharClassChozoRobotSoldierCannonShotAttack::refl_AddFields,reflection,game/characters,O
 0x710045ecb4,352,CCharClassChozoRobotSoldierCannonShotAttack::refl_InitClass,reflection,game/characters,O
-0x710045ee14,96,fn_710045ee14,unknown,game/characters?,O
+0x710045ee14,96,CCharClassChozoRobotSoldierCannonShotAttack_Construct,inferred,game/characters?,O
 0x710045ee74,164,fn_710045ee74,unknown,game/characters?,O
-0x710045ef18,172,fn_710045ef18,unknown,game/characters?,O
+0x710045ef18,172,CCharClassChozoRobotSoldierCannonShotAttack_DestroyAndDelete,inferred,game/characters?,O
 0x710045efc4,136,fn_710045efc4,unknown,game/ai?,O
 0x710045f04c,236,fn_710045f04c,unknown,unknown,O
 0x710045f138,28,fn_710045f138,unknown,game?,O
@@ -1999,7 +1999,7 @@ address,size,name,name_source,subsystem,status
 0x7100461508,28,CCharClassChozoRobotSoldierCannonShotAttack::refl_TypeOf,reflection,game/characters,O
 0x7100461524,88,CCharClassChozoRobotSoldierCannonShotAttack::refl_Construct,reflection,game/characters,O
 0x710046157c,12,CCharClassChozoRobotSoldierCannonShotAttack::refl_Destroy,reflection,game/characters,O
-0x7100461590,944,fn_7100461590,unknown,game/characters?,O
+0x7100461590,944,CChozoRobotSoldierCannonShotPattern_InitStatics,inferred,game/characters?,O
 0x7100461940,4,CCharClassChozoRobotSoldierDashSlashAttack::refl_AddAttributes,reflection,game/characters,O
 0x7100461944,244,CCharClassChozoRobotSoldierDashSlashAttack::refl_GetClass,reflection,game/characters,O
 0x7100461a38,4,CCharClassChozoRobotSoldierDashSlashAttack::refl_AddFields,reflection,game/characters,O
@@ -2108,7 +2108,7 @@ address,size,name,name_source,subsystem,status
 0x7100464be8,904,fn_7100464be8,unknown,game/ai?,U
 0x7100464f70,84,fn_7100464f70,unknown,game/ai?,O
 0x7100464fc4,392,fn_7100464fc4,unknown,game/ai?,U
-0x710046514c,512,fn_710046514c,unknown,game/ai?,O
+0x710046514c,512,CChozoRobotSoldierCannonShotAttack_GetAdjustedTargetPosition,inferred,game/ai?,O
 0x710046534c,504,fn_710046534c,unknown,game/ai?,U
 0x7100465544,52,fn_7100465544,unknown,game/ai?,O
 0x7100465578,32,fn_7100465578,unknown,game/ai?,O
@@ -2198,7 +2198,7 @@ address,size,name,name_source,subsystem,status
 0x710046a190,56,fn_710046a190,unknown,game/ai?,O
 0x710046a1c8,96,fn_710046a1c8,unknown,game/ai?,O
 0x710046a228,364,fn_710046a228,unknown,game/ai?,O
-0x710046a394,296,fn_710046a394,unknown,game/ai?,O
+0x710046a394,296,CChozoRobotSoldierUppercutAttack_CanStart,inferred,game/ai?,O
 0x710046a4bc,84,fn_710046a4bc,unknown,game/ai?,O
 0x710046a510,224,fn_710046a510,unknown,game/ai?,m
 0x710046a5f0,4,fn_710046a5f0,unknown,game/ai?,O
@@ -2206,7 +2206,7 @@ address,size,name,name_source,subsystem,status
 0x710046aa0c,4,fn_710046aa0c,unknown,game/ai?,O
 0x710046aa10,344,fn_710046aa10,unknown,game/ai?,O
 0x710046ab68,416,fn_710046ab68,unknown,game/ai?,O
-0x710046ad08,300,fn_710046ad08,unknown,game/ai?,O
+0x710046ad08,300,CChozoRobotSoldierUppercutAttack_SendAttackUppercutInit,inferred,game/ai?,O
 0x710046ae34,28,fn_710046ae34,unknown,game/ai?,O
 0x710046ae50,36,fn_710046ae50,unknown,game/ai?,O
 0x710046ae74,12,CChozoRobotSoldierUppercutAttack::refl_Equals,reflection,game/ai,O
@@ -2566,13 +2566,13 @@ address,size,name,name_source,subsystem,status
 0x7100479134,112,fn_7100479134,unknown,game/components?,O
 0x71004791a4,40,fn_71004791a4,unknown,game/components?,O
 0x71004791cc,4,fn_71004791cc,unknown,game/components?,O
-0x71004791d0,592,fn_71004791d0,unknown,game/components?,O
+0x71004791d0,592,CChozoRobotSoldierBeamMovementComponent_Launch,inferred,game/components?,O
 0x7100479420,24,fn_7100479420,unknown,game/components?,O
 0x7100479438,56,fn_7100479438,unknown,game/components?,O
 0x7100479470,8,fn_7100479470,unknown,game/components?,O
 0x7100479478,4,fn_7100479478,unknown,game/components?,O
 0x710047947c,4,fn_710047947c,unknown,game/components?,O
-0x7100479480,332,fn_7100479480,unknown,game/components?,O
+0x7100479480,332,CChozoRobotSoldierBeamMovementComponent_TriggerImpact,inferred,game/components?,O
 0x71004795cc,316,fn_71004795cc,unknown,game/components?,O
 0x7100479708,688,fn_7100479708,unknown,game/components?,O
 0x71004799b8,444,fn_71004799b8,unknown,game/components?,U
@@ -2583,7 +2583,7 @@ address,size,name,name_source,subsystem,status
 0x7100479c24,28,CChozoRobotSoldierBeamMovementComponent::refl_TypeOf,reflection,game/components,O
 0x7100479c40,60,CChozoRobotSoldierBeamMovementComponent::refl_Construct,reflection,game/components,O
 0x7100479c7c,12,CChozoRobotSoldierBeamMovementComponent::refl_Destroy,reflection,game/components,O
-0x7100479c90,472,fn_7100479c90,unknown,game/components?,O
+0x7100479c90,472,CChozoRobotSoldierBeamMovementComponent_InitStatics,inferred,game/components?,O
 0x7100479e68,4,CCharClassChozoWarriorEliteAIComponent::refl_AddAttributes,reflection,game/characters,O
 0x7100479e6c,244,CCharClassChozoWarriorEliteAIComponent::refl_GetClass,reflection,game/characters,O
 0x7100479f60,4,CCharClassChozoWarriorEliteAIComponent::refl_AddFields,reflection,game/characters,O
@@ -2875,7 +2875,7 @@ address,size,name,name_source,subsystem,status
 0x7100481794,96,fn_7100481794,unknown,game/ai?,O
 0x71004817f4,188,fn_71004817f4,unknown,game/ai?,O
 0x71004818b0,100,fn_71004818b0,unknown,game/ai?,O
-0x7100481914,180,fn_7100481914,unknown,game/ai?,O
+0x7100481914,180,CChozoWarriorXGlaiveSpinAttack_CanStart,inferred,game/ai?,O
 0x71004819c8,788,fn_71004819c8,unknown,game/ai?,U
 0x7100481cdc,28,fn_7100481cdc,unknown,game/ai?,O
 0x7100481cf8,144,fn_7100481cf8,unknown,game/ai?,O

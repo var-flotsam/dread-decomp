@@ -53,7 +53,7 @@ struct UnkClamper {
     f32 field_0x5dc;
 };
 
-UnkVec3Bits fn_710045bd10(UnkClamper* self) {
+UnkVec3Bits CChozoCommanderSentenceSphereMovementComponent_GetClampedTargetPosition(UnkClamper* self) {
     UnkTargetPos* target = reinterpret_cast<UnkTargetPos*>(fn_7100d7c990(self->field_0x30));
     UnkVec3Bits result = UnkVec3Bits::CopyBits(target->field_0x44, target->field_0x54, target->field_0x64);
     if (!self->field_0x230 || !self->field_0x230->field_0x10)

@@ -20,7 +20,7 @@ struct UnkCrsParams_b57 {
     f32 value;
 };
 
-void fn_710046ad08(UnkCrsSend_b57* self) {
+void CChozoRobotSoldierUppercutAttack_SendAttackUppercutInit(UnkCrsSend_b57* self) {
     void* target = self->owner->field_0x220;
     if (target) {
         base::reflection::UnkReflTypeIdArg value;
