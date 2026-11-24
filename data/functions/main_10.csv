@@ -1862,11 +1862,11 @@ address,size,name,name_source,subsystem,status
 0x7101052c6c,224,fn_7101052c6c,unknown,unknown,O
 0x7101052d4c,224,fn_7101052d4c,unknown,unknown,O
 0x7101052e2c,80,fn_7101052e2c,unknown,unknown,O
-0x7101052e7c,236,fn_7101052e7c,unknown,engine/reflection?,U
+0x7101052e7c,236,CLogicCamera_ResolveHandleAsReflValue,inferred,engine/reflection?,O
 0x7101052f68,108,fn_7101052f68,unknown,unknown,O
 0x7101052fd4,252,fn_7101052fd4,unknown,unknown,O
 0x71010530d0,92,fn_71010530d0,unknown,unknown,O
-0x710105312c,412,fn_710105312c,unknown,game?,U
+0x710105312c,412,CLogicCamera_CopyAssignGameLink,inferred,game?,O
 0x71010532c8,20,fn_71010532c8,unknown,unknown,O
 0x71010532e0,880,fn_71010532e0,unknown,engine/reflection?,O
 0x7101053650,464,fn_7101053650,unknown,engine/reflection?,O
@@ -2396,7 +2396,7 @@ address,size,name,name_source,subsystem,status
 0x7101069a6c,2832,fn_7101069a6c,unknown,game/components?,U
 0x710106a57c,668,fn_710106a57c,unknown,unknown,O
 0x710106a818,120,fn_710106a818,unknown,unknown,M
-0x710106a890,316,fn_710106a890,unknown,unknown,U
+0x710106a890,316,CCutscene_ApplyTimeToActorsAndTrack,inferred,unknown,O
 0x710106a9cc,2232,fn_710106a9cc,unknown,unknown,U
 0x710106b284,56,fn_710106b284,unknown,game/components?,O
 0x710106b2bc,468,fn_710106b2bc,unknown,game?,m

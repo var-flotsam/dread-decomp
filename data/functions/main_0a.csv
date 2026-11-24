@@ -1406,7 +1406,7 @@ address,size,name,name_source,subsystem,status
 0x7100a36978,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<ECoolShinesparkSituation>>::End,reflection,engine/reflection,O
 0x7100a3698c,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<ECoolShinesparkSituation>>::ConstBegin,reflection,engine/reflection,O
 0x7100a36a34,176,fn_7100a36a34,unknown,unknown,O
-0x7100a36af0,1316,fn_7100a36af0,unknown,engine/reflection?,U
+0x7100a36af0,1316,CAllowCoolShinesparkLogicAction_InitStatics,inferred,engine/reflection?,O
 0x7100a37014,4,CChangeSetupLogicAction::refl_AddAttributes,reflection,game/ai,O
 0x7100a37018,244,CChangeSetupLogicAction::refl_GetClass,reflection,game/ai,O
 0x7100a3710c,804,CChangeSetupLogicAction::refl_AddFields,reflection,game/ai,O
@@ -1785,7 +1785,7 @@ address,size,name,name_source,subsystem,status
 0x7100a443c8,512,CTunnelTrapMorphballComponent_ActivateTrap,inferred,unknown,O
 0x7100a445c8,284,CTunnelTrapMorphballComponent_SetActivated,inferred,unknown,O
 0x7100a446e4,64,CTunnelTrapMorphballComponent_HandleActivationTrapMessage,inferred,unknown,O
-0x7100a44724,68,fn_7100a44724,unknown,unknown,U
+0x7100a44724,68,CCharClassTunnelTrapMorphballComponent_HandleActivationTrapMessageThunk,inferred,unknown,O
 0x7100a44768,8,fn_7100a44768,unknown,unknown,O
 0x7100a44770,8,fn_7100a44770,unknown,unknown,O
 0x7100a44778,8,fn_7100a44778,unknown,unknown,O
@@ -3264,7 +3264,7 @@ address,size,name,name_source,subsystem,status
 0x7100a83324,36,fn_7100a83324,unknown,game/components?,O
 0x7100a83348,108,fn_7100a83348,unknown,game/components?,O
 0x7100a833b4,40,fn_7100a833b4,unknown,game/components?,O
-0x7100a833dc,676,fn_7100a833dc,unknown,game/components?,U
+0x7100a833dc,676,CLifeRechargeComponent_PlayRechargeEffectsAndSound,inferred,game/components?,O
 0x7100a83680,80,fn_7100a83680,unknown,game/components?,O
 0x7100a836d0,4,fn_7100a836d0,unknown,game/components?,O
 0x7100a836d4,4,fn_7100a836d4,unknown,game/components?,O
@@ -3343,7 +3343,7 @@ address,size,name,name_source,subsystem,status
 0x7100a86f9c,312,fn_7100a86f9c,unknown,game/components?,O
 0x7100a870d4,24,fn_7100a870d4,unknown,game/components?,O
 0x7100a870ec,1152,fn_7100a870ec,unknown,game/components?,U
-0x7100a8756c,400,fn_7100a8756c,unknown,game/components?,U
+0x7100a8756c,400,CMapAcquisitionComponent_StartFadeInAndMainMenuLevelMusic,inferred,game/components?,O
 0x7100a876fc,508,fn_7100a876fc,unknown,game/components?,O
 0x7100a878f8,28,fn_7100a878f8,unknown,game/components?,O
 0x7100a87914,132,fn_7100a87914,unknown,game/components?,O
@@ -4609,7 +4609,7 @@ address,size,name,name_source,subsystem,status
 0x7100ac1f90,132,fn_7100ac1f90,unknown,game?,O
 0x7100ac2014,220,fn_7100ac2014,unknown,game?,O
 0x7100ac20f0,124,fn_7100ac20f0,unknown,game?,O
-0x7100ac216c,44,fn_7100ac216c,unknown,game?,U
+0x7100ac216c,44,CHomingMovement_SetVelocityFromDirectionAndSpeed,inferred,game?,O
 0x7100ac2198,28,fn_7100ac2198,unknown,game?,O
 0x7100ac21b4,132,fn_7100ac21b4,unknown,game?,O
 0x7100ac2238,240,fn_7100ac2238,unknown,game?,O
