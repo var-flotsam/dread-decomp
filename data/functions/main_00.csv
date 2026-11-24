@@ -1940,7 +1940,7 @@ address,size,name,name_source,subsystem,status
 0x710007eb6c,52,CRntString_AssignStrId,inferred,unknown,O
 0x710007eba0,40,fn_710007eba0,unknown,gui?,O
 0x710007ebc8,236,CRntString_SetText,inferred,unknown,O
-0x710007ecb4,32,StringBuffer_Construct,inferred,unknown,O
+0x710007ecb4,32,fn_710007ecb4,unknown,unknown,O
 0x710007ecd4,108,CRntString_Destroy,inferred,unknown,O
 0x710007ed40,108,CRntString_Clear,inferred,unknown,O
 0x710007edac,24,StringBuffer_Assign,inferred,unknown,O
