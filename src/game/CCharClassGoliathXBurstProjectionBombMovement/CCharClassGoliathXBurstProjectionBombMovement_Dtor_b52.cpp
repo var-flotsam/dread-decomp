@@ -40,7 +40,7 @@ __attribute__((always_inline)) static inline void DeleteBurstBomb_b52(UnkBurstBo
     operator delete(self);
 }
 
-void fn_7100589c20(UnkBurstBombObject_b52* self) {
+void CCharClassGoliathXBurstProjectionBombMovement_DestroyAndDelete(UnkBurstBombObject_b52* self) {
     DeleteBurstBomb_b52(self);
 }
 

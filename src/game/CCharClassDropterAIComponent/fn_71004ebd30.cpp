@@ -22,7 +22,7 @@ void fn_71004ebc1c() __attribute__((visibility("hidden")));
 void fn_71004ebc28() __attribute__((visibility("hidden")));
 extern char g_unk_71726daf78[];
 
-void fn_71004ebd30() {
+void CCharClassDropterAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726daf80.ids);
     InitEnum(&base::reflection::TypeObject<CCharClassDropterAIComponent::ESubspecies, UnkEnumType>::object, "CCharClassDropterAIComponent::ESubspecies", fn_71004eb14c, fn_71004eafa0,
              g_unk_71726daf30, &g_unk_71726daf38, fn_71004ebc1c, &g_unk_71726daf58, fn_71004ebc28);

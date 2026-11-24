@@ -22,7 +22,7 @@ using base::global::CStrId;
 
 // Declared with this type in src/game/CCharClassCentralUnitAIComponent/fn_7100408770.cpp.
 struct UnkSelf;
-f32 fn_7100408770(UnkSelf* self);
+f32 CCharClassCentralUnitAIComponent_GetArmorLifeTunableValue(UnkSelf* self);
 
 struct UnkCentralVec_l40484c {
     f32 x;
@@ -99,10 +99,10 @@ u32 fn_710040484c(UnkCentralUnitDamageAI_l40484c* self, UnkCentralUnitHit_l40484
         f32 damage = hit->damage + self->damage;
         self->damage = damage;
         if (hit->flags & 0x8000) {
-            damage = fn_7100408770(self->core);
+            damage = CCharClassCentralUnitAIComponent_GetArmorLifeTunableValue(self->core);
             self->damage = damage;
         }
-        if (damage >= fn_7100408770(self->core)) {
+        if (damage >= CCharClassCentralUnitAIComponent_GetArmorLifeTunableValue(self->core)) {
             UnkTypedValue value;
             self->exploded = true;
             fn_7100fdb9e0(MusicManager_l40484c(), 3, 0, -1.0f, 0.0f);

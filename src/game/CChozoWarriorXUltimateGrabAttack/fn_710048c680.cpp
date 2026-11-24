@@ -31,7 +31,7 @@ extern char g_unk_71726cf499[];
 extern UnkTunable g_unk_71726cf4a0;
 extern void* g_unk_7101a3b530[];
 
-void fn_710048c680() {
+void CChozoWarriorXUltimateGrabAttack_InitStatics() {
     InitHeaderIds(&g_unk_71726cf4d0.ids);
     InitId(&g_unk_71726cf4d0.field_0x18, "ugrabsamuswarriorxintroground");
     InitId(&g_unk_71726cf4d0.field_0x20, "ugrabsamuswarriorxintrowall");

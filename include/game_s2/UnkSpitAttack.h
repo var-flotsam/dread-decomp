@@ -66,7 +66,7 @@ void fn_71003609a8(UnkSpitAttack* self, f32 dt);
 
 // Switches to the state `state` when it differs and sets up what that state needs. Defined in
 // src/game/CBigkranXSpitAttack/fn_71003f24f4.cpp.
-void fn_71003f24f4(UnkSpitAttack* self, u32 state);
+void CBigkranXSpitAttack_SetState(UnkSpitAttack* self, u32 state);
 
 // State 1's update: whether the attack should go on to the next state. Defined in
 // src/game/CBigkranXSpitAttack/fn_71003f28c8.cpp.

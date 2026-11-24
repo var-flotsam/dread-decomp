@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkChargeComponent;
-void fn_71005026d0(UnkChargeComponent* self, u32 mode, f32 value);
+void CEmmyWaveMovementComponent_SetSizeAndRescaleShapeAndFX(UnkChargeComponent* self, u32 mode, f32 value);

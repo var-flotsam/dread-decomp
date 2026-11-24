@@ -31,7 +31,7 @@ void fn_7100428010(UnkSelf_7100428010* self) {
         if (facing == side && target->field_0x1b8 && !fn_7101161088(target->field_0x1b8)) {
             UnkComponent_7100428010* component = static_cast<UnkComponent_7100428010*>(self->field_0x8->field_0x240);
             if (component && fn_710009d50c(component->vf_0x0(), fn_710044e708()))
-                fn_71004554d8(component);
+                CChozoCommanderAIComponent_StartKiGrabUnlessInUltimateGrab(component);
         }
     }
 }

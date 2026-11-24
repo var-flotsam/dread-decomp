@@ -32,7 +32,7 @@ struct UnkNode_71004c3590 {
 };
 
 
-void fn_71004c3590(UnkNode_71004c3590* self) {
+void CCooldownXBossLavaCarpetAttack_Construct(UnkNode_71004c3590* self) {
     fn_71004c1894(self);
     self->vtable = &g_unk_7101a3e5b8[2];
     self->field_0x70 = &g_unk_7101a22d48[2];

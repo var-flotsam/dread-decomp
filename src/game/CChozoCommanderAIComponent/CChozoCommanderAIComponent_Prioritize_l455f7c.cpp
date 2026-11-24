@@ -87,7 +87,7 @@ static inline void MoveToFront(UnkChozoList_l455f7c* list, u64 v) {
     list->PushFront(v);
 }
 
-void fn_7100455f7c(UnkChozoCommanderAI_l455f7c* self, UnkChozoOther_l455f7c* other, u32 id) {
+void CChozoCommanderAIComponent_PrioritizeAttacksInList(UnkChozoCommanderAI_l455f7c* self, UnkChozoOther_l455f7c* other, u32 id) {
     if (self->field_0x15d70)
         other->list.Clear();
     fn_710110bc0c(self, other, id, 2, 5);

@@ -51,7 +51,7 @@ void fn_71004c1e08(UnkLaserBite_b59* attack) {
     SetTrack(self->owner->timeline, self->def->end_track->id);
 }
 
-void fn_71004c1f18(UnkLaserBite_b59* attack) {
+void CCooldownXBossAttack_ActivateStartLavaTL(UnkLaserBite_b59* attack) {
     UnkCooldownAttack_ovb0118* self = reinterpret_cast<UnkCooldownAttack_ovb0118*>(attack);
     if (self->active)
         return;

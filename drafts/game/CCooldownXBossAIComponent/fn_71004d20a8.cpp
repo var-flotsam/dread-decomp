@@ -78,7 +78,7 @@ void fn_71004d24d0(UnkMover* self, CVector3D* position, f32 scale);
 void fn_71004d262c(UnkCooldownXAI_l4d20a8* self, CVector3D* position, f32 dt);
 void fn_71004d28cc(UnkCooldownXAI_l4d20a8* self);
 void fn_71004d29dc(UnkCooldownXAI_l4d20a8* self);
-void fn_71004d2cc4(UnkCooldownXBoundsAI_ovb0088* self);
+void CCooldownXBossAIComponent_UpdateHeadCollidersByLocatorHeight(UnkCooldownXBoundsAI_ovb0088* self);
 
 void fn_71004d20a8(UnkCooldownXAI_l4d20a8* self, f32 dt) {
     fn_71003ae15c(reinterpret_cast<UnkBossAI_l3ae15c*>(self), dt);
@@ -129,5 +129,5 @@ void fn_71004d20a8(UnkCooldownXAI_l4d20a8* self, f32 dt) {
     }
     fn_71004d28cc(self);
     fn_71004d29dc(self);
-    fn_71004d2cc4(reinterpret_cast<UnkCooldownXBoundsAI_ovb0088*>(self));
+    CCooldownXBossAIComponent_UpdateHeadCollidersByLocatorHeight(reinterpret_cast<UnkCooldownXBoundsAI_ovb0088*>(self));
 }

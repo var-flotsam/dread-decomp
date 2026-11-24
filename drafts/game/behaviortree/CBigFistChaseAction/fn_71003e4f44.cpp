@@ -18,7 +18,7 @@ using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
 struct UnkBigFistChase_ovb0114;
-f32 fn_71003e4dc4(UnkBigFistChase_ovb0114* self);
+f32 CBigFistChaseAction_ComputeDesiredChaseDistance(UnkBigFistChase_ovb0114* self);
 
 struct UnkUnit110Vec2 {
     f32 x;
@@ -158,7 +158,7 @@ static inline void SetValue(UnkReflValue* value, const CType* type, const void* 
 s32 fn_71003e4f44(UnkBigFistChase_l3e4f44* self) {
     if (!self->owner->field_0x240 || !self->owner->field_0x298)
         return 6;
-    f32 distance = fn_71003e4dc4(reinterpret_cast<UnkBigFistChase_ovb0114*>(self));
+    f32 distance = CBigFistChaseAction_ComputeDesiredChaseDistance(reinterpret_cast<UnkBigFistChase_ovb0114*>(self));
     auto* path = static_cast<UnkBigFistPath_l3e4f44*>(self->owner->field_0x240);
     if (path->current < 0)
         return 6;

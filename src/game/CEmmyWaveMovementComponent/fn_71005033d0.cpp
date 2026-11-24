@@ -20,7 +20,7 @@ struct UnkStatics_71005033d0 {
 extern UnkStatics_71005033d0 g_unk_71726ddc28 __attribute__((visibility("hidden")));
 extern char g_unk_71726ddc20[];
 
-void fn_71005033d0() {
+void CEmmyWaveMovementComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726ddc28.ids);
     g_unk_71726ddc28.field_0x48[0] = -1.0f;
     g_unk_71726ddc28.field_0x48[1] = -1.0f;

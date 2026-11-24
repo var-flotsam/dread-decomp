@@ -20,7 +20,7 @@ struct UnkArgument {
     UnkSource_415e18* field_0x8;
 };
 
-UnkReflValue fn_7100415e18(void* unused, UnkArgument* argument) {
+UnkReflValue CCharClassAIComponent_GetInFrustumModeReflValue(void* unused, UnkArgument* argument) {
     u32 value = argument->field_0x8->field_0xc8;
     UnkReflValue result;
     result.field_0x0 = nullptr;

@@ -49,7 +49,7 @@ static inline s32 DoorPartKind(const CRntString* part) {
     return CRntString_EqualsCString(part, "All") ? -1 : 0;
 }
 
-s32 fn_71004159d0(const char* text) {
+s32 CCharClassAIComponent_ParseDoorKindMask(const char* text) {
     UnkStrList30 parts;
     InitStrList_ovb0113(&parts);
     fn_71000730a0(text, "|", &parts);
@@ -96,4 +96,4 @@ static inline void SetKindFromId(char* self, const CStrId& id) {
     *reinterpret_cast<s32*>(self + Offset + 8) = kind;
 }
 
-void fn_71004149d8(char* self, const CStrId& id) { SetKindFromId<0x230, fn_71004159d0, DoorKindByName>(self, id); }
+void fn_71004149d8(char* self, const CStrId& id) { SetKindFromId<0x230, CCharClassAIComponent_ParseDoorKindMask, DoorKindByName>(self, id); }

@@ -58,7 +58,7 @@ __attribute__((always_inline)) static inline void Register(UnkSelf_46f400* self,
 }
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
-u32 fn_710046f400(UnkSelf_46f400* self, void* arg) {
+u32 CChozoRobotSoldierAIComponent_InitAttacksAndQueriesFromCharClass(UnkSelf_46f400* self, void* arg) {
     u32 result = fn_71003ac8f4(reinterpret_cast<UnkBossAIComponent*>(self), arg);
     UnkComponent_46f400* object = self->field_0x10;
     UnkComponent_46f400* component = nullptr;

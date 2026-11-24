@@ -14,6 +14,6 @@ struct UnkDredhedAI_ovb0001 {
     UnkDredhedCharClass_ovb0001* charClass;  // 0x14730
 };
 
-f32 fn_71004e7a4c(UnkDredhedAI_ovb0001* self) {
+f32 CDredhedAIComponent_GetTunableFloatForSubspecies(UnkDredhedAI_ovb0001* self) {
     return self->charClass->field_0x600 == 0 ? g_unk_71726c4890.field_0x40.value : g_unk_71726c4890.field_0x58;
 }

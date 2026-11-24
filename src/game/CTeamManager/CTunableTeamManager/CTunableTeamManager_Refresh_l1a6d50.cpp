@@ -66,7 +66,7 @@ struct UnkTeamManager;
 struct UnkTeamSortedList;
 struct UnkTeamKey;
 // Inserts a copy of the key in its place in the sorted list.
-void fn_71011a6ec8(UnkTeamSortedList* self, const UnkTeamKey* key);
+void CTunableTeamManager_InsertIntoSortedList(UnkTeamSortedList* self, const UnkTeamKey* key);
 
 void CTeamManager_RebuildSortedList(UnkTeamManager* object) {
     UnkTeamManager_l1a6d50* self = reinterpret_cast<UnkTeamManager_l1a6d50*>(object);
@@ -89,7 +89,7 @@ void CTeamManager_RebuildSortedList(UnkTeamManager* object) {
         if (component && fn_710024fbc8(component)) {
             f32 value = fn_710110587c(component, node->value);
             UnkTeamEntry_l1a6d50 entry(node->handle ? node->handle->target : nullptr, value);
-            fn_71011a6ec8(reinterpret_cast<UnkTeamSortedList*>(&entries),
+            CTunableTeamManager_InsertIntoSortedList(reinterpret_cast<UnkTeamSortedList*>(&entries),
                           reinterpret_cast<const UnkTeamKey*>(&entry));
         }
     }

@@ -27,7 +27,7 @@ struct UnkCommanderAI_b67a2 {
     u8 entry_0x157f0[1];
 };
 
-void fn_71004554d8(UnkCommanderAI_b67a2* self) {
+void CChozoCommanderAIComponent_StartKiGrabUnlessInUltimateGrab(UnkCommanderAI_b67a2* self) {
     UnkCommanderPlayer_b67a2* player = self->owner->player;
     if (player != nullptr && player->current == self->entry_0x150d0)
         return;

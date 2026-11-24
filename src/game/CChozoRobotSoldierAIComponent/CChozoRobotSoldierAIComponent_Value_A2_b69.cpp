@@ -22,7 +22,7 @@ struct UnkRobotSoldierAI_A2_b69 {
     bool flag;  // +0x27790
 };
 
-bool fn_7100471cb4(UnkRobotSoldierAI_A2_b69* self, u32 index, f32* out) {
+bool CChozoRobotSoldierAIComponent_GetDamageSourceFactor(UnkRobotSoldierAI_A2_b69* self, u32 index, f32* out) {
     UnkRobotSoldierTable_A2_b69* table;
     if (fn_71011057fc(self)) {
         table = reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(!self->flag ? self->part->table_ad8

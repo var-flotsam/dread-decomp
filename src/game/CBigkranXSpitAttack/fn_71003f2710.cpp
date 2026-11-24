@@ -38,7 +38,7 @@ void fn_71003f2710(UnkSpitAttack* self, f32 delta) {
         return;
     self->field_0xdc -= delta;
     if (self->field_0xdc < 0.001f || fn_71003f28c8(self, delta)) {
-        fn_71003f24f4(self, 3);
+        CBigkranXSpitAttack_SetState(self, 3);
         return;
     }
     if (self->field_0xe4 > 0.001f) {

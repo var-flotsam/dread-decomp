@@ -33,9 +33,9 @@ using UnkDerivedMembers_71004dea0c = base::UnkMembers<UnkCalledAt_71004dea0c<fn_
 using UnkBaseMembers_71004dea0c =
     base::UnkMembers<base::UnkStrIdAt<0x640>, UnkCalledAt_71004dea0c<fn_71006c0074, 0x510>, UnkBaseDtor_71004dea0c>;
 
-void fn_71004dea0c(char* self) {
+void CCharClassDaivoAIComponent_Destroy(char* self) {
     base::refl_DtorInlineBase<UnkTag_71004dea0c, UnkDerivedMembers_71004dea0c, UnkBaseMembers_71004dea0c>(self);
 }
-void fn_71004deaa8(char* self) {
+void CCharClassDaivoAIComponent_DestroyAndDelete(char* self) {
     base::refl_DeletingDtorInlineBase<UnkTag_71004dea0c, UnkDerivedMembers_71004dea0c, UnkBaseMembers_71004dea0c>(self);
 }

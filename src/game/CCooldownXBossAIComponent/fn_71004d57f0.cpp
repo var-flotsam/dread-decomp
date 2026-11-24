@@ -38,10 +38,10 @@ struct UnkStatics_71004d57f0 {
 };
 extern UnkStatics_71004d57f0 g_unk_71726d86d8 __attribute__((visibility("hidden")));
 void fn_71004cee70(void* self, const UnkStrIdBase* ids, u32 count);
-void fn_71004cf1d4(void* self);  // its destructor, as registered
+void CCooldownXBossAIComponent_ReleaseFourStrIdArray(void* self);  // its destructor, as registered
 extern char g_unk_71726d86d0[];
 
-void fn_71004d57f0() {
+void CCooldownXBossAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726d86d8.ids);
     InitId(&g_unk_71726d86d8.field_0x18, "head");
     InitId(&g_unk_71726d86d8.field_0x20, "head_mlm");
@@ -51,37 +51,37 @@ void fn_71004d57f0() {
         UnkStrIdTmp ids[] = {UnkStrIdTmp("WeakPoint_LeftUp", true), UnkStrIdTmp("WeakPoint_LeftDown", true), UnkStrIdTmp("WeakPoint_RightUp", true), UnkStrIdTmp("WeakPoint_RightDown", true)};
         fn_71004cee70(g_unk_71726d86d8.field_0xa0, ids, 4);
     }();
-    __cxa_atexit(fn_71004cf1d4, g_unk_71726d86d8.field_0xa0, g_unk_7101a19000);
+    __cxa_atexit(CCooldownXBossAIComponent_ReleaseFourStrIdArray, g_unk_71726d86d8.field_0xa0, g_unk_7101a19000);
     [] {
         UnkStrIdTmp ids[] = {UnkStrIdTmp("DC_L_Hand", true), UnkStrIdTmp("DC_L_Foot", true), UnkStrIdTmp("DC_R_Hand", true), UnkStrIdTmp("DC_R_Foot", true)};
         fn_71004cee70(g_unk_71726d86d8.field_0xc0, ids, 4);
     }();
-    __cxa_atexit(fn_71004cf1d4, g_unk_71726d86d8.field_0xc0, g_unk_7101a19000);
+    __cxa_atexit(CCooldownXBossAIComponent_ReleaseFourStrIdArray, g_unk_71726d86d8.field_0xc0, g_unk_7101a19000);
     [] {
         UnkStrIdTmp ids[] = {UnkStrIdTmp("L01_Arm_Hand_WeakPoint_02_MESH", true), UnkStrIdTmp("L02_Arm_Hand_WeakPoint_02_MESH", true), UnkStrIdTmp("R01_Arm_Hand_WeakPoint_02_MESH", true), UnkStrIdTmp("R02_Arm_Hand_WeakPoint_02_MESH", true)};
         fn_71004cee70(g_unk_71726d86d8.field_0xe0, ids, 4);
     }();
-    __cxa_atexit(fn_71004cf1d4, g_unk_71726d86d8.field_0xe0, g_unk_7101a19000);
+    __cxa_atexit(CCooldownXBossAIComponent_ReleaseFourStrIdArray, g_unk_71726d86d8.field_0xe0, g_unk_7101a19000);
     [] {
         UnkStrIdTmp ids[] = {UnkStrIdTmp("L01_Arm", true), UnkStrIdTmp("L02_Arm", true), UnkStrIdTmp("R01_Arm", true), UnkStrIdTmp("R02_Arm", true)};
         fn_71004cee70(g_unk_71726d86d8.field_0x100, ids, 4);
     }();
-    __cxa_atexit(fn_71004cf1d4, g_unk_71726d86d8.field_0x100, g_unk_7101a19000);
+    __cxa_atexit(CCooldownXBossAIComponent_ReleaseFourStrIdArray, g_unk_71726d86d8.field_0x100, g_unk_7101a19000);
     [] {
         UnkStrIdTmp ids[] = {UnkStrIdTmp("L01_Arm_FX", true), UnkStrIdTmp("L02_Arm_FX", true), UnkStrIdTmp("R01_Arm_FX", true), UnkStrIdTmp("R02_Arm_FX", true)};
         fn_71004cee70(g_unk_71726d86d8.field_0x120, ids, 4);
     }();
-    __cxa_atexit(fn_71004cf1d4, g_unk_71726d86d8.field_0x120, g_unk_7101a19000);
+    __cxa_atexit(CCooldownXBossAIComponent_ReleaseFourStrIdArray, g_unk_71726d86d8.field_0x120, g_unk_7101a19000);
     [] {
         UnkStrIdTmp ids[] = {UnkStrIdTmp("L01_ArmScales", true), UnkStrIdTmp("L02_ArmScales", true), UnkStrIdTmp("R01_ArmScales", true), UnkStrIdTmp("R02_ArmScales", true)};
         fn_71004cee70(g_unk_71726d86d8.field_0x140, ids, 4);
     }();
-    __cxa_atexit(fn_71004cf1d4, g_unk_71726d86d8.field_0x140, g_unk_7101a19000);
+    __cxa_atexit(CCooldownXBossAIComponent_ReleaseFourStrIdArray, g_unk_71726d86d8.field_0x140, g_unk_7101a19000);
     [] {
         UnkStrIdTmp ids[] = {UnkStrIdTmp("onimpact_weakpoint_leftup", true), UnkStrIdTmp("onimpact_weakpoint_leftdown", true), UnkStrIdTmp("onimpact_weakpoint_rightup", true), UnkStrIdTmp("onimpact_weakpoint_rightdown", true)};
         fn_71004cee70(g_unk_71726d86d8.field_0x160, ids, 4);
     }();
-    __cxa_atexit(fn_71004cf1d4, g_unk_71726d86d8.field_0x160, g_unk_7101a19000);
+    __cxa_atexit(CCooldownXBossAIComponent_ReleaseFourStrIdArray, g_unk_71726d86d8.field_0x160, g_unk_7101a19000);
     InitId(&g_unk_71726d86d8.field_0x38, "cooldownxbossweakpoint");
     InitId(&g_unk_71726d86d8.field_0x40, "Mixer01");
     InitId(&g_unk_71726d86d8.field_0x48, "Mixer02");

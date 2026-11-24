@@ -63,7 +63,7 @@ struct UnkStrId_71005077f8 {
     }
 };
 
-UnkStrId_71005077f8 fn_710050a8f8(u32 kind);
+UnkStrId_71005077f8 CEmmyGrabSamusAttack_GetAnimIdOfGrabKind(u32 kind);
 
 inline void UnkStrId_71005077f8::Append(const CRntString& suffix) {
     UnkStringData_71005077f8* old = data;
@@ -90,8 +90,8 @@ struct UnkStruct_71005077f8 {
 
 void fn_71005096b4(UnkStruct_71005077f8* self, u32 kind);
 
-UnkStrId_71005077f8 fn_71005077f8(UnkStruct_71005077f8* self, u32 kind) {
-    UnkStrId_71005077f8 id = fn_710050a8f8(kind);
+UnkStrId_71005077f8 CEmmyGrabSamusAttack_BuildAnimationIdForKind(UnkStruct_71005077f8* self, u32 kind) {
+    UnkStrId_71005077f8 id = CEmmyGrabSamusAttack_GetAnimIdOfGrabKind(kind);
     if (kind == 13 || kind == 7) {
         fn_71005096b4(self, kind);
         id.Append(self->field_0x7a0);

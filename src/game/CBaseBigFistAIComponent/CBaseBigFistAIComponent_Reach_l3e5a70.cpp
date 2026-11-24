@@ -73,7 +73,7 @@ static inline void Sample_l3e5a70(UnkTimeline* timeline, UnkBigFistMotion_l3e5a7
     fn_7100b8b3bc(timeline, motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
 }
 
-void fn_71003e5a70(UnkGoliathAI_l590cc0* component) {
+void CBaseBigFistAIComponent_ComputeSidewaysAnimationReach(UnkGoliathAI_l590cc0* component) {
     auto* self = reinterpret_cast<UnkBigFistAI_l3e5a70*>(component);
     fn_71003ac9ec(reinterpret_cast<UnkQuetzoaAI_l64a058*>(self));
     UnkMat4f rotation = UpRotation_l3e5a70();
