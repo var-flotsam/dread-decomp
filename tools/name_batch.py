@@ -65,7 +65,28 @@ THINKING = {"type": "adaptive"}
 # cache reads and writes included (shared/cost-optimization.md, 2.5). Confirm against the live price page
 # before trusting a total.
 PRICE = {"input": 4.00, "output": 20.00, "cache_read": 0.20, "cache_write_5m": 5.00, "cache_write_1h": 8.00}
+# Other models a batch may name (tools/match_batch.py), from the same reference: each request is estimated and
+# each result billed at its own model's rates. Claude Fable 5.2: input 8, output 40, cache reads 0.20, cache
+# writes 1.25x and 2x input.
+PRICES = {
+    MODEL: PRICE,
+    "claude-fable-5-2": {"input": 8.00, "output": 40.00, "cache_read": 0.20, "cache_write_5m": 10.00,
+                         "cache_write_1h": 16.00},
+}
 BATCH_DISCOUNT = 0.5
+
+
+def price_of(model: str | None, strict: bool = False) -> dict:
+    """The rates of a model id. An id that is not listed is refused when estimating (`strict`), and billed at
+    the dearest listed rates when accounting a result, so a total is never understated."""
+    if not model:
+        return PRICE
+    for known, price in PRICES.items():
+        if model == known or model.startswith(known + "-"):
+            return price
+    if strict:
+        raise SystemExit(f"name_batch: no prices for model {model!r}; add them to PRICES before estimating")
+    return max(PRICES.values(), key=lambda p: p["output"])
 # The minimum cacheable prefix for MODEL (shared/prompt-caching.md): a shorter prefix silently does not cache.
 MIN_CACHE_TOKENS = 512
 CHARS_PER_TOKEN = 3.0      # a conservative estimate for C++ and English (real text runs nearer 3.5 to 4)
@@ -701,10 +722,11 @@ def estimate(requests: list[dict], counted: dict[str, int] | None = None, ttl: s
     """Token and dollar estimates for a batch. `worst` assumes no cache read lands (every request writes its
     cached prefix) and every request uses all of max_tokens; `likely` assumes each class's first request writes
     and the rest of the class read."""
-    write_rate = PRICE["cache_write_1h" if ttl == "1h" else "cache_write_5m"]
     tokens = worst = likely = 0.0
     seen_prefix: set[str] = set()
     for r in requests:
+        PRICE = price_of(r["params"].get("model"), strict=True)   # this request's model's rates
+        write_rate = PRICE["cache_write_1h" if ttl == "1h" else "cache_write_5m"]
         cached_c, rest_c = request_chars(r["params"])
         if counted and r["custom_id"] in counted:
             total_t = counted[r["custom_id"]]
@@ -1111,10 +1133,13 @@ def cmd_submit(args, client=None, lock=None) -> int:
 
 def batch_usage(client, bid: str) -> dict:
     total = {"input": 0, "write": 0, "read": 0, "output": 0, "write_1h": 0}
+    model = ""
     for r in client.messages.batches.results(bid):
         u = usage_of(as_dict(r))
         for k in total:
             total[k] += u[k]
+        model = model or u["model"]
+    total["model"] = model   # a batch names one model
     return total
 
 
@@ -1217,10 +1242,12 @@ def usage_of(result: dict) -> dict:
     cc = u.get("cache_creation") or {}
     return {"input": u.get("input_tokens") or 0, "write": u.get("cache_creation_input_tokens") or 0,
             "read": u.get("cache_read_input_tokens") or 0, "output": u.get("output_tokens") or 0,
-            "write_1h": cc.get("ephemeral_1h_input_tokens") or 0}
+            "write_1h": cc.get("ephemeral_1h_input_tokens") or 0, "model": msg.get("model") or ""}
 
 
 def dollars(u: dict) -> float:
+    """Dollars of one result's usage at its model's batch rates (`model` from usage_of; MODEL's when absent)."""
+    PRICE = price_of(u.get("model"))
     w1h = u["write_1h"]
     w5m = max(0, u["write"] - w1h)
     d = (u["input"] * PRICE["input"] + w5m * PRICE["cache_write_5m"] + w1h * PRICE["cache_write_1h"]
