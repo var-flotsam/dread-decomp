@@ -71,7 +71,7 @@ address,size,name,name_source,subsystem,status
 0x7100e04e80,172,fn_7100e04e80,unknown,unknown,O
 0x7100e04f2c,388,fn_7100e04f2c,unknown,unknown,O
 0x7100e050b0,260,CGameManager_ClearStrIdKeyedOwnedTable,inferred,unknown,O
-0x7100e051b4,636,fn_7100e051b4,unknown,gui?,U
+0x7100e051b4,636,fn_7100e051b4,unknown,gui?,O
 0x7100e05430,252,CGameManager_BuildRuntimeAssetPath,inferred,unknown,O
 0x7100e0552c,568,fn_7100e0552c,unknown,unknown,O
 0x7100e05764,516,fn_7100e05764,unknown,unknown,O

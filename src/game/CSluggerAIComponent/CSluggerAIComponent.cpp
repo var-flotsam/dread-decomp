@@ -32,9 +32,15 @@ struct UnkHeldRef {
 };
 }  // namespace
 
+// The part of the AI component this handler reads: the handle at +0x147a8.
+struct UnkSluggerAI_71006c6a78 {
+    u8 pad_0x0[0x147a8];
+    base::UnkRefCounted* field_0x147a8;  // 0x147a8
+};
+
 u32 fn_71006c6a78(UnkSluggerAI* self, UnkSluggerEvent* event) {
     u32 handled = fn_7101105e44(self, event);
-    UnkHeldRef ref(*reinterpret_cast<base::UnkRefCounted**>(reinterpret_cast<char*>(self) + 0x147a8));
+    UnkHeldRef ref(reinterpret_cast<UnkSluggerAI_71006c6a78*>(self)->field_0x147a8);
     if (ref.ptr) {
         if (char* owner = static_cast<UnkSluggerTarget*>(ref.ptr)->field_0x10) {
             if (base::reflection::UnkReflObject* movement =

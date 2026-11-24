@@ -3,9 +3,9 @@
 #include "base/global/CRntVector.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
+#include "game/UnkTU107.h"
 
 struct UnkBoxVector_b0236;
-void fn_710010e364(UnkBoxVector_b0236* self, u32 n);
 
 struct UnkBoxData_l10df80 {
     f32 min_x, min_y, max_x, max_y;
@@ -48,14 +48,14 @@ struct UnkBoxVector_b0236 {
     }
 };
 
-// NON_MATCHING(minor): same instructions; the loop counters swap registers (w23/w24) and one fadd has its operands swapped
 UnkVec3f fn_710010df80(void* unused, UnkBoxVector_b0236* boxes, u32 first, u32 last) {
     UnkVec3f sum(0.0f, 0.0f, 0.0f);
-    for (u64 i = first; i < last; ++i) {
+    for (u32 i = first; i < last; ++i) {
         UnkBoxData_l10df80* box = boxes->At(i);
-        f32 min_x = box->min_x, min_y = box->min_y, max_x = box->max_x, max_y = box->max_y;
-        sum.y = (min_y + max_y) * 0.5f + sum.y;
-        sum.x = (min_x + max_x) * 0.5f + sum.x;
+        f32 center_x = (box->min_x + box->max_x) * 0.5f;
+        f32 center_y = (box->min_y + box->max_y) * 0.5f;
+        sum.x += center_x;
+        sum.y += center_y;
         sum.z += 0.0f;
     }
     f32 n = (f32)(last - first);

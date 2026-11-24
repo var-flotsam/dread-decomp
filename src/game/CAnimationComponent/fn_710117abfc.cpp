@@ -6,6 +6,12 @@
 #include "game/UnkGuiRoot.h"
 #include "types.h"
 
+// The track object as this function reads it: the key list at +0xb0.
+struct UnkTrackKeys_710117abfc {
+    u8 pad_0x0[0xb0];
+    UnkGuiKeyList field_0xb0;  // 0xb0
+};
+
 void fn_710117abfc(UnkAnimationComponent* self, bool add, base::global::CStrId* id, u64 key) {
     UnkTrackSet* set = self->field_0x40;
     UnkTrackEntry** it = set->field_0xc8.Find(key);
@@ -14,7 +20,8 @@ void fn_710117abfc(UnkAnimationComponent* self, bool add, base::global::CStrId* 
     UnkTrackEntry* entry = *it;
     if (!entry || !entry->field_0x70)
         return;
-    auto* list = reinterpret_cast<UnkGuiKeyList*>(reinterpret_cast<char*>(entry->field_0x70) + 0xb0);
+    auto* track = reinterpret_cast<UnkTrackKeys_710117abfc*>(entry->field_0x70);
+    UnkGuiKeyList* list = &track->field_0xb0;
     if (add)
         fn_710002fd10(list, id);
     else

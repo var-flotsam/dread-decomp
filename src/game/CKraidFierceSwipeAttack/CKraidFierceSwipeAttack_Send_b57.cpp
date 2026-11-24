@@ -50,15 +50,21 @@ struct UnkSelf_kt41;
 // The base attack update, typed as an opaque attack (one declaration for every caller).
 struct UnkKraidAttack;
 
+struct UnkKraidSwipeTarget_b57a4 {
+    u8 pad_0x0[0x200];
+    UnkKraidSwipeState_b57a4* field_0x200;  // 0x200
+};
+
 void fn_71005f42c8(UnkKraidSwipe_b57a4* self, f32 dt) {
     fn_71005f201c(reinterpret_cast<UnkKraidAttack*>(self), dt);
-    UnkActor* actor = fn_7100d7c990(reinterpret_cast<UnkActor*>(self->owner));
+    UnkKraidSwipeTarget_b57a4* actor =
+        reinterpret_cast<UnkKraidSwipeTarget_b57a4*>(fn_7100d7c990(reinterpret_cast<UnkActor*>(self->owner)));
     if (!self->owner->field_0x220)
         return;
     bool blocked = fn_71005f20e4(reinterpret_cast<UnkSelf_kt41*>(self));
     if (!actor || blocked)
         return;
-    UnkKraidSwipeState_b57a4* state = *reinterpret_cast<UnkKraidSwipeState_b57a4**>(reinterpret_cast<char*>(actor) + 0x200);
+    UnkKraidSwipeState_b57a4* state = actor->field_0x200;
     if (!state || !state->field_0x3a8)
         return;
     if (!fn_710117b348(self->owner->field_0x220, fn_7100c39158()))

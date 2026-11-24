@@ -16,13 +16,8 @@ struct UnkDirectionSource {
 };
 
 UnkVec2Result fn_7100125a64(const UnkDirectionSource* s) {
-    f32 eps = g_unk_7101647774;
-    f32 xLow = s->ax - eps;
-    f32 xHigh = s->ax + eps;
-    if (xLow <= s->bx && xHigh >= s->bx) {
-        f32 yLow = s->ay - eps;
-        f32 yHigh = eps + s->ay;
-        if (yLow <= s->by && yHigh >= s->by) {
+    if (s->ax - g_unk_7101647774 <= s->bx && s->ax + g_unk_7101647774 >= s->bx) {
+        if (s->ay - g_unk_7101647774 <= s->by && s->ay + g_unk_7101647774 >= s->by) {
             return UnkVec2Result(0.0f, 0.0f);
         }
     }

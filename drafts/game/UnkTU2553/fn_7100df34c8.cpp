@@ -132,6 +132,13 @@ static inline UnkVec3f operator+(const UnkVec3f& a, const UnkVec3f& b) {
 }
 
 
+// Moves `pos` by a movement's offset, in place.
+static inline void MoveBy(UnkVec3f& pos, const UnkMorphVec3& by) {
+    pos.x = by.x + pos.x;
+    pos.y = by.y + pos.y;
+    pos.z = by.z + pos.z;
+}
+
 bool fn_7100df34c8(UnkGameManager* manager, void* a, void* b, void* c, void* d, bool retry, bool offset) {
     auto* self = reinterpret_cast<UnkProbeManager_ldf34c8*>(manager);
     UnkVec3f* out_position = static_cast<UnkVec3f*>(a);
@@ -161,16 +168,16 @@ bool fn_7100df34c8(UnkGameManager* manager, void* a, void* b, void* c, void* d, 
     pos = player->Position();
     bool grounded = player_move->field_0x3a8;
     if (grounded || offset)
-        pos = fn_7100943118(reinterpret_cast<UnkMorphMovement*>(player_move), false) + pos;
+        MoveBy(pos, fn_7100943118(reinterpret_cast<UnkMorphMovement*>(player_move), false));
     move->Body();
     if (!player_move->field_0x3a8)
         fn_71008640a4(current->field_0x2a0, &g_unk_71727bee20);
 
     bool hit;
     UnkVec3f ground = move->Ground(pos + UnkVec3f(0.0f, 5.0f, 0.0f), 5.0f - move->Bounds().min.y, &hit, nullptr);
-    bool on_ground;
-    bool snapped;
     bool raised;
+    bool snapped;
+    bool on_ground;
     if (!hit) {
         raised = false;
         snapped = false;
@@ -203,7 +210,7 @@ bool fn_7100df34c8(UnkGameManager* manager, void* a, void* b, void* c, void* d, 
     if (retry && !fits) {
         pos = player->Position();
         if (player_move->field_0x3a8)
-            pos = fn_7100943118(reinterpret_cast<UnkMorphMovement*>(player_move), true) + pos;
+            MoveBy(pos, fn_7100943118(reinterpret_cast<UnkMorphMovement*>(player_move), true));
         ground = move->Ground(pos + UnkVec3f(0.0f, 5.0f, 0.0f), current->field_0x38c + 5.0f, &hit, nullptr);
         if (hit) {
             UnkCharacterMovement* body = reinterpret_cast<UnkCharacterMovement*>(move->Body());

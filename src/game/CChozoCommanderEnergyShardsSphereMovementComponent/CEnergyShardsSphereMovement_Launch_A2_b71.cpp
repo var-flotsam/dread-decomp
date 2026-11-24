@@ -22,10 +22,15 @@ struct UnkShardsSphereMover_A2_b71 {
     u32 state;  // 0xc8
 };
 
+struct UnkTunableValues_A2_b71 {
+    u8 pad_0x0[0xa4];
+    f32 field_0xa4;  // 0xa4
+};
+
 void fn_710045a8b4(void*, UnkShardsSphereMover_A2_b71* self) {
     self->state = 1;
     fn_71008c1538(reinterpret_cast<UnkRequest*>(self),
-                  *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_7172716160) + 0xa4));
+                  reinterpret_cast<const UnkTunableValues_A2_b71*>(&g_unk_7172716160)->field_0xa4);
     self->id = g_unk_71726c9e00;
     self->flags |= 0x4000000;
 }

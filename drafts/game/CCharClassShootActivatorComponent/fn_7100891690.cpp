@@ -91,9 +91,9 @@ void fn_7100891690(UnkShootActivator_ovb0126* self, f32 dt) {
     self->fade = fade;
     f32 share = fade / self->duration;
     f32 level = !(share <= 0.0f) ? (!(share >= 1.0f) ? share : 1.0f) : 0.0f;
-    f32 volume_max = self->volume_max;
+    f32 scaled = self->volume_max * level;
     auto* tunable = reinterpret_cast<UnkShootTunable_ovb0126*>(&g_unk_717272c450);
-    f32 volume = Clamp(tunable->decrease_volume_factor * (volume_max * level), 0.0f, volume_max);
+    f32 volume = Clamp(tunable->decrease_volume_factor * scaled, 0.0f, self->volume_max);
     if (self->sound.Playing())
         fn_7100105d34(self->sound.Get(), volume, false, 0.2f);
     if (level <= 0.0f) {
