@@ -126,7 +126,7 @@ struct UnkShotComponent_l9f92e4 {
         if (keys->count) {
             for (const u64 *key = keys->keys, *end = key + keys->count; key != end; ++key) {
                 UnkShotEntry_l9f92e4* entry = nullptr;
-                if (fn_71009f8d1c(reinterpret_cast<UnkShotDef_ovb0066*>(def), key,
+                if (CCharClassShotComponent_FindLaunchShotConfig(reinterpret_cast<UnkShotDef_ovb0066*>(def), key,
                                   reinterpret_cast<UnkShotEntry_ovb0066**>(&entry)) &&
                     entry && entry->Fire(a, b, c, d, e, out, g))
                     return true;

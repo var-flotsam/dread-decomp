@@ -11,11 +11,11 @@
 extern "C" f32 atan2f(f32 y, f32 x);
 
 struct UnkMagmaBall_b50;
-bool fn_71006df98c(UnkMagmaBall_b50* self);
+bool CVulkranMagmaBallMovementComponent_IsInLavaPool(UnkMagmaBall_b50* self);
 
-void fn_71006df868(UnkVulkranMagmaBall* self, f32 dt) {
+void CVulkranMagmaBallMovementComponent_Update(UnkVulkranMagmaBall* self, f32 dt) {
     fn_7100ac3a78(reinterpret_cast<UnkNailongThornMovement*>(self), dt);
-    if (!fn_71006df98c(reinterpret_cast<UnkMagmaBall_b50*>(self)))
+    if (!CVulkranMagmaBallMovementComponent_IsInLavaPool(reinterpret_cast<UnkMagmaBall_b50*>(self)))
         return;
     UnkActor* owner = self->owner;
     UnkVec3f pos(owner->field_0x44, owner->field_0x54, owner->field_0x64);

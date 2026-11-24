@@ -42,7 +42,7 @@ struct UnkMagmaBall_b50 {
     UnkMagmaOwner_b50* owner;
 };
 
-bool fn_71006df98c(UnkMagmaBall_b50* self) {
+bool CVulkranMagmaBallMovementComponent_IsInLavaPool(UnkMagmaBall_b50* self) {
     CVector2D point;
     {
         UnkMagmaOwner_b50* owner = self->owner;

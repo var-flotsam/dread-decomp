@@ -84,7 +84,7 @@ struct UnkShotLaunch_ovb0090 {
     void* owner;  // 0x40
 };
 
-bool fn_71009fa098(void* owner, const UnkVec3f* target, const UnkVec3f* direction, const UnkVec3f* origin, bool a,
+bool CShotLaunchConfig_SetUpLaunch(void* owner, const UnkVec3f* target, const UnkVec3f* direction, const UnkVec3f* origin, bool a,
                    bool b, UnkShotLaunch_ovb0090* out, f32 value) {
     fn_71009f9dc0(reinterpret_cast<UnkShotLaunchState*>(out));
     out->origin = *origin;

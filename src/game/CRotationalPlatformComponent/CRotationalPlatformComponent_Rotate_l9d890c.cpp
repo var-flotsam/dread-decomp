@@ -44,7 +44,7 @@ static inline f32 EaseSine(f32 from, f32 to, f32 t) {
     return (1.0f - sinf(t * kHalfPi)) * from + to * sinf(t * kHalfPi);
 }
 
-void fn_71009d890c(UnkRotationalPlatform_l9d890c* self, f32 dt) {
+void CRotationalPlatformComponent_UpdateRotation(UnkRotationalPlatform_l9d890c* self, f32 dt) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
     if (!self->rotating)
         return;
