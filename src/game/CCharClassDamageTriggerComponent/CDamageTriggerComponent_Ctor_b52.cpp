@@ -23,13 +23,13 @@ struct UnkDamageTriggerComponent_b52 {
     bool field_0x58;
     UnkStringData* path;  // 0x60, a CFilePathStrId
     u32 field_0x68;
-    CStrId field_0x70;
+    CStrId sDamagePerTime;
     u64 field_0x78;
     u64 field_0x80;
-    CStrId field_0x88;
-    bool field_0x90;
-    bool field_0x91;
-    u32 field_0x94;
+    CStrId sDamageID;
+    bool bIgnoreReaction;
+    bool bContinuousDamageHit;
+    u32 eForceDamageModeHit;
     CStrId field_0x98;
     u32 field_0xa0;
 };
@@ -44,13 +44,13 @@ void fn_7100a4b100(UnkDamageTriggerComponent_b52* self) {
         base::global::UnkEnsureFilePathPool();
     self->path = &g_unk_7101d47200->empty;
     self->field_0x68 = 0;
-    new (&self->field_0x70) CStrId("", true);
+    new (&self->sDamagePerTime) CStrId("", true);
     self->field_0x78 = 0;
     self->field_0x80 = 0;
-    new (&self->field_0x88) CStrId("Lava Pool", true);
-    self->field_0x90 = true;
-    self->field_0x91 = false;
-    self->field_0x94 = 0;
+    new (&self->sDamageID) CStrId("Lava Pool", true);
+    self->bIgnoreReaction = true;
+    self->bContinuousDamageHit = false;
+    self->eForceDamageModeHit = 0;
     new (&self->field_0x98) CStrId(base::global::CStrId::Empty());
     self->field_0xa0 = 0;
 }

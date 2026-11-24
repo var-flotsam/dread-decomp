@@ -22,16 +22,16 @@ struct UnkDropDef_b44a2 {
     u8 pad_0x20[0x38];
     u64 field_0x58;
     u64 field_0x60;
-    bool field_0x68;
+    bool bCanDropXParasite;
     u8 pad_0x69[3];
     UnkU64Align4_b44a2 field_0x6c;
-    f32 field_0x74;
-    f32 field_0x78;
+    f32 fXCellDropTime;
+    f32 fXCellDropRotationAngSpeed;
     u32 pad_0x7c;
-    base::global::CStrId field_0x80;
-    u8 field_0x88[0x90];
-    u8 field_0x118[0x90];
-    bool field_0x1a8;
+    base::global::CStrId sXParasiteTypeMask;
+    u8 oDropProbabilities[0x90];
+    u8 oMeleeChargeShotDropProbabilities[0x90];
+    bool bSkipUsefulItemsRule;
 };
 
 void fn_71007bf01c(UnkDropDef_b44a2* self) {
@@ -39,15 +39,15 @@ void fn_71007bf01c(UnkDropDef_b44a2* self) {
     self->vtable = g_unk_7101a71518 + 2;
     self->field_0x58 = 0x1000000;
     self->field_0x60 = 0;
-    self->field_0x68 = true;
+    self->bCanDropXParasite = true;
     self->field_0x6c = 0;
-    self->field_0x74 = 0.1f;
-    self->field_0x78 = 0.0f;
-    new (&self->field_0x80) base::global::CStrId("ALL", true);
-    fn_71007c7ddc(self->field_0x88);
-    fn_71007c7ddc(self->field_0x118);
+    self->fXCellDropTime = 0.1f;
+    self->fXCellDropRotationAngSpeed = 0.0f;
+    new (&self->sXParasiteTypeMask) base::global::CStrId("ALL", true);
+    fn_71007c7ddc(self->oDropProbabilities);
+    fn_71007c7ddc(self->oMeleeChargeShotDropProbabilities);
     self->field_0x18 = 0;
     self->field_0x1c = -1;
-    self->field_0x1a8 = false;
+    self->bSkipUsefulItemsRule = false;
     reinterpret_cast<void (*)(UnkDropDef_b44a2*)>(self->vtable[3])(self);
 }
