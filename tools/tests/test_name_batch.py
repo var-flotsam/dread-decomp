@@ -193,6 +193,15 @@ class Requests(unittest.TestCase):
         self.assertIn("Stated evidence: facts about CFoo_GetCount", tail)
         self.assertNotIn("verdict", tail.lower())
 
+    def test_rules_name_the_fixed_role_verbs(self):
+        # The first live propose run named destructors Dtor/DeletingDtor and initialisers StaticInit; the
+        # project's names use Destroy, DestroyAndDelete, Construct and InitStatics.
+        reqs, _ = self.build("propose")
+        rules = reqs[0]["params"]["system"][0]["text"]
+        for verb in ("_Construct", "_Destroy ", "_DestroyAndDelete", "_InitStatics"):
+            self.assertIn(verb, rules)
+        self.assertIn(nb.NAMING, nb.REVIEW_RULES)
+
     def test_propose_and_ttl(self):
         reqs, _ = self.build("propose", ttl="1h")
         p = reqs[1]["params"]

@@ -103,6 +103,9 @@ How names work in this project:
   Class::Method form. The verb phrase says what the code does, specifically enough to tell the function from its
   siblings in the same class, and claims nothing the code does not show (no purpose guessed from a callee's
   placeholder name, no "train animation" where the code only compares an id).
+- Fixed roles keep the project's fixed verbs: <Class>_Construct for a constructor, <Class>_Destroy for a complete
+  destructor, <Class>_DestroyAndDelete for a deleting destructor, <Class>_InitStatics for a unit's static
+  initialiser (not Ctor, Dtor, DeletingDtor or StaticInit).
 - Evidence is stated as facts in the code: the members it reads or writes by their reflected names and offsets,
   the strings it uses, the callees it calls, the conditions it tests, and what its callers do with it.
 - A vague name (Update, Handle, Process, Run, Use, DoStep and the like, or any name that would fit many functions)
