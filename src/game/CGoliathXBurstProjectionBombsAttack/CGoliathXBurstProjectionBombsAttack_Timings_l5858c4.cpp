@@ -4,6 +4,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/CGoliathXBurstProjectionBombsAttack.h"
 #include "game/UnkMotionRule.h"
+#include "game/UnkStruct_71007142e8.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTimeline.h"
@@ -12,12 +13,6 @@
 struct UnkStruct_7101176ea8;
 
 // The motion fn_71007142e8 initialises: the time it ends on at +0x2c.
-struct UnkStruct_71007142e8 {
-    u8 pad_0x0[0x2c];
-    f32 field_0x2c;
-    u8 pad_0x30[0x40];
-};
-
 struct UnkMotionTracks;
 
 struct UnkCls_710117af10;
@@ -57,7 +52,7 @@ static inline void MotionEnd(UnkStruct_7101176ea8* actions, UnkCls_710117af10* n
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
-    *out = motion.field_0x2c;
+    *out = motion.xform.m[2][3];
 }
 
 void CGoliathXBurstProjectionBombsAttack_CacheTimelineMotionValues(UnkGoliathXBombsAttack_l5858c4* self) {

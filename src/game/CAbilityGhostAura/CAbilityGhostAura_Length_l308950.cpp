@@ -9,15 +9,11 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkMotionRule.h"
+#include "game/UnkStruct_71007142e8.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTimeline.h"
 #include "types.h"
-
-struct UnkStruct_71007142e8 {
-    f32 m[12];
-    u8 pad_0x30[0x40];
-};
 
 struct UnkMotionTracks;
 
@@ -27,9 +23,9 @@ f32 CAbilityGhostAura_ComputeTimelineTranslationLength(UnkTimeline* timeline) {
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
-    f32 x = motion.m[3];
-    f32 y = motion.m[7];
-    f32 z = motion.m[11];
+    f32 x = motion.xform.m[0][3];
+    f32 y = motion.xform.m[1][3];
+    f32 z = motion.xform.m[2][3];
     return sqrtf(x * x + y * y + z * z);
 }
 
@@ -107,7 +103,7 @@ static inline f32 Height(UnkTimeline* timeline) {
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags(2);
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, frames);
-    return fabsf(motion.m[11]);
+    return fabsf(motion.xform.m[2][3]);
 }
 
 // Measures the height of animation `name` into *height unless it was measured already.

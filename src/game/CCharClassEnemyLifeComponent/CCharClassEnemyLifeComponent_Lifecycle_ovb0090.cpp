@@ -21,8 +21,8 @@ struct UnkEnemyLifeComponent_ovb0090 {
     bool bShouldDieWithPowerBomb;
     u8 pad_0x119[3];
     f32 fDamageFXTime;
-    UnkStringData* field_0x120;
-    UnkStringData* field_0x128;
+    base::global::CStrId field_0x120;
+    base::global::CStrId field_0x128;
     u64 field_0x130;
     u16 field_0x138;
     u8 pad_0x13a[2];
@@ -43,8 +43,8 @@ void fn_71008b4544(UnkEnemyLifeComponent_ovb0090* self) {
     fn_71008c2da8(self->oDamageSourceFactor);
     self->bShouldDieWithPowerBomb = true;
     self->fDamageFXTime = 0.01f;
-    InitEmptyId(&self->field_0x120);
-    InitEmptyId(&self->field_0x128);
+    InitEmptyId(&self->field_0x120.data);
+    InitEmptyId(&self->field_0x128.data);
     __builtin_memset(self->field_0x13c, 0, sizeof(self->field_0x13c));
     self->field_0x130 = 0;
     self->field_0x138 = 0;
