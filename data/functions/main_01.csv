@@ -360,7 +360,7 @@ address,size,name,name_source,subsystem,status
 0x710010d9f4,8,fn_710010d9f4,unknown,engine/base?,O
 0x710010d9fc,968,fn_710010d9fc,unknown,engine/base?,M
 0x710010ddc4,444,fn_710010ddc4,unknown,engine/base?,O
-0x710010df80,476,fn_710010df80,unknown,engine/base?,O
+0x710010df80,476,fn_710010df80,unknown,engine/base?,U
 0x710010e15c,520,fn_710010e15c,unknown,engine/base?,O
 0x710010e364,256,fn_710010e364,unknown,engine/base?,O
 0x710010e470,2220,fn_710010e470,unknown,engine/base?,m

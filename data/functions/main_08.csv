@@ -3165,7 +3165,7 @@ address,size,name,name_source,subsystem,status
 0x7100890ea4,508,fn_7100890ea4,unknown,unknown,U
 0x71008910a0,1420,fn_71008910a0,unknown,unknown,U
 0x710089162c,100,CCharClassShootActivatorComponent_GetPistonMagMachineryLoopPresetIds,inferred,unknown,O
-0x7100891690,308,fn_7100891690,unknown,game/components?,O
+0x7100891690,308,fn_7100891690,unknown,game/components?,U
 0x71008917c4,512,CCharClassShootActivatorComponent_SyncWithAnimatedCamera,inferred,unknown,O
 0x71008919c4,324,CCharClassShootActivatorComponent_ApplyPlayerOffsetAndYawToActorObject,inferred,engine/reflection?,O
 0x7100891b08,328,CCharClassShootActivatorComponent_PlaySoundIfUsedInBlackboard,inferred,game/world?,O
