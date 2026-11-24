@@ -444,6 +444,7 @@ class Unit:
     done: set[str]                 # classes it writes in the declared form
     blocks: dict[str, str | None]  # {class: parent} of its namespace-form blocks (None: a root)
     opened: set[str]               # namespaces it opens outside those blocks (`namespace X { extern ... }`)
+    slots: dict[str, set[str]] = field(default_factory=dict)  # {class: SLOT_FORMS its declared-form lines show}
 
 
 def prefixes(name: str) -> set[str]:
@@ -475,6 +476,10 @@ def reflection_blocks() -> tuple[set[str], dict[str, str], set[str], list[Unit]]
         for m in QUALIFIED_NAME.finditer(text):
             parts = m.group(0).split("::")
             outer.update("::".join(parts[:i]) for i in range(1, len(parts)) if NESTED_PART.match(parts[i]))
+        for m in DECLARED_LINE.finditer(text):
+            tags = slot_forms(m.group(0))
+            if tags:
+                unit.slots.setdefault(m.group(1), set()).update(tags)
         units.append(unit)
     return done, blocks, outer, units
 
@@ -562,18 +567,23 @@ SLOT_FORMS = [
 DECLARED_LINE = re.compile(r"^.*?\b((?:\w+::)*\w+)::refl_(?:TypeOf|Destroy)\(.*$", re.M)
 
 
-def slot_evidence() -> dict[str, set[str]]:
-    """{class: what its src/reflection/ functions show of its virtual table} (SLOT_FORMS). A function that is not
+def slot_forms(text: str) -> set[str]:
+    """The SLOT_FORMS tags `text` (a namespace-form block's body or a declared-form line) shows."""
+    return {tag for regex, tag in SLOT_FORMS if regex.search(text)}
+
+
+def slot_evidence(blocks: dict[str, str], units: list[Unit]) -> dict[str, set[str]]:
+    """{class: what its src/reflection/ functions show of its virtual table} (SLOT_FORMS), from the
+    reflection_blocks() it is given: its namespace-form block, or its declared-form lines. A function that is not
     in src/reflection/ (say, a lifted one) shows nothing, whatever it does."""
     out: dict[str, set[str]] = {}
-    for f in sorted(REFLECTION.glob("*.cpp")):
-        text = f.read_text(encoding="utf-8")
-        pieces = [(m.group(1), m.group(2)) for m in CLASS_BLOCK.finditer(text)]
-        pieces += [(m.group(1), m.group(0)) for m in DECLARED_LINE.finditer(text)]
-        for cls, body in pieces:
-            for regex, tag in SLOT_FORMS:
-                if regex.search(body):
-                    out.setdefault(cls, set()).add(tag)
+    for cls, body in blocks.items():
+        tags = slot_forms(body)
+        if tags:
+            out.setdefault(cls, set()).update(tags)
+    for unit in units:
+        for cls, tags in unit.slots.items():
+            out.setdefault(cls, set()).update(tags)
     return out
 
 
@@ -667,9 +677,10 @@ EXCLUDED = exclusions()
 
 def selected(types: dict[str, dict], fields: dict, extra: Extra, limit: set[str] | None,
              refl: tuple, why: dict[str, str] | None = None,
-             hand_defined: set[str] | None = None) -> tuple[list[str], list[str]]:
+             hand_defined: set[str] | None = None, destroys: set[str] | None = None) -> tuple[list[str], list[str]]:
     """(the classes the rule selects within `limit` (None: every class), the errors of those `limit` names);
-    `why` gets the first reason of each class left out; `hand_defined` is hand_written_types()."""
+    `why` gets the first reason of each class left out; `hand_defined` is hand_written_types(); `destroys` is
+    reflected_destroys() (None: read it). The virtual-table evidence is read from `refl` (reflection_blocks())."""
     want = sorted(types) if limit is None else sorted(limit | extra.classes())
     out, errors = [], []
     memo: dict[str, list[str]] = {}
@@ -702,8 +713,9 @@ def selected(types: dict[str, dict], fields: dict, extra: Extra, limit: set[str]
         out = kept
     # A root's virtual table is declared as the getter in slot 0 and the destructor after it: a root whose
     # src/reflection/ functions do not show that (or show otherwise) is left out, with every class under it.
-    unpinned = unpinned_roots({c for c in declared(types, out) if not types[c]["parent"]}, types, slot_evidence(),
-                              reflected_destroys())
+    units = refl[3] if len(refl) > 3 else []
+    unpinned = unpinned_roots({c for c in declared(types, out) if not types[c]["parent"]}, types,
+                              slot_evidence(refl[1], units), reflected_destroys() if destroys is None else destroys)
     if unpinned:
         kept = []
         for c in out:
@@ -719,7 +731,6 @@ def selected(types: dict[str, dict], fields: dict, extra: Extra, limit: set[str]
         out = kept
     # A unit that would both see a declared class and open a namespace of its name does not compile: that class
     # (and so every class based on it) is left out, until no unit clashes.
-    units = refl[3] if len(refl) > 3 else []
     while True:
         clash = clashes(set(declared(types, out)), types, units)
         if not clash:

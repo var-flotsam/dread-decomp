@@ -229,6 +229,30 @@ class Selection(unittest.TestCase):
         refl = ({"base::core::CRoot", "CMid"}, {"CLeaf": body}, {"CLeaf"}, [])
         self.assertEqual(gc.selected(TYPES, FIELDS, gc.NO_EXTRA, None, refl)[0], ["CMid", "base::core::CRoot"])
 
+    def test_a_root_needs_its_virtual_table_shown(self):
+        body = BLOCK.split("namespace CLeaf {\n", 1)[1].split("}  // namespace")[0]
+        everyone = ["CLeaf", "CMid", "base::core::CRoot"]
+        # CLeaf's block shows the getter in slot 0 and the destructor after it: the whole tree is declared
+        refl = ({"base::core::CRoot", "CMid"}, {"CLeaf": body}, set(), [])
+        self.assertEqual(gc.selected(TYPES, FIELDS, gc.NO_EXTRA, None, refl, destroys={"CLeaf"})[0], everyone)
+        # declared-form lines show the same
+        unit = gc.Unit("CMid.cpp", {"CMid"}, {}, set(), {"CMid": gc.slot_forms(
+            "const base::reflection::CType& CMid::refl_TypeOf(const void* obj) "
+            "{ return *static_cast<const CMid*>(obj)->vf_0x0(); }")})
+        self.assertEqual(unit.slots, {"CMid": {"getter"}})
+        refl = ({"base::core::CRoot", "CMid", "CLeaf"}, {}, set(), [unit])
+        self.assertEqual(gc.selected(TYPES, FIELDS, gc.NO_EXTRA, None, refl, destroys=set())[0], everyone)
+        # a refl_Destroy the sources do not show (a lifted one, say) leaves the destructor's slot unproven
+        why = {}
+        self.assertEqual(gc.selected(TYPES, FIELDS, gc.NO_EXTRA, None, refl, why, destroys={"CLeaf"})[0], [])
+        self.assertIn("virtual table", why["CLeaf"])
+        # no getter shown, or the destructor first: left out
+        refl = ({"base::core::CRoot", "CMid", "CLeaf"}, {}, set(), [])
+        self.assertEqual(gc.selected(TYPES, FIELDS, gc.NO_EXTRA, None, refl, destroys=set())[0], [])
+        first = body.replace("ClassOf(obj)", "ClassOfDestructorFirst(obj)")
+        refl = ({"base::core::CRoot", "CMid"}, {"CLeaf": first}, set(), [])
+        self.assertEqual(gc.selected(TYPES, FIELDS, gc.NO_EXTRA, None, refl, destroys=set())[0], [])
+
     def test_getters_of_declared_classes_are_left_out(self):
         import gen_class_getters
         text = gen_class_getters.render([(0x7100000010, "CMid"), (0x7100000020, "COther")], {"CMid"})
