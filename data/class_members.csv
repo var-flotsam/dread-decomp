@@ -17,3 +17,4 @@ CCameraFX_OscillationShake,0x78,f32,fTimeToMax,0.0f,fn_7100767fb8,
 CCooldownXBossFireBallDef,0x8,bool,bEnabled,true,fn_71004c095c,
 CCooldownXBossFireBallDef,0xc,f32,fPreparationTimeOffset,0.0f,fn_71004c095c,
 CCooldownXBossFireBallDef,0x10,bool,bBreakable,false,fn_71004c095c,
+base::tunable::CTunable,0x8,base::global::CStrId,field_0x8,,"fn_7100072940 (base::refl_RegisterNamed, base/UnkNamedRegistry.h)","the category it is registered under, set with sName when the manager files it"

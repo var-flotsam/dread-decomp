@@ -9,6 +9,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
+#include "reflected/GUI/CDisplayObject.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -73,7 +74,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto destroy = &refl_Destroy;
 };
 }  // namespace GUI::CDisplayObjectContainer
-DREAD_REFLECTED_CLASS(GUI::CDisplayObjectContainer, GUI::CDisplayObject);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(GUI::CDisplayObjectContainer, GUI::CDisplayObject);
 
 void fn_71011da3d0();
 void fn_71011da438();

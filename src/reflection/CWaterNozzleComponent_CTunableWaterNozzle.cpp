@@ -6,20 +6,19 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 template <class T> struct CGameLink;
 class CEntity;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
@@ -28,8 +27,8 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 
 // CWaterNozzleComponent::CTunableWaterNozzle
 namespace CWaterNozzleComponent::CTunableWaterNozzle { extern bool refl_fields_added asm("g_unk_717272dbd0"); }
-namespace CWaterNozzleComponent::CTunableWaterNozzle { extern UnkTunable refl_tunable asm("g_unk_717272dba8"); }
-void fn_71008a0b3c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CWaterNozzleComponent::CTunableWaterNozzle { extern base::tunable::CTunable refl_tunable asm("g_unk_717272dba8"); }
+namespace CWaterNozzleComponent::CTunableWaterNozzle { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71008a0b3c"); }
 namespace CWaterNozzleComponent::CTunableWaterNozzle {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -39,7 +38,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fStopWaterJetDelayTime", 0x24, (DefaultValue, 1.0f), (Description, "Delay time to stop water jet "));
-    fn_71008a0b3c(base::reflection::TunableRegistry(), &refl_tunable, "WaterNozzle");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "WaterNozzle");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -63,7 +62,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CWaterNozzleComponent::CTunableWaterNozzle
-DREAD_REFLECTED_CLASS(CWaterNozzleComponent::CTunableWaterNozzle, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CWaterNozzleComponent::CTunableWaterNozzle, base::tunable::CTunable);
 
 // CWaterNozzleComponent
 namespace CWaterNozzleComponent {

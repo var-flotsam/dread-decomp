@@ -6,28 +6,27 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CPlayerMovement::CTunablePlayerMovement
 namespace CPlayerMovement::CTunablePlayerMovement { extern bool refl_fields_added asm("g_unk_7172a03df0"); }
 void fn_71010dce08();
 void fn_71010d6424(CFunction* fn, const char* name);
-namespace CPlayerMovement::CTunablePlayerMovement { extern UnkTunable refl_tunable asm("g_unk_7172a03d80"); }
-void fn_71010d65a0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CPlayerMovement::CTunablePlayerMovement { extern base::tunable::CTunable refl_tunable asm("g_unk_7172a03d80"); }
+namespace CPlayerMovement::CTunablePlayerMovement { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71010d65a0"); }
 namespace CPlayerMovement::CTunablePlayerMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -65,7 +64,7 @@ void refl_AddFields(CClass* cls) {
         fn_71010d6424(fn, "_iFocusMode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iFocusMode", (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(f32, "fParkourMinAdaptiveAnticipationFactor", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    fn_71010d65a0(base::reflection::TunableRegistry(), &refl_tunable, "Player");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Player");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -89,7 +88,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CPlayerMovement::CTunablePlayerMovement
-DREAD_REFLECTED_CLASS(CPlayerMovement::CTunablePlayerMovement, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CPlayerMovement::CTunablePlayerMovement, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

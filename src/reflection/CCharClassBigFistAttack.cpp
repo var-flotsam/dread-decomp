@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -42,8 +41,8 @@ DREAD_REFLECTED_CLASS(CCharClassBigFistAttack, CCharClassAttack);
 
 // CCharClassBigFistAttack::CTunableCharClassBigFistAttack
 namespace CCharClassBigFistAttack::CTunableCharClassBigFistAttack { extern bool refl_fields_added asm("g_unk_71726c06e0"); }
-namespace CCharClassBigFistAttack::CTunableCharClassBigFistAttack { extern UnkTunable refl_tunable asm("g_unk_71726c06a8"); }
-void fn_71003e25c0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassBigFistAttack::CTunableCharClassBigFistAttack { extern base::tunable::CTunable refl_tunable asm("g_unk_71726c06a8"); }
+namespace CCharClassBigFistAttack::CTunableCharClassBigFistAttack { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71003e25c0"); }
 namespace CCharClassBigFistAttack::CTunableCharClassBigFistAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -56,7 +55,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 300.0f), (ShowInDevConfig, true), (Description, "Max attack distance"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 10.0f), (InternalDevTag, "RegularEnemies|BigFist"));
     DREAD_REFLECTED_FIELD(f32, "fPostAttackLoopDuration", 0x2c, (DefaultValue, 0.8f), (ShowInDevConfig, true), (Description, "Post attack loop duration"), (MinValue, 0.0f), (MaxValue, 30.0f), (ControlFloatStep, 0.2f), (InternalDevTag, "RegularEnemies|BigFist"));
     DREAD_REFLECTED_FIELD(f32, "fFrontSpaceToForbidAttack", 0x30, (DefaultValue, 250.0f));
-    fn_71003e25c0(base::reflection::TunableRegistry(), &refl_tunable, "BigFist");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "BigFist");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -80,4 +79,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassBigFistAttack::CTunableCharClassBigFistAttack
-DREAD_REFLECTED_CLASS(CCharClassBigFistAttack::CTunableCharClassBigFistAttack, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassBigFistAttack::CTunableCharClassBigFistAttack, base::tunable::CTunable);

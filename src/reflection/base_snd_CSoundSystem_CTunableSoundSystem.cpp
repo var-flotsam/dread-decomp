@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // base::snd::CSoundSystem::CTunableSoundSystem
 namespace base::snd::CSoundSystem::CTunableSoundSystem { extern bool refl_fields_added asm("g_unk_7108b6c620"); }
-namespace base::snd::CSoundSystem::CTunableSoundSystem { extern UnkTunable refl_tunable asm("g_unk_7108b6c5f0"); }
-void fn_7100107410(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace base::snd::CSoundSystem::CTunableSoundSystem { extern base::tunable::CTunable refl_tunable asm("g_unk_7108b6c5f0"); }
+namespace base::snd::CSoundSystem::CTunableSoundSystem { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100107410"); }
 namespace base::snd::CSoundSystem::CTunableSoundSystem {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -39,7 +38,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bGUIEnabled", 0x25, (DefaultValue, true), (Description, "GUI Group enabled"));
     DREAD_REFLECTED_FIELD(bool, "bENVIRONMENT_STREAMSEnabled", 0x26, (DefaultValue, true), (Description, "ENVIRONMENT_STREAMS Group enabled"));
     DREAD_REFLECTED_FIELD(bool, "bSFX_EMMYEnabled", 0x27, (DefaultValue, true), (Description, "SFX_EMMY Group enabled"));
-    fn_7100107410(base::reflection::TunableRegistry(), &refl_tunable, "SoundSystem");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "SoundSystem");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -63,7 +62,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace base::snd::CSoundSystem::CTunableSoundSystem
-DREAD_REFLECTED_CLASS(base::snd::CSoundSystem::CTunableSoundSystem, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(base::snd::CSoundSystem::CTunableSoundSystem, base::tunable::CTunable);
 
 // base::snd::CSoundSystem
 namespace base::snd::CSoundSystem {

@@ -6,13 +6,12 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -20,7 +19,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 namespace CGrappleBeamGun { enum class ESelectionMode : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<CGrappleBeamGun::ESelectionMode>::object asm("g_unk_7172725900");
 namespace CGrappleBeamGun { enum class ESelectionInput : u32; }
@@ -57,8 +56,8 @@ DREAD_REFLECTED_CLASS(CGrappleBeamGun, CPrimaryGun);
 
 // CGrappleBeamGun::CTunableGrappleBeamGun
 namespace CGrappleBeamGun::CTunableGrappleBeamGun { extern bool refl_fields_added asm("g_unk_7172725c00"); }
-namespace CGrappleBeamGun::CTunableGrappleBeamGun { extern UnkTunable refl_tunable asm("g_unk_7172725bc8"); }
-void fn_7100833190(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CGrappleBeamGun::CTunableGrappleBeamGun { extern base::tunable::CTunable refl_tunable asm("g_unk_7172725bc8"); }
+namespace CGrappleBeamGun::CTunableGrappleBeamGun { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100833190"); }
 namespace CGrappleBeamGun::CTunableGrappleBeamGun {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -85,7 +84,7 @@ void refl_AddFields(CClass* cls) {
     field3->attrs.Add<s32>(base::reflection::attr::MaxValueI(), 2);
     field3->attrs.Add<s32>(base::reflection::attr::ControlIntStep(), 1);
     field3->attrs.Add<const char*>(base::reflection::attr::InternalTag(), "General");
-    fn_7100833190(base::reflection::TunableRegistry(), &refl_tunable, "");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -109,4 +108,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CGrappleBeamGun::CTunableGrappleBeamGun
-DREAD_REFLECTED_CLASS(CGrappleBeamGun::CTunableGrappleBeamGun, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CGrappleBeamGun::CTunableGrappleBeamGun, base::tunable::CTunable);

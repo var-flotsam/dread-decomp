@@ -7,14 +7,13 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -23,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent
 namespace CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent { extern bool refl_fields_added asm("g_unk_717272b628"); }
-namespace CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent { extern UnkTunable refl_tunable asm("g_unk_717272b600"); }
-void fn_7100881e44(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_717272b600"); }
+namespace CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100881e44"); }
 namespace CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -34,7 +33,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMaxTimeActivate", 0x24, (DefaultValue, 0.9f), (Description, "Max time to activated multi lock on points"));
-    fn_7100881e44(base::reflection::TunableRegistry(), &refl_tunable, "Multi lock on block");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Multi lock on block");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -58,7 +57,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent
-DREAD_REFLECTED_CLASS(CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent, base::tunable::CTunable);
 
 // CMultiLockOnBlockComponent
 namespace CMultiLockOnBlockComponent {

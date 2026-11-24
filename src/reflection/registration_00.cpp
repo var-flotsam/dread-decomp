@@ -11,6 +11,7 @@ using base::reflection::CFunction;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/TypeObject.h"
+#include "base/tunable/CTunableManager.h"
 namespace base::core { class AssetName; }
 template <> base::reflection::CType base::reflection::TypeObject<base::core::AssetName>::object asm("g_unk_7101d4d998");
 namespace base::core { class AssetID; }

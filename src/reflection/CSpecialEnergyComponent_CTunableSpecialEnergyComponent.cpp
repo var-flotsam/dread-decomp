@@ -6,27 +6,26 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CSpecialEnergyComponent::CTunableSpecialEnergyComponent
 namespace CSpecialEnergyComponent::CTunableSpecialEnergyComponent { extern bool refl_fields_added asm("g_unk_71727457b0"); }
-namespace CSpecialEnergyComponent::CTunableSpecialEnergyComponent { extern UnkTunable refl_tunable asm("g_unk_7172745770"); }
-void fn_7100a1e21c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CSpecialEnergyComponent::CTunableSpecialEnergyComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_7172745770"); }
+namespace CSpecialEnergyComponent::CTunableSpecialEnergyComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100a1e21c"); }
 namespace CSpecialEnergyComponent::CTunableSpecialEnergyComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -41,7 +40,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergyOpticalCamuflage", 0x30, (DefaultValue, 6.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergyOpticalCamuflageNotMoving", 0x34, (DefaultValue, 12.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergySonar", 0x38, (DefaultValue, 1.5f));
-    fn_7100a1e21c(base::reflection::TunableRegistry(), &refl_tunable, "Player");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Player");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -65,7 +64,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CSpecialEnergyComponent::CTunableSpecialEnergyComponent
-DREAD_REFLECTED_CLASS(CSpecialEnergyComponent::CTunableSpecialEnergyComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CSpecialEnergyComponent::CTunableSpecialEnergyComponent, base::tunable::CTunable);
 
 // CSpecialEnergyComponent
 void fn_7100a1eff8(CFunction* fn, const char* name);

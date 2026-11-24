@@ -6,28 +6,27 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CInventoryComponent::CTunableInventoryComponent
 namespace CInventoryComponent::CTunableInventoryComponent { extern bool refl_fields_added asm("g_unk_7172a09290"); }
 void fn_7101149248();
 void fn_710113ff7c(CFunction* fn, const char* name);
-namespace CInventoryComponent::CTunableInventoryComponent { extern UnkTunable refl_tunable asm("g_unk_7172a09268"); }
-void fn_71011400f8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CInventoryComponent::CTunableInventoryComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_7172a09268"); }
+namespace CInventoryComponent::CTunableInventoryComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71011400f8"); }
 namespace CInventoryComponent::CTunableInventoryComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -40,7 +39,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_iMaxNumMissiles_SetterFunction")
         fn_710113ff7c(fn, "_iMaxNumMissiles_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iMaxNumMissiles", (DefaultValue, 100), (ShowInConfig, true), (Description, "Max missiles"), (MinValueI, 0), (MaxValueI, 500), (ControlIntStep, 1), (InternalTag, "General"));
-    fn_71011400f8(base::reflection::TunableRegistry(), &refl_tunable, "");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -64,7 +63,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CInventoryComponent::CTunableInventoryComponent
-DREAD_REFLECTED_CLASS(CInventoryComponent::CTunableInventoryComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CInventoryComponent::CTunableInventoryComponent, base::tunable::CTunable);
 
 // CInventoryComponent
 void fn_7101140d84(CFunction* fn, const char* name);

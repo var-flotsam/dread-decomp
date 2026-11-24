@@ -85,8 +85,6 @@ PRELUDE = [
     "using base::reflection::CClass;",
     "using base::reflection::CVariable;",
     "using base::reflection::CFunction;",
-    "using base::reflection::UnkTunable;",
-    "using base::reflection::UnkTunableRegistry;",
 ]
 INT_TYPES = {1: "u8", 2: "s16", 4: "s32", 8: "s64"}  # enum-like values typed by a global descriptor
 
@@ -811,20 +809,24 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             if not obj or obj[0] != "ptr" or not name or name[0] != "str":
                 return None
             register = evs[j].target
-            decls += [f"extern UnkTunable g_unk_{obj[1]:x};",
-                      f"void fn_{register:x}(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);"]
+            # The registration is the manager's function for this tunable's class, one copy per class
+            # (base::refl_RegisterNamed in base/UnkNamedRegistry.h, which src/clones/ instantiates): it files the
+            # tunable under "<category>|<short class name>" and returns it.
+            decls += [f"extern base::tunable::CTunable g_unk_{obj[1]:x};",
+                      f"base::tunable::CTunable* fn_{register:x}(base::tunable::CTunableManager* manager, "
+                      "base::tunable::CTunable* tunable, const char* category);"]
             if (slot[0], size[1], flags[1]) == (TUNABLE_REGISTRY, 0x58, 0x3f):
-                # The global registry, created on first use (base/reflection/UnkTunableRegistry.h).
-                body += [f"    fn_{register:x}(base::reflection::TunableRegistry(), &g_unk_{obj[1]:x}, {c_string(name[1])});"]
+                # The global manager, created on first use (base/tunable/CTunableManager.h).
+                body += [f"    fn_{register:x}(base::tunable::TunableManager(), &g_unk_{obj[1]:x}, {c_string(name[1])});"]
             else:
-                decls.insert(-2, f"extern UnkTunableRegistry* g_unk_{slot[0]:x};")
-                body += [f"    UnkTunableRegistry* registry = g_unk_{slot[0]:x};",
-                         "    if (!registry) {",
-                         f"        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0({size[1]:#x}, {flags[1]:#x}));",
-                         "        fn_710013ac14(registry);",
-                         f"        g_unk_{slot[0]:x} = registry;",
+                decls.insert(-2, f"extern base::tunable::CTunableManager* g_unk_{slot[0]:x};")
+                body += [f"    base::tunable::CTunableManager* manager = g_unk_{slot[0]:x};",
+                         "    if (!manager) {",
+                         f"        manager = static_cast<base::tunable::CTunableManager*>(fn_71000839a0({size[1]:#x}, {flags[1]:#x}));",
+                         "        CTunableManager_Construct(manager);",
+                         f"        g_unk_{slot[0]:x} = manager;",
                          "    }",
-                         f"    fn_{register:x}(registry, &g_unk_{obj[1]:x}, {c_string(name[1])});"]
+                         f"    fn_{register:x}(manager, &g_unk_{obj[1]:x}, {c_string(name[1])});"]
             i = j + 1
         else:
             return None
@@ -1021,8 +1023,8 @@ def _compile(version: str, candidates: dict[int, tuple[list[str], str]], workdir
             if line not in seen:
                 seen.add(line)
                 decls.append(line)
-    # The global tunable registry's helper, which registrations call (base/reflection/UnkTunableRegistry.h).
-    text = PRELUDE + ['#include "base/reflection/UnkTunableRegistry.h"'] + decls + [s for _, s in candidates.values()]
+    # The global tunable manager's helper, which registrations call (base/tunable/CTunableManager.h).
+    text = PRELUDE + ['#include "base/tunable/CTunableManager.h"'] + decls + [s for _, s in candidates.values()]
     src.write_text("\n".join(text) + "\n", encoding="utf-8")
     r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
     if r.returncode != 0:

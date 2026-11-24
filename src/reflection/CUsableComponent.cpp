@@ -5,15 +5,14 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -76,8 +75,8 @@ DREAD_REFLECTED_CLASS(CUsableComponent, CComponent);
 
 // CUsableComponent::CTunableUsableComponent
 namespace CUsableComponent::CTunableUsableComponent { extern bool refl_fields_added asm("g_unk_7172753258"); }
-namespace CUsableComponent::CTunableUsableComponent { extern UnkTunable refl_tunable asm("g_unk_71727531f0"); }
-void fn_7100a9d8f4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CUsableComponent::CTunableUsableComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71727531f0"); }
+namespace CUsableComponent::CTunableUsableComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100a9d8f4"); }
 namespace CUsableComponent::CTunableUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -96,7 +95,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelB", 0x50, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelC", 0x58, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelC", 0x60, (DefaultValue, CStrId(CStrId::Empty())));
-    fn_7100a9d8f4(base::reflection::TunableRegistry(), &refl_tunable, "Logic");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Logic");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -120,4 +119,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CUsableComponent::CTunableUsableComponent
-DREAD_REFLECTED_CLASS(CUsableComponent::CTunableUsableComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CUsableComponent::CTunableUsableComponent, base::tunable::CTunable);

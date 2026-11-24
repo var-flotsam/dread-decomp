@@ -573,50 +573,50 @@ class TypedAttributeKeys(unittest.TestCase):
 
 class RegistryInclude(unittest.TestCase):
     def test_added_only_where_called(self):
-        inc = '#include "base/reflection/UnkTunableRegistry.h"'
-        calls = '#include "a.h"\nvoid f() { g(base::reflection::TunableRegistry()); }'
+        inc = '#include "base/tunable/CTunableManager.h"'
+        calls = '#include "a.h"\nvoid f() { g(base::tunable::TunableManager()); }'
         self.assertEqual(gr.with_registry_include(calls).split(chr(10))[:2], ['#include "a.h"', inc])
         self.assertEqual(gr.with_registry_include(gr.with_registry_include(calls)).count(inc), 1)
         self.assertEqual(gr.with_registry_include('#include "a.h"\nvoid f();'), '#include "a.h"\nvoid f();')
+        # the manager's own reflection functions are in a namespace of its name, which the class would clash with
+        own = '#include "a.h"\nnamespace base::tunable::CTunableManager {\n}  // namespace base::tunable::CTunableManager'
+        self.assertEqual(gr.with_registry_include(own), own)
+        self.assertIn(inc, gr.with_registry_include('#include "a.h"\nvoid f(base::tunable::CTunableManager* manager);'))
 
 
 
 class ClassStatics(unittest.TestCase):
     TEXT = "\n".join([
         "extern bool g_unk_7100000010;",
-        "extern UnkTunable g_unk_7100000020;",
+        "extern base::tunable::CTunable g_unk_7100000020;",
+        "base::tunable::CTunable* fn_7100000030" + gr.TUNABLE_REGISTER_ARGS + ";",
         "namespace A::CTunableA {",
         "void refl_AddFields(CClass* cls) {",
         "    if (g_unk_7100000010)",
         "        return;",
         "    g_unk_7100000010 = true;",
-        '    fn_7100000030(base::reflection::TunableRegistry(), &g_unk_7100000020, "A");',
+        '    fn_7100000030(base::tunable::TunableManager(), &g_unk_7100000020, "A");',
         "}",
         "}  // namespace A::CTunableA"])
 
     def test_named_in_the_class_namespace(self):
         out = gr.class_statics_by_name(self.TEXT).split("\n")
         self.assertEqual(out[0], 'namespace A::CTunableA { extern bool refl_fields_added asm("g_unk_7100000010"); }')
-        self.assertEqual(out[1], 'namespace A::CTunableA { extern UnkTunable refl_tunable asm("g_unk_7100000020"); }')
-        self.assertEqual(out[4:7], ["    if (refl_fields_added)", "        return;", "    refl_fields_added = true;"])
-        self.assertIn("&refl_tunable,", out[7])
+        self.assertEqual(out[1], 'namespace A::CTunableA { extern base::tunable::CTunable refl_tunable asm("g_unk_7100000020"); }')
+        self.assertEqual(out[2], "namespace A::CTunableA { base::tunable::CTunable* refl_RegisterTunable("
+                                 "base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, "
+                                 'const char* category) asm("fn_7100000030"); }')
+        self.assertEqual(out[5:8], ["    if (refl_fields_added)", "        return;", "    refl_fields_added = true;"])
+        self.assertEqual(out[8], '    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "A");')
         self.assertEqual(gr.class_statics_by_name("\n".join(out)), "\n".join(out))
 
     def test_use_outside_the_namespace_keeps_the_address(self):
-        text = self.TEXT + "\nvoid f() { use(&g_unk_7100000020); }"
+        text = self.TEXT + "\nvoid f() { use(&g_unk_7100000020); fn_7100000030(nullptr, nullptr, nullptr); }"
         out = gr.class_statics_by_name(text)
-        self.assertIn("extern UnkTunable g_unk_7100000020;", out)
+        self.assertIn("extern base::tunable::CTunable g_unk_7100000020;", out)
+        self.assertIn("base::tunable::CTunable* fn_7100000030(", out)
+        self.assertNotIn("refl_RegisterTunable", out)
         self.assertIn("refl_fields_added", out)
-
-
-class UnusedUsings(unittest.TestCase):
-    def test_drops_only_unnamed_tunable_usings(self):
-        text = "\n".join(["using base::reflection::CClass;", "using base::reflection::UnkTunable;",
-                          "using base::reflection::UnkTunableRegistry;", "extern UnkTunable g_obj;"])
-        out = gr.without_unused_usings(text).split("\n")
-        self.assertIn("using base::reflection::UnkTunable;", out)
-        self.assertNotIn("using base::reflection::UnkTunableRegistry;", out)
-        self.assertIn("using base::reflection::CClass;", out)
 
 
 if __name__ == "__main__":

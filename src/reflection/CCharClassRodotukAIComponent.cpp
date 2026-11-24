@@ -5,16 +5,15 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -49,8 +48,8 @@ DREAD_REFLECTED_CLASS(CCharClassRodotukAIComponent, CCharClassBehaviorTreeAIComp
 
 // CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent
 namespace CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent { extern bool refl_fields_added asm("g_unk_71726fee40"); }
-namespace CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726fedf0"); }
-void fn_710066db90(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726fedf0"); }
+namespace CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710066db90"); }
 namespace CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -69,7 +68,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fBombAbsorbBaseSpeed", 0x40, (DefaultValue, 1000.0f));
     DREAD_REFLECTED_FIELD(f32, "fBombAbsorbAcceleration", 0x44, (DefaultValue, 800.0f));
     DREAD_REFLECTED_FIELD(f32, "fBiteAnticipationDistance", 0x48, (DefaultValue, 400.0f));
-    fn_710066db90(base::reflection::TunableRegistry(), &refl_tunable, "Rodotuk");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Rodotuk");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -93,4 +92,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent
-DREAD_REFLECTED_CLASS(CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent, base::tunable::CTunable);

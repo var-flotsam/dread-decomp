@@ -5,15 +5,14 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -45,8 +44,8 @@ DREAD_REFLECTED_CLASS(CCharClassPoisonFlyDiveAttack, CCharClassAttack);
 
 // CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack
 namespace CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack { extern bool refl_fields_added asm("g_unk_71726f95d8"); }
-namespace CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack { extern UnkTunable refl_tunable asm("g_unk_71726f95a8"); }
-void fn_71006309d4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack { extern base::tunable::CTunable refl_tunable asm("g_unk_71726f95a8"); }
+namespace CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71006309d4"); }
 namespace CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -57,7 +56,7 @@ void refl_AddFields(CClass* cls) {
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, 50.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 550.0f));
-    fn_71006309d4(base::reflection::TunableRegistry(), &refl_tunable, "PoisonFly");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "PoisonFly");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -81,4 +80,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack
-DREAD_REFLECTED_CLASS(CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack, base::tunable::CTunable);

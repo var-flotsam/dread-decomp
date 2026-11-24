@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -41,8 +40,8 @@ DREAD_REFLECTED_CLASS(CFrozenComponent, CComponent);
 
 // CFrozenComponent::CTunableFrozenComponent
 namespace CFrozenComponent::CTunableFrozenComponent { extern bool refl_fields_added asm("g_unk_71727210f0"); }
-namespace CFrozenComponent::CTunableFrozenComponent { extern UnkTunable refl_tunable asm("g_unk_71727210c8"); }
-void fn_71007f8908(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CFrozenComponent::CTunableFrozenComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71727210c8"); }
+namespace CFrozenComponent::CTunableFrozenComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71007f8908"); }
 namespace CFrozenComponent::CTunableFrozenComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -52,7 +51,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bInfiniteFrozenTime", 0x21, (DefaultValue, false));
-    fn_71007f8908(base::reflection::TunableRegistry(), &refl_tunable, "");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -76,7 +75,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CFrozenComponent::CTunableFrozenComponent
-DREAD_REFLECTED_CLASS(CFrozenComponent::CTunableFrozenComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CFrozenComponent::CTunableFrozenComponent, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

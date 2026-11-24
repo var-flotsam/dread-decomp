@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
 #include "base/reflection/ReflectedAttributes.h"
@@ -12,15 +13,13 @@ using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 template <class T> struct CGameLink;
 class CEntity;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
@@ -61,8 +60,8 @@ DREAD_REFLECTED_CLASS(CAccessPointComponent, CUsableComponent);
 
 // CAccessPointComponent::CTunableAccessPointComponent
 namespace CAccessPointComponent::CTunableAccessPointComponent { extern bool refl_fields_added asm("g_unk_717274ec88"); }
-namespace CAccessPointComponent::CTunableAccessPointComponent { extern UnkTunable refl_tunable asm("g_unk_717274ec40"); }
-void fn_7100a6c73c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CAccessPointComponent::CTunableAccessPointComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_717274ec40"); }
+namespace CAccessPointComponent::CTunableAccessPointComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100a6c73c"); }
 namespace CAccessPointComponent::CTunableAccessPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -80,7 +79,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fVoiceFadeOutTime", 0x3c, (DefaultValue, 0.2f), (Description, "Voice Fade Out Time"));
     DREAD_REFLECTED_FIELD(f32, "fVoiceReverb", 0x40, (DefaultValue, 0.5f), (Description, "Voice Reverb Intensity"));
     DREAD_REFLECTED_FIELD(f32, "fAdamSpeechVolume", 0x44, (DefaultValue, 1.0f), (Description, "Adam Speech Volume"));
-    fn_7100a6c73c(base::reflection::TunableRegistry(), &refl_tunable, "Logic");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Logic");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -104,7 +103,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CAccessPointComponent::CTunableAccessPointComponent
-DREAD_REFLECTED_CLASS(CAccessPointComponent::CTunableAccessPointComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CAccessPointComponent::CTunableAccessPointComponent, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

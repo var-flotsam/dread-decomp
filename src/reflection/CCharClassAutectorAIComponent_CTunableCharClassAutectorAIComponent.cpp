@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent
 namespace CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent { extern bool refl_fields_added asm("g_unk_71726bdbd0"); }
-namespace CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726bdb98"); }
-void fn_71003bcc38(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726bdb98"); }
+namespace CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71003bcc38"); }
 namespace CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -36,7 +35,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToExplosion", 0x28, (DefaultValue, 0.1f), (ShowInDevConfig, true), (Description, "Explosion time"), (MinValue, 0.0f), (MaxValue, 10.0f), (ControlFloatStep, 0.1f), (InternalDevTag, "RegularEnemies|Autector"));
     DREAD_REFLECTED_FIELD(f32, "fTimeAtMaxRadiusExplosion", 0x2c, (DefaultValue, 0.1f), (ShowInDevConfig, true), (Description, "Explosion time at max radius"), (MinValue, 0.0f), (MaxValue, 10.0f), (ControlFloatStep, 0.1f), (InternalDevTag, "RegularEnemies|Autector"));
     DREAD_REFLECTED_FIELD(bool, "bCanBeSpawned", 0x30, (DefaultValue, true), (ShowInDevConfig, true), (Description, "Can be spawned"), (InternalDevTag, "RegularEnemies|Autector"));
-    fn_71003bcc38(base::reflection::TunableRegistry(), &refl_tunable, "Autector");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Autector");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -60,7 +59,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent
-DREAD_REFLECTED_CLASS(CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent, base::tunable::CTunable);
 
 // CCharClassAutectorAIComponent
 namespace CCharClassAutectorAIComponent {

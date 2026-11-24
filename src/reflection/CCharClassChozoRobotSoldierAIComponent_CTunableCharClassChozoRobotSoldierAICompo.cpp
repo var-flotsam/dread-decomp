@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent
 namespace CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent { extern bool refl_fields_added asm("g_unk_71726cc730"); }
-namespace CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726cc6d8"); }
-void fn_710046d724(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726cc6d8"); }
+namespace CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710046d724"); }
 namespace CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -45,7 +44,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMeleeAttackAfterRangedAttackProbability", 0x4c, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fChangeToRangedAttackOnSamePlatformProbability", 0x50, (DefaultValue, 0.2f));
     DREAD_REFLECTED_FIELD(bool, "bAllCanUseChargeBeam", 0x54, (DefaultValue, false));
-    fn_710046d724(base::reflection::TunableRegistry(), &refl_tunable, "ChozoRobotSoldier");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "ChozoRobotSoldier");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -69,7 +68,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent
-DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent, base::tunable::CTunable);
 
 // CCharClassChozoRobotSoldierAIComponent
 namespace CCharClassChozoRobotSoldierCannonShotAttack { const base::reflection::CClass* refl_GetClass(); }

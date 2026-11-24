@@ -11,7 +11,6 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 struct UnkReflType;
 
 extern const base::math::CVector2D g_unk_7101647788;

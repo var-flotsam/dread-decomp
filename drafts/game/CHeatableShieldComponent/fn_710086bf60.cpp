@@ -98,7 +98,7 @@ static inline UnkTunableRegistry* Registry() {
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
+        CTunableManager_Construct(registry);
         g_unk_7101d47350 = registry;
     }
     return registry;

@@ -5,15 +5,14 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -44,8 +43,8 @@ DREAD_REFLECTED_CLASS(CCharClassScorpiusSpikeBallPrickAttack, CCharClassScorpius
 
 // CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack
 namespace CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack { extern bool refl_fields_added asm("g_unk_7172702640"); }
-namespace CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack { extern UnkTunable refl_tunable asm("g_unk_7172702608"); }
-void fn_7100683e98(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack { extern base::tunable::CTunable refl_tunable asm("g_unk_7172702608"); }
+namespace CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100683e98"); }
 namespace CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -59,7 +58,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 500.0f), (ShowInDevConfig, true), (Description, "Max distance"), (MinValue, -1.0f), (MaxValue, 2000.0f), (ControlFloatStep, 50.0f), (InternalDevTag, "Bosses|Scorpius|SpikeBall"));
     DREAD_REFLECTED_FIELD(f32, "fTimeToDisableAttackAfterMeleeSuccess", 0x2c, (DefaultValue, 50.0f));
     DREAD_REFLECTED_FIELD(f32, "fFrameToReleaseTail", 0x30, (DefaultValue, 136.0f));
-    fn_7100683e98(base::reflection::TunableRegistry(), &refl_tunable, "Scorpius");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Scorpius");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -83,4 +82,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack
-DREAD_REFLECTED_CLASS(CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack, base::tunable::CTunable);

@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent
 namespace CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent { extern bool refl_fields_added asm("g_unk_71726d0e40"); }
-namespace CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726d0e00"); }
-void fn_7100496d00(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726d0e00"); }
+namespace CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100496d00"); }
 namespace CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -38,7 +37,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fShieldDamagePerMelee", 0x30, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(bool, "bAllowShieldImpactAnim", 0x34, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenShieldImpactAnim", 0x38, (DefaultValue, 1.5f));
-    fn_7100496d00(base::reflection::TunableRegistry(), &refl_tunable, "ChozoWarrior");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "ChozoWarrior");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -62,7 +61,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent
-DREAD_REFLECTED_CLASS(CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent, base::tunable::CTunable);
 
 // CCharClassChozoWarriorAIComponent
 namespace CCharClassChozoWarriorDeflectorShieldAttack { const base::reflection::CClass* refl_GetClass(); }

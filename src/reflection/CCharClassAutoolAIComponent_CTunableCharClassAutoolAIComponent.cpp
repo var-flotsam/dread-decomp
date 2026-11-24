@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent
 namespace CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent { extern bool refl_fields_added asm("g_unk_71726beb68"); }
-namespace CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726beb18"); }
-void fn_71003c82a0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726beb18"); }
+namespace CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71003c82a0"); }
 namespace CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -43,7 +42,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxAcceleration", 0x40, (DefaultValue, 1.5f));
     DREAD_REFLECTED_FIELD(f32, "fMinAcceleration", 0x44, (DefaultValue, 0.8f));
     DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x48, (DefaultValue, 800.0f), (ShowInDevConfig, true), (Description, "Motion speed"), (MinValue, 0.0f), (MaxValue, 5000.0f), (ControlFloatStep, 50.0f), (InternalDevTag, "RegularEnemies|Autool"));
-    fn_71003c82a0(base::reflection::TunableRegistry(), &refl_tunable, "Autool");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Autool");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -67,7 +66,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent
-DREAD_REFLECTED_CLASS(CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent, base::tunable::CTunable);
 
 // CCharClassAutoolAIComponent
 namespace CCharClassAutoolAIComponent {

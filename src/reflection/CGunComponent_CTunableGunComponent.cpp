@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CGunComponent::CTunableGunComponent
 namespace CGunComponent::CTunableGunComponent { extern bool refl_fields_added asm("g_unk_7172726270"); }
-namespace CGunComponent::CTunableGunComponent { extern UnkTunable refl_tunable asm("g_unk_7172726228"); }
-void fn_7100837e98(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CGunComponent::CTunableGunComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_7172726228"); }
+namespace CGunComponent::CTunableGunComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100837e98"); }
 namespace CGunComponent::CTunableGunComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -40,7 +39,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDiffusionFireChargeMinTime", 0x38, (DefaultValue, 0.0f), (Description, "Min time to Start Charge Diffusion Beams"));
     DREAD_REFLECTED_FIELD(f32, "fDiffusionFireChargeMaxTime", 0x3c, (DefaultValue, 0.0f), (Description, "Max time to End Charge Diffusion Beams"));
     DREAD_REFLECTED_FIELD(f32, "fIgnoreFireAfterChargeReleasedTime", 0x40, (DefaultValue, 0.2f), (Description, "Time after firing a charged beam that the fire input is ignored"));
-    fn_7100837e98(base::reflection::TunableRegistry(), &refl_tunable, "Gun");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Gun");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -64,7 +63,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CGunComponent::CTunableGunComponent
-DREAD_REFLECTED_CLASS(CGunComponent::CTunableGunComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CGunComponent::CTunableGunComponent, base::tunable::CTunable);
 
 // CGunComponent
 void fn_71008388f8(CFunction* fn, const char* name);

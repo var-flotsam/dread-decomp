@@ -6,20 +6,19 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
@@ -49,8 +48,8 @@ void fn_71007236e4();
 void fn_7100721b74(CFunction* fn, const char* name);
 void fn_710072378c();
 void fn_7100721cf0(CFunction* fn, const char* name);
-namespace CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl { extern UnkTunable refl_tunable asm("g_unk_717270f910"); }
-void fn_7100721e6c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl { extern base::tunable::CTunable refl_tunable asm("g_unk_717270f910"); }
+namespace CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100721e6c"); }
 namespace CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -81,7 +80,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_iAimNewCameraInputMode_SetterFunction")
         fn_7100721cf0(fn, "_iAimNewCameraInputMode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iAimNewCameraInputMode", (DefaultValue, 1));
-    fn_7100721e6c(base::reflection::TunableRegistry(), &refl_tunable, "AutofocusAimCameraCtrl");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "AutofocusAimCameraCtrl");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -105,4 +104,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl
-DREAD_REFLECTED_CLASS(CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl, base::tunable::CTunable);

@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // sound::CMusicManager::CTunableMusicManager
 namespace sound::CMusicManager::CTunableMusicManager { extern bool refl_fields_added asm("g_unk_71729f0880"); }
-namespace sound::CMusicManager::CTunableMusicManager { extern UnkTunable refl_tunable asm("g_unk_71729f0858"); }
-void fn_7100fd352c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace sound::CMusicManager::CTunableMusicManager { extern base::tunable::CTunable refl_tunable asm("g_unk_71729f0858"); }
+namespace sound::CMusicManager::CTunableMusicManager { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100fd352c"); }
 namespace sound::CMusicManager::CTunableMusicManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -33,7 +32,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bNCLCurrentMusicDebugEnable", 0x21, (DefaultValue, false));
-    fn_7100fd352c(base::reflection::TunableRegistry(), &refl_tunable, "MUSIC");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "MUSIC");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -57,7 +56,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace sound::CMusicManager::CTunableMusicManager
-DREAD_REFLECTED_CLASS(sound::CMusicManager::CTunableMusicManager, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(sound::CMusicManager::CTunableMusicManager, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

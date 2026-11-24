@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -42,8 +41,8 @@ DREAD_REFLECTED_CLASS(CCharClassGooplotJumpAttack, CCharClassAttack);
 
 // CCharClassGooplotJumpAttack::CTunableCharClassGooplotJumpAttack
 namespace CCharClassGooplotJumpAttack::CTunableCharClassGooplotJumpAttack { extern bool refl_fields_added asm("g_unk_71726e6a58"); }
-namespace CCharClassGooplotJumpAttack::CTunableCharClassGooplotJumpAttack { extern UnkTunable refl_tunable asm("g_unk_71726e6a28"); }
-void fn_7100592f20(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassGooplotJumpAttack::CTunableCharClassGooplotJumpAttack { extern base::tunable::CTunable refl_tunable asm("g_unk_71726e6a28"); }
+namespace CCharClassGooplotJumpAttack::CTunableCharClassGooplotJumpAttack { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100592f20"); }
 namespace CCharClassGooplotJumpAttack::CTunableCharClassGooplotJumpAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -54,7 +53,7 @@ void refl_AddFields(CClass* cls) {
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 300.0f));
-    fn_7100592f20(base::reflection::TunableRegistry(), &refl_tunable, "Gooplot");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Gooplot");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -78,4 +77,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassGooplotJumpAttack::CTunableCharClassGooplotJumpAttack
-DREAD_REFLECTED_CLASS(CCharClassGooplotJumpAttack::CTunableCharClassGooplotJumpAttack, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassGooplotJumpAttack::CTunableCharClassGooplotJumpAttack, base::tunable::CTunable);

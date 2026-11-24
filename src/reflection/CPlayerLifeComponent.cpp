@@ -5,14 +5,13 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -20,7 +19,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
@@ -58,8 +57,8 @@ DREAD_REFLECTED_CLASS(CPlayerLifeComponent, CCharacterLifeComponent);
 
 // CPlayerLifeComponent::CTunablePlayerLifeComponent
 namespace CPlayerLifeComponent::CTunablePlayerLifeComponent { extern bool refl_fields_added asm("g_unk_7172a0a178"); }
-namespace CPlayerLifeComponent::CTunablePlayerLifeComponent { extern UnkTunable refl_tunable asm("g_unk_7172a0a0a8"); }
-void fn_71011644f8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CPlayerLifeComponent::CTunablePlayerLifeComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_7172a0a0a8"); }
+namespace CPlayerLifeComponent::CTunablePlayerLifeComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71011644f8"); }
 namespace CPlayerLifeComponent::CTunablePlayerLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -111,7 +110,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fEasyModeDropAmountFactor_XOrangePowerBomb", 0xc4, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(bool, "bEasyModeEnemyProjectileOneHit", 0xc8, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fEasyModeKraidBouncingCreatureLifeFactor", 0xcc, (DefaultValue, 1.0f));
-    fn_71011644f8(base::reflection::TunableRegistry(), &refl_tunable, "Player");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Player");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -135,7 +134,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CPlayerLifeComponent::CTunablePlayerLifeComponent
-DREAD_REFLECTED_CLASS(CPlayerLifeComponent::CTunablePlayerLifeComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CPlayerLifeComponent::CTunablePlayerLifeComponent, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

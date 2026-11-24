@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CEvacuationCountDown::CTunableEvacuationCountDown
 namespace CEvacuationCountDown::CTunableEvacuationCountDown { extern bool refl_fields_added asm("g_unk_717271e8f0"); }
-namespace CEvacuationCountDown::CTunableEvacuationCountDown { extern UnkTunable refl_tunable asm("g_unk_717271e848"); }
-void fn_71007d9774(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CEvacuationCountDown::CTunableEvacuationCountDown { extern base::tunable::CTunable refl_tunable asm("g_unk_717271e848"); }
+namespace CEvacuationCountDown::CTunableEvacuationCountDown { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71007d9774"); }
 namespace CEvacuationCountDown::CTunableEvacuationCountDown {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -57,7 +56,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMinEmberFlyingPercentage", 0x98, (DefaultValue, 0.0f), (Description, "Min ember percentage"));
     DREAD_REFLECTED_FIELD(f32, "fMaxEmberFlyingPercentage", 0x9c, (DefaultValue, 1.0f), (Description, "Max ember percentage"));
     DREAD_REFLECTED_FIELD(CStrId, "sEmberFyingEasingFunction", 0xa0, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Easing function ember progression"));
-    fn_71007d9774(base::reflection::TunableRegistry(), &refl_tunable, "EvacuationCountDown");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "EvacuationCountDown");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -81,7 +80,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CEvacuationCountDown::CTunableEvacuationCountDown
-DREAD_REFLECTED_CLASS(CEvacuationCountDown::CTunableEvacuationCountDown, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CEvacuationCountDown::CTunableEvacuationCountDown, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

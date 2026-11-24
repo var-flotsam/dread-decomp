@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -42,8 +41,8 @@ DREAD_REFLECTED_CLASS(CCharClassScorpiusTailSmashAttack, CCharClassScorpiusAttac
 
 // CCharClassScorpiusTailSmashAttack::CTunableCharClassScorpiusTailSmashAttack
 namespace CCharClassScorpiusTailSmashAttack::CTunableCharClassScorpiusTailSmashAttack { extern bool refl_fields_added asm("g_unk_7172702918"); }
-namespace CCharClassScorpiusTailSmashAttack::CTunableCharClassScorpiusTailSmashAttack { extern UnkTunable refl_tunable asm("g_unk_71727028e8"); }
-void fn_7100684d94(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassScorpiusTailSmashAttack::CTunableCharClassScorpiusTailSmashAttack { extern base::tunable::CTunable refl_tunable asm("g_unk_71727028e8"); }
+namespace CCharClassScorpiusTailSmashAttack::CTunableCharClassScorpiusTailSmashAttack { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100684d94"); }
 namespace CCharClassScorpiusTailSmashAttack::CTunableCharClassScorpiusTailSmashAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -56,7 +55,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 1050.0f));
     DREAD_REFLECTED_FIELD(f32, "fMinTimeToAttack", 0x2c, (DefaultValue, 2.5f));
-    fn_7100684d94(base::reflection::TunableRegistry(), &refl_tunable, "Scorpius");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Scorpius");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -80,4 +79,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassScorpiusTailSmashAttack::CTunableCharClassScorpiusTailSmashAttack
-DREAD_REFLECTED_CLASS(CCharClassScorpiusTailSmashAttack::CTunableCharClassScorpiusTailSmashAttack, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassScorpiusTailSmashAttack::CTunableCharClassScorpiusTailSmashAttack, base::tunable::CTunable);

@@ -15,6 +15,7 @@ using base::reflection::ConstKeyElementValue;
 using base::reflection::KeyElementValue;
 
 #include <memory>
+#include "base/tunable/CTunableManager.h"
 class CAcidBlobsLaunchPattern;
 class CActor;
 class CActorComponent;

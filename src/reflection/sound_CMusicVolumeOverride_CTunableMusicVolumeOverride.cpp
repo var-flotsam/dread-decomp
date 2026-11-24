@@ -6,20 +6,19 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // sound::CMusicVolumeOverride::CTunableMusicVolumeOverride
@@ -170,8 +169,8 @@ void fn_710101e3f4();
 void fn_7101017d4c(CFunction* fn, const char* name);
 void fn_710101e4d8();
 void fn_7101017ec8(CFunction* fn, const char* name);
-namespace sound::CMusicVolumeOverride::CTunableMusicVolumeOverride { extern UnkTunable refl_tunable asm("g_unk_71729f8150"); }
-void fn_7101018044(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace sound::CMusicVolumeOverride::CTunableMusicVolumeOverride { extern base::tunable::CTunable refl_tunable asm("g_unk_71729f8150"); }
+namespace sound::CMusicVolumeOverride::CTunableMusicVolumeOverride { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7101018044"); }
 namespace sound::CMusicVolumeOverride::CTunableMusicVolumeOverride {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -618,7 +617,7 @@ void refl_AddFields(CClass* cls) {
             fn_7101017ec8(fn, "_fJinglePowerUpGet_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fJinglePowerUpGet", (DefaultValue, -1.0f));
-    fn_7101018044(base::reflection::TunableRegistry(), &refl_tunable, "MUSIC");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "MUSIC");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -642,4 +641,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace sound::CMusicVolumeOverride::CTunableMusicVolumeOverride
-DREAD_REFLECTED_CLASS(sound::CMusicVolumeOverride::CTunableMusicVolumeOverride, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(sound::CMusicVolumeOverride::CTunableMusicVolumeOverride, base::tunable::CTunable);

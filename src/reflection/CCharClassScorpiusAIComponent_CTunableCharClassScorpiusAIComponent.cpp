@@ -7,14 +7,13 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -23,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent
 namespace CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent { extern bool refl_fields_added asm("g_unk_7172703ee8"); }
-namespace CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent { extern UnkTunable refl_tunable asm("g_unk_7172703e88"); }
-void fn_710068f380(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_7172703e88"); }
+namespace CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710068f380"); }
 namespace CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -49,7 +48,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fBackMaxDistance", 0x50, (DefaultValue, 1000.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageMultiplayerInPhase2", 0x54, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fTailDamageToActivateCamouflage", 0x58, (DefaultValue, 300.0f));
-    fn_710068f380(base::reflection::TunableRegistry(), &refl_tunable, "Scorpius");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Scorpius");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -73,7 +72,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent
-DREAD_REFLECTED_CLASS(CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent, base::tunable::CTunable);
 
 // CCharClassScorpiusAIComponent
 namespace CCharClassScorpiusDefensiveSpikeBallPrickAttack { const base::reflection::CClass* refl_GetClass(); }

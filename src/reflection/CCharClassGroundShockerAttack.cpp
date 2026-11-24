@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -42,8 +41,8 @@ DREAD_REFLECTED_CLASS(CCharClassGroundShockerAttack, CCharClassAttack);
 
 // CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack
 namespace CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack { extern bool refl_fields_added asm("g_unk_71726e7c20"); }
-namespace CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack { extern UnkTunable refl_tunable asm("g_unk_71726e7be0"); }
-void fn_710059fc94(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack { extern base::tunable::CTunable refl_tunable asm("g_unk_71726e7be0"); }
+namespace CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710059fc94"); }
 namespace CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -58,7 +57,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fHitLoopDuration", 0x30, (DefaultValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fVulnerableAfterHitDuration", 0x34, (DefaultValue, 2.5f));
     DREAD_REFLECTED_FIELD(f32, "fVulnerableOnPushDuration", 0x38, (DefaultValue, 2.5f));
-    fn_710059fc94(base::reflection::TunableRegistry(), &refl_tunable, "GroundShocker");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "GroundShocker");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -82,4 +81,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack
-DREAD_REFLECTED_CLASS(CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack, base::tunable::CTunable);

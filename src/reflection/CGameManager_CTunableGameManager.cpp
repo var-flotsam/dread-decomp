@@ -6,24 +6,23 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
+#include "reflected/CGameManager/CTunableEnemies.h"
+#include "reflected/CGameManager/CTunableGraphicSettings.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CGameManager::CTunableGameManager
 namespace CGameManager::CTunableGameManager { extern bool refl_fields_added asm("g_unk_71727be8a0"); }
-namespace CGameManager::CTunableGameManager { extern UnkTunable refl_tunable asm("g_unk_71727be870"); }
-void fn_7100de2e20(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CGameManager::CTunableGameManager { extern base::tunable::CTunable refl_tunable asm("g_unk_71727be870"); }
+namespace CGameManager::CTunableGameManager { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100de2e20"); }
 namespace CGameManager::CTunableGameManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -37,7 +36,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bSamusCenterPointDebug", 0x29, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bCheatDetectedDebug", 0x2a, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bForceHardMode", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    fn_7100de2e20(base::reflection::TunableRegistry(), &refl_tunable, "");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -61,23 +60,20 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CGameManager::CTunableGameManager
-DREAD_REFLECTED_CLASS(CGameManager::CTunableGameManager, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CGameManager::CTunableGameManager, base::tunable::CTunable);
 
 // CGameManager::CTunableGraphicSettings
-namespace CGameManager::CTunableGraphicSettings {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls);
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x28;
+void CGameManager::CTunableGraphicSettings::refl_AddAttributes(CClass*) {}
+bool CGameManager::CTunableGraphicSettings::refl_Equals(const void*, const void*) { return false; }
+s32 CGameManager::CTunableGraphicSettings::refl_Hash() { return -1; }
+const base::reflection::CType& CGameManager::CTunableGraphicSettings::refl_TypeOf(const void* obj) { return *static_cast<const CTunableGraphicSettings*>(obj)->refl_GetDynamicClass(); }
+void CGameManager::CTunableGraphicSettings::refl_CopyConstruct(void*, const void*) {}
+void CGameManager::CTunableGraphicSettings::refl_MoveConstruct(void*, const void*) {}
+void CGameManager::CTunableGraphicSettings::refl_Destroy(void* obj) { static_cast<CTunableGraphicSettings*>(obj)->~CTunableGraphicSettings(); }
+void* CGameManager::CTunableGraphicSettings::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CGameManager::CTunableGraphicSettings::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CGameManager::CTunableGraphicSettings::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CTunableGraphicSettings);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -88,13 +84,12 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CGameManager::CTunableGraphicSettings
-DREAD_REFLECTED_CLASS(CGameManager::CTunableGraphicSettings, base::tunable::CTunable);
+DREAD_REFLECTED_DECLARED_CLASS(CGameManager::CTunableGraphicSettings, base::tunable::CTunable);
 
 // CGameManager::CTunableMusicVolume
 namespace CGameManager::CTunableMusicVolume { extern bool refl_fields_added asm("g_unk_71727be900"); }
-namespace CGameManager::CTunableMusicVolume { extern UnkTunable refl_tunable asm("g_unk_71727be8d8"); }
-void fn_7100de3a68(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CGameManager::CTunableMusicVolume { extern base::tunable::CTunable refl_tunable asm("g_unk_71727be8d8"); }
+namespace CGameManager::CTunableMusicVolume { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100de3a68"); }
 namespace CGameManager::CTunableMusicVolume {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -104,7 +99,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fVolumeInMenu", 0x24, (DefaultValue, 0.7f), (Description, "Multiplier for the music volume in menu"));
-    fn_7100de3a68(base::reflection::TunableRegistry(), &refl_tunable, "MUSIC");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "MUSIC");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -128,23 +123,20 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CGameManager::CTunableMusicVolume
-DREAD_REFLECTED_CLASS(CGameManager::CTunableMusicVolume, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CGameManager::CTunableMusicVolume, base::tunable::CTunable);
 
 // CGameManager::CTunableEnemies
-namespace CGameManager::CTunableEnemies {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls);
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x28;
+void CGameManager::CTunableEnemies::refl_AddAttributes(CClass*) {}
+bool CGameManager::CTunableEnemies::refl_Equals(const void*, const void*) { return false; }
+s32 CGameManager::CTunableEnemies::refl_Hash() { return -1; }
+const base::reflection::CType& CGameManager::CTunableEnemies::refl_TypeOf(const void* obj) { return *static_cast<const CTunableEnemies*>(obj)->refl_GetDynamicClass(); }
+void CGameManager::CTunableEnemies::refl_CopyConstruct(void*, const void*) {}
+void CGameManager::CTunableEnemies::refl_MoveConstruct(void*, const void*) {}
+void CGameManager::CTunableEnemies::refl_Destroy(void* obj) { static_cast<CTunableEnemies*>(obj)->~CTunableEnemies(); }
+void* CGameManager::CTunableEnemies::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CGameManager::CTunableEnemies::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CGameManager::CTunableEnemies::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CTunableEnemies);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -155,8 +147,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CGameManager::CTunableEnemies
-DREAD_REFLECTED_CLASS(CGameManager::CTunableEnemies, base::tunable::CTunable);
+DREAD_REFLECTED_DECLARED_CLASS(CGameManager::CTunableEnemies, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

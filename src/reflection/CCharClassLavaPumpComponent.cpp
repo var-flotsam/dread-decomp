@@ -6,15 +6,14 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 #include "reflected/CCharClassLavaPumpComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::Destroy;
@@ -74,8 +73,8 @@ DREAD_REFLECTED_CLASS(CLavaPumpComponent, CActivatableComponent);
 
 // CLavaPumpComponent::CTunableLavaPumpComponent
 namespace CLavaPumpComponent::CTunableLavaPumpComponent { extern bool refl_fields_added asm("g_unk_717272a758"); }
-namespace CLavaPumpComponent::CTunableLavaPumpComponent { extern UnkTunable refl_tunable asm("g_unk_717272a728"); }
-void fn_71008799e0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CLavaPumpComponent::CTunableLavaPumpComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_717272a728"); }
+namespace CLavaPumpComponent::CTunableLavaPumpComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71008799e0"); }
 namespace CLavaPumpComponent::CTunableLavaPumpComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -86,7 +85,7 @@ void refl_AddFields(CClass* cls) {
         return;
     DREAD_REFLECTED_FIELD(f32, "fInitialPlayRate", 0x24, (DefaultValue, 0.4f), (Description, "Inital min play rate in animation"));
     DREAD_REFLECTED_FIELD(f32, "fActivationTime", 0x28, (DefaultValue, 2.0f), (Description, "Activation Time"));
-    fn_71008799e0(base::reflection::TunableRegistry(), &refl_tunable, "LavaPumpComponent");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "LavaPumpComponent");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -110,4 +109,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CLavaPumpComponent::CTunableLavaPumpComponent
-DREAD_REFLECTED_CLASS(CLavaPumpComponent::CTunableLavaPumpComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CLavaPumpComponent::CTunableLavaPumpComponent, base::tunable::CTunable);

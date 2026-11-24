@@ -1,8 +1,11 @@
-// The tunables' registry unit (the one lua_bind::GenerateMissingTunables reaches): groups of
-// tunables (0x80 bytes each) kept in two parallel arrays, the groups and their names (CStrId),
-// that share a count, a capacity and a growth step (fn_710013ac14 builds them; fn_710013c2ac
-// appends; src/game_lo/fn_710013c3c8.cpp looks a group up). Names and layouts are placeholders
-// inferred from the code.
+// The tunable manager's unit (the one lua_bind::GenerateMissingTunables reaches). The manager is
+// base::tunable::CTunableManager (base/tunable/CTunableManager.h; UnkTunableRegistry here): 0x58 bytes,
+// the registered tunables by name in a small dictionary at +0x00 (its reflected member hashTunables), a
+// word at +0x28 its constructor leaves unset, and at +0x30 the part this file works on: groups of
+// tunables (0x80 bytes each) kept in two parallel arrays, the groups and their names (CStrId), that
+// share a count, a capacity and a growth step (the constructor, CTunableManager_Construct, builds both
+// parts; fn_710013c2ac appends a group; src/game_lo/fn_710013c3c8.cpp looks one up). The names and
+// layouts defined here are placeholders inferred from the code.
 #include "base/UnkTunableField.h"
 #include "base/UnkTunableLine.h"
 #include "base/UnkTunableMember.h"

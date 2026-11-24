@@ -5,16 +5,15 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -48,8 +47,8 @@ DREAD_REFLECTED_CLASS(CCharClassSabotoruAIComponent, CCharClassBehaviorTreeAICom
 
 // CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent
 namespace CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent { extern bool refl_fields_added asm("g_unk_7172700858"); }
-namespace CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent { extern UnkTunable refl_tunable asm("g_unk_7172700828"); }
-void fn_7100677068(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_7172700828"); }
+namespace CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100677068"); }
 namespace CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -60,7 +59,7 @@ void refl_AddFields(CClass* cls) {
         return;
     DREAD_REFLECTED_FIELD(f32, "fDoorLife", 0x24, (DefaultValue, 2500.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToStopPanic", 0x28, (DefaultValue, 10.0f));
-    fn_7100677068(base::reflection::TunableRegistry(), &refl_tunable, "Sabotoru");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Sabotoru");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -84,4 +83,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent
-DREAD_REFLECTED_CLASS(CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent, base::tunable::CTunable);

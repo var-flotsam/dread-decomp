@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -42,8 +41,8 @@ DREAD_REFLECTED_CLASS(CMetroidCameraCtrl, CCameraBoundaryCtrl);
 
 // CMetroidCameraCtrl::CTunableMetroidCameraCtrl
 namespace CMetroidCameraCtrl::CTunableMetroidCameraCtrl { extern bool refl_fields_added asm("g_unk_7172738cb8"); }
-namespace CMetroidCameraCtrl::CTunableMetroidCameraCtrl { extern UnkTunable refl_tunable asm("g_unk_7172738c28"); }
-void fn_710093446c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CMetroidCameraCtrl::CTunableMetroidCameraCtrl { extern base::tunable::CTunable refl_tunable asm("g_unk_7172738c28"); }
+namespace CMetroidCameraCtrl::CTunableMetroidCameraCtrl { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710093446c"); }
 namespace CMetroidCameraCtrl::CTunableMetroidCameraCtrl {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -76,7 +75,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkOCStoppedCamMaxOffsetX", 0x7c, (DefaultValue, 100.0f), (Description, "Obsolete"));
     DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkDisableAutoFocusEmmyExtraDistance", 0x80, (DefaultValue, 300.0f));
     DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkAutoFocusDistCamZ", 0x84, (DefaultValue, 1600.0f));
-    fn_710093446c(base::reflection::TunableRegistry(), &refl_tunable, "MetroidCameraCtrl");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "MetroidCameraCtrl");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -100,4 +99,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CMetroidCameraCtrl::CTunableMetroidCameraCtrl
-DREAD_REFLECTED_CLASS(CMetroidCameraCtrl::CTunableMetroidCameraCtrl, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CMetroidCameraCtrl::CTunableMetroidCameraCtrl, base::tunable::CTunable);

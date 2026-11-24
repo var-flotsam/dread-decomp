@@ -1,24 +1,12 @@
 #pragma once
 
-// The global tunable registry (UnkTunableRegistry in base/reflection/ReflectedAttributes.h), created
-// on first use by the CTunable* field functions and read by the hand-written tunable initialisers.
+// The hand-written sources' older name for base::tunable::CTunableManager (base/tunable/CTunableManager.h, which
+// declares its global pointer and its constructor): base::reflection::UnkTunableRegistry is that class. A source
+// that is next worked on names the class.
 
-#include "base/global/CRntVector.h"
 #include "base/reflection/ReflectedAttributes.h"
-extern base::reflection::UnkTunableRegistry* g_unk_7101d47350;
+#include "base/tunable/CTunableManager.h"
 
 namespace base::reflection {
-
-// The global tunable registry, created (0x58 bytes) and constructed on first use: each CTunable* class
-// registers its tunable object in it under the class's category.
-inline UnkTunableRegistry* TunableRegistry() {
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    return registry;
-}
-
+using UnkTunableRegistry = base::tunable::CTunableManager;
 }  // namespace base::reflection

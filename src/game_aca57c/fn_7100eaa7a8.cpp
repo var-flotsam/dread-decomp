@@ -57,7 +57,7 @@ __attribute__((always_inline)) static inline void SetProperty(UnkMinimapSettings
     UnkTunableRegistry* notifier = g_unk_7101d47350;
     if (!notifier) {
         notifier = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(notifier);
+        CTunableManager_Construct(notifier);
         g_unk_7101d47350 = notifier;
     }
     void* object = self->field_0x18;

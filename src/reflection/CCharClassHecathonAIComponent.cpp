@@ -5,16 +5,15 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -45,8 +44,8 @@ DREAD_REFLECTED_CLASS(CCharClassHecathonAIComponent, CCharClassBehaviorTreeAICom
 
 // CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent
 namespace CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent { extern bool refl_fields_added asm("g_unk_71726e8d68"); }
-namespace CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726e8d00"); }
-void fn_71005a7384(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726e8d00"); }
+namespace CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71005a7384"); }
 namespace CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -72,7 +71,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToChangeSpeed", 0x5c, (DefaultValue, 0.4f));
     DREAD_REFLECTED_FIELD(f32, "fSpeedFactor", 0x60, (DefaultValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToEat", 0x64, (DefaultValue, 1.0f));
-    fn_71005a7384(base::reflection::TunableRegistry(), &refl_tunable, "HecathonAI");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "HecathonAI");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -96,4 +95,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent
-DREAD_REFLECTED_CLASS(CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent, base::tunable::CTunable);

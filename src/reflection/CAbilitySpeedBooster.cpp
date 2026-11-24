@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -42,8 +41,8 @@ DREAD_REFLECTED_CLASS(CAbilitySpeedBooster, CAbility);
 
 // CAbilitySpeedBooster::CTunableAbilitySpeedBooster
 namespace CAbilitySpeedBooster::CTunableAbilitySpeedBooster { extern bool refl_fields_added asm("g_unk_71726b1010"); }
-namespace CAbilitySpeedBooster::CTunableAbilitySpeedBooster { extern UnkTunable refl_tunable asm("g_unk_71726b0fc0"); }
-void fn_710033b030(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CAbilitySpeedBooster::CTunableAbilitySpeedBooster { extern base::tunable::CTunable refl_tunable asm("g_unk_71726b0fc0"); }
+namespace CAbilitySpeedBooster::CTunableAbilitySpeedBooster { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710033b030"); }
 namespace CAbilitySpeedBooster::CTunableAbilitySpeedBooster {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -63,7 +62,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDefaultDamageAndRepelVerticalImpulse", 0x44, (DefaultValue, 300.0f), (Description, "Vertical impulse to apply to Samus when hitting an entity that receives damage and repels her"));
     DREAD_REFLECTED_FIELD(f32, "fMorphBallDamageAndRepelImpulse", 0x48, (DefaultValue, 1500.0f), (Description, "When Morph Ball can't convert to Samus after hitting an entity that repels her, apply this impulse to Morph Ball"));
     DREAD_REFLECTED_FIELD(f32, "fBufferedActivationTime", 0x4c, (DefaultValue, 0.25f), (Description, "When player tries to activate the ability and it can't be done, we re-check for activation for this time"));
-    fn_710033b030(base::reflection::TunableRegistry(), &refl_tunable, "");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -87,7 +86,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CAbilitySpeedBooster::CTunableAbilitySpeedBooster
-DREAD_REFLECTED_CLASS(CAbilitySpeedBooster::CTunableAbilitySpeedBooster, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CAbilitySpeedBooster::CTunableAbilitySpeedBooster, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
