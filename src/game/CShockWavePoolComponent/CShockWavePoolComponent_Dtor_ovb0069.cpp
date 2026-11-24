@@ -58,10 +58,10 @@ struct CShockWavePoolComponent_ovb0069 : UnkShockWavePoolBase_ovb0069 {
 };
 static_assert(__builtin_offsetof(CShockWavePoolComponent_ovb0069, field_0x2a8) == 0x2a8, "layout");
 
-void fn_71009f5b78(CShockWavePoolComponent_ovb0069& self) {
+void CShockWavePoolComponent_Destroy(CShockWavePoolComponent_ovb0069& self) {
     self.~CShockWavePoolComponent_ovb0069();
 }
 
-void fn_71009f5c18(CShockWavePoolComponent_ovb0069& self) {
+void CShockWavePoolComponent_DestroyAndDelete(CShockWavePoolComponent_ovb0069& self) {
     delete &self;
 }
