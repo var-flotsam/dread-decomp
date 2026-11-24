@@ -15,7 +15,7 @@ struct UnkStatics_7100623af0 {
 extern UnkStatics_7100623af0 g_unk_71726f8118 __attribute__((visibility("hidden")));
 extern char g_unk_71726f8100[];
 
-void fn_7100623af0() {
+void CNailongThornMovementComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726f8118.ids);
     InitClassId(&g_unk_71726f8118.field_0x18, "NailongThornMovementComponent");
     InitId(&g_unk_71726f8118.field_0x20, "fDamageNailongThorn");

@@ -92,8 +92,8 @@ struct UnkRumbleComponent_l9da364 {
     UnkRumbleEntries_ovb0083 entries;  // 0x48
 };
 
-void fn_71009dc0cc(UnkRumbleEntries_ovb0083* self, u32 index);
-void fn_71009da364(UnkRumbleComponent_l9da364* self);
+void CRumbleComponent_EraseRumbleEntry(UnkRumbleEntries_ovb0083* self, u32 index);
+void CRumbleComponent_UpdateRumblePositions(UnkRumbleComponent_l9da364* self);
 void fn_71009da588(UnkRumbleComponent_l9da364* self);
 
 void fn_71009da234(UnkRumbleComponent_l9da364* self) {
@@ -112,7 +112,7 @@ void fn_71009da234(UnkRumbleComponent_l9da364* self) {
     while (count != 0 && it != data + count) {
         if (!it->Get() && it->stopped) {
             u32 index = it - data;
-            fn_71009dc0cc(entries, index);
+            CRumbleComponent_EraseRumbleEntry(entries, index);
             data = entries->data;
             it = &data[index];
             count = entries->count;
@@ -120,6 +120,6 @@ void fn_71009da234(UnkRumbleComponent_l9da364* self) {
             ++it;
         }
     }
-    fn_71009da364(self);
+    CRumbleComponent_UpdateRumblePositions(self);
     fn_71009da588(self);
 }
