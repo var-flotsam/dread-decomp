@@ -37,7 +37,7 @@ struct UnkCameraCtrl {
     const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkCameraCtrl*)>(vtable[0])(this); }
 };
 
-void fn_7100750804(UnkCameraCtrl* ctrl, void* arg);
+void CBossCameraCtrl_AddTarget(UnkCameraCtrl* ctrl, void* arg);
 void fn_7100750948(UnkCameraCtrl* ctrl, void* arg);
 
 void fn_71003ad014(UnkCameraOwner* self, bool flag) {
@@ -57,7 +57,7 @@ void fn_71003ad014(UnkCameraOwner* self, bool flag) {
             UnkCameraCtrl* ctrl = fn_71010e389c(holder, &GameManagerIdTable().field_0x998);
             if (ctrl && ctrl->vf_0x0() == fn_710074eca8()) {
                 if (st->field_0x0)
-                    fn_7100750804(ctrl, self->field_0x30);
+                    CBossCameraCtrl_AddTarget(ctrl, self->field_0x30);
                 else
                     fn_7100750948(ctrl, self->field_0x30);
             }

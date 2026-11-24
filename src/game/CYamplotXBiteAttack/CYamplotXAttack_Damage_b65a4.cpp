@@ -66,7 +66,7 @@ __attribute__((always_inline)) static inline void SetUpDamage_b65a4(UnkYamplotAt
         request->field_0xc8 = 1;
 }
 
-void fn_71006ecf98(UnkYamplotAttack_b65a4* self, void* unused, UnkYamplotRequest_b65a4* request) {
+void CYamplotXBiteAttack_SetUpDamage(UnkYamplotAttack_b65a4* self, void* unused, UnkYamplotRequest_b65a4* request) {
     SetUpDamage_b65a4(self, request, g_unk_717270bd40);
 }
 
