@@ -43,7 +43,7 @@ static inline UnkShapeTester_A5_b68* GetTester_A5_b68() {
     return g_unk_71726a47a0;
 }
 
-bool fn_710091444c(UnkLogicShape_A5_b68* self, const UnkShapeObject_A5_b68* obj) {
+bool CLogicShapeComponent_TestObjectPositionAgainstShape(UnkLogicShape_A5_b68* self, const UnkShapeObject_A5_b68* obj) {
     if (!obj || !self->shape)
         return false;
     UnkShapeTester_A5_b68* tester = GetTester_A5_b68();

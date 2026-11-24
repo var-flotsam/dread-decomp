@@ -81,7 +81,7 @@ static inline const CRntString& UseName(const CStrId& id) {
     return id.data->String();
 }
 
-void fn_7100a99e70(UnkTrainUsable_la99e70* self, bool show) {
+void CTrainUsableComponent_SetLoadingScreenAndTravelToTarget(UnkTrainUsable_la99e70* self, bool show) {
     fn_7100aa2570(reinterpret_cast<UnkUsableDialog_A6_b62*>(self), show);
     if (!show)
         return;

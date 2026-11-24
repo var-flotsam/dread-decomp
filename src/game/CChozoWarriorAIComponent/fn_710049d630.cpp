@@ -23,7 +23,7 @@ struct UnkStatics_710049d630 {
 };
 extern UnkStatics_710049d630 g_unk_71726d1248 __attribute__((visibility("hidden")));
 void fn_7100497b38(void* self, const UnkStrIdBase* ids, u32 count);
-void fn_7100497e30(void* self);  // its destructor, as registered
+void CChozoWarriorAIComponent_DestroyStrIdTriple(void* self);  // its destructor, as registered
 extern char g_unk_71726d10e0[];
 namespace CChozoWarriorAIComponent { enum class ETransformationType : u32; }
 template <> UnkEnumType base::reflection::TypeObject<CChozoWarriorAIComponent::ETransformationType, UnkEnumType>::object asm("g_unk_71726d10e8");
@@ -50,7 +50,7 @@ void fn_710049d630() {
         UnkStrIdTmp ids[] = {UnkStrIdTmp("attack_walljump_end1", true), UnkStrIdTmp("attack_walljump_end2", true), UnkStrIdTmp("attack_walljump_end3", true)};
         fn_7100497b38(g_unk_71726d1248.field_0x88, ids, 3);
     }();
-    __cxa_atexit(fn_7100497e30, g_unk_71726d1248.field_0x88, g_unk_7101a19000);
+    __cxa_atexit(CChozoWarriorAIComponent_DestroyStrIdTriple, g_unk_71726d1248.field_0x88, g_unk_7101a19000);
     fn_7100497f2c();
     fn_710009ec00(g_unk_71726d10e0, g_unk_71726d1248.field_0xa0);
     InitEnum(&base::reflection::TypeObject<CChozoWarriorAIComponent::ETransformationType, UnkEnumType>::object, "CChozoWarriorAIComponent::ETransformationType", fn_7100498514, fn_7100498308,

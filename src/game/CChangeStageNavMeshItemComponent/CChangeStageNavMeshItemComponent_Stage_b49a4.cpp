@@ -38,12 +38,12 @@ static inline void Send(UnkChangeStageItem_b49a4* self, UnkStageNameData_b49a4* 
     }
 }
 
-void fn_71009ba334(UnkChangeStageItem_b49a4* self) {
+void CChangeStageNavMeshItemComponent_SendStageToTargetIfTestHolds(UnkChangeStageItem_b49a4* self) {
     if (fn_71009b9f6c(self))
         Send(self, &UnkStageSettings_b49a4::name_a);
 }
 
-void fn_71009ba3a0(UnkChangeStageItem_b49a4* self) {
+void CChangeStageNavMeshItemComponent_SendRemovedStageIfTestFails(UnkChangeStageItem_b49a4* self) {
     if (!fn_71009b9f6c(self))
         Send(self, &UnkStageSettings_b49a4::name_b);
 }

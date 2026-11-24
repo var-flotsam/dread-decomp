@@ -35,7 +35,7 @@ void CScourgeAIComponent_Destroy(UnkOwner_710069f1a0* self) {
     self->Destroy();
 }
 
-void CScourgeAIComponent_DeletingDestroy(UnkOwner_710069f1a0* self) {
+void CScourgeAIComponent_DestroyAndDelete(UnkOwner_710069f1a0* self) {
     self->Destroy();
     operator delete(self);
 }

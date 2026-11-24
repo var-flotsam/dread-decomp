@@ -32,7 +32,7 @@ struct UnkScourgeTongueSlashAttack {
 void fn_710069afac(UnkScourgeTongueSlashAttack* self, bool);
 void fn_710069b410(UnkScourgeTongueSlashAttack* self);
 
-void fn_710069b338(UnkScourgeTongueSlashAttack* self, f32 delta) {
+void CScourgeTongueSlashAttack_UpdateStateMachine(UnkScourgeTongueSlashAttack* self, f32 delta) {
     fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), delta);
     u32 state = self->state;
     u32 next = self->next_state;

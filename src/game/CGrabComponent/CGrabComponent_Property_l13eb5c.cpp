@@ -41,7 +41,7 @@ static inline bool IsCharClass(UnkReflObject* obj) {
     return fn_710009d50c(obj->vf_0x0(), fn_71011abbd4());
 }
 
-u32 fn_710113eb5c(UnkGrabComponent_b3eb5c* self, UnkComponentProp* prop) {
+u32 CGrabComponent_GetGrabbedCharClassNameProp(UnkGrabComponent_b3eb5c* self, UnkComponentProp* prop) {
     UnkProp* p = reinterpret_cast<UnkProp*>(prop);
     if (!Is(p, Key(0x1220)) || p->set)
         return fn_71010c4250(self, prop);

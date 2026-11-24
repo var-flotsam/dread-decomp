@@ -74,7 +74,7 @@ static inline void Break_bvc(UnkBreakableVignette_bvc* self) {
     fn_710076371c(self->field_0x60, &value);
 }
 
-void fn_7100763414(UnkBreakableVignette_bvc* self) {
+void CBreakableVignetteComponent_UpdateCheckPlayerInsideShape(UnkBreakableVignette_bvc* self) {
     fn_710024fb24(self);
     if (self->broken || !self->armed)
         return;

@@ -22,7 +22,7 @@ struct UnkBellyMineAI_l57c914;
 struct UnkMineAI3_ovb0132;
 void fn_710057cd48(UnkBellyMineAI_l57c914* self);
 void fn_710057dccc(UnkBellyMineAI_l57c914* self);
-void fn_710057dadc(UnkMineAI3_ovb0132* self, f32 volume, f32 pitch);
+void CFulmiteBellyMineAIComponent_PlayOrUpdateSoundVolumeAndPitch(UnkMineAI3_ovb0132* self, f32 volume, f32 pitch);
 void fn_710057d040(UnkBellyMineAI_l57c914* self, bool flag);
 bool fn_710057d6f0(UnkBellyMineAI_l57c914* self);
 void fn_710057d858(UnkBellyMineAI_l57c914* self);
@@ -169,7 +169,7 @@ void fn_710057c914(UnkBellyMineAI_l57c914* self, f32 dt) {
                 state.beep_time = 0.0f;
                 f32 volume = Lerp(def->volume_start, def->volume_end, progress);
                 f32 pitch = Lerp(def->pitch_start, def->pitch_end, progress);
-                fn_710057dadc(reinterpret_cast<UnkMineAI3_ovb0132*>(self), volume, pitch);
+                CFulmiteBellyMineAIComponent_PlayOrUpdateSoundVolumeAndPitch(reinterpret_cast<UnkMineAI3_ovb0132*>(self), volume, pitch);
             }
         }
         state.elapsed += dt;

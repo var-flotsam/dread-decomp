@@ -41,7 +41,7 @@ struct UnkVec3_b51s {
     UnkVec3_b51s(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
 };
 
-void fn_7100698070(UnkScorpiusAI_b51* self, UnkHitEntry_b51* const* hit, UnkVec3_b51s* out) {
+void CScorpiusAIComponent_GetHitObjectPositionIfMatchingId(UnkScorpiusAI_b51* self, UnkHitEntry_b51* const* hit, UnkVec3_b51s* out) {
     UnkCollisionContainer* collision = self->owner->field_0x2a0;
     if (!collision)
         return;

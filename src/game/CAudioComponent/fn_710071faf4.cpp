@@ -92,6 +92,6 @@ struct UnkStruct_710071faf4 {
 static_assert(sizeof(UnkStruct_710071faf4) == 0xd0, "layout");
 
 // The constructor is inlined into the original; flatten keeps it from being emitted out of line.
-__attribute__((flatten)) void fn_710071faf4(UnkStruct_710071faf4* self, const UnkStruct_710071faf4* other) {
+__attribute__((flatten)) void CAudioComponent_CopyConstructSoundSlot(UnkStruct_710071faf4* self, const UnkStruct_710071faf4* other) {
     new (self) UnkStruct_710071faf4(*other);
 }

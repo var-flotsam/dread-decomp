@@ -21,4 +21,4 @@ struct UnkAreaFXRecord_A5_b66 {
 struct UnkAreaFXResult_A5_b66;
 struct UnkSelf_af41;
 UnkAreaFXResult_A5_b66 fn_71007fdc30(UnkAreaFXRecord_A5_b66 record, void* a, void* b);
-void fn_7100802108(UnkSelf_af41* self);
+void CAreaFXComponent_SyncOwnerAngleToStored(UnkSelf_af41* self);

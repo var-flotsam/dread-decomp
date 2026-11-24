@@ -15,9 +15,9 @@ struct UnkActorTarget;
 struct UnkStruct_7101176ea8;
 
 struct UnkGoliathAI5_ovb0106;
-void fn_7100590e68(UnkGoliathAI5_ovb0106* self);
+void CGoliathAIComponent_WriteAnimSpeedMultiplierToTunable(UnkGoliathAI5_ovb0106* self);
 struct UnkGoliathXBombsAttack_l5858c4;
-void fn_71005858c4(UnkGoliathXBombsAttack_l5858c4* self);
+void CGoliathXBurstProjectionBombsAttack_CacheTimelineMotionValues(UnkGoliathXBombsAttack_l5858c4* self);
 
 struct UnkStruct_71007142e8 {
     f32 m[12];
@@ -58,7 +58,7 @@ struct UnkGoliathXAI_l588474 {
 };
 
 void fn_7100588474(UnkGoliathXAI_l588474* self) {
-    fn_7100590e68(reinterpret_cast<UnkGoliathAI5_ovb0106*>(self));
+    CGoliathAIComponent_WriteAnimSpeedMultiplierToTunable(reinterpret_cast<UnkGoliathAI5_ovb0106*>(self));
     self->motion_height = 0.0f;
     if (UnkStruct_7101176ea8* animations = static_cast<UnkStruct_7101176ea8*>(self->owner->field_0x220)) {
         UnkTimeline* timeline =
@@ -85,5 +85,5 @@ void fn_7100588474(UnkGoliathXAI_l588474* self) {
             fn_7101176690(target, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
         }
     }
-    fn_71005858c4(reinterpret_cast<UnkGoliathXBombsAttack_l5858c4*>(self->bombs));
+    CGoliathXBurstProjectionBombsAttack_CacheTimelineMotionValues(reinterpret_cast<UnkGoliathXBombsAttack_l5858c4*>(self->bombs));
 }

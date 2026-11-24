@@ -22,7 +22,7 @@ extern void* g_unk_7101ca9fe0[];
 
 struct UnkObj290_b43a3;
 struct UnkGunShot_ovb0070;
-void fn_710085c338(base::global::CRntVector<UnkGunShot_ovb0070>* shots, u32 n);
+void CSamusGunComponent_ReserveRefEntryVector(base::global::CRntVector<UnkGunShot_ovb0070>* shots, u32 n);
 
 struct UnkShotRecord18_lecbddc {
     UnkRefObject* ref;
@@ -114,7 +114,7 @@ void fn_7100ecbddc(UnkObj290_b43a3* shot) {
     for (u32 i = 0; i < 24; ++i)
         self->field_0x94[i] = 0.0f;
     new (&self->field_0xf8) CRntVector<UnkShotRecord18_lecbddc>(0xf);
-    fn_710085c338(reinterpret_cast<CRntVector<UnkGunShot_ovb0070>*>(&self->field_0xf8), 5);
+    CSamusGunComponent_ReserveRefEntryVector(reinterpret_cast<CRntVector<UnkGunShot_ovb0070>*>(&self->field_0xf8), 5);
     new (&self->field_0x120) CRntVector<UnkShotRecord10_lecbddc>(0xf);
     self->field_0x148[0] = 0;
     self->field_0x148[1] = 0;

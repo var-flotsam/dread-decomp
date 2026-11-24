@@ -53,7 +53,7 @@ static inline UnkVec3f Position(UnkCollisionObject* object) {
     return UnkVec3f(m.m[3], m.m[7], m.m[11]);
 }
 
-UnkVec3f fn_7100351ed4(UnkAim_b49* self, UnkAimActor_b49* actor) {
+UnkVec3f CAimComponent_GetActorTargetPosition(UnkAim_b49* self, UnkAimActor_b49* actor) {
     UnkVec3f result(0.0f, 0.0f, 0.0f);
     if (!actor)
         return result;

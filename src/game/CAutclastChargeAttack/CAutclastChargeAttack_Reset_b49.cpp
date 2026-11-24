@@ -23,7 +23,7 @@ struct UnkChargeAttack_b49 {
     u32 count;
 };
 
-void fn_71003b73d4(UnkChargeAttack_b49* self) {
+void CAutclastChargeAttack_ResetAndReleaseRefs(UnkChargeAttack_b49* self) {
     fn_71003609b8(reinterpret_cast<UnkAttackBase*>(self));
     if (UnkWeakHandle* handle = self->handle) {
         if (handle->target) {

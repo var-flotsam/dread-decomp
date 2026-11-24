@@ -27,8 +27,8 @@ f32 fn_7100629368(UnkObsydomithonAttack* self);
 
 struct UnkObsydomithonAI_b69a4;
 struct UnkVec2_b69a4;
-bool fn_710062f6e4(UnkObsydomithonAI_b69a4* self, f32* angle);
-bool fn_710062f7d4(UnkObsydomithonAI_b69a4* self, const UnkVec2_b69a4* offset, f32* angle);
+bool CObsydomithonAIComponent_GetAngleToTargetWithStoredOffset(UnkObsydomithonAI_b69a4* self, f32* angle);
+bool CObsydomithonAIComponent_GetAngleToTargetWithOffset(UnkObsydomithonAI_b69a4* self, const UnkVec2_b69a4* offset, f32* angle);
 
 // A pose: a key and its matrix.
 struct UnkPose_l628c0c {
@@ -179,7 +179,7 @@ bool fn_7100628c0c(UnkObsydomithonAttack_l628c0c* self, void* arg, u32 mode) {
             result = false;
         else if (!ai)
             result = true;
-        else if (angle = -1.0f, fn_710062f6e4(reinterpret_cast<UnkObsydomithonAI_b69a4*>(ai), &angle))
+        else if (angle = -1.0f, CObsydomithonAIComponent_GetAngleToTargetWithStoredOffset(reinterpret_cast<UnkObsydomithonAI_b69a4*>(ai), &angle))
             result = fn_7100629600(self, angle);
         else
             result = false;
@@ -202,7 +202,7 @@ bool fn_7100628c0c(UnkObsydomithonAttack_l628c0c* self, void* arg, u32 mode) {
     for (UnkOffset_l628c0c* it = offsets.begin(); it != offsets.end(); ++it) {
         UnkOffset_l628c0c offset = *it;
         f32 angle = -1.0f;
-        if (!fn_710062f7d4(reinterpret_cast<UnkObsydomithonAI_b69a4*>(ai),
+        if (!CObsydomithonAIComponent_GetAngleToTargetWithOffset(reinterpret_cast<UnkObsydomithonAI_b69a4*>(ai),
                            reinterpret_cast<const UnkVec2_b69a4*>(&offset), &angle))
             continue;
         UnkMatrix44 pose = g_unk_7101a1a680;

@@ -27,7 +27,7 @@ struct UnkPowerGenerator_b48 {
     bool used;
 };
 
-void fn_7100a7e8a0(UnkPowerGenerator_b48* self) {
+void CPowerGeneratorComponent_LoadUsedFromBlackboard(UnkPowerGenerator_b48* self) {
     self->used = false;
     UnkGameManager* manager = g_unk_7101d47310;
     if (!manager->field_0x608)

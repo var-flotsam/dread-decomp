@@ -40,7 +40,7 @@ static_assert(__builtin_offsetof(UnkHeatRoom_la26758, use_alt) == 0xc24, "UnkHea
 static_assert(__builtin_offsetof(UnkHeatRoom_la26758, sound_path) == 0xc50, "UnkHeatRoom_la26758 layout");
 static_assert(__builtin_offsetof(UnkHeatRoom_la26758, normal_was_set) == 0xc80, "UnkHeatRoom_la26758 layout");
 
-void fn_7100a26758(UnkHeatRoom_la26758* self) {
+void CHeatRoomComponent_ApplyConfigAndPassEnterZoneSound(UnkHeatRoom_la26758* self) {
     fn_7100a45cac(reinterpret_cast<UnkLiquidPool_b44a2*>(self));
     u32 useAlt = reinterpret_cast<u8*>(g_unk_7101d47310)[0x2441];
     self->use_alt = useAlt;

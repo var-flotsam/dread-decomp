@@ -8,7 +8,7 @@ using namespace unk_static_init;
 
 extern char g_unk_71726e5ca8[];
 
-void fn_710058c890() {
+void CGoliathXBurstProjectionBombMovement_InitStatics() {
     InitHeaderIds(&g_unk_71726e5cc0.ids);
     fn_7100589df4();
     fn_710009ec00(g_unk_71726e5ca8, g_unk_71726e5cc0.field_0x70);

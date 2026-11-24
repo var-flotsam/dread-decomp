@@ -42,7 +42,7 @@ static inline UnkWeakHandle** Slot(UnkNavLinks_b0129* self, u32 offset) {
 
 // Registers the two listeners again with what the owner's enemy movement (+0x1f0, when it is one) and
 // its object at +0x258 now point at.
-bool fn_71006f4450(UnkNavLinks_b0129* self) {
+bool CAINavigationComponent_RelinkOwnerListeners(UnkNavLinks_b0129* self) {
     void* link0 = self->link0;
     UnkReflObject* movement = self->owner->movement;
     if (movement)
@@ -114,7 +114,7 @@ static inline f32 Dist2(f32 x, f32 y, f32 z, const CVector3D& p) {
 }
 
 // The index of the path's point nearest the owner.
-u32 fn_71006f5104(UnkNavSelf_b0129* self, UnkNavPath_b0129* path) {
+u32 CAINavigationComponent_FindIndexOfPointNearestOwner(UnkNavSelf_b0129* self, UnkNavPath_b0129* path) {
     f32 x = self->owner->field_0x44;
     f32 y = self->owner->field_0x54;
     f32 z = self->owner->field_0x64;

@@ -14,7 +14,7 @@ struct UnkStatics_7100626e30 {
 extern UnkStatics_7100626e30 g_unk_71726f8818 __attribute__((visibility("hidden")));
 extern char g_unk_71726f8810[];
 
-void fn_7100626e30() {
+void CNailuggerAcidBallMovementComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726f8818.ids);
     InitClassId(&g_unk_71726f8818.field_0x18, "NailuggerAcidBallMovementComponent");
     InitId(&g_unk_71726f8818.field_0x20, "fDamageNailuggerSpit");

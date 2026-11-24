@@ -37,7 +37,7 @@ struct UnkMultiLockOnBlock_A5_b68 {
     u32 bucket_count;
 };
 
-void fn_710088341c(UnkMultiLockOnBlock_A5_b68* self, u64 key, bool flag) {
+void CMultiLockOnBlockComponent_MarkPointLocked(UnkMultiLockOnBlock_A5_b68* self, u64 key, bool flag) {
     if (!self->count)
         return;
     u32 index = (u32)key % self->bucket_count;

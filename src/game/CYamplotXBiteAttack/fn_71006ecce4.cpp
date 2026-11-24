@@ -102,7 +102,7 @@ static inline void Flatten(CVector2D* out, const CVector3D& v) {
     fn_710007b430(out, &v);
 }
 
-CStrId fn_71006ecce4(UnkYamplotXBite_b57a4* attack) {
+CStrId CYamplotXBiteAttack_GetDistanceSuffixedName(UnkYamplotXBite_b57a4* attack) {
     UnkYamplotXBiteAttack_l6ecce4* self = reinterpret_cast<UnkYamplotXBiteAttack_l6ecce4*>(attack);
     UnkReflObject* mv = self->owner->movement;
     UnkReflObject* movement_obj = mv && fn_710009d50c(mv->vf_0x0(), fn_71010c74e0()) ? mv : nullptr;

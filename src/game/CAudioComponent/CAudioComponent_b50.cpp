@@ -107,7 +107,7 @@ struct UnkAudio_b50 {
     u8 field_0x40[0x10];
 };
 
-UnkSoundHandle fn_710071a7dc(UnkAudio_b50* self, const UnkSoundRequest_b50* request) {
+UnkSoundHandle CAudioComponent_PlaySoundWithLimitCheck(UnkAudio_b50* self, const UnkSoundRequest_b50* request) {
     if (!self->vf_47())
         return g_unk_7108b6c460;
     UnkReflObject* component = self->owner->field_0x28;
@@ -143,12 +143,12 @@ struct UnkAudioInit_b50 {
     u32 values[16];   // 0x118
 };
 
-void fn_7100719444(void* emitter, u32 flags);
+void CAudioComponent_ReserveSoundLinks(void* emitter, u32 flags);
 
-void fn_71007193d4(UnkAudioInit_b50* self) {
+void CAudioComponent_ReserveLinksAndResetValues(UnkAudioInit_b50* self) {
     fn_71010c4228(reinterpret_cast<UnkParent*>(self));
     if (self->owner->field_0x200)
-        fn_7100719444(self->field_0x70, 0x1000);
+        CAudioComponent_ReserveSoundLinks(self->field_0x70, 0x1000);
     for (int i = 0; i < 11; ++i)
         self->volumes[i] = 1.0f;
     for (int i = 0; i < 16; ++i)

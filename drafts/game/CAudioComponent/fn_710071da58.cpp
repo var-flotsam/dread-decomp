@@ -23,9 +23,9 @@ struct UnkSoundRef {
 };
 
 struct UnkAudioSound_ovb0015;
-void fn_710071f878(UnkAudioSound_ovb0015* self);
+void CAudioComponent_ReleaseSoundSlotIds(UnkAudioSound_ovb0015* self);
 struct UnkStruct_710071faf4;
-void fn_710071faf4(UnkStruct_710071faf4* self, const UnkStruct_710071faf4* other);
+void CAudioComponent_CopyConstructSoundSlot(UnkStruct_710071faf4* self, const UnkStruct_710071faf4* other);
 
 // The sound object a slot's handle names while it is current.
 static inline UnkSoundObject_b50* Resolve(const UnkSoundHandle& handle) {
@@ -47,10 +47,10 @@ struct UnkAudioSound_l71da58 {
     u8 pad_0xc5[0xd0 - 0xc5];
 
     UnkAudioSound_l71da58(UnkAudioSound_l71da58&& other) {
-        fn_710071faf4(reinterpret_cast<UnkStruct_710071faf4*>(this),
+        CAudioComponent_CopyConstructSoundSlot(reinterpret_cast<UnkStruct_710071faf4*>(this),
                       reinterpret_cast<const UnkStruct_710071faf4*>(&other));
     }
-    ~UnkAudioSound_l71da58() { fn_710071f878(reinterpret_cast<UnkAudioSound_ovb0015*>(this)); }
+    ~UnkAudioSound_l71da58() { CAudioComponent_ReleaseSoundSlotIds(reinterpret_cast<UnkAudioSound_ovb0015*>(this)); }
 };
 static_assert(sizeof(UnkAudioSound_l71da58) == 0xd0, "UnkAudioSound_l71da58 layout");
 

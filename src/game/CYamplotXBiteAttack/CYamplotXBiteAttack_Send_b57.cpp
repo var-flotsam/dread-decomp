@@ -17,11 +17,11 @@ struct UnkYamplotXBite_b57a4 {
     UnkYamplotXBiteOwner_b57a4* owner;
 };
 
-CStrId fn_71006ecce4(UnkYamplotXBite_b57a4* self);
+CStrId CYamplotXBiteAttack_GetDistanceSuffixedName(UnkYamplotXBite_b57a4* self);
 
 void fn_71006ecb84(UnkYamplotXBite_b57a4* self) {
     void* target = self->owner->field_0x220;
-    CStrId id = fn_71006ecce4(self);
+    CStrId id = CYamplotXBiteAttack_GetDistanceSuffixedName(self);
     u64 hash = id.data->Key();
     base::reflection::UnkReflTypeIdArg mode;
     mode.id = 2;

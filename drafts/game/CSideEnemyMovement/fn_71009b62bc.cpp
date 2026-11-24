@@ -11,7 +11,7 @@
 #include "types.h"
 
 struct UnkEnemyMovement_b45a2;
-f32 fn_7100964f8c(UnkEnemyMovement_b45a2* self, UnkActor* actor);
+f32 CCharClassEnemyMovement_GetAngularSpeed(UnkEnemyMovement_b45a2* self, UnkActor* actor);
 
 struct UnkSideMovementTuning_l9b62bc {
     u8 pad_0x0[0x168];
@@ -59,7 +59,7 @@ void fn_71009b62bc(UnkSideEnemyMovement_l9b62bc* self, UnkAngles_l9b62bc* angles
         if (fn_710117b348(anim, fn_7100bfc078()))
             return;
         if (self->tuning->turns && !fn_710117b348(anim, fn_7100d11fa8())) {
-            f32 speed = fn_7100964f8c(reinterpret_cast<UnkEnemyMovement_b45a2*>(self->tuning), self->owner);
+            f32 speed = CCharClassEnemyMovement_GetAngularSpeed(reinterpret_cast<UnkEnemyMovement_b45a2*>(self->tuning), self->owner);
             f32 move = speed * dt;
             f32 step = move * Sign(self->facing);
             UnkSideMovementTuning_l9b62bc* tuning = self->tuning;

@@ -21,7 +21,7 @@ void fn_710082ec70(UnkProperty* p);
 void fn_710082d53c(void* p);
 extern char g_unk_7172725000[];
 
-void fn_710082f0f0() {
+void CPullOffGrapplePointComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172725048.ids);
     InitId(&g_unk_7172724fd0, "GRAPPLEPULLOFF");
     InitProperty(&g_unk_7172724fd8, g_unk_7101a76fa8, g_unk_71726db788, "ActivatableObjectLastAnim", TypeOf<fn_7100009658>(),

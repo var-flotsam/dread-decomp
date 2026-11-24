@@ -46,7 +46,7 @@ static inline void CopyVec(UnkNavVec_b65a4* out, const char* src) {
     out->z = z;
 }
 
-bool fn_71006f4f28(UnkNavTarget_b65a4* self, UnkNavVec_b65a4* out) {
+bool CAINavigationComponent_TryGetCurrentRecordPosition(UnkNavTarget_b65a4* self, UnkNavVec_b65a4* out) {
     UnkNavTable_b65a4* table = self->table;
     UnkNavHead_b65a4* head = table->head;
     if (!head)

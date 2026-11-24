@@ -81,7 +81,7 @@ struct UnkShakernautLaserAttack_ovb0037 {
     UnkShakernautOwner_ovb0037* owner;  // 0x8
 };
 
-void fn_71006a8e94(UnkShakernautLaserAttack_ovb0037* self) {
+void CShakernautPiercingLaserAttack_PlayLaserToGroundShockInitByFacing(UnkShakernautLaserAttack_ovb0037* self) {
     base::reflection::UnkReflObject* ai = self->owner->ai;
     char* cast = ai && fn_710009d50c(ai->vf_0x0(), fn_71006ad0a4()) ? reinterpret_cast<char*>(ai) : nullptr;
     self->owner->player->vf_0x178();

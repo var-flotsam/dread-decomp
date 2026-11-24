@@ -146,7 +146,7 @@ static inline const UnkQualifiedId& ItemId(UnkPropertyEx<>& item) {
 }
 
 // Whether the room hurts: never with the varia or gravity suit, else while the normal set is in use.
-bool fn_7100a279fc(UnkHeatRoom_ovb0083* self) {
+bool CHeatRoomComponent_IsPlayerExposedToHeat(UnkHeatRoom_ovb0083* self) {
     auto* player = reinterpret_cast<UnkSuitPlayer_ovb0083*>(fn_7100dec788(g_unk_7101d47310));
     if (player && player->inventory) {
         UnkInventory* inventory = player->inventory;
@@ -202,7 +202,7 @@ struct UnkLiquidPoolActor_ovb0075;
 // environment, an actor (state at +0x1b8 not 2) switches the manager back to the kept environment
 // while the room's is current; a tracked actor (fn_7100df5c38) is also handed to fn_7100f0e98c
 // with the owner's character class.
-void fn_7100a27884(UnkHeatRoom_ovb0083* self, UnkHeatActor_ovb0083* actor, const UnkVec3f* pos) {
+void CHeatRoomComponent_RestorePreviousVisualPreset(UnkHeatRoom_ovb0083* self, UnkHeatActor_ovb0083* actor, const UnkVec3f* pos) {
     fn_7100a45f08(reinterpret_cast<UnkLiquidPoolEnter_ovb0075*>(self),
                   reinterpret_cast<UnkLiquidPoolActor_ovb0075*>(actor), pos);
     if (self->field_0x9b8 == 0 && self->sets_environment &&

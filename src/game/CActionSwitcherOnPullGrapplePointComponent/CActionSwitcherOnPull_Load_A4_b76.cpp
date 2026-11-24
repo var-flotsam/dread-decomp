@@ -40,11 +40,11 @@ struct UnkGrappleUsed_A4_b76 {
     }
 };
 
-void fn_7100822888(UnkGrappleUsed_A4_b76* self, CBlackboard* blackboard);
+void CGrapplePointComponent_LoadFromBlackboard(UnkGrappleUsed_A4_b76* self, CBlackboard* blackboard);
 CStrId fn_7100822a1c(UnkGrappleUsed_A4_b76* self);
 
 void CActionSwitcherOnPullGrapplePointComponent_LoadFromBlackboard(UnkGrappleUsed_A4_b76* self, CBlackboard* blackboard) {
-    fn_7100822888(self, blackboard);
+    CGrapplePointComponent_LoadFromBlackboard(self, blackboard);
     CBlackboard::CSection* s = fn_71010472e0(blackboard, fn_7100822a1c(self));
     if (!s)
         return;

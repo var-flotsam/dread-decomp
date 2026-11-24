@@ -52,7 +52,7 @@ static inline const base::global::CStrId& ResetId_c4() {
         reinterpret_cast<const char*>(&base::reflection::refl_GetSingleton()) + 0x1d78);
 }
 
-void fn_71010d7b88(UnkPlayerMovement_c4* self, u32 flags) {
+void CPlayerMovement_Reset(UnkPlayerMovement_c4* self, u32 flags) {
     fn_71009786a8(self, flags & 1);
     if (UnkMovementFlag_c4* flag = self->owner->flag)
         flag->value = 1;

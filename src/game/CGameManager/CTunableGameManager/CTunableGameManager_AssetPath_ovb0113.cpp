@@ -25,7 +25,7 @@ inline UnkTunableLine& RuntimeAssetPattern_ovb0113() {
     return s_pattern;
 }
 
-UnkTunableLine fn_7100e05430(UnkAssetNameData_ovb0113** id) {
+UnkTunableLine CGameManager_BuildRuntimeAssetPath(UnkAssetNameData_ovb0113** id) {
     UnkTunableLine& pattern = RuntimeAssetPattern_ovb0113();
     ++(*id)->reads;
     const char* text = (*id)->text;

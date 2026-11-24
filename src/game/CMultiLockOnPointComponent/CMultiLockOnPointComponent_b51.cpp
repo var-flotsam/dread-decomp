@@ -15,7 +15,7 @@ using UnkRef = base::UnkRefPtrMember;
 
 struct UnkLockOnBlock;
 UnkLockOnBlock* fn_71008846dc(void* object);
-void fn_710088341c(UnkLockOnBlock* block, UnkActor* owner, bool flag);
+void CMultiLockOnBlockComponent_MarkPointLocked(UnkLockOnBlock* block, UnkActor* owner, bool flag);
 
 extern u64 g_unk_710164ae78;
 extern u64 g_unk_710164ae80;
@@ -52,7 +52,7 @@ bool fn_71008845fc(UnkLockOnPoint* self, void* sender, UnkLockOnHit* hit) {
         return false;
     // the original reloads the object after the test
     if (UnkLockOnBlock* block = fn_71008846dc(*reinterpret_cast<void* volatile*>(&c->field_0x10))) {
-        fn_710088341c(block, self->owner, (hit->flags >> 9) & 1);
+        CMultiLockOnBlockComponent_MarkPointLocked(block, self->owner, (hit->flags >> 9) & 1);
         fn_7100d7c94c(self->owner, &g_unk_710164ae78);
         fn_7100d7c828(self->owner, &g_unk_710164ae80, false);
     }

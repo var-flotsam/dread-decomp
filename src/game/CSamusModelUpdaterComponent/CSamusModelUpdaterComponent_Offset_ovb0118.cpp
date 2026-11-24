@@ -37,7 +37,7 @@ struct UnkSamusModelUpdater_ovb0118 {
     UnkSamusModelOwner_ovb0118* owner;  // 0x30
 };
 
-void fn_710093ab9c(UnkSamusModelUpdater_ovb0118* self, UnkVec3f* offset) {
+void CSamusModelUpdaterComponent_GetModelOffset(UnkSamusModelUpdater_ovb0118* self, UnkVec3f* offset) {
     if (self->owner->animation) {
         UnkTrackQuery query;
         query.cls = fn_7100cebf38();

@@ -67,12 +67,12 @@ struct UnkSensorDoorComponent : UnkSensorDoorBase {
 };
 static_assert(__builtin_offsetof(UnkSensorDoorComponent, field_0x178) == 0x178, "layout");
 
-void fn_71007b7c88(UnkSensorDoorComponent* self) {
+void CSensorDoorComponent_Destroy(UnkSensorDoorComponent* self) {
     self->~UnkSensorDoorComponent();
 }
 
 // The deleting destructor.
-void fn_71007b7d5c(UnkSensorDoorComponent* self) {
+void CSensorDoorComponent_DestroyAndDelete(UnkSensorDoorComponent* self) {
     self->~UnkSensorDoorComponent();
     fn_7100083c00(self);
 }

@@ -92,7 +92,7 @@ struct UnkDirLightComponent_ovb0036 {
 };
 static_assert(__builtin_offsetof(UnkDirLightComponent_ovb0036, light) == 0x58, "layout");
 
-void fn_71008eb348(UnkDirLightComponent_ovb0036* self) {
+void CDirLightComponent_SyncDirectionFromOwnerAngles(UnkDirLightComponent_ovb0036* self) {
     fn_710020c8ac(self->light + 0x20, true);
     UnkVec3f angle = self->owner->xform.GetAngle();
     if (!Near_ovb0036(angle.x, self->angle[0]) || !Near_ovb0036(angle.y, self->angle[1]) ||

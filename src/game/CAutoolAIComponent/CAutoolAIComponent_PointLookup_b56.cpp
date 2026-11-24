@@ -81,7 +81,7 @@ bool fn_71003c68a8(UnkAutoolB56* self, const CVector3D& pos) {
     return fn_7100360120(timer);
 }
 
-bool fn_71003c6a5c(UnkAutoolB56* self, const CVector3D& pos) {
+bool CAutoolAIComponent_ResetEntryAtPoint(UnkAutoolB56* self, const CVector3D& pos) {
     UnkTimerB56* timer = TimerAt(self, pos);
     if (timer == nullptr) {
         return false;

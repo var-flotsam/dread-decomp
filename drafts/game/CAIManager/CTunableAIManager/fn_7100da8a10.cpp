@@ -20,7 +20,7 @@ struct UnkPoisonFlyReset_b66a4;
 struct UnkVulkranRefList_b66a4;
 struct UnkUnit1055Object_b66a4;
 struct UnkU1038Self_A4_b71;
-bool fn_7100639ec0(UnkPoisonFlyReset_b66a4* self);
+bool CPoisonFlyAIComponent_ReleaseNodesAndReloadTunable(UnkPoisonFlyReset_b66a4* self);
 bool CVulkranAttackManager_Clear(UnkVulkranRefList_b66a4* self);
 bool fn_71006bd074(UnkUnit1055Object_b66a4* self);
 bool fn_71006a1e04(UnkU1038Self_A4_b71* self);
@@ -85,7 +85,7 @@ static inline UnkSlot_da8a10& At(UnkSlotArray_da8a10& array, u64 i) {
 }
 
 bool fn_7100da8a10(UnkAIManagerParts_da8a10* self) {
-    bool poison_fly = fn_7100639ec0(reinterpret_cast<UnkPoisonFlyReset_b66a4*>(self->field_0x80));
+    bool poison_fly = CPoisonFlyAIComponent_ReleaseNodesAndReloadTunable(reinterpret_cast<UnkPoisonFlyReset_b66a4*>(self->field_0x80));
     bool vulkran = CVulkranAttackManager_Clear(reinterpret_cast<UnkVulkranRefList_b66a4*>(self->field_0x368));
     bool unit1055_a = fn_71006bd074(reinterpret_cast<UnkUnit1055Object_b66a4*>(self->field_0x3f0));
     bool unit1055_b = fn_71006bd074(reinterpret_cast<UnkUnit1055Object_b66a4*>(self->field_0x470));

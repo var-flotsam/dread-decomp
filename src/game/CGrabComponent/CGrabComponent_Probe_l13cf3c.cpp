@@ -88,7 +88,7 @@ struct UnkGrabTarget_l13cf3c {
     UnkAnimationComponent* animation;  // 0x220
 };
 
-void fn_710113cf3c(CGrabComponent* self, UnkXform* out, UnkGrabTarget_l13cf3c* target, const UnkXform* from,
+void CGrabComponent_ProbeTargetColliderPosition(CGrabComponent* self, UnkXform* out, UnkGrabTarget_l13cf3c* target, const UnkXform* from,
                    const UnkVec3f* a, const UnkVec3f* b, f32 radius) {
     UnkReflObject* object = target->movement;
     auto* movement = object && fn_710009d50c(object->vf_0x0(), fn_7100975b3c())

@@ -28,7 +28,7 @@ struct UnkWarriorAI {
 struct UnkGoliathAI_b58a3;
 struct UnkScorpiusAI_b69a4;
 
-bool fn_710049cbd8(UnkWarriorAI* ai);
+bool CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(UnkWarriorAI* ai);
 
 // The name an attack reports (fn_7100360890): a counted entry whose key is at +0x30.
 struct UnkAttackName_l48cde0 {
@@ -102,7 +102,7 @@ bool fn_710048cde0(UnkWallClimbAttack_l48cde0* self, void* arg, u32 mode) {
     if (limit < y)
         return false;
     UnkWarriorAI* warrior = reinterpret_cast<UnkWarriorAI*>(ai);
-    if (fn_710049cbd8(warrior)) {
+    if (CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(warrior)) {
         bool in_cutscene = fn_7100df5630(g_unk_7101d47310);
         if (y > limit || in_cutscene)
             return false;
@@ -129,7 +129,7 @@ bool fn_710048cde0(UnkWallClimbAttack_l48cde0* self, void* arg, u32 mode) {
     if (wall > 200.0f) {
         f32 reach = 0.0f;
         fn_71010fc68c(reinterpret_cast<UnkGoliathAI_b58a3*>(ai), &reach);
-        if (!(reach < wall) || fn_710049cbd8(warrior)) {
+        if (!(reach < wall) || CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(warrior)) {
             result = 1;
         } else {
             UnkScorpiusAI_b69a4* attacks = reinterpret_cast<UnkScorpiusAI_b69a4*>(ai);

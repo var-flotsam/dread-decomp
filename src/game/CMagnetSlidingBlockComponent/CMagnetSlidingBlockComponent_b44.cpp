@@ -23,5 +23,5 @@ void fn_710091f100(UnkMagnetSlidingBlock_b44a2* self, bool remove, base::global:
     else
         fn_710002ffb4(list, key);
     if (before != fn_710002fb70(list))
-        fn_7100920f40(reinterpret_cast<UnkMagnetSlidingBlock_b0086*>(self), !fn_710002fb70(list));
+        CMagnetSlidingBlockComponent_SetCollidersAndSpeed(reinterpret_cast<UnkMagnetSlidingBlock_b0086*>(self), !fn_710002fb70(list));
 }

@@ -29,7 +29,7 @@ void fn_710093aca8(char* self, const u64* id) {
     }
     if (owner != nullptr) {
         if (void* updater = base::reflection::refl_FindTyped<UnkRefl_fn_710083a2ac>(owner))
-            fn_7100938ebc(updater, id);
+            CMultiModelUpdaterComponent_SelectModelByName(updater, id);
     }
     fn_710093aad0(self);
 }

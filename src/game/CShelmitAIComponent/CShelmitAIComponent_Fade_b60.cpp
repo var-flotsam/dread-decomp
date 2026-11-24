@@ -29,7 +29,7 @@ struct UnkShelmitFade_b60a4 {
     UnkActor* owner;
 };
 
-void fn_71006badf4(UnkShelmitFade_b60a4* self, f32 value) {
+void CShelmitAIComponent_ApplyCrystalEmissiveFactor(UnkShelmitFade_b60a4* self, f32 value) {
     f32 d = value - 1.0f;
     if (d + 0.001f >= 0.0f && d - 0.001f <= 0.0f && self->owner) {
         auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8);

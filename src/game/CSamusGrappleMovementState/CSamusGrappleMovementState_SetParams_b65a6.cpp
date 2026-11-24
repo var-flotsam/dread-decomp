@@ -7,4 +7,4 @@ struct UnkGrappleState_b65a6 {
     UnkGrappleParams_b65a6 params;
 };
 
-void fn_710099c920(UnkGrappleState_b65a6* self, const UnkGrappleParams_b65a6* params) { self->params = *params; }
+void CSamusGrappleMovementState_SetParams(UnkGrappleState_b65a6* self, const UnkGrappleParams_b65a6* params) { self->params = *params; }

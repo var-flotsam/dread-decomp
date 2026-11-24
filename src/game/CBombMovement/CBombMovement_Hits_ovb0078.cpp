@@ -56,7 +56,7 @@ struct UnkBombMovement_ovb0078 {
     UnkBombActor_ovb0078* owner;
 };
 
-void fn_7100aabf4c(UnkBombMovement_ovb0078* self, UnkBombActor_ovb0078* actor, UnkVec3f* pos,
+void CBombMovement_ComputePositionNearActor(UnkBombMovement_ovb0078* self, UnkBombActor_ovb0078* actor, UnkVec3f* pos,
                    UnkVec3f* offset) {
     *pos = UnkVec3f(actor->x, actor->y, actor->z);
     *offset = UnkVec3f(0.0f, 0.0f, 0.0f);
@@ -229,7 +229,7 @@ struct UnkBombCollideMovement_ovb0078 {
     UnkBombRequest_ovb0078 request;  // 0x348
 };
 
-void fn_7100aabdac(UnkBombCollideMovement_ovb0078* self, UnkBombTargetActor_ovb0078* actor, void*, void*,
+void CBombMovement_SendHitPointRequestToActor(UnkBombCollideMovement_ovb0078* self, UnkBombTargetActor_ovb0078* actor, void*, void*,
                    UnkBombHitData_ovb0078* hit) {
     if (fn_7100ac79d8(self, actor, hit))
         return;
@@ -318,7 +318,7 @@ struct UnkBombAimMovement_ovb0078 {
     f32 field_0x4a8;             // the angle towards it
 };
 
-void fn_7100aac004(UnkBombAimMovement_ovb0078* self, UnkWeakTarget* target) {
+void CBombMovement_SetTargetAndCacheAngle(UnkBombAimMovement_ovb0078* self, UnkWeakTarget* target) {
     UnkWeakHandle* handle = target ? GetWeakHandle(target) : nullptr;
     AssignRef(&self->field_0x4a0, handle);
     if (handle && handle->target) {
@@ -348,7 +348,7 @@ struct UnkBombHitInfo_ovb0078 {
     UnkBombHitEntry_ovb0078* field_0x0;
 };
 
-void fn_7100aaaaf4(UnkBombHitHandler_ovb0078* self, u32* kinds, void* arg, UnkBombHitInfo_ovb0078* info,
+void CBombMovement_DispatchHitByClass(UnkBombHitHandler_ovb0078* self, u32* kinds, void* arg, UnkBombHitInfo_ovb0078* info,
                    f32 value, UnkBombOnActor_ovb0078 on_actor, UnkBombOnTiles_ovb0078 on_tiles) {
     UnkBombHitEntry_ovb0078* entry = info->field_0x0;
     if (!entry || !entry->field_0x10)

@@ -54,7 +54,7 @@ static_assert(__builtin_offsetof(UnkEventScenario_l7e2a88, actor_values) == 0x1a
 static_assert(__builtin_offsetof(UnkEventScenario_l7e2a88, finished) == 0x1ed, "layout");
 
 void fn_71007e1730(UnkEventScenario_l7e2a88* self);
-void fn_71007e2cf4(UnkEventScenario_ovb0097* self);
+void CCharClassEventScenarioComponent_RebuildTimerArray(UnkEventScenario_ovb0097* self);
 void fn_71007e35fc(UnkEventScenario_l7e2a88* self, f32 time);
 
 using UnkScenarioLoad_l7e2a88 = void (*)(UnkEventScenario_l7e2a88*, CBlackboard*);
@@ -79,7 +79,7 @@ void fn_71007e2a88(UnkEventScenario_l7e2a88* self) {
             *fn_710008c504(&self->randoms, (u32)i) = max ? (rand() & 0x7fff) % max : 0;
         }
     }
-    fn_71007e2cf4(reinterpret_cast<UnkEventScenario_ovb0097*>(self));
+    CCharClassEventScenarioComponent_RebuildTimerArray(reinterpret_cast<UnkEventScenario_ovb0097*>(self));
     for (u32 i = 0; i < self->actors.count; ++i)
         self->actor_values.PushBack(0);
     reinterpret_cast<UnkScenarioStart_l7e2a88>(fn_71007e2ecc)(

@@ -17,7 +17,7 @@ struct UnkMorphBallMovement_b49a4 {
 };
 
 void fn_710094a398(UnkMorphBallMovement_b49a4* self, bool flag) {
-    fn_71010d7b88(self, flag);
+    CPlayerMovement_Reset(self, flag);
     self->field_0x23c4[0] = 0;
     self->field_0x23c4[1] = 0;
     self->field_0x25f0 = 0;

@@ -39,7 +39,7 @@ struct UnkSlotRef_l31d33c {
     }
 };
 
-void fn_710031d33c(UnkMultiLockon_l31d33c* self) {
+void CAbilityMultiLockon_ReleaseTargetsAndClearFadingObjects(UnkMultiLockon_l31d33c* self) {
     for (u32 i = 0; i < 5; ++i) {
         UnkSlotRef_l31d33c ref(self->slots[i]);
         UnkWeakTarget* target = ref.p ? ref.p->target : nullptr;

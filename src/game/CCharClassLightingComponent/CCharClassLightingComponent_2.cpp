@@ -41,4 +41,4 @@ void fn_71008e6004(UnkLightingLight2* light, void* arg, f32 value);
 
 LIGHTING_APPLY_BY_ID(fn_71008e7d98, fn_71008e5f14)
 LIGHTING_APPLY_BY_ID(fn_71008e7e18, fn_71008e5f8c)
-LIGHTING_APPLY_BY_ID(fn_71008e7e98, fn_71008e6004)
+LIGHTING_APPLY_BY_ID(CCharClassLightingComponent_SetLightColorById, fn_71008e6004)

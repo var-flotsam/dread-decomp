@@ -159,12 +159,12 @@ void fn_71007b3740(UnkEmmyValve_A5_b64* self) {
         Request_A5_b64(self, 3);
         return;
     }
-    if (!fn_71007b3318(reinterpret_cast<UnkSmBase_b60*>(self)))
+    if (!CCharClassEmmyValveComponent_IsAnyActorOverlappingShape(reinterpret_cast<UnkSmBase_b60*>(self)))
         return;
     Request_A5_b64(self, 1);
 }
 
-void fn_71007b3db8(UnkEmmyValve_A5_b64* self, bool open, bool set) {
+void CCharClassEmmyValveComponent_SetForcedState(UnkEmmyValve_A5_b64* self, bool open, bool set) {
     if (set) {
         if (open)
             Request_A5_b64(self, 1);
@@ -204,7 +204,7 @@ void fn_71007b3b84(UnkEmmyValve_A5_b64* self) {
 
 // Restores the valve from the blackboard: reads "Disabled" from the current scenario's section and
 // requests state 3 when it is set, else state 2.
-void fn_71007b2df0(UnkEmmyValve_A5_b64* self, CBlackboard* blackboard) {
+void CCharClassEmmyValveComponent_RequestStateFromBlackboardDisabled(UnkEmmyValve_A5_b64* self, CBlackboard* blackboard) {
     CBlackboard::CSection* section = fn_71010472e0(blackboard, fn_71011a2fbc(g_unk_7101d47310->field_0x608));
     if (!section)
         return;

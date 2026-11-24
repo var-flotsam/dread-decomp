@@ -41,7 +41,7 @@ static inline void InitTable(UnkReflRegistryMap* table, CStrId name) {
     base::reflection::refl_RegistryMapInit<UnkRefl_fn_71008c5414>(table, name);
 }
 
-void fn_71008c5184(UnkDemolitionBlockLifeInit* self) {
+void CDemolitionBlockLifeComponent_InitTableAndPathResources(UnkDemolitionBlockLifeInit* self) {
     fn_710115fc5c(reinterpret_cast<char*>(self));
     InitTable(&self->table, self->owner->name);
     fn_71000267f8(&self->path_a, UnkPathIdsFromText(g_unk_7172730d70).ids);

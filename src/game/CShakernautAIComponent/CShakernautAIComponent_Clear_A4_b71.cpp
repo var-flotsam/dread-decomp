@@ -30,7 +30,7 @@ __attribute__((always_inline)) inline void ClearRefs(UnkShakArray_A4_b71* a) {
 
 }  // namespace
 
-void fn_71006ae1fc(char* self) {
+void CShakernautAIComponent_ReleaseRecordArrayRefs(char* self) {
     fn_71003695fc(reinterpret_cast<UnkNode_71006ef540*>(self));
     ClearRefs(reinterpret_cast<UnkShakArray_A4_b71*>(self + 0x14818));
     ClearRefs(reinterpret_cast<UnkShakArray_A4_b71*>(self + 0x14840));

@@ -46,7 +46,7 @@ struct UnkTileGroupB {
 
 // Recreates the tile array (with its count in front) and the position array for `capacity` tiles,
 // frees the cell array and empties the group.
-void fn_7100ca0dec(UnkTileGroupB* self, u32 capacity) {
+void CBreakableTileGroup_AllocTileArrays(UnkTileGroupB* self, u32 capacity) {
     self->field_0x3c = capacity;
     if (self->field_0x48) {
         delete[] self->field_0x48;
@@ -75,7 +75,7 @@ void fn_7100ca0dec(UnkTileGroupB* self, u32 capacity) {
 void fn_7100c9f8fc(UnkQueryObj* tile);
 
 // Adds a tile at `pos` (snapped to the grid), growing the group's bounds; null when it is full.
-UnkQueryObj* fn_7100ca0cb0(UnkTileGroupB* self, void* unused, const f32* pos) {
+UnkQueryObj* CBreakableTileGroup_AddTileAtGridPos(UnkTileGroupB* self, void* unused, const f32* pos) {
     u32 n = self->field_0x40;
     if (n >= self->field_0x3c)
         return nullptr;
@@ -113,7 +113,7 @@ struct UnkTileLists {
     base::global::CRntVector<u64> field_0x50;
 };
 
-void fn_7100c9da0c(UnkTileLists* self) {
+void CBreakableTileGroup_DestroyCallbackLists(UnkTileLists* self) {
     for (u64** it = self->field_0x0.data, **end = it + self->field_0x0.count; it != end; ++it)
         **it = 0;
     self->field_0x0.count = 0;

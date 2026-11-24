@@ -38,7 +38,7 @@ void fn_71008116b4(UnkEnumType* type, const CStrId& name, void*, void*, void (*)
 extern char g_unk_7172722a60[];
 extern char g_unk_7172722a61[];
 
-void fn_7100815b00() {
+void CStandaloneFXComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172722eb8.ids);
     fn_710009ec00(g_unk_7172722528, fn_710080fedc());
     fn_710009ec00(g_unk_7172722529, fn_710080ffb8());

@@ -33,7 +33,7 @@ struct UnkPowerGenerator_b47 {
     bool field_0x138;
 };
 
-void fn_7100a7eb00(UnkPowerGenerator_b47* self) {
+void CPowerGeneratorComponent_ClearUsableTargetFlagUnlessUsed(UnkPowerGenerator_b47* self) {
     if (self->field_0x138)
         return;
     if (self->state == 1) {

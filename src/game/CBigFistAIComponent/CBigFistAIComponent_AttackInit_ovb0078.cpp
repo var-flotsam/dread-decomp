@@ -55,7 +55,7 @@ struct UnkGuardedId_ovb0078 {
 };
 extern UnkGuardedId_ovb0078 g_unk_71726c1108 __attribute__((visibility("hidden")));
 
-void fn_71003e819c(UnkBigFistAI2_ovb0078* self, void* arg0, void* arg1) {
+void CBigFistAIComponent_FlagAttackWhileInAttackInit(UnkBigFistAI2_ovb0078* self, void* arg0, void* arg1) {
     fn_71011088ec(self, arg0, arg1);
     UnkBigFistAttack2_ovb0078* attack = self->owner->field_0x278->field_0x1a0;
     if (!attack || !fn_710009d50c(attack->vf_0x0(), fn_71003e05e0())) {

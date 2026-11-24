@@ -25,7 +25,7 @@ struct UnkFireBallMovement_b49 {
     UnkFireBallOwner_b49* owner;
 };
 
-void fn_71004d75c8(UnkFireBallMovement_b49* self, f32 dt) {
+void CCooldownXBossFireBallMovementComponent_UpdateWithFixedOwnerAngle(UnkFireBallMovement_b49* self, f32 dt) {
     fn_7100ac3a78(reinterpret_cast<UnkNailongThornMovement*>(self), dt);
     UnkFireBallOwner_b49* owner = self->owner;
     owner->transform.SetAngle(UnkVec3f(0.0f, -1.5707964f, 0.0f));

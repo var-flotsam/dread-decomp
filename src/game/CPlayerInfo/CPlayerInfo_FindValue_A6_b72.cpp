@@ -22,7 +22,7 @@ struct UnkInfoMap_A6_b72 {
     }
 };
 
-f32 fn_7100f0ec68(UnkInfoMap_A6_b72* self, const u64* key) {
+f32 CPlayerInfo_LookupTimedEntryFloat(UnkInfoMap_A6_b72* self, const u64* key) {
     UnkInfoValue_A6_b72* v = self->Find(*key);
     if (v == self->values + self->count)
         return 0.0f;

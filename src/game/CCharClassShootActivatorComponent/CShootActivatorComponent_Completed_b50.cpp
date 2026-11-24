@@ -31,7 +31,7 @@ struct UnkShootActivatorComponent {
     UnkShootActor* actor;  // 0x30
 };
 
-void fn_71008926ec(UnkShootActivatorComponent* self, bool flag) {
+void CCharClassShootActivatorComponent_NotifyShootActivationCompleted(UnkShootActivatorComponent* self, bool flag) {
     UnkShootActor* actor = self->actor;
     actor->entity->activations++;
     const char* name = actor->entity->name;

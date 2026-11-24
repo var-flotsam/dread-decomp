@@ -25,9 +25,9 @@ struct UnkBTObserverEntries {
     u32 step;
 };
 
-UnkBTObserverEntry* fn_7100ca7b08(UnkBTObserverEntries* self, const u32* key) {
+UnkBTObserverEntry* CBTObserverComponent_AppendEntryForKey(UnkBTObserverEntries* self, const u32* key) {
     if (self->count == self->capacity)
-        fn_7100ca9158(reinterpret_cast<base::UnkPairArrays*>(self), self->step + self->count);
+        CBTObserverComponent_ReserveEntries(reinterpret_cast<base::UnkPairArrays*>(self), self->step + self->count);
     u32* slot = &self->keys[self->count];
     *slot = *key;
     new (&self->values[self->count]) UnkBTObserverEntry();

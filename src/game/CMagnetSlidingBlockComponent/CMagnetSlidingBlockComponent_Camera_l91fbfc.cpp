@@ -76,7 +76,7 @@ static inline const CRntString& Name(const CStrId& id) {
     return id.data->String();
 }
 
-void fn_710091fbfc(UnkMagnetBlockCamera_l91fbfc* self) {
+void CMagnetSlidingBlockComponent_SyncPlayerInputWithAnimatedCamera(UnkMagnetBlockCamera_l91fbfc* self) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
     if (!self->follow_camera)
         return;

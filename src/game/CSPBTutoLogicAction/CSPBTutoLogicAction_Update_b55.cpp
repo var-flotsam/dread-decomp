@@ -88,7 +88,7 @@ static inline UnkSoundHolder* SoundHolder() {
     return g_unk_7101d47340;
 }
 
-void fn_7100a527f8(char* self_, void* arg) {
+void CSPBTutoLogicAction_UpdateCentralUnitTutoPrompts(char* self_, void* arg) {
     auto* self = reinterpret_cast<UnkSPBTutoAction_b55*>(self_);
     if (!*reinterpret_cast<bool*>(self_ + 0x159))
         return;

@@ -17,7 +17,7 @@ struct UnkStatics_7100479c90 {
 extern UnkStatics_7100479c90 g_unk_71726cd548 __attribute__((visibility("hidden")));
 extern char g_unk_71726cd540[];
 
-void fn_7100479c90() {
+void CChozoRobotSoldierBeamMovementComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726cd548.ids);
     InitClassId(&g_unk_71726cd548.field_0x18, "ChozoRobotSoldierBeamMovementComponent");
     InitId(&g_unk_71726cd548.field_0x20, "fDamageChozoRobotSoldierCannonShot");

@@ -12,7 +12,7 @@ struct UnkWorldGraphNodes {
     u32 count;
 };
 
-s32 fn_7100acca84(const UnkWorldGraphNodes* self, const UnkWorldGraphNode* node) {
+s32 CWorldGraph_GetNodeIndex(const UnkWorldGraphNodes* self, const UnkWorldGraphNode* node) {
     for (u64 i = 0; i < self->count; ++i) {
         if (&self->data[i] == node)
             return (s32)i;

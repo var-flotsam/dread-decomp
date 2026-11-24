@@ -14,7 +14,7 @@ using base::math::CVector3D;
 // As src/game/CBombMovement/CBombMovement_Hits_ovb0078.cpp defines it.
 struct UnkBombMovement_ovb0078;
 struct UnkBombActor_ovb0078;
-void fn_7100aabf4c(UnkBombMovement_ovb0078* self, UnkBombActor_ovb0078* actor, UnkVec3f* pos,
+void CBombMovement_ComputePositionNearActor(UnkBombMovement_ovb0078* self, UnkBombActor_ovb0078* actor, UnkVec3f* pos,
                    UnkVec3f* offset);
 
 // A reference-counted object of the collision queries: released through its vf_0x10.
@@ -153,7 +153,7 @@ void fn_7100aaf2e8(UnkPowerBombMovement_laaf2e8* self, UnkPowerBombActor_laaf2e8
         }
     }
 
-    fn_7100aabf4c(reinterpret_cast<UnkBombMovement_ovb0078*>(self), reinterpret_cast<UnkBombActor_ovb0078*>(actor),
+    CBombMovement_ComputePositionNearActor(reinterpret_cast<UnkBombMovement_ovb0078*>(self), reinterpret_cast<UnkBombActor_ovb0078*>(actor),
                   pos, rotation);
     if (!found) {
         normal = {0.0f, 1.0f, 0.0f};

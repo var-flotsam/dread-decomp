@@ -37,7 +37,7 @@ struct UnkSabotoruAttack_A3_b73 {
     UnkActorTarget* anim;              // 0x58
 };
 
-void fn_71006732b4(UnkSabotoruAttack_A3_b73* self) {
+void CSabotoruTurnInDoorAttack_BeginAttack(UnkSabotoruAttack_A3_b73* self) {
     fn_71003608ac(reinterpret_cast<UnkAttackBase*>(self));
     self->field_0x30 = 0;
     self->anim = reinterpret_cast<UnkActorTarget*>(Track_A3_b73(self->owner));

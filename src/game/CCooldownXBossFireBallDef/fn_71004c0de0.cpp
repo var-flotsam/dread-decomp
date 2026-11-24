@@ -95,7 +95,7 @@ extern char g_unk_71726d6431[];
 extern void* g_unk_7101a3e378[];
 extern char g_unk_71726d6469[];
 
-void fn_71004c0de0() {
+void CCooldownXBossFireBallDef_InitStatics() {
     InitHeaderIds(&g_unk_71726d7350.ids);
     CCooldownXBossFireBallDef::refl_GetClass();
     fn_710009ec00(g_unk_71726d5820, g_unk_71726d7350.field_0x38);

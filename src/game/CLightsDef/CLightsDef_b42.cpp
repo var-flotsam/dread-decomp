@@ -18,9 +18,9 @@ static inline void Grow_b42a3(UnkLightsArray_b42a3* self, u32 index) {
     u32 capacity = self->capacity;
     if (capacity <= index && self->step != 0)
         capacity = (index / self->step + 1) * self->step;
-    fn_7100da1508(self, capacity);
+    CLightsDef_ReserveLights(self, capacity);
     u32 n = index + 1;
-    fn_7100da1508(self, n);
+    CLightsDef_ReserveLights(self, n);
     for (u32 i = self->count; i < n; ++i)
         fn_7100d9b128(&self->data[i]);
     self->count = n;

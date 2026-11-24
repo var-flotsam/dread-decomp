@@ -32,7 +32,7 @@ struct UnkNode_46e130 : UnkBossAIComponent {
 };
 
 extern void* g_unk_7101a38b28[];
-void fn_710045ee14(void*);
+void CCharClassChozoRobotSoldierCannonShotAttack_Construct(void*);
 void fn_71004623f0(void*);
 void fn_71004632ac(void*);
 void fn_710046424c(void*);
@@ -41,7 +41,7 @@ void fn_71002c6c6c(void*);
 void fn_710046e130(UnkNode_46e130* self) {
     fn_710041a198(self);
     self->vtable = &g_unk_7101a38b28[2];
-    fn_710045ee14(self->oChozoRobotSoldierCannonShotAttackDef);
+    CCharClassChozoRobotSoldierCannonShotAttack_Construct(self->oChozoRobotSoldierCannonShotAttackDef);
     fn_71004623f0(self->oChozoRobotSoldierDashSlashAttackDef);
     fn_71004632ac(self->oChozoRobotSoldierDisruptionFieldAttackDef);
     fn_710046424c(self->oChozoRobotSoldierUppercutAttackDef);

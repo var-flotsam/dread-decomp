@@ -68,6 +68,6 @@ struct UnkObject_7101185ea8 : UnkBase_0x90 {
     ~UnkObject_7101185ea8() { vtable = &g_unk_7101cb4ef8[2]; }
 };
 
-void fn_7101185ea8(UnkObject_7101185ea8& self) {
+void CCreditsMode_DestroyAndDelete(UnkObject_7101185ea8& self) {
     delete &self;
 }

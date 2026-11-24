@@ -18,7 +18,7 @@ using base::math::CVector3D;
 
 using UnkChargeEntries_ovb0016 = base::global::CRntVector<UnkChargeEntry_ovb0016>;
 
-void fn_71003b78f8(UnkChargeEntries_ovb0016* entries, u32 n) {
+void CAutclastChargeAttack_ReserveChargeEntries(UnkChargeEntries_ovb0016* entries, u32 n) {
     if (entries->capacity >= n)
         return;
     auto* p = static_cast<UnkChargeEntry_ovb0016*>(
@@ -35,7 +35,7 @@ void fn_71003b78f8(UnkChargeEntries_ovb0016* entries, u32 n) {
     entries->capacity = n;
 }
 
-void fn_71003b7a64(UnkChargeEntries_ovb0016* entries, const UnkChargeEntry_ovb0016& entry) {
+void CAutclastChargeAttack_PushBackEntry(UnkChargeEntries_ovb0016* entries, const UnkChargeEntry_ovb0016& entry) {
     u32 n = entries->count;
     u32 capacity = entries->capacity;
     if (capacity <= n && entries->step != 0)
@@ -43,7 +43,7 @@ void fn_71003b7a64(UnkChargeEntries_ovb0016* entries, const UnkChargeEntry_ovb00
     if ((s32)n >= (s32)capacity)
         for (;;) {
         }
-    fn_71003b78f8(entries, capacity);
+    CAutclastChargeAttack_ReserveChargeEntries(entries, capacity);
     new (&entries->data[entries->count]) UnkChargeEntry_ovb0016(entry);
     ++entries->count;
 }

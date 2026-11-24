@@ -61,12 +61,12 @@ static inline __attribute__((always_inline)) void Destroy(UnkDoorCentralUnitLife
     fn_71008ceda0(self);
 }
 
-void fn_71008c97f8(UnkDoorCentralUnitLife* self) {
+void CDoorCentralUnitLifeComponent_Destroy(UnkDoorCentralUnitLife* self) {
     Destroy(self);
 }
 
 // The deleting form.
-void fn_71008c98a4(UnkDoorCentralUnitLife* self) {
+void CDoorCentralUnitLifeComponent_DestroyAndDelete(UnkDoorCentralUnitLife* self) {
     Destroy(self);
     operator delete(self);
 }

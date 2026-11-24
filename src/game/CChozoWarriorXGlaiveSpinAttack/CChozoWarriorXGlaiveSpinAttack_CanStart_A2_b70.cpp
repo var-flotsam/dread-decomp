@@ -37,7 +37,7 @@ struct UnkGlaiveSpinAttack_A2_b70 {
 bool fn_7100494c9c(UnkGlaiveSpinAttack_A2_b70* self, void* arg, u32 mode);
 
 // `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
-bool fn_7100481914(UnkGlaiveSpinAttack_A2_b70* self, void* arg, u32 mode) {
+bool CChozoWarriorXGlaiveSpinAttack_CheckBaseOwnerAliveAndHeightLimit(UnkGlaiveSpinAttack_A2_b70* self, void* arg, u32 mode) {
     if (!fn_7100494c9c(self, arg, mode))
         return false;
     UnkGlaiveOwner_A2_b70* owner = self->owner;

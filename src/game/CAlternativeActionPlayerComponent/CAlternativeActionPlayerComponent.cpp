@@ -18,13 +18,13 @@ struct UnkAltActionPlayer {
     void** vtable;
 };
 
-void fn_7100711fe8(UnkAltActionPlayer* self, UnkAltActionTarget* target, f32 a, f32 b);
+void CAlternativeActionPlayerComponent_TryPlayActionByAccumulatedChance(UnkAltActionPlayer* self, UnkAltActionTarget* target, f32 a, f32 b);
 
 void fn_7100711f78(UnkAltActionPlayer* self, UnkAltActionRequest* request) {
     typedef bool (*Accept)(UnkAltActionPlayer*, void*);
     if (reinterpret_cast<Accept>(self->vtable[0x168 / 8])(self, request)) {
         UnkAltActionTarget* target = &request->target;
         if (reinterpret_cast<Accept>(self->vtable[0x170 / 8])(self, target))
-            fn_7100711fe8(self, target, target->field_0x8, target->field_0xc);
+            CAlternativeActionPlayerComponent_TryPlayActionByAccumulatedChance(self, target, target->field_0x8, target->field_0xc);
     }
 }

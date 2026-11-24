@@ -23,7 +23,7 @@ static inline void DeleteHolder_b58(UnkSharedPtrHolder_b58<Copy>* self) {
     fn_7100083c00(self);
 }
 
-void fn_7100b8f348(UnkSharedPtrHolder_b58<0>* self) { DeleteHolder_b58(self); }
+void CAIAction_DestroyAndDelete(UnkSharedPtrHolder_b58<0>* self) { DeleteHolder_b58(self); }
 void fn_7100b8fcec(UnkSharedPtrHolder_b58<1>* self) { DeleteHolder_b58(self); }
 void fn_7100b90a58(UnkSharedPtrHolder_b58<2>* self) { DeleteHolder_b58(self); }
 void fn_7100c97a1c(UnkSharedPtrHolder_b58<3>* self) { DeleteHolder_b58(self); }

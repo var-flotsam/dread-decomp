@@ -47,7 +47,7 @@ __attribute__((always_inline)) static inline void Set_b62a2(UnkTimelineComponent
     fn_7100a2cb7c(timeline, &id.hash, &mask.id, false, -1.0f);
 }
 
-void fn_71004791d0(UnkRobotBeam_b62a2* self) {
+void CChozoRobotSoldierBeamMovementComponent_Launch(UnkRobotBeam_b62a2* self) {
     if (auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8)) {
         if (self->charged)
             Set_b62a2(timeline, "onlaunch_charged");

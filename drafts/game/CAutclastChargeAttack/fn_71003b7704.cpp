@@ -10,8 +10,8 @@
 // The entries are defined in CAutclastChargeAttack_entries_ovb0016.cpp (0x28 bytes each).
 struct UnkChargeEntry_ovb0016;
 using UnkChargeEntries_ovb0016 = base::global::CRntVector<UnkChargeEntry_ovb0016>;
-void fn_71003b78f8(UnkChargeEntries_ovb0016* entries, u32 n);
-void fn_71003b7a64(UnkChargeEntries_ovb0016* entries, const UnkChargeEntry_ovb0016& entry);
+void CAutclastChargeAttack_ReserveChargeEntries(UnkChargeEntries_ovb0016* entries, u32 n);
+void CAutclastChargeAttack_PushBackEntry(UnkChargeEntries_ovb0016* entries, const UnkChargeEntry_ovb0016& entry);
 
 struct UnkChargeEntry_l3b7704 {
     u64 words[5];
@@ -30,9 +30,9 @@ struct UnkChargeList_l3b7704 {
         : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14), flags(other.flags),
           allocator(other.allocator) {
         auto* list = reinterpret_cast<UnkChargeEntries_ovb0016*>(this);
-        fn_71003b78f8(list, other.capacity);
+        CAutclastChargeAttack_ReserveChargeEntries(list, other.capacity);
         for (u32 i = 0; i < other.count; ++i)
-            fn_71003b7a64(list, *reinterpret_cast<const UnkChargeEntry_ovb0016*>(&other.data[i]));
+            CAutclastChargeAttack_PushBackEntry(list, *reinterpret_cast<const UnkChargeEntry_ovb0016*>(&other.data[i]));
     }
 };
 

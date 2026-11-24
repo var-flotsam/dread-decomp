@@ -31,7 +31,7 @@ struct UnkGrabComponent_b43a2 {
 };
 static_assert(__builtin_offsetof(UnkGrabComponent_b43a2, id) == 0x88, "UnkGrabComponent_b43a2 layout");
 
-void fn_7100790da8(UnkGrabComponent_b43a2* self) {
+void CCharClassGrabComponent_Destroy(UnkGrabComponent_b43a2* self) {
     self->vtable = &g_unk_7101a6f508[2];
     if (UnkStringPool* pool = g_unk_7101d47108) {
         UnkStringData** id = &self->id;

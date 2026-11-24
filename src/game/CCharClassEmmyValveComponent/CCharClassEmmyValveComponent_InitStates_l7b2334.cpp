@@ -84,7 +84,7 @@ static inline void Bind(UnkValve_l7b2334* self, UnkValveState_l7b2334* state, vo
     state->field_0x50 = {self, b};
 }
 
-void fn_71007b2334(UnkValve_l7b2334* self) {
+void CCharClassEmmyValveComponent_InitStateMachineAndRegistry(UnkValve_l7b2334* self) {
     self->machine.owner = self;
     Bind(self, &self->states[0], fn_71007b4c60, fn_71007b4c64);
     Bind(self, &self->states[1], fn_71007b4c68, fn_71007b4c6c);

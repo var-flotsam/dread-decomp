@@ -39,7 +39,7 @@ void fn_71010c3e78(UnkReflType* self, const CStrId& name, void* a, void* b);
 // base::reflection::refl_GetType<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*> const*>
 UnkReflType* fn_71010c406c();
 
-void fn_71010c6f70() {
+void CComponent_InitStatics() {
     InitHeader(g_unk_7172a037e0);
     fn_71010c23d0();
     fn_710009ec00(&g_unk_7172a02d80, TUType<0x20>(g_unk_7172a037e0));

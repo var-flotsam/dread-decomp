@@ -21,7 +21,7 @@ struct UnkPoisonFlyDive : UnkAttackBase {
     UnkWeakHandle* field_0x88;
 };
 
-void fn_7100632e34(UnkPoisonFlyDive* self) {
+void CPoisonFlyDiveAttack_ClearStateAndReleaseHandle(UnkPoisonFlyDive* self) {
     fn_71003609b8(self);
     if (UnkWeakHandle* handle = self->field_0x88) {
         if (UnkWeakTarget* target = handle->target)

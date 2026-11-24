@@ -69,5 +69,5 @@ void fn_71003ad8e4(UnkSelf_71003ad8e4* self) {
             return;
     }
     UnkGameManager* manager = g_unk_7101d47310;
-    manager->field_0x2230 = *fn_710112bf20(holder->field_0x48->field_0x10);
+    manager->field_0x2230 = *CSpawnPointComponent_GetField0x60TargetId(holder->field_0x48->field_0x10);
 }

@@ -2446,7 +2446,7 @@ address,size,name,name_source,subsystem,status
 0x7100251cdc,48,fn_7100251cdc,unknown,unknown,O
 0x7100251d0c,260,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::MoveAssign",reflection,engine/reflection,O
 0x7100251e10,360,fn_7100251e10,unknown,unknown,O
-0x7100251f78,356,fn_7100251f78,unknown,unknown,O
+0x7100251f78,356,CActorComponent_ShrinkValueStrIdArraysToCount,inferred,unknown,O
 0x71002520dc,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::Begin",reflection,engine/reflection,O
 0x71002520e8,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::End",reflection,engine/reflection,O
 0x71002520fc,152,fn_71002520fc,unknown,unknown,O
@@ -2501,11 +2501,11 @@ address,size,name,name_source,subsystem,status
 0x7100254d6c,280,fn_7100254d6c,unknown,game?,O
 0x7100254e84,308,fn_7100254e84,unknown,game?,O
 0x7100254fb8,36,fn_7100254fb8,unknown,game?,O
-0x7100254fdc,380,fn_7100254fdc,unknown,game?,O
+0x7100254fdc,380,CActorDef_InitFromContext,inferred,game?,O
 0x7100255158,272,fn_7100255158,unknown,game?,O
 0x7100255268,60,fn_7100255268,unknown,game?,O
 0x71002552a4,144,CActorDef_FindComponentByType,inferred,game?,O
-0x7100255334,52,fn_7100255334,unknown,game?,O
+0x7100255334,52,CActorDef_FindPartById,inferred,game?,O
 0x7100255368,52,fn_7100255368,unknown,game?,O
 0x710025539c,2380,fn_710025539c,unknown,game?,U
 0x7100255ce8,1180,fn_7100255ce8,unknown,game?,U
@@ -5597,9 +5597,9 @@ address,size,name,name_source,subsystem,status
 0x71002ebe60,36,fn_71002ebe60,unknown,unknown,O
 0x71002ebe84,1152,fn_71002ebe84,unknown,unknown,U
 0x71002ec304,880,fn_71002ec304,unknown,unknown,U
-0x71002ec674,536,fn_71002ec674,unknown,unknown,O
+0x71002ec674,536,CPlaythrough_EraseKeyedRecordSwapLast,inferred,unknown,O
 0x71002ec88c,8,fn_71002ec88c,unknown,unknown,O
-0x71002ec894,464,fn_71002ec894,unknown,engine/reflection?,O
+0x71002ec894,464,CPlaythrough_ReadReflectedFieldsFromFile,inferred,engine/reflection?,O
 0x71002eca64,136,fn_71002eca64,unknown,unknown,O
 0x71002ecaec,344,fn_71002ecaec,unknown,unknown,U
 0x71002ecc44,28,fn_71002ecc44,unknown,game/core?,O
@@ -5796,7 +5796,7 @@ address,size,name,name_source,subsystem,status
 0x71002f25ec,304,fn_71002f25ec,unknown,engine/reflection?,O
 0x71002f271c,600,fn_71002f271c,unknown,engine/reflection?,U
 0x71002f2974,288,fn_71002f2974,unknown,engine/reflection?,O
-0x71002f2a94,464,fn_71002f2a94,unknown,engine/reflection?,O
+0x71002f2a94,464,CPlaythroughDef_ReadFromFile,inferred,engine/reflection?,O
 0x71002f2c64,204,fn_71002f2c64,unknown,engine/reflection?,O
 0x71002f2d30,52,CPlaythroughDef_FindCheckpointDef,inferred,engine/reflection?,O
 0x71002f2d64,28,fn_71002f2d64,unknown,engine/reflection?,O

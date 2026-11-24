@@ -67,7 +67,7 @@ inline UnkTunableMenuItem_b0105::UnkTunableMenuItem_b0105(UnkTunableMenuItem_b01
 }
 
 // Grows the child array to at least n items.
-__attribute__((noinline)) void fn_7100aded3c(base::global::CRntVector<UnkTunableMenuItem_b0105>* self, u32 n) {
+__attribute__((noinline)) void CTunableMenuHelperClass_ReserveItemVector(base::global::CRntVector<UnkTunableMenuItem_b0105>* self, u32 n) {
     if (self->capacity < n) {
         auto* p = static_cast<UnkTunableMenuItem_b0105*>(
             self->allocator->vf_0x40((u64)n * sizeof(UnkTunableMenuItem_b0105), 8, self->flags));
@@ -104,7 +104,7 @@ struct UnkTunableMenuEntry_b0105 {
 };
 
 // Marks the entry changed and sets its two ids.
-void fn_7100addddc(UnkTunableMenuEntry_b0105* self, const CStrId& a, const CStrId& b) {
+void CTunableMenuHelperClass_SetIdPairAndFlag(UnkTunableMenuEntry_b0105* self, const CStrId& a, const CStrId& b) {
     self->dirty = true;
     self->field_0x18 = a;
     self->field_0x20 = b;

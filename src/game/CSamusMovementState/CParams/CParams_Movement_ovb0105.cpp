@@ -74,7 +74,7 @@ static inline bool NearZero(f32 v) {
 
 // Moves the target by the offset (mode 1) or to its position plus the offset (mode 2), unless the
 // offset is zero.
-bool fn_71009b05c0(UnkSamusImpulseParams_b0105* self, UnkSamusMovementTarget_b0105* target) {
+bool CSamusMovementState_ApplyOffsetToTarget(UnkSamusImpulseParams_b0105* self, UnkSamusMovementTarget_b0105* target) {
     if (!target)
         return false;
     if (NearZero(self->offset.x) && NearZero(self->offset.y) && NearZero(self->offset.z))

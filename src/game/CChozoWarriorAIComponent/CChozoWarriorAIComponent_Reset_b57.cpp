@@ -56,6 +56,6 @@ void fn_710049ad04(UnkCwAI_b57* self, void* context, bool reset) {
         base::reflection::refl_EmitU32(target, 0x4b8786ae5226bd5f, 0xf4061ff25a2163d6, 2, &g_unk_710164b958,
                                        &g_unk_7172769740);
     } else if (state->field_0x7f) {
-        fn_71004996b0(reinterpret_cast<UnkChozoWarriorAI733*>(self));
+        CChozoWarriorAIComponent_ReleaseHandleAndClearTimer(reinterpret_cast<UnkChozoWarriorAI733*>(self));
     }
 }

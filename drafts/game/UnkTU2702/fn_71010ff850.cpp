@@ -19,7 +19,7 @@ struct __attribute__((packed)) UnkScenarioIdList_ovb0097 {
     CStrId ids[4];  // 0x4
 };
 static_assert(sizeof(UnkScenarioIdList_ovb0097) == 0x24, "UnkScenarioIdList_ovb0097 layout");
-void fn_71007e572c(UnkScenarioIdList_ovb0097* self, u32 n);
+void CCharClassEventScenarioComponent_ResizeStrIdList(UnkScenarioIdList_ovb0097* self, u32 n);
 
 struct UnkIgnoreOwner_l0ff850 {
     u8 pad_0x0[0x220];
@@ -63,7 +63,7 @@ void fn_71010ff850(void* target, bool flag, void* arg) {
         CStrId* last = end - 1;
         if (last != it)
             it->ReleaseAndTake(*last);
-        fn_71007e572c(list, list->count - 1);
+        CCharClassEventScenarioComponent_ResizeStrIdList(list, list->count - 1);
     }
 
     bool was_ignored = self->ignored;

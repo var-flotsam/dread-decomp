@@ -44,11 +44,11 @@ __attribute__((always_inline)) static inline void Destroy_b49a3(UnkAreaFXCompone
     fn_71010c4194(reinterpret_cast<UnkBaseComponent*>(self));
 }
 
-void fn_7100802ca0(UnkAreaFXComponent_b49a3* self) {
+void CAreaFXComponent_Destroy(UnkAreaFXComponent_b49a3* self) {
     Destroy_b49a3(self);
 }
 
-void fn_7100802d44(UnkAreaFXComponent_b49a3* self) {
+void CAreaFXComponent_DestroyAndDelete(UnkAreaFXComponent_b49a3* self) {
     Destroy_b49a3(self);
     operator delete(self);
 }

@@ -18,7 +18,7 @@ void fn_7100ed977c(UnkSlot_0x40* self);  // Destructor.
 // Assignment (its callers use it as copy and as move assignment).
 UnkSlot_0x40* fn_7100edbef4(UnkSlot_0x40* self, UnkSlot_0x40* other);
 
-void fn_7100eddc68(UnkObj290_b43a3* self, UnkObj290_b43a3* other);  // Move constructor.
+void CShotManager_CopyConstructElement290(UnkObj290_b43a3* self, UnkObj290_b43a3* other);  // Move constructor.
 UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const base::math::CVector3D* pos, u32 id, u32 kind, u32);
 void fn_7100ed77b8(void* player, UnkCollisionObject* object);
 extern void* g_unk_7101ca9fe0[];

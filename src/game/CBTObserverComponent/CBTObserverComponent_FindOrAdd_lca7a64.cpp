@@ -22,7 +22,7 @@ struct UnkObserverArrays_7a64 {
 
 struct UnkBTObserverEntry;
 struct UnkBTObserverEntries;
-UnkBTObserverEntry* fn_7100ca7b08(UnkBTObserverEntries* self, const u32* key);
+UnkBTObserverEntry* CBTObserverComponent_AppendEntryForKey(UnkBTObserverEntries* self, const u32* key);
 
 struct UnkObserverManager_7a64 {
     u8 pad_0x0[0x128];
@@ -35,6 +35,6 @@ UnkLinkList* fn_7100ca7a64(void* manager, u32 id) {
     UnkLinkList* slot = entries->Find(id);
     if (slot == entries->End())
         slot = reinterpret_cast<UnkLinkList*>(
-            fn_7100ca7b08(reinterpret_cast<UnkBTObserverEntries*>(entries), &id));
+            CBTObserverComponent_AppendEntryForKey(reinterpret_cast<UnkBTObserverEntries*>(entries), &id));
     return slot;
 }

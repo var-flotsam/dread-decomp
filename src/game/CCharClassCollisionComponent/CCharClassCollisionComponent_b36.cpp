@@ -17,7 +17,7 @@ struct UnkCollisionClassDef {
 };
 
 // The read: after the base, a string into +0x58 and two flags into +0x88 and +0x89.
-bool fn_710079a840(UnkCollisionClassDef* self, CRntFile* file) {
+bool CCharClassCollisionComponent_ReadFromFile(UnkCollisionClassDef* self, CRntFile* file) {
     bool result = fn_71011aced4(self, file);
     if (result) {
         const char* str;

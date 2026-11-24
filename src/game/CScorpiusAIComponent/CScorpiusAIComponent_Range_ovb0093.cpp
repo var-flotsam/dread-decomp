@@ -52,7 +52,7 @@ static inline const UnkScorpiusTunables_ovb0093* Tunables() {
     return reinterpret_cast<const UnkScorpiusTunables_ovb0093*>(&g_unk_7172703e88);
 }
 
-bool fn_71006984cc(UnkScorpiusAI_ovb0093* self) {
+bool CScorpiusAIComponent_SetXRangeFromFirstAndLastPoints(UnkScorpiusAI_ovb0093* self) {
     u32 n = self->count;
     u32 last = n - ((self->flag == 0) & (n != 0));
     if (last != 0) {

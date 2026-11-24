@@ -70,7 +70,7 @@ inline UnkVec3_l697ce0 Position(const UnkActor* actor) {
 }
 
 struct UnkScorpiusAI_l692a98;
-void fn_7100692a98(UnkScorpiusAI_l692a98* self, f32 amount);
+void CScorpiusAIComponent_SetPartColorFromCubedAmount(UnkScorpiusAI_l692a98* self, f32 amount);
 void fn_71006920f8(UnkScorpiusAI_l697ce0* self, s32 id, s32* mode, u8* out, bool flag);
 
 void fn_7100697ce0(UnkScorpiusAI_l697ce0* self, UnkScorpiusState_l697ce0* state) {
@@ -78,7 +78,7 @@ void fn_7100697ce0(UnkScorpiusAI_l697ce0* self, UnkScorpiusState_l697ce0* state)
     if (state == &self->start_state) {
         f32 duration = reinterpret_cast<const UnkScorpiusTunables_l697ce0&>(g_unk_717272fd38).duration;
         self->timer = duration;
-        fn_7100692a98(reinterpret_cast<UnkScorpiusAI_l692a98*>(self), self->timer / duration);
+        CScorpiusAIComponent_SetPartColorFromCubedAmount(reinterpret_cast<UnkScorpiusAI_l692a98*>(self), self->timer / duration);
         self->field_0x14cc0 = false;
         if (self->mode != 2)
             self->field_0x14cb8 = 0;

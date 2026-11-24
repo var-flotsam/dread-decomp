@@ -36,7 +36,7 @@ extern char g_unk_7172718689[];
 void* fn_710079a138();  // fn_710079a138
 extern char g_unk_717271868a[];
 
-void fn_710079d010() {
+void CCharClassCollisionComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172718be0.ids);
     fn_710009ec00(g_unk_7172718290, fn_71007991c0());
     fn_710009ec00(g_unk_7172718291, fn_710079929c());

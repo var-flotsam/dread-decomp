@@ -9,7 +9,7 @@
 #include "types.h"
 
 struct UnkSelf_71004cb554;
-bool fn_71004cb0e8(void*, void*);
+bool CCooldownXBossStrongWhipAttack_OnMatchingEventSetTimer(void*, void*);
 
 struct UnkWhipTrackLink_A2_b72 {
     u8 pad_0x0[0x8];
@@ -27,12 +27,12 @@ struct UnkWhipStart_A2_b72 {
     UnkWeakRef handle;         // 0x90
 };
 
-void fn_71004ca700(UnkWhipStart_A2_b72* self) {
+void CCooldownXBossStrongWhipAttack_ResetTimerAndBindEventHandler(UnkWhipStart_A2_b72* self) {
     fn_71004c1944(reinterpret_cast<UnkSelf_71004cb554*>(self));
     self->field_0x70 = -1.0f;
     UnkWhipTrackLink_A2_b72* link = &self->link;
     link->context = self;
-    link->callback = reinterpret_cast<void (*)()>(&fn_71004cb0e8);
+    link->callback = reinterpret_cast<void (*)()>(&CCooldownXBossStrongWhipAttack_OnMatchingEventSetTimer);
     UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(self->owner + 0x220);
     if (UnkWeakHandle* handle = self->handle.handle) {
         if (UnkWeakTarget* target = handle->target)

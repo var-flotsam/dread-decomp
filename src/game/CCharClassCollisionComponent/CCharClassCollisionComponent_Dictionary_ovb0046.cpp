@@ -79,7 +79,7 @@ void fn_710079cf70(UnkCollisionDefCtor_ovb0046* self) {
 }
 
 // Erases the entry whose material `it` points at; the last entry takes its place. Returns the slot.
-u32* fn_710079ccb8(UnkColMatDict_ovb0046* self, u32* it) {
+u32* CCharClassCollisionComponent_ColMatDictEraseAt(UnkColMatDict_ovb0046* self, u32* it) {
     u32 index = static_cast<u32>(it - self->values);
     self->keys[index].~UnkStrIdMember();
     u32 last = self->count - 1;

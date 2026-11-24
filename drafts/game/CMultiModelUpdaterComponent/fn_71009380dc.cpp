@@ -15,7 +15,7 @@ extern void* g_unk_7101a83e58[];  // CMultiModelUpdaterComponent's vtable
 struct UnkModelUpdater_l170f9c;
 void fn_7101170f9c(UnkModelUpdater_l170f9c* self);
 
-void fn_7100938dec(UnkStrIdPathResource* self);
+void CMultiModelUpdaterComponent_DestroyModelMapValue(UnkStrIdPathResource* self);
 
 // The object a model shows: its render item at +0x8.
 struct UnkModelObject_l9380dc {
@@ -27,7 +27,7 @@ struct UnkModelEntry_l9380dc {
     UnkStrIdPathResource resource;
     UnkModelObject_l9380dc* object;  // 0x18
 
-    ~UnkModelEntry_l9380dc() { fn_7100938dec(&resource); }
+    ~UnkModelEntry_l9380dc() { CMultiModelUpdaterComponent_DestroyModelMapValue(&resource); }
 };
 static_assert(sizeof(UnkModelEntry_l9380dc) == 0x20, "layout");
 

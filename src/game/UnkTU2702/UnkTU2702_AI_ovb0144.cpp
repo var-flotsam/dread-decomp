@@ -289,7 +289,7 @@ struct UnkNavVec_b65a4 {
     UnkNavVec_b65a4() : x(0.0f), y(0.0f), z(0.0f) {}
 };
 struct UnkFlagged;
-bool fn_71006f4f28(UnkNavTarget_b65a4* self, UnkNavVec_b65a4* out);
+bool CAINavigationComponent_TryGetCurrentRecordPosition(UnkNavTarget_b65a4* self, UnkNavVec_b65a4* out);
 
 struct UnkAILead_b0144 {
     void** vtable;
@@ -321,7 +321,7 @@ bool fn_7101112070(UnkAII_b0144* self, UnkVec3f* out) {
     UnkAILead_b0144* lead = self->owner->field_0x218;
     if (!lead)
         return false;
-    if (!fn_71006f4f28(self->owner->field_0x298, &target))
+    if (!CAINavigationComponent_TryGetCurrentRecordPosition(self->owner->field_0x298, &target))
         return false;
     f32 px = self->owner->x, py = self->owner->y, pz = self->owner->z;
     f32 h = fn_7100977bec(reinterpret_cast<UnkFlagged*>(lead));

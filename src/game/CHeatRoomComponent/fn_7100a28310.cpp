@@ -45,7 +45,7 @@ void fn_7100a253dc();
 extern char g_unk_7172746768;
 extern char g_unk_7172746769;
 
-void fn_7100a28310() {
+void CHeatRoomComponent_InitStatics() {
     UnkHeatRoomTU& tu = g_unk_7172746770;
     InitHeader(tu.header);
     tu.field_0x30[0] = -1.0f;

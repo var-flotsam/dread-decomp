@@ -47,7 +47,7 @@ struct UnkPoisonFlyDive_b61 {
     u32 state;
 };
 
-void fn_7100632204(UnkPoisonFlyDive_b61* self, u32 state) {
+void CPoisonFlyDiveAttack_SetState(UnkPoisonFlyDive_b61* self, u32 state) {
     // Declared past a goto (no lifetime markers), so each keeps its own slot.
     goto start;
     base::reflection::UnkReflTypeIdArg mode1;

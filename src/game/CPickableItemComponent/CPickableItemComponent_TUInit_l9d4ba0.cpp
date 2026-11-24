@@ -50,7 +50,7 @@ extern char g_unk_7101a89520[];  // the properties' vtable
 void fn_71009d3f7c(UnkProperty* p);
 void fn_71009ce4c0(void* p);
 
-void fn_71009d4ba0() {
+void CPickableItemComponent_InitStatics() {
     UnkPickableItemTU& tu = g_unk_717273ffa0;
     InitHeader(tu.header);
     new (&g_unk_717273fe00) CStrId("PICKABLE", true);

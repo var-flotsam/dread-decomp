@@ -98,7 +98,7 @@ static inline const UnkQualifiedId& ItemId_B71a6(UnkPropertyEx<>& item) {
     return qid;
 }
 
-void fn_710098b590(UnkAirState_B71a6* self, void*, const u64* value) {
+void CSamusAirMovementState_ForwardRequestIfHasMagnetGlove(UnkAirState_B71a6* self, void*, const u64* value) {
     if (self->kind == 13)
         return;
     UnkInventory* inventory = self->owner->inventory;

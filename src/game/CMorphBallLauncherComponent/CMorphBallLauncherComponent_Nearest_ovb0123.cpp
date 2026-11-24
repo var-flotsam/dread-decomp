@@ -51,7 +51,7 @@ struct UnkMorphBallLauncher_ovb0123 {
     UnkLauncherXform_ovb0123* xform;  // 0x30
 };
 
-UnkReflObject* fn_71008880bc(UnkMorphBallLauncher_ovb0123* self) {
+UnkReflObject* CMorphBallLauncherComponent_FindNearestEntity(UnkMorphBallLauncher_ovb0123* self) {
     UnkLauncherEntry_ovb0123** it = List()->data;
     UnkReflObject* best = nullptr;
     f32 bestDist = -1.0f;

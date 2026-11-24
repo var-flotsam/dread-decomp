@@ -13,7 +13,7 @@
 #include "types.h"
 
 struct UnkGunShot_ovb0070;
-void fn_710085c338(base::global::CRntVector<UnkGunShot_ovb0070>* shots, u32 n);
+void CSamusGunComponent_ReserveRefEntryVector(base::global::CRntVector<UnkGunShot_ovb0070>* shots, u32 n);
 
 struct UnkRefl_fn_710031cd8c;
 template <>
@@ -95,7 +95,7 @@ struct UnkWeaponMovement_lac7bec {
         if ((s32)n >= (s32)new_capacity)
             for (;;) {
             }
-        fn_710085c338(reinterpret_cast<base::global::CRntVector<UnkGunShot_ovb0070>*>(&hits), new_capacity);
+        CSamusGunComponent_ReserveRefEntryVector(reinterpret_cast<base::global::CRntVector<UnkGunShot_ovb0070>*>(&hits), new_capacity);
         new (&hits.data[hits.count]) UnkWeaponHitEntry_lac7bec(target, id);
         ++hits.count;
     }

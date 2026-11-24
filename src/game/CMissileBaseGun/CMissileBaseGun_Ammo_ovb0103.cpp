@@ -42,7 +42,7 @@ static inline void SendHudEvent_ovb0103(UnkIngameMenuHud* hud, const char* name)
         hud, name, false);
 }
 
-void fn_710084f22c(UnkMissileGun_ovb0103* self) {
+void CMissileBaseGun_ConsumeOneAmmo(UnkMissileGun_ovb0103* self) {
     if (self->ammo.id.data == &g_unk_7101d47108->empty)
         return;
     f32 amount = fn_7101142928(self->owner->inventory, self->ammo) - 1.0f;
@@ -82,7 +82,7 @@ static inline UnkSubAreaGuiCache* GuiCache_ovb0103() {
     return cache;
 }
 
-bool fn_710084eb44(UnkLockOnMissileGun_b49a4* gun) {
+bool CMissileBaseGun_CanFire(UnkLockOnMissileGun_b49a4* gun) {
     auto* self = reinterpret_cast<UnkMissileGun_ovb0103*>(gun);
     if (auto* ability = static_cast<UnkMissileGunAbility_ovb0103*>(fn_7100df5460(g_unk_7101d47310))) {
         s32 state = ability->kind;

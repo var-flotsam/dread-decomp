@@ -21,7 +21,7 @@ extern UnkProperty g_unk_7172724fd8;
 struct UnkGrapplePoint_b49;
 struct UnkGrappleUsed_A4_b76;
 struct UnkPullableGrapplePoint_b54;
-void fn_7100822888(UnkGrapplePoint_b49* self, CBlackboard* blackboard);
+void CGrapplePointComponent_LoadFromBlackboard(UnkGrapplePoint_b49* self, CBlackboard* blackboard);
 CStrId fn_7100822a1c(UnkGrappleUsed_A4_b76* self);
 
 // A string id's data as far as its hash goes.
@@ -93,7 +93,7 @@ struct UnkPullOffGrapplePoint_l82de94 {
 static_assert(__builtin_offsetof(UnkPullOffGrapplePoint_l82de94, link) == 0x100, "layout");
 
 void fn_710082de94(UnkPullOffGrapplePoint_l82de94* self, CBlackboard* blackboard) {
-    fn_7100822888(reinterpret_cast<UnkGrapplePoint_b49*>(self), blackboard);
+    CGrapplePointComponent_LoadFromBlackboard(reinterpret_cast<UnkGrapplePoint_b49*>(self), blackboard);
     CBlackboard::CSection* section =
         fn_71010472e0(blackboard, fn_7100822a1c(reinterpret_cast<UnkGrappleUsed_A4_b76*>(self)));
     if (!section)

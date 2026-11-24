@@ -37,7 +37,7 @@ struct UnkEmmyAILists_b46a1;
 bool fn_710055b574(UnkEmmyAILists_b46a1* self, f32* out);
 void fn_71005553a8(char* self, bool refresh);
 struct UnkDoorEmmyFX_b50;
-void fn_71007b6be4(UnkDoorEmmyFX_b50* self, bool add);
+void CDoorEmmyFXComponent_SetEmmyChaseKey(UnkDoorEmmyFX_b50* self, bool add);
 
 // The chase's callbacks, handed to the animation component and the enemy movement.
 void fn_7100514074(UnkEmmyChaseAction_l511be4* self);
@@ -194,7 +194,7 @@ void fn_7100511be4(UnkEmmyChaseAction_l511be4* self) {
                 continue;
             UnkReflObject* fx = door->fx;
             if (fx && fn_710009d50c(fx->vf_0x0(), fn_71007b55e4()))
-                fn_71007b6be4(reinterpret_cast<UnkDoorEmmyFX_b50*>(fx), true);
+                CDoorEmmyFXComponent_SetEmmyChaseKey(reinterpret_cast<UnkDoorEmmyFX_b50*>(fx), true);
         }
     }
 

@@ -22,7 +22,7 @@ struct UnkPoisonFlyAI_b67a4 {
     f32 time;  // 0x14774
 };
 
-void fn_71006393d4(UnkPoisonFlyAI_b67a4* self, f32 dt) {
+void CPoisonFlyAIComponent_UpdateAttackOffsetTime(UnkPoisonFlyAI_b67a4* self, f32 dt) {
     UnkOffsetVec_b65a4 pos;
     pos.x = 0.0f;
     pos.y = 0.0f;

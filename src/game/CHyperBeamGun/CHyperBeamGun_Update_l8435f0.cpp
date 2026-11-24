@@ -122,7 +122,7 @@ void fn_71008435f0(UnkHyperBeamGun_l8435f0* self, f32 dt) {
     }
 
     u32 previous = self->fire_state;
-    u32 current = fn_71008434b8(self);
+    u32 current = CHyperBeamGun_GetChargeBlockFlags(self);
     self->fire_state = current;
     if (previous != 0) {
         if (current == 0) {

@@ -60,7 +60,7 @@ static inline void MotionEnd(UnkStruct_7101176ea8* actions, UnkCls_710117af10* n
     *out = motion.field_0x2c;
 }
 
-void fn_71005858c4(UnkGoliathXBombsAttack_l5858c4* self) {
+void CGoliathXBurstProjectionBombsAttack_CacheTimelineMotionValues(UnkGoliathXBombsAttack_l5858c4* self) {
     if (!self->owner->actions)
         return;
     self->ends = UnkMotionEnds_l5858c4();

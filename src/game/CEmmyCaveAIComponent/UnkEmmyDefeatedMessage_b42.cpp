@@ -19,7 +19,7 @@ __attribute__((always_inline)) static inline void SendDefeated(const char* text,
     fn_7100000790(script, "");
 }
 
-void fn_71004f0ab8() { SendDefeated("#MLOG_DEFEAT_EMMY_CAVE", "CurrentScenario.OnEmmyCaveDead"); }
+void CEmmyCaveAIComponent_SendDefeatedMessageAndCallOnEmmyCaveDead() { SendDefeated("#MLOG_DEFEAT_EMMY_CAVE", "CurrentScenario.OnEmmyCaveDead"); }
 void fn_71004f2d5c() { SendDefeated("#MLOG_DEFEAT_EMMY_FOREST", "CurrentScenario.OnEmmyForestDead"); }
 void fn_71004f7a30() { SendDefeated("#MLOG_DEFEAT_EMMY_LAB", "CurrentScenario.OnEmmyBaseLabDead"); }
 void fn_71004f934c() { SendDefeated("#MLOG_DEFEAT_EMMY_MAGMA", "CurrentScenario.OnEmmyMagmaDead"); }

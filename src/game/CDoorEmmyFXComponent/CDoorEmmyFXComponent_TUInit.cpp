@@ -30,7 +30,7 @@ inline const CStrId& DoorEmmyFXId() {
     return s_id;
 }
 
-void fn_71007b7190() {
+void CDoorEmmyFXComponent_InitStatics() {
     UnkDoorEmmyFXTU& tu = g_unk_717271a550;
     InitHeader(tu.header);
     fn_71007b4fb0();

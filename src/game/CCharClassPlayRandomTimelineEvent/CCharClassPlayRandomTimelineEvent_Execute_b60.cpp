@@ -14,7 +14,7 @@ extern "C" int rand();
 template <u32 Offset>
 struct UnkModeCondition;
 struct UnkModeActor;
-bool fn_7100bc77ec(const UnkModeCondition<0x18>* self, UnkModeActor* actor);
+bool CCharClassPlayRandomTimelineEvent_CheckPlayOnly(const UnkModeCondition<0x18>* self, UnkModeActor* actor);
 
 struct UnkPlayRandomTimelineEvent_b60 {
     u8 unk_0x0[0xc];
@@ -29,12 +29,12 @@ struct UnkPlayRandomTimelineTarget_b60 {
     UnkActor* actor;
 };
 
-void fn_7100bc7628(UnkPlayRandomTimelineEvent_b60* self, UnkPlayRandomTimelineTarget_b60* target) {
+void CCharClassPlayRandomTimelineEvent_PlayRandomTimeline(UnkPlayRandomTimelineEvent_b60* self, UnkPlayRandomTimelineTarget_b60* target) {
     UnkActor* actor = target->actor;
     auto* timeline = static_cast<UnkTimelineComponent*>(actor->field_0x2e8);
     if (!timeline)
         return;
-    if (!fn_7100bc77ec(reinterpret_cast<const UnkModeCondition<0x18>*>(self),
+    if (!CCharClassPlayRandomTimelineEvent_CheckPlayOnly(reinterpret_cast<const UnkModeCondition<0x18>*>(self),
                        reinterpret_cast<UnkModeActor*>(actor)))
         return;
     u32 count = self->count;

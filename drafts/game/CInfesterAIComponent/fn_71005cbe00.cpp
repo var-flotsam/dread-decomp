@@ -39,7 +39,7 @@ u32 fn_7100413fd0(UnkReflObject* ai);
 base::reflection::UnkReflObject* fn_7101193ee0(UnkActorDefFactory* self, const CStrId* id);
 struct UnkActorDefEntry345;
 struct UnkActorDef345;
-UnkActorDefEntry345* fn_7100255334(const UnkActorDef345* self, const u64* id);
+UnkActorDefEntry345* CActorDef_FindPartById(const UnkActorDef345* self, const u64* id);
 
 __attribute__((visibility("hidden"))) extern CStrId g_unk_71726ec438;  // the infester ball's character class
 __attribute__((visibility("hidden"))) extern u64 g_unk_71726ec440;     // its AI component's id
@@ -176,7 +176,7 @@ bool fn_71005cbe00(UnkInfesterSelf_l5cbe00* self, u32 direction, UnkInfesterMove
     UnkReflObject* found = fn_7101193ee0(g_unk_71726a0220, &g_unk_71726ec438);
     UnkReflObject* char_class = found && fn_710009d50c(found->vf_0x0(), fn_71011abbd4()) ? found : nullptr;
     UnkReflObject* comp = reinterpret_cast<UnkReflObject*>(
-        fn_7100255334(reinterpret_cast<const UnkActorDef345*>(char_class), &g_unk_71726ec440));
+        CActorDef_FindPartById(reinterpret_cast<const UnkActorDef345*>(char_class), &g_unk_71726ec440));
     if (!comp)
         return false;
     if (!fn_710009d50c(comp->vf_0x0(), fn_71005cd300()))

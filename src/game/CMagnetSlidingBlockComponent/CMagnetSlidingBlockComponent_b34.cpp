@@ -15,5 +15,5 @@ void fn_710092103c(CMagnetSlidingBlockComponent* self, f32 speed) {
     self->speed = speed;
     if (fn_710002fb70(self->timer))
         self->speed = 0.0f;
-    fn_71009210d4(self, self->speed);
+    CMagnetSlidingBlockComponent_SendMaterialColorChange(self, self->speed);
 }

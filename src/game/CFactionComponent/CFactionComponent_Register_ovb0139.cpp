@@ -22,7 +22,7 @@ static inline void AddUnique(UnkFactionList_ovb0139* list, UnkFaction_ovb0139* o
         list->PushBack(reinterpret_cast<u64>(obj));
 }
 
-void fn_710113915c(UnkFaction_ovb0139* self) {
+void CFactionComponent_AddToFactionLists(UnkFaction_ovb0139* self) {
     if (fn_7100deabe4(g_unk_7101d47310))
         return;
     s32 kind = self->kind;

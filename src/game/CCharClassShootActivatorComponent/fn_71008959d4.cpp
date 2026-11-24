@@ -51,13 +51,13 @@ using UnkShootEntryVector_l8959d4 = base::global::CRntVector<UnkShootEntry_l8959
 
 void fn_71008959d4(UnkShootEntryVector_l8959d4* v, const UnkShootEntry_l8959d4* value, u32 index) {
     if (index == v->count) {
-        fn_710089566c(reinterpret_cast<UnkEntryVector*>(v), reinterpret_cast<const UnkEntry*>(value));
+        CCharClassShootActivatorComponent_EntryArrayPushBackCopy(reinterpret_cast<UnkEntryVector*>(v), reinterpret_cast<const UnkEntry*>(value));
         return;
     }
     u32 n = v->capacity;
     if (n <= v->count && v->step != 0)
         n = (v->count / v->step + 1) * v->step;
-    fn_7100895498(reinterpret_cast<UnkEntryVector*>(v), n);
+    CCharClassShootActivatorComponent_ReserveCallbackEntryVector(reinterpret_cast<UnkEntryVector*>(v), n);
     // The entries from the last down to the index move up one place (the index runs through -1 when it is 0).
     for (u32 i = v->count - 1; i >= index; --i) {
         UnkShootEntry_l8959d4* from = &v->data[i];

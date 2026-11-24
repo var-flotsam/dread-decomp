@@ -90,7 +90,7 @@ struct UnkSentenceSphereMovement_ovb0135 {
 };
 static_assert(__builtin_offsetof(UnkSentenceSphereMovement_ovb0135, base_radius) == 0x5e0, "layout");
 
-void fn_710045b8e0(UnkSentenceSphereMovement_ovb0135* self) {
+void CChozoCommanderSentenceSphereMovementComponent_ApplyRadius(UnkSentenceSphereMovement_ovb0135* self) {
     if (UnkObject* model = self->owner->model) {
         f32 radius = self->radius;
         f32 base_radius = self->base_radius;

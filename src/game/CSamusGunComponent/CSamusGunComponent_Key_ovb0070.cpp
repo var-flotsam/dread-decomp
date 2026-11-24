@@ -35,7 +35,7 @@ struct UnkEnergyGun_ovb0070 {
 
 // A key chosen like fn_7100859798's: with ITEM_CENTRAL_UNIT_ENERGY and the aim camera, one of two by
 // the flag at +0x128, the second only while ITEM_CENTRAL_UNIT_DECAYED_ENERGY is missing.
-u64 fn_710085961c(UnkEnergyGun_ovb0070* self) {
+u64 CSamusGunComponent_GetPrimaryWeaponKey(UnkEnergyGun_ovb0070* self) {
     u64 key = 0xa218d351a57ec697ull;
     UnkInventory* inventory = self->owner->inventory;
     if (!inventory)

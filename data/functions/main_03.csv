@@ -282,7 +282,7 @@ address,size,name,name_source,subsystem,status
 0x7100319ae0,4,fn_7100319ae0,unknown,game?,O
 0x7100319ae4,4,fn_7100319ae4,unknown,game?,O
 0x7100319ae8,4,fn_7100319ae8,unknown,game?,O
-0x7100319aec,460,fn_7100319aec,unknown,game?,O
+0x7100319aec,460,CAbilityMultiLockon_GetFadingObjectAt,inferred,game?,O
 0x7100319cb8,476,fn_7100319cb8,unknown,game?,O
 0x7100319e94,4,fn_7100319e94,unknown,game?,O
 0x7100319e98,676,fn_7100319e98,unknown,game?,O
@@ -305,7 +305,7 @@ address,size,name,name_source,subsystem,status
 0x710031cd8c,220,fn_710031cd8c,unknown,game?,O
 0x710031ce68,928,fn_710031ce68,unknown,game?,U
 0x710031d208,308,fn_710031d208,unknown,game?,O
-0x710031d33c,604,fn_710031d33c,unknown,game?,O
+0x710031d33c,604,CAbilityMultiLockon_ReleaseTargetsAndClearFadingObjects,inferred,game?,O
 0x710031d5a0,68,fn_710031d5a0,unknown,game?,O
 0x710031d5f0,664,CAbilityMultiLockon_InitStatics,inferred,game?,O
 0x710031d888,28,fn_710031d888,unknown,game?,O
@@ -474,7 +474,7 @@ address,size,name,name_source,subsystem,status
 0x7100325130,8,CAbilityOpticCamouflage::CTunableAbilityOpticCamouflage::refl_CopyAssign,reflection,game,O
 0x7100325138,8,CAbilityOpticCamouflage::CTunableAbilityOpticCamouflage::refl_MoveAssign,reflection,game,O
 0x7100325140,68,fn_7100325140,unknown,game?,O
-0x7100325184,260,fn_7100325184,unknown,game?,O
+0x7100325184,260,CAbilityOpticCamouflage_GetWeakHandle,inferred,game?,O
 0x7100325290,784,CAbilityOpticCamouflage_InitStatics,inferred,game?,O
 0x71003255a0,4,CAbilityShinespark::refl_AddAttributes,reflection,game,O
 0x71003255a4,244,CAbilityShinespark::refl_GetClass,reflection,game,O
@@ -966,7 +966,7 @@ address,size,name,name_source,subsystem,status
 0x71003516b8,376,fn_71003516b8,unknown,game/components?,U
 0x7100351830,400,fn_7100351830,unknown,game/components?,U
 0x71003519c0,1300,fn_71003519c0,unknown,game/components?,U
-0x7100351ed4,268,fn_7100351ed4,unknown,game/components?,O
+0x7100351ed4,268,CAimComponent_GetActorTargetPosition,inferred,game/components?,O
 0x7100351fe0,220,fn_7100351fe0,unknown,game/components?,O
 0x71003520bc,388,fn_71003520bc,unknown,game/components?,O
 0x7100352240,380,fn_7100352240,unknown,game/components?,O
@@ -1246,7 +1246,7 @@ address,size,name,name_source,subsystem,status
 0x71003623b4,220,fn_71003623b4,unknown,game/ai?,O
 0x7100362490,8,fn_7100362490,unknown,game/ai?,O
 0x7100362498,92,fn_7100362498,unknown,game/ai?,O
-0x71003624f4,340,fn_71003624f4,unknown,game/ai?,O
+0x71003624f4,340,CAttack_GetDistanceRange,inferred,game/ai?,O
 0x7100362648,196,fn_7100362648,unknown,game/ai?,O
 0x710036270c,196,fn_710036270c,unknown,game/ai?,O
 0x71003627d0,40,fn_71003627d0,unknown,game/ai?,O
@@ -3760,7 +3760,7 @@ address,size,name,name_source,subsystem,status
 0x71003ad4dc,432,fn_71003ad4dc,unknown,game/ai?,U
 0x71003ad68c,8,fn_71003ad68c,unknown,game/ai?,O
 0x71003ad694,344,fn_71003ad694,unknown,game/ai?,O
-0x71003ad7ec,248,fn_71003ad7ec,unknown,game/ai?,O
+0x71003ad7ec,248,CBossAIComponent_UpdateTimersAndRestoreDefaultCamera,inferred,game/ai?,O
 0x71003ad8e4,372,fn_71003ad8e4,unknown,game/ai?,O
 0x71003ada58,32,fn_71003ada58,unknown,game/ai?,O
 0x71003ada78,128,fn_71003ada78,unknown,game/ai?,O
@@ -3776,7 +3776,7 @@ address,size,name,name_source,subsystem,status
 0x71003af37c,1284,fn_71003af37c,unknown,game/ai?,U
 0x71003af880,520,fn_71003af880,unknown,game/ai?,O
 0x71003afa88,536,fn_71003afa88,unknown,game/ai?,O
-0x71003afca0,200,fn_71003afca0,unknown,game/ai?,O
+0x71003afca0,200,CBossAIComponent_DispatchInventoryItemOnKilled,inferred,game/ai?,O
 0x71003afd68,508,CBossAIComponent_OnBossDeath,inferred,game/ai?,O
 0x71003aff64,20,fn_71003aff64,unknown,game/ai?,O
 0x71003aff78,220,fn_71003aff78,unknown,game/ai?,O
@@ -3787,7 +3787,7 @@ address,size,name,name_source,subsystem,status
 0x71003b02ec,4,fn_71003b02ec,unknown,game/ai?,O
 0x71003b02f0,16,fn_71003b02f0,unknown,game/ai?,O
 0x71003b0300,1108,fn_71003b0300,unknown,game/ai?,U
-0x71003b0754,724,fn_71003b0754,unknown,game/ai?,O
+0x71003b0754,724,CBossAIComponent_OnStartCombat,inferred,game/ai?,O
 0x71003b0a28,220,CBossAIComponent_StartDamageFX,inferred,game/ai?,O
 0x71003b0b04,28,fn_71003b0b04,unknown,game/ai?,O
 0x71003b0b20,132,fn_71003b0b20,unknown,game/ai?,O
@@ -3930,7 +3930,7 @@ address,size,name,name_source,subsystem,status
 0x71003b69b0,1012,fn_71003b69b0,unknown,game/ai?,U
 0x71003b6da4,604,fn_71003b6da4,unknown,game/ai?,U
 0x71003b7000,980,fn_71003b7000,unknown,game/ai?,U
-0x71003b73d4,192,fn_71003b73d4,unknown,game/ai?,O
+0x71003b73d4,192,CAutclastChargeAttack_ResetAndReleaseRefs,inferred,game/ai?,O
 0x71003b7494,20,fn_71003b7494,unknown,game/ai?,O
 0x71003b74a8,288,fn_71003b74a8,unknown,game/ai?,O
 0x71003b75c8,28,fn_71003b75c8,unknown,game/ai?,O
@@ -3945,8 +3945,8 @@ address,size,name,name_source,subsystem,status
 0x71003b76d4,48,CAutclastChargeAttack::refl_MoveAssign,reflection,game/ai,O
 0x71003b7704,372,fn_71003b7704,unknown,game/ai?,U
 0x71003b7878,128,fn_71003b7878,unknown,game/ai?,O
-0x71003b78f8,364,fn_71003b78f8,unknown,game/ai?,O
-0x71003b7a64,240,fn_71003b7a64,unknown,game/ai?,O
+0x71003b78f8,364,CAutclastChargeAttack_ReserveChargeEntries,inferred,game/ai?,O
+0x71003b7a64,240,CAutclastChargeAttack_PushBackEntry,inferred,game/ai?,O
 0x71003b7b54,604,fn_71003b7b54,unknown,game/ai?,O
 0x71003b7db0,440,fn_71003b7db0,unknown,game/ai?,U
 0x71003b7f70,488,fn_71003b7f70,unknown,game/ai?,O
@@ -4317,7 +4317,7 @@ address,size,name,name_source,subsystem,status
 0x71003c626c,88,fn_71003c626c,unknown,game/ai?,O
 0x71003c62c4,1508,fn_71003c62c4,unknown,game/ai?,U
 0x71003c68a8,436,fn_71003c68a8,unknown,game/ai?,O
-0x71003c6a5c,448,fn_71003c6a5c,unknown,game/ai?,O
+0x71003c6a5c,448,CAutoolAIComponent_ResetEntryAtPoint,inferred,game/ai?,O
 0x71003c6c1c,32,fn_71003c6c1c,unknown,game/ai?,O
 0x71003c6c3c,220,fn_71003c6c3c,unknown,game/ai?,O
 0x71003c6d18,28,fn_71003c6d18,unknown,game/ai?,O
@@ -4338,7 +4338,7 @@ address,size,name,name_source,subsystem,status
 0x71003c6f78,4,base::reflection::ValueOps<CAutoolAIComponent::EThrusterMode>::Destroy,reflection,engine/reflection,O
 0x71003c6f7c,20,base::reflection::ValueOps<CAutoolAIComponent::EThrusterMode>::CopyAssign,reflection,engine/reflection,O
 0x71003c6f90,20,base::reflection::ValueOps<CAutoolAIComponent::EThrusterMode>::MoveAssign,reflection,engine/reflection,O
-0x71003c6fa4,456,fn_71003c6fa4,unknown,game/ai?,O
+0x71003c6fa4,456,CAutoolAIComponent_ReservePointDictionary,inferred,game/ai?,O
 0x71003c716c,192,fn_71003c716c,unknown,unknown,O
 0x71003c7230,552,CAutoolAIComponent_InitStatics,inferred,engine/reflection?,O
 0x71003c7458,4,CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent::refl_AddAttributes,reflection,game/characters,O
@@ -4720,7 +4720,7 @@ address,size,name,name_source,subsystem,status
 0x71003ddd20,220,fn_71003ddd20,unknown,game/ai?,O
 0x71003dddfc,4,fn_71003dddfc,unknown,game/ai?,O
 0x71003dde00,52,fn_71003dde00,unknown,game/ai?,O
-0x71003dde34,184,fn_71003dde34,unknown,game/ai?,O
+0x71003dde34,184,CBatalloonAIComponent_UpdateAndCountDownReceivingCall,inferred,game/ai?,O
 0x71003ddeec,1440,fn_71003ddeec,unknown,game/ai?,U
 0x71003de48c,360,fn_71003de48c,unknown,game/ai?,U
 0x71003de5f4,448,fn_71003de5f4,unknown,game/ai?,U
@@ -4969,7 +4969,7 @@ address,size,name,name_source,subsystem,status
 0x71003e7d24,48,fn_71003e7d24,unknown,game/ai?,O
 0x71003e7d54,948,fn_71003e7d54,unknown,game/ai?,O
 0x71003e8108,148,fn_71003e8108,unknown,game/ai?,O
-0x71003e819c,336,fn_71003e819c,unknown,game/ai?,O
+0x71003e819c,336,CBigFistAIComponent_FlagAttackWhileInAttackInit,inferred,game/ai?,O
 0x71003e82ec,4,fn_71003e82ec,unknown,game/ai?,O
 0x71003e82f0,184,fn_71003e82f0,unknown,game/ai?,O
 0x71003e83a8,252,fn_71003e83a8,unknown,game/ai?,O
@@ -5344,7 +5344,7 @@ address,size,name,name_source,subsystem,status
 0x71003f7488,676,fn_71003f7488,unknown,game/ai?,U
 0x71003f772c,44,fn_71003f772c,unknown,game/ai?,O
 0x71003f7758,4,fn_71003f7758,unknown,game/ai?,O
-0x71003f775c,368,fn_71003f775c,unknown,game/ai?,O
+0x71003f775c,368,CCaterzillaAIComponent_SendRelaxSpawn90,inferred,game/ai?,O
 0x71003f78cc,1460,fn_71003f78cc,unknown,game/ai?,U
 0x71003f7e80,288,fn_71003f7e80,unknown,game/ai?,O
 0x71003f7fa0,220,fn_71003f7fa0,unknown,game/ai?,O
@@ -5355,7 +5355,7 @@ address,size,name,name_source,subsystem,status
 0x71003f8324,4,fn_71003f8324,unknown,game/ai?,O
 0x71003f8328,4,fn_71003f8328,unknown,game/ai?,O
 0x71003f832c,292,fn_71003f832c,unknown,game/ai?,O
-0x71003f8450,120,fn_71003f8450,unknown,game/ai?,O
+0x71003f8450,120,CCaterzillaAIComponent_ScaleOutputVectorsByFactor,inferred,game/ai?,O
 0x71003f84c8,28,fn_71003f84c8,unknown,game/ai?,O
 0x71003f84e4,132,fn_71003f84e4,unknown,game/ai?,O
 0x71003f8568,8,CCaterzillaAIComponent::refl_Equals,reflection,game/ai,O

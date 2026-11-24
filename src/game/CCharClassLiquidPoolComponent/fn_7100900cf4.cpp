@@ -150,7 +150,7 @@ void fn_7100900cf4(UnkLiquidPool_b44a2* object) {
     } else {
         if (it == all.End())
             return;
-        fn_7100901264(reinterpret_cast<UnkValues10ByKey*>(&all), reinterpret_cast<UnkValue_0x10*>(it));
+        CCharClassLiquidPoolComponent_SwapEraseDictionaryEntry(reinterpret_cast<UnkValues10ByKey*>(&all), reinterpret_cast<UnkValue_0x10*>(it));
     }
     SetSectionValue(blackboard, scenario, self->vtable->vf_0x240(self), &all);
 }

@@ -56,7 +56,7 @@ struct UnkPowerBombBlockLifeParts_ovb0127 {
     UnkStruct_7100233684* owner;  // 0x30
 };
 
-void fn_71008e36d0(UnkPowerBombBlockLifeParts_ovb0127* self);
+void CPowerBombBlockLifeComponent_SwitchModelToBreakParts(UnkPowerBombBlockLifeParts_ovb0127* self);
 bool fn_7101176e78(UnkStruct_7101176ea8* self, void* key, void** out);
 void fn_710116064c(UnkLifeBase_A5_b63* self, UnkLifeArg_A5_b63* arg, UnkHitInfo_A5_b63* info);
 
@@ -156,7 +156,7 @@ void fn_71008e3a28(UnkPowerBombBlockLifeDie_l8e3a28* self, u32 kind, UnkHitInfo_
         }
     }
     if (!played)
-        fn_71008e36d0(reinterpret_cast<UnkPowerBombBlockLifeParts_ovb0127*>(self));
+        CPowerBombBlockLifeComponent_SwitchModelToBreakParts(reinterpret_cast<UnkPowerBombBlockLifeParts_ovb0127*>(self));
     // The base handler takes the same arguments; the kind (w1) is a 32-bit value here.
     fn_710116064c(reinterpret_cast<UnkLifeBase_A5_b63*>(self), reinterpret_cast<UnkLifeArg_A5_b63*>(u64(kind)), info);
 }

@@ -68,7 +68,7 @@ bool fn_7100495740(UnkWalljumpAttack* self, void* arg, u32 mode) {
         goto done;
     if (__builtin_fabsf(Matrix(self->owner).m[2]) < 0.99f)
         goto done;
-    if (fn_710049cbd8(ai)) {
+    if (CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(ai)) {
         bool in_cutscene = fn_7100df5630(g_unk_7101d47310);
         result = !in_cutscene;
         if (in_cutscene)

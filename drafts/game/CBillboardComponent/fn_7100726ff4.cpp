@@ -18,7 +18,7 @@ using base::reflection::UnkReflObject;
 struct UnkBillboardObject_ovb0113;
 struct UnkWidgetArg;
 using UnkBillboardSet_ovb0113 = base::global::CRntDictionary<u64, u64>;
-UnkBillboardObject_ovb0113* fn_7100729eac(UnkBillboardSet_ovb0113* set, const UnkResKey* key,
+UnkBillboardObject_ovb0113* CBillboardComponent_CreateObjectAndAddToSet(UnkBillboardSet_ovb0113* set, const UnkResKey* key,
                                           UnkBillboardObject_ovb0113** out, UnkWidgetArg* arg);
 
 struct UnkBillboardCharClass_l726ff4 : UnkReflObject {
@@ -65,7 +65,7 @@ bool fn_7100726ff4(UnkBillboardComponent_l726ff4* self, void* arg) {
         if (found.type.data != &g_unk_7101d47108->empty && found.path.data != &g_unk_7101d47200->empty) {
             UnkRenderManager* manager = g_unk_7101d47300;
             billboard = nullptr;
-            fn_7100729eac(reinterpret_cast<UnkBillboardSet_ovb0113*>(manager->field_0x218), &found, &billboard,
+            CBillboardComponent_CreateObjectAndAddToSet(reinterpret_cast<UnkBillboardSet_ovb0113*>(manager->field_0x218), &found, &billboard,
                           reinterpret_cast<UnkWidgetArg*>(&g_unk_7101d470e0));
             fn_7100219ae0(manager, reinterpret_cast<UnkSceneNode*>(billboard), 0);
             self->billboard_a = billboard;
@@ -79,7 +79,7 @@ bool fn_7100726ff4(UnkBillboardComponent_l726ff4* self, void* arg) {
         if (found.type.data != &g_unk_7101d47108->empty && found.path.data != &g_unk_7101d47200->empty) {
             UnkRenderManager* manager = g_unk_7101d47300;
             billboard = nullptr;
-            fn_7100729eac(reinterpret_cast<UnkBillboardSet_ovb0113*>(manager->field_0x218), &found, &billboard,
+            CBillboardComponent_CreateObjectAndAddToSet(reinterpret_cast<UnkBillboardSet_ovb0113*>(manager->field_0x218), &found, &billboard,
                           reinterpret_cast<UnkWidgetArg*>(&g_unk_7101d470e0));
             fn_7100219ae0(manager, reinterpret_cast<UnkSceneNode*>(billboard), 0);
             self->billboard_b = billboard;
