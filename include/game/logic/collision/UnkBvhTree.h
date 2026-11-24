@@ -92,7 +92,7 @@ struct UnkBvhCollider {
 };
 static_assert(__builtin_offsetof(UnkBvhCollider, enabled) == 0x6a, "UnkBvhCollider layout");
 
-struct UnkNode {
+struct UnkBvhNode {
     f32 minX, minY, maxX, maxY;
     s32 index;  // >= 0: index of the next node outside this subtree; < 0: a leaf
 };
@@ -130,7 +130,7 @@ static_assert(sizeof(UnkSubTree) == 0x90, "UnkSubTree layout");
 struct UnkTree {
     char pad[0x5c];
     u32 field_0x5c;
-    UnkNode* nodes;
+    UnkBvhNode* nodes;
     u32 nodeCount;
     char pad2[0x90 - 0x6c];
     char field_0x90[0xb8 - 0x90];

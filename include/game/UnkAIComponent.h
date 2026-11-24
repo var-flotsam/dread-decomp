@@ -9,8 +9,17 @@
 #include "game/UnkActor.h"
 #include "types.h"
 
+namespace base {
+namespace reflection {
+class CClass;
+}  // namespace reflection
+}  // namespace base
+
+// Its first virtual returns its reflected class (src/game/behaviortree/CRinkaShootAction/fn_7100402ee4.cpp
+// tests it against the central unit AI component's).
 struct UnkAIComponent {
-    u8 pad_0x0[0x30];
+    virtual const base::reflection::CClass* vf_0x0();
+    u8 pad_0x8[0x28];
     UnkActor* field_0x30;  // the owner actor
 };
 static_assert(__builtin_offsetof(UnkAIComponent, field_0x30) == 0x30, "UnkAIComponent placeholder layout");

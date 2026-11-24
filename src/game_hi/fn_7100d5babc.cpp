@@ -15,7 +15,7 @@ struct UnkQueryCtx {
     const UnkBox* bounds;
 };
 
-bool fn_7100d5cd9c(UnkQueryCtx* ctx, const UnkNode* node);
+bool fn_7100d5cd9c(UnkQueryCtx* ctx, const UnkBvhNode* node);
 
 bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag) {
     UnkMtx44 m = *xf * shape->transform;
@@ -36,7 +36,7 @@ bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf,
         u32 count = self->nodeCount;
         u32 i = 0;
         while (i < count) {
-            const UnkNode& n = self->nodes[i];
+            const UnkBvhNode& n = self->nodes[i];
             if (bounds.max.x >= n.minX && bounds.min.x <= n.maxX && bounds.max.y >= n.minY && bounds.min.y <= n.maxY) {
                 if (n.index < 0 && !fn_7100d5cd9c(&ctx, &n))
                     break;
