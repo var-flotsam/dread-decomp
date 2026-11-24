@@ -62,7 +62,7 @@ void fn_71000a497c(UnkVersionRegistry* self);
 struct UnkGfxFrameSource;
 struct UnkTimer_7100080c40;
 void fn_7100080b3c(UnkTimer_7100080c40* self);  // constructor
-void fn_7100080c40(UnkTimer_7100080c40* self);  // reset
+void ResetTimerAndStartStampToNow(UnkTimer_7100080c40* self);  // reset
 
 static inline void TimerCtor(UnkGfxFrameSource* self) {
     fn_7100080b3c(reinterpret_cast<UnkTimer_7100080c40*>(self));
@@ -114,7 +114,7 @@ void fn_7100015c70(const UnkStartupSettings* settings, CFilePathStrId root) {
     UnkVersionRegistry* registry = Singleton<UnkVersionRegistry, 0x1a8, fn_71000a4598>(g_unk_7101d4c8d0);
     registry->field_0x178 = settings->field_0x0;
     fn_71000a497c(registry);
-    fn_7100080c40(reinterpret_cast<UnkTimer_7100080c40*>(
+    ResetTimerAndStartStampToNow(reinterpret_cast<UnkTimer_7100080c40*>(
         Singleton<UnkGfxFrameSource, 0x50, TimerCtor>(g_unk_7101d47328)));
     Devices();
     fn_7100087380(Devices());
@@ -157,10 +157,10 @@ using base::file::UnkFileDevice;
 // Adds a device to the registry under the name it reports (src/game_s1/fn_71000875d0.cpp).
 struct UnkNamedObjectMap;
 struct UnkNamedObject;
-void fn_71000875d0(UnkNamedObjectMap* self, UnkNamedObject* object);
+void InsertObjectIntoStrIdMapByItsId(UnkNamedObjectMap* self, UnkNamedObject* object);
 
 static inline void AddDevice(UnkRegistry_0x70* devices, void* device) {
-    fn_71000875d0(reinterpret_cast<UnkNamedObjectMap*>(devices), static_cast<UnkNamedObject*>(device));
+    InsertObjectIntoStrIdMapByItsId(reinterpret_cast<UnkNamedObjectMap*>(devices), static_cast<UnkNamedObject*>(device));
 }
 
 // The device constructors (plain functions; callers pass the storage): a host file-system device

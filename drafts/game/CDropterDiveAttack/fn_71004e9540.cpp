@@ -20,7 +20,7 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkVec3fR;
-void fn_710007b4b0(UnkVec3fR* v);
+void RoundVector3ComponentsHalfAwayFromZero(UnkVec3fR* v);
 
 struct UnkPlayerMovementCache;
 void* fn_71010d7a6c(UnkPlayerMovementCache* self);
@@ -162,7 +162,7 @@ bool fn_71004e9540(UnkDropterDive_l4e9540* self) {
     f32 x = *px;
     f32 z = *pz;
     CVector3D aim = {x, y, z};
-    fn_710007b4b0(reinterpret_cast<UnkVec3fR*>(&aim));
+    RoundVector3ComponentsHalfAwayFromZero(reinterpret_cast<UnkVec3fR*>(&aim));
 
     UnkActor* owner = self->owner;
     CVector3D from = {owner->field_0x44, owner->field_0x54, owner->field_0x64};

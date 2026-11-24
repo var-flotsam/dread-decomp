@@ -27,7 +27,7 @@ static inline f32 RoundHalfAway(f32 v) {
     return v >= 0.0f ? __builtin_floorf(v + 0.5f) : __builtin_ceilf(v - 0.5f);
 }
 
-void fn_710007b4b0(UnkVec3fR* v) {
+void RoundVector3ComponentsHalfAwayFromZero(UnkVec3fR* v) {
     v->x = RoundHalfAway(v->x);
     v->y = RoundHalfAway(v->y);
     v->z = RoundHalfAway(v->z);

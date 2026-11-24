@@ -28,7 +28,7 @@ void fn_71000716ac() __attribute__((visibility("hidden")));
 void fn_71000714f0(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_710007149c();
 
-void fn_7100071b80() {
+void InitRumbleReflectionStatics() {
     new (&g_unk_7101d586b0.sources) CStrId("sources", true);
     fn_7100000250(CStrId_Destroy, &g_unk_7101d586b0.sources, &g_unk_7101a19000);
     new (&g_unk_7101d586b0.binaries) CStrId("binaries", true);

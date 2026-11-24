@@ -51,7 +51,7 @@ static inline s32 Parse(UnkFileReader* reader, UnkReadTarget* target) {
 bool CPlaythroughDef_ReadFromFile(UnkPlaythroughDefFile_ovb0123* self, const UnkPlaythroughLoadRequest_ovb0123* request) {
     UnkFileReader reader;
     {
-        UnkPathPairTemp_b45a1 s = fn_710001ab24(self->path);
+        UnkPathPairTemp_b45a1 s = MakePathPairFromRegistryCallback(self->path);
         fn_710007be8c(&reader.file, 0x16, nullptr);
         reader.field_0x38 = 3;
         reader.field_0x3c = 2;

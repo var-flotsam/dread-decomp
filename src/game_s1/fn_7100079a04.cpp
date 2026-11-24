@@ -5,7 +5,7 @@
 
 extern "C" f32 tanf(f32);
 
-UnkMat4f fn_7100079a04(f32 fov, f32 aspect, f32 near_z, f32 far_z) {
+UnkMat4f MakePerspectiveFovMatrix(f32 fov, f32 aspect, f32 near_z, f32 far_z) {
     UnkMat4f r = {};
     f32 f = 1.0f / tanf(fov * 0.5f);
     f32 range = far_z - near_z;

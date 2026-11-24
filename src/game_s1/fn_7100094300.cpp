@@ -17,7 +17,7 @@ extern u8 g_unk_7101d5a150[];
 void fn_7100093f60(void*);
 void fn_710009410c(void* obj, CStrId* name, void (*fn)(void*), void* a);
 
-void fn_7100094300() {
+void RegisterEAttributeTargetEnumType() {
     {
         CStrId name("base::reflection::EAttributeTarget", true);
         fn_710009410c(base::reflection::TypeObject<base::reflection::EAttributeTarget, u8[]>::object, &name, fn_7100093f60, nullptr);

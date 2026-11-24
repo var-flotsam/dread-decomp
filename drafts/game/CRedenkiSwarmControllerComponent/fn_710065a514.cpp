@@ -16,7 +16,7 @@ struct UnkVec3Result {
     UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
 };
 
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 struct UnkStruct_71007455dc;
 UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
 void fn_710074566c(UnkStruct_71007455dc* self, const f32* pos);
@@ -66,7 +66,7 @@ static inline UnkVec3Result Advanced_l65a514(const UnkVec3Result& from, const Un
 
 void fn_710065a514(UnkSwarmController_l65a514* self, UnkSwarmMember_l65a514* member, f32 dt) {
     f32 heading = member->heading;
-    UnkVec3f forward = fn_710007a390(g_unk_710164a3fc, heading * 6.2831855f / 256.0f);
+    UnkVec3f forward = RotateVec3AboutZ(g_unk_710164a3fc, heading * 6.2831855f / 256.0f);
 
     f32 x = member->direction[0];
     f32 y = member->direction[1];

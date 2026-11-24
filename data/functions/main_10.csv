@@ -232,7 +232,7 @@ address,size,name,name_source,subsystem,status
 0x7101005d8c,184,fn_7101005d8c,unknown,unknown,O
 0x7101005e44,392,fn_7101005e44,unknown,unknown,O
 0x7101005fcc,320,fn_7101005fcc,unknown,unknown,m
-0x7101006110,6656,fn_7101006110,unknown,engine/reflection?,O
+0x7101006110,6656,InitSoundMusicTypeStatics,inferred,engine/reflection?,O
 0x7101007b10,172,fn_7101007b10,unknown,unknown,O
 0x7101007bbc,52,fn_7101007bbc,unknown,audio?,O
 0x7101007bf0,4,fn_7101007bf0,unknown,audio?,O
@@ -327,7 +327,7 @@ address,size,name,name_source,subsystem,status
 0x7101017ec8,380,fn_7101017ec8,unknown,audio?,O
 0x7101018044,696,fn_7101018044,unknown,audio?,O
 0x71010182fc,3676,fn_71010182fc,unknown,audio?,m
-0x7101019158,4548,fn_7101019158,unknown,audio?,O
+0x7101019158,4548,SetMusicStreamVolumeOverrideIfUnset,inferred,audio?,O
 0x710101a31c,28,fn_710101a31c,unknown,audio?,O
 0x710101a338,36,fn_710101a338,unknown,audio?,O
 0x710101a35c,8,sound::CMusicVolumeOverride::CTunableMusicVolumeOverride::refl_Equals,reflection,audio,O
@@ -4475,7 +4475,7 @@ address,size,name,name_source,subsystem,status
 0x71010e1b78,60,fn_71010e1b78,unknown,unknown,O
 0x71010e1bb4,344,fn_71010e1bb4,unknown,unknown,O
 0x71010e1d0c,100,fn_71010e1d0c,unknown,unknown,O
-0x71010e1d70,252,fn_71010e1d70,unknown,unknown,O
+0x71010e1d70,252,ReleaseKeyedStrIdsAndFreeArrays,inferred,unknown,O
 0x71010e1e6c,100,fn_71010e1e6c,unknown,unknown,O
 0x71010e1ed0,36,fn_71010e1ed0,unknown,unknown,O
 0x71010e1ef4,396,fn_71010e1ef4,unknown,unknown,O

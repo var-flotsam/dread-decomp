@@ -11,7 +11,7 @@
 
 using base::global::CRntVector;
 
-UnkOwnedList* fn_7100287de8(base::global::CRntVector<UnkOwnedList>* self, u32 index);
+UnkOwnedList* GetOrGrowOwnedListAt(base::global::CRntVector<UnkOwnedList>* self, u32 index);
 
 struct UnkArrayGroup_l2879ec {
     CRntVector<void*> first;
@@ -29,7 +29,7 @@ struct UnkSideTable_l2879ec {
     // The flags of one cell, growing the table to reach it.
     CRntVector<u8>* Cell(u32 index) {
         return reinterpret_cast<CRntVector<u8>*>(
-            fn_7100287de8(reinterpret_cast<CRntVector<UnkOwnedList>*>(&cells), index));
+            GetOrGrowOwnedListAt(reinterpret_cast<CRntVector<UnkOwnedList>*>(&cells), index));
     }
 };
 static_assert(sizeof(UnkSideTable_l2879ec) == 0x128, "layout");

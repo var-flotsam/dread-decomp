@@ -7,6 +7,6 @@
 
 struct UnkIdPair_7100a8e07c;
 struct UnkIdPair_b49;
-void fn_7100a8e07c(UnkIdPair_7100a8e07c* self);
+void ConstructEmptyStrIdPair(UnkIdPair_7100a8e07c* self);
 void fn_7100a8f34c(void* object, bool, UnkIdPair_b49* out);
 extern void* g_unk_7101a92b00[];

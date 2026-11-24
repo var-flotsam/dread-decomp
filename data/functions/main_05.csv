@@ -3523,7 +3523,7 @@ address,size,name,name_source,subsystem,status
 0x71005b9c3c,44,CCharClassHydrogigaAIComponent::refl_Construct,reflection,game/characters,O
 0x71005b9c68,12,CCharClassHydrogigaAIComponent::refl_Destroy,reflection,game/characters,O
 0x71005b9c80,232,fn_71005b9c80,unknown,game/characters?,O
-0x71005b9d70,128,fn_71005b9d70,unknown,unknown,O
+0x71005b9d70,128,InitCollisionCamera028StrIdOnce,inferred,unknown,O
 0x71005b9df0,676,fn_71005b9df0,unknown,unknown,O
 0x71005ba094,4,CHydrogigaAIComponent::refl_AddAttributes,reflection,game/ai,O
 0x71005ba098,244,CHydrogigaAIComponent::refl_GetClass,reflection,game/ai,O

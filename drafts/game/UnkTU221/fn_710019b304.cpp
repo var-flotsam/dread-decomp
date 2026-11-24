@@ -10,7 +10,7 @@
 inline void MoveSlot(UnkBillboardDrawableEntry* entry, u32 part, const UnkVec3f& offset) {
     UnkMatrix44 local;
     UnkCopyMatrix(&local, *entry->sources[part]);
-    UnkVec3f d = fn_7100077c04(local, offset);
+    UnkVec3f d = TransformDirectionByMatrix3x3(local, offset);
     f32 dx = d.x, dy = d.y, dz = d.z;
     local.m[3] = dx + local.m[3];
     local.m[7] = dy + local.m[7];

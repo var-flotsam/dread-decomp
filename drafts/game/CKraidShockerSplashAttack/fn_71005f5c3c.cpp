@@ -33,7 +33,7 @@ extern CStrId g_unk_71726f3010 __attribute__((visibility("hidden")));
 // The splash node of the owner's model.
 extern char g_unk_710164a170[];
 
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 
 struct UnkRefl_fn_71005f5f1c;
 template <>
@@ -102,7 +102,7 @@ void fn_71005f5c3c(UnkSplashAttack_l5f5c3c* self) {
         position = UnkVec3f(node.m[3], node.m[7], node.m[11]);
 
     // 45 degrees up, facing the owner's way.
-    UnkVec3f direction = fn_710007a390(UnkVec3f(1.0f, 0.0f, 0.0f), 0.7853982f);
+    UnkVec3f direction = RotateVec3AboutZ(UnkVec3f(1.0f, 0.0f, 0.0f), 0.7853982f);
     if (fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->owner->field_0x38)).m[2] < 0.0f)
         direction.x = -direction.x;
     f32 length = sqrtf(direction.x * direction.x + direction.y * direction.y + direction.z * direction.z);

@@ -169,7 +169,7 @@ bool fn_7100951bf4(UnkMovablePlatform_l951bf4* self, const CVector3D* delta, CVe
 
     UnkPlayerShape_l951bf4* shape = reinterpret_cast<UnkPlayerShape_l951bf4*>(
         fn_7100976588(reinterpret_cast<UnkFlagged*>(player->movement)));
-    UnkMatrix44_7100078c9c xf = fn_7100078cd8(UnkVec3f(x - dir.x, y - dir.y, z - dir.z));
+    UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(UnkVec3f(x - dir.x, y - dir.y, z - dir.z));
     CVector3D sweep = dir + *delta;
     CVector3D sweep_dir = Normalized(sweep);
     CVector3D origin = {xf.m[3], xf.m[7], xf.m[11]};

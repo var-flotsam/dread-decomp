@@ -17,7 +17,7 @@ struct UnkFixedArray_71000155cc {
     UnkElem_0x40* end;
 };
 
-s32 fn_71000155cc(UnkFixedArray_71000155cc* self, const UnkElem_0x40* e) {
+s32 TryAppendMatrix44ToFixedArray(UnkFixedArray_71000155cc* self, const UnkElem_0x40* e) {
     UnkElem_0x40* limit = self->begin + self->capacity;
     UnkElem_0x40* d = self->end;
     if (d == limit)

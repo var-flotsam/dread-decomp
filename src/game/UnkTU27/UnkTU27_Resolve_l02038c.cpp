@@ -38,7 +38,7 @@ struct UnkResRegistry_l02038c {
     UnkResFactoryMap_l02038c factories;
 };
 
-UnkAssetResRef fn_710002038c(UnkRegistry_7100d92158* registry, const UnkStrIdPathPair* ids, bool a, void* b) {
+UnkAssetResRef MakeResourceFromRegistryFactory(UnkRegistry_7100d92158* registry, const UnkStrIdPathPair* ids, bool a, void* b) {
     UnkResFactoryMap_l02038c& factories = reinterpret_cast<UnkResRegistry_l02038c*>(registry)->factories;
     UnkAssetResRef result;
     UnkResFactoryEntry_l02038c* it = factories.Find(ids->id.data);

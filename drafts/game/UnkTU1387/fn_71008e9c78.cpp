@@ -134,7 +134,7 @@ void fn_71008e9c78(UnkLightAim_l8e9c78* self) {
     }
     UnkLightOwner_l8e9c78* owner = self->owner;
     UnkMatrix44 orientation = fn_71000127c8(fn_7100078e54(value.x, value.y, value.z), fn_7100078e54(ax, ay, az));
-    UnkVec3f direction = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&orientation), &g_unk_710164b1cc);
+    UnkVec3f direction = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&orientation), &g_unk_710164b1cc);
     UnkLightHolder_l8e9c78* holder = owner->holder;
     holder->light->direction = direction;
     holder->light->dirty = true;

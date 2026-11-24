@@ -183,7 +183,7 @@ bool fn_710082ac54(UnkMovableGrapplePoint_l82ac54* self, UnkActor* other) {
         bool blocked = false;
         {
             UnkHitList_l82ac54 hits;
-            UnkMatrix44_7100078c9c at = fn_7100078cd8(start);
+            UnkMatrix44_7100078c9c at = BuildTranslationMatrixFromVec3(start);
             if (fn_7100d5babc(tree, 0x11, reinterpret_cast<UnkCollisionShape*>(&shape), &at, &sweep, &hits, 0)) {
                 for (UnkHitRecord_l82ac54* it = hits.begin(); it != hits.end(); ++it) {
                     if (!fn_71008640a4(container, &EntityOf(it->handle)->name)) {

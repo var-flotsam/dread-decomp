@@ -165,7 +165,7 @@ void fn_71005958b4(UnkGooplotJump_l5958b4* self) {
     UnkVec3f angle(0.0f, half_pi, 0.0f);
     angle.x = -(atan2f(-self->dir.y, -self->dir.x) + half_pi);
     // The result is dropped in the original.
-    fn_710007a220(&angle);
+    WrapAngles3ToPi(&angle);
     UnkGooplotOwner_l5958b4* owner = self->owner;
     owner->xform.SetAngle(angle);
     owner->field_0x3c0 = true;

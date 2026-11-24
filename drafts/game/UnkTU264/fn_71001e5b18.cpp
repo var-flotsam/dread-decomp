@@ -78,7 +78,7 @@ static inline void Cross(f32 ax, f32 ay, f32 az, f32 bx, f32 by, f32 bz, f32& x,
 }
 
 static inline UnkVec3f operator*(const UnkMat4f& m, const UnkVec3f& v) {
-    return fn_7100078170(&m, &v);
+    return TransformPointByMatrixWithPerspectiveDivide(&m, &v);
 }
 
 void fn_71001e5b18(UnkShadowFit_l1e5b18* self, UnkShadowFocus_l1e5b18* focus, UnkVec3f* outPos, f32* outNear,

@@ -114,7 +114,7 @@ extern UnkStrIdBase g_unk_71727bd268;
 extern UnkStrIdBase g_unk_71727bd280;
 extern UnkStrIdBase g_unk_71727bd298;
 
-void fn_7100dd14a0() {
+void InitBossRushManagerStatics() {
     InitHeaderIds(&g_unk_71727bdb68.ids);
     InitId(&g_unk_71727bdb68.field_0x18, "MINIMAP");
     InitId(&g_unk_71727bdb68.field_0x20, "BossRushManager");

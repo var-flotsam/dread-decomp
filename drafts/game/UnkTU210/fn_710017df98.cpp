@@ -76,7 +76,7 @@ void fn_710017df98(UnkEmitter_l17df98* self, const UnkVec3f& view) {
     UnkVec3f fwd(0.0f, 0.0f, 0.0f);
     UnkVec3f dir = view;
     if (!self->field_0x43a) {
-        dir = fn_7100077c04(self->matrix, dir);
+        dir = TransformDirectionByMatrix3x3(self->matrix, dir);
         f32 inv = 1.0f / (sqrtf(dir.x * dir.x + dir.y * dir.y + dir.z * dir.z) + 0.0001f);
         dir.x *= inv;
         dir.y *= inv;

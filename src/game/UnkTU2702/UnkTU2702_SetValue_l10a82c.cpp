@@ -73,7 +73,7 @@ bool fn_710110a82c(char* self, void* a, void* b) {
         SetValue<fn_71000246e4>(&owner->blackboard, name, ValueData<void>(value));
     } else if (fn_710009d52c(reinterpret_cast<const CType*>(value->type), fn_71000081e8())) {
         CBlackboard* blackboard = &owner->blackboard;
-        UnkReflValue text = fn_71000a20f4(value, fn_71000081e8());
+        UnkReflValue text = ConvertReflValueToType(value, fn_71000081e8());
         SetString(blackboard, name, ValueData<const char*>(&text));
         fn_71000a1c60(&text);
     }

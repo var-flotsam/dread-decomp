@@ -203,7 +203,7 @@ extern UnkNamedValue g_unk_717269c4e0;
 extern UnkNamedValue g_unk_717269c4f0;
 extern UnkNamedValue g_unk_717269c500;
 
-void fn_710024cc40() {
+void InitActorCollectionTypeStatics() {
     InitHeaderIds(&g_unk_717269f420.ids);
     fn_7100227448();
     fn_710009ec00(g_unk_717269a348, g_unk_717269f420.field_0x30);

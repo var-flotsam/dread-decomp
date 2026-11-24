@@ -14,7 +14,7 @@ using base::math::CVector3D;
 
 struct UnkPool_0x48;
 struct UnkStruct_0x48;
-UnkStruct_0x48* fn_710012431c(UnkPool_0x48* pool, u32 handle);
+UnkStruct_0x48* ResolveHandleToPoolSlot(UnkPool_0x48* pool, u32 handle);
 void fn_710007b444(void* dst, const CVector3D* src);
 f32 fn_7100977b20(void*);
 void fn_7100d62b04(void*);
@@ -119,7 +119,7 @@ UnkAimPoint fn_71003d4300(UnkAimSelf* self, u8* snapped, u8* noPath) {
 
         bool far1 = false;
         if (first.field_0xb0) {
-            UnkStruct_0x48* polygon = fn_710012431c(reinterpret_cast<UnkPool_0x48*>(first.field_0xa8), 0);
+            UnkStruct_0x48* polygon = ResolveHandleToPoolSlot(reinterpret_cast<UnkPool_0x48*>(first.field_0xa8), 0);
             CVector3D p = Pos(target);
             UnkVec2Result r = fn_710035f248(nav, polygon, &p, &seg);
             best1.x = r.x;
@@ -134,7 +134,7 @@ UnkAimPoint fn_71003d4300(UnkAimSelf* self, u8* snapped, u8* noPath) {
 
         bool far2 = false;
         if (second.field_0xb0) {
-            UnkStruct_0x48* polygon = fn_710012431c(reinterpret_cast<UnkPool_0x48*>(second.field_0xa8), 0);
+            UnkStruct_0x48* polygon = ResolveHandleToPoolSlot(reinterpret_cast<UnkPool_0x48*>(second.field_0xa8), 0);
             CVector3D p = Pos(target);
             UnkVec2Result r = fn_710035f248(nav, polygon, &p, &seg);
             best2.x = r.x;

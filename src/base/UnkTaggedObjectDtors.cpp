@@ -101,7 +101,7 @@ void fn_71001faf68(void* sub);
 static inline void DestroyUnit140(UnkTaggedHeader* self) {
     char* sub = At(self, 0x20);
     self->vtable = g_unk_7101a1cbe8 + 0x10;
-    fn_710002572c(At(self, 0x138));
+    DetachTreeNodeFromParentAndChildren(At(self, 0x138));
     fn_71001faf68(sub);
     ReleaseTagged(self);
 }
@@ -120,7 +120,7 @@ void fn_71001f4efc(void* sub);
 static inline void DestroyUnit116(UnkTaggedHeader* self) {
     self->vtable = g_unk_7101a1be28 + 0x10;
     Field<void*>(self, 0x20) = g_unk_7101a1be28 + 0x1d0;
-    fn_710002572c(At(self, 0x1c0));
+    DetachTreeNodeFromParentAndChildren(At(self, 0x1c0));
     fn_71001f4efc(At(self, 0x28));
     ReleaseTagged(self);
 }
@@ -151,7 +151,7 @@ static inline void DestroyUnit133(UnkTaggedHeader* self) {
     if (Pin)
         asm("" : "+r"(sub));
     fn_71001c08dc(Field<void*>(self, 0x130));
-    fn_710002572c(At(self, 0x168));
+    DetachTreeNodeFromParentAndChildren(At(self, 0x168));
     fn_7100207258(Pin ? sub : At(self, 0x28));
     ReleaseTagged(self);
 }
@@ -180,7 +180,7 @@ struct UnkTaggedClass {
         if (SecondVtable)
             Field<void*>(self, 0x20) = Vtable + SecondVtable;
         Pre(At(self, kSub));
-        fn_710002572c(At(self, MemberOffset));
+        DetachTreeNodeFromParentAndChildren(At(self, MemberOffset));
         Post(At(self, kSub));
         ReleaseTagged(self);
     }

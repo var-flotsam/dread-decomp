@@ -38,7 +38,7 @@ void fn_710006aa24() HIDDEN;
 void fn_710006aa30() HIDDEN;
 void fn_710006aa3c() HIDDEN;
 void fn_710006aa48() HIDDEN;
-void fn_710006ab40() {
+void InitStatics_TimelineLayerEnums() {
     {
         CStrId name("base::global::timeline::ELayer", true);
         fn_710006a754(&base::reflection::TypeObject<base::global::timeline::ELayer, UnkEnumInfo>::object, &name, fn_710006a428, nullptr);

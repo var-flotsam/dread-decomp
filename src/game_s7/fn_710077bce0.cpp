@@ -87,7 +87,7 @@ void fn_710076cc60();
 extern char g_unk_71727148e0[];
 extern char g_unk_71727148e1[];
 
-void fn_710077bce0() {
+void InitCentralUnitComponentStatics() {
     InitHeaderIds(&g_unk_71727153d8.ids);
     fn_710076a0f8();
     fn_710009ec00(g_unk_7172713dd0, g_unk_71727153d8.field_0x38);

@@ -14,7 +14,7 @@ using base::reflection::UnkTypedRef;
 // src/base/reflection/CType/CType_Helpers_ovb0053.cpp.
 UnkReflValue fn_710009da40(const CType* type, const UnkTypedRef* src, const CType* to);
 
-UnkReflValue fn_71000a20f4(const UnkReflValue* self, const CType* to) {
+UnkReflValue ConvertReflValueToType(const UnkReflValue* self, const CType* to) {
     const CType* type = reinterpret_cast<const CType*>(self->type);
     UnkTypedRef ref;
     fn_71000a1710(reinterpret_cast<UnkReflValueArg*>(&ref), self);

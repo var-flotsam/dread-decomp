@@ -119,7 +119,7 @@ void fn_71002b3114(UnkRecord_l2b3114* self, UnkRecord_l2b3114* other) {
     self->name.data = other->name.data;
     other->name.data = &g_unk_7101d47108->empty;
     self->field_0x10 = other->field_0x10;
-    fn_710002f588(self->field_0x18, other->field_0x18);
+    ConstructIdListCopyingNodesAndMovingCallbacks(self->field_0x18, other->field_0x18);
     new (&self->array) UnkArray_l2b3114(static_cast<UnkArray_l2b3114&&>(other->array));
     UnkEntryList_l2b3114& entries = self->entries;
     UnkEntryList_l2b3114& source = other->entries;

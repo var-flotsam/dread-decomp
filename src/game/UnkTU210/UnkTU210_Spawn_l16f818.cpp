@@ -89,7 +89,7 @@ void fn_710016f818(UnkEmitter_l16f818* self, u32 n, const UnkSpawnVolume* volume
         for (u64 i = 0; i < self->listener_count; ++i)
             self->listeners[i]->vf_0x10(particle);
         if (volume && self->field_0x108.data) {
-            self->field_0x108.data[particle] = fn_7100077c04(
+            self->field_0x108.data[particle] = TransformDirectionByMatrix3x3(
                 reinterpret_cast<const UnkMatrix44&>(volume->matrix), self->field_0x108.data[particle]);
         }
     }

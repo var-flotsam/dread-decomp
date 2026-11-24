@@ -78,7 +78,7 @@ s32 CSetClockwiseDirBlcValueAction_SetPropToSignedMultiplierByTargetDir(UnkClock
     tx -= ax;
     ty -= ay;
     UnkStruct_0x48* polygon =
-        fn_710012431c(reinterpret_cast<UnkPool_0x48*>(collection->polygons), floor->polygon);
+        ResolveHandleToPoolSlot(reinterpret_cast<UnkPool_0x48*>(collection->polygons), floor->polygon);
     u16 index = floor->polygon_index;
     UnkDirVec2_ovb0113 dir;
     dir.x = tx;

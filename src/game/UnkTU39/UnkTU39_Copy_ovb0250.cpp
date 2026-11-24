@@ -26,9 +26,9 @@ struct UnkKeyList_b0250_ovb0250 {
     UnkDeferredSet<UnkDeferredCallback<f32>> on_change;  // 0x30
 };
 
-void fn_710003017c(UnkDeferredSet<UnkDeferredCallback<f32>>* self, UnkDeferredSet<UnkDeferredCallback<f32>>* other);
+void MoveConstructFloatCallbackSet(UnkDeferredSet<UnkDeferredCallback<f32>>* self, UnkDeferredSet<UnkDeferredCallback<f32>>* other);
 
-void fn_710002f588(void* dst, const void* src) {
+void ConstructIdListCopyingNodesAndMovingCallbacks(void* dst, const void* src) {
     UnkKeyList_b0250_ovb0250* self = static_cast<UnkKeyList_b0250_ovb0250*>(dst);
     const UnkKeyList_b0250_ovb0250* other = static_cast<const UnkKeyList_b0250_ovb0250*>(src);
     self->count = 0;
@@ -56,5 +56,5 @@ void fn_710002f588(void* dst, const void* src) {
         }
         self->count = new_count;
     }
-    fn_710003017c(&self->on_change, const_cast<UnkDeferredSet<UnkDeferredCallback<f32>>*>(&other->on_change));
+    MoveConstructFloatCallbackSet(&self->on_change, const_cast<UnkDeferredSet<UnkDeferredCallback<f32>>*>(&other->on_change));
 }

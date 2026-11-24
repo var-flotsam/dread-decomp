@@ -38,7 +38,7 @@ void fn_7100208bb4(void* obj, bool flag) {
             self->field_0x134 = 1;
             UnkXformHolder_0x84* target = reinterpret_cast<UnkXformHolder_0x84*>(self->Target());
             UnkVec3f t = reinterpret_cast<UnkXformNode*>(self)->Xform()->GetTranslation();
-            fn_71001bc740(target, &t);
+            SetXformTranslationFacingNewPosition(target, &t);
         }
         self->flag_0xf9 = flag;
         if (self->listener_0x8) {

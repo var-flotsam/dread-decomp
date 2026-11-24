@@ -297,12 +297,12 @@ extern "C" int rand();
 struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
-UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
+UnkMatrix44_7100078c9c BuildTranslationMatrixFromVec3(const UnkVec3f& t);
 UnkMatrix44 fn_7100078e54(f32 x, f32 y, f32 z);
 
 void fn_710074547c(UnkUnit2560Element* self, const UnkVec3f& position, f32 size, f32 low, f32 high, s32 index) {
     if (self->field_0x28 < index) {
-        UnkMatrix44_7100078c9c translation = fn_7100078cd8(position);
+        UnkMatrix44_7100078c9c translation = BuildTranslationMatrixFromVec3(position);
         UnkMatrix44& move = *reinterpret_cast<UnkMatrix44*>(&translation);
         f32 angle = (f32)((rand() & 0x7fff) * (1.0 / 32767.0)) * 0.7853982f + -0.3926991f;
         UnkMatrix44 turn = fn_7100078e54(0.0f, 0.0f, angle);
@@ -363,7 +363,7 @@ void fn_7100744e4c(UnkUnit2560Element* self, f32 dt) {
                 self->field_0x24 = 0;
         } else {
             f32 duration = self->field_0x128;
-            CColor4F c = fn_710003088c((duration - remaining) / duration, self->color_0x140, self->color_0x130);
+            CColor4F c = LerpColor4FClampedNonNegative((duration - remaining) / duration, self->color_0x140, self->color_0x130);
             self->color_0x118 = c;
         }
     }

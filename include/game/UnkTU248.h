@@ -7,4 +7,4 @@
 
 struct UnkVec3f;
 struct UnkXformHolder_0x84;
-void fn_71001bc740(UnkXformHolder_0x84* self, const UnkVec3f* v);
+void SetXformTranslationFacingNewPosition(UnkXformHolder_0x84* self, const UnkVec3f* v);

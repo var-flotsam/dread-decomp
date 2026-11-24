@@ -280,7 +280,7 @@ extern UnkStrIdBase g_unk_71727c4660;
 extern UnkStrIdBase g_unk_71727c4668;
 extern char g_unk_71727c4670[];
 
-void fn_7100e63280() {
+void InitMinimapDataStatics() {
     InitHeaderIds(&g_unk_71727c7170.ids);
     g_unk_71727c7170.field_0xf0 = -1.0f;
     g_unk_71727c7170.field_0xf4 = -1.0f;

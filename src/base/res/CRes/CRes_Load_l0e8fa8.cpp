@@ -109,7 +109,7 @@ bool fn_71000e8fa8(UnkRes_l0e8fa8* self, UnkResLoadRequest_l0e8fa8* request) {
         self->kind = 12;
 
     UnkResKey_l0e8fa8 key;
-    key = fn_710001ab24(&self->path);
+    key = MakePathPairFromRegistryCallback(&self->path);
     bool ok = reinterpret_cast<UnkResRegistryLoader_l0e8fa8*>(Registry())
                   ->vf_0x28(&key, &self->object, 1, request->size, align, self->kind);
     self->data = ok ? self->object->vf_0x30() : nullptr;

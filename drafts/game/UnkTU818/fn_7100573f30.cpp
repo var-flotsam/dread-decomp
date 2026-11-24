@@ -35,7 +35,7 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 using base::math::CVector4D;
 
-void fn_7100078df0(f32 angle, UnkMatrix44* out);
+void MakeZRotationMatrix(f32 angle, UnkMatrix44* out);
 void fn_7100148148(UnkSceneObject* self, u32 layer, const UnkSceneSpan& a, const UnkSceneSpan& b);
 void fn_7100149474(UnkSceneObject* object, const UnkVec3f* angle);
 struct UnkEmmyAI_b63a3;
@@ -285,7 +285,7 @@ void fn_7100573f30(UnkVisionCone_l573f30* self) {
         UnkVec3f position;
         CStrId head("C01_Head_SKN", true);
         const f32 angle = atan2f(self->dir.y, self->dir.x);
-        fn_7100078df0(-angle, &rotation);
+        MakeZRotationMatrix(-angle, &rotation);
         position = UnkVec3f(self->center.x, self->center.y, 0.0f);
         CVector4D color = {self->red, self->green, self->blue, 0.1f};
         if (self->field_0x60) {
@@ -318,7 +318,7 @@ void fn_7100573f30(UnkVisionCone_l573f30* self) {
                 }
             }
             UnkVec3f local(self->center.x + dx - position.x, self->center.y + dy - position.y, 0.0f - position.z);
-            vertices.PushBackCopy(fn_7100078170(reinterpret_cast<const UnkMat4f*>(&rotation), &local));
+            vertices.PushBackCopy(TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&rotation), &local));
         }
 
         CRntVector<u16> indices(0xf);

@@ -166,7 +166,7 @@ bool fn_71006457c4(UnkEnergyWaveAttack_ovb0102* attack, const UnkVec3_ovb0102* p
     if (tree) {
         u32 mask = collider->mask;
         UnkWaveHitQuery_l6457c4 query;
-        UnkMatrix44_7100078c9c xf = fn_7100078cd8(start);
+        UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(start);
         UnkWaveCircle_l6457c4 circle(50.0f);
         f32 length = reinterpret_cast<const UnkEnergyWaveTunable_l6457c4*>(&g_unk_71726fb238)->sweep_length;
         base::math::CVector2D dir2;

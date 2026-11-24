@@ -39,7 +39,7 @@ void fn_710007b0f4() HIDDEN;
 void fn_710007b100() HIDDEN;
 void fn_710007b10c() HIDDEN;
 void fn_710007b118() HIDDEN;
-void fn_710007b210() {
+void ETransformSpaceAndEMaxAxis_InitStatics() {
     {
         CStrId name("base::math::ETransformSpace", true);
         fn_710007aac8(&base::reflection::TypeObject<base::math::ETransformSpace, UnkEnumInfo>::object, &name, fn_710007a91c, nullptr);

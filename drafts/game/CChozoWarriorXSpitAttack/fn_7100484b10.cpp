@@ -215,7 +215,7 @@ void fn_7100484b10(UnkSpitAttack_l484b10* self) {
         if (body)
             body = AsBox(body);
         UnkMatrix44 inverse = fn_7100078314(&self->owner->xform.GetMatrix());
-        UnkVec3f local = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&inverse), &self->start);
+        UnkVec3f local = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&inverse), &self->start);
         body->SetPosition(&local);
         collider->vf_0x48();
         fn_7100d35a98(reinterpret_cast<UnkEntry*>(object), true);

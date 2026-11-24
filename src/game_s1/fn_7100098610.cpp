@@ -17,7 +17,7 @@ extern u8 g_unk_7101d5a448[];
 void fn_71000982c4(void*);
 void fn_7100098410(void* obj, CStrId* name, void (*fn)(void*), void* a);
 
-void fn_7100098610() {
+void RegisterECollectionAccessModeEnum() {
     {
         CStrId name("base::reflection::ECollectionAccessMode", true);
         fn_7100098410(base::reflection::TypeObject<base::reflection::ECollectionAccessMode, u8[]>::object, &name, fn_71000982c4, nullptr);

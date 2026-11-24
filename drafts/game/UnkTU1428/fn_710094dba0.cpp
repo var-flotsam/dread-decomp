@@ -81,7 +81,7 @@ void fn_710094dba0(UnkMorphBall_l94dba0* self, UnkContact_l94dba0* contact) {
         if (UnkShape_l94dba0* shape = AsKind10(contact->other->target->shape)) {
             self->touched.shape = shape;
             UnkStruct_0x48* element =
-                fn_710012431c(reinterpret_cast<UnkPool_0x48*>(shape->elements), contact->element);
+                ResolveHandleToPoolSlot(reinterpret_cast<UnkPool_0x48*>(shape->elements), contact->element);
             if (self->touched.element != element) {
                 if (self->field_0x128 && self->field_0x128->target) {
                     const UnkAxis_l94dba0& v = self->axis;

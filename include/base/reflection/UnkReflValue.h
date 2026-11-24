@@ -30,7 +30,7 @@ void fn_71000a18d4(base::reflection::UnkReflValue* out, const base::reflection::
 void fn_71000a2014(base::reflection::UnkReflValue* value, const base::reflection::CType* type);
 // The value converted to `to` (fn_710009da40 on a reference to it; src/base/reflection/UnkUnit82/
 // UnkReflValueForward_b48.cpp).
-base::reflection::UnkReflValue fn_71000a20f4(const base::reflection::UnkReflValue* self,
+base::reflection::UnkReflValue ConvertReflValueToType(const base::reflection::UnkReflValue* self,
                                              const base::reflection::CType* to);
 
 namespace base::reflection {

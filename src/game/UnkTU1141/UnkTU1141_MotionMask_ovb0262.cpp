@@ -47,6 +47,6 @@ void fn_71007143c8(UnkStruct_71007142e8* self, UnkFlags_71007142e8 flags) {
     }
     self->field_0x6c = 0.0f;
     SetVector(self);
-    fn_7100025a98(&self->xform);
+    ResetXformToIdentity(&self->xform);
     self->mode = UnkFlagsNone_71007142e8().bits;
 }

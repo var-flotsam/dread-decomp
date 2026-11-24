@@ -15,6 +15,6 @@ struct UnkEntryRange42_b66a1 {
     ~UnkEntryRange42_b66a1() {}
 };
 
-UnkEntryRange42_b66a1 fn_7100069a04(UnkSearchTable42_b66a1* self, u64* from) {
+UnkEntryRange42_b66a1 MakeEntryRangeFromPositionToTableEnd(UnkSearchTable42_b66a1* self, u64* from) {
     return UnkEntryRange42_b66a1(from, (self->entries + self->count) - from);
 }

@@ -122,7 +122,7 @@ void fn_710032e678(UnkShinespark_32e678* self, UnkShinesparkMove_32e678* move, c
     if (!polygons || polygons->GetType() != 16)
         return;
     UnkPolygon_32e678* polygon = reinterpret_cast<UnkPolygon_32e678*>(
-        fn_710012431c(reinterpret_cast<UnkPool_0x48*>(polygons->pool), contact->polygon));
+        ResolveHandleToPoolSlot(reinterpret_cast<UnkPool_0x48*>(polygons->pool), contact->polygon));
     u16 edge = static_cast<u16>(contact->polygon);
     UnkEdgePoint_32e678* points = polygon->points;
     UnkSegment2D segment(points[edge].pos,
@@ -131,7 +131,7 @@ void fn_710032e678(UnkShinespark_32e678* self, UnkShinesparkMove_32e678* move, c
         return;
 
     UnkVec2Result hit = fn_71001182bc(reinterpret_cast<UnkStruct_0x48*>(polygon), XY(contact->pos), XY(self->pos),
-                                      fn_7100078cd8(Translation(*contact->owner->shape->GetTransform())), 0.001f);
+                                      BuildTranslationMatrixFromVec3(Translation(*contact->owner->shape->GetTransform())), 0.001f);
     if (fabsf(hit.x * dir->x + hit.y * dir->y - target) > tolerance) {
         move->velocity.x = 0.0f;
         move->velocity.y = 0.0f;

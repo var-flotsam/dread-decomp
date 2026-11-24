@@ -27,7 +27,7 @@ struct UnkFactoryEntry {
     UnkPathPairTemp_b45a1 (*make)(void* context, const UnkRegistryKey* key);  // 0x40
 };
 
-UnkPathPairTemp_b45a1 fn_710001ab24(void* path) {
+UnkPathPairTemp_b45a1 MakePathPairFromRegistryCallback(void* path) {
     const UnkRegistryKey* key = static_cast<const UnkRegistryKey*>(path);
     UnkFactoryEntry* e = fn_7100020320(g_unk_7101d4bbc0, key);
     if (e != nullptr)

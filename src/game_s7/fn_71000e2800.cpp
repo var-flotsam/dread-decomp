@@ -86,9 +86,9 @@ void fn_71000cc7ec();
 extern UnkConversion g_unk_7101d5c290;
 void fn_71000a8990();
 extern UnkConversion g_unk_7101d5c2b0;
-void* fn_71000cc800(void*, void*);
+void* AssignStrIdFromRntString(void*, void*);
 extern UnkConversion g_unk_7101d5c2d0;
-void* fn_71000cc890(void*, void*);
+void* AssignFilePathStrIdFromRntString(void*, void*);
 extern UnkConversion g_unk_7101d5c2f0;
 void fn_71000cc920();
 extern UnkConversion g_unk_7101d5c310;
@@ -110,7 +110,7 @@ void* fn_71000ccca8(void*, void*);
 extern UnkConversion g_unk_7101d5c410;
 void fn_71000ccd38();
 extern UnkConversion g_unk_7101d5c430;
-void* fn_71000ccd84(void*, void*);
+void* AssignDefaultPoolStrIdFromRntString(void*, void*);
 extern UnkConversion g_unk_7101d5c450;
 void fn_71000a89b0();
 extern UnkConversion g_unk_7101d5c470;
@@ -527,7 +527,7 @@ extern UnkConversion g_unk_7101d61290;
 void fn_71000e26f8();
 extern UnkConversion g_unk_7101d612b0;
 
-void fn_71000e2800() {
+void InitBaseCollectionReflectionTypeStatics() {
     fn_710009ec00(g_unk_7101d5bddc, TypeOf<fn_710000fd7c>());
     fn_710009ec00(g_unk_7101d5bddd, fn_71000a6eb0());
     fn_710009ec00(g_unk_7101d5bdde, fn_71000a6f8c());
@@ -580,8 +580,8 @@ void fn_71000e2800() {
     InitConversion(&g_unk_7101d5c270, fn_71000a41b4, fn_71000a87a4, fn_71000cc7d8);
     InitConversion(&g_unk_7101d5c290, fn_71000a87a4, fn_71000a41b4, fn_71000cc7ec);
     InitConversion(&g_unk_7101d5c2b0, TypeOf<fn_7100007f84>, TypeOf<fn_71000081e8>, fn_71000a8990);
-    InitConversion(&g_unk_7101d5c2d0, TypeOf<fn_7100007f84>, TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_71000cc800));
-    InitConversion(&g_unk_7101d5c2f0, TypeOf<fn_7100007f84>, TypeOf<fn_710000ad9c>, reinterpret_cast<void (*)()>(&fn_71000cc890));
+    InitConversion(&g_unk_7101d5c2d0, TypeOf<fn_7100007f84>, TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&AssignStrIdFromRntString));
+    InitConversion(&g_unk_7101d5c2f0, TypeOf<fn_7100007f84>, TypeOf<fn_710000ad9c>, reinterpret_cast<void (*)()>(&AssignFilePathStrIdFromRntString));
     InitConversion(&g_unk_7101d5c310, TypeOf<fn_7100007f84>, fn_710009f200, fn_71000cc920);
     InitConversion(&g_unk_7101d5c330, TypeOf<fn_7100007f84>, fn_710009f69c, fn_71000cc9a4);
     InitConversion(&g_unk_7101d5c350, TypeOf<fn_7100007f84>, fn_710009fb38, fn_71000cca28);
@@ -592,7 +592,7 @@ void fn_71000e2800() {
     InitConversion(&g_unk_7101d5c3f0, fn_710009fb38, TypeOf<fn_7100007f84>, fn_71000ccc5c);
     InitConversion(&g_unk_7101d5c410, fn_710009fb38, TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_71000ccca8));
     InitConversion(&g_unk_7101d5c430, fn_710009ffd4, TypeOf<fn_7100007f84>, fn_71000ccd38);
-    InitConversion(&g_unk_7101d5c450, fn_710009ffd4, TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_71000ccd84));
+    InitConversion(&g_unk_7101d5c450, fn_710009ffd4, TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&AssignDefaultPoolStrIdFromRntString));
     InitConversion(&g_unk_7101d5c470, fn_710009ffd4, TypeOf<fn_71000081e8>, fn_71000a89b0);
     InitConversion(&g_unk_7101d5c490, fn_71000a0318, TypeOf<fn_7100007f84>, fn_71000cce14);
     InitConversion(&g_unk_7101d5c4b0, TypeOf<fn_7100009658>, TypeOf<fn_7100007f84>, fn_71000a89d0);

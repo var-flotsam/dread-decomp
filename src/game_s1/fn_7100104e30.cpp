@@ -15,7 +15,7 @@ extern u8 g_unk_7108b6c458[];
 void fn_71001043e4(void*);
 void fn_710010443c(void* obj, CStrId* name, void* a, void* b, void (*factory)(void*), void* c);
 
-void fn_7100104e30() {
+void InitCSoundGroupManagerReflectionStatics() {
     {
         CStrId name("base::snd::CSoundGroupManager", true);
         fn_710010443c(g_unk_7108b6c320, &name, nullptr, nullptr, fn_71001043e4, nullptr);

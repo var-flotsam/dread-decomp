@@ -19,7 +19,7 @@ struct UnkCachedMatrix_7100196674 {
     bool cached;  // 0x134
 };
 
-UnkMatrix44* fn_7100196674(UnkCachedMatrix_7100196674* self, const UnkSize_7100196674* size) {
+UnkMatrix44* GetCachedXformMatrixAdjustedByAspectRatio(UnkCachedMatrix_7100196674* self, const UnkSize_7100196674* size) {
     if (!self->cached) {
         self->cached = true;
         const UnkMatrix44& m = self->xform.GetMatrix();

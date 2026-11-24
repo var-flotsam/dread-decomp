@@ -252,7 +252,7 @@ f32 fn_71010182fc(const UnkId_71010182fc& id) {
 }
 
 // Sets the stream's override unless it is already set (not negative).
-void fn_7101019158(const UnkId_71010182fc& id, f32 volume) {
+void SetMusicStreamVolumeOverrideIfUnset(const UnkId_71010182fc& id, f32 volume) {
     switch (id.data->hash) {
     case H(0x75f5fb3459786511):  // "streams/music/S_Boss_Commander_Outro.wav"
         if (g_unk_71729f8150.field_0x128 < 0.0f)

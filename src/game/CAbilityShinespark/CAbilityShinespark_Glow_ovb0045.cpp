@@ -32,7 +32,7 @@ extern const u64 g_unk_7101648ee8 __attribute__((visibility("hidden")));
 extern const u64 g_unk_7101648ef8 __attribute__((visibility("hidden")));
 
 static inline UnkV4_b47 operator*(const UnkV4_b47& a, f32 s) { return fn_7100030830(&a, s); }
-static inline UnkV4_b47 operator+(const UnkV4_b47& a, const UnkV4_b47& b) { return fn_7100030770(&a, &b); }
+static inline UnkV4_b47 operator+(const UnkV4_b47& a, const UnkV4_b47& b) { return AddVec4ClampedNonNegative(&a, &b); }
 
 struct UnkTunable;
 

@@ -40,4 +40,4 @@ struct base::UnkPushPairTraits<UnkU32TypePairB> {
     static void* second() { return &base::reflection::TypeObject<cutscene::ETakePlayMode>::object; }
 };
 
-__attribute__((flatten)) void fn_71007adc7c(char* self) { base::refl_PushPair<UnkU32TypePairB>(self); }
+__attribute__((flatten)) void PushSetTakePlayModeParamTypes(char* self) { base::refl_PushPair<UnkU32TypePairB>(self); }

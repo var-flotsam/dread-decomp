@@ -180,7 +180,7 @@ static inline void Land(UnkMorphBall_l94c19c* self) {
     UnkCollider_l94c19c* collider = self->override_collider ? self->override_collider : self->collider;
     UnkShape* shape = collider ? collider->shape : nullptr;
     UnkSweepQuery_l94c19c query;
-    if (tree && shape && Sweep(tree, self->mask, shape, fn_7100078cd8(position), step, &query)) {
+    if (tree && shape && Sweep(tree, self->mask, shape, BuildTranslationMatrixFromVec3(position), step, &query)) {
         fn_710094c51c(self, &query.hit, &position);
         UnkBallOwner_l94c19c* owner = self->owner;
         owner->xform.SetTranslation(position);

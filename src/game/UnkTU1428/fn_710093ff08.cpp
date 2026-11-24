@@ -119,7 +119,7 @@ UnkVec3f fn_710093ff08(UnkDropBall_l93ff08* self, const UnkVec3f* pos, f32 dista
 
     UnkDropQuery_l93ff08 query;
     u32 mask = self->mask;
-    UnkMatrix44_7100078c9c xf = fn_7100078cd8(start);
+    UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(start);
     bool hit = false;
     if (fn_7100d5babc(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&sweep),
                       &query, false)) {

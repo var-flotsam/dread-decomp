@@ -5,7 +5,7 @@
 #include "base/UnkMatrix44.h"
 #include "types.h"
 
-UnkMatrix44 fn_7100079a9c(f32 left, f32 right, f32 bottom, f32 top, f32 near, f32 far);
+UnkMatrix44 MakeOrthoProjectionMatrixZeroToOne(f32 left, f32 right, f32 bottom, f32 top, f32 near, f32 far);
 
 struct UnkOrthoParams_7100169494 {
     f32 width;
@@ -20,7 +20,7 @@ struct UnkProjectionTarget_7100169494 {
 };
 
 void fn_7100169494(const UnkOrthoParams_7100169494* self, UnkProjectionTarget_7100169494* target) {
-    UnkMatrix44 m = fn_7100079a9c(self->width * -0.5f, self->width * 0.5f, self->height * -0.5f,
+    UnkMatrix44 m = MakeOrthoProjectionMatrixZeroToOne(self->width * -0.5f, self->width * 0.5f, self->height * -0.5f,
                                   self->height * 0.5f, self->near, self->far);
     UnkCopyMatrix(&target->projection, m);
 }

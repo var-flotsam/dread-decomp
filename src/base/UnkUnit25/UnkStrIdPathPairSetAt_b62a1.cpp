@@ -103,9 +103,9 @@ static inline void Grow_b62a1(base::global::CRntVector<UnkIdPathPair_b62a1>* sel
     u32 capacity = self->capacity;
     if (capacity <= index && self->step != 0)
         capacity = self->GrownCapacity(index);
-    fn_710001e4e8(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), capacity);
+    ReserveStrIdPairVectorCapacity(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), capacity);
     u32 n = index + 1;
-    fn_710001e4e8(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), n);
+    ReserveStrIdPairVectorCapacity(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), n);
     for (u32 i = self->count; i < n; ++i)
         new (&self->data[i]) UnkIdPathPair_b62a1();
     self->count = n;

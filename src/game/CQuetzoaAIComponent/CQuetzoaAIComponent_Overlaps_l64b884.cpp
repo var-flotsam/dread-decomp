@@ -129,7 +129,7 @@ bool CQuetzoaAIComponent_SweepCollidesAlongDelta(UnkQuetzoaAI_l64b884* self, con
 
     u32 mask = self->owner->flagged->mask;
     UnkSweepQuery_l64b884 query;
-    UnkMatrix44_7100078c9c xf = fn_7100078cd8(self->owner->Position());
+    UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(self->owner->Position());
     bool hit = Sweep(tree, mask, collider->shape, xf, UnkSweepOffset_l64b884(delta), &query);
     if (fn_710110c498(part))
         hit |= Sweep(fn_710110c498(part), mask, collider->shape, xf, UnkSweepOffset_l64b884(delta), &query);

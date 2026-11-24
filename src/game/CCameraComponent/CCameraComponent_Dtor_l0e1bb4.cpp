@@ -12,7 +12,7 @@ extern char g_unk_7101cb1390[];
 extern char g_unk_7101cb1510[];
 extern char g_unk_7101cb1530[];
 
-void fn_71010e1d70(UnkKeyedStrIds* self);
+void ReleaseKeyedStrIdsAndFreeArrays(UnkKeyedStrIds* self);
 
 struct UnkCameraRefObj_l0e1bb4 {
     virtual void vf_0x0();
@@ -57,7 +57,7 @@ struct UnkCameraNodeList_l0e1bb4 {
 };
 
 struct UnkCameraKeyedIds_l0e1bb4 : UnkKeyedStrIds {
-    ~UnkCameraKeyedIds_l0e1bb4() { fn_71010e1d70(this); }
+    ~UnkCameraKeyedIds_l0e1bb4() { ReleaseKeyedStrIdsAndFreeArrays(this); }
 };
 
 struct UnkCameraSlot_l0e1bb4 {

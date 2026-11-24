@@ -15,7 +15,7 @@ extern const s64 g_DefaultVibrationSampleInterval asm("_ZN2nn3hid13VibrationNode
 // The engine's clock: milliseconds since its start stamp (src/game_s1/fn_7100080c40.cpp).
 struct UnkGfxFrameSource;
 struct UnkTimer_7100080c40;
-s64 fn_7100080f2c(const UnkTimer_7100080c40* self);
+s64 GetMillisecondsSinceTimerStart(const UnkTimer_7100080c40* self);
 
 // Sleeps the calling thread for `ms` milliseconds (the first argument is not read).
 
@@ -24,7 +24,7 @@ struct UnkVibrationThread {
     s32 state;  // 3: stop (read with acquire ordering)
 };
 
-static inline s64 Now() { return fn_7100080f2c(reinterpret_cast<const UnkTimer_7100080c40*>(g_unk_7101d47328)); }
+static inline s64 Now() { return GetMillisecondsSinceTimerStart(reinterpret_cast<const UnkTimer_7100080c40*>(g_unk_7101d47328)); }
 
 // The interval in milliseconds, computed once.
 static inline s64 IntervalMs() {

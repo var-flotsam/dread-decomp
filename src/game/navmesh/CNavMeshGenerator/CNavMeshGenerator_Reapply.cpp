@@ -25,11 +25,11 @@ struct UnkGenerator_7100288950 {
     u32 cell_count;
 };
 
-UnkCell_7100288950* fn_7100287de8(UnkGenerator_7100288950* self, u32 index);
+UnkCell_7100288950* GetOrGrowOwnedListAt(UnkGenerator_7100288950* self, u32 index);
 
 void fn_7100288950(UnkGenerator_7100288950* self, const UnkArray_0x4_7100288950* entries) {
     for (u16 i = 0; i < self->cell_count; ++i) {
-        for (u8 j = 0; j < fn_7100287de8(self, i)->side_count; ++j)
+        for (u8 j = 0; j < GetOrGrowOwnedListAt(self, i)->side_count; ++j)
             fn_7100288634(self, i, j);
     }
     for (const UnkEntry_0x4_7100288950 *it = entries->data, *end = it + entries->count; it != end; ++it)

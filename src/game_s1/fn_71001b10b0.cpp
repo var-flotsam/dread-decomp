@@ -12,7 +12,7 @@ extern CStrId g_unk_716e453ed0;
 void fn_71001afb7c(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_71001afb24();
 
-void fn_71001b10b0() {
+void InitCProgramResourceStatics() {
     InitHeader(g_unk_716e453ed8);
     InitClass(&g_unk_716e453d90, "msapi::res::CProgramResource", fn_71001afb7c, fn_71001afb24);
     fn_710009ec00(&g_unk_716e453ec8, &g_unk_716e453d90);

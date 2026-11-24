@@ -69,7 +69,7 @@ struct UnkBoneDriver {
     virtual void vf_0x18(UnkBoneArrayHolder* holder);
 };
 
-bool fn_71001c1b70(UnkBoneOwner* self, u32 index, UnkMatrix44* out) {
+bool GetBoneWorldMatrixByIndex(UnkBoneOwner* self, u32 index, UnkMatrix44* out) {
     UnkBoneArray* bones = self->holder->bones;
     fn_710019b9c8(bones);
     UnkBone_0x98* bone = &bones->bones[index];
@@ -136,7 +136,7 @@ __attribute__((always_inline)) static inline const f32& Larger(const f32& a, con
 
 __attribute__((always_inline)) static inline f32 Largest(UnkVec3f v) { return Larger(Larger(v.x, v.y), v.z); }
 
-void fn_71001c1f9c(UnkBoneOwner* self, const UnkVec3f* scale) {
+void SetScaleRescalingSphereAndHolderMatrix(UnkBoneOwner* self, const UnkVec3f* scale) {
     UnkVec3f old = self->xform.GetScale();
     if (__builtin_fabsf(old.x - scale->x) < 0.001f && __builtin_fabsf(old.y - scale->y) < 0.001f &&
         __builtin_fabsf(old.z - scale->z) < 0.001f)
@@ -149,7 +149,7 @@ void fn_71001c1f9c(UnkBoneOwner* self, const UnkVec3f* scale) {
 }
 
 // The same by id (fn_71001c1920).
-bool fn_71001c1920(UnkBoneOwner* self, const u64* id, UnkMatrix44* out) {
+bool GetScaledBoneChainMatrixById(UnkBoneOwner* self, const u64* id, UnkMatrix44* out) {
     UnkBoneArray* bones = self->holder->bones;
     UnkBone_0x98* found = FindBone(bones, *id);
     if (!found)

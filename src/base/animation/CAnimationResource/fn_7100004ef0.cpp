@@ -25,7 +25,7 @@ bool fn_7100004ef0(UnkAnimResource_l004ef0* self, u64 id, UnkMatrix44* out, f32 
     for (s32 i = 0; i < list->count;) {
         const UnkAnimTrack_b67a1* track = &list->tracks[i++];
         if (track->id == id) {
-            fn_7100012b60(out, track, list->rate * t);
+            EvaluateAnimTrackMatrixAtTime(out, track, list->rate * t);
             return true;
         }
     }

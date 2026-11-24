@@ -11,7 +11,7 @@ struct UnkXformFollower {
     UnkMatrix44 matrix;  // 0xa4
 };
 
-void fn_71001bfd5c(UnkXformFollower* self, UnkXform* x) {
+void PassXformTranslationToSphereOnMatrixChange(UnkXformFollower* self, UnkXform* x) {
     if (__builtin_memcmp(&x->GetMatrix(), &self->matrix, sizeof(UnkMatrix44)) == 0)
         return;
     UnkVec3f t = x->GetTranslation();

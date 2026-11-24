@@ -153,7 +153,7 @@ bool fn_71006444ac(UnkQuetzoaChargeAttack_6444ac* self, const UnkVec3f* pos, con
 
     u32 mask = reinterpret_cast<UnkChargeFlagged_6444ac*>(flagged)->mask;
     UnkChargeSweep_6444ac sweep;
-    sweep.transform = fn_7100078cd8(*pos);
+    sweep.transform = BuildTranslationMatrixFromVec3(*pos);
     Vec2 delta = ChargeDelta(dir);
 
     const UnkMtx44* transform = reinterpret_cast<const UnkMtx44*>(&sweep.transform);
@@ -173,7 +173,7 @@ bool fn_71006444ac(UnkQuetzoaChargeAttack_6444ac* self, const UnkVec3f* pos, con
         return true;
 
     UnkChargeCircle_6444ac circle(150.0f);
-    UnkMatrix44_7100078c9c moved = fn_7100078cd8(*out);
+    UnkMatrix44_7100078c9c moved = BuildTranslationMatrixFromVec3(*out);
     for (int i = 0; i < 16; ++i)
         sweep.transform.m[i] = moved.m[i];
     return fn_7100d5b484(tree, 0x10, reinterpret_cast<UnkShape*>(&circle), transform, nullptr, 0);

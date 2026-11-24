@@ -14,7 +14,7 @@ extern "C" int rand();
 // As src/game/UnkTU2702/UnkTU2702_Misc_ovb0143.cpp declares it: throws one drop.
 void fn_71007c3a38(char* actor, void* a, void* b, void* c, u32 d, bool e);
 // As src/game/CKraidBouncingCreaturesAttack/CKraidBouncingCreaturesAttack_Launch_l5f31e4.cpp declares it.
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 
 // The tuning the component reads.
 struct UnkCoreXSettings_l4da7dc {
@@ -184,7 +184,7 @@ u32 fn_71004da7dc(UnkCoreXAI_l4da7dc* self, UnkCoreXHit_l4da7dc* hit) {
         for (s32 i = 0; i != count; ++i) {
             // The first drops (one or two) are of the other kind.
             u32 kind = i <= parity;
-            UnkVec3f out = fn_710007a390(dir, -0.7853982f + step * (f32)i);
+            UnkVec3f out = RotateVec3AboutZ(dir, -0.7853982f + step * (f32)i);
             f32 speed = Random01() * 300.0f + 300.0f;
             UnkVec3f velocity = out * speed;
             UnkActor* from = self->owner;

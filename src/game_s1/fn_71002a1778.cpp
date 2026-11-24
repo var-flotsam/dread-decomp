@@ -17,6 +17,6 @@ __attribute__((flatten)) void fn_71002a1778(base::global::CRntVector<UnkWordObje
     self->PushBackCopy(*value);
 }
 
-__attribute__((flatten)) void fn_7100279ca0(base::global::CRntVector<UnkWordObject>* self, const UnkWordObject* value) {
+__attribute__((flatten)) void PushBackNavMeshRecordCopy(base::global::CRntVector<UnkWordObject>* self, const UnkWordObject* value) {
     self->PushBackCopy(*value);
 }

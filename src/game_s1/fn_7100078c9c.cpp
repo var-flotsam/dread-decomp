@@ -22,12 +22,12 @@ UnkMatrix44_7100078c9c fn_7100078c9c(f32 x, f32 y, f32 z) {
     return r;
 }
 
-UnkVec3f fn_710007a400(const UnkVec3f& v, const UnkVec3f& angles) {
-    return fn_7100077c04(fn_7100078fc8(angles), v);
+UnkVec3f RotateVec3ByAngles(const UnkVec3f& v, const UnkVec3f& angles) {
+    return TransformDirectionByMatrix3x3(fn_7100078fc8(angles), v);
 }
 
 // The same translation matrix from a vector (its three components read first).
-UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t) {
+UnkMatrix44_7100078c9c BuildTranslationMatrixFromVec3(const UnkVec3f& t) {
     f32 x = t.x;
     f32 y = t.y;
     f32 z = t.z;
@@ -44,7 +44,7 @@ UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t) {
 
 // The rotation about z by `angle` (radians): the 4x4 identity with cos and sin in the upper-left
 // 2x2 block.
-UnkMatrix44 fn_7100078d8c(f32 angle) {
+UnkMatrix44 MakeRotationMatrixZ(f32 angle) {
     f32 s = sinf(angle);
     f32 c = cosf(angle);
     UnkMatrix44 r = {};
@@ -58,7 +58,7 @@ UnkMatrix44 fn_7100078d8c(f32 angle) {
 }
 
 // `v` turned by `angle` (radians) in the plane.
-UnkVec2Result fn_710007a2c0(const UnkVec2Result& v, f32 angle) {
+UnkVec2Result RotateVec2ByAngle(const UnkVec2Result& v, f32 angle) {
     f32 s = sinf(angle);
     f32 c = cosf(angle);
     return UnkVec2Result(c * v.x - s * v.y, s * v.x + c * v.y);
@@ -75,7 +75,7 @@ UnkVec3f fn_710007a7f0(UnkVec3f dir) {
 }
 
 // `v` turned by `angle` (radians) about z, its z kept.
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle) {
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle) {
     f32 s = sinf(angle);
     f32 c = cosf(angle);
     f32 x = v.x;

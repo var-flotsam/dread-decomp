@@ -23,7 +23,7 @@ void fn_7100f0f980(UnkPropertyArrays* self, u32 capacity) {
             UnkPlayerInfoValue_b52* src = static_cast<UnkPlayerInfoValue_b52*>(self->values);
             UnkPlayerInfoValue_b52* dst = values;
             for (u32 i = 0; i < self->count; ++i, ++dst, ++src) {
-                fn_710002f588(dst, src);
+                ConstructIdListCopyingNodesAndMovingCallbacks(dst, src);
                 fn_710002f67c(src);
             }
             self->allocator->vf_0x48(self->values);
