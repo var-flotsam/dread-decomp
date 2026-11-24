@@ -52,6 +52,7 @@
 #include "game/logic/collision/CCapsuleShape2D.h"
 #include "game/logic/collision/UnkBvhTreeSweep.h"
 #include "types.h"
+#include "game/UnkAbility.h"
 
 using base::global::CStrId;
 using base::math::CVector3D;
@@ -113,10 +114,6 @@ struct UnkSpanArg_b152 {
 struct UnkOwner2e0_b152 {
     u8 pad_0x0[0x2e0];
     UnkAbilitySet* field_0x2e0;
-};
-
-struct UnkAbility {
-    virtual const base::reflection::CClass* vf_0x0();
 };
 
 struct UnkVec2_b152 {

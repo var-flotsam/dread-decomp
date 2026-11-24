@@ -17,6 +17,7 @@
 #include "game/CChozoWarriorAIComponent.h"
 #include "types.h"
 #include "game/UnkStruct_71007142e8.h"
+#include "game/UnkTimeline.h"
 
 using base::reflection::UnkReflObject;
 
@@ -39,13 +40,6 @@ struct UnkStrIdOut_b0266 {
             raw.data = &pool->empty;
         }
     }
-};
-
-struct UnkTimeline {
-    u8 pad_0x0[0x24];
-    s32 frame_count;
-    u8 pad_0x28[0x58];
-    UnkMotionTracks* tracks;  // 0x80
 };
 
 struct UnkWarriorXAI_l482624 : base::reflection::UnkReflObject {

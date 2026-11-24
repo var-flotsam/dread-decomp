@@ -7,14 +7,12 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/UnkAbility.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 using base::reflection::CClass;
 
-struct UnkAbility {
-    virtual const CClass* vf_0x0();
-};
 struct UnkAbilitySet;
 bool fn_71009e1310(void* self);
 

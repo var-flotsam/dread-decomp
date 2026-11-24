@@ -11,6 +11,7 @@
 #include "game/UnkTU1728.h"
 #include "types.h"
 #include "game/UnkStruct_71007142e8.h"
+#include "game/UnkTimeline.h"
 
 struct UnkActorTarget;
 struct UnkStruct_7101176ea8;
@@ -27,13 +28,6 @@ struct UnkMotionTracks;
 struct UnkMotionParts_l588474 {
     u32 bits;
 };
-struct UnkTimeline {
-    u8 pad_0x0[0x24];
-    s32 frame_count;
-    u8 pad_0x28[0x58];
-    UnkMotionTracks* tracks;  // 0x80
-};
-
 // What this unit reads of the boss mode flags: whether the boss is calm (+0xb8).
 struct UnkGoliathModeFlags_l588474 {
     u8 pad_0x0[0xb8];
