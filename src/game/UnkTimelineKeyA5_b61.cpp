@@ -129,7 +129,6 @@ void fn_710084d4e0(UnkMissileGunA5_b61* self) {
     fn_710084f894(self);
     for (u64 i = 0; i < self->count; ++i) {
         self->Entry(i).~UnkRefPtrMember();
-        asm("" ::: "memory");  // the original rereads the count after every entry
     }
     self->count = 0;
     self->field_0x199c = false;
