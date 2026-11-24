@@ -309,8 +309,6 @@ __attribute__((always_inline)) static inline void InsertBefore(UnkPlainList_b022
         }
         node->next = list->head;
         list->head = node;
-        // Keeps the count reloaded after the links are stored.
-        asm volatile("" ::: "memory");
         list->count = list->count + 1;
     }
 }
@@ -391,8 +389,6 @@ void fn_71002a5fe8(UnkPoints_ovb0229* list, const UnkPoint_ovb0229* point, UnkPo
         }
         node->next = self->head;
         self->head = node;
-        // Keeps the count reloaded after the links are stored.
-        asm volatile("" ::: "memory");
         self->count = self->count + 1;
     }
 }
