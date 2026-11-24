@@ -10,5 +10,5 @@ struct UnkBombVector_b49 {
     u32 step;
     bool grows;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };

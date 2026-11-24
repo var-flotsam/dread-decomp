@@ -29,10 +29,10 @@ struct UnkStrPieceList {
     u32 count;
     UnkStrPiece* head;
     UnkStrPiece* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     char* pool_vtable;  // 0x30
-    base::UnkAllocator* pool_parent;
+    base::IAllocator* pool_parent;
     UnkBlockFreeList blocks;  // 0x40
     u32 field_0x68;
     bool field_0x6c;

@@ -9,7 +9,7 @@
 #include "game/UnkTU2563.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::UnkStringData;
 
 // A string id that is copied (taking a reference) and destroyed like base::UnkStrIdMember.

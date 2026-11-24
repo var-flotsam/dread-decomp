@@ -30,7 +30,7 @@ struct UnkParallel_l3a8274 {
     u32 running_count;               // 0x70
     UnkParallelEntry_l3a8274* head;  // 0x78
     UnkParallelEntry_l3a8274* tail;  // 0x80
-    base::UnkAllocator* allocator;   // 0x88
+    base::IAllocator* allocator;   // 0x88
     u32 flags;                       // 0x90
     u8 pad_0x94[0x44];
     s32 succeeded;  // 0xd8

@@ -65,7 +65,7 @@ struct UntypedSmallDictionary {
     u32 capacity = 0;
     u32 step;   // capacity grows by this many entries (AddReflectedFunction grows by it)
     u32 flags;  // passed to the allocator
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
 
     UntypedSmallDictionary(u32 step, u32 flags) : step(step), flags(flags) {}
     u64 size() const { return count; }

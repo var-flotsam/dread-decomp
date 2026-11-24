@@ -147,7 +147,7 @@ struct UnkOuter_b0228 {
     u8 pad_0x1c[4];
     UnkOuterNode_b0228* head;       // 0x20
     UnkOuterNode_b0228* tail;       // 0x28
-    base::UnkAllocator* allocator;  // 0x30
+    base::IAllocator* allocator;  // 0x30
 };
 
 struct UnkCameraCtrl_ovb0049;
@@ -217,7 +217,7 @@ struct UnkSortedList_ovb0229 {
     };
     Node* head;
     Node* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 };
 
@@ -239,7 +239,7 @@ struct UnkPlainList_b0228 {
     u32 count;  // 0x8
     Node* head;  // 0x10
     Node* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u32 flags;                      // 0x28
 };
 static inline void StoreValue(UnkWordNode_b0228* node, const u32* value) { node->value = *value; }
@@ -602,7 +602,7 @@ struct UnkListP_b0228 {
     UnkNodeP_b0228* head = nullptr;
     UnkNodeP_b0228* tail = nullptr;
     u32 flags = 0x10;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     UnkListP_b0228() : vtable(reinterpret_cast<void**>(g_unk_7101a20f48 + 0x10)), allocator(GetDefaultAllocator()) {}
     ~UnkListP_b0228() {
         vtable = reinterpret_cast<void**>(g_unk_7101a20f48 + 0x10);

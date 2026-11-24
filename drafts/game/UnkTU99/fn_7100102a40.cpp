@@ -36,7 +36,7 @@ template <class K>
 struct UnkSndMap_l102a40 {
     typedef UnkSndNode_l102a40<K> Node;
 
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u32 flags;                      // 0x8
     u32 count;                      // 0xc
     Node** buckets;                 // 0x10

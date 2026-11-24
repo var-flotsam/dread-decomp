@@ -397,7 +397,7 @@ struct UnkRushBoard_b0195 {
         };
     };
     u64 field_0x18;
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     union {
         u64 field_0x28;
         bool flag_0x28;

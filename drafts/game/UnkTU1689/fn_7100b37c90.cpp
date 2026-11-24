@@ -52,7 +52,7 @@ struct UnkVector_lb37c90 {
     u32 capacity = 0;
     u32 step = 10;
     u32 flags = 0xe;
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
 };
 
 // A slot of the menu (0xd8 bytes): two words, an empty name, three scales of 1 and a short string.

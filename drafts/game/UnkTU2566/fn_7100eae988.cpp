@@ -75,7 +75,7 @@ struct UnkKeyed118Array_b49 {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_7100eae334(UnkKeyed118Array_b49* self, u32 capacity);

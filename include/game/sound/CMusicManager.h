@@ -26,7 +26,7 @@ struct UnkMusicSlot_0x38 {
     void* head;
     void* tail;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     void* field_0x30;
 
     // The node list's constructor (the vtable is set twice, base first, as the list's base class does).
@@ -36,7 +36,7 @@ struct UnkMusicSlot_0x38 {
         head = nullptr;
         tail = nullptr;
         flags = 0x10;
-        base::UnkAllocator* a = GetDefaultAllocator();
+        base::IAllocator* a = GetDefaultAllocator();
         vtable = g_unk_7101cac250 + 0x10;
         allocator = a;
         field_0x30 = nullptr;

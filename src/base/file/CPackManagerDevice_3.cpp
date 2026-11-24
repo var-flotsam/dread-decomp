@@ -55,14 +55,14 @@ struct UnkPackSourceDevice {
     virtual void vf_0x28();
     virtual void vf_0x30();
     virtual void vf_0x38();
-    virtual u32 vf_0x40(const UnkPackPathKey* path, void** file, u32 mode, base::UnkAllocator* allocator,
+    virtual u32 vf_0x40(const UnkPackPathKey* path, void** file, u32 mode, base::IAllocator* allocator,
                         u32 arg, u32 flags);
 };
 
 struct UnkPackManagerView {
     u8 unk_0x0[0x18];
     UnkPackSourceDevice* device;    // +0x18
-    base::UnkAllocator* allocator;  // +0x20
+    base::IAllocator* allocator;  // +0x20
     u32 flags;                      // +0x28
     u8 pad_0x2c[4];
     base::global::CRntVector<UnkMountedPack*> packs;  // +0x30

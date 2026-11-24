@@ -807,7 +807,7 @@ struct UnkMinimapBuffer {
     u32 capacity = 0;
     u32 step = 10;
     u32 flags = 0xe;
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
 };
 static_assert(sizeof(UnkMinimapBuffer) == 0x20, "UnkMinimapBuffer layout");
 
@@ -887,12 +887,12 @@ struct UnkMinimapPooledSet {
     base::global::CRntVector<void*> buckets;  // flags 0xe
     s32 field_0x28;
     u64 field_0x30;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     u32 field_0x48;
     char* pool_vtable;  // 0x50
-    base::UnkAllocator* pool_parent;
+    base::IAllocator* pool_parent;
     UnkBlockFreeList pool_blocks;  // 0x60
     u32 pool_field_0x38;
     bool pool_field_0x3c;

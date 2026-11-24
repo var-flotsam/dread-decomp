@@ -279,7 +279,7 @@ address,digest,verdict,rules,detail
 0x7101005fcc,791825f9370865628cb64cad2a6fc3f2,pass,2,
 0x71010182fc,26d1156460e36d4ab6fb3bb414c1603a,inconclusive,2,only 18% of the original's instructions ran
 0x710103c338,ddbff1e3f4a355e52f1d67cc1a0651ce,behaves,2,similarity 2.4%; operations;
-0x7101047ca8,c336650f5bd35e8ecec7207d4ddd9c22,behaves,2,similarity 16.0%; operations;
+0x7101047ca8,b18bf5b0441ea64c7454c6a0642e4d9b,behaves,2,similarity 16.0%; control;
 0x7101053aa4,bcd1548c2d7ebe19c4ae3e73ba1e9be4,pass,2,
 0x7101053c14,0dc5b4cb1b4d84031a6b9a0b0f0589d5,pass,2,
 0x710105d3d0,bd2fa48521c3a0a1a5f8ddeb3377f205,behaves,2,similarity 71.9%; operations; 5 inputs found for its mutants;

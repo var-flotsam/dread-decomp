@@ -34,7 +34,7 @@
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CRntVector;
 using base::global::CRntString;
 using base::global::CStrId;

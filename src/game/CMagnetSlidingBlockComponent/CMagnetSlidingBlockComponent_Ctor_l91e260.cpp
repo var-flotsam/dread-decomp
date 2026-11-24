@@ -60,7 +60,7 @@ struct UnkMagnetCallbackList_l91e260 {
     u32 field_0x18;
     bool field_0x1c;
     u32 field_0x20;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 field_0x30;
     void* owner;
 

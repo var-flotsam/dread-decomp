@@ -15,7 +15,7 @@ struct UnkU16Array_le52f60 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Takes the settings, reserves the source's capacity and copies the elements.
     UnkU16Array_le52f60(const UnkU16Array_le52f60& other)

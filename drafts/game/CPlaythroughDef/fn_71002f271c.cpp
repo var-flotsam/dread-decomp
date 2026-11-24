@@ -29,7 +29,7 @@ struct UnkSplitToken_l2f271c {
     CRntString* Str() { return reinterpret_cast<CRntString*>(raw); }
 
     UnkSplitToken_l2f271c() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage_vtable));
         storage_vtable = g_unk_7101a1b5a0 + 2;
         field_0x58 = 0;
         field_0x60 = 0;
@@ -43,9 +43,9 @@ static_assert(sizeof(UnkSplitToken_l2f271c) == 0x70, "layout");
 inline void ReserveTokens(UnkPlaythroughTokens_ovb0123* out, u32 n) {
     if (out->field_0x40.size / sizeof(UnkSplitToken_l2f271c) >= n)
         return;
-    base::UnkAllocator* own = out->field_0x38;
-    base::UnkAllocator* list = out->field_0x20;
-    base::UnkAllocator* alloc = own ? own : list;
+    base::IAllocator* own = out->field_0x38;
+    base::IAllocator* list = out->field_0x20;
+    base::IAllocator* alloc = own ? own : list;
     u32 flags = *reinterpret_cast<u32*>(out->pad_0x28);
     if (void* block = out->field_0x40.buffer) {
         fn_71000837f4(&out->field_0x40);
@@ -59,7 +59,7 @@ inline void ReserveTokens(UnkPlaythroughTokens_ovb0123* out, u32 n) {
         u64 size = n * sizeof(UnkSplitToken_l2f271c);
         fn_710008378c(&out->field_0x40, alloc->vf_0x40(size, 8, flags), size, sizeof(UnkSplitToken_l2f271c));
     }
-    out->field_0x20 = reinterpret_cast<base::UnkAllocator*>(&out->field_0x30);
+    out->field_0x20 = reinterpret_cast<base::IAllocator*>(&out->field_0x30);
 }
 
 void fn_71002f271c(const char* text, const char* separator, UnkPlaythroughTokens_ovb0123* out) {

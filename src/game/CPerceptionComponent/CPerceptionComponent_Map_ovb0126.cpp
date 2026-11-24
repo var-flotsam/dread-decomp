@@ -62,7 +62,7 @@ struct UnkPerceptionMap_ovb0126 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Destroy() {
         if (keys) {

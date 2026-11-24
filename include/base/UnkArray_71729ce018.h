@@ -10,5 +10,5 @@ struct UnkArray_71729ce018 {
     u64 field_0x10;
     u32 field_0x18;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };

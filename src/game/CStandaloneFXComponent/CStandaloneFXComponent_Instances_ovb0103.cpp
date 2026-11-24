@@ -194,7 +194,7 @@ struct UnkFxVector_ovb0103 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) UnkFxInstance_ovb0103& At(u32 index) {
         if (growable && count <= index) {

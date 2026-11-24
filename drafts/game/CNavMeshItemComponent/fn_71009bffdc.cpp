@@ -110,7 +110,7 @@ struct UnkNavNodeMap_l9bffdc {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkNavNodeMap_l9bffdc(u32 step, u32 flags)
         : values(nullptr), keys(nullptr), count(0), capacity(0), step(step), flags(flags),

@@ -80,7 +80,7 @@ struct UnkAttackNodeList_l10bc0c {
     u32 count;
     UnkAttackNode_l10bc0c* head;    // 0x8
     UnkAttackNode_l10bc0c* tail;    // 0x10
-    base::UnkAllocator* allocator;  // 0x18
+    base::IAllocator* allocator;  // 0x18
     u32 flags;                      // 0x20
 
     // Unlinks and frees `node`; returns the node after it (null when `node` is not in the list).

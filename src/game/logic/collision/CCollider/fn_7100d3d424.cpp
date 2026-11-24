@@ -318,7 +318,7 @@ struct UnkFreedIdArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkFreedIdArray() {
         if (data) {
@@ -547,7 +547,7 @@ struct UnkRecord60 {
     u32 step;
     bool field_0x4c;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Takes over the ids (leaving the pool's empty string) and the array (leaving it empty).
     __attribute__((always_inline)) UnkRecord60(UnkRecord60&& other) {

@@ -6,7 +6,7 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CStrId;
 
 using UnkStrIdTable = base::global::CRntSmallDictionary<CStrId, void*>;

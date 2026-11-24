@@ -70,7 +70,7 @@ struct UnkTU1119MemberBase {
     u32 field_0xe8;                  // 0xe8
     u8 field_0xec;                   // 0xec
     u32 field_0xf0;                  // 0xf0
-    base::UnkAllocator* allocator;   // 0xf8
+    base::IAllocator* allocator;   // 0xf8
     u8 field_0x100;                  // 0x100
     u8 pad_0x101;
     u8 field_0x102;                  // 0x102

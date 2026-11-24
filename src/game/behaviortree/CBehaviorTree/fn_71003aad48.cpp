@@ -22,7 +22,7 @@ struct UnkStruct_71003aad48 {
     };
     UnkNode_71003aad48* head;
     UnkNode_71003aad48* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 
     void Remove(UnkNode_71003aad48* node) {

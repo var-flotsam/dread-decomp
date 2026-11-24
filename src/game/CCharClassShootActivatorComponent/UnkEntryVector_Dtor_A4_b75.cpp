@@ -37,7 +37,7 @@ struct UnkClearVector_A4_b75 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Clear() {
         for (u64 i = 0; i < count; ++i)

@@ -226,7 +226,7 @@ struct UnkLinkList_l96cdec {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     explicit UnkLinkList_l96cdec(const base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* other) {
         fn_71002681a8(reinterpret_cast<base::global::CRntVector<UnkSmartLinkEntry_ovb0128>*>(this), other);

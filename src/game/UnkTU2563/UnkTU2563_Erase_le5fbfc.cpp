@@ -42,7 +42,7 @@ struct UnkTripleArrayIdArray_le5fbfc {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // Erases the record `it` points at: the last record and id take its place. Returns the erased record's place.

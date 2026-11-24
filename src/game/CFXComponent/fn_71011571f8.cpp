@@ -6,6 +6,6 @@
 extern char unk_7101cb38e8[];  // the base part's vtable (reached through the GOT)
 extern char unk_7101cb38c8[];  // the container's vtable (reached through the GOT)
 
-void CFXComponent_ConstructIdList(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::UnkAllocator* a) {
+void CFXComponent_ConstructIdList(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::IAllocator* a) {
     refl_ParentPoolListCtor<0x18, unk_7101cb38e8, unk_7101cb38c8>(self, n, flags, a);
 }

@@ -22,7 +22,7 @@ struct UnkRegNode_l1ee994 {
 };
 
 struct UnkRegMap_l1ee994 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;                     // 0x8
     u32 count;                     // 0xc
     UnkRegNode_l1ee994** buckets;  // 0x10 (base::global::CRntVector)

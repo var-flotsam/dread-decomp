@@ -13,7 +13,7 @@ struct UnkQueueOwner_b47 {
     u32 count;                    // 0x150
     UnkQueueNode_b47* head;       // 0x158
     UnkQueueNode_b47* tail;       // 0x160
-    base::UnkAllocator* allocator;  // 0x168
+    base::IAllocator* allocator;  // 0x168
     u32 flags;                      // 0x170
 };
 

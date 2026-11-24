@@ -16,15 +16,15 @@ struct UnkPrimeTable_2b2330 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 field_0x28;
     void* field_0x30;
-    base::UnkAllocator* node_allocator;
+    base::IAllocator* node_allocator;
     u32 node_flags;
     u32 field_0x44;
     u32 field_0x48;
 
-    UnkPrimeTable_2b2330(u32 n, u32 fl, base::UnkAllocator* alloc = GetDefaultAllocator())
+    UnkPrimeTable_2b2330(u32 n, u32 fl, base::IAllocator* alloc = GetDefaultAllocator())
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(fl),
           allocator(alloc ? alloc : GetDefaultAllocator()), field_0x28(0xffffffff), field_0x30(nullptr),
           node_allocator(GetDefaultAllocator()), node_flags(fl), field_0x44(0), field_0x48(1) {

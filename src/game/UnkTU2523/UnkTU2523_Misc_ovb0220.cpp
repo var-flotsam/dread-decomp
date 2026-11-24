@@ -108,7 +108,7 @@ struct UnkElem64_b0220 {
 static_assert(sizeof(UnkElem64_b0220) == 0x40, "UnkElem64_b0220 layout");
 
 struct UnkOwner_b0220 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkListHolder_b0220 {
@@ -253,7 +253,7 @@ struct UnkSetElem_b0220 {
     u32 list_step;
     bool list_grow;
     u32 list_flags;
-    base::UnkAllocator* list_allocator;
+    base::IAllocator* list_allocator;
     u32 field_0x30;
     base::UnkRefHandle owner;  // 0x38
 

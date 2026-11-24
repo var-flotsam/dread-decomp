@@ -28,7 +28,7 @@ struct UnkReflValueArray_b58 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkReflValueArray_b58(UnkReflValueArray_b58&& other) {
         data = other.data;

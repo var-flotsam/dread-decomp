@@ -19,7 +19,7 @@
 #include "game/UnkTU99.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CRntVector;
 using base::global::CStrId;
 
@@ -55,7 +55,7 @@ struct UnkTunableGroupArrays {
     u32 capacity;
     u32 step;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 };
 
 // Grows both arrays to `new_capacity`: the groups are copied and destroyed, the names moved.
@@ -188,10 +188,10 @@ struct UnkTunableTokens {
     u32 count;
     UnkTunableToken* head;
     UnkTunableToken* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     char* pool_vtable;  // +0x30: the node pool (base::UnkBlockPool's layout)
-    base::UnkAllocator* pool_parent;
+    base::IAllocator* pool_parent;
     UnkBlockFreeList pool_blocks;
     u32 field_0x68;
     bool field_0x6c;

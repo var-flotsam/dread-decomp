@@ -13,7 +13,7 @@ struct UnkByteArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkByteArray(UnkByteArray&& other)
         : data(other.data),

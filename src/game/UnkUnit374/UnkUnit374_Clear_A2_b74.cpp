@@ -19,7 +19,7 @@ struct UnkUnit374_A2_b74 {
     u32 count;
     u32 capacity;
     u8 pad_0x18[0x10];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u8 record[0xc];
 };
 

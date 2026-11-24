@@ -169,8 +169,8 @@ static inline void AddDevice(UnkRegistry_0x70* devices, void* device) {
 // (0x148 bytes) over a queue.
 void fn_710002dd30();
 void fn_710002dd34(UnkDevice* self, const CStrId& name, const CFilePathStrId& path);
-base::UnkAllocator* fn_7100083724(base::UnkAllocator* parent, u32 flags);
-void fn_710008a288(UnkDevice* self, const CStrId& name, UnkDevice* device, base::UnkAllocator* allocator,
+base::IAllocator* fn_7100083724(base::IAllocator* parent, u32 flags);
+void fn_710008a288(UnkDevice* self, const CStrId& name, UnkDevice* device, base::IAllocator* allocator,
                    u32 flags);
 void fn_71000846f8(CDeviceQueue* self, const CStrId& name);
 void fn_7100084e34(CDeviceQueue* self, UnkDevice* device);
@@ -206,7 +206,7 @@ void fn_7100015fc0(const CFilePathStrId& root) {
     AddDevice(devices, save);
     UnkDevice* textures = NewHostDevice("textures", "rom:/textures/");
     AddDevice(devices, textures);
-    base::UnkAllocator* allocator = fn_7100083724(GetDefaultAllocator(), 3);
+    base::IAllocator* allocator = fn_7100083724(GetDefaultAllocator(), 3);
     UnkDevice* packs = static_cast<UnkDevice*>(fn_71000839a0(0x88, 3));
     fn_710008a288(packs, CStrId("packs", true), rom, allocator, 0x1b);
     CDeviceQueue* queue = static_cast<CDeviceQueue*>(fn_71000839a0(0x40, 3));

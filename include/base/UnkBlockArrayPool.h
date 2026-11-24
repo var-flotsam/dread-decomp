@@ -16,7 +16,7 @@ struct UnkBlockArrayEntry {
 };
 
 struct UnkBlockArrayPool {
-    base::UnkAllocator* allocator;  // owns the buffer
+    base::IAllocator* allocator;  // owns the buffer
     u32 flags;
     UnkBlockFreeList list;                         // +0x10
     base::global::CRntVector<UnkBlockArrayEntry> entries;  // +0x38
@@ -27,7 +27,7 @@ struct UnkBlockArrayPool {
 // freeing the previous buffer.
 template <u64 Size>
 __attribute__((always_inline)) inline void UnkBlockArrayPoolCreate(UnkBlockArrayPool* self, u64 n, u32 flags,
-                                                                   base::UnkAllocator* allocator) {
+                                                                   base::IAllocator* allocator) {
     // The list's buffer, read as a word at +0x30: the original recomputes the list's address for
     // each call instead of keeping it from this read.
     if (void* buffer = *reinterpret_cast<void**>(reinterpret_cast<char*>(self) + 0x30)) {

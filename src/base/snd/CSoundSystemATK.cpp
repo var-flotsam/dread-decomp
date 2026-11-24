@@ -67,14 +67,14 @@ struct UnkInlineString_CSoundSystemATK {
     u32 field_0xc0;
 
     UnkInlineString_CSoundSystemATK() {
-        CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::UnkAllocator*>(&vtable));
+        CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::IAllocator*>(&vtable));
         field_0xb8 = 0;
         field_0xc0 = 0;
         vtable = &g_unk_7101a1b750[2];
     }
     // The second string's order of stores differs in the original.
     explicit UnkInlineString_CSoundSystemATK(int) {
-        CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::UnkAllocator*>(&vtable));
+        CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::IAllocator*>(&vtable));
         field_0xb8 = 0;
         vtable = &g_unk_7101a1b750[2];
         field_0xc0 = 0;

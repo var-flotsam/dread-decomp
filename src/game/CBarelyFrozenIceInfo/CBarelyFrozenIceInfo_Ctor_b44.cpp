@@ -29,7 +29,7 @@ struct UnkFrozenIceInfo_b44a2 {
     u32 field_0xd8;
     bool field_0xdc;
     u32 field_0xe0;
-    base::UnkAllocator* field_0xe8;
+    base::IAllocator* field_0xe8;
 };
 
 void fn_71007f3100(UnkFrozenIceInfo_b44a2* self) {

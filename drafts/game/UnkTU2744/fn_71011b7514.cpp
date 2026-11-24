@@ -47,7 +47,7 @@ struct UnkGuiOrderedList {
     UnkGuiOrderedNode* tail;
     u32 tag;
     u8 pad_0x1c[4];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkGuiOrderedNode* NewNode(UnkWeakHandle* handle) {
         UnkGuiOrderedNode* node =

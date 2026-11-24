@@ -6,5 +6,5 @@ struct UnkCutSceneTable_lc886c0 {
     void* field_0x0;
     void* field_0x8;
     u8 pad_0x10[0x10];
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 };

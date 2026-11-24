@@ -70,7 +70,7 @@ struct UnkRanged_cu {
     u32 field_0x28;
     bool field_0x2c;
     u32 field_0x30;
-    base::UnkAllocator* field_0x38;
+    base::IAllocator* field_0x38;
     u32 field_0x40;
     u64 field_0x48;
     f32 field_0x50;

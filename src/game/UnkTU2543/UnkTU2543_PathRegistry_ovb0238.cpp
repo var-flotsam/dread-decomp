@@ -50,11 +50,11 @@ struct UnkPathRegistry {
     u32 count;
     UnkPathNode_b0238* head;
     UnkPathNode_b0238* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u8 pad_0x2c[4];
     char* pool_vtable;
-    base::UnkAllocator* pool_allocator;
+    base::IAllocator* pool_allocator;
     UnkBlockFreeList pool;
     u32 field_0x68;
     bool clearing;

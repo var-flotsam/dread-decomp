@@ -26,7 +26,7 @@ struct __attribute__((packed, aligned(4))) UnkLuaScratch {
     u8 pad_0x15[3];
     u32 flags;
     u32 pad_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Frees the array (the elements need no destruction).
     void Free() {
@@ -75,7 +75,7 @@ int fn_71010a58e0(lua_State* L, const char* buff, size_t size, const char* name)
 
 // Pushes a fresh scratch array of 0x190 elements for a script run.
 static inline void PushScratch() {
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     u32 flags = 6;
     u64* data = static_cast<u64*>(allocator->vf_0x40(0x190 * sizeof(u64), 8, flags));
     u32 top = g_unk_7172a025a0.count;

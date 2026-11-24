@@ -21,7 +21,7 @@ struct UnkTimedStrIdList_l02fb80 {
     u32 count;
     UnkTimedStrIdNode_l02fb80* head;
     UnkTimedStrIdNode_l02fb80* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u64 field_0x28;
     UnkDeferredSet<UnkDeferredCallback<bool>> on_change;  // 0x30
 };

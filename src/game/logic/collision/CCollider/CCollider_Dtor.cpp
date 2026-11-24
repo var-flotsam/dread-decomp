@@ -25,7 +25,7 @@ struct UnkColliderDtor {
     u32 count;           // 0x130
     UnkColliderListNode* head;  // 0x138
     UnkColliderListNode* tail;  // 0x140
-    base::UnkAllocator* allocator;  // 0x148
+    base::IAllocator* allocator;  // 0x148
     u8 pad_0x150[0x8];
     UnkColliderReleasable* field_0x158;
     bool field_0x160;

@@ -35,7 +35,7 @@ struct UnkMarkersRefs_lafc0bc {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkMarkersRefs_lafc0bc()
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(15),

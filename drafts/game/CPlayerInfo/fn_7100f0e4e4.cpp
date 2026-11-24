@@ -37,9 +37,9 @@ struct UnkPlayerProps_lf0e4e4 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
-    explicit UnkPlayerProps_lf0e4e4(base::UnkAllocator* allocator)
+    explicit UnkPlayerProps_lf0e4e4(base::IAllocator* allocator)
         : values(nullptr), ids(nullptr), count(0), capacity(0), step(10), flags(2), allocator(allocator) {}
 
     // Releases the ids and destroys the values, keeping the arrays.
@@ -100,7 +100,7 @@ struct UnkTimedEntry_lf0e4e4 {
     UnkTimedHead_lf0e4e4 head;
     UnkPlayerProps_lf0e4e4 properties;  // 0x8
 
-    explicit UnkTimedEntry_lf0e4e4(base::UnkAllocator* allocator) : head(), properties(allocator) {}
+    explicit UnkTimedEntry_lf0e4e4(base::IAllocator* allocator) : head(), properties(allocator) {}
 };
 
 struct UnkTimedMap_lf0e4e4 {
@@ -110,7 +110,7 @@ struct UnkTimedMap_lf0e4e4 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkTimedEntry_lf0e4e4* Find(const CStrId& key) {
         for (u32 i = 0; i < count; ++i) {
@@ -121,7 +121,7 @@ struct UnkTimedMap_lf0e4e4 {
     }
 
     // Adds an entry under key whose properties allocate through llocator.
-    UnkTimedEntry_lf0e4e4* Add(const CStrId& key, base::UnkAllocator* allocator) {
+    UnkTimedEntry_lf0e4e4* Add(const CStrId& key, base::IAllocator* allocator) {
         if (count == capacity)
             CPlayerInfo_ReserveTimedEntryMap(reinterpret_cast<UnkTimedMap_ovb0071*>(this), count + step);
         new (&ids[count]) CStrId(key);

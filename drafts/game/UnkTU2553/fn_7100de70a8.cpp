@@ -57,7 +57,7 @@ struct UnkActorMapNode_lde70a8 {
 };
 
 struct UnkActorMap_lde70a8 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 pad_0x8;
     u32 count;                          // 0xc
     UnkActorMapNode_lde70a8** buckets;  // 0x10

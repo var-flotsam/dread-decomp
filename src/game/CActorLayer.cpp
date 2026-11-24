@@ -52,7 +52,7 @@ struct UnkReflAnyList {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // The list of the one value `first` (fn_7100ad3404, which keeps the placeholder types
     // src/game_s7/fn_7100f7b200.cpp gives it).

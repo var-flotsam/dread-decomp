@@ -179,14 +179,14 @@ struct UnkComponent_ovb0219 {
     u32 step_0x780;
     bool field_0x784;
     u32 flags_0x788;
-    base::UnkAllocator* allocator_0x790;
+    base::IAllocator* allocator_0x790;
     void** data_0x798;
     u32 count_0x7a0;
     u32 capacity_0x7a4;
     u32 step_0x7a8;
     bool field_0x7ac;
     u32 flags_0x7b0;
-    base::UnkAllocator* allocator_0x7b8;
+    base::IAllocator* allocator_0x7b8;
 };
 static_assert(__builtin_offsetof(UnkComponent_ovb0219, data_0x770) == 0x770, "layout");
 static_assert(__builtin_offsetof(UnkComponent_ovb0219, data_0x798) == 0x798, "layout");

@@ -32,7 +32,7 @@ struct UnkEdgeLinks_l2a2dc8 {
     u32 count;
     UnkEdgeLink_l2a2dc8* head;
     UnkEdgeLink_l2a2dc8* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 
     // The link at `index`, or null past the end of the list.

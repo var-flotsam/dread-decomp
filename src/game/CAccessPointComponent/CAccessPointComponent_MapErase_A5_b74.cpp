@@ -22,7 +22,7 @@ struct UnkHashView_A5b74 {
 };
 
 struct UnkEraseMap_A5b74 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     char** buckets;

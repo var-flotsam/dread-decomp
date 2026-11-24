@@ -21,7 +21,7 @@ struct UnkStringList_b49 {
     u32 step;
     bool field_0x24;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkStringList_b49()
         : field_0x0(0), field_0x8(0), data(nullptr), count(0), capacity(0), step(1),

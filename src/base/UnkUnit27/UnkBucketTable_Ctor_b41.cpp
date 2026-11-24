@@ -19,19 +19,19 @@ struct UnkBucketArray_b41a1 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkBucketTable_b41a1 {
     UnkBucketArray_b41a1 buckets;
     s32 field_0x28;
     void* field_0x30;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 field_0x44;
     u32 field_0x48;
 
-    __attribute__((always_inline)) UnkBucketTable_b41a1(base::UnkAllocator* alloc, u32 fl) {
+    __attribute__((always_inline)) UnkBucketTable_b41a1(base::IAllocator* alloc, u32 fl) {
         buckets.data = nullptr;
         buckets.count = 0;
         buckets.capacity = 0;
@@ -83,11 +83,11 @@ struct UnkBucketTable_b41a1 {
 #define UNK_BUCKET_TABLE_B41A1(addr, Self, Alloc)                                    \
     void fn_##addr(Self self, Alloc alloc, u32 flags) {                               \
         new (reinterpret_cast<UnkBucketTable_b41a1*>(self))                           \
-            UnkBucketTable_b41a1(static_cast<base::UnkAllocator*>(alloc), flags);     \
+            UnkBucketTable_b41a1(static_cast<base::IAllocator*>(alloc), flags);     \
     }
 
 UNK_BUCKET_TABLE_B41A1(71000204d4, u64*, void*)
 UNK_BUCKET_TABLE_B41A1(7100021230, u64*, void*)
 UNK_BUCKET_TABLE_B41A1(7100021f84, u64*, void*)
-UNK_BUCKET_TABLE_B41A1(71000e98a0, UnkBucketTable_b41a1*, base::UnkAllocator*)
+UNK_BUCKET_TABLE_B41A1(71000e98a0, UnkBucketTable_b41a1*, base::IAllocator*)
 UNK_BUCKET_TABLE_B41A1(71002f75ac, void*, void*)

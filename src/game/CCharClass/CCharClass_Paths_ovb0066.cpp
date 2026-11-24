@@ -38,7 +38,7 @@ struct UnkCharClass_ovb0066 {
     u64 count;                  // 0xe0
     u32 field_0xe8;
     u32 field_0xec;
-    base::UnkAllocator* table_allocator;  // 0xf0
+    base::IAllocator* table_allocator;  // 0xf0
     UnkCountedResource* counted;          // 0xf8
     base::UnkVtableList<UnkPathNode_ovb0066> paths;            // 0x100
     u32 field_0x130;

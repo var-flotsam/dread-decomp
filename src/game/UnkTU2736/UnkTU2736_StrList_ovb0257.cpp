@@ -27,13 +27,13 @@ struct UnkStrList_b257b {
     u32 count;  // 0x8
     UnkIdNode_b257b* head;  // 0x10
     UnkIdNode_b257b* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u8 pad_0x28[8];
     void** vtable_0x30;
     u32 count_0x38;
     UnkStrNode_b257b* head_0x40;  // 0x40
     UnkStrNode_b257b* tail_0x48;
-    base::UnkAllocator* allocator_0x50;
+    base::IAllocator* allocator_0x50;
 };
 
 void fn_71011a4f1c(UnkStrList_b257b* self) {

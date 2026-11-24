@@ -44,7 +44,7 @@ struct UnkEntry83 {
 };
 
 struct UnkTable83 {
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u32 flags;                      // 0x8
     u32 count;                      // 0xc
     UnkEntry83** buckets;           // 0x10

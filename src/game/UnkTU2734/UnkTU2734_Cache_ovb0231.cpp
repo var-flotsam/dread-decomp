@@ -91,7 +91,7 @@ struct UnkGuiNode_b0231 {
     u32 slot_count;                    // 0x18
     u32 slot_capacity;                 // 0x1c
     u8 pad_0x20[0x10];
-    base::UnkAllocator* slot_allocator;  // 0x30
+    base::IAllocator* slot_allocator;  // 0x30
     u8 pad_0x38[8];
     union {
         UnkGuiNode_b0231* list_next;       // 0x40
@@ -103,7 +103,7 @@ struct UnkGuiNode_b0231 {
 };
 
 struct UnkGuiCacheView_b0231 {
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u8 pad_0x8[4];
     u32 field_0xc;
     UnkGuiNode_b0231** buckets;  // 0x10

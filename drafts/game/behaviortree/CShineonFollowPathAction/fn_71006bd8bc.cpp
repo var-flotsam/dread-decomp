@@ -89,7 +89,7 @@ struct UnkFollowPathParamsBase_l6bd8bc {
     u32 step;
     bool field_0xec;
     u32 flags;
-    base::UnkAllocator* allocator;  // 0xf8
+    base::IAllocator* allocator;  // 0xf8
     u8 field_0x100;
     u8 pad_0x101;
     u8 field_0x102;

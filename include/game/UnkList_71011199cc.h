@@ -20,7 +20,7 @@ struct UnkList_71011199cc : base::UnkVtableList<UnkList_71011199ccNode> {
         Node* n = head;
         if (!n)
             return;
-        base::UnkAllocator* a = allocator;
+        base::IAllocator* a = allocator;
         while (n) {
             Node* next = n->next;
             a->vf_0x48(n);

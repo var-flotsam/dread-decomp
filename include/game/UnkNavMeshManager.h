@@ -18,7 +18,7 @@
 #include "types.h"
 
 namespace base {
-struct UnkAllocator;
+struct IAllocator;
 namespace math {
 struct CVector2D;
 }
@@ -45,7 +45,7 @@ struct UnkNavMeshManager {
     void* field_0x62e40;
     u32 field_0x62e48;              // 10
     u32 field_0x62e4c;              // 0x57
-    base::UnkAllocator* allocator;  // +0x62e50, the default allocator
+    base::IAllocator* allocator;  // +0x62e50, the default allocator
     UnkNavMeshNodePool_0x70 pool;   // +0x62e58
 };
 static_assert(__builtin_offsetof(UnkNavMeshManager, reach) == 0x5ddf8, "UnkNavMeshManager placeholder layout");

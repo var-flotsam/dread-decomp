@@ -20,7 +20,7 @@ struct UnkKeyedRecordArray_b45a1 {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_710019b91c(UnkKeyedRecordArray_b45a1* self) {

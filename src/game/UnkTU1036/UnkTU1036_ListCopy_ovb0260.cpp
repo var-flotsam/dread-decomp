@@ -22,7 +22,7 @@ struct UnkCountedNode_b260 {
 
 struct UnkCountedPool_b260 {
     char* vtable;
-    base::UnkAllocator* parent;
+    base::IAllocator* parent;
     UnkBlockFreeList blocks;
 };
 
@@ -31,7 +31,7 @@ struct UnkCountedList_b260 {
     u32 count;
     UnkCountedNode_b260* head;
     UnkCountedNode_b260* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     UnkCountedPool_b260 pool;  // +0x30
     u32 field_0x68;
@@ -65,7 +65,7 @@ void fn_71006a15c8(UnkCountedList_b260* self, const UnkCountedList_b260* other) 
     self->field_0x6c = false;
     u32 flags = other->flags;
     self->flags = flags;
-    base::UnkAllocator* source = other->pool.parent;
+    base::IAllocator* source = other->pool.parent;
     if (!source) {
         self->allocator = other->allocator;
         return;
@@ -82,7 +82,7 @@ void fn_71006a15c8(UnkCountedList_b260* self, const UnkCountedList_b260* other) 
         void* buffer = source->vf_0x40(size, 8, flags);
         fn_710008378c(&self->pool.blocks, buffer, size, 0x10);
     }
-    self->allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<char*>(self) +
+    self->allocator = reinterpret_cast<base::IAllocator*>(reinterpret_cast<char*>(self) +
                                                             __builtin_offsetof(UnkCountedList_b260, pool));
     if (self == other)
         return;

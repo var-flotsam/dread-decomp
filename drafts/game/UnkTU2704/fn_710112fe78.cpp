@@ -22,7 +22,7 @@ struct UnkReflValueArray {
     u32 field_0x14;
     u32 flags;
     u32 pad_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 static_assert(sizeof(UnkReflValueArray) == 0x28, "placeholder layout");
 

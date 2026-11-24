@@ -85,7 +85,7 @@ struct UnkWordVec_b0212 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Grows the array to n words, moving the old ones over.
     __attribute__((always_inline)) void Reserve(u32 n) {
@@ -467,7 +467,7 @@ struct UnkVecIdNode_b0212 {
 };
 
 struct UnkVecIdMap_b0212 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkVecIdNode_b0212** buckets;
@@ -528,7 +528,7 @@ struct UnkHashView_b0212 {
 };
 
 struct UnkEraseMap_b0212 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;     // 0xc
     char** buckets;  // 0x10

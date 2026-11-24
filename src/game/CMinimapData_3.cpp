@@ -122,7 +122,7 @@ struct UnkMinimapList {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // An element of the keyed arrays below (0x80 bytes): a string id and two arrays among plain

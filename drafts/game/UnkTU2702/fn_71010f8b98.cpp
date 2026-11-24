@@ -57,7 +57,7 @@ struct UnkWidePoolListBase_b44a3 {
     char* head;
     char* tail;
     u64 field_0x20;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 
     ~UnkWidePoolListBase_b44a3() {
@@ -228,7 +228,7 @@ struct UnkMapNode_l0f8b98 {
 
 // A hash map: its nodes, linked from `head`, and the bucket array.
 struct UnkMap_l0f8b98 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u8 pad_0x8[0x4];
     u32 count;  // 0xc
     CRntVector<void*> buckets;  // 0x10

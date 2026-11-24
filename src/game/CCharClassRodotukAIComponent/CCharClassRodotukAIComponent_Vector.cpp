@@ -20,7 +20,7 @@ struct UnkPodVector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) T* Grow(u32 cap) {
         T* p = static_cast<T*>(allocator->vf_0x40((u64)cap * sizeof(T), 8, flags));

@@ -34,7 +34,7 @@ struct UnkIdIndex_l6f9148 {
     u32 capacity;                   // 0x14
     u32 step;                       // 0x18
     u32 flags;                      // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     UnkIndexValue_l6f9148* Find(u32 key) {
         for (u64 i = 0; i != count; ++i) {

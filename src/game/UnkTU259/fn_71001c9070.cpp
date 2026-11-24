@@ -73,7 +73,7 @@ struct UnkGfxNamedVectors_l1c9070 {
     u32 capacity;
     u32 step;
     u32 flags;  // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     ~UnkGfxNamedVectors_l1c9070() {
         if (values && count) {
@@ -96,7 +96,7 @@ struct UnkGfxIdTable_l1c9070 {
     u32 capacity;
     u32 step;
     u32 flags;  // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     ~UnkGfxIdTable_l1c9070() {
         ClearStrIdKeyedCountedResourceTable(reinterpret_cast<UnkIdTable<UnkResWord>*>(this));

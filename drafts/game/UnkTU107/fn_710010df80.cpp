@@ -20,7 +20,7 @@ struct UnkBoxVector_b0236 {
     u32 step;                       // 0x10
     bool grows;                     // 0x14
     u32 flags;                      // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     __attribute__((always_inline)) UnkBoxData_l10df80* At(u64 i) {
         if (grows && i >= count) {

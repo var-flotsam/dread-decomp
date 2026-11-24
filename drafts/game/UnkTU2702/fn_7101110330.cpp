@@ -46,7 +46,7 @@ struct UnkTimedQueue_l110330 {
     u8 pad_0xc[4];
     UnkTimedNode_l110330* head;  // 0x10
     UnkTimedNode_l110330* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 };
 
 void fn_7101110330(UnkTimedQueue_l110330* self, f32 limit) {

@@ -36,7 +36,7 @@ struct UnkPolygonPoints_ovb0044 {
     u32 count;
     u32 capacity;
     u8 unk_0x10[0x10];
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u8 unk_0x28[0x20];
 };
 static_assert(sizeof(UnkPolygonPoints_ovb0044) == 0x48, "UnkPolygonPoints_ovb0044 layout");

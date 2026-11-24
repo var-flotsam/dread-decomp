@@ -6,7 +6,7 @@
 #include "game/UnkMovedArray.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 
 struct UnkElem50_7101cac938 {
     virtual void vf_0x0();

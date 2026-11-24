@@ -35,7 +35,7 @@ struct UnkMarkArray_b256 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void ReserveWeakRefPositionArrayCapacity(UnkMarkArray_b256* self, u32 n) {

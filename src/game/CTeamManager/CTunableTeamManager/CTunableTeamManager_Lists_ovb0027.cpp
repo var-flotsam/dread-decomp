@@ -100,7 +100,7 @@ struct UnkTeamCompare {
 // A block pool: a free list over one buffer taken from `parent`.
 struct UnkTeamPool {
     char* vtable;
-    base::UnkAllocator* parent;
+    base::IAllocator* parent;
     UnkBlockFreeList blocks;
 
     __attribute__((always_inline)) void Destroy() {
@@ -140,7 +140,7 @@ struct UnkTeamList {
     u32 count;
     UnkTeamNode* head;
     UnkTeamNode* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     UnkTeamPool pool;  // +0x30
     u32 field_0x68;
@@ -190,8 +190,8 @@ struct UnkTeamSortedList {
     UnkTeamSortedNode* head;
     UnkTeamSortedNode* tail;
     u32 flags;
-    base::UnkAllocator* allocator;
-    base::UnkAllocator* pool_source;
+    base::IAllocator* allocator;
+    base::IAllocator* pool_source;
     UnkTeamPool pool;  // +0x38
     u32 field_0x70;
     bool field_0x74;
@@ -209,7 +209,7 @@ struct UnkTeamManager {
 // Rebuilds the sorted list from the members whose AI component is active (fn_71011a6ec8 for each).
 void CTeamManager_RebuildSortedList(UnkTeamManager* self);
 
-void fn_71011a67b8(UnkTeamSortedList* self, u32 capacity, u32 flags, base::UnkAllocator* allocator) {
+void fn_71011a67b8(UnkTeamSortedList* self, u32 capacity, u32 flags, base::IAllocator* allocator) {
     self->vtable = &g_unk_7101cb5668[2];
     self->count = 0;
     self->head = nullptr;
@@ -223,7 +223,7 @@ void fn_71011a67b8(UnkTeamSortedList* self, u32 capacity, u32 flags, base::UnkAl
     fn_710008377c(&self->pool.blocks);
     self->field_0x70 = 0;
     self->field_0x74 = false;
-    base::UnkAllocator* source = self->pool_source ? self->pool_source : self->allocator;
+    base::IAllocator* source = self->pool_source ? self->pool_source : self->allocator;
     u32 pool_flags = self->flags;
     if (void* buffer = self->pool.blocks.buffer) {
         fn_71000837f4(&self->pool.blocks);
@@ -239,7 +239,7 @@ void fn_71011a67b8(UnkTeamSortedList* self, u32 capacity, u32 flags, base::UnkAl
         fn_710008378c(&self->pool.blocks, buffer, size, sizeof(UnkTeamSortedNode));
     }
     // The nodes come from the pool from now on.
-    self->allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<char*>(self) +
+    self->allocator = reinterpret_cast<base::IAllocator*>(reinterpret_cast<char*>(self) +
                                                             __builtin_offsetof(UnkTeamSortedList, pool));
     self->vtable = &g_unk_7101cb5628[2];
     self->compare = nullptr;

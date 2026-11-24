@@ -22,7 +22,7 @@ struct UnkMapNode_b54a1 {
 
 template <int Tag>
 struct UnkChainedMap_b54a1 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkMapNode_b54a1** buckets;  // 0x10 (base::global::CRntVector)

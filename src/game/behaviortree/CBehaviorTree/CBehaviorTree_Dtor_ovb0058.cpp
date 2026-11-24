@@ -24,11 +24,11 @@ struct UnkBehaviorTreeList_b0058 {
     u32 count;                          // +0x20
     UnkBehaviorTreeEntry_b0058* head;   // +0x28
     UnkBehaviorTreeEntry_b0058* tail;   // +0x30
-    base::UnkAllocator* allocator;      // +0x38
+    base::IAllocator* allocator;      // +0x38
     u32 flags;                          // +0x40
     u8 pad_0x2c[4];
     char* pool_vtable;                  // +0x48
-    base::UnkAllocator* pool_allocator; // +0x50
+    base::IAllocator* pool_allocator; // +0x50
     UnkBlockFreeList pool;              // +0x58
     u8 pad_0x80[4];
     bool clearing;                      // +0x84

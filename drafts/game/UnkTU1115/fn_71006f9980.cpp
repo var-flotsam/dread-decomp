@@ -32,7 +32,7 @@ struct UnkIdIndex_l6f9980 {
     u32 capacity;                   // 0x14
     u32 step;                       // 0x18
     u32 flags;                      // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     // The position of `key`, or the count when it is not filed.
     u64 IndexOf(u32 key) const {

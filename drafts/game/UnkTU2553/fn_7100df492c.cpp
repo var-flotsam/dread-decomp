@@ -14,7 +14,7 @@
 using base::global::CStrId;
 
 namespace base {
-struct UnkAllocator;
+struct IAllocator;
 }
 struct UnkEntityComponents;
 struct UnkActor_710023259c;
@@ -35,9 +35,9 @@ struct UnkKindList_df492c {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
-    UnkKindList_df492c(std::initializer_list<CStrId> ids, u32 step, base::UnkAllocator* allocator,
+    UnkKindList_df492c(std::initializer_list<CStrId> ids, u32 step, base::IAllocator* allocator,
                        u32 flags);  // fn_710097bb7c
     ~UnkKindList_df492c();          // fn_71008600a8
 };

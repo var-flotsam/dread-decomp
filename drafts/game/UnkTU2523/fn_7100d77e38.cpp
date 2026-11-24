@@ -17,7 +17,7 @@ struct UnkCtorList_ld77e38 {
     u32 field_0x8;
     void* field_0x10;
     void* field_0x18;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 field_0x28;
 };
 

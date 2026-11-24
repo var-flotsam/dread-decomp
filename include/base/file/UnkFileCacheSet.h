@@ -22,7 +22,7 @@ using UnkFileCacheSet = base::global::UnkPooledBucketSet<UnkFileCacheSetNode>;
 template <u64 NodeSize>
 __attribute__((always_inline)) inline void UnkFileCacheSetSetUp(UnkFileCacheSet* self, u32 buckets, u32 nodes) {
     u32 flags = self->node_flags;
-    base::UnkAllocator* a = self->node_allocator;
+    base::IAllocator* a = self->node_allocator;
     self->nodes.Release();
     if (nodes) {
         if (!a)
@@ -34,7 +34,7 @@ __attribute__((always_inline)) inline void UnkFileCacheSetSetUp(UnkFileCacheSet*
     }
     // The pool's address, formed as an integer: the original recomputes it here rather than
     // keeping it live across the calls (as base::UnkPoolList::Init).
-    self->node_allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<u64>(self) + 0x50);
+    self->node_allocator = reinterpret_cast<base::IAllocator*>(reinterpret_cast<u64>(self) + 0x50);
     base::global::CRntVector<UnkFileCacheSetNode*>& v = self->buckets;
     u32 count = v.count;
     if (count < buckets) {

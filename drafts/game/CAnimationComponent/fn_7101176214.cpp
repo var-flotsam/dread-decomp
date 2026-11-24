@@ -60,7 +60,7 @@ struct UnkAnimList_l176214 {
     u32 count;
     UnkAnimListNode_l176214* head;
     UnkAnimListNode_l176214* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Clear() {
         for (UnkAnimListNode_l176214* node = head; node;) {

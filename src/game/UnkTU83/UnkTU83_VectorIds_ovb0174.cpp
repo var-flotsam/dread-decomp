@@ -577,7 +577,7 @@ struct UnkKeyedArray_b0174 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkVersionRegistry;

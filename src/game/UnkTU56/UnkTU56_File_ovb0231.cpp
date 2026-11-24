@@ -51,7 +51,7 @@ static inline void SeekToStart(CRntFile* file) {
 
 // Allocates `size` bytes from the file's allocator, taking the default one on first use.
 static inline void* AllocateBlock(CRntFile* file, s64 size) {
-    base::UnkAllocator* allocator = file->allocator;
+    base::IAllocator* allocator = file->allocator;
     if (!allocator) {
         allocator = GetDefaultAllocator();
         file->allocator = allocator;
@@ -61,7 +61,7 @@ static inline void* AllocateBlock(CRntFile* file, s64 size) {
     return allocator->vf_0x40(size, file->alloc_align, file->alloc_flags);
 }
 
-void fn_710007beac(CRntFile* self, const CRntFile* other, u32 flags, base::UnkAllocator* allocator) {
+void fn_710007beac(CRntFile* self, const CRntFile* other, u32 flags, base::IAllocator* allocator) {
     self->alloc_flags = flags;
     *reinterpret_cast<u64*>(self->pad_0x28) = 0;
     self->swap = false;

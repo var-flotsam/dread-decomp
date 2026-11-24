@@ -13,7 +13,7 @@
 using base::global::CStrId;
 
 namespace base {
-struct UnkAllocator;
+struct IAllocator;
 }
 struct UnkAttackComponent_c3;
 extern void* g_unk_7101cb2ab0[];

@@ -13,7 +13,7 @@ struct UnkCallbackListRaw {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 field_0x30;
     u64 field_0x38;
 };

@@ -21,13 +21,13 @@
 #include "dread_port.h"
 
 namespace base {
-struct UnkAllocator;
+struct IAllocator;
 }
 
 void* fn_7100083b60(u64 size) __attribute__((weak));                                             // operator new
-void* fn_7100083bc0(u64 size, u32 flags, u64 align, base::UnkAllocator* allocator) __attribute__((weak));
+void* fn_7100083bc0(u64 size, u32 flags, u64 align, base::IAllocator* allocator) __attribute__((weak));
 void fn_7100083c00(void* ptr) __attribute__((weak));                                              // operator delete
-base::UnkAllocator* GetDefaultAllocator() __attribute__((weak));                                        // the allocator
+base::IAllocator* GetDefaultAllocator() __attribute__((weak));                                        // the allocator
 
 namespace {
 

@@ -30,7 +30,7 @@ struct UnkIdPairArrays_lc8dde4 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_7100c8dde4(UnkIdPairArrays_lc8dde4* self) {

@@ -103,7 +103,7 @@ struct UnkScorpiusPhaseList_l6920f8 {
     u32 count;                                // 0x8
     UnkScorpiusPhaseNode_l6920f8* head;       // 0x10
     UnkScorpiusPhaseNode_l6920f8* tail;       // 0x18
-    base::UnkAllocator* allocator;            // 0x20
+    base::IAllocator* allocator;            // 0x20
     u32 alloc_flags;                          // 0x28
     u8 pad_0x2c[0x40 - 0x2c];
     u64 capacity_bytes;                       // 0x40
