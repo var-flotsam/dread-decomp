@@ -14,7 +14,7 @@ struct UnkShootAttack_b56a3 {
 };
 
 static inline __attribute__((always_inline)) void Send_b56a3(UnkShootAttack_b56a3* self, const CStrId* id) {
-    u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(id->data) + 0x30);
+    u64 hash = id->data->Key();
     void* target = self->target;
     base::reflection::UnkReflTypeIdArg mode;
     mode.id = 2;

@@ -65,7 +65,7 @@ static inline const CRntString* IdText(const Id& id) {
     __builtin_memcpy(&uses, data + 0x44, sizeof(uses));
     ++uses;
     __builtin_memcpy(data + 0x44, &uses, sizeof(uses));
-    return reinterpret_cast<const CRntString*>(reinterpret_cast<u8*>(id.data) + 0x10);
+    return &id.data->String();
 }
 
 UnkExtPair_ovb0274 fn_710001a0ac(const UnkExtKey_ovb0274* key) {
@@ -76,7 +76,7 @@ UnkExtPair_ovb0274 fn_710001a0ac(const UnkExtKey_ovb0274* key) {
     IdText(key->path);
     u8* stemData = reinterpret_cast<u8*>(key->path.data);
     IdText(key->path);
-    s32 dot = CRntString_FindChar(reinterpret_cast<const CRntString*>(reinterpret_cast<u8*>(key->path.data) + 0x10), '.', 0);
+    s32 dot = CRntString_FindChar(&key->path.data->String(), '.', 0);
     if (dot == -1)
         dot = reinterpret_cast<const CRntString*>(stemData + 0x10)->length;
     const char* stemChars = reinterpret_cast<const CRntString*>(stemData + 0x10)->data;

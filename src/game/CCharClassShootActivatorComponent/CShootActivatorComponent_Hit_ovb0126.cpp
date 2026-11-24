@@ -76,7 +76,7 @@ bool fn_7100891c8c(UnkShootActivatorHit_ovb0126* self, const UnkShootHit_ovb0126
     if (self->field_0x4d8.data != &g_unk_7101d47108->empty && self->timer >= self->duration) {
         self->field_0x4d0.Reset();
         UnkActor* owner = self->owner;
-        u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(self->field_0x4d8.data) + 0x30);
+        u64 key = self->field_0x4d8.data->Key();
         fn_7100d7c828(owner, &key, false);
         if (void* manager = fn_7100df5440(g_unk_7101d47310))
             fn_71002fda50(static_cast<CAbilityComponent*>(manager), true, false);

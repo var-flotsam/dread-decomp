@@ -88,7 +88,7 @@ void fn_71011b5d94(UnkGuiRoot* root, UnkGuiDisplayObject* object) {
         if (h->target && h->target == reinterpret_cast<UnkWeakTarget*>(object))
             ResetRef(&root->field_0x238);
     }
-    void* list = reinterpret_cast<char*>(root) + 0x1b8;
+    void* list = root->field_0x1b8;
     UnkWeakHandle* handle = GetWeakHandle(reinterpret_cast<UnkWeakTarget*>(object));
     UnkFocusLink_b0210 link(handle);
     fn_71011b77e8(list, &link);

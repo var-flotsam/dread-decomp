@@ -21,9 +21,9 @@ using base::global::CStrId;
 struct UnkEnumType;
 UnkEnumType* fn_710009ffd4();  // base::global::TRntString256's type
 
-// The blackboard at +0xeb8 of the game manager (include/game/UnkGameManager.h does not name it yet).
+// The blackboard at +0xeb8 of the game manager.
 static inline CBlackboard* Blackboard_l0a0490(UnkGameManager* manager) {
-    return reinterpret_cast<CBlackboard*>(reinterpret_cast<u8*>(manager) + 0xeb8);
+    return &manager->field_0xeb8;
 }
 
 // Stores `value` under `name` in the section `section` names, unless the blackboard is locked.

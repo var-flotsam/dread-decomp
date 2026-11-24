@@ -5,7 +5,8 @@
 #include "types.h"
 
 struct UnkListNode_b46a1_271 {
-    u8 unk_0x0[0x10];
+    u8 unk_0x0[0x8];
+    u8 field_0x8[0x8];  // the payload
     UnkListNode_b46a1_271* next;
 };
 
@@ -49,7 +50,7 @@ struct UnkListIter_b46a1_271 {
     __attribute__((always_inline)) void Set(UnkListNode_b46a1_271* n) {
         node = n;
         if (n)
-            SetPair(n, reinterpret_cast<u8*>(n) + 8);
+            SetPair(n, n->field_0x8);
         else
             Reset();
     }

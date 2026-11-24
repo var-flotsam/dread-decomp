@@ -40,13 +40,13 @@ inline CRntString Join(const CRntString& a, const CRntString& b) {
 void fn_7100beaf3c(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(base::global::CStrId::Empty())));
     CVariable* type = AddReflectedField(cls, CStrId("eType", true), reinterpret_cast<CType*>(&base::reflection::TypeObject<EFXType>::object), 0x18, -1, -1);
-    type->attrs.Add<s32>(fn_7100075240(), reinterpret_cast<CType*>(&base::reflection::TypeObject<EFXType>::object), 0);
+    type->attrs.Add<s32>(base::reflection::attr::DefaultValue(), reinterpret_cast<CType*>(&base::reflection::TypeObject<EFXType>::object), 0);
     CVariable* path = AddReflectedField(cls, CStrId("sPath", true), fn_710000ad9c(), 0x20, -1, -1);
-    path->attrs.Add<CFilePathStrId>(fn_7100075240(), CFilePathStrId(g_unk_7101d470e8));
-    path->attrs.Add<CRntString>(fn_7100091900(),
+    path->attrs.Add<CFilePathStrId>(base::reflection::attr::DefaultValue(), CFilePathStrId(g_unk_7101d470e8));
+    path->attrs.Add<CRntString>(base::reflection::attr::Extension(),
                                 Join(Join(StringOf(g_unk_716e454078.extensions[0]), "|"), StringOf(g_unk_716e453ff8.extensions[0])));
     CVariable* link = AddReflectedField(cls, CStrId("eLinkType", true), reinterpret_cast<CType*>(&base::reflection::TypeObject<ELinkType>::object), 0x28, -1, -1);
-    link->attrs.Add<s32>(fn_7100075240(), reinterpret_cast<CType*>(&base::reflection::TypeObject<ELinkType>::object), 0);
+    link->attrs.Add<s32>(base::reflection::attr::DefaultValue(), reinterpret_cast<CType*>(&base::reflection::TypeObject<ELinkType>::object), 0);
     DREAD_REFLECTED_FIELD(CStrId, "sTarget", 0x30, (DefaultValue, CStrId(base::global::CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetX", 0x38, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetY", 0x3c, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));

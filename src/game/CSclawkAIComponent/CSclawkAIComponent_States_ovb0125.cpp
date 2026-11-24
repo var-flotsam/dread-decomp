@@ -32,7 +32,7 @@ struct UnkSclawkId_ovb0125 {
                 StringPool_Release(pool, data);
         }
     }
-    u64 Hash() const { return *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(data) + 0x30); }
+    u64 Hash() const { return data->Key(); }
 };
 
 struct UnkSclawkHitInfo_ovb0125 {

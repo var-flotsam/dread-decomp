@@ -109,7 +109,7 @@ static inline UnkConversionTable_ovb0053* ConversionsOf_ovb0053(const CType* t) 
 }
 
 static inline u64 NameKey_ovb0053(const CType* t) {
-    return *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(t->m_name.data) + 0x30);
+    return t->sName.data->Key();
 }
 
 // Releases the type's attribute container (CType+0x80): the keys, the values, the arrays and the container.
@@ -144,7 +144,7 @@ void fn_710009cc04(CType* self) {
     if (links.data)
         links.allocator->vf_0x48(links.data);
     self->m_array_0x90.Free();
-    static_cast<CStrId&>(self->m_name).Reset();
+    static_cast<CStrId&>(self->sName).Reset();
 }
 
 // The held value's typed pointer: its dynamic type (CType+0x68) and the value, stored inline when it

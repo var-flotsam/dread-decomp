@@ -11,8 +11,11 @@
 struct UnkMinimapStatics {
     u8 unk_0x0[0x4];
     f32 cell_size;
-    u8 unk_0x8[0x68];
+    f32 field_0x8;  // the cell size fn_7100e95480 keeps (guarded by field_0x98)
+    u8 unk_0xc[0x64];
     u64 cell_size_guard;
-    u8 unk_0x78[0x88];
+    u8 unk_0x78[0x20];
+    u64 field_0x98;  // field_0x8's guard
+    u8 unk_0xa0[0x60];
     UnkMinimapDrawList lists[4];
 };

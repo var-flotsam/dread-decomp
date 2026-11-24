@@ -12,7 +12,7 @@ using base::reflection::UnkReflValue;
 struct UnkVersionEntry;
 
 bool fn_71000e6ce0(UnkVersionEntry* self, u16* major, u16* minor) {
-    UnkReflValue v = fn_710009ddd4(self, fn_7100005070());
+    UnkReflValue v = fn_710009ddd4(self, base::reflection::attr::Version());
     bool ok = false;
     const base::reflection::CType* type = reinterpret_cast<const base::reflection::CType*>(v.type);
     if (type && fn_710009d50c(type, fn_7100005178())) {

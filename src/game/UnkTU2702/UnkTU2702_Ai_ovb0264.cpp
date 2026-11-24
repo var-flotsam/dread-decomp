@@ -74,13 +74,14 @@ struct UnkAIOwner_e {
     bool field_0x3e;
     u8 pad_0x3f[0x1610 - 0x3f];
     UnkAICtx_e* field_0x1610;
-    u8 pad_0x1618[0x14674 - 0x1618 + 0x1466c - 0x1466c];
+    u8 pad_0x1618[0x1466c - 0x1618];
+    UnkAIState_e field_0x1466c;
 };
 
 struct UnkFrostbiteComponent;
 
 void fn_710110603c(UnkAIOwner_e* self) {
-    UnkAIState_e* s = reinterpret_cast<UnkAIState_e*>(reinterpret_cast<u8*>(self) + 0x1466c);
+    UnkAIState_e* s = &self->field_0x1466c;
     if (!self->field_0x3e) {
         if (!s->field_0x8) {
             void* comp = self->actor->field_0x2c8;
@@ -189,7 +190,13 @@ struct UnkAIStruct_g {
     UnkAIVtbl_g* vtbl;
     u8 pad_0x8[0x28];
     UnkActor* actor;
-    u8 pad_0x38[0x1610 - 0x38];
+    u8 pad_0x38[0x1220 - 0x38];
+    u8 field_0x1220;
+    u8 pad_0x1221[0x1600 - 0x1221];
+    u16 field_0x1600;
+    u8 field_0x1602;
+    u8 pad_0x1603;
+    u8 field_0x1604[0xc];
     UnkAICfg_g* field_0x1610;
 };
 
@@ -217,16 +224,15 @@ void fn_7101102da8(UnkAIStruct_g* self) {
     if (self->field_0x1610 && self->field_0x1610->field_0x22c) {
         if (fn_7100d7c990(self->actor) && fn_7100d7c990(self->actor)->field_0x1f8 &&
             !fn_7100979ef0(fn_7100d7c990(self->actor)->field_0x1f8)) {
-            u8* st = reinterpret_cast<u8*>(self) + 0x1220;
-            if (st[0]) {
+            if (self->field_0x1220) {
                 UnkActor* a = fn_7100d7c990(self->actor);
                 u32 x = *(u32*)&a->field_0x44;
                 u32 y = *(u32*)&a->field_0x54;
                 u32 z = *(u32*)&a->field_0x64;
                 UnkVec3 v = {x, y, z};
-                fn_710007b444(reinterpret_cast<u8*>(self) + 0x1604, &v);
-                st[0x3e2] = 0xff;
-                *(u16*)(reinterpret_cast<u8*>(self) + 0x1600) = 0xffff;
+                fn_710007b444(self->field_0x1604, &v);
+                self->field_0x1602 = 0xff;
+                self->field_0x1600 = 0xffff;
             }
         }
     }
@@ -766,7 +772,7 @@ void fn_7101107e94(UnkFlyAI_z* self, void* arg) {
         params.field_0x34 = 5;
         params.field_0x18 = 0;
         params.field_0x1c = 1;
-        const u32* m = reinterpret_cast<const u32*>(&fn_710002614c(reinterpret_cast<const UnkMatrix44*>(reinterpret_cast<u8*>(self->actor) + 0x38)));
+        const u32* m = reinterpret_cast<const u32*>(&fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->actor->field_0x38)));
         u32 a = m[2];
         u32 b = m[6];
         u32 c = m[10];

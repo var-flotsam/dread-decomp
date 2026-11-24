@@ -124,11 +124,20 @@ struct UnkAtkKind1Summary {
     bool field_0x1a;
 };
 
+// Optional parameters after a flag word at +0x14 of a kind-1 record: one 4-byte slot for each low bit that is
+// set, in bit order (as in src/atk_id/nn_atk_b34a3.cpp). Bit 1's slot holds two bytes.
+struct UnkAtkKind1Params {
+    u32 flags;
+    u32 slots[2];
+};
+
 struct UnkAtkKind1Record {
     u32 field_0x0;
     u32 field_0x4;
     u8 field_0x8;
     u8 field_0x9;
+    u8 pad_0xa[0xa];
+    UnkAtkKind1Params field_0x14;
 };
 
 struct UnkAtkNamedReader2 {
@@ -162,14 +171,7 @@ bool fn_710121080c(const UnkAtkNamedReader2* self, const char* name, UnkAtkKind1
     return true;
 }
 
-// Optional parameters after a flag word at +0x14 of a kind-1 record: one 4-byte slot for each low bit that is
-// set, in bit order (as in src/atk_id/nn_atk_b34a3.cpp). Bit 1's slot holds two bytes.
-struct UnkAtkKind1Params {
-    u32 flags;
-    u32 slots[2];
-};
-
-#define KIND1_PARAM_BYTE(record, byte)                                                             do {                                                                                               const UnkAtkKind1Params* params = (const UnkAtkKind1Params*)((const char*)(record) + 0x14);         u32 flags = params->flags;                                                                     asm("" : "+r"(params)); /* the original addresses the slots from the flag word */              if (!(flags & 2))                                                                                  return 0;                                                                                  return ((const u8*)&params->slots[flags & 1])[byte];                                       } while (0)
+#define KIND1_PARAM_BYTE(record, byte)                                                             do {                                                                                               const UnkAtkKind1Params* params = &(record)->field_0x14;         u32 flags = params->flags;                                                                     asm("" : "+r"(params)); /* the original addresses the slots from the flag word */              if (!(flags & 2))                                                                                  return 0;                                                                                  return ((const u8*)&params->slots[flags & 1])[byte];                                       } while (0)
 
 __attribute__((noinline)) u32 fn_71012101d8(const UnkAtkKind1Record* record) { KIND1_PARAM_BYTE(record, 0); }
 __attribute__((noinline)) u32 fn_71012101f8(const UnkAtkKind1Record* record) { KIND1_PARAM_BYTE(record, 1); }

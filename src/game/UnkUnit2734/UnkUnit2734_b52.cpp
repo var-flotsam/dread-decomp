@@ -50,7 +50,7 @@ struct UnkGuiCacheView_b52 {
     UnkGuiNode_b52** BucketFor(base::global::UnkStringData* key) {
         if (count == 0)
             return nullptr;
-        const u32* hash = reinterpret_cast<const u32*>(reinterpret_cast<const u8*>(key) + 0x30);
+        const u32* hash = key->hash;
         u32 idx = (hash[0] ^ hash[1]) % divisor;
         return buckets + idx;
     }

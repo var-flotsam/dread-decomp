@@ -110,7 +110,7 @@ void fn_710080f4c8(UnkScorpiusFX_ovb0008* self) {
         UnkRenderManager* render = g_unk_7101d47300;
         UnkSwitchObject* gas = nullptr;
         fn_7100339d48(render->field_0x218, &s_path, &gas, &base::global::CStrId::Empty());
-        fn_7100219ae0(render, gas ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(gas) + 8) : nullptr, 0);
+        fn_7100219ae0(render, gas ? &gas->field_0x8 : nullptr, 0);
         UnkSwitchObject* item = gas;
         fn_7100146dac(item, false);
         self->gas.Items()[self->gas.count] = item;

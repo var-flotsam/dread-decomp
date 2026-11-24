@@ -28,7 +28,6 @@ const base::global::CStrId* fn_7100370fa0(const UnkAction453* self) {
     UnkInner453* inner = self->owner->inner;
     if (inner == nullptr) {
         const base::global::CStrId* none = &base::global::CStrId::Empty();
-        asm("" : "+r"(none));
         return none;
     }
     UnkRecord453* record = inner->record;

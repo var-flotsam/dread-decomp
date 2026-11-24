@@ -43,7 +43,7 @@ static_assert(__builtin_offsetof(UnkPbRecordList_A5_b72<64>, field_end) == 0x121
 template <int N>
 static inline __attribute__((always_inline)) void Destroy_A5_b72(UnkPbRecordList_A5_b72<N>* self, void** vt) {
     self->field_end = 0;
-    self->vtable = reinterpret_cast<void**>(reinterpret_cast<char*>(vt) + 0x10);
+    self->vtable = vt + 2;
     for (u64 i = 0; i < self->count; ++i)
         self->items[i].~UnkPbRecord_A5_b72();
     self->count = 0;

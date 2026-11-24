@@ -137,7 +137,7 @@ static inline UnkGuiDisplayObject* Display(UnkGuiModel3D_ovb0109* self) {
 }
 
 static inline u64 Hash(const CStrId& id) {
-    return *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(id.data) + 0x30);
+    return id.data->Key();
 }
 
 void fn_71011f3cfc(UnkGuiModel3D_ovb0109* self) {

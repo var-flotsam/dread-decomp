@@ -43,7 +43,7 @@ void fn_7100b63bc4(UnkPowerDescComposition_b43a3* self) {
         fn_71011cdc30(self->continue_arrow, true);
         PlayAnimation_b43a3(self->continue_arrow, "ContinueArrow_Loop", 0);
         fn_71011cdc30(self->bar, true);
-        self->step = *reinterpret_cast<f32*>(reinterpret_cast<u8*>(self->bar) + 0x8c) / (f32)self->source->page_count;
+        self->step = self->bar->field_0x78.width / (f32)self->source->page_count;
         fn_71011ccd20(self->pages, 0.0f);
     } else {
         fn_71011cdc30(self->bar, false);

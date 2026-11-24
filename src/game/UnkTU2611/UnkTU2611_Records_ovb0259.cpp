@@ -190,7 +190,8 @@ void fn_7100fac824(UnkNameSet_ovb0259* self, CBlackboard* blackboard) {
 struct UnkRecordKinds_ovb0259 {
     u8 pad_0x0[0x8];
     void* field_0x8;
-    u8 pad_0x10[0x140];
+    u8 pad_0x10[0x28];
+    u8 field_0x38[0x118];  // 0x38
     CStrId* data;  // 0x150
     u32 count;     // 0x158
     u32 capacity;
@@ -220,7 +221,7 @@ bool fn_7100fab880(UnkNameSet_ovb0259* self_, bool flag) {
     if (&g_unk_7101d47108->empty != d)
         ++d->ref_count;
     ++self->count;
-    void* sub = reinterpret_cast<char*>(self) + 0x38;
+    void* sub = self->field_0x38;
     fn_7100fa64bc(sub);
     fn_7100fa5c40(sub, self->field_0x8);
     if (flag)

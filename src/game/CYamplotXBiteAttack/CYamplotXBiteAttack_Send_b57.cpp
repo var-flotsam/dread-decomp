@@ -22,7 +22,7 @@ CStrId fn_71006ecce4(UnkYamplotXBite_b57a4* self);
 void fn_71006ecb84(UnkYamplotXBite_b57a4* self) {
     void* target = self->owner->field_0x220;
     CStrId id = fn_71006ecce4(self);
-    u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(id.data) + 0x30);
+    u64 hash = id.data->Key();
     base::reflection::UnkReflTypeIdArg mode;
     mode.id = 2;
     base::reflection::UnkReflTypeIdArg mask;

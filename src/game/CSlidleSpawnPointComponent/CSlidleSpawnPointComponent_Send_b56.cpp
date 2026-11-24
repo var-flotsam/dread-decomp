@@ -25,7 +25,7 @@ void fn_7100a1d23c(UnkSlidleSend_b56* self) {
     if (target) {
         const u64 kind = 0xf4061ff25a2163d6;
         base::global::UnkStringData* id = fn_7101177ae8(target, kind)->data;
-        u64 current = *reinterpret_cast<u64*>(reinterpret_cast<char*>(id) + 0x30);
+        u64 current = id->Key();
         u64 hash = current == 0xcfae220bec701cde ? 0x880458e24797e3ea : 0xcfae220bec701cde;
         asm volatile("" : "+r"(hash));
         if (!fn_710117b348(target, fn_7100c4f408())) {

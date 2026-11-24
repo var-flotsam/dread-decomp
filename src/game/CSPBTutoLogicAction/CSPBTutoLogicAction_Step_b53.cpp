@@ -55,8 +55,13 @@ struct UnkSPBTutoRef_b53 {
 };
 static_assert(sizeof(UnkSPBTutoRef_b53) == 0x40, "UnkSPBTutoRef_b53 layout");
 
+// The handle's target (base::UnkRefCounted's layout); its actor is at +0x10.
+struct UnkSPBTutoTarget_b53 : base::UnkRefCounted {
+    void* field_0x10;
+};
+
 static inline void* Actor(base::UnkRefCounted* target) {
-    return *reinterpret_cast<void**>(reinterpret_cast<char*>(target) + 0x10);
+    return static_cast<UnkSPBTutoTarget_b53*>(target)->field_0x10;
 }
 
 struct UnkSPBTutoInner_b53 {

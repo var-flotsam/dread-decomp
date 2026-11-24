@@ -15,7 +15,7 @@ void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 
 // The blackboard at +0xeb8 of the game manager.
 static inline CBlackboard* Blackboard_ovb0094b(UnkGameManager* manager) {
-    return reinterpret_cast<CBlackboard*>(reinterpret_cast<u8*>(manager) + 0xeb8);
+    return &manager->field_0xeb8;
 }
 
 // Whether the blackboard has the section named by the argument.

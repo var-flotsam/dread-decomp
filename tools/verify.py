@@ -30,7 +30,11 @@ build/verify/<version>/baseline.txt; the first run builds it with tools/check.py
 before anything else. A function counts as a regression when it was O there and is not O now
 (it no longer matches, or nothing in src/ defines it any more).
 
-Usage: python tools/verify.py --version 2.1.0 [--regen gen_statics,gen_clones]
+verify.py holds check.py's lock (build/check/<version>/check.lock, tools/dread/runlock.py) for its whole run, so
+no other check.py or verify.py, from this checkout or one sharing build/, runs between its steps; the check.py it
+starts runs under that lock. --wait is how long to wait for another run that holds it (minutes, default 30).
+
+Usage: python tools/verify.py --version 2.1.0 [--regen gen_statics,gen_clones] [--wait 30]
 """
 
 from __future__ import annotations
@@ -45,6 +49,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import policy_check  # noqa: E402
+from dread import runlock  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 GENERATORS = ["gen_class_getters", "gen_classes", "gen_reflection", "gen_types", "gen_statics", "gen_clones", "gen_tables",
@@ -78,7 +83,27 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
     ap.add_argument("--regen", default="", help="comma-separated generators to rerun first: " + ", ".join(GENERATORS))
+    ap.add_argument("--wait", type=float, default=30, metavar="MINUTES",
+                    help="how long to wait for another run that holds build/check/<version>/ (default 30)")
     args = ap.parse_args()
+    try:
+        with runlock.RunLock(ROOT / "build" / "check" / args.version, "verify.py", wait=max(0.0, args.wait) * 60,
+                             worktree=ROOT):
+            return run_steps(args)
+    except runlock.Busy as e:
+        print(f"FAIL {e}")
+        return runlock.EXIT_BUSY
+
+
+def stopped(rc: int, lines: list[str]) -> str | None:
+    """Why check.py ended without a result (an exception, or it gave up waiting for the lock), None when it ran
+    to the end: its statuses are then the tree's, not a fragment of them to count as lost."""
+    if rc != runlock.EXIT_BUSY and not any(ln.startswith("Traceback (most recent call last)") for ln in lines):
+        return None
+    return f"check.py stopped before its summary (exit {rc}): {short(lines[-1] if lines else '(no output)')}"
+
+
+def run_steps(args: argparse.Namespace) -> int:
     v = args.version
     wanted = {g.strip().removesuffix(".py") for g in args.regen.split(",") if g.strip()}
     unknown = wanted - set(GENERATORS)
@@ -92,7 +117,12 @@ def main() -> int:
     if base_file.is_file():
         baseline = set(base_file.read_text(encoding="utf-8").split())
     else:
-        rc, baseline, failed, _, _ = check(v, update=False)
+        rc, baseline, failed, summary, lines = check(v, update=False)
+        why = stopped(rc, lines)
+        if why:
+            print(f"FAIL baseline: {why}")
+            print(f"NEXT: run `python tools/check.py --version {v}` alone and read the end of its output")
+            return 1
         if failed:
             print(f"FAIL baseline: {len(failed)} sources do not build before any regeneration: {', '.join(failed[:3])}")
             print("NEXT: fix the build first: python tools/check.py --version " + v + " | grep -A5 'BUILD FAILED'")
@@ -126,8 +156,13 @@ def main() -> int:
         rc, current, failed, summary, lines = check(v, update=True)
         # "REGRESSION (was O)", or "REGRESSION (was O, no source defines it: ...)" for a lost definition
         flagged = {ln.split()[1] for ln in lines if "REGRESSION (was O" in ln}
-        lost = sorted((baseline - current) | flagged)
-        if failed:
+        why = stopped(rc, lines)
+        lost = [] if why else sorted((baseline - current) | flagged)
+        if why:
+            ok = False
+            print(f"FAIL check.py --update: {why}")
+            nexts.append(f"run `python tools/check.py --version {v} --update` alone and read the end of its output")
+        elif failed:
             ok = False
             print(f"FAIL check.py --update: {len(failed)} sources do not build: {', '.join(failed[:3])}")
             nexts.append(f"fix the build error: python tools/check.py --version {v} | grep -A5 'BUILD FAILED'")
@@ -140,7 +175,7 @@ def main() -> int:
             nexts.append("undo the change that lost them (git diff; git checkout -- data/functions), or diff one with "
                          f"`python tools/trymatch.py --version {v} <file.cpp> -v`. If main removed them on purpose, "
                          f"delete {base_file.relative_to(ROOT).as_posix()} and rerun")
-        elif not failed:
+        elif not failed and not why:
             print("PASS regressions: 0")
         dups = [ln.split()[1] for ln in lines if ln.startswith("DUPLICATE ")]
         if dups:

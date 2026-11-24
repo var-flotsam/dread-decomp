@@ -15,7 +15,8 @@ struct UnkComponent_3f543c {
     void** vtable;
     u8 pad_0x8[0x149b0];
     u64 field_0x149b8;
-    u8 pad_0x149c0[0x188];
+    u8 field_0x149c0[0x60];
+    u8 field_0x14a20[0x128];
     u8 field_0x14b48;
     u8 pad_0x14b49[3];
     f32 field_0x14b4c;
@@ -38,8 +39,8 @@ void fn_71003f543c(UnkComponent_3f543c* self) {
     fn_71003e5994(self);
     self->vtable = g_unk_7101a31448 + 2;
     self->field_0x149b8 = 0;
-    fn_71003ea504(reinterpret_cast<char*>(self) + 0x149c0);
-    fn_71003f13fc(reinterpret_cast<char*>(self) + 0x14a20);
+    fn_71003ea504(self->field_0x149c0);
+    fn_71003f13fc(self->field_0x14a20);
     self->field_0x14b48 = 0;
     self->field_0x14b4c = -1.0f;
     self->field_0x14b50 = 0.0f;

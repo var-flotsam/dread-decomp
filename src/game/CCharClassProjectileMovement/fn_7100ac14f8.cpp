@@ -40,7 +40,7 @@ void fn_7100ac14f8(UnkComponent_0x138* self) {
     UnkStringData* id = base::global::CStrId::Empty().data;
     self->field_0xf0 = id;
     if (&g_unk_7101d47108->empty != id)
-        ++*reinterpret_cast<s32*>(reinterpret_cast<char*>(id) + 8);
+        ++id->ref_count;
     self->field_0xf8 = false;
     self->field_0xfc = 0;
     self->field_0x100 = true;

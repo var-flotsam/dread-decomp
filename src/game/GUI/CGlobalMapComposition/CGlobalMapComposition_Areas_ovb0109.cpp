@@ -306,7 +306,7 @@ static inline UnkMapFrame_ovb0109* Frame(UnkGuiDisplayObject* view) {
 
 // The anchor state of a display object (+0x78), as fn_71011f6240 takes it.
 static inline UnkGuiItemState* AnchorState(UnkGuiDisplayObject* object) {
-    return reinterpret_cast<UnkGuiItemState*>(reinterpret_cast<u8*>(object) + 0x78);
+    return &object->field_0x78;
 }
 
 UnkVec2Result fn_7100b29ed0(void* self, const UnkVec2Result& point, UnkGuiDisplayObject* view,

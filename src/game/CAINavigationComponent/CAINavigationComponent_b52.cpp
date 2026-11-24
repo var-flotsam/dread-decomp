@@ -66,15 +66,6 @@ static inline __attribute__((always_inline)) void Detach_b52(UnkNavCallback_b52*
         link->Release();
 }
 
-struct UnkNavComponent_b52 {
-    void** vtable;
-    u8 pad_0x8[0x38];
-    u64 field_0x40;
-    u32 field_0x48;
-    u16 field_0x4c;
-    u8 field_0x4e;
-};
-
 struct UnkNavComponentTail_b52 {
     UnkStringData* id;  // 0x50
     u64 field_0x58;
@@ -85,9 +76,19 @@ struct UnkNavComponentTail_b52 {
     u64 field_0xb0;
 };
 
+struct UnkNavComponent_b52 {
+    void** vtable;
+    u8 pad_0x8[0x38];
+    u64 field_0x40;
+    u32 field_0x48;
+    u16 field_0x4c;
+    u8 field_0x4e;
+    UnkNavComponentTail_b52 field_0x50;
+};
+
 void fn_71006f411c(UnkNavComponent_b52* self) {
     fn_71010c4148(reinterpret_cast<UnkStateObject*>(self));
-    UnkNavComponentTail_b52* tail = reinterpret_cast<UnkNavComponentTail_b52*>(reinterpret_cast<char*>(self) + 0x50);
+    UnkNavComponentTail_b52* tail = &self->field_0x50;
     self->vtable = g_unk_7101a6b608 + 2;
     self->field_0x40 = 0;
     self->field_0x48 = 0;
@@ -112,7 +113,7 @@ void fn_71006f411c(UnkNavComponent_b52* self) {
 }
 
 void fn_71006f4228(UnkNavComponent_b52* self) {
-    UnkNavComponentTail_b52* tail = reinterpret_cast<UnkNavComponentTail_b52*>(reinterpret_cast<char*>(self) + 0x50);
+    UnkNavComponentTail_b52* tail = &self->field_0x50;
     self->vtable = g_unk_7101a6b608 + 2;
     Detach_b52<0>(&tail->on_b, g_unk_7101a6b780 + 2);
     Detach_b52<1>(&tail->on_a, g_unk_7101a2aef8 + 2);

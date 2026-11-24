@@ -52,7 +52,7 @@ bool fn_71006b5c00(UnkPlasmaRayAttack_ovb0126* self);
 void fn_71006b430c(UnkPlasmaRayAttack_ovb0126* self);
 
 static inline u64 Hash(const CStrId* id) {
-    return *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(id->data) + 0x30);
+    return id->data->Key();
 }
 
 bool fn_71006b6540(UnkPlasmaRayAttack_ovb0126* self, const UnkPlasmaRayMessage_ovb0126* message) {

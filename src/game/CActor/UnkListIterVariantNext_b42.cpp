@@ -11,7 +11,8 @@
 void fn_710023a2f8(char*);
 
 struct UnkListNode_b42a1 {
-    u8 unk_0x0[0x30];
+    u8 unk_0x0[0x8];
+    u8 field_0x8[0x28];  // the payload
     UnkListNode_b42a1* next;
 };
 
@@ -64,7 +65,7 @@ struct UnkListIter_b42a1 {
         UnkListNode_b42a1* n = node->next;
         node = n;
         if (n)
-            variant.SetPair(n, reinterpret_cast<u8*>(n) + 8);
+            variant.SetPair(n, n->field_0x8);
         else
             variant.Reset();
     }

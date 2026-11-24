@@ -460,7 +460,7 @@ static inline f64 ItemAmount_b0158(UnkPropertyEx<>& item) {
     if (UnkSuitPlayer_b0158* player = reinterpret_cast<UnkSuitPlayer_b0158*>(fn_7100dec788(g_unk_7101d47310))) {
         if (UnkInventory* inventory = player->inventory) {
             UnkQualifiedId& qid = ItemQualifiedId(item);
-            if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+            if (qid.id.data == &g_unk_7101d47108->empty)
                 fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
             amount = fn_7101142928(inventory, qid);
         }

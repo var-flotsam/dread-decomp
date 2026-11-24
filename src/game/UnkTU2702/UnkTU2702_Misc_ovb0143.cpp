@@ -362,7 +362,7 @@ CAttack* fn_7101105148(UnkAttackListSelf_b0143* self, const char* name) {
             {
                 base::global::CRntString key(name);
                 id = NameKey(attackName);
-                keyId = *reinterpret_cast<u64*>(reinterpret_cast<u8*>(&key) + 0x20);
+                keyId = key.key;
             }
             if (id == keyId)
                 return *it;
@@ -492,6 +492,7 @@ struct UnkBounds_b0143 {
 
 struct UnkBoundsSource_b0143 {
     void** vtable;
+    u8 field_0x8[1];  // what vf_0x28 is passed
     UnkBounds_b0143 vf_0x28(void* arg) {
         return reinterpret_cast<UnkBounds_b0143 (*)(UnkBoundsSource_b0143*, void*)>(vtable[0x28 / 8])(this, arg);
     }
@@ -541,7 +542,7 @@ UnkVec2_b0143 fn_710110f254(UnkBoundsSelf_b0143* self) {
         return result;
     }
     UnkBoundsSource_b0143* source = part->field_0x158;
-    UnkBounds_b0143 bounds = source->vf_0x28(reinterpret_cast<u8*>(source) + 8);
+    UnkBounds_b0143 bounds = source->vf_0x28(source->field_0x8);
     base::math::CVector3D d = {bounds.max_x - bounds.min_x, bounds.max_y - bounds.min_y, bounds.max_z - bounds.min_z};
     fn_710007b430(reinterpret_cast<base::math::CVector2D*>(&result), &d);
     if (UnkBoundsShift_b0143* shift = self->field_0x1610) {

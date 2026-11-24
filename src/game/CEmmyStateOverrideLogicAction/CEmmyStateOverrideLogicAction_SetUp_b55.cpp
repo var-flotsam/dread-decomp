@@ -18,6 +18,11 @@ struct UnkTutoExitAction_b47;
 
 struct UnkEmmyActor_b55 {
     virtual void vf_0();
+
+    u8 pad_0x8[0x28];
+    char* field_0x30;
+    u8 pad_0x38[0x29eed];
+    u8 field_0x29f25;
 };
 
 void fn_7100541dc8(UnkEmmyActor_b55* self, bool on);
@@ -68,7 +73,7 @@ struct UnkEmmyStateOverrideAction_b55 {
 };
 
 static inline UnkAnimationComponent* Anim(UnkEmmyActor_b55* a) {
-    char* c = *reinterpret_cast<char**>(reinterpret_cast<char*>(a) + 0x30);
+    char* c = a->field_0x30;
     return *reinterpret_cast<UnkAnimationComponent**>(c + 0x220);
 }
 
@@ -80,13 +85,13 @@ void fn_7100a4d4e8(UnkEmmyStateOverrideAction_b55* self) {
         switch (self->mode) {
         case 0:
             fn_7100541dc8(actor, true);
-            *reinterpret_cast<u8*>(reinterpret_cast<char*>(actor) + 0x29f25) = 0;
+            actor->field_0x29f25 = 0;
             fn_7100545138(actor);
             fn_7100541de4(actor);
             fn_7100544a34(actor, g_unk_71726ded60, true);
             break;
         case 1: {
-            u8& flag = *reinterpret_cast<u8*>(reinterpret_cast<char*>(actor) + 0x29f25);
+            u8& flag = actor->field_0x29f25;
             if (fn_710117b348(Anim(actor), fn_7100c0f988()) && !flag) {
                 auto vf = (*reinterpret_cast<bool (***)(UnkEmmyActor_b55*)>(actor))[0x7d8 / 8];
                 if (!vf(actor)) {

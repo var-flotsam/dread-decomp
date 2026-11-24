@@ -246,7 +246,7 @@ struct UnkAltNamedRequest_ovb0115 {
 // caller's temporary id after the call.
 __attribute__((weak)) void fn_71007121e0(UnkAltNamedRequest_ovb0115* self, const CStrId& name, const UnkAltFlags_ovb0115& flags, UnkAltDesc_ovb0115c desc,
                    UnkAltBlend_ovb0115c blend) {
-    u64 id = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(name.data) + 0x30);
+    u64 id = name.data->Key();
     u32 f = flags.value;
     u32 mask = UnkAll_SpitSend().value;
     self->id = id;

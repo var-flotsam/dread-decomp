@@ -240,7 +240,7 @@ int fn_7100fbd670(lua_State* L, UnkTypedPair_ovb0016* value, CStrId* name) {
             method = fn_71000978e4(As<fn_7100096100>(target.type), &copy);
         }
         if (!method) {
-            luaL_error(L, "TypedObject '%s'. Property '%s' not found", cls->m_name.Text(), name->Text());
+            luaL_error(L, "TypedObject '%s'. Property '%s' not found", cls->sName.Text(), name->Text());
             lua_pushnil(L);
             return 1;
         }

@@ -10,6 +10,8 @@ using base::global::UnkStrIdBase;
 struct UnkEventSource_3f3778 {
     u8 pad_0x0[0x10];
     UnkEventSource_3f3778* field_0x10;
+    u8 pad_0x18[0x20];
+    UnkStrIdBase field_0x38;
 };
 
 struct UnkSpitEvent {
@@ -32,7 +34,7 @@ bool fn_71003f3778(UnkSpitHandler* self, UnkSpitEvent* event) {
     const UnkStrIdBase* name = &base::global::CStrId::Empty();
     if (event->field_0x8) {
         UnkEventSource_3f3778* source = event->field_0x8->field_0x10;
-        name = source ? reinterpret_cast<const UnkStrIdBase*>(reinterpret_cast<u8*>(source) + 0x38) : name;
+        name = source ? &source->field_0x38 : name;
     }
     base::global::UnkStringData* id = name->data;
     if (id != &g_unk_7101d47108->empty && event->field_0x0 == 1 && id == g_unk_71726c2888[0].data) {

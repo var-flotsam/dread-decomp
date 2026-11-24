@@ -366,7 +366,7 @@ void fn_71009d0404(UnkPickPlaced_ovb0094* self) {
         fn_71004f3ea4(static_cast<base::UnkDeferredSet<void>*>(self->tree.root), &self->tree);
         self->tree.root = nullptr;
     }
-    self->tree.root = reinterpret_cast<u8*>(manager) + 0x21a8;
+    self->tree.root = manager->field_0x21a8;
     fn_71004f3cf0(static_cast<base::UnkDeferredSet<void>*>(self->tree.root), &self->tree);
     CBlackboard* blackboard = &g_unk_7101d47310->field_0x968;
     reinterpret_cast<void (*)(UnkPickPlaced_ovb0094*, CBlackboard*)>(self->vtable[0x140 / 8])(self, blackboard);

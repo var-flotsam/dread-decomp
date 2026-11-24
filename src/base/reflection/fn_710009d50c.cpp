@@ -22,7 +22,7 @@ bool fn_710009d52c(const base::reflection::CType* type, const base::reflection::
         if (t == current)
             return true;
     }
-    u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(current->m_name.data) + 0x30);
+    u64 key = current->sName.data->Key();
     // The type is not checked for null again (the original reads a null type's array).
     do {
         auto* links = reinterpret_cast<UnkTypeLinks*>(const_cast<base::reflection::UnkReflArray*>(&type->m_array_0xb8));

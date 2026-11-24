@@ -67,9 +67,9 @@ void fn_71007a2fb4(CClass* cls) {
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_sCutsceneName_SetterFunction", true)))
         fn_71007a515c(fn, "_m_sCutsceneName_SetterFunction");
     CVariable* field0 = AddReflectedField(cls, CStrId("sCutsceneName", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<bool>(fn_7100090a20(), true);
+    field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), true);
     CVariable* field1 = AddReflectedField(cls, CStrId("bDisableScenarioEntitiesOnPlay", true), fn_710000d228(), 0x20e, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
+    field1->attrs.Add<bool>(base::reflection::attr::DefaultValue(), true);
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_vOriginalPos_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vOriginalPos_GetterFunction", true);
         fn->return_type = fn_71000246e4();
@@ -80,7 +80,7 @@ void fn_71007a2fb4(CClass* cls) {
     CVariable* field2 = AddReflectedField(cls, CStrId("vOriginalPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field2->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     field2->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
-    field2->attrs.Add<bool>(fn_7100090a20(), false);
+    field2->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_vctCutscenesOffsets_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vctCutscenesOffsets_GetterFunction", true);
         fn->return_type = &g_unk_7101d5c078;
@@ -91,15 +91,15 @@ void fn_71007a2fb4(CClass* cls) {
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_vctCutscenesOffsets_SetterFunction", true)))
         fn_71007a52d8(fn, "_m_vctCutscenesOffsets_SetterFunction");
     CVariable* field3 = AddReflectedField(cls, CStrId("vctCutscenesOffsets", true), &g_unk_7101d5c078, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<bool>(fn_7100090a20(), false);
+    field3->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     CVariable* field4 = AddReflectedField(cls, CStrId("vctExtraInvolvedSubareas", true), &g_unk_7101d5c998, 0x80, -1, -1);
     CVariable* field5 = AddReflectedField(cls, CStrId("vctExtraInvolvedActors", true), &g_unk_7172719170, 0xd0, -1, -1);
-    field5->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateExtraActor", true));
-    field5->attrs_0x70.Add<CStrId>(fn_7100091c30(), CStrId("Extra Actor", true));
+    field5->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateExtraActor", true));
+    field5->attrs_0x70.Add<CStrId>(base::reflection::attr::DisplayName(), CStrId("Extra Actor", true));
     CVariable* field6 = AddReflectedField(cls, CStrId("vctOnBeforeCutsceneStartsLA", true), &g_unk_717274caa0, 0xf8, -1, -1);
     CVariable* field7 = AddReflectedField(cls, CStrId("vctOnAfterCutsceneEndsLA", true), &g_unk_717274caa0, 0x120, -1, -1);
     CVariable* field8 = AddReflectedField(cls, CStrId("bHasSamusAsExtraActor", true), fn_710000d228(), 0x210, -1, -1);
-    field8->attrs.Add<bool>(fn_7100090a20(), false);
+    field8->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("SetupCutsceneForEditor", true))) {
         fn->name = base::global::UnkStrId("SetupCutsceneForEditor", true);
         fn->return_type = &base::reflection::TypeObject<void>::object;
@@ -234,9 +234,9 @@ void fn_71007a2fb4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71007ae2bc);
         fn_7100302b38(fn);
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("_sTargetActorId", true));
-        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("_bEnabled", true));
-        fn->ParamAttrs(2)->Add<CStrId>(fn_710008f920(), CStrId("_bRestoreVisibility", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_sTargetActorId", true));
+        fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_bEnabled", true));
+        fn->ParamAttrs(2)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_bRestoreVisibility", true));
     }
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("OnExtraActorVisibilityPerTakeChanged", true))) {
         fn->name = base::global::UnkStrId("OnExtraActorVisibilityPerTakeChanged", true);
@@ -246,8 +246,8 @@ void fn_71007a2fb4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71007ae4e8);
         fn_71007ae40c(fn);
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("_uExtraActorIndex", true));
-        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("_uTakeIndex", true));
-        fn->ParamAttrs(2)->Add<CStrId>(fn_710008f920(), CStrId("_bState", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_uExtraActorIndex", true));
+        fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_uTakeIndex", true));
+        fn->ParamAttrs(2)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_bState", true));
     }
 }

@@ -11,6 +11,7 @@
 #include "base/global/CStrId.h"
 #include "game/CMultiModelUpdaterComponent.h"
 #include "game/CSpittailMagmaBallMovementComponent.h"
+#include "game/UnkModel.h"
 #include "game/UnkModelValue_b0119.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
@@ -51,7 +52,7 @@ static inline UnkModelValue_b0119* Find_l93852c(UnkModelMap_b0119& models, const
 
 // A render model's scene node (+0x8), or none.
 static inline UnkSceneNode* Node_l93852c(UnkModel* model) {
-    return model ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(model) + 8) : nullptr;
+    return model ? &model->field_0x8 : nullptr;
 }
 
 bool fn_710093852c(UnkMultiModel_l93852c* self, const CStrId* name, const CFilePathStrId* path) {

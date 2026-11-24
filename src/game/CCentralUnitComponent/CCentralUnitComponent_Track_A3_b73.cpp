@@ -12,6 +12,11 @@
 
 using UnkRef = base::UnkRefPtrMember;
 
+// The slot's weak handle (base::UnkRefCounted's layout); its target is at +0x10.
+struct UnkCentralUnitTarget_A3_b73 : base::UnkRefCounted {
+    void* field_0x10;
+};
+
 struct UnkCentralUnitTrack_A3_b73 {
     u8 pad_0x0[0x440];
     u8 field_0x440[0x28];
@@ -31,12 +36,12 @@ u32 fn_7100773b74(UnkCentralUnitTrack_A3_b73* self, void* other) {
         }
         self->state = 2;
     }
-    if (base::UnkRefCounted* target = self->target.ptr) {
-        if (*reinterpret_cast<void**>(reinterpret_cast<char*>(target) + 0x10)) {
+    if (auto* target = static_cast<UnkCentralUnitTarget_A3_b73*>(self->target.ptr)) {
+        if (target->field_0x10) {
             asm("" : "+r"(target));
-            if (*reinterpret_cast<void**>(reinterpret_cast<char*>(target) + 0x10) == other) {
+            if (target->field_0x10 == other) {
                 asm("" : "+r"(target));
-                char* obj = *reinterpret_cast<char**>(reinterpret_cast<char*>(target) + 0x10);
+                char* obj = static_cast<char*>(target->field_0x10);
                 if (UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(obj + 0x220)) {
                     void* link = self->link;
                     if (UnkWeakHandle* handle = self->handle.handle) {

@@ -68,7 +68,7 @@ bool fn_710009d7a8(const base::reflection::CType* type, base::reflection::UnkTyp
     using namespace base::reflection;
     const CType* t = src->type;
     if (t != type) {
-        u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(type->m_name.data) + 0x30);
+        u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(type->sName.data) + 0x30);
         do {
             UnkConversionLookup a{static_cast<UnkTypeConversion**>(t->m_array_0xb8.data),
                                   static_cast<u64*>(t->m_array_0xb8.keys), t->m_array_0xb8.count};

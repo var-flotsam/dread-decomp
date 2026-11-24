@@ -12,6 +12,8 @@ void fn_71009746ac(void* self, bool flag);
 
 struct UnkEmmyProtoSpeed_b57a3 {
     void** vtable;
+    u8 pad_0x8[0x17a0 - 0x8];
+    char field_0x17a0[1];  // handed to fn_71009746ac
     void vf_0x98(f32 v) { reinterpret_cast<void (*)(UnkEmmyProtoSpeed_b57a3*, f32)>(vtable[0x98 / 8])(this, v); }
 };
 
@@ -35,7 +37,7 @@ void fn_71004fccc0(UnkEmmyProtoAI_b57a3* self) {
     UnkEmmyProtoSpeed_b57a3* speed = self->owner->field_0x218;
     if (fn_71010cc3a4(speed) != 4)
         return;
-    char* sub = reinterpret_cast<char*>(speed) + 0x17a0;
+    char* sub = speed->field_0x17a0;
     fn_71009746ac(sub, true);
     UnkSpitSend(self->owner->field_0x220, 0xdb3dc0b554887a7f, 0xf4061ff25a2163d6);
     fn_71009746ac(sub, false);

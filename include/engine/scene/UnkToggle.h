@@ -23,7 +23,9 @@ struct UnkToggleSrc {
     u64 f_0x58;
     u32 f_0x60, f_0x64, f_0x68;
     u8 f_0x6c, f_0x6d;
-    u8 pad_0x6e[0x72];
+    u8 pad_0x6e[0xa];
+    void* field_0x78;  // notified when an item's flag 0xf8 ends up clear (fn_71001933cc)
+    u8 field_0x80[0x60];  // a block an item hands to fn_710016ae30 when it is switched off
     u8 flag_0xe0;
 };
 static_assert(sizeof(UnkToggleSrc) == 0xe8, "UnkToggleSrc placeholder layout");

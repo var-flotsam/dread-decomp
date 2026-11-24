@@ -38,19 +38,19 @@ struct UnkPool_ovb0176 {
 struct UnkOwnedHolder_ovb0176 {
     u8 pad_0x0[0x78];
     void* object;  // 0x78
-    u8 pad_0x80[0x58];
+    u8 field_0x80[0x58];
     CStrId* ids;  // 0xd8
     u32 id_count;  // 0xe0
 };
 static_assert(__builtin_offsetof(UnkOwnedHolder_ovb0176, id_count) == 0xe0, "layout");
 
 void fn_71001bbc88(UnkOwnedHolder_ovb0176* self) {
-    fn_710016ae30(reinterpret_cast<u8*>(self) + 0x80);
+    fn_710016ae30(self->field_0x80);
     for (u64 i = 0; i < self->id_count; ++i)
         self->ids[i].Reset();
     self->id_count = 0;
     if (self->object) {
-        fn_710016a8dc(reinterpret_cast<u8*>(self) + 0x80, nullptr);
+        fn_710016a8dc(self->field_0x80, nullptr);
         fn_710019e100(static_cast<UnkKeyOwner*>(g_unk_716e34c2e0), reinterpret_cast<u64>(self->object));
         self->object = nullptr;
     }
@@ -58,7 +58,7 @@ void fn_71001bbc88(UnkOwnedHolder_ovb0176* self) {
 
 void fn_71001bbd6c(UnkOwnedHolder_ovb0176* self, void* owner) {
     if (self->object) {
-        fn_710016a8dc(reinterpret_cast<u8*>(self) + 0x80, nullptr);
+        fn_710016a8dc(self->field_0x80, nullptr);
         fn_710019e100(static_cast<UnkKeyOwner*>(g_unk_716e34c2e0), reinterpret_cast<u64>(self->object));
         self->object = nullptr;
     }
@@ -66,6 +66,6 @@ void fn_71001bbd6c(UnkOwnedHolder_ovb0176* self, void* owner) {
         auto* pool = static_cast<UnkPool_ovb0176*>(g_unk_716e34c2e0);
         void* obj = pool->Create<0x29d0, fn_7100198aac>(owner, 0x1a);
         self->object = obj;
-        fn_710016a8dc(reinterpret_cast<u8*>(self) + 0x80, **reinterpret_cast<void***>(reinterpret_cast<u8*>(obj) + 0x48));
+        fn_710016a8dc(self->field_0x80, **reinterpret_cast<void***>(reinterpret_cast<u8*>(obj) + 0x48));
     }
 }

@@ -127,69 +127,9 @@ inline void AddAttribute(UnkReflAttrs& attrs, const CType*, const TypedAttrKey& 
 
 }  // namespace base::reflection
 
-// The attribute keys, by the names they register (each a guarded static key).
+// The keys whose values are of their own enum type, with that type (TypedAttrKey); the other keys are
+// declared by name in base/reflection/ReflectedAttributes.h.
 namespace base::reflection::attr {
-inline const UnkReflAttrKey& Version() { return fn_7100005070(); }
-inline const UnkReflAttrKey& Description() { return fn_7100007e80(); }
 inline TypedAttrKey Persistence() { return {fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object}; }
-inline const UnkReflAttrKey& sBinaryDeserialize() { return fn_7100011040(); }
-inline const UnkReflAttrKey& XmlAttribute() { return fn_710001b9f0(); }
-inline const UnkReflAttrKey& sSerializationType() { return fn_7100026bf0(); }
-inline const UnkReflAttrKey& DefaultValue() { return fn_7100075240(); }
-inline const UnkReflAttrKey& Name() { return fn_710008f920(); }
-inline const UnkReflAttrKey& UniqueId() { return fn_710008fa30(); }
-inline const UnkReflAttrKey& DeleteElement() { return fn_710008fb40(); }
-inline const UnkReflAttrKey& EraseElement() { return fn_710008fc50(); }
-inline const UnkReflAttrKey& CreateElement() { return fn_710008fd60(); }
-inline const UnkReflAttrKey& InsertElement() { return fn_710008fe70(); }
-inline const UnkReflAttrKey& AfterElementDeserialization() { return fn_710008ff80(); }
-inline const UnkReflAttrKey& FixedCollection() { return fn_7100090090(); }
-inline const UnkReflAttrKey& ElementKeyVariable() { return fn_71000901a0(); }
-inline const UnkReflAttrKey& Required() { return fn_71000903c0(); }
-inline const UnkReflAttrKey& RntFilePackedParams() { return fn_71000904d0(); }
-inline const UnkReflAttrKey& bBinaryDumpable() { return fn_7100090800(); }
-inline const UnkReflAttrKey& IsLink() { return fn_7100090910(); }
-inline const UnkReflAttrKey& EditorVisible() { return fn_7100090a20(); }
-inline const UnkReflAttrKey& CharEditorVisible() { return fn_7100090c40(); }
-inline const UnkReflAttrKey& EventGroup() { return fn_7100090d50(); }
-inline const UnkReflAttrKey& TrackGroup() { return fn_7100090e60(); }
-inline const UnkReflAttrKey& MinValue() { return fn_7100091080(); }
-inline const UnkReflAttrKey& MaxValue() { return fn_7100091190(); }
-inline const UnkReflAttrKey& EmptyTrack() { return fn_71000912a0(); }
-inline const UnkReflAttrKey& MinValueProperty() { return fn_71000913b0(); }
-inline const UnkReflAttrKey& MaxValueProperty() { return fn_71000914c0(); }
-inline const UnkReflAttrKey& MinValueI() { return fn_71000916e0(); }
-inline const UnkReflAttrKey& MaxValueI() { return fn_71000917f0(); }
-inline const UnkReflAttrKey& Extension() { return fn_7100091900(); }
-inline const UnkReflAttrKey& DisplayName() { return fn_7100091c30(); }
-inline const UnkReflAttrKey& TypeSelectionEnabled() { return fn_7100091d40(); }
-inline const UnkReflAttrKey& SPointChClassSelectEnabled() { return fn_7100091e50(); }
-inline const UnkReflAttrKey& AddNewItemButtonEnabled() { return fn_7100091f60(); }
-inline const UnkReflAttrKey& DeleteItemButtonEnabled() { return fn_7100092070(); }
 inline TypedAttrKey EditorModeDataFlow() { return {fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object}; }
-inline const UnkReflAttrKey& bEditorModeDataFlowInit() { return fn_71000924b0(); }
-inline const UnkReflAttrKey& bSkipDataFlowOrder() { return fn_71000925c0(); }
-inline const UnkReflAttrKey& CompleteGameModelActionTreeFrom() { return fn_71000926d0(); }
-inline const UnkReflAttrKey& DisableListAddRemove() { return fn_7100092b10(); }
-inline const UnkReflAttrKey& DisableListAdd() { return fn_7100092c20(); }
-inline const UnkReflAttrKey& ShowInConfig() { return fn_7100093170(); }
-inline const UnkReflAttrKey& ShowInDevConfig() { return fn_7100093280(); }
-inline const UnkReflAttrKey& DeprecatedVar() { return fn_7100093390(); }
-inline const UnkReflAttrKey& WidgetReadOnly() { return fn_7100234410(); }
-inline const UnkReflAttrKey& SetRenderItemSelectionIdCall() { return fn_7100234780(); }
-inline const UnkReflAttrKey& ePersistenceTarget() { return fn_710025d990(); }
-inline const UnkReflAttrKey& eLinkTarget() { return fn_710025daa0(); }
-inline const UnkReflAttrKey& bWeakLink() { return fn_710025dbb0(); }
-inline const UnkReflAttrKey& ePersistenceTargetExclude() { return fn_7100263720(); }
-inline const UnkReflAttrKey& ControlFloatStep() { return fn_7100324af0(); }
-inline const UnkReflAttrKey& InternalTag() { return fn_7100324c00(); }
-inline const UnkReflAttrKey& ControlIntStep() { return fn_7100324d10(); }
-inline const UnkReflAttrKey& InternalDevTag() { return fn_71003ba540(); }
-inline const UnkReflAttrKey& DefaultPasteValue() { return fn_710075a400(); }
-inline const UnkReflAttrKey& FileFilter() { return fn_7100ed8b60(); }
-inline const UnkReflAttrKey& AssetType() { return fn_7100f9e870(); }
-inline const UnkReflAttrKey& BasePath() { return fn_7100f9e980(); }
-inline const UnkReflAttrKey& FolderFilter() { return fn_7100f9ea90(); }
-inline const UnkReflAttrKey& FileNameOnly() { return fn_7100f9eba0(); }
-inline const UnkReflAttrKey& eActorLinkToComponentLinkTransform() { return fn_71010434d0(); }
 }  // namespace base::reflection::attr
