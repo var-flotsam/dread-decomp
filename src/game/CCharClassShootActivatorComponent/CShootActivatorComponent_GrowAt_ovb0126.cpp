@@ -56,9 +56,9 @@ UnkEntry* fn_7100892528(void* self, u32 key) {
         u32 cap = v->capacity;
         if (cap <= key && v->step != 0)
             cap = (key / v->step + 1) * v->step;
-        fn_7100895498(reinterpret_cast<UnkEntryVector*>(v), cap);
+        CCharClassShootActivatorComponent_ReserveCallbackEntryVector(reinterpret_cast<UnkEntryVector*>(v), cap);
         u32 n = key + 1;
-        fn_7100895498(reinterpret_cast<UnkEntryVector*>(v), n);
+        CCharClassShootActivatorComponent_ReserveCallbackEntryVector(reinterpret_cast<UnkEntryVector*>(v), n);
         for (u32 i = v->count; i < n; ++i)
             new (&v->data[i]) UnkGrowEntry_ovb0126();
         v->count = n;

@@ -13,10 +13,10 @@ struct UnkLockOnMissileGun_b49a4 {
     f32 vf_0x1e0() { return reinterpret_cast<f32 (*)(UnkLockOnMissileGun_b49a4*)>(vtable[0x1e0 / 8])(this); }
 };
 
-bool fn_710084eb44(UnkLockOnMissileGun_b49a4* self);
+bool CMissileBaseGun_CanFire(UnkLockOnMissileGun_b49a4* self);
 
 bool fn_710084d400(UnkLockOnMissileGun_b49a4* self) {
-    if (fn_710084eb44(self) && !(self->vf_0x1e0() < 3.0f) && !self->field_0x199c && self->field_0x19b8 == 0)
+    if (CMissileBaseGun_CanFire(self) && !(self->vf_0x1e0() < 3.0f) && !self->field_0x199c && self->field_0x19b8 == 0)
         return true;
     return false;
 }

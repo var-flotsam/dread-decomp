@@ -17,7 +17,7 @@ void fn_71007b16c0(UnkProperty* p);
 void fn_71007afa60(void* p);
 extern char g_unk_717271a068[];
 
-void fn_71007b1a40() {
+void CDemolitionBlockComponent_InitStatics() {
     InitHeaderIds(&g_unk_717271a0b0.ids);
     InitId(&g_unk_717271a038, "DEMOLITIONBLOCK");
     InitProperty(&g_unk_717271a040, g_unk_7101a70508, g_unk_71726db788, "Used", TypeOf<fn_710000d228>(),

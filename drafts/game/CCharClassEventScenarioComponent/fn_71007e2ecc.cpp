@@ -18,7 +18,7 @@ extern "C" int rand();
 extern "C" float fmodf(float x, float y);
 
 struct UnkScenarioIdList_ovb0097;
-void fn_71007e572c(UnkScenarioIdList_ovb0097* self, u32 n);
+void CCharClassEventScenarioComponent_ResizeStrIdList(UnkScenarioIdList_ovb0097* self, u32 n);
 
 // Up to four animation ids, one for each mode.
 struct __attribute__((packed)) UnkScenarioIdList_l7e2ecc {
@@ -37,14 +37,14 @@ struct __attribute__((packed)) UnkScenarioIdList_l7e2ecc {
     }
     ~UnkScenarioIdList_l7e2ecc() { SetCount(0); }
 
-    void SetCount(u32 n) { fn_71007e572c(reinterpret_cast<UnkScenarioIdList_ovb0097*>(this), n); }
+    void SetCount(u32 n) { CCharClassEventScenarioComponent_ResizeStrIdList(reinterpret_cast<UnkScenarioIdList_ovb0097*>(this), n); }
 };
 static_assert(sizeof(UnkScenarioIdList_l7e2ecc) == 0x24, "UnkScenarioIdList_l7e2ecc layout");
 
 using UnkScenarioIds_l7e2ecc = base::global::CRntVector<UnkScenarioIdList_l7e2ecc>;
 
 struct UnkScenarioTimer_ovb0097;
-UnkScenarioTimer_ovb0097& fn_71007e45dc(base::global::CRntVector<UnkScenarioTimer_ovb0097>* self, u32 index);
+UnkScenarioTimer_ovb0097& CCharClassEventScenarioComponent_GetOrGrowTimerAt(base::global::CRntVector<UnkScenarioTimer_ovb0097>* self, u32 index);
 u32* fn_71007e47d4(base::global::CRntVector<u32>* self, u32 index);
 void fn_71007e58a0(base::global::CRntVector<UnkScenarioIds_l7e2ecc>* self, u32 count);
 
@@ -119,7 +119,7 @@ static inline void GrowEntries(base::global::CRntVector<UnkScenarioIds_l7e2ecc>*
 void fn_71007e2ecc(UnkEventScenario_l7e2ecc* self, u32 mode, bool force, f32 phase, f32 phase_range,
                    f32 time_min, f32 time_max) {
     for (u64 i = 0; i < self->links.count; ++i) {
-        auto& timer = reinterpret_cast<UnkScenarioTimer_l7e2ecc&>(fn_71007e45dc(
+        auto& timer = reinterpret_cast<UnkScenarioTimer_l7e2ecc&>(CCharClassEventScenarioComponent_GetOrGrowTimerAt(
             reinterpret_cast<base::global::CRntVector<UnkScenarioTimer_ovb0097>*>(&self->timers), i));
         if (*fn_71007e47d4(&self->modes, i) == mode && !force) {
             timer.time = -1.0f;

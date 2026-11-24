@@ -5,7 +5,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "types.h"
 
-void fn_7100938dec(UnkStrIdPathResource* self) {
+void CMultiModelUpdaterComponent_DestroyModelMapValue(UnkStrIdPathResource* self) {
     if (UnkCountedResource* r = self->resource) {
         if (--r->ref_count == 0)
             fn_710001737c(r);

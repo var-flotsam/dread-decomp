@@ -17,7 +17,7 @@ extern char g_unk_7101a70560[];
 extern char g_unk_7101a70788[];
 extern char g_unk_7101a707e0[];
 
-void fn_71007b4578(void* member);
+void CCharClassEmmyValveComponent_DestroyNamedStrIdTable(void* member);
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
@@ -79,7 +79,7 @@ static inline __attribute__((always_inline)) void DestroyEmmyValve_b53(UnkEmmyVa
     if (Inline)
         DestroyValveRecord_b53(reinterpret_cast<UnkValveRecord_b53*>(self->field_0x258));
     else
-        fn_71007b4578(self->field_0x258);
+        CCharClassEmmyValveComponent_DestroyNamedStrIdTable(self->field_0x258);
     DestroyHolder_b53(&self->holders[2]);
     DestroyHolder_b53(&self->holders[1]);
     DestroyHolder_b53(&self->holders[0]);

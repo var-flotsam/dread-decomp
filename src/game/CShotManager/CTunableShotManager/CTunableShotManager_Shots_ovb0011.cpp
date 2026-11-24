@@ -447,10 +447,10 @@ struct UnkRefRecord18_b0011 {
     u32 field_0x10;
 };
 using UnkRefRecord18Vec_b0011 = UnkCopyVec_b0011<UnkRefRecord18_b0011>;
-void fn_710085c338(UnkRefRecord18Vec_b0011* self, u32 n);
+void CSamusGunComponent_ReserveRefEntryVector(UnkRefRecord18Vec_b0011* self, u32 n);
 template <>
 inline void UnkRefRecord18Vec_b0011::Reserve(u32 n) {
-    fn_710085c338(this, n);
+    CSamusGunComponent_ReserveRefEntryVector(this, n);
 }
 
 void fn_7100ede32c(UnkRefRecord10Vec_b0011* self, const UnkRefRecord10Vec_b0011* other) { self->CopyFrom(*other); }

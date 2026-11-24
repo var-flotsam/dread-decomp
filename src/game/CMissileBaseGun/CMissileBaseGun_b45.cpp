@@ -14,7 +14,7 @@ struct UnkMissileBaseGun_b45a2 {
     UnkQualifiedId ammo;
 };
 
-s32 fn_710084f828(UnkMissileBaseGun_b45a2* self) {
+s32 CMissileBaseGun_GetAmmoItemCount(UnkMissileBaseGun_b45a2* self) {
     auto* inventory = static_cast<UnkInventory*>(fn_7100df55e4(g_unk_7101d47310));
     if (!inventory)
         return 0;

@@ -8,6 +8,6 @@
 
 struct UnkProperty;
 struct UnkSmBase_b60;
-bool fn_71007b3318(UnkSmBase_b60*);
+bool CCharClassEmmyValveComponent_IsAnyActorOverlappingShape(UnkSmBase_b60*);
 extern UnkProperty g_unk_717271a210;  // "Disabled".
 extern const base::global::CStrId g_unk_717271a2c0 __attribute__((visibility("hidden")));

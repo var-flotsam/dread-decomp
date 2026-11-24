@@ -28,7 +28,7 @@ struct UnkAreaMap_A5_b65 {
     }
 };
 
-bool fn_71007ecd38(UnkAreaMap_A5_b65* self, const UnkAreaKeyed_A5_b65* collider) {
+bool CForcedMovementAreaComponent_HasNonEmptyEntryForKey(UnkAreaMap_A5_b65* self, const UnkAreaKeyed_A5_b65* collider) {
     UnkAreaEntry_A5_b65* it = self->Find(collider->id);
     if (it == self->values + self->count)
         return false;

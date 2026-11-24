@@ -66,11 +66,11 @@ void fn_71000ded44(UnkWordsByKey* a, const u64* key) {
 }
 
 // The same removal in another unit, with its own out-of-line removal (fn_710079c3a4).
-u32* fn_710079ccb8(UnkWordsByKey* a, u32* value);
+u32* CCharClassCollisionComponent_ColMatDictEraseAt(UnkWordsByKey* a, u32* value);
 void fn_710079c3a4(UnkWordsByKey* a, const u64* key) {
     u32* p = a->Find(*key);
     if (p != a->End())
-        fn_710079ccb8(a, p);
+        CCharClassCollisionComponent_ColMatDictEraseAt(a, p);
 }
 
 struct UnkRecordsByKeyHolder_7100015250 {

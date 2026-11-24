@@ -55,7 +55,7 @@ static inline void Clear(UnkInventory* inventory, UnkPropertyEx<>& item) {
     fn_71011406b4(inventory, id, 0, true, true, true, 0.0f);
 }
 
-void fn_710084607c(UnkHyperBeamGun_l84607c* self) {
+void CHyperBeamGun_LoadSwitchObjectsAndClearInventoryItems(UnkHyperBeamGun_l84607c* self) {
     fn_71008358b4(self);
     self->field_0x18a0 = 0;
     self->field_0x18fa = 0;

@@ -27,7 +27,7 @@ static inline UnkFxCache* GetCache() {
 
 static inline void PreloadFx(UnkFxCache* cache, const char* path) {
     CFilePathStrId id(path, true);
-    fn_7100851bc0(cache, &id, 1, false);
+    CPlasmaBeamGun_PreloadParticleFxPool(cache, &id, 1, false);
 }
 
 static inline void ReleaseFx(UnkFxCache* cache, const char* path) {

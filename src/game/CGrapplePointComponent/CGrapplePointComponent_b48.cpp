@@ -56,7 +56,7 @@ struct UnkGrapplePoint_b48 {
     u32 count;
 };
 
-void fn_7100822b4c(UnkGrapplePoint_b48* self, CBlackboard* blackboard, base::math::CVector3D* position) {
+void CGrapplePointComponent_SavePositionToBlackboard(UnkGrapplePoint_b48* self, CBlackboard* blackboard, base::math::CVector3D* position) {
     CStrId section_id = fn_71011a2fbc(g_unk_7101d47310->field_0x608);
     u64 index = 0;
     u32 count = self->count;

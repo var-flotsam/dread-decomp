@@ -26,7 +26,7 @@ struct UnkEntry_cu {
     ~UnkEntry_cu() { fn_7100778228(reinterpret_cast<UnkPair_7100778228*>(this)); }
 };
 
-void fn_710077a630(base::global::CRntVector<UnkEntry_cu>* self, u32 n) {
+void CCentralUnitComponent_ReservePairEntryVector(base::global::CRntVector<UnkEntry_cu>* self, u32 n) {
     self->Reserve(n);
 }
 

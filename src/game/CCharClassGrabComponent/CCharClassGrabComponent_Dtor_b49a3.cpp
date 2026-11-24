@@ -29,7 +29,7 @@ struct UnkGrabComponent_b49a3 {
 };
 static_assert(__builtin_offsetof(UnkGrabComponent_b49a3, id) == 0x88, "UnkGrabComponent_b49a3 layout");
 
-void fn_7100790e78(UnkGrabComponent_b49a3* self) {
+void CCharClassGrabComponent_DestroyAndDelete(UnkGrabComponent_b49a3* self) {
     self->vtable = &g_unk_7101a6f508[2];
     if (UnkStringPool* pool = g_unk_7101d47108) {
         UnkStringData** id = &self->id;

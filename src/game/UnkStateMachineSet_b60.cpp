@@ -234,7 +234,7 @@ struct UnkGuardedSm_b60 {
 void fn_71007b3204(UnkGuardedSm_b60* self) {
     if (self->field_0x290)
         return;
-    if (fn_71007b3318(reinterpret_cast<UnkSmBase_b60*>(self)))
+    if (CCharClassEmmyValveComponent_IsAnyActorOverlappingShape(reinterpret_cast<UnkSmBase_b60*>(self)))
         return;
     RequestState_b60<3, 4>(&self->machine, 2);
 }
@@ -423,7 +423,7 @@ void fn_710091f22c(UnkSlidingSm_b60* self) {
         RequestState_b60<5, 6>(&self->machine, 3);
 }
 
-bool fn_710088b7dc(UnkTimerSm_b60*);
+bool CCharClassMushroomPlatformComponent_IsPlayerTouchingPlatform(UnkTimerSm_b60*);
 
 void fn_710088bd1c(UnkTimerSm_b60* self, f32 dt) {
     if (!(self->field_0x468 >= 0.0f))
@@ -431,7 +431,7 @@ void fn_710088bd1c(UnkTimerSm_b60* self, f32 dt) {
     self->field_0x468 -= dt;
     if (!(self->field_0x468 <= 0.0f))
         return;
-    if (!fn_710088b7dc(self))
+    if (!CCharClassMushroomPlatformComponent_IsPlayerTouchingPlatform(self))
         RequestState_b60<3, 0x7fffffff>(&self->machine, 1);
     self->field_0x468 = 0.0f;
 }

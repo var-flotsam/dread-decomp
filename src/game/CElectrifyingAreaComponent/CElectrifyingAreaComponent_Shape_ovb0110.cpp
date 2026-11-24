@@ -114,7 +114,7 @@ static inline UnkAreaEntry_ov110* Find_ov110(UnkAreaNavMesh_ov110* t, const u64&
     return &t->values[t->count];
 }
 
-void* fn_71007d191c(UnkElectrifyingAreaA5_b61* area) {
+void* CElectrifyingAreaComponent_LookUpOwnerObjectEntry(UnkElectrifyingAreaA5_b61* area) {
     UnkElectrifyingArea_ov110* self = reinterpret_cast<UnkElectrifyingArea_ov110*>(area);
     UnkAreaHolder_ov110* holder = self->owner->holder;
     if (!holder)
@@ -168,7 +168,7 @@ void fn_71007d1a74(UnkElectrifyingArea_ov110* self, void* arg, bool* inside, Unk
     *inside = fn_71007d1b80(self, shape, arg, self->field_0x118, x, y, z);
 }
 
-bool fn_71007d2378(UnkElectrifyingArea_ov110* self, const CVector3D* position, void* arg) {
+bool CElectrifyingAreaComponent_TestPositionAgainstAreaShape(UnkElectrifyingArea_ov110* self, const CVector3D* position, void* arg) {
     bool inside = false;
     UnkAreaShape_ov110 shape;
     fn_71007d1a74(self, arg, &inside, &shape);

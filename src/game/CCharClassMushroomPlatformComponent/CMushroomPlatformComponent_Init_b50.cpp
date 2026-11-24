@@ -29,7 +29,7 @@ static inline UnkMushroomCharClass* AsMushroom(UnkReflObject* obj) {
 }
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
-bool fn_710088a88c(char* self, void* arg) {
+bool CCharClassMushroomPlatformComponent_StoreCharClassAndCopyRetractTimes(char* self, void* arg) {
     bool ok = fn_710115fbe4(self, arg);
     UnkMushroomCharClass* cls = AsMushroom(*reinterpret_cast<UnkReflObject**>(self + 0x10));
     asm("" : "+r"(cls));  // the original tests the stored class again instead of threading the jumps

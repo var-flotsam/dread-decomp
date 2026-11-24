@@ -10,7 +10,7 @@ using base::global::UnkStringData;
 
 UnkHangPoint_b50 fn_7100825258(UnkHangable_b50* self, UnkHangMessage_b50* msg);
 
-void fn_7100825538(UnkHangable_b50* self, UnkHangMessage_b50* msg) {
+void CHangableGrappleSurfaceComponent_SetHangPointFromMessage(UnkHangable_b50* self, UnkHangMessage_b50* msg) {
     self->point = msg->point;
     UnkStringData* id = self->def->field_0x70;
     if (id == &g_unk_7101d47108->empty || msg->sender->field_0x10->field_0x20 != id)

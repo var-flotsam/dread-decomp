@@ -141,7 +141,7 @@ void fn_710084d4e0(UnkMissileGunA5_b61* self) {
 // g_unk_710164ab10.
 struct UnkElectrifyingAreaA5_b61;
 void fn_71007d17d4(UnkElectrifyingAreaA5_b61* self);
-void* fn_71007d191c(UnkElectrifyingAreaA5_b61* self);
+void* CElectrifyingAreaComponent_LookUpOwnerObjectEntry(UnkElectrifyingAreaA5_b61* self);
 extern const u64 g_unk_710164ab10 __attribute__((visibility("hidden")));
 
 struct UnkElectrifyingOwnerA5_b61 {
@@ -162,7 +162,7 @@ struct UnkElectrifyingAreaA5_b61 {
 
 void fn_71007d1654(UnkElectrifyingAreaA5_b61* self) {
     fn_71007d17d4(self);
-    self->field_0x118 = fn_71007d191c(self);
+    self->field_0x118 = CElectrifyingAreaComponent_LookUpOwnerObjectEntry(self);
     UnkCopyMatrix(&self->transform, fn_710002614c(&self->owner->transform));
     if (UnkTimelineComponent* timeline = self->owner->timeline)
         SetAll_A5_b61(timeline, &g_unk_710164ab10);

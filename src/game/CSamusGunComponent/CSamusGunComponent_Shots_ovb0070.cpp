@@ -38,7 +38,7 @@ struct UnkGunShot_ovb0070 {
 static_assert(sizeof(UnkGunShot_ovb0070) == 0x18, "UnkGunShot_ovb0070 layout");
 
 // Grows the array to at least n entries, moving them over.
-void fn_710085c338(base::global::CRntVector<UnkGunShot_ovb0070>* shots, u32 n) {
+void CSamusGunComponent_ReserveRefEntryVector(base::global::CRntVector<UnkGunShot_ovb0070>* shots, u32 n) {
     if (shots->capacity >= n)
         return;
     auto* p = static_cast<UnkGunShot_ovb0070*>(shots->allocator->vf_0x40((u64)n * sizeof(UnkGunShot_ovb0070), 8, shots->flags));

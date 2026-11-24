@@ -20,7 +20,7 @@ void fn_71007db81c(void* p);
 extern char g_unk_717271ec38[];
 extern char g_unk_717271ec39[];
 
-void fn_71007dcd50() {
+void CCharClassEventPropComponent_InitStatics() {
     InitHeaderIds(&g_unk_717271ec80.ids);
     InitId(&g_unk_717271ebb8, "EVENTPROP");
     InitProperty(&g_unk_717271ebc0, g_unk_7101a72f00, g_unk_71726db788, "EventPending", TypeOf<fn_710000d228>(),

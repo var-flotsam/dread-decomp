@@ -36,8 +36,8 @@ struct UnkCollisionDef : UnkCollisionBase {
     __attribute__((always_inline)) ~UnkCollisionDef() { vtable = g_unk_7101a6fd78 + 2; }
 };
 
-void fn_710079a998(UnkCollisionDef* self) { self->~UnkCollisionDef(); }
-void fn_710079a9dc(UnkCollisionDef* self) {
+void CCharClassCollisionComponent_Destroy(UnkCollisionDef* self) { self->~UnkCollisionDef(); }
+void CCharClassCollisionComponent_DestroyAndDelete(UnkCollisionDef* self) {
     self->~UnkCollisionDef();
     operator delete(self);
 }

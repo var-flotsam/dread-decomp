@@ -1461,11 +1461,11 @@ address,size,name,name_source,subsystem,status
 0x71009380dc,656,fn_71009380dc,unknown,game/components?,U
 0x710093836c,36,fn_710093836c,unknown,game/components?,O
 0x7100938390,412,fn_7100938390,unknown,game/components?,O
-0x710093852c,752,fn_710093852c,unknown,game/components?,O
-0x710093881c,900,fn_710093881c,unknown,game/components?,O
-0x7100938ba0,588,fn_7100938ba0,unknown,game/components?,O
-0x7100938dec,208,fn_7100938dec,unknown,game/components?,O
-0x7100938ebc,272,fn_7100938ebc,unknown,game/components?,O
+0x710093852c,752,CMultiModelUpdaterComponent_AddModel,inferred,game/components?,O
+0x710093881c,900,CMultiModelUpdaterComponent_ReadProperty,inferred,game/components?,O
+0x7100938ba0,588,CMultiModelUpdaterComponent_ConstructModelEntry,inferred,game/components?,O
+0x7100938dec,208,CMultiModelUpdaterComponent_DestroyModelMapValue,inferred,game/components?,O
+0x7100938ebc,272,CMultiModelUpdaterComponent_SelectModelByName,inferred,game/components?,O
 0x7100938fcc,772,fn_7100938fcc,unknown,game/components?,U
 0x71009392d0,4,fn_71009392d0,unknown,game/components?,O
 0x71009392d4,28,fn_71009392d4,unknown,game/components?,O
@@ -1485,8 +1485,8 @@ address,size,name,name_source,subsystem,status
 0x71009393fc,68,fn_71009393fc,unknown,game/components?,O
 0x7100939440,376,fn_7100939440,unknown,game/components?,O
 0x71009395b8,192,fn_71009395b8,unknown,game/components?,O
-0x7100939678,396,fn_7100939678,unknown,game/components?,O
-0x7100939804,580,fn_7100939804,unknown,game/components?,O
+0x7100939678,396,CMultiModelUpdaterComponent_ReserveModelMap,inferred,game/components?,O
+0x7100939804,580,CMultiModelUpdaterComponent_CopyConstructModelMapValue,inferred,game/components?,O
 0x7100939a50,160,fn_7100939a50,unknown,game/components?,O
 0x7100939af0,4,CSamusModelUpdaterComponent::refl_AddAttributes,reflection,game/player,O
 0x7100939af4,244,CSamusModelUpdaterComponent::refl_GetClass,reflection,game/player,O

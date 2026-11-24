@@ -59,5 +59,5 @@ void fn_7100811e18(UnkStandaloneFx* self, const UnkStandaloneFxPath* path) {
         self->field_0x38 = nullptr;
     }
     self->path = *path;
-    if (self->path.data != &g_unk_7101d47200->empty && fn_710024fbc8(self->owner)) fn_7100811f28(self);
+    if (self->path.data != &g_unk_7101d47200->empty && fn_710024fbc8(self->owner)) CStandaloneFXComponent_CreateInstanceEffect(self);
 }

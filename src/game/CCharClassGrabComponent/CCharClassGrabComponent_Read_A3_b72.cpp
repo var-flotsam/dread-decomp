@@ -15,7 +15,7 @@ struct UnkGrabRecord_A3_b72 {
     u32 flags_0x24;
 };
 
-void fn_7100790cbc(UnkGrabRecord_A3_b72* self, CRntFile* file) {
+void CCharClassGrabComponent_ReadVectorsWordsAndFlagBits(UnkGrabRecord_A3_b72* self, CRntFile* file) {
     bool first = false;
     bool second = false;
     CRntFile_Read(file, self->field_0x0, 0xc, 1);
