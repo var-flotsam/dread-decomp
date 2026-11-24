@@ -72,7 +72,7 @@ extern char g_unk_717274ddd0[];
 extern char g_unk_717274ddd1[];
 extern void* g_unk_7101a8f830[];
 
-void fn_7100a64bb0() {
+void CTriggerComponent_InitStatics() {
     InitHeaderIds(&g_unk_717274e4b8.ids);
     InitId(&g_unk_717274d6c0, "TRIGGER");
     InitProperty(&g_unk_717274d6c8, g_unk_7101a8f780, g_unk_71726db788, "Enabled", TypeOf<fn_710000d228>(), fn_7100a63000, fn_7100a59a00);

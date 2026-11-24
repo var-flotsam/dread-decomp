@@ -55,7 +55,7 @@ void fn_7100a38cd0(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_7172748e90[];
 extern char g_unk_7172748e91[];
 
-void fn_7100a3c7a0() {
+void CChangeStateDoorsLogicAction_InitStatics() {
     InitHeaderIds(&g_unk_71727492d8.ids);
     InitEnum(&base::reflection::TypeObject<eDoorStateLogicAction, UnkEnumType>::object, "eDoorStateLogicAction", fn_7100a37aac, fn_7100a378a0, g_unk_7172748918,
              &g_unk_7172748920, fn_7100a3975c, &g_unk_7172748940, fn_7100a39768);

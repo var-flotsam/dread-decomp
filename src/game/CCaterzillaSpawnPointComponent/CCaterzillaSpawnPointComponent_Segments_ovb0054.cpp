@@ -48,7 +48,7 @@ struct UnkCaterzillaSegment_ovb0054 {
 };
 static_assert(__builtin_offsetof(UnkCaterzillaSegment_ovb0054, field_0x464) == 0x464, "segment layout");
 
-void fn_7100a16a3c(UnkCaterzillaSegment_ovb0054* self) {
+void CCaterzillaSpawnPointComponent_IncrementSpawnCount(UnkCaterzillaSegment_ovb0054* self) {
     self->field_0x460 = self->field_0x464 == 0;
     if (self->field_0x3cc < self->field_0x3c4) {
         if (self->next)
@@ -102,7 +102,7 @@ static inline void Link2(UnkCaterzillaSpawn2_ovb0054* self, bool head) {
     self->next->field_0x3df = true;
 }
 
-void fn_7100a16554(UnkCaterzillaSpawn2_ovb0054* self, f32 dt) {
+void CCaterzillaSpawnPointComponent_UpdateWaveTimers(UnkCaterzillaSpawn2_ovb0054* self, f32 dt) {
     if (self->next && !self->field_0x3df && self->field_0x3bc == 2) {
         if (fn_7100d7bea0(self->owner, false) && !self->field_0x3de)
             Link2(self, true);

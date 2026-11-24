@@ -24,7 +24,7 @@ extern UnkConverter g_unk_71727508d0;
 extern char g_unk_71727508f0;
 extern UnkReflType g_unk_7172750920 __attribute__((visibility("hidden")));
 
-void fn_7100a82930() {
+void CElevatorUsableComponent_InitStatics() {
     InitHeader(g_unk_71727508f8.header);
     new (&g_unk_71727508f8.field_0x18) CStrId("CElevatorUsableComponent", true);
     fn_7100000250(CStrId_Destroy, &g_unk_71727508f8.field_0x18, &g_unk_7101a19000);

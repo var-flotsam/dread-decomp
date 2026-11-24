@@ -58,13 +58,13 @@ UnkAccessPointEntry_b45a2* UnkAccessPointGet_b45a2(UnkAccessPoint_b45a2* self) {
     return alt ? &(settings->*EngagedAlt) : engaged;
 }
 
-UnkAccessPointEntry_b45a2* fn_7100a6e788(UnkAccessPoint_b45a2* self) {
+UnkAccessPointEntry_b45a2* CAccessPointComponent_GetUsePrepareRightAction(UnkAccessPoint_b45a2* self) {
     return UnkAccessPointGet_b45a2<fn_7100a9f674, &UnkAccessPointSettings_b45a2::field_0x1c0,
                                    &UnkAccessPointSettings_b45a2::field_0x200,
                                    &UnkAccessPointSettings_b45a2::field_0x178>(self);
 }
 
-UnkAccessPointEntry_b45a2* fn_7100a6e7e0(UnkAccessPoint_b45a2* self) {
+UnkAccessPointEntry_b45a2* CAccessPointComponent_GetUsePrepareLeftAction(UnkAccessPoint_b45a2* self) {
     return UnkAccessPointGet_b45a2<fn_7100a9f680, &UnkAccessPointSettings_b45a2::field_0x1b8,
                                    &UnkAccessPointSettings_b45a2::field_0x1f8,
                                    &UnkAccessPointSettings_b45a2::field_0x170>(self);

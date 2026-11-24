@@ -16,7 +16,7 @@ struct UnkRefl_fn_7100a5e2f4;
 extern template bool base::reflection::refl_RegistryMapInit<UnkRefl_fn_7100a5e2f4>(
     base::reflection::UnkReflRegistryMap*, const base::global::CStrId&);
 
-void fn_7100a5e240(char* self) {
+void CTriggerComponent_RegisterAndBuildPropertyMap(char* self) {
     fn_71010c4228(reinterpret_cast<UnkParent*>(self));
     fn_7100de9540(g_unk_7101d47310, &g_unk_717274e4d0, reinterpret_cast<UnkWeakTarget*>(self));
     char* m = self + 0x280;
@@ -61,7 +61,7 @@ static inline void RemoveLast_b50a5(UnkTrigger_b50a5* self) {
     fn_7100a5fdcc(self, &e);
 }
 
-void fn_7100a5eb64(UnkTrigger_b50a5* self) {
+void CTriggerComponent_RemoveAllEntitiesAndUnregister(UnkTrigger_b50a5* self) {
     while (self->count != 0)
         RemoveLast_b50a5(self);
     fn_7100de9730(g_unk_7101d47310, &g_unk_717274e4d8, self);

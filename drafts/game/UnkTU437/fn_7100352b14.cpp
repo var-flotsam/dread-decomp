@@ -25,7 +25,7 @@ using base::global::CStrId;
 struct UnkCameraOwner_l3530d4;
 void fn_71003530d4(UnkCameraOwner_l3530d4* self);
 struct UnkSyncBlockCameraTarget;
-void fn_7100a20d7c(UnkSyncBlockCameraTarget* self, UnkWeakTarget* target);
+void CSynchronizedBlockCameraCtrl_SetTarget(UnkSyncBlockCameraTarget* self, UnkWeakTarget* target);
 
 extern CStrId g_unk_71726b16c0 __attribute__((visibility("hidden")));  // the default preset
 extern CStrId g_unk_71726b16c8 __attribute__((visibility("hidden")));
@@ -182,7 +182,7 @@ void fn_7100352b14(void* body_field, UnkActor* owner, u32 flag) {
     if (!found || found->vf_0x0() != fn_7100927674())
         return;
     UnkMeleeCamera_l352b14* camera = static_cast<UnkMeleeCamera_l352b14*>(found);
-    fn_7100a20d7c(reinterpret_cast<UnkSyncBlockCameraTarget*>(camera),
+    CSynchronizedBlockCameraCtrl_SetTarget(reinterpret_cast<UnkSyncBlockCameraTarget*>(camera),
                   self->target ? self->target->target : nullptr);
     camera->field_0x304 = config->field_0x148;
     camera->field_0x330 = config->field_0x42d;

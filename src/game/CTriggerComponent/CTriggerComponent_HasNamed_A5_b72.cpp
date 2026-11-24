@@ -54,7 +54,7 @@ static inline __attribute__((always_inline)) UnkTriggerRecord_A5_b72* Find_A5_b7
     return it;
 }
 
-bool fn_7100a60104(UnkTriggerList_A5_b72* self, const base::global::CRntString& name) {
+bool CTriggerComponent_IsEntityInside(UnkTriggerList_A5_b72* self, const base::global::CRntString& name) {
     UnkTriggerRecord_A5_b72* begin = self->records;
     asm("" : "+r"(begin));
     u64 bytes = (u64)self->count * sizeof(UnkTriggerRecord_A5_b72);

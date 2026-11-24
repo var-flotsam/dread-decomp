@@ -27,11 +27,11 @@ struct UnkColliderTrigger_la4c6a0 {
     u8 shape_ref[0x40];  // 0x428, the actor's weak reference (fn_710023df08)
 };
 
-void fn_7100a4c6a0(UnkColliderTrigger_la4c6a0* self, base::global::CRntFile* file) {
+void CColliderTriggerComponent_ReadShapeLink(UnkColliderTrigger_la4c6a0* self, base::global::CRntFile* file) {
     u64 key;
     alignas(8) u32 kind;
     const char* name;
-    fn_7100a6081c(reinterpret_cast<UnkColliderTrigger_b0058*>(self), file);
+    CTriggerComponent_LoadFromFile(reinterpret_cast<UnkColliderTrigger_b0058*>(self), file);
     CRntFile_ReadCString(file, &name);
     void* actor;
     {

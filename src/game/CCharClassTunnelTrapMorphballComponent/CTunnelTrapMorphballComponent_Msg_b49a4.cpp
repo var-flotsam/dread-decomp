@@ -19,14 +19,14 @@ struct UnkTunnelMsg_b49a4 {
     UnkTunnelMsgInfo_b49a4* field_0x18;
 };
 
-bool fn_7100a446e4(u8* self, UnkTunnelMsg_b49a4* msg) {
+bool CTunnelTrapMorphballComponent_HandleActivationTrapMessage(u8* self, UnkTunnelMsg_b49a4* msg) {
     if (msg->field_0x18->field_0x10->type == g_unk_717274a6d8)
-        fn_7100a443c8((UnkTunnelTrapMorphball*)self);
+        CTunnelTrapMorphballComponent_ActivateTrap((UnkTunnelTrapMorphball*)self);
     return false;
 }
 
 bool fn_7100a44724(u8* self, UnkTunnelMsg_b49a4* msg) {
     if (msg->field_0x18->field_0x10->type == g_unk_717274a6d8)
-        fn_7100a443c8((UnkTunnelTrapMorphball*)(self - 0x40));
+        CTunnelTrapMorphballComponent_ActivateTrap((UnkTunnelTrapMorphball*)(self - 0x40));
     return false;
 }

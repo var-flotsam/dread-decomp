@@ -21,7 +21,7 @@ using base::math::CVector3D;
 struct UnkSyncBlockCameraTarget;
 struct UnkWeakTarget;
 struct UnkImpactAI_l108b98;
-void fn_7100a20d7c(UnkSyncBlockCameraTarget* self, UnkWeakTarget* target);
+void CSynchronizedBlockCameraCtrl_SetTarget(UnkSyncBlockCameraTarget* self, UnkWeakTarget* target);
 void fn_7101108b98(UnkImpactAI_l108b98* self);
 
 // The melee camera's id: the slot at +0x1780 of the game's id table, which the table's header has not
@@ -97,7 +97,7 @@ void fn_710049a664(UnkChozoWarriorAI_l49a664* self) {
     if (!found || found->vf_0x0() != fn_7100927674())
         return;
     auto* ctrl = reinterpret_cast<UnkMeleeCameraCtrl_l49a664*>(found);
-    fn_7100a20d7c(reinterpret_cast<UnkSyncBlockCameraTarget*>(ctrl),
+    CSynchronizedBlockCameraCtrl_SetTarget(reinterpret_cast<UnkSyncBlockCameraTarget*>(ctrl),
                   reinterpret_cast<UnkWeakTarget*>(self->owner));
     ctrl->field_0x2ec = 100.0f;
     ctrl->field_0x2f0 = 50.0f;
