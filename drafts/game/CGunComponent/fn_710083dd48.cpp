@@ -195,7 +195,7 @@ void fn_710083dd48(UnkGunComponent_ovb0091* gun, void* value) {
 
     UnkGunWeapon_l83dd48* weapon = self->use_alt ? self->alt : self->main;
     if (weapon && weapon->PlaysRequest())
-        fn_7101176ea8(self->actor->animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&request),
+        CAnimationComponent_SendActionRequestRecordToTrack(self->actor->animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&request),
                       0xf4061ff25a2163d6);
     fn_7101176a88(reinterpret_cast<UnkActorTarget*>(self->actor->animation), true);
 }

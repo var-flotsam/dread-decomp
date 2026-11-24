@@ -45,7 +45,7 @@ struct UnkDropItemCrazyEvent_ovb0136 {
 
 struct UnkDropSpawnRequest_ovb0096;
 
-UnkDropItemParams_ovb0136 fn_7100cb5004(UnkDropSpawnRequest_ovb0096* request) {
+UnkDropItemParams_ovb0136 CCharClassDropItemCrazyEvent_BuildDropSpawnParams(UnkDropSpawnRequest_ovb0096* request) {
     auto* event = reinterpret_cast<UnkDropItemCrazyEvent_ovb0136*>(request);
     UnkDropItemParams_ovb0136 params;
     params.field_0x0 = event->field_0x10;

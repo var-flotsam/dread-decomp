@@ -18,7 +18,7 @@ struct UnkPlayPlayerTimelineEvent_b60 {
     s32 mode;
 };
 
-void fn_7100bc61c4(UnkPlayPlayerTimelineEvent_b60* self) {
+void CCharClassPlayPlayerTimelineEvent_PlayTimelineOnPlayer(UnkPlayPlayerTimelineEvent_b60* self) {
     if (self->timeline == &g_unk_7101d47108->empty)
         return;
     UnkActor* player = reinterpret_cast<UnkActor*>(fn_7100dec788(g_unk_7101d47310));

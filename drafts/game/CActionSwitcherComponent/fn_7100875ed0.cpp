@@ -59,12 +59,12 @@ void fn_7100875ed0(UnkSwitcher_l875ed0* self, bool on, bool notify) {
             self->owner->animation->field_0x2c8 = 1;
         notify_mode.id = 0;
         notify_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(self->owner->animation, action->hash, kind, &notify_mode, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(self->owner->animation, action->hash, kind, &notify_mode, &g_unk_710164b958,
                       &g_unk_717276974c, &notify_mask);
     } else {
         mode.id = 0;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(self->owner->animation, action->hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(self->owner->animation, action->hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask);
     }
 }

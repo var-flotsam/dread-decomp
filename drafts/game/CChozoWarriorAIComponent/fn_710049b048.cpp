@@ -88,6 +88,6 @@ start:
     }
     value.id = 1;
     type.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-    fn_7101176690(anim, 0x6eb7ed2e6750a7b0, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &type);
+    CAnimationComponent_SendActionToTrack(anim, 0x6eb7ed2e6750a7b0, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &type);
     return true;
 }

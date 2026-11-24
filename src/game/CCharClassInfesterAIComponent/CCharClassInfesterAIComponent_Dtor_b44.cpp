@@ -27,5 +27,5 @@ using UnkInfesterMembers_b44a2 =
     base::UnkMembers<UnkCalledAt_71005ca278<fn_71005c4c5c, 0x610>, UnkCalledAt_71005ca278<fn_71005c5048, 0x520>,
                      base::UnkStrIdAt<0x510>>;
 
-void fn_71005ca278(char* self) { base::refl_Dtor<UnkTag_71005ca278, UnkInfesterMembers_b44a2>(self); }
-void fn_71005ca304(char* self) { base::refl_DeletingDtor<UnkTag_71005ca278, UnkInfesterMembers_b44a2>(self); }
+void CCharClassInfesterAIComponent_Destroy(char* self) { base::refl_Dtor<UnkTag_71005ca278, UnkInfesterMembers_b44a2>(self); }
+void CCharClassInfesterAIComponent_DestroyAndDelete(char* self) { base::refl_DeletingDtor<UnkTag_71005ca278, UnkInfesterMembers_b44a2>(self); }

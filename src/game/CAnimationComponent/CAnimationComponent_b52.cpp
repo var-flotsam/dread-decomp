@@ -12,13 +12,13 @@ struct UnkAnimComponent_b52 {
     u8 list_0x4c0[0x28];  // UnkOwner_710070f240
 };
 
-void fn_7101178c88(UnkAnimComponent_b52* self, bool flag, f32 value);
+void CAnimationComponent_ResendActionsToAllTracks(UnkAnimComponent_b52* self, bool flag, f32 value);
 
 // Removes `value` from the list at +0x4c0 and, when `apply` is set, runs fn_7101178c88.
 void fn_7101178e08(UnkAnimComponent_b52* self, u32 value, bool apply, bool flag, f32 time) {
     fn_710070f240(reinterpret_cast<UnkOwner_710070f240*>(self->list_0x4c0), value);
     if (apply)
-        fn_7101178c88(self, flag, time);
+        CAnimationComponent_ResendActionsToAllTracks(self, flag, time);
 }
 
 // A counted reference whose move constructor starts empty and assigns: it takes a new reference to the other's

@@ -25,6 +25,6 @@ bool fn_710085e7e8(UnkSPBGun_b54* self) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    return fn_7101176690(target, 0x3b394ca36bf0c209, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+    return CAnimationComponent_SendActionToTrack(target, 0x3b394ca36bf0c209, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                          &g_unk_7172769740, &mask);
 }

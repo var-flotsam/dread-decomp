@@ -86,7 +86,7 @@ struct UnkSendArg_l9ec09c : base::reflection::UnkReflTypeIdArg {
 
 // Sends the animation an id with the given mode and mask.
 static inline void Send_l9ec09c(void* target, u64 hash, UnkSendArg_l9ec09c&& mode, UnkSendArg_l9ec09c&& mask) {
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
 static inline bool SameId_l9ec09c(const CStrId& a, const CStrId& b) {
@@ -142,7 +142,7 @@ void fn_71009ec09c(UnkShotMovement_l9ec09c* self, UnkShotArgs_l9ec09c* args) {
     if (end.result) {
         reinterpret_cast<UnkShotTrack_l9ec09c*>(end.result)->vf_0x18(&request);
         if (request.id != -1) {
-            fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
+            CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
                           reinterpret_cast<const UnkRequest_7101176ea8*>(&request), 0xf4061ff25a2163d6);
             return;
         }

@@ -40,7 +40,7 @@ struct UnkStruct_710117af10 {
     UnkList_710117af10* field_0x40;
 };
 
-bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool skipBusy) {
+bool CAnimationComponent_IsPlayingActionNameContaining(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool skipBusy) {
     for (UnkElem_710117af10** it = self->field_0x40->items;
          it != self->field_0x40->items + self->field_0x40->count; ++it) {
         UnkObj_710117af10* obj = (*it)->field_0x70;

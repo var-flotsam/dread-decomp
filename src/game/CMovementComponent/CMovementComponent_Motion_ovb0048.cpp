@@ -235,14 +235,14 @@ void fn_71010d2c5c(UnkMovement2_ovb0048* self, UnkVec3f* out) {
 }
 
 struct UnkAnimMaskHolder_b47a3;
-bool fn_7101179cbc(UnkAnimMaskHolder_b47a3* self, const u32* bits);
+bool CAnimationComponent_AnyPlayingTrackHasFlags(UnkAnimMaskHolder_b47a3* self, const u32* bits);
 
 bool fn_71010d2b9c(UnkMovement2_ovb0048* self, UnkVec3f* out) {
     UnkAnimationComponent* animation = self->owner->animation;
     if (!animation)
         return false;
     alignas(8) u32 bits = 4;
-    if (!fn_7101179cbc(reinterpret_cast<UnkAnimMaskHolder_b47a3*>(animation), &bits))
+    if (!CAnimationComponent_AnyPlayingTrackHasFlags(reinterpret_cast<UnkAnimMaskHolder_b47a3*>(animation), &bits))
         return false;
     UnkMotion_ovb0048 motion;
     fn_7101179d08(animation, reinterpret_cast<UnkStruct_71007142e8*>(&motion), &g_unk_717270ebf0);

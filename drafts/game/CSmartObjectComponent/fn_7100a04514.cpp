@@ -15,7 +15,7 @@ using base::global::CStrId;
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
 using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
-void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
+void CCollisionComponent_CollectRecordsBySecondaryId(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 
 struct UnkSmartObjectTarget_la04514;
 
@@ -57,7 +57,7 @@ struct UnkSmartObjectPlayer_la04514 {
 static inline bool IsListedFake(UnkStruct_71008651c8* collision, const UnkSmartObjectTarget_la04514* target) {
     UnkColliderList_la04514 found(0xf);
     static CStrId s_fake("smartobject_fake", true);
-    fn_71008651c8(collision, reinterpret_cast<void* const*>(&s_fake), &found);
+    CCollisionComponent_CollectRecordsBySecondaryId(collision, reinterpret_cast<void* const*>(&s_fake), &found);
     for (UnkStruct_71008651c8_Entry **it = found.data, **end = found.data + found.count; it != end; ++it) {
         if (reinterpret_cast<UnkSmartObjectCollider_la04514*>(*it)->object == target)
             return true;

@@ -72,7 +72,7 @@ void fn_71005d0530(UnkInfesterBallDeathAI_b60* self) {
 
         mode.id = 0;
         mask2.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask2);
+        CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask2);
         owner = self->owner;
     }
     fn_7100d7b054(owner, 0.1f);

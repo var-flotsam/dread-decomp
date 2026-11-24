@@ -16,7 +16,7 @@ struct UnkDoorRegistry_b61;
 struct UnkUnit2547;
 struct UnkCentralUnit;
 
-void fn_7100be5f6c(UnkChasePulseEvent_ovb0069* self, void** actor) {
+void CCharClassStopForceEmmyChasePulseEvent_StopForcedChasePulse(UnkChasePulseEvent_ovb0069* self, void** actor) {
     if (!*actor)
         return;
     if (self->id.data == &g_unk_7101d47108->empty)

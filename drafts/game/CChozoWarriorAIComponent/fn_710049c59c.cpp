@@ -103,7 +103,7 @@ static inline f32 Front(UnkChozoWarriorAI_l49c59c* self) {
 
 static inline f32 Back(UnkChozoWarriorAI_l49c59c* self) {
     f32 base;
-    fn_71010fc31c(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(self), &base);
+    CAIComponent_GetPathFirstLegStartX(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(self), &base);
     f32 offset = Offset(self, self->owner->field_0x1f8);
     return base - offset;
 }

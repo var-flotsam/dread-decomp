@@ -35,7 +35,7 @@ struct UnkAbilitySet;
 // The ability named by the id `id` points at (src/game/CProjectileMovement/CProjectileMovement_HitAbility_b46.cpp).
 void CAbilityMultiLockon_AddFadingObject(UnkReflObject* ability, void* lock);
 
-void fn_7100ab6bb8(UnkLockOnMovement_ovb0121* self) {
+void CCharClassLockOnMissileMovement_HandLockToMultiLockonAbility(UnkLockOnMovement_ovb0121* self) {
     if (!self->lock)
         return;
     auto* player = reinterpret_cast<UnkLockOnPlayer_ovb0121*>(fn_7100dec788(g_unk_7101d47310));
@@ -97,7 +97,7 @@ static inline UnkLockOnCharClass_ovb0121* AsLockOn(UnkReflObject* obj) {
     return fn_710009d50c(type, &g_unk_7172754a80) ? reinterpret_cast<UnkLockOnCharClass_ovb0121*>(obj) : nullptr;
 }
 
-bool fn_7100ab6828(UnkLockOnInit_ovb0121* self) {
+bool CCharClassLockOnMissileMovement_InitSpeedsAndTrailEffect(UnkLockOnInit_ovb0121* self) {
     bool ok = fn_7100aba508(self);
     if (UnkLockOnCharClass_ovb0121* cls = AsLockOn(self->char_class)) {
         self->field_0x620 = cls;

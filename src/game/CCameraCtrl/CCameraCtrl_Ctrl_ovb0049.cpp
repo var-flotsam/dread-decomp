@@ -136,14 +136,14 @@ void fn_71010edd64(UnkCameraCtrl_ovb0049* self) {
         fn_71010e6470(self->Target(), self, true, self->field_0xc0, -1.0f);
 }
 
-f32 fn_71010e49c8(UnkCameraTarget_ovb0049* target, UnkPlayer* player, UnkCameraPose_ovb0049* pose, f32 fallback);
+f32 CCameraComponent_GetTargetDepthDistance(UnkCameraTarget_ovb0049* target, UnkPlayer* player, UnkCameraPose_ovb0049* pose, f32 fallback);
 
 f32 fn_71010ee560(UnkCameraCtrl_ovb0049* self) {
     if (!self->Target())
         return 0.0f;
     f32 value;
     if (UnkPlayer* player = fn_7100dec788(g_unk_7101d47310))
-        value = fn_71010e49c8(self->Target(), player, &self->current, -1.0f);
+        value = CCameraComponent_GetTargetDepthDistance(self->Target(), player, &self->current, -1.0f);
     else
         value = -1.0f;
     return value < 1.0f ? 1.0f : value;

@@ -81,7 +81,7 @@ void fn_7100846ec0(UnkHyperBeamGun_l846ec0* self, f32 dt) {
                     params.ptr = nullptr;
                     params.value = 1.0f;
                     recoil_mask.id = UnkAll_SpitSend().value;
-                    fn_7101176690(animation, id, kEmptyKey_l846ec0, &recoil_mode, &g_unk_710164b958, &params,
+                    CAnimationComponent_SendActionToTrack(animation, id, kEmptyKey_l846ec0, &recoil_mode, &g_unk_710164b958, &params,
                                   &recoil_mask);
                 }
             } else {
@@ -117,7 +117,7 @@ void fn_7100846ec0(UnkHyperBeamGun_l846ec0* self, f32 dt) {
                 params.value = 2.0f;
                 base::reflection::UnkReflTypeIdArg mask;
                 mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(animation, request.id, kEmptyKey_l846ec0, &mode, &g_unk_710164b958, &params, &mask);
+                CAnimationComponent_SendActionToTrack(animation, request.id, kEmptyKey_l846ec0, &mode, &g_unk_710164b958, &params, &mask);
                 self->recoil_id = request.id;
             }
         }

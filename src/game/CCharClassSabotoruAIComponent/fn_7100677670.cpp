@@ -29,7 +29,7 @@ extern char g_unk_7172700821[];
 extern UnkTunable g_unk_7172700828;
 extern void* g_unk_7101a5e950[];
 
-void fn_7100677670() {
+void CCharClassSabotoruAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172700860.ids);
     InitEnum(&base::reflection::TypeObject<CCharClassSabotoruAIComponent::ESubspecies, UnkEnumType>::object, "CCharClassSabotoruAIComponent::ESubspecies", fn_710067664c, fn_7100676500,
              g_unk_71727007d8, &g_unk_71727007e0, fn_7100677498, &g_unk_7172700800, fn_71006774a4);

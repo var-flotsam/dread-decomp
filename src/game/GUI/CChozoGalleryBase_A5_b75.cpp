@@ -260,7 +260,7 @@ void fn_7100af8cf4(UnkGallery_A5_b75* self) {
 // fn_7100af9108: moves the selection to the next entry that isn't hidden (wrapping past `count`), deselecting
 // the current one, shows it in the inspector (fn_7100af2db4) when there is one, and plays the move sound and
 // "OnMemorySelected".
-void fn_7100af2db4(UnkReflObject* inspector, const UnkText_A5_b75& text, const CStrId& path);
+void CArchivesInspectorComposition_SetImageAndLabel(UnkReflObject* inspector, const UnkText_A5_b75& text, const CStrId& path);
 
 void fn_7100af9108(UnkGallery_A5_b75* self) {
     u32 current = self->selected;
@@ -290,7 +290,7 @@ void fn_7100af9108(UnkGallery_A5_b75* self) {
     UnkGalleryEntry_A5_b75& entry = self->entries.data[index];
     self->selected = next;
     if (self->inspector)
-        Show_A5_b75<fn_7100af2db4>(self, entry);
+        Show_A5_b75<CArchivesInspectorComposition_SetImageAndLabel>(self, entry);
     fn_7100fc9d78(g_unk_717275c380, reinterpret_cast<UnkStateKey*>(&g_unk_71729f0220), self);
     entry.item->vf_0x1e8("OnMemorySelected", false);
 }
@@ -362,7 +362,7 @@ void fn_7100af94e4(UnkGallery_A5_b75* self) {
         UnkName_A5_b75 path(name);
         CRntString_AppendCString(path.Str(), "/");
         CRntString_Append(path.Str(), name.Str());
-        fn_7100af2db4(self->inspector, UnkText_A5_b75(label->text),
+        CArchivesInspectorComposition_SetImageAndLabel(self->inspector, UnkText_A5_b75(label->text),
                       CStrId(path.Str()->data ? path.Str()->data : "", true));
         if (entry.item->id.data == g_unk_717275ce28.data)
             reinterpret_cast<void (*)(UnkGallery_A5_b75*, UnkGalleryItem_A5_b75*)>(self->vtable[0x268 / 8])(

@@ -38,7 +38,7 @@ struct UnkVolumeOverrideEvent_ovb0114 {
     CStrId actor;  // 0x20
 };
 
-void fn_7100bd28d0(UnkVolumeOverrideEvent_ovb0114* self) {
+void CCharClassSetCutsceneActorVolumeOverrideEvent_ApplyVolumeOverride(UnkVolumeOverrideEvent_ovb0114* self) {
     const CStrId* id = &self->actor;
     if (id->data == &g_unk_7101d47108->empty)
         id = &GameManagerIdTable().field_0xd90;

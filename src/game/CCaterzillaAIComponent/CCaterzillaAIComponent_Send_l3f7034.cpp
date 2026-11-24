@@ -25,13 +25,13 @@ void fn_71003f7034(UnkCaterzillaAI_l3f7034* self, bool first, bool second) {
         case 1:
             mode_a.id = 1;
             mask_a.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x8b248af7c8f3f4af, 0xf4061ff25a2163d6, &mode_a, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0x8b248af7c8f3f4af, 0xf4061ff25a2163d6, &mode_a, &g_unk_710164b958,
                           &g_unk_7172769740, &mask_a);
             break;
         default:
             mode_b.id = 1;
             mask_b.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x01717b42bd010fe4, 0xf4061ff25a2163d6, &mode_b, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0x01717b42bd010fe4, 0xf4061ff25a2163d6, &mode_b, &g_unk_710164b958,
                           &g_unk_7172769740, &mask_b);
             break;
         }
@@ -42,13 +42,13 @@ void fn_71003f7034(UnkCaterzillaAI_l3f7034* self, bool first, bool second) {
         case 1:
             mode_c.id = 1;
             mask_c.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x15b54864b831a107, 0xf4061ff25a2163d6, &mode_c, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0x15b54864b831a107, 0xf4061ff25a2163d6, &mode_c, &g_unk_710164b958,
                           &g_unk_7172769740, &mask_c);
             break;
         default:
             mode_d.id = 1;
             mask_d.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x3b608d17a9855d89, 0xf4061ff25a2163d6, &mode_d, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0x3b608d17a9855d89, 0xf4061ff25a2163d6, &mode_d, &g_unk_710164b958,
                           &g_unk_7172769740, &mask_d);
             break;
         }

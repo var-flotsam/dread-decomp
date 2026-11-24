@@ -76,5 +76,5 @@ bool fn_710099bf20(UnkGrappleState_bf20* self, UnkHolderRef_bf20* ref, bool flag
     u64 hash = ref->holder->hash;
     value.id = 9;
     arg.id = UnkDefaultMask();
-    return fn_7101176690(props, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
+    return CAnimationComponent_SendActionToTrack(props, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
 }

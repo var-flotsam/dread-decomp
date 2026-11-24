@@ -101,7 +101,7 @@ void fn_710059b0c0(UnkGooplotAI_l59b0c0* self, const CVector3D* dir, bool keepVe
     mode.id = 2;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 
     if (UnkFlagTarget* comp = self->owner->field_0x228) {
         fn_7101172764(comp, g_unk_710164a040);

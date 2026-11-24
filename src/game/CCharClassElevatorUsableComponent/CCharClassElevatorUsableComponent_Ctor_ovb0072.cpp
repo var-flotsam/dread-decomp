@@ -37,7 +37,7 @@ static inline void Construct_ovb0072(UnkElevatorUsableDef_ovb0072* self) {
     CopyId_ovb0072(&self->id_0x1d0, empty);
 }
 
-void fn_7100a7ff04(void* self) { Construct_ovb0072(static_cast<UnkElevatorUsableDef_ovb0072*>(self)); }
+void CCharClassElevatorUsableComponent_Construct(void* self) { Construct_ovb0072(static_cast<UnkElevatorUsableDef_ovb0072*>(self)); }
 
 void fn_7100a8016c(void* obj) {
     UnkElevatorUsableDef_ovb0072* self = static_cast<UnkElevatorUsableDef_ovb0072*>(obj);

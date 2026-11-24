@@ -217,7 +217,7 @@ u32 fn_710068d3b8(UnkMaskUpdate_l68d3b8* self, f32 dt) {
         if (dx * m.m[2] + dy * m.m[6] + dz * m.m[10] < 0.0f) {
             mode.id = 1;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0xf9ddf18a72f51424ull, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0xf9ddf18a72f51424ull, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958,
                           &g_unk_7172769740, &mask);
             self->stage = 1;
             self->timer0 = 0.0f;

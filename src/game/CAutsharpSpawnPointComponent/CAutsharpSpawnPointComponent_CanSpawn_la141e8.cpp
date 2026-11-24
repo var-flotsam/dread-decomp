@@ -122,7 +122,7 @@ bool fn_7100a141e8(UnkAutsharpSpawn_la141e8* self) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0xa0e33be014f44bd7, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0xa0e33be014f44bd7, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                   &mask);
     self->sent = true;
     return true;

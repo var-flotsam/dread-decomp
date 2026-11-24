@@ -9,10 +9,10 @@
 
 using base::reflection::UnkReflValue;
 
-bool fn_710117b1c8(char* self, void* a, void* b);
+bool CAnimationComponent_ScriptTestPlayingTracksForClassName(char* self, void* a, void* b);
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
-bool fn_7101177898(char* self, void* a, void* b);
+bool CAnimationComponent_SendActionByIdPairToMainTrack(char* self, void* a, void* b);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b40a3(UnkReflValue* arg) {
     if (!arg->type)
@@ -27,7 +27,7 @@ UnkReflValue fn_710117bc98(void*, char* obj, UnkReflValue* const* args) {
     char* target = *reinterpret_cast<char**>(obj + 8);
     void* p0 = ArgPtr_b40a3(&a[0]);
     void* p1 = ArgPtr_b40a3(&a[1]);
-    fn_710117b1c8(target, p0, p1);
+    CAnimationComponent_ScriptTestPlayingTracksForClassName(target, p0, p1);
     s32 one = 1;
     const base::reflection::CType* type = fn_7100014768();
     UnkReflValue r;
@@ -54,7 +54,7 @@ UnkReflValue fn_710117c05c(void*, char* obj, UnkReflValue* const* args) {
     char* target = *reinterpret_cast<char**>(obj + 8);
     void* p0 = ArgPtr_b40a3(&a[0]);
     bool skip = *base::reflection::refl_ArgValue<bool>(&a[1]);
-    bool v = fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(target), static_cast<UnkCls_710117af10**>(p0), skip);
+    bool v = CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(target), static_cast<UnkCls_710117af10**>(p0), skip);
     return ReturnBool_b40a3(v);
 }
 
@@ -64,6 +64,6 @@ UnkReflValue fn_710117c194(void*, char* obj, UnkReflValue* const* args) {
     char* target = *reinterpret_cast<char**>(obj + 8);
     void* p0 = ArgPtr_b40a3(&a[0]);
     void* p1 = ArgPtr_b40a3(&a[1]);
-    bool v = fn_7101177898(target, p0, p1);
+    bool v = CAnimationComponent_SendActionByIdPairToMainTrack(target, p0, p1);
     return ReturnBool_b40a3(v);
 }

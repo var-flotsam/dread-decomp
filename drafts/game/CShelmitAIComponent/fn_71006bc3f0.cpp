@@ -115,7 +115,7 @@ u32 fn_71006bc3f0(UnkShelmitAI_l6bc3f0* self, UnkShelmitMsg_l6bc3f0* msg) {
                 mode.id = 2;
                 base::reflection::UnkReflTypeIdArg mask;
                 mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(animation, hash, kAbortTrack, &mode, &g_unk_710164b958, &g_unk_7172769740,
+                CAnimationComponent_SendActionToTrack(animation, hash, kAbortTrack, &mode, &g_unk_710164b958, &g_unk_7172769740,
                               &mask);
             }
             UnkShelmitOwner_l6bc3f0* owner = self->owner;

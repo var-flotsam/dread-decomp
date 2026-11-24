@@ -53,7 +53,7 @@ void fn_7100494210(UnkDeflector_b58* self, f32 dt) {
     u32 mode = 2;
     base::reflection::UnkReflTypeIdArg arg;
     arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-    fn_7101176690(target, 0x04dc4c0c7b23af17, 0xf4061ff25a2163d6, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode),
+    CAnimationComponent_SendActionToTrack(target, 0x04dc4c0c7b23af17, 0xf4061ff25a2163d6, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode),
                   &g_unk_710164b958, &g_unk_7172769740, &arg);
     self->field_0x48 = true;
 }

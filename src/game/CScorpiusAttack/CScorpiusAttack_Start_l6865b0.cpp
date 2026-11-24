@@ -86,12 +86,12 @@ send:
         modeTail.id = 0;
         UnkScorpiusArg_l6865b0 arg(MakeFloat_l6865b0(self->config->field_0xf0));
         maskTail.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash, kScorpiusKind, &modeTail, &arg, &g_unk_7172769740, &maskTail);
+        CAnimationComponent_SendActionToTrack(target, hash, kScorpiusKind, &modeTail, &arg, &g_unk_7172769740, &maskTail);
     } else {
         u64 hash = id->data->Key();
         mode.id = 0;
         UnkScorpiusArg_l6865b0 arg(MakeFloat_l6865b0(self->config->field_0xf0));
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash, kScorpiusKind, &mode, &arg, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(target, hash, kScorpiusKind, &mode, &arg, &g_unk_7172769740, &mask);
     }
 }

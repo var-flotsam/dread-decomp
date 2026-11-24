@@ -244,7 +244,7 @@ void fn_7100386ea4(UnkFlyingFollow_l386ea4* self) {
         u64 key = self->name->key;
         mode.id = 0;
         mask.id = base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>();
-        fn_7101176690(animation, key, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(animation, key, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
         UnkFlyingTrack_l386ea4* track =
             static_cast<UnkFlyingTrack_l386ea4*>(fn_7101177d2c(animation, 0xf4061ff25a2163d6));
         self->field_0x50 = track->field_0x38 == self->name;

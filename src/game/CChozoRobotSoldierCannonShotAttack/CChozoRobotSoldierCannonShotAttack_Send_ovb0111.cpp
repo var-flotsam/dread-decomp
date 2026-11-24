@@ -30,7 +30,7 @@ void fn_7100466a1c(UnkCannonShotSend_ovb0111* self) {
     mode.id = m;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0xc0f66394be5c6740, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+    CAnimationComponent_SendActionToTrack(target, 0xc0f66394be5c6740, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                   &g_unk_7172769740, &mask);
     self->field_0x38 = 0;
     self->field_0x40++;

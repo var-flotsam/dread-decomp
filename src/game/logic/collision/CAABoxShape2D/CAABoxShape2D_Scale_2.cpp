@@ -20,7 +20,7 @@ struct UnkUniformScaledBoxShape2D {
     void vf_0x80() { reinterpret_cast<void (*)(UnkUniformScaledBoxShape2D*)>(vtable[0x80 / 8])(this); }
 };
 
-void fn_7100d5e3dc(UnkUniformScaledBoxShape2D* self, f32 scale) {
+void CAABoxShape2D_ScaleUniformAboutCentre(UnkUniformScaledBoxShape2D* self, f32 scale) {
     UnkUniformBoxVec2 centre = (self->min + self->max) * 0.5f;
     UnkUniformBoxVec2 min = self->min - centre;
     UnkUniformBoxVec2 max = self->max - centre;

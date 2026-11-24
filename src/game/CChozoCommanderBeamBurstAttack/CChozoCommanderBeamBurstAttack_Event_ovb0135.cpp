@@ -180,7 +180,7 @@ void fn_7100428af4(UnkBurstStart_ovb0135* self) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, 0xb891d3278bf21139, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+    CAnimationComponent_SendActionToTrack(animation, 0xb891d3278bf21139, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                   &g_unk_7172769758, &mask);
     self->field_0x58 = 1;
     self->field_0x14 = false;

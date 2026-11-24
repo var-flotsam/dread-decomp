@@ -69,5 +69,5 @@ bool fn_7100488d30(UnkEventSender* self, s32 kind, f32 value) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg arg;
     arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-    return fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &v, &arg);
+    return CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &v, &arg);
 }

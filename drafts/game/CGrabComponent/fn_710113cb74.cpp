@@ -94,7 +94,7 @@ void fn_710113cb74(UnkGrabComponent_l13cb74* self, UnkGrabActor_l13cb74* target,
                                        reinterpret_cast<UnkMtx44_b46a2*>(out), 2);
             } else {
                 const u64 kGrabTrack = 0xf4061ff25a2163d6;
-                if (UnkCutsceneTimeline* timeline = fn_710070d4e8(fn_71011771e0(anim, kGrabTrack))) {
+                if (UnkCutsceneTimeline* timeline = fn_710070d4e8(CAnimationComponent_FindTrackByNameHash(anim, kGrabTrack))) {
                     u64 bone = GrabBoneKey();
                     fn_710117808c(static_cast<UnkAnimationComponent*>(anim), kGrabTrack);
                     placed = fn_7101179e68(anim, timeline, bone, out, 2);

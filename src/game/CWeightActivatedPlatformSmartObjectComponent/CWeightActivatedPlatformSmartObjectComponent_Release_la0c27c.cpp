@@ -84,7 +84,7 @@ void fn_7100a0c27c(UnkWap_la0c27c* self) {
     CVector4D colour;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(animation, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 
     if (UserBusy_la0c27c(self->link)) {
         UnkWapSlotsOwner_la0c27c* owner = self->owner->slots->owner;

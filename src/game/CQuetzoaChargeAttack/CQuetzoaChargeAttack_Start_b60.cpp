@@ -55,7 +55,7 @@ void fn_7100644780(UnkQuetzoaChargeAttack_b60a4* self) {
 start:
     mode.id = 0;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(anim, 0x350329412d24f034, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(anim, 0x350329412d24f034, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                   &mask);
     params.field_0x1c = 0;
     __builtin_memset(params.field_0x8, 0, 13);

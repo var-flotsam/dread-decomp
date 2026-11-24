@@ -152,7 +152,7 @@ void fn_71006c66e4(UnkSluggerAI_l6c66e4* self, UnkActor* actor) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    bool sent = fn_7101176690(animation, hash, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958,
+    bool sent = CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958,
                               &g_unk_7172769740, &mask);
     if (!(ahead < -0.001f) || !sent)
         return;

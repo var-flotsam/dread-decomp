@@ -32,7 +32,7 @@ extern void* g_unk_7101a60f28[];
 extern char g_unk_7172703ee9[];
 extern UnkStrIdBase g_unk_7172703ef0;
 
-void fn_7100690990() {
+void CCharClassScorpiusAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172703f08.ids);
     InitId(&g_unk_7172703f08.field_0x18, "Life|CTunableCharClassLifeComponent");
     InitId(&g_unk_7172703f08.field_0x20, "fLifeScorpiusStage1");

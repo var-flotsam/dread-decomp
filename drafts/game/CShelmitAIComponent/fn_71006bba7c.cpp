@@ -80,7 +80,7 @@ void fn_71006bba7c(UnkShelmitTurnAI_l6bba7c* self, UnkWeakTarget* target) {
     mode.id = 1;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, track, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(animation, track, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     unk_prop_bag::fn_710033187c(reinterpret_cast<unk_prop_bag::UnkPropBag*>(animation->field_0x80),
                                 g_unk_71727071a0, angle * 180.0f / 3.141592653589793);
 }

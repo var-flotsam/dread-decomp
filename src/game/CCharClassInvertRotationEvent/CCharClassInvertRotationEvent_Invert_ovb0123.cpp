@@ -28,7 +28,7 @@ static inline UnkVec3f Inverted(const UnkVec3f& v) {
     return UnkVec3f(-v.x, -v.y, -v.z);
 }
 
-void fn_7100cc52e4(UnkInvertRotationEvent_ovb0123* self, UnkInvertRotationActor_ovb0123** target) {
+void CCharClassInvertRotationEvent_NegateTargetActorAngle(UnkInvertRotationEvent_ovb0123* self, UnkInvertRotationActor_ovb0123** target) {
     UnkInvertRotationActor_ovb0123* actor = *target;
     if (!actor)
         return;

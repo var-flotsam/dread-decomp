@@ -12,7 +12,7 @@
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
 using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
-void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
+void CCollisionComponent_CollectRecordsBySecondaryId(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 
 struct UnkRefl_fn_710031cd8c;
 template <>
@@ -88,7 +88,7 @@ void fn_7100a0f964(UnkSonarTarget_la0f964* self) {
     AssignRef(&self->block, GetWeakHandle(block));
     UnkStruct_71008651c8* collision = self->owner->collision;
     UnkOut_71008651c8 found(0xf);
-    fn_71008651c8(collision, &g_unk_71727438f8, &found);
+    CCollisionComponent_CollectRecordsBySecondaryId(collision, &g_unk_71727438f8, &found);
     for (UnkStruct_71008651c8_Entry* entry : found) {
         auto* collider = reinterpret_cast<UnkSonarCollider_la0f964*>(entry);
         self->targets.Append(self->owner, collider->shape, g_unk_71727438d0);

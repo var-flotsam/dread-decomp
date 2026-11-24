@@ -38,7 +38,7 @@ struct UnkResType {
 static_assert(sizeof(UnkResType) == 0x80, "UnkResType layout");
 
 // The format's constructor.
-void CAnimationResource_ConstructResourceFormat(UnkResFormat* self, const char* class_name, const char* extension, const char* const* sources,
+void fn_7100004578(UnkResFormat* self, const char* class_name, const char* extension, const char* const* sources,
                    u64 count);
 // Builds the resource type at `self` (a UnkResType) named `name` from `count` formats.
 void CAnimationResource_ConstructResourceTypeFromFormats(void* self, const char* name, UnkResFormat* formats, u64 count);

@@ -298,7 +298,7 @@ void fn_7101167348(UnkPlayerLife_l167348* self, UnkLifeDamage_l167348* damage) {
         if (!IsEmpty(*id)) {
             params.transition.field_0x24 = damage->field_0x26 ? 10 : 2;
             params.transition.id = id->data->Key();
-            bool special = fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(self->owner->animation),
+            bool special = CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(self->owner->animation),
                                          &g_unk_7172a0a1a0, false);
             UnkDesc16_l167348 desc = *reinterpret_cast<const UnkDesc16_l167348*>(&g_unk_710164b958);
             if (special) {
