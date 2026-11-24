@@ -12,9 +12,9 @@ bool CShotLaunchConfig_SetUpLaunch(void* owner, const UnkVec3f* target, const Un
 
 struct UnkVariableAngleConfig_ovb0138 {
     u8 pad_0x0[0x8];
-    f32 field_0x8;
+    f32 fMaxHitVerticalSpeed;
     u8 pad_0xc[0xc];
-    f32 field_0x18;
+    f32 fGravity;
     f32 speed;          // 0x1c
     f32 min_angle;      // 0x20, degrees
     f32 max_angle;      // 0x24, degrees
@@ -51,7 +51,7 @@ bool fn_71009feb78(UnkVariableAngleConfig_ovb0138* self, const UnkVec3f* target,
                    const UnkVec3f* origin, bool a, bool b, UnkVariableAngleLaunch_ovb0138* out, f32 value) {
     if (!CShotLaunchConfig_SetUpLaunch(self, target, direction, origin, a, b, reinterpret_cast<UnkShotLaunch_ovb0090*>(out), value))
         return false;
-    f32 f18 = self->field_0x18;
+    f32 f18 = self->fGravity;
     out->field_0x2c = f18;
     out->speed = self->speed;
     if (self->by_distance) {
@@ -71,7 +71,7 @@ bool fn_71009feb78(UnkVariableAngleConfig_ovb0138* self, const UnkVec3f* target,
     f32 min_angle = (f32)((f64)self->min_angle * 3.14159265358979323846 / 180.0);
     f32 max_angle = (f32)((f64)self->max_angle * 3.14159265358979323846 / 180.0);
     if (!fn_71009fed3c(self, target, direction, origin, out->field_0x24, out->field_0x50, true, a, b,
-                       f18, out->speed, min_angle, max_angle, value, self->field_0x8))
+                       f18, out->speed, min_angle, max_angle, value, self->fMaxHitVerticalSpeed))
         return false;
     out->launched = true;
     return true;

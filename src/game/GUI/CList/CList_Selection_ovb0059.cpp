@@ -90,8 +90,8 @@ struct UnkList_ovb0059 {
     u8 pad_0x24c[0x4];
     CStrId selected_name;  // 0x250
     u64 field_0x258;
-    bool field_0x260;
-    bool field_0x261;
+    bool bDebugBehaviour;
+    bool bVerticalLayout;
     bool field_0x262;
     bool field_0x263;
     bool field_0x264;
@@ -151,8 +151,8 @@ struct UnkList_ovb0059 {
         previous = -1;
         new (&selected_name) CStrId(base::global::CStrId::Empty());
         field_0x258 = 0;
-        field_0x260 = false;
-        field_0x261 = true;
+        bDebugBehaviour = false;
+        bVerticalLayout = true;
         field_0x262 = false;
         field_0x263 = false;
         field_0x264 = false;
@@ -225,9 +225,9 @@ void fn_71012018cc(UnkList_ovb0059* self) {
         self->first = 0;
         self->last = self->visible - 1;
     }
-    if (overflow || self->field_0x260) {
+    if (overflow || self->bDebugBehaviour) {
         fn_71012004ac(self);
-        if (self->field_0x260) {
+        if (self->bDebugBehaviour) {
             self->selected = 0;
             Apply(self);
         }
@@ -236,7 +236,7 @@ void fn_71012018cc(UnkList_ovb0059* self) {
 
 void fn_71011ff64c(UnkList_ovb0059* self) {
     fn_71011cf630(reinterpret_cast<UnkGuiButtonFocus_ovb0000*>(self));
-    if (!self->field_0x260)
+    if (!self->bDebugBehaviour)
         fn_710002ffb4(&g_unk_717271e8f8->field_0xca8, &g_unk_7172a10df0);
     self->previous = -1;
     s32 kind = 0x2b;
@@ -255,7 +255,7 @@ void fn_71011ff64c(UnkList_ovb0059* self) {
 
 void fn_71011ff79c(UnkList_ovb0059* self) {
     fn_71011d9ab4(reinterpret_cast<UnkGuiButtonFocus_ovb0000*>(self));
-    if (!self->field_0x260)
+    if (!self->bDebugBehaviour)
         fn_710002ffb4(&g_unk_717271e8f8->field_0xca8, &g_unk_7172a10df0);
     if (self->selected_name.data != &g_unk_7101d47108->empty) {
         self->SelectById(self->selected_name);

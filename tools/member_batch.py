@@ -1158,6 +1158,12 @@ def cmd_apply(args, errors=compile_errors) -> int:
             stale += stale_uses(e["struct"], e["renames"], e["files"])
     for s in stale:
         print(f"  STALE {s['path']}:{s['line']}: {s['old']} of {s['struct']} ({s['where']}); left as it is")
+    if getattr(args, "drop_failed", False):
+        bad = {(e["path"], e["struct"]) for e in log if not e["ok"]}
+        if bad:
+            write_table([r for r in rows if (r["path"], r["struct"]) not in bad])
+            print(f"  dropped the rows of {len(bad)} struct(s) that did not apply from "
+                  f"{TABLE.relative_to(ROOT).as_posix()}")
     out = nb.STATE / "member_apply.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps([{k: v for k, v in e.items() if k != "originals"} for e in log] + [{"stale": stale}],
@@ -1399,6 +1405,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--only", nargs="*", help="path:Struct groups to apply")
     p.add_argument("--base", default="origin/main", help="objsame's reference: every changed object reverts")
     p.add_argument("--no-objsame", action="store_true", help="skip the objsame check (tests and debugging only)")
+    p.add_argument("--drop-failed", action="store_true",
+                   help="remove the table rows of structs that failed or were reverted, so the table lists what applied")
     sub.add_parser("cost")
     args = ap.parse_args(argv)
     return {"scan": cmd_scan, "build": cmd_build, "build-review": cmd_build_review, "submit": cmd_submit,

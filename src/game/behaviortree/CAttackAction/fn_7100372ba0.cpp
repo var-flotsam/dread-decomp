@@ -9,13 +9,13 @@
 struct UnkObj_372ba0 {
     void** vtable;
     u8 pad_0x8[0x28];
-    base::global::CRntString field_0x30;
+    base::global::CRntString sAttack;
     UnkStrIdTwoStep field_0x60;
 };
 
 void fn_7100372ba0(UnkObj_372ba0* self) {
     self->vtable = &g_unk_7101a25010[2];
     self->field_0x60.~UnkStrIdTwoStep();
-    CRntString_Destroy(&self->field_0x30);
+    CRntString_Destroy(&self->sAttack);
     fn_7100393ea0(self);
 }

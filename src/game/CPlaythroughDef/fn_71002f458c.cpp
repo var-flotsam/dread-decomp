@@ -13,16 +13,16 @@ using base::global::CStrId;
 struct UnkIdArrayHolder {
     void** vtable;
     u8 pad_0x8[0x50];
-    CStrId field_0x58;
-    CStrId field_0x60;
+    CStrId sName;
+    CStrId sLevelID;
     base::global::CRntVector<void*> field_0x68;
 };
 
 void fn_71002f458c(UnkIdArrayHolder* self) {
     fn_7100016ad8(self);
     self->vtable = g_unk_7101a22240 + 2;
-    new (&self->field_0x58) CStrId(base::global::CStrId::Empty());
-    new (&self->field_0x60) CStrId(base::global::CStrId::Empty());
+    new (&self->sName) CStrId(base::global::CStrId::Empty());
+    new (&self->sLevelID) CStrId(base::global::CStrId::Empty());
     new (&self->field_0x68) base::global::CRntVector<void*>(0xf);
     reinterpret_cast<void (*)(UnkIdArrayHolder*)>(self->vtable[3])(self);
 }

@@ -83,8 +83,8 @@ struct UnkTriggerComponent_la5ddd8 : UnkBaseComponent {
     UnkTriggerRecord_la5ddd8 records[16];  // 0x64
     u8 pad_0x1e4[4];
     CStrId name;  // 0x1e8
-    CStrId field_0x1f0;
-    CStrId field_0x1f8;
+    CStrId sOnEnable;
+    CStrId sOnDisable;
     u8 pad_0x200[8];
     CRntString text;  // 0x208
     bool field_0x238;
@@ -132,8 +132,8 @@ void fn_7100a5ddd8(UnkTriggerComponent_la5ddd8* self) {
     self->field_0x280.id.~CStrId();
     self->owned.Free();
     CRntString_Destroy(&self->text);
-    self->field_0x1f8.~CStrId();
-    self->field_0x1f0.~CStrId();
+    self->sOnDisable.~CStrId();
+    self->sOnEnable.~CStrId();
     self->name.~CStrId();
     for (u32 i = 0; i < self->count; ++i)
         self->records[i].Release();

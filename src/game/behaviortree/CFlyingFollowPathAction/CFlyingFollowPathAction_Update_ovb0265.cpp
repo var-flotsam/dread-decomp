@@ -72,9 +72,9 @@ struct UnkFlyingFollow {
     UnkFlyingTrackName* name;  // 0x58
     u8 pad_0x60[0x10];
     bool field_0x70;
-    bool field_0x71;
+    bool bShouldSetPatrolAnim;
     u8 pad_0x72;
-    bool field_0x73;
+    bool bRestartnOnPush;
     u8 pad_0x74[4];
     f32 elapsed;  // 0x78
 
@@ -83,7 +83,7 @@ struct UnkFlyingFollow {
 static_assert(__builtin_offsetof(UnkFlyingFollow, elapsed) == 0x78, "UnkFlyingFollow layout");
 
 static inline bool HasBigLimit(UnkFlyingAI* ai, UnkFlyingFollow& self) {
-    return ai && self.field_0x73;
+    return ai && self.bRestartnOnPush;
 }
 
 u32 fn_7100387460(UnkFlyingFollow* self, f32 dt) {
@@ -106,7 +106,7 @@ u32 fn_7100387460(UnkFlyingFollow* self, f32 dt) {
     stop:
         self->vf_0x78();
     }
-    if (animation && self->field_0x71 && !self->field_0x50) {
+    if (animation && self->bShouldSetPatrolAnim && !self->field_0x50) {
         base::reflection::UnkReflTypeIdArg mode;
         base::reflection::UnkReflTypeIdArg mask;
         u64 key = self->name->key;

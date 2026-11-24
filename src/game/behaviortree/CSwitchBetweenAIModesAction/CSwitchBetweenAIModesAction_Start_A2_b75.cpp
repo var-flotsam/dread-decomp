@@ -41,8 +41,8 @@ struct UnkSwitchModesAction_A2_b75 {
     u8 pad_0x20[0x10];
     CStrId name;  // 0x30
     u8 pad_0x38[0x10];
-    u32 field_0x48;
-    u32 field_0x4c;
+    u32 ePrefixToAdd;
+    u32 ePrefixToRemove;
     u8 pad_0x50[0x8];
     UnkStrId enter;  // 0x58
     UnkStrId exit;   // 0x60
@@ -113,6 +113,6 @@ void fn_710036b578(UnkSwitchModesAction_A2_b75* self) {
     if (self->name.data == &g_unk_7101d47108->empty) {
         if (UnkSwitchModesAI_A2_b75* ai = self->ai)
             reinterpret_cast<void (*)(UnkSwitchModesAI_A2_b75*, u32, u32, CStrId*)>(ai->vtable[0x610 / 8])(
-                ai, self->field_0x48, self->field_0x4c, &self->current);
+                ai, self->ePrefixToAdd, self->ePrefixToRemove, &self->current);
     }
 }

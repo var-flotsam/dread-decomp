@@ -20,8 +20,8 @@ struct UnkMissionLogButton_ovb0079;
 struct UnkPowerDescriptionButton_ovb0097 {
     char* vtable;
     u8 base_0x8[0x2a0];
-    CRntString field_0x2a8;
-    CRntString field_0x2d8;
+    CRntString sPowerName;
+    CRntString sPowerDescription;
     union {
         CStrId description;  // 0x308
         base::UnkStrIdMember description_member;
@@ -48,7 +48,7 @@ void fn_7100b6308c(UnkPowerDescriptionButton_ovb0097* self) {
     self->vtable = g_unk_7101a9dcb0 + 0x10;
     self->field_0x310.~UnkStrIdMemberOf();
     self->description_member.~UnkStrIdMemberOf();
-    CRntString_Destroy(&self->field_0x2d8);
-    CRntString_Destroy(&self->field_0x2a8);
+    CRntString_Destroy(&self->sPowerDescription);
+    CRntString_Destroy(&self->sPowerName);
     fn_71011bf1a4(reinterpret_cast<char*>(self));
 }

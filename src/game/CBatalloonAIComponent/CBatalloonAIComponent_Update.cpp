@@ -7,7 +7,7 @@
 
 struct UnkBatalloonAIComponent {
     u8 pad_0x0[0x146d9];
-    bool field_0x146d9;
+    bool bReceivingCall;
     u8 pad_0x146da[0x2];
     f32 field_0x146dc;
 };
@@ -28,7 +28,7 @@ void CBatalloonAIComponent_UpdateAndCountDownReceivingCall(UnkBatalloonAICompone
         self->field_0x146dc = t;
     }
     if (t < 0.001f)
-        self->field_0x146d9 = false;
+        self->bReceivingCall = false;
     fn_71003de48c(self, dt);
     fn_71003de5f4(self, dt);
 }

@@ -36,8 +36,8 @@ struct UnkDoorShieldLifeObj_ovb0001 {
     void** vtable;
     u8 pad_0x8[0x388 - 0x8];
     CRntString name;      // 0x388
-    u8 field_0x3b8[0x30];
-    f32 field_0x3e8;
+    u8 sKillSound[0x30];
+    f32 fDamageFXTime;
     u8 pad_0x3ec[0x4];
     u64 field_0x3f0;
     s64 field_0x3f8;
@@ -55,8 +55,8 @@ void fn_71008de2fc(UnkDoorShieldLifeObj_ovb0001* self) {
     fn_71008e04e8(reinterpret_cast<UnkLifeComponent_A5_b71*>(self));
     self->vtable = &g_unk_7101a7ebf8[2];
     new (&self->name) CRntString("");
-    fn_710007e6c4(self->field_0x3b8);
-    self->field_0x3e8 = 0.15f;
+    fn_710007e6c4(self->sKillSound);
+    self->fDamageFXTime = 0.15f;
     self->field_0x3f0 = 0;
     self->field_0x3f8 = -1;
     self->field_0x400 = 0;
@@ -77,7 +77,7 @@ void fn_71008de3e0(UnkDoorShieldLifeObj_ovb0001* self) {
     self->lists[2].Free();
     self->lists[1].Free();
     self->lists[0].Free();
-    CRntString_Destroy(reinterpret_cast<CRntString*>(self->field_0x3b8));
+    CRntString_Destroy(reinterpret_cast<CRntString*>(self->sKillSound));
     CRntString_Destroy(&self->name);
     fn_71008e05e8(self);
 }

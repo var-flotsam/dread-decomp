@@ -18,7 +18,7 @@ struct UnkAreaMusicComponent {
     u8 unk_0x0[0x30];
     UnkAreaMusicOwner* field_0x30;
     u8 unk_0x38[0xad8 - 0x38];
-    f32 field_0xad8;
+    f32 fExitFadeOut;
 };
 
 void fn_7100715fa8(UnkAreaMusicComponent* self, void* arg) {
@@ -30,6 +30,6 @@ void fn_7100715fa8(UnkAreaMusicComponent* self, void* arg) {
         fn_7100fd3804(instance);
         g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
-    f32 time = self->field_0xad8;
+    f32 time = self->fExitFadeOut;
     fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(instance), UnkMask(10), UnkMask(8), time);
 }

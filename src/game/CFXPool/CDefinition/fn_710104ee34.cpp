@@ -107,12 +107,12 @@ struct UnkCountedIds {
 
 struct UnkIdValues_0104ee34 {
     UnkFilePathReleasedStrId id;
-    u32 field_0x8;
-    u32 field_0xc;
+    u32 eType;
+    u32 uSize;
 
     UnkIdValues_0104ee34(UnkIdValues_0104ee34&& other)
-        : id(static_cast<UnkFilePathReleasedStrId&&>(other.id)), field_0x8(other.field_0x8),
-          field_0xc(other.field_0xc) {}
+        : id(static_cast<UnkFilePathReleasedStrId&&>(other.id)), eType(other.eType),
+          uSize(other.uSize) {}
 };
 
 struct UnkIdValues4 {

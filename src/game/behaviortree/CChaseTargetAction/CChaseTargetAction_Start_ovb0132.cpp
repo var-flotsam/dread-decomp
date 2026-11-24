@@ -89,8 +89,8 @@ struct UnkChaseAction_ovb0132 {
     u8 pad_0x20[0xc];
     u8 field_0x2c[0x1c];
     u8 pad_0x48[0x11];
-    bool field_0x59;
-    bool field_0x5a;
+    bool bFaceObstacleFreeTargetSide;
+    bool bUseRandomCenter;
     u8 pad_0x5b;
     u32 field_0x5c;
     u32 state;  // +0x60
@@ -173,7 +173,7 @@ void fn_710037a4bc(UnkChaseAction_ovb0132* self) {
                 // Untyped: the original reloads the state after this store.
                 u32 two = 2;
                 mover->field_0x14518 = two;
-                if (self->field_0x5a && self->state != 2)
+                if (self->bUseRandomCenter && self->state != 2)
                     fn_71010fa828(reinterpret_cast<UnkAIComponent*>(mover));
             }
         }
@@ -191,7 +191,7 @@ void fn_710037a4bc(UnkChaseAction_ovb0132* self) {
     if (UnkActor* actor = self->actor) {
         if (UnkChaseMover_ovb0132* mover = static_cast<UnkChaseMover_ovb0132*>(actor->field_0x240)) {
             fn_710037b5c4(self, self->field_0x70);
-            if (self->field_0x59) {
+            if (self->bFaceObstacleFreeTargetSide) {
                 fn_710037b7b4(self, &self->field_0x78);
                 fn_710037bb64(self, &self->field_0xc0, &self->field_0xcc, &self->field_0xd0);
             } else {

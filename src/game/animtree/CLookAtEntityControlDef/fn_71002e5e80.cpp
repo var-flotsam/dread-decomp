@@ -51,13 +51,13 @@ struct UnkLevelB : UnkLevelA_2e5e80 {
 
 struct UnkLevelC_2e5e80 : UnkLevelB {
     UnkPair field_0x28;
-    u32 field_0x38;
+    u32 eUpAxis;
     u8 pad_0x3c[4];
 
     UnkLevelC_2e5e80(UnkLevelC_2e5e80& other) : UnkLevelB(other) {
         vtable = g_unk_7101a21fc8 + 2;
         field_0x28 = other.field_0x28;
-        field_0x38 = other.field_0x38;
+        eUpAxis = other.eUpAxis;
     }
 };
 

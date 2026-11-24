@@ -22,9 +22,9 @@ struct UnkWaterPlatformSend_b57 {
     u8 pad_0x0[0x30];
     UnkWaterOwner_b57* owner;
     u8 pad_0x38[0x54c - 0x38];
-    f32 field_0x54c;
+    f32 fTotalMetersToFill;
     u8 pad_0x550[4];
-    f32 field_0x554;
+    f32 fSnapToMeters;
     u8 pad_0x558[0x5c6 - 0x558];
     bool field_0x5c6;
 };
@@ -40,7 +40,7 @@ void fn_7100aa6898(UnkWaterPlatformSend_b57* self) {
         return;
     UnkWaterLevel_b57 level = fn_71002e2958(FindEntry_b57(self));
     f32 drop = level.field_0x1c * -0.01f;
-    if (self->field_0x54c + drop >= self->field_0x554) {
+    if (self->fTotalMetersToFill + drop >= self->fSnapToMeters) {
         void* target = self->owner->field_0x220;
         base::reflection::UnkReflTypeIdArg mode;
         mode.id = 0;

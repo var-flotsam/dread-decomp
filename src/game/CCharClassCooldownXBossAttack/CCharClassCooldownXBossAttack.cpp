@@ -16,7 +16,7 @@ extern void* g_unk_7101a3de78[];
 struct UnkCooldownXBossAttackDef {
     void** vtable;
     u8 pad_0x8[0xe4];
-    f32 field_0xec;
+    f32 fLaserWidth;
     CStrId start;  // 0xf0
     CStrId end;    // 0xf8
 };
@@ -24,7 +24,7 @@ struct UnkCooldownXBossAttackDef {
 static inline __attribute__((always_inline)) void Construct(UnkCooldownXBossAttackDef* self) {
     fn_71003641fc(reinterpret_cast<UnkStruct_71003641fc*>(self));
     self->vtable = g_unk_7101a3de78 + 2;
-    self->field_0xec = 250.0f;
+    self->fLaserWidth = 250.0f;
     new (&self->start) CStrId("startlava", true);
     new (&self->end) CStrId("endlava", true);
 }

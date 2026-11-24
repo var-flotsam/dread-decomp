@@ -13,7 +13,7 @@ struct UnkAINavigationComponent_ovb0043 {
     u8 pad_0x8[0x10];
     u64 field_0x18;
     u8 pad_0x20[0x38];
-    u32 field_0x58;
+    u32 eFollowPathRotationMode;
     f32 field_0x5c;
     f32 field_0x60;
     f32 field_0x64;
@@ -29,7 +29,7 @@ struct UnkAINavigationComponent_ovb0043 {
 void fn_71006f7a78(UnkAINavigationComponent_ovb0043* self) {
     fn_71011acd10(reinterpret_cast<UnkStruct_71008bca30*>(self));
     self->vtable = g_unk_7101a6b7a0 + 2;
-    self->field_0x58 = 0;
+    self->eFollowPathRotationMode = 0;
     self->field_0x5c = 150.0f;
     self->field_0x60 = 1.0f;
     self->field_0x64 = 25.0f;

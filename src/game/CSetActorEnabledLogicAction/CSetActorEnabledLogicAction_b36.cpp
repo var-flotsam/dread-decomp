@@ -22,7 +22,7 @@ struct UnkSetActorEnabledLogicActionDef {
     base::UnkAllocator* field_0x38;
     u32 field_0x40;
     u64 field_0x48;
-    bool field_0x50;
+    bool bEnabled;
 };
 
 void fn_7100a51ea0(UnkSetActorEnabledLogicActionDef* self) {
@@ -38,5 +38,5 @@ void fn_7100a51ea0(UnkSetActorEnabledLogicActionDef* self) {
     self->field_0x40 = 0;
     self->field_0x10 = g_unk_7101a20950 + 2;
     self->field_0x48 = 0;
-    self->field_0x50 = false;
+    self->bEnabled = false;
 }

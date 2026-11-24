@@ -21,7 +21,7 @@ struct UnkCutsceneTriggerComponent {
     base::UnkAllocator* field_0xae8;
     u32 field_0xaf0;
     u64 field_0xaf8;
-    bool field_0xb00;
+    bool bOneShot;
     bool field_0xb01;
 };
 
@@ -38,7 +38,7 @@ void fn_7100a2f3c8(UnkCutsceneTriggerComponent* self) {
     self->field_0xaf0 = 0;
     self->field_0xac0 = g_unk_7101a20950 + 2;
     self->field_0xaf8 = 0;
-    self->field_0xb00 = true;
+    self->bOneShot = true;
     self->field_0xb01 = false;
     reinterpret_cast<void (*)(UnkCutsceneTriggerComponent*)>(self->vtable[3])(self);
 }

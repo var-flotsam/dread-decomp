@@ -34,7 +34,7 @@ struct UnkHyperDashListener_ovb0095 {
 struct UnkHyperDashAction_ovb0095 {
     void** vtable;
     u8 pad_0x8[0x28];
-    base::global::CRntString field_0x30;
+    base::global::CRntString sAttack;
     base::UnkStrIdMember field_0x60;
     u8 pad_0x68[0x20];
     UnkHyperDashListener_ovb0095 listener;  // 0x88
@@ -47,7 +47,7 @@ void fn_710044b4cc(UnkHyperDashAction_ovb0095* self) {
     self->vtable = &g_unk_7101a36838[2];
     self->listener.~UnkHyperDashListener_ovb0095();
     self->field_0x60.~UnkStrIdMemberOf();
-    CRntString_Destroy(&self->field_0x30);
+    CRntString_Destroy(&self->sAttack);
     fn_7100393ea0(self);
 }
 
