@@ -33,6 +33,19 @@ static inline bool SendWalk_b56(void* target, u64 hash) {
     return fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
+// Unhooks `link` from the target of the weak handle at +0xd8 and drops the handle.
+static inline void UnhookLink_b56(UnkEmmyWakeUp_b56* self, void* link) {
+    if (UnkWeakHandle* handle = self->handle.handle) {
+        if (UnkWeakTarget* target = handle->target)
+            fn_710117b3f0(target, link);
+        if (UnkWeakHandle* p = self->handle.handle) {
+            if (--p->ref_count == 0)
+                p->vf_0x10();
+            self->handle.handle = nullptr;
+        }
+    }
+}
+
 void fn_71007d723c(UnkEmmyWakeUp_b56* self) {
     fn_71007dc328(self);
     if (!self->owner)
@@ -43,16 +56,7 @@ void fn_71007d723c(UnkEmmyWakeUp_b56* self) {
     if (!SendWalk_b56(track, base::global::CName("walk").hash))
         return;
     void* link = self->link;
-    if (UnkWeakHandle* handle = self->handle.handle) {
-        if (UnkWeakTarget* target = handle->target)
-            fn_710117b3f0(target, link);
-        if (UnkWeakHandle* p = self->handle.handle) {
-            if (--p->ref_count == 0)
-                p->vf_0x10();
-            self->handle.handle = nullptr;
-        }
-    }
-    asm("" : "+r"(self));
+    UnhookLink_b56(self, link);
     CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
     fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
 }

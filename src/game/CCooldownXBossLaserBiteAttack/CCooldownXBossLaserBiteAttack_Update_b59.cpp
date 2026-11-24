@@ -52,6 +52,13 @@ struct UnkLaserBite_b59 {
     void vf_0xf0() { reinterpret_cast<void (*)(UnkLaserBite_b59*)>(vtable[0xf0 / 8])(this); }
 };
 
+struct UnkLaserBiteActor_b59 {
+    u8 pad_0x0[0x44];
+    f32 field_0x44;  // 0x44
+    u8 pad_0x48[0x1b8];
+    UnkLaserBiteTarget_b59* field_0x200;  // 0x200
+};
+
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
 void fn_71004c2814(UnkLaserBite_b59* self, f32 dt) {
     fn_71004c1968(reinterpret_cast<UnkWhipSend_b58*>(self), dt);
@@ -68,10 +75,10 @@ void fn_71004c2814(UnkLaserBite_b59* self, f32 dt) {
     if (!self->field_0x74)
         return;
     self->field_0x74 = false;
-    UnkActor* actor = fn_7100d7c990(reinterpret_cast<UnkActor*>(self->owner));
+    UnkLaserBiteActor_b59* actor =
+        reinterpret_cast<UnkLaserBiteActor_b59*>(fn_7100d7c990(reinterpret_cast<UnkActor*>(self->owner)));
     UnkLaserBiteTarget_b59* t;
-    if (!actor || !(t = *reinterpret_cast<UnkLaserBiteTarget_b59**>(reinterpret_cast<char*>(actor) + 0x200)) ||
-        !t->field_0x3a8)
+    if (!actor || !(t = actor->field_0x200) || !t->field_0x3a8)
         goto send;
     // Jumped over: no lifetime markers, so these keep their own slots.
     u64 id;

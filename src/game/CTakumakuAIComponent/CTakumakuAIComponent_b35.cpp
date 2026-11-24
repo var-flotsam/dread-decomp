@@ -19,10 +19,9 @@ void fn_71006d5ba8(UnkTakumakuAI* self, u32 event) {
     UnkTakumakuOwner* owner = self->owner;
     if (owner == nullptr)
         return;
-    asm volatile("");  // keeps the owner test ahead of the event test
+    UnkTakumakuComponent* component = owner->field_0x220;
     if (event != 6)
         return;
-    UnkTakumakuComponent* component = owner->field_0x220;
     if (component != nullptr && fn_7101178e6c(component, 11))
         fn_71006d5bf8(self);
 }

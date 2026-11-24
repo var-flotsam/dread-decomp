@@ -80,10 +80,9 @@ UnkResRef fn_71000eac38(UnkResRegistry* registry, const UnkResKey* key) {
             for (UnkResPathNode* p = *fn_71000ec350(&node->paths, b); p; p = p->next) {
                 if (p->path == key->path.data) {
                     if (UnkCountedResource* res = p->resource) {
-                        ++res->ref_count;
                         UnkResRef r;
+                        ++res->ref_count;
                         r.ptr = res;
-                        asm("");  // keeps this return's store apart from the null ones
                         return r;
                     }
                     break;
