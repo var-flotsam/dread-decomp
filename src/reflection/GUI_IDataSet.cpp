@@ -14,7 +14,7 @@ void GUI::IDataSet::refl_AddAttributes(CClass*) {}
 void GUI::IDataSet::refl_AddFields(CClass*) {}
 bool GUI::IDataSet::refl_Equals(const void*, const void*) { return false; }
 s32 GUI::IDataSet::refl_Hash() { return -1; }
-const base::reflection::CType& GUI::IDataSet::refl_TypeOf(const void* obj) { return *static_cast<const IDataSet*>(obj)->vf_0x0(); }
+const base::reflection::CType& GUI::IDataSet::refl_TypeOf(const void* obj) { return *static_cast<const IDataSet*>(obj)->refl_GetDynamicClass(); }
 void GUI::IDataSet::refl_Destroy(void* obj) { static_cast<IDataSet*>(obj)->~IDataSet(); }
 void* GUI::IDataSet::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* GUI::IDataSet::refl_MoveAssign(void*, const void*) { return nullptr; }

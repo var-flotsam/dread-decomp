@@ -22,7 +22,7 @@ void CCharClassCheckFrontAimEndEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassCheckFrontAimEndEvent::refl_AddFields(CClass*) {}
 bool CCharClassCheckFrontAimEndEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCheckFrontAimEndEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCheckFrontAimEndEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCheckFrontAimEndEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCheckFrontAimEndEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCheckFrontAimEndEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCheckFrontAimEndEvent::refl_Destroy(void* obj) { static_cast<CCharClassCheckFrontAimEndEvent*>(obj)->~CCharClassCheckFrontAimEndEvent(); }
 struct CCharClassCheckFrontAimEndEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCheckFrontAimEndEvent);

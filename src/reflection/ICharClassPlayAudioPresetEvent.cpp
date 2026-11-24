@@ -37,7 +37,7 @@ void ICharClassPlayAudioPresetEvent::refl_AddFields(CClass* cls) {
 }
 bool ICharClassPlayAudioPresetEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 ICharClassPlayAudioPresetEvent::refl_Hash() { return -1; }
-const base::reflection::CType& ICharClassPlayAudioPresetEvent::refl_TypeOf(const void* obj) { return *static_cast<const ICharClassPlayAudioPresetEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& ICharClassPlayAudioPresetEvent::refl_TypeOf(const void* obj) { return *static_cast<const ICharClassPlayAudioPresetEvent*>(obj)->refl_GetDynamicClass(); }
 void ICharClassPlayAudioPresetEvent::refl_Destroy(void* obj) { static_cast<ICharClassPlayAudioPresetEvent*>(obj)->~ICharClassPlayAudioPresetEvent(); }
 struct ICharClassPlayAudioPresetEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(ICharClassPlayAudioPresetEvent);

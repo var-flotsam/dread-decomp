@@ -22,7 +22,7 @@ void CCharClassAutsniperChangeDirectionEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassAutsniperChangeDirectionEvent::refl_AddFields(CClass*) {}
 bool CCharClassAutsniperChangeDirectionEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAutsniperChangeDirectionEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAutsniperChangeDirectionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAutsniperChangeDirectionEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAutsniperChangeDirectionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAutsniperChangeDirectionEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAutsniperChangeDirectionEvent::refl_Destroy(void* obj) { static_cast<CCharClassAutsniperChangeDirectionEvent*>(obj)->~CCharClassAutsniperChangeDirectionEvent(); }
 struct CCharClassAutsniperChangeDirectionEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAutsniperChangeDirectionEvent);

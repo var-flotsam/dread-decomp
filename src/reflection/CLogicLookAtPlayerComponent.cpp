@@ -14,7 +14,7 @@ void CLogicLookAtPlayerComponent::refl_AddAttributes(CClass*) {}
 void CLogicLookAtPlayerComponent::refl_AddFields(CClass*) {}
 bool CLogicLookAtPlayerComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CLogicLookAtPlayerComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CLogicLookAtPlayerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CLogicLookAtPlayerComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CLogicLookAtPlayerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CLogicLookAtPlayerComponent*>(obj)->refl_GetDynamicClass(); }
 void CLogicLookAtPlayerComponent::refl_CopyConstruct(void*, const void*) {}
 void CLogicLookAtPlayerComponent::refl_MoveConstruct(void*, const void*) {}
 void CLogicLookAtPlayerComponent::refl_Destroy(void* obj) { static_cast<CLogicLookAtPlayerComponent*>(obj)->~CLogicLookAtPlayerComponent(); }

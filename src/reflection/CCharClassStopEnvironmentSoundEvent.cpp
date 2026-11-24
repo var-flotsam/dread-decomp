@@ -26,7 +26,7 @@ void CCharClassStopEnvironmentSoundEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassStopEnvironmentSoundEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassStopEnvironmentSoundEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassStopEnvironmentSoundEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStopEnvironmentSoundEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassStopEnvironmentSoundEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStopEnvironmentSoundEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassStopEnvironmentSoundEvent::refl_Destroy(void* obj) { static_cast<CCharClassStopEnvironmentSoundEvent*>(obj)->~CCharClassStopEnvironmentSoundEvent(); }
 struct CCharClassStopEnvironmentSoundEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassStopEnvironmentSoundEvent);

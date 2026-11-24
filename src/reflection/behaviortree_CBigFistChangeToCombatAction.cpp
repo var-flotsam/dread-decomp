@@ -14,7 +14,7 @@ void behaviortree::CBigFistChangeToCombatAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CBigFistChangeToCombatAction::refl_AddFields(CClass*) {}
 bool behaviortree::CBigFistChangeToCombatAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CBigFistChangeToCombatAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CBigFistChangeToCombatAction::refl_TypeOf(const void* obj) { return *static_cast<const CBigFistChangeToCombatAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CBigFistChangeToCombatAction::refl_TypeOf(const void* obj) { return *static_cast<const CBigFistChangeToCombatAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CBigFistChangeToCombatAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CBigFistChangeToCombatAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CBigFistChangeToCombatAction::refl_Destroy(void* obj) { static_cast<CBigFistChangeToCombatAction*>(obj)->~CBigFistChangeToCombatAction(); }

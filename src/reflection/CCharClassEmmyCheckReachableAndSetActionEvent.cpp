@@ -26,7 +26,7 @@ void CCharClassEmmyCheckReachableAndSetActionEvent::refl_AddFields(CClass* cls) 
 }
 bool CCharClassEmmyCheckReachableAndSetActionEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEmmyCheckReachableAndSetActionEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmyCheckReachableAndSetActionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyCheckReachableAndSetActionEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmyCheckReachableAndSetActionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyCheckReachableAndSetActionEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmyCheckReachableAndSetActionEvent::refl_Destroy(void* obj) { static_cast<CCharClassEmmyCheckReachableAndSetActionEvent*>(obj)->~CCharClassEmmyCheckReachableAndSetActionEvent(); }
 struct CCharClassEmmyCheckReachableAndSetActionEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEmmyCheckReachableAndSetActionEvent);

@@ -27,16 +27,16 @@ static inline __attribute__((always_inline)) void Resolve(UnkTypedWord_b52* slot
     if (slot->type != fn_7100010e58())
         return;
     s64 index = slot->value;
-    void* fn = index != -1 ? static_cast<u8*>(cls->m_array_0x110.data) + (u64)(u32)index * 0xb8 : nullptr;
+    void* fn = index != -1 ? static_cast<u8*>(cls->m_functions.data) + (u64)(u32)index * 0xb8 : nullptr;
     const CType* type = fn_710009ba1c();
     if (slot->type) {
-        slot->type->m_fn_0x40(slot);
+        slot->type->m_destroy(slot);
         slot->type = nullptr;
     }
-    if (type->m_fn_0x30) {
+    if (type->m_copyConstruct) {
         // The constructor is reloaded after this store.
         slot->type = type;
-        type->m_fn_0x30(slot, &fn);
+        type->m_copyConstruct(slot, &fn);
     }
 }
 

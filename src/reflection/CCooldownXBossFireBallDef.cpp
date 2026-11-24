@@ -38,7 +38,7 @@ void CCooldownXBossFireBallDef::refl_AddFields(CClass* cls) {
 }
 bool CCooldownXBossFireBallDef::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCooldownXBossFireBallDef::refl_Hash() { return -1; }
-const base::reflection::CType& CCooldownXBossFireBallDef::refl_TypeOf(const void* obj) { return *static_cast<const CCooldownXBossFireBallDef*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCooldownXBossFireBallDef::refl_TypeOf(const void* obj) { return *static_cast<const CCooldownXBossFireBallDef*>(obj)->refl_GetDynamicClass(); }
 void CCooldownXBossFireBallDef::refl_Destroy(void* obj) { static_cast<CCooldownXBossFireBallDef*>(obj)->~CCooldownXBossFireBallDef(); }
 struct CCooldownXBossFireBallDef::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCooldownXBossFireBallDef);
@@ -380,10 +380,10 @@ void fn_71004bfdb8();
 void fn_71004bfe08();
 void fn_71004b7ff4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71004bfdb8);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CCooldownXBossFireBallDef::refl_GetClass(), 0x1, fn_71004bfe08);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCooldownXBossFireBallDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCooldownXBossFireBallDef::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -397,9 +397,9 @@ void fn_71004bff40();
 void fn_71004bff90();
 void fn_71004b85e4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71004bff40);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CCooldownXBossFireBallDef::refl_GetClass(), 0x101, fn_71004bff90);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCooldownXBossFireBallDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCooldownXBossFireBallDef::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

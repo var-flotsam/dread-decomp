@@ -26,7 +26,7 @@ void CCharClassSetBossMusicPresetEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassSetBossMusicPresetEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetBossMusicPresetEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetBossMusicPresetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetBossMusicPresetEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetBossMusicPresetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetBossMusicPresetEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetBossMusicPresetEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetBossMusicPresetEvent*>(obj)->~CCharClassSetBossMusicPresetEvent(); }
 struct CCharClassSetBossMusicPresetEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetBossMusicPresetEvent);

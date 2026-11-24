@@ -22,7 +22,7 @@ void CCharClassHydrogigaHalfEmptyTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassHydrogigaHalfEmptyTrack::refl_AddFields(CClass*) {}
 bool CCharClassHydrogigaHalfEmptyTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassHydrogigaHalfEmptyTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassHydrogigaHalfEmptyTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHydrogigaHalfEmptyTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassHydrogigaHalfEmptyTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHydrogigaHalfEmptyTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassHydrogigaHalfEmptyTrack::refl_Destroy(void* obj) { static_cast<CCharClassHydrogigaHalfEmptyTrack*>(obj)->~CCharClassHydrogigaHalfEmptyTrack(); }
 struct CCharClassHydrogigaHalfEmptyTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassHydrogigaHalfEmptyTrack);

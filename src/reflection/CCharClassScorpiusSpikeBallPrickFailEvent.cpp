@@ -22,7 +22,7 @@ void CCharClassScorpiusSpikeBallPrickFailEvent::refl_AddAttributes(CClass* cls) 
 void CCharClassScorpiusSpikeBallPrickFailEvent::refl_AddFields(CClass*) {}
 bool CCharClassScorpiusSpikeBallPrickFailEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassScorpiusSpikeBallPrickFailEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassScorpiusSpikeBallPrickFailEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScorpiusSpikeBallPrickFailEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassScorpiusSpikeBallPrickFailEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScorpiusSpikeBallPrickFailEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassScorpiusSpikeBallPrickFailEvent::refl_Destroy(void* obj) { static_cast<CCharClassScorpiusSpikeBallPrickFailEvent*>(obj)->~CCharClassScorpiusSpikeBallPrickFailEvent(); }
 struct CCharClassScorpiusSpikeBallPrickFailEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassScorpiusSpikeBallPrickFailEvent);

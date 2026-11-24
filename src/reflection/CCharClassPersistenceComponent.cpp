@@ -34,15 +34,15 @@ void CCharClassPersistenceComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sBoolProperty_GetterFunction", &base::reflection::TypeObject<CGameBBPropID>::object, 0x101, fn_71009c9bec);
     DREAD_REFLECTED_FUNCTION("_sBoolProperty_SetterFunction")
         fn_71009c932c(fn, "_sBoolProperty_SetterFunction");
-    CVariable* field0 = AddReflectedField(cls, CStrId("sBoolProperty", true), &base::reflection::TypeObject<CGameBBPropID>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("sBoolProperty", true), &base::reflection::TypeObject<CGameBBPropID>::object, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_sIntProperty_GetterFunction", &base::reflection::TypeObject<CGameBBPropID>::object, 0x101, fn_71009c9cd8);
     DREAD_REFLECTED_FUNCTION("_sIntProperty_SetterFunction")
         fn_71009c94a0(fn, "_sIntProperty_SetterFunction");
-    CVariable* field1 = AddReflectedField(cls, CStrId("sIntProperty", true), &base::reflection::TypeObject<CGameBBPropID>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("sIntProperty", true), &base::reflection::TypeObject<CGameBBPropID>::object, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_sFloatProperty_GetterFunction", &base::reflection::TypeObject<CGameBBPropID>::object, 0x101, fn_71009c9dc4);
     DREAD_REFLECTED_FUNCTION("_sFloatProperty_SetterFunction")
         fn_71009c9614(fn, "_sFloatProperty_SetterFunction");
-    CVariable* field2 = AddReflectedField(cls, CStrId("sFloatProperty", true), &base::reflection::TypeObject<CGameBBPropID>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("sFloatProperty", true), &base::reflection::TypeObject<CGameBBPropID>::object, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_sSection_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71009c9eb0);
     DREAD_REFLECTED_FUNCTION("_sSection_SetterFunction")
         fn_71009c9788(fn, "_sSection_SetterFunction");
@@ -50,7 +50,7 @@ void CCharClassPersistenceComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassPersistenceComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassPersistenceComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassPersistenceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPersistenceComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassPersistenceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPersistenceComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassPersistenceComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassPersistenceComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassPersistenceComponent::refl_Destroy(void* obj) { static_cast<CCharClassPersistenceComponent*>(obj)->~CCharClassPersistenceComponent(); }

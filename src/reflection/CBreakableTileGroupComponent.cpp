@@ -47,13 +47,13 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_eCollisionMaterial_GetterFunction", &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0, fn_710075d374);
     DREAD_REFLECTED_FUNCTION("_m_eCollisionMaterial_SetterFunction")
         fn_7100754448(fn, "_m_eCollisionMaterial_SetterFunction");
-    CVariable* field3 = AddReflectedField(cls, CStrId("eCollisionMaterial", true), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("eCollisionMaterial", true), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0);
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Collision Material");
     DREAD_REFLECTED_FUNCTION("CreateNewTile") {
         DREAD_REFLECTED_FUNCTION_DESCRIPTION("CreateNewTile", &base::reflection::TypeObject<CBreakableTileGroupComponent::STileInfo>::object, 0x101, fn_710075d73c);
         fn_710075d430(fn);
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
         fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("eTileType", true));

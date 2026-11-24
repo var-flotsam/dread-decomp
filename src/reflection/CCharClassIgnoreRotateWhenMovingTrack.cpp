@@ -22,7 +22,7 @@ void CCharClassIgnoreRotateWhenMovingTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreRotateWhenMovingTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreRotateWhenMovingTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreRotateWhenMovingTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreRotateWhenMovingTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreRotateWhenMovingTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreRotateWhenMovingTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreRotateWhenMovingTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreRotateWhenMovingTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreRotateWhenMovingTrack*>(obj)->~CCharClassIgnoreRotateWhenMovingTrack(); }
 struct CCharClassIgnoreRotateWhenMovingTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreRotateWhenMovingTrack);

@@ -30,7 +30,7 @@ void CBarelyFrozenIceInfo::refl_AddFields(CClass* cls) {
 }
 bool CBarelyFrozenIceInfo::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CBarelyFrozenIceInfo::refl_Hash() { return -1; }
-const base::reflection::CType& CBarelyFrozenIceInfo::refl_TypeOf(const void* obj) { return *static_cast<const CBarelyFrozenIceInfo*>(obj)->vf_0x0(); }
+const base::reflection::CType& CBarelyFrozenIceInfo::refl_TypeOf(const void* obj) { return *static_cast<const CBarelyFrozenIceInfo*>(obj)->refl_GetDynamicClass(); }
 void CBarelyFrozenIceInfo::refl_Destroy(void* obj) { static_cast<CBarelyFrozenIceInfo*>(obj)->~CBarelyFrozenIceInfo(); }
 struct CBarelyFrozenIceInfo::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CBarelyFrozenIceInfo);

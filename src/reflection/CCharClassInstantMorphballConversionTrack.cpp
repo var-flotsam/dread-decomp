@@ -22,7 +22,7 @@ void CCharClassInstantMorphballConversionTrack::refl_AddAttributes(CClass* cls) 
 void CCharClassInstantMorphballConversionTrack::refl_AddFields(CClass*) {}
 bool CCharClassInstantMorphballConversionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassInstantMorphballConversionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassInstantMorphballConversionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassInstantMorphballConversionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassInstantMorphballConversionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassInstantMorphballConversionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassInstantMorphballConversionTrack::refl_Destroy(void* obj) { static_cast<CCharClassInstantMorphballConversionTrack*>(obj)->~CCharClassInstantMorphballConversionTrack(); }
 struct CCharClassInstantMorphballConversionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassInstantMorphballConversionTrack);

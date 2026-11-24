@@ -26,7 +26,7 @@ void CharClassRechargePlayerAmmo::refl_AddFields(CClass* cls) {
 }
 bool CharClassRechargePlayerAmmo::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CharClassRechargePlayerAmmo::refl_Hash() { return -1; }
-const base::reflection::CType& CharClassRechargePlayerAmmo::refl_TypeOf(const void* obj) { return *static_cast<const CharClassRechargePlayerAmmo*>(obj)->vf_0x0(); }
+const base::reflection::CType& CharClassRechargePlayerAmmo::refl_TypeOf(const void* obj) { return *static_cast<const CharClassRechargePlayerAmmo*>(obj)->refl_GetDynamicClass(); }
 void CharClassRechargePlayerAmmo::refl_Destroy(void* obj) { static_cast<CharClassRechargePlayerAmmo*>(obj)->~CharClassRechargePlayerAmmo(); }
 struct CharClassRechargePlayerAmmo::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CharClassRechargePlayerAmmo);

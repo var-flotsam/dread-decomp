@@ -26,7 +26,7 @@ void CCharClassFXDisolveEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassFXDisolveEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFXDisolveEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFXDisolveEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXDisolveEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFXDisolveEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXDisolveEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFXDisolveEvent::refl_Destroy(void* obj) { static_cast<CCharClassFXDisolveEvent*>(obj)->~CCharClassFXDisolveEvent(); }
 struct CCharClassFXDisolveEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFXDisolveEvent);

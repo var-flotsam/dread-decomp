@@ -38,12 +38,12 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_ePipeGroup1_GetterFunction", &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0, fn_7100a94804);
     DREAD_REFLECTED_FUNCTION("_m_ePipeGroup1_SetterFunction")
         fn_7100a90798(fn, "_m_ePipeGroup1_SetterFunction");
-    CVariable* field6 = AddReflectedField(cls, CStrId("ePipeGroup1", true), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field6 = AddReflectedField(cls, CStrId("ePipeGroup1", true), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field6->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0);
     DREAD_REFLECTED_FUNCTION_OF("_m_ePipeGroup2_GetterFunction", &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0, fn_7100a94890);
     DREAD_REFLECTED_FUNCTION("_m_ePipeGroup2_SetterFunction")
         fn_7100a9090c(fn, "_m_ePipeGroup2_SetterFunction");
-    CVariable* field7 = AddReflectedField(cls, CStrId("ePipeGroup2", true), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field7 = AddReflectedField(cls, CStrId("ePipeGroup2", true), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field7->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }

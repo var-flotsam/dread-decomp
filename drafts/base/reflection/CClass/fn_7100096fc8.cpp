@@ -32,7 +32,7 @@ struct UnkClass_l096fc8 {
 
 // Whether the field persists: when it has no "Persistence" attribute, or the attribute is 1.
 static inline bool Persistent(UnkClassField_l096fc8* f) {
-    UnkReflValue v = fn_710000cf10(f, fn_710000bf80(), true);
+    UnkReflValue v = fn_710000cf10(f, base::reflection::attr::PersistenceKey(), true);
     if (!v.type) {
         fn_71000a1c60(&v);
         return true;

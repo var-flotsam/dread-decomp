@@ -48,7 +48,7 @@ void GUI::CText::refl_AddFields(CClass* cls) {
 }
 bool GUI::CText::refl_Equals(const void*, const void*) { return false; }
 s32 GUI::CText::refl_Hash() { return -1; }
-const base::reflection::CType& GUI::CText::refl_TypeOf(const void* obj) { return *static_cast<const CText*>(obj)->vf_0x0(); }
+const base::reflection::CType& GUI::CText::refl_TypeOf(const void* obj) { return *static_cast<const CText*>(obj)->refl_GetDynamicClass(); }
 void GUI::CText::refl_Destroy(void* obj) { static_cast<CText*>(obj)->~CText(); }
 struct GUI::CText::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CText);

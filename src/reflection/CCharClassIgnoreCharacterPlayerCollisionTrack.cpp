@@ -22,7 +22,7 @@ void CCharClassIgnoreCharacterPlayerCollisionTrack::refl_AddAttributes(CClass* c
 void CCharClassIgnoreCharacterPlayerCollisionTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreCharacterPlayerCollisionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreCharacterPlayerCollisionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreCharacterPlayerCollisionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCharacterPlayerCollisionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreCharacterPlayerCollisionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCharacterPlayerCollisionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreCharacterPlayerCollisionTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreCharacterPlayerCollisionTrack*>(obj)->~CCharClassIgnoreCharacterPlayerCollisionTrack(); }
 struct CCharClassIgnoreCharacterPlayerCollisionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreCharacterPlayerCollisionTrack);

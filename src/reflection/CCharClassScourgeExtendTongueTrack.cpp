@@ -22,7 +22,7 @@ void CCharClassScourgeExtendTongueTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassScourgeExtendTongueTrack::refl_AddFields(CClass*) {}
 bool CCharClassScourgeExtendTongueTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassScourgeExtendTongueTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassScourgeExtendTongueTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScourgeExtendTongueTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassScourgeExtendTongueTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScourgeExtendTongueTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassScourgeExtendTongueTrack::refl_Destroy(void* obj) { static_cast<CCharClassScourgeExtendTongueTrack*>(obj)->~CCharClassScourgeExtendTongueTrack(); }
 struct CCharClassScourgeExtendTongueTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassScourgeExtendTongueTrack);

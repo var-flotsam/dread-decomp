@@ -35,7 +35,7 @@ struct UnkAttrTable_l09deb0 {
 // A copy of the attribute stored under `name`, or an empty value when the type has none.
 inline UnkReflValue Attribute(const CType* type, const CStrId& name) {
     UnkReflValue r;
-    if (auto* attrs = static_cast<UnkAttrTable_l09deb0*>(type->field_0x80)) {
+    if (auto* attrs = static_cast<UnkAttrTable_l09deb0*>(type->m_attributes)) {
         UnkReflValue* it = attrs->Find(name);
         if (it != &attrs->values[attrs->count]) {
             r.field_0x0 = nullptr;

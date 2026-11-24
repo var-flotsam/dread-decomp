@@ -22,7 +22,7 @@ void CCharClassMagnetSurfaceTransitionCompletedEvent::refl_AddAttributes(CClass*
 void CCharClassMagnetSurfaceTransitionCompletedEvent::refl_AddFields(CClass*) {}
 bool CCharClassMagnetSurfaceTransitionCompletedEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassMagnetSurfaceTransitionCompletedEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMagnetSurfaceTransitionCompletedEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMagnetSurfaceTransitionCompletedEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMagnetSurfaceTransitionCompletedEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMagnetSurfaceTransitionCompletedEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMagnetSurfaceTransitionCompletedEvent::refl_Destroy(void* obj) { static_cast<CCharClassMagnetSurfaceTransitionCompletedEvent*>(obj)->~CCharClassMagnetSurfaceTransitionCompletedEvent(); }
 struct CCharClassMagnetSurfaceTransitionCompletedEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassMagnetSurfaceTransitionCompletedEvent);

@@ -22,7 +22,7 @@ void CCharClassSetPlayerAsEntityToFollowEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassSetPlayerAsEntityToFollowEvent::refl_AddFields(CClass*) {}
 bool CCharClassSetPlayerAsEntityToFollowEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetPlayerAsEntityToFollowEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetPlayerAsEntityToFollowEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetPlayerAsEntityToFollowEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetPlayerAsEntityToFollowEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetPlayerAsEntityToFollowEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetPlayerAsEntityToFollowEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetPlayerAsEntityToFollowEvent*>(obj)->~CCharClassSetPlayerAsEntityToFollowEvent(); }
 struct CCharClassSetPlayerAsEntityToFollowEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetPlayerAsEntityToFollowEvent);

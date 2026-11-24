@@ -19,7 +19,7 @@ void fn_71000a18d4(UnkReflValue* out, const CType* type, const void* value, u32 
         out->type = reinterpret_cast<const char*>(type);
         return;
     }
-    if (!type->m_fn_0x30)
+    if (!type->m_copyConstruct)
         return;
     // Stored as a plain pointer: the original reloads the copy function after this store.
     *reinterpret_cast<const CType**>(&out->type) = type;
@@ -29,9 +29,9 @@ void fn_71000a18d4(UnkReflValue* out, const CType* type, const void* value, u32 
         out->field_0x0 = block;
         if (!block)
             return;
-        type->m_fn_0x30(block, value);
+        type->m_copyConstruct(block, value);
     } else {
-        type->m_fn_0x30(out, value);
+        type->m_copyConstruct(out, value);
     }
 }
 
@@ -43,15 +43,15 @@ void fn_71000a2014(UnkReflValue* value, const CType* type) {
     if (auto* old = reinterpret_cast<const CType*>(value->type)) {
         if (value->field_0x14 == 0) {
             if (old->m_size > 8) {
-                old->m_fn_0x40(value->field_0x0);
+                old->m_destroy(value->field_0x0);
                 GetDefaultAllocator()->vf_0x48(value->field_0x0);
             } else {
-                old->m_fn_0x40(value);
+                old->m_destroy(value);
             }
         }
         value->type = nullptr;
     }
-    if (!type->m_fn_0x28)
+    if (!type->m_construct)
         return;
     // Stored as a plain pointer: the constructor is reloaded after this store.
     *reinterpret_cast<const CType**>(&value->type) = type;
@@ -61,9 +61,9 @@ void fn_71000a2014(UnkReflValue* value, const CType* type) {
         void* block = GetDefaultAllocator()->vf_0x40(size, 8, value->kind);
         value->field_0x0 = block;
         if (block)
-            reinterpret_cast<void (*)(void*)>(type->m_fn_0x28)(block);
+            reinterpret_cast<void (*)(void*)>(type->m_construct)(block);
     } else {
-        reinterpret_cast<void (*)(void*)>(type->m_fn_0x28)(value);
+        reinterpret_cast<void (*)(void*)>(type->m_construct)(value);
     }
 }
 

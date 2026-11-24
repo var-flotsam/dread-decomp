@@ -25,7 +25,7 @@ void CCharClassSoundTriggerComponent::refl_AddAttributes(CClass*) {}
 void CCharClassSoundTriggerComponent::refl_AddFields(CClass*) {}
 bool CCharClassSoundTriggerComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassSoundTriggerComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSoundTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSoundTriggerComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSoundTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSoundTriggerComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSoundTriggerComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassSoundTriggerComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassSoundTriggerComponent::refl_Destroy(void* obj) { static_cast<CCharClassSoundTriggerComponent*>(obj)->~CCharClassSoundTriggerComponent(); }
@@ -55,17 +55,17 @@ void CSoundTrigger::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_eReverb_GetterFunction", &base::reflection::TypeObject<base::snd::EReverbIntensity>::object, 0, fn_7100718544);
     DREAD_REFLECTED_FUNCTION("_m_eReverb_SetterFunction")
         fn_7100717e9c(fn, "_m_eReverb_SetterFunction");
-    CVariable* field0 = AddReflectedField(cls, CStrId("eReverb", true), &base::reflection::TypeObject<base::snd::EReverbIntensity>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("eReverb", true), &base::reflection::TypeObject<base::snd::EReverbIntensity>::object, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<base::snd::EReverbIntensity>::object, 0);
     DREAD_REFLECTED_FUNCTION_OF("_m_iLowPassFilter_GetterFunction", &base::reflection::TypeObject<base::snd::ELowPassFilter>::object, 0, fn_71007185d0);
     DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_SetterFunction")
         fn_7100718010(fn, "_m_iLowPassFilter_SetterFunction");
-    CVariable* field1 = AddReflectedField(cls, CStrId("iLowPassFilter", true), &base::reflection::TypeObject<base::snd::ELowPassFilter>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("iLowPassFilter", true), &base::reflection::TypeObject<base::snd::ELowPassFilter>::object, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<base::snd::ELowPassFilter>::object, 0);
 }
 bool CSoundTrigger::refl_Equals(const void*, const void*) { return false; }
 s32 CSoundTrigger::refl_Hash() { return -1; }
-const base::reflection::CType& CSoundTrigger::refl_TypeOf(const void* obj) { return *static_cast<const CSoundTrigger*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSoundTrigger::refl_TypeOf(const void* obj) { return *static_cast<const CSoundTrigger*>(obj)->refl_GetDynamicClass(); }
 void CSoundTrigger::refl_Destroy(void* obj) { static_cast<CSoundTrigger*>(obj)->~CSoundTrigger(); }
 void* CSoundTrigger::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* CSoundTrigger::refl_MoveAssign(void*, const void*) { return nullptr; }

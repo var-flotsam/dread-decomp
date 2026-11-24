@@ -26,7 +26,7 @@ void CCharClassKraidSetOpenMouthFactorEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassKraidSetOpenMouthFactorEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassKraidSetOpenMouthFactorEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassKraidSetOpenMouthFactorEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidSetOpenMouthFactorEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassKraidSetOpenMouthFactorEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidSetOpenMouthFactorEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassKraidSetOpenMouthFactorEvent::refl_Destroy(void* obj) { static_cast<CCharClassKraidSetOpenMouthFactorEvent*>(obj)->~CCharClassKraidSetOpenMouthFactorEvent(); }
 struct CCharClassKraidSetOpenMouthFactorEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassKraidSetOpenMouthFactorEvent);

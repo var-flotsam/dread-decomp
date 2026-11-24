@@ -10,7 +10,7 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_DefaultValue_b61> {
     static constexpr const char* name = "DefaultValue";
     static const CType* type() { return nullptr; }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 
 __attribute__((flatten)) const base::reflection::UnkReflAttrKey& base::reflection::attr::DefaultValue() {

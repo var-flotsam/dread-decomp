@@ -14,7 +14,7 @@ void CPhotoModeCameraCtrl::refl_AddAttributes(CClass*) {}
 void CPhotoModeCameraCtrl::refl_AddFields(CClass*) {}
 bool CPhotoModeCameraCtrl::refl_Equals(const void*, const void*) { return false; }
 s32 CPhotoModeCameraCtrl::refl_Hash() { return -1; }
-const base::reflection::CType& CPhotoModeCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CPhotoModeCameraCtrl*>(obj)->vf_0x0(); }
+const base::reflection::CType& CPhotoModeCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CPhotoModeCameraCtrl*>(obj)->refl_GetDynamicClass(); }
 void CPhotoModeCameraCtrl::refl_Destroy(void* obj) { static_cast<CPhotoModeCameraCtrl*>(obj)->~CPhotoModeCameraCtrl(); }
 struct CPhotoModeCameraCtrl::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CPhotoModeCameraCtrl);

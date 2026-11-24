@@ -137,7 +137,7 @@ class Emit(unittest.TestCase):
         self.assertEqual(out[:3], [f"struct {self.TAG};", "template <>",
                                    f"struct base::reflection::UnkReflStatic<{self.TAG}> {{"])
         self.assertIn('    static constexpr const char* name = "A\\"b";', out)
-        self.assertIn("    static constexpr u32 field_0x10 = 0x5;", out)
+        self.assertIn("    static constexpr u32 targets = 0x5;", out)
         self.assertTrue(out[-1].endswith(f"refl_GetAttrKey<{self.TAG}>();"))
 
     def test_key_needs_u32(self):

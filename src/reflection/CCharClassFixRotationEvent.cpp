@@ -22,7 +22,7 @@ void CCharClassFixRotationEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassFixRotationEvent::refl_AddFields(CClass*) {}
 bool CCharClassFixRotationEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFixRotationEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFixRotationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFixRotationEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFixRotationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFixRotationEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFixRotationEvent::refl_Destroy(void* obj) { static_cast<CCharClassFixRotationEvent*>(obj)->~CCharClassFixRotationEvent(); }
 struct CCharClassFixRotationEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFixRotationEvent);

@@ -14,7 +14,7 @@ void CHydrogigaGrabCameraCtrl::refl_AddAttributes(CClass*) {}
 void CHydrogigaGrabCameraCtrl::refl_AddFields(CClass*) {}
 bool CHydrogigaGrabCameraCtrl::refl_Equals(const void*, const void*) { return false; }
 s32 CHydrogigaGrabCameraCtrl::refl_Hash() { return -1; }
-const base::reflection::CType& CHydrogigaGrabCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CHydrogigaGrabCameraCtrl*>(obj)->vf_0x0(); }
+const base::reflection::CType& CHydrogigaGrabCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CHydrogigaGrabCameraCtrl*>(obj)->refl_GetDynamicClass(); }
 void CHydrogigaGrabCameraCtrl::refl_Destroy(void* obj) { static_cast<CHydrogigaGrabCameraCtrl*>(obj)->~CHydrogigaGrabCameraCtrl(); }
 struct CHydrogigaGrabCameraCtrl::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CHydrogigaGrabCameraCtrl);

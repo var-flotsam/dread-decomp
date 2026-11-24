@@ -27,7 +27,7 @@ void CCharClassAllowFallendRepositionTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassAllowFallendRepositionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowFallendRepositionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowFallendRepositionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowFallendRepositionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowFallendRepositionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowFallendRepositionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowFallendRepositionTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowFallendRepositionTrack*>(obj)->~CCharClassAllowFallendRepositionTrack(); }
 struct CCharClassAllowFallendRepositionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowFallendRepositionTrack);

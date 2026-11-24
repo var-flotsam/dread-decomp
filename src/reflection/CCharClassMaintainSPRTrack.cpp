@@ -22,7 +22,7 @@ void CCharClassMaintainSPRTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassMaintainSPRTrack::refl_AddFields(CClass*) {}
 bool CCharClassMaintainSPRTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassMaintainSPRTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMaintainSPRTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMaintainSPRTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMaintainSPRTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMaintainSPRTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMaintainSPRTrack::refl_Destroy(void* obj) { static_cast<CCharClassMaintainSPRTrack*>(obj)->~CCharClassMaintainSPRTrack(); }
 struct CCharClassMaintainSPRTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassMaintainSPRTrack);

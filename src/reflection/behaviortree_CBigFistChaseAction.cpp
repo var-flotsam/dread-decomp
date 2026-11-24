@@ -24,7 +24,7 @@ void behaviortree::CBigFistChaseAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CBigFistChaseAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CBigFistChaseAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CBigFistChaseAction::refl_TypeOf(const void* obj) { return *static_cast<const CBigFistChaseAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CBigFistChaseAction::refl_TypeOf(const void* obj) { return *static_cast<const CBigFistChaseAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CBigFistChaseAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CBigFistChaseAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CBigFistChaseAction::refl_Destroy(void* obj) { static_cast<CBigFistChaseAction*>(obj)->~CBigFistChaseAction(); }

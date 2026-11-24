@@ -23,7 +23,7 @@ void CSaveGameToSnapshotLogicAction::refl_AddFields(CClass* cls) {
 }
 bool CSaveGameToSnapshotLogicAction::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CSaveGameToSnapshotLogicAction::refl_Hash() { return -1; }
-const base::reflection::CType& CSaveGameToSnapshotLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CSaveGameToSnapshotLogicAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSaveGameToSnapshotLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CSaveGameToSnapshotLogicAction*>(obj)->refl_GetDynamicClass(); }
 void CSaveGameToSnapshotLogicAction::refl_Destroy(void* obj) { static_cast<CSaveGameToSnapshotLogicAction*>(obj)->~CSaveGameToSnapshotLogicAction(); }
 struct CSaveGameToSnapshotLogicAction::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CSaveGameToSnapshotLogicAction);

@@ -25,7 +25,7 @@ void CCameraCtrl::refl_AddFields(CClass* cls) {
 }
 bool CCameraCtrl::refl_Equals(const void*, const void*) { return false; }
 s32 CCameraCtrl::refl_Hash() { return -1; }
-const base::reflection::CType& CCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CCameraCtrl*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CCameraCtrl*>(obj)->refl_GetDynamicClass(); }
 void CCameraCtrl::refl_Destroy(void* obj) { static_cast<CCameraCtrl*>(obj)->~CCameraCtrl(); }
 struct CCameraCtrl::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCameraCtrl);

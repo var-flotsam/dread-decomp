@@ -82,7 +82,7 @@ void CCubeMapComponent::refl_AddFields(CClass* cls) {
 }
 bool CCubeMapComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCubeMapComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCubeMapComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCubeMapComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCubeMapComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCubeMapComponent*>(obj)->refl_GetDynamicClass(); }
 void CCubeMapComponent::refl_CopyConstruct(void*, const void*) {}
 void CCubeMapComponent::refl_MoveConstruct(void*, const void*) {}
 void CCubeMapComponent::refl_Destroy(void* obj) { static_cast<CCubeMapComponent*>(obj)->~CCubeMapComponent(); }

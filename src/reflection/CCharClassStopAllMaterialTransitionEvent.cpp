@@ -22,7 +22,7 @@ void CCharClassStopAllMaterialTransitionEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassStopAllMaterialTransitionEvent::refl_AddFields(CClass*) {}
 bool CCharClassStopAllMaterialTransitionEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassStopAllMaterialTransitionEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassStopAllMaterialTransitionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStopAllMaterialTransitionEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassStopAllMaterialTransitionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStopAllMaterialTransitionEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassStopAllMaterialTransitionEvent::refl_Destroy(void* obj) { static_cast<CCharClassStopAllMaterialTransitionEvent*>(obj)->~CCharClassStopAllMaterialTransitionEvent(); }
 struct CCharClassStopAllMaterialTransitionEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassStopAllMaterialTransitionEvent);

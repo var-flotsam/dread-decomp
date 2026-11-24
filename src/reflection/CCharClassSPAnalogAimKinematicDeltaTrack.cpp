@@ -22,7 +22,7 @@ void CCharClassSPAnalogAimKinematicDeltaTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassSPAnalogAimKinematicDeltaTrack::refl_AddFields(CClass*) {}
 bool CCharClassSPAnalogAimKinematicDeltaTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSPAnalogAimKinematicDeltaTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSPAnalogAimKinematicDeltaTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSPAnalogAimKinematicDeltaTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSPAnalogAimKinematicDeltaTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSPAnalogAimKinematicDeltaTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSPAnalogAimKinematicDeltaTrack::refl_Destroy(void* obj) { static_cast<CCharClassSPAnalogAimKinematicDeltaTrack*>(obj)->~CCharClassSPAnalogAimKinematicDeltaTrack(); }
 struct CCharClassSPAnalogAimKinematicDeltaTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSPAnalogAimKinematicDeltaTrack);

@@ -22,7 +22,7 @@ void CCharClassDropXParasiteEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassDropXParasiteEvent::refl_AddFields(CClass*) {}
 bool CCharClassDropXParasiteEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassDropXParasiteEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassDropXParasiteEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDropXParasiteEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassDropXParasiteEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDropXParasiteEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassDropXParasiteEvent::refl_Destroy(void* obj) { static_cast<CCharClassDropXParasiteEvent*>(obj)->~CCharClassDropXParasiteEvent(); }
 struct CCharClassDropXParasiteEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassDropXParasiteEvent);

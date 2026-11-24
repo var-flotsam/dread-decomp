@@ -14,7 +14,7 @@ void CBreakableTileGroup::refl_AddAttributes(CClass*) {}
 void CBreakableTileGroup::refl_AddFields(CClass*) {}
 bool CBreakableTileGroup::refl_Equals(const void*, const void*) { return false; }
 s32 CBreakableTileGroup::refl_Hash() { return -1; }
-const base::reflection::CType& CBreakableTileGroup::refl_TypeOf(const void* obj) { return *static_cast<const CBreakableTileGroup*>(obj)->vf_0x0(); }
+const base::reflection::CType& CBreakableTileGroup::refl_TypeOf(const void* obj) { return *static_cast<const CBreakableTileGroup*>(obj)->refl_GetDynamicClass(); }
 void CBreakableTileGroup::refl_Destroy(void* obj) { static_cast<CBreakableTileGroup*>(obj)->~CBreakableTileGroup(); }
 void* CBreakableTileGroup::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* CBreakableTileGroup::refl_MoveAssign(void*, const void*) { return nullptr; }

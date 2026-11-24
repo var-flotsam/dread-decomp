@@ -29,7 +29,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_strTargetFilter_GetterFunction", &base::reflection::PrimitiveType<base::global::TRntString256>::Get(), 0, fn_7100fcbc78);
     DREAD_REFLECTED_FUNCTION("_strTargetFilter_SetterFunction")
         fn_7100fc8c70(fn, "_strTargetFilter_SetterFunction");
-    CVariable* field0 = AddReflectedField(cls, CStrId("strTargetFilter", true), &base::reflection::PrimitiveType<base::global::TRntString256>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("strTargetFilter", true), &base::reflection::PrimitiveType<base::global::TRntString256>::Get(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

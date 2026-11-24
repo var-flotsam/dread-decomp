@@ -28,7 +28,7 @@ void behaviortree::CWaitAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CWaitAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CWaitAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CWaitAction::refl_TypeOf(const void* obj) { return *static_cast<const CWaitAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CWaitAction::refl_TypeOf(const void* obj) { return *static_cast<const CWaitAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CWaitAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CWaitAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CWaitAction::refl_Destroy(void* obj) { static_cast<CWaitAction*>(obj)->~CWaitAction(); }

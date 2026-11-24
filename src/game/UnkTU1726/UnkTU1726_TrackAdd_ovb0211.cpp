@@ -10,10 +10,10 @@ using base::reflection::CType;
 
 void* fn_7100b88198(base::global::CRntVector<void*>* self, CType* type) {
     void* obj = nullptr;
-    if (fn_710009d50c(type, fn_7100b0da54()) && type->m_fn_0x28) {
+    if (fn_710009d50c(type, fn_7100b0da54()) && type->m_construct) {
         obj = GetDefaultAllocator()->vf_0x40(type->m_size, 8, 0xc);
         if (obj)
-            reinterpret_cast<void (*)(void*)>(type->m_fn_0x28)(obj);
+            reinterpret_cast<void (*)(void*)>(type->m_construct)(obj);
     }
     self->PushBack(obj);
     return obj;

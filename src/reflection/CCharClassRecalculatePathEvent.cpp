@@ -22,7 +22,7 @@ void CCharClassRecalculatePathEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassRecalculatePathEvent::refl_AddFields(CClass*) {}
 bool CCharClassRecalculatePathEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassRecalculatePathEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassRecalculatePathEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRecalculatePathEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassRecalculatePathEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRecalculatePathEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassRecalculatePathEvent::refl_Destroy(void* obj) { static_cast<CCharClassRecalculatePathEvent*>(obj)->~CCharClassRecalculatePathEvent(); }
 struct CCharClassRecalculatePathEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassRecalculatePathEvent);

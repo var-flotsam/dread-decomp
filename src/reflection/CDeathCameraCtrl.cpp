@@ -14,7 +14,7 @@ void CDeathCameraCtrl::refl_AddAttributes(CClass*) {}
 void CDeathCameraCtrl::refl_AddFields(CClass*) {}
 bool CDeathCameraCtrl::refl_Equals(const void*, const void*) { return false; }
 s32 CDeathCameraCtrl::refl_Hash() { return -1; }
-const base::reflection::CType& CDeathCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CDeathCameraCtrl*>(obj)->vf_0x0(); }
+const base::reflection::CType& CDeathCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CDeathCameraCtrl*>(obj)->refl_GetDynamicClass(); }
 void CDeathCameraCtrl::refl_Destroy(void* obj) { static_cast<CDeathCameraCtrl*>(obj)->~CDeathCameraCtrl(); }
 struct CDeathCameraCtrl::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CDeathCameraCtrl);

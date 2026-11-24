@@ -22,7 +22,7 @@ void CCharClassRotateToInstigatorHitColliderTrack::refl_AddAttributes(CClass* cl
 void CCharClassRotateToInstigatorHitColliderTrack::refl_AddFields(CClass*) {}
 bool CCharClassRotateToInstigatorHitColliderTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassRotateToInstigatorHitColliderTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassRotateToInstigatorHitColliderTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRotateToInstigatorHitColliderTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassRotateToInstigatorHitColliderTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRotateToInstigatorHitColliderTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassRotateToInstigatorHitColliderTrack::refl_Destroy(void* obj) { static_cast<CCharClassRotateToInstigatorHitColliderTrack*>(obj)->~CCharClassRotateToInstigatorHitColliderTrack(); }
 struct CCharClassRotateToInstigatorHitColliderTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassRotateToInstigatorHitColliderTrack);

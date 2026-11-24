@@ -22,7 +22,7 @@ void CCharClassEmmyDeathRemoveCUEnergyEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassEmmyDeathRemoveCUEnergyEvent::refl_AddFields(CClass*) {}
 bool CCharClassEmmyDeathRemoveCUEnergyEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEmmyDeathRemoveCUEnergyEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmyDeathRemoveCUEnergyEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyDeathRemoveCUEnergyEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmyDeathRemoveCUEnergyEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyDeathRemoveCUEnergyEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmyDeathRemoveCUEnergyEvent::refl_Destroy(void* obj) { static_cast<CCharClassEmmyDeathRemoveCUEnergyEvent*>(obj)->~CCharClassEmmyDeathRemoveCUEnergyEvent(); }
 struct CCharClassEmmyDeathRemoveCUEnergyEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEmmyDeathRemoveCUEnergyEvent);

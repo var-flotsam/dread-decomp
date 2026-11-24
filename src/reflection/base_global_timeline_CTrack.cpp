@@ -14,7 +14,7 @@ void base::global::timeline::CTrack::refl_AddAttributes(CClass*) {}
 void base::global::timeline::CTrack::refl_AddFields(CClass*) {}
 bool base::global::timeline::CTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 base::global::timeline::CTrack::refl_Hash() { return -1; }
-const base::reflection::CType& base::global::timeline::CTrack::refl_TypeOf(const void* obj) { return *static_cast<const CTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& base::global::timeline::CTrack::refl_TypeOf(const void* obj) { return *static_cast<const CTrack*>(obj)->refl_GetDynamicClass(); }
 void base::global::timeline::CTrack::refl_Destroy(void* obj) { static_cast<CTrack*>(obj)->~CTrack(); }
 struct base::global::timeline::CTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CTrack);

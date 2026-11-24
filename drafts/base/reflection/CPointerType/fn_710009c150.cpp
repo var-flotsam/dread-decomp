@@ -19,7 +19,7 @@ void fn_710009c150(const CPointerType* self, CRntVector<const CType*>* out, bool
     reinterpret_cast<UnkRefsFn_l09c150>(&CType_AppendParentType)(self, out, flag);
     const CType* pointee = self->m_pointee;
     out->PushBack(pointee);
-    if (self->m_pointee->m_array_0x90.count == 0)
+    if (self->m_pointee->m_derivedTypes.count == 0)
         return;
     CRntVector<const CType*> refs(0xf);
     refs.Reserve(100);

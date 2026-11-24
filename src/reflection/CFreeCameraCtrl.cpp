@@ -14,7 +14,7 @@ void CFreeCameraCtrl::refl_AddAttributes(CClass*) {}
 void CFreeCameraCtrl::refl_AddFields(CClass*) {}
 bool CFreeCameraCtrl::refl_Equals(const void*, const void*) { return false; }
 s32 CFreeCameraCtrl::refl_Hash() { return -1; }
-const base::reflection::CType& CFreeCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CFreeCameraCtrl*>(obj)->vf_0x0(); }
+const base::reflection::CType& CFreeCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CFreeCameraCtrl*>(obj)->refl_GetDynamicClass(); }
 void CFreeCameraCtrl::refl_Destroy(void* obj) { static_cast<CFreeCameraCtrl*>(obj)->~CFreeCameraCtrl(); }
 struct CFreeCameraCtrl::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CFreeCameraCtrl);

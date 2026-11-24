@@ -14,7 +14,7 @@ void CAINavigationComponent::refl_AddAttributes(CClass*) {}
 void CAINavigationComponent::refl_AddFields(CClass*) {}
 bool CAINavigationComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CAINavigationComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CAINavigationComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAINavigationComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CAINavigationComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAINavigationComponent*>(obj)->refl_GetDynamicClass(); }
 void CAINavigationComponent::refl_CopyConstruct(void*, const void*) {}
 void CAINavigationComponent::refl_MoveConstruct(void*, const void*) {}
 void CAINavigationComponent::refl_Destroy(void* obj) { static_cast<CAINavigationComponent*>(obj)->~CAINavigationComponent(); }

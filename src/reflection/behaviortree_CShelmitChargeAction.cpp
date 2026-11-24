@@ -14,7 +14,7 @@ void behaviortree::CShelmitChargeAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CShelmitChargeAction::refl_AddFields(CClass*) {}
 bool behaviortree::CShelmitChargeAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CShelmitChargeAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CShelmitChargeAction::refl_TypeOf(const void* obj) { return *static_cast<const CShelmitChargeAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CShelmitChargeAction::refl_TypeOf(const void* obj) { return *static_cast<const CShelmitChargeAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CShelmitChargeAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CShelmitChargeAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CShelmitChargeAction::refl_Destroy(void* obj) { static_cast<CShelmitChargeAction*>(obj)->~CShelmitChargeAction(); }

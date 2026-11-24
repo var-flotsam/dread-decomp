@@ -22,7 +22,7 @@ void CCharClassScorpiusAvoidMediumHeadPositionTrack::refl_AddAttributes(CClass* 
 void CCharClassScorpiusAvoidMediumHeadPositionTrack::refl_AddFields(CClass*) {}
 bool CCharClassScorpiusAvoidMediumHeadPositionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassScorpiusAvoidMediumHeadPositionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassScorpiusAvoidMediumHeadPositionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScorpiusAvoidMediumHeadPositionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassScorpiusAvoidMediumHeadPositionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScorpiusAvoidMediumHeadPositionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassScorpiusAvoidMediumHeadPositionTrack::refl_Destroy(void* obj) { static_cast<CCharClassScorpiusAvoidMediumHeadPositionTrack*>(obj)->~CCharClassScorpiusAvoidMediumHeadPositionTrack(); }
 struct CCharClassScorpiusAvoidMediumHeadPositionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassScorpiusAvoidMediumHeadPositionTrack);

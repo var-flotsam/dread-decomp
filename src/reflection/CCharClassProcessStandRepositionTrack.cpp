@@ -22,7 +22,7 @@ void CCharClassProcessStandRepositionTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassProcessStandRepositionTrack::refl_AddFields(CClass*) {}
 bool CCharClassProcessStandRepositionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassProcessStandRepositionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassProcessStandRepositionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassProcessStandRepositionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassProcessStandRepositionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassProcessStandRepositionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassProcessStandRepositionTrack::refl_Destroy(void* obj) { static_cast<CCharClassProcessStandRepositionTrack*>(obj)->~CCharClassProcessStandRepositionTrack(); }
 struct CCharClassProcessStandRepositionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassProcessStandRepositionTrack);

@@ -22,7 +22,7 @@ void CCharClassIgnoreAimBlendToDefaultTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreAimBlendToDefaultTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreAimBlendToDefaultTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreAimBlendToDefaultTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreAimBlendToDefaultTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreAimBlendToDefaultTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreAimBlendToDefaultTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreAimBlendToDefaultTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreAimBlendToDefaultTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreAimBlendToDefaultTrack*>(obj)->~CCharClassIgnoreAimBlendToDefaultTrack(); }
 struct CCharClassIgnoreAimBlendToDefaultTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreAimBlendToDefaultTrack);

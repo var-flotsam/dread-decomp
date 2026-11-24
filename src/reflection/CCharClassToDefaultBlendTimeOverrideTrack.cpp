@@ -26,7 +26,7 @@ void CCharClassToDefaultBlendTimeOverrideTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassToDefaultBlendTimeOverrideTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassToDefaultBlendTimeOverrideTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassToDefaultBlendTimeOverrideTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassToDefaultBlendTimeOverrideTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassToDefaultBlendTimeOverrideTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassToDefaultBlendTimeOverrideTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassToDefaultBlendTimeOverrideTrack::refl_Destroy(void* obj) { static_cast<CCharClassToDefaultBlendTimeOverrideTrack*>(obj)->~CCharClassToDefaultBlendTimeOverrideTrack(); }
 struct CCharClassToDefaultBlendTimeOverrideTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassToDefaultBlendTimeOverrideTrack);

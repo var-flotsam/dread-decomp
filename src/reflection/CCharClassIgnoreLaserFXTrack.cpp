@@ -22,7 +22,7 @@ void CCharClassIgnoreLaserFXTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreLaserFXTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreLaserFXTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreLaserFXTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreLaserFXTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreLaserFXTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreLaserFXTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreLaserFXTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreLaserFXTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreLaserFXTrack*>(obj)->~CCharClassIgnoreLaserFXTrack(); }
 struct CCharClassIgnoreLaserFXTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreLaserFXTrack);

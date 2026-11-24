@@ -26,7 +26,7 @@ void CCharClassFXPlayModelEffectAnim::refl_AddFields(CClass* cls) {
 }
 bool CCharClassFXPlayModelEffectAnim::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFXPlayModelEffectAnim::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFXPlayModelEffectAnim::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXPlayModelEffectAnim*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFXPlayModelEffectAnim::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXPlayModelEffectAnim*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFXPlayModelEffectAnim::refl_Destroy(void* obj) { static_cast<CCharClassFXPlayModelEffectAnim*>(obj)->~CCharClassFXPlayModelEffectAnim(); }
 struct CCharClassFXPlayModelEffectAnim::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFXPlayModelEffectAnim);

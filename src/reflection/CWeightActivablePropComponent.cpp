@@ -14,7 +14,7 @@ void CWeightActivablePropComponent::refl_AddAttributes(CClass*) {}
 void CWeightActivablePropComponent::refl_AddFields(CClass*) {}
 bool CWeightActivablePropComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CWeightActivablePropComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CWeightActivablePropComponent::refl_TypeOf(const void* obj) { return *static_cast<const CWeightActivablePropComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CWeightActivablePropComponent::refl_TypeOf(const void* obj) { return *static_cast<const CWeightActivablePropComponent*>(obj)->refl_GetDynamicClass(); }
 void CWeightActivablePropComponent::refl_CopyConstruct(void*, const void*) {}
 void CWeightActivablePropComponent::refl_MoveConstruct(void*, const void*) {}
 void CWeightActivablePropComponent::refl_Destroy(void* obj) { static_cast<CWeightActivablePropComponent*>(obj)->~CWeightActivablePropComponent(); }

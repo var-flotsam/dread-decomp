@@ -14,7 +14,7 @@ void behaviortree::CInverter::refl_AddAttributes(CClass*) {}
 void behaviortree::CInverter::refl_AddFields(CClass*) {}
 bool behaviortree::CInverter::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CInverter::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CInverter::refl_TypeOf(const void* obj) { return *static_cast<const CInverter*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CInverter::refl_TypeOf(const void* obj) { return *static_cast<const CInverter*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CInverter::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CInverter::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CInverter::refl_Destroy(void* obj) { static_cast<CInverter*>(obj)->~CInverter(); }

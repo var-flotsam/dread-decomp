@@ -28,7 +28,7 @@ void CMorphBallLauncherExitComponent::refl_AddFields(CClass* cls) {
 }
 bool CMorphBallLauncherExitComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CMorphBallLauncherExitComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CMorphBallLauncherExitComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMorphBallLauncherExitComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CMorphBallLauncherExitComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMorphBallLauncherExitComponent*>(obj)->refl_GetDynamicClass(); }
 void CMorphBallLauncherExitComponent::refl_CopyConstruct(void*, const void*) {}
 void CMorphBallLauncherExitComponent::refl_MoveConstruct(void*, const void*) {}
 void CMorphBallLauncherExitComponent::refl_Destroy(void* obj) { static_cast<CMorphBallLauncherExitComponent*>(obj)->~CMorphBallLauncherExitComponent(); }

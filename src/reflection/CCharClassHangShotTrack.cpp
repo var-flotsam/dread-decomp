@@ -22,7 +22,7 @@ void CCharClassHangShotTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassHangShotTrack::refl_AddFields(CClass*) {}
 bool CCharClassHangShotTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassHangShotTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassHangShotTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHangShotTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassHangShotTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHangShotTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassHangShotTrack::refl_Destroy(void* obj) { static_cast<CCharClassHangShotTrack*>(obj)->~CCharClassHangShotTrack(); }
 struct CCharClassHangShotTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassHangShotTrack);

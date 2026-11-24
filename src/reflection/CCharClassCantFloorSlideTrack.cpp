@@ -27,7 +27,7 @@ void CCharClassCantFloorSlideTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassCantFloorSlideTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCantFloorSlideTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCantFloorSlideTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCantFloorSlideTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCantFloorSlideTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCantFloorSlideTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCantFloorSlideTrack::refl_Destroy(void* obj) { static_cast<CCharClassCantFloorSlideTrack*>(obj)->~CCharClassCantFloorSlideTrack(); }
 struct CCharClassCantFloorSlideTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCantFloorSlideTrack);

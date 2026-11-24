@@ -22,7 +22,7 @@ void CCharClassAllowAlternativeActionsTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAllowAlternativeActionsTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowAlternativeActionsTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowAlternativeActionsTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowAlternativeActionsTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowAlternativeActionsTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowAlternativeActionsTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowAlternativeActionsTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowAlternativeActionsTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowAlternativeActionsTrack*>(obj)->~CCharClassAllowAlternativeActionsTrack(); }
 struct CCharClassAllowAlternativeActionsTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowAlternativeActionsTrack);

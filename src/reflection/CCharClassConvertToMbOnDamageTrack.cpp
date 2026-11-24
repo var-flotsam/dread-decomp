@@ -22,7 +22,7 @@ void CCharClassConvertToMbOnDamageTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassConvertToMbOnDamageTrack::refl_AddFields(CClass*) {}
 bool CCharClassConvertToMbOnDamageTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassConvertToMbOnDamageTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassConvertToMbOnDamageTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassConvertToMbOnDamageTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassConvertToMbOnDamageTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassConvertToMbOnDamageTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassConvertToMbOnDamageTrack::refl_Destroy(void* obj) { static_cast<CCharClassConvertToMbOnDamageTrack*>(obj)->~CCharClassConvertToMbOnDamageTrack(); }
 struct CCharClassConvertToMbOnDamageTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassConvertToMbOnDamageTrack);

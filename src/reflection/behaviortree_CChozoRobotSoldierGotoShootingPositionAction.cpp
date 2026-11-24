@@ -14,7 +14,7 @@ void behaviortree::CChozoRobotSoldierGotoShootingPositionAction::refl_AddAttribu
 void behaviortree::CChozoRobotSoldierGotoShootingPositionAction::refl_AddFields(CClass*) {}
 bool behaviortree::CChozoRobotSoldierGotoShootingPositionAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CChozoRobotSoldierGotoShootingPositionAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CChozoRobotSoldierGotoShootingPositionAction::refl_TypeOf(const void* obj) { return *static_cast<const CChozoRobotSoldierGotoShootingPositionAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CChozoRobotSoldierGotoShootingPositionAction::refl_TypeOf(const void* obj) { return *static_cast<const CChozoRobotSoldierGotoShootingPositionAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CChozoRobotSoldierGotoShootingPositionAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CChozoRobotSoldierGotoShootingPositionAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CChozoRobotSoldierGotoShootingPositionAction::refl_Destroy(void* obj) { static_cast<CChozoRobotSoldierGotoShootingPositionAction*>(obj)->~CChozoRobotSoldierGotoShootingPositionAction(); }

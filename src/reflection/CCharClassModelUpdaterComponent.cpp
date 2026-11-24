@@ -33,7 +33,7 @@ void CCharClassModelUpdaterComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassModelUpdaterComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassModelUpdaterComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassModelUpdaterComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassModelUpdaterComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassModelUpdaterComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassModelUpdaterComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassModelUpdaterComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassModelUpdaterComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassModelUpdaterComponent::refl_Destroy(void* obj) { static_cast<CCharClassModelUpdaterComponent*>(obj)->~CCharClassModelUpdaterComponent(); }

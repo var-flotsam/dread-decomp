@@ -22,7 +22,7 @@ void CCharClassKraidMouthOpenedTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassKraidMouthOpenedTrack::refl_AddFields(CClass*) {}
 bool CCharClassKraidMouthOpenedTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassKraidMouthOpenedTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassKraidMouthOpenedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidMouthOpenedTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassKraidMouthOpenedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidMouthOpenedTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassKraidMouthOpenedTrack::refl_Destroy(void* obj) { static_cast<CCharClassKraidMouthOpenedTrack*>(obj)->~CCharClassKraidMouthOpenedTrack(); }
 struct CCharClassKraidMouthOpenedTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassKraidMouthOpenedTrack);

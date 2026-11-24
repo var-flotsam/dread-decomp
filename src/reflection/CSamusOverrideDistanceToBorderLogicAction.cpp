@@ -27,7 +27,7 @@ void CSamusOverrideDistanceToBorderLogicAction::refl_AddFields(CClass* cls) {
 }
 bool CSamusOverrideDistanceToBorderLogicAction::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CSamusOverrideDistanceToBorderLogicAction::refl_Hash() { return -1; }
-const base::reflection::CType& CSamusOverrideDistanceToBorderLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CSamusOverrideDistanceToBorderLogicAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSamusOverrideDistanceToBorderLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CSamusOverrideDistanceToBorderLogicAction*>(obj)->refl_GetDynamicClass(); }
 void CSamusOverrideDistanceToBorderLogicAction::refl_Destroy(void* obj) { static_cast<CSamusOverrideDistanceToBorderLogicAction*>(obj)->~CSamusOverrideDistanceToBorderLogicAction(); }
 struct CSamusOverrideDistanceToBorderLogicAction::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CSamusOverrideDistanceToBorderLogicAction);

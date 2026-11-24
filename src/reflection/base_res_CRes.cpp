@@ -14,7 +14,7 @@ void base::res::CRes::refl_AddAttributes(CClass*) {}
 void base::res::CRes::refl_AddFields(CClass*) {}
 bool base::res::CRes::refl_Equals(const void*, const void*) { return false; }
 s32 base::res::CRes::refl_Hash() { return -1; }
-const base::reflection::CType& base::res::CRes::refl_TypeOf(const void* obj) { return *static_cast<const CRes*>(obj)->vf_0x0(); }
+const base::reflection::CType& base::res::CRes::refl_TypeOf(const void* obj) { return *static_cast<const CRes*>(obj)->refl_GetDynamicClass(); }
 struct base::res::CRes::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CRes);
     static constexpr auto equals = &refl_Equals;

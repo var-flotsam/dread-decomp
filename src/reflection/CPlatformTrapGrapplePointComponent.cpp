@@ -14,7 +14,7 @@ void CPlatformTrapGrapplePointComponent::refl_AddAttributes(CClass*) {}
 void CPlatformTrapGrapplePointComponent::refl_AddFields(CClass*) {}
 bool CPlatformTrapGrapplePointComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CPlatformTrapGrapplePointComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CPlatformTrapGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CPlatformTrapGrapplePointComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CPlatformTrapGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CPlatformTrapGrapplePointComponent*>(obj)->refl_GetDynamicClass(); }
 void CPlatformTrapGrapplePointComponent::refl_CopyConstruct(void*, const void*) {}
 void CPlatformTrapGrapplePointComponent::refl_MoveConstruct(void*, const void*) {}
 void CPlatformTrapGrapplePointComponent::refl_Destroy(void* obj) { static_cast<CPlatformTrapGrapplePointComponent*>(obj)->~CPlatformTrapGrapplePointComponent(); }

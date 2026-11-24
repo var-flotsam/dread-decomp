@@ -23,7 +23,7 @@ void CCharClassWaterNozzleComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassWaterNozzleComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassWaterNozzleComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassWaterNozzleComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassWaterNozzleComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassWaterNozzleComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassWaterNozzleComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassWaterNozzleComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassWaterNozzleComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassWaterNozzleComponent::refl_Destroy(void* obj) { static_cast<CCharClassWaterNozzleComponent*>(obj)->~CCharClassWaterNozzleComponent(); }

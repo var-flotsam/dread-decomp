@@ -72,7 +72,7 @@ bool CBlendSpaceResource_ReadReflectedValueFromFile(CRntFile* file, u32, UnkType
     void* dst = value->ptr;
     if (fn_710007c1a4(file) - file->position < type->m_size)
         return false;
-    type->m_fn_0x48(dst, file->data + file->position);
+    type->m_copyAssign(dst, file->data + file->position);
     CRntFile_Seek(file, type->m_size, 1);
     return true;
 }

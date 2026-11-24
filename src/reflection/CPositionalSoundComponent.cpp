@@ -43,23 +43,23 @@ void CPositionalSoundComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sSound1_GetterFunction", base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0, fn_710114cf08);
     DREAD_REFLECTED_FUNCTION("_sSound1_SetterFunction")
         fn_710114affc(fn, "_sSound1_SetterFunction");
-    CVariable* field10 = AddReflectedField(cls, CStrId("sSound1", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field10 = AddReflectedField(cls, CStrId("sSound1", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_sSound2_GetterFunction", base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0, fn_710114d078);
     DREAD_REFLECTED_FUNCTION("_sSound2_SetterFunction")
         fn_710114b178(fn, "_sSound2_SetterFunction");
-    CVariable* field11 = AddReflectedField(cls, CStrId("sSound2", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field11 = AddReflectedField(cls, CStrId("sSound2", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_sSound3_GetterFunction", base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0, fn_710114d1e8);
     DREAD_REFLECTED_FUNCTION("_sSound3_SetterFunction")
         fn_710114b2f4(fn, "_sSound3_SetterFunction");
-    CVariable* field12 = AddReflectedField(cls, CStrId("sSound3", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field12 = AddReflectedField(cls, CStrId("sSound3", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_sSound4_GetterFunction", base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0, fn_710114d358);
     DREAD_REFLECTED_FUNCTION("_sSound4_SetterFunction")
         fn_710114b470(fn, "_sSound4_SetterFunction");
-    CVariable* field13 = AddReflectedField(cls, CStrId("sSound4", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field13 = AddReflectedField(cls, CStrId("sSound4", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
 }
 bool CPositionalSoundComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CPositionalSoundComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CPositionalSoundComponent::refl_TypeOf(const void* obj) { return *static_cast<const CPositionalSoundComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CPositionalSoundComponent::refl_TypeOf(const void* obj) { return *static_cast<const CPositionalSoundComponent*>(obj)->refl_GetDynamicClass(); }
 void CPositionalSoundComponent::refl_CopyConstruct(void*, const void*) {}
 void CPositionalSoundComponent::refl_MoveConstruct(void*, const void*) {}
 void CPositionalSoundComponent::refl_Destroy(void* obj) { static_cast<CPositionalSoundComponent*>(obj)->~CPositionalSoundComponent(); }

@@ -24,7 +24,7 @@ void CCharClassSensorDoorComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassSensorDoorComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassSensorDoorComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSensorDoorComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSensorDoorComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSensorDoorComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSensorDoorComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSensorDoorComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassSensorDoorComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassSensorDoorComponent::refl_Destroy(void* obj) { static_cast<CCharClassSensorDoorComponent*>(obj)->~CCharClassSensorDoorComponent(); }

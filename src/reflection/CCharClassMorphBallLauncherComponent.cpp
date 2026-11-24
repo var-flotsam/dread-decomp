@@ -28,7 +28,7 @@ void CCharClassMorphBallLauncherComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassMorphBallLauncherComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassMorphBallLauncherComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMorphBallLauncherComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMorphBallLauncherComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMorphBallLauncherComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMorphBallLauncherComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMorphBallLauncherComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassMorphBallLauncherComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassMorphBallLauncherComponent::refl_Destroy(void* obj) { static_cast<CCharClassMorphBallLauncherComponent*>(obj)->~CCharClassMorphBallLauncherComponent(); }

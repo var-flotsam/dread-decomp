@@ -29,7 +29,7 @@ void ICharClassFXSetActiveEvent::refl_AddFields(CClass* cls) {
 }
 bool ICharClassFXSetActiveEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 ICharClassFXSetActiveEvent::refl_Hash() { return -1; }
-const base::reflection::CType& ICharClassFXSetActiveEvent::refl_TypeOf(const void* obj) { return *static_cast<const ICharClassFXSetActiveEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& ICharClassFXSetActiveEvent::refl_TypeOf(const void* obj) { return *static_cast<const ICharClassFXSetActiveEvent*>(obj)->refl_GetDynamicClass(); }
 void ICharClassFXSetActiveEvent::refl_Destroy(void* obj) { static_cast<ICharClassFXSetActiveEvent*>(obj)->~ICharClassFXSetActiveEvent(); }
 struct ICharClassFXSetActiveEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(ICharClassFXSetActiveEvent);

@@ -22,7 +22,7 @@ void CCharClassIgnoreMeleeHitReactionDamageTrack::refl_AddAttributes(CClass* cls
 void CCharClassIgnoreMeleeHitReactionDamageTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreMeleeHitReactionDamageTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreMeleeHitReactionDamageTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreMeleeHitReactionDamageTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreMeleeHitReactionDamageTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreMeleeHitReactionDamageTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreMeleeHitReactionDamageTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreMeleeHitReactionDamageTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreMeleeHitReactionDamageTrack*>(obj)->~CCharClassIgnoreMeleeHitReactionDamageTrack(); }
 struct CCharClassIgnoreMeleeHitReactionDamageTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreMeleeHitReactionDamageTrack);

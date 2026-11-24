@@ -22,7 +22,7 @@ void CCharClassCanBeStaggeredTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassCanBeStaggeredTrack::refl_AddFields(CClass*) {}
 bool CCharClassCanBeStaggeredTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCanBeStaggeredTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCanBeStaggeredTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCanBeStaggeredTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCanBeStaggeredTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCanBeStaggeredTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCanBeStaggeredTrack::refl_Destroy(void* obj) { static_cast<CCharClassCanBeStaggeredTrack*>(obj)->~CCharClassCanBeStaggeredTrack(); }
 struct CCharClassCanBeStaggeredTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCanBeStaggeredTrack);

@@ -22,7 +22,7 @@ void CCharClassIgnoreStopAndSearchTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreStopAndSearchTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreStopAndSearchTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreStopAndSearchTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreStopAndSearchTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreStopAndSearchTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreStopAndSearchTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreStopAndSearchTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreStopAndSearchTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreStopAndSearchTrack*>(obj)->~CCharClassIgnoreStopAndSearchTrack(); }
 struct CCharClassIgnoreStopAndSearchTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreStopAndSearchTrack);

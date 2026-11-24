@@ -150,8 +150,8 @@ void fn_710008ef70(void* self, void* node, UnkClassField_l08ef70* field, CClass*
 
     // Whether an element field is written as an XML attribute (the result is not used).
     const CClass* element_class = static_cast<const CClass*>(element);
-    UnkClassField_l08ef70* fields = static_cast<UnkClassField_l08ef70*>(element_class->m_array_0xe8.data);
-    UnkClassField_l08ef70* end = fields + element_class->m_array_0xe8.count;
+    UnkClassField_l08ef70* fields = static_cast<UnkClassField_l08ef70*>(element_class->m_fields.data);
+    UnkClassField_l08ef70* end = fields + element_class->m_fields.count;
     bool has_attribute = std::any_of(fields, end, [](const UnkClassField_l08ef70& f) {
         return f.attrs.Get(base::reflection::attr::XmlAttribute()).IsTrue();
     });

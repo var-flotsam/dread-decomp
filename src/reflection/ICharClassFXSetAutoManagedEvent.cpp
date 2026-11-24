@@ -26,7 +26,7 @@ void ICharClassFXSetAutoManagedEvent::refl_AddFields(CClass* cls) {
 }
 bool ICharClassFXSetAutoManagedEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 ICharClassFXSetAutoManagedEvent::refl_Hash() { return -1; }
-const base::reflection::CType& ICharClassFXSetAutoManagedEvent::refl_TypeOf(const void* obj) { return *static_cast<const ICharClassFXSetAutoManagedEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& ICharClassFXSetAutoManagedEvent::refl_TypeOf(const void* obj) { return *static_cast<const ICharClassFXSetAutoManagedEvent*>(obj)->refl_GetDynamicClass(); }
 void ICharClassFXSetAutoManagedEvent::refl_Destroy(void* obj) { static_cast<ICharClassFXSetAutoManagedEvent*>(obj)->~ICharClassFXSetAutoManagedEvent(); }
 struct ICharClassFXSetAutoManagedEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(ICharClassFXSetAutoManagedEvent);

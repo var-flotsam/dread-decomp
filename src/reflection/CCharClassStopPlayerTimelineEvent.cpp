@@ -26,7 +26,7 @@ void CCharClassStopPlayerTimelineEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassStopPlayerTimelineEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassStopPlayerTimelineEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassStopPlayerTimelineEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStopPlayerTimelineEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassStopPlayerTimelineEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStopPlayerTimelineEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassStopPlayerTimelineEvent::refl_Destroy(void* obj) { static_cast<CCharClassStopPlayerTimelineEvent*>(obj)->~CCharClassStopPlayerTimelineEvent(); }
 struct CCharClassStopPlayerTimelineEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassStopPlayerTimelineEvent);

@@ -22,7 +22,7 @@ void CCharClassActivatableComponent::refl_AddAttributes(CClass*) {}
 void CCharClassActivatableComponent::refl_AddFields(CClass*) {}
 bool CCharClassActivatableComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassActivatableComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassActivatableComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActivatableComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassActivatableComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActivatableComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassActivatableComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassActivatableComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassActivatableComponent::refl_Destroy(void* obj) { static_cast<CCharClassActivatableComponent*>(obj)->~CCharClassActivatableComponent(); }
@@ -52,7 +52,7 @@ void CActivatableComponent::refl_AddFields(CClass* cls) {
 }
 bool CActivatableComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CActivatableComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CActivatableComponent::refl_TypeOf(const void* obj) { return *static_cast<const CActivatableComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CActivatableComponent::refl_TypeOf(const void* obj) { return *static_cast<const CActivatableComponent*>(obj)->refl_GetDynamicClass(); }
 void CActivatableComponent::refl_CopyConstruct(void*, const void*) {}
 void CActivatableComponent::refl_MoveConstruct(void*, const void*) {}
 void CActivatableComponent::refl_Destroy(void* obj) { static_cast<CActivatableComponent*>(obj)->~CActivatableComponent(); }

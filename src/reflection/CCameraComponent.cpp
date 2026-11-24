@@ -85,7 +85,7 @@ void CCameraComponent::refl_AddFields(CClass* cls) {
 }
 bool CCameraComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCameraComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCameraComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCameraComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCameraComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCameraComponent*>(obj)->refl_GetDynamicClass(); }
 void CCameraComponent::refl_Destroy(void* obj) { static_cast<CCameraComponent*>(obj)->~CCameraComponent(); }
 struct CCameraComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCameraComponent);

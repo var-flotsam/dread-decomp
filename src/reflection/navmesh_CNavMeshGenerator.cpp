@@ -14,7 +14,7 @@ void navmesh::CNavMeshGenerator::refl_AddAttributes(CClass*) {}
 void navmesh::CNavMeshGenerator::refl_AddFields(CClass*) {}
 bool navmesh::CNavMeshGenerator::refl_Equals(const void*, const void*) { return false; }
 s32 navmesh::CNavMeshGenerator::refl_Hash() { return -1; }
-const base::reflection::CType& navmesh::CNavMeshGenerator::refl_TypeOf(const void* obj) { return *static_cast<const CNavMeshGenerator*>(obj)->vf_0x0(); }
+const base::reflection::CType& navmesh::CNavMeshGenerator::refl_TypeOf(const void* obj) { return *static_cast<const CNavMeshGenerator*>(obj)->refl_GetDynamicClass(); }
 void navmesh::CNavMeshGenerator::refl_CopyConstruct(void*, const void*) {}
 void navmesh::CNavMeshGenerator::refl_MoveConstruct(void*, const void*) {}
 void navmesh::CNavMeshGenerator::refl_Destroy(void* obj) { static_cast<CNavMeshGenerator*>(obj)->~CNavMeshGenerator(); }

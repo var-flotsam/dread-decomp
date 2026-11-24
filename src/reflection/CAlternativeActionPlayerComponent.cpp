@@ -14,7 +14,7 @@ void CAlternativeActionPlayerComponent::refl_AddAttributes(CClass*) {}
 void CAlternativeActionPlayerComponent::refl_AddFields(CClass*) {}
 bool CAlternativeActionPlayerComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CAlternativeActionPlayerComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CAlternativeActionPlayerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAlternativeActionPlayerComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CAlternativeActionPlayerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAlternativeActionPlayerComponent*>(obj)->refl_GetDynamicClass(); }
 void CAlternativeActionPlayerComponent::refl_Destroy(void* obj) { static_cast<CAlternativeActionPlayerComponent*>(obj)->~CAlternativeActionPlayerComponent(); }
 struct CAlternativeActionPlayerComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CAlternativeActionPlayerComponent);

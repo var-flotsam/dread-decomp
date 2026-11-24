@@ -26,7 +26,7 @@ void CCharClassFXUnlinkEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassFXUnlinkEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFXUnlinkEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFXUnlinkEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXUnlinkEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFXUnlinkEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXUnlinkEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFXUnlinkEvent::refl_Destroy(void* obj) { static_cast<CCharClassFXUnlinkEvent*>(obj)->~CCharClassFXUnlinkEvent(); }
 struct CCharClassFXUnlinkEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFXUnlinkEvent);

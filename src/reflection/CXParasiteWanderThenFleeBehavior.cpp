@@ -14,7 +14,7 @@ void CXParasiteWanderThenFleeBehavior::refl_AddAttributes(CClass*) {}
 void CXParasiteWanderThenFleeBehavior::refl_AddFields(CClass*) {}
 bool CXParasiteWanderThenFleeBehavior::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CXParasiteWanderThenFleeBehavior::refl_Hash() { return -1; }
-const base::reflection::CType& CXParasiteWanderThenFleeBehavior::refl_TypeOf(const void* obj) { return *static_cast<const CXParasiteWanderThenFleeBehavior*>(obj)->vf_0x0(); }
+const base::reflection::CType& CXParasiteWanderThenFleeBehavior::refl_TypeOf(const void* obj) { return *static_cast<const CXParasiteWanderThenFleeBehavior*>(obj)->refl_GetDynamicClass(); }
 void CXParasiteWanderThenFleeBehavior::refl_Destroy(void* obj) { static_cast<CXParasiteWanderThenFleeBehavior*>(obj)->~CXParasiteWanderThenFleeBehavior(); }
 struct CXParasiteWanderThenFleeBehavior::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CXParasiteWanderThenFleeBehavior);

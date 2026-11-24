@@ -238,7 +238,7 @@ class Selection(unittest.TestCase):
         # declared-form lines show the same
         unit = gc.Unit("CMid.cpp", {"CMid"}, {}, set(), {"CMid": gc.slot_forms(
             "const base::reflection::CType& CMid::refl_TypeOf(const void* obj) "
-            "{ return *static_cast<const CMid*>(obj)->vf_0x0(); }")})
+            "{ return *static_cast<const CMid*>(obj)->refl_GetDynamicClass(); }")})
         self.assertEqual(unit.slots, {"CMid": {"getter"}})
         refl = ({"base::core::CRoot", "CMid", "CLeaf"}, {}, set(), [unit])
         self.assertEqual(gc.selected(TYPES, FIELDS, gc.NO_EXTRA, None, refl, destroys=set())[0], everyone)
@@ -276,7 +276,7 @@ class DeclaredClassPass(unittest.TestCase):
         self.assertNotIn("refl_Construct", out)  # its declaration is the class's
         self.assertIn('DREAD_REFLECTED_FIELD(bool, "bOn", offsetof(CLeaf, bOn), (DefaultValue, false));', out)
         self.assertIn("s32 CLeaf::refl_Hash() { return -1; }", out)
-        self.assertIn("{ return *static_cast<const CLeaf*>(obj)->vf_0x0(); }", out)
+        self.assertIn("{ return *static_cast<const CLeaf*>(obj)->refl_GetDynamicClass(); }", out)
         self.assertIn("void CLeaf::refl_Destroy(void* obj) { static_cast<CLeaf*>(obj)->~CLeaf(); }", out)
         self.assertIn("struct CLeaf::refl_Description : ClassDescription {", out)
         self.assertIn("    static constexpr u64 size = sizeof(CLeaf);", out)

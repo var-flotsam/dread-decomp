@@ -22,7 +22,7 @@ void CCharClassTweakNextWalkCyclesEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassTweakNextWalkCyclesEvent::refl_AddFields(CClass*) {}
 bool CCharClassTweakNextWalkCyclesEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTweakNextWalkCyclesEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTweakNextWalkCyclesEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakNextWalkCyclesEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTweakNextWalkCyclesEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakNextWalkCyclesEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTweakNextWalkCyclesEvent::refl_Destroy(void* obj) { static_cast<CCharClassTweakNextWalkCyclesEvent*>(obj)->~CCharClassTweakNextWalkCyclesEvent(); }
 struct CCharClassTweakNextWalkCyclesEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTweakNextWalkCyclesEvent);

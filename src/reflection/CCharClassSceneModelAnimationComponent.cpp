@@ -14,7 +14,7 @@ void CCharClassSceneModelAnimationComponent::refl_AddAttributes(CClass*) {}
 void CCharClassSceneModelAnimationComponent::refl_AddFields(CClass*) {}
 bool CCharClassSceneModelAnimationComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassSceneModelAnimationComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSceneModelAnimationComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSceneModelAnimationComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSceneModelAnimationComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSceneModelAnimationComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSceneModelAnimationComponent::refl_Destroy(void* obj) { static_cast<CCharClassSceneModelAnimationComponent*>(obj)->~CCharClassSceneModelAnimationComponent(); }
 struct CCharClassSceneModelAnimationComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSceneModelAnimationComponent);

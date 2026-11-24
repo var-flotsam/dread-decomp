@@ -14,7 +14,7 @@ void CEmergencyLightElectricReactionComponent::refl_AddAttributes(CClass*) {}
 void CEmergencyLightElectricReactionComponent::refl_AddFields(CClass*) {}
 bool CEmergencyLightElectricReactionComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CEmergencyLightElectricReactionComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CEmergencyLightElectricReactionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CEmergencyLightElectricReactionComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CEmergencyLightElectricReactionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CEmergencyLightElectricReactionComponent*>(obj)->refl_GetDynamicClass(); }
 void CEmergencyLightElectricReactionComponent::refl_CopyConstruct(void*, const void*) {}
 void CEmergencyLightElectricReactionComponent::refl_MoveConstruct(void*, const void*) {}
 void CEmergencyLightElectricReactionComponent::refl_Destroy(void* obj) { static_cast<CEmergencyLightElectricReactionComponent*>(obj)->~CEmergencyLightElectricReactionComponent(); }

@@ -14,7 +14,7 @@ void CCharClassRumbleComponent::refl_AddAttributes(CClass*) {}
 void CCharClassRumbleComponent::refl_AddFields(CClass*) {}
 bool CCharClassRumbleComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassRumbleComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassRumbleComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRumbleComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassRumbleComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRumbleComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassRumbleComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassRumbleComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassRumbleComponent::refl_Destroy(void* obj) { static_cast<CCharClassRumbleComponent*>(obj)->~CCharClassRumbleComponent(); }

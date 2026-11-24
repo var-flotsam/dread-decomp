@@ -22,7 +22,7 @@ void CCharClassCooldownXBossLaunchDeathCutsceneEvent::refl_AddAttributes(CClass*
 void CCharClassCooldownXBossLaunchDeathCutsceneEvent::refl_AddFields(CClass*) {}
 bool CCharClassCooldownXBossLaunchDeathCutsceneEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCooldownXBossLaunchDeathCutsceneEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCooldownXBossLaunchDeathCutsceneEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCooldownXBossLaunchDeathCutsceneEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCooldownXBossLaunchDeathCutsceneEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCooldownXBossLaunchDeathCutsceneEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCooldownXBossLaunchDeathCutsceneEvent::refl_Destroy(void* obj) { static_cast<CCharClassCooldownXBossLaunchDeathCutsceneEvent*>(obj)->~CCharClassCooldownXBossLaunchDeathCutsceneEvent(); }
 struct CCharClassCooldownXBossLaunchDeathCutsceneEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCooldownXBossLaunchDeathCutsceneEvent);

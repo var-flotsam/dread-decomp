@@ -56,7 +56,7 @@ void CCharClassDropItemCrazyEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassDropItemCrazyEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassDropItemCrazyEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassDropItemCrazyEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDropItemCrazyEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassDropItemCrazyEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDropItemCrazyEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassDropItemCrazyEvent::refl_Destroy(void* obj) { static_cast<CCharClassDropItemCrazyEvent*>(obj)->~CCharClassDropItemCrazyEvent(); }
 struct CCharClassDropItemCrazyEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassDropItemCrazyEvent);

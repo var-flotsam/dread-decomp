@@ -28,7 +28,7 @@ void CCharClassForceAnalogInputAngTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassForceAnalogInputAngTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassForceAnalogInputAngTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassForceAnalogInputAngTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceAnalogInputAngTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassForceAnalogInputAngTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceAnalogInputAngTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassForceAnalogInputAngTrack::refl_Destroy(void* obj) { static_cast<CCharClassForceAnalogInputAngTrack*>(obj)->~CCharClassForceAnalogInputAngTrack(); }
 struct CCharClassForceAnalogInputAngTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassForceAnalogInputAngTrack);

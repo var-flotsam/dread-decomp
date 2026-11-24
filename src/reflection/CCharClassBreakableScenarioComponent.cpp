@@ -36,7 +36,7 @@ void CCharClassBreakableScenarioComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassBreakableScenarioComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassBreakableScenarioComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassBreakableScenarioComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBreakableScenarioComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassBreakableScenarioComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBreakableScenarioComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassBreakableScenarioComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassBreakableScenarioComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassBreakableScenarioComponent::refl_Destroy(void* obj) { static_cast<CCharClassBreakableScenarioComponent*>(obj)->~CCharClassBreakableScenarioComponent(); }

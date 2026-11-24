@@ -22,7 +22,7 @@ void CCharClassLockAnalogInputAngTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassLockAnalogInputAngTrack::refl_AddFields(CClass*) {}
 bool CCharClassLockAnalogInputAngTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassLockAnalogInputAngTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassLockAnalogInputAngTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLockAnalogInputAngTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassLockAnalogInputAngTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLockAnalogInputAngTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassLockAnalogInputAngTrack::refl_Destroy(void* obj) { static_cast<CCharClassLockAnalogInputAngTrack*>(obj)->~CCharClassLockAnalogInputAngTrack(); }
 struct CCharClassLockAnalogInputAngTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassLockAnalogInputAngTrack);

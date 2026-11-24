@@ -30,7 +30,7 @@ static inline bool IsKindOf(const CType* type, const CType* current) {
     }
     u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(current->sName.data) + 0x30);
     do {
-        auto* links = reinterpret_cast<UnkTypeLinks*>(const_cast<base::reflection::UnkReflArray*>(&type->m_array_0xb8));
+        auto* links = reinterpret_cast<UnkTypeLinks*>(const_cast<base::reflection::UntypedSmallDictionary*>(&type->m_conversions));
         void** slot = links->Find(key);
         if (slot != links->End())
             return *slot != nullptr;
@@ -44,7 +44,7 @@ static inline bool CanAssignInPlace(const UnkReflValue* self, const CType* type,
     if (!cur || !data || self->field_0x14 != 0)
         return false;
     if (cur == type)
-        return type->m_fn_0x48 != nullptr;
+        return type->m_copyAssign != nullptr;
     return IsKindOf(type, cur);
 }
 

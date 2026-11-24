@@ -26,7 +26,7 @@ void behaviortree::CRinkaRandomShootAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CRinkaRandomShootAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CRinkaRandomShootAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CRinkaRandomShootAction::refl_TypeOf(const void* obj) { return *static_cast<const CRinkaRandomShootAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CRinkaRandomShootAction::refl_TypeOf(const void* obj) { return *static_cast<const CRinkaRandomShootAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CRinkaRandomShootAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CRinkaRandomShootAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CRinkaRandomShootAction::refl_Destroy(void* obj) { static_cast<CRinkaRandomShootAction*>(obj)->~CRinkaRandomShootAction(); }

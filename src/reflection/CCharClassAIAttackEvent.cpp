@@ -40,7 +40,7 @@ void CCharClassAIAttackEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassAIAttackEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAIAttackEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAIAttackEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAIAttackEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAIAttackEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAIAttackEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAIAttackEvent::refl_Destroy(void* obj) { static_cast<CCharClassAIAttackEvent*>(obj)->~CCharClassAIAttackEvent(); }
 struct CCharClassAIAttackEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAIAttackEvent);

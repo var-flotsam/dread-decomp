@@ -51,7 +51,7 @@ void CLifeComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_fMaxLife_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710116132c);
     DREAD_REFLECTED_FUNCTION("_m_fMaxLife_SetterFunction")
         fn_710115f12c(fn, "_m_fMaxLife_SetterFunction");
-    CVariable* field1 = AddReflectedField(cls, CStrId("fMaxLife", true), &base::reflection::PrimitiveType<float>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("fMaxLife", true), &base::reflection::PrimitiveType<float>::Get(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     field1->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     field1->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("max life"));
@@ -59,10 +59,10 @@ void CLifeComponent::refl_AddFields(CClass* cls) {
     field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
     DREAD_REFLECTED_FIELD(f32, "fCurrentLife", offsetof(CLifeComponent, fCurrentLife), (Persistence, 0), (EditorVisible, false), (DefaultValue, -1.0f), (Description, "Current Life"));
     DREAD_REFLECTED_FUNCTION_OF("_m_fCurrentLife_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011613dc);
-    fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("fCurrentLife")), cls->m_array_0x110.size() - 1);
+    fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("fCurrentLife")), cls->m_functions.size() - 1);
     DREAD_REFLECTED_FUNCTION("_m_fCurrentLife_SetterFunction")
         fn_710115f2a8(fn, "_m_fCurrentLife_SetterFunction");
-    fn_71000e8180(base::reflection::refl_FindField(cls, base::global::CName("fCurrentLife")), cls->m_array_0x110.size() - 1);
+    fn_71000e8180(base::reflection::refl_FindField(cls, base::global::CName("fCurrentLife")), cls->m_functions.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_m_bCurrentLifeLocked_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7101161490);
     DREAD_REFLECTED_FUNCTION("_m_bCurrentLifeLocked_SetterFunction")
         fn_710115f424(fn, "_m_bCurrentLifeLocked_SetterFunction");
@@ -89,7 +89,7 @@ void CLifeComponent::refl_AddFields(CClass* cls) {
 }
 bool CLifeComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CLifeComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CLifeComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CLifeComponent*>(obj)->refl_GetDynamicClass(); }
 void CLifeComponent::refl_Destroy(void* obj) { static_cast<CLifeComponent*>(obj)->~CLifeComponent(); }
 struct CLifeComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CLifeComponent);

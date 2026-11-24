@@ -24,7 +24,7 @@ void behaviortree::CRotateToPlayer::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CRotateToPlayer::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CRotateToPlayer::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CRotateToPlayer::refl_TypeOf(const void* obj) { return *static_cast<const CRotateToPlayer*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CRotateToPlayer::refl_TypeOf(const void* obj) { return *static_cast<const CRotateToPlayer*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CRotateToPlayer::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CRotateToPlayer::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CRotateToPlayer::refl_Destroy(void* obj) { static_cast<CRotateToPlayer*>(obj)->~CRotateToPlayer(); }

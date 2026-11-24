@@ -14,7 +14,7 @@ void CCharClassGooplotCapsuleComponent::refl_AddAttributes(CClass*) {}
 void CCharClassGooplotCapsuleComponent::refl_AddFields(CClass*) {}
 bool CCharClassGooplotCapsuleComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassGooplotCapsuleComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassGooplotCapsuleComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGooplotCapsuleComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassGooplotCapsuleComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGooplotCapsuleComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassGooplotCapsuleComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassGooplotCapsuleComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassGooplotCapsuleComponent::refl_Destroy(void* obj) { static_cast<CCharClassGooplotCapsuleComponent*>(obj)->~CCharClassGooplotCapsuleComponent(); }

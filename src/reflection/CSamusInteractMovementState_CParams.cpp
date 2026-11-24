@@ -14,7 +14,7 @@ void CSamusInteractMovementState::CParams::refl_AddAttributes(CClass*) {}
 void CSamusInteractMovementState::CParams::refl_AddFields(CClass*) {}
 bool CSamusInteractMovementState::CParams::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CSamusInteractMovementState::CParams::refl_Hash() { return -1; }
-const base::reflection::CType& CSamusInteractMovementState::CParams::refl_TypeOf(const void* obj) { return *static_cast<const CParams*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSamusInteractMovementState::CParams::refl_TypeOf(const void* obj) { return *static_cast<const CParams*>(obj)->refl_GetDynamicClass(); }
 void CSamusInteractMovementState::CParams::refl_Destroy(void* obj) { static_cast<CParams*>(obj)->~CParams(); }
 struct CSamusInteractMovementState::CParams::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CParams);

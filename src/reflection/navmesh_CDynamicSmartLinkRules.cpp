@@ -21,7 +21,7 @@ void navmesh::CDynamicSmartLinkRules::refl_AddAttributes(CClass* cls) {
 void navmesh::CDynamicSmartLinkRules::refl_AddFields(CClass*) {}
 bool navmesh::CDynamicSmartLinkRules::refl_Equals(const void*, const void*) { return false; }
 s32 navmesh::CDynamicSmartLinkRules::refl_Hash() { return -1; }
-const base::reflection::CType& navmesh::CDynamicSmartLinkRules::refl_TypeOf(const void* obj) { return *static_cast<const CDynamicSmartLinkRules*>(obj)->vf_0x0(); }
+const base::reflection::CType& navmesh::CDynamicSmartLinkRules::refl_TypeOf(const void* obj) { return *static_cast<const CDynamicSmartLinkRules*>(obj)->refl_GetDynamicClass(); }
 void navmesh::CDynamicSmartLinkRules::refl_Destroy(void* obj) { static_cast<CDynamicSmartLinkRules*>(obj)->~CDynamicSmartLinkRules(); }
 struct navmesh::CDynamicSmartLinkRules::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CDynamicSmartLinkRules);

@@ -26,7 +26,7 @@ void CCharClassChozoWarriorSetShieldEnabledEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassChozoWarriorSetShieldEnabledEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassChozoWarriorSetShieldEnabledEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassChozoWarriorSetShieldEnabledEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoWarriorSetShieldEnabledEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassChozoWarriorSetShieldEnabledEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoWarriorSetShieldEnabledEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassChozoWarriorSetShieldEnabledEvent::refl_Destroy(void* obj) { static_cast<CCharClassChozoWarriorSetShieldEnabledEvent*>(obj)->~CCharClassChozoWarriorSetShieldEnabledEvent(); }
 struct CCharClassChozoWarriorSetShieldEnabledEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassChozoWarriorSetShieldEnabledEvent);

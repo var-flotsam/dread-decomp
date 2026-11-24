@@ -24,7 +24,7 @@ void behaviortree::CStorePosInBlcAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CStorePosInBlcAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CStorePosInBlcAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CStorePosInBlcAction::refl_TypeOf(const void* obj) { return *static_cast<const CStorePosInBlcAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CStorePosInBlcAction::refl_TypeOf(const void* obj) { return *static_cast<const CStorePosInBlcAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CStorePosInBlcAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CStorePosInBlcAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CStorePosInBlcAction::refl_Destroy(void* obj) { static_cast<CStorePosInBlcAction*>(obj)->~CStorePosInBlcAction(); }

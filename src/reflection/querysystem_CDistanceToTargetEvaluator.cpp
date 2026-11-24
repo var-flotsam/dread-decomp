@@ -34,7 +34,7 @@ void querysystem::CDistanceToTargetEvaluator::refl_AddFields(CClass* cls) {
 }
 bool querysystem::CDistanceToTargetEvaluator::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 querysystem::CDistanceToTargetEvaluator::refl_Hash() { return -1; }
-const base::reflection::CType& querysystem::CDistanceToTargetEvaluator::refl_TypeOf(const void* obj) { return *static_cast<const CDistanceToTargetEvaluator*>(obj)->vf_0x0(); }
+const base::reflection::CType& querysystem::CDistanceToTargetEvaluator::refl_TypeOf(const void* obj) { return *static_cast<const CDistanceToTargetEvaluator*>(obj)->refl_GetDynamicClass(); }
 void querysystem::CDistanceToTargetEvaluator::refl_Destroy(void* obj) { static_cast<CDistanceToTargetEvaluator*>(obj)->~CDistanceToTargetEvaluator(); }
 struct querysystem::CDistanceToTargetEvaluator::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CDistanceToTargetEvaluator);

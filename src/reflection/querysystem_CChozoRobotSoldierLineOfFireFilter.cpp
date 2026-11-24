@@ -14,7 +14,7 @@ void querysystem::CChozoRobotSoldierLineOfFireFilter::refl_AddAttributes(CClass*
 void querysystem::CChozoRobotSoldierLineOfFireFilter::refl_AddFields(CClass*) {}
 bool querysystem::CChozoRobotSoldierLineOfFireFilter::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 querysystem::CChozoRobotSoldierLineOfFireFilter::refl_Hash() { return -1; }
-const base::reflection::CType& querysystem::CChozoRobotSoldierLineOfFireFilter::refl_TypeOf(const void* obj) { return *static_cast<const CChozoRobotSoldierLineOfFireFilter*>(obj)->vf_0x0(); }
+const base::reflection::CType& querysystem::CChozoRobotSoldierLineOfFireFilter::refl_TypeOf(const void* obj) { return *static_cast<const CChozoRobotSoldierLineOfFireFilter*>(obj)->refl_GetDynamicClass(); }
 void querysystem::CChozoRobotSoldierLineOfFireFilter::refl_Destroy(void* obj) { static_cast<CChozoRobotSoldierLineOfFireFilter*>(obj)->~CChozoRobotSoldierLineOfFireFilter(); }
 struct querysystem::CChozoRobotSoldierLineOfFireFilter::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CChozoRobotSoldierLineOfFireFilter);

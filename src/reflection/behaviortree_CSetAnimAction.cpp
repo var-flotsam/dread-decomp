@@ -33,7 +33,7 @@ void behaviortree::CSetAnimAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CSetAnimAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CSetAnimAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CSetAnimAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetAnimAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CSetAnimAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetAnimAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CSetAnimAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CSetAnimAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CSetAnimAction::refl_Destroy(void* obj) { static_cast<CSetAnimAction*>(obj)->~CSetAnimAction(); }

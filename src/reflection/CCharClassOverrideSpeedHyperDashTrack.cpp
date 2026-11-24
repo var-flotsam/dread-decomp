@@ -26,7 +26,7 @@ void CCharClassOverrideSpeedHyperDashTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassOverrideSpeedHyperDashTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassOverrideSpeedHyperDashTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassOverrideSpeedHyperDashTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassOverrideSpeedHyperDashTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassOverrideSpeedHyperDashTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassOverrideSpeedHyperDashTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassOverrideSpeedHyperDashTrack::refl_Destroy(void* obj) { static_cast<CCharClassOverrideSpeedHyperDashTrack*>(obj)->~CCharClassOverrideSpeedHyperDashTrack(); }
 struct CCharClassOverrideSpeedHyperDashTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassOverrideSpeedHyperDashTrack);

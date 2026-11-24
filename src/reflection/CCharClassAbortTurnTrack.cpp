@@ -22,7 +22,7 @@ void CCharClassAbortTurnTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAbortTurnTrack::refl_AddFields(CClass*) {}
 bool CCharClassAbortTurnTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAbortTurnTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAbortTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAbortTurnTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAbortTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAbortTurnTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAbortTurnTrack::refl_Destroy(void* obj) { static_cast<CCharClassAbortTurnTrack*>(obj)->~CCharClassAbortTurnTrack(); }
 struct CCharClassAbortTurnTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAbortTurnTrack);

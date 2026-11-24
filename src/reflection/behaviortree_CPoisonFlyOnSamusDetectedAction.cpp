@@ -14,7 +14,7 @@ void behaviortree::CPoisonFlyOnSamusDetectedAction::refl_AddAttributes(CClass*) 
 void behaviortree::CPoisonFlyOnSamusDetectedAction::refl_AddFields(CClass*) {}
 bool behaviortree::CPoisonFlyOnSamusDetectedAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CPoisonFlyOnSamusDetectedAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CPoisonFlyOnSamusDetectedAction::refl_TypeOf(const void* obj) { return *static_cast<const CPoisonFlyOnSamusDetectedAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CPoisonFlyOnSamusDetectedAction::refl_TypeOf(const void* obj) { return *static_cast<const CPoisonFlyOnSamusDetectedAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CPoisonFlyOnSamusDetectedAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CPoisonFlyOnSamusDetectedAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CPoisonFlyOnSamusDetectedAction::refl_Destroy(void* obj) { static_cast<CPoisonFlyOnSamusDetectedAction*>(obj)->~CPoisonFlyOnSamusDetectedAction(); }

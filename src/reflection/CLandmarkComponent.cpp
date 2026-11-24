@@ -26,7 +26,7 @@ void CLandmarkComponent::refl_AddFields(CClass* cls) {
 }
 bool CLandmarkComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CLandmarkComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CLandmarkComponent::refl_TypeOf(const void* obj) { return *static_cast<const CLandmarkComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CLandmarkComponent::refl_TypeOf(const void* obj) { return *static_cast<const CLandmarkComponent*>(obj)->refl_GetDynamicClass(); }
 void CLandmarkComponent::refl_CopyConstruct(void*, const void*) {}
 void CLandmarkComponent::refl_MoveConstruct(void*, const void*) {}
 void CLandmarkComponent::refl_Destroy(void* obj) { static_cast<CLandmarkComponent*>(obj)->~CLandmarkComponent(); }

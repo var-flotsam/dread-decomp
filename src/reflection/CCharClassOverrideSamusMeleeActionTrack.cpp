@@ -28,7 +28,7 @@ void CCharClassOverrideSamusMeleeActionTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassOverrideSamusMeleeActionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassOverrideSamusMeleeActionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassOverrideSamusMeleeActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassOverrideSamusMeleeActionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassOverrideSamusMeleeActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassOverrideSamusMeleeActionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassOverrideSamusMeleeActionTrack::refl_Destroy(void* obj) { static_cast<CCharClassOverrideSamusMeleeActionTrack*>(obj)->~CCharClassOverrideSamusMeleeActionTrack(); }
 struct CCharClassOverrideSamusMeleeActionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassOverrideSamusMeleeActionTrack);

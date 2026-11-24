@@ -39,7 +39,7 @@ void CAttackPreset::refl_AddFields(CClass* cls) {
 }
 bool CAttackPreset::refl_Equals(const void*, const void*) { return false; }
 s32 CAttackPreset::refl_Hash() { return -1; }
-const base::reflection::CType& CAttackPreset::refl_TypeOf(const void* obj) { return *static_cast<const CAttackPreset*>(obj)->vf_0x0(); }
+const base::reflection::CType& CAttackPreset::refl_TypeOf(const void* obj) { return *static_cast<const CAttackPreset*>(obj)->refl_GetDynamicClass(); }
 void CAttackPreset::refl_CopyConstruct(void*, const void*) {}
 void CAttackPreset::refl_MoveConstruct(void*, const void*) {}
 void CAttackPreset::refl_Destroy(void* obj) { static_cast<CAttackPreset*>(obj)->~CAttackPreset(); }

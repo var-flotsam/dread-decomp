@@ -51,7 +51,7 @@ void CAnimationComponent::refl_AddFields(CClass* cls) {
 }
 bool CAnimationComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CAnimationComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CAnimationComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAnimationComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CAnimationComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAnimationComponent*>(obj)->refl_GetDynamicClass(); }
 void CAnimationComponent::refl_Destroy(void* obj) { static_cast<CAnimationComponent*>(obj)->~CAnimationComponent(); }
 struct CAnimationComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CAnimationComponent);

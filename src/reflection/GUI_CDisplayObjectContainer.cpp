@@ -46,7 +46,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("AddDisplayObj") {
         fn_71011d8af8(fn, "AddDisplayObj");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create DO At Index");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
         fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("oType", true));
@@ -55,7 +55,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("DeleteDO") {
         fn_71011d8bac(fn, "DeleteDO");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete DO At Index");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
 }

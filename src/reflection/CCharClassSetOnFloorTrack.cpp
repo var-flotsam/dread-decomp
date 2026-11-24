@@ -22,7 +22,7 @@ void CCharClassSetOnFloorTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassSetOnFloorTrack::refl_AddFields(CClass*) {}
 bool CCharClassSetOnFloorTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetOnFloorTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetOnFloorTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetOnFloorTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetOnFloorTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetOnFloorTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetOnFloorTrack::refl_Destroy(void* obj) { static_cast<CCharClassSetOnFloorTrack*>(obj)->~CCharClassSetOnFloorTrack(); }
 struct CCharClassSetOnFloorTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetOnFloorTrack);

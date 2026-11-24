@@ -528,7 +528,7 @@ struct UnkReadValue_ovb0098 {
 
 // Whether the field is read: when it has no such attribute, or the attribute is 1.
 static inline bool Readable(UnkReadField_ovb0098* f) {
-    UnkReflValue v = fn_710000cf10(f, fn_710000bf80(), true);
+    UnkReflValue v = fn_710000cf10(f, base::reflection::attr::PersistenceKey(), true);
     if (!v.type) {
         fn_71000a1c60(&v);
         return true;

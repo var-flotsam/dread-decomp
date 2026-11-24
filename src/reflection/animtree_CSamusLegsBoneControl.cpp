@@ -14,7 +14,7 @@ void animtree::CSamusLegsBoneControl::refl_AddAttributes(CClass*) {}
 void animtree::CSamusLegsBoneControl::refl_AddFields(CClass*) {}
 bool animtree::CSamusLegsBoneControl::refl_Equals(const void*, const void*) { return false; }
 s32 animtree::CSamusLegsBoneControl::refl_Hash() { return -1; }
-const base::reflection::CType& animtree::CSamusLegsBoneControl::refl_TypeOf(const void* obj) { return *static_cast<const CSamusLegsBoneControl*>(obj)->vf_0x0(); }
+const base::reflection::CType& animtree::CSamusLegsBoneControl::refl_TypeOf(const void* obj) { return *static_cast<const CSamusLegsBoneControl*>(obj)->refl_GetDynamicClass(); }
 void* animtree::CSamusLegsBoneControl::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* animtree::CSamusLegsBoneControl::refl_MoveAssign(void*, const void*) { return nullptr; }
 struct animtree::CSamusLegsBoneControl::refl_Description : ClassDescription {

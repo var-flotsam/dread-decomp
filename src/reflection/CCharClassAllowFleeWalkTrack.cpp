@@ -22,7 +22,7 @@ void CCharClassAllowFleeWalkTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAllowFleeWalkTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowFleeWalkTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowFleeWalkTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowFleeWalkTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowFleeWalkTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowFleeWalkTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowFleeWalkTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowFleeWalkTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowFleeWalkTrack*>(obj)->~CCharClassAllowFleeWalkTrack(); }
 struct CCharClassAllowFleeWalkTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowFleeWalkTrack);

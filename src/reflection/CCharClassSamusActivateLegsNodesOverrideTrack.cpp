@@ -22,7 +22,7 @@ void CCharClassSamusActivateLegsNodesOverrideTrack::refl_AddAttributes(CClass* c
 void CCharClassSamusActivateLegsNodesOverrideTrack::refl_AddFields(CClass*) {}
 bool CCharClassSamusActivateLegsNodesOverrideTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSamusActivateLegsNodesOverrideTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSamusActivateLegsNodesOverrideTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSamusActivateLegsNodesOverrideTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSamusActivateLegsNodesOverrideTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSamusActivateLegsNodesOverrideTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSamusActivateLegsNodesOverrideTrack::refl_Destroy(void* obj) { static_cast<CCharClassSamusActivateLegsNodesOverrideTrack*>(obj)->~CCharClassSamusActivateLegsNodesOverrideTrack(); }
 struct CCharClassSamusActivateLegsNodesOverrideTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSamusActivateLegsNodesOverrideTrack);

@@ -22,7 +22,7 @@ void CCharClassStaggerRecoveryTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassStaggerRecoveryTrack::refl_AddFields(CClass*) {}
 bool CCharClassStaggerRecoveryTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassStaggerRecoveryTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassStaggerRecoveryTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStaggerRecoveryTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassStaggerRecoveryTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStaggerRecoveryTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassStaggerRecoveryTrack::refl_Destroy(void* obj) { static_cast<CCharClassStaggerRecoveryTrack*>(obj)->~CCharClassStaggerRecoveryTrack(); }
 struct CCharClassStaggerRecoveryTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassStaggerRecoveryTrack);

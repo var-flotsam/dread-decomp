@@ -26,7 +26,7 @@ void CCharClassCheckHangShotEndEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassCheckHangShotEndEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCheckHangShotEndEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCheckHangShotEndEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCheckHangShotEndEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCheckHangShotEndEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCheckHangShotEndEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCheckHangShotEndEvent::refl_Destroy(void* obj) { static_cast<CCharClassCheckHangShotEndEvent*>(obj)->~CCharClassCheckHangShotEndEvent(); }
 struct CCharClassCheckHangShotEndEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCheckHangShotEndEvent);

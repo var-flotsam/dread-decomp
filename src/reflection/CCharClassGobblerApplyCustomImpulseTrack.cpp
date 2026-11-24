@@ -22,7 +22,7 @@ void CCharClassGobblerApplyCustomImpulseTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassGobblerApplyCustomImpulseTrack::refl_AddFields(CClass*) {}
 bool CCharClassGobblerApplyCustomImpulseTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassGobblerApplyCustomImpulseTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassGobblerApplyCustomImpulseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGobblerApplyCustomImpulseTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassGobblerApplyCustomImpulseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGobblerApplyCustomImpulseTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassGobblerApplyCustomImpulseTrack::refl_Destroy(void* obj) { static_cast<CCharClassGobblerApplyCustomImpulseTrack*>(obj)->~CCharClassGobblerApplyCustomImpulseTrack(); }
 struct CCharClassGobblerApplyCustomImpulseTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassGobblerApplyCustomImpulseTrack);

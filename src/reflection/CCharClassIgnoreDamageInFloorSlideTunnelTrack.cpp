@@ -22,7 +22,7 @@ void CCharClassIgnoreDamageInFloorSlideTunnelTrack::refl_AddAttributes(CClass* c
 void CCharClassIgnoreDamageInFloorSlideTunnelTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreDamageInFloorSlideTunnelTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreDamageInFloorSlideTunnelTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreDamageInFloorSlideTunnelTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreDamageInFloorSlideTunnelTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreDamageInFloorSlideTunnelTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreDamageInFloorSlideTunnelTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreDamageInFloorSlideTunnelTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreDamageInFloorSlideTunnelTrack*>(obj)->~CCharClassIgnoreDamageInFloorSlideTunnelTrack(); }
 struct CCharClassIgnoreDamageInFloorSlideTunnelTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreDamageInFloorSlideTunnelTrack);

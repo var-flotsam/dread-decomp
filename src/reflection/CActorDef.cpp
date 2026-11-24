@@ -21,7 +21,7 @@ void CActorDef::refl_AddAttributes(CClass* cls) {
 void CActorDef::refl_AddFields(CClass*) {}
 bool CActorDef::refl_Equals(const void*, const void*) { return false; }
 s32 CActorDef::refl_Hash() { return -1; }
-const base::reflection::CType& CActorDef::refl_TypeOf(const void* obj) { return *static_cast<const CActorDef*>(obj)->vf_0x0(); }
+const base::reflection::CType& CActorDef::refl_TypeOf(const void* obj) { return *static_cast<const CActorDef*>(obj)->refl_GetDynamicClass(); }
 void CActorDef::refl_Destroy(void* obj) { static_cast<CActorDef*>(obj)->~CActorDef(); }
 struct CActorDef::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CActorDef);

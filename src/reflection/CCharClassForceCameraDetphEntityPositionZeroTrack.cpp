@@ -22,7 +22,7 @@ void CCharClassForceCameraDetphEntityPositionZeroTrack::refl_AddAttributes(CClas
 void CCharClassForceCameraDetphEntityPositionZeroTrack::refl_AddFields(CClass*) {}
 bool CCharClassForceCameraDetphEntityPositionZeroTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassForceCameraDetphEntityPositionZeroTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassForceCameraDetphEntityPositionZeroTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceCameraDetphEntityPositionZeroTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassForceCameraDetphEntityPositionZeroTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceCameraDetphEntityPositionZeroTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassForceCameraDetphEntityPositionZeroTrack::refl_Destroy(void* obj) { static_cast<CCharClassForceCameraDetphEntityPositionZeroTrack*>(obj)->~CCharClassForceCameraDetphEntityPositionZeroTrack(); }
 struct CCharClassForceCameraDetphEntityPositionZeroTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassForceCameraDetphEntityPositionZeroTrack);

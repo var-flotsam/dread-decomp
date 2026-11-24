@@ -14,7 +14,7 @@ void CEnhanceWeakSpotComponent::refl_AddAttributes(CClass*) {}
 void CEnhanceWeakSpotComponent::refl_AddFields(CClass*) {}
 bool CEnhanceWeakSpotComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CEnhanceWeakSpotComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CEnhanceWeakSpotComponent::refl_TypeOf(const void* obj) { return *static_cast<const CEnhanceWeakSpotComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CEnhanceWeakSpotComponent::refl_TypeOf(const void* obj) { return *static_cast<const CEnhanceWeakSpotComponent*>(obj)->refl_GetDynamicClass(); }
 void CEnhanceWeakSpotComponent::refl_CopyConstruct(void*, const void*) {}
 void CEnhanceWeakSpotComponent::refl_MoveConstruct(void*, const void*) {}
 void CEnhanceWeakSpotComponent::refl_Destroy(void* obj) { static_cast<CEnhanceWeakSpotComponent*>(obj)->~CEnhanceWeakSpotComponent(); }

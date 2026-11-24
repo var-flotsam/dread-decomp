@@ -22,7 +22,7 @@ void CCharClassIgnoreCameraUseBoundariesTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreCameraUseBoundariesTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreCameraUseBoundariesTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreCameraUseBoundariesTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreCameraUseBoundariesTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCameraUseBoundariesTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreCameraUseBoundariesTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCameraUseBoundariesTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreCameraUseBoundariesTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreCameraUseBoundariesTrack*>(obj)->~CCharClassIgnoreCameraUseBoundariesTrack(); }
 struct CCharClassIgnoreCameraUseBoundariesTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreCameraUseBoundariesTrack);

@@ -14,7 +14,7 @@ void CCharClassMaterialFXComponent::refl_AddAttributes(CClass*) {}
 void CCharClassMaterialFXComponent::refl_AddFields(CClass*) {}
 bool CCharClassMaterialFXComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassMaterialFXComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMaterialFXComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMaterialFXComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMaterialFXComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMaterialFXComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMaterialFXComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassMaterialFXComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassMaterialFXComponent::refl_Destroy(void* obj) { static_cast<CCharClassMaterialFXComponent*>(obj)->~CCharClassMaterialFXComponent(); }

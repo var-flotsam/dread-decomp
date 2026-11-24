@@ -22,7 +22,7 @@ void CCharClassMaintainAnalogTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassMaintainAnalogTrack::refl_AddFields(CClass*) {}
 bool CCharClassMaintainAnalogTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassMaintainAnalogTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMaintainAnalogTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMaintainAnalogTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMaintainAnalogTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMaintainAnalogTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMaintainAnalogTrack::refl_Destroy(void* obj) { static_cast<CCharClassMaintainAnalogTrack*>(obj)->~CCharClassMaintainAnalogTrack(); }
 struct CCharClassMaintainAnalogTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassMaintainAnalogTrack);

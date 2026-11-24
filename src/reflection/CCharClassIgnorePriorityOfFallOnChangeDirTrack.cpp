@@ -22,7 +22,7 @@ void CCharClassIgnorePriorityOfFallOnChangeDirTrack::refl_AddAttributes(CClass* 
 void CCharClassIgnorePriorityOfFallOnChangeDirTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnorePriorityOfFallOnChangeDirTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnorePriorityOfFallOnChangeDirTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnorePriorityOfFallOnChangeDirTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnorePriorityOfFallOnChangeDirTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnorePriorityOfFallOnChangeDirTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnorePriorityOfFallOnChangeDirTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnorePriorityOfFallOnChangeDirTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnorePriorityOfFallOnChangeDirTrack*>(obj)->~CCharClassIgnorePriorityOfFallOnChangeDirTrack(); }
 struct CCharClassIgnorePriorityOfFallOnChangeDirTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnorePriorityOfFallOnChangeDirTrack);

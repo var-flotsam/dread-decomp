@@ -21,7 +21,7 @@ void base::curves::CCurveResource::refl_AddAttributes(CClass* cls) {
 void base::curves::CCurveResource::refl_AddFields(CClass*) {}
 bool base::curves::CCurveResource::refl_Equals(const void*, const void*) { return false; }
 s32 base::curves::CCurveResource::refl_Hash() { return -1; }
-const base::reflection::CType& base::curves::CCurveResource::refl_TypeOf(const void* obj) { return *static_cast<const CCurveResource*>(obj)->vf_0x0(); }
+const base::reflection::CType& base::curves::CCurveResource::refl_TypeOf(const void* obj) { return *static_cast<const CCurveResource*>(obj)->refl_GetDynamicClass(); }
 void base::curves::CCurveResource::refl_MoveConstruct(void*, const void*) {}
 void base::curves::CCurveResource::refl_Destroy(void* obj) { static_cast<CCurveResource*>(obj)->~CCurveResource(); }
 void* base::curves::CCurveResource::refl_MoveAssign(void*, const void*) { return nullptr; }

@@ -32,7 +32,7 @@ void CCharClassFrozenComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassFrozenComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassFrozenComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFrozenComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFrozenComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFrozenComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFrozenComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFrozenComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassFrozenComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassFrozenComponent::refl_Destroy(void* obj) { static_cast<CCharClassFrozenComponent*>(obj)->~CCharClassFrozenComponent(); }

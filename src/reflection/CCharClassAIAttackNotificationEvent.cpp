@@ -22,7 +22,7 @@ void CCharClassAIAttackNotificationEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassAIAttackNotificationEvent::refl_AddFields(CClass*) {}
 bool CCharClassAIAttackNotificationEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAIAttackNotificationEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAIAttackNotificationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAIAttackNotificationEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAIAttackNotificationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAIAttackNotificationEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAIAttackNotificationEvent::refl_Destroy(void* obj) { static_cast<CCharClassAIAttackNotificationEvent*>(obj)->~CCharClassAIAttackNotificationEvent(); }
 struct CCharClassAIAttackNotificationEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAIAttackNotificationEvent);

@@ -14,7 +14,7 @@ void animtree::CLookAtPosControl::refl_AddAttributes(CClass*) {}
 void animtree::CLookAtPosControl::refl_AddFields(CClass*) {}
 bool animtree::CLookAtPosControl::refl_Equals(const void*, const void*) { return false; }
 s32 animtree::CLookAtPosControl::refl_Hash() { return -1; }
-const base::reflection::CType& animtree::CLookAtPosControl::refl_TypeOf(const void* obj) { return *static_cast<const CLookAtPosControl*>(obj)->vf_0x0(); }
+const base::reflection::CType& animtree::CLookAtPosControl::refl_TypeOf(const void* obj) { return *static_cast<const CLookAtPosControl*>(obj)->refl_GetDynamicClass(); }
 void* animtree::CLookAtPosControl::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* animtree::CLookAtPosControl::refl_MoveAssign(void*, const void*) { return nullptr; }
 struct animtree::CLookAtPosControl::refl_Description : ClassDescription {
