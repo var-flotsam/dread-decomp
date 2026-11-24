@@ -43,7 +43,7 @@ void fn_710058e67c(UnkGoliathXSlamAttack_b58a3* self);
 CStrId fn_71003627f8(UnkGoliathXSlamAttack_b58a3* self, UnkActor* owner);
 
 static inline u64 Hash_b58a3(const CStrId& id) {
-    return *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(id.data) + 0x30);
+    return id.data->Key();
 }
 
 void fn_7100586a30(UnkGoliathXSlamAttack_b58a3* self) {

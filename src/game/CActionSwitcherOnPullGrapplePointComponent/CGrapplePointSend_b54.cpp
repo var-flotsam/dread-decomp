@@ -40,7 +40,7 @@ struct UnkGrapplePoint_b54 {
 };
 
 static inline u64 StrIdHash_b54(base::global::UnkStringData* data) {
-    return *reinterpret_cast<u64*>(reinterpret_cast<char*>(data) + 0x30);
+    return data->Key();
 }
 
 void fn_710082bec4(UnkGrapplePoint_b54* self) {

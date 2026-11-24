@@ -19,6 +19,7 @@
 #include "game/CFXComponent.h"
 #include "game/CRinkaUnitComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkFxObject_ovb0041.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
@@ -109,8 +110,6 @@ __attribute__((noinline)) const CFilePathStrId* fn_710065f690(UnkRinkaUnitKind_o
     return kind == 2 ? &c : path;
 }
 
-struct UnkFxObject_ovb0041;
-
 struct UnkRinkaEntry_ruc;
 
 struct UnkRinkaControl_ovb0090;
@@ -162,6 +161,6 @@ void fn_710066036c(UnkRinkaUnitSpawn_ovb0090* self) {
         fn_7100146d98(target, &angle);
     }
     fn_7100146dac(reinterpret_cast<UnkSwitchObject*>(self->fx), true);
-    fn_7100208a40(reinterpret_cast<char*>(self->fx) + 0x28);
+    fn_7100208a40(&self->fx->field_0x28);
     fn_7101152988(self->actor->control, self->fx, g_unk_71726fd110, nullptr, 0);
 }

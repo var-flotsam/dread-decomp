@@ -71,7 +71,7 @@ bool fn_710069a7e4(UnkScourgeSlash_b0115* self, void* arg, u32 mode, bool check,
             return false;
         }
         UnkManager_71726af468* manager = GetManager_b0115();
-        if (!fn_71006a22b0(reinterpret_cast<u8*>(manager) + 0x5e0, self->actor))
+        if (!fn_71006a22b0(manager->field_0x5e0, self->actor))
             return false;
     } else if (!ok) {
         return false;

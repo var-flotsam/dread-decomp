@@ -117,7 +117,7 @@ bool fn_71006312bc(UnkPoisonFlyDive6_ovb0133* self, void* arg, u32 mode) {
         fn_7100da7e2c(m);
         g_unk_71726af468 = m;
     }
-    void* registry = reinterpret_cast<char*>(m) + 0x80;
+    void* registry = m->field_0x80;
     if (ok) {
         UnkActor* owner = self->owner;
         u32 x = *reinterpret_cast<const u32*>(&owner->field_0x44);
@@ -218,7 +218,7 @@ void fn_710063302c(UnkPoisonFlyDive_ovb0133* self) {
         f32 reach = fn_7100977b20(self->owner->field_0x1f8);
         if (AiAgrees(self->owner->field_0x240)) {
             f32 r = reach * 1.5f;
-            if (fn_710063c10c(reinterpret_cast<char*>(m) + 0x80, self->owner) > r * r) {
+            if (fn_710063c10c(m->field_0x80, self->owner) > r * r) {
                 fn_71006314b4(self);
                 self->state = 3;
                 return;

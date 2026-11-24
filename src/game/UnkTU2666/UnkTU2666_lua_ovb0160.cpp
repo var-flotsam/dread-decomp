@@ -516,7 +516,7 @@ struct UnkLuaOwner_b0160 {
 };
 
 static inline UnkLuaOwner_b0160* FindById(UnkGameManager* manager, const CStrId& id, u32 kind) {
-    u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(id.data) + 0x30);
+    u64 key = id.data->Key();
     alignas(8) u32 flags = kind;
     return reinterpret_cast<UnkLuaOwner_b0160*>(fn_7100debbc8(manager, &key, &flags));
 }
@@ -710,7 +710,7 @@ UnkReflValue fn_7100fbdfd0(lua_State* L, s32 index);
 
 // The value's storage: through field_0x0 when flagged or when it doesn't fit in 8 bytes, else inline.
 static inline u64 TypeSize(const CType* type) {
-    return *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(type) + 0x18);
+    return type->m_size;
 }
 static inline void* ValuePtr(UnkReflValue& v) {
     const CType* type = reinterpret_cast<const CType*>(v.type);

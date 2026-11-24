@@ -60,6 +60,7 @@ struct UnkRushItemEntry_b0195 {
 struct UnkRushItems_b0195 {
     UnkRushItemEntry_b0195* data;
     u32 count;
+    u32 field_0xc;
 };
 
 struct UnkRushLevel_b0195 {
@@ -557,7 +558,7 @@ void fn_7100db8154(UnkRush_b0195* self) {
     if (self->items_0xd8.data) {
         self->items_0xd8.count = 0;
         self->sink_0xf8->vf_0x48(self->items_0xd8.data);
-        __builtin_memset(reinterpret_cast<char*>(self) + 0xe4, 0, sizeof(u32));
+        __builtin_memset(&self->items_0xd8.field_0xc, 0, sizeof(u32));
     }
     self->machine_vtable = &g_unk_7101aa9660[2];
     self->machine.current = nullptr;

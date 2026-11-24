@@ -13,6 +13,7 @@
 #include "game/CComponent.h"
 #include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkModel.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
 #include "game/UnkTU253.h"
@@ -65,7 +66,7 @@ struct UnkAreaFXSet_ovb0081 {
 static_assert(__builtin_offsetof(UnkAreaFXSet_ovb0081, model) == 0xe70, "UnkAreaFXSet_ovb0081 layout");
 
 static inline UnkSceneNode* Node_ovb0081(UnkModel* model) {
-    return model ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(model) + 8) : nullptr;
+    return model ? &model->field_0x8 : nullptr;
 }
 
 static inline UnkItemBase_71011a91c4* Item_ovb0081(UnkModel* model) {
@@ -123,7 +124,7 @@ bool fn_7100803490(UnkAreaFXSet_ovb0081* self, void* arg) {
         UnkRenderManager* manager = g_unk_7101d47300;
         UnkModel* model = nullptr;
         fn_71006cae2c(manager->field_0x218, self->path, &model, &base::global::CStrId::Empty());
-        fn_7100219ae0(manager, model ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(model) + 8) : nullptr,
+        fn_7100219ae0(manager, model ? &model->field_0x8 : nullptr,
                       0);
         self->model = model;
         if (model) {
@@ -144,7 +145,7 @@ void fn_71008036a8(UnkAreaFXSet_ovb0081* self) {
             self->field_0xcd0 = model;
             fn_71001436a0(model, 0);
         }
-        fn_71001c0968(*reinterpret_cast<UnkModelData**>(reinterpret_cast<char*>(self->field_0xcd0) + 0x138), 1);
+        fn_71001c0968(self->field_0xcd0->field_0x138, 1);
         const UnkVec3f& zero = reinterpret_cast<const UnkVec3f&>(g_unk_710164779c);
         for (u64 i = 0; i < 400; ++i) {
             UnkMatrix44 m = fn_71000791a8(zero, zero, zero);

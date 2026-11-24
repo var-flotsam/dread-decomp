@@ -110,6 +110,11 @@ struct UnkEntityState;
 extern u64 g_unk_710164b5e0;
 extern u64 g_unk_710164b5e8;
 
+// The slot's handle (base::UnkRefCounted's layout); its entity is at +0x10.
+struct UnkTeleporterTarget_b0233 : base::UnkRefCounted {
+    UnkEntityState* field_0x10;
+};
+
 struct UnkTeleporterPartner_b0233 {
     u8 pad_0x0[0x10];
     void* field_0x10;
@@ -145,12 +150,12 @@ u32 fn_7100a8f448(UnkTeleporter_b0233* self, bool flag) {
             }
             self->state = 2;
         }
-        if (base::UnkRefCounted* target = self->target.ptr) {
-            if (*reinterpret_cast<void**>(reinterpret_cast<char*>(target) + 0x10)) {
+        if (auto* target = static_cast<UnkTeleporterTarget_b0233*>(self->target.ptr)) {
+            if (target->field_0x10) {
                 if (self->partner && self->partner->field_0x10) {
                     // Keeps the handle's object reloaded after the partner tests.
                     asm("" : "+r"(target));
-                    fn_7100232864(*reinterpret_cast<UnkEntityState**>(reinterpret_cast<char*>(target) + 0x10), flag);
+                    fn_7100232864(target->field_0x10, flag);
                     fn_7100232864(self->partner ? static_cast<UnkEntityState*>(self->partner->field_0x10) : nullptr, inactive);
                 }
             }
@@ -173,7 +178,7 @@ void fn_7100a8e4c0(UnkTeleporterSelf_b0233* self) {
         if (entry.value == self->mode) {
             UnkFxId_b0233 name = entry.id;
             void* component = self->actor->field_0x228;
-            u64 hash = *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(name.data) + 0x30);
+            u64 hash = name.data->Key();
             fn_71011738f8(static_cast<UnkEnergyWaveFxComp_b49*>(component), &hash, 1);
             break;
         }

@@ -39,10 +39,12 @@ struct UnkSwifterDrive {
 struct UnkSwifterAI {
     u8 pad_0x0[0x30];
     UnkActor* owner;
+    u8 pad_0x38[0x146c8 - 0x38];
+    UnkSwifterDrive field_0x146c8;
 };
 
 void fn_71006cd8bc(UnkSwifterAI* self, f32 dt) {
-    UnkSwifterDrive* drive = reinterpret_cast<UnkSwifterDrive*>(reinterpret_cast<char*>(self) + 0x146c8);
+    UnkSwifterDrive* drive = &self->field_0x146c8;
     fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);
     UnkActor* owner = self->owner;
     UnkSwifterMovement* movement = static_cast<UnkSwifterMovement*>(owner->field_0x218);

@@ -75,7 +75,7 @@ static inline __attribute__((always_inline)) bool NameIs_ovb0076(const CStrId& i
 // The id's text, counting the use.
 static inline __attribute__((always_inline)) const CRntString* Text_ovb0076(const CStrId& id) {
     ++reinterpret_cast<UnkStrIdText_ovb0076*>(id.data)->field_0x44;
-    return reinterpret_cast<const CRntString*>(reinterpret_cast<u8*>(id.data) + 0x10);
+    return &id.data->String();
 }
 
 s32 fn_71011f8750(const CStrId& id) {

@@ -50,7 +50,7 @@ void fn_71005b2d14(UnkHydrogigaAttack_b57a3* self, f32 dt) {
     fn_710117b08c(animation, &query);
     if (!query.result)
         return;
-    u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(query.result->sources.data) + 0x30);
+    u64 hash = query.result->sources.data->Key();
     base::reflection::UnkReflTypeIdArg mode;
     mode.id = 1;
     base::reflection::UnkReflTypeIdArg mask;

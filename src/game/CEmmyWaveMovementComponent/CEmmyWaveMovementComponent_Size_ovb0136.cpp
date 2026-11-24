@@ -41,7 +41,7 @@ struct UnkWaveFx_ovb0136 {
 };
 
 static inline UnkWorld* FxWorld(UnkChargeComponent* self) {
-    return *reinterpret_cast<UnkWorld**>(reinterpret_cast<u8*>(self->field_0x30) + 0x280);
+    return self->field_0x30->field_0x280;
 }
 
 static inline void ScaleFx(UnkWorld* world, const char* name, u64 length, f32 scale) {
@@ -70,7 +70,7 @@ void fn_71005026d0(UnkChargeComponent* self, u32 mode, f32 value) {
     UnkWorld* world = FxWorld(self);
     if (!world)
         return;
-    f32 scale = self->field_0x5dc / *reinterpret_cast<f32*>(reinterpret_cast<u8*>(self) + 0x5e0);
+    f32 scale = self->field_0x5dc / self->field_0x5e0;
     ScaleFx(world, "emywave", 7, scale);
     ScaleFx(FxWorld(self), "wave", 4, scale);
     ScaleFx(FxWorld(self), "wavewall", 8, scale);

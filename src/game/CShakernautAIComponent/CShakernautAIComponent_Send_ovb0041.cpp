@@ -149,5 +149,5 @@ void fn_71006b14ec(UnkShkImpact_ovb0041* self, const UnkShkPoint_ovb0041* at, vo
         fx->vtable->set_speed(fx, -1.0f);
         fn_71011a9bb4(manager, fx);
     }
-    fn_71002093c8(reinterpret_cast<char*>(fx) + 0x28, false);
+    fn_71002093c8(&fx->field_0x28, false);
 }

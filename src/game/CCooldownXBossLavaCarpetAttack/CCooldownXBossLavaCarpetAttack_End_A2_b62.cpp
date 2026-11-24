@@ -107,7 +107,7 @@ void fn_71004c4fac(UnkLavaCarpet_b62a2* self) {
     if (self->field_0x785) {
         UnkActor* actor = fn_7100d7c990(self->owner);
         fn_710116a170(*reinterpret_cast<void**>(reinterpret_cast<char*>(actor) + 0x1c0),
-                      reinterpret_cast<char*>(self->owner) + 0x30);
+                      self->owner->field_0x30);
         self->field_0x780 = 0;
         self->field_0x785 = false;
     }

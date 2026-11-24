@@ -278,8 +278,7 @@ struct UnkSmOwner_b61 {
 };
 
 void fn_71005c0314(UnkSmOwner_b61<0x14ca8>* self) {
-    RequestStateAt_b61<6, 7>(&self->machine,
-                             reinterpret_cast<UnkSmStatePtr_b61*>(reinterpret_cast<char*>(self) + 0x14ccc), 5);
+    RequestStateAt_b61<6, 7>(&self->machine, self->machine.states, 5);
 }
 
 struct UnkHydrogigaParams_b61 {
@@ -331,8 +330,7 @@ void fn_71005c2380(UnkHydrogigaParts_b61* self) {
     else
         level = *reinterpret_cast<f32*>(a + 0x178);
     if (level <= 0.2f)
-        RequestStateAt_b61<6, 7, true>(&self->machine,
-                                       reinterpret_cast<UnkSmStatePtr_b61*>(reinterpret_cast<char*>(self) + 0x14ccc), 4);
+        RequestStateAt_b61<6, 7, true>(&self->machine, self->machine.states, 4);
 }
 
 // Once the timer reaches its tunable (+0x558), or the value at +0x149d0 reaches +0x56c, clears that value
@@ -343,14 +341,12 @@ void fn_71005c29e8(UnkHydrogigaSm_b61* self, f32 dt) {
     UnkHydrogigaParams_b61* params = state->params;
     if (state->timer >= params->field_0x558 || state->field_0x30 >= params->field_0x56c) {
         state->field_0x30 = 0.0f;
-        RequestStateAt_b61<6, 7, true>(&self->machine,
-                                       reinterpret_cast<UnkSmStatePtr_b61*>(reinterpret_cast<char*>(self) + 0x14ccc), 6);
+        RequestStateAt_b61<6, 7, true>(&self->machine, self->machine.states, 6);
     }
 }
 
 #define UNK_HYDROGIGA_REQUEST_B61(owner, id)                                                                  \
-    RequestStateAt_b61<6, 7, true>(                                                                            \
-        &(owner)->machine, reinterpret_cast<UnkSmStatePtr_b61*>(reinterpret_cast<char*>(owner) + 0x14ccc), id)
+    RequestStateAt_b61<6, 7, true>(&(owner)->machine, (owner)->machine.states, id)
 
 // ---- CHydrogigaTongueSwirlAttack (tools/tu_map.py) ----
 // After the base call, unless the owner's CHydrogigaAIComponent (+0x240) is in state 5, resets it

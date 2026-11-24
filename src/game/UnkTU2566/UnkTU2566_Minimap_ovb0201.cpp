@@ -249,8 +249,8 @@ UnkGridCell_e* fn_7100e796a8(void* grid, u32 index);
 // Paints one pixel per grid cell into the 1024 by 512 texture, then hands it and a second parameter
 // to the render passes.
 void fn_7100e95480(UnkMinimapOwner_e* self) {
-    u64* guard = reinterpret_cast<u64*>(reinterpret_cast<u8*>(&g_unk_71729cdaa0) + 0x98);
-    f32* cell_size = reinterpret_cast<f32*>(reinterpret_cast<u8*>(&g_unk_71729cdaa0) + 8);
+    u64* guard = &g_unk_71729cdaa0.field_0x98;
+    f32* cell_size = &g_unk_71729cdaa0.field_0x8;
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(guard), __ATOMIC_ACQUIRE) & 1), 0)) {
         if (__cxa_guard_acquire(guard)) {
             *cell_size = g_unk_710164be30 + g_unk_710164be30;

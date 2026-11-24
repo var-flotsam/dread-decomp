@@ -60,7 +60,7 @@ static_assert(__builtin_offsetof(UnkGuiButtonFocus_ovb0000, alpha) == 0x28c, "la
 void fn_71011bf558(UnkGuiButtonFocus_ovb0000* self) {
     fn_71011d9ab4(self);
     if (self->tint_on_focus) {
-        self->alpha = *reinterpret_cast<f32*>(reinterpret_cast<char*>(self->sprite) + 0xac);
+        self->alpha = self->sprite->field_0xa0[3];
         UnkButtonColor_ovb0000 color(0.6f, 0.6f, 0.6f, 1.0f);
         self->SetColor(color);
     } else if (self->fade_on_focus) {

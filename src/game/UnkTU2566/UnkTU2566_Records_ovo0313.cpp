@@ -21,6 +21,7 @@ struct UnkMapData;
 struct UnkMmOwner_o0313 {
     u8 unk_0x0[0x110];
     CStrId field_0x110;
+    u8 field_0x118[1];  // the records fn_7100e791a4 counts
 };
 
 void fn_7100e95130(UnkMapData* map, u64 id) {
@@ -30,7 +31,7 @@ void fn_7100e95130(UnkMapData* map, u64 id) {
     const CStrId* current = fn_7100de9bf8(g_unk_7101d47310);
     if (self->field_0x110.data != current->data)
         return;
-    u32 count = fn_7100e791a4((u8*)self + 0x118, (void*)id, 0, true, g_unk_71727cc99c);
+    u32 count = fn_7100e791a4(self->field_0x118, (void*)id, 0, true, g_unk_71727cc99c);
     fn_7100e951d4((UnkMinimapOwner*)self, count, g_unk_71727cc99c, 1);
 }
 

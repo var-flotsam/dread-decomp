@@ -116,7 +116,7 @@ struct UnkGuiCacheView_b0231 {
     UnkGuiNode_b0231** BucketFor(base::global::UnkStringData* key) {
         if (count == 0)
             return nullptr;
-        const u32* hash = reinterpret_cast<const u32*>(reinterpret_cast<const u8*>(key) + 0x30);
+        const u32* hash = key->hash;
         u32 idx = (hash[0] ^ hash[1]) % divisor;
         return buckets + idx;
     }
@@ -161,7 +161,7 @@ UnkSweepNode_b49* fn_710119d7e4(UnkSweepList_b49* list, UnkSweepNode_b49* node_)
     auto* self = reinterpret_cast<UnkGuiCacheView_b0231*>(list);
     auto* node = reinterpret_cast<UnkGuiNode_b0231*>(node_);
     auto* key = node->key.data;
-    const u32* hash = reinterpret_cast<const u32*>(reinterpret_cast<const u8*>(key) + 0x30);
+    const u32* hash = key->hash;
     u32 idx = (hash[0] ^ hash[1]) % self->divisor;
     UnkGuiNode_b0231** slot = self->buckets + idx;
     UnkGuiNode_b0231* found = *slot;
@@ -312,7 +312,7 @@ struct UnkDefHandle_b0231 {
 // disabled. True when there is one.
 bool fn_710119e4ec(UnkSubAreaGuiCache* cache, const CStrId* id, bool flag) {
     UnkGameManager* manager = g_unk_7101d47310;
-    if (!manager->field_0x608 || *reinterpret_cast<const bool*>(reinterpret_cast<const u8*>(manager) + 0x1aa8))
+    if (!manager->field_0x608 || manager->field_0x1aa8)
         return false;
     using Load = UnkDefHandle_b0231 (*)(UnkActorDefFactory*, const CStrId*, const base::global::CFilePathStrId*);
     UnkDefHandle_b0231 def = reinterpret_cast<Load>(fn_71011938bc)(g_unk_71726a0220, id, &g_unk_7101d470e8);

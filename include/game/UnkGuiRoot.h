@@ -32,7 +32,8 @@ struct UnkGuiKeyList {
 struct UnkGuiRoot {
     u8 unk_0x0[0x68];
     UnkGuiDisplayObject* menu;
-    u8 unk_0x70[0x1c0];
+    u8 unk_0x70[0x148];
+    u8 field_0x1b8[0x78];  // a list of focus links (fn_71011b77e8 adds to it)
     UnkWeakHandle* field_0x230;  // the focus: the weak handle of the focused object (its target is at +0x10)
     UnkWeakHandle* field_0x238;  // the handle of the object fn_71011b6bbc checks the new focus against
     u8 unk_0x240[0xa68];
