@@ -22,7 +22,7 @@ void CCharClassAffectsScrewAttackDamageTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAffectsScrewAttackDamageTrack::refl_AddFields(CClass*) {}
 bool CCharClassAffectsScrewAttackDamageTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAffectsScrewAttackDamageTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAffectsScrewAttackDamageTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAffectsScrewAttackDamageTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAffectsScrewAttackDamageTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAffectsScrewAttackDamageTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAffectsScrewAttackDamageTrack::refl_Destroy(void* obj) { static_cast<CCharClassAffectsScrewAttackDamageTrack*>(obj)->~CCharClassAffectsScrewAttackDamageTrack(); }
 struct CCharClassAffectsScrewAttackDamageTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAffectsScrewAttackDamageTrack);

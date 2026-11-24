@@ -14,7 +14,7 @@ void game::logic::collision::CTrigger::refl_AddAttributes(CClass*) {}
 void game::logic::collision::CTrigger::refl_AddFields(CClass*) {}
 bool game::logic::collision::CTrigger::refl_Equals(const void*, const void*) { return false; }
 s32 game::logic::collision::CTrigger::refl_Hash() { return -1; }
-const base::reflection::CType& game::logic::collision::CTrigger::refl_TypeOf(const void* obj) { return *static_cast<const CTrigger*>(obj)->vf_0x0(); }
+const base::reflection::CType& game::logic::collision::CTrigger::refl_TypeOf(const void* obj) { return *static_cast<const CTrigger*>(obj)->refl_GetDynamicClass(); }
 void game::logic::collision::CTrigger::refl_CopyConstruct(void*, const void*) {}
 void game::logic::collision::CTrigger::refl_MoveConstruct(void*, const void*) {}
 void game::logic::collision::CTrigger::refl_Destroy(void* obj) { static_cast<CTrigger*>(obj)->~CTrigger(); }

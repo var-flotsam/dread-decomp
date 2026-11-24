@@ -78,7 +78,7 @@ u32 fn_710063f944(UnkQuetzoaXAI_b58* self, UnkQuetzoaXMessage_b58* msg) {
             mode.id = 1;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(anim, 0x9b214780df6c8f00, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+            CAnimationComponent_SendActionToTrack(anim, 0x9b214780df6c8f00, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                           &mask);
             UnkQuetzoaXOwner_b58* turner = reinterpret_cast<UnkQuetzoaXOwner_b58*>(self->owner);
             const UnkMatrix44& m = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(other->field_0x38));

@@ -22,7 +22,7 @@ void CCharClassIgnoreUsableInterpolationTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreUsableInterpolationTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreUsableInterpolationTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreUsableInterpolationTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreUsableInterpolationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreUsableInterpolationTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreUsableInterpolationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreUsableInterpolationTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreUsableInterpolationTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreUsableInterpolationTrack*>(obj)->~CCharClassIgnoreUsableInterpolationTrack(); }
 struct CCharClassIgnoreUsableInterpolationTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreUsableInterpolationTrack);

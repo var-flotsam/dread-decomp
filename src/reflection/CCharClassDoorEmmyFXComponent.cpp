@@ -29,7 +29,7 @@ void CCharClassDoorEmmyFXComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassDoorEmmyFXComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassDoorEmmyFXComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassDoorEmmyFXComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDoorEmmyFXComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassDoorEmmyFXComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDoorEmmyFXComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassDoorEmmyFXComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassDoorEmmyFXComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassDoorEmmyFXComponent::refl_Destroy(void* obj) { static_cast<CCharClassDoorEmmyFXComponent*>(obj)->~CCharClassDoorEmmyFXComponent(); }

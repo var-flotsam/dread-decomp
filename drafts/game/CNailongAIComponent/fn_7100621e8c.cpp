@@ -96,7 +96,7 @@ u32 fn_7100621e8c(UnkNailongAI_l621e8c* self, UnkNailongMessage_l621e8c* msg) {
                 mode.id = 10;
                 base::reflection::UnkReflTypeIdArg mask;
                 mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(target, 0x6a83a50c8f7f1ee6, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(target, 0x6a83a50c8f7f1ee6, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                               &g_unk_7172769740, &mask);
             }
         }

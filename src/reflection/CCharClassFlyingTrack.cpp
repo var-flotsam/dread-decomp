@@ -22,7 +22,7 @@ void CCharClassFlyingTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassFlyingTrack::refl_AddFields(CClass*) {}
 bool CCharClassFlyingTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFlyingTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFlyingTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFlyingTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFlyingTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFlyingTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFlyingTrack::refl_Destroy(void* obj) { static_cast<CCharClassFlyingTrack*>(obj)->~CCharClassFlyingTrack(); }
 struct CCharClassFlyingTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFlyingTrack);

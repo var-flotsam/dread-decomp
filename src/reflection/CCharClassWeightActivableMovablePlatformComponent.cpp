@@ -23,7 +23,7 @@ void CCharClassWeightActivableMovablePlatformComponent::refl_AddFields(CClass* c
 }
 bool CCharClassWeightActivableMovablePlatformComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassWeightActivableMovablePlatformComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassWeightActivableMovablePlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassWeightActivableMovablePlatformComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassWeightActivableMovablePlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassWeightActivableMovablePlatformComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassWeightActivableMovablePlatformComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassWeightActivableMovablePlatformComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassWeightActivableMovablePlatformComponent::refl_Destroy(void* obj) { static_cast<CCharClassWeightActivableMovablePlatformComponent*>(obj)->~CCharClassWeightActivableMovablePlatformComponent(); }

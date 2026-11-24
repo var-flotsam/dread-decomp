@@ -14,7 +14,7 @@ void behaviortree::CAutoolFollowPathAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CAutoolFollowPathAction::refl_AddFields(CClass*) {}
 bool behaviortree::CAutoolFollowPathAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CAutoolFollowPathAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CAutoolFollowPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CAutoolFollowPathAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CAutoolFollowPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CAutoolFollowPathAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CAutoolFollowPathAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CAutoolFollowPathAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CAutoolFollowPathAction::refl_Destroy(void* obj) { static_cast<CAutoolFollowPathAction*>(obj)->~CAutoolFollowPathAction(); }

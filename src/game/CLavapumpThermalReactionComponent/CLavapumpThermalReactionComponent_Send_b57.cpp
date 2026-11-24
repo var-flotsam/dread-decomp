@@ -40,7 +40,7 @@ void fn_7100a29890(UnkLavapumpSend_b57* self) {
             u32 mode = 0;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(target, 0x1432c55a4f99ab04, 0xf4061ff25a2163d6,
+            CAnimationComponent_SendActionToTrack(target, 0x1432c55a4f99ab04, 0xf4061ff25a2163d6,
                           reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode), &g_unk_710164b958,
                           &g_unk_7172769740, &mask);
         }

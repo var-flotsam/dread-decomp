@@ -22,7 +22,7 @@ void CCharClassSamusLegsNodesOverrideWithBlendspaceTrack::refl_AddAttributes(CCl
 void CCharClassSamusLegsNodesOverrideWithBlendspaceTrack::refl_AddFields(CClass*) {}
 bool CCharClassSamusLegsNodesOverrideWithBlendspaceTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSamusLegsNodesOverrideWithBlendspaceTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSamusLegsNodesOverrideWithBlendspaceTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSamusLegsNodesOverrideWithBlendspaceTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSamusLegsNodesOverrideWithBlendspaceTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSamusLegsNodesOverrideWithBlendspaceTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSamusLegsNodesOverrideWithBlendspaceTrack::refl_Destroy(void* obj) { static_cast<CCharClassSamusLegsNodesOverrideWithBlendspaceTrack*>(obj)->~CCharClassSamusLegsNodesOverrideWithBlendspaceTrack(); }
 struct CCharClassSamusLegsNodesOverrideWithBlendspaceTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSamusLegsNodesOverrideWithBlendspaceTrack);

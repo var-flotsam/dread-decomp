@@ -23,7 +23,7 @@ void CCameraFX::refl_AddFields(CClass* cls) {
 }
 bool CCameraFX::refl_Equals(const void*, const void*) { return false; }
 s32 CCameraFX::refl_Hash() { return -1; }
-const base::reflection::CType& CCameraFX::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCameraFX::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX*>(obj)->refl_GetDynamicClass(); }
 void CCameraFX::refl_CopyConstruct(void*, const void*) {}
 void CCameraFX::refl_MoveConstruct(void*, const void*) {}
 void CCameraFX::refl_Destroy(void* obj) { static_cast<CCameraFX*>(obj)->~CCameraFX(); }

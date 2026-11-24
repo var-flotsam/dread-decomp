@@ -85,7 +85,7 @@ void fn_71007fe794(UnkAreaFX_e794* self) {
     UnkOwner_e794* owner = self->owner;
     UnkMovement_e794* movement = owner ? owner->movement : nullptr;
     UnkComponent_e794* animation = owner ? owner->animation : nullptr;
-    UnkTrack* track = animation ? fn_71011771e0(animation, 0xf4061ff25a2163d6) : nullptr;
+    UnkTrack* track = animation ? CAnimationComponent_FindTrackByNameHash(animation, 0xf4061ff25a2163d6) : nullptr;
     UnkComponent_e794* other = self->owner ? self->owner->field_0x298 : nullptr;
 
     self->field_0x400 = false;

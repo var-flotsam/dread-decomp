@@ -9,7 +9,7 @@
 // The element at `index`, growing the list when needed (an out-of-line CRntVector::GrowAt).
 void** fn_710117ee74(base::global::CRntVector<void*>* list, u32 index);
 
-void fn_710117ecb0(base::UnkCountedDeferredWalk<void>* walk) {
+void CAnimationComponent_EndListenersWalk(base::UnkCountedDeferredWalk<void>* walk) {
     --walk->set->lock;
     base::UnkCountedDeferredSet<void>* listeners = walk->set;
     if (listeners->lock > 0)

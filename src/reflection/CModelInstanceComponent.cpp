@@ -37,7 +37,7 @@ void CModelInstanceComponent::refl_AddFields(CClass* cls) {
 }
 bool CModelInstanceComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CModelInstanceComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CModelInstanceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CModelInstanceComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CModelInstanceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CModelInstanceComponent*>(obj)->refl_GetDynamicClass(); }
 void CModelInstanceComponent::refl_CopyConstruct(void*, const void*) {}
 void CModelInstanceComponent::refl_MoveConstruct(void*, const void*) {}
 void CModelInstanceComponent::refl_Destroy(void* obj) { static_cast<CModelInstanceComponent*>(obj)->~CModelInstanceComponent(); }

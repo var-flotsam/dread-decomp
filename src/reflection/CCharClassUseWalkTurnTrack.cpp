@@ -22,7 +22,7 @@ void CCharClassUseWalkTurnTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassUseWalkTurnTrack::refl_AddFields(CClass*) {}
 bool CCharClassUseWalkTurnTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassUseWalkTurnTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassUseWalkTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassUseWalkTurnTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassUseWalkTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassUseWalkTurnTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassUseWalkTurnTrack::refl_Destroy(void* obj) { static_cast<CCharClassUseWalkTurnTrack*>(obj)->~CCharClassUseWalkTurnTrack(); }
 struct CCharClassUseWalkTurnTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassUseWalkTurnTrack);

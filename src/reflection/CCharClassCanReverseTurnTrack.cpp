@@ -22,7 +22,7 @@ void CCharClassCanReverseTurnTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassCanReverseTurnTrack::refl_AddFields(CClass*) {}
 bool CCharClassCanReverseTurnTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCanReverseTurnTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCanReverseTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCanReverseTurnTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCanReverseTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCanReverseTurnTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCanReverseTurnTrack::refl_Destroy(void* obj) { static_cast<CCharClassCanReverseTurnTrack*>(obj)->~CCharClassCanReverseTurnTrack(); }
 struct CCharClassCanReverseTurnTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCanReverseTurnTrack);

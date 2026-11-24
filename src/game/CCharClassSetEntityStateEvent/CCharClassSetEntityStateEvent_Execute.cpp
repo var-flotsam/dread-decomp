@@ -17,7 +17,7 @@ struct UnkSetEntityStateEvent {
     bool value;
 };
 
-void fn_7100bd6248(UnkSetEntityStateEvent* self, UnkEntityState** owner) {
+void CCharClassSetEntityStateEvent_ApplyStateToNamedOrOwnerEntity(UnkSetEntityStateEvent* self, UnkEntityState** owner) {
     if (self->id != (u64)-1) {
         UnkGameManager* manager = g_unk_7101d47310;
         alignas(8) u32 kind = g_unk_71727bebb8;

@@ -35,7 +35,7 @@ void RegisterEDeserializeCollectionElementModeEnum() {
         CStrId name("base::serialization::EDeserializeCollectionElementMode", true);
         fn_71000ef204(&base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode, UnkEnumInfo>::object, &name, fn_71000ef058, nullptr);
     }
-    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode, UnkEnumInfo>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d67d28, &base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode, UnkEnumInfo>::object);
     void* a = base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode, UnkEnumInfo>::object.desc_0x8->field_0x30;
     void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;

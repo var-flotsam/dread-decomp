@@ -1,9 +1,9 @@
 // Adding a reflected function to a class (fn_7100097550): the keyed array at CClass+0x110
-// (UnkReflArray: functions, 0xb8 bytes each, and a parallel array of their names), a
+// (UntypedSmallDictionary: functions, 0xb8 bytes each, and a parallel array of their names), a
 // reflected function's move constructor, and a class attribute read with a default.
 //
 // The types here are local views of layouts the rest of the code only declares
-// (UnkReflArray in CClass.h, CFunction and UnkReflAttrs in ReflectedAttributes.h); the
+// (UntypedSmallDictionary in CClass.h, CFunction and UnkReflAttrs in ReflectedAttributes.h); the
 // static_asserts tie them together. Names are placeholders.
 #include <new>
 
@@ -25,7 +25,7 @@ using base::reflection::CFunction;
 
 namespace refl_add_function {
 
-// UnkReflArray (CClass.h) with typed elements: values and their names, side by side.
+// UntypedSmallDictionary (CClass.h) with typed elements: values and their names, side by side.
 template <class T>
 struct UnkKeyedArray {
     T* data;
@@ -49,7 +49,7 @@ struct UnkKeyedArray {
     }
     T* End() { return &data[count]; }
 };
-static_assert(sizeof(UnkKeyedArray<int>) == sizeof(base::reflection::UnkReflArray), "UnkReflArray layout");
+static_assert(sizeof(UnkKeyedArray<int>) == sizeof(base::reflection::UntypedSmallDictionary), "UntypedSmallDictionary layout");
 
 // base::global::CRntVector's layout, with the move constructor CFunction's uses.
 template <class T>
@@ -161,7 +161,7 @@ void fn_7100097f80(UnkKeyedArray<UnkReflFunctionData>* array, u32 capacity);
 // Add a function named `name` to a class; null if the class already has one by that name. A
 // class whose "_EditorOnly" attribute is set marks the new function the same way.
 CFunction* AddReflectedFunction(CClass* cls, const CStrId& name) {
-    auto& fns = *reinterpret_cast<UnkKeyedArray<UnkReflFunctionData>*>(&cls->m_array_0x110);
+    auto& fns = *reinterpret_cast<UnkKeyedArray<UnkReflFunctionData>*>(&cls->m_functions);
     if (fns.Find(name) != fns.End())
         return nullptr;
     UnkReflFunctionData* fn;

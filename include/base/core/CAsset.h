@@ -10,9 +10,9 @@ struct UnkRecord80;
 struct UnkStrIdPathPair;
 void fn_7100016f88(void* self);
 void fn_7100016ad8(void* self);
-void fn_7100017ba0(UnkRecord80* self, const UnkRecord80* other);
+void CAsset_CopyConstructRecord(UnkRecord80* self, const UnkRecord80* other);
 void fn_7100017ce8(UnkRecord80* record);  // The record's destructor.
 
 // The resource the ids name (fn_710002038c in the resource registry) when both are set; an empty
 // reference otherwise. `self` is not read.
-UnkAssetResRef fn_7100017878(void* self, const UnkStrIdPathPair* ids);
+UnkAssetResRef CAsset_GetResourceForIdAndPath(void* self, const UnkStrIdPathPair* ids);

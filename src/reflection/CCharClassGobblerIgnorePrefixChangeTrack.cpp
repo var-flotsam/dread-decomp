@@ -22,7 +22,7 @@ void CCharClassGobblerIgnorePrefixChangeTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassGobblerIgnorePrefixChangeTrack::refl_AddFields(CClass*) {}
 bool CCharClassGobblerIgnorePrefixChangeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassGobblerIgnorePrefixChangeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassGobblerIgnorePrefixChangeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGobblerIgnorePrefixChangeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassGobblerIgnorePrefixChangeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGobblerIgnorePrefixChangeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassGobblerIgnorePrefixChangeTrack::refl_Destroy(void* obj) { static_cast<CCharClassGobblerIgnorePrefixChangeTrack*>(obj)->~CCharClassGobblerIgnorePrefixChangeTrack(); }
 struct CCharClassGobblerIgnorePrefixChangeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassGobblerIgnorePrefixChangeTrack);

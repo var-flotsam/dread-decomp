@@ -29,7 +29,7 @@ void CEnemyMovementWalkingAnims::refl_AddFields(CClass* cls) {
 }
 bool CEnemyMovementWalkingAnims::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CEnemyMovementWalkingAnims::refl_Hash() { return -1; }
-const base::reflection::CType& CEnemyMovementWalkingAnims::refl_TypeOf(const void* obj) { return *static_cast<const CEnemyMovementWalkingAnims*>(obj)->vf_0x0(); }
+const base::reflection::CType& CEnemyMovementWalkingAnims::refl_TypeOf(const void* obj) { return *static_cast<const CEnemyMovementWalkingAnims*>(obj)->refl_GetDynamicClass(); }
 void CEnemyMovementWalkingAnims::refl_Destroy(void* obj) { static_cast<CEnemyMovementWalkingAnims*>(obj)->~CEnemyMovementWalkingAnims(); }
 struct CEnemyMovementWalkingAnims::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CEnemyMovementWalkingAnims);

@@ -14,7 +14,7 @@ void CCharClassAbilityComponent::refl_AddAttributes(CClass*) {}
 void CCharClassAbilityComponent::refl_AddFields(CClass*) {}
 bool CCharClassAbilityComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassAbilityComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAbilityComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAbilityComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAbilityComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAbilityComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAbilityComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassAbilityComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassAbilityComponent::refl_Destroy(void* obj) { static_cast<CCharClassAbilityComponent*>(obj)->~CCharClassAbilityComponent(); }

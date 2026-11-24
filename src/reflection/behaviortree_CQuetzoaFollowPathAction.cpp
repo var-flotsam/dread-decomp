@@ -24,7 +24,7 @@ void behaviortree::CQuetzoaFollowPathAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CQuetzoaFollowPathAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CQuetzoaFollowPathAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CQuetzoaFollowPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CQuetzoaFollowPathAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CQuetzoaFollowPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CQuetzoaFollowPathAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CQuetzoaFollowPathAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CQuetzoaFollowPathAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CQuetzoaFollowPathAction::refl_Destroy(void* obj) { static_cast<CQuetzoaFollowPathAction*>(obj)->~CQuetzoaFollowPathAction(); }

@@ -16,7 +16,7 @@ struct UnkObject_7100086d7c {
     u8 member_0xb0[0x8];
 };
 
-void fn_7100086d7c(UnkObject_7100086d7c* self) {
+void CFileCacheDevice_Destroy(UnkObject_7100086d7c* self) {
     self->vtable = unk_7101a1aeb0 + 0x10;
     fn_7100085d8c(self->member_0xb0);
     fn_7100085d68(self->member_0xb0);

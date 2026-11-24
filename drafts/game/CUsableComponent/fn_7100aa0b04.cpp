@@ -145,7 +145,7 @@ bool fn_7100aa0b04(UnkUsableVirt_A6_b62* component, u64 a, u64 b, const u8* c) {
         if (anim.data != &g_unk_7101d47108->empty) {
             own_mode.id = fn_710117ae38(animation, anim.data->Key(), false) ? 0 : 2;
             own_mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, anim.data->Key(), 0xf4061ff25a2163d6, &own_mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, anim.data->Key(), 0xf4061ff25a2163d6, &own_mode, &g_unk_710164b958,
                           &g_unk_7172769740, &own_mask);
         }
     }

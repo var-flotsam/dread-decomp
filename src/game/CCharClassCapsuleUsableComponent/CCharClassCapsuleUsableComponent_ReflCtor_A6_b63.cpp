@@ -10,7 +10,7 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 
 extern char g_unk_7101a90b30[];
-void fn_7100a7ff04(void* self);
+void CCharClassElevatorUsableComponent_Construct(void* self);
 
 struct UnkCapsuleUsableDef_A6_b63 {
     void* vtable;
@@ -28,7 +28,7 @@ static inline void CopyId_A6_b63(CStrId* id, UnkStringData* data) {
 
 void fn_7100a79630(void* obj) {
     UnkCapsuleUsableDef_A6_b63* self = static_cast<UnkCapsuleUsableDef_A6_b63*>(obj);
-    fn_7100a7ff04(self);
+    CCharClassElevatorUsableComponent_Construct(self);
     self->vtable = g_unk_7101a90b30 + 0x10;
     UnkStringData* empty = base::global::CStrId::Empty().data;
     CopyId_A6_b63(&self->id_0x1d8, empty);

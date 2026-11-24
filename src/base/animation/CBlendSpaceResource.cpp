@@ -123,7 +123,7 @@ using base::global::CStrId;
 
 // The parse (its result, nonzero on success, is not in the other files' declaration).
 static inline s32 ParseRoot(UnkParseContext* ctx, void* root) {
-    return reinterpret_cast<s32 (*)(UnkParseContext*, void*)>(&fn_710000f750)(ctx, root);
+    return reinterpret_cast<s32 (*)(UnkParseContext*, void*)>(&CBlendSpaceResource_ReadObjectAsStoredType)(ctx, root);
 }
 extern UnkParseCallbacks g_unk_7101d4cde8 __attribute__((visibility("hidden")));  // this unit's callbacks
 

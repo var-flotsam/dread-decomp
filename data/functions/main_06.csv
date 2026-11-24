@@ -307,7 +307,7 @@ address,size,name,name_source,subsystem,status
 0x710060a784,28,CCharClassNailongThornsAttack::refl_TypeOf,reflection,game/characters,O
 0x710060a7a0,4,CCharClassNailongThornsAttack::refl_Construct,reflection,game/characters,O
 0x710060a7a4,12,CCharClassNailongThornsAttack::refl_Destroy,reflection,game/characters,O
-0x710060a7b0,436,fn_710060a7b0,unknown,engine/reflection?,O
+0x710060a7b0,436,CCharClassNailongThornsAttack_InitStatics,inferred,engine/reflection?,O
 0x710060a964,4,CNailongThornsAttack::refl_AddAttributes,reflection,game/ai,O
 0x710060a968,244,CNailongThornsAttack::refl_GetClass,reflection,game/ai,O
 0x710060aa5c,4,CNailongThornsAttack::refl_AddFields,reflection,game/ai,O
@@ -1540,7 +1540,7 @@ address,size,name,name_source,subsystem,status
 0x71006388e8,8,CCharClassPoisonFlyAIComponent::refl_Hash,reflection,game/characters,O
 0x71006388f0,28,CCharClassPoisonFlyAIComponent::refl_TypeOf,reflection,game/characters,O
 0x710063890c,68,CCharClassPoisonFlyAIComponent::refl_Construct,reflection,game/characters,O
-0x7100638950,652,fn_7100638950,unknown,game/characters?,O
+0x7100638950,652,CCharClassPoisonFlyAIComponent_InitStatics,inferred,game/characters?,O
 0x7100638bdc,4,CPoisonFlyAIComponent::refl_AddAttributes,reflection,game/ai,O
 0x7100638be0,244,CPoisonFlyAIComponent::refl_GetClass,reflection,game/ai,O
 0x7100638cd4,532,CPoisonFlyAIComponent::refl_AddFields,reflection,game/ai,O
@@ -3048,7 +3048,7 @@ address,size,name,name_source,subsystem,status
 0x7100677654,12,CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent::refl_Destroy,reflection,game/characters,O
 0x7100677660,8,CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent::refl_CopyAssign,reflection,game/characters,O
 0x7100677668,8,CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent::refl_MoveAssign,reflection,game/characters,O
-0x7100677670,516,fn_7100677670,unknown,game/characters?,O
+0x7100677670,516,CCharClassSabotoruAIComponent_InitStatics,inferred,game/characters?,O
 0x7100677874,4,CCharClassSabotoruLifeComponent::refl_AddAttributes,reflection,game/characters,O
 0x7100677878,244,CCharClassSabotoruLifeComponent::refl_GetClass,reflection,game/characters,O
 0x710067796c,4,CCharClassSabotoruLifeComponent::refl_AddFields,reflection,game/characters,O
@@ -3056,7 +3056,7 @@ address,size,name,name_source,subsystem,status
 0x7100677af4,4,fn_7100677af4,unknown,game/characters?,O
 0x7100677af8,36,fn_7100677af8,unknown,game/characters?,O
 0x7100677b1c,4,fn_7100677b1c,unknown,game/characters?,O
-0x7100677b20,360,fn_7100677b20,unknown,game/characters?,O
+0x7100677b20,360,CCharClassSabotoruLifeComponent_GetDeadAnimOrSendDoorDeath,inferred,game/characters?,O
 0x7100677c88,28,fn_7100677c88,unknown,game/characters?,O
 0x7100677ca4,8,CCharClassSabotoruLifeComponent::refl_Equals,reflection,game/characters,O
 0x7100677cac,8,CCharClassSabotoruLifeComponent::refl_Hash,reflection,game/characters,O
@@ -3152,7 +3152,7 @@ address,size,name,name_source,subsystem,status
 0x710067bcd4,388,CCharClassSclawkLifeComponent::refl_InitClass,reflection,game/characters,O
 0x710067be58,4,fn_710067be58,unknown,game/characters?,O
 0x710067be5c,36,fn_710067be5c,unknown,game/characters?,O
-0x710067be80,396,fn_710067be80,unknown,game/characters?,O
+0x710067be80,396,CCharClassSclawkLifeComponent_GetDeathAnimId,inferred,game/characters?,O
 0x710067c00c,28,fn_710067c00c,unknown,game/characters?,O
 0x710067c028,8,CCharClassSclawkLifeComponent::refl_Equals,reflection,game/characters,O
 0x710067c030,8,CCharClassSclawkLifeComponent::refl_Hash,reflection,game/characters,O
@@ -3783,7 +3783,7 @@ address,size,name,name_source,subsystem,status
 0x710069093c,28,CCharClassScorpiusAIComponent::refl_TypeOf,reflection,game/characters,O
 0x7100690958,44,CCharClassScorpiusAIComponent::refl_Construct,reflection,game/characters,O
 0x7100690984,12,CCharClassScorpiusAIComponent::refl_Destroy,reflection,game/characters,O
-0x7100690990,736,fn_7100690990,unknown,game/characters?,O
+0x7100690990,736,CCharClassScorpiusAIComponent_InitStatics,inferred,game/characters?,O
 0x7100690c70,4,CScorpiusAIComponent::refl_AddAttributes,reflection,game/ai,O
 0x7100690c74,244,CScorpiusAIComponent::refl_GetClass,reflection,game/ai,O
 0x7100690d68,784,CScorpiusAIComponent::refl_AddFields,reflection,game/ai,O
@@ -4373,7 +4373,7 @@ address,size,name,name_source,subsystem,status
 0x71006b271c,244,CCharClassShelmitPlasmaRayAttack::refl_GetClass,reflection,game/characters,O
 0x71006b2810,1028,CCharClassShelmitPlasmaRayAttack::refl_AddFields,reflection,game/characters,O
 0x71006b2c14,352,CCharClassShelmitPlasmaRayAttack::refl_InitClass,reflection,game/characters,O
-0x71006b2d74,76,fn_71006b2d74,unknown,game/characters?,O
+0x71006b2d74,76,CCharClassShelmitPlasmaRayAttack_Construct,inferred,game/characters?,O
 0x71006b2dc0,4,fn_71006b2dc0,unknown,game/characters?,O
 0x71006b2dc4,36,fn_71006b2dc4,unknown,game/characters?,O
 0x71006b2de8,28,fn_71006b2de8,unknown,game/characters?,O
@@ -5133,7 +5133,7 @@ address,size,name,name_source,subsystem,status
 0x71006d3990,4,base::reflection::ValueOps<CCharClassTakumakuAIComponent::ESubspecies>::Destroy,reflection,engine/reflection,O
 0x71006d3994,20,base::reflection::ValueOps<CCharClassTakumakuAIComponent::ESubspecies>::CopyAssign,reflection,engine/reflection,O
 0x71006d39a8,20,base::reflection::ValueOps<CCharClassTakumakuAIComponent::ESubspecies>::MoveAssign,reflection,engine/reflection,O
-0x71006d39c0,484,fn_71006d39c0,unknown,engine/reflection?,O
+0x71006d39c0,484,CCharClassTakumakuAIComponent_InitStatics,inferred,engine/reflection?,O
 0x71006d3ba4,4,CTakumakuAIComponent::refl_AddAttributes,reflection,game/ai,O
 0x71006d3ba8,244,CTakumakuAIComponent::refl_GetClass,reflection,game/ai,O
 0x71006d3c9c,4,CTakumakuAIComponent::refl_AddFields,reflection,game/ai,O
@@ -5796,7 +5796,7 @@ address,size,name,name_source,subsystem,status
 0x71006eeb40,76,fn_71006eeb40,unknown,game/characters?,O
 0x71006eeb8c,168,fn_71006eeb8c,unknown,game/characters?,O
 0x71006eec34,12,fn_71006eec34,unknown,game/characters?,O
-0x71006eec40,204,fn_71006eec40,unknown,game/characters?,O
+0x71006eec40,204,CCharClassYamplotXAIComponent_PickPushOnairId,inferred,game/characters?,O
 0x71006eed0c,8,fn_71006eed0c,unknown,game/characters?,O
 0x71006eed14,28,fn_71006eed14,unknown,game/characters?,O
 0x71006eed30,12,fn_71006eed30,unknown,game/characters?,O
@@ -5815,7 +5815,7 @@ address,size,name,name_source,subsystem,status
 0x71006eedcc,28,CCharClassYamplotXAIComponent::refl_TypeOf,reflection,game/characters,O
 0x71006eede8,84,CCharClassYamplotXAIComponent::refl_Construct,reflection,game/characters,O
 0x71006eee3c,12,CCharClassYamplotXAIComponent::refl_Destroy,reflection,game/characters,O
-0x71006eee50,528,fn_71006eee50,unknown,engine/reflection?,O
+0x71006eee50,528,CCharClassYamplotXAIComponent_InitStatics,inferred,engine/reflection?,O
 0x71006ef060,4,CYamplotXAIComponent::refl_AddAttributes,reflection,game/ai,O
 0x71006ef064,244,CYamplotXAIComponent::refl_GetClass,reflection,game/ai,O
 0x71006ef158,4,CYamplotXAIComponent::refl_AddFields,reflection,game/ai,O
@@ -5985,7 +5985,7 @@ address,size,name,name_source,subsystem,status
 0x71006f7d98,68,fn_71006f7d98,unknown,unknown,O
 0x71006f7ddc,76,fn_71006f7ddc,unknown,engine/reflection?,O
 0x71006f7e28,68,fn_71006f7e28,unknown,unknown,O
-0x71006f7e70,688,fn_71006f7e70,unknown,engine/reflection?,O
+0x71006f7e70,688,CCharClassAINavigationComponent_InitStatics,inferred,engine/reflection?,O
 0x71006f8120,904,fn_71006f8120,unknown,unknown,U
 0x71006f84a8,508,fn_71006f84a8,unknown,unknown,O
 0x71006f86a4,32,fn_71006f86a4,unknown,unknown,O

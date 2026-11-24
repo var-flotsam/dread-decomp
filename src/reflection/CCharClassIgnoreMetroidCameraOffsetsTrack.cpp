@@ -22,7 +22,7 @@ void CCharClassIgnoreMetroidCameraOffsetsTrack::refl_AddAttributes(CClass* cls) 
 void CCharClassIgnoreMetroidCameraOffsetsTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreMetroidCameraOffsetsTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreMetroidCameraOffsetsTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreMetroidCameraOffsetsTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreMetroidCameraOffsetsTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreMetroidCameraOffsetsTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreMetroidCameraOffsetsTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreMetroidCameraOffsetsTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreMetroidCameraOffsetsTrack*>(obj)->~CCharClassIgnoreMetroidCameraOffsetsTrack(); }
 struct CCharClassIgnoreMetroidCameraOffsetsTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreMetroidCameraOffsetsTrack);

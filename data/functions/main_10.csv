@@ -1510,9 +1510,9 @@ address,size,name,name_source,subsystem,status
 0x7101048280,84,fn_7101048280,unknown,script/bindings?,O
 0x71010482d4,332,fn_71010482d4,unknown,unknown,U
 0x7101048420,360,fn_7101048420,unknown,engine/reflection?,O
-0x7101048588,308,fn_7101048588,unknown,unknown,O
+0x7101048588,308,CBlackboard_SwapRemoveSectionArrayEntry,inferred,unknown,O
 0x71010486bc,356,fn_71010486bc,unknown,unknown,O
-0x7101048820,288,fn_7101048820,unknown,script/bindings?,O
+0x7101048820,288,CBlackboard_CreateGroupWithNames,inferred,script/bindings?,O
 0x7101048940,132,fn_7101048940,unknown,script/bindings?,O
 0x71010489c4,308,fn_71010489c4,unknown,unknown,O
 0x7101048af8,156,fn_7101048af8,unknown,unknown,O
@@ -1665,7 +1665,7 @@ address,size,name,name_source,subsystem,status
 0x710104b640,540,fn_710104b640,unknown,engine/reflection?,U
 0x710104b860,624,fn_710104b860,unknown,engine/reflection?,U
 0x710104bad0,880,fn_710104bad0,unknown,engine/reflection?,U
-0x710104be40,1016,fn_710104be40,unknown,engine/reflection?,O
+0x710104be40,1016,CBlackboard_InitStatics,inferred,engine/reflection?,O
 0x710104c238,88,CFXPoolPack::refl_AddAttributes,reflection,game,O
 0x710104c290,240,CFXPoolPack::refl_GetClass,reflection,game,O
 0x710104c380,148,CFXPoolPack::refl_AddFields,reflection,game,O
@@ -4485,8 +4485,8 @@ address,size,name,name_source,subsystem,status
 0x71010e20b0,204,fn_71010e20b0,unknown,unknown,O
 0x71010e217c,116,fn_71010e217c,unknown,unknown,O
 0x71010e21f0,136,fn_71010e21f0,unknown,unknown,O
-0x71010e2278,5260,fn_71010e2278,unknown,game?,O
-0x71010e3704,240,fn_71010e3704,unknown,unknown,O
+0x71010e2278,5260,CCameraComponent_CreateSceneObjectAndControllers,inferred,game?,O
+0x71010e3704,240,CCameraComponent_RemoveAllQueuedCameras,inferred,unknown,O
 0x71010e37f4,24,fn_71010e37f4,unknown,game/player?,O
 0x71010e380c,48,fn_71010e380c,unknown,game?,O
 0x71010e383c,96,fn_71010e383c,unknown,game?,O
@@ -4502,7 +4502,7 @@ address,size,name,name_source,subsystem,status
 0x71010e4804,204,fn_71010e4804,unknown,unknown,O
 0x71010e48d0,200,fn_71010e48d0,unknown,unknown,O
 0x71010e4998,48,fn_71010e4998,unknown,unknown,O
-0x71010e49c8,176,fn_71010e49c8,unknown,unknown,O
+0x71010e49c8,176,CCameraComponent_GetTargetDepthDistance,inferred,unknown,O
 0x71010e4a78,8,fn_71010e4a78,unknown,unknown,O
 0x71010e4a80,8,fn_71010e4a80,unknown,unknown,O
 0x71010e4a88,8,fn_71010e4a88,unknown,game/characters?,O
@@ -4511,7 +4511,7 @@ address,size,name,name_source,subsystem,status
 0x71010e4aa0,8,fn_71010e4aa0,unknown,unknown,O
 0x71010e4aa8,8,fn_71010e4aa8,unknown,unknown,O
 0x71010e4ab0,8,fn_71010e4ab0,unknown,unknown,O
-0x71010e4ab8,1836,fn_71010e4ab8,unknown,unknown,O
+0x71010e4ab8,1836,CCameraComponent_HandleProperty,inferred,unknown,O
 0x71010e51e4,296,fn_71010e51e4,unknown,unknown,O
 0x71010e530c,56,fn_71010e530c,unknown,unknown,O
 0x71010e5344,56,fn_71010e5344,unknown,unknown,O
@@ -4528,7 +4528,7 @@ address,size,name,name_source,subsystem,status
 0x71010e63ec,132,fn_71010e63ec,unknown,game?,O
 0x71010e6470,52,fn_71010e6470,unknown,game?,O
 0x71010e64a4,184,fn_71010e64a4,unknown,game/ai?,O
-0x71010e655c,292,fn_71010e655c,unknown,engine/reflection?,O
+0x71010e655c,292,CCameraComponent_ReadControllerNameToStrIdValue,inferred,engine/reflection?,O
 0x71010e6680,532,fn_71010e6680,unknown,unknown,U
 0x71010e6894,28,fn_71010e6894,unknown,game/components?,O
 0x71010e68b0,132,fn_71010e68b0,unknown,unknown,O
@@ -4652,7 +4652,7 @@ address,size,name,name_source,subsystem,status
 0x71010ee048,176,fn_71010ee048,unknown,game?,O
 0x71010ee0f8,132,fn_71010ee0f8,unknown,game?,O
 0x71010ee17c,4,fn_71010ee17c,unknown,game?,O
-0x71010ee180,992,fn_71010ee180,unknown,game?,O
+0x71010ee180,992,CCameraCtrl_ReadWritePosDirProperty,inferred,game?,O
 0x71010ee560,120,fn_71010ee560,unknown,game?,O
 0x71010ee5d8,740,fn_71010ee5d8,unknown,game?,U
 0x71010ee8bc,328,fn_71010ee8bc,unknown,game?,U
@@ -4894,7 +4894,7 @@ address,size,name,name_source,subsystem,status
 0x71010fc154,160,fn_71010fc154,unknown,game?,U
 0x71010fc1f4,144,fn_71010fc1f4,unknown,game?,O
 0x71010fc284,152,fn_71010fc284,unknown,unknown,m
-0x71010fc31c,128,fn_71010fc31c,unknown,unknown,O
+0x71010fc31c,128,CAIComponent_GetPathFirstLegStartX,inferred,unknown,O
 0x71010fc39c,220,fn_71010fc39c,unknown,game/ai?,U
 0x71010fc478,220,fn_71010fc478,unknown,game/ai?,U
 0x71010fc554,168,fn_71010fc554,unknown,game/ai?,O

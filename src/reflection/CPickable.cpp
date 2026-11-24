@@ -14,7 +14,7 @@ void CPickable::refl_AddAttributes(CClass*) {}
 void CPickable::refl_AddFields(CClass*) {}
 bool CPickable::refl_Equals(const void*, const void*) { return false; }
 s32 CPickable::refl_Hash() { return -1; }
-const base::reflection::CType& CPickable::refl_TypeOf(const void* obj) { return *static_cast<const CPickable*>(obj)->vf_0x0(); }
+const base::reflection::CType& CPickable::refl_TypeOf(const void* obj) { return *static_cast<const CPickable*>(obj)->refl_GetDynamicClass(); }
 void CPickable::refl_CopyConstruct(void*, const void*) {}
 void CPickable::refl_MoveConstruct(void*, const void*) {}
 void CPickable::refl_Destroy(void* obj) { static_cast<CPickable*>(obj)->~CPickable(); }

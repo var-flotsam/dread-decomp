@@ -32,7 +32,7 @@ void behaviortree::CFlyingFollowPathAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CFlyingFollowPathAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CFlyingFollowPathAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CFlyingFollowPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CFlyingFollowPathAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CFlyingFollowPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CFlyingFollowPathAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CFlyingFollowPathAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CFlyingFollowPathAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CFlyingFollowPathAction::refl_Destroy(void* obj) { static_cast<CFlyingFollowPathAction*>(obj)->~CFlyingFollowPathAction(); }

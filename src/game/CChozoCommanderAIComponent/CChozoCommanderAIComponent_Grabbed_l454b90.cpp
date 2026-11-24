@@ -76,7 +76,7 @@ static inline bool SendTrack(void* target, u64 hash, base::reflection::UnkReflTy
                              base::reflection::UnkReflTypeIdArg& mask) {
     mode.id = 2;
     mask.id = UnkAll_SpitSend().value;
-    return fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    return CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
 void CChozoCommanderAIComponent_StartGrab(UnkChozoCommanderAI_l454b90* self) {

@@ -33,5 +33,5 @@ void fn_710008d680(UnkStrPair_0x10* s, const char* path) {
     InitEmpty(&pair->id);
     InitEmpty(&pair->path);
     CFilePathStrId p(path, true);
-    fn_710008d99c(&p, &pair->id, &pair->path);
+    CThreadSafeDevice_SplitDeviceFromPath(&p, &pair->id, &pair->path);
 }

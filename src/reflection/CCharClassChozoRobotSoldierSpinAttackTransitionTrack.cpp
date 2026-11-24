@@ -22,7 +22,7 @@ void CCharClassChozoRobotSoldierSpinAttackTransitionTrack::refl_AddAttributes(CC
 void CCharClassChozoRobotSoldierSpinAttackTransitionTrack::refl_AddFields(CClass*) {}
 bool CCharClassChozoRobotSoldierSpinAttackTransitionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassChozoRobotSoldierSpinAttackTransitionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassChozoRobotSoldierSpinAttackTransitionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoRobotSoldierSpinAttackTransitionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassChozoRobotSoldierSpinAttackTransitionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoRobotSoldierSpinAttackTransitionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassChozoRobotSoldierSpinAttackTransitionTrack::refl_Destroy(void* obj) { static_cast<CCharClassChozoRobotSoldierSpinAttackTransitionTrack*>(obj)->~CCharClassChozoRobotSoldierSpinAttackTransitionTrack(); }
 struct CCharClassChozoRobotSoldierSpinAttackTransitionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassChozoRobotSoldierSpinAttackTransitionTrack);

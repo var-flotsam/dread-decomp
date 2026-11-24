@@ -29,7 +29,7 @@ void CCharClassSoundProofTriggerComponent::refl_AddAttributes(CClass*) {}
 void CCharClassSoundProofTriggerComponent::refl_AddFields(CClass*) {}
 bool CCharClassSoundProofTriggerComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassSoundProofTriggerComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSoundProofTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSoundProofTriggerComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSoundProofTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSoundProofTriggerComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSoundProofTriggerComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassSoundProofTriggerComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassSoundProofTriggerComponent::refl_Destroy(void* obj) { static_cast<CCharClassSoundProofTriggerComponent*>(obj)->~CCharClassSoundProofTriggerComponent(); }

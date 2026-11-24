@@ -74,7 +74,7 @@ void fn_7100aca09c(UnkWeightProp_aca09c* self) {
     if (!fn_710024fb2c(reinterpret_cast<UnkActivatable_b48*>(self))) {
         idle_mode.id = 1;
         idle_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, hash, kind, &idle_mode, &g_unk_710164b958, &g_unk_717276974c, &idle_mask);
+        CAnimationComponent_SendActionToTrack(animation, hash, kind, &idle_mode, &g_unk_710164b958, &g_unk_717276974c, &idle_mask);
         return;
     }
     if (self->params->hook) {
@@ -91,5 +91,5 @@ void fn_7100aca09c(UnkWeightProp_aca09c* self) {
     }
     open_mode.id = 1;
     open_mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, hash, kind, &open_mode, &g_unk_710164b958, &g_unk_7172769740, &open_mask);
+    CAnimationComponent_SendActionToTrack(animation, hash, kind, &open_mode, &g_unk_710164b958, &g_unk_7172769740, &open_mask);
 }

@@ -14,7 +14,7 @@ void behaviortree::CChozoRobotSoldierPatrolAction::refl_AddAttributes(CClass*) {
 void behaviortree::CChozoRobotSoldierPatrolAction::refl_AddFields(CClass*) {}
 bool behaviortree::CChozoRobotSoldierPatrolAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CChozoRobotSoldierPatrolAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CChozoRobotSoldierPatrolAction::refl_TypeOf(const void* obj) { return *static_cast<const CChozoRobotSoldierPatrolAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CChozoRobotSoldierPatrolAction::refl_TypeOf(const void* obj) { return *static_cast<const CChozoRobotSoldierPatrolAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CChozoRobotSoldierPatrolAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CChozoRobotSoldierPatrolAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CChozoRobotSoldierPatrolAction::refl_Destroy(void* obj) { static_cast<CChozoRobotSoldierPatrolAction*>(obj)->~CChozoRobotSoldierPatrolAction(); }

@@ -27,7 +27,7 @@ void CCharClassForceRotationOnActionTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassForceRotationOnActionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassForceRotationOnActionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassForceRotationOnActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceRotationOnActionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassForceRotationOnActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceRotationOnActionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassForceRotationOnActionTrack::refl_Destroy(void* obj) { static_cast<CCharClassForceRotationOnActionTrack*>(obj)->~CCharClassForceRotationOnActionTrack(); }
 struct CCharClassForceRotationOnActionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassForceRotationOnActionTrack);

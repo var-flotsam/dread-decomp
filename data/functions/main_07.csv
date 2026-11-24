@@ -524,7 +524,7 @@ address,size,name,name_source,subsystem,status
 0x7100715df8,124,fn_7100715df8,unknown,game/components?,O
 0x7100715e74,132,fn_7100715e74,unknown,game/components?,O
 0x7100715ef8,176,fn_7100715ef8,unknown,game/components?,O
-0x7100715fa8,136,fn_7100715fa8,unknown,game/components?,O
+0x7100715fa8,136,CAreaMusicComponent_SendExitFadeOutToMusicManager,inferred,game/components?,O
 0x7100716030,28,fn_7100716030,unknown,game/components?,O
 0x710071604c,132,fn_710071604c,unknown,game/components?,O
 0x71007160d0,28,fn_71007160d0,unknown,game/components?,O
@@ -996,7 +996,7 @@ address,size,name,name_source,subsystem,status
 0x7100732a2c,12,CCharClassFlockingSwarmControllerComponent::refl_Destroy,reflection,game/characters,O
 0x7100732a38,8,CCharClassFlockingSwarmControllerComponent::refl_CopyAssign,reflection,game/characters,O
 0x7100732a40,8,CCharClassFlockingSwarmControllerComponent::refl_MoveAssign,reflection,game/characters,O
-0x7100732a50,436,fn_7100732a50,unknown,game/characters?,O
+0x7100732a50,436,CCharClassFlockingSwarmControllerComponent_InitStatics,inferred,game/characters?,O
 0x7100732c04,4,CCharClassSwarmAttackComponent::refl_AddAttributes,reflection,game/characters,O
 0x7100732c08,244,CCharClassSwarmAttackComponent::refl_GetClass,reflection,game/characters,O
 0x7100732cfc,612,CCharClassSwarmAttackComponent::refl_AddFields,reflection,game/characters,O
@@ -2770,7 +2770,7 @@ address,size,name,name_source,subsystem,status
 0x7100793598,212,CCharClassMultiModelUpdaterComponent::refl_AddFields,reflection,game/characters,O
 0x710079366c,388,CCharClassMultiModelUpdaterComponent::refl_InitClass,reflection,game/characters,O
 0x71007937f0,108,fn_71007937f0,unknown,game/characters?,O
-0x710079385c,116,fn_710079385c,unknown,game/characters?,O
+0x710079385c,116,CCharClassMultiModelUpdaterComponent_DestroyAndDelete,inferred,game/characters?,O
 0x71007938d0,28,fn_71007938d0,unknown,game/characters?,O
 0x71007938ec,8,CCharClassMultiModelUpdaterComponent::refl_Equals,reflection,game/characters,O
 0x71007938f4,8,CCharClassMultiModelUpdaterComponent::refl_Hash,reflection,game/characters,O
@@ -3200,7 +3200,7 @@ address,size,name,name_source,subsystem,status
 0x71007a58c0,636,fn_71007a58c0,unknown,game/components?,O
 0x71007a5b3c,736,fn_71007a5b3c,unknown,game/components?,O
 0x71007a5e1c,1016,fn_71007a5e1c,unknown,unknown,O
-0x71007a6214,352,fn_71007a6214,unknown,unknown,O
+0x71007a6214,352,CCutsceneComponent_ResetActorsAndReleaseRecords,inferred,unknown,O
 0x71007a6374,100,fn_71007a6374,unknown,unknown,O
 0x71007a63d8,36,fn_71007a63d8,unknown,unknown,O
 0x71007a63fc,860,fn_71007a63fc,unknown,game/components?,U
@@ -3212,7 +3212,7 @@ address,size,name,name_source,subsystem,status
 0x71007a7c40,1036,fn_71007a7c40,unknown,game/components?,U
 0x71007a804c,564,fn_71007a804c,unknown,game/components?,O
 0x71007a8280,1188,fn_71007a8280,unknown,unknown,U
-0x71007a8724,716,fn_71007a8724,unknown,game/components?,O
+0x71007a8724,716,CCutsceneComponent_SetEntryFlagAtCurrentListIndex,inferred,game/components?,O
 0x71007a89f0,960,fn_71007a89f0,unknown,game/components?,U
 0x71007a8db0,316,fn_71007a8db0,unknown,game/components?,O
 0x71007a8eec,348,fn_71007a8eec,unknown,engine/reflection?,O
@@ -3305,7 +3305,7 @@ address,size,name,name_source,subsystem,status
 0x71007ab7ac,4,fn_71007ab7ac,unknown,unknown,O
 0x71007ab7b0,20,fn_71007ab7b0,unknown,unknown,O
 0x71007ab7c4,20,fn_71007ab7c4,unknown,unknown,O
-0x71007ab7d8,280,fn_71007ab7d8,unknown,unknown,O
+0x71007ab7d8,280,CCutsceneComponent_ConvertU32ToStrId,inferred,unknown,O
 0x71007ab8f0,28,fn_71007ab8f0,unknown,game/components?,O
 0x71007ab90c,92,fn_71007ab90c,unknown,unknown,O
 0x71007ab968,28,fn_71007ab968,unknown,game/components?,O
@@ -3356,7 +3356,7 @@ address,size,name,name_source,subsystem,status
 0x71007ac6c8,596,fn_71007ac6c8,unknown,engine/reflection?,O
 0x71007ac91c,608,fn_71007ac91c,unknown,engine/reflection?,U
 0x71007acb7c,408,fn_71007acb7c,unknown,engine/reflection?,O
-0x71007acd14,300,fn_71007acd14,unknown,engine/reflection?,O
+0x71007acd14,300,CCutsceneComponent_PushBackActorEntryCopy,inferred,engine/reflection?,O
 0x71007ace40,12,fn_71007ace40,unknown,unknown,O
 0x71007ace4c,24,fn_71007ace4c,unknown,unknown,O
 0x71007ace64,216,fn_71007ace64,unknown,unknown,O
@@ -3387,14 +3387,14 @@ address,size,name,name_source,subsystem,status
 0x71007ad47c,28,CCutsceneComponent::refl_TypeOf,reflection,game/components,O
 0x71007ad498,44,CCutsceneComponent::refl_Construct,reflection,game/components,O
 0x71007ad4c4,12,CCutsceneComponent::refl_Destroy,reflection,game/components,O
-0x71007ad4d0,180,fn_71007ad4d0,unknown,game/components?,O
+0x71007ad4d0,180,CCutsceneComponent_InvokeCutsceneNameGetter,inferred,game/components?,O
 0x71007ad584,100,fn_71007ad584,unknown,game/components?,O
 0x71007ad5e8,96,fn_71007ad5e8,unknown,game/components?,O
 0x71007ad648,120,fn_71007ad648,unknown,game/components?,O
 0x71007ad6c0,204,fn_71007ad6c0,unknown,game/components?,O
 0x71007ad78c,20,fn_71007ad78c,unknown,game/components?,O
 0x71007ad7a0,116,fn_71007ad7a0,unknown,game/components?,O
-0x71007ad814,192,fn_71007ad814,unknown,game/components?,O
+0x71007ad814,192,CCutsceneComponent_InvokeSetupCurrentTakePositions,inferred,game/components?,O
 0x71007ad8d4,20,fn_71007ad8d4,unknown,game/components?,O
 0x71007ad8e8,52,fn_71007ad8e8,unknown,game/components?,O
 0x71007ad91c,52,fn_71007ad91c,unknown,game/components?,O
@@ -3402,7 +3402,7 @@ address,size,name,name_source,subsystem,status
 0x71007ad984,52,fn_71007ad984,unknown,game/components?,O
 0x71007ad9b8,52,fn_71007ad9b8,unknown,game/components?,O
 0x71007ad9ec,60,fn_71007ad9ec,unknown,game/components?,O
-0x71007ada28,224,fn_71007ada28,unknown,game/components?,O
+0x71007ada28,224,CCutsceneComponent_InvokeHasCutsceneBeenPlayed,inferred,game/components?,O
 0x71007adb08,52,fn_71007adb08,unknown,game/components?,O
 0x71007adb3c,20,fn_71007adb3c,unknown,game/components?,O
 0x71007adb50,80,fn_71007adb50,unknown,game/components?,O
@@ -3427,11 +3427,11 @@ address,size,name,name_source,subsystem,status
 0x71007ae248,20,base::reflection::ValueOps<CCutscene*>::CopyAssign,reflection,engine/reflection,O
 0x71007ae25c,20,base::reflection::ValueOps<CCutscene*>::MoveAssign,reflection,engine/reflection,O
 0x71007ae270,76,fn_71007ae270,unknown,game/components?,O
-0x71007ae2bc,336,fn_71007ae2bc,unknown,game/components?,O
+0x71007ae2bc,336,CCutsceneComponent_InvokeSetExtraActorStatus,inferred,game/components?,O
 0x71007ae40c,220,fn_71007ae40c,unknown,game/components?,O
-0x71007ae4e8,180,fn_71007ae4e8,unknown,game/components?,O
+0x71007ae4e8,180,CCutsceneComponent_InvokeOnExtraActorVisibilityPerTakeChanged,inferred,game/components?,O
 0x71007ae59c,4,fn_71007ae59c,unknown,game/components?,O
-0x71007ae5a0,868,fn_71007ae5a0,unknown,game/components?,O
+0x71007ae5a0,868,CCutsceneComponent_InitStatics,inferred,game/components?,O
 0x71007ae904,4,CDamageComponent::refl_AddAttributes,reflection,game/components,O
 0x71007ae908,244,CDamageComponent::refl_GetClass,reflection,game/components,O
 0x71007ae9fc,312,CDamageComponent::refl_AddFields,reflection,game/components,O
@@ -5051,7 +5051,7 @@ address,size,name,name_source,subsystem,status
 0x71007ed888,244,CCharClassFrozenComponent::refl_GetClass,reflection,game/characters,O
 0x71007ed97c,2504,CCharClassFrozenComponent::refl_AddFields,reflection,game/characters,O
 0x71007ee344,388,CCharClassFrozenComponent::refl_InitClass,reflection,game/characters,O
-0x71007ee4c8,244,fn_71007ee4c8,unknown,game/characters?,O
+0x71007ee4c8,244,CCharClassFrozenComponent_ConstructBase,inferred,game/characters?,O
 0x71007ee5bc,628,fn_71007ee5bc,unknown,game/characters?,O
 0x71007ee830,36,fn_71007ee830,unknown,game/characters?,O
 0x71007ee854,28,fn_71007ee854,unknown,game/characters?,O
@@ -5225,7 +5225,7 @@ address,size,name,name_source,subsystem,status
 0x71007f30e4,28,CCharClassFrozenAsFrostbiteComponent::refl_TypeOf,reflection,game/characters,O
 0x71007f3100,184,CCharClassFrozenAsFrostbiteComponent::refl_Construct,reflection,game/characters,O
 0x71007f31b8,12,CCharClassFrozenAsFrostbiteComponent::refl_Destroy,reflection,game/characters,O
-0x71007f31d0,864,fn_71007f31d0,unknown,engine/reflection?,O
+0x71007f31d0,864,CBarelyFrozenIceInfo_InitStatics,inferred,engine/reflection?,O
 0x71007f3530,4,CFrozenAsFrostbiteComponent::refl_AddAttributes,reflection,game/components,O
 0x71007f3534,244,CFrozenAsFrostbiteComponent::refl_GetClass,reflection,game/components,O
 0x71007f3628,4,CFrozenAsFrostbiteComponent::refl_AddFields,reflection,game/components,O

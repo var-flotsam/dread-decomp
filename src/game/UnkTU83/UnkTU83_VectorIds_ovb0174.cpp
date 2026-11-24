@@ -95,7 +95,7 @@ void fn_71000ce300(base::UnkStrIdVec* self, const base::global::CStrId* value, u
 }
 
 void fn_71000d0abc(UnkResPathVec* self, const base::global::CFilePathStrId* value, u32 index) {
-    InsertCopy<UnkResPathVec, &g_unk_7101d47200, fn_7100018450>(
+    InsertCopy<UnkResPathVec, &g_unk_7101d47200, CAsset_ReserveFilePathIdVec>(
         self, reinterpret_cast<const base::UnkPooledString*>(value), index);
 }
 
@@ -664,9 +664,9 @@ struct UnkStartHook_b0174 {
 extern UnkStartHook_b0174* g_unk_7101d5bdd0;
 
 void fn_71000a4b60(UnkVersionRegistry* self);
-void fn_710009dba0(UnkKeyedPtrsOwner_b52* self, const u64* key, void* value);
+void CType_AddConversion(UnkKeyedPtrsOwner_b52* self, const u64* key, void* value);
 UnkFileCacheSetNode** fn_71000a5c1c(base::global::CRntVector<UnkFileCacheSetNode*>* self, u32 index);
-void fn_710009ea3c(CType* type);
+void CType_AddAssetHashAttribute(CType* type);
 
 // A registered type: the object a type's id (+0x30) names and the type that owns it.
 struct UnkTypeKey_b0174 {
@@ -717,7 +717,7 @@ void fn_71000a497c(UnkVersionRegistry* self_) {
         UnkFileCacheSetNode* node = *fn_71000a5c1c(&self->set_a.buckets, index);
         for (; node; node = node->next) {
             if (node->key->id == reinterpret_cast<u64>(c->from)) {
-                fn_710009dba0(node->owner, reinterpret_cast<const u64*>(&c->to), c);
+                CType_AddConversion(node->owner, reinterpret_cast<const u64*>(&c->to), c);
                 break;
             }
         }
@@ -729,7 +729,7 @@ void fn_71000a497c(UnkVersionRegistry* self_) {
         auto* attrs = reinterpret_cast<UnkReflAttrsMap_b0174*>(TypeAttributes(type));
         const CStrId& version = base::reflection::attr::Version().name;
         if (attrs->Find(version) != attrs->End())
-            fn_710009ea3c(type);
+            CType_AddAssetHashAttribute(type);
     }
     for (void** p = self->list_a.data, **e = p + self->list_a.count; p != e; ++p)
         static_cast<UnkRegisteredType_b0174*>(*p)->vf_0x20();

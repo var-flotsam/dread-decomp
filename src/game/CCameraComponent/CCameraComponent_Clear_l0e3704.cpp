@@ -35,7 +35,7 @@ struct UnkCamComponent_l0e3704 {
     base::UnkAllocator* allocator;
 };
 
-void fn_71010e3704(void* object) {
+void CCameraComponent_RemoveAllQueuedCameras(void* object) {
     UnkCamComponent_l0e3704* self = static_cast<UnkCamComponent_l0e3704*>(object);
     UnkCamNode_l0e3704* node = self->head;
     while (node) {

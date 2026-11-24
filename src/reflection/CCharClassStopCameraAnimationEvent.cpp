@@ -22,7 +22,7 @@ void CCharClassStopCameraAnimationEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassStopCameraAnimationEvent::refl_AddFields(CClass*) {}
 bool CCharClassStopCameraAnimationEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassStopCameraAnimationEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassStopCameraAnimationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStopCameraAnimationEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassStopCameraAnimationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStopCameraAnimationEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassStopCameraAnimationEvent::refl_Destroy(void* obj) { static_cast<CCharClassStopCameraAnimationEvent*>(obj)->~CCharClassStopCameraAnimationEvent(); }
 struct CCharClassStopCameraAnimationEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassStopCameraAnimationEvent);

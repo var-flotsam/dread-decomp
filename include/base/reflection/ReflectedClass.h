@@ -57,18 +57,19 @@ struct ClassDescription {
 
 // A reflected object's class and destructor, through its virtual table. Most classes put the class
 // getter in slot 0 and the destructor after it; a few (the AI and Samus actions, the media streams)
-// start with the destructor and have the getter in slot 3 (UnkReflObject, UnkReflObjectB in CClass.h).
+// start with the destructor and have the getter in slot 3 (ReflectedObject and
+// ReflectedObjectDestructorFirst in CClass.h).
 inline const CType& ClassOf(const void* obj) {
-    return *static_cast<const UnkReflObject*>(obj)->vf_0x0();
+    return *static_cast<const ReflectedObject*>(obj)->refl_GetDynamicClass();
 }
 inline const CType& ClassOfDestructorFirst(const void* obj) {
-    return *static_cast<const UnkReflObjectB*>(obj)->vf_0x18();
+    return *static_cast<const ReflectedObjectDestructorFirst*>(obj)->refl_GetDynamicClass();
 }
 inline void Destroy(void* obj) {
-    static_cast<UnkReflObject*>(obj)->~UnkReflObject();
+    static_cast<ReflectedObject*>(obj)->~ReflectedObject();
 }
 inline void DestroyDestructorFirst(void* obj) {
-    static_cast<UnkReflObjectB*>(obj)->~UnkReflObjectB();
+    static_cast<ReflectedObjectDestructorFirst*>(obj)->~ReflectedObjectDestructorFirst();
 }
 
 }  // namespace base::reflection

@@ -51,7 +51,7 @@ static inline void Assign(CVector3D& field, const CVector3D& value) {
 template <class T, T UnkMinimapSettings::*Field>
 __attribute__((always_inline)) static inline void SetProperty(UnkMinimapSettings* self, const T* value,
                                                               const char* name) {
-    if (UnkReflTypeOf<T>::Get()->m_fn_0x58(&(self->*Field), value))
+    if (UnkReflTypeOf<T>::Get()->m_equals(&(self->*Field), value))
         return;
     Assign(self->*Field, *value);
     UnkTunableRegistry* notifier = g_unk_7101d47350;

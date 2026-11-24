@@ -14,7 +14,7 @@ void CFactionComponent::refl_AddAttributes(CClass*) {}
 void CFactionComponent::refl_AddFields(CClass*) {}
 bool CFactionComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CFactionComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CFactionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFactionComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CFactionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFactionComponent*>(obj)->refl_GetDynamicClass(); }
 void CFactionComponent::refl_CopyConstruct(void*, const void*) {}
 void CFactionComponent::refl_MoveConstruct(void*, const void*) {}
 void CFactionComponent::refl_Destroy(void* obj) { static_cast<CFactionComponent*>(obj)->~CFactionComponent(); }

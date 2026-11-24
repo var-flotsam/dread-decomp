@@ -31,7 +31,7 @@ static inline bool SendMode_l10fbcc(void* target, u64 hash, u64 kind, u32 m) {
     mode.id = m;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    return fn_7101176690(target, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    return CAnimationComponent_SendActionToTrack(target, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
 bool fn_710110fbcc(UnkSendAI_l10fbcc* self) {

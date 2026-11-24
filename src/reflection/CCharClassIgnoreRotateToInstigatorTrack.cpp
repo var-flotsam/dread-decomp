@@ -22,7 +22,7 @@ void CCharClassIgnoreRotateToInstigatorTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreRotateToInstigatorTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreRotateToInstigatorTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreRotateToInstigatorTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreRotateToInstigatorTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreRotateToInstigatorTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreRotateToInstigatorTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreRotateToInstigatorTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreRotateToInstigatorTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreRotateToInstigatorTrack*>(obj)->~CCharClassIgnoreRotateToInstigatorTrack(); }
 struct CCharClassIgnoreRotateToInstigatorTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreRotateToInstigatorTrack);

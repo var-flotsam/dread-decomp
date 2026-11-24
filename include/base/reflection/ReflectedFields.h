@@ -26,10 +26,10 @@
 // A property: a field with no offset, read and written through the two functions registered just
 // before it (its getter, then its setter), or with only a getter.
 #define DREAD_REFLECTED_PROPERTY(T, NAME, ...)                                                         \
-    DREAD_REFL_FIELD_(T, NAME, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1, \
+    DREAD_REFL_FIELD_(T, NAME, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1, \
                       __VA_ARGS__)
 #define DREAD_REFLECTED_READ_ONLY_PROPERTY(T, NAME, ...)                                               \
-    DREAD_REFL_FIELD_(T, NAME, 0xffffffff, cls->m_array_0x110.size() - 1, -1, __VA_ARGS__)
+    DREAD_REFL_FIELD_(T, NAME, 0xffffffff, cls->m_functions.size() - 1, -1, __VA_ARGS__)
 
 // A field typed by a type object a static initialiser builds, by the type's name: the generated
 // src/reflection/ReflectedTypes.h, which a file using this includes, looks the name up.
@@ -61,7 +61,7 @@
     DREAD_REFL_FIELD_OF_(T::refl_GetClass(), NAME, OFFSET, -1, -1, __VA_ARGS__)
 
 #define DREAD_REFL_FIELD_(T, NAME, OFFSET, GETTER, SETTER, ...)                                        \
-    DREAD_REFL_FIELD_OF_(base::reflection::UnkReflTypeOf<T>::Get(), NAME, OFFSET, GETTER, SETTER, __VA_ARGS__)
+    DREAD_REFL_FIELD_OF_(base::reflection::ValueType<T>(), NAME, OFFSET, GETTER, SETTER, __VA_ARGS__)
 #define DREAD_REFL_FIELD_OF_(TYPE, NAME, OFFSET, GETTER, SETTER, ...)                                  \
     do {                                                                                               \
         [[maybe_unused]] constexpr const base::reflection::CType* field_type_ = nullptr;                \
@@ -114,14 +114,14 @@ struct TypeConstant {
 // Adds one attribute of a field. In a field typed by a type object (TYPED), an integer value is a
 // value of that type, added under it.
 template <class T, bool TYPED>
-inline void AddAttribute(UnkReflAttrs& attrs, const CType* field_type, const UnkReflAttrKey& key, const T& value) {
+inline void AddAttribute(Attributes& attrs, const CType* field_type, const AttributeKey& key, const T& value) {
     if constexpr (TYPED && std::is_same_v<T, s32>)
         attrs.Add<T>(key, field_type, value);
     else
         attrs.Add<T>(key, value);
 }
 template <class T, bool TYPED>
-inline void AddAttribute(UnkReflAttrs& attrs, const CType*, const TypedAttrKey& key, const T& value) {
+inline void AddAttribute(Attributes& attrs, const CType*, const TypedAttrKey& key, const T& value) {
     attrs.Add<T>(key, value);
 }
 
@@ -130,6 +130,6 @@ inline void AddAttribute(UnkReflAttrs& attrs, const CType*, const TypedAttrKey& 
 // The keys whose values are of their own enum type, with that type (TypedAttrKey); the other keys are
 // declared by name in base/reflection/ReflectedAttributes.h.
 namespace base::reflection::attr {
-inline TypedAttrKey Persistence() { return {fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object}; }
-inline TypedAttrKey EditorModeDataFlow() { return {fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object}; }
+inline TypedAttrKey Persistence() { return {PersistenceKey(), &base::reflection::TypeObject<base::serialization::EPersistence>::object}; }
+inline TypedAttrKey EditorModeDataFlow() { return {EditorModeDataFlowKey(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object}; }
 }  // namespace base::reflection::attr

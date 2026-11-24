@@ -26,7 +26,7 @@ void CCharClassAddWeaponTimelineSuffixTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassAddWeaponTimelineSuffixTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAddWeaponTimelineSuffixTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAddWeaponTimelineSuffixTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAddWeaponTimelineSuffixTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAddWeaponTimelineSuffixTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAddWeaponTimelineSuffixTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAddWeaponTimelineSuffixTrack::refl_Destroy(void* obj) { static_cast<CCharClassAddWeaponTimelineSuffixTrack*>(obj)->~CCharClassAddWeaponTimelineSuffixTrack(); }
 struct CCharClassAddWeaponTimelineSuffixTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAddWeaponTimelineSuffixTrack);

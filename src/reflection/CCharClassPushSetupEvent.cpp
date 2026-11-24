@@ -28,7 +28,7 @@ void CCharClassPushSetupEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassPushSetupEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassPushSetupEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassPushSetupEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPushSetupEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassPushSetupEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPushSetupEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassPushSetupEvent::refl_Destroy(void* obj) { static_cast<CCharClassPushSetupEvent*>(obj)->~CCharClassPushSetupEvent(); }
 struct CCharClassPushSetupEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassPushSetupEvent);

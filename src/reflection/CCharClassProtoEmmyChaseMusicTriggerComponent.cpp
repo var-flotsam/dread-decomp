@@ -15,7 +15,7 @@ void CCharClassProtoEmmyChaseMusicTriggerComponent::refl_AddAttributes(CClass*) 
 void CCharClassProtoEmmyChaseMusicTriggerComponent::refl_AddFields(CClass*) {}
 bool CCharClassProtoEmmyChaseMusicTriggerComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassProtoEmmyChaseMusicTriggerComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassProtoEmmyChaseMusicTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassProtoEmmyChaseMusicTriggerComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassProtoEmmyChaseMusicTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassProtoEmmyChaseMusicTriggerComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassProtoEmmyChaseMusicTriggerComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassProtoEmmyChaseMusicTriggerComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassProtoEmmyChaseMusicTriggerComponent::refl_Destroy(void* obj) { static_cast<CCharClassProtoEmmyChaseMusicTriggerComponent*>(obj)->~CCharClassProtoEmmyChaseMusicTriggerComponent(); }
@@ -40,7 +40,7 @@ void CProtoEmmyChaseMusicTriggerComponent::refl_AddAttributes(CClass*) {}
 void CProtoEmmyChaseMusicTriggerComponent::refl_AddFields(CClass*) {}
 bool CProtoEmmyChaseMusicTriggerComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CProtoEmmyChaseMusicTriggerComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CProtoEmmyChaseMusicTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CProtoEmmyChaseMusicTriggerComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CProtoEmmyChaseMusicTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CProtoEmmyChaseMusicTriggerComponent*>(obj)->refl_GetDynamicClass(); }
 void CProtoEmmyChaseMusicTriggerComponent::refl_Destroy(void* obj) { static_cast<CProtoEmmyChaseMusicTriggerComponent*>(obj)->~CProtoEmmyChaseMusicTriggerComponent(); }
 void* CProtoEmmyChaseMusicTriggerComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* CProtoEmmyChaseMusicTriggerComponent::refl_MoveAssign(void*, const void*) { return nullptr; }

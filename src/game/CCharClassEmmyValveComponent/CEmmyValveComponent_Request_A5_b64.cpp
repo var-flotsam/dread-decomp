@@ -243,7 +243,7 @@ start:
         UnkDesc_SpitSend* desc =
             fn_710117ae38(target, 0x6a17390fc912b900, false) ? &g_unk_7172769794 : &g_unk_7172769740;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, 0xa0e33be014f44bd7, 0xf4061ff25a2163d6, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode), &g_unk_710164b958, desc, &mask);
+        CAnimationComponent_SendActionToTrack(target, 0xa0e33be014f44bd7, 0xf4061ff25a2163d6, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode), &g_unk_710164b958, desc, &mask);
     }
     if (UnkCollisionContainer* collision = self->owner->collision) {
         if (UnkCollisionObject* object = fn_71008640a4(collision, &g_unk_717271a2c0))

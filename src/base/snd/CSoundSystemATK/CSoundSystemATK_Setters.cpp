@@ -67,7 +67,7 @@ void fn_71000fbc7c(UnkSoundSystemATK* self, bool on) {
     }
 }
 
-void fn_71000fbaf8(UnkSoundSystemATK* sys, s32 command, const void* payload) {
+void CSoundSystemATK_PushCommandToSecondQueue(UnkSoundSystemATK* sys, s32 command, const void* payload) {
     UnkSoundQueue2View* self = reinterpret_cast<UnkSoundQueue2View*>(sys);
     nn::os::GetCurrentThread();
     s32 size = g_unk_7101647aa8[command];

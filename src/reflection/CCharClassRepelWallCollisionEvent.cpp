@@ -22,7 +22,7 @@ void CCharClassRepelWallCollisionEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassRepelWallCollisionEvent::refl_AddFields(CClass*) {}
 bool CCharClassRepelWallCollisionEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassRepelWallCollisionEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassRepelWallCollisionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRepelWallCollisionEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassRepelWallCollisionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRepelWallCollisionEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassRepelWallCollisionEvent::refl_Destroy(void* obj) { static_cast<CCharClassRepelWallCollisionEvent*>(obj)->~CCharClassRepelWallCollisionEvent(); }
 struct CCharClassRepelWallCollisionEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassRepelWallCollisionEvent);

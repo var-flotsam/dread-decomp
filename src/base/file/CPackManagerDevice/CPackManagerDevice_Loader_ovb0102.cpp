@@ -56,7 +56,7 @@ bool fn_710008badc(void* base_object, UnkOpenedFile* file);
 
 // Opens the pack set table at `path` through the pack manager's device and reads it; a failed open
 // other than status 1 is reported to the registry.
-bool fn_7100089c1c(UnkFileDevice* self, const CFilePathStrId& path) {
+bool CPackManagerDevice_LoadPackSetsFile(UnkFileDevice* self, const CFilePathStrId& path) {
     UnkOpenedFile* file = nullptr;
     UnkPackSetManager* packs = reinterpret_cast<UnkPackSetManager*>(self->packs);
     u32 status = packs->device->vf_0x40(path, &file, 1, nullptr, 0, 3);
@@ -162,7 +162,7 @@ struct UnkFilePathList_71000839a0 : base::UnkVtableList<UnkListedPath> {
 };
 
 // Unmounts every pack of the pack set `path` (without forcing). False when the set can't be listed.
-bool fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path) {
+bool CPackManagerDevice_UnmountPackSetPacks(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path) {
     UnkFilePathList_71000839a0 list;
     bool ok = fn_710008c3bc(self->base_0x8, *static_cast<const CFilePathStrId*>(path), &list);
     if (ok) {

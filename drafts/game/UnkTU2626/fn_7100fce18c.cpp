@@ -101,7 +101,7 @@ struct UnkSoundPlayer_lfce18c {
 
 UnkPlayingHandle_ovb0074 fn_7100fce18c(UnkSoundPlayer_lfce18c* self, UnkSoundDesc_lfce18c* desc) {
     UnkPlayingHandle_ovb0074 handle =
-        fn_7100108620(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820),
+        CSoundSystem_PlayOrRestartSound(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820),
                       reinterpret_cast<UnkSoundDesc_ovb0074*>(desc));
     const UnkPlayingHandle_ovb0074& empty = reinterpret_cast<const UnkPlayingHandle_ovb0074&>(g_unk_7108b6c460);
     if (SoundOf(handle) != SoundOf(empty)) {

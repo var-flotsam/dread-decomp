@@ -22,7 +22,7 @@ void CCharClassApplyMeleeMovementToEnemyTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassApplyMeleeMovementToEnemyTrack::refl_AddFields(CClass*) {}
 bool CCharClassApplyMeleeMovementToEnemyTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassApplyMeleeMovementToEnemyTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassApplyMeleeMovementToEnemyTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassApplyMeleeMovementToEnemyTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassApplyMeleeMovementToEnemyTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassApplyMeleeMovementToEnemyTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassApplyMeleeMovementToEnemyTrack::refl_Destroy(void* obj) { static_cast<CCharClassApplyMeleeMovementToEnemyTrack*>(obj)->~CCharClassApplyMeleeMovementToEnemyTrack(); }
 struct CCharClassApplyMeleeMovementToEnemyTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassApplyMeleeMovementToEnemyTrack);

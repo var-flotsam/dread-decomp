@@ -22,7 +22,7 @@ void CCharClassMorphBallLauncherTravellingAllowInputTrack::refl_AddAttributes(CC
 void CCharClassMorphBallLauncherTravellingAllowInputTrack::refl_AddFields(CClass*) {}
 bool CCharClassMorphBallLauncherTravellingAllowInputTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassMorphBallLauncherTravellingAllowInputTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMorphBallLauncherTravellingAllowInputTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMorphBallLauncherTravellingAllowInputTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMorphBallLauncherTravellingAllowInputTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMorphBallLauncherTravellingAllowInputTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMorphBallLauncherTravellingAllowInputTrack::refl_Destroy(void* obj) { static_cast<CCharClassMorphBallLauncherTravellingAllowInputTrack*>(obj)->~CCharClassMorphBallLauncherTravellingAllowInputTrack(); }
 struct CCharClassMorphBallLauncherTravellingAllowInputTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassMorphBallLauncherTravellingAllowInputTrack);

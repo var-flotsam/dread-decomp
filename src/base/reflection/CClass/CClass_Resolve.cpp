@@ -24,18 +24,18 @@ void fn_7100096f30(CClass* self) {
     void (*hook)(CClass*) = reinterpret_cast<void (*)(CClass*)>(g_unk_7101d4c8d0->field_0x178);
     if (hook)
         hook(self);
-    UnkReflClassEntry* entries = static_cast<UnkReflClassEntry*>(self->m_array_0xe8.data);
-    for (UnkReflClassEntry* it = entries, *end = entries + self->m_array_0xe8.count; it != end; ++it)
+    UnkReflClassEntry* entries = static_cast<UnkReflClassEntry*>(self->m_fields.data);
+    for (UnkReflClassEntry* it = entries, *end = entries + self->m_fields.count; it != end; ++it)
         fn_71000e7420(it, self);
-    UnkReflClassFunction* functions = static_cast<UnkReflClassFunction*>(self->m_array_0x110.data);
-    for (UnkReflClassFunction* it = functions, *end = functions + self->m_array_0x110.count; it != end; ++it)
+    UnkReflClassFunction* functions = static_cast<UnkReflClassFunction*>(self->m_functions.data);
+    for (UnkReflClassFunction* it = functions, *end = functions + self->m_functions.count; it != end; ++it)
         fn_710009ad4c(it, self);
 }
 
 // Hands each entry of the array at +0xe8 to fn_71000e82a8 with a null second argument.
 struct UnkElem_0xb0;  // the entry, as src/engine/render/anim/CSkeletalAnimTree/fn_710014be78.cpp names it
 void fn_7100097c84(CClass* self) {
-    UnkReflClassEntry* entries = static_cast<UnkReflClassEntry*>(self->m_array_0xe8.data);
-    for (UnkReflClassEntry* it = entries, *end = entries + self->m_array_0xe8.count; it != end; ++it)
+    UnkReflClassEntry* entries = static_cast<UnkReflClassEntry*>(self->m_fields.data);
+    for (UnkReflClassEntry* it = entries, *end = entries + self->m_fields.count; it != end; ++it)
         fn_71000e82a8(reinterpret_cast<UnkElem_0xb0*>(it), nullptr);
 }

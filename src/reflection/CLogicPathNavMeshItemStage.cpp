@@ -14,7 +14,7 @@ void CLogicPathNavMeshItemStage::refl_AddAttributes(CClass*) {}
 void CLogicPathNavMeshItemStage::refl_AddFields(CClass*) {}
 bool CLogicPathNavMeshItemStage::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CLogicPathNavMeshItemStage::refl_Hash() { return -1; }
-const base::reflection::CType& CLogicPathNavMeshItemStage::refl_TypeOf(const void* obj) { return *static_cast<const CLogicPathNavMeshItemStage*>(obj)->vf_0x0(); }
+const base::reflection::CType& CLogicPathNavMeshItemStage::refl_TypeOf(const void* obj) { return *static_cast<const CLogicPathNavMeshItemStage*>(obj)->refl_GetDynamicClass(); }
 void CLogicPathNavMeshItemStage::refl_Destroy(void* obj) { static_cast<CLogicPathNavMeshItemStage*>(obj)->~CLogicPathNavMeshItemStage(); }
 struct CLogicPathNavMeshItemStage::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CLogicPathNavMeshItemStage);

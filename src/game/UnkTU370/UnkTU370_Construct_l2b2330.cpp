@@ -28,8 +28,8 @@ struct UnkPrimeTable_2b2330 {
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(fl),
           allocator(alloc ? alloc : GetDefaultAllocator()), field_0x28(0xffffffff), field_0x30(nullptr),
           node_allocator(GetDefaultAllocator()), node_flags(fl), field_0x44(0), field_0x48(1) {
-        if (!fn_71000669a0(n))
-            n = fn_7100066930(n);
+        if (!CEvent_IsPrime(n))
+            n = CEvent_GetNextPrimeAtOrAbove(n);
         Resize(n);
     }
 

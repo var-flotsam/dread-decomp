@@ -49,7 +49,7 @@ static inline bool DirectTimeline(UnkOtherActionActor& actor, UnkSetActionToOthe
     return actor.timeline && event.direct;
 }
 
-void fn_7100bcfe4c(UnkSetActionToOtherEntityEvent* self) {
+void CCharClassSetActionToOtherEntityEvent_ApplyActionToEntityWithProbability(UnkSetActionToOtherEntityEvent* self) {
     if (fn_7100deac04(g_unk_7101d47310))
         return;
     alignas(8) u32 kind;
@@ -83,6 +83,6 @@ void fn_7100bcfe4c(UnkSetActionToOtherEntityEvent* self) {
         value.value = v;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>();
-        fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &value, &mask);
+        CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &value, &mask);
     }
 }

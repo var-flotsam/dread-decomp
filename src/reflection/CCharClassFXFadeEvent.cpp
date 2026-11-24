@@ -31,7 +31,7 @@ void CCharClassFXFadeEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassFXFadeEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFXFadeEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFXFadeEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXFadeEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFXFadeEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXFadeEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFXFadeEvent::refl_Destroy(void* obj) { static_cast<CCharClassFXFadeEvent*>(obj)->~CCharClassFXFadeEvent(); }
 struct CCharClassFXFadeEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFXFadeEvent);

@@ -71,7 +71,7 @@ static inline UnkPropValue_lb90594* FindValue_lb90594(UnkPropBag& bag, u64 key) 
     return std::find_if(first, last, [key](const UnkPropValue_lb90594& v) { return v.key == key; }).p;
 }
 
-void fn_7100b90594(UnkAimAngToFrame_lb90594* self) {
+void CAIAimAngToFrameAction_ApplyAnglePropertyAsFrame(UnkAimAngToFrame_lb90594* self) {
     static CStrId s_angle("Angle", true);
     f32 angle = 0.0f;
     UnkPropBag& bag = self->owner->props->bag;

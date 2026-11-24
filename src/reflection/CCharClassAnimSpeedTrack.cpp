@@ -26,7 +26,7 @@ void CCharClassAnimSpeedTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassAnimSpeedTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAnimSpeedTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAnimSpeedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAnimSpeedTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAnimSpeedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAnimSpeedTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAnimSpeedTrack::refl_Destroy(void* obj) { static_cast<CCharClassAnimSpeedTrack*>(obj)->~CCharClassAnimSpeedTrack(); }
 struct CCharClassAnimSpeedTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAnimSpeedTrack);

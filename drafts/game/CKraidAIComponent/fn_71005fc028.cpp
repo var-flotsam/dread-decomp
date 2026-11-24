@@ -293,7 +293,7 @@ void fn_71005fc028(UnkKraidAI_l5fc028* self) {
         mode.id = 2;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(tree, 0xdec1d0efc9e2415f, 0x9317bfcf28edee2b, &mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(tree, 0xdec1d0efc9e2415f, 0x9317bfcf28edee2b, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask);
     }
     state->field_0x38 = 1;

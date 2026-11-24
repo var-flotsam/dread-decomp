@@ -162,7 +162,7 @@ void fn_710013c4b4(UnkTunableRegistry* self, const char* name, const char* field
     UnkTunableField* field = type->Find(hash);
     if (field == type->End())
         return;
-    if (fn_7100024140(field->type) != fn_7100024140(value->type))
+    if (CBaseObject_GetTypeCodeChar(field->type) != CBaseObject_GetTypeCodeChar(value->type))
         return;
     UnkReflTypedPtr typed;
     typed.type = object->GetClass();
@@ -185,7 +185,7 @@ extern base::reflection::CType g_unk_710b371c60;                                
 static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {
     UnkParseContext ctx(g_unk_710b372778, reader, target);
     UnkReadEntry* end = target->entries + target->count;
-    fn_710000f750(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr);
+    CBlendSpaceResource_ReadObjectAsStoredType(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr);
 }
 
 // Marks every tunable, then reads the second tunables file into the registry.

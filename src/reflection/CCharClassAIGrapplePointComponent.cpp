@@ -23,7 +23,7 @@ void CCharClassAIGrapplePointComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassAIGrapplePointComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassAIGrapplePointComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAIGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAIGrapplePointComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAIGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAIGrapplePointComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAIGrapplePointComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassAIGrapplePointComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassAIGrapplePointComponent::refl_Destroy(void* obj) { static_cast<CCharClassAIGrapplePointComponent*>(obj)->~CCharClassAIGrapplePointComponent(); }

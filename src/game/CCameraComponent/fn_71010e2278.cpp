@@ -133,7 +133,7 @@ struct UnkOwner_71010e2278 {
     }
 };
 
-void fn_71010e2278(UnkOwner_71010e2278* self, UnkArg1_71010e2278* a1, UnkArg2_71010e2278* a2,
+void CCameraComponent_CreateSceneObjectAndControllers(UnkOwner_71010e2278* self, UnkArg1_71010e2278* a1, UnkArg2_71010e2278* a2,
                    f32 x, f32 y, f32 z) {
     UnkRenderManager* mgr = g_unk_7101d47300;
     UnkSceneObj_71010e2278* scene = nullptr;

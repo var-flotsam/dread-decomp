@@ -14,7 +14,7 @@ void CBoneToConstantComponent::refl_AddAttributes(CClass*) {}
 void CBoneToConstantComponent::refl_AddFields(CClass*) {}
 bool CBoneToConstantComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CBoneToConstantComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CBoneToConstantComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBoneToConstantComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CBoneToConstantComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBoneToConstantComponent*>(obj)->refl_GetDynamicClass(); }
 void CBoneToConstantComponent::refl_CopyConstruct(void*, const void*) {}
 void CBoneToConstantComponent::refl_MoveConstruct(void*, const void*) {}
 void CBoneToConstantComponent::refl_Destroy(void* obj) { static_cast<CBoneToConstantComponent*>(obj)->~CBoneToConstantComponent(); }

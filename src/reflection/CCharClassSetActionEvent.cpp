@@ -30,7 +30,7 @@ void CCharClassSetActionEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassSetActionEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetActionEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetActionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetActionEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetActionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetActionEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetActionEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetActionEvent*>(obj)->~CCharClassSetActionEvent(); }
 struct CCharClassSetActionEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetActionEvent);

@@ -14,7 +14,7 @@ void behaviortree::CTurnInDoorAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CTurnInDoorAction::refl_AddFields(CClass*) {}
 bool behaviortree::CTurnInDoorAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CTurnInDoorAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CTurnInDoorAction::refl_TypeOf(const void* obj) { return *static_cast<const CTurnInDoorAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CTurnInDoorAction::refl_TypeOf(const void* obj) { return *static_cast<const CTurnInDoorAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CTurnInDoorAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CTurnInDoorAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CTurnInDoorAction::refl_Destroy(void* obj) { static_cast<CTurnInDoorAction*>(obj)->~CTurnInDoorAction(); }

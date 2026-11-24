@@ -26,7 +26,7 @@ void CCharClassActivateTrainPortalEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassActivateTrainPortalEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassActivateTrainPortalEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassActivateTrainPortalEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActivateTrainPortalEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassActivateTrainPortalEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActivateTrainPortalEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassActivateTrainPortalEvent::refl_Destroy(void* obj) { static_cast<CCharClassActivateTrainPortalEvent*>(obj)->~CCharClassActivateTrainPortalEvent(); }
 struct CCharClassActivateTrainPortalEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassActivateTrainPortalEvent);

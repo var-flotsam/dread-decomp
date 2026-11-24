@@ -24,7 +24,7 @@ void fn_7100978438(char* self) {
         req.flags |= 1;
         UnkStruct_7101176ea8* anim =
             *reinterpret_cast<UnkStruct_7101176ea8**>(*reinterpret_cast<char**>(self + 0x30) + 0x220);
-        fn_7101176ea8(anim, reinterpret_cast<const UnkRequest_7101176ea8*>(&req), 0xf4061ff25a2163d6);
+        CAnimationComponent_SendActionRequestRecordToTrack(anim, reinterpret_cast<const UnkRequest_7101176ea8*>(&req), 0xf4061ff25a2163d6);
         (*reinterpret_cast<RunFn**>(self))[0x318 / 8](self);
     }
 }

@@ -117,7 +117,7 @@ bool fn_7100a782e8(UnkCapsuleUsableComponent_la782e8* self, UnkWeakTarget* user,
         u64 hash_a = self->def->anim_a.data->Key();
         mode_a.id = 0;
         mask_a.id = UnkAll_SpitSend().value;
-        fn_7101176690(track_a, hash_a, 0xf4061ff25a2163d6, &mode_a, &g_unk_710164b958, &g_unk_7172769740, &mask_a);
+        CAnimationComponent_SendActionToTrack(track_a, hash_a, 0xf4061ff25a2163d6, &mode_a, &g_unk_710164b958, &g_unk_7172769740, &mask_a);
 
         UnkCapsuleLink_la782e8* link = &self->link;
         link->context = self;
@@ -137,7 +137,7 @@ bool fn_7100a782e8(UnkCapsuleUsableComponent_la782e8* self, UnkWeakTarget* user,
             u64 hash = self->def->anim_b.data->Key();
             mode_b.id = 2;
             mask_b.id = UnkAll_SpitSend().value;
-            fn_7101176690(other, hash, 0xf4061ff25a2163d6, &mode_b, &g_unk_710164b958, &g_unk_7172769740, &mask_b);
+            CAnimationComponent_SendActionToTrack(other, hash, 0xf4061ff25a2163d6, &mode_b, &g_unk_710164b958, &g_unk_7172769740, &mask_b);
         }
     } else {
         fn_7100aa1b08(reinterpret_cast<UnkTeleporterOwner_b0233*>(self),

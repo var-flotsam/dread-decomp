@@ -87,7 +87,7 @@ __attribute__((always_inline)) static inline void ApplyMask(u32* bits, bool on, 
     }
 }
 
-void fn_71001082a8(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask) {
+void CSoundSystem_SetGroupsMuted(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask) {
     ApplyMask(&self->mask_a, on, mask);
     alignas(8) u32 groups = *mask;
     fn_71000fd0cc(self->member, on, &groups);
@@ -147,7 +147,7 @@ struct UnkSoundLock_ovb0074 {
 // (fn_7100105034); a new one is started (fn_71000fd43c) while the group has fewer sounds
 // (fn_71000fef18) than its limit (+0x4008f0), or once the group's finished sounds were stopped
 // (fn_71001087a8). Returns the handle.
-UnkPlayingHandle_ovb0074 fn_7100108620(UnkSoundSystemPlayView_ovb0074* self, UnkSoundDesc_ovb0074* desc) {
+UnkPlayingHandle_ovb0074 CSoundSystem_PlayOrRestartSound(UnkSoundSystemPlayView_ovb0074* self, UnkSoundDesc_ovb0074* desc) {
     UnkPlayingHandle_ovb0074 handle;
     if (desc->path == &g_unk_7101d47200->empty || !self->enabled[desc->group]) {
         handle.ref = nullptr;

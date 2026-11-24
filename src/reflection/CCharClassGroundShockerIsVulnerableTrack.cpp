@@ -22,7 +22,7 @@ void CCharClassGroundShockerIsVulnerableTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassGroundShockerIsVulnerableTrack::refl_AddFields(CClass*) {}
 bool CCharClassGroundShockerIsVulnerableTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassGroundShockerIsVulnerableTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassGroundShockerIsVulnerableTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGroundShockerIsVulnerableTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassGroundShockerIsVulnerableTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGroundShockerIsVulnerableTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassGroundShockerIsVulnerableTrack::refl_Destroy(void* obj) { static_cast<CCharClassGroundShockerIsVulnerableTrack*>(obj)->~CCharClassGroundShockerIsVulnerableTrack(); }
 struct CCharClassGroundShockerIsVulnerableTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassGroundShockerIsVulnerableTrack);

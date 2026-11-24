@@ -26,7 +26,7 @@ void CCharClassLuaCallbackEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassLuaCallbackEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassLuaCallbackEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassLuaCallbackEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLuaCallbackEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassLuaCallbackEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLuaCallbackEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassLuaCallbackEvent::refl_Destroy(void* obj) { static_cast<CCharClassLuaCallbackEvent*>(obj)->~CCharClassLuaCallbackEvent(); }
 struct CCharClassLuaCallbackEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassLuaCallbackEvent);

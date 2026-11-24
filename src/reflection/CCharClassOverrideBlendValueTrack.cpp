@@ -26,7 +26,7 @@ void CCharClassOverrideBlendValueTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassOverrideBlendValueTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassOverrideBlendValueTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassOverrideBlendValueTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassOverrideBlendValueTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassOverrideBlendValueTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassOverrideBlendValueTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassOverrideBlendValueTrack::refl_Destroy(void* obj) { static_cast<CCharClassOverrideBlendValueTrack*>(obj)->~CCharClassOverrideBlendValueTrack(); }
 struct CCharClassOverrideBlendValueTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassOverrideBlendValueTrack);

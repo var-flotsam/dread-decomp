@@ -27,7 +27,7 @@ void CCharClassLogicSoundEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassLogicSoundEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassLogicSoundEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassLogicSoundEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLogicSoundEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassLogicSoundEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLogicSoundEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassLogicSoundEvent::refl_Destroy(void* obj) { static_cast<CCharClassLogicSoundEvent*>(obj)->~CCharClassLogicSoundEvent(); }
 struct CCharClassLogicSoundEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassLogicSoundEvent);

@@ -22,7 +22,7 @@ void CCharClassScorpiusAllowDefensiveAttacksTrack::refl_AddAttributes(CClass* cl
 void CCharClassScorpiusAllowDefensiveAttacksTrack::refl_AddFields(CClass*) {}
 bool CCharClassScorpiusAllowDefensiveAttacksTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassScorpiusAllowDefensiveAttacksTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassScorpiusAllowDefensiveAttacksTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScorpiusAllowDefensiveAttacksTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassScorpiusAllowDefensiveAttacksTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScorpiusAllowDefensiveAttacksTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassScorpiusAllowDefensiveAttacksTrack::refl_Destroy(void* obj) { static_cast<CCharClassScorpiusAllowDefensiveAttacksTrack*>(obj)->~CCharClassScorpiusAllowDefensiveAttacksTrack(); }
 struct CCharClassScorpiusAllowDefensiveAttacksTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassScorpiusAllowDefensiveAttacksTrack);

@@ -14,7 +14,7 @@ void behaviortree::CDaivoBackToPositionAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CDaivoBackToPositionAction::refl_AddFields(CClass*) {}
 bool behaviortree::CDaivoBackToPositionAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CDaivoBackToPositionAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CDaivoBackToPositionAction::refl_TypeOf(const void* obj) { return *static_cast<const CDaivoBackToPositionAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CDaivoBackToPositionAction::refl_TypeOf(const void* obj) { return *static_cast<const CDaivoBackToPositionAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CDaivoBackToPositionAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CDaivoBackToPositionAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CDaivoBackToPositionAction::refl_Destroy(void* obj) { static_cast<CDaivoBackToPositionAction*>(obj)->~CDaivoBackToPositionAction(); }

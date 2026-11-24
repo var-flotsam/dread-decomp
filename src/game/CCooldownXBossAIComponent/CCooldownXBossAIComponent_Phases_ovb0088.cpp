@@ -400,7 +400,7 @@ struct UnkEntity;
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
 using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
-void fn_71008651c8(UnkStruct_71008651c8*, void* const*, UnkOut_71008651c8*);
+void CCollisionComponent_CollectRecordsBySecondaryId(UnkStruct_71008651c8*, void* const*, UnkOut_71008651c8*);
 
 extern char g_unk_7101649bb8[];  // the locator's name
 extern CStrId g_unk_71726d86f0 __attribute__((visibility("hidden")));
@@ -438,7 +438,7 @@ void CCooldownXBossAIComponent_UpdateHeadCollidersByLocatorHeight(UnkCooldownXBo
     bool inside = y <= 50.0f && above;
     fn_7100d35a98(reinterpret_cast<UnkEntry*>(object), inside);
     UnkOut_71008651c8 colliders(0xf);
-    fn_71008651c8(reinterpret_cast<UnkStruct_71008651c8*>(container), &g_unk_71726d86f8, &colliders);
+    CCollisionComponent_CollectRecordsBySecondaryId(reinterpret_cast<UnkStruct_71008651c8*>(container), &g_unk_71726d86f8, &colliders);
     for (UnkStruct_71008651c8_Entry **it = colliders.data, **end = colliders.data + colliders.count; it != end; ++it)
         fn_7100d35a98(*reinterpret_cast<UnkEntry**>(reinterpret_cast<char*>(*it) + 0x28), inside);
     colliders.Free();

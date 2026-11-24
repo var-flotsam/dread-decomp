@@ -35,10 +35,10 @@ static inline void Reset(UnkReflValue* value) {
     if (auto* old = reinterpret_cast<const CType*>(value->type)) {
         if (value->field_0x14 == 0) {
             if (old->m_size > 8) {
-                old->m_fn_0x40(value->field_0x0);
+                old->m_destroy(value->field_0x0);
                 GetDefaultAllocator()->vf_0x48(value->field_0x0);
             } else {
-                old->m_fn_0x40(value);
+                old->m_destroy(value);
             }
         }
         value->type = nullptr;
@@ -50,7 +50,7 @@ static inline void InitCopy(UnkReflValue* out, const CType* type, const void* ob
     if (!type)
         return;
     out->field_0x14 = 0;
-    if (!type->m_fn_0x30)
+    if (!type->m_copyConstruct)
         return;
     // Stored as a plain pointer: the original reloads the copy function after this store.
     *reinterpret_cast<const CType**>(&out->type) = type;
@@ -60,9 +60,9 @@ static inline void InitCopy(UnkReflValue* out, const CType* type, const void* ob
         out->field_0x0 = block;
         if (!block)
             return;
-        type->m_fn_0x30(block, object);
+        type->m_copyConstruct(block, object);
     } else {
-        type->m_fn_0x30(out, object);
+        type->m_copyConstruct(out, object);
     }
 }
 
@@ -70,7 +70,7 @@ static inline void InitCopy(UnkReflValue* out, const CType* type, const void* ob
 static inline bool CanAssignInPlace(const UnkReflValue* value, const UnkTypedRef* ref) {
     auto* cur = reinterpret_cast<const CType*>(value->type);
     return cur && ref->ptr && value->field_0x14 == 0 &&
-           (cur == ref->type ? cur->m_fn_0x48 != nullptr : fn_710009d52c(ref->type, cur));
+           (cur == ref->type ? cur->m_copyAssign != nullptr : fn_710009d52c(ref->type, cur));
 }
 
 UnkReflValue* fn_71000a1d34(UnkReflValue* self, const UnkTypedRef* ref) {

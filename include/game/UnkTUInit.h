@@ -82,7 +82,7 @@ __attribute__((always_inline)) static inline void InitEnum(UnkReflType* type, co
         CStrId id(name, true);
         ctor(type, id, init, nullptr);
     }
-    fn_7100000250(fn_7100099468, type, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, type, &g_unk_7101a19000);
 }
 
 // A converter between two types (UnkConverter) is registered with fn_71000a16c4: both are

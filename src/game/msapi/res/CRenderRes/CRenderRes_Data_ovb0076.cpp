@@ -80,7 +80,7 @@ void fn_71001b1478(UnkResPathVec* self, const CFilePathStrId* ids, u64 count, u3
     if (!allocator)
         allocator = GetDefaultAllocator();
     self->allocator = allocator;
-    fn_7100018450(self, count);
+    CAsset_ReserveFilePathIdVec(self, count);
     for (const CFilePathStrId* p = ids, *end = ids + count; p != end; ++p) {
         CFilePathStrId id(*p);
         u32 n = self->count;
@@ -90,7 +90,7 @@ void fn_71001b1478(UnkResPathVec* self, const CFilePathStrId* ids, u64 count, u3
         if ((s32)n >= (s32)c)
             for (;;) {
             }
-        fn_7100018450(self, c);
+        CAsset_ReserveFilePathIdVec(self, c);
         // Copied bitwise, then the reference taken: count is reloaded after the store.
         CFilePathStrId* slot = &self->data[self->count];
         base::global::UnkStringData* value = id.data;

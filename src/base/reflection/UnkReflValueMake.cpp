@@ -23,7 +23,7 @@ __attribute__((always_inline)) static inline void SetValue(UnkReflValue* out, co
         out->type = reinterpret_cast<const char*>(type);
         return;
     }
-    if (!type->m_fn_0x30)
+    if (!type->m_copyConstruct)
         return;
     *reinterpret_cast<const CType**>(&out->type) = type;
     u64 size = type->m_size;
@@ -32,9 +32,9 @@ __attribute__((always_inline)) static inline void SetValue(UnkReflValue* out, co
         out->field_0x0 = block;
         if (!block)
             return;
-        type->m_fn_0x30(block, value);
+        type->m_copyConstruct(block, value);
     } else {
-        type->m_fn_0x30(out, value);
+        type->m_copyConstruct(out, value);
     }
 }
 

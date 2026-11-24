@@ -14,7 +14,7 @@ void ISubPath::refl_AddAttributes(CClass*) {}
 void ISubPath::refl_AddFields(CClass*) {}
 bool ISubPath::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 ISubPath::refl_Hash() { return -1; }
-const base::reflection::CType& ISubPath::refl_TypeOf(const void* obj) { return *static_cast<const ISubPath*>(obj)->vf_0x0(); }
+const base::reflection::CType& ISubPath::refl_TypeOf(const void* obj) { return *static_cast<const ISubPath*>(obj)->refl_GetDynamicClass(); }
 void ISubPath::refl_Destroy(void* obj) { static_cast<ISubPath*>(obj)->~ISubPath(); }
 struct ISubPath::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(ISubPath);

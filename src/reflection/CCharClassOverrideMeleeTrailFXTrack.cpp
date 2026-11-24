@@ -26,7 +26,7 @@ void CCharClassOverrideMeleeTrailFXTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassOverrideMeleeTrailFXTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassOverrideMeleeTrailFXTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassOverrideMeleeTrailFXTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassOverrideMeleeTrailFXTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassOverrideMeleeTrailFXTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassOverrideMeleeTrailFXTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassOverrideMeleeTrailFXTrack::refl_Destroy(void* obj) { static_cast<CCharClassOverrideMeleeTrailFXTrack*>(obj)->~CCharClassOverrideMeleeTrailFXTrack(); }
 struct CCharClassOverrideMeleeTrailFXTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassOverrideMeleeTrailFXTrack);

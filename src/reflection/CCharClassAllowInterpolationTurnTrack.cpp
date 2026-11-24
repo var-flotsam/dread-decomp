@@ -22,7 +22,7 @@ void CCharClassAllowInterpolationTurnTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAllowInterpolationTurnTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowInterpolationTurnTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowInterpolationTurnTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowInterpolationTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowInterpolationTurnTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowInterpolationTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowInterpolationTurnTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowInterpolationTurnTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowInterpolationTurnTrack*>(obj)->~CCharClassAllowInterpolationTurnTrack(); }
 struct CCharClassAllowInterpolationTurnTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowInterpolationTurnTrack);

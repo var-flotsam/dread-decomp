@@ -269,7 +269,7 @@ void fn_71009933dc(UnkSlideState_l9933dc* self) {
                     UnkTrackQuery track = {fn_7100c57edc(), nullptr, -1.0f};
                     if (fn_710117b08c(animation, &track))
                         reinterpret_cast<UnkSlideInitTrack_l9933dc*>(track.result)->vf_0x18(&request);
-                    fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
+                    CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
                                   reinterpret_cast<const UnkRequest_7101176ea8*>(&request), 0xf4061ff25a2163d6);
                     return;
                 }

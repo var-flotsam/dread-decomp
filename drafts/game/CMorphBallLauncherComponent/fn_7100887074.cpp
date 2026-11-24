@@ -57,7 +57,7 @@ void fn_7100887074(UnkMorphBallLauncher_l887074* self, s32 kind) {
     void* animation = self->owner->animation;
     mode.id = 0;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, 0x6909d27d2c787fba, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(animation, 0x6909d27d2c787fba, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                   &mask);
 
     if (!self->field_0x300 || kind != 5) {
@@ -67,10 +67,10 @@ void fn_7100887074(UnkMorphBallLauncher_l887074* self, s32 kind) {
             void* animation2 = self->owner->animation;
             mode2.id = 0;
             mask2.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation2, 0x190088acaa81dde2, kind2, &mode2, &g_unk_710164b958, &g_unk_7172769740,
+            CAnimationComponent_SendActionToTrack(animation2, 0x190088acaa81dde2, kind2, &mode2, &g_unk_710164b958, &g_unk_7172769740,
                           &mask2);
             UnkMblTrack_l887074* track =
-                reinterpret_cast<UnkMblTrack_l887074*>(fn_71011771e0(self->owner->animation, kind2));
+                reinterpret_cast<UnkMblTrack_l887074*>(CAnimationComponent_FindTrackByNameHash(self->owner->animation, kind2));
             track->field_0x164 = self->params->field_0x64;
             track->field_0x168 = true;
             key = &g_unk_710164ae88;

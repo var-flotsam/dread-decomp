@@ -22,7 +22,7 @@ void CCharClassFallForwardTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassFallForwardTrack::refl_AddFields(CClass*) {}
 bool CCharClassFallForwardTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFallForwardTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFallForwardTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFallForwardTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFallForwardTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFallForwardTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFallForwardTrack::refl_Destroy(void* obj) { static_cast<CCharClassFallForwardTrack*>(obj)->~CCharClassFallForwardTrack(); }
 struct CCharClassFallForwardTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFallForwardTrack);

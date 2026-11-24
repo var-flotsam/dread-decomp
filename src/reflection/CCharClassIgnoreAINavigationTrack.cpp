@@ -26,7 +26,7 @@ void CCharClassIgnoreAINavigationTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassIgnoreAINavigationTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreAINavigationTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreAINavigationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreAINavigationTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreAINavigationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreAINavigationTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreAINavigationTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreAINavigationTrack*>(obj)->~CCharClassIgnoreAINavigationTrack(); }
 struct CCharClassIgnoreAINavigationTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreAINavigationTrack);

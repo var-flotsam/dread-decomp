@@ -189,7 +189,7 @@ static inline void SetTarget(UnkReflValue* value, const UnkPointTarget_l46b37c* 
     const CType* type = fn_7100701c54();
     const CType* current = reinterpret_cast<const CType*>(value->type);
     if (current && value->field_0x14 == 0 &&
-        (current == type ? type->m_fn_0x48 != nullptr : fn_710009d52c(type, current))) {
+        (current == type ? type->m_copyAssign != nullptr : fn_710009d52c(type, current))) {
         fn_71000a1cc8(value, type, point);
     } else {
         fn_71000a1c60(value);

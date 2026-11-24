@@ -22,7 +22,7 @@ void CCharClassDoorShieldUnBlockEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassDoorShieldUnBlockEvent::refl_AddFields(CClass*) {}
 bool CCharClassDoorShieldUnBlockEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassDoorShieldUnBlockEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassDoorShieldUnBlockEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDoorShieldUnBlockEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassDoorShieldUnBlockEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDoorShieldUnBlockEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassDoorShieldUnBlockEvent::refl_Destroy(void* obj) { static_cast<CCharClassDoorShieldUnBlockEvent*>(obj)->~CCharClassDoorShieldUnBlockEvent(); }
 struct CCharClassDoorShieldUnBlockEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassDoorShieldUnBlockEvent);

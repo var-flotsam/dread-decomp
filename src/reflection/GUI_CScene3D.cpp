@@ -85,7 +85,7 @@ void GUI::CScene3D::refl_AddFields(CClass* cls) {
 }
 bool GUI::CScene3D::refl_Equals(const void*, const void*) { return false; }
 s32 GUI::CScene3D::refl_Hash() { return -1; }
-const base::reflection::CType& GUI::CScene3D::refl_TypeOf(const void* obj) { return *static_cast<const CScene3D*>(obj)->vf_0x0(); }
+const base::reflection::CType& GUI::CScene3D::refl_TypeOf(const void* obj) { return *static_cast<const CScene3D*>(obj)->refl_GetDynamicClass(); }
 void GUI::CScene3D::refl_Destroy(void* obj) { static_cast<CScene3D*>(obj)->~CScene3D(); }
 struct GUI::CScene3D::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CScene3D);

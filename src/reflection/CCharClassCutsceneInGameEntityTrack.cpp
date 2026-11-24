@@ -22,7 +22,7 @@ void CCharClassCutsceneInGameEntityTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassCutsceneInGameEntityTrack::refl_AddFields(CClass*) {}
 bool CCharClassCutsceneInGameEntityTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCutsceneInGameEntityTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCutsceneInGameEntityTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCutsceneInGameEntityTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCutsceneInGameEntityTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCutsceneInGameEntityTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCutsceneInGameEntityTrack::refl_Destroy(void* obj) { static_cast<CCharClassCutsceneInGameEntityTrack*>(obj)->~CCharClassCutsceneInGameEntityTrack(); }
 struct CCharClassCutsceneInGameEntityTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCutsceneInGameEntityTrack);

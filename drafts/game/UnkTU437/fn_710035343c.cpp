@@ -119,7 +119,7 @@ bool fn_710035343c(UnkInvertSelf_l35343c* self) {
     if (UnkInvertSource_l35343c* track = reinterpret_cast<UnkInvertSource_l35343c*>(query.result)) {
         track->vf_0x18(&request);
         if (request.id != -1)
-            return fn_7101176ea8(anim, reinterpret_cast<const UnkRequest_7101176ea8*>(&request), kInvertKey);
+            return CAnimationComponent_SendActionRequestRecordToTrack(anim, reinterpret_cast<const UnkRequest_7101176ea8*>(&request), kInvertKey);
     }
     UnkInvertKey_l35343c* key = *static_cast<UnkInvertKey_l35343c**>(fn_7101177cac(anim, kInvertKey));
     UnkInvertAction_l35343c* action =
@@ -135,5 +135,5 @@ bool fn_710035343c(UnkInvertSelf_l35343c* self) {
     event->vf_0x18(&request);
     if (request.id == -1)
         return false;
-    return fn_7101176ea8(anim, reinterpret_cast<const UnkRequest_7101176ea8*>(&request), kInvertKey);
+    return CAnimationComponent_SendActionRequestRecordToTrack(anim, reinterpret_cast<const UnkRequest_7101176ea8*>(&request), kInvertKey);
 }

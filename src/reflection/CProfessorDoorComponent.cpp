@@ -27,7 +27,7 @@ void CProfessorDoorComponent::refl_AddFields(CClass* cls) {
 }
 bool CProfessorDoorComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CProfessorDoorComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CProfessorDoorComponent::refl_TypeOf(const void* obj) { return *static_cast<const CProfessorDoorComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CProfessorDoorComponent::refl_TypeOf(const void* obj) { return *static_cast<const CProfessorDoorComponent*>(obj)->refl_GetDynamicClass(); }
 void CProfessorDoorComponent::refl_CopyConstruct(void*, const void*) {}
 void CProfessorDoorComponent::refl_MoveConstruct(void*, const void*) {}
 void CProfessorDoorComponent::refl_Destroy(void* obj) { static_cast<CProfessorDoorComponent*>(obj)->~CProfessorDoorComponent(); }

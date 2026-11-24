@@ -28,7 +28,7 @@ void CCharClassMeleeSuccessBigAIActionTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassMeleeSuccessBigAIActionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassMeleeSuccessBigAIActionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMeleeSuccessBigAIActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMeleeSuccessBigAIActionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMeleeSuccessBigAIActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMeleeSuccessBigAIActionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMeleeSuccessBigAIActionTrack::refl_Destroy(void* obj) { static_cast<CCharClassMeleeSuccessBigAIActionTrack*>(obj)->~CCharClassMeleeSuccessBigAIActionTrack(); }
 struct CCharClassMeleeSuccessBigAIActionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassMeleeSuccessBigAIActionTrack);

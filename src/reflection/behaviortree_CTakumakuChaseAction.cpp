@@ -14,7 +14,7 @@ void behaviortree::CTakumakuChaseAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CTakumakuChaseAction::refl_AddFields(CClass*) {}
 bool behaviortree::CTakumakuChaseAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CTakumakuChaseAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CTakumakuChaseAction::refl_TypeOf(const void* obj) { return *static_cast<const CTakumakuChaseAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CTakumakuChaseAction::refl_TypeOf(const void* obj) { return *static_cast<const CTakumakuChaseAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CTakumakuChaseAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CTakumakuChaseAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CTakumakuChaseAction::refl_Destroy(void* obj) { static_cast<CTakumakuChaseAction*>(obj)->~CTakumakuChaseAction(); }

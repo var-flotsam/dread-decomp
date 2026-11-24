@@ -116,7 +116,7 @@ void fn_710038dd0c(UnkStopInIdleAction_l38dd0c* self) {
             u64 key = name.Str()->key;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(target, key, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+            CAnimationComponent_SendActionToTrack(target, key, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                           &mask);
         }
     }

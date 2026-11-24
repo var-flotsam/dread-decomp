@@ -22,7 +22,7 @@ void CCharClassMelee360ActionTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassMelee360ActionTrack::refl_AddFields(CClass*) {}
 bool CCharClassMelee360ActionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassMelee360ActionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMelee360ActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMelee360ActionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMelee360ActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMelee360ActionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMelee360ActionTrack::refl_Destroy(void* obj) { static_cast<CCharClassMelee360ActionTrack*>(obj)->~CCharClassMelee360ActionTrack(); }
 struct CCharClassMelee360ActionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassMelee360ActionTrack);

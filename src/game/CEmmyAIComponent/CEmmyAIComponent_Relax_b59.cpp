@@ -84,7 +84,7 @@ void fn_710055b1e8(UnkEmmyRelaxAI_b59* self) {
         u64 hash = StringCrc64("relax", 5);
         mode.id = 2;
         mask.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-        fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);
         fn_7101176a88(self->owner->field_0x220, 1);
     }
     if (UnkActor* other = fn_7100d7c990(reinterpret_cast<UnkActor*>(self->owner))) {

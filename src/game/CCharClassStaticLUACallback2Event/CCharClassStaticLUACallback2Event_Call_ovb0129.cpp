@@ -74,7 +74,7 @@ struct UnkLuaCallback2Event_b0129 {
 };
 
 // Calls the script function with two booleans: whether each argument reads "true".
-void fn_7100ce0858(UnkLuaCallback2Event_b0129* self) {
+void CCharClassStaticLUACallback2Event_CallLuaFunctionWithBoolParams(UnkLuaCallback2Event_b0129* self) {
     UnkLuaId_b0129& yes = TrueId();
     const char* function = Text(self->function);
     bool a = Contains(self->arg0, yes);

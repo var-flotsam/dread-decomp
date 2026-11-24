@@ -26,7 +26,7 @@ void CCharClassHydrogigaCancelAttackActionTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassHydrogigaCancelAttackActionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassHydrogigaCancelAttackActionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassHydrogigaCancelAttackActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHydrogigaCancelAttackActionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassHydrogigaCancelAttackActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHydrogigaCancelAttackActionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassHydrogigaCancelAttackActionTrack::refl_Destroy(void* obj) { static_cast<CCharClassHydrogigaCancelAttackActionTrack*>(obj)->~CCharClassHydrogigaCancelAttackActionTrack(); }
 struct CCharClassHydrogigaCancelAttackActionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassHydrogigaCancelAttackActionTrack);

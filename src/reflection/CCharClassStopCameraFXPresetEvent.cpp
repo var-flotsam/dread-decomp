@@ -26,7 +26,7 @@ void CCharClassStopCameraFXPresetEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassStopCameraFXPresetEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassStopCameraFXPresetEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassStopCameraFXPresetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStopCameraFXPresetEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassStopCameraFXPresetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStopCameraFXPresetEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassStopCameraFXPresetEvent::refl_Destroy(void* obj) { static_cast<CCharClassStopCameraFXPresetEvent*>(obj)->~CCharClassStopCameraFXPresetEvent(); }
 struct CCharClassStopCameraFXPresetEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassStopCameraFXPresetEvent);

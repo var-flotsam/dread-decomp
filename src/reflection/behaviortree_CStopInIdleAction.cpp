@@ -25,7 +25,7 @@ void behaviortree::CStopInIdleAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CStopInIdleAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CStopInIdleAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CStopInIdleAction::refl_TypeOf(const void* obj) { return *static_cast<const CStopInIdleAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CStopInIdleAction::refl_TypeOf(const void* obj) { return *static_cast<const CStopInIdleAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CStopInIdleAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CStopInIdleAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CStopInIdleAction::refl_Destroy(void* obj) { static_cast<CStopInIdleAction*>(obj)->~CStopInIdleAction(); }

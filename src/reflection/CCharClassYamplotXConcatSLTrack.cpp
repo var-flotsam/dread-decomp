@@ -22,7 +22,7 @@ void CCharClassYamplotXConcatSLTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassYamplotXConcatSLTrack::refl_AddFields(CClass*) {}
 bool CCharClassYamplotXConcatSLTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassYamplotXConcatSLTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassYamplotXConcatSLTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassYamplotXConcatSLTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassYamplotXConcatSLTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassYamplotXConcatSLTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassYamplotXConcatSLTrack::refl_Destroy(void* obj) { static_cast<CCharClassYamplotXConcatSLTrack*>(obj)->~CCharClassYamplotXConcatSLTrack(); }
 struct CCharClassYamplotXConcatSLTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassYamplotXConcatSLTrack);

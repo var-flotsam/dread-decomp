@@ -28,7 +28,7 @@ struct UnkGrappleSwitch_b56 {
     UnkGrappleIdHolder_b56* field_0x90;
 };
 
-void fn_7100826634(UnkGrappleSwitch_b56* self, void* arg, s32 state) {
+void CActionSwitcherOnPullGrapplePointComponent_SendPullStartOrAbortAction(UnkGrappleSwitch_b56* self, void* arg, s32 state) {
     fn_710082cdb0(self, arg, state);
     base::global::UnkStringData** slot;
     if (state == 1)

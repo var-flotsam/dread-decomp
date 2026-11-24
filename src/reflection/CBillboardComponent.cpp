@@ -25,7 +25,7 @@ void CBillboardComponent::refl_AddFields(CClass* cls) {
 }
 bool CBillboardComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CBillboardComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CBillboardComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBillboardComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CBillboardComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBillboardComponent*>(obj)->refl_GetDynamicClass(); }
 void CBillboardComponent::refl_CopyConstruct(void*, const void*) {}
 void CBillboardComponent::refl_MoveConstruct(void*, const void*) {}
 void CBillboardComponent::refl_Destroy(void* obj) { static_cast<CBillboardComponent*>(obj)->~CBillboardComponent(); }

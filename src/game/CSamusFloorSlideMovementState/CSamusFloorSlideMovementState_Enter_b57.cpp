@@ -68,7 +68,7 @@ void fn_7100996c10(UnkFloorSlideState_b57* self) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     self->field_0x198 = 1;
     self->field_0x19c = UnkFloorSlidePair_b57();
     self->field_0x1b4 = -1.0f;

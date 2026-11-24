@@ -222,7 +222,7 @@ struct UnkCaterzillaSpawn3_ovb0054 {
 
 UnkCaterzillaMode_ovb0054* fn_71003f7fa0(UnkCaterzillaActor_ovb0054* actor);
 
-bool fn_7100a17628(UnkCaterzillaSpawn3_ovb0054* self, const CVector2D* pos, u32 index, const CVector2D* dir) {
+bool CCaterzillaSpawnPointComponent_IsHomeLandmarkNotInLineWithDir(UnkCaterzillaSpawn3_ovb0054* self, const CVector2D* pos, u32 index, const CVector2D* dir) {
     auto* links = reinterpret_cast<UnkCaterzillaLinks_ovb0054*>(self->links);
     UnkCaterzillaTargetRef_ovb0054* target = fn_7100247340(links, index)->Target();
     UnkCaterzillaMode_ovb0054* mode = fn_71003f7fa0(target ? target->actor : nullptr);

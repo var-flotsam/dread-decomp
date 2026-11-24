@@ -139,7 +139,7 @@ static inline void Remove(UnkChozoWarriorList_l49b40c* list, u64 v) {
 // The near and far ends of the attack's reach along the facing axis.
 static inline f32 Back(UnkChozoWarriorAI_l49b40c* self) {
     f32 base;
-    fn_71010fc31c(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(self), &base);
+    CAIComponent_GetPathFirstLegStartX(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(self), &base);
     UnkAIReach reach = fn_7100977b90(self->owner->tracked);
     f32 offset = self->vtable->vf_0x3c8(self) - reach.radius * 0.5f;
     return base - offset;

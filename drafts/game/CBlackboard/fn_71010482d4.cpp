@@ -12,7 +12,7 @@ using base::global::CStrId;
 using UnkSectionArray_b0026 = base::global::CRntSmallDictionary<CStrId, CBlackboard::CSection*>;
 
 void fn_7101048420(CBlackboard::CSection* self);
-CBlackboard::CSection** fn_7101048588(UnkSectionArray_b0026* self, CBlackboard::CSection** slot);
+CBlackboard::CSection** CBlackboard_SwapRemoveSectionArrayEntry(UnkSectionArray_b0026* self, CBlackboard::CSection** slot);
 
 // The group a section belongs to (its field_0x10): the sections it holds at +0x38.
 struct UnkSectionGroup_l0482d4 {
@@ -27,14 +27,14 @@ CBlackboard::CSection** fn_71010482d4(CBlackboard* self, CBlackboard::CSection**
         if (auto* group = static_cast<UnkSectionGroup_l0482d4*>((*slot)->field_0x10)) {
             CBlackboard::CSection** found = UnkParallelFindSlot(&group->sections, key);
             if (found != group->sections.End())
-                fn_7101048588(&group->sections, found);
+                CBlackboard_SwapRemoveSectionArrayEntry(&group->sections, found);
         }
         if (CBlackboard::CSection* section = *slot) {
             fn_7101048420(section);
             operator delete(section);
             *slot = nullptr;
         }
-        next = fn_7101048588(reinterpret_cast<UnkSectionArray_b0026*>(&self->sections), slot);
+        next = CBlackboard_SwapRemoveSectionArrayEntry(reinterpret_cast<UnkSectionArray_b0026*>(&self->sections), slot);
     }
     return next;
 }

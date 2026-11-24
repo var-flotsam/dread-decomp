@@ -69,7 +69,7 @@ void fn_7100403c5c(UnkSelf_l403c5c* self) {
         void* receiver = self->owner->field_0x220;
         value.id = 0;
         arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-        fn_7101176690(receiver, 0xf3925904d50f96b3, 0xcf7107181622cb23, &value, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(receiver, 0xf3925904d50f96b3, 0xcf7107181622cb23, &value, &g_unk_710164b958,
                       &g_unk_7172769740, &arg);
     }
     UnkGameManager* manager = g_unk_7101d47310;

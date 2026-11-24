@@ -22,7 +22,7 @@ void CCharClassForceHyperBeamFireTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassForceHyperBeamFireTrack::refl_AddFields(CClass*) {}
 bool CCharClassForceHyperBeamFireTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassForceHyperBeamFireTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassForceHyperBeamFireTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceHyperBeamFireTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassForceHyperBeamFireTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceHyperBeamFireTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassForceHyperBeamFireTrack::refl_Destroy(void* obj) { static_cast<CCharClassForceHyperBeamFireTrack*>(obj)->~CCharClassForceHyperBeamFireTrack(); }
 struct CCharClassForceHyperBeamFireTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassForceHyperBeamFireTrack);

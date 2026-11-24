@@ -29,7 +29,7 @@ void CCharClassAttackFailActionTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassAttackFailActionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAttackFailActionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAttackFailActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAttackFailActionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAttackFailActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAttackFailActionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAttackFailActionTrack::refl_Destroy(void* obj) { static_cast<CCharClassAttackFailActionTrack*>(obj)->~CCharClassAttackFailActionTrack(); }
 struct CCharClassAttackFailActionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAttackFailActionTrack);

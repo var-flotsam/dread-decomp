@@ -26,7 +26,7 @@ void CCharClassThrowElectricBombEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassThrowElectricBombEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassThrowElectricBombEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassThrowElectricBombEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassThrowElectricBombEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassThrowElectricBombEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassThrowElectricBombEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassThrowElectricBombEvent::refl_Destroy(void* obj) { static_cast<CCharClassThrowElectricBombEvent*>(obj)->~CCharClassThrowElectricBombEvent(); }
 struct CCharClassThrowElectricBombEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassThrowElectricBombEvent);

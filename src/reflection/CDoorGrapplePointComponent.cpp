@@ -14,7 +14,7 @@ void CDoorGrapplePointComponent::refl_AddAttributes(CClass*) {}
 void CDoorGrapplePointComponent::refl_AddFields(CClass*) {}
 bool CDoorGrapplePointComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CDoorGrapplePointComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CDoorGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CDoorGrapplePointComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CDoorGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CDoorGrapplePointComponent*>(obj)->refl_GetDynamicClass(); }
 void CDoorGrapplePointComponent::refl_CopyConstruct(void*, const void*) {}
 void CDoorGrapplePointComponent::refl_MoveConstruct(void*, const void*) {}
 void CDoorGrapplePointComponent::refl_Destroy(void* obj) { static_cast<CDoorGrapplePointComponent*>(obj)->~CDoorGrapplePointComponent(); }

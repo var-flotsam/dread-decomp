@@ -7,7 +7,7 @@
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
 
-bool fn_710009d760(const UnkReflObject* obj, const CType* type) {
+bool CType_ObjectIsKindOf(const UnkReflObject* obj, const CType* type) {
     const CType* t = obj->vf_0x0();
     do {
         if (t == type)

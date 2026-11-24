@@ -82,7 +82,7 @@ void fn_7100588474(UnkGoliathXAI_l588474* self) {
             value.id = 0x82;
             base::reflection::UnkReflTypeIdArg arg;
             arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-            fn_7101176690(target, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
+            CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
         }
     }
     CGoliathXBurstProjectionBombsAttack_CacheTimelineMotionValues(reinterpret_cast<UnkGoliathXBombsAttack_l5858c4*>(self->bombs));

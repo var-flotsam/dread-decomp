@@ -28,7 +28,7 @@ void CCharClassAreaSoundComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassAreaSoundComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassAreaSoundComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAreaSoundComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAreaSoundComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAreaSoundComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAreaSoundComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAreaSoundComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassAreaSoundComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassAreaSoundComponent::refl_Destroy(void* obj) { static_cast<CCharClassAreaSoundComponent*>(obj)->~CCharClassAreaSoundComponent(); }

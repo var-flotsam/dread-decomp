@@ -24,7 +24,7 @@ static __attribute__((always_inline)) bool AssignEnumRef(const void* a, const vo
     UnkTypedRef dst;
     fn_71000a174c(&dst, ref);
     UnkTypedRef src = {GetType(), const_cast<void*>(b)};
-    return fn_710009d5d4(type, &dst, &src);
+    return CType_AreValuesEqual(type, &dst, &src);
 }
 
 bool fn_7100099040(const void* a, const void* b) {

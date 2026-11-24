@@ -56,7 +56,7 @@ static inline bool IsSet(const UnkStrIdPathResource& r) {
     return r.ids.id.data != &g_unk_7101d47108->empty && r.ids.path.data != &g_unk_7101d47200->empty;
 }
 
-void fn_7100bc3164(UnkAudioPresetEvent_ovb0137* self, UnkEventContext_ovb0137* ctx) {
+void CCharClassPlayAudioPresetEvent_ResolveAndPlayPresetOnOwner(UnkAudioPresetEvent_ovb0137* self, UnkEventContext_ovb0137* ctx) {
     if (!ctx->owner || ctx->owner->field_0x1b5)
         return;
     if (!IsSet(self->preset) && self->name != &g_unk_7101d47108->empty) {

@@ -76,7 +76,7 @@ static inline void SetConstant(UnkBoneConstantNode* node, const UnkBoneToConstan
     }
 }
 
-void fn_7100803f84(UnkBoneToConstant* self) {
+void CBoneToConstantComponent_ApplyBoneTranslationToMaterialConstant(UnkBoneToConstant* self) {
     UnkBoneConstantModel* model = self->owner->model;
     if (!model)
         return;

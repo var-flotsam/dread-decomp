@@ -51,7 +51,7 @@ struct UnkBoolTunableButton_b0119 {
     UnkScriptName_b0119* script;      // 0x2c8
 };
 
-void fn_7100af3d60(UnkBoolTunableButton_b0119* self) {
+void CBoolTunableButton_ToggleValue(UnkBoolTunableButton_b0119* self) {
     UnkGuiObj* label = self->label;
     self->value = !self->value;
     if (self->value)

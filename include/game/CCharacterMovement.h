@@ -22,7 +22,7 @@ bool fn_7100979ef0(void* tracked);
 f32 fn_7100977b20(void*);
 f32 fn_7100977bec(UnkFlagged*);
 UnkAIReach fn_7100977b90(void* tracked);
-void fn_7100978f58(char* self, const void* arg);  // Reads three words at `arg`.
+void CCharacterMovement_SetOwnerPositionDroppedToGround(char* self, const void* arg);  // Reads three words at `arg`.
 void fn_71009796dc(UnkMove_b152* self);
 UnkVec3Bits fn_7100979a60(UnkPlace* place);
 bool fn_7100976c94(UnkGrappleTarget* target, const UnkVec3f* pos, u32 value, void* arg, u32 flag, f32 offset);

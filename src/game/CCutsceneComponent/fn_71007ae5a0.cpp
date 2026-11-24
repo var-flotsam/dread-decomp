@@ -39,12 +39,12 @@ extern char g_unk_71727192e0[];
 extern char g_unk_71727192e1[];
 UnkEnumType* fn_71007a217c();
 extern UnkConversion g_unk_71727192e8;
-CStrId* fn_71007ab7d8(CStrId* self, const u32* value) __attribute__((visibility("hidden")));
+CStrId* CCutsceneComponent_ConvertU32ToStrId(CStrId* self, const u32* value) __attribute__((visibility("hidden")));
 extern char g_unk_7172719308[];
 extern char g_unk_7172719309[];
 extern char g_unk_717271930a[];
 
-void fn_71007ae5a0() {
+void CCutsceneComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172719990.ids);
     fn_710009ec00(g_unk_7172718ee8, fn_71007a11ec());
     fn_710009ec00(g_unk_7172718ee9, fn_71007a12c8());
@@ -69,7 +69,7 @@ void fn_71007ae5a0() {
     __cxa_atexit(fn_710009891c, &reinterpret_cast<UnkEnumType&>(g_unk_7172719170), g_unk_7101a19000);
     fn_710009ec00(g_unk_71727192e0, &reinterpret_cast<UnkEnumType&>(g_unk_7172719170));
     fn_710009ec00(g_unk_71727192e1, fn_71007a217c());
-    InitConversion(&g_unk_71727192e8, TypeOf<fn_7100005178>, TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_71007ab7d8));
+    InitConversion(&g_unk_71727192e8, TypeOf<fn_7100005178>, TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&CCutsceneComponent_ConvertU32ToStrId));
     fn_71007a225c();
     fn_710009ec00(g_unk_7172719308, g_unk_7172719990.field_0x30);
     fn_71007a2c40();

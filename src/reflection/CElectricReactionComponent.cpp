@@ -14,7 +14,7 @@ void CElectricReactionComponent::refl_AddAttributes(CClass*) {}
 void CElectricReactionComponent::refl_AddFields(CClass*) {}
 bool CElectricReactionComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CElectricReactionComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CElectricReactionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CElectricReactionComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CElectricReactionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CElectricReactionComponent*>(obj)->refl_GetDynamicClass(); }
 void CElectricReactionComponent::refl_CopyConstruct(void*, const void*) {}
 void CElectricReactionComponent::refl_MoveConstruct(void*, const void*) {}
 void CElectricReactionComponent::refl_Destroy(void* obj) { static_cast<CElectricReactionComponent*>(obj)->~CElectricReactionComponent(); }

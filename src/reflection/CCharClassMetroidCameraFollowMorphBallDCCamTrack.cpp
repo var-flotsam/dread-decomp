@@ -22,7 +22,7 @@ void CCharClassMetroidCameraFollowMorphBallDCCamTrack::refl_AddAttributes(CClass
 void CCharClassMetroidCameraFollowMorphBallDCCamTrack::refl_AddFields(CClass*) {}
 bool CCharClassMetroidCameraFollowMorphBallDCCamTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassMetroidCameraFollowMorphBallDCCamTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMetroidCameraFollowMorphBallDCCamTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMetroidCameraFollowMorphBallDCCamTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMetroidCameraFollowMorphBallDCCamTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMetroidCameraFollowMorphBallDCCamTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMetroidCameraFollowMorphBallDCCamTrack::refl_Destroy(void* obj) { static_cast<CCharClassMetroidCameraFollowMorphBallDCCamTrack*>(obj)->~CCharClassMetroidCameraFollowMorphBallDCCamTrack(); }
 struct CCharClassMetroidCameraFollowMorphBallDCCamTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassMetroidCameraFollowMorphBallDCCamTrack);

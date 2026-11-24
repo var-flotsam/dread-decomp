@@ -72,7 +72,7 @@ u32 fn_71006b7508(UnkShelmitChargeAction_l6b7508* self, f32 dt) {
         u64 track;
         mask.id = UnkAll_SpitSend().value;
         track = 0x884c8e254ba39908;
-        if (fn_7101176690(animation, track, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+        if (CAnimationComponent_SendActionToTrack(animation, track, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                           &mask) ||
             fn_710117ae38(animation, track, false)) {
             self->stage = 2;
@@ -88,7 +88,7 @@ u32 fn_71006b7508(UnkShelmitChargeAction_l6b7508* self, f32 dt) {
                 self->timer = -1.0f;
                 mode2.id = 0;
                 mask2.id = UnkAll_SpitSend().value;
-                if (fn_7101176690(animation, 0x6836cdff1d937e28, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958,
+                if (CAnimationComponent_SendActionToTrack(animation, 0x6836cdff1d937e28, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958,
                                   &g_unk_7172769740, &mask2))
                     self->stage = 4;
             }

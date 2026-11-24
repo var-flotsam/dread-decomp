@@ -138,7 +138,7 @@ void fn_7100e06590() {
         CStrId name("SLoadScenarioRequest::EMode", true);
         fn_7100de441c(mode, name, fn_7100de42d0, nullptr);
     }
-    fn_7100000250(fn_7100099468, mode, g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, mode, g_unk_7101a19000);
     fn_710009ec00(g_unk_71727bea50, mode);
     InitEnum(reinterpret_cast<UnkEnumType*>(&base::reflection::TypeObject<EDifficultyMode>::object), "EDifficultyMode", fn_7100de47a8, fn_7100de459c,
              g_unk_71727beb70, &g_unk_71727beb78, fn_7100e04e68, &g_unk_71727beb98, fn_7100e04e74);

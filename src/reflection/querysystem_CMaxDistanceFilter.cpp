@@ -23,7 +23,7 @@ void querysystem::CMaxDistanceFilter::refl_AddFields(CClass* cls) {
 }
 bool querysystem::CMaxDistanceFilter::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 querysystem::CMaxDistanceFilter::refl_Hash() { return -1; }
-const base::reflection::CType& querysystem::CMaxDistanceFilter::refl_TypeOf(const void* obj) { return *static_cast<const CMaxDistanceFilter*>(obj)->vf_0x0(); }
+const base::reflection::CType& querysystem::CMaxDistanceFilter::refl_TypeOf(const void* obj) { return *static_cast<const CMaxDistanceFilter*>(obj)->refl_GetDynamicClass(); }
 void querysystem::CMaxDistanceFilter::refl_Destroy(void* obj) { static_cast<CMaxDistanceFilter*>(obj)->~CMaxDistanceFilter(); }
 struct querysystem::CMaxDistanceFilter::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CMaxDistanceFilter);

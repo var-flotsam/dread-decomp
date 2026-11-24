@@ -59,7 +59,7 @@ class Literals(unittest.TestCase):
 class IndexExpr(unittest.TestCase):
     def test_forms(self):
         self.assertEqual(ra.index_expr(("imm", 2**64 - 1)), "-1")
-        self.assertEqual(ra.index_expr(("count", -3)), "cls->m_array_0x110.size() - 3")
+        self.assertEqual(ra.index_expr(("count", -3)), "cls->m_functions.size() - 3")
         self.assertIsNone(ra.index_expr(("count", 0)))
         self.assertIsNone(ra.index_expr(("imm", 4)))
         self.assertIsNone(ra.index_expr(None))
@@ -138,7 +138,7 @@ class Statements(unittest.TestCase):
 class Parse(unittest.TestCase):
     def test_class_attribute(self):
         decls, src = run_parse([bl(ra.GET_ATTRS), bl(KEY), val("imm", 1, 1), bl(BOOL_T), bl(ra.ADD_ATTR)])
-        self.assertEqual(decls, [f"const base::reflection::UnkReflAttrKey& fn_{KEY:x}();"])
+        self.assertEqual(decls, [f"const base::reflection::AttributeKey& fn_{KEY:x}();"])
         self.assertEqual(src, f"void fn_{ADDR:x}(CClass* cls) {{\n"
                               f"    TypeAttributes(cls)->Add<bool>(fn_{KEY:x}(), true);\n}}")
 
@@ -152,7 +152,7 @@ class Parse(unittest.TestCase):
         self.assertEqual(src.split("\n")[1:-1], [
             '    CVariable* field0 = AddReflectedField(cls, CStrId("speed", true), fn_7100005178(), 0x18, -1, -1);',
             f"    field0->attrs.Add<u32>(fn_{KEY:x}(), 0x7u);"])
-        self.assertEqual(decls, [f"const base::reflection::UnkReflAttrKey& fn_{KEY:x}();"])
+        self.assertEqual(decls, [f"const base::reflection::AttributeKey& fn_{KEY:x}();"])
 
     def test_field_named_by_collection_key(self):
         for addr, name in ((0x7101D5A450, "KeyFieldName"), (0x7101D5A458, "ElementFieldName"), (0x7101000010, None)):
@@ -169,7 +169,7 @@ class Parse(unittest.TestCase):
                bl(ra.ADD_FIELD, **{"3": ("imm", 8), "4": ("imm", 2**64 - 1), "5": ("count", -2)})]
         decls, src = run_parse(evs, {getter})
         self.assertIn(f"const base::reflection::CClass* fn_{getter:x}();", decls)
-        self.assertIn("cls->m_array_0x110.size() - 2);", src)
+        self.assertIn("cls->m_functions.size() - 2);", src)
 
     def test_run_once_prologue(self):
         g = 0x7101500000
@@ -250,10 +250,10 @@ class ReadableFields(unittest.TestCase):
             self.REG.format(n=0, name="fSpeed", getter="710000abbc", off="0x510"),
             "    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);",
             '    CVariable* field1 = AddReflectedField(cls, CStrId("fWidth", true), fn_710000abbc(), 0xffffffff, '
-            'cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);',
+            'cls->m_functions.size() - 2, cls->m_functions.size() - 1);',
             "    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);",
             '    CVariable* field2 = AddReflectedField(cls, CStrId("uKey", true), fn_7100005178(), 0xffffffff, '
-            'cls->m_array_0x110.size() - 1, -1);',
+            'cls->m_functions.size() - 1, -1);',
         ]
         self.assertEqual(ra.readable_fields(lines), [
             '    DREAD_REFLECTED_FIELD(f32, "fSpeed", 0x510, (Persistence, 0));',

@@ -23,7 +23,7 @@ void CCharClassLogicLookAtPlayerComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassLogicLookAtPlayerComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassLogicLookAtPlayerComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassLogicLookAtPlayerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLogicLookAtPlayerComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassLogicLookAtPlayerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLogicLookAtPlayerComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassLogicLookAtPlayerComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassLogicLookAtPlayerComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassLogicLookAtPlayerComponent::refl_Destroy(void* obj) { static_cast<CCharClassLogicLookAtPlayerComponent*>(obj)->~CCharClassLogicLookAtPlayerComponent(); }

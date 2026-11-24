@@ -75,7 +75,7 @@ static inline UnkCutsceneActor_l7a58c0* ResolvedActor(UnkActorLink_l7a58c0* link
     return Actor(link->handle);
 }
 
-void fn_71007a8724(void* object, u32 index, u32 place, bool shown) {
+void CCutsceneComponent_SetEntryFlagAtCurrentListIndex(void* object, u32 index, u32 place, bool shown) {
     UnkCutsceneComponent_l7a8724* self = static_cast<UnkCutsceneComponent_l7a8724*>(object);
     UnkActorLink_l7a58c0* link = &Entry(self, index)->link;
     if (link->vf_0x20())

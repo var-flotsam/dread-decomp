@@ -159,7 +159,7 @@ void fn_710001acf8(UnkPathListTable* self, const CStrId* key,
         if ((s32)n >= (s32)new_capacity)
             for (;;) {
             }
-        fn_7100018450(reinterpret_cast<UnkResPathVec*>(&list), new_capacity);
+        CAsset_ReserveFilePathIdVec(reinterpret_cast<UnkResPathVec*>(&list), new_capacity);
         // Copied bitwise, then the reference taken: the pool is reloaded after the store.
         CFilePathStrId* slot = &list.data[list.count];
         UnkStringData* value = it->data;

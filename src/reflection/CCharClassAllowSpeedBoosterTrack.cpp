@@ -26,7 +26,7 @@ void CCharClassAllowSpeedBoosterTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassAllowSpeedBoosterTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowSpeedBoosterTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowSpeedBoosterTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowSpeedBoosterTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowSpeedBoosterTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowSpeedBoosterTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowSpeedBoosterTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowSpeedBoosterTrack*>(obj)->~CCharClassAllowSpeedBoosterTrack(); }
 struct CCharClassAllowSpeedBoosterTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowSpeedBoosterTrack);

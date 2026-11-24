@@ -23,7 +23,7 @@ void CCameraToRailLogicAction::refl_AddFields(CClass* cls) {
 }
 bool CCameraToRailLogicAction::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCameraToRailLogicAction::refl_Hash() { return -1; }
-const base::reflection::CType& CCameraToRailLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CCameraToRailLogicAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCameraToRailLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CCameraToRailLogicAction*>(obj)->refl_GetDynamicClass(); }
 void CCameraToRailLogicAction::refl_Destroy(void* obj) { static_cast<CCameraToRailLogicAction*>(obj)->~CCameraToRailLogicAction(); }
 struct CCameraToRailLogicAction::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCameraToRailLogicAction);

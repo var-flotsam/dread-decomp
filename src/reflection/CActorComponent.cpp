@@ -14,7 +14,7 @@ void CActorComponent::refl_AddAttributes(CClass*) {}
 void CActorComponent::refl_AddFields(CClass*) {}
 bool CActorComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CActorComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CActorComponent::refl_TypeOf(const void* obj) { return *static_cast<const CActorComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CActorComponent::refl_TypeOf(const void* obj) { return *static_cast<const CActorComponent*>(obj)->refl_GetDynamicClass(); }
 void CActorComponent::refl_CopyConstruct(void*, const void*) {}
 void CActorComponent::refl_MoveConstruct(void*, const void*) {}
 void CActorComponent::refl_Destroy(void* obj) { static_cast<CActorComponent*>(obj)->~CActorComponent(); }

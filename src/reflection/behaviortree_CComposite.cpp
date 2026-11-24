@@ -14,7 +14,7 @@ void behaviortree::CComposite::refl_AddAttributes(CClass*) {}
 void behaviortree::CComposite::refl_AddFields(CClass*) {}
 bool behaviortree::CComposite::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CComposite::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CComposite::refl_TypeOf(const void* obj) { return *static_cast<const CComposite*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CComposite::refl_TypeOf(const void* obj) { return *static_cast<const CComposite*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CComposite::refl_Destroy(void* obj) { static_cast<CComposite*>(obj)->~CComposite(); }
 void* behaviortree::CComposite::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* behaviortree::CComposite::refl_MoveAssign(void*, const void*) { return nullptr; }

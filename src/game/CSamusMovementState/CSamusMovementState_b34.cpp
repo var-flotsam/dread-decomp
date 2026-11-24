@@ -57,7 +57,7 @@ void fn_71009b0c74(CSamusMovementState2* self) {
     self->field_0x148 = 0;
     if (request && request->id != -1) {
         if (UnkStruct_7101176ea8* animation = self->entity->animation)
-            fn_7101176ea8(animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&request->id), 0xf4061ff25a2163d6);
+            CAnimationComponent_SendActionRequestRecordToTrack(animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&request->id), 0xf4061ff25a2163d6);
     }
     u32 next = 15;
     fn_7100997128(reinterpret_cast<UnkMovementTransitions*>(self->transitions), &next);

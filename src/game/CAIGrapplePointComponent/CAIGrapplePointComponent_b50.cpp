@@ -58,7 +58,7 @@ struct UnkAIPull_b50 {
     UnkAIPullDef_b50* def;  // 0x90
 };
 
-bool fn_7100827978(UnkAIPull_b50* self, void* arg, UnkAIPullMessage_b50* msg) {
+bool CAIGrapplePointComponent_CheckMessageFromActiveGrappleCollider(UnkAIPull_b50* self, void* arg, UnkAIPullMessage_b50* msg) {
     if (!fn_710082cb24(self, arg, msg))
         return false;
     UnkCollisionContainer* collision = self->owner->collision;

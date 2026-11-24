@@ -26,7 +26,7 @@ void CCharClassChozoWarriorSetInvulnerableEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassChozoWarriorSetInvulnerableEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassChozoWarriorSetInvulnerableEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassChozoWarriorSetInvulnerableEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoWarriorSetInvulnerableEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassChozoWarriorSetInvulnerableEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoWarriorSetInvulnerableEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassChozoWarriorSetInvulnerableEvent::refl_Destroy(void* obj) { static_cast<CCharClassChozoWarriorSetInvulnerableEvent*>(obj)->~CCharClassChozoWarriorSetInvulnerableEvent(); }
 struct CCharClassChozoWarriorSetInvulnerableEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassChozoWarriorSetInvulnerableEvent);

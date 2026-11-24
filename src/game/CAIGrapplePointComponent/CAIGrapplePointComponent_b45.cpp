@@ -29,7 +29,7 @@ struct UnkAIGrapplePoint_b45a2 {
     UnkGrappleDef_b45a2* def;  // 0x90
 };
 
-bool fn_7100827a10(UnkAIGrapplePoint_b45a2* self) {
+bool CAIGrapplePointComponent_IsGrappleColliderEnabled(UnkAIGrapplePoint_b45a2* self) {
     UnkCollisionContainer* collision = self->owner->collision;
     if (!collision)
         return false;

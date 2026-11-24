@@ -14,7 +14,7 @@ void animtree::CBlendNode::refl_AddAttributes(CClass*) {}
 void animtree::CBlendNode::refl_AddFields(CClass*) {}
 bool animtree::CBlendNode::refl_Equals(const void*, const void*) { return false; }
 s32 animtree::CBlendNode::refl_Hash() { return -1; }
-const base::reflection::CType& animtree::CBlendNode::refl_TypeOf(const void* obj) { return *static_cast<const CBlendNode*>(obj)->vf_0x0(); }
+const base::reflection::CType& animtree::CBlendNode::refl_TypeOf(const void* obj) { return *static_cast<const CBlendNode*>(obj)->refl_GetDynamicClass(); }
 void animtree::CBlendNode::refl_CopyConstruct(void*, const void*) {}
 void animtree::CBlendNode::refl_MoveConstruct(void*, const void*) {}
 void animtree::CBlendNode::refl_Destroy(void* obj) { static_cast<CBlendNode*>(obj)->~CBlendNode(); }

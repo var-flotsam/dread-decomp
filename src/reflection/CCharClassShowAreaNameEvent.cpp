@@ -26,7 +26,7 @@ void CCharClassShowAreaNameEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassShowAreaNameEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassShowAreaNameEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassShowAreaNameEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassShowAreaNameEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassShowAreaNameEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassShowAreaNameEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassShowAreaNameEvent::refl_Destroy(void* obj) { static_cast<CCharClassShowAreaNameEvent*>(obj)->~CCharClassShowAreaNameEvent(); }
 struct CCharClassShowAreaNameEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassShowAreaNameEvent);

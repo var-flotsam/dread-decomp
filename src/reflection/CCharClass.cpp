@@ -14,7 +14,7 @@ void CCharClass::refl_AddAttributes(CClass*) {}
 void CCharClass::refl_AddFields(CClass*) {}
 bool CCharClass::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClass::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClass::refl_TypeOf(const void* obj) { return *static_cast<const CCharClass*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClass::refl_TypeOf(const void* obj) { return *static_cast<const CCharClass*>(obj)->refl_GetDynamicClass(); }
 void CCharClass::refl_Destroy(void* obj) { static_cast<CCharClass*>(obj)->~CCharClass(); }
 struct CCharClass::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClass);

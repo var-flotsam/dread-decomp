@@ -26,7 +26,7 @@ void CCharClassXParasiteEnableTrailParticlesEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassXParasiteEnableTrailParticlesEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassXParasiteEnableTrailParticlesEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassXParasiteEnableTrailParticlesEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassXParasiteEnableTrailParticlesEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassXParasiteEnableTrailParticlesEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassXParasiteEnableTrailParticlesEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassXParasiteEnableTrailParticlesEvent::refl_Destroy(void* obj) { static_cast<CCharClassXParasiteEnableTrailParticlesEvent*>(obj)->~CCharClassXParasiteEnableTrailParticlesEvent(); }
 struct CCharClassXParasiteEnableTrailParticlesEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassXParasiteEnableTrailParticlesEvent);

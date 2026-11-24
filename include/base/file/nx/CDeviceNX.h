@@ -7,4 +7,4 @@
 #include "types.h"
 s32 fn_710002eec8(void* table, void* path, void* data, u64 size, bool commit, bool create);
 extern void* g_unk_7101a1a070[];  // Base part's vtable (fn_71000732d4).
-u32 fn_710002ed98(void* table, base::global::CRntString* path, void* a, u32 b, void* c, u32 d, u32 e);
+u32 CDeviceNX_ReadWholeFileIntoNewBuffer(void* table, base::global::CRntString* path, void* a, u32 b, void* c, u32 d, u32 e);

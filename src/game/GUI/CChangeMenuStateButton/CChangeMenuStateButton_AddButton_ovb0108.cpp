@@ -39,7 +39,7 @@ struct UnkButtonId_ovb0108 {
     ~UnkButtonId_ovb0108() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
 };
 
-UnkGuiDisplayObject* fn_7100af59bc(UnkButtonScreen_ovb0108* self) {
+UnkGuiDisplayObject* CChangeMenuStateButton_CreateNumberedButtonInList(UnkButtonScreen_ovb0108* self) {
     UnkGuiDisplayObject* obj = fn_71011b63c4(g_unk_717271e8f8, self->button_def);
     if (!obj)
         return nullptr;

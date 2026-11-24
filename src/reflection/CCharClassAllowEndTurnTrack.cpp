@@ -22,7 +22,7 @@ void CCharClassAllowEndTurnTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAllowEndTurnTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowEndTurnTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowEndTurnTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowEndTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowEndTurnTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowEndTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowEndTurnTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowEndTurnTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowEndTurnTrack*>(obj)->~CCharClassAllowEndTurnTrack(); }
 struct CCharClassAllowEndTurnTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowEndTurnTrack);

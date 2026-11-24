@@ -22,7 +22,7 @@ void CCharClassAbsorbTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAbsorbTrack::refl_AddFields(CClass*) {}
 bool CCharClassAbsorbTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAbsorbTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAbsorbTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAbsorbTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAbsorbTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAbsorbTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAbsorbTrack::refl_Destroy(void* obj) { static_cast<CCharClassAbsorbTrack*>(obj)->~CCharClassAbsorbTrack(); }
 struct CCharClassAbsorbTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAbsorbTrack);

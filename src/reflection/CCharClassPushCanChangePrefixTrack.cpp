@@ -22,7 +22,7 @@ void CCharClassPushCanChangePrefixTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassPushCanChangePrefixTrack::refl_AddFields(CClass*) {}
 bool CCharClassPushCanChangePrefixTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassPushCanChangePrefixTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassPushCanChangePrefixTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPushCanChangePrefixTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassPushCanChangePrefixTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPushCanChangePrefixTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassPushCanChangePrefixTrack::refl_Destroy(void* obj) { static_cast<CCharClassPushCanChangePrefixTrack*>(obj)->~CCharClassPushCanChangePrefixTrack(); }
 struct CCharClassPushCanChangePrefixTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassPushCanChangePrefixTrack);

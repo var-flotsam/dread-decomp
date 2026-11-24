@@ -14,7 +14,7 @@ void CChozoCommanderSentenceSphereLifeComponent::refl_AddAttributes(CClass*) {}
 void CChozoCommanderSentenceSphereLifeComponent::refl_AddFields(CClass*) {}
 bool CChozoCommanderSentenceSphereLifeComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CChozoCommanderSentenceSphereLifeComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CChozoCommanderSentenceSphereLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CChozoCommanderSentenceSphereLifeComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CChozoCommanderSentenceSphereLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CChozoCommanderSentenceSphereLifeComponent*>(obj)->refl_GetDynamicClass(); }
 void CChozoCommanderSentenceSphereLifeComponent::refl_Destroy(void* obj) { static_cast<CChozoCommanderSentenceSphereLifeComponent*>(obj)->~CChozoCommanderSentenceSphereLifeComponent(); }
 struct CChozoCommanderSentenceSphereLifeComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CChozoCommanderSentenceSphereLifeComponent);

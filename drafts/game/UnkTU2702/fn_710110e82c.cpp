@@ -143,7 +143,7 @@ void fn_710110e82c(UnkSelf_l10e82c* self, UnkSource_l10e82c* source) {
             value.id = 2;
             base::reflection::UnkReflTypeIdArg send_mask;
             send_mask.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-            if (fn_7101176690(animation, 0x3951592af38cb532ull, 0xf4061ff25a2163d6ull, &value, &g_unk_710164b968,
+            if (CAnimationComponent_SendActionToTrack(animation, 0x3951592af38cb532ull, 0xf4061ff25a2163d6ull, &value, &g_unk_710164b968,
                               &g_unk_7172769740, &send_mask)) {
                 UnkTrackLink_l10e82c* link = &self->link;
                 UnkWeakHandle* handle = link->handle;

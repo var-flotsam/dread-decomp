@@ -31,7 +31,7 @@ void behaviortree::CBatalloonGoToTargetAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CBatalloonGoToTargetAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CBatalloonGoToTargetAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CBatalloonGoToTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CBatalloonGoToTargetAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CBatalloonGoToTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CBatalloonGoToTargetAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CBatalloonGoToTargetAction::refl_Destroy(void* obj) { static_cast<CBatalloonGoToTargetAction*>(obj)->~CBatalloonGoToTargetAction(); }
 void* behaviortree::CBatalloonGoToTargetAction::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* behaviortree::CBatalloonGoToTargetAction::refl_MoveAssign(void*, const void*) { return nullptr; }

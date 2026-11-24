@@ -26,7 +26,7 @@ void CCharClassSetEmmyDoorNearSamusVisibilityEvent::refl_AddFields(CClass* cls) 
 }
 bool CCharClassSetEmmyDoorNearSamusVisibilityEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetEmmyDoorNearSamusVisibilityEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetEmmyDoorNearSamusVisibilityEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetEmmyDoorNearSamusVisibilityEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetEmmyDoorNearSamusVisibilityEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetEmmyDoorNearSamusVisibilityEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetEmmyDoorNearSamusVisibilityEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetEmmyDoorNearSamusVisibilityEvent*>(obj)->~CCharClassSetEmmyDoorNearSamusVisibilityEvent(); }
 struct CCharClassSetEmmyDoorNearSamusVisibilityEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetEmmyDoorNearSamusVisibilityEvent);

@@ -105,7 +105,7 @@ bool fn_71006b78f0(UnkShelmitChargeAction_l6b78f0* self, UnkShelmitChargeEvent_l
             mode.id = 0;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            if (fn_7101176690(target, 0xce6cb58bea34b4f7, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+            if (CAnimationComponent_SendActionToTrack(target, 0xce6cb58bea34b4f7, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                               &g_unk_7172769740, &mask)) {
                 self->stage = 3;
                 if ((charClass != nullptr) & isShelmit) {

@@ -14,7 +14,7 @@ void behaviortree::CShineonFollowPathAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CShineonFollowPathAction::refl_AddFields(CClass*) {}
 bool behaviortree::CShineonFollowPathAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CShineonFollowPathAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CShineonFollowPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CShineonFollowPathAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CShineonFollowPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CShineonFollowPathAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CShineonFollowPathAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CShineonFollowPathAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CShineonFollowPathAction::refl_Destroy(void* obj) { static_cast<CShineonFollowPathAction*>(obj)->~CShineonFollowPathAction(); }

@@ -22,7 +22,7 @@ void CCharClassAllowSmartLinkCorrectionTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAllowSmartLinkCorrectionTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowSmartLinkCorrectionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowSmartLinkCorrectionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowSmartLinkCorrectionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowSmartLinkCorrectionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowSmartLinkCorrectionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowSmartLinkCorrectionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowSmartLinkCorrectionTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowSmartLinkCorrectionTrack*>(obj)->~CCharClassAllowSmartLinkCorrectionTrack(); }
 struct CCharClassAllowSmartLinkCorrectionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowSmartLinkCorrectionTrack);

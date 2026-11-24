@@ -14,7 +14,7 @@ void CChozombieFXComponent::refl_AddAttributes(CClass*) {}
 void CChozombieFXComponent::refl_AddFields(CClass*) {}
 bool CChozombieFXComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CChozombieFXComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CChozombieFXComponent::refl_TypeOf(const void* obj) { return *static_cast<const CChozombieFXComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CChozombieFXComponent::refl_TypeOf(const void* obj) { return *static_cast<const CChozombieFXComponent*>(obj)->refl_GetDynamicClass(); }
 void CChozombieFXComponent::refl_CopyConstruct(void*, const void*) {}
 void CChozombieFXComponent::refl_MoveConstruct(void*, const void*) {}
 void CChozombieFXComponent::refl_Destroy(void* obj) { static_cast<CChozombieFXComponent*>(obj)->~CChozombieFXComponent(); }

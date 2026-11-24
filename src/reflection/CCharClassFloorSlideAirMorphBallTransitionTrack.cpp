@@ -26,7 +26,7 @@ void CCharClassFloorSlideAirMorphBallTransitionTrack::refl_AddFields(CClass* cls
 }
 bool CCharClassFloorSlideAirMorphBallTransitionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFloorSlideAirMorphBallTransitionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFloorSlideAirMorphBallTransitionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFloorSlideAirMorphBallTransitionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFloorSlideAirMorphBallTransitionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFloorSlideAirMorphBallTransitionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFloorSlideAirMorphBallTransitionTrack::refl_Destroy(void* obj) { static_cast<CCharClassFloorSlideAirMorphBallTransitionTrack*>(obj)->~CCharClassFloorSlideAirMorphBallTransitionTrack(); }
 struct CCharClassFloorSlideAirMorphBallTransitionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFloorSlideAirMorphBallTransitionTrack);

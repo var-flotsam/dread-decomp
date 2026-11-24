@@ -26,7 +26,7 @@ void CCharClassIgnoreGoingToGrapplePointImpulseTrack::refl_AddFields(CClass* cls
 }
 bool CCharClassIgnoreGoingToGrapplePointImpulseTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreGoingToGrapplePointImpulseTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreGoingToGrapplePointImpulseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreGoingToGrapplePointImpulseTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreGoingToGrapplePointImpulseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreGoingToGrapplePointImpulseTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreGoingToGrapplePointImpulseTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreGoingToGrapplePointImpulseTrack*>(obj)->~CCharClassIgnoreGoingToGrapplePointImpulseTrack(); }
 struct CCharClassIgnoreGoingToGrapplePointImpulseTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreGoingToGrapplePointImpulseTrack);

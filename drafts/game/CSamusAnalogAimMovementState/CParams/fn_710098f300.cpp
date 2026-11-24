@@ -96,7 +96,7 @@ void fn_710098f300(UnkAimParams_l98f300* self) {
         animation = self->owner->animation;
         mode.id = 0;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, track, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(animation, track, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     centered_done:;
     } else {
         fn_710002614c(&owner->transform);
@@ -110,7 +110,7 @@ void fn_710098f300(UnkAimParams_l98f300* self) {
         animation = self->owner->animation;
         mode.id = 0;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, track, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(animation, track, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     aimed_done:;
     }
 }

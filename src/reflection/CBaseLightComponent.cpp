@@ -94,7 +94,7 @@ void CBaseLightComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_eLightPreset_GetterFunction", &base::reflection::TypeObject<engine::utils::ELightPreset>::object, 0, fn_71008ef758);
     DREAD_REFLECTED_FUNCTION("_eLightPreset_SetterFunction")
         fn_71008ee8b0(fn, "_eLightPreset_SetterFunction");
-    CVariable* field9 = AddReflectedField(cls, CStrId("eLightPreset", true), &base::reflection::TypeObject<engine::utils::ELightPreset>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field9 = AddReflectedField(cls, CStrId("eLightPreset", true), &base::reflection::TypeObject<engine::utils::ELightPreset>::object, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     DREAD_REFLECTED_FUNCTION_OF("_vLightPresetParams_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector4D>::Get(), 0x101, fn_71008ef810);
     DREAD_REFLECTED_FUNCTION("_vLightPresetParams_SetterFunction")
         fn_71008eea24(fn, "_vLightPresetParams_SetterFunction");
@@ -114,7 +114,7 @@ void CBaseLightComponent::refl_AddFields(CClass* cls) {
 }
 bool CBaseLightComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CBaseLightComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CBaseLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBaseLightComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CBaseLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBaseLightComponent*>(obj)->refl_GetDynamicClass(); }
 void* CBaseLightComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* CBaseLightComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
 struct CBaseLightComponent::refl_Description : ClassDescription {

@@ -121,8 +121,8 @@ SLOT_TYPES = {
     0x60: ("HashFn", "s32 {name}();"),
     0x68: ("TypeOfFn", "const base::reflection::CType& {name}(const void* obj);"),
 }
-OBJ = "base::reflection::UnkReflObject"
-OBJ_B = "base::reflection::UnkReflObjectB"
+OBJ = "base::reflection::ReflectedObject"
+OBJ_B = "base::reflection::ReflectedObjectDestructorFirst"
 # (slot, instructions) -> definition. Slots 0x70 and 0xe0 are the getter's x3/x4 functions
 # (attributes and member fields). Instruction text is relocation-free for all of these.
 HELPER_SHAPES = {
@@ -135,14 +135,14 @@ HELPER_SHAPES = {
     # Non-tail call: the virtual returns a pointer, the helper a reference.
     (0x68, "stp x29, x30, [sp, #-0x10]!; mov x29, sp; ldr x8, [x0]; ldr x8, [x8]; blr x8; "
            "ldp x29, x30, [sp], #0x10; ret"):
-        f"const base::reflection::CType& {{name}}(const void* obj) {{{{ return *static_cast<const {OBJ}*>(obj)->vf_0x0(); }}}}",
+        f"const base::reflection::CType& {{name}}(const void* obj) {{{{ return *static_cast<const {OBJ}*>(obj)->refl_GetDynamicClass(); }}}}",
     (0x68, "stp x29, x30, [sp, #-0x10]!; mov x29, sp; ldr x8, [x0]; ldr x8, [x8, #0x18]; blr x8; "
            "ldp x29, x30, [sp], #0x10; ret"):
-        f"const base::reflection::CType& {{name}}(const void* obj) {{{{ return *static_cast<const {OBJ_B}*>(obj)->vf_0x18(); }}}}",
+        f"const base::reflection::CType& {{name}}(const void* obj) {{{{ return *static_cast<const {OBJ_B}*>(obj)->refl_GetDynamicClass(); }}}}",
     (0x40, "ldr x8, [x0]; ldr x1, [x8, #8]; br x1"):
-        f"void {{name}}(void* obj) {{{{ static_cast<{OBJ}*>(obj)->~UnkReflObject(); }}}}",
+        f"void {{name}}(void* obj) {{{{ static_cast<{OBJ}*>(obj)->~ReflectedObject(); }}}}",
     (0x40, "ldr x8, [x0]; ldr x1, [x8]; br x1"):
-        f"void {{name}}(void* obj) {{{{ static_cast<{OBJ_B}*>(obj)->~UnkReflObjectB(); }}}}",
+        f"void {{name}}(void* obj) {{{{ static_cast<{OBJ_B}*>(obj)->~ReflectedObjectDestructorFirst(); }}}}",
     (0x30, "ret"): "void {name}(void*, const void*) {{}}",
     (0x38, "ret"): "void {name}(void*, const void*) {{}}",
     (0x48, "mov x0, xzr; ret"): "void* {name}(void*, const void*) {{ return nullptr; }}",
@@ -180,13 +180,13 @@ ROLE_SHAPES = {
     "bool {name}(const void*, const void*) {{ return false; }}":
         "bool {name}(const void*, const void*) {{ return false; }}",
     "s32 {name}() {{ return -1; }}": "s32 {name}() {{ return -1; }}",
-    f"const base::reflection::CType& {{name}}(const void* obj) {{{{ return *static_cast<const {OBJ}*>(obj)->vf_0x0(); }}}}":
+    f"const base::reflection::CType& {{name}}(const void* obj) {{{{ return *static_cast<const {OBJ}*>(obj)->refl_GetDynamicClass(); }}}}":
         "const base::reflection::CType& {name}(const void* obj) {{ return ClassOf(obj); }}",
-    f"const base::reflection::CType& {{name}}(const void* obj) {{{{ return *static_cast<const {OBJ_B}*>(obj)->vf_0x18(); }}}}":
+    f"const base::reflection::CType& {{name}}(const void* obj) {{{{ return *static_cast<const {OBJ_B}*>(obj)->refl_GetDynamicClass(); }}}}":
         "const base::reflection::CType& {name}(const void* obj) {{ return ClassOfDestructorFirst(obj); }}",
-    f"void {{name}}(void* obj) {{{{ static_cast<{OBJ}*>(obj)->~UnkReflObject(); }}}}":
+    f"void {{name}}(void* obj) {{{{ static_cast<{OBJ}*>(obj)->~ReflectedObject(); }}}}":
         "void {name}(void* obj) {{ Destroy(obj); }}",
-    f"void {{name}}(void* obj) {{{{ static_cast<{OBJ_B}*>(obj)->~UnkReflObjectB(); }}}}":
+    f"void {{name}}(void* obj) {{{{ static_cast<{OBJ_B}*>(obj)->~ReflectedObjectDestructorFirst(); }}}}":
         "void {name}(void* obj) {{ DestroyDestructorFirst(obj); }}",
     "void {name}(void*, const void*) {{}}": "void {name}(void*, const void*) {{}}",
     "void* {name}(void*, const void*) {{ return nullptr; }}": "void* {name}(void*, const void*) {{ return nullptr; }}",
@@ -238,13 +238,13 @@ def reflection_names(g: "Getter") -> dict[int, str]:
     return out
 
 
-# Declarations ReflectedFields.h already brings: the typed attribute keys and their enum types. (The other keys'
-# address-named declarations stay until attribute_keys_by_name writes their calls by name.)
-KEY_DECL_RE = re.compile(r"^(?:const base::reflection::UnkReflAttrKey& fn_|extern base::reflection::CType g_unk_)([0-9a-f]+)(?:\(\))?;$")
+# Declarations ReflectedFields.h already brings: the typed attribute keys' enum types. (Every key's
+# address-named declaration stays until attribute_keys_by_name or typed_keys_by_name writes its calls by name.)
+KEY_DECL_RE = re.compile(r"^(?:const base::reflection::AttributeKey& fn_|extern base::reflection::CType g_unk_)([0-9a-f]+)(?:\(\))?;$")
 OBJECT_DECL_RE = re.compile(r"^extern base::reflection::CType g_unk_([0-9a-f]+);$")
 GETTER_DECL_RE = re.compile(r"^const base::reflection::C(?:Type|Class)\* fn_([0-9a-f]+)\(\);$")
 FIELD_MACRO_RE = re.compile(r"\bDREAD_REFLECTED_(?:FIELD|CLASS_FIELD|FIELD_OF|PROPERTY|READ_ONLY_PROPERTY)\(")  # ReflectedFields.h
-DECLARED_KEYS = set(refl_attrs.TYPED_KEYS) | set(refl_attrs.TYPED_KEYS.values())
+DECLARED_KEYS = set(refl_attrs.TYPED_KEYS.values())
 
 
 def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_sources: dict[int, tuple[list[str], str]],
@@ -772,12 +772,12 @@ def constructor_lines(init: int, size: int, abstract: bool, traits: dict[int, in
     """Traits and the explicit instantiation of one descriptor constructor (helpers declared
     separately)."""
     lines = ["template <>",
-             f"struct base::reflection::UnkReflClassTraits<UnkRefl_fn_{init:x}> {{",
+             f"struct base::reflection::ClassTraits<UnkRefl_fn_{init:x}> {{",
              f"    static constexpr u64 size = {size:#x};",
              f"    static constexpr bool abstract = {'true' if abstract else 'false'};"]
     for slot in TRAIT_SLOTS:
         value = f"&fn_{traits[slot]:x}" if slot in traits else "nullptr"
-        lines.append(f"    static constexpr {SLOT_TYPES[slot][0]} fn_{slot:#x} = {value};")
+        lines.append(f"    static constexpr {SLOT_TYPES[slot][0]} {ROLES[slot][1]} = {value};")
     return lines + ["};",
                     "template base::reflection::CClass::CClass(const base::global::CStrId&, "
                     "const base::reflection::CClass*, base::reflection::ClassSetupFn, "
@@ -1043,7 +1043,7 @@ def attribute_keys_by_name(text: str, keys: dict[int, str]) -> str:
         return text
     lines = text.split(chr(10))
     for a in sorted(used):
-        decl = re.compile(rf"(?:const )?(?:base::reflection::)?UnkReflAttrKey& fn_{a:x}\(\);(?:  //.*)?")
+        decl = re.compile(rf"(?:const )?(?:base::reflection::)?AttributeKey& fn_{a:x}\(\);(?:  //.*)?")
         lines = [line if decl.fullmatch(line) else re.sub(rf"\bfn_{a:x}\(\)", f"base::reflection::attr::{keys[a]}()", line)
                  for line in lines]
         if not any(re.search(rf"\bfn_{a:x}\b", line) for line in lines if not decl.fullmatch(line)):
@@ -1109,13 +1109,15 @@ INIT_DESCRIPTION_RE = re.compile(r'^(\s*)fn->name = base::global::UnkStrId\(name
 
 
 # An attribute key whose values are of its own enum type (base/reflection/ReflectedFields.h, TypedAttrKey).
-TYPED_KEY_RE = re.compile(r"^inline TypedAttrKey (\w+)\(\) \{ return \{fn_([0-9a-f]{10})\(\), &(.+?)\}; \}$", re.M)
+TYPED_KEY_RE = re.compile(r"^inline TypedAttrKey (\w+)\(\) \{ return \{\1Key\(\), &(.+?)\}; \}$", re.M)
 
 
 def typed_attribute_keys() -> dict[str, tuple[str, str]]:
-    """{fn_<key getter>: (name, its type object as ReflectedFields.h spells it)} of the typed attribute keys."""
+    """{fn_<key getter>: (name, its type object as ReflectedFields.h spells it)} of the typed attribute keys. The
+    header names a key's getter <Name>Key (data/names.csv); the sources this rewrites name it by its address."""
     text = (ROOT / "include" / "base" / "reflection" / "ReflectedFields.h").read_text(encoding="utf-8")
-    return {f"fn_{a}": (name, obj) for name, a, obj in TYPED_KEY_RE.findall(text)}
+    getters = {refl_attrs.ATTRIBUTE_NAMES[a]: a for a in refl_attrs.TYPED_KEYS}
+    return {f"fn_{getters[name]:x}": (name, obj) for name, obj in TYPED_KEY_RE.findall(text)}
 
 
 # A reflected class's run-once guard (refl_AddFields' first statements) and its tunable object (registered in the
@@ -1169,14 +1171,15 @@ def typed_keys_by_name(text: str, keys: dict[str, tuple[str, str]]) -> str:
     goes once nothing else names it."""
     for fn, (name, obj) in keys.items():
         old = f"({fn}(), &{obj}, "
-        if old not in text:
-            continue
-        text = text.replace(old, f"(base::reflection::attr::{name}(), ")
-        decl = f"const base::reflection::UnkReflAttrKey& {fn}();"
+        if old in text:
+            text = text.replace(old, f"(base::reflection::attr::{name}(), ")
+            text = with_include(text, '#include "base/reflection/ReflectedFields.h"')
+        # The declaration also goes from a file whose uses the field macros already wrote by name.
+        decl = f"const base::reflection::AttributeKey& {fn}();"
         lines = text.split(chr(10))
-        if not any(re.search(rf"\b{fn}\b", line) for line in lines if line.strip() != decl):
+        if any(line.strip() == decl for line in lines) \
+                and not any(re.search(rf"\b{fn}\b", line) for line in lines if line.strip() != decl):
             text = chr(10).join(line for line in lines if line.strip() != decl)
-        text = with_include(text, '#include "base/reflection/ReflectedFields.h"')
     return text
 
 
@@ -1545,12 +1548,12 @@ def main() -> int:
                 elif slot in SLOT_TYPES:
                     lines.append(SLOT_TYPES[slot][1].format(name=f"fn_{a:x}"))
             lines.append("template <>")
-            lines.append(f"struct base::reflection::UnkReflClassTraits<UnkRefl_fn_{g.init:x}> {{")
+            lines.append(f"struct base::reflection::ClassTraits<UnkRefl_fn_{g.init:x}> {{")
             lines.append(f"    static constexpr u64 size = {sizes[g.address]:#x};")
             lines.append(f"    static constexpr bool abstract = {'true' if g.abstract else 'false'};")
             for slot in TRAIT_SLOTS:
                 value = f"&fn_{g.traits[slot]:x}" if slot in g.traits else "nullptr"
-                lines.append(f"    static constexpr {SLOT_TYPES[slot][0]} fn_{slot:#x} = {value};")
+                lines.append(f"    static constexpr {SLOT_TYPES[slot][0]} {ROLES[slot][1]} = {value};")
             lines.append("};")
             suffix = "_INLINE_NAME" if g.inline_name else ""  # CClass.h
             if g.parent:

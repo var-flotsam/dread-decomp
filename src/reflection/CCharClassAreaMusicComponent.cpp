@@ -14,7 +14,7 @@ void CCharClassAreaMusicComponent::refl_AddAttributes(CClass*) {}
 void CCharClassAreaMusicComponent::refl_AddFields(CClass*) {}
 bool CCharClassAreaMusicComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassAreaMusicComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAreaMusicComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAreaMusicComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAreaMusicComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAreaMusicComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAreaMusicComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassAreaMusicComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassAreaMusicComponent::refl_Destroy(void* obj) { static_cast<CCharClassAreaMusicComponent*>(obj)->~CCharClassAreaMusicComponent(); }

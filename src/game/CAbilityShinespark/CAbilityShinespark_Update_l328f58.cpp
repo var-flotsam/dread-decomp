@@ -72,7 +72,7 @@ void fn_7100328f58(UnkAbilityShinespark_l328f58* self) {
             if (!fn_71010d1598(owner->movement) && fn_710117ae38(animation, 0xccbcbb5050c1a714ull, false)) {
                 UnkShinesparkRequest_l328f58 req(0x50fff64f73b7f4d6ull, g_unk_710164b958, g_unk_7172769770, 0,
                                                     UnkAll_SpitSend().value);
-                fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
+                CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
                               reinterpret_cast<const UnkRequest_7101176ea8*>(&req), 0xf4061ff25a2163d6ull);
             }
         }

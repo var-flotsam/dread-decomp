@@ -96,7 +96,7 @@ void fn_7100a920f0(UnkThermalRefresh_la920f0* self) {
             u64 hash = self->vf_0x218()->config->hash;
             mode.id = 0;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(cls, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+            CAnimationComponent_SendActionToTrack(cls, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
         }
     } else {
         fn_7100a92424(reinterpret_cast<UnkThermalDevice_b0279*>(self));

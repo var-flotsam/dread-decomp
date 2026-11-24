@@ -22,7 +22,7 @@ void CCharClassCheckShinesparkAllowingActivationTrack::refl_AddAttributes(CClass
 void CCharClassCheckShinesparkAllowingActivationTrack::refl_AddFields(CClass*) {}
 bool CCharClassCheckShinesparkAllowingActivationTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCheckShinesparkAllowingActivationTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCheckShinesparkAllowingActivationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCheckShinesparkAllowingActivationTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCheckShinesparkAllowingActivationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCheckShinesparkAllowingActivationTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCheckShinesparkAllowingActivationTrack::refl_Destroy(void* obj) { static_cast<CCharClassCheckShinesparkAllowingActivationTrack*>(obj)->~CCharClassCheckShinesparkAllowingActivationTrack(); }
 struct CCharClassCheckShinesparkAllowingActivationTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCheckShinesparkAllowingActivationTrack);

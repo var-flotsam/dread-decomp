@@ -24,7 +24,7 @@ void CCharClassCharacterMovement::refl_AddFields(CClass* cls) {
 }
 bool CCharClassCharacterMovement::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassCharacterMovement::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCharacterMovement::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCharacterMovement*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCharacterMovement::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCharacterMovement*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCharacterMovement::refl_CopyConstruct(void*, const void*) {}
 void CCharClassCharacterMovement::refl_MoveConstruct(void*, const void*) {}
 void CCharClassCharacterMovement::refl_Destroy(void* obj) { static_cast<CCharClassCharacterMovement*>(obj)->~CCharClassCharacterMovement(); }

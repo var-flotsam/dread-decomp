@@ -14,7 +14,7 @@ void CPureFollowCameraCtrl::refl_AddAttributes(CClass*) {}
 void CPureFollowCameraCtrl::refl_AddFields(CClass*) {}
 bool CPureFollowCameraCtrl::refl_Equals(const void*, const void*) { return false; }
 s32 CPureFollowCameraCtrl::refl_Hash() { return -1; }
-const base::reflection::CType& CPureFollowCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CPureFollowCameraCtrl*>(obj)->vf_0x0(); }
+const base::reflection::CType& CPureFollowCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CPureFollowCameraCtrl*>(obj)->refl_GetDynamicClass(); }
 void CPureFollowCameraCtrl::refl_Destroy(void* obj) { static_cast<CPureFollowCameraCtrl*>(obj)->~CPureFollowCameraCtrl(); }
 struct CPureFollowCameraCtrl::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CPureFollowCameraCtrl);

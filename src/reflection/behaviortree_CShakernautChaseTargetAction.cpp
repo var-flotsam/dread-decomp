@@ -31,7 +31,7 @@ void behaviortree::CShakernautChaseTargetAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CShakernautChaseTargetAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CShakernautChaseTargetAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CShakernautChaseTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CShakernautChaseTargetAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CShakernautChaseTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CShakernautChaseTargetAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CShakernautChaseTargetAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CShakernautChaseTargetAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CShakernautChaseTargetAction::refl_Destroy(void* obj) { static_cast<CShakernautChaseTargetAction*>(obj)->~CShakernautChaseTargetAction(); }

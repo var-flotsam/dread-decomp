@@ -5,7 +5,7 @@
 
 typedef void (*UnkCollisionRefresh)(UnkCollisionContainer* self, UnkCollisionRecord* record, s32 a);
 
-UnkCollisionRecord* fn_710086411c(UnkCollisionContainer* self, const UnkCollisionObject* object) {
+UnkCollisionRecord* CCollisionComponent_FindRecordByObject(UnkCollisionContainer* self, const UnkCollisionObject* object) {
     for (u32 i = 0; i < self->records.count; ++i) {
         UnkCollisionRecord* record = &self->records.data[i];
         if (record->field_0x28 == object) {

@@ -26,7 +26,7 @@ void CCharClassSuperQuetzoaSetVulnerableEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassSuperQuetzoaSetVulnerableEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSuperQuetzoaSetVulnerableEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSuperQuetzoaSetVulnerableEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSuperQuetzoaSetVulnerableEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSuperQuetzoaSetVulnerableEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSuperQuetzoaSetVulnerableEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSuperQuetzoaSetVulnerableEvent::refl_Destroy(void* obj) { static_cast<CCharClassSuperQuetzoaSetVulnerableEvent*>(obj)->~CCharClassSuperQuetzoaSetVulnerableEvent(); }
 struct CCharClassSuperQuetzoaSetVulnerableEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSuperQuetzoaSetVulnerableEvent);

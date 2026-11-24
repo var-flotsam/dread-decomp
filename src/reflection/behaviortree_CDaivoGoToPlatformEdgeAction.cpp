@@ -14,7 +14,7 @@ void behaviortree::CDaivoGoToPlatformEdgeAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CDaivoGoToPlatformEdgeAction::refl_AddFields(CClass*) {}
 bool behaviortree::CDaivoGoToPlatformEdgeAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CDaivoGoToPlatformEdgeAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CDaivoGoToPlatformEdgeAction::refl_TypeOf(const void* obj) { return *static_cast<const CDaivoGoToPlatformEdgeAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CDaivoGoToPlatformEdgeAction::refl_TypeOf(const void* obj) { return *static_cast<const CDaivoGoToPlatformEdgeAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CDaivoGoToPlatformEdgeAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CDaivoGoToPlatformEdgeAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CDaivoGoToPlatformEdgeAction::refl_Destroy(void* obj) { static_cast<CDaivoGoToPlatformEdgeAction*>(obj)->~CDaivoGoToPlatformEdgeAction(); }

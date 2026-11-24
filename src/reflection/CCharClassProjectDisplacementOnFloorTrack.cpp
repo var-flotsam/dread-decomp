@@ -27,7 +27,7 @@ void CCharClassProjectDisplacementOnFloorTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassProjectDisplacementOnFloorTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassProjectDisplacementOnFloorTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassProjectDisplacementOnFloorTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassProjectDisplacementOnFloorTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassProjectDisplacementOnFloorTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassProjectDisplacementOnFloorTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassProjectDisplacementOnFloorTrack::refl_Destroy(void* obj) { static_cast<CCharClassProjectDisplacementOnFloorTrack*>(obj)->~CCharClassProjectDisplacementOnFloorTrack(); }
 struct CCharClassProjectDisplacementOnFloorTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassProjectDisplacementOnFloorTrack);

@@ -22,7 +22,7 @@ void CCharClassIgnoreAbilityActivationTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreAbilityActivationTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreAbilityActivationTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreAbilityActivationTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreAbilityActivationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreAbilityActivationTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreAbilityActivationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreAbilityActivationTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreAbilityActivationTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreAbilityActivationTrack*>(obj)->~CCharClassIgnoreAbilityActivationTrack(); }
 struct CCharClassIgnoreAbilityActivationTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreAbilityActivationTrack);

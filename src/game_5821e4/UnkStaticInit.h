@@ -112,7 +112,7 @@ __attribute__((always_inline)) inline void InitEnum(UnkEnumType* type, const cha
         CStrId n(name, true);
         ctor(type, n, factory, nullptr);
     }
-    fn_7100000250(fn_7100099468, type, g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, type, g_unk_7101a19000);
     fn_710009ec00(list, type);
     void* from = type->field_0x8->field_0x30;
     *to_int = {from, TypeOf<fn_7100014768>()->field_0x8->field_0x30, to_int_fn, 0};

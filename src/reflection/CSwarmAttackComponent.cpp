@@ -14,7 +14,7 @@ void CSwarmAttackComponent::refl_AddAttributes(CClass*) {}
 void CSwarmAttackComponent::refl_AddFields(CClass*) {}
 bool CSwarmAttackComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CSwarmAttackComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CSwarmAttackComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSwarmAttackComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSwarmAttackComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSwarmAttackComponent*>(obj)->refl_GetDynamicClass(); }
 void CSwarmAttackComponent::refl_CopyConstruct(void*, const void*) {}
 void CSwarmAttackComponent::refl_MoveConstruct(void*, const void*) {}
 void CSwarmAttackComponent::refl_Destroy(void* obj) { static_cast<CSwarmAttackComponent*>(obj)->~CSwarmAttackComponent(); }

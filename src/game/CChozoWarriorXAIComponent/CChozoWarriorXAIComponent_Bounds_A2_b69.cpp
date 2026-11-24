@@ -23,7 +23,7 @@ bool fn_710048f5cc(UnkChozoWarriorXAI_A2_b69* self, f32* a, f32* b) {
     f32* hi = left ? a : b;
     f32* lo = left ? b : a;
     UnkChozoWarriorAI_b66a2* ai = reinterpret_cast<UnkChozoWarriorAI_b66a2*>(self);
-    fn_71010fc31c(ai, lo);
+    CAIComponent_GetPathFirstLegStartX(ai, lo);
     fn_71010fc284(ai, hi);
     *lo += 190.0f;
     *hi += -190.0f;

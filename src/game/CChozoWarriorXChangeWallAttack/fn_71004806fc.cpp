@@ -67,7 +67,7 @@ void fn_71004806fc(UnkChangeWallStart_b0266* self) {
             mode.id = 2;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(target, hash, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+            CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
             owner = self->owner;
         }
     }

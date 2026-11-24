@@ -16,7 +16,7 @@ using base::reflection::UnkReflObject;
 struct UnkCollisionContainer;
 struct UnkCollisionObject;
 
-UnkCollisionObject* fn_7100863814(UnkCollisionContainer* self, const CStrId* id, const u32* extra);
+UnkCollisionObject* CCollisionComponent_AddFlagsToFirstObjectWithId(UnkCollisionContainer* self, const CStrId* id, const u32* extra);
 void fn_71008639a8(UnkCollisionContainer* self, const CStrId* id, const u32* extra);
 
 extern CStrId g_unk_71727bc7c8 __attribute__((visibility("hidden")));
@@ -67,7 +67,7 @@ static inline void SetDoorFlag(UnkDoorEntries_dae8a4* doors, const base::reflect
             continue;
         if (set) {
             u32 flag = 8;
-            fn_7100863814(collision, &g_unk_71727bc7c8, &flag);
+            CCollisionComponent_AddFlagsToFirstObjectWithId(collision, &g_unk_71727bc7c8, &flag);
         } else {
             u32 flag = 8;
             fn_71008639a8(collision, &g_unk_71727bc7c8, &flag);

@@ -23,7 +23,7 @@ void CCharClassDummyAIComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassDummyAIComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassDummyAIComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassDummyAIComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDummyAIComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassDummyAIComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDummyAIComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassDummyAIComponent::refl_Destroy(void* obj) { static_cast<CCharClassDummyAIComponent*>(obj)->~CCharClassDummyAIComponent(); }
 struct CCharClassDummyAIComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassDummyAIComponent);

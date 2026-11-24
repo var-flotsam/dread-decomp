@@ -22,7 +22,7 @@ void CCharClassEnableCollidersEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassEnableCollidersEvent::refl_AddFields(CClass*) {}
 bool CCharClassEnableCollidersEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEnableCollidersEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEnableCollidersEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEnableCollidersEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEnableCollidersEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEnableCollidersEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEnableCollidersEvent::refl_Destroy(void* obj) { static_cast<CCharClassEnableCollidersEvent*>(obj)->~CCharClassEnableCollidersEvent(); }
 struct CCharClassEnableCollidersEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEnableCollidersEvent);

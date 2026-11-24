@@ -18,7 +18,7 @@
 struct Vec2;
 struct Result;
 bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 flags, f32 b);
-f32 fn_7100977c88(void*, char* owner);
+f32 CCharacterMovement_GetNegatedShapeBoundsMinY(void*, char* owner);
 f32 fn_710049b2fc(UnkChozoWarriorAI_b66a2* self);
 f32 fn_710049b360(UnkChozoWarriorAI_b66a2* self);
 
@@ -159,7 +159,7 @@ void fn_71004885b0(UnkUltimateGrabAttack_l4885b0* self, UnkUltimateGrabPoints_l4
     f32 side = PosX(self->owner) - PosX(target);
     if (ai->owner->xform.m[1][3] > ai->floor_y + 50.0f) {
         f32 edge;
-        fn_71010fc31c(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(ai), &edge);
+        CAIComponent_GetPathFirstLegStartX(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(ai), &edge);
         if (PosX(self->owner) < edge) {
             side = -1.0f;
         } else {
@@ -214,8 +214,8 @@ void fn_71004885b0(UnkUltimateGrabAttack_l4885b0* self, UnkUltimateGrabPoints_l4
     out->ground = UnkVec3f(p[0], p[1], p[2]);
     out->base = out->ground;
 
-    f32 owner_height = fn_7100977c88(tracked, collider);
-    f32 player_height = fn_7100977c88(player_tracked, player_collider);
+    f32 owner_height = CCharacterMovement_GetNegatedShapeBoundsMinY(tracked, collider);
+    f32 player_height = CCharacterMovement_GetNegatedShapeBoundsMinY(player_tracked, player_collider);
     out->hold = Add(out->base, UnkVec3f(0.0f, owner_height, 0.0f));
     out->grab = Add(Add(out->base, UnkVec3f(0.0f, player_height, 0.0f)), Scale(out->forward, reach));
 }

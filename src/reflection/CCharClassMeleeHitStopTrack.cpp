@@ -26,7 +26,7 @@ void CCharClassMeleeHitStopTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassMeleeHitStopTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassMeleeHitStopTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMeleeHitStopTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMeleeHitStopTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMeleeHitStopTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMeleeHitStopTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMeleeHitStopTrack::refl_Destroy(void* obj) { static_cast<CCharClassMeleeHitStopTrack*>(obj)->~CCharClassMeleeHitStopTrack(); }
 struct CCharClassMeleeHitStopTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassMeleeHitStopTrack);

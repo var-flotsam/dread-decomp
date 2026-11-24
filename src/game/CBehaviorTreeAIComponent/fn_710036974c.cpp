@@ -25,11 +25,11 @@ struct UnkStruct_710036974c {
     f32 field_0x146ac;
 };
 
-u32 fn_7101111d88(UnkStruct_710036974c* self, UnkStruct_710036974c_Msg* msg);
+u32 CAIComponent_ResetTimeSinceLastFrozenUnlessMsgFlagSet(UnkStruct_710036974c* self, UnkStruct_710036974c_Msg* msg);
 void fn_710110cc04(UnkStruct_710036974c* self, bool flag);
 
 u32 fn_710036974c(UnkStruct_710036974c* self, UnkStruct_710036974c_Msg* msg) {
-    u32 r = fn_7101111d88(self, msg);
+    u32 r = CAIComponent_ResetTimeSinceLastFrozenUnlessMsgFlagSet(self, msg);
     UnkAnimationComponent* ai = self->field_0x30->field_0x220;
     bool is_track = ai && fn_710117b348(ai, fn_7100cf3508());
     if (msg->field_0x8) {

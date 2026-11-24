@@ -42,7 +42,7 @@ void fn_710009ce10(CClass* self) {
         chain.push_back(type);
     for (s32 i = chain.size() - 1; i >= 0; --i) {
         const CType* type = chain[i];
-        if (type->m_fn_0x70)
-            type->m_fn_0x70(self);
+        if (type->m_addAttributes)
+            type->m_addAttributes(self);
     }
 }

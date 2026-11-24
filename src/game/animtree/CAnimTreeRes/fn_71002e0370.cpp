@@ -31,7 +31,7 @@ void CAnimTreeRes_InitStatics() {
         const char* sources0[1];
         sources0[0] = ".msat";
         fn_7100004578(&types[0], "animtree::CAnimTreeRes", ".bmsat", sources0, 1);
-        fn_7100004698(g_unk_71726aad48, "animtree", types, 1);
+        CAnimationResource_ConstructResourceTypeFromFormats(g_unk_71726aad48, "animtree", types, 1);
         fn_7100004a44(&types[0]);
     }();
     __cxa_atexit(fn_7100004b94, g_unk_71726aad48, g_unk_7101a19000);

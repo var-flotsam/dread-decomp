@@ -22,7 +22,7 @@ void CCharClassStartCentralUnitProtoEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassStartCentralUnitProtoEvent::refl_AddFields(CClass*) {}
 bool CCharClassStartCentralUnitProtoEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassStartCentralUnitProtoEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassStartCentralUnitProtoEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStartCentralUnitProtoEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassStartCentralUnitProtoEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStartCentralUnitProtoEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassStartCentralUnitProtoEvent::refl_Destroy(void* obj) { static_cast<CCharClassStartCentralUnitProtoEvent*>(obj)->~CCharClassStartCentralUnitProtoEvent(); }
 struct CCharClassStartCentralUnitProtoEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassStartCentralUnitProtoEvent);

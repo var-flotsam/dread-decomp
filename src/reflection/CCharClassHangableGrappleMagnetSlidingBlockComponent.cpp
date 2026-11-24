@@ -14,7 +14,7 @@ void CCharClassHangableGrappleMagnetSlidingBlockComponent::refl_AddAttributes(CC
 void CCharClassHangableGrappleMagnetSlidingBlockComponent::refl_AddFields(CClass*) {}
 bool CCharClassHangableGrappleMagnetSlidingBlockComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassHangableGrappleMagnetSlidingBlockComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassHangableGrappleMagnetSlidingBlockComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHangableGrappleMagnetSlidingBlockComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassHangableGrappleMagnetSlidingBlockComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHangableGrappleMagnetSlidingBlockComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassHangableGrappleMagnetSlidingBlockComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassHangableGrappleMagnetSlidingBlockComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassHangableGrappleMagnetSlidingBlockComponent::refl_Destroy(void* obj) { static_cast<CCharClassHangableGrappleMagnetSlidingBlockComponent*>(obj)->~CCharClassHangableGrappleMagnetSlidingBlockComponent(); }

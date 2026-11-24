@@ -22,9 +22,9 @@ UnkPathIdMember* fn_710008c174(base::global::CRntVector<UnkPathIdMember>* list, 
         u32 capacity = list->capacity;
         if (capacity <= index && list->step != 0)
             capacity = list->GrownCapacity(index);
-        fn_7100018450(vec, capacity);
+        CAsset_ReserveFilePathIdVec(vec, capacity);
         u32 want = index + 1;
-        fn_7100018450(vec, want);
+        CAsset_ReserveFilePathIdVec(vec, want);
         for (u32 i = list->count; i < want; ++i) {
             UnkPathIdMember* slot = &list->data[i];
             slot->data = nullptr;

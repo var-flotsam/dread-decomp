@@ -22,7 +22,7 @@ void CCharClassFleeTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassFleeTrack::refl_AddFields(CClass*) {}
 bool CCharClassFleeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFleeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFleeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFleeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFleeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFleeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFleeTrack::refl_Destroy(void* obj) { static_cast<CCharClassFleeTrack*>(obj)->~CCharClassFleeTrack(); }
 struct CCharClassFleeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFleeTrack);

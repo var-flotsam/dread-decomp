@@ -14,7 +14,7 @@ void CCharClassXParasiteDropComponent::refl_AddAttributes(CClass*) {}
 void CCharClassXParasiteDropComponent::refl_AddFields(CClass*) {}
 bool CCharClassXParasiteDropComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassXParasiteDropComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassXParasiteDropComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassXParasiteDropComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassXParasiteDropComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassXParasiteDropComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassXParasiteDropComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassXParasiteDropComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassXParasiteDropComponent::refl_Destroy(void* obj) { static_cast<CCharClassXParasiteDropComponent*>(obj)->~CCharClassXParasiteDropComponent(); }

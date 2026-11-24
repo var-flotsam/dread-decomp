@@ -69,7 +69,7 @@ void GUI::CSpriteGrid::refl_AddFields(CClass* cls) {
 }
 bool GUI::CSpriteGrid::refl_Equals(const void*, const void*) { return false; }
 s32 GUI::CSpriteGrid::refl_Hash() { return -1; }
-const base::reflection::CType& GUI::CSpriteGrid::refl_TypeOf(const void* obj) { return *static_cast<const CSpriteGrid*>(obj)->vf_0x0(); }
+const base::reflection::CType& GUI::CSpriteGrid::refl_TypeOf(const void* obj) { return *static_cast<const CSpriteGrid*>(obj)->refl_GetDynamicClass(); }
 void GUI::CSpriteGrid::refl_Destroy(void* obj) { static_cast<CSpriteGrid*>(obj)->~CSpriteGrid(); }
 struct GUI::CSpriteGrid::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CSpriteGrid);

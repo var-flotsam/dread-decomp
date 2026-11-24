@@ -9,7 +9,7 @@
 #include "types.h"
 
 void fn_710008c91c(char* reader);
-void fn_710008c85c(char* reader);
+void CThreadSafeDevice_ClearChainedSetAndFlag(char* reader);
 
 struct UnkPackFile_b0231 {
     virtual void vf_0x0();
@@ -29,7 +29,7 @@ struct UnkPackDtor_b0231 {
         if (file)
             file->vf_0x8();
         --g_unk_7101d5954c;
-        fn_710008c85c(reader);
+        CThreadSafeDevice_ClearChainedSetAndFlag(reader);
         path.~UnkStrIdMemberOf();
     }
 };

@@ -22,7 +22,7 @@ void CCharClassBackAimSnapsToVerticalAxisTrack::refl_AddAttributes(CClass* cls) 
 void CCharClassBackAimSnapsToVerticalAxisTrack::refl_AddFields(CClass*) {}
 bool CCharClassBackAimSnapsToVerticalAxisTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassBackAimSnapsToVerticalAxisTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassBackAimSnapsToVerticalAxisTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBackAimSnapsToVerticalAxisTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassBackAimSnapsToVerticalAxisTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBackAimSnapsToVerticalAxisTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassBackAimSnapsToVerticalAxisTrack::refl_Destroy(void* obj) { static_cast<CCharClassBackAimSnapsToVerticalAxisTrack*>(obj)->~CCharClassBackAimSnapsToVerticalAxisTrack(); }
 struct CCharClassBackAimSnapsToVerticalAxisTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassBackAimSnapsToVerticalAxisTrack);

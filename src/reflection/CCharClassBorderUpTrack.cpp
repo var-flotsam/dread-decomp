@@ -22,7 +22,7 @@ void CCharClassBorderUpTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassBorderUpTrack::refl_AddFields(CClass*) {}
 bool CCharClassBorderUpTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassBorderUpTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassBorderUpTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBorderUpTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassBorderUpTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBorderUpTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassBorderUpTrack::refl_Destroy(void* obj) { static_cast<CCharClassBorderUpTrack*>(obj)->~CCharClassBorderUpTrack(); }
 struct CCharClassBorderUpTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassBorderUpTrack);

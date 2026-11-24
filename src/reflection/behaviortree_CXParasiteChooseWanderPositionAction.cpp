@@ -23,7 +23,7 @@ void behaviortree::CXParasiteChooseWanderPositionAction::refl_AddFields(CClass* 
 }
 bool behaviortree::CXParasiteChooseWanderPositionAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CXParasiteChooseWanderPositionAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CXParasiteChooseWanderPositionAction::refl_TypeOf(const void* obj) { return *static_cast<const CXParasiteChooseWanderPositionAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CXParasiteChooseWanderPositionAction::refl_TypeOf(const void* obj) { return *static_cast<const CXParasiteChooseWanderPositionAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CXParasiteChooseWanderPositionAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CXParasiteChooseWanderPositionAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CXParasiteChooseWanderPositionAction::refl_Destroy(void* obj) { static_cast<CXParasiteChooseWanderPositionAction*>(obj)->~CXParasiteChooseWanderPositionAction(); }

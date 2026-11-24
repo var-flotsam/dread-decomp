@@ -15,26 +15,27 @@ namespace base::reflection {
 template <class G>
 struct UnkReflStatic;
 
-// An attribute key (e.g. "Description"): name, value type, a u32 (0xf).
+// An attribute key (e.g. "Description"): name, value type, its targets (a small mask, 0x2 in most keys;
+// AttributeKey in ReflectedAttributes.h says what the name rests on).
 template <class G>
-const UnkReflAttrKey& refl_GetAttrKey() {
-    static UnkReflAttrKey s_key(base::global::CStrId(UnkReflStatic<G>::name, true), UnkReflStatic<G>::type(),
-                                UnkReflStatic<G>::field_0x10);
+const AttributeKey& refl_GetAttrKey() {
+    static AttributeKey s_key(base::global::CStrId(UnkReflStatic<G>::name, true), UnkReflStatic<G>::type(),
+                              UnkReflStatic<G>::targets);
     return s_key;
 }
 
 // The same for keys with a non-zero u16 at +0x14 (0x100 seen).
-struct UnkReflAttrKeyFlags : UnkReflAttrKey {
-    UnkReflAttrKeyFlags(const base::global::CStrId& name, const CType* type, u32 unk, u16 flags)
-        : UnkReflAttrKey(name, type, unk) {
+struct UnkReflAttrKeyFlags : AttributeKey {
+    UnkReflAttrKeyFlags(const base::global::CStrId& name, const CType* type, u32 targets, u16 flags)
+        : AttributeKey(name, type, targets) {
         field_0x14 = flags;
     }
 };
 
 template <class G>
-const UnkReflAttrKey& refl_GetAttrKeyFlags() {
+const AttributeKey& refl_GetAttrKeyFlags() {
     static UnkReflAttrKeyFlags s_key(base::global::CStrId(UnkReflStatic<G>::name, true), UnkReflStatic<G>::type(),
-                                     UnkReflStatic<G>::field_0x10, UnkReflStatic<G>::field_0x14);
+                                     UnkReflStatic<G>::targets, UnkReflStatic<G>::field_0x14);
     return s_key;
 }
 
@@ -182,7 +183,7 @@ struct UnkReflTypeIdArg {
 
 }  // namespace base::reflection
 
-bool fn_7101176690(void* target, u64 hash, u64 kind, base::reflection::UnkReflTypeIdArg* value, const void* a,
+bool CAnimationComponent_SendActionToTrack(void* target, u64 hash, u64 kind, base::reflection::UnkReflTypeIdArg* value, const void* a,
                    const void* b, base::reflection::UnkReflTypeIdArg* id);
 
 namespace base::reflection {
@@ -195,7 +196,7 @@ inline bool refl_EmitU32(void* target, u64 hash, u64 kind, u32 v, const void* a,
     value.id = v;
     UnkReflTypeIdArg arg;
     arg.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-    return fn_7101176690(target, hash, kind, &value, a, b, &arg);
+    return CAnimationComponent_SendActionToTrack(target, hash, kind, &value, a, b, &arg);
 }
 
 // Sends the type id to the object at +0x2e8 of a context (at UnkReflStatic<G>::offset of

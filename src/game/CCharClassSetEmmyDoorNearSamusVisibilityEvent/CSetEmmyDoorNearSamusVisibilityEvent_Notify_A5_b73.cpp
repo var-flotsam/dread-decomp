@@ -27,7 +27,7 @@ struct UnkEmmyDoorEvent_A5_b73 {
     u8 kind;
 };
 
-void fn_7100bd52e0(UnkEmmyDoorEvent_A5_b73* self, UnkActor** actor) {
+void CCharClassSetEmmyDoorNearSamusVisibilityEvent_SubmitVisibilityAtActorPosition(UnkEmmyDoorEvent_A5_b73* self, UnkActor** actor) {
     UnkActor* a = *actor;
     if (!a)
         return;

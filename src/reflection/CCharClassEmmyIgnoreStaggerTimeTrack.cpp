@@ -22,7 +22,7 @@ void CCharClassEmmyIgnoreStaggerTimeTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassEmmyIgnoreStaggerTimeTrack::refl_AddFields(CClass*) {}
 bool CCharClassEmmyIgnoreStaggerTimeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEmmyIgnoreStaggerTimeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmyIgnoreStaggerTimeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyIgnoreStaggerTimeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmyIgnoreStaggerTimeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyIgnoreStaggerTimeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmyIgnoreStaggerTimeTrack::refl_Destroy(void* obj) { static_cast<CCharClassEmmyIgnoreStaggerTimeTrack*>(obj)->~CCharClassEmmyIgnoreStaggerTimeTrack(); }
 struct CCharClassEmmyIgnoreStaggerTimeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEmmyIgnoreStaggerTimeTrack);

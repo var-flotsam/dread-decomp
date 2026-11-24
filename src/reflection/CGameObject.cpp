@@ -14,7 +14,7 @@ void CGameObject::refl_AddAttributes(CClass*) {}
 void CGameObject::refl_AddFields(CClass*) {}
 bool CGameObject::refl_Equals(const void*, const void*) { return false; }
 s32 CGameObject::refl_Hash() { return -1; }
-const base::reflection::CType& CGameObject::refl_TypeOf(const void* obj) { return *static_cast<const CGameObject*>(obj)->vf_0x0(); }
+const base::reflection::CType& CGameObject::refl_TypeOf(const void* obj) { return *static_cast<const CGameObject*>(obj)->refl_GetDynamicClass(); }
 void CGameObject::refl_CopyConstruct(void*, const void*) {}
 void CGameObject::refl_MoveConstruct(void*, const void*) {}
 void CGameObject::refl_Destroy(void* obj) { static_cast<CGameObject*>(obj)->~CGameObject(); }

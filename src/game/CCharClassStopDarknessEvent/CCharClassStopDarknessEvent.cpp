@@ -19,7 +19,7 @@ struct UnkStopDarknessEvent {
     f32 value;      // 0x18
 };
 
-void fn_7100be54d4(UnkStopDarknessEvent* self) {
+void CCharClassStopDarknessEvent_ApplyToCentralUnitComponents(UnkStopDarknessEvent* self) {
     if (self->id.data == &g_unk_7101d47108->empty)
         return;
     UnkCentralUnitList* list = fn_7100772c98();

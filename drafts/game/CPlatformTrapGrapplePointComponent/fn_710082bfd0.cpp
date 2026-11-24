@@ -88,12 +88,12 @@ void fn_710082bfd0(UnkTrapGrab_l82bfd0* self, void* arg, bool grabbed) {
         request.blend_value = value;
         request.flags = 0x400;
         request.mask = mask;
-        fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
+        CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
                       reinterpret_cast<const UnkRequest_7101176ea8*>(&request), 0xf4061ff25a2163d6);
     } else if (!fn_710117ae38(animation, id, false)) {
         mode.id = 0;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, id, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(animation, id, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     }
 }

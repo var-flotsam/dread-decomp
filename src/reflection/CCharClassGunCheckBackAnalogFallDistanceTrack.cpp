@@ -22,7 +22,7 @@ void CCharClassGunCheckBackAnalogFallDistanceTrack::refl_AddAttributes(CClass* c
 void CCharClassGunCheckBackAnalogFallDistanceTrack::refl_AddFields(CClass*) {}
 bool CCharClassGunCheckBackAnalogFallDistanceTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassGunCheckBackAnalogFallDistanceTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassGunCheckBackAnalogFallDistanceTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGunCheckBackAnalogFallDistanceTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassGunCheckBackAnalogFallDistanceTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGunCheckBackAnalogFallDistanceTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassGunCheckBackAnalogFallDistanceTrack::refl_Destroy(void* obj) { static_cast<CCharClassGunCheckBackAnalogFallDistanceTrack*>(obj)->~CCharClassGunCheckBackAnalogFallDistanceTrack(); }
 struct CCharClassGunCheckBackAnalogFallDistanceTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassGunCheckBackAnalogFallDistanceTrack);

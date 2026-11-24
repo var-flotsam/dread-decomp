@@ -35,7 +35,7 @@ struct UnkShowTutorialEvent_ovb0139 {
     CStrId message;   // 0x18
 };
 
-void fn_7100be0d3c(UnkShowTutorialEvent_ovb0139* self) {
+void CCharClassShowTutorialMessageEvent_ShowTextAndLogMissionTuto(UnkShowTutorialEvent_ovb0139* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     UnkTutorialHolder_ovb0139* holder = static_cast<UnkTutorialHolder_ovb0139*>(manager->field_0x2270);
     if (holder && holder->composition && self->tutorial.data != &g_unk_7101d47108->empty)

@@ -22,7 +22,7 @@ void CCharClassActivateCaterzillaMovementEvent::refl_AddAttributes(CClass* cls) 
 void CCharClassActivateCaterzillaMovementEvent::refl_AddFields(CClass*) {}
 bool CCharClassActivateCaterzillaMovementEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassActivateCaterzillaMovementEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassActivateCaterzillaMovementEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActivateCaterzillaMovementEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassActivateCaterzillaMovementEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActivateCaterzillaMovementEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassActivateCaterzillaMovementEvent::refl_Destroy(void* obj) { static_cast<CCharClassActivateCaterzillaMovementEvent*>(obj)->~CCharClassActivateCaterzillaMovementEvent(); }
 struct CCharClassActivateCaterzillaMovementEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassActivateCaterzillaMovementEvent);

@@ -23,7 +23,7 @@ void behaviortree::CScaredAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CScaredAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CScaredAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CScaredAction::refl_TypeOf(const void* obj) { return *static_cast<const CScaredAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CScaredAction::refl_TypeOf(const void* obj) { return *static_cast<const CScaredAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CScaredAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CScaredAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CScaredAction::refl_Destroy(void* obj) { static_cast<CScaredAction*>(obj)->~CScaredAction(); }

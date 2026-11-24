@@ -37,7 +37,7 @@ struct UnkStruct_71008651c8_Entry {
 };
 static_assert(sizeof(UnkStruct_71008651c8_Entry) == 0x30, "entry size");
 using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
-void fn_71008651c8(UnkStruct_71008651c8*, void* const*, UnkOut_71008651c8*);
+void CCollisionComponent_CollectRecordsBySecondaryId(UnkStruct_71008651c8*, void* const*, UnkOut_71008651c8*);
 
 UnkWeakTarget* fn_71006f4a30(void* owner);
 
@@ -168,7 +168,7 @@ void fn_71010dc54c(UnkMove_b152* movement, UnkSpanArg_b152* span) {
         UnkOut_71008651c8 shapes(0xf);
         {
             CStrId key("frozenplatform", true);
-            fn_71008651c8(reinterpret_cast<UnkStruct_71008651c8*>(collision), reinterpret_cast<void* const*>(&key),
+            CCollisionComponent_CollectRecordsBySecondaryId(reinterpret_cast<UnkStruct_71008651c8*>(collision), reinterpret_cast<void* const*>(&key),
                           &shapes);
         }
         UnkStruct_71008651c8_Entry** end = shapes.data + shapes.count;

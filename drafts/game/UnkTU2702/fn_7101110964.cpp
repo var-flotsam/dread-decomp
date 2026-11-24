@@ -80,7 +80,7 @@ static inline bool Send(UnkAnimationComponent* animation, u64 hash, u64 kind, u3
     UnkSendValue_l110964 desc(b);
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    return fn_7101176690(animation, hash, kind, &sendMode, &range, &desc, &mask);
+    return CAnimationComponent_SendActionToTrack(animation, hash, kind, &sendMode, &range, &desc, &mask);
 }
 
 bool fn_7101110964(UnkTrackAI_l110964* self, const CStrId* id, const u64* kind, const u32* mode, f32 a,

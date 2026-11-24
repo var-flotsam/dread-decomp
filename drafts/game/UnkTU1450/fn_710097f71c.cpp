@@ -200,9 +200,9 @@ void fn_710097f71c(UnkUnit1452_b56* object, void* arg, UnkReflValue* value) {
         Store(value, &params);
     } else if (fn_71009e6f9c(reinterpret_cast<UnkHelper*>(movement))) {
         UnkStateParams_l97f71c params(reinterpret_cast<char*>(g_unk_7101a22d18) + 0x10);
-        bool alt = fn_710117af10(animation, reinterpret_cast<UnkCls_710117af10**>(const_cast<CStrId*>(&IdAt(0x20a0))),
+        bool alt = CAnimationComponent_IsPlayingActionNameContaining(animation, reinterpret_cast<UnkCls_710117af10**>(const_cast<CStrId*>(&IdAt(0x20a0))),
                                  false) ||
-                   fn_710117af10(animation, reinterpret_cast<UnkCls_710117af10**>(const_cast<CStrId*>(&IdAt(0x2518))),
+                   CAnimationComponent_IsPlayingActionNameContaining(animation, reinterpret_cast<UnkCls_710117af10**>(const_cast<CStrId*>(&IdAt(0x2518))),
                                  false);
         params.transition.id = (alt ? IdAt(0x1d98) : IdAt(0x1d78)).data->Key();
         params.transition.flags |= 2;

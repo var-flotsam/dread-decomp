@@ -17,7 +17,7 @@ u32 fn_7100674bf0(UnkAgitateSendAction_A3_b76* self) {
         mode.id = 1;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, 0xe2ea001660c8ac66, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(cls, 0xe2ea001660c8ac66, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask);
     }
     return 7;

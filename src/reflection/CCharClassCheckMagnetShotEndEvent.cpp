@@ -22,7 +22,7 @@ void CCharClassCheckMagnetShotEndEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassCheckMagnetShotEndEvent::refl_AddFields(CClass*) {}
 bool CCharClassCheckMagnetShotEndEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCheckMagnetShotEndEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCheckMagnetShotEndEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCheckMagnetShotEndEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCheckMagnetShotEndEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCheckMagnetShotEndEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCheckMagnetShotEndEvent::refl_Destroy(void* obj) { static_cast<CCharClassCheckMagnetShotEndEvent*>(obj)->~CCharClassCheckMagnetShotEndEvent(); }
 struct CCharClassCheckMagnetShotEndEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCheckMagnetShotEndEvent);

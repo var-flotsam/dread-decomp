@@ -24,7 +24,7 @@ void CCharClassLavaPumpComponent::refl_AddAttributes(CClass*) {}
 void CCharClassLavaPumpComponent::refl_AddFields(CClass*) {}
 bool CCharClassLavaPumpComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassLavaPumpComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassLavaPumpComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLavaPumpComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassLavaPumpComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLavaPumpComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassLavaPumpComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassLavaPumpComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassLavaPumpComponent::refl_Destroy(void* obj) { static_cast<CCharClassLavaPumpComponent*>(obj)->~CCharClassLavaPumpComponent(); }

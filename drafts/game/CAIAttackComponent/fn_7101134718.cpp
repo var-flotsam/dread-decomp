@@ -224,7 +224,7 @@ void fn_7101134718(UnkAIAttackComponent_l134718* self, UnkTurnTarget_l134718* ta
     void* anim = self->owner->anim;
     mode.id = 0;
     mask.id = UnkAll_SpitSend().value;
-    if (!fn_7101176690(anim, id, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask))
+    if (!CAnimationComponent_SendActionToTrack(anim, id, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask))
         return;
 
     UnkTurnOwner_l134718* owner = self->owner;

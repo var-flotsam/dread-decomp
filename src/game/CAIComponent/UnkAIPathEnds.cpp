@@ -26,7 +26,7 @@ static inline u32 IsOpen(const UnkAIPath_010fc31c* self, u32 n) {
     return (u32)(self->loop == 0) & (u32)(n != 0);
 }
 
-bool fn_71010fc31c(UnkAIPath_010fc31c* self, u32* out) {
+bool CAIComponent_GetPathFirstLegStartX(UnkAIPath_010fc31c* self, u32* out) {
     u32 n = self->count;
     if (n == IsOpen(self, n))
         return false;

@@ -13,7 +13,7 @@ using namespace unk_prop;
 struct UnkOwner_71010e2278;
 struct UnkArg1_71010e2278;
 struct UnkArg2_71010e2278;
-void fn_71010e2278(UnkOwner_71010e2278* self, UnkArg1_71010e2278* a1, UnkArg2_71010e2278* a2,
+void CCameraComponent_CreateSceneObjectAndControllers(UnkOwner_71010e2278* self, UnkArg1_71010e2278* a1, UnkArg2_71010e2278* a2,
                    f32 x, f32 y, f32 z);
 
 struct UnkCamComp7_ovb5;
@@ -82,7 +82,7 @@ struct UnkCameraComponent_l0e4ab8 {
 static_assert(__builtin_offsetof(UnkCameraComponent_l0e4ab8, default_fov) == 0x258, "layout");
 static_assert(__builtin_offsetof(UnkCameraComponent_l0e4ab8, scaled) == 0xc20, "layout");
 
-u32 fn_71010e4ab8(UnkCameraComponent_l0e4ab8* self, UnkProp* p) {
+u32 CCameraComponent_HandleProperty(UnkCameraComponent_l0e4ab8* self, UnkProp* p) {
     if (UnkCamNode_l0e4ab8* front = self->cameras) {
         if (UnkCamera_l0e4ab8* camera = front->value) {
             s32 result = camera->OnProperty(p);
@@ -95,7 +95,7 @@ u32 fn_71010e4ab8(UnkCameraComponent_l0e4ab8* self, UnkProp* p) {
         UnkArg1_71010e2278* a1;
         UnkArg2_71010e2278* a2;
         CRntFile_ReadFormat(p->stream, "fffoo", &x, &y, &z, &a1, &a2);
-        fn_71010e2278(reinterpret_cast<UnkOwner_71010e2278*>(self), a1, a2, x, y, z);
+        CCameraComponent_CreateSceneObjectAndControllers(reinterpret_cast<UnkOwner_71010e2278*>(self), a1, a2, x, y, z);
         return true;
     }
     if (Is(p, Key(0xa80)) && p->set) {

@@ -22,7 +22,7 @@ void CCharClassEventPropComponent::refl_AddAttributes(CClass*) {}
 void CCharClassEventPropComponent::refl_AddFields(CClass*) {}
 bool CCharClassEventPropComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassEventPropComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEventPropComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEventPropComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEventPropComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEventPropComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEventPropComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassEventPropComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassEventPropComponent::refl_Destroy(void* obj) { static_cast<CCharClassEventPropComponent*>(obj)->~CCharClassEventPropComponent(); }
@@ -50,7 +50,7 @@ void CEventPropComponent::refl_AddFields(CClass* cls) {
 }
 bool CEventPropComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CEventPropComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CEventPropComponent::refl_TypeOf(const void* obj) { return *static_cast<const CEventPropComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CEventPropComponent::refl_TypeOf(const void* obj) { return *static_cast<const CEventPropComponent*>(obj)->refl_GetDynamicClass(); }
 void CEventPropComponent::refl_CopyConstruct(void*, const void*) {}
 void CEventPropComponent::refl_MoveConstruct(void*, const void*) {}
 void CEventPropComponent::refl_Destroy(void* obj) { static_cast<CEventPropComponent*>(obj)->~CEventPropComponent(); }

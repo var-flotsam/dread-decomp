@@ -22,7 +22,7 @@ void CCharClassEventScenarioComponent::refl_AddAttributes(CClass*) {}
 void CCharClassEventScenarioComponent::refl_AddFields(CClass*) {}
 bool CCharClassEventScenarioComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassEventScenarioComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEventScenarioComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEventScenarioComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEventScenarioComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEventScenarioComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEventScenarioComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassEventScenarioComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassEventScenarioComponent::refl_Destroy(void* obj) { static_cast<CCharClassEventScenarioComponent*>(obj)->~CCharClassEventScenarioComponent(); }

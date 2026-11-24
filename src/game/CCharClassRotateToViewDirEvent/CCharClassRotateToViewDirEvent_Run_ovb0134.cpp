@@ -82,7 +82,7 @@ static inline UnkVec3f FacingForYaw(f32 yaw) {
     return WrapAngles3ToPi(&angles);
 }
 
-void fn_7100ccf664(UnkRotateEvent_ovb0134* self, UnkActorRef_ovb0134* ref) {
+void CCharClassRotateToViewDirEvent_TurnActorToViewDirYaw(UnkRotateEvent_ovb0134* self, UnkActorRef_ovb0134* ref) {
     if (!ref->actor)
         return;
     UnkViewDir_ovb0134* dir = ref->actor->view_dir;

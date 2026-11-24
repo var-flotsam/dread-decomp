@@ -24,25 +24,25 @@ void fn_710009c8a8(CClass* cls) {
     [&] {
         DREAD_REFLECTED_FUNCTION_OF("_sBaseTypeName_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710009f1a4);
     }();
-    CVariable* field1 = AddReflectedField(cls, CStrId("sBaseTypeName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("sBaseTypeName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
 }
 bool fn_710009f168(const void* a, const void* b) { return a == b; }
 s32 fn_710009f174() { return -1; }
-const base::reflection::CType& fn_710009f17c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_710009f198(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
+const base::reflection::CType& fn_710009f17c(const void* obj) { return *static_cast<const base::reflection::ReflectedObject*>(obj)->refl_GetDynamicClass(); }
+void fn_710009f198(void* obj) { static_cast<base::reflection::ReflectedObject*>(obj)->~ReflectedObject(); }
 template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710009cab0> {
+struct base::reflection::ClassTraits<UnkRefl_fn_710009cab0> {
     static constexpr u64 size = 0xe0;
     static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_710009f168;
-    static constexpr HashFn fn_0x60 = &fn_710009f174;
-    static constexpr TypeOfFn fn_0x68 = &fn_710009f17c;
-    static constexpr SlotFn fn_0x28 = nullptr;
-    static constexpr CopyConstructFn fn_0x30 = nullptr;
-    static constexpr CopyConstructFn fn_0x38 = nullptr;
-    static constexpr DestroyFn fn_0x40 = &fn_710009f198;
-    static constexpr AssignFn fn_0x48 = nullptr;
-    static constexpr AssignFn fn_0x50 = nullptr;
+    static constexpr EqualsFn equals = &fn_710009f168;
+    static constexpr HashFn hash = &fn_710009f174;
+    static constexpr TypeOfFn type_of = &fn_710009f17c;
+    static constexpr SlotFn construct = nullptr;
+    static constexpr CopyConstructFn copy_construct = nullptr;
+    static constexpr CopyConstructFn move_construct = nullptr;
+    static constexpr DestroyFn destroy = &fn_710009f198;
+    static constexpr AssignFn copy_assign = nullptr;
+    static constexpr AssignFn move_assign = nullptr;
 };
 DREAD_REFL_ROOT_CLASS_GETTER(710009c7b8, 710009cab0, "base::reflection::CType", 710009c7b4, 710009c8a8);
 

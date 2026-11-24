@@ -80,7 +80,7 @@ void fn_71000e82a8(UnkElem_0xb0* entry, void* obj) {
     UnkReflValue def = found != self->attributes.End() ? CopyValue(*found) : base::reflection::refl_EmptyValue();
     // Each case reads the current value and takes the default as the field's type; what compared them
     // is not in this build.
-    switch (fn_7100024140(self->type)) {
+    switch (CBaseObject_GetTypeCodeChar(self->type)) {
     case 'b': {
         bool value = false;
         if (obj) {

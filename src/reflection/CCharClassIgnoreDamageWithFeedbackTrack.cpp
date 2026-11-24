@@ -22,7 +22,7 @@ void CCharClassIgnoreDamageWithFeedbackTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreDamageWithFeedbackTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreDamageWithFeedbackTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreDamageWithFeedbackTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreDamageWithFeedbackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreDamageWithFeedbackTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreDamageWithFeedbackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreDamageWithFeedbackTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreDamageWithFeedbackTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreDamageWithFeedbackTrack*>(obj)->~CCharClassIgnoreDamageWithFeedbackTrack(); }
 struct CCharClassIgnoreDamageWithFeedbackTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreDamageWithFeedbackTrack);

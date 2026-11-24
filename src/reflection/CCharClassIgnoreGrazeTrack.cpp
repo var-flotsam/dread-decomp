@@ -22,7 +22,7 @@ void CCharClassIgnoreGrazeTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreGrazeTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreGrazeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreGrazeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreGrazeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreGrazeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreGrazeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreGrazeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreGrazeTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreGrazeTrack*>(obj)->~CCharClassIgnoreGrazeTrack(); }
 struct CCharClassIgnoreGrazeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreGrazeTrack);

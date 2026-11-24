@@ -28,7 +28,7 @@ void CCharClassTweakComputeDeltaTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassTweakComputeDeltaTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTweakComputeDeltaTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTweakComputeDeltaTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakComputeDeltaTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTweakComputeDeltaTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakComputeDeltaTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTweakComputeDeltaTrack::refl_Destroy(void* obj) { static_cast<CCharClassTweakComputeDeltaTrack*>(obj)->~CCharClassTweakComputeDeltaTrack(); }
 struct CCharClassTweakComputeDeltaTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTweakComputeDeltaTrack);

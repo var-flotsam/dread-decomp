@@ -22,7 +22,7 @@ void CCharClassFadeToBlackDeathTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassFadeToBlackDeathTrack::refl_AddFields(CClass*) {}
 bool CCharClassFadeToBlackDeathTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFadeToBlackDeathTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFadeToBlackDeathTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFadeToBlackDeathTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFadeToBlackDeathTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFadeToBlackDeathTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFadeToBlackDeathTrack::refl_Destroy(void* obj) { static_cast<CCharClassFadeToBlackDeathTrack*>(obj)->~CCharClassFadeToBlackDeathTrack(); }
 struct CCharClassFadeToBlackDeathTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFadeToBlackDeathTrack);

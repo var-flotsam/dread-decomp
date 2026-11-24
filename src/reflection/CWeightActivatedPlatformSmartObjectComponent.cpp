@@ -31,7 +31,7 @@ void CWeightActivatedPlatformSmartObjectComponent::refl_AddFields(CClass* cls) {
 }
 bool CWeightActivatedPlatformSmartObjectComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CWeightActivatedPlatformSmartObjectComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CWeightActivatedPlatformSmartObjectComponent::refl_TypeOf(const void* obj) { return *static_cast<const CWeightActivatedPlatformSmartObjectComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CWeightActivatedPlatformSmartObjectComponent::refl_TypeOf(const void* obj) { return *static_cast<const CWeightActivatedPlatformSmartObjectComponent*>(obj)->refl_GetDynamicClass(); }
 void CWeightActivatedPlatformSmartObjectComponent::refl_Destroy(void* obj) { static_cast<CWeightActivatedPlatformSmartObjectComponent*>(obj)->~CWeightActivatedPlatformSmartObjectComponent(); }
 struct CWeightActivatedPlatformSmartObjectComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CWeightActivatedPlatformSmartObjectComponent);

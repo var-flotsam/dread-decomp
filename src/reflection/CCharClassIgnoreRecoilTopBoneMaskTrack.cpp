@@ -22,7 +22,7 @@ void CCharClassIgnoreRecoilTopBoneMaskTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreRecoilTopBoneMaskTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreRecoilTopBoneMaskTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreRecoilTopBoneMaskTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreRecoilTopBoneMaskTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreRecoilTopBoneMaskTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreRecoilTopBoneMaskTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreRecoilTopBoneMaskTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreRecoilTopBoneMaskTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreRecoilTopBoneMaskTrack*>(obj)->~CCharClassIgnoreRecoilTopBoneMaskTrack(); }
 struct CCharClassIgnoreRecoilTopBoneMaskTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreRecoilTopBoneMaskTrack);

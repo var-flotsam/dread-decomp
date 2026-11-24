@@ -31,7 +31,7 @@ struct UnkCacheNode_ovb0034 {
 // The set (base/global/UnkBucketSet.h; the layout of base/file/UnkFileCacheSet.h).
 using UnkCacheSet_ovb0034 = base::global::UnkBucketSet<UnkCacheNode_ovb0034>;
 
-void fn_71000866dc(char* set, UnkPoolIter* it);
+void CFileCacheDevice_EraseCacheSetNodeAtIterator(char* set, UnkPoolIter* it);
 
 static inline UnkCacheNode_ovb0034** Bucket(UnkCacheSet_ovb0034* set, u32 bucket) {
     return reinterpret_cast<UnkCacheNode_ovb0034**>(fn_7100086810(reinterpret_cast<char*>(set), bucket));
@@ -72,7 +72,7 @@ void fn_71000861bc(UnkCacheSet_ovb0034* set, const UnkCacheKey_ovb0034* key) {
     alignas(UnkCacheFound_ovb0034) char raw[sizeof(UnkCacheFound_ovb0034)];
     UnkCacheFound_ovb0034* it = reinterpret_cast<UnkCacheFound_ovb0034*>(raw);
     Find(it, set, key);
-    fn_71000866dc(reinterpret_cast<char*>(set), reinterpret_cast<UnkPoolIter*>(it));
+    CFileCacheDevice_EraseCacheSetNodeAtIterator(reinterpret_cast<char*>(set), reinterpret_cast<UnkPoolIter*>(it));
 }
 
 // The file being opened: its path's pool entry keeps the path's 64-bit hash at +0x30.
@@ -118,7 +118,7 @@ bool fn_7100085688(UnkCacheSizes_ovb0034* sizes, UnkCacheHandle_ovb0034* handle)
 
 // Status 1 is a plain miss; any other non-zero status is reported to the registry, created on
 // first use.
-bool fn_7100087124(UnkFileCacheDevice_ovb0034* self, UnkCacheFile_ovb0034* file) {
+bool CFileCacheDevice_LoadToc(UnkFileCacheDevice_ovb0034* self, UnkCacheFile_ovb0034* file) {
     UnkCacheHandle_ovb0034* handle = nullptr;
     u32 status = self->device->Open(file, &handle, true, nullptr, 0, 3);
     bool ok = false;

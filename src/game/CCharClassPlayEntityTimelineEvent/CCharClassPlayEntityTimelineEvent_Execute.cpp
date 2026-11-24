@@ -16,7 +16,7 @@ struct UnkPlayEntityTimelineEvent {
     base::global::UnkStringData* timeline;
 };
 
-void fn_7100bc57c0(UnkPlayEntityTimelineEvent* self) {
+void CCharClassPlayEntityTimelineEvent_FindEntityAndPlayTimeline(UnkPlayEntityTimelineEvent* self) {
     base::global::UnkStringData* entity_name = self->entity;
     base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
     if (entity_name == empty || self->timeline == empty)

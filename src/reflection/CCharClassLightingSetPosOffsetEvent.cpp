@@ -28,7 +28,7 @@ void CCharClassLightingSetPosOffsetEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassLightingSetPosOffsetEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassLightingSetPosOffsetEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassLightingSetPosOffsetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLightingSetPosOffsetEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassLightingSetPosOffsetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLightingSetPosOffsetEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassLightingSetPosOffsetEvent::refl_Destroy(void* obj) { static_cast<CCharClassLightingSetPosOffsetEvent*>(obj)->~CCharClassLightingSetPosOffsetEvent(); }
 struct CCharClassLightingSetPosOffsetEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassLightingSetPosOffsetEvent);

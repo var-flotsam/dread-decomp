@@ -26,7 +26,7 @@ void CCharClassEnableCullingEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassEnableCullingEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEnableCullingEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEnableCullingEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEnableCullingEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEnableCullingEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEnableCullingEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEnableCullingEvent::refl_Destroy(void* obj) { static_cast<CCharClassEnableCullingEvent*>(obj)->~CCharClassEnableCullingEvent(); }
 struct CCharClassEnableCullingEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEnableCullingEvent);

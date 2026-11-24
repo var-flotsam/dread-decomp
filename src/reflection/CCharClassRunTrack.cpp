@@ -22,7 +22,7 @@ void CCharClassRunTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassRunTrack::refl_AddFields(CClass*) {}
 bool CCharClassRunTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassRunTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassRunTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRunTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassRunTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRunTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassRunTrack::refl_Destroy(void* obj) { static_cast<CCharClassRunTrack*>(obj)->~CCharClassRunTrack(); }
 struct CCharClassRunTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassRunTrack);
