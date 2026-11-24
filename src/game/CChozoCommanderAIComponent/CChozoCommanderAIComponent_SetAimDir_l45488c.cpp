@@ -41,7 +41,7 @@ static inline const T* AddressOf(const T& value) {
     return &value;
 }
 
-void fn_710045488c(UnkCommanderAI_l45488c* self, const UnkVec3f* dir) {
+void CChozoCommanderAIComponent_SetDirectionAndAngleParam(UnkCommanderAI_l45488c* self, const UnkVec3f* dir) {
     UnkVec3f* aim = &self->aim_dir;
     f32 inv = 1.0f / (sqrtf(dir->x * dir->x + dir->y * dir->y + dir->z * dir->z) + 0.0001f);
     f32 x = dir->x * inv;

@@ -25,7 +25,7 @@ extern UnkConversion g_unk_71726c30c0;
 void fn_71003fe278() __attribute__((visibility("hidden")));
 void fn_71003fe284() __attribute__((visibility("hidden")));
 
-void fn_71003fe930() {
+void CCentralUnitCannonAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726c30e0.ids);
     fn_71003fafa0();
     fn_710009ec00(g_unk_71726c2f78, g_unk_71726c30e0.field_0x80);

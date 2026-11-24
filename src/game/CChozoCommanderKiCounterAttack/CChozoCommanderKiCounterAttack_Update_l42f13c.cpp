@@ -55,7 +55,7 @@ static inline bool Send_l42f13c(void* cls, u64 hash, base::reflection::UnkReflTy
     return fn_7101176690(cls, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
-void fn_710042f13c(UnkKiCounter_l42f13c* self, f32 dt) {
+void CChozoCommanderKiCounterAttack_UpdateAndSendLaunchRequests(UnkKiCounter_l42f13c* self, f32 dt) {
     // Declared past a goto (no lifetime markers), so each keeps its own slot.
     goto start;
     base::reflection::UnkReflTypeIdArg modeA, maskA, modeB, maskB, closeMode, closeMask;

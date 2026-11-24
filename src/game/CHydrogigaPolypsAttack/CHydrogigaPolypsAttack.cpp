@@ -22,7 +22,7 @@ struct UnkPolypsAttack {
     s32 field_0x70;
 };
 
-void fn_71005b548c(UnkPolypsAttack* self) {
+void CHydrogigaPolypsAttack_InitWaveCountAndTimer(UnkPolypsAttack* self) {
     fn_71005b2c58(self);
     UnkPolypsSettings* settings = self->field_0x60;
     self->field_0x68 = settings->field_0xf0 - 1.0f;

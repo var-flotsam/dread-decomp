@@ -29,7 +29,7 @@ void fn_71005992e0() __attribute__((visibility("hidden")));
 void fn_71005992ec() __attribute__((visibility("hidden")));
 extern char g_unk_71726e7478[];
 
-void fn_71005994a0() {
+void CCharClassGooplotAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726e7480.ids);
     fn_71005972bc();
     fn_710009ec00(g_unk_71726e72b0, g_unk_71726e7480.field_0x28);

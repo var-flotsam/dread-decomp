@@ -36,7 +36,7 @@ struct UnkRobotSoldierOnce_b60a2 {
 };
 
 // Once: raises the flag at +0x14b20 and sets the id g_unk_7101649818 on the owner's timeline as above.
-void fn_71004738e4(UnkRobotSoldierOnce_b60a2* self) {
+void CChozoRobotSoldierAIComponent_SetCannonShotChargedOnce(UnkRobotSoldierOnce_b60a2* self) {
     if (self->field_0x14b20)
         return;
     self->field_0x14b20 = true;

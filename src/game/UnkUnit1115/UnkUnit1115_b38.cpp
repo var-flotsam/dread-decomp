@@ -7,7 +7,7 @@
 typedef base::global::CRntVector<UnkInnerVec> UnkOuterVec;
 
 // Appends a copy of an inner array.
-void fn_710056041c(UnkOuterVec* self, const UnkInnerVec* value);
+void CEmmyAIComponent_PushBackInnerArrayCopy(UnkOuterVec* self, const UnkInnerVec* value);
 
 // Copy-constructs `self` from `other`: the same settings and allocator, the capacity reserved up
 // front, then each inner array appended.
@@ -21,5 +21,5 @@ void fn_71006fb3f4(UnkOuterVec* self, const UnkOuterVec* other) {
     self->allocator = other->allocator;
     self->Reserve(other->capacity);
     for (const UnkInnerVec *p = other->data, *end = p + other->count; p != end; ++p)
-        fn_710056041c(self, p);
+        CEmmyAIComponent_PushBackInnerArrayCopy(self, p);
 }

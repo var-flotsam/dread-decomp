@@ -51,7 +51,7 @@ static inline void ScaleFx(UnkWorld* world, const char* name, u64 length, f32 sc
     }
 }
 
-void fn_71005026d0(UnkChargeComponent* self, u32 mode, f32 value) {
+void CEmmyWaveMovementComponent_SetSizeAndRescaleShapeAndFX(UnkChargeComponent* self, u32 mode, f32 value) {
     if (!(mode & 1) && self->field_0x5dc == value)
         return;
     self->field_0x5dc = value;

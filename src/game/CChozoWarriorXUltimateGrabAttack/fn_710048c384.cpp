@@ -30,7 +30,7 @@ struct UnkEffect {
     UnkVec4 field_0x138;
 };
 
-void fn_710048c384(UnkEffect* self) {
+void CChozoWarriorXUltimateGrabAttack_OnEnterState6(UnkEffect* self) {
     if (self->field_0x135) {
         f32 time = fn_7101177ea0(self->field_0x8->field_0x220, 0xf4061ff25a2163d6);
         self->field_0x138.field_0x0 = 0.0f;

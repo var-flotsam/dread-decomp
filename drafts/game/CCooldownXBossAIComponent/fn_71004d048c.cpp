@@ -65,7 +65,7 @@ struct UnkCooldownXPart_l4d048c {
         AssignRef(&handle, other.handle);
         active = other.active;
     }
-    ~UnkCooldownXPart_l4d048c() { fn_71004d0b00(reinterpret_cast<UnkCooldownXRecord_ovb0088*>(this)); }
+    ~UnkCooldownXPart_l4d048c() { CCooldownXBossAIComponent_DestroyRecordRefAndIds(reinterpret_cast<UnkCooldownXRecord_ovb0088*>(this)); }
 };
 static_assert(sizeof(UnkCooldownXPart_l4d048c) == 0x40, "size");
 

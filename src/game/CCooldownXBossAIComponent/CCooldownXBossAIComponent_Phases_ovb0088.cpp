@@ -39,7 +39,7 @@ struct UnkCooldownXIds_ovb0088 {
     CStrId ids[4];
 };
 
-void fn_71004cf1d4(UnkCooldownXIds_ovb0088* self) {
+void CCooldownXBossAIComponent_ReleaseFourStrIdArray(UnkCooldownXIds_ovb0088* self) {
     self->ids[3].Reset();
     self->ids[2].Reset();
     self->ids[1].Reset();
@@ -53,7 +53,7 @@ struct UnkCooldownXRecord_ovb0088 {
     UnkRefObject* ref;  // 0x30
 };
 
-void fn_71004d0b00(UnkCooldownXRecord_ovb0088* self) {
+void CCooldownXBossAIComponent_DestroyRecordRefAndIds(UnkCooldownXRecord_ovb0088* self) {
     if (UnkRefObject* ref = self->ref) {
         if (--ref->ref_count == 0)
             ref->vf_0x10();
@@ -378,7 +378,7 @@ static inline bool IsShieldable(const CStrId& id) {
            Hash(id) == 0xb597d92716d1c432 || id.data == g_unk_71726d8700.data || Hash(id) == 0xff8cb38672dbf2a3;
 }
 
-u32 fn_71004d2e14(UnkCooldownXDamageAI_ovb0088* self, UnkCooldownXDamage_ovb0088* damage) {
+u32 CCooldownXBossAIComponent_ScaleGrabDamageAndCheckSource(UnkCooldownXDamageAI_ovb0088* self, UnkCooldownXDamage_ovb0088* damage) {
     u32 result = fn_71003adaf8(reinterpret_cast<UnkQuetzoaXAI_b58*>(self), reinterpret_cast<UnkQuetzoaXMessage_b58*>(damage));
     if (self->owner->part && fn_710113d83c(self->owner->part)) {
         f32 value = fn_71008c2de8(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(self->tables->table), damage->flags);
@@ -418,7 +418,7 @@ struct UnkCooldownXBoundsAI_ovb0088 {
     UnkCooldownXBoundsOwner_ovb0088* owner;  // 0x30
 };
 
-void fn_71004d2cc4(UnkCooldownXBoundsAI_ovb0088* self) {
+void CCooldownXBossAIComponent_UpdateHeadCollidersByLocatorHeight(UnkCooldownXBoundsAI_ovb0088* self) {
     UnkCooldownXBoundsOwner_ovb0088* owner = self->owner;
     UnkCollisionContainer* container = owner->collision;
     UnkEntity* entity = owner->entity;

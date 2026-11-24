@@ -18,7 +18,7 @@ struct UnkRequester {
     UnkSetup* field_0x50;
 };
 
-bool fn_7100443b84(UnkRequester* self, void* request, u32 flag) {
+bool CChozoCommanderZeroLaserAttack_CheckMinXYDistToAttack(UnkRequester* self, void* request, u32 flag) {
     UnkActor* me = self->field_0x8;
     f32 x = me->field_0x44;
     f32 y = me->field_0x54;

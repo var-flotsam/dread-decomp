@@ -24,11 +24,11 @@ struct UnkStrIdText_b43a1 {
     };
 };
 
-s32 fn_7100415050(const char* text);
-s32 fn_710041518c(const CStrId* id);
-s32 fn_710041527c(const CStrId* id);
-s32 fn_710041536c(const char* text);
-s32 fn_710041545c(const CStrId* id);
+s32 CCharClassAIComponent_ParsePolyEdgeKindMask(const char* text);
+s32 CCharClassAIComponent_GetPolyEdgeKindByName(const CStrId* id);
+s32 CCharClassAIComponent_GetTunnelWaterKindByName(const CStrId* id);
+s32 CCharClassAIComponent_ParseItemKindMask(const char* text);
+s32 CCharClassAIComponent_GetItemOrBreakableTileKindByName(const CStrId* id);
 
 static inline UnkStrIdText_b43a1* Text(const CStrId& id) {
     return reinterpret_cast<UnkStrIdText_b43a1*>(id.data);
@@ -53,10 +53,10 @@ static inline void SetKindFromId(char* self, const CStrId& id) {
     *reinterpret_cast<s32*>(self + Offset + 8) = kind;
 }
 
-void fn_71004145a8(char* self, const CStrId& id) { SetKindFromId<0x1f0, fn_7100415050, fn_710041518c>(self, id); }
-void fn_71004146b4(char* self, const CStrId& id) { SetKindFromId<0x200, CDynamicSmartLinkRules_ParseSmartLinkKindMask, fn_710041527c>(self, id); }
-void fn_71004147c0(char* self, const CStrId& id) { SetKindFromId<0x210, fn_710041536c, fn_710041545c>(self, id); }
-void fn_71004148cc(char* self, const CStrId& id) { SetKindFromId<0x220, fn_710041536c, fn_710041545c>(self, id); }
+void fn_71004145a8(char* self, const CStrId& id) { SetKindFromId<0x1f0, CCharClassAIComponent_ParsePolyEdgeKindMask, CCharClassAIComponent_GetPolyEdgeKindByName>(self, id); }
+void fn_71004146b4(char* self, const CStrId& id) { SetKindFromId<0x200, CDynamicSmartLinkRules_ParseSmartLinkKindMask, CCharClassAIComponent_GetTunnelWaterKindByName>(self, id); }
+void fn_71004147c0(char* self, const CStrId& id) { SetKindFromId<0x210, CCharClassAIComponent_ParseItemKindMask, CCharClassAIComponent_GetItemOrBreakableTileKindByName>(self, id); }
+void fn_71004148cc(char* self, const CStrId& id) { SetKindFromId<0x220, CCharClassAIComponent_ParseItemKindMask, CCharClassAIComponent_GetItemOrBreakableTileKindByName>(self, id); }
 
 // The kinds matched by name (fn_710041518c, fn_710041527c, fn_710041545c): each name is built as a
 // string, compared with the id's text by key, and gives its bit; "All" gives every bit, anything
@@ -67,7 +67,7 @@ static inline bool NameIs(const CStrId* id, const char* name) {
     return Text(*id)->str.key == s.key;
 }
 
-s32 fn_710041518c(const CStrId* id) {
+s32 CCharClassAIComponent_GetPolyEdgeKindByName(const CStrId* id) {
     if (NameIs(id, "Poly"))
         return 1;
     if (NameIs(id, "Edge"))
@@ -75,7 +75,7 @@ s32 fn_710041518c(const CStrId* id) {
     return NameIs(id, "All") ? -1 : 0;
 }
 
-s32 fn_710041527c(const CStrId* id) {
+s32 CCharClassAIComponent_GetTunnelWaterKindByName(const CStrId* id) {
     if (NameIs(id, "Tunnel"))
         return 1;
     if (NameIs(id, "Water"))
@@ -83,7 +83,7 @@ s32 fn_710041527c(const CStrId* id) {
     return NameIs(id, "All") ? -1 : 0;
 }
 
-s32 fn_710041545c(const CStrId* id) {
+s32 CCharClassAIComponent_GetItemOrBreakableTileKindByName(const CStrId* id) {
     if (NameIs(id, "StaticItems"))
         return 1;
     if (NameIs(id, "DynamicItems"))
@@ -167,7 +167,7 @@ static inline s32 PolyEdgeKind(const CRntString* part) {
     return CRntString_EqualsCString(part, "All") ? -1 : 0;
 }
 
-s32 fn_7100415050(const char* text) { return ParseKinds<PolyEdgeKind>(text); }
+s32 CCharClassAIComponent_ParsePolyEdgeKindMask(const char* text) { return ParseKinds<PolyEdgeKind>(text); }
 // This one spells its catch-all part "ALL".
 u32 fn_7100414070(const char* text) { return ParseKinds<LiftedKind_7100414bec>(text, "ALL"); }
-s32 fn_710041536c(const char* text) { return ParseKinds<LiftedKind_71004157f4>(text); }
+s32 CCharClassAIComponent_ParseItemKindMask(const char* text) { return ParseKinds<LiftedKind_71004157f4>(text); }

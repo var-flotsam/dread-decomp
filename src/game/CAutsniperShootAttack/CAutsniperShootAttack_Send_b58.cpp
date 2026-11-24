@@ -27,7 +27,7 @@ struct UnkAutsniperSend_b58 {
 };
 
 
-void fn_71003d6a84(UnkAutsniperSend_b58* self, f32 dt) {
+void CAutsniperShootAttack_AdvanceAfterShootTimer(UnkAutsniperSend_b58* self, f32 dt) {
     f32 timer = self->timer + dt;
     self->timer = timer;
     if (!(timer >= self->limits->limit))

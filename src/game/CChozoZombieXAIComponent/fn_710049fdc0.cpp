@@ -32,11 +32,11 @@ struct UnkOwner_710049fdc0 {
     }
 };
 
-void fn_710049fdc0(UnkOwner_710049fdc0* self) {
+void CChozoZombieXAIComponent_Destroy(UnkOwner_710049fdc0* self) {
     self->Destroy();
 }
 
-void fn_710049fe64(UnkOwner_710049fdc0* self) {
+void CChozoZombieXAIComponent_DestroyAndDelete(UnkOwner_710049fdc0* self) {
     self->Destroy();
     operator delete(self);
 }

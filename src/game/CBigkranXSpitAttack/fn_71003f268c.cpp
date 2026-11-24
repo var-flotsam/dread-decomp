@@ -13,7 +13,7 @@ void fn_71003f268c(UnkSpitAttack* self, f32 delta) {
     switch (state) {
     case 1:
         if (fn_71003f28c8(self, delta))
-            fn_71003f24f4(self, 3);
+            CBigkranXSpitAttack_SetState(self, 3);
         break;
     case 2:
         fn_71003f2710(self, delta);

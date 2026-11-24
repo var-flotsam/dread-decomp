@@ -4538,9 +4538,9 @@ address,size,name,name_source,subsystem,status
 0x71003d5f44,1028,fn_71003d5f44,unknown,game/ai?,U
 0x71003d6348,940,fn_71003d6348,unknown,game/ai?,U
 0x71003d66f4,416,fn_71003d66f4,unknown,game/ai?,U
-0x71003d6894,284,fn_71003d6894,unknown,game/ai?,O
-0x71003d69b0,212,fn_71003d69b0,unknown,game/ai?,O
-0x71003d6a84,348,fn_71003d6a84,unknown,game/ai?,O
+0x71003d6894,284,CAutsniperShootAttack_UpdateBlockeableWarningTimers,inferred,game/ai?,O
+0x71003d69b0,212,CAutsniperShootAttack_TickBeforeShootTimerToState5,inferred,game/ai?,O
+0x71003d6a84,348,CAutsniperShootAttack_AdvanceAfterShootTimer,inferred,game/ai?,O
 0x71003d6be0,832,fn_71003d6be0,unknown,game/ai?,U
 0x71003d6f20,320,fn_71003d6f20,unknown,game/ai?,O
 0x71003d7060,248,fn_71003d7060,unknown,game/ai?,O
@@ -4550,7 +4550,7 @@ address,size,name,name_source,subsystem,status
 0x71003d7a38,320,fn_71003d7a38,unknown,game/ai?,O
 0x71003d7b78,248,fn_71003d7b78,unknown,game/ai?,O
 0x71003d7c70,1168,fn_71003d7c70,unknown,game/ai?,U
-0x71003d8100,332,fn_71003d8100,unknown,game/ai?,O
+0x71003d8100,332,CAutsniperShootAttack_SendLaserDamageRequest,inferred,game/ai?,O
 0x71003d824c,120,fn_71003d824c,unknown,game/ai?,O
 0x71003d82c4,340,fn_71003d82c4,unknown,game/ai?,O
 0x71003d8418,20,fn_71003d8418,unknown,game/ai?,O
@@ -4586,7 +4586,7 @@ address,size,name,name_source,subsystem,status
 0x71003d8844,20,base::reflection::ValueOps<CAutsniperShootAttack::EAutsniperState>::CopyAssign,reflection,engine/reflection,O
 0x71003d8858,20,base::reflection::ValueOps<CAutsniperShootAttack::EAutsniperState>::MoveAssign,reflection,engine/reflection,O
 0x71003d886c,160,fn_71003d886c,unknown,unknown,O
-0x71003d8910,1076,fn_71003d8910,unknown,engine/reflection?,O
+0x71003d8910,1076,CAutsniperShootAttack_InitStatics,inferred,engine/reflection?,O
 0x71003d8d44,4,CCharClassAutsniperShootAttack::refl_AddAttributes,reflection,game/characters,O
 0x71003d8d48,244,CCharClassAutsniperShootAttack::refl_GetClass,reflection,game/characters,O
 0x71003d8e3c,2660,CCharClassAutsniperShootAttack::refl_AddFields,reflection,game/characters,O
@@ -4901,7 +4901,7 @@ address,size,name,name_source,subsystem,status
 0x71003e4a40,472,behaviortree::CBigFistChaseAction::refl_AddFields,reflection,ai/behaviortree,O
 0x71003e4c18,388,behaviortree::CBigFistChaseAction::refl_InitClass,reflection,ai/behaviortree,O
 0x71003e4d9c,40,fn_71003e4d9c,unknown,ai/behaviortree?,O
-0x71003e4dc4,260,fn_71003e4dc4,unknown,ai/behaviortree?,O
+0x71003e4dc4,260,CBigFistChaseAction_ComputeDesiredChaseDistance,inferred,ai/behaviortree?,O
 0x71003e4ec8,124,fn_71003e4ec8,unknown,ai/behaviortree?,O
 0x71003e4f44,768,fn_71003e4f44,unknown,ai/behaviortree?,U
 0x71003e5244,8,fn_71003e5244,unknown,ai/behaviortree?,O
@@ -4925,7 +4925,7 @@ address,size,name,name_source,subsystem,status
 0x71003e59d0,4,fn_71003e59d0,unknown,game/ai?,O
 0x71003e59d4,36,fn_71003e59d4,unknown,game/ai?,O
 0x71003e59f8,120,fn_71003e59f8,unknown,game/ai?,O
-0x71003e5a70,784,fn_71003e5a70,unknown,game/ai?,O
+0x71003e5a70,784,CBaseBigFistAIComponent_ComputeSidewaysAnimationReach,inferred,game/ai?,O
 0x71003e5d80,288,fn_71003e5d80,unknown,game/ai?,O
 0x71003e5ea0,84,fn_71003e5ea0,unknown,game/ai?,O
 0x71003e5ef4,4,fn_71003e5ef4,unknown,game/ai?,O
@@ -5225,8 +5225,8 @@ address,size,name,name_source,subsystem,status
 0x71003efaa8,3748,CCharClassBigkranXSpitAttack::refl_AddFields,reflection,game/characters,O
 0x71003f094c,352,CCharClassBigkranXSpitAttack::refl_InitClass,reflection,game/characters,O
 0x71003f0aac,256,fn_71003f0aac,unknown,game/characters?,O
-0x71003f0bac,156,fn_71003f0bac,unknown,game/characters?,O
-0x71003f0c48,164,fn_71003f0c48,unknown,game/characters?,O
+0x71003f0bac,156,CCharClassBigkranXSpitAttack_Destroy,inferred,game/characters?,O
+0x71003f0c48,164,CCharClassBigkranXSpitAttack_DestroyAndDelete,inferred,game/characters?,O
 0x71003f0cec,28,fn_71003f0cec,unknown,game/characters?,O
 0x71003f0d08,12,CCharClassBigkranXSpitAttack::refl_Equals,reflection,game/characters,O
 0x71003f0d14,8,CCharClassBigkranXSpitAttack::refl_Hash,reflection,game/characters,O
@@ -5240,16 +5240,16 @@ address,size,name,name_source,subsystem,status
 0x71003f0eec,388,CBigkranXSpitAttack::refl_InitClass,reflection,game/ai,O
 0x71003f1070,524,fn_71003f1070,unknown,game/ai?,O
 0x71003f127c,384,base::reflection::refl_InitType<CBigkranXSpitAttack::EState>,reflection,engine/reflection,O
-0x71003f13fc,200,fn_71003f13fc,unknown,game/ai?,O
+0x71003f13fc,200,CBigkranXSpitAttack_Construct,inferred,game/ai?,O
 0x71003f14c4,116,fn_71003f14c4,unknown,game/ai?,O
-0x71003f1538,92,fn_71003f1538,unknown,game/ai?,O
+0x71003f1538,92,CBigkranXSpitAttack_GetAttackInitAnimId,inferred,game/ai?,O
 0x71003f1594,868,fn_71003f1594,unknown,game/ai?,U
 0x71003f18f8,520,fn_71003f18f8,unknown,game/ai?,O
 0x71003f1b00,168,fn_71003f1b00,unknown,game/ai?,O
 0x71003f1ba8,492,fn_71003f1ba8,unknown,game/ai?,O
 0x71003f1d94,656,fn_71003f1d94,unknown,game/ai?,U
 0x71003f2024,1232,fn_71003f2024,unknown,game/ai?,U
-0x71003f24f4,408,fn_71003f24f4,unknown,game/ai?,O
+0x71003f24f4,408,CBigkranXSpitAttack_SetState,inferred,game/ai?,O
 0x71003f268c,132,fn_71003f268c,unknown,game/ai?,O
 0x71003f2710,440,fn_71003f2710,unknown,game/ai?,m
 0x71003f28c8,452,fn_71003f28c8,unknown,game/ai?,m
@@ -5284,7 +5284,7 @@ address,size,name,name_source,subsystem,status
 0x71003f41d8,20,base::reflection::ValueOps<CBigkranXSpitAttack::EState>::CopyAssign,reflection,engine/reflection,O
 0x71003f41ec,20,base::reflection::ValueOps<CBigkranXSpitAttack::EState>::MoveAssign,reflection,engine/reflection,O
 0x71003f4200,24,fn_71003f4200,unknown,game/ai?,O
-0x71003f4220,560,fn_71003f4220,unknown,game/ai?,O
+0x71003f4220,560,CBigkranXSpitAttack_InitStatics,inferred,game/ai?,O
 0x71003f4450,4,CBigkranXAIComponent::refl_AddAttributes,reflection,game/ai,O
 0x71003f4454,244,CBigkranXAIComponent::refl_GetClass,reflection,game/ai,O
 0x71003f4548,4,CBigkranXAIComponent::refl_AddFields,reflection,game/ai,O
@@ -5320,7 +5320,7 @@ address,size,name,name_source,subsystem,status
 0x71003f5f3c,396,fn_71003f5f3c,unknown,game/characters?,O
 0x71003f60c8,444,fn_71003f60c8,unknown,game/characters?,O
 0x71003f6284,36,fn_71003f6284,unknown,game/characters?,O
-0x71003f62a8,176,fn_71003f62a8,unknown,game/characters?,O
+0x71003f62a8,176,CCharClassBigkranXAIComponent_SelectLaunchConfigByDistance,inferred,game/characters?,O
 0x71003f6358,8,fn_71003f6358,unknown,game/characters?,O
 0x71003f6360,28,fn_71003f6360,unknown,game/characters?,O
 0x71003f637c,8,CCharClassBigkranXAIComponent::refl_Equals,reflection,game/characters,O
@@ -5421,7 +5421,7 @@ address,size,name,name_source,subsystem,status
 0x71003fc314,292,fn_71003fc314,unknown,game/ai?,O
 0x71003fc438,656,fn_71003fc438,unknown,game/ai?,O
 0x71003fc6c8,556,fn_71003fc6c8,unknown,game/ai?,O
-0x71003fc8f4,1228,fn_71003fc8f4,unknown,game/ai?,O
+0x71003fc8f4,1228,CCentralUnitCannonAIComponent_SetCannonBeamDamage,inferred,game/ai?,O
 0x71003fcdc0,460,fn_71003fcdc0,unknown,game/ai?,O
 0x71003fcf8c,292,fn_71003fcf8c,unknown,game/ai?,O
 0x71003fd0b0,228,fn_71003fd0b0,unknown,game/ai?,m
@@ -5481,7 +5481,7 @@ address,size,name,name_source,subsystem,status
 0x71003fe7c0,76,fn_71003fe7c0,unknown,game/ai?,O
 0x71003fe80c,24,fn_71003fe80c,unknown,game/ai?,O
 0x71003fe824,264,fn_71003fe824,unknown,game/ai?,O
-0x71003fe930,528,fn_71003fe930,unknown,engine/reflection?,O
+0x71003fe930,528,CCentralUnitCannonAIComponent_InitStatics,inferred,engine/reflection?,O
 0x71003feb40,4,CCharClassCentralUnitCannonAIComponent::refl_AddAttributes,reflection,game/characters,O
 0x71003feb44,244,CCharClassCentralUnitCannonAIComponent::refl_GetClass,reflection,game/characters,O
 0x71003fec38,4,CCharClassCentralUnitCannonAIComponent::refl_AddFields,reflection,game/characters,O

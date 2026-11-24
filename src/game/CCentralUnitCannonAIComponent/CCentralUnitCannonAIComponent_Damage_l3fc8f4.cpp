@@ -32,7 +32,7 @@ struct UnkCannonDamageTunable_l3fc8f4 {
     f32 damage_sanc;    // 0x8c
 };
 
-void fn_71003fc8f4(UnkCannonAI_l3fc8f4* self, void* arg, UnkCannonDamageRequest_l3fc8f4* request) {
+void CCentralUnitCannonAIComponent_SetCannonBeamDamage(UnkCannonAI_l3fc8f4* self, void* arg, UnkCannonDamageRequest_l3fc8f4* request) {
     fn_7101105c90(reinterpret_cast<UnkKraidAI2*>(self), arg, reinterpret_cast<UnkKraidRequest*>(request));
     const UnkCannonDamageTunable_l3fc8f4* tunable =
         reinterpret_cast<const UnkCannonDamageTunable_l3fc8f4*>(&g_unk_7172716160);

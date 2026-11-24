@@ -109,7 +109,7 @@ void fn_710051d60c(UnkEmmySearchingAction_b0068* self);
 // Starts a search when one can run (fn_7100519cec, or the AI's fn_71005472bc and a second try),
 // stopping it otherwise; a search that ends at once (result 0 or 3) is handed to the AI with the
 // action's callbacks.
-void fn_7100519218(UnkEmmySearchingAction_b0068* self, bool flag) {
+void CEmmySearchingAction_TryStartSearch(UnkEmmySearchingAction_b0068* self, bool flag) {
     if (!fn_7100519cec(self, false)) {
         UnkEmmyAI_b0068* ai = EmmyAI(self);
         if (!ai || !fn_71005472bc(ai) || !fn_7100519cec(self, true)) {
@@ -143,14 +143,14 @@ void fn_7100519218(UnkEmmySearchingAction_b0068* self, bool flag) {
 
 // The movement component's state change (from, to): going from 4 to 1 restarts a stopped search
 // and clears the movement's listener when it is a CEnemyMovement.
-void fn_710051d56c(UnkEmmySearchingAction_b0068* self, s32 from, s32 to) {
+void CEmmySearchingAction_OnMovementModeChanged(UnkEmmySearchingAction_b0068* self, s32 from, s32 to) {
     if (from == to)
         return;
     if (from != 4 || to != 1)
         return;
     if (self->field_0x12af1) {
         self->field_0x12af1 = false;
-        fn_7100519218(self, true);
+        CEmmySearchingAction_TryStartSearch(self, true);
     }
     UnkEmmyMovement_b0068* movement = self->actor->movement;
     if (movement && fn_710009d50c(movement->vf_0x0(), fn_71010c74e0())) {
@@ -212,7 +212,7 @@ static_assert(__builtin_offsetof(UnkSearch_b0068, mode) == 0x162c, "layout");
 
 struct UnkCollectOwner_A3_b70;
 struct UnkCollectList_A3_b70;
-void fn_710051cdd8(UnkCollectOwner_A3_b70* self, bool flag, u32 mode, UnkCollectList_A3_b70* list);
+void CEmmySearchingAction_ExpandSearchNode(UnkCollectOwner_A3_b70* self, bool flag, u32 mode, UnkCollectList_A3_b70* list);
 void fn_710051cc5c(UnkSearch_b0068* self);  // pops the open list's best node
 void fn_710051cf50(UnkSearch_b0068* self, UnkSearchNode_b0068* node);
 
@@ -243,7 +243,7 @@ bool fn_710051c9b0(UnkSearch_b0068* self) {
                     list.tail = nullptr;
                     list.allocator = GetDefaultAllocator();
                     list.tag = 0x13;
-                    fn_710051cdd8(reinterpret_cast<UnkCollectOwner_A3_b70*>(top), self->flag, self->mode,
+                    CEmmySearchingAction_ExpandSearchNode(reinterpret_cast<UnkCollectOwner_A3_b70*>(top), self->flag, self->mode,
                                   reinterpret_cast<UnkCollectList_A3_b70*>(&list));
                     for (UnkSearchNode_b0068* node = list.head; node; node = node->next)
                         fn_710051cf50(self, node);

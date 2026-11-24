@@ -89,7 +89,7 @@ struct UnkBigkranXPattern_ovb0125 {
 
 struct UnkPicker;
 struct UnkObject_71003f62a8;
-void* fn_71003f62a8(UnkPicker* self, UnkObject_71003f62a8* object);
+void* CCharClassBigkranXAIComponent_SelectLaunchConfigByDistance(UnkPicker* self, UnkObject_71003f62a8* object);
 
 struct UnkBigkranXAI_ovb0125 {
     u8 pad_0x0[0x30];
@@ -174,7 +174,7 @@ static inline void Advance(UnkBigkranXAI_ovb0125* self, f32 dt) {
 void fn_71003f49a8(UnkBigkranXAI_ovb0125* self, f32 dt) {
     if (self->picker) {
         UnkBigkranXPattern_ovb0125* pattern =
-            static_cast<UnkBigkranXPattern_ovb0125*>(fn_71003f62a8(self->picker, reinterpret_cast<UnkObject_71003f62a8*>(self)));
+            static_cast<UnkBigkranXPattern_ovb0125*>(CCharClassBigkranXAIComponent_SelectLaunchConfigByDistance(self->picker, reinterpret_cast<UnkObject_71003f62a8*>(self)));
         self->pattern = *pattern;
         self->active = true;
         self->mirrored = self->owner->xform.GetAngle().y < 0.0f;

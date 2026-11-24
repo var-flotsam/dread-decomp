@@ -7,7 +7,7 @@
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
-void fn_71005b4998(UnkHydrogigaAttack* self, UnkReflObject* arg) {
+void CHydrogigaMaelstormAttack_InitAndAddTentacleIds(UnkHydrogigaAttack* self, UnkReflObject* arg) {
     InitHydrogigaAttack<fn_71005ad6a4>(self, arg);
     PushMove(&self->field_0x28, CStrId("L01_Tentacle", true));
     PushMove(&self->field_0x28, CStrId("L02_Tentacle", true));

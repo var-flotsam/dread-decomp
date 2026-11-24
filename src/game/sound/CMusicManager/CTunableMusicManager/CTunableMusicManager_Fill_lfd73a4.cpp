@@ -113,7 +113,7 @@ static inline UnkPathRecord_b0019& AddPath(UnkPathVec_b0019& v) {
     u32 n = v.count + 1;
     fn_7100456980(&v, n);
     for (u32 i = v.count; i < n; ++i)
-        fn_7100456ac0(reinterpret_cast<UnkPathRecord*>(&v.data[i]));
+        CChozoCommanderAIComponent_ConstructFilePathRecord(reinterpret_cast<UnkPathRecord*>(&v.data[i]));
     v.count = n;
     UnkPathRecord_b0019* end = &v.data[n];
     return n ? end[-1] : *end;

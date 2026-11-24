@@ -52,7 +52,7 @@ struct UnkGoliathAI_l590cc0 {
 };
 static_assert(__builtin_offsetof(UnkGoliathAI_l590cc0, reach) == 0x14a28, "layout");
 
-void fn_71003e5a70(UnkGoliathAI_l590cc0* self);
+void CBaseBigFistAIComponent_ComputeSidewaysAnimationReach(UnkGoliathAI_l590cc0* self);
 const CStrId* fn_710058e660(void* self);
 
 // The rotation from g_unk_710164a030 to straight up.
@@ -69,7 +69,7 @@ static inline void Sample(UnkTimeline* timeline, UnkGoliathMotion_l590cc0* motio
 }
 
 void fn_7100590cc0(UnkGoliathAI_l590cc0* self) {
-    fn_71003e5a70(self);
+    CBaseBigFistAIComponent_ComputeSidewaysAnimationReach(self);
     self->reach = 0.0f;
     UnkTimeline* timeline = static_cast<UnkTimeline*>(fn_7101176e0c(
         self->owner->animation, fn_710058e660(self->field_0x149b8)->data->Key(), 0x6d7373f5fd58146aull));

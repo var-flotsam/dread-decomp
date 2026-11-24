@@ -38,11 +38,11 @@ struct UnkLavaCarpetAttack_ovb0059 {
 };
 static_assert(__builtin_offsetof(UnkLavaCarpetAttack_ovb0059, count_0x1d8) == 0x1d8, "layout");
 
-void fn_71004c55e0(UnkLavaCarpetAttack_ovb0059* self) {
+void CCooldownXBossLavaCarpetAttack_Destroy(UnkLavaCarpetAttack_ovb0059* self) {
     self->Destroy();
 }
 
-void fn_71004c5678(UnkLavaCarpetAttack_ovb0059* self) {
+void CCooldownXBossLavaCarpetAttack_DestroyAndDelete(UnkLavaCarpetAttack_ovb0059* self) {
     self->Destroy();
     operator delete(self);
 }
@@ -118,7 +118,7 @@ static_assert(__builtin_offsetof(UnkLavaAttack_ovb0059, records) == 0x1d8, "layo
 static_assert(__builtin_offsetof(UnkLavaAttack_ovb0059, field_0x77c) == 0x77c, "layout");
 
 // Declared with untyped parameters in src/game/CCooldownXBossLavaCarpetAttack/fn_71004c5a14.cpp.
-void fn_71004c5c2c(void* self_, const void* other_) {
+void CCooldownXBossLavaCarpetAttack_AssignRecordArray(void* self_, const void* other_) {
     UnkLavaRecords_ovb0059* self = static_cast<UnkLavaRecords_ovb0059*>(self_);
     const UnkLavaRecords_ovb0059* other = static_cast<const UnkLavaRecords_ovb0059*>(other_);
     if (self == other)

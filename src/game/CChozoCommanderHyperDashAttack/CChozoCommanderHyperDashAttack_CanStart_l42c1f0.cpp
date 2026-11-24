@@ -50,7 +50,7 @@ struct UnkHyperDashAttack_l42c1f0 {
     UnkHyperDashTunable_l42c1f0* tunable;  // 0x50
 };
 
-bool fn_710042c1f0(UnkHyperDashAttack_l42c1f0* self, void* arg, u32 mode) {
+bool CChozoCommanderHyperDashAttack_CanStart(UnkHyperDashAttack_l42c1f0* self, void* arg, u32 mode) {
     if (!fn_710042bb38(reinterpret_cast<UnkHypersparkAttack3_ovb0023*>(self)))
         return false;
     auto* ai = static_cast<UnkCommanderAI_l42c1f0*>(self->owner->field_0x240);

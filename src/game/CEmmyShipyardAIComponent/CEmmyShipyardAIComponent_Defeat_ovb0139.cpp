@@ -13,7 +13,7 @@
 
 using base::global::CStrId;
 
-void fn_7100504534(void* self, void* arg) {
+void CEmmyShipyardAIComponent_NotifyEmmyShipyardDead(void* self, void* arg) {
     UnkMlogMessage_b42a1 message(CStrId("#MLOG_DEFEAT_EMMY_SHIP", true));
     fn_7100456b7c(reinterpret_cast<u8*>(g_unk_7101d47310) + 0x2128, &message);
     fn_7100554740(self, arg);
