@@ -761,7 +761,8 @@ def cmd_submit(args, client=None) -> int:
               f"batch's worst case ${est['worst_dollars']:.2f} = ${total:.2f}, over its cap of ${args.cap:.2f}. "
               "Nothing was sent.")
         return 2
-    return nb.cmd_submit(argparse.Namespace(run=args.run, budget=args.budget), client=client)
+    # name_batch re-reads the ledger under its submit lock and checks both the budget and this cap again
+    return nb.cmd_submit(argparse.Namespace(run=args.run, budget=args.budget, cap=args.cap), client=client)
 
 
 def cmd_fetch(args, client=None) -> int:
