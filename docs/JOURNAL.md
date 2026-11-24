@@ -113,7 +113,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A function that a generated source reaches through a hand-written header's declaration cannot be renamed until that generator emits the name: grep `src/tables`, `src/clones` and `src/reflection*` before renaming a hub: [Name the CRntString functions](#session-log-newest-first) (#614).
 - A header-only type move is safe when each edited source's object hashes the same before and after (Clang 9.0.1 with the project flags); partial views of one type merge into the union of their fields where they agree at every overlapping offset: [Reconcile differing copies of shared types](#session-log-newest-first) (#618).
 - A `base::reflection` class whose header declares `refl_Description` and its reflection functions as members takes the generator's member form, not the namespace form; the mangled symbols are the same, so its matches stay: [Name the reflected field type base::reflection::CVariable](#session-log-newest-first) (#625).
-- Inferred names (name_source `inferred`, through `rename.py` with the evidence in `data/names.csv`): pick classes whose functions are all `O`, none in `data/equivalence.csv`, and skip any placeholder a generated directory references; name only what the code shows (reflected char-class members by offset from `gen_fields.py`), keep a placeholder where a name would guess, and have a fresh reviewer that has not seen the reasoning judge each name right, vague or wrong, reverting all but the right ones. The pilot cost about $0.66 a landed name (16 of 22, two review rounds), later batches about 40k subagent tokens a name (session log, #649, #654, #655, #658).
+- Inferred names (name_source `inferred`, through `rename.py` with the evidence in `data/names.csv`): pick classes whose functions are all `O`, none in `data/equivalence.csv`, and skip any placeholder a generated directory references; name only what the code shows (reflected char-class members by offset from `gen_fields.py`), keep a placeholder where a name would guess, and have a fresh reviewer that has not seen the reasoning judge each name right, vague or wrong, reverting all but the right ones. The pilot cost about $0.66 a landed name (16 of 22, two review rounds), later batches about 40k subagent tokens a name (session log, #649, #654, #655, #657, #658).
 - Steering forms that come out for free: of 310 empty barriers only 8 left every object unchanged; offset casts often do (843 hits down to 473), replaced by a typed member at the offset, existing or a `field_0x..` split from padding. They stay where the byte pointer drops alias information, where users read different types at one offset, or where the base is a generic type. Accept each edit only when `tools/objsame.py compare` prints UNCHANGED for the file and every includer of an edited header (session log, #647, #650, #651).
 
 **Port: shaders**
@@ -171,7 +171,85 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through b1229c09ea14ea6cebd31746e180fb90f61bb5c3 -->
+<!-- journal_sync: through aecef56053561df7698f5ecbb717fe06613c7ae6 -->
+
+**Inferred names, session 4 batch 1: 33 functions from CRotationalPlatformComponent to CAutsharpSpawnPointComponent (#657, 2026-11-23).**
+
+Before: the unnamed matched functions of 12 classes, from `CRotationalPlatformComponent` to `CAutsharpSpawnPointComponent`, were named `fn_<addr>`.
+
+After: 33 of them carry inferred names (name_source `inferred`), recorded with their evidence in `data/names.csv` through `tools/rename.py`; 24 keep their placeholders. Code is unchanged apart from the names.
+
+This is batch 1 of naming session 4 of 4 (classes whose lowest function is at 0x71009cf11d or above), following the pilot in #649.
+
+**How the classes were chosen.** From the compiled objects of every `src/game/<Class>/` directory with a real class name, taken in ascending order of the lowest address the class defines: every function defined there is `O`, 4 to 40 are named `fn_<addr>`, none is in `data/equivalence.csv`. As in #649, the generated-directory rule is applied per function: a function whose placeholder or address appears in a generated directory keeps it. `CRumbleComponent` through `CAutsharpSpawnPointComponent` follow `CRotationalPlatformComponent`; `CSamusMovement` qualified but all of its candidates were declined. Functions whose unit (`tools/tu_map.py`) is another class's, but which are defined in this directory, were declined rather than named for the directory.
+
+| Address | Name | Evidence in the code |
+|---|---|---|
+| `0x71009d890c` | `CRotationalPlatformComponent_UpdateRotation` | after the base step, while rotating (+0x88) eases the owner's z angle toward the target angle (+0x90, degrees) over 0.3 s, sets a timeline id once on reaching it, and stops after 2 s |
+| `0x71009d9650` | `CRotationalPlatformComponent_InitStatics` | the unit's static initialiser: the ERotationDirection enum and its converters, the ROTATIONAL id, the Used property, the class getter, the unit's type registration and six collider and state ids |
+| `0x71009da040` | `CRumbleComponent_MarkRumbleStopped` | sets +0x63 on the first rumble entry (list +0x48) whose handle names the given object; +0x63 is the flag fn_71009da834 sets after fading a rumble out |
+| `0x71009da364` | `CRumbleComponent_UpdateRumblePositions` | for each rumble entry flagged at +0x62, takes the point the owner's +0x228 component gives for the entry's name, or the owner's position, and moves the rumble there (fn_7100072484) |
+| `0x71009dae9c` | `CRumbleComponent_MakeRumbleDescFromSoundDef` | reads a sound definition into a sound description (fn_7101037bc0) and copies its file, kind, position and tunables into the rumble description it is given |
+| `0x71009dbdb8` | `CRumbleComponent_ResizeRumbleEntries` | grows the component's 0x68-byte rumble entry vector to n (fn_71009dbeec) and default-constructs the new entries; the component calls it to add one entry |
+| `0x71009dc0cc` | `CRumbleComponent_EraseRumbleEntry` | destroys the rumble entry at the index and moves the later 0x68-byte entries down by one |
+| `0x71009f3ae0` | `CShockWaveComponent_DestroyAndDelete` | the deleting destructor: runs the complete destructor (vtable g_unk_7101a8a820, node list +0x250, member +0x40, base fn_71010c4194) and frees the object |
+| `0x71009f3b68` | `CShockWaveComponent_Reset` | after the CComponent base step fn_71010c4228, assigns a freshly constructed member to +0x40 (fn_71009f35b0, fn_71009f3bf8), frees and empties the node list +0x250 and clears +0x280 to +0x298 |
+| `0x71009f4bf8` | `CShockWaveComponent_AddActor` | appends the actor to the node list +0x250, except when it is the player (fn_7100defcd4) or the game manager's second player (+0x29a0) and either is already listed |
+| `0x71009f4d18` | `CShockWaveComponent_CanHitActor` | false for a listed actor unless active (+0x244) and timer +0x298 at 0 or forced; under a full circle (+0x168) needs the actor within half angle +0x28c of the direction; then box vs sphere radius +0x284 |
+| `0x71009f4f48` | `CShockWaveComponent_GetDirection` | returns a unit xy vector: +x or -x by the sign of the linked object's (+0x1c8) angle y, or +y turned by the owner's angles when +0x189 is set, then turned about z by +0x16c |
+| `0x71009f5b78` | `CShockWavePoolComponent_Destroy` | the complete destructor: sets vtable g_unk_7101a8a9b0, frees the array +0x2a8 and the node list +0x268, destroys the member +0x40 and runs the component base destructor fn_71010c4194 |
+| `0x71009f5c18` | `CShockWavePoolComponent_DestroyAndDelete` | the deleting destructor: runs the complete destructor (as fn_71009f5b78) and frees the object |
+| `0x71009f5cc0` | `CShockWavePoolComponent_Reset` | after the CComponent base step fn_71010c4228, assigns a freshly constructed member to +0x40 (fn_71009f5730, fn_71009f5d50), frees and empties the node list +0x268 and clears +0x298 and +0x318 |
+| `0x71009f7da4` | `CShockWavePoolComponent_AddActor` | appends the actor to the node list +0x268, except when it is the player (fn_7100defcd4) or the game manager's second player (+0x29a0) and either is already listed |
+| `0x71009f7ec4` | `CShockWavePoolComponent_CanHitActor` | false for a listed actor unless active (+0x244) and timer +0x320 at 0 or forced; true with no point segment (+0x2a8: no points, or one with +0x2d4 clear), else whether the actor's 2D box touches the segment |
+| `0x71009f8074` | `CShockWavePoolComponent_GetDirection` | returns a unit xy vector: +x or -x by the sign of the linked object's (+0x1c8) angle y, turned about z by +0x164 (opposite sign for +x) |
+| `0x71009f8bcc` | `CCharClassShotComponent_Destroy` | the complete destructor: sets vtable g_unk_7101a8ab40, destroys the owned list +0x58 (vLaunchShotConfigs) and runs the CCharClassComponent base destructor fn_71011acd74 |
+| `0x71009f8c70` | `CCharClassShotComponent_DestroyAndDelete` | the deleting destructor: runs the complete destructor (as fn_71009f8bcc) and frees the object |
+| `0x71009f8d1c` | `CCharClassShotComponent_FindLaunchShotConfig` | finds the first entry of vLaunchShotConfigs (+0x58, count +0x60) whose sID (CShotLaunchConfig +0x10) equals the key and stores it in out; CShotComponent fires the found config |
+| `0x71009fa098` | `CShotLaunchConfig_SetUpLaunch` | resets the launch state (fn_71009f9dc0), stores origin, target and direction, two flags, a float, frame word g_unk_7101d58e48 and the config at +0x40; returns true; base step of fn_71009feb78 |
+| `0x71009fa8fc` | `CShotLaunchConfig_GetTrajectoryOffset` | writes the offset after time t of a shot along (dirX, dirY) at speed under gravity: x = dirX*speed*t, y = dirY*speed*t - gravity*t*t/2, z = 0; called twice by CProjectileMovement update |
+| `0x71009fe030` | `CShotLaunchConfig_InitStatics` | the unit's static initialiser (tu_map initialiser of unit 1509): header ids, class getter fn_71009f98c4, the CRntVector of unique_ptr CShotLaunchConfig types and iterators, the conversion |
+| `0x7100a03a14` | `CSmartObjectComponent_LoadFromFile` | after the base read fn_710024fc0c reads a bool and six strings from a CRntFile and sets reflected sOnUseStart, sOnUseFailure, sOnUseSuccess, sUsableEntity, sDefaultUseAction, sDefaultAbortAction, bStartEnabled |
+| `0x7100a05880` | `CSmartObjectComponent_InitStatics` | the unit's static initialiser (tu_map initialiser of unit 1512): header, class getter fn_7100a00014, the SMARTOBJS component id and the useinit and useabort ids |
+| `0x7100a076b0` | `CUnlockAreaSmartObjectComponent_SendGrabRequest` | hands the player grabber (+0x260) the grab request at +0xc0 (fn_710113d940, CGrabComponent unit) named by the id at +0x148, else +0x68, with the word at +0x40; then clears +0x148 |
+| `0x7100a07a90` | `CUnlockAreaSmartObjectComponent_IsNotPlayingRelax` | true when the owner animation component (+0x220) has no playing track whose action is the id table relax id (+0x1d78) per fn_710117ae38; false without an animation component |
+| `0x7100a09348` | `CWeightActivatedPlatformSmartObjectComponent_InitStates` | registers the seven states of the state machine at +0x180 and binds their callbacks to the platform, inits the registry map at +0x560 under the owner name, caches a name hash at +0x5a0 |
+| `0x7100a09f7c` | `CWeightActivatedPlatformSmartObjectComponent_LoadFromBlackboard` | reads the Finished property (g_unk_71727434e0) from the given blackboard section of the current scenario and, when true, runs fn_7100a0a08c (state 7, stores Finished true) |
+| `0x7100a130d0` | `CSwifterSpawnGroupComponent_OnEntityGenerated` | runs the base step fn_710111b64c (calls sOnEntityGenerated +0x228), turns off (fn_710024fa0c) every vectSpawnPoints +0x68 entry that is on and whose actor id is the given name, counts +0x428 up to 3 |
+| `0x7100a135f0` | `CSwifterSpawnGroupComponent_InitStatics` | the unit's static initialiser: header ids, the ESwifterSpawnGroupDirection and ESwifterSpawnGroupSpawnMode enums, the class getter fn_7100a1204c, the unit's type registration |
+| `0x7100a148d0` | `CAutsharpSpawnPointComponent_InitStatics` | the unit's static initialiser: header ids plus the spawn_right id, the EAutsharpSpawnPointDir enum and its int converters, the class getter fn_7100a13bd0, the unit's type registration |
+
+Declined (placeholder kept):
+- `0x71009d8b90` (CRotationalPlatformComponent): a message handler that runs the rotation's end (fn_71009d8bcc) for two message types; what the types are is not shown
+- `0x71009d8ee4` (CRotationalPlatformComponent): the same handler through a this pointer 0x40 bytes in; which base it serves is not shown
+- `0x71009da0a8` (CRumbleComponent): the same body as fn_71009da040 on a pointer 0x40 bytes into the component (list +8); which base or interface it serves is not shown
+- `0x71009db2e0` (CRumbleComponent): builds a rumble description from a definition and starts it (fn_71009dacbc); fn_71009db4b8 has the same body, and nothing shows which definition kind each serves
+- `0x71009db4b8` (CRumbleComponent): the same body as fn_71009db2e0; nothing shows what tells the two apart
+- `0x71009e6940` (CSamusMovement): returns whether the ghost aura ability's state is 3 to 6; the states are not named
+- `0x71009e9acc` (CSamusMovement): zeroes about a dozen unnamed fields (+0x40, +0x7c, +0x6e8, +0x2314 and others) and sets +0x22f9; no caller or string shows what this partial reset is for
+- `0x71009e9b10` (CSamusMovement): sets the bool at +0x22f9 when it differs (read by fn_71009f0bb0); nothing names what the flag means
+- `0x71009ebe04` (CSamusMovement): true when the timer +0x2314 is positive, a game manager member check (fn_7100f0ca8c) holds, or the animation is in a CCharClassIgnoreHangTrack; what the three share is not shown
+- `0x7100a042e0` (CSmartObjectComponent): runs the script the id at +0x48 names (which reflected field is unknown), calls unnamed fn_7100a03118, then a grab request; its role in use would be a guess
+- `0x7100a0746c` (CUnlockAreaSmartObjectComponent): after input and flag checks either runs vf_0x1a8 when the id equals unlockareaout or sets +0x150 and fetches the tunable sDialogID text, which is dropped; purpose not plain
+- `0x7100a0782c` (CUnlockAreaSmartObjectComponent): sends the owner +0x220 the hash at +0x70, sets an input wait of tunable fIgnoreInputTime, asks the CMorphBallMovement for mode 1, clears +0x148; which use step this is would be a guess
+- `0x7100a09948` (CWeightActivatedPlatformSmartObjectComponent): no direct callers; does several steps (timeline on and off keys, state 3 request, slot colour, track start, fn_7100a09cd4); calling it the class update would be a guess
+- `0x7100a09cd4` (CWeightActivatedPlatformSmartObjectComponent): requests state 5, clears the Finished blackboard flag, sets the linked usable +0xfa flag true; states and flag unnamed, so enable or reset would be a guess
+- `0x7100a0a2dc` (CWeightActivatedPlatformSmartObjectComponent): requests state 6, clears the Finished blackboard flag, sets the linked usable +0xfa flag false; states and flag unnamed, so disable would be a guess
+- `0x7100a0ab24` (CWeightActivatedPlatformSmartObjectComponent): event handler that calls fn_7100a046ec, passes the event name to the linked user vf_0x178 and requests state 3; meaning of the state and slot unknown
+- `0x7100a0ad9c` (CWeightActivatedPlatformSmartObjectComponent): has side effects (hands player back, tries linked usable fn_7100aa1098, else blocks input for track length); a CanUse name would not fit and its role is unclear
+- `0x7100a0d480` (CWeightActivatedPlatformSmartObjectComponent): when bDisableWhenEmmyNearby (+0x558) is set runs fn_7100a0a2dc for true or fn_7100a09cd4 for false; no callers show what the bool reports
+- `0x7100a131d0` (CSwifterSpawnGroupComponent): named ..._RemoveEntityAndResetTimeToSpawn at first; review: wrong, the spawn time is reset only when the count reaches 0 with +0x42c clear
+- `0x7100a13224` (CSwifterSpawnGroupComponent): same tail as fn_7100a131d0 after the base fn_710111c56c, whose slot (a spawned actor going away, counters drop) is unnamed; a name would guess the event
+- `0x7100a14190` (CAutsharpSpawnPointComponent): sets one of two flags on the owner by eSpawnDir; what the flags mean is not shown
+- `0x7100a141e8` (CAutsharpSpawnPointComponent): a spawn check that also sends a message and sets +0x400; CanSpawn would hide the side effects
+- `0x7100a17b30` (CSwifterSpawnGroupComponent): outside the class's unit (initialiser of unit 1527, CCaterzillaSpawnPointComponent; registers ECaterzillaSpawnPointDir and ECaterzillaSpawnPointOrder)
+- `0x7100a4f6d0` (CSwifterSpawnGroupComponent): outside the class's unit (initialiser of unit 1567, CForbiddenEdgesLogicAction; registers navmesh::ENavMeshGroup and CForbiddenEdgesLogicAction::EState)
+
+**Independent review.** Fresh subagents that had not seen the naming reasoning got the sources and a random sample of the names, and judged each right, vague or wrong, checking the stated evidence against the code.
+- Round 1, 25 of 34 names (seed 4101): 24 right, 0 vague, 1 wrong. The batch failed. `0x7100a131d0`, named `CSwifterSpawnGroupComponent_RemoveEntityAndResetTimeToSpawn`, claimed a reset that happens only when the count reaches 0; reverted. One reason was corrected (`..._OnEntityGenerated` turns off every matching spawn point, not one).
+- Round 2, 25 of 33 names (seed 4102): 25 right, 0 vague, 0 wrong, 1 reason with an error: `CShockWavePoolComponent_CanHitActor`'s reason said "true without a point segment", where the early return also covers one point with +0x2d4 clear. Corrected.
+
+**Cost.** Proposals by three reading subagents (about 538k tokens) and two reviewers (about 427k tokens), plus this session's own reading, selection and checks. That is about 29k subagent tokens per landed name; the session's own share and a dollar figure are not visible from inside the session. A good part of this batch was one-time setup (toolchain, libc++ headers, class selection and the check scripts), and batches 2 and 3 were read in parallel with this one.
 
 **Name 30 functions in 12 classes of naming range 2 (inferred) (#658, 2026-11-23).**
 
