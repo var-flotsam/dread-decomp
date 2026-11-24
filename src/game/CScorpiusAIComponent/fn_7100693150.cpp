@@ -137,7 +137,7 @@ static inline UnkAmiiboComposition_laf0d38* AsCallbackObject(UnkScorpiusAI_l6931
 
 void fn_7100693150(UnkScorpiusAI_l693150* self, const UnkScorpiusEvent_l693150* event) {
     fn_7100fdbd84(MusicManager(), 1);
-    fn_71003ad45c(reinterpret_cast<UnkSelf*>(self), event);
+    fn_71003ad45c(reinterpret_cast<UnkSelf_71003ad45c*>(self), event);
     if (event->id == g_unk_7172703ef8.data) {
         Listen(&self->stage2_listener);
         if (Hand(&self->stage2_target, 0.26f))

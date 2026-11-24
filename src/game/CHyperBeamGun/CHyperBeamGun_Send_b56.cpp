@@ -24,6 +24,8 @@ struct UnkHyperBeamGun_b56 {
     UnkHyperBeamOwner_b56* owner;
     u8 pad_0x20[0x18a0 - 0x20];
     u32 field_0x18a0;
+    u8 pad_0x18a4[0x56];
+    u8 field_0x18fa;
 };
 
 struct UnkSoundHolder;
@@ -68,7 +70,7 @@ void fn_7100846b20(UnkHyperBeamGun_b56* self) {
     if (id == &g_unk_7101d47108->empty)
         return;
     // UnkSpitSend written out, so that its locals sit below the query as in the original.
-    u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(id) + 0x30);
+    u64 hash = id->Key();
     base::reflection::UnkReflTypeIdArg mode;
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
@@ -86,7 +88,7 @@ void fn_7100846ca0(UnkHyperBeamGun_b56* self) {
         return;
     auto* input = *reinterpret_cast<UnkInput_b56hb**>(SoundHolder_b56());
     if (!input->IsPressed(0x800, 0xfd)) {
-        *(reinterpret_cast<u8*>(self) + 0x18fa) = 0;
+        self->field_0x18fa = 0;
         return;
     }
     if (self->field_0x18a0 & 0x100)
@@ -103,7 +105,7 @@ void fn_7100846ca0(UnkHyperBeamGun_b56* self) {
     base::global::UnkStringData* id = query.result->sources.data;
     if (id == &g_unk_7101d47108->empty)
         return;
-    u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(id) + 0x30);
+    u64 hash = id->Key();
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;

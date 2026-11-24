@@ -47,7 +47,7 @@ static inline __attribute__((always_inline)) void Release_b66a4v(UnkRefCounted_b
         p->vf_0x10();
 }
 
-bool fn_71006de888(UnkVulkranRefList_b66a4* self) {
+bool CVulkranAttackManager_Clear(UnkVulkranRefList_b66a4* self) {
     if (self->ref) {
         Release_b66a4v(self->ref);
         self->ref = nullptr;

@@ -20,6 +20,6 @@ struct UnkAccessPointOwner_b65a6 {
     UnkAccessPointTarget_b65a6* target;
 };
 
-u64* fn_7100a6e838(UnkAccessPointOwner_b65a6* self) { return self->flag ? &self->target->field_0x1c8 : &self->target->field_0x100; }
-u64* fn_7100a6e854(UnkAccessPointOwner_b65a6* self) { return self->flag ? &self->target->field_0x1d0 : &self->target->field_0x110; }
-u64* fn_7100a6e870(UnkAccessPointOwner_b65a6* self) { return self->flag ? &self->target->field_0x1d8 : &self->target->field_0x108; }
+u64* CAccessPointComponent_GetUseInitAction(UnkAccessPointOwner_b65a6* self) { return self->flag ? &self->target->field_0x1c8 : &self->target->field_0x100; }
+u64* CAccessPointComponent_GetUseAction(UnkAccessPointOwner_b65a6* self) { return self->flag ? &self->target->field_0x1d0 : &self->target->field_0x110; }
+u64* CAccessPointComponent_GetUsableInitAction(UnkAccessPointOwner_b65a6* self) { return self->flag ? &self->target->field_0x1d8 : &self->target->field_0x108; }

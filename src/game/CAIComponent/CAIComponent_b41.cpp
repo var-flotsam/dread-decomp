@@ -26,7 +26,9 @@ static_assert(sizeof(UnkIdList_b41a3) == 0x44, "UnkIdList_b41a3 layout");
 struct UnkAIIdLists_b41a3 {
     u8 pad_0x0[0x13e0];
     u32 list_count;
-    UnkIdList_b41a3 lists[1];
+    UnkIdList_b41a3 lists[8];
+    u8 pad_0x1604[0xc];
+    void* field_0x1610;
 };
 
 void* fn_7100912674(const CStrId* id);
@@ -47,7 +49,7 @@ UnkReflValue fn_7101115758(void*, char* obj, UnkReflValue* const* args) {
         id = static_cast<const CStrId*>(a[1].field_0x0);
     else
         id = reinterpret_cast<const CStrId*>(&a[1]);
-    void* entries = *reinterpret_cast<void**>(reinterpret_cast<char*>(target) + 0x1610);
+    void* entries = target->field_0x1610;
     if (entries && fn_7100413fe0(entries) > static_cast<s32>(index) && fn_7100912674(id)) {
         u32 n = index + 1;
         if (n > target->list_count) {

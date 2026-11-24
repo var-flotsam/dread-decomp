@@ -14,7 +14,7 @@ struct UnkCollisionContainer;
 struct UnkAutoolAI_ovb0137;
 void fn_7100863730(void* collision, const CStrId* name, const u32* flags);
 void fn_71008635a4(UnkCollisionContainer* self, const CStrId* id, const u32* extra);
-void fn_71003c4fb0(UnkAutoolAI_ovb0137* self, u32 which, u32 mode);
+void CAutoolAIComponent_SetThruster(UnkAutoolAI_ovb0137* self, u32 which, u32 mode);
 
 // The colliders of the three thrusters (names not recovered).
 extern CStrId g_unk_71726be9b8 __attribute__((visibility("hidden")));
@@ -135,13 +135,13 @@ void fn_71003c54ac(UnkAutoolAI_l3c54ac* self) {
     UnkTrackQuery right = {fn_7100c0e328(), nullptr, -1.0f};
     fn_710117b08c(animation, &right);
     if (right.result)
-        fn_71003c4fb0(ai, 0, ThrusterMode(right.result));
+        CAutoolAIComponent_SetThruster(ai, 0, ThrusterMode(right.result));
     UnkTrackQuery left = {fn_7100c0dd08(), nullptr, -1.0f};
     fn_710117b08c(animation, &left);
     if (left.result)
-        fn_71003c4fb0(ai, 1, ThrusterMode(left.result));
+        CAutoolAIComponent_SetThruster(ai, 1, ThrusterMode(left.result));
     UnkTrackQuery bottom = {fn_7100c0d6e8(), nullptr, -1.0f};
     fn_710117b08c(animation, &bottom);
     if (bottom.result)
-        fn_71003c4fb0(ai, 2, ThrusterMode(bottom.result));
+        CAutoolAIComponent_SetThruster(ai, 2, ThrusterMode(bottom.result));
 }

@@ -10,13 +10,13 @@
 
 using base::global::UnkStrId;
 
-struct UnkNode {
+struct UnkNode_71006ef540 {
     u8 pad_0x0[0x15a0];
     u64 field_0x15a0;
     u64 field_0x15a8;
 };
 
-void fn_71006ef540(UnkNode* self) {
+void fn_71006ef540(UnkNode_71006ef540* self) {
     fn_71003695fc(self);
     self->field_0x15a8 = 0;
     self->field_0x15a0 = 0;

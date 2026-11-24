@@ -23,7 +23,7 @@ struct UnkCaterzillaSegment {
 };
 static_assert(__builtin_offsetof(UnkCaterzillaSegment, field_0x430) == 0x430, "segment layout");
 
-void fn_7100a1782c(UnkCaterzillaSegment* self, s32 count) {
+void CCaterzillaSpawnPointComponent_ResetLinkedSpawnCounts(UnkCaterzillaSegment* self, s32 count) {
     if (count < 1)
         return;
     u32 rest = self->field_0x3c8;
@@ -35,7 +35,7 @@ void fn_7100a1782c(UnkCaterzillaSegment* self, s32 count) {
     self->field_0x42c = 0;
     self->field_0x430 = false;
     if (self->next) {
-        fn_7100a1782c(self->next, count - 1);
+        CCaterzillaSpawnPointComponent_ResetLinkedSpawnCounts(self->next, count - 1);
     } else {
         self->field_0x3de = true;
         self->field_0x3d0 = true;

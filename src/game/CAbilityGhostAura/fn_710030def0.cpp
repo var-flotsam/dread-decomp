@@ -4,15 +4,15 @@
 #include "game/CAbilityGhostAura.h"
 #include "types.h"
 
-struct UnkSelf;
+struct UnkSelf_710030c0c0;
 
-bool fn_710030dda8(UnkSelf* self, void* a2);
-void fn_710030ed9c(UnkSelf* self, void* a1, void* a2, void* a3, u32 a4, void* a5, void* a6, f32 f);
-void fn_710030dff4(UnkSelf* self, void* a1, void* a2, void* a3, u32 a4, void* a5, void* a6, f32 f);
-void fn_7100310164(UnkSelf* self, void* a6, f32 distance);
-void fn_71003104e8(UnkSelf* self, void* a1, u32 a4, void* a3, void* a5, void* a6, u32* out);
+bool fn_710030dda8(UnkSelf_710030c0c0* self, void* a2);
+void fn_710030ed9c(UnkSelf_710030c0c0* self, void* a1, void* a2, void* a3, u32 a4, void* a5, void* a6, f32 f);
+void fn_710030dff4(UnkSelf_710030c0c0* self, void* a1, void* a2, void* a3, u32 a4, void* a5, void* a6, f32 f);
+void fn_7100310164(UnkSelf_710030c0c0* self, void* a6, f32 distance);
+void fn_71003104e8(UnkSelf_710030c0c0* self, void* a1, u32 a4, void* a3, void* a5, void* a6, u32* out);
 
-void fn_710030def0(UnkSelf* self, void* a1, void* a2, void* a3, u32 a4, void* a5, void* a6, f32 f) {
+void fn_710030def0(UnkSelf_710030c0c0* self, void* a1, void* a2, void* a3, u32 a4, void* a5, void* a6, f32 f) {
     if (fn_710030b8b4(self, a2, nullptr) && !fn_710030dda8(self, a2))
         fn_710030dff4(self, a1, a2, a3, a4, a5, a6, f);
     else

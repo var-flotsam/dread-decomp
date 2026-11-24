@@ -18,7 +18,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkSelf;
+struct UnkSelf_7100438b48;
 struct UnkEffectSink;
 struct UnkFlagged;
 void fn_710042e2dc();
@@ -61,14 +61,14 @@ struct UnkHypersparkStart_A2_b73 {
 };
 
 void fn_710042ce00(UnkHypersparkStart_A2_b73* self) {
-    fn_710042bb3c(reinterpret_cast<UnkSelf*>(self));
+    fn_710042bb3c(reinterpret_cast<UnkSelf_7100438b48*>(self));
     UnkActor* owner = self->owner;
     *reinterpret_cast<u64*>(self->field_0x5c + 5) = 0;
     *reinterpret_cast<u64*>(self->field_0x5c) = 0;
     self->field_0x6c = owner->field_0x54;
     self->field_0x58 = 0;
     UnkEffectSink* sink = static_cast<UnkEffectSink*>(owner->field_0x218);
-    auto* collision = *reinterpret_cast<UnkCollisionContainer**>(reinterpret_cast<char*>(owner) + 0x2a0);
+    UnkCollisionContainer* collision = owner->field_0x2a0;
     if (sink && collision) {
         UnkHypersparkParams_A2_b73 params;
         params.field_0xc = 0;

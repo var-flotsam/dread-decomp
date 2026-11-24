@@ -13,10 +13,10 @@
 
 using base::reflection::CClass;
 
-struct UnkObject {
+struct UnkObject_710048a474 {
     void** vtable;
-    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkObject*)>(vtable[0])(this); }
-    bool vf_0x2d8() { return reinterpret_cast<bool (*)(UnkObject*)>(vtable[0x5b])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkObject_710048a474*)>(vtable[0])(this); }
+    bool vf_0x2d8() { return reinterpret_cast<bool (*)(UnkObject_710048a474*)>(vtable[0x5b])(this); }
 };
 
 struct UnkPlayerObject {
@@ -38,34 +38,34 @@ struct UnkPlayer {
     UnkAttack* field_0x220;
 };
 
-struct UnkOwner {
+struct UnkOwner_710048a474 {
     u8 pad_0x0[0x220];
     UnkAttack* field_0x220;
     u8 pad_0x228[0x18];
-    UnkObject* field_0x240;
+    UnkObject_710048a474* field_0x240;
 };
 
-struct UnkSelf {
+struct UnkSelf_710048a474 {
     u8 pad_0x0[8];
-    UnkOwner* field_0x8;
+    UnkOwner_710048a474* field_0x8;
     u8 pad_0x10[0x128];
     f32 field_0x138;
 };
 
-struct UnkAIComponent;
+struct UnkAIComponent_7100489ea0;
 
-void fn_710048a474(UnkSelf* self, f32 delta) {
+void fn_710048a474(UnkSelf_710048a474* self, f32 delta) {
     f32 previous = self->field_0x138;
     f32 timer = previous + delta;
-    UnkOwner* owner = self->field_0x8;
+    UnkOwner_710048a474* owner = self->field_0x8;
     self->field_0x138 = timer;
     if (fn_710117b348(owner->field_0x220, fn_7100c3aaa8())) {
         if (self->field_0x8->field_0x240->vf_0x2d8()) {
-            UnkObject* object = self->field_0x8->field_0x240;
-            UnkObject* component = nullptr;
+            UnkObject_710048a474* object = self->field_0x8->field_0x240;
+            UnkObject_710048a474* component = nullptr;
             if (object && fn_710009d50c(object->vf_0x0(), fn_710048db44()))
                 component = object;
-            fn_710048fc80(reinterpret_cast<UnkAIComponent*>(component));
+            fn_710048fc80(reinterpret_cast<UnkAIComponent_7100489ea0*>(component));
         }
     }
     UnkPlayer* player = fn_7100dec788(g_unk_7101d47310);

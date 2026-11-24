@@ -1,5 +1,5 @@
 // CMinimapData's unit (tools/tu_map.py unit 2563): begin and end over an array of 0x60-byte records
-// (UnkRecord60 of src/game_aca57c/fn_7100e5493c.cpp) with base::UnkCollectionIter iterators: a
+// (UnkRecord60_7100e5493c of src/game_aca57c/fn_7100e5493c.cpp) with base::UnkCollectionIter iterators: a
 // temporary (index, element) iterator is built and synced inline, copied to the output unless it is
 // the output, the output synced out of line (fn_7100e46b58), and the temporary's value reset (state
 // 1 owns an index and a record holding two arrays). Names and layouts are placeholders.
@@ -7,8 +7,8 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-struct UnkRecord60;  // src/game_aca57c/fn_7100e5493c.cpp
-void fn_7100e46b58(base::UnkCollectionIter<UnkRecord60, u32>* it);
+struct UnkRecord60_7100e5493c;  // src/game_aca57c/fn_7100e5493c.cpp
+void fn_7100e46b58(base::UnkCollectionIter<UnkRecord60_7100e5493c, u32>* it);
 
 struct UnkRecord60Iter_b56 {
     u32 index;
@@ -62,7 +62,7 @@ struct UnkRecord60Vec_b56 {
     u32 count;
 };
 
-using UnkRecord60CollIter_b56 = base::UnkCollectionIter<UnkRecord60, u32>;
+using UnkRecord60CollIter_b56 = base::UnkCollectionIter<UnkRecord60_7100e5493c, u32>;
 
 __attribute__((always_inline)) inline void UnkRecord60IterAt_b56(u32 i, u8* e, UnkRecord60CollIter_b56* out) {
     UnkRecord60Iter_b56 it(i, e);

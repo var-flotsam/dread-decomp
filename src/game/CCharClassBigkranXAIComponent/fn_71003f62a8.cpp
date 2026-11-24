@@ -6,7 +6,7 @@
 #include "game/UnkActor.h"
 #include "types.h"
 
-struct UnkObject {
+struct UnkObject_71003f62a8 {
     u8 pad_0x0[0x30];
     UnkActor* field_0x30;
 };
@@ -20,7 +20,7 @@ struct UnkPicker {
     f32 field_0x60c;
 };
 
-void* fn_71003f62a8(UnkPicker* self, UnkObject* object) {
+void* fn_71003f62a8(UnkPicker* self, UnkObject_71003f62a8* object) {
     if (object) {
         UnkActor* body = object->field_0x30;
         if (body) {

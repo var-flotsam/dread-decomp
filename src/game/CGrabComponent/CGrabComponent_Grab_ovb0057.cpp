@@ -326,7 +326,7 @@ static inline bool Accepts(UnkGrabComponent_ovb0057* self, UnkGrabRequest_ovb005
 static inline u64 SingletonHash(u32 offset) {
     const CStrId* id = reinterpret_cast<const CStrId*>(
         reinterpret_cast<const char*>(&base::reflection::refl_GetSingleton()) + offset);
-    return *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(id->data) + 0x30);
+    return id->data->Key();
 }
 
 __attribute__((noinline)) void fn_710113af2c(UnkGrabParams_ovb0057* self) {

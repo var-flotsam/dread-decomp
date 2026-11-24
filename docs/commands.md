@@ -593,6 +593,16 @@ python tools/baseline.py restore --tag T [FILE...]          # default: every fil
 python tools/baseline.py files   [selection]                 # print the resolved file set
 ```
 
+### `tools/objsame.py`
+
+Does a source still compile to the same object? Snapshot and compare objects, with no game data.
+
+```sh
+python tools/objsame.py save    --tag T [FILE...] [@LIST] [--all] [--base REF]
+python tools/objsame.py compare --tag T [--modulo-names] [-q] [the same selection; default: every file saved]
+python tools/objsame.py files   [selection]                 # print the resolved file set
+```
+
 ### `tools/unit_move.py`
 
 Move hand-written sources out of the address-named directories into directories by unit.

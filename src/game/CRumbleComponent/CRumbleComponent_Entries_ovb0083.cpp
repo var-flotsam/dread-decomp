@@ -100,7 +100,7 @@ void fn_71009dbbb4(UnkRumbleEntries_ovb0083* self, u32 n) {
 void fn_71009dbeec(UnkRumbleEntries_ovb0083* self, u32 n);  // grows the array to n entries
 
 // Resizes to n entries, default-constructing the new ones.
-void fn_71009dbdb8(UnkRumbleRecords* records, u32 n) {
+void CRumbleComponent_ResizeRumbleEntries(UnkRumbleRecords* records, u32 n) {
     UnkRumbleEntries_ovb0083* self = reinterpret_cast<UnkRumbleEntries_ovb0083*>(records);
     fn_71009dbeec(self, n);
     for (u64 i = self->count; i < n; ++i)

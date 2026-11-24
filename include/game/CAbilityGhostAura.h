@@ -14,10 +14,11 @@ struct UnkWeakTarget;
 struct UnkAbility;
 struct UnkGhostAura_A2_b70;
 struct UnkSelf;
+struct UnkSelf_710030c0c0;
 u64 fn_7100308c74();
 u32 fn_7100309568(UnkAbility* ability);
 void fn_7100309fd8(UnkGhostAura_A2_b70* self, u32 a, u32 b);
-bool fn_710030b8b4(UnkSelf* self, void* a2, void* zero);
+bool fn_710030b8b4(UnkSelf_710030c0c0* self, void* a2, void* zero);
 extern void* g_unk_7101a22d48[];  // The listener's vtable.
 extern void* g_unk_7101a22cb8[];
 extern void* g_unk_7101a22d18[];

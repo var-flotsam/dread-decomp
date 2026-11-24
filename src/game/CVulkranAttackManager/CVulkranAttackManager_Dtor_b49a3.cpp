@@ -12,7 +12,7 @@ struct UnkObject_71006de7c4 {
     u8 field_0x18[0x10];
 };
 
-void fn_71006de7c4(UnkObject_71006de7c4* self) {
+void CVulkranAttackManager_Destroy(UnkObject_71006de7c4* self) {
     self->vtable = g_unk_7101a69098 + 2;
     fn_710059c7b8(self->field_0x18);
     if (UnkRefObject* p = self->field_0x8) {

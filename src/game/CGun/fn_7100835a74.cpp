@@ -8,8 +8,8 @@
 #include "game/UnkTU811.h"
 #include "types.h"
 
-struct UnkSelf;
-void fn_710035131c(UnkSelf* self);
+struct UnkSelf_710035131c;
+void fn_710035131c(UnkSelf_710035131c* self);
 
 // The game manager seen from here: the set at +0x2028.
 struct UnkGameManagerView_l835a74 {
@@ -107,5 +107,5 @@ void fn_7100835a74(UnkGun_l835a74* self) {
     base::math::CVector3D pos = Position_l835a74(self->actor);
     fn_710056a010(reinterpret_cast<UnkGameManagerView_l835a74*>(g_unk_7101d47310)->field_0x2028, &pos);
     if (void* object = self->actor->field_0x2b0)
-        fn_710035131c(static_cast<UnkSelf*>(object));
+        fn_710035131c(static_cast<UnkSelf_710035131c*>(object));
 }

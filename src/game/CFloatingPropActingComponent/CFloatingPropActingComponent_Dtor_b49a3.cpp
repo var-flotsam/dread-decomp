@@ -11,7 +11,7 @@ struct UnkFloatingPropActingComponent_b49a3 : UnkBaseComponent {
     base::global::CRntString field_0x60;
 };
 
-void fn_71007e6358(UnkFloatingPropActingComponent_b49a3* self) {
+void CFloatingPropActingComponent_DestroyAndDelete(UnkFloatingPropActingComponent_b49a3* self) {
     self->vtable = g_unk_7101a73768 + 2;
     CRntString_Destroy(&self->field_0x60);
     if (UnkRefObject* p = self->field_0x40) {

@@ -17,7 +17,7 @@ struct CSynchronizedBlockCameraCtrl {
 
 // The base camera update, then counts the remaining time down while there is a target; marks the
 // control finished when it runs out.
-void fn_7100a21770(CSynchronizedBlockCameraCtrl* self, f32 dt) {
+void CSynchronizedBlockCameraCtrl_UpdateCountdown(CSynchronizedBlockCameraCtrl* self, f32 dt) {
     fn_7100763f9c(self, dt);
     if (self->owner && self->owner->target && self->remaining > 0.0f) {
         f32 left = self->remaining - dt;

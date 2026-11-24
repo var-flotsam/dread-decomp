@@ -5,7 +5,7 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
-void fn_7100a5dac0(void* self);
+void CTriggerComponent_Construct(void* self);
 extern void* g_unk_7101a8f070[];
 
 struct UnkColliderTriggerComponent_cb9c {
@@ -23,7 +23,7 @@ struct UnkColliderTriggerComponent_cb9c {
 };
 
 void fn_7100a4cb9c(UnkColliderTriggerComponent_cb9c* self) {
-    fn_7100a5dac0(self);
+    CTriggerComponent_Construct(self);
     self->vtable = g_unk_7101a8f070 + 2;
     self->field_0x428 = g_unk_7101a20998 + 2;
     self->field_0x430 = 0;

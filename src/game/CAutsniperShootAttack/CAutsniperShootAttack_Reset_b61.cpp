@@ -18,8 +18,8 @@ extern UnkAutsniperKey3_b61a2 g_unk_71016492e8;  // reached through the GOT
 
 struct UnkAutsniperTimeline_b60a2;
 void fn_71003d7b78(UnkAutsniperTimeline_b60a2* self);  // as CAutsniperShootAttack_Timeline_b60.cpp defines it
-struct UnkSelf;
-void fn_71003d5a14(UnkSelf* self, bool force);  // as src/game/CAutsniperShootAttack/fn_71003d5a14.cpp defines it
+struct UnkSelf_71003d5a14;
+void fn_71003d5a14(UnkSelf_71003d5a14* self, bool force);  // as src/game/CAutsniperShootAttack/fn_71003d5a14.cpp defines it
 
 struct UnkAutsniperAIView_b61a2 {
     virtual const CClass* vf_0x0();
@@ -39,5 +39,5 @@ void fn_71003d82c4(UnkAttackBase* self) {
     if (ai && fn_710009d50c(ai->vf_0x0(), fn_71003da2e0()))
         reinterpret_cast<u8*>(ai)[0x27248] = 0;
     fn_71003d7b78(reinterpret_cast<UnkAutsniperTimeline_b60a2*>(self));
-    fn_71003d5a14(reinterpret_cast<UnkSelf*>(self), true);
+    fn_71003d5a14(reinterpret_cast<UnkSelf_71003d5a14*>(self), true);
 }

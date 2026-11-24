@@ -12,7 +12,7 @@
 #include "types.h"
 
 struct UnkPlayer;
-struct UnkSelf;
+struct UnkSelf_710030c0c0;
 
 namespace {
 struct UnkAbilityState_b62a2o {
@@ -68,5 +68,5 @@ void fn_7100323b60(UnkAbility_b62a2o* self, bool on) {
             }
         }
     }
-    fn_71002f9460(reinterpret_cast<UnkSelf*>(self), 0);
+    fn_71002f9460(reinterpret_cast<UnkSelf_710030c0c0*>(self), 0);
 }

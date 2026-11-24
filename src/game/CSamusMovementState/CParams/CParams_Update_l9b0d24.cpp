@@ -82,7 +82,7 @@ struct UnkGrappleGun_l9b0d24 {
 
 struct UnkSamusOwner_l9b0d24 {
     u8 pad_0x0[0x2a8];
-    UnkComponent* field_0x2a8;
+    UnkComponent_710035131c* field_0x2a8;
 };
 
 struct UnkSamusState_l9b0d24;
@@ -109,7 +109,7 @@ static_assert(__builtin_offsetof(UnkSamusState_l9b0d24, impulse_applied) == 0x15
 
 // The owner's grapple beam gun, when it has one.
 static UnkGrappleGun_l9b0d24* GrappleGun(UnkSamusOwner_l9b0d24* owner) {
-    UnkComponent* c = owner->field_0x2a8;
+    UnkComponent_710035131c* c = owner->field_0x2a8;
     if (!c)
         return nullptr;
     auto* obj = static_cast<base::reflection::UnkReflObject*>(fn_710083cd30(c));

@@ -8,17 +8,17 @@
 
 using base::reflection::CClass;
 
-struct UnkObject {
+struct UnkObject_7100495954 {
     void** vtable;
-    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkObject*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkObject_7100495954*)>(vtable[0])(this); }
 };
 
-struct UnkClassData : UnkObject {
+struct UnkClassData : UnkObject_7100495954 {
     u8 pad_0x8[0x7f0];
     u8 field_0x7f8;
 };
 
-struct UnkComponent_495954 : UnkObject {
+struct UnkComponent_495954 : UnkObject_7100495954 {
     u8 pad_0x8[8];
     UnkClassData* field_0x10;
     u8 pad_0x18[0x14981];

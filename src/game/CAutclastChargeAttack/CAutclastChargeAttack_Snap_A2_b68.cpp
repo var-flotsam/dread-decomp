@@ -13,7 +13,7 @@ static inline __attribute__((always_inline)) void UnkSnap_A2_b68(f32* v) {
     *v = (f32)(q + sign * 50);
 }
 
-void fn_71003b50c4(f32* pos, const f32* dir) {
+void CAutclastChargeAttack_SnapCoordToGrid(f32* pos, const f32* dir) {
     f32* v;
     if (UnkFabs_A2_b68(dir[0]) > 0.95f)
         v = &pos[1];

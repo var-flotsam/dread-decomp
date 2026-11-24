@@ -10,6 +10,8 @@
 // hand-written files touch are spelled out; the names and the layout are placeholders, and the
 // object's size is unknown (0x29c0 is the largest offset read so far).
 
+#include "base/global/CFilePathStrId.h"
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -25,7 +27,9 @@ struct UnkGameManagerSub_0x608 {
 // The object behind +0x1af8: entries looked up by a u16 id (fn_7100ca719c, fn_7100ca7a64;
 // game_s2/fn_71002b3828), with a flag at +0xdc that stops game_s7/fn_7100aaac80.
 struct UnkGameManagerSub_0x1af8 {
-    u8 pad_0x0[0xdc];
+    u8 pad_0x0[0xd0];
+    void* field_0xd0;  // cleared by fn_7100cab1fc when it points at that object's +0x30
+    u8 pad_0xd8[0x4];
     bool field_0xdc;
 };
 
@@ -108,19 +112,32 @@ struct UnkGameManager {
     void* field_0x498;  // an object set up through its vf_0x70 unless its vf_0x68 says it is (fn_7100b2de48)
     u8 pad_0x4a0[0x168];
     UnkGameManagerSub_0x608* field_0x608;
-    u8 pad_0x610[0x820 - 0x610];
+    base::global::CFilePathStrId field_0x610;  // a path (fn_7100e00b48)
+    u8 pad_0x618[0x8];
+    base::global::CRntString field_0x620;  // the root the level paths start with (fn_7100e01d98)
+    u8 pad_0x650[0x820 - 0x650];
     CBlackboard field_0x820;  // a second blackboard (the archive flags, fn_71009d2dc0)
     u8 pad_0x910[0x968 - 0x910];
     CBlackboard field_0x968;  // the embedded blackboard (fn_7101047208, fn_71010472e0, fn_7101047270)
-    u8 pad_0xa58[0xd40 - 0xa58];
+    u8 pad_0xa58[0xbf8 - 0xa58];
+    u8 field_0xbf8[1];  // the group table (lua_bind's blackboard functions)
+    u8 pad_0xbf9[0xd40 - 0xbf9];
     CBlackboard field_0xd40;  // the checkpoint blackboard (fn_710116c388)
-    u8 pad_0xe30[0x1000 - 0xe30];
+    u8 pad_0xe30[0xeb8 - 0xe30];
+    CBlackboard field_0xeb8;  // the blackboard lua_bind's property and section functions use
+    u8 pad_0xfa8[0x1000 - 0xfa8];
     UnkGameManagerIdMap field_0x1000;  // string ids replaced by others (fn_7100dfbda4)
     u8 pad_0x1018[0x28];
     u8 field_0x1040[1];  // an embedded effect player (fn_7101053a98, fn_7101053a7c, fn_7101053a0c, fn_7101053850)
-    u8 pad_0x1041[0xab7];
+    u8 pad_0x1041[0xa67];
+    bool field_0x1aa8;  // disables the actor definition cache (fn_710119e4ec)
+    u8 pad_0x1aa9[0x4f];
     UnkGameManagerSub_0x1af8* field_0x1af8;
-    u8 pad_0x1b00[0x728];  // +0x2128: a callback set that fn_7100b2de48's states watch
+    u8 pad_0x1b00[0x5a8];
+    u8 field_0x20a8[1];  // a set positions are added to (fn_710056a010)
+    u8 pad_0x20a9[0xff];  // +0x2128: a callback set that fn_7100b2de48's states watch
+    u8 field_0x21a8[1];  // a deferred set the placed items register with (fn_71004f3cf0)
+    u8 pad_0x21a9[0x7f];
     void* field_0x2228;    // the world (fn_7100e9b464, fn_7100e9b1f8, fn_7100e9b4b0); its +0xd63f40 is an object reference
     base::global::CStrId field_0x2230;  // the current area's name (fn_71003ad8e4)
     base::global::CStrId field_0x2238;  // an id; while it is empty fn_7100fce86c's callbacks run
@@ -138,7 +155,9 @@ struct UnkGameManager {
     UnkGameManagerListNode* field_0x2698;  // entries whose +0x30 refers to an object with the id
     u8 pad_0x26a0[0xd8];
     UnkGameManagerListNode* field_0x2778;  // objects the lookup treats as taken
-    u8 pad_0x2780[0x240];
+    u8 pad_0x2780[0xc8];
+    u8 field_0x2848[1];  // objects by character class kind, 0x100 bytes each (fn_7100d8ba60, fn_7100d8be38)
+    u8 pad_0x2849[0x177];
     u8 field_0x29c0;       // a flag that blocks fn_71002fe470
 };
 static_assert(__builtin_offsetof(UnkGameManager, field_0xc0) == 0xc0, "UnkGameManager placeholder layout");

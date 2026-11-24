@@ -4,10 +4,10 @@
 #include "types.h"
 
 static inline f32& SlotValue0x44(UnkGraphicsSlot& s) {
-    return *reinterpret_cast<f32*>(reinterpret_cast<u8*>(&s) + 0x44);
+    return s.field_0x44;
 }
 static inline u32& SlotValue0x30(UnkGraphicsSlot& s) {
-    return *reinterpret_cast<u32*>(reinterpret_cast<u8*>(&s) + 0x30);
+    return s.field_0x30;
 }
 
 void fn_7100160c30(u32 index, u32 slot, f32 value) {

@@ -72,7 +72,7 @@ struct UnkLavaPool_b48 {
 void fn_7100902334(UnkLavaPool_b48* self, f32 height);
 void fn_710090248c(UnkLavaPool_b48* self, f32 height);
 
-void fn_71008fc2fc(UnkLavaPool_b48* self, CBlackboard* blackboard) {
+void CLavaPoolComponent_LoadFromBlackboard(UnkLavaPool_b48* self, CBlackboard* blackboard) {
     CBlackboard::CSection* section = fn_71010472e0(blackboard, fn_71011a2fbc(g_unk_7101d47310->field_0x608));
     if (!section)
         return;
@@ -100,7 +100,7 @@ void fn_71008fc2fc(UnkLavaPool_b48* self, CBlackboard* blackboard) {
     }
 }
 
-void fn_71008fc524(UnkLavaPool_b48* self) {
+void CLavaPoolComponent_SetUsed(UnkLavaPool_b48* self) {
     if (UnkLavaPoolOwner_b48* owner = self->owner) {
         if (UnkTimelineComponent* timeline = owner->timeline) {
             fn_7100a2b7b8(timeline, &g_unk_710164b1d8);

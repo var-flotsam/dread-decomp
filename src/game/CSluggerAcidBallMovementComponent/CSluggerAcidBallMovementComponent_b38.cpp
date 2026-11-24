@@ -27,7 +27,9 @@ struct UnkAcidBallMovement {
     virtual void vf_0x0();
     u8 pad_0x8[0xf1];
     bool field_0xf9;
-    u8 pad_0xfa[0x3be];
+    u8 pad_0xfa[0x136];
+    UnkAcidLauncherLink* field_0x230;
+    u8 pad_0x238[0x280];
     f32 velocity_x;  // 0x4b8
     f32 velocity_y;
     f32 velocity_z;
@@ -40,14 +42,14 @@ struct UnkAcidBallMovement {
 struct UnkSelf;
 
 static inline UnkAcidLauncherLink* LinkOf(UnkAcidBallMovement* self) {
-    return *reinterpret_cast<UnkAcidLauncherLink**>(reinterpret_cast<char*>(self) + 0x230);
+    return self->field_0x230;
 }
 
 static inline void CallSlot(UnkAcidBallMovement* self) {
     (*reinterpret_cast<void (***)(UnkAcidBallMovement*)>(self))[0x260 / 8](self);
 }
 
-void fn_71006c7a40(UnkAcidBallMovement* self) {
+void CSluggerAcidBallMovementComponent_BeginPlay(UnkAcidBallMovement* self) {
     fn_7100ac3880(reinterpret_cast<UnkSelf*>(self));
     UnkAcidLauncherLink* link = LinkOf(self);
     if (link && link->launcher && self->settings->add_direction) {
@@ -71,7 +73,7 @@ void fn_71006c7a40(UnkAcidBallMovement* self) {
 
 // CVulkranMagmaBallMovementComponent: the direction is flattened to z = 0 and capped at 600 in x and
 // y, and no settings are copied.
-void fn_71006df774(UnkAcidBallMovement* self) {
+void CVulkranMagmaBallMovementComponent_BeginPlay(UnkAcidBallMovement* self) {
     fn_7100ac3880(reinterpret_cast<UnkSelf*>(self));
     UnkAcidLauncherLink* link = LinkOf(self);
     if (link && link->launcher && self->settings->add_direction) {

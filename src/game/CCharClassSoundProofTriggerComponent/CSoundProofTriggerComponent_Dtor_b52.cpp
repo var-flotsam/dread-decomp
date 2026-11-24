@@ -24,11 +24,11 @@ static inline void SoundProofDtor_b52(UnkSoundProofTriggerComponent_b52* self) {
     fn_7100a46b64(reinterpret_cast<char*>(self));
 }
 
-void fn_7100a2fe2c(UnkSoundProofTriggerComponent_b52* self) {
+void CSoundProofTriggerComponent_Destroy(UnkSoundProofTriggerComponent_b52* self) {
     SoundProofDtor_b52(self);
 }
 
-void fn_7100a2fedc(UnkSoundProofTriggerComponent_b52* self) {
+void CSoundProofTriggerComponent_DestroyAndDelete(UnkSoundProofTriggerComponent_b52* self) {
     SoundProofDtor_b52(self);
     fn_7100083c00(self);
 }

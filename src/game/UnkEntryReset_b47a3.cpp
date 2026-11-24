@@ -33,5 +33,5 @@ void fn_7100d8bb70(UnkResetHolder_b47a3* self) {
     for (UnkResetEntry_b47a3* it = first;
          it != reinterpret_cast<UnkResetEntry_b47a3*>(reinterpret_cast<char*>(first) + self->array.count * sizeof(UnkResetEntry_b47a3));
          ++it)
-        *reinterpret_cast<u32*>(reinterpret_cast<char*>(it) + 8) = 0;
+        it->value = 0;
 }

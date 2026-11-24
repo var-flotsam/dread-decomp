@@ -13,7 +13,9 @@
 using base::global::CStrId;
 
 struct UnkRodoOwner {
-    u8 pad_0x0[0x2a0];
+    u8 pad_0x0[0x38];
+    UnkMatrix44 field_0x38;  // the transform, through its matrix
+    u8 pad_0x78[0x2a0 - 0x78];
     UnkCollisionContainer* container;  // 0x2a0
 };
 
@@ -97,7 +99,7 @@ void fn_71006690c4(UnkRodoSelf* self) {
         if (!object)
             return;
     }
-    const UnkMatrix44& m = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(reinterpret_cast<char*>(self->owner) + 0x38));
+    const UnkMatrix44& m = fn_710002614c(&self->owner->field_0x38);
     base::math::CVector2D v2;
     // the column is copied as words
     struct Words {

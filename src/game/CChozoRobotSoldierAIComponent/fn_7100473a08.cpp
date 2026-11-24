@@ -12,14 +12,14 @@ struct UnkCounted_473a08 : base::UnkRefCounted {
     void* owner;
 };
 
-struct UnkEntry {
+struct UnkEntry_7100473a08 {
     u8 field_0x0[8];
     u8 field_0x8[0x28];
     u32 state;
     u32 pad_0x34;
     base::UnkRefHandle handle;
 };
-static_assert(sizeof(UnkEntry) == 0x40, "UnkEntry layout");
+static_assert(sizeof(UnkEntry_7100473a08) == 0x40, "UnkEntry_7100473a08 layout");
 
 // The result has a constructor, so it is returned in memory.
 struct UnkValue {
@@ -31,20 +31,20 @@ struct UnkValue {
 };
 
 struct UnkTable_473a08 {
-    UnkEntry* entries;
+    UnkEntry_7100473a08* entries;
     u32 count;
     u8 pad_0xc[0x1c];
     UnkValue* values;
 };
 
-struct UnkSelf {
+struct UnkSelf_7100473a08 {
     u8 pad_0x0[0x14b28];
     UnkTable_473a08 table;
 };
 
-UnkValue fn_7100473a08(UnkSelf* self, void* owner) {
+UnkValue fn_7100473a08(UnkSelf_7100473a08* self, void* owner) {
     for (u64 i = 0; i < self->table.count; ++i) {
-        UnkEntry* entry = &self->table.entries[i];
+        UnkEntry_7100473a08* entry = &self->table.entries[i];
         if (entry->state == 1) {
             {
                 UnkRefPtr fresh = fn_710023b580(entry->field_0x8);

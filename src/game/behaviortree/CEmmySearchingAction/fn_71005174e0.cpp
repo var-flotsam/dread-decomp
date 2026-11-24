@@ -17,16 +17,16 @@ struct UnkMover_5174e0 {
     u64 field_0x19e8;
 };
 
-struct UnkOwner {
+struct UnkOwner_71005174e0 {
     u8 pad_0x0[0x1f0];
     UnkMover_5174e0* field_0x1f0;
     u8 pad_0x1f8[0xa0];
     void* field_0x298;
 };
 
-struct UnkComponent {
+struct UnkComponent_71005174e0 {
     u8 pad_0x0[0x18];
-    UnkOwner* field_0x18;
+    UnkOwner_71005174e0* field_0x18;
     u8 pad_0x20[0x10];
     u64 field_0x30;
     u64 field_0x38;
@@ -38,7 +38,7 @@ struct UnkComponent {
     u8 field_0x12af1;
 };
 
-void fn_71005174e0(UnkComponent* self, u32 arg) {
+void fn_71005174e0(UnkComponent_71005174e0* self, u32 arg) {
     self->field_0x30 = ~0ull;
     self->field_0x38 = ~0ull;
     if (UnkWeakHandle* handle = self->field_0x58) {

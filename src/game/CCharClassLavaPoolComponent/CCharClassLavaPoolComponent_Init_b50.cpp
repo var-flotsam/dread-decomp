@@ -28,7 +28,7 @@ static inline UnkLavaPoolCharClass* AsLavaPool(UnkReflObject* obj) {
 }
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
-bool fn_71008fbdcc(char* self, void* arg) {
+bool CLavaPoolComponent_InitFromCharClass(char* self, void* arg) {
     bool ok = fn_7100900610(self, arg);
     UnkLavaPoolCharClass* cls = AsLavaPool(*reinterpret_cast<UnkReflObject**>(self + 0x10));
     *reinterpret_cast<UnkLavaPoolCharClass**>(self + 0xca8) = cls;

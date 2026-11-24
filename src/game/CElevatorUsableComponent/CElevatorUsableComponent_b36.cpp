@@ -39,5 +39,5 @@ static inline UnkElevatorUsableClass* GetElevatorClass(UnkElevatorUsable* self) 
         return cls->ids[Second];                             \
     }
 
-ELEVATOR_SIDE_ID(fn_7100a81d98, 0, 1)
-ELEVATOR_SIDE_ID(fn_7100a81e08, 3, 2)
+ELEVATOR_SIDE_ID(CElevatorUsableComponent_GetUsableAction, 0, 1)
+ELEVATOR_SIDE_ID(CElevatorUsableComponent_GetUsableLevelChangeAction, 3, 2)

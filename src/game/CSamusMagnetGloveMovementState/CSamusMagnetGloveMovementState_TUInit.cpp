@@ -45,7 +45,7 @@ static inline UnkReflType* AsUnk(base::reflection::CType* t) {
     return reinterpret_cast<UnkReflType*>(t);
 }
 
-void fn_71009afa90() {
+void CSamusMagnetGloveMovementState_InitStatics() {
     UnkSamusMagnetGloveTU& tu = g_unk_717273c6b8;
     InitHeader(tu.header);
     fn_71009a4774();

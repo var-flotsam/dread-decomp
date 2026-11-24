@@ -9,7 +9,7 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
-struct UnkComponent;
+struct UnkComponent_71004076e4;
 
 struct UnkHecathonList_b55 {
     void** vtable;
@@ -56,7 +56,7 @@ struct UnkHecathonAI_b55 {
 void fn_71005abd7c(UnkHecathonAI_b55* self) {
     UnkHecathonState_b55* state =
         reinterpret_cast<UnkHecathonState_b55*>(reinterpret_cast<u8*>(self) + 0x146c8);
-    fn_710036932c(reinterpret_cast<UnkComponent*>(self));
+    fn_710036932c(reinterpret_cast<UnkComponent_71004076e4*>(self));
     self->vtable = g_unk_7101a4f7f0 + 2;
     state->scale[0] = 1.0f;
     state->scale[1] = 1.0f;

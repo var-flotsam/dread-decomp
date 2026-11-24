@@ -40,7 +40,7 @@ void fn_71005521a0(UnkEmmyAI_b57a3* self, UnkEmmyIdEvent_b57a3* event) {
     if (!fn_710054c504(self, true))
         return;
     void* target = self->owner->field_0x220;
-    u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(event->id.data) + 0x30);
+    u64 hash = event->id.data->Key();
     UnkSpitSend(target, hash, 0xf4061ff25a2163d6);
 }
 

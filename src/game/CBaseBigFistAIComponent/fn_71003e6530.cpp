@@ -7,7 +7,7 @@
 #include "game/UnkVec2.h"
 #include "types.h"
 
-struct UnkVec3 {
+struct UnkVec3_71003e6530 {
     f32 x;
     f32 y;
     f32 z;
@@ -40,7 +40,7 @@ struct UnkVec3 {
 void* fn_71003e6530(void* owner, const UnkVec2* origin, const UnkVec2* dir, void* sink, f32 radius, f32 limit) {
     f32 tail_y;
     f32 tail_sign;
-    UnkVec3 point;
+    UnkVec3_71003e6530 point;
     do {
         {
             f32 ox = origin->x;

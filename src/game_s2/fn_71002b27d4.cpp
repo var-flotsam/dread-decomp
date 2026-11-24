@@ -6,10 +6,10 @@
 #include "game/UnkTU361.h"
 #include "types.h"
 
-struct UnkNode {
+struct UnkNode_71002b27d4 {
     u32 key;
     u32 pad_0x4;
-    UnkNode* next;
+    UnkNode_71002b27d4* next;
 };
 
 struct UnkTable_2b27d4 {
@@ -18,7 +18,7 @@ struct UnkTable_2b27d4 {
     f32 field_0xc;
     f32 field_0x10;
     u8 pad_0x14[4];
-    UnkNode** buckets;
+    UnkNode_71002b27d4** buckets;
     u32 count;
     u32 modulus;
 };
@@ -29,7 +29,7 @@ f32 fn_71002b27d4(UnkTable_2b27d4* self, u32 a, u32 b, f32* value) {
     if (self->count != 0) {
         u32 index = key % self->modulus;
         if (index < self->count) {
-            for (UnkNode* node = self->buckets[index]; node; node = node->next) {
+            for (UnkNode_71002b27d4* node = self->buckets[index]; node; node = node->next) {
                 if (node->key == key) {
                     f32 factor = self->field_0xc;
                     f32 result = *value;

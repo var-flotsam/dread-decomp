@@ -81,7 +81,7 @@ static_assert(__builtin_offsetof(UnkBossAI_l3ac064, life_bar) == 0x148f0, "layou
 static_assert(__builtin_offsetof(UnkBossAI_l3ac064, field_0x14998) == 0x14998, "layout");
 
 void fn_71003ac064(UnkBossAI_l3ac064* self) {
-    fn_710036932c(reinterpret_cast<UnkComponent*>(self));
+    fn_710036932c(reinterpret_cast<UnkComponent_71004076e4*>(self));
     self->vtable = g_unk_7101a29438 + 2;
     new (&self->field_0x146c8) base::global::CRntVector<void*>(0xf);
     new (&self->landmark_id_0) CStrId(g_unk_710162e2ed, true);

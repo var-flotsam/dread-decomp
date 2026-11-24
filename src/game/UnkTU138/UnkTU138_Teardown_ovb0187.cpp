@@ -10,13 +10,13 @@ struct UnkHolder_b0187a {
     u32 magic;  // 0x4
     UnkCountedResource* resource;  // 0x8
     u8 unk_0x10[8];
-    u8 member[0x108];  // 0x18
+    char member[0x108];  // 0x18
     char* child;  // 0x120
 };
 static_assert(__builtin_offsetof(UnkHolder_b0187a, child) == 0x120, "UnkHolder_b0187a layout");
 
 void fn_7100147df4(UnkHolder_b0187a* self) {
-    char* member = reinterpret_cast<char*>(self) + 0x18;
+    char* member = self->member;
     fn_71001c3894(self->child, nullptr);
     fn_710020af6c(member);
     UnkCountedResource* resource = self->resource;

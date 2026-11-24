@@ -9,12 +9,12 @@
 #include "types.h"
 #include "game/sound/CMusicManager.h"
 
-struct UnkHandle;
+struct UnkHandle_7100fdd2b4;
 struct UnkMgr;
 
 struct UnkNode_0x68 {
     u8 pad_0x0[0x28];
-    UnkHandle* field_0x28;
+    UnkHandle_7100fdd2b4* field_0x28;
     u32 field_0x30;
     u8 pad_0x34[0x2c];
     UnkNode_0x68* next;

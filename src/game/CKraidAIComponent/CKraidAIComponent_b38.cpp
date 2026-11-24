@@ -44,6 +44,8 @@ struct UnkKraidAIComponent {
     UnkActor* owner;
     u8 pad_0x38[0x1108];
     u32 phase;  // 0x1140
+    u8 pad_0x1144[0x14ce0 - 0x1144];
+    UnkKraidArea field_0x14ce0;
 };
 
 struct UnkFlagged;
@@ -64,7 +66,7 @@ static inline void Set(UnkKraidVec3* out, UnkKraidVec2 v) {
 }
 
 void fn_7100600734(UnkKraidAIComponent* self, UnkKraidBox* box) {
-    UnkKraidArea* area = reinterpret_cast<UnkKraidArea*>(reinterpret_cast<char*>(self) + 0x14ce0);
+    UnkKraidArea* area = &self->field_0x14ce0;
     if (self->phase == 0 || area->field_0x158) {
         Set(&box->min, Add(area->corner0, 0.0f, -100.0f));
         Set(&box->max, Add(area->corner1, 400.0f, 200.0f));

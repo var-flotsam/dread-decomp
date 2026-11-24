@@ -55,7 +55,7 @@ static inline bool ReadFlag(CBlackboard* blackboard, const CStrId& section_id, c
     return false;
 }
 
-void fn_7100a8593c(UnkMapAcquisition_la8593c* self, CBlackboard* blackboard) {
+void CMapAcquisitionComponent_LoadFromBlackboard(UnkMapAcquisition_la8593c* self, CBlackboard* blackboard) {
     fn_7100a9eff4(self, blackboard);
     if (ReadFlag(blackboard, self->vf_0x2d8(), &AcquiredId().id, &self->acquired))
         return;

@@ -5,7 +5,7 @@
 #include "game/CCooldownXBossWindTunnelAttack.h"
 #include "types.h"
 
-struct UnkNode;
+struct UnkNode_71004c3590;
 
 struct UnkWindTunnelNode {
     void** vtable;
@@ -25,7 +25,7 @@ struct UnkWindTunnelNode {
 };
 
 __attribute__((always_inline)) static inline void ConstructWindTunnelNode(UnkWindTunnelNode* self) {
-    fn_71004c1894(reinterpret_cast<UnkNode*>(self));
+    fn_71004c1894(reinterpret_cast<UnkNode_71004c3590*>(self));
     self->vtable = g_unk_7101a3eae0 + 2;
     self->field_0x88 = 0;
     self->field_0x8c = 0;

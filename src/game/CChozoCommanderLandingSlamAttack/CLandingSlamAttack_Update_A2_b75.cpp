@@ -90,7 +90,7 @@ static inline f32 AsF32(u32 bits) {
     return value;
 }
 
-void fn_7100437930(UnkSlamUpdate_A2_b75* self, f32 dt) {
+void CChozoCommanderLandingSlamAttack_UpdateStage(UnkSlamUpdate_A2_b75* self, f32 dt) {
     fn_7100424b5c(reinterpret_cast<UnkChozoCommanderAttack*>(self), dt);
     u32 x = PosX(self->owner);
     u32 other = PosX(fn_7100d7c990(self->owner));
@@ -118,7 +118,7 @@ void fn_7100437930(UnkSlamUpdate_A2_b75* self, f32 dt) {
         if (!nav)
             return;
         f32 h = fn_7100977bec(static_cast<UnkFlagged*>(owner->field_0x218)) + 10.0f;
-        if (!(*reinterpret_cast<f32*>(reinterpret_cast<char*>(self->owner) + 0x54) <=
+        if (!(self->owner->field_0x54 <=
               h + *reinterpret_cast<f32*>(reinterpret_cast<char*>(commander) + 0x15d20)))
             return;
         // Declared past a goto (no lifetime markers), so each keeps its own slot.

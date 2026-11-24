@@ -88,8 +88,8 @@ struct UnkBigkranXPattern_ovb0125 {
 };
 
 struct UnkPicker;
-struct UnkObject;
-void* fn_71003f62a8(UnkPicker* self, UnkObject* object);
+struct UnkObject_71003f62a8;
+void* fn_71003f62a8(UnkPicker* self, UnkObject_71003f62a8* object);
 
 struct UnkBigkranXAI_ovb0125 {
     u8 pad_0x0[0x30];
@@ -108,7 +108,7 @@ struct UnkBigkranXAI_ovb0125 {
 };
 static_assert(__builtin_offsetof(UnkBigkranXAI_ovb0125, mirrored) == 0x14ba0, "layout");
 
-bool fn_71003f4f3c(UnkBigkranXAI_ovb0125* self, u32* index, f32* out_b, f32* out_angle, f32* out_c) {
+bool CBigkranXAIComponent_GetNextPatternEntry(UnkBigkranXAI_ovb0125* self, u32* index, f32* out_b, f32* out_angle, f32* out_c) {
     const UnkMatrix44& m = fn_710002614c(&self->owner->transform);
     f32 x = m.m[1];
     f32 y = m.m[5];
@@ -152,7 +152,7 @@ static inline void Advance(UnkBigkranXAI_ovb0125* self, f32 dt) {
             f32 c = -1.0f;
             f32 angle = -1.0f;
             f32 timer;
-            if (fn_71003f4f3c(self, &self->next, &b, &angle, &c)) {
+            if (CBigkranXAIComponent_GetNextPatternEntry(self, &self->next, &b, &angle, &c)) {
                 u64 out = 0;
                 if (fn_71003f50d0(self, &out, b, angle, c)) {
                     if (self->active) {
@@ -174,7 +174,7 @@ static inline void Advance(UnkBigkranXAI_ovb0125* self, f32 dt) {
 void fn_71003f49a8(UnkBigkranXAI_ovb0125* self, f32 dt) {
     if (self->picker) {
         UnkBigkranXPattern_ovb0125* pattern =
-            static_cast<UnkBigkranXPattern_ovb0125*>(fn_71003f62a8(self->picker, reinterpret_cast<UnkObject*>(self)));
+            static_cast<UnkBigkranXPattern_ovb0125*>(fn_71003f62a8(self->picker, reinterpret_cast<UnkObject_71003f62a8*>(self)));
         self->pattern = *pattern;
         self->active = true;
         self->mirrored = self->owner->xform.GetAngle().y < 0.0f;

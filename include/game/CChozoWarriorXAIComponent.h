@@ -5,6 +5,6 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
-struct UnkAIComponent;
-void fn_710048fc80(UnkAIComponent* component);
+struct UnkAIComponent_7100489ea0;
+void fn_710048fc80(UnkAIComponent_7100489ea0* component);
 extern char g_unk_71726cfa68[] __attribute__((visibility("hidden")));

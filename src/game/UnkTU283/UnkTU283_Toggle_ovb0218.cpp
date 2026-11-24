@@ -18,6 +18,6 @@ void fn_7100206ecc(UnkPart132* part, bool on) {
         }
         *reinterpret_cast<u32*>(reinterpret_cast<u8*>(self) + 0x124) = 0;
         if (!on)
-            fn_710016ae30(reinterpret_cast<u8*>(self->src_0x108) + 0x80);
+            fn_710016ae30(self->src_0x108->field_0x80);
     }
 }

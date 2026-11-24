@@ -34,7 +34,7 @@ struct UnkOwner {
     UnkAttack* field_0x220;
 };
 
-struct UnkSelf {
+struct UnkSelf_710048a194 {
     u8 pad_0x0[0x133];
     u8 field_0x133;
     u8 pad_0x134[4];
@@ -42,14 +42,14 @@ struct UnkSelf {
     f32 field_0x13c;
 };
 
-struct UnkVec {
+struct UnkVec_710048a194 {
     u64 xy;
     u32 z;
 };
 
 extern const u64 g_unk_7101649988 __attribute__((visibility("hidden")));
 
-void fn_710048a304(UnkSelf* self, f32 delta) {
+void fn_710048a304(UnkSelf_710048a194* self, f32 delta) {
     self->field_0x138 = self->field_0x138 + delta;
     if (!self->field_0x133) {
         if (!fn_710117b348(fn_7100defcd4(g_unk_7101d47310)->field_0x220, fn_7100d19258()))
@@ -69,7 +69,7 @@ void fn_710048a304(UnkSelf* self, f32 delta) {
                     void* effects = g_unk_7101d47310->field_0x1040;
                     if (!fn_7101053a7c(effects) && !fn_7101053a0c(effects)) {
                         self->field_0x13c = 0.33f;
-                        UnkVec position;
+                        UnkVec_710048a194 position;
                         position.xy = 0;
                         position.z = 0;
                         fn_7101053850(effects, &position, 1, 0.33f, 1.0f);

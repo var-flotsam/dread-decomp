@@ -139,7 +139,7 @@ static inline void* IdText(const CStrId& id) {
     __builtin_memcpy(&uses, data + 0x44, sizeof(uses));
     ++uses;
     __builtin_memcpy(data + 0x44, &uses, sizeof(uses));
-    return *reinterpret_cast<void**>(reinterpret_cast<u8*>(id.data) + 0x10);
+    return const_cast<char*>(id.data->text);
 }
 
 struct UnkSonarEffect_ovb0085 {
@@ -313,7 +313,7 @@ bool fn_710033652c(UnkSonarData_ovb0085* self, UnkSonarSource_ovb0085* source) {
     UnkRenderManager* render = g_unk_7101d47300;
     pulse = nullptr;
     fn_7100339d48(render->field_0x218, &path, &pulse, &base::global::CStrId::Empty());
-    fn_7100219ae0(render, pulse ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<u8*>(pulse) + 8) : nullptr, 0);
+    fn_7100219ae0(render, pulse ? &pulse->field_0x8 : nullptr, 0);
     UnkSwitchObject* created = pulse;
     if (created) {
         reinterpret_cast<UnkSonarSwitch_ovb0085*>(created)->field_0x15a = false;

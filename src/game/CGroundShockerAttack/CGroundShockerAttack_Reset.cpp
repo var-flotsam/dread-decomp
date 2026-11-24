@@ -32,7 +32,7 @@ struct UnkGroundShockerActor {
 
 void fn_71005a50ec(UnkReflObject* ai);
 
-void fn_71005a0bc0(UnkGroundShockerAttack* self) {
+void CGroundShockerAttack_Reset(UnkGroundShockerAttack* self) {
     fn_71003609b8(self);
     self->field_0x30 = 0;
     if (UnkWeakHandle* owner = self->listener.owner) {

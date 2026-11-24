@@ -8,7 +8,7 @@ using base::UnkStrIdMember;
 
 void fn_7100a4386c(char* member, base::UnkStrIdMember* id);
 
-void fn_7100a437d8(char* self) {
+void CTunnelTrapMorphballComponent_BuildPropertyMap(char* self) {
     char* m = self + 0x70;
     base::global::UnkStringData* d =
         *reinterpret_cast<base::global::UnkStringData* const*>(*reinterpret_cast<char**>(self + 0x18) + 0x30);

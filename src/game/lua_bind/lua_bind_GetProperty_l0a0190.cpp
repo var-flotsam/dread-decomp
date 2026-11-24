@@ -15,9 +15,9 @@
 
 using base::global::CStrId;
 
-// The blackboard at +0xeb8 of the game manager (include/game/UnkGameManager.h does not name it yet).
+// The blackboard at +0xeb8 of the game manager.
 static inline CBlackboard* Blackboard_l0a0190(UnkGameManager* manager) {
-    return reinterpret_cast<CBlackboard*>(reinterpret_cast<u8*>(manager) + 0xeb8);
+    return &manager->field_0xeb8;
 }
 
 int fn_71010a0190(lua_State* L) {

@@ -141,8 +141,8 @@ bool fn_71000898c8(UnkFileDevice* self) {
 }
 
 // A list of path ids (as src/base/file/CPackManagerDevice.cpp has it).
-struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
-    UnkFilePathList() {
+struct UnkFilePathList_71000839a0 : base::UnkVtableList<UnkListedPath> {
+    UnkFilePathList_71000839a0() {
         vtable = &g_unk_7101a1b030[2];
         count = 0;
         head = nullptr;
@@ -150,7 +150,7 @@ struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
         allocator = GetDefaultAllocator();
         flags = 0x13;
     }
-    ~UnkFilePathList() {
+    ~UnkFilePathList_71000839a0() {
         vtable = &g_unk_7101a1b030[2];
         for (UnkListedPath* n = head; n;) {
             UnkListedPath* next = n->next;
@@ -163,7 +163,7 @@ struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
 
 // Unmounts every pack of the pack set `path` (without forcing). False when the set can't be listed.
 bool fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path) {
-    UnkFilePathList list;
+    UnkFilePathList_71000839a0 list;
     bool ok = fn_710008c3bc(self->base_0x8, *static_cast<const CFilePathStrId*>(path), &list);
     if (ok) {
         for (UnkListedPath* n = list.head; n; n = n->next)

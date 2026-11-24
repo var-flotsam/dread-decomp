@@ -22,11 +22,11 @@ __attribute__((always_inline)) static inline void Destroy_b52(UnkCShotComponent_
     fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(self));
 }
 
-void fn_71009f8bcc(UnkCShotComponent_b52* self) {
+void CCharClassShotComponent_Destroy(UnkCShotComponent_b52* self) {
     Destroy_b52(self);
 }
 
-void fn_71009f8c70(UnkCShotComponent_b52* self) {
+void CCharClassShotComponent_DestroyAndDelete(UnkCShotComponent_b52* self) {
     Destroy_b52(self);
     operator delete(self);
 }

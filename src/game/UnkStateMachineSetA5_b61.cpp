@@ -137,7 +137,7 @@ void fn_71007fa610(UnkSmOwnerA5_b61<0x228>* self, f32 dt) {
 }
 
 static inline u32 StateIdA5_b61(UnkSmStateA5_b61* state) {
-    return *reinterpret_cast<u32*>(reinterpret_cast<char*>(state) + 0x10);
+    return state->id;
 }
 
 struct UnkFrozenSmA5_b61 {

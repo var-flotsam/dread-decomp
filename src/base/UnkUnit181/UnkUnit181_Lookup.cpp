@@ -1,13 +1,11 @@
 // From unit 181 of tools/tu_map.py (0x710015e4b0-0x710015f0f8, no reflected class): a lookup through
 // the table at +0 (fn_710015e600) whose result index is cached per slot in the word array at
 // +0x110 (-1 when not found) and written to `out` on success. Names are placeholders.
+#include "game/UnkTU180.h"
 #include "types.h"
 
-struct UnkUnit181Table;
-bool fn_710015e600(UnkUnit181Table* table, const void* key, u32* outIndex);
-
 struct UnkUnit181Cache {
-    UnkUnit181Table* table;
+    UnkNamedValueTable* table;
     u8 pad_0x8[0x108];
     u32 indices[1];
 };

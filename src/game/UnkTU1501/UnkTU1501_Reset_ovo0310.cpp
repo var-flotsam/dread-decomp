@@ -24,6 +24,7 @@
 #include "game/UnkTrackRec_b152.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
+#include "game/UnkAimTunable.h"
 
 struct UnkMode_b152;
 struct UnkRunInfo_b152;
@@ -129,7 +130,7 @@ void fn_71009e9268(UnkMove_b152* self, bool flag) {
     block->field_0x34 = 0;
     small->field_0x6 = 0;
     block->field_0x88 = 0;
-    if (void* gui = *reinterpret_cast<void**>(reinterpret_cast<u8*>(self->actor) + 0x1d8)) {
+    if (void* gui = self->actor->field_0x1d8) {
         fn_710002ffb4(reinterpret_cast<UnkGuiKeyList*>(reinterpret_cast<u8*>(gui) + 0xb10),
                       reinterpret_cast<base::global::CStrId*>(&g_unk_7172740ff0));
         fn_710002ffb4(reinterpret_cast<UnkGuiKeyList*>(reinterpret_cast<u8*>(gui) + 0xbc0),
@@ -146,12 +147,6 @@ struct UnkAimComponent_34f8dc;
 struct UnkPlayer;
 
 // The aim tunables block: the slide angle range.
-struct UnkAimTunable {
-    u8 pad_0x0[0xa8];
-    f32 field_0xa8;
-    u8 pad_0xac[0xc];
-    f32 field_0xb8;
-};
 
 struct UnkAimState_b0153 {
     u8 pad_0x0[0x10];

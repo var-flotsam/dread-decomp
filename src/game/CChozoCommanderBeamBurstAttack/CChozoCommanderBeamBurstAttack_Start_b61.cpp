@@ -44,7 +44,7 @@ static inline UnkComponent_b61* Find_b61a2(UnkBeamBurstAttack_b61a2* self, UnkOb
     return self->field_0x60;
 }
 
-void fn_7100429384(UnkBeamBurstAttack_b61a2* self) {
+void CChozoCommanderBeamBurstAttack_SignalBeamBurstStart(UnkBeamBurstAttack_b61a2* self) {
     auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8);
     if (timeline) {
         base::reflection::UnkReflTypeIdArg mask;

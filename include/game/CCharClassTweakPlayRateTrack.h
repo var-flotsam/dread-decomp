@@ -5,5 +5,11 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
-struct UnkGlobal2;
+// The tunable g_unk_7172790a08, as far as its readers and writers go.
+struct UnkGlobal2 {
+    u8 pad_0x0[0x40];
+    u32 field_0x40;
+    u8 pad_0x44[0x38];
+    f32 field_0x7c;
+};
 extern UnkGlobal2 g_unk_7172790a08;

@@ -20,6 +20,6 @@ static inline __attribute__((always_inline)) void* PickRandom(const CPolypFallPa
     return list.data[index];
 }
 
-void* fn_71005af994(CPolypFallPatternLists* self) { return PickRandom(self->list_0x100); }
-void* fn_71005af9d8(CPolypFallPatternLists* self) { return PickRandom(self->list_0x128); }
-void* fn_71005afa1c(CPolypFallPatternLists* self) { return PickRandom(self->list_0x150); }
+void* CCharClassHydrogigaPolypsAttack_PickUnbreakableFarPattern(CPolypFallPatternLists* self) { return PickRandom(self->list_0x100); }
+void* CCharClassHydrogigaPolypsAttack_PickUnbreakableMiddlePattern(CPolypFallPatternLists* self) { return PickRandom(self->list_0x128); }
+void* CCharClassHydrogigaPolypsAttack_PickUnbreakableClosePattern(CPolypFallPatternLists* self) { return PickRandom(self->list_0x150); }

@@ -13,15 +13,15 @@ struct UnkRefCounted_2f7324 {
     s32 field_0x54;
 };
 
-struct UnkRef {
+struct UnkRef_7100020790 {
     UnkRefCounted_2f7324* field_0x0;
-    ~UnkRef() {}
+    ~UnkRef_7100020790() {}
 };
 
-struct UnkNode {
+struct UnkNode_7100020790 {
     UnkKeyBody* field_0x0;
     UnkRefCounted_2f7324* field_0x8;
-    UnkNode* field_0x10;
+    UnkNode_7100020790* field_0x10;
 };
 
 struct UnkTable {
@@ -42,17 +42,17 @@ struct UnkTable {
 
 void fn_7100017390(UnkRefCounted_2f7324* object, base::UnkLoadRequest* visitor);
 
-UnkNode** fn_7100020cd0(void* buckets, u32 index);
-UnkNode** fn_7100021a28(void* buckets, u32 index);
-UnkNode** fn_710002277c(void* buckets, u32 index);
-UnkNode** fn_710102bf0c(void* buckets, u32 index);
-UnkRef fn_7100020790(UnkTable* self, UnkKey* key, u32 a, void* b) {
+UnkNode_7100020790** fn_7100020cd0(void* buckets, u32 index);
+UnkNode_7100020790** fn_7100021a28(void* buckets, u32 index);
+UnkNode_7100020790** fn_710002277c(void* buckets, u32 index);
+UnkNode_7100020790** fn_710102bf0c(void* buckets, u32 index);
+UnkRef_7100020790 fn_7100020790(UnkTable* self, UnkKey* key, u32 a, void* b) {
     UnkRefCounted_2f7324* found;
     if (self->field_0x10) {
         u32 h = key->field_0x8->field_0x30 ^ key->field_0x8->field_0x34;
         u32 index = h % self->field_0x14;
         if (index < self->field_0x10) {
-            UnkNode* node = *fn_7100020cd0(self->field_0x8, index);
+            UnkNode_7100020790* node = *fn_7100020cd0(self->field_0x8, index);
             while (node) {
                 if (node->field_0x0 == key->field_0x8) {
                     found = node->field_0x8;
@@ -66,7 +66,7 @@ UnkRef fn_7100020790(UnkTable* self, UnkKey* key, u32 a, void* b) {
     }
     found = self->vf_0x48(key, a, b);
 have:
-    UnkRef result = {nullptr};
+    UnkRef_7100020790 result = {nullptr};
     if (found) {
         ++found->field_0x54;
         result.field_0x0 = found;
@@ -74,13 +74,13 @@ have:
     return result;
 }
 
-UnkRef fn_71000214ec(UnkTable* self, UnkKey* key, u32 a, void* b) {
+UnkRef_7100020790 fn_71000214ec(UnkTable* self, UnkKey* key, u32 a, void* b) {
     UnkRefCounted_2f7324* found;
     if (self->field_0x10) {
         u32 h = key->field_0x8->field_0x30 ^ key->field_0x8->field_0x34;
         u32 index = h % self->field_0x14;
         if (index < self->field_0x10) {
-            UnkNode* node = *fn_7100021a28(self->field_0x8, index);
+            UnkNode_7100020790* node = *fn_7100021a28(self->field_0x8, index);
             while (node) {
                 if (node->field_0x0 == key->field_0x8) {
                     found = node->field_0x8;
@@ -94,7 +94,7 @@ UnkRef fn_71000214ec(UnkTable* self, UnkKey* key, u32 a, void* b) {
     }
     found = self->vf_0x48(key, a, b);
 have:
-    UnkRef result = {nullptr};
+    UnkRef_7100020790 result = {nullptr};
     if (found) {
         ++found->field_0x54;
         result.field_0x0 = found;
@@ -102,13 +102,13 @@ have:
     return result;
 }
 
-UnkRef fn_7100022240(UnkTable* self, UnkKey* key, u32 a, void* b) {
+UnkRef_7100020790 fn_7100022240(UnkTable* self, UnkKey* key, u32 a, void* b) {
     UnkRefCounted_2f7324* found;
     if (self->field_0x10) {
         u32 h = key->field_0x8->field_0x30 ^ key->field_0x8->field_0x34;
         u32 index = h % self->field_0x14;
         if (index < self->field_0x10) {
-            UnkNode* node = *fn_710002277c(self->field_0x8, index);
+            UnkNode_7100020790* node = *fn_710002277c(self->field_0x8, index);
             while (node) {
                 if (node->field_0x0 == key->field_0x8) {
                     found = node->field_0x8;
@@ -122,7 +122,7 @@ UnkRef fn_7100022240(UnkTable* self, UnkKey* key, u32 a, void* b) {
     }
     found = self->vf_0x48(key, a, b);
 have:
-    UnkRef result = {nullptr};
+    UnkRef_7100020790 result = {nullptr};
     if (found) {
         ++found->field_0x54;
         result.field_0x0 = found;
@@ -130,13 +130,13 @@ have:
     return result;
 }
 
-UnkRef fn_7101025ccc(UnkTable* self, UnkKey* key, u32 a, void* b) {
+UnkRef_7100020790 fn_7101025ccc(UnkTable* self, UnkKey* key, u32 a, void* b) {
     UnkRefCounted_2f7324* found;
     if (self->field_0x10) {
         u32 h = key->field_0x8->field_0x30 ^ key->field_0x8->field_0x34;
         u32 index = h % self->field_0x14;
         if (index < self->field_0x10) {
-            UnkNode* node = *fn_710102bf0c(self->field_0x8, index);
+            UnkNode_7100020790* node = *fn_710102bf0c(self->field_0x8, index);
             while (node) {
                 if (node->field_0x0 == key->field_0x8) {
                     found = node->field_0x8;
@@ -150,7 +150,7 @@ UnkRef fn_7101025ccc(UnkTable* self, UnkKey* key, u32 a, void* b) {
     }
     found = self->vf_0x48(key, a, b);
 have:
-    UnkRef result = {nullptr};
+    UnkRef_7100020790 result = {nullptr};
     if (found) {
         ++found->field_0x54;
         result.field_0x0 = found;

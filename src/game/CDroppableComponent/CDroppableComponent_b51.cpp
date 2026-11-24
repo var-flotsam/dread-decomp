@@ -10,8 +10,8 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkHolder;
-void fn_71007ba354(void* unused, UnkHolder* holder);
+struct UnkHolder_71008397f4;
+void fn_71007ba354(void* unused, UnkHolder_71008397f4* holder);
 
 void fn_71007bb430();
 void fn_71007bb43c();
@@ -32,7 +32,7 @@ struct UnkDroppable_b51 {
 };
 
 bool fn_71007ba2d4(UnkDroppable_b51* self) {
-    fn_71007ba354(self->field_0x30, reinterpret_cast<UnkHolder*>(&self->field_0xa0));
+    fn_71007ba354(self->field_0x30, reinterpret_cast<UnkHolder_71008397f4*>(&self->field_0xa0));
     if (self->field_0xa0 && self->field_0xa0->target) {
         UnkDroppableDelegate_b51 first = {self, fn_71007bb430};
         fn_71009cdc3c(self->field_0xa0->target, &first);

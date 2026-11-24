@@ -11,25 +11,25 @@
 
 using base::reflection::CClass;
 
-struct UnkComponent {
+struct UnkComponent_7100428010 {
     void** vtable;
-    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkComponent*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkComponent_7100428010*)>(vtable[0])(this); }
 };
 
-struct UnkSelf {
+struct UnkSelf_7100428010 {
     u8 pad_0x0[8];
     UnkActor* field_0x8;
 };
 
 static inline f32 Sign(f32 v) { return (f32)((v > 0.0f) - (v < 0.0f)); }
 
-void fn_7100428010(UnkSelf* self) {
+void fn_7100428010(UnkSelf_7100428010* self) {
     UnkActor* target = fn_7100d7c990(self->field_0x8);
     if (target) {
         f32 facing = Sign(fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->field_0x8->field_0x38)).m[2]);
         f32 side = Sign(target->field_0x44 - self->field_0x8->field_0x44);
         if (facing == side && target->field_0x1b8 && !fn_7101161088(target->field_0x1b8)) {
-            UnkComponent* component = static_cast<UnkComponent*>(self->field_0x8->field_0x240);
+            UnkComponent_7100428010* component = static_cast<UnkComponent_7100428010*>(self->field_0x8->field_0x240);
             if (component && fn_710009d50c(component->vf_0x0(), fn_710044e708()))
                 fn_71004554d8(component);
         }

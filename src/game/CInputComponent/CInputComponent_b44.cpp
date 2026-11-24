@@ -9,7 +9,7 @@
 #include "game/UnkTU2732.h"
 #include "types.h"
 
-struct UnkListedItem;
+struct UnkListedItem_710119ba7c;
 struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
 
@@ -52,5 +52,5 @@ void fn_71008720b4(UnkInputComponent_b44a2* self) {
         fn_710119aee8(p);
         g_unk_7172729910 = p;
     }
-    fn_710119ba7c(static_cast<UnkItemList*>(g_unk_7172729910), reinterpret_cast<UnkListedItem*>(self->field_0x40));
+    fn_710119ba7c(static_cast<UnkItemList*>(g_unk_7172729910), reinterpret_cast<UnkListedItem_710119ba7c*>(self->field_0x40));
 }

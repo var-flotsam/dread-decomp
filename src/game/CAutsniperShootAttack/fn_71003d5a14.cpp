@@ -5,26 +5,26 @@
 #include "game/CAutsniperShootAttack.h"
 #include "types.h"
 
-struct UnkVec3 {
+struct UnkVec3_71003d5a14 {
     u32 x, y, z;
 };
-struct UnkOwner {
+struct UnkOwner_71003d5a14 {
     u8 unk_0x0[0x220];
     void* field_0x220;
 };
-struct UnkSelf {
+struct UnkSelf_71003d5a14 {
     u8 unk_0x0[8];
-    UnkOwner* owner;
+    UnkOwner_71003d5a14* owner;
     u8 unk_0x10[0x40];
     u32 state;
     u32 mode;
     u8 unk_0x58[0x24];
-    UnkVec3 field_0x7c;
+    UnkVec3_71003d5a14 field_0x7c;
 };
 
 // NON_MATCHING(minor): the state range test is `cmp #3; b.hs` in the original, `cmp #2; b.hi` here.
-void fn_71003d5a14(UnkSelf* self, bool force) {
-    UnkVec3 v;
+void fn_71003d5a14(UnkSelf_71003d5a14* self, bool force) {
+    UnkVec3_71003d5a14 v;
     switch (self->state) {
     case 4:
     case 5:

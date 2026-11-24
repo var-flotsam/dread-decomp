@@ -83,7 +83,7 @@ struct UnkFieldId_la6081c : UnkStrIdBase {
 
 struct UnkColliderTrigger_b0058;
 
-void fn_7100a6081c(UnkColliderTrigger_b0058* component, CRntFile* file) {
+void CTriggerComponent_LoadFromFile(UnkColliderTrigger_b0058* component, CRntFile* file) {
     UnkTriggerObject_la6081c* self = reinterpret_cast<UnkTriggerObject_la6081c*>(component);
     fn_710024fc0c(reinterpret_cast<UnkPickableItem_A4_b76*>(self), file);
     bool startEnabled;

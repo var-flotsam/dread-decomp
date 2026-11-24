@@ -5,7 +5,7 @@
 
 struct UnkEnergyWaveAttack;
 
-void fn_7100645568(UnkEnergyWaveAttack* self, UnkVec3* pos, const f32* facing) {
+void CQuetzoaEnergyWaveAttack_OffsetByFacing(UnkEnergyWaveAttack* self, UnkVec3* pos, const f32* facing) {
     f32 f = *facing;
     f32 sign = (f32)((s32)(f > 0.0f) - (s32)(f < 0.0f));
     UnkVec3 offset = {sign * -211.0f, 78.0f, 0.0f};

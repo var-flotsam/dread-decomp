@@ -51,7 +51,7 @@ struct UnkChargeAttack_ovb0113 {
     UnkChargeActor_ovb0113* actor;
 };
 
-bool fn_710042510c(UnkChargeAttack_ovb0113* self, void* request, u32 flag) {
+bool CChozoCommanderAirChargeAttack_CanStart(UnkChargeAttack_ovb0113* self, void* request, u32 flag) {
     if (!fn_7100424b50(reinterpret_cast<UnkRequester*>(self), request, flag))
         return false;
     auto* target = reinterpret_cast<UnkChargeTarget_ovb0113*>(

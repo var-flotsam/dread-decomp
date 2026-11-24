@@ -20,11 +20,11 @@ __attribute__((always_inline)) static inline void Destroy_b49a3(UnkBossCameraCtr
     fn_7100763f74(self);
 }
 
-void fn_710074efb4(UnkBossCameraCtrl_b49a3* self) {
+void CBossCameraCtrl_Destroy(UnkBossCameraCtrl_b49a3* self) {
     Destroy_b49a3(self);
 }
 
-void fn_710074f058(UnkBossCameraCtrl_b49a3* self) {
+void CBossCameraCtrl_DeletingDestroy(UnkBossCameraCtrl_b49a3* self) {
     Destroy_b49a3(self);
     operator delete(self);
 }

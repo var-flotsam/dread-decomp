@@ -13,14 +13,11 @@
 #include "game/UnkBeamVec_ovb0138.h"
 #include "game/UnkTU437.h"
 #include "types.h"
+#include "game/UnkHyperBeamSoundHandle.h"
 
 using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
-struct UnkHyperBeamSoundHandle {
-    void* ref;
-    s64 serial;
-};
 
 struct UnkGrappleAnswer_b50;
 
@@ -71,7 +68,7 @@ struct UnkPowerBeamGun_ovb0138 {
 void fn_71008538e8(UnkPowerBeamGun_ovb0138* self, UnkBeamShot_ovb0138* shot, const UnkBeamVec_ovb0138* pos,
                    const UnkBeamVec_ovb0138* dir, const UnkBeamVec_ovb0138* side, u32 id, bool flag);
 
-bool fn_7100853720(UnkPowerBeamGun_ovb0138* self, UnkBeamShot_ovb0138* shot) {
+bool CPowerBeamGun_FireShot(UnkPowerBeamGun_ovb0138* self, UnkBeamShot_ovb0138* shot) {
     if (!self->owner || !self->vf_0x48())
         return false;
     self->field_0x1880 = false;

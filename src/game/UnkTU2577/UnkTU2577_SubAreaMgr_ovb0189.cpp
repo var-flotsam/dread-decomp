@@ -16,6 +16,7 @@
 #include "game/CChangeStageNavMeshItemComponent.h"
 #include "game/UnkCameraEvent_b0058.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSubArea.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2611.h"
@@ -635,7 +636,7 @@ void fn_7100ee4550(CSubAreaManager* manager, const UnkPoppedRequest* request, bo
         UnkSubArea* found = reinterpret_cast<UnkSubArea*>(
             fn_7100fab838(reinterpret_cast<UnkSubareaNamedList*>(self->field_0x3f0), reinterpret_cast<const CStrId*>(request)));
         if (found && self->field_0x110 == 0) {
-            fn_7100ee8044(manager, reinterpret_cast<char*>(self->field_0x3f0) + 0x38, found,
+            fn_7100ee8044(manager, self->field_0x3f0->field_0x38, found,
                           reinterpret_cast<UnkIdSet*>(reinterpret_cast<char*>(self) + 0x158));
             if (CountAt(self, 0x188) != 0 || CountAt(self, 0x160) != 0 || CountAt(self, 0x1b0) != 0 ||
                 CountAt(self, 0x1d8) != 0 || CountAt(self, 0x228) != 0 || CountAt(self, 0x200) != 0) {

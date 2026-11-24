@@ -17,7 +17,7 @@ struct UnkIdRecord28;
 template <class Record>
 struct UnkRecordIdArray;
 struct UnkRecordA8_e4ed10;
-struct UnkRecord80;
+struct UnkRecord80_7100e4ed10;
 template <base::global::UnkStringPool** Pool, bool Reread>
 struct UnkReleasedStrIdT;
 template <class Value>
@@ -109,5 +109,5 @@ void fn_7100e3e7b8(UnkMinimapTables_le3e7b8* self) {
     ClearRec60Table_le3e7b8(&self->field_0x6118);
     fn_7100e4ed10(reinterpret_cast<UnkRecordIdArray<UnkRecordA8_e4ed10>*>(&self->field_0x6258));
     self->aMovingMagnetSurfaces.Clear();
-    fn_7100e4eb8c(reinterpret_cast<UnkRecordIdArray<UnkRecord80>*>(&self->field_0x62a8));
+    fn_7100e4eb8c(reinterpret_cast<UnkRecordIdArray<UnkRecord80_7100e4ed10>*>(&self->field_0x62a8));
 }

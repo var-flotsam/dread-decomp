@@ -334,7 +334,7 @@ s32 SetStat(lua_State* L) {
 
 struct UnkSoundMgr;
 struct UnkMgr;
-struct UnkHandle;
+struct UnkHandle_7100fdd2b4;
 
 namespace lua_bind {
 s32 StopStream(lua_State* L) {
@@ -344,7 +344,7 @@ s32 StopStream(lua_State* L) {
         UnkSoundMgr* sound = g_unk_7101d4d820;
         if (text) {
             CFilePathStrId id(text, true);
-            fn_7100108a84(reinterpret_cast<UnkMgr*>(sound), reinterpret_cast<UnkHandle*>(&id), 0.2f);
+            fn_7100108a84(reinterpret_cast<UnkMgr*>(sound), reinterpret_cast<UnkHandle_7100fdd2b4*>(&id), 0.2f);
         } else {
             fn_7100108b0c(sound, 1, 0.2f);
         }
@@ -516,7 +516,7 @@ struct UnkLuaOwner_b0160 {
 };
 
 static inline UnkLuaOwner_b0160* FindById(UnkGameManager* manager, const CStrId& id, u32 kind) {
-    u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(id.data) + 0x30);
+    u64 key = id.data->Key();
     alignas(8) u32 flags = kind;
     return reinterpret_cast<UnkLuaOwner_b0160*>(fn_7100debbc8(manager, &key, &flags));
 }
@@ -710,7 +710,7 @@ UnkReflValue fn_7100fbdfd0(lua_State* L, s32 index);
 
 // The value's storage: through field_0x0 when flagged or when it doesn't fit in 8 bytes, else inline.
 static inline u64 TypeSize(const CType* type) {
-    return *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(type) + 0x18);
+    return type->m_size;
 }
 static inline void* ValuePtr(UnkReflValue& v) {
     const CType* type = reinterpret_cast<const CType*>(v.type);

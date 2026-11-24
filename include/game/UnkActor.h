@@ -8,11 +8,14 @@
 
 #include "types.h"
 
+struct UnkCollisionContainer;
+struct UnkInventory;
 struct UnkVec3f;
 
 struct UnkActor {
     void** vtable;
-    u8 pad_0x8[0x30];
+    u8 pad_0x8[0x28];
+    u8 field_0x30[0x8];
     u8 field_0x38[0xc];  // the transform; fn_710002614c returns its matrix
     f32 field_0x44;      // translation x
     u8 pad_0x48[0xc];
@@ -33,16 +36,26 @@ struct UnkActor {
     void* field_0x228;   // what shape queries run against (fn_71011735e8)
     u8 pad_0x230[0x10];
     void* field_0x240;   // the AI component (its class is tested against the *AIComponent getters)
-    u8 pad_0x248[0x38];
+    u8 pad_0x248[0x18];
+    void* field_0x260;
+    u8 pad_0x268[0x8];
+    UnkInventory* field_0x270;
+    u8 pad_0x278[0x8];
     void* field_0x280;   // the effects and parts the actor shows (fn_7101152988, fn_7101152b90)
     u8 pad_0x288[0x8];
     void* field_0x290;   // the target slot: its +0x40 is the UnkWeakHandle (game_s2/UnkWeakHandle.h) of the target
     void* field_0x298;
-    u8 pad_0x2a0[0x10];
+    UnkCollisionContainer* field_0x2a0;  // the collision container (game/UnkCollisionRecord.h)
+    void* field_0x2a8;
     void* field_0x2b0;
-    u8 pad_0x2b8[0x30];
+    u8 pad_0x2b8[0x10];
+    void* field_0x2c8;
+    u8 pad_0x2d0[0x10];
+    void* field_0x2e0;
     void* field_0x2e8;
-    u8 pad_0x2f0[0x8c];
+    u8 pad_0x2f0[0x8];
+    void* field_0x2f8;
+    u8 pad_0x300[0x7c];
     f32 field_0x37c;     // a radius (fn_710049eb04 adds the two actors')
 
     // vtable slot 0xd0: places the actor at `pos` (the callers pass true).

@@ -33,7 +33,7 @@ struct UnkSelf_3f8210 {
 };
 
 void fn_71003f9388(void* registry, void* id, u32 flag);
-void fn_7100a1782c(UnkTarget_3f8210* target, u32 flag);
+void CCaterzillaSpawnPointComponent_ResetLinkedSpawnCounts(UnkTarget_3f8210* target, u32 flag);
 
 void fn_71003f8210(UnkSelf_3f8210* self) {
     UnkState_3f8210* state = &self->state;
@@ -47,7 +47,7 @@ void fn_71003f8210(UnkSelf_3f8210* self) {
         }
         fn_71003fa71c(manager->field_0x330, self->field_0x30);
         if (state->field_0x20)
-            fn_7100a1782c(state->field_0x20, 2);
+            CCaterzillaSpawnPointComponent_ResetLinkedSpawnCounts(state->field_0x20, 2);
     }
     if (!state->field_0x5c && state->field_0x20)
         state->field_0x20->vf_0x178(self->field_0x30);

@@ -80,7 +80,7 @@ bool fn_7100830d38(UnkBombGun_b0266* self) {
     UnkSubAreaGuiCache* cache = GuiCache_ovb0266();
     s32 count;
     if (!no_track)
-        count = fn_710119db04(cache, reinterpret_cast<const CStrId*>(reinterpret_cast<char*>(query.result) + 0x18));
+        count = fn_710119db04(cache, &query.result->sources);
     else
         count = fn_710119db04(cache, &GameManagerIdTable().field_0x980);
     if (!base_ok)

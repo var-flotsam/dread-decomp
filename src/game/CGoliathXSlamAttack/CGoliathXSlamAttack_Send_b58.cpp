@@ -40,10 +40,10 @@ struct UnkGoliathXSlamAttack_b58a3 {
 };
 
 void fn_710058e67c(UnkGoliathXSlamAttack_b58a3* self);
-CStrId fn_71003627f8(UnkGoliathXSlamAttack_b58a3* self, UnkActor* owner);
+CStrId CAttack_MakeIdWithAnimState(UnkGoliathXSlamAttack_b58a3* self, UnkActor* owner);
 
 static inline u64 Hash_b58a3(const CStrId& id) {
-    return *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(id.data) + 0x30);
+    return id.data->Key();
 }
 
 void fn_7100586a30(UnkGoliathXSlamAttack_b58a3* self) {
@@ -62,7 +62,7 @@ void fn_7100586a30(UnkGoliathXSlamAttack_b58a3* self) {
         goto send_given;
     u32 mode;
     {
-        CStrId id = fn_71003627f8(self, self->owner);
+        CStrId id = CAttack_MakeIdWithAnimState(self, self->owner);
         base::reflection::UnkReflTypeIdArg mask;
         u64 hash = Hash_b58a3(id);
         mode = 1;

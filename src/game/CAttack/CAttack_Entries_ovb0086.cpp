@@ -220,7 +220,7 @@ struct UnkGoliathXSlamAttack_b58a3;
 
 // The attack's animation id: the name vf_0xb0 gives followed by the sources of the owner's
 // CCharClassSetAnimStateTrack record, as a string id; the empty id without a target.
-UnkAttackStrId_b0086 fn_71003627f8(UnkGoliathXSlamAttack_b58a3* attack, UnkActor* owner) {
+UnkAttackStrId_b0086 CAttack_MakeIdWithAnimState(UnkGoliathXSlamAttack_b58a3* attack, UnkActor* owner) {
     UnkAttack3_b0086* self = reinterpret_cast<UnkAttack3_b0086*>(attack);
     if (!self->target)
         return UnkAttackStrId_b0086(base::global::CStrId::Empty());

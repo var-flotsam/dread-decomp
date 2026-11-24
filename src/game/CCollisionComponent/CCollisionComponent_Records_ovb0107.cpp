@@ -762,7 +762,7 @@ void fn_7100862278(UnkCollisionComponent_Place_ovb0107* self, UnkPlacedRecord_ov
             goto done;
         UnkMatrix44 transform;
         {
-            u64 key = *reinterpret_cast<u64*>(reinterpret_cast<char*>(record->node.data) + 0x30);
+            u64 key = record->node.data->Key();
             if (!fn_71011735e8(shape, &key, &transform, 0))
                 goto done;
         }
@@ -847,7 +847,7 @@ bool fn_710086068c(UnkCollisionComponent_Load_ovb0107* self) {
     UnkGameManagerIdTable& table = GameManagerIdTable();
     CountUse(table.field_0x2418);
     if (CRntString_KeysDiffer(path.Str(),
-                      reinterpret_cast<const CRntString*>(reinterpret_cast<char*>(table.field_0x2418.data) + 0x10))) {
+                      &table.field_0x2418.data->String())) {
         UnkCollisionFileReader reader;
         fn_7100d45fc4(&reader, self);
         fn_7100860830(&reader, path.Str()->data, &self->records, charClass->field_0x89, self->groups);

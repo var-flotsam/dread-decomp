@@ -9,13 +9,14 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkPlayer.h"
 
 using base::global::CStrId;
 
 // An item's qualified id, built on first use. Compared as integers, as in fn_7100ae9a10.
 static inline const UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
-    if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+    if (qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
@@ -34,12 +35,6 @@ struct UnkAmmo {
     void vf_0x170(f32 value) { reinterpret_cast<void (*)(UnkAmmo*, f32)>(vtable[0x170 / 8])(this, value); }
 };
 
-struct UnkPlayer {
-    u8 unk_0x0[0x1b8];
-    UnkAmmo* ammo;
-    u8 unk_0x1c0[0xb0];
-    UnkInventory* inventory;
-};
 
 namespace lua_bind {
 int GainAllItemsAndPowerUps(void* /*lua_State*/) {

@@ -28,7 +28,7 @@ extern char g_unk_7101a8e8c0[];
 void fn_7100a44ff4(UnkProperty* p);
 void fn_7100a43538(void* p);
 
-void fn_7100a45160() {
+void CCharClassTunnelTrapMorphballComponent_InitStatics() {
     UnkTunnelTrapMorphballTU& tu = g_unk_717274a6b0;
     InitHeader(tu.header);
     fn_7100a42d74();

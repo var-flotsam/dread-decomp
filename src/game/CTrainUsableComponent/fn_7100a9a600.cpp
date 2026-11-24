@@ -27,7 +27,7 @@ void fn_7100a9a48c() __attribute__((visibility("hidden")));
 extern char g_unk_7172752d10[];
 
 void fn_7100a98b4c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
-void fn_7100a9a600() {
+void CTrainUsableComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172752d18.ids);
     InitId(&g_unk_7172752d18.field_0x18, "CTrainUsableComponent");
     InitId(&g_unk_7172752d18.field_0x20, "initopen");

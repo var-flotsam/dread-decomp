@@ -12,9 +12,9 @@
 
 using base::reflection::CClass;
 
-struct UnkObject {
+struct UnkObject_7100430830 {
     void** vtable;
-    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkObject*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkObject_7100430830*)>(vtable[0])(this); }
 };
 
 // The camera controller once it tests as a CBossCameraCtrl (fn_710074eca8): the field written here.
@@ -28,10 +28,10 @@ struct UnkOwner_430830 {
     u8 pad_0x0[0x38];
     u8 field_0x38[1];
     u8 pad_0x39[0x207];
-    UnkObject* field_0x240;
+    UnkObject_7100430830* field_0x240;
 };
 
-struct UnkSelf {
+struct UnkSelf_7100430830 {
     u8 pad_0x0[8];
     UnkOwner_430830* field_0x8;
 };
@@ -47,7 +47,7 @@ struct UnkBox_430830 {
 
 // NON_MATCHING(minor): the last z clamp (fmaxnm) and its store are scheduled before the paired store
 // of the max x/y pair (scheduling only)
-void fn_7100430830(UnkSelf* self, UnkBox_430830* box) {
+void fn_7100430830(UnkSelf_7100430830* self, UnkBox_430830* box) {
     void* holder = fn_7100defcec(g_unk_7101d47310);
     if (!holder)
         return;
@@ -56,7 +56,7 @@ void fn_7100430830(UnkSelf* self, UnkBox_430830* box) {
         return;
     if (!fn_710009d50c(camera->vf_0x0(), fn_710074eca8()))
         return;
-    UnkObject* component = self->field_0x8->field_0x240;
+    UnkObject_7100430830* component = self->field_0x8->field_0x240;
     if (!component)
         return;
     if (!fn_710009d50c(component->vf_0x0(), fn_710044e708()))

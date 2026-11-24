@@ -14,7 +14,7 @@ struct UnkPlaythroughDef425 {
     u32 count;                         // 0x70
 };
 
-UnkPlaythroughEntry425* fn_71002f2d30(const UnkPlaythroughDef425* self, const u64* id) {
+UnkPlaythroughEntry425* CPlaythroughDef_FindCheckpointDef(const UnkPlaythroughDef425* self, const u64* id) {
     UnkPlaythroughEntry425** it = self->entries;
     UnkPlaythroughEntry425** end = it + self->count;
     for (; it != end; ++it) {

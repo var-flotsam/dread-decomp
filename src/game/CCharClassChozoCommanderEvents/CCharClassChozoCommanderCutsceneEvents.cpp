@@ -14,8 +14,8 @@
 
 using base::reflection::CClass;
 
-struct UnkComponent;
-void fn_71004565f0(UnkComponent* component);
+struct UnkComponent_7100428010;
+void fn_71004565f0(UnkComponent_7100428010* component);
 
 struct UnkCommanderComponent {
     void** vtable;
@@ -55,10 +55,10 @@ __attribute__((always_inline)) static inline UnkCommanderComponent* CommanderCom
 
 void fn_7100b9e1fc() {
     if (UnkCommanderComponent* component = CommanderComponent())
-        fn_71004565f0(reinterpret_cast<UnkComponent*>(component));
+        fn_71004565f0(reinterpret_cast<UnkComponent_7100428010*>(component));
 }
 
 void fn_7100b9e7dc() {
     if (UnkCommanderComponent* component = CommanderComponent())
-        fn_71004554d8(reinterpret_cast<UnkComponent*>(component));
+        fn_71004554d8(reinterpret_cast<UnkComponent_7100428010*>(component));
 }

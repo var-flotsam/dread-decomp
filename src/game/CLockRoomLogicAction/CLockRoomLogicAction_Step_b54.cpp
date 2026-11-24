@@ -31,8 +31,13 @@ template <>
 base::reflection::UnkReflObject*
 base::reflection::refl_FindTyped<UnkRefl_fn_7100da3630>(void*);
 
+// The handle's target (base::UnkRefCounted's layout); its actor is at +0x10.
+struct UnkLockRoomTarget_b54 : base::UnkRefCounted {
+    void* field_0x10;
+};
+
 static inline void* Actor(base::UnkRefCounted* target) {
-    return *reinterpret_cast<void**>(reinterpret_cast<char*>(target) + 0x10);
+    return static_cast<UnkLockRoomTarget_b54*>(target)->field_0x10;
 }
 
 // A reference resolved from its source on first use.

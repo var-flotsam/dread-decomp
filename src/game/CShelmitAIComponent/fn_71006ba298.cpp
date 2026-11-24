@@ -82,8 +82,8 @@ void fn_71006ba298(UnkShelmitAI_l6ba298* self) {
     }
     current = mode->mode;
     if (object && current == 1) {
-        object->vf_0x170(*reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_717272fd38) + 0x1ec));
-        object->vf_0x168(*reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_717272fd38) + 0x1ec), true);
+        object->vf_0x170(g_unk_717272fd38.field_0x1ec);
+        object->vf_0x168(g_unk_717272fd38.field_0x1ec, true);
     }
     current = mode->mode;
     if (current == 0 && !self->field_0x15d0)

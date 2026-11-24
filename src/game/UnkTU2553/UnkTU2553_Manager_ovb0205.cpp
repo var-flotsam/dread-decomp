@@ -184,7 +184,7 @@ void fn_7100dec69c(UnkGameManager* self, f32 value, bool flag) {
         f.target = reinterpret_cast<UnkCallableBase_b205*>(&f);
         fn_7100dec38c(self, &f, flag, 1, 1);
     }
-    fn_7100d8be38(reinterpret_cast<char*>(self) + 0x2848, value);
+    fn_7100d8be38(self->field_0x2848, value);
 }
 
 void fn_7100dec7a0(void* self);

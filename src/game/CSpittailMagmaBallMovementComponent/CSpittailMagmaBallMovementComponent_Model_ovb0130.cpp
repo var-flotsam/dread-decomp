@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkModel.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
 #include "game/UnkTU2523.h"
@@ -45,13 +46,13 @@ __attribute__((noinline)) void* fn_71006cae2c(UnkRenderPool* pool, const CFilePa
     fn_710014333c(reinterpret_cast<UnkTaggedSubObject127*>(object), reinterpret_cast<UnkTaggedSubArg*>(name));
     void* node = nullptr;
     if (object) {
-        fn_710020d32c(reinterpret_cast<char*>(object) + 0x20);
+        fn_710020d32c(object->field_0x20);
         if (path.data != &g_unk_7101d47200->empty &&
             !fn_71006caf80(reinterpret_cast<UnkSpittailModelHolder*>(object), path)) {
             reinterpret_cast<UnkDeletable_ovb0130*>(object)->Delete();
             return nullptr;
         }
-        node = reinterpret_cast<u8*>(object) + 8;
+        node = &object->field_0x8;
         reinterpret_cast<UnkPoolMap_ovb0130*>(pool)->Insert(node, object);
     }
     if (out)
@@ -67,7 +68,7 @@ struct UnkSlotArray;
 struct UnkTag_710031da18;
 
 struct UnkSpittailMovement_ovb0130;
-void fn_71006df774(UnkSpittailMovement_ovb0130* self);
+void CVulkranMagmaBallMovementComponent_BeginPlay(UnkSpittailMovement_ovb0130* self);
 
 struct UnkHandlePtr_ovb0130 {
     UnkWeakHandle* p = nullptr;
@@ -112,7 +113,7 @@ struct UnkSpittailMovement_ovb0130 {
 // fn_71006ca2ac: after the base step (fn_71006df774) the flag at +0x5d8 is cleared, and the ball's handle is
 // appended to the spawning CVulkranAIComponent's list (+0x14760) when the spawner's actor has one.
 void fn_71006ca2ac(UnkSpittailMovement_ovb0130* self) {
-    fn_71006df774(self);
+    CVulkranMagmaBallMovementComponent_BeginPlay(self);
     self->field_0x5d8 = false;
     UnkSpittailLink_ovb0130* link = self->spawner;
     if (!link || !link->actor)
@@ -171,7 +172,7 @@ struct UnkSpittailBall_ovb0130 {
 static_assert(__builtin_offsetof(UnkSpittailBall_ovb0130, model) == 0x5e8, "layout");
 
 static inline UnkSceneNode* Node_ovb0130(UnkModel* model) {
-    return model ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(model) + 8) : nullptr;
+    return model ? &model->field_0x8 : nullptr;
 }
 
 bool fn_71006ca3fc(UnkSpittailBall_ovb0130* self, UnkKraidCreatureArg* arg) {

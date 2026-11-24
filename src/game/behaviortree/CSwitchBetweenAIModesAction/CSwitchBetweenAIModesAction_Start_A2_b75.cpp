@@ -83,12 +83,12 @@ void fn_710036b578(UnkSwitchModesAction_A2_b75* self) {
     base::reflection::UnkReflTypeIdArg mask;
     u64 id;
     if ((timeline != nullptr) & (self->enter.data != &g_unk_7101d47108->empty)) {
-        id = *reinterpret_cast<u64*>(reinterpret_cast<u8*>(self->enter.data) + 0x30);
+        id = self->enter.data->Key();
         mask.id = UnkAll_SpitSend().value;
         fn_7100a2cb7c(timeline, &id, &mask.id, false, -1.0f);
     }
     if ((timeline != nullptr) & (self->exit.data != &g_unk_7101d47108->empty)) {
-        id = *reinterpret_cast<u64*>(reinterpret_cast<u8*>(self->exit.data) + 0x30);
+        id = self->exit.data->Key();
         fn_7100a2b7b8(timeline, &id);
     }
     UnkSwitchModesLink_A2_b75* link = &self->link;

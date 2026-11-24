@@ -877,12 +877,14 @@ struct UnkNode_710023307c {
     virtual void vf_0x108();
     virtual void vf_0x110();
     virtual void vf_0x118(const void*, const u32*);
+    u8 pad_0x8[0x30];
+    UnkXformRecord_710023307c field_0x38;  // the transform
 };
 
 // Copies the record into the node's transform (the one at +0x38), unless it is that one, and tells
 // the node when asked.
 void fn_710023307c(UnkNode_710023307c* self, const UnkXformRecord_710023307c* src, bool notify) {
-    UnkXformRecord_710023307c* dst = reinterpret_cast<UnkXformRecord_710023307c*>(reinterpret_cast<char*>(self) + 0x38);
+    UnkXformRecord_710023307c* dst = &self->field_0x38;
     if (dst != src) {
         dst->field_0x0 = src->field_0x0;
         dst->field_0x4 = src->field_0x4;
@@ -985,12 +987,14 @@ struct UnkNode_7100233f84 {
     virtual void vf_0x108();
     virtual void vf_0x110();
     virtual void vf_0x118(const void*, const u32*);
+    u8 pad_0x8[0x30];
+    UnkXformRecord_7100233f84 field_0x38;  // the transform
 };
 
 // Copies the record's matrix into the node's transform (the one at +0x38), sets the flag 8 and
 // clears the global mask's bits in its flags, and tells the node when asked.
 void fn_7100233f84(UnkNode_7100233f84* self, const UnkXformRecord_7100233f84* src, bool notify) {
-    UnkXformRecord_7100233f84* dst = reinterpret_cast<UnkXformRecord_7100233f84*>(reinterpret_cast<char*>(self) + 0x38);
+    UnkXformRecord_7100233f84* dst = &self->field_0x38;
     dst->field_0x0 = src->field_0x0;
     dst->field_0x4 = src->field_0x4;
     dst->field_0x8 = src->field_0x8;

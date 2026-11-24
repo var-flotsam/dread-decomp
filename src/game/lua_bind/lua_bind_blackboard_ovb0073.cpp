@@ -28,7 +28,7 @@ void fn_7101048940(void* groups, const CStrId& key);
 
 // The game manager's group table, after its blackboard.
 static inline void* Groups_ovb0073(UnkGameManager* manager) {
-    return reinterpret_cast<u8*>(manager) + 0xbf8;
+    return manager->field_0xbf8;
 }
 
 // Removes the group named by the argument.

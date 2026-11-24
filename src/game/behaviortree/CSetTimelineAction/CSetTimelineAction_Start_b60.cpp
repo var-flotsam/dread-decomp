@@ -34,12 +34,12 @@ void fn_71003794f8(UnkSetTimelineAction_b60a2* self) {
         goto remove;
     base::reflection::UnkReflTypeIdArg mask;  // a goto jumps over it: its own slot
     {
-        u64 id = *reinterpret_cast<u64*>(reinterpret_cast<u8*>(self->name.data) + 0x30);
+        u64 id = self->name.data->Key();
         mask.id = UnkAll_SpitSend().value;
         fn_7100a2cb7c(timeline, &id, &mask.id, false, -1.0f);
         return;
     }
 remove:
-    u64 id = *reinterpret_cast<u64*>(reinterpret_cast<u8*>(self->name.data) + 0x30);
+    u64 id = self->name.data->Key();
     fn_7100a2b7b8(timeline, &id);
 }

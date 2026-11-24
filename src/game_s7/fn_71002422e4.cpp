@@ -18,11 +18,11 @@ struct UnkRefObject {
     };
 };
 
-struct UnkRefPtr {
+struct UnkRefPtr_7100d40ba0 {
     UnkRefObject* ptr;
 
-    UnkRefPtr(UnkRefPtr&& other) : ptr(nullptr) { *this = other; }
-    UnkRefPtr& operator=(const UnkRefPtr& other) {
+    UnkRefPtr_7100d40ba0(UnkRefPtr_7100d40ba0&& other) : ptr(nullptr) { *this = other; }
+    UnkRefPtr_7100d40ba0& operator=(const UnkRefPtr_7100d40ba0& other) {
         UnkRefObject* p = other.ptr;
         if (p)
             ++p->ref_count;
@@ -33,7 +33,7 @@ struct UnkRefPtr {
         ptr = p;
         return *this;
     }
-    ~UnkRefPtr() {
+    ~UnkRefPtr_7100d40ba0() {
         if (UnkRefObject* p = ptr) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
@@ -41,22 +41,22 @@ struct UnkRefPtr {
     }
 };
 
-using UnkRefPtrIter = base::UnkCollectionIter<UnkRefPtr>;
+using UnkRefPtrIter = base::UnkCollectionIter<UnkRefPtr_7100d40ba0>;
 
-void fn_71002421bc(const base::global::CRntVector<UnkRefPtr>* v, UnkRefPtrIter* out) { *out = UnkRefPtrIter(0, v->data); }
+void fn_71002421bc(const base::global::CRntVector<UnkRefPtr_7100d40ba0>* v, UnkRefPtrIter* out) { *out = UnkRefPtrIter(0, v->data); }
 
-void fn_71002422e4(const base::global::CRntVector<UnkRefPtr>* v, UnkRefPtrIter* out) { *out = UnkRefPtrIter(v->count, v->data + v->count); }
+void fn_71002422e4(const base::global::CRntVector<UnkRefPtr_7100d40ba0>* v, UnkRefPtrIter* out) { *out = UnkRefPtrIter(v->count, v->data + v->count); }
 
 // Erase (base::refl_Erase, with CRntVector::EraseAt inlined): the pointers after the iterator's
 // index move down one by one.
-__attribute__((always_inline)) static inline void Erase(base::global::CRntVector<UnkRefPtr>* v, const UnkRefPtrIter* it) {
+__attribute__((always_inline)) static inline void Erase(base::global::CRntVector<UnkRefPtr_7100d40ba0>* v, const UnkRefPtrIter* it) {
     u32 index = it->index;
     if (index < v->count) {
         u64 i = index;
-        v->data[i].~UnkRefPtr();
+        v->data[i].~UnkRefPtr_7100d40ba0();
         for (; i < (u32)(v->count - 1); ++i) {
-            new (&v->data[i]) UnkRefPtr(static_cast<UnkRefPtr&&>(v->data[i + 1]));
-            v->data[i + 1].~UnkRefPtr();
+            new (&v->data[i]) UnkRefPtr_7100d40ba0(static_cast<UnkRefPtr_7100d40ba0&&>(v->data[i + 1]));
+            v->data[i + 1].~UnkRefPtr_7100d40ba0();
         }
         v->count = v->count - 1;
     }
@@ -64,13 +64,13 @@ __attribute__((always_inline)) static inline void Erase(base::global::CRntVector
 
 // NON_MATCHING(minor): the original derives the loop index from the index with a shift pair and
 // keeps i + 1 out of a callee-saved register (one register more here).
-void fn_7100d3ff6c(base::global::CRntVector<UnkRefPtr>* v, const UnkRefPtrIter* it);
+void fn_7100d3ff6c(base::global::CRntVector<UnkRefPtr_7100d40ba0>* v, const UnkRefPtrIter* it);
 // NON_MATCHING(minor): as fn_7100d3ff6c.
 
 using UnkPlainVectorIter = base::UnkCollectionIter<UnkPlainVector>;
 
 // The move constructor of an iterator value over a keyed map of such pointers.
-using UnkKeyedRefPtrValue = base::UnkIterValue<UnkRefPtr, UnkMovedStrId>;
+using UnkKeyedRefPtrValue = base::UnkIterValue<UnkRefPtr_7100d40ba0, UnkMovedStrId>;
 
 // (base::UnkIterValue's move constructor, inlined.)
 __attribute__((always_inline)) static inline void Move(UnkKeyedRefPtrValue* self, UnkKeyedRefPtrValue* other) {
@@ -83,7 +83,7 @@ __attribute__((always_inline)) static inline void Move(UnkKeyedRefPtrValue* self
         self->state = 1;
         UnkKeyedRefPtrValue::Ref r = other->ref;
         new (&self->value) Pair{static_cast<UnkMovedStrId&&>(*const_cast<UnkMovedStrId*>(r.index)),
-                                static_cast<UnkRefPtr&&>(*r.element)};
+                                static_cast<UnkRefPtr_7100d40ba0&&>(*r.element)};
     }
 }
 
@@ -98,7 +98,7 @@ struct UnkRefObjectId : UnkRefObject {
     u64 field_0x10;
 };
 
-__attribute__((always_inline)) static inline u64 IdOf(const UnkRefPtr& p) {
+__attribute__((always_inline)) static inline u64 IdOf(const UnkRefPtr_7100d40ba0& p) {
     return p.ptr ? static_cast<UnkRefObjectId*>(p.ptr)->field_0x10 : 0;
 }
 
@@ -107,8 +107,8 @@ __attribute__((always_inline)) static inline bool Equal(const UnkKeyedRefPtrValu
     const UnkMovedStrId* kb = b->state == 2 ? b->ref.index : &b->value.index;
     if (ka->data != kb->data)
         return false;
-    const UnkRefPtr* x = a->state == 2 ? a->ref.element : &a->value.element;
-    const UnkRefPtr* y = b->state == 2 ? b->ref.element : &b->value.element;
+    const UnkRefPtr_7100d40ba0* x = a->state == 2 ? a->ref.element : &a->value.element;
+    const UnkRefPtr_7100d40ba0* y = b->state == 2 ? b->ref.element : &b->value.element;
     u64 id = IdOf(*y);
     return IdOf(*x) == id;
 }

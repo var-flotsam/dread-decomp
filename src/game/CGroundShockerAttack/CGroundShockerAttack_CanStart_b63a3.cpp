@@ -26,7 +26,7 @@ struct UnkGroundShockerAttack_b63a3 {
 };
 
 // `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
-bool fn_71005a0a48(UnkGroundShockerAttack_b63a3* self, void* arg, u32 mode) {
+bool CGroundShockerAttack_CanStart(UnkGroundShockerAttack_b63a3* self, void* arg, u32 mode) {
     bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), arg, mode);
     auto* ai = static_cast<UnkShockerAICast_b63a3*>(self->owner->field_0x240);
     if (ai && !fn_710009d50c(ai->vf_0x0(), fn_71005a4004()))

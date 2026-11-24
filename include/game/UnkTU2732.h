@@ -10,5 +10,6 @@ void fn_710119ae24(void* self, void* item, bool flag);
 void fn_710119ad3c(void* self);
 struct UnkItemListTag;
 struct UnkListedItem;
+struct UnkListedItem_710119ba7c;
 using UnkItemList = base::UnkSList<UnkItemListTag>;  // the list fn_710119ba7c appends to
-void fn_710119ba7c(UnkItemList* self, UnkListedItem* item);
+void fn_710119ba7c(UnkItemList* self, UnkListedItem_710119ba7c* item);

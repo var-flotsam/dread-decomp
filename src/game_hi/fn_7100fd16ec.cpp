@@ -12,7 +12,7 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/UnkMgr_0xf18.h"
 
-struct UnkRequest {
+struct UnkRequest_7100fd16ec {
     u8 data[0xc];
 };
 
@@ -29,13 +29,13 @@ struct UnkStruct_0x150 {
     u8 pad_0x0[0x30];
     bool field_0x30;
     u8 pad_0x31[0x57];
-    UnkRequest field_0x88;
+    UnkRequest_7100fd16ec field_0x88;
     f32 field_0x94;
     u8 pad_0x98[0x18];
     base::global::CRntVector<UnkPathEntry_0x18> field_0xb0;
     u8 pad_0xd8[0x8];
     base::global::CStrId field_0xe0;
-    UnkRequest field_0xe8;
+    UnkRequest_7100fd16ec field_0xe8;
     f32 field_0xf4;
     u8 pad_0xf8[0x18];
     base::global::CRntVector<UnkPathEntry_0x18> field_0x110;

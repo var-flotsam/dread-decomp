@@ -246,7 +246,7 @@ void fn_7100980cd0(UnkSmOwner_b60<0x30>* self) {
 
 // Requests that depend on the current state.
 static inline u32 StateId_b60(UnkSmState_b60* state) {
-    return *reinterpret_cast<u32*>(reinterpret_cast<char*>(state) + 0x10);
+    return state->id;
 }
 
 void fn_71008189a4(UnkSmOwner_b60<0x480>* self) {
@@ -436,13 +436,13 @@ void fn_710088bd1c(UnkTimerSm_b60* self, f32 dt) {
     self->field_0x468 = 0.0f;
 }
 
-struct UnkComponent;
+struct UnkComponent_710035131c;
 struct UnkCameraCtrl;
 
 bool fn_7100888c24(UnkLauncherSm2_b60* self, s32 event) {
     if (event == 1) {
         const UnkCameraCtrl* ctrl = static_cast<const UnkCameraCtrl*>(
-            fn_710083cd30(static_cast<UnkComponent*>(self->field_0x310->field_0x10->field_0x2a8)));
+            fn_710083cd30(static_cast<UnkComponent_710035131c*>(self->field_0x310->field_0x10->field_0x2a8)));
         if (fn_7100023d00(ctrl, fn_710082ff24()) || fn_7100023d00(ctrl, fn_710084a264()))
             RequestState_b60<4, 5>(&self->machine, 3);
     }

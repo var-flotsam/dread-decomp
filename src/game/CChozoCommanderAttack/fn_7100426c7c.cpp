@@ -42,7 +42,7 @@ struct UnkPosition {
 bool fn_7100b8fa7c(UnkAimAction* action, f32* angle, const UnkMatrix44* matrix, u64* hash, UnkPosition* position,
                    bool flag, bool flag2);
 
-f32 fn_7100426c7c(UnkAimOwner* self, bool flag) {
+f32 CChozoCommanderAttack_GetDCShotAimAngle(UnkAimOwner* self, bool flag) {
     f32 result = 0.0f;
     if (!self->field_0x8->field_0x220)
         return result;

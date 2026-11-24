@@ -10,7 +10,7 @@
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
 
-struct UnkNode;
+struct UnkNode_710046f678;
 
 struct UnkChozoCommanderAIComponent_A2_b69 {
     u8 pad_0x0[0x15ce0];
@@ -18,7 +18,7 @@ struct UnkChozoCommanderAIComponent_A2_b69 {
 };
 
 void fn_710044fff8(UnkChozoCommanderAIComponent_A2_b69* self) {
-    fn_71003ace0c(reinterpret_cast<UnkNode*>(self));
+    fn_71003ace0c(reinterpret_cast<UnkNode_710046f678*>(self));
     if (self->handle) {
         fn_71004567dc(self->handle, &self->handle);
         self->handle = nullptr;

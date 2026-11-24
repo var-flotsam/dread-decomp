@@ -10,7 +10,7 @@
 using base::UnkAllocator;
 using base::global::CStrId;
 
-struct UnkStrIdTable {
+struct UnkStrIdTable_7100251f78 {
     void** values;
     CStrId* ids;
     u32 count;
@@ -36,7 +36,7 @@ static inline void Release(CStrId* id) {
     }
 }
 
-void fn_7100251f78(UnkStrIdTable* self) {
+void fn_7100251f78(UnkStrIdTable_7100251f78* self) {
     if (self->count == self->capacity)
         return;
     void** values = static_cast<void**>(self->allocator->vf_0x40((u64)self->count * sizeof(void*), 8, self->flags));
@@ -58,7 +58,7 @@ void fn_7100251f78(UnkStrIdTable* self) {
     self->capacity = self->count;
 }
 
-void fn_710104b27c(UnkStrIdTable* self) {
+void fn_710104b27c(UnkStrIdTable_7100251f78* self) {
     if (self->count == self->capacity)
         return;
     void** values = static_cast<void**>(self->allocator->vf_0x40((u64)self->count * sizeof(void*), 8, self->flags));
@@ -80,7 +80,7 @@ void fn_710104b27c(UnkStrIdTable* self) {
     self->capacity = self->count;
 }
 
-void fn_71010c6b78(UnkStrIdTable* self) {
+void fn_71010c6b78(UnkStrIdTable_7100251f78* self) {
     if (self->count == self->capacity)
         return;
     void** values = static_cast<void**>(self->allocator->vf_0x40((u64)self->count * sizeof(void*), 8, self->flags));

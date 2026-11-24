@@ -44,3 +44,5 @@ extern u8 g_unk_71727531c0[];
 void fn_7100a9f300(UnkTeleporterSelf_b0233* self);
 extern UnkLinkGroups g_unk_7172753260;
 void fn_7100aa3264(UnkElectricGeneratorUpd_ovb0120* self);
+struct UnkLifeRecharge_b45a2;
+bool fn_7100aa3330(UnkLifeRecharge_b45a2* self);  // The recharge test of a linked station.

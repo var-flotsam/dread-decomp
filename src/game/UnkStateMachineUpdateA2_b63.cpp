@@ -203,8 +203,8 @@ struct UnkSmAbility2_A2_b63 {
     UnkSmMachine_A2_b63 machine;
 };
 
-void fn_710033bc80(UnkSmAbility2_A2_b63*, f32);
-void fn_710033bf64(UnkSmAbility2_A2_b63*, f32);
+void CAbilitySpeedBooster_UpdateActivationTime(UnkSmAbility2_A2_b63*, f32);
+void CAbilitySpeedBooster_UpdateModelTint(UnkSmAbility2_A2_b63*, f32);
 
 static inline u32 State_A2_b63(UnkSmMachine_A2_b63* self, u32 none) {
     if (self->pending != none)
@@ -227,10 +227,10 @@ void fn_710033b99c(UnkSmAbility2_A2_b63* self, f32 dt) {
                 }
             }
         }
-        fn_710033bc80(self, dt);
+        CAbilitySpeedBooster_UpdateActivationTime(self, dt);
         Update_A2_b63<3, 4>(&self->machine, dt);
     }
-    fn_710033bf64(self, dt);
+    CAbilitySpeedBooster_UpdateModelTint(self, dt);
 }
 
 // Another ability on CAbility's update: in states 1-2 of its own machine (+0x6a0, states 0-5, none 6),
@@ -473,10 +473,10 @@ void fn_710043e9f4(UnkSmLinked_A2_b63<0x88>* self) {
     StartLinked_A2_b63(self);
 }
 
-struct UnkSelf;
+struct UnkSelf_7100480928;
 
 void fn_710048758c(UnkSmLinked_A2_b63<0x80>* self) {
-    fn_71004936a0(reinterpret_cast<UnkSelf*>(self));
+    fn_71004936a0(reinterpret_cast<UnkSelf_7100480928*>(self));
     StartLinked_A2_b63(self);
 }
 

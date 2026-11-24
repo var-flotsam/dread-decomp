@@ -2,12 +2,12 @@
 #include "base/global/CRntVector.h"
 #include "game/UnkNavMeshManager.h"
 
-struct UnkNode;
-void fn_71002b5698(UnkNode* self);
-void fn_710027e18c(UnkNavMesh* navmesh, UnkNode* link);
+struct UnkNode_71002b5698;
+void fn_71002b5698(UnkNode_71002b5698* self);
+void fn_710027e18c(UnkNavMesh* navmesh, UnkNode_71002b5698* link);
 
 // The links follow their count directly (4-byte aligned).
-typedef UnkNode* __attribute__((aligned(4))) UnkNodePtr;
+typedef UnkNode_71002b5698* __attribute__((aligned(4))) UnkNodePtr;
 
 struct UnkDoorShieldLinks {
     u8 pad_0x0[0x730];
@@ -36,7 +36,7 @@ bool fn_71008dcf50(UnkDoorShieldLinks* self) {
         if (n != 0) {
             UnkNodePtr* it = self->links;
             do {
-                UnkNode* link = *it;
+                UnkNode_71002b5698* link = *it;
                 fn_710027e18c(navmesh, link);
                 if (link) {
                     fn_71002b5698(link);

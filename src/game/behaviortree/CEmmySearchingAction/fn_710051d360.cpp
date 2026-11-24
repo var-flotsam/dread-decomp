@@ -11,7 +11,7 @@
 #include "types.h"
 
 // Only the vtable at +0x0 is named; the size 1 keeps offsets from folding into element strides.
-struct UnkComponent {
+struct UnkComponent_710051d360 {
     u8 unk_0x0;
 };
 
@@ -22,7 +22,7 @@ static inline T& At(void* base, u64 offset) {
     return *reinterpret_cast<T*>(reinterpret_cast<char*>(base) + offset);
 }
 
-void fn_710051d360(UnkComponent* self) {
+void fn_710051d360(UnkComponent_710051d360* self) {
     fn_710051dab0(self);
     At<void**>(self, 0) = g_unk_7101a47e90 + 2;
     At<u64>(self, 0x30) = ~0ull;
@@ -49,5 +49,5 @@ void fn_710051d360(UnkComponent* self) {
     At<u64>(self, 0x12b38) = ~0ull;
     At<u64>(self, 0x12b40) = 0;
     At<u64>(self, 0x12b48) = 0;
-    reinterpret_cast<void (*)(UnkComponent*)>(At<void**>(self, 0)[3])(self);
+    reinterpret_cast<void (*)(UnkComponent_710051d360*)>(At<void**>(self, 0)[3])(self);
 }

@@ -92,7 +92,7 @@ void fn_7100645408(UnkEnergyWaveAttack_ovb0102* self) {
     Aim(self, &pos, &facing, &self->dir);
 }
 
-bool fn_71006455bc(UnkEnergyWaveAttack_ovb0102* self, const UnkVec3_ovb0102* pos, const f32* facing,
+bool CQuetzoaEnergyWaveAttack_ComputeAimDirection(UnkEnergyWaveAttack_ovb0102* self, const UnkVec3_ovb0102* pos, const f32* facing,
                    UnkVec3_ovb0102* dir) {
     return Aim(self, pos, facing, dir);
 }
@@ -102,7 +102,7 @@ bool fn_71006457c4(UnkEnergyWaveAttack_ovb0102* self, const UnkVec3_ovb0102* pos
 
 // Updates the wave: re-aims from the owner's position at the target and keeps the new direction
 // when the wave can travel along it.
-void fn_7100645698(UnkEnergyWaveAttack_ovb0102* self, f32 dt) {
+void CQuetzoaEnergyWaveAttack_UpdateAim(UnkEnergyWaveAttack_ovb0102* self, f32 dt) {
     fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     UnkActor* owner = self->owner;
     f32 x = owner->field_0x44;

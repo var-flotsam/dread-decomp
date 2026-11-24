@@ -13,7 +13,7 @@ struct UnkOwner_401a14 {
     u8 unk_0x0[0x240];
     UnkAIComponent_401a14* component;
 };
-struct UnkSelf {
+struct UnkSelf_7100401a14 {
     u8 unk_0x0[0x18];
     UnkOwner_401a14* owner;
     u8 unk_0x20[0xc];
@@ -22,7 +22,7 @@ struct UnkSelf {
 
 void fn_7100405854(UnkAIComponent_401a14* component, s32 a1);
 
-u32 fn_7100401a14(UnkSelf* self) {
+u32 fn_7100401a14(UnkSelf_7100401a14* self) {
     if (self->field_0x2c < 0)
         return 6;
     UnkAIComponent_401a14* component = self->owner->component;

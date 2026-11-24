@@ -25,7 +25,7 @@
 
 using base::reflection::CClass;
 
-struct UnkSelf;
+struct UnkSelf_71004cb554;
 void fn_71004c5db0();
 struct UnkEntityState;
 // Typed as CHydrogigaZiplineRailComponent_b49.cpp declares it (one signature per symbol).
@@ -35,6 +35,8 @@ struct UnkGlobal2;
 
 struct UnkCarpetStartAI_b62a2 {
     virtual const CClass* vf_0x0();
+    u8 pad_0x8[0x1581c - 0x8];
+    f32 field_0x1581c;
 };
 
 struct UnkCarpetStartEntity_b62a2 {
@@ -88,7 +90,7 @@ struct UnkCarpetStart_b62a2 {
 static_assert(__builtin_offsetof(UnkCarpetStart_b62a2, field_0x786) == 0x786, "layout");
 
 void fn_71004c3664(UnkCarpetStart_b62a2* self) {
-    fn_71004c1944(reinterpret_cast<UnkSelf*>(self));
+    fn_71004c1944(reinterpret_cast<UnkSelf_71004cb554*>(self));
     UnkCarpetTrackLink_b62a2* link = &self->link;
     link->context = self;
     link->callback = fn_71004c5db0;
@@ -112,7 +114,7 @@ void fn_71004c3664(UnkCarpetStart_b62a2* self) {
     if (ai && fn_710009d50c(ai->vf_0x0(), fn_71004cf318())) {
         s32 pattern = *reinterpret_cast<s32*>(reinterpret_cast<char*>(&g_unk_71726d1f48) + 0x24);
         if (pattern == -1) {
-            if (*reinterpret_cast<f32*>(reinterpret_cast<char*>(ai) + 0x1581c) > 0.0f) {
+            if (ai->field_0x1581c > 0.0f) {
                 pattern = (fn_71012395a0() & 1) ? 3 : 0;
             } else {
                 s32 count = self->field_0x68->count;

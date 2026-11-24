@@ -31,19 +31,19 @@ struct UnkSource {
     u32 field_0x48;
 };
 
-struct UnkOwner {
+struct UnkOwner_710060e888 {
     u8 pad_0x0[0x1f0];
     UnkSource* field_0x1f0;
     u8 pad_0x1f8[0x48];
     UnkAIComponent* field_0x240;
 };
 
-struct UnkComponent {
+struct UnkComponent_710060e888 {
     u8 pad_0x0[0x18];
-    UnkOwner* field_0x18;
+    UnkOwner_710060e888* field_0x18;
 };
 
-u32 fn_710060e888(UnkComponent* self) {
+u32 fn_710060e888(UnkComponent_710060e888* self) {
     UnkAIComponent* object = self->field_0x18->field_0x240;
     UnkNavigation* target = fn_71010fccf8(object);
     UnkSource* source = self->field_0x18->field_0x1f0;

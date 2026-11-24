@@ -24,15 +24,6 @@ struct UnkActor_4ec294 {
     const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkActor_4ec294*)>(vtable[0])(this); }
 };
 
-struct __attribute__((packed)) UnkComponent_4ec294 {
-    u8 pad_0x0[0x10];
-    UnkActor_4ec294* field_0x10;
-    u8 pad_0x18[0x1600];
-    u32 field_0x1618;
-    void* field_0x161c[0x1000];
-    u8 pad_after[0x1];
-};
-
 // The actor pointer and the two effect slots, at +0x14738, +0x14890 and +0x14898 of the component.
 // The effects are scene objects (game/UnkSceneObject.h).
 struct UnkActorBlock {
@@ -42,13 +33,24 @@ struct UnkActorBlock {
     UnkSceneObject* effect_b;
 };
 
+struct __attribute__((packed)) UnkComponent_4ec294 {
+    u8 pad_0x0[0x10];
+    UnkActor_4ec294* field_0x10;
+    u8 pad_0x18[0x1600];
+    u32 field_0x1618;
+    void* field_0x161c[0x1000];
+    u8 pad_0x961c[0x146c8 - 0x961c];
+    u8 field_0x146c8[0x70];
+    UnkActorBlock field_0x14738;
+};
+
 void fn_71004e8ea0(void* state, char* data);
 
 __attribute__((always_inline)) static inline void CreateEffect(UnkSceneObject*& slot, const u64* key) {
     UnkRenderManager* manager = g_unk_7101d47300;
     UnkSceneObject* effect = nullptr;
     fn_7100149930(manager->field_0x218, nullptr, &effect, &base::global::CStrId::Empty());
-    fn_7100219ae0(manager, effect ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(effect) + 8) : nullptr, 0);
+    fn_7100219ae0(manager, effect ? &effect->field_0x8 : nullptr, 0);
     slot = effect;
     if (effect) {
         fn_71001be020(effect->field_0x130, key);
@@ -57,7 +59,7 @@ __attribute__((always_inline)) static inline void CreateEffect(UnkSceneObject*& 
 }
 
 bool fn_71004ec294(UnkComponent_4ec294* self, void* arg) {
-    UnkActorBlock* ref = reinterpret_cast<UnkActorBlock*>(reinterpret_cast<char*>(self) + 0x14738);
+    UnkActorBlock* ref = &self->field_0x14738;
     // `arg` (x1) reaches the base initialiser untouched in the original (tools/forwarded_args.py).
     // Read as a flag here, as a word by the other callers.
     bool result = reinterpret_cast<bool (*)(char*, void*)>(fn_7100369490)(reinterpret_cast<char*>(self), arg);
@@ -66,7 +68,7 @@ bool fn_71004ec294(UnkComponent_4ec294* self, void* arg) {
     if (obj && fn_710009d50c(obj->vf_0x0(), fn_71004eb2d0()))
         actor = reinterpret_cast<char*>(obj);
     ref->actor = (u64)actor;
-    char* member = reinterpret_cast<char*>(self) + 0x146c8;
+    void* member = self->field_0x146c8;
     char* list = reinterpret_cast<char*>(&self->field_0x1618) + 4;
     u32 n = self->field_0x1618;
     *reinterpret_cast<u64_a4*>(list + ((u64)n << 3)) = (u64)member;

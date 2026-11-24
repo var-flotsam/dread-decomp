@@ -30,14 +30,14 @@ void fn_71001beee4(UnkObject252b* self, bool enable) {
     if (enable) {
         if (kind == 1)
             return;
-        *(UnkAliasU32_252*)((char*)part + 0x18) = 2;
+        part->mode = 2;
         a9 = false;
         b30 = true;
     } else {
-        *(UnkAliasU32_252*)((char*)part + 0x18) = kind == 1 ? 1 : 0x10;
+        part->mode = kind == 1 ? 1 : 0x10;
         a9 = true;
         b30 = false;
     }
-    *((char*)self->part + 0xa9) = a9;
-    *((char*)self->part + 0x30) = b30;
+    self->part->field_0xa9 = a9;
+    self->part->field_0x30 = b30;
 }

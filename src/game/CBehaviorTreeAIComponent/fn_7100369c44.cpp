@@ -68,7 +68,7 @@ void fn_7100369c44(UnkSelf_7100369c44* self, f32 dt) {
             if (s->timer >= 0.0f && fn_710117adc0(track, 0xf4061ff25a2163d6)) {
                 s->timer -= dt;
                 if (s->timer < 0.0f)
-                    fn_71003697f0(reinterpret_cast<UnkStruct_710036974c*>(self));
+                    CBehaviorTreeAIComponent_SendCrazyEnd(reinterpret_cast<UnkStruct_710036974c*>(self));
             }
             s->field_0x6 = crazy;
             return;

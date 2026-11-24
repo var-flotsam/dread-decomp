@@ -7,6 +7,7 @@
 #include "game/UnkTU2523.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
+#include "game/UnkHyperBeamEffectHandle.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
@@ -70,10 +71,6 @@ struct UnkVibrationDesc_ovb0137 {
 };
 
 struct UnkHyperBeamEffectRef;
-struct UnkHyperBeamEffectHandle {
-    UnkHyperBeamEffectRef* ref;
-    s64 serial;
-};
 struct UnkHyperBeamEffectDesc;
 
 struct UnkPlayVibrationEvent_ovb0137 {

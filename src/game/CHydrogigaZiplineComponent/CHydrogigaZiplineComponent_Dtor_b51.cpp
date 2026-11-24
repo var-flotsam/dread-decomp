@@ -39,20 +39,20 @@ static inline void ZiplineDtor(T* self) {
     BaseDtor(self);
 }
 
-void fn_710091c344(UnkZiplineComponent* self) {
+void CHydrogigaZiplineComponent_Destroy(UnkZiplineComponent* self) {
     ZiplineDtor<g_unk_7101a825f8>(self);
 }
 
-void fn_710091c3f4(UnkZiplineComponent* self) {
+void CHydrogigaZiplineComponent_DestroyAndDelete(UnkZiplineComponent* self) {
     ZiplineDtor<g_unk_7101a825f8>(self);
     fn_7100083c00(self);
 }
 
-void fn_710091d194(UnkZiplineRailComponent* self) {
+void CHydrogigaZiplineRailComponent_Destroy(UnkZiplineRailComponent* self) {
     ZiplineDtor<g_unk_7101a827e8>(self);
 }
 
-void fn_710091d244(UnkZiplineRailComponent* self) {
+void CHydrogigaZiplineRailComponent_DestroyAndDelete(UnkZiplineRailComponent* self) {
     ZiplineDtor<g_unk_7101a827e8>(self);
     fn_7100083c00(self);
 }

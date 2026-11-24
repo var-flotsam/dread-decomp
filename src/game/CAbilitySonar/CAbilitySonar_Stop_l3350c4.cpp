@@ -11,7 +11,7 @@
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
-struct UnkSelf;
+struct UnkSelf_710030c0c0;
 
 extern const u64 g_unk_7101648fa0;
 extern const u64 g_unk_7101648fa8;
@@ -86,7 +86,7 @@ void fn_71003350c4(UnkAbilitySonar_l3350c4* self, bool on) {
             }
         }
     }
-    fn_71002f9460(reinterpret_cast<UnkSelf*>(self), 0);
+    fn_71002f9460(reinterpret_cast<UnkSelf_710030c0c0*>(self), 0);
     self->field_0x3cc = {-0.001f, -0.001f};
     fn_7100335458(reinterpret_cast<UnkAbilitySonar_ovb0085*>(self), false);
 }

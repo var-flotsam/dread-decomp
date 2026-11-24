@@ -33,10 +33,12 @@ struct __attribute__((packed)) UnkCwState_b57 {
 struct UnkCwAI_b57 {
     u8 pad_0x0[0x30];
     UnkCwOwner_b57* owner;
+    u8 pad_0x38[0x14999 - 0x38];
+    UnkCwState_b57 field_0x14999;
 };
 
 void fn_710049ad04(UnkCwAI_b57* self, void* context, bool reset) {
-    UnkCwState_b57* state = reinterpret_cast<UnkCwState_b57*>(reinterpret_cast<char*>(self) + 0x14999);
+    UnkCwState_b57* state = &self->field_0x14999;
     if (reset) {
         void* target = self->owner->field_0x220;
         if (!target) {

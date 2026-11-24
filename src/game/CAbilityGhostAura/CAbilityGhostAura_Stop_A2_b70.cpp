@@ -38,7 +38,7 @@ struct UnkGhostAura_A2_b70 {
 };
 static_assert(__builtin_offsetof(UnkGhostAura_A2_b70, field_0x4a1) == 0x4a1, "UnkGhostAura_A2_b70 layout");
 
-struct UnkSelf;
+struct UnkSelf_710030c0c0;
 
 void fn_710030d358(UnkGhostAura_A2_b70* self, bool keep) {
     fn_7100309fd8(self, 0, 1);
@@ -55,5 +55,5 @@ void fn_710030d358(UnkGhostAura_A2_b70* self, bool keep) {
     self->field_0x46c = 0;
     self->field_0x4a1 = 0;
     self->field_0x49b = 0;
-    fn_71002f9460(reinterpret_cast<UnkSelf*>(self), 0);
+    fn_71002f9460(reinterpret_cast<UnkSelf_710030c0c0*>(self), 0);
 }

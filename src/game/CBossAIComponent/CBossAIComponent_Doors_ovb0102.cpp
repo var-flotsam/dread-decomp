@@ -125,7 +125,7 @@ void fn_71003ad174(UnkCameraOwner* owner, u32 arg) {
 }
 
 // Locks or unlocks every linked door lock, in the owner's name.
-void fn_71003b0054(UnkBossDoorAI_ovb0102* self, bool locked) {
+void CBossAIComponent_LockDoors(UnkBossDoorAI_ovb0102* self, bool locked) {
     ForEachDoor(self, [locked](UnkDoorLock* door, CStrId* id) { fn_71008d586c(door, locked, 0, id); });
 }
 
@@ -180,7 +180,7 @@ static inline void Apply(UnkBossSlotTarget_ovb0102* target, u32 id, u32 kind, co
 
 // Sets the timer at +0x148e4; when it was zero, first clears +0x148e8 and requests kind 1 of every
 // stored slot id on the linked target. False (nothing done) while the flags object forbids it.
-bool fn_71003b0a28(UnkBossAI_ovb0102* self, f32 value) {
+bool CBossAIComponent_StartDamageFX(UnkBossAI_ovb0102* self, f32 value) {
     UnkBossFlags_ovb0102* flags = self->field_0x14908;
     if (flags->field_0x50c || !flags->field_0x510)
         return false;
@@ -234,7 +234,7 @@ void fn_71003adc50(UnkBossColorAI_ovb0102* self, UnkBossColorLink_ovb0102* link,
 
 // Counts the timer at +0x14810 down by `dt` (or clears it without `counting`), then, when the value
 // from vf_0x820 changed, stores it and applies it (a drop restarts the timer at 0.75 while counting).
-void fn_71003adb60(UnkBossColorAI_ovb0102* self, f32 dt, bool counting) {
+void CBossAIComponent_UpdateColorChange(UnkBossColorAI_ovb0102* self, f32 dt, bool counting) {
     if (counting) {
         f32 t = self->timer;
         if (!(t > 0.0f))
@@ -264,8 +264,8 @@ counted:
     }
 }
 
-struct UnkSelf;
-void fn_71003ad8e4(UnkSelf* self);
+struct UnkSelf_71003ad8e4;
+void fn_71003ad8e4(UnkSelf_71003ad8e4* self);
 
 struct UnkBossAITimers_ovb0102 {
     u8 pad_0x0[0x147f4];
@@ -290,7 +290,7 @@ void fn_71003ad7ec(UnkBossAITimers_ovb0102* self, f32 dt) {
         self->total_active_time += dt;
         self->inactive_time = 0.0f;
         if (was == 0.0f)
-            fn_71003ad8e4(reinterpret_cast<UnkSelf*>(self));
+            fn_71003ad8e4(reinterpret_cast<UnkSelf_71003ad8e4*>(self));
     } else {
         self->inactive_time += dt;
         self->active_time = 0.0f;
@@ -374,7 +374,7 @@ static inline void ApplyAll(UnkBossBlinkAI_ovb0102* self, UnkBossBlinkLinkSub_ov
 // Runs the blink set up by fn_71003b0a28: while the timer at +0x148e4 runs, the slots alternate
 // between the two values every blink period of the owner's enemy life component; when it runs
 // out, they are cleared.
-void fn_71003ae858(UnkBossBlinkAI_ovb0102* self, f32 dt) {
+void CBossAIComponent_UpdateDamageFX(UnkBossBlinkAI_ovb0102* self, f32 dt) {
     if (!(self->timer > 0.0f))
         return;
     self->elapsed += dt;
@@ -459,7 +459,7 @@ static inline UnkBossDeathTargetHolder_ovb0102* Holder(UnkBossDeathAI_ovb0102* s
 // The boss's death: after the base handling (and unless the settings say otherwise), outside the mode
 // flag at +0xb8 the "<owner>_dead" event is raised for the target when the game manager allows it and
 // +0x14998 is set; then the scenario's OnBossDeath runs with the owner's name.
-void fn_71003afd68(UnkBossDeathAI_ovb0102* self) {
+void CBossAIComponent_OnBossDeath(UnkBossDeathAI_ovb0102* self) {
     fn_710110e274(self);
     if (self->settings->field_0x50c)
         return;

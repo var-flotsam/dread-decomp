@@ -36,7 +36,7 @@ static inline UnkComponent* Find_A2_b69(UnkChozoCommanderAttack_A2_b69* self, Un
     return self->field_0x40;
 }
 
-void fn_7100426fb4(UnkChozoCommanderAttack_A2_b69* self) {
+void CChozoCommanderAttack_SwitchOnPart(UnkChozoCommanderAttack_A2_b69* self) {
     UnkObject* object = self->owner->field_0x280;
     if (UnkComponent* component = Find_A2_b69(self, object)) {
         asm("" : "+r"(object));

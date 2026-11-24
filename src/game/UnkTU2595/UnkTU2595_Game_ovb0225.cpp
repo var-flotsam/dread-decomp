@@ -25,7 +25,7 @@ static inline UnkSingleton2595_b0225* Singleton2595() {
     return slot;
 }
 
-struct UnkVec;
+struct UnkVec_710048a194;
 
 struct UnkVec3_b0225 {
     u64 xy;
@@ -40,7 +40,7 @@ void fn_7100f1435c() {
     UnkVec3_b0225 origin;
     origin.xy = 0;
     origin.z = 0;
-    fn_7101053850(effects, reinterpret_cast<UnkVec*>(&origin), 1, 0.3f, 1.0f);
+    fn_7101053850(effects, reinterpret_cast<UnkVec_710048a194*>(&origin), 1, 0.3f, 1.0f);
     void* instance = g_unk_71726bc560;
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);

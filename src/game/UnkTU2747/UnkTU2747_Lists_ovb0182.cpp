@@ -343,7 +343,7 @@ void fn_71011cfc24(UnkGuiObj* object, const UnkColor& color, u32 value) {
         __builtin_memcpy(block + 0x1c, &color, 16);
         __builtin_memcpy(block + 0xc, &color, 16);
     }
-    f32* current = reinterpret_cast<f32*>(reinterpret_cast<char*>(object) + 0xa0);
+    f32* current = object->field_0xa0;
     const f32* want = &color.r;
     if (__builtin_fabsf(current[0] - want[0]) < 0.001f && __builtin_fabsf(current[1] - want[1]) < 0.001f &&
         __builtin_fabsf(current[2] - want[2]) < 0.001f && __builtin_fabsf(current[3] - want[3]) < 0.001f)
@@ -682,6 +682,8 @@ struct UnkGuiEventTarget_ovb0182 {
     virtual void vf_0x1a0(UnkGuiEventData_ovb0182* event);
     virtual void vf_0x1a8(UnkGuiEventData_ovb0182* event);
     virtual void vf_0x1b0(UnkGuiEventData_ovb0182* event);
+    u8 pad_0x8[0xb0];
+    u8 field_0xb8[1];  // the render slots
 };
 
 // Hands the event to the handler for its kind; unhandled ones go on to the render slots (+0xb8).
@@ -839,5 +841,5 @@ void fn_71011cf39c(UnkChangeMenuStateButton_b48a3* object, UnkGuiEvent_b48a3* me
     default:
         break;
     }
-    fn_7100b1e3fc(reinterpret_cast<char*>(self) + 0xb8, event);
+    fn_7100b1e3fc(self->field_0xb8, event);
 }

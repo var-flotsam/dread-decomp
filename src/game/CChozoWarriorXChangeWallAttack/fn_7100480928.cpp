@@ -3,13 +3,13 @@
 #include "game/CChozoWarriorAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkSelf {
+struct UnkSelf_7100480928 {
     u8 pad_0x0[0x48];
     u8 field_0x48[0x18];
     UnkWeakHandle* field_0x60;
 };
 
-void fn_7100480928(UnkSelf* self) {
+void fn_7100480928(UnkSelf_7100480928* self) {
     fn_71004936a0(self);
     if (UnkWeakHandle* handle = self->field_0x60) {
         if (UnkWeakTarget* target = handle->target)

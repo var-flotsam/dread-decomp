@@ -107,27 +107,27 @@ static inline UnkVec3f DirFromTarget(UnkTriggerActor_ovb0067* actor) {
     return dir;
 }
 
-void fn_7100a5f554(UnkTriggerComponent_ovb0067* self, UnkTriggerActor_ovb0067* actor) {
+void CTriggerComponent_SendOnStayEvent(UnkTriggerComponent_ovb0067* self, UnkTriggerActor_ovb0067* actor) {
     if (actor->field_0x1b5)
         return;
     UnkVec3f dir = DirFromTarget(actor);
     fn_7100a5ee80(self, 3, actor, &dir);
 }
 
-void fn_7100a5f7a8(UnkTriggerComponent_ovb0067* self, UnkTriggerActor_ovb0067* actor) {
+void CTriggerComponent_SendOnExitEvent(UnkTriggerComponent_ovb0067* self, UnkTriggerActor_ovb0067* actor) {
     UnkVec3f dir = DirFromTarget(actor);
     fn_7100a5f3b0(self, 0);
     fn_7100a5ee80(self, 1, actor, &dir);
 }
 
-void fn_7100a5f884(UnkTriggerComponent_ovb0067* self, UnkTriggerActor_ovb0067* actor) {
+void CTriggerComponent_SendOnAllExitEvent(UnkTriggerComponent_ovb0067* self, UnkTriggerActor_ovb0067* actor) {
     if (self->owner->field_0x1b5)
         return;
     UnkVec3f dir = DirFromTarget(actor);
     fn_7100a5ee80(self, 2, actor, &dir);
 }
 
-void fn_7100a5f62c(UnkTriggerComponent_ovb0067* self, UnkTriggerActor_ovb0067* actor) {
+void CTriggerComponent_SendOnEnterEvent(UnkTriggerComponent_ovb0067* self, UnkTriggerActor_ovb0067* actor) {
     if (self->owner->field_0x1b5)
         return;
     UnkVec3f dir = DirFromTarget(actor);

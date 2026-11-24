@@ -213,9 +213,9 @@ static_assert(sizeof(UnkNavQuery) == 0x1b8, "UnkNavQuery layout");
 struct UnkStruct_7100286798;
 struct UnkActor_7100286798;
 struct UnkStruct_7100286624;
-struct UnkOwner;
+struct UnkOwner_7100569f34;
 
-f32 fn_7100569f34(UnkOwner* self, void* unused, u32 key, f32 value);
+f32 fn_7100569f34(UnkOwner_7100569f34* self, void* unused, u32 key, f32 value);
 char* fn_7100569fd4(char* p0, char* p1, char* p2);
 void* fn_7100ebfa74(UnkNavMeshManager* self, UnkNavQuery* query, UnkNavCallback_b0194* callback);
 

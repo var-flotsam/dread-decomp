@@ -131,10 +131,10 @@ s32 fn_7101093740(lua_State* L) {
         UnkInventory* inventory = player->inventory;
         UnkPropertyEx<>& item = g_unk_717275a898;
         UnkQualifiedId& qid = ItemQualifiedId(item);
-        if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+        if (qid.id.data == &g_unk_7101d47108->empty)
             fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
         bool has = fn_71011428bc(inventory, qid);
-        if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+        if (qid.id.data == &g_unk_7101d47108->empty)
             fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
         f32 amount = has ? 0.0f : 1.0f;
         fn_7101142a28(inventory, qid, true, true, true, amount, 0.0f);
@@ -145,7 +145,7 @@ s32 fn_7101093740(lua_State* L) {
 // ---- sound and music with a file-path id ----
 struct UnkSoundMgr;
 struct UnkMgr;
-struct UnkHandle;
+struct UnkHandle_7100fdd2b4;
 void fn_7100fdc598(void* manager, f32 value, const CFilePathStrId* id);
 
 namespace lua_bind {
@@ -155,7 +155,7 @@ s32 DebugSetStreamVol(lua_State* L) {
     bool flag = false;
     if (fn_71010c0270(L, "sf|b", &name, &value, &flag)) {
         CFilePathStrId id(name, true);
-        fn_7100108abc(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), reinterpret_cast<UnkHandle*>(&id), 0.0f, value);
+        fn_7100108abc(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), reinterpret_cast<UnkHandle_7100fdd2b4*>(&id), 0.0f, value);
         if (flag)
             fn_7100fdc598(MusicManager_b0161(), value, &id);
     }
@@ -327,13 +327,13 @@ s32 fn_71010866b0(lua_State* L) {
             if (UnkInventory* inventory = player->inventory) {
                 UnkPropertyEx<>& count_item = g_unk_7172759fd8;
                 UnkQualifiedId& count_id = ItemQualifiedId(count_item);
-                if ((u64)count_id.id.data == (u64)g_unk_7101d47108 + 0x10)
+                if (count_id.id.data == &g_unk_7101d47108->empty)
                     fn_7100ae9a10(&count_id, ItemSource(count_item), base::global::CStrId::Empty());
                 s32 current = fn_71011442a0(inventory, count_id, 0);
                 s32 total = added + current;
                 UnkPropertyEx<>& total_item = g_unk_717275a018;
                 UnkQualifiedId& total_id = ItemQualifiedId(total_item);
-                if ((u64)total_id.id.data == (u64)g_unk_7101d47108 + 0x10)
+                if (total_id.id.data == &g_unk_7101d47108->empty)
                     fn_7100ae9a10(&total_id, ItemSource(total_item), base::global::CStrId::Empty());
                 fn_71011406b4(inventory, total_id, total, true, true, true, 0.0f);
             }
@@ -413,7 +413,7 @@ s32 SpawnEntity(lua_State* L) {
 }  // namespace lua_bind
 
 struct UnkTriggerList_A5_b72;
-bool fn_7100a60104(UnkTriggerList_A5_b72* self, const CRntString& name);
+bool CTriggerComponent_IsEntityInside(UnkTriggerList_A5_b72* self, const CRntString& name);
 
 namespace lua_bind {
 s32 IsEntityInsideTrigger(lua_State* L) {
@@ -429,7 +429,7 @@ s32 IsEntityInsideTrigger(lua_State* L) {
         return 1;
     base::UnkNamedEntry key;
     CRntString_ConstructFromCString(&key, second);
-    bool found = fn_7100a60104(static_cast<UnkTriggerList_A5_b72*>(triggers), *reinterpret_cast<const CRntString*>(&key));
+    bool found = CTriggerComponent_IsEntityInside(static_cast<UnkTriggerList_A5_b72*>(triggers), *reinterpret_cast<const CRntString*>(&key));
     s32 result = fn_71010c0b40(L, "b", found);
     CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     return result;

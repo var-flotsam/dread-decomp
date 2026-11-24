@@ -11,7 +11,7 @@ struct UnkSelf_5c7210 : UnkAttackBase {
     UnkWeakHandle* field_0x50;
 };
 
-void fn_71005c7210(UnkSelf_5c7210* self) {
+void CInfesterShootAttack_Reset(UnkSelf_5c7210* self) {
     fn_71003609b8(self);
     if (UnkWeakHandle* handle = self->field_0x50) {
         if (UnkWeakTarget* target = handle->target)

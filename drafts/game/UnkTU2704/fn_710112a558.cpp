@@ -39,7 +39,7 @@ bool fn_710112a3bc(void* holder);
 bool fn_7100daa560(void* self, UnkEmmyCheckActor_b0025* actor);
 bool fn_710119daa0(UnkObjectSet* self, UnkSetObject* const* object);
 UnkReflObject* fn_7101193ee0(UnkActorDefFactory* self, const CStrId* id);
-UnkActorDefEntry_A1b71* fn_71002552a4(const UnkActorDef_A1b71* self, const char* name);
+UnkActorDefEntry_A1b71* CActorDef_FindComponentByType(const UnkActorDef_A1b71* self, const char* name);
 void fn_710112ab08(CSpawnPointComponent* self, UnkVec3f* pos, UnkVec3f* angle);
 
 // Debug switches: bit 4 checks the sub-area cache before spawning.
@@ -200,7 +200,7 @@ bool fn_710112a558(CSpawnPointComponent* self, f32 time) {
                 fn_7101193ee0(g_unk_71726a0220, &self->field_0x48));
             if (char_class) {
                 UnkReflObject* component = reinterpret_cast<UnkReflObject*>(
-                    fn_71002552a4(reinterpret_cast<UnkActorDef_A1b71*>(char_class), Kind_COLLISION().Text()));
+                    CActorDef_FindComponentByType(reinterpret_cast<UnkActorDef_A1b71*>(char_class), Kind_COLLISION().Text()));
                 f32 x = 0.0f;
                 f32 y = 0.0f;
                 if (component && fn_710009d50c(component->vf_0x0(), fn_710079a218())) {

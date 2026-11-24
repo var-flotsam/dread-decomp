@@ -225,7 +225,7 @@ struct UnkBurstAimPoint_ovb0135 {
 // Places the beam effect (fn_7101152b90, switched on when off) at the point's x and y and the beam node's
 // depth, turned a quarter turn past the node's x axis (its transform from fn_71011735e8 with the id
 // table's id at +0xd58).
-void fn_710042995c(UnkBurstAim_ovb0135* self, const UnkBurstAimPoint_ovb0135* point) {
+void CChozoCommanderBeamBurstAttack_PlaceEffectAtPoint(UnkBurstAim_ovb0135* self, const UnkBurstAimPoint_ovb0135* point) {
     UnkObject* model = self->owner->model;
     UnkEntity* entity = self->owner->entity;
     if (!model || !entity)
@@ -238,7 +238,7 @@ void fn_710042995c(UnkBurstAim_ovb0135* self, const UnkBurstAimPoint_ovb0135* po
     const CStrId& id =
         *reinterpret_cast<const CStrId*>(reinterpret_cast<u8*>(&GameManagerIdTable()) + 0xd58);
     {
-        u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(id.data) + 0x30);
+        u64 key = id.data->Key();
         fn_71011735e8(entity, &key, &m, 0);
     }
     f32 ax = m.m[0], ay = m.m[4];

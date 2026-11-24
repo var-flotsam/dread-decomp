@@ -7,7 +7,7 @@
 #include "types.h"
 
 struct UnkTeamList;
-f32 fn_71011a76ec(const UnkTeamList* self, const void* target);
+f32 CTeamManager_FindMemberValue(const UnkTeamList* self, const void* target);
 
 enum UnkPresetRange_l3668e8 {
     kRangeNone = 0,
@@ -72,7 +72,7 @@ f32 fn_71003668e8(const UnkAttackPreset_l3668e8* self, const UnkPresetRequest_l3
     const UnkPresetRanges_l3668e8* ranges = actor->ai->ranges;
     if (!ranges)
         return 0.0f;
-    f32 distance = fn_71011a76ec(reinterpret_cast<const UnkTeamList*>(TeamManager()), actor);
+    f32 distance = CTeamManager_FindMemberValue(reinterpret_cast<const UnkTeamList*>(TeamManager()), actor);
     UnkPresetRange_l3668e8 range = kRangeNone;
     if (distance <= ranges->near_distance && ranges->near_distance > 0.0f)
         range = kRangeNear;

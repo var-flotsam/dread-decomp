@@ -10,11 +10,11 @@
 
 static inline const UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
-    if (__builtin_expect((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10, 0))
+    if (__builtin_expect(qid.id.data == &g_unk_7101d47108->empty, 0))
         fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
 
-const UnkQualifiedId& fn_71008fceb4() { return GetQualifiedId(g_unk_7172733360); }
+const UnkQualifiedId& CLavaPoolComponent_GetLavaVolumesId() { return GetQualifiedId(g_unk_7172733360); }
 
-const UnkQualifiedId& fn_710090a62c() { return GetQualifiedId(g_unk_7172734660); }
+const UnkQualifiedId& CWaterPoolComponent_GetWaterVolumesId() { return GetQualifiedId(g_unk_7172734660); }

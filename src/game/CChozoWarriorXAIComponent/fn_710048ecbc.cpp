@@ -28,7 +28,7 @@ struct UnkHandles {
     UnkHandleTarget_48ecbc* field_0x8;
 };
 
-struct UnkSelf {
+struct UnkSelf_710048ecbc {
     u8 pad_0x0[0x30];
     UnkOwner_48ecbc* field_0x30;
     u8 pad_0x38[0x154b0];
@@ -37,7 +37,7 @@ struct UnkSelf {
 
 struct UnkPart;
 
-void fn_710048ecbc(UnkSelf* self) {
+void fn_710048ecbc(UnkSelf_710048ecbc* self) {
     if (UnkObject* object = self->field_0x30->field_0x280) {
         UnkComponent_48ecbc* a = reinterpret_cast<UnkComponent_48ecbc*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
                                                                         0x89f328dc37ac167bull));

@@ -138,7 +138,7 @@ static inline CRntString Cat_e01d98(const CRntString& a, const char* b) { return
 
 UnkPathResult_e01d98 fn_7100e01d98(UnkGameManager* self, const CStrId& scenario, const CStrId& name,
                                    const CStrId& ext) {
-    const CRntString& root = *reinterpret_cast<const CRntString*>(reinterpret_cast<char*>(self) + 0x620);
+    const CRntString& root = self->field_0x620;
     return UnkPathResult_e01d98(Cat_e01d98(Cat_e01d98(Cat_e01d98(Cat_e01d98(Cat_e01d98(Cat_e01d98(Cat_e01d98(Cat_e01d98(root, "maps/levels/"), *Text_e01d98(scenario)), "/"), *Text_e01d98(name)), "/"), *Text_e01d98(name)), "."), *Text_e01d98(ext)));
 }
 
@@ -342,7 +342,7 @@ static inline base::file::UnkFileDevice* PackSets_e00b48() {
 }
 
 static inline const CFilePathStrId* PackPath_e00b48(UnkGameManager* self) {
-    return reinterpret_cast<const CFilePathStrId*>(reinterpret_cast<char*>(self) + 0x610);
+    return &self->field_0x610;
 }
 
 void fn_7100e00b48(UnkGameManager* self) {
@@ -771,7 +771,7 @@ void fn_7100dea304(UnkGameManager* self, void* entity) {
     if (object && fn_710009d50c(object->vf_0x0(), fn_7100d70c20())) {
         UnkCharClass_dea304* char_class = object->field_0x28;
         if (char_class && fn_710009d50c(char_class->vf_0x0(), fn_71011abbd4()) && char_class->kind != 1)
-            fn_7100d8ba60(reinterpret_cast<char*>(self) + 0x2848 + ((u64)char_class->kind << 8), entity);
+            fn_7100d8ba60(self->field_0x2848 + ((u64)char_class->kind << 8), entity);
     }
 }
 
@@ -828,7 +828,7 @@ void fn_7100de6ee8(UnkGameManager* self) {
         if (object && fn_710009d50c(object->vf_0x0(), fn_7100d70c20())) {
             UnkCharClass_de6ee8* char_class = object->field_0x28;
             if (char_class && fn_710009d50c(char_class->vf_0x0(), fn_71011abbd4()) && char_class->kind != 1)
-                fn_7100d8ba60(reinterpret_cast<char*>(self) + ((u64)char_class->kind << 8) + 0x2848, object);
+                fn_7100d8ba60(self->field_0x2848 + ((u64)char_class->kind << 8), object);
             fn_7101198450(g_unk_7101d47330, reinterpret_cast<UnkReflObject*>(object));
         }
         if (object->field_0x1b2)

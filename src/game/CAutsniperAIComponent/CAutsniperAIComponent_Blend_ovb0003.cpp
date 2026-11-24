@@ -83,7 +83,7 @@ struct UnkAutsniperAI_ovb0003 {
 struct UnkSelfB55;
 void fn_71003db2c4(UnkSelfB55* self, f32 value);
 void fn_71003db3cc(UnkSelfB55* self, f32 value);
-void fn_71003dace0(UnkAutsniperAI_ovb0003* self);
+void CAutsniperAIComponent_SetMovementVelocity(UnkAutsniperAI_ovb0003* self);
 
 using base::math::CVector3D;
 
@@ -98,7 +98,7 @@ static inline f32 Lerp(f32 from, f32 to, f32 t) {
     return (1.0f - t) * from + t * to;
 }
 
-void fn_71003dabd8(UnkAutsniperAI_ovb0003* self, f32 dt) {
+void CAutsniperAIComponent_UpdateLayerChangeAndMovement(UnkAutsniperAI_ovb0003* self, f32 dt) {
     UnkAutsniperBlend_ovb0003& blend = self->blend;
     fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);
     blend.elapsed += dt;
@@ -119,13 +119,13 @@ void fn_71003dabd8(UnkAutsniperAI_ovb0003* self, f32 dt) {
         }
         break;
     }
-    fn_71003dace0(self);
+    CAutsniperAIComponent_SetMovementVelocity(self);
 }
 
 // Sets the mover's velocity: along the owner's x axis at the parameters' speed, away from the
 // target position fn_7100d7be08 gives (when it is more than 1 away), flipped by the side the owner
 // faces; zero otherwise.
-void fn_71003dace0(UnkAutsniperAI_ovb0003* self) {
+void CAutsniperAIComponent_SetMovementVelocity(UnkAutsniperAI_ovb0003* self) {
     UnkAutsniperOwner_ovb0003* owner = self->owner;
     UnkAutsniperTarget_ovb0003* target = owner->field_0x228;
     if (!target || !target->field_0x50)
