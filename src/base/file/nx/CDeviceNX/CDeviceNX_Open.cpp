@@ -20,7 +20,7 @@ struct UnkDevice_710002e0f8 {
     bool field_0x41;
 };
 
-u32 fn_710002e168(void* table, base::global::CRntString* path);
+u32 CDeviceNX_CheckDirectoryExists(void* table, base::global::CRntString* path);
 
 u32 fn_710002e0f8(UnkDevice_710002e0f8* self, UnkDeviceFile_710002e0f8** handle) {
     void* table = &self->table;
@@ -28,7 +28,7 @@ u32 fn_710002e0f8(UnkDevice_710002e0f8* self, UnkDeviceFile_710002e0f8** handle)
     ++*count;
     const char* path = (*handle)->path;
     base::global::CRntString str(path ? path : "");
-    return fn_710002e168(table, &str);
+    return CDeviceNX_CheckDirectoryExists(table, &str);
 }
 
 // The same lookup through fn_710002ed98 with more arguments (the fourth is unused and 0 is passed in
@@ -42,5 +42,5 @@ u32 fn_710002f0dc(UnkDevice_710002e0f8* self, UnkDeviceFile_710002e0f8** handle,
     ++*count;
     const char* path = (*handle)->path;
     base::global::CRntString str(path ? path : "");
-    return fn_710002ed98(table, &str, a, 0, c, d, e);
+    return CDeviceNX_ReadWholeFileIntoNewBuffer(table, &str, a, 0, c, d, e);
 }

@@ -54,6 +54,6 @@ UnkTunableReflValue fn_71000e76dc(UnkTunableFieldHandle* field, const UnkReflTyp
     else
         value_ptr = &result;
     dst.ptr = value_ptr;
-    fn_710009d960(type, &src, &dst);
+    CType_AssignOrConvertValue(type, &src, &dst);
     return result;
 }

@@ -88,6 +88,6 @@ void fn_7101191198(UnkMenuSoundOwner_l191198* self, f32 value) {
     desc.volume = 1.4f;
     desc.field_0x30 = 1.0f;
     desc.field_0x38 = value;
-    self->handle = fn_7100108620(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820),
+    self->handle = CSoundSystem_PlayOrRestartSound(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820),
                                  reinterpret_cast<UnkSoundDesc_ovb0074*>(&desc));
 }

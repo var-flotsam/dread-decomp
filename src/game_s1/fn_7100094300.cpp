@@ -22,6 +22,6 @@ void RegisterEAttributeTargetEnumType() {
         CStrId name("base::reflection::EAttributeTarget", true);
         fn_710009410c(base::reflection::TypeObject<base::reflection::EAttributeTarget, u8[]>::object, &name, fn_7100093f60, nullptr);
     }
-    fn_7100000250(fn_7100099468, base::reflection::TypeObject<base::reflection::EAttributeTarget, u8[]>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, base::reflection::TypeObject<base::reflection::EAttributeTarget, u8[]>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5a150, base::reflection::TypeObject<base::reflection::EAttributeTarget, u8[]>::object);
 }

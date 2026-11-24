@@ -13,7 +13,7 @@ struct UnkNode {
 
 s32 fn_710009a394(UnkHashed* self) {
     UnkScopedHashStream s(0x16, nullptr);
-    s.Put(fn_710009d110(self));
+    s.Put(CType_ComputeBaseHash(self));
     s.Put(self->node_0xe8->inner_0x8->field_0x30);
     return s.Finish();
 }

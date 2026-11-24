@@ -96,7 +96,7 @@ void CMapAcquisitionComponent_StartFadeInAndMainMenuLevelMusic(UnkMapAcquisition
     fn_7100fd90d8(-1.0f, -1.0f, music, name, 4, &mode, 0, 0, nullptr);
     UnkSoundSystemMasks_ovb0074* sound = reinterpret_cast<UnkSoundSystemMasks_ovb0074*>(g_unk_7101d4d820);
     alignas(8) u32 mask = 1;
-    fn_71001082a8(sound, true, &mask);
+    CSoundSystem_SetGroupsMuted(sound, true, &mask);
     self->time = 0.0f;
     if (self->user && self->user->target)
         fn_7100d7c828(reinterpret_cast<UnkActor*>(self->user->target), &g_unk_710164b5a8, false);

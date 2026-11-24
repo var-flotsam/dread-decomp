@@ -29,7 +29,7 @@ struct UnkKeyedB0Array_b51 {
     base::UnkAllocator* allocator;
 };
 
-void fn_7100096b54(UnkKeyedB0Array_b51* self) {
+void CClass_ShrinkKeyedB0ArrayToFit(UnkKeyedB0Array_b51* self) {
     if (self->count == self->capacity)
         return;
     UnkRecordB0_b51* values = static_cast<UnkRecordB0_b51*>(

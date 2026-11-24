@@ -56,7 +56,7 @@ struct UnkBlendSpace1D13 {
 };
 static_assert(__builtin_offsetof(UnkBlendSpace1D13, entries) == 0x48, "layout");
 
-void fn_7100006bc8(UnkBlendSpace1D13* self) {
+void CBlendSpace1D_Construct(UnkBlendSpace1D13* self) {
     self->vtable = &g_unk_7101a19158[2];
     self->field_0x8 = 0;
     self->field_0x10 = 0;

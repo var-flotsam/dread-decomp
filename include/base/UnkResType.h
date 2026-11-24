@@ -38,10 +38,10 @@ struct UnkResType {
 static_assert(sizeof(UnkResType) == 0x80, "UnkResType layout");
 
 // The format's constructor.
-void fn_7100004578(UnkResFormat* self, const char* class_name, const char* extension, const char* const* sources,
+void CAnimationResource_ConstructResourceFormat(UnkResFormat* self, const char* class_name, const char* extension, const char* const* sources,
                    u64 count);
 // Builds the resource type at `self` (a UnkResType) named `name` from `count` formats.
-void fn_7100004698(void* self, const char* name, UnkResFormat* formats, u64 count);
+void CAnimationResource_ConstructResourceTypeFromFormats(void* self, const char* name, UnkResFormat* formats, u64 count);
 // Reserves room for `capacity` formats in a resource type's format vector.
 void fn_7100005534(base::global::CRntVector<UnkResFormat>* self, u32 capacity);
 void fn_7100004a44(UnkResFormat* self);  // the format's destructor

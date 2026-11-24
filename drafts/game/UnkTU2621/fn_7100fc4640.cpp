@@ -103,7 +103,7 @@ struct UnkOwnedSaveBuffer_fc4640 {
 
 // Reads the file at `path` whole into `owner`; 0 when it could.
 static inline u32 ReadFile(CRntString* path, UnkOwnedSaveBuffer_fc4640* owner) {
-    return fn_710002ed98(g_unk_71729f0020, path, &owner->buffer, 1, nullptr, 8, 0x16);
+    return CDeviceNX_ReadWholeFileIntoNewBuffer(g_unk_71729f0020, path, &owner->buffer, 1, nullptr, 8, 0x16);
 }
 
 // Parses a file's contents into the blackboard; whether it parsed.

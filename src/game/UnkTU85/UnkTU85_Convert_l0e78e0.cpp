@@ -55,5 +55,5 @@ bool fn_71000e78e0(::UnkReflField* field, const UnkReflFieldObject* obj, UnkRefl
     const CType* type = field->type;
     UnkTypedRef src;
     fn_71000a16e0(&src, reinterpret_cast<const char*>(type), static_cast<u8*>(obj->ptr) + field->offset);
-    return fn_710009d960(type, &src, reinterpret_cast<UnkTypedRef*>(dst));
+    return CType_AssignOrConvertValue(type, &src, reinterpret_cast<UnkTypedRef*>(dst));
 }

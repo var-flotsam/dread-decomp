@@ -64,7 +64,7 @@ void fn_71000ce49c(base::UnkStrIdVec* self, base::global::CStrId* value, u32 ind
 }
 
 void fn_71000d0c58(UnkResPathVec* self, base::global::CFilePathStrId* value, u32 index) {
-    Insert<UnkResPathVec, &g_unk_7101d47200, fn_7100018450>(
+    Insert<UnkResPathVec, &g_unk_7101d47200, CAsset_ReserveFilePathIdVec>(
         self, reinterpret_cast<base::UnkPooledString*>(value), index);
 }
 

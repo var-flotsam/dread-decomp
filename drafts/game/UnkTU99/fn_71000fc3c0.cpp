@@ -19,7 +19,7 @@ using base::snd::UnkSoundSystemATK;
 
 bool fn_7100132cd0();
 extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
-void fn_71000fbaf8(UnkSoundSystemATK* sys, s32 command, const void* payload);
+void CSoundSystemATK_PushCommandToSecondQueue(UnkSoundSystemATK* sys, s32 command, const void* payload);
 
 // ---- the sound system's members these functions touch (placeholder names) ----
 

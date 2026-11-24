@@ -11,8 +11,8 @@ struct UnkElem18 {
 };
 
 struct UnkElem18Vector;
-void fn_710000e610(UnkElem18Vector* v, u32 n);
-void fn_710000e7a4(UnkElem18Vector* v, const UnkElem18* value);
+void CBlendSpaceResource_ReserveTargets(UnkElem18Vector* v, u32 n);
+void CBlendSpaceResource_PushBackTargetCopy(UnkElem18Vector* v, const UnkElem18* value);
 
 struct UnkElem18Vector {
     UnkElem18* data;
@@ -41,7 +41,7 @@ __attribute__((always_inline)) static inline void CopyConstruct(Array* self, con
 }
 
 void fn_710000e2ec(UnkElem18Vector* self, const UnkElem18Vector* other) {
-    CopyConstruct<UnkElem18Vector, UnkElem18, fn_710000e610, fn_710000e7a4>(self, *other);
+    CopyConstruct<UnkElem18Vector, UnkElem18, CBlendSpaceResource_ReserveTargets, CBlendSpaceResource_PushBackTargetCopy>(self, *other);
 }
 
 // The same for an array of 0x60-byte records (base/UnkFreedVectorPair.h) in another unit, through its

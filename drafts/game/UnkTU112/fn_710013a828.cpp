@@ -40,7 +40,7 @@ UnkTunableLine fn_710013a828(const UnkTunableReflValue* value) {
     UnkTunableLine line;
     char buffer[0x40];
     const char* text = buffer;
-    switch (fn_7100024140(reinterpret_cast<const CType*>(value->type))) {
+    switch (CBaseObject_GetTypeCodeChar(reinterpret_cast<const CType*>(value->type))) {
     case 'b':
         // a bool, tested as a byte
         if (IsKindOf(value, fn_710000d228) && *DataOf<u8>(value) != 0)

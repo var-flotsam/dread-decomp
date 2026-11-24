@@ -71,13 +71,13 @@ struct UnkBlendSpaceEntry_b49a1 {
 };
 
 struct UnkBlendSpaceMap_b49a1;
-UnkBlendSpaceEntry_b49a1* fn_710000efe0(UnkBlendSpaceMap_b49a1* self, u32 key);  // find or add
+UnkBlendSpaceEntry_b49a1* CBlendSpaceResource_GetTargetAtIndexGrowing(UnkBlendSpaceMap_b49a1* self, u32 key);  // find or add
 
 void fn_710000e0e0(UnkBlendSpaceMap_b49a1* self, const u32* key, const UnkBlendSpaceEntry_b49a1* value) {
-    *fn_710000efe0(self, *key) = *value;
+    *CBlendSpaceResource_GetTargetAtIndexGrowing(self, *key) = *value;
 }
 
 // The same with the value moved in (fn_710000e1b8): the reference has no move, so it is copied.
 void fn_710000e1b8(UnkBlendSpaceMap_b49a1* self, const u32* key, UnkBlendSpaceEntry_b49a1* value) {
-    *fn_710000efe0(self, *key) = static_cast<UnkBlendSpaceEntry_b49a1&&>(*value);
+    *CBlendSpaceResource_GetTargetAtIndexGrowing(self, *key) = static_cast<UnkBlendSpaceEntry_b49a1&&>(*value);
 }

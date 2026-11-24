@@ -19,7 +19,7 @@ static inline bool Contains(const CFilePathStrId& path, const CFilePathStrId& pa
     return CRntString_Contains(str, part.data->text ? part.data->text : g_unk_710162e2ed);
 }
 
-u32 fn_71000e9198(void* self, const CFilePathStrId& path, u32 fallback) {
+u32 CRes_GetKindFromPathExtension(void* self, const CFilePathStrId& path, u32 fallback) {
     static CFilePathStrId s_lookupTexture("_lookup.bctex", true);
     static CFilePathStrId s_texture(".bctex", true);
     static CFilePathStrId s_model(".bcmdl", true);

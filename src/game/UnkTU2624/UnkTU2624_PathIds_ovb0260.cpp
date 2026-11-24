@@ -46,7 +46,7 @@ UnkResPathVec fn_7100fc85d4() {
         if ((s32)n >= (s32)new_capacity)
             for (;;) {
             }
-        fn_7100018450(&result, new_capacity);
+        CAsset_ReserveFilePathIdVec(&result, new_capacity);
         CFilePathStrId* slot = &result.data[result.count];
         base::global::UnkStringData* value = holder->path.data;
         __builtin_memcpy(slot, &value, sizeof(value));

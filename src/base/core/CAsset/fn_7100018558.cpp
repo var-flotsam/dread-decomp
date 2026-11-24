@@ -47,11 +47,11 @@ struct UnkRecord80 {
     u64 unk_0x0[0x80 / 8];
 };
 using UnkIdRecordMap = UnkStrIdKeyedMap<UnkRecord80>;
-void fn_710001871c(UnkIdRecordMap* self);             // frees the storage
+void CAsset_ShrinkIdRecordMapToCount(UnkIdRecordMap* self);             // frees the storage
 void fn_7100017948(UnkIdRecordMap* self, u32 capacity);  // Reserve
 
-UnkIdRecordMap* fn_7100018558(UnkIdRecordMap* self, const UnkIdRecordMap* other) {
-    return Assign<UnkRecord80, fn_7100017ce8, fn_710001871c, fn_7100017948, fn_7100017ba0>(self, other);
+UnkIdRecordMap* CAsset_CopyAssignIdRecordMap(UnkIdRecordMap* self, const UnkIdRecordMap* other) {
+    return Assign<UnkRecord80, fn_7100017ce8, CAsset_ShrinkIdRecordMapToCount, fn_7100017948, CAsset_CopyConstructRecord>(self, other);
 }
 
 // Ids to 0x60-byte objects destroyed through their vtable.

@@ -21,6 +21,6 @@ void fn_710077cd60() {
         CStrId n("darkness::EDarknessPreset", true);
         fn_710077cb6c(&base::reflection::TypeObject<darkness::EDarknessPreset, UnkEnumType>::object, n, fn_710077ca20, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<darkness::EDarknessPreset, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<darkness::EDarknessPreset, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_71727158f8, &base::reflection::TypeObject<darkness::EDarknessPreset, UnkEnumType>::object);
 }

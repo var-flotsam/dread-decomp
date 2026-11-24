@@ -39,7 +39,7 @@ static inline bool Persistent(UnkClassField_0xb0* f) {
 
 s32 fn_7100097250(UnkClass_l097250* self) {
     UnkScopedHashStream s(0x16, nullptr);
-    s.Put(fn_710009d110(reinterpret_cast<UnkHashed*>(self)));
+    s.Put(CType_ComputeBaseHash(reinterpret_cast<UnkHashed*>(self)));
     UnkClassField_0xb0* end = self->fields + self->count;
     for (UnkClassField_0xb0* f = self->fields; f != end; ++f) {
         if (Persistent(f))

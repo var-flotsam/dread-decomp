@@ -45,7 +45,7 @@ static inline void Link(const char*& str, u64 base) {
 }
 
 static inline UnkAssetResRef Load(void* loader, const UnkResKey& key) {
-    return fn_7100017878(loader, reinterpret_cast<const UnkStrIdPathPair*>(&key));
+    return CAsset_GetResourceForIdAndPath(loader, reinterpret_cast<const UnkStrIdPathPair*>(&key));
 }
 
 void fn_71001aaf80(UnkLinkOwner_l1aaf80* self) {

@@ -21,6 +21,6 @@ bool fn_71000a1ed4(const UnkReflAssignValue82_b66a1* self, const UnkReflAssignVa
     alignas(8) u8 from[0x10];
     fn_71000a1710(reinterpret_cast<UnkReflValueArg*>(to), reinterpret_cast<const base::reflection::UnkReflValue*>(self));
     fn_71000a1710(reinterpret_cast<UnkReflValueArg*>(from), reinterpret_cast<const base::reflection::UnkReflValue*>(other));
-    return fn_710009d5d4(static_cast<const char*>(self->type), reinterpret_cast<base::reflection::UnkTypedRef*>(to),
+    return CType_AreValuesEqual(static_cast<const char*>(self->type), reinterpret_cast<base::reflection::UnkTypedRef*>(to),
                          reinterpret_cast<const base::reflection::UnkTypedRef*>(from));
 }

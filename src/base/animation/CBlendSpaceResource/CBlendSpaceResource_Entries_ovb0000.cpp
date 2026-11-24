@@ -86,7 +86,7 @@ using UnkBlendEntries_ovb0000 = base::global::CRntVector<UnkBlendEntry_ovb0000>;
 struct UnkElem18;
 struct UnkElem18Vector;
 
-void fn_710000e610(UnkElem18Vector* self, u32 n) {
+void CBlendSpaceResource_ReserveTargets(UnkElem18Vector* self, u32 n) {
     UnkBlendEntries_ovb0000* v = reinterpret_cast<UnkBlendEntries_ovb0000*>(self);
     if (v->capacity >= n)
         return;
@@ -105,7 +105,7 @@ void fn_710000e610(UnkElem18Vector* self, u32 n) {
     v->capacity = n;
 }
 
-void fn_710000e7a4(UnkElem18Vector* self, const UnkElem18* element) {
+void CBlendSpaceResource_PushBackTargetCopy(UnkElem18Vector* self, const UnkElem18* element) {
     UnkBlendEntries_ovb0000* v = reinterpret_cast<UnkBlendEntries_ovb0000*>(self);
     const UnkBlendEntry_ovb0000* value = reinterpret_cast<const UnkBlendEntry_ovb0000*>(element);
     u32 n = v->count;
@@ -115,12 +115,12 @@ void fn_710000e7a4(UnkElem18Vector* self, const UnkElem18* element) {
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }
-    fn_710000e610(self, new_capacity);
+    CBlendSpaceResource_ReserveTargets(self, new_capacity);
     new (&v->data[v->count]) UnkBlendEntry_ovb0000(*value);
     ++v->count;
 }
 
-void fn_710000ee20(UnkElem18Vector* self, u32 index) {
+void CBlendSpaceResource_EraseBlendTargetAtIndex(UnkElem18Vector* self, u32 index) {
     UnkBlendEntries_ovb0000* v = reinterpret_cast<UnkBlendEntries_ovb0000*>(self);
     if (index < v->count) {
         v->data[index].~UnkBlendEntry_ovb0000();
@@ -140,9 +140,9 @@ UnkElem18Vector* fn_710000e890(UnkElem18Vector* self, const UnkElem18Vector* oth
         for (u32 i = 0; i < v->count; ++i)
             v->data[i].~UnkBlendEntry_ovb0000();
         v->count = 0;
-        fn_710000e610(self, o->capacity);
+        CBlendSpaceResource_ReserveTargets(self, o->capacity);
         for (const UnkBlendEntry_ovb0000 *it = o->data, *end = it + o->count; it != end; ++it)
-            fn_710000e7a4(self, reinterpret_cast<const UnkElem18*>(it));
+            CBlendSpaceResource_PushBackTargetCopy(self, reinterpret_cast<const UnkElem18*>(it));
     }
     return self;
 }
@@ -151,13 +151,13 @@ void fn_710000e9c0(UnkElem18Vector* self, const UnkBlendEntry_ovb0000* value, u3
     UnkBlendEntries_ovb0000* v = reinterpret_cast<UnkBlendEntries_ovb0000*>(self);
     u32 n = v->count;
     if (n == index) {
-        fn_710000e7a4(self, reinterpret_cast<const UnkElem18*>(value));
+        CBlendSpaceResource_PushBackTargetCopy(self, reinterpret_cast<const UnkElem18*>(value));
         return;
     }
     u32 capacity = v->capacity;
     if (capacity <= n && v->step != 0)
         capacity = v->GrownCapacity(n);
-    fn_710000e610(self, capacity);
+    CBlendSpaceResource_ReserveTargets(self, capacity);
     for (u32 i = v->count - 1; i >= index; --i) {
         UnkBlendEntry_ovb0000* e = &v->data[i];
         new (e + 1) UnkBlendEntry_ovb0000(static_cast<UnkBlendEntry_ovb0000&&>(*e));
@@ -179,14 +179,14 @@ void fn_710000ebe0(UnkElem18Vector* self, UnkBlendEntry_ovb0000* value, u32 inde
         if ((s32)capacity <= (s32)index)
             for (;;) {
             }
-        fn_710000e610(self, capacity);
+        CBlendSpaceResource_ReserveTargets(self, capacity);
         new (&v->data[v->count]) UnkBlendEntry_ovb0000(static_cast<UnkBlendEntry_ovb0000&&>(*value));
         ++v->count;
         return;
     } else {
         if (capacity <= n && v->step != 0)
             capacity = v->GrownCapacity(n);
-        fn_710000e610(self, capacity);
+        CBlendSpaceResource_ReserveTargets(self, capacity);
         for (u32 i = v->count - 1; i >= index; --i) {
             UnkBlendEntry_ovb0000* e = &v->data[i];
             new (e + 1) UnkBlendEntry_ovb0000(static_cast<UnkBlendEntry_ovb0000&&>(*e));
@@ -199,15 +199,15 @@ void fn_710000ebe0(UnkElem18Vector* self, UnkBlendEntry_ovb0000* value, u32 inde
     ++v->count;
 }
 
-UnkBlendEntry_ovb0000* fn_710000efe0(UnkElem18Vector* self, u32 index) {
+UnkBlendEntry_ovb0000* CBlendSpaceResource_GetTargetAtIndexGrowing(UnkElem18Vector* self, u32 index) {
     UnkBlendEntries_ovb0000* v = reinterpret_cast<UnkBlendEntries_ovb0000*>(self);
     if (v->field_0x14 && v->count <= index) {
         u32 capacity = v->capacity;
         if (capacity <= index && v->step != 0)
             capacity = v->GrownCapacity(index);
-        fn_710000e610(self, capacity);
+        CBlendSpaceResource_ReserveTargets(self, capacity);
         u32 n = index + 1;
-        fn_710000e610(self, n);
+        CBlendSpaceResource_ReserveTargets(self, n);
         for (u32 i = v->count; i < n; ++i)
             new (&v->data[i]) UnkBlendEntry_ovb0000();
         v->count = n;
@@ -243,5 +243,5 @@ void fn_710000e08c(UnkElem18Vector* self, const u32* it) {
     UnkBlendEntry_ovb0000* base = reinterpret_cast<UnkBlendEntry_ovb0000*>(self);
     u64 offset = (u64)*it * sizeof(UnkBlendEntry_ovb0000);
     UnkBlendEntry_ovb0000* p = reinterpret_cast<UnkBlendEntry_ovb0000*>(reinterpret_cast<char*>(base) + offset);
-    fn_710000ee20(self, (u32)(p - base));
+    CBlendSpaceResource_EraseBlendTargetAtIndex(self, (u32)(p - base));
 }

@@ -85,5 +85,5 @@ void fn_7100cca4b8(UnkPlayEnvironmentStreamEvent_ovb0138* self) {
     desc.volume = self->volume;
     desc.direction = self->reverse ? -1 : 1;
     desc.field_0x30 = self->fFadeInTime;
-    fn_7100108620(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820), reinterpret_cast<UnkSoundDesc_ovb0074*>(&desc));
+    CSoundSystem_PlayOrRestartSound(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820), reinterpret_cast<UnkSoundDesc_ovb0074*>(&desc));
 }

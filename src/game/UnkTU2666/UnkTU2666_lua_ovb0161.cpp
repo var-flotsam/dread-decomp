@@ -199,7 +199,7 @@ s32 PlayCustomMusic(lua_State* L) {
 // ---- the rumble manager ----
 using base::input::UnkRumbleManager;
 struct UnkTunableRumbleManager_b0068;
-void fn_7100075020(UnkTunableRumbleManager_b0068* self, bool flag, const u32* channels);
+void CTunableRumbleManager_SetChannelsPaused(UnkTunableRumbleManager_b0068* self, bool flag, const u32* channels);
 
 // A zero whose constructor isn't constexpr, so the static is guarded.
 struct UnkRumbleStaticZero_b0161 {
@@ -231,7 +231,7 @@ s32 PausePadVibration(lua_State*) {
     base::input::UnkRumbleManager* manager =
         Singleton_b0161<base::input::UnkRumbleManager, 0x2210, fn_71000733e4>(g_unk_7101d47348);
     alignas(8) u32 mask = UnkRumbleDefaultMask();
-    fn_7100075020(reinterpret_cast<UnkTunableRumbleManager_b0068*>(manager), true, &mask);
+    CTunableRumbleManager_SetChannelsPaused(reinterpret_cast<UnkTunableRumbleManager_b0068*>(manager), true, &mask);
     return 0;
 }
 }  // namespace lua_bind
@@ -312,7 +312,7 @@ s32 RestorePadVibration(lua_State*) {
     base::input::UnkRumbleManager* manager =
         Singleton_b0161<base::input::UnkRumbleManager, 0x2210, fn_71000733e4>(g_unk_7101d47348);
     alignas(8) u32 mask = UnkRumbleDefaultMask();
-    fn_7100075020(reinterpret_cast<UnkTunableRumbleManager_b0068*>(manager), false, &mask);
+    CTunableRumbleManager_SetChannelsPaused(reinterpret_cast<UnkTunableRumbleManager_b0068*>(manager), false, &mask);
     return 0;
 }
 }  // namespace lua_bind
@@ -515,7 +515,7 @@ s32 PlayPosSound(lua_State* L) {
 struct UnkEnumType;
 enum class EDamageStrength : u32;
 template <> UnkEnumType base::reflection::TypeObject<EDamageStrength, UnkEnumType>::object asm("g_unk_7172730858");
-s32 fn_710009976c(const base::reflection::CEnumType* self, const base::global::CStrId* name);
+s32 CEnumType_GetValueByNameIdOrMinusOne(const base::reflection::CEnumType* self, const base::global::CStrId* name);
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
 
@@ -560,7 +560,7 @@ s32 ImpactPlayerLeft(lua_State* L) {
             request.field_0x50 = 1.0f;
             {
                 CStrId id(name, true);
-                request.field_0xc8 = fn_710009976c(reinterpret_cast<const base::reflection::CEnumType*>(&base::reflection::TypeObject<EDamageStrength, UnkEnumType>::object), &id);
+                request.field_0xc8 = CEnumType_GetValueByNameIdOrMinusOne(reinterpret_cast<const base::reflection::CEnumType*>(&base::reflection::TypeObject<EDamageStrength, UnkEnumType>::object), &id);
             }
             player->field_0x1b8->vf_0x188(&request);
         }
@@ -580,7 +580,7 @@ s32 ImpactPlayerRight(lua_State* L) {
             request.field_0x50 = 1.0f;
             {
                 CStrId id(name, true);
-                request.field_0xc8 = fn_710009976c(reinterpret_cast<const base::reflection::CEnumType*>(&base::reflection::TypeObject<EDamageStrength, UnkEnumType>::object), &id);
+                request.field_0xc8 = CEnumType_GetValueByNameIdOrMinusOne(reinterpret_cast<const base::reflection::CEnumType*>(&base::reflection::TypeObject<EDamageStrength, UnkEnumType>::object), &id);
             }
             player->field_0x1b8->vf_0x188(&request);
         }

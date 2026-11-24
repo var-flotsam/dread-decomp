@@ -106,7 +106,7 @@ int GetCameraCtrlValue(lua_State* L) {
     if (!field)
         return 0;
 
-    switch (fn_7100024140(field->type)) {
+    switch (CBaseObject_GetTypeCodeChar(field->type)) {
     case 'b': {
         bool value = false;
         if (ReadField(camera, key, &value))

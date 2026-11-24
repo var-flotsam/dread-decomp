@@ -28,11 +28,11 @@ static inline void Destroy(char* self) {
     fn_710009cc04(self);
 }
 
-void fn_7100099468(char* self) { Destroy(self); }
+void CEnumType_Destroy(char* self) { Destroy(self); }
 
 void fn_7100099a84(char* self) { Destroy(self); }
 
-void fn_7100099550(char* self) {
+void CEnumType_DestroyAndDelete(char* self) {
     Destroy(self);
     fn_7100083c00(self);
 }
