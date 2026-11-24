@@ -24,5 +24,5 @@ __attribute__((always_inline)) static inline void Truncate(UnkIdPair20Array* sel
     self->count = n;
 }
 
-void CPopUpComposition_TruncateStrIdPairArray(UnkIdPair20Array* self, u32 n) { Truncate(self, n); }
+void fn_7100b607f0(UnkIdPair20Array* self, u32 n) { Truncate(self, n); }
 void fn_7100ec4fd4(UnkIdPair20Array* self, u32 n) { Truncate(self, n); }

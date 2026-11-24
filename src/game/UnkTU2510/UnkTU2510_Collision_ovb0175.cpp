@@ -470,7 +470,8 @@ UnkColliderResult fn_7100d57ab4(UnkCollider* a, UnkCollider* b, void* c, u32 d) 
 template <u32 Offset>
 struct UnkWeakRefAt;
 void SetWeakRefAt0ToObjectHandle(UnkWeakRefAt<0>* self, UnkWeakTarget* other);
-void CMeleeComponent_SetSecondWeakTargetAndFlag(UnkWeakRefAt<8>* self, UnkWeakTarget* other);
+struct UnkWeakTargetSlot_A5_b63;  // src/game/CMeleeComponent/CMeleeComponent_WeakSet_A5_b63.cpp
+void fn_710092f0b4(UnkWeakTargetSlot_A5_b63* self, UnkWeakTarget* target);
 
 struct UnkHitRef_597b4 {
     UnkRefObject* ptr;
@@ -551,7 +552,7 @@ UnkColliderResult fn_7100d597b4(UnkSelf_597b4* self, const UnkQueryIn_597b4* q) 
     desc.values[8] = q->values[8];
     desc.values[9] = q->values[9];
     desc.values[10] = q->flags;
-    CMeleeComponent_SetSecondWeakTargetAndFlag(reinterpret_cast<UnkWeakRefAt<8>*>(&desc), self->second);
+    fn_710092f0b4(reinterpret_cast<UnkWeakTargetSlot_A5_b63*>(&desc), self->second);
     u32 r;
     if (fn_710009d52c(self->target->vf_0x0(), fn_7100d361c0())) {
         UnkReflObject* obj = self->target;

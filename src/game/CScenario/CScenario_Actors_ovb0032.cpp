@@ -225,7 +225,7 @@ struct UnkScenarioLayer_ovb0032 {
 static_assert(sizeof(UnkScenarioLayer_ovb0032) == 0xc8, "UnkScenarioLayer_ovb0032 layout");
 
 // The value stored under `*key` in layer `index`, or null.
-void* CScenario_FindLayerValueByKey(UnkScenarioLayer_ovb0032* layers, u32 index, UnkScenarioKey_ovb0032* const* key) {
+void* fn_71011a3234(UnkScenarioLayer_ovb0032* layers, u32 index, UnkScenarioKey_ovb0032* const* key) {
     UnkScenarioLayer_ovb0032* layer = &layers[index];
     fn_710025bda0(layer->field_0x20);
     UnkScenarioNode_ovb0032* node = nullptr;

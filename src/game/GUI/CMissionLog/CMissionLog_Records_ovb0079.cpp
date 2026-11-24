@@ -57,7 +57,7 @@ UnkElem38Array* fn_7100b5c3e8(UnkElem38Array* self, const UnkElem38Array* other)
         ClearRecords(self);
         fn_7100b5c28c(self, other->capacity);
         for (const UnkElem38 *it = other->data, *end = it + other->count; it != end; ++it)
-            CMissionLog_EntriesPushBack(self, it);
+            fn_7100b593d0(self, it);
     }
     return self;
 }

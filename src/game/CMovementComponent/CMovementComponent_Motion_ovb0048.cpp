@@ -130,7 +130,7 @@ static inline UnkVec3f Cross(f32 ax, f32 ay, f32 az, f32 bx, f32 by, f32 bz) {
     return r;
 }
 
-UnkVec3f CMovementComponent_GetContactTangent(bool flag, const UnkContact_ovb0048* contact) {
+UnkVec3f fn_71010d252c(bool flag, const UnkContact_ovb0048* contact) {
     f32 x = 0.0f, y = 1.0f, z = 0.0f;
     if (contact && !flag && contact->shape && contact->shape->field_0x10) {
         x = -contact->normal_x;
