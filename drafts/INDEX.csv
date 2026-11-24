@@ -583,7 +583,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71003f1d94,656,drafts/game/CBigkranXSpitAttack/fn_71003f1d94.cpp,control flow,52.4,77,lean,
 0x71003f3390,896,drafts/game/CBigkranXSpitAttack/fn_71003f3390.cpp,control flow,34.8,130,lean-r2kf,control flow: original keeps the entity in two registers plus a flag (x26/x27/w19); one more saved reg and the
 0x71003f50d0,672,drafts/game/CBigkranXAIComponent/fn_71003f50d0.cpp,registers or order,96.4,6,lean-r2ki,ALIAS: 13% -> 96.4% without strict aliasing (unit 600 is not in data/unit_flags.csv): the original reloads the
-0x71003f67b0,1220,drafts/game/CCaterzillaAIComponent/fn_71003f67b0.cpp,operations,96.7,10,sib-cloud-1,10 insns differ; likely register/ordering of a few stores
+0x71003f67b0,1220,drafts/game/CCaterzillaAIComponent/fn_71003f67b0.cpp,build fails,,,sib-cloud-1,10 insns differ; likely register/ordering of a few stores
 0x71003f78cc,1460,drafts/game/CCaterzillaAIComponent/fn_71003f78cc.cpp,control flow,0.8,357,lean-fam0a,code lines up but the stack differs (frame 0x110 vs 0xe0; x28 saved; links copy and link swapped slots); fn_71
 0x71003f9d0c,476,drafts/game/UnkTU604/fn_71003f9d0c.cpp,operations,87.4,14,lean-oc2,append loop: the original reloads the count after linking the node to the tail (an untyped store in the origin
 0x71003fbaac,740,drafts/game/CCentralUnitCannonAIComponent/fn_71003fbaac.cpp,operations,22.2,142,lean-r2kd,delegate stores need a by-value MakeDelegate (gives the two base registers); the state list array base (self+0
@@ -1035,12 +1035,12 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100719894,604,drafts/game/CAudioComponent/fn_7100719894.cpp,control flow,5.3,141,lean-o2,our build unswitches the search loop on time < 0 (two loop copies); original keeps the fade-time select inside
 0x710071a398,396,drafts/game/CAudioComponent/fn_710071a398.cpp,calls,0.0,99,lean-ob2,ours unswitches the inner loop on the near-zero scale test (two calls); original selects with fcsel
 0x710071a524,696,drafts/game/CAudioComponent/fn_710071a524.cpp,calls,30.5,112,lean-o2,ours merges the two fn_7100105a80 calls (at once / fade) and CSEs the near-zero test; original keeps 7 calls a
-0x710071b550,1432,drafts/game/CAudioComponent/fn_710071b550.cpp,control flow,43.9,193,lean-r2kf,the original checks the played handle twice (once with the 0x6c flag; then again before the rumble); ours chec
-0x710071bae8,1432,drafts/game/CAudioComponent/fn_710071bae8.cpp,control flow,41.4,209,lean-r2kf,after fn_710071a7dc the handle check is branchless (cset/orr) in ours; branches in the original; player/owner
+0x710071b550,1432,drafts/game/CAudioComponent/fn_710071b550.cpp,build fails,,,lean-r2kf,the original checks the played handle twice (once with the 0x6c flag; then again before the rumble); ours chec
+0x710071bae8,1432,drafts/game/CAudioComponent/fn_710071bae8.cpp,build fails,,,lean-r2kf,after fn_710071a7dc the handle check is branchless (cset/orr) in ours; branches in the original; player/owner
 0x710071da58,852,drafts/game/CAudioComponent/fn_710071da58.cpp,control flow,52.1,99,lean-o2,link user-count block: original duplicates the zero-links path (users 0) and swaps the count/key registers; re
 0x710071ddac,536,drafts/game/CAudioComponent/fn_710071ddac.cpp,operations,5.2,126,lean-o2,loop strength reduction: original walks a pointer with a byte down-counter; ours keeps base+offset or a u32 co
 0x710071dfc4,696,drafts/game/CAudioComponent/fn_710071dfc4.cpp,control flow,22.4,134,lean-sib2,erase loop control flow: original re-tests it==end after erase and sinks the not-stopped advance; opcodes 96.8
-0x710071e668,2976,drafts/game/CAudioComponent/fn_710071e668.cpp,calls,6.3,462,lean-r6kb,original inlines the play-request block three times (one per timer branch); ours inlines it once (static; one
+0x710071e668,2976,drafts/game/CAudioComponent/fn_710071e668.cpp,build fails,,,lean-r6kb,original inlines the play-request block three times (one per timer branch); ours inlines it once (static; one
 0x710071f208,852,drafts/game/CAudioComponent/fn_710071f208.cpp,control flow,30.0,145,lean-r2ki,control flow: 3 returns vs 2; slot loop wants a u64 index (byte-count loop); draft is the last attempt (30%; l
 0x7100722588,1328,drafts/game/CAutofocusAimCameraCtrl/fn_7100722588.cpp,control flow,38.0,204,lean-fam0a,fitting loop: original evaluates the 0.001 band test as or'ed csets before the have<need test and counts up; o
 0x7100722ab8,1640,drafts/game/CAutofocusAimCameraCtrl/fn_7100722ab8.cpp,operations,3.6,395,sib-cloud-1,84% opcodes in order; frame 0xa0 vs 0x90; 3 extra stack slots; instruction count 416 vs 410
@@ -1902,7 +1902,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100fcacd8,248,drafts/game/sound/SGUISoundEventsSelector/fn_7100fcacd8.cpp,control flow,24.2,41,lean-b5,search loop shape (pointer loop with byte counter; lagging found pointer)
 0x7100fcd7f0,836,drafts/game/UnkTU2626/fn_7100fcd7f0.cpp,operations,12.4,181,lean-r2kf,same template as 710101e7d8; first loop: != gives an LSR down-counter; < gives the end-pointer compare but b.h
 0x7100fcdbb8,840,drafts/game/UnkTU2626/fn_7100fcdbb8.cpp,operations,72.4,57,lean-r2kf,pointer loops written with < (b.hs/b.lo for the original b.eq/b.ne; != gives an LSR down-counter); erase index
-0x7100fce18c,512,drafts/game/UnkTU2626/fn_7100fce18c.cpp,conditions,96.1,5,lean-ob3,push tail: original reloads count after the key store (key type aliases); a two-word key struct (drafts/7100fc
+0x7100fce18c,512,drafts/game/UnkTU2626/fn_7100fce18c.cpp,build fails,,,lean-ob3,push tail: original reloads count after the key store (key type aliases); a two-word key struct (drafts/7100fc
 0x7100fcfe14,812,drafts/game/UnkTU2635/fn_7100fcfe14.cpp,operations,79.3,41,lean-r2ke,Find loop: original keeps the slot pointer (separate add) where ours folds a post-index load; one instruction
 0x7100fd0398,924,drafts/game/UnkTU2635/fn_7100fd0398.cpp,control flow,1.6,227,lean-r2ke,calls now line up (16); original keeps the found state in two regs plus a found flag (x25/x26 frame) in the id
 0x7100fd0998,636,drafts/game/UnkTU2635/fn_7100fd0998.cpp,operations,5.7,146,lean-r2ke,original keeps search result in two regs plus a found flag (frame 0x50; x23/x24); mine merges d8 test with ccm
@@ -2129,7 +2129,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710113cb74,968,drafts/game/CGrabComponent/fn_710113cb74.cpp,control flow,24.3,183,lean-oc1,mode-2 translation: original merges y as an integer phi (fmov w8;s0) and stores x;y;z together; ours branches
 0x710113e82c,816,drafts/game/CGrabComponent/fn_710113e82c.cpp,build fails,,,lean-fam0a,control flow: target re-read after the CanBeGrabbed check is not PRE'd on the no-animation path; and the origi
 0x7101142494,1064,drafts/game/CInventoryComponent/fn_7101142494.cpp,calls,1.9,230,sib-cloud-1,22 calls vs 20 (two string-id release calls and an init slow path missing); property key guard/table registers
-0x710114c068,1456,drafts/game/CPositionalSoundComponent/fn_710114c068.cpp,calls,0.3,188,sib-cloud-1,the start-sound step (string pick; key compare; path id; handle) is inlined three times in the original but st
+0x710114c068,1456,drafts/game/CPositionalSoundComponent/fn_710114c068.cpp,build fails,,,sib-cloud-1,the start-sound step (string pick; key compare; path id; handle) is inlined three times in the original but st
 0x710114ccd0,132,drafts/game/CPositionalSoundComponent/fn_710114ccd0.cpp,control flow,0.0,32,test40,compiler fuses redundant null check and compares; branch count 10 vs 11
 0x710114debc,628,drafts/game/CFXComponent/fn_710114debc.cpp,registers or order,95.5,7,lean-sib2,scheduling: original loads the file-path pool (for +0xf0) above the id list count/head/tail zeroing stores; ou
 0x710114e130,728,drafts/game/CFXComponent/fn_710114e130.cpp,operations,15.7,153,lean,
@@ -2160,7 +2160,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7101179878,964,drafts/game/CAnimationComponent/fn_7101179878.cpp,control flow,15.4,195,lean-oc1,block placement of the shared return-false and the matrix-copy loop shape; returns bool though the header decl
 0x710117a190,788,drafts/game/CAnimationComponent/fn_710117a190.cpp,operations,42.4,110,lean,listener walk matches on base::UnkCountedDeferredSet; the rest is the keep-position matrix copy: original copies rows as 12-byte vectors plus a word with no stack copy (a matrix type with vector rows)
 0x7101180224,652,drafts/game/CAreaSoundComponent/fn_7101180224.cpp,operations,6.1,151,lean-r2kg,near-match: every store; branch and call lines up; only the original computes &handles[1] (self+0xae8) early i
-0x7101181094,1096,drafts/game/CAreaSoundComponent/fn_7101181094.cpp,operations,89.1,29,lean-fam0a,the two static descriptors sit elsewhere in .bss relative to their guards (orig +0x90/+0x1a8); shifting UnkSou
+0x7101181094,1096,drafts/game/CAreaSoundComponent/fn_7101181094.cpp,build fails,,,lean-fam0a,the two static descriptors sit elsewhere in .bss relative to their guards (orig +0x90/+0x1a8); shifting UnkSou
 0x7101186a80,764,drafts/game/UnkTU2726/fn_7101186a80.cpp,calls,18.3,124,lean-r2ki,original keeps the first item's creation in each switch case and sinks only the second (ours sinks both); unit
 0x7101188c2c,2796,drafts/game/UnkTU2726/fn_7101188c2c.cpp,build fails,,,lean-r6kb,same instructions; stack frame 0x30 smaller: case 9's sound/rumble/music/prompt-callback locals share slots in
 0x7101189cdc,400,drafts/game/UnkTU2726/fn_7101189cdc.cpp,control flow,10.0,88,lean-oc2,block layout: original reloads team part +0x100 for the second lookup and puts both instance creations out of
