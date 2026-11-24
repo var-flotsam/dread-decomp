@@ -131,6 +131,37 @@ class Definitions(unittest.TestCase):
         self.assertEqual(decl_check.new_type_differences(base, base), [])
         self.assertEqual(decl_check.beyond_namespace(cur), 3)
 
+    def test_a_name_taken_back_brings_no_new_type_difference(self):
+        """tools/rename.py --revert: the definition is fn_<addr> again, so a local declaration with another
+        type, there since before the name, is compared with it again. The base is read with today's names."""
+        def tree(name):
+            return {"src/a.cpp": f"void {name}(UnkA* self) {{\n}}\n",
+                    "src/b.cpp": f"void {name}(UnkB* self);\nvoid fn_7100000190() {{ {name}(nullptr); }}\n"}
+
+        def differences(files):
+            return decl_check.definition_type_differences(files, decl_check.Report(files))
+
+        base, cur = tree("CFoo_Bar"), tree("fn_7100000180")
+        named = [{"address": "0x7100000180", "name": "CFoo_Bar"}, {"address": "0x71000001a0", "name": "CFoo::Baz"}]
+        renames = decl_check.renames_since(named, [])
+        self.assertEqual(renames, {"CFoo_Bar": "fn_7100000180"})
+        self.assertEqual(list(differences(cur)), ["fn_7100000180"])
+        self.assertEqual(decl_check.new_type_differences(differences(cur), differences(base)), ["fn_7100000180"])
+        base = decl_check.as_renamed(base, renames)
+        self.assertEqual(base, cur)
+        self.assertEqual(decl_check.new_type_differences(differences(cur), differences(base)), [])
+
+    def test_names_given_and_changed_since_the_base(self):
+        base = [{"address": "0x7100000180", "name": "Old"}, {"address": "0x7100000190", "name": "Kept"}]
+        cur = [{"address": "0x7100000180", "name": "New"}, {"address": "0x7100000190", "name": "Kept"},
+               {"address": "0x71000001a0", "name": "Given"}]
+        renames = decl_check.renames_since(base, cur)
+        self.assertEqual(renames, {"Old": "New", "fn_71000001a0": "Given"})
+        files = {"src/a.cpp": "void Old(int);\nvoid OldOther(int);\nvoid fn_71000001a0();\n"}
+        self.assertEqual(decl_check.as_renamed(files, renames),
+                         {"src/a.cpp": "void New(int);\nvoid OldOther(int);\nvoid Given();\n"})
+        self.assertIs(decl_check.as_renamed(files, {}), files)
+
     def test_the_definition_gets_its_line(self):
         found = decl_check.definitions("// a comment\n\nbool fn_7100000170(const char* name,\n    u32 n) {\n    return n;\n}\n", "src/x.cpp")
         self.assertEqual([(d.name, d.signature, d.line) for d in found], [("fn_7100000170", "bool fn_7100000170(const char*, u32)", 3)])
