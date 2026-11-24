@@ -1812,7 +1812,7 @@ address,size,name,name_source,subsystem,status
 0x71010503d0,104,CFXPool::CDefinition::refl_Destroy,reflection,game,O
 0x7101050438,156,CFXPool::CDefinition::refl_CopyAssign,reflection,game,O
 0x71010504d4,156,CFXPool::CDefinition::refl_MoveAssign,reflection,game,O
-0x7101050570,772,fn_7101050570,unknown,game?,O
+0x7101050570,772,CDefinition_InitStatics,inferred,game?,O
 0x7101050874,4,CLogicCamera::refl_AddAttributes,reflection,game,O
 0x7101050878,244,CLogicCamera::refl_GetClass,reflection,game,O
 0x710105096c,1476,CLogicCamera::refl_AddFields,reflection,game,O
@@ -4168,7 +4168,7 @@ address,size,name,name_source,subsystem,status
 0x71010cc9fc,88,fn_71010cc9fc,unknown,game?,O
 0x71010cca54,12,fn_71010cca54,unknown,game?,O
 0x71010cca60,2072,fn_71010cca60,unknown,game?,U
-0x71010cd278,184,fn_71010cd278,unknown,game?,O
+0x71010cd278,184,CEnemyMovement_ProbeHitAlongDirFromOwnerPos,inferred,game?,O
 0x71010cd330,24,fn_71010cd330,unknown,game?,O
 0x71010cd348,340,fn_71010cd348,unknown,game?,U
 0x71010cd49c,148,fn_71010cd49c,unknown,game?,O

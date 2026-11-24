@@ -109,7 +109,7 @@ static inline bool Differ(const CStrId& a, const CStrId& b) {
     return a.data != b.data;
 }
 
-void fn_7100b02404(UnkDialogClose_ovb0069* self) {
+void CDialogComposition_ClosePage(UnkDialogClose_ovb0069* self) {
     if (self->page.data != &g_unk_7101d47108->empty) {
         auto* d = reinterpret_cast<UnkDlgIdData_ovb0069*>(self->page.data);
         ++d->reads;

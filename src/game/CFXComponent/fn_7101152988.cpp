@@ -34,7 +34,7 @@ struct UnkFXEffectEntry_l152988 {
 };
 
 struct UnkFXList_l1579c8;
-void fn_71011579c8(UnkFXList_l1579c8* self, u32 capacity);
+void CFXComponent_ReserveEffectListCapacity(UnkFXList_l1579c8* self, u32 capacity);
 
 struct UnkFXEffectList_l152988 {
     UnkFXEffectEntry_l152988* values;
@@ -45,7 +45,7 @@ struct UnkFXEffectList_l152988 {
 
     void Add(const CStrId& key, UnkFXEffect_l152988* effect, const UnkFXEffectInfo_l152988& info) {
         if (count == capacity)
-            fn_71011579c8(reinterpret_cast<UnkFXList_l1579c8*>(this), count + step);
+            CFXComponent_ReserveEffectListCapacity(reinterpret_cast<UnkFXList_l1579c8*>(this), count + step);
         new (&keys[count]) CStrId(key);
         UnkFXEffectEntry_l152988& entry = values[count];
         entry.effect = effect;
@@ -66,7 +66,7 @@ struct UnkFXComponent_l152988 {
     UnkFXEffectList_l152988 effects;  // 0x50
 };
 
-void fn_7101152988(UnkRinkaControl_ovb0090* control, UnkFxObject_ovb0041* fx, UnkRinkaEntry_ruc** table,
+void CFXComponent_AddNamedEffect(UnkRinkaControl_ovb0090* control, UnkFxObject_ovb0041* fx, UnkRinkaEntry_ruc** table,
                    void* a, u32 b) {
     UnkFXComponent_l152988* self = reinterpret_cast<UnkFXComponent_l152988*>(control);
     const CStrId& name = *reinterpret_cast<const CStrId*>(table);

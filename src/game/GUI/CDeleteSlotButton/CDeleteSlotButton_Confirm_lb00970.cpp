@@ -45,7 +45,7 @@ struct UnkDeleteSlotPopUp_lb00970 {
     bool asking;  // 0x3a1
 };
 
-void fn_7100b00970(UnkDeleteSlotButton* self) {
+void CDeleteSlotButton_ShowDeleteConfirmPopUp(UnkDeleteSlotButton* self) {
     UnkReflObject* menu = fn_7100e033a8(g_unk_7101d47310);
     if (!menu || !fn_710009d50c(menu->vf_0x0(), fn_7100b34230()))
         return;

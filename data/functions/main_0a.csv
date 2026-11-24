@@ -340,8 +340,8 @@ address,size,name,name_source,subsystem,status
 0x7100a0f518,388,CDemolitionBlockSonarTargetComponent::refl_InitClass,reflection,game/components,O
 0x7100a0f69c,188,fn_7100a0f69c,unknown,game/components?,O
 0x7100a0f758,92,fn_7100a0f758,unknown,game/components?,O
-0x7100a0f7b4,212,fn_7100a0f7b4,unknown,game/components?,O
-0x7100a0f888,220,fn_7100a0f888,unknown,game/components?,O
+0x7100a0f7b4,212,CDemolitionBlockSonarTargetComponent_Destroy,inferred,game/components?,O
+0x7100a0f888,220,CDemolitionBlockSonarTargetComponent_DestroyAndDelete,inferred,game/components?,O
 0x7100a0f964,556,fn_7100a0f964,unknown,game/components?,U
 0x7100a0fb90,72,fn_7100a0fb90,unknown,game/components?,O
 0x7100a0fbd8,236,fn_7100a0fbd8,unknown,game/components?,U
@@ -358,7 +358,7 @@ address,size,name,name_source,subsystem,status
 0x7100a0fe9c,8,CDemolitionBlockSonarTargetComponent::refl_CopyAssign,reflection,game/components,O
 0x7100a0fea4,8,CDemolitionBlockSonarTargetComponent::refl_MoveAssign,reflection,game/components,O
 0x7100a0feac,324,fn_7100a0feac,unknown,game/components?,O
-0x7100a0fff0,760,fn_7100a0fff0,unknown,game/components?,O
+0x7100a0fff0,760,CDemolitionBlockSonarTargetComponent_LoadModelFromPath,inferred,game/components?,O
 0x7100a102e8,368,fn_7100a102e8,unknown,game/components?,U
 0x7100a10460,284,fn_7100a10460,unknown,game/components?,O
 0x7100a1057c,4,CSonarTargetComponent::refl_AddAttributes,reflection,game/components,O
@@ -1608,7 +1608,7 @@ address,size,name,name_source,subsystem,status
 0x7100a3d670,352,CFreeAimTutoLogicAction::refl_InitClass,reflection,game/ai,O
 0x7100a3d7d0,300,fn_7100a3d7d0,unknown,game/ai?,O
 0x7100a3d8fc,36,fn_7100a3d8fc,unknown,game/ai?,O
-0x7100a3d920,304,fn_7100a3d920,unknown,game/ai?,O
+0x7100a3d920,304,CFreeAimTutoLogicAction_RegisterPlayerAndItemCallbacks,inferred,game/ai?,O
 0x7100a3da50,276,fn_7100a3da50,unknown,game/ai?,O
 0x7100a3db64,28,fn_7100a3db64,unknown,game/ai?,O
 0x7100a3db80,12,CFreeAimTutoLogicAction::refl_Equals,reflection,game/ai,O
@@ -2022,7 +2022,7 @@ address,size,name,name_source,subsystem,status
 0x7100a4d360,352,CEmmyStateOverrideLogicAction::refl_InitClass,reflection,game/ai,O
 0x7100a4d4c0,4,fn_7100a4d4c0,unknown,game/ai?,O
 0x7100a4d4c4,36,fn_7100a4d4c4,unknown,game/ai?,O
-0x7100a4d4e8,552,fn_7100a4d4e8,unknown,game/ai?,O
+0x7100a4d4e8,552,CEmmyStateOverrideLogicAction_ApplyModeToGlobalActorList,inferred,game/ai?,O
 0x7100a4d710,28,fn_7100a4d710,unknown,game/ai?,O
 0x7100a4d72c,12,fn_7100a4d72c,unknown,game/ai?,O
 0x7100a4d738,12,fn_7100a4d738,unknown,game/ai?,O
@@ -2103,7 +2103,7 @@ address,size,name,name_source,subsystem,status
 0x7100a4fbf8,352,CForceMovementLogicAction::refl_InitClass,reflection,game/ai,O
 0x7100a4fd58,4,fn_7100a4fd58,unknown,game/ai?,O
 0x7100a4fd5c,36,fn_7100a4fd5c,unknown,game/ai?,O
-0x7100a4fd80,260,fn_7100a4fd80,unknown,game/ai?,O
+0x7100a4fd80,260,CForceMovementLogicAction_ApplyToPlayer,inferred,game/ai?,O
 0x7100a4fe84,28,fn_7100a4fe84,unknown,game/ai?,O
 0x7100a4fea0,12,CForceMovementLogicAction::refl_Equals,reflection,game/ai,O
 0x7100a4feac,8,CForceMovementLogicAction::refl_Hash,reflection,game/ai,O
@@ -3186,7 +3186,7 @@ address,size,name,name_source,subsystem,status
 0x7100a808f8,4,fn_7100a808f8,unknown,game/components?,O
 0x7100a808fc,4,fn_7100a808fc,unknown,game/components?,O
 0x7100a80900,48,fn_7100a80900,unknown,game/components?,O
-0x7100a80930,348,fn_7100a80930,unknown,game/components?,O
+0x7100a80930,348,CElevatorCommanderUsableComponent_ShowElevatorCommanderQuestion,inferred,game/components?,O
 0x7100a80a8c,4,fn_7100a80a8c,unknown,game/components?,O
 0x7100a80a90,72,fn_7100a80a90,unknown,game/components?,O
 0x7100a80ad8,384,fn_7100a80ad8,unknown,game/components?,O
@@ -5544,7 +5544,7 @@ address,size,name,name_source,subsystem,status
 0x7100aebde8,372,fn_7100aebde8,unknown,engine/reflection?,O
 0x7100aebf5c,36,fn_7100aebf5c,unknown,unknown,O
 0x7100aebf80,128,fn_7100aebf80,unknown,unknown,O
-0x7100aec000,220,fn_7100aec000,unknown,game/core?,O
+0x7100aec000,220,CGameBlackboard_AssignPropIDFromStrId,inferred,game/core?,O
 0x7100aec0dc,364,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>>::TElementIterator>",reflection,engine/reflection,O
 0x7100aec248,96,fn_7100aec248,unknown,engine/reflection?,O
 0x7100aec2a8,12,fn_7100aec2a8,unknown,unknown,O

@@ -32,7 +32,7 @@ void fn_710116e8a8() __attribute__((visibility("hidden")));
 void fn_710116e8b4() __attribute__((visibility("hidden")));
 void fn_710116e8c0() __attribute__((visibility("hidden")));
 
-void fn_710116ea80() {
+void CInterpolationComponent_InitStatics() {
     InitHeader(g_unk_7172a0ab88.header);
     fn_710116d338();
     fn_710009ec00(&g_unk_7172a0a8c0, &g_unk_7172a0ab88.field_0x20);

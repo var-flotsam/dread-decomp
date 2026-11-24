@@ -931,9 +931,9 @@ address,size,name,name_source,subsystem,status
 0x710091d010,388,CHydrogigaZiplineRailComponent::refl_InitClass,reflection,game/components,O
 0x710091d194,176,CHydrogigaZiplineRailComponent_Destroy,inferred,game/components?,O
 0x710091d244,184,CHydrogigaZiplineRailComponent_DestroyAndDelete,inferred,game/components?,O
-0x710091d2fc,448,fn_710091d2fc,unknown,game/components?,O
-0x710091d4bc,260,fn_710091d4bc,unknown,game/components?,O
-0x710091d5c0,28,fn_710091d5c0,unknown,game/components?,O
+0x710091d2fc,448,CHydrogigaZiplineRailComponent_ApplyHydrogigaDeadFromBlackboard,inferred,game/components?,O
+0x710091d4bc,260,CHydrogigaZiplineRailComponent_ApplyDeadState,inferred,game/components?,O
+0x710091d5c0,28,CHydrogigaZiplineRailComponent_SetHydrogigaDead,inferred,game/components?,O
 0x710091d5dc,28,fn_710091d5dc,unknown,game/components?,O
 0x710091d5f8,132,fn_710091d5f8,unknown,game/components?,O
 0x710091d67c,8,CHydrogigaZiplineRailComponent::refl_Equals,reflection,game/components,O

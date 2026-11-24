@@ -15,8 +15,8 @@ using base::global::CStrId;
 using base::math::CVector2D;
 
 struct UnkMapComposition_ovb0109;
-void fn_7100b2af40(UnkMapComposition_ovb0109* self, const CStrId& name, const base::math::CVector2D* position);
-UnkVec2Result fn_7100b2b074(UnkMapComposition_ovb0109* self, const CStrId& name);
+void CGlobalMapComposition_SetAreaPosition(UnkMapComposition_ovb0109* self, const CStrId& name, const base::math::CVector2D* position);
+UnkVec2Result CGlobalMapComposition_GetAreaPosition(UnkMapComposition_ovb0109* self, const CStrId& name);
 
 struct UnkGuiItemState;
 struct UnkGuiPos {
@@ -58,7 +58,7 @@ static inline void Place(UnkGuiDisplayObject* object, const CVector2D& position)
 
 // Where a label is now, kept as a plain vector.
 static inline void ReadLabel(UnkMapComposition_ovb0109* map, const CStrId& name, CVector2D* out) {
-    UnkVec2Result p = fn_7100b2b074(map, name);
+    UnkVec2Result p = CGlobalMapComposition_GetAreaPosition(map, name);
     *out = {p.x, p.y};
 }
 
@@ -66,7 +66,7 @@ static inline void ReadLabel(UnkMapComposition_ovb0109* map, const CStrId& name,
 static inline void PlaceLabel(UnkMapComposition_ovb0109* map, const CStrId& name, const CVector2D& first, f32 dx,
                               f32 dy) {
     CVector2D pos = {first.x + dx, first.y + dy};
-    fn_7100b2af40(map, name, &pos);
+    CGlobalMapComposition_SetAreaPosition(map, name, &pos);
 }
 
 void fn_7100b259c8(UnkGlobalMapLayout_lb259c8* self) {

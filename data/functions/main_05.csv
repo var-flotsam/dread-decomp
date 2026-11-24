@@ -5068,7 +5068,7 @@ address,size,name,name_source,subsystem,status
 0x71005ef780,28,CCharClassKraidSpinningNailsAttack::refl_TypeOf,reflection,game/characters,O
 0x71005ef79c,116,CCharClassKraidSpinningNailsAttack::refl_Construct,reflection,game/characters,O
 0x71005ef810,12,CCharClassKraidSpinningNailsAttack::refl_Destroy,reflection,game/characters,O
-0x71005ef820,2012,fn_71005ef820,unknown,game/characters?,O
+0x71005ef820,2012,CKraidSpinningNailsDef_InitStatics,inferred,game/characters?,O
 0x71005efffc,4,CCharClassKraidTripleFlyingSpikesAttack::CTunableCharClassKraidTripleFlyingSpikesAttack::refl_AddAttributes,reflection,game/characters,O
 0x71005f0000,244,CCharClassKraidTripleFlyingSpikesAttack::CTunableCharClassKraidTripleFlyingSpikesAttack::refl_GetClass,reflection,game/characters,O
 0x71005f00f4,308,CCharClassKraidTripleFlyingSpikesAttack::CTunableCharClassKraidTripleFlyingSpikesAttack::refl_AddFields,reflection,game/characters,O
@@ -5104,8 +5104,8 @@ address,size,name,name_source,subsystem,status
 0x71005f1060,4,CKraidAcidBlobsAttack::refl_AddFields,reflection,game/ai,O
 0x71005f1064,388,CKraidAcidBlobsAttack::refl_InitClass,reflection,game/ai,O
 0x71005f11e8,68,fn_71005f11e8,unknown,game/ai?,O
-0x71005f122c,132,fn_71005f122c,unknown,game/ai?,O
-0x71005f12b0,108,fn_71005f12b0,unknown,game/ai?,O
+0x71005f122c,132,CKraidAcidBlobsAttack_SetCharClassAndPickLaunchPattern,inferred,game/ai?,O
+0x71005f12b0,108,CKraidAcidBlobsAttack_ResetAndPickDifferentLaunchPattern,inferred,game/ai?,O
 0x71005f131c,1520,fn_71005f131c,unknown,game/ai?,U
 0x71005f190c,220,fn_71005f190c,unknown,game/ai?,O
 0x71005f19e8,4,fn_71005f19e8,unknown,game/ai?,O
@@ -5176,11 +5176,11 @@ address,size,name,name_source,subsystem,status
 0x71005f2abc,388,CKraidBouncingCreaturesAttack::refl_InitClass,reflection,game/ai,O
 0x71005f2c40,80,fn_71005f2c40,unknown,game/ai?,O
 0x71005f2c90,96,fn_71005f2c90,unknown,game/ai?,O
-0x71005f2cf0,620,fn_71005f2cf0,unknown,game/ai?,O
+0x71005f2cf0,620,CKraidBouncingCreaturesAttack_StartAndPickPattern,inferred,game/ai?,O
 0x71005f2f5c,360,fn_71005f2f5c,unknown,game/ai?,O
 0x71005f30c4,100,fn_71005f30c4,unknown,game/ai?,O
 0x71005f3128,188,fn_71005f3128,unknown,game/ai?,O
-0x71005f31e4,708,fn_71005f31e4,unknown,game/ai?,O
+0x71005f31e4,708,CKraidBouncingCreaturesAttack_LaunchNextPatternCreature,inferred,game/ai?,O
 0x71005f34a8,220,fn_71005f34a8,unknown,game/ai?,O
 0x71005f3584,924,fn_71005f3584,unknown,game/ai?,U
 0x71005f3920,28,fn_71005f3920,unknown,game/ai?,O
@@ -5280,8 +5280,8 @@ address,size,name,name_source,subsystem,status
 0x71005f645c,388,CKraidSpinningNailsAttack::refl_InitClass,reflection,game/ai,O
 0x71005f65e0,76,fn_71005f65e0,unknown,game/ai?,O
 0x71005f662c,96,fn_71005f662c,unknown,game/ai?,O
-0x71005f668c,320,fn_71005f668c,unknown,game/ai?,O
-0x71005f67cc,236,fn_71005f67cc,unknown,game/ai?,O
+0x71005f668c,320,CKraidSpinningNailsAttack_StartAndSelectPattern,inferred,game/ai?,O
+0x71005f67cc,236,CKraidSpinningNailsAttack_TakeNextPatternNailsDef,inferred,game/ai?,O
 0x71005f68b8,4,fn_71005f68b8,unknown,game/ai?,O
 0x71005f68bc,100,fn_71005f68bc,unknown,game/ai?,O
 0x71005f6920,320,fn_71005f6920,unknown,game/ai?,U

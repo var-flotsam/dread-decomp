@@ -58,7 +58,7 @@ struct UnkFloatTunableButton_ovb0130 {
 
 // fn_7100b1f80c: steps the button's value down (0) or up (1) within its range, then shows it on the label,
 // writes it to the bound field and calls the script function with it, as CBoolTunableButton does.
-void fn_7100b1f80c(UnkFloatTunableButton_ovb0130* self, s32 direction) {
+void CFloatTunableButton_StepTunableValue(UnkFloatTunableButton_ovb0130* self, s32 direction) {
     switch (direction) {
     case 1: {
         f32 v = self->step + self->value;

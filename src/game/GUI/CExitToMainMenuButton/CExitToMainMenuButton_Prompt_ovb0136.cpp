@@ -31,7 +31,7 @@ struct UnkGuiRef_ovb0136 {
     UnkGuiComposition_ovb0090* composition;  // 0x10
 };
 
-void fn_7100b1ebf0(UnkExitToMainMenuButton_ovb0136* self) {
+void CExitToMainMenuButton_ShowQuitPrompt(UnkExitToMainMenuButton_ovb0136* self) {
     UnkIngameMenu* menu = fn_7100deac84(g_unk_7101d47310);
     if (!menu)
         return;

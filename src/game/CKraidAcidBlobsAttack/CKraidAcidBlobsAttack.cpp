@@ -23,7 +23,7 @@ struct UnkKraidAcidBlobsAttack {
 
 void fn_71005f1fb4(char* s, base::reflection::UnkReflObject* a);
 
-void fn_71005f122c(UnkKraidAcidBlobsAttack* self, UnkKraidAcidBlobsDef* def) {
+void CKraidAcidBlobsAttack_SetCharClassAndPickLaunchPattern(UnkKraidAcidBlobsAttack* self, UnkKraidAcidBlobsDef* def) {
     fn_71005f1fb4(reinterpret_cast<char*>(self), reinterpret_cast<base::reflection::UnkReflObject*>(def));
     if (!def)
         return;

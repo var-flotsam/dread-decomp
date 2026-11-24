@@ -27,19 +27,19 @@ struct UnkMenuStateMachine {
     void fn_7100b2ceb0();
     void fn_7100b2ceb4();
     void fn_7100b2ceb8();
-    void fn_7100b2cebc();
+    void CIngameMenu_EnterIconsHudState();
     void fn_7100b2d070();
     void fn_7100b2d274();
-    void fn_7100b2d278();
-    void fn_7100b2d3e8();
+    void CIngameMenu_EnterConfigMenuState();
+    void CIngameMenu_ExitConfigMenuState();
     void fn_7100b2d530();
     void fn_7100b2d534();
     void fn_7100b2d5c0();
     void fn_7100b2d628();
-    void fn_7100b2d62c();
-    void fn_7100b2d6d0();
+    void CIngameMenu_EnterSystemMenuState();
+    void CIngameMenu_ExitSystemMenuState();
     void fn_7100b2d750();
-    void fn_7100b2d754();
+    void CIngameMenu_EnterAmiiboMenuState();
     void fn_7100b2d7f8();
     void fn_7100b2d864();
     void fn_7100b2d868();
@@ -48,27 +48,27 @@ struct UnkMenuStateMachine {
     void fn_7100b2dad0();
     void fn_7100b2dcac();
     void fn_7100b2de44();
-    void fn_7100b2de48();
-    void fn_7100b2dfc4();
+    void CIngameMenu_EnterSamusMenuState();
+    void CIngameMenu_ExitSamusMenuState();
     void fn_7100b2e204();
-    void fn_7100b2e208();
+    void CIngameMenu_EnterMissionMenuState();
     void fn_7100b2e3b8();
     void fn_7100b2e548();
 };
 
-void fn_7100b2f6b0(UnkMenuStates* menu) {
+void CIngameMenu_BuildStateTable(UnkMenuStates* menu) {
     using M = UnkMenuStateMachine;
     using Fns = UnkMenuStateFnSet;
     M* self = reinterpret_cast<M*>(menu);
     self->states.Clear();
     self->states.EmplaceBack(Fns(&M::fn_7100b2ceb0, &M::fn_7100b2ceb4, &M::fn_7100b2ceb8));
-    self->states.EmplaceBack(Fns(&M::fn_7100b2cebc, &M::fn_7100b2d070, &M::fn_7100b2d274));
-    self->states.EmplaceBack(Fns(&M::fn_7100b2d278, &M::fn_7100b2d3e8, &M::fn_7100b2d530));
+    self->states.EmplaceBack(Fns(&M::CIngameMenu_EnterIconsHudState, &M::fn_7100b2d070, &M::fn_7100b2d274));
+    self->states.EmplaceBack(Fns(&M::CIngameMenu_EnterConfigMenuState, &M::CIngameMenu_ExitConfigMenuState, &M::fn_7100b2d530));
     self->states.EmplaceBack(Fns(&M::fn_7100b2d534, &M::fn_7100b2d5c0, &M::fn_7100b2d628));
-    self->states.EmplaceBack(Fns(&M::fn_7100b2d62c, &M::fn_7100b2d6d0, &M::fn_7100b2d750));
-    self->states.EmplaceBack(Fns(&M::fn_7100b2d754, &M::fn_7100b2d7f8, &M::fn_7100b2d864));
+    self->states.EmplaceBack(Fns(&M::CIngameMenu_EnterSystemMenuState, &M::CIngameMenu_ExitSystemMenuState, &M::fn_7100b2d750));
+    self->states.EmplaceBack(Fns(&M::CIngameMenu_EnterAmiiboMenuState, &M::fn_7100b2d7f8, &M::fn_7100b2d864));
     self->states.EmplaceBack(Fns(&M::fn_7100b2d868, &M::fn_7100b2da60, &M::fn_7100b2dacc));
     self->states.EmplaceBack(Fns(&M::fn_7100b2dad0, &M::fn_7100b2dcac, &M::fn_7100b2de44));
-    self->states.EmplaceBack(Fns(&M::fn_7100b2de48, &M::fn_7100b2dfc4, &M::fn_7100b2e204));
-    self->states.EmplaceBack(Fns(&M::fn_7100b2e208, &M::fn_7100b2e3b8, &M::fn_7100b2e548));
+    self->states.EmplaceBack(Fns(&M::CIngameMenu_EnterSamusMenuState, &M::CIngameMenu_ExitSamusMenuState, &M::fn_7100b2e204));
+    self->states.EmplaceBack(Fns(&M::CIngameMenu_EnterMissionMenuState, &M::fn_7100b2e3b8, &M::fn_7100b2e548));
 }

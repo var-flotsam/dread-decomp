@@ -11,7 +11,7 @@ extern CStrId g_unk_717271e2d0 __attribute__((visibility("hidden")));
 extern CStrId g_unk_717271e2d8 __attribute__((visibility("hidden")));
 extern CStrId g_unk_717271e2e0 __attribute__((visibility("hidden")));
 
-UnkGameManagerIdList* fn_71007d5d8c(s32 kind) {
+UnkGameManagerIdList* CEscapeSequenceExplosionComponent_GetObjectListForExplosionType(s32 kind) {
     CStrId id("SmallExplosion", true);
     switch (kind) {
     case 0:

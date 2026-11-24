@@ -86,11 +86,11 @@ struct UnkEvacList_b61 {
     UnkEvacEntry_b61** data;
     u32 count;
 };
-UnkEvacList_b61* fn_71007d5d8c(u32 id);
+UnkEvacList_b61* CEscapeSequenceExplosionComponent_GetObjectListForExplosionType(u32 id);
 extern u64 g_unk_710164ab40;
 
 void fn_71007da43c(UnkLeftoverReg, u32 id, u32 value) {
-    UnkEvacList_b61* list = fn_71007d5d8c(id);
+    UnkEvacList_b61* list = CEscapeSequenceExplosionComponent_GetObjectListForExplosionType(id);
     for (UnkEvacEntry_b61** it = list->data, **end = list->data + list->count; it != end; ++it) {
         UnkEvacEntry_b61* entry = *it;
         if (!entry || !entry->object || !entry->object->part)

@@ -15,7 +15,7 @@ struct UnkStatics_7100608040 {
 extern UnkStatics_7100608040 g_unk_71726f4498 __attribute__((visibility("hidden")));
 extern char g_unk_71726f4490[];
 
-void fn_7100608040() {
+void CKraidShockerSplashMovementComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726f4498.ids);
     InitId(&g_unk_71726f4498.field_0x18, "floorshockwave");
     InitId(&g_unk_71726f4498.field_0x20, "fDamageKraidShockerSplash");

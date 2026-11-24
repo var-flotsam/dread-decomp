@@ -149,7 +149,7 @@ struct UnkTunable_7100608cd4 {
     f32 field_0x28c;  // 0x28c
 };
 
-bool fn_7100608cd4(UnkKraidSpikePlatform* self) {
+bool CKraidSpikeMovablePlatformComponent_TryDamagePlayer(UnkKraidSpikePlatform* self) {
     bool result = true;
     if (fn_7100952694())
         return result;

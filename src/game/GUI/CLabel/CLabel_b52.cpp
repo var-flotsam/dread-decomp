@@ -31,7 +31,7 @@ static inline UnkGuiObjectState* State(UnkLabelFontView_b52* self) {
 // as a second argument). Null while the label has no frame or no path.
 static inline void* Font(UnkLabelFontView_b52* self) {
     if (!self->font && State(self)->frame != 0x7fffffff && self->font_path.data != &g_unk_7101d47108->empty) {
-        auto lookup = reinterpret_cast<void* (*)(UnkGuiRoot*, const base::UnkStrIdMember*)>(fn_71011b882c);
+        auto lookup = reinterpret_cast<void* (*)(UnkGuiRoot*, const base::UnkStrIdMember*)>(CGUIManager_GetOrLoadCachedByPath);
         self->font = lookup(g_unk_717271e8f8, &self->font_path);
     }
     return self->font;
@@ -39,7 +39,7 @@ static inline void* Font(UnkLabelFontView_b52* self) {
 
 // How many lines fit the label: `lines` when set, else its frame's height over the line height,
 // rounded down; at least 1.
-s32 fn_71011eedd0(UnkLabelFontView_b52* self) {
+s32 CLabel_GetVisibleLineCount(UnkLabelFontView_b52* self) {
     if (self->lines >= 0)
         return self->lines;
     UnkGuiObjectState* state = State(self);

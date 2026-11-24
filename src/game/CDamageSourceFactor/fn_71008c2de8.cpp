@@ -33,7 +33,7 @@ struct UnkStruct_71008c2de8 {
     f32 fShineSparkFactor;
 };
 
-f32 fn_71008c2de8(const UnkStruct_71008c2de8* self, u32 flags) {
+f32 CDamageSourceFactor_GetFactorForDamageFlags(const UnkStruct_71008c2de8* self, u32 flags) {
     if (flags & 0x10000)
         return self->fHyperBeamFactor;
     if (flags & 0x8000400) {

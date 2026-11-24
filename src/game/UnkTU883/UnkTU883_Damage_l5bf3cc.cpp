@@ -69,7 +69,7 @@ bool fn_71005bf75c(UnkHydrogigaAI_l5bf3cc* self, UnkHydrogigaHit_l5bf3cc* hit);
 static inline void ScaleDamage(UnkHydrogigaHit_l5bf3cc* hit, u8* table) {
     f32 damage = hit->damage;
     fn_71008c1538(reinterpret_cast<UnkRequest*>(hit),
-                  damage * fn_71008c2de8(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(table), hit->flags));
+                  damage * CDamageSourceFactor_GetFactorForDamageFlags(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(table), hit->flags));
 }
 
 // Plays the timeline event id on every channel.

@@ -41,7 +41,7 @@ s32 fn_71011ef54c(UnkGuiDisplayObject* self);
 s32 fn_71011ef544(UnkGuiDisplayObject* self);
 
 struct UnkDialogClose_ovb0069;
-void fn_7100b02404(UnkDialogClose_ovb0069* self);
+void CDialogComposition_ClosePage(UnkDialogClose_ovb0069* self);
 
 // The game's mode holder (+0x498 of the game manager): its name at +0x8.
 struct UnkDlgModeHolder_lb018fc {
@@ -115,7 +115,7 @@ static inline void Fire(CStrId& function, UnkDlgAction_lb018fc& action) {
         action.fn(action.arg);
 }
 
-void fn_7100b018fc(UnkMissionLogTarget_ovb0079* target, UnkGuiEvent* gui_event) {
+void CDialogComposition_PassEventToLabelOrClosePage(UnkMissionLogTarget_ovb0079* target, UnkGuiEvent* gui_event) {
     UnkDialog_lb018fc* self = reinterpret_cast<UnkDialog_lb018fc*>(target);
     UnkDlgEvent_lb018fc* event = reinterpret_cast<UnkDlgEvent_lb018fc*>(gui_event);
     if (event && event->handled)
@@ -128,7 +128,7 @@ void fn_7100b018fc(UnkMissionLogTarget_ovb0079* target, UnkGuiEvent* gui_event) 
             reinterpret_cast<void (*)(UnkGuiObj*, UnkDlgEvent_lb018fc*)>(
                 (*reinterpret_cast<void***>(label))[0xf0 / 8])(label, event);
         } else {
-            fn_7100b02404(reinterpret_cast<UnkDialogClose_ovb0069*>(self));
+            CDialogComposition_ClosePage(reinterpret_cast<UnkDialogClose_ovb0069*>(self));
             if (event->kind == 0x11)
                 Fire(self->cancel_function, self->on_cancel);
             else if (event->kind == 0x12)

@@ -91,7 +91,7 @@ struct UnkGrappleBeamLightning_ovb0047 {
 };
 static_assert(__builtin_offsetof(UnkGrappleBeamLightning_ovb0047, lightning_count) == 0x748, "layout");
 
-void fn_7100817ffc(UnkGrappleBeamLightning_ovb0047* self) {
+void CGrappleBeamComponent_LoadLightningModel(UnkGrappleBeamLightning_ovb0047* self) {
     if (self->lightnings)
         return;
     UnkRenderManager* manager = g_unk_7101d47300;
@@ -142,7 +142,7 @@ static inline UnkModelManager* ModelManager_ovb0047() {
 struct UnkGrappleBeam_ovb0047;
 
 // Spawns the beam's effect at `at`, turned by `rotation`.
-void fn_710081ba20(UnkGrappleBeam_ovb0047* self, const UnkVec3f* at, const UnkVec3f* rotation) {
+void CGrappleBeamComponent_SpawnHitEffect(UnkGrappleBeam_ovb0047* self, const UnkVec3f* at, const UnkVec3f* rotation) {
     UnkModelManager* manager = ModelManager_ovb0047();
     UnkVec3f position(*at);
     UnkVec3f angles(*rotation);

@@ -44,7 +44,7 @@ void CFrozenAsFrostbiteComponent_PlaceBarelyIceObjects(struct UnkFrozenAsFrostbi
 void fn_71007f6100(UnkSwitchObject** first, UnkSwitchObject** last);
 void fn_71007f6b90(UnkSwitchObject** first, UnkSwitchObject** last);
 struct UnkFrozenAsFrostbite_l7f48d8;
-void fn_71007fa0c4(UnkFrozenAsFrostbite_l7f48d8* self, u32 arg);
+void CFrozenComponent_BeginFreeze(UnkFrozenAsFrostbite_l7f48d8* self, u32 arg);
 
 // The bounds of the actor's collision, returned in memory.
 struct UnkBounds_l7f48d8 {
@@ -163,7 +163,7 @@ static inline void ShowEffect(UnkFrozenAsFrostbite_l7f48d8* self, UnkRinkaContro
         return;
     if (!fn_71007f4d8c(&self->objects, index))
         return;
-    fn_7101152988(control, fx, reinterpret_cast<UnkRinkaEntry_ruc**>(const_cast<u8*>(table)), nullptr, 0);
+    CFXComponent_AddNamedEffect(control, fx, reinterpret_cast<UnkRinkaEntry_ruc**>(const_cast<u8*>(table)), nullptr, 0);
     const f32* m = reinterpret_cast<const f32*>(fn_71007f4d8c(&self->objects, index));
     UnkVec3f position(m[0x4c / 4], m[0x5c / 4], m[0x6c / 4]);
     fx->vtable->set_position(fx, &position);
@@ -213,5 +213,5 @@ void fn_71007f48d8(UnkFrozenAsFrostbite_l7f48d8* self, u32 arg) {
             ShowEffect(self, control, third * 2, g_unk_7172720e20, g_unk_7172720e48);
         }
     }
-    fn_71007fa0c4(self, arg);
+    CFrozenComponent_BeginFreeze(self, arg);
 }

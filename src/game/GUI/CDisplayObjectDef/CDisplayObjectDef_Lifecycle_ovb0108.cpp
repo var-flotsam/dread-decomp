@@ -70,7 +70,7 @@ void fn_7100b065a8(UnkDisplayObjectDef_ovb0108* self) {
 }
 
 // Adds an item unless one with the same name is there; whether it was added.
-bool fn_7100b0704c(UnkDisplayObjectDef_ovb0108* self, UnkDisplayItem_ovb0108* item) {
+bool CDisplayObjectDef_AddChildIfNameUnique(UnkDisplayObjectDef_ovb0108* self, UnkDisplayItem_ovb0108* item) {
     base::global::CRntVector<UnkDisplayItem_ovb0108*>& items = self->items;
     bool found = false;
     for (UnkDisplayItem_ovb0108** it = items.data; it != items.data + items.count;) {
@@ -102,7 +102,7 @@ static inline void ToLower(char* dst, const char* src) {
 }
 
 // The item named `name` (ignoring case) in the tree under this one, this one included.
-UnkDisplayItem_ovb0108* fn_7100b0694c(UnkDisplayItem_ovb0108* self, const base::global::CRntString& name) {
+UnkDisplayItem_ovb0108* CDisplayObjectDef_FindDescendantByIdIgnoreCase(UnkDisplayItem_ovb0108* self, const base::global::CRntString& name) {
     bool equal;
     {
         char buffer[0x100];
@@ -117,7 +117,7 @@ UnkDisplayItem_ovb0108* fn_7100b0694c(UnkDisplayItem_ovb0108* self, const base::
         return self;
     base::global::CRntVector<UnkDisplayItem_ovb0108*>& items = reinterpret_cast<UnkDisplayObjectDef_ovb0108*>(self)->items;
     for (UnkDisplayItem_ovb0108** it = items.data; it != items.data + items.count; ++it) {
-        if (UnkDisplayItem_ovb0108* found = fn_7100b0694c(*it, name))
+        if (UnkDisplayItem_ovb0108* found = CDisplayObjectDef_FindDescendantByIdIgnoreCase(*it, name))
             return found;
     }
     return nullptr;

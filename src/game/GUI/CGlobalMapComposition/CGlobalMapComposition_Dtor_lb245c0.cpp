@@ -21,13 +21,13 @@ extern char g_unk_7101a9b5d8[];
 extern char g_unk_7101a9b630[];
 
 struct UnkMapRegion_ovb0109;
-void fn_7100b262f4(UnkMapRegion_ovb0109* self);
+void CGlobalMapComposition_FreeRegionAreaLists(UnkMapRegion_ovb0109* self);
 
 // A region of the map (0x58 bytes); its destructor is fn_7100b262f4.
 struct UnkMapRegion_lb245c0 {
     u8 data[0x58];
 
-    ~UnkMapRegion_lb245c0() { fn_7100b262f4(reinterpret_cast<UnkMapRegion_ovb0109*>(this)); }
+    ~UnkMapRegion_lb245c0() { CGlobalMapComposition_FreeRegionAreaLists(reinterpret_cast<UnkMapRegion_ovb0109*>(this)); }
 };
 
 // The composition's value holders.

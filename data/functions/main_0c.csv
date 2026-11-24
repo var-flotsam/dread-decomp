@@ -4696,7 +4696,7 @@ address,size,name,name_source,subsystem,status
 0x7100c94b28,352,CItemDestructionLogicAction::refl_InitClass,reflection,game/ai,O
 0x7100c94c88,480,fn_7100c94c88,unknown,game/ai?,O
 0x7100c94e68,36,fn_7100c94e68,unknown,game/ai?,O
-0x7100c94e8c,320,fn_7100c94e8c,unknown,game/ai?,O
+0x7100c94e8c,320,CItemDestructionLogicAction_RegisterWithItemAndObserver,inferred,game/ai?,O
 0x7100c94fcc,80,fn_7100c94fcc,unknown,game/ai?,O
 0x7100c9501c,28,fn_7100c9501c,unknown,game/ai?,O
 0x7100c95038,12,CItemDestructionLogicAction::refl_Equals,reflection,game/ai,O

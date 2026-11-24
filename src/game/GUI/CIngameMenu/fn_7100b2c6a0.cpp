@@ -90,12 +90,12 @@ __attribute__((always_inline)) static inline void SetUpHandle(UnkHandleMenu<Offs
     AddChild(self, self->menu.Get());
 }
 
-void fn_7100b2c2bc(UnkHandleMenu<0x488>* self) { SetUpHandle<0x488, true>(self, "PowerDescComposition"); }
-void fn_7100b2cd24(UnkHandleMenu<0x490>* self) { SetUpHandle<0x490, false>(self, "MissionMenuComposition"); }
+void CIngameMenu_CreatePowerDescComposition(UnkHandleMenu<0x488>* self) { SetUpHandle<0x488, true>(self, "PowerDescComposition"); }
+void CIngameMenu_SetUpMissionMenuComposition(UnkHandleMenu<0x490>* self) { SetUpHandle<0x490, false>(self, "MissionMenuComposition"); }
 
 // The icons HUD: the looked-up object is kept at 0x2d0 only as a GUI::CHUD (else null) and set
 // up through that slot.
-void fn_7100b2c58c(UnkMenu<0x2d0>* self) {
+void CIngameMenu_SetUpIconsHudComposition(UnkMenu<0x2d0>* self) {
     UnkGuiDisplayObject* obj = fn_71011b69d8(g_unk_717271e8f8, CRntString("IconsHudComposition")).Get();
     if (!obj)
         return;

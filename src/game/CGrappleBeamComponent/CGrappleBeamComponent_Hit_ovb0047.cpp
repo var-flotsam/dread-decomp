@@ -12,7 +12,7 @@ extern "C" int rand();
 using base::reflection::UnkReflObject;
 
 struct UnkGrappleBeam_ovb0047;
-void fn_710081ba20(UnkGrappleBeam_ovb0047* self, const UnkVec3f* at, const UnkVec3f* rotation);
+void CGrappleBeamComponent_SpawnHitEffect(UnkGrappleBeam_ovb0047* self, const UnkVec3f* at, const UnkVec3f* rotation);
 
 struct UnkGrappleHitRefB_ovb0047 {
     u8 pad_0x0[0x10];
@@ -115,7 +115,7 @@ bool fn_710081bcd0(UnkGrappleBeamHit_ovb0047* self, void* a, void* b, UnkGrapple
         if (r == 0)
             self->field_0x714 = true;
     }
-    fn_710081ba20(reinterpret_cast<UnkGrappleBeam_ovb0047*>(self), &hit->position,
+    CGrappleBeamComponent_SpawnHitEffect(reinterpret_cast<UnkGrappleBeam_ovb0047*>(self), &hit->position,
                   &static_cast<const UnkVec3f&>(UnkVec3f(0.0f, 0.0f, RandomRange_ovb0047(0.0f, 6.2831855f))));
     return true;
 }

@@ -45,7 +45,7 @@ struct UnkDoorGrapple_ovb0093 {
     UnkDoorGrappleDef_ovb0093* def;  // 0x90
 };
 
-bool fn_71008295e0(UnkDoorGrapple_ovb0093* self, void* arg, UnkDoorPullMessage_ovb0093* msg) {
+bool CDoorGrapplePointComponent_CheckGrappleColliderAndMagnitude(UnkDoorGrapple_ovb0093* self, void* arg, UnkDoorPullMessage_ovb0093* msg) {
     if (!fn_710082cb24(self, arg, msg))
         return false;
     if (!fn_71008d5e28(fn_71002af860(self->owner)))

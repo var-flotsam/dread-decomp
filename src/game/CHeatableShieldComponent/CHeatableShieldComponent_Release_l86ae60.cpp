@@ -32,7 +32,7 @@ struct UnkHeatableExtra_b0080 {
     UnkHeatableListSet_l86ae60 sets[4];
 };
 
-void fn_710086ae60(UnkHeatableExtra_b0080* self) {
+void CHeatableShieldComponent_ReleaseListSets(UnkHeatableExtra_b0080* self) {
     self->sets[3].Release();
     self->sets[2].Release();
     self->sets[1].Release();

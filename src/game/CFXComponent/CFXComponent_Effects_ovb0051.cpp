@@ -228,7 +228,7 @@ static inline void StopB(UnkFXComponent_ovb51* self) {
         Detach(Manager()->models[1], self->effect_b);
 }
 
-void fn_710114eaa4(UnkFXComponent_ovb51* self, f32 dt) {
+void CFXComponent_CountDownFirstOverlayTimer(UnkFXComponent_ovb51* self, f32 dt) {
     if (self->timer_a > 0.0f) {
         self->timer_a -= dt;
         if (self->timer_a <= 0.0f)
@@ -238,7 +238,7 @@ void fn_710114eaa4(UnkFXComponent_ovb51* self, f32 dt) {
     }
 }
 
-void fn_710114eb28(UnkFXComponent_ovb51* self, f32 dt) {
+void CFXComponent_CountDownModel1DetachTimer(UnkFXComponent_ovb51* self, f32 dt) {
     if (self->timer_b > 0.0f) {
         self->timer_b -= dt;
         if (self->timer_b <= 0.0f)
@@ -509,7 +509,7 @@ void fn_7101156238(UnkFXComponent_ovb51* self, UnkFXMessage_ovb51* msg) {
 }
 
 // Shows one part of a named effect's model, picked at random, and hides the others.
-void fn_710115635c(UnkFXComponent_ovb51* self, UnkFXMessage_ovb51* msg) {
+void CFXComponent_ShowRandomNodeOfNamedEffect(UnkFXComponent_ovb51* self, UnkFXMessage_ovb51* msg) {
     if (msg->id == &g_unk_7101d47108->empty)
         return;
     UnkFXEffect_ovb51* effect = EffectNamed(self, HashOf(msg->id));

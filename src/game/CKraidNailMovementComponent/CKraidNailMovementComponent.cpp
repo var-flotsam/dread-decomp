@@ -38,7 +38,7 @@ struct UnkTunable_7100606404 {
     f32 field_0x290;  // 0x290
 };
 
-bool fn_7100606404(UnkKraidNailMovement* self, UnkKraidCreatureArg* arg) {
+bool CKraidNailMovementComponent_CacheCharClassAndSetSpinningNailsDamage(UnkKraidNailMovement* self, UnkKraidCreatureArg* arg) {
     bool result = fn_7100ac3108(reinterpret_cast<UnkKraidBouncingCreaturesMovement2*>(self), arg);
     UnkReflObject* obj = self->field_0x10;
     self->field_0x5d8 = obj && fn_710009d50c(obj->vf_0x0(), fn_7100602d44()) ? obj : nullptr;

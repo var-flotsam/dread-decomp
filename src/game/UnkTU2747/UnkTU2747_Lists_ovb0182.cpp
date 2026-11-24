@@ -395,7 +395,7 @@ void fn_71011cef74(void* object, void* new_parent) {
             fn_71011cee40(self);
         if (self->field_0x74)
             Notify_ovb0182(self, 1);
-        fn_71011d932c(links->parent, reinterpret_cast<UnkDisplayObject_ovb0032*>(self));
+        CDisplayObjectContainer_RemoveChild(links->parent, reinterpret_cast<UnkDisplayObject_ovb0032*>(self));
     }
     bool first = !self->field_0x184;
     links->parent = parent;

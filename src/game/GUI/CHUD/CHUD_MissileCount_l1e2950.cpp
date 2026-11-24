@@ -72,7 +72,7 @@ static inline UnkGuiDisplayObject* Target(UnkHudRef_2950* ref) {
     return ref ? ref->target : nullptr;
 }
 
-bool fn_71011e2950(UnkHud_2950* self, const UnkItemChange_2950* change) {
+bool CHUD_UpdateMissileCounterOnItemChange(UnkHud_2950* self, const UnkItemChange_2950* change) {
     if (self->hidden)
         return false;
     UnkReflObject** end = self->animations + self->animation_count;
