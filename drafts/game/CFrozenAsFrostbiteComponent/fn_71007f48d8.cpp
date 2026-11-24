@@ -40,7 +40,7 @@ UnkSwitchObject* fn_7100daaf3c(UnkManager_71726af468* self, const u64* key, bool
 void fn_7100146380(UnkSwitchObject* self);
 void fn_71001463b0(UnkSwitchObject* self);
 UnkSwitchObject*& fn_71007f4d8c(base::global::CRntVector<UnkSwitchObject*>* self, u32 index);
-void fn_71007f4514(struct UnkFrozenAsFrostbite_l7f48d8* self);
+void CFrozenAsFrostbiteComponent_PlaceBarelyIceObjects(struct UnkFrozenAsFrostbite_l7f48d8* self);
 void fn_71007f6100(UnkSwitchObject** first, UnkSwitchObject** last);
 void fn_71007f6b90(UnkSwitchObject** first, UnkSwitchObject** last);
 struct UnkFrozenAsFrostbite_l7f48d8;
@@ -197,7 +197,7 @@ void fn_71007f48d8(UnkFrozenAsFrostbite_l7f48d8* self, u32 arg) {
         fn_7100146380(object);
         fn_71001463b0(object);
     }
-    fn_71007f4514(self);
+    CFrozenAsFrostbiteComponent_PlaceBarelyIceObjects(self);
     UnkFrostbiteActor_l7f48d8* actor = self->actor;
     if (UnkCollisionContainer* container = actor->field_0x2a0) {
         if (UnkRinkaControl_ovb0090* control = actor->field_0x280) {
