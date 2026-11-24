@@ -1,6 +1,6 @@
 #pragma once
 
-// CCharClassAIComponent: functions of this translation unit that other files call (tools/tu_map.py unit 616,
+// CCharClassAIComponent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 616,
 // 0x7100408b28-0x71004169b0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -13,3 +13,4 @@ u32 fn_7100414070(const char* text);
 u32 fn_7100414168();  // The base character class's check (declared without its arguments in its generated definition).
 u32 fn_7100413fd8(UnkSource_7100286798* self);
 u32 fn_7100413fd0(UnkSource_7100286798* self);
+extern void* g_unk_7101a34100[];

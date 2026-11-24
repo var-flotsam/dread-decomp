@@ -44,3 +44,4 @@ extern base::global::CStrId g_unk_7172a09378 __attribute__((visibility("hidden")
 extern base::global::CStrId g_unk_7172a09380 __attribute__((visibility("hidden")));
 s32 fn_71011442a0(UnkInventory* inventory, const UnkQualifiedId& item, s32 flag);
 f32 fn_7101142988(UnkInventory* inventory, const UnkQualifiedId& item, f32 fallback);
+void fn_71011406b4(UnkInventory* inventory, const UnkQualifiedId& item, s32 amount, bool a, bool b, bool c, f32 extra);

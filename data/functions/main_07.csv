@@ -4824,7 +4824,7 @@ address,size,name,name_source,subsystem,status
 0x71007e0300,2304,CEventScenarioComponent::refl_AddFields,reflection,game/components,O
 0x71007e0c00,352,CEventScenarioComponent::refl_InitClass,reflection,game/components,O
 0x71007e0d60,404,fn_71007e0d60,unknown,game/components?,O
-0x71007e0ef4,1112,fn_71007e0ef4,unknown,unknown,U
+0x71007e0ef4,1112,fn_71007e0ef4,unknown,unknown,O
 0x71007e134c,36,fn_71007e134c,unknown,unknown,O
 0x71007e1370,152,fn_71007e1370,unknown,unknown,O
 0x71007e1408,456,fn_71007e1408,unknown,game/ai?,O
