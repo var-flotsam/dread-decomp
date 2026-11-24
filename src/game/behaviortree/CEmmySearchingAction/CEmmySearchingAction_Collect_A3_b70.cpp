@@ -25,7 +25,7 @@ struct UnkCollectList_A3_b70 {
     u32 pad_0xc;
     UnkCollectNode_A3_b70* head;
     UnkCollectNode_A3_b70* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 tag;
 };
 

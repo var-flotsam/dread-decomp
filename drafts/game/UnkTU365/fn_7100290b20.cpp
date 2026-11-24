@@ -63,7 +63,7 @@ struct UnkEdgeRecordList_l290b20 {
     u32 count;                      // 0x8
     UnkEdgeRecord_l290b20* head;    // 0x10
     UnkEdgeRecord_l290b20* tail;    // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u32 flags;                      // 0x28
 
     void PushBack(const UnkEdgePair_l290b20& pair) {

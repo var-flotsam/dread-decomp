@@ -35,7 +35,7 @@ struct UnkOwnedPtrVector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // A capacity that doesn't grow past the count (no step) hangs, as CRntVector::PushBack does.
     // Pointers are stored bitwise: the original reloads `count` after each store.

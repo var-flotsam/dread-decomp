@@ -17,7 +17,7 @@ struct UnkColliderTriggerComponent_cb9c {
     u32 field_0x440;
     bool field_0x444;
     u32 field_0x448;
-    base::UnkAllocator* field_0x450;
+    base::IAllocator* field_0x450;
     u32 field_0x458;
     u64 field_0x460;
 };

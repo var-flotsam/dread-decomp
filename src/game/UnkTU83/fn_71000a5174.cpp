@@ -8,7 +8,7 @@
 #include "game/UnkTU83.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CStrId;
 
 using UnkIdRecord18BArrays = base::global::CRntSmallDictionary<CStrId, UnkIdRecord18B>;

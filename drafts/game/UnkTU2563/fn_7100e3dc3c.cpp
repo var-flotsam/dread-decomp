@@ -11,7 +11,7 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CRntVector;
 
 struct UnkWeldMap_le3dc3c;
@@ -38,7 +38,7 @@ struct UnkWeldNode_le3dc3c {
 // A chained hash map of the kept vertices (base/UnkHashMap.h layout), its nodes from a block pool;
 // fn_7100e63120 sets its storage up and fn_7100e3e0b0 destroys it.
 struct UnkWeldMap_le3dc3c {
-    UnkAllocator* allocator;
+    IAllocator* allocator;
     u32 flags;
     u32 count;  // 0xc
     UnkWeldNode_le3dc3c** buckets;  // 0x10
@@ -47,11 +47,11 @@ struct UnkWeldMap_le3dc3c {
     u32 bucket_step;                // 0x20
     bool field_0x24;
     u32 bucket_flags;               // 0x28
-    UnkAllocator* bucket_allocator;  // 0x30
+    IAllocator* bucket_allocator;  // 0x30
     UnkWeldNode_le3dc3c* tail;      // 0x38
     UnkWeldNode_le3dc3c* head;      // 0x40
     char* pool_vtable;              // 0x48
-    UnkAllocator* pool_parent;      // 0x50
+    IAllocator* pool_parent;      // 0x50
     UnkBlockFreeList pool_blocks;   // 0x58
     u32 field_0x80;
     bool field_0x84;

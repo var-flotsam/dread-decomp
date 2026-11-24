@@ -277,7 +277,7 @@ struct UnkEnvView_deb914 {
     UnkObjectNode_deb914* objects;  // 0x2b0
 };
 
-void fn_7100de5f98(UnkPoolList_deb914* self, u32 n, u32 a, u32 flags, base::UnkAllocator* allocator);
+void fn_7100de5f98(UnkPoolList_deb914* self, u32 n, u32 a, u32 flags, base::IAllocator* allocator);
 
 struct UnkSecond_deb914 {
     u8 pad_0x0[0x70];
@@ -377,7 +377,7 @@ struct UnkInlineString_dfb1b0 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_dfb1b0() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
@@ -1066,7 +1066,7 @@ struct UnkPtrList {
         UnkPtrListNode* tail;
     };
     union {
-        base::UnkAllocator* allocator;
+        base::IAllocator* allocator;
     };
     union {
         u32 flags;

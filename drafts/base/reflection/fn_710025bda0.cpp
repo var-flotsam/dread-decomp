@@ -97,7 +97,7 @@ struct UnkLinkNode_l25bda0 {
 static_assert(sizeof(UnkLinkNode_l25bda0) == 0x48, "layout");
 
 struct UnkLinkMap_l25bda0 {
-    base::UnkAllocator* allocator;          // 0x0, for the nodes
+    base::IAllocator* allocator;          // 0x0, for the nodes
     u32 flags;                              // 0x8
     u32 count;                              // 0xc
     CRntVector<UnkLinkNode_l25bda0*> buckets;  // 0x10

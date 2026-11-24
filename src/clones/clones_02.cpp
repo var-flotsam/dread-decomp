@@ -1530,7 +1530,7 @@ template <> struct base::UnkPoolListTraits<UnkClone_fn_71006914e8> {
     static char* vtable() { return g_unk_7101a617a0; }
     static char* base_vtable() { return g_unk_7101a617c0; }
 };
-template void base::refl_PoolListCtor<UnkClone_fn_71006914e8, 0, 0x10>(base::UnkPoolList<UnkClone_fn_71006914e8, 0, 0x10>*, u32, u32, u32, base::UnkAllocator*);
+template void base::refl_PoolListCtor<UnkClone_fn_71006914e8, 0, 0x10>(base::UnkPoolList<UnkClone_fn_71006914e8, 0, 0x10>*, u32, u32, u32, base::IAllocator*);
 struct UnkClone_fn_7100691cac;
 extern char g_unk_7101a617a0[];
 extern char g_unk_7101a617c0[];
@@ -4799,7 +4799,7 @@ template <> struct base::UnkPoolListTraits<UnkClone_fn_710087dc1c> {
     static char* vtable() { return g_unk_7101a7b5b0; }
     static char* base_vtable() { return g_unk_7101a7b5d0; }
 };
-template void base::refl_PoolListCtor<UnkClone_fn_710087dc1c, 0, 0x38>(base::UnkPoolList<UnkClone_fn_710087dc1c, 0, 0x38>*, u32, u32, u32, base::UnkAllocator*);
+template void base::refl_PoolListCtor<UnkClone_fn_710087dc1c, 0, 0x38>(base::UnkPoolList<UnkClone_fn_710087dc1c, 0, 0x38>*, u32, u32, u32, base::IAllocator*);
 struct UnkClone_fn_710087dd34;
 extern char g_unk_7101a7b5f0[];
 extern char g_unk_7101a7b610[];
@@ -4807,7 +4807,7 @@ template <> struct base::UnkPoolListTraits<UnkClone_fn_710087dd34> {
     static char* vtable() { return g_unk_7101a7b5f0; }
     static char* base_vtable() { return g_unk_7101a7b610; }
 };
-template void base::refl_PoolListCtor<UnkClone_fn_710087dd34, 0, 0x18>(base::UnkPoolList<UnkClone_fn_710087dd34, 0, 0x18>*, u32, u32, u32, base::UnkAllocator*);
+template void base::refl_PoolListCtor<UnkClone_fn_710087dd34, 0, 0x18>(base::UnkPoolList<UnkClone_fn_710087dd34, 0, 0x18>*, u32, u32, u32, base::IAllocator*);
 struct UnkClone_fn_710087e02c;
 extern char g_unk_7101a7b5f0[];
 extern char g_unk_7101a7b610[];

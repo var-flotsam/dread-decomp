@@ -4,7 +4,7 @@
 
 template <class Node>
 struct UnkMap_b218 {
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u32 flags;                      // 0x8
     u32 count;                      // 0xc
     Node** buckets;                 // 0x10

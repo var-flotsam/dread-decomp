@@ -15,7 +15,7 @@ struct UnkVertexArray108 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkPolygonElem108 {
@@ -54,7 +54,7 @@ struct UnkPolygonArray108 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Out of line: grows the array to at least n elements.
     void Reserve(u32 n) asm("fn_710011f1ec");

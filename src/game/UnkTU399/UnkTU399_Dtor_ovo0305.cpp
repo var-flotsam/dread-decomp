@@ -26,7 +26,7 @@ struct UnkPlainPair_b0249 {
     u32 capacity;
     u32 field_0x18;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkTreeOwner_b0249 {

@@ -78,7 +78,7 @@ struct UnkKeyed118Array_b49 {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // `pos` is a record of the array `self`; the declaration in include/game/UnkTU2566.h lacks the result.

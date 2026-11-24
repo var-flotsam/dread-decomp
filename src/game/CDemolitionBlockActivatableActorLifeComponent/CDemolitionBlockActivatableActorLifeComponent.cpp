@@ -18,7 +18,7 @@ struct UnkDemolitionBlockActivatableActorLifeComponent_40dc {
     u32 field_0x480;
     bool field_0x484;
     u32 field_0x488;
-    base::UnkAllocator* field_0x490;
+    base::IAllocator* field_0x490;
     u32 field_0x498;
     u64 field_0x4a0;
 };

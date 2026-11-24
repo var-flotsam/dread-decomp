@@ -43,7 +43,7 @@ struct UnkCameraHolder_la4dffc {
     u32 count;  // 0x58
     UnkCamNode_la4dffc* head;
     UnkCamNode_la4dffc* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // The id table's slot at +0x1d30 (UnkGameManagerIdTable does not name it yet).

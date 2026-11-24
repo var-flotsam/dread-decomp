@@ -11,7 +11,7 @@ struct UnkArray_b218 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     explicit UnkArray_b218(u32 f)
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(f), allocator(GetDefaultAllocator()) {}

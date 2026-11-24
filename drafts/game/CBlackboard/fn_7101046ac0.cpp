@@ -56,7 +56,7 @@ struct UnkBlackboardNode_l046ac0 {
 };
 
 struct UnkBlackboardMap_l046ac0 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     base::global::CRntVector<UnkBlackboardNode_l046ac0*> buckets;

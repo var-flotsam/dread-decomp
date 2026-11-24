@@ -30,14 +30,21 @@ struct UnkTimelineComponentOwner {
     UnkTimelineOwner_a2c13c* owner;
 };
 
+struct UnkCharClassCast_a2c13c;
+
+namespace base::reflection {
+template <>
+struct UnkCastTraits<UnkCharClassCast_a2c13c> {
+    static const CType* type() { return fn_71011abbd4(); }
+};
+}  // namespace base::reflection
+
 UnkTimelineResourceEntry* fn_7100a2c13c(UnkTimelineComponent* self, const u64* id) {
     UnkTimelineOwner_a2c13c* owner = reinterpret_cast<UnkTimelineComponentOwner*>(self)->owner;
-    base::reflection::UnkReflObject* object = owner->char_class;
-    if (!fn_710009d50c(object->vf_0x0(), fn_71011abbd4()))
-        object = nullptr;
-    // The cast's result is used unchecked; the pin keeps Clang from assuming it is not null.
-    asm("" : "+r"(object));
-    UnkCountedResource* actions = reinterpret_cast<UnkTimelineCharClass*>(object)->actions;
+    // The cast's result is used unchecked, as in the original.
+    UnkTimelineCharClass* char_class = reinterpret_cast<UnkTimelineCharClass*>(
+        base::reflection::refl_CastTo<UnkCharClassCast_a2c13c>(owner->char_class));
+    UnkCountedResource* actions = char_class->actions;
     if (!actions)
         return nullptr;
     ++actions->ref_count;

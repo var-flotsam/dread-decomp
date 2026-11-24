@@ -30,7 +30,7 @@ struct UnkInlineString_b0269 {
     const char* Data() const { return reinterpret_cast<const CRntString*>(str)->data; }
     const char* CStr() const { return Data() ? Data() : g_unk_710162e2ed; }
     UnkInlineString_b0269() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;

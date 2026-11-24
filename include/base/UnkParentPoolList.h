@@ -17,8 +17,8 @@ struct UnkParentPoolList {
     void* head;
     void* tail;
     u32 flags;
-    base::UnkAllocator* allocator;
-    base::UnkAllocator* pool_parent;  // the pool's parent when set, else the allocator
+    base::IAllocator* allocator;
+    base::IAllocator* pool_parent;  // the pool's parent when set, else the allocator
     base::UnkBlockPool pool;
 };
 static_assert(sizeof(UnkParentPoolList) == 0x78, "UnkParentPoolList placeholder layout");
@@ -26,7 +26,7 @@ static_assert(sizeof(UnkParentPoolList) == 0x78, "UnkParentPoolList placeholder 
 // The constructor, for nodes of `Elem` bytes and the two vtables.
 template <u64 Elem, char* BaseVtable, char* Vtable>
 __attribute__((always_inline)) inline void refl_ParentPoolListCtor(UnkParentPoolList* self, u32 n, u32 flags,
-                                                                    base::UnkAllocator* a) {
+                                                                    base::IAllocator* a) {
     self->vtable = BaseVtable + 0x10;
     self->count = 0;
     self->flags = flags;
@@ -38,7 +38,7 @@ __attribute__((always_inline)) inline void refl_ParentPoolListCtor(UnkParentPool
     self->pool_parent = nullptr;
     self->vtable = Vtable + 0x10;
     self->pool.Init();
-    base::UnkAllocator* parent = self->pool_parent;
+    base::IAllocator* parent = self->pool_parent;
     self->pool.field_0x38 = 0;
     self->pool.field_0x3c = false;
     if (!parent)
@@ -53,5 +53,5 @@ __attribute__((always_inline)) inline void refl_ParentPoolListCtor(UnkParentPool
         fn_710008378c(&self->pool.blocks, parent->vf_0x40(size, 8, f), size, Elem);
     }
     // The pool's address, formed as an integer (as in UnkPoolList::Init).
-    self->allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<u64>(self) + 0x38);
+    self->allocator = reinterpret_cast<base::IAllocator*>(reinterpret_cast<u64>(self) + 0x38);
 }

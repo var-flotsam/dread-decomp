@@ -20,7 +20,7 @@ struct UnkPendingList_A2_b69 {
     u32 count;                       // +0x20
     UnkPendingEntry_A2_b69* head;    // +0x28
     UnkPendingEntry_A2_b69* tail;    // +0x30
-    base::UnkAllocator* allocator;   // +0x38
+    base::IAllocator* allocator;   // +0x38
 };
 
 void fn_71003aaad0(UnkPendingList_A2_b69* self) {

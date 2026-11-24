@@ -19,7 +19,7 @@ struct UnkIdList_b0248 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // The id's destructor, with the decrement and the test in two steps.
     static void Release(CFilePathStrId& id) {
@@ -55,20 +55,20 @@ struct UnkPathNode_b0248 {
     u32 unk_0x10;        // its count
     u32 unk_0x14;        // its capacity
     u8 unk_0x18[0x10];
-    base::UnkAllocator* allocator;  // 0x28
+    base::IAllocator* allocator;  // 0x28
     UnkPathNode_b0248* next;        // 0x30
 };
 static_assert(__builtin_offsetof(UnkPathNode_b0248, next) == 0x30, "layout");
 
 struct UnkPooledPathMap_b0248 {
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u32 flags;                      // 0x8
     u32 count;                      // 0xc
     base::global::CRntVector<UnkPathNode_b0248*> buckets;  // 0x10 (data, count, capacity, ..., allocator at 0x30)
     UnkPathNode_b0248* tail;  // 0x38
     UnkPathNode_b0248* head;  // 0x40
     void* vtable;                         // 0x48
-    base::UnkAllocator* pool_allocator;  // 0x50
+    base::IAllocator* pool_allocator;  // 0x50
     UnkBlockFreeList free_list;          // 0x58
     u8 pad_0x80[0x4];
     bool field_0x84;

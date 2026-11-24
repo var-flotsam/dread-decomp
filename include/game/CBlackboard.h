@@ -24,7 +24,7 @@ struct UnkPropertyArrays {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 static_assert(sizeof(UnkPropertyArrays) == 0x28, "UnkPropertyArrays placeholder layout");
 

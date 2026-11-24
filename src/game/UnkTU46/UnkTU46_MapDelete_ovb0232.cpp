@@ -12,7 +12,7 @@ struct UnkInputMapB0232 {
     u32* keys;                    // 0x20
     u32 count;                    // 0x28
     u8 pad_0x2c[0xc];
-    base::UnkAllocator* allocator;  // 0x38
+    base::IAllocator* allocator;  // 0x38
 };
 
 void fn_710006dcfc(UnkInputMapB0232* self) {

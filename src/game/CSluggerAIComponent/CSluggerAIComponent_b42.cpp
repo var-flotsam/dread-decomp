@@ -15,19 +15,19 @@ struct UnkBucketArray_b42a2 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkBucketTable_b42a2 {
     UnkBucketArray_b42a2 buckets;
     s32 field_0x28;
     void* field_0x30;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 field_0x44;
     u32 field_0x48;
 
-    __attribute__((always_inline)) UnkBucketTable_b42a2(base::UnkAllocator* alloc, u32 fl) {
+    __attribute__((always_inline)) UnkBucketTable_b42a2(base::IAllocator* alloc, u32 fl) {
         buckets.data = nullptr;
         buckets.count = 0;
         buckets.capacity = 0;
@@ -76,5 +76,5 @@ struct UnkBucketTable_b42a2 {
 
 void fn_71006c59d8(void* self, void* alloc, u32 flags) {
     new (reinterpret_cast<UnkBucketTable_b42a2*>(self))
-        UnkBucketTable_b42a2(static_cast<base::UnkAllocator*>(alloc), flags);
+        UnkBucketTable_b42a2(static_cast<base::IAllocator*>(alloc), flags);
 }

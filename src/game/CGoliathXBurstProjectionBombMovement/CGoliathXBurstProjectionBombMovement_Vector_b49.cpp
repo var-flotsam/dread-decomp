@@ -15,7 +15,7 @@ struct UnkPushedVector;
 struct UnkValues3;
 
 void CGoliathXBurstProjectionBombMovement_ConstructVec3ArrayFromValues(UnkBombVector_b49* self, const UnkBombValue_b49* values, u64 count, u32 step,
-                   base::UnkAllocator* allocator, u32 flags) {
+                   base::IAllocator* allocator, u32 flags) {
     self->step = step;
     self->flags = flags;
     self->data = nullptr;

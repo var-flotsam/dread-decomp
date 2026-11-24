@@ -31,7 +31,7 @@ struct UnkTable_0x28 {
     void* field_0x0;
     void* field_0x8;
     u8 unk_0x10[0x10];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkTable_0x28() {
         fn_710102bcf8(this);

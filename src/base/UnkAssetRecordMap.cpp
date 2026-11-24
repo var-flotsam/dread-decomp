@@ -26,7 +26,7 @@ struct UnkAssetKeyedMap {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkAssetKeyedMap(UnkAssetKeyedMap&& other)
         : values(other.values), keys(other.keys), count(other.count), capacity(other.capacity),
@@ -58,7 +58,7 @@ struct UnkAssetPathIdVector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkAssetPathIdVector(UnkAssetPathIdVector&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
@@ -99,7 +99,7 @@ struct UnkIdMap {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // The record's destructor.

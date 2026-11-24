@@ -29,7 +29,7 @@ struct UnkIdRecordMapWithPath_b45a1 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     UnkStringData* path;  // 0x28, a file path id
 };
 
@@ -74,7 +74,7 @@ struct UnkPathIdPairMap_b45a1 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_7100018244(UnkPathIdPairMap_b45a1* self, u32 capacity);  // Reserve

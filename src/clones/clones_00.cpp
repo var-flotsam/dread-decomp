@@ -1491,7 +1491,7 @@ template <> struct base::UnkPoolListTraits<UnkClone_fn_71000e9f00> {
     static char* vtable() { return g_unk_7101a1b918; }
     static char* base_vtable() { return g_unk_7101a1b938; }
 };
-template void base::refl_PoolListCtor<UnkClone_fn_71000e9f00, 0, 0x10>(base::UnkPoolList<UnkClone_fn_71000e9f00, 0, 0x10>*, u32, u32, u32, base::UnkAllocator*);
+template void base::refl_PoolListCtor<UnkClone_fn_71000e9f00, 0, 0x10>(base::UnkPoolList<UnkClone_fn_71000e9f00, 0, 0x10>*, u32, u32, u32, base::IAllocator*);
 struct UnkClone_fn_71000ea064;
 char** fn_71000ec350(char*, u32);
 template <> struct base::UnkChainedSetTraits<UnkClone_fn_71000ea064> {

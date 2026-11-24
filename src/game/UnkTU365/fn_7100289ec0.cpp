@@ -33,7 +33,7 @@ struct UnkList_l289ec0 {
     u32 count;
     UnkNode_l289ec0* head;
     UnkNode_l289ec0* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u8 unk_0x64[4];
     u32 obj_flags;  // 0x68

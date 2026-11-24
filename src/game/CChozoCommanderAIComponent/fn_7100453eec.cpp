@@ -37,7 +37,7 @@ struct UnkRecord_453eec {
     UnkNode_453eec* field_0x1178;
     u64 field_0x1180;
     u8 pad_0x1188[0x8];
-    base::UnkAllocator* field_0x1190;
+    base::IAllocator* field_0x1190;
     u8 pad_0x1198[0x14b78];
     u32 field_0x15d10;
 };

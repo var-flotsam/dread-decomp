@@ -16,7 +16,7 @@ struct UnkInputValueList_l872690 {
     u32 count;
     Node* head;
     Node* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 
     UnkInputValueList_l872690(const UnkInputValueList_l872690& other)

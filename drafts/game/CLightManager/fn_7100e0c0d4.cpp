@@ -52,7 +52,7 @@ struct UnkLightNode_e0c0d4 {
 
 struct UnkLightMap_e0c0d4 {
     u8 pad_0x0[0x148];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkLightNode_e0c0d4** buckets;

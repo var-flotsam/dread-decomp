@@ -28,7 +28,7 @@ struct UnkStrBuffer {
     base::global::CRntString* Str() { return reinterpret_cast<base::global::CRntString*>(this); }
 
     UnkStrBuffer() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage));
         storage.vtable = g_unk_7101a1b750 + 2;
         storage.field_0x88 = nullptr;
         storage.field_0x90 = 0;

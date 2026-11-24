@@ -76,7 +76,7 @@ struct UnkPlaythroughText_ovb0123 {
     const CRntString* Str() const { return reinterpret_cast<const CRntString*>(raw); }
 
     UnkPlaythroughText_ovb0123() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage));
         storage.vtable = g_unk_7101a1b678 + 2;
         storage.field_0x48 = 0;
         storage.field_0x50 = 0;

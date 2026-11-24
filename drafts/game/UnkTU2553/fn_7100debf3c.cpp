@@ -65,7 +65,7 @@ struct UnkTU2553Manager {
     u32 count;
     UnkTU2553Node* head;
     UnkTU2553Node* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // Unlinks and frees `node`; false when it is not in the list.

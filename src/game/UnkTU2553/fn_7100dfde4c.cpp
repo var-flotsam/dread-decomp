@@ -33,7 +33,7 @@ struct UnkPtrList {
         UnkPtrListNode* tail;
     };
     union {
-        base::UnkAllocator* allocator;
+        base::IAllocator* allocator;
     };
     union {
         u32 flags;

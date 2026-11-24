@@ -64,7 +64,7 @@ struct UnkRawArray_ovb0229 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Free() { reinterpret_cast<base::global::CRntVector<u32>*>(this)->Free(); }
 };
@@ -141,7 +141,7 @@ struct UnkSortedList_ovb0229 {
     };
     Node* head;
     Node* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 
     __attribute__((always_inline)) void PushBack(const T& v) {
@@ -288,7 +288,7 @@ struct UnkList28_ovb0229 {
     UnkNode28_ovb0229* head;  // 0x10
     UnkNode28_ovb0229* tail;  // 0x18
     u32 flags;  // 0x20
-    base::UnkAllocator* allocator;  // 0x28
+    base::IAllocator* allocator;  // 0x28
 
     void PushBackCopy(const UnkNode28_ovb0229& value) {
         auto* node = static_cast<UnkNode28_ovb0229*>(allocator->vf_0x40(sizeof(UnkNode28_ovb0229), 8, flags));

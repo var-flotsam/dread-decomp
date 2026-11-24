@@ -173,7 +173,7 @@ struct UnkList_l53f510 {
     u32 count;
     UnkListNode_l53f510* head;
     UnkListNode_l53f510* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkList_l53f510() {
         vtable = reinterpret_cast<void**>(g_unk_7101a48bc0) + 2;

@@ -19,7 +19,7 @@ struct UnkElemArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_710100147c(UnkElemArray<UnkElem78>* self, u32 capacity);

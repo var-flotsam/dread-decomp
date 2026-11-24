@@ -22,7 +22,7 @@ struct UnkModelUpdaterEvents_l170b2c {
     u32 count;  // 0x8
     void* head;  // 0x10
     void* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u32 flags;  // 0x28
     u64 field_0x30;
 };

@@ -19,7 +19,7 @@ struct UnkAnimArray_ovb0033 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) ~UnkAnimArray_ovb0033() {
         if (data) {

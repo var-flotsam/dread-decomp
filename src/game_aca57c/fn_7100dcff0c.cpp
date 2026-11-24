@@ -3,7 +3,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 
 struct UnkPairArray_dcff0c {
     void* values;
@@ -12,7 +12,7 @@ struct UnkPairArray_dcff0c {
     u32 capacity;
     u32 step;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     UnkPairArray_dcff0c& operator=(UnkPairArray_dcff0c&& other) {
         count = 0;

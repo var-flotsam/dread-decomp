@@ -21,7 +21,7 @@
 #include "game/UnkTU88.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CRntVector;
 using base::global::CFilePathStrId;
 using base::global::CStrId;
@@ -139,7 +139,7 @@ static_assert(sizeof(UnkResRegistry) == 0x1b8, "");
 
 void fn_71000e9d60(void* self, u32 a, u32 flags);
 void fn_7100016b80(void* self);
-void fn_71000e9f00(void* list, u32 n, u32, u32 flags, UnkAllocator* allocator);
+void fn_71000e9f00(void* list, u32 n, u32, u32 flags, IAllocator* allocator);
 
 // The registry's constructor.
 void fn_71000e9c78(UnkResRegistry* self) {

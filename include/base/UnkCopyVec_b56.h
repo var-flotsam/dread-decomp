@@ -17,7 +17,7 @@ struct UnkCopyVec_b56 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Reserve(u32 n);
 

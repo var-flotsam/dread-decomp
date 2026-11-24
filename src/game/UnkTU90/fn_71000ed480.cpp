@@ -32,6 +32,12 @@ struct UnkBlob_b0202 {
     u8* data;  // 0x8
 };
 
+// The part of a type descriptor this writer reads.
+struct UnkTypeInfo_b0202 {
+    u8 pad_0x0[0x18];
+    u64 field_0x18;  // 0x18
+};
+
 void fn_71000ed480(UnkWriter_b0202* self, const UnkReflValueRef* ref) {
     if (fn_710009d50c(ref->type, static_cast<const CType*>(fn_710000ffd0()))) {
         const UnkBlob_b0202* blob = static_cast<const UnkBlob_b0202*>(ref->value);
@@ -42,7 +48,7 @@ void fn_71000ed480(UnkWriter_b0202* self, const UnkReflValueRef* ref) {
         }
     }
     if (!fn_710009d52c(ref->type, fn_7100007f84())) {
-        CRntFile_Write(self->file, ref->value, *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(ref->type) + 0x18));
+        CRntFile_Write(self->file, ref->value, reinterpret_cast<const UnkTypeInfo_b0202*>(ref->type)->field_0x18);
         return;
     }
     UnkReflValue value = fn_71000a1774(ref, fn_7100007f84());

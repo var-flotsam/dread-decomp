@@ -26,7 +26,7 @@ struct UnkKeyedB0Array_b51 {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void CClass_ShrinkKeyedB0ArrayToFit(UnkKeyedB0Array_b51* self) {

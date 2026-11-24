@@ -125,7 +125,7 @@ struct UnkFreeCameraCtrlRaw_b0058 {
     u32 list_step;
     bool list_grow;
     u32 list_flags;
-    base::UnkAllocator* list_allocator;
+    base::IAllocator* list_allocator;
     bool field_0x200;
     f32 field_0x204;
     f32 field_0x208;

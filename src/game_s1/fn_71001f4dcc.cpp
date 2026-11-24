@@ -45,7 +45,7 @@ struct UnkWidget_71001f4dcc {
     u8 pad_0x104[4];
     UnkWidgetMember member_0x108;
     UnkWidgetBuffer buffer_0x110;
-    base::UnkAllocator* allocator_0x130;
+    base::IAllocator* allocator_0x130;
     f32 field_0x138, field_0x13c, field_0x140, field_0x144;
     u8 pad_0x148[0x14];
     f32 field_0x15c, field_0x160;

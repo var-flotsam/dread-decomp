@@ -60,7 +60,7 @@ struct UnkPathIdList_lc8b3d4 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Reserve(u32 n) { CAsset_ReserveFilePathIdVec(reinterpret_cast<UnkResPathVec*>(this), n); }
     void PushBack(const CFilePathStrId& id) {

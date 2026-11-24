@@ -26,7 +26,7 @@ struct __attribute__((packed, aligned(4))) UnkLuaScratch {
     u8 pad_0x15[3];
     u32 flags;
     u32 pad_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // The array as a new slot of the stack gets it: empty, with room for 400 elements.
     void Init() {
@@ -68,7 +68,7 @@ typedef void (*UnkLuaReportFn)(const char* message, s32 a, s32 b);
 
 // Runs `str`; on an error, pops the error object and reports its message if there is a callback.
 void fn_710109c880(const char* str, UnkLuaReportFn report) {
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     u32 flags = 6;
     u64* data = static_cast<u64*>(allocator->vf_0x40(0x190 * sizeof(u64), 8, flags));
     u32 top = g_unk_7172a025a0.count;
@@ -155,7 +155,7 @@ s32 fn_710109d4f0(const char* format, ...) {
 // lua_pcall with a scratch array pushed for the call's reflected values and popped after it, as
 // fn_710109c880 runs a string. The state is the caller's.
 s32 fn_710109cef0(lua_State* L, s32 nargs, s32 nresults, s32 errfunc) {
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     u32 flags = 6;
     u64* data = static_cast<u64*>(allocator->vf_0x40(0x190 * sizeof(u64), 8, flags));
     u32 top = g_unk_7172a025a0.count;

@@ -18,7 +18,7 @@ struct UnkRecordTable_b43a3 {
     void* values;
     u64 field_0x10;
     u64 field_0x18;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u64 field_0x28;
 
     // Frees the arrays, the values first.

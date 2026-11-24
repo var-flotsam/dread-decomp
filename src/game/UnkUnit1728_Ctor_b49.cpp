@@ -19,7 +19,7 @@ struct UnkArray_b49 {
     u64 field_0x10 = 0;
     u32 step = 10;
     u32 flags;
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
 
     explicit UnkArray_b49(u32 flags) : flags(flags) {}
 };

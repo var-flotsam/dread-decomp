@@ -60,7 +60,7 @@ struct UnkRobotIdSource_l662110 {
     virtual void vf_0xc0();
     virtual void vf_0xc8();
     virtual void vf_0xd0();
-    virtual u64 vf_0xd8();
+    virtual u64 vf_0xd8(UnkActor* owner);  // the id is asked for the owner
 };
 
 struct UnkRobotAI_l662110 {
@@ -85,7 +85,7 @@ void fn_7100662110(UnkRobotAI_l662110* self, void* arg) {
         fn_710117ab64(animation, 1, g_unk_71726fd320);
     if (auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8)) {
         base::reflection::UnkReflTypeIdArg mask;
-        u64 id = self->field_0x146c8->vf_0xd8();
+        u64 id = self->field_0x146c8->vf_0xd8(self->owner);
         mask.id = UnkAll_SpitSend().value;
         fn_7100a2cb7c(timeline, &id, &mask.id, false, -1.0f);
     }

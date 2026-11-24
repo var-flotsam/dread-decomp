@@ -15,10 +15,10 @@ struct UnkStrListOwner_A6_b63 {
     UnkListNode<0x30>* head;  // 0x10
     UnkListNode<0x30>* tail;
     u64 field_0x20;
-    base::UnkAllocator* allocator;  // 0x28
+    base::IAllocator* allocator;  // 0x28
     u8 pad_0x30[8];
     void* field_0x38;
-    base::UnkAllocator* field_0x40;
+    base::IAllocator* field_0x40;
     UnkBlockFreeList field_0x48;  // the sub-object's free list; its buffer is at +0x68
     u8 pad_0x70[4];
     u8 field_0x74;

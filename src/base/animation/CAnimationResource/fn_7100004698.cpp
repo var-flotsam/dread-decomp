@@ -18,7 +18,7 @@ struct UnkResFormatVec {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Reserve(u32 n) { fn_7100005534(reinterpret_cast<base::global::CRntVector<UnkResFormat>*>(this), n); }
     void PushBack(const UnkResFormatMembers& v) {

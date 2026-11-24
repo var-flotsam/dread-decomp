@@ -166,7 +166,7 @@ struct UnkWorldGraphMap_b0101 {
     u32 count;                         // 0x16b8
     u32 capacity;
     u64 field_0x16c0;
-    base::UnkAllocator* allocator;  // 0x16c8
+    base::IAllocator* allocator;  // 0x16c8
 };
 
 struct UnkWorldGraphDtor_b0101 {

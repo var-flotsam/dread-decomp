@@ -36,7 +36,7 @@ struct UnkLightArray_ovb0060 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void MoveFrom(UnkLightArray_ovb0060& other) {
         if (this != &other) {
@@ -122,7 +122,7 @@ struct UnkLightNode_ovb0060 {
 static_assert(__builtin_offsetof(UnkLightNode_ovb0060, chain) == 0xa8, "UnkLightNode_ovb0060 layout");
 
 struct UnkLightMap_ovb0060 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkLightNode_ovb0060** buckets;  // 0x10

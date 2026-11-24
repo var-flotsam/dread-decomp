@@ -147,7 +147,7 @@ struct UnkOuter_b0228 {
     u8 pad_0x1c[4];
     UnkOuterNode_b0228* head;       // 0x20
     UnkOuterNode_b0228* tail;       // 0x28
-    base::UnkAllocator* allocator;  // 0x30
+    base::IAllocator* allocator;  // 0x30
 };
 
 struct UnkCameraCtrl_ovb0049;
@@ -217,7 +217,7 @@ struct UnkSortedList_ovb0229 {
     };
     Node* head;
     Node* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 };
 
@@ -239,7 +239,7 @@ struct UnkPlainList_b0228 {
     u32 count;  // 0x8
     Node* head;  // 0x10
     Node* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u32 flags;                      // 0x28
 };
 static inline void StoreValue(UnkWordNode_b0228* node, const u32* value) { node->value = *value; }
@@ -327,22 +327,48 @@ void fn_71002a5fe8(UnkPoints_ovb0229* list, const UnkPoint_ovb0229* point, UnkPo
     auto* self = reinterpret_cast<UnkPairListK_b0228*>(list);
     auto* value = reinterpret_cast<const UnkPairValue_b0228*>(point);
     auto* pos = reinterpret_cast<UnkPairNodeK_b0228*>(node_pos);
-    if (!self->head)
-        return;
     UnkPairNodeK_b0228* prev = nullptr;
-    UnkPairNodeK_b0228* cur = self->head;
-    while (cur != pos) {
-        prev = cur;
-        cur = cur->next;
-        if (!cur)
-            return;
-    }
-    // Keeps the predecessor test after the search instead of being threaded into it.
-    asm("" : "+r"(prev));
-    if (prev) {
-        u32 n = self->count;
-        UnkPairNodeK_b0228* node = self->Alloc();
-        if (n == 0) {
+    for (UnkPairNodeK_b0228* cur = self->head; cur; prev = cur, cur = cur->next) {
+        if (cur != pos)
+            continue;
+        // Found: insert after the predecessor, or at the front when there is none.
+        if (prev) {
+            u32 n = self->count;
+            UnkPairNodeK_b0228* node = self->Alloc();
+            if (n == 0) {
+                if (!node)
+                    return;
+                node->first = value->first;
+                node->second = value->second;
+                node->next = nullptr;
+                if (self->count == 0) {
+                    self->head = node;
+                    self->tail = node;
+                    self->count = 1;
+                    return;
+                }
+                self->tail->next = node;
+                node->next = nullptr;
+                goto set_tail;
+            }
+            if (!node)
+                return;
+            node->first = value->first;
+            node->second = value->second;
+            node->next = nullptr;
+            {
+                UnkPairNodeK_b0228* after = prev->next;
+                prev->next = node;
+                node->next = after;
+                if (after)
+                    goto bump;
+            }
+        set_tail:
+            self->tail = node;
+        bump:
+            self->count = self->count + 1;
+        } else {
+            UnkPairNodeK_b0228* node = self->Alloc();
             if (!node)
                 return;
             node->first = value->first;
@@ -354,42 +380,11 @@ void fn_71002a5fe8(UnkPoints_ovb0229* list, const UnkPoint_ovb0229* point, UnkPo
                 self->count = 1;
                 return;
             }
-            self->tail->next = node;
-            node->next = nullptr;
-            goto set_tail;
-        }
-        if (!node)
-            return;
-        node->first = value->first;
-            node->second = value->second;
-        node->next = nullptr;
-        {
-            UnkPairNodeK_b0228* after = prev->next;
-            prev->next = node;
-            node->next = after;
-            if (after)
-                goto bump;
-        }
-    set_tail:
-        self->tail = node;
-    bump:
-        self->count = self->count + 1;
-    } else {
-        UnkPairNodeK_b0228* node = self->Alloc();
-        if (!node)
-            return;
-        node->first = value->first;
-            node->second = value->second;
-        node->next = nullptr;
-        if (self->count == 0) {
+            node->next = self->head;
             self->head = node;
-            self->tail = node;
-            self->count = 1;
-            return;
+            self->count = self->count + 1;
         }
-        node->next = self->head;
-        self->head = node;
-        self->count = self->count + 1;
+        return;
     }
 }
 
@@ -607,7 +602,7 @@ struct UnkListP_b0228 {
     UnkNodeP_b0228* head = nullptr;
     UnkNodeP_b0228* tail = nullptr;
     u32 flags = 0x10;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     UnkListP_b0228() : vtable(reinterpret_cast<void**>(g_unk_7101a20f48 + 0x10)), allocator(GetDefaultAllocator()) {}
     ~UnkListP_b0228() {
         vtable = reinterpret_cast<void**>(g_unk_7101a20f48 + 0x10);

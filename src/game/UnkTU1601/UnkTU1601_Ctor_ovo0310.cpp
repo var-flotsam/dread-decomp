@@ -22,7 +22,7 @@ struct UnkThermalComp_b0237_a946ec {
     u32 devices_step;
     bool devices_grow;
     u32 devices_flags;
-    base::UnkAllocator* devices_allocator;
+    base::IAllocator* devices_allocator;
     CStrId id_0x570;
     CStrId id_0x578;
     CStrId id_0x580;

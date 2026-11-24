@@ -25,6 +25,11 @@ static inline __attribute__((always_inline)) base::math::CVector3D Position_b66a
     return v;
 }
 
+// The owner as this component sees it: an UnkActor followed by the reach limit.
+struct UnkObsydomithonActor_b66a4 : UnkActor {
+    f32 field_0x380;  // 0x380
+};
+
 bool fn_710062ea78(UnkObsydomithonAI_b66a4* self) {
     if (!self->owner->field_0x240)
         return false;
@@ -38,7 +43,7 @@ bool fn_710062ea78(UnkObsydomithonAI_b66a4* self) {
     u32 found;
     UnkShakernautArea_b65a4* area =
         reinterpret_cast<UnkShakernautArea_b65a4*>(static_cast<char*>(owner->field_0x240) + 0x68);
-    f32 limit = *reinterpret_cast<f32*>(reinterpret_cast<char*>(owner) + 0x380);
+    f32 limit = static_cast<UnkObsydomithonActor_b66a4*>(owner)->field_0x380;
     bool hit = fn_71001176e8(area, &pos2, reinterpret_cast<u32*>(&pos), &found, 1, 0.0f);
     return hit & (pos.x <= limit);
 }

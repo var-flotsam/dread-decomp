@@ -163,7 +163,7 @@ struct UnkInvComponent_ovb0094 {
     void* field_0xa0;
     u32 field_0xa8;
     u32 field_0xac;
-    base::UnkAllocator* field_0xb0;
+    base::IAllocator* field_0xb0;
 
 };
 static_assert(__builtin_offsetof(UnkInvComponent_ovb0094, field_0xb0) == 0xb0, "UnkInvComponent_ovb0094 layout");

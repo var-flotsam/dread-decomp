@@ -65,7 +65,7 @@ struct UnkNavMap_l274df0 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // Per cell, an owned array (or none).

@@ -66,23 +66,27 @@ static inline UnkSubId_7100fc4b34 SubId(const char* name) {
     return fn_71008c0004(qualified, name);
 }
 
+// The handle at +0x2e8, resolved on first use (state 1 becomes 2).
+static inline UnkCountedA5_b76* ResolvedHandle(UnkCommanderLife_b0266* self) {
+    if (self->state == 1) {
+        {
+            UnkRef fresh = fn_7100353be8(self->items);
+            fn_710031d208(&self->handle, reinterpret_cast<const base::UnkRefHandle*>(&fresh));
+        }
+        self->state = 2;
+    }
+    return static_cast<UnkCountedA5_b76*>(self->handle.ptr);
+}
+
 void fn_71008bdb50(UnkCommanderLife_b0266* self) {
     fn_710115fe1c(reinterpret_cast<char*>(self));
     if (self->owner->field_0x1b4) {
         UnkGameManager* manager = g_unk_7101d47310;
         fn_7100e8f9a0(static_cast<char*>(manager->field_0x2228), false, reinterpret_cast<CStrId*>(g_unk_71727302a0));
-        if (self->state == 1) {
-            {
-                UnkRef fresh = fn_7100353be8(self->items);
-                fn_710031d208(&self->handle, reinterpret_cast<const base::UnkRefHandle*>(&fresh));
-            }
-            self->state = 2;
-        }
-        auto* c = static_cast<UnkCountedA5_b76*>(self->handle.ptr);
+        UnkCountedA5_b76* c = ResolvedHandle(self);
         if (c && c->raw_0x10) {
-            // reads the target again after the test, as the original does
-            asm("" ::: "memory");
-            if (void* object = fn_71004067a4(c->field_0x10)) {
+            // the target is read through the handle accessor again
+            if (void* object = fn_71004067a4(ResolvedHandle(self)->field_0x10)) {
                 fn_71011995c0(g_unk_7101d47330, UnkCallback_kr{self, fn_71008c0000});
                 fn_71007a8280(object);
             }

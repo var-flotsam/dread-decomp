@@ -43,7 +43,7 @@ struct UnkKeyedArray_b62a1 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // Moves the values and keys into new arrays of `capacity` entries (the keys are moved too, unlike

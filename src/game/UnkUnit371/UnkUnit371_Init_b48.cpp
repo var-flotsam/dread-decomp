@@ -18,7 +18,7 @@ struct UnkWaterPuzzle_b43a3 {
     u32 capacity;       // 0x28
     bool enabled;       // 0x2c
     u32 step;           // 0x30
-    base::UnkAllocator* allocator;  // 0x38
+    base::IAllocator* allocator;  // 0x38
 };
 static_assert(sizeof(UnkWaterPuzzle_b43a3) == 0x40, "UnkWaterPuzzle_b43a3 layout");
 

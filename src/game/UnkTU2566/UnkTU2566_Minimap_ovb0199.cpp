@@ -287,7 +287,7 @@ void fn_7100ea585c(UnkMmOwner_b0199* self) {
     if (CBlackboard::CSection* s = fn_71010472e0(blackboard, section_id)) {
         if (!manager->field_0x968.field_0xe8) {
             UnkTypedValue v;
-            v.value = (u8*)self + 0xd643f0;
+            v.value = &reinterpret_cast<UnkMmOwner2_b0199*>(self)->table;
             v.type = &g_unk_71727cb000;
             fn_7100332c80(s, (UnkPropertyName*)qualified, &v);
         }
@@ -519,7 +519,7 @@ struct UnkMmCell_b0199 {
     u64 field_0x10;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     f32 min[2];
     f32 max[2];
     u8 sub[0x50];

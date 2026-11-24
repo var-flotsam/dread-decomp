@@ -29,7 +29,7 @@ struct UnkEntityPolyArray_b54 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkEntityPolyArray_b54() {
         if (data) {

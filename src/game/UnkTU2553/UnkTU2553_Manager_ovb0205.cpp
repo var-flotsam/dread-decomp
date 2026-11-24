@@ -393,7 +393,7 @@ struct UnkTgmIdNode_b205 {
     UnkTgmIdNode_b205* next;
 };
 struct UnkTgmIdSet_b205 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u8 pad_0x8[4];
     u32 count;
     void* buckets;
@@ -452,7 +452,7 @@ struct UnkTgmStrVector_b205 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkTgmStrVector_b205(u32 step_, u32 flags_)
         : data(nullptr), count(0), capacity(0), step(step_), field_0x14(false), flags(flags_),

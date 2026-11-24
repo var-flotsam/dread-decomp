@@ -37,7 +37,7 @@ struct UnkHeatableShieldD_b0080 {
     base::UnkStrIdMember* keys;       // 0x48
     u32 count;                        // 0x50
     u8 unk_0x54[0xc];
-    base::UnkAllocator* allocator;    // 0x60
+    base::IAllocator* allocator;    // 0x60
     UnkHeatableExtra_b0080* extra[1];  // 0x68
 };
 static_assert(__builtin_offsetof(UnkHeatableShieldD_b0080, extra) == 0x68, "layout");

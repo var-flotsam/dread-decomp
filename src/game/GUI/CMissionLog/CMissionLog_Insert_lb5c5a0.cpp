@@ -44,7 +44,7 @@ struct UnkStrIdArray_b5c5a0 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Reserving and appending are base::UnkStrIdVec's (the same layout and element).
     base::UnkStrIdVec* Vec() { return reinterpret_cast<base::UnkStrIdVec*>(this); }

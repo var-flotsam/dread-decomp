@@ -31,7 +31,7 @@ struct UnkCreditsCtor_ovb0070 {
     u32 count;
     UnkCreditsNode_ovb0070* head;
     UnkCreditsNode_ovb0070* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 list_flags;  // 0xb8
     u8 pad_0xbc[0x14];
     u8 member[0x9a0];  // 0xd0

@@ -21,7 +21,7 @@ struct UnkArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkArray(UnkArray&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),

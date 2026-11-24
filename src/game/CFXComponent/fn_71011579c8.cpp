@@ -25,7 +25,7 @@ struct UnkFXList_l1579c8 {
     u32 capacity;                // 0x14
     u32 step;                    // 0x18
     u32 flags;                   // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 };
 
 void CFXComponent_ReserveEffectListCapacity(UnkFXList_l1579c8* self, u32 capacity) {

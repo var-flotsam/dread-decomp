@@ -22,7 +22,7 @@ struct UnkStrIdList {
     u32 count;
     UnkStrIdListNode* head;
     UnkStrIdListNode* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u64 field_0x28;
     UnkDeferredSet<UnkDeferredCallback<bool>> on_change;  // 0x30
 };

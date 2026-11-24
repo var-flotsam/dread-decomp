@@ -29,6 +29,16 @@ static inline char* AsObsydomithonAI(UnkReflObject* ai) {
     return reinterpret_cast<char*>(IsObsydomithonAI(ai) ? ai : nullptr);
 }
 
+struct UnkObsydomithonAIComponent_710062a768 : UnkReflObject {
+    u8 pad_0x8[0x14794];
+    u32 field_0x1479c;  // 0x1479c
+    u32 field_0x147a0;  // 0x147a0
+};
+
+static inline UnkObsydomithonAIComponent_710062a768* CastToObsydomithonAI(UnkReflObject* ai) {
+    return static_cast<UnkObsydomithonAIComponent_710062a768*>(IsObsydomithonAI(ai) ? ai : nullptr);
+}
+
 void fn_710062a768(UnkObsydomithonAttack* self) {
     fn_71003609b8(self);
     self->field_0x50 = 0;
@@ -41,8 +51,9 @@ void fn_710062a768(UnkObsydomithonAttack* self) {
     self->field_0x5c = -1.0f;
     self->field_0x61 = false;
     if (IsObsydomithonAI(static_cast<UnkReflObject*>(self->field_0x8->field_0x240))) {
-        char* ai = AsObsydomithonAI(static_cast<UnkReflObject*>(self->field_0x8->field_0x240));
-        asm("" : "+r"(ai));
-        *reinterpret_cast<u64*>(ai + 0x1479c) = 0;
+        UnkObsydomithonAIComponent_710062a768* ai =
+            CastToObsydomithonAI(static_cast<UnkReflObject*>(self->field_0x8->field_0x240));
+        ai->field_0x1479c = 0;
+        ai->field_0x147a0 = 0;
     }
 }

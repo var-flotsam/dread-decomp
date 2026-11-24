@@ -114,7 +114,7 @@ struct UnkVertexArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // A polygon: its vertex array, then the cached length, flags, bounds and winding state.
@@ -174,7 +174,7 @@ struct UnkPolygonArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Out of line: grows the array to at least n elements.
     void Reserve(u32 n) asm("fn_710011f1ec");

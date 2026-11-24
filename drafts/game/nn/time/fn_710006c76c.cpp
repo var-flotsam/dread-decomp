@@ -29,7 +29,7 @@ struct UnkPointList_l06c76c {
     u32 count;                      // 0x8
     UnkPointNode_l06c76c* head;     // 0x10
     UnkPointNode_l06c76c* tail;     // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u32 alloc_flags;                // 0x28
     base::UnkDeferredSet<base::UnkDeferredCallback<const void*>> listeners;  // 0x30
 };

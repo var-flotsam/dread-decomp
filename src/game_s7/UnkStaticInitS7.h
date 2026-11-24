@@ -177,7 +177,7 @@ __attribute__((always_inline)) inline void InitBufferParam(UnkBufferParam* p, f3
     p->field_0x4 = b;
     p->field_0x8 = c;
     auto* str = reinterpret_cast<base::global::CRntString*>(p->field_0x10);
-    CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&p->field_0x40));
+    CRntString_InitWithAllocator(str, reinterpret_cast<base::IAllocator*>(&p->field_0x40));
     p->field_0x40 = vtable + 2;
     p->field_0x68 = 0;
     p->field_0x70 = 0;

@@ -39,7 +39,7 @@ struct UnkMgr_ldab4cc {
     u8 pad_0x2534[4];
     UnkNode_ldab4cc* head;  // 0x2538
     UnkNode_ldab4cc* tail;  // 0x2540
-    base::UnkAllocator* allocator;  // 0x2548
+    base::IAllocator* allocator;  // 0x2548
 
     UnkNode_ldab4cc* Unlink(UnkNode_ldab4cc* node) {
         UnkNode_ldab4cc* prev = nullptr;

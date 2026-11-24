@@ -50,7 +50,7 @@ struct UnkSlotArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkTag_71007ed25c;

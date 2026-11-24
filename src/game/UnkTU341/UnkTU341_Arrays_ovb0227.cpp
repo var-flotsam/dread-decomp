@@ -63,7 +63,7 @@ struct UnkSetArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) UnkCallbackSet_7101a20950* MoveTo(u32 new_capacity) {
         UnkCallbackSet_7101a20950* p = static_cast<UnkCallbackSet_7101a20950*>(
@@ -192,7 +192,7 @@ void fn_7100246eb8(UnkSetArray* self, const UnkCallbackSet_7101a20950* value, u3
 using base::global::CRntString;
 
 void fn_7100228ca0(base::reflection::UnkReflList<CRntString>* self, const CRntString* items, u64 size, u32 step,
-                   base::UnkAllocator* allocator, u32 flags) {
+                   base::IAllocator* allocator, u32 flags) {
     auto* v = reinterpret_cast<base::global::CRntVector<CRntString>*>(self);
     self->data = nullptr;
     self->count = 0;

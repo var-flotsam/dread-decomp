@@ -36,7 +36,7 @@ template <class K>
 struct UnkPlayMap_l102d50 {
     typedef UnkPlayNode_l102d50<K> Node;
 
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u32 flags;                      // 0x8
     u32 count;                      // 0xc
     Node** buckets;                 // 0x10

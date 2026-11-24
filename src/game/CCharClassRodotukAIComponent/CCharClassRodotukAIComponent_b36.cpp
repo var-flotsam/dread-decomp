@@ -16,7 +16,7 @@ struct UnkRodotukArray {
     u32 field_0x10;
     bool field_0x14;
     u32 field_0x18;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkRodotukDef2 {

@@ -23,11 +23,11 @@ struct UnkSmartLinkParts_ovb0137 {
     u32 pad_0xc;
     UnkListNode<0x30>* head;  // 0x10
     UnkListNode<0x30>* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u32 field_0x28;
     u32 pad_0x2c;
     void* field_0x30;
-    base::UnkAllocator* field_0x38;
+    base::IAllocator* field_0x38;
     UnkBlockFreeList field_0x40;
     u32 field_0x68;
     u8 field_0x6c;

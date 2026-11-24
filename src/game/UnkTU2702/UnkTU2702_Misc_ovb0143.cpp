@@ -334,17 +334,11 @@ static inline u64 NameKey(const u64* name) {
 }
 
 CAttack* fn_7101109df4(UnkAttackListSelf_b0143* self, UnkKeyedAttack_b0143* key) {
-    u64 size = (u64)self->count << 3;
-    // Keeps the byte size as the emptiness test.
-    asm("" : "+r"(size));
-    if (size != 0) {
-        UnkAttackPtr_b0143* list = AttackList(self);
-        UnkAttackPtr_b0143* it = list;
-        do {
-            if (NameKey(fn_7100360890(*it)) == key->field_0x20)
-                return *it;
-            ++it;
-        } while (it != list + self->count);
+    UnkAttackPtr_b0143* list = AttackList(self);
+    // The end is taken again on every pass: the count is reloaded after the name's use count is bumped.
+    for (UnkAttackPtr_b0143* it = list; it != list + self->count; ++it) {
+        if (NameKey(fn_7100360890(*it)) == key->field_0x20)
+            return *it;
     }
     return nullptr;
 }

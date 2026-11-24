@@ -28,7 +28,7 @@ struct UnkBufferString {
     }
 
     __attribute__((always_inline)) void Init() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage));
         storage.vtable = Vtable + 2;
         field_tail = 0;
         field_tail_count = 0;

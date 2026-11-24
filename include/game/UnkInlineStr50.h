@@ -21,7 +21,7 @@ struct UnkInlineStr50 {
 
     // An empty string over the inline storage.
     void Init() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&vtable));
         vtable = g_unk_7101a479c8 + 2;
         field_0x40 = 0;
         field_0x48 = 0;

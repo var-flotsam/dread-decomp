@@ -354,7 +354,7 @@ void fn_7100314ac8(UnkGhostAuraBase_b0040* self) {
     At_b0040<u32>(self, 0x3d8) = 10;
     At_b0040<bool>(self, 0x3dc) = true;
     At_b0040<u32>(self, 0x3e0) = 0xf;
-    At_b0040<base::UnkAllocator*>(self, 0x3e8) = GetDefaultAllocator();
+    At_b0040<base::IAllocator*>(self, 0x3e8) = GetDefaultAllocator();
     At_b0040<u32>(self, 0x438) = 0;
     At_b0040<u64>(self, 0x454) = 0;
     At_b0040<u32>(self, 0x45c) = 0;

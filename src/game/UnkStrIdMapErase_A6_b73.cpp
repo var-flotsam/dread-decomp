@@ -32,7 +32,7 @@ struct UnkHashView_A6b73 {
 };
 
 struct UnkEraseMap_A6b73 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;     // 0xc
     char** buckets;  // 0x10

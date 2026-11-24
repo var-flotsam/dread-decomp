@@ -49,7 +49,7 @@ struct UnkGfxRecord_0xc0 {
     u32 field_0x54[15];
     u32 field_0x90;
     u32 field_0x94;
-    base::UnkAllocator* field_0x98;
+    base::IAllocator* field_0x98;
     u64 field_0xa0;
     u64 field_0xa8;
     u64 field_0xb0;

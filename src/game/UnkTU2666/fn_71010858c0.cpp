@@ -3,7 +3,7 @@
 // or string. Names and layouts are placeholders.
 #include "../../../lib/lua/lua.h"
 #include "../../../lib/lua/lauxlib.h"
-#include "../../../src/game_aca57c/UnkBufferString.h"
+#include "../../game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
@@ -16,9 +16,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-s32 fn_71010475d0(CBlackboard* self, const CStrId& key, const CStrId& name);
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-bool fn_7100395c38(CBlackboard::CSection* section, const void* name, CRntString* out);
 
 struct UnkBlackboardOwner_l0858c0 {
     u8 pad_0x0[0x1260];
@@ -41,12 +38,15 @@ inline UnkWeakTarget* FindEntity(UnkGameManager* manager, const CStrId& name) {
     return fn_7100debbc8(manager, &key, &kind);
 }
 
+// The owner of the entity's blackboard, when there is an entity.
+static inline UnkBlackboardOwner_l0858c0* GetBlackboardOwner(UnkWeakTarget* target) {
+    return target ? reinterpret_cast<UnkEntity_l0858c0*>(target)->owner : nullptr;
+}
+
 s32 fn_71010858c0(lua_State* L) {
     const char* entity_name = luaL_checklstring(L, 1, nullptr);
     UnkWeakTarget* target = FindEntity(g_unk_7101d47310, CStrId(entity_name, true));
-    if (!target)
-        return 0;
-    if (UnkBlackboardOwner_l0858c0* owner = reinterpret_cast<UnkEntity_l0858c0*>(target)->owner) {
+    if (UnkBlackboardOwner_l0858c0* owner = GetBlackboardOwner(target)) {
         CBlackboard* blackboard = &owner->blackboard;
         CStrId section(luaL_checklstring(L, 2, nullptr), true);
         CStrId name(luaL_checklstring(L, 3, nullptr), true);

@@ -64,7 +64,7 @@ struct CRntDictionary {
         TNode*& Prev() { return prev; }
     };
 
-    UnkAllocator* allocator;  // the nodes'
+    IAllocator* allocator;  // the nodes'
     u32 flags;
     u32 count;
     CRntVector<TNode*> buckets;

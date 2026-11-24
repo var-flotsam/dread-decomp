@@ -45,7 +45,7 @@ struct UnkTwinArray_e3e25c {
     u32 capacity = 0;
     u32 step = 10;
     u32 flags = 14;
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
 };
 static_assert(sizeof(UnkTwinArray_e3e25c) == 0x28, "UnkTwinArray_e3e25c layout");
 

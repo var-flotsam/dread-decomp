@@ -87,7 +87,7 @@ struct UnkPlaythroughJoined_ovb0123 {
     CRntString* Str() { return reinterpret_cast<CRntString*>(raw); }
 
     UnkPlaythroughJoined_ovb0123() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage));
         storage.vtable = g_unk_7101a1b750 + 2;
         storage.field_0x88 = 0;
         storage.field_0x90 = 0;

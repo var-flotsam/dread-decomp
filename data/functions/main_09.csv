@@ -4398,7 +4398,7 @@ address,size,name,name_source,subsystem,status
 0x71009f0bf8,36,fn_71009f0bf8,unknown,game/player?,O
 0x71009f0c1c,12,fn_71009f0c1c,unknown,game/player?,O
 0x71009f0c28,12,fn_71009f0c28,unknown,game/player?,O
-0x71009f0c34,508,fn_71009f0c34,unknown,game/player?,U
+0x71009f0c34,508,fn_71009f0c34,unknown,game/player?,O
 0x71009f0e30,8,CSamusMovement::CTunableSamusMovement::refl_Equals,reflection,game/player,O
 0x71009f0e38,8,CSamusMovement::CTunableSamusMovement::refl_Hash,reflection,game/player,O
 0x71009f0e40,28,CSamusMovement::CTunableSamusMovement::refl_TypeOf,reflection,game/player,O

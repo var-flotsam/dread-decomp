@@ -20,13 +20,13 @@ struct UnkMissionLogCtor_b5af1c {
     u32 field_0x248_step;
     bool field_0x248_grow;
     u32 field_0x248_flags;
-    base::UnkAllocator* field_0x248_allocator;
+    base::IAllocator* field_0x248_allocator;
     void* field_0x270_data;
     u64 field_0x270_count;
     u32 field_0x270_step;
     bool field_0x270_grow;
     u32 field_0x270_flags;
-    base::UnkAllocator* field_0x270_allocator;
+    base::IAllocator* field_0x270_allocator;
     u64 field_0x298;
     u8 pad_0x2a0[0x4];
     bool field_0x2a4;

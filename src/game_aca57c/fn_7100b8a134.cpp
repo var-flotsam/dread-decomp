@@ -10,7 +10,7 @@
 #include "game/UnkTU1728.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::UnkStringData;
 
 // Two parallel arrays; a move leaves the capacity behind.
@@ -21,7 +21,7 @@ struct UnkMovedPairArray {
     u32 capacity;
     u32 step;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     UnkMovedPairArray(UnkMovedPairArray&& other)
         : data(other.data), ids(other.ids), count(other.count), capacity(other.capacity),

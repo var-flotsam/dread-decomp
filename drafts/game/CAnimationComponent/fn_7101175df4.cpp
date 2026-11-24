@@ -54,7 +54,7 @@ struct UnkAnimResDict_l175df4 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // The dictionary's copy constructor, out of line.

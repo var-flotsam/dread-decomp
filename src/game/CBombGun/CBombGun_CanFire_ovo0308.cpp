@@ -64,6 +64,11 @@ struct UnkKraidHolder_b0266 {
     UnkKraidActor_b0266* actor;  // 0x10
 };
 
+struct UnkKraidAI_b0266 {
+    u8 pad_0x0[0x149f0];
+    s32 field_0x149f0;  // 0x149f0
+};
+
 bool fn_7100830d38(UnkBombGun_b0266* self) {
     bool base_ok = fn_7100857344(self);
     UnkTrackQuery query;
@@ -95,7 +100,7 @@ bool fn_7100830d38(UnkBombGun_b0266* self) {
         if (UnkKraidActor_b0266* actor = holder->actor) {
             if (base::reflection::UnkReflObject* ai = actor->ai) {
                 if (fn_710009d50c(ai->vf_0x0(), fn_71005fac74()))
-                    count = count - *reinterpret_cast<s32*>(reinterpret_cast<char*>(ai) + 0x149f0);
+                    count = count - reinterpret_cast<UnkKraidAI_b0266*>(ai)->field_0x149f0;
             }
         }
     }
