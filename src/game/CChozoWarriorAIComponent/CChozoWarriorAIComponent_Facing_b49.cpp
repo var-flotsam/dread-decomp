@@ -12,7 +12,7 @@ struct UnkChozoWarriorAI_b49 {
     u8 pad_0x0[0x30];
     UnkActor* owner;
     u8 pad_0x38[0x149cc - 0x38];
-    s32 field_0x149cc;
+    s32 eTransformationType;
 };
 
 static inline f32 Sign(f32 v) {
@@ -30,7 +30,7 @@ bool fn_710049c1a8(UnkChozoWarriorAI_b49* self) {
         return false;
     if (fn_71010cc3a4(component) != 1)
         return true;
-    if (self->field_0x149cc != 1)
+    if (self->eTransformationType != 1)
         return false;
     f32 facing = Sign(Facing(self->owner));
     UnkActor* owner = self->owner;

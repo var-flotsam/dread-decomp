@@ -25,7 +25,7 @@ struct UnkSabotoruActor_b57a4 {
 
 struct UnkSabotoruLife_b57a4 {
     u8 pad_0x0[0x70];
-    CStrId field_0x70;
+    CStrId sDeadAnim;
 };
 
 const CStrId& fn_7100677b20(UnkSabotoruLife_b57a4* self, UnkSabotoruActor_b57a4* actor) {
@@ -36,5 +36,5 @@ const CStrId& fn_7100677b20(UnkSabotoruLife_b57a4* self, UnkSabotoruActor_b57a4*
             return base::global::CStrId::Empty();
         }
     }
-    return self->field_0x70;
+    return self->sDeadAnim;
 }

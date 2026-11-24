@@ -25,7 +25,7 @@ struct UnkSetSubAreaSetupEvent_ovb0136 {
     u8 pad_0x8[0x8];
     CStrId setup;    // 0x10
     CStrId subArea;  // 0x18
-    bool field_0x20;
+    bool bPersistent;
 };
 
 static inline void* SubAreaManager() {
@@ -42,7 +42,7 @@ void fn_7100cd9814(UnkSetSubAreaSetupEvent_ovb0136* self) {
     if (self->setup.data == &g_unk_7101d47108->empty)
         return;
     if (self->subArea.data == &g_unk_7101d47108->empty) {
-        fn_7100eea3fc(SubAreaManager(), &self->setup, self->field_0x20, false);
+        fn_7100eea3fc(SubAreaManager(), &self->setup, self->bPersistent, false);
         return;
     }
     const CStrId* source = &self->subArea;
@@ -51,5 +51,5 @@ void fn_7100cd9814(UnkSetSubAreaSetupEvent_ovb0136* self) {
         source = current ? current : &base::global::CStrId::Empty();
     }
     CStrId subArea(*source);
-    fn_7100eee1f8(SubAreaManager(), &subArea, &self->setup, self->field_0x20, false);
+    fn_7100eee1f8(SubAreaManager(), &subArea, &self->setup, self->bPersistent, false);
 }

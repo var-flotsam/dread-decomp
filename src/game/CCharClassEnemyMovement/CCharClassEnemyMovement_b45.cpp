@@ -13,7 +13,7 @@ struct UnkTrackRecordValue_b45a2 {
 
 struct UnkEnemyMovement_b45a2 {
     u8 pad_0x0[0x6c];
-    f32 field_0x6c;
+    f32 fAngularSpeed;
 };
 
 f32 CCharClassEnemyMovement_GetAngularSpeed(UnkEnemyMovement_b45a2* self, UnkActor* actor) {
@@ -23,5 +23,5 @@ f32 CCharClassEnemyMovement_GetAngularSpeed(UnkEnemyMovement_b45a2* self, UnkAct
         if (query.result)
             return reinterpret_cast<UnkTrackRecordValue_b45a2*>(query.result)->value;
     }
-    return self->field_0x6c;
+    return self->fAngularSpeed;
 }

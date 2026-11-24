@@ -27,7 +27,7 @@ struct UnkStruct_71008bca30 {
     u32 field_0x1c;
     u8 unk_0x20[0x38];
     UnkStrId_71008bca30 ids[9];
-    bool field_0xa0;
+    bool bDisableCollidersOnDead;
 };
 
 void fn_71008bca30(UnkStruct_71008bca30* self) {
@@ -35,7 +35,7 @@ void fn_71008bca30(UnkStruct_71008bca30* self) {
     self->vtable = g_unk_7101a7deb0 + 0x10;
     for (s32 i = 0; i < 9; ++i)
         new (&self->ids[i]) UnkStrId_71008bca30(base::global::CStrId::Empty().data);
-    self->field_0xa0 = true;
+    self->bDisableCollidersOnDead = true;
     self->field_0x18 = 0xdac;
     self->field_0x1c = 5;
 }

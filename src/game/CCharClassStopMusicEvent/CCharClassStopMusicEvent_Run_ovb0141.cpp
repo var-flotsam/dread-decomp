@@ -31,7 +31,7 @@ struct UnkStopMusicEvent_b0141 {
     u8 pad_0x0[0x10];
     base::global::UnkStringData* path;  // 0x10 (a file path id)
     f32 time;                           // 0x18
-    bool field_0x1c;
+    bool bClearStack;
 };
 
 void fn_7100ce4510(UnkStopMusicEvent_b0141* self) {
@@ -39,7 +39,7 @@ void fn_7100ce4510(UnkStopMusicEvent_b0141* self) {
     base::global::UnkStringData* empty = &g_unk_7101d47200->empty;
     void* manager = MusicManager();
     if (path == empty) {
-        UnkMask kind(self->field_0x1c ? 4 : 2);
+        UnkMask kind(self->bClearStack ? 4 : 2);
         f32 time = self->time;
         fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(manager), kind, UnkMaskOf<UnkMusicMaskTag>::All(), time);
         return;
@@ -50,7 +50,7 @@ void fn_7100ce4510(UnkStopMusicEvent_b0141* self) {
     ++uses;
     __builtin_memcpy(data + 0x44, &uses, 4);
     const base::global::CRntString* name = &reinterpret_cast<UnkPathString_b0141*>(self->path)->name;
-    UnkMask kind(self->field_0x1c ? 4 : 2);
+    UnkMask kind(self->bClearStack ? 4 : 2);
     f32 time = self->time;
     fn_7100fd82dc(static_cast<UnkMusicMgr_b0019*>(manager), name, kind,
                   UnkMaskOf<UnkMusicMaskTag>::All(), time);

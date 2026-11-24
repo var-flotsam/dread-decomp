@@ -13,7 +13,7 @@ struct UnkFireActionBaseTrack_ovb0076 {
     void** vtable;
     u8 unk_0x8[0x30];
     CStrId ids[4];
-    bool field_0x58;
+    bool bWantsRecoil;
 };
 
 struct UnkClass;
@@ -26,5 +26,5 @@ void fn_7100cf68f4(UnkFireActionBaseTrack_ovb0076* self, UnkClass* cls) {
     new (&self->ids[1]) CStrId(base::global::CStrId::Empty());
     new (&self->ids[2]) CStrId(base::global::CStrId::Empty());
     new (&self->ids[3]) CStrId(base::global::CStrId::Empty());
-    self->field_0x58 = false;
+    self->bWantsRecoil = false;
 }

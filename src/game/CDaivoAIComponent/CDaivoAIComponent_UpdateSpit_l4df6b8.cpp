@@ -11,7 +11,7 @@ struct UnkDaivoSpitObject {
 };
 struct UnkDaivoSpitAttack : UnkDaivoSpitObject {
     u8 pad_0x8[0xe4];
-    f32 field_0xec;
+    f32 fAttackCoolDown;
 };
 struct UnkDaivoSpitTarget {
     u8 pad_0x0[0x10];
@@ -41,7 +41,7 @@ void fn_71004df6b8(f32 dt, UnkDaivoAIComponent_4df6b8* self) {
         UnkDaivoSpitObject* object = spit.attack;
         UnkDaivoSpitAttack* attack =
             fn_710009d50c(object->vf_0x0(), fn_71004db91c()) ? static_cast<UnkDaivoSpitAttack*>(object) : nullptr;
-        spit.cooldown = attack->field_0xec;
+        spit.cooldown = attack->fAttackCoolDown;
         spit.held = false;
     } else if (spit.cooldown > 0.0f) {
         spit.cooldown -= dt;
