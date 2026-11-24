@@ -43,7 +43,7 @@ struct UnkWorldGraphListener_b0101 {
     u8 unk_0x0[0xd0];
 };
 void fn_71006fae70(UnkWorldGraphListener_b0101* self, void* node, u32 index);
-void fn_71006fadf0(UnkWorldGraphListener_b0101* self, void* node, u32 index);
+void HandleWorldGraphNodeAdded(UnkWorldGraphListener_b0101* self, void* node, u32 index);
 
 struct UnkWorldGraph_b0101 {
     u8 pad_0x0[0x30];
@@ -110,7 +110,7 @@ void* CWorldGraph_InsertNodeAt(UnkWorldGraph_b0101* self, u32 index, const base:
     fn_7100ad04c4(node);
     void* last = fn_7100acc418(reinterpret_cast<UnkWorldGraphArray*>(nodes), self->nodes.count - 1);
     for (UnkWorldGraphListener_b0101 *it = self->listeners, *end = it + self->listener_count; it != end; ++it)
-        fn_71006fadf0(it, last, self->nodes.count - 1);
+        HandleWorldGraphNodeAdded(it, last, self->nodes.count - 1);
     return last;
 }
 
@@ -134,7 +134,7 @@ __attribute__((disable_tail_calls)) void* CWorldGraph_FindOrAddNodeById(UnkWorld
     fn_7100ad04c4(node);
     void* last = fn_7100acc418(reinterpret_cast<UnkWorldGraphArray*>(nodes), self->nodes.count - 1);
     for (UnkWorldGraphListener_b0101 *it = self->listeners, *end = it + self->listener_count; it != end; ++it)
-        fn_71006fadf0(it, last, self->nodes.count - 1);
+        HandleWorldGraphNodeAdded(it, last, self->nodes.count - 1);
     return last;
 }
 
@@ -166,7 +166,7 @@ struct UnkWorldGraphMap_b0101 {
     u32 count;                         // 0x16b8
     u32 capacity;
     u64 field_0x16c0;
-    base::UnkAllocator* allocator;  // 0x16c8
+    base::IAllocator* allocator;  // 0x16c8
 };
 
 struct UnkWorldGraphDtor_b0101 {

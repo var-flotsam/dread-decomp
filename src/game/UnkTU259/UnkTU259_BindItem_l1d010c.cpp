@@ -104,7 +104,7 @@ void fn_71001d010c(UnkGfx_l1d010c* self, UnkDrawItem_l1d010c* item, bool flag) {
     if (self->field_0x3183672 && !item->field_0x80 && !item->field_0x30) {
         u32 pass = self->pass;
         if ((pass == 0x10 || pass == 1) && self->mode != 2 && item->field_0xb0 && item->field_0xac == 4) {
-            fn_710015a8c0(2);
+            SetDepthCompareFunc(2);
             fn_710015aa20(0);
         }
     }

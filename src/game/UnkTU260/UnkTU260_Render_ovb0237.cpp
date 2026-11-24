@@ -83,7 +83,7 @@ struct UnkFlags_b0237 {
         flags = static_cast<u16>(x | (y << 8));
     }
 };
-bool fn_710015b650(UnkFlags_b0237* p);
+bool PushStencilStateAndApply(UnkFlags_b0237* p);
 
 struct UnkRenderOwner_b0237 {
     u8 pad_0x0[0x8];
@@ -200,7 +200,7 @@ void fn_71001de554(UnkRenderOwner_b0237* self) {
     fn_71001cb604(self->target, 1, nullptr, nullptr, nullptr, nullptr);
     fn_71001ce704(self->target, 1);
     fn_71001cde48(self->target);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_71001cdd70(self->target);
 }
@@ -269,7 +269,7 @@ void fn_71001debe8(UnkRenderOwner_b0237* self) {
     bound[3] = fn_710015c450(self->slot_0x498);
     fn_71001d09fc(self->target, g_unk_7101a1e970);
     fn_71001d54e0(self->target, &self->field_0x118, self->block_0x8, bound, 4);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_71001cdd70(self->target);
 }
@@ -277,7 +277,7 @@ void fn_71001debe8(UnkRenderOwner_b0237* self) {
 void fn_71001de3a8(UnkRenderOwner_b0237* self) {
     fn_71001cdd6c(self->target, g_unk_716e596128);
     UnkFlags_b0237 flags(0, 1);
-    fn_710015b650(&flags);
+    PushStencilStateAndApply(&flags);
     if (fn_71001d48cc(self->target, nullptr, 1.0f - self->field_0x438)) {
         f32 a = static_cast<f32>(self->field_0x120);
         f32 b = static_cast<f32>(self->field_0x428);
@@ -297,9 +297,9 @@ void fn_71001de3a8(UnkRenderOwner_b0237* self) {
         UnkRenderTargetA1* target = self->target;
         fn_71001d4dbc(target, fn_710015c450(reinterpret_cast<UnkBoundTarget*>(self->field_0x418)),
                       &self->rect_0x100);
-        fn_71001cdd18(self->target);
+        PopPairListStackAndReapplyTop(self->target);
     }
-    fn_710015b8a0(true);
+    PopStateStackAndApplyNewTop(true);
     fn_71001cdd70(self->target);
 }
 

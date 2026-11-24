@@ -92,7 +92,7 @@ address,size,name,name_source,subsystem,status
 0x710000430c,244,base::animation::CAnimationResource::refl_GetClass,reflection,engine/base,O
 0x7100004400,4,base::animation::CAnimationResource::refl_AddFields,reflection,engine/base,O
 0x7100004404,372,base::animation::CAnimationResource::refl_InitClass,reflection,engine/base,O
-0x7100004578,288,CAnimationResource_ConstructResourceFormat,inferred,unknown,O
+0x7100004578,288,fn_7100004578,unknown,unknown,O
 0x7100004698,940,CAnimationResource_ConstructResourceTypeFromFormats,inferred,unknown,O
 0x7100004a44,336,fn_7100004a44,unknown,unknown,O
 0x7100004b94,520,fn_7100004b94,unknown,unknown,O
@@ -3043,7 +3043,7 @@ address,size,name,name_source,subsystem,status
 0x71000a4598,552,fn_71000a4598,unknown,engine/reflection?,O
 0x71000a47c0,408,fn_71000a47c0,unknown,engine/reflection?,O
 0x71000a4958,36,fn_71000a4958,unknown,engine/reflection?,O
-0x71000a497c,484,fn_71000a497c,unknown,engine/reflection?,O
+0x71000a497c,484,SetUpTypeRegistry,inferred,engine/reflection?,O
 0x71000a4b60,940,fn_71000a4b60,unknown,engine/reflection?,U
 0x71000a4f0c,264,fn_71000a4f0c,unknown,engine/reflection?,O
 0x71000a5020,248,fn_71000a5020,unknown,engine/reflection?,O
@@ -4510,8 +4510,8 @@ address,size,name,name_source,subsystem,status
 0x71000ccd38,76,fn_71000ccd38,unknown,engine/reflection?,O
 0x71000ccd84,144,AssignDefaultPoolStrIdFromRntString,inferred,engine/reflection?,O
 0x71000cce14,76,fn_71000cce14,unknown,engine/reflection?,O
-0x71000cce60,168,fn_71000cce60,unknown,engine/reflection?,O
-0x71000ccf08,168,fn_71000ccf08,unknown,engine/reflection?,O
+0x71000cce60,168,AssignFilePathStrIdFromRefCountedStringHandle,inferred,engine/reflection?,O
+0x71000ccf08,168,AssignCStrIdFromStringHolderHandle,inferred,engine/reflection?,O
 0x71000ccfb0,80,fn_71000ccfb0,unknown,engine/reflection?,O
 0x71000cd000,132,fn_71000cd000,unknown,engine/reflection?,O
 0x71000cd084,132,fn_71000cd084,unknown,engine/reflection?,O
@@ -4519,7 +4519,7 @@ address,size,name,name_source,subsystem,status
 0x71000cd18c,140,fn_71000cd18c,unknown,engine/reflection?,O
 0x71000cd218,140,fn_71000cd218,unknown,engine/reflection?,O
 0x71000cd2a4,148,fn_71000cd2a4,unknown,engine/reflection?,O
-0x71000cd338,384,fn_71000cd338,unknown,engine/reflection?,O
+0x71000cd338,384,AssignFilePathStrIdFromCString,inferred,engine/reflection?,O
 0x71000cd4b8,20,fn_71000cd4b8,unknown,engine/reflection?,O
 0x71000cd4cc,144,base::reflection::KeyElementValue<base::global::CRntVector<base::global::CStrId>>::refl_Equals,reflection,engine/reflection,O
 0x71000cd55c,8,base::reflection::KeyElementValue<base::global::CRntVector<base::global::CStrId>>::refl_Hash,reflection,engine/reflection,O
@@ -5002,7 +5002,7 @@ address,size,name,name_source,subsystem,status
 0x71000d8028,48,fn_71000d8028,unknown,engine/reflection?,O
 0x71000d8058,48,fn_71000d8058,unknown,engine/reflection?,O
 0x71000d8088,520,fn_71000d8088,unknown,engine/reflection?,O
-0x71000d8290,408,fn_71000d8290,unknown,engine/reflection?,O
+0x71000d8290,408,ShrinkReflValueStrIdTableToFit,inferred,engine/reflection?,O
 0x71000d8428,324,fn_71000d8428,unknown,engine/reflection?,O
 0x71000d856c,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CTypedValue>>::Begin",reflection,engine/reflection,O
 0x71000d8578,24,fn_71000d8578,unknown,engine/reflection?,O
@@ -5054,7 +5054,7 @@ address,size,name,name_source,subsystem,status
 0x71000d99d0,304,fn_71000d99d0,unknown,engine/reflection?,O
 0x71000d9b00,272,fn_71000d9b00,unknown,engine/reflection?,O
 0x71000d9c10,472,fn_71000d9c10,unknown,engine/reflection?,O
-0x71000d9de8,472,fn_71000d9de8,unknown,engine/reflection?,O
+0x71000d9de8,472,SwapEraseStrIdValueKeyedByStrIdAt,inferred,engine/reflection?,O
 0x71000d9fc0,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::Begin",reflection,engine/reflection,O
 0x71000d9fcc,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::End",reflection,engine/reflection,O
 0x71000d9fe0,224,fn_71000d9fe0,unknown,engine/reflection?,O
@@ -5105,7 +5105,7 @@ address,size,name,name_source,subsystem,status
 0x71000db40c,304,fn_71000db40c,unknown,engine/reflection?,O
 0x71000db53c,280,fn_71000db53c,unknown,engine/reflection?,O
 0x71000db654,472,fn_71000db654,unknown,engine/reflection?,O
-0x71000db82c,480,fn_71000db82c,unknown,engine/reflection?,O
+0x71000db82c,480,EraseKeyedFilePathIdSwappingLast,inferred,engine/reflection?,O
 0x71000dba0c,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::Begin",reflection,engine/reflection,O
 0x71000dba18,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::End",reflection,engine/reflection,O
 0x71000dba2c,228,fn_71000dba2c,unknown,engine/reflection?,O
@@ -5290,7 +5290,7 @@ address,size,name,name_source,subsystem,status
 0x71000df388,252,fn_71000df388,unknown,engine/reflection?,O
 0x71000df484,360,fn_71000df484,unknown,engine/reflection?,O
 0x71000df5ec,356,ShrinkU32StrIdTableToFit,inferred,engine/reflection?,O
-0x71000df750,304,fn_71000df750,unknown,engine/reflection?,O
+0x71000df750,304,EraseU32StrIdKeyedEntryBySwapWithLast,inferred,engine/reflection?,O
 0x71000df880,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, float>>::Begin",reflection,engine/reflection,O
 0x71000df88c,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, float>>::End",reflection,engine/reflection,O
 0x71000df8a0,152,fn_71000df8a0,unknown,engine/reflection?,O
@@ -5407,10 +5407,10 @@ address,size,name,name_source,subsystem,status
 0x71000e2158,140,CAfterElementDeserializationWrapper::refl_Destroy,reflection,game,O
 0x71000e21e4,264,CAfterElementDeserializationWrapper::refl_CopyAssign,reflection,game,O
 0x71000e22ec,192,CAfterElementDeserializationWrapper::refl_MoveAssign,reflection,game,O
-0x71000e23ac,260,fn_71000e23ac,unknown,engine/reflection?,O
+0x71000e23ac,260,AssignRntStringVectorFromCString,inferred,engine/reflection?,O
 0x71000e24b0,264,fn_71000e24b0,unknown,engine/reflection?,O
 0x71000e25b8,320,fn_71000e25b8,unknown,engine/reflection?,O
-0x71000e26f8,252,fn_71000e26f8,unknown,engine/reflection?,O
+0x71000e26f8,252,AssignRntStringVectorFromHeldString,inferred,engine/reflection?,O
 0x71000e2800,14236,InitBaseCollectionReflectionTypeStatics,inferred,engine/reflection?,O
 0x71000e5f9c,4,fn_71000e5f9c,unknown,engine/reflection?,O
 0x71000e5fa0,4,fn_71000e5fa0,unknown,engine/reflection?,O
@@ -5478,7 +5478,7 @@ address,size,name,name_source,subsystem,status
 0x71000e6ae0,12,fn_71000e6ae0,unknown,engine/reflection?,O
 0x71000e6af0,488,fn_71000e6af0,unknown,engine/reflection?,O
 0x71000e6ce0,196,fn_71000e6ce0,unknown,engine/reflection?,O
-0x71000e6db0,156,fn_71000e6db0,unknown,engine/reflection?,O
+0x71000e6db0,156,IsLinkAttributeSet,inferred,engine/reflection?,O
 0x71000e6e4c,396,fn_71000e6e4c,unknown,engine/reflection?,O
 0x71000e6fd8,236,fn_71000e6fd8,unknown,engine/reflection?,O
 0x71000e70c4,656,fn_71000e70c4,unknown,engine/reflection?,O
@@ -5486,13 +5486,13 @@ address,size,name,name_source,subsystem,status
 0x71000e7420,156,fn_71000e7420,unknown,engine/reflection?,O
 0x71000e74bc,80,fn_71000e74bc,unknown,unknown,O
 0x71000e750c,80,fn_71000e750c,unknown,engine/reflection?,O
-0x71000e755c,184,fn_71000e755c,unknown,unknown,O
+0x71000e755c,184,GetReflectedFieldTypedPtr,inferred,unknown,O
 0x71000e7614,200,fn_71000e7614,unknown,engine/reflection?,O
 0x71000e76dc,256,fn_71000e76dc,unknown,engine/reflection?,O
 0x71000e77dc,260,fn_71000e77dc,unknown,unknown,O
-0x71000e78e0,200,fn_71000e78e0,unknown,unknown,O
+0x71000e78e0,200,ReadReflectedFieldIntoTypedRef,inferred,unknown,O
 0x71000e79a8,216,fn_71000e79a8,unknown,engine/reflection?,O
-0x71000e7a80,220,fn_71000e7a80,unknown,unknown,O
+0x71000e7a80,220,SetReflectedFieldValue,inferred,unknown,O
 0x71000e7b5c,760,fn_71000e7b5c,unknown,unknown,m
 0x71000e7e54,288,fn_71000e7e54,unknown,engine/reflection?,O
 0x71000e7f74,208,fn_71000e7f74,unknown,engine/reflection?,O
@@ -5533,11 +5533,11 @@ address,size,name,name_source,subsystem,status
 0x71000e9a3c,64,fn_71000e9a3c,unknown,unknown,O
 0x71000e9a7c,508,fn_71000e9a7c,unknown,unknown,O
 0x71000e9c78,232,fn_71000e9c78,unknown,unknown,O
-0x71000e9d60,416,fn_71000e9d60,unknown,unknown,U
+0x71000e9d60,416,fn_71000e9d60,unknown,unknown,O
 0x71000e9f00,280,fn_71000e9f00,unknown,unknown,O
 0x71000ea018,76,fn_71000ea018,unknown,engine/base?,O
 0x71000ea064,264,fn_71000ea064,unknown,unknown,O
-0x71000ea16c,304,fn_71000ea16c,unknown,unknown,O
+0x71000ea16c,304,ClearNamedListNodeBucketSet,inferred,unknown,O
 0x71000ea29c,216,fn_71000ea29c,unknown,unknown,O
 0x71000ea374,116,fn_71000ea374,unknown,game/components?,O
 0x71000ea3e8,96,fn_71000ea3e8,unknown,game/components?,O
@@ -5551,7 +5551,7 @@ address,size,name,name_source,subsystem,status
 0x71000eb420,512,fn_71000eb420,unknown,unknown,U
 0x71000eb620,8,fn_71000eb620,unknown,unknown,O
 0x71000eb628,412,fn_71000eb628,unknown,engine/reflection?,O
-0x71000eb7c4,424,fn_71000eb7c4,unknown,unknown,O
+0x71000eb7c4,424,EraseNamedSetNodeAtIterator,inferred,unknown,O
 0x71000eb96c,8,fn_71000eb96c,unknown,unknown,O
 0x71000eb974,8,fn_71000eb974,unknown,unknown,O
 0x71000eb97c,8,fn_71000eb97c,unknown,unknown,O
@@ -5586,7 +5586,7 @@ address,size,name,name_source,subsystem,status
 0x71000ed0d0,20,base::reflection::ValueOps<base::serialization::EPersistence>::CopyAssign,reflection,engine/reflection,O
 0x71000ed0e4,20,base::reflection::ValueOps<base::serialization::EPersistence>::MoveAssign,reflection,engine/reflection,O
 0x71000ed100,292,RegisterEPersistenceEnumType,inferred,engine/reflection?,O
-0x71000ed224,148,fn_71000ed224,unknown,unknown,O
+0x71000ed224,148,InitRntFileWriterAndWriteHeader,inferred,unknown,O
 0x71000ed2b8,456,fn_71000ed2b8,unknown,engine/reflection?,U
 0x71000ed480,392,fn_71000ed480,unknown,engine/reflection?,O
 0x71000ed608,120,fn_71000ed608,unknown,unknown,U
@@ -5605,12 +5605,12 @@ address,size,name,name_source,subsystem,status
 0x71000edda0,348,fn_71000edda0,unknown,engine/reflection?,O
 0x71000edf00,192,fn_71000edf00,unknown,unknown,O
 0x71000edfc0,852,fn_71000edfc0,unknown,engine/reflection?,U
-0x71000ee314,196,fn_71000ee314,unknown,engine/reflection?,O
+0x71000ee314,196,InitReflValueListWithRoot,inferred,engine/reflection?,O
 0x71000ee3d8,248,fn_71000ee3d8,unknown,engine/reflection?,U
 0x71000ee4d0,24,fn_71000ee4d0,unknown,engine/reflection?,O
 0x71000ee4e8,1032,fn_71000ee4e8,unknown,engine/reflection?,U
 0x71000ee8f0,268,fn_71000ee8f0,unknown,engine/reflection?,U
-0x71000ee9fc,232,fn_71000ee9fc,unknown,engine/reflection?,O
+0x71000ee9fc,232,ReadReflListingTopEntryByKind,inferred,engine/reflection?,O
 0x71000eeae4,588,fn_71000eeae4,unknown,engine/reflection?,U
 0x71000eed30,332,fn_71000eed30,unknown,engine/reflection?,O
 0x71000eee7c,264,fn_71000eee7c,unknown,engine/reflection?,U
@@ -5630,17 +5630,17 @@ address,size,name,name_source,subsystem,status
 0x71000ef3fc,20,base::reflection::ValueOps<base::serialization::EDeserializeCollectionElementMode>::MoveAssign,reflection,engine/reflection,O
 0x71000ef410,292,RegisterEDeserializeCollectionElementModeEnum,inferred,engine/reflection?,O
 0x71000ef534,560,fn_71000ef534,unknown,engine/reflection?,U
-0x71000ef764,448,fn_71000ef764,unknown,engine/reflection?,O
+0x71000ef764,448,WriteFlagsetValueAsBitNamesText,inferred,engine/reflection?,O
 0x71000ef924,164,fn_71000ef924,unknown,unknown,O
 0x71000ef9c8,4,operator.delete,symbol,unknown,O
-0x71000ef9cc,68,fn_71000ef9cc,unknown,unknown,O
+0x71000ef9cc,68,WriteBoolAsTrueFalseText,inferred,unknown,O
 0x71000efa10,20,fn_71000efa10,unknown,unknown,O
 0x71000efa24,52,fn_71000efa24,unknown,unknown,O
 0x71000efa58,60,fn_71000efa58,unknown,unknown,O
 0x71000efa94,64,fn_71000efa94,unknown,unknown,O
 0x71000efad4,60,fn_71000efad4,unknown,unknown,O
 0x71000efb10,64,fn_71000efb10,unknown,unknown,O
-0x71000efb50,56,fn_71000efb50,unknown,unknown,O
+0x71000efb50,56,FormatBgra8ColorAsRgbaText,inferred,unknown,O
 0x71000efb88,244,fn_71000efb88,unknown,engine/reflection?,O
 0x71000efc7c,40,fn_71000efc7c,unknown,unknown,O
 0x71000efca4,44,fn_71000efca4,unknown,unknown,O
@@ -5750,7 +5750,7 @@ address,size,name,name_source,subsystem,status
 0x71000f639c,8,fn_71000f639c,unknown,unknown,O
 0x71000f63a4,4,fn_71000f63a4,unknown,unknown,O
 0x71000f63b0,952,fn_71000f63b0,unknown,unknown,m
-0x71000f6770,264,fn_71000f6770,unknown,unknown,O
+0x71000f6770,264,AddElapsedTimeToSoundSystemClock,inferred,unknown,O
 0x71000f6880,4,fn_71000f6880,unknown,unknown,O
 0x71000f6890,4,fn_71000f6890,unknown,unknown,O
 0x71000f6894,40,fn_71000f6894,unknown,unknown,O
@@ -5830,7 +5830,7 @@ address,size,name,name_source,subsystem,status
 0x71000fec3c,480,fn_71000fec3c,unknown,engine/base?,U
 0x71000fee1c,252,fn_71000fee1c,unknown,engine/base?,U
 0x71000fef18,224,fn_71000fef18,unknown,engine/base?,m
-0x71000feff8,536,fn_71000feff8,unknown,engine/base?,O
+0x71000feff8,536,SetSoundChannelLevelsByMask,inferred,engine/base?,O
 0x71000ff210,32,fn_71000ff210,unknown,engine/base?,O
 0x71000ff230,8,fn_71000ff230,unknown,engine/base?,O
 0x71000ff238,36,fn_71000ff238,unknown,engine/base?,O

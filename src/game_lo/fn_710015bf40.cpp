@@ -5,7 +5,7 @@
 #include "game/UnkTU178.h"
 #include "types.h"
 
-void fn_710015bf40(UnkMatrix44* self, f32 scale) {
+void ScaleMatrixYByAspectRatioAndNegateElement7(UnkMatrix44* self, f32 scale) {
     if (!(scale > 0.0f))
         scale = fn_7100132fa0();
     UnkCopyMatrix(self, fn_71000127c8(fn_7100079138(1.0f, scale, 1.0f), *self));

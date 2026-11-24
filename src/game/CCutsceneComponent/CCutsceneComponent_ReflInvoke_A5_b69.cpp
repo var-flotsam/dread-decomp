@@ -8,7 +8,7 @@
 
 using base::reflection::UnkReflValue;
 
-void fn_71007a8724(void* self, u32 a, u32 b, bool flag);
+void CCutsceneComponent_SetEntryFlagAtCurrentListIndex(void* self, u32 a, u32 b, bool flag);
 
 static inline __attribute__((always_inline)) void* ArgPtr_A5_b69(UnkReflValue* arg) {
     if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)
@@ -16,13 +16,13 @@ static inline __attribute__((always_inline)) void* ArgPtr_A5_b69(UnkReflValue* a
     return arg;
 }
 
-UnkReflValue fn_71007ae4e8(void*, char* obj, UnkReflValue* const* args) {
+UnkReflValue CCutsceneComponent_InvokeOnExtraActorVisibilityPerTakeChanged(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* a = args[0];
     void* self = *reinterpret_cast<void**>(obj + 8);
     u32 x = *static_cast<const u32*>(ArgPtr_A5_b69(&a[0]));
     u32 y = *static_cast<const u32*>(ArgPtr_A5_b69(&a[1]));
     bool flag = *static_cast<const bool*>(ArgPtr_A5_b69(&a[2]));
-    fn_71007a8724(self, x, y, flag);
+    CCutsceneComponent_SetEntryFlagAtCurrentListIndex(self, x, y, flag);
     UnkReflValue r;
     r.field_0x0 = nullptr;
     r.type = nullptr;
@@ -50,15 +50,20 @@ static inline __attribute__((always_inline)) void* ArgPtrOrNull_A5_b69(UnkReflVa
     return arg;
 }
 
-UnkReflValue fn_71007ae2bc(void*, char* obj, UnkReflValue* const* args) {
+struct UnkElemView_A5_b69 {
+    u8 pad_0x0[0x30];
+    u64 field_0x30;  // 0x30
+};
+
+UnkReflValue CCutsceneComponent_InvokeSetExtraActorStatus(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* a = args[0];
     UnkCutsceneOwner_A5_b69* self = *reinterpret_cast<UnkCutsceneOwner_A5_b69**>(obj + 8);
     const u64* id = static_cast<const u64*>(ArgPtrOrNull_A5_b69(&a[0]));
     u8 first = *static_cast<const u8*>(ArgPtr_A5_b69(&a[1]));
     u8 second = *static_cast<const u8*>(ArgPtr_A5_b69(&a[2]));
     for (u32 i = 0; i < self->entries.count; ++i) {
-        UnkElem_0x88& e = fn_71007a6b58(&self->entries, i);
-        if (*reinterpret_cast<const u64*>(reinterpret_cast<char*>(&e) + 0x30) == *id) {
+        UnkElemView_A5_b69& e = reinterpret_cast<UnkElemView_A5_b69&>(fn_71007a6b58(&self->entries, i));
+        if (e.field_0x30 == *id) {
             bool b = second;
             bool a = first;
             fn_71007a95f8(self, i, a, a, b);

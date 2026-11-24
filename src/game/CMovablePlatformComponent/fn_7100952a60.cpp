@@ -15,7 +15,7 @@ struct UnkStatics_71004d7d80 {
 extern UnkStatics_71004d7d80 g_unk_7172739dd0 __attribute__((visibility("hidden")));
 extern char g_unk_7172739dc8[];
 
-void fn_7100952a60() {
+void CMovablePlatformComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172739dd0.ids);
     InitClassId(&g_unk_7172739dd0.field_0x18, "MOVABLE_PLATFORM");
     InitId(&g_unk_7172739dd0.field_0x20, "MovablePlatform");

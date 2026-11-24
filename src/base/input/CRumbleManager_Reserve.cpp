@@ -20,7 +20,7 @@ struct UnkKeyedStrings_710007547c {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_710007547c(base::UnkNamedRegistry* registry, u32 capacity) {

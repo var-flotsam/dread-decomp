@@ -259,6 +259,11 @@ struct UnkRequest_b0204 {
     const void* field_0xb8;
 };
 
+struct UnkMoveTunable_71010dc968 {
+    u8 pad_0x0[0x60];
+    f32 field_0x60;  // 0x60
+};
+
 bool fn_71010dc968(UnkPlayerMovementD_b0204* self, UnkRequest_b0204* req) {
     if (req->field_0xb8 != g_unk_71726dda50.data)
         fn_71010d80e8(self, 2);
@@ -269,7 +274,7 @@ bool fn_71010dc968(UnkPlayerMovementD_b0204* self, UnkRequest_b0204* req) {
     } else {
         const f32* charge = g_unk_71726e0aa8.field_0xd8;
         fn_71010da220(self, charge[0], charge[1],
-                      *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_7172a03d80) + 0x60));
+                      reinterpret_cast<const UnkMoveTunable_71010dc968*>(&g_unk_7172a03d80)->field_0x60);
     }
     return false;
 }

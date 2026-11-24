@@ -29,13 +29,13 @@ struct UnkSetEntry_7100b36bf8 {
     }
 };
 
-__attribute__((flatten)) void fn_7100b36bf8(char* self) {
+__attribute__((flatten)) void CMainMenuComposition_Destroy(char* self) {
     base::refl_Dtor<UnkTag_7100b36bf8, base::UnkMemberAt<UnkSetEntry_7100b36bf8, 0x260>,
                     base::UnkMemberAt<UnkSetEntry_7100b36bf8, 0x248>,
                     base::UnkMemberAt<UnkSetEntry_7100b36bf8, 0x230>>(self);
 }
 
-__attribute__((flatten)) void fn_7100b36c88(char* self) {
+__attribute__((flatten)) void CMainMenuComposition_DestroyAndDelete(char* self) {
     base::refl_DeletingDtor<UnkTag_7100b36bf8, base::UnkMemberAt<UnkSetEntry_7100b36bf8, 0x260>,
                             base::UnkMemberAt<UnkSetEntry_7100b36bf8, 0x248>,
                             base::UnkMemberAt<UnkSetEntry_7100b36bf8, 0x230>>(self);

@@ -18,7 +18,7 @@ __attribute__((always_inline)) inline void CopyConstruct(char* self, const char*
     *reinterpret_cast<void***>(self) = &g_unk_7101a5da10[2];
     fn_710066c9d8(self + 0x28, other + 0x28);
     __builtin_memcpy(self + 0x58, other + 0x58, 18);
-    fn_7100d62b68(self + 0x70, other + 0x70);
+    CPolygonCollectionShape_CopyConstruct(self + 0x70, other + 0x70);
 }
 }  // namespace
 

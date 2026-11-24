@@ -33,7 +33,7 @@ static_assert(__builtin_offsetof(UnkGfx_l1ccdd8, textures) == 0x3183628, "");
 // Binds map `index`'s texture to a sampler slot with the shadow sampling state.
 static inline void BindShadowTexture(UnkGfx_l1ccdd8* self, u32 slot, u32 index) {
     fn_71001606f0(slot, true, 1);
-    fn_710015f770(slot, self->maps[index]->texture, 1);
+    SetGraphicsSlotPointer(slot, self->maps[index]->texture, 1);
     fn_7100160810(slot, 0, 1);
     fn_7100160890(slot, 0, 1);
     fn_7100160910(slot, 0, 1);
@@ -44,7 +44,7 @@ static inline void BindShadowTexture(UnkGfx_l1ccdd8* self, u32 slot, u32 index) 
 
 static inline void UnbindTexture(u32 slot) {
     fn_71001606f0(slot, false, 1);
-    fn_710015f770(slot, nullptr, 1);
+    SetGraphicsSlotPointer(slot, nullptr, 1);
 }
 
 void fn_71001ccdd8(UnkGfx_l1ccdd8* self) {
@@ -91,7 +91,7 @@ void fn_71001ccdd8(UnkGfx_l1ccdd8* self) {
         base::global::CStrId name("BRDF_LUT", true);
         UnkGfxPairEntry* entry = UnkParallelFindSlot(&self->textures, name);
         void* lut = entry != &self->textures.values[self->textures.count] ? entry->second : nullptr;
-        fn_710015f770(7, lut, 1);
+        SetGraphicsSlotPointer(7, lut, 1);
     }
     fn_7100160810(7, 0, 1);
     fn_7100160890(7, 0, 1);

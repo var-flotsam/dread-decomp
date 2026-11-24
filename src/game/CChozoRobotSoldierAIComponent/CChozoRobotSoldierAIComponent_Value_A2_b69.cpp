@@ -32,6 +32,6 @@ bool CChozoRobotSoldierAIComponent_GetDamageSourceFactor(UnkRobotSoldierAI_A2_b6
             return false;
         table = reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(self->part->table_a68);
     }
-    *out = fn_71008c2de8(table, index);
+    *out = CDamageSourceFactor_GetFactorForDamageFlags(table, index);
     return true;
 }

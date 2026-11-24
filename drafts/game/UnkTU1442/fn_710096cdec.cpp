@@ -226,7 +226,7 @@ struct UnkLinkList_l96cdec {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     explicit UnkLinkList_l96cdec(const base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* other) {
         fn_71002681a8(reinterpret_cast<base::global::CRntVector<UnkSmartLinkEntry_ovb0128>*>(this), other);
@@ -275,7 +275,7 @@ static inline bool IsNear(f32 a, f32 b) {
 }
 
 static inline bool PassesThrough(const UnkPath442* path, u32 i, const UnkSmartLinkStep_l96cdec& step) {
-    const UnkPathPoint_l96cdec* point = reinterpret_cast<const UnkPathPoint_l96cdec*>(fn_710035e580(path, i));
+    const UnkPathPoint_l96cdec* point = reinterpret_cast<const UnkPathPoint_l96cdec*>(GetPathSegmentEntryOrFallback(path, i));
     return point->cell == step.cell && point->side == step.side;
 }
 
@@ -323,7 +323,7 @@ void fn_710096cdec(char* raw, bool backwards) {
         return;
 
     u32 start = self->index;
-    const UnkPathPoint_l96cdec* point = reinterpret_cast<const UnkPathPoint_l96cdec*>(fn_710035e580(path, start));
+    const UnkPathPoint_l96cdec* point = reinterpret_cast<const UnkPathPoint_l96cdec*>(GetPathSegmentEntryOrFallback(path, start));
     CVector2D direction;
     if (backwards) {
         direction.x = -self->direction.x;

@@ -300,7 +300,7 @@ void fn_71011a4050(UnkGameManagerSub_0x608* scenario) {
                 {
                     UnkGuiDisplayObject* l = self->level_label;
                     CStrId font("digital_big", true);
-                    fn_71011ed150(l, font);
+                    CLabel_SetFont(l, font);
                 }
                 {
                     UnkGuiDisplayObject* l = self->level_label;
@@ -381,7 +381,7 @@ struct UnkSlotArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 struct UnkTag_71007ed25c;
 void fn_71007ed25c(UnkSlotArray<UnkTag_71007ed25c>* self, u32 capacity);

@@ -24,7 +24,7 @@ struct UnkCapsuleShape2D_ld60138 {
     f32 radius;       // 0xb4
 };
 
-UnkCapsuleBox3_ld60138 fn_7100d60138(const UnkCapsuleShape2D_ld60138* self,
+UnkCapsuleBox3_ld60138 CCapsuleShape2D_GetTranslatedBoundingBox(const UnkCapsuleShape2D_ld60138* self,
                                      const UnkCapsuleTransform_ld60138* transform) {
     f32 cx = self->center_x, cy = self->center_y;
     f32 half_height = self->half_height, radius = self->radius;

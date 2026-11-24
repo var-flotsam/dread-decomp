@@ -54,7 +54,7 @@ struct UnkRec138Vec_b0223 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Reserve(u32 n) {
         if (capacity < n) {
@@ -188,7 +188,7 @@ using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
 struct UnkMinimapRec_b0223;
-UnkMinimapRec_b0223* fn_7100e44f58(void* self, const u64* key);
+UnkMinimapRec_b0223* GetOrInsertDefaultRecord60ByU64Key(void* self, const u64* key);
 
 struct UnkPlaceOwner_b0223 {
     u8 unk_0x0[0x30];
@@ -273,7 +273,7 @@ static inline __attribute__((always_inline)) void ForEachPlace(UnkRoom_b0223* se
             continue;
         UnkWithShape<ShapeOff>* comp = static_cast<UnkWithShape<ShapeOff>*>(target);
         UnkBoundsRec_b0223* rec = reinterpret_cast<UnkBoundsRec_b0223*>(
-            fn_7100e44f58(reinterpret_cast<char*>(self) + RoomOff, &comp->owner->id));
+            GetOrInsertDefaultRecord60ByU64Key(reinterpret_cast<char*>(self) + RoomOff, &comp->owner->id));
         UnkShape_b0223* shape;
         if constexpr (ViaTracker)
             shape = reinterpret_cast<UnkTracker_b0223*>(fn_710028aca8(comp->owner))->shape;
@@ -427,7 +427,7 @@ struct UnkU16Array_b0223 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // base::global::CRntVector's defaults.
     __attribute__((always_inline)) UnkU16Array_b0223()
@@ -498,7 +498,7 @@ struct UnkRec60IdArray_b0223 {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_7100e56634(UnkRec60IdArray_b0223* self, const UnkRec60IdArray_b0223* other) {
@@ -536,7 +536,7 @@ UnkRec60Array_b0223* fn_7100e54cc4(UnkRec60Array_b0223* self, const UnkRec60Arra
         self->count = 0;
         if (other->count != self->capacity) {
             fn_7100e54ef0(reinterpret_cast<UnkSecondPtrArray<UnkFreedVectorPair>*>(self));
-            fn_7100e54ad8(reinterpret_cast<UnkRecord60Array*>(self), other->count);
+            ReserveRecord60AndPointerArrays(reinterpret_cast<UnkRecord60Array*>(self), other->count);
         }
         self->count = other->count;
         for (u64 i = 0; i < self->count; ++i)
@@ -584,7 +584,7 @@ struct UnkStrIdVecMap_b0223 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkNavMeshItemMember;
@@ -809,7 +809,7 @@ struct UnkItemList_b0223 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void MoveFrom(UnkItemList_b0223* src) {
         data = src->data;

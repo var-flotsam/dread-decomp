@@ -36,7 +36,7 @@ struct UnkSegList_2a9170 {
     u8 pad_0xc[4];
     UnkSegNode_2a9170* head;  // 0x10
     UnkSegNode_2a9170* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u32 flags;  // 0x28
 };
 

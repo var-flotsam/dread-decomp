@@ -32,7 +32,7 @@ struct UnkIdPairArray_ovb0120 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Reserve(u32 n) { fn_71002da674(reinterpret_cast<UnkAnimTreeIdPairs_b49a1*>(this), n); }
     void PushBack(const UnkIdPairRaw_ovb0120& v) {
@@ -154,7 +154,7 @@ struct UnkTreeIdPairs_ovb0120 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Truncate(u32 n) { fn_71002db388(reinterpret_cast<UnkIdPair10Array*>(this), n); }
     __attribute__((always_inline)) ~UnkTreeIdPairs_ovb0120() {

@@ -1,10 +1,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/UnkBucketSet.h"
 #include "types.h"
-
-// src/base/global/timeline/CEvent/UnkPrime.cpp.
-bool CEvent_IsPrime(u32 n);
-u32 CEvent_GetNextPrimeAtOrAbove(u32 n);
+#include "base/global/timeline/CEvent.h"
 
 struct UnkResBucket_b257j;
 
@@ -14,7 +11,7 @@ using UnkResSetInit_b257j = base::global::UnkBucketSet<UnkResBucket_b257j>;
 
 void fn_71000e9d60(void* set, u32 buckets, u32 flags) {
     UnkResSetInit_b257j* self = static_cast<UnkResSetInit_b257j*>(set);
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     self->buckets.step = 10;
     self->buckets.data = nullptr;
     self->buckets.count = 0;
@@ -38,14 +35,12 @@ void fn_71000e9d60(void* set, u32 buckets, u32 flags) {
         UnkResBucket_b257j** p;
         if (self->buckets.capacity < n) {
             p = static_cast<UnkResBucket_b257j**>(self->buckets.allocator->vf_0x40((u64)n * 8, 8, self->buckets.flags));
-            if (UnkResBucket_b257j** old = self->buckets.data) {
-                if (self->buckets.count) {
-                    u32 i = 0;
-                    do {
-                        __builtin_memcpy(&p[i], &old[i], 8);
-                        ++i;
-                    } while (i < self->buckets.count);
-                }
+            if (self->buckets.data) {
+                // The buckets are moved over one by one.
+                UnkResBucket_b257j** src = self->buckets.data;
+                UnkResBucket_b257j** dst = p;
+                for (u32 i = 0; i < self->buckets.count; ++i, ++dst, ++src)
+                    *dst = *src;
                 self->buckets.allocator->vf_0x48(self->buckets.data);
             }
             c = self->buckets.count;

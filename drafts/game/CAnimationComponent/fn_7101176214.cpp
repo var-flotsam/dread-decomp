@@ -47,7 +47,7 @@ struct UnkS12 {
 
 struct UnkAnimList_l176214;
 void fn_71002df844(UnkTrackSet* tracks);
-void fn_710070f098(UnkAnimList_l176214* list, u32 value, bool flag);
+void SetKeyEntryInListSortedByValueDesc(UnkAnimList_l176214* list, u32 value, bool flag);
 
 // A linked list of nodes from its own allocator.
 struct UnkAnimListNode_l176214 {
@@ -60,7 +60,7 @@ struct UnkAnimList_l176214 {
     u32 count;
     UnkAnimListNode_l176214* head;
     UnkAnimListNode_l176214* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Clear() {
         for (UnkAnimListNode_l176214* node = head; node;) {
@@ -157,7 +157,7 @@ void fn_7101176214(UnkAnimComponent_l176214* self) {
         return;
     fn_71002df844(self->tracks);
     if (char_class->field_0x70)
-        fn_710070f098(&self->list_0x4c0, char_class->field_0x70, false);
+        SetKeyEntryInListSortedByValueDesc(&self->list_0x4c0, char_class->field_0x70, false);
 
     // The start action, or the default one when the class names none.
     u32 blend_value = char_class->field_0x78;

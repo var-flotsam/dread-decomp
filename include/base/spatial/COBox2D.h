@@ -26,4 +26,4 @@ static_assert(sizeof(COBox2D) == 0x28, "COBox2D placeholder layout");
 
 // Sets the box's angle (wrapped into (-pi, pi]) and rebuilds its axes for the angle plus the
 // offset. Defined in src/game_lo/fn_7100110664.cpp.
-void fn_7100110664(base::spatial::COBox2D* self, f32 angle);
+void SetOBox2DAngleAndRebuildAxes(base::spatial::COBox2D* self, f32 angle);

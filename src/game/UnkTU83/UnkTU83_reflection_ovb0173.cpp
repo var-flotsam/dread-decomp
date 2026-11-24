@@ -94,7 +94,7 @@ struct UnkRntStringVec_ovb0173 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkRntStringVec_ovb0173(UnkRntStringVec_ovb0173&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
@@ -135,7 +135,7 @@ struct UnkStringHolder_ovb0173 {
 };
 
 // Assigns the array a single copy of the string a refcounted holder keeps (the count is retained).
-__attribute__((flatten)) base::global::CRntVector<CRntString>* fn_71000e26f8(base::global::CRntVector<CRntString>* self,
+__attribute__((flatten)) base::global::CRntVector<CRntString>* AssignRntStringVectorFromHeldString(base::global::CRntVector<CRntString>* self,
                                                                     UnkStringHolder_ovb0173** holder) {
     if (reinterpret_cast<void*>(holder) != reinterpret_cast<void*>(self)) {
         UnkTmpStrVec_ovb0173 guard;
@@ -148,7 +148,7 @@ __attribute__((flatten)) base::global::CRntVector<CRntString>* fn_71000e26f8(bas
 }
 
 // Assigns the array a single string built from a literal.
-__attribute__((flatten)) base::global::CRntVector<CRntString>* fn_71000e23ac(base::global::CRntVector<CRntString>* self,
+__attribute__((flatten)) base::global::CRntVector<CRntString>* AssignRntStringVectorFromCString(base::global::CRntVector<CRntString>* self,
                                                                     const char** src) {
     if (reinterpret_cast<void*>(src) != reinterpret_cast<void*>(self)) {
         const char* s = *src;
@@ -309,7 +309,7 @@ struct UnkIdVals_ovb0173 {
     u32 count;
 };
 
-u32* fn_71000df750(UnkIdVals_ovb0173* self, u32* it) {
+u32* EraseU32StrIdKeyedEntryBySwapWithLast(UnkIdVals_ovb0173* self, u32* it) {
     u64 pos = (u64)((char*)it - (char*)self->values) >> 2;
     self->keys[(u32)pos].~UnkMovedId_ovb0173();
     u32 last = self->count - 1;
@@ -364,7 +364,7 @@ struct UnkCStrHolder_ovb0173 {
     const char* str;
 };
 
-CFilePathStrId* fn_71000cd338(CFilePathStrId* self, const UnkCStrHolder_ovb0173* other) {
+CFilePathStrId* AssignFilePathStrIdFromCString(CFilePathStrId* self, const UnkCStrHolder_ovb0173* other) {
     if (other != static_cast<const void*>(self)) {
         CFilePathStrId id(base::global::UnkStrIdInline(), other->str, true);
         *self = static_cast<CFilePathStrId&&>(id);

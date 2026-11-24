@@ -32,7 +32,7 @@ using base::global::CStrId;
 using unk_prop_bag::UnkPropBag;
 
 // Calls the script function `name`, collecting what it returns in `results`.
-bool fn_7100dfb758(UnkPropBag* results, const char* name, const char* fmt, ...);
+bool CallScriptFunctionByName(UnkPropBag* results, const char* name, const char* fmt, ...);
 
 // The text the language gives (as src/game/CScenario.cpp declares it).
 struct UnkDialogText : UnkGuiText {
@@ -97,7 +97,7 @@ CRntString fn_7100dfb330(UnkGameManager* self) {
 
     f32 progress = 0.0f;
     UnkPropBag results;
-    if (fn_7100dfb758(&results, "Scenario.GetGameProgressPctInTable", g_unk_710162e2ed)) {
+    if (CallScriptFunctionByName(&results, "Scenario.GetGameProgressPctInTable", g_unk_710162e2ed)) {
         CStrId id("GameProgressPct", true);
         UnkScriptValue_ldfb330* it = FindValue_ldfb330(results, id);
         if (it != &Values_ldfb330(results)[results.values.count]) {

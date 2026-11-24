@@ -26,7 +26,7 @@ struct UnkPart48 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkPart48(const UnkPart48& other);
 };
@@ -40,7 +40,7 @@ struct UnkU16Array_e509a4 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Takes the settings, reserves the source's capacity and copies the elements.
     __attribute__((always_inline)) UnkU16Array_e509a4(const UnkU16Array_e509a4& other)

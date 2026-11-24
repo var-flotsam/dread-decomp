@@ -31,7 +31,7 @@ struct UnkCameraCtrl_b42 {
 };
 
 // Declared as src/game/CSubAreaManager.cpp does.
-void fn_7100935cb8(f32 distance, UnkCameraCtrl* ctrl, bool flag) {
+void CMetroidCameraCtrl_SetRequestedDistance(f32 distance, UnkCameraCtrl* ctrl, bool flag) {
     UnkCameraCtrl_b42* self = reinterpret_cast<UnkCameraCtrl_b42*>(ctrl);
     f32 target = distance > 0.0f ? distance : 2250.0f;
     self->requested = distance;

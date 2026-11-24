@@ -17,10 +17,10 @@ struct UnkUnit958Array {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
-void fn_710063cb28(UnkUnit958Array* array, u32 n);
+void ReserveWeakRefPositionArrayCapacity(UnkUnit958Array* array, u32 n);
 
 struct UnkUnit958 {
     void** vtable;
@@ -40,7 +40,7 @@ void fn_7100639cf8(UnkUnit958* self) {
     self->entries.field_0x14 = true;
     self->entries.flags = 0xf;
     self->entries.allocator = GetDefaultAllocator();
-    fn_710063cb28(&self->entries, 6);
+    ReserveWeakRefPositionArrayCapacity(&self->entries, 6);
     fn_710059c644(self->field_0x30, 10, 0, 0x13, 0);
     self->field_0xb0 = false;
     self->field_0xa0 = 0;

@@ -416,7 +416,7 @@ address,size,name,name_source,subsystem,status
 0x7100f17b58,4,fn_7100f17b58,unknown,unknown,O
 0x7100f17b5c,8,fn_7100f17b5c,unknown,unknown,O
 0x7100f17b64,8,fn_7100f17b64,unknown,unknown,O
-0x7100f17b70,580,fn_7100f17b70,unknown,unknown,O
+0x7100f17b70,580,InitEndScreenStatics,inferred,unknown,O
 0x7100f17db4,4,CStartCentralUnitCombatLogicAction::refl_AddAttributes,reflection,game/ai,O
 0x7100f17db8,244,CStartCentralUnitCombatLogicAction::refl_GetClass,reflection,game/ai,O
 0x7100f17eac,204,CStartCentralUnitCombatLogicAction::refl_AddFields,reflection,game/ai,O
@@ -5206,7 +5206,7 @@ address,size,name,name_source,subsystem,status
 0x7100fcfbd0,84,fn_7100fcfbd0,unknown,unknown,O
 0x7100fcfc24,36,fn_7100fcfc24,unknown,unknown,O
 0x7100fcfc50,140,fn_7100fcfc50,unknown,unknown,O
-0x7100fcfcdc,312,fn_7100fcfcdc,unknown,audio?,O
+0x7100fcfcdc,312,ConstructMusicChannelWithEightEntries,inferred,audio?,O
 0x7100fcfe14,812,fn_7100fcfe14,unknown,audio?,U
 0x7100fd0140,144,fn_7100fd0140,unknown,audio?,O
 0x7100fd01d0,148,fn_7100fd01d0,unknown,unknown,O

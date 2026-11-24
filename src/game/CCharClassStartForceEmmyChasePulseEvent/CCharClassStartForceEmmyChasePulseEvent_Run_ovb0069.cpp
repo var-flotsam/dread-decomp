@@ -16,7 +16,7 @@ struct UnkDoorRegistry_b61;
 struct UnkUnit2547;
 struct UnkCentralUnit;
 
-void fn_7100be323c(UnkChasePulseEvent_ovb0069* self, void** actor) {
+void CCharClassStartForceEmmyChasePulseEvent_StartForcedChasePulseById(UnkChasePulseEvent_ovb0069* self, void** actor) {
     if (!*actor)
         return;
     if (self->id.data == &g_unk_7101d47108->empty)
@@ -27,7 +27,7 @@ void fn_7100be323c(UnkChasePulseEvent_ovb0069* self, void** actor) {
         fn_7100ddb6dc(reg);
         g_unk_71726bee10 = reg;
     }
-    UnkCentralUnit* unit = fn_7100ddb768(reinterpret_cast<UnkUnit2547*>(reg));
+    UnkCentralUnit* unit = GetFirstCentralUnitListObject(reinterpret_cast<UnkUnit2547*>(reg));
     if (!unit)
         return;
     fn_7100775610(unit, true, &self->id);

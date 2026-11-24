@@ -49,7 +49,7 @@ void fn_71011a96d4(char* self) {
         while (node) {
             char* next = *reinterpret_cast<char**>(node + 0x10);
             reinterpret_cast<UnkRumbleFileKey_b0192*>(node)->~UnkRumbleFileKey_b0192();
-            (*reinterpret_cast<base::UnkAllocator**>(self))->vf_0x48(node);
+            (*reinterpret_cast<base::IAllocator**>(self))->vf_0x48(node);
             node = next;
         }
         memset(*reinterpret_cast<void**>(self + 0x10), 0, *reinterpret_cast<u32*>(self + 0x1c) * u64(8));
@@ -255,7 +255,7 @@ struct UnkItemNode_a9390 {
 
 struct UnkManager_a9390 {
     u8 pad_0x0[0x38];
-    base::UnkAllocator* allocator;  // 0x38
+    base::IAllocator* allocator;  // 0x38
     u32 flags;                      // 0x40
     u32 count;                      // 0x44
     void** buckets;                 // 0x48
@@ -268,7 +268,7 @@ struct UnkManager_a9390 {
     u32 item_count;                 // 0xc8
     UnkItemNode_a9390* item_head;   // 0xd0
     UnkItemNode_a9390* item_tail;   // 0xd8
-    base::UnkAllocator* item_allocator;  // 0xe0
+    base::IAllocator* item_allocator;  // 0xe0
 };
 static_assert(__builtin_offsetof(UnkManager_a9390, item_allocator) == 0xe0, "layout");
 

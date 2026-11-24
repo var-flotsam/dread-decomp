@@ -16,7 +16,7 @@ struct UnkIdSet {
     base::global::CRntVector<UnkPathId> field_0xc8;
 };
 
-void fn_7100ee7134(UnkIdSet* self) {
+void ClearSubAreaChangeIdLists(UnkIdSet* self) {
     self->field_0x28.Clear();
     self->field_0x0.Clear();
     self->field_0x50.Clear();

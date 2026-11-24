@@ -103,7 +103,7 @@ void fn_71000d0abc(UnkResPathVec* self, const base::global::CFilePathStrId* valu
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
 
-void fn_71000d8290(UnkPropertyArrays* self) {
+void ShrinkReflValueStrIdTableToFit(UnkPropertyArrays* self) {
     if (self->count != self->capacity) {
         UnkReflValue* values = static_cast<UnkReflValue*>(
             self->allocator->vf_0x40((u64)self->count * sizeof(UnkReflValue), 8, self->flags));
@@ -289,7 +289,7 @@ void fn_71000d5a68(ReflValueVector_b0174* self, const UnkReflValueElem_b0174* va
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
 
-void fn_71000d8290(UnkPropertyArrays* self);
+void ShrinkReflValueStrIdTableToFit(UnkPropertyArrays* self);
 
 UnkPropertyArrays* fn_71000d8088(UnkPropertyArrays* self, const UnkPropertyArrays* other) {
     if (self != other) {
@@ -304,7 +304,7 @@ UnkPropertyArrays* fn_71000d8088(UnkPropertyArrays* self, const UnkPropertyArray
         }
         self->count = 0;
         if (other->count != self->capacity) {
-            fn_71000d8290(self);
+            ShrinkReflValueStrIdTableToFit(self);
             fn_7100093dd0(self, other->count);
         }
         self->count = other->count;
@@ -384,10 +384,10 @@ struct UnkIdPair_b0174 {
 using UnkStrPair_b0174 = UnkIdPair_b0174<UnkMovedId_b0174<g_unk_7101d47108>, UnkMovedId_b0174<g_unk_7101d47108>>;
 using UnkPathPair_b0174 = UnkIdPair_b0174<UnkMovedId_b0174<g_unk_7101d47200>, UnkMovedId_b0174<g_unk_7101d47108>>;
 
-UnkMovedId_b0174<g_unk_7101d47108>* fn_71000d9de8(UnkStrPair_b0174* self, UnkMovedId_b0174<g_unk_7101d47108>* pos) {
+UnkMovedId_b0174<g_unk_7101d47108>* SwapEraseStrIdValueKeyedByStrIdAt(UnkStrPair_b0174* self, UnkMovedId_b0174<g_unk_7101d47108>* pos) {
     return self->Erase(pos);
 }
-UnkMovedId_b0174<g_unk_7101d47200>* fn_71000db82c(UnkPathPair_b0174* self, UnkMovedId_b0174<g_unk_7101d47200>* pos) {
+UnkMovedId_b0174<g_unk_7101d47200>* EraseKeyedFilePathIdSwappingLast(UnkPathPair_b0174* self, UnkMovedId_b0174<g_unk_7101d47200>* pos) {
     return self->Erase(pos);
 }
 
@@ -577,7 +577,7 @@ struct UnkKeyedArray_b0174 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkVersionRegistry;
@@ -702,7 +702,7 @@ struct UnkReflAttrsMap_b0174 {
     }
 };
 
-void fn_71000a497c(UnkVersionRegistry* self_) {
+void SetUpTypeRegistry(UnkVersionRegistry* self_) {
     auto* self = reinterpret_cast<UnkVersionRegistryLayout_b0174*>(self_);
     for (UnkStartHook_b0174* hook = g_unk_7101d5bdd0; hook; hook = hook->next)
         hook->function(self_);

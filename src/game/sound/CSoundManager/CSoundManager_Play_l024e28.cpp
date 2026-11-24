@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/UnkSoundRef.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2647.h"
@@ -19,12 +20,6 @@ struct UnkDropTarget;
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-struct UnkSoundObject_b50;
-struct UnkSoundRef {
-    UnkSoundObject_b50* object;
-    s64 serial;
-};
 
 struct UnkSoundDef;
 
@@ -57,13 +52,13 @@ inline u32 PlayIndex_l024e28(const UnkSoundManager_l024e28& manager, u32 index) 
 }
 
 // The sound a handle names while it is still the one the handle was made for.
-inline UnkSoundObject_b50* GetSoundObject_l024e28(const UnkSoundHandle* handle) {
+inline UnkSound* GetSoundObject_l024e28(const UnkSoundHandle* handle) {
     if (handle->ref && handle->serial != -1 && handle->ref->serial == handle->serial)
         return handle->ref->object;
     return nullptr;
 }
 
-UnkSoundHandle fn_7101024e28(UnkDropTarget* self, const UnkStrIdPathPair* ids, void* a, u32 b) {
+UnkSoundHandle CSoundManager_PlayPresetFromIdPath(UnkDropTarget* self, const UnkStrIdPathPair* ids, void* a, u32 b) {
     const UnkSoundSource_l024e28* source = reinterpret_cast<const UnkSoundSource_l024e28*>(ids);
     UnkAudioPreset_l024e28* preset = nullptr;
     if (source->id.data != &g_unk_7101d47108->empty && source->path.data != &g_unk_7101d47200->empty) {

@@ -131,7 +131,7 @@ struct UnkObserverIdList_ovb0055 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkObserverIdList_ovb0055(const UnkObserverIdList_ovb0055& other)
         : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14), flags(other.flags),
@@ -190,7 +190,7 @@ struct UnkObserverIdNode_ovb0055 {
 };
 
 struct UnkObserverIdMap_ovb0055 {
-    base::UnkAllocator* allocator;        // 0x0
+    base::IAllocator* allocator;        // 0x0
     u32 flags;                            // 0x8
     u32 count;                            // 0xc
     UnkObserverIdNode_ovb0055** buckets;  // 0x10
@@ -300,9 +300,9 @@ struct UnkObserverGroupItems_ovb0055 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
-    explicit UnkObserverGroupItems_ovb0055(base::UnkAllocator* allocator_)
+    explicit UnkObserverGroupItems_ovb0055(base::IAllocator* allocator_)
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf), allocator(allocator_) {}
 };
 
@@ -311,13 +311,13 @@ struct UnkObserverGroupNode_ovb0055 : UnkObserverGroupKey_ovb0055, UnkObserverGr
     UnkObserverGroupNode_ovb0055* prev;         // 0x38
     UnkObserverGroupNode_ovb0055* bucket_next;  // 0x40
 
-    UnkObserverGroupNode_ovb0055(const CStrId& key, base::UnkAllocator* allocator)
+    UnkObserverGroupNode_ovb0055(const CStrId& key, base::IAllocator* allocator)
         : UnkObserverGroupKey_ovb0055(key), UnkObserverGroupItems_ovb0055(allocator), next(nullptr), prev(nullptr),
           bucket_next(nullptr) {}
 };
 
 struct UnkObserverGroupMap_ovb0055 {
-    base::UnkAllocator* allocator;           // 0x0
+    base::IAllocator* allocator;           // 0x0
     u32 flags;                               // 0x8
     u32 count;                               // 0xc
     UnkObserverGroupNode_ovb0055** buckets;  // 0x10
@@ -335,7 +335,7 @@ struct UnkObserverGroupOwner_ovb0055 {
 
 UnkObserverGroupItems_ovb0055* CBTObserverComponent_InsertEmptyVectorByStrId(UnkObserverGroupOwner_ovb0055* self, const CStrId* key) {
     UnkObserverGroupMap_ovb0055& map = self->map;
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     UnkObserverGroupNode_ovb0055** slot = nullptr;
     if (map.field_0x18) {
         const auto* h = reinterpret_cast<const UnkHashedStr_ovb0055*>(key->data);
@@ -482,7 +482,7 @@ struct UnkObserverById_ovb0055 {
     u32 capacity;                    // 0xa4
     u32 step;                        // 0xa8
     u32 flags;                       // 0xac
-    base::UnkAllocator* allocator;   // 0xb0
+    base::IAllocator* allocator;   // 0xb0
     u32 next_id;                     // 0xb8
 };
 

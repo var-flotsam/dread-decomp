@@ -26,7 +26,7 @@ struct UnkCollisionShape_d462b4 {
 
 struct UnkShapeOwner;
 // Gives the shape to its owner (which then owns it).
-void fn_7100d36da4(UnkShapeOwner* self, UnkCollisionShape_d462b4* shape, bool owned);
+void CCollider_SetShape(UnkShapeOwner* self, UnkCollisionShape_d462b4* shape, bool owned);
 
 template <void (*Construct)(void*)>
 static inline UnkCollisionShape_d462b4* NewShape(u64 size) {
@@ -56,6 +56,6 @@ void fn_7100d462b4(void*, UnkShapeOwner* owner, void* stream) {
         shape = NewShape<fn_7100d62b04>(0x120);
     else
         return;
-    fn_7100d36da4(owner, shape, true);
+    CCollider_SetShape(owner, shape, true);
     shape->vf_0x20(stream);
 }

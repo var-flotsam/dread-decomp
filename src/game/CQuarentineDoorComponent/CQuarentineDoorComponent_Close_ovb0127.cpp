@@ -57,10 +57,10 @@ void fn_71007df218(UnkQuarentineDoor_ovb0127* self) {
             params.field_0xc = 1;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &params, &g_unk_7172769740, &mask);
+            CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &params, &g_unk_7172769740, &mask);
         }
     }
     if (auto* collision = self->body->collision)
-        fn_71008615b4(collision);
-    fn_71007df12c(reinterpret_cast<UnkQuarentineDoor_b54*>(self), false);
+        CCollisionComponent_SyncAnimationColliderTracks(collision);
+    ApplyDoorOpenState(reinterpret_cast<UnkQuarentineDoor_b54*>(self), false);
 }

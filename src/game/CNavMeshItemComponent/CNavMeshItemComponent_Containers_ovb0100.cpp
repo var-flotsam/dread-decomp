@@ -153,7 +153,7 @@ UnkReflValue fn_71009c29f0(void*, char* obj, UnkReflValue* const* values) {
         for (u32 i = 0; i < self->sources.count; ++i) {
             UnkNavSource_ovb0100* src = self->SourceAt(i);
             if (src && src->desc->id == id) {
-                fn_71009c5ab8(reinterpret_cast<UnkSource*>(src), value);
+                CNavMeshItemStage_AppendIdEntry(reinterpret_cast<UnkSource*>(src), value);
                 break;
             }
         }
@@ -382,7 +382,7 @@ UnkNavElemVector_ovb0100* fn_71009c09a8(UnkNavElemMap_ovb0100* self, UnkNavElemV
 }
 
 // Shrinks both arrays to the count.
-__attribute__((noinline)) void fn_71009c45d4(UnkNavElemMap_ovb0100* self) {
+__attribute__((noinline)) void CNavMeshItemComponent_ShrinkStrIdArrayMapToCount(UnkNavElemMap_ovb0100* self) {
     if (self->count == self->capacity)
         return;
     auto* values = static_cast<UnkNavElemVector_ovb0100*>(
@@ -444,7 +444,7 @@ UnkNavElemMap_ovb0100* fn_71009c4308(UnkNavElemMap_ovb0100* self, const UnkNavEl
         return self;
     fn_71009c44c8(self);
     if (other->count != self->capacity) {
-        fn_71009c45d4(self);
+        CNavMeshItemComponent_ShrinkStrIdArrayMapToCount(self);
         fn_71009c4158(reinterpret_cast<UnkIdMap<UnkOwnedList>*>(self), other->count);
     }
     self->count = other->count;
@@ -489,7 +489,7 @@ struct UnkNavPtrList_ovb0100 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkNavPtrList_ovb0100(const UnkNavPtrList_ovb0100& other)
         : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14), flags(other.flags),

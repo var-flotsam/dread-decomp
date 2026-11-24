@@ -35,7 +35,7 @@ void fn_7100932c04(UnkMenuAnimationChange_ovb0136* self) {
     bool exiting;
     {
         CStrId exit("exit", true);
-        exiting = fn_710117af10(static_cast<UnkStruct_710117af10*>(anim), reinterpret_cast<UnkCls_710117af10**>(&exit),
+        exiting = CAnimationComponent_IsPlayingActionNameContaining(static_cast<UnkStruct_710117af10*>(anim), reinterpret_cast<UnkCls_710117af10**>(&exit),
                                 false);
     }
     if (exiting)
@@ -48,5 +48,5 @@ send:
     u64 hash = g_unk_7101647ce8[rand() % 4];
     value.id = 2;
     arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-    fn_7101176690(anim, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
+    CAnimationComponent_SendActionToTrack(anim, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
 }

@@ -111,7 +111,7 @@ void fn_7100924684(UnkMagnetSurface_ovb0137* self, bool on) {
     UnkVector4D vfrom = fn_7100030878(&from);
     fn_71009272c4(&change, i, false, &vto, &vfrom, 0.5f);
     change.kind = 2;
-    fn_7100926aa0(fx, &change);
+    CMaterialFXComponent_AddOrReplaceColorChange(fx, &change);
 }
 
 struct UnkSurfaceShape_ovb0137 {

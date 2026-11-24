@@ -354,7 +354,7 @@ void fn_710110e3dc(UnkStartSelf_i* self) {
     if (void* target = self->owner->field_0x220) {
         value.id = 2;
         arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-        fn_7101176690(target, 0x3951592af38cb532, 0xf4061ff25a2163d6, &value, &g_unk_710164b968,
+        CAnimationComponent_SendActionToTrack(target, 0x3951592af38cb532, 0xf4061ff25a2163d6, &value, &g_unk_710164b968,
                       &g_unk_7172769740, &arg);
         fn_7101176a88(reinterpret_cast<UnkActorTarget*>(target), 1);
     }
@@ -520,7 +520,7 @@ struct UnkLocal_w {
     u8 pad_0x34[4];
     UnkLocalNode_w* head;  // 0x38
     UnkLocalNode_w* tail;  // 0x40
-    base::UnkAllocator* allocator;  // 0x48
+    base::IAllocator* allocator;  // 0x48
     u64 pad_0x50;
     UnkLocal_w(void* actor, void* arg);  // fn_71002c6f80
     __attribute__((always_inline)) ~UnkLocal_w() {
@@ -579,6 +579,11 @@ struct UnkTargetSelf_w {
     void* field_0x1610;
 };
 
+struct UnkAttack_w {
+    u8 pad_0x0[0x20];
+    void* field_0x20;  // 0x20
+};
+
 void fn_71010ffc38(UnkTargetSelf_w* self, f32 dt) {
     if (!self->field_0x1148) {
         self->field_0x1154 = 0.0f;
@@ -590,7 +595,7 @@ void fn_71010ffc38(UnkTargetSelf_w* self, f32 dt) {
         self->field_0x1158 = true;
     if (!self->field_0x1610 || !self->field_0x1148)
         return;
-    if (!*reinterpret_cast<void**>(reinterpret_cast<u8*>(self->field_0x1148) + 0x20) || self->field_0x1150)
+    if (!reinterpret_cast<UnkAttack_w*>(self->field_0x1148)->field_0x20 || self->field_0x1150)
         return;
     busy = self->actor->field_0x278;
     if (!busy || fn_7101136308(busy))

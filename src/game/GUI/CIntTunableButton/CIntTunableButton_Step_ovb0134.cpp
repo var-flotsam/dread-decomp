@@ -63,7 +63,7 @@ struct UnkIntTunableButton_ovb0134 {
     UnkScriptName_ovb0134* script;        // 0x2e0
 };
 
-void fn_7100b32404(UnkIntTunableButton_ovb0134* self, s32 direction) {
+void CIntTunableButton_StepTunableValue(UnkIntTunableButton_ovb0134* self, s32 direction) {
     switch (direction) {
     case 1: {
         s32 step = self->step;
@@ -93,7 +93,7 @@ void fn_7100b32404(UnkIntTunableButton_ovb0134* self, s32 direction) {
             UnkReflField* field = self->field;
             s32* p = &self->value;
             UnkTypedPtr_ovb0134 value = {fn_7100014768(), p};
-            fn_71000e7a80(field, reinterpret_cast<const UnkReflFieldObject*>(&obj),
+            SetReflectedFieldValue(field, reinterpret_cast<const UnkReflFieldObject*>(&obj),
                           reinterpret_cast<UnkReflValueArg*>(&value));
         }
     }

@@ -18,7 +18,7 @@ struct UnkRegNode_ovb0108 {
 };
 
 struct UnkRegMap_ovb0108 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkRegNode_ovb0108** buckets;  // 0x10 (base::global::CRntVector)

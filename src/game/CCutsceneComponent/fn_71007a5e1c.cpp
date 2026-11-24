@@ -15,7 +15,7 @@ using base::global::CRntVector;
 using base::global::CStrId;
 
 struct UnkCutsceneComponent_ovb0077;
-void fn_71007a6214(UnkCutsceneComponent_ovb0077* self);
+void CCutsceneComponent_ResetActorsAndReleaseRecords(UnkCutsceneComponent_ovb0077* self);
 
 // An object deleted through its vtable.
 struct UnkCutsceneObject_l7a5e1c {
@@ -86,7 +86,7 @@ static_assert(__builtin_offsetof(UnkCutsceneComponent_l7a5e1c, source) == 0x200,
 
 void fn_71007a5e1c(UnkCutsceneComponent_l7a5e1c* self) {
     self->vtable = g_unk_7101a6ff40 + 2;
-    fn_71007a6214(reinterpret_cast<UnkCutsceneComponent_ovb0077*>(self));
+    CCutsceneComponent_ResetActorsAndReleaseRecords(reinterpret_cast<UnkCutsceneComponent_ovb0077*>(self));
     if (UnkCutsceneSource_l7a5e1c* source = self->source) {
         __atomic_fetch_sub(&source->ref_count, 1, __ATOMIC_SEQ_CST);
         if (__atomic_load_n(&source->ref_count, __ATOMIC_SEQ_CST) == 0)

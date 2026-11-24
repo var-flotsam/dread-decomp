@@ -25,20 +25,14 @@ struct UnkBreakableScenario {
 // For each part whose virtual slot 4 says no, resolves its target's +0x10 (fn_7100751520) and passes
 // what that finds to fn_710076351c. Always true.
 bool fn_71007519d8(UnkBreakableScenario* self) {
-    u32 count = self->part_count;
-    if (count == 0)
-        return true;
     UnkBreakablePart* it = self->parts;
-    u64 size = (u64)count * sizeof(UnkBreakablePart);
-    asm("" : "+r"(size));
-    do {
+    UnkBreakablePart* end = it + self->part_count;
+    for (; it != end; ++it) {
         if (!it->vf_0x20()) {
             UnkBreakableTarget* target = *fn_71002a76a4(it);
             if (void* obj = fn_7100751520(target ? target->field_0x10 : nullptr))
                 CBreakableVignetteComponent_Break(obj);
         }
-        ++it;
-        size -= sizeof(UnkBreakablePart);
-    } while (size != 0);
+    }
     return true;
 }

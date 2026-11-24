@@ -35,10 +35,10 @@ struct UnkMarkArray_b256 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
-void fn_710063cb28(UnkMarkArray_b256* self, u32 n) {
+void ReserveWeakRefPositionArrayCapacity(UnkMarkArray_b256* self, u32 n) {
     if (self->capacity < n) {
         UnkMark_b256* p = static_cast<UnkMark_b256*>(self->allocator->vf_0x40((u64)n * sizeof(UnkMark_b256), 8, self->flags));
         UnkMark_b256* old = self->data;
@@ -65,7 +65,7 @@ void fn_710063cc8c(UnkMarkArray_b256* self, const UnkMark_b256* value) {
     if (__builtin_expect((s32)n >= (s32)nc, 0))
         for (;;) {
         }
-    fn_710063cb28(self, nc);
+    ReserveWeakRefPositionArrayCapacity(self, nc);
     UnkMark_b256* data = self->data;
     u64 index = self->count;
     new (&data[index]) UnkMark_b256(*value);
@@ -115,7 +115,7 @@ static inline UnkFlyComp_b256* AsPoisonFly(UnkFlyComp_b256* comp) {
     return fn_710009d50c(comp->vf_0x0(), fn_7100638be0()) ? comp : nullptr;
 }
 
-void fn_710063c670(UnkFlyMgr_b256* self) {
+void ZeroHeldOwnerCountIncrementOthersAndReleaseHandle(UnkFlyMgr_b256* self) {
     self->field_0xb4 = *reinterpret_cast<const u32*>(reinterpret_cast<const char*>(&g_unk_71726fa0f8) + 0x4c);
     if (!self->handle)
         return;

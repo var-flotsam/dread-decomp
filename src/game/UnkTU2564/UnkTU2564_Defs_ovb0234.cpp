@@ -118,7 +118,7 @@ struct UnkKindRegistry_b0234 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkKindRegistry_b0234()
         : kinds(nullptr), ids(nullptr), count(0), capacity(0), step(10), flags(0xe), allocator(GetDefaultAllocator()) {}
@@ -512,7 +512,7 @@ struct UnkKeyedArrayRaw_b0234 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkKeyedArrayRaw_b0234()
         : values(nullptr), keys(nullptr), count(0), capacity(0), step(10), flags(0xe), allocator(GetDefaultAllocator()) {}

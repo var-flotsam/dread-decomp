@@ -13,7 +13,7 @@ struct UnkPolygon_b61 {
     u32 state;
 };
 
-void fn_7100119d3c(UnkPolygon_b61* self, bool flag) {
+void SetPolygonWindingDirection(UnkPolygon_b61* self, bool flag) {
     u32 state = self->state;
     if (flag) {
         if (state == 2)
@@ -30,7 +30,7 @@ void fn_7100119d3c(UnkPolygon_b61* self, bool flag) {
             area += (b.x - a.x) * 0.5f * (a.y + b.y);
         }
         if ((area >= 0.0f) ^ flag)
-            fn_7100118c78(self);
+            ReversePolygonVertexXYOrder(self);
     }
     self->state = flag ? 2 : 1;
 }

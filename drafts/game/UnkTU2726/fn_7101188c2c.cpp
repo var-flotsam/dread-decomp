@@ -42,7 +42,7 @@ using unk_prop_bag::Key;
 using unk_prop_bag::UnkPropBag;
 
 // Calls the script function `name`, collecting what it returns in `results`.
-bool fn_7100dfb758(UnkPropBag* results, const char* name, const char* fmt, ...);
+bool CallScriptFunctionByName(UnkPropBag* results, const char* name, const char* fmt, ...);
 void fn_710010825c(UnkSoundMgr* manager, const u32* id, f32 time);
 UnkMatrix44 fn_7100078e54(f32 a, f32 b, f32 c);
 // As src/game/UnkTU2523/UnkTU2523_Misc_ovb0220.cpp defines it.
@@ -369,7 +369,7 @@ void fn_7101188c2c(UnkIngameMenu_l188c2c* self, f32 dt) {
     case 7: {
         bool overrides = false;
         UnkPropBag results;
-        if (fn_7100dfb758(&results, "CurrentScenario.GetOnDeathOverrides", g_unk_710162e2ed)) {
+        if (CallScriptFunctionByName(&results, "CurrentScenario.GetOnDeathOverrides", g_unk_710162e2ed)) {
             UnkScriptValue_l188c2c* it = FindValue_l188c2c(results, Key(0x1218));
             if (it != &Values_l188c2c(results)[results.values.count] && it->type == 'b') {
                 CRntFile_Seek(&results.lock, it->offset, 0);
@@ -448,7 +448,7 @@ void fn_7101188c2c(UnkIngameMenu_l188c2c* self, f32 dt) {
         UnkGameOverGui_l188c2c* gui = &g_unk_7172a0b870;
         UnkPromptCallback_l188c2c yes = {self, fn_710118fd20};
         UnkPromptCallback_l188c2c no = {self, fn_710118fd24};
-        fn_7100b5fde0(reinterpret_cast<UnkGuiComposition_ovb0090*>(prompt), &gui->text, &gui->accept, &gui->back,
+        CPopUpComposition_ShowAcceptBackPrompt(reinterpret_cast<UnkGuiComposition_ovb0090*>(prompt), &gui->text, &gui->accept, &gui->back,
                       reinterpret_cast<const UnkMapCallback_ovb0090*>(&yes),
                       reinterpret_cast<const UnkMapCallback_ovb0090*>(&no), 0, 0.0f);
         fn_710020ac34(reinterpret_cast<UnkToggle*>(gui->field_0x80->toggle), false);

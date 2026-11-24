@@ -41,7 +41,7 @@ struct UnkMultiModelUpdater_ovb0044 {
 
 struct CMultiModelUpdaterComponent;
 
-void fn_710079385c(UnkMultiModelUpdater_ovb0044* self) {
+void CCharClassMultiModelUpdaterComponent_DestroyAndDelete(UnkMultiModelUpdater_ovb0044* self) {
     self->vtable = g_unk_7101a6f6b8 + 2;
     void** table = &self->table;
     fn_71000db40c(reinterpret_cast<UnkIdTable<UnkFilePathReleasedStrId>*>(table));

@@ -15,7 +15,7 @@
 // The base constructor, as src/game/CChangeSetupLogicAction/CChangeSetupLogicAction_b35.cpp declares it.
 struct UnkChangeSetupLogicActionDef;
 struct UnkSPRTutoLogicAction_b52;
-void fn_7100a5340c(UnkSPRTutoLogicAction_b52* self);
+void CSPRTutoLogicAction_Construct(UnkSPRTutoLogicAction_b52* self);
 bool CSPBTutoLogicAction_EnableSPRTutoAndReleaseHandle(void*);
 
 struct UnkSPBTutoCallable_b52;
@@ -70,7 +70,7 @@ void fn_7100a52dcc(UnkSPBTutoLogicAction_b52* self) {
     self->field_0x1b = 0;
     self->first.Init();
     self->second.Init();
-    fn_7100a5340c(reinterpret_cast<UnkSPRTutoLogicAction_b52*>(self->spr));
+    CSPRTutoLogicAction_Construct(reinterpret_cast<UnkSPRTutoLogicAction_b52*>(self->spr));
     self->field_0x190 = false;
     self->field_0x198 = nullptr;
     self->target = self;

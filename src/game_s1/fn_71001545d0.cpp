@@ -33,7 +33,7 @@ extern void* g_unk_716e29ab88;
 extern void* g_unk_716e29ab90;
 extern UnkMatrix44f g_unk_716e29ab98;
 extern UnkMatrix44f g_unk_716e29abd8;
-void fn_7100154538(void* handle);
+void ReleaseCountedResourceHandle(void* handle);
 
 // NON_MATCHING(minor): the first matrix's stores are merged differently (the original pairs every
 // element from the second on, then stores the first).
@@ -42,10 +42,10 @@ void fn_71001545d0() {
     g_unk_716e29ab80 = GetDefaultAllocator();
     InitPathId(&g_unk_716e29ac18.font, "system/engine/fonts/sys_font.bctex");
     g_unk_716e29ab88 = nullptr;
-    __cxa_atexit(fn_7100154538, &g_unk_716e29ab88, g_unk_7101a19000);
+    __cxa_atexit(ReleaseCountedResourceHandle, &g_unk_716e29ab88, g_unk_7101a19000);
     InitPathId(&g_unk_716e29ac18.font_small, "system/engine/fonts/sys_font_small.bctex");
     g_unk_716e29ab90 = nullptr;
-    __cxa_atexit(fn_7100154538, &g_unk_716e29ab90, g_unk_7101a19000);
+    __cxa_atexit(ReleaseCountedResourceHandle, &g_unk_716e29ab90, g_unk_7101a19000);
     g_unk_716e29ab98.SetIdentity();
     g_unk_716e29abd8.ClearToIdentity();
 }

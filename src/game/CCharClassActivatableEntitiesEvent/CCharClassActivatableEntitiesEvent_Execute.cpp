@@ -16,7 +16,7 @@ struct UnkActivatableEntitiesEvent {
     CStrId name;
 };
 
-void fn_7100b96b18(UnkActivatableEntitiesEvent* self, UnkActivatableEntity** owner) {
+void CCharClassActivatableEntitiesEvent_SendActivationIdToOwnerComponent(UnkActivatableEntitiesEvent* self, UnkActivatableEntity** owner) {
     if (!*owner)
         return;
     UnkActivatableComponent* component = fn_7100b96bb8(*owner);

@@ -102,7 +102,7 @@ static_assert(__builtin_offsetof(UnkBossAI_l3acb5c, flags) == 0x14908, "layout")
 static inline void FindLandmark(const CStrId* id, bool* found, UnkVec3f* position) {
     if (id->data == &g_unk_7101d47108->empty)
         return;
-    if (UnkLuaNode_b0160* node = fn_71008a3288(id)) {
+    if (UnkLuaNode_b0160* node = CLandmarkComponent_FindById(id)) {
         *found = true;
         *position = fn_71008a32f8(node);
     }

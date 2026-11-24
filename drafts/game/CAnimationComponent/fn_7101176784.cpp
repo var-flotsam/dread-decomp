@@ -246,7 +246,7 @@ void fn_7101176784(UnkAnimComponent_l176784* self) {
         if (effects && effects->effect)
             fn_7100143618(effects->effect, true, 0.0f);
         if (UnkCollisionContainer* collision = self->owner->collision)
-            fn_71008615b4(collision);
+            CCollisionComponent_SyncAnimationColliderTracks(collision);
     }
     self->record = self->owner->record;
     if (!self->owner->field_0x1f0)

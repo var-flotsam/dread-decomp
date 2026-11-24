@@ -49,7 +49,7 @@ struct UnkRedenkiSubList_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Free() {
         if (data) {
@@ -68,7 +68,7 @@ struct UnkRedenkiSubLists_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_710065b1b0(UnkRedenkiSubLists_ovb0084* self, u32 n);
@@ -93,7 +93,7 @@ struct UnkRedenkiFlagArray_Reset_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Reallocate(u32 new_capacity) {
         bool* p = static_cast<bool*>(allocator->vf_0x40(new_capacity, 8, flags));
@@ -143,10 +143,10 @@ struct UnkRedenkiFullReset_ovb0084 {
     u32 field_0x538;
 };
 
-void fn_710073807c(UnkRedenkiFullReset_ovb0084* self);
+void CFlockingSwarmControllerComponent_ResetAndResizeMemberLists(UnkRedenkiFullReset_ovb0084* self);
 
-void fn_710064f184(UnkRedenkiFullReset_ovb0084* self) {
-    fn_710073807c(self);
+void CRedenkiSwarmControllerComponent_ResetStateAndResizeGroupArrays(UnkRedenkiFullReset_ovb0084* self) {
+    CFlockingSwarmControllerComponent_ResetAndResizeMemberLists(self);
     self->state = 0;
     fn_710073f7bc(reinterpret_cast<UnkRedenkiSwarmController*>(self), 0);
     self->field_0x534 = -1.0f;
@@ -364,7 +364,7 @@ static inline bool PlayerFlag() {
     return flags->field_0xc4;
 }
 
-void fn_7100652288(UnkRedenkiStart_ovb0084* self) {
+void CRedenkiSwarmControllerComponent_InitTimersAndBuildPath(UnkRedenkiStart_ovb0084* self) {
     UnkSwarmPoint_b65a4 point;
     UnkRedenkiChain1_ovb0084* c1 = self->field_0xe8;
     UnkRedenkiBillboard_ovb0084* billboard = nullptr;
@@ -386,7 +386,7 @@ void fn_7100652288(UnkRedenkiStart_ovb0084* self) {
         void* manager = g_unk_71726da048;
         if (!manager) {
             manager = fn_71000839a0(0xe0, 0x3f);
-            fn_7100e1bca4(manager);
+            ConstructBillboardManager(manager);
             g_unk_71726da048 = manager;
         }
         u64 key = billboard->field_0xd0->field_0x30;
@@ -455,7 +455,7 @@ bool fn_710073cbe4(UnkRedenkiSwarm_ovb0084* self, CVector2D* from, CVector2D* to
 
 bool fn_7100655390(UnkRedenkiCheck_ovb0084* self, CVector2D* point, bool flag) {
     UnkRedenkiPlayerState_ovb0084* player =
-        static_cast<UnkRedenkiPlayerState_ovb0084*>(fn_7100df57f4(g_unk_7101d47310));
+        static_cast<UnkRedenkiPlayerState_ovb0084*>(GetPlayerOpticCamouflageAbility(g_unk_7101d47310));
     s32 state = player->state;
     if (state == 7) {
         if (!player->sub)
@@ -573,7 +573,7 @@ struct UnkRedenkiFlagArray_Attack_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Reallocate(u32 new_capacity) {
         bool* p = static_cast<bool*>(allocator->vf_0x40(new_capacity, 8, flags));
@@ -635,7 +635,7 @@ struct UnkRedenkiAttack_ovb0084 {
     UnkRedenkiAttackTuning_ovb0084* tuning;  // 0x560
 };
 
-void fn_7100656da8(UnkRedenkiAttack_ovb0084* self) {
+void CRedenkiSwarmControllerComponent_EnterState4(UnkRedenkiAttack_ovb0084* self) {
     s32 count = self->data->list->count;
     for (s32 i = 0; i < count; i++)
         self->groupFlags.SetAt(i, false);
@@ -723,7 +723,7 @@ void fn_71006572f0(UnkRedenkiStates_ovb0084* self, u32 state, bool keep) {
         self->Enter(0x320);
         return;
     case 4:
-        fn_7100656da8(reinterpret_cast<UnkRedenkiAttack_ovb0084*>(self));
+        CRedenkiSwarmControllerComponent_EnterState4(reinterpret_cast<UnkRedenkiAttack_ovb0084*>(self));
         return;
     }
 }
@@ -755,7 +755,7 @@ struct UnkRedenkiPath_ovb0084 {
 struct UnkRedenkiSwarm_ovb0084;
 bool fn_710073cbe4(UnkRedenkiSwarm_ovb0084* self, CVector2D* from, CVector2D* to, UnkRedenkiScratch_ovb0084* scratch,
                    bool flag);
-void fn_7100739bdc(UnkRedenkiSwarm_ovb0084* self, u32 index, UnkRedenkiPath_ovb0084* path);
+void CFlockingSwarmControllerComponent_ComputePathPointValueIfUnset(UnkRedenkiSwarm_ovb0084* self, u32 index, UnkRedenkiPath_ovb0084* path);
 
 bool fn_7100658310(UnkRedenkiSwarm_ovb0084* self, UnkRedenkiPath_ovb0084* path, const CVector3D* target, bool flag) {
     UnkRedenkiScratch_ovb0084 scratch;
@@ -768,7 +768,7 @@ bool fn_7100658310(UnkRedenkiSwarm_ovb0084* self, UnkRedenkiPath_ovb0084* path, 
         UnkRedenkiPath_ovb0084* route = reinterpret_cast<UnkRedenkiPath_ovb0084*>(scratch.path);
         for (u32 i = 1; i < route->Count(); i++) {
             fn_71010592b0(reinterpret_cast<UnkMinimapPath_CMinimapData*>(path), route->Point(i)->Position());
-            fn_7100739bdc(self, path->Count() - 1, path);
+            CFlockingSwarmControllerComponent_ComputePathPointValueIfUnset(self, path->Count() - 1, path);
         }
     }
     return found;
@@ -841,7 +841,7 @@ void fn_710065a37c(UnkRedenkiFxCtrl_ovb0084* self, UnkRedenkiDart_ovb0084* membe
     void* manager = g_unk_71726da048;
     if (!manager) {
         manager = fn_71000839a0(0xe0, 0x3f);
-        fn_7100e1bca4(manager);
+        ConstructBillboardManager(manager);
         g_unk_71726da048 = manager;
     }
     u64 key = billboard->field_0xd0->field_0x30;
@@ -894,7 +894,7 @@ struct UnkRedenkiCellArray_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Reallocate(u32 new_capacity) {
         UnkRedenkiCell_ovb0084* p = static_cast<UnkRedenkiCell_ovb0084*>(
@@ -985,7 +985,7 @@ struct UnkRedenkiCtrl_Speed_ovb0084 {
     UnkRedenkiTuning_ovb0084* tuning;  // 0x560
 };
 
-f32 fn_710065aa30(UnkRedenkiCtrl_Speed_ovb0084* self) {
+f32 CRedenkiSwarmControllerComponent_GetSpeedForState(UnkRedenkiCtrl_Speed_ovb0084* self) {
     f32 result = self->field_0x1a4;
     if (self->mode != 2)
         return result;
@@ -1070,7 +1070,7 @@ bool fn_710065ab50(UnkRedenkiHandler_ovb0084* self, UnkRedenkiMemberFx_ovb0084* 
     void* manager = g_unk_71726da048;
     if (!manager) {
         manager = fn_71000839a0(0xe0, 0x3f);
-        fn_7100e1bca4(manager);
+        ConstructBillboardManager(manager);
         g_unk_71726da048 = manager;
     }
     u64 key = billboard->field_0xd0->field_0x30;
@@ -1091,7 +1091,7 @@ struct UnkOwnedVector_ovb0084 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkOwnedVector_ovb0084(UnkOwnedVector_ovb0084&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
@@ -1174,7 +1174,7 @@ struct UnkRedenkiSlotArray_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // Grows the array to `n` slots, the new ones cleared.

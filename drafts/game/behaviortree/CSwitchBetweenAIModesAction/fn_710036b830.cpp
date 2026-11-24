@@ -135,7 +135,7 @@ u32 fn_710036b830(UnkSwitchModes_l36b830* self) {
         base::reflection::UnkReflTypeIdArg mode, mask;
         mode.id = 0;
         mask.id = UnkAll_SpitSend().value;
-        if (!fn_7101176690(self->anim, self->track_id.data->Key(), 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+        if (!CAnimationComponent_SendActionToTrack(self->anim, self->track_id.data->Key(), 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                            &g_unk_7172769740, &mask))
             return self->result;
         self->started = true;

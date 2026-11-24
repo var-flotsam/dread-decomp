@@ -21,7 +21,7 @@ struct UnkVec3Result {
 };
 
 struct UnkStruct_71007455dc;
-UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
+UnkVec3Result GetPositionFromParentAndOffset(UnkStruct_71007455dc* self);
 void fn_710074566c(UnkStruct_71007455dc* self, const f32* pos);
 
 struct UnkEntryList_b0202;
@@ -139,7 +139,7 @@ void fn_710074c390(UnkSwarmController_74c390* self, f32 dt) {
             u32 from_point = route->from_point;
             u32 to_path = route->to_path;
             u32 to_point = route->to_point;
-            UnkVec3Result pos = fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(member));
+            UnkVec3Result pos = GetPositionFromParentAndOffset(reinterpret_cast<UnkStruct_71007455dc*>(member));
             UnkPathPoint_74c390* from = self->GetPoint(from_path, from_point);
             UnkPathPoint_74c390* to = self->GetPoint(to_path, to_point);
             if (from && to) {

@@ -9,6 +9,6 @@ struct UnkCentralUnit;
 struct UnkDoorRegistry_b61;
 struct UnkUnit2547;
 void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
-UnkCentralUnit* fn_7100ddb768(UnkUnit2547* self);
+UnkCentralUnit* GetFirstCentralUnitListObject(UnkUnit2547* self);
 bool fn_7100ddb938(UnkDoorRegistry_b61* self);
 void fn_7100ddbb7c(UnkUnit2547* self, u32 expected);

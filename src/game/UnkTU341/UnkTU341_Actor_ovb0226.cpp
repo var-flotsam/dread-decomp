@@ -668,7 +668,7 @@ struct UnkNodeBody_71002486a8 {
 };
 
 struct UnkMapBody_71002486a8 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // Removes a node: destroys its sets, releases its id and frees it.
@@ -1188,7 +1188,7 @@ void fn_7100240594(UnkPoolList_7100240594* self, const UnkPoolList_7100240594* o
     self->pool.field_0x3c = false;
     u32 flags = other->flags;
     self->flags = flags;
-    base::UnkAllocator* parent = other->pool.parent;
+    base::IAllocator* parent = other->pool.parent;
     if (!parent) {
         self->allocator = other->allocator;
         return;
@@ -1200,7 +1200,7 @@ void fn_7100240594(UnkPoolList_7100240594* self, const UnkPoolList_7100240594* o
         self->pool.parent = parent;
         fn_710008378c(&self->pool.blocks, parent->vf_0x40(size, 8, flags), size, 0x10);
     }
-    self->allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<u64>(self) + 0x30);
+    self->allocator = reinterpret_cast<base::IAllocator*>(reinterpret_cast<u64>(self) + 0x30);
     if (self == other)
         return;
     self->FreeNodes();

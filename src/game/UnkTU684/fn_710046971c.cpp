@@ -22,7 +22,7 @@ static inline CVector3D Pos(const UnkActor* a) {
 
 // NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 bool fn_710046971c(CAttack* self, void* arg, u32 mode) {
-    if (!fn_7100df5740(g_unk_7101d47310))
+    if (!IsOpticCamouflageAbilityInState6(g_unk_7101d47310))
         return false;
     UnkActor* target = fn_7100d7c990(self->field_0x8);
     if (target) {

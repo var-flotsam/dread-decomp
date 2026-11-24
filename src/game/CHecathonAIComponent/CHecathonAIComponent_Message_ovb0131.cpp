@@ -87,6 +87,12 @@ static inline UnkHecathonEffect_ovb0131* Live(UnkWorld* fx, UnkHecathonEffect_ov
     return fn_710114e668(reinterpret_cast<UnkObject*>(fx), effect->id) ? effect : nullptr;
 }
 
+// The tunable as this handler reads it: the value handed to the plankton FX is at +0x28.
+struct UnkHecathonTunable_71005abb48 {
+    u8 pad_0x0[0x28];
+    f32 field_0x28;  // 0x28
+};
+
 u32 fn_71005abb48(UnkHecathonMsg_ovb0131* self, UnkHecathonMessage_ovb0131* msg) {
     UnkHecathonState_ovb0131* state = &self->state;
     u32 result = fn_710036974c(reinterpret_cast<UnkSclawkAI_b44a2*>(self),
@@ -100,7 +106,7 @@ u32 fn_71005abb48(UnkHecathonMsg_ovb0131* self, UnkHecathonMessage_ovb0131* msg)
             fn_71005ab080(self, false);
             fn_710080c5d4(reinterpret_cast<UnkPlanktonFX_A3_b71*>(
                               base::reflection::refl_FindTyped<UnkRefl_fn_71005aad7c>(self->field_0x18)),
-                          *reinterpret_cast<f32*>(reinterpret_cast<char*>(&g_unk_71726e8d00) + 0x28));
+                          reinterpret_cast<const UnkHecathonTunable_71005abb48*>(&g_unk_71726e8d00)->field_0x28);
         }
         UnkWorld* fx = self->owner->fx;
         auto* effect = reinterpret_cast<UnkHecathonEffect_ovb0131*>(fn_7101152b90(fx, StringCrc64("airexpel", 8)));

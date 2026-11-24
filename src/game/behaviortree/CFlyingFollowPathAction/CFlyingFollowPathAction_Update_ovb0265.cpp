@@ -112,7 +112,7 @@ u32 fn_7100387460(UnkFlyingFollow* self, f32 dt) {
         u64 key = self->name->key;
         mode.id = 0;
         mask.id = base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>();
-        fn_7101176690(animation, key, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(animation, key, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
         UnkFlyingTrack* track = static_cast<UnkFlyingTrack*>(fn_7101177d2c(animation, 0xf4061ff25a2163d6));
         self->field_0x50 = track->field_0x38 == self->name;
         if (!navigation)

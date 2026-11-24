@@ -113,7 +113,7 @@ void fn_710093fab8(UnkMorphBallMovement_93fab8* self, f32 dt, bool rolling) {
         fn_7100105d34(reinterpret_cast<UnkInterp_7100105d34*>(sound), volume, false, 0.2f);
         pitch = 0.4f;
     }
-    fn_7100105da8(reinterpret_cast<UnkInterp_7100105d34*>(SoundOf_93fab8(handle)), pitch, 0.2f);
+    SetSoundVoicePitchOverDuration(reinterpret_cast<UnkInterp_7100105d34*>(SoundOf_93fab8(handle)), pitch, 0.2f);
 
     UnkRollSound_93fab8* playing = SoundOf_93fab8(handle);
     UnkRollSoundOwner_93fab8* owner = self->owner;

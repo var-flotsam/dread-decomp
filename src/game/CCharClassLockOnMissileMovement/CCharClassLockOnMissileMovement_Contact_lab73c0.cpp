@@ -55,7 +55,7 @@ static inline UnkWeakHandle* HandleOf(UnkWeakTarget* target) {
     return target ? GetWeakHandle(target) : nullptr;
 }
 
-bool fn_7100ab73c0(UnkLockOnMissileMovement_lab73c0* self, void* other, void* contact, bool flag) {
+bool CCharClassLockOnMissileMovement_CheckMissileThenExplosionCollider(UnkLockOnMissileMovement_lab73c0* self, void* other, void* contact, bool flag) {
     UnkWeakTarget* missile = FindCollider(self, "missile");
     if (!fn_7100abb448(self, other, contact, flag, true, UnkWeakRef_lab73c0(HandleOf(missile))) && !self->armed)
         return false;

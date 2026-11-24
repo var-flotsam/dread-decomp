@@ -146,7 +146,7 @@ void fn_710118c7a0(UnkIngameMenu_l18c7a0* self) {
     first_mode.id = 1;
     UnkReflTypeIdArg first_type;
     first_type.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-    fn_7101176690(first_animation, first_key, 0xf4061ff25a2163d6, &first_mode, &g_unk_710164b968,
+    CAnimationComponent_SendActionToTrack(first_animation, first_key, 0xf4061ff25a2163d6, &first_mode, &g_unk_710164b968,
                   &g_unk_7172769740, &first_type);
     void* second_animation = second->animation;
     u64 second_key;
@@ -155,7 +155,7 @@ void fn_710118c7a0(UnkIngameMenu_l18c7a0* self) {
     second_mode.id = 1;
     UnkReflTypeIdArg second_type;
     second_type.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-    fn_7101176690(second_animation, second_key, 0xf4061ff25a2163d6, &second_mode, &g_unk_710164b968,
+    CAnimationComponent_SendActionToTrack(second_animation, second_key, 0xf4061ff25a2163d6, &second_mode, &g_unk_710164b968,
                   &g_unk_7172769740, &second_type);
 
     fn_71002334fc(reinterpret_cast<UnkStruct_71002334fc*>(player), false);

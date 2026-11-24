@@ -92,7 +92,7 @@ void fn_71001d03f8(UnkGraphicsSystem* self, UnkGfxItem_b0155* item, bool upload,
             u32 a = range->field_0x8, b = range->field_0xc;
             if (fn_7100159c80()) {
                 self->field_0x317add0++;
-                fn_7100159f90(a, b);
+                DrawIndexedFromCurrentState(a, b);
             }
         }
     } else {

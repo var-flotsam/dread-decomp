@@ -64,7 +64,7 @@ inline const CStrId& NavMeshItemId() {
     return s_id;
 }
 
-void fn_71009c4e10() {
+void CNavMeshItemComponent_InitStatics() {
     UnkNavMeshItemTU_l9c4e10& tu = g_unk_717273ede8;
     InitHeader(tu.header);
     InitPropertyEx(&g_unk_717273e210, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, fn_71002ef5bc,

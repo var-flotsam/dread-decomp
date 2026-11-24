@@ -34,7 +34,7 @@ struct UnkJetList_ovb0008 {
     u32 field_0x18;
     bool field_0x1c;
     u32 field_0x20;
-    base::UnkAllocator* field_0x28;
+    base::IAllocator* field_0x28;
     u32 field_0x30;
 };
 
@@ -148,7 +148,7 @@ static inline const UnkQualifiedId& ItemId(UnkPropertyEx<>& item) {
     return qid;
 }
 
-bool fn_710089f7a8(UnkSteamJet_ovb0008* self) {
+bool CCharClassSteamJetComponent_IsActiveUnlessPlayerHasVariaOrGravitySuit(UnkSteamJet_ovb0008* self) {
     u8 active = self->active;
     bool result = active;
     if (self->desc && self->desc->hurts) {

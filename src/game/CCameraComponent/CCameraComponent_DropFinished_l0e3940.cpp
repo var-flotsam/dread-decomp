@@ -36,7 +36,7 @@ struct UnkCamComponent_l0e3940 {
     u32 count;  // 0x58
     UnkCamNode_l0e3940* head;
     UnkCamNode_l0e3940* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // Unlinks `node` and frees it; the node after it, or null when it is not in the list.

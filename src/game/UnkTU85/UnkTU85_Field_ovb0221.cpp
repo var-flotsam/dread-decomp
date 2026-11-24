@@ -36,7 +36,7 @@ struct UnkFieldAccessor85 {
 };
 
 // Whether the bool attribute under the key (fn_7100090910) is set; false for a null holder.
-bool fn_71000e6db0(UnkVersionEntry* self) {
+bool IsLinkAttributeSet(UnkVersionEntry* self) {
     u32 ok = (u64)self;
     if (self) {
         ok = 0;

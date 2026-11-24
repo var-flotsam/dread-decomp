@@ -28,7 +28,7 @@ struct UnkIdPairArrays_lc90bb8 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 UnkIdPairRecord_lc90bb8* fn_7100c90bb8(UnkIdPairArrays_lc90bb8* self, UnkIdPairRecord_lc90bb8* it) {

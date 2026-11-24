@@ -60,7 +60,7 @@ struct UnkPbListener_ovb0015 {
 
 // The chained hash map (the layout of base/UnkHashMap.h's): 11 buckets to start with.
 struct UnkPbMap_ovb0015 {
-    base::UnkAllocator* allocator;  // 0x0: the nodes'
+    base::IAllocator* allocator;  // 0x0: the nodes'
     u32 field_0x8;
     u32 count;                     // 0xc
     base::global::CRntVector<void*> buckets;  // 0x10
@@ -165,7 +165,7 @@ void fn_7100ab0944(UnkPbMovement_ovb0015* self) {
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
 using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
-void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
+void CCollisionComponent_CollectRecordsBySecondaryId(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 
 extern void* const g_unk_7172753e28 __attribute__((visibility("hidden")));            // the colliders' key
 extern base::global::CStrId g_unk_7172753e30 __attribute__((visibility("hidden")));  // the one kept on
@@ -193,7 +193,7 @@ void fn_7100aae6a8(UnkPbMovement3_ovb0015* self) {
     fn_7100aaa0c4(reinterpret_cast<UnkPbMovementBase3_ovb0015*>(self));
     if (UnkCollisionContainer* container = self->owner->field_0x2a0) {
         UnkOut_71008651c8 found(0xf);
-        fn_71008651c8(reinterpret_cast<UnkStruct_71008651c8*>(container), &g_unk_7172753e28, &found);
+        CCollisionComponent_CollectRecordsBySecondaryId(reinterpret_cast<UnkStruct_71008651c8*>(container), &g_unk_7172753e28, &found);
         for (UnkStruct_71008651c8_Entry **it = found.data, **end = found.data + found.count; it != end; ++it)
             fn_7100d35a98(*reinterpret_cast<UnkEntry**>(reinterpret_cast<char*>(*it) + 0x28), false);
         fn_7100d35a98(reinterpret_cast<UnkEntry*>(fn_71008640a4(container, &g_unk_7172753e30)), true);

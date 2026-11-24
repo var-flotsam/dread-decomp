@@ -18,11 +18,11 @@ struct UnkAttackList_l133b58 {
     u32 count;                          // +0x18
     UnkAttackNode_l133b58* head;        // +0x20
     UnkAttackNode_l133b58* tail;        // +0x28
-    base::UnkAllocator* allocator;      // +0x30
+    base::IAllocator* allocator;      // +0x30
     u32 flags;                          // +0x38
     u8 pad_0x2c[4];
     char* pool_vtable;                  // +0x40
-    base::UnkAllocator* pool_allocator; // +0x48
+    base::IAllocator* pool_allocator; // +0x48
     UnkBlockFreeList pool;              // +0x50
     u8 pad_0x78[4];
     bool clearing;                      // +0x7c

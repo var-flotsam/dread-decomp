@@ -103,12 +103,12 @@ bool fn_7100585c98(UnkGoliathXBombsAttack2_b57a3* self, UnkGoliathXBombsEvent_b5
             mode.id = 1;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(target, 0x46463586a994ec9b, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(target, 0x46463586a994ec9b, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                           &g_unk_7172769740, &mask);
             return true;
         }
         UnkStruct_710117af10* t = static_cast<UnkStruct_710117af10*>(target);
-        if (!fn_710117af10(t, &g_unk_71726e55b8, false) && !fn_710117af10(t, &g_unk_71726e55c0, false))
+        if (!CAnimationComponent_IsPlayingActionNameContaining(t, &g_unk_71726e55b8, false) && !CAnimationComponent_IsPlayingActionNameContaining(t, &g_unk_71726e55c0, false))
             return true;
     }
     self->field_0x60 = self->field_0x28->field_0xec;

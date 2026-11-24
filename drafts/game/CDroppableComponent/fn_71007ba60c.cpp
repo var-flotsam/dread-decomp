@@ -153,7 +153,7 @@ void fn_71007ba60c(UnkDroppable_l7ba60c* self, f32 dt) {
                 fn_7100105d34(reinterpret_cast<UnkInterp_7100105d34*>(sound), self->speed / 1700.0f, false, 0.2f);
                 UnkSound* again = GetSound_l7ba60c(&self->sound);
                 f32 v = self->speed / 1700.0f + 1.0f;
-                fn_7100105da8(reinterpret_cast<UnkInterp_7100105d34*>(again), v > 0.0f ? (v < 2.0f ? v : 2.0f) : 0.0f,
+                SetSoundVoicePitchOverDuration(reinterpret_cast<UnkInterp_7100105d34*>(again), v > 0.0f ? (v < 2.0f ? v : 2.0f) : 0.0f,
                               0.2f);
             }
             self->speed = speed;

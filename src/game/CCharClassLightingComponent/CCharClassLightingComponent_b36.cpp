@@ -41,7 +41,7 @@ struct UnkLightingComponent3 {
     UnkReflObject* lighting;  // 0x88, the object as a CCharClassLightingComponent
 };
 
-void fn_71008e61f4(UnkLightingLight3* light, f32 a, f32 b);
+void FadeCharClassLightScalarValue(UnkLightingLight3* light, f32 a, f32 b);
 
 // Applies `a` and `b` (fn_71008e61f4) to each light whose definition is `id`.
 void fn_71008e7f98(UnkLightingComponent3* self, const u64* id, f32 a, f32 b) {
@@ -56,7 +56,7 @@ void fn_71008e7f98(UnkLightingComponent3* self, const u64* id, f32 a, f32 b) {
         UnkLightingDesc3* desc = light->holder->desc;
         u64 key = *id;
         if (desc->id == key)
-            fn_71008e61f4(light, a, b);
+            FadeCharClassLightScalarValue(light, a, b);
         ++it;
         size -= sizeof(*it);
     } while (size != 0);

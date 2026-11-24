@@ -126,7 +126,7 @@ static_assert(sizeof(UnkSet) == 0x40, "UnkSet layout");
 void fn_71002458a4(UnkSet* self, UnkSet* other);
 u32 fn_7100faf7d0(u32 kind);
 struct UnkSetVector;
-UnkSetVector* fn_71011a3234(UnkGroupTable* tables, u32 kind, const CStrId* id);
+UnkSetVector* CScenario_FindLayerValueByKey(UnkGroupTable* tables, u32 kind, const CStrId* id);
 UnkSetVector* fn_71011a3220(UnkGroupTable* tables, u32 kind, const CStrId* id);
 UnkOwnerHandle* fn_7100232f18(void* member);
 void fn_710025bda0(void* self);
@@ -138,7 +138,7 @@ struct UnkSetVector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void EmplaceBack(UnkSet* value) {
         u32 n = count;
@@ -182,7 +182,7 @@ struct UnkOrphanNode {
 
     explicit UnkOrphanNode(const CStrId& id) : key(id), members(0xf), next(nullptr), prev(nullptr), chain(nullptr) {}
 
-    static void* operator new(unsigned long size, base::UnkAllocator* allocator, u32 flags) noexcept {
+    static void* operator new(unsigned long size, base::IAllocator* allocator, u32 flags) noexcept {
         return allocator->vf_0x40(size, 8, flags);
     }
     void Destroy() {
@@ -201,7 +201,7 @@ void fn_7100ef1abc(UnkOrphanIter* it);
 
 
 struct UnkOrphanMap {
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     u32 flags = 0xe;
     u32 count = 0;
     base::global::CRntVector<UnkOrphanNode*> buckets{0xe};
@@ -317,7 +317,7 @@ void fn_7100eebbd4(UnkSubAreaManager* self) {
                      ++item) {
                     UnkSubAreaItem* object = *item;
                     CStrId id(object->ids[fn_7100faf7d0(kind)]);
-                    UnkSetVector* sets = fn_71011a3234(tables, kind, &id);
+                    UnkSetVector* sets = CScenario_FindLayerValueByKey(tables, kind, &id);
                     if (sets) {
                         for (UnkSet *set = sets->data, *set_end = set + sets->count; set != set_end; ++set) {
                             if (set->field_0x30 == 1) {

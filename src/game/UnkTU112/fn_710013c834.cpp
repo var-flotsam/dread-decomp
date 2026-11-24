@@ -17,7 +17,7 @@ static inline CRntString operator+(const CRntString& a, const CRntString& b) { r
 // Assigns another string's text.
 static inline void Assign(CRntString* self, const CRntString& other) { CRntString_Assign(self, &other); }
 
-UnkTunableLine fn_710013c834(const CRntString* str, const char* from, const char* to) {
+UnkTunableLine ReplaceAllSubstrings(const CRntString* str, const char* from, const char* to) {
     if (str->length == 0)
         return UnkTunableLine(*str);
 

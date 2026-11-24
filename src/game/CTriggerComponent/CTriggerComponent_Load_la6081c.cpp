@@ -60,7 +60,7 @@ static inline void Set(UnkTriggerObject_la6081c* obj, u64 key, void* in) {
     typed.ptr = obj;
     UnkTriggerValue_la6081c value = {Type(), in};
     if (UnkTriggerField_la6081c* field = cls->FindField(key))
-        fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
 }
 

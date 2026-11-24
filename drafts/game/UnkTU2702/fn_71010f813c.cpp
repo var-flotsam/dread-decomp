@@ -25,9 +25,9 @@ struct CBlackboard;
 void fn_7101046974(CBlackboard* blackboard);
 
 extern void* g_unk_7101cb1dd0[];  // CAIComponent's vtable
-void fn_71010f8804(void* self, u32 n, u32 a, u32 flags, base::UnkAllocator* allocator);
-void fn_71010f8930(void* self, u32 n, u32 a, u32 flags, base::UnkAllocator* allocator);
-void fn_71010f8a48(void* self, u32 n, base::UnkAllocator* allocator, u32 flags);
+void fn_71010f8804(void* self, u32 n, u32 a, u32 flags, base::IAllocator* allocator);
+void fn_71010f8930(void* self, u32 n, u32 a, u32 flags, base::IAllocator* allocator);
+void fn_71010f8a48(void* self, u32 n, base::IAllocator* allocator, u32 flags);
 void fn_7101115fb8(void* self);
 void fn_7101115f48(void* self);
 

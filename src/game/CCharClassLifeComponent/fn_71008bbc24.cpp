@@ -65,7 +65,7 @@ static inline bool Get(UnkLifeObject_l8bbc24* obj, u64 key, f32* out) {
     typed.ptr = obj;
     UnkLifeValue_l8bbc24 value = {fn_710000abbc(), out};
     if (UnkLifeField_l8bbc24* field = cls->FindField(key)) {
-        fn_71000e78e0(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
         return true;
     }

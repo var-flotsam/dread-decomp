@@ -371,7 +371,7 @@ struct UnkMinimapSpan : UnkSceneSpan {
 static_assert(__builtin_offsetof(UnkMinimapStatics, cell_size_guard) == 0x70, "UnkMinimapStatics layout");
 static_assert(__builtin_offsetof(UnkMinimapStatics, lists) == 0x100, "UnkMinimapStatics layout");
 
-bool fn_7100eb7f6c(const UnkMinimapItem* item);
+bool IsMinimapItemDrawable(const UnkMinimapItem* item);
 void fn_7100eb9b90(UnkMinimapDrawList* lists0, UnkMinimapDrawList* lists3, UnkMinimapDrawList* lists1,
                    UnkMinimapDrawList* lists2, const UnkMinimapIconDef* icon, UnkMinimapVec3 pos,
                    f32 size, UnkMinimapColor color, f32 field_0x2c, bool field_0x34, bool flipped);
@@ -380,7 +380,7 @@ void fn_7100ebaaa0(UnkMinimapDrawList* lists0, UnkMinimapDrawList* lists3, UnkMi
                    UnkMinimapVec2 half_size, f32 size, UnkMinimapColor color);
 
 void fn_7100e964fc(UnkMinimapOwner* self, const UnkMinimapItem* item, f32 depth) {
-    if (!fn_7100eb7f6c(item))
+    if (!IsMinimapItemDrawable(item))
         return;
     f32 alpha = item->alpha_modifiers.Product(1.0f);
     const UnkMinimapIconDef* icon = item->icon;
@@ -584,7 +584,7 @@ void fn_7100e8f6bc(UnkMinimapOwner* self) {
     UnkMinimapVec2 scale(width / fn_7100132fc0(), height / fn_7100132fc0());
     scale.x *= self->field_0xb4;
     scale.y *= self->field_0xb4;
-    fn_710020a5a0(reinterpret_cast<UnkStruct_710020a5a0*>(self->viewport->node),
+    SetNode2DScale(reinterpret_cast<UnkStruct_710020a5a0*>(self->viewport->node),
                   reinterpret_cast<const base::math::CVector2D*>(&scale));
     {
         UnkMinimapVec2 screen_pos = self->screen_pos;
@@ -616,7 +616,7 @@ void fn_7100e8f6bc(UnkMinimapOwner* self) {
     fn_7100219294(g_unk_7101d47300, 0x12194b8295e98a84, params, 0);
 }
 
-const base::math::CVector3D* fn_7100b37b80(const void* kind);
+const base::math::CVector3D* GetMinimapMarkerColorForKind(const void* kind);
 
 inline UnkMinimapVec3 operator*(const base::math::CVector3D& v, f32 s) { return UnkMinimapVec3(v.x * s, v.y * s, v.z * s); }
 
@@ -644,7 +644,7 @@ void fn_7100ea3f7c(UnkMinimapOwner* self) {
             marker->box.max_y >= self->view.min_y && marker->box.min_y <= self->view.max_y) {
             UnkMinimapDrawList* lists = g_unk_71729cdaa0.lists;
             fn_7100eb8a20(&lists[0], &lists[3], &lists[1], marker->shape,
-                          UnkMinimapMarkerColor(*fn_7100b37b80(marker->kind) * 0.3f, 0.0f),
+                          UnkMinimapMarkerColor(*GetMinimapMarkerColorForKind(marker->kind) * 0.3f, 0.0f),
                           UnkMinimapMarkerArg(marker->field_0x78));
         }
     }
@@ -807,7 +807,7 @@ struct UnkMinimapBuffer {
     u32 capacity = 0;
     u32 step = 10;
     u32 flags = 0xe;
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
 };
 static_assert(sizeof(UnkMinimapBuffer) == 0x20, "UnkMinimapBuffer layout");
 
@@ -887,12 +887,12 @@ struct UnkMinimapPooledSet {
     base::global::CRntVector<void*> buckets;  // flags 0xe
     s32 field_0x28;
     u64 field_0x30;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     u32 field_0x48;
     char* pool_vtable;  // 0x50
-    base::UnkAllocator* pool_parent;
+    base::IAllocator* pool_parent;
     UnkBlockFreeList pool_blocks;  // 0x60
     u32 pool_field_0x38;
     bool pool_field_0x3c;

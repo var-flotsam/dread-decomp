@@ -18,7 +18,7 @@ struct UnkHeatableValue_0xd0 {
 void fn_710086df48(UnkHeatableValue_0xd0* self);  // default constructor
 void fn_710086da20(UnkPropertyArrays* self, u32 capacity);
 struct UnkHeatableEntry_b0080;
-void fn_710086dbb0(UnkHeatableEntry_b0080* self, const UnkHeatableEntry_b0080* other);  // copy constructor
+void CHeatableShieldComponent_CopyConstructEntry(UnkHeatableEntry_b0080* self, const UnkHeatableEntry_b0080* other);  // copy constructor
 
 // One entry's view of the 0xd0-byte value.
 struct UnkHeatableShieldValue_l86c218 {
@@ -103,10 +103,10 @@ void fn_710086c218(UnkHeatableShield_b0080* self, const void* a0, bool a1, const
         if (entries->count == entries->capacity)
             fn_710086da20(entries, entries->step + entries->count);
         new (&entries->ids[entries->count]) CStrId(name);
-        fn_710086dbb0(reinterpret_cast<UnkHeatableEntry_b0080*>(&Values(entries)[entries->count]),
+        CHeatableShieldComponent_CopyConstructEntry(reinterpret_cast<UnkHeatableEntry_b0080*>(&Values(entries)[entries->count]),
                       reinterpret_cast<const UnkHeatableEntry_b0080*>(&value));
         ++entries->count;
-        fn_710086e0ac(&value);
+        DestroyHeatableShieldValueRecord(&value);
     }
 
     UnkHeatableShieldValue_l86c218& entry = Values(entries)[IndexOf(entries, name)];

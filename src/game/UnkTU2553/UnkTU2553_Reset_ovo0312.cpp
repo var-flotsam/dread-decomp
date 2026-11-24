@@ -12,7 +12,7 @@ using base::global::CStrId;
 struct UnkIdMapOwner_o0312 {
     base::global::CRntDictionary<CStrId, u64> map;  // 0x0
     void* pool_vtable;         // 0x48
-    base::UnkAllocator* pool_allocator;  // 0x50
+    base::IAllocator* pool_allocator;  // 0x50
     u8 pool_list[0x20];                  // 0x58
     void* pool_block;                    // 0x78
     u8 pad_0x80[4];

@@ -23,7 +23,7 @@ struct UnkDamageTrigger_b0119;
 void fn_7100a470e8(UnkDamageTrigger_b0119* self, void* arg);
 f32 CPlayerInfo_LookupTimedEntryFloat(void* table, void* key);
 struct UnkBaseDamageTrigger2;
-void fn_7100a45e00(UnkBaseDamageTrigger2* self, f32 dt);
+void CBaseDamageTriggerComponent_RestartDamageAndAdvanceTime(UnkBaseDamageTrigger2* self, f32 dt);
 
 struct UnkDamageTriggerOwner_b0119 {
     u8 pad_0x0[0x28];
@@ -63,7 +63,7 @@ void fn_7100a45cf0(UnkDamageTrigger_b0119* self, void* arg) {
     UnkReflObject* cls = CharClass(self->owner->char_class);
     f32 t = CPlayerInfo_LookupTimedEntryFloat(table, reinterpret_cast<char*>(cls) + 0x98);
     t -= *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(g_unk_7101d47328) + 0x30);
-    fn_7100a45e00(reinterpret_cast<UnkBaseDamageTrigger2*>(self), !(t < 0.0f) ? t : 0.0f);
+    CBaseDamageTriggerComponent_RestartDamageAndAdvanceTime(reinterpret_cast<UnkBaseDamageTrigger2*>(self), !(t < 0.0f) ? t : 0.0f);
     if (self->vf_0x1e8())
         self->vf_0x1f8(arg);
 }

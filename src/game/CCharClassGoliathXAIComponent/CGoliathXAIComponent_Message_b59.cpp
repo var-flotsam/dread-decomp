@@ -109,7 +109,7 @@ u32 fn_7100588858(UnkGoliathXAI_b59a3* self, UnkGoliathXMessage_b59a3* message) 
 impact:
     mode1.id = 1;
     mask1.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0x8735a75cd098883a, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0x8735a75cd098883a, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
                   &mask1);
     return result;
 turn:
@@ -118,7 +118,7 @@ turn:
         u64 hash = !(value >= __builtin_fabsf(self->field_0x14cc0)) ? 0x9b214780df6c8f00 : 0xbe901ff6f5cba1f7;
         mode2 = 1;
         mask2.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash, 0xf4061ff25a2163d6, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode2), &g_unk_710164b958, &g_unk_7172769740, &mask2);
+        CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode2), &g_unk_710164b958, &g_unk_7172769740, &mask2);
     }
     owner = reinterpret_cast<UnkGoliathXOwner_b59a3*>(self->owner);
     {

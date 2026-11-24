@@ -24,7 +24,7 @@ void fn_710069cd7c();
 void fn_710069f43c(UnkReflObject* ai);
 
 struct UnkScourgeOwner_A3_b73;
-void fn_71006a23c4(void* registry, UnkScourgeOwner_A3_b73* owner);
+void SetWeakTargetUnlessCurrentAlive(void* registry, UnkScourgeOwner_A3_b73* owner);
 
 struct UnkScourgeOwner_A3_b73 {
     u8 pad_0x0[0x220];
@@ -108,5 +108,5 @@ void fn_710069b178(UnkScourgeAttack_A3_b73* self) {
         fn_7100da7e2c(manager);
         g_unk_71726af468 = manager;
     }
-    fn_71006a23c4(manager->field_0x5e0, self->owner);
+    SetWeakTargetUnlessCurrentAlive(manager->field_0x5e0, self->owner);
 }

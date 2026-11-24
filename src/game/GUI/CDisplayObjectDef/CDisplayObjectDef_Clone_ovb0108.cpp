@@ -65,7 +65,7 @@ UnkDisplayObjectDef_ovb0108* fn_7100b06708(UnkReflObject* source) {
     {
         UnkCopyRoot_ovb0108 root = {fn_710009dcd8(const_cast<char*>(reinterpret_cast<const char*>(source->vf_0x0())), source),
                                     source};
-        fn_71000ee314(reinterpret_cast<UnkWriteStack_b0026*>(&stack), reinterpret_cast<UnkWriteRoot_b0026*>(&root), 2);
+        InitReflValueListWithRoot(reinterpret_cast<UnkWriteStack_b0026*>(&stack), reinterpret_cast<UnkWriteRoot_b0026*>(&root), 2);
     }
     UnkReadTarget target;
     {

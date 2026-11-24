@@ -34,7 +34,7 @@ struct UnkNavVertexArray_28f954 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     explicit UnkNavVertexArray_28f954(u32 flags)
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(flags),
@@ -102,7 +102,7 @@ struct UnkNavPolygonList_28f954 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u8 pad_0x28[0x10];
     bool changed;  // 0x38
 
@@ -142,7 +142,7 @@ struct UnkNavPointArray_28f954 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void PushBack(const CVector2D& value) {
         u32 n = count;
@@ -242,7 +242,7 @@ struct UnkPointList_28f954 {
     UnkPointNode_28f954* head = nullptr;
     UnkPointNode_28f954* tail = nullptr;
     u32 count = 0;
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
 
     ~UnkPointList_28f954() {
         for (UnkPointNode_28f954* n = head; n;) {
@@ -455,7 +455,7 @@ s32 fn_710028f954(UnkNavMeshGenerator_28f954* self, UnkNavSource_28f954* source,
             }
         }
 
-        fn_7100119f98(reinterpret_cast<UnkTileOutline*>(&outline), true);
+        SetPolylineClosed(reinterpret_cast<UnkTileOutline*>(&outline), true);
         if (outline.EdgeCount() > 2) {
             PushBackCopy(out, outline);
             out->changed = true;

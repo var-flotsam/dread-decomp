@@ -21,7 +21,7 @@ struct UnkAreaMusicComponent {
     f32 fExitFadeOut;
 };
 
-void fn_7100715fa8(UnkAreaMusicComponent* self, void* arg) {
+void CAreaMusicComponent_SendExitFadeOutToMusicManager(UnkAreaMusicComponent* self, void* arg) {
     fn_7100718388(self, arg);
     if (self->field_0x30->field_0x1b5) return;
     void* instance = g_unk_71726bc560;

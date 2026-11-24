@@ -12,6 +12,7 @@
 #include "game/UnkTU57.h"
 #include "game/sound/CSoundManager.h"
 #include "types.h"
+#include "game/UnkBufferStringPool.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
@@ -20,7 +21,6 @@ using base::global::CStrId;
 struct lua_State;
 
 // The vtable of the allocator that follows a string with 0x80 bytes of inline storage.
-extern void* g_unk_7101a1b750[];
 
 // A string with 0x80 bytes of inline storage (0xc8 bytes).
 struct UnkInlineString_l08e6e0 {
@@ -32,7 +32,7 @@ struct UnkInlineString_l08e6e0 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     explicit UnkInlineString_l08e6e0(const char* text) {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a1b750 + 2);
         field_0xb8 = 0;
         field_0xc0 = 0;
@@ -72,7 +72,10 @@ inline UnkInlineString_l08e6e0 ReplaceHashes(const CRntString& str) {
     text[length] = '\0';
     for (u32 i = 0; i < length; ++i) {
         char c = str.data[i];
-        text[i] = c == '#' ? '/' : c;
+        if (c == '#')
+            text[i] = '/';
+        else
+            text[i] = c;
     }
     return UnkInlineString_l08e6e0(text);
 }
@@ -90,7 +93,7 @@ int fn_710108e6e0(lua_State* L) {
             fn_71000267f8(preset.Resource(), ids.ids);
         }
         if (preset.IsSet())
-            fn_7101024e28(g_unk_7101d47318, reinterpret_cast<const UnkStrIdPathPair*>(&preset), nullptr, 0);
+            CSoundManager_PlayPresetFromIdPath(g_unk_7101d47318, reinterpret_cast<const UnkStrIdPathPair*>(&preset), nullptr, 0);
     }
     preset.Release();
     return 0;

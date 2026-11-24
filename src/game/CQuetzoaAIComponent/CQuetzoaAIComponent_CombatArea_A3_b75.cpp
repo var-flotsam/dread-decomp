@@ -49,10 +49,15 @@ struct UnkQuetzoaAI_A3_b75 {
     CBlackboard blackboard;  // 0x1260
 };
 
+// The Quetzoa's actor: UnkActor followed by the spawn point's holder.
+struct UnkQuetzoaActor_A3_b75 : UnkActor {
+    u8 pad_0x380[0x18];
+    UnkQuetzoaSpawnHolder_A3_b75* field_0x398;  // 0x398
+};
+
 void CQuetzoaAIComponent_UpdateIsInCombatAreaBlackboard(UnkQuetzoaAI_A3_b75* self) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
-    UnkQuetzoaSpawnHolder_A3_b75* holder =
-        *reinterpret_cast<UnkQuetzoaSpawnHolder_A3_b75**>(reinterpret_cast<char*>(self->actor) + 0x398);
+    UnkQuetzoaSpawnHolder_A3_b75* holder = static_cast<UnkQuetzoaActor_A3_b75*>(self->actor)->field_0x398;
     if (!holder || !holder->component)
         return;
     UnkQuetzoaArea_A3_b75* area = fn_7101127964(holder->component);

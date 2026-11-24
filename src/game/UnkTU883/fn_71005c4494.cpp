@@ -16,13 +16,13 @@ static_assert(sizeof(UnkHydrogigaEntry_b0166) == 0x58, "layout");
 
 using UnkHydrogigaTable_b0166 = base::global::CRntSmallDictionary<base::UnkStrIdMember, UnkHydrogigaEntry_b0166>;
 
-void fn_71005c4630(UnkHydrogigaTable_b0166* self, u32 n);
+void ReserveHydrogigaKeyedTable(UnkHydrogigaTable_b0166* self, u32 n);
 
 // NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkHydrogigaEntry_b0166* fn_71005c4494(UnkHydrogigaTable_b0166* self, const base::UnkStrIdMember& key,
                                        const UnkHydrogigaEntry_b0166& value) {
     if (self->count == self->capacity)
-        fn_71005c4630(self, self->count + self->step);
+        ReserveHydrogigaKeyedTable(self, self->count + self->step);
     using KeyId = base::UnkPooledStrId<g_unk_7101d47108>;
     new (&self->keys[self->count]) KeyId(reinterpret_cast<const KeyId&>(key));
     new (&self->values[self->count]) UnkHydrogigaEntry_b0166(value);

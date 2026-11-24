@@ -25,7 +25,7 @@ struct UnkResFormat {
     u32 source_step;                         // 0x20
     bool field_0x24;
     u32 source_flags;                      // 0x28
-    base::UnkAllocator* source_allocator;  // 0x30
+    base::IAllocator* source_allocator;  // 0x30
 };
 static_assert(sizeof(UnkResFormat) == 0x38, "UnkResFormat layout");
 
@@ -38,7 +38,7 @@ struct UnkResType {
 static_assert(sizeof(UnkResType) == 0x80, "UnkResType layout");
 
 // The format's constructor.
-void CAnimationResource_ConstructResourceFormat(UnkResFormat* self, const char* class_name, const char* extension, const char* const* sources,
+void fn_7100004578(UnkResFormat* self, const char* class_name, const char* extension, const char* const* sources,
                    u64 count);
 // Builds the resource type at `self` (a UnkResType) named `name` from `count` formats.
 void CAnimationResource_ConstructResourceTypeFromFormats(void* self, const char* name, UnkResFormat* formats, u64 count);

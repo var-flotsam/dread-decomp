@@ -33,7 +33,7 @@ struct UnkCollider_ovb0034 {
     u32 count;                                // 0x130
     UnkColliderListNode_ovb0034* head;        // 0x138
     UnkColliderListNode_ovb0034* tail;        // 0x140
-    base::UnkAllocator* allocator;            // 0x148
+    base::IAllocator* allocator;            // 0x148
     u8 pad_0x150[0x8];
     UnkColliderReleasable_ovb0034* field_0x158;
     bool field_0x160;
@@ -43,7 +43,7 @@ struct UnkCollider_ovb0034 {
 };
 static_assert(__builtin_offsetof(UnkCollider_ovb0034, field_0x164) == 0x164, "UnkCollider_ovb0034 layout");
 
-void fn_7100d3b58c(UnkCollider_ovb0034* self) {
+void CCollider_DestroyAndDelete(UnkCollider_ovb0034* self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101aa85b0 + 0x10);
     if (self->field_0x160) {
         if (self->field_0x158) {
@@ -79,7 +79,7 @@ struct UnkColliderMapNode_ovb0034 {
 };
 
 struct UnkColliderMap_ovb0034 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkColliderMapNode_ovb0034** buckets;
@@ -131,6 +131,6 @@ UnkPtrArrays_ovb0034* fn_7100d44054(UnkPtrArrays_ovb0034* self, const UnkPtrArra
         self->capacity = n;
     }
     for (const UnkPtrArray_ovb0034 *it = other->data, *end = it + other->count; it != end; ++it)
-        fn_7100d43e70(self, it);
+        CCollider_PushBackArrayCopy(self, it);
     return self;
 }

@@ -20,7 +20,7 @@ struct UnkFirstPtrArray {
     u32 capacity;
     u32 field_0x18;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 template <class T, class Index>

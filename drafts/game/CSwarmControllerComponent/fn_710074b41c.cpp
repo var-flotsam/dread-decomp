@@ -13,7 +13,7 @@ struct UnkVec3Result {
 };
 
 struct UnkStruct_71007455dc;
-UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
+UnkVec3Result GetPositionFromParentAndOffset(UnkStruct_71007455dc* self);
 
 struct UnkGroup_l74b41c {
     u8 pad_0x0[0x24];
@@ -56,7 +56,7 @@ s32 fn_710074b41c(UnkSwarmCount_l74b41c* self, const base::math::CVector3D* poin
             UnkSwarmMember_ovb6* member = group->members[j];
             if (!member || !fn_7100744e1c(member))
                 continue;
-            UnkVec3Result position = fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(member));
+            UnkVec3Result position = GetPositionFromParentAndOffset(reinterpret_cast<UnkStruct_71007455dc*>(member));
             f32 dx = point->x - position.x;
             f32 dy = point->y - position.y;
             f32 dz = point->z - position.z;

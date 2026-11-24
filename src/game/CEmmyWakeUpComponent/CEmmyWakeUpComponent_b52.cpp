@@ -41,9 +41,8 @@ struct UnkEmmyWakeUpComponent_b52 {
 
 typedef void (*UnkEmmyWakeUpCall)(UnkCentralUnitProto* unit);
 
-bool fn_71007d73cc(UnkEmmyWakeUpComponent_b52* self, const UnkEmmyWakeUpMessage* msg) {
-    if (msg->type->hash != 0xf4061ff25a2163d6ull || msg->kind != 1)
-        return true;
+// The actor the lazily resolved handle names (the handle takes its value on first use), or null.
+static inline void* GetWakeUpActor(UnkEmmyWakeUpComponent_b52* self) {
     if (self->state == 1) {
         {
             UnkRefPtr reference = fn_710023b580(self->source);
@@ -52,9 +51,15 @@ bool fn_71007d73cc(UnkEmmyWakeUpComponent_b52* self, const UnkEmmyWakeUpMessage*
         self->state = 2;
     }
     auto* target = static_cast<UnkEmmyWakeUpTarget*>(self->handle.ptr);
-    if (!target || !target->field_0x10)
+    return target ? target->field_0x10 : nullptr;
+}
+
+bool fn_71007d73cc(UnkEmmyWakeUpComponent_b52* self, const UnkEmmyWakeUpMessage* msg) {
+    if (msg->type->hash != 0xf4061ff25a2163d6ull || msg->kind != 1)
         return true;
-    UnkCentralUnitProto* unit = fn_71007d74b0(*reinterpret_cast<void* volatile*>(&target->field_0x10));
+    if (!GetWakeUpActor(self))
+        return true;
+    UnkCentralUnitProto* unit = fn_71007d74b0(GetWakeUpActor(self));
     if (!unit)
         return true;
     (*reinterpret_cast<UnkEmmyWakeUpCall**>(unit))[0x128 / 8](unit);

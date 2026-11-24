@@ -20,7 +20,7 @@ struct UnkCutSceneTable_lc8b9c8 {
     u32 field_0x14;
     u32 field_0x18;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkCutSceneTable_lc8b9c8(UnkCutSceneTable_lc8b9c8&& other)
         : field_0x0(other.field_0x0), field_0x8(other.field_0x8), count(other.count),
@@ -70,7 +70,7 @@ struct UnkElemA0Array_b42a3 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_7100c8f200(UnkElemA0Array_b42a3* self, UnkElemA0_b42a3* value, u32 index) {

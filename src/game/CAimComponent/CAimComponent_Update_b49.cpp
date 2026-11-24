@@ -39,7 +39,7 @@ struct UnkAimUpdate_b49 {
 void fn_710034f934(UnkAimUpdate_b49* self, u32 flag, f32 clock);
 void fn_710034a7b4(UnkAimUpdate_b49* self, f32 value);
 f32 fn_71003460ec(UnkAimUpdate_b49* self, void* aim, u32 mode, f32 dt);
-void fn_7100349f28(UnkAimUpdate_b49* self, f32 dt, f32 value);
+void TurnAimAngleTowardTargetWithBandSpeed(UnkAimUpdate_b49* self, f32 dt, f32 value);
 void fn_7100347540(UnkAimUpdate_b49* self);
 
 void fn_7100350c5c(UnkAimUpdate_b49* self, f32 dt) {
@@ -53,7 +53,7 @@ void fn_7100350c5c(UnkAimUpdate_b49* self, f32 dt) {
     if (angle > max)
         self->angle = max;
     f32 value = fn_71003460ec(self, self->field_0x580, 6, dt);
-    fn_7100349f28(self, dt, value);
+    TurnAimAngleTowardTargetWithBandSpeed(self, dt, value);
     s32 state = self->state;
     if (state == 7) {
         if (!fn_710117ae38(self->owner->animation, 0xce302f5ecc6dd2daull, false) &&

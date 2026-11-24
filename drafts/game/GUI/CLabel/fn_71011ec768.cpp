@@ -88,7 +88,7 @@ struct UnkXformNodeNegZ;
 struct UnkFadeLayer;
 
 void fn_71011eec70(UnkGuiDisplayObject* object);
-s32 fn_71011eedd0(UnkLabelFontView_b52* self);
+s32 CLabel_GetVisibleLineCount(UnkLabelFontView_b52* self);
 void* fn_71011b8724(UnkOwner_71011b8724* self, const base::global::CStrId* key);
 u32 fn_7100147960(UnkFrameOwner* self, u32 c);
 UnkVec2Result fn_71011cf1b4(UnkGuiDisplayObject* self, const UnkVec2Result& point);
@@ -98,12 +98,12 @@ void fn_71001c465c(UnkModeOwner257* self, s32 mode);
 UnkGuiPos fn_71011f61bc(const UnkGuiItemState* state, const UnkGuiPos* pos);
 const UnkGuiScale* fn_71011b7e74(UnkGuiRoot* root);
 void fn_710020bbe4(void* position, const f32* value);
-void fn_710019db08(UnkColorLayer224* self, const base::color::CColor4F* color);
-void* fn_71011b9fac(UnkGuiListOwner_b49* self, u64 key);
+void SetColorAndCacheRGBA8Bytes(UnkColorLayer224* self, const base::color::CColor4F* color);
+void* CGUIManager_FindInEntryListByKey(UnkGuiListOwner_b49* self, u64 key);
 void fn_7100b1c56c(const UnkGuiItemState* parent, UnkGuiItemState* out, const UnkGuiItemState* child, u32 mode,
                    u32 changes);
 void fn_710020a6e8(UnkXformNodeNegZ* self, const UnkVec3f* v);
-void fn_710019c4fc(UnkFadeLayer* layer, const base::color::CColor4F* color);
+void SetFadeLayerColor(UnkFadeLayer* layer, const base::color::CColor4F* color);
 
 extern f32 g_unk_710164d1c8;  // the colour scale
 
@@ -291,10 +291,10 @@ void fn_71011ec768(UnkLabelLayout* layout) {
     UnkGuiItemState* state = State(self);
     if (state->field_0x38 != 0x7fffffff && self->line_count != 0) {
         fn_71011eec70(self);
-        s32 page_runs = fn_71011eedd0(reinterpret_cast<UnkLabelFontView_b52*>(self));
+        s32 page_runs = CLabel_GetVisibleLineCount(reinterpret_cast<UnkLabelFontView_b52*>(self));
         UnkGuiRoot** root = &g_unk_717271e8f8;
         if (!self->font && State(self)->field_0x38 != 0x7fffffff && self->font_id.data != &g_unk_7101d47108->empty)
-            self->font = static_cast<UnkFrameOwner*>(fn_71011b882c(*root, &self->font_id));
+            self->font = static_cast<UnkFrameOwner*>(CGUIManager_GetOrLoadCachedByPath(*root, &self->font_id));
         UnkFrameOwner* font = self->font;
         UnkLabelSkin* skin =
             static_cast<UnkLabelSkin*>(fn_71011b8724(reinterpret_cast<UnkOwner_71011b8724*>(*root), &self->font_id));
@@ -359,7 +359,7 @@ void fn_71011ec768(UnkLabelLayout* layout) {
                         base::color::CColor4F run_color(
                             NonNegative(state->color.r * color_scale), NonNegative(color_scale * state->color.g),
                             NonNegative(color_scale * state->color.b), NonNegative(color_scale * state->color.a));
-                        fn_710019db08(reinterpret_cast<UnkColorLayer224*>(run->object->text->layer), &run_color);
+                        SetColorAndCacheRGBA8Bytes(reinterpret_cast<UnkColorLayer224*>(run->object->text->layer), &run_color);
                     }
 
                     for (u64 i = 0; i < run->glyph_count; ++i) {
@@ -381,7 +381,7 @@ void fn_71011ec768(UnkLabelLayout* layout) {
                         f32 y = glyph->y / state->scale.y;
                         f32 x = glyph->x / state->scale.x;
                         void* source =
-                            fn_71011b9fac(reinterpret_cast<UnkGuiListOwner_b49*>(g_unk_717271e8f8),
+                            CGUIManager_FindInEntryListByKey(reinterpret_cast<UnkGuiListOwner_b49*>(g_unk_717271e8f8),
                                           reinterpret_cast<u64>(&glyph->id));
                         UnkLabelVec2 size(0.0f, 0.0f);
                         if (source) {
@@ -419,7 +419,7 @@ void fn_71011ec768(UnkLabelLayout* layout) {
                             sized = fn_71011b8160(item.field_0x38, sized);
                             UnkLabelVec2 scale = fn_71011b7f48(item.field_0x38, sized);
                             UnkLabelVec2 arg = scale;
-                            fn_710020a5a0(reinterpret_cast<UnkStruct_710020a5a0*>(&glyph->object->node),
+                            SetNode2DScale(reinterpret_cast<UnkStruct_710020a5a0*>(&glyph->object->node),
                                           reinterpret_cast<const base::math::CVector2D*>(&arg));
                         }
                         item.color.r *= 0.925f;
@@ -429,7 +429,7 @@ void fn_71011ec768(UnkLabelLayout* layout) {
                             base::color::CColor4F glyph_color(
                                 NonNegative(color_scale * item.color.r), NonNegative(color_scale * item.color.g),
                                 NonNegative(color_scale * item.color.b), NonNegative(color_scale * item.color.a));
-                            fn_710019c4fc(glyph->object->holder->layer, &glyph_color);
+                            SetFadeLayerColor(glyph->object->holder->layer, &glyph_color);
                         }
                         fn_710020ac34(&glyph->object->node, item.field_0x3c);
                     }

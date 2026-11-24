@@ -36,7 +36,7 @@ extern UnkConversion g_unk_71726b1648;
 void fn_7100353968() __attribute__((visibility("hidden")));
 void fn_7100353974() __attribute__((visibility("hidden")));
 
-void fn_7100359310() {
+void EInputAimDir_InitStatics() {
     InitHeaderIds(&g_unk_71726b16a0.ids);
     InitId(&g_unk_71726b16a0.field_0x18, "MELEE_COUNTER");
     InitId(&g_unk_71726b16a0.field_0x20, "MELEE");

@@ -51,7 +51,7 @@ static inline void DestroyEntry(UnkListEntry_b0236* e) {
 }
 
 // Starts the listing with the value of the reference.
-void fn_71000ee314(UnkListOwner_b0236* self, const UnkTypedRef* ref, u32 arg) {
+void InitReflValueListWithRoot(UnkListOwner_b0236* self, const UnkTypedRef* ref, u32 arg) {
     UnkReflValue value;
     UnkListEntry_b0236 entry;
     UnkTypedRef copy;
@@ -91,6 +91,16 @@ void fn_71000eef84(UnkEntryList_b0236* list, u32 n) {
     list->count = n;
 }
 
+struct UnkClassView_b0236 {
+    u8 pad_0x0[0xf8];
+    u32 field_0xf8;  // 0xf8
+};
+
+struct UnkCollectionTypeView_b0236 {
+    u8 pad_0x0[0x108];
+    u32 (*field_0x108)(void*);  // 0x108
+};
+
 // Hands the current entry's count to `out`: the number of members of an object (kind 0) or the size of a collection
 // (kind 1, through its type's slot 0x108), or the entry's own typed reference (kind 2).
 bool fn_71000eed30(UnkNoArg, UnkListEntry_b0236* entry, UnkTypedRef* out) {
@@ -106,7 +116,7 @@ bool fn_71000eed30(UnkNoArg, UnkListEntry_b0236* entry, UnkTypedRef* out) {
             return true;
         if (!fn_710009d50c(object->vf_0x0(), fn_7100096100()))
             return true;
-        u32 count = *reinterpret_cast<u32*>(reinterpret_cast<char*>(object) + 0xf8);
+        u32 count = reinterpret_cast<UnkClassView_b0236*>(object)->field_0xf8;
         type = out->type;
         src.type = fn_7100005178();
         src.ptr = &count;
@@ -124,7 +134,7 @@ bool fn_71000eed30(UnkNoArg, UnkListEntry_b0236* entry, UnkTypedRef* out) {
         ref2.type = reinterpret_cast<const CType*>(fn_710009dcd8(t, p));
         ref2.ptr = p;
         fn_71000a174c(&tmp, &ref2);
-        u32 (*size)(void*) = *reinterpret_cast<u32 (**)(void*)>(reinterpret_cast<char*>(object) + 0x108);
+        u32 (*size)(void*) = reinterpret_cast<UnkCollectionTypeView_b0236*>(object)->field_0x108;
         if (size && tmp.type == reinterpret_cast<const CType*>(object))
             size_count = size(tmp.ptr);
         else

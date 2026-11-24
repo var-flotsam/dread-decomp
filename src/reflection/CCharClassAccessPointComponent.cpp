@@ -7,42 +7,39 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassAccessPointComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAccessPointComponent
-namespace CCharClassAccessPointComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftAPNoUsedAction", 0x1b8, (DefaultValue, ""), (Description, "Left prepare use animation when the Acces Point has not been used"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightAPNoUsedAction", 0x1c0, (DefaultValue, ""), (Description, "Right prepare use animation When the Acces Point has not been used"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseInitAPUsedAction", 0x1c8, (DefaultValue, ""), (Description, "Init Use animation when the Acces Point has been used"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseAPUsedAction", 0x1d0, (DefaultValue, ""), (Description, "Use animation When the Acces Point has been used"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableInitAPUsedAction", 0x1d8, (DefaultValue, ""), (Description, "Init Usable animation When the Acces Point has been used"));
-    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingsOpenAction", 0x1e0, (DefaultValue, ""), (Description, "Usable rings save animation begin saving"));
-    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingsCloseAction", 0x1e8, (DefaultValue, ""), (Description, "Usable rings save animation saving"));
-    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingLoopAction", 0x1f0, (DefaultValue, ""), (Description, "Usable rings save animation end saving"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftAfterDiscoverNoDialogueAction", 0x1f8, (DefaultValue, ""), (Description, "Left prepare use animation after discover no dialogue"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightAfterDiscoverNoDialogueAction", 0x200, (DefaultValue, ""), (Description, "Right prepare use animation after discover no dialogue"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassAccessPointComponent::refl_AddAttributes(CClass*) {}
+void CCharClassAccessPointComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftAPNoUsedAction", offsetof(CCharClassAccessPointComponent, sUsePrepareLeftAPNoUsedAction), (DefaultValue, ""), (Description, "Left prepare use animation when the Acces Point has not been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightAPNoUsedAction", offsetof(CCharClassAccessPointComponent, sUsePrepareRightAPNoUsedAction), (DefaultValue, ""), (Description, "Right prepare use animation When the Acces Point has not been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseInitAPUsedAction", offsetof(CCharClassAccessPointComponent, sUseInitAPUsedAction), (DefaultValue, ""), (Description, "Init Use animation when the Acces Point has been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseAPUsedAction", offsetof(CCharClassAccessPointComponent, sUseAPUsedAction), (DefaultValue, ""), (Description, "Use animation When the Acces Point has been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableInitAPUsedAction", offsetof(CCharClassAccessPointComponent, sUsableInitAPUsedAction), (DefaultValue, ""), (Description, "Init Usable animation When the Acces Point has been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingsOpenAction", offsetof(CCharClassAccessPointComponent, sSaveRingsOpenAction), (DefaultValue, ""), (Description, "Usable rings save animation begin saving"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingsCloseAction", offsetof(CCharClassAccessPointComponent, sSaveRingsCloseAction), (DefaultValue, ""), (Description, "Usable rings save animation saving"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingLoopAction", offsetof(CCharClassAccessPointComponent, sSaveRingLoopAction), (DefaultValue, ""), (Description, "Usable rings save animation end saving"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftAfterDiscoverNoDialogueAction", offsetof(CCharClassAccessPointComponent, sUsePrepareLeftAfterDiscoverNoDialogueAction), (DefaultValue, ""), (Description, "Left prepare use animation after discover no dialogue"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightAfterDiscoverNoDialogueAction", offsetof(CCharClassAccessPointComponent, sUsePrepareRightAfterDiscoverNoDialogueAction), (DefaultValue, ""), (Description, "Right prepare use animation after discover no dialogue"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x208;
+bool CCharClassAccessPointComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassAccessPointComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassAccessPointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAccessPointComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassAccessPointComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassAccessPointComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassAccessPointComponent::refl_Destroy(void* obj) { static_cast<CCharClassAccessPointComponent*>(obj)->~CCharClassAccessPointComponent(); }
+void* CCharClassAccessPointComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassAccessPointComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassAccessPointComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassAccessPointComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -53,5 +50,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassAccessPointComponent
-DREAD_REFLECTED_CLASS(CCharClassAccessPointComponent, CCharClassUsableComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassAccessPointComponent, CCharClassUsableComponent);
+#pragma GCC diagnostic pop

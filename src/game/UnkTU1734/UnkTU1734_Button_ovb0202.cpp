@@ -19,6 +19,7 @@
 #include "game/UnkButton_ovb0108.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkModeFlags.h"
 #include "game/UnkTU2544.h"
 #include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
@@ -41,7 +42,7 @@ struct UnkButtonId_ovb0108 {
     ~UnkButtonId_ovb0108() { reinterpret_cast<CStrId*>(this)->~CStrId(); }
 };
 
-UnkGuiDisplayObject* fn_7100b93d70(void* unused, UnkButtonList_ovb0108* list, UnkButtonTemplate_ovb0108* def) {
+UnkGuiDisplayObject* AddButtonFromTemplateToList(void* unused, UnkButtonList_ovb0108* list, UnkButtonTemplate_ovb0108* def) {
     UnkGuiDisplayObject* obj = fn_71011b63c4(g_unk_717271e8f8, def);
     if (!obj)
         return nullptr;
@@ -68,10 +69,6 @@ UnkGuiDisplayObject* fn_7100b93d70(void* unused, UnkButtonList_ovb0108* list, Un
 
 // While no value is set (+0x8c is -1) and the owner's definition does not suppress it (flag at +0x552),
 // refreshes the mode globals (g_unk_71726bc570) and hands them the definition's flag at +0x551.
-struct UnkModeFlags {
-    u8 unk_0x0[0x100];
-    u32 field_0x100;
-};
 struct UnkRush_b0195;
 
 struct UnkDefinition_b0202 {

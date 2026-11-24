@@ -36,7 +36,7 @@ struct UnkWordArray_l2c6684 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkWordArray_l2c6684(const UnkWordArray_l2c6684& other)
         : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14),

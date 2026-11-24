@@ -64,7 +64,7 @@ inline void SendWithMode_l5fc728(void* target, u64 hash, u64 kind, u32 m) {
     mode.id = m;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
 void fn_71005fc728(UnkKraidAI_l5fc728* self) {

@@ -45,7 +45,7 @@ struct UnkReflAttrsMap {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     const CType* default_type;
     u32 target;
 

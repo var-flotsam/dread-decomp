@@ -85,7 +85,7 @@ void fn_710042ce00(UnkHypersparkStart_A2_b73* self) {
     if (UnkActor* target = fn_7100d7c990(self->owner)) {
         UnkFlagged* flagged = static_cast<UnkFlagged*>(target->field_0x208);
         if (flagged && reinterpret_cast<u8*>(flagged)[0xf9] &&
-            (fn_71009e75e8(flagged) || fn_7100df5630(g_unk_7101d47310)))
+            (fn_71009e75e8(flagged) || IsPlayerGhostAuraStateIn3To6(g_unk_7101d47310)))
             self->field_0x5c[12] = 1;
     }
     UnkHypersparkLink_A2_b73* link = &self->link;

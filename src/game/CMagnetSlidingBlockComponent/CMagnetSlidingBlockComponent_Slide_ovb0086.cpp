@@ -121,7 +121,7 @@ extern base::global::CFilePathStrId g_unk_71727375f0 __attribute__((visibility("
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
 using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
-void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
+void CCollisionComponent_CollectRecordsBySecondaryId(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 extern void* const g_unk_71727375d0 __attribute__((visibility("hidden")));  // the block's colliders' key
 
 struct CMagnetSlidingBlockComponent;
@@ -260,7 +260,7 @@ void fn_7100921248(UnkMagnetSlidingBlock_b0086* self, f32 target) {
 // +0x358 runs, as fn_710092103c).
 void CMagnetSlidingBlockComponent_SetCollidersAndSpeed(UnkMagnetSlidingBlock_b0086* self, bool on) {
     UnkOut_71008651c8 found(0xf);
-    fn_71008651c8(self->owner->colliders, &g_unk_71727375d0, &found);
+    CCollisionComponent_CollectRecordsBySecondaryId(self->owner->colliders, &g_unk_71727375d0, &found);
     for (UnkStruct_71008651c8_Entry** it = found.data; it != found.data + found.count; ++it)
         fn_7100d35a98(*reinterpret_cast<UnkEntry**>(reinterpret_cast<char*>(*it) + 0x28), on);
     self->speed = on ? 1.0f : 0.0f;
@@ -335,5 +335,5 @@ __attribute__((noinline)) void CMagnetSlidingBlockComponent_SendMaterialColorCha
     UnkVector4D vfrom = fn_7100030878(&from);
     fn_71009272c4(&change, i, false, &vto, &vfrom, 0.1f);
     change.kind = 2;
-    fn_7100926aa0(fx, &change);
+    CMaterialFXComponent_AddOrReplaceColorChange(fx, &change);
 }

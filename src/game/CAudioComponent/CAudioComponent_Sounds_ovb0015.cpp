@@ -19,6 +19,7 @@
 #include "game/UnkTU50.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
+#include "game/UnkSoundRef.h"
 
 using base::global::CStrId;
 using base::global::UnkStringPool;
@@ -37,14 +38,8 @@ void CAudioComponent_CopyConstructSoundSlot(UnkStruct_710071faf4* self, const Un
 struct UnkInterp_7100105f94;
 
 // As src/game/CAudioComponent/CAudioComponent_Stop_b65a4.cpp has them.
-struct UnkSoundObject_b50;
-struct UnkSoundRef {
-    UnkSoundObject_b50* object;
-    s64 serial;
-};
-
 // The object a handle names while it is still the one the handle was made for.
-static inline UnkSoundObject_b50* Resolve_ovb0015(const UnkSoundHandle* handle) {
+static inline UnkSound* Resolve_ovb0015(const UnkSoundHandle* handle) {
     if (handle->ref && handle->ref->serial == handle->serial && handle->serial != -1)
         return handle->ref->object;
     return nullptr;
@@ -293,7 +288,7 @@ struct UnkAudioVector_ovb0015 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkAudioVector_ovb0015(u32 step_)
         : data(nullptr), count(0), capacity(0), step(step_), field_0x14(true), flags(0xb),
@@ -329,7 +324,7 @@ struct UnkAudioPairList_ovb0015 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkAudioPairList_ovb0015()
         : data(nullptr), ptrs(nullptr), count(0), capacity(0), step(10), flags(0xe),
@@ -439,7 +434,7 @@ void fn_710071f634(UnkAudioComponent_ovb0015* self, const u32* groups, s32 level
             if (!(*groups & bit))
                 continue;
             if (UnkInterp_7100105f94* sound = reinterpret_cast<UnkInterp_7100105f94*>(Resolve_ovb0015(&s->handle)))
-                fn_7100105f94(sound, level, time);
+                SetSoundLevelOverTime(sound, level, time);
         }
     }
 }

@@ -13,7 +13,7 @@
 extern u32 g_unk_7101a6b7f0;
 
 struct UnkQueryEntry_b50;
-void fn_71006fb514(void* map, const u32* key, UnkQueryEntry_b50* const* entry);
+void AppendU32KeyU64ValueToSmallDictionary(void* map, const u32* key, UnkQueryEntry_b50* const* entry);
 
 struct UnkRegistry_l6f9368;
 
@@ -42,12 +42,12 @@ struct UnkRegistry_l6f9368 {
 // The holder and tag as the unit's other file declares this function.
 struct UnkQueryHolder_b50;
 
-void fn_71006f9368(UnkQueryHolder_b50* holder, UnkQueryTag_b50 tag, void* data, u32 mode) {
+void CreateAndRegisterObjectByNameAndId(UnkQueryHolder_b50* holder, UnkQueryTag_b50 tag, void* data, u32 mode) {
     auto* self = reinterpret_cast<UnkRegistry_l6f9368*>(holder);
     const auto* name = static_cast<const base::global::CStrId*>(data);
     u32 id = mode;
     UnkRegObj_l6f9368* obj = new (fn_71000839a0(sizeof(UnkRegObj_l6f9368), 4)) 
         UnkRegObj_l6f9368(self, *name, id, g_unk_7101a6b7f0);
     self->objects.PushBack(obj);
-    fn_71006fb514(self->index, &id, reinterpret_cast<UnkQueryEntry_b50* const*>(&obj));
+    AppendU32KeyU64ValueToSmallDictionary(self->index, &id, reinterpret_cast<UnkQueryEntry_b50* const*>(&obj));
 }

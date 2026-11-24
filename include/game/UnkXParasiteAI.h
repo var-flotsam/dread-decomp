@@ -90,7 +90,7 @@ struct UnkXParasiteBindings {
     u32 count;
     u32 field_0x14;
     u64 field_0x18;
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 };
 static_assert(sizeof(UnkXParasiteBindings) == 0x28, "placeholder layout");
 

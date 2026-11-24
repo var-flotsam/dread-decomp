@@ -31,7 +31,7 @@ struct UnkFXValuesOwner {
     UnkFXValuesByKeyObject values;
 };
 
-UnkFXValue_0x20* fn_7101152b24(UnkFXValuesOwner* self, u64 id) {
+UnkFXValue_0x20* CFXComponent_FindEffectEntryByHash(UnkFXValuesOwner* self, u64 id) {
     UnkFXValue_0x20* p = self->values.Find(id);
     return p == self->values.End() ? nullptr : p;
 }

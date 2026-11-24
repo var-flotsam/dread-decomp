@@ -22,7 +22,7 @@ struct UnkRedenkiSubList_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Free() {
         if (data) {
@@ -41,7 +41,7 @@ struct UnkRedenkiSubLists_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkRedenkiKeyHolder_ovb0084 {
@@ -284,7 +284,7 @@ void fn_710065922c(UnkRedenkiSteerCtrl_l65922c* self, UnkRedenkiMember_l65922c* 
                 void* manager = g_unk_71726da048;
                 if (!manager) {
                     manager = fn_71000839a0(0xe0, 0x3f);
-                    fn_7100e1bca4(manager);
+                    ConstructBillboardManager(manager);
                     g_unk_71726da048 = manager;
                 }
                 u64 key = billboard->field_0xd0->field_0x30;

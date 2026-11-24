@@ -31,7 +31,7 @@ struct UnkIdValuesArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_7100eafa60(UnkIdValuesArray* self, const UnkIdValuesArray& other) {

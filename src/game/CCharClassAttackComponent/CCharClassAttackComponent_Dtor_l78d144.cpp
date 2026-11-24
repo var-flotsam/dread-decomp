@@ -25,7 +25,7 @@ struct UnkAttackIdTable_l78d144 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkAttackIdTable_l78d144() {
         fn_71000d99d0(reinterpret_cast<UnkIdTable<UnkReleasedStrId>*>(this));

@@ -19,7 +19,7 @@
 #include "game/UnkTU99.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CRntVector;
 using base::global::CStrId;
 
@@ -46,7 +46,7 @@ struct UnkTunableGroup {
 static_assert(sizeof(UnkTunableGroup) == 0x80, "");
 
 // Builds a group as a copy of another, taking its members over (out of line).
-void fn_710013ef1c(UnkTunableGroup* self, UnkTunableGroup* other);
+void MoveConstructTunableGroup(UnkTunableGroup* self, UnkTunableGroup* other);
 
 struct UnkTunableGroupArrays {
     UnkTunableGroup* groups;
@@ -55,7 +55,7 @@ struct UnkTunableGroupArrays {
     u32 capacity;
     u32 step;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 };
 
 // Grows both arrays to `new_capacity`: the groups are copied and destroyed, the names moved.
@@ -67,7 +67,7 @@ void fn_710013ec80(UnkTunableGroupArrays* self, u32 new_capacity) {
         if (UnkTunableGroup* old = self->groups) {
             UnkTunableGroup* dst = groups;
             for (u32 i = 0; i < self->count; ++i, ++dst, ++old) {
-                fn_710013ef1c(dst, old);
+                MoveConstructTunableGroup(dst, old);
                 old->~UnkTunableGroup();
             }
             self->allocator->vf_0x48(self->groups);
@@ -159,11 +159,11 @@ struct UnkEnumType;
 bool fn_71000e79a8(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);  // gets
 bool fn_71000e74bc(UnkReflField* field);  // whether a field without an accessor can be set
 // The member object a field of `obj` holds.
-UnkReflTypedPtr fn_71000e755c(UnkReflField* field, const UnkReflTypedPtr* obj);
+UnkReflTypedPtr GetReflectedFieldTypedPtr(UnkReflField* field, const UnkReflTypedPtr* obj);
 UnkEnumType* fn_710009ffd4();  // base::global::TRntString256's type
 
 static inline void SetField(UnkTunableField* field, UnkReflTypedPtr* obj, UnkTunableValue_UnkTunableRegistry* value) {
-    fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
+    SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
                   reinterpret_cast<UnkReflValueArg*>(value));
 }
 static inline void GetField(UnkTunableField* field, UnkReflTypedPtr* obj, UnkTunableValue_UnkTunableRegistry* value) {
@@ -188,10 +188,10 @@ struct UnkTunableTokens {
     u32 count;
     UnkTunableToken* head;
     UnkTunableToken* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     char* pool_vtable;  // +0x30: the node pool (base::UnkBlockPool's layout)
-    base::UnkAllocator* pool_parent;
+    base::IAllocator* pool_parent;
     UnkBlockFreeList pool_blocks;
     u32 field_0x68;
     bool field_0x6c;
@@ -203,7 +203,7 @@ static inline UnkTunableObject* FindTunable(UnkTunableRegistry* self, const UnkT
                                             const char* middle, const UnkTunableLine& name, bool qualified) {
     CRntString a = CRntString_ConcatCString(prefix.Str(), middle);
     CRntString b = CRntString_Concat(&a, name.Str());
-    return fn_710013c5cc(self, b.data, qualified);
+    return FindTunableObjectByName(self, b.data, qualified);
 }
 
 static inline u64 HashOf(const UnkTunableLine& s) {
@@ -291,7 +291,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                 if (field == cls->End() || !field)
                     break;
                 UnkReflTypedPtr outer = Typed(type, object);
-                UnkReflTypedPtr inner = fn_71000e755c(reinterpret_cast<UnkReflField*>(field), &outer);
+                UnkReflTypedPtr inner = GetReflectedFieldTypedPtr(reinterpret_cast<UnkReflField*>(field), &outer);
                 type = inner.type;
                 object = inner.ptr;
                 key = Mid(key.Data() + (dot + 1), key.Length() - (dot + 1));
@@ -417,9 +417,9 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
             }
             case 'v': {
                 {
-                    UnkTunableLine a = fn_710013c834(value.Str(), "(", g_unk_710162e2ed);
-                    UnkTunableLine b = fn_710013c834(a.Str(), ")", g_unk_710162e2ed);
-                    UnkTunableLine c = fn_710013c834(b.Str(), "VEC3", g_unk_710162e2ed);
+                    UnkTunableLine a = ReplaceAllSubstrings(value.Str(), "(", g_unk_710162e2ed);
+                    UnkTunableLine b = ReplaceAllSubstrings(a.Str(), ")", g_unk_710162e2ed);
+                    UnkTunableLine c = ReplaceAllSubstrings(b.Str(), "VEC3", g_unk_710162e2ed);
                     value = c;
                 }
                 UnkTunableTokens tokens;

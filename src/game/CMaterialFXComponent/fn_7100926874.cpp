@@ -55,7 +55,7 @@ void fn_7100926874(UnkTable_926874* self, const UnkKey& key, u32 id, const CVect
     s32 idx = -1;
     for (u64 i = 0; i < self->count; ++i) {
         UnkEntry_7100926874* e = self->entries[i];
-        if (fn_710080f9e0(&e->field_0x30, &key) && e->field_0x4 == id && e->field_0x8 == kind)
+        if (AreKindedKeysEqual(&e->field_0x30, &key) && e->field_0x4 == id && e->field_0x8 == kind)
             idx = i;
     }
     if (idx == -1) {

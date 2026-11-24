@@ -18,13 +18,9 @@
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 #include "game/UnkTitleScreenA.h"
+#include "game/UnkSoundRef.h"
 
 extern char g_unk_7101a9d190[];  // the member's vtable
-
-struct UnkSoundRef {
-    UnkSound* object;
-    s64 serial;
-};
 
 // Tells the playing sound to fade out and forgets it.
 static inline void FadeOut(UnkSoundHandle* handle) {
@@ -55,7 +51,7 @@ struct UnkMainMenuMember2f8_ovb0126 {
     UnkSoundHandle sound;  // 0x30
 };
 
-void fn_7100b52460(UnkMainMenuMember2f8_ovb0126* self) {
+void DestroyMainMenuSoundMember(UnkMainMenuMember2f8_ovb0126* self) {
     self->vtable = g_unk_7101a9d190 + 0x10;
     FadeOut(&self->sound);
     self->vtable = g_unk_7101a9c360 + 0x10;
@@ -98,7 +94,6 @@ using base::global::CStrId;
 struct UnkMenuSoundOwner_l191198;
 void fn_7101191198(UnkMenuSoundOwner_l191198* self, f32 value);
 
-
 void fn_7100b53fa0(UnkTitleScreenA* self) {
     if (!fn_7100f00778(Music()))
         return;
@@ -132,7 +127,7 @@ struct UnkTitleScreenSteps_ovb0215 {
     f32 timer;  // 0x28
 };
 
-void fn_7100b532a0(UnkTitleScreenSteps_ovb0215* self, f32 dt, UnkTitleTarget* target) {
+void StepTitleScreenPhasesByState(UnkTitleScreenSteps_ovb0215* self, f32 dt, UnkTitleTarget* target) {
     if (!fn_7100f00778(Music())) {
         self->delay = 0.001f;
         self->state = 3;

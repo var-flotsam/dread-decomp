@@ -95,7 +95,7 @@ void fn_71008d27f4(UnkDoorLife_l8d27f4* self) {
         if (self->open) {
             if (!self->field_0x41f)
                 fn_71008d2c28(reinterpret_cast<UnkTimelineUserA5_b61*>(self), &g_unk_710164b090);
-            fn_71008d0ef4(self);
+            OpenDoorUnlessOpen(self);
         }
     }
 
@@ -107,7 +107,7 @@ void fn_71008d27f4(UnkDoorLife_l8d27f4* self) {
         u64 restart = GameManagerIdTable().field_0xb10.data->Key();
         restart_mode.id = 0;
         restart_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, restart, kind, &restart_mode, &g_unk_710164b958, &g_unk_7172769740, &restart_mask);
+        CAnimationComponent_SendActionToTrack(animation, restart, kind, &restart_mode, &g_unk_710164b958, &g_unk_7172769740, &restart_mask);
         fn_7101177e24(animation, kind);
         fn_710117ab48(animation, false);
     }
@@ -117,6 +117,6 @@ void fn_71008d27f4(UnkDoorLife_l8d27f4* self) {
         u64 next = track->next;
         next_mode.id = 0;
         next_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, next, kind, &next_mode, &g_unk_710164b958, &g_unk_7172769740, &next_mask);
+        CAnimationComponent_SendActionToTrack(animation, next, kind, &next_mode, &g_unk_710164b958, &g_unk_7172769740, &next_mask);
     }
 }

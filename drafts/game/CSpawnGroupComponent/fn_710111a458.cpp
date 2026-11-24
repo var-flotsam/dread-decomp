@@ -20,7 +20,7 @@ struct UnkCollectList_ovb0065 {
     u32 count;
     Node* head;
     Node* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 
     UnkCollectList_ovb0065() {
@@ -36,7 +36,7 @@ struct UnkCollectList_ovb0065 {
         Node* n = head;
         if (!n)
             return;
-        base::UnkAllocator* a = allocator;
+        base::IAllocator* a = allocator;
         while (n) {
             Node* next = n->next;
             a->vf_0x48(n);

@@ -16,6 +16,8 @@
 #include "game/UnkTU2702.h"
 #include "game/CChozoWarriorAIComponent.h"
 #include "types.h"
+#include "game/UnkStruct_71007142e8.h"
+#include "game/UnkTimeline.h"
 
 using base::reflection::UnkReflObject;
 
@@ -40,19 +42,6 @@ struct UnkStrIdOut_b0266 {
     }
 };
 
-
-struct UnkStruct_71007142e8 {
-    f32 m[12];
-    u8 pad_0x30[0x40];
-};
-
-struct UnkTimeline {
-    u8 pad_0x0[0x24];
-    s32 frame_count;
-    u8 pad_0x28[0x58];
-    UnkMotionTracks* tracks;  // 0x80
-};
-
 struct UnkWarriorXAI_l482624 : base::reflection::UnkReflObject {
     u8 pad_0x8[0x149a4];
     f32 land_scale;  // 0x149ac
@@ -61,14 +50,12 @@ struct UnkWarriorXAI_l482624 : base::reflection::UnkReflObject {
 // The AI's high and low landing heights.
 void fn_71004837a0();
 
-
 struct UnkLandOwner_l482624 {
     u8 pad_0x0[0x220];
     UnkAnimationComponent* animation;  // 0x220
     u8 pad_0x228[0x18];
     UnkReflObject* ai;  // 0x240
 };
-
 
 // A listener on an animation: the callback with its context, and the weak handle of what it listens to.
 struct UnkLandLink_l482624 {
@@ -124,7 +111,7 @@ void fn_7100482624(UnkLandAttack_l482624* self) {
     mode.id = 2;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, track, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(animation, track, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 
     f32 high = 0.0f;
     f32 low = 0.0f;
@@ -139,7 +126,7 @@ void fn_7100482624(UnkLandAttack_l482624* self) {
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
-    ai->land_scale = middle / motion.m[11];
+    ai->land_scale = middle / motion.xform.m[2][3];
 
     self->link.context = self;
     self->link.callback = fn_71004837a0;

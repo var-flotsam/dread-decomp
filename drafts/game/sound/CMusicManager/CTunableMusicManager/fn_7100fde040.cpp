@@ -56,7 +56,7 @@ struct UnkMusicSlotList_lfde040 {
     UnkMusicNode_lfde040* head;
     UnkMusicNode_lfde040* tail;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     void* field_0x30;
 
     // Appends a copy of `node`; nothing when the allocation fails.

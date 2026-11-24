@@ -47,7 +47,7 @@ struct UnkUnit280Record_b59 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) UnkUnit280Record_b59(const UnkUnit280Record_b59& o)
         : data(nullptr), count(0), capacity(0), step(o.step), field_0x14(o.field_0x14), flags(o.flags),
@@ -74,7 +74,7 @@ struct UnkUnit280Record_b59 {
     }
 };
 
-void fn_71001fe260(void* dst, const void* src) {
+void CopyConstructRntVectorOf28ByteEntries(void* dst, const void* src) {
     new (dst) UnkUnit280Record_b59(*static_cast<const UnkUnit280Record_b59*>(src));
 }
 
@@ -83,7 +83,7 @@ void fn_71001fe260(void* dst, const void* src) {
 struct UnkUnit280RecordRef_b59 {
     u64 words[5];
 
-    UnkUnit280RecordRef_b59(const UnkUnit280RecordRef_b59& o) { fn_71001fe260(this, &o); }
+    UnkUnit280RecordRef_b59(const UnkUnit280RecordRef_b59& o) { CopyConstructRntVectorOf28ByteEntries(this, &o); }
 };
 
 struct UnkUnit280Array_b59 {
@@ -93,7 +93,7 @@ struct UnkUnit280Array_b59 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) UnkUnit280Array_b59(const UnkUnit280Array_b59& o)
         : data(nullptr), count(0), capacity(0), step(o.step), field_0x14(o.field_0x14), flags(o.flags),

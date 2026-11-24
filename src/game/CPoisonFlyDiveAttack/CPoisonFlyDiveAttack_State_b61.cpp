@@ -64,7 +64,7 @@ start:
         u64 hash = g_unk_71726f98b0->hash;
         mode1.id = 0;
         mask1.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, hash, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740, &mask1);
+        CAnimationComponent_SendActionToTrack(cls, hash, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740, &mask1);
         break;
     }
     case 4: {
@@ -91,7 +91,7 @@ start:
     case 6: {
         mode2.id = 0;
         mask2.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, 0x57283d1470fff249, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(cls, 0x57283d1470fff249, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740,
                       &mask2);
         break;
     }

@@ -19,7 +19,7 @@ struct UnkBlockOwner_b49a1 {
 
 // CRntFile's view with the members its pad hides: the block's owner and the borrowed flag.
 struct UnkRntFileView_b49a1 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u64 position;
     u32 alloc_flags;
     u8* data;
@@ -33,7 +33,7 @@ struct UnkRntFileView_b49a1 {
 
 // As src/base/global/CRntFile.cpp.
 inline void* AllocateBlock(CRntFile* file, s64 size) {
-    base::UnkAllocator* allocator = file->allocator;
+    base::IAllocator* allocator = file->allocator;
     if (!allocator) {
         allocator = GetDefaultAllocator();
         file->allocator = allocator;

@@ -27,7 +27,7 @@ struct UnkIdMapNode_b0213 {
 
 struct UnkIdMap_b0213 {
     CStrId id;
-    base::UnkAllocator* allocator;  // 0x8
+    base::IAllocator* allocator;  // 0x8
     u32 flags;
     u32 count;
     UnkIdMapNode_b0213** buckets;

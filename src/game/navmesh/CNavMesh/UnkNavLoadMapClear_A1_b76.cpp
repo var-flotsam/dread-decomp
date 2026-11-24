@@ -22,7 +22,7 @@ struct UnkCellRecordMap {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) ~UnkCellRecordMap() {
         reinterpret_cast<base::UnkKeyedVecArray<UnkClone_fn_710027ead8>*>(this)->Clear();

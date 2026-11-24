@@ -28,7 +28,7 @@ struct UnkFlagsetValue_b0068 {
 
 static inline bool Set(UnkReflField* field, const UnkReflFieldObject* obj, const CType* type, void* bits) {
     UnkFlagsetValue_b0068 value = {type, bits};
-    return fn_71000e7a80(field, obj, reinterpret_cast<UnkReflValueArg*>(&value));
+    return SetReflectedFieldValue(field, obj, reinterpret_cast<UnkReflValueArg*>(&value));
 }
 
 bool fn_710009a430(UnkFlagsetType_b0068* self, const UnkReflFieldObject* obj, UnkReflField* field, CRntFile* file) {

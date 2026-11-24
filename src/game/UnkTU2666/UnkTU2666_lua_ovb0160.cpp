@@ -266,7 +266,7 @@ s32 GetLandmarkPosition(lua_State* L) {
     UnkLuaNode_b0160* node;
     {
         CStrId id(name, true);
-        node = fn_71008a3288(&id);
+        node = CLandmarkComponent_FindById(&id);
     }
     if (!node)
         return 0;
@@ -281,7 +281,7 @@ s32 GetLandmarkOrientation(lua_State* L) {
     UnkLuaNode_b0160* node;
     {
         CStrId id(name, true);
-        node = fn_71008a3288(&id);
+        node = CLandmarkComponent_FindById(&id);
     }
     if (!node)
         return 0;
@@ -549,7 +549,7 @@ s32 RemoveLifePctToEntity(lua_State* L) {
             owner = FindById(manager, id, g_unk_71727bebb8);
         }
         if (owner && owner->field_0x1b8)
-            fn_7101160214(owner->field_0x1b8, value);
+            CLifeComponent_RemoveLifePct(owner->field_0x1b8, value);
     }
     return 0;
 }

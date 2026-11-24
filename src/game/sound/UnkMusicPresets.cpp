@@ -124,7 +124,7 @@ using UnkPresetKey = base::UnkStrIdMember;
 // value at +8 and the next node at +Next. The nodes are walked from +0x40.
 template <u32 Next, void (*DestroyValue)(void*)>
 struct UnkPresetMap {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     base::global::CRntVector<char*> buckets;

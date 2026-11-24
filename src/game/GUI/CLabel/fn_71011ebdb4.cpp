@@ -38,7 +38,7 @@ struct UnkStruct_71011ebdb4 {
     u8 unk_0x2cc[0x4];
     void* field_0x2d0;
     void* field_0x2d8;
-    base::UnkAllocator* field_0x2e0;
+    base::IAllocator* field_0x2e0;
     u32 field_0x2e8;
     u8 unk_0x2ec[0x8];
     bool field_0x2f4;

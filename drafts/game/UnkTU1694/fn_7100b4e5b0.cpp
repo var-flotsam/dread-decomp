@@ -25,7 +25,7 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 struct UnkList_ovb0059;
-void fn_71012015a0(UnkList_ovb0059* self, const CStrId* id);
+void CList_SelectItemById(UnkList_ovb0059* self, const CStrId* id);
 base::global::CRntString fn_7100df703c(u32 kind);
 extern UnkStateKey g_unk_71729f0178;
 void fn_71011cf960(UnkGuiDisplayObject* self, f32 value);
@@ -103,7 +103,7 @@ static inline UnkDifficultyButton_lb4e5b0* AsButton(UnkGuiDisplayObject* o) {
 
 // Selects the list's entry named `id` (taken by value).
 static inline void SelectEntry(UnkGuiDisplayObject* list, CStrId id) {
-    fn_71012015a0(reinterpret_cast<UnkList_ovb0059*>(list), &id);
+    CList_SelectItemById(reinterpret_cast<UnkList_ovb0059*>(list), &id);
 }
 
 static inline bool Equal(const CRntString& a, const CRntString& b) {

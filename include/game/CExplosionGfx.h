@@ -32,4 +32,4 @@ void fn_7100ddf1c0(UnkReflType* self, const base::global::CStrId& name, void (*i
 // then uAmount - 1 more (src/game/CExplosionGfx.cpp).
 void fn_7100de08f0(CExplosionGfx* self, UnkExplosionTarget* target);
 // The largest of fLength and the two vRandomDelay bounds, never below zero.
-f32 fn_7100de1388(const CExplosionGfx* self);
+f32 CExplosionGfx_GetMaxOfLengthAndRandomDelay(const CExplosionGfx* self);

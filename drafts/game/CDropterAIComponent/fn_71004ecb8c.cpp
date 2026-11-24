@@ -196,7 +196,7 @@ void fn_71004ecb8c(UnkDropterAI_l4ecb8c* self, f32 dt) {
             block->timer = block->tunables->wait_time;
             hit_mode.id = 2;
             hit_mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0xedd258757f06a48dull, 0xf4061ff25a2163d6ull, &hit_mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0xedd258757f06a48dull, 0xf4061ff25a2163d6ull, &hit_mode, &g_unk_710164b958,
                           &g_unk_7172769740, &hit_mask);
             UnkTimelineComponent* timeline = self->owner->timeline;
             base::reflection::UnkReflTypeIdArg value;
@@ -270,7 +270,7 @@ void fn_71004ecb8c(UnkDropterAI_l4ecb8c* self, f32 dt) {
             UnkAnimationComponent* animation = self->owner->animation;
             end_mode.id = 2;
             end_mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x9333bd6838920193ull, 0xf4061ff25a2163d6ull, &end_mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0x9333bd6838920193ull, 0xf4061ff25a2163d6ull, &end_mode, &g_unk_710164b958,
                           &g_unk_7172769740, &end_mask);
             Release(block->effect_a);
             block->state = 3;

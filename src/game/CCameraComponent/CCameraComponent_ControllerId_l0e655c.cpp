@@ -19,7 +19,7 @@ struct UnkCamCtrl_l0e655c {
     CStrId id;  // 0x18
 };
 
-s32 fn_71010e655c(void*, void* stream, UnkReflValue* out) {
+s32 CCameraComponent_ReadControllerNameToStrIdValue(void*, void* stream, UnkReflValue* out) {
     char name[0x80];
     CRntFile_ReadFormat(stream, "s", name);
     UnkGameManager* manager = g_unk_7101d47310;

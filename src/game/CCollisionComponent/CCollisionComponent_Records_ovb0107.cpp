@@ -85,7 +85,7 @@ void fn_7100866580(UnkCollisionContainer* self) {
 
 void fn_71008614c0(UnkCollisionContainer* self) {
     fn_7100860c64(self);
-    fn_71008615b4(self);
+    CCollisionComponent_SyncAnimationColliderTracks(self);
     if (Flag(self, 0xc8))
         RefreshRecords(self, 1);
     ResetObjects(self);
@@ -93,7 +93,7 @@ void fn_71008614c0(UnkCollisionContainer* self) {
 
 void fn_71008617d0(UnkCollisionContainer* self) {
     fn_71008618cc(self);
-    fn_71008615b4(self);
+    CCollisionComponent_SyncAnimationColliderTracks(self);
     if (Flag(self, 0xc8) && Flag(self, 0xc9))
         RefreshRecords(self, 0);
     ResetObjects(self);
@@ -130,7 +130,13 @@ static inline void Reset(UnkCollisionComponent_ovb0107* self) {
     fn_7100861148(reinterpret_cast<UnkStruct_7100861148*>(self));
 }
 
-void fn_71008615b4(UnkCollisionContainer* container) {
+// The part of the owner this function reads besides its animation component.
+struct UnkTrackOwner_ovb0107 {
+    u8 pad_0x0[0x1f0];
+    void* field_0x1f0;  // 0x1f0
+};
+
+void CCollisionComponent_SyncAnimationColliderTracks(UnkCollisionContainer* container) {
     auto* self = reinterpret_cast<UnkCollisionComponent_ovb0107*>(container);
     UnkActor* owner = self->owner;
     auto* animation = static_cast<UnkAnimationComponent*>(owner->field_0x220);
@@ -151,7 +157,7 @@ void fn_71008615b4(UnkCollisionContainer* container) {
                 u32 state = static_cast<u32>(fn_71007253b8(&self->records, i).field_0x20);
                 (*reinterpret_cast<UnkCollisionSetState_ovb0107**>(object))[0x60 / 8](object, state);
             }
-            void* hook = *reinterpret_cast<void**>(reinterpret_cast<char*>(self->owner) + 0x1f0);
+            void* hook = reinterpret_cast<UnkTrackOwner_ovb0107*>(self->owner)->field_0x1f0;
             if (hook)
                 (*reinterpret_cast<UnkOwnerHook_ovb0107**>(hook))[0x258 / 8](hook);
             self->stateTrack = nullptr;
@@ -182,7 +188,7 @@ void fn_71008615b4(UnkCollisionContainer* container) {
 
 // Constructing the record array with a growth step, allocation flags and an initial capacity.
 
-void fn_710086023c(char* self, u32 capacity, u32 step, u32 flags) {
+void CCollisionComponent_InitRecordVector(char* self, u32 capacity, u32 step, u32 flags) {
     auto* records = reinterpret_cast<base::global::CRntVector<UnkCollisionRecord>*>(self);
     records->data = nullptr;
     records->count = 0;
@@ -288,7 +294,7 @@ void fn_71008635a4(UnkCollisionContainer* self, const CStrId* id, const u32* ext
     }
 }
 
-UnkCollisionObject* fn_7100863814(UnkCollisionContainer* self, const CStrId* id, const u32* extra) {
+UnkCollisionObject* CCollisionComponent_AddFlagsToFirstObjectWithId(UnkCollisionContainer* self, const CStrId* id, const u32* extra) {
     for (u32 i = 0; i < self->records.count; ++i) {
         if (fn_71007253b8(&self->records, i).field_0x0.data == id->data) {
             AddFlags(self, i, extra);
@@ -312,7 +318,7 @@ struct UnkCollisionManagerMasks_ovb0107 {
     u32 count;   // 0xb0
     u8 unk_0xb4[8];
     u32 allocFlags;  // 0xbc
-    base::UnkAllocator* allocator;  // 0xc0
+    base::IAllocator* allocator;  // 0xc0
 };
 
 struct UnkCollisionFilter_ovb0107 {
@@ -333,7 +339,7 @@ void fn_71008633e0(UnkCollisionContainer* container, UnkCollisionNode_ovb0107* n
     if (!self->enabled)
         return;
     auto* m = reinterpret_cast<UnkCollisionManagerMasks_ovb0107*>(Manager());
-    base::UnkAllocator* allocator = m->allocator;
+    base::IAllocator* allocator = m->allocator;
     u64 size = 0;
     u32* masks = nullptr;
     u32* bits = nullptr;
@@ -421,7 +427,7 @@ struct UnkCollisionComponent_Dtor_ovb0107 {
     u32* masks;                                // 0xe0
     u32 filterCount;                           // 0xe8
     u8 unk_0xec[0xc];
-    base::UnkAllocator* filterAllocator;  // 0xf8
+    base::IAllocator* filterAllocator;  // 0xf8
     u8 unk_0x100[8];
     void** listener;  // 0x108
     u8 unk_0x110[0x10];
@@ -843,7 +849,7 @@ bool fn_710086068c(UnkCollisionComponent_Load_ovb0107* self) {
     auto* charClass = static_cast<UnkCharClassCollision_ovb0107*>(
         object ? (fn_710009d50c(object->vf_0x0(), fn_710079a218()) ? object : nullptr) : nullptr);
     self->active = charClass->active;
-    UnkTunableLine path = fn_710013c834(&charClass->path, "\\", "/");
+    UnkTunableLine path = ReplaceAllSubstrings(&charClass->path, "\\", "/");
     UnkGameManagerIdTable& table = GameManagerIdTable();
     CountUse(table.field_0x2418);
     if (CRntString_KeysDiffer(path.Str(),

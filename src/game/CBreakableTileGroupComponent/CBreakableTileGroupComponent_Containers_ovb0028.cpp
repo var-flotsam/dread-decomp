@@ -40,7 +40,7 @@ struct UnkTileStateArray_ovb0028 {
     u32 step;                       // 0x10
     bool growable;                  // 0x14
     u32 flags;                      // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     void Free() {
         if (data) {
@@ -77,7 +77,7 @@ struct UnkTileInfoVector_ovb0028 {
     u32 step;                       // 0x10
     bool growable;                  // 0x14
     u32 flags;                      // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 };
 
 // The vector's destructor.
@@ -208,7 +208,7 @@ struct UnkTileStatesMap_ovb0028 {
     u32 capacity;                       // 0x14
     u32 step;                           // 0x18
     u32 flags;                          // 0x1c
-    base::UnkAllocator* allocator;      // 0x20
+    base::IAllocator* allocator;      // 0x20
 };
 
 template <class V>

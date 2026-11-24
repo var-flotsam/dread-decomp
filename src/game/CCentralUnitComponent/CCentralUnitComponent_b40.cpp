@@ -33,7 +33,7 @@ void CCentralUnitComponent_ReservePairEntryVector(base::global::CRntVector<UnkEn
 static inline __attribute__((always_inline)) void AppendAll_cu(base::global::CRntVector<UnkEntry_cu>* self,
                                                                const base::global::CRntVector<UnkEntry_cu>* other) {
     for (const UnkEntry_cu *it = other->data, *end = other->data + other->count; it != end; ++it)
-        fn_710077a700(self, it);
+        AppendCallbackSetPairVectorEntry(self, it);
 }
 
 void fn_710077a51c(base::global::CRntVector<UnkEntry_cu>* self, const base::global::CRntVector<UnkEntry_cu>* other) {
@@ -70,7 +70,7 @@ struct UnkRanged_cu {
     u32 field_0x28;
     bool field_0x2c;
     u32 field_0x30;
-    base::UnkAllocator* field_0x38;
+    base::IAllocator* field_0x38;
     u32 field_0x40;
     u64 field_0x48;
     f32 field_0x50;

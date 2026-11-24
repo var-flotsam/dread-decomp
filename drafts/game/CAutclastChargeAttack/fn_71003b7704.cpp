@@ -24,7 +24,7 @@ struct UnkChargeList_l3b7704 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkChargeList_l3b7704(const UnkChargeList_l3b7704& other)
         : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14), flags(other.flags),

@@ -32,7 +32,7 @@ extern UnkStrIdBase g_unk_71726fa2c8;
 extern UnkStrIdBase g_unk_71726fa2d0;
 extern UnkStrIdBase g_unk_71726fa2d8;
 
-void fn_7100638950() {
+void CCharClassPoisonFlyAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726fa2e0.ids);
     fn_71006367c4();
     fn_710009ec00(g_unk_71726fa0f0, g_unk_71726fa2e0.field_0x28);

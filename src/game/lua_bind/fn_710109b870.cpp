@@ -20,7 +20,7 @@ UnkGuiDisplayObject* fn_710109b870(lua_State* L, int index) {
         const char* path = luaL_checkstring(L, index);
         UnkGuiRoot* root = g_unk_717271e8f8;
         CRntString name(path);
-        object = fn_71011b5d3c(root, reinterpret_cast<const char* const*>(&name));
+        object = CGUIManager_FindDisplayObjectByPath(root, reinterpret_cast<const char* const*>(&name));
     } else if (type == LUA_TUSERDATA) {
         UnkWeakHandle** ud = static_cast<UnkWeakHandle**>(luaL_checkudata(L, index, "__DisplayObjectType"));
         if (ud != nullptr && *ud != nullptr)

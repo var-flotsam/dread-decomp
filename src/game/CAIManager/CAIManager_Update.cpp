@@ -180,7 +180,7 @@ void fn_7100219698(UnkRenderManager* self, const f32* position, s32* a, s32* b, 
 u32 fn_7100219780(UnkRenderManager* self);
 u32 fn_7100219744(UnkRenderManager* self);
 void fn_710020bbe4(void* position, const f32* value);
-void fn_710019db08(UnkTextStyle_da92b0* style, const f32* colour);
+void SetColorAndCacheRGBA8Bytes(UnkTextStyle_da92b0* style, const f32* colour);
 
 namespace {
 
@@ -317,7 +317,7 @@ void fn_7100da92b0(UnkAIManager_da92b0* self, f32 dt) {
             UnkTextStyle_da92b0* style = node->label->text->style;
             f32 alpha = running ? (node->time < 0.5f ? node->time : 0.5f) * 2.0f : 0.0f;
             const f32 colour[4] = {style->r, style->g, style->b, alpha};
-            fn_710019db08(node->label->text->style, colour);
+            SetColorAndCacheRGBA8Bytes(node->label->text->style, colour);
             node = node->next;
             continue;
         }

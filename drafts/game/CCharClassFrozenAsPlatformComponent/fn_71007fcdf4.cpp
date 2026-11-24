@@ -22,7 +22,7 @@ static_assert(sizeof(UnkStringNode_l7fcdf4) == 0xd0, "node size");
 
 struct UnkStringPool_l7fcdf4 {
     char* vtable;
-    base::UnkAllocator* parent;
+    base::IAllocator* parent;
     UnkBlockFreeList blocks;
 };
 
@@ -31,7 +31,7 @@ struct UnkStringList_l7fcdf4 {
     u32 count;
     UnkStringNode_l7fcdf4* head;
     UnkStringNode_l7fcdf4* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 pad_0x2c;
     UnkStringPool_l7fcdf4 pool;  // 0x30
@@ -66,11 +66,11 @@ void fn_71007fcdf4(const char* text, const char* delimiter, UnkStringList_l7fcdf
     }
 
     if (list->pool.blocks.size / sizeof(UnkStringNode_l7fcdf4) < pieces) {
-        base::UnkAllocator* parent = list->pool.parent;
-        base::UnkAllocator* current = list->allocator;
+        base::IAllocator* parent = list->pool.parent;
+        base::IAllocator* current = list->allocator;
         u32 flags = list->flags;
         void* buffer = list->pool.blocks.buffer;
-        base::UnkAllocator* source = parent ? parent : current;
+        base::IAllocator* source = parent ? parent : current;
         if (buffer) {
             fn_71000837f4(BlocksOf(list));
             list->pool.parent->vf_0x48(buffer);
@@ -84,7 +84,7 @@ void fn_71007fcdf4(const char* text, const char* delimiter, UnkStringList_l7fcdf
             void* mem = source->vf_0x40(size, 8, flags);
             fn_710008378c(BlocksOf(list), mem, size, sizeof(UnkStringNode_l7fcdf4));
         }
-        list->allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<char*>(list) +
+        list->allocator = reinterpret_cast<base::IAllocator*>(reinterpret_cast<char*>(list) +
                                                                 __builtin_offsetof(UnkStringList_l7fcdf4, pool));
     }
 
@@ -102,7 +102,7 @@ void fn_71007fcdf4(const char* text, const char* delimiter, UnkStringList_l7fcdf
         void* mem = list->allocator->vf_0x40(sizeof(UnkStringNode_l7fcdf4), 8, list->flags);
         UnkStringNode_l7fcdf4* node = static_cast<UnkStringNode_l7fcdf4*>(mem);
         if (node) {
-            CRntString_InitWithAllocator(&node->string, reinterpret_cast<base::UnkAllocator*>(&node->pool_vtable));
+            CRntString_InitWithAllocator(&node->string, reinterpret_cast<base::IAllocator*>(&node->pool_vtable));
             node->pool_vtable = reinterpret_cast<char*>(g_unk_7101a1b750) + 0x10;
             node->field_0xb8 = 0;
             node->field_0xc0 = 0;

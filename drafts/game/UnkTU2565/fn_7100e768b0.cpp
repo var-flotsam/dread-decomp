@@ -17,7 +17,7 @@ void fn_7100e768b0(UnkCharMap* self, const char* chars, u32 count, u32 a, void* 
     self->step = a;
     self->field_0x14 = a != 0;
     self->flags = c;
-    base::UnkAllocator* allocator = static_cast<base::UnkAllocator*>(b);
+    base::IAllocator* allocator = static_cast<base::IAllocator*>(b);
     if (!allocator)
         allocator = GetDefaultAllocator();
     self->allocator = allocator;

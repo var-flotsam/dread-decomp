@@ -36,7 +36,6 @@ struct UnkLabelViewport {
 };
 static_assert(__builtin_offsetof(UnkLabelViewport, view) == 0x178, "UnkLabelViewport placeholder layout");
 
-
 // What the GUI root finds for an entry's key: its rectangle and the object at +0x18 whose +0x8 the
 // viewport is built from.
 struct UnkLabelSource {
@@ -96,7 +95,7 @@ struct UnkLabel_CLabel {
 };
 static_assert(__builtin_offsetof(UnkLabel_CLabel, groups) == 0x2d0, "UnkLabel_CLabel placeholder layout");
 
-UnkLabelSource* fn_71011b9fac(UnkGuiRoot* root, const void* key);
+UnkLabelSource* CGUIManager_FindInEntryListByKey(UnkGuiRoot* root, const void* key);
 void fn_71011baa38(UnkGuiRoot* root, char* source, UnkLabelViewport** out, s32 frame);
 
 // The label's depth: field_0x140, or field_0x13c while it is unset.
@@ -142,7 +141,7 @@ void fn_71011ee5a8(UnkLabel_CLabel* self) {
             for (u64 i = 0; i < item->count; ++i) {
                 UnkLabelEntry* e = &item->entries[i];
                 if (e->field_0x0 == 0) {
-                    if (UnkLabelSource* source = fn_71011b9fac(g_unk_717271e8f8, e->key)) {
+                    if (UnkLabelSource* source = CGUIManager_FindInEntryListByKey(g_unk_717271e8f8, e->key)) {
                         fn_71011baa38(g_unk_717271e8f8, source->field_0x18 + 8, &e->viewport, composition->frame);
                         if (e->viewport) {
                             SetViewPos(e->viewport, source->pos);
@@ -153,7 +152,7 @@ void fn_71011ee5a8(UnkLabel_CLabel* self) {
                             // The scale is passed by value: a copy made after the viewport is read.
                             UnkLabelViewport* viewport = e->viewport;
                             UnkLabelVec2 arg = scale;
-                            fn_710020a5a0(reinterpret_cast<UnkStruct_710020a5a0*>(&viewport->node),
+                            SetNode2DScale(reinterpret_cast<UnkStruct_710020a5a0*>(&viewport->node),
                                           reinterpret_cast<const CVector2D*>(&arg));
                             fn_71001c3770(e->viewport->view, true);
                         }
@@ -190,6 +189,7 @@ void fn_71011ee5a8(UnkLabel_CLabel* self) {
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkLabelTextNode.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -289,12 +289,6 @@ static_assert(sizeof(UnkLabelGlyph) == 0x30, "UnkLabelGlyph placeholder layout")
 
 // UnkGlyphVector, fn_71011f05d4 and fn_71011ee3b4 are in game/GUI/CLabel.h.
 
-// The GUI root's text object a run draws with (its +0x130 is the text node).
-struct UnkLabelTextNode {
-    u8 unk_0x0[0xe4];
-    u32 color;  // the colour digit ('0' to '9')
-};
-
 // A run (0x70 bytes; CLabel.cpp's UnkLabelItem).
 struct UnkLabelRun {
     s32 frame;
@@ -393,7 +387,7 @@ struct UnkGlyphMetrics {
     f32 advance;
     u8 unk_0xc[0x14];
 };
-bool fn_71011b89dc(UnkGuiRoot* root, u8 font, const CStrId* font_id, u32 code, UnkGlyphMetrics* out);
+bool CGUIManager_TryGetGlyphMetrics(UnkGuiRoot* root, u8 font, const CStrId* font_id, u32 code, UnkGlyphMetrics* out);
 
 // The language singleton (src/game/UnkLanguage.cpp) and its current language.
 struct UnkLanguage;
@@ -443,7 +437,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
     void* font = self->font;
     if (!font) {
         if (fn_71011cde14(display)->frame != 0x7fffffff && self->font_id.data != &g_unk_7101d47108->empty) {
-            font = fn_71011b882c(*root, &self->font_id);
+            font = CGUIManager_GetOrLoadCachedByPath(*root, &self->font_id);
             self->font = font;
         } else {
             font = self->font;
@@ -647,7 +641,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
                     if (last_break >= 0 && !((u32)(language - 10) < 4)) {
                         run->x = saved_x;
                         fn_7100066d4c(&run->text, &saved_text);
-                        fn_71011ee3b4(&run->glyphs, &saved_glyphs);
+                        CLabel_AssignGlyphArray(&run->glyphs, &saved_glyphs);
                         i = (u32)last_break + 1;
                         last_break = -1;
                     } else {
@@ -679,7 +673,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
                 if (c == ' ') {
                     fn_7100066d4c(&saved_text, &run->text);
                     saved_x = run->x;
-                    fn_71011ee3b4(&saved_glyphs, &run->glyphs);
+                    CLabel_AssignGlyphArray(&saved_glyphs, &run->glyphs);
                     last_break = (s32)i;
                 }
                 if (pad_before >= 1)
@@ -719,7 +713,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
                         }
                         UnkGlyphMetrics metrics = {};
                         g.code = (u16)code;
-                        if (fn_71011b89dc(*root, g.font, &self->font_id, code, &metrics))
+                        if (CGUIManager_TryGetGlyphMetrics(*root, g.font, &self->font_id, code, &metrics))
                             width = (u32)(s32)(metrics.advance + 0.5f);
                     } else {
                         // A sprite: by its name with the label's font name appended, else by its name.
@@ -741,12 +735,12 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
                                 CRntString b = CRntString_Concat(&a, &name);
                                 full.Build(b);
                             }
-                            sprite = fn_71011b9fac(*root, &full.id);
+                            sprite = CGUIManager_FindInEntryListByKey(*root, &full.id);
                             if (sprite)
                                 g.id.id = full.id;
                         }
                         if (!sprite)
-                            sprite = fn_71011b9fac(*root, &g.id.id);
+                            sprite = CGUIManager_FindInEntryListByKey(*root, &g.id.id);
                         if (sprite) {
                             UnkLabelVec2 sprite_size = fn_7100b82b18(sprite, state->frame);
                             UnkLabelVec2 scaled = fn_71011b800c(*root, state->frame, &sprite_size);
@@ -764,7 +758,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
                             if (last_break >= 0) {
                                 run->x = saved_x;
                                 fn_7100066d4c(&run->text, &saved_text);
-                                fn_71011ee3b4(&run->glyphs, &saved_glyphs);
+                                CLabel_AssignGlyphArray(&run->glyphs, &saved_glyphs);
                                 i = (u32)last_break;
                                 next_break = -1;
                             } else if (i != 0) {

@@ -96,7 +96,7 @@ u32 fn_7100471d48(UnkRobotSoldierAI_l471d48* self, UnkRobotSoldierMessage_l471d4
             CVector3D angles;
             value.id = 1;
             arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-            fn_7101176690(target, 0x9b214780df6c8f00, 0xf4061ff25a2163d6, &value, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(target, 0x9b214780df6c8f00, 0xf4061ff25a2163d6, &value, &g_unk_710164b958,
                           &g_unk_7172769740, &arg);
             UnkRobotSoldierOwner_l471d48* o = self->owner;
             const UnkMatrix44& m = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(actor->field_0x38));

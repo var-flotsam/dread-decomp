@@ -19,7 +19,7 @@ struct UnkRecordOwner232_b66a1 {
     UnkRecordTable232_b66a1* table;  // 0x10
 };
 
-void fn_71001ab3dc(UnkRecordOwner232_b66a1* self, u32 index, u16* a, u16* b, u16* c, u16* d, u16* e, u16* f,
+void ReadSevenU16RecordFieldsAtIndex(UnkRecordOwner232_b66a1* self, u32 index, u16* a, u16* b, u16* c, u16* d, u16* e, u16* f,
                    u16* g) {
     UnkRecordTable232_b66a1* table = self->table;
     if (table == nullptr || !self->enabled || index >= table->count) {

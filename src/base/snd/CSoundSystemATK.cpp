@@ -67,14 +67,14 @@ struct UnkInlineString_CSoundSystemATK {
     u32 field_0xc0;
 
     UnkInlineString_CSoundSystemATK() {
-        CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::UnkAllocator*>(&vtable));
+        CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::IAllocator*>(&vtable));
         field_0xb8 = 0;
         field_0xc0 = 0;
         vtable = &g_unk_7101a1b750[2];
     }
     // The second string's order of stores differs in the original.
     explicit UnkInlineString_CSoundSystemATK(int) {
-        CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::UnkAllocator*>(&vtable));
+        CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<base::IAllocator*>(&vtable));
         field_0xb8 = 0;
         vtable = &g_unk_7101a1b750[2];
         field_0xc0 = 0;
@@ -771,7 +771,7 @@ void fn_710120a0ac(void* player, u32 count);
 void fn_7101214bd0(void* self, u32 mode, u32 x2);
 
 // The engine's callbacks (game code) and the sound archive's path.
-void fn_71000f6770();
+void AddElapsedTimeToSoundSystemClock();
 void fn_71000f6880();
 void fn_71000f6890();
 extern void* g_unk_7101a1bb18;  // the archive's path
@@ -782,7 +782,7 @@ void CSoundSystemATK_CreateBlockPool0x128(void* list, u64 count, u32 flags, base
 void fn_71000f88b8(UnkSoundSystemATK* self);
 void fn_71000f8b30(UnkSoundSystemATK* self);
 void fn_71000f9450(UnkSoundSystemATK* self);
-void fn_7100104600(void* self);
+void LoadUseCounterLimitsFromFile(void* self);
 void fn_71000f95b0(void* arg);
 
 // The resource registry's entry the sound category is added with (as src/game/UnkActorDefFactory.cpp
@@ -865,7 +865,7 @@ bool fn_71000f7800(UnkSoundSystemATK* self) {
             Member<void*>(self, 0x400588 + i * 8) = block;
         }
         CSoundSystemATK_CreateBlockPool0x128(reinterpret_cast<u8*>(self) + 0x388, 0x80, 0xb, &heap->allocator);
-        fn_7101229134(fn_7101228d6c(), fn_71000f6770, nullptr);
+        fn_7101229134(fn_7101228d6c(), AddElapsedTimeToSoundSystemClock, nullptr);
         fn_710120b108(fn_71000f6880, nullptr);
         fn_710120b148(fn_71000f6890, nullptr);
         {
@@ -946,7 +946,7 @@ bool fn_71000f7800(UnkSoundSystemATK* self) {
             *reinterpret_cast<u8***>(*head_a + 8) = head_a;
             *head_b = a;
         }
-        fn_7100104600(reinterpret_cast<u8*>(self) + 0x278);
+        LoadUseCounterLimitsFromFile(reinterpret_cast<u8*>(self) + 0x278);
         for (u64 i = 0x194; i < 0x1b4; i += 4)
             Member<u32>(self, i) = 0;
         for (u64 i = 0x1b4; i < 0x1d4; i += 4)

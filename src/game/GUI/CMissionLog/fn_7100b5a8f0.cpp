@@ -5,7 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::UnkStrIdMember;
 
 struct UnkNamedStrIdVec {
@@ -14,7 +14,7 @@ struct UnkNamedStrIdVec {
     u32 count;
     u32 capacity;
     u8 unk_0x18[0x10];
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     __attribute__((always_inline)) ~UnkNamedStrIdVec() {
         if (data) {

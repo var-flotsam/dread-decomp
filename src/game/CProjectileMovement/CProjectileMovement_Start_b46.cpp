@@ -60,7 +60,7 @@ struct UnkProjectileMovement10_b46a3 {
     void* vf_0x2d8() { return reinterpret_cast<void* (*)(UnkProjectileMovement10_b46a3*)>(vtable[0x2d8 / 8])(this); }
 };
 
-void fn_7100ac4dc4(UnkProjectileMovement10_b46a3* self) {
+void CProjectileMovement_AddTimelineEntriesAndSetHitPos(UnkProjectileMovement10_b46a3* self) {
     self->vf_0x348();
     void* timeline = self->owner->timeline;
     if (timeline && !self->entries_added) {

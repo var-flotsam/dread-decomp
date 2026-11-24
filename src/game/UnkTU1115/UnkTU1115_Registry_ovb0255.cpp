@@ -22,7 +22,7 @@ struct UnkTable_b0255 {
     u32 field_0x14;
     u32 field_0x18;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 };
 
 struct UnkRegistry_b0255;
@@ -70,7 +70,7 @@ static_assert(__builtin_offsetof(UnkRegistry_b0255, graph) == 0xc8, "layout");
 struct UnkQueryEntry_b50;
 
 // Appends an object under its id and returns the object slot.
-__attribute__((noinline)) u64* fn_71006fb514(void* map, const u32* key, UnkQueryEntry_b50* const* entry) {
+__attribute__((noinline)) u64* AppendU32KeyU64ValueToSmallDictionary(void* map, const u32* key, UnkQueryEntry_b50* const* entry) {
     auto* self = static_cast<UnkPairVec_b0255*>(map);
     const u64* value = reinterpret_cast<const u64*>(entry);
     u32 n = self->count;
@@ -117,7 +117,7 @@ struct UnkIdMap_b0255 {
 };
 static_assert(__builtin_offsetof(UnkIdMap_b0255, owner) == 0x68, "layout");
 
-__attribute__((noinline)) void fn_71006facbc(UnkQueryEntry_b50* entry) {
+__attribute__((noinline)) void RefreshRegistryObjectGraphNodeIndices(UnkQueryEntry_b50* entry) {
     auto* self = reinterpret_cast<UnkIdMap_b0255*>(entry);
     self->index = CWorldGraph_FindNodeIndexById(self->owner->graph, &self->key);
     self->indices.count = 0;
@@ -128,7 +128,7 @@ __attribute__((noinline)) void fn_71006facbc(UnkQueryEntry_b50* entry) {
 }
 
 // The registry move constructor: it takes the other tables and arrays and files its objects again.
-void fn_71006f8ca0(UnkRegistry_b0255* self, UnkRegistry_b0255* other) {
+void MoveConstructObjectRegistry(UnkRegistry_b0255* self, UnkRegistry_b0255* other) {
     self->vtable = reinterpret_cast<char*>(g_unk_7101a6b820) + 0x10;
     self->name.data = other->name.data;
     other->name.data = &g_unk_7101d47108->empty;
@@ -183,7 +183,7 @@ void fn_71006f8ca0(UnkRegistry_b0255* self, UnkRegistry_b0255* other) {
         UnkRegObj_b0255* obj = *p;
         obj->registry = self;
         u32 id = obj->id;
-        fn_71006fb514(&self->index, &id, reinterpret_cast<UnkQueryEntry_b50* const*>(&obj));
+        AppendU32KeyU64ValueToSmallDictionary(&self->index, &id, reinterpret_cast<UnkQueryEntry_b50* const*>(&obj));
     }
 }
 
@@ -214,7 +214,7 @@ struct UnkInnerVec_ovb0255 {
     ~UnkInnerVec_ovb0255() { v.Free(); }
 };
 typedef base::global::CRntVector<UnkInnerVec_ovb0255> UnkOuterVec;
-void fn_71006fb3f4(UnkOuterVec* self, const UnkOuterVec* other);
+void CopyConstructNestedRntVector(UnkOuterVec* self, const UnkOuterVec* other);
 
 struct UnkRecord_b0255 {
     UnkOuterVec vec;  // 0x0
@@ -229,14 +229,14 @@ struct UnkRecordCopy_b0255 {
     UnkRecordCopy_b0255() {}
 };
 
-u32 fn_71006fa894(void* path) {
+u32 CountListsInAllRegistryRecords(void* path) {
     auto* self = static_cast<UnkRegistry_b0255*>(path);
     u64 i = 0;
     u32 total = 0;
     for (; i < self->records.count; ++i) {
         const UnkRecord_b0255* record = &static_cast<UnkRecord_b0255*>(self->records.data)[i];
         UnkRecordCopy_b0255 copy;
-        fn_71006fb3f4(&copy.vec, &record->vec);
+        CopyConstructNestedRntVector(&copy.vec, &record->vec);
         total += copy.vec.count;
         copy.field_0x28 = record->field_0x28;
         copy.vec.Free();

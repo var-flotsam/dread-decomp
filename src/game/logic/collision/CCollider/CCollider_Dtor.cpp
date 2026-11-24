@@ -25,7 +25,7 @@ struct UnkColliderDtor {
     u32 count;           // 0x130
     UnkColliderListNode* head;  // 0x138
     UnkColliderListNode* tail;  // 0x140
-    base::UnkAllocator* allocator;  // 0x148
+    base::IAllocator* allocator;  // 0x148
     u8 pad_0x150[0x8];
     UnkColliderReleasable* field_0x158;
     bool field_0x160;
@@ -34,7 +34,7 @@ struct UnkColliderDtor {
     void vf_0x38() { reinterpret_cast<void (*)(UnkColliderDtor*)>(vtable[7])(this); }
 };
 
-void fn_7100d3b4c8(UnkColliderDtor* self) {
+void CCollider_Destroy(UnkColliderDtor* self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101aa85b0 + 0x10);
     if (self->field_0x160) {
         if (self->field_0x158) {

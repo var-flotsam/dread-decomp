@@ -25,7 +25,7 @@ void RoundVector3ComponentsHalfAwayFromZero(UnkVec3fR* v);
 struct UnkPlayerMovementCache;
 void* fn_71010d7a6c(UnkPlayerMovementCache* self);
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 __attribute__((visibility("hidden"))) extern const CVector3D g_unk_7101649ca4;
 
@@ -162,7 +162,7 @@ struct UnkDropterDive_l4e8f84 {
 
 static inline bool Sweep(UnkTree* tree, u32 mask, UnkLavaDropsShape_A2_b71* shape, const UnkDiveMtx_l4e8f84& xf,
                          const CVector2D& delta, UnkDiveQuery_l4e8f84* query) {
-    return fn_7100d5babc(tree, mask, reinterpret_cast<UnkShape*>(shape), reinterpret_cast<const UnkMtx44*>(&xf),
+    return SweepShapeAgainstCollisionTree(tree, mask, reinterpret_cast<UnkShape*>(shape), reinterpret_cast<const UnkMtx44*>(&xf),
                          reinterpret_cast<const Vec2*>(&delta), query, false);
 }
 

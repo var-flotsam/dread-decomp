@@ -122,7 +122,7 @@ bool fn_7101109e8c(UnkAIComponent* component, UnkNavMeshHit* side) {
     if (target && fn_71010cc3a4(target) == 1) {
         UnkAITargetComponent* ai = static_cast<UnkAITargetComponent*>(self->owner->field_0x240);
         const UnkAITargetCell* cell =
-            reinterpret_cast<const UnkAITargetCell*>(fn_710035e580(&ai->path, target->segment));
+            reinterpret_cast<const UnkAITargetCell*>(GetPathSegmentEntryOrFallback(&ai->path, target->segment));
         CVector2D at;
         at.x = target->point.x;
         at.y = target->point.y;

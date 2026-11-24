@@ -35,7 +35,7 @@ struct UnkWeakRefList {
     UnkWeakRefNode* head;
     UnkWeakRefNode* tail;
     u8 pad_0x20[8];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 static_assert(__builtin_offsetof(UnkWeakRefList, allocator) == 0x28, "UnkWeakRefList placeholder layout");
 

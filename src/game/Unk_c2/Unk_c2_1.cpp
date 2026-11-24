@@ -26,7 +26,7 @@ struct UnkObj_710118b384 {
     CRntString path;
 };
 
-void fn_710118b384(UnkObj_710118b384* self) {
+void CallOnLuaLibrariesReloadedForScriptPath(UnkObj_710118b384* self) {
     CRntString* path = &self->path;
     if (!path->data || !path->data[0])
         return;
@@ -38,7 +38,7 @@ void fn_710118b384(UnkObj_710118b384* self) {
     u32 length = end - start;
     UnkInlineString_710118b384 s;
     auto* str = reinterpret_cast<CRntString*>(&s);
-    CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
+    CRntString_InitWithAllocator(str, reinterpret_cast<base::IAllocator*>(&s.vtable));
     s.vtable = &g_unk_7101a194b8[2];
     s.field_0x138 = 0;
     s.field_0x140 = 0;

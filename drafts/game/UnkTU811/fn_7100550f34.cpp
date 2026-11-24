@@ -26,7 +26,7 @@ extern CStrId g_unk_71726e1f70 __attribute__((visibility("hidden")));
 extern void* g_unk_7101a48c48[];
 
 struct UnkScaledBoxShape2D;
-void fn_7100d5e440(UnkScaledBoxShape2D* self, const f32* scale);
+void CAABoxShape2D_ScaleAboutCentreByVector2(UnkScaledBoxShape2D* self, const f32* scale);
 
 // The sides, a two-bit set whose statics are guarded (their constructors are not constexpr).
 struct UnkSides_l550f34 {
@@ -210,9 +210,9 @@ UnkSides_l550f34 fn_7100550f34(UnkEmmyAI_l550f34* self) {
     UnkBoundsShape_l550f34* bounds = collider->shape;
     UnkBoxShape2D_l550f34 shape(UnkBox2D_l550f34(bounds->vf_0x28(bounds->transform)));
     f32 scale[2] = {2.0f, 0.9f};
-    fn_7100d5e440(reinterpret_cast<UnkScaledBoxShape2D*>(&shape), scale);
+    CAABoxShape2D_ScaleAboutCentreByVector2(reinterpret_cast<UnkScaledBoxShape2D*>(&shape), scale);
 
-    if (fn_7100d5b484(tree, movement->collision_mask, reinterpret_cast<UnkShape*>(&shape),
+    if (QueryCollisionTreeForTransformedShapeOverlaps(tree, movement->collision_mask, reinterpret_cast<UnkShape*>(&shape),
                       reinterpret_cast<const UnkMtx44*>(&xf), &hits, 0)) {
         bool below = false;
         bool above = false;

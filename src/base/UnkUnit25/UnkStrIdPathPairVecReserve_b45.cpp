@@ -46,7 +46,7 @@ struct UnkStrIdPathPairVec_b45a1 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void ReserveStrIdPairVectorCapacity(UnkStrIdPathPairVec_b45a1* self, u32 capacity) {

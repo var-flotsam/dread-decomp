@@ -126,7 +126,7 @@ struct UnkEntryList_b0235 {
         UnkEntryListNode_b0235* tail;
     };
     union {
-        base::UnkAllocator* allocator;
+        base::IAllocator* allocator;
     };
     union {
         u32 flags;

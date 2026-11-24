@@ -24,7 +24,7 @@ struct UnkNavVertices_l28e71c {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // A 0x48-byte polygon of unit 108: its vertices, then a cached length, flags, bounds and winding state.
@@ -96,7 +96,7 @@ struct UnkNavPolygonArray_l28e71c {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Out of line: grows the array to at least n elements.
     void Reserve(u32 n) asm("fn_710011f1ec");
@@ -137,7 +137,7 @@ void fn_710028e71c(void* self, const UnkNavPolygonArray_l28e71c* polygons, const
             UnkVec3 point = {segment.end.x, segment.end.y, 0.0f};
             fn_7100118b94(&outline, &point);
         }
-        fn_7100119f98(reinterpret_cast<UnkTileOutline*>(&outline), true);
+        SetPolylineClosed(reinterpret_cast<UnkTileOutline*>(&outline), true);
         out->polygons.PushBack(outline);
         out->changed = true;
     }

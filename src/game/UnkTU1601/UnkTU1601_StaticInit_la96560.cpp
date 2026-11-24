@@ -62,7 +62,7 @@ extern UnkConverter g_unk_71727522a0;
 void fn_7100a9434c() __attribute__((visibility("hidden")));
 void fn_7100a94358() __attribute__((visibility("hidden")));
 
-void fn_7100a96560() {
+void InitThermalDeviceComponentStatics() {
     InitHeader(g_unk_7172752700);
 
     {

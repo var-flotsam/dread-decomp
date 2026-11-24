@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkZiplineRail_b49;
-void fn_710091d4bc(UnkZiplineRail_b49* self);
+void CHydrogigaZiplineRailComponent_ApplyDeadState(UnkZiplineRail_b49* self);

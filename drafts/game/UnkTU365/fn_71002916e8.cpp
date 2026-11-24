@@ -60,7 +60,7 @@ struct UnkNavCollider_2916e8 {
     virtual void vf_0x58();
     virtual void vf_0x60(bool flag);
 };
-void fn_7100d36da4(UnkNavCollider_2916e8* collider, UnkTileOutlines* shape, bool flag);
+void CCollider_SetShape(UnkNavCollider_2916e8* collider, UnkTileOutlines* shape, bool flag);
 
 // The region's outlines.
 struct UnkNavRegion_2916e8 {
@@ -106,7 +106,7 @@ void fn_71002916e8(UnkNavGenerator_ovb0229* self, u8* region_, u8* part, const C
     *collider = CreateCollider(manager, self, name);
 
     UnkTileOutlines* shape;
-    fn_7100d36da4(*collider, shape = NewShape(), true);
+    CCollider_SetShape(*collider, shape = NewShape(), true);
 
     UnkTileOutline* end = region->outlines + region->count;
     for (UnkTileOutline* source = region->outlines; source != end; ++source) {
@@ -124,7 +124,7 @@ void fn_71002916e8(UnkNavGenerator_ovb0229* self, u8* region_, u8* part, const C
             UnkTilePoint point = {edge.end.x, edge.end.y, 0.0f};
             fn_7100118b94(&outline, reinterpret_cast<UnkVec3*>(&point));
         }
-        fn_7100119f98(&outline, true);
+        SetPolylineClosed(&outline, true);
         fn_7100d62e04(shape, &outline);
     }
 

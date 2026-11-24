@@ -35,7 +35,7 @@ struct UnkMovedId_b62a1;
 using UnkMovedStrId_b62a1 = UnkMovedId_b62a1<g_unk_7101d47108>;
 
 void fn_710025b068(char* self);
-void fn_7100de5f98(UnkPoolList_deb914* self, u32 n, u32 a, u32 flags, base::UnkAllocator* allocator);
+void fn_7100de5f98(UnkPoolList_deb914* self, u32 n, u32 a, u32 flags, base::IAllocator* allocator);
 void fn_71002747f8(UnkNavMesh47f8* self);
 void fn_71007ed25c(UnkSlotArray<UnkTag_71007ed25c>* self, u32 capacity);
 void fn_7100e147cc(void* self);
@@ -54,7 +54,7 @@ struct UnkScenarioTable_l19fe50 {
     u32 field_0x8;
     u64 field_0x10;
     u64 field_0x18;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 };
 

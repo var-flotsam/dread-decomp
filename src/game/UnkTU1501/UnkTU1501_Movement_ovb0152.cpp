@@ -52,6 +52,7 @@
 #include "game/logic/collision/CCapsuleShape2D.h"
 #include "game/logic/collision/UnkBvhTreeSweep.h"
 #include "types.h"
+#include "game/UnkAbility.h"
 
 using base::global::CStrId;
 using base::math::CVector3D;
@@ -113,10 +114,6 @@ struct UnkSpanArg_b152 {
 struct UnkOwner2e0_b152 {
     u8 pad_0x0[0x2e0];
     UnkAbilitySet* field_0x2e0;
-};
-
-struct UnkAbility {
-    virtual const base::reflection::CClass* vf_0x0();
 };
 
 struct UnkVec2_b152 {
@@ -272,7 +269,7 @@ inline const UnkStaticZero_b152& StaticZero_b152() {
 
 // `arg` (x1) reaches fn_7100978f58 untouched in the original.
 void fn_71009e11c0(UnkMove_b152* self, const void* arg) {
-    fn_7100978f58(reinterpret_cast<char*>(self), arg);
+    CCharacterMovement_SetOwnerPositionDroppedToGround(reinterpret_cast<char*>(self), arg);
     UnkProbeResult result;
     result.field_0x0 = 0;
     result.field_0x8 = 0;
@@ -290,13 +287,13 @@ void fn_71009e11c0(UnkMove_b152* self, const void* arg) {
     }
 }
 
-void fn_71009e3188(UnkMove_b152* self, f32* values) {
+void ApplySamusForwardBackwardScaleOrReset(UnkMove_b152* self, f32* values) {
     if (self->field_0x5258 != 1.0f) {
         static CStrId s_forward("forward", true);
         static CStrId s_backward("backward", true);
         UnkStruct_710117af10* anim = static_cast<UnkStruct_710117af10*>(self->actor->field_0x220);
-        if (anim && (fn_710117af10(anim, reinterpret_cast<UnkCls_710117af10**>(&s_forward), false) ||
-                     fn_710117af10(static_cast<UnkStruct_710117af10*>(self->actor->field_0x220),
+        if (anim && (CAnimationComponent_IsPlayingActionNameContaining(anim, reinterpret_cast<UnkCls_710117af10**>(&s_forward), false) ||
+                     CAnimationComponent_IsPlayingActionNameContaining(static_cast<UnkStruct_710117af10*>(self->actor->field_0x220),
                                    reinterpret_cast<UnkCls_710117af10**>(&s_backward), false))) {
             values[0x6c / 4] = self->field_0x5258 * values[0x6c / 4];
             values[0x60 / 4] = self->field_0x5258 * values[0x60 / 4];
@@ -379,7 +376,7 @@ bool fn_71009e69c4(UnkMove_b152* self) {
     return !fn_7100df5a4c(*manager);
 }
 
-bool fn_71009e73cc(UnkMove_b152* self, UnkVec2_b152* out) {
+bool GetMovementSpeedLimitAndDecayRate(UnkMove_b152* self, UnkVec2_b152* out) {
     out->x = 0.0f;
     out->y = 10.0f;
     UnkTrackQuery query = {fn_7100d2caa8(), nullptr, -1.0f};
@@ -410,7 +407,7 @@ bool fn_71009e73cc(UnkMove_b152* self, UnkVec2_b152* out) {
     cls = self->actor->field_0x220;
     if (!cls)
         return true;
-    if (fn_710117af10(static_cast<UnkStruct_710117af10*>(cls),
+    if (CAnimationComponent_IsPlayingActionNameContaining(static_cast<UnkStruct_710117af10*>(cls),
                       reinterpret_cast<UnkCls_710117af10**>(&GameManagerIdTable().field_0x13f8), false)) {
         out->y = 1.0f;
         out->x = fn_71009e754c(self);
@@ -478,7 +475,7 @@ void fn_71009e7d9c(UnkMove_b152* self) {
         return;
     UnkTrackParams_b152 params;
     reinterpret_cast<UnkTrackResult_b152*>(query.result)->vf_0x18(&params);
-    fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(anim), reinterpret_cast<const UnkRequest_7101176ea8*>(&params),
+    CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(anim), reinterpret_cast<const UnkRequest_7101176ea8*>(&params),
                   0xf4061ff25a2163d6ull);
 }
 
@@ -530,7 +527,7 @@ bool fn_71009e8218(UnkMove_b152* self, const UnkRequest_7101176ea8* request, boo
     void* cls = self->actor->field_0x220;
     if (!cls)
         return false;
-    if (!fn_7101176ea8(static_cast<UnkStruct_7101176ea8*>(cls), request, 0xf4061ff25a2163d6ull))
+    if (!CAnimationComponent_SendActionRequestRecordToTrack(static_cast<UnkStruct_7101176ea8*>(cls), request, 0xf4061ff25a2163d6ull))
         return false;
     fn_710034f8d8(object);
     return true;
@@ -567,7 +564,7 @@ void fn_71009e9890(UnkMove_b152* self) {
     fn_710117b3e8(self->link.handle ? self->link.handle->target : nullptr, link);
 }
 
-bool fn_71009ea664(UnkMove_b152* self) {
+bool IsCapsuleSweepAheadInFacingDirectionClear(UnkMove_b152* self) {
     if (!self->field_0x3a8)
         return false;
     UnkCollisionContainer* container = self->actor->field_0x2a0;
@@ -597,7 +594,7 @@ bool fn_71009ea664(UnkMove_b152* self) {
     void* tracker = g_unk_7101d47310->field_0x608->field_0x820;
     u32 mask = self->field_0x3cc;
     UnkMatrix44_7100078c9c mtx = BuildTranslationMatrixFromVec3(pos);
-    bool hit = fn_7100d5babc(static_cast<UnkTree*>(tracker), mask, reinterpret_cast<UnkShape*>(&shape),
+    bool hit = SweepShapeAgainstCollisionTree(static_cast<UnkTree*>(tracker), mask, reinterpret_cast<UnkShape*>(&shape),
                              reinterpret_cast<const UnkMtx44*>(&mtx), reinterpret_cast<const Vec2*>(delta), nullptr, false);
     return !hit;
 }
@@ -643,7 +640,7 @@ UnkHitFlags_b152 fn_71009ecd98(UnkMove_b152* self, UnkHitInfo_b152* hit) {
     return result;
 }
 
-void fn_71009eee34(UnkSamusMovement* movement, const u64* key, bool active, bool flag) {
+void SetSamusLegOverrideKeyActive(UnkSamusMovement* movement, const u64* key, bool active, bool flag) {
     UnkMove_b152* self = reinterpret_cast<UnkMove_b152*>(movement);
     UnkGuiKeyList* list = reinterpret_cast<UnkGuiKeyList*>(self->timer);
     base::global::CStrId* id = reinterpret_cast<base::global::CStrId*>(const_cast<u64*>(key));

@@ -30,7 +30,7 @@ using base::math::CVector4D;
 struct UnkStruct_71008651c8;
 struct UnkStruct_71008651c8_Entry;
 using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
-void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
+void CCollisionComponent_CollectRecordsBySecondaryId(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 
 // The suffix used when a "HIT" source names none, and the tints by hits left (1 to 3).
 __attribute__((visibility("hidden"))) extern const char g_unk_710164b160[];
@@ -301,13 +301,13 @@ bool fn_71008e12dc(UnkItemLife_l8e12dc* self, UnkHitInfo_l8e12dc* hit) {
         UnkOut_71008651c8 husks(0xf);
         {
             CStrId husk("HUSK", true);
-            fn_71008651c8(reinterpret_cast<UnkStruct_71008651c8*>(collision), reinterpret_cast<void* const*>(&husk),
+            CCollisionComponent_CollectRecordsBySecondaryId(reinterpret_cast<UnkStruct_71008651c8*>(collision), reinterpret_cast<void* const*>(&husk),
                           &husks);
         }
         counted = HuskAllows(husks, suffix);
         husks.Free();
     } else {
-        f32 factor = fn_71008c2de8(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(self->damage->factors), hit->flags);
+        f32 factor = CDamageSourceFactor_GetFactorForDamageFlags(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(self->damage->factors), hit->flags);
         fn_71008c1538(reinterpret_cast<UnkRequest*>(hit), factor * hit->factor);
         if (hit->flags & 0x20)
             fn_71008c1538(reinterpret_cast<UnkRequest*>(hit), self->field_0x54);

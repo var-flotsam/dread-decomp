@@ -25,7 +25,7 @@ struct UnkFieldOwner;
 
 bool fn_71000e74bc(CVariable* field);  // whether a field without an accessor can be set
 bool fn_71000e750c(UnkTunableFieldHandle* field);  // whether the field can be read
-UnkReflTypedPtr fn_71000e755c(const UnkReflFieldInfo* field, UnkFieldOwner* owner);
+UnkReflTypedPtr GetReflectedFieldTypedPtr(const UnkReflFieldInfo* field, UnkFieldOwner* owner);
 
 struct UnkObjectVisitor_l0a23f0;
 
@@ -146,7 +146,7 @@ bool fn_71000a23f0(UnkObjectVisitor_l0a23f0* self, const UnkReflTypedPtr* obj) {
             UnkVisitedField_l0a23f0* field = &fields[i];
             if (self->AcceptsField(field) == 1) {
                 if (fn_71000e74bc(reinterpret_cast<CVariable*>(field))) {
-                    UnkReflTypedPtr at = fn_71000e755c(reinterpret_cast<const UnkReflFieldInfo*>(field),
+                    UnkReflTypedPtr at = GetReflectedFieldTypedPtr(reinterpret_cast<const UnkReflFieldInfo*>(field),
                                                        reinterpret_cast<UnkFieldOwner*>(const_cast<UnkReflTypedPtr*>(obj)));
                     if (at.type)
                         VisitAt(self, field, at.type, at.ptr);

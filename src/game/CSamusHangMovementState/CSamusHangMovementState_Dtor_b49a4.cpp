@@ -17,7 +17,7 @@ struct UnkSamusHangStateDtor_b49a4 {
     UnkRefObject* field_0x1b8;
 };
 
-void fn_71009a2c58(UnkSamusHangStateDtor_b49a4* self) {
+void CSamusHangMovementState_Destroy(UnkSamusHangStateDtor_b49a4* self) {
     self->vtable = g_unk_7101a87000 + 2;
     self->vtable2 = g_unk_7101a87000 + 48;
     fn_71009a1f40(self);

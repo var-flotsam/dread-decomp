@@ -4,18 +4,13 @@
 // live count g_unk_717270f61c drops by one; each 0xb0-byte entry of the second array whose handle
 // (+0x0) names it gets its flag at +0xa9 set. Names and layouts are placeholders.
 #include "game/CAudioComponent.h"
+#include "game/UnkSoundRef.h"
 #include "game/UnkTU101.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 // As src/game/CAudioComponent/CAudioComponent_b50.cpp defines them.
-struct UnkSoundObject_b50;
-struct UnkSoundRef {
-    UnkSoundObject_b50* object;
-    s64 serial;
-};
-
-static inline UnkSoundObject_b50* Resolve_b65a4(const UnkSoundHandle* handle) {
+static inline UnkSound* Resolve_b65a4(const UnkSoundHandle* handle) {
     if (handle->ref && handle->ref->serial == handle->serial && handle->serial != -1)
         return handle->ref->object;
     return nullptr;
@@ -59,7 +54,7 @@ struct UnkAudioStop_b65a4 {
 };
 
 template <u32 Offset>
-static inline void Forget_b65a4(UnkAudioStop_b65a4<Offset>* self, UnkSoundObject_b50* object) {
+static inline void Forget_b65a4(UnkAudioStop_b65a4<Offset>* self, UnkSound* object) {
     if (!object)
         return;
     for (UnkSoundSlot_b65a4* slot = self->lists.slots.data; slot != self->lists.slots.data + self->lists.slots.count;
@@ -76,10 +71,10 @@ static inline void Forget_b65a4(UnkAudioStop_b65a4<Offset>* self, UnkSoundObject
     }
 }
 
-void CAudioComponent_ForgetSoundObject(UnkAudioStop_b65a4<0x48>* self, UnkSoundObject_b50* object) {
+void CAudioComponent_ForgetSoundObject(UnkAudioStop_b65a4<0x48>* self, UnkSound* object) {
     Forget_b65a4(self, object);
 }
 
-void CAudioComponent_MarkSoundObjectStopped_FromBase0x40(UnkAudioStop_b65a4<0x8>* self, UnkSoundObject_b50* object) {
+void CAudioComponent_MarkSoundObjectStopped_FromBase0x40(UnkAudioStop_b65a4<0x8>* self, UnkSound* object) {
     Forget_b65a4(self, object);
 }

@@ -110,9 +110,9 @@ bool fn_7100994570(UnkRoomState_l994570* self, bool unused, bool skip_second, co
 
     const UnkMtx44* mtx = reinterpret_cast<const UnkMtx44*>(&xf);
     UnkShape* shape = reinterpret_cast<UnkShape*>(&capsule);
-    bool free = !fn_7100d5b484(tree, self->movement->collision_mask, shape, mtx, nullptr, 1) &&
+    bool free = !QueryCollisionTreeForTransformedShapeOverlaps(tree, self->movement->collision_mask, shape, mtx, nullptr, 1) &&
                 !fn_710002fb70(self->timer);
     if (!skip_second)
-        free = free && !fn_7100d5b484(tree, 0x100000, shape, mtx, nullptr, 1);
+        free = free && !QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x100000, shape, mtx, nullptr, 1);
     return free;
 }

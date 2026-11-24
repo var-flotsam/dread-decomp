@@ -55,23 +55,18 @@ void fn_7100330c3c(UnkShinespark_b62a2* self, s32 kind) {
     base::reflection::UnkReflTypeIdArg send_mode;
     base::reflection::UnkReflTypeIdArg send_mask;
 start:
-    UnkShinesparkSub_b62a2* sub = self->sub;
-    if (!sub)
-        return;
-    if (sub->state == 2) {
+    if (self->sub && self->sub->state == 2) {
         if (auto* timeline = static_cast<UnkTimelineComponent*>(self->link->actor->field_0x2e8)) {
             fn_7100a2b7b8(timeline, &g_unk_7101648e88);
             fn_7100a2b7b8(timeline, &g_unk_7101648ea8);
             mask.id = UnkAll_SpitSend().value;
             fn_7100a2cb7c(timeline, &g_unk_7101648f30, &mask.id, false, -1.0f);
         }
-        sub = self->sub;
-        if (!sub)
-            return;
     }
-    // The original reads the state again on both paths.
-    asm("" : "+r"(sub));
-    if (static_cast<u32>(sub->state - 3) > 1)
+    // The sub-state is looked at afresh, whatever the first test did.
+    if (!self->sub)
+        return;
+    if (static_cast<u32>(self->sub->state - 3) > 1)
         return;
     UnkShinesparkActor_b62a2* actor = self->link->actor;
     if (actor->field_0x210) {
@@ -79,6 +74,6 @@ start:
         u64 id = reinterpret_cast<UnkIdHolder_b62a2*>(GameManagerIdTable().field_0x1d78.data)->id;
         send_mode.id = 0;
         send_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, id, 0xf4061ff25a2163d6, &send_mode, &g_unk_710164b958, &g_unk_7172769740, &send_mask);
+        CAnimationComponent_SendActionToTrack(target, id, 0xf4061ff25a2163d6, &send_mode, &g_unk_710164b958, &g_unk_7172769740, &send_mask);
     }
 }

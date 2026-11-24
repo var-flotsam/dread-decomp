@@ -31,7 +31,7 @@ struct UnkShockWavePoolResetB48 {
     u32 field_0x270;
     UnkShockWavePoolNodeB48* field_0x278;
     UnkShockWavePoolNodeB48* field_0x280;
-    base::UnkAllocator* field_0x288;
+    base::IAllocator* field_0x288;
     u32 field_0x290;
     u32 pad_0x294;
     u8 field_0x298[0xf];

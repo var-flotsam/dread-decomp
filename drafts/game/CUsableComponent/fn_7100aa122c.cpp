@@ -289,11 +289,11 @@ bool fn_7100aa122c(UnkUsable_laa122c* self, UnkUsableUser_laa122c* user) {
         if (self->machine->state == 2) {
             u8 was = self->field_0x508;
             if (UnkStruct_710117af10* animation = user->animation) {
-                if (fn_710117af10(animation, reinterpret_cast<UnkCls_710117af10**>(&Ids().field_0x15f0), false)) {
+                if (CAnimationComponent_IsPlayingActionNameContaining(animation, reinterpret_cast<UnkCls_710117af10**>(&Ids().field_0x15f0), false)) {
                     self->field_0x508 = false;
                     id = self->vf_0x1c8();
                 } else {
-                    bool use = (was != 0) | fn_710117af10(user->animation,
+                    bool use = (was != 0) | CAnimationComponent_IsPlayingActionNameContaining(user->animation,
                                                           reinterpret_cast<UnkCls_710117af10**>(&Ids().field_0x1df0),
                                                           false);
                     self->field_0x508 = use;

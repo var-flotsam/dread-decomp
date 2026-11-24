@@ -85,7 +85,7 @@ inline const char* Text(const CStrId& id) {
     return text ? text : g_unk_710162e2ed;
 }
 
-void fn_71011ffb8c(UnkList_l1ffb8c* self, UnkListEvent_l1ffb8c* event) {
+void CList_ActivateSelectedItem(UnkList_l1ffb8c* self, UnkListEvent_l1ffb8c* event) {
     fn_71011cf70c(reinterpret_cast<UnkGallery_A5_b75*>(self));
     if (self->count == 0 || event->handled)
         return;
@@ -108,7 +108,7 @@ void fn_71011ffb8c(UnkList_l1ffb8c* self, UnkListEvent_l1ffb8c* event) {
             s32 kind = 0x11;
             UnkGuiEvent ev;
             fn_710120235c(&ev, reinterpret_cast<UnkGuiDisplayObject*>(self), &kind, &bag);
-            fn_7100b1e3fc(self->handlers, reinterpret_cast<UnkGuiEventData_ovb0182*>(&ev));
+            DispatchEventToHandlersForKey(self->handlers, reinterpret_cast<UnkGuiEventData_ovb0182*>(&ev));
             fn_7101202488(&ev);
         }
     }

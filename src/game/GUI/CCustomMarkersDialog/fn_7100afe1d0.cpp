@@ -49,7 +49,7 @@ struct UnkRefPtrArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 static inline void Reserve(UnkRefPtrArray* self, u32 capacity) {

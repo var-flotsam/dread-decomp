@@ -337,13 +337,19 @@ struct UnkVec_710048a194 {
     u32 z;
 };
 
+// The tunables (g_unk_71727bd078) as fn_7100dcdc2c reads them: the count it multiplies by the twelve levels.
+struct UnkRushTunables_7100dcdc2c {
+    u8 pad_0x0[0x34];
+    s32 field_0x34;  // 0x34
+};
+
 void fn_7100dcdc2c(UnkRush_b0195* self) {
     self->flag_0xa45 = true;
     UnkGameManager* manager = g_unk_7101d47310;
     void* effects = &manager->field_0x1040;
     f32 amount;
     if (self->flag_0xbb) {
-        if (self->level == 12 && self->field_0xd0 >= *reinterpret_cast<s32*>(reinterpret_cast<char*>(&g_unk_71727bd078) + 0x34) * 12 - 1)
+        if (self->level == 12 && self->field_0xd0 >= reinterpret_cast<UnkRushTunables_7100dcdc2c*>(&g_unk_71727bd078)->field_0x34 * 12 - 1)
             amount = 1.0f;
         else
             amount = 0.0f;
@@ -404,7 +410,7 @@ struct UnkRushBoard_b0195 {
         };
     };
     u64 field_0x18;
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     union {
         u64 field_0x28;
         bool flag_0x28;

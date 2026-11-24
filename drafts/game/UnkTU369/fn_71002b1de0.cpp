@@ -15,7 +15,7 @@ using UnkRemovalListeners_l2b1de0 = base::UnkDeferredSet<base::UnkDeferredCallba
 extern template void base::refl_DeferredInvoke<UnkClone_fn_71002b1eac, u64>(UnkRemovalListeners_l2b1de0*,
                                                                               const u64*);
 
-UnkOwnedList* fn_71002b1a3c(base::global::CRntVector<UnkOwnedList>* self, u32 index);
+UnkOwnedList* GrowOwnedListArrayAndGetListAt(base::global::CRntVector<UnkOwnedList>* self, u32 index);
 
 struct UnkTrackedObject_l2b1de0 {
     u16 field_0x0;
@@ -35,7 +35,7 @@ void fn_71002b1de0(UnkObjectTracker_l2b1de0* self, UnkTrackedObject_l2b1de0* obj
     u64 arg = reinterpret_cast<u64>(object);
     if (!object)
         return;
-    UnkObjectList_l2b1de0* list = reinterpret_cast<UnkObjectList_l2b1de0*>(fn_71002b1a3c(&self->cells, object->cell));
+    UnkObjectList_l2b1de0* list = reinterpret_cast<UnkObjectList_l2b1de0*>(GrowOwnedListArrayAndGetListAt(&self->cells, object->cell));
     UnkTrackedObject_l2b1de0** values = list->data;
     u32 n = list->count;
     u64 index = 0;

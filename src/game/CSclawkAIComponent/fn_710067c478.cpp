@@ -21,7 +21,7 @@ void fn_710067c478(UnkSclawkAIComponent* self, u32 state) {
     case 0: {
         mode0.id = 1;
         mask0.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, 0x6596032ae6e891b5, 0xf4061ff25a2163d6, &mode0, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(animation, 0x6596032ae6e891b5, 0xf4061ff25a2163d6, &mode0, &g_unk_710164b958,
                       &g_unk_7172769740, &mask0);
         f32 min = self->tunables->wait_min;
         f32 max = self->tunables->wait_max;
@@ -32,7 +32,7 @@ void fn_710067c478(UnkSclawkAIComponent* self, u32 state) {
     case 2: {
         mode2.id = 0;
         mask2.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, 0xd03b8b54ea583cb9, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(animation, 0xd03b8b54ea583cb9, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958,
                       &g_unk_7172769740, &mask2);
         if (self->field_0x146ec)
             self->field_0x146d4 = self->tunables->field_0x514;
@@ -53,7 +53,7 @@ void fn_710067c478(UnkSclawkAIComponent* self, u32 state) {
         }
         mode3.id = 0;
         mask3.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, 0x1cdf12aa84de383c, 0xf4061ff25a2163d6, &mode3, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(animation, 0x1cdf12aa84de383c, 0xf4061ff25a2163d6, &mode3, &g_unk_710164b958,
                       &g_unk_7172769740, &mask3);
         break;
     }

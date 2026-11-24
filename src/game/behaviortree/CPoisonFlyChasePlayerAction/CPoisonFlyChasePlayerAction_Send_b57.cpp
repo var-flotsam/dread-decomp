@@ -26,7 +26,7 @@ struct UnkPoisonFlyChase_b57a4 {
 
 void fn_7100634174(UnkPoisonFlyChase_b57a4* self);
 
-u32 fn_7100633ffc(UnkPoisonFlyChase_b57a4* self) {
+u32 CPoisonFlyChasePlayerAction_SendChase(UnkPoisonFlyChase_b57a4* self) {
     UnkAnimationComponent* target = self->owner->field_0x220;
     UnkSpitSend(target, StringCrc64("chase", 5), 0xf4061ff25a2163d6);
     if (fn_710117b348(target, fn_7100cfd938())) {

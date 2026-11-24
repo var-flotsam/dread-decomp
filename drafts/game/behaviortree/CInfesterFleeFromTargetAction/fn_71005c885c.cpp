@@ -16,7 +16,7 @@ using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
 struct UnkPolyline108_b67a1;
-bool fn_7100118be8(const UnkPolyline108_b67a1* self);
+bool IsPolylineClockwiseXY(const UnkPolyline108_b67a1* self);
 bool fn_710035e53c(const UnkPolyline108_b67a1* self);
 
 struct UnkInfesterActor_l5c885c {
@@ -137,7 +137,7 @@ u32 fn_71005c885c(UnkInfesterFleeFromTargetAction_l5c885c* self, f32 dt) {
 
     const UnkPolyline108_b67a1* path = reinterpret_cast<const UnkPolyline108_b67a1*>(self->ai->path);
     if (fn_710035e53c(path)) {
-        self->field_0x68 = fn_7100118be8(path);
+        self->field_0x68 = IsPolylineClockwiseXY(path);
         if (self->field_0x5e) {
             if (!self->ai->field_0x1220) {
                 self->timer += dt;

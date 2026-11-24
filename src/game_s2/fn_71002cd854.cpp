@@ -42,7 +42,7 @@ struct UnkElement {
 };
 
 // The same growth as CRntVector::Reserve, written out: the original inlines all of it.
-void fn_71002cd854(base::global::CRntVector<UnkElement>* self, u32 capacity) {
+void ReserveListStrIdElementVector(base::global::CRntVector<UnkElement>* self, u32 capacity) {
     if (self->capacity < capacity) {
         UnkElement* fresh = static_cast<UnkElement*>(
             self->allocator->vf_0x40((u64)capacity * sizeof(UnkElement), 8, self->flags));

@@ -45,7 +45,7 @@ struct UnkGuiRef_ovb0131 {
     UnkGuiComposition_ovb0090* composition;  // 0x10
 };
 
-void fn_7100a80930(UnkElevatorCommander_ovb0131* self) {
+void CElevatorCommanderUsableComponent_ShowElevatorCommanderQuestion(UnkElevatorCommander_ovb0131* self) {
     UnkGuiRef_ovb0131* ref = static_cast<UnkGuiRef_ovb0131*>(g_unk_7101d47310->field_0x2258);
     if (!ref)
         return;
@@ -57,7 +57,7 @@ void fn_7100a80930(UnkElevatorCommander_ovb0131* self) {
     CStrId text("#SKYBASE_ELEVATOR_COMMANDER", true);
     UnkElevatorCallback_ovb0131 accept_callback = {self, fn_7100a80e14};
     UnkElevatorCallback_ovb0131 back_callback = {self, fn_7100a80e20};
-    fn_7100b5fde0(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
+    CPopUpComposition_ShowAcceptBackPrompt(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
 }
 

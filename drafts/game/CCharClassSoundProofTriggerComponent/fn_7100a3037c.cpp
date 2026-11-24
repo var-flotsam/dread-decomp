@@ -20,7 +20,7 @@ struct UnkLink_ovb0130;
 struct UnkTargetLink_ovb0130;
 struct UnkWeakTarget;
 bool CSoundProofTriggerComponent_ActorsToIgnoreContains(base::global::CRntVector<UnkLink_ovb0130>* self, UnkLink_ovb0130* link);
-void fn_7100a30a9c(UnkTargetLink_ovb0130* self, UnkWeakTarget* target);
+void CCharClassSoundProofTriggerComponent_ConstructResolvedLinkToTarget(UnkTargetLink_ovb0130* self, UnkWeakTarget* target);
 
 struct UnkAudioComponent_ovb0015;
 void fn_710071f634(UnkAudioComponent_ovb0015* self, const u32* groups, s32 level, f32 time);
@@ -126,7 +126,7 @@ inline const UnkSoundGroupMask_la3037c& UnkAllSoundGroups_la3037c() {
 // A link already resolved to `entity` (fn_7100a30a9c constructs it in place).
 static inline UnkSoundProofLink_la3037c LinkTo(UnkSoundProofEntity_la3037c* entity) {
     UnkSoundProofLink_la3037c link;
-    fn_7100a30a9c(reinterpret_cast<UnkTargetLink_ovb0130*>(&link), reinterpret_cast<UnkWeakTarget*>(entity));
+    CCharClassSoundProofTriggerComponent_ConstructResolvedLinkToTarget(reinterpret_cast<UnkTargetLink_ovb0130*>(&link), reinterpret_cast<UnkWeakTarget*>(entity));
     return link;
 }
 

@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAudioComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkSoundRef.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU32.h"
 #include "game/UnkTU50.h"
@@ -18,13 +19,8 @@ struct UnkAudioSound_ovb0015;
 void CAudioComponent_ReleaseSoundSlotIds(UnkAudioSound_ovb0015* self);
 
 // As src/game/CAudioComponent/CAudioComponent_Stop_b65a4.cpp has them.
-struct UnkSoundRef {
-    UnkSoundObject_b50* object;
-    s64 serial;
-};
-
 // The object a handle names while it is still the one the handle was made for.
-static inline UnkSoundObject_b50* Resolve_l718dec(const UnkSoundHandle* handle) {
+static inline UnkSound* Resolve_l718dec(const UnkSoundHandle* handle) {
     if (handle->ref && handle->ref->serial == handle->serial && handle->serial != -1)
         return handle->ref->object;
     return nullptr;
@@ -76,7 +72,7 @@ struct UnkAudioVector_l718dec {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkAudioPairList_l718dec {
@@ -86,7 +82,7 @@ struct UnkAudioPairList_l718dec {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkAudioComponent_l718dec {
@@ -106,9 +102,9 @@ void fn_7100718dec(UnkAudioComponent_l718dec* self) {
 
     UnkAudioSlot_l718dec* end = self->sounds.data + self->sounds.count;
     for (UnkAudioSlot_l718dec* s = self->sounds.data; s != end; ++s) {
-        if (UnkSoundObject_b50* sound = Resolve_l718dec(&s->sound))
+        if (UnkSound* sound = Resolve_l718dec(&s->sound))
             fn_7100106024(sound, nullptr);
-        if (UnkSoundObject_b50* rumble = Resolve_l718dec(&s->rumble))
+        if (UnkSound* rumble = Resolve_l718dec(&s->rumble))
             fn_7100072030(rumble, nullptr);
     }
 

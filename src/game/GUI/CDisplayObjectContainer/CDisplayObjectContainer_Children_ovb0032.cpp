@@ -104,7 +104,7 @@ static inline __attribute__((always_inline)) void Remove_ovb0032(UnkChildList_ov
 }
 
 // Takes `child` out of the list; returns it.
-UnkDisplayObject_ovb0032* fn_71011d932c(UnkDisplayObjectContainer_ovb0032* self, UnkDisplayObject_ovb0032* child) {
+UnkDisplayObject_ovb0032* CDisplayObjectContainer_RemoveChild(UnkDisplayObjectContainer_ovb0032* self, UnkDisplayObject_ovb0032* child) {
     Remove_ovb0032(self->children, reinterpret_cast<u64>(child));
     return child;
 }
@@ -175,7 +175,7 @@ struct UnkGuiNamedObject_ovb0032 {
 
 // Creates a display object of class `arg` (GUI::CDisplayObject or derived; null otherwise), runs its
 // virtual at +0x30, names it "Child_<index>" and adds it last to the container.
-void* fn_71011d9780(char* self, u32 index, void* arg) {
+void* CDisplayObjectContainer_CreateIndexedChildOfClass(char* self, u32 index, void* arg) {
     const CClass* cls = static_cast<const CClass*>(arg);
     void* mem = nullptr;
     if (fn_710009d50c(cls, fn_71011c3868()) && cls->m_construct) {

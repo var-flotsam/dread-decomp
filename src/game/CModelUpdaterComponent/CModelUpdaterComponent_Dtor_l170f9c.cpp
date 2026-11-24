@@ -77,7 +77,7 @@ struct UnkModelEventList_l170f9c {
     u32 count;  // 0x8
     UnkModelEventNode_l170f9c* head;  // 0x10
     UnkModelEventNode_l170f9c* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u32 flags;  // 0x28
 
     ~UnkModelEventList_l170f9c() {

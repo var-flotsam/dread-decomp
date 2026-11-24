@@ -123,7 +123,7 @@ void fn_7100a8ebe8(UnkTeleporterShow_la8ebe8* self, bool show) {
             u64 hash = PartHash_la8ebe8(0x1b40);
             mode.id = 0;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+            CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
         }
     }
     fn_7100aa2570(reinterpret_cast<UnkUsableDialog_A6_b62*>(self), show);

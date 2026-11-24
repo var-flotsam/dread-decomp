@@ -41,7 +41,7 @@ struct UnkLabelLayout;
 
 struct UnkSprite_spr;
 struct UnkLabelFontView_b52;
-s32 fn_71011eedd0(UnkLabelFontView_b52* self);
+s32 CLabel_GetVisibleLineCount(UnkLabelFontView_b52* self);
 
 // The language singleton (src/game/UnkLanguage.cpp) and its current language.
 struct UnkLanguage;
@@ -98,7 +98,7 @@ struct UnkLabelInit_b0035 {
 };
 static_assert(__builtin_offsetof(UnkLabelInit_b0035, v_align) == 0x328, "UnkLabelInit_b0035 layout");
 
-void fn_71011ec1f4(UnkLabelInit_b0035* self) {
+void CLabel_SetDefaults(UnkLabelInit_b0035* self) {
     fn_71011cd4b4(self);
     self->field_0x185 = true;
     fn_7100066af0(reinterpret_cast<UnkLayoutText*>(self->text), U"");
@@ -156,7 +156,7 @@ struct UnkLabelDtor_b0035 {
     u8 pad_0x2cc[4];
     UnkLabelDtorLineNode_b0035* lines;  // 0x2d0
     UnkLabelDtorLineNode_b0035* lines_tail;
-    base::UnkAllocator* allocator;  // 0x2e0
+    base::IAllocator* allocator;  // 0x2e0
 };
 static_assert(__builtin_offsetof(UnkLabelDtor_b0035, allocator) == 0x2e0, "UnkLabelDtor_b0035 layout");
 
@@ -218,7 +218,7 @@ struct UnkLabelRun_b0035 {
 static_assert(__builtin_offsetof(UnkLabelRun_b0035, object) == 0x68, "UnkLabelRun_b0035 layout");
 
 // The run's destructor: gives its text object and its glyphs' objects back to the GUI root.
-void fn_71011ef420(UnkLabelRun_b0035* self) {
+void CLabel_DestroyRun(UnkLabelRun_b0035* self) {
     if (self->object)
         fn_71011baba0(g_unk_717271e8f8, self->object, self->frame);
     self->glyphs.Free();
@@ -236,7 +236,7 @@ template <class T>
 struct UnkLabelList_b0035 {
     UnkLabelNode_b0035<T>* head;
     UnkLabelNode_b0035<T>* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void FreeNodes() {
         for (UnkLabelNode_b0035<T>* n = head; n;) {
@@ -255,7 +255,7 @@ struct UnkLabelGroup_b0035 {
     ~UnkLabelGroup_b0035() {
         for (UnkLabelNode_b0035<UnkLabelRun_b0035>* n = runs.head; n; n = n->next) {
             if (UnkLabelRun_b0035* run = n->data) {
-                fn_71011ef420(run);
+                CLabel_DestroyRun(run);
                 fn_7100083c00(run);
                 n->data = nullptr;
             }
@@ -329,7 +329,7 @@ s32 fn_71011ef398(UnkLabelLines_b0035* self) {
     if (index < 0)
         return 0;
     s32 value = LineAt(self, index)->field_0x10;
-    s32 rest = value - fn_71011eedd0(reinterpret_cast<UnkLabelFontView_b52*>(self));
+    s32 rest = value - CLabel_GetVisibleLineCount(reinterpret_cast<UnkLabelFontView_b52*>(self));
     return rest > 0 ? rest : 0;
 }
 
@@ -449,7 +449,7 @@ static inline UnkGuiObjectState* State(T* self) {
 template <class T>
 static inline void* Font(T* self) {
     if (!self->font && State(self)->frame != 0x7fffffff && self->font_path.data != &g_unk_7101d47108->empty) {
-        auto lookup = reinterpret_cast<void* (*)(UnkGuiRoot*, const base::UnkStrIdMember*)>(fn_71011b882c);
+        auto lookup = reinterpret_cast<void* (*)(UnkGuiRoot*, const base::UnkStrIdMember*)>(CGUIManager_GetOrLoadCachedByPath);
         self->font = lookup(g_unk_717271e8f8, &self->font_path);
     }
     return self->font;
@@ -465,7 +465,7 @@ static inline void Relayout(T* self) {
 }
 
 // The label's line height in its frame's units: 0 without a font.
-f32 fn_71011ef738(UnkLabelFontView_b0035* self) {
+f32 CLabel_GetLineHeight(UnkLabelFontView_b0035* self) {
     void* font = Font(self);
     if (!font)
         return 0.0f;
@@ -528,7 +528,7 @@ void fn_71011ef164(UnkLabelUpdate_b0035* self) {
     s32 language = fn_710119c9f4(Language_b0035());
     if (self->language != language) {
         self->language = language;
-        auto lookup = reinterpret_cast<void* (*)(UnkGuiRoot*, const base::UnkStrIdMember*)>(fn_71011b882c);
+        auto lookup = reinterpret_cast<void* (*)(UnkGuiRoot*, const base::UnkStrIdMember*)>(CGUIManager_GetOrLoadCachedByPath);
         self->font = lookup(g_unk_717271e8f8, &self->font_path);
         fn_71011ec468(object, self->source_text, true);
     }

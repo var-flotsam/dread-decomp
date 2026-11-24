@@ -119,7 +119,7 @@ u32 fn_71001ab35c(void* data);
 u32 fn_71001ab37c(void* data);
 u16 fn_71001ab39c(void* data);
 s32 fn_71001ab44c(void* data);
-void fn_71001ab3dc(void* data, u32 frame, u16* a, u16* b, u16* c, u16* d, s16* e, s16* f, u16* g);
+void ReadSevenU16RecordFieldsAtIndex(void* data, u32 frame, u16* a, u16* b, u16* c, u16* d, s16* e, s16* f, u16* g);
 
 // The arrays' element accessors (growing the array past its end).
 UnkFramePair* fn_710019cf9c(UnkFrameVector<UnkFramePair>* v, u32 i);
@@ -168,7 +168,7 @@ void fn_71001bcdf0(UnkFrameSource* self, UnkFrameResource* resource) {
         s16 e = 0;
         s16 f = 0;
         u16 g = 0;
-        fn_71001ab3dc(self->field_0x80, i, &a, &b, &c, &d, &e, &f, &g);
+        ReadSevenU16RecordFieldsAtIndex(self->field_0x80, i, &a, &b, &c, &d, &e, &f, &g);
         if (i == 0) {
             self->field_0x9e = f;
             self->field_0x9c = d;

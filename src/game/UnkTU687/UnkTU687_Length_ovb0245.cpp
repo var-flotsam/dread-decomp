@@ -7,17 +7,13 @@
 
 #include "game/CAnimationComponent.h"
 #include "game/UnkMotionRule.h"
+#include "game/UnkStruct_71007142e8.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTimeline.h"
 #include "types.h"
 
 struct UnkStruct_7101176ea8;
-
-struct UnkStruct_71007142e8 {
-    f32 m[12];
-    u8 pad_0x30[0x40];
-};
 
 struct UnkMotionTracks;
 
@@ -46,8 +42,8 @@ void fn_710046a228(UnkUppercutLength_ovb0245* self) {
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
-    f32 x = motion.m[3];
-    f32 y = motion.m[7];
-    f32 z = motion.m[11];
+    f32 x = motion.xform.m[0][3];
+    f32 y = motion.xform.m[1][3];
+    f32 z = motion.xform.m[2][3];
     self->length = sqrtf(x * x + y * y + z * z);
 }

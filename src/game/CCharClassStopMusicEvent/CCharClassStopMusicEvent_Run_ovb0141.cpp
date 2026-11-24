@@ -4,6 +4,7 @@
 // at +0x10 unless it is the empty one. The full mask is game/UnkMask.h's. Names and
 // layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkMask.h"
@@ -29,13 +30,13 @@ struct UnkPathString_b0141 {
 
 struct UnkStopMusicEvent_b0141 {
     u8 pad_0x0[0x10];
-    base::global::UnkStringData* path;  // 0x10 (a file path id)
+    base::global::CFilePathStrId path;  // 0x10 (a file path id)
     f32 time;                           // 0x18
     bool bClearStack;
 };
 
-void fn_7100ce4510(UnkStopMusicEvent_b0141* self) {
-    base::global::UnkStringData* path = self->path;
+void CCharClassStopMusicEvent_StopMusicWithFadeOut(UnkStopMusicEvent_b0141* self) {
+    base::global::UnkStringData* path = self->path.data;
     base::global::UnkStringData* empty = &g_unk_7101d47200->empty;
     void* manager = MusicManager();
     if (path == empty) {
@@ -44,12 +45,12 @@ void fn_7100ce4510(UnkStopMusicEvent_b0141* self) {
         fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(manager), kind, UnkMaskOf<UnkMusicMaskTag>::All(), time);
         return;
     }
-    char* data = reinterpret_cast<char*>(self->path);
+    char* data = reinterpret_cast<char*>(self->path.data);
     u32 uses;
     __builtin_memcpy(&uses, data + 0x44, 4);
     ++uses;
     __builtin_memcpy(data + 0x44, &uses, 4);
-    const base::global::CRntString* name = &reinterpret_cast<UnkPathString_b0141*>(self->path)->name;
+    const base::global::CRntString* name = &reinterpret_cast<UnkPathString_b0141*>(self->path.data)->name;
     UnkMask kind(self->bClearStack ? 4 : 2);
     f32 time = self->time;
     fn_7100fd82dc(static_cast<UnkMusicMgr_b0019*>(manager), name, kind,

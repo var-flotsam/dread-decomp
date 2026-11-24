@@ -68,7 +68,7 @@ void CChozoCommanderLandingSlamAttack_EnterStage1(UnkLandingSlam_b58* self) {
     void* target = self->owner->field_0x220;
     value.id = 0;
     arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-    fn_7101176690(target, 0xc0e10244d20037b9, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0xc0e10244d20037b9, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740,
                   &arg);
     self->stage = 1;
 }

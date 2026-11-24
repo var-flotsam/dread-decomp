@@ -62,7 +62,7 @@ struct UnkPathState_l0fab58 {
             keys[i].~UnkPathKey_l0fab58();
         key_count = 0;
         field_0x98 = 0;
-        fn_7100119f98(reinterpret_cast<UnkTileOutline*>(this), false);
+        SetPolylineClosed(reinterpret_cast<UnkTileOutline*>(this), false);
     }
 };
 static_assert(__builtin_offsetof(UnkPathState_l0fab58, field_0x98) == 0x98, "layout");

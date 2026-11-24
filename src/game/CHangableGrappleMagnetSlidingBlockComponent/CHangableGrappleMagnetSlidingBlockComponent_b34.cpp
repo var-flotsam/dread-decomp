@@ -17,7 +17,7 @@ struct CHangableGrappleMagnetSlidingBlockComponent {
 };
 
 // Sets the block's movement speed: 1 when `full`, else the configured speed.
-void fn_7100824528(CHangableGrappleMagnetSlidingBlockComponent* self, bool full) {
+void CHangableGrappleMagnetSlidingBlockComponent_SetMagnetIntensityByGrappleAllowed(CHangableGrappleMagnetSlidingBlockComponent* self, bool full) {
     UnkSlidingBlockMovement* movement = fn_710054a2cc(self->entity);
     if (!full)
         fn_710092103c(movement, self->params->speed);

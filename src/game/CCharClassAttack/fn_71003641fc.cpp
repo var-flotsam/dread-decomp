@@ -17,7 +17,7 @@ struct UnkStruct_71003641fc {
     u32 field_0x18;
     bool field_0x1c;
     u32 field_0x20;
-    base::UnkAllocator* field_0x28;
+    base::IAllocator* field_0x28;
     CStrId sAttackAnim;
     CStrId field_0x38;
     f32 field_0x40;

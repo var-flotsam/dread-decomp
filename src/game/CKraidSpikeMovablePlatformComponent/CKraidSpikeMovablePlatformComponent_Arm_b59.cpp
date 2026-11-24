@@ -27,7 +27,7 @@ struct UnkSpikePlatformArm_b59a4 {
     bool field_0x268;
 };
 
-void fn_7100608674(UnkSpikePlatformArm_b59a4* self) {
+void CKraidSpikeMovablePlatformComponent_OnStickedWallTimeElapsed(UnkSpikePlatformArm_b59a4* self) {
     if (self->field_0x268)
         return;
     self->field_0x268 = true;

@@ -32,7 +32,7 @@ UnkTunableLine fn_710013ab54(UnkTunableFieldHandle* field, const UnkReflTypedPtr
 struct UnkReflFieldInfo;
 struct UnkFieldOwner;
 // The member object a field of `owner` holds.
-UnkReflTypedPtr fn_71000e755c(const UnkReflFieldInfo* field, UnkFieldOwner* owner);
+UnkReflTypedPtr GetReflectedFieldTypedPtr(const UnkReflFieldInfo* field, UnkFieldOwner* owner);
 
 extern const char g_unk_71015abdba[] __attribute__((visibility("hidden")));  // the line end
 
@@ -92,7 +92,7 @@ static inline UnkTunableObject* FindTunable(UnkTunableRegistry* self, const UnkT
                                             const char* middle, const UnkTunableLine& name, bool qualified) {
     CRntString a = CRntString_ConcatCString(prefix.Str(), middle);
     CRntString b = CRntString_Concat(&a, name.Str());
-    return fn_710013c5cc(self, b.data, qualified);
+    return FindTunableObjectByName(self, b.data, qualified);
 }
 
 bool fn_710013caac(UnkTunableRegistry* self, const UnkStrPair_0x10* path) {
@@ -162,7 +162,7 @@ bool fn_710013caac(UnkTunableRegistry* self, const UnkStrPair_0x10* path) {
                             if (!field || field == cls->End())
                                 break;
                             UnkReflTypedPtr outer = Typed(type, object);
-                            obj = fn_71000e755c(reinterpret_cast<const UnkReflFieldInfo*>(field),
+                            obj = GetReflectedFieldTypedPtr(reinterpret_cast<const UnkReflFieldInfo*>(field),
                                                 reinterpret_cast<UnkFieldOwner*>(&outer));
                             type = obj.type;
                             object = obj.ptr;

@@ -42,7 +42,7 @@ void fn_710085a2f4(UnkSamusGun_b58* self, bool secondary) {
         mode.id = 0x80;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash, 0x5d523009b8f43e5f, &mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(target, hash, 0x5d523009b8f43e5f, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask);
         u64 key = secondary ? base::global::CName("onsecondaryweaponselected").hash
                             : base::global::CName("onprimaryweaponselected").hash;

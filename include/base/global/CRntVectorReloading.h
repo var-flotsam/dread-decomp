@@ -31,7 +31,7 @@ struct CRntVectorReloading {
     u32 step;  // capacity grows to the next multiple of this
     bool field_0x14;
     u32 flags;  // passed to the allocator
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     T* begin() { return data; }
     T* end() { return data + count; }

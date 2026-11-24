@@ -16,5 +16,5 @@ extern UnkValue g_unk_7172756968;
 extern UnkValue g_unk_7172756978;
 extern UnkValue g_unk_7172756988;
 extern UnkTUHeader g_unk_7172756998 __attribute__((visibility("hidden")));
-base::global::CRntString fn_7100ad3614(void* source);
+base::global::CRntString JoinValueListIntoSeparatedString(void* source);
 extern UnkConverter g_unk_7172756948;

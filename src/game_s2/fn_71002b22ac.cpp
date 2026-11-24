@@ -17,7 +17,7 @@ struct UnkEntry_2b22ac {
     u8 field_0x18[1];
 };
 
-void fn_71002b2330(void* table, u32 count, u32 size);
+void ConstructHashTableWithPrimeBucketCount(void* table, u32 count, u32 size);
 
 // NON_MATCHING(minor): the scale select is made with the opposite condition and operand order (fcsel ls
 // instead of hi)
@@ -26,7 +26,7 @@ void fn_71002b22ac(UnkEntry_2b22ac* self, const CStrId* name, f32 value, f32 sca
     self->field_0x8 = value;
     self->field_0xc = 1.0f;
     self->field_0x10 = 1.0f;
-    fn_71002b2330(self->field_0x18, 0x800, 4);
+    ConstructHashTableWithPrimeBucketCount(self->field_0x18, 0x800, 4);
     f32 s = !(scale <= 0.0f) ? scale : 1.0f;
     self->field_0xc = s;
     self->field_0x10 = 1.0f / s;

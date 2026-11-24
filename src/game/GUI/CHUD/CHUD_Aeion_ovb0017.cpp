@@ -100,7 +100,7 @@ static inline UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {
 }
 
 // The map border alert: chasing or searching.
-bool fn_71011e7e8c(UnkHud_ovb0017* self, u32 chase) {
+bool CHUD_SendMapBorderAlertEvent(UnkHud_ovb0017* self, u32 chase) {
     if (UnkHudHandle_ovb0017* handle = self->field_0x2c8) {
         if (UnkHudItem_ovb0017* item = handle->target) {
             if (chase)
@@ -113,7 +113,7 @@ bool fn_71011e7e8c(UnkHud_ovb0017* self, u32 chase) {
 }
 
 // The Aeion gauge recharges while the energy is not full.
-void fn_71011e4a28(UnkHud_ovb0017* self) {
+void CHUD_SendAeionRechargeIfNotFull(UnkHud_ovb0017* self) {
     if (!self->aeion || !self->aeion->target)
         return;
     UnkPlayerComponents_ovb0017* components = PlayerComponents();
@@ -138,7 +138,7 @@ void fn_71011df1b0();
 
 // A change to one of the Aeion ids resets the gauge; a change to ITEM_OPTIC_CAMOUFLAGE also stops
 // the energy's recovery. Returns whether it was that.
-u32 fn_71011e463c(UnkHud_ovb0017* self, UnkHudEvent_ovb0017 event) {
+u32 CHUD_ResetAeionGaugeOnItemChange(UnkHud_ovb0017* self, UnkHudEvent_ovb0017 event) {
     if (!event.field_0xc)
         return false;
     fn_71011df1b0();
@@ -164,7 +164,7 @@ u32 fn_71011e463c(UnkHud_ovb0017* self, UnkHudEvent_ovb0017 event) {
 }
 
 // The bound callback for fn_71011e463c (the event is copied for it).
-u32 fn_71011e7d60(UnkHud_ovb0017* self, const UnkHudEvent_ovb0017* event) { return fn_71011e463c(self, *event); }
+u32 CHUD_ForwardChangeToAeionGaugeReset(UnkHud_ovb0017* self, const UnkHudEvent_ovb0017* event) { return CHUD_ResetAeionGaugeOnItemChange(self, *event); }
 
 struct UnkPopUpComposition_ovb0017 {
     u8 unk_0x0[0x2e4];
@@ -222,7 +222,7 @@ void fn_71011e7ac8(UnkHudIdValueVector_ovb0017* self, u32 capacity);
 
 // The array built from a list: reserved for the list, then each element appended (a copy of a copy).
 void fn_71011df420(UnkHudIdValueVector_ovb0017* self, std::initializer_list<UnkHudIdValue_ovb0017> items,
-                   u32 step, base::UnkAllocator* allocator, u32 flags) {
+                   u32 step, base::IAllocator* allocator, u32 flags) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;
@@ -280,7 +280,7 @@ using UnkHudOwnedVector_ovb0017 = base::global::CRntVector<UnkHudOwnedRef_ovb001
 void fn_71011e755c(UnkHudOwnedVector_ovb0017* self, UnkHudOwnedRef_ovb0017* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
-        fn_71011e7700(reinterpret_cast<base::global::CRntVector<UnkHudOwnedPtr>*>(self),
+        CHUD_EmplaceBackOwnedPtr(reinterpret_cast<base::global::CRntVector<UnkHudOwnedPtr>*>(self),
                       reinterpret_cast<UnkHudOwnedPtr*>(value));
         return;
     }

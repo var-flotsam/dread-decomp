@@ -35,7 +35,7 @@ static inline void Send_l582680(void* animation, const void* desc, base::reflect
     u64 hash = RequestHash_l582680();
     mode->id = 2;
     mask->id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, hash, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b958, desc, mask);
+    CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b958, desc, mask);
 }
 
 void fn_7100582680(UnkGobblerAI_l582680* self, UnkActor* other) {

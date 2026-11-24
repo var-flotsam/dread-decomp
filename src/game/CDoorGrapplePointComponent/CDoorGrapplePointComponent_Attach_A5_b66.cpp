@@ -28,7 +28,7 @@ struct UnkDoorGrapplePoint_A5_b66 {
 void fn_71008298e4(UnkDoorGrapplePoint_A5_b66* self, void* arg, bool grabbed) {
     fn_710082ccec(self, arg, grabbed);
     if (grabbed) {
-        fn_71008d0ef4(fn_71002af860(self->weak_owner));
+        OpenDoorUnlessOpen(fn_71002af860(self->weak_owner));
         fn_7100d7c828(self->owner, &g_unk_710164ac38, false);
         UnkGameManager* gm = g_unk_7101d47310;
         UnkVec vec;

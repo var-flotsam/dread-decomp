@@ -18,12 +18,12 @@ struct UnkStatsObject {
     u32 pool_field_0x50;
     UnkPoolMapBlock* pool_blocks;
     void* pool_field_0x60;
-    base::UnkAllocator* pool_allocator;
+    base::IAllocator* pool_allocator;
     u32 pool_field_0x70;
     u8 pad_0x74[4];
 };
 
-void fn_710013208c(UnkStatsObject* self, u32 n, base::UnkAllocator* allocator, u32 elem);
+void fn_710013208c(UnkStatsObject* self, u32 n, base::IAllocator* allocator, u32 elem);
 
 void fn_7100131f48(UnkStatsObject* self) {
     fn_710013208c(self, 0x12c, nullptr, 0x18);

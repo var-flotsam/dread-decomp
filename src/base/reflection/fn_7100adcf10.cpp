@@ -92,7 +92,7 @@ void fn_7100aef910() {
     InitClass(&g_unk_717275b580, "CGameBBPropID", fn_7100ae96e8, fn_7100ae963c);
     fn_710009ec00(&g_unk_717275b6b8, &g_unk_717275b580);
     InitConverterTo(g_unk_717275b6c0, &g_unk_717275b580, refl_TypeOf<fn_7100009658>, fn_7100aebf80);
-    InitConverterFrom(g_unk_717275b6e0, &g_unk_717275b580, refl_TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_7100aec000));
+    InitConverterFrom(g_unk_717275b6e0, &g_unk_717275b580, refl_TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&CGameBlackboard_AssignPropIDFromStrId));
     fn_7100ae9e7c();
     fn_710009ec00(&g_unk_717275b700, &g_unk_717275bf60);
     fn_710009ec00(&g_unk_717275b701, fn_7100aea26c());

@@ -10,7 +10,7 @@ struct UnkArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) UnkArray() : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf) {
         allocator = GetDefaultAllocator();

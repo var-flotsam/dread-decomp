@@ -25,7 +25,7 @@ struct UnkListScreen {
     UnkNodeList_b75394 field_0x238;
 };
 
-void fn_7100b75394(UnkListScreen* self) {
+void CScrollMenuEntryItemRenderer_DestroyAndDelete(UnkListScreen* self) {
     self->vtable = g_unk_7101a9ebd8 + 2;
     self->field_0x238.~UnkNodeList_b75394();
     fn_71011d8e90(reinterpret_cast<UnkGuiDisplayObject*>(self));

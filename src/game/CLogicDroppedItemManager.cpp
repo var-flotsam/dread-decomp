@@ -164,7 +164,7 @@ bool fn_7100e2d93c(void* self, const base::math::CVector2D* a, const base::math:
         UnkTree* tree = static_cast<UnkTree*>(g_unk_7101d47310->field_0x608->field_0x820);
         UnkMatrix44 identity;
         SetIdentity(&identity);
-        fn_7100d5b484(tree, 1, reinterpret_cast<UnkShape*>(&shape), reinterpret_cast<const UnkMtx44*>(&identity),
+        QueryCollisionTreeForTransformedShapeOverlaps(tree, 1, reinterpret_cast<UnkShape*>(&shape), reinterpret_cast<const UnkMtx44*>(&identity),
                       &hits, 0);
         result = (hits.count & 1) != 0;
     }
@@ -193,7 +193,7 @@ bool fn_71007bae10(void* self, const base::math::CVector2D* a, const base::math:
         UnkTree* tree = static_cast<UnkTree*>(g_unk_7101d47310->field_0x608->field_0x820);
         UnkMatrix44 identity;
         SetIdentity(&identity);
-        fn_7100d5b484(tree, 1, reinterpret_cast<UnkShape*>(&shape), reinterpret_cast<const UnkMtx44*>(&identity),
+        QueryCollisionTreeForTransformedShapeOverlaps(tree, 1, reinterpret_cast<UnkShape*>(&shape), reinterpret_cast<const UnkMtx44*>(&identity),
                       &hits, 0);
         result = (hits.count & 1) != 0;
     }

@@ -103,7 +103,7 @@ void fn_71003e79c8(UnkBigFistAI_l3e79c8* self, f32 dt) {
             if (Dot(forward, target->Pos() - self->owner->Pos()) >= 0.0f) {
                 static CStrId s_anim("patrol_to_combat", true);
                 if (fn_7101178e6c(self->owner->animation, 11) && self->owner->animation &&
-                    !fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(self->owner->animation),
+                    !CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(self->owner->animation),
                                    reinterpret_cast<UnkCls_710117af10**>(&s_anim), false) &&
                     self->owner->movement && !fn_71010cab0c(self->owner->movement) &&
                     fabsf(self->owner->X() - target->X()) >= 450.0f)

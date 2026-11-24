@@ -30,7 +30,7 @@ struct UnkEmmyList_b0275 {
     u32 pad_0xc;
     UnkEmmyNode_b0275* head;
     UnkEmmyNode_b0275* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 tag;
 };
 

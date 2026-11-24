@@ -26,7 +26,7 @@ struct UnkMusicSlot_0x38 {
     void* head;
     void* tail;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     void* field_0x30;
 
     // The node list's constructor (the vtable is set twice, base first, as the list's base class does).
@@ -36,7 +36,7 @@ struct UnkMusicSlot_0x38 {
         head = nullptr;
         tail = nullptr;
         flags = 0x10;
-        base::UnkAllocator* a = GetDefaultAllocator();
+        base::IAllocator* a = GetDefaultAllocator();
         vtable = g_unk_7101cac250 + 0x10;
         allocator = a;
         field_0x30 = nullptr;
@@ -109,4 +109,4 @@ void fn_7100fde040(base::global::CRntVector<UnkMusicSlot_0x38>* v, u32 n);
 // The channel constructor (also the base of the bank at +0x2b8): the kind is its index.
 void fn_7100fe1028(UnkMusicChannel_0x30* p, u32 kind);
 // The bank's constructor (src/game_7100ece7fc/fn_7100fcfcdc.cpp), the kind passed on to its channel base.
-void fn_7100fcfcdc(UnkMusicBank_0xb78* bank, u32 kind);
+void ConstructMusicChannelWithEightEntries(UnkMusicBank_0xb78* bank, u32 kind);

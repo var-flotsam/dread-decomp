@@ -50,7 +50,7 @@ void fn_71000ff25c(void* player, UnkSoundHandle_b46a1 handle, s32 level, f32 tim
         UnkInterp_7100105f94* voice = *it;
         s32 channel = ChannelOf(voice);
         if (*bits & (1u << channel))
-            fn_7100105f94(voice, level, time);
+            SetSoundLevelOverTime(voice, level, time);
     }
     it = self->voices_b.data;
     end = it + self->voices_b.count;
@@ -58,7 +58,7 @@ void fn_71000ff25c(void* player, UnkSoundHandle_b46a1 handle, s32 level, f32 tim
         UnkInterp_7100105f94* voice = *it;
         s32 channel = ChannelOf(voice);
         if (*bits & (1u << channel))
-            fn_7100105f94(voice, level, time);
+            SetSoundLevelOverTime(voice, level, time);
     }
     fn_7100066920(mutex);
 }

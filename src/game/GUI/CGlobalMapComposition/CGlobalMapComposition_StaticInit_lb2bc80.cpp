@@ -56,7 +56,7 @@ extern UnkConversion g_unk_7172762ce0;
 void fn_7100b2b1c8() __attribute__((visibility("hidden")));
 void fn_7100b2b1d4() __attribute__((visibility("hidden")));
 
-void fn_7100b2bc80() {
+void CGlobalMapComposition_InitStatics() {
     InitHeaderIds(&g_unk_7172762d04.ids);
     g_unk_7172762d04.field_0x14c = -1.0f;
     g_unk_7172762d04.field_0x150 = -1.0f;
@@ -67,7 +67,7 @@ void fn_7100b2bc80() {
     param->field_0x4 = -4.0f;
     param->field_0x8 = 3.0f;
     auto* str = reinterpret_cast<base::global::CRntString*>(param->field_0x10);
-    CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&param->field_0x40));
+    CRntString_InitWithAllocator(str, reinterpret_cast<base::IAllocator*>(&param->field_0x40));
     param->field_0x40 = g_unk_7101a1b5a0 + 2;
     param->field_0x68 = 0;
     param->field_0x70 = 0;

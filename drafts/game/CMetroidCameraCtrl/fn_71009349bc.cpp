@@ -328,7 +328,7 @@ void fn_71009349bc(UnkMetroidCameraCtrl_l9349bc* self) {
                         if (IsKindOf_l9349bc<fn_7100713bb0>(animation))
                             state = reinterpret_cast<UnkSamusAnimation_l9349bc*>(animation)->state;
                         if (grab && grabD &&
-                            !fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(animation),
+                            !CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(animation),
                                            reinterpret_cast<UnkCls_710117af10**>(
                                                const_cast<CStrId*>(&GrabTrackId_l9349bc())),
                                            false))
@@ -486,7 +486,7 @@ void fn_71009349bc(UnkMetroidCameraCtrl_l9349bc* self) {
     f32 dz = a.z - b.z;
     f32 distance = sqrtf(dx * dx + dy * dy + dz * dz);
     f32 value;
-    if (fn_7100df5740(g_unk_7101d47310)) {
+    if (IsOpticCamouflageAbilityInState6(g_unk_7101d47310)) {
         UnkCameraTunables_l9349bc& tune = g_unk_7172738c28;
         f32 t = Clamp_l9349bc((distance - tune.emmyNearDistance) / (tune.emmyFarDistance - tune.emmyNearDistance),
                               0.0f, 1.0f);

@@ -62,7 +62,7 @@ CStrId fn_71008d2670(UnkDoorCentral_A4_b76* self);
 void fn_71008d1604(UnkDoorCentral_A4_b76* self);
 
 void CDoorCentralUnitLifeComponent_SetStayOpened(UnkDoorCentral_A4_b76* self) {
-    fn_71008d0ef4(self);
+    OpenDoorUnlessOpen(self);
     {
         UnkGameManager* manager = g_unk_7101d47310;
         CBlackboard* blackboard = &manager->field_0x968;

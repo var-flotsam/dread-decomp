@@ -44,6 +44,11 @@ static inline __attribute__((always_inline)) void Release_b66a4p(UnkRefCounted_b
         p->vf_0x10();
 }
 
+struct UnkTunablePoisonFly_b66a4 {
+    u8 pad_0x0[0x4c];
+    u32 field_0x4c;  // 0x4c
+};
+
 bool CPoisonFlyAIComponent_ReleaseNodesAndReloadTunable(UnkPoisonFlyReset_b66a4* self) {
     for (UnkRefNode_b66a4p* n = self->head; n;) {
         UnkRefNode_b66a4p* cur = n;
@@ -59,6 +64,6 @@ bool CPoisonFlyAIComponent_ReleaseNodesAndReloadTunable(UnkPoisonFlyReset_b66a4*
         Release_b66a4p(self->ref);
         self->ref = nullptr;
     }
-    self->field_0xb4 = *reinterpret_cast<const u32*>(reinterpret_cast<const char*>(&g_unk_71726fa0f8) + 0x4c);
+    self->field_0xb4 = reinterpret_cast<const UnkTunablePoisonFly_b66a4*>(&g_unk_71726fa0f8)->field_0x4c;
     return true;
 }

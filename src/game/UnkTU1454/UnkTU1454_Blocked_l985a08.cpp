@@ -98,7 +98,7 @@ struct UnkHitVisitor_l985a08 : UnkHitList_l985a08 {
 static_assert(sizeof(UnkHitRecord_l985a08) == 0x48, "record");
 static_assert(__builtin_offsetof(UnkHitVisitor_l985a08, dirs) == 0x48c, "visitor");
 
-bool fn_7100985a08(UnkNpc_b0248* self, UnkTarget_b0248* target) {
+bool IsCircleAtTargetPositionFreeOfCollision(UnkNpc_b0248* self, UnkTarget_b0248* target) {
     UnkVec3f pos = target->vf_0x188();
     f32 radius = GrappleTunable().field_0x2c + 50.0f;
     UnkGameManagerSub_0x608* sub = g_unk_7101d47310->field_0x608;
@@ -106,7 +106,7 @@ bool fn_7100985a08(UnkNpc_b0248* self, UnkTarget_b0248* target) {
     UnkCircleShape_l985a08 shape(UnkCircle_l985a08{0.0f, 0.0f, radius});
     UnkHitVisitor_l985a08 hits;
     UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(pos);
-    bool hit = fn_7100d5b484(tree, 0x209, reinterpret_cast<UnkShape*>(&shape),
+    bool hit = QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x209, reinterpret_cast<UnkShape*>(&shape),
                              reinterpret_cast<const UnkMtx44*>(&xf), &hits, 1);
     return !hit;
 }

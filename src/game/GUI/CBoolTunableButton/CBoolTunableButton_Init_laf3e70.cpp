@@ -34,7 +34,7 @@ struct UnkBoolTunableButton_laf3e70 {
 };
 static_assert(__builtin_offsetof(UnkBoolTunableButton_laf3e70, on_change) == 0x2c8, "layout");
 
-void fn_7100af3e70(UnkBoolTunableButton_laf3e70* self) {
+void CBoolTunableButton_InitTunableLabel(UnkBoolTunableButton_laf3e70* self) {
     fn_71011bfd28(reinterpret_cast<UnkRumbleTunableButton_ovb0085*>(self));
     UnkGuiRoot* root = g_unk_717271e8f8;
     {
@@ -56,7 +56,7 @@ void fn_7100af3e70(UnkBoolTunableButton_laf3e70* self) {
     {
         UnkGuiDisplayObject* label = self->label;
         CStrId font("digital_medium", true);
-        fn_71011ed150(label, font);
+        CLabel_SetFont(label, font);
     }
     fn_71011d0088(self->label, false);
     fn_71011ed018(self->label, 2);

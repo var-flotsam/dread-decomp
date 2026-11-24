@@ -819,7 +819,7 @@ address,size,name,name_source,subsystem,status
 0x7100540384,172,fn_7100540384,unknown,game/ai?,O
 0x7100540430,992,fn_7100540430,unknown,game/ai?,U
 0x7100540810,332,fn_7100540810,unknown,unknown,O
-0x710054095c,376,fn_710054095c,unknown,unknown,O
+0x710054095c,376,PassEmmyBarrierStrIdToManager,inferred,unknown,O
 0x7100540ad4,764,fn_7100540ad4,unknown,unknown,U
 0x7100540dd0,1784,fn_7100540dd0,unknown,unknown,U
 0x71005414c8,456,fn_71005414c8,unknown,unknown,O
@@ -1663,7 +1663,7 @@ address,size,name,name_source,subsystem,status
 0x7100572328,4,base::reflection::ValueOps<EGrabEmmySamusQTEMode>::Destroy,reflection,engine/reflection,O
 0x710057232c,20,base::reflection::ValueOps<EGrabEmmySamusQTEMode>::CopyAssign,reflection,engine/reflection,O
 0x7100572340,20,base::reflection::ValueOps<EGrabEmmySamusQTEMode>::MoveAssign,reflection,engine/reflection,O
-0x7100572360,664,fn_7100572360,unknown,engine/reflection?,O
+0x7100572360,664,InitStatics_EEmmyAlertLevel_EGrabEmmySamusQTEMode,inferred,engine/reflection?,O
 0x71005725f8,108,fn_71005725f8,unknown,unknown,O
 0x7100572664,52,fn_7100572664,unknown,unknown,O
 0x7100572698,40,fn_7100572698,unknown,unknown,O
@@ -2700,7 +2700,7 @@ address,size,name,name_source,subsystem,status
 0x710059c75c,92,fn_710059c75c,unknown,unknown,O
 0x710059c7b8,340,fn_710059c7b8,unknown,game?,O
 0x710059c90c,100,fn_710059c90c,unknown,unknown,O
-0x710059c970,752,fn_710059c970,unknown,game/ai?,O
+0x710059c970,752,AppendWeakRefIfAbsent,inferred,game/ai?,O
 0x710059cc60,620,fn_710059cc60,unknown,game/ai?,U
 0x710059cecc,308,fn_710059cecc,unknown,game?,O
 0x710059d000,1004,fn_710059d000,unknown,game/ai?,O
@@ -3563,7 +3563,7 @@ address,size,name,name_source,subsystem,status
 0x71005c0d10,356,fn_71005c0d10,unknown,game/ai?,O
 0x71005c0e74,136,fn_71005c0e74,unknown,game/ai?,O
 0x71005c0efc,48,fn_71005c0efc,unknown,game/ai?,O
-0x71005c0f2c,68,fn_71005c0f2c,unknown,game/ai?,O
+0x71005c0f2c,68,CountHydrogigaPartsWithValueAtOrAboveThreshold,inferred,game/ai?,O
 0x71005c0f70,152,fn_71005c0f70,unknown,game/ai?,O
 0x71005c1008,220,fn_71005c1008,unknown,game/ai?,O
 0x71005c10e4,232,fn_71005c10e4,unknown,game/ai?,U
@@ -3634,7 +3634,7 @@ address,size,name,name_source,subsystem,status
 0x71005c448c,4,fn_71005c448c,unknown,game/ai?,O
 0x71005c4490,4,fn_71005c4490,unknown,game/ai?,O
 0x71005c4494,412,fn_71005c4494,unknown,game/ai?,m
-0x71005c4630,500,fn_71005c4630,unknown,game/ai?,O
+0x71005c4630,500,ReserveHydrogigaKeyedTable,inferred,game/ai?,O
 0x71005c4824,4,fn_71005c4824,unknown,game/ai?,O
 0x71005c4828,400,fn_71005c4828,unknown,game/ai?,O
 0x71005c49b8,24,fn_71005c49b8,unknown,game/ai?,O
@@ -3801,8 +3801,8 @@ address,size,name,name_source,subsystem,status
 0x71005c9d44,772,CCharClassInfesterAIComponent::refl_AddFields,reflection,game/characters,O
 0x71005ca048,352,CCharClassInfesterAIComponent::refl_InitClass,reflection,game/characters,O
 0x71005ca1a8,208,fn_71005ca1a8,unknown,game/characters?,O
-0x71005ca278,140,fn_71005ca278,unknown,game/characters?,O
-0x71005ca304,148,fn_71005ca304,unknown,game/characters?,O
+0x71005ca278,140,CCharClassInfesterAIComponent_Destroy,inferred,game/characters?,O
+0x71005ca304,148,CCharClassInfesterAIComponent_DestroyAndDelete,inferred,game/characters?,O
 0x71005ca398,8,fn_71005ca398,unknown,game/characters?,O
 0x71005ca3a0,8,fn_71005ca3a0,unknown,game/characters?,O
 0x71005ca3a8,28,fn_71005ca3a8,unknown,game/characters?,O
@@ -3822,7 +3822,7 @@ address,size,name,name_source,subsystem,status
 0x71005ca460,28,CCharClassInfesterAIComponent::refl_TypeOf,reflection,game/characters,O
 0x71005ca47c,44,CCharClassInfesterAIComponent::refl_Construct,reflection,game/characters,O
 0x71005ca4a8,12,CCharClassInfesterAIComponent::refl_Destroy,reflection,game/characters,O
-0x71005ca4c0,436,fn_71005ca4c0,unknown,engine/reflection?,O
+0x71005ca4c0,436,CCharClassInfesterAIComponent_InitStatics,inferred,engine/reflection?,O
 0x71005ca674,4,CInfesterAIComponent::refl_AddAttributes,reflection,game/ai,O
 0x71005ca678,244,CInfesterAIComponent::refl_GetClass,reflection,game/ai,O
 0x71005ca76c,4,CInfesterAIComponent::refl_AddFields,reflection,game/ai,O
@@ -4337,7 +4337,7 @@ address,size,name,name_source,subsystem,status
 0x71005dbdd4,48,fn_71005dbdd4,unknown,game/characters?,O
 0x71005dbe04,4,fn_71005dbe04,unknown,game/characters?,O
 0x71005dbe08,36,fn_71005dbe08,unknown,game/characters?,O
-0x71005dbe2c,260,fn_71005dbe2c,unknown,game/characters?,O
+0x71005dbe2c,260,CCharClassKraidAttack_GetBoolTunableForNameAsFloat,inferred,game/characters?,O
 0x71005dbf30,28,fn_71005dbf30,unknown,game/characters?,O
 0x71005dbf4c,12,CCharClassKraidAttack::refl_Equals,reflection,game/characters,O
 0x71005dbf58,8,CCharClassKraidAttack::refl_Hash,reflection,game/characters,O
@@ -4663,7 +4663,7 @@ address,size,name,name_source,subsystem,status
 0x71005e47e4,28,CCharClassKraidBouncingCreaturesAttack::refl_TypeOf,reflection,game/characters,O
 0x71005e4800,4,CCharClassKraidBouncingCreaturesAttack::refl_Construct,reflection,game/characters,O
 0x71005e4804,12,CCharClassKraidBouncingCreaturesAttack::refl_Destroy,reflection,game/characters,O
-0x71005e4810,1512,fn_71005e4810,unknown,game/characters?,O
+0x71005e4810,1512,CBouncingCreaturesLaunchPattern_InitStatics,inferred,game/characters?,O
 0x71005e4df8,4,CCharClassKraidFierceSwipeAttack::refl_AddAttributes,reflection,game/characters,O
 0x71005e4dfc,244,CCharClassKraidFierceSwipeAttack::refl_GetClass,reflection,game/characters,O
 0x71005e4ef0,4,CCharClassKraidFierceSwipeAttack::refl_AddFields,reflection,game/characters,O
@@ -5068,7 +5068,7 @@ address,size,name,name_source,subsystem,status
 0x71005ef780,28,CCharClassKraidSpinningNailsAttack::refl_TypeOf,reflection,game/characters,O
 0x71005ef79c,116,CCharClassKraidSpinningNailsAttack::refl_Construct,reflection,game/characters,O
 0x71005ef810,12,CCharClassKraidSpinningNailsAttack::refl_Destroy,reflection,game/characters,O
-0x71005ef820,2012,fn_71005ef820,unknown,game/characters?,O
+0x71005ef820,2012,CKraidSpinningNailsDef_InitStatics,inferred,game/characters?,O
 0x71005efffc,4,CCharClassKraidTripleFlyingSpikesAttack::CTunableCharClassKraidTripleFlyingSpikesAttack::refl_AddAttributes,reflection,game/characters,O
 0x71005f0000,244,CCharClassKraidTripleFlyingSpikesAttack::CTunableCharClassKraidTripleFlyingSpikesAttack::refl_GetClass,reflection,game/characters,O
 0x71005f00f4,308,CCharClassKraidTripleFlyingSpikesAttack::CTunableCharClassKraidTripleFlyingSpikesAttack::refl_AddFields,reflection,game/characters,O
@@ -5104,8 +5104,8 @@ address,size,name,name_source,subsystem,status
 0x71005f1060,4,CKraidAcidBlobsAttack::refl_AddFields,reflection,game/ai,O
 0x71005f1064,388,CKraidAcidBlobsAttack::refl_InitClass,reflection,game/ai,O
 0x71005f11e8,68,fn_71005f11e8,unknown,game/ai?,O
-0x71005f122c,132,fn_71005f122c,unknown,game/ai?,O
-0x71005f12b0,108,fn_71005f12b0,unknown,game/ai?,O
+0x71005f122c,132,CKraidAcidBlobsAttack_SetCharClassAndPickLaunchPattern,inferred,game/ai?,O
+0x71005f12b0,108,CKraidAcidBlobsAttack_ResetAndPickDifferentLaunchPattern,inferred,game/ai?,O
 0x71005f131c,1520,fn_71005f131c,unknown,game/ai?,U
 0x71005f190c,220,fn_71005f190c,unknown,game/ai?,O
 0x71005f19e8,4,fn_71005f19e8,unknown,game/ai?,O
@@ -5176,11 +5176,11 @@ address,size,name,name_source,subsystem,status
 0x71005f2abc,388,CKraidBouncingCreaturesAttack::refl_InitClass,reflection,game/ai,O
 0x71005f2c40,80,fn_71005f2c40,unknown,game/ai?,O
 0x71005f2c90,96,fn_71005f2c90,unknown,game/ai?,O
-0x71005f2cf0,620,fn_71005f2cf0,unknown,game/ai?,O
+0x71005f2cf0,620,CKraidBouncingCreaturesAttack_StartAndPickPattern,inferred,game/ai?,O
 0x71005f2f5c,360,fn_71005f2f5c,unknown,game/ai?,O
 0x71005f30c4,100,fn_71005f30c4,unknown,game/ai?,O
 0x71005f3128,188,fn_71005f3128,unknown,game/ai?,O
-0x71005f31e4,708,fn_71005f31e4,unknown,game/ai?,O
+0x71005f31e4,708,CKraidBouncingCreaturesAttack_LaunchNextPatternCreature,inferred,game/ai?,O
 0x71005f34a8,220,fn_71005f34a8,unknown,game/ai?,O
 0x71005f3584,924,fn_71005f3584,unknown,game/ai?,U
 0x71005f3920,28,fn_71005f3920,unknown,game/ai?,O
@@ -5280,8 +5280,8 @@ address,size,name,name_source,subsystem,status
 0x71005f645c,388,CKraidSpinningNailsAttack::refl_InitClass,reflection,game/ai,O
 0x71005f65e0,76,fn_71005f65e0,unknown,game/ai?,O
 0x71005f662c,96,fn_71005f662c,unknown,game/ai?,O
-0x71005f668c,320,fn_71005f668c,unknown,game/ai?,O
-0x71005f67cc,236,fn_71005f67cc,unknown,game/ai?,O
+0x71005f668c,320,CKraidSpinningNailsAttack_StartAndSelectPattern,inferred,game/ai?,O
+0x71005f67cc,236,CKraidSpinningNailsAttack_TakeNextPatternNailsDef,inferred,game/ai?,O
 0x71005f68b8,4,fn_71005f68b8,unknown,game/ai?,O
 0x71005f68bc,100,fn_71005f68bc,unknown,game/ai?,O
 0x71005f6920,320,fn_71005f6920,unknown,game/ai?,U

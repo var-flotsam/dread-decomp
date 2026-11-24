@@ -59,7 +59,7 @@ static inline void SetUpSprite(UnkGuiDisplayObject*& sprite, UnkGuiDisplayObject
     }
 }
 
-void fn_7100b7544c(UnkGuiDisplayObject* self) {
+void CScrollMenuEntryItemRenderer_BindChildrenAndValueLabels(UnkGuiDisplayObject* self) {
     fn_71011d9328(reinterpret_cast<UnkLegendEntryRenderer_ovb0135*>(self));  // the base's binding
     UnkScrollEntryRendererFields_b7544c* fields = reinterpret_cast<UnkScrollEntryRendererFields_b7544c*>(self);
 

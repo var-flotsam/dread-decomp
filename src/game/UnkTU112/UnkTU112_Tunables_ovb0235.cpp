@@ -34,7 +34,7 @@
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CRntVector;
 using base::global::CRntString;
 using base::global::CStrId;
@@ -54,7 +54,7 @@ struct UnkTunableGroup {
 static_assert(sizeof(UnkTunableGroup) == 0x80, "");
 
 // Builds a group as a copy of another, taking its members over.
-void fn_710013ef1c(UnkTunableGroup* self, UnkTunableGroup* other) {
+void MoveConstructTunableGroup(UnkTunableGroup* self, UnkTunableGroup* other) {
     new (self) UnkTunableGroup;
     self->field_0x78 = other->field_0x78;
     for (UnkTunableMember **p = other->members.data, **end = other->members.data + other->members.count; p != end;
@@ -87,7 +87,7 @@ struct UnkTunableGroup_A1b71;
 struct UnkTunableGroupArrays_A1b71;
 
 // Appends a group under `key` and returns it.
-UnkTunableGroup_A1b71* fn_710013c2ac(UnkTunableGroupArrays_A1b71* self_, const CStrId* key) {
+UnkTunableGroup_A1b71* AppendEmptyTunableGroupWithId(UnkTunableGroupArrays_A1b71* self_, const CStrId* key) {
     auto* self = reinterpret_cast<UnkTunableGroupNames*>(self_);
     u32 n = self->count;
     if (n == self->capacity) {
@@ -154,7 +154,7 @@ struct UnkReflValueArg;
 
 // Sets a tunable's field to a value of the same kind.
 void fn_710013c4b4(UnkTunableRegistry* self, const char* name, const char* field_name, UnkTunableValue* value) {
-    UnkTunableObject* object = fn_710013c5cc(self, name, true);
+    UnkTunableObject* object = FindTunableObjectByName(self, name, true);
     if (!object)
         return;
     auto* type = reinterpret_cast<UnkTunableType*>(object->GetClass());
@@ -167,7 +167,7 @@ void fn_710013c4b4(UnkTunableRegistry* self, const char* name, const char* field
     UnkReflTypedPtr typed;
     typed.type = object->GetClass();
     typed.ptr = object;
-    fn_71000e78e0(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+    ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                   reinterpret_cast<UnkReflValueArg*>(value));
 }
 

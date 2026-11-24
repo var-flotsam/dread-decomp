@@ -22,13 +22,13 @@ void fn_71001cdd6c(UnkRenderTargetA1* target, CStrId id);
 void fn_71001cdd70(UnkRenderTargetA1* target);
 void fn_71001cdd74(UnkRenderTargetA1* target, void* block);
 void fn_71001cdba4(UnkRenderTargetA1* target, void* block);
-void fn_71001cdd18(UnkRenderTargetA1* target);
+void PopPairListStackAndReapplyTop(UnkRenderTargetA1* target);
 void fn_71001cde48(UnkRenderTargetA1* target);
 void fn_71001cb604(UnkRenderTargetA1* target, u32 a, void* b, void* c, void* d, void* e);
 void* fn_710015c450(UnkBoundTarget* target);
 void* fn_710015abd0();
-void fn_710015b8a0(bool flag);
-void fn_710015f770(s32 slot, void* object, bool clear);
+void PopStateStackAndApplyNewTop(bool flag);
+void SetGraphicsSlotPointer(s32 slot, void* object, bool clear);
 void fn_71001ce704(UnkRenderTargetA1* target, u32 value);
 void fn_71001ced08(UnkRenderTargetA1* target, u8 value);
 void fn_71001d6b94(UnkRenderTargetA1* target);
@@ -121,7 +121,7 @@ struct UnkFlags_b0237 {
         flags = static_cast<u16>(x | (y << 8));
     }
 };
-void fn_710015b650(UnkFlags_b0237* p);
+void PushStencilStateAndApply(UnkFlags_b0237* p);
 
 struct UnkRenderOwner_b0237 {
     u8 pad_0x0[0x8];
@@ -219,7 +219,7 @@ void fn_71001de554(UnkRenderOwner_b0237* self) {
     fn_71001cb604(self->target, 1, nullptr, nullptr, nullptr, nullptr);
     fn_71001ce704(self->target, 1);
     fn_71001cde48(self->target);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_71001cdd70(self->target);
 }
@@ -229,7 +229,7 @@ void fn_71001dea8c(UnkRenderOwner_b0237* self) {
         return;
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     UnkFlags_b0237 flags(0, 0);
-    fn_710015b650(&flags);
+    PushStencilStateAndApply(&flags);
     fn_71001cdd74(self->target, &self->field_0x118);
     fn_71001cdd6c(self->target, g_unk_716e5961c0);
     UnkBindList_b0237 list;
@@ -238,12 +238,12 @@ void fn_71001dea8c(UnkRenderOwner_b0237* self) {
     list.tail = fn_710015abd0();
     fn_71001cdba4(self->target, &list);
     fn_71001ced08(self->target, self->flag_0xae51);
-    fn_710015f770(9, fn_710015c450(self->slot_0x498), true);
+    SetGraphicsSlotPointer(9, fn_710015c450(self->slot_0x498), true);
     fn_71001d6b94(self->target);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cdd70(self->target);
     fn_71001cde48(self->target);
-    fn_710015b8a0(true);
+    PopStateStackAndApplyNewTop(true);
 }
 
 void fn_71001da4e4(UnkRenderOwner_b0237* self) {
@@ -309,7 +309,7 @@ void fn_71001debe8(UnkRenderOwner_b0237* self) {
     bound[3] = fn_710015c450(self->slot_0x498);
     fn_71001d09fc(self->target, g_unk_7101a1e970);
     fn_71001d54e0(self->target, &self->field_0x118, self->block_0x8, bound, 4);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_71001cdd70(self->target);
 }
@@ -317,7 +317,7 @@ void fn_71001debe8(UnkRenderOwner_b0237* self) {
 void fn_71001de3a8(UnkRenderOwner_b0237* self) {
     fn_71001cdd6c(self->target, g_unk_716e596128);
     UnkFlags_b0237 flags(0, 1);
-    fn_710015b650(&flags);
+    PushStencilStateAndApply(&flags);
     if (fn_71001d48cc(self->target, nullptr, 1.0f - self->field_0x438)) {
         f32 a = static_cast<f32>(self->field_0x120);
         f32 b = static_cast<f32>(self->field_0x428);
@@ -337,9 +337,9 @@ void fn_71001de3a8(UnkRenderOwner_b0237* self) {
         UnkRenderTargetA1* target = self->target;
         fn_71001d4dbc(target, fn_710015c450(reinterpret_cast<UnkBoundTarget*>(self->field_0x418)),
                       &self->rect_0x100);
-        fn_71001cdd18(self->target);
+        PopPairListStackAndReapplyTop(self->target);
     }
-    fn_710015b8a0(true);
+    PopStateStackAndApplyNewTop(true);
     fn_71001cdd70(self->target);
 }
 
@@ -370,7 +370,7 @@ void fn_71001da650(UnkRenderOwner_b0237* self, void* a, void* b, f32* values) {
     fn_71001d1e78(self->target, x, y, z, 0.0f);
     fn_71001cc570(self->target);
     fn_71001cde48(self->target);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_71001cdd70(self->target);
 }

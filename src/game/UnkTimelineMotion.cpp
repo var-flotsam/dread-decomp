@@ -9,6 +9,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTU1728.h"
+#include "game/UnkTimeline.h"
 #include "game/UnkTimelineEvent.h"
 #include "game/UnkTimelineEventList.h"
 #include "game/nn/time.h"
@@ -25,32 +26,6 @@ struct UnkComputeDeltaEvent : UnkTimelineEvent {
     f32 z;
 };
 
-// A time key: the frame at `time`, and the time one frame lasts from there.
-struct UnkTimeKey {
-    f32 frame;
-    f32 time;
-    f32 frame_time;
-};
-struct UnkTimeKeys {
-    UnkTimeKey* data;
-    u32 count;
-};
-// The key at `index` (out of line).
-UnkTimeKey* fn_7100b8ad14(UnkTimeKeys* self, u32 index);
-
-struct UnkTimeline {
-    u8 pad_0x0[0x24];
-    s32 frame_count;
-    f32 last_frame;  // the frame at frame_count
-    u8 pad_0x2c[0x8];
-    u32 flags;  // bit 0: has a first motion, bit 1: has a second
-    u8 pad_0x38[0x20];
-    UnkTimeKeys keys;
-    u8 pad_0x68[0x108];
-    UnkTimelineEventList events;
-};
-static_assert(__builtin_offsetof(UnkTimeline, keys) == 0x58, "UnkTimeline placeholder layout");
-static_assert(__builtin_offsetof(UnkTimeline, events) == 0x170, "UnkTimeline placeholder layout");
 
 // A motion source: the transform for a span of its own time.
 struct UnkMotionSource {
@@ -105,7 +80,7 @@ static inline f32 FrameAt(UnkTimeline* self, f32 t) {
     if ((f32)self->frame_count == t)
         return self->last_frame;
     if (self->keys.count == 1)
-        return t / fn_7100b8ad14(&self->keys, 0)->frame_time;
+        return t / GetTimeKeyAtGrowingWithDefaults(&self->keys, 0)->frame_time;
     // The first key after `t`; the one before it holds `t`.
     UnkTimeKey* it = self->keys.data;
     UnkTimeKey* last = self->keys.data + self->keys.count;

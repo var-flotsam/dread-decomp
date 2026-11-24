@@ -25,7 +25,7 @@ struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 UnkTree* fn_710110c498(void* ai);
 
 struct UnkLavaDropsShape_A2_b71;
@@ -157,9 +157,9 @@ bool fn_71006444ac(UnkQuetzoaChargeAttack_6444ac* self, const UnkVec3f* pos, con
     Vec2 delta = ChargeDelta(dir);
 
     const UnkMtx44* transform = reinterpret_cast<const UnkMtx44*>(&sweep.transform);
-    bool hit = fn_7100d5babc(tree, mask, body->shape, transform, &delta, &sweep.query, false);
+    bool hit = SweepShapeAgainstCollisionTree(tree, mask, body->shape, transform, &delta, &sweep.query, false);
     if (fn_710110c498(ai))
-        hit = fn_7100d5babc(fn_710110c498(ai), mask, body->shape, transform, &delta, &sweep.query, false) | hit;
+        hit = SweepShapeAgainstCollisionTree(fn_710110c498(ai), mask, body->shape, transform, &delta, &sweep.query, false) | hit;
     if (!hit)
         return false;
 
@@ -176,5 +176,5 @@ bool fn_71006444ac(UnkQuetzoaChargeAttack_6444ac* self, const UnkVec3f* pos, con
     UnkMatrix44_7100078c9c moved = BuildTranslationMatrixFromVec3(*out);
     for (int i = 0; i < 16; ++i)
         sweep.transform.m[i] = moved.m[i];
-    return fn_7100d5b484(tree, 0x10, reinterpret_cast<UnkShape*>(&circle), transform, nullptr, 0);
+    return QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x10, reinterpret_cast<UnkShape*>(&circle), transform, nullptr, 0);
 }

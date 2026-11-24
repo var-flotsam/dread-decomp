@@ -64,7 +64,7 @@ struct UnkArenaRefArray_ovb0108 {
     u32 count;
     u32 capacity;
     u8 unk_0x10[0x10];
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     UnkArenaRefPtr_ovb0108* begin() { return data; }
     UnkArenaRefPtr_ovb0108* end() { return data + count; }
@@ -88,7 +88,7 @@ struct UnkArenaTable_ovb0108 {
     UnkStrIdTable table;
 
     ~UnkArenaTable_ovb0108() {
-        fn_71004f11f8(&table);
+        ClearStrIdKeyedRecord10Table(&table);
         if (table.keys)
             table.allocator->vf_0x48(table.keys);
         if (table.values)

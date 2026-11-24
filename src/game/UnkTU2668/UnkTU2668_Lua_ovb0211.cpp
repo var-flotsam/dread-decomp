@@ -36,7 +36,7 @@ struct __attribute__((packed, aligned(4))) UnkLuaScratch {
     u8 pad_0x15[3];
     u32 flags;
     u32 pad_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Frees the array (the elements need no destruction).
     void Free() {
@@ -91,7 +91,7 @@ void fn_710109cfb0(u64 value) {
 
 // Loads a chunk with a scratch array pushed for the load, popped after it; true when it loaded.
 bool fn_710109cba0(const char* str) {
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     u32 flags = 6;
     u64* data = static_cast<u64*>(allocator->vf_0x40(0x190 * sizeof(u64), 8, flags));
     u32 top = g_unk_7172a025a0.count;
@@ -142,7 +142,7 @@ struct UnkInlineString_710109c6d0 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_710109c6d0() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage_vtable));
         field_0x138 = 0;
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x140 = 0;

@@ -24,7 +24,7 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 struct UnkPlayerMovementCache;
 void* fn_71010d7a6c(UnkPlayerMovementCache* self);
@@ -169,7 +169,7 @@ CStrId fn_710060b344(UnkThornsAttack_b68a4* attack) {
     if (self->owner->frozen && fn_71007f9f20(self->owner->frozen))
         return g_unk_7101d470e0;
     bool aiming = self->owner->ai && self->owner->ai->aiming;
-    bool paused = fn_7100df5740(g_unk_7101d47310);
+    bool paused = IsOpticCamouflageAbilityInState6(g_unk_7101d47310);
     if (!aiming && paused)
         return g_unk_7101d470e0;
 
@@ -231,7 +231,7 @@ CStrId fn_710060b344(UnkThornsAttack_b68a4* attack) {
             m.m[3] = x;
             m.m[7] = y;
             UnkThornSweepQuery_l60b344 query(CVector3D{x, y, 0.0f});
-            if (fn_7100d5babc(tree, 0x80429, reinterpret_cast<UnkShape*>(&circle),
+            if (SweepShapeAgainstCollisionTree(tree, 0x80429, reinterpret_cast<UnkShape*>(&circle),
                               reinterpret_cast<const UnkMtx44*>(&m), reinterpret_cast<const Vec2*>(&sweep), &query,
                               false) &&
                 query.hit.object.ptr->bodies->Contains(body))

@@ -39,7 +39,7 @@ struct UnkPerceptionOwnedList_b52 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkPerceptionOwnedList_b52() {
         if (data) {
@@ -63,11 +63,11 @@ __attribute__((always_inline)) static inline void Destroy_b52(UnkCPerceptionComp
     fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(self));
 }
 
-void fn_71009c7c80(UnkCPerceptionComponent_b52* self) {
+void CCharClassPerceptionComponent_Destroy(UnkCPerceptionComponent_b52* self) {
     Destroy_b52(self);
 }
 
-void fn_71009c7d24(UnkCPerceptionComponent_b52* self) {
+void CCharClassPerceptionComponent_DestroyAndDelete(UnkCPerceptionComponent_b52* self) {
     Destroy_b52(self);
     operator delete(self);
 }

@@ -55,7 +55,7 @@ struct UnkLinkBase_ovb0130 {
     u32 step;  // 0x18
     bool field_0x1c;
     u32 flags;  // 0x20
-    base::UnkAllocator* allocator;  // 0x28
+    base::IAllocator* allocator;  // 0x28
 };
 
 struct UnkTargetLink_ovb0130 : UnkLinkBase_ovb0130 {
@@ -66,7 +66,7 @@ struct UnkTargetLink_ovb0130 : UnkLinkBase_ovb0130 {
 static_assert(sizeof(UnkTargetLink_ovb0130) == 0x40, "UnkTargetLink_ovb0130 layout");
 
 // fn_7100a30a9c: constructs a link already resolved (state 2) to the weak handle of `target`.
-void fn_7100a30a9c(UnkTargetLink_ovb0130* self, UnkWeakTarget* target) {
+void CCharClassSoundProofTriggerComponent_ConstructResolvedLinkToTarget(UnkTargetLink_ovb0130* self, UnkWeakTarget* target) {
     self->vtable = &g_unk_7101a20998[2];
     self->data = nullptr;
     self->count = 0;

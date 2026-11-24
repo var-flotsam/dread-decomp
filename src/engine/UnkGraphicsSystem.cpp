@@ -258,7 +258,7 @@ struct UnkGraphicsSystem {
     u8 unk_0x317aa65[0x3];
     u32 field_0x317aa68;
     u8 unk_0x317aa6c[0x4];
-    base::UnkAllocator* field_0x317aa70;
+    base::IAllocator* field_0x317aa70;
     u32 field_0x317aa78;
     u32 field_0x317aa7c;
     base::global::CRntVector<u64> field_0x317aa80;
@@ -392,7 +392,7 @@ void fn_7100160e50(s32 a, s32 b, bool c);
 void fn_710015a0e0(u32 value);
 void fn_710015a760(bool);
 void* fn_710015db80();
-void fn_710015d900(void* a, bool b, bool c);
+void BindProgramAndUniformBlocks(void* a, bool b, bool c);
 // Sets `count` vectors (four floats each, or one float) of a uniform at `location` of a program state.
 // The location of uniform `id` of a program's stage, if it has one.
 
@@ -615,7 +615,7 @@ void fn_71001d6c58(UnkGfxNamedVectors* self, u32 capacity) {
 // state and the program are forgotten.
 static inline void ResetOverlayProgram(UnkGraphicsSystem* self) {
     if (fn_710015db80()) {
-        fn_710015d900(nullptr, 1, 1);
+        BindProgramAndUniformBlocks(nullptr, 1, 1);
         __builtin_memset(self->field_0x317add8, 0, sizeof(self->field_0x317add8));
         // The four words at +0x317ae00 and the uniform buffer after them.
         __builtin_memset(self->field_0x317ae00, 0, sizeof(self->field_0x317ae00) + sizeof(u64));
@@ -662,7 +662,7 @@ void fn_71001cafa0(UnkStruct_71001cdd74* owner, s32 enable_arg, s32 refresh, s32
             fn_710015a760(0);
             fn_710015ab00(3);
             fn_710015a860(0);
-            fn_710015a8c0(0);
+            SetDepthCompareFunc(0);
             fn_710015aa20(0);
             fn_710015a0e0(1);
             fn_710015a260(1);
@@ -701,7 +701,7 @@ void fn_71001cafa0(UnkStruct_71001cdd74* owner, s32 enable_arg, s32 refresh, s32
             fn_710015a760(0);
             fn_710015ab00(3);
             fn_710015a860(1);
-            fn_710015a8c0(5);
+            SetDepthCompareFunc(5);
             fn_710015aa20(1);
             fn_710015a680(0);
             fn_710015a500(1, 0);
@@ -1065,7 +1065,7 @@ struct UnkGfxDeviceConfig {
     bool field_0x19;
 };
 
-void* fn_71001cb410(UnkGfxSceneRegistry* manager, UnkCountedResource* model, u32 a);
+void* CreateModelInstanceInSceneRegistry(UnkGfxSceneRegistry* manager, UnkCountedResource* model, u32 a);
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
@@ -1260,7 +1260,7 @@ void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* /*un
     fn_71001cafa0(reinterpret_cast<UnkStruct_71001cdd74*>(self), 0, 1, 0);
 
     // Indices for quads: 0, 1, 2, 0, 2, 3 for each four vertices.
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     u16* indices = static_cast<u16*>(allocator->vf_0x40((u64)self->field_0x317af48 * sizeof(u16), 8, 8));
     u32 count = self->field_0x317af48;
     self->field_0x317af50 = indices;
@@ -1283,18 +1283,18 @@ void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* /*un
     UnkResKey omni_key(g_unk_716e453ff8.name, CFilePathStrId("system/engine/models/lightsproxy/omni.bcmdl", true));
     UnkResRef omni = fn_71000ead80(g_unk_7101d472f8, &omni_key, 8, nullptr);
     UnkGfxSceneRegistry* manager = static_cast<UnkGfxSceneRegistry*>(g_unk_716e34c2e0);
-    self->light_proxies[0] = fn_71001cb410(manager, AsRenderRes(omni.ptr), 0x1e);
+    self->light_proxies[0] = CreateModelInstanceInSceneRegistry(manager, AsRenderRes(omni.ptr), 0x1e);
     self->light_proxies[1] = nullptr;
     UnkResKey spot_key(g_unk_716e453ff8.name, CFilePathStrId("system/engine/models/lightsproxy/spot.bcmdl", true));
     UnkResRef spot = fn_71000ead80(g_unk_7101d472f8, &spot_key, 8, nullptr);
     manager = static_cast<UnkGfxSceneRegistry*>(g_unk_716e34c2e0);
-    self->light_proxies[1] = fn_71001cb410(manager, AsRenderRes(spot.ptr), 0x1e);
+    self->light_proxies[1] = CreateModelInstanceInSceneRegistry(manager, AsRenderRes(spot.ptr), 0x1e);
     self->light_proxies[2] = nullptr;
     UnkResKey segment_key(g_unk_716e453ff8.name,
                           CFilePathStrId("system/engine/models/lightsproxy/segment.bcmdl", true));
     UnkResRef segment = fn_71000ead80(g_unk_7101d472f8, &segment_key, 8, nullptr);
     manager = static_cast<UnkGfxSceneRegistry*>(g_unk_716e34c2e0);
-    self->light_proxies[2] = fn_71001cb410(manager, AsRenderRes(segment.ptr), 0x1e);
+    self->light_proxies[2] = CreateModelInstanceInSceneRegistry(manager, AsRenderRes(segment.ptr), 0x1e);
 
     // The resolution scale: 1 docked, else the display's size relative to 1280.
     if (fn_7100132a10()) {
@@ -1364,11 +1364,11 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         fn_710015a860(1);
         fn_710015aa20(1);
         fn_710015a760(0);
-        fn_710015a8c0(4);
-        fn_710015f770(0, nullptr, true);
-        fn_710015f770(1, nullptr, true);
-        fn_710015f770(2, nullptr, true);
-        fn_710015f770(3, nullptr, true);
+        SetDepthCompareFunc(4);
+        SetGraphicsSlotPointer(0, nullptr, true);
+        SetGraphicsSlotPointer(1, nullptr, true);
+        SetGraphicsSlotPointer(2, nullptr, true);
+        SetGraphicsSlotPointer(3, nullptr, true);
         fn_71001606f0(0, 0, true);
         fn_71001606f0(1, 0, true);
         fn_71001606f0(2, 0, true);
@@ -1392,10 +1392,10 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         fn_710015a860(1);
         fn_710015aa20(1);
         fn_710015a760(0);
-        fn_710015a8c0(4);
-        fn_710015f770(0, nullptr, true);
-        fn_710015f770(1, nullptr, true);
-        fn_710015f770(2, nullptr, true);
+        SetDepthCompareFunc(4);
+        SetGraphicsSlotPointer(0, nullptr, true);
+        SetGraphicsSlotPointer(1, nullptr, true);
+        SetGraphicsSlotPointer(2, nullptr, true);
         fn_71001606f0(0, 0, true);
         fn_71001606f0(1, 0, true);
         fn_71001606f0(2, 0, true);
@@ -1414,10 +1414,10 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         fn_710015a860(1);
         fn_710015aa20(1);
         fn_710015a760(0);
-        fn_710015a8c0(4);
-        fn_710015f770(0, nullptr, true);
-        fn_710015f770(1, nullptr, true);
-        fn_710015f770(2, nullptr, true);
+        SetDepthCompareFunc(4);
+        SetGraphicsSlotPointer(0, nullptr, true);
+        SetGraphicsSlotPointer(1, nullptr, true);
+        SetGraphicsSlotPointer(2, nullptr, true);
         fn_71001606f0(0, 0, true);
         fn_71001606f0(1, 0, true);
         fn_71001606f0(2, 0, true);
@@ -1448,9 +1448,9 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         fn_710015a860(0);
         fn_710015aa20(0);
         fn_710015a760(0);
-        fn_710015f770(0, nullptr, true);
-        fn_710015f770(1, nullptr, true);
-        fn_710015f770(2, nullptr, true);
+        SetGraphicsSlotPointer(0, nullptr, true);
+        SetGraphicsSlotPointer(1, nullptr, true);
+        SetGraphicsSlotPointer(2, nullptr, true);
         fn_71001606f0(0, 1, true);
         fn_71001606f0(1, 0, true);
         fn_71001606f0(2, 0, true);
@@ -1477,7 +1477,7 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         if (self->field_0x317ae00[3]) {
             UnkMatrix44 projection;
             UnkCopyMatrix(&projection, camera->projection);
-            fn_710015bf40(&projection, fn_7100132fa0());
+            ScaleMatrixYByAspectRatioAndNegateElement7(&projection, fn_7100132fa0());
             fn_710015e4b0(self->field_0x317af68, 0, self->field_0x317ae00[3], 4, 1, &projection, 1);
         }
         break;
@@ -1486,7 +1486,7 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
     case 10: {
         fn_71001cc608(self, fn_7100169be4(unk_710b372d68, g_unk_716e595bf8));
         fn_710015aa80(1);
-        fn_710015a8c0(5);
+        SetDepthCompareFunc(5);
         fn_710015a0e0(1);
         fn_710015a260(1);
         fn_710015ab00(mode == 9 ? 3 : 4);
@@ -1514,7 +1514,7 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
     case 12: {
         fn_71001cc608(self, fn_7100169be4(unk_710b372d68, g_unk_716e595c10));
         fn_710015aa80(0);
-        fn_710015a8c0(5);
+        SetDepthCompareFunc(5);
         fn_710015a860(1);
         fn_710015aa20(0);
         fn_710015a0e0(1);

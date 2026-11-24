@@ -30,7 +30,7 @@ struct UnkNavMeshMap47f8 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkNavMeshMap47f8() {
         values = nullptr;
@@ -344,7 +344,7 @@ struct UnkNavBucketE93c {
     void* field_0x0;
     void* field_0x8;
     u8 pad_0x10[0x10];
-    base::UnkAllocator* allocator;  // +0x20
+    base::IAllocator* allocator;  // +0x20
 
     ~UnkNavBucketE93c() {
         CNavMesh_ClearMapOfRecordListMaps(reinterpret_cast<UnkNavLoadRecordMaps*>(this));
@@ -453,13 +453,13 @@ void CNavMesh_ReserveCellArray(base::global::CRntVector<UnkNavLoadCell>* self, u
 struct UnkNavMeshItem;  // src/game/navmesh/UnkNavMeshItem.cpp
 
 struct UnkRecord_2b2e9c;  // the item, as src/game_s2/fn_71002b2e9c.cpp names it
-void fn_71002b2e9c(UnkRecord_2b2e9c* self);
+void ConstructNavMeshItem(UnkRecord_2b2e9c* self);
 
 // An item (0x208 bytes) with its out-of-line constructor, move and destructor.
 struct alignas(8) UnkNavItem9dd4 {
     u8 raw[0x208];
 
-    UnkNavItem9dd4() { fn_71002b2e9c(reinterpret_cast<UnkRecord_2b2e9c*>(this)); }
+    UnkNavItem9dd4() { ConstructNavMeshItem(reinterpret_cast<UnkRecord_2b2e9c*>(this)); }
     UnkNavItem9dd4(UnkNavItem9dd4&& other) { fn_71002b3114(Get(), other.Get()); }
     ~UnkNavItem9dd4() { fn_71002b3328(Get()); }
 

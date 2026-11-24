@@ -206,7 +206,7 @@ UnkColliderResult fn_7100d5337c(UnkShapeTester_A5_b68* self, UnkOrientedShape* a
     UnkPlacement2D local = a->placement;
     local.center.x = dx + local.center.x;
     local.center.y = dy + local.center.y;
-    fn_7100110664(&local, fn_7100076acc(xa).z + local.angle);
+    SetOBox2DAngleAndRebuildAxes(&local, fn_7100076acc(xa).z + local.angle);
     UnkContactBuffer<2> buf;
     buf.count = 0;
     fn_7100127bb0(reinterpret_cast<const UnkOrientedBox2D*>(&local), static_cast<const UnkSegment2D*>(Geometry(b)),
@@ -226,7 +226,7 @@ UnkColliderResult fn_7100d534d0(UnkShapeTester_A5_b68* self, UnkOrientedShape* a
     UnkPlacement2D local = a->placement;
     local.center.x = dx + local.center.x;
     local.center.y = dy + local.center.y;
-    fn_7100110664(&local, fn_7100076acc(xa).z + local.angle);
+    SetOBox2DAngleAndRebuildAxes(&local, fn_7100076acc(xa).z + local.angle);
     UnkContactBuffer<8> buf;
     buf.count = 0;
     fn_7100127fc0(&local, Geometry(b), &buf, !(flags & 1));
@@ -245,7 +245,7 @@ UnkColliderResult fn_7100d53624(UnkShapeTester_A5_b68* self, UnkOrientedShape* a
     UnkPlacement2D local = a->placement;
     local.center.x = dx + local.center.x;
     local.center.y = dy + local.center.y;
-    fn_7100110664(&local, fn_7100076acc(xa).z + local.angle);
+    SetOBox2DAngleAndRebuildAxes(&local, fn_7100076acc(xa).z + local.angle);
     UnkContactBuffer<8> buf;
     buf.count = 0;
     fn_7100128da0(&local, CircleAtOrigin(*static_cast<const f32*>(Geometry(b))), &buf, !(flags & 1));
@@ -264,9 +264,9 @@ UnkColliderResult fn_7100d53784(UnkShapeTester_A5_b68* self, UnkOrientedShape* a
     UnkPlacement2D local = a->placement;
     local.center.x = dx + local.center.x;
     local.center.y = dy + local.center.y;
-    fn_7100110664(&local, fn_7100076acc(xa).z + local.angle);
+    SetOBox2DAngleAndRebuildAxes(&local, fn_7100076acc(xa).z + local.angle);
     const void* geom = Geometry(b);
-    fn_7100110664(&local, fn_7100076acc(xb).z + local.angle);
+    SetOBox2DAngleAndRebuildAxes(&local, fn_7100076acc(xb).z + local.angle);
     UnkContactBuffer<8> buf;
     buf.count = 0;
     fn_7100128810(&local, geom, &buf, !(flags & 1));
@@ -285,7 +285,7 @@ UnkColliderResult fn_7100d538fc(UnkShapeTester_A5_b68* self, UnkOrientedShape* a
     UnkPlacement2D local = a->placement;
     local.center.x = dx + local.center.x;
     local.center.y = dy + local.center.y;
-    fn_7100110664(&local, fn_7100076acc(xa).z + local.angle);
+    SetOBox2DAngleAndRebuildAxes(&local, fn_7100076acc(xa).z + local.angle);
     UnkContactBuffer<8> buf;
     buf.count = 0;
     fn_7100129360(&local, Geometry(b), &buf, !(flags & 1));
@@ -623,7 +623,7 @@ UnkColliderResult fn_7100d55484(UnkShapeTester_A5_b68* self, UnkShape* a, void* 
     UnkPlacement2D local = oa->placement;
     local.center.x = dx + local.center.x;
     local.center.y = dy + local.center.y;
-    fn_7100110664(&local, fn_7100076acc(xa).z + local.angle);
+    SetOBox2DAngleAndRebuildAxes(&local, fn_7100076acc(xa).z + local.angle);
     UnkContactPoint point{};
     bool found = swapped
                      ? fn_710012d960(
@@ -750,7 +750,7 @@ UnkColliderResult fn_7100d55df4(UnkNoContext, UnkShape* a, void* ta, UnkShape* b
     UnkPlacement2D local = oa->placement;
     local.center.x = dx + local.center.x;
     local.center.y = dy + local.center.y;
-    fn_7100110664(&local, fn_7100076acc(xa).z + local.angle);
+    SetOBox2DAngleAndRebuildAxes(&local, fn_7100076acc(xa).z + local.angle);
     CVector3D offset = Translation(xb);
     offset.z = (xa->m[2][3] + xb->m[2][3]) * 0.5f;
     if (flag) {
@@ -1112,7 +1112,7 @@ UnkColliderResult fn_7100d51368(UnkShapeTester_A5_b68* self, UnkShape* a, void* 
         UnkPlacement2D local = static_cast<UnkOrientedShape*>(first)->placement;
         local.center.x = dx + local.center.x;
         local.center.y = dy + local.center.y;
-        fn_7100110664(&local, fn_7100076acc(tf).z + local.angle);
+        SetOBox2DAngleAndRebuildAxes(&local, fn_7100076acc(tf).z + local.angle);
         UnkContactBuffer<16> buf;
         buf.count = 0;
         fn_710012c580(reinterpret_cast<const UnkOrientedBox2D*>(&local),

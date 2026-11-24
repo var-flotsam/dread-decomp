@@ -156,7 +156,7 @@ void fn_7100887d0c(UnkMorphBallLauncher_l887d0c* self, f32 dt) {
         f32 v = eased <= 0.0f ? 0.0f : (eased > 1.0f ? 1.0f : eased);
         f32 value = from + v * (to - from);
         UnkLauncherTrack_l887d0c* track = reinterpret_cast<UnkLauncherTrack_l887d0c*>(
-            fn_71011771e0(self->owner->field_0x220, 0x71b15e29dc542a11));
+            CAnimationComponent_FindTrackByNameHash(self->owner->field_0x220, 0x71b15e29dc542a11));
         track->value = value;
         track->set = true;
     }

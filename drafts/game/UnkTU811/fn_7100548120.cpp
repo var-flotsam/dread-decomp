@@ -209,7 +209,7 @@ void fn_7100548120(UnkEmmyAI_l548120* self) {
     if (void* track = self->owner->field_0x220) {
         mode.id = 0x80;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(track, 0xe27a4a9050c8ea64, 0x7c5476647f60cdaa, &mode, &g_unk_710164b958, &g_unk_717276974c,
+        CAnimationComponent_SendActionToTrack(track, 0xe27a4a9050c8ea64, 0x7c5476647f60cdaa, &mode, &g_unk_710164b958, &g_unk_717276974c,
                       &mask);
     }
     if (UnkDoorLifePart_b56* part = fn_71005012bc(reinterpret_cast<UnkDoorLifeOwner_b56*>(self->owner)))

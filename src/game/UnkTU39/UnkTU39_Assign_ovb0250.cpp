@@ -20,7 +20,7 @@ struct UnkKeyList_b0250_02f90c {
     u32 count;
     UnkKeyNode_b0250* head;
     UnkKeyNode_b0250* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 tag;
     UnkDeferredSet<UnkDeferredCallback<bool>> on_change;  // 0x30
 };

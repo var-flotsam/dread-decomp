@@ -75,7 +75,7 @@ struct UnkFan_ovb0122 {
     u32 count;                 // 0xb80
     UnkFanNode_ovb0122* head;  // 0xb88
     UnkFanNode_ovb0122* tail;  // 0xb90
-    base::UnkAllocator* allocator;  // 0xb98
+    base::IAllocator* allocator;  // 0xb98
     u32 alloc_flags;                // 0xba0
 };
 static_assert(__builtin_offsetof(UnkFan_ovb0122, alloc_flags) == 0xba0, "layout");
@@ -88,7 +88,7 @@ static inline bool Contains_ovb0122(UnkFan_ovb0122* self, UnkFanBomb_ovb0122* bo
     return false;
 }
 
-void fn_710087ea38(UnkFan_A4_b74* fan) {
+void CCharClassFanComponent_AddBombsInAreaToList(UnkFan_A4_b74* fan) {
     UnkFan_ovb0122* self = reinterpret_cast<UnkFan_ovb0122*>(fan);
     if (!self->shape)
         return;

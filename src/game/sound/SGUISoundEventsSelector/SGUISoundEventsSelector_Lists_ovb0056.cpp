@@ -19,7 +19,7 @@
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 
 extern void* g_unk_7101caba70[];  // the sound list's vtable group (two address points)
 
@@ -32,7 +32,7 @@ struct UnkSoundList_ovb56 {
     void* keys;     // 0x18
     u32 count;      // 0x20
     u8 unk_0x24[0xc];
-    UnkAllocator* allocator;        // 0x30
+    IAllocator* allocator;        // 0x30
     UnkCountedResource* resource;  // 0x38
 };
 
@@ -74,14 +74,14 @@ struct UnkSoundSelector_ovb56 {
     u32 step;       // 0xe0
     bool field_0xe4;
     u32 flags;  // 0xe8
-    UnkAllocator* allocator;  // 0xf0
+    IAllocator* allocator;  // 0xf0
 };
 static_assert(__builtin_offsetof(UnkSoundSelector_ovb56, allocator) == 0xf0, "layout");
 
 void fn_7100fcb2ec(UnkSoundSelector_ovb56* self) {
     self->vtable = &g_unk_7101cabad0[2];
     CRntString_InitWithAllocator(reinterpret_cast<base::global::CRntString*>(self->name),
-                  reinterpret_cast<UnkAllocator*>(&self->name_allocator_vtable));
+                  reinterpret_cast<IAllocator*>(&self->name_allocator_vtable));
     self->name_allocator_vtable = &g_unk_7101a1b750[2];
     self->field_0xc0 = 0;
     self->field_0xc8 = 0;
@@ -109,7 +109,7 @@ struct UnkSelectorEntries_ovb56 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     UnkSelectorEntries_ovb56& operator=(UnkSelectorEntries_ovb56&& other) {
         for (u64 i = 0; i < count; ++i)
@@ -192,7 +192,7 @@ UnkSoundHandle fn_7100fc9d78(UnkStateSink* self, UnkStateKey* event, void* state
     UnkSelectedIds_ovb56 ids = fn_7100fc9e58(selector, event, UnkTypedObject_ovb56(source));
     UnkSoundHandle handle;
     if (ids.id != &g_unk_7101d47108->empty && ids.path != &g_unk_7101d47200->empty)
-        handle = fn_7101024e28(g_unk_7101d47318, reinterpret_cast<const UnkStrIdPathPair*>(&ids), nullptr, false);
+        handle = CSoundManager_PlayPresetFromIdPath(g_unk_7101d47318, reinterpret_cast<const UnkStrIdPathPair*>(&ids), nullptr, false);
     else
         handle = {nullptr, -1};
     return handle;
@@ -210,7 +210,7 @@ struct UnkSelectorRegistry_ovb56 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkSelectorRegistry_ovb56()
         : selectors(nullptr), ids(nullptr), count(0), capacity(0), step(10), flags(0xe),
@@ -295,7 +295,7 @@ UnkReflValue fn_7100fcbb3c(UnkSelectorHolder_ovb56* self) {
     UnkSelectorEvents_ovb56* selector = self->selector;
     UnkInlineString256_ovb56 s;
     CRntString* str = reinterpret_cast<CRntString*>(s.str);
-    CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
+    CRntString_InitWithAllocator(str, reinterpret_cast<base::IAllocator*>(&s.vtable));
     s.vtable = g_unk_7101a194b8 + 2;
     s.field_0x138 = 0;
     s.field_0x140 = 0;

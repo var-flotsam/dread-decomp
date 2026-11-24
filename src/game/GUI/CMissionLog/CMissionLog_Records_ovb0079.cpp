@@ -10,7 +10,7 @@
 #include "game/GUI/UnkMissionLogRecords.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::UnkStrIdMember;
 
 struct UnkMissionLogRecordDtor_ovb0079 {
@@ -20,7 +20,7 @@ struct UnkMissionLogRecordDtor_ovb0079 {
     u32 count;
     u32 capacity;
     u8 unk_0x20[0x10];
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     __attribute__((always_inline)) ~UnkMissionLogRecordDtor_ovb0079() {
         if (data) {
@@ -57,7 +57,7 @@ UnkElem38Array* fn_7100b5c3e8(UnkElem38Array* self, const UnkElem38Array* other)
         ClearRecords(self);
         fn_7100b5c28c(self, other->capacity);
         for (const UnkElem38 *it = other->data, *end = it + other->count; it != end; ++it)
-            fn_7100b593d0(self, it);
+            CMissionLog_EntriesPushBack(self, it);
     }
     return self;
 }

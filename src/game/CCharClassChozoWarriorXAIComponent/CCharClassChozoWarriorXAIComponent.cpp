@@ -11,7 +11,7 @@
 #include "game/CCharClassChozoWarriorXWallClimbAttack.h"
 #include "types.h"
 
-struct UnkNode;
+struct UnkChozoWarriorCharClass;
 
 struct UnkChozoWarriorXDef {
     void** vtable;
@@ -25,7 +25,7 @@ struct UnkChozoWarriorXDef {
 };
 
 void fn_710048d8b4(UnkChozoWarriorXDef* self) {
-    fn_7100497584(reinterpret_cast<UnkNode*>(self));
+    fn_7100497584(reinterpret_cast<UnkChozoWarriorCharClass*>(self));
     self->vtable = g_unk_7101a3b748 + 2;
     fn_710047c6b4(self->oChozoWarriorXGlaiveSpinAttackDef);
     fn_7100480114(self->oChozoWarriorXWallClimbAttackDef);

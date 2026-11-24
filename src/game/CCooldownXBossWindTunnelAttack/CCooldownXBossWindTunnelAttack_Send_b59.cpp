@@ -24,6 +24,19 @@ struct UnkWindTunnel_b59 {
     UnkWindTunnelOwner_b59* owner;
 };
 
+// The pooled string an id points at: its text is at +0x10, and the text's key (the CRC-64) is the
+// 64-bit id the game manager looks entities up by.
+struct UnkStringDataText_b59 {
+    u8 pad_0x0[0x10];
+    base::global::CRntString field_0x10;  // 0x10
+};
+
+// The entity the lookup gives, as far as this function reads it: the object at +0x220 it sends the request to.
+struct UnkWindTunnelEntity_b59 {
+    u8 pad_0x0[0x220];
+    void* field_0x220;  // 0x220
+};
+
 void fn_71004cc644(UnkWindTunnel_b59* self) {
     if (UnkTimelineComponent* timeline = self->owner->field_0x2e8) {
         if (fn_7100a2c13c(timeline, &g_unk_7101649b38)) {
@@ -36,17 +49,19 @@ void fn_71004cc644(UnkWindTunnel_b59* self) {
     u64 key;
     alignas(8) u32 kind;
     u32 kind_value = g_unk_71727bebb8;
-    key = *reinterpret_cast<u64*>(reinterpret_cast<char*>(g_unk_71726d8110.data) + 0x30);
+    const base::global::CRntString& name =
+        reinterpret_cast<const UnkStringDataText_b59*>(g_unk_71726d8110.data)->field_0x10;
+    key = name.key;
     kind = kind_value;
     UnkWeakTarget* entity = fn_7100debbc8(manager, &key, &kind);
     if (!entity)
         return;
-    void* anim = *reinterpret_cast<void**>(reinterpret_cast<char*>(entity) + 0x220);
+    void* anim = reinterpret_cast<UnkWindTunnelEntity_b59*>(entity)->field_0x220;
     if (!anim)
         return;
     base::reflection::UnkReflTypeIdArg mode;
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(anim, 0x17b48319c6b12217, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(anim, 0x17b48319c6b12217, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }

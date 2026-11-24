@@ -71,7 +71,7 @@ void fn_7100ab1638(UnkBombHitHandler_ovb0078* self, u32 mask, const void* source
     bool hit;
     {
         UnkLavaDropsShape_A2_b71 shape(source, size);
-        hit = fn_7100d5b484(tree, mask, reinterpret_cast<UnkShape*>(&shape),
+        hit = QueryCollisionTreeForTransformedShapeOverlaps(tree, mask, reinterpret_cast<UnkShape*>(&shape),
                             reinterpret_cast<const UnkMtx44*>(&g_unk_7101a1a680), &hits, 0);
     }
     if (hit) {

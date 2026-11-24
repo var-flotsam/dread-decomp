@@ -21,7 +21,7 @@ struct UnkElem18Vector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
 };
 
@@ -47,5 +47,5 @@ void fn_710000e2ec(UnkElem18Vector* self, const UnkElem18Vector* other) {
 // The same for an array of 0x60-byte records (base/UnkFreedVectorPair.h) in another unit, through its
 // own reserve and push-back.
 void fn_7100e52898(UnkPairArray* self, const UnkPairArray* other) {
-    CopyConstruct<UnkPairArray, UnkFreedVectorPair, fn_7100e52b58, fn_7100e52cf4>(self, *other);
+    CopyConstruct<UnkPairArray, UnkFreedVectorPair, fn_7100e52b58, PushBackRecord60Copy>(self, *other);
 }

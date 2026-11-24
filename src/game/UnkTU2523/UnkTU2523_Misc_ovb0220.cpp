@@ -108,7 +108,7 @@ struct UnkElem64_b0220 {
 static_assert(sizeof(UnkElem64_b0220) == 0x40, "UnkElem64_b0220 layout");
 
 struct UnkOwner_b0220 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkListHolder_b0220 {
@@ -216,7 +216,7 @@ u64* fn_7100d86e94(UnkIdKeyMap_b0220* self, u64* pos) {
     return &self->keys[index];
 }
 
-void fn_7100d86d30(UnkIdKeyMap_b0220* self);
+void ShrinkStrIdPointerDictionaryToFit(UnkIdKeyMap_b0220* self);
 void fn_7100d8696c(UnkIdKeyMap_b0220* self, u32 capacity);
 
 UnkIdKeyMap_b0220* fn_7100d86bc8(UnkIdKeyMap_b0220* self, UnkIdKeyMap_b0220* other) {
@@ -227,7 +227,7 @@ UnkIdKeyMap_b0220* fn_7100d86bc8(UnkIdKeyMap_b0220* self, UnkIdKeyMap_b0220* oth
         }
         self->count = 0;
         if (other->count != self->capacity) {
-            fn_7100d86d30(self);
+            ShrinkStrIdPointerDictionaryToFit(self);
             fn_7100d8696c(self, other->count);
         }
         __builtin_memcpy(self->keys, other->keys, (u64)other->count * sizeof(u64));
@@ -253,7 +253,7 @@ struct UnkSetElem_b0220 {
     u32 list_step;
     bool list_grow;
     u32 list_flags;
-    base::UnkAllocator* list_allocator;
+    base::IAllocator* list_allocator;
     u32 field_0x30;
     base::UnkRefHandle owner;  // 0x38
 

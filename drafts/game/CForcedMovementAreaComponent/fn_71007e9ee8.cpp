@@ -17,12 +17,12 @@
 #include "game/UnkTU2577.h"
 #include "game/UnkTU811.h"
 #include "types.h"
+#include "game/CCentralUnitAIComponent.h"
 
 using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
 struct UnkCentralUnitDoor_b46a2;
-UnkCentralUnitDoor_b46a2* fn_71004056fc(void* object);
 void* fn_71007ea32c(void* actor);
 bool fn_7100eea7b0(void* manager);
 
@@ -113,7 +113,7 @@ static inline UnkTouchUnit_l7e9ee8* CentralUnit_l7e9ee8() {
         fn_7100ddb6dc(reg);
         g_unk_71726bee10 = reg;
     }
-    return reinterpret_cast<UnkTouchUnit_l7e9ee8*>(fn_7100ddb768(reinterpret_cast<UnkUnit2547*>(reg)));
+    return reinterpret_cast<UnkTouchUnit_l7e9ee8*>(GetFirstCentralUnitListObject(reinterpret_cast<UnkUnit2547*>(reg)));
 }
 
 // Moves a registration into the manager's set at `offset`.
@@ -137,6 +137,23 @@ static inline bool IsZero_l7e9ee8(const CVector3D& v) {
            Near_l7e9ee8(v.z, g_unk_710164779c.z, 0.001f);
 }
 
+// Whether every component of `o` lies within `eps` of the same component of `v`.
+static inline bool IsNearVec_l7e9ee8(const CVector3D& v, const CVector3D& o, f32 eps) {
+    if (!(v.x - eps <= o.x))
+        return false;
+    if (!(v.x + eps >= o.x))
+        return false;
+    if (!(v.y - eps <= o.y))
+        return false;
+    if (!(v.y + eps >= o.y))
+        return false;
+    if (!(v.z - eps <= o.z))
+        return false;
+    if (!(v.z + eps >= o.z))
+        return false;
+    return true;
+}
+
 bool fn_71007e9ee8(UnkForcedAreaTouch_l7e9ee8* self, UnkTouchArg_l7e9ee8* arg) {
     UnkReflObject* component = arg->ref->hit->component;
     auto* collision = reinterpret_cast<UnkTouchCollision_l7e9ee8*>(
@@ -145,7 +162,7 @@ bool fn_71007e9ee8(UnkForcedAreaTouch_l7e9ee8* self, UnkTouchArg_l7e9ee8* arg) {
 
     if (fn_71004056fc(self->owner)) {
         Register_l7e9ee8(&self->emmy_door, 0x88);
-        if (IsZero_l7e9ee8(self->push)) {
+        if (IsNearVec_l7e9ee8(self->push, g_unk_710164779c, 0.001f)) {
             UnkTouchPos_l7e9ee8* owner = self->owner;
             f32 dx = owner->x - toucher->x;
             f32 dy = owner->y - toucher->y;

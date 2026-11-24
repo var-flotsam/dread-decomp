@@ -163,10 +163,10 @@ void fn_7100b72688(UnkScene3D_ovb0076* self) {
     fn_71011f3cfc(self);
 }
 
-void fn_71011f3e0c(UnkScene3D_ovb0076* self);  // the base's reset
+void CModel3D_ResetDefaultsWithCustomCharClass(UnkScene3D_ovb0076* self);  // the base's reset
 
 void fn_7100b727c4(UnkScene3D_ovb0076* self) {
-    fn_71011f3e0c(self);
+    CModel3D_ResetDefaultsWithCustomCharClass(self);
     self->field_0x3c8 = false;
     self->field_0x2c4 = 0.0f;
     self->field_0x2bc = -1.0f;
@@ -207,7 +207,7 @@ static inline void* ItemList_ovb0076() {
     return g_unk_7172729910;
 }
 
-CRntString fn_71011cd4f8(UnkScene3D_ovb0076* self);  // the object's name
+CRntString CDisplayObject_GetFullName(UnkScene3D_ovb0076* self);  // the object's name
 
 static inline CRntString Prefixed_ovb0076(const char* prefix, const CRntString& str) {
     return CRntString_ConcatCStringFirst(prefix, &str);
@@ -218,7 +218,7 @@ void fn_7100b72e5c(UnkScene3D_ovb0076* self, bool on) {
         return;
     self->field_0x469 = on;
     if (on) {
-        self->item.name = Prefixed_ovb0076("CScene3D:", fn_71011cd4f8(self));
+        self->item.name = Prefixed_ovb0076("CScene3D:", CDisplayObject_GetFullName(self));
         self->field_0x4a4 = 1;
         fn_710119ba7c(static_cast<UnkItemList*>(ItemList_ovb0076()),
                       reinterpret_cast<UnkListedItem_710119ba7c*>(&self->item));
@@ -294,7 +294,7 @@ static inline __attribute__((always_inline)) void Clear_ovb0076(UnkChainedMap* m
     }
 }
 
-void fn_7100b73454(UnkScene3DMaps_ovb0076* self) {
+void CScene3D_ClearStrIdMaps(UnkScene3DMaps_ovb0076* self) {
     Clear_ovb0076(&self->first);
     Clear_ovb0076(&self->second);
 }
@@ -334,7 +334,7 @@ static inline void Unload_ovb0076(base::file::UnkFileDevice* device, const UnkSc
 void fn_7100b72f64(UnkScene3D_ovb0076* self) {
     if (self->frame != 0x7fffffff) {
         fn_71011f5cd0(fn_71011b7a4c(g_unk_717271e8f8, self->frame));
-        fn_7100b73454(&self->maps);
+        CScene3D_ClearStrIdMaps(&self->maps);
         fn_71002191a4(g_unk_7101d47300, 4);
         self->frame = 0x7fffffff;
     }

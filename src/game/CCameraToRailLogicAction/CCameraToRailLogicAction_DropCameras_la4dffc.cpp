@@ -43,7 +43,7 @@ struct UnkCameraHolder_la4dffc {
     u32 count;  // 0x58
     UnkCamNode_la4dffc* head;
     UnkCamNode_la4dffc* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // The id table's slot at +0x1d30 (UnkGameManagerIdTable does not name it yet).
@@ -86,7 +86,7 @@ static inline UnkCamNode_la4dffc* Erase(UnkCameraHolder_la4dffc* self, UnkCamNod
     return next;
 }
 
-void fn_7100a4dffc(void* holder) {
+void CCameraToRailLogicAction_RemoveRailCameras(void* holder) {
     UnkCameraHolder_la4dffc* self = static_cast<UnkCameraHolder_la4dffc*>(holder);
     UnkCamNode_la4dffc* node = self->head;
     while (node) {

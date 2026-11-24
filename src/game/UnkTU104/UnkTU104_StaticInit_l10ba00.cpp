@@ -88,7 +88,7 @@ void fn_710010b6c4() __attribute__((visibility("hidden")));
 // The low-pass filter cutoffs in hertz, one per ELowPassFilter value (none first).
 extern u32 g_unk_7108b6d0a8[25];
 
-void fn_710010ba00() {
+void InitSndEnumTypesAndLowPassCutoffs() {
     {
         CStrId name("base::snd::ESndType", true);
         fn_7100109230(&TypeObject<base::snd::ESndType>::object, name, fn_7100108ea4, nullptr);

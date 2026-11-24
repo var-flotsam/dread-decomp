@@ -32,7 +32,7 @@ using base::global::UnkStrId;
 using base::reflection::UnkReflValue;
 
 // A reflected getter: a copy of the CStrId at +0x148 of the object at 8, as a reflected value.
-UnkReflValue fn_71007ad4d0(void*, char* obj) {
+UnkReflValue CCutsceneComponent_InvokeCutsceneNameGetter(void*, char* obj) {
     char* target = *reinterpret_cast<char**>(obj + 8);
     base::global::CStrId value = *reinterpret_cast<base::global::CStrId*>(target + 0x148);
     const base::reflection::CType* type = fn_7100009658();
@@ -52,7 +52,7 @@ static inline void Take(CStrId* self, UnkStrId&& other) {
 }
 
 // The id set from an unsigned number's decimal text.
-CStrId* fn_71007ab7d8(CStrId* self, const u32* value) {
+CStrId* CCutsceneComponent_ConvertU32ToStrId(CStrId* self, const u32* value) {
     self->Reset();
     Take(self, UnkStrId(std::to_string(*value).c_str(), true));
     return self;
@@ -66,7 +66,7 @@ struct UnkByteArray_ovb0077 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkByteArray_ovb0077& operator=(const UnkByteArray_ovb0077& o) {
         if (this != &o) {
@@ -185,7 +185,7 @@ __attribute__((always_inline)) static inline void PushBack(base::global::CRntVec
     ++self->count;
 }
 
-void fn_71007acd14(base::global::CRntVector<Entry>* self, const Entry* value) {
+void CCutsceneComponent_PushBackActorEntryCopy(base::global::CRntVector<Entry>* self, const Entry* value) {
     PushBack(self, value);
 }
 
@@ -210,7 +210,7 @@ void fn_71007ac4ac(base::global::CRntVector<Entry>* self, const base::global::CR
 void fn_71007acb7c(base::global::CRntVector<Entry>* self, const Entry* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
-        fn_71007acd14(self, value);
+        CCutsceneComponent_PushBackActorEntryCopy(self, value);
         return;
     }
     u32 cap = self->capacity;
@@ -414,7 +414,7 @@ void fn_71007a95f8(UnkCutsceneComponent_ovb0077* self, u32 index, bool flag, boo
         fn_7101198450(g_unk_7101d47330, entity);
 }
 
-void fn_71007a6214(UnkCutsceneComponent_ovb0077* self) {
+void CCutsceneComponent_ResetActorsAndReleaseRecords(UnkCutsceneComponent_ovb0077* self) {
     u32 n = self->actors.count;
     for (u32 i = 0; i < n; ++i)
         fn_71007a95f8(self, i, false, false, true);

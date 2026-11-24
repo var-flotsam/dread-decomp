@@ -112,7 +112,7 @@ static inline UnkGuiDisplayObject* As(UnkGuiDisplayObject* obj) {
                : nullptr;
 }
 
-void fn_7100b6f4d0(UnkSamusMenuComposition_lb6f4d0* self) {
+void CSamusMenuComposition_SetPortraitFormFromFocusedName(UnkSamusMenuComposition_lb6f4d0* self) {
     fn_71011d9ab4(reinterpret_cast<UnkGuiButtonFocus_ovb0000*>(self));
     self->focused_name = base::global::CStrId::Empty();
     self->form_sprite = nullptr;

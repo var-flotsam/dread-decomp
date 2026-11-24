@@ -9,7 +9,7 @@
 #include "game/UnkTU811.h"
 #include "types.h"
 
-void fn_710054095c(UnkEmmyAI2_b57a3* self) {
+void PassEmmyBarrierStrIdToManager(UnkEmmyAI2_b57a3* self) {
     static base::global::CStrId s_barrier("emmy_barrier", true);
     static base::global::CStrId s_noBarrier("emmy_no_barrier", true);
     UnkGameManager* manager = g_unk_7101d47310;

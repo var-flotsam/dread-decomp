@@ -31,7 +31,7 @@ struct UnkTable_0x28 {
     void* field_0x0;
     void* field_0x8;
     u8 unk_0x10[0x10];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkTable_0x28() {
         fn_710102bcf8(this);
@@ -52,11 +52,11 @@ struct UnkObject_71010233ec : UnkBase_0x8, UnkSecondaryBase_0x30_010233ec {
     }
 };
 
-void fn_71010233ec(UnkObject_71010233ec& self) {
+void CSoundManager_Destroy(UnkObject_71010233ec& self) {
     self.~UnkObject_71010233ec();
 }
 
-void fn_7101023544(UnkObject_71010233ec& self) {
+void CSoundManager_DestroyAndDelete(UnkObject_71010233ec& self) {
     delete &self;
 }
 
@@ -66,5 +66,5 @@ void fn_7101023490(UnkSecondaryBase_0x30_010233ec& base) {
 }
 
 void fn_71010235e8(UnkSecondaryBase_0x30_010233ec& base) {
-    fn_7101023544(static_cast<UnkObject_71010233ec&>(base));
+    CSoundManager_DestroyAndDelete(static_cast<UnkObject_71010233ec&>(base));
 }

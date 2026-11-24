@@ -122,6 +122,6 @@ void fn_710098f028(UnkAimLandState_l98f028* self) {
         fn_7100287954(&first);
     }
 
-    fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
+    CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
                   reinterpret_cast<const UnkRequest_7101176ea8*>(&request), 0xf4061ff25a2163d6ull);
 }

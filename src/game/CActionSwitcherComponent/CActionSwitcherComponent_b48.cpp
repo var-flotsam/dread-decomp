@@ -96,7 +96,7 @@ struct UnkActionSwitcher_b48 {
 
 void fn_7100875ed0(UnkActionSwitcher_b48* self, bool on, bool notify);
 
-void fn_7100875d98(UnkActionSwitcher_b48* self) {
+void CActionSwitcherComponent_RestoreStateFromBlackboard(UnkActionSwitcher_b48* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     CBlackboard* blackboard = &manager->field_0x968;
     CStrId section_id = fn_71011a2fbc(manager->field_0x608);
@@ -123,7 +123,7 @@ void fn_7100875d98(UnkActionSwitcher_b48* self) {
     }
 }
 
-void fn_710087616c(UnkActionSwitcher_b48* self, f32 progress) {
+void CActionSwitcherComponent_SwitchOnWhenProgressReachesOne(UnkActionSwitcher_b48* self, f32 progress) {
     if (self->def->animate)
         fn_710117ad18(self->owner_actor->animation, false, progress);
     if (!self->on && progress == 1.0f) {
@@ -133,7 +133,7 @@ void fn_710087616c(UnkActionSwitcher_b48* self, f32 progress) {
     }
 }
 
-void fn_71008762d8(UnkActionSwitcher_b48* self, f32 progress) {
+void CActionSwitcherComponent_ApplyProgressAndSwitchOffBelowOne(UnkActionSwitcher_b48* self, f32 progress) {
     if (self->def->animate)
         fn_710117ad18(self->owner_actor->animation, false, progress);
     if (self->on && progress < 1.0f) {

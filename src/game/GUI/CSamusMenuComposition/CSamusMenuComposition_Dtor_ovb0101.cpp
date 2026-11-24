@@ -57,7 +57,7 @@ struct UnkMenuMapNode_b0101 {
 // A chained map: its nodes come from the allocator at +0x240 and hang off one list (+0x280), the
 // buckets are an array of node pointers.
 struct UnkMenuMap_b0101 {
-    base::UnkAllocator* allocator;  // 0x240
+    base::IAllocator* allocator;  // 0x240
     u32 field_0x248;
     u32 count;  // 0x24c
     base::global::CRntVector<UnkMenuMapNode_b0101*> buckets;  // 0x250

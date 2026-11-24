@@ -26,7 +26,7 @@ struct UnkGuiRefNode_b0209 {
 };
 
 struct UnkGuiRefMap_b0209 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkGuiRefNode_b0209** buckets;  // 0x10

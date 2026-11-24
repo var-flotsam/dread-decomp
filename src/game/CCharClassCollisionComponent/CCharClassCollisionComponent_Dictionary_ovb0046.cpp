@@ -49,7 +49,7 @@ struct UnkCollisionDefCtor_ovb0046 {
     u32 capacity;
     u32 step;  // 0xb8
     u32 flags;
-    base::UnkAllocator* allocator;  // 0xc0
+    base::IAllocator* allocator;  // 0xc0
     u16 field_0xc8;
 };
 static_assert(__builtin_offsetof(UnkCollisionDefCtor_ovb0046, field_0xc8) == 0xc8, "layout");

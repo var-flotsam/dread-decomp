@@ -180,7 +180,7 @@ static inline __attribute__((always_inline)) void SetScale_b0246(void* node, f32
     base::math::CVector2D scale;
     scale.x = 1.0f;
     scale.y = y;
-    fn_710020a5a0(reinterpret_cast<UnkStruct_710020a5a0*>(node), &scale);
+    SetNode2DScale(reinterpret_cast<UnkStruct_710020a5a0*>(node), &scale);
 }
 
 static inline __attribute__((always_inline)) void SetOrigin_b0246(void* node) {

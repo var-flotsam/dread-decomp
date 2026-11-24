@@ -190,11 +190,16 @@ struct UnkMsgA5_b61 {
     UnkMsgNode2A5_b61* field_0x10;
 };
 
+struct UnkMsgObjectA5_b61 {
+    u8 pad_0x0[0x30];
+    void* field_0x30;  // 0x30
+};
+
 bool fn_7100888aa8(UnkLauncherSmA5_b61* self, const UnkMsgA5_b61* message) {
     base::reflection::UnkReflObject* obj = message->field_0x10->field_0x10->field_0x10;
     if (!obj || !fn_710009d50c(obj->vf_0x0(), fn_710085fc44()))
         return false;
-    void* owner = *reinterpret_cast<void**>(reinterpret_cast<char*>(obj) + 0x30);
+    void* owner = reinterpret_cast<UnkMsgObjectA5_b61*>(obj)->field_0x30;
     if (owner != (self->field_0x310 ? self->field_0x310->field_0x10 : nullptr))
         return false;
     UnkSmStateA5_b61* current = self->machine.current;
@@ -305,7 +310,8 @@ struct UnkHidrogigaActivatorA5_b61 {
     base::UnkRefHandle handle;
 };
 
-void fn_7100897f48(UnkHidrogigaActivatorA5_b61* self) {
+// The object the lazily resolved handle at +0x5f8 names (resolving it on first use), or null.
+static inline void* GetActivatorObject_A5_b61(UnkHidrogigaActivatorA5_b61* self) {
     if (self->state == 1) {
         {
             UnkRef fresh = fn_7100353be8(self->source);
@@ -314,10 +320,14 @@ void fn_7100897f48(UnkHidrogigaActivatorA5_b61* self) {
         self->state = 2;
     }
     auto* c = static_cast<UnkCountedA5_b61*>(self->handle.ptr);
-    if (!c || !c->raw_0x10)
+    return c ? c->field_0x10 : nullptr;
+}
+
+void fn_7100897f48(UnkHidrogigaActivatorA5_b61* self) {
+    // The getter is called for the test and again for the argument, as the original reloads the object.
+    if (!GetActivatorObject_A5_b61(self))
         return;
-    asm("" ::: "memory");
-    if (auto* part = reinterpret_cast<UnkHidrogigaPartA5_b61*>(fn_7100897b0c(c->field_0x10)))
+    if (auto* part = reinterpret_cast<UnkHidrogigaPartA5_b61*>(fn_7100897b0c(GetActivatorObject_A5_b61(self))))
         RequestStateA5_b61<4, 5>(&part->machine, 1);
 }
 

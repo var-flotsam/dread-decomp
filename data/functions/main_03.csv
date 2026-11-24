@@ -928,7 +928,7 @@ address,size,name,name_source,subsystem,status
 0x71003493d8,1688,fn_71003493d8,unknown,game/components?,U
 0x7100349a70,192,fn_7100349a70,unknown,game/components?,O
 0x7100349b30,1016,fn_7100349b30,unknown,game/components?,U
-0x7100349f28,584,fn_7100349f28,unknown,game/components?,O
+0x7100349f28,584,TurnAimAngleTowardTargetWithBandSpeed,inferred,game/components?,O
 0x710034a170,1604,fn_710034a170,unknown,game/components?,U
 0x710034a7b4,612,fn_710034a7b4,unknown,game/components?,O
 0x710034aa18,12916,fn_710034aa18,unknown,game/components?,U
@@ -949,7 +949,7 @@ address,size,name,name_source,subsystem,status
 0x710034f2d8,72,fn_710034f2d8,unknown,game/components?,O
 0x710034f320,68,fn_710034f320,unknown,game/components?,O
 0x710034f364,16,fn_710034f364,unknown,game/components?,O
-0x710034f374,464,fn_710034f374,unknown,game/components?,O
+0x710034f374,464,CacheShotOrientationAxis,inferred,game/components?,O
 0x710034f544,8,fn_710034f544,unknown,game/components?,O
 0x710034f54c,908,fn_710034f54c,unknown,game/components?,U
 0x710034f8d8,4,fn_710034f8d8,unknown,game/components?,O
@@ -1083,7 +1083,7 @@ address,size,name,name_source,subsystem,status
 0x7100358ed4,144,fn_7100358ed4,unknown,game/components?,O
 0x7100358f64,436,fn_7100358f64,unknown,game/components?,O
 0x7100359118,492,fn_7100359118,unknown,game/components?,O
-0x7100359310,796,fn_7100359310,unknown,game/components?,O
+0x7100359310,796,EInputAimDir_InitStatics,inferred,game/components?,O
 0x710035962c,716,fn_710035962c,unknown,engine/reflection?,O
 0x71003598f8,384,base::reflection::refl_InitType<EAimDirection>,reflection,engine/reflection,O
 0x7100359a78,12,fn_7100359a78,unknown,engine/reflection?,O
@@ -1097,7 +1097,7 @@ address,size,name,name_source,subsystem,status
 0x7100359ad8,4,base::reflection::ValueOps<EAimDirection>::Destroy,reflection,engine/reflection,O
 0x7100359adc,20,base::reflection::ValueOps<EAimDirection>::CopyAssign,reflection,engine/reflection,O
 0x7100359af0,20,base::reflection::ValueOps<EAimDirection>::MoveAssign,reflection,engine/reflection,O
-0x7100359b10,412,fn_7100359b10,unknown,engine/reflection?,O
+0x7100359b10,412,EAimDirection_InitStatics,inferred,engine/reflection?,O
 0x7100359cac,4,CCharClassAimComponent::refl_AddAttributes,reflection,game/characters,O
 0x7100359cb0,244,CCharClassAimComponent::refl_GetClass,reflection,game/characters,O
 0x7100359da4,5472,CCharClassAimComponent::refl_AddFields,reflection,game/characters,O
@@ -1190,7 +1190,7 @@ address,size,name,name_source,subsystem,status
 0x710035e2c0,636,fn_710035e2c0,unknown,unknown,U
 0x710035e53c,8,fn_710035e53c,unknown,unknown,O
 0x710035e544,60,fn_710035e544,unknown,game/components?,O
-0x710035e580,64,fn_710035e580,unknown,unknown,O
+0x710035e580,64,GetPathSegmentEntryOrFallback,inferred,unknown,O
 0x710035e5c0,56,fn_710035e5c0,unknown,unknown,O
 0x710035e5f8,736,fn_710035e5f8,unknown,ai/behaviortree?,m
 0x710035e8d8,2416,fn_710035e8d8,unknown,unknown,m
@@ -5205,7 +5205,7 @@ address,size,name,name_source,subsystem,status
 0x71003eeb8c,136,SBigkranXSpitLaunchConfig::refl_Destroy,reflection,game,O
 0x71003eec14,148,SBigkranXSpitLaunchConfig::refl_CopyAssign,reflection,game,O
 0x71003eeca8,208,SBigkranXSpitLaunchConfig::refl_MoveAssign,reflection,game,O
-0x71003eed80,1056,fn_71003eed80,unknown,engine/reflection?,O
+0x71003eed80,1056,InitBigkranXSpitLaunchPatternStatics,inferred,engine/reflection?,O
 0x71003ef1a0,4,CCharClassBigkranXMagmaRainAttack::refl_AddAttributes,reflection,game/characters,O
 0x71003ef1a4,244,CCharClassBigkranXMagmaRainAttack::refl_GetClass,reflection,game/characters,O
 0x71003ef298,1040,CCharClassBigkranXMagmaRainAttack::refl_AddFields,reflection,game/characters,O

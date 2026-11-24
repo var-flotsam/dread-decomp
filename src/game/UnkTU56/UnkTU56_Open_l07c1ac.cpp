@@ -34,7 +34,7 @@ struct UnkFileOpener_l07c1ac {
 
 // CRntFile with the members the opener sets.
 struct UnkFile_l07c1ac {
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u64 position;                   // 0x8
     u32 alloc_flags;                // 0x10
     void* data;                     // 0x18
@@ -46,7 +46,7 @@ struct UnkFile_l07c1ac {
     u8 binary;                      // 0x33
     u8 is_open;                     // 0x34
 
-    base::UnkAllocator* Allocator() {
+    base::IAllocator* Allocator() {
         if (!allocator)
             allocator = GetDefaultAllocator();
         return allocator;
@@ -76,7 +76,7 @@ bool fn_710007c1ac(UnkFileReader* reader, const UnkStrPair_0x10* path, const bas
     } else {
         u64 size = self->opened->vf_0x30();
         void* data;
-        if (base::UnkAllocator* allocator = self->Allocator()) {
+        if (base::IAllocator* allocator = self->Allocator()) {
             data = allocator->vf_0x40(size, self->alloc_align, self->alloc_flags);
             self->data = data;
             if (data) {

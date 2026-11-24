@@ -28,6 +28,6 @@ void fn_710015db90(UnkUnit180Tables* self, u32 kind, u64* out, const void* key) 
         break;
     }
     u32 index = 0xffffffff;
-    if (fn_710015dc04(table, key, &index))
+    if (FindBlockHandleByName(table, key, &index))
         *out = index;
 }

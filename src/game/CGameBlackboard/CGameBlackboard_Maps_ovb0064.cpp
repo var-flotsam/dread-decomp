@@ -173,7 +173,7 @@ struct UnkFloatsById_ovb0064 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkFloatsById_ovb0064(const UnkFloatsById_ovb0064& other) {
         ids = nullptr;
@@ -380,7 +380,7 @@ union UnkStrIdHandleTemp_ovb0064 {
 };
 
 // Assigns the handle for `id` (built, copied, then destroyed).
-UnkStrIdHandle* fn_7100aec000(UnkStrIdHandle* self, const CStrId& id) {
+UnkStrIdHandle* CGameBlackboard_AssignPropIDFromStrId(UnkStrIdHandle* self, const CStrId& id) {
     UnkStrIdHandleTemp_ovb0064 t(id);
     self->id = t.h.id;
     self->field_0x8 = t.h.field_0x8;

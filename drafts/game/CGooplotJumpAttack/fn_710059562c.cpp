@@ -13,7 +13,7 @@
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 // A reference to a counted object, released when the count drops to zero.
 struct UnkHitRef_l59562c {
@@ -167,7 +167,7 @@ bool fn_710059562c(UnkGooplotJumpAttack_l59562c* self, UnkCollisionHit_l59562c* 
     delta.y = to.y - from.y;
 
     UnkHitQuery_l59562c query(self->position);
-    if (fn_7100d5babc(tree, 0x80409, reinterpret_cast<UnkShape*>(&shape), reinterpret_cast<const UnkMtx44*>(&xf),
+    if (SweepShapeAgainstCollisionTree(tree, 0x80409, reinterpret_cast<UnkShape*>(&shape), reinterpret_cast<const UnkMtx44*>(&xf),
                       reinterpret_cast<const Vec2*>(&delta), &query, false)) {
         *out = query.hit;
         return true;

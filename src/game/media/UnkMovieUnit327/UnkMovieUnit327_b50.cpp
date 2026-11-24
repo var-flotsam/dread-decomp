@@ -79,7 +79,7 @@ struct UnkMovieEventSet_b50 {
 
 // Takes the queued entries: an "on" entry links its four holders into the multi-wait, an "off"
 // entry unlinks and finalizes them.
-void fn_7100222d94(UnkMovieUnit327_b50* self) {
+void ApplyQueuedEventHolderLinkRequests(UnkMovieUnit327_b50* self) {
     fn_710006691c(&self->field_0x338);
     while (self->field_0x370 != 0) {
         Entry_b50* read = self->field_0x360;
@@ -110,7 +110,7 @@ void fn_7100222d94(UnkMovieUnit327_b50* self) {
 }
 
 // The destructor.
-void fn_7100222bb0(UnkMovieUnit327_b50* self) {
+void DestroyMovieDecoderEventHandler(UnkMovieUnit327_b50* self) {
     fn_7100066918(&self->field_0x338);
     fn_710006686c(self);
     if (self->field_0x2b0.linked) {
@@ -208,13 +208,13 @@ public:
 
 // Their first parameter is an empty object (passed in x0 with nothing set).
 struct UnkMovieEmpty_b50 : UnkLeftoverReg {};
-u32 fn_7100223014(UnkMovieEmpty_b50 tag, UnkMovieEventOwner_b50* owner);
+u32 DequeueMovieDecoderOutputBuffers(UnkMovieEmpty_b50 tag, UnkMovieEventOwner_b50* owner);
 void fn_710021b9e4(UnkMovieEventOwner_b50* owner);
-void fn_7100222d94(UnkMovieUnit327_b50* self);
+void ApplyQueuedEventHolderLinkRequests(UnkMovieUnit327_b50* self);
 
 // The worker ("MovieDecoderEventHandler"): waits for any linked event and handles it by its kind
 // until the state is 3 or the stop event (kind 5) is signalled.
-void fn_7100222ab4(UnkMovieWorker_b50* thread) {
+void RunMovieDecoderEventHandlerThread(UnkMovieWorker_b50* thread) {
     UnkMovieUnit327_b50* self = thread->field_0x1f0;
     while (__atomic_load_n(&thread->field_0x1e4, __ATOMIC_ACQUIRE) != 3) {
         nn::os::MultiWaitHolderType* holder =
@@ -230,13 +230,13 @@ void fn_7100222ab4(UnkMovieWorker_b50* thread) {
             break;
         case 1:
             if (!(owner->field_0x40 & 2))
-                fn_7100223014(UnkMovieEmpty_b50(), owner);
+                DequeueMovieDecoderOutputBuffers(UnkMovieEmpty_b50(), owner);
             break;
         case 2:
             fn_710021b9e4(owner);
             break;
         case 4:
-            fn_7100222d94(self);
+            ApplyQueuedEventHolderLinkRequests(self);
             break;
         case 5:
             return;
@@ -273,7 +273,7 @@ s32 fn_7100222f14(UnkMovieEmpty_b50, UnkMovieEventOwner_b50* owner) {
 
 // Kind 1: takes the decoder's ready output buffers (the first and then `remaining` more), each
 // handed to the stream; 0x2000 counts as success.
-u32 fn_7100223014(UnkMovieEmpty_b50, UnkMovieEventOwner_b50* owner) {
+u32 DequeueMovieDecoderOutputBuffers(UnkMovieEmpty_b50, UnkMovieEventOwner_b50* owner) {
     s32 index = -1;
     s64 time = 0;
     u32 flags = 0;

@@ -17,7 +17,7 @@ struct UnkPowerDescCompositionMusic;
 struct UnkPowerDescCompositionShow;
 
 void fn_7100b641cc(UnkPowerDescCompositionMusic* self, u32 mode);
-void fn_7100b63ca4(UnkPowerDescCompositionShow* self);
+void CPowerDescriptionComposition_Show(UnkPowerDescCompositionShow* self);
 void fn_71011f9778(UnkGuiDisplayObject* self, const CStrId& name);
 __attribute__((visibility("hidden"))) extern CStrId g_unk_71727656e8;
 
@@ -47,7 +47,7 @@ static inline bool HasText(const CRntString& text) {
     return text.data && *text.data;
 }
 
-void fn_7100b62a00(UnkPowerDescriptionButton_b62a00* self) {
+void CPowerDescriptionButton_ApplyPowerDescription(UnkPowerDescriptionButton_b62a00* self) {
     UnkIngameMenuView_b62a00* menu = reinterpret_cast<UnkIngameMenuView_b62a00*>(fn_7100deac84(g_unk_7101d47310));
     UnkPowerDescSlot_b62a00* slot = menu->power_description;
     if (!slot)
@@ -152,5 +152,5 @@ void fn_7100b62a00(UnkPowerDescriptionButton_b62a00* self) {
             break;
         }
     }
-    fn_7100b63ca4(reinterpret_cast<UnkPowerDescCompositionShow*>(composition));
+    CPowerDescriptionComposition_Show(reinterpret_cast<UnkPowerDescCompositionShow*>(composition));
 }

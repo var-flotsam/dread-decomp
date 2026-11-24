@@ -28,7 +28,7 @@ bool fn_71007298d0(UnkBillboard_bbc* self) {
     void* manager = g_unk_71726da048;
     if (!manager) {
         manager = fn_71000839a0(0xe0, 0x3f);
-        fn_7100e1bca4(manager);
+        ConstructBillboardManager(manager);
         g_unk_71726da048 = manager;
     }
     UnkBillboardEntry_bbc* entry = fn_7100e1caf0(manager, self->id);

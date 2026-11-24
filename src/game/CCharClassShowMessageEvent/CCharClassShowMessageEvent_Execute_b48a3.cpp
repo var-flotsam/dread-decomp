@@ -17,7 +17,7 @@ struct UnkShowMessageEvent_b48a3 {
     u8 field_0x18[1];
 };
 
-void fn_7100be02c8(UnkShowMessageEvent_b48a3* self) {
+void CCharClassShowMessageEvent_ShowTextIfNotEmpty(UnkShowMessageEvent_b48a3* self) {
     auto* entry = static_cast<UnkMessageEntry_b48a3*>(g_unk_7101d47310->field_0x2258);
     if (!entry || !entry->composition)
         return;

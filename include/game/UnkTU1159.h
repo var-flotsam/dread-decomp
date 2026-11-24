@@ -16,4 +16,4 @@ struct UnkUnit2560Element {
     u8 data[0x190];
 };
 void fn_7100744d90(UnkUnit2560Element* element);  // Resets one element.
-UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
+UnkVec3Result GetPositionFromParentAndOffset(UnkStruct_71007455dc* self);

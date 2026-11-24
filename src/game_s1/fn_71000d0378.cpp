@@ -157,7 +157,7 @@ struct UnkMovedArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void MoveFrom(UnkMovedArray* src) {
         for (u64 i = 0; i < count; ++i)

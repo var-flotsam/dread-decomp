@@ -96,7 +96,7 @@ void fn_71006e9fcc(UnkXParasiteAI* self, UnkActor* target) {
 struct UnkStruct_710024fa0c;
 struct UnkXParasiteMode_A3_b75;
 
-void fn_71006e75e8(UnkXParasiteAI* self, bool on);
+void SetXParasiteEffectAndBindingSlots(UnkXParasiteAI* self, bool on);
 
 static inline bool Moving(UnkXParasiteAI* s) {
     return s->field_0x14714 - 0.001f > 0.0f || s->field_0x14714 + 0.001f < 0.0f || s->field_0x14718 - 0.001f > 0.0f ||
@@ -134,7 +134,7 @@ void fn_71006e8a18(UnkXParasiteAI* self) {
         }
         fn_7100232c68(self->owner);
     } else {
-        fn_71006e75e8(self, true);
+        SetXParasiteEffectAndBindingSlots(self, true);
     }
     fn_71006e9384(self, reinterpret_cast<const UnkXParasiteMode_A3_b75*>(&self->field_0x146e4));
     self->field_0x146e4 = 0x7fffffff;
@@ -179,7 +179,7 @@ void XParasiteAI_SetEffectActive(UnkXParasiteAI* self, bool on) {
             return;
         UnkVec3f position(self->owner->field_0x44, self->owner->field_0x54, self->owner->field_0x64);
         fn_7100146d84(fx, &position);
-        fn_7101152988(static_cast<UnkRinkaControl_ovb0090*>(control), fx, reinterpret_cast<UnkRinkaEntry_ruc**>(g_unk_717270b910),
+        CFXComponent_AddNamedEffect(static_cast<UnkRinkaControl_ovb0090*>(control), fx, reinterpret_cast<UnkRinkaEntry_ruc**>(g_unk_717270b910),
                       nullptr, 0);
         const UnkVec3f& src = *reinterpret_cast<const UnkVec3f*>(&g_unk_7101647790);
         UnkVec3f first(src);

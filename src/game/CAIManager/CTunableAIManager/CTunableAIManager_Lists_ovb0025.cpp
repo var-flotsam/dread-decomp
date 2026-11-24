@@ -210,7 +210,7 @@ struct UnkMemberB_b0025;
 struct UnkMemberC_b0025;
 struct UnkMemberD_b0025;
 
-void fn_7100639f7c(UnkMemberA_b0025* self, void* item);
+void AddWeakRefOnceAndSetCurrentIfOnlyEntry(UnkMemberA_b0025* self, void* item);
 void fn_71006de93c(UnkMemberB_b0025* self, void* item);
 void fn_71006bd124(UnkMemberC_b0025* self, void* item);
 void fn_71006a20a0(UnkMemberD_b0025* self, void* item);
@@ -226,7 +226,7 @@ struct UnkNavOwner_b0025 {
     u32 count;
     UnkItemLink_b0025* head;
     UnkItemLink_b0025* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u8 unk_0x3c[0x44];
     u8 field_0x80[0x2e8];
@@ -266,7 +266,7 @@ void fn_7100da9e88(UnkNavOwner_b0025* self, void* item) {
             }
         }
     }
-    fn_7100639f7c(reinterpret_cast<UnkMemberA_b0025*>(self->field_0x80), item);
+    AddWeakRefOnceAndSetCurrentIfOnlyEntry(reinterpret_cast<UnkMemberA_b0025*>(self->field_0x80), item);
     fn_71006de93c(reinterpret_cast<UnkMemberB_b0025*>(self->field_0x368), item);
     fn_71006bd124(reinterpret_cast<UnkMemberC_b0025*>(self->field_0x3f0), item);
     fn_71006bd124(reinterpret_cast<UnkMemberC_b0025*>(self->field_0x470), item);
@@ -436,5 +436,5 @@ bool fn_7100dadf20() {
         return false;
     UnkStruct_710117af10* animation = player->animation;
     CStrId name("fallend", true);
-    return !fn_710117af10(animation, reinterpret_cast<UnkCls_710117af10**>(&name), false);
+    return !CAnimationComponent_IsPlayingActionNameContaining(animation, reinterpret_cast<UnkCls_710117af10**>(&name), false);
 }

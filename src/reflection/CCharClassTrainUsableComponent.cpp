@@ -7,44 +7,41 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassTrainUsableComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTrainUsableComponent
-namespace CCharClassTrainUsableComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableLeftAction", 0x1b8, (DefaultValue, ""), (Description, "Train left Usable animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableRightAction", 0x1c0, (DefaultValue, ""), (Description, "Train right Usable animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeLeftAction", 0x1c8, (DefaultValue, ""), (Description, "Train left Usable level change animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeRightAction", 0x1d0, (DefaultValue, ""), (Description, "Train right Usable level change animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseInitRightAction", 0x1d8, (DefaultValue, ""), (Description, "Begin right interaction animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseInitLeftAction", 0x1e0, (DefaultValue, ""), (Description, "Begin left interaction animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseLeftAction", 0x1e8, (DefaultValue, ""), (Description, "Interaction left use animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseRightAction", 0x1f0, (DefaultValue, ""), (Description, "Interaction right use animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseLeftLevelChangeAction", 0x1f8, (DefaultValue, ""), (Description, "Interaction left level change use animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseRightLevelChangeAction", 0x200, (DefaultValue, ""), (Description, "Interaction right level change use animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseLeftEndAction", 0x208, (DefaultValue, ""), (Description, "End left interaction animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseRightEndAction", 0x210, (DefaultValue, ""), (Description, "End right interaction animation"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassTrainUsableComponent::refl_AddAttributes(CClass*) {}
+void CCharClassTrainUsableComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableLeftAction", offsetof(CCharClassTrainUsableComponent, sUsableLeftAction), (DefaultValue, ""), (Description, "Train left Usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableRightAction", offsetof(CCharClassTrainUsableComponent, sUsableRightAction), (DefaultValue, ""), (Description, "Train right Usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeLeftAction", offsetof(CCharClassTrainUsableComponent, sUsableLevelChangeLeftAction), (DefaultValue, ""), (Description, "Train left Usable level change animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeRightAction", offsetof(CCharClassTrainUsableComponent, sUsableLevelChangeRightAction), (DefaultValue, ""), (Description, "Train right Usable level change animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseInitRightAction", offsetof(CCharClassTrainUsableComponent, sUseInitRightAction), (DefaultValue, ""), (Description, "Begin right interaction animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseInitLeftAction", offsetof(CCharClassTrainUsableComponent, sUseInitLeftAction), (DefaultValue, ""), (Description, "Begin left interaction animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseLeftAction", offsetof(CCharClassTrainUsableComponent, sUseLeftAction), (DefaultValue, ""), (Description, "Interaction left use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseRightAction", offsetof(CCharClassTrainUsableComponent, sUseRightAction), (DefaultValue, ""), (Description, "Interaction right use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseLeftLevelChangeAction", offsetof(CCharClassTrainUsableComponent, sUseLeftLevelChangeAction), (DefaultValue, ""), (Description, "Interaction left level change use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseRightLevelChangeAction", offsetof(CCharClassTrainUsableComponent, sUseRightLevelChangeAction), (DefaultValue, ""), (Description, "Interaction right level change use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseLeftEndAction", offsetof(CCharClassTrainUsableComponent, sUseLeftEndAction), (DefaultValue, ""), (Description, "End left interaction animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseRightEndAction", offsetof(CCharClassTrainUsableComponent, sUseRightEndAction), (DefaultValue, ""), (Description, "End right interaction animation"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x218;
+bool CCharClassTrainUsableComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassTrainUsableComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassTrainUsableComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTrainUsableComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassTrainUsableComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassTrainUsableComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassTrainUsableComponent::refl_Destroy(void* obj) { static_cast<CCharClassTrainUsableComponent*>(obj)->~CCharClassTrainUsableComponent(); }
+void* CCharClassTrainUsableComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassTrainUsableComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassTrainUsableComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassTrainUsableComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -55,5 +52,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassTrainUsableComponent
-DREAD_REFLECTED_CLASS(CCharClassTrainUsableComponent, CCharClassUsableComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassTrainUsableComponent, CCharClassUsableComponent);
+#pragma GCC diagnostic pop

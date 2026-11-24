@@ -6,13 +6,9 @@
 #include "game/UnkTU2523.h"
 #include "types.h"
 #include "game/sound/UnkSoundHandle.h"
+#include "game/UnkSoundRef.h"
 
-struct UnkSound;
-struct UnkSoundRef {
-    UnkSound* sound;
-    s64 serial;
-};
-inline UnkSound* UnkSoundHandle::Get() const { if (ref && ref->serial == serial && serial != -1) return ref->sound; return nullptr; }
+inline UnkSound* UnkSoundHandle::Get() const { if (ref && ref->serial == serial && serial != -1) return ref->object; return nullptr; }
 
 // Signature as src/game/CShipRechargeComponent/CShipRechargeComponent_StopSound_b49a4.cpp declares it.
 struct UnkShipRechargeEntity_b49a4;
@@ -42,7 +38,7 @@ static inline __attribute__((always_inline)) void Stop_A5_b71(UnkHeatableShieldE
     *h = g_unk_7108b6c460;
 }
 
-void fn_710086e410(UnkHeatableShieldEntry* entry) {
+void CHeatableShieldComponent_ResetEntry(UnkHeatableShieldEntry* entry) {
     UnkHeatableShieldEntry_A5_b71* self = reinterpret_cast<UnkHeatableShieldEntry_A5_b71*>(entry);
     self->field_0xa0 = 0;
     self->field_0x60 = 0;

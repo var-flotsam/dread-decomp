@@ -24,7 +24,7 @@ void fn_71006eed30() __attribute__((visibility("hidden")));
 void fn_71006eed3c() __attribute__((visibility("hidden")));
 extern char g_unk_717270c2f8[];
 
-void fn_71006eee50() {
+void CCharClassYamplotXAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_717270c300.ids);
     InitEnum(&base::reflection::TypeObject<CCharClassYamplotXAIComponent::ESubspecies, UnkEnumType>::object, "CCharClassYamplotXAIComponent::ESubspecies", fn_71006ee52c, fn_71006ee3e0,
              g_unk_717270c2b0, &g_unk_717270c2b8, fn_71006eed30, &g_unk_717270c2d8, fn_71006eed3c);

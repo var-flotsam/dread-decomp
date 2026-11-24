@@ -159,7 +159,7 @@ u32 fn_710009e1b0(void*, const UnkTypedRef* ref, UnkReflVisitor* visitor) {
         return visitor->vf_0xc8(&dyn);
     }
     case 0x54887d7b68d1c872:
-        if (!fn_71000e6db0(reinterpret_cast<UnkVersionEntry*>(const_cast<CType*>(type)))) {
+        if (!IsLinkAttributeSet(reinterpret_cast<UnkVersionEntry*>(const_cast<CType*>(type)))) {
             UnkTypedRef dyn = DynamicRef(ref->type, ref->ptr);
             return visitor->vf_0xe0(&dyn);
         }

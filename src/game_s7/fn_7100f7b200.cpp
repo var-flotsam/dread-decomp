@@ -457,7 +457,7 @@ extern char g_unk_71729e0a9a[];
 UnkEnumType* fn_7100f427a4();
 extern UnkNamedValue g_unk_71729e0aa0;
 extern UnkStruct_71729e0ab0 g_unk_71729e0ab0;
-void fn_7100ad3404(UnkStruct_71729e0ab0* self, UnkNamedValueTmp* values, u64 count);
+void ConstructErasedValueVectorFromArray(UnkStruct_71729e0ab0* self, UnkNamedValueTmp* values, u64 count);
 
 void fn_7100f7b200() {
     InitHeaderIds(&g_unk_71729e7958.ids);
@@ -902,5 +902,5 @@ void fn_7100f7b200() {
     fn_710009ec00(g_unk_71729e0a99, fn_7100f426c8());
     fn_710009ec00(g_unk_71729e0a9a, fn_7100f427a4());
     InitNamedValue(&g_unk_71729e0aa0, "sID", TypeOf<fn_7100009658>, fn_710010c424);
-    InitFromNamedValue(&g_unk_71729e0ab0, g_unk_71729e0aa0, fn_7100ad3404, fn_7100d8ce3c);
+    InitFromNamedValue(&g_unk_71729e0ab0, g_unk_71729e0aa0, ConstructErasedValueVectorFromArray, DestroyOpsEntryVector);
 }

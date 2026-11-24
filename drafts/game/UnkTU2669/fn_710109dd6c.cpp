@@ -51,7 +51,7 @@ struct UnkScriptNode_l09dd6c {
     UnkScriptNode_l09dd6c* chain;  // 0x48: the next node in the bucket
 
     // Nodes come from the map's allocator, which may give none.
-    static void* operator new(decltype(sizeof(0)) size, base::UnkAllocator* allocator, u32 flags) noexcept {
+    static void* operator new(decltype(sizeof(0)) size, base::IAllocator* allocator, u32 flags) noexcept {
         return allocator->vf_0x40(size, 8, flags);
     }
 

@@ -7,7 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
@@ -52,7 +52,7 @@ struct UnkRectEntries_ovb0061 {
     u32 step;
     bool growable;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     UnkRectEntry_ovb0061& operator[](u32 i) {
         if (!(i < count))
@@ -85,7 +85,7 @@ struct UnkRectPtrArray_ovb0061 {
     u32 step;
     bool growable;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     UnkRectPtrArray_ovb0061(u32 step_, u32 flags_)
         : data(nullptr), count(0), capacity(0), step(step_), growable(true), flags(flags_),

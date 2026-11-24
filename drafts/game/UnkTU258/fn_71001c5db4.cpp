@@ -102,7 +102,7 @@ struct UnkGfx258_b0247 {
 };
 
 bool fn_7100159c80();
-void fn_7100159f90(u32 a, u32 b);
+void DrawIndexedFromCurrentState(u32 a, u32 b);
 void fn_710015a3e0(u32 value);
 void fn_710015a500(u32 a, u32 b);
 void fn_710015a680(u32 value);
@@ -182,7 +182,7 @@ void fn_71001c5b74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
         }
         if (fn_7100159c80()) {
             self->field_0x317add0++;
-            fn_7100159f90(0, -1);
+            DrawIndexedFromCurrentState(0, -1);
         }
         tmp.x = item->field_0x14c[0];
         tmp.y = item->field_0x14c[1];
@@ -200,7 +200,7 @@ void fn_71001c5b74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
     }
     if (fn_7100159c80()) {
         self->field_0x317add0++;
-        fn_7100159f90(0, -1);
+        DrawIndexedFromCurrentState(0, -1);
     }
 }
 
@@ -208,7 +208,7 @@ UnkMatrix44* GetCachedXformMatrixAdjustedByAspectRatio(UnkDrawState_b0247* self,
 void fn_710015e4b0(void* state, u32 stage, u64 location, u32 count, u32 a, const UnkMatrix44* values, u32 b);
 void fn_7100160990(s32 a, s32 b, bool c);
 void fn_7100160ab0(u32 a, s32 b, u32 c);
-void fn_710015f770(s32 slot, void* object, bool clear);
+void SetGraphicsSlotPointer(s32 slot, void* object, bool clear);
 void fn_7100161800(void* object);
 void fn_7100154420(void* object);
 extern const base::math::CVector4D g_unk_7101647b1c __attribute__((visibility("hidden")));
@@ -226,7 +226,7 @@ void fn_71001c5114(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
         fn_7100160990(0, mode, 1);
         self->field_0x3183650 = cmd->field_0xfc;
     }
-    fn_710015f770(0, cmd->field_0xa8, true);
+    SetGraphicsSlotPointer(0, cmd->field_0xa8, true);
     const UnkMatrix44* matrix = GetCachedXformMatrixAdjustedByAspectRatio(cmd, self->field_0x317aa08);
     fn_710015e4b0(self->field_0x317af68, 0, self->field_0x317ae18, 4, 1, matrix, 1);
     u64 location;
@@ -244,7 +244,7 @@ void fn_71001c5114(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
     if (fn_7100159c80()) {
         u32 n = count * 6;
         self->field_0x317add0++;
-        fn_7100159f90(0, n);
+        DrawIndexedFromCurrentState(0, n);
     }
 }
 
@@ -264,7 +264,7 @@ void fn_71001c52d4(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
         fn_7100160990(0, mode, 1);
         self->field_0x3183650 = cmd->field_0x130;
     }
-    fn_710015f770(0, cmd->field_0xc0, true);
+    SetGraphicsSlotPointer(0, cmd->field_0xc0, true);
     if (self->field_0x317ae18) {
         const UnkMatrix44* matrix = fn_7100196248(cmd, self->field_0x317aa08);
         fn_710015e4b0(self->field_0x317af68, 0, self->field_0x317ae18, 4, 1, matrix, 1);
@@ -289,7 +289,7 @@ void fn_71001c52d4(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
     fn_7100160d50(0, 2, 1);
     if (fn_7100159c80()) {
         self->field_0x317add0++;
-        fn_7100159f90(0, -1);
+        DrawIndexedFromCurrentState(0, -1);
     }
 }
 

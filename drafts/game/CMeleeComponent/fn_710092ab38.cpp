@@ -113,7 +113,7 @@ static inline bool IsEmpty(const CStrId& id) {
 }
 
 static inline bool HasTrack(UnkAnimationComponent* anim, const CStrId& name) {
-    return fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(anim),
+    return CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(anim),
                          reinterpret_cast<UnkCls_710117af10**>(const_cast<CStrId*>(&name)), false);
 }
 
@@ -153,7 +153,7 @@ static const CStrId* PickAction(UnkMeleeComponent* self, UnkAnimationComponent* 
             return &GameManagerIdTable().field_0x1770;
         }
         if (fn_710117b348(anim, fn_7100c4c958()) || self->owner->aim->field_0x360 ||
-            fn_7100df5740(g_unk_7101d47310) || IsBusy(GameState()))
+            IsOpticCamouflageAbilityInState6(g_unk_7101d47310) || IsBusy(GameState()))
             return &GameManagerIdTable().field_0x1770;
         return &tu.melee_run;
     }

@@ -28,7 +28,9 @@ struct UnkMagmaKraidController_b45a2 {
     base::UnkRefHandle handle;
 };
 
-void fn_710091793c(UnkMagmaKraidController_b45a2* self) {
+// The object the handle names (null when it names none); the handle takes its value from the
+// source on first use.
+static inline UnkActor* GetActor(UnkMagmaKraidController_b45a2* self) {
     if (self->state == 1) {
         {
             UnkRef fresh = fn_7100353be8(self->source);
@@ -37,8 +39,11 @@ void fn_710091793c(UnkMagmaKraidController_b45a2* self) {
         self->state = 2;
     }
     auto* c = static_cast<UnkCounted_b45a2*>(self->handle.ptr);
-    if (!c || !c->raw_0x10)
+    return c ? static_cast<UnkActor*>(c->field_0x10) : nullptr;
+}
+
+void fn_710091793c(UnkMagmaKraidController_b45a2* self) {
+    if (!GetActor(self))
         return;
-    // the original reloads the object after the test
-    fn_7100d7c828(reinterpret_cast<UnkActor*>(*reinterpret_cast<void* volatile*>(&c->field_0x10)), &g_unk_710164b208, false);
+    fn_7100d7c828(GetActor(self), &g_unk_710164b208, false);
 }

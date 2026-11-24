@@ -257,7 +257,7 @@ void fn_710033003c(UnkShinespark_l33003c* self) {
     bool found;
     {
         UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(position);
-        found = fn_7100d5b484(tree, 0x1080, collider->shape, reinterpret_cast<const UnkMtx44*>(&xf), &query, 0);
+        found = QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x1080, collider->shape, reinterpret_cast<const UnkMtx44*>(&xf), &query, 0);
     }
     if (found) {
         UnkVec3f origin = self->owner->actor->Position();
@@ -314,7 +314,7 @@ void fn_710033003c(UnkShinespark_l33003c* self) {
             fn_71008c1538(reinterpret_cast<UnkRequest*>(&request), receiver->damage);
             UnkReflObject* life = receiver->life;
             if (life && IsKindOf_l33003c(life, fn_71008b3b04())) {
-                f32 factor = fn_71008c2de8(
+                f32 factor = CDamageSourceFactor_GetFactorForDamageFlags(
                     reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(static_cast<UnkLife_l33003c*>(life)->table),
                     request.flags);
                 if (!(factor >= 1.0f))

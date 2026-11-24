@@ -223,7 +223,7 @@ bool fn_710112a558(CSpawnPointComponent* self, f32 time) {
                 bool hit;
                 {
                     UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(spawn_pos);
-                    hit = fn_7100d5b484(static_cast<UnkTree*>(tracker), 0x10a0, reinterpret_cast<UnkShape*>(&shape),
+                    hit = QueryCollisionTreeForTransformedShapeOverlaps(static_cast<UnkTree*>(tracker), 0x10a0, reinterpret_cast<UnkShape*>(&shape),
                                         reinterpret_cast<const UnkMtx44*>(&xf), nullptr, 0);
                 }
                 if (hit) {

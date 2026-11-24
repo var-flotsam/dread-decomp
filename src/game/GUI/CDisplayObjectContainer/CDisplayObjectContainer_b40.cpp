@@ -12,7 +12,7 @@
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
-void* fn_71011d9780(char* self, u32 index, void* arg);
+void* CDisplayObjectContainer_CreateIndexedChildOfClass(char* self, u32 index, void* arg);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b40a3(UnkReflValue* arg) {
     if (!arg->type)
@@ -62,7 +62,7 @@ UnkReflValue fn_71011dc794(void*, char* obj, UnkReflValue* const* args) {
     char* target = *reinterpret_cast<char**>(obj + 8);
     u32 index = *base::reflection::refl_ArgValue<u32>(&a[0]);
     void* p1 = ArgPtr_b40a3(&a[1]);
-    void* v = fn_71011d9780(target, index, p1);
+    void* v = CDisplayObjectContainer_CreateIndexedChildOfClass(target, index, p1);
     return ReturnPtr_b40a3(v);
 }
 

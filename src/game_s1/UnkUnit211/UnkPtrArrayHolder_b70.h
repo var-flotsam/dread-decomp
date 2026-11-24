@@ -15,7 +15,7 @@ struct UnkPtrArray_b70a1 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Resize(u32 n) {
         if (count < n) {
@@ -37,7 +37,7 @@ struct UnkPtrArray_b70a1 {
 };
 
 struct UnkPtrArrayHolder_b70a1 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 field_0xc;
     UnkPtrArray_b70a1 array;

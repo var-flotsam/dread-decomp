@@ -70,7 +70,7 @@ void CBigFistAIComponent_FlagAttackWhileInAttackInit(UnkBigFistAI2_ovb0078* self
             __cxa_guard_release(&g_unk_71726c1108.guard);
         }
     }
-    if (!fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(self->owner->field_0x220),
+    if (!CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(self->owner->field_0x220),
                        reinterpret_cast<UnkCls_710117af10**>(g_unk_71726c1108.id), false))
         return;
     const u64 key = 0xf4061ff25a2163d6;

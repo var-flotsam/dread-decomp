@@ -68,7 +68,7 @@ extern char g_unk_71726ef3e8[];
 extern void* g_unk_7101a53690[];
 extern char g_unk_71726ef419[];
 
-void fn_71005e4810() {
+void CBouncingCreaturesLaunchPattern_InitStatics() {
     InitHeaderIds(&g_unk_71726efec0.ids);
     fn_71005dcbcc();
     fn_710009ec00(g_unk_71726eebd0, g_unk_71726efec0.field_0x30);

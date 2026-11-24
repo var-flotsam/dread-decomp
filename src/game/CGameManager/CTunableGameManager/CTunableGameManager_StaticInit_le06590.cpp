@@ -82,7 +82,7 @@ struct UnkRefPtrArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 void fn_7100de49cc(UnkRefPtrArray* self);
 

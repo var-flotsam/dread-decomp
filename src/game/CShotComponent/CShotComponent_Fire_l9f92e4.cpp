@@ -142,7 +142,7 @@ struct UnkShotComponent_l9f92e4 {
     }
 };
 
-void fn_71009f92e4(UnkShotComponent_l9f92e4* self, void* a, void* b, void* c, bool d, bool e,
+void CShotComponent_TryLaunchConfigsAndStoreLaunch(UnkShotComponent_l9f92e4* self, void* a, void* b, void* c, bool d, bool e,
                    const UnkShotKeys_l9f92e4* keys, f32 g) {
     UnkShotLaunch_l9f92e4 launch;
     if (self->FireEntries(a, b, c, d, e, keys, g, &launch) && self->callback) {

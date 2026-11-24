@@ -14,7 +14,7 @@ f32 fn_710035e544(const UnkPath442* self, u32 index) {
     return -1.0f;
 }
 
-const u32* fn_710035e580(const UnkPath442* self, u32 index) {
+const u32* GetPathSegmentEntryOrFallback(const UnkPath442* self, u32 index) {
     if (index < self->SegmentCount()) {
         return &self->entries[index];
     }

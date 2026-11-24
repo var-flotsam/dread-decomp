@@ -30,10 +30,10 @@ static inline void CallVf78(void* composition, s32 a, bool b) {
     reinterpret_cast<void (*)(void*, s32, bool)>(vtable[0x78 / 8])(composition, a, b);
 }
 
-bool fn_7100b4f074(UnkGalleryScreen_b257i* self) {
+bool CreateAndAttachEndingRewardsGalleryComposition(UnkGalleryScreen_b257i* self) {
     if (self->composition)
         return true;
-    self->composition = fn_71011b69d8(g_unk_717271e8f8, CRntString("EndingRewardsGalleryComposition")).Get();
+    self->composition = GetGuiCompositionHandleByName(g_unk_717271e8f8, CRntString("EndingRewardsGalleryComposition")).Get();
     fn_71011cdce8(self->composition, 0);
     fn_71011cf2a4(self->composition, 0);
     fn_71011cf364(self->composition, 0);

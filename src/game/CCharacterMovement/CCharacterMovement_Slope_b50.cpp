@@ -22,7 +22,7 @@ struct UnkMovementShape7c88 {
     char field_0x8[8];
 };
 
-f32 fn_7100977c88(void*, char* owner) {
+f32 CCharacterMovement_GetNegatedShapeBoundsMinY(void*, char* owner) {
     UnkMovementShape7c88* shape = *reinterpret_cast<UnkMovementShape7c88**>(owner + 0x158);
     CVector2D xy[2];
     UnkVectorPair7c88 pair = shape->vf_0x28(shape->field_0x8);

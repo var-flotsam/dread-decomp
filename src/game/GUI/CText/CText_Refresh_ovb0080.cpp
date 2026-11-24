@@ -8,6 +8,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkLabelTextNode.h"
 #include "game/UnkLabelTextObject.h"
 #include "game/UnkTU257.h"
 #include "game/UnkTU2744.h"
@@ -17,10 +18,6 @@
 using base::global::CStrId;
 using base::math::CVector2D;
 
-struct UnkLabelTextNode {
-    u8 unk_0x0[0x80];
-    void* field_0x80;
-};
 static_assert(__builtin_offsetof(UnkLabelTextObject, font) == 0x138, "layout");
 
 u32 fn_71001c4510(UnkLabelTextNode* node);
@@ -91,7 +88,7 @@ void fn_7100b86f00(UnkText_b0080* self) {
     void* font = self->font;
     if (!font) {
         if (fn_71011cde14(display)->frame != 0x7fffffff && self->font_id.data != &g_unk_7101d47108->empty) {
-            font = fn_71011b882c(*root, &self->font_id);
+            font = CGUIManager_GetOrLoadCachedByPath(*root, &self->font_id);
             self->font = font;
         } else {
             font = self->font;

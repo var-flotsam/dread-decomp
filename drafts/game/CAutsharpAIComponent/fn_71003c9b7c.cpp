@@ -179,7 +179,7 @@ void fn_71003c9b7c(UnkAutsharpAI_l3c9b7c* self, bool check) {
             CVector3D delta = ahead - pos;
             CVector2D dir;
             fn_710007b430(&dir, &delta);
-            fn_7100d5b484(tree, 0x20, reinterpret_cast<UnkShape*>(&shape), reinterpret_cast<const UnkMtx44*>(&xf), &hits,
+            QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x20, reinterpret_cast<UnkShape*>(&shape), reinterpret_cast<const UnkMtx44*>(&xf), &hits,
                           0);
             for (UnkAutsharpHit_l3c9b7c *it = hits.items, *end = it + hits.count; it != end; ++it) {
                 if (HasTag(it->first->object)) {

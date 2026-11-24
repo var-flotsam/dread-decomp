@@ -26,7 +26,7 @@ struct UnkFileHashNode {
 };
 
 struct UnkFileHashMap {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 field_0x8;
     u32 count;
     UnkFileHashNode** buckets;

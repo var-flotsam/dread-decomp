@@ -70,7 +70,7 @@ void fn_7100663780(UnkRockDiverAI_l663780* self, UnkRockDiverHit_l663780* hit) {
     if (animation && !fn_710117ae38(animation, 0xb7b132b204e40961ull, false)) {
         mode.id = 0;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, 0xb7b132b204e40961ull, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(animation, 0xb7b132b204e40961ull, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958,
                       &g_unk_7172769740, &mask);
     }
 

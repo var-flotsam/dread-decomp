@@ -11,7 +11,7 @@
 #include "types.h"
 
 struct UnkEntryArray108;
-void fn_7100119f3c(UnkEntryArray108* self, u32 index);
+void EraseTwelveByteEntryAtIndex(UnkEntryArray108* self, u32 index);
 void fn_7100119e14(UnkEntryArray108* self, const UnkEntry108* entry);
 
 struct UnkPool_0x48;
@@ -38,8 +38,8 @@ static inline u32 InnerEnd(const UnkPath_b0255* path) {
 
 void fn_7100c66b50(UnkPathOwner_b0255* self, UnkPathOwner_b0255* other) {
     auto* path = reinterpret_cast<UnkPath_b0255*>(fn_7100124344(reinterpret_cast<UnkPool_0x48*>(self->pool), 0));
-    fn_7100119f3c(reinterpret_cast<UnkEntryArray108*>(path), 0);
-    fn_7100119f3c(reinterpret_cast<UnkEntryArray108*>(path), InnerEnd(path));
+    EraseTwelveByteEntryAtIndex(reinterpret_cast<UnkEntryArray108*>(path), 0);
+    EraseTwelveByteEntryAtIndex(reinterpret_cast<UnkEntryArray108*>(path), InnerEnd(path));
     auto* source = reinterpret_cast<UnkPath_b0255*>(ResolveHandleToPoolSlot(reinterpret_cast<UnkPool_0x48*>(other->pool), 0));
     UnkEntry108 entry;
     entry.field_0x0 = 0;

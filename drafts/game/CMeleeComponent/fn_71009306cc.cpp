@@ -126,7 +126,7 @@ bool fn_71009306cc(UnkMeleeFailComponent_l9306cc* self, UnkMeleeFailOther_l9306c
             }
         }
         request.flags |= 1;
-        fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
+        CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
                       reinterpret_cast<const UnkRequest_7101176ea8*>(&request), 0xf4061ff25a2163d6);
 
         UnkTrackQuery query = {fn_7100d04b78(), nullptr, -1.0f};

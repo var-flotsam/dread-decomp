@@ -19,7 +19,7 @@
 using base::reflection::UnkReflObject;
 
 struct UnkUnit2547;
-void fn_7100ddba14(UnkUnit2547* self, f32* best, u32* best_id);
+void GetHighestCentralUnitValueAndId(UnkUnit2547* self, f32* best, u32* best_id);
 
 struct UnkAltActionPlayer_l712e04;
 bool fn_7100711e00(UnkAltActionPlayer_l712e04* self);
@@ -120,7 +120,7 @@ bool fn_7100712e04(UnkAltActionPlayer_l712e04* self) {
         return false;
     f32 best = 0.0f;
     u32 best_id = 0;
-    fn_7100ddba14(reinterpret_cast<UnkUnit2547*>(DoorRegistry()), &best, &best_id);
+    GetHighestCentralUnitValueAndId(reinterpret_cast<UnkUnit2547*>(DoorRegistry()), &best, &best_id);
     if (best > 0.0f)
         return false;
     UnkAltActionList_l712e04* list = reinterpret_cast<UnkAltActionList_l712e04*>(Manager());

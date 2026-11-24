@@ -21,7 +21,7 @@ struct UnkPolygonShape_ovb0044 {
 
 // The copy constructor: the base shape copied, the vtable, the polygon list at +0xa8 copied, the
 // flag at +0xe8, and an empty array (allocator flags 7) at +0xf0.
-void fn_7100d62b68(UnkPolygonShape_ovb0044* self, const UnkPolygonShape_ovb0044* other) {
+void CPolygonCollectionShape_CopyConstruct(UnkPolygonShape_ovb0044* self, const UnkPolygonShape_ovb0044* other) {
     fn_7100d6c0e4(reinterpret_cast<UnkPolygonCollectionShape_b42a3*>(self),
                   reinterpret_cast<const UnkPolygonCollectionShape_b42a3*>(other));
     self->vtable = g_unk_7101aa8b80 + 0x10;
@@ -36,7 +36,7 @@ struct UnkPolygonPoints_ovb0044 {
     u32 count;
     u32 capacity;
     u8 unk_0x10[0x10];
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u8 unk_0x28[0x20];
 };
 static_assert(sizeof(UnkPolygonPoints_ovb0044) == 0x48, "UnkPolygonPoints_ovb0044 layout");

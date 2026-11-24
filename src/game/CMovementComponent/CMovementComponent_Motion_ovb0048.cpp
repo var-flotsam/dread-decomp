@@ -130,7 +130,7 @@ static inline UnkVec3f Cross(f32 ax, f32 ay, f32 az, f32 bx, f32 by, f32 bz) {
     return r;
 }
 
-UnkVec3f fn_71010d252c(bool flag, const UnkContact_ovb0048* contact) {
+UnkVec3f CMovementComponent_GetContactTangent(bool flag, const UnkContact_ovb0048* contact) {
     f32 x = 0.0f, y = 1.0f, z = 0.0f;
     if (contact && !flag && contact->shape && contact->shape->field_0x10) {
         x = -contact->normal_x;
@@ -235,14 +235,14 @@ void fn_71010d2c5c(UnkMovement2_ovb0048* self, UnkVec3f* out) {
 }
 
 struct UnkAnimMaskHolder_b47a3;
-bool fn_7101179cbc(UnkAnimMaskHolder_b47a3* self, const u32* bits);
+bool CAnimationComponent_AnyPlayingTrackHasFlags(UnkAnimMaskHolder_b47a3* self, const u32* bits);
 
 bool fn_71010d2b9c(UnkMovement2_ovb0048* self, UnkVec3f* out) {
     UnkAnimationComponent* animation = self->owner->animation;
     if (!animation)
         return false;
     alignas(8) u32 bits = 4;
-    if (!fn_7101179cbc(reinterpret_cast<UnkAnimMaskHolder_b47a3*>(animation), &bits))
+    if (!CAnimationComponent_AnyPlayingTrackHasFlags(reinterpret_cast<UnkAnimMaskHolder_b47a3*>(animation), &bits))
         return false;
     UnkMotion_ovb0048 motion;
     fn_7101179d08(animation, reinterpret_cast<UnkStruct_71007142e8*>(&motion), &g_unk_717270ebf0);
@@ -504,7 +504,7 @@ struct UnkMovementSide_ovb0048 {
 
 // Whether the entity named `name` faces the other way from this component (signs of the floats
 // at +0x58 of both differ).
-bool fn_71010d32ec(UnkObj_71010d3508* obj, const CRntString& name) {
+bool CMovementComponent_HasOppositeSignToNamedEntity(UnkObj_71010d3508* obj, const CRntString& name) {
     UnkMovementSide_ovb0048* self = reinterpret_cast<UnkMovementSide_ovb0048*>(obj);
     UnkGameManager* manager = g_unk_7101d47310;
     UnkFoundEntity_ovb0048* entity;
@@ -547,7 +547,7 @@ struct UnkResetMovement_ovb0048 {
 static_assert(__builtin_offsetof(UnkResetMovement_ovb0048, speed) == 0x118, "layout");
 
 // Takes the position (bit 0: velocity cleared) and the angles and facing (bit 1) of a transform.
-void fn_71010d45b8(UnkResetMovement_ovb0048* self, UnkXform* xform, const u32* what) {
+void CMovementComponent_SetPositionAndAngleFromXform(UnkResetMovement_ovb0048* self, UnkXform* xform, const u32* what) {
     if (*what & 1) {
         self->position = xform->GetTranslation();
         self->velocity = *reinterpret_cast<const UnkVec3f*>(&g_unk_7101647790);

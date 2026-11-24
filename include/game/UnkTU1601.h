@@ -15,7 +15,7 @@ void fn_7100a93bc4(void* self);
 void fn_7100a925a0(UnkThermalDevice_A5_b73* self);
 extern void* g_unk_7101a92ed0[];
 void CCharClassWaterPoolComponent_ReserveCallbackSetArray(UnkCallbackSetVector* v, u32 n);
-void fn_7100a95868(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
+void PushCopyOntoCallbackSetArray(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
 void fn_7100a959a0(UnkCallbackSetVector* v, u32 size);
 namespace CThermalDeviceComponent { enum class EPipeGroup : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object asm("g_unk_7172752160");

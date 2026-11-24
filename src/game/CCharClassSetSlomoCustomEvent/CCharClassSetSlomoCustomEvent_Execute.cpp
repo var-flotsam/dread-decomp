@@ -14,7 +14,7 @@ struct UnkSetSlomoCustomEvent_cd8d78 {
     UnkSlomoSettings* settings;
 };
 
-void fn_7100cd8d78(UnkSetSlomoCustomEvent_cd8d78* self) {
+void CCharClassSetSlomoCustomEvent_ForwardSlomoParams(UnkSetSlomoCustomEvent_cd8d78* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     f32 a = self->a, b = self->b;
     ++self->settings->ref_count;

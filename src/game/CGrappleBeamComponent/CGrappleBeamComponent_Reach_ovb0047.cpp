@@ -44,7 +44,7 @@ bool fn_710081c3b0(UnkGrappleBeam_b50* self, const UnkGrappleTransform_ovb0047* 
     if (dist2 > max2)
         return false;
     f32 near = tunable->max_length_to_start_retract;
-    if (dist2 > near * near && !fn_7100219588(g_unk_7101d47300, target, 0, 0))
+    if (dist2 > near * near && !IsPositionOnScreen(g_unk_7101d47300, target, 0, 0))
         return false;
     return true;
 }

@@ -20,7 +20,7 @@ struct UnkEnhanceWeakSpot {
     UnkWeakSpotDef* def;
 };
 
-void fn_71007d40a0(UnkEnhanceWeakSpot* self, bool on) {
+void CEnhanceWeakSpotComponent_SetWeakSpotAimed(UnkEnhanceWeakSpot* self, bool on) {
     if (self->field_0x3d && self->field_0x3e != on) {
         self->field_0x3e = on;
         fn_7100d7c828(self->actor, on ? &self->def->on_id : &self->def->off_id, false);

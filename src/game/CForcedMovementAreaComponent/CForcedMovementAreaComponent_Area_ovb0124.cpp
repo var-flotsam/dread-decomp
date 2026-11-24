@@ -48,7 +48,7 @@ struct UnkAreaRefs_ovb0124 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Free() {
         if (data) {
@@ -194,7 +194,7 @@ void CForcedMovementAreaComponent_SetOffsetSideFromShapeTest(UnkForcedArea_ovb01
         fn_7100ddb6dc(reg);
         g_unk_71726bee10 = reg;
     }
-    if (char* unit = reinterpret_cast<char*>(fn_7100ddb768(reinterpret_cast<UnkUnit2547*>(reg)))) {
+    if (char* unit = reinterpret_cast<char*>(GetFirstCentralUnitListObject(reinterpret_cast<UnkUnit2547*>(reg)))) {
         auto* target = reinterpret_cast<UnkAreaTarget_ovb0124*>(
             *fn_71002a76a4(reinterpret_cast<UnkBreakablePart*>(unit + 0x5a8)));
         if (target && target->actor) {
@@ -389,7 +389,7 @@ void fn_71007ec21c(UnkForcedAreaEmmy_ovb0124* self) {
         fn_7100ddb6dc(reg);
         g_unk_71726bee10 = reg;
     }
-    char* unit = reinterpret_cast<char*>(fn_7100ddb768(reinterpret_cast<UnkUnit2547*>(reg)));
+    char* unit = reinterpret_cast<char*>(GetFirstCentralUnitListObject(reinterpret_cast<UnkUnit2547*>(reg)));
     if (!unit)
         return;
     auto* link = *reinterpret_cast<UnkAreaUnitLink_ovb0124**>(unit + 0x6d8);
@@ -511,7 +511,7 @@ bool CForcedMovementAreaComponent_QueryNamedColliderHit(UnkForcedAreaQuery_ovb01
     UnkCollisionObject* c = fn_71008640a4(static_cast<UnkCollisionContainer*>(object), name);
     if (!c)
         return false;
-    return fn_7100d5b484(tree, 0x10, reinterpret_cast<UnkAreaShaped_ovb0124*>(c)->shape,
+    return QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x10, reinterpret_cast<UnkAreaShaped_ovb0124*>(c)->shape,
                          reinterpret_cast<const UnkMtx44*>(&xf), &query, 0);
 }
 
@@ -615,7 +615,7 @@ bool fn_71007eca08(UnkForcedAreaDoor_ovb0124* self) {
         fn_7100ddb6dc(reg);
         g_unk_71726bee10 = reg;
     }
-    auto* unit = reinterpret_cast<UnkAreaUnit_ovb0124*>(fn_7100ddb768(reinterpret_cast<UnkUnit2547*>(reg)));
+    auto* unit = reinterpret_cast<UnkAreaUnit_ovb0124*>(GetFirstCentralUnitListObject(reinterpret_cast<UnkUnit2547*>(reg)));
     CVector3D pos = unit ? CVector3D{unit->owner->x, unit->owner->y, unit->owner->z} : g_unk_710164779c;
     f32 ux = pos.x;
     f32 uy = pos.y;

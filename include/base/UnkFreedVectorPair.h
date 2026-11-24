@@ -22,7 +22,7 @@ struct UnkMovedArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Grows the array, moving the elements over (fn_7100e52b58 for array pairs).
     __attribute__((always_inline)) void Reserve(u32 new_capacity) {
@@ -73,7 +73,7 @@ struct UnkFreedVector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Takes over the other's array, leaving it empty.
     UnkFreedVector(UnkFreedVector&& other)
@@ -115,7 +115,7 @@ struct UnkSecondPtrArray {
     u32 capacity;
     u32 field_0x18;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkSecondPtrArray(UnkSecondPtrArray&& other)
         : data(other.data), field_0x8(other.field_0x8), count(other.count), capacity(other.capacity),
@@ -146,4 +146,4 @@ void fn_7100e52b58(UnkPairArray* self, u32 capacity);
 
 // Destroys the elements and frees both arrays.
 void fn_7100e493f4(UnkSecondPtrArray<UnkFreedVectorPair>* self);
-void fn_7100e52cf4(UnkPairArray* self, const UnkFreedVectorPair* value);
+void PushBackRecord60Copy(UnkPairArray* self, const UnkFreedVectorPair* value);

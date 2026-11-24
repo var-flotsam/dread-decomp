@@ -252,7 +252,7 @@ void* fn_7100555e14(UnkNavAI_b0194* self, UnkActor* actor, u32 flag, u32 flags, 
     result->field_0x20 = 0;
     UnkNavQuery query;
     fn_710028659c(&query);
-    fn_7100286798(reinterpret_cast<UnkStruct_7100286798*>(&query), reinterpret_cast<UnkActor_7100286798*>(self->owner));
+    InitNavQueryFromActor(reinterpret_cast<UnkStruct_7100286798*>(&query), reinterpret_cast<UnkActor_7100286798*>(self->owner));
     AssignRef(&query.target, fn_7100d78378(reinterpret_cast<UnkWeakTarget*>(actor)));
     query.flags = flags;
     CVector2D point;

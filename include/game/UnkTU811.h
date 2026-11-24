@@ -15,7 +15,7 @@ struct UnkLuaDoorTarget;
 struct UnkListedItem;
 struct UnkActor;
 struct UnkEmmyRelaxAI_b59;
-struct UnkComponent;
+struct UnkEmmyAIComponent;
 struct UnkComponent_71004faad4;
 struct UnkEmmyAI;
 struct UnkEmmyAI2_b57a3;
@@ -35,7 +35,7 @@ void fn_7100544a34(UnkEmmyActor_b55* self, char* data, bool on);
 void fn_7100565ef0(UnkTutoHandle* handle, UnkTutoHandle** slot);
 bool fn_710054ad2c(UnkEmmyAIView* self);
 void fn_710053e5c0(UnkComponent_71004faad4* self);
-void fn_710053f510(UnkComponent* self);
+void fn_710053f510(UnkEmmyAIComponent* self);
 bool fn_7100543b30(UnkEmmyAIView* self);
 UnkSlidingBlockMovement* fn_710054a2cc(void* entity);  // The entity's typed component lookup.
 bool fn_710054aecc(UnkEmmyAI2_b62a3* self);
@@ -54,7 +54,7 @@ extern base::global::CStrId g_unk_71726e1f68 __attribute__((visibility("hidden")
 base::global::CRntVector<UnkListedItem*>* fn_7100552d7c();
 void fn_71005479a0(UnkEmmyRelaxAI_b59* self);
 // Hands the game manager the string id for the barrier state (the barrier or no-barrier name, or the default).
-void fn_710054095c(UnkEmmyAI2_b57a3* self);
+void PassEmmyBarrierStrIdToManager(UnkEmmyAI2_b57a3* self);
 void fn_7100540dd0(char* self);
 UnkLuaDoorTarget* fn_710055b104(void* object);
 void fn_7100547428(UnkEmmyActor_b55* self, s32 state, UnkActor* target, bool b);

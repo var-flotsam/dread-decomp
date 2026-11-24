@@ -152,7 +152,7 @@ static inline void Get(UnkShockerTunable_l6077d4* obj, u64 key, f32* out) {
     typed.ptr = obj;
     UnkShockerValue_l6077d4 value = {fn_710000abbc(), out};
     if (UnkShockerField_l6077d4* field = cls->FindField(key))
-        fn_71000e78e0(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
 }
 

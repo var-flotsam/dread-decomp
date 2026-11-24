@@ -8,7 +8,7 @@
 using base::global::CStrId;
 
 struct UnkRegistry_b0255;
-void fn_71006f8ca0(UnkRegistry_b0255* self, UnkRegistry_b0255* other);
+void MoveConstructObjectRegistry(UnkRegistry_b0255* self, UnkRegistry_b0255* other);
 
 // The registry as this unit sees it: polymorphic, 0xd0 bytes.
 struct UnkRegistryValue_lfbbbdc {
@@ -24,7 +24,7 @@ struct UnkRegistryArray_lfbbbdc {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_7100fbbbdc(UnkRegistryArray_lfbbbdc* self, u32 capacity) {
@@ -36,7 +36,7 @@ void fn_7100fbbbdc(UnkRegistryArray_lfbbbdc* self, u32 capacity) {
             UnkRegistryValue_lfbbbdc* src = self->values;
             UnkRegistryValue_lfbbbdc* dst = values;
             for (u32 i = 0; i < self->count; ++dst, ++src, ++i) {
-                fn_71006f8ca0(reinterpret_cast<UnkRegistry_b0255*>(dst), reinterpret_cast<UnkRegistry_b0255*>(src));
+                MoveConstructObjectRegistry(reinterpret_cast<UnkRegistry_b0255*>(dst), reinterpret_cast<UnkRegistry_b0255*>(src));
                 src->~UnkRegistryValue_lfbbbdc();
             }
             self->allocator->vf_0x48(self->values);

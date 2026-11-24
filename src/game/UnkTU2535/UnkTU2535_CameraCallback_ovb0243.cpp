@@ -13,7 +13,7 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-void fn_7100ad3118(UnkErasedVector* self, const CRntString* text);
+void ConstructValueArrayFromSeparatedText(UnkErasedVector* self, const CRntString* text);
 
 // A pooled path name: the pointer to its record, which holds the text and a reference count.
 struct UnkPathRecord_a4dcc {
@@ -54,7 +54,7 @@ UnkCameraCallbackBase_ovb0070::UnkCameraCallbackBase_ovb0070(const UnkCameraCall
         ++id.record->ref_count;
         {
             UnkBuilt_a4dcc built;
-            fn_7100ad3118(&built.values, &id.record->text);
+            ConstructValueArrayFromSeparatedText(&built.values, &id.record->text);
             fn_710023b29c(&callbacks, &built.values);
         }
         state = 1;

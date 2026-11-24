@@ -18,7 +18,7 @@ struct UnkRenderTargetA1;
 struct UnkStruct_71001cdd74;
 void fn_71001cdba4(UnkRenderTargetA1* target, void* block);
 void fn_71001cb604(UnkRenderTargetA1* target, u32 a, void* b, void* c, void* d, void* e);
-void fn_71001cdd18(UnkRenderTargetA1* target);
+void PopPairListStackAndReapplyTop(UnkRenderTargetA1* target);
 void fn_71001cdd70(UnkRenderTargetA1* target);
 void fn_71001cdd74(UnkRenderTargetA1* target, void* block);
 void fn_71001cde48(UnkRenderTargetA1* target);

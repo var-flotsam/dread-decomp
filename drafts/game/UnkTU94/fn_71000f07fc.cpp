@@ -152,7 +152,7 @@ bool fn_71000f07fc(UnkTypedRefWriter* self) {
     if (!reader && writer->field_0x5468)
         reader = FindClassReader(reinterpret_cast<const CType*>(context->value.type));
     if (reader && writer->field_0x5468) {
-        base::UnkAllocator* allocator = GetDefaultAllocator();
+        base::IAllocator* allocator = GetDefaultAllocator();
         UnkReflValue* copy;
         {
             UnkReflValue ref;

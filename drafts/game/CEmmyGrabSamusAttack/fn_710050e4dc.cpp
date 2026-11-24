@@ -34,7 +34,7 @@ struct UnkPropSlotVec {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkPropSlot* Find(u64 hash) {
         return std::find_if(data, data + count, [hash](const UnkPropSlot& slot) { return slot.hash == hash; });

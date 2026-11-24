@@ -51,7 +51,7 @@ f32 CChozoCommanderAttack_GetDCShotAimAngle(UnkAimOwner* self, bool flag) {
     u32 y = actor->field_0x54;
     u32 z = actor->field_0x64;
     UnkPosition position = {x, y, z};
-    UnkAimAction* action = fn_710070d500(fn_71011771e0(self->field_0x8->field_0x220, 0xf4061ff25a2163d6));
+    UnkAimAction* action = fn_710070d500(CAnimationComponent_FindTrackByNameHash(self->field_0x8->field_0x220, 0xf4061ff25a2163d6));
     if (action && fn_710009d50c(action->vf_0x18(), fn_7100b8f4e8())) {
         f32 angle = (f64)(self->field_0x28 * 180.0f) / 3.141592653589793;
         const UnkMatrix44* matrix =

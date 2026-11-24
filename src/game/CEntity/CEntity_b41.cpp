@@ -57,7 +57,7 @@ UnkReflValue fn_7100d82448(void*, char* obj) {
         pos.x = x;
         pos.y = y;
         pos.z = z;
-        result = fn_7100219588(manager, &pos, 0, 0);
+        result = IsPositionOnScreen(manager, &pos, 0, 0);
     }
     bool value = result;
     const base::reflection::CType* type = fn_710000d228();

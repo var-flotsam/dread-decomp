@@ -7,39 +7,36 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassPickableComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPickableComponent
-namespace CCharClassPickableComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sOnPickFX", 0x58, (DefaultValue, ""));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnPickCaption", 0x60, (DefaultValue, ""));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnPickEnergyFragment1Caption", 0x68, (DefaultValue, ""));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnPickEnergyFragment2Caption", 0x70, (DefaultValue, ""));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnPickEnergyFragment3Caption", 0x78, (DefaultValue, ""));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnPickEnergyFragmentCompleteCaption", 0x80, (DefaultValue, ""));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnPickTankUnknownCaption", 0x88, (DefaultValue, ""));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassPickableComponent::refl_AddAttributes(CClass*) {}
+void CCharClassPickableComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sOnPickFX", offsetof(CCharClassPickableComponent, sOnPickFX), (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnPickCaption", offsetof(CCharClassPickableComponent, sOnPickCaption), (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnPickEnergyFragment1Caption", offsetof(CCharClassPickableComponent, sOnPickEnergyFragment1Caption), (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnPickEnergyFragment2Caption", offsetof(CCharClassPickableComponent, sOnPickEnergyFragment2Caption), (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnPickEnergyFragment3Caption", offsetof(CCharClassPickableComponent, sOnPickEnergyFragment3Caption), (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnPickEnergyFragmentCompleteCaption", offsetof(CCharClassPickableComponent, sOnPickEnergyFragmentCompleteCaption), (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnPickTankUnknownCaption", offsetof(CCharClassPickableComponent, sOnPickTankUnknownCaption), (DefaultValue, ""));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x90;
+bool CCharClassPickableComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassPickableComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassPickableComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPickableComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassPickableComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassPickableComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassPickableComponent::refl_Destroy(void* obj) { static_cast<CCharClassPickableComponent*>(obj)->~CCharClassPickableComponent(); }
+void* CCharClassPickableComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassPickableComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassPickableComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassPickableComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -50,5 +47,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassPickableComponent
-DREAD_REFLECTED_CLASS(CCharClassPickableComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassPickableComponent, CCharClassComponent);
+#pragma GCC diagnostic pop

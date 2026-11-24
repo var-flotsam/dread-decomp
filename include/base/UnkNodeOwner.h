@@ -25,10 +25,10 @@ struct UnkNodeOwner {
     u32 pad_0xc;
     Node* field_0x10;
     Node* field_0x18;
-    base::UnkAllocator* field_0x20;
+    base::IAllocator* field_0x20;
     u8 pad_0x28[8];
     void* field_0x30;
-    base::UnkAllocator* field_0x38;
+    base::IAllocator* field_0x38;
     UnkBlockFreeList field_0x40;  // the sub-object's free list; its buffer is at +0x60
     u8 pad_0x68[4];
     u8 field_0x6c;

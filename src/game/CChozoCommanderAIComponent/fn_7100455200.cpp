@@ -95,7 +95,7 @@ bool fn_7100455200(UnkCommanderAI_l455200* self, UnkAnimEvent_l455200* event) {
             mode.id = 1;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x1926dfc8432a8bb9, track, &mode, &g_unk_710164b958, &g_unk_7172769740,
+            CAnimationComponent_SendActionToTrack(animation, 0x1926dfc8432a8bb9, track, &mode, &g_unk_710164b958, &g_unk_7172769740,
                           &mask);
         }
     }

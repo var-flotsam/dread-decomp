@@ -27,7 +27,7 @@ struct UnkItemChange_42cc {
     bool filled;  // 0xc
 };
 
-bool fn_71011e2950(UnkHud_2950* self, UnkItemChange_2950 change);
+bool CHUD_UpdateMissileCounterOnItemChange(UnkHud_2950* self, UnkItemChange_2950 change);
 bool fn_71011e42cc(UnkHud_42cc* self, UnkItemChange_42cc change);
 
 static inline UnkQualifiedId& Qid_47d0(UnkPropertyEx<>& item) {
@@ -41,7 +41,7 @@ bool fn_71011e47d0(UnkHud_2950* self) {
     if (fn_7100defcd4(g_unk_7101d47310)) {
         {
             CStrId id = Qid_47d0(g_unk_717275a218).id;
-            fn_71011e2950(self, {id, {}, true});
+            CHUD_UpdateMissileCounterOnItemChange(self, {id, {}, true});
         }
         {
             CStrId id = Qid_47d0(g_unk_717275a298).id;

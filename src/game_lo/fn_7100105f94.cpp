@@ -20,7 +20,7 @@ struct UnkInterp_7100105f94 {
     s32 field_0xe0;
 };
 
-void fn_7100105f94(UnkInterp_7100105f94* self, s32 level, f32 time) {
+void SetSoundLevelOverTime(UnkInterp_7100105f94* self, s32 level, f32 time) {
     s32 value = fn_710010aaa0(level);
     if (self->current == value)
         return;

@@ -28,7 +28,7 @@ void fn_71011be27c(UnkReflType* self, const CStrId& name, void (*init)(), void* 
 void fn_71011c1358() __attribute__((visibility("hidden")));
 void fn_71011c1364() __attribute__((visibility("hidden")));
 
-void fn_71011c1530() {
+void CButton_InitStatics() {
     InitHeader(g_unk_7172a0d320.header);
     g_unk_7172a0d320.scale_a = -1.0f;
     g_unk_7172a0d320.scale_b = -1.0f;

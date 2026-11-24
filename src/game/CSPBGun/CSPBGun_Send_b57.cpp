@@ -60,11 +60,11 @@ void fn_710085e918(UnkSPBGun_b57* self) {
     if (target && self->vf_0x60()) {
         mode.id = 0;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, 0x33b8f5dce9971029, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(target, 0x33b8f5dce9971029, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                       &g_unk_7172769740, &mask);
         mode2.id = 0x80;
         mask2.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, 0x94a143a64e136055, 0x5d523009b8f43e5f, &mode2, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(target, 0x94a143a64e136055, 0x5d523009b8f43e5f, &mode2, &g_unk_710164b958,
                       &g_unk_717276974c, &mask2);
     }
     self->field_0x1880 = false;

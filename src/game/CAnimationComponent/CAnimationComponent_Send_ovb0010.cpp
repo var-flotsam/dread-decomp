@@ -79,7 +79,7 @@ static inline bool Send(UnkAnim_ovb0010* self, u64 key1, u64 key2) {
                          UnkFlags_7101176ea8{UnkAll_SpitSend().value});
 }
 
-bool fn_7101177898(UnkAnim_ovb0010* self, UnkNamed_ovb0010** first, UnkNamed_ovb0010** second) {
+bool CAnimationComponent_SendActionByIdPairToMainTrack(UnkAnim_ovb0010* self, UnkNamed_ovb0010** first, UnkNamed_ovb0010** second) {
     return Send(self, (*first)->id, (*second)->id);
 }
 

@@ -26,7 +26,7 @@ struct UnkU16Array {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // base::global::CRntVector's defaults.
     __attribute__((always_inline)) UnkU16Array()
@@ -93,14 +93,14 @@ struct UnkRecord60Array {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) UnkRecord60Array(const UnkRecord60Array& other);
 };
 
 // Reserve: moves the records into new storage (destroying the old ones) and copies the pointer
 // array.
-void fn_7100e54ad8(UnkRecord60Array* self, u32 capacity) {
+void ReserveRecord60AndPointerArrays(UnkRecord60Array* self, u32 capacity) {
     if (self->capacity >= capacity)
         return;
     UnkRecord60_7100e5493c* data = static_cast<UnkRecord60_7100e5493c*>(
@@ -126,7 +126,7 @@ void fn_7100e54ad8(UnkRecord60Array* self, u32 capacity) {
 inline UnkRecord60Array::UnkRecord60Array(const UnkRecord60Array& other)
     : data(nullptr), field_0x8(nullptr), count(0), capacity(0), field_0x18(other.field_0x18),
       flags(other.flags), allocator(other.allocator) {
-    fn_7100e54ad8(this, other.count);
+    ReserveRecord60AndPointerArrays(this, other.count);
     count = other.count;
     for (u64 i = 0; i < count; ++i)
         new (&data[i]) UnkRecord60_7100e5493c(other.data[i]);
@@ -143,7 +143,7 @@ void fn_7100e5493c(UnkRecord60Array* self, const UnkRecord60Array& other) {
 
 // Appends a copy to a plain array of the records with an out-of-line Reserve (fn_7100e52b58),
 // growing like PushBack (including its hang).
-void fn_7100e52cf4(base::global::CRntVector<UnkRecord60_7100e5493c>* self, const UnkRecord60_7100e5493c* value) {
+void PushBackRecord60Copy(base::global::CRntVector<UnkRecord60_7100e5493c>* self, const UnkRecord60_7100e5493c* value) {
     u32 n = self->count;
     u32 new_capacity = self->capacity;
     if (new_capacity <= n && self->step != 0)
@@ -223,7 +223,7 @@ UnkRecord60_7100e5493c* fn_7100e44e70(void* self, const u32* key) {
     UnkRecord60_7100e5493c value = UnkRecord60_7100e5493c();
     return fn_7100e550dc(self, key, &value);
 }
-UnkRecord60_7100e5493c* fn_7100e44f58(void* self, const u64* key) {
+UnkRecord60_7100e5493c* GetOrInsertDefaultRecord60ByU64Key(void* self, const u64* key) {
     UnkRecord60_7100e5493c value = UnkRecord60_7100e5493c();
     return fn_7100e56ed4(self, key, &value);
 }

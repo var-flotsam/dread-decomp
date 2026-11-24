@@ -138,7 +138,7 @@ bool fn_71003e7d54(UnkBigFistComponent_l3e7d54* self, UnkBigFistShape_l3e7d54* s
         AddArcPoint(&outline, &arc, &point, i);
     }
 
-    fn_7100119f98(&outline, true);
+    SetPolylineClosed(&outline, true);
     fn_7100d62d40(reinterpret_cast<UnkTileOutlines*>(shape), &outline);
     shape->field_0x98 = true;
     return true;

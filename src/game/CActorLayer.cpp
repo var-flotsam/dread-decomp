@@ -52,7 +52,7 @@ struct UnkReflAnyList {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // The list of the one value `first` (fn_7100ad3404, which keeps the placeholder types
     // src/game_s7/fn_7100f7b200.cpp gives it).
@@ -69,9 +69,9 @@ struct UnkReflAnyList {
 };
 
 struct UnkStruct_71729e0ab0;
-void fn_7100ad3404(UnkStruct_71729e0ab0* self, UnkNamedValueTmp* values, u64 count);
+void ConstructErasedValueVectorFromArray(UnkStruct_71729e0ab0* self, UnkNamedValueTmp* values, u64 count);
 inline UnkReflAnyList::UnkReflAnyList(UnkReflAnyValue&& first) {
-    fn_7100ad3404(reinterpret_cast<UnkStruct_71729e0ab0*>(this), reinterpret_cast<UnkNamedValueTmp*>(&first), 1);
+    ConstructErasedValueVectorFromArray(reinterpret_cast<UnkStruct_71729e0ab0*>(this), reinterpret_cast<UnkNamedValueTmp*>(&first), 1);
 }
 
 // The types: the sublayer dictionary (built in this unit), the actor group dictionary, and two

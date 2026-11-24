@@ -119,7 +119,7 @@ struct UnkCallbackSetVector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     template <void (*Reserve)(UnkCallbackSetVector*, u32),
               void (*PushBack)(UnkCallbackSetVector*, const UnkCallbackSetElem*)>
@@ -307,5 +307,5 @@ void fn_7100a3b6f0(UnkCallbackSetVector* self, const UnkCallbackSetVector* other
 }
 
 void fn_7100a954c8(UnkCallbackSetVector* self, const UnkCallbackSetVector* other) {
-    self->CopyConstruct<CCharClassWaterPoolComponent_ReserveCallbackSetArray, fn_7100a95868>(*other);
+    self->CopyConstruct<CCharClassWaterPoolComponent_ReserveCallbackSetArray, PushCopyOntoCallbackSetArray>(*other);
 }

@@ -33,7 +33,7 @@ struct UnkBox2D {
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
 using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
-void fn_71008651c8(UnkStruct_71008651c8*, void* const*, UnkOut_71008651c8*);
+void CCollisionComponent_CollectRecordsBySecondaryId(UnkStruct_71008651c8*, void* const*, UnkOut_71008651c8*);
 
 // A collider's shape: slot 0x18 answers its kind (4 for an axis-aligned box), with its transform at +0x8
 // and, for a box, its bounds at +0xa8.
@@ -113,7 +113,7 @@ struct __attribute__((packed)) UnkHitList_l82ac54 {
 };
 
 // The collision query: the shape at `matrix`, swept by `sweep`, against the tree.
-bool fn_7100d5babc(void* tree, u32 mask, UnkCollisionShape* shape, const UnkMatrix44_7100078c9c* matrix,
+bool SweepShapeAgainstCollisionTree(void* tree, u32 mask, UnkCollisionShape* shape, const UnkMatrix44_7100078c9c* matrix,
                    const CVector2D* sweep, UnkHitList_l82ac54* hits, u32 flags);
 
 struct UnkGrappleOwner_l82ac54 {
@@ -154,7 +154,7 @@ bool fn_710082ac54(UnkMovableGrapplePoint_l82ac54* self, UnkActor* other) {
     UnkOut_71008651c8 colliders(0xf);
     {
         CStrId name("collision", true);
-        fn_71008651c8(reinterpret_cast<UnkStruct_71008651c8*>(container), reinterpret_cast<void* const*>(&name),
+        CCollisionComponent_CollectRecordsBySecondaryId(reinterpret_cast<UnkStruct_71008651c8*>(container), reinterpret_cast<void* const*>(&name),
                       &colliders);
     }
 
@@ -184,7 +184,7 @@ bool fn_710082ac54(UnkMovableGrapplePoint_l82ac54* self, UnkActor* other) {
         {
             UnkHitList_l82ac54 hits;
             UnkMatrix44_7100078c9c at = BuildTranslationMatrixFromVec3(start);
-            if (fn_7100d5babc(tree, 0x11, reinterpret_cast<UnkCollisionShape*>(&shape), &at, &sweep, &hits, 0)) {
+            if (SweepShapeAgainstCollisionTree(tree, 0x11, reinterpret_cast<UnkCollisionShape*>(&shape), &at, &sweep, &hits, 0)) {
                 for (UnkHitRecord_l82ac54* it = hits.begin(); it != hits.end(); ++it) {
                     if (!fn_71008640a4(container, &EntityOf(it->handle)->name)) {
                         blocked = true;

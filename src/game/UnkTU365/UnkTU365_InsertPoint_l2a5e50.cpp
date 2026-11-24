@@ -22,7 +22,7 @@ struct UnkSortedList_ovb0229 {
     };
     Node* head;
     Node* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 
     __attribute__((always_inline)) void PushBack(const T& v) {

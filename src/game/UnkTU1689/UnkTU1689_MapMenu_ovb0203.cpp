@@ -175,7 +175,7 @@ static inline const base::math::CVector3D* Colors_ovb0203() {
 }
 
 // The colour of a minimap marker's kind: one of nine class pointers picks its entry of the table.
-const base::math::CVector3D* fn_7100b37b80(const void* kind) {
+const base::math::CVector3D* GetMinimapMarkerColorForKind(const void* kind) {
     const void* type = *static_cast<const void* const*>(kind);
     if (type == g_unk_71727c7fe8.data)
         return &Colors_ovb0203()[46];
@@ -359,7 +359,7 @@ void fn_7100b46f48(UnkMapMenuController_ovb0203* self, f32 dt) {
         if (ref && ref->composition) {
             UnkButtonCallback_ovb0203 accept_callback = {self, fn_7100b48c44};
             UnkButtonCallback_ovb0203 back_callback = {self, fn_7100b48c48};
-            fn_7100b5fde0(ref->composition, &g_unk_7172763e08[2], &g_unk_7172763e08[1], &g_unk_7172763e08[0],
+            CPopUpComposition_ShowAcceptBackPrompt(ref->composition, &g_unk_7172763e08[2], &g_unk_7172763e08[1], &g_unk_7172763e08[0],
                           reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                           reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 2, -1.0f);
         }

@@ -22,7 +22,7 @@ struct UnkHydrogigaAI_b57a3 {
     }
 };
 
-s32 fn_71005c0f2c(UnkHydrogigaAI_b57a3* self);
+s32 CountHydrogigaPartsWithValueAtOrAboveThreshold(UnkHydrogigaAI_b57a3* self);
 
 struct UnkHydrogigaAttack_b57a3 {
     u8 pad_0x0[0x8];
@@ -44,7 +44,7 @@ void fn_71005b2d14(UnkHydrogigaAttack_b57a3* self, f32 dt) {
     auto* animation = static_cast<UnkAnimationComponent*>(self->owner->field_0x220);
     if (!animation)
         return;
-    if (fn_71005c0f2c(ai) != 2 && !(ai->field_0x149bc <= 0.0f))
+    if (CountHydrogigaPartsWithValueAtOrAboveThreshold(ai) != 2 && !(ai->field_0x149bc <= 0.0f))
         return;
     UnkTrackQuery query = {fn_7100c22518(), nullptr, -1.0f};
     fn_710117b08c(animation, &query);
@@ -55,6 +55,6 @@ void fn_71005b2d14(UnkHydrogigaAttack_b57a3* self, f32 dt) {
     mode.id = 1;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     self->field_0x50 = true;
 }

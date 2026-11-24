@@ -130,7 +130,7 @@ struct UnkAnimRequest {
         : action(nullptr), flags(0), a(DefaultTime()), b(DefaultBlend()), idx(-1), mask(UnkAll_SpitSend().value) {}
 };
 
-bool fn_710070df40(UnkTrack* track, UnkAnimRequest* request);
+bool CanAnimationTrackAcceptRequest(UnkTrack* track, UnkAnimRequest* request);
 bool fn_710070dffc(UnkTrack* track, UnkAnimRequest* request);
 
 struct UnkAnimComponent_ovb0009 {
@@ -157,7 +157,7 @@ bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, Unk
     if (!fn_710024fbc8(component))
         request.flags.value |= 0x2000;
     UnkTrack* track = static_cast<UnkTrack*>(data);
-    if (!track || !fn_710070df40(track, &request))
+    if (!track || !CanAnimationTrackAcceptRequest(track, &request))
         return false;
     return fn_710070dffc(track, &request);
 }
@@ -171,11 +171,11 @@ bool fn_7101178394(UnkAnimComponent_ovb0009* self, u64 key, void* id, const u32*
     UnkAnimRequest request;
     request.action = action;
     request.flags = *flags;
-    return fn_710070df40((*self->tracks->field_0xc8.Find(key))->field_0x70, &request);
+    return CanAnimationTrackAcceptRequest((*self->tracks->field_0xc8.Find(key))->field_0x70, &request);
 }
 
 // fn_7101177044 with the track whose name hash is `key`.
-bool fn_71011773e4(UnkAnimationComponent* self, void* r, s32 idx, u64 key, const u32& flags, const UnkS16& a,
+bool CAnimationComponent_SendActionToTrackByHash(UnkAnimationComponent* self, void* r, s32 idx, u64 key, const u32& flags, const UnkS16& a,
                    const UnkS12& b, const u32& c) {
     return fn_7101177044(reinterpret_cast<UnkStruct_7101176ea8*>(self), r, idx, TrackData(self, key), flags, a, b,
                          c);
@@ -211,7 +211,7 @@ bool fn_7101177258(UnkAnimationComponent* self, void* id, u64 variant, u64 key, 
     UnkActionVariants* action =
         static_cast<UnkActionVariants*>(fn_7101176d34(reinterpret_cast<UnkStruct_7101176ea8*>(self), id));
     s32 idx = action ? action->IndexOf(variant) : -1;
-    return fn_71011773e4(self, action, idx, key, flags, a, b, c);
+    return CAnimationComponent_SendActionToTrackByHash(self, action, idx, key, flags, a, b, c);
 }
 
 // fn_7101176690 inlined: the action `id` names to the track whose name hash is `key`.
@@ -224,7 +224,7 @@ static inline bool SendAction(UnkAnimationComponent* self, u64 id, u64 key, cons
 
 // Script binding: reads a name and a flag, sends the action the name's hash names to the main
 // track with the flag as its mode.
-s32 fn_710117b3f8(UnkAnimationComponent* self, void* stream) {
+s32 CAnimationComponent_ScriptSendNamedActionToMainTrack(UnkAnimationComponent* self, void* stream) {
     char name[0x80];
     bool flag;
     CRntFile_ReadFormat(stream, "sb", name, &flag);
@@ -239,7 +239,7 @@ s32 fn_710117b3f8(UnkAnimationComponent* self, void* stream) {
 
 // Restarts every track with the action of its own name, at `time` seconds, mode 0x21; `sync` picks
 // the blend.
-void fn_7101178c88(UnkAnimationComponent* self, bool sync, f32 time) {
+void CAnimationComponent_ResendActionsToAllTracks(UnkAnimationComponent* self, bool sync, f32 time) {
     UnkTrackSet* set = self->field_0x40;
     for (UnkTrackEntry** it = set->field_0xc8.values; it != self->field_0x40->field_0xc8.End(); ++it) {
         UnkObj_710117af10* track = reinterpret_cast<UnkObj_710117af10*>((*it)->field_0x70);
@@ -436,7 +436,7 @@ static inline void SetValue(UnkReflValue* v, const CType* t, const void* obj) {
 
 // Script binding: reads a class name; when it names a reflected class, stores whether a track now
 // plays an action of it in `out`.
-bool fn_710117b1c8(UnkAnimComponent_b1c8* self, void* stream, UnkReflValue* out) {
+bool CAnimationComponent_ScriptTestPlayingTracksForClassName(UnkAnimComponent_b1c8* self, void* stream, UnkReflValue* out) {
     char name[0x80];
     CRntFile_ReadFormat(stream, "s", name);
     UnkReflObject* entry;
@@ -644,7 +644,7 @@ bool fn_710117617c(UnkAnimComponent_617c* self) {
 // ---- Lists --------------------------------------------------------------------------------
 
 struct UnkOwner_710070f098;
-void fn_710070f098(UnkOwner_710070f098* self, u32 value, u32 extra);
+void SetKeyEntryInListSortedByValueDesc(UnkOwner_710070f098* self, u32 value, u32 extra);
 
 struct UnkActorTarget {
     u8 pad_0x0[0x4c0];
@@ -654,9 +654,9 @@ struct UnkActorTarget {
 // Adds `value` to the list at +0x4c0 and, when `apply` is set, runs fn_7101178c88 (the counterpart
 // of fn_7101178e08, CAnimationComponent_b52.cpp).
 void fn_710117662c(UnkActorTarget* self, u32 value, u32 extra, bool apply, bool flag, f32 time) {
-    fn_710070f098(reinterpret_cast<UnkOwner_710070f098*>(self->list_0x4c0), value, extra);
+    SetKeyEntryInListSortedByValueDesc(reinterpret_cast<UnkOwner_710070f098*>(self->list_0x4c0), value, extra);
     if (apply)
-        fn_7101178c88(reinterpret_cast<UnkAnimationComponent*>(self), flag, time);
+        CAnimationComponent_ResendActionsToAllTracks(reinterpret_cast<UnkAnimationComponent*>(self), flag, time);
 }
 
 struct UnkAnimArray {
@@ -776,7 +776,7 @@ f32 fn_710117a994(UnkAnimComponent_a994* self, const UnkAnimTiming* timing, f32 
 // meanwhile (fn_710117ecb0).
 struct UnkAnimListenersWalk : base::UnkCountedDeferredWalk<void> {
     using UnkCountedDeferredWalk::UnkCountedDeferredWalk;
-    ~UnkAnimListenersWalk() { fn_710117ecb0(this); }
+    ~UnkAnimListenersWalk() { CAnimationComponent_EndListenersWalk(this); }
 };
 struct UnkPairOwner;
 struct UnkValueSource;

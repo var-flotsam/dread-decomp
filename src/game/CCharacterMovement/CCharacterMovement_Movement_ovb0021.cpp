@@ -109,7 +109,7 @@ struct UnkCharacterMovement_ovb0021 {
 };
 
 // Grows the list's storage to `capacity` entries (base::global::CRntVector's reserve, written out).
-void fn_710097a850(UnkTimedRefList_ovb0021* self, u32 capacity) {
+void CCharacterMovement_ReserveTimedRefList(UnkTimedRefList_ovb0021* self, u32 capacity) {
     if (self->capacity < capacity) {
         auto* p = static_cast<UnkTimedRef_ovb0021*>(
             self->allocator->vf_0x40((u64)capacity * sizeof(UnkTimedRef_ovb0021), 8, self->flags));
@@ -145,7 +145,7 @@ void fn_7100979144(UnkCharacterMovement_ovb0021* self, UnkWeakTarget* target, f3
         return;
     }
     u32 n = list->count + 1;
-    fn_710097a850(list, n);
+    CCharacterMovement_ReserveTimedRefList(list, n);
     for (u32 i = list->count; i < n; ++i)
         new (&list->data[i]) UnkTimedRef_ovb0021();
     list->count = n;
@@ -385,7 +385,7 @@ struct UnkTrackMovement_ovb0021 {
 
 // Builds the request of the owner's current track of class `cls` when it is a state track that names
 // a state; `forced` marks the request (flag bit 0).
-bool fn_7100976ab8(UnkTrackMovement_ovb0021* self, const base::reflection::CClass* cls, UnkTrackParams_ovb0021* params,
+bool CCharacterMovement_BuildRequestParamsFromRecordOfClass(UnkTrackMovement_ovb0021* self, const base::reflection::CClass* cls, UnkTrackParams_ovb0021* params,
                    bool forced) {
     *params = UnkTrackParams_ovb0021();
     UnkAnimationComponent* animation = self->owner->animation;
@@ -407,13 +407,13 @@ bool fn_7100976ab8(UnkTrackMovement_ovb0021* self, const base::reflection::CClas
 
 UnkTrackParams_ovb0021 fn_71009766b8(UnkTrackMovement_ovb0021* self, bool forced) {
     UnkTrackParams_ovb0021 params;
-    fn_7100976ab8(self, fn_7100c440e8(), &params, forced);
+    CCharacterMovement_BuildRequestParamsFromRecordOfClass(self, fn_7100c440e8(), &params, forced);
     return params;
 }
 
 UnkTrackParams_ovb0021 fn_71009767f4(UnkTrackMovement_ovb0021* self, bool forced) {
     UnkTrackParams_ovb0021 params;
-    fn_7100976ab8(self, fn_7100d28cc8(), &params, forced);
+    CCharacterMovement_BuildRequestParamsFromRecordOfClass(self, fn_7100d28cc8(), &params, forced);
     self->vf_0x328(&params);
     return params;
 }
@@ -423,7 +423,7 @@ UnkTrackParams_ovb0021 fn_7100976944(UnkTrackMovement_ovb0021* self, bool forced
     UnkTrackRunState_ovb0021* state = self->owner->run_state;
     if (state && state->running)
         return params;
-    fn_7100976ab8(self, fn_7100d29268(), &params, forced);
+    CCharacterMovement_BuildRequestParamsFromRecordOfClass(self, fn_7100d29268(), &params, forced);
     self->vf_0x330(&params);
     return params;
 }
@@ -738,7 +738,7 @@ static inline bool InTrack_ovb0021(UnkMoveActor_ovb0021* owner, const base::refl
 
 // Places the owner at `arg` (three words), dropped onto the ground under it unless a track keeps it
 // from falling.
-void fn_7100978f58(char* self_, const void* arg) {
+void CCharacterMovement_SetOwnerPositionDroppedToGround(char* self_, const void* arg) {
     auto* self = reinterpret_cast<UnkCharacterMovementPlace_ovb0021*>(self_);
     const UnkVec3f* target = static_cast<const UnkVec3f*>(arg);
     UnkVec3f pos = *target;
@@ -788,7 +788,7 @@ struct UnkCharacterMovementXform_ovb0021 {
 };
 static_assert(__builtin_offsetof(UnkCharacterMovementXform_ovb0021, previous) == 0x338, "layout");
 
-void fn_71010d45b8(UnkCharacterMovementXform_ovb0021* self, UnkXform* xform, const u32* changed);
+void CMovementComponent_SetPositionAndAngleFromXform(UnkCharacterMovementXform_ovb0021* self, UnkXform* xform, const u32* changed);
 
 // Read untyped: the original reloads the mask after the translation is stored.
 static inline u32 Changed(const u32* changed) {
@@ -799,7 +799,7 @@ static inline u32 Changed(const u32* changed) {
 
 // Takes the translation (bit 0 of `changed`) and the angles (bit 1) of `xform` into both poses.
 void fn_7100979854(UnkCharacterMovementXform_ovb0021* self, UnkXform* xform, const u32* changed) {
-    fn_71010d45b8(self, xform, changed);
+    CMovementComponent_SetPositionAndAngleFromXform(self, xform, changed);
     if (Changed(changed) & 1) {
         self->current.SetTranslation(xform->GetTranslation());
         self->previous.SetTranslation(xform->GetTranslation());

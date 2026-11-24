@@ -39,7 +39,7 @@ struct UnkReflField_l0e7a80 {
     UnkFieldAccessor_l0e7a80* setter;
 };
 
-bool fn_71000e7a80(::UnkReflField* field_, const UnkReflFieldObject* obj, UnkReflValueArg* value) {
+bool SetReflectedFieldValue(::UnkReflField* field_, const UnkReflFieldObject* obj, UnkReflValueArg* value) {
     UnkReflField_l0e7a80* field = reinterpret_cast<UnkReflField_l0e7a80*>(field_);
     UnkFieldAccessor_l0e7a80* setter = field->setter;
     if (setter) {

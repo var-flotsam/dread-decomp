@@ -50,7 +50,7 @@ __attribute__((always_inline)) static inline bool FindIndex(UnkOwner134* self, v
     return found;
 }
 
-bool fn_7100146d0c(UnkOwner134* self, void* key, UnkAliasS32* out) {
+bool FindEntryIndexByKeyInHolderList(UnkOwner134* self, void* key, UnkAliasS32* out) {
     return FindIndex(self, key, out);
 }
 

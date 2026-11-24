@@ -48,14 +48,14 @@ static inline void SendParams_b54(void* target, u64 hash, u64 kind, u32 m) {
     params.field_0xc = 1;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, kind, &mode, &params, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, kind, &mode, &params, &g_unk_7172769740, &mask);
 }
 
 void fn_71007defe0(UnkQuarentineDoor_b54* self) {
     if (self->owner)
         if (void* target = self->owner->field_0x220)
             SendParams_b54(target, base::global::CName("opened").hash, 0xf4061ff25a2163d6, 2);
-    fn_71007df12c(self, true);
+    ApplyDoorOpenState(self, true);
 }
 
 void fn_71007df384(UnkQuarentineDoor_b54* self) {

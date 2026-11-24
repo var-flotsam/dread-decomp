@@ -265,7 +265,7 @@ void fn_7100974798(UnkUnit1444_ovb0177* self, u32 mode) {
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
 using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
-void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
+void CCollisionComponent_CollectRecordsBySecondaryId(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 struct UnkPlayerMovementSource;
 
 extern void* const g_unk_717273a790 __attribute__((visibility("hidden")));
@@ -277,7 +277,7 @@ void fn_7100973cf4(UnkUnit1444_ovb0177* self) {
     if (!container)
         return;
     UnkOut_71008651c8 found(0xf);
-    fn_71008651c8(reinterpret_cast<UnkStruct_71008651c8*>(container), &g_unk_717273a790, &found);
+    CCollisionComponent_CollectRecordsBySecondaryId(reinterpret_cast<UnkStruct_71008651c8*>(container), &g_unk_717273a790, &found);
     for (UnkStruct_71008651c8_Entry **it = found.data, **end = found.data + found.count; it != end; ++it) {
         if (*it) {
             if (UnkCollisionObject* collider = fn_71008640a4(container, reinterpret_cast<const base::global::CStrId*>(*it)))

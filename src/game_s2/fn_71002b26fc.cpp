@@ -43,7 +43,7 @@ UnkNode_2b26fc** fn_71002b288c(void* buckets, u32 index);
 
 void fn_71002b26fc(UnkHashTable* self, u16 id, u8 kind) {
     UnkIdKindKey key(id, kind);
-    u32 hash = fn_71002874e0(key.id, key.kind);
+    u32 hash = PackIdAndKindIntoHashKey(key.id, key.kind);
     self->field_0x60_count++;
     UnkNode_2b26fc* node = static_cast<UnkNode_2b26fc*>(self->allocator->vf_0x40(0x10, 8, self->alloc_flags));
     if (node) {

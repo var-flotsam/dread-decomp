@@ -146,7 +146,7 @@ static inline bool Get(UnkGoliathObject_ovb0106* obj, u64 key, f32* out) {
     typed.ptr = obj;
     UnkGoliathValue_ovb0106 value = {fn_710000abbc(), out};
     if (UnkGoliathField_ovb0106* field = cls->FindField(key)) {
-        fn_71000e78e0(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
         return true;
     }
@@ -160,7 +160,7 @@ static inline void Set(UnkGoliathObject_ovb0106* obj, u64 key, f32* in) {
     typed.ptr = obj;
     UnkGoliathValue_ovb0106 value = {fn_710000abbc(), in};
     if (UnkGoliathField_ovb0106* field = cls->FindField(key))
-        fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
 }
 

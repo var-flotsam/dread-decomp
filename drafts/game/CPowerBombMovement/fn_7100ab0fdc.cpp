@@ -154,7 +154,7 @@ struct UnkPowerBombMovement_lab0fdc {
     u8 pad_0x0[0x30];
     UnkPbActor_lab0fdc* actor;  // 0x30
     u8 pad_0x38[0x4f0 - 0x38];
-    base::UnkAllocator* allocator;    // 0x4f0
+    base::IAllocator* allocator;    // 0x4f0
     u32 allocFlags;                   // 0x4f8
     u32 tileCount;                    // 0x4fc
     UnkPbTileNode_lab0fdc** buckets;  // 0x500
@@ -207,7 +207,7 @@ void fn_7100ab0fdc(UnkPowerBombMovement_lab0fdc* self, f32 size) {
     {
         UnkPbActor_lab0fdc* actor = self->actor;
         UnkLavaDropsShape_A2_b71 shape(Around(UnkVec3f(actor->x, actor->y, actor->z)), size);
-        hit = fn_7100d5b484(tree, 0x80000, reinterpret_cast<UnkShape*>(&shape),
+        hit = QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x80000, reinterpret_cast<UnkShape*>(&shape),
                             reinterpret_cast<const UnkMtx44*>(&g_unk_7101a1a680), &hits, 0);
     }
     if (!hit)

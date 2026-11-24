@@ -80,7 +80,7 @@ struct UnkLockRoomAction_b54 {
 };
 static_assert(__builtin_offsetof(UnkLockRoomAction_b54, flag) == 0xd8, "layout");
 
-void fn_7100da3374(UnkLockRoomAction_b54* self) {
+void CLockRoomLogicAction_LockAccessPointRoom(UnkLockRoomAction_b54* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     if (char* comp = reinterpret_cast<char*>(
             base::reflection::refl_FindTyped<UnkRefl_fn_7100da3630>(self->ref.Get()))) {

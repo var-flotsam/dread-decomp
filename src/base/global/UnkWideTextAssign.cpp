@@ -18,10 +18,10 @@ struct UnkWideTextBuf {
     void* vtable;
     wchar_t* chars;
     u32 count;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
-    base::UnkAllocator* GetAllocator() const {
-        base::UnkAllocator* a = allocator;
+    base::IAllocator* GetAllocator() const {
+        base::IAllocator* a = allocator;
         if (!a)
             a = GetDefaultAllocator();
         return a;

@@ -63,7 +63,7 @@ void fn_7100afd294(UnkCustomMarkersDialog_ovb0124* self) {
     CStrId text("#GUI_MAPMENU_CUSTOMMARKER_WARNING_DELETE", true);
     UnkDialogCallback_ovb0124 accept_callback = {self, fn_7100afe31c};
     UnkDialogCallback_ovb0124 back_callback = {self, fn_7100afe380};
-    fn_7100b5fde0(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
+    CPopUpComposition_ShowAcceptBackPrompt(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 2, -1.0f);
 }
 
@@ -86,11 +86,11 @@ static inline void AskDeleteAll_ovb0124(UnkCustomMarkersDialog_ovb0124* self) {
     CStrId text("#GUI_MAPMENU_CUSTOMMARKER_WARNING_DELETEALL", true);
     UnkDialogCallback_ovb0124 accept_callback = {self, fn_7100afe31c};
     UnkDialogCallback_ovb0124 back_callback = {nullptr, nullptr};
-    fn_7100b5fde0(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
+    CPopUpComposition_ShowAcceptBackPrompt(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
 }
 
-void fn_7100afdf5c(UnkCustomMarkersDialog_ovb0124* self, UnkMarkersInput_ovb0124* input) {
+void CCustomMarkersDialog_PromptDeleteAllOnInput(UnkCustomMarkersDialog_ovb0124* self, UnkMarkersInput_ovb0124* input) {
     fn_71011cf754(self, input);
     if (self->active && self->has_markers && !self->busy) {
         self->pending = -1;
@@ -191,7 +191,7 @@ struct UnkMarkersRefs_ovb0124 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkMarkersRefs_ovb0124() {
         if (data) {

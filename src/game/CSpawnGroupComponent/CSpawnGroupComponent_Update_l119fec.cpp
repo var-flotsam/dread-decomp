@@ -23,7 +23,7 @@ using base::global::CStrId;
 // A link's target as seen here: its id at +0x48.
 struct UnkTargetLink_ovb0130;
 struct UnkWeakTarget;
-void fn_7100a30a9c(UnkTargetLink_ovb0130* self, UnkWeakTarget* target);
+void CCharClassSoundProofTriggerComponent_ConstructResolvedLinkToTarget(UnkTargetLink_ovb0130* self, UnkWeakTarget* target);
 
 struct UnkSpawnTarget_l119fec {
     u8 pad_0x0[0x48];
@@ -89,7 +89,7 @@ void fn_7101127834(UnkSpawnTarget_l119fec* self, UnkSpawnLink_l119fec link);
 // A link already resolved to `target` (fn_7100a30a9c constructs it in place).
 static inline UnkSpawnLink_l119fec LinkTo(UnkWeakTarget* target) {
     UnkSpawnLink_l119fec link;
-    fn_7100a30a9c(reinterpret_cast<UnkTargetLink_ovb0130*>(&link), target);
+    CCharClassSoundProofTriggerComponent_ConstructResolvedLinkToTarget(reinterpret_cast<UnkTargetLink_ovb0130*>(&link), target);
     return link;
 }
 bool fn_710119447c(const CStrId& id);

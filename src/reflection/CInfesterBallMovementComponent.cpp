@@ -5,29 +5,23 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CInfesterBallMovementComponent.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CInfesterBallMovementComponent
-namespace CInfesterBallMovementComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x5d8;
+void CInfesterBallMovementComponent::refl_AddAttributes(CClass*) {}
+void CInfesterBallMovementComponent::refl_AddFields(CClass*) {}
+bool CInfesterBallMovementComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CInfesterBallMovementComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CInfesterBallMovementComponent::refl_TypeOf(const void* obj) { return *static_cast<const CInfesterBallMovementComponent*>(obj)->refl_GetDynamicClass(); }
+void CInfesterBallMovementComponent::refl_Destroy(void* obj) { static_cast<CInfesterBallMovementComponent*>(obj)->~CInfesterBallMovementComponent(); }
+struct CInfesterBallMovementComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CInfesterBallMovementComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CInfesterBallMovementComponent
-DREAD_REFLECTED_CLASS(CInfesterBallMovementComponent, CProjectileMovement);
+DREAD_REFLECTED_DECLARED_CLASS(CInfesterBallMovementComponent, CProjectileMovement);

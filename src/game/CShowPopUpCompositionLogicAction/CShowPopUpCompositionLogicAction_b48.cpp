@@ -21,7 +21,7 @@ struct UnkShowPopUpAction_b48 {
     base::global::CRntVector<base::UnkStrIdMember> ids;
 };
 
-void fn_7100a3fff4(UnkShowPopUpAction_b48* self) {
+void CShowPopUpCompositionLogicAction_PassVTextsToComposition(UnkShowPopUpAction_b48* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     for (u32 i = 0; i < self->ids.count; ++i) {
         if (fn_71000ce740(&self->ids, i)->data == &g_unk_7101d47108->empty)

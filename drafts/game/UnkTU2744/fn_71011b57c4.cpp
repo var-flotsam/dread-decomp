@@ -105,7 +105,7 @@ void fn_71011b57c4(UnkGuiRoot* root, void* object) {
     }
 
     if (links->parent && links->parent->count)
-        fn_71011d932c(reinterpret_cast<UnkDisplayObjectContainer_ovb0032*>(links->parent),
+        CDisplayObjectContainer_RemoveChild(reinterpret_cast<UnkDisplayObjectContainer_ovb0032*>(links->parent),
                       static_cast<UnkDisplayObject_ovb0032*>(object));
     fn_71011cd340(display);
     if (links->field_0x187) {

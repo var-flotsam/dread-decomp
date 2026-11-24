@@ -144,7 +144,7 @@ bool fn_710054a798(UnkEmmyAI_l54a798* self, f32 radius) {
     if (self->context->ignoreHiding) {
         current = fn_7100defcd4(g_unk_7101d47310);
     } else {
-        hiding = fn_7100df5740(g_unk_7101d47310);
+        hiding = IsOpticCamouflageAbilityInState6(g_unk_7101d47310);
         current = fn_7100defcd4(g_unk_7101d47310);
     }
     bool sensed = (!hiding && IsAudible(player, movement, current)) || IsBusy(player);

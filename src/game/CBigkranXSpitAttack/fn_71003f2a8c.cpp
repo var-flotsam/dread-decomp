@@ -25,7 +25,7 @@ struct UnkHashList {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void PushBack(const UnkHash& value) {
         u32 n = count;

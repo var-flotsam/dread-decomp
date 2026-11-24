@@ -13,7 +13,7 @@ struct UnkWidePoolListBase_b44a3 {
     char* head;
     char* tail;
     u64 field_0x20;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 
     ~UnkWidePoolListBase_b44a3() {

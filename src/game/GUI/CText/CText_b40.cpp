@@ -48,11 +48,18 @@ static inline UnkStrIdText_b40a3* Text_b40a3(const CStrId* id) {
     return reinterpret_cast<UnkStrIdText_b40a3*>(id->data);
 }
 
+// The argument's value, null when the argument has no type.
+template <class T>
+static inline const T* ArgValueOrNull_b40a3(UnkReflValue* arg) {
+    if (!arg->type)
+        return nullptr;
+    return base::reflection::refl_ArgValue<T>(arg);
+}
+
 UnkReflValue fn_7100b873b0(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* a = args[0];
     auto* target = *reinterpret_cast<UnkText_b40a3**>(obj + 8);
-    const CStrId* id = static_cast<const CStrId*>(ArgPtr_b40a3(a));
-    asm("" : "+r"(id));  // keeps the null-argument path the original has
+    const CStrId* id = ArgValueOrNull_b40a3<CStrId>(a);
     s32 font = fn_7100b879a0(&Text_b40a3(id)->str);
     if (font != 0x7fffffff) {
         CRntString_Assign(&target->font_name, &Text_b40a3(id)->str);

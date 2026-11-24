@@ -43,11 +43,11 @@ static inline base::UnkStrIdMemberOf<Pool>* AssignFromHolder(base::UnkStrIdMembe
     return self;
 }
 
-base::UnkStrIdMemberOf<g_unk_7101d47200>* fn_71000cce60(base::UnkStrIdMemberOf<g_unk_7101d47200>* self,
+base::UnkStrIdMemberOf<g_unk_7101d47200>* AssignFilePathStrIdFromRefCountedStringHandle(base::UnkStrIdMemberOf<g_unk_7101d47200>* self,
                                                          UnkStringHolderA1** holder) {
     return AssignFromHolder(self, holder);
 }
 
-base::UnkStrIdMember* fn_71000ccf08(base::UnkStrIdMember* self, UnkStringHolderA1** holder) {
+base::UnkStrIdMember* AssignCStrIdFromStringHolderHandle(base::UnkStrIdMember* self, UnkStringHolderA1** holder) {
     return AssignFromHolder(self, holder);
 }

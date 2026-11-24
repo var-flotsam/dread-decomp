@@ -49,7 +49,7 @@ extern UnkConversion g_unk_7172705780;
 void fn_71006a5798() __attribute__((visibility("hidden")));
 void fn_71006a57a4() __attribute__((visibility("hidden")));
 
-void fn_71006a5da0() {
+void CShakernautDoubleGroundShockAttack_InitStatics() {
     InitHeaderIds(&g_unk_71727057a0.ids);
     fn_71006a3524();
     fn_710009ec00(g_unk_71727054d8, g_unk_71727057a0.field_0xb0);

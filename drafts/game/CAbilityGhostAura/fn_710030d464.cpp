@@ -116,8 +116,8 @@ bool fn_710030d464(void* self, UnkShape* shape, const UnkVec3f* from, const UnkV
     UnkRayQuery_l30d464 query(*from, &back);
     const UnkMtx44* identity = reinterpret_cast<const UnkMtx44*>(&g_unk_7101a1a680);
     bool nearer = false;
-    if (fn_7100d5b484(tree, 0x409, shape, identity, &query, 0) ||
-        fn_7100d5b484(tree, 0x10000, shape, identity, &query, 1)) {
+    if (QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x409, shape, identity, &query, 0) ||
+        QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x10000, shape, identity, &query, 1)) {
         UnkVec3f delta = query.hit.point - *from;
         UnkVec3f forward = Normalized(*dir);
         UnkVec3f toward = Normalized(delta);

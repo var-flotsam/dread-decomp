@@ -254,7 +254,7 @@ __attribute__((always_inline)) static inline void SetUp(UnkGuiDisplayObject* lab
     fn_71011eec50(label, 0.9f);
     {
         CStrId f(font, true);
-        fn_71011ed150(label, f);
+        CLabel_SetFont(label, f);
     }
     fn_71011ed018(label, 0);
     fn_71011ed084(label, align);

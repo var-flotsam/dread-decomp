@@ -102,7 +102,7 @@ static inline void CallSlot(UnkGuiDisplayObject* o, Args... args) {
     reinterpret_cast<void (*)(UnkGuiDisplayObject*, Args...)>(vtable[Offset / 8])(o, args...);
 }
 
-void fn_7100b4f408(UnkMenuEntry_lb4f408* self, UnkMenuState_lb4f408* state) {
+void SetFileMenuHardModeButtonTitleAndContentState(UnkMenuEntry_lb4f408* self, UnkMenuState_lb4f408* state) {
     if (!self->root)
         self->vf_0x10();
     state->field_0x268 = self->root;

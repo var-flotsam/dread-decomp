@@ -22,7 +22,7 @@ extern UnkGunParams_A5_b65 g_unk_7101a77b98 __attribute__((visibility("hidden"))
 extern UnkGunParams_A5_b65 g_unk_7101a77ba4 __attribute__((visibility("hidden")));
 extern UnkGunParams_A5_b65 g_unk_7101a77bb0 __attribute__((visibility("hidden")));
 
-UnkGunParams_A5_b65* fn_7100837220(s32 kind) {
+UnkGunParams_A5_b65* GetGunModeParamsFromTunable(s32 kind) {
     UnkGunTunable_A5_b65* tunable = reinterpret_cast<UnkGunTunable_A5_b65*>(&g_unk_7172726228);
     UnkGunParams_A5_b65* params;
     const f32* a;

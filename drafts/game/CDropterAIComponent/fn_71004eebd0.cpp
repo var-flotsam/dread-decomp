@@ -115,7 +115,7 @@ u32 fn_71004eebd0(UnkDropterAI_l4eebd0* self, UnkDropterMsg_l4eebd0* msg) {
             mode.id = 2;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0xe2ea001660c8ac66ull, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0xe2ea001660c8ac66ull, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958,
                           &g_unk_7172769740, &mask);
         }
         if (UnkTimelineComponent* timeline = self->owner->timeline) {

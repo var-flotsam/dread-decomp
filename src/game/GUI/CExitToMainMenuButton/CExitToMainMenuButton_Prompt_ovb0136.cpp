@@ -31,7 +31,7 @@ struct UnkGuiRef_ovb0136 {
     UnkGuiComposition_ovb0090* composition;  // 0x10
 };
 
-void fn_7100b1ebf0(UnkExitToMainMenuButton_ovb0136* self) {
+void CExitToMainMenuButton_ShowQuitPrompt(UnkExitToMainMenuButton_ovb0136* self) {
     UnkIngameMenu* menu = fn_7100deac84(g_unk_7101d47310);
     if (!menu)
         return;
@@ -48,6 +48,6 @@ void fn_7100b1ebf0(UnkExitToMainMenuButton_ovb0136* self) {
                 true);
     UnkButtonCallback_ovb0136 accept_callback = {self, fn_7100b1ef00};
     UnkButtonCallback_ovb0136 back_callback = {self, fn_7100b1ef58};
-    fn_7100b5fde0(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
+    CPopUpComposition_ShowAcceptBackPrompt(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
 }

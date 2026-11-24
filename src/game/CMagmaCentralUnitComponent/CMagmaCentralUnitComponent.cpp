@@ -19,7 +19,7 @@ struct UnkMagmaCentralUnitComponent_d488 {
     u32 field_0xa18;
     bool field_0xa1c;
     u32 field_0xa20;
-    base::UnkAllocator* field_0xa28;
+    base::IAllocator* field_0xa28;
     u32 field_0xa30;
     u64 field_0xa38;
 };

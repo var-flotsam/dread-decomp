@@ -20,7 +20,7 @@ struct UnkBucketSet {
     CRntVector<Node*> buckets;     // +0: `count` buckets in use; `capacity` (+0xc) is the hash modulus
     u32 first_bucket;              // +0x28: -1 when empty
     Node* first_node;              // +0x30: the first node of first_bucket
-    UnkAllocator* node_allocator;  // +0x38
+    IAllocator* node_allocator;  // +0x38
     u32 node_flags;                // +0x40: passed to node_allocator
     u32 node_count;                // +0x44
     u32 version;                   // +0x48: bumped by each insertion and removal

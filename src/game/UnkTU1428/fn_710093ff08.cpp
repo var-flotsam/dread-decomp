@@ -121,7 +121,7 @@ UnkVec3f fn_710093ff08(UnkDropBall_l93ff08* self, const UnkVec3f* pos, f32 dista
     u32 mask = self->mask;
     UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(start);
     bool hit = false;
-    if (fn_7100d5babc(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&sweep),
+    if (SweepShapeAgainstCollisionTree(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&sweep),
                       &query, false)) {
         result = start + UnkVec3f(sweep.x, sweep.y, 0.0f) * query.hit.fraction;
         hit = true;

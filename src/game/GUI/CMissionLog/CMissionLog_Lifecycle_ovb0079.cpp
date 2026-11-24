@@ -77,7 +77,7 @@ void fn_7100b59f20(UnkMissionLogEvent_ovb0079* self) {
     UnkGuiEvent event;
     fn_710120235c(&event, reinterpret_cast<UnkGuiDisplayObject*>(self), &kind, nullptr);
     self->field_0x298->field_0x260 = g_unk_7172765068;
-    fn_7100b018fc(self->field_0x298, &event);
+    CDialogComposition_PassEventToLabelOrClosePage(self->field_0x298, &event);
     UnkMissionLogTarget_ovb0079* owner = self->field_0x298;
     void** slot = &self->callback_set;
     if (*slot) {
@@ -108,7 +108,7 @@ struct UnkMissionLogButtonText_ovb0079 {
     char32_t text[1];
 };
 
-void fn_7100b599f0(void* self, u32 index, const UnkMissionLogButtonText_ovb0079* text,
+void CMissionLog_SetButtonNameAndText(void* self, u32 index, const UnkMissionLogButtonText_ovb0079* text,
                    UnkMissionLogButton_ovb0079* button) {
     if (!button)
         return;
@@ -125,7 +125,7 @@ void fn_7100b599f0(void* self, u32 index, const UnkMissionLogButtonText_ovb0079*
 
 struct UnkMissionLogPool_ovb0079 {
     char* vtable;
-    base::UnkAllocator* parent;
+    base::IAllocator* parent;
     UnkBlockFreeList blocks;
 };
 
@@ -139,7 +139,7 @@ struct UnkMissionLogList_ovb0079 {
     u32 count;
     UnkMissionLogNode_ovb0079* head;
     UnkMissionLogNode_ovb0079* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     UnkMissionLogPool_ovb0079 pool;  // +0x30
     u32 field_0x68;
@@ -174,7 +174,7 @@ void fn_7100b59c4c(UnkMissionLogList_ovb0079* self, const UnkMissionLogList_ovb0
     self->field_0x6c = false;
     u32 flags = other->flags;
     self->flags = flags;
-    base::UnkAllocator* source = other->pool.parent;
+    base::IAllocator* source = other->pool.parent;
     if (!source) {
         self->allocator = other->allocator;
         return;
@@ -192,7 +192,7 @@ void fn_7100b59c4c(UnkMissionLogList_ovb0079* self, const UnkMissionLogList_ovb0
         void* buffer = source->vf_0x40(size, 8, flags);
         fn_710008378c(&self->pool.blocks, buffer, size, sizeof(UnkMissionLogNode_ovb0079));
     }
-    self->allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<char*>(self) +
+    self->allocator = reinterpret_cast<base::IAllocator*>(reinterpret_cast<char*>(self) +
                                                             __builtin_offsetof(UnkMissionLogList_ovb0079, pool));
     if (self == other)
         return;

@@ -318,7 +318,7 @@ struct UnkFreedIdArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkFreedIdArray() {
         if (data) {
@@ -412,7 +412,7 @@ UnkPairArray* fn_7100e52e64(UnkPairArray* self, const UnkPairArray* other) {
         self->count = 0;
         fn_7100e52b58(self, other->capacity);
         for (const UnkFreedVectorPair *it = other->data, *end = it + other->count; it != end; ++it)
-            fn_7100e52cf4(self, it);
+            PushBackRecord60Copy(self, it);
     }
     return self;
 }
@@ -547,7 +547,7 @@ struct UnkRecord60 {
     u32 step;
     bool field_0x4c;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Takes over the ids (leaving the pool's empty string) and the array (leaving it empty).
     __attribute__((always_inline)) UnkRecord60(UnkRecord60&& other) {

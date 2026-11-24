@@ -28,7 +28,7 @@ void fn_7100bbb590(UnkLightingAttParamsEvent_A6_b63* self, void** target) {
     UnkUnit2186Object* lighting = *target ? fn_71008d5d2c(*target) : nullptr;
     if (!lighting)
         return;
-    u64 id = *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(self->light) + 0x30);
+    u64 id = self->light->Key();
     u64 p0 = self->params.field_0x0;
     u32 p1 = self->params.field_0x8;
     u32 p2 = self->params.field_0xc;

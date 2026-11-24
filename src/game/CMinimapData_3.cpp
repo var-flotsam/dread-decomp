@@ -122,7 +122,7 @@ struct UnkMinimapList {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // An element of the keyed arrays below (0x80 bytes): a string id and two arrays among plain
@@ -271,7 +271,7 @@ UnkMinimapKeyedItem3* fn_7100e56ed4(UnkMinimapKeyedItems<UnkMinimapKeyedItem3>* 
 
 UnkMinimapKeyedItem3* fn_7100e550dc(UnkMinimapKeyedItems<UnkMinimapKeyedItem3, u64>* self, const u64* key,
                                     UnkMinimapKeyedItem3* item) {
-    return self->Add(reinterpret_cast<void (*)(void*, u32)>(fn_7100e54ad8), key, item);
+    return self->Add(reinterpret_cast<void (*)(void*, u32)>(ReserveRecord60AndPointerArrays), key, item);
 }
 
 // fn_71000cbae4 copies an array of 12-byte vectors (src/base/UnkVec3fVector.cpp).

@@ -27,7 +27,7 @@ using base::math::UnkVector4D;
 
 // Erases the entry at `index`: its id is released, the later entries move down and the moved-from
 // ones are released again (CRntVector::EraseAt, inlined).
-void fn_710016b34c(base::global::CRntVector<UnkEntry_u207>* self, u32 index) {
+void EraseTargetIdEntryAt(base::global::CRntVector<UnkEntry_u207>* self, u32 index) {
     if (index < self->count) {
         self->data[index].id.Reset();
         for (u32 i = index; i < (u32)(self->count - 1); ++i) {
@@ -60,7 +60,7 @@ void fn_710016ad60(UnkController_u207* self, UnkMaterialSet_ad60* set) {
     for (UnkEntry_u207* it = v->data; v->data + v->count != it;) {
         if (it->target == set) {
             u32 idx = it - v->data;
-            fn_710016b34c(v, idx);
+            EraseTargetIdEntryAt(v, idx);
             it = v->data + idx;
         } else {
             ++it;
@@ -95,7 +95,7 @@ struct UnkTarget_ac04 {
     UnkTargetRef_ac04* refs;  // 0x38
 };
 
-void fn_710016ac04(UnkController_u207* self, UnkTarget_ac04* target, const CStrId* id) {
+void ResetRefsMatchingIdAndAppendTargetEntry(UnkController_u207* self, UnkTarget_ac04* target, const CStrId* id) {
     if (self->model->field_0xa9 && self->model->field_0xb0) {
         u32 ref_count = target->ref_count;
         for (u32 i = 0; i < ref_count; ++i) {

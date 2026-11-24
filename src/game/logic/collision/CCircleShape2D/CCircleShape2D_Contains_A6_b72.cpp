@@ -11,7 +11,7 @@ struct UnkCircleShape2D_A6_b72 {
     f32 radius;
 };
 
-bool fn_7100d6195c(UnkCircleShape2D_A6_b72* self, const base::math::CVector2D* p) {
+bool CCircleShape2D_ContainsPoint2D(UnkCircleShape2D_A6_b72* self, const base::math::CVector2D* p) {
     base::math::CVector2D c;
     f32 tx = self->transform[0][3];
     f32 ty = self->transform[1][3];

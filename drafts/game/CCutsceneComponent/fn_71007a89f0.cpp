@@ -12,7 +12,7 @@ using base::global::CRntVector;
 using base::global::UnkStringData;
 
 struct UnkCutsceneEntryRef_ovb0077;
-void fn_71007acd14(CRntVector<UnkCutsceneEntryRef_ovb0077>* self, const UnkCutsceneEntryRef_ovb0077* value);
+void CCutsceneComponent_PushBackActorEntryCopy(CRntVector<UnkCutsceneEntryRef_ovb0077>* self, const UnkCutsceneEntryRef_ovb0077* value);
 
 extern void* g_unk_7101a700a0[];
 
@@ -66,7 +66,7 @@ static inline void Resize(CRntVector<u8>& v, u32 n) {
 
 UnkCutsceneEntry_l7a89f0* fn_71007a89f0(UnkCutsceneComponent_l7a89f0* self) {
     UnkCutsceneEntry_l7a89f0 entry = UnkCutsceneEntry_l7a89f0();
-    fn_71007acd14(reinterpret_cast<CRntVector<UnkCutsceneEntryRef_ovb0077>*>(&self->entries),
+    CCutsceneComponent_PushBackActorEntryCopy(reinterpret_cast<CRntVector<UnkCutsceneEntryRef_ovb0077>*>(&self->entries),
                   reinterpret_cast<const UnkCutsceneEntryRef_ovb0077*>(&entry));
     fn_71007a8eec(&entry);
     if (self->source) {

@@ -90,7 +90,7 @@ void fn_710060b9b8(UnkNailongThornsAttack_l60b9b8* self) {
     if (fn_710117b348(static_cast<UnkAnimationComponent*>(cls), fn_7100d2b3a8())) {
         turn_mode.id = 10;
         turn_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, 0xb3feb6d516806342, 0xf4061ff25a2163d6, &turn_mode, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(cls, 0xb3feb6d516806342, 0xf4061ff25a2163d6, &turn_mode, &g_unk_710164b958,
                       &g_unk_7172769740, &turn_mask);
         void* target = self->owner->field_0x298;
         params.field_0x8 = 0;
@@ -109,7 +109,7 @@ void fn_710060b9b8(UnkNailongThornsAttack_l60b9b8* self) {
     } else {
         mode.id = 2;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, 0xcb24643fce5b5852, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(cls, 0xcb24643fce5b5852, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask);
     }
     UnkThornsDesc_l60b9b8* desc = self->desc;

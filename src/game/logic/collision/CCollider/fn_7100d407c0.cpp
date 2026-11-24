@@ -49,7 +49,7 @@ struct UnkSlotArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 template <class Tag, void (*Reserve)(UnkSlotArray<Tag>*, u32)>

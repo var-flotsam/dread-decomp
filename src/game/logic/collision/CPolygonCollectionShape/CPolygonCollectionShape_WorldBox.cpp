@@ -29,7 +29,7 @@ struct UnkPolygonCollectionBounds {
     bool stale;         // 0xe0
 };
 
-UnkWorldBox3D fn_7100d63490(UnkPolygonCollectionBounds* self, const UnkWorldTransform* transform) {
+UnkWorldBox3D CPolygonCollectionShape_GetTranslatedBoundingBox(UnkPolygonCollectionBounds* self, const UnkWorldTransform* transform) {
     if (self->stale)
         fn_71001243d4(reinterpret_cast<UnkPolygonCollection2D*>(self->polygons));
     f32 min_x = self->min_x, min_y = self->min_y;

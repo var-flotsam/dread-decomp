@@ -42,7 +42,7 @@ static inline UnkGuiDisplayObject* FindList(UnkGuiDisplayObject* root, const cha
     return obj;
 }
 
-void fn_7100b51178(UnkListComposition_lb51178* self, UnkListTarget_lb51178* target) {
+void AttachCompositionRootAndSetListCompositionFlags(UnkListComposition_lb51178* self, UnkListTarget_lb51178* target) {
     if (target->mode == 5 || target->mode == 8)
         return;
     target->root = self->root;

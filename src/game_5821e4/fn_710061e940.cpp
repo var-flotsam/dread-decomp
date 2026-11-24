@@ -119,7 +119,7 @@ extern UnkConversion g_unk_71726f6030;
 void fn_7100619738() __attribute__((visibility("hidden")));
 extern char g_unk_71726f6050[];
 
-void fn_710061e940() {
+void InitShootDCBonesOffsetPatternCollectionTypeStatics() {
     InitHeaderIds(&g_unk_71726f77b8.ids);
     fn_710060ead4();
     fn_710009ec00(g_unk_71726f4ff8, g_unk_71726f77b8.field_0x40);

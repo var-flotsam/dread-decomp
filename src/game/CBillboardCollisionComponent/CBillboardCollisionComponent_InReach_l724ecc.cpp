@@ -147,7 +147,7 @@ UnkQueryResult_l724ecc fn_7100724ecc(UnkBillboardCollision_l724ecc* self, UnkQue
         base::math::CVector2D at2;
         base::math::CVector2D pos2;
         fn_710007b430(&at2, reinterpret_cast<const base::math::CVector3D*>(&at));
-        UnkVec3Result pos = fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(key));
+        UnkVec3Result pos = GetPositionFromParentAndOffset(reinterpret_cast<UnkStruct_71007455dc*>(key));
         fn_710007b430(&pos2, reinterpret_cast<const base::math::CVector3D*>(&pos));
         if (DistanceSq2D(at2, pos2) <= reachSq && (!target || target->Accepts(key)))
             return 1;

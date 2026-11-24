@@ -8,6 +8,7 @@
 #include "game/CAudioComponent.h"
 #include "game/CComponent.h"
 #include "game/CDizzeanSwarmControllerComponent.h"
+#include "game/UnkSoundRef.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU243.h"
 #include "game/UnkTU2560.h"
@@ -43,7 +44,7 @@ static inline void* Manager_ovb0113() {
     void* manager = g_unk_71726da048;
     if (!manager) {
         manager = fn_71000839a0(0xe0, 0x3f);
-        fn_7100e1bca4(manager);
+        ConstructBillboardManager(manager);
         g_unk_71726da048 = manager;
     }
     return manager;
@@ -51,11 +52,6 @@ static inline void* Manager_ovb0113() {
 
 // A handle to a played effect (as src/game/CAreaSoundComponent/CAreaSoundComponent_Paths_ovb0062.cpp names it):
 // live while its reference's serial matches.
-struct UnkSoundRef {
-    void* object;
-    s64 serial;
-};
-
 struct UnkBillboardOwner_ovb0113 {
     u8 pad_0x0[0x2b8];
     void* effects;  // 0x2b8

@@ -126,7 +126,7 @@ struct UnkFlagNode_b0119 {
 };
 
 struct UnkFlagMap_b0119 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkFlagNode_b0119** buckets;  // 0x10 (base::global::CRntVector)

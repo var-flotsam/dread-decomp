@@ -72,8 +72,7 @@ bool fn_71003b47bc(CAttack* self, void* arg, u32 mode) {
         return false;
 
     const UnkMatrix44& m = Matrix(self->field_0x8);
-    UnkActor* owner = self->field_0x8;
-    const f32& coordinate = __builtin_fabsf(m.m[2]) > 0.9 ? owner->field_0x44 : owner->field_0x54;
+    f32 coordinate = __builtin_fabsf(m.m[2]) > 0.9 ? self->field_0x8->field_0x44 : self->field_0x8->field_0x54;
     s32 whole = (s32)coordinate;
     s32 offset = (s32)__builtin_fabsf((f32)whole) % 100 - 40;
     if (!(__builtin_fabsf((f32)offset) < 2.0f * g_unk_7101a2adf8))

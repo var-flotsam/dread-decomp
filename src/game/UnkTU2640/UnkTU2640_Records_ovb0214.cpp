@@ -28,7 +28,7 @@ struct UnkPathRecords_ovb0214 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     explicit UnkPathRecords_ovb0214(UnkNoInit_ovb0214) {}
 
@@ -146,7 +146,7 @@ struct UnkMapNode_ovb0214 {
 
 struct UnkNamedMap_ovb0214 {
     UnkEmptyStrId name;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     base::global::CRntVector<void*> buckets;

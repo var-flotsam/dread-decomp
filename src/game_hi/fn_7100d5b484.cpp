@@ -20,9 +20,9 @@ struct UnkQueryCtx {
     u16 arg2;
 };
 
-bool fn_7100d5cfb4(UnkQueryCtx* ctx, const UnkNode* node);
+bool fn_7100d5cfb4(UnkQueryCtx* ctx, const UnkBvhNode* node);
 
-bool fn_7100d5b484(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, void* arg, u32 arg2) {
+bool QueryCollisionTreeForTransformedShapeOverlaps(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, void* arg, u32 arg2) {
     UnkFlags result = NoFlags_d5b484();
     UnkMtx44 m = *xf * shape->transform;
     UnkBox bounds = shape->vf_0x28(m);
@@ -31,7 +31,7 @@ bool fn_7100d5b484(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf,
         u32 count = self->nodeCount;
         u32 i = 0;
         while (i < count) {
-            const UnkNode& n = self->nodes[i];
+            const UnkBvhNode& n = self->nodes[i];
             if (bounds.max.x >= n.minX && bounds.min.x <= n.maxX && bounds.max.y >= n.minY && bounds.min.y <= n.maxY) {
                 if (n.index < 0 && !fn_7100d5cfb4(&ctx, &n))
                     break;

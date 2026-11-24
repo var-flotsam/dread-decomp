@@ -756,7 +756,7 @@ struct UnkNavLoadMap {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // The index of `key`, or the count when it is not there.
     u32 IndexOf(const CStrId& key) const {
@@ -791,7 +791,7 @@ void fn_710027fe8c(UnkIdMap<UnkOwnedList>* self, u32 capacity);
 
 // An empty map or array of the loader's kind (growth step 10, flags 0x57).
 template <class V>
-static inline void InitMap(UnkNavLoadMap<V>* map, base::UnkAllocator* allocator) {
+static inline void InitMap(UnkNavLoadMap<V>* map, base::IAllocator* allocator) {
     map->values = nullptr;
     map->keys = nullptr;
     map->count = 0;
@@ -801,7 +801,7 @@ static inline void InitMap(UnkNavLoadMap<V>* map, base::UnkAllocator* allocator)
     map->allocator = allocator;
 }
 template <class T>
-static inline void InitVector(base::global::CRntVector<T>* v, T* data, u32 capacity, base::UnkAllocator* allocator) {
+static inline void InitVector(base::global::CRntVector<T>* v, T* data, u32 capacity, base::IAllocator* allocator) {
     v->data = data;
     v->count = 0;
     v->capacity = capacity;
@@ -973,7 +973,7 @@ struct UnkNavMeshItemPair;
 void fn_71002b2f68(UnkNavMeshItem* self, u64 field_0x0, const CStrId& id, s32 field_0x10, bool flag,
                    const UnkNavMeshItemEntries* entries, const UnkNavMeshItemPair* pair, u16 field_0x1ec,
                    u8 field_0x1ee);
-void fn_71002b3524(UnkNavMeshItem* self, base::global::CRntFile* file);  // reads the item's data
+void ReadNavMeshItemCellIds(UnkNavMeshItem* self, base::global::CRntFile* file);  // reads the item's data
 
 struct alignas(8) UnkNavLoadItem {
     u8 raw[0x208];
@@ -1315,7 +1315,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             }
         }
         if (nverts > 0 && ncells > 0)
-            fn_710010ddc4(reinterpret_cast<UnkNavMeshTree*>(m->tree), &reader.file);
+            ReadWordAndRectArrayFromFile(reinterpret_cast<UnkNavMeshTree*>(m->tree), &reader.file);
 
         // Named lists of cell ids (only the non-empty ones are added).
         s32 nlists = 0;
@@ -1326,7 +1326,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             Read(f, &n, 4);
             if (n > 0) {
                 UnkNavLoadId key(name);
-                base::UnkAllocator* a = GetDefaultAllocator();
+                base::IAllocator* a = GetDefaultAllocator();
                 auto& map = m->field_0x2e8;
                 if (map.count == map.capacity)
                     fn_710027ee38(AsIdMap(&map), map.step + map.count);
@@ -1352,7 +1352,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             Read(f, &n, 4);
             UnkNavLoadId key(name);
             u32 capacity = n;
-            base::UnkAllocator* a = GetDefaultAllocator();
+            base::IAllocator* a = GetDefaultAllocator();
             UnkIdKindKey* data =
                 capacity ? static_cast<UnkIdKindKey*>(a->vf_0x40((u64)capacity * sizeof(UnkIdKindKey), 8, 0x57))
                          : nullptr;
@@ -1388,7 +1388,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
         Read(f, &nrecords, 4);
         for (s32 i = 0; i < nrecords; ++i) {
             UnkNavLoadId key(ReadName(f));
-            base::UnkAllocator* a = GetDefaultAllocator();
+            base::IAllocator* a = GetDefaultAllocator();
             auto& map = m->field_0x338;
             if (map.count == map.capacity)
                 fn_710027f198(AsIdMap(&map), map.step + map.count);
@@ -1423,7 +1423,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             UnkNavLoadId key(ReadName(f));
             auto& outer = m->field_0x360;
             if (!outer.Contains(key.id)) {
-                base::UnkAllocator* a = GetDefaultAllocator();
+                base::IAllocator* a = GetDefaultAllocator();
                 if (outer.count == outer.capacity)
                     CNavMesh_ReserveCellRecordMapMap(&outer, outer.step + outer.count);
                 InitMap(outer.AppendKey(key.id), a);
@@ -1431,7 +1431,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             }
             UnkNavLoadCellRecordMap* inner = &outer.values[outer.IndexOf(key.id)];
             UnkNavLoadId key2(ReadName(f));
-            base::UnkAllocator* a = GetDefaultAllocator();
+            base::IAllocator* a = GetDefaultAllocator();
             if (inner->count == inner->capacity)
                 fn_710027f54c(AsIdMap(inner), inner->step + inner->count);
             InitVector(inner->AppendKey(key2.id), static_cast<UnkNavLoadSlot360*>(nullptr), 0, a);
@@ -1468,7 +1468,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
         Read(f, &ngraphs, 4);
         for (s32 i = 0; i < ngraphs; ++i) {
             UnkNavLoadId key(ReadName(f));
-            base::UnkAllocator* a = GetDefaultAllocator();
+            base::IAllocator* a = GetDefaultAllocator();
             auto& map = m->field_0x388;
             if (map.count == map.capacity)
                 fn_710027f6fc(AsIdMap(&map), map.step + map.count);
@@ -1509,7 +1509,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                     Read(f, &n, 4);
                     UnkNavLoadId key3(name3);
                     u32 capacity = n;
-                    base::UnkAllocator* a3 = GetDefaultAllocator();
+                    base::IAllocator* a3 = GetDefaultAllocator();
                     UnkNavLoadPathRecord* data =
                         capacity ? static_cast<UnkNavLoadPathRecord*>(
                                        a3->vf_0x40((u64)capacity * sizeof(UnkNavLoadPathRecord), 8, 0x57))
@@ -1573,7 +1573,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                     m->items.EmplaceBack(static_cast<UnkNavLoadItem&&>(item.item));
                 }
                 UnkNavLoadItem* it = ItemAt(m, m->items.count - 1);
-                fn_71002b3524(it->Get(), &reader.file);
+                ReadNavMeshItemCellIds(it->Get(), &reader.file);
                 base::global::CRntVector<u16>* covered = it->Cells();
                 for (u16 *p = covered->data, *end = p + covered->count; p != end; ++p)
                     CellAt(m, *p)->item = it;

@@ -54,5 +54,5 @@ u32 fn_71002c1630(UnkSelf_2c1630* self, void* unused, UnkTarget_2c1630* target) 
     point[0] = ax + p0;
     point[1] = ay + p1;
     point[2] = az + p2;
-    return ~fn_7100219588(g_unk_7101d47300, point, 0, 0) & 1;
+    return ~IsPositionOnScreen(g_unk_7101d47300, point, 0, 0) & 1;
 }

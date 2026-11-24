@@ -6,6 +6,6 @@
 
 bool fn_71011e7c18(UnkHud_2950* self, const UnkItemChange_2950* change) {
     UnkItemChange_2950 copy = *change;
-    fn_71011e2950(self, &copy);
+    CHUD_UpdateMissileCounterOnItemChange(self, &copy);
     return false;
 }

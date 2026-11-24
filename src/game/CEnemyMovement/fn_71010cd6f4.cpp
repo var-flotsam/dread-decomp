@@ -59,7 +59,7 @@ UnkNavMeshHit fn_71010cd6f4(UnkEnemyMovement_l0cd6f4* self) {
             UnkPath442* line = reinterpret_cast<UnkPath442*>(path + 0x68);
             u32 index = actor->segment;
             if (index < line->SegmentCount()) {
-                const u32* entry = fn_710035e580(line, index);
+                const u32* entry = GetPathSegmentEntryOrFallback(line, index);
                 if (*reinterpret_cast<const s16*>(entry) != -1)
                     return UnkNavMeshHit(entry, &actor->point);
             }

@@ -206,7 +206,7 @@ struct UnkGameManagerStr {
     CRntString* Str() { return reinterpret_cast<CRntString*>(this); }
 
     UnkGameManagerStr() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage));
         storage.vtable = g_unk_7101a194b8 + 2;
         storage.field_0x108 = nullptr;
         storage.field_0x110 = 0;
@@ -487,7 +487,7 @@ struct UnkObj_7100e01680;  // src/game_aca57c/fn_7100e01680.cpp
 void* fn_7100e0189c(void* start_point);
 struct UnkStruct_71002334fc;  // src/game_lo/fn_71002334fc.cpp
 struct UnkCameraCtrl;  // src/game/CBossAIComponent/fn_71003ad014.cpp
-void fn_7100935d40(UnkCameraCtrl* ctrl);
+void CMetroidCameraCtrl_ResetVectorsAndArmRerunCounter(UnkCameraCtrl* ctrl);
 void fn_7100e0203c(UnkGameManager* self);
 void fn_71010e4798(void* target);
 void fn_7101048af8(CBlackboard* self);
@@ -639,7 +639,7 @@ void fn_7100df19c0(UnkGameManager* self) {
             if (void* holder = fn_7100defcec(g_unk_7101d47310)) {
                 if (UnkCameraCtrl* ctrl = fn_71010e389c(holder, &GameManagerIdTable().field_0x17e0)) {
                     if (reinterpret_cast<UnkCameraCtrlView*>(ctrl)->vf_0x0() == fn_7100932fa4())
-                        fn_7100935d40(ctrl);
+                        CMetroidCameraCtrl_ResetVectorsAndArmRerunCounter(ctrl);
                 }
             }
         }
@@ -699,7 +699,7 @@ struct UnkPtrList {
         UnkPtrListNode* tail;
     };
     union {
-        base::UnkAllocator* allocator;
+        base::IAllocator* allocator;
     };
     union {
         u32 flags;
@@ -748,7 +748,7 @@ struct UnkStrVector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkStrVector(u32 step_, u32 flags_)
         : data(nullptr), count(0), capacity(0), step(step_), field_0x14(true), flags(flags_),
@@ -1179,9 +1179,9 @@ struct UnkStartPoint_CGameManager {
     CStrId name;
 };
 // The start point the key names, or null.
-UnkStartPoint_CGameManager* fn_71011a2e54(UnkGameManagerSub_0x608* points, const UnkStartPointKey* key);
+UnkStartPoint_CGameManager* CScenario_FindNearestNonDebugActorToPoint(UnkGameManagerSub_0x608* points, const UnkStartPointKey* key);
 static inline UnkStartPoint_CGameManager* FindStartPoint(UnkGameManagerSub_0x608* points, const UnkStartPointKey& key) {
-    return fn_71011a2e54(points, &key);
+    return CScenario_FindNearestNonDebugActorToPoint(points, &key);
 }
 
 // The game manager's members the pass reads (game/UnkGameManager.h leaves them as padding).

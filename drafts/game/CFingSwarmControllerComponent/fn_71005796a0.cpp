@@ -208,7 +208,7 @@ void fn_71005796a0(UnkFingSwarm* self, s32 index, f32 dt) {
                 void* manager = g_unk_71726da048;
                 if (!manager) {
                     manager = fn_71000839a0(0xe0, 0x3f);
-                    fn_7100e1bca4(manager);
+                    ConstructBillboardManager(manager);
                     g_unk_71726da048 = manager;
                 }
                 u64 key = billboard->field_0xd0->field_0x30;

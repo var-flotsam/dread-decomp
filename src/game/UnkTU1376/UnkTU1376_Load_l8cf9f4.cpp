@@ -58,11 +58,11 @@ static inline void Set(UnkDoorObject_l8cf9f4* obj, u64 key, void* in) {
     typed.ptr = obj;
     UnkDoorValue_l8cf9f4 value = {Type(), in};
     if (UnkDoorField_l8cf9f4* field = cls->FindField(key))
-        fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
 }
 
-void fn_71008cf9f4(UnkDoorObject_l8cf9f4* self, CRntFile* file) {
+void ReadDoorOpenAndShieldFieldsFromFile(UnkDoorObject_l8cf9f4* self, CRntFile* file) {
     fn_710024fc0c(reinterpret_cast<UnkPickableItem_A4_b76*>(self), file);
     if (file->position >= file->size)
         return;

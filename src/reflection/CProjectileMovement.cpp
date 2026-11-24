@@ -7,43 +7,40 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CProjectileMovement.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CProjectileMovement
-namespace CProjectileMovement {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fMaxDist", 0x480, (DefaultValue, -1.0f), (Description, "Distance to delete the instance"));
-    DREAD_REFLECTED_FIELD(f32, "fMaxLifeTime", 0x484, (DefaultValue, -1.0f), (Description, "Life time to delete the instance"));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sCollisionFX", 0x488, (DefaultValue, ""), (Description, "FX to launch on collision"));
-    DREAD_REFLECTED_FIELD(f32, "fFXAngZOffset", 0x4a0, (DefaultValue, 0.0f), (Description, "FX to launch on collision"));
-    DREAD_REFLECTED_FIELD(f32, "fFXScl", 0x4a4, (DefaultValue, 1.0f), (Description, "Collision FX Scale"));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sNoDamageFX", 0x490, (DefaultValue, ""), (Description, "FX to launch on no damaged entity"));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sEnergyCollisionFX", 0x498, (DefaultValue, ""), (Description, "FX to launch on collision with energy coat"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CProjectileMovement::refl_AddAttributes(CClass*) {}
+void CProjectileMovement::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fMaxDist", offsetof(CProjectileMovement, fMaxDist), (DefaultValue, -1.0f), (Description, "Distance to delete the instance"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxLifeTime", offsetof(CProjectileMovement, fMaxLifeTime), (DefaultValue, -1.0f), (Description, "Life time to delete the instance"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sCollisionFX", offsetof(CProjectileMovement, sCollisionFX), (DefaultValue, ""), (Description, "FX to launch on collision"));
+    DREAD_REFLECTED_FIELD(f32, "fFXAngZOffset", offsetof(CProjectileMovement, fFXAngZOffset), (DefaultValue, 0.0f), (Description, "FX to launch on collision"));
+    DREAD_REFLECTED_FIELD(f32, "fFXScl", offsetof(CProjectileMovement, fFXScl), (DefaultValue, 1.0f), (Description, "Collision FX Scale"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sNoDamageFX", offsetof(CProjectileMovement, sNoDamageFX), (DefaultValue, ""), (Description, "FX to launch on no damaged entity"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sEnergyCollisionFX", offsetof(CProjectileMovement, sEnergyCollisionFX), (DefaultValue, ""), (Description, "FX to launch on collision with energy coat"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x5d0;
+bool CProjectileMovement::refl_Equals(const void*, const void*) { return false; }
+s32 CProjectileMovement::refl_Hash() { return -1; }
+const base::reflection::CType& CProjectileMovement::refl_TypeOf(const void* obj) { return *static_cast<const CProjectileMovement*>(obj)->refl_GetDynamicClass(); }
+void CProjectileMovement::refl_Destroy(void* obj) { static_cast<CProjectileMovement*>(obj)->~CProjectileMovement(); }
+struct CProjectileMovement::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CProjectileMovement);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CProjectileMovement
-DREAD_REFLECTED_CLASS(CProjectileMovement, CWeaponMovement);
+DREAD_REFLECTED_DECLARED_CLASS(CProjectileMovement, CWeaponMovement);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

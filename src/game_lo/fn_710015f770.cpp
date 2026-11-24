@@ -6,7 +6,7 @@
 #include "game/UnkTU182.h"
 #include "types.h"
 
-void fn_710015f770(u32 index, void* ptr, u32 group) {
+void SetGraphicsSlotPointer(u32 index, void* ptr, u32 group) {
     if (index > 15)
         return;
     if (ptr) {

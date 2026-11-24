@@ -14,7 +14,7 @@ struct UnkHeatableValue_0xd0 {
     u8 raw[0xd0];
 };
 
-void fn_710086dbb0(UnkHeatableValue_0xd0* self, const UnkHeatableValue_0xd0* other);  // copy constructor
+void CHeatableShieldComponent_CopyConstructEntry(UnkHeatableValue_0xd0* self, const UnkHeatableValue_0xd0* other);  // copy constructor
 
 void fn_710086da20(UnkPropertyArrays* self, u32 capacity) {
     if (self->capacity < capacity) {
@@ -25,8 +25,8 @@ void fn_710086da20(UnkPropertyArrays* self, u32 capacity) {
             UnkHeatableValue_0xd0* src = static_cast<UnkHeatableValue_0xd0*>(self->values);
             UnkHeatableValue_0xd0* dst = values;
             for (u32 i = 0; i < self->count; ++i, ++dst, ++src) {
-                fn_710086dbb0(dst, src);
-                fn_710086e0ac(src);
+                CHeatableShieldComponent_CopyConstructEntry(dst, src);
+                DestroyHeatableShieldValueRecord(src);
             }
             self->allocator->vf_0x48(self->values);
         }

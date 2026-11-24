@@ -1560,7 +1560,7 @@ def pool_list_ctor(orig, addr, tag, insns):
         return None
     t = f"base::UnkPoolList<{tag}, 0, {e:#x}>"
     return "\n".join(_traits_e9f00(tag, vtable, base_vtable) + [
-        f"template void base::refl_PoolListCtor<{tag}, 0, {e:#x}>({t}*, u32, u32, u32, base::UnkAllocator*);"])
+        f"template void base::refl_PoolListCtor<{tag}, 0, {e:#x}>({t}*, u32, u32, u32, base::IAllocator*);"])
 
 
 def pool_list_dtor(orig, addr, tag, insns):

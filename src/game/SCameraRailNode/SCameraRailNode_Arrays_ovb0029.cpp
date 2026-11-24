@@ -22,7 +22,7 @@
 using base::reflection::CType;
 using base::reflection::CFunction;
 using base::reflection::UnkReflValue;
-using base::UnkAllocator;
+using base::IAllocator;
 
 extern char g_unk_717277cb68[] __attribute__((visibility("hidden")));
 
@@ -162,7 +162,7 @@ struct UnkNodeArray_b29 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     ~UnkNodeArray_b29() {
         if (data) {
@@ -398,7 +398,7 @@ struct UnkWordPairVector_b29 {
     u32 step;
     bool growable;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     __attribute__((always_inline)) void Reserve(u32 n) {
         if (capacity >= n)

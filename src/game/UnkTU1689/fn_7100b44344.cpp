@@ -42,7 +42,7 @@ static inline void SetLabel(UnkGuiDisplayObject* object, const char* text) {
     fn_71011ecfbc(object, reinterpret_cast<const char32_t*>(&label));
 }
 
-void fn_7100b44344(UnkMapMenuTeleport_lb44344* self) {
+void UpdateMapMenuTeleportButtonLabels(UnkMapMenuTeleport_lb44344* self) {
     if (FindSelected(self) >= 0)
         SetLabel(TargetOf(self->handle_0x338), "#GUI_MAPMENU_LABEL_CONFIRM_TELEPORT");
     else if (self->known_count != 0)

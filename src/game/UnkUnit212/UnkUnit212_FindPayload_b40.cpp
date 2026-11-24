@@ -8,12 +8,12 @@
 
 static_assert(sizeof(UnkNamedNode) == 0x98, "UnkNamedNode placeholder layout");
 
-UnkNamedNode* fn_7100195310(UnkNamedNode* node) {
+UnkNamedNode* FindFirstDescendantWithPayload(UnkNamedNode* node) {
     for (UnkNamedNode **p = node->children.data, **end = p + node->children.count; p != end; ++p) {
         UnkNamedNode* child = *p;
         if (child->payload)
             return child;
-        if (UnkNamedNode* found = fn_7100195310(child))
+        if (UnkNamedNode* found = FindFirstDescendantWithPayload(child))
             return found;
     }
     return nullptr;

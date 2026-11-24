@@ -17,7 +17,7 @@ struct UnkMovement_l0d94f4 {
 bool fn_71010d94f4(UnkMovement_l0d94f4* self) {
     if (!self->vf_0x350() || self->field_0x1dc == 0.0f) {
         if (!fn_7100df5874(reinterpret_cast<UnkPlayer*>(g_unk_7101d47310)) && !fn_7100df5a4c(g_unk_7101d47310))
-            return !fn_7100df5630(g_unk_7101d47310);
+            return !IsPlayerGhostAuraStateIn3To6(g_unk_7101d47310);
     }
     return false;
 }

@@ -13,18 +13,18 @@ namespace base {
 
 struct UnkBuffer {
     // Allocates `size` bytes at once, from the default allocator when none is given.
-    UnkBuffer(u64 size, UnkAllocator* allocator, s32 align, u32 flags);
+    UnkBuffer(u64 size, IAllocator* allocator, s32 align, u32 flags);
 
     virtual ~UnkBuffer();
 
-    UnkAllocator* allocator;  // +0x8
+    IAllocator* allocator;  // +0x8
     void* data;
     u64 size;
     s32 align;  // +0x20
     u32 flags;
 };
 
-inline UnkBuffer::UnkBuffer(u64 size, UnkAllocator* allocator, s32 align, u32 flags)
+inline UnkBuffer::UnkBuffer(u64 size, IAllocator* allocator, s32 align, u32 flags)
     : allocator(allocator), data(nullptr), size(size), align(align), flags(flags) {
     if (size) {
         if (!allocator)

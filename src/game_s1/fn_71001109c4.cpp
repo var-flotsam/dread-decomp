@@ -124,7 +124,7 @@ UnkReflValue fn_71008dcbb8(void*, char* obj) {
     return MakeValue<fn_7100014768, s32>(1);
 }
 UnkReflValue InvokeCutsceneComponentTryLaunchCutscene(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_71007aa610(Target(obj))); }
-UnkReflValue fn_71008dcc08(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_71008d0ef4(Target(obj))); }
+UnkReflValue fn_71008dcc08(void*, char* obj) { return MakeValue<fn_710000d228, bool>(OpenDoorUnlessOpen(Target(obj))); }
 
 UnkReflValue fn_7101132928(void*, char* obj) {
     fn_7101126af4(reinterpret_cast<CSpawnPointComponent*>(Target(obj)));
@@ -152,7 +152,7 @@ UnkReflValue fn_71010c57bc(void*, char* obj) { return MakeValue<fn_710000d228, b
 
 // Hand the first argument's value to a method of the object and return what it returns as an int,
 // or 0 whatever the method returns (four units' copies, each calling its own method).
-s32 fn_710117b3f8(void* self, const void* value);
+s32 CAnimationComponent_ScriptSendNamedActionToMainTrack(void* self, const void* value);
 void fn_7100873bf8(void* self, const void* value);
 s32 fn_7101173ddc(void* self, const void* value);
 s32 fn_710117a018(void* self, const void* value);
@@ -177,7 +177,7 @@ __attribute__((always_inline)) static inline s32 ReturningZero(void* self, const
         value = arg;                                                                             \
     return MakeValue<fn_7100014768, s32>(method(target, value));
 
-UnkReflValue fn_710117bba0(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG((ReturningZero<s32, fn_710117b3f8>)) }
+UnkReflValue fn_710117bba0(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG((ReturningZero<s32, CAnimationComponent_ScriptSendNamedActionToMainTrack>)) }
 UnkReflValue fn_7100874214(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG((ReturningZero<void, fn_7100873bf8>)) }
 UnkReflValue fn_71011746a4(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG(fn_7101173ddc) }
 UnkReflValue fn_710117bc1c(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG((ReturningZero<s32, fn_710117a018>)) }

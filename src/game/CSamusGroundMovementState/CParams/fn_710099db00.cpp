@@ -90,7 +90,7 @@ static inline f32 Sign(f32 v) {
 }
 
 static inline bool IsPlaying(UnkAnimationComponent* animation, UnkCls_710117af10** name) {
-    return fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(animation), name, false);
+    return CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(animation), name, false);
 }
 
 void fn_710099db00(UnkSamusGroundState* self, bool skip) {

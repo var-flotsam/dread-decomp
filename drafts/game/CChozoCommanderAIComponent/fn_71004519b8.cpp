@@ -138,7 +138,7 @@ static inline void Send(void* target, u64 hash, base::reflection::UnkReflTypeIdA
                         base::reflection::UnkReflTypeIdArg* mask) {
     mode->id = 0;
     mask->id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b958, &g_unk_7172769740, mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b958, &g_unk_7172769740, mask);
 }
 
 static const u64 kShieldHitId = 0x8d1b8dfce0a09065;
@@ -206,7 +206,7 @@ u32 fn_71004519b8(UnkCommanderAI_l4519b8* self, UnkCommanderHit_l4519b8* hit) {
             f32 damage = hit->damage;
             UnkCommanderCharClass_l4519b8* char_class = self->char_class;
             u8* factors = alt ? char_class->factors_alt : char_class->factors;
-            f32 factor = fn_71008c2de8(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(factors), hit->flags);
+            f32 factor = CDamageSourceFactor_GetFactorForDamageFlags(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(factors), hit->flags);
             fn_71008c1538(reinterpret_cast<UnkRequest*>(hit), damage * factor);
             f32 limit = top - (bottom + (low + high) * -0.5f);
             fn_71008c1538(reinterpret_cast<UnkRequest*>(hit), limit < hit->damage ? limit : hit->damage);

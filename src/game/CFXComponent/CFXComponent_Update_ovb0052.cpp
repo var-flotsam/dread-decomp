@@ -55,7 +55,7 @@ void fn_7101157530(UnkParentPoolList* self) {
 
 // Removes `node` and returns the node after it; after the first or the last node, the new first or
 // last one. A node that isn't in the list is left alone (null).
-UnkFXIdNode* fn_7101157324(UnkParentPoolList* self, UnkFXIdNode* node) {
+UnkFXIdNode* CFXComponent_EraseIdListNode(UnkParentPoolList* self, UnkFXIdNode* node) {
     if (Head(self) == node) {
         if (!node)
             return nullptr;
@@ -174,12 +174,12 @@ static_assert(__builtin_offsetof(UnkFXComponent_b0052, field_0xe0) == 0xe0, "Unk
 static_assert(__builtin_offsetof(UnkFXComponent_b0052, scene) == 0x140, "UnkFXComponent_b0052 layout");
 static_assert(__builtin_offsetof(UnkFXComponent_b0052, field_0x170) == 0x170, "UnkFXComponent_b0052 layout");
 
-void fn_710114eaa4(UnkFXComponent_b0052* self, f32 dt);
-void fn_710114eb28(UnkFXComponent_b0052* self, f32 dt);
+void CFXComponent_CountDownFirstOverlayTimer(UnkFXComponent_b0052* self, f32 dt);
+void CFXComponent_CountDownModel1DetachTimer(UnkFXComponent_b0052* self, f32 dt);
 void fn_710114ebb8(UnkFXComponent_b0052* self, f32 dt);
 void fn_7101150088(UnkFXComponent_b0052* self, s32 band);
 void fn_710114ec8c(UnkFXComponent_b0052* self, f32 dt);
-void fn_710114eeac(UnkFXComponent_b0052* self);
+void CFXComponent_SwitchEffectsOnRecordChange(UnkFXComponent_b0052* self);
 
 static inline UnkModelManager* GetManager() {
     UnkModelManager* m = g_unk_71726b0cd8;
@@ -195,7 +195,7 @@ static inline char* FirstModel() { return reinterpret_cast<char*>(GetManager()->
 
 // Attaches the effect to the owner's scene (detaching it from the previous one first), with the
 // names at +0x148 bound to the first overlay model, unless the owner or the effect is off.
-void fn_7101152f88(UnkFXComponent_b0052* self, f32 value) {
+void CFXComponent_AttachFirstOverlayModelForDuration(UnkFXComponent_b0052* self, f32 value) {
     UnkFXActor_b0052* actor = self->actor;
     if (actor->field_0x1b5)
         return;
@@ -260,12 +260,12 @@ static inline s32 Band(UnkFXComponent_b0052* self, UnkFXActor_b0052* player) {
 
 // The per-frame update: the base step, the three sub-updates, the distance band to the player, two
 // countdown timers and the model check, then the final steps.
-void fn_710114e8b4(UnkFXComponent_b0052* self, f32 dt) {
+void CFXComponent_TickTimersAndPlayerDistanceBand(UnkFXComponent_b0052* self, f32 dt) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
     self->field_0xb0 -= dt;
     if (!self->actor->field_0x1b5) {
-        fn_710114eaa4(self, dt);
-        fn_710114eb28(self, dt);
+        CFXComponent_CountDownFirstOverlayTimer(self, dt);
+        CFXComponent_CountDownModel1DetachTimer(self, dt);
         fn_710114ebb8(self, dt);
         if (self->field_0x110 && !self->field_0x111) {
             if (UnkPlayer* player = fn_7100dec788(g_unk_7101d47310))
@@ -289,5 +289,5 @@ void fn_710114e8b4(UnkFXComponent_b0052* self, f32 dt) {
         }
         fn_710114ec8c(self, dt);
     }
-    fn_710114eeac(self);
+    CFXComponent_SwitchEffectsOnRecordChange(self);
 }

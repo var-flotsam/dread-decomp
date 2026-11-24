@@ -175,7 +175,7 @@ void fn_7100540430(UnkEmmyAI_l540430* self) {
     fn_7100500620(self->field_0x2a1d0());
     fn_71004f35c4(self->field_0x2a218());
     fn_7100705288(self->field_0x2a268());
-    fn_710054095c(reinterpret_cast<UnkEmmyAI2_b57a3*>(self));
+    PassEmmyBarrierStrIdToManager(reinterpret_cast<UnkEmmyAI2_b57a3*>(self));
     fn_7100540ad4(self);
 
     self->field_0x14780.first.Reset();

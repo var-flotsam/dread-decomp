@@ -140,7 +140,7 @@ void fn_7100da9bd4(UnkAIManager_da92b0* self, UnkAITarget_da92b0* object) {
     void* font;
     {
         CStrId name("digital_small", true);
-        font = fn_71011b882c(gui, &name);
+        font = CGUIManager_GetOrLoadCachedByPath(gui, &name);
     }
     if (!font)
         return;

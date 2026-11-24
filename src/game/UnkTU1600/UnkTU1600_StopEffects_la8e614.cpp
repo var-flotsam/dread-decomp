@@ -12,7 +12,7 @@ using base::global::UnkStringData;
 
 extern UnkTeleporterFxEntry_b0233 g_unk_7172751a60[8] __attribute__((visibility("hidden")));
 
-void fn_7100a8e614(UnkTeleporterSelf_b0233* self) {
+void DisableAllModeTableIdsOnActorComponent(UnkTeleporterSelf_b0233* self) {
 #pragma clang loop unroll(full)
     for (UnkTeleporterFxEntry_b0233& entry : g_unk_7172751a60) {
         UnkFxId_b0233 name = entry.id;

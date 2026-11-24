@@ -169,7 +169,7 @@ void fn_7100655e80(UnkRedenkiApproach_l655e80* self) {
     UnkVec3Result goal = fn_710064fef8(reinterpret_cast<UnkSwarmHold_b66a4*>(self));
     UnkRedenkiArea_l655e80* area = self->Area();
     UnkRedenkiPlayerState_l655e80* player =
-        static_cast<UnkRedenkiPlayerState_l655e80*>(fn_7100df57f4(g_unk_7101d47310));
+        static_cast<UnkRedenkiPlayerState_l655e80*>(GetPlayerOpticCamouflageAbility(g_unk_7101d47310));
     s32 state = player->state;
     if (state == 7 && player->sub)
         state = player->sub->state;
@@ -213,7 +213,7 @@ void fn_7100655e80(UnkRedenkiApproach_l655e80* self) {
     void* manager = g_unk_71726da048;
     if (!manager) {
         manager = fn_71000839a0(0xe0, 0x3f);
-        fn_7100e1bca4(manager);
+        ConstructBillboardManager(manager);
         g_unk_71726da048 = manager;
     }
     {

@@ -100,7 +100,7 @@ static inline UnkGuiDisplayObject* FindChild(UnkGuiDisplayObject* root, const CR
     return obj;
 }
 
-void fn_7100b51d40(UnkSlotOwner_lb51d40* self, UnkFileScreen_lb51d40* screen) {
+void SetUpFileMenuScreenAndSlotHeader(UnkSlotOwner_lb51d40* self, UnkFileScreen_lb51d40* screen) {
     screen->root = self->root.Get();
     self->timer = -1.0f;
     CRntString scenario = reinterpret_cast<UnkGameManagerScenario_lb51d40*>(g_unk_7101d47310)->scenario;

@@ -28,6 +28,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "game/sound/UnkSoundHandle.h"
+#include "game/UnkSoundRef.h"
 
 using base::global::CStrId;
 
@@ -44,12 +45,7 @@ struct UnkSaveCallback_ovb0118 {
 struct UnkGuiComposition_ovb0090;
 struct UnkMapCallback_ovb0090;
 
-struct UnkSound;
-struct UnkSoundRef {
-    UnkSound* sound;
-    s64 serial;
-};
-inline UnkSound* UnkSoundHandle::Get() const { if (ref && ref->serial == serial && serial != -1) return ref->sound; return nullptr; }
+inline UnkSound* UnkSoundHandle::Get() const { if (ref && ref->serial == serial && serial != -1) return ref->object; return nullptr; }
 
 struct UnkShipRechargeEntity_b49a4;
 
@@ -117,7 +113,7 @@ bool CSaveStationUsableComponent_AskSaveQuestion(UnkSaveStation_ovb0118* self, U
     CStrId text("#GUI_SAVESTATION_QUESTION", true);
     UnkSaveCallback_ovb0118 accept_callback = {self, fn_7100a8ad50};
     UnkSaveCallback_ovb0118 back_callback = {self, fn_7100a8ad5c};
-    fn_7100b5fde0(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
+    CPopUpComposition_ShowAcceptBackPrompt(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
     return true;
 }

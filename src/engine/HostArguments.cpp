@@ -393,7 +393,7 @@ struct UnkSizedAllocator {
 };
 
 void fn_7100132c30();
-void fn_7100132c60();
+void SampleClockAndUpdateElapsedSeconds();
 void fn_7100083980(f32 dt);
 void fn_7100001a60(f32 dt);
 void fn_71000ebad0(UnkResRegistry* self);
@@ -486,7 +486,7 @@ void fn_7100000d40() {
             t = dt;
         fn_71002192c8(g_unk_7101d47300, t);
         fn_71002194a4(g_unk_7101d47300);
-        fn_7100132c60();
+        SampleClockAndUpdateElapsedSeconds();
         fn_71002194e8(g_unk_7101d47300);
     }
     g_unk_7101d47394 = dt + g_unk_7101d47394;

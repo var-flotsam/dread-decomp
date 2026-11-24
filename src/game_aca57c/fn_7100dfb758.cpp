@@ -29,7 +29,7 @@ struct UnkStrBuffer_dfb758 {
     base::global::CRntString* Str() { return reinterpret_cast<base::global::CRntString*>(this); }
 
     UnkStrBuffer_dfb758() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage));
         storage.vtable = g_unk_7101a194b8 + 2;
         storage.field_0x108 = nullptr;
         storage.field_0x110 = 0;
@@ -75,10 +75,10 @@ s32 fn_71010c0cd0(lua_State* L, s32 count, char* buf, u32 size, UnkPropBag* resu
     }                                                                                \
     return result;
 
-bool fn_7100dfb758(UnkPropBag* results, const char* name, const char* fmt, ...) {
+bool CallScriptFunctionByName(UnkPropBag* results, const char* name, const char* fmt, ...) {
     UNK_CALL_SCRIPT(results, name, fmt)
 }
 
-bool fn_7100e03d78(UnkPropBag* results, const char* name, const char* fmt, ...) {
+bool CallScriptFunctionIntoPropBag(UnkPropBag* results, const char* name, const char* fmt, ...) {
     UNK_CALL_SCRIPT(results, name, fmt)
 }

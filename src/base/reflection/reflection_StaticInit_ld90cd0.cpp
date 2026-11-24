@@ -31,7 +31,7 @@ namespace unk_static_init {
 struct UnkNamedValueTmp;
 }
 using unk_static_init::UnkNamedValueTmp;
-void fn_7100ad3404(UnkStruct_71729e0ab0*, UnkNamedValueTmp*, u64);
+void ConstructErasedValueVectorFromArray(UnkStruct_71729e0ab0*, UnkNamedValueTmp*, u64);
 
 // A value's type as its copies see it: the hooks to copy and to tear down a value.
 struct UnkValueOps_d90cd0 {
@@ -66,9 +66,9 @@ struct UnkValueCopy_d90cd0 {
 inline void InitValueList_d90cd0(UnkErasedVector* list, const UnkValue& from) {
     {
         UnkValueCopy_d90cd0 copy(from);
-        fn_7100ad3404(reinterpret_cast<UnkStruct_71729e0ab0*>(list), reinterpret_cast<UnkNamedValueTmp*>(&copy), 1);
+        ConstructErasedValueVectorFromArray(reinterpret_cast<UnkStruct_71729e0ab0*>(list), reinterpret_cast<UnkNamedValueTmp*>(&copy), 1);
     }
-    fn_7100000250(fn_7100d8ce3c, list, &g_unk_7101a19000);
+    fn_7100000250(DestroyOpsEntryVector, list, &g_unk_7101a19000);
 }
 
 void fn_7100d90cd0() {

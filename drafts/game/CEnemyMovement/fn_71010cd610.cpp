@@ -14,7 +14,7 @@ struct UnkPath442 {
     u8 pad_0xc[0x20];
     u8 closed;  // 0x2c
 };
-const u32* fn_710035e580(const UnkPath442* self, u32 index);
+const u32* GetPathSegmentEntryOrFallback(const UnkPath442* self, u32 index);
 
 struct UnkSegmentOwner_l0cd610 {
     u8 pad_0x0[0x10];
@@ -63,7 +63,7 @@ void fn_71010cd610(UnkEnemyMovement_l0cd610* self) {
             UnkPath442* line = reinterpret_cast<UnkPath442*>(path + 0x68);
             u32 index = actor->segment;
             if (index < SegmentCount(line)) {
-                u16 cell = *reinterpret_cast<const u16*>(fn_710035e580(line, index));
+                u16 cell = *reinterpret_cast<const u16*>(GetPathSegmentEntryOrFallback(line, index));
                 if (cell != 0xffff)
                     {
                     fn_710027a328(mesh, cell);

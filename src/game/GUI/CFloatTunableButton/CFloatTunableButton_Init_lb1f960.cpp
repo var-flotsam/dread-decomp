@@ -54,7 +54,7 @@ static inline UnkGuiDisplayObject* Sub(UnkFloatTunableButton_lb1f960* self) {
     return fn_71011c08dc(reinterpret_cast<UnkMissionLogButton_ovb0079*>(self));
 }
 
-void fn_7100b1f960(UnkFloatTunableButton_lb1f960* self) {
+void CFloatTunableButton_CreateTunableLabel(UnkFloatTunableButton_lb1f960* self) {
     fn_71011bfd28(reinterpret_cast<UnkRumbleTunableButton_ovb0085*>(self));
     UnkGuiRoot* root = g_unk_717271e8f8;
     {
@@ -76,7 +76,7 @@ void fn_7100b1f960(UnkFloatTunableButton_lb1f960* self) {
     {
         UnkGuiDisplayObject* label = self->label;
         CStrId font("digital_medium", true);
-        fn_71011ed150(label, font);
+        CLabel_SetFont(label, font);
     }
     fn_71011d0088(self->label, false);
     fn_71011ed018(self->label, 2);

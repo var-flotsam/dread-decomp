@@ -17,7 +17,7 @@ struct UnkAutsharpSpawnPointComponent_482c {
     u32 field_0x3d8;
     bool field_0x3dc;
     u32 field_0x3e0;
-    base::UnkAllocator* field_0x3e8;
+    base::IAllocator* field_0x3e8;
     u32 field_0x3f0;
     u64 field_0x3f8;
 };

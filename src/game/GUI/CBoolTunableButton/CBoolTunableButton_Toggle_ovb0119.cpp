@@ -51,7 +51,7 @@ struct UnkBoolTunableButton_b0119 {
     UnkScriptName_b0119* script;      // 0x2c8
 };
 
-void fn_7100af3d60(UnkBoolTunableButton_b0119* self) {
+void CBoolTunableButton_ToggleValue(UnkBoolTunableButton_b0119* self) {
     UnkGuiObj* label = self->label;
     self->value = !self->value;
     if (self->value)
@@ -64,7 +64,7 @@ void fn_7100af3d60(UnkBoolTunableButton_b0119* self) {
             UnkTypedPtr_b0119 obj = {object->vf_0x0(), object};
             UnkReflField* field = self->field;
             UnkTypedPtr_b0119 value = {fn_710000d228(), &self->value};
-            fn_71000e7a80(field, reinterpret_cast<const UnkReflFieldObject*>(&obj),
+            SetReflectedFieldValue(field, reinterpret_cast<const UnkReflFieldObject*>(&obj),
                           reinterpret_cast<UnkReflValueArg*>(&value));
         }
     }

@@ -23,7 +23,7 @@ void fn_710116179c(void* signal, UnkLifeChange_ovb0000* change);
 
 // Takes (fn_7101160214) or adds (fn_71011603a4) `fraction` of the maximum life; whether the life changed.
 struct UnkLifeValues_b49;
-bool fn_7101160214(UnkLifeValues_b49* self, f32 fraction);
+bool CLifeComponent_RemoveLifePct(UnkLifeValues_b49* self, f32 fraction);
 bool fn_71011603a4(UnkLifeValues_b49* self, f32 fraction);
 void fn_710115fd10(UnkLifeComponentFull_ovb0000* self);
 extern void* g_unk_7101cb3db0[];

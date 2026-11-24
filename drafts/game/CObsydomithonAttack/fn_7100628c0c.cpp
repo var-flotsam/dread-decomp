@@ -234,7 +234,7 @@ bool fn_7100628c0c(UnkObsydomithonAttack_l628c0c* self, void* arg, u32 mode) {
         desc.size.y = ai->height;
         desc.field_0x20 = 0;
         UnkHitBox_l628c0c box(&pose, &desc);
-        if (fn_7100d5b484(tree, 0x20, reinterpret_cast<UnkShape*>(&box),
+        if (QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x20, reinterpret_cast<UnkShape*>(&box),
                           reinterpret_cast<const UnkMtx44*>(&g_unk_7101a1a680), nullptr, 0)) {
             ai->offset = offset;
             return true;

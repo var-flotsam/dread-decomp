@@ -10,7 +10,7 @@ struct UnkAbility;
 struct UnkMove_b152;
 struct UnkVec2_b152;
 
-bool fn_71009e73cc(UnkMove_b152* self, UnkVec2_b152* out);
+bool GetMovementSpeedLimitAndDecayRate(UnkMove_b152* self, UnkVec2_b152* out);
 
 struct UnkSpeedLimit_l9e307c {
     f32 speed;
@@ -42,7 +42,7 @@ void fn_71009e307c(UnkMovement_l9e307c* self, const f32* amount) {
     UnkAbility* ability = fn_7100df5928(reinterpret_cast<UnkPlayer*>(g_unk_7101d47310));
     if (ability && fn_710033cf20(ability))
         return;
-    fn_71009e73cc(reinterpret_cast<UnkMove_b152*>(self), reinterpret_cast<UnkVec2_b152*>(&limit));
+    GetMovementSpeedLimitAndDecayRate(reinterpret_cast<UnkMove_b152*>(self), reinterpret_cast<UnkVec2_b152*>(&limit));
     f32 speed = self->field_0x1d8;
     f32 over = __builtin_fabsf(speed) - limit.speed;
     if (!(over > 1.1920929e-7f))

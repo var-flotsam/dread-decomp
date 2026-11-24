@@ -20,7 +20,7 @@ struct UnkPerceptionModifierLogicActionDef {
     u32 field_0x30;
     bool field_0x34;
     u32 field_0x38;
-    base::UnkAllocator* field_0x40;
+    base::IAllocator* field_0x40;
     u32 field_0x48;
     u64 field_0x50;
     u32 eGroup;

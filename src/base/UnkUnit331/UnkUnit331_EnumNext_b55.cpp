@@ -1,7 +1,7 @@
 // Unit 331 (tools/tu_map.py): two small enum conversions, value + 1 for 0..N and 0 beyond.
 #include "types.h"
 
-s32 fn_7100225550(u32 value) {
+s32 ConvertToMovieDecoderType(u32 value) {
     switch (value) {
     case 0: return 1;
     case 1: return 2;

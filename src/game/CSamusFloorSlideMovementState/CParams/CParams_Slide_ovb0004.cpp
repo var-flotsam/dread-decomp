@@ -26,6 +26,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkMotionRule.h"
 #include "game/UnkSamusSettings.h"
+#include "game/UnkStruct_71007142e8.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1455.h"
 #include "game/UnkTU1501.h"
@@ -33,6 +34,7 @@
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU39.h"
+#include "game/UnkTimeline.h"
 #include "game/UnkTrackOptional.h"
 #include "game/UnkTrackTiming.h"
 #include "game/UnkXformNode.h"
@@ -581,27 +583,14 @@ void fn_7100994c08(UnkSlideState_ovb0004* self, const u64* event) {
 // ---- fn_7100991e30: the motion's end time over a timeline ----
 
 // The motion fn_71007142e8 initialises: the time it ends on at +0x2c.
-struct UnkStruct_71007142e8 {
-    u8 pad_0x0[0x2c];
-    f32 field_0x2c;
-    u8 pad_0x30[0x40];
-};
-
 struct UnkMotionTracks;
-struct UnkTimeline {
-    u8 pad_0x0[0x24];
-    s32 frame_count;
-    u8 pad_0x28[0x58];
-    UnkMotionTracks* tracks;  // 0x80
-};
-
 f32 fn_7100991e30(void* self, UnkTimeline* timeline) {
     UnkStruct_71007142e8 motion;
     fn_71007142e8(&motion);
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
-    return motion.field_0x2c;
+    return motion.xform.m[2][3];
 }
 
 // ---- fn_7100991b30, fn_7100991d0c: constructor and destructor body ----

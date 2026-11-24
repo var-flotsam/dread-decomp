@@ -15,7 +15,7 @@ struct UnkLifeValues {
     }
 };
 
-bool fn_71011601b8(UnkLifeValues* self, f32 amount) {
+bool CLifeComponent_SubtractLifeAmount(UnkLifeValues* self, f32 amount) {
     bool changed = false;
     if (amount > 0.0f) {
         f32 life = self->life;

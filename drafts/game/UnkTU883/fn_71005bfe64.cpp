@@ -117,6 +117,6 @@ void fn_71005bfe64(UnkHydrogigaAI_l5bfe64* self, UnkHydrogigaEvent_l5bfe64* even
     mode.id = 1;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkNone_SpitSend().value;
-    fn_7101176690(target, 0x7531238cb72381d8, 0xbd794f4bf6d1d598, &mode, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0x7531238cb72381d8, 0xbd794f4bf6d1d598, &mode, &g_unk_710164b958, &g_unk_7172769740,
                   &mask);
 }

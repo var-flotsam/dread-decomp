@@ -8,7 +8,7 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CStrId;
 
 // The record's last word: two halves, copied as a whole.
