@@ -39,7 +39,7 @@ struct UnkCounters_b0166;
 struct UnkAimKeyListOwner;
 
 void fn_7100ec78e8(UnkCounters_b0166* self, const CStrId* name);
-void fn_71003448d4(UnkAimKeyListOwner* self, bool on, base::global::CStrId* key);
+void CAimComponent_ForceAimPressed(UnkAimKeyListOwner* self, bool on, base::global::CStrId* key);
 void fn_71003448ec(UnkAimKeyListOwner* self, bool on, base::global::CStrId* key);
 void fn_7100846e7c(UnkItem_710083e9d4* gun, bool flag);
 void fn_71008439f4(UnkItem_710083e9d4* gun);
@@ -176,7 +176,7 @@ void fn_71008be4e0(UnkCommanderXLife_l8be4e0* self) {
     if (player->input)
         fn_7100872460(player->input, true, false, g_unk_71727302a0);
     if (player->aim) {
-        fn_71003448d4(player->aim, false, &g_unk_7172730298);
+        CAimComponent_ForceAimPressed(player->aim, false, &g_unk_7172730298);
         fn_71003448ec(player->aim, false, &g_unk_7172730298);
     }
     if (player->guns) {

@@ -50,7 +50,7 @@ extern char g_unk_71726ade0b[];
 extern char g_unk_71726ade0c[];
 UnkEnumType* fn_71002f239c();
 
-void fn_71002f6180() {
+void CPlaythroughDef_InitStatics() {
     InitHeaderIds(&g_unk_71726ae580.ids);
     g_unk_71726ae580.field_0x28 = {{0, 0, 0}, fn_710000cf00, {0, 0}};
     g_unk_71726ae580.field_0x58 = {{0, 0, 0}, fn_710000d470, {0, 0}};

@@ -9,7 +9,7 @@
 using base::global::CStrId;
 
 struct UnkGoliathXSlamAttack_b58a3;
-CStrId fn_71003627f8(UnkGoliathXSlamAttack_b58a3*, UnkActor*);
+CStrId CAttack_MakeIdWithAnimState(UnkGoliathXSlamAttack_b58a3*, UnkActor*);
 
 struct UnkAIAttackEntry_l134420 {
     void** vtable;
@@ -65,7 +65,7 @@ struct UnkAIAttackComponent_l134420 {
 };
 
 static inline CStrId AttackId(UnkAIAttackEntry_l134420* entry, UnkActor* owner) {
-    return fn_71003627f8(reinterpret_cast<UnkGoliathXSlamAttack_b58a3*>(entry), owner);
+    return CAttack_MakeIdWithAnimState(reinterpret_cast<UnkGoliathXSlamAttack_b58a3*>(entry), owner);
 }
 
 bool fn_7101134420(UnkAIAttackComponent_l134420* self, UnkAIAttackEntry_l134420* entry, bool flag, u32 arg3,
