@@ -32,11 +32,11 @@ struct UnkObj_7101066878 {
 static const u64 kActorTrack = 0xf4061ff25a2163d6;
 
 void fn_7101066878(UnkObj_7101066878* self, f32 time, bool flag, bool flag2) {
-    UnkTrack* track = fn_71011771e0(self->field_0x18->field_0x220, kActorTrack);
+    UnkTrack* track = CAnimationComponent_FindTrackByNameHash(self->field_0x18->field_0x220, kActorTrack);
     if (fn_710070d4e8(track))
         reinterpret_cast<void (*)(UnkTrackObject_71011781f4*, bool, bool, f32)>(&fn_710070d874)(
             reinterpret_cast<UnkTrackObject_71011781f4*>(track), flag, flag2, time);
-    UnkTrack* track2 = fn_71011771e0(self->field_0x18->field_0x220, kActorTrack);
+    UnkTrack* track2 = CAnimationComponent_FindTrackByNameHash(self->field_0x18->field_0x220, kActorTrack);
     fn_710070d4e8(track2);
     bool visible = fn_710117aaac(self->field_0x18->field_0x220, fn_7100cf3f28(),
                                  fn_7100b8aff0(time, reinterpret_cast<const UnkAnimTiming*>(fn_710070d4e8(track2))));

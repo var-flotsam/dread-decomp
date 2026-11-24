@@ -34,7 +34,7 @@ f32 fn_710049b2fc(UnkChozoWarriorAI_b66a2* self) {
 
 f32 fn_710049b360(UnkChozoWarriorAI_b66a2* self) {
     f32 base;
-    fn_71010fc31c(self, &base);
+    CAIComponent_GetPathFirstLegStartX(self, &base);
     UnkAIReach reach = fn_7100977b90(self->owner->tracked);
     f32 offset = self->vtable->vf_0x3c8(self) + reach.radius * -0.5f;
     return base - offset;

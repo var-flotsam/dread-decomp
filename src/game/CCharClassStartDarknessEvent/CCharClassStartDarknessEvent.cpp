@@ -21,7 +21,7 @@ struct UnkStartDarknessEvent {
     f32 b;      // 0x1c
 };
 
-void fn_7100be27a0(UnkStartDarknessEvent* self) {
+void CCharClassStartDarknessEvent_PassDarknessToCentralUnitComponents(UnkStartDarknessEvent* self) {
     if (self->id.data == &g_unk_7101d47108->empty)
         return;
     UnkCentralUnitList* list = fn_7100772c98();

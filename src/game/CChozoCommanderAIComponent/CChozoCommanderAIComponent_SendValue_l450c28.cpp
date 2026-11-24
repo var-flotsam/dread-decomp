@@ -99,13 +99,13 @@ void fn_7100450c28(UnkCommanderAI_l450c28* self) {
         mode.id = 0x81;
         UnkSendValue_l450c28 desc(value);
         mask.id = UnkAll_SpitSend().value;
-        sent = fn_7101176690(animation, hash1, kind, &mode, &g_unk_710164b958, &desc, &mask);
+        sent = CAnimationComponent_SendActionToTrack(animation, hash1, kind, &mode, &g_unk_710164b958, &desc, &mask);
     }
     if (!sent) {
         u64 hash2 = name.Hash();
         mode2.id = 0x81;
         UnkSendValue_l450c28 desc(value);
         mask2.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, hash2, kind, &mode2, &g_unk_710164b958, &desc, &mask2);
+        CAnimationComponent_SendActionToTrack(animation, hash2, kind, &mode2, &g_unk_710164b958, &desc, &mask2);
     }
 }

@@ -24,7 +24,7 @@ static inline u32 ObjectTest_A5_b68(UnkCollisionObject* o) {
 
 void fn_7100861af8(UnkCollisionContainer* self) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
-    fn_71008615b4(self);
+    CCollisionComponent_SyncAnimationColliderTracks(self);
     u8* bytes = reinterpret_cast<u8*>(self);
     if (!bytes[0xc9] || !bytes[0xc8])
         return;

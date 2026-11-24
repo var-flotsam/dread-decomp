@@ -94,7 +94,7 @@ struct UnkVibrationContext_ovb0137 {
 };
 
 // Starts the event's vibration effect (its file path at +0x10) on the owner.
-void fn_7100ccc95c(UnkPlayVibrationEvent_ovb0137* self, UnkVibrationContext_ovb0137* ctx) {
+void CCharClassPlayVibrationEvent_PlayVibrationOnOwner(UnkPlayVibrationEvent_ovb0137* self, UnkVibrationContext_ovb0137* ctx) {
     if (self->path.data == &g_unk_7101d47200->empty || !ctx->owner)
         return;
     UnkVibrationDesc_ovb0137 desc;

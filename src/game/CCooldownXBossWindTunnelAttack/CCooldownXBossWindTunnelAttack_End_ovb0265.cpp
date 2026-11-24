@@ -77,5 +77,5 @@ void fn_71004cc42c(UnkWindTunnelEnd_ovb0265* self) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>();
-    fn_7101176690(anim, 0x3d73722bcf353a54, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(anim, 0x3d73722bcf353a54, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }

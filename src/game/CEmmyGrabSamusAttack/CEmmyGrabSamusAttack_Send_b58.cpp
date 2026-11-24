@@ -82,7 +82,7 @@ void fn_7100507a28(UnkGrabAttack_b58a3* self) {
                 mode.id = 0x81;
                 base::reflection::UnkReflTypeIdArg mask;
                 mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(target, 0xe27a4a9050c8ea64, 0x7c5476647f60cdaa, &mode, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(target, 0xe27a4a9050c8ea64, 0x7c5476647f60cdaa, &mode, &g_unk_710164b958,
                               &g_unk_717276974c, &mask);
                 break;
             case 1:
@@ -90,7 +90,7 @@ void fn_7100507a28(UnkGrabAttack_b58a3* self) {
                 mode2.id = 0x81;
                 base::reflection::UnkReflTypeIdArg mask2;
                 mask2.id = UnkAll_SpitSend().value;
-                fn_7101176690(target, 0x76df0a29ce276dea, 0x7c5476647f60cdaa, &mode2, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(target, 0x76df0a29ce276dea, 0x7c5476647f60cdaa, &mode2, &g_unk_710164b958,
                               &g_unk_717276974c, &mask2);
                 break;
             default:

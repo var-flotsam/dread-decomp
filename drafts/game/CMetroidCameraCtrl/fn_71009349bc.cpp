@@ -328,7 +328,7 @@ void fn_71009349bc(UnkMetroidCameraCtrl_l9349bc* self) {
                         if (IsKindOf_l9349bc<fn_7100713bb0>(animation))
                             state = reinterpret_cast<UnkSamusAnimation_l9349bc*>(animation)->state;
                         if (grab && grabD &&
-                            !fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(animation),
+                            !CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(animation),
                                            reinterpret_cast<UnkCls_710117af10**>(
                                                const_cast<CStrId*>(&GrabTrackId_l9349bc())),
                                            false))

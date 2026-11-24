@@ -6,6 +6,6 @@
 #include "types.h"
 
 struct UnkFrozenIceBase_b44a2;
-void fn_71007ee4c8(UnkFrozenIceBase_b44a2* self);
+void CCharClassFrozenComponent_ConstructBase(UnkFrozenIceBase_b44a2* self);
 void fn_71007ee5bc(char*);
 extern void* g_unk_7101a73dc0[];

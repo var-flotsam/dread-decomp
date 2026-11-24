@@ -22,7 +22,7 @@ using base::reflection::UnkReflObject;
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
 using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
-void fn_71008651c8(UnkStruct_71008651c8*, void* const*, UnkOut_71008651c8*);
+void CCollisionComponent_CollectRecordsBySecondaryId(UnkStruct_71008651c8*, void* const*, UnkOut_71008651c8*);
 
 // A collider with a 2D box whose bounds vf_0x98 recomputes while they are out of date.
 struct UnkSmartCollider_la04768 : UnkCollisionObject {
@@ -123,7 +123,7 @@ bool fn_7100a04768(UnkPlatformSm_A5_b72* component) {
 
     UnkOut_71008651c8 fakes(0xf);
     static CStrId s_fake("smartobject_fake", true);
-    fn_71008651c8(reinterpret_cast<UnkStruct_71008651c8*>(self->owner->collision),
+    CCollisionComponent_CollectRecordsBySecondaryId(reinterpret_cast<UnkStruct_71008651c8*>(self->owner->collision),
                   reinterpret_cast<void* const*>(&s_fake), &fakes);
     for (UnkStruct_71008651c8_Entry **it = fakes.data, **end = fakes.data + fakes.count; it != end; ++it) {
         auto* fake =

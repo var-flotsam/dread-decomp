@@ -28,7 +28,7 @@ struct UnkBoneToConstant_bc {
     u32 field_0x5c;
 };
 
-u32 fn_7100803ef4(UnkBoneToConstant_bc* self, void* arg) {
+u32 CBoneToConstantComponent_InitFromCharClassDef(UnkBoneToConstant_bc* self, void* arg) {
     // Read as a word here (the original keeps bit 0 of it), as a flag by the other callers.
     u32 result = reinterpret_cast<u32 (*)(UnkBaseComponent*, void*)>(fn_71010c41bc)(reinterpret_cast<UnkBaseComponent*>(self), arg);
     UnkReflObject* object = self->object;

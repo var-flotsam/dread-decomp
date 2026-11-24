@@ -190,7 +190,7 @@ void fn_71011f4350(UnkGuiModel3D_ovb0109* self, f32 dt) {
     if (!(self->idle_delay > 0.0f) || self->idle_event.data == &g_unk_7101d47108->empty)
         return;
     UnkStruct_710117af10* animation = self->entity->animation;
-    if (!animation || !fn_710117af10(animation, reinterpret_cast<UnkCls_710117af10**>(&GameManagerIdTable().field_0x1d78), false))
+    if (!animation || !CAnimationComponent_IsPlayingActionNameContaining(animation, reinterpret_cast<UnkCls_710117af10**>(&GameManagerIdTable().field_0x1d78), false))
         return;
     f32 t = self->idle_time + dt;
     self->idle_time = t;

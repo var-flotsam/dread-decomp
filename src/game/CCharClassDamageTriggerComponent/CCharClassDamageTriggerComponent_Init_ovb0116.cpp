@@ -88,7 +88,7 @@ static inline void CopyExtra_dtc(UnkDamageExtra_dtc* dst, const UnkDamageExtra_d
     dst->field_0xc = src->field_0xc;
 }
 
-bool fn_7100a4add0(UnkDamageTriggerComponent_dtc* self, UnkSteamJetArg* arg) {
+bool CCharClassDamageTriggerComponent_InitAndCopyDamageSettings(UnkDamageTriggerComponent_dtc* self, UnkSteamJetArg* arg) {
     bool result = fn_7100a46e00(reinterpret_cast<UnkSteamJetComponent*>(self), arg);
     UnkReflObject* obj = self->char_class;
     self->def = obj && fn_710009d50c(obj->vf_0x0(), DamageTriggerClass())

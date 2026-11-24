@@ -23,7 +23,7 @@ struct UnkInputCallbackEvent_b46a3 {
     UnkInputCallbackTarget_b46a3* target;  // 0x10
 };
 
-void fn_7100cb1b84(UnkInputCallbackEvent_b46a3* self) {
+void CCharClassCutsceneOnInputCallbackEvent_ForwardInputActionAndLuaCallback(UnkInputCallbackEvent_b46a3* self) {
     if (fn_7101198688(g_unk_7101d47330))
         return;
     UnkInputCallbackTarget_b46a3* target = self->target;

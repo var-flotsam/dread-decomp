@@ -79,6 +79,6 @@ start:
         u64 id = reinterpret_cast<UnkIdHolder_b62a2*>(GameManagerIdTable().field_0x1d78.data)->id;
         send_mode.id = 0;
         send_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, id, 0xf4061ff25a2163d6, &send_mode, &g_unk_710164b958, &g_unk_7172769740, &send_mask);
+        CAnimationComponent_SendActionToTrack(target, id, 0xf4061ff25a2163d6, &send_mode, &g_unk_710164b958, &g_unk_7172769740, &send_mask);
     }
 }

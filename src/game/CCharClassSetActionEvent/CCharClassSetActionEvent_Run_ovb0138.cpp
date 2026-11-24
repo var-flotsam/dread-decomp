@@ -41,7 +41,7 @@ static inline f32 Random(f32 lo, f32 hi) {
     return lo + (f32)((rand() & 0x7fff) * (1.0 / 32767.0)) * (hi - lo);
 }
 
-void fn_7100cd0278(UnkSetActionEvent_ovb0138* self, UnkActionActor_ovb0138** target) {
+void CCharClassSetActionEvent_ApplyActionToActorByProbability(UnkSetActionEvent_ovb0138* self, UnkActionActor_ovb0138** target) {
     if (!*target)
         return;
     if (self->action.data == &g_unk_7101d47108->empty)
@@ -64,6 +64,6 @@ void fn_7100cd0278(UnkSetActionEvent_ovb0138* self, UnkActionActor_ovb0138** tar
         value.value = v;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &value, &mask);
+        CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &value, &mask);
     }
 }

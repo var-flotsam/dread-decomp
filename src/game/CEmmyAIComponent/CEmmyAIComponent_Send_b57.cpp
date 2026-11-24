@@ -68,8 +68,8 @@ static inline UnkCls_710117af10** AsName_b57a3(const CStrId& id) {
 void fn_7100552f10(UnkEmmyAIStagger_b57a3* self) {
     static const CStrId s_loop("grabemmysamus-stagger_loop", true);
     static const CStrId s_init("grabemmysamus-stagger-recovery_init", true);
-    if (fn_710117af10(static_cast<UnkStruct_710117af10*>(self->owner->field_0x220), AsName_b57a3(s_loop), false) ||
-        fn_710117af10(static_cast<UnkStruct_710117af10*>(self->owner->field_0x220), AsName_b57a3(s_init), false)) {
+    if (CAnimationComponent_IsPlayingActionNameContaining(static_cast<UnkStruct_710117af10*>(self->owner->field_0x220), AsName_b57a3(s_loop), false) ||
+        CAnimationComponent_IsPlayingActionNameContaining(static_cast<UnkStruct_710117af10*>(self->owner->field_0x220), AsName_b57a3(s_init), false)) {
         void* target = self->owner->field_0x220;
         UnkSpitSend(target, StringCrc64("grabemmysamus-stagger-recovery", 30), 0xf4061ff25a2163d6);
     }

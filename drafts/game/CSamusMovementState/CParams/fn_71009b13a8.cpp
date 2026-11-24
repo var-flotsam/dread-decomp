@@ -102,7 +102,7 @@ bool fn_71009b13a8(UnkTurnState_l9b13a8* self, bool flag) {
             return false;
         if (flag)
             request.flags |= 1;
-        if (!fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
+        if (!CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
                            reinterpret_cast<const UnkRequest_7101176ea8*>(&request), kTurnKind))
             return false;
         self->vf_0x150(&request.id);
@@ -115,7 +115,7 @@ bool fn_71009b13a8(UnkTurnState_l9b13a8* self, bool flag) {
         mode.id = flag ? 2 : 0;
         UnkAnimationComponent* target = self->owner->animation;
         mask.id = UnkAll_SpitSend().value;
-        if (!fn_7101176690(target, id, kTurnKind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask))
+        if (!CAnimationComponent_SendActionToTrack(target, id, kTurnKind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask))
             return false;
         self->vf_0x150(&id);
     }

@@ -90,7 +90,7 @@ struct UnkCeilingBox_l99245c {
     void vf_0x80() { reinterpret_cast<void (*)(UnkCeilingBox_l99245c*)>(vtable[0x80 / 8])(this); }
 };
 
-void fn_7100d5e3dc(UnkCeilingBox_l99245c* box, f32 scale);
+void CAABoxShape2D_ScaleUniformAboutCentre(UnkCeilingBox_l99245c* box, f32 scale);
 
 struct UnkCeilingOwner_l99245c {
     void** vtable;
@@ -151,7 +151,7 @@ void fn_710099245c(UnkCeilingState_l99245c* self, void* a1, void* a2, const UnkC
             box.field_0xb0 = width;
             box.field_0xb4 = width;
             box.vf_0x80();
-            fn_7100d5e3dc(&box, 0.999f);
+            CAABoxShape2D_ScaleUniformAboutCentre(&box, 0.999f);
             CVector2D sweep;
             sweep.x = 0.0f;
             sweep.y = self->height * 0.5f + self->width;

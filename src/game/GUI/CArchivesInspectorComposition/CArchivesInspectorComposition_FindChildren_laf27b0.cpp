@@ -29,7 +29,7 @@ static inline UnkGuiDisplayObject* As(UnkGuiDisplayObject* o) {
                : nullptr;
 }
 
-void fn_7100af27b0(UnkArchivesInspector_laf27b0* self) {
+void CArchivesInspectorComposition_SetUpAndFindContentChildren(UnkArchivesInspector_laf27b0* self) {
     fn_71011d9b3c(reinterpret_cast<UnkPanel_71011dfeb0*>(self));
     if (self->content)
         return;

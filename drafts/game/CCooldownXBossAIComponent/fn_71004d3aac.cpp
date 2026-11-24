@@ -106,7 +106,7 @@ static inline void Send_l4d3aac(void* cls, u64 hash, base::reflection::UnkReflTy
                                 base::reflection::UnkReflTypeIdArg& mask) {
     mode.id = 1;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(cls, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(cls, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
 static inline u32 RandBelow(u32 n) { return n == 0 ? 0 : (rand() & 0x7fff) % n; }

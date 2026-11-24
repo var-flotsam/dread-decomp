@@ -31,7 +31,7 @@ void fn_71006bb7bc(UnkShelmitAI_b57a4* self) {
                 mode.id = 1;
                 base::reflection::UnkReflTypeIdArg mask;
                 mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(target, 0xfb70eec0a98665b3, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(target, 0xfb70eec0a98665b3, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                               &g_unk_7172769740, &mask);
             }
         }

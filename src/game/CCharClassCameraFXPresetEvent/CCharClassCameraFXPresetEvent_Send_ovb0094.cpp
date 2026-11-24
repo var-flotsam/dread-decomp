@@ -38,7 +38,7 @@ struct UnkCameraFXPresetEvent_ovb0094 {
 
 // Sends the game manager the camera preset (at the target's position when there is a target), unless
 // there is no player or the target is someone else while the player's state is in mode 2.
-void fn_7100cae608(UnkCameraFXPresetEvent_ovb0094* self, UnkCameraFXEntity_ovb0094* const& target) {
+void CCharClassCameraFXPresetEvent_SendPresetWithDirection(UnkCameraFXPresetEvent_ovb0094* self, UnkCameraFXEntity_ovb0094* const& target) {
     if (self->preset.data == &g_unk_7101d47108->empty)
         return;
     UnkVec params;

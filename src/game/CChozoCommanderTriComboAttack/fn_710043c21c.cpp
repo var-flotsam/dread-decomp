@@ -91,12 +91,12 @@ start:
             mode1.id = 1;
             time = {0, 0, fn_7101177ea0(animation, track)};
             mask1.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, id, track, &mode1, &g_unk_710164b958, &time, &mask1);
+            CAnimationComponent_SendActionToTrack(animation, id, track, &mode1, &g_unk_710164b958, &time, &mask1);
         }
     } else {
         mode2.id = 1;
         mask2.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, 0xf2de7855ef1809d2, track, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
+        CAnimationComponent_SendActionToTrack(animation, 0xf2de7855ef1809d2, track, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
     }
     CStrId current = *fn_7101177ae8(animation, track);
     auto* ai = static_cast<UnkTriComboAI_l43c21c*>(self->owner->field_0x240);

@@ -24,7 +24,7 @@ struct UnkArchivesInspector_ovb0043 {
 
 // Toggles the composition between shown and hidden ("UI_Show"/"UI_Hide") unless the input was
 // already handled; marks the input handled.
-void fn_7100af25dc(UnkArchivesInspector_ovb0043* self, UnkArchivesInput_ovb0043* input) {
+void CArchivesInspectorComposition_ToggleShowHide(UnkArchivesInspector_ovb0043* self, UnkArchivesInput_ovb0043* input) {
     if (input && input->handled)
         return;
     if (!self->enabled)

@@ -155,7 +155,7 @@ void fn_7100899cb8(UnkSteamJet_l899cb8* self, CBlackboard* blackboard) {
                 animation->field_0x2c8 = 1;
                 mode.id = 0;
                 type_id.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-                fn_7101176690(animation, 0xf4f16aa254fe9ff2, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(animation, 0xf4f16aa254fe9ff2, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                               &g_unk_717276974c, &type_id);
             }
             if (self->other.Target() && self->other.Target()->actor)

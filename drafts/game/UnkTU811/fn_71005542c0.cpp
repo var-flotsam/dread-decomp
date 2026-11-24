@@ -112,7 +112,7 @@ static inline bool IsCounterHit(const UnkDamageEvent_l5542c0* event) {
 // Whether the owner plays the animation of Samus winning the grab counter.
 static inline bool PlaysCounterWin(UnkEmmyAI_l5542c0* self) {
     static const CStrId s_win("grabemmysamusqte1win", true);
-    return fn_710117af10(self->owner->animation,
+    return CAnimationComponent_IsPlayingActionNameContaining(self->owner->animation,
                          reinterpret_cast<UnkCls_710117af10**>(const_cast<CStrId*>(&s_win)), false);
 }
 

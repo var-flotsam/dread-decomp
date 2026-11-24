@@ -76,7 +76,7 @@ void CKraidAIComponent_UpdateMouthCloseTimer(UnkKraidMouthAI_b63a4* self, f32 dt
             mode.id = 1;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(cls, 0xdec1d0efc9e2415f, 0x9317bfcf28edee2b, &mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(cls, 0xdec1d0efc9e2415f, 0x9317bfcf28edee2b, &mode, &g_unk_710164b958,
                           &g_unk_7172769740, &mask);
         }
     }

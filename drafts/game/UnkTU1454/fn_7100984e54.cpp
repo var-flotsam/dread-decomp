@@ -118,23 +118,23 @@ void fn_7100984e54(Unk_l984e54* self, UnkSwingInfo_l984e54* info, f32 value, s32
             if (record && record->name.data != &g_unk_7101d47108->empty) {
                 track_mode.id = 1;
                 track_mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(animation, record->name.data->Key(), 0xf4061ff25a2163d6, &track_mode, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(animation, record->name.data->Key(), 0xf4061ff25a2163d6, &track_mode, &g_unk_710164b958,
                               &g_unk_7172769740, &track_mask);
             } else {
                 grapple_mode.id = 1;
                 grapple_mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(animation, TableKey(0x1278), 0xf4061ff25a2163d6, &grapple_mode, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(animation, TableKey(0x1278), 0xf4061ff25a2163d6, &grapple_mode, &g_unk_710164b958,
                               &g_unk_7172769740, &grapple_mask);
             }
         } else if (info->field_0x49) {
             side_mode.id = 1;
             side_mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, TableKey(0x12a8), 0xf4061ff25a2163d6, &side_mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, TableKey(0x12a8), 0xf4061ff25a2163d6, &side_mode, &g_unk_710164b958,
                           &g_unk_7172769740, &side_mask);
         } else {
             default_mode.id = 1;
             default_mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x5c3ed5663c71384c, 0xf4061ff25a2163d6, &default_mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0x5c3ed5663c71384c, 0xf4061ff25a2163d6, &default_mode, &g_unk_710164b958,
                           &g_unk_7172769740, &default_mask);
         }
         self->field_0x3d0 = 0.0f;

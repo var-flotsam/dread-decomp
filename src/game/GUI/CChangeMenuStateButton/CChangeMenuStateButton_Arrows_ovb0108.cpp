@@ -37,7 +37,7 @@ static inline void PlayAnimation(UnkGuiDisplayObject* obj, const char* name) {
 }
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
-void fn_7100af587c(UnkPagedScreen_ovb0108* self, f32 dt) {
+void CChangeMenuStateButton_UpdatePageArrowsAndScroll(UnkPagedScreen_ovb0108* self, f32 dt) {
     fn_71011d8fe4(reinterpret_cast<UnkNewGameScreen*>(self), dt);
     UnkPagedList_ovb0108* list = self->list;
     s32 page = list->page;

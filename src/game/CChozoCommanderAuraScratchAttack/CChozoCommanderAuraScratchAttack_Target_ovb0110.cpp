@@ -57,7 +57,7 @@ bool fn_71004280e0(UnkScratchAttack_ov110* self, CVector3D* out) {
     out->y = py;
     out->z = pz;
     f32 first = px;
-    fn_71010fc31c(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(ai), &first);
+    CAIComponent_GetPathFirstLegStartX(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(ai), &first);
     f32 second = out->x;
     fn_71010fc284(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(ai), &second);
     f32 x = target->field_0x44;

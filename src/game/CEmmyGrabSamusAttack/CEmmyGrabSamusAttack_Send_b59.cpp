@@ -64,7 +64,7 @@ bool fn_710050a500(UnkGrabAttack_b59a3* self, const UnkGrabId_b59a3* id) {
     u64 hash1 = id->Hash();
     mode1.id = 0;
     mask1.id = UnkAll_SpitSend().value;
-    bool sent = fn_7101176690(target, hash1, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
+    bool sent = CAnimationComponent_SendActionToTrack(target, hash1, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
                               &mask1);
     auto* ai = static_cast<UnkGrabAI_b59a3*>(self->owner->field_0x240);
     // The gotos skip the declarations below, so they get no lifetime markers and keep slots of their own.
@@ -85,14 +85,14 @@ bool fn_710050a500(UnkGrabAttack_b59a3* self, const UnkGrabId_b59a3* id) {
         u64 hash2 = hash;
         mode2.id = 0;
         mask2.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash2, 0x7c5476647f60cdaa, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
+        CAnimationComponent_SendActionToTrack(target, hash2, 0x7c5476647f60cdaa, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
     }
     goto player;
 plain : {
     u64 hash3 = id->Hash();
     mode3.id = 0;
     mask3.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash3, 0x7c5476647f60cdaa, &mode3, &g_unk_710164b958, &g_unk_7172769740, &mask3);
+    CAnimationComponent_SendActionToTrack(target, hash3, 0x7c5476647f60cdaa, &mode3, &g_unk_710164b958, &g_unk_7172769740, &mask3);
 }
 player:
     if (!sent)
@@ -101,7 +101,7 @@ player:
         u64 hash4 = id->Hash();
         mode4.id = 0;
         mask4.id = UnkAll_SpitSend().value;
-        return fn_7101176690(player, hash4, 0xf4061ff25a2163d6, &mode4, &g_unk_710164b958, &g_unk_7172769740,
+        return CAnimationComponent_SendActionToTrack(player, hash4, 0xf4061ff25a2163d6, &mode4, &g_unk_710164b958, &g_unk_7172769740,
                              &mask4);
     }
 }

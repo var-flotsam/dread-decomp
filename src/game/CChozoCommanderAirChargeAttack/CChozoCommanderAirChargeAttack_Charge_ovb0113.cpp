@@ -195,7 +195,7 @@ void fn_7100425998(UnkChargeAttack3_ovb0113* self) {
     value.id = 0;
     UnkReflTypeIdArg arg;
     arg.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-    fn_7101176690(actions, 0x6fb3d416bd10ce27, 0xf4061ff25a2163d6, &value, &g_unk_710164b958,
+    CAnimationComponent_SendActionToTrack(actions, 0x6fb3d416bd10ce27, 0xf4061ff25a2163d6, &value, &g_unk_710164b958,
                   &g_unk_7172769740, &arg);
     self->state = 2;
     self->field_0x14 = false;

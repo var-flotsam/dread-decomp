@@ -39,7 +39,7 @@ void fn_7100d441e0(UnkPtrArrays_ovb0034* self, const UnkPtrArray_ovb0034* value,
     using E = UnkPtrArray_ovb0034;
     u32 n = self->count;
     if (n == index) {
-        fn_7100d43e70(self, value);
+        CCollider_PushBackArrayCopy(self, value);
         return;
     }
     u32 cap = self->capacity;

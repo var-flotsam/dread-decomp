@@ -884,7 +884,7 @@ bool fn_71010c9338(UnkEnemyMovement_q* self, UnkMessage_q* message) {
         return true;
     }
     self->mode = mode;
-    fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
+    CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
                   reinterpret_cast<const UnkRequest_7101176ea8*>(&req), 0xf4061ff25a2163d6);
     return true;
 }

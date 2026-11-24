@@ -92,7 +92,7 @@ bool fn_71004819c8(UnkSpinAttack_l4819c8* self, const UnkSpinEvent_l4819c8* even
         void* cls = self->owner->field_0x220;
         spin_mode.id = 0;
         spin_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, 0xffb95702ebd47524, kKind, &spin_mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(cls, 0xffb95702ebd47524, kKind, &spin_mode, &g_unk_710164b958, &g_unk_7172769740,
                       &spin_mask);
         return true;
     }
@@ -127,6 +127,6 @@ bool fn_71004819c8(UnkSpinAttack_l4819c8* self, const UnkSpinEvent_l4819c8* even
     void* cls = self->owner->field_0x220;
     turn_mode.id = 0;
     turn_mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(cls, 0xcd64baacf1736baf, kKind, &turn_mode, &g_unk_710164b958, &g_unk_7172769740, &turn_mask);
+    CAnimationComponent_SendActionToTrack(cls, 0xcd64baacf1736baf, kKind, &turn_mode, &g_unk_710164b958, &g_unk_7172769740, &turn_mask);
     return true;
 }

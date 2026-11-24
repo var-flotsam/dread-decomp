@@ -54,7 +54,7 @@ bool fn_71005c3ac0(UnkHydrogigaAIEv_b57a3* self, UnkHydrogigaEvent_b57a3* event)
     mode.id = 1;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0x252f517d6a8cfb08, 0x2b145cf4efb3d2c6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0x252f517d6a8cfb08, 0x2b145cf4efb3d2c6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                   &mask);
     UnkWeakHandle** slot = &self->field_0x15058;
     if (UnkWeakHandle* h = *slot) {

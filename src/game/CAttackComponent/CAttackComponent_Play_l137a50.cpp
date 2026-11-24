@@ -115,7 +115,7 @@ bool fn_7101137a50(UnkAttackComponent_l137a50* self, const CStrId* id, bool mode
     length.frames = frames;
     UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    bool played = fn_7101176690(animation, action, 0xf4061ff25a2163d6, &value, &timing, &length, &mask);
+    bool played = CAnimationComponent_SendActionToTrack(animation, action, 0xf4061ff25a2163d6, &value, &timing, &length, &mask);
     if (played) {
         self->played = true;
         self->vf_0x1c0();

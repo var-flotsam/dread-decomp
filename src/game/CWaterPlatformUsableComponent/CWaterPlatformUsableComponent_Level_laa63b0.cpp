@@ -48,7 +48,7 @@ void fn_7100aa63b0(UnkWaterPlatformLevel_laa63b0* self) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0xa0e33be014f44bd7, 0x94b6e812cbf3fb75, &mode, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0xa0e33be014f44bd7, 0x94b6e812cbf3fb75, &mode, &g_unk_710164b958, &g_unk_7172769740,
                   &mask);
     fn_7100aa5980(reinterpret_cast<UnkWaterPlatform_A5_b73*>(self));
 }

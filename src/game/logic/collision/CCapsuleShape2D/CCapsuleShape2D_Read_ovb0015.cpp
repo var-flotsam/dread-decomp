@@ -38,7 +38,7 @@ struct UnkCapsuleShape2D_ovb0015 {
 // CPolygonCollectionShape/CPolygonCollectionShape_Read.cpp has it), then the radius and the full
 // length (both zero once the file is exhausted); the centre goes back to the origin and the shape
 // updates itself (slot 0x80). The radius is stored as read, without a float type.
-bool fn_7100d60094(UnkCapsuleShape2D_ovb0015* self, CRntFile* file) {
+bool CCapsuleShape2D_ReadFromFile(UnkCapsuleShape2D_ovb0015* self, CRntFile* file) {
     fn_7100d6c288(reinterpret_cast<UnkPolygonCollectionShape*>(self), file);
     f32 radius = 0.0f;
     f32 length = 0.0f;

@@ -46,7 +46,7 @@ static inline const CClass* SteamJetClass() {
     return &g_unk_717272d7d0;
 }
 
-bool fn_710089e340(UnkSteamJetComponent* self, UnkSteamJetArg* arg) {
+bool CCharClassSteamJetComponent_CacheCharClassAndApplyDefaults(UnkSteamJetComponent* self, UnkSteamJetArg* arg) {
     bool result = fn_7100a46e00(self, arg);
     UnkReflObject* obj = self->field_0x10;
     self->field_0xc78 = obj && fn_710009d50c(obj->vf_0x0(), SteamJetClass())

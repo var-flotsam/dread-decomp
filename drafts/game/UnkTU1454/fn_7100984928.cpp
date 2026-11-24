@@ -122,7 +122,7 @@ void fn_7100984928(Unk_l984928* self) {
         self->out_of_reach = false;
         reach_mode.id = 0;
         reach_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, 0x21b0cb7fad9ee1b6, 0xf4061ff25a2163d6, &reach_mode, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(animation, 0x21b0cb7fad9ee1b6, 0xf4061ff25a2163d6, &reach_mode, &g_unk_710164b958,
                       &g_unk_7172769740, &reach_mask);
     } else {
         self->machine.Request(1);
@@ -131,7 +131,7 @@ void fn_7100984928(Unk_l984928* self) {
             (*reinterpret_cast<UnkIdHolder_l984928**>(reinterpret_cast<char*>(&GameManagerIdTable()) + 0x1280))->hash;
         near_mode.id = 0;
         near_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &near_mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &near_mode, &g_unk_710164b958, &g_unk_7172769740,
                       &near_mask);
     }
     self->field_0x3c0 = true;

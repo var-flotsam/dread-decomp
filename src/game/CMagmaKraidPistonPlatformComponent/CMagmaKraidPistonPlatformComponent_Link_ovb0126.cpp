@@ -51,7 +51,7 @@ static inline __attribute__((always_inline)) void SendAndLink(UnkKraidLinked_ovb
         value.id = 0;
         UnkReflTypeIdArg arg;
         arg.id = UnkKraidDefaultMask();
-        fn_7101176690(actions, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
+        CAnimationComponent_SendActionToTrack(actions, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
     }
     UnkWeakTarget* track = self->owner->field_0x220;
     if (!track)

@@ -98,7 +98,7 @@ void CBehaviorTreeAIComponent_SendCrazyEnd(UnkStruct_710036974c* component) {
         mode.id = 1;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
         goto done;
     }
     // The goto above skips these declarations, so they get no lifetime markers and keep slots of their own.
@@ -110,12 +110,12 @@ void CBehaviorTreeAIComponent_SendCrazyEnd(UnkStruct_710036974c* component) {
     hash = base::reflection::refl_GetStrIdTable<0x7100031894>().ids[0xc90 / 8].data->Key();
     mode1.id = 1;
     mask1.id = UnkAll_SpitSend().value;
-    if (fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740, &mask1))
+    if (CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740, &mask1))
         goto done;
     hash = base::reflection::refl_GetStrIdTable<0x7100031894>().ids[0x1d78 / 8].data->Key();
     mode2.id = 1;
     mask2.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
 done:
     self->sent = true;
 }

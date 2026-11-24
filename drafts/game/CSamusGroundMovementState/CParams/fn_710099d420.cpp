@@ -113,7 +113,7 @@ bool fn_710099d420(UnkGroundState_l99* self, const UnkGroundEvent_l99d420* event
         UnkAnimationComponent* animation = self->owner->animation;
         value.id = 0;
         mask.id = base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>();
-        fn_7101176690(animation, track, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(animation, track, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &mask);
         return true;
     }
     UnkGroundParkourRequest_l99 req;

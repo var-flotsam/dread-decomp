@@ -31,7 +31,7 @@ void fn_71006f794c() __attribute__((visibility("hidden")));
 void fn_71006f7958() __attribute__((visibility("hidden")));
 extern char g_unk_717270cbc0[];
 
-void fn_71006f7e70() {
+void CCharClassAINavigationComponent_InitStatics() {
     InitHeaderIds(&g_unk_717270cbc8.ids);
     InitEnum(&base::reflection::TypeObject<EFollowPathRotationMode, UnkEnumType>::object, "EFollowPathRotationMode", fn_71006f5aac, fn_71006f57e0,
              g_unk_717270ca18, &g_unk_717270ca20, fn_71006f7934, &g_unk_717270ca40, fn_71006f7940);

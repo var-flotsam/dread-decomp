@@ -85,7 +85,7 @@ s32 fn_7100389ccc(UnkInFuryAction_l389ccc* self) {
     if (track != (u64)-1 && animation && self->field_0xa8 && !self->field_0xa0) {
         mode.id = 0;
         mask.id = UnkAll_SpitSend().value;
-        if (fn_7101176690(animation, track, kTrackKind_l389ccc, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask))
+        if (CAnimationComponent_SendActionToTrack(animation, track, kTrackKind_l389ccc, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask))
             self->field_0xa0 = true;
     }
     if (animation && self->field_0xa0) {

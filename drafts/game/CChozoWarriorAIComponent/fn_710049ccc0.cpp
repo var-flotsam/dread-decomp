@@ -91,7 +91,7 @@ void fn_710049ccc0(UnkChozoWarriorAI_l49ccc0* self, UnkChozoWarriorMovement_l49c
         bool ending;
         {
             CStrId end("attack_walljump_end", true);
-            ending = fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(anim),
+            ending = CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(anim),
                                    reinterpret_cast<UnkCls_710117af10**>(&end), false) ||
                      fn_710117ae38(anim, 0x6dda625e7c0919e0, false);
         }

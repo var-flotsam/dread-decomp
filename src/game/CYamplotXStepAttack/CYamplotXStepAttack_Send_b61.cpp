@@ -42,12 +42,12 @@ start:
     if (dx * fx + dy * fy + dz * fz > 0.0f) {
         mode1.id = 0;
         mask1.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, 0xf142127271e8d0e3, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(cls, 0xf142127271e8d0e3, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
                       &mask1);
     } else {
         mode2.id = 0;
         mask2.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, 0x4ae549454537c757, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(cls, 0x4ae549454537c757, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740,
                       &mask2);
     }
 }

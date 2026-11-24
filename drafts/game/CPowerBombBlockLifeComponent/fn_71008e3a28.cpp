@@ -149,7 +149,7 @@ void fn_71008e3a28(UnkPowerBombBlockLifeDie_l8e3a28* self, u32 kind, UnkHitInfo_
             mode.id = 1;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+            CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
             played = true;
         } else if (timeline && fn_7100a2c13c(timeline, &g_unk_710164b1a0)) {
             played = true;

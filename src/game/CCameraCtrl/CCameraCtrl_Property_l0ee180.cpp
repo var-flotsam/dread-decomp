@@ -41,7 +41,7 @@ static inline s32 ReadVec(UnkProp* p, UnkCameraVec_l0ee180* out) {
     return 1;
 }
 
-s32 fn_71010ee180(UnkCameraCtrlProps_l0ee180* self, UnkProp* p) {
+s32 CCameraCtrl_ReadWritePosDirProperty(UnkCameraCtrlProps_l0ee180* self, UnkProp* p) {
     if (unk_prop::IsName(p, CRntString("Pos")) && !p->set)
         return CRntFile_WriteFormat(p->stream, "o", &self->pos) == 8;
     if (unk_prop::IsName(p, CRntString("Pos")) && p->set)

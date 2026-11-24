@@ -33,7 +33,7 @@ struct UnkAmmoRecharge_la77790 {
     UnkAmmoRechargeEffect_la77790* effect_0x550;
 };
 
-void fn_7100a77790(UnkAmmoRecharge_la77790* self) {
+void CAmmoRechargeComponent_PlayRechargeEffectsAndSound(UnkAmmoRecharge_la77790* self) {
     fn_7100aa2850(self);
     UnkWorld* world = self->owner->world;
     fn_710114fe8c(world, self->effect_0x548->hash, 1, 1);

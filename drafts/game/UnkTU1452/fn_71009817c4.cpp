@@ -187,6 +187,6 @@ void fn_71009817c4(UnkUnit1452_b56* self, bool flag) {
         animation = Animation_l9817c4(self);
     }
     UnkAnimRequest_l9817c4 req(id, time, blend, flag ? 0x11u : 0x10u, mask);
-    fn_7101176ea8(animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&req), 0xf4061ff25a2163d6);
+    CAnimationComponent_SendActionRequestRecordToTrack(animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&req), 0xf4061ff25a2163d6);
     fn_7100287954(&msg);
 }

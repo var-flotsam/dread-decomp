@@ -15,7 +15,7 @@ struct UnkBoxShape2D_7100d5e570 {
     void vf_0x80() { reinterpret_cast<void (*)(UnkBoxShape2D_7100d5e570*)>(vtable[0x80 / 8])(this); }
 };
 
-void fn_7100d5e570(UnkBoxShape2D_7100d5e570* self, const f32* delta) {
+void CAABoxShape2D_TranslateBox(UnkBoxShape2D_7100d5e570* self, const f32* delta) {
     self->min_x = delta[0] + self->min_x;
     self->min_y = delta[1] + self->min_y;
     self->max_x = delta[0] + self->max_x;

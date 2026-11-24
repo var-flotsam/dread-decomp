@@ -90,7 +90,7 @@ bool fn_7100573d54(UnkWatch_b0258w* self, UnkWatchArg_b0258w* arg) {
         if (UnkActor* actor = fn_7100d7c990(self->holder->actor)) {
             static CStrId s_spider("spider", true);
             if (actor->field_0x208 && actor->field_0x220) {
-                bool busy = fn_710117af10(static_cast<UnkStruct_710117af10*>(actor->field_0x220),
+                bool busy = CAnimationComponent_IsPlayingActionNameContaining(static_cast<UnkStruct_710117af10*>(actor->field_0x220),
                                           reinterpret_cast<UnkCls_710117af10**>(&s_spider), false);
                 threshold = busy ? 0.0f : 0.06f;
             }

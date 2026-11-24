@@ -33,7 +33,7 @@ void fn_7100a1d23c(UnkSlidleSend_b56* self) {
             mode.id = 2;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(target, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+            CAnimationComponent_SendActionToTrack(target, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
         }
     }
 }

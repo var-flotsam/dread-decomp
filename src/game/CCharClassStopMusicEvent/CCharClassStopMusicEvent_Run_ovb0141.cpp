@@ -34,7 +34,7 @@ struct UnkStopMusicEvent_b0141 {
     bool bClearStack;
 };
 
-void fn_7100ce4510(UnkStopMusicEvent_b0141* self) {
+void CCharClassStopMusicEvent_StopMusicWithFadeOut(UnkStopMusicEvent_b0141* self) {
     base::global::UnkStringData* path = self->path;
     base::global::UnkStringData* empty = &g_unk_7101d47200->empty;
     void* manager = MusicManager();

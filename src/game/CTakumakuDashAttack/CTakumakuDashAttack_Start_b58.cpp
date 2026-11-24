@@ -75,7 +75,7 @@ bool fn_71006cfcac(UnkTakumakuStartAttack_b58* self) {
     mode.id = 1;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    bool sent = fn_7101176690(anim, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    bool sent = CAnimationComponent_SendActionToTrack(anim, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     if (!target || !sent)
         return false;
     UnkTakumakuQuery_b58 query;

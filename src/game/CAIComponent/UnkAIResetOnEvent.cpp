@@ -20,7 +20,7 @@ struct UnkAIResettable {
 struct UnkStruct_710036974c;
 struct UnkStruct_710036974c_Msg;
 
-u32 fn_7101111d88(UnkStruct_710036974c* self_, UnkStruct_710036974c_Msg* msg) {
+u32 CAIComponent_ResetTimeSinceLastFrozenUnlessMsgFlagSet(UnkStruct_710036974c* self_, UnkStruct_710036974c_Msg* msg) {
     UnkAIResettable* self = reinterpret_cast<UnkAIResettable*>(self_);
     if (reinterpret_cast<const UnkAIEvent*>(msg)->handled)
         return 0;

@@ -53,6 +53,6 @@ void CFloatingPropActingComponent_PlayAnimation(UnkFloatingProp_ovb0131* self) {
     req.field_0x1c = 2;
     req.start = start;
     UnkStruct_7101176ea8* animation = self->holder ? self->holder->animation : nullptr;
-    fn_7101176ea8(animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&req), 0x459ee01c881801aull);
+    CAnimationComponent_SendActionRequestRecordToTrack(animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&req), 0x459ee01c881801aull);
     self->playing = true;
 }

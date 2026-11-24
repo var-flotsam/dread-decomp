@@ -78,7 +78,7 @@ struct UnkLuaCallback1Event_ovb0139 {
     UnkLuaId_ovb0139 arg;       // 0x18
 };
 
-void fn_7100cdfa54(UnkLuaCallback1Event_ovb0139* self) {
+void CCharClassStaticLUACallback1Event_CallLuaFunctionWithParam(UnkLuaCallback1Event_ovb0139* self) {
     UnkLuaId_ovb0139& yes = TrueId();
     if (Contains(self->arg, yes) || ContainsText(self->arg, "false")) {
         const char* function = Text(self->function);

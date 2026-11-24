@@ -86,7 +86,7 @@ static inline UnkCamNode_la4dffc* Erase(UnkCameraHolder_la4dffc* self, UnkCamNod
     return next;
 }
 
-void fn_7100a4dffc(void* holder) {
+void CCameraToRailLogicAction_RemoveRailCameras(void* holder) {
     UnkCameraHolder_la4dffc* self = static_cast<UnkCameraHolder_la4dffc*>(holder);
     UnkCamNode_la4dffc* node = self->head;
     while (node) {

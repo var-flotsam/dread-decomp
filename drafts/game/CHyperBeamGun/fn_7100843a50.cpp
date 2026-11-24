@@ -168,7 +168,7 @@ static inline void SendMode(void* target, u64 hash, base::reflection::UnkReflTyp
                             const UnkDesc_SpitSend* desc, base::reflection::UnkReflTypeIdArg* type_id) {
     mode->id = value;
     type_id->id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b958, desc, type_id);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b958, desc, type_id);
 }
 
 static inline void SendTimelineId(UnkTimelineComponent* timeline, const u64* id) {
@@ -207,7 +207,7 @@ void fn_7100843a50(char* raw, bool on) {
                     SendMode(self->owner->field_0x220, 0x90b0b24b6a6a9e1dull, &unarmed_mode, 0, &g_unk_7172769740,
                              &unarmed_type);
                 key = &g_unk_710164ac90;
-            } else if (fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(animation),
+            } else if (CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(animation),
                                      reinterpret_cast<UnkCls_710117af10**>(&g_unk_71727265b8), false)) {
                 SendMode(self->owner->field_0x220, 0x1f116f3ab15940d6ull, &track_mode, 1, &g_unk_7172769740,
                          &track_type);
@@ -276,7 +276,7 @@ refresh_track:
     if (UnkAnimationComponent* animation = static_cast<UnkAnimationComponent*>(self->owner->field_0x220)) {
         fn_710117b08c(animation, &query);
         if (query.result && query.result->sources.data != &g_unk_7101d47108->empty)
-            fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(animation),
+            CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(animation),
                           reinterpret_cast<UnkCls_710117af10**>(&query.result->sources), false);
     }
 }

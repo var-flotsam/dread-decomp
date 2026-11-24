@@ -84,7 +84,7 @@ void fn_71004563f8(UnkCommanderAI_l4563f8* self, UnkMoveStep_l4563f8* step) {
         UnkAnimationComponent* current = self->owner->animation;
         if (!current)
             return;
-        if (!fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(current), &g_unk_71726c9508, false))
+        if (!CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(current), &g_unk_71726c9508, false))
             return;
         step->result = self->scale * step->velocity;
         return;

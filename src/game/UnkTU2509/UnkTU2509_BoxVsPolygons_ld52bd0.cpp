@@ -101,7 +101,7 @@ struct UnkLocalQuery_d52bd0 {
     }
 };
 
-void fn_7100d5e570(UnkBoxShape2D_7100d5e570* self, const f32* delta);
+void CAABoxShape2D_TranslateBox(UnkBoxShape2D_7100d5e570* self, const f32* delta);
 struct UnkBoxShape_d52bd0;
 bool fn_7100d5e5b4(const UnkBoxShape_d52bd0* self, UnkPoint2D_d52bd0 point);
 
@@ -129,7 +129,7 @@ struct UnkBoxShape_d52bd0 : UnkShapeBase_d52bd0 {
     ~UnkBoxShape_d52bd0() { fn_7100d5e2c8(reinterpret_cast<UnkCollisionShape*>(this)); }
 
     void Move(const UnkPoint2D_d52bd0& delta) {
-        fn_7100d5e570(reinterpret_cast<UnkBoxShape2D_7100d5e570*>(this), &delta.x);
+        CAABoxShape2D_TranslateBox(reinterpret_cast<UnkBoxShape2D_7100d5e570*>(this), &delta.x);
     }
     bool Contains(const UnkPoint2D_d52bd0& point) const { return fn_7100d5e5b4(this, point); }
     UnkPoint2D_d52bd0 Corner() const { return fn_7100d5e540(this); }

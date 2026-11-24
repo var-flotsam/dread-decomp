@@ -31,7 +31,7 @@ void CKraidAIComponent_CloseMouth(UnkKraidAI_b56a3* self) {
     mode.id = 1;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, 0x9317bfcf28edee2b, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0x9317bfcf28edee2b, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
 // The same send of the id g_unk_71726f3778 while the timer at +0x149a4 has run out; then the scale
@@ -62,7 +62,7 @@ void CKraidAIComponent_RestartCloseMouthTimer(UnkKraidAITimer_b56a3* self) {
         mode.id = 1;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash, 0x9317bfcf28edee2b, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(target, hash, 0x9317bfcf28edee2b, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     }
     f32 t = self->field_0x14a30->field_0x528;
     self->field_0x149a0 = 1.0f;

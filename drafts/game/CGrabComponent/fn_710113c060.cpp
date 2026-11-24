@@ -114,7 +114,7 @@ void fn_710113c060(UnkGrabComponent_l13c060* self) {
             }
             mode.id = 10;
             mask.id = flags.bits;
-            fn_7101176690(animation, self->field_0x108.data->Key(), 0xf4061ff25a2163d6ull, &mode,
+            CAnimationComponent_SendActionToTrack(animation, self->field_0x108.data->Key(), 0xf4061ff25a2163d6ull, &mode,
                           &g_unk_710164b958, &g_unk_7172769740, &mask);
         }
         fn_710117ab64(animation, true, &g_unk_7172a090e8.field_0x20);
@@ -125,7 +125,7 @@ void fn_710113c060(UnkGrabComponent_l13c060* self) {
         if (HasText(id)) {
             other_mode.id = 10;
             other_mask.id = other_class->link_flags;
-            fn_7101176690(other_animation, id.data->Key(), 0xf4061ff25a2163d6ull, &other_mode,
+            CAnimationComponent_SendActionToTrack(other_animation, id.data->Key(), 0xf4061ff25a2163d6ull, &other_mode,
                           &g_unk_710164b958, &g_unk_7172769740, &other_mask);
         }
         fn_710117ab64(other_animation, true, &g_unk_7172a090e8.field_0x20);

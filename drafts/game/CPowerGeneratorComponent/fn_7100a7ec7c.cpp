@@ -83,7 +83,7 @@ void fn_7100a7ec7c(UnkPowerGenerator_la7ec7c* self, f32 value) {
         mode.id = 0;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, 0xa2eb97914549d415, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(target, 0xa2eb97914549d415, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask);
         return;
     }
@@ -92,7 +92,7 @@ void fn_7100a7ec7c(UnkPowerGenerator_la7ec7c* self, f32 value) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0x290249f84e3a58fd, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, 0x290249f84e3a58fd, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     UnkGameManager* manager = g_unk_7101d47310;
     CBlackboard* blackboard = &manager->field_0x968;
     CStrId section_id = fn_71011a2fbc(manager->field_0x608);

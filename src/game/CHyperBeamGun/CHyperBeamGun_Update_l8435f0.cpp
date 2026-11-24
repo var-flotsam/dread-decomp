@@ -98,7 +98,7 @@ void fn_71008435f0(UnkHyperBeamGun_l8435f0* self, f32 dt) {
     fn_7100857418(reinterpret_cast<UnkGrappleBeamGun_ovb0132*>(self));
     UnkAnimationComponent* animation = self->owner->animation;
     self->can_charge =
-        fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(animation),
+        CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(animation),
                       reinterpret_cast<UnkCls_710117af10**>(&g_unk_7172726598), false) ||
         fn_710117ae38(self->owner->animation, 0x8b433509a5380892, false);
 
@@ -162,7 +162,7 @@ void fn_71008435f0(UnkHyperBeamGun_l8435f0* self, f32 dt) {
             mode.id = 0;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>();
-            fn_7101176690(animation, 0x33963557fd146e7a, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0x33963557fd146e7a, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                           &g_unk_7172769740, &mask);
         }
         fn_71008449ec(reinterpret_cast<UnkHyperBeamGun_b56*>(self), true, !self->field_0x1901);

@@ -97,7 +97,7 @@ void fn_71005134a8(UnkChaseAction_l5134a8* self) {
     track->vf_0x18(&request);
     if (request.id == -1)
         request.id = fn_7101177ae8(animation, 0xf4061ff25a2163d6)->data->Key();
-    if (!fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
+    if (!CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
                        reinterpret_cast<const UnkRequest_7101176ea8*>(&request), 0xf4061ff25a2163d6))
         return;
 

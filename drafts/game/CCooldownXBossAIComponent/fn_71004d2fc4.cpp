@@ -67,7 +67,7 @@ void fn_71004d2fc4(UnkCooldownXDefeatAI_l4d2fc4* self, void* arg) {
         mode.id = 0;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        if (fn_7101176690(self->owner->animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+        if (CAnimationComponent_SendActionToTrack(self->owner->animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                           &g_unk_7172769740, &mask))
             return;
     }

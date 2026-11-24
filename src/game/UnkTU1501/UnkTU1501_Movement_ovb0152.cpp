@@ -269,7 +269,7 @@ inline const UnkStaticZero_b152& StaticZero_b152() {
 
 // `arg` (x1) reaches fn_7100978f58 untouched in the original.
 void fn_71009e11c0(UnkMove_b152* self, const void* arg) {
-    fn_7100978f58(reinterpret_cast<char*>(self), arg);
+    CCharacterMovement_SetOwnerPositionDroppedToGround(reinterpret_cast<char*>(self), arg);
     UnkProbeResult result;
     result.field_0x0 = 0;
     result.field_0x8 = 0;
@@ -292,8 +292,8 @@ void fn_71009e3188(UnkMove_b152* self, f32* values) {
         static CStrId s_forward("forward", true);
         static CStrId s_backward("backward", true);
         UnkStruct_710117af10* anim = static_cast<UnkStruct_710117af10*>(self->actor->field_0x220);
-        if (anim && (fn_710117af10(anim, reinterpret_cast<UnkCls_710117af10**>(&s_forward), false) ||
-                     fn_710117af10(static_cast<UnkStruct_710117af10*>(self->actor->field_0x220),
+        if (anim && (CAnimationComponent_IsPlayingActionNameContaining(anim, reinterpret_cast<UnkCls_710117af10**>(&s_forward), false) ||
+                     CAnimationComponent_IsPlayingActionNameContaining(static_cast<UnkStruct_710117af10*>(self->actor->field_0x220),
                                    reinterpret_cast<UnkCls_710117af10**>(&s_backward), false))) {
             values[0x6c / 4] = self->field_0x5258 * values[0x6c / 4];
             values[0x60 / 4] = self->field_0x5258 * values[0x60 / 4];
@@ -407,7 +407,7 @@ bool fn_71009e73cc(UnkMove_b152* self, UnkVec2_b152* out) {
     cls = self->actor->field_0x220;
     if (!cls)
         return true;
-    if (fn_710117af10(static_cast<UnkStruct_710117af10*>(cls),
+    if (CAnimationComponent_IsPlayingActionNameContaining(static_cast<UnkStruct_710117af10*>(cls),
                       reinterpret_cast<UnkCls_710117af10**>(&GameManagerIdTable().field_0x13f8), false)) {
         out->y = 1.0f;
         out->x = fn_71009e754c(self);
@@ -475,7 +475,7 @@ void fn_71009e7d9c(UnkMove_b152* self) {
         return;
     UnkTrackParams_b152 params;
     reinterpret_cast<UnkTrackResult_b152*>(query.result)->vf_0x18(&params);
-    fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(anim), reinterpret_cast<const UnkRequest_7101176ea8*>(&params),
+    CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(anim), reinterpret_cast<const UnkRequest_7101176ea8*>(&params),
                   0xf4061ff25a2163d6ull);
 }
 
@@ -527,7 +527,7 @@ bool fn_71009e8218(UnkMove_b152* self, const UnkRequest_7101176ea8* request, boo
     void* cls = self->actor->field_0x220;
     if (!cls)
         return false;
-    if (!fn_7101176ea8(static_cast<UnkStruct_7101176ea8*>(cls), request, 0xf4061ff25a2163d6ull))
+    if (!CAnimationComponent_SendActionRequestRecordToTrack(static_cast<UnkStruct_7101176ea8*>(cls), request, 0xf4061ff25a2163d6ull))
         return false;
     fn_710034f8d8(object);
     return true;
