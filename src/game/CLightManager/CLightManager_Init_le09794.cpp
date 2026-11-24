@@ -109,7 +109,7 @@ static inline Light* NewLight(Base* (*create)(Map*, UnkCountedResource*, Light**
     return light;
 }
 
-void fn_7100e09794(void* self) {
+void CLightManager_Init(void* self) {
     auto* manager = static_cast<UnkLightManager_le09794*>(self);
     {
         UnkRegistry_7100d92158* registry = g_unk_7101d4bbc0;

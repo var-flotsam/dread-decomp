@@ -187,7 +187,7 @@ address,size,name,name_source,subsystem,status
 0x7100e09500,220,fn_7100e09500,unknown,unknown,O
 0x7100e095dc,220,"base::reflection::refl_GetType<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>*>",reflection,engine/reflection,O
 0x7100e096b8,220,"base::reflection::refl_GetType<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef> const*>",reflection,engine/reflection,O
-0x7100e09794,2564,fn_7100e09794,unknown,game/components?,O
+0x7100e09794,2564,CLightManager_Init,inferred,game/components?,O
 0x7100e0a198,772,fn_7100e0a198,unknown,unknown,O
 0x7100e0a49c,336,fn_7100e0a49c,unknown,unknown,O
 0x7100e0a5ec,336,fn_7100e0a5ec,unknown,unknown,O
@@ -431,7 +431,7 @@ address,size,name,name_source,subsystem,status
 0x7100e167b8,12,CArenaManager::CTunableArenaManager::refl_Destroy,reflection,game,O
 0x7100e167c4,8,CArenaManager::CTunableArenaManager::refl_CopyAssign,reflection,game,O
 0x7100e167cc,8,CArenaManager::CTunableArenaManager::refl_MoveAssign,reflection,game,O
-0x7100e167d4,464,fn_7100e167d4,unknown,game?,O
+0x7100e167d4,464,CArenaManager_DestroyArenaEntry,inferred,game?,O
 0x7100e169a4,328,fn_7100e169a4,unknown,game?,m
 0x7100e16af0,880,fn_7100e16af0,unknown,game?,O
 0x7100e16e60,2060,fn_7100e16e60,unknown,engine/reflection?,O

@@ -16,7 +16,7 @@ struct UnkClearedArray;
 
 static inline __attribute__((always_inline)) void AppendAll_b43a3(UnkLightsArray_b42a3* self,
                                                                   const UnkLightsArray_b42a3* other) {
-    fn_7100da1508(self, other->capacity);
+    CLightsDef_ReserveLights(self, other->capacity);
     for (const UnkLightsElem_b42a3 *it = other->data, *end = it + other->count; it != end; ++it) {
         u32 n = self->count;
         u32 capacity = self->capacity;
@@ -25,7 +25,7 @@ static inline __attribute__((always_inline)) void AppendAll_b43a3(UnkLightsArray
         if ((s32)n >= (s32)capacity)
             for (;;) {
             }
-        fn_7100da1508(self, capacity);
+        CLightsDef_ReserveLights(self, capacity);
         fn_7100d9bffc(&self->data[self->count], it);
         ++self->count;
     }

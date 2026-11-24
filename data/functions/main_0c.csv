@@ -4956,8 +4956,8 @@ address,size,name,name_source,subsystem,status
 0x7100ca6964,368,fn_7100ca6964,unknown,game/ai?,O
 0x7100ca6ad4,36,fn_7100ca6ad4,unknown,unknown,O
 0x7100ca6af8,168,fn_7100ca6af8,unknown,unknown,O
-0x7100ca6ba0,560,fn_7100ca6ba0,unknown,unknown,O
-0x7100ca6dd0,148,fn_7100ca6dd0,unknown,game/world?,O
+0x7100ca6ba0,560,CBreakableTileManager_LoadTileModelsAndConnectCallbacks,inferred,unknown,O
+0x7100ca6dd0,148,CBreakableTileManager_ClearTileGroups,inferred,game/world?,O
 0x7100ca6e64,156,fn_7100ca6e64,unknown,game?,O
 0x7100ca6f00,340,fn_7100ca6f00,unknown,game?,O
 0x7100ca7054,328,fn_7100ca7054,unknown,game?,U

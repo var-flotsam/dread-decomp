@@ -601,7 +601,7 @@ struct UnkObserverReset_ovb0055 {
     UnkBTObserverEntries_ovb0055 entries;  // 0x128
 };
 
-void fn_7100ca6dd0(UnkObserverReset_ovb0055* self) {
+void CBreakableTileManager_ClearTileGroups(UnkObserverReset_ovb0055* self) {
     fn_7100ca7900(&self->groups);
     for (UnkBTObserver_ovb0055** it = self->observers, **end = self->observers + self->observer_count; it != end;
          ++it) {
@@ -741,7 +741,7 @@ static inline void Attach(void** link, void* manager, u32 offset) {
 }
 
 // Loads the ten block models and hooks up the three callbacks.
-void fn_7100ca6ba0(UnkObserverSetUp_ovb0055* self) {
+void CBreakableTileManager_LoadTileModelsAndConnectCallbacks(UnkObserverSetUp_ovb0055* self) {
     self->models = static_cast<UnkModel**>(fn_7100083ba0(0x50, 0x1e));
     for (u64 i = 0; i < 10; ++i) {
         UnkModel* model;
