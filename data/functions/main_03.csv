@@ -3915,7 +3915,7 @@ address,size,name,name_source,subsystem,status
 0x71003b4680,116,fn_71003b4680,unknown,game/ai?,O
 0x71003b46f4,36,fn_71003b46f4,unknown,game/ai?,O
 0x71003b4718,164,fn_71003b4718,unknown,game/ai?,O
-0x71003b47bc,508,fn_71003b47bc,unknown,game/ai?,U
+0x71003b47bc,508,fn_71003b47bc,unknown,game/ai?,O
 0x71003b49b8,708,fn_71003b49b8,unknown,game/ai?,U
 0x71003b4c7c,1096,fn_71003b4c7c,unknown,game/ai?,U
 0x71003b50c4,136,CAutclastChargeAttack_SnapCoordToGrid,inferred,game/ai?,O

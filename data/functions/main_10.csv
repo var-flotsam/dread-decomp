@@ -2991,7 +2991,7 @@ address,size,name,name_source,subsystem,status
 0x7101085520,8,lua_bind::StartProfiling,string,script/bindings,O
 0x7101085530,8,lua_bind::StopProfiling,string,script/bindings,O
 0x7101085540,892,lua_bind::SetAIBlcProp,string,script/bindings,U
-0x71010858c0,880,lua_bind::GetAIBlcProp,string,script/bindings,U
+0x71010858c0,880,lua_bind::GetAIBlcProp,string,script/bindings,O
 0x7101085c30,76,lua_bind::ForceDistributeAttackers,string,script/bindings,O
 0x7101085c80,140,lua_bind::SelectCloserAI,string,script/bindings,O
 0x7101085d10,124,lua_bind::GetSelectedAI,string,script/bindings,O

@@ -1238,7 +1238,7 @@ address,size,name,name_source,subsystem,status
 0x710074c7dc,2596,fn_710074c7dc,unknown,game/components?,U
 0x710074d200,1108,fn_710074d200,unknown,game/components?,U
 0x710074d654,436,fn_710074d654,unknown,game/components?,U
-0x710074d808,340,fn_710074d808,unknown,game/components?,U
+0x710074d808,340,fn_710074d808,unknown,game/components?,O
 0x710074d95c,1092,fn_710074d95c,unknown,game/components?,U
 0x710074dda0,56,fn_710074dda0,unknown,game/components?,U
 0x710074ddd8,504,fn_710074ddd8,unknown,game/components?,U
@@ -4999,7 +4999,7 @@ address,size,name,name_source,subsystem,status
 0x71007e9a60,324,CForcedMovementAreaComponent_FlushPendingHitsAndTickTimer,inferred,game/components?,O
 0x71007e9ba4,764,fn_71007e9ba4,unknown,game/components?,U
 0x71007e9ea0,72,fn_71007e9ea0,unknown,game/components?,O
-0x71007e9ee8,872,fn_71007e9ee8,unknown,game/components?,U
+0x71007e9ee8,872,fn_71007e9ee8,unknown,game/components?,O
 0x71007ea250,220,fn_71007ea250,unknown,game/components?,O
 0x71007ea32c,220,fn_71007ea32c,unknown,game/components?,O
 0x71007ea408,348,fn_71007ea408,unknown,game/components?,O
