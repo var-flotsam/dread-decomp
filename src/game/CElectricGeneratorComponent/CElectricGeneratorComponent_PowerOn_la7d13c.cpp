@@ -27,7 +27,7 @@ UnkGeneratorRecord_ovb0120* fn_7100a7cd10(base::global::CRntVector<UnkGeneratorR
 
 struct UnkScenarioKey_ovb0032;
 struct UnkScenarioLayer_ovb0032;
-void* CScenario_FindLayerValueByKey(UnkScenarioLayer_ovb0032* layers, u32 index, UnkScenarioKey_ovb0032* const* key);
+void* fn_71011a3234(UnkScenarioLayer_ovb0032* layers, u32 index, UnkScenarioKey_ovb0032* const* key);
 
 struct UnkSubArea;
 // The record's id for the scenario's layer of the given kind (as src/game/CSubAreaManager.cpp declares it).
@@ -105,7 +105,7 @@ static inline UnkPartList_la7d13c* Parts_la7d13c(UnkGeneratorRecord_ovb0120* rec
     UnkScenarioLayer_ovb0032* layers = reinterpret_cast<UnkScenarioLayer_ovb0032*>(g_unk_7101d47310->field_0x608);
     const CStrId* key = fn_7100fac818(reinterpret_cast<UnkSubArea*>(record), kind);
     return static_cast<UnkPartList_la7d13c*>(
-        CScenario_FindLayerValueByKey(layers, layer, reinterpret_cast<UnkScenarioKey_ovb0032* const*>(key)));
+        fn_71011a3234(layers, layer, reinterpret_cast<UnkScenarioKey_ovb0032* const*>(key)));
 }
 
 // Stores the bool at `value` under `name` in `section` (unless the blackboard is locked).

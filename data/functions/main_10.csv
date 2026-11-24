@@ -750,7 +750,7 @@ address,size,name,name_source,subsystem,status
 0x7101028970,4,sound::CSoundEventsDef::refl_MoveConstruct,reflection,audio,O
 0x7101028974,12,sound::CSoundEventsDef::refl_Destroy,reflection,audio,O
 0x7101028980,8,sound::CSoundEventsDef::refl_MoveAssign,reflection,audio,O
-0x7101028988,244,CSoundManager_ConstructOwnedPtrVectorWithCapacity,inferred,audio?,O
+0x7101028988,244,fn_7101028988,unknown,audio?,O
 0x7101028a7c,40,fn_7101028a7c,unknown,audio?,O
 0x7101028aa4,52,fn_7101028aa4,unknown,audio?,O
 0x7101028ad8,12,sound::CSoundEventsDef::SSoundEventsSelector::refl_Equals,reflection,audio,O
@@ -818,9 +818,9 @@ address,size,name,name_source,subsystem,status
 0x7101029ce0,48,fn_7101029ce0,unknown,engine/reflection?,O
 0x7101029d10,48,fn_7101029d10,unknown,engine/reflection?,O
 0x7101029d40,392,fn_7101029d40,unknown,engine/reflection?,O
-0x7101029ec8,548,CSoundManager_ReserveStrIdRecordDictionary,inferred,engine/reflection?,O
+0x7101029ec8,548,fn_7101029ec8,unknown,engine/reflection?,O
 0x710102a0ec,600,fn_710102a0ec,unknown,engine/reflection?,O
-0x710102a344,564,CSoundManager_ShrinkIdResourceDictionaryToFit,inferred,engine/reflection?,O
+0x710102a344,564,fn_710102a344,unknown,engine/reflection?,O
 0x710102a578,324,fn_710102a578,unknown,engine/reflection?,O
 0x710102a6bc,324,fn_710102a6bc,unknown,engine/reflection?,O
 0x710102a800,520,fn_710102a800,unknown,engine/reflection?,O
@@ -4284,7 +4284,7 @@ address,size,name,name_source,subsystem,status
 0x71010d1f1c,508,fn_71010d1f1c,unknown,game/components?,O
 0x71010d2118,684,fn_71010d2118,unknown,game/components?,U
 0x71010d23c4,360,fn_71010d23c4,unknown,game/components?,U
-0x71010d252c,116,CMovementComponent_GetContactTangent,inferred,game/components?,O
+0x71010d252c,116,fn_71010d252c,unknown,game/components?,O
 0x71010d25a0,1384,fn_71010d25a0,unknown,game/components?,U
 0x71010d2b08,148,fn_71010d2b08,unknown,game/components?,O
 0x71010d2b9c,192,fn_71010d2b9c,unknown,game/components?,O

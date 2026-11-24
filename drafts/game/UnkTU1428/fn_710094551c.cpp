@@ -21,7 +21,7 @@ struct UnkBallMovement_l946fb0;
 
 void fn_71010dae00(UnkSamusMovementUpdate* self, f32 dt);  // the base update
 UnkVec3f fn_7100949b7c(UnkMorphBallMovement_l949b7c* self);
-UnkVec3f CMovementComponent_GetContactTangent(bool flag, const UnkContact_ovb0048* contact);
+UnkVec3f fn_71010d252c(bool flag, const UnkContact_ovb0048* contact);
 void fn_7100946fb0(UnkBallMovement_l946fb0* self);
 bool fn_7100eef684(UnkManager* manager);
 
@@ -148,7 +148,7 @@ inline void FaceAlong(UnkFxPart_551c* part, const UnkVec3f& up) {
 inline UnkVec3f SideDirection(UnkMorphBallMovement_551c* self) {
     switch (self->mode) {
     case 1:
-        return CMovementComponent_GetContactTangent(self->on_ground, reinterpret_cast<const UnkContact_ovb0048*>(self->contact));
+        return fn_71010d252c(self->on_ground, reinterpret_cast<const UnkContact_ovb0048*>(self->contact));
     case 2:
     case 4:
     case 5:

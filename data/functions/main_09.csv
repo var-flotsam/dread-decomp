@@ -1292,7 +1292,7 @@ address,size,name,name_source,subsystem,status
 0x710092e5c0,636,fn_710092e5c0,unknown,game/components?,U
 0x710092e83c,1880,fn_710092e83c,unknown,game/components?,U
 0x710092ef94,288,SetWeakRefAt0ToObjectHandle,inferred,game/components?,O
-0x710092f0b4,336,CMeleeComponent_SetSecondWeakTargetAndFlag,inferred,game/components?,O
+0x710092f0b4,336,fn_710092f0b4,unknown,game/components?,O
 0x710092f204,2208,fn_710092f204,unknown,game/components?,m
 0x710092faa4,488,fn_710092faa4,unknown,game/components?,U
 0x710092fc8c,872,fn_710092fc8c,unknown,game/components?,U
@@ -3114,7 +3114,7 @@ address,size,name,name_source,subsystem,status
 0x71009ae9c0,108,fn_71009ae9c0,unknown,game/player?,O
 0x71009aea2c,4,fn_71009aea2c,unknown,game/player?,O
 0x71009aea30,1416,fn_71009aea30,unknown,game/player?,U
-0x71009aefb8,580,CParams_StartRumbleIfNotPlaying,inferred,game/player?,O
+0x71009aefb8,580,fn_71009aefb8,unknown,game/player?,O
 0x71009af1fc,28,fn_71009af1fc,unknown,game/player?,O
 0x71009af218,132,fn_71009af218,unknown,game/player?,O
 0x71009af29c,144,fn_71009af29c,unknown,game/player?,O
@@ -3266,7 +3266,7 @@ address,size,name,name_source,subsystem,status
 0x71009b3df0,336,fn_71009b3df0,unknown,game/player?,U
 0x71009b3f40,1360,fn_71009b3f40,unknown,game/player?,U
 0x71009b4490,280,fn_71009b4490,unknown,game/player?,O
-0x71009b45a8,224,CParams_CanTransitionToMorphBall,inferred,game/player?,O
+0x71009b45a8,224,fn_71009b45a8,unknown,game/player?,O
 0x71009b4688,800,fn_71009b4688,unknown,game/player?,U
 0x71009b49a8,52,fn_71009b49a8,unknown,game/player?,O
 0x71009b49dc,372,fn_71009b49dc,unknown,game/player?,U
@@ -3722,7 +3722,7 @@ address,size,name,name_source,subsystem,status
 0x71009c4158,432,fn_71009c4158,unknown,unknown,O
 0x71009c4308,448,fn_71009c4308,unknown,unknown,O
 0x71009c44c8,268,fn_71009c44c8,unknown,unknown,O
-0x71009c45d4,440,CNavMeshItemComponent_ShrinkStrIdArrayMapToCount,inferred,unknown,O
+0x71009c45d4,440,fn_71009c45d4,unknown,unknown,O
 0x71009c478c,368,fn_71009c478c,unknown,unknown,O
 0x71009c48fc,12,fn_71009c48fc,unknown,unknown,O
 0x71009c4908,24,fn_71009c4908,unknown,unknown,O

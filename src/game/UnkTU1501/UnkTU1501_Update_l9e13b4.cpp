@@ -100,7 +100,7 @@ static_assert(__builtin_offsetof(UnkSamusMovement_l9e13b4, field_0x51d0) == 0x51
 static_assert(__builtin_offsetof(UnkSamusMovement_l9e13b4, field_0x5368) == 0x5368, "layout");
 static_assert(__builtin_offsetof(UnkSamusMovement_l9e13b4, target_source) == 0x5458, "layout");
 
-UnkVec3f CMovementComponent_GetContactTangent(bool flag, const UnkContact_ovb0048* contact);
+UnkVec3f fn_71010d252c(bool flag, const UnkContact_ovb0048* contact);
 void fn_71009e1714(UnkSamusMovement_l9e13b4* self, f32 dt);
 bool fn_71009e9bb8(UnkSamusMovement_l9e13b4* self);
 void fn_71009e244c(UnkSamusMovement_l9e13b4* self, f32 dt);
@@ -199,7 +199,7 @@ void fn_71009e13b4(UnkSamusMovement_l9e13b4* self, f32 dt) {
     fn_7100978aa8(&self->body, self->owner, step);
     self->position = self->body.xform.GetTranslation();
     self->angle = self->body.xform.GetAngle();
-    UnkVec3f side = CMovementComponent_GetContactTangent(self->field_0xf9, reinterpret_cast<const UnkContact_ovb0048*>(self->contact));
+    UnkVec3f side = fn_71010d252c(self->field_0xf9, reinterpret_cast<const UnkContact_ovb0048*>(self->contact));
     if (self->field_0x6f4)
         fn_71010db628(self, dt);
     fn_71009e2778(self, &self->body);

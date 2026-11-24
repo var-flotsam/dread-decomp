@@ -25,6 +25,6 @@ using UnkElem38Array = UnkElemArray<UnkElem38>;
 // Reserves room for `capacity` records.
 void fn_7100b5c28c(UnkElem38Array* self, u32 capacity);
 // Appends a copy of `value`.
-void CMissionLog_EntriesPushBack(UnkElem38Array* self, const UnkElem38* value);
+void fn_7100b593d0(UnkElem38Array* self, const UnkElem38* value);
 // Destroys the records and frees the array (the destructor body).
 void fn_7100b55d4c(UnkElem38Array* self);

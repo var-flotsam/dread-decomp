@@ -9,6 +9,6 @@ bool CMissionLog_StoreEntryListsInBlackboards(UnkMissionLog* self, bool flag);
 
 void CMissionLog_AddRecordAndStoreLists(UnkMissionLog* self, const u32* entry) {
     u8* array = *entry != 2 ? self->entries_0x248 : self->entries_0x270;
-    CMissionLog_EntriesPushBack((UnkElem38Array*)array, (const UnkElem38*)entry);
+    fn_7100b593d0((UnkElem38Array*)array, (const UnkElem38*)entry);
     CMissionLog_StoreEntryListsInBlackboards(self, false);
 }
