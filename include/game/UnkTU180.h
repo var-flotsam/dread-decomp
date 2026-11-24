@@ -16,3 +16,10 @@ extern u8 g_unk_716e2a3450;  // Set when any uniform block changed.
 struct UnkUniformTables;  // a program state's uniform tables, one per stage
 // Copies `count` vectors from `data` into the uniform block bound at `location` of one stage's table.
 void fn_710015e2d0(UnkUniformTables* state, u32 stage, u64 location, u32 a, u32 count, const void* data);
+struct UnkUniformTable;
+struct UnkNamedValueTable;
+// The name lookups (src/game/UnkTU180/UnkTU180_NameLookup.cpp): a uniform range's handle by name in
+// one stage's table, a uniform block's index by name, and a named value.
+bool fn_710015ddc0(UnkUniformTables* self, u32 kind, u64* out, const char* name);
+bool fn_710015dc04(UnkUniformTable* table, const void* name, u32* outIndex);
+bool fn_710015e600(UnkNamedValueTable* table, const void* name, u32* outValue);
