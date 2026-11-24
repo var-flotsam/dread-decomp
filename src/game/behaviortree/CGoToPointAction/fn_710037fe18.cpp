@@ -17,7 +17,7 @@ struct UnkTrailer {
 
 struct UnkNode_37fe18 : UnkBehaviorTreeNodeBase {
     u8 pad_0x2c[4];
-    UnkStringData* field_0x30;
+    base::global::CStrId field_0x30;
     u8 pad_0x38;
     u8 bUpdateEachTick;
     u8 pad_0x3a[2];
@@ -30,10 +30,10 @@ struct UnkNode_37fe18 : UnkBehaviorTreeNodeBase {
 void fn_710037fe18(UnkNode_37fe18* self) {
     fn_7100393e68(self);
     self->vtable = g_unk_7101a25e50 + 2;
-    self->field_0x30 = nullptr;
+    self->field_0x30.data = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
-    self->field_0x30 = &g_unk_7101d47108->empty;
+    self->field_0x30.data = &g_unk_7101d47108->empty;
     self->bUpdateEachTick = 0;
     __builtin_memset(self->field_0x3c, 0, 13);
     fn_71002acfe4(self->field_0x50);

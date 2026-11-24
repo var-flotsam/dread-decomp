@@ -25,7 +25,7 @@ void fn_710067f9a8(void* member);
 struct UnkCharClassScorpiusAIComponent : UnkBossAIComponent {
     u8 sHeadMovementFunction[0x30];
     u8 field_0x558[0x40];
-    base::global::UnkStringData* field_0x598;
+    base::global::CStrId field_0x598;
     u8 pad_0x5a0[0x18];
     u8 oGrabDamageSourceFactor[0x70];
     u8 oWhiplashAttackDef[0xf8];
@@ -43,10 +43,10 @@ void fn_7100690498(UnkCharClassScorpiusAIComponent* self) {
     self->vtable = g_unk_7101a60e40 + 2;
     fn_710007e6c4(self->sHeadMovementFunction);
     fn_710007e6c4(self->field_0x558);
-    self->field_0x598 = nullptr;
+    self->field_0x598.data = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
-    self->field_0x598 = &g_unk_7101d47108->empty;
+    self->field_0x598.data = &g_unk_7101d47108->empty;
     fn_71008c2da8(self->oGrabDamageSourceFactor);
     fn_7100685f90(self->oWhiplashAttackDef);
     fn_7100684150(self->oSpikeBallPrickAttackDef);
@@ -81,7 +81,7 @@ void fn_71006905c0(UnkCharClassScorpiusAIComponent* self) {
     fn_7100684214(self->oSpikeBallPrickAttackDef);
     fn_7100685fc0(self->oWhiplashAttackDef);
     fn_71008c2de0(self->oGrabDamageSourceFactor);
-    reinterpret_cast<base::global::CStrId*>(&self->field_0x598)->Reset();
+    self->field_0x598.Reset();
     CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(self->field_0x558));
     CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(self->sHeadMovementFunction));
     fn_710041a230(reinterpret_cast<UnkGoliathXBase*>(self));
