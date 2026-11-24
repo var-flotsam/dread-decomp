@@ -73,11 +73,11 @@ static inline __attribute__((always_inline)) void Destroy(UnkLockOnMissileGun* s
     fn_710084e8fc(reinterpret_cast<UnkLinkOwner<g_unk_7101a786e0, 0x18a0>*>(self));
 }
 
-void fn_710084cb58(UnkLockOnMissileGun* self) {
+void CLockOnMissileGun_Destroy(UnkLockOnMissileGun* self) {
     Destroy(self);
 }
 
-void fn_710084cbec(UnkLockOnMissileGun* self) {
+void CLockOnMissileGun_DestroyAndDelete(UnkLockOnMissileGun* self) {
     Destroy(self);
     operator delete(self);
 }

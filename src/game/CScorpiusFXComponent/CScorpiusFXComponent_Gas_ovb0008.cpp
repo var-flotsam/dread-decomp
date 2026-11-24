@@ -83,18 +83,18 @@ static inline void ReleaseGas(UnkScorpiusFX_ovb0008* self) {
     self->gas.count = 0;
 }
 
-void fn_710080f184(UnkScorpiusFX_ovb0008* self) {
+void CScorpiusFXComponent_Destroy(UnkScorpiusFX_ovb0008* self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101a74e88 + 0x10);
     ReleaseGas(self);
     fn_71010c4194(reinterpret_cast<UnkBaseComponent*>(self));
 }
 
-void fn_710080f284(UnkScorpiusFX_ovb0008* self) {
-    fn_710080f184(self);
+void CScorpiusFXComponent_DestroyAndDelete(UnkScorpiusFX_ovb0008* self) {
+    CScorpiusFXComponent_Destroy(self);
     fn_7100083c00(self);
 }
 
-void fn_710080f624(UnkScorpiusFX_ovb0008* self) {
+void CScorpiusFXComponent_ReleaseGasEffects(UnkScorpiusFX_ovb0008* self) {
     ReleaseGas(self);
 }
 
@@ -103,7 +103,7 @@ void fn_710080f710(UnkScorpiusFX_ovb0008* self) {
     fn_71010c422c(reinterpret_cast<UnkMorphBallLauncher_b57*>(self));
 }
 
-void fn_710080f4c8(UnkScorpiusFX_ovb0008* self) {
+void CScorpiusFXComponent_CreateGasEffects(UnkScorpiusFX_ovb0008* self) {
     for (s32 i = 0; i < 50; ++i) {
         static const CFilePathStrId s_path("actors/characters/scorpius/fx/scorpiuspoisonousgas.bcptl", true);
         ModelManager();

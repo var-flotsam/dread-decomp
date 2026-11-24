@@ -29,7 +29,7 @@ static inline void ReleaseFx(const char* path) {
     fn_71011aa5a4(cache, &id);
 }
 
-void fn_7100854db8(UnkPlasmaBeamGun_ovb0135* self) {
+void CPowerBeamGun_ReleaseEffects(UnkPlasmaBeamGun_ovb0135* self) {
     fn_7100835940(reinterpret_cast<UnkSPBGun*>(self));
     if (self->fx_registered) {
         ReleaseFx("actors/weapons/powerbeam/fx/explosion.bcptl");
