@@ -13,7 +13,7 @@ using base::global::CRntString;
 using base::global::UnkStrId;
 
 struct UnkNode_71003a3e64 : UnkBehaviorTreeNode {
-    CRntString field_0x38;
+    CRntString sRawValue;
     UnkStrId field_0x68;
 
     void vf_0x18() { reinterpret_cast<void (*)(UnkNode_71003a3e64*)>(vtable[3])(this); }
@@ -22,7 +22,7 @@ struct UnkNode_71003a3e64 : UnkBehaviorTreeNode {
 void fn_71003a3e64(UnkNode_71003a3e64* self) {
     fn_71003944e8(self);
     self->vtable = g_unk_7101a28ac0 + 2;
-    new (&self->field_0x38) CRntString("");
+    new (&self->sRawValue) CRntString("");
     new (&self->field_0x68) UnkStrId("", true);
     self->vf_0x18();
 }

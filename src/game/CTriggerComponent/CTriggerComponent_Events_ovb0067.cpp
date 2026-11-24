@@ -73,14 +73,14 @@ struct UnkTriggerComponent_ovb0067 {
     u8 pad_0x0[0x30];
     UnkTriggerActor_ovb0067* owner;  // 0x30
     u8 pad_0x38[5];
-    bool field_0x3d;
+    bool bCallEntityLuaCallback;
     u8 pad_0x3e[0x22];
     u32 count;  // 0x60
     UnkTriggerEntry_ovb0067 entries[16];  // 0x64
     u8 pad_0x1e4[0x14];
     UnkTriggerName_ovb0067* name;  // 0x1f8: a string id
     u8 pad_0x200;
-    bool field_0x201;
+    bool bOnDisableAlways;
     u8 pad_0x202;
     bool field_0x203;
     u8 pad_0x204;
@@ -160,12 +160,12 @@ static inline void RemoveLast(UnkTriggerComponent_ovb0067* self) {
 void fn_7100a5f210(UnkTriggerComponent_ovb0067* self) {
     while (self->count != 0)
         RemoveLast(self);
-    if (self->field_0x201 || !self->field_0x203) {
+    if (self->bOnDisableAlways || !self->field_0x203) {
         self->field_0x203 = true;
         UnkScriptCaller* script = self->owner->script;
         if (!script)
             return;
-        if (self->field_0x3d) {
+        if (self->bCallEntityLuaCallback) {
             const char* script_name = *reinterpret_cast<const char**>(reinterpret_cast<u8*>(script) + 0x98);
             if (script_name && *script_name)
                 fn_7100305088(script, "OnDisable", g_unk_710162e2ed);

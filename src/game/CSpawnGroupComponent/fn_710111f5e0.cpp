@@ -6,9 +6,9 @@
 struct UnkSpawnGroup_710111f5e0 {
     u8 pad_0x0[0x17c];
     s32 field_0x17c;
-    f32 field_0x180;
+    f32 fGenerateEvery;
     u8 pad_0x184[0x1c];
-    bool field_0x1a0;
+    bool bCheckActiveDrops;
     u8 pad_0x1a1[3];
     s32 field_0x1a4;
 };
@@ -16,7 +16,7 @@ struct UnkSpawnGroup_710111f5e0 {
 // NON_MATCHING(minor): the original loads the flag before testing the count and joins the two tests
 // with a conditional compare; Clang branches on the count first. The behaviour is the same.
 void fn_710111f5e0(UnkSpawnGroup_710111f5e0* self) {
-    if (--self->field_0x1a4 <= 0 && self->field_0x1a0 && self->field_0x180 > 0.0f) {
+    if (--self->field_0x1a4 <= 0 && self->bCheckActiveDrops && self->fGenerateEvery > 0.0f) {
         self->field_0x1a4 = 0;
         self->field_0x17c = 0;
     }

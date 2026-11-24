@@ -63,7 +63,7 @@ static_assert(sizeof(UnkSoundRecord_l658460) == 0x18, "UnkSoundRecord_l658460 la
 
 struct UnkSwarmSoundSettings_l658460 {
     u8 pad_0x0[0x8c];
-    u32 field_0x8c;  // the swarm size the second level starts at
+    u32 iMaxPopulationForSmallGroup;  // the swarm size the second level starts at
     u32 field_0x90;  // the swarm size the third level starts at
     u8 pad_0x94[0x750 - 0x94];
     UnkSoundRecord_l658460 field_0x750[3];  // for mode 1, by level
@@ -73,7 +73,7 @@ struct UnkSwarmSoundSettings_l658460 {
     // The sound of `sounds` for a swarm of `size`.
     UnkSoundRecord_l658460 Pick(const UnkSoundRecord_l658460* sounds, u32 size) const {
         u32 level;
-        if (size < field_0x8c)
+        if (size < iMaxPopulationForSmallGroup)
             level = 0;
         else
             level = size < field_0x90 ? 1 : 2;

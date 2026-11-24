@@ -7,7 +7,7 @@ struct UnkCaterzillaSegment {
     u8 pad_0x0[0x3c0];
     u32 field_0x3c0;
     u32 field_0x3c4;
-    u32 field_0x3c8;
+    u32 NumCaterzillas;
     u32 field_0x3cc;
     bool field_0x3d0;
     u8 pad_0x3d1[7];
@@ -26,7 +26,7 @@ static_assert(__builtin_offsetof(UnkCaterzillaSegment, field_0x430) == 0x430, "s
 void CCaterzillaSpawnPointComponent_ResetLinkedSpawnCounts(UnkCaterzillaSegment* self, s32 count) {
     if (count < 1)
         return;
-    u32 rest = self->field_0x3c8;
+    u32 rest = self->NumCaterzillas;
     self->field_0x3c4 = rest;
     self->field_0x3c0 = rest;
     self->field_0x3cc = 0;

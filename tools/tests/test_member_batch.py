@@ -441,12 +441,12 @@ class Rename(Root):
         self.assertIn("generated", why)
         self.assertEqual((self.root / path).read_text(encoding="utf-8"), VIEW)
 
-    def apply_with(self, changed):
+    def apply_with(self, changed, drop_failed=False):
         row = {"path": self.PATH, "struct": "UnkFooView", "placeholder": "field_0x10", "name": "fSpeed",
                "class": "CFoo", "offset": "0x10", "reflected_type": "float", "view_type": "f32", "evidence": "e"}
         mb.TABLE.parent.mkdir(parents=True, exist_ok=True)
         mb.write_table([row])
-        args = SimpleNamespace(only=None, base="origin/main", no_objsame=False)
+        args = SimpleNamespace(only=None, base="origin/main", no_objsame=False, drop_failed=drop_failed)
         with mock.patch.object(mb, "objsame_changed", lambda base: changed), \
                 mock.patch.object(mb, "stale_uses", lambda *a: []):
             return mb.cmd_apply(args, errors=self.fake_compiler())
@@ -459,6 +459,11 @@ class Rename(Root):
         self.assertEqual(self.apply_with({self.PATH}), 1)
         self.assertEqual((self.root / self.PATH).read_text(encoding="utf-8"), VIEW)
         self.assertIn("REVERTED", mb.sys.stdout.getvalue())
+        self.assertEqual(len(mb.read_table()), 1)   # kept unless asked
+
+    def test_drop_failed_keeps_the_table_to_what_applied(self):
+        self.assertEqual(self.apply_with({self.PATH}, drop_failed=True), 1)
+        self.assertEqual(mb.read_table(), [])
 
     def test_stale_uses_in_preprocessor_branches_and_drafts(self):
         text = ("#ifndef FOO_H\n#define FOO_H\nvoid a(UnkFooView* s) { s->fSpeed = 1; }\n"

@@ -29,7 +29,7 @@ struct UnkDropTail_dp {
 
 struct UnkDropProbabilities_dp {
     UnkDropHead_dp head;
-    base::global::CStrId field_0x60;
+    base::global::CStrId sNodeToDrop;
     u32 field_0x68[6];
     UnkDropTail_dp tail;
 };
@@ -37,7 +37,7 @@ struct UnkDropProbabilities_dp {
 UnkDropProbabilities_dp* fn_71007c81d0(UnkDropProbabilities_dp* self, const UnkDropProbabilities_dp* other) {
     if (self != other) {
         __builtin_memcpy(&self->head, &other->head, 0x5c);  // the fields before the id, as one block
-        self->field_0x60 = other->field_0x60;
+        self->sNodeToDrop = other->sNodeToDrop;
         for (int i = 0; i < 6; i++)
             self->field_0x68[i] = other->field_0x68[i];
         __builtin_memcpy(&self->tail, &other->tail, 0xb);  // the fields after the words, as one block

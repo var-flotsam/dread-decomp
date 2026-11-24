@@ -25,7 +25,7 @@ struct UnkAutsharpSpawnPoint_ovb0023 {
     u8 pad_0x0[0x30];
     UnkAutsharpOwner_ovb0023* owner;
     u8 pad_0x38[0x3b8 - 0x38];
-    s32 field_0x3b8;
+    s32 eSpawnDir;
     u8 pad_0x3bc[0x400 - 0x3bc];
     bool field_0x400;
 };
@@ -38,9 +38,9 @@ void fn_7100a14190(UnkAutsharpSpawnPoint_ovb0023* self) {
     fn_710112b7c4(reinterpret_cast<CSpawnPointComponent*>(self));
     UnkFlagTarget* target = self->owner->field_0x228;
     if (target) {
-        if (self->field_0x3b8 == 0)
+        if (self->eSpawnDir == 0)
             fn_7101172764(target, g_unk_710164b4f8);
-        else if (self->field_0x3b8 == 1)
+        else if (self->eSpawnDir == 1)
             fn_7101172764(target, g_unk_710164b500);
     }
     self->field_0x400 = false;

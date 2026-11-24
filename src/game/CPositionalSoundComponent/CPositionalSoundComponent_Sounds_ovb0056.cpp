@@ -32,11 +32,11 @@ struct UnkPositionalSound_ovb56 {
     CFilePathStrId paths[4];  // 0x50
     u8 unk_0x70[0x18];
     UnkSoundHandle handles[2];  // 0x88
-    bool field_0xa8;
+    bool bLoop;
     u8 unk_0xa9[0x13];
-    f32 field_0xbc;
+    f32 fFadeOutTime;
 };
-static_assert(__builtin_offsetof(UnkPositionalSound_ovb56, field_0xbc) == 0xbc, "layout");
+static_assert(__builtin_offsetof(UnkPositionalSound_ovb56, fFadeOutTime) == 0xbc, "layout");
 
 // The base update (fn_71010c41bc), then every non-empty path is handed to the sound manager.
 bool fn_710114bbd4(UnkPositionalSound_ovb56* self, void* arg) {
@@ -60,9 +60,9 @@ void fn_710114bc94(UnkPositionalSound_ovb56* self) {
 // Stops the sound of the active handle (the first with the flag at +0xa8 set, fading by +0xbc; the
 // second otherwise) and empties that handle.
 void fn_710114bd84(UnkPositionalSound_ovb56* self) {
-    if (self->field_0xa8) {
+    if (self->bLoop) {
         if (UnkSound* sound = GetSound_ovb56(&self->handles[0])) {
-            fn_7100105a80(sound, self->field_0xbc, 0.0f);
+            fn_7100105a80(sound, self->fFadeOutTime, 0.0f);
             self->handles[0] = g_unk_7108b6c460;
         }
     } else {

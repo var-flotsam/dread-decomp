@@ -8,7 +8,7 @@
 struct UnkObj_3a3b78 {
     void** vtable;
     u8 pad_0x8[0x30];
-    base::global::CRntString field_0x38;
+    base::global::CRntString sRawValue;
     UnkStrIdTwoStep field_0x68;
 };
 
@@ -17,6 +17,6 @@ void fn_7100394530(void*);
 void fn_71003a3b78(UnkObj_3a3b78* self) {
     self->vtable = &g_unk_7101a28ac0[2];
     self->field_0x68.~UnkStrIdTwoStep();
-    CRntString_Destroy(&self->field_0x38);
+    CRntString_Destroy(&self->sRawValue);
     fn_7100394530(self);
 }

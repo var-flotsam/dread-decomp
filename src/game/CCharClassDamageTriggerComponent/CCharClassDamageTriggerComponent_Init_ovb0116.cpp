@@ -50,7 +50,7 @@ struct UnkCharClassDamageTrigger_dtc {
     // Read through a plain byte pointer (the original reloads it after the word store).
     u8 Flag90() const { return *reinterpret_cast<const u8*>(&flag_0x90); }
     u8 pad_0x92[2];
-    u32 field_0x94;
+    u32 eForceDamageModeHit;
     u8 pad_0x98[8];
     u32 field_0xa0;
 };
@@ -106,7 +106,7 @@ bool fn_7100a4add0(UnkDamageTriggerComponent_dtc* self, UnkSteamJetArg* arg) {
         self->field_0xb74 = self->def->field_0xa0;
         self->flag_0xae1 = self->def->flag_0x90;
         self->flag_0xae9 = self->def->flag_0x91;
-        self->field_0xadc = self->def->field_0x94;
+        self->field_0xadc = self->def->eForceDamageModeHit;
         self->flag_0xbe0 = self->def->Flag90();
     }
     return result;

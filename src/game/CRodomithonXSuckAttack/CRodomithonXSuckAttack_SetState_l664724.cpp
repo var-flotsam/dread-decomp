@@ -12,8 +12,8 @@ using base::reflection::UnkReflObject;
 
 struct UnkRodomithonXCharClass_l664724 : UnkReflObject {
     u8 pad_0x8[0x630 - 0x8];
-    f32 field_0x630;
-    f32 field_0x634;
+    f32 fFireActiveTime;
+    f32 fRestTime;
 };
 
 struct UnkRodomithonXAI_l664724 : UnkReflObject {
@@ -68,14 +68,14 @@ void fn_7100664724(UnkSuckAttack_b65a4* attack, s32 state) {
 
     switch (state) {
     case 0:
-        self->timer0 = char_class->field_0x630;
+        self->timer0 = char_class->fFireActiveTime;
         self->timer1 = 0.0f;
         base::reflection::UnkReflTypeIdArg mode_a;
         base::reflection::UnkReflTypeIdArg mask_a;
         Send(animation, 0x2f6c55b04b61242cull, &mode_a, &mask_a);
         break;
     case 1:
-        self->timer1 = char_class->field_0x634;
+        self->timer1 = char_class->fRestTime;
         self->timer0 = 0.0f;
         base::reflection::UnkReflTypeIdArg mode_b;
         base::reflection::UnkReflTypeIdArg mask_b;

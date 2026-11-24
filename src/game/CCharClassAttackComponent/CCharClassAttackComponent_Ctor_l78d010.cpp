@@ -35,7 +35,7 @@ struct UnkCharClassAttack_l78d010 {
     CStrId id_0x60;
     u32 field_0x68;
     bool field_0x6c;
-    u32 field_0x70;
+    u32 eDamageType;
     u16 field_0x74;
     u32 field_0x78;
     u8 pad_0x7c[4];
@@ -55,7 +55,7 @@ void fn_710078d010(UnkCharClassAttack_l78d010* self) {
     CStrId_ConstructFromRntString(&self->id_0x60, g_unk_7101d58d10, true);
     self->field_0x68 = 0;
     self->field_0x6c = false;
-    self->field_0x70 = 0;
+    self->eDamageType = 0;
     self->field_0x74 = 0;
     self->field_0x78 = 0x7fffffff;
     new (&self->id_0x80) CStrId("", true);

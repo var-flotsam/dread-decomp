@@ -32,8 +32,8 @@ struct UnkSetAnimAction_l36d290 {
     CStrId name;           // 0x30
     CStrId name_property;  // 0x38
     u8 pad_0x40[2];
-    bool field_0x42;
-    bool field_0x43;
+    bool bWaitAnimEnd;
+    bool bWaitIfFrozen;
     u8 pad_0x44[8];
     s32 number;  // 0x4c
     u8 pad_0x50[0x10];
@@ -47,7 +47,7 @@ struct UnkInlineString_A2_b72;
 u32 fn_710036d290(UnkSetAnimAction_l36d290* self) {
     if (!self->field_0x60)
         return 6;
-    if (!self->field_0x42)
+    if (!self->bWaitAnimEnd)
         return 5;
     UnkAnimName_l36d290 name(&self->name);
     if (self->name_property.data != &g_unk_7101d47108->empty)
@@ -65,7 +65,7 @@ u32 fn_710036d290(UnkSetAnimAction_l36d290* self) {
                 return 2;
         }
     }
-    if (self->field_0x43 && self->owner && self->owner->field_0x2c8)
+    if (self->bWaitIfFrozen && self->owner && self->owner->field_0x2c8)
         return fn_71007f9f20(self->owner->field_0x2c8) ? 2 : 5;
     return 5;
 }
