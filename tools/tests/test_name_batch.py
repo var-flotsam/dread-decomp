@@ -402,6 +402,21 @@ class FetchAndApply(StateDir):
         self.assertEqual(meta["from_run"], "p1")
 
 
+class Credentials(unittest.TestCase):
+    def test_key_from_its_own_variable(self):
+        seen = []
+        client = nb.make_client({"DREAD_NAMES_API_KEY": "fake-test-value", "ANTHROPIC_API_KEY": "other"},
+                                factory=lambda **kw: seen.append(kw) or "client")
+        self.assertEqual(client, "client")
+        self.assertEqual(seen, [{"api_key": "fake-test-value"}])
+
+    def test_no_fallback_and_value_not_shown(self):
+        with self.assertRaises(SystemExit) as cm:
+            nb.make_client({"ANTHROPIC_API_KEY": "fake-other-value"}, factory=lambda **kw: self.fail("built"))
+        self.assertIn("DREAD_NAMES_API_KEY", str(cm.exception))
+        self.assertNotIn("fake-other-value", str(cm.exception))
+
+
 class Propose(StateDir):
     def test_unnamed_matched(self):
         files = {"src/game/CFoo/fn.cpp": "int fn_7100000100() { return fn_7100000200(); }\n"

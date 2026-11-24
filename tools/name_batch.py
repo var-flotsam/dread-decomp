@@ -15,8 +15,10 @@ fetched run: its tokens by kind, whether cache reads happened, and dollars at th
 when the ledger total plus the estimates of runs submitted and not yet fetched plus a worst-case estimate of the
 new batch would pass --budget.
 
-Credentials come only from the SDK's default resolution (anthropic.Anthropic() with no arguments); this tool
-never reads, prints or writes a key. The anthropic package is imported only by the commands that call the API.
+The API key comes only from the environment variable DREAD_NAMES_API_KEY, passed to anthropic.Anthropic(api_key=...);
+ANTHROPIC_API_KEY is never read (a key there would also bill Claude Code's own use on the machine), and the tool
+exits naming the variable when it is unset. The key is never printed, logged or written. The anthropic package is
+imported only by the commands that call the API.
 
 Usage:
   python tools/name_batch.py build-review --run R --branch origin/claude/<b> [--dry-run]   # one request per name the branch adds
@@ -65,6 +67,9 @@ BATCH_DISCOUNT = 0.5
 # The minimum cacheable prefix for MODEL (shared/prompt-caching.md): a shorter prefix silently does not cache.
 MIN_CACHE_TOKENS = 512
 CHARS_PER_TOKEN = 3.0      # a conservative estimate for C++ and English (real text runs nearer 3.5 to 4)
+
+# The only place the API key is read from (never ANTHROPIC_API_KEY, which Claude Code itself would bill to).
+KEY_VARIABLE = "DREAD_NAMES_API_KEY"
 
 STATE = BUILD / "name_batch"
 LEDGER = STATE / "ledger.csv"
@@ -767,10 +772,19 @@ def cmd_build_propose(args, tree_factory=Tree, members=reflected_members, status
 # ---------------------------------------------------------------------------------------------------- API commands
 
 
-def make_client():
-    """The SDK's zero-argument client: credentials from its default resolution only."""
-    import anthropic
-    return anthropic.Anthropic()
+def make_client(environ=None, factory=None):
+    """The SDK client with the key from KEY_VARIABLE, passed by the documented `api_key=` argument. There is no
+    fallback to ANTHROPIC_API_KEY: a key there would also be billed for Claude Code's own use on this machine.
+    The value is never printed, logged or written."""
+    import os
+    key = (os.environ if environ is None else environ).get(KEY_VARIABLE, "")
+    if not key.strip():
+        raise SystemExit(f"name_batch: set {KEY_VARIABLE} to the API key for this tool (ANTHROPIC_API_KEY is not "
+                         f"read); nothing was sent")
+    if factory is None:
+        import anthropic
+        factory = anthropic.Anthropic
+    return factory(api_key=key)
 
 
 def read_jsonl(path: Path) -> list[dict]:
