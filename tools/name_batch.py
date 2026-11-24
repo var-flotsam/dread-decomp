@@ -30,6 +30,7 @@ Usage:
   python tools/name_batch.py fetch --run R                   # results, verdicts.csv or proposals.csv, a ledger row
   python tools/name_batch.py apply --run R                   # on a clean origin/main: rename the `right` names; apply.md for the PR
   python tools/name_batch.py cost                            # the ledger and its total
+  python tools/name_batch.py reconcile                       # account batches the ledger does not record
 Building without --dry-run also counts each request's input tokens with the API's free token counter.
 Standard library plus the official anthropic SDK; sends only the project's own C++ and reflection member names.
 """
@@ -71,6 +72,7 @@ CHARS_PER_TOKEN = 3.0      # a conservative estimate for C++ and English (real t
 
 # The only place the API key is read from (never ANTHROPIC_API_KEY, which Claude Code itself would bill to).
 KEY_VARIABLE = "DREAD_NAMES_API_KEY"
+OFFICIAL_BASE_URL = "https://api.anthropic.com"   # any other ANTHROPIC_BASE_URL is refused
 
 STATE = BUILD / "name_batch"
 LEDGER = STATE / "ledger.csv"
@@ -134,6 +136,9 @@ Verdict:
 evidence_true: true only when every factual statement in the stated evidence is true of the code shown (offsets,
 member names, callees, strings, conditions, what callers do). A statement that cannot be checked from what is
 shown makes it false; say which one in the reason.
+A name that claims a behaviour (anything but the fixed roles, or a getter or setter of a named member) for a
+function no source calls, when the stated evidence cites only offsets or the class's theme and no string, no
+reflected member name and nothing a caller does with it, is vague: nothing in the code anchors its purpose.
 reason: one to three sentences that cite the facts in the code the verdict rests on. Where a source was left out
 of the request (the request says so), judge only from what is shown.
 """
@@ -150,7 +155,8 @@ Answer:
   callees, conditions, what callers do). Name only what the code shows.
 - decision "decline": name is empty, and evidence says what the function does as far as the code shows it. Decline
   whenever the best name would be vague or would rest on a guess; a declined function keeps its placeholder, which
-  is better than a weak name.
+  is better than a weak name. Decline too when no source calls the function and nothing but offsets would
+  support a behavioural name (no string, no reflected member name).
 reason: one or two sentences on why this name and not a nearby one, or why you declined.
 """
 
@@ -369,6 +375,8 @@ def find_definition(text: str, name: str) -> tuple[int, int] | None:
     for p in words(m, last):
         if sc.outer_code(p) >= 0:
             continue
+        if not qualified_here(m, sc, p, name):
+            continue
         rest = m[p + len(last):]
         k = len(rest) - len(rest.lstrip())
         q = p + len(last) + k
@@ -398,6 +406,39 @@ def find_definition(text: str, name: str) -> tuple[int, int] | None:
     return macro
 
 
+def qualified_here(m: str, sc, p: int, name: str) -> bool:
+    """Whether the word at `p` of masked text is `name` itself and not the same last component of another
+    qualified name: `CFoo::Update` must be written `CFoo::Update` there, or sit inside the body of class,
+    struct or namespace CFoo. An unqualified name always matches."""
+    if "::" not in name:
+        return not re.search(r"\w\s*::\s*$", m[:p])
+    qual = name.split("::")[-2]
+    before = m[:p]
+    if re.search(rf"(?<![\w]){re.escape(qual)}\s*::\s*$", before):
+        return True
+    if re.search(r"\w\s*::\s*$", before):
+        return False
+    for b in sc.enclosing(p):
+        head = m[sc.head_start(b):b]
+        if re.search(rf"\b(class|struct|namespace)\s+{re.escape(qual)}\b", head):
+            return True
+    return False
+
+
+def caller_matches(m: str, p: int, name: str, text: str) -> bool:
+    """Whether a use at `p` can be `name`: a qualified name is used as `Qual::last`, or as a member call
+    (`.last` / `->last`) in a file that names the class; an unqualified name not as another's member."""
+    before = m[:p].rstrip()
+    if "::" not in name:
+        return not re.search(r"\w\s*::$", before)
+    qual = name.split("::")[-2]
+    if re.search(rf"(?<![\w]){re.escape(qual)}\s*::$", before):
+        return True
+    if before.endswith(("->", ".")):
+        return re.search(rf"(?<![\w]){re.escape(qual)}(?![\w])", m) is not None
+    return False
+
+
 def function_label(text: str, start: int, end: int) -> str:
     """The name a calling function is defined under (the identifier before its first parenthesis)."""
     head = mask(text[start:end])
@@ -418,7 +459,7 @@ def callers_in(text: str, name: str, skip: tuple[int, int] | None = None) -> lis
     spans = []
     for p in words(m, last):
         o = sc.outer_code(p)
-        if o < 0:
+        if o < 0 or not caller_matches(m, p, name, text):
             continue
         start, end = sc.head_start(o), sc.match.get(o, len(m) - 1) + 1
         if end < len(m) and m[end:].lstrip().startswith(";"):
@@ -456,6 +497,29 @@ def reflected_members(cls: str, runner=None) -> str:
             if text:
                 out.append(text.rstrip())
     return "\n\n".join(out)
+
+
+def member_names(members_text: str) -> list[str]:
+    """The member names in tools/gen_fields.py's layout text (lines `0x0010  name  type`)."""
+    return sorted({m.group(1) for m in re.finditer(r"(?m)^\s*0x[0-9a-fA-F]+\s+([A-Za-z_]\w*)", members_text)})
+
+
+FIXED_ROLES = ("Construct", "Destroy", "DestroyAndDelete", "InitStatics")
+
+
+def unanchored(name: str, evidence: str, has_caller: bool, members: list[str]) -> bool:
+    """A behavioural name (not a fixed role) for a function nothing under src/ calls, whose evidence cites no
+    string and no reflected member name: only offsets or the class's theme. Such names are held, not applied
+    (an audit of applied names, 2026-11-24, found both of its vague ones of this kind)."""
+    if has_caller:
+        return False
+    verb = name.split("::")[-1]
+    verb = verb.split("_", 1)[1] if "_" in verb else verb
+    if verb in FIXED_ROLES:
+        return False
+    if re.search(r'"[^"]{2,}"', evidence):
+        return False
+    return not any(re.search(rf"(?<![\w]){re.escape(m)}(?![\w])", evidence) for m in members)
 
 
 def _gen_fields(cls: str) -> str:
@@ -513,7 +577,8 @@ def gather(tree: Tree, name: str, max_callers: int = MAX_CALLERS) -> dict:
         notes.append(f"{len(over)} more calling function(s) were left out (at most {max_callers} are shown): "
                      + ", ".join(f"{c['label']} ({c['path']})" for c in over) + ".")
     return {"def_path": def_path, "def_text": def_text, "def_whole": bool(def_path) and def_text == tree.read(def_path),
-            "callers": chosen, "callers_in_def_file": in_def_file, "notes": notes}
+            "callers": chosen, "callers_in_def_file": in_def_file, "notes": notes,
+            "has_caller": bool(callers) or in_def_file > 0}
 
 
 def fence(path: str, text: str) -> str:
@@ -611,7 +676,8 @@ def build_requests(kind: str, items: list[dict], tree_for, members_for, ttl: str
             requests.append({"custom_id": cid, "params": params})
             entry = {k: it[k] for k in ("address", "name", "class", "unit", "lookup", "evidence", "rev") if k in it}
             entry.update({"custom_id": cid, "def_path": ctx["def_path"], "callers": len(ctx["callers"]),
-                          "notes": ctx["notes"]})
+                          "has_caller": ctx.get("has_caller", True), "notes": ctx["notes"],
+                          "member_names": member_names(members) if members else []})
             meta.append(entry)
     ids = [r["custom_id"] for r in requests]
     if len(set(ids)) != len(ids) or not all(CUSTOM_ID.match(i) for i in ids):
@@ -885,10 +951,17 @@ def make_client(environ=None, factory=None):
     fallback to ANTHROPIC_API_KEY: a key there would also be billed for Claude Code's own use on this machine.
     The value is never printed, logged or written."""
     import os
-    key = (os.environ if environ is None else environ).get(KEY_VARIABLE, "")
-    if not key.strip():
+    from urllib.parse import urlparse
+    env = os.environ if environ is None else environ
+    key = env.get(KEY_VARIABLE, "").strip()
+    if not key:
         raise SystemExit(f"name_batch: set {KEY_VARIABLE} to the API key for this tool (ANTHROPIC_API_KEY is not "
                          f"read); nothing was sent")
+    base = env.get("ANTHROPIC_BASE_URL", "")
+    if base and base.rstrip("/") != OFFICIAL_BASE_URL:
+        # The SDK would send the key there: refuse, naming only the host.
+        raise SystemExit(f"name_batch: ANTHROPIC_BASE_URL points at {urlparse(base).hostname or '(no host)'}, not "
+                         f"{urlparse(OFFICIAL_BASE_URL).hostname}; unset it. Nothing was sent")
     if factory is None:
         import anthropic
         factory = anthropic.Anthropic
@@ -906,25 +979,86 @@ def ledger_rows() -> list[dict]:
         return list(csv.DictReader(fh))
 
 
-def committed_spend(exclude: str = "") -> tuple[float, float]:
-    """(dollars in the ledger, estimated dollars of runs submitted but not yet fetched)."""
-    rows = ledger_rows()
+MEMBER_CAP = 40.0          # tools/member_batch.py's own cap, enforced here too whichever tool submits
+LOCK_WAIT = 600            # seconds to wait for another process's submit to finish
+LOCK_STALE = 1800          # a lock older than this is a crashed submit's and is taken over
+
+
+class SubmitLock:
+    """An exclusive lock file around "read the ledger, estimate, submit", so two processes (two tools, two
+    workers) cannot both pass the budget check before either batch is recorded."""
+
+    def __init__(self, path: Path | None = None, wait: float = LOCK_WAIT, stale: float = LOCK_STALE):
+        self.path, self.wait, self.stale = path or (STATE / "submit.lock"), wait, stale
+
+    def __enter__(self):
+        import os
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        deadline = time.time() + self.wait
+        while True:
+            try:
+                fd = os.open(str(self.path), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+                os.write(fd, f"{os.getpid()} {time.strftime('%Y-%m-%dT%H:%M:%S')}\n".encode())
+                os.close(fd)
+                return self
+            except FileExistsError:
+                try:
+                    if time.time() - self.path.stat().st_mtime > self.stale:
+                        self.path.unlink()
+                        continue
+                except FileNotFoundError:
+                    continue
+                if time.time() > deadline:
+                    raise SystemExit(f"name_batch: {self.path} is held by another submit; nothing was sent")
+                time.sleep(1.0)
+
+    def __exit__(self, *exc):
+        try:
+            self.path.unlink()
+        except FileNotFoundError:
+            pass
+        return False
+
+
+def submitted_runs() -> list[dict]:
+    """Every local submission, from batch.json, or from intent.json where create never returned (a crash or a
+    timeout the SDK may have retried): {run, kind, id or None, worst_dollars}."""
+    out = []
+    if not STATE.is_dir():
+        return out
+    for d in sorted(p for p in STATE.iterdir() if p.is_dir()):
+        b, i, m = d / "batch.json", d / "intent.json", d / "meta.json"
+        kind = json.loads(m.read_text(encoding="utf-8")).get("kind", "") if m.exists() else ""
+        if b.exists():
+            data = json.loads(b.read_text(encoding="utf-8"))
+            out.append({"run": d.name, "kind": kind, "id": data.get("id"),
+                        "worst_dollars": float(data.get("worst_dollars", 0))})
+        elif i.exists():
+            data = json.loads(i.read_text(encoding="utf-8"))
+            out.append({"run": d.name, "kind": kind, "id": None, "worst_dollars": float(data.get("worst_dollars", 0))})
+    return out
+
+
+def committed_spend(exclude: str = "", kinds: str = "") -> tuple[float, float]:
+    """(dollars in the ledger, worst-case dollars of batches submitted but not yet fetched), matched by batch id
+    so a reused run name is counted, not skipped. `kinds`: only runs whose kind starts with it."""
+    rows = [r for r in ledger_rows() if r.get("kind", "").startswith(kinds)]
     spent = sum(float(r["dollars"]) for r in rows)
-    fetched = {r["run"] for r in rows}
+    fetched = {r["batch_id"] for r in ledger_rows()}
     pending = 0.0
-    if STATE.is_dir():
-        for b in STATE.glob("*/batch.json"):
-            run = b.parent.name
-            if run in fetched or run == exclude:
-                continue
-            pending += float(json.loads(b.read_text(encoding="utf-8")).get("worst_dollars", 0))
+    for s in submitted_runs():
+        if s["run"] == exclude or not s["kind"].startswith(kinds):
+            continue
+        if s["id"] is None or s["id"] not in fetched:
+            pending += s["worst_dollars"]
     return spent, pending
 
 
-def cmd_submit(args, client=None) -> int:
+def cmd_submit(args, client=None, lock=None) -> int:
     d = run_dir(args.run)
-    if (d / "batch.json").exists():
-        print(f"name_batch: {args.run} was already submitted ({d / 'batch.json'})")
+    if (d / "batch.json").exists() or (d / "intent.json").exists():
+        print(f"name_batch: {args.run} was already submitted, or its submit did not finish "
+              f"({d / 'batch.json'} or intent.json); run reconcile, then build a new run")
         return 1
     if not (d / "requests.jsonl").exists():
         print(f"name_batch: no requests for {args.run}; run build-review or build-propose first")
@@ -932,26 +1066,82 @@ def cmd_submit(args, client=None) -> int:
     info = json.loads((d / "meta.json").read_text(encoding="utf-8"))
     requests = read_jsonl(d / "requests.jsonl")
     est = estimate(requests, info.get("counted_tokens") or None, info.get("ttl", "5m"))
-    spent, pending = committed_spend(exclude=args.run)
-    total = spent + pending + est["worst_dollars"]
-    if total > args.budget:
-        print(f"name_batch: REFUSED: ledger ${spent:.2f} + pending batches ${pending:.2f} + this batch's worst case "
-              f"${est['worst_dollars']:.2f} = ${total:.2f}, over the budget of ${args.budget:.2f}. Nothing was sent.")
-        return 2
-    client = client or make_client()
-    try:
-        from anthropic.types.message_create_params import MessageCreateParamsNonStreaming
-        from anthropic.types.messages.batch_create_params import Request
-    except ImportError:  # both are TypedDicts: plain dicts of the same shape (a test's fake client, no SDK)
-        MessageCreateParamsNonStreaming = Request = dict
-    batch = client.messages.batches.create(requests=[
-        Request(custom_id=r["custom_id"], params=MessageCreateParamsNonStreaming(**r["params"])) for r in requests])
-    (d / "batch.json").write_text(json.dumps({"id": batch.id, "submitted": time.strftime("%Y-%m-%dT%H:%M:%S"),
-                                              "requests": len(requests), "worst_dollars": est["worst_dollars"]},
-                                             indent=1), encoding="utf-8")
+    with (lock or SubmitLock()):
+        spent, pending = committed_spend(exclude=args.run)
+        total = spent + pending + est["worst_dollars"]
+        if total > args.budget:
+            print(f"name_batch: REFUSED: ledger ${spent:.2f} + pending batches ${pending:.2f} + this batch's worst "
+                  f"case ${est['worst_dollars']:.2f} = ${total:.2f}, over the budget of ${args.budget:.2f}. "
+                  "Nothing was sent.")
+            return 2
+        if info.get("kind", "").startswith("member"):
+            cap = getattr(args, "cap", None) or MEMBER_CAP
+            m_spent, m_pending = committed_spend(exclude=args.run, kinds="member")
+            m_total = m_spent + m_pending + est["worst_dollars"]
+            if m_total > cap:
+                print(f"name_batch: REFUSED: member runs ${m_spent:.2f} + their pending batches ${m_pending:.2f} + "
+                      f"this batch's worst case ${est['worst_dollars']:.2f} = ${m_total:.2f}, over the member cap of "
+                      f"${cap:.2f}. Nothing was sent.")
+                return 2
+        client = client or make_client()
+        try:
+            from anthropic.types.message_create_params import MessageCreateParamsNonStreaming
+            from anthropic.types.messages.batch_create_params import Request
+        except ImportError:  # both are TypedDicts: plain dicts of the same shape (a test's fake client, no SDK)
+            MessageCreateParamsNonStreaming = Request = dict
+        # The intent comes first: if create raises after the server made a batch (or the SDK retried a timeout),
+        # the run still counts as pending and `reconcile` finds the batch.
+        (d / "intent.json").write_text(json.dumps({"submitting": time.strftime("%Y-%m-%dT%H:%M:%S"),
+                                                   "requests": len(requests), "worst_dollars": est["worst_dollars"]},
+                                                  indent=1), encoding="utf-8")
+        batch = client.messages.batches.create(requests=[
+            Request(custom_id=r["custom_id"], params=MessageCreateParamsNonStreaming(**r["params"]))
+            for r in requests])
+        (d / "batch.json").write_text(json.dumps({"id": batch.id, "submitted": time.strftime("%Y-%m-%dT%H:%M:%S"),
+                                                  "requests": len(requests), "worst_dollars": est["worst_dollars"]},
+                                                 indent=1), encoding="utf-8")
     print(f"{args.run}: batch {batch.id} created, {len(requests)} requests, status {batch.processing_status}; "
           f"worst case ${est['worst_dollars']:.2f} (ledger ${spent:.2f}, pending ${pending:.2f}, "
           f"budget ${args.budget:.2f})")
+    return 0
+
+
+def batch_usage(client, bid: str) -> dict:
+    total = {"input": 0, "write": 0, "read": 0, "output": 0, "write_1h": 0}
+    for r in client.messages.batches.results(bid):
+        u = usage_of(as_dict(r))
+        for k in total:
+            total[k] += u[k]
+    return total
+
+
+def cmd_reconcile(args, client=None) -> int:
+    """List the account's batches and report every one the ledger does not record, with its usage, and every
+    local intent whose create never returned."""
+    client = client or make_client()
+    in_ledger = {r["batch_id"] for r in ledger_rows()}
+    local = {s["id"]: s["run"] for s in submitted_runs() if s["id"]}
+    seen, unknown = 0, 0
+    for b in client.messages.batches.list(limit=100):
+        seen += 1
+        if b.id in in_ledger:
+            continue
+        unknown += 1
+        c = b.request_counts
+        line = (f"  not in the ledger: {b.id} created {getattr(b, 'created_at', '?')} {b.processing_status}; "
+                f"succeeded {c.succeeded}, errored {c.errored}, canceled {c.canceled}, expired {c.expired}, "
+                f"processing {c.processing}; local run {local.get(b.id, '(none)')}")
+        if b.processing_status == "ended":
+            u = batch_usage(client, b.id)
+            line += (f"; tokens input {u['input']:,}, cache write {u['write']:,}, cache read {u['read']:,}, "
+                     f"output {u['output']:,}; ${dollars(u):.2f}")
+        print(line)
+    for s in submitted_runs():
+        if s["id"] is None:
+            print(f"  local run {s['run']}: intent.json without batch.json (create did not return); "
+                  f"worst case ${s['worst_dollars']:.2f} counted as pending")
+    print(f"reconcile: {seen} batches on the account, {unknown} not in the ledger; ledger has {len(in_ledger)} "
+          f"batch ids")
     return 0
 
 
@@ -1049,7 +1239,34 @@ def cmd_fetch(args, client=None) -> int:
     with (d / "results.jsonl").open("w", encoding="utf-8", newline="\n") as fh:
         for r in raw:
             fh.write(json.dumps(r, sort_keys=True) + "\n")
-    by_id = {r["custom_id"]: r for r in raw}   # keyed by custom_id: results come back in any order
+    rows, total, cost, good, succeeded = rows_from_results(info, raw, kind)
+    out = d / ("verdicts.csv" if kind == "review" else "proposals.csv")
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=VERDICT_COLUMNS if kind == "review" else PROPOSAL_COLUMNS,
+                           lineterminator="\n")
+        w.writeheader()
+        w.writerows(rows)
+    row = {"run": args.run, "kind": kind, "batch_id": bid, "fetched": time.strftime("%Y-%m-%dT%H:%M:%S"),
+           "requests": len(info["items"]), "succeeded": succeeded, "verdicts": good,
+           "input_tokens": total["input"], "cache_write_tokens": total["write"], "cache_read_tokens": total["read"],
+           "output_tokens": total["output"], "cache_reads_happened": "yes" if total["read"] else "no",
+           "dollars": f"{cost:.4f}"}
+    append_ledger(row)
+    print(f"{args.run}: {len(raw)} results, {good} with an answer; {out}")
+    print(f"  tokens: input {total['input']:,}, cache write {total['write']:,}, cache read {total['read']:,}, "
+          f"output {total['output']:,}; cache reads {'happened' if total['read'] else 'did NOT happen'}; "
+          f"${cost:.2f}")
+    if kind == "review":
+        counts = {v: sum(1 for r in rows if r["verdict"] == v) for v in VERDICTS}
+        print("  " + ", ".join(f"{v} {n}" for v, n in counts.items())
+              + f", no verdict {sum(1 for r in rows if not r['verdict'])}")
+    return 0
+
+
+def rows_from_results(info: dict, raw: list[dict], kind: str):
+    """(verdicts.csv or proposals.csv rows, token totals, dollars, answers, succeeded) from a run's meta and its
+    raw results, matched by custom_id (results come back in any order)."""
+    by_id = {r["custom_id"]: r for r in raw}
     total = {"input": 0, "write": 0, "read": 0, "output": 0, "write_1h": 0}
     cost = 0.0
     rows = []
@@ -1078,33 +1295,13 @@ def cmd_fetch(args, client=None) -> int:
                          "class": m["class"], "rev": m["rev"], "decision": data["decision"] if data else "",
                          "name": data["name"] if data else "", "evidence": data["evidence"] if data else "",
                          "reason": data["reason"] if data else "", "status": status, "unit": m.get("unit", "")})
-    out = d / ("verdicts.csv" if kind == "review" else "proposals.csv")
-    with out.open("w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=VERDICT_COLUMNS if kind == "review" else PROPOSAL_COLUMNS,
-                           lineterminator="\n")
-        w.writeheader()
-        w.writerows(rows)
-    row = {"run": args.run, "kind": kind, "batch_id": bid, "fetched": time.strftime("%Y-%m-%dT%H:%M:%S"),
-           "requests": len(info["items"]), "succeeded": succeeded, "verdicts": good,
-           "input_tokens": total["input"], "cache_write_tokens": total["write"], "cache_read_tokens": total["read"],
-           "output_tokens": total["output"], "cache_reads_happened": "yes" if total["read"] else "no",
-           "dollars": f"{cost:.4f}"}
-    append_ledger(row)
-    print(f"{args.run}: {len(raw)} results, {good} with an answer; {out}")
-    print(f"  tokens: input {total['input']:,}, cache write {total['write']:,}, cache read {total['read']:,}, "
-          f"output {total['output']:,}; cache reads {'happened' if total['read'] else 'did NOT happen'}; "
-          f"${cost:.2f}")
-    if kind == "review":
-        counts = {v: sum(1 for r in rows if r["verdict"] == v) for v in VERDICTS}
-        print("  " + ", ".join(f"{v} {n}" for v, n in counts.items())
-              + f", no verdict {sum(1 for r in rows if not r['verdict'])}")
-    return 0
+    return rows, total, cost, good, succeeded
 
 
 def append_ledger(row: dict) -> None:
-    """Add a fetched run's row to the ledger, once."""
-    if any(r["run"] == row["run"] for r in ledger_rows()):
-        print(f"  ledger: {row['run']} is already recorded; not added again")
+    """Add a fetched batch's row to the ledger, once per batch id (a reused run name is a new row)."""
+    if any(r["batch_id"] == row["batch_id"] for r in ledger_rows()):
+        print(f"  ledger: batch {row['batch_id']} ({row['run']}) is already recorded; not added again")
         return
     LEDGER.parent.mkdir(parents=True, exist_ok=True)
     new = not LEDGER.exists()
@@ -1129,7 +1326,27 @@ def choose(rows: list[dict]) -> tuple[list[dict], list[dict], list[dict]]:
     return applied, rejected, none
 
 
-def cmd_apply(args, runner=None) -> int:
+def names_on_disk() -> dict[str, str]:
+    path = ROOT / "data" / "names.csv"
+    if not path.exists():
+        return {}
+    with path.open(newline="", encoding="utf-8") as fh:
+        return {r["address"].lower(): r["name"] for r in csv.DictReader(fh)}
+
+
+def approved_elsewhere(run: str) -> dict[str, str]:
+    """Addresses that another review run's verdicts.csv approves (right, evidence true), by run."""
+    out = {}
+    for p in sorted(STATE.glob("*/verdicts.csv")):
+        if p.parent.name == run:
+            continue
+        with p.open(newline="", encoding="utf-8") as fh:
+            for r in choose(list(csv.DictReader(fh)))[0]:
+                out.setdefault(r["address"].lower(), p.parent.name)
+    return out
+
+
+def cmd_apply(args, runner=None, named=None) -> int:
     d = run_dir(args.run)
     vpath = d / "verdicts.csv"
     if not vpath.exists():
@@ -1148,14 +1365,36 @@ def cmd_apply(args, runner=None) -> int:
                                   cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
     with vpath.open(newline="", encoding="utf-8") as fh:
         rows = list(csv.DictReader(fh))
+    info = json.loads((d / "meta.json").read_text(encoding="utf-8"))
+    # The verdicts must be what the stored raw results say: recompute them and refuse on any difference.
+    rpath = d / "results.jsonl"
+    if not rpath.exists():
+        print(f"name_batch: {args.run} has no results.jsonl to check verdicts.csv against; refusing")
+        return 1
+    expect = rows_from_results(info, read_jsonl(rpath), info["kind"])[0]
+    if [{k: str(v) for k, v in r.items()} for r in expect] != [{k: r.get(k, "") for k in VERDICT_COLUMNS}
+                                                                  for r in rows]:
+        print(f"name_batch: {vpath} does not match what {rpath} says; refusing (fetch again to rewrite it)")
+        return 1
     applied, rejected, none = choose(rows)
     held = [r for r in applied if NOT_FIXED_VERB.search(r["name"])]
     applied = [r for r in applied if r not in held]
+    # An address another run already approved, or that data/names.csv already names, is held and listed.
+    named = names_on_disk() if named is None else named
+    elsewhere = approved_elsewhere(args.run)
+    taken = [(r, f"already named `{named[r['address']]}` in data/names.csv" if r["address"] in named
+              else f"approved by run `{elsewhere[r['address']]}`")
+             for r in applied if r["address"] in named or r["address"] in elsewhere]
+    applied = [r for r in applied if r not in [t[0] for t in taken]]
+    by_id = {m["custom_id"]: m for m in info["items"]}
+    loose = [r for r in applied if unanchored(r["name"], r["stated_evidence"],
+                                              by_id.get(r["custom_id"], {}).get("has_caller", True),
+                                              by_id.get(r["custom_id"], {}).get("member_names", []))]
+    applied = [r for r in applied if r not in loose]
     landed, failed = [], []
     for r in applied:
         res = runner(r["address"], r["name"], r["stated_evidence"])
         (landed if res.returncode == 0 else failed).append((r, (res.stdout + res.stderr).strip()))
-    info = json.loads((d / "meta.json").read_text(encoding="utf-8"))
     spend = run_cost(args.run) + (run_cost(info["from_run"]) if info.get("from_run") else 0.0)
     lines = [f"Names reviewed by run `{args.run}` ({MODEL}, Message Batches): {len(rows)} reviewed, "
              f"{len(landed)} applied, {len(rejected)} rejected, {len(none)} without a verdict"
@@ -1172,6 +1411,13 @@ def cmd_apply(args, runner=None) -> int:
         lines += ["", "Judged right, but held back: not in the project's fixed verbs (Construct, Destroy, "
                   "DestroyAndDelete, InitStatics):", ""]
         lines += [f"- `{r['address']}` `{r['name']}`" for r in held]
+    if taken:
+        lines += ["", "Judged right, but held back: the address is already named or approved elsewhere:", ""]
+        lines += [f"- `{r['address']}` `{r['name']}`: {why}" for r, why in taken]
+    if loose:
+        lines += ["", "Judged right, but held back: a behavioural name for a function nothing under src/ calls, "
+                  "with evidence that cites no string and no reflected member name:", ""]
+        lines += [f"- `{r['address']}` `{r['name']}`: {r['stated_evidence']}" for r in loose]
     if failed:
         lines += ["", "Judged right, but tools/rename.py refused:", ""]
         lines += [f"- `{r['address']}` `{r['name']}`: {msg.splitlines()[-1] if msg else 'failed'}" for r, msg in failed]
@@ -1180,6 +1426,8 @@ def cmd_apply(args, runner=None) -> int:
     (d / "apply.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"{args.run}: applied {len(landed)}, rejected {len(rejected)}, no verdict {len(none)}"
           + (f", held for their verbs {len(held)}" if held else "")
+          + (f", held as named elsewhere {len(taken)}" if taken else "")
+          + (f", held as unanchored {len(loose)}" if loose else "")
           + (f", rename failed {len(failed)}" if failed else "") + f"; {d / 'apply.md'}")
     print(f"  cost per landed name: {per} (${spend:.2f} in all). Nothing was committed or pushed.")
     return 0
@@ -1230,9 +1478,11 @@ def main(argv: list[str] | None = None) -> int:
     for name in ("status", "fetch", "apply"):
         sub.add_parser(name).add_argument("--run", required=True)
     sub.add_parser("cost")
+    sub.add_parser("reconcile", help="the account's batches that the ledger does not record, with their usage")
     args = ap.parse_args(argv)
     return {"build-review": cmd_build_review, "build-propose": cmd_build_propose, "submit": cmd_submit,
-            "status": cmd_status, "fetch": cmd_fetch, "apply": cmd_apply, "cost": cmd_cost}[args.cmd](args)
+            "status": cmd_status, "fetch": cmd_fetch, "apply": cmd_apply, "cost": cmd_cost,
+            "reconcile": cmd_reconcile}[args.cmd](args)
 
 
 if __name__ == "__main__":

@@ -448,6 +448,7 @@ python tools/name_batch.py status --run R                  # processing status a
 python tools/name_batch.py fetch --run R                   # results, verdicts.csv or proposals.csv, a ledger row
 python tools/name_batch.py apply --run R                   # on a clean origin/main: rename the `right` names; apply.md for the PR
 python tools/name_batch.py cost                            # the ledger and its total
+python tools/name_batch.py reconcile                       # account batches the ledger does not record
 ```
 
 ### `tools/member_batch.py`

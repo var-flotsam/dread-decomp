@@ -84,7 +84,7 @@ def members(cls):
 
 
 def items(*specs):
-    return [{"address": a, "name": n, "lookup": n, "class": nb.class_of(n), "evidence": f"facts about {n}",
+    return [{"address": a, "name": n, "lookup": n, "class": nb.class_of(n), "evidence": f"facts about {n} (reads iCount)",
              "rev": "r"} for a, n in specs]
 
 
@@ -516,6 +516,143 @@ class FixedVerbs(StateDir):
         for good in ("CFoo_Destroy", "CFoo_DestroyAndDelete", "CFoo_InitStatics", "CActor_Construct",
                      "CActorDef_FindPartById"):
             self.assertFalse(nb.NOT_FIXED_VERB.search(good), good)
+
+    def test_unanchored_names(self):
+        # No caller and only offsets: held. A string, a reflected member, a caller or a fixed role: not held.
+        self.assertTrue(nb.unanchored("CFoo_ResetTimers", "clears +0x10 and +0x14", False, ["fTime"]))
+        self.assertFalse(nb.unanchored("CFoo_ResetTimers", "clears fTime (+0x10)", False, ["fTime"]))
+        self.assertFalse(nb.unanchored("CFoo_PlayIntro", 'sends "intro" to the timeline', False, []))
+        self.assertFalse(nb.unanchored("CFoo_ResetTimers", "clears +0x10", True, []))
+        self.assertFalse(nb.unanchored("CFoo_InitStatics", "sets +0x10", False, []))
+        self.assertTrue(nb.unanchored("ResetTimerPair", "clears +0x10", False, []))
+
+
+class Safety(StateDir):
+    def write_ledger(self, *rows):
+        nb.LEDGER.parent.mkdir(parents=True, exist_ok=True)
+        with nb.LEDGER.open("w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=nb.LEDGER_COLUMNS)
+            w.writeheader()
+            for r in rows:
+                w.writerow({**{c: "0" for c in nb.LEDGER_COLUMNS}, **r})
+
+    def test_intent_is_written_before_create(self):
+        self.make_run("r1")
+
+        class Timeout(FakeBatches):
+            def create(self, requests):
+                raise TimeoutError("read timed out")
+
+        with self.assertRaises(TimeoutError):
+            nb.cmd_submit(SimpleNamespace(run="r1", budget=180.0), client=fake_client(Timeout()))
+        self.assertTrue((nb.STATE / "r1" / "intent.json").exists())
+        self.assertFalse((nb.STATE / "r1" / "batch.json").exists())
+        worst = json.loads((nb.STATE / "r1" / "intent.json").read_text())["worst_dollars"]
+        self.assertAlmostEqual(nb.committed_spend()[1], worst)   # still counted as pending
+        self.assertEqual(nb.cmd_submit(SimpleNamespace(run="r1", budget=180.0),
+                                       client=fake_client(FakeBatches())), 1)
+
+    def test_reconcile_reports_unknown_batches(self):
+        self.write_ledger({"run": "old", "batch_id": "msgbatch_known", "dollars": "1"})
+
+        class Listing(FakeBatches):
+            def list(self, limit=100):
+                counts = SimpleNamespace(processing=0, succeeded=1, errored=0, canceled=0, expired=0)
+                return iter([SimpleNamespace(id=i, processing_status="ended", request_counts=counts, created_at="t")
+                             for i in ("msgbatch_known", "msgbatch_orphan")])
+
+        out = io.StringIO()
+        with mock.patch("sys.stdout", out):
+            nb.cmd_reconcile(SimpleNamespace(), client=fake_client(Listing([succeeded("a", "{}")])))
+        text = out.getvalue()
+        self.assertIn("msgbatch_orphan", text)
+        self.assertNotIn("not in the ledger: msgbatch_known", text)
+        self.assertIn("1 not in the ledger", text)
+
+    def test_lock_blocks_a_second_submit(self):
+        self.make_run("r1")
+        batches = FakeBatches()
+        with nb.SubmitLock():
+            with self.assertRaises(SystemExit):
+                nb.cmd_submit(SimpleNamespace(run="r1", budget=180.0), client=fake_client(batches),
+                              lock=nb.SubmitLock(wait=0))
+        self.assertEqual(batches.created, [])
+        self.assertFalse((nb.STATE / "submit.lock").exists())
+
+    def test_reused_run_name_is_counted(self):
+        self.write_ledger({"run": "r1", "batch_id": "msgbatch_first", "dollars": "5"})
+        d = nb.STATE / "r1"
+        d.mkdir(parents=True)
+        (d / "batch.json").write_text(json.dumps({"id": "msgbatch_second", "worst_dollars": 7}))
+        self.assertEqual(nb.committed_spend(), (5.0, 7.0))
+        nb.append_ledger({**{c: "0" for c in nb.LEDGER_COLUMNS}, "run": "r1", "batch_id": "msgbatch_second",
+                          "dollars": "3"})
+        self.assertEqual(len(nb.ledger_rows()), 2)
+
+    def test_member_cap_applies_here_too(self):
+        self.make_run("m1")
+        meta = nb.STATE / "m1" / "meta.json"
+        info = json.loads(meta.read_text())
+        info["kind"] = "member-propose"
+        meta.write_text(json.dumps(info))
+        self.write_ledger({"run": "mem-old", "kind": "member-propose", "batch_id": "b0", "dollars": "39.99"})
+        batches = FakeBatches()
+        self.assertEqual(nb.cmd_submit(SimpleNamespace(run="m1", budget=180.0), client=fake_client(batches)), 2)
+        self.assertEqual(batches.created, [])
+
+    def test_apply_refuses_edited_verdicts_and_holds_taken_addresses(self):
+        info = self.make_run("r1", n=2)
+        ids = [m["custom_id"] for m in info["items"]]
+        nb.cmd_submit(SimpleNamespace(run="r1", budget=180.0), client=fake_client(FakeBatches()))
+        nb.cmd_fetch(SimpleNamespace(run="r1"), client=fake_client(FakeBatches(
+            [succeeded(cid, {"verdict": "right", "evidence_true": True, "reason": "r"}) for cid in ids])))
+        calls = []
+
+        def runner(addr, name, reason):
+            calls.append(addr)
+            return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+        # Another run approved the first address: held and listed.
+        other = nb.STATE / "r0"
+        other.mkdir()
+        with (other / "verdicts.csv").open("w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=nb.VERDICT_COLUMNS)
+            w.writeheader()
+            w.writerow({**{c: "" for c in nb.VERDICT_COLUMNS}, "address": info["items"][0]["address"],
+                        "name": "CFoo_Other", "verdict": "right", "evidence_true": "yes", "stated_evidence": "e"})
+        self.assertEqual(nb.cmd_apply(SimpleNamespace(run="r1"), runner=runner, named={}), 0)
+        self.assertEqual(calls, [info["items"][1]["address"]])
+        self.assertIn("approved by run `r0`", (nb.STATE / "r1" / "apply.md").read_text(encoding="utf-8"))
+        # An edited verdicts.csv no longer matches results.jsonl: refused, nothing renamed.
+        vpath = nb.STATE / "r1" / "verdicts.csv"
+        vpath.write_text(vpath.read_text(encoding="utf-8").replace(",right,", ",wrong,", 1), encoding="utf-8")
+        calls.clear()
+        self.assertEqual(nb.cmd_apply(SimpleNamespace(run="r1"), runner=runner, named={}), 1)
+        self.assertEqual(calls, [])
+
+    def test_qualified_lookup_does_not_take_another_class(self):
+        text = ("void CBar::Update() { Tick(); }\n"
+                "struct CFoo { void Update() { Tock(); } };\n"
+                "void Run(CBar* b) { CBar::Update(); }\n")
+        span = nb.find_definition(text, "CFoo::Update")
+        self.assertIn("Tock", text[span[0]:span[1]])
+        span = nb.find_definition(text, "CBar::Update")
+        self.assertIn("Tick", text[span[0]:span[1]])
+        self.assertIsNone(nb.find_definition("void CBar::Update() {}\n", "CFoo::Update"))
+        self.assertEqual(nb.callers_in("void Run() { CBar::Update(); }\n", "CFoo::Update"), [])
+        self.assertEqual(len(nb.callers_in("void Run() { CFoo::Update(); }\n", "CFoo::Update")), 1)
+
+    def test_key_is_stripped_and_base_url_checked(self):
+        seen = []
+        nb.make_client({"DREAD_NAMES_API_KEY": "  fake-test-value\n"}, factory=lambda **kw: seen.append(kw))
+        self.assertEqual(seen, [{"api_key": "fake-test-value"}])
+        nb.make_client({"DREAD_NAMES_API_KEY": "k", "ANTHROPIC_BASE_URL": "https://api.anthropic.com/"},
+                       factory=lambda **kw: "ok")
+        with self.assertRaises(SystemExit) as cm:
+            nb.make_client({"DREAD_NAMES_API_KEY": "fake-secret", "ANTHROPIC_BASE_URL": "https://proxy.example/v1"},
+                           factory=lambda **kw: self.fail("built"))
+        self.assertIn("proxy.example", str(cm.exception))
+        self.assertNotIn("fake-secret", str(cm.exception))
 
 
 if __name__ == "__main__":
