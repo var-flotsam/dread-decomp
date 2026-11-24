@@ -20,9 +20,14 @@ struct UnkSentenceSphereMovement_A2_b70 {
     u32 state;  // 0xc8
 };
 
+struct UnkTunableView_A2_b70 {
+    u8 pad_0x0[0xc0];
+    f32 field_0xc0;  // 0xc0
+};
+
 void CChozoCommanderSentenceSphereMovementComponent_FillDamageParams(void*, UnkSentenceSphereMovement_A2_b70* self) {
     self->state = 1;
     fn_71008c1538(reinterpret_cast<UnkRequest*>(self),
-                  *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_7172716160) + 0xc0));
+                  reinterpret_cast<const UnkTunableView_A2_b70*>(&g_unk_7172716160)->field_0xc0);
     self->id = g_unk_71726ca0f0;
 }
