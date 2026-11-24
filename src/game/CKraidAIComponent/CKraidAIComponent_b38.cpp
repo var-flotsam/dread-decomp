@@ -65,7 +65,7 @@ static inline void Set(UnkKraidVec3* out, UnkKraidVec2 v) {
     out->z = 0.0f;
 }
 
-void fn_7100600734(UnkKraidAIComponent* self, UnkKraidBox* box) {
+void CKraidAIComponent_ComputeBoxFromAreaCorners(UnkKraidAIComponent* self, UnkKraidBox* box) {
     UnkKraidArea* area = &self->field_0x14ce0;
     if (self->phase == 0 || area->field_0x158) {
         Set(&box->min, Add(area->corner0, 0.0f, -100.0f));

@@ -17,7 +17,7 @@ struct UnkMagmaKraidController_b47;
 struct UnkHelper;
 
 void fn_71003ae15c(UnkBossAI_l3ae15c* self, f32 dt);
-void fn_71005fd5cc(UnkKraidMouthAI_b63a4* self, f32 dt);
+void CKraidAIComponent_UpdateMouthCloseTimer(UnkKraidMouthAI_b63a4* self, f32 dt);
 void fn_71005fd9cc(UnkKraidAI3_b57a4* self);
 bool fn_7100917c5c(UnkMagmaKraidController_b47* self);
 
@@ -89,7 +89,7 @@ void fn_71005fd298(UnkKraidAI_l5fd298* self, f32 dt) {
     fn_71003ae15c(reinterpret_cast<UnkBossAI_l3ae15c*>(self), dt);
     if (self->field_0x149a8 >= 0.0f)
         self->field_0x149a8 += dt;
-    fn_71005fd5cc(reinterpret_cast<UnkKraidMouthAI_b63a4*>(self), dt);
+    CKraidAIComponent_UpdateMouthCloseTimer(reinterpret_cast<UnkKraidMouthAI_b63a4*>(self), dt);
     if (self->field_0x149c4 > 0.0f) {
         self->field_0x149c4 -= dt;
         if (self->field_0x149c4 < 0.0f)

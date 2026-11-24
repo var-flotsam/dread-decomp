@@ -24,7 +24,7 @@ struct UnkWhipSend_b58 {
     f32 timer;
 };
 
-void fn_71004ca7c4(UnkWhipSend_b58* self, f32 dt) {
+void CCooldownXBossStrongWhipAttack_UpdateCountdownAndEmitOnExpiry(UnkWhipSend_b58* self, f32 dt) {
     fn_71004c1968(self, dt);
     if (!(self->timer >= 0.0f))
         return;

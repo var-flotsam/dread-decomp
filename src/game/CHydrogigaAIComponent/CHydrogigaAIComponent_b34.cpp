@@ -8,7 +8,7 @@ struct CHydrogigaAIComponent {
 };
 
 // Returns the counter and advances it, wrapping to 0 at g_unk_7101a50bb8.
-u32 fn_71005c11cc(CHydrogigaAIComponent* self) {
+u32 CHydrogigaAIComponent_FetchAndAdvanceWrappingIndex(CHydrogigaAIComponent* self) {
     u32 current = self->counter;
     u32 next = current + 1;
     self->counter = next >= g_unk_7101a50bb8 ? 0 : next;

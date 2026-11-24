@@ -98,7 +98,7 @@ struct alignas(8) UnkAcidBlobType_l5f131c {
     u32 id;
 };
 
-u64 fn_71005d6c38(UnkAcidBlobsPattern_b45a2* self, u32 row, u32 column);
+u64 CAcidBlobsLaunchPattern_GetEntryAtRowColumn(UnkAcidBlobsPattern_b45a2* self, u32 row, u32 column);
 UnkAcidBlobMovement_l5f131c* fn_71005f190c(UnkActor* actor);  // the blob's "MOVEMENT" component
 UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
 void fn_7100604cb8(UnkAcidBlobMovement_l5f131c* movement);
@@ -111,7 +111,7 @@ extern CStrId g_unk_71726f2790 __attribute__((visibility("hidden")));       // t
 // The pattern's entry at (row, column), or null past its end.
 inline UnkAcidBlobsEntry_l5f131c* EntryAt(UnkAcidBlobsDef_l5f131c* def, u32 row, u32 column) {
     return reinterpret_cast<UnkAcidBlobsEntry_l5f131c*>(
-        fn_71005d6c38(reinterpret_cast<UnkAcidBlobsPattern_b45a2*>(def), row, column));
+        CAcidBlobsLaunchPattern_GetEntryAtRowColumn(reinterpret_cast<UnkAcidBlobsPattern_b45a2*>(def), row, column));
 }
 
 inline UnkActor* SpawnBlob(CStrId& id, UnkAcidBlobType_l5f131c& type) {

@@ -18,7 +18,7 @@ struct UnkHydrogigaOwner_b62a3 {
 };
 
 struct UnkHydrogigaTarget_b62a3;
-UnkHydrogigaTarget_b62a3* fn_71005b9ad8(void* part, const u64* key);  // the entry with the id at key
+UnkHydrogigaTarget_b62a3* CCharClassHydrogigaAIComponent_FindTentacleById(void* part, const u64* key);  // the entry with the id at key
 
 struct UnkHydrogigaSpawnAI_b62a3 {
     u8 pad_0x0[0x30];
@@ -33,7 +33,7 @@ void fn_71005c0e74(UnkHydrogigaSpawnAI_b62a3* self, base::global::CStrId* msg) {
     void* b = owner->field_0x2a0;
     if (!a || !b)
         return;
-    UnkHydrogigaTarget_b62a3* target = fn_71005b9ad8(self->field_0x149a0, reinterpret_cast<const u64*>(msg));
+    UnkHydrogigaTarget_b62a3* target = CCharClassHydrogigaAIComponent_FindTentacleById(self->field_0x149a0, reinterpret_cast<const u64*>(msg));
     if (!target)
         return;
     f32 value = msg->data == g_unk_71726eb450.data ? 100.0f : 60.0f;

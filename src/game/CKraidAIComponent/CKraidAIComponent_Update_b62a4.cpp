@@ -62,7 +62,7 @@ struct UnkKraidUpdateAI_b62a4 {
     UnkKraidUpdateBlock_b62a4 block;
 };
 
-void fn_710060086c(UnkKraidUpdateAI_b62a4* self) {
+void CKraidAIComponent_UpdateBellyUncoverAndRelaxAction(UnkKraidUpdateAI_b62a4* self) {
     UnkKraidUpdateBlock_b62a4* b = &self->block;
     fn_71003ad414(self);
     if (b->active && b->time >= b->tunables->threshold) {

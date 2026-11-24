@@ -129,7 +129,7 @@ struct UnkInfesterPoint_ovb0128 {
 // Starts rolling towards `point` (projected to 2D): the speed along x signed by the direction, the
 // climbing speed along y, both pushed by half the mover's normalised normal (y flipped); then the mover is
 // activated and the event 0x94c9351292223983 sent.
-void fn_71005d1cf4(UnkInfesterBallAI_ovb0128* self, UnkInfesterPoint_ovb0128* point) {
+void CInfesterBallAIComponent_StartMovingToPoint(UnkInfesterBallAI_ovb0128* self, UnkInfesterPoint_ovb0128* point) {
     UnkInfesterRoll_ovb0128& roll = self->roll;
     roll.has_path = true;
     CVector2D target;
@@ -189,7 +189,7 @@ struct UnkInfesterBallShapeAI_ovb0128 {
     base::math::CVector2D direction;  // 0x14778
 };
 
-bool fn_71005d09a8(UnkInfesterBallShapeAI_ovb0128* self) {
+bool CInfesterBallAIComponent_IsPointAheadInShape(UnkInfesterBallShapeAI_ovb0128* self) {
     return CentralShapeTest_A3_b70([self] {
         UnkInfesterBallOwner_ovb0128* owner = self->owner;
         f32 px = owner->x;

@@ -60,7 +60,7 @@ struct UnkPoisonFlyDive3_ovb0133 {
     UnkVec3f side;  // 0x60
 };
 
-void fn_710063208c(UnkPoisonFlyDive3_ovb0133* self) {
+void CPoisonFlyDiveAttack_InitStateAndXDirectionToTarget(UnkPoisonFlyDive3_ovb0133* self) {
     fn_71003608ac(reinterpret_cast<UnkAttackBase*>(self));
     self->dir = reinterpret_cast<const UnkVec3f&>(g_unk_710164779c);
     self->field_0x58 = true;
@@ -141,7 +141,7 @@ bool fn_71006312bc(UnkPoisonFlyDive6_ovb0133* self, void* arg, u32 mode) {
 
 
 struct UnkPoisonFlyDive_b61;
-void fn_7100632204(UnkPoisonFlyDive_b61* self, u32 state);
+void CPoisonFlyDiveAttack_SetState(UnkPoisonFlyDive_b61* self, u32 state);
 
 // The kind-5 block (game_s2/UnkParams.h) with its first fields seen as words.
 struct UnkPoisonFlyParams_ovb0133 {
@@ -224,7 +224,7 @@ void fn_710063302c(UnkPoisonFlyDive_ovb0133* self) {
                 return;
             }
         }
-        fn_7100632204(reinterpret_cast<UnkPoisonFlyDive_b61*>(self), 6);
+        CPoisonFlyDiveAttack_SetState(reinterpret_cast<UnkPoisonFlyDive_b61*>(self), 6);
         break;
     }
     case 3:

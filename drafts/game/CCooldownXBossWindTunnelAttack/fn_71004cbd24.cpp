@@ -19,11 +19,11 @@ struct UnkWindTunnel_b59;
 struct UnkLinked;
 struct UnkWeakTarget;
 
-UnkEntry* fn_71004ba10c(UnkPool* pool, u32 index, u32 flag);
+UnkEntry* CCooldownXBossFireBallDef_GetRowColumnEntryOrNull(UnkPool* pool, u32 index, u32 flag);
 void fn_7100f0e238(void* target, bool on);
 void fn_71004cc644(UnkWindTunnel_b59* self);
 void* fn_71004cc860(void* owner);
-void fn_71004d7980(UnkLinked* self, UnkWeakTarget* other);
+void CCooldownXBossFireBallMovementComponent_SetLinkedObject(UnkLinked* self, UnkWeakTarget* other);
 
 extern CStrId g_unk_71726d80f8[2] __attribute__((visibility("hidden")));
 
@@ -120,7 +120,7 @@ struct UnkWindTunnel_l4cbd24 {
 };
 
 static UnkStep_l4cbd24* StepAt(UnkPattern_l4cbd24* pattern, u32 index, u32 step) {
-    return reinterpret_cast<UnkStep_l4cbd24*>(fn_71004ba10c(reinterpret_cast<UnkPool*>(pattern), index, step));
+    return reinterpret_cast<UnkStep_l4cbd24*>(CCooldownXBossFireBallDef_GetRowColumnEntryOrNull(reinterpret_cast<UnkPool*>(pattern), index, step));
 }
 
 void fn_71004cbd24(UnkWindTunnel_l4cbd24* self) {
@@ -169,7 +169,7 @@ void fn_71004cbd24(UnkWindTunnel_l4cbd24* self) {
                     movement->field_0x5e0 = slot->field_0xc;
                     movement->field_0x5e4 = slot->field_0x10;
                     movement->field_0x5e5 = entry->field_0x38;
-                    fn_71004d7980(reinterpret_cast<UnkLinked*>(movement), reinterpret_cast<UnkWeakTarget*>(previous));
+                    CCooldownXBossFireBallMovementComponent_SetLinkedObject(reinterpret_cast<UnkLinked*>(movement), reinterpret_cast<UnkWeakTarget*>(previous));
                     previous = movement;
                 }
             }

@@ -10,7 +10,7 @@ struct UnkLinked_4d7980 : UnkWeakTarget {
     UnkWeakHandle* field_0x5f0;
 };
 
-void fn_71004d7980(UnkLinked_4d7980* self, UnkWeakTarget* other) {
+void CCooldownXBossFireBallMovementComponent_SetLinkedObject(UnkLinked_4d7980* self, UnkWeakTarget* other) {
     if (UnkWeakHandle* old = self->field_0x5e8) {
         if (UnkLinked_4d7980* linked = static_cast<UnkLinked_4d7980*>(old->target))
             ResetRef(&linked->field_0x5f0);

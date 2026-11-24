@@ -133,7 +133,7 @@ static_assert(__builtin_offsetof(UnkNailongAI_l6212a8, mode) == 0x148c8, "layout
 
 extern CType g_unk_71726f7e68 __attribute__((visibility("hidden")));  // CNailongAIComponent's type
 
-void fn_7100621630(UnkNailongAI_l6212a8* self);
+void CNailongAIComponent_FlipDirectionToOwnerTransform(UnkNailongAI_l6212a8* self);
 void fn_710110592c(UnkNailongAI_l6212a8* ai, UnkNailongAttack_l6212a8* attack);
 
 // The object when it is a CNailongAIComponent, else null (the getter runs first so the type is registered).
@@ -150,7 +150,7 @@ void fn_71006212a8(UnkNailongAI_l6212a8* self, f32 dt) {
     if (self->field_0x15d0)
         return;
 
-    fn_7100621630(self);
+    CNailongAIComponent_FlipDirectionToOwnerTransform(self);
     UnkNailongMovement_l6212a8* movement = self->owner->movement;
     f32 x = movement->x;
     f32 y = movement->y;

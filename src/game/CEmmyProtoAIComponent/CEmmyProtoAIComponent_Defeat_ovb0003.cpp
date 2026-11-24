@@ -20,7 +20,7 @@
 
 using base::global::CStrId;
 
-void fn_71004fc7ec(void* self, void* arg) {
+void CEmmyProtoAIComponent_SendDefeatMlogMessage(void* self, void* arg) {
     UnkMlogMessage_b42a1 message(CStrId("#MLOG_DEFEAT_PROTOEMMY_CAVE", true));
     fn_7100456b7c(reinterpret_cast<u8*>(g_unk_7101d47310) + 0x2128, &message);
     fn_7100554740(self, arg);
@@ -68,9 +68,9 @@ struct UnkProtoComponent_ovb0003 : UnkProtoBase_ovb0003 {
 };
 static_assert(__builtin_offsetof(UnkProtoComponent_ovb0003, callback) == 0x2a6f8, "UnkProtoComponent_ovb0003 layout");
 
-void fn_71004fabc8(UnkProtoComponent_ovb0003* self) { self->~UnkProtoComponent_ovb0003(); }
+void CEmmyProtoAIComponent_Destructor(UnkProtoComponent_ovb0003* self) { self->~UnkProtoComponent_ovb0003(); }
 
-void fn_71004fac90(UnkProtoComponent_ovb0003* self) {
+void CEmmyProtoAIComponent_DeletingDestructor(UnkProtoComponent_ovb0003* self) {
     self->~UnkProtoComponent_ovb0003();
     fn_7100083c00(self);
 }

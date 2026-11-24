@@ -14,7 +14,7 @@ struct UnkStatics_71004d7d80 {
 extern UnkStatics_71004d7d80 g_unk_71726d8c58 __attribute__((visibility("hidden")));
 extern char g_unk_71726d8c50[];
 
-void fn_71004d7d80() {
+void CCooldownXBossFireBallMovementComponent_InitUnitStatics() {
     InitHeaderIds(&g_unk_71726d8c58.ids);
     InitClassId(&g_unk_71726d8c58.field_0x18, "CooldownXBossFireBallMovementComponent");
     InitId(&g_unk_71726d8c58.field_0x20, "fDamageCooldownXBossFireBall");

@@ -68,7 +68,7 @@ static inline bool LooksRight(UnkGobblerAI_l581de0* self) {
     return fn_710002614c(&self->owner->transform).m[2] > 0.0f;
 }
 
-void fn_7100581de0(UnkGobblerAI_l581de0* self) {
+void CGobblerAIComponent_ApplyFacingToSpawnPointLinks(UnkGobblerAI_l581de0* self) {
     fn_7100369650(reinterpret_cast<char*>(self));
     UnkGobblerSlot_l581de0* slot = self->owner->field_0x398;
     if (slot) {
