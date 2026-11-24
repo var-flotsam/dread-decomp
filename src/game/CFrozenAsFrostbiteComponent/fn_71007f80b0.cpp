@@ -24,7 +24,7 @@ extern char g_unk_7172720db8[];
 extern char g_unk_7172720db9[];
 extern void* g_unk_7101a740a0[];
 
-void fn_71007f80b0() {
+void CFrozenAsFrostbiteComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172720e00.ids);
     InitId(&g_unk_7172720e00.field_0x18, "aSS");
     InitPathId(&g_unk_7172720e00.field_0x20, "actors/props/ice_cube/fx/icemissile_frozenfx.bcptl");

@@ -89,7 +89,7 @@ void fn_710113420c(UnkAIAttackComponent3_ovb0050* self, CRntFile* file) {
 }
 
 struct UnkGoliathXSlamAttack_b58a3;
-CStrId fn_71003627f8(UnkGoliathXSlamAttack_b58a3*, UnkActor*);
+CStrId CAttack_MakeIdWithAnimState(UnkGoliathXSlamAttack_b58a3*, UnkActor*);
 
 struct UnkAIAttackComponent4_ovb0050 {
     void** vtable;
@@ -107,7 +107,7 @@ bool fn_7101134648(UnkAIAttackComponent4_ovb0050* self, UnkGoliathXSlamAttack_b5
     if (!ai || fn_71010cc3a4(ai) != 2) {
         bool started;
         {
-            CStrId id = fn_71003627f8(attack, self->owner);
+            CStrId id = CAttack_MakeIdWithAnimState(attack, self->owner);
             started = self->vf_0x170(&id, flag);
         }
         if (started)

@@ -121,8 +121,8 @@ void fn_7100851d6c(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool
     Preload<fn_7100852698>(cache, path, kind, flag);
 }
 
-void fn_71008548bc(UnkPlasmaBeamGun_ovb0135* self);
-void fn_7100854db8(UnkPlasmaBeamGun_ovb0135* self);
+void CPowerBeamGun_PreloadEffects(UnkPlasmaBeamGun_ovb0135* self);
+void CPowerBeamGun_ReleaseEffects(UnkPlasmaBeamGun_ovb0135* self);
 
 static inline UnkFxCache* FxCache() {
     if (!g_unk_71726b0cd8) {
@@ -146,22 +146,22 @@ static inline void ReleaseFx(const char* path) {
     fn_71011aa5a4(cache, &id);
 }
 
-void fn_71008519d8(UnkPlasmaBeamGun_ovb0135* self) {
+void CPlasmaBeamGun_PreloadEffects(UnkPlasmaBeamGun_ovb0135* self) {
     if (!self->fx_registered) {
         PreloadFx<fn_7100851bc0>("actors/weapons/plasmabeam/fx/explosion.bcptl", 0xf);
         PreloadFx<fn_7100851bc0>("actors/weapons/plasmabeam/fx/minor_explosion.bcptl", 0xc);
         PreloadFx<fn_7100851d6c>("actors/weapons/plasmabeam/fx/explosion_game.bcmdl", 0xc);
         self->fx_registered = true;
     }
-    fn_71008548bc(self);
+    CPowerBeamGun_PreloadEffects(self);
 }
 
-void fn_7100851f18(UnkPlasmaBeamGun_ovb0135* self) {
+void CPlasmaBeamGun_ReleaseEffects(UnkPlasmaBeamGun_ovb0135* self) {
     if (self->fx_registered) {
         ReleaseFx("actors/weapons/plasmabeam/fx/explosion.bcptl");
         ReleaseFx("actors/weapons/plasmabeam/fx/minor_explosion.bcptl");
         ReleaseFx("actors/weapons/plasmabeam/fx/explosion_game.bcmdl");
         self->fx_registered = false;
     }
-    fn_7100854db8(self);
+    CPowerBeamGun_ReleaseEffects(self);
 }

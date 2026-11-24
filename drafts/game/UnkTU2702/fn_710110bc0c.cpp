@@ -14,7 +14,7 @@
 using base::global::CStrId;
 
 struct UnkCancelAttack_ovb0128;
-void* fn_7100362324(UnkCancelAttack_ovb0128*, u32);
+void* CAttack_GetPreset(UnkCancelAttack_ovb0128*, u32);
 
 struct UnkAttackList_l10bc0c;
 struct UnkAttackNode_l10bc0c;
@@ -179,7 +179,7 @@ struct UnkAIComponent_l10bc0c {
 };
 
 static inline UnkAttackEntry_l10bc0c* EntryFor(UnkAttack_l10bc0c* attack, u32 id) {
-    return static_cast<UnkAttackEntry_l10bc0c*>(fn_7100362324(reinterpret_cast<UnkCancelAttack_ovb0128*>(attack), id));
+    return static_cast<UnkAttackEntry_l10bc0c*>(CAttack_GetPreset(reinterpret_cast<UnkCancelAttack_ovb0128*>(attack), id));
 }
 
 // Whether two history entries count as the same attack: the same one, or both in one named group.

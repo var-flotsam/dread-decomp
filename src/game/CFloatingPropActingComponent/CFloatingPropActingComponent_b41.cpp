@@ -15,11 +15,11 @@ struct UnkSelf_fp41 {
     UnkWeakHandle* handle;  // 0x40
 };
 
-void fn_71007e64d0(UnkSelf_fp41* self);
+void CFloatingPropActingComponent_PlayAnimation(UnkSelf_fp41* self);
 
-void fn_71007e63b8(UnkSelf_fp41* self) {
+void CFloatingPropActingComponent_FindTargetAndPlay(UnkSelf_fp41* self) {
     fn_71010c4228(reinterpret_cast<UnkParent*>(self));
     if (UnkWeakTarget* target = fn_71007e4924(self->owner))
         AssignRef(&self->handle, GetWeakHandle(target));
-    fn_71007e64d0(self);
+    CFloatingPropActingComponent_PlayAnimation(self);
 }
