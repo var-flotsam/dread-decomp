@@ -21,6 +21,7 @@
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkVec.h"
 #include "types.h"
+#include "game/UnkHyperBeamEffectHandle.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
@@ -51,16 +52,7 @@ struct UnkHyperBeamEffectRef {
     void* target;
     s64 serial;
 };
-struct UnkHyperBeamEffectHandle {
-    UnkHyperBeamEffectRef* ref;
-    s64 serial;
-
-    void* Get() const {
-        if (ref && ref->serial == serial && serial != -1)
-            return ref->target;
-        return nullptr;
-    }
-};
+inline void* UnkHyperBeamEffectHandle::Get() const { if (ref && ref->serial == serial && serial != -1) return ref->target; return nullptr; }
 
 // A file-path id (pool g_unk_7101d47200).
 struct UnkHyperBeamPathId {
