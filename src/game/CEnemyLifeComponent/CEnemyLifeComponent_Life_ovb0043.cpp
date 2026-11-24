@@ -187,7 +187,7 @@ bool fn_710115bdcc(UnkEnemyLifeComponent2_ovb0043* self, f32 fraction, bool flag
         UnkEnemyLifeActor2_ovb0043* actor = self->actor;
         UnkEnemyLifeAI2_ovb0043* ai = actor->ai;
         if (!ai || !ai->state || ai->state->field_0xc4) {
-            fn_71011a726c(reinterpret_cast<UnkTeamList*>(Instance_ovb0043()),
+            CTeamManager_AddMember(reinterpret_cast<UnkTeamList*>(Instance_ovb0043()),
                           reinterpret_cast<UnkWeakTarget*>(self->actor));
             fn_71011a710c(Instance_ovb0043());
         }

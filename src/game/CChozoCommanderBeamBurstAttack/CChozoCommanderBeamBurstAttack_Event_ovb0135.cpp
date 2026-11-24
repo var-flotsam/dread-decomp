@@ -225,7 +225,7 @@ struct UnkBurstAimPoint_ovb0135 {
 // Places the beam effect (fn_7101152b90, switched on when off) at the point's x and y and the beam node's
 // depth, turned a quarter turn past the node's x axis (its transform from fn_71011735e8 with the id
 // table's id at +0xd58).
-void fn_710042995c(UnkBurstAim_ovb0135* self, const UnkBurstAimPoint_ovb0135* point) {
+void CChozoCommanderBeamBurstAttack_PlaceEffectAtPoint(UnkBurstAim_ovb0135* self, const UnkBurstAimPoint_ovb0135* point) {
     UnkObject* model = self->owner->model;
     UnkEntity* entity = self->owner->entity;
     if (!model || !entity)

@@ -12,8 +12,9 @@ extern __attribute__((visibility("hidden"))) base::global::CStrId g_unk_71726c95
 
 struct UnkPathRecord;
 struct UnkComponent;
+struct UnkComponent_7100428010;
 struct UnkMlogMessage_b42a1;
 void fn_7100456b7c(void* callbacks, const UnkMlogMessage_b42a1* message);
 void fn_71004567dc(void*, void**);  // Unregisters.
-void fn_71004554d8(UnkComponent* component);
+void fn_71004554d8(UnkComponent_7100428010* component);
 void fn_7100456ac0(UnkPathRecord* self);

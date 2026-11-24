@@ -30,8 +30,8 @@ struct UnkSoundRef {
 struct UnkEntityWithSound;
 struct UnkShipRechargeEntity_b49a4;
 UnkSoundHandle fn_7100d7c590(UnkEntityWithSound* self, void* a);
-struct UnkSelf;
-struct UnkVec3;
+struct UnkSelf_71003d5a14;
+struct UnkVec3_71003d5a14;
 
 // The aim sound's id (+0x0) and the shot's animation id (+0x18).
 struct UnkAutsniperIds_ovb0122 {
@@ -153,7 +153,7 @@ void fn_71003d58f8(UnkAutsniperShootAttack_ovb0122* self) {
     v.x = self->target.x;
     v.y = self->target.y;
     v.z = self->target.z;
-    fn_71003d5450(reinterpret_cast<UnkSelf*>(self), reinterpret_cast<const UnkVec3*>(&v), 0);
+    fn_71003d5450(reinterpret_cast<UnkSelf_71003d5a14*>(self), reinterpret_cast<const UnkVec3_71003d5a14*>(&v), 0);
 }
 
 // The two timers: while inactive the wait timer runs up to the wait time, then the AI is told

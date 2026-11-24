@@ -101,7 +101,7 @@ void fn_7100fd5ecc(UnkMusicMgr_lfd5ecc* self, u32 index, bool hold, f32 time) {
     if (hold)
         fn_7100108a98(g_unk_7101d4d820, (u64)&first, true, fade);
     else
-        fn_7100108a84(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), reinterpret_cast<UnkHandle*>(&first), fade);
+        fn_7100108a84(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), reinterpret_cast<UnkHandle_7100fdd2b4*>(&first), fade);
 
     // The played path's string, counting the read. The pooled text is a whole CRntString in the original
     // (UnkStringData lays out only its text and key), copied here as one.

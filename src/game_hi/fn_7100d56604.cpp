@@ -29,7 +29,7 @@ struct UnkMtx34 {
     Vec3_d56604 GetTranslation() const { return Vec3_d56604{m[3], m[7], m[11]}; }
 };
 
-struct UnkShape {
+struct UnkShape_7100d56604 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -47,7 +47,7 @@ struct UnkShape10_d56604 {
 };
 
 template <class T, u32 Type>
-static inline T* ShapeCast(UnkShape* s) {
+static inline T* ShapeCast(UnkShape_7100d56604* s) {
     return s->GetType() == Type ? reinterpret_cast<T*>(s) : nullptr;
 }
 
@@ -70,7 +70,7 @@ UnkFlags_d56604 fn_7100d65b70(UnkShape10_d56604* shape, const UnkQueryBox* box, 
 
 // NON_MATCHING(minor): in the inline type-0x10 case the local box translation, the query object's
 // field stores and the vtable load are scheduled in a different order; same instructions otherwise.
-UnkFlags_d56604 fn_7100d56604(UnkWorld* self, const UnkQueryBox* box, UnkShape* shape, const UnkMtx34* xf, void* arg, u32 arg2) {
+UnkFlags_d56604 fn_7100d56604(UnkWorld* self, const UnkQueryBox* box, UnkShape_7100d56604* shape, const UnkMtx34* xf, void* arg, u32 arg2) {
     switch (shape->GetType()) {
     case 1:
         return fn_7100d56cec(self, box, ShapeCast<UnkShape1, 1>(shape), xf, arg);

@@ -18,9 +18,9 @@ struct UnkSentenceSphereList {
 
 UnkSentenceSphereList* fn_710045bc94();
 
-struct UnkComponent;
+struct UnkComponent_7100428010;
 
-void fn_71004565f0(UnkComponent* component) {
+void fn_71004565f0(UnkComponent_7100428010* component) {
     UnkSentenceSphereList* list = fn_710045bc94();
     for (UnkSentenceSphereEntry **it = list->data, **end = list->data + list->count; it != end; ++it)
         fn_710045c5e8(*it != nullptr ? (*it)->movement : nullptr, 0);

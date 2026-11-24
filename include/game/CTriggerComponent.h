@@ -22,7 +22,7 @@ struct UnkTriggerTarget_la601cc;
 void fn_7100a632e8(UnkTriggerOwned_b56* self);
 UnkHandleList_CGameManager* fn_7100a5e1dc();
 // Moves the component's key from `previous`'s listener list to `target`'s.
-void fn_7100a601cc(UnkTriggerComponent_la601cc* self, UnkTriggerTarget_la601cc* target,
+void CTriggerComponent_ReplaceEntityInside(UnkTriggerComponent_la601cc* self, UnkTriggerTarget_la601cc* target,
                    UnkTriggerTarget_la601cc* previous);
 
 // The original's unit defines it, so the compiler knows it doesn't keep `entry`'s address; noescape says so here,
@@ -34,4 +34,4 @@ extern UnkProperty g_unk_717274d6f0;
 extern void* g_unk_7101a8f5c8[];
 void fn_7100a5e8a4(UnkTriggerUpdate_ovb0067* self);
 void fn_7100a5ee80(UnkTriggerComponent_ovb0067* self, s32 kind, UnkTriggerActor_ovb0067* actor, const UnkVec3f* dir);
-void fn_7100a6081c(UnkColliderTrigger_b0058* self, base::global::CRntFile* file);
+void CTriggerComponent_LoadFromFile(UnkColliderTrigger_b0058* self, base::global::CRntFile* file);

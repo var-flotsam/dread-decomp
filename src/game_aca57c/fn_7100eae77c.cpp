@@ -32,18 +32,18 @@ struct UnkStrStorage_eae77c {
     void* field_0x28;
     u32 field_0x30;
 };
-struct UnkStrBuffer {
+struct UnkStrBuffer_7100eae77c {
     u8 unk_0x0[0x30];
     UnkStrStorage_eae77c storage;
 
-    UnkStrBuffer(const UnkStrBuffer& other);
-    ~UnkStrBuffer();
+    UnkStrBuffer_7100eae77c(const UnkStrBuffer_7100eae77c& other);
+    ~UnkStrBuffer_7100eae77c();
 };
-__attribute__((always_inline)) inline UnkStrBuffer::~UnkStrBuffer() {
+__attribute__((always_inline)) inline UnkStrBuffer_7100eae77c::~UnkStrBuffer_7100eae77c() {
     CRntString_Clear(reinterpret_cast<CRntString*>(this));
     CRntString_Destroy(reinterpret_cast<CRntString*>(this));
 }
-__attribute__((always_inline)) inline UnkStrBuffer::UnkStrBuffer(const UnkStrBuffer& other) {
+__attribute__((always_inline)) inline UnkStrBuffer_7100eae77c::UnkStrBuffer_7100eae77c(const UnkStrBuffer_7100eae77c& other) {
     CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<UnkAllocator*>(&storage));
     storage.vtable = g_unk_7101a1b5a0 + 2;
     storage.field_0x28 = nullptr;
@@ -80,7 +80,7 @@ struct UnkRecord118 {
     u32 field_0x88;
     u32 unk_0x8c;
     UnkPod90 field_0x90;
-    UnkStrBuffer field_0xa0;
+    UnkStrBuffer_7100eae77c field_0xa0;
     u32 field_0x108;
     u32 unk_0x10c;
     UnkPod110 field_0x110;

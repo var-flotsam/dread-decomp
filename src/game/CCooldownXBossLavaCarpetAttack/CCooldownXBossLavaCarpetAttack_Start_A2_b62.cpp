@@ -25,7 +25,7 @@
 
 using base::reflection::CClass;
 
-struct UnkSelf;
+struct UnkSelf_71004cb554;
 void fn_71004c5db0();
 struct UnkEntityState;
 // Typed as CHydrogigaZiplineRailComponent_b49.cpp declares it (one signature per symbol).
@@ -90,7 +90,7 @@ struct UnkCarpetStart_b62a2 {
 static_assert(__builtin_offsetof(UnkCarpetStart_b62a2, field_0x786) == 0x786, "layout");
 
 void fn_71004c3664(UnkCarpetStart_b62a2* self) {
-    fn_71004c1944(reinterpret_cast<UnkSelf*>(self));
+    fn_71004c1944(reinterpret_cast<UnkSelf_71004cb554*>(self));
     UnkCarpetTrackLink_b62a2* link = &self->link;
     link->context = self;
     link->callback = fn_71004c5db0;

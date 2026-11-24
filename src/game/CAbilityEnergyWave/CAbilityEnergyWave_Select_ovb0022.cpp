@@ -37,7 +37,7 @@ using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflValue;
 
-struct UnkSelf;
+struct UnkSelf_710030c0c0;
 struct UnkObject;
 struct UnkComponent;
 struct UnkPlayer;
@@ -133,13 +133,13 @@ bool fn_71002fdbc0(CAbilityComponent* self, bool) {
     return false;
 }
 
-struct UnkSelf;
+struct UnkSelf_710030c0c0;
 
 // Toggles the ability named `id` (fn_71002f9460).
 void fn_71003018f4(CAbilityComponent* self, const CStrId* id, bool on) {
     CAbility** it = FindSlot(self, id);
     if (it != self->end() && *it)
-        fn_71002f9460(reinterpret_cast<UnkSelf*>(*it), on);
+        fn_71002f9460(reinterpret_cast<UnkSelf_710030c0c0*>(*it), on);
 }
 
 // The reflected wrappers (the object at +8 of `obj`; arguments in the array at args[0]).

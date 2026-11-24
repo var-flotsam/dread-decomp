@@ -41,14 +41,14 @@ struct UnkTunnelTrap_la43a34 {
 // As CTunnelTrapMorphballComponent_b48.cpp and CTunnelTrapMorphballComponent_b36.cpp define them.
 struct UnkTunnelTrap_b48;
 struct UnkTunnelTrapMorphball;
-bool fn_7100a43e7c(UnkTunnelTrap_b48*);
-bool fn_7100a43f78(UnkTunnelTrap_b48*);
+bool CTunnelTrapMorphballComponent_GetActivated(UnkTunnelTrap_b48*);
+bool CTunnelTrapMorphballComponent_GetForcedOpened(UnkTunnelTrap_b48*);
 
 static inline void SetCollider(UnkCollisionContainer* collisions, const CStrId* name, bool enabled) {
     fn_7100d35a98(reinterpret_cast<UnkEntry*>(fn_71008640a4(collisions, name)), enabled);
 }
 
-void fn_7100a43a34(UnkTunnelTrap_la43a34* self) {
+void CTunnelTrapMorphballComponent_LoadFromBlackboard(UnkTunnelTrap_la43a34* self) {
     // Declared past a goto (no lifetime markers), so each keeps its own slot.
     goto start;
     base::reflection::UnkReflTypeIdArg play_mode;
@@ -58,8 +58,8 @@ void fn_7100a43a34(UnkTunnelTrap_la43a34* self) {
     base::reflection::UnkReflTypeIdArg close_mode;
     base::reflection::UnkReflTypeIdArg close_mask;
 start:
-    self->open = fn_7100a43e7c(reinterpret_cast<UnkTunnelTrap_b48*>(self));
-    bool resetting = fn_7100a43f78(reinterpret_cast<UnkTunnelTrap_b48*>(self));
+    self->open = CTunnelTrapMorphballComponent_GetActivated(reinterpret_cast<UnkTunnelTrap_b48*>(self));
+    bool resetting = CTunnelTrapMorphballComponent_GetForcedOpened(reinterpret_cast<UnkTunnelTrap_b48*>(self));
     UnkStruct_7101176ea8* animation = self->owner->animation;
     void* target = fn_71002b3b84(reinterpret_cast<UnkWeakTarget*>(self->owner));
     if (!animation || !target)

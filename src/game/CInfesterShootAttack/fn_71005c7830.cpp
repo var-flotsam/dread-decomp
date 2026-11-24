@@ -25,7 +25,7 @@ extern UnkConversion g_unk_71726ebba0;
 void fn_71005c73a8() __attribute__((visibility("hidden")));
 void fn_71005c73b4() __attribute__((visibility("hidden")));
 
-void fn_71005c7830() {
+void CInfesterShootAttack_InitStatics() {
     InitHeaderIds(&g_unk_71726ebbc0.ids);
     fn_71005c5ddc();
     fn_710009ec00(g_unk_71726eba58, g_unk_71726ebbc0.field_0x38);

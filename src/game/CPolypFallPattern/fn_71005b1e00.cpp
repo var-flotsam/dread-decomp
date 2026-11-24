@@ -43,7 +43,7 @@ extern UnkConversion g_unk_71726e9cb0;
 void fn_71005b0d08() __attribute__((visibility("hidden")));
 extern char g_unk_71726e9cd0[];
 
-void fn_71005b1e00() {
+void CPolypFallPattern_InitStatics() {
     InitHeaderIds(&g_unk_71726ea338.ids);
     fn_71005ada84();
     fn_710009ec00(g_unk_71726e98b0, g_unk_71726ea338.field_0x28);

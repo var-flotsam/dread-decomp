@@ -6,14 +6,11 @@
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2656.h"
 #include "types.h"
+#include "game/UnkPlayer.h"
 
 struct CSubAreaManager;
 struct UnkSubArea;
 
-struct UnkPlayer {
-    u8 pad_0x0[0x1c0];
-    UnkPlayerSub* field_0x1c0;
-};
 
 // The fade durations of the sub-area change (g_unk_71729da878's tunable, as far as read here).
 struct UnkTunable {

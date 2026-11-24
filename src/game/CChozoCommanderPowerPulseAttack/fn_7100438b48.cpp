@@ -46,7 +46,7 @@ struct UnkOwner_438b48 {
     void* field_0x298;
 };
 
-struct UnkSelf {
+struct UnkSelf_7100438b48 {
     u8 pad_0x0[8];
     UnkOwner_438b48* field_0x8;
     u8 pad_0x10[0x48];
@@ -65,7 +65,7 @@ static inline u32 AsU32(f32 value) {
 
 // NON_MATCHING(minor): the zeroing of the query direction (overwritten right after) is optimised
 // out, so the stack setup is two stores shorter
-void fn_7100438b48(UnkSelf* self) {
+void fn_7100438b48(UnkSelf_7100438b48* self) {
     fn_710042bb3c(self);
     UnkOwner_438b48* owner = self->field_0x8;
     self->field_0x58 = 0;

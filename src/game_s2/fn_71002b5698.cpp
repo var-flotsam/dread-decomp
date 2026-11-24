@@ -8,12 +8,12 @@
 
 using base::global::UnkStrId;
 
-struct UnkNode {
+struct UnkNode_71002b5698 {
     UnkStrIdTwoStep field_0x0;
     UnkObject_0x100 field_0x8;
 };
 
-void fn_71002b5698(UnkNode* self) {
+void fn_71002b5698(UnkNode_71002b5698* self) {
     fn_71002b6094(&self->field_0x8);
     self->field_0x0.~UnkStrIdTwoStep();
 }

@@ -4,10 +4,10 @@
 #include "base/core/CBaseObject.h"
 #include "types.h"
 
-struct UnkComponent;
+struct UnkComponent_71003c286c;
 
 void fn_71003c2868();
-void fn_71003c286c(UnkComponent* self);
+void fn_71003c286c(UnkComponent_71003c286c* self);
 void fn_71003c28d0();
 void fn_71003c28d4();
 void fn_71003c28d8();

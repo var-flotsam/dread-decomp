@@ -49,7 +49,7 @@ struct UnkHypersparkAttack_ovb0023 {
     f32 field_0x70;
 };
 
-void fn_710042dba0(UnkHypersparkAttack_ovb0023* self, UnkVec3f* out) {
+void CChozoCommanderHypersparkAttack_GetDirection(UnkHypersparkAttack_ovb0023* self, UnkVec3f* out) {
     if ((self->field_0x58 | 2) == 3) {
         *out = UnkVec3f(0.0f, 1.0f, 0.0f);
     } else {
@@ -117,7 +117,7 @@ static inline bool IsActive(UnkHypersparkAbility_ovb0023* ability) {
     return state >= 3;
 }
 
-bool fn_710042c9e0(UnkHypersparkAttack3_ovb0023* self) {
+bool CChozoCommanderHypersparkAttack_CanStart(UnkHypersparkAttack3_ovb0023* self) {
     if (!fn_710042bb38(self))
         return false;
     UnkActor* target = fn_7100d7c990(self->owner);

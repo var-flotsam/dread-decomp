@@ -34,14 +34,14 @@ struct UnkInfesterUpdAI_A3_b75 {
     s32 field_0x146d0;
 };
 
-void fn_71005cb1e4(UnkInfesterUpdAI_A3_b75* self, f32 dt);
+void CInfesterAIComponent_UpdateCombatTimeout(UnkInfesterUpdAI_A3_b75* self, f32 dt);
 
-void fn_71005cb0b8(UnkInfesterUpdAI_A3_b75* self, f32 dt) {
+void CInfesterAIComponent_Update(UnkInfesterUpdAI_A3_b75* self, f32 dt) {
     fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);  // with `dt`, as the original
     if (static_cast<UnkInfesterState_A3_b75*>(self->actor->field_0x1b8)->state == 2)
         return;
     if (self->field_0x146d0 == 1)
-        fn_71005cb1e4(self, dt);
+        CInfesterAIComponent_UpdateCombatTimeout(self, dt);
     CBlackboard* blackboard = &self->blackboard;
     CStrId name("vPlayerPos", true);
     UnkTypedValue v;

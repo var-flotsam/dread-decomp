@@ -24,7 +24,7 @@
 
 using base::reflection::UnkReflObject;
 
-struct UnkComponent;
+struct UnkComponent_71005174e0;
 struct UnkDoorEmmyFX_b50;
 
 void fn_71007b6be4(UnkDoorEmmyFX_b50* self, bool add);
@@ -137,5 +137,5 @@ void fn_7100512b94(UnkEmmyChaseAction_l512b94* self, u32 arg) {
         params.field_0x1c = 1;
         fn_71006f4b0c(target, &params, 1);
     }
-    fn_710051db44(reinterpret_cast<UnkComponent*>(self), arg);
+    fn_710051db44(reinterpret_cast<UnkComponent_71005174e0*>(self), arg);
 }

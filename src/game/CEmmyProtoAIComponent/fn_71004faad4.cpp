@@ -7,7 +7,7 @@
 #include "game/UnkTU811.h"
 #include "types.h"
 
-struct UnkComponent {
+struct UnkComponent_71004faad4 {
     void** vtable;
     u8 pad_0x8[0x2a6f0];
 };
@@ -19,11 +19,11 @@ struct UnkCallback {
     base::global::UnkStringData* field_0x8;
     u32 field_0x10;
     u64 field_0x18;
-    UnkComponent* field_0x20;
+    UnkComponent_71004faad4* field_0x20;
     void (*field_0x28)();
     u32 field_0x30;
 
-    __attribute__((always_inline)) explicit UnkCallback(UnkComponent* owner) : field_0x0(0), field_0x8(nullptr) {
+    __attribute__((always_inline)) explicit UnkCallback(UnkComponent_71004faad4* owner) : field_0x0(0), field_0x8(nullptr) {
         if (!g_unk_7101d47108)
             base::global::UnkEnsureStringPool();
         field_0x8 = &g_unk_7101d47108->empty;
@@ -35,7 +35,7 @@ struct UnkCallback {
     }
 };
 
-struct UnkRecord_4faad4 : UnkComponent {
+struct UnkRecord_4faad4 : UnkComponent_71004faad4 {
     UnkCallback field_0x2a6f8;
 };
 

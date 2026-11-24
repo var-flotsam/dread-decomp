@@ -8,22 +8,12 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
+#include "game/UnkShape.h"
 
-struct UnkShape {
-    void** vtable;
-    u8 pad_0x8[0x38];
-    f32 field_0x40;
-    u8 pad_0x44[4];
-    f32 field_0x48;
-    u8 pad_0x4c[0x14];
-    u8 field_0x60;
-    u8 pad_0x61[7];
-    void vf_0x98() { reinterpret_cast<void (*)(UnkShape*)>(vtable[19])(this); }
-};
 
-struct UnkTarget {
+struct UnkTarget_710043c084 {
     u8 pad_0x0[0x1f8];
-    UnkTarget* field_0x1f8;
+    UnkTarget_710043c084* field_0x1f8;
     u8 pad_0x200[0x0];
 };
 
@@ -34,7 +24,7 @@ struct UnkFlagged {
 
 struct UnkEntity;
 
-struct UnkSelf {
+struct UnkSelf_710043c084 {
     u8 pad_0x0[8];
     UnkActor* field_0x8;
     u8 pad_0x10[0x48];
@@ -50,7 +40,7 @@ struct UnkOutput {
 
 extern char g_unk_7101649570[];
 
-void fn_710043c084(UnkSelf* self, UnkOutput* out) {
+void fn_710043c084(UnkSelf_710043c084* self, UnkOutput* out) {
     UnkActor* target = fn_7100d7c990(self->field_0x8);
     if (!target)
         return;

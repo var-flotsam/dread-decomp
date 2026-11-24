@@ -18,7 +18,7 @@ using base::global::CRntString;
 
 struct lua_State;
 struct UnkSoundMgr;
-struct UnkVec;
+struct UnkVec_710048a194;
 struct UnkSoundSystemMasks_ovb0074;
 struct UnkObserverEntryMap_7100ca79f0;
 
@@ -303,7 +303,7 @@ s32 FadeOut(lua_State* L) {
     if (fn_71010c0270(L, "f", &duration)) {
         u8* effects = g_unk_7101d47310->field_0x1040;
         UnkPos_ovb0156 origin;
-        fn_7101053850(effects, reinterpret_cast<UnkVec*>(&origin), 1, duration, 1.0f);
+        fn_7101053850(effects, reinterpret_cast<UnkVec_710048a194*>(&origin), 1, duration, 1.0f);
     }
     return 0;
 }

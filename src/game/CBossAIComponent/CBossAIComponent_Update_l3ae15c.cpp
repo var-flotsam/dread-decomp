@@ -16,7 +16,7 @@ struct UnkBossColorAI_ovb0102;
 struct UnkBossAITimers_ovb0102;
 struct UnkBossBlinkAI_ovb0102;
 struct UnkStruct_71003ae428;
-struct UnkSelf;
+struct UnkSelf_71003ad45c;
 struct UnkRenderItemPair_b64a2;
 void CBossAIComponent_UpdateColorChange(UnkBossColorAI_ovb0102* self, f32 dt, bool counting);
 void fn_71003ad7ec(UnkBossAITimers_ovb0102* self, f32 dt);
@@ -113,7 +113,7 @@ void fn_71003ae15c(UnkBossAI_l3ae15c* self, f32 dt) {
 
     CBossAIComponent_UpdateColorChange(reinterpret_cast<UnkBossColorAI_ovb0102*>(self), dt, true);
     if (self->flags->field_0x50e && self->field_0x14804 >= 1) {
-        if (fn_71003ad4dc(reinterpret_cast<UnkSelf*>(self), 0.15f, self->field_0x14804))
+        if (fn_71003ad4dc(reinterpret_cast<UnkSelf_71003ad45c*>(self), 0.15f, self->field_0x14804))
             self->field_0x14804 = -1;
     }
 

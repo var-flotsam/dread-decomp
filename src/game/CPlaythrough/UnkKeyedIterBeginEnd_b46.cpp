@@ -5,12 +5,12 @@
 #include "types.h"
 
 // Signature as src/game/CPlaythrough/fn_71002edacc.cpp defines it.
-struct UnkHolder;
-void fn_71002edacc(UnkHolder* self);
+struct UnkHolder_71002edacc;
+void fn_71002edacc(UnkHolder_71002edacc* self);
 
 struct UnkKey_b46a1 {
     u64 a;
-    ~UnkKey_b46a1() { fn_71002edacc(reinterpret_cast<UnkHolder*>(this)); }
+    ~UnkKey_b46a1() { fn_71002edacc(reinterpret_cast<UnkHolder_71002edacc*>(this)); }
 };
 
 struct UnkBlob1_b46a1 {

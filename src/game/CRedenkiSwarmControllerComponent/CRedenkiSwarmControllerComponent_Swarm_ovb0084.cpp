@@ -1017,7 +1017,7 @@ f32 fn_710065aa30(UnkRedenkiCtrl_Speed_ovb0084* self) {
 // ---- fn_710065ab50: a member's message: after the base handler (fn_710074ddd8), the expected type restarts the member;
 // in state 1 the member's effect starts and its +0x64 and +0x160 are reset. ----
 
-struct UnkSelf;
+struct UnkSelf_7100579d08;
 struct UnkTarget;
 struct UnkMessage_579d08;
 struct UnkSwarmMember_ovb6;
@@ -1050,7 +1050,7 @@ struct UnkRedenkiMemberFx_ovb0084 {
 bool fn_710065ab50(UnkRedenkiHandler_ovb0084* self, UnkRedenkiMemberFx_ovb0084* member,
                    UnkRedenkiMessage_ovb0084* message) {
     UnkTarget* target = reinterpret_cast<UnkTarget*>(member);
-    if (fn_710074ddd8(reinterpret_cast<UnkSelf*>(self), target, reinterpret_cast<UnkMessage_579d08*>(message)))
+    if (fn_710074ddd8(reinterpret_cast<UnkSelf_7100579d08*>(self), target, reinterpret_cast<UnkMessage_579d08*>(message)))
         return true;
     if (message->type->id == 0xfab221522cf4e099ull && fn_7100744e1c(reinterpret_cast<UnkSwarmMember_ovb6*>(member)))
         fn_7100655280(reinterpret_cast<UnkRedenkiController_b55*>(self), target);

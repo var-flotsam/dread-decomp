@@ -20,7 +20,7 @@ struct UnkWidgetMember {
     UnkWidgetMember(const UnkWidgetMember&) {}
 };
 
-struct UnkWidget {
+struct UnkWidget_71001fae8c {
     void** vtable_0x0;
     void* field_0x8;
     u8 id_0x10[8];
@@ -39,9 +39,9 @@ struct UnkWidget {
     UnkWidgetMember member_0x108;
 };
 
-typedef void (*UnkVf50)(UnkWidget*, int);
+typedef void (*UnkVf50)(UnkWidget_71001fae8c*, int);
 
-void fn_71001fae8c(UnkWidget* self, UnkWidgetArg* a) {
+void fn_71001fae8c(UnkWidget_71001fae8c* self, UnkWidgetArg* a) {
     self->field_0x8 = nullptr;
     self->vtable_0x0 = g_unk_7101a1f000 + 2;
     CStrId_Construct(self->id_0x10, "", true);

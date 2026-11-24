@@ -24,7 +24,7 @@ __attribute__((always_inline)) static inline void Set_b61a2(UnkTimelineComponent
     fn_7100a2cb7c(timeline, &id.hash, &mask.id, false, -1.0f);
 }
 
-void fn_71003ffb74(UnkCannonBeam_b61a2* self) {
+void CCentralUnitCannonBeamMovementComponent_SetLaunchTimelineEvent(UnkCannonBeam_b61a2* self) {
     fn_7100ac3880(reinterpret_cast<UnkSelf*>(self));
     auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8);
     if (!timeline)

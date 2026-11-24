@@ -32,7 +32,7 @@ Uuid GenerateUuid();
 s32 TSNPrintf(char* buffer, u64 size, const char* format, ...);
 }  // namespace nn::util
 
-struct UnkVec {
+struct UnkVec_710048a194 {
     u64 xy;
     u32 z;
 };
@@ -95,7 +95,7 @@ static inline bool IsDifficulty(const CRntString& current, u32 index) {
 
 // Plays the effect player's fade at the origin.
 static inline void PlayFade(void* effects) {
-    UnkVec origin;
+    UnkVec_710048a194 origin;
     origin.xy = 0;
     origin.z = 0;
     fn_7101053850(effects, &origin, 1, 2.0f, 1.0f);

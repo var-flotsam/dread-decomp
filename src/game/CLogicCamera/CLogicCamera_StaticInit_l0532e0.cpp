@@ -36,9 +36,9 @@ void fn_7101051230(UnkEnumType* type, const CStrId& name, const base::reflection
                    void (*setup)(base::reflection::CClass*), void*);
 void fn_7101051190(base::reflection::CClass* cls);
 extern UnkConversion g_unk_71729fde50;
-struct UnkCameraCallbackSet_ovb0070;
-UnkCameraCallbackSet_ovb0070* fn_710105312c(UnkCameraCallbackSet_ovb0070* self,
-                                            const UnkCameraCallbackSet_ovb0070* other);
+struct UnkCameraCallbackSet_ovb0070_ovb0070;
+UnkCameraCallbackSet_ovb0070_ovb0070* fn_710105312c(UnkCameraCallbackSet_ovb0070_ovb0070* self,
+                                            const UnkCameraCallbackSet_ovb0070_ovb0070* other);
 extern UnkConversion g_unk_71729fde70;
 UnkEnumType* fn_7100231b40();
 void fn_71010532c8();

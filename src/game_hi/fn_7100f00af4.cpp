@@ -7,7 +7,7 @@
 #include "types.h"
 #include "base/UnkLinkedList.h"
 
-struct UnkRefObj {
+struct UnkRefObj_7100f00af4 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -18,15 +18,15 @@ struct UnkRefObj {
     u32 field_0x2c;
 };
 
-static inline void RefAdd(UnkRefObj* o) { __atomic_fetch_add(&o->ref_count, 1, __ATOMIC_SEQ_CST); }
-static inline void RefRelease(UnkRefObj* o) {
+static inline void RefAdd(UnkRefObj_7100f00af4* o) { __atomic_fetch_add(&o->ref_count, 1, __ATOMIC_SEQ_CST); }
+static inline void RefRelease(UnkRefObj_7100f00af4* o) {
     __atomic_fetch_sub(&o->ref_count, 1, __ATOMIC_SEQ_CST);
     if (__atomic_load_n(&o->ref_count, __ATOMIC_SEQ_CST) == 0)
         o->vf_0x10();
 }
 
 struct UnkRef {
-    UnkRefObj* ptr;
+    UnkRefObj_7100f00af4* ptr;
     UnkRef() : ptr(nullptr) {}
     UnkRef(const UnkRef& o) : ptr(o.ptr) {
         if (ptr)

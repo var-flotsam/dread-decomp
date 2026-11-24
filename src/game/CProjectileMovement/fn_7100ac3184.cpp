@@ -15,7 +15,7 @@
 
 using base::global::CStrId;
 
-struct UnkVec3 {
+struct UnkVec3_7100ac3184 {
     u32 x, y, z;
 };
 
@@ -33,7 +33,7 @@ struct UnkTransformHolder {
     UnkTransform* transform;
 };
 
-struct UnkOwner {
+struct UnkOwner_7100ac3184 {
     u8 unk_0x0[0x2a0];
     UnkCollisionContainer* field_0x2a0;
     u8 unk_0x2a8[0x40];
@@ -68,7 +68,7 @@ struct UnkCallback_ac3184 {
 struct UnkComponent_0x5d0 {
     void** vtable;
     u8 unk_0x8[0x28];
-    UnkOwner* owner;
+    UnkOwner_7100ac3184* owner;
     u8 unk_0x38[0x44];
     f32 field_0x7c;
     u8 unk_0x80[0x88];
@@ -81,7 +81,7 @@ struct UnkComponent_0x5d0 {
     UnkWeakHandle* field_0x4a8;
     UnkWeakHandle* field_0x4b0;
     u8 unk_0x4b8[0xc];
-    UnkVec3 field_0x4c4;
+    UnkVec3_7100ac3184 field_0x4c4;
     u8 unk_0x4d0[0x1c];
     u32 field_0x4ec[13];
     u32 field_0x520;
@@ -142,11 +142,11 @@ void fn_7100ac3184(UnkComponent_0x5d0* self) {
     fn_7100ac7628(self);
     UnkTransformHolder* holder = self->field_0x230;
     UnkTransform* t = holder ? holder->transform : nullptr;
-    UnkVec3 v;
+    UnkVec3_7100ac3184 v;
     if (t)
-        v = UnkVec3{t->field_0x44, t->field_0x54, t->field_0x64};
+        v = UnkVec3_7100ac3184{t->field_0x44, t->field_0x54, t->field_0x64};
     else
-        v = UnkVec3{0, 0, 0};
+        v = UnkVec3_7100ac3184{0, 0, 0};
     self->field_0x4c4 = v;
     ResolveTarget(self, self->field_0x5c8->field_0x108, &self->field_0x4a8);
     ResolveTarget(self, self->field_0x5c8->field_0x110, &self->field_0x4b0);

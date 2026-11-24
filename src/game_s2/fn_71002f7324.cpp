@@ -12,15 +12,15 @@ struct UnkRefCounted_2f7324 {
     s32 field_0x54;
 };
 
-struct UnkRef {
+struct UnkRef_71002f7324 {
     UnkRefCounted_2f7324* field_0x0;
-    ~UnkRef() {}
+    ~UnkRef_71002f7324() {}
 };
 
-struct UnkNode {
+struct UnkNode_71002f7324 {
     UnkKeyBody* field_0x0;
     UnkRefCounted_2f7324* field_0x8;
-    UnkNode* field_0x10;
+    UnkNode_71002f7324* field_0x10;
 };
 
 struct UnkTable {
@@ -41,13 +41,13 @@ struct UnkTable {
 
 void fn_7100017390(UnkRefCounted_2f7324* object, base::UnkLoadRequest* visitor);
 
-UnkRef fn_71002f7324(UnkTable* self, UnkKey* key, u32 a, void* b) {
+UnkRef_71002f7324 fn_71002f7324(UnkTable* self, UnkKey* key, u32 a, void* b) {
     UnkRefCounted_2f7324* found;
     if (self->field_0x10) {
         u32 h = key->field_0x8->field_0x30 ^ key->field_0x8->field_0x34;
         u32 index = h % self->field_0x14;
         if (index < self->field_0x10) {
-            UnkNode* node = *fn_71002f7a2c(self->field_0x8, index);
+            UnkNode_71002f7324* node = *fn_71002f7a2c(self->field_0x8, index);
             while (node) {
                 if (node->field_0x0 == key->field_0x8) {
                     found = node->field_0x8;
@@ -61,7 +61,7 @@ UnkRef fn_71002f7324(UnkTable* self, UnkKey* key, u32 a, void* b) {
     }
     found = self->vf_0x48(key, a, b);
 have:
-    UnkRef result = {nullptr};
+    UnkRef_71002f7324 result = {nullptr};
     if (found) {
         ++found->field_0x54;
         result.field_0x0 = found;

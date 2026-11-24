@@ -15,8 +15,8 @@
 using base::UnkStrIdMemberOf;
 using base::global::CFilePathStrId;
 
-struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
-    UnkFilePathList() {
+struct UnkFilePathList_71000839a0 : base::UnkVtableList<UnkListedPath> {
+    UnkFilePathList_71000839a0() {
         vtable = &g_unk_7101a1b030[2];
         count = 0;
         head = nullptr;
@@ -24,7 +24,7 @@ struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
         allocator = GetDefaultAllocator();
         flags = 0x13;
     }
-    ~UnkFilePathList() {
+    ~UnkFilePathList_71000839a0() {
         vtable = &g_unk_7101a1b030[2];
         for (UnkListedPath* n = head; n;) {
             UnkListedPath* next = n->next;
@@ -61,7 +61,7 @@ struct UnkPathSetOwner_A1b72 {
 };
 
 // The signature src/base/file/CPackManagerDevice.cpp declares.
-bool fn_710008c3bc(void* base_object, const CFilePathStrId& path, UnkFilePathList* out) {
+bool fn_710008c3bc(void* base_object, const CFilePathStrId& path, UnkFilePathList_71000839a0* out) {
     auto* self = static_cast<UnkPathSetOwner_A1b72*>(base_object);
     if (!self->bucket_count)
         return false;

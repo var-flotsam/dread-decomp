@@ -165,7 +165,7 @@ void fn_7100f165f4(UnkRewardsMode_b0242* self) {
     }
 }
 
-struct UnkListedItem;
+struct UnkListedItem_710119ba7c;
 struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
 extern const char* const g_unk_7101cab038[][3] __attribute__((visibility("hidden")));
@@ -180,7 +180,7 @@ void fn_7100f17218(UnkRewardsMode_b0242* self) {
         fn_710119aee8(scene);
         g_unk_7172729910 = scene;
     }
-    fn_710119ba7c(static_cast<UnkItemList*>(scene), reinterpret_cast<UnkListedItem*>(self->pad_0xa0));
+    fn_710119ba7c(static_cast<UnkItemList*>(scene), reinterpret_cast<UnkListedItem_710119ba7c*>(self->pad_0xa0));
     UnkVec3f a(0.0f, 0.0f, 0.0f);
     UnkVec3f b(0.0f, 0.0f, 0.0f);
     fn_7101053968(&manager->field_0x1040, &a, &b, 0.5f, 1.0f, 0.0f);
@@ -227,7 +227,7 @@ static inline void* MusicManager() {
     return manager;
 }
 
-struct UnkVec;
+struct UnkVec_710048a194;
 struct UnkRewardsPosition_b0242 {
     u64 xy;
     u32 z;
@@ -254,7 +254,7 @@ found:
     UnkGameManager* const* slot = &g_unk_7101d47310;
     self->state = 0x20;
     UnkRewardsPosition_b0242 position;
-    fn_7101053850(&(*slot)->field_0x1040, reinterpret_cast<UnkVec*>(&(position = {0, 0})), 1, 1.0f, 1.0f);
+    fn_7101053850(&(*slot)->field_0x1040, reinterpret_cast<UnkVec_710048a194*>(&(position = {0, 0})), 1, 1.0f, 1.0f);
     self->timer = 0.0f;
     if (self->field_0x60 <= 2 && self->field_0x68[self->field_0x60])
         return;

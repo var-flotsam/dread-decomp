@@ -57,9 +57,9 @@ void fn_7100146808(UnkSwitchObject133_ovb0168* self, UnkLinkSource133_ovb0168* s
 // ---- the constructor (the tagged header of src/base/UnkTaggedObjectSubCtors.cpp, a second base at +0x20) ----
 
 struct UnkSonarModel_ovb0085;
-struct UnkWidget;
+struct UnkWidget_710020716c;
 struct UnkWidgetArg;
-void fn_710020716c(UnkWidget* self, UnkWidgetArg* a);
+void fn_710020716c(UnkWidget_710020716c* self, UnkWidgetArg* a);
 
 struct UnkTaggedPart133_ovb0168 {
     u8 pad_0x0[0x362];
@@ -93,7 +93,7 @@ void fn_7100145bdc(UnkSonarModel_ovb0085* obj, const CStrId* name) {
     self->resource = nullptr;
     self->vtable = g_unk_7101a1c7d8 + 0x10;
     self->vtable2 = g_unk_7101a1c7d8 + 0x1d0;
-    fn_710020716c((UnkWidget*)self->sub, (UnkWidgetArg*)name);
+    fn_710020716c((UnkWidget_710020716c*)self->sub, (UnkWidgetArg*)name);
     self->field_0x160 = nullptr;
     fn_71000255c4(self->member);
     u32 flags = self->flags;

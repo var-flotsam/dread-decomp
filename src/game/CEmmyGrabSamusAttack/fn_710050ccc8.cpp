@@ -31,7 +31,7 @@ struct UnkOwner_50ccc8 {
     UnkObject_50ccc8* field_0x240;
 };
 
-struct UnkSelf {
+struct UnkSelf_710050ccc8 {
     u8 pad_0x0[8];
     UnkOwner_50ccc8* field_0x8;
     u8 pad_0x10[0x6a8];
@@ -41,7 +41,7 @@ struct UnkSelf {
     f32 field_0x6c8;
 };
 
-void fn_710050ccc8(UnkSelf* self) {
+void fn_710050ccc8(UnkSelf_710050ccc8* self) {
     fn_710050cd98(self);
     UnkObject_50ccc8* object = self->field_0x8->field_0x240;
     UnkEmmyAI* ai = nullptr;

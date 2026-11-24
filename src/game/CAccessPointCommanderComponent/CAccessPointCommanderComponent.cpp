@@ -18,7 +18,7 @@ struct UnkAccessPointCommanderTU {
 extern UnkAccessPointCommanderTU g_unk_717274ea88 __attribute__((visibility("hidden")));
 extern char g_unk_717274ea78;
 
-void fn_7100a6b440() {
+void CAccessPointCommanderComponent_InitStatics() {
     UnkAccessPointCommanderTU& tu = g_unk_717274ea88;
     InitHeader(tu.header);
     tu.range[0] = -1.0f;

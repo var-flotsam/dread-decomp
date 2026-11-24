@@ -32,7 +32,7 @@ struct UnkSoundIdListNode_ovb0221 {
     UnkSoundIdListNode_ovb0221* next;
 };
 
-struct UnkRefObj;
+struct UnkRefObj_7100f011c4;
 struct UnkSoundIdRegistry;
 void fn_7100f004dc(UnkSoundIdRegistry* self);
 
@@ -56,7 +56,7 @@ void fn_7100f00600(UnkStruct_0x128* self) {
     UnkSoundIdListNode_ovb0221* node = self->field_0x80.head;
     while (node) {
         UnkSoundIdRef_ovb0221 ref = node->ref;
-        fn_710021fafc(reinterpret_cast<UnkRefObj*>(ref.ptr));
+        fn_710021fafc(reinterpret_cast<UnkRefObj_7100f011c4*>(ref.ptr));
         node = node->next;
     }
     fn_7100f004dc(reinterpret_cast<UnkSoundIdRegistry*>(self));

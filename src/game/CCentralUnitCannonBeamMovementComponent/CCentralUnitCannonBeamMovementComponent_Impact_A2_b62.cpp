@@ -28,7 +28,7 @@ __attribute__((always_inline)) static inline void SetImpact_b62a2(UnkCannonBeam_
     self->field_0x524 = true;
 }
 
-void fn_7100400818(UnkCannonBeam_b62a2* self) {
+void CCentralUnitCannonBeamMovementComponent_SetImpactTimelineEvent(UnkCannonBeam_b62a2* self) {
     fn_7100ac4dc4(self);
     auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8);
     if (!timeline)

@@ -13,6 +13,7 @@
 #include "base/math/UnkSegment2D.h"
 #include "game/malloc.h"
 #include "types.h"
+#include "game/UnkAIPath.h"
 
 using base::math::CVector2D;
 
@@ -21,26 +22,11 @@ struct UnkAIPathVertex {
     f32 field_0x8;
 };
 
-struct UnkAIPath {
-    UnkAIPathVertex* vertices;
-    u32 count;
-    u8 unk_0xc[0x20];
-    u8 closed;
-    u8 unk_0x2d[0x1b];
-    f32* lengths;  // one per edge
-
-    u32 EdgeCount() const { return count - (!closed & (count != 0)); }
-    // The edge after `i`, wrapping to the first.
-    u32 NextEdge(u32 i) const { return i == EdgeCount() - 1 ? 0 : i + 1; }
-    // The edge before `i`, wrapping to the last.
-    u32 PrevEdge(u32 i) const { return (i == 0 ? EdgeCount() : i) - 1; }
-    // An edge's length (-1 past the last edge).
-    f32 EdgeLength(u32 i) const { return i < EdgeCount() ? lengths[i] : -1.0f; }
-    // Builds edge `i` (from its vertex to the next one, wrapping to the first) in `seg`.
-    void Edge(UnkSegment2D* seg, u32 i) const {
-        new (seg) UnkSegment2D(vertices[i].pos, (count - 1 == i ? vertices : &vertices[i + 1])->pos);
-    }
-};
+inline u32 UnkAIPath::EdgeCount() const { return count - (!closed & (count != 0)); }
+inline u32 UnkAIPath::NextEdge(u32 i) const { return i == EdgeCount() - 1 ? 0 : i + 1; }
+inline u32 UnkAIPath::PrevEdge(u32 i) const { return (i == 0 ? EdgeCount() : i) - 1; }
+inline f32 UnkAIPath::EdgeLength(u32 i) const { return i < EdgeCount() ? lengths[i] : -1.0f; }
+inline void UnkAIPath::Edge(UnkSegment2D* seg, u32 i) const { new (seg) UnkSegment2D(vertices[i].pos, (count - 1 == i ? vertices : &vertices[i + 1])->pos); }
 
 // The nearest edge of a polygon to a point (src/base/spatial/UnkPolygon2D.cpp, which defines the
 // types).

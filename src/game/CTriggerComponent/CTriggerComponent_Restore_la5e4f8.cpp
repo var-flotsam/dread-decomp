@@ -59,7 +59,7 @@ static inline void BuildConditionName(UnkTriggerRestore_a5e4f8* self) {
         fn_7100ae9d7c(&self->condition_name, (UnkIdSource*)&g_unk_717274d6f0, CStrId(self->name));
 }
 
-void fn_7100a5e4f8(UnkTriggerRestore_a5e4f8* self) {
+void CTriggerComponent_RestorePersistentState(UnkTriggerRestore_a5e4f8* self) {
     if (!self->enabled)
         return;
     bool value = self->flag;

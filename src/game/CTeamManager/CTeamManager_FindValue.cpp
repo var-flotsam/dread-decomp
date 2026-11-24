@@ -21,7 +21,7 @@ struct UnkTeamList_011a76ec {
     UnkTeamNode_CTeamManager_FindValue* head;
 };
 
-f32 fn_71011a76ec(const UnkTeamList_011a76ec* self, const void* target) {
+f32 CTeamManager_FindMemberValue(const UnkTeamList_011a76ec* self, const void* target) {
     for (UnkTeamNode_CTeamManager_FindValue* n = self->head; n != nullptr; n = n->next) {
         void* t = n->ref != nullptr ? n->ref->target : nullptr;
         if (t == target)

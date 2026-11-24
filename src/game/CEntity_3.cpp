@@ -6,16 +6,13 @@
 #include "game/UnkHandle.h"
 #include "game/UnkTU50.h"
 #include "types.h"
+#include "game/UnkHyperBeamEffectHandle.h"
 
 using base::global::CStrId;
 
 struct UnkActor;
 struct UnkHyperBeamEffectDesc;
 struct UnkHyperBeamEffectRef;
-struct UnkHyperBeamEffectHandle {
-    UnkHyperBeamEffectRef* ref;
-    s64 serial;
-};
 struct UnkHandleTarget;
 
 struct CRumbleComponent;

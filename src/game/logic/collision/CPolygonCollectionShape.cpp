@@ -57,29 +57,29 @@ struct UnkPolygonVertex {
     f32 field_0x8;
 };
 
-struct UnkPolygon2D {
+struct UnkPolygon2D_710012be70 {
     UnkPolygonVertex* vertices;
     u32 count;
     u8 unk_0xc[0x20];
     u8 closed;
     u8 unk_0x2d[0x1b];
 };
-static_assert(sizeof(UnkPolygon2D) == 0x48, "UnkPolygon2D layout");
+static_assert(sizeof(UnkPolygon2D_710012be70) == 0x48, "UnkPolygon2D_710012be70 layout");
 
 // The number of edges: an open polygon has none from its last vertex back to the first.
-static inline u32 EdgeCount(const UnkPolygon2D& p) {
+static inline u32 EdgeCount(const UnkPolygon2D_710012be70& p) {
     return p.count - (!p.closed & (p.count != 0));
 }
 
 struct UnkPolygonCollection2D {
-    UnkPolygon2D* polygons;
+    UnkPolygon2D_710012be70* polygons;
     u32 count;
 };
 
 // What the sink gets for a hit: the polygon, the edge's handle (the polygon's index in bits 16 to
 // 30, the edge's in the low bits) and the contact.
 struct UnkPolygonHit {
-    const UnkPolygon2D* polygon;
+    const UnkPolygon2D_710012be70* polygon;
     u32 handle;
     UnkContactPoint point;
 };
@@ -234,7 +234,7 @@ UnkColliderResult fn_7100d636d8(UnkShape10* self, const UnkSegment2D* seg, UnkLo
 UnkColliderResult fn_7100d644d0(UnkPolygonCollection2D* self, const UnkSegment2D* seg, UnkLocalQuery* query) {
     UnkColliderResult result = NoContact();
     u64 base = 0;
-    for (const UnkPolygon2D *p = self->polygons, *end = p + self->count; p != end && !(result.bits & 2);
+    for (const UnkPolygon2D_710012be70 *p = self->polygons, *end = p + self->count; p != end && !(result.bits & 2);
          ++p, base += 0x10000) {
         for (u64 i = 0; !(result.bits & 2) && i < EdgeCount(*p); ++i) {
             const UnkPolygonVertex* v = &p->vertices[i];
@@ -340,7 +340,7 @@ bool fn_7100d668d4(UnkLeafVisitor<UnkShape8Geometry, bool>* self, const UnkTreeN
                 self->result.bits |= 3;
             } else {
                 auto* pool = reinterpret_cast<UnkPool_0x48*>(const_cast<void*>(query->field_0x18));
-                const auto* polygon = reinterpret_cast<const UnkPolygon2D*>(fn_710012431c(pool, LeafHandle(node)));
+                const auto* polygon = reinterpret_cast<const UnkPolygon2D_710012be70*>(fn_710012431c(pool, LeafHandle(node)));
                 UnkPolygonHit h{polygon, LeafHandle(node), *p};
                 self->result.bits |= query->vf_0x10(h).bits;
             }
@@ -479,7 +479,7 @@ static inline UnkColliderResult SweepEdges(UnkPolygonCollection2D* self, const S
     UnkColliderResult result = NoContact();
     UnkVec2Result step(dir->x, dir->y);
     u64 base = 0;
-    for (const UnkPolygon2D *p = self->polygons, *end = p + self->count; p != end && !(result.bits & 2);
+    for (const UnkPolygon2D_710012be70 *p = self->polygons, *end = p + self->count; p != end && !(result.bits & 2);
          ++p, base += 0x10000) {
         for (u64 i = 0; !(result.bits & 2) && i < EdgeCount(*p); ++i) {
             const UnkPolygonVertex* v = &p->vertices[i];

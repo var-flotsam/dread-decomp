@@ -86,7 +86,7 @@ u32 fn_71006bb110(UnkShelmitDamageAI_l6bb110* self, UnkShelmitEvent_l6bb110* eve
                 event->object->Release();
                 event->object = nullptr;
             }
-            fn_71006baf90(reinterpret_cast<UnkShelmitAI*>(self));
+            fn_71006baf90(reinterpret_cast<UnkShelmitAI_b38*>(self));
             return 6;
         }
     }

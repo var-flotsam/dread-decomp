@@ -207,7 +207,7 @@ struct UnkTeamManager {
 };
 
 // Rebuilds the sorted list from the members whose AI component is active (fn_71011a6ec8 for each).
-void fn_71011a6d50(UnkTeamManager* self);
+void CTeamManager_RebuildSortedList(UnkTeamManager* self);
 
 void fn_71011a67b8(UnkTeamSortedList* self, u32 capacity, u32 flags, base::UnkAllocator* allocator) {
     self->vtable = &g_unk_7101cb5668[2];
@@ -275,7 +275,7 @@ UnkWeakTarget* fn_71011a6b68(UnkTeamList* self) {
 }
 
 // The planar distance from each member to the actor it is acting against.
-void fn_71011a6c9c(UnkTeamList* self) {
+void CTeamManager_UpdateTargetDistances(UnkTeamList* self) {
     for (UnkTeamNode* n = self->head; n; n = n->next) {
         if (!n->handle.ptr || !n->handle.ptr->target)
             continue;
@@ -348,8 +348,8 @@ void fn_71011a7110(UnkTeamManager* self) {
         }
         n->flag = false;
     }
-    fn_71011a6c9c(&self->list);
-    fn_71011a6d50(self);
+    CTeamManager_UpdateTargetDistances(&self->list);
+    CTeamManager_RebuildSortedList(self);
     for (UnkTeamSortedNode* n = self->sorted.head; n && n->key.value > 0.0f; n = n->next) {
         UnkWeakTarget* t = n->key.handle.Target();
         if (!t)
@@ -361,7 +361,7 @@ void fn_71011a7110(UnkTeamManager* self) {
     }
 }
 
-void fn_71011a726c(UnkTeamList* self, UnkWeakTarget* target) {
+void CTeamManager_AddMember(UnkTeamList* self, UnkWeakTarget* target) {
     bool found = false;
     for (UnkTeamNode* n = self->head; n; n = n->next) {
         bool eq = n->Target() == target;

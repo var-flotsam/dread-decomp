@@ -192,8 +192,8 @@ void fn_7100089af8(void* arg) {
 }
 
 // A list of path ids (its destructor is fn_7100087cf8; src/game/UnkResourceGroup.cpp has the same).
-struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
-    UnkFilePathList() {
+struct UnkFilePathList_71000839a0 : base::UnkVtableList<UnkListedPath> {
+    UnkFilePathList_71000839a0() {
         vtable = &g_unk_7101a1b030[2];
         count = 0;
         head = nullptr;
@@ -201,7 +201,7 @@ struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
         allocator = GetDefaultAllocator();
         flags = 0x13;
     }
-    ~UnkFilePathList() {
+    ~UnkFilePathList_71000839a0() {
         vtable = &g_unk_7101a1b030[2];
         for (UnkListedPath* n = head; n;) {
             UnkListedPath* next = n->next;
@@ -214,7 +214,7 @@ struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
 
 // Queues every file of the pack set `path` (value 9, no words). False when the set can't be listed.
 bool fn_7100089cf8(UnkFileDevice* self, const CFilePathStrId& path) {
-    UnkFilePathList list;
+    UnkFilePathList_71000839a0 list;
     if (!fn_710008c3bc(self->base_0x8, path, &list))
         return false;
     for (UnkListedPath* n = list.head; n; n = n->next)

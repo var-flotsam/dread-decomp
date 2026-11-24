@@ -14,12 +14,12 @@ using base::reflection::CType;
 using base::reflection::UnkReflAttrKey;
 using base::reflection::UnkReflValue;
 
-struct UnkTypedRefWriter;
-void fn_71000f07fc(UnkTypedRefWriter* self);
+struct UnkTypedRefWriter_ovb0243;
+void fn_71000f07fc(UnkTypedRefWriter_ovb0243* self);
 
 static_assert(sizeof(UnkTypedRefEntry_f29a0) == 0xd8, "entry layout");
 
-struct UnkTypedRefWriter {
+struct UnkTypedRefWriter_ovb0243 {
     u32 field_0x0;
     u32 count;
     alignas(8) u8 storage[sizeof(UnkTypedRefEntry_f29a0)];
@@ -27,7 +27,7 @@ struct UnkTypedRefWriter {
     UnkTypedRefEntry_f29a0* entries() { return reinterpret_cast<UnkTypedRefEntry_f29a0*>(storage); }
 };
 
-bool fn_71000f29a0(UnkTypedRefWriter* self) {
+bool fn_71000f29a0(UnkTypedRefWriter_ovb0243* self) {
     u32 count = self->count - 1;
     if (count < self->count) {
         for (u64 i = count; i < self->count; ++i) {
@@ -64,7 +64,7 @@ struct UnkBaseContext_f2af4 {
 UnkReflValue fn_71000e8044(void* cls, const UnkReflAttrKey& key);
 
 // Whether the class of the innermost context's source has the attribute "bBinaryDumpable" set.
-bool fn_71000f2af4(UnkTypedRefWriter* self) {
+bool fn_71000f2af4(UnkTypedRefWriter_ovb0243* self) {
     u8 result = 0;
     if (u32 count = self->count) {
         u32 top = count - 1;

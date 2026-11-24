@@ -68,7 +68,7 @@ struct UnkTeamKey;
 // Inserts a copy of the key in its place in the sorted list.
 void fn_71011a6ec8(UnkTeamSortedList* self, const UnkTeamKey* key);
 
-void fn_71011a6d50(UnkTeamManager* object) {
+void CTeamManager_RebuildSortedList(UnkTeamManager* object) {
     UnkTeamManager_l1a6d50* self = reinterpret_cast<UnkTeamManager_l1a6d50*>(object);
     UnkTeamRanked_l1a6d50& entries = self->sorted;
     for (UnkTeamNode_l1a6d50* node = entries.head; node;) {

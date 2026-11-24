@@ -8,7 +8,7 @@
 
 struct UnkProperty;
 struct UnkTunnelTrapMorphball;
-void fn_7100a443c8(UnkTunnelTrapMorphball* self);
+void CTunnelTrapMorphballComponent_ActivateTrap(UnkTunnelTrapMorphball* self);
 extern void* g_unk_7101a8e700[];
 extern UnkProperty g_unk_717274a620;
 extern UnkProperty g_unk_717274a648;

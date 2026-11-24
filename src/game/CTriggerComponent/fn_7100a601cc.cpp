@@ -77,7 +77,7 @@ static inline void Erase(UnkTriggerList_la601cc* list, UnkTriggerList_la601cc::N
     }
 }
 
-void fn_7100a601cc(UnkTriggerComponent_la601cc* self, UnkTriggerTarget_la601cc* target,
+void CTriggerComponent_ReplaceEntityInside(UnkTriggerComponent_la601cc* self, UnkTriggerTarget_la601cc* target,
                    UnkTriggerTarget_la601cc* previous) {
     u64 size = self->slot_count * sizeof(UnkTriggerSlot_la601cc);
     // The original tests the byte size, not the count, for zero (the barrier keeps the multiply).

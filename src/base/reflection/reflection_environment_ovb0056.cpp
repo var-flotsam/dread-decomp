@@ -32,7 +32,7 @@ using base::global::CFilePathStrId;
 
 struct UnkSoundMgr;
 struct UnkMgr;
-struct UnkHandle;
+struct UnkHandle_7100fdd2b4;
 
 // The environment sound (+0x480): its path and fade time.
 struct UnkEnvSound_ovb56 {
@@ -69,7 +69,7 @@ void fn_7100d8e020(UnkEnvironmentManager_ovb56* self, bool quick) {
     if (UnkEnvSound_ovb56* sound = self->sound) {
         if (sound->path.data == g_unk_7101d470e8.data)
             return;
-        UnkHandle* handle = reinterpret_cast<UnkHandle*>(&sound->path);
+        UnkHandle_7100fdd2b4* handle = reinterpret_cast<UnkHandle_7100fdd2b4*>(&sound->path);
         if (quick)
             fn_7100108a84(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), handle, 0.2f);
         else

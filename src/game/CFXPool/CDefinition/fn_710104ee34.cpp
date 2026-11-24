@@ -50,39 +50,39 @@ using UnkReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47108>;
 // The same id in CFilePathStrId's pool.
 using UnkFilePathReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47200>;
 
-struct UnkRefObject {
+struct UnkRefObject_710104ee34 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
     s32 ref_count;
 };
 
-struct UnkRefPtr {
-    UnkRefObject* ptr;
+struct UnkRefPtr_710104ee34 {
+    UnkRefObject_710104ee34* ptr;
 
-    ~UnkRefPtr() {
-        if (UnkRefObject* p = ptr) {
+    ~UnkRefPtr_710104ee34() {
+        if (UnkRefObject_710104ee34* p = ptr) {
             if (--p->ref_count == 0)
                 p->vf_0x10();
         }
     }
 };
 
-struct UnkIdRef {
+struct UnkIdRef_710104ee34 {
     UnkReleasedStrId id;
-    UnkRefPtr ref;
+    UnkRefPtr_710104ee34 ref;
 };
 
-struct UnkIdRefVariant {
+struct UnkIdRefVariant_710104ee34 {
     union {
-        UnkIdRef id_ref;
+        UnkIdRef_710104ee34 id_ref;
     };
     s32 state;
 
     void Reset() {
         switch (state) {
         case 1:
-            id_ref.~UnkIdRef();
+            id_ref.~UnkIdRef_710104ee34();
             state = 0;
             break;
         case 2:
@@ -92,9 +92,9 @@ struct UnkIdRefVariant {
     }
 };
 
-struct UnkVariantHolder {
+struct UnkVariantHolder_710104ee34 {
     u64 field_0x0;
-    UnkIdRefVariant variant;
+    UnkIdRefVariant_710104ee34 variant;
 };
 
 // A count followed directly (at +4, packed) by the ids.

@@ -22,7 +22,7 @@ using base::global::CStrId;
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-struct UnkVec3;
+struct UnkVec3_71003e6530;
 
 static_assert(sizeof(UnkTileOutline) == 0x48, "UnkTileOutline placeholder layout");
 
@@ -90,7 +90,7 @@ static inline void AddPoint(UnkTileOutline* outline, UnkTilePoint& point, CVecto
     point.x = p.x;
     point.y = p.y;
     point.z = 0.0f;
-    fn_7100118b94(outline, reinterpret_cast<UnkVec3*>(&point));
+    fn_7100118b94(outline, reinterpret_cast<UnkVec3_71003e6530*>(&point));
 }
 
 // The glaive's tip: `length` along the hand's -y axis, through the hand's matrix `m`.

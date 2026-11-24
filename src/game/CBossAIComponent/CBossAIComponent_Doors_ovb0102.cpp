@@ -264,8 +264,8 @@ counted:
     }
 }
 
-struct UnkSelf;
-void fn_71003ad8e4(UnkSelf* self);
+struct UnkSelf_71003ad8e4;
+void fn_71003ad8e4(UnkSelf_71003ad8e4* self);
 
 struct UnkBossAITimers_ovb0102 {
     u8 pad_0x0[0x147f4];
@@ -290,7 +290,7 @@ void fn_71003ad7ec(UnkBossAITimers_ovb0102* self, f32 dt) {
         self->total_active_time += dt;
         self->inactive_time = 0.0f;
         if (was == 0.0f)
-            fn_71003ad8e4(reinterpret_cast<UnkSelf*>(self));
+            fn_71003ad8e4(reinterpret_cast<UnkSelf_71003ad8e4*>(self));
     } else {
         self->inactive_time += dt;
         self->active_time = 0.0f;

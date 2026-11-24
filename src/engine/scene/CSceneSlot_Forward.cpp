@@ -3,7 +3,7 @@
 // placeholders.
 #include "types.h"
 
-struct UnkItem;
+struct UnkItem_71001fd540;
 struct UnkSceneSlotObject;
 
 struct UnkSceneSlotForward {
@@ -14,7 +14,7 @@ struct UnkSceneSlotForward {
 // The object's handler; the argument is passed by address.
 bool fn_71001efa3c(UnkSceneSlotObject* object, bool a, void* const* arg, bool b);
 
-bool fn_7100202d9c(UnkItem* item, bool a, void* arg, bool b) {
+bool fn_7100202d9c(UnkItem_71001fd540* item, bool a, void* arg, bool b) {
     UnkSceneSlotObject* object = reinterpret_cast<UnkSceneSlotForward*>(item)->field_0xa0;
     if (!object)
         return false;

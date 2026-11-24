@@ -20,7 +20,7 @@ struct UnkIdRecord28;
 template <class Record>
 struct UnkRecordIdArray;
 struct UnkRecordA8_e4ed10;
-struct UnkRecord80;
+struct UnkRecord80_7100e4ed10;
 template <base::global::UnkStringPool** Pool, bool Reread>
 struct UnkReleasedStrIdT;
 template <class Value>
@@ -39,7 +39,7 @@ struct UnkRecordA8Clear_le45b18 {
     static void Clear(void* table) { fn_7100e4ed10(reinterpret_cast<UnkRecordIdArray<UnkRecordA8_e4ed10>*>(table)); }
 };
 struct UnkRecord80Clear_le45b18 {
-    static void Clear(void* table) { fn_7100e4eb8c(reinterpret_cast<UnkRecordIdArray<UnkRecord80>*>(table)); }
+    static void Clear(void* table) { fn_7100e4eb8c(reinterpret_cast<UnkRecordIdArray<UnkRecord80_7100e4ed10>*>(table)); }
 };
 struct UnkIdClear_le45b18 {
     static void Clear(void* table) { fn_71000d99d0(reinterpret_cast<UnkIdTable<UnkReleasedStrId>*>(table)); }

@@ -6,10 +6,10 @@
 #include "game/UnkActor.h"
 #include "types.h"
 
-struct UnkShelmitAI {
+struct UnkShelmitAI_b38 {
     void** vtable;
     const base::reflection::CClass* vf_0x0() {
-        return reinterpret_cast<const base::reflection::CClass* (*)(UnkShelmitAI*)>(vtable[0])(this);
+        return reinterpret_cast<const base::reflection::CClass* (*)(UnkShelmitAI_b38*)>(vtable[0])(this);
     }
 };
 
@@ -35,7 +35,7 @@ void fn_71006b638c(UnkPlasmaRayAttack* self) {
         UnkActor* owner = self->owner;
         if (!owner)
             return;
-        UnkShelmitAI* ai = static_cast<UnkShelmitAI*>(owner->field_0x240);
+        UnkShelmitAI_b38* ai = static_cast<UnkShelmitAI_b38*>(owner->field_0x240);
         if (ai && fn_710009d50c(ai->vf_0x0(), fn_71006b98c0()))
             fn_71006baf90(ai);
         break;

@@ -6,7 +6,7 @@
 #include "types.h"
 
 struct UnkGooplotJump_ovb0123;
-bool fn_71005944e8(UnkGooplotJump_ovb0123* self, void* arg, u32 mode);
+bool CGooplotJumpAttack_CanStart(UnkGooplotJump_ovb0123* self, void* arg, u32 mode);
 
 struct UnkGooplotAI_l596b30 {
     void** vtable;
@@ -31,7 +31,7 @@ struct UnkGooplotUndoJump_l596b30 {
 };
 
 bool fn_7100596b30(UnkGooplotUndoJump_l596b30* self, void* arg, u32 mode) {
-    bool ok = fn_71005944e8(reinterpret_cast<UnkGooplotJump_ovb0123*>(self), arg, mode);
+    bool ok = CGooplotJumpAttack_CanStart(reinterpret_cast<UnkGooplotJump_ovb0123*>(self), arg, mode);
     UnkGooplotAI_l596b30* ai;
     if (ok && (ai = self->owner->ai) != nullptr && fn_710009d50c(ai->vf_0x0(), fn_71005996a0()))
         ok = (ai->field_0x14808 != 0) & (ai->jumps > 0);

@@ -21,7 +21,7 @@ struct UnkHydrogigaAI_A3_b66 {
     f32 value;  // +0x149d8
 };
 
-void fn_71005bf060(UnkHydrogigaAI_A3_b66* self, f32 dt) {
+void CHydrogigaAIComponent_PublishAndDecayValue(UnkHydrogigaAI_A3_b66* self, f32 dt) {
     if (char* component = self->owner->field_0x220) {
         UnkPropBag* bag = reinterpret_cast<UnkPropBag*>(component + 0x80);
         CStrId key("Value", true);

@@ -16,7 +16,7 @@
 
 using base::global::CStrId;
 
-struct UnkSelf;
+struct UnkSelf_71003c716c;
 void fn_7100662110(void* self);
 struct UnkObject;
 struct UnkComponent;
@@ -54,7 +54,7 @@ static inline void SwitchOff(UnkAutoolAI_ovb0137* self, u64 a, u64 b) {
 void fn_71003c60c0(UnkAutoolAI_ovb0137* self) {
     u32 flags_c, flags_b, flags_a;
     fn_7100662110(self);
-    fn_71003c4e64(reinterpret_cast<UnkSelf*>(self), 2);
+    fn_71003c4e64(reinterpret_cast<UnkSelf_71003c716c*>(self), 2);
     if (!self->owner->collision)
         return;
     flags_a = 0x100;

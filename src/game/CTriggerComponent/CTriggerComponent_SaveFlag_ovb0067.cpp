@@ -43,7 +43,7 @@ struct UnkTriggerSaved_ovb0067 {
 
 // Stores the flag under the unit's property (g_unk_717274d6c8) in the current scenario's blackboard
 // section, while the object is enabled (+0x278) and the blackboard is neither locked nor busy.
-void fn_7100a61790(UnkTriggerSaved_ovb0067* self, bool flag) {
+void CTriggerComponent_SaveEnabled(UnkTriggerSaved_ovb0067* self, bool flag) {
     bool value = flag;
     if (!self->field_0x278)
         return;

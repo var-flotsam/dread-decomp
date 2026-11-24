@@ -7,27 +7,27 @@
 #include "types.h"
 #include "base/UnkLinkedList.h"
 
-struct UnkRefObj {
+struct UnkRefObj_7100f011c4 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
     s32 ref_count;
 };
 
-static inline void RefAdd(UnkRefObj* o) { __atomic_fetch_add(&o->ref_count, 1, __ATOMIC_SEQ_CST); }
-static inline void RefRelease(UnkRefObj* o) {
+static inline void RefAdd(UnkRefObj_7100f011c4* o) { __atomic_fetch_add(&o->ref_count, 1, __ATOMIC_SEQ_CST); }
+static inline void RefRelease(UnkRefObj_7100f011c4* o) {
     __atomic_fetch_sub(&o->ref_count, 1, __ATOMIC_SEQ_CST);
     if (__atomic_load_n(&o->ref_count, __ATOMIC_SEQ_CST) == 0)
         o->vf_0x10();
 }
 
-struct UnkRef {
-    UnkRefObj* ptr;
-    UnkRef(const UnkRef& o) : ptr(o.ptr) {
+struct UnkRef_7100f011c4 {
+    UnkRefObj_7100f011c4* ptr;
+    UnkRef_7100f011c4(const UnkRef_7100f011c4& o) : ptr(o.ptr) {
         if (ptr)
             RefAdd(ptr);
     }
-    ~UnkRef() {
+    ~UnkRef_7100f011c4() {
         if (ptr)
             RefRelease(ptr);
     }
@@ -35,7 +35,7 @@ struct UnkRef {
 
 struct UnkListNode {
     u32 key;
-    UnkRef ref;
+    UnkRef_7100f011c4 ref;
     UnkListNode* next;
 };
 
@@ -90,7 +90,7 @@ void fn_7100f011c4(UnkStruct_0x128* self, u32 id) {
     if (self->field_0x121)
         return;
     if (UnkListNode* n = self->field_0x80.Find(id)) {
-        UnkRef ref = n->ref;
+        UnkRef_7100f011c4 ref = n->ref;
         fn_710021fafc(ref.ptr);
         if (self->Get(n->key)->field_0x18) {
             fn_710020ac34(&self->field_0x108->item, false);
@@ -99,7 +99,7 @@ void fn_7100f011c4(UnkStruct_0x128* self, u32 id) {
         self->field_0x80.Remove(n);
     }
     if (UnkListNode* n = self->field_0xb0.Find(id)) {
-        UnkRef ref = n->ref;
+        UnkRef_7100f011c4 ref = n->ref;
         fn_710021fafc(ref.ptr);
         self->field_0xb0.Remove(n);
     }

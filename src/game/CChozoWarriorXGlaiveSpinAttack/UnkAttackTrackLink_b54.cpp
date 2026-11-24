@@ -7,7 +7,7 @@
 #include "game/CKraidAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkSelf;
+struct UnkSelf_71004cb554;
 
 void fn_7100494c90(char* self);
 void fn_7100482254();
@@ -62,7 +62,7 @@ void fn_71004817f4(char* self) {
 }
 
 void fn_71004c98dc(char* self) {
-    fn_71004c1944(reinterpret_cast<UnkSelf*>(self));
+    fn_71004c1944(reinterpret_cast<UnkSelf_71004cb554*>(self));
     UnkAttachTrackLink<0x70>(self, fn_71004ca35c);
 }
 

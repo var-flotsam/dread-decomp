@@ -7,7 +7,7 @@ using base::math::CVector2D;
 struct UnkPolyPoint_1196d8 {
     f32 x, y, z;
 };
-struct UnkPolygonBase {
+struct UnkPolygonBase_71001196d8 {
     UnkPolyPoint_1196d8* vertices;
     u32 count;
     __attribute__((always_inline)) UnkSegment2D Edge(u32 i) const {
@@ -17,11 +17,11 @@ struct UnkPolygonBase {
         return UnkSegment2D(*reinterpret_cast<const CVector2D*>(cur), *reinterpret_cast<const CVector2D*>(next));
     }
 };
-struct UnkPolygon2D : UnkPolygonBase {};
+struct UnkPolygon2D_71001196d8 : UnkPolygonBase_71001196d8 {};
 
-bool fn_7100119800(UnkPolygon2D* polygon, u32 vertex, const CVector2D* point, bool flag, f32 tolerance, void* a, void* b);
+bool fn_7100119800(UnkPolygon2D_71001196d8* polygon, u32 vertex, const CVector2D* point, bool flag, f32 tolerance, void* a, void* b);
 
-bool fn_71001196d8(UnkPolygon2D* polygon, u32 vertex, const CVector2D* point, bool flag, f32 tolerance, void* a,
+bool fn_71001196d8(UnkPolygon2D_71001196d8* polygon, u32 vertex, const CVector2D* point, bool flag, f32 tolerance, void* a,
                    void* b) {
     UnkSegment2D seg = polygon->Edge(vertex);
     f32 sx = seg.start.x;

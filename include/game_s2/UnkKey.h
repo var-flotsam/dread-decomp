@@ -4,6 +4,8 @@
 #include "types.h"
 
 struct UnkKey {
-    u8 pad_0x0[8];
+    u64 field_0x0;
     UnkKeyBody* field_0x8;
+    u32 field_0x10;
+    u32 kind;
 };

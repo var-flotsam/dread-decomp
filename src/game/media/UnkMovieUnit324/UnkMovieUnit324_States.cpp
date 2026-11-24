@@ -28,7 +28,7 @@ void fn_7100224f2c(UnkMedia324* self);
 // UnkMovieUnit324_Pause.cpp.
 void fn_710021fe0c(UnkMedia324* self);
 // As src/game_hi/fn_7100f00f4c.cpp declares it.
-struct UnkRefObj;
+struct UnkRefObj_7100f00f4c;
 
 static inline void SetState(UnkMedia324* self, s32 state) {
     fn_710006691c(&self->listener_lock);
@@ -153,7 +153,7 @@ void fn_710021fbb4(UnkMedia324* self) {
     fn_7100066920(&self->lock);
     SetState(self, 13);
     if (self->loop_mode == 1)
-        fn_710021ea60(reinterpret_cast<UnkRefObj*>(self));
+        fn_710021ea60(reinterpret_cast<UnkRefObj_7100f00f4c*>(self));
 }
 
 // The end of a seek: state 9, then back to the state the seek left (+0x34): playing again through
