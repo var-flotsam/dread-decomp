@@ -29,7 +29,7 @@ __attribute__((always_inline)) inline void InitResource(UnkResourceStatics* s, c
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = source;
-        CAnimationResource_ConstructResourceFormat(&types[0], name, ext, sources0, 1);
+        fn_7100004578(&types[0], name, ext, sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(registry, category, types, 1);
         fn_7100004a44(&types[0]);
     }

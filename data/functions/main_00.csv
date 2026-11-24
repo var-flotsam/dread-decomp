@@ -92,7 +92,7 @@ address,size,name,name_source,subsystem,status
 0x710000430c,244,base::animation::CAnimationResource::refl_GetClass,reflection,engine/base,O
 0x7100004400,4,base::animation::CAnimationResource::refl_AddFields,reflection,engine/base,O
 0x7100004404,372,base::animation::CAnimationResource::refl_InitClass,reflection,engine/base,O
-0x7100004578,288,CAnimationResource_ConstructResourceFormat,inferred,unknown,O
+0x7100004578,288,fn_7100004578,unknown,unknown,O
 0x7100004698,940,CAnimationResource_ConstructResourceTypeFromFormats,inferred,unknown,O
 0x7100004a44,336,fn_7100004a44,unknown,unknown,O
 0x7100004b94,520,fn_7100004b94,unknown,unknown,O

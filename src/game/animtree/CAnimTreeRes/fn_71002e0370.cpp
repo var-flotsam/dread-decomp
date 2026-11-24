@@ -30,7 +30,7 @@ void CAnimTreeRes_InitStatics() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".msat";
-        CAnimationResource_ConstructResourceFormat(&types[0], "animtree::CAnimTreeRes", ".bmsat", sources0, 1);
+        fn_7100004578(&types[0], "animtree::CAnimTreeRes", ".bmsat", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(g_unk_71726aad48, "animtree", types, 1);
         fn_7100004a44(&types[0]);
     }();
