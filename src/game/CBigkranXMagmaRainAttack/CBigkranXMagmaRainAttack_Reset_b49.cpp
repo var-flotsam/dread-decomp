@@ -31,7 +31,7 @@ struct UnkMagmaRainAttack_b49 {
     UnkWeakHandle* handle;
 };
 
-void fn_71003ead78(UnkMagmaRainAttack_b49* self) {
+void CBigkranXMagmaRainAttack_Reset(UnkMagmaRainAttack_b49* self) {
     fn_71003609b8(reinterpret_cast<UnkAttackBase*>(self));
     self->target = nullptr;
     if (UnkWeakHandle* handle = self->handle) {

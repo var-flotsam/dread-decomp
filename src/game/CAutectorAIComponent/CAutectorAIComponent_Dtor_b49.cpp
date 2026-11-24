@@ -14,7 +14,7 @@ struct UnkAutectorAI_b49 {
     UnkAttackListenerRaw field_0x146d8;
 };
 
-void fn_71003bb2d8(UnkAutectorAI_b49* self) {
+void CAutectorAIComponent_Destroy(UnkAutectorAI_b49* self) {
     self->vtable = g_unk_7101a2b930 + 2;
     self->field_0x146d8.Destroy();
     fn_7100661914(reinterpret_cast<UnkAutsharpAIBase_b47*>(self));

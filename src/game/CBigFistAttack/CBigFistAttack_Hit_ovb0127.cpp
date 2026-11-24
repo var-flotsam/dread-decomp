@@ -34,7 +34,7 @@ static inline UnkBigFistAI_gla* CastAI(UnkActor* actor) {
     return fn_710009d50c(ai->vf_0x0(), Getter()) ? reinterpret_cast<UnkBigFistAI_gla*>(ai) : nullptr;
 }
 
-bool fn_71003e0908(CAttack* self, void* arg, u32 mode) {
+bool CBigFistAttack_CanStart(CAttack* self, void* arg, u32 mode) {
     bool ok = fn_7100360b84(self, arg, mode);
     UnkActor* target = fn_7100d7c990(self->field_0x8);
     bool result = false;

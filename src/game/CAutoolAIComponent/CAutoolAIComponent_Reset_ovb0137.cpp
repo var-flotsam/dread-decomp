@@ -78,7 +78,7 @@ void fn_71003c60c0(UnkAutoolAI_ovb0137* self) {
 
 // Sets collider `which` (0-2) for `mode`, then switches its two effects: both off in mode 0, the
 // second on in mode 1, the first on in mode 2.
-void fn_71003c4fb0(UnkAutoolAI_ovb0137* self, u32 which, u32 mode) {
+void CAutoolAIComponent_SetThruster(UnkAutoolAI_ovb0137* self, u32 which, u32 mode) {
     if (!self->owner->collision)
         return;
     u64 b = ~0ull;
@@ -236,7 +236,7 @@ static inline f32 Random01() { return (f32)((rand() & 0x7fff) * (1.0 / 32767.0))
 // Resets the AI: the base reset, then the state block at +0x146d8 (references dropped, flags
 // cleared, a new random wait between the tunable's limits, the action list and reference list
 // emptied, and the target's listener removed).
-void fn_71003c3424(UnkAutoolAIReset_ovb0137* self) {
+void CAutoolAIComponent_ResetState(UnkAutoolAIReset_ovb0137* self) {
     UnkAutoolState_ovb0137* s = &self->state;
     fn_71003695b8(reinterpret_cast<UnkBehaviorTreeAI*>(self));
     ResetRef(&s->field_0x28);
