@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkModel.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
 #include "game/UnkTU2523.h"
@@ -45,13 +46,13 @@ __attribute__((noinline)) void* fn_71006cae2c(UnkRenderPool* pool, const CFilePa
     fn_710014333c(reinterpret_cast<UnkTaggedSubObject127*>(object), reinterpret_cast<UnkTaggedSubArg*>(name));
     void* node = nullptr;
     if (object) {
-        fn_710020d32c(reinterpret_cast<char*>(object) + 0x20);
+        fn_710020d32c(object->field_0x20);
         if (path.data != &g_unk_7101d47200->empty &&
             !fn_71006caf80(reinterpret_cast<UnkSpittailModelHolder*>(object), path)) {
             reinterpret_cast<UnkDeletable_ovb0130*>(object)->Delete();
             return nullptr;
         }
-        node = reinterpret_cast<u8*>(object) + 8;
+        node = &object->field_0x8;
         reinterpret_cast<UnkPoolMap_ovb0130*>(pool)->Insert(node, object);
     }
     if (out)
@@ -171,7 +172,7 @@ struct UnkSpittailBall_ovb0130 {
 static_assert(__builtin_offsetof(UnkSpittailBall_ovb0130, model) == 0x5e8, "layout");
 
 static inline UnkSceneNode* Node_ovb0130(UnkModel* model) {
-    return model ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(model) + 8) : nullptr;
+    return model ? &model->field_0x8 : nullptr;
 }
 
 bool fn_71006ca3fc(UnkSpittailBall_ovb0130* self, UnkKraidCreatureArg* arg) {

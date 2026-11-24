@@ -480,7 +480,7 @@ struct UnkStringUse_b0164 {
 };
 static inline const CRntString* UseStr(const CStrId& id) {
     ++reinterpret_cast<UnkStringUse_b0164*>(id.data)->use_count;
-    return reinterpret_cast<const CRntString*>(reinterpret_cast<char*>(id.data) + 0x10);
+    return &id.data->String();
 }
 
 struct UnkCameraHolder_b0164 {

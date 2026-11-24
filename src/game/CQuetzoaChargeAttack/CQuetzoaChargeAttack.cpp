@@ -13,7 +13,7 @@ struct UnkQuetzoaChargeAttack {
 void fn_7100644780(UnkQuetzoaChargeAttack* self);
 
 void fn_7100644d0c(UnkQuetzoaChargeAttack* self, void*, UnkActor* target) {
-    void* part = *reinterpret_cast<void**>(reinterpret_cast<char*>(self->owner) + 0x2c8);
+    void* part = self->owner->field_0x2c8;
     bool held = false;
     if (part)
         held = fn_71007f9f20(part);

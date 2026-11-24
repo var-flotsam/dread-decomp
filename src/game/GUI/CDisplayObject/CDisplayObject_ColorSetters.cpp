@@ -48,7 +48,7 @@ static inline __attribute__((always_inline)) UnkResult_0x18_gdc SetValue_gdc(Unk
         reinterpret_cast<f32*>(block + 0x1c)[Index] = value;
         reinterpret_cast<f32*>(block + 0xc)[Index] = value;
     }
-    f32* field = reinterpret_cast<f32*>(reinterpret_cast<char*>(target) + 0xa0) + Index;
+    f32* field = &target->field_0xa0[Index];
     if (*field != value) {
         *field = value;
         if (!target->field_0x184) {

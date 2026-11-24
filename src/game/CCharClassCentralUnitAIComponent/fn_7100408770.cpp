@@ -13,10 +13,6 @@ struct UnkSelf_408770 {
     u8 unk_0x0[0x510];
     UnkNamedString* name;
 };
-struct UnkGroupIds {
-    u8 unk_0x0[0x18];
-    UnkNamedString* group;
-};
 
 void fn_710013c7e0(UnkTunableRegistry* registry, const char* group, const char* name, f32* value);
 

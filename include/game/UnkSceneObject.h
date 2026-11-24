@@ -10,6 +10,7 @@
 // unit 252 (0x71001bdeac-0x71001c071c): fn_71001be020 and fn_71001be430 set its slots. Only the
 // members the callers touch are spelled out; the names and the layout are placeholders.
 
+#include "game/UnkRenderManager.h"
 #include "types.h"
 
 // The object behind +0x170 of the sub-object: a dirty flag the minimap sets after it moves its
@@ -36,7 +37,8 @@ static_assert(__builtin_offsetof(UnkSceneObjectSub, flags) == 0x170, "UnkSceneOb
 void fn_71001be430(UnkSceneObjectSub* sub, u32 index, bool enabled);
 
 struct UnkSceneObject {
-    u8 pad_0x0[0x20];
+    u8 pad_0x0[0x8];
+    UnkSceneNode field_0x8;  // what the render manager's layers take (fn_7100219ae0)
     u8 field_0x20[0x110];
     UnkSceneObjectSub* field_0x130;
 };

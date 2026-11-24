@@ -128,7 +128,7 @@ void fn_7100b5206c(UnkPopUpTimer_b0249* self, UnkPopUpOwner_b0249* owner, f32 dt
         return;
     self->timer = -1.0f;
     UnkGameManager* gm = g_unk_7101d47310;
-    CBlackboard* profile = reinterpret_cast<CBlackboard*>(reinterpret_cast<char*>(gm) + 0x820);
+    CBlackboard* profile = &gm->field_0x820;
     SetBool_b0249(profile, IdTableKey(0x1be8), Qid(g_unk_717275ad68), false);
     {
         UnkProfileSaveArg arg = {nullptr, nullptr};

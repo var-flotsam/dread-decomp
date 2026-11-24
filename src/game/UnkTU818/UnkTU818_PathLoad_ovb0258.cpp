@@ -108,6 +108,8 @@ struct UnkVec3;
 struct UnkAimHolder_b0258y {
     u8 pad_0x0[0x30];
     UnkActor* actor;  // 0x30
+    u8 pad_0x38[0x14c35 - 0x38];
+    bool field_0x14c35;
 };
 
 struct UnkAim_b0258y {
@@ -166,7 +168,7 @@ void fn_71005735b8(UnkAim_b0258y* self, f32 dt) {
     // keeps the holder reload after the shape query on both paths
     asm volatile("" ::: "memory");
     bool seen = false;
-    if (*(reinterpret_cast<u8*>(self->holder) + 0x14c35))
+    if (self->holder->field_0x14c35)
         seen = fn_7100573734(self, self->seen);
     self->seen = seen;
     self->vf_0x38();

@@ -48,7 +48,7 @@ void fn_71003784d0(UnkParticleEnableEmission_b49* self) {
     UnkWorld* world = self->owner->world;
     if (!world)
         return;
-    u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<u8*>(self->name.data) + 0x30);
+    u64 hash = self->name.data->Key();
     auto* part = reinterpret_cast<UnkEmissionPart_b49*>(fn_7101152b90(world, hash));
     if (part && fn_710114e668(reinterpret_cast<UnkObject*>(world), part->id)) {
         self->part = part;

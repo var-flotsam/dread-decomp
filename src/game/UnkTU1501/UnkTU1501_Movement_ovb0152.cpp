@@ -129,6 +129,8 @@ struct UnkHitNode_b152 {
 };
 struct UnkHitInfo_b152 {
     UnkHitNode_b152* field_0x0;
+    u8 pad_0x8[0xc];
+    u8 field_0x14[1];
 };
 
 // The request that fn_710098ae04 takes (as src/game/CSamusGroundMovementState/CParams/CParams_Default_ovb0138.cpp):
@@ -329,7 +331,7 @@ void fn_71009e51dc(UnkMove_b152* self, void* a1, void* a2, UnkInput_b152* input)
     fn_71010dc54c(self, &span);
     span = {input->data, input->count};
     CallVf<void>(self, 0x408, &span, a2, input);
-    if (void* obj = *reinterpret_cast<void**>(reinterpret_cast<u8*>(self->actor) + 0x2e0))
+    if (void* obj = self->actor->field_0x2e0)
         fn_71002fdf5c(obj, input);
     CallVf<void>(self->mode, 0x90, a1, a2, input);
     UnkEntry48_b152* entries = reinterpret_cast<UnkEntry48_b152*>(reinterpret_cast<u8*>(self) + 0x23dc);
@@ -359,7 +361,7 @@ bool fn_71009e69c4(UnkMove_b152* self) {
     if (self->field_0x2314 > 0.0f)
         return false;
     UnkGameManager** manager = &g_unk_7101d47310;
-    if (fn_7100f0ca8c(reinterpret_cast<char*>(*manager) + 0x38))
+    if (fn_7100f0ca8c((*manager)->field_0x38))
         return false;
     if (fn_710117b348(static_cast<UnkAnimationComponent*>(self->actor->field_0x220), fn_7100d0ccb8()))
         return false;
@@ -446,7 +448,7 @@ void fn_71009e7a5c(UnkMove_b152* self, UnkReq_b152* req) {
         }
         base::UnkPooledString* id = fn_71009e7870(self);
         if (id->data != &g_unk_7101d47108->empty) {
-            req->key = *reinterpret_cast<u64*>(reinterpret_cast<u8*>(id->data) + 0x30);
+            req->key = id->data->Key();
             req->field_0x8 = -1;
             req->field_0x10 = 0x13df5c28full;
         }
@@ -481,7 +483,7 @@ void fn_71009e7d9c(UnkMove_b152* self) {
 }
 
 bool fn_71009e7f20(UnkMove_b152* self) {
-    UnkInventory* inventory = *reinterpret_cast<UnkInventory**>(reinterpret_cast<u8*>(self->actor) + 0x270);
+    UnkInventory* inventory = self->actor->field_0x270;
     if (!fn_71011428bc(inventory, GetQualifiedId_b152(g_unk_717275a8d8)))
         return false;
     if (self->field_0x51a8 > 0.0f)
@@ -501,10 +503,10 @@ bool fn_71009e7f20(UnkMove_b152* self) {
 
 bool fn_71009e8218(UnkMove_b152* self, const UnkRequest_7101176ea8* request, bool flag) {
     if (flag) {
-        if (void* gun = *reinterpret_cast<void**>(reinterpret_cast<u8*>(self->actor) + 0x2a8))
+        if (void* gun = self->actor->field_0x2a8)
             fn_710083ed38(static_cast<UnkGun_ovb0091*>(gun));
     }
-    if (void* gun = *reinterpret_cast<void**>(reinterpret_cast<u8*>(self->actor) + 0x2a8)) {
+    if (void* gun = self->actor->field_0x2a8) {
         const base::global::CStrId* current = fn_71008407fc(static_cast<UnkGunComponent*>(gun));
         if (SameId_b152(*current, GameManagerIdTable().field_0x1848)) {
             UnkReflObject* beam =
@@ -515,7 +517,7 @@ bool fn_71009e8218(UnkMove_b152* self, const UnkRequest_7101176ea8* request, boo
                 fn_7100846e64(beam, 0x10);
         }
     }
-    void* object = *reinterpret_cast<void**>(reinterpret_cast<u8*>(self->actor) + 0x2b0);
+    void* object = self->actor->field_0x2b0;
     if (fn_710035343c(object)) {
         UnkXform* xform = reinterpret_cast<UnkXform*>(self->actor->field_0x38);
         UnkVec3f angle = xform->GetAngle();
@@ -542,7 +544,7 @@ void fn_71009e972c(UnkMove_b152* self) {
 void fn_71009e9890(UnkMove_b152* self) {
     fn_71009796dc(self);
     void* value = CallVf<void*>(self, 0x2a8);
-    CallVf<void>(*reinterpret_cast<void**>(reinterpret_cast<u8*>(self->actor) + 0x2a0), 0x178, value, true);
+    CallVf<void>(self->actor->field_0x2a0, 0x178, value, true);
     CallVf<void>(self, 0x2b0, value);
     UnkWeakTarget* track = static_cast<UnkWeakTarget*>(self->actor->field_0x220);
     if (!track)
@@ -568,7 +570,7 @@ void fn_71009e9890(UnkMove_b152* self) {
 bool fn_71009ea664(UnkMove_b152* self) {
     if (!self->field_0x3a8)
         return false;
-    UnkCollisionContainer* container = *reinterpret_cast<UnkCollisionContainer**>(reinterpret_cast<u8*>(self->actor) + 0x2a0);
+    UnkCollisionContainer* container = self->actor->field_0x2a0;
     UnkColliderObj_b152* object = reinterpret_cast<UnkColliderObj_b152*>(fn_71008640a4(container, &g_unk_7172740fe0));
     UnkColliderNode_b152* candidate = object->field_0x158;
     UnkColliderNode_b152* node = nullptr;
@@ -602,7 +604,7 @@ bool fn_71009ea664(UnkMove_b152* self) {
 
 void fn_71009ec7b4(UnkMove_b152* self) {
     UnkReflObject* gun = static_cast<UnkReflObject*>(
-        *reinterpret_cast<void**>(reinterpret_cast<u8*>(self->actor) + 0x2a8));
+        self->actor->field_0x2a8);
     if (gun && fn_710009d50c(gun->vf_0x0(), fn_7100857564()))
         fn_710085b76c(gun, true);
     UnkAirTarget_B71a6* target = reinterpret_cast<UnkAirTarget_B71a6*>(self->field_0x2cf8);
@@ -623,7 +625,7 @@ UnkHitFlags_b152 fn_71009ecd98(UnkMove_b152* self, UnkHitInfo_b152* hit) {
         reinterpret_cast<base::reflection::UnkReflObject*>(hit->field_0x0->field_0x10->field_0x10);
     if (tile && fn_710009d50c(tile->vf_0x0(), fn_7100ca0484())) {
         UnkReflObject* gun = static_cast<UnkReflObject*>(
-            *reinterpret_cast<void**>(reinterpret_cast<u8*>(self->actor) + 0x2a8));
+            self->actor->field_0x2a8);
         if (gun && fn_710009d50c(gun->vf_0x0(), fn_7100857564()) && fn_710085aa5c(gun, tile, hit)) {
             flags |= 1;
             result.bits = flags;
@@ -633,8 +635,8 @@ UnkHitFlags_b152 fn_71009ecd98(UnkMove_b152* self, UnkHitInfo_b152* hit) {
             flags |= 1;
             result.bits = flags;
         }
-        if (UnkQueryObj* object = fn_7100ca2048(tile, reinterpret_cast<u8*>(hit) + 0x14, 1)) {
-            UnkHitFlags_b152 more = fn_7100301c0c(*reinterpret_cast<void**>(reinterpret_cast<u8*>(self->actor) + 0x2e0), object, hit);
+        if (UnkQueryObj* object = fn_7100ca2048(tile, hit->field_0x14, 1)) {
+            UnkHitFlags_b152 more = fn_7100301c0c(self->actor->field_0x2e0, object, hit);
             result.bits = more.bits | flags;
         }
     }

@@ -29,7 +29,7 @@ void* fn_7100ea6164(UnkProfileStore* self, const CStrId* id, u32 index);
 void* fn_7100ea61c4(UnkProfileStore* self);
 
 static inline UnkProfileStore* GetProfileStore(UnkGameManager* manager) {
-    return *reinterpret_cast<UnkProfileStore**>(reinterpret_cast<u8*>(manager) + 0x2228);
+    return static_cast<UnkProfileStore*>(manager->field_0x2228);
 }
 
 void* fn_7100afd628() {

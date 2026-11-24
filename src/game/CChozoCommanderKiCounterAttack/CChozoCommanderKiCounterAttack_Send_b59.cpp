@@ -38,7 +38,7 @@ bool fn_710042f570(UnkKiCounter_b59* self, UnkActor* actor) {
         return false;
     if (!actor->field_0x208)
         return false;
-    void* object = *reinterpret_cast<void**>(reinterpret_cast<char*>(actor) + 0x2f8);
+    void* object = actor->field_0x2f8;
     if (!object || !fn_710092b6f8(object))
         return false;
     if (!actor->field_0x220)

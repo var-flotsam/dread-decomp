@@ -24,7 +24,7 @@ struct UnkKraidAI_b57a4 {
 
 static inline u64 HashOf_b57a4(const void* obj, u32 offset) {
     const CStrId* id = reinterpret_cast<const CStrId*>(reinterpret_cast<const char*>(obj) + offset);
-    return *reinterpret_cast<u64*>(reinterpret_cast<char*>(id->data) + 0x30);
+    return id->data->Key();
 }
 
 static inline __attribute__((always_inline)) void Send_b57a4(void* target, u64 hash, u64 kind, u32 m) {

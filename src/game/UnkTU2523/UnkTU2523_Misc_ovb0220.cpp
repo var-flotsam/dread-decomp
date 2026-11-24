@@ -380,13 +380,12 @@ struct UnkIdHolder_b0220 {
 };
 
 struct UnkEntityPart_b0220 {
-    void* vtable;
+    void** vtable;
     u8 pad_0x8[0xf9 - 0x8];
     bool field_0xf9;
 
     void Notify(bool flag, f32 value) {
-        (*reinterpret_cast<void (**)(UnkEntityPart_b0220*, bool, f32)>(reinterpret_cast<char*>(vtable) + 0x1e8))(
-            this, flag, value);
+        reinterpret_cast<void (*)(UnkEntityPart_b0220*, bool, f32)>(vtable[0x1e8 / 8])(this, flag, value);
     }
 };
 

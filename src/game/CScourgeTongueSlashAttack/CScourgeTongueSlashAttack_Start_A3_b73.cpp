@@ -60,11 +60,11 @@ void fn_710069b178(UnkScourgeAttack_A3_b73* self) {
     self->field_0x30 = 0;
     self->field_0x34 = 1;
     self->field_0x60 = -1.0f;
-    if (*reinterpret_cast<UnkWeakTarget**>(reinterpret_cast<char*>(self->owner) + 0x220)) {
+    if (self->owner->field_0x220) {
         UnkScourgeTrackLink_A3_b73* link = &self->link;
         link->context = self;
         link->callback = fn_710069cd7c;
-        UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(reinterpret_cast<char*>(self->owner) + 0x220);
+        UnkWeakTarget* track = self->owner->field_0x220;
         if (UnkWeakHandle* handle = self->handle.handle) {
             if (UnkWeakTarget* target = handle->target)
                 fn_710117b3f0(target, link);
@@ -108,5 +108,5 @@ void fn_710069b178(UnkScourgeAttack_A3_b73* self) {
         fn_7100da7e2c(manager);
         g_unk_71726af468 = manager;
     }
-    fn_71006a23c4(reinterpret_cast<char*>(manager) + 0x5e0, self->owner);
+    fn_71006a23c4(manager->field_0x5e0, self->owner);
 }

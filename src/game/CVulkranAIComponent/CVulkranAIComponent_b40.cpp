@@ -35,7 +35,7 @@ void fn_71006dcaa4(UnkVulkranAIComponent* self, bool reset) {
         fn_7100da7e2c(m);
         g_unk_71726af468 = m;
     }
-    fn_71006ded20(reinterpret_cast<char*>(m) + 0x368, self->owner);
+    fn_71006ded20(m->field_0x368, self->owner);
     UnkOwner_vk* owner = self->owner;
     UnkActorTarget* target = owner->field_0x220;
     if (target && reset) {

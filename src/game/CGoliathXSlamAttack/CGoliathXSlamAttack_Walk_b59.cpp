@@ -49,7 +49,7 @@ __attribute__((always_inline)) static inline CVector3D Pos_b59a3(const UnkActor*
 void fn_710058e848(UnkGoliathXSlamWalk_b59a3* self, f32 dt);
 
 static inline u64 Hash_b59a3(const CStrId& id) {
-    return *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(id.data) + 0x30);
+    return id.data->Key();
 }
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).

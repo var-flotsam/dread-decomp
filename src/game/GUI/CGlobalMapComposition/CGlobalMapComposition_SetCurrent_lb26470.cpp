@@ -57,7 +57,7 @@ static inline void PlayEvent(UnkGuiDisplayObject* object, const char* event, boo
 
 // The anchor state of a display object (+0x78), as fn_71011f6240 takes it.
 static inline UnkGuiItemState* AnchorState(UnkGuiDisplayObject* object) {
-    return reinterpret_cast<UnkGuiItemState*>(reinterpret_cast<u8*>(object) + 0x78);
+    return &object->field_0x78;
 }
 
 // An anchor point is the same pair of floats as the point type fn_71011cf0a8 takes.

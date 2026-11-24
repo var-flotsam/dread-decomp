@@ -12,6 +12,7 @@
 struct UnkRoomOwner_A5_b74 {
     u8 pad_0x0[0x28];
     base::reflection::UnkReflObject* object;
+    u8 field_0x30[8];
 };
 
 struct UnkRoomComponent_A5_b74 {
@@ -25,7 +26,7 @@ static inline __attribute__((always_inline)) void RoomApply_A5_b74(UnkRoomCompon
     if (obj && !fn_710009d50c(obj->vf_0x0(), fn_71011abbd4()))
         obj = nullptr;
     fn_7100f0e4e4(manager, reinterpret_cast<char*>(obj) + 0x98,
-                  reinterpret_cast<char*>(self->owner) + 0x30, arg + 0x30);
+                  self->owner->field_0x30, arg + 0x30);
 }
 
 void fn_7100a23ae8(UnkRoomComponent_A5_b74* self, char* arg) {

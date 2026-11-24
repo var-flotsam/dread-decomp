@@ -246,6 +246,8 @@ typedef void (*UnkAimSetSide_ovb0198p)(void* object, const CVector3D* side);
 struct UnkAimActor_ovb0198p {
     u8 pad_0x0[0x38];
     UnkMatrix44 transform;  // 0x38
+    u8 pad_0x78[0x1f0 - 0x78];
+    void* field_0x1f0;
 };
 
 struct UnkAimTurn_ovb0198p {
@@ -333,7 +335,7 @@ wrap:
     if (v < 0.0f)
         v += 6.2831855f;
     self->angle = v;
-    void* object = *reinterpret_cast<void**>(reinterpret_cast<u8*>(self->actor) + 0x1f0);
+    void* object = self->actor->field_0x1f0;
     if (object) {
         f32 s = self->side;
         if (s == 0.0f)
@@ -573,7 +575,7 @@ void fn_710034f374(UnkAimShot_ovb0198v* self) {
     m.m[0] = 1.0f;
     UnkEntity* entity = self->actor->entity;
     const CStrId& id = *reinterpret_cast<const CStrId*>(reinterpret_cast<u8*>(&GameManagerIdTable()) + 0xd58);
-    u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(id.data) + 0x30);
+    u64 key = id.data->Key();
     if (!fn_71011735e8(entity, &key, &m, 0))
         return;
     // The axis is copied as words and only converted when it is renormalised.
@@ -659,12 +661,12 @@ void fn_7100352a2c(UnkAimState_ovb0198d* self, bool on) {
     }
     self->field_0x510 = self->field_0x4f8;
     u32 word = self->field_0x500;
-    UnkWord_ovb0198d* dst = reinterpret_cast<UnkWord_ovb0198d*>(reinterpret_cast<u8*>(self) + 0x51c);
+    UnkWord_ovb0198d* dst = &self->field_0x51c;
     self->handleCount = 0;
     // Keeps the destination as its own address instead of an offset from the source.
     asm("" : "+r"(dst));
     self->field_0x518 = word;
-    UnkWord_ovb0198d* src = reinterpret_cast<UnkWord_ovb0198d*>(reinterpret_cast<u8*>(self) + 0x504);
+    UnkWord_ovb0198d* src = &self->field_0x504;
     *dst = *src;
     self->field_0x524 = self->field_0x50c;
     self->field_0x641 = 0;

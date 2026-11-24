@@ -47,7 +47,7 @@ struct UnkCommanderLife_A5_b63 {
 };
 
 static inline f32& Rate_A5_b63() {
-    return *reinterpret_cast<f32*>(reinterpret_cast<char*>(&g_unk_7172790a08) + 0x7c);
+    return g_unk_7172790a08.field_0x7c;
 }
 
 void fn_71008be25c(UnkCommanderLife_A5_b63* self, f32 dt) {

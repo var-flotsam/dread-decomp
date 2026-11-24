@@ -105,7 +105,7 @@ static inline void PointDissolve(void* parts, const char* name, u64 length, cons
 // An item's qualified id, built on first use.
 static inline const UnkQualifiedId& ItemId(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
-    if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+    if (qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
     return qid;
 }

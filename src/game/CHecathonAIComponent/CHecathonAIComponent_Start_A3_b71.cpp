@@ -64,7 +64,7 @@ void fn_71005a9fd8(UnkHecathonAI_A3_b71* self) {
         fn_7100da7e2c(m);
         g_unk_71726af468 = m;
     }
-    fn_71005ac994(reinterpret_cast<char*>(m) + 0x2b8, self->owner);
+    fn_71005ac994(m->field_0x2b8, self->owner);
     self->field_0x147cc = false;
     self->field_0x14774 = RandomRange_A3_b71(Tunable_A3_b71<f32>(0x34), Tunable_A3_b71<f32>(0x38));
     self->field_0x14768 = Tunable_A3_b71<u32>(0x28);

@@ -11,10 +11,14 @@ struct UnkChargeTunable : UnkTunable {
     u8 pad_0x8[0x94];
     f32 field_0x9c;
     f32 field_0xa0;
-    u8 pad_0xa4[4];
+    f32 field_0xa4;
     f32 field_0xa8;
     f32 field_0xac;
-    u8 pad_0xb0[0x4c];
+    u8 pad_0xb0[0x28];
+    f32 field_0xd8[2];
+    u8 pad_0xe0[0xc];
+    f32 field_0xec;
+    u8 pad_0xf0[0xc];
     f32 field_0xfc;  // the shortest time a target is kept (CTunableAIManager_SetTarget_ldaec80.cpp)
 };
 
@@ -26,10 +30,14 @@ struct UnkFlagged {
     };
 };
 
+struct UnkWorld;
+
 struct UnkChargeOwner {
     u8 pad_0x0[0x1b8];
     UnkFlagged* field_0x1b8;
-    u8 pad_0x1c0[0xe0];
+    u8 pad_0x1c0[0xc0];
+    UnkWorld* field_0x280;  // the FX world (fn_71005026d0)
+    u8 pad_0x288[0x18];
     void* field_0x2a0;
 };
 
@@ -49,7 +57,7 @@ struct UnkChargeComponent {
     UnkScale* field_0x5d0;
     u8 pad_0x5d8[4];
     f32 field_0x5dc;
-    u8 pad_0x5e0[4];
+    f32 field_0x5e0;
     u8 field_0x5e4;
     u8 pad_0x5e5[0x13];
     f32 field_0x5f8;
