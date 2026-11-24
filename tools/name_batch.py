@@ -593,7 +593,7 @@ def cache_control(ttl: str) -> dict:
 
 
 def build_requests(kind: str, items: list[dict], tree_for, members_for, ttl: str = "5m",
-                   effort: str = EFFORT) -> tuple[list[dict], list[dict]]:
+                   effort: str = EFFORT, max_tokens: int = MAX_TOKENS) -> tuple[list[dict], list[dict]]:
     """Requests for `items` (dicts with address, name, class, and for a review the stated evidence), grouped so a
     class's requests are adjacent. Shared content comes first with cache breakpoints: the rules (system), then per
     class its members and defining files; what differs per function comes last, after the last breakpoint.
@@ -667,7 +667,7 @@ def build_requests(kind: str, items: list[dict], tree_for, members_for, ttl: str
             cid = f"{'rev' if kind == 'review' else 'prop'}-{int(it['address'], 16):x}"
             params = {
                 "model": MODEL,
-                "max_tokens": MAX_TOKENS,
+                "max_tokens": max_tokens,
                 "thinking": THINKING,
                 "output_config": {"effort": effort, "format": {"type": "json_schema", "schema": schema}},
                 "system": system,
@@ -807,7 +807,8 @@ def cmd_build_review(args, tree_factory=Tree, members=reflected_members, client=
     def tree_for(it):
         return trees.setdefault(it["rev"], tree_factory(it["rev"]))
 
-    requests, meta = build_requests("review", items, tree_for, members, args.cache_ttl, args.effort)
+    requests, meta = build_requests("review", items, tree_for, members, args.cache_ttl, args.effort,
+                                    getattr(args, "max_tokens", MAX_TOKENS))
     info = write_run(args.run, "review", requests, meta, extra, client, args.dry_run)
     print_summary(args.run, info)
     return 0
@@ -937,7 +938,8 @@ def cmd_build_propose(args, tree_factory=Tree, members=reflected_members, status
     if not items:
         print("name_batch: no unnamed matched functions in the listed directories")
         return 1
-    requests, meta = build_requests("propose", items, lambda it: tree, members, args.cache_ttl, args.effort)
+    requests, meta = build_requests("propose", items, lambda it: tree, members, args.cache_ttl, args.effort,
+                                    getattr(args, "max_tokens", MAX_TOKENS))
     info = write_run(args.run, "propose", requests, meta, {"ttl": args.cache_ttl, "effort": args.effort,
                                                           "rev": args.rev}, client, args.dry_run)
     print_summary(args.run, info)
@@ -1458,6 +1460,9 @@ def main(argv: list[str] | None = None) -> int:
         p.add_argument("--effort", default=EFFORT, choices=["low", "medium", "high", "xhigh", "max"])
         p.add_argument("--cache-ttl", default="5m", choices=["5m", "1h", "off"],
                        help="cache breakpoint TTL (hits inside a batch are best-effort)")
+        p.add_argument("--max-tokens", type=int, default=MAX_TOKENS,
+                       help=f"output limit per request, thinking included (default {MAX_TOKENS}); the worst-case "
+                            "estimate uses it, and a truncated answer counts as no verdict")
 
     p = sub.add_parser("build-review")
     build_opts(p)
