@@ -7,59 +7,52 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassSetRelativeCameraAnimationBaseEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSetRelativeCameraAnimationBaseEvent
 extern CStrId* g_unk_716e454178[];
-namespace CCharClassSetRelativeCameraAnimationBaseEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassSetRelativeCameraAnimationBaseEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Relative Camera Animation");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Camera", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAnimationPath", 0x10, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())), (Extension, CStrId(*g_unk_716e454178[6])));
-    DREAD_REFLECTED_FIELD(bool, "bRawChange", 0x18, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fInitInterpTime", 0x1c, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fExitInterpTime", 0x20, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sExitInterpCurve", 0x28, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bExitInterpStoringValues", 0x30, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(CStrId, "sStartCallback", 0x38, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sEndCallback", 0x40, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bHideGUI", 0x48, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bInitialInterp", 0x49, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bInvertSide", 0x4a, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bInvertAng", 0x4b, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(s32, "iIniFrame", 0x4c, (DefaultValue, 0), (MinValue, 0.0f), (MaxValue, 10000.0f));
-    DREAD_REFLECTED_FIELD(f32, "fInitInterpFactor", 0x50, (DefaultValue, 5.0f), (MinValue, 0.1f), (MaxValue, 20.0f));
-    DREAD_REFLECTED_FIELD(bool, "bExitWantsToForceEntitiesInFOV", 0x54, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bResetInterpOnPossess", 0x55, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fDuration", 0x58, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 100000.0f));
-    DREAD_REFLECTED_FIELD(bool, "bReplaceCurrentCameraAnimation", 0x5c, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(CStrId, "sAnimID", 0x60, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bUpdateGoalParamsOnExitInterpolation", 0x68, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bLoopAnim", 0x69, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bUseRelativeAnimTime", 0x6a, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bUseBoundaries", 0x6b, (DefaultValue, false));
+void CCharClassSetRelativeCameraAnimationBaseEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAnimationPath", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, sAnimationPath), (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())), (Extension, CStrId(*g_unk_716e454178[6])));
+    DREAD_REFLECTED_FIELD(bool, "bRawChange", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bRawChange), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fInitInterpTime", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, fInitInterpTime), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExitInterpTime", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, fExitInterpTime), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sExitInterpCurve", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, sExitInterpCurve), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bExitInterpStoringValues", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bExitInterpStoringValues), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(CStrId, "sStartCallback", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, sStartCallback), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sEndCallback", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, sEndCallback), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bHideGUI", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bHideGUI), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bInitialInterp", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bInitialInterp), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bInvertSide", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bInvertSide), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bInvertAng", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bInvertAng), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(s32, "iIniFrame", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, iIniFrame), (DefaultValue, 0), (MinValue, 0.0f), (MaxValue, 10000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInitInterpFactor", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, fInitInterpFactor), (DefaultValue, 5.0f), (MinValue, 0.1f), (MaxValue, 20.0f));
+    DREAD_REFLECTED_FIELD(bool, "bExitWantsToForceEntitiesInFOV", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bExitWantsToForceEntitiesInFOV), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bResetInterpOnPossess", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bResetInterpOnPossess), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fDuration", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, fDuration), (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 100000.0f));
+    DREAD_REFLECTED_FIELD(bool, "bReplaceCurrentCameraAnimation", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bReplaceCurrentCameraAnimation), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(CStrId, "sAnimID", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, sAnimID), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bUpdateGoalParamsOnExitInterpolation", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bUpdateGoalParamsOnExitInterpolation), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bLoopAnim", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bLoopAnim), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bUseRelativeAnimTime", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bUseRelativeAnimTime), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bUseBoundaries", offsetof(CCharClassSetRelativeCameraAnimationBaseEvent, bUseBoundaries), (DefaultValue, false));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x70;
+bool CCharClassSetRelativeCameraAnimationBaseEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassSetRelativeCameraAnimationBaseEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassSetRelativeCameraAnimationBaseEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetRelativeCameraAnimationBaseEvent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassSetRelativeCameraAnimationBaseEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetRelativeCameraAnimationBaseEvent*>(obj)->~CCharClassSetRelativeCameraAnimationBaseEvent(); }
+struct CCharClassSetRelativeCameraAnimationBaseEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassSetRelativeCameraAnimationBaseEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -70,5 +63,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassSetRelativeCameraAnimationBaseEvent
-DREAD_REFLECTED_CLASS(CCharClassSetRelativeCameraAnimationBaseEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassSetRelativeCameraAnimationBaseEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

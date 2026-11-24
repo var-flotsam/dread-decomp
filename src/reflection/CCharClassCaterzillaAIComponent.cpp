@@ -7,34 +7,31 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassCaterzillaAIComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCaterzillaAIComponent
-namespace CCharClassCaterzillaAIComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(s32, "iNumOfCreatures", 0x50c, (DefaultValue, 6));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassCaterzillaAIComponent::refl_AddAttributes(CClass*) {}
+void CCharClassCaterzillaAIComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(s32, "iNumOfCreatures", offsetof(CCharClassCaterzillaAIComponent, iNumOfCreatures), (DefaultValue, 6));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x510;
+bool CCharClassCaterzillaAIComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassCaterzillaAIComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassCaterzillaAIComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCaterzillaAIComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassCaterzillaAIComponent::refl_Destroy(void* obj) { static_cast<CCharClassCaterzillaAIComponent*>(obj)->~CCharClassCaterzillaAIComponent(); }
+struct CCharClassCaterzillaAIComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassCaterzillaAIComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassCaterzillaAIComponent
-DREAD_REFLECTED_CLASS(CCharClassCaterzillaAIComponent, CCharClassBehaviorTreeAIComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassCaterzillaAIComponent, CCharClassBehaviorTreeAIComponent);
+#pragma GCC diagnostic pop

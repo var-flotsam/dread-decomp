@@ -7,34 +7,31 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassShipRechargeComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassShipRechargeComponent
-namespace CCharClassShipRechargeComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sSaveUseQuestionID", 0x1e8, (DefaultValue, ""), (Description, "Use question ID"));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sSaveUseSuccessMessage", 0x1b8, (DefaultValue, ""), (Description, "Use Success Message"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassShipRechargeComponent::refl_AddAttributes(CClass*) {}
+void CCharClassShipRechargeComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sSaveUseQuestionID", offsetof(CCharClassShipRechargeComponent, sSaveUseQuestionID), (DefaultValue, ""), (Description, "Use question ID"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sSaveUseSuccessMessage", offsetof(CCharClassShipRechargeComponent, sSaveUseSuccessMessage), (DefaultValue, ""), (Description, "Use Success Message"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x218;
+bool CCharClassShipRechargeComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassShipRechargeComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassShipRechargeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassShipRechargeComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassShipRechargeComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassShipRechargeComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassShipRechargeComponent::refl_Destroy(void* obj) { static_cast<CCharClassShipRechargeComponent*>(obj)->~CCharClassShipRechargeComponent(); }
+void* CCharClassShipRechargeComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassShipRechargeComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassShipRechargeComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassShipRechargeComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -45,5 +42,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassShipRechargeComponent
-DREAD_REFLECTED_CLASS(CCharClassShipRechargeComponent, CCharClassUsableComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassShipRechargeComponent, CCharClassUsableComponent);
+#pragma GCC diagnostic pop

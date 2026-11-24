@@ -7,38 +7,35 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassRobotAIComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassRobotAIComponent
-namespace CCharClassRobotAIComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sBumpedFX", 0x510, (DefaultValue, ""), (Description, "Defeated Enemy class"));
-    DREAD_REFLECTED_FIELD(CStrId, "sDeathTimeline", 0x518, (DefaultValue, "ondeath"), (Description, "Dead default timeline"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassRobotAIComponent::refl_AddAttributes(CClass*) {}
+void CCharClassRobotAIComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sBumpedFX", offsetof(CCharClassRobotAIComponent, sBumpedFX), (DefaultValue, ""), (Description, "Defeated Enemy class"));
+    DREAD_REFLECTED_FIELD(CStrId, "sDeathTimeline", offsetof(CCharClassRobotAIComponent, sDeathTimeline), (DefaultValue, "ondeath"), (Description, "Dead default timeline"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x520;
+bool CCharClassRobotAIComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassRobotAIComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassRobotAIComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRobotAIComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassRobotAIComponent::refl_Destroy(void* obj) { static_cast<CCharClassRobotAIComponent*>(obj)->~CCharClassRobotAIComponent(); }
+struct CCharClassRobotAIComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassRobotAIComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassRobotAIComponent
-DREAD_REFLECTED_CLASS(CCharClassRobotAIComponent, CCharClassBehaviorTreeAIComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassRobotAIComponent, CCharClassBehaviorTreeAIComponent);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

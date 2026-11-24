@@ -7,36 +7,33 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassElevatorUsableComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassElevatorUsableComponent
-namespace CCharClassElevatorUsableComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableUpAction", 0x1b8, (DefaultValue, ""), (Description, "Elevator up Usable animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableDownAction", 0x1c0, (DefaultValue, ""), (Description, "Elevator down Usable animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeUpAction", 0x1c8, (DefaultValue, ""), (Description, "Elevator up Usable level change animation"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeDownAction", 0x1d0, (DefaultValue, ""), (Description, "Elevator down Usable level change animation"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassElevatorUsableComponent::refl_AddAttributes(CClass*) {}
+void CCharClassElevatorUsableComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableUpAction", offsetof(CCharClassElevatorUsableComponent, sUsableUpAction), (DefaultValue, ""), (Description, "Elevator up Usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableDownAction", offsetof(CCharClassElevatorUsableComponent, sUsableDownAction), (DefaultValue, ""), (Description, "Elevator down Usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeUpAction", offsetof(CCharClassElevatorUsableComponent, sUsableLevelChangeUpAction), (DefaultValue, ""), (Description, "Elevator up Usable level change animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeDownAction", offsetof(CCharClassElevatorUsableComponent, sUsableLevelChangeDownAction), (DefaultValue, ""), (Description, "Elevator down Usable level change animation"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x1d8;
+bool CCharClassElevatorUsableComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassElevatorUsableComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassElevatorUsableComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassElevatorUsableComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassElevatorUsableComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassElevatorUsableComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassElevatorUsableComponent::refl_Destroy(void* obj) { static_cast<CCharClassElevatorUsableComponent*>(obj)->~CCharClassElevatorUsableComponent(); }
+void* CCharClassElevatorUsableComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassElevatorUsableComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassElevatorUsableComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassElevatorUsableComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -47,5 +44,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassElevatorUsableComponent
-DREAD_REFLECTED_CLASS(CCharClassElevatorUsableComponent, CCharClassUsableComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassElevatorUsableComponent, CCharClassUsableComponent);
+#pragma GCC diagnostic pop

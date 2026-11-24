@@ -5,32 +5,26 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CIceMissileMovement.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CIceMissileMovement
-namespace CIceMissileMovement {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x628;
+void CIceMissileMovement::refl_AddAttributes(CClass*) {}
+void CIceMissileMovement::refl_AddFields(CClass*) {}
+bool CIceMissileMovement::refl_Equals(const void*, const void*) { return false; }
+s32 CIceMissileMovement::refl_Hash() { return -1; }
+const base::reflection::CType& CIceMissileMovement::refl_TypeOf(const void* obj) { return *static_cast<const CIceMissileMovement*>(obj)->refl_GetDynamicClass(); }
+void CIceMissileMovement::refl_Destroy(void* obj) { static_cast<CIceMissileMovement*>(obj)->~CIceMissileMovement(); }
+struct CIceMissileMovement::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CIceMissileMovement);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CIceMissileMovement
-DREAD_REFLECTED_CLASS(CIceMissileMovement, CMissileMovement);
+DREAD_REFLECTED_DECLARED_CLASS(CIceMissileMovement, CMissileMovement);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

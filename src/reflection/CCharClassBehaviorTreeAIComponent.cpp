@@ -7,35 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassBehaviorTreeAIComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBehaviorTreeAIComponent
-namespace CCharClassBehaviorTreeAIComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sBehaviorTreePath", 0x500, (DefaultValue, ""), (Description, "Behavior tree that is loaded into this class"));
-    DREAD_REFLECTED_FIELD(f32, "fMaxCrazyTime", 0x508, (DefaultValue, 1.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassBehaviorTreeAIComponent::refl_AddAttributes(CClass*) {}
+void CCharClassBehaviorTreeAIComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sBehaviorTreePath", offsetof(CCharClassBehaviorTreeAIComponent, sBehaviorTreePath), (DefaultValue, ""), (Description, "Behavior tree that is loaded into this class"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxCrazyTime", offsetof(CCharClassBehaviorTreeAIComponent, fMaxCrazyTime), (DefaultValue, 1.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x510;
+bool CCharClassBehaviorTreeAIComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassBehaviorTreeAIComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassBehaviorTreeAIComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBehaviorTreeAIComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassBehaviorTreeAIComponent::refl_Destroy(void* obj) { static_cast<CCharClassBehaviorTreeAIComponent*>(obj)->~CCharClassBehaviorTreeAIComponent(); }
+struct CCharClassBehaviorTreeAIComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassBehaviorTreeAIComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassBehaviorTreeAIComponent
-DREAD_REFLECTED_CLASS(CCharClassBehaviorTreeAIComponent, CCharClassAIComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassBehaviorTreeAIComponent, CCharClassAIComponent);
+#pragma GCC diagnostic pop

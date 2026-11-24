@@ -7,43 +7,40 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassBatalloonAIComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBatalloonAIComponent
-namespace CCharClassBatalloonAIComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fCallDistMaxDelayTime", 0x518, (DefaultValue, 1.0f), (Description, "Rule of 3: distance(caller,called) = 0 <=> delay = 0; distance(caller,called) >= m_fCallDistLimit <=> delay = m_fCallDistMaxDelayTime. If -1 then m_fCallDistMaxDelayTime = caller's call action's duration"));
-    DREAD_REFLECTED_FIELD(f32, "fCallDistLimit", 0x51c, (DefaultValue, 1000.0f), (Description, "See m_fCallDistMaxDelayTime"));
-    DREAD_REFLECTED_FIELD(f32, "fCallRandMinDelayTime", 0x520, (DefaultValue, 0.1f));
-    DREAD_REFLECTED_FIELD(f32, "fCallRandMaxDelayTime", 0x524, (DefaultValue, 0.4f));
-    DREAD_REFLECTED_FIELD(f32, "fRandMinTimeForPathUpdate", 0x528, (DefaultValue, 0.1f));
-    DREAD_REFLECTED_FIELD(f32, "fRandMaxTimeForPathUpdate", 0x52c, (DefaultValue, 0.2f));
-    DREAD_REFLECTED_FIELD(f32, "fDotNegativeMaxTimeForPathUpdate", 0x530, (DefaultValue, 0.2f));
-    DREAD_REFLECTED_FIELD(f32, "fMovementShakeRadius", 0x538, (DefaultValue, 140.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMovementShakeInterpolationSpeed", 0x53c, (DefaultValue, 2.0f));
-    DREAD_REFLECTED_FIELD(f32, "fBrothersDist2Stop", 0x534, (DefaultValue, 150.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassBatalloonAIComponent::refl_AddAttributes(CClass*) {}
+void CCharClassBatalloonAIComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fCallDistMaxDelayTime", offsetof(CCharClassBatalloonAIComponent, fCallDistMaxDelayTime), (DefaultValue, 1.0f), (Description, "Rule of 3: distance(caller,called) = 0 <=> delay = 0; distance(caller,called) >= m_fCallDistLimit <=> delay = m_fCallDistMaxDelayTime. If -1 then m_fCallDistMaxDelayTime = caller's call action's duration"));
+    DREAD_REFLECTED_FIELD(f32, "fCallDistLimit", offsetof(CCharClassBatalloonAIComponent, fCallDistLimit), (DefaultValue, 1000.0f), (Description, "See m_fCallDistMaxDelayTime"));
+    DREAD_REFLECTED_FIELD(f32, "fCallRandMinDelayTime", offsetof(CCharClassBatalloonAIComponent, fCallRandMinDelayTime), (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fCallRandMaxDelayTime", offsetof(CCharClassBatalloonAIComponent, fCallRandMaxDelayTime), (DefaultValue, 0.4f));
+    DREAD_REFLECTED_FIELD(f32, "fRandMinTimeForPathUpdate", offsetof(CCharClassBatalloonAIComponent, fRandMinTimeForPathUpdate), (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fRandMaxTimeForPathUpdate", offsetof(CCharClassBatalloonAIComponent, fRandMaxTimeForPathUpdate), (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fDotNegativeMaxTimeForPathUpdate", offsetof(CCharClassBatalloonAIComponent, fDotNegativeMaxTimeForPathUpdate), (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fMovementShakeRadius", offsetof(CCharClassBatalloonAIComponent, fMovementShakeRadius), (DefaultValue, 140.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMovementShakeInterpolationSpeed", offsetof(CCharClassBatalloonAIComponent, fMovementShakeInterpolationSpeed), (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBrothersDist2Stop", offsetof(CCharClassBatalloonAIComponent, fBrothersDist2Stop), (DefaultValue, 150.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x540;
+bool CCharClassBatalloonAIComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassBatalloonAIComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassBatalloonAIComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBatalloonAIComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassBatalloonAIComponent::refl_Destroy(void* obj) { static_cast<CCharClassBatalloonAIComponent*>(obj)->~CCharClassBatalloonAIComponent(); }
+struct CCharClassBatalloonAIComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassBatalloonAIComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassBatalloonAIComponent
-DREAD_REFLECTED_CLASS(CCharClassBatalloonAIComponent, CCharClassBaseGroundShockerAIComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassBatalloonAIComponent, CCharClassBaseGroundShockerAIComponent);
+#pragma GCC diagnostic pop

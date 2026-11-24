@@ -7,48 +7,45 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassInfesterBallAIComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassInfesterBallAIComponent
-namespace CCharClassInfesterBallAIComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fLifeTime", 0x50c, (DefaultValue, 5.0f));
-    DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", 0x510, (DefaultValue, 100.0f));
-    DREAD_REFLECTED_FIELD(f32, "fTimeToExplosion", 0x514, (DefaultValue, 0.1f));
-    DREAD_REFLECTED_FIELD(f32, "fTimeAtMaxRadiusExplosion", 0x518, (DefaultValue, 0.2f));
-    DREAD_REFLECTED_FIELD(f32, "fDamageInfesterBallExplosion", 0x51c, (DefaultValue, 20.0f));
-    DREAD_REFLECTED_FIELD(bool, "bChangeDirOnLand", 0x520, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(f32, "fXImpulseInWallSpawn", 0x524, (DefaultValue, 100.0f));
-    DREAD_REFLECTED_FIELD(bool, "bNotExplodeInWallCollision", 0x528, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(s32, "iNumCollisionsToExplode", 0x52c, (DefaultValue, 3));
-    DREAD_REFLECTED_FIELD(s32, "iNumWallCollisions", 0x530, (DefaultValue, 2));
-    DREAD_REFLECTED_FIELD(bool, "bExplodeInVerticalTunnelCollision", 0x529, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fTunnelImpulseFactor", 0x534, (DefaultValue, 0.5f));
-    DREAD_REFLECTED_FIELD(f32, "fReboundInWallFactor", 0x538, (DefaultValue, 0.5f));
-    DREAD_REFLECTED_FIELD(f32, "fReboundInGroundFactor", 0x53c, (DefaultValue, 0.5f));
-    DREAD_REFLECTED_FIELD(f32, "fReboundInSlopeFactor", 0x540, (DefaultValue, 0.5f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassInfesterBallAIComponent::refl_AddAttributes(CClass*) {}
+void CCharClassInfesterBallAIComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fLifeTime", offsetof(CCharClassInfesterBallAIComponent, fLifeTime), (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", offsetof(CCharClassInfesterBallAIComponent, fExplosionRadius), (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToExplosion", offsetof(CCharClassInfesterBallAIComponent, fTimeToExplosion), (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeAtMaxRadiusExplosion", offsetof(CCharClassInfesterBallAIComponent, fTimeAtMaxRadiusExplosion), (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fDamageInfesterBallExplosion", offsetof(CCharClassInfesterBallAIComponent, fDamageInfesterBallExplosion), (DefaultValue, 20.0f));
+    DREAD_REFLECTED_FIELD(bool, "bChangeDirOnLand", offsetof(CCharClassInfesterBallAIComponent, bChangeDirOnLand), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fXImpulseInWallSpawn", offsetof(CCharClassInfesterBallAIComponent, fXImpulseInWallSpawn), (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(bool, "bNotExplodeInWallCollision", offsetof(CCharClassInfesterBallAIComponent, bNotExplodeInWallCollision), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(s32, "iNumCollisionsToExplode", offsetof(CCharClassInfesterBallAIComponent, iNumCollisionsToExplode), (DefaultValue, 3));
+    DREAD_REFLECTED_FIELD(s32, "iNumWallCollisions", offsetof(CCharClassInfesterBallAIComponent, iNumWallCollisions), (DefaultValue, 2));
+    DREAD_REFLECTED_FIELD(bool, "bExplodeInVerticalTunnelCollision", offsetof(CCharClassInfesterBallAIComponent, bExplodeInVerticalTunnelCollision), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fTunnelImpulseFactor", offsetof(CCharClassInfesterBallAIComponent, fTunnelImpulseFactor), (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fReboundInWallFactor", offsetof(CCharClassInfesterBallAIComponent, fReboundInWallFactor), (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fReboundInGroundFactor", offsetof(CCharClassInfesterBallAIComponent, fReboundInGroundFactor), (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fReboundInSlopeFactor", offsetof(CCharClassInfesterBallAIComponent, fReboundInSlopeFactor), (DefaultValue, 0.5f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x548;
+bool CCharClassInfesterBallAIComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassInfesterBallAIComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassInfesterBallAIComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassInfesterBallAIComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassInfesterBallAIComponent::refl_Destroy(void* obj) { static_cast<CCharClassInfesterBallAIComponent*>(obj)->~CCharClassInfesterBallAIComponent(); }
+struct CCharClassInfesterBallAIComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassInfesterBallAIComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassInfesterBallAIComponent
-DREAD_REFLECTED_CLASS(CCharClassInfesterBallAIComponent, CCharClassBehaviorTreeAIComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassInfesterBallAIComponent, CCharClassBehaviorTreeAIComponent);
+#pragma GCC diagnostic pop

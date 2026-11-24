@@ -7,40 +7,37 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CMissileMovement.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CMissileMovement
-namespace CMissileMovement {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sTrailFX", 0x5d8, (DefaultValue, "trail"), (Description, "trail FX id"));
-    DREAD_REFLECTED_FIELD(CStrId, "sBurstFX", 0x5e0, (DefaultValue, "burstmodel"), (Description, "trail FX id"));
-    DREAD_REFLECTED_FIELD(CStrId, "sIgnitionFX", 0x5e8, (DefaultValue, "ignition"), (Description, "trail FX id"));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSPRNoDamageFX", 0x600, (DefaultValue, ""), (Description, "FX to launch on no damaged entity when the projectil is charged"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CMissileMovement::refl_AddAttributes(CClass*) {}
+void CMissileMovement::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sTrailFX", offsetof(CMissileMovement, sTrailFX), (DefaultValue, "trail"), (Description, "trail FX id"));
+    DREAD_REFLECTED_FIELD(CStrId, "sBurstFX", offsetof(CMissileMovement, sBurstFX), (DefaultValue, "burstmodel"), (Description, "trail FX id"));
+    DREAD_REFLECTED_FIELD(CStrId, "sIgnitionFX", offsetof(CMissileMovement, sIgnitionFX), (DefaultValue, "ignition"), (Description, "trail FX id"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSPRNoDamageFX", offsetof(CMissileMovement, sSPRNoDamageFX), (DefaultValue, ""), (Description, "FX to launch on no damaged entity when the projectil is charged"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x620;
+bool CMissileMovement::refl_Equals(const void*, const void*) { return false; }
+s32 CMissileMovement::refl_Hash() { return -1; }
+const base::reflection::CType& CMissileMovement::refl_TypeOf(const void* obj) { return *static_cast<const CMissileMovement*>(obj)->refl_GetDynamicClass(); }
+void CMissileMovement::refl_Destroy(void* obj) { static_cast<CMissileMovement*>(obj)->~CMissileMovement(); }
+struct CMissileMovement::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CMissileMovement);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CMissileMovement
-DREAD_REFLECTED_CLASS(CMissileMovement, CProjectileMovement);
+DREAD_REFLECTED_DECLARED_CLASS(CMissileMovement, CProjectileMovement);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

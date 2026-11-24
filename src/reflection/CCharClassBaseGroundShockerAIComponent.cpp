@@ -7,36 +7,33 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassBaseGroundShockerAIComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBaseGroundShockerAIComponent
-namespace CCharClassBaseGroundShockerAIComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fDefaultMotionSpeed", 0x50c, (DefaultValue, 200.0f));
-    DREAD_REFLECTED_FIELD(f32, "fCombatMotionSpeed", 0x510, (DefaultValue, 300.0f));
-    DREAD_REFLECTED_FIELD(f32, "fFleeMotionSpeed", 0x514, (DefaultValue, 300.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassBaseGroundShockerAIComponent::refl_AddAttributes(CClass*) {}
+void CCharClassBaseGroundShockerAIComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fDefaultMotionSpeed", offsetof(CCharClassBaseGroundShockerAIComponent, fDefaultMotionSpeed), (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCombatMotionSpeed", offsetof(CCharClassBaseGroundShockerAIComponent, fCombatMotionSpeed), (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFleeMotionSpeed", offsetof(CCharClassBaseGroundShockerAIComponent, fFleeMotionSpeed), (DefaultValue, 300.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x518;
+bool CCharClassBaseGroundShockerAIComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassBaseGroundShockerAIComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassBaseGroundShockerAIComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBaseGroundShockerAIComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassBaseGroundShockerAIComponent::refl_Destroy(void* obj) { static_cast<CCharClassBaseGroundShockerAIComponent*>(obj)->~CCharClassBaseGroundShockerAIComponent(); }
+struct CCharClassBaseGroundShockerAIComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassBaseGroundShockerAIComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassBaseGroundShockerAIComponent
-DREAD_REFLECTED_CLASS(CCharClassBaseGroundShockerAIComponent, CCharClassBehaviorTreeAIComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassBaseGroundShockerAIComponent, CCharClassBehaviorTreeAIComponent);
+#pragma GCC diagnostic pop

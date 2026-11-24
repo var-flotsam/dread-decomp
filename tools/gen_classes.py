@@ -99,8 +99,10 @@ MEMBER_TYPES = {
     "unsigned": ("u32", 4, 4, None),
     "base::global::CStrId": ("base::global::CStrId", 8, 8, "base/global/CStrId.h"),
     "base::global::CRntString": ("base::global::CRntString", 0x30, 8, "base/global/CRntString.h"),
-    # Not base::global::CFilePathStrId: a reflected member takes 0x10 bytes, its declaration (base/global/
-    # CFilePathStrId.h) only 8, so a class with one would not have its reflected size.
+    # 8 bytes, as its descriptor says (PrimitiveTypeDescription<base::global::CFilePathStrId>::size in
+    # src/reflection_types/, from the matching constructor) and as its members lie: every two adjacent ones
+    # in data/reflection_fields.csv are 8 apart.
+    "base::global::CFilePathStrId": ("base::global::CFilePathStrId", 8, 8, "base/global/CFilePathStrId.h"),
     "base::math::CVector2D": ("base::math::CVector2D", 8, 4, "base/math/CVector.h"),
     "base::math::CVector3D": ("base::math::CVector3D", 0xC, 4, "base/math/CVector.h"),
     "base::math::CVector4D": ("base::math::CVector4D", 0x10, 4, "base/math/CVector4D.h"),
