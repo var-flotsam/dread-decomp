@@ -6,16 +6,9 @@
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 #include "game/UnkTU1161.h"
+#include "game/UnkVec3Result.h"
 
 using base::reflection::UnkReflObject;
-
-// Returned through x8, so the original's result type is not trivially copyable.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 struct UnkParent_71007455dc;
 

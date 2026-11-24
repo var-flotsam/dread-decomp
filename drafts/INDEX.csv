@@ -139,6 +139,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100105074,296,drafts/game/UnkTU101/fn_7100105074.cpp,control flow,10.5,66,lean-b1,result kept in s8 across expf in the original; early-out compares and loads differ
 0x7100106038,176,drafts/game/UnkTU101/fn_7100106038.cpp,control flow,22.9,33,lean-b1,branch order of flag/time checks and single exit differ
 0x71001080b4,416,drafts/base/snd/CSoundSystem/fn_71001080b4.cpp,operations,91.3,9,lean-oc1,only the entry differs: the original copies desc to x19 first and loads the path (+0x20) with a pre-indexed wr
+0x710010df80,476,drafts/game/UnkTU107/fn_710010df80.cpp,match,100.0,0,match-batch,matches; held: a second definition of UnkBoxVector_b0236
 0x710010f774,196,drafts/game/UnkTU107/fn_710010f774.cpp,control flow,16.3,40,lean-ob3,y-range test merged into fccmp; original branches on bottom before computing top
 0x71001176e8,960,drafts/game/UnkTU108/fn_71001176e8.cpp,calls,13.3,184,lean-oc1,loop unswitching: original splits the loop on the index pointer only and checks found/best at loop top; ours s
 0x7100117aa8,248,drafts/game/UnkTU108/fn_7100117aa8.cpp,control flow,22.2,48,lean-b3,loop shape: original has separate empty-case exit and rotated loop; mine merges them
@@ -537,6 +538,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71003ad4dc,432,drafts/game/CBossAIComponent/fn_71003ad4dc.cpp,registers or order,98.1,2,lean-r2ke,order of the two argument copies (v8 from v0 vs w19 from w1) after the first check
 0x71003af37c,1284,drafts/game/CBossAIComponent/fn_71003af37c.cpp,control flow,13.7,274,lean-callee1,two either-of null tests (warrior; elite) fold into orr+cbnz where the original keeps two cbnz; checks 2-4 sch
 0x71003b381c,1524,drafts/game/behaviortree/CAutclastComputeAttackPositionAction/fn_71003b381c.cpp,calls,43.0,203,lean-r2ki,each walk loop is rotated with the corner call peeled (ours forwards the stored cell; the original reloads it)
+0x71003b47bc,508,drafts/game/CAutclastChargeAttack/fn_71003b47bc.cpp,match,100.0,0,match-batch,matches; held: declares fn_71003b514c which another source declares: needs a unit header
 0x71003b4c7c,1096,drafts/game/CAutclastChargeAttack/fn_71003b4c7c.cpp,control flow,13.5,229,lean-r2ki,original keeps a keep-going flag after the corner step (ours threads it away); stack slot order of the side-pa
 0x71003b514c,2248,drafts/game/CAutclastChargeAttack/fn_71003b514c.cpp,calls,15.8,464,lean-callee1,calls 48 vs 46: original keeps three copies of the probe-box destructor (break and two returns; one storing an
 0x71003b5a14,776,drafts/game/CAutclastChargeAttack/fn_71003b5a14.cpp,operations,58.8,80,lean-r2ki,stack layout: the two side-pair temporaries share a slot in ours (frame 0xd0 vs 0xe0); tunable field load orde
@@ -1128,6 +1130,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71007e4a00,664,drafts/game/CCharClassEventScenarioComponent/fn_71007e4a00.cpp,control flow,80.7,25,lean-r2kf,block layout of the link copy destructor: original duplicates the null-handle cleanup out of line (664 vs 636
 0x71007e4df4,440,drafts/game/CCharClassEventScenarioComponent/fn_71007e4df4.cpp,registers or order,95.5,5,lean-r2kf,the original reads/writes the id list count with no type-based alias info (reloads count; pool; data); with co
 0x71007e9ba4,764,drafts/game/CForcedMovementAreaComponent/fn_71007e9ba4.cpp,control flow,55.7,84,lean-r2ki,inner find loop: original peels the first element and counts remaining bytes; tried for; find_if; index and do
+0x71007e9ee8,872,drafts/game/CForcedMovementAreaComponent/fn_71007e9ee8.cpp,match,100.0,0,match-batch,matches; held: declares fn_71007ea32c and fn_7100eea7b0 which another source declares: needs a unit header
 0x71007eb998,884,drafts/game/CForcedMovementAreaComponent/fn_71007eb998.cpp,control flow,20.8,160,lean-r2ke,find_if over the entry list: original peels the first element check (loop shape); rest shifts
 0x71007f48d8,1204,drafts/game/CFrozenAsFrostbiteComponent/fn_71007f48d8.cpp,calls,62.5,31,sib-cloud-1,stack slot sharing (key/colour/bounds at sp+0x10; position at sp+0; one callee-saved reg fewer; frame 0x70 vs
 0x71007fa75c,1160,drafts/game/CFrozenComponent/fn_71007fa75c.cpp,control flow,24.5,215,lean-r2kd,block placement: string-id cleanup placed at the end instead of after the freeze-in-frame path; node lookup ha
@@ -1219,6 +1222,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710088af9c,596,drafts/game/CCharClassMushroomPlatformComponent/fn_710088af9c.cpp,conditions,95.3,7,lean-ob2,state search loop: original keeps the byte count (lsl/cbz) the shared A5_b73 header gets only with a barrier;
 0x710088fce4,812,drafts/game/CCharClassShootActivatorComponent/fn_710088fce4.cpp,operations,11.3,173,lean-r2kb,each array flag at +0x14 is stored from the array base (add+strb) in the original; ours folds it to the object
 0x7100890ea4,508,drafts/game/CCharClassShootActivatorComponent/fn_7100890ea4.cpp,operations,75.6,30,lean-sib2,original keeps the copied id's data in a register across fn_71008910a0 (same unit; likely IPO) and reloads han
+0x7100891690,308,drafts/game/CCharClassShootActivatorComponent/fn_7100891690.cpp,match,100.0,0,match-batch,matches; held: declares fn_71008e1174 which another source declares: needs a unit header
 0x7100891ddc,964,drafts/game/CCharClassShootActivatorComponent/fn_7100891ddc.cpp,operations,6.2,224,lean-r2ki,progress clamp/tint jump threading: original keeps the zero case as its own block (red 0; green 1); rest unsee
 0x710089754c,1472,drafts/game/CCharClassShootActivatorHidrogigaComponent/fn_710089754c.cpp,control flow,6.5,335,lean-fam0a,the original keeps the class-check result and a csel'd AI pointer live across the hit check (no jump threading
 0x7100897d08,504,drafts/game/CCharClassShootActivatorHidrogigaComponent/fn_7100897d08.cpp,control flow,61.9,46,lean-sib2,own/linked null test threaded into branches (orig orr+cbz); charge step fadd folded into one select (orig two
