@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassAIComponent.h"
 #include "game/CCharClassComponent.h"
 #include "types.h"
 
@@ -15,7 +16,6 @@ using base::global::UnkStrIdBase;
 
 struct UnkObject_7100416db8;
 
-extern void* g_unk_7101a34100[];
 extern void* g_unk_7101a21588[];
 extern void* g_unk_7101a215b0[];
 extern void* g_unk_7101a215d8[];

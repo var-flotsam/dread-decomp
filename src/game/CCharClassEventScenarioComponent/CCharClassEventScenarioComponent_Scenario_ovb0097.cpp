@@ -28,7 +28,6 @@ extern "C" int rand();
 
 struct UnkStateObject;
 void fn_71007e5304(char* self);  // the string id list's constructor (+0xa0)
-extern void* g_unk_7101a73408[];  // the component's vtable
 
 struct UnkEventScenario_b49a2;
 

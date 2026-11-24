@@ -17,6 +17,7 @@
 #include "game/CAutclastChargeAttack.h"
 #include "game/CDemolitionBlockSonarTargetComponent.h"
 #include "game/CFXPool/CDefinition.h"
+#include "game/CHyperBeamGun.h"
 #include "game/CPlasmaBeamGun.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
@@ -214,7 +215,6 @@ void fn_71011aa0d4(void* unused, u32 kind, const CFilePathStrId* path, u32 count
 }
 
 struct UnkFxObject_ovb0041;
-void* fn_7100846678(void* self, const void* path, u32 a, u32 b);
 void* fn_71010973c0(void* self, const void* path, u32 a, u32 b);
 void* fn_71011a9c98(void* self, const void* path, u32 a, u32 b);
 

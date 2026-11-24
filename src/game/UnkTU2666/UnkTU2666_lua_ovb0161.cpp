@@ -318,7 +318,6 @@ s32 RestorePadVibration(lua_State*) {
 }  // namespace lua_bind
 
 // ---- the metroid counters ----
-void fn_71011406b4(UnkInventory* inventory, const UnkQualifiedId& item, s32 amount, bool a, bool b, bool c, f32 extra);
 
 s32 fn_71010866b0(lua_State* L) {
     s32 added = 0;

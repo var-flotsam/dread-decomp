@@ -1475,7 +1475,7 @@ address,size,name,name_source,subsystem,status
 0x710084604c,16,fn_710084604c,unknown,game?,O
 0x710084605c,16,fn_710084605c,unknown,game?,O
 0x710084606c,16,fn_710084606c,unknown,game?,O
-0x710084607c,1532,fn_710084607c,unknown,game?,U
+0x710084607c,1532,fn_710084607c,unknown,game?,O
 0x7100846678,440,fn_7100846678,unknown,game?,U
 0x7100846830,324,fn_7100846830,unknown,game?,O
 0x7100846974,4,fn_7100846974,unknown,game?,O

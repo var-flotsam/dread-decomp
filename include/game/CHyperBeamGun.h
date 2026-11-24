@@ -11,3 +11,4 @@ bool fn_7100845fac(void* beam);
 s32 fn_71008434b8(void* self);
 void fn_7100843a50(char* self, bool on);
 void fn_71008449ec(UnkHyperBeamGun_b56* self, bool a, bool b);
+void* fn_7100846678(void* self, const void* path, u32 a, u32 b);
