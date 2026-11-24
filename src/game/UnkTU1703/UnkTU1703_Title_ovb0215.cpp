@@ -17,6 +17,7 @@
 #include "game/UnkTitleScreenB.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
+#include "game/UnkTitleScreenA.h"
 
 extern char g_unk_7101a9d190[];  // the member's vtable
 
@@ -97,13 +98,6 @@ using base::global::CStrId;
 struct UnkMenuSoundOwner_l191198;
 void fn_7101191198(UnkMenuSoundOwner_l191198* self, f32 value);
 
-struct UnkTitleScreenA {
-    void* vtable;
-    u8 pad_0x8[8];
-    s32 state;  // 0x10
-    u8 pad_0x14[0x1c];
-    UnkSoundHandle sound;  // 0x30
-};
 
 void fn_7100b53fa0(UnkTitleScreenA* self) {
     if (!fn_7100f00778(Music()))

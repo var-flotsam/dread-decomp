@@ -15,6 +15,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTitleScreenB.h"
 #include "types.h"
+#include "game/UnkTitleScreenA.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
@@ -27,16 +28,6 @@ static inline void SetLabel(UnkGuiDisplayObject* label, s32 value) {
         label, value, false);
 }
 
-struct UnkTitleScreenA {
-    void* vtable;
-    UnkGuiDisplayObject* root;  // 0x8
-    u8 pad_0x10[0x10];
-    f32 delay;  // 0x20
-    bool done;  // 0x24
-    bool notify;
-    u8 pad_0x26[2];
-    f32 field_0x28;
-};
 
 void fn_7100b53fa0(UnkTitleScreenA* self);
 void fn_7100b541d0(UnkTitleScreenB* self);

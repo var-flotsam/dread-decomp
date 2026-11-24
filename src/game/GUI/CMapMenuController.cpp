@@ -19,6 +19,7 @@
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
+#include "game/UnkMapData.h"
 
 using base::global::CStrId;
 
@@ -100,16 +101,6 @@ struct UnkCountedRef {
     }
 };
 
-struct UnkMapData {
-    u8 pad_0x0[0x68];
-    UnkMapMarkers* markers;
-    u8 pad_0x70[0x4c];
-    f32 zoom;
-    u8 pad_0xc0[0x50];
-    CStrId field_0x110;
-    u8 pad_0x118[0xd63c18];
-    f32 bounds[4];  // the map's box: min x, min y, max x, max y
-};
 static_assert(__builtin_offsetof(UnkMapData, bounds) == 0xd63d30, "UnkMapData layout");
 
 bool fn_7100e94214();
