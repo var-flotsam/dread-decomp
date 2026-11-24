@@ -75,7 +75,7 @@ struct UnkAccessPoint_la6e354 {
 
 UnkAccessLink_la6e354* fn_71007b0e04(void* array, u32 index);
 bool fn_71008d1e10(UnkDoorLock* door);
-void fn_71008d8890(UnkDoorLock* door, bool flag);
+void CDoorLifeComponent_SetControlledByUsable(UnkDoorLock* door, bool flag);
 
 inline const CStrId& SectionId_la6e354() {
     static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");
@@ -153,6 +153,6 @@ void fn_7100a6e354(UnkAccessPoint_la6e354* self) {
             if (CBlackboard::CSection* s = fn_7101047270(blackboard, section_id))
                 fn_710006d11c(s, reinterpret_cast<const CStrId*>(&values[index].name), &value);
         }
-        fn_71008d8890(door, !value);
+        CDoorLifeComponent_SetControlledByUsable(door, !value);
     }
 }

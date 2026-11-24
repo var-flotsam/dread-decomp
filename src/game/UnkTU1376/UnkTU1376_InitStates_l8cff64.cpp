@@ -115,7 +115,7 @@ void fn_71008cff64(UnkDoor_l8cff64* self) {
             UnkVec3f position(owner->field_0x44, owner->field_0x54, owner->field_0x64);
             fn_7100146d84(reinterpret_cast<UnkFxObject_ovb0041*>(fx), &position);
             fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(fx), false);
-            fn_7101152988(static_cast<UnkRinkaControl_ovb0090*>(self->owner->field_0x280),
+            CFXComponent_AddNamedEffect(static_cast<UnkRinkaControl_ovb0090*>(self->owner->field_0x280),
                           reinterpret_cast<UnkFxObject_ovb0041*>(fx),
                           reinterpret_cast<UnkRinkaEntry_ruc**>(&g_unk_7172731748), nullptr, 0);
             if (self->field_0x654 == 0)
@@ -128,7 +128,7 @@ void fn_71008cff64(UnkDoor_l8cff64* self) {
             UnkVec3f position(owner->field_0x44, owner->field_0x54, owner->field_0x64);
             fn_7100146d84(reinterpret_cast<UnkFxObject_ovb0041*>(fx), &position);
             fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(fx), false);
-            fn_7101152988(static_cast<UnkRinkaControl_ovb0090*>(self->owner->field_0x280),
+            CFXComponent_AddNamedEffect(static_cast<UnkRinkaControl_ovb0090*>(self->owner->field_0x280),
                           reinterpret_cast<UnkFxObject_ovb0041*>(fx),
                           reinterpret_cast<UnkRinkaEntry_ruc**>(&g_unk_7172731750), nullptr, 0);
             if (self->field_0x654 != 0)

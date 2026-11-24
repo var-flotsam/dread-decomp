@@ -229,7 +229,7 @@ int fn_710107e3f0(lua_State* L) {
         UnkLuaNode_b0160* node;
         {
             CStrId id(target_name, true);
-            node = fn_71008a3288(&id);
+            node = CLandmarkComponent_FindById(&id);
         }
         if (node) {
             position = AsPoint(fn_71008a32f8(node));

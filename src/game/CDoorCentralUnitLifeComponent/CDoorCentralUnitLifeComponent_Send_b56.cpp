@@ -21,7 +21,7 @@ struct UnkCentralUnitDoor_b46a2;
 struct UnkStruct_710024fa0c;
 
 struct UnkDoorLifePart_b56;
-void fn_710086c768(UnkDoorLifePart_b56* part);
+void CHeatableShieldComponent_ResetAllEntries(UnkDoorLifePart_b56* part);
 
 struct UnkDoorLife_b56 {
     u8 pad_0x0[0x30];
@@ -57,7 +57,7 @@ void fn_71008ca0b8(UnkDoorLife_b56* self, bool closed) {
     }
     if (UnkDoorLifePart_b56* part = fn_71005012bc(self->owner)) {
         if (!fn_710024fbc8(part)) {
-            fn_710086c768(part);
+            CHeatableShieldComponent_ResetAllEntries(part);
             fn_710024fa0c(reinterpret_cast<UnkStruct_710024fa0c*>(part), true);
         }
     }

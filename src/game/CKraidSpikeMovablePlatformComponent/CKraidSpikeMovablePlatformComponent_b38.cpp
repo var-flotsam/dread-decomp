@@ -41,14 +41,14 @@ struct UnkSpikePlatform {
     u32 state;  // 0x280
 };
 
-void fn_7100608674(UnkSpikePlatform* self);
+void CKraidSpikeMovablePlatformComponent_OnStickedWallTimeElapsed(UnkSpikePlatform* self);
 void fn_7100951f40(UnkSpikePlatform* self, f32 dt);
 
 static inline const UnkKraidTunableDelays* Delays() {
     return reinterpret_cast<const UnkKraidTunableDelays*>(&g_unk_71726f3440);
 }
 
-void fn_7100608590(UnkSpikePlatform* self, f32 dt) {
+void CKraidSpikeMovablePlatformComponent_AdvanceTimersAndSwitchToMotionSpeed(UnkSpikePlatform* self, f32 dt) {
     self->field_0x26c = self->field_0x269 ? self->field_0x26c + dt : 0.0f;
     self->field_0x269 = false;
     if (self->state == 1) {
@@ -69,7 +69,7 @@ void fn_7100608590(UnkSpikePlatform* self, f32 dt) {
         f32 fallback = delays->field_0x28;
         limit = limit == -1.0f ? fallback : limit;
         if (self->field_0x264 >= limit)
-            fn_7100608674(self);
+            CKraidSpikeMovablePlatformComponent_OnStickedWallTimeElapsed(self);
     }
     fn_7100951f40(self, dt);
 }

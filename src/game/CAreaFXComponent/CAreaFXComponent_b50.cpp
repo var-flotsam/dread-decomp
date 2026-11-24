@@ -26,7 +26,7 @@ struct UnkAreaFX_b50 {
 };
 
 bool fn_71007fe39c(UnkAreaFX_b50* self, void* arg) {
-    if (!fn_71007f900c(self, arg))
+    if (!CFrozenComponent_CacheCharClassAndRegisterStates(self, arg))
         return false;
     UnkReflObject* object = self->field_0x10;
     self->field_0x3f8 = object && fn_710009d50c(object->vf_0x0(), fn_71007fbc5c()) ? object : nullptr;
@@ -55,10 +55,10 @@ struct UnkAreaFXRefs_b50 {
     u32 ref_count;           // 0x440
 };
 
-void fn_71007f954c(UnkAreaFXRefs_b50* self);
+void CFrozenComponent_RelinkAndResetLayerWeight(UnkAreaFXRefs_b50* self);
 
 void fn_71007fe318(UnkAreaFXRefs_b50* self) {
-    fn_71007f954c(self);
+    CFrozenComponent_RelinkAndResetLayerWeight(self);
     for (u64 i = 0; i < self->ref_count; ++i) {
         if (UnkRefObj_b50fx* ref = self->refs[i]) {
             if (--ref->ref_count == 0)

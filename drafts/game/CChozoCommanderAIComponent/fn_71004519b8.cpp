@@ -206,7 +206,7 @@ u32 fn_71004519b8(UnkCommanderAI_l4519b8* self, UnkCommanderHit_l4519b8* hit) {
             f32 damage = hit->damage;
             UnkCommanderCharClass_l4519b8* char_class = self->char_class;
             u8* factors = alt ? char_class->factors_alt : char_class->factors;
-            f32 factor = fn_71008c2de8(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(factors), hit->flags);
+            f32 factor = CDamageSourceFactor_GetFactorForDamageFlags(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(factors), hit->flags);
             fn_71008c1538(reinterpret_cast<UnkRequest*>(hit), damage * factor);
             f32 limit = top - (bottom + (low + high) * -0.5f);
             fn_71008c1538(reinterpret_cast<UnkRequest*>(hit), limit < hit->damage ? limit : hit->damage);

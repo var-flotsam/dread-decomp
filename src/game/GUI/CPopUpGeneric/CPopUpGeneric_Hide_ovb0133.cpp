@@ -54,7 +54,7 @@ void fn_7100b61c74(UnkPopUpGeneric_ovb0133* self, bool flag);
 static inline void RemoveContent(UnkPopUpGeneric_ovb0133* self) {
     if (self->content && self->content->object) {
         fn_71011cdce8(self->content->object, false);
-        fn_71011d932c(self->container, reinterpret_cast<UnkDisplayObject_ovb0032*>(
+        CDisplayObjectContainer_RemoveChild(self->container, reinterpret_cast<UnkDisplayObject_ovb0032*>(
                                            self->content ? self->content->object : nullptr));
     }
 }

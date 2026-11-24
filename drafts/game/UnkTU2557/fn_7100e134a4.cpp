@@ -39,7 +39,7 @@ struct UnkPadSource_le134a4 {
 
 // The text view of a label (its line height and line count).
 struct UnkLabelFontView_b0035;
-f32 fn_71011ef738(UnkLabelFontView_b0035* self);
+f32 CLabel_GetLineHeight(UnkLabelFontView_b0035* self);
 u32 fn_71011ef554(UnkLabelFontView_b0035* self);
 
 // Where the page title is placed.
@@ -99,7 +99,7 @@ void fn_7100e134a4(UnkLoadingPages_le134a4* self, f32 dt) {
             fn_71011cfba8(page.title, alpha);
             fn_71011cde64(page.title, &g_unk_7101aa9b78, 1, 1);
             fn_71011cfba8(page.text, alpha);
-            f32 lineHeight = fn_71011ef738(reinterpret_cast<UnkLabelFontView_b0035*>(page.title));
+            f32 lineHeight = CLabel_GetLineHeight(reinterpret_cast<UnkLabelFontView_b0035*>(page.title));
             u32 lines = fn_71011ef554(reinterpret_cast<UnkLabelFontView_b0035*>(page.title));
             base::math::CVector2D position = {0.05f, lineHeight * lines + 0.0f + -0.523f};
             fn_71011cde64(page.text, &position, 0, 0);

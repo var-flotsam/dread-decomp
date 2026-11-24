@@ -22,7 +22,7 @@ struct UnkSpikePlatformReset_b59a4 {
     f32 field_0x280;
 };
 
-void fn_710060887c(UnkSpikePlatformReset_b59a4* self) {
+void CKraidSpikeMovablePlatformComponent_ResetStateAndRecordOwnerPosition(UnkSpikePlatformReset_b59a4* self) {
     UnkActor* owner = self->owner;
     self->field_0x280 = 0.0f;
     f32 x = owner->field_0x44;

@@ -5,7 +5,7 @@
 #include "types.h"
 
 struct UnkStruct_710024fa0c;
-void fn_7101156808(UnkStruct_710024fa0c* fx);
+void CFXComponent_SwitchMaterialEffectsOnMaterialChange(UnkStruct_710024fa0c* fx);
 
 struct UnkMaterialSource_A5_b65 {
     u8 pad_0x0[0x1b4];
@@ -36,5 +36,5 @@ void fn_7100798e98(UnkMaterialCache_A5_b65* self) {
         return;
     self->current = material;
     self->previous = current;
-    fn_7101156808(fn_7100798eec(owner));
+    CFXComponent_SwitchMaterialEffectsOnMaterialChange(fn_7100798eec(owner));
 }

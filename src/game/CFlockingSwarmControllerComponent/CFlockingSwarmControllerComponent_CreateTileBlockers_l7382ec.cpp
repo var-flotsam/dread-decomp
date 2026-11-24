@@ -102,7 +102,7 @@ struct UnkFlockingSwarm_l7382ec {
 };
 static_assert(__builtin_offsetof(UnkFlockingSwarm_l7382ec, blockers) == 0x3e0, "layout");
 
-void fn_71007382ec(UnkFlockingSwarm_l7382ec* self) {
+void CFlockingSwarmControllerComponent_CollectInternalTileBlockers(UnkFlockingSwarm_l7382ec* self) {
     if (self->blockers.count != 0 || !self->field_0x30->field_0x2a0)
         return;
     for (u32 i = 0; i < 16; ++i) {

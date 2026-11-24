@@ -5,7 +5,7 @@
 #include "game/UnkTU1323.h"
 #include "types.h"
 
-void fn_710086c768(UnkHeatableShieldEntries* self) {
+void CHeatableShieldComponent_ResetAllEntries(UnkHeatableShieldEntries* self) {
     for (UnkHeatableShieldEntry *p = self->data, *end = p + self->count; p != end; ++p)
-        fn_710086e410(p);
+        CHeatableShieldComponent_ResetEntry(p);
 }

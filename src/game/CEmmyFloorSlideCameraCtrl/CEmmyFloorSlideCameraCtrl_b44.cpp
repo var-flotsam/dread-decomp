@@ -46,7 +46,7 @@ struct UnkSlideCamera_b44a2 {
     f32 field_0x1f8;
 };
 
-void fn_71007d324c(UnkSlideCamera_b44a2* self) {
+void CEmmyFloorSlideCameraCtrl_Construct(UnkSlideCamera_b44a2* self) {
     fn_71010ed044(reinterpret_cast<UnkBase_7100763ed4*>(self));
     self->field_0x1d8 = false;
     self->vtable = g_unk_7101a72188 + 2;

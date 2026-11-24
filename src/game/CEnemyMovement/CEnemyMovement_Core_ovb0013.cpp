@@ -562,7 +562,7 @@ struct UnkEnemyMovement_g {
     UnkCharacterMovement* vf_0x2a8() { return reinterpret_cast<UnkCharacterMovement* (*)(UnkEnemyMovement_g*)>(vtable[0x2a8 / 8])(this); }
 };
 
-bool fn_71010cd278(UnkEnemyMovement_g* self, const CVector3D* dir, UnkCollisionHit* hit, f32 extra,
+bool CEnemyMovement_ProbeHitAlongDirFromOwnerPos(UnkEnemyMovement_g* self, const CVector3D* dir, UnkCollisionHit* hit, f32 extra,
                    const CVector3D* from) {
     UnkCharacterMovement* character = self->vf_0x2a8();
     if (!character)

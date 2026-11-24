@@ -40,7 +40,7 @@ struct UnkLifeDamage_l167348;
 void fn_710113b8cc(UnkGrabComponent_ovb0057* self);
 bool fn_710083eb28(UnkPlayerPart_b62a3*);
 void fn_710083f24c(UnkPlayerPart_b62a3* self);
-void fn_7100839f68(UnkGun_ovb0091* self, const CStrId& id);
+void CGunComponent_CancelPendingIdOrPopQueuedId(UnkGun_ovb0091* self, const CStrId& id);
 void fn_7100300ebc(UnkLifePart_l167348* self, UnkLifeDamage_l167348* damage);
 void fn_7100347864(UnkLifeAim_l167348* self);
 void fn_7100df3418(UnkGameManager* manager, bool a, bool b, void* x3);
@@ -272,7 +272,7 @@ void fn_7101167348(UnkPlayerLife_l167348* self, UnkLifeDamage_l167348* damage) {
     if (!IsEmpty(damage->id)) {
         params.transition.id = damage->id.data->Key();
         if (UnkLifeGun_l167348* gun = self->owner->gun)
-            fn_7100839f68(reinterpret_cast<UnkGun_ovb0091*>(gun), GameManagerIdTable().field_0x1240);
+            CGunComponent_CancelPendingIdOrPopQueuedId(reinterpret_cast<UnkGun_ovb0091*>(gun), GameManagerIdTable().field_0x1240);
     } else {
         const CStrId* id = &self->owner2->id;
         if (damage->IsKind3To5()) {

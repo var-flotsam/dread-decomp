@@ -18,7 +18,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown);
 extern char g_unk_7101cb6380[];  // The label's vtable.
 extern char g_unk_7101cb65e8[];  // Its line list's vtable.
 void fn_71011ef0c8(UnkGuiDisplayObject* label, bool value);
-void fn_71011ed150(UnkGuiDisplayObject* label, const base::global::CStrId& font);
+void CLabel_SetFont(UnkGuiDisplayObject* label, const base::global::CStrId& font);
 void fn_71011eec60(UnkGuiDisplayObject* label, u32 mode);
 
 // A label's glyphs (0x30 bytes each; src/game/GUI/CLabel.cpp lays one out): reserves `capacity` glyphs;
@@ -26,6 +26,6 @@ void fn_71011eec60(UnkGuiDisplayObject* label, u32 mode);
 struct UnkLabelGlyph;
 using UnkGlyphVector = base::global::CRntVector<UnkLabelGlyph>;
 void fn_71011f05d4(UnkGlyphVector* self, u32 capacity);
-UnkGlyphVector* fn_71011ee3b4(UnkGlyphVector* self, const UnkGlyphVector* other);
+UnkGlyphVector* CLabel_AssignGlyphArray(UnkGlyphVector* self, const UnkGlyphVector* other);
 void fn_71011ecfbc(UnkGuiDisplayObject* label, const char32_t* text);  // Sets the label's text.
 void fn_71011ec424(UnkGuiDisplayObject* label, const base::global::CRntString& text);

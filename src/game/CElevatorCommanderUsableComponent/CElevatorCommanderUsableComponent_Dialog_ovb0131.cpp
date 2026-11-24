@@ -45,7 +45,7 @@ struct UnkGuiRef_ovb0131 {
     UnkGuiComposition_ovb0090* composition;  // 0x10
 };
 
-void fn_7100a80930(UnkElevatorCommander_ovb0131* self) {
+void CElevatorCommanderUsableComponent_ShowElevatorCommanderQuestion(UnkElevatorCommander_ovb0131* self) {
     UnkGuiRef_ovb0131* ref = static_cast<UnkGuiRef_ovb0131*>(g_unk_7101d47310->field_0x2258);
     if (!ref)
         return;

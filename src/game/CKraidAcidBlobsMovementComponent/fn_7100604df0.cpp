@@ -14,7 +14,7 @@ struct UnkStatics_7100604df0 {
 extern UnkStatics_7100604df0 g_unk_71726f4048 __attribute__((visibility("hidden")));
 extern char g_unk_71726f4040[];
 
-void fn_7100604df0() {
+void CKraidAcidBlobsMovementComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726f4048.ids);
     InitClassId(&g_unk_71726f4048.field_0x18, "CKraidAcidBlobsMovementComponent");
     InitId(&g_unk_71726f4048.field_0x20, "fDamageKraidAcidBlobs");

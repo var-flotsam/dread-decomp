@@ -27,7 +27,7 @@ struct UnkSwarmList_fsc {
 struct UnkFlockingSwarm_fsc;
 f32 fn_71007399c4(UnkFlockingSwarm_fsc* self, const base::math::CVector2D* pos);
 
-void fn_7100739bdc(UnkFlockingSwarm_fsc* self, u32 index, UnkSwarmList_fsc* list) {
+void CFlockingSwarmControllerComponent_ComputePathPointValueIfUnset(UnkFlockingSwarm_fsc* self, u32 index, UnkSwarmList_fsc* list) {
     if (index < list->vf_0x28()) {
         UnkSwarmEntry_fsc* entry = &list->entries[index];
         if (!(entry->value > 0.0f)) {

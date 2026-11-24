@@ -150,7 +150,7 @@ u32 fn_7100696f04(UnkScorpiusAI_l696f04* self, UnkScorpiusEvent_l696f04* event) 
     UnkRequest* request = reinterpret_cast<UnkRequest*>(event);
     if (void* grab = self->owner->grab) {
         if (fn_710113d83c(grab)) {
-            f32 factor = fn_71008c2de8(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(&self->data->damage_factors),
+            f32 factor = CDamageSourceFactor_GetFactorForDamageFlags(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(&self->data->damage_factors),
                                        event->flags);
             fn_71008c1538(request, factor * event->damage);
         }

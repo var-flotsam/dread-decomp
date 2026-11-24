@@ -167,7 +167,7 @@ void fn_710085843c(UnkSamusGun_ovb0070* self) {
     fn_7100838f20(reinterpret_cast<UnkGunComponent_l838f20*>(self));
 }
 
-void fn_7100839924(UnkSamusGun_ovb0070* self);
+void CGunComponent_ResetChargeAndMode(UnkSamusGun_ovb0070* self);
 
 // A pending beam change (+0x330) removes the owner's timeline that goes with the current beam.
 static inline void ApplyBeamChange(UnkSamusGun_ovb0070* self) {
@@ -206,7 +206,7 @@ static inline void ApplyReset(UnkSamusGun_ovb0070* self) {
 // The update: after the parent's (fn_7100839924), the pending beam change and reset; the entries are
 // dropped every time.
 void fn_71008585a8(UnkSamusGun_ovb0070* self) {
-    fn_7100839924(self);
+    CGunComponent_ResetChargeAndMode(self);
     ApplyBeamChange(self);
     ApplyReset(self);
     self->shots.Clear();

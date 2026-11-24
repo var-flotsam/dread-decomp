@@ -51,7 +51,7 @@ static inline void SetBool_ovb0265(CBlackboard* blackboard, const CStrId& sectio
     }
 }
 
-void fn_7100b1d890(void* self, UnkEndingRewardsItem_ovb0265* item) {
+void CEndingRewardsComposition_RevealSecretMemoryOnce(void* self, UnkEndingRewardsItem_ovb0265* item) {
     UnkGameManager* gm = g_unk_7101d47310;
     CBlackboard* profile = &gm->field_0x820;
     bool visited = false;

@@ -65,7 +65,7 @@ struct UnkItemDestructionAction_b53 {
     UnkItemDestructionListReg_b53 reg;  // 0x90
 };
 
-void fn_7100c94e8c(UnkItemDestructionAction_b53* self) {
+void CItemDestructionLogicAction_RegisterWithItemAndObserver(UnkItemDestructionAction_b53* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     if (self->state1 == 1) {
         {

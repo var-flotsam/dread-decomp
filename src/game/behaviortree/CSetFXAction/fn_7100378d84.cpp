@@ -38,7 +38,7 @@ struct UnkSelf_378d84 {
 };
 
 struct UnkStruct_0x68;
-UnkLookupResult* fn_7101152b24(void* objects, u64 key);
+UnkLookupResult* CFXComponent_FindEffectEntryByHash(void* objects, u64 key);
 
 // NON_MATCHING(minor): the flag load and the slot load swap order in the call.
 void fn_7100378d84(UnkSelf_378d84* self) {
@@ -50,7 +50,7 @@ void fn_7100378d84(UnkSelf_378d84* self) {
     UnkOwnerObjects* owner = self->owner;
     if (!owner || !owner->field_0x280)
         return;
-    UnkLookupResult* found = fn_7101152b24(owner->field_0x280, id->key);
+    UnkLookupResult* found = CFXComponent_FindEffectEntryByHash(owner->field_0x280, id->key);
     bool ok = false;
     if (found) {
         UnkTarget_378d84* target = found->target;

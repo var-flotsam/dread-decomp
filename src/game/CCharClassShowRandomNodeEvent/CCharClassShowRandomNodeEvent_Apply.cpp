@@ -9,7 +9,7 @@ struct UnkShowNodeEvent {
 };
 struct UnkShowNodeComponentA;
 struct UnkShowNodeComponentB;
-void fn_710115635c(UnkShowNodeComponentA* component, UnkShowNodeEvent* event);
+void CFXComponent_ShowRandomNodeOfNamedEffect(UnkShowNodeComponentA* component, UnkShowNodeEvent* event);
 void CModelUpdaterComponent_ShowRandomNode(UnkShowNodeComponentB* component, UnkShowNodeEvent* event);
 struct UnkShowNodeActor {
     u8 pad_0x0[0x228];
@@ -23,7 +23,7 @@ void fn_7100cdb7bc(UnkShowNodeEvent* self, UnkShowNodeActor** actor_ref) {
         return;
     if (self->id.data != &g_unk_7101d47108->empty) {
         if (UnkShowNodeComponentA* component = actor->field_0x280)
-            fn_710115635c(component, self);
+            CFXComponent_ShowRandomNodeOfNamedEffect(component, self);
     } else {
         if (UnkShowNodeComponentB* component = actor->field_0x228)
             CModelUpdaterComponent_ShowRandomNode(component, self);

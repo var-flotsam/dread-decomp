@@ -19,7 +19,7 @@ struct UnkIngameMenuState_b51 {
     s32 state;  // 0x2e0
 };
 
-void fn_7100b2ed08(UnkIngameMenuState_b51* self, const UnkIngameMenuInput_b51* event) {
+void CIngameMenu_ToggleConfigMenuOnInput(UnkIngameMenuState_b51* self, const UnkIngameMenuInput_b51* event) {
     if (event->handled)
         return;
     UnkStateOwner* owner = reinterpret_cast<UnkStateOwner*>(self);

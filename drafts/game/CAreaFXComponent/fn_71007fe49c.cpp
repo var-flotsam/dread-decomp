@@ -68,7 +68,7 @@ void fn_71007feb70(UnkAreaFXComponent_l7fe49c* self, CVector3D* centre);
 UnkAreaRect_l7fe49c fn_71007fefc4(UnkAreaFXComponent_l7fe49c* self, const UnkAreaRect_l7fe49c* rect,
                                   CVector2D* offset);
 void fn_71007ff358(UnkAreaFXComponent_l7fe49c* self, const UnkAreaRect_l7fe49c* rect);
-void fn_71007fa0c4(UnkAreaFXComponent_l7fe49c* self, s32 mode);
+void CFrozenComponent_BeginFreeze(UnkAreaFXComponent_l7fe49c* self, s32 mode);
 
 static inline bool IsNear(f32 a, f32 b) {
     return fabsf(a - b) < 0.001f;
@@ -109,5 +109,5 @@ void fn_71007fe49c(UnkAreaFXComponent_l7fe49c* self, s32 mode) {
     }
     fn_71007ff358(self, &fitted);
     self->centre = {(bounds.lo.x + bounds.hi.x) * 0.5f, (bounds.lo.y + bounds.hi.y) * 0.5f, 0.0f};
-    fn_71007fa0c4(self, mode);
+    CFrozenComponent_BeginFreeze(self, mode);
 }

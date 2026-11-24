@@ -113,7 +113,7 @@ struct UnkKraidBouncingAttack_l5f31e4 {
     bool second_creature;  // +0x44
 };
 
-void fn_71005f31e4(UnkKraidBouncingAttack_l5f31e4* self) {
+void CKraidBouncingCreaturesAttack_LaunchNextPatternCreature(UnkKraidBouncingAttack_l5f31e4* self) {
     UnkKraidBouncingList_b57a4* lists = self->set->lists;
     u32 slot = self->slot;
     u32 index = self->list;

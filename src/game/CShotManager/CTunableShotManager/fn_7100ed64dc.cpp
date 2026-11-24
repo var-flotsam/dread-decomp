@@ -24,7 +24,7 @@ void CShotManager_StartExplosionEffect(UnkShotManager_ed64dc* self, const void* 
         fn_7100ddec68(it, a, b);
         it->state.variant = variant;
         it->state.type = type;
-        it->state.field_0x20 = fn_7100de1388(explosion);
+        it->state.field_0x20 = CExplosionGfx_GetMaxOfLengthAndRandomDelay(explosion);
         it->state.field_0x24 = 0;
         // The effect slot is the explosion's target (its position at +0xc).
         fn_7100de08f0(explosion, reinterpret_cast<UnkExplosionTarget*>(it));

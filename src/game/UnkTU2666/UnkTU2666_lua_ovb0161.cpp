@@ -480,7 +480,7 @@ s32 SetLandmarkTransform(lua_State* L) {
             UnkLuaNode_b0160* node;
             {
                 CStrId id(name, true);
-                node = fn_71008a3288(&id);
+                node = CLandmarkComponent_FindById(&id);
             }
             if (node)
                 fn_71008a3384(node, &position.x, &rotation.x);
