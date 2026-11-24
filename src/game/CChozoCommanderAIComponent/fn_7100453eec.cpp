@@ -42,7 +42,7 @@ struct UnkRecord_453eec {
     u32 field_0x15d10;
 };
 
-struct UnkManager {
+struct UnkManager_7100453eec {
     u8 pad_0x0[0xb8];
     u8 field_0xb8;
     u8 pad_0xb9[2];
@@ -108,7 +108,7 @@ extern char g_unk_71016496d8[];
 extern char g_unk_71016496e0[];
 extern char g_unk_71016496e8[];
 
-void fn_7100dcdce4(UnkManager* manager, s32 value, f32 scale);
+void fn_7100dcdce4(UnkManager_7100453eec* manager, s32 value, f32 scale);
 
 // NON_MATCHING(minor): the original tests the state against 2 first and lays the state-1 path out ahead of the
 // state-2 one; here the compiler turns the two tests into a switch in the other order. Same behaviour.
@@ -125,7 +125,7 @@ void fn_7100453eec(UnkRecord_453eec* self) {
     self->field_0x1180 = 0;
     self->field_0x15d10 = 0;
     UnkEffectSink* sink;
-    UnkManager* manager;
+    UnkManager_7100453eec* manager;
     if (self->field_0x1140 == 2) {
         UnkParamsLarge params;
         params.field_0xc = 0;
@@ -151,7 +151,7 @@ void fn_7100453eec(UnkRecord_453eec* self) {
             fn_7101172764(self->field_0x30->field_0x228, g_unk_71016496e8);
         }
         fn_71010cc214(sink, 2);
-        manager = reinterpret_cast<UnkManager*>(g_unk_71726bc570);
+        manager = reinterpret_cast<UnkManager_7100453eec*>(g_unk_71726bc570);
         if (!manager->field_0xb8 || !manager->field_0xbb)
             return;
         f32 value = (u32)manager->field_0xc0 <= 2 ? g_unk_7101a37310[manager->field_0xc0]->field_0x18
@@ -178,7 +178,7 @@ void fn_7100453eec(UnkRecord_453eec* self) {
             fn_7101172764(self->field_0x30->field_0x228, g_unk_71016496e0);
             fn_7101172780(self->field_0x30->field_0x228, g_unk_71016496e8);
         }
-        manager = reinterpret_cast<UnkManager*>(g_unk_71726bc570);
+        manager = reinterpret_cast<UnkManager_7100453eec*>(g_unk_71726bc570);
         if (!manager->field_0xb8 || !manager->field_0xbb)
             return;
         f32 value = (u32)manager->field_0xc0 <= 2 ? g_unk_7101a37310[manager->field_0xc0]->field_0x14
