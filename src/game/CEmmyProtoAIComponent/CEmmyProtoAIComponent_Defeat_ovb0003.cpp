@@ -13,6 +13,7 @@
 #include "base/global/CStrId.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/CEmmyProtoAIComponent.h"
+#include "game/UnkEmmyAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkMlogMessage_b42a1.h"
 #include "game/UnkTU811.h"
@@ -52,12 +53,7 @@ struct UnkProtoCallback_ovb0003 {
     }
 };
 
-struct UnkComponent {
-    void** vtable;
-    u8 pad_0x8[0x2a6f0];
-};
-
-struct UnkProtoBase_ovb0003 : UnkComponent {
+struct UnkProtoBase_ovb0003 : UnkEmmyAIComponent {
     ~UnkProtoBase_ovb0003() { fn_710053f510(this); }
 };
 

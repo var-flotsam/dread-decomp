@@ -36,7 +36,6 @@ struct UnkLabelViewport {
 };
 static_assert(__builtin_offsetof(UnkLabelViewport, view) == 0x178, "UnkLabelViewport placeholder layout");
 
-
 // What the GUI root finds for an entry's key: its rectangle and the object at +0x18 whose +0x8 the
 // viewport is built from.
 struct UnkLabelSource {
@@ -190,6 +189,7 @@ void fn_71011ee5a8(UnkLabel_CLabel* self) {
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkLabelTextNode.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -288,12 +288,6 @@ struct UnkLabelGlyph {
 static_assert(sizeof(UnkLabelGlyph) == 0x30, "UnkLabelGlyph placeholder layout");
 
 // UnkGlyphVector, fn_71011f05d4 and fn_71011ee3b4 are in game/GUI/CLabel.h.
-
-// The GUI root's text object a run draws with (its +0x130 is the text node).
-struct UnkLabelTextNode {
-    u8 unk_0x0[0xe4];
-    u32 color;  // the colour digit ('0' to '9')
-};
 
 // A run (0x70 bytes; CLabel.cpp's UnkLabelItem).
 struct UnkLabelRun {

@@ -34,6 +34,7 @@
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU39.h"
+#include "game/UnkTimeline.h"
 #include "game/UnkTrackOptional.h"
 #include "game/UnkTrackTiming.h"
 #include "game/UnkXformNode.h"
@@ -583,13 +584,6 @@ void fn_7100994c08(UnkSlideState_ovb0004* self, const u64* event) {
 
 // The motion fn_71007142e8 initialises: the time it ends on at +0x2c.
 struct UnkMotionTracks;
-struct UnkTimeline {
-    u8 pad_0x0[0x24];
-    s32 frame_count;
-    u8 pad_0x28[0x58];
-    UnkMotionTracks* tracks;  // 0x80
-};
-
 f32 fn_7100991e30(void* self, UnkTimeline* timeline) {
     UnkStruct_71007142e8 motion;
     fn_71007142e8(&motion);

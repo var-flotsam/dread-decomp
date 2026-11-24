@@ -4,6 +4,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/UnkAbility.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
@@ -18,9 +19,6 @@ using base::reflection::CClass;
 
 struct UnkPlayer;
 
-struct UnkAbility {
-    virtual const CClass* vf_0x0();
-};
 struct UnkAbilitySet;
 bool fn_710030a7b8(UnkAbility* ability);
 

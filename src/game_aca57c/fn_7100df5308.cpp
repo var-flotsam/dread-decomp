@@ -9,14 +9,12 @@
 #include "game/CAbilityMultiLockon.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CAbilitySpeedBooster.h"
+#include "game/UnkAbility.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::reflection::CClass;
 
-struct UnkAbility {
-    virtual const CClass* vf_0x0();
-};
 struct UnkAbilitySet;
 struct UnkAbilityOwner {
     u8 unk_0x0[0x2e0];
