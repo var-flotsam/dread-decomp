@@ -2,22 +2,17 @@
 // animation. Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
 #include "game/UnkMotionRule.h"
+#include "game/UnkStruct_71007142e8.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTimeline.h"
 #include "types.h"
-
 
 // fn_7100494578: the shield's height (+0x4c): cleared, then, when the owner's actions (+0x220) have the
 // timeline 0x04dc4c0c7b23af17 (fn_7101176e0c), the absolute z translation of the motion over the whole
 // timeline (fn_7100b8b3bc), as fn_7100425840
 // (src/game/CChozoCommanderAirChargeAttack/CChozoCommanderAirChargeAttack_Charge_ovb0113.cpp) does.
 struct UnkStruct_7101176ea8;
-
-struct UnkStruct_71007142e8 {
-    f32 m[12];
-    u8 pad_0x30[0x40];
-};
 
 struct UnkMotionTracks;
 
@@ -47,5 +42,5 @@ void fn_7100494578(UnkShieldAttack_ovb0130* self) {
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
-    self->height = __builtin_fabsf(motion.m[11]);
+    self->height = __builtin_fabsf(motion.xform.m[2][3]);
 }

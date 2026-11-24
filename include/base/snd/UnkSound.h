@@ -35,6 +35,8 @@ struct UnkSound {
     u8 pad_0x119[0x121 - 0x119];
     bool field_0x121;
     bool field_0x122;
+    u8 pad_0x123;
+    bool field_0x124;  // read by the audio component (CAudioComponent_b50.cpp)
 };
 static_assert(__builtin_offsetof(UnkSound, field_0x78) == 0x78, "UnkSound placeholder layout");
 static_assert(__builtin_offsetof(UnkSound, field_0x100) == 0x100, "UnkSound placeholder layout");

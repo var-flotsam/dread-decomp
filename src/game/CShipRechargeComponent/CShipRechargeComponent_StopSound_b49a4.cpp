@@ -5,13 +5,9 @@
 #include "game/UnkTU2523.h"
 #include "types.h"
 #include "game/sound/UnkSoundHandle.h"
+#include "game/UnkSoundRef.h"
 
-struct UnkSound;
-struct UnkSoundRef {
-    UnkSound* sound;
-    s64 serial;
-};
-inline UnkSound* UnkSoundHandle::Get() const { if (ref && ref->serial == serial && serial != -1) return ref->sound; return nullptr; }
+inline UnkSound* UnkSoundHandle::Get() const { if (ref && ref->serial == serial && serial != -1) return ref->object; return nullptr; }
 
 struct UnkShipRechargeEntity_b49a4;
 

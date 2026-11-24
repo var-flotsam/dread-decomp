@@ -1,23 +1,18 @@
 // CHeatableShieldComponent's unit (tools/tu_map.py, unit 1322): for every shield entry (0xd0 bytes) whose sound
 // handle (+0xb8) still names a live sound, has the owner (+0x30) stop the shield sound (fn_7100d7c48c, no fade)
 // and empties the handle. Names and layouts are placeholders.
+#include "game/UnkSoundRef.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
-struct UnkSound;
 
 // As src/game/CHeatableShieldComponent/CHeatableShieldEntry_Reset_A5_b71.cpp views it.
-struct UnkSoundRef {
-    UnkSound* sound;
-    s64 serial;
-};
-
 // The sound the handle names while it is current.
 static inline UnkSound* SoundOf(const UnkSoundHandle& handle) {
     if (handle.ref && handle.ref->serial == handle.serial && handle.serial != -1)
-        return handle.ref->sound;
+        return handle.ref->object;
     return nullptr;
 }
 

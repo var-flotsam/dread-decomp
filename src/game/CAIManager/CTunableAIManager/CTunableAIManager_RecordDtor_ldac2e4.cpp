@@ -4,6 +4,7 @@
 #include "base/snd/CSoundSystem.h"
 #include "base/snd/UnkSound.h"
 #include "game/CAIManager/CTunableAIManager.h"
+#include "game/UnkSoundRef.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU39.h"
@@ -15,12 +16,6 @@ void fn_7100108be8(UnkSoundMgr* self, const u32* mask, f32 time);
 void fn_7100108c24(UnkSoundMgr* self, u32 group);
 
 // As src/game/CAudioComponent/CAudioComponent_b50.cpp defines them.
-struct UnkSoundObject_b50;
-struct UnkSoundRef {
-    UnkSoundObject_b50* object;
-    s64 serial;
-};
-
 // A counted reference kept 4-aligned in the record's small array.
 struct UnkPackedRef_dac2e4 {
     UnkRefObject* p;
