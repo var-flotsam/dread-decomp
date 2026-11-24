@@ -64,6 +64,17 @@ class Splice(unittest.TestCase):
         self.assertNotIn("asm", new)
         self.assertIn("int CFoo::GetLimit(UnkFoo* self) {\n    return self->limit;\n}", new)
 
+    def test_helpers_go_above_the_comment_the_function_has(self):
+        code = ("// Reads the limit.\nstatic inline int Limit(UnkFoo* self) {\n    return self->limit;\n}\n\n"
+                "// A comment of the candidate's own.\nint fn_7100000100(UnkFoo* self) {\n    return Limit(self);\n}")
+        new = mb.splice(FILE, "fn_7100000100", code)
+        self.assertIn("};\n\n// Reads the limit.\nstatic inline int Limit(UnkFoo* self) {\n    return self->limit;\n}\n\n"
+                      "// Returns the count.\nint fn_7100000100(UnkFoo* self) {\n    return Limit(self);\n}\n\nint CFoo::",
+                      new)
+        self.assertNotIn("of the candidate's own", new)
+        bare = FILE.replace("// Returns the count.\n", "")
+        self.assertIn("}\n\n// A comment of the candidate's own.\nint fn_7100000100(", mb.splice(bare, "fn_7100000100", code))
+
     def test_qualified_name(self):
         s, e = mb.definition_span(FILE, "CFoo::GetLimit")
         self.assertTrue(FILE[s:e].startswith("int CFoo::GetLimit("))
@@ -114,6 +125,9 @@ class Screen(unittest.TestCase):
         self.assertIn("already has: UnkFooView_7100000100", why)
         text, why = self.screen(view.replace("UnkFooView_7100000100", "UnkFoo"))
         self.assertIsNone(text)
+        text, why = self.screen(view.replace("int field_0x4;", "u8 field_0x4[4];"))
+        self.assertIsNone(text)
+        self.assertIn("byte-array member", why)
 
     def test_must_define_the_function(self):
         text, why = self.screen("int Other(UnkFoo* self) {\n    return self->limit;\n}")
