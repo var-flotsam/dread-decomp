@@ -23,11 +23,11 @@ __attribute__((always_inline)) static inline void Destroy_A2_b70(UnkSpitAttack_A
     fn_7100364430(self);
 }
 
-void fn_71003f0bac(UnkSpitAttack_A2_b70* self) {
+void CCharClassBigkranXSpitAttack_Destroy(UnkSpitAttack_A2_b70* self) {
     Destroy_A2_b70(self);
 }
 
-void fn_71003f0c48(UnkSpitAttack_A2_b70* self) {
+void CCharClassBigkranXSpitAttack_DestroyAndDelete(UnkSpitAttack_A2_b70* self) {
     Destroy_A2_b70(self);
     operator delete(self);
 }

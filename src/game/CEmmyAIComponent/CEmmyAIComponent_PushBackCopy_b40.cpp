@@ -7,6 +7,6 @@
 
 typedef base::global::CRntVector<UnkInnerVec> UnkOuterVec;
 
-void fn_710056041c(UnkOuterVec* self, const UnkInnerVec* value) {
+void CEmmyAIComponent_PushBackInnerArrayCopy(UnkOuterVec* self, const UnkInnerVec* value) {
     self->PushBackCopy(*value);
 }

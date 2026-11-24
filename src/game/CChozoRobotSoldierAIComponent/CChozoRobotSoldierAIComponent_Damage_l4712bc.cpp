@@ -60,7 +60,7 @@ struct UnkRobotSoldierDir_l4712bc {
     f32 z;
 };
 
-void fn_71004712bc(UnkRobotSoldierAI_l4712bc* self, void* arg, UnkRobotSoldierRequest_l4712bc* request) {
+void CChozoRobotSoldierAIComponent_ApplyChargedCannonShotDamageToRequest(UnkRobotSoldierAI_l4712bc* self, void* arg, UnkRobotSoldierRequest_l4712bc* request) {
     fn_7101105c90(reinterpret_cast<UnkKraidAI2*>(self), arg, reinterpret_cast<UnkKraidRequest*>(request));
     if (UnkRobotSoldierTarget_l4712bc* targeting = self->owner->targeting) {
         void* target = targeting->target;

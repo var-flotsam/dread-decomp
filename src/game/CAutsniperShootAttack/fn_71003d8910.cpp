@@ -41,7 +41,7 @@ extern UnkConversion g_unk_71726bf7d8;
 void fn_71003d8460() __attribute__((visibility("hidden")));
 void fn_71003d846c() __attribute__((visibility("hidden")));
 
-void fn_71003d8910() {
+void CAutsniperShootAttack_InitStatics() {
     InitHeaderIds(&g_unk_71726bf7f8.ids);
     fn_71003d2cd4();
     fn_710009ec00(g_unk_71726bf530, g_unk_71726bf7f8.field_0x78);

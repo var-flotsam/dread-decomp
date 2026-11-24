@@ -60,7 +60,7 @@ struct UnkSniperShoot_A2_b71 {
     CVector3D point;  // 0x70
 };
 
-void fn_71003d8100(UnkSniperShoot_A2_b71* self) {
+void CAutsniperShootAttack_SendLaserDamageRequest(UnkSniperShoot_A2_b71* self) {
     UnkSniperRequest_A2_b71 request;
     request.Id() = g_unk_71726bf858;
     AssignRef(&request.source, fn_7100d78378(reinterpret_cast<UnkWeakTarget*>(self->owner)));

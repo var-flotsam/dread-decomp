@@ -24,7 +24,7 @@ struct UnkMlogMessage_ovb0138 {
 struct UnkMlogMessage_b42a1;
 void fn_710048e708(void* self, void* arg);
 
-void fn_710047ad94(void* self, void* arg) {
+void CChozoWarriorXEliteAIComponent_SendDefeatBossMlogMessage(void* self, void* arg) {
     UnkMlogMessage_ovb0138 message(CStrId("#MLOG_DEFEAT_BOSS_CWXE_SHIP", true));
     fn_7100456b7c(reinterpret_cast<u8*>(g_unk_7101d47310) + 0x2128,
                   reinterpret_cast<const UnkMlogMessage_b42a1*>(&message));

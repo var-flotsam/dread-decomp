@@ -13,7 +13,7 @@ static inline bool SamePath_lfdc7e0(const CFilePathStrId& a, const CFilePathStrI
 }
 
 struct UnkPathRecord;
-void fn_7100456ac0(UnkPathRecord* self);
+void CChozoCommanderAIComponent_ConstructFilePathRecord(UnkPathRecord* self);
 
 struct UnkPathRecord_lfdc7e0 {
     CFilePathStrId path;
@@ -43,7 +43,7 @@ struct UnkPathVec_lfdc7e0 {
             Reserve(n);
             Reserve(i + 1);
             for (u32 j = count; j < i + 1; ++j)
-                fn_7100456ac0(reinterpret_cast<UnkPathRecord*>(&data[j]));
+                CChozoCommanderAIComponent_ConstructFilePathRecord(reinterpret_cast<UnkPathRecord*>(&data[j]));
             count = i + 1;
         }
         return data[i];

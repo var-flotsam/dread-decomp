@@ -22,7 +22,7 @@ struct UnkSelf_7100402ee4 {
     u32 eRinkaType;
 };
 
-u32 fn_7100402ee4(UnkSelf_7100402ee4* self) {
+u32 CRinkaShootAction_ForwardSpawnPointAndTypeToCentralUnitAI(UnkSelf_7100402ee4* self) {
     if (self->iSpawnPointIndex < 0)
         return 6;
     UnkAIComponent* component = self->owner->component;

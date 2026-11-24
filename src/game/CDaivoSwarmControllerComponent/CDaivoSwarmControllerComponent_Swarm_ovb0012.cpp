@@ -145,7 +145,7 @@ void fn_71004e10dc(UnkDaivoSwarm_b0012* self) {
 // Sends the swarm (fn_7100656f3c) along the target's normalised velocity at the tuned speed (+0x484),
 // within twice the tuned range (+0x458), and marks it moving (+0x395). The positions it asks for
 // along the way are not used.
-void fn_71004e2494(UnkDaivoSwarm_b0012* self) {
+void CDaivoSwarmControllerComponent_BuildAttackPathAlongTargetVelocity(UnkDaivoSwarm_b0012* self) {
     UnkSwarmTarget_b0012* target = Target(self);
     const f32* v = target->velocity;
     f32 inv = 1.0f / (sqrtf(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]) + 0.0001f);
@@ -207,7 +207,7 @@ static inline f32 Random01() {
 
 // After fn_710064f42c, every member of the group fades from its colour (+0x118) to the colour
 // g_unk_7101647634 over a random time between the tuned bounds, kept at +0x154.
-void fn_71004e081c(UnkDaivoFade_b0012* self, UnkFadeGroup_b0012* group) {
+void CDaivoSwarmControllerComponent_StartGroupColorFadesOverTimeAlive(UnkDaivoFade_b0012* self, UnkFadeGroup_b0012* group) {
     fn_710064f42c(self, group);
     u32 count = group->memberCount;
     if (count == 0)

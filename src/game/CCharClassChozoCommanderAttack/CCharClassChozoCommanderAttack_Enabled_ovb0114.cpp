@@ -76,7 +76,7 @@ struct UnkChozoAttack_ovb0114 {
     UnkChozoAttackStrData_ovb0114* name;  // 0x38
 };
 
-f32 fn_710041cbe4(UnkChozoAttack_ovb0114* self) {
+f32 CCharClassChozoCommanderAttack_GetNamedTunableFlagAsFloat(UnkChozoAttack_ovb0114* self) {
     bool enabled = true;
     UnkChozoAttackObject_ovb0114* tunable = reinterpret_cast<UnkChozoAttackObject_ovb0114*>(&g_unk_71726c91d0);
     Get(tunable, self->name->key, &enabled);

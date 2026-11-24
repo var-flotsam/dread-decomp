@@ -127,7 +127,7 @@ static inline UnkUnit2547* Registry() {
     return reinterpret_cast<UnkUnit2547*>(reg);
 }
 
-void fn_710050a30c(UnkEmmyGrabAttack_l50a30c* self) {
+void CEmmyGrabSamusAttack_EndGrabAndCallOnEmmyGrabEnd(UnkEmmyGrabAttack_l50a30c* self) {
     fn_71003609b8(self);
     self->state_machine.Request(1);
     if (UnkWeakHandle* handle = self->handle) {

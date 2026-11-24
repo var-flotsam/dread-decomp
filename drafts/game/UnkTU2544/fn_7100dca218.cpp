@@ -42,7 +42,7 @@ struct UnkSurvivalConfiguration_dca218 {
     u32 stage;  // 0x100
 };
 
-UnkNodeResult_dca218* fn_7100475564(UnkNodeSet_dca218* self);
+UnkNodeResult_dca218* CAIManager_FindLastActorBossAIComponent(UnkNodeSet_dca218* self);
 
 static inline UnkActor_dca218* Visible(UnkActor_dca218* actor) {
     if (!actor || !actor->state)
@@ -68,7 +68,7 @@ UnkActor_dca218* fn_7100dca218(UnkSurvivalConfiguration_dca218* self) {
             fn_7100da7e2c(manager);
             g_unk_71726af468 = manager;
         }
-        UnkNodeResult_dca218* node = fn_7100475564(reinterpret_cast<UnkNodeSet_dca218*>(reinterpret_cast<char*>(manager) + 0x228));
+        UnkNodeResult_dca218* node = CAIManager_FindLastActorBossAIComponent(reinterpret_cast<UnkNodeSet_dca218*>(reinterpret_cast<char*>(manager) + 0x228));
         if (!node || !node->actor)
             return nullptr;
         return Visible(node->actor);

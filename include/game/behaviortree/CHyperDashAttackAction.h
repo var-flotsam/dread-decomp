@@ -14,6 +14,6 @@ struct UnkHyperDashNode_ovb0095;
 struct UnkHyperDashAttackAction_l4496a8;
 extern void* g_unk_7101a36838[];  // The action's vtable.
 extern u8 g_unk_71726c8f08[];
-base::reflection::UnkReflObject* fn_7100449868(UnkHyperDashNode_ovb0095* self);  // The dash's target.
+base::reflection::UnkReflObject* CHyperDashAttackAction_GetNamedOrCurrentAttack(UnkHyperDashNode_ovb0095* self);  // The dash's target.
 // Starts the dash at `target`; whether it started.
 bool fn_7100449bdc(UnkHyperDashAttackAction_l4496a8* self, void* target, bool flag);

@@ -160,7 +160,7 @@ void fn_71003d58f8(UnkAutsniperShootAttack_ovb0122* self) {
 // (vf_0x668, its +0x179e) and the attack turns active; while active the other timer runs up to
 // +0x128 - +0xfc, then the attack enters state 4, flags the CAutsniperAIComponent (+0x27248) and goes
 // on with fn_71003d7060.
-void fn_71003d6894(UnkAutsniperShootAttack_ovb0122* self, f32 dt) {
+void CAutsniperShootAttack_UpdateBlockeableWarningTimers(UnkAutsniperShootAttack_ovb0122* self, f32 dt) {
     if (self->active) {
         self->active_timer += dt;
     } else {

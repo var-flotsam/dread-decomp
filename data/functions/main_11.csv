@@ -2374,7 +2374,7 @@ address,size,name,name_source,subsystem,status
 0x71011a6bc0,220,fn_71011a6bc0,unknown,game?,U
 0x71011a6c9c,180,CTeamManager_UpdateTargetDistances,inferred,game?,O
 0x71011a6d50,376,CTeamManager_RebuildSortedList,inferred,game?,O
-0x71011a6ec8,580,fn_71011a6ec8,unknown,game?,O
+0x71011a6ec8,580,CTunableTeamManager_InsertIntoSortedList,inferred,game?,O
 0x71011a710c,4,fn_71011a710c,unknown,game?,O
 0x71011a7110,348,fn_71011a7110,unknown,game?,O
 0x71011a726c,336,CTeamManager_AddMember,inferred,game?,O

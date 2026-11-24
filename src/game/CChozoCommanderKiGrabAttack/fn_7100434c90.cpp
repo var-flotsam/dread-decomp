@@ -24,7 +24,7 @@ void fn_71004336d8() __attribute__((visibility("hidden")));
 void fn_71004336e4() __attribute__((visibility("hidden")));
 extern char g_unk_71726c7dd0[];
 
-void fn_7100434c90() {
+void CChozoCommanderKiGrabAttack_InitStatics() {
     InitHeaderIds(&g_unk_71726c7dd8.ids);
     InitId(&g_unk_71726c7dd8.field_0x18, "fDamageChozoCommanderKiStrike");
     InitId(&g_unk_71726c7dd8.field_0x20, "attack_aurascratch");

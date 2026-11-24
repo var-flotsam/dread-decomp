@@ -20,21 +20,21 @@ static inline const CFilePathStrId& PickOne(const CFilePathStrId& a, const CFile
     return g_unk_7101d470e8;
 }
 
-const CFilePathStrId& fn_7100414270() {
+const CFilePathStrId& CCharClassAIComponent_GetRandomFleshImpactSound() {
     static const CFilePathStrId s_0("weapons/singleshot_fleshimpact_01.wav", true);
     static const CFilePathStrId s_1("weapons/singleshot_fleshimpact_02.wav", true);
     static const CFilePathStrId s_2("weapons/singleshot_fleshimpact_03.wav", true);
     return PickOne(s_0, s_1, s_2);
 }
 
-const CFilePathStrId& fn_710041440c() {
+const CFilePathStrId& CCharClassAIComponent_GetRandomShieldImpactSoundPath() {
     static const CFilePathStrId s_0("weapons/singleshot_shieldimpact_01.wav", true);
     static const CFilePathStrId s_1("weapons/singleshot_shieldimpact_02.wav", true);
     static const CFilePathStrId s_2("weapons/singleshot_shieldimpact_03.wav", true);
     return PickOne(s_0, s_1, s_2);
 }
 
-const CFilePathStrId& fn_710041b2a4() {
+const CFilePathStrId& CCharClassAIComponent_GetRandomMetalImpactSound() {
     static const CFilePathStrId s_0("weapons/singleshot_metalimpact_01.wav", true);
     static const CFilePathStrId s_1("weapons/singleshot_metalimpact_02.wav", true);
     static const CFilePathStrId s_2("weapons/singleshot_metalimpact_03.wav", true);

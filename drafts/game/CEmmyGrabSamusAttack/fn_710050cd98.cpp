@@ -31,7 +31,7 @@ struct UnkGrabAttack_l50cd98 {
 };
 
 struct UnkEmmyGrabAttack_l50ed80;
-void fn_710050ed80(UnkEmmyGrabAttack_l50ed80* self);
+void CEmmyGrabSamusAttack_PlayGrabHandTwoRumble(UnkEmmyGrabAttack_l50ed80* self);
 
 void fn_710050cd98(UnkSelf* self_) {
     auto* self = reinterpret_cast<UnkGrabAttack_l50cd98*>(self_);
@@ -40,7 +40,7 @@ void fn_710050cd98(UnkSelf* self_) {
     self->field_0x6bc = -1.0f;
     self->field_0x6c0 = -1.0f;
     u32 kind = self->field_0x38 ? self->field_0x38->field_0x10 : 14;
-    UnkStrId_71005077f8 id = fn_71005077f8(reinterpret_cast<UnkStruct_71005077f8*>(self), kind);
+    UnkStrId_71005077f8 id = CEmmyGrabSamusAttack_BuildAnimationIdForKind(reinterpret_cast<UnkStruct_71005077f8*>(self), kind);
     UnkStringData* data = id.data;
     if (data != &g_unk_7101d47108->empty)
         fn_710050a500(reinterpret_cast<UnkGrabAttack_b59a3*>(self), reinterpret_cast<const UnkGrabId_b59a3*>(&id));
@@ -53,5 +53,5 @@ void fn_710050cd98(UnkSelf* self_) {
         }
         id.data = &pool->empty;
     }
-    fn_710050ed80(reinterpret_cast<UnkEmmyGrabAttack_l50ed80*>(self));
+    CEmmyGrabSamusAttack_PlayGrabHandTwoRumble(reinterpret_cast<UnkEmmyGrabAttack_l50ed80*>(self));
 }

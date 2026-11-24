@@ -10,7 +10,7 @@ struct UnkPathRecord {
     u32 field_0x10;
 };
 
-void fn_7100456ac0(UnkPathRecord* self) {
+void CChozoCommanderAIComponent_ConstructFilePathRecord(UnkPathRecord* self) {
     self->path = nullptr;
     if (!g_unk_7101d47200)
         base::global::UnkEnsureFilePathPool();

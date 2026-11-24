@@ -22,7 +22,7 @@ void fn_71004e6ca8() __attribute__((visibility("hidden")));
 void fn_71004e6cb4() __attribute__((visibility("hidden")));
 extern char g_unk_71726da5d8[];
 
-void fn_71004e6db0() {
+void CCharClassDredhedAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726da5e0.ids);
     InitEnum(&base::reflection::TypeObject<CCharClassDredhedAIComponent::ESubspecies, UnkEnumType>::object, "CCharClassDredhedAIComponent::ESubspecies", fn_71004e65ec, fn_71004e64a0,
              g_unk_71726da590, &g_unk_71726da598, fn_71004e6ca8, &g_unk_71726da5b8, fn_71004e6cb4);

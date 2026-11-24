@@ -14,9 +14,9 @@
 
 struct UnkEmmySearchingAction_b0068;
 struct UnkEmmySearchingAction_A3_b67;
-bool fn_7100518494(UnkEmmySearchingAction_A3_b67* self);
-void fn_7100519218(UnkEmmySearchingAction_b0068* self, bool flag);
-void fn_710051d56c(UnkEmmySearchingAction_b0068* self, s32 from, s32 to);
+bool CEmmySearchingAction_ShouldDeferSearchStart(UnkEmmySearchingAction_A3_b67* self);
+void CEmmySearchingAction_TryStartSearch(UnkEmmySearchingAction_b0068* self, bool flag);
+void CEmmySearchingAction_OnMovementModeChanged(UnkEmmySearchingAction_b0068* self, s32 from, s32 to);
 
 // What the movement calls when its state changes: the object and the function called with it.
 struct UnkEmmyMovementListener_l519048 {
@@ -85,14 +85,14 @@ void fn_7100519048(UnkEmmySearchingAction_l519048* self) {
     if (!ai->busy)
         fn_7100541de4(reinterpret_cast<UnkEmmyActor_b55*>(ai));
 
-    bool canLeave = fn_7100518494(reinterpret_cast<UnkEmmySearchingAction_A3_b67*>(self));
+    bool canLeave = CEmmySearchingAction_ShouldDeferSearchStart(reinterpret_cast<UnkEmmySearchingAction_A3_b67*>(self));
     UnkEmmyMovement_l519048* movement = self->actor->movement;
     if (movement && !fn_710009d50c(movement->vf_0x0(), fn_71010c74e0()))
         movement = nullptr;
     if (canLeave) {
         if (movement) {
             self->listener.self = reinterpret_cast<UnkEmmySearchingAction_b0068*>(self);
-            self->listener.fn = fn_710051d56c;
+            self->listener.fn = CEmmySearchingAction_OnMovementModeChanged;
             movement->listener = self->listener;
         }
         self->waiting = true;
@@ -112,5 +112,5 @@ void fn_7100519048(UnkEmmySearchingAction_l519048* self) {
             }
         }
     }
-    fn_7100519218(reinterpret_cast<UnkEmmySearchingAction_b0068*>(self), false);
+    CEmmySearchingAction_TryStartSearch(reinterpret_cast<UnkEmmySearchingAction_b0068*>(self), false);
 }

@@ -60,5 +60,5 @@ void fn_7100b9e1fc() {
 
 void fn_7100b9e7dc() {
     if (UnkCommanderComponent* component = CommanderComponent())
-        fn_71004554d8(reinterpret_cast<UnkComponent_7100428010*>(component));
+        CChozoCommanderAIComponent_StartKiGrabUnlessInUltimateGrab(reinterpret_cast<UnkComponent_7100428010*>(component));
 }

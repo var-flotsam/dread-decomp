@@ -33,14 +33,14 @@ struct UnkComponent_3f543c {
 
 void fn_71003e5994(UnkComponent_3f543c* self);
 void fn_71003ea504(void* member);
-void fn_71003f13fc(void* member);
+void CBigkranXSpitAttack_Construct(void* member);
 
 void fn_71003f543c(UnkComponent_3f543c* self) {
     fn_71003e5994(self);
     self->vtable = g_unk_7101a31448 + 2;
     self->field_0x149b8 = 0;
     fn_71003ea504(self->field_0x149c0);
-    fn_71003f13fc(self->field_0x14a20);
+    CBigkranXSpitAttack_Construct(self->field_0x14a20);
     self->field_0x14b48 = 0;
     self->field_0x14b4c = -1.0f;
     self->field_0x14b50 = 0.0f;

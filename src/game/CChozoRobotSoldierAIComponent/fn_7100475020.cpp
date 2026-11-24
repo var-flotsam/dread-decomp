@@ -17,7 +17,7 @@ struct UnkStatics_7100475020 {
 extern UnkStatics_7100475020 g_unk_71726cc9e8 __attribute__((visibility("hidden")));
 extern char g_unk_71726cc9e0[];
 
-void fn_7100475020() {
+void CChozoRobotSoldierAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726cc9e8.ids);
     InitClassId(&g_unk_71726cc9e8.field_0x18, "CChozoRobotSoldierAIComponent");
     InitId(&g_unk_71726cc9e8.field_0x20, "shockwave");

@@ -15,4 +15,4 @@ void fn_710042bb3c(UnkSelf_7100438b48* self);
 void fn_710042baa8(UnkHypersparkAttack_b46a1* self);
 void fn_710042bb40(UnkSelf* self);
 bool fn_710042bb38(UnkHypersparkAttack3_ovb0023* self);
-bool fn_710042bb48(UnkSelf_710042bb48* self, UnkOut_42bb48* out);
+bool CChozoCommanderGroundAttack_ComputeDesiredAttackPos(UnkSelf_710042bb48* self, UnkOut_42bb48* out);

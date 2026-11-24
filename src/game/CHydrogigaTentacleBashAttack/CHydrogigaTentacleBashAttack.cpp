@@ -7,7 +7,7 @@
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
-void fn_71005b6e40(UnkHydrogigaAttack* self, UnkReflObject* arg) {
+void CHydrogigaTentacleBashAttack_InitFromCharClass(UnkHydrogigaAttack* self, UnkReflObject* arg) {
     InitHydrogigaAttack<fn_71005b2164>(self, arg);
     PushMove(&self->field_0x28, CStrId("R02_Tentacle", true));
     PushMove(&self->field_0x28, CStrId("C01_Tentacle", true));

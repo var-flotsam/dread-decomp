@@ -23,7 +23,7 @@ void fn_7100502628(UnkChargeComponent* self) {
         self->field_0x30->field_0x1b8->field_0x64 = 1;
     if (void* object = self->field_0x30->field_0x2a0)
         fn_71008618cc(object);
-    fn_71005026d0(self, 1, g_unk_71726e0aa8.field_0x9c);
+    CEmmyWaveMovementComponent_SetSizeAndRescaleShapeAndFX(self, 1, g_unk_71726e0aa8.field_0x9c);
     self->field_0x5e4 = 0;
     fn_7100de9540(g_unk_7101d47310, &g_unk_71726ddc48, reinterpret_cast<UnkWeakTarget*>(self));
 }

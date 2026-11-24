@@ -113,7 +113,7 @@ static_assert(__builtin_offsetof(UnkGrabHold_l50c698, machine.pending) == 0xcc, 
 struct UnkGrabSm_b61;
 struct UnkGrabAttack_b58a3;
 struct UnkEmmyAI_b61;
-void fn_710050c490(UnkGrabSm_b61* self);
+void CEmmyGrabSamusAttack_UpdateEffectsFromCountdown(UnkGrabSm_b61* self);
 void fn_7100507a28(UnkGrabAttack_b58a3* self);
 void fn_710116a160(UnkGrabPart_l50c698* self, const CStrId* id, f32 value);
 extern CStrId g_unk_71726de5c8 __attribute__((visibility("hidden")));
@@ -130,7 +130,7 @@ void fn_710050c698(UnkGrabHold_l50c698* self, f32 dt) {
     UnkActor* actor = reinterpret_cast<UnkActor*>(fn_7100defcd4(g_unk_7101d47310));
     if (fn_710117b348(static_cast<UnkAnimationComponent*>(actor->field_0x220), fn_7100d0ebf8()))
         return;
-    fn_710050c490(reinterpret_cast<UnkGrabSm_b61*>(self));
+    CEmmyGrabSamusAttack_UpdateEffectsFromCountdown(reinterpret_cast<UnkGrabSm_b61*>(self));
     self->countdown -= dt;
     if (!(self->countdown <= 0.0f))
         return;

@@ -293,7 +293,7 @@ void CTeamManager_UpdateTargetDistances(UnkTeamList* self) {
 }
 
 // Inserts `key` before the first node it goes before (by the comparator, or by value without one).
-void fn_71011a6ec8(UnkTeamSortedList* self, const UnkTeamKey* key) {
+void CTunableTeamManager_InsertIntoSortedList(UnkTeamSortedList* self, const UnkTeamKey* key) {
     void* mem = self->allocator->vf_0x40(sizeof(UnkTeamSortedNode), 8, self->flags);
     UnkTeamSortedNode* node = mem ? new (mem) UnkTeamSortedNode(*key) : nullptr;
     if (self->count == 0) {

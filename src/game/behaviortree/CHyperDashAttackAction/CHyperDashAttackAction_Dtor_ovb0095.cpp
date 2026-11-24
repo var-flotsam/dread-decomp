@@ -80,7 +80,7 @@ static inline UnkReflObject* AsGroundAttack(UnkReflObject* attack) {
 
 // The CChozoCommanderGroundAttack the action works with: the owner's CChozoCommanderAIComponent attack
 // named at +0x30 (fn_7101109df4), or its current one (+0x1148) when no name is set.
-UnkReflObject* fn_7100449868(UnkHyperDashNode_ovb0095* self) {
+UnkReflObject* CHyperDashAttackAction_GetNamedOrCurrentAttack(UnkHyperDashNode_ovb0095* self) {
     UnkReflObject* ai = nullptr;
     if (self->actor) {
         if (UnkReflObject* component = self->actor->ai)

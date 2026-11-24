@@ -12,7 +12,7 @@ struct UnkEmmyCollisionPart {
     UnkStringData* name;  // 0x20
 };
 
-bool fn_7100550e88(void*, const UnkEmmyCollisionPart* part) {
+bool CEmmyAIComponent_IsCollisionHeadPart(void*, const UnkEmmyCollisionPart* part) {
     static CStrId s_head("collision_head", true);
     return part && part->name == s_head.data;
 }
