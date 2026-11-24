@@ -442,11 +442,13 @@ Review, and propose, inferred function names through the Claude Message Batches 
 python tools/name_batch.py build-review --run R --branch origin/claude/<b> [--dry-run]   # one request per name the branch adds
 python tools/name_batch.py build-review --run R --proposals build/name_batch/P/proposals.csv [--dry-run]
 python tools/name_batch.py build-propose --run P --classes FILE [--rev origin/main] [--dry-run]   # FILE: one class directory per line
+python tools/name_batch.py build-propose --run P --pool 1|2|3 [--limit 350] [--dry-run]   # a wider pool (see --help)
 python tools/name_batch.py submit --run R [--budget 180]   # create the batch (refuses past the budget)
 python tools/name_batch.py status --run R                  # processing status and request counts
 python tools/name_batch.py fetch --run R                   # results, verdicts.csv or proposals.csv, a ledger row
 python tools/name_batch.py apply --run R                   # on a clean origin/main: rename the `right` names; apply.md for the PR
 python tools/name_batch.py cost                            # the ledger and its total
+python tools/name_batch.py reconcile                       # account batches the ledger does not record
 ```
 
 ### `tools/member_batch.py`
