@@ -7,7 +7,7 @@
 
 struct UnkString200Array;  // src/game_aca57c/fn_7100e7b084.cpp
 struct UnkString200;
-UnkString200* fn_7100e7c0f0(UnkString200Array* self, UnkString200* pos);
+UnkString200* SwapEraseKeyedString200ArrayElement(UnkString200Array* self, UnkString200* pos);
 
 template <u64 Size>
 struct UnkU32KeyedArray_b55 {
@@ -41,7 +41,7 @@ void fn_7100e7b784(char* self, const u32* key) {
     auto* a = reinterpret_cast<UnkU32KeyedArray_b55<0x248>*>(self);
     auto* v = a->Find(*key);
     if (v != a->End())
-        fn_7100e7c0f0(reinterpret_cast<UnkString200Array*>(self), reinterpret_cast<UnkString200*>(v));
+        SwapEraseKeyedString200ArrayElement(reinterpret_cast<UnkString200Array*>(self), reinterpret_cast<UnkString200*>(v));
 }
 void fn_7100eadcf8(char* self, const u32* key) {
     auto* a = reinterpret_cast<UnkU32KeyedArray_b55<0x118>*>(self);

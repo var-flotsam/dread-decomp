@@ -44,5 +44,5 @@ void fn_71005590fc(UnkEmmyAI2_b57a3* self) {
         state = g_unk_71726debd0;
     }
     fn_7100544a34(reinterpret_cast<UnkEmmyActor_b55*>(self), state, true);
-    fn_710054095c(self);
+    PassEmmyBarrierStrIdToManager(self);
 }

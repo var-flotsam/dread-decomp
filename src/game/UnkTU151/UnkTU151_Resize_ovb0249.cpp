@@ -30,7 +30,7 @@ struct __attribute__((packed)) UnkEntryArray_b0249 {
 
 void fn_710014d930(UnkEntry_b0249* entry);
 
-void fn_710014d838(UnkEntryArray_b0249* self, u32 count) {
+void ResizeStrIdEntryArray(UnkEntryArray_b0249* self, u32 count) {
     u32 old = self->count;
     if (old < count) {
         for (u32 i = old; i < count; ++i)
@@ -81,7 +81,7 @@ void fn_710014ce5c(UnkEntryHolder_b0249* self, u32 kind, const base::global::CSt
         UnkIdData_b0249* data = reinterpret_cast<UnkIdData_b0249*>(e->id.data);
         ++data->reads;
         data = reinterpret_cast<UnkIdData_b0249*>(e->id.data);
-        fn_710015ddc0(state, kind, location, data->text ? data->text : g_unk_710162e2ed);
+        FindUniformLocationByName(state, kind, location, data->text ? data->text : g_unk_710162e2ed);
     } else {
         *location = 0;
     }

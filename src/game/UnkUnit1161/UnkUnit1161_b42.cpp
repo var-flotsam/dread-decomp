@@ -49,7 +49,7 @@ struct UnkPoint_1161_b42 {
     base::math::CVector3D offset;  // 0x11c
 };
 
-UnkVec3_1161_b42 fn_7100745f80(const UnkPoint_1161_b42* self) {
+UnkVec3_1161_b42 GetPositionPlusParentTranslationAndOffset(const UnkPoint_1161_b42* self) {
     f32 x, y, z;
     if (const UnkParent_1161_b42* parent = self->parent) {
         f32 px = parent->m[0][3], py = parent->m[1][3], pz = parent->m[2][3];

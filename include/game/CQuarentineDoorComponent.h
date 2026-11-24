@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkQuarentineDoor_b54;
-void fn_71007df12c(UnkQuarentineDoor_b54* self, bool flag);
+void ApplyDoorOpenState(UnkQuarentineDoor_b54* self, bool flag);

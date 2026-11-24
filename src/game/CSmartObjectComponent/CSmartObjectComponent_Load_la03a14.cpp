@@ -61,7 +61,7 @@ static inline void Set(UnkSmartObjectObject_la03a14* obj, u64 key, void* in) {
     typed.ptr = obj;
     UnkSmartObjectValue_la03a14 value = {Type(), in};
     if (UnkSmartObjectField_la03a14* field = cls->FindField(key))
-        fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
 }
 

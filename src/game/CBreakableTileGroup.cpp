@@ -586,7 +586,7 @@ void fn_7100ca1180(UnkTileGroup* group) {
     // Tile regions: keep the region on the left, starting upwards.
     for (u32 i = 0; i < solid_count; ++i) {
         UnkTileOutline outline;
-        fn_7100119f98(&outline, 1);
+        SetPolylineClosed(&outline, 1);
         outline.field_0x28 = 0.0f;
         base::math::CVector2D seed = solids.At(i);
         f32 cx = seed.x;
@@ -633,7 +633,7 @@ void fn_7100ca1180(UnkTileGroup* group) {
     // Empty regions: keep the tiles on the right, starting along +x.
     for (u32 i = 0; i < empty_count; ++i) {
         UnkTileOutline outline;
-        fn_7100119f98(&outline, 1);
+        SetPolylineClosed(&outline, 1);
         outline.field_0x28 = g->field_0x20;
         base::math::CVector2D seed = empties.At(i);
         f32 cx = seed.x;

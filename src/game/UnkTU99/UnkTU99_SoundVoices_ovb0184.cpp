@@ -270,7 +270,7 @@ struct UnkTimeStatic_b0184 {
 extern UnkTimeStatic_b0184 g_unk_7108b6ab80 __attribute__((visibility("hidden")));
 
 // Adds the microseconds since the last call, in seconds, to the sound system's clock at +0x37c.
-void fn_71000f6770() {
+void AddElapsedTimeToSoundSystemClock() {
     if (fn_7100132a90())
         return;
     UnkTimeStatic_b0184* state = &g_unk_7108b6ab80;

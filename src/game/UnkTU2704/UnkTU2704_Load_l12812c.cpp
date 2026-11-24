@@ -61,7 +61,7 @@ static inline void Set(UnkSpawnPointObject_l12812c* obj, u64 key, void* in) {
     typed.ptr = obj;
     UnkSpawnPointValue_l12812c value = {Type(), in};
     if (UnkSpawnPointField_l12812c* field = cls->FindField(key))
-        fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
 }
 

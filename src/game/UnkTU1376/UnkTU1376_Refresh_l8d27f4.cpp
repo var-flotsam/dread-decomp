@@ -95,7 +95,7 @@ void fn_71008d27f4(UnkDoorLife_l8d27f4* self) {
         if (self->open) {
             if (!self->field_0x41f)
                 fn_71008d2c28(reinterpret_cast<UnkTimelineUserA5_b61*>(self), &g_unk_710164b090);
-            fn_71008d0ef4(self);
+            OpenDoorUnlessOpen(self);
         }
     }
 

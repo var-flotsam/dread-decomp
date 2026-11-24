@@ -27,5 +27,5 @@ void fn_71007df6cc(UnkQuarentineDoor_b58* self) {
     if (self->owner)
         if (void* target = self->owner->field_0x220)
             SendOpened_b58(target);
-    fn_71007df12c(reinterpret_cast<UnkQuarentineDoor_b54*>(self), true);
+    ApplyDoorOpenState(reinterpret_cast<UnkQuarentineDoor_b54*>(self), true);
 }

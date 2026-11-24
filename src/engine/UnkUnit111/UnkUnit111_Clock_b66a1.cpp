@@ -11,7 +11,7 @@ extern s64 g_unk_710b371090;  // start stamp, milliseconds
 extern s64 g_unk_710b371098;  // last sample, milliseconds
 extern f32 g_unk_710b3710a0;  // seconds since the start stamp
 
-void fn_7100132c60() {
+void SampleClockAndUpdateElapsedSeconds() {
     s64 now = fn_7100080fb4(reinterpret_cast<const UnkTimer_7100080c40*>(g_unk_7101d47328));
     g_unk_710b371098 = now;
     s64 start = g_unk_710b371090;

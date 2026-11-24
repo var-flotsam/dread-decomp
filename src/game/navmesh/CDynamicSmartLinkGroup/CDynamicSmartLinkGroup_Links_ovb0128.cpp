@@ -75,10 +75,10 @@ struct UnkSmartLinkEntry_ovb0128 {
 };
 
 // Grows the array to at least `capacity` entries (out of line; src/base/UnkUnit259/UnkNamedRefVector_Reserve_b58.cpp).
-void fn_71002682e8(base::global::CRntVector<u8>* vector, u32 capacity);
+void ReserveSmartLinkEntryVector(base::global::CRntVector<u8>* vector, u32 capacity);
 
 static inline void Grow(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* self, u32 capacity) {
-    fn_71002682e8(reinterpret_cast<base::global::CRntVector<u8>*>(self), capacity);
+    ReserveSmartLinkEntryVector(reinterpret_cast<base::global::CRntVector<u8>*>(self), capacity);
 }
 
 // Reserves the other's capacity and appends a copy of each of its entries (the growth is out of line).

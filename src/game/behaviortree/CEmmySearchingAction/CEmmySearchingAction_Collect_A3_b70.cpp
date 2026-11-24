@@ -36,7 +36,7 @@ struct UnkCollectOwner_A3_b70 {
     float field_0x18;
 };
 
-void fn_7100ad0380(void* source, bool flag, u32 mode, base::global::CRntVector<void*>* out);
+void CollectRecordChildrenAcceptedByFilter(void* source, bool flag, u32 mode, base::global::CRntVector<void*>* out);
 void fn_71006fb09c(void* source, bool flag, u32 mode, base::global::CRntVector<void*>* out);
 
 template <void (*Query)(void*, bool, u32, base::global::CRntVector<void*>*)>
@@ -78,7 +78,7 @@ static inline __attribute__((always_inline)) void Collect_A3_b70(UnkCollectOwner
 }
 
 void CEmmySearchingAction_ExpandSearchNode(UnkCollectOwner_A3_b70* self, bool flag, u32 mode, UnkCollectList_A3_b70* list) {
-    Collect_A3_b70<fn_7100ad0380>(self, flag, mode, list, reinterpret_cast<char*>(g_unk_7101a47fa8) + 0x10);
+    Collect_A3_b70<CollectRecordChildrenAcceptedByFilter>(self, flag, mode, list, reinterpret_cast<char*>(g_unk_7101a47fa8) + 0x10);
 }
 void fn_7100560d14(UnkCollectOwner_A3_b70* self, bool flag, u32 mode, UnkCollectList_A3_b70* list) {
     Collect_A3_b70<fn_71006fb09c>(self, flag, mode, list, reinterpret_cast<char*>(g_unk_7101a48c20) + 0x10);

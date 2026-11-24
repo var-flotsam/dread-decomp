@@ -67,7 +67,7 @@ static_assert(sizeof(UnkRecord_le52f60) == 0x60, "UnkRecord_le52f60 layout");
 void fn_7100e52f60(UnkPairArray* self, const UnkFreedVectorPair* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
-        fn_7100e52cf4(self, value);
+        PushBackRecord60Copy(self, value);
         return;
     }
     u32 new_capacity = self->capacity;

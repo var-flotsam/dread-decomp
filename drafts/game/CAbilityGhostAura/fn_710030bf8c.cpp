@@ -86,7 +86,7 @@ bool fn_710030bf8c(UnkAbility* self) {
     if (actor->grab != nullptr && fn_710113d83c(actor->grab))
         return false;
     if (!reinterpret_cast<const u8*>(&g_unk_7172a03d80)[0x3d]) {
-        if (world->field_0x7e4 != 0 && !fn_7100df5740(g_unk_7101d47310))
+        if (world->field_0x7e4 != 0 && !IsOpticCamouflageAbilityInState6(g_unk_7101d47310))
             return false;
     }
     UnkAuraMode_l30bf8c* mode_state = world->mode;

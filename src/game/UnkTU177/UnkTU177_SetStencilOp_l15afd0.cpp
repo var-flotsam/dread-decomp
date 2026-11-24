@@ -38,7 +38,7 @@ static inline void Map_710015afd0(s32 v, s32* out) {
     }
 }
 
-void fn_710015afd0(s32 a, s32 b, s32 c) {
+void SetStencilOpsIfChanged(s32 a, s32 b, s32 c) {
     if (g_unk_716e29c698 == a && g_unk_716e29c69c == b && g_unk_716e29c6a0 == c)
         return;
     g_unk_716e29c698 = a;

@@ -841,5 +841,5 @@ void fn_71011cf39c(UnkChangeMenuStateButton_b48a3* object, UnkGuiEvent_b48a3* me
     default:
         break;
     }
-    fn_7100b1e3fc(self->field_0xb8, event);
+    DispatchEventToHandlersForKey(self->field_0xb8, event);
 }

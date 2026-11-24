@@ -928,7 +928,7 @@ address,size,name,name_source,subsystem,status
 0x71003493d8,1688,fn_71003493d8,unknown,game/components?,U
 0x7100349a70,192,fn_7100349a70,unknown,game/components?,O
 0x7100349b30,1016,fn_7100349b30,unknown,game/components?,U
-0x7100349f28,584,fn_7100349f28,unknown,game/components?,O
+0x7100349f28,584,TurnAimAngleTowardTargetWithBandSpeed,inferred,game/components?,O
 0x710034a170,1604,fn_710034a170,unknown,game/components?,U
 0x710034a7b4,612,fn_710034a7b4,unknown,game/components?,O
 0x710034aa18,12916,fn_710034aa18,unknown,game/components?,U
@@ -949,7 +949,7 @@ address,size,name,name_source,subsystem,status
 0x710034f2d8,72,fn_710034f2d8,unknown,game/components?,O
 0x710034f320,68,fn_710034f320,unknown,game/components?,O
 0x710034f364,16,fn_710034f364,unknown,game/components?,O
-0x710034f374,464,fn_710034f374,unknown,game/components?,O
+0x710034f374,464,CacheShotOrientationAxis,inferred,game/components?,O
 0x710034f544,8,fn_710034f544,unknown,game/components?,O
 0x710034f54c,908,fn_710034f54c,unknown,game/components?,U
 0x710034f8d8,4,fn_710034f8d8,unknown,game/components?,O
@@ -1190,7 +1190,7 @@ address,size,name,name_source,subsystem,status
 0x710035e2c0,636,fn_710035e2c0,unknown,unknown,U
 0x710035e53c,8,fn_710035e53c,unknown,unknown,O
 0x710035e544,60,fn_710035e544,unknown,game/components?,O
-0x710035e580,64,fn_710035e580,unknown,unknown,O
+0x710035e580,64,GetPathSegmentEntryOrFallback,inferred,unknown,O
 0x710035e5c0,56,fn_710035e5c0,unknown,unknown,O
 0x710035e5f8,736,fn_710035e5f8,unknown,ai/behaviortree?,m
 0x710035e8d8,2416,fn_710035e8d8,unknown,unknown,m

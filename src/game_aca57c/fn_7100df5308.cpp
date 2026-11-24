@@ -51,7 +51,7 @@ UnkAbility* fn_7100df5308(UnkPlayer* self) {
 UnkAbility* fn_7100df56c0(UnkPlayer* self) {
     return GetAbility<fn_7100308c74, fn_71003012f8, fn_7100306914>(self);
 }
-UnkAbility* fn_7100df57f4(UnkPlayer* self) {
+UnkAbility* GetPlayerOpticCamouflageAbility(UnkPlayer* self) {
     return GetAbility<fn_7100323590, fn_71003012f8, fn_7100320270>(self);
 }
 UnkAbility* fn_7100df5928(UnkPlayer* self) {
@@ -88,12 +88,12 @@ __attribute__((always_inline)) static inline bool IsInState6(UnkPlayer* self) {
     return static_cast<UnkStatefulAbility*>(ability)->GetState() == 6;
 }
 
-bool fn_7100df5740(UnkPlayer* self) { return IsInState6<fn_7100323590, fn_7100320270>(self); }
+bool IsOpticCamouflageAbilityInState6(UnkPlayer* self) { return IsInState6<fn_7100323590, fn_7100320270>(self); }
 bool fn_7100df5874(UnkPlayer* self) { return IsInState6<fn_710033b6a4, fn_710033a31c>(self); }
 bool fn_7100df5a4c(UnkPlayer* self) { return IsInState6<fn_7100327d14, fn_71003255a4>(self); }
 
 // Whether the ghost aura's state (fn_7100309568) is 3 to 6.
-bool fn_7100df5630(UnkPlayer* self) {
+bool IsPlayerGhostAuraStateIn3To6(UnkPlayer* self) {
     UnkAbility* ability = GetAbility<fn_7100308c74, fn_71003013ec, fn_7100306914>(self);
     if (!ability)
         return false;

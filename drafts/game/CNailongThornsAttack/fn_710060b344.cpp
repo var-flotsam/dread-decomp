@@ -169,7 +169,7 @@ CStrId fn_710060b344(UnkThornsAttack_b68a4* attack) {
     if (self->owner->frozen && fn_71007f9f20(self->owner->frozen))
         return g_unk_7101d470e0;
     bool aiming = self->owner->ai && self->owner->ai->aiming;
-    bool paused = fn_7100df5740(g_unk_7101d47310);
+    bool paused = IsOpticCamouflageAbilityInState6(g_unk_7101d47310);
     if (!aiming && paused)
         return g_unk_7101d470e0;
 

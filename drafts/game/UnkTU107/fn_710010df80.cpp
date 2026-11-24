@@ -42,7 +42,7 @@ struct UnkBoxVector_b0236 {
                     capacity = new_capacity;
                 }
             }
-            fn_710010e364(this, (u32)i + 1);
+            ResizeBoxVector(this, (u32)i + 1);
         }
         return &data[i];
     }

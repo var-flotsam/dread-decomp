@@ -29,5 +29,5 @@ UnkTunableLine CGameManager_BuildRuntimeAssetPath(UnkAssetNameData_ovb0113** id)
     UnkTunableLine& pattern = RuntimeAssetPattern_ovb0113();
     ++(*id)->reads;
     const char* text = (*id)->text;
-    return fn_710013c834(pattern.Str(), "%NAME%", text ? text : g_unk_710162e2ed);
+    return ReplaceAllSubstrings(pattern.Str(), "%NAME%", text ? text : g_unk_710162e2ed);
 }

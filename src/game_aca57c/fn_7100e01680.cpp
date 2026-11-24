@@ -19,7 +19,7 @@ struct UnkInlineString_e01680 {
     u32 field_0xc0;
 };
 
-bool fn_7100e03d78(UnkPropBag* bag, const char* function, const char* args, ...);  // runs a script call
+bool CallScriptFunctionIntoPropBag(UnkPropBag* bag, const char* function, const char* args, ...);  // runs a script call
 bool fn_7100e03f50(UnkPropBag* bag, const u64* key, UnkInlineString_e01680* out, bool flag);  // reads a string
 
 
@@ -53,7 +53,7 @@ void* fn_7100e01680(UnkObj_7100e01680* self) {
     UnkBuiltId_e01680 built(self->field_0x518);
     CStrId& id = built.id;
     UnkPropBag bag;
-    if (fn_7100e03d78(&bag, "CurrentScenario.GetStartPointOverride", "")) {
+    if (CallScriptFunctionIntoPropBag(&bag, "CurrentScenario.GetStartPointOverride", "")) {
         UnkInlineString_e01680 s;
         auto* str = reinterpret_cast<base::global::CRntString*>(&s);
         CRntString_InitWithAllocator(str, reinterpret_cast<base::IAllocator*>(&s.vtable));

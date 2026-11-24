@@ -30,7 +30,7 @@ struct UnkObject246 {
     UnkPart246* part;
 };
 
-bool fn_71001bb9c8(UnkObject246* self, const CFilePathStrId* path) {
+bool LoadAndSwapPartResourceByPath(UnkObject246* self, const CFilePathStrId* path) {
     UnkMaterial246* material = (UnkMaterial246*)fn_710019ffe8(g_unk_716e352450, path, true);
     if (!material)
         return false;

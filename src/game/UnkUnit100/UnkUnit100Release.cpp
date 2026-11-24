@@ -23,7 +23,7 @@ struct UnkKeyUseTable {
     }
 };
 
-void fn_7100104ae4(UnkKeyUseTable* self, const u32* key) {
+void DecrementCountedKeyUse(UnkKeyUseTable* self, const u32* key) {
     UnkKeyUse* use = self->Find(*key);
     if (use && use->uses != 0)
         --use->uses;

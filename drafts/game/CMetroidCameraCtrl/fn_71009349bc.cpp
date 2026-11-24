@@ -486,7 +486,7 @@ void fn_71009349bc(UnkMetroidCameraCtrl_l9349bc* self) {
     f32 dz = a.z - b.z;
     f32 distance = sqrtf(dx * dx + dy * dy + dz * dz);
     f32 value;
-    if (fn_7100df5740(g_unk_7101d47310)) {
+    if (IsOpticCamouflageAbilityInState6(g_unk_7101d47310)) {
         UnkCameraTunables_l9349bc& tune = g_unk_7172738c28;
         f32 t = Clamp_l9349bc((distance - tune.emmyNearDistance) / (tune.emmyFarDistance - tune.emmyNearDistance),
                               0.0f, 1.0f);

@@ -110,7 +110,7 @@ void fn_71010ff3c8(UnkResetAI_l0ff3c8* self) {
         fn_71002874dc(self->field_0xd8 + i * 4);
     self->field_0xe0 = 0;
     self->field_0x100 = 0;
-    fn_7100119f98(reinterpret_cast<UnkTileOutline*>(self->field_0x68), false);
+    SetPolylineClosed(reinterpret_cast<UnkTileOutline*>(self->field_0x68), false);
     self->field_0x1108 = 0;
     fn_7100874460(reinterpret_cast<u8*>(self) + 0x18a8, reinterpret_cast<UnkWeakTarget**>(&self->owner));
     self->list.field_0x16f0 = 0;

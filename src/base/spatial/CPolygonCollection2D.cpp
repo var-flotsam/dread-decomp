@@ -50,8 +50,8 @@ struct UnkPolygonProbe {
 // Where along a segment a point projects (0 at the start, 1 at the end).
 f32 fn_71001261ac(const UnkSegment2D* seg, UnkVec2Result point);
 // Whether the edge after a vertex continues past `dir`; fn_71001190a0 then gives that edge.
-bool fn_7100118788(UnkPolygon2D* polygon, u32 vertex, const UnkVec2Result* dir);
-UnkSegment2D fn_71001190a0(UnkPolygon2D* polygon, u32 vertex, const UnkVec2Result* dir, u32* a, u32* b);
+bool PolygonHasAdjacentEdgeAlongDirection(UnkPolygon2D* polygon, u32 vertex, const UnkVec2Result* dir);
+UnkSegment2D GetAdjacentPolygonEdgeAlongDirection(UnkPolygon2D* polygon, u32 vertex, const UnkVec2Result* dir, u32* a, u32* b);
 
 // a - b, with a taken whole first.
 static inline UnkVec2Result Diff(CVector2D a, const CVector2D& b) {
@@ -67,8 +67,8 @@ static inline f32 MaxAbs(f32 x, f32 y) {
 // The edge that follows the vertex along `dir` (the next one when fn_7100118788 says so).
 static inline UnkSegment2D FollowingEdge(UnkPolygon2D* polygon, u32 vertex, const UnkVec2Result* dir, u32* a,
                                          u32* b) {
-    if (fn_7100118788(polygon, vertex, dir))
-        return fn_71001190a0(polygon, vertex, dir, a, b);
+    if (PolygonHasAdjacentEdgeAlongDirection(polygon, vertex, dir))
+        return GetAdjacentPolygonEdgeAlongDirection(polygon, vertex, dir, a, b);
     return polygon->Edge(vertex);
 }
 

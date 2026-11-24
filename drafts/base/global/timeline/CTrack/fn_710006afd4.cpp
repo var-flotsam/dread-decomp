@@ -25,7 +25,7 @@ bool fn_710009a430(UnkFlagsetType_b0068* self, const UnkReflFieldObject* obj, CV
 // As src/base/reflection/UnkUnit85/UnkFieldPointee.cpp defines it: the member object a field of `owner` holds.
 struct UnkReflFieldInfo;
 struct UnkFieldOwner;
-UnkReflTypedPtr fn_71000e755c(const UnkReflFieldInfo* field, UnkFieldOwner* owner);
+UnkReflTypedPtr GetReflectedFieldTypedPtr(const UnkReflFieldInfo* field, UnkFieldOwner* owner);
 
 // A reflected field (0xb0 bytes): its type at +0x10.
 struct UnkTrackField_l06afd4 {
@@ -79,7 +79,7 @@ static inline UnkReflTypedPtr Typed_l06afd4(char* type, void* obj) {
 }
 
 static inline void Set_l06afd4(UnkTrackField_l06afd4* field, UnkReflTypedPtr* obj, UnkTrackValue_l06afd4* value) {
-    fn_71000e7a80(reinterpret_cast<CVariable*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
+    SetReflectedFieldValue(reinterpret_cast<CVariable*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
                   reinterpret_cast<UnkReflValueArg*>(value));
 }
 
@@ -181,7 +181,7 @@ void fn_710006afd4(UnkTrack* track, CRntFile* file) {
             // An enum: its value is stored straight into the member.
             u32 value;
             CRntFile_Read(file, &value, 4, 1);
-            UnkReflTypedPtr member = fn_71000e755c(reinterpret_cast<const UnkReflFieldInfo*>(field),
+            UnkReflTypedPtr member = GetReflectedFieldTypedPtr(reinterpret_cast<const UnkReflFieldInfo*>(field),
                                                    reinterpret_cast<UnkFieldOwner*>(&obj));
             *static_cast<u32*>(Typed_l06afd4(member.type, member.ptr).ptr) = value;
             break;

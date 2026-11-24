@@ -53,7 +53,7 @@ static inline void BindUniformBlocks(UnkGfxProgram_l15d900* program, u32 stage) 
     }
 }
 
-void fn_710015d900(void* program_record, bool second, bool uniforms) {
+void BindProgramAndUniformBlocks(void* program_record, bool second, bool uniforms) {
     UnkGfxProgram* bound = static_cast<UnkGfxProgram*>(program_record);
     if (g_unk_716e2a3448 == bound && g_unk_7101a1d810 == second)
         return;

@@ -28,13 +28,13 @@ struct UnkMediaPlayer330 {
 };
 
 void fn_7100220228(UnkMedia324* self, s64);
-void fn_71002202d8(UnkMedia324* self, u32 a);
+void TimedWaitMediaTracksReadyEvent(UnkMedia324* self, u32 a);
 
 void fn_7100224de4(UnkMedia324* self) {
     for (UnkMediaTrack330** it = self->tracks, **end = it + self->track_count; it != end; ++it)
         fn_710021b7d4(*it);
     if (fn_710021eec0(reinterpret_cast<UnkMediaInstance*>(self), 5))
-        fn_71002202d8(self, 50);
+        TimedWaitMediaTracksReadyEvent(self, 50);
     fn_7100220228(self, 100);
 }
 

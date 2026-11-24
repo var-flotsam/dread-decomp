@@ -84,7 +84,7 @@ inline void SetBlendValue10(s32 value) {
 }
 
 // Returns whether an entry is left on the stack.
-bool fn_710015b8a0(bool apply) {
+bool PopStateStackAndApplyNewTop(bool apply) {
     u32 count = g_unk_716e29c6d0.count;
     g_unk_716e29c6d0.applied = 0;
     if (count >= 2) {
@@ -95,7 +95,7 @@ bool fn_710015b8a0(bool apply) {
             SetBlendMode(top.mode);
             SetBlendValue14(top.field_0x14);
             SetBlendValue10(top.field_0x10);
-            fn_710015afd0(top.field_0x0, top.field_0x4, top.field_0x8);
+            SetStencilOpsIfChanged(top.field_0x0, top.field_0x4, top.field_0x8);
         }
         return true;
     }
@@ -107,7 +107,7 @@ bool fn_710015b8a0(bool apply) {
         SetBlendMode(base.mode);
         SetBlendValue14(base.field_0x14);
         SetBlendValue10(base.field_0x10);
-        fn_710015afd0(base.field_0x0, base.field_0x4, base.field_0x8);
+        SetStencilOpsIfChanged(base.field_0x0, base.field_0x4, base.field_0x8);
     }
     return false;
 }

@@ -21,4 +21,4 @@ struct UnkPath442 {
 // The segment's value, -1 past the end.
 f32 fn_710035e544(const UnkPath442* self, u32 index);
 // The address of the segment's entry, or of a shared fallback entry past the end.
-const u32* fn_710035e580(const UnkPath442* self, u32 index);
+const u32* GetPathSegmentEntryOrFallback(const UnkPath442* self, u32 index);

@@ -60,7 +60,7 @@ static inline bool Get(UnkAttackObject_l789f5c* obj, u64 key, f32* out) {
     typed.ptr = obj;
     UnkAttackValue_l789f5c value = {fn_710000abbc(), out};
     if (UnkAttackField_l789f5c* field = cls->FindField(key)) {
-        fn_71000e78e0(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
         return true;
     }

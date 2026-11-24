@@ -3555,7 +3555,7 @@ address,size,name,name_source,subsystem,status
 0x7100a8e478,36,fn_7100a8e478,unknown,game/components?,O
 0x7100a8e49c,36,fn_7100a8e49c,unknown,game/components?,O
 0x7100a8e4c0,340,fn_7100a8e4c0,unknown,game/components?,O
-0x7100a8e614,924,fn_7100a8e614,unknown,game/components?,O
+0x7100a8e614,924,DisableAllModeTableIdsOnActorComponent,inferred,game/components?,O
 0x7100a8e9b0,4,fn_7100a8e9b0,unknown,game/components?,O
 0x7100a8e9b4,392,fn_7100a8e9b4,unknown,game/components?,O
 0x7100a8eb3c,96,fn_7100a8eb3c,unknown,game/components?,O
@@ -3753,7 +3753,7 @@ address,size,name,name_source,subsystem,status
 0x7100a955cc,120,fn_7100a955cc,unknown,unknown,O
 0x7100a95644,116,fn_7100a95644,unknown,unknown,O
 0x7100a956b8,432,CCharClassWaterPoolComponent_ReserveCallbackSetArray,inferred,game/components?,O
-0x7100a95868,312,fn_7100a95868,unknown,unknown,O
+0x7100a95868,312,PushCopyOntoCallbackSetArray,inferred,unknown,O
 0x7100a959a0,360,fn_7100a959a0,unknown,unknown,O
 0x7100a95b08,696,fn_7100a95b08,unknown,game/components?,U
 0x7100a95dc0,560,fn_7100a95dc0,unknown,game/components?,O
@@ -3771,7 +3771,7 @@ address,size,name,name_source,subsystem,status
 0x7100a9652c,4,base::reflection::ValueOps<CThermalDeviceComponent::EPipeGroup>::Destroy,reflection,engine/reflection,O
 0x7100a96530,20,base::reflection::ValueOps<CThermalDeviceComponent::EPipeGroup>::CopyAssign,reflection,engine/reflection,O
 0x7100a96544,20,base::reflection::ValueOps<CThermalDeviceComponent::EPipeGroup>::MoveAssign,reflection,engine/reflection,O
-0x7100a96560,1168,fn_7100a96560,unknown,engine/reflection?,O
+0x7100a96560,1168,InitThermalDeviceComponentStatics,inferred,engine/reflection?,O
 0x7100a969f0,4,CTotalRechargeComponent::refl_AddAttributes,reflection,game/components,O
 0x7100a969f4,244,CTotalRechargeComponent::refl_GetClass,reflection,game/components,O
 0x7100a96ae8,676,CTotalRechargeComponent::refl_AddFields,reflection,game/components,O
@@ -4866,7 +4866,7 @@ address,size,name,name_source,subsystem,status
 0x7100ad00ac,488,fn_7100ad00ac,unknown,engine/reflection?,U
 0x7100ad0294,224,fn_7100ad0294,unknown,engine/reflection?,O
 0x7100ad0374,12,fn_7100ad0374,unknown,engine/reflection?,O
-0x7100ad0380,324,fn_7100ad0380,unknown,engine/reflection?,O
+0x7100ad0380,324,CollectRecordChildrenAcceptedByFilter,inferred,engine/reflection?,O
 0x7100ad04c4,296,fn_7100ad04c4,unknown,engine/reflection?,O
 0x7100ad05ec,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<SWorldGraphNode>>::TElementIterator>,reflection,engine/reflection,O
 0x7100ad0758,96,fn_7100ad0758,unknown,engine/reflection?,O
@@ -5001,16 +5001,16 @@ address,size,name,name_source,subsystem,status
 0x7100ad2d00,140,fn_7100ad2d00,unknown,unknown,O
 0x7100ad2d8c,4,fn_7100ad2d8c,unknown,unknown,O
 0x7100ad2d90,144,fn_7100ad2d90,unknown,unknown,O
-0x7100ad2e20,396,fn_7100ad2e20,unknown,engine/reflection?,O
+0x7100ad2e20,396,GetPathRootIdValue,inferred,engine/reflection?,O
 0x7100ad2fac,4,fn_7100ad2fac,unknown,game?,O
 0x7100ad2fb0,296,fn_7100ad2fb0,unknown,unknown,O
 0x7100ad30d8,64,fn_7100ad30d8,unknown,unknown,O
-0x7100ad3118,440,fn_7100ad3118,unknown,unknown,O
-0x7100ad32d0,308,fn_7100ad32d0,unknown,engine/reflection?,O
-0x7100ad3404,388,fn_7100ad3404,unknown,engine/reflection?,O
+0x7100ad3118,440,ConstructValueArrayFromSeparatedText,inferred,unknown,O
+0x7100ad32d0,308,ParseValueFromBracketedNumberOrStrId,inferred,engine/reflection?,O
+0x7100ad3404,388,ConstructErasedValueVectorFromArray,inferred,engine/reflection?,O
 0x7100ad3588,140,fn_7100ad3588,unknown,unknown,O
-0x7100ad3614,248,fn_7100ad3614,unknown,game?,O
-0x7100ad370c,180,fn_7100ad370c,unknown,engine/reflection?,O
+0x7100ad3614,248,JoinValueListIntoSeparatedString,inferred,game?,O
+0x7100ad370c,180,FormatValueAsTextPieceBracketingUnsigned,inferred,engine/reflection?,O
 0x7100ad37c0,172,fn_7100ad37c0,unknown,unknown,O
 0x7100ad386c,364,fn_7100ad386c,unknown,unknown,U
 0x7100ad39e0,772,fn_7100ad39e0,unknown,engine/reflection?,O
@@ -5322,7 +5322,7 @@ address,size,name,name_source,subsystem,status
 0x7100adc390,220,base::reflection::refl_GetType<gameeditor::TPropertyId*>,reflection,engine/reflection,O
 0x7100adc470,72,fn_7100adc470,unknown,engine/reflection?,O
 0x7100adc4c0,168,fn_7100adc4c0,unknown,engine/reflection?,O
-0x7100adc570,160,fn_7100adc570,unknown,engine/reflection?,O
+0x7100adc570,160,FormatValueAsString,inferred,engine/reflection?,O
 0x7100adc610,364,base::reflection::refl_InitType<gameeditor::TPropertyId>,reflection,engine/reflection,O
 0x7100adc77c,52,fn_7100adc77c,unknown,engine/reflection?,O
 0x7100adc7b0,104,fn_7100adc7b0,unknown,engine/reflection?,O

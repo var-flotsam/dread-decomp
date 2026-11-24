@@ -98,7 +98,7 @@ void CFulmiteBellyMineAIComponent_PlayOrUpdateSoundVolumeAndPitch(UnkMineAI3_ovb
     UnkMineSoundHandle_ovb0132* sound = &self->sound;
     if (sound->Playing()) {
         fn_7100105d34(sound->Get(), volume, false, 0.2f);
-        fn_7100105da8(sound->Get(), pitch, 0.2f);
+        SetSoundVoicePitchOverDuration(sound->Get(), pitch, 0.2f);
         fn_71001059f0(sound->Get(), 0.2f);
         return;
     }

@@ -43,7 +43,7 @@ struct UnkMultiLockListener_l8826c8 {
 
 struct UnkMultiLockTable_l8826c8 : UnkStrIdTable {
     ~UnkMultiLockTable_l8826c8() {
-        fn_71004f11f8(this);
+        ClearStrIdKeyedRecord10Table(this);
         if (keys)
             allocator->vf_0x48(keys);
         if (values)

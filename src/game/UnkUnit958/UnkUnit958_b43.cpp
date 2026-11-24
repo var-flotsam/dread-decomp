@@ -22,7 +22,7 @@ struct UnkHolder_958_b43a2 {
 };
 
 // Signature as src/game/behaviortree/CIsThereFreeOffsetCondition/CIsThereFreeOffsetCondition.cpp declares it.
-bool fn_710063c0bc(u8* part) {
+bool HasFreeActiveOffsetSlot(u8* part) {
     UnkHolder_958_b43a2* self = reinterpret_cast<UnkHolder_958_b43a2*>(part);
     for (UnkEntry_958_b43a2 *p = self->data, *end = p + self->count; p != end; ++p) {
         if (p->active && (!p->object || !p->object->field_0x10))

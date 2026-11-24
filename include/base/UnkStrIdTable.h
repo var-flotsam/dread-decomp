@@ -30,11 +30,11 @@ static_assert(sizeof(UnkStrIdTable) == 0x28, "UnkStrIdTable placeholder layout")
 struct UnkOwnedStrIdTable;
 
 // Resets every id in both arrays to the empty id and clears the count. Not decompiled yet.
-void fn_71004f11f8(UnkStrIdTable* self);
+void ClearStrIdKeyedRecord10Table(UnkStrIdTable* self);
 
 struct UnkOwnedStrIdTable : UnkStrIdTable {
     ~UnkOwnedStrIdTable() {
-        fn_71004f11f8(this);
+        ClearStrIdKeyedRecord10Table(this);
         if (keys)
             allocator->vf_0x48(keys);
         if (values)

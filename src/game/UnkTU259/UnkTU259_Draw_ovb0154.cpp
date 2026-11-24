@@ -29,7 +29,7 @@ extern void* g_unk_716e589b58 __attribute__((visibility("hidden")));
 extern void* g_unk_716e589b60 __attribute__((visibility("hidden")));
 
 char* fn_71001a07fc(char* p0);
-void fn_71001d796c(void* sub, u64, u32 b, void* c);
+void CreateBlockArrayPoolOf0x3d0ByteBlocks(void* sub, u64, u32 b, void* c);
 void fn_7100159530();
 void fn_7100159810(s32 value);
 void fn_7100160cf0(u32 index, u32 value, u32 slot);
@@ -57,7 +57,7 @@ void fn_71001cf790(UnkGfxO_b0154* self, s32 a);
 void fn_710014e6fc(void* p);
 void fn_710014dc5c(void* p);
 void fn_710014ddbc(void* p);
-void fn_710014f074(void* p);
+void InitPpMixerShader(void* p);
 
 
 struct UnkVec4_b0154r {
@@ -201,7 +201,7 @@ void fn_71001d7548(UnkDecalResourceMgr* self) {
     self->sub.field_0x4c = true;
     self->sub.field_0x50 = 15;
     self->sub.owner_b = (UnkPoolOwner_b0154*)GetDefaultAllocator();
-    fn_71001d796c(&self->sub, 0x6834, 0x35, nullptr);
+    CreateBlockArrayPoolOf0x3d0ByteBlocks(&self->sub, 0x6834, 0x35, nullptr);
     self->sub.field_0x68 = 0;
     self->sub.field_0x70 = 0.0f;
     self->sub.field_0x74 = 2.0f;
@@ -322,7 +322,7 @@ void fn_71001d4f84(UnkOwner_b0154e* self, UnkEntry_b0154e* entry, UnkViewport_b0
     if (scissor->width && scissor->height)
         fn_710015a090(scissor->x, scissor->y, scissor->width, scissor->height);
     if (fn_7100159c80())
-        fn_7100159f90(0, -1);
+        DrawIndexedFromCurrentState(0, -1);
     fn_7100159530();
     base::global::CRntVector<UnkEntry_b0154e>& v = self->entries;
     u32 n = v.count - 1;
@@ -574,7 +574,7 @@ void fn_71001d4be4(UnkGfxS_b0154* self, UnkViewport_b0154s* viewport, f32 r, f32
     fn_71001606f0(0, 0, true);
     if (fn_7100159c80()) {
         fn_7100159800(0);
-        fn_7100159f90(0, -1);
+        DrawIndexedFromCurrentState(0, -1);
         fn_7100159810(0);
     }
     fn_7100159530();
@@ -631,7 +631,7 @@ void fn_71001d4dbc(UnkGfxR_b0154* self, void* object, UnkViewport_b0154r* viewpo
     fn_71001606f0(0, object != nullptr, true);
     if (fn_7100159c80()) {
         fn_7100159800(0);
-        fn_7100159f90(0, -1);
+        DrawIndexedFromCurrentState(0, -1);
         fn_7100159810(0);
     }
     fn_7100159530();
@@ -707,5 +707,5 @@ void fn_71001d8330(UnkTargetSet_b0154t* self) {
     fn_710014e6fc(self->field_0x10);
     fn_710014dc5c(self->field_0xc20);
     fn_710014ddbc(self->field_0x1830);
-    fn_710014f074(self->field_0x2440);
+    InitPpMixerShader(self->field_0x2440);
 }

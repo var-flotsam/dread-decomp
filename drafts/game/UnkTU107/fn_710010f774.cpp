@@ -19,7 +19,7 @@ struct UnkCircle2D {
     UnkCircle2D(const UnkVec2Result& c, f32 r) : center(c), radius(r) {}
 };
 
-bool fn_710010f838(const UnkCircle2D* circle, const UnkCapsule2D* capsule, f32 tolerance);
+bool IsCapsuleCentreInsideCircle(const UnkCircle2D* circle, const UnkCapsule2D* capsule, f32 tolerance);
 
 static inline UnkVec2Result Add(const UnkVec2Result& a, const UnkVec2Result& b) {
     return UnkVec2Result(a.x + b.x, a.y + b.y);
@@ -37,8 +37,8 @@ bool fn_710010f774(const UnkCapsule2D* capsule, const CVector2D* point) {
     // The second argument is the point: the test reads only the centre a capsule starts with.
     const UnkCapsule2D* at = reinterpret_cast<const UnkCapsule2D*>(point);
     UnkCircle2D lower(UnkVec2Result(x, bottom), radius);
-    if (fn_710010f838(&lower, at, 0.0f))
+    if (IsCapsuleCentreInsideCircle(&lower, at, 0.0f))
         return true;
     UnkCircle2D upper(Add(capsule->center, UnkVec2Result(0.0f, capsule->half_height)), capsule->radius);
-    return fn_710010f838(&upper, at, 0.0f);
+    return IsCapsuleCentreInsideCircle(&upper, at, 0.0f);
 }

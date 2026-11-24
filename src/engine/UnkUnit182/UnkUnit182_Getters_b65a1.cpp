@@ -17,7 +17,7 @@ struct UnkUnit182Source_b65a1 {
     u32 flags;
 };
 
-u32 fn_71001622e0(UnkGfxBuffer252* buffer) {
+u32 GetBufferCapacityOrZero(UnkGfxBuffer252* buffer) {
     UnkUnit182Buffer_b65a1* self = reinterpret_cast<UnkUnit182Buffer_b65a1*>(buffer);
     return self ? self->size : 0;
 }

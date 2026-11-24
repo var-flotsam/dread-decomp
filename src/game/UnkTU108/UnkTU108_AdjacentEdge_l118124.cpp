@@ -33,7 +33,7 @@ static inline s32 EdgeCount(const UnkPolygon2D_l118124* p) {
     return p->count - (!p->closed & (p->count != 0));
 }
 
-bool fn_7100118124(const UnkPolygon2D_l118124* polygon, const CVector2D* point, s32* edge, f32* t,
+bool FindNearestPolygonEdgeAndAdjacentEdgeAtVertex(const UnkPolygon2D_l118124* polygon, const CVector2D* point, s32* edge, f32* t,
                    CVector2D* closest, f32* distance, s32* out_edge, f32* out_end) {
     CVector2D found = {};
     reinterpret_cast<UnkEmptyEdgeQuery>(&fn_7100117ba0)(reinterpret_cast<const UnkPolygon2D*>(polygon), point, edge,

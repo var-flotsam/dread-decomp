@@ -112,7 +112,7 @@ CStrId* fn_7100da5184(CStrId* self, char* source) {
     UnkStrHolder_a5184 holder;
     UnkValueList_a5184 list;
     fn_7100ad2fac(reinterpret_cast<char*>(&list), source + 8);
-    new (&holder.str) CRntString(fn_7100ad3614(&list));
+    new (&holder.str) CRntString(JoinValueListIntoSeparatedString(&list));
     CStrId_ConstructFromRntString(&slot.id, holder.str, true);
     self->ReleaseAndTake(slot.id);
     holder.str.~CRntString();

@@ -31,7 +31,7 @@ struct UnkMinimapItem {
 };
 static_assert(__builtin_offsetof(UnkMinimapItem, size_modifiers) == 0x2ec, "UnkMinimapItem layout");
 
-bool fn_7100eb7f6c(const UnkMinimapItem* item) {
+bool IsMinimapItemDrawable(const UnkMinimapItem* item) {
     if (!item->icon)
         return false;
     if (item->alpha_modifiers.begin() != item->alpha_modifiers.end()) {

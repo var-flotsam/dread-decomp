@@ -43,7 +43,7 @@ static inline __attribute__((always_inline)) void DestroyNode_b257j(UnkNamedSet_
     set->node_allocator->vf_0x48(node);
 }
 
-void fn_71000ea16c(UnkNamedSet_b257j* self) {
+void ClearNamedListNodeBucketSet(UnkNamedSet_b257j* self) {
     if (!self->node_count)
         return;
     u32 n = self->buckets.count;
@@ -72,7 +72,7 @@ struct UnkSetIter_b257j {
     u32 version;  // 0x1c
 };
 
-void fn_71000eb7c4(UnkNamedSet_b257j* self, UnkSetIter_b257j* it) {
+void EraseNamedSetNodeAtIterator(UnkNamedSet_b257j* self, UnkSetIter_b257j* it) {
     u32 index;
     if (it->set && it->set->version == it->version) {
         index = it->bucket;
@@ -183,7 +183,7 @@ void fn_71000eb628(UnkResRegistry* registry, UnkResObject_b257j* object) {
         it.set = types;
         it.bucket = bucket;
         it.version = version;
-        fn_71000eb7c4(types, &it);
+        EraseNamedSetNodeAtIterator(types, &it);
     }
     fn_7100019fc0(object, true);
 }

@@ -51,7 +51,7 @@ void fn_71001d010c(UnkGfx_l1d010c* self, UnkDrawItem_l1d010c* item, bool flag);
 struct UnkGraphicsSystem;
 void fn_71001d03f8(UnkGraphicsSystem* self, UnkGfxItem_b0155* item, bool upload, bool draw);
 struct UnkFlags_b0237;
-bool fn_710015b650(UnkFlags_b0237* request_);
+bool PushStencilStateAndApply(UnkFlags_b0237* request_);
 
 extern const f32 g_unk_716e589b44[4] __attribute__((visibility("hidden")));
 
@@ -72,10 +72,10 @@ static inline void DrawItem(UnkGfx_l1d0638* self, UnkGfxItem_b0155* data, UnkRen
         state.mode = 0;
         state.field_0x10 = 3;
         state.field_0x14 = 1;
-        fn_710015b650(reinterpret_cast<UnkFlags_b0237*>(&state));
+        PushStencilStateAndApply(reinterpret_cast<UnkFlags_b0237*>(&state));
         Draw(self, data);
         self->bound = nullptr;
-        fn_710015b8a0(true);
+        PopStateStackAndApplyNewTop(true);
         return;
     }
     Draw(self, data);

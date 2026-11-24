@@ -5827,7 +5827,7 @@ address,size,name,name_source,subsystem,status
 0x71004f0fc0,8,fn_71004f0fc0,unknown,game/ai?,O
 0x71004f0fc8,356,fn_71004f0fc8,unknown,game/ai?,O
 0x71004f112c,204,fn_71004f112c,unknown,game/ai?,O
-0x71004f11f8,320,fn_71004f11f8,unknown,game/ai?,O
+0x71004f11f8,320,ClearStrIdKeyedRecord10Table,inferred,game/ai?,O
 0x71004f1338,348,fn_71004f1338,unknown,game/ai?,O
 0x71004f1494,8,CEmmyCaveAIComponent::refl_Equals,reflection,game/ai,O
 0x71004f149c,8,CEmmyCaveAIComponent::refl_Hash,reflection,game/ai,O

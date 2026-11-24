@@ -38,7 +38,7 @@ extern UnkConversion g_unk_717270e110;
 void fn_710070f32c() __attribute__((visibility("hidden")));
 void fn_710070f338() __attribute__((visibility("hidden")));
 
-void fn_710070f4d0() {
+void InitAnimationPrefixEnumStatics() {
     InitHeaderIds(&g_unk_717270e130.ids);
     InitEnum(&base::reflection::TypeObject<CAnimationPrefix::SPrefix::Enum, UnkEnumType>::object, "CAnimationPrefix::SPrefix::Enum", fn_710070ef18, fn_710070e70c,
              g_unk_717270e0e8, &g_unk_717270e0f0, fn_710070f32c, &g_unk_717270e110, fn_710070f338);

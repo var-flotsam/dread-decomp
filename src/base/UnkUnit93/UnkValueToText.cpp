@@ -16,7 +16,7 @@ struct UnkColorBGRA_71000efb50 {
     u8 b, g, r, a;
 };
 
-bool fn_71000ef9cc(UnkTextWriter_71000ef9cc* self, const bool* value) {
+bool WriteBoolAsTrueFalseText(UnkTextWriter_71000ef9cc* self, const bool* value) {
     snprintf(self->text, sizeof(self->text), "%s", *value ? "true" : "false");
     return true;
 }
@@ -30,7 +30,7 @@ bool fn_71000efa94(UnkTextWriter_71000ef9cc* self, const UnkFloat4_71000efa94* v
 
 bool fn_71000efb10(UnkTextWriter_71000ef9cc* self, const UnkFloat4_71000efa94* v) { return WriteFloat4(self, v); }
 
-bool fn_71000efb50(UnkTextWriter_71000ef9cc* self, const UnkColorBGRA_71000efb50* c) {
+bool FormatBgra8ColorAsRgbaText(UnkTextWriter_71000ef9cc* self, const UnkColorBGRA_71000efb50* c) {
     snprintf(self->text, sizeof(self->text), "%d,%d,%d,%d", c->r, c->g, c->b, c->a);
     return true;
 }

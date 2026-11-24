@@ -163,7 +163,7 @@ bool fn_7100591198(UnkGoliathAI_l591198* self, UnkGoliathShape_l591198* shape) {
     SweepArc(self, left, Yaw(-1.5707964f), &arc);
     for (s32 i = (s32)arc.points.count - 1; i >= 0; --i)
         AddPointOf(&sweep, &arc, i);
-    fn_7100119f98(&sweep, true);
+    SetPolylineClosed(&sweep, true);
     fn_7100d62d40(outlines, &sweep);
 
     UnkTileOutline box;
@@ -177,7 +177,7 @@ bool fn_7100591198(UnkGoliathAI_l591198* self, UnkGoliathShape_l591198* shape) {
     f32 top = right.y + t->field_0x40;
     AddPoint(&box, corner, x1, top);
     AddPoint(&box, corner, x1, top - t->field_0x40);
-    fn_7100119f98(&box, true);
+    SetPolylineClosed(&box, true);
     fn_7100d62d40(outlines, &box);
     shape->field_0x98 = true;
     return true;

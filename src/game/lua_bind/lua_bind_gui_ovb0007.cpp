@@ -215,7 +215,7 @@ int ShowPowerUpInSamusMenu(lua_State* L) {
 
 struct UnkUnit2754Item;
 UnkUnit2754Item* fn_71011ba1d4(UnkGuiRoot* root, const CStrId& name);
-void fn_71011f5f54(UnkUnit2754Item* self, bool enabled);
+void SetStageItemEnabled(UnkUnit2754Item* self, bool enabled);
 
 namespace lua_bind {
 int SetStageEnabled(lua_State* L) {
@@ -224,7 +224,7 @@ int SetStageEnabled(lua_State* L) {
     if (fn_71010c0270(L, "sb", &name, &enabled)) {
         UnkUnit2754Item* item = fn_71011ba1d4(g_unk_717271e8f8, CStrId(name, true));
         if (item)
-            fn_71011f5f54(item, enabled);
+            SetStageItemEnabled(item, enabled);
     }
     return 0;
 }

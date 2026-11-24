@@ -85,7 +85,7 @@ void fn_7100775fe0(UnkCentralUnit_l775fe0* self, s32 mode) {
         if (UnkCentralUnitDoor_b46a2* central = fn_71004056fc(self->door.Get())) {
             CDoorCentralUnitLifeComponent_SetStayOpened(reinterpret_cast<UnkDoorCentral_A4_b76*>(central));
         } else if (UnkDoorLock* door = fn_71002af860(self->door.Get())) {
-            fn_71008d0ef4(door);
+            OpenDoorUnlessOpen(door);
         }
     }
 }

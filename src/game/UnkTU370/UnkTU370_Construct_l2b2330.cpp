@@ -59,6 +59,6 @@ struct UnkPrimeTable_2b2330 {
     }
 };
 
-void fn_71002b2330(void* table, u32 count, u32 size) {
+void ConstructHashTableWithPrimeBucketCount(void* table, u32 count, u32 size) {
     new (table) UnkPrimeTable_2b2330(count, size);
 }

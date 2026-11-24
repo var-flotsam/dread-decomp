@@ -60,7 +60,7 @@ struct UnkNavMeshReadItem_b0246 {
     base::global::CRntVector<u16> cells;  // 0xc8
 };
 
-void fn_71002b3524(UnkNavMeshItem* item, base::global::CRntFile* file) {
+void ReadNavMeshItemCellIds(UnkNavMeshItem* item, base::global::CRntFile* file) {
     UnkNavMeshReadItem_b0246* self = reinterpret_cast<UnkNavMeshReadItem_b0246*>(item);
     u32 count = 0;
     CRntFile_Read(file, &count, 4, 1);

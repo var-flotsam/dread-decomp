@@ -52,7 +52,7 @@ void fn_7100fd3804(void* block) {
     self->slot_count = fn_7100108b7c(g_unk_7101d4d820, 1) >> 1;
     fn_7100fe1028(&self->channel_1, 1);
     fn_7100fe1028(&self->channel_2, 2);
-    fn_7100fcfcdc(&self->bank_3, 3);
+    ConstructMusicChannelWithEightEntries(&self->bank_3, 3);
     fn_7100fcee0c(&self->track_4, 4);
     fn_7100fcee0c(&self->track_5, 5);
     fn_7101007bbc(&self->track_6, 6);

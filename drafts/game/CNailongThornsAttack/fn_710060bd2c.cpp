@@ -105,7 +105,7 @@ void fn_710060bd2c(UnkThornsAttack_l60bd2c* self, f32 dt) {
         return;
     case 2:
         self->wait += dt;
-        if (self->wait < self->desc->wait_time && fn_710110c83c(ai) && !fn_7100df5740(g_unk_7101d47310)) {
+        if (self->wait < self->desc->wait_time && fn_710110c83c(ai) && !IsOpticCamouflageAbilityInState6(g_unk_7101d47310)) {
             self->id = fn_710060b344(reinterpret_cast<UnkThornsAttack_b68a4*>(self));
             if (self->id.data == CStrId::Empty().data)
                 return;

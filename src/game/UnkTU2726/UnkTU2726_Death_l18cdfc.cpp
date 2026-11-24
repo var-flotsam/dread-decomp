@@ -28,7 +28,7 @@ using unk_prop_bag::Key;
 using unk_prop_bag::UnkPropBag;
 
 // Calls the script function `name`, collecting what it returns in `results`.
-bool fn_7100dfb758(UnkPropBag* results, const char* name, const char* fmt, ...);
+bool CallScriptFunctionByName(UnkPropBag* results, const char* name, const char* fmt, ...);
 void fn_7100108b1c(UnkSoundMgr* manager);
 void fn_710010825c(UnkSoundMgr* manager, const u32* id, f32 time);
 
@@ -115,7 +115,7 @@ void fn_710118cdfc(UnkIngameMenu_l18cdfc* self) {
 
     bool overrides = true;
     UnkPropBag results;
-    if (fn_7100dfb758(&results, "CurrentScenario.GetOnDeathOverrides", g_unk_710162e2ed)) {
+    if (CallScriptFunctionByName(&results, "CurrentScenario.GetOnDeathOverrides", g_unk_710162e2ed)) {
         UnkScriptValue_l18cdfc* it = FindValue_l18cdfc(results, Key(0x1218));
         if (it != &Values_l18cdfc(results)[results.values.count] && it->type == 'b') {
             CRntFile_Seek(&results.lock, it->offset, 0);

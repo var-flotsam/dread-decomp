@@ -86,7 +86,7 @@ void CFloatTunableButton_StepTunableValue(UnkFloatTunableButton_ovb0130* self, s
             UnkTypedPtr_ovb0130 obj = {object->vf_0x0(), object};
             UnkReflField* field = self->field;
             UnkTypedPtr_ovb0130 value = {fn_710000abbc(), &self->value};
-            fn_71000e7a80(field, reinterpret_cast<const UnkReflFieldObject*>(&obj),
+            SetReflectedFieldValue(field, reinterpret_cast<const UnkReflFieldObject*>(&obj),
                           reinterpret_cast<UnkReflValueArg*>(&value));
         }
     }

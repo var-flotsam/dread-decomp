@@ -26,7 +26,7 @@ struct UnkNavQueryResult_b46a1 {
     UnkNavHit_b46a1 hits[1];
 };
 
-void fn_71002869a8(UnkNavQueryResult_b46a1* self) {
+void ResetSearchQueryResult(UnkNavQueryResult_b46a1* self) {
     self->field_0x80 = false;
     self->point.x = 0.0f;
     self->point.y = 0.0f;

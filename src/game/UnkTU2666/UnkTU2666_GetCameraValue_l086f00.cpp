@@ -77,7 +77,7 @@ inline bool ReadField(UnkCameraObject_l086f00* obj, u64 key, T* out) {
     typed.ptr = obj;
     UnkCameraValue_l086f00 value = {UnkReflTypeOf<T>::Get(), out};
     UnkCameraField_l086f00* field = cls->FindField(key);
-    return field && fn_71000e78e0(reinterpret_cast<UnkReflField*>(field),
+    return field && ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(field),
                                   reinterpret_cast<const UnkReflFieldObject*>(&typed),
                                   reinterpret_cast<UnkReflValueArg*>(&value));
 }

@@ -45,7 +45,7 @@ address,size,name,name_source,subsystem,status
 0x7100e039e4,148,fn_7100e039e4,unknown,game?,O
 0x7100e03a78,144,fn_7100e03a78,unknown,unknown,O
 0x7100e03b08,624,fn_7100e03b08,unknown,unknown,U
-0x7100e03d78,472,fn_7100e03d78,unknown,unknown,O
+0x7100e03d78,472,CallScriptFunctionIntoPropBag,inferred,unknown,O
 0x7100e03f50,2204,fn_7100e03f50,unknown,unknown,U
 0x7100e047ec,8,fn_7100e047ec,unknown,script/bindings?,O
 0x7100e047f4,24,fn_7100e047f4,unknown,game/components?,O
@@ -724,7 +724,7 @@ address,size,name,name_source,subsystem,status
 0x7100e43acc,2976,fn_7100e43acc,unknown,unknown,U
 0x7100e4466c,2052,fn_7100e4466c,unknown,unknown,U
 0x7100e44e70,232,fn_7100e44e70,unknown,engine/reflection?,O
-0x7100e44f58,232,fn_7100e44f58,unknown,engine/reflection?,O
+0x7100e44f58,232,GetOrInsertDefaultRecord60ByU64Key,inferred,engine/reflection?,O
 0x7100e45040,340,fn_7100e45040,unknown,engine/reflection?,O
 0x7100e45194,220,fn_7100e45194,unknown,unknown,O
 0x7100e45270,392,fn_7100e45270,unknown,engine/reflection?,O
@@ -1408,7 +1408,7 @@ address,size,name,name_source,subsystem,status
 0x7100e52a28,48,fn_7100e52a28,unknown,engine/reflection?,O
 0x7100e52a58,256,fn_7100e52a58,unknown,engine/reflection?,O
 0x7100e52b58,412,fn_7100e52b58,unknown,engine/reflection?,O
-0x7100e52cf4,368,fn_7100e52cf4,unknown,engine/reflection?,O
+0x7100e52cf4,368,PushBackRecord60Copy,inferred,engine/reflection?,O
 0x7100e52e64,252,fn_7100e52e64,unknown,engine/reflection?,O
 0x7100e52f60,648,fn_7100e52f60,unknown,engine/reflection?,O
 0x7100e531e8,560,fn_7100e531e8,unknown,engine/reflection?,O
@@ -1464,7 +1464,7 @@ address,size,name,name_source,subsystem,status
 0x7100e54808,48,fn_7100e54808,unknown,engine/reflection?,O
 0x7100e54838,260,fn_7100e54838,unknown,engine/reflection?,O
 0x7100e5493c,412,fn_7100e5493c,unknown,engine/reflection?,m
-0x7100e54ad8,492,fn_7100e54ad8,unknown,engine/reflection?,O
+0x7100e54ad8,492,ReserveRecord60AndPointerArrays,inferred,engine/reflection?,O
 0x7100e54cc4,556,fn_7100e54cc4,unknown,engine/reflection?,O
 0x7100e54ef0,492,fn_7100e54ef0,unknown,engine/reflection?,O
 0x7100e550dc,288,fn_7100e550dc,unknown,engine/reflection?,O
@@ -2195,7 +2195,7 @@ address,size,name,name_source,subsystem,status
 0x7100e77d68,388,CMinimapGrid::SGridDef::refl_InitClass,reflection,game/world,O
 0x7100e77eec,372,fn_7100e77eec,unknown,unknown,O
 0x7100e78060,288,fn_7100e78060,unknown,unknown,O
-0x7100e78180,336,fn_7100e78180,unknown,unknown,O
+0x7100e78180,336,RecomputeLinkedCellNeighbourMask,inferred,unknown,O
 0x7100e782d0,16,fn_7100e782d0,unknown,unknown,O
 0x7100e782e0,88,fn_7100e782e0,unknown,unknown,O
 0x7100e78338,684,fn_7100e78338,unknown,ai/navmesh?,U
@@ -2313,7 +2313,7 @@ address,size,name,name_source,subsystem,status
 0x7100e7bd84,332,fn_7100e7bd84,unknown,unknown,O
 0x7100e7bed0,328,fn_7100e7bed0,unknown,unknown,O
 0x7100e7c018,216,fn_7100e7c018,unknown,unknown,O
-0x7100e7c0f0,256,fn_7100e7c0f0,unknown,unknown,O
+0x7100e7c0f0,256,SwapEraseKeyedString200ArrayElement,inferred,unknown,O
 0x7100e7c1f0,12,fn_7100e7c1f0,unknown,unknown,O
 0x7100e7c1fc,24,fn_7100e7c1fc,unknown,unknown,O
 0x7100e7c214,120,fn_7100e7c214,unknown,unknown,O
@@ -3191,7 +3191,7 @@ address,size,name,name_source,subsystem,status
 0x7100eb7cb8,548,fn_7100eb7cb8,unknown,engine/reflection?,U
 0x7100eb7edc,44,fn_7100eb7edc,unknown,engine/reflection?,O
 0x7100eb7f08,100,fn_7100eb7f08,unknown,engine/reflection?,U
-0x7100eb7f6c,132,fn_7100eb7f6c,unknown,engine/reflection?,O
+0x7100eb7f6c,132,IsMinimapItemDrawable,inferred,engine/reflection?,O
 0x7100eb7ff0,1636,fn_7100eb7ff0,unknown,engine/reflection?,U
 0x7100eb8654,804,fn_7100eb8654,unknown,engine/reflection?,O
 0x7100eb8978,160,fn_7100eb8978,unknown,engine/reflection?,O

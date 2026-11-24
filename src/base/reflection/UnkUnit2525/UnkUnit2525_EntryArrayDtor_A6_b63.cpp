@@ -24,6 +24,6 @@ struct UnkOpsEntry_A6_b63 {
     }
 };
 
-void fn_7100d8ce3c(void* self) {
+void DestroyOpsEntryVector(void* self) {
     static_cast<base::global::CRntVector<UnkOpsEntry_A6_b63>*>(self)->Free();
 }

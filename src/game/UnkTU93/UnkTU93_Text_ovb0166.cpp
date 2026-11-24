@@ -71,7 +71,7 @@ static inline const base::reflection::CFlagsetType* FlagsetOf(UnkTypedValue_b016
                : nullptr;
 }
 
-bool fn_71000ef764(UnkTextWriter_b0166* self, UnkTypedValue_b0166* value) {
+bool WriteFlagsetValueAsBitNamesText(UnkTextWriter_b0166* self, UnkTypedValue_b0166* value) {
     UnkStringBuf_b0166 text;
     fn_710007e6c4(&text);
     const base::reflection::CEnumType* flags = reinterpret_cast<const base::reflection::CEnumType*>(FlagsetOf(value)->field_0xe8);

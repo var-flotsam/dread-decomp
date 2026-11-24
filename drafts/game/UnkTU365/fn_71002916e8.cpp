@@ -124,7 +124,7 @@ void fn_71002916e8(UnkNavGenerator_ovb0229* self, u8* region_, u8* part, const C
             UnkTilePoint point = {edge.end.x, edge.end.y, 0.0f};
             fn_7100118b94(&outline, reinterpret_cast<UnkVec3*>(&point));
         }
-        fn_7100119f98(&outline, true);
+        SetPolylineClosed(&outline, true);
         fn_7100d62e04(shape, &outline);
     }
 

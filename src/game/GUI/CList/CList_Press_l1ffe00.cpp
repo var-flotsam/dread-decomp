@@ -97,7 +97,7 @@ void CList_SelectEventSourceItemAndSendActivation(UnkList_l1ffe00* self, UnkList
     s32 kind = 0x11;
     UnkGuiEvent ev;
     fn_710120235c(&ev, reinterpret_cast<UnkGuiDisplayObject*>(self), &kind, &bag);
-    fn_7100b1e3fc(self->handlers, reinterpret_cast<UnkGuiEventData_ovb0182*>(&ev));
+    DispatchEventToHandlersForKey(self->handlers, reinterpret_cast<UnkGuiEventData_ovb0182*>(&ev));
     event->handled = true;
     fn_7101202488(&ev);
 }

@@ -14,7 +14,7 @@ using base::global::CStrId;
 
 using UnkNamedRefArrays_l2f7c08 = base::global::CRntSmallDictionary<CStrId, UnkCountedRef_b53>;
 
-void fn_71002f7c08(void* arrays, u32 capacity) {
+void ReserveStrIdCountedRefDictionaryCapacity(void* arrays, u32 capacity) {
     UnkNamedRefArrays_l2f7c08* self = static_cast<UnkNamedRefArrays_l2f7c08*>(arrays);
     if (self->capacity < capacity) {
         auto* refs = static_cast<UnkCountedRef_b53*>(

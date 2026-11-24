@@ -19,7 +19,7 @@ template <u32 Offset>
 struct UnkWeakRefAt;
 
 bool fn_71001276b0(const UnkCircle2D* a, const void* b, UnkContactBuffer<8>* out, bool flag);
-void fn_710092ef94(UnkWeakRefAt<0>* self, UnkWeakTarget* other);
+void SetWeakRefAt0ToObjectHandle(UnkWeakRefAt<0>* self, UnkWeakTarget* other);
 
 // A circle: its centre and radius.
 struct UnkTileCircle_lca257c {
@@ -158,7 +158,7 @@ bool fn_7100ca257c(void* where, void* filter, u32 flags, u32 max, UnkHit* hits, 
             entry.tile = tile;
             entry.field_0x48 = self->field_0xcc;
             entry.contact.flags |= 0x40;
-            fn_710092ef94(reinterpret_cast<UnkWeakRefAt<0>*>(entry.collider), self->collider);
+            SetWeakRefAt0ToObjectHandle(reinterpret_cast<UnkWeakRefAt<0>*>(entry.collider), self->collider);
             contact.pos.z = self->z;
             CVector2D at;
             fn_710007b430(&at, &contact.pos);

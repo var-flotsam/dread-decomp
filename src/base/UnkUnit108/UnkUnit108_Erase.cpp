@@ -27,7 +27,7 @@ static inline void Erase(UnkEntryArray108* self, u32 index) {
     }
 }
 
-void fn_7100119f3c(UnkEntryArray108* self, u32 index) {
+void EraseTwelveByteEntryAtIndex(UnkEntryArray108* self, u32 index) {
     Erase(self, index);
 }
 

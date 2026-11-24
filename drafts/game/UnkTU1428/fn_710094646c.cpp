@@ -88,7 +88,7 @@ void fn_710094646c(UnkRollMovement_l94646c* self) {
                 self->sound = Play(self->owner, self->preset, nullptr, material);
                 if (UnkRollSound_l94646c* fresh = self->sound.Get()) {
                     fn_7100105d34(reinterpret_cast<UnkInterp_7100105d34*>(fresh), volume, false, 0.01f);
-                    fn_7100105da8(reinterpret_cast<UnkInterp_7100105d34*>(self->sound.Get()), pitch, 0.01f);
+                    SetSoundVoicePitchOverDuration(reinterpret_cast<UnkInterp_7100105d34*>(self->sound.Get()), pitch, 0.01f);
                 }
             }
         }
@@ -110,7 +110,7 @@ void fn_710094646c(UnkRollMovement_l94646c* self) {
 
     f32 pitch = self->sound.ref->sound->pitch;
     if (pitch + 0.001f < 0.3f || pitch - 0.001f > 0.3f)
-        fn_7100105da8(reinterpret_cast<UnkInterp_7100105d34*>(self->sound.Get()), 0.3f, 0.3f);
+        SetSoundVoicePitchOverDuration(reinterpret_cast<UnkInterp_7100105d34*>(self->sound.Get()), 0.3f, 0.3f);
 
     UnkRollOwner_l94646c* owner = self->owner;
     UnkRollPosition_l94646c position = {owner->x, owner->y, owner->z};

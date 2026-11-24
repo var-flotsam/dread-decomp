@@ -79,7 +79,7 @@ void CMaterialFXComponent_AddOrReplaceColorChange(UnkMagnetFx_b0086* fx, UnkMagn
     u32 index = -1;
     for (u32 i = 0; i < self->count; ++i) {
         UnkMaterialFXRecord_l926aa0* r = self->records[i];
-        if (fn_710080f9e0(Key(r), Key(change)) && r->slot == change->slot && r->kind == change->kind)
+        if (AreKindedKeysEqual(Key(r), Key(change)) && r->slot == change->slot && r->kind == change->kind)
             index = i;
     }
     if (index == (u32)-1)

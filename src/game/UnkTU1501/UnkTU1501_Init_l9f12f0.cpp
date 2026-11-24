@@ -56,7 +56,7 @@ void fn_71009f0c1c() __attribute__((visibility("hidden")));
 void fn_71009f0c28() __attribute__((visibility("hidden")));
 extern void* g_unk_7101a8a468[];
 
-void fn_71009f12f0() {
+void InitSamusMovementStatics() {
     InitHeaderIds(&g_unk_7172740fc8.ids);
     g_unk_7172740fc8.field_0x90 = -1.0f;
     g_unk_7172740fc8.field_0x94 = -1.0f;

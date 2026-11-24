@@ -10,11 +10,11 @@ struct UnkEntry48_b67a1 {
     u8 unk_0x0[0x48];
 };
 
-void fn_710011f95c(UnkEntryVector108_b67a1* v, u32 index);
+void ErasePolygonArrayElementAt(UnkEntryVector108_b67a1* v, u32 index);
 
 void fn_710011ed4c(UnkEntryVector108_b67a1* self, const u32* it) {
     UnkEntry48_b67a1* base = reinterpret_cast<UnkEntry48_b67a1*>(self);
     u64 offset = (u64)*it * sizeof(UnkEntry48_b67a1);
     UnkEntry48_b67a1* p = reinterpret_cast<UnkEntry48_b67a1*>(reinterpret_cast<char*>(base) + offset);
-    fn_710011f95c(self, (u32)(p - base));
+    ErasePolygonArrayElementAt(self, (u32)(p - base));
 }

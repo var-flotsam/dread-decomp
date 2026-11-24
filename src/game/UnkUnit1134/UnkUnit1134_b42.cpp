@@ -32,7 +32,7 @@ struct UnkSelf_1134_b42 {
     UnkPlayer_b42* player;  // 0x28
 };
 
-bool fn_710070df40(UnkSelf_1134_b42* self, UnkRequest_b42* req) {
+bool CanAnimationTrackAcceptRequest(UnkSelf_1134_b42* self, UnkRequest_b42* req) {
     UnkEntry_b42* entry = req->entry;
     if (!entry)
         return false;

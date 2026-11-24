@@ -116,7 +116,7 @@ bool fn_71000e7b5c(UnkReflField* self, const UnkReflFieldObject* obj) {
     if (attr.type) {
         UnkReflValueArg arg;
         fn_71000a1710(&arg, &attr);
-        bool result = fn_71000e7a80(self, obj, &arg);
+        bool result = SetReflectedFieldValue(self, obj, &arg);
         fn_71000a1c60(&attr);
         return result;
     }

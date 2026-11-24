@@ -26,7 +26,7 @@ struct UnkVersionWriter_A1b71 {
 
 void fn_71000ed2b8(UnkVersionWriter_A1b71* self, UnkVersionEntry* entry);
 
-void fn_71000ed224(UnkVersionWriter_A1b71* self, base::global::CRntFile* file, UnkVersionEntry* entry) {
+void InitRntFileWriterAndWriteHeader(UnkVersionWriter_A1b71* self, base::global::CRntFile* file, UnkVersionEntry* entry) {
     self->field_0x0 = 0;
     self->file = file;
     u16 major = 0;

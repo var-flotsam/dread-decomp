@@ -45,7 +45,7 @@ static inline u32 CellAllows(UnkNavMeshCell* cell, u32 flags, u32* reason) {
         allowed = 0;
     }
     if ((g_unk_7101a21208 & flags) && TileOf(cell)->field_0x1ec != 0 &&
-        fn_71002b1270(fn_71002b37d8(TileOf(cell)), flags)) {
+        ObjectKindMatchesFirstSetMaskBit(fn_71002b37d8(TileOf(cell)), flags)) {
         *reason = 4;
         allowed = 0;
     }
@@ -79,7 +79,7 @@ bool fn_71002b106c(UnkNavMesh* mesh, u16 cell_id, u8 side, u32 cell_flags, u32 n
         allowed = false;
     }
     if ((g_unk_7101a21208 & neighbour_flags) && TileOf(other)->field_0x1ec != 0 &&
-        fn_71002b1270(fn_71002b37d8(TileOf(other)), cell_flags)) {
+        ObjectKindMatchesFirstSetMaskBit(fn_71002b37d8(TileOf(other)), cell_flags)) {
         *reason = 8;
         allowed = false;
     }

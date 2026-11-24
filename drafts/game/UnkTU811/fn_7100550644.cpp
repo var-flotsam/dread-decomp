@@ -202,7 +202,7 @@ bool fn_7100550644(UnkEmmyAI_l550644* self, f32* out) {
     u32 index = movement->path_index;
     if (index >= self->path.SegmentCount())
         return true;
-    const u32* entry = fn_710035e580(&self->path, index);
+    const u32* entry = GetPathSegmentEntryOrFallback(&self->path, index);
     if (reinterpret_cast<const UnkCellSide_l550644*>(entry)->cell == -1)
         return true;
 

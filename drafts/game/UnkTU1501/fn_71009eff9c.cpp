@@ -44,7 +44,7 @@ void fn_71009eff9c(UnkMovement_l9eff9c* self, bool snap, f32 dt) {
         return;
     }
     bool running = fn_710117b348(self->actor->field_0x220, fn_7100d25ea8()) && self->field_0x128 && self->field_0x128->target;
-    bool paused = fn_7100df5740(g_unk_7101d47310);
+    bool paused = IsOpticCamouflageAbilityInState6(g_unk_7101d47310);
     const u8* bytes = reinterpret_cast<const u8*>(g_unk_7101d47310);
     bool booster = (g_unk_7101d47310->field_0xc8 != 0 || g_unk_7101d47310->field_0x10c) && bytes[0xc4] && !bytes[0xc6];
     f32 rate = 400.0f;

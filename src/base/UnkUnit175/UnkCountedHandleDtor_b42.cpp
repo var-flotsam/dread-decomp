@@ -17,6 +17,6 @@ struct UnkCountedHandle_b42a1 {
 };
 
 // The first's signature as src/game_s1/fn_71001545d0.cpp declares it.
-void fn_7100154538(void* handle) { static_cast<UnkCountedHandle_b42a1*>(handle)->Release(); }
+void ReleaseCountedResourceHandle(void* handle) { static_cast<UnkCountedHandle_b42a1*>(handle)->Release(); }
 void fn_71002ed208(UnkCountedHandle_b42a1* self) { self->Release(); }
 void fn_71002f4200(UnkCountedHandle_b42a1* self) { self->Release(); }

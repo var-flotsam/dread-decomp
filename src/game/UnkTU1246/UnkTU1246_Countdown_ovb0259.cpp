@@ -94,7 +94,7 @@ struct UnkCountDown_ovb0259 {
 struct UnkCountDownEmpty_ovb0259 : UnkLeftoverReg {};
 void fn_71007da43c(UnkCountDownEmpty_ovb0259 tag, u32 a, u32 b);
 
-void fn_71007daf04(UnkCountDown_ovb0259* self) {
+void TriggerCountdownStagesByElapsedShare(UnkCountDown_ovb0259* self) {
     UnkCountDownTunables_ovb0259* t = &g_unk_717271e848;
     f32 total = t->total;
     if (total + 0.00001f >= 0.0f && total - 0.00001f <= 0.0f)
@@ -228,7 +228,7 @@ static inline void* Manager() {
 }
 
 void fn_71007db2b0(UnkCountDown_ovb0259* self);
-void fn_71007dacbc(UnkCountDown_ovb0259* self) {
+void UpdateCountdownCameraShake(UnkCountDown_ovb0259* self) {
     UnkCountDownTunables_ovb0259* t = &g_unk_717271e848;
     f32 ratio = self->elapsed / t->total;
     f32 clamped = ratio <= 0.0f ? 0.0f : (ratio >= 1.0f ? 1.0f : ratio);
@@ -316,8 +316,8 @@ void fn_71007da92c(UnkCountDown_ovb0259* self, f32 dt) {
     if (!self->field_0x79 || !self->field_0xf0)
         return;
     fn_71007daa8c(self);
-    fn_71007dacbc(self);
-    fn_71007daf04(self);
+    UpdateCountdownCameraShake(self);
+    TriggerCountdownStagesByElapsedShare(self);
     fn_71007da730(self);
     fn_71007db054(self, dt);
     UnkCountDownTunables_ovb0259* t = &g_unk_717271e848;

@@ -61,7 +61,7 @@ __attribute__((always_inline)) static inline void OwnerPos_b67a4(UnkFollow_b67a4
     fn_710007b430(reinterpret_cast<CVector2D*>(out), p);
 }
 
-bool fn_71006fe35c(UnkFollow_b67a4* self, UnkFollowSource_b67a4* source) {
+bool SetPoint2DFromSourceAndOffsetToOwner(UnkFollow_b67a4* self, UnkFollowSource_b67a4* source) {
     if (!source)
         return false;
     {

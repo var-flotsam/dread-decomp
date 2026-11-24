@@ -58,7 +58,7 @@ static inline bool Get(UnkChozoAttackObject_ovb0114* obj, u64 key, bool* out) {
     typed.ptr = obj;
     UnkChozoAttackValue_ovb0114 value = {fn_710000d228(), out};
     if (UnkChozoAttackField_ovb0114* field = cls->FindField(key)) {
-        fn_71000e78e0(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
         return true;
     }

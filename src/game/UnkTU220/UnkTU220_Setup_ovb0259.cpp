@@ -16,7 +16,7 @@ struct UnkStruct_710019ab0c;
 
 void fn_7100154380(UnkObj_71001541a0* self, u32 a, u32 b);
 void fn_7100154270(UnkObj_71001541a0* self);
-void fn_71001542f0(UnkObj_71001541a0* self, u32 a, u32 b, const void* data);
+void WriteBytesToEnabledBufferAtOffset(UnkObj_71001541a0* self, u32 a, u32 b, const void* data);
 void fn_71001542d0(UnkObj_71001541a0* self);
 extern char g_unk_7101a1e0d8[];
 extern char g_unk_7101a1e138[];
@@ -56,7 +56,7 @@ void fn_710019a16c() {
     fn_7100161d60(reinterpret_cast<UnkGfxBuffer252*>(pair->buffer));
     fn_7100154380(pair->second, 1, 2);
     fn_7100154270(pair->second);
-    fn_71001542f0(pair->second, 0, 0x48, g_unk_7101a1e138);
+    WriteBytesToEnabledBufferAtOffset(pair->second, 0, 0x48, g_unk_7101a1e138);
     fn_71001542d0(pair->second);
     drawable->field_0x8 = pair->buffer;
     fn_710019ab0c(reinterpret_cast<UnkStruct_710019ab0c*>(drawable));

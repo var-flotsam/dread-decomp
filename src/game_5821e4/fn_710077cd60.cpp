@@ -15,7 +15,7 @@ template <> UnkEnumType base::reflection::TypeObject<darkness::EDarknessPreset, 
 void fn_710077cb6c(UnkEnumType* type, const CStrId& name, void (*)(), void*);
 extern char g_unk_71727158f8[];
 
-void fn_710077cd60() {
+void InitEDarknessPresetStatics() {
     InitHeaderIds(&g_unk_7172715900.ids);
     {
         CStrId n("darkness::EDarknessPreset", true);

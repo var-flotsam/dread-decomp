@@ -24,7 +24,7 @@ struct UnkEnumType;
 UnkEnumType* fn_7100231b40();  // as src/game_s7/fn_710024cc40.cpp declares it
 
 bool fn_71010bef20(lua_State* L, void** out, s32 index);
-bool fn_71010beee0(lua_State* L, void** out, s32 index);
+bool GetBoxedGameObjectFromLua(lua_State* L, void** out, s32 index);
 
 struct UnkLuaArgReader2_b49a6 {
     u8 pad_0x0[0x10];
@@ -60,7 +60,7 @@ u32 fn_7100fbfe1c(UnkLuaArgReader2_b49a6* self, UnkTypedRef* value) {
         }
     } else if (fn_710009d50c(pointee, CGameObject::refl_GetClass())) {
         void* object = nullptr;
-        if (fn_71010beee0(L, &object, -1)) {
+        if (GetBoxedGameObjectFromLua(L, &object, -1)) {
             const CType* type = value->type;
             UnkTypedRef src = {reinterpret_cast<const CType*>(fn_7100231b40()), &object};
             fn_710009d7a8(type, value, &src);

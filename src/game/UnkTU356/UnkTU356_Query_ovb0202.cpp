@@ -107,7 +107,7 @@ struct UnkNavCellCallback_b0202 {
 };
 
 struct UnkNavQueryResult_b46a1;
-void fn_71002869a8(UnkNavQueryResult_b46a1* result);
+void ResetSearchQueryResult(UnkNavQueryResult_b46a1* result);
 
 static inline UnkNavMeshManager* GetRegistry() {
     UnkNavMeshManager* registry = g_unk_71726a4510;
@@ -124,7 +124,7 @@ void* fn_7100282b3c(UnkNavQueryState_b0202* self, void* unused, UnkNavCellCallba
     fn_7100281290(self);
     u8* query = self->query;
     if (*(reinterpret_cast<u8*>(self) + 0x5dca0))
-        fn_71002869a8(reinterpret_cast<UnkNavQueryResult_b46a1*>(query));
+        ResetSearchQueryResult(reinterpret_cast<UnkNavQueryResult_b46a1*>(query));
     while (fn_71002814e8(self)) {
         if (!self->open_count)
             break;

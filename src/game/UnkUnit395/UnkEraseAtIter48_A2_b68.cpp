@@ -9,11 +9,11 @@ struct UnkEntry48_A2_b68 {
     u8 unk_0x0[0x48];
 };
 
-void fn_71002ce01c(UnkCollection48_A2_b68* v, u32 index);
+void EraseEntry48AtIndex(UnkCollection48_A2_b68* v, u32 index);
 
 void fn_71002cd278(UnkCollection48_A2_b68* self, const u32* it) {
     UnkEntry48_A2_b68* base = reinterpret_cast<UnkEntry48_A2_b68*>(self);
     u64 offset = (u64)*it * sizeof(UnkEntry48_A2_b68);
     UnkEntry48_A2_b68* p = reinterpret_cast<UnkEntry48_A2_b68*>(reinterpret_cast<char*>(base) + offset);
-    fn_71002ce01c(self, (u32)(p - base));
+    EraseEntry48AtIndex(self, (u32)(p - base));
 }
