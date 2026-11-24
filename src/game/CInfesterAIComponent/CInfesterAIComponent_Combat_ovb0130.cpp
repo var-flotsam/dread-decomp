@@ -105,7 +105,7 @@ static inline void SetBool_ovb0130(CBlackboard* blackboard, const char* key, boo
     }
 }
 
-void fn_71005cb1e4(UnkInfesterAI2_ovb0130* self, f32 dt) {
+void CInfesterAIComponent_UpdateCombatTimeout(UnkInfesterAI2_ovb0130* self, f32 dt) {
     if (void* c = self->owner->field_0x2c8) {
         if (fn_71007f9f20(c))
             return;

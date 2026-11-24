@@ -135,7 +135,7 @@ void fn_71005b2fe0(UnkBraidAttack_ovb0132* self);
 
 // After fn_71005b2fe0, stretches the owner's braid collider (g_unk_71726eaa10) between the owner and
 // the node 0xd8e6f43e2dc84f93 of its shape, up to 200 above the owner.
-void fn_71005b3cf8(UnkBraidAttack_ovb0132* self) {
+void CHydrogigaBraidAttack_UpdateCollider(UnkBraidAttack_ovb0132* self) {
     fn_71005b2fe0(self);
     UnkCollisionContainer* collision = reinterpret_cast<UnkBraidOwnerView_ovb0132*>(self->owner)->collision;
     if (!collision)

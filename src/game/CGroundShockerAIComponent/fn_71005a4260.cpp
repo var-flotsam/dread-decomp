@@ -32,11 +32,11 @@ struct UnkOwner_71005a4260 {
     }
 };
 
-void fn_71005a4260(UnkOwner_71005a4260* self) {
+void CGroundShockerAIComponent_Destroy(UnkOwner_71005a4260* self) {
     self->Destroy();
 }
 
-void fn_71005a4304(UnkOwner_71005a4260* self) {
+void CGroundShockerAIComponent_DeletingDestroy(UnkOwner_71005a4260* self) {
     self->Destroy();
     operator delete(self);
 }
