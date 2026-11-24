@@ -113,7 +113,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A function that a generated source reaches through a hand-written header's declaration cannot be renamed until that generator emits the name: grep `src/tables`, `src/clones` and `src/reflection*` before renaming a hub: [Name the CRntString functions](#session-log-newest-first) (#614).
 - A header-only type move is safe when each edited source's object hashes the same before and after (Clang 9.0.1 with the project flags); partial views of one type merge into the union of their fields where they agree at every overlapping offset: [Reconcile differing copies of shared types](#session-log-newest-first) (#618).
 - A `base::reflection` class whose header declares `refl_Description` and its reflection functions as members takes the generator's member form, not the namespace form; the mangled symbols are the same, so its matches stay: [Name the reflected field type base::reflection::CVariable](#session-log-newest-first) (#625).
-- Inferred names (name_source `inferred`, through `rename.py` with the evidence in `data/names.csv`): pick classes whose functions are all `O`, none in `data/equivalence.csv`, and skip any placeholder a generated directory references; name only what the code shows (reflected char-class members by offset from `gen_fields.py`), keep a placeholder where a name would guess, and have a fresh reviewer that has not seen the reasoning judge each name right, vague or wrong, reverting all but the right ones. The pilot cost about $0.66 a landed name (16 of 22, two review rounds), later batches about 40k subagent tokens a name (session log, #649, #654, #655).
+- Inferred names (name_source `inferred`, through `rename.py` with the evidence in `data/names.csv`): pick classes whose functions are all `O`, none in `data/equivalence.csv`, and skip any placeholder a generated directory references; name only what the code shows (reflected char-class members by offset from `gen_fields.py`), keep a placeholder where a name would guess, and have a fresh reviewer that has not seen the reasoning judge each name right, vague or wrong, reverting all but the right ones. The pilot cost about $0.66 a landed name (16 of 22, two review rounds), later batches about 40k subagent tokens a name (session log, #649, #654, #655, #658).
 - Steering forms that come out for free: of 310 empty barriers only 8 left every object unchanged; offset casts often do (843 hits down to 473), replaced by a typed member at the offset, existing or a `field_0x..` split from padding. They stay where the byte pointer drops alias information, where users read different types at one offset, or where the base is a generic type. Accept each edit only when `tools/objsame.py compare` prints UNCHANGED for the file and every includer of an edited header (session log, #647, #650, #651).
 
 **Port: shaders**
@@ -171,7 +171,72 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through ea4a0d538c3f30d8f92e288ea9660e5d99915215 -->
+<!-- journal_sync: through b1229c09ea14ea6cebd31746e180fb90f61bb5c3 -->
+
+**Name 30 functions in 12 classes of naming range 2 (inferred) (#658, 2026-11-23).**
+
+Before: 30 functions in twelve classes of naming range 2 (0x710058a369 to 0x710079f5c0, by each class's lowest function address) were still called `fn_<addr>`.
+
+After: they carry inferred names (`name_source` `inferred`), applied with `tools/rename.py` with one reason each. Names only: no code, layout or struct changes.
+
+**How the classes were chosen.** A class qualifies when it is a directory `src/game/<Class>/` with a real class name, every function defined there is status O, 4 to 40 of them are `fn_<addr>`, none is in `data/equivalence.csv` and none is referenced from a generated directory (`.gitattributes`). Under that strict rule only these twelve classes qualify in range 2, so this batch is all of them. Later batches will use the pilot's (#649) per-function rule instead: a class qualifies on the other conditions, and only the functions referenced from generated directories are skipped. Each PR will say so.
+
+**Names** (evidence is what the code shows; offsets are into the object named):
+
+| address | name | evidence |
+|---|---|---|
+| `0x7100606050` | `CKraidBouncingCreaturesMovementComponent_InitStatics` | the unit's static initialiser: the header ids, the "CKraidBouncingCreaturesMovementComponent" class id, the class getter, the unit's type registration |
+| `0x71006052a4` | `CKraidBouncingCreaturesMovementComponent_BeginPlay` | after the base step that sets the launch velocity from the direction (fn_7100ac3880), registers with the game manager under the unit's class-name id (fn_7100de9540), then adds the linked actor's velocity (+0x230) times fOwnerVelocityFactor (char class +0x11c) when bAddOwnerVelocityOnBeginPlay (+0x11a) is set |
+| `0x7100623af0` | `CNailongThornMovementComponent_InitStatics` | the unit's static initialiser: the "NailongThornMovementComponent" class id, the "fDamageNailongThorn" and "fDamageDepthornBall" ids, the class getter, the unit's type registration |
+| `0x7100623080` | `CNailongThornMovementComponent_Update` | takes dt and ends in the projectile movement's update (fn_7100ac3a78); before it, advances the oscillation phase and offset by amplitude times sine; the sway step runs only while +0x5e0 is set and also rewrites the side vector at +0x4f8 |
+| `0x710062314c` | `CNailongThornMovementComponent_ImpactWhenOutOfRange` | after the movement component's step, sets the "onimpact" id on the owner's timeline when the thorn is farther from its CNailongAIComponent shooter than the float at +0x4d8 of that AI's +0x1610 object (not a reflected member) |
+| `0x71006238ec` | `CNailongThornMovementComponent_SetUpDamage` | fills the request with one of two tunable values and the matching unit id, "fDamageDepthornBall" or "fDamageNailongThorn", by the word at +0x5dc |
+| `0x7100645568` | `CQuetzoaEnergyWaveAttack_OffsetByFacing` | adds a fixed offset (211 back along the facing sign, 78 up) to the given position |
+| `0x71006455bc` | `CQuetzoaEnergyWaveAttack_ComputeAimDirection` | writes the direction from the wave's origin to the owner's target into an out parameter; returns false with no target or more than 70 degrees (1.2217 rad) off the facing direction, so targets behind are rejected; stores nothing on the attack |
+| `0x7100645698` | `CQuetzoaEnergyWaveAttack_UpdateAim` | after the base step with dt, re-aims from the owner's position at its target and keeps the new direction when fn_71006457c4 allows it |
+| `0x7100663d2c` | `CRockDiverAIComponent_AdvancePhase` | advances the phase at +0x146dc from 0 to 1 and from 1 to 2 |
+| `0x7100699150` | `CScorpiusPoisonousSpitMovementComponent_Update` | takes dt and starts with the projectile movement's update (fn_7100ac3a78); while +0x5d8 is set it counts a timer, and once (+0x5d9, only when the owner has a timeline) sets a timeline id when it passes fTimeToReachExplosionRadius + fTimeToMaintainExplosionRadius - fTimeToDisapear of CTunableCharClassScorpiusPoisonousSpitAttack |
+| `0x7100699288` | `CScorpiusPoisonousSpitMovementComponent_FaceAlongVelocity` | after the movement component's step, turns the owner to face along the velocity at +0x4b8 (its z angle plus pi) and applies the transform; the angle includes a +pi offset, so the owner's x axis ends up against the velocity |
+| `0x710069f1a0` | `CScourgeAIComponent_Destroy` | the destructor: the vtable CScourgeAIComponent::refl_Construct stores, the embedded CScourgeTongueSlashAttack's destructor, then the base destructor |
+| `0x710069f244` | `CScourgeAIComponent_DeletingDestroy` | the destructor's body as fn_710069f1a0, then frees the object |
+| `0x71006a0620` | `CScourgeAIComponent_StoreBiteAngle` | after the base step, when the argument is the current target, writes the signed angle in degrees between the actor's forward axis and the target under the key fBiteAngle (g_unk_7172704f30, from the unit initialiser) into the property bag of the actor's +0x220 component |
+| `0x71006c7a40` | `CSluggerAcidBallMovementComponent_BeginPlay` | after the base step that sets the launch velocity (fn_7100ac3880), adds the linked actor's velocity times fOwnerVelocityFactor when bAddOwnerVelocityOnBeginPlay is set and copies fTimeMeleeable and fTimeAbortable from the char class (+0x134, +0x138); a first-time flag at +0xf9 guards a final vtable slot 0x260 call |
+| `0x71006de7c4` | `CVulkranAttackManager_Destroy` | the destructor: the vtable its unit's constructor stores, the list at +0x18 destroyed, the counted reference at +0x8 dropped |
+| `0x71006de820` | `CVulkranAttackManager_DeletingDestroy` | the destructor's body as fn_71006de7c4, then frees the object |
+| `0x71006de888` | `CVulkranAttackManager_Clear` | drops the reference at +0x8, clears the word at +0x10 and frees every node of the list, resetting its count |
+| `0x71006df774` | `CVulkranMagmaBallMovementComponent_BeginPlay` | after the base step that sets the launch velocity (fn_7100ac3880), adds the linked actor's velocity (z set to 0, x and y limited to at most 600) times fOwnerVelocityFactor when bAddOwnerVelocityOnBeginPlay is set; a first-time flag at +0xf9 guards a final vtable slot 0x260 call |
+| `0x71006df868` | `CVulkranMagmaBallMovementComponent_Update` | takes dt and starts with the projectile movement's update (fn_7100ac3a78); then, inside a lava pool (CVulkranMagmaBallMovementComponent_IsInLavaPool), calls vtable slot 0x338 with the reversed direction, the call the base hit handler fn_7100ac4c60 makes |
+| `0x71006df98c` | `CVulkranMagmaBallMovementComponent_IsInLavaPool` | whether the owner's position, projected to 2D, is inside one of the registered CLavaPoolComponent objects that is not disabled |
+| `0x71006e07b0` | `CWarLotusAIComponent_ResetBumpFactor` | after the base step, clears the bump state (value -1, factor 0, flag false) and writes the factor under "BumpToRelaxToImpactFactor" |
+| `0x71006ecf98` | `CYamplotXBiteAttack_SetUpDamage` | fills the damage request with the first unit id and the value fn_7100789f5c gives for fDamageYamplotXStep or fDamageYampaStep by the word at +0x6fc of the object the AI holds at +0x14728, and sets +0xc8 to 1 unless the owner's +0x2c8 component is frozen; same layout as the other SetUpDamage requests |
+| `0x710074ef00` | `CBossCameraCtrl_Construct` | the constructor: the base constructor, the vtable the destructors restore, the target list and the starting values |
+| `0x710074efb4` | `CBossCameraCtrl_Destroy` | the destructor: the vtable, the target list's references dropped and freed, then the base destructor |
+| `0x710074f058` | `CBossCameraCtrl_DeletingDestroy` | the destructor's body as fn_710074efb4, then frees the object |
+| `0x710074f91c` | `CBossCameraCtrl_IsFinished` | true when not active; otherwise drops gone targets (fn_710074f550) and returns false when a target's animation plays a CCharClassIgnoreBossCameraFinishedTrack, or (unless the target's +0x1b8 object is in state 2 and the AI manager's +0x2410 part is empty) its AI is not a CBossAIComponent or its slot 0x7c8 answers true |
+| `0x7100750804` | `CBossCameraCtrl_AddTarget` | adds a counted weak handle to the given actor to the target list at +0x2a0 unless it is null or already there |
+| `0x7100750ab4` | `CBossCameraCtrl_HasTarget` | whether the target list at +0x2a0 holds the given actor |
+
+**Declined** (left as `fn_<addr>`):
+- CKraidBouncingCreaturesMovementComponent: `0x71006051ec` (extends the clone-family base step fn_7100ac3108, whose purpose is not shown), `0x7100605d64` (hit test on a base test fn_7100ac4ec0 that is not understood).
+- CNailongThornMovementComponent: `0x71006232d0`, `0x71006233dc` (two slots with one body that sends "onimpact" once; which event each answers is not shown).
+- CQuetzoaEnergyWaveAttack: `0x7100645408` (base step, a kind-5 parameter block and the first aim; "start" would be a guess), `0x7100646088` (writes +0x14a20, outside this 0x40-byte class; a clone of fn_7100ed77b8).
+- CRockDiverAIComponent: `0x7100663780` (surface handler with a request hash, an aim and an effect; the event and ids are not named), `0x7100663b90` (base step and a CCharClassTweakDeathActionTrack branch; meaning not shown), `0x710066369c` (named `..._UpdateDistanceRatio` at first; second review: vague, since the key it writes is "OpenCloseWingsBlendingFactor" and the radius is fCloseWingsStartDistance. Reverted, as the brief asks for vague names).
+- CScorpiusPoisonousSpitMovementComponent: `0x7100698ff4` (fn_7100ac3108 base step), `0x71006997e0` (hit filter on a base test that is not understood).
+- CScourgeAIComponent: `0x710069f680` (forwards position and axes to fn_710069f728, not understood), `0x71006a052c` (tongue logic around CCharClassScourgeExtendTongueTrack, unclear), `0x71006a0884` (query on the embedded attack, meaning not shown), `0x71006a07e0` (named `..._IsTargetInRange` at first; first review: wrong, because it is also true with no target or no range object. No short name fits that predicate, so reverted).
+- CSluggerAcidBallMovementComponent: `0x71006c79b4` (fn_7100ac3108 base step), `0x71006c7ba4` (hit test), `0x71006c7d1c` (melee hit sets a timeline id that is not named).
+- CVulkranAttackManager: `0x71006de940`, `0x71006ded20` (add to a list and drop the held entry; the list's role is not shown).
+- CVulkranMagmaBallMovementComponent: `0x71006df684` (fn_7100ac3108 base step and an id from a char-class string), `0x71006dfa88` (hit test with a player part).
+- CWarLotusAIComponent: `0x71006e09e4`, `0x71006e0ca0` (bump start with +1 or -1 after base steps that are not understood), `0x71006e0acc` (picks a timeline id by hashes that are not named), `0x71006e0e14` (forwards to owner slot 0x2c0).
+- CYamplotXBiteAttack: `0x71006eca84` (base attack check; "can start" would be a guess here), `0x71006ecb84` (sends an id to the animation in mode 2; unclear), `0x71006ecce4` (named `..._GetBiteActionId` at first; first review: vague, since nothing marks the id as an action. Reverted). `0x71006edc1c` sits in this directory but belongs to CYamplotXStepAttack's unit, so it was left alone.
+- CBossCameraCtrl: `0x710074f104` (a start-like step on a base fn_71010ed98c that is not understood), `0x710074f6c4`, `0x710074f80c` (music manager kind 7 and an area name; meaning not shown).
+
+**Independent review.** Two fresh subagents that had not seen my reasoning each got the sources and 25 names drawn at random, and checked the stated evidence against the code.
+- First review (seed 20261124, 25 of 33): 23 right, 1 vague (`CYamplotXBiteAttack_GetBiteActionId`), 1 wrong (`CScourgeAIComponent_IsTargetInRange`, true with no target). Both were reverted. Three names were changed to engine words or a more exact verb on its advice (`..._StoreBiteAngle` from the key "fBiteAngle", `..._ImpactWhenOutOfRange`, `..._ComputeAimDirection`), and nine reasons were corrected.
+- Second review on a new sample (seed 20261125, 25 of 31): 24 right, 1 vague, 0 wrong. The vague one (`CRockDiverAIComponent_UpdateDistanceRatio`) was reverted, and the reasons it found incomplete (the BeginPlay first-time flag, the Kraid order, the Boss camera conditions, the Vulkran slot 0x338 call, the Scorpius +pi offset) were corrected.
+
+**Cost.** This session so far, including both reviews: about 125k output tokens, 0.72M cache writes and 54.5M cache reads. At the pilot's rates that is about $19, or about $0.63 per landed name. That figure also covers one-time setup (toolchain, libc++ headers, class selection) and most of the reading for batch 2, so the per-name cost of this batch alone is lower. The reviewers used about 217k and 220k tokens.
+
+**Notes for later.** `CVulkranMagmaBallMovementComponent_BeginPlay` is defined in `src/game/CSluggerAcidBallMovementComponent/CSluggerAcidBallMovementComponent_b38.cpp` (unit 1087); moving it was left out so objects compare by path. `rename.py` also updated one caller in `drafts/` (`CVulkranAttackManager_Clear`), as it does for every hand-written use.
 
 **Match five functions by building their units' statics in one file (unit 180, CShipRechargeComponent) (#644, 2026-11-23).**
 
