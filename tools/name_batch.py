@@ -1000,8 +1000,10 @@ def run_cost(run: str) -> float:
 
 
 def choose(rows: list[dict]) -> tuple[list[dict], list[dict], list[dict]]:
-    """(applied, rejected, no verdict): only `right` with the evidence judged true is applied."""
-    applied = [r for r in rows if r["verdict"] == "right" and r["evidence_true"] == "yes"]
+    """(applied, rejected, no verdict): only `right` with the evidence judged true is applied. An empty evidence
+    line is vacuously true to a reviewer, but a name needs its reason (tools/rename.py), so it is rejected."""
+    applied = [r for r in rows if r["verdict"] == "right" and r["evidence_true"] == "yes"
+               and r.get("stated_evidence", "").strip()]
     rejected = [r for r in rows if r["verdict"] and r not in applied]
     none = [r for r in rows if not r["verdict"]]
     return applied, rejected, none
