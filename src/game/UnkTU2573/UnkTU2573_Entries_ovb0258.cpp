@@ -44,7 +44,9 @@ struct UnkAttackLink_b0258e {
 };
 
 struct UnkAttackData_b0258e {
-    u8 pad_0x0[0x10];
+    u8 pad_0x0[0x8];
+    s32 field_0x8;
+    s32 field_0xc;
     f32 field_0x10;
     f32 scale;  // 0x14
     u32 field_0x18;
@@ -185,10 +187,10 @@ s32 fn_7100ecdf00(UnkAttackData_b0258e* a, UnkHitActor_b0258e* actor, void*, con
     s32 result;
     if (fn_710009d50c(life->vf_0x0(), fn_710072b634())) {
         f32 value;
-        if (*reinterpret_cast<s32*>(reinterpret_cast<char*>(a) + 8) == 4)
+        if (a->field_0x8 == 4)
             value = 5.0f;
         else
-            value = *reinterpret_cast<s32*>(reinterpret_cast<char*>(a) + 0xc) == 1 ? 30.0f : 10.0f;
+            value = a->field_0xc == 1 ? 30.0f : 10.0f;
         fn_7100ecdcb0(a, &req, reinterpret_cast<UnkDamageActor_b0258e*>(actor), pos, dir, value);
         result = life->CallHit(&req);
     } else {

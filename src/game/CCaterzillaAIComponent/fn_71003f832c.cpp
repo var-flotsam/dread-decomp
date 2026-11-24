@@ -48,6 +48,7 @@ struct UnkComponent {
     UnkOwner* field_0x30;
     u8 pad_0x38[0x146a8];
     u8 field_0x146e0[4];
+    UnkState_3f832c field_0x146e4;
 };
 
 // The bit pattern of a float in memory (a word load, as the original reads it).
@@ -60,7 +61,7 @@ static inline u32 AsU32(const f32& value) {
 void fn_71003f832c(UnkComponent* self, u32 old_state, u32 new_state) {
     if (old_state == new_state)
         return;
-    UnkState_3f832c* state = reinterpret_cast<UnkState_3f832c*>(reinterpret_cast<char*>(self) + 0x146e4);
+    UnkState_3f832c* state = &self->field_0x146e4;
     if (old_state == 1 && new_state == 2) {
         if (state->field_0x0 < 0.0f)
             state->field_0x4 ^= 1;

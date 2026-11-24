@@ -13,16 +13,18 @@
 using base::global::UnkStrId;
 
 struct UnkNode : UnkBossAIComponent {
-    u8 pad_0x528[0x2d0];
+    u8 field_0x528[0xf0];  // the glaive spin attack's part (fn_71004923f4)
+    u8 field_0x618[0xf0];  // the glaive walljump attack's part (fn_71004930c8)
+    u8 field_0x708[0xf0];  // the deflector shield attack's part (fn_71004917d0)
     u8 field_0x7f8;
 };
 
 void fn_7100497584(UnkNode* self) {
     fn_710041a198(self);
     self->vtable = &g_unk_7101a3cab0[2];
-    fn_71004923f4(reinterpret_cast<char*>(self) + 0x528);
-    fn_71004930c8(reinterpret_cast<char*>(self) + 0x618);
-    fn_71004917d0(reinterpret_cast<char*>(self) + 0x708);
+    fn_71004923f4(self->field_0x528);
+    fn_71004930c8(self->field_0x618);
+    fn_71004917d0(self->field_0x708);
     self->field_0x7f8 = 1;
     self->field_0x4fc = 257;
     self->field_0x409 = 0;

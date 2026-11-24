@@ -62,7 +62,7 @@ void fn_7100244f84(UnkMap_b44a1* self, UnkHashKeyObj_b44a1* const* key, UnkRefAr
         return;
     for (u32 i = 0; i < dst->count; ++i) {
         if (UnkRefObj_b44a1* p = dst->data[i]) {
-            if (--*reinterpret_cast<s32*>(reinterpret_cast<char*>(p) + 8) == 0)
+            if (--p->ref_count == 0)
                 p->Release();
         }
     }

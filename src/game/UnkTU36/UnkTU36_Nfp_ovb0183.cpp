@@ -204,7 +204,7 @@ void fn_710002ad90() {
     if (machine.field_0x21c == 2) {
         next = 0x16;
     } else {
-        u32* group_word = reinterpret_cast<u32*>(reinterpret_cast<char*>(&machine) + 0x3c);
+        u32* group_word = &machine.field_0x3c;
         *group_word = 0;
         UnkSoundHolder* holder = Singleton<UnkSoundHolder, 0x48, fn_710006cd9c>(g_unk_7101d47340);
         u32 slot;

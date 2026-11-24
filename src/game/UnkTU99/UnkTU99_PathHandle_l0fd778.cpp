@@ -57,7 +57,7 @@ UnkSoundHandle fn_71000fd778(UnkSoundSystemATK* self, const CFilePathStrId& path
     UnkPathIdSlot slot;
     new (&slot.id) CFilePathStrId(fn_71000f63b0(path));
     base::global::UnkStringData* data = slot.id.data;
-    u64 key = *reinterpret_cast<u64*>(reinterpret_cast<char*>(data) + 0x30);
+    u64 key = data->Key();
     if (base::global::UnkStringPool* pool = g_unk_7101d47200) {
         if (data && data != &pool->empty) {
             if (--data->ref_count == 0) {

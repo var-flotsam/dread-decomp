@@ -109,7 +109,7 @@ static inline UnkConversionTable_ovb0053* ConversionsOf_ovb0053(const CType* t) 
 }
 
 static inline u64 NameKey_ovb0053(const CType* t) {
-    return *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(t->sName.data) + 0x30);
+    return t->sName.data->Key();
 }
 
 // Releases the type's attribute container (CType+0x80): the keys, the values, the arrays and the container.

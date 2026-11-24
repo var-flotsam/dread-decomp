@@ -8,9 +8,12 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
-// Only the vtable at +0x0 is named; the rest is addressed by offset.
+// Only the three members the constructors take are spelled out; the rest is addressed by offset.
 struct UnkComponent_49d418 {
-    u8 unk_0x0;
+    u8 unk_0x0[0x14a30];
+    u8 field_0x14a30[0x48];  // constructed by fn_7100494c00
+    u8 field_0x14a78[0x68];  // constructed by fn_7100495430
+    u8 field_0x14ae0[0x50];  // constructed by fn_7100494158
 };
 
 struct UnkBossAI_l3ac064;
@@ -52,9 +55,9 @@ void fn_710049d418(UnkComponent_49d418* self) {
     At<u32>(self, 0x14a2c) = 0;
     At<u64>(self, 0x14a1c) = 0;
     At<u64>(self, 0x14a24) = 0;
-    fn_7100494c00(reinterpret_cast<char*>(self) + 0x14a30);
-    fn_7100495430(reinterpret_cast<char*>(self) + 0x14a78);
-    fn_7100494158(reinterpret_cast<char*>(self) + 0x14ae0);
+    fn_7100494c00(self->field_0x14a30);
+    fn_7100495430(self->field_0x14a78);
+    fn_7100494158(self->field_0x14ae0);
     At<u64>(self, 0x14b30) = 0;
     At<u32>(self, 0x14b38) = 0;
     At<u8>(self, 0x14b3c) = 0;

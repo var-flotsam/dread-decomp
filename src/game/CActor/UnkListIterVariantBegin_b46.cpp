@@ -7,7 +7,8 @@
 
 template <u32 N>
 struct UnkListNode_b46a1 {
-    u8 unk_0x0[N];
+    u8 unk_0x0[0x8];
+    u8 field_0x8[N - 0x8];  // the payload
     UnkListNode_b46a1* next;
 };
 
@@ -59,7 +60,7 @@ struct UnkListIter_b46a1 {
     __attribute__((always_inline)) void Begin(UnkListNode_b46a1<N>* n) {
         node = n;
         if (n)
-            variant.SetPair(n, reinterpret_cast<u8*>(n) + 8);
+            variant.SetPair(n, n->field_0x8);
         else
             variant.Reset();
     }

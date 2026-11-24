@@ -64,7 +64,7 @@ void fn_7100224f2c(UnkMedia324* self) {
     for (UnkMediaTrack330** it = self->tracks, **end = it + self->track_count; it != end; ++it)
         fn_710021b8a4(*it);
     self->player->vf_0x40(nullptr);
-    fn_71002207bc(reinterpret_cast<char*>(self) + 0xae0);
+    fn_71002207bc(self->field_0xae0);
     for (UnkMediaTrack330** it = self->tracks, **end = it + self->track_count; it != end; ++it)
         fn_710021b7d4(*it);
     fn_7100066920(&self->lock);

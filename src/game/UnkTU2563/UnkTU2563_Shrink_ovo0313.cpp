@@ -18,8 +18,6 @@ struct UnkMinimapId_o0313 {
     UnkMinimapId_o0313(UnkMinimapId_o0313&& other) {
         UnkStringData* d = other.data;
         data = d;
-        // Keeps the pool pointer loaded after the copy, as the original loads it for each id.
-        asm volatile("" ::: "memory");
         other.data = &g_unk_7101d47108->empty;
     }
     ~UnkMinimapId_o0313() {
