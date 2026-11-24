@@ -107,7 +107,7 @@ struct UnkLandingActor_ovb0131 {
     UnkLandingWorld_ovb0131* fx;  // 0x280
 };
 
-void fn_7100ba0d14(UnkMaterialFXLinkEvent_ovb0131* self, UnkLandingActor_ovb0131** actor) {
+void CCharClassCollisionMaterialFXCreateAndLinkEvent_PassToActorUnlessGroundLandingPath(UnkMaterialFXLinkEvent_ovb0131* self, UnkLandingActor_ovb0131** actor) {
     if (!*actor)
         return;
     static const CFilePathStrId landing("actors/characters/samus/fx/groundlanding.bcptl", true);

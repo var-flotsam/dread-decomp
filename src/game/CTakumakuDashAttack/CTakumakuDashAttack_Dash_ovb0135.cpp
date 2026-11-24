@@ -211,7 +211,7 @@ void fn_71006d0244(UnkTakumakuDash_ovb0135* self, const UnkTakumakuId_ovb0135* i
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    if (!fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask))
+    if (!CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask))
         return;
     const base::reflection::CClass* turn_track = fn_7100d2b3a8();
     if (!fn_710006ba58(entry + 0x170, turn_track))

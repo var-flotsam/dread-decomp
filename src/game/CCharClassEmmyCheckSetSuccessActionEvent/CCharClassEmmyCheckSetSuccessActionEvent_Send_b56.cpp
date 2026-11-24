@@ -27,7 +27,7 @@ struct UnkEmmyCheckEvent_b56 {
     UnkEmmyCheckData_b56* field_0x10;
 };
 
-void fn_7100ba7f7c(UnkEmmyCheckEvent_b56* self, UnkEmmyCheckActor_b56** actor) {
+void CCharClassEmmyCheckSetSuccessActionEvent_SendActionToActor(UnkEmmyCheckEvent_b56* self, UnkEmmyCheckActor_b56** actor) {
     if (!*actor)
         return;
     base::reflection::UnkReflObject* comp = (*actor)->field_0x240;

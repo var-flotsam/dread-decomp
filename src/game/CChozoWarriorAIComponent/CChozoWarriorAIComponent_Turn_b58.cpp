@@ -43,7 +43,7 @@ void fn_71004994f4(UnkWarriorTurn_b58* self) {
         u64 hash = self->field_0x14b40;
         value.id = 9;
         arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-        fn_7101176690(target, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
+        CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &g_unk_7172769740, &arg);
         UnkWarriorTurnOwner_b58* o = self->owner;
         const UnkMatrix44& m = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(actor->field_0x38));
         f32 y = m.m[2] >= 0.0f ? -1.5707964f : 1.5707964f;

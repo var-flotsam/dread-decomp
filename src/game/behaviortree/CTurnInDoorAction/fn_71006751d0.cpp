@@ -202,12 +202,12 @@ send:
         if (fn_710002614c(&self->owner->transform).m[5] > 0.0f) {
             mode_up.id = 0;
             mask_up.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0xc2d1d284f785eda6, 0xf4061ff25a2163d6, &mode_up, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0xc2d1d284f785eda6, 0xf4061ff25a2163d6, &mode_up, &g_unk_710164b958,
                           &g_unk_7172769740, &mask_up);
         } else {
             mode_down.id = 0;
             mask_down.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x24ed25e5223bca66, 0xf4061ff25a2163d6, &mode_down, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0x24ed25e5223bca66, 0xf4061ff25a2163d6, &mode_down, &g_unk_710164b958,
                           &g_unk_7172769740, &mask_down);
         }
     }

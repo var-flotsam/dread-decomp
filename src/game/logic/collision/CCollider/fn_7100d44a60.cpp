@@ -106,7 +106,7 @@ extern UnkEnumType g_unk_71727b12d0;
 void fn_7100d3b2b8(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71727b1440[];
 
-void fn_7100d44a60() {
+void CCollider_InitStatics() {
     InitHeaderIds(&g_unk_71727b2988.ids);
     fn_7100d361c0();
     fn_710009ec00(g_unk_71727b0448, g_unk_71727b2988.field_0x20);

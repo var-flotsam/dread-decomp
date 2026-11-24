@@ -107,7 +107,7 @@ void fn_71004faea8(UnkEmmyProto_l4faea8* self) {
         u64 hash = StringCrc64("groundwalk", 10);
         mode.id = 2;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);
         fn_7101176a88(self->owner->field_0x220, 1);
     }
     fn_7100547428(reinterpret_cast<UnkEmmyActor_b55*>(self), 2,

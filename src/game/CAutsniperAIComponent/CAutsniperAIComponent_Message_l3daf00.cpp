@@ -39,7 +39,7 @@ u32 fn_71003daf00(UnkAutsniperAI_l3daf00* self, UnkAutsniperMessage_l3daf00* msg
         base::reflection::UnkReflTypeIdArg mask_a;
         mode_a.id = 0;
         mask_a.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, 0x67ec2589f81c5c09, 0xf4061ff25a2163d6, &mode_a, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(target, 0x67ec2589f81c5c09, 0xf4061ff25a2163d6, &mode_a, &g_unk_710164b958,
                       &g_unk_7172769740, &mask_a);
         self->owner->field_0x278->vf_0x178();
         break;
@@ -48,7 +48,7 @@ u32 fn_71003daf00(UnkAutsniperAI_l3daf00* self, UnkAutsniperMessage_l3daf00* msg
         base::reflection::UnkReflTypeIdArg mask_b;
         mode_b.id = 0;
         mask_b.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, 0x2e2502a76ba1a042, 0xf4061ff25a2163d6, &mode_b, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(target, 0x2e2502a76ba1a042, 0xf4061ff25a2163d6, &mode_b, &g_unk_710164b958,
                       &g_unk_7172769740, &mask_b);
         break;
     }

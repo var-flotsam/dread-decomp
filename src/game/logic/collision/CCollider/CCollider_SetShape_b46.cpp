@@ -19,7 +19,7 @@ struct UnkColliderShapeHolder_b46a3 {
     void vf_0x38() { reinterpret_cast<void (*)(UnkColliderShapeHolder_b46a3*)>(vtable[0x38 / 8])(this); }
 };
 
-void fn_7100d36da4(UnkColliderShapeHolder_b46a3* self, UnkColliderShape_b46a3* shape, bool owned) {
+void CCollider_SetShape(UnkColliderShapeHolder_b46a3* self, UnkColliderShape_b46a3* shape, bool owned) {
     if (self->owned) {
         if (self->shape) {
             self->shape->vf_0x10();

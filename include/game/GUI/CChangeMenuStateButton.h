@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkObj_7100af65b4;
-void fn_7100af65b4(UnkObj_7100af65b4* self);
+void CChangeMenuStateButton_SendNewStateIdxMessage(UnkObj_7100af65b4* self);

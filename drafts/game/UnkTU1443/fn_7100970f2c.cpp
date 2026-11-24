@@ -135,7 +135,7 @@ void fn_7100970f2c(UnkMover_970f2c* self, UnkMoveState_970f2c* state, void* out)
                 bool held = owner->hold && owner->hold->kind == 2;
                 bool frozen = owner->frozen && fn_71007f9f20(owner->frozen);
                 if (!held && !frozen &&
-                    fn_7101176ea8(self->owner->animation,
+                    CAnimationComponent_SendActionRequestRecordToTrack(self->owner->animation,
                                   reinterpret_cast<const UnkRequest_7101176ea8*>(&request), kEmptyKey)) {
                     state->motion = zero;
                     state->velocity = zero;

@@ -90,7 +90,7 @@ static inline void AskDeleteAll_ovb0124(UnkCustomMarkersDialog_ovb0124* self) {
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
 }
 
-void fn_7100afdf5c(UnkCustomMarkersDialog_ovb0124* self, UnkMarkersInput_ovb0124* input) {
+void CCustomMarkersDialog_PromptDeleteAllOnInput(UnkCustomMarkersDialog_ovb0124* self, UnkMarkersInput_ovb0124* input) {
     fn_71011cf754(self, input);
     if (self->active && self->has_markers && !self->busy) {
         self->pending = -1;

@@ -19,7 +19,7 @@ static inline void Send(void* animation, u64 hash, base::reflection::UnkReflType
                         base::reflection::UnkReflTypeIdArg* mask) {
     mode->id = 0;
     mask->id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, hash, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b958, &g_unk_7172769740, mask);
+    CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b958, &g_unk_7172769740, mask);
 }
 
 void fn_71003bb800(UnkAutectorAI_l3bb800* self) {

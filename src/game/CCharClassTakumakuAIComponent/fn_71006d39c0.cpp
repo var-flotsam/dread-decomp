@@ -23,7 +23,7 @@ extern UnkConversion g_unk_71727099a8;
 void fn_71006d3864() __attribute__((visibility("hidden")));
 void fn_71006d3870() __attribute__((visibility("hidden")));
 
-void fn_71006d39c0() {
+void CCharClassTakumakuAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_71727099c8.ids);
     fn_71006d2174();
     fn_710009ec00(g_unk_7172709860, g_unk_71727099c8.field_0x28);

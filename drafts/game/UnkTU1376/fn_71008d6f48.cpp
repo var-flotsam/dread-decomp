@@ -90,7 +90,7 @@ static inline UnkReflTypeIdArg TypeIdArg(u32 id) {
 
 // Sends the animation request: the id's hash under mode `mode`, with the all-bits mask.
 static inline void Send(UnkAnimationComponent* animation, u64 hash, UnkReflTypeIdArg&& mode, UnkReflTypeIdArg&& mask) {
-    fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
 void fn_71008d6f48(UnkDoorLife_l8d6f48* self) {

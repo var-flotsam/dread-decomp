@@ -134,7 +134,7 @@ void fn_710033cf48(UnkSpeedBooster_l33cf48* self, s32 kind) {
                 mode.id = 0;
                 base::reflection::UnkReflTypeIdArg mask;
                 mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(animation, 0x4f23b5bdcddb4370, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(animation, 0x4f23b5bdcddb4370, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                               &g_unk_7172769740, &mask);
             }
             fn_710117662c(static_cast<UnkActorTarget*>(animation), 2, 0, true, true, 0.0f);

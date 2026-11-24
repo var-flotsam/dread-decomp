@@ -121,7 +121,7 @@ void fn_7100908d30(UnkWaterPool_l908d30* self, CBlackboard* blackboard) {
                 mode.id = 0;
                 base::reflection::UnkReflTypeIdArg mask;
                 mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+                CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
             }
             fn_7101178010(animation, 0xf4061ff25a2163d6, false, (f32)fn_7101177da8(animation, 0xf4061ff25a2163d6));
             UnkHolderRef_l908d30* again = self->entries[i].Resolve();

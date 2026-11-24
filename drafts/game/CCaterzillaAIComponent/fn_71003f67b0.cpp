@@ -193,7 +193,7 @@ void fn_71003f67b0(UnkCaterzillaAI_l3f67b0* self) {
         if (void* animation = self->owner->animation) {
             mode.id = 0;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x64692faf0bfdfd6dull, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0x64692faf0bfdfd6dull, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958,
                           &g_unk_7172769740, &mask);
             fn_71003f6d90(self);
         }

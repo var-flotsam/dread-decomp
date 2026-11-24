@@ -54,10 +54,10 @@ static inline __attribute__((always_inline)) void CreateSteamJetEffect(UnkSteamJ
     PlaceSteamJetEffect(self, effect, Effect);
 }
 
-void fn_710089f634(UnkSteamJetEffects_A4_b75* self) {
+void CCharClassSteamJetComponent_RecreateFXEndEffect(UnkSteamJetEffects_A4_b75* self) {
     CreateSteamJetEffect<&UnkSteamJetEffects_A4_b75::effect_b, &UnkSteamJetDesc_A4_b75::path_b, false>(self);
 }
 
-void fn_710089f55c(UnkSteamJetEffects_A4_b75* self) {
+void CCharClassSteamJetComponent_RecreateInitFX(UnkSteamJetEffects_A4_b75* self) {
     CreateSteamJetEffect<&UnkSteamJetEffects_A4_b75::effect_a, &UnkSteamJetDesc_A4_b75::path_a, true>(self);
 }

@@ -67,7 +67,7 @@ void fn_7100586a30(UnkGoliathXSlamAttack_b58a3* self) {
         u64 hash = Hash_b58a3(id);
         mode = 1;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash, 0xf4061ff25a2163d6, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode),
+        CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode),
                       &g_unk_710164b958, &g_unk_7172769740, &mask);
     }
     self->field_0x78 = false;
@@ -79,6 +79,6 @@ send_given:
         u64 hash2 = Hash_b58a3(*self->field_0x70->vf_0x18(self->owner));
         mode2.id = 1;
         mask2.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash2, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
+        CAnimationComponent_SendActionToTrack(target, hash2, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
     }
 }

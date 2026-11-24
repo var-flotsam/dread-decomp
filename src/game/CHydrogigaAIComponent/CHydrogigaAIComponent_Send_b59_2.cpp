@@ -51,19 +51,19 @@ void fn_71005c1ec0(UnkHydrogigaAI2_b59a3* self) {
     base::reflection::UnkReflTypeIdArg mask4;
     mode1.id = 1;
     mask1.id = UnkNone_SpitSend().value;
-    fn_7101176690(target, 0xff53965cbab52d86, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0xff53965cbab52d86, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
                   &mask1);
     mode2.id = 1;
     mask2.id = UnkNone_SpitSend().value;
-    fn_7101176690(target, 0xff53965cbab52d86, 0xbd794f4bf6d1d598, &mode2, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0xff53965cbab52d86, 0xbd794f4bf6d1d598, &mode2, &g_unk_710164b958, &g_unk_7172769740,
                   &mask2);
     mode3.id = 1;
     mask3.id = UnkNone_SpitSend().value;
-    fn_7101176690(target, 0xff53965cbab52d86, 0x853f6fad912026e1, &mode3, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0xff53965cbab52d86, 0x853f6fad912026e1, &mode3, &g_unk_710164b958, &g_unk_7172769740,
                   &mask3);
     mode4.id = 1;
     mask4.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0xff53965cbab52d86, 0x2b145cf4efb3d2c6, &mode4, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0xff53965cbab52d86, 0x2b145cf4efb3d2c6, &mode4, &g_unk_710164b958, &g_unk_7172769740,
                   &mask4);
 collider:
     if (UnkCollisionContainer* container = self->owner->field_0x2a0) {

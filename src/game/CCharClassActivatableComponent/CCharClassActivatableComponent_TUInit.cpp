@@ -23,7 +23,7 @@ void fn_7100877b90(void* p);
 extern char g_unk_717272a440;
 extern char g_unk_717272a441;
 
-void fn_7100878e20() {
+void CCharClassActivatableComponent_InitStatics() {
     UnkCharClassActivatableTU& tu = g_unk_717272a488;
     InitHeader(tu.header);
     new (&g_unk_717272a3e8) CStrId("ACTIVATABLE", true);

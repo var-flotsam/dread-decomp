@@ -64,7 +64,7 @@ UnkVec3f fn_71003520bc(UnkNoArg, UnkAimActor_l3520bc* actor, const UnkVec3f* fal
     UnkCollisionObject* object = fn_71008640a4(collision, &cast->aim_name);
     if (!object)
         return result;
-    UnkCollisionRecord* record = fn_710086411c(collision, object);
+    UnkCollisionRecord* record = CCollisionComponent_FindRecordByObject(collision, object);
     if (!record)
         return result;
     UnkMatrix44 matrix;

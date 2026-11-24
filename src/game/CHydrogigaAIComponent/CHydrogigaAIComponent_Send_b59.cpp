@@ -16,7 +16,7 @@
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
 using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
-void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
+void CCollisionComponent_CollectRecordsBySecondaryId(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 
 extern void* const g_unk_71726eb438 __attribute__((visibility("hidden")));
 struct UnkTimelineKey_b59a3;
@@ -49,7 +49,7 @@ void fn_71005c2500(UnkHydrogigaAI_b59a3* self) {
     base::reflection::UnkReflTypeIdArg mode1;
     {
         UnkOut_71008651c8 found(0xf);
-        fn_71008651c8(reinterpret_cast<UnkStruct_71008651c8*>(container), &g_unk_71726eb438, &found);
+        CCollisionComponent_CollectRecordsBySecondaryId(reinterpret_cast<UnkStruct_71008651c8*>(container), &g_unk_71726eb438, &found);
         for (UnkStruct_71008651c8_Entry **it = found.data, **end = found.data + found.count; it != end; ++it)
             fn_7100d35a98(*reinterpret_cast<UnkEntry**>(reinterpret_cast<char*>(*it) + 0x28), false);
         fn_7100d35a98(reinterpret_cast<UnkEntry*>(fn_71008640a4(container, &g_unk_71726eb440)), true);
@@ -65,11 +65,11 @@ send:
     base::reflection::UnkReflTypeIdArg mask2;
     mode1.id = 1;
     mask1.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0x3bef2eb1f76bd18c, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0x3bef2eb1f76bd18c, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
                   &mask1);
     mode2.id = 1;
     mask2.id = UnkNone_SpitSend().value;
-    fn_7101176690(target, 0x3bef2eb1f76bd18c, 0xbd794f4bf6d1d598, &mode2, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0x3bef2eb1f76bd18c, 0xbd794f4bf6d1d598, &mode2, &g_unk_710164b958, &g_unk_7172769740,
                   &mask2);
     self->field_0x149c4 = 0;
 timeline:

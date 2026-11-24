@@ -14,7 +14,7 @@
 
 struct UnkAnimMaskHolder_b47a3;
 struct UnkGrappleMoveState_B71a6;
-bool fn_7101179cbc(UnkAnimMaskHolder_b47a3* self, const u32* bits);
+bool CAnimationComponent_AnyPlayingTrackHasFlags(UnkAnimMaskHolder_b47a3* self, const u32* bits);
 bool fn_71009ad430(UnkGrappleMoveState_B71a6* state);
 
 struct UnkSettings_l9e4204 {
@@ -90,7 +90,7 @@ void fn_71009e4204(UnkSamusMovement_l9e4204* self) {
         return;
     UnkAnimMaskHolder_b47a3* masks = static_cast<UnkAnimMaskHolder_b47a3*>(self->owner->field_0x220);
     alignas(8) u32 bits = 4;
-    if (fn_7101179cbc(masks, &bits))
+    if (CAnimationComponent_AnyPlayingTrackHasFlags(masks, &bits))
         return;
 
     UnkVec3f angle = self->xform.GetAngle();

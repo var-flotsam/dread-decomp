@@ -48,7 +48,7 @@ static inline void SendParams_b54(void* target, u64 hash, u64 kind, u32 m) {
     params.field_0xc = 1;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, kind, &mode, &params, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, kind, &mode, &params, &g_unk_7172769740, &mask);
 }
 
 void fn_71007defe0(UnkQuarentineDoor_b54* self) {

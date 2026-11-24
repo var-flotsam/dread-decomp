@@ -85,7 +85,7 @@ void CGoliathXSlamAttack_UpdateSlamWalkAnim(UnkGoliathXSlamWalk_b59a3* self, f32
         u64 hash = *reinterpret_cast<u64*>(*reinterpret_cast<char**>(reinterpret_cast<char*>(target) + 0x2b8) + 0x30);
         mode1.id = 1;
         mask1.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740, &mask1);
+        CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740, &mask1);
         return;
     }
 ahead:
@@ -101,6 +101,6 @@ ahead:
         mode2.id = 1;
         mask2.id = UnkAll_SpitSend().value;
         self->field_0x78 =
-            !fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
+            !CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
     }
 }

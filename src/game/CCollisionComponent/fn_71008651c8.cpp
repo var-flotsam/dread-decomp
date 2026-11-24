@@ -21,7 +21,7 @@ struct UnkStruct_71008651c8 {
     base::global::CRntVector<UnkStruct_71008651c8_Entry> field_0x48;
 };
 
-void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out) {
+void CCollisionComponent_CollectRecordsBySecondaryId(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out) {
     for (u32 i = 0; i < self->field_0x48.count; ++i) {
         UnkStruct_71008651c8_Entry* e = &self->field_0x48.data[i];
         if (e->field_0x8 != *key)

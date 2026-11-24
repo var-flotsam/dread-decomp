@@ -88,7 +88,7 @@ bool fn_71005fc978(UnkKraidAI_l5fc978* self, UnkKraidEvent_l5fc978* event) {
         mode.id = 1;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(tree, 0x05f77053e2c8495c, 0xb2a7539239c3aad5, &mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(tree, 0x05f77053e2c8495c, 0xb2a7539239c3aad5, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask);
     } else if (event->kind == 1) {
         fn_71002e465c(FindLayer_l5fc978(tree), 0.0f);

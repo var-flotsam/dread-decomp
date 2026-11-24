@@ -90,7 +90,7 @@ static inline bool SendDodge(void* animation, u64 hash, base::reflection::UnkRef
     mode.id = 0;
     UnkDodgeBlend_l64b3f4 blend;
     mask.id = UnkAll_SpitSend().value;
-    return fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &blend, &g_unk_7172769740, &mask);
+    return CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &blend, &g_unk_7172769740, &mask);
 }
 
 // Hooks the link to the animation: unhooks it from what the handle held, then takes a handle on the animation.

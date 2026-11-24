@@ -122,7 +122,7 @@ void fn_7100518684(UnkEmmySearchingAction_l518684* self) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    if (fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+    if (CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask)) {
         UnkEmmyAnimLink_l518684* link = &self->link;
         link->context = self;

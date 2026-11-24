@@ -24,7 +24,7 @@ inline u32 UnkSubareaAllMask() {
     return s_mask;
 }
 
-void fn_7100baedc0(UnkSubareaEvent_ovb0139* self) {
+void CCharClassForceEnableSubareaEvent_EnableSelectedSubareaItems(UnkSubareaEvent_ovb0139* self) {
     if (self->setup.data == &g_unk_7101d47108->empty)
         return;
     alignas(8) u32 mask = 0;

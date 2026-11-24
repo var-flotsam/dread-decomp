@@ -50,7 +50,7 @@ static inline __attribute__((always_inline)) void SendAndNotify_b56(UnkEmmyValve
         UnkDesc_SpitSend* desc = fn_710117ae38(target, h3, false) ? &g_unk_7172769794 : &g_unk_7172769740;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, h1, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, desc, &mask);
+        CAnimationComponent_SendActionToTrack(target, h1, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, desc, &mask);
     }
     if (UnkCollisionContainer* collision = self->owner->collision) {
         if (UnkCollisionObject* object = fn_71008640a4(collision, &g_unk_717271a2c0))

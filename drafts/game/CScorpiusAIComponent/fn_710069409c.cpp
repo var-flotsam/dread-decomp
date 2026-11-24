@@ -79,7 +79,7 @@ static inline bool Send(void* target, u64 hash, u64 kind, base::reflection::UnkR
     mode->id = modeId;
     UnkSendRange_l69409c range(a);
     mask->id = UnkAll_SpitSend().value;
-    return fn_7101176690(target, hash, kind, mode, &range, desc, mask);
+    return CAnimationComponent_SendActionToTrack(target, hash, kind, mode, &range, desc, mask);
 }
 
 bool fn_710069409c(UnkScorpiusAI_b59a4* self, const UnkScorpiusKey_b59a4* id, bool flag, f32 a, f32 b) {

@@ -45,12 +45,12 @@ start:
         self->anim = 0x1720955b012a5867;
         same_mode.id = 0;
         same_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, self->anim, kind, &same_mode, &g_unk_710164b958, &g_unk_7172769740, &same_mask);
+        CAnimationComponent_SendActionToTrack(animation, self->anim, kind, &same_mode, &g_unk_710164b958, &g_unk_7172769740, &same_mask);
     } else {
         self->anim = 0x1e4b917f54b4f6f2;
         other_mode.id = 0;
         other_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, self->anim, kind, &other_mode, &g_unk_710164b958, &g_unk_7172769740, &other_mask);
+        CAnimationComponent_SendActionToTrack(animation, self->anim, kind, &other_mode, &g_unk_710164b958, &g_unk_7172769740, &other_mask);
     }
     return 5;
 }

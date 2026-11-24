@@ -129,7 +129,7 @@ void fn_71006cd5c8(UnkSwifterAI_l6cd5c8* self) {
         wait.delay = delay;
         blend.flags = 1;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, hash, 0xf4061ff25a2163d6, &mode, &blend, &wait, &mask);
+        CAnimationComponent_SendActionToTrack(cls, hash, 0xf4061ff25a2163d6, &mode, &blend, &wait, &mask);
     }
     UnkDirParams_l6cd5c8 params;
     params.scale.set = false;

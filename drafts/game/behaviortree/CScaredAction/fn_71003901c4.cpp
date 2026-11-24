@@ -48,7 +48,7 @@ u32 fn_71003901c4(UnkScaredAction_l3901c4* self, f32 dt) {
             return 2;
         mode1.id = 0;
         mask1.id = UnkAll_SpitSend().value;
-        if (fn_7101176690(animation, 0x52f80cb359c52bef, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958,
+        if (CAnimationComponent_SendActionToTrack(animation, 0x52f80cb359c52bef, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958,
                           &g_unk_7172769740, &mask1))
             self->state = 2;
         break;
@@ -56,7 +56,7 @@ u32 fn_71003901c4(UnkScaredAction_l3901c4* self, f32 dt) {
         if (fear && ((fear->field_0x1128 < 0.5f) & hasAnimation)) {
             mode4.id = 0;
             mask4.id = UnkAll_SpitSend().value;
-            if (fn_7101176690(animation, 0x14d8371df8520610, 0xf4061ff25a2163d6, &mode4, &g_unk_710164b958,
+            if (CAnimationComponent_SendActionToTrack(animation, 0x14d8371df8520610, 0xf4061ff25a2163d6, &mode4, &g_unk_710164b958,
                               &g_unk_7172769740, &mask4)) {
                 self->state = 3;
                 self->timer = self->field_0x2c;
@@ -74,7 +74,7 @@ u32 fn_71003901c4(UnkScaredAction_l3901c4* self, f32 dt) {
                 return 2;
             mode3.id = 0;
             mask3.id = UnkAll_SpitSend().value;
-            if (fn_7101176690(animation, 0x40cef973c887bdc4, 0xf4061ff25a2163d6, &mode3, &g_unk_710164b958,
+            if (CAnimationComponent_SendActionToTrack(animation, 0x40cef973c887bdc4, 0xf4061ff25a2163d6, &mode3, &g_unk_710164b958,
                               &g_unk_7172769740, &mask3))
                 self->state = 4;
         }

@@ -114,12 +114,12 @@ u32 fn_710040484c(UnkCentralUnitDamageAI_l40484c* self, UnkCentralUnitHit_l40484
                 base::reflection::UnkReflTypeIdArg mode, mask, mode2, mask2;
                 mode.id = 0;
                 mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(target, 0xcf13234adbf96d1d, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(target, 0xcf13234adbf96d1d, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                               &g_unk_7172769740, &mask);
                 void* target2 = self->owner->field_0x220;
                 mode2.id = 0;
                 mask2.id = UnkAll_SpitSend().value;
-                fn_7101176690(target2, 0x01b8e151f1cf0ee5, 0xcf7107181622cb23, &mode2, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(target2, 0x01b8e151f1cf0ee5, 0xcf7107181622cb23, &mode2, &g_unk_710164b958,
                               &g_unk_7172769740, &mask2);
                 fn_710117662c(static_cast<UnkActorTarget*>(self->owner->field_0x220), 0xd, 0, false, false, -1.0f);
             }

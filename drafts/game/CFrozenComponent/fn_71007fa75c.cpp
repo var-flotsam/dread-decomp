@@ -161,7 +161,7 @@ void fn_71007fa75c(UnkFrozenComponent_l7fa75c* self) {
                 }
             }
         }
-        self->playing = fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
+        self->playing = CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
                                       reinterpret_cast<const UnkRequest_7101176ea8*>(&request), Key_l7fa75c(track));
     } else {
         fn_710117abfc(animation, true, g_unk_7172721128, kEmptyKey);

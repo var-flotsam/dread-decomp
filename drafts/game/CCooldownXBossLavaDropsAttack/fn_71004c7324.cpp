@@ -107,7 +107,7 @@ void fn_71004c7324(UnkLavaDropsAttack_l4c7324* self) {
             u64 kind = drop->kind->Key();
             mode.id = 0;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(anim, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+            CAnimationComponent_SendActionToTrack(anim, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
             owner = self->owner;
         }
         if (void* target = owner->field_0x228) {

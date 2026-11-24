@@ -140,6 +140,6 @@ void fn_71010cc3d8(UnkEnemyMovement_l0cc3d8* self) {
         return;
     if (ai)
         ai->vf_0x500();
-    fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
+    CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
                   reinterpret_cast<const UnkRequest_7101176ea8*>(&request), 0xf4061ff25a2163d6);
 }

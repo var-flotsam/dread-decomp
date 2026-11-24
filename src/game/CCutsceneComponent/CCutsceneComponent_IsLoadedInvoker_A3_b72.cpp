@@ -25,7 +25,7 @@ static inline __attribute__((always_inline)) bool IsLoaded_A3_b72(UnkCutsceneCom
     return fn_71011986e0(manager, &path) != 0;
 }
 
-UnkReflValue fn_71007ada28(void*, char* obj) {
+UnkReflValue CCutsceneComponent_InvokeHasCutsceneBeenPlayed(void*, char* obj) {
     bool value = IsLoaded_A3_b72(*reinterpret_cast<UnkCutsceneComponent_A3_b72**>(obj + 8));
     const base::reflection::CType* type = fn_710000d228();
     UnkReflValue r;

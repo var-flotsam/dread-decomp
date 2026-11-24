@@ -134,7 +134,7 @@ struct UnkFrozenAsPlatformInit_b0119 {
 };
 
 void fn_71007fc694(UnkFrozenAsPlatformInit_b0119* self) {
-    fn_71007ee4c8(reinterpret_cast<UnkFrozenIceBase_b44a2*>(self));
+    CCharClassFrozenComponent_ConstructBase(reinterpret_cast<UnkFrozenIceBase_b44a2*>(self));
     self->vtable = g_unk_7101a74408 + 0x10;
     new (self->sCollisionMaskToFreeze) base::global::CRntString("DAMAGE");
     new (&self->field_0xd0) CStrId(base::global::CStrId::Empty());

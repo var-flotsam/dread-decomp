@@ -70,18 +70,18 @@ start:
             if (ai->field_0x1140 == 0) {
                 idle_mode.id = 0;
                 idle_mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(cls, 0x2660ef84adb182ac, 0xf4061ff25a2163d6, &idle_mode, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(cls, 0x2660ef84adb182ac, 0xf4061ff25a2163d6, &idle_mode, &g_unk_710164b958,
                               &g_unk_7172769740, &idle_mask);
             } else if (fn_71004d4d98(ai)) {
                 ready_mode.id = 0;
                 ready_mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(cls, 0x5e9ac815c6e36df2, 0xf4061ff25a2163d6, &ready_mode, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(cls, 0x5e9ac815c6e36df2, 0xf4061ff25a2163d6, &ready_mode, &g_unk_710164b958,
                               &g_unk_7172769740, &ready_mask);
                 fn_71004d1f38(ai);
             } else {
                 wait_mode.id = 0;
                 wait_mask.id = UnkAll_SpitSend().value;
-                fn_7101176690(cls, 0x58dd22244357edc7, 0xf4061ff25a2163d6, &wait_mode, &g_unk_710164b958,
+                CAnimationComponent_SendActionToTrack(cls, 0x58dd22244357edc7, 0xf4061ff25a2163d6, &wait_mode, &g_unk_710164b958,
                               &g_unk_7172769740, &wait_mask);
             }
             if (UnkWeakHandle* handle = self->field_0x88) {

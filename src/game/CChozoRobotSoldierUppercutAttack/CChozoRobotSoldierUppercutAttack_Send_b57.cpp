@@ -30,7 +30,7 @@ void fn_710046ad08(UnkCrsSend_b57* self) {
         params.value = 12.0f;
         base::reflection::UnkReflTypeIdArg arg;
         arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-        fn_7101176690(target, 0x76e5ef8727346470, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &params, &arg);
+        CAnimationComponent_SendActionToTrack(target, 0x76e5ef8727346470, 0xf4061ff25a2163d6, &value, &g_unk_710164b958, &params, &arg);
     }
 }
 

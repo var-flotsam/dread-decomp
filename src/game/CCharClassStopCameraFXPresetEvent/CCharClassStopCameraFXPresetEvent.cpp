@@ -11,7 +11,7 @@ struct UnkStopCameraFXPresetEvent {
     base::global::UnkStringData* preset;
 };
 
-void fn_7100ce2228(UnkStopCameraFXPresetEvent* self) {
+void CCharClassStopCameraFXPresetEvent_ForwardPresetToManagerIfSet(UnkStopCameraFXPresetEvent* self) {
     if (self->preset != &g_unk_7101d47108->empty)
         fn_7100e03a78(g_unk_7101d47310, &self->preset);
 }

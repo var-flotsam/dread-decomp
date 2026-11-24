@@ -21,7 +21,7 @@ void fn_71003bdc30(UnkAutomperIrradiation_l3bdc30* self, s32 state) {
         mode1.id = 0;
         base::reflection::UnkReflTypeIdArg mask1;
         mask1.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, 0x3060aaa4f4b526e4, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(cls, 0x3060aaa4f4b526e4, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
                       &mask1);
         break;
     case 3:
@@ -29,7 +29,7 @@ void fn_71003bdc30(UnkAutomperIrradiation_l3bdc30* self, s32 state) {
         mode3.id = 0;
         base::reflection::UnkReflTypeIdArg mask3;
         mask3.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, 0xcb24643fce5b5852, 0xf4061ff25a2163d6, &mode3, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(cls, 0xcb24643fce5b5852, 0xf4061ff25a2163d6, &mode3, &g_unk_710164b958, &g_unk_7172769740,
                       &mask3);
         break;
     case 4:
@@ -37,7 +37,7 @@ void fn_71003bdc30(UnkAutomperIrradiation_l3bdc30* self, s32 state) {
         mode4.id = 0;
         base::reflection::UnkReflTypeIdArg mask4;
         mask4.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, 0x56ad73034f8749b0, 0xf4061ff25a2163d6, &mode4, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(cls, 0x56ad73034f8749b0, 0xf4061ff25a2163d6, &mode4, &g_unk_710164b958, &g_unk_7172769740,
                       &mask4);
         break;
     }

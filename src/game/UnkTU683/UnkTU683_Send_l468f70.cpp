@@ -53,7 +53,7 @@ void fn_7100468f70(UnkDashSlashSend_l468f70* self) {
         params.value = 4.0f;
         base::reflection::UnkReflTypeIdArg near_arg;
         near_arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-        fn_7101176690(target, hash, 0xf4061ff25a2163d6ull, &near_value, &g_unk_710164b958, &params, &near_arg);
+        CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6ull, &near_value, &g_unk_710164b958, &params, &near_arg);
         break;
     default:
         base::reflection::UnkReflTypeIdArg far_value;
@@ -62,7 +62,7 @@ void fn_7100468f70(UnkDashSlashSend_l468f70* self) {
         params.value = 4.0f;
         base::reflection::UnkReflTypeIdArg far_arg;
         far_arg.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-        fn_7101176690(target, 0xd25de804095aad99ull, 0xf4061ff25a2163d6ull, &far_value, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(target, 0xd25de804095aad99ull, 0xf4061ff25a2163d6ull, &far_value, &g_unk_710164b958,
                       &params, &far_arg);
         break;
     }

@@ -17,7 +17,7 @@ struct UnkSetSceneGroupEnabledEvent_b47a3 {
     bool enabled;
 };
 
-void fn_7100bdeb38(UnkSetSceneGroupEnabledEvent_b47a3* self) {
+void CCharClassSetSceneGroupEnabledEvent_ApplySceneGroupEnabled(UnkSetSceneGroupEnabledEvent_b47a3* self) {
     UnkSceneGroupData_b47a3* group = self->group;
     if (reinterpret_cast<void*>(group) == &g_unk_7101d47108->empty)
         return;

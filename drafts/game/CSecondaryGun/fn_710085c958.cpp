@@ -122,7 +122,7 @@ void fn_710085c958(UnkSecondaryGun_l85c958* self, const UnkSecondaryGunArg_l85c9
                         continue;
                     CVector2D point;
                     fn_710007b430(&point, &pos);
-                    if (fn_7100a47e00(reinterpret_cast<UnkMagmaArea_b50*>(pool), &point)) {
+                    if (CCharClassBaseTriggerComponent_IsPointInColliderBounds(reinterpret_cast<UnkMagmaArea_b50*>(pool), &point)) {
                         inLava = true;
                         break;
                     }

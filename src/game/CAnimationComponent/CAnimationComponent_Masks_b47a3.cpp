@@ -24,7 +24,7 @@ struct UnkAnimMaskHolder_b47a3 {
     UnkAnimMaskSlots_b47a3* slots;
 };
 
-bool fn_7101179cbc(UnkAnimMaskHolder_b47a3* self, const u32* bits) {
+bool CAnimationComponent_AnyPlayingTrackHasFlags(UnkAnimMaskHolder_b47a3* self, const u32* bits) {
     UnkAnimMaskSlots_b47a3* s = self->slots;
     for (UnkAnimMaskSlot_b47a3** it = s->slots; it != s->slots + s->count; ++it) {
         if ((*it)->target->flags & *bits)

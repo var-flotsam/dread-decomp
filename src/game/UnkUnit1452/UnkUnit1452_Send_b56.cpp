@@ -45,7 +45,7 @@ struct UnkSendMode_b56 {
 static inline void SendParams_b56(void* target, u64 hash, UnkSendMode_b56 mode, UnkSendParams_b56 params,
                                   base::reflection::UnkReflTypeIdArg* mask) {
     mask->id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode),
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode),
                   &params, &g_unk_7172769740, mask);
 }
 

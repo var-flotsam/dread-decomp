@@ -25,7 +25,7 @@ static inline bool KiGrabSend_b59(void* target, u64 hash, f32 value) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    return fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &param, &mask);
+    return CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &param, &mask);
 }
 
 bool fn_710043272c(UnkKiGrabAttack* self, s32 kind, f32 value) {

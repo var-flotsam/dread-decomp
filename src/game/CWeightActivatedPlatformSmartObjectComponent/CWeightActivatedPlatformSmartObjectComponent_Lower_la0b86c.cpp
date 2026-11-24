@@ -67,7 +67,7 @@ void fn_7100a0b86c(UnkWap_la0b86c* self) {
     CVector4D colour;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, hash, kind, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(animation, hash, kind, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);
 
     UnkWapSlotsOwner_la0b86c* slotsOwner = self->owner->slots->owner;
     u32 slot = self->slot;

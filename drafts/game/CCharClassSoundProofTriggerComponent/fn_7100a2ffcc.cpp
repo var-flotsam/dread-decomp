@@ -20,7 +20,7 @@ struct UnkWeakTarget;
 
 void fn_7100a47124(char*);
 bool CSoundProofTriggerComponent_ActorsToIgnoreContains(base::global::CRntVector<UnkLink_ovb0130>* self, UnkLink_ovb0130* link);
-void fn_7100a30a9c(UnkTargetLink_ovb0130* self, UnkWeakTarget* target);
+void CCharClassSoundProofTriggerComponent_ConstructResolvedLinkToTarget(UnkTargetLink_ovb0130* self, UnkWeakTarget* target);
 void fn_710071f634(UnkAudioComponent_ovb0015* self, const u32* groups, s32 level, f32 time);
 
 // The sound groups the trigger restores.
@@ -57,7 +57,7 @@ struct UnkSoundProofLink_l2ffcc : UnkSoundProofLinkBase_l2ffcc {
     base::UnkRefPtrMember owner;  // 0x38
 
     explicit UnkSoundProofLink_l2ffcc(UnkSoundProofEntity_l2ffcc* entity) {
-        fn_7100a30a9c(reinterpret_cast<UnkTargetLink_ovb0130*>(this), reinterpret_cast<UnkWeakTarget*>(entity));
+        CCharClassSoundProofTriggerComponent_ConstructResolvedLinkToTarget(reinterpret_cast<UnkTargetLink_ovb0130*>(this), reinterpret_cast<UnkWeakTarget*>(entity));
     }
     ~UnkSoundProofLink_l2ffcc() { vtable = g_unk_7101a20950 + 2; }
 };

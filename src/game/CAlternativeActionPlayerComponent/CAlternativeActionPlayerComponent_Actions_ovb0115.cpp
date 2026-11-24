@@ -188,7 +188,7 @@ void CAlternativeActionPlayerComponent_RequestAbortTrackAnimation(UnkAltActionAb
     reinterpret_cast<UnkAltAbortTrack_ovb0115*>(query.result)->vf_0x18(&request);
     if (request.id == -1)
         return;
-    fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
+    CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
                   reinterpret_cast<const UnkRequest_7101176ea8*>(&request), 0xf4061ff25a2163d6);
 }
 
@@ -303,6 +303,6 @@ void CAlternativeActionPlayerComponent_TryPlayActionByAccumulatedChance(UnkAltAc
     const UnkAltDesc_ovb0115c* desc = reinterpret_cast<const UnkAltDesc_ovb0115c*>(&g_unk_710164b958);
     const UnkAltBlend_ovb0115c* blend = reinterpret_cast<const UnkAltBlend_ovb0115c*>(&g_unk_7172769740);
     UnkAltNamedRequest_ovb0115 request(CStrId(id), UnkAltFlags_ovb0115(), *desc, *blend);
-    fn_7101176ea8(self->owner->animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&request),
+    CAnimationComponent_SendActionRequestRecordToTrack(self->owner->animation, reinterpret_cast<const UnkRequest_7101176ea8*>(&request),
                   0xf4061ff25a2163d6);
 }

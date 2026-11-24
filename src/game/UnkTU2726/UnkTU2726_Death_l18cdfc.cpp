@@ -131,7 +131,7 @@ void fn_710118cdfc(UnkIngameMenu_l18cdfc* self) {
     mode.id = 2;
     base::reflection::UnkReflTypeIdArg type;
     type.id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
-    fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &type);
+    CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &type);
     u64 death = StringCrc64("death", 5);
     fn_7100d7c94c(reinterpret_cast<UnkActor*>(player), &death);
 }

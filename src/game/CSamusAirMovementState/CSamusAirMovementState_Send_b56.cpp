@@ -45,7 +45,7 @@ void fn_710098d8b8(UnkAirSend_b56* self) {
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
     CVector3D v;
-    fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     UnkMovement_71010d08d4* movement = static_cast<UnkMovement_71010d08d4*>(self->field_0x38);
     v = {0.0f, 0.0f, 0.0f};
     fn_71010d08d4(movement, reinterpret_cast<const UnkMovementVec_71010d08d4*>(&v), true);

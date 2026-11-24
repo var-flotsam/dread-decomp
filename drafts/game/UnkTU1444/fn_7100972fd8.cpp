@@ -141,6 +141,6 @@ bool fn_7100972fd8(UnkUnit1444_l972fd8* self, const CStrId& name, bool flag) {
     }
     mode4.id = mode;
     mask4.id = UnkAll_SpitSend().value;
-    return fn_7101176690(animation, id.data->Key(), kTrack_l972fd8, &mode4, &g_unk_710164b958, &g_unk_7172769740,
+    return CAnimationComponent_SendActionToTrack(animation, id.data->Key(), kTrack_l972fd8, &mode4, &g_unk_710164b958, &g_unk_7172769740,
                          &mask4);
 }

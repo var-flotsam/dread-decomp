@@ -161,7 +161,7 @@ void fn_710033d340(UnkSpeedBooster_l33d340* self, s32 reason) {
             u64 hash = track->hash;
             mode.id = 0;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+            CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
         }
     }
     if (reason == 2) {

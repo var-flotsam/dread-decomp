@@ -83,7 +83,7 @@ void fn_7100af2b94(UnkArchivesInspector* self, const UnkGuiText& text, const CSt
     self->field_0x30c = 0.12f;
 }
 
-void fn_7100af2db4(UnkArchivesInspector* self, const UnkGuiText& text, const CStrId& image) {
+void CArchivesInspectorComposition_SetImageAndLabel(UnkArchivesInspector* self, const UnkGuiText& text, const CStrId& image) {
     fn_71011f8bdc(self->sprite, image);
     fn_71011cd5a0(self->sprite);
     fn_71011ec468(self->label, text, false);

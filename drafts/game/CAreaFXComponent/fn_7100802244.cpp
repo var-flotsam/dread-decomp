@@ -55,7 +55,7 @@ void fn_7100802244(UnkAreaFX_l802244* self) {
     void* animation = self->owner ? self->owner->field_0x220 : nullptr;
     if (!self->enabled)
         return;
-    if (animation && self->track && fn_71011771e0(animation, self->track->name.data->Key()))
+    if (animation && self->track && CAnimationComponent_FindTrackByNameHash(animation, self->track->name.data->Key()))
         return;
 
     UnkScope_l802244 scope;
@@ -72,7 +72,7 @@ void fn_7100802244(UnkAreaFX_l802244* self) {
         request.blend_time = self->blend_time;
         request.mode = 2;
         request.mask = mask;
-        fn_7101176ea8(static_cast<UnkStruct_7101176ea8*>(animation),
+        CAnimationComponent_SendActionRequestRecordToTrack(static_cast<UnkStruct_7101176ea8*>(animation),
                       reinterpret_cast<const UnkRequest_7101176ea8*>(&request), 0xf4061ff25a2163d6);
     }
 }

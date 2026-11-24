@@ -24,5 +24,5 @@ static inline __attribute__((always_inline)) void Construct(UnkShelmitPlasmaRayA
 }
 
 // Declared as src/game/CCharClassShelmitAIComponent/CCharClassShelmitAIComponent.cpp declares it.
-void fn_71006b2d74(void* self) { Construct(static_cast<UnkShelmitPlasmaRayAttackDef*>(self)); }
+void CCharClassShelmitPlasmaRayAttack_Construct(void* self) { Construct(static_cast<UnkShelmitPlasmaRayAttackDef*>(self)); }
 void fn_71006b2e34(UnkShelmitPlasmaRayAttackDef* self) { Construct(self); }

@@ -63,7 +63,7 @@ static inline bool Send_7101176ea8(UnkStruct_7101176ea8* self, void* id, u64 key
     return fn_7101177044(self, r, -1, data, flags, a, b, mask);
 }
 
-bool fn_7101176ea8(UnkStruct_7101176ea8* self, const UnkRequest_7101176ea8* req, u64 key) {
+bool CAnimationComponent_SendActionRequestRecordToTrack(UnkStruct_7101176ea8* self, const UnkRequest_7101176ea8* req, u64 key) {
     if (req->id == reinterpret_cast<void*>(-1))
         return false;
     return Send_7101176ea8(self, req->id, key, req->flags, req->a, req->b, AllBits_7101176ea8());
