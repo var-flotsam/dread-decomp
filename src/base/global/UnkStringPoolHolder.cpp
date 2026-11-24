@@ -43,7 +43,7 @@ UnkStringPoolHolder::UnkStringPoolHolder(u32 a, UnkStringPool** pool) {
     self->slot = pool;
     self->field_0x8 = false;
     self->state.empty.ref_count = 0;
-    StringBuffer_Construct(reinterpret_cast<char*>(&self->state.empty.buffer), "", 0, -1);
+    fn_710007ecb4(reinterpret_cast<char*>(&self->state.empty.buffer), "", 0, -1);
     // The state is reached through one register, the pre-indexed store's write-back, up to the
     // node allocation; the barrier keeps the stores that follow on that register.
     UnkStringPoolState* state = &self->state;

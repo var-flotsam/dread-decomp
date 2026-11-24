@@ -48,7 +48,7 @@ struct UnkCaterzillaSegment_ovb0054 {
 };
 static_assert(__builtin_offsetof(UnkCaterzillaSegment_ovb0054, field_0x464) == 0x464, "segment layout");
 
-void CCaterzillaSpawnPointComponent_IncrementSpawnCount(UnkCaterzillaSegment_ovb0054* self) {
+void fn_7100a16a3c(UnkCaterzillaSegment_ovb0054* self) {
     self->field_0x460 = self->field_0x464 == 0;
     if (self->field_0x3cc < self->field_0x3c4) {
         if (self->next)

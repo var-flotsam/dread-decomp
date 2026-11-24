@@ -25,7 +25,7 @@ UnkStringData* StringPool_Insert(UnkStringPool* pool_, u64 hash, const char* str
     if (node) {
         *reinterpret_cast<u64*>(node) = hash;
         *reinterpret_cast<u32*>(node + 0x10) = 0;
-        StringBuffer_Construct(node + 0x18, "", 0, -1);
+        fn_710007ecb4(node + 0x18, "", 0, -1);
         *reinterpret_cast<u8*>(node + 0x48) = 1;
         *reinterpret_cast<u32*>(node + 0x4c) = 0;
         *reinterpret_cast<char**>(node + 0x8) = nullptr;

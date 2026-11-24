@@ -3377,7 +3377,7 @@ address,size,name,name_source,subsystem,status
 0x71005b39d8,392,fn_71005b39d8,unknown,game/ai?,O
 0x71005b3b60,156,fn_71005b3b60,unknown,game/ai?,O
 0x71005b3bfc,4,fn_71005b3bfc,unknown,game/ai?,O
-0x71005b3c00,180,CHydrogigaBraidAttack_CanStart,inferred,game/ai?,O
+0x71005b3c00,180,fn_71005b3c00,unknown,game/ai?,O
 0x71005b3cb4,68,fn_71005b3cb4,unknown,game/ai?,O
 0x71005b3cf8,360,CHydrogigaBraidAttack_UpdateCollider,inferred,game/ai?,O
 0x71005b3e60,412,fn_71005b3e60,unknown,game/ai?,O
