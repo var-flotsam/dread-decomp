@@ -76,7 +76,7 @@ extern UnkEnumType g_unk_71726acd78;
 void fn_71002eb838(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726acee8[];
 
-void fn_71002efa40() {
+void CPlaythrough_InitStatics() {
     InitHeaderIds(&g_unk_71726ad668.ids);
     g_unk_71726ad668.field_0x50 = {{0, 0, 0}, fn_710000cf00, {0, 0}};
     g_unk_71726ad668.field_0x80 = {{0, 0, 0}, fn_710000d470, {0, 0}};

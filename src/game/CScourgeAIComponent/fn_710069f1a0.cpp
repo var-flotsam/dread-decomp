@@ -31,11 +31,11 @@ struct UnkOwner_710069f1a0 {
     }
 };
 
-void fn_710069f1a0(UnkOwner_710069f1a0* self) {
+void CScourgeAIComponent_Destroy(UnkOwner_710069f1a0* self) {
     self->Destroy();
 }
 
-void fn_710069f244(UnkOwner_710069f1a0* self) {
+void CScourgeAIComponent_DeletingDestroy(UnkOwner_710069f1a0* self) {
     self->Destroy();
     operator delete(self);
 }

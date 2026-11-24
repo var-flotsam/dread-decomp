@@ -21,7 +21,7 @@ using base::global::CStrId;
 
 struct UnkGoliathAI_b58a3;
 struct UnkGoliathXSlamAttack_b58a3;
-CStrId fn_71003627f8(UnkGoliathXSlamAttack_b58a3* self, UnkActor* owner);
+CStrId CAttack_MakeIdWithAnimState(UnkGoliathXSlamAttack_b58a3* self, UnkActor* owner);
 
 struct UnkGoliathAI_b59a3 {
     void** vtable;
@@ -94,7 +94,7 @@ ahead:
     if (!(value <= ai->field_0x14a28 + 10.0f))
         return;
     {
-        CStrId id = fn_71003627f8(reinterpret_cast<UnkGoliathXSlamAttack_b58a3*>(self), self->owner);
+        CStrId id = CAttack_MakeIdWithAnimState(reinterpret_cast<UnkGoliathXSlamAttack_b58a3*>(self), self->owner);
         base::reflection::UnkReflTypeIdArg mode2;
         base::reflection::UnkReflTypeIdArg mask2;
         u64 hash = Hash_b59a3(id);

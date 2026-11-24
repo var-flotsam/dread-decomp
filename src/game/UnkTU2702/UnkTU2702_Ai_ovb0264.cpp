@@ -503,7 +503,7 @@ f32 fn_710110f4f4(UnkSelf_n* self, UnkOther_n* other, u32 a, u32 b, f32* pair, U
 // ---- w ----
 struct UnkAttack_A2_b68;
 struct UnkCancelAttack_ovb0128;
-void* fn_7100362324(UnkCancelAttack_ovb0128* self, u32 value);
+void* CAttack_GetPreset(UnkCancelAttack_ovb0128* self, u32 value);
 struct UnkLocalNode_w {
     void* first;
     UnkLocalNode_w* next;
@@ -597,7 +597,7 @@ void fn_71010ffc38(UnkTargetSelf_w* self, f32 dt) {
         return;
     if (!self->field_0x1148)
         return;
-    UnkPresetObj_w* preset = static_cast<UnkPresetObj_w*>(fn_7100362324(reinterpret_cast<UnkCancelAttack_ovb0128*>(self->field_0x1148), self->field_0x1140));
+    UnkPresetObj_w* preset = static_cast<UnkPresetObj_w*>(CAttack_GetPreset(reinterpret_cast<UnkCancelAttack_ovb0128*>(self->field_0x1148), self->field_0x1140));
     if (!preset)
         return;
     if (!fn_710009d50c(reinterpret_cast<const base::reflection::CType*>(reinterpret_cast<void* (*)(void*)>(preset->vtable[0])(preset)), fn_710036593c()))

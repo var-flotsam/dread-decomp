@@ -15,6 +15,6 @@ static inline const UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {
     return qid;
 }
 
-const UnkQualifiedId& fn_71008fceb4() { return GetQualifiedId(g_unk_7172733360); }
+const UnkQualifiedId& CLavaPoolComponent_GetLavaVolumesId() { return GetQualifiedId(g_unk_7172733360); }
 
-const UnkQualifiedId& fn_710090a62c() { return GetQualifiedId(g_unk_7172734660); }
+const UnkQualifiedId& CWaterPoolComponent_GetWaterVolumesId() { return GetQualifiedId(g_unk_7172734660); }

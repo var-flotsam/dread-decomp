@@ -25,7 +25,7 @@ extern UnkConversion g_unk_71726be970;
 void fn_71003c6db8() __attribute__((visibility("hidden")));
 void fn_71003c6dc4() __attribute__((visibility("hidden")));
 
-void fn_71003c7230() {
+void CAutoolAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726be9a0.ids);
     InitId(&g_unk_71726be9a0.field_0x18, "right_thruster");
     InitId(&g_unk_71726be9a0.field_0x20, "left_thruster");

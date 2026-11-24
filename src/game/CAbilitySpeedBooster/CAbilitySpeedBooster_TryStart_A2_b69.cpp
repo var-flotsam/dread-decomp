@@ -48,7 +48,7 @@ struct UnkSpeedBooster_A2_b69 {
     }
 };
 
-void fn_710033f6fc(UnkSpeedBooster_A2_b69* self) {
+void CAbilitySpeedBooster_TryActivate(UnkSpeedBooster_A2_b69* self) {
     if (self->State() == 6)
         return;
     UnkSpeedBoosterActor_A2_b69* actor = self->owner->actor;

@@ -41,7 +41,7 @@ static inline unk_prop_bag::UnkPropBag* BagOf(UnkAnimationComponent* track) {
     return reinterpret_cast<unk_prop_bag::UnkPropBag*>(track->field_0x80);
 }
 
-void fn_71006e07b0(UnkWarLotusAI* self) {
+void CWarLotusAIComponent_ResetBumpFactor(UnkWarLotusAI* self) {
     UnkBumpState* bump = BumpOf(self);
     fn_7100369650(reinterpret_cast<char*>(self));
     bump->value = -1.0f;

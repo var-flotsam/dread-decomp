@@ -29,7 +29,7 @@ struct UnkBigkranXOut_b66a2 {
     u32 value;
 };
 
-void fn_71003f4cd8(UnkBigkranXAI_b66a2* self, UnkBigkranXOut_b66a2* out) {
+void CBigkranXAIComponent_GetReachableHeight(UnkBigkranXAI_b66a2* self, UnkBigkranXOut_b66a2* out) {
     s32 id = self->id;
     if (id != 0 && id != 0x7fffffff) {
         out->value = self->params.active->value;

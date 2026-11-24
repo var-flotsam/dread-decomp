@@ -35,7 +35,7 @@ static inline void PreloadModel(const char* path, u32 kind) {
     fn_7100851d6c(cache, &id, kind, false);
 }
 
-void fn_71008548bc(UnkPlasmaBeamGun_ovb0135* self) {
+void CPowerBeamGun_PreloadEffects(UnkPlasmaBeamGun_ovb0135* self) {
     fn_710083593c(reinterpret_cast<UnkSPBGun*>(self));
     if (!self->fx_registered) {
         PreloadFx("actors/weapons/powerbeam/fx/explosion.bcptl", 0xf);

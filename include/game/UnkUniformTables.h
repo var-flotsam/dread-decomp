@@ -36,7 +36,9 @@ static_assert(sizeof(UnkUniformRangeEntry) == 0x40);
 struct UnkUniformRangeTag;
 
 struct UnkUniformTable {
-    u8 pad_0x00[0x78];
+    u8 pad_0x00[0x4c];
+    u32 block_count;  // 0x4c
+    u8 pad_0x50[0x28];
     base::UnkKeyedArray<UnkUniformRangeTag, u64, UnkUniformRangeEntry> ranges_by_key;  // 0x78
     u8 pad_0x90[0x18];
     UnkUniformRange* ranges;  // 0xa8

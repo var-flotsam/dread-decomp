@@ -41,7 +41,7 @@ struct UnkEntry_l2ec304 {
     CStrId name;  // 0x8
 };
 
-UnkPathRecord_l2ec304* fn_71002f2d30(UnkDefObject_l2ec304* def, const CStrId* name);
+UnkPathRecord_l2ec304* CPlaythroughDef_FindCheckpointDef(UnkDefObject_l2ec304* def, const CStrId* name);
 
 struct UnkEntriesTag_l2ec304;
 
@@ -106,7 +106,7 @@ CFilePathStrId fn_71002ec304(UnkPathOwner_l2ec304* self, const u64* key) {
     if (entry != self->entries.End()) {
         UnkDefObject_l2ec304* object = self->object;
         UnkDefObject_l2ec304* def = object && fn_710009d50c(object->vf_0x0(), fn_71002effc4()) ? object : nullptr;
-        if (UnkPathRecord_l2ec304* record = fn_71002f2d30(def, &(*entry)->name)) {
+        if (UnkPathRecord_l2ec304* record = CPlaythroughDef_FindCheckpointDef(def, &(*entry)->name)) {
             char lower[0x80];
             UnkBufferString<0x80, g_unk_7101a1b750> path("rom:");
             CRntString_Append(path.Str(), &g_unk_71726ad748);
