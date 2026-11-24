@@ -16,7 +16,7 @@ struct UnkShowMessageEvent_b42a3 {
     u8 unk_0x8[0x8];
     CStrId id_0x10;
     CStrId id_0x18;
-    bool field_0x20;
+    bool bWaitForInput;
 };
 
 void fn_7100be0368(UnkShowMessageEvent_b42a3* self) {
@@ -24,5 +24,5 @@ void fn_7100be0368(UnkShowMessageEvent_b42a3* self) {
     self->vtable = g_unk_7101aa1d58 + 0x10;
     new (&self->id_0x10) CStrId(base::global::CStrId::Empty());
     new (&self->id_0x18) CStrId(base::global::CStrId::Empty());
-    self->field_0x20 = true;
+    self->bWaitForInput = true;
 }

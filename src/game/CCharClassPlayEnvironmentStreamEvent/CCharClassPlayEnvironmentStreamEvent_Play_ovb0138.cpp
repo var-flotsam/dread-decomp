@@ -75,7 +75,7 @@ struct UnkPlayEnvironmentStreamEvent_ovb0138 {
     f32 volume;                   // 0xc
     UnkPathMember_ovb0138 path;  // 0x10
     bool reverse;                 // 0x18
-    f32 field_0x1c;
+    f32 fFadeInTime;
 };
 
 void fn_7100cca4b8(UnkPlayEnvironmentStreamEvent_ovb0138* self) {
@@ -84,6 +84,6 @@ void fn_7100cca4b8(UnkPlayEnvironmentStreamEvent_ovb0138* self) {
     desc.path = self->path;
     desc.volume = self->volume;
     desc.direction = self->reverse ? -1 : 1;
-    desc.field_0x30 = self->field_0x1c;
+    desc.field_0x30 = self->fFadeInTime;
     fn_7100108620(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820), reinterpret_cast<UnkSoundDesc_ovb0074*>(&desc));
 }

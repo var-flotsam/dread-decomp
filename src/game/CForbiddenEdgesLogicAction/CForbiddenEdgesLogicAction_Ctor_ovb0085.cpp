@@ -36,7 +36,7 @@ struct UnkForbiddenEdgesLogicAction_ovb0085 {
     u8 unk_0x8[0x8];
     UnkForbiddenEdgesCallbackSet_ovb0085 first;   // 0x10
     UnkForbiddenEdgesCallbackSet_ovb0085 second;  // 0x50
-    u32 field_0x90;
+    u32 eState;
 };
 
 void fn_7100a4f604(UnkForbiddenEdgesLogicAction_ovb0085* self) {
@@ -44,5 +44,5 @@ void fn_7100a4f604(UnkForbiddenEdgesLogicAction_ovb0085* self) {
     self->vtable = g_unk_7101a8f2d8 + 0x10;
     self->first.Init(g_unk_7101a33fa0);
     self->second.Init(g_unk_7101a20950);
-    self->field_0x90 = 1;
+    self->eState = 1;
 }

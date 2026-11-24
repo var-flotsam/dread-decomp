@@ -262,7 +262,7 @@ struct UnkForcedAreaUpdate_ovb0124 {
     UnkRefObject** refs;  // 0x70
     u32 ref_count;        // 0x78
     u8 pad_0x7c[0x1c];
-    bool field_0x98;
+    bool bForcedAreaOnce;
     bool field_0x99;
     u8 pad_0x9a[0x4e];
     f32 timer;  // 0xe8
@@ -288,7 +288,7 @@ void CForcedMovementAreaComponent_FlushPendingHitsAndTickTimer(UnkForcedAreaUpda
         }
         self->ref_count = 0;
     }
-    if (self->field_0x99 && self->field_0x98 && self->field_0x58 == 0) {
+    if (self->field_0x99 && self->bForcedAreaOnce && self->field_0x58 == 0) {
         self->field_0x99 = false;
         if (void* object = fn_710043acb4(self->owner)) {
             if (UnkCollisionObject* c = fn_71008640a4(static_cast<UnkCollisionContainer*>(object), &g_unk_717271fde8[0]))

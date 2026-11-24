@@ -64,11 +64,11 @@ using UnkIdMiddle = UnkIdMiddleT<g_unk_7101aa8110>;
 
 struct UnkFourIds : UnkIdMiddle {
     CStrId ids[4];
-    bool field_0x58;
+    bool bWantsRecoil;
 
     __attribute__((always_inline)) UnkFourIds(const UnkFourIds& other)
         : UnkIdMiddle(other), ids{(SetVtable(g_unk_7101aa6cd8), other.ids[0]), other.ids[1], other.ids[2], other.ids[3]},
-          field_0x58(other.field_0x58) {}
+          bWantsRecoil(other.bWantsRecoil) {}
 };
 
 __attribute__((always_inline)) static inline void Copy(UnkFourIds* self, const UnkFourIds* other) {
