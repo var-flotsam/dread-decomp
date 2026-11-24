@@ -25,7 +25,7 @@ struct UnkActorDef_A1b71 {
     u32 count;                         // 0xa8
 };
 
-UnkActorDefEntry_A1b71* fn_71002552a4(const UnkActorDef_A1b71* self, const char* name) {
+UnkActorDefEntry_A1b71* CActorDef_FindComponentByType(const UnkActorDef_A1b71* self, const char* name) {
     UnkActorDefEntry_A1b71** it = self->entries;
     UnkActorDefEntry_A1b71** end = it + self->count;
     for (; it != end; ++it) {

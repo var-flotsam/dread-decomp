@@ -180,7 +180,7 @@ __attribute__((noinline)) UnkLockonEntry_ovb0092* fn_7100319aec(UnkLockonMarks_o
 }
 
 // Drops the marks that have faded out (from the back), then fades the others by four times `dt`.
-void fn_7100319958(UnkMultiLockon_ovb0092* self, f32 dt) {
+void CAbilityMultiLockon_UpdateFadingObjects(UnkMultiLockon_ovb0092* self, f32 dt) {
     UnkLockonMarks_ovb0092* marks = &self->marks;
     for (s32 i = marks->count; i > 0;) {
         --i;
@@ -224,7 +224,7 @@ void fn_7100319958(UnkMultiLockon_ovb0092* self, f32 dt) {
 }
 
 // Adds a fully visible mark.
-void fn_710031c7b8(UnkMultiLockon_ovb0092* self, void* mark) {
+void CAbilityMultiLockon_AddFadingObject(UnkMultiLockon_ovb0092* self, void* mark) {
     if (!mark)
         return;
     UnkLockonEntry_ovb0092 entry;
