@@ -14,10 +14,9 @@ using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "reflected/CCharClassBreakableScenarioComponent.h"
 namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
 namespace base::global { class CStrId; }
@@ -27,26 +26,24 @@ namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 
 // CCharClassBreakableScenarioComponent
-namespace CCharClassBreakableScenarioComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CCharClassBreakableScenarioComponent::refl_AddAttributes(CClass*) {}
+void CCharClassBreakableScenarioComponent::refl_AddFields(CClass* cls) {
     CVariable* field0 = AddReflectedField(cls, CStrId("vColliderIds", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0xffffffff, -1, -1);
     field0->attrs.Add<bool>(base::reflection::attr::DeprecatedVar(), true);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 1);
     field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x58;
+bool CCharClassBreakableScenarioComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassBreakableScenarioComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassBreakableScenarioComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBreakableScenarioComponent*>(obj)->vf_0x0(); }
+void CCharClassBreakableScenarioComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassBreakableScenarioComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassBreakableScenarioComponent::refl_Destroy(void* obj) { static_cast<CCharClassBreakableScenarioComponent*>(obj)->~CCharClassBreakableScenarioComponent(); }
+void* CCharClassBreakableScenarioComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassBreakableScenarioComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassBreakableScenarioComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassBreakableScenarioComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -57,8 +54,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassBreakableScenarioComponent
-DREAD_REFLECTED_CLASS(CCharClassBreakableScenarioComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassBreakableScenarioComponent, CCharClassComponent);
 
 // CBreakableScenarioComponent
 namespace CBreakableScenarioComponent {

@@ -8,10 +8,6 @@
 #include "reflected/base/global/timeline/CEvent.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // base::global::timeline::CEvent
 void base::global::timeline::CEvent::refl_AddAttributes(CClass*) {}

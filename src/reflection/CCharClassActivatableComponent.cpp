@@ -12,28 +12,24 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "reflected/CActivatableComponent.h"
+#include "reflected/CCharClassActivatableComponent.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CCharClassActivatableComponent
-namespace CCharClassActivatableComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x58;
+void CCharClassActivatableComponent::refl_AddAttributes(CClass*) {}
+void CCharClassActivatableComponent::refl_AddFields(CClass*) {}
+bool CCharClassActivatableComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassActivatableComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassActivatableComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActivatableComponent*>(obj)->vf_0x0(); }
+void CCharClassActivatableComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassActivatableComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassActivatableComponent::refl_Destroy(void* obj) { static_cast<CCharClassActivatableComponent*>(obj)->~CCharClassActivatableComponent(); }
+void* CCharClassActivatableComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassActivatableComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassActivatableComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassActivatableComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,29 +40,26 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassActivatableComponent
-DREAD_REFLECTED_CLASS(CCharClassActivatableComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassActivatableComponent, CCharClassComponent);
 
 // CActivatableComponent
 void fn_7100878d94();
 void fn_7100878dd4();
-namespace CActivatableComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CActivatableComponent::refl_AddAttributes(CClass*) {}
+void CActivatableComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("Activate", &base::reflection::TypeObject<void>::object, 0, fn_7100878d94);
     DREAD_REFLECTED_FUNCTION_OF("Deactivate", &base::reflection::TypeObject<void>::object, 0, fn_7100878dd4);
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x80;
+bool CActivatableComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CActivatableComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CActivatableComponent::refl_TypeOf(const void* obj) { return *static_cast<const CActivatableComponent*>(obj)->vf_0x0(); }
+void CActivatableComponent::refl_CopyConstruct(void*, const void*) {}
+void CActivatableComponent::refl_MoveConstruct(void*, const void*) {}
+void CActivatableComponent::refl_Destroy(void* obj) { static_cast<CActivatableComponent*>(obj)->~CActivatableComponent(); }
+void* CActivatableComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CActivatableComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CActivatableComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CActivatableComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -77,5 +70,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CActivatableComponent
-DREAD_REFLECTED_CLASS(CActivatableComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CActivatableComponent, CComponent);

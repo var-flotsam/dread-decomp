@@ -7,52 +7,49 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CSetAnimDependsOnDirAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSetAnimDependsOnDirAction
-namespace behaviortree::CSetAnimDependsOnDirAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sInDirAnim", 0x30, (DefaultValue, ""), (Description, "In dir animation to set"));
-    DREAD_REFLECTED_FIELD(CStrId, "sInDirAnimProp", 0x38, (DefaultValue, ""), (Description, "In dir animation to set (from blackboard)"));
-    DREAD_REFLECTED_FIELD(CStrId, "sNotInDirAnim", 0x40, (DefaultValue, ""), (Description, "Not in dir animation to set"));
-    DREAD_REFLECTED_FIELD(CStrId, "sNotInDirAnimProp", 0x48, (DefaultValue, ""), (Description, "not in dir animation to set (from blackboard)"));
-    DREAD_REFLECTED_FIELD(CStrId, "sInDirIdleAnim", 0x50, (DefaultValue, ""), (Description, "In dir animation in place to set"));
-    DREAD_REFLECTED_FIELD(CStrId, "sInDirIdleAnimProp", 0x58, (DefaultValue, ""), (Description, "In dir animationin place to set (from blackboard)"));
-    DREAD_REFLECTED_FIELD(CStrId, "sTargetPos", 0x60, (DefaultValue, ""), (Description, "Target pos"));
-    DREAD_REFLECTED_FIELD(bool, "bForceViewDir", 0x74, (DefaultValue, false), (Description, "Force view dir"));
-    DREAD_REFLECTED_FIELD(bool, "bInvertViewDir", 0x75, (DefaultValue, false), (Description, "Force view dir"));
-    DREAD_REFLECTED_FIELD(bool, "bForce", 0x76, (DefaultValue, false), (Description, "Force set anim"));
-    DREAD_REFLECTED_FIELD(bool, "bUpdateModel", 0x77, (DefaultValue, false), (Description, "Force update model"));
-    DREAD_REFLECTED_FIELD(bool, "bWaitAnimEnd", 0x78, (DefaultValue, false), (Description, "Wait for animation end"));
-    DREAD_REFLECTED_FIELD(bool, "bWaitIfFrozen", 0x79, (DefaultValue, true), (Description, "Wait if frozen"));
-    DREAD_REFLECTED_FIELD(bool, "bSyncWithCurrent", 0x89, (DefaultValue, false), (Description, "Sync target animation with current [false]"));
-    DREAD_REFLECTED_FIELD(s32, "iMinRandSuffix", 0x7c, (DefaultValue, -1), (Description, "Minimum suffix value. -1 means not to use suffix [-1]"));
-    DREAD_REFLECTED_FIELD(s32, "iMaxRandSuffix", 0x80, (DefaultValue, -1), (Description, "Maximum suffix value. -1 means not to use suffix [-1]"));
-    DREAD_REFLECTED_FIELD(bool, "bCheckInSmartlink", 0x8a, (DefaultValue, false), (Description, "Abort when is in smartlink"));
-    DREAD_REFLECTED_FIELD(bool, "bCheckInTurn", 0x8c, (DefaultValue, false), (Description, "Abort when is in turn"));
-    DREAD_REFLECTED_FIELD(CStrId, "sReturnActionDisp", 0x90, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action launched"));
-    DREAD_REFLECTED_FIELD(bool, "bFailIfSmartlink", 0x8b, (DefaultValue, false), (Description, "Abort when is in turn"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CSetAnimDependsOnDirAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CSetAnimDependsOnDirAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sInDirAnim", offsetof(CSetAnimDependsOnDirAction, sInDirAnim), (DefaultValue, ""), (Description, "In dir animation to set"));
+    DREAD_REFLECTED_FIELD(CStrId, "sInDirAnimProp", offsetof(CSetAnimDependsOnDirAction, sInDirAnimProp), (DefaultValue, ""), (Description, "In dir animation to set (from blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sNotInDirAnim", offsetof(CSetAnimDependsOnDirAction, sNotInDirAnim), (DefaultValue, ""), (Description, "Not in dir animation to set"));
+    DREAD_REFLECTED_FIELD(CStrId, "sNotInDirAnimProp", offsetof(CSetAnimDependsOnDirAction, sNotInDirAnimProp), (DefaultValue, ""), (Description, "not in dir animation to set (from blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sInDirIdleAnim", offsetof(CSetAnimDependsOnDirAction, sInDirIdleAnim), (DefaultValue, ""), (Description, "In dir animation in place to set"));
+    DREAD_REFLECTED_FIELD(CStrId, "sInDirIdleAnimProp", offsetof(CSetAnimDependsOnDirAction, sInDirIdleAnimProp), (DefaultValue, ""), (Description, "In dir animationin place to set (from blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTargetPos", offsetof(CSetAnimDependsOnDirAction, sTargetPos), (DefaultValue, ""), (Description, "Target pos"));
+    DREAD_REFLECTED_FIELD(bool, "bForceViewDir", offsetof(CSetAnimDependsOnDirAction, bForceViewDir), (DefaultValue, false), (Description, "Force view dir"));
+    DREAD_REFLECTED_FIELD(bool, "bInvertViewDir", offsetof(CSetAnimDependsOnDirAction, bInvertViewDir), (DefaultValue, false), (Description, "Force view dir"));
+    DREAD_REFLECTED_FIELD(bool, "bForce", offsetof(CSetAnimDependsOnDirAction, bForce), (DefaultValue, false), (Description, "Force set anim"));
+    DREAD_REFLECTED_FIELD(bool, "bUpdateModel", offsetof(CSetAnimDependsOnDirAction, bUpdateModel), (DefaultValue, false), (Description, "Force update model"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitAnimEnd", offsetof(CSetAnimDependsOnDirAction, bWaitAnimEnd), (DefaultValue, false), (Description, "Wait for animation end"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitIfFrozen", offsetof(CSetAnimDependsOnDirAction, bWaitIfFrozen), (DefaultValue, true), (Description, "Wait if frozen"));
+    DREAD_REFLECTED_FIELD(bool, "bSyncWithCurrent", offsetof(CSetAnimDependsOnDirAction, bSyncWithCurrent), (DefaultValue, false), (Description, "Sync target animation with current [false]"));
+    DREAD_REFLECTED_FIELD(s32, "iMinRandSuffix", offsetof(CSetAnimDependsOnDirAction, iMinRandSuffix), (DefaultValue, -1), (Description, "Minimum suffix value. -1 means not to use suffix [-1]"));
+    DREAD_REFLECTED_FIELD(s32, "iMaxRandSuffix", offsetof(CSetAnimDependsOnDirAction, iMaxRandSuffix), (DefaultValue, -1), (Description, "Maximum suffix value. -1 means not to use suffix [-1]"));
+    DREAD_REFLECTED_FIELD(bool, "bCheckInSmartlink", offsetof(CSetAnimDependsOnDirAction, bCheckInSmartlink), (DefaultValue, false), (Description, "Abort when is in smartlink"));
+    DREAD_REFLECTED_FIELD(bool, "bCheckInTurn", offsetof(CSetAnimDependsOnDirAction, bCheckInTurn), (DefaultValue, false), (Description, "Abort when is in turn"));
+    DREAD_REFLECTED_FIELD(CStrId, "sReturnActionDisp", offsetof(CSetAnimDependsOnDirAction, sReturnActionDisp), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action launched"));
+    DREAD_REFLECTED_FIELD(bool, "bFailIfSmartlink", offsetof(CSetAnimDependsOnDirAction, bFailIfSmartlink), (DefaultValue, false), (Description, "Abort when is in turn"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x1e8;
+bool behaviortree::CSetAnimDependsOnDirAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CSetAnimDependsOnDirAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CSetAnimDependsOnDirAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetAnimDependsOnDirAction*>(obj)->vf_0x0(); }
+void behaviortree::CSetAnimDependsOnDirAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CSetAnimDependsOnDirAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CSetAnimDependsOnDirAction::refl_Destroy(void* obj) { static_cast<CSetAnimDependsOnDirAction*>(obj)->~CSetAnimDependsOnDirAction(); }
+void* behaviortree::CSetAnimDependsOnDirAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CSetAnimDependsOnDirAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CSetAnimDependsOnDirAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSetAnimDependsOnDirAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -63,5 +60,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CSetAnimDependsOnDirAction
-DREAD_REFLECTED_CLASS(behaviortree::CSetAnimDependsOnDirAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CSetAnimDependsOnDirAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

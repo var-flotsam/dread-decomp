@@ -12,39 +12,35 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/ICharClassPlayAudioPresetEvent.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
 // ICharClassPlayAudioPresetEvent
 void fn_7100beee0c();
 void fn_7100bee960(CFunction* fn, const char* name);
-namespace ICharClassPlayAudioPresetEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void ICharClassPlayAudioPresetEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Preset Iterface");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Audio", true));
 }
-void refl_AddFields(CClass* cls) {
+void ICharClassPlayAudioPresetEvent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sPresetUniqueID_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100beee0c);
     DREAD_REFLECTED_FUNCTION("_sPresetUniqueID_SetterFunction")
         fn_7100bee960(fn, "_sPresetUniqueID_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sPresetUniqueID", (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(f32, "fVolume", 0x30, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 2.0f));
-    DREAD_REFLECTED_FIELD(f32, "fPitch", 0x34, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 2.0f));
-    DREAD_REFLECTED_FIELD(bool, "bApplyModifier", 0x38, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fVolume", offsetof(ICharClassPlayAudioPresetEvent, fVolume), (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPitch", offsetof(ICharClassPlayAudioPresetEvent, fPitch), (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 2.0f));
+    DREAD_REFLECTED_FIELD(bool, "bApplyModifier", offsetof(ICharClassPlayAudioPresetEvent, bApplyModifier), (DefaultValue, true));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x40;
+bool ICharClassPlayAudioPresetEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 ICharClassPlayAudioPresetEvent::refl_Hash() { return -1; }
+const base::reflection::CType& ICharClassPlayAudioPresetEvent::refl_TypeOf(const void* obj) { return *static_cast<const ICharClassPlayAudioPresetEvent*>(obj)->vf_0x0(); }
+void ICharClassPlayAudioPresetEvent::refl_Destroy(void* obj) { static_cast<ICharClassPlayAudioPresetEvent*>(obj)->~ICharClassPlayAudioPresetEvent(); }
+struct ICharClassPlayAudioPresetEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(ICharClassPlayAudioPresetEvent);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -53,8 +49,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace ICharClassPlayAudioPresetEvent
-DREAD_REFLECTED_CLASS(ICharClassPlayAudioPresetEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(ICharClassPlayAudioPresetEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

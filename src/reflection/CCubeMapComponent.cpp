@@ -12,12 +12,9 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "reflected/CCubeMapComponent.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::global { class CFilePathStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
@@ -45,9 +42,8 @@ void fn_71007a0d58();
 void fn_710079f2c8(CFunction* fn, const char* name);
 void fn_710079f444(CFunction* fn, const char* name);
 void fn_71007a0efc();
-namespace CCubeMapComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CCubeMapComponent::refl_AddAttributes(CClass*) {}
+void CCubeMapComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_vCubePos_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x100, fn_71007a07a0);
     DREAD_REFLECTED_FUNCTION("_vCubePos_SetterFunction")
         fn_710079e864(fn, "_vCubePos_SetterFunction");
@@ -84,17 +80,16 @@ void refl_AddFields(CClass* cls) {
         fn_710079f444(fn, "CalculateCubemap");
     DREAD_REFLECTED_FUNCTION_OF("ApplyCubemap", &base::reflection::TypeObject<void>::object, 0, fn_71007a0efc);
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x90;
+bool CCubeMapComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCubeMapComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCubeMapComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCubeMapComponent*>(obj)->vf_0x0(); }
+void CCubeMapComponent::refl_CopyConstruct(void*, const void*) {}
+void CCubeMapComponent::refl_MoveConstruct(void*, const void*) {}
+void CCubeMapComponent::refl_Destroy(void* obj) { static_cast<CCubeMapComponent*>(obj)->~CCubeMapComponent(); }
+void* CCubeMapComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCubeMapComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCubeMapComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCubeMapComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -105,8 +100,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCubeMapComponent
-DREAD_REFLECTED_CLASS(CCubeMapComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCubeMapComponent, CComponent);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

@@ -5,30 +5,24 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/msapi/res/CRenderRes.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // msapi::res::CRenderRes
-namespace msapi::res::CRenderRes {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x90;
+void msapi::res::CRenderRes::refl_AddAttributes(CClass*) {}
+void msapi::res::CRenderRes::refl_AddFields(CClass*) {}
+bool msapi::res::CRenderRes::refl_Equals(const void*, const void*) { return false; }
+s32 msapi::res::CRenderRes::refl_Hash() { return -1; }
+const base::reflection::CType& msapi::res::CRenderRes::refl_TypeOf(const void* obj) { return *static_cast<const CRenderRes*>(obj)->vf_0x0(); }
+struct msapi::res::CRenderRes::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CRenderRes);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
 };
-}  // namespace msapi::res::CRenderRes
-DREAD_REFLECTED_CLASS(msapi::res::CRenderRes, base::res::CRes);
+DREAD_REFLECTED_DECLARED_CLASS(msapi::res::CRenderRes, base::res::CRes);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

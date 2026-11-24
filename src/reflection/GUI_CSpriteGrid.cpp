@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/GUI/CSpriteGrid.h"
 namespace base::global { class CFilePathStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
 namespace base::global { class CStrId; }
@@ -39,9 +36,8 @@ void fn_71011fe2ec();
 void fn_71011fc778(CFunction* fn, const char* name);
 void fn_71011fe3d8();
 void fn_71011fc8f4(CFunction* fn, const char* name);
-namespace GUI::CSpriteGrid {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void GUI::CSpriteGrid::refl_AddAttributes(CClass*) {}
+void GUI::CSpriteGrid::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_Image_GetterFunction", &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0x101, fn_71011fde04);
     DREAD_REFLECTED_FUNCTION("_Image_SetterFunction")
         fn_71011fc00c(fn, "_Image_SetterFunction");
@@ -71,18 +67,16 @@ void refl_AddFields(CClass* cls) {
         fn_71011fc8f4(fn, "_BlendMode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "BlendMode");
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x1e8;
+bool GUI::CSpriteGrid::refl_Equals(const void*, const void*) { return false; }
+s32 GUI::CSpriteGrid::refl_Hash() { return -1; }
+const base::reflection::CType& GUI::CSpriteGrid::refl_TypeOf(const void* obj) { return *static_cast<const CSpriteGrid*>(obj)->vf_0x0(); }
+void GUI::CSpriteGrid::refl_Destroy(void* obj) { static_cast<CSpriteGrid*>(obj)->~CSpriteGrid(); }
+struct GUI::CSpriteGrid::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSpriteGrid);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace GUI::CSpriteGrid
-DREAD_REFLECTED_CLASS(GUI::CSpriteGrid, GUI::CDisplayObject);
+DREAD_REFLECTED_DECLARED_CLASS(GUI::CSpriteGrid, GUI::CDisplayObject);

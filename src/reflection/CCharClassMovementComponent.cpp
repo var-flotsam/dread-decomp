@@ -12,37 +12,34 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CCharClassMovementComponent.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCharClassMovementComponent
 void fn_710097b370();
 void fn_710097b0d4(CFunction* fn, const char* name);
-namespace CCharClassMovementComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassMovementComponent::refl_AddAttributes(CClass*) {}
+void CCharClassMovementComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_fPhysicsVelocityFriction_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710097b370);
     DREAD_REFLECTED_FUNCTION("_m_fPhysicsVelocityFriction_SetterFunction")
         fn_710097b0d4(fn, "_m_fPhysicsVelocityFriction_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fPhysicsVelocityFriction", (DefaultValue, 0.0f), (Description, "Physics Velocity Friction"));
-    DREAD_REFLECTED_FIELD(f32, "fGravityScalar", 0x60, (DefaultValue, 2200.0f), (Description, "Gravity Scalar"));
-    DREAD_REFLECTED_FIELD(bool, "bWantsCheckViewDirInComputeKinematicRotationDelta", 0x58, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fGravityScalar", offsetof(CCharClassMovementComponent, fGravityScalar), (DefaultValue, 2200.0f), (Description, "Gravity Scalar"));
+    DREAD_REFLECTED_FIELD(bool, "bWantsCheckViewDirInComputeKinematicRotationDelta", offsetof(CCharClassMovementComponent, bWantsCheckViewDirInComputeKinematicRotationDelta), (DefaultValue, true));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x68;
+bool CCharClassMovementComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassMovementComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassMovementComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMovementComponent*>(obj)->vf_0x0(); }
+void CCharClassMovementComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassMovementComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassMovementComponent::refl_Destroy(void* obj) { static_cast<CCharClassMovementComponent*>(obj)->~CCharClassMovementComponent(); }
+void* CCharClassMovementComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassMovementComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassMovementComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassMovementComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -53,5 +50,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassMovementComponent
-DREAD_REFLECTED_CLASS(CCharClassMovementComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassMovementComponent, CCharClassComponent);
+#pragma GCC diagnostic pop

@@ -12,35 +12,31 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CCharClassDoorEmmyFXComponent.h"
+#include "reflected/CDoorEmmyFXComponent.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCharClassDoorEmmyFXComponent
 void fn_71007b6f68();
 void fn_71007b5464(CFunction* fn, const char* name);
-namespace CCharClassDoorEmmyFXComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CCharClassDoorEmmyFXComponent::refl_AddAttributes(CClass*) {}
+void CCharClassDoorEmmyFXComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_fLockedTime_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71007b6f68);
     DREAD_REFLECTED_FUNCTION("_fLockedTime_SetterFunction")
         fn_71007b5464(fn, "_fLockedTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fLockedTime", (DefaultValue, 5.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x60;
+bool CCharClassDoorEmmyFXComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassDoorEmmyFXComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassDoorEmmyFXComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDoorEmmyFXComponent*>(obj)->vf_0x0(); }
+void CCharClassDoorEmmyFXComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassDoorEmmyFXComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassDoorEmmyFXComponent::refl_Destroy(void* obj) { static_cast<CCharClassDoorEmmyFXComponent*>(obj)->~CCharClassDoorEmmyFXComponent(); }
+void* CCharClassDoorEmmyFXComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassDoorEmmyFXComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassDoorEmmyFXComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassDoorEmmyFXComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -51,28 +47,22 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassDoorEmmyFXComponent
-DREAD_REFLECTED_CLASS(CCharClassDoorEmmyFXComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassDoorEmmyFXComponent, CCharClassComponent);
 
 // CDoorEmmyFXComponent
-namespace CDoorEmmyFXComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj);
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x138;
+void CDoorEmmyFXComponent::refl_AddAttributes(CClass*) {}
+void CDoorEmmyFXComponent::refl_AddFields(CClass*) {}
+bool CDoorEmmyFXComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CDoorEmmyFXComponent::refl_Hash() { return -1; }
+struct CDoorEmmyFXComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CDoorEmmyFXComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CDoorEmmyFXComponent
-DREAD_REFLECTED_CLASS(CDoorEmmyFXComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CDoorEmmyFXComponent, CComponent);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

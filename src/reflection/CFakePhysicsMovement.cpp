@@ -5,28 +5,23 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CFakePhysicsMovement.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CFakePhysicsMovement
-namespace CFakePhysicsMovement {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x300;
+void CFakePhysicsMovement::refl_AddAttributes(CClass*) {}
+void CFakePhysicsMovement::refl_AddFields(CClass*) {}
+bool CFakePhysicsMovement::refl_Equals(const void*, const void*) { return false; }
+s32 CFakePhysicsMovement::refl_Hash() { return -1; }
+const base::reflection::CType& CFakePhysicsMovement::refl_TypeOf(const void* obj) { return *static_cast<const CFakePhysicsMovement*>(obj)->vf_0x0(); }
+void CFakePhysicsMovement::refl_CopyConstruct(void*, const void*) {}
+void CFakePhysicsMovement::refl_MoveConstruct(void*, const void*) {}
+void CFakePhysicsMovement::refl_Destroy(void* obj) { static_cast<CFakePhysicsMovement*>(obj)->~CFakePhysicsMovement(); }
+void* CFakePhysicsMovement::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CFakePhysicsMovement::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CFakePhysicsMovement::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CFakePhysicsMovement);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -37,5 +32,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CFakePhysicsMovement
-DREAD_REFLECTED_CLASS(CFakePhysicsMovement, CMovementComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CFakePhysicsMovement, CMovementComponent);

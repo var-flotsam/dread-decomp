@@ -7,42 +7,39 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassFrozenComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFrozenComponent
-namespace CCharClassFrozenComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fTotalFreezeTime", 0x58, (DefaultValue, 4.0f), (Description, "Time this entity is frozen"));
-    DREAD_REFLECTED_FIELD(f32, "fThawingTime", 0x5c, (DefaultValue, 1.0f), (Description, "Time while the entity is thawing, as a warning. This time is included in the total freeze time"));
-    DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnFrozen", 0x60, (DefaultValue, "frozen_onfrozen"), (Description, "Timeline to play when frozen"));
-    DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnThawing", 0x68, (DefaultValue, "frozen_onthawing"), (Description, "Timeline to play when thawing starts"));
-    DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnUnfreeze", 0x70, (DefaultValue, "frozen_onunfreeze"), (Description, "Timeline to play when unfreezing (any reason)"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeInit", 0x78, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when freezing starts. If empty, entity will freeze in frame"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeEnd", 0x80, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when freezing ends. Required if m_sActionFreezeInit is filled"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeEndFalling", 0x88, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when freezing ends if falling"));
-    DREAD_REFLECTED_FIELD(CStrId, "sCustomLayer", 0x90, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sCustomLayerMixerNode", 0x98, (DefaultValue, CStrId(CStrId::Empty())));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassFrozenComponent::refl_AddAttributes(CClass*) {}
+void CCharClassFrozenComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fTotalFreezeTime", offsetof(CCharClassFrozenComponent, fTotalFreezeTime), (DefaultValue, 4.0f), (Description, "Time this entity is frozen"));
+    DREAD_REFLECTED_FIELD(f32, "fThawingTime", offsetof(CCharClassFrozenComponent, fThawingTime), (DefaultValue, 1.0f), (Description, "Time while the entity is thawing, as a warning. This time is included in the total freeze time"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnFrozen", offsetof(CCharClassFrozenComponent, sTimelineIdOnFrozen), (DefaultValue, "frozen_onfrozen"), (Description, "Timeline to play when frozen"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnThawing", offsetof(CCharClassFrozenComponent, sTimelineIdOnThawing), (DefaultValue, "frozen_onthawing"), (Description, "Timeline to play when thawing starts"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnUnfreeze", offsetof(CCharClassFrozenComponent, sTimelineIdOnUnfreeze), (DefaultValue, "frozen_onunfreeze"), (Description, "Timeline to play when unfreezing (any reason)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeInit", offsetof(CCharClassFrozenComponent, sActionFreezeInit), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when freezing starts. If empty, entity will freeze in frame"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeEnd", offsetof(CCharClassFrozenComponent, sActionFreezeEnd), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when freezing ends. Required if m_sActionFreezeInit is filled"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeEndFalling", offsetof(CCharClassFrozenComponent, sActionFreezeEndFalling), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when freezing ends if falling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sCustomLayer", offsetof(CCharClassFrozenComponent, sCustomLayer), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sCustomLayerMixerNode", offsetof(CCharClassFrozenComponent, sCustomLayerMixerNode), (DefaultValue, CStrId(CStrId::Empty())));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xa0;
+bool CCharClassFrozenComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassFrozenComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassFrozenComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFrozenComponent*>(obj)->vf_0x0(); }
+void CCharClassFrozenComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassFrozenComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassFrozenComponent::refl_Destroy(void* obj) { static_cast<CCharClassFrozenComponent*>(obj)->~CCharClassFrozenComponent(); }
+void* CCharClassFrozenComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassFrozenComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassFrozenComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassFrozenComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -53,5 +50,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassFrozenComponent
-DREAD_REFLECTED_CLASS(CCharClassFrozenComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassFrozenComponent, CCharClassComponent);
+#pragma GCC diagnostic pop

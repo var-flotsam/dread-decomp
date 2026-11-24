@@ -5,25 +5,21 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CAIGotoPointNavigationState/SEntityTarget.h"
+#include "reflected/CAIGotoPointNavigationState/SPointTarget.h"
+#include "reflected/CAIGotoPointNavigationState/STarget.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CAIGotoPointNavigationState::STarget
-namespace CAIGotoPointNavigationState::STarget {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x8;
+void CAIGotoPointNavigationState::STarget::refl_AddAttributes(CClass*) {}
+void CAIGotoPointNavigationState::STarget::refl_AddFields(CClass*) {}
+bool CAIGotoPointNavigationState::STarget::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CAIGotoPointNavigationState::STarget::refl_Hash() { return -1; }
+const base::reflection::CType& CAIGotoPointNavigationState::STarget::refl_TypeOf(const void* obj) { return *static_cast<const STarget*>(obj)->vf_0x0(); }
+void CAIGotoPointNavigationState::STarget::refl_Destroy(void* obj) { static_cast<STarget*>(obj)->~STarget(); }
+struct CAIGotoPointNavigationState::STarget::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(STarget);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -32,23 +28,17 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CAIGotoPointNavigationState::STarget
-DREAD_REFLECTED_ROOT_CLASS(CAIGotoPointNavigationState::STarget);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(CAIGotoPointNavigationState::STarget);
 
 // CAIGotoPointNavigationState::SPointTarget
-namespace CAIGotoPointNavigationState::SPointTarget {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
+void CAIGotoPointNavigationState::SPointTarget::refl_AddAttributes(CClass*) {}
+void CAIGotoPointNavigationState::SPointTarget::refl_AddFields(CClass*) {}
+bool CAIGotoPointNavigationState::SPointTarget::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CAIGotoPointNavigationState::SPointTarget::refl_Hash() { return -1; }
+const base::reflection::CType& CAIGotoPointNavigationState::SPointTarget::refl_TypeOf(const void* obj) { return *static_cast<const SPointTarget*>(obj)->vf_0x0(); }
+void CAIGotoPointNavigationState::SPointTarget::refl_Destroy(void* obj) { static_cast<SPointTarget*>(obj)->~SPointTarget(); }
+struct CAIGotoPointNavigationState::SPointTarget::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(SPointTarget);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -58,23 +48,17 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CAIGotoPointNavigationState::SPointTarget
-DREAD_REFLECTED_CLASS(CAIGotoPointNavigationState::SPointTarget, CAIGotoPointNavigationState::STarget);
+DREAD_REFLECTED_DECLARED_CLASS(CAIGotoPointNavigationState::SPointTarget, CAIGotoPointNavigationState::STarget);
 
 // CAIGotoPointNavigationState::SEntityTarget
-namespace CAIGotoPointNavigationState::SEntityTarget {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+void CAIGotoPointNavigationState::SEntityTarget::refl_AddAttributes(CClass*) {}
+void CAIGotoPointNavigationState::SEntityTarget::refl_AddFields(CClass*) {}
+bool CAIGotoPointNavigationState::SEntityTarget::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CAIGotoPointNavigationState::SEntityTarget::refl_Hash() { return -1; }
+const base::reflection::CType& CAIGotoPointNavigationState::SEntityTarget::refl_TypeOf(const void* obj) { return *static_cast<const SEntityTarget*>(obj)->vf_0x0(); }
+void CAIGotoPointNavigationState::SEntityTarget::refl_Destroy(void* obj) { static_cast<SEntityTarget*>(obj)->~SEntityTarget(); }
+struct CAIGotoPointNavigationState::SEntityTarget::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(SEntityTarget);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -84,5 +68,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CAIGotoPointNavigationState::SEntityTarget
-DREAD_REFLECTED_CLASS(CAIGotoPointNavigationState::SEntityTarget, CAIGotoPointNavigationState::SPointTarget);
+DREAD_REFLECTED_DECLARED_CLASS(CAIGotoPointNavigationState::SEntityTarget, CAIGotoPointNavigationState::SPointTarget);

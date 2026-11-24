@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CSpotLightComponent.h"
 namespace base::global { class CFilePathStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
 namespace base::math { class CVector2D; }
@@ -61,9 +58,8 @@ void fn_71008fa708();
 void fn_71008f8bb0(CFunction* fn, const char* name);
 void fn_71008fa834();
 void fn_71008f8d2c(CFunction* fn, const char* name);
-namespace CSpotLightComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CSpotLightComponent::refl_AddAttributes(CClass*) {}
+void CSpotLightComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_fAttMin_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008f9c3c);
     DREAD_REFLECTED_FUNCTION("_fAttMin_SetterFunction")
         fn_71008f76e8(fn, "_fAttMin_SetterFunction");
@@ -129,17 +125,16 @@ void refl_AddFields(CClass* cls) {
         fn_71008f8d2c(fn, "_vProjectorUVScroll_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vProjectorUVScroll", (DefaultValue, base::math::CVector4D{1.0f, 1.0f, 0.0f, 0.0f}));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x68;
+bool CSpotLightComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CSpotLightComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CSpotLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSpotLightComponent*>(obj)->vf_0x0(); }
+void CSpotLightComponent::refl_CopyConstruct(void*, const void*) {}
+void CSpotLightComponent::refl_MoveConstruct(void*, const void*) {}
+void CSpotLightComponent::refl_Destroy(void* obj) { static_cast<CSpotLightComponent*>(obj)->~CSpotLightComponent(); }
+void* CSpotLightComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CSpotLightComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CSpotLightComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSpotLightComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -150,8 +145,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CSpotLightComponent
-DREAD_REFLECTED_CLASS(CSpotLightComponent, CBaseLightComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CSpotLightComponent, CBaseLightComponent);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/GUI/CModel3D.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -53,9 +50,8 @@ void fn_71011f58d8();
 void fn_71011f3954(CFunction* fn, const char* name);
 void fn_71011f5968();
 void fn_71011f3ad0(CFunction* fn, const char* name);
-namespace GUI::CModel3D {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void GUI::CModel3D::refl_AddAttributes(CClass*) {}
+void GUI::CModel3D::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_ApplyScaleToEntities_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71011f4e1c);
     DREAD_REFLECTED_FUNCTION("_ApplyScaleToEntities_SetterFunction")
         fn_71011f2608(fn, "_ApplyScaleToEntities_SetterFunction");
@@ -117,21 +113,19 @@ void refl_AddFields(CClass* cls) {
         fn_71011f3ad0(fn, "_DefaultCenterToFloorDist_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "DefaultCenterToFloorDist");
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x278;
+bool GUI::CModel3D::refl_Equals(const void*, const void*) { return false; }
+s32 GUI::CModel3D::refl_Hash() { return -1; }
+const base::reflection::CType& GUI::CModel3D::refl_TypeOf(const void* obj) { return *static_cast<const CModel3D*>(obj)->vf_0x0(); }
+void GUI::CModel3D::refl_Destroy(void* obj) { static_cast<CModel3D*>(obj)->~CModel3D(); }
+struct GUI::CModel3D::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CModel3D);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace GUI::CModel3D
-DREAD_REFLECTED_CLASS(GUI::CModel3D, GUI::CDisplayObject);
+DREAD_REFLECTED_DECLARED_CLASS(GUI::CModel3D, GUI::CDisplayObject);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

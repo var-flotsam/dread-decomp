@@ -7,36 +7,31 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassOverrideSamusMeleeActionTrack.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassOverrideSamusMeleeActionTrack
-namespace CCharClassOverrideSamusMeleeActionTrack {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassOverrideSamusMeleeActionTrack::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Override Samus Melee Action");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Melee", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sMeleeAction", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bMaintainFrame", 0x20, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(s32, "iFrame", 0x24, (DefaultValue, 0));
+void CCharClassOverrideSamusMeleeActionTrack::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sMeleeAction", offsetof(CCharClassOverrideSamusMeleeActionTrack, sMeleeAction), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bMaintainFrame", offsetof(CCharClassOverrideSamusMeleeActionTrack, bMaintainFrame), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(s32, "iFrame", offsetof(CCharClassOverrideSamusMeleeActionTrack, iFrame), (DefaultValue, 0));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x28;
+bool CCharClassOverrideSamusMeleeActionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassOverrideSamusMeleeActionTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassOverrideSamusMeleeActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassOverrideSamusMeleeActionTrack*>(obj)->vf_0x0(); }
+void CCharClassOverrideSamusMeleeActionTrack::refl_Destroy(void* obj) { static_cast<CCharClassOverrideSamusMeleeActionTrack*>(obj)->~CCharClassOverrideSamusMeleeActionTrack(); }
+struct CCharClassOverrideSamusMeleeActionTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassOverrideSamusMeleeActionTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -45,5 +40,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassOverrideSamusMeleeActionTrack
-DREAD_REFLECTED_CLASS(CCharClassOverrideSamusMeleeActionTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassOverrideSamusMeleeActionTrack, base::global::timeline::CTrack);
+#pragma GCC diagnostic pop

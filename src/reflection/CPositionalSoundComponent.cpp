@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/CPointerType.h"
+#include "reflected/CPositionalSoundComponent.h"
 namespace base::global { class CFilePathStrId; }
 extern template const base::reflection::CType* base::reflection::PointerType<base::global::CFilePathStrId const*>::Get();
 
@@ -29,19 +26,20 @@ void fn_710114d1e8();
 void fn_710114b2f4(CFunction* fn, const char* name);
 void fn_710114d358();
 void fn_710114b470(CFunction* fn, const char* name);
-namespace CPositionalSoundComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fMinAtt", 0x70, (DefaultValue, 250.0f), (MaxValueProperty, CStrId("fMaxAtt", true)));
-    DREAD_REFLECTED_FIELD(f32, "fMaxAtt", 0x74, (DefaultValue, 500.0f), (MinValueProperty, CStrId("fMinAtt", true)));
-    DREAD_REFLECTED_FIELD(f32, "fVol", 0x7c, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fPitch", 0x80, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fLaunchEvery", 0x78, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fHorizontalMult", 0xc0, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fVerticalMult", 0xc4, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(bool, "bLoop", 0xa8, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", 0xb8, (DefaultValue, 0.2f));
-    DREAD_REFLECTED_FIELD(f32, "fFadeOutTime", 0xbc, (DefaultValue, 0.2f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CPositionalSoundComponent::refl_AddAttributes(CClass*) {}
+void CPositionalSoundComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fMinAtt", offsetof(CPositionalSoundComponent, fMinAtt), (DefaultValue, 250.0f), (MaxValueProperty, CStrId("fMaxAtt", true)));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAtt", offsetof(CPositionalSoundComponent, fMaxAtt), (DefaultValue, 500.0f), (MinValueProperty, CStrId("fMinAtt", true)));
+    DREAD_REFLECTED_FIELD(f32, "fVol", offsetof(CPositionalSoundComponent, fVol), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPitch", offsetof(CPositionalSoundComponent, fPitch), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchEvery", offsetof(CPositionalSoundComponent, fLaunchEvery), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHorizontalMult", offsetof(CPositionalSoundComponent, fHorizontalMult), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fVerticalMult", offsetof(CPositionalSoundComponent, fVerticalMult), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(bool, "bLoop", offsetof(CPositionalSoundComponent, bLoop), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", offsetof(CPositionalSoundComponent, fFadeInTime), (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fFadeOutTime", offsetof(CPositionalSoundComponent, fFadeOutTime), (DefaultValue, 0.2f));
     DREAD_REFLECTED_FUNCTION_OF("_sSound1_GetterFunction", base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0, fn_710114cf08);
     DREAD_REFLECTED_FUNCTION("_sSound1_SetterFunction")
         fn_710114affc(fn, "_sSound1_SetterFunction");
@@ -59,15 +57,14 @@ void refl_AddFields(CClass* cls) {
         fn_710114b470(fn, "_sSound4_SetterFunction");
     CVariable* field13 = AddReflectedField(cls, CStrId("sSound4", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xd8;
+bool CPositionalSoundComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CPositionalSoundComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CPositionalSoundComponent::refl_TypeOf(const void* obj) { return *static_cast<const CPositionalSoundComponent*>(obj)->vf_0x0(); }
+void CPositionalSoundComponent::refl_CopyConstruct(void*, const void*) {}
+void CPositionalSoundComponent::refl_MoveConstruct(void*, const void*) {}
+void CPositionalSoundComponent::refl_Destroy(void* obj) { static_cast<CPositionalSoundComponent*>(obj)->~CPositionalSoundComponent(); }
+struct CPositionalSoundComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CPositionalSoundComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -76,8 +73,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CPositionalSoundComponent
-DREAD_REFLECTED_CLASS(CPositionalSoundComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CPositionalSoundComponent, CComponent);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

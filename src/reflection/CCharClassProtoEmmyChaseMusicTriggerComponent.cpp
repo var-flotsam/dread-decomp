@@ -5,28 +5,24 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CCharClassProtoEmmyChaseMusicTriggerComponent.h"
+#include "reflected/CProtoEmmyChaseMusicTriggerComponent.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassProtoEmmyChaseMusicTriggerComponent
-namespace CCharClassProtoEmmyChaseMusicTriggerComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x60;
+void CCharClassProtoEmmyChaseMusicTriggerComponent::refl_AddAttributes(CClass*) {}
+void CCharClassProtoEmmyChaseMusicTriggerComponent::refl_AddFields(CClass*) {}
+bool CCharClassProtoEmmyChaseMusicTriggerComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassProtoEmmyChaseMusicTriggerComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassProtoEmmyChaseMusicTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassProtoEmmyChaseMusicTriggerComponent*>(obj)->vf_0x0(); }
+void CCharClassProtoEmmyChaseMusicTriggerComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassProtoEmmyChaseMusicTriggerComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassProtoEmmyChaseMusicTriggerComponent::refl_Destroy(void* obj) { static_cast<CCharClassProtoEmmyChaseMusicTriggerComponent*>(obj)->~CCharClassProtoEmmyChaseMusicTriggerComponent(); }
+void* CCharClassProtoEmmyChaseMusicTriggerComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassProtoEmmyChaseMusicTriggerComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassProtoEmmyChaseMusicTriggerComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassProtoEmmyChaseMusicTriggerComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -37,22 +33,19 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassProtoEmmyChaseMusicTriggerComponent
-DREAD_REFLECTED_CLASS(CCharClassProtoEmmyChaseMusicTriggerComponent, CCharClassBaseTriggerComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassProtoEmmyChaseMusicTriggerComponent, CCharClassBaseTriggerComponent);
 
 // CProtoEmmyChaseMusicTriggerComponent
-namespace CProtoEmmyChaseMusicTriggerComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xac0;
+void CProtoEmmyChaseMusicTriggerComponent::refl_AddAttributes(CClass*) {}
+void CProtoEmmyChaseMusicTriggerComponent::refl_AddFields(CClass*) {}
+bool CProtoEmmyChaseMusicTriggerComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CProtoEmmyChaseMusicTriggerComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CProtoEmmyChaseMusicTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CProtoEmmyChaseMusicTriggerComponent*>(obj)->vf_0x0(); }
+void CProtoEmmyChaseMusicTriggerComponent::refl_Destroy(void* obj) { static_cast<CProtoEmmyChaseMusicTriggerComponent*>(obj)->~CProtoEmmyChaseMusicTriggerComponent(); }
+void* CProtoEmmyChaseMusicTriggerComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CProtoEmmyChaseMusicTriggerComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CProtoEmmyChaseMusicTriggerComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CProtoEmmyChaseMusicTriggerComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -61,5 +54,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CProtoEmmyChaseMusicTriggerComponent
-DREAD_REFLECTED_CLASS(CProtoEmmyChaseMusicTriggerComponent, CBaseTriggerComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CProtoEmmyChaseMusicTriggerComponent, CBaseTriggerComponent);

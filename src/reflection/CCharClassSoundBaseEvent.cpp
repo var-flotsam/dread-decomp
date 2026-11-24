@@ -5,25 +5,19 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CCharClassSoundBaseEvent.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSoundBaseEvent
-namespace CCharClassSoundBaseEvent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x10;
+void CCharClassSoundBaseEvent::refl_AddAttributes(CClass*) {}
+void CCharClassSoundBaseEvent::refl_AddFields(CClass*) {}
+bool CCharClassSoundBaseEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassSoundBaseEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassSoundBaseEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSoundBaseEvent*>(obj)->vf_0x0(); }
+void CCharClassSoundBaseEvent::refl_Destroy(void* obj) { static_cast<CCharClassSoundBaseEvent*>(obj)->~CCharClassSoundBaseEvent(); }
+struct CCharClassSoundBaseEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassSoundBaseEvent);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -32,8 +26,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassSoundBaseEvent
-DREAD_REFLECTED_CLASS(CCharClassSoundBaseEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassSoundBaseEvent, base::global::timeline::CEvent);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

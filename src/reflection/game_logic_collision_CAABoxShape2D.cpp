@@ -14,11 +14,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/game/logic/collision/CAABoxShape2D.h"
 namespace base::math { class CVector2D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector2D>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -30,9 +27,8 @@ void fn_7100d5edcc();
 void fn_7100d5dd04(CFunction* fn, const char* name);
 void fn_7100d5ee80();
 void fn_7100d5de80(CFunction* fn, const char* name);
-namespace game::logic::collision::CAABoxShape2D {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void game::logic::collision::CAABoxShape2D::refl_AddAttributes(CClass*) {}
+void game::logic::collision::CAABoxShape2D::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_v2Min_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector2D>::Get(), 0, fn_7100d5ed18);
     DREAD_REFLECTED_FUNCTION("_v2Min_SetterFunction")
         fn_7100d5db88(fn, "_v2Min_SetterFunction");
@@ -46,17 +42,12 @@ void refl_AddFields(CClass* cls) {
         fn_7100d5de80(fn, "_bOutwardsNormal_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bOutwardsNormal", (DefaultValue, false));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xc0;
+bool game::logic::collision::CAABoxShape2D::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 game::logic::collision::CAABoxShape2D::refl_Hash() { return -1; }
+const base::reflection::CType& game::logic::collision::CAABoxShape2D::refl_TypeOf(const void* obj) { return *static_cast<const CAABoxShape2D*>(obj)->vf_0x0(); }
+void game::logic::collision::CAABoxShape2D::refl_Destroy(void* obj) { static_cast<CAABoxShape2D*>(obj)->~CAABoxShape2D(); }
+struct game::logic::collision::CAABoxShape2D::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CAABoxShape2D);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -67,8 +58,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace game::logic::collision::CAABoxShape2D
-DREAD_REFLECTED_CLASS(game::logic::collision::CAABoxShape2D, game::logic::collision::CShape);
+DREAD_REFLECTED_DECLARED_CLASS(game::logic::collision::CAABoxShape2D, game::logic::collision::CShape);
 
 void fn_7100d5e7b8();
 void fn_7100d5e820();

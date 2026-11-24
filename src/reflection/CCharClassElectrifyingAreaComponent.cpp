@@ -7,41 +7,38 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassElectrifyingAreaComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassElectrifyingAreaComponent
-namespace CCharClassElectrifyingAreaComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bShouldUpdateAreaOnStart", 0x58, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bShouldCoverPlatformsCompletely", 0x59, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fMinValidYNormal", 0x5c, (DefaultValue, -1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fClockwiseDistance", 0x60, (DefaultValue, -1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fCounterClockwiseDistance", 0x64, (DefaultValue, -1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fTriggerHeight", 0x68, (DefaultValue, 5.0f), (Description, "Height of the damage collider's poly over (world's Up) each point of the calculated navmesh path"));
-    DREAD_REFLECTED_FIELD(f32, "fTriggerDownwardHeight", 0x6c, (DefaultValue, -1.0f), (Description, "Height of the damage collider's poly over (world's Down) each point of the calculated navmesh path. If negative m_fTriggerHeight is used"));
-    DREAD_REFLECTED_FIELD(f32, "fFXHeight", 0x70, (DefaultValue, -1.0f), (Description, "Height of the FX poly over the calculated navmesh path. If negative m_fTriggerHeight is used"));
-    DREAD_REFLECTED_FIELD(f32, "fHeightTolerance", 0x74, (DefaultValue, 20.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassElectrifyingAreaComponent::refl_AddAttributes(CClass*) {}
+void CCharClassElectrifyingAreaComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bShouldUpdateAreaOnStart", offsetof(CCharClassElectrifyingAreaComponent, bShouldUpdateAreaOnStart), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bShouldCoverPlatformsCompletely", offsetof(CCharClassElectrifyingAreaComponent, bShouldCoverPlatformsCompletely), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fMinValidYNormal", offsetof(CCharClassElectrifyingAreaComponent, fMinValidYNormal), (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fClockwiseDistance", offsetof(CCharClassElectrifyingAreaComponent, fClockwiseDistance), (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCounterClockwiseDistance", offsetof(CCharClassElectrifyingAreaComponent, fCounterClockwiseDistance), (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTriggerHeight", offsetof(CCharClassElectrifyingAreaComponent, fTriggerHeight), (DefaultValue, 5.0f), (Description, "Height of the damage collider's poly over (world's Up) each point of the calculated navmesh path"));
+    DREAD_REFLECTED_FIELD(f32, "fTriggerDownwardHeight", offsetof(CCharClassElectrifyingAreaComponent, fTriggerDownwardHeight), (DefaultValue, -1.0f), (Description, "Height of the damage collider's poly over (world's Down) each point of the calculated navmesh path. If negative m_fTriggerHeight is used"));
+    DREAD_REFLECTED_FIELD(f32, "fFXHeight", offsetof(CCharClassElectrifyingAreaComponent, fFXHeight), (DefaultValue, -1.0f), (Description, "Height of the FX poly over the calculated navmesh path. If negative m_fTriggerHeight is used"));
+    DREAD_REFLECTED_FIELD(f32, "fHeightTolerance", offsetof(CCharClassElectrifyingAreaComponent, fHeightTolerance), (DefaultValue, 20.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x78;
+bool CCharClassElectrifyingAreaComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassElectrifyingAreaComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassElectrifyingAreaComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassElectrifyingAreaComponent*>(obj)->vf_0x0(); }
+void CCharClassElectrifyingAreaComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassElectrifyingAreaComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassElectrifyingAreaComponent::refl_Destroy(void* obj) { static_cast<CCharClassElectrifyingAreaComponent*>(obj)->~CCharClassElectrifyingAreaComponent(); }
+void* CCharClassElectrifyingAreaComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassElectrifyingAreaComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassElectrifyingAreaComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassElectrifyingAreaComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -52,5 +49,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassElectrifyingAreaComponent
-DREAD_REFLECTED_CLASS(CCharClassElectrifyingAreaComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassElectrifyingAreaComponent, CCharClassComponent);
+#pragma GCC diagnostic pop

@@ -5,25 +5,21 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/behaviortree/CEmmyStateAction.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CEmmyStateAction
-namespace behaviortree::CEmmyStateAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x30;
+void behaviortree::CEmmyStateAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CEmmyStateAction::refl_AddFields(CClass*) {}
+bool behaviortree::CEmmyStateAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CEmmyStateAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CEmmyStateAction::refl_TypeOf(const void* obj) { return *static_cast<const CEmmyStateAction*>(obj)->vf_0x0(); }
+void behaviortree::CEmmyStateAction::refl_Destroy(void* obj) { static_cast<CEmmyStateAction*>(obj)->~CEmmyStateAction(); }
+void* behaviortree::CEmmyStateAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CEmmyStateAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CEmmyStateAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CEmmyStateAction);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -32,5 +28,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CEmmyStateAction
-DREAD_REFLECTED_CLASS(behaviortree::CEmmyStateAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CEmmyStateAction, behaviortree::CBaseAction);

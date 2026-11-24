@@ -7,57 +7,50 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CDamageSourceFactor.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CDamageSourceFactor
-namespace CDamageSourceFactor {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fPowerBeamFactor", 0x8, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fWideBeamFactor", 0xc, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fPlasmaBeamFactor", 0x10, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fWaveBeamFactor", 0x14, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fGrappleBeamFactor", 0x18, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fHyperBeamFactor", 0x1c, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fChargePowerBeamFactor", 0x20, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fChargeWideBeamFactor", 0x24, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fChargePlasmaBeamFactor", 0x28, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fChargeWaveBeamFactor", 0x2c, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMeleeChargePowerBeamFactor", 0x30, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMeleeChargeWideBeamFactor", 0x34, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMeleeChargePlasmaBeamFactor", 0x38, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMeleeChargeWaveBeamFactor", 0x3c, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMissileFactor", 0x40, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fSuperMissileFactor", 0x44, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fIceMissileFactor", 0x48, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMultiLockonMissileFactor", 0x4c, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fBombFactor", 0x50, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fLineBombFactor", 0x54, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fPowerBombFactor", 0x58, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fScrewAttackFactor", 0x5c, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fDashMeleeFactor", 0x60, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fSpeedBoosterFactor", 0x64, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fShineSparkFactor", 0x68, (DefaultValue, 1.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CDamageSourceFactor::refl_AddAttributes(CClass*) {}
+void CDamageSourceFactor::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fPowerBeamFactor", offsetof(CDamageSourceFactor, fPowerBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWideBeamFactor", offsetof(CDamageSourceFactor, fWideBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPlasmaBeamFactor", offsetof(CDamageSourceFactor, fPlasmaBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWaveBeamFactor", offsetof(CDamageSourceFactor, fWaveBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fGrappleBeamFactor", offsetof(CDamageSourceFactor, fGrappleBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHyperBeamFactor", offsetof(CDamageSourceFactor, fHyperBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChargePowerBeamFactor", offsetof(CDamageSourceFactor, fChargePowerBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChargeWideBeamFactor", offsetof(CDamageSourceFactor, fChargeWideBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChargePlasmaBeamFactor", offsetof(CDamageSourceFactor, fChargePlasmaBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChargeWaveBeamFactor", offsetof(CDamageSourceFactor, fChargeWaveBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMeleeChargePowerBeamFactor", offsetof(CDamageSourceFactor, fMeleeChargePowerBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMeleeChargeWideBeamFactor", offsetof(CDamageSourceFactor, fMeleeChargeWideBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMeleeChargePlasmaBeamFactor", offsetof(CDamageSourceFactor, fMeleeChargePlasmaBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMeleeChargeWaveBeamFactor", offsetof(CDamageSourceFactor, fMeleeChargeWaveBeamFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMissileFactor", offsetof(CDamageSourceFactor, fMissileFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSuperMissileFactor", offsetof(CDamageSourceFactor, fSuperMissileFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fIceMissileFactor", offsetof(CDamageSourceFactor, fIceMissileFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMultiLockonMissileFactor", offsetof(CDamageSourceFactor, fMultiLockonMissileFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBombFactor", offsetof(CDamageSourceFactor, fBombFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLineBombFactor", offsetof(CDamageSourceFactor, fLineBombFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPowerBombFactor", offsetof(CDamageSourceFactor, fPowerBombFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fScrewAttackFactor", offsetof(CDamageSourceFactor, fScrewAttackFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDashMeleeFactor", offsetof(CDamageSourceFactor, fDashMeleeFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedBoosterFactor", offsetof(CDamageSourceFactor, fSpeedBoosterFactor), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShineSparkFactor", offsetof(CDamageSourceFactor, fShineSparkFactor), (DefaultValue, 1.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x70;
+bool CDamageSourceFactor::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CDamageSourceFactor::refl_Hash() { return -1; }
+const base::reflection::CType& CDamageSourceFactor::refl_TypeOf(const void* obj) { return *static_cast<const CDamageSourceFactor*>(obj)->vf_0x0(); }
+void CDamageSourceFactor::refl_Destroy(void* obj) { static_cast<CDamageSourceFactor*>(obj)->~CDamageSourceFactor(); }
+struct CDamageSourceFactor::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CDamageSourceFactor);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -68,5 +61,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CDamageSourceFactor
-DREAD_REFLECTED_ROOT_CLASS(CDamageSourceFactor);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(CDamageSourceFactor);
+#pragma GCC diagnostic pop

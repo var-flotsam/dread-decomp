@@ -12,41 +12,34 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CCharClassStopAudioPresetEvent.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
 // CCharClassStopAudioPresetEvent
 void fn_7100be4d2c();
 void fn_7100be42fc(CFunction* fn, const char* name);
-namespace CCharClassStopAudioPresetEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassStopAudioPresetEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Stop Preset");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Audio", true));
 }
-void refl_AddFields(CClass* cls) {
+void CCharClassStopAudioPresetEvent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sPresetID_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100be4d2c);
     DREAD_REFLECTED_FUNCTION("_sPresetID_SetterFunction")
         fn_7100be42fc(fn, "_sPresetID_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sPresetID", (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(f32, "fFadeOut", 0x30, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 10.0f));
-    DREAD_REFLECTED_FIELD(f32, "fDelayed", 0x34, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFadeOut", offsetof(CCharClassStopAudioPresetEvent, fFadeOut), (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDelayed", offsetof(CCharClassStopAudioPresetEvent, fDelayed), (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 10.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x38;
+bool CCharClassStopAudioPresetEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassStopAudioPresetEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassStopAudioPresetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStopAudioPresetEvent*>(obj)->vf_0x0(); }
+void CCharClassStopAudioPresetEvent::refl_Destroy(void* obj) { static_cast<CCharClassStopAudioPresetEvent*>(obj)->~CCharClassStopAudioPresetEvent(); }
+struct CCharClassStopAudioPresetEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassStopAudioPresetEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -57,8 +50,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassStopAudioPresetEvent
-DREAD_REFLECTED_CLASS(CCharClassStopAudioPresetEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassStopAudioPresetEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

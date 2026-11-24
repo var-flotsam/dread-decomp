@@ -7,32 +7,28 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CStimulusDef.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CStimulusDef
-namespace CStimulusDef {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8);
-    DREAD_REFLECTED_FIELD(f32, "fMaxRange", 0x10);
-    DREAD_REFLECTED_FIELD(f32, "fMaxTTL", 0x14);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CStimulusDef::refl_AddAttributes(CClass*) {}
+void CStimulusDef::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sId", offsetof(CStimulusDef, sId));
+    DREAD_REFLECTED_FIELD(f32, "fMaxRange", offsetof(CStimulusDef, fMaxRange));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTTL", offsetof(CStimulusDef, fMaxTTL));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
+bool CStimulusDef::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CStimulusDef::refl_Hash() { return -1; }
+const base::reflection::CType& CStimulusDef::refl_TypeOf(const void* obj) { return *static_cast<const CStimulusDef*>(obj)->vf_0x0(); }
+void CStimulusDef::refl_Destroy(void* obj) { static_cast<CStimulusDef*>(obj)->~CStimulusDef(); }
+struct CStimulusDef::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CStimulusDef);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -41,5 +37,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CStimulusDef
-DREAD_REFLECTED_ROOT_CLASS(CStimulusDef);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(CStimulusDef);
+#pragma GCC diagnostic pop

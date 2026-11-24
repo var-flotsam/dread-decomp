@@ -7,39 +7,33 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/CItemLifeComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CItemLifeComponent
 void fn_71008e0328(CFunction* fn, const char* name);
-namespace CItemLifeComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CItemLifeComponent::refl_AddAttributes(CClass*) {}
+void CItemLifeComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("AddDamageSource") {
         fn_71008e0328(fn, "AddDamageSource");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Add Damage source (POWER_BEAM, CHARGE_BEAM, ...)"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x388;
+bool CItemLifeComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CItemLifeComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CItemLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CItemLifeComponent*>(obj)->vf_0x0(); }
+void CItemLifeComponent::refl_Destroy(void* obj) { static_cast<CItemLifeComponent*>(obj)->~CItemLifeComponent(); }
+struct CItemLifeComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CItemLifeComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CItemLifeComponent
-DREAD_REFLECTED_CLASS(CItemLifeComponent, CLifeComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CItemLifeComponent, CLifeComponent);

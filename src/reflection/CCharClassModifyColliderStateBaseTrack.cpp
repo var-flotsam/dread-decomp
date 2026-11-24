@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CCharClassModifyColliderStateBaseTrack.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
@@ -45,9 +42,8 @@ void fn_7100d20f7c();
 void fn_7100d1eb9c(CFunction* fn, const char* name);
 void fn_7100d2108c();
 void fn_7100d1ed18(CFunction* fn, const char* name);
-namespace CCharClassModifyColliderStateBaseTrack {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CCharClassModifyColliderStateBaseTrack::refl_AddAttributes(CClass*) {}
+void CCharClassModifyColliderStateBaseTrack::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sCollidersEnabled_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d206e4);
     DREAD_REFLECTED_FUNCTION("_m_sCollidersEnabled_SetterFunction")
         fn_7100d1dcc4(fn, "_m_sCollidersEnabled_SetterFunction");
@@ -97,14 +93,12 @@ void refl_AddFields(CClass* cls) {
         fn_7100d1ed18(fn, "_m_sLayersDisabled3_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sLayersDisabled3", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Layers Disabled3"));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x198;
+bool CCharClassModifyColliderStateBaseTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassModifyColliderStateBaseTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassModifyColliderStateBaseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassModifyColliderStateBaseTrack*>(obj)->vf_0x0(); }
+void CCharClassModifyColliderStateBaseTrack::refl_Destroy(void* obj) { static_cast<CCharClassModifyColliderStateBaseTrack*>(obj)->~CCharClassModifyColliderStateBaseTrack(); }
+struct CCharClassModifyColliderStateBaseTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassModifyColliderStateBaseTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -112,5 +106,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassModifyColliderStateBaseTrack
-DREAD_REFLECTED_CLASS(CCharClassModifyColliderStateBaseTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassModifyColliderStateBaseTrack, base::global::timeline::CTrack);

@@ -7,35 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CAttackAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CAttackAction
-namespace behaviortree::CAttackAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sAttack", 0x30, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())), (Description, base::global::CRntString("Selected attack")));
-    DREAD_REFLECTED_FIELD(CStrId, "sAttackBlc", 0x60, (DefaultValue, ""), (Description, "Selected attack (from blackboard)"));
-    DREAD_REFLECTED_FIELD(bool, "bWaitOnAbort", 0x68, (DefaultValue, true), (Description, "Waits for the end of the attack before aborting the action"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CAttackAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CAttackAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sAttack", offsetof(CAttackAction, sAttack), (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())), (Description, base::global::CRntString("Selected attack")));
+    DREAD_REFLECTED_FIELD(CStrId, "sAttackBlc", offsetof(CAttackAction, sAttackBlc), (DefaultValue, ""), (Description, "Selected attack (from blackboard)"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitOnAbort", offsetof(CAttackAction, bWaitOnAbort), (DefaultValue, true), (Description, "Waits for the end of the attack before aborting the action"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x70;
+bool behaviortree::CAttackAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CAttackAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CAttackAction::refl_TypeOf(const void* obj) { return *static_cast<const CAttackAction*>(obj)->vf_0x0(); }
+void behaviortree::CAttackAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CAttackAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CAttackAction::refl_Destroy(void* obj) { static_cast<CAttackAction*>(obj)->~CAttackAction(); }
+void* behaviortree::CAttackAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CAttackAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CAttackAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CAttackAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -46,5 +43,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CAttackAction
-DREAD_REFLECTED_CLASS(behaviortree::CAttackAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CAttackAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

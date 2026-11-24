@@ -7,33 +7,30 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassPlatformTrapGrapplePointComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPlatformTrapGrapplePointComponent
-namespace CCharClassPlatformTrapGrapplePointComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sGrappleCollider", 0x78, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Name of the Collider to use as a grapple point"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassPlatformTrapGrapplePointComponent::refl_AddAttributes(CClass*) {}
+void CCharClassPlatformTrapGrapplePointComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sGrappleCollider", offsetof(CCharClassPlatformTrapGrapplePointComponent, sGrappleCollider), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Name of the Collider to use as a grapple point"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x80;
+bool CCharClassPlatformTrapGrapplePointComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassPlatformTrapGrapplePointComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassPlatformTrapGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPlatformTrapGrapplePointComponent*>(obj)->vf_0x0(); }
+void CCharClassPlatformTrapGrapplePointComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassPlatformTrapGrapplePointComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassPlatformTrapGrapplePointComponent::refl_Destroy(void* obj) { static_cast<CCharClassPlatformTrapGrapplePointComponent*>(obj)->~CCharClassPlatformTrapGrapplePointComponent(); }
+void* CCharClassPlatformTrapGrapplePointComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassPlatformTrapGrapplePointComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassPlatformTrapGrapplePointComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassPlatformTrapGrapplePointComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,5 +41,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassPlatformTrapGrapplePointComponent
-DREAD_REFLECTED_CLASS(CCharClassPlatformTrapGrapplePointComponent, CCharClassPullableGrapplePointComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassPlatformTrapGrapplePointComponent, CCharClassPullableGrapplePointComponent);
+#pragma GCC diagnostic pop

@@ -5,28 +5,19 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CLogicPathNavMeshItemStage.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CLogicPathNavMeshItemStage
-namespace CLogicPathNavMeshItemStage {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x110;
+void CLogicPathNavMeshItemStage::refl_AddAttributes(CClass*) {}
+void CLogicPathNavMeshItemStage::refl_AddFields(CClass*) {}
+bool CLogicPathNavMeshItemStage::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CLogicPathNavMeshItemStage::refl_Hash() { return -1; }
+const base::reflection::CType& CLogicPathNavMeshItemStage::refl_TypeOf(const void* obj) { return *static_cast<const CLogicPathNavMeshItemStage*>(obj)->vf_0x0(); }
+void CLogicPathNavMeshItemStage::refl_Destroy(void* obj) { static_cast<CLogicPathNavMeshItemStage*>(obj)->~CLogicPathNavMeshItemStage(); }
+struct CLogicPathNavMeshItemStage::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CLogicPathNavMeshItemStage);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -37,5 +28,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CLogicPathNavMeshItemStage
-DREAD_REFLECTED_CLASS(CLogicPathNavMeshItemStage, CNavMeshItemStage);
+DREAD_REFLECTED_DECLARED_CLASS(CLogicPathNavMeshItemStage, CNavMeshItemStage);

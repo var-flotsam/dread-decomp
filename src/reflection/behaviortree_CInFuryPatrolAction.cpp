@@ -7,36 +7,33 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CInFuryPatrolAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CInFuryPatrolAction
-namespace behaviortree::CInFuryPatrolAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", 0x64, (DefaultValue, 10.0f), (Description, "Reach distance"));
-    DREAD_REFLECTED_FIELD(bool, "bStopInAbort", 0x68, (DefaultValue, true), (Description, "Stop movement in abort"));
-    DREAD_REFLECTED_FIELD(CStrId, "sAnim", 0x90, (DefaultValue, ""), (Description, "Animation to set on finish"));
-    DREAD_REFLECTED_FIELD(CStrId, "sReturnActionDisp", 0x98, (DefaultValue, ""), (Description, "Transition action disp"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CInFuryPatrolAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CInFuryPatrolAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", offsetof(CInFuryPatrolAction, fReachedDistance), (DefaultValue, 10.0f), (Description, "Reach distance"));
+    DREAD_REFLECTED_FIELD(bool, "bStopInAbort", offsetof(CInFuryPatrolAction, bStopInAbort), (DefaultValue, true), (Description, "Stop movement in abort"));
+    DREAD_REFLECTED_FIELD(CStrId, "sAnim", offsetof(CInFuryPatrolAction, sAnim), (DefaultValue, ""), (Description, "Animation to set on finish"));
+    DREAD_REFLECTED_FIELD(CStrId, "sReturnActionDisp", offsetof(CInFuryPatrolAction, sReturnActionDisp), (DefaultValue, ""), (Description, "Transition action disp"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xb0;
+bool behaviortree::CInFuryPatrolAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CInFuryPatrolAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CInFuryPatrolAction::refl_TypeOf(const void* obj) { return *static_cast<const CInFuryPatrolAction*>(obj)->vf_0x0(); }
+void behaviortree::CInFuryPatrolAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CInFuryPatrolAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CInFuryPatrolAction::refl_Destroy(void* obj) { static_cast<CInFuryPatrolAction*>(obj)->~CInFuryPatrolAction(); }
+void* behaviortree::CInFuryPatrolAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CInFuryPatrolAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CInFuryPatrolAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CInFuryPatrolAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -47,5 +44,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CInFuryPatrolAction
-DREAD_REFLECTED_CLASS(behaviortree::CInFuryPatrolAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CInFuryPatrolAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

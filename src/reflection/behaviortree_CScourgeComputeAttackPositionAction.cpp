@@ -7,35 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CScourgeComputeAttackPositionAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CScourgeComputeAttackPositionAction
-namespace behaviortree::CScourgeComputeAttackPositionAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sPos", 0x30, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Property name for calculated position"));
-    DREAD_REFLECTED_FIELD(CStrId, "sClockwise", 0x38, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Property name for calculated clockwise"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsePos", 0x40, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Property name to use position rather than clockwise"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CScourgeComputeAttackPositionAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CScourgeComputeAttackPositionAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sPos", offsetof(CScourgeComputeAttackPositionAction, sPos), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Property name for calculated position"));
+    DREAD_REFLECTED_FIELD(CStrId, "sClockwise", offsetof(CScourgeComputeAttackPositionAction, sClockwise), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Property name for calculated clockwise"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePos", offsetof(CScourgeComputeAttackPositionAction, sUsePos), (DefaultValue, CStrId(CStrId::Empty())), (Description, "Property name to use position rather than clockwise"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x58;
+bool behaviortree::CScourgeComputeAttackPositionAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CScourgeComputeAttackPositionAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CScourgeComputeAttackPositionAction::refl_TypeOf(const void* obj) { return *static_cast<const CScourgeComputeAttackPositionAction*>(obj)->vf_0x0(); }
+void behaviortree::CScourgeComputeAttackPositionAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CScourgeComputeAttackPositionAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CScourgeComputeAttackPositionAction::refl_Destroy(void* obj) { static_cast<CScourgeComputeAttackPositionAction*>(obj)->~CScourgeComputeAttackPositionAction(); }
+void* behaviortree::CScourgeComputeAttackPositionAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CScourgeComputeAttackPositionAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CScourgeComputeAttackPositionAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CScourgeComputeAttackPositionAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -46,5 +43,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CScourgeComputeAttackPositionAction
-DREAD_REFLECTED_CLASS(behaviortree::CScourgeComputeAttackPositionAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CScourgeComputeAttackPositionAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

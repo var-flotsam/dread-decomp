@@ -5,25 +5,20 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/animtree/CBoneControl.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // animtree::CBoneControl
-namespace animtree::CBoneControl {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x58;
+void animtree::CBoneControl::refl_AddAttributes(CClass*) {}
+void animtree::CBoneControl::refl_AddFields(CClass*) {}
+bool animtree::CBoneControl::refl_Equals(const void*, const void*) { return false; }
+s32 animtree::CBoneControl::refl_Hash() { return -1; }
+const base::reflection::CType& animtree::CBoneControl::refl_TypeOf(const void* obj) { return *static_cast<const CBoneControl*>(obj)->vf_0x0(); }
+void* animtree::CBoneControl::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* animtree::CBoneControl::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct animtree::CBoneControl::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CBoneControl);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -31,5 +26,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace animtree::CBoneControl
-DREAD_REFLECTED_CLASS(animtree::CBoneControl, animtree::CAnimTreeControl);
+DREAD_REFLECTED_DECLARED_CLASS(animtree::CBoneControl, animtree::CAnimTreeControl);

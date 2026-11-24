@@ -11,7 +11,21 @@
 
 class CGameObject : public base::core::CBaseObject {
 public:
-    DREAD_REFLECTED_CLASS_MEMBERS;
+    // The reflection functions it has (src/reflection/), and its descriptor's traits.
+    static const base::reflection::CClass* refl_GetClass();
+    static void refl_AddAttributes(base::reflection::CClass* cls);
+    static void refl_AddFields(base::reflection::CClass* cls);
+    static bool refl_Equals(const void* a, const void* b);
+    static s32 refl_Hash();
+    static const base::reflection::CType& refl_TypeOf(const void* obj);
+    static void refl_Construct(void* obj);
+    static void refl_CopyConstruct(void* dst, const void* src);
+    static void refl_MoveConstruct(void* dst, const void* src);
+    static void refl_Destroy(void* obj);
+    static void* refl_CopyAssign(void* dst, const void* src);
+    static void* refl_MoveAssign(void* dst, const void* src);
+    struct refl_Description;
+    ~CGameObject() override;
     u8 pad_0x8[0x8];
 };
 static_assert(sizeof(CGameObject) == 0x10, "CGameObject size");

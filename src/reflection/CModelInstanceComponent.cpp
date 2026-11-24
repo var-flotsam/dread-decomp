@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CModelInstanceComponent.h"
 namespace base::global { class CFilePathStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
 namespace base::math { class CVector3D; }
@@ -27,9 +24,8 @@ void fn_71009374ac();
 void fn_71009368f8(CFunction* fn, const char* name);
 void fn_7100937554();
 void fn_7100936a74(CFunction* fn, const char* name);
-namespace CModelInstanceComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CModelInstanceComponent::refl_AddAttributes(CClass*) {}
+void CModelInstanceComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sModelPath_GetterFunction", &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0x101, fn_71009374ac);
     DREAD_REFLECTED_FUNCTION("_m_sModelPath_SetterFunction")
         fn_71009368f8(fn, "_m_sModelPath_SetterFunction");
@@ -39,17 +35,16 @@ void refl_AddFields(CClass* cls) {
         fn_7100936a74(fn, "_m_vScale_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vScale", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x68;
+bool CModelInstanceComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CModelInstanceComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CModelInstanceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CModelInstanceComponent*>(obj)->vf_0x0(); }
+void CModelInstanceComponent::refl_CopyConstruct(void*, const void*) {}
+void CModelInstanceComponent::refl_MoveConstruct(void*, const void*) {}
+void CModelInstanceComponent::refl_Destroy(void* obj) { static_cast<CModelInstanceComponent*>(obj)->~CModelInstanceComponent(); }
+void* CModelInstanceComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CModelInstanceComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CModelInstanceComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CModelInstanceComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -60,8 +55,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CModelInstanceComponent
-DREAD_REFLECTED_CLASS(CModelInstanceComponent, CSceneComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CModelInstanceComponent, CSceneComponent);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

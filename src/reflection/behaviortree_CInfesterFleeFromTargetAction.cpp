@@ -7,36 +7,33 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CInfesterFleeFromTargetAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CInfesterFleeFromTargetAction
-namespace behaviortree::CInfesterFleeFromTargetAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", 0x54, (DefaultValue, 5.0f), (Description, "Reach distance"));
-    DREAD_REFLECTED_FIELD(bool, "bCalculateFleePointFromTargetPos", 0x58, (DefaultValue, false), (Description, "Flee to farthest point from target"));
-    DREAD_REFLECTED_FIELD(bool, "bSuccessOnFinish", 0x5c, (DefaultValue, false), (Description, "Return success on finish"));
-    DREAD_REFLECTED_FIELD(bool, "bInFury", 0x5d, (DefaultValue, false), (Description, "Go to player"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CInfesterFleeFromTargetAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CInfesterFleeFromTargetAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", offsetof(CInfesterFleeFromTargetAction, fReachedDistance), (DefaultValue, 5.0f), (Description, "Reach distance"));
+    DREAD_REFLECTED_FIELD(bool, "bCalculateFleePointFromTargetPos", offsetof(CInfesterFleeFromTargetAction, bCalculateFleePointFromTargetPos), (DefaultValue, false), (Description, "Flee to farthest point from target"));
+    DREAD_REFLECTED_FIELD(bool, "bSuccessOnFinish", offsetof(CInfesterFleeFromTargetAction, bSuccessOnFinish), (DefaultValue, false), (Description, "Return success on finish"));
+    DREAD_REFLECTED_FIELD(bool, "bInFury", offsetof(CInfesterFleeFromTargetAction, bInFury), (DefaultValue, false), (Description, "Go to player"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x70;
+bool behaviortree::CInfesterFleeFromTargetAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CInfesterFleeFromTargetAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CInfesterFleeFromTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CInfesterFleeFromTargetAction*>(obj)->vf_0x0(); }
+void behaviortree::CInfesterFleeFromTargetAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CInfesterFleeFromTargetAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CInfesterFleeFromTargetAction::refl_Destroy(void* obj) { static_cast<CInfesterFleeFromTargetAction*>(obj)->~CInfesterFleeFromTargetAction(); }
+void* behaviortree::CInfesterFleeFromTargetAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CInfesterFleeFromTargetAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CInfesterFleeFromTargetAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CInfesterFleeFromTargetAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -47,5 +44,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CInfesterFleeFromTargetAction
-DREAD_REFLECTED_CLASS(behaviortree::CInfesterFleeFromTargetAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CInfesterFleeFromTargetAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/GUI/CScene3D.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -43,9 +40,8 @@ void fn_7100b74a28();
 void fn_7100b72088(CFunction* fn, const char* name);
 void fn_7100b74ab8();
 void fn_7100b72204(CFunction* fn, const char* name);
-namespace GUI::CScene3D {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void GUI::CScene3D::refl_AddAttributes(CClass*) {}
+void GUI::CScene3D::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_ProcessInput_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100b7439c);
     DREAD_REFLECTED_FUNCTION("_ProcessInput_SetterFunction")
         fn_7100b714a8(fn, "_ProcessInput_SetterFunction");
@@ -87,21 +83,19 @@ void refl_AddFields(CClass* cls) {
         fn_7100b72204(fn, "_DepthInterpSpeed_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "DepthInterpSpeed");
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xe58;
+bool GUI::CScene3D::refl_Equals(const void*, const void*) { return false; }
+s32 GUI::CScene3D::refl_Hash() { return -1; }
+const base::reflection::CType& GUI::CScene3D::refl_TypeOf(const void* obj) { return *static_cast<const CScene3D*>(obj)->vf_0x0(); }
+void GUI::CScene3D::refl_Destroy(void* obj) { static_cast<CScene3D*>(obj)->~CScene3D(); }
+struct GUI::CScene3D::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CScene3D);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace GUI::CScene3D
-DREAD_REFLECTED_CLASS(GUI::CScene3D, GUI::CDisplayObject);
+DREAD_REFLECTED_DECLARED_CLASS(GUI::CScene3D, GUI::CDisplayObject);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

@@ -7,35 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CAttackComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CAttackComponent
-namespace CAttackComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bRotateToDamagedEntity", 0x80, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fRotateToDamagedEntityMaxAngle", 0x84, (DefaultValue, 0.61f));
-    DREAD_REFLECTED_FIELD(f32, "fRotateToDamagedEntityMinAngle", 0x88, (DefaultValue, -0.61f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CAttackComponent::refl_AddAttributes(CClass*) {}
+void CAttackComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bRotateToDamagedEntity", offsetof(CAttackComponent, bRotateToDamagedEntity), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fRotateToDamagedEntityMaxAngle", offsetof(CAttackComponent, fRotateToDamagedEntityMaxAngle), (DefaultValue, 0.61f));
+    DREAD_REFLECTED_FIELD(f32, "fRotateToDamagedEntityMinAngle", offsetof(CAttackComponent, fRotateToDamagedEntityMinAngle), (DefaultValue, -0.61f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x138;
+bool CAttackComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CAttackComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CAttackComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAttackComponent*>(obj)->vf_0x0(); }
+void CAttackComponent::refl_CopyConstruct(void*, const void*) {}
+void CAttackComponent::refl_MoveConstruct(void*, const void*) {}
+void CAttackComponent::refl_Destroy(void* obj) { static_cast<CAttackComponent*>(obj)->~CAttackComponent(); }
+void* CAttackComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CAttackComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CAttackComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CAttackComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -46,5 +43,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CAttackComponent
-DREAD_REFLECTED_CLASS(CAttackComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CAttackComponent, CComponent);
+#pragma GCC diagnostic pop

@@ -14,10 +14,9 @@ using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "reflected/CCharClassSoundProofTriggerComponent.h"
 class CActor;
 template <class> class CGameLink;
 namespace base::global { template <class> class CRntVector; }
@@ -26,20 +25,18 @@ namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CCharClassSoundProofTriggerComponent
-namespace CCharClassSoundProofTriggerComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x60;
+void CCharClassSoundProofTriggerComponent::refl_AddAttributes(CClass*) {}
+void CCharClassSoundProofTriggerComponent::refl_AddFields(CClass*) {}
+bool CCharClassSoundProofTriggerComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassSoundProofTriggerComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassSoundProofTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSoundProofTriggerComponent*>(obj)->vf_0x0(); }
+void CCharClassSoundProofTriggerComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassSoundProofTriggerComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassSoundProofTriggerComponent::refl_Destroy(void* obj) { static_cast<CCharClassSoundProofTriggerComponent*>(obj)->~CCharClassSoundProofTriggerComponent(); }
+void* CCharClassSoundProofTriggerComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassSoundProofTriggerComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassSoundProofTriggerComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassSoundProofTriggerComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -50,8 +47,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassSoundProofTriggerComponent
-DREAD_REFLECTED_CLASS(CCharClassSoundProofTriggerComponent, CCharClassBaseTriggerComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassSoundProofTriggerComponent, CCharClassBaseTriggerComponent);
 
 // CSoundProofTriggerComponent
 namespace CSoundProofTriggerComponent {
