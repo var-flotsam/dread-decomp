@@ -12,7 +12,7 @@
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
-struct UnkSelf;
+struct UnkSelf_710030c0c0;
 struct UnkShinesparkSet_A2_b65;
 void fn_710032e220(UnkShinesparkSet_A2_b65* self);
 
@@ -88,5 +88,5 @@ void fn_7100330ed0(UnkAbilityShinespark_l330ed0* self, bool on) {
             }
         }
     }
-    fn_71002f9460(reinterpret_cast<UnkSelf*>(self), 0);
+    fn_71002f9460(reinterpret_cast<UnkSelf_710030c0c0*>(self), 0);
 }

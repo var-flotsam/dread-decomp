@@ -10,7 +10,7 @@ struct UnkTarget {
     u32 field_0x54;
 };
 
-struct UnkComponent {
+struct UnkComponent_71003b0160 {
     u8 pad_0x0[0x14770];
     u8 field_0x14770[0x28];
     u32 field_0x14798;
@@ -19,7 +19,7 @@ struct UnkComponent {
 };
 
 
-bool CBossAIComponent_GetBossCameraFloorLandmarkY(UnkComponent* self, u32* out) {
+bool CBossAIComponent_GetBossCameraFloorLandmarkY(UnkComponent_71003b0160* self, u32* out) {
     if (self->field_0x14798 == 1) {
         {
             UnkRefPtr reference = fn_710023b580(self->field_0x14770);

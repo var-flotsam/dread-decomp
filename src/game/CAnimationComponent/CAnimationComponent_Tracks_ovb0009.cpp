@@ -491,8 +491,8 @@ bool fn_7101179de0(UnkAnimActionSetsOwner* self, void* id, u64 key, f32 seconds,
 // ---- Updates --------------------------------------------------------------------------------
 
 struct UnkStruct_71007142e8;
-struct UnkParent;
-void fn_71002d58e4(UnkParent* self, const float* dt);
+struct UnkParent_71002d58e4;
+void fn_71002d58e4(UnkParent_71002d58e4* self, const float* dt);
 
 struct alignas(8) UnkAnimChannel {
     u8 data[0x70];
@@ -570,7 +570,7 @@ struct UnkAnimComponent_f84 {
     u8 pad_0x8[0x28];
     UnkAnimOwner_a88* owner;  // 0x30
     u8 pad_0x38[8];
-    UnkParent* tracks;  // 0x40
+    UnkParent_71002d58e4* tracks;  // 0x40
 
     // Rewinds to 0 and runs an empty update over the tracks.
     void Reset() {

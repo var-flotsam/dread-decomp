@@ -25,15 +25,15 @@ struct UnkEvent_3c716c {
     UnkMiddle* field_0x8;
 };
 
-struct UnkSelf {
+struct UnkSelf_71003c716c {
     u8 pad_0x0[0x14798];
     u8 field_0x14798[0x18];
     UnkWeakHandle* field_0x147b0;
 };
 
-void fn_71003c5b10(UnkSelf* self, u32 flag);
+void fn_71003c5b10(UnkSelf_71003c716c* self, u32 flag);
 
-bool fn_71003c716c(UnkSelf* self, UnkEvent_3c716c* event) {
+bool fn_71003c716c(UnkSelf_71003c716c* self, UnkEvent_3c716c* event) {
     if (event->field_0x0 == 3 && event->field_0x8->field_0x10->field_0x38->field_0x30 == 0xe3d785cc963782a5ull) {
         fn_71003c4e64(self, 0);
         fn_71003c5b10(self, 0);

@@ -6,11 +6,11 @@
 #include "game/CGunComponent.h"
 #include "types.h"
 
-struct UnkComponent;
+struct UnkComponent_710035131c;
 
 struct UnkGrappleOwnerActor_b49a4 {
     u8 pad_0x0[0x2a8];
-    UnkComponent* field_0x2a8;
+    UnkComponent_710035131c* field_0x2a8;
 };
 struct UnkGrappleOwner_b49a4 {
     u8 pad_0x0[0x30];
@@ -26,7 +26,7 @@ struct UnkGrappleState_b49a4 {
 };
 
 base::reflection::UnkReflObject* fn_710099afa0(UnkGrappleState_b49a4* self) {
-    UnkComponent* c = self->field_0x8->field_0x8->field_0x30->field_0x2a8;
+    UnkComponent_710035131c* c = self->field_0x8->field_0x8->field_0x30->field_0x2a8;
     if (c == nullptr)
         return nullptr;
     auto* obj = static_cast<base::reflection::UnkReflObject*>(fn_710083cd30(c));

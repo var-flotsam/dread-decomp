@@ -78,7 +78,7 @@ void CChozoCommanderTriComboAttack_Start(UnkTriComboAttack_l43c21c* self) {
     base::reflection::UnkReflTypeIdArg mode2;
     base::reflection::UnkReflTypeIdArg mask2;
 start:
-    fn_710042bb3c(reinterpret_cast<UnkSelf*>(self));
+    fn_710042bb3c(reinterpret_cast<UnkSelf_7100438b48*>(self));
     self->field_0x58 = -1.0f;
     self->field_0x5c = -1.0f;
     auto* animation = static_cast<UnkAnimationComponent*>(self->owner->field_0x220);

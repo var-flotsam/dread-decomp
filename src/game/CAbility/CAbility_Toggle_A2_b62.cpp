@@ -11,7 +11,7 @@
 #include "types.h"
 
 struct UnkPlayer;
-struct UnkSelf;
+struct UnkSelf_710030c0c0;
 
 namespace {
 struct UnkAbilityState_b62a2 {
@@ -71,7 +71,7 @@ void fn_71002fa078(UnkAbility_b62a2* self, bool on) {
         }
     }
 done:
-    fn_71002f9460(reinterpret_cast<UnkSelf*>(self), 0);
+    fn_71002f9460(reinterpret_cast<UnkSelf_710030c0c0*>(self), 0);
 }
 
 // On the timeline (+0x2e8) of the +0x30 actor of the +0xc0 object: when the id vf_0xe0 returns is known, removes

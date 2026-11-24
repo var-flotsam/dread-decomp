@@ -11,7 +11,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkSelf;
+struct UnkSelf_7100438b48;
 void fn_7100448f28();
 
 struct UnkZeroLaserTrackLink_A2_b72 {
@@ -40,7 +40,7 @@ struct UnkZeroLaserAttack_A2_b72 {
 };
 
 void fn_71004467a4(UnkZeroLaserAttack_A2_b72* self) {
-    fn_710042bb3c(reinterpret_cast<UnkSelf*>(self));
+    fn_710042bb3c(reinterpret_cast<UnkSelf_7100438b48*>(self));
     self->field_0x58 = 0;
     self->field_0x28 = 0;
     self->field_0x60 = (fn_71012395a0() & 0x7fff) % 3 + 1;

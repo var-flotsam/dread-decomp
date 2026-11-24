@@ -13,25 +13,25 @@ using base::global::CStrId;
 
 struct UnkEntryRegistry_l2d57ac {
     u8 pad_0x0[0xa0];
-    UnkEntry** data;  // 0xa0
+    UnkEntry_7100403a18** data;  // 0xa0
     u32 count;        // 0xa8
 };
 
 // The name fn_71002dba48 hands back for an entry.
-static inline const CStrId& NameOf(UnkEntry* entry) {
+static inline const CStrId& NameOf(UnkEntry_7100403a18* entry) {
     return *reinterpret_cast<const CStrId*>(fn_71002dba48(reinterpret_cast<UnkPairOwner*>(entry)));
 }
 
 // NON_MATCHING(functional): Control flow differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
-UnkEntry* fn_71002d57ac(void* registry, const void* key) {
+UnkEntry_7100403a18* fn_71002d57ac(void* registry, const void* key) {
     UnkEntryRegistry_l2d57ac* self = static_cast<UnkEntryRegistry_l2d57ac*>(registry);
-    UnkEntry** data = self->data;
-    UnkEntry** end = data + self->count;
-    UnkEntry** found = end;
+    UnkEntry_7100403a18** data = self->data;
+    UnkEntry_7100403a18** end = data + self->count;
+    UnkEntry_7100403a18** found = end;
     {
         CStrId name(*static_cast<const CStrId*>(key));
-        for (UnkEntry** it = data; it != end; ++it) {
-            UnkEntry* entry = *it;
+        for (UnkEntry_7100403a18** it = data; it != end; ++it) {
+            UnkEntry_7100403a18* entry = *it;
             if (NameOf(entry).data == name.data) {
                 found = it;
                 break;

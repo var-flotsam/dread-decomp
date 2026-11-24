@@ -65,7 +65,7 @@ struct UnkU16Array {
     }
 };
 
-struct UnkRecord60 {
+struct UnkRecord60_7100e5493c {
     UnkPart48 field_0x0;
     UnkU16Array field_0x28;
     // Floats (a bounds' minimum and maximum, by the defaults), copied as words.
@@ -74,20 +74,20 @@ struct UnkRecord60 {
     u32 field_0x58 = 0xff7fffff;  // -FLT_MAX
     u32 field_0x5c = 0xff7fffff;
 
-    UnkRecord60() = default;
+    UnkRecord60_7100e5493c() = default;
 
-    __attribute__((always_inline)) UnkRecord60(const UnkRecord60& other)
+    __attribute__((always_inline)) UnkRecord60_7100e5493c(const UnkRecord60_7100e5493c& other)
         : field_0x0(other.field_0x0), field_0x28(other.field_0x28), field_0x50(other.field_0x50),
           field_0x54(other.field_0x54), field_0x58(other.field_0x58), field_0x5c(other.field_0x5c) {}
-    __attribute__((always_inline)) UnkRecord60(UnkRecord60&& other)
+    __attribute__((always_inline)) UnkRecord60_7100e5493c(UnkRecord60_7100e5493c&& other)
         : field_0x0(static_cast<UnkPart48&&>(other.field_0x0)),
           field_0x28(static_cast<UnkU16Array&&>(other.field_0x28)), field_0x50(other.field_0x50),
           field_0x54(other.field_0x54), field_0x58(other.field_0x58), field_0x5c(other.field_0x5c) {}
 };
-static_assert(sizeof(UnkRecord60) == 0x60, "UnkRecord60 layout");
+static_assert(sizeof(UnkRecord60_7100e5493c) == 0x60, "UnkRecord60_7100e5493c layout");
 
 struct UnkRecord60Array {
-    UnkRecord60* data;
+    UnkRecord60_7100e5493c* data;
     void** field_0x8;
     u32 count;
     u32 capacity;
@@ -103,14 +103,14 @@ struct UnkRecord60Array {
 void fn_7100e54ad8(UnkRecord60Array* self, u32 capacity) {
     if (self->capacity >= capacity)
         return;
-    UnkRecord60* data = static_cast<UnkRecord60*>(
-        self->allocator->vf_0x40((u64)capacity * sizeof(UnkRecord60), 8, self->flags));
+    UnkRecord60_7100e5493c* data = static_cast<UnkRecord60_7100e5493c*>(
+        self->allocator->vf_0x40((u64)capacity * sizeof(UnkRecord60_7100e5493c), 8, self->flags));
     void** ptrs = static_cast<void**>(self->allocator->vf_0x40((u64)capacity * sizeof(void*), 8, self->flags));
-    if (UnkRecord60* old = self->data) {
-        UnkRecord60* dst = data;
+    if (UnkRecord60_7100e5493c* old = self->data) {
+        UnkRecord60_7100e5493c* dst = data;
         for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
-            new (dst) UnkRecord60(static_cast<UnkRecord60&&>(*old));
-            old->~UnkRecord60();
+            new (dst) UnkRecord60_7100e5493c(static_cast<UnkRecord60_7100e5493c&&>(*old));
+            old->~UnkRecord60_7100e5493c();
         }
         self->allocator->vf_0x48(self->data);
     }
@@ -129,7 +129,7 @@ inline UnkRecord60Array::UnkRecord60Array(const UnkRecord60Array& other)
     fn_7100e54ad8(this, other.count);
     count = other.count;
     for (u64 i = 0; i < count; ++i)
-        new (&data[i]) UnkRecord60(other.data[i]);
+        new (&data[i]) UnkRecord60_7100e5493c(other.data[i]);
     __builtin_memcpy(field_0x8, other.field_0x8, (u64)other.count * sizeof(void*));
     count = other.count;
 }
@@ -143,7 +143,7 @@ void fn_7100e5493c(UnkRecord60Array* self, const UnkRecord60Array& other) {
 
 // Appends a copy to a plain array of the records with an out-of-line Reserve (fn_7100e52b58),
 // growing like PushBack (including its hang).
-void fn_7100e52cf4(base::global::CRntVector<UnkRecord60>* self, const UnkRecord60* value) {
+void fn_7100e52cf4(base::global::CRntVector<UnkRecord60_7100e5493c>* self, const UnkRecord60_7100e5493c* value) {
     u32 n = self->count;
     u32 new_capacity = self->capacity;
     if (new_capacity <= n && self->step != 0)
@@ -154,7 +154,7 @@ void fn_7100e52cf4(base::global::CRntVector<UnkRecord60>* self, const UnkRecord6
     // The same array of 0x60-byte records as UnkPairArray (include/base/UnkFreedVectorPair.h), typed by its
     // record here.
     fn_7100e52b58(reinterpret_cast<UnkPairArray*>(self), new_capacity);
-    new (&self->data[self->count]) UnkRecord60(*value);
+    new (&self->data[self->count]) UnkRecord60_7100e5493c(*value);
     ++self->count;
 }
 
@@ -162,16 +162,16 @@ void fn_7100e52cf4(base::global::CRntVector<UnkRecord60>* self, const UnkRecord6
 template <class Key>
 struct UnkRecord60Pair {
     Key key;
-    UnkRecord60 value;
+    UnkRecord60_7100e5493c value;
 
-    __attribute__((always_inline)) UnkRecord60Pair(const Key& key, const UnkRecord60& value)
+    __attribute__((always_inline)) UnkRecord60Pair(const Key& key, const UnkRecord60_7100e5493c& value)
         : key(key), value(value) {}
 };
 
-void fn_7100e52488(UnkRecord60Pair<u32>* self, const u32* key, const UnkRecord60* value) {
+void fn_7100e52488(UnkRecord60Pair<u32>* self, const u32* key, const UnkRecord60_7100e5493c* value) {
     new (self) UnkRecord60Pair<u32>(*key, *value);
 }
-void fn_7100e54100(UnkRecord60Pair<u64>* self, const u64* key, const UnkRecord60* value) {
+void fn_7100e54100(UnkRecord60Pair<u64>* self, const u64* key, const UnkRecord60_7100e5493c* value) {
     new (self) UnkRecord60Pair<u64>(*key, *value);
 }
 
@@ -185,10 +185,10 @@ void fn_7100e54000(UnkRecord60Pair<u64>* self, const UnkRecord60Pair<u64>* other
 // An iterator over keyed records re-pointing its current value at its key and record, or
 // resetting it when there is none (base::refl_IterSync with the value's reset inlined).
 template <class Key>
-__attribute__((always_inline)) static inline void Sync(base::UnkCollectionIter<UnkRecord60, Key>* it) {
-    using Pair = typename base::UnkIterValue<UnkRecord60, Key>::Value;
-    base::UnkIterValue<UnkRecord60, Key>& cur = it->current;
-    if (UnkRecord60* element = it->element) {
+__attribute__((always_inline)) static inline void Sync(base::UnkCollectionIter<UnkRecord60_7100e5493c, Key>* it) {
+    using Pair = typename base::UnkIterValue<UnkRecord60_7100e5493c, Key>::Value;
+    base::UnkIterValue<UnkRecord60_7100e5493c, Key>& cur = it->current;
+    if (UnkRecord60_7100e5493c* element = it->element) {
         if (cur.state == 2) {
             cur.state = 0;
         } else if (cur.state == 1) {
@@ -210,20 +210,20 @@ __attribute__((always_inline)) static inline void Sync(base::UnkCollectionIter<U
 
 // NON_MATCHING(minor): the state load is hoisted above the element test (the original loads it
 // in each branch).
-void fn_7100e46b58(base::UnkCollectionIter<UnkRecord60, u32>* it) { Sync(it); }
+void fn_7100e46b58(base::UnkCollectionIter<UnkRecord60_7100e5493c, u32>* it) { Sync(it); }
 // NON_MATCHING(minor): as fn_7100e46b58.
-void fn_7100e46f70(base::UnkCollectionIter<UnkRecord60, u32>* it) { Sync(it); }
+void fn_7100e46f70(base::UnkCollectionIter<UnkRecord60_7100e5493c, u32>* it) { Sync(it); }
 
 // Lookups that insert a default record when the key is missing (through fn_7100e550dc and
 // fn_7100e56ed4, which take the record by reference).
-UnkRecord60* fn_7100e550dc(void* self, const u32* key, UnkRecord60* value);
-UnkRecord60* fn_7100e56ed4(void* self, const u64* key, UnkRecord60* value);
+UnkRecord60_7100e5493c* fn_7100e550dc(void* self, const u32* key, UnkRecord60_7100e5493c* value);
+UnkRecord60_7100e5493c* fn_7100e56ed4(void* self, const u64* key, UnkRecord60_7100e5493c* value);
 
-UnkRecord60* fn_7100e44e70(void* self, const u32* key) {
-    UnkRecord60 value = UnkRecord60();
+UnkRecord60_7100e5493c* fn_7100e44e70(void* self, const u32* key) {
+    UnkRecord60_7100e5493c value = UnkRecord60_7100e5493c();
     return fn_7100e550dc(self, key, &value);
 }
-UnkRecord60* fn_7100e44f58(void* self, const u64* key) {
-    UnkRecord60 value = UnkRecord60();
+UnkRecord60_7100e5493c* fn_7100e44f58(void* self, const u64* key) {
+    UnkRecord60_7100e5493c value = UnkRecord60_7100e5493c();
     return fn_7100e56ed4(self, key, &value);
 }

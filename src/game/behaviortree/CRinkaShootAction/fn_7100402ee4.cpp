@@ -10,19 +10,19 @@ using base::reflection::CClass;
 struct UnkAIComponent {
     virtual const CClass* vf_0x0();
 };
-struct UnkOwner {
+struct UnkOwner_7100402ee4 {
     u8 unk_0x0[0x240];
     UnkAIComponent* component;
 };
-struct UnkSelf {
+struct UnkSelf_7100402ee4 {
     u8 unk_0x0[0x18];
-    UnkOwner* owner;
+    UnkOwner_7100402ee4* owner;
     u8 unk_0x20[0xc];
     s32 field_0x2c;
     u32 field_0x30;
 };
 
-u32 fn_7100402ee4(UnkSelf* self) {
+u32 fn_7100402ee4(UnkSelf_7100402ee4* self) {
     if (self->field_0x2c < 0)
         return 6;
     UnkAIComponent* component = self->owner->component;

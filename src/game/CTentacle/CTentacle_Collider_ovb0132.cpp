@@ -12,7 +12,7 @@
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-struct UnkVec3;
+struct UnkVec3_71003e6530;
 
 struct UnkTentacleRange_ovb0132 {
     f32 min;
@@ -23,7 +23,7 @@ static inline void AddPoint(void* sink, CVector3D& point, f32 x, f32 y) {
     point.x = x;
     point.y = y;
     point.z = 0.0f;
-    fn_7100118b94(sink, reinterpret_cast<UnkVec3*>(&point));
+    fn_7100118b94(sink, reinterpret_cast<UnkVec3_71003e6530*>(&point));
 }
 
 // When the segment from `a` to `b` overlaps `range` in z, adds to `sink` the four corners of the

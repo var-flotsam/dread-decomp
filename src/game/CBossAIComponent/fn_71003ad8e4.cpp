@@ -34,21 +34,21 @@ struct UnkHolder {
     UnkChild_3ad8e4* field_0x48;
 };
 
-struct UnkOwner {
+struct UnkOwner_71003ad8e4 {
     u8 pad_0x0[0x28];
     UnkActor_3ad8e4* field_0x28;
     u8 pad_0x30[0x188];
     UnkHolder* field_0x1b8;
 };
 
-struct UnkSelf {
+struct UnkSelf_71003ad8e4 {
     u8 pad_0x0[0x30];
-    UnkOwner* field_0x30;
+    UnkOwner_71003ad8e4* field_0x30;
     u8 pad_0x38[0x148d0];
     UnkFlagObject* field_0x14908;
 };
 
-void fn_71003ad8e4(UnkSelf* self) {
+void fn_71003ad8e4(UnkSelf_71003ad8e4* self) {
     if (self->field_0x14908->field_0x50c)
         return;
     UnkActor_3ad8e4* actor = self->field_0x30->field_0x28;

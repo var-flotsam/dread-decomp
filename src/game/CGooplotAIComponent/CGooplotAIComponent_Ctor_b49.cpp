@@ -7,7 +7,7 @@
 #include "game/CGooplotAIComponent.h"
 #include "types.h"
 
-struct UnkComponent;
+struct UnkComponent_71004076e4;
 void fn_7100594308(void* self);
 void fn_7100596858(void* self);
 void fn_71005999c0(void* self, u32 a, u32 b, u32 c, u64 d);
@@ -48,7 +48,7 @@ struct UnkGooplotAICtor_b49 {
 void fn_71005998fc(UnkGooplotAICtor_b49* self) {
     UnkGooplotCtorState_b49* state =
         reinterpret_cast<UnkGooplotCtorState_b49*>(reinterpret_cast<u8*>(self) + 0x146c8);
-    fn_710036932c(reinterpret_cast<UnkComponent*>(self));
+    fn_710036932c(reinterpret_cast<UnkComponent_71004076e4*>(self));
     self->vtable = g_unk_7101a4d0c8 + 2;
     state->field_0x11 = 1;
     state->field_0x0 = 0;

@@ -14,7 +14,7 @@
 #include "types.h"
 
 struct UnkGunComponent;
-struct UnkComponent;
+struct UnkComponent_710035131c;
 
 struct UnkMagnetGun_l9a8708 {
     u8 pad_0x0[0x178];
@@ -38,7 +38,7 @@ struct UnkMagnetParams_l9a8708 {
 static bool HyperBeamReady(UnkMagnetGun_l9a8708* gun) {
     if (!(*fn_71008407fc(reinterpret_cast<UnkGunComponent*>(gun)) == GameManagerIdTable().field_0x1848))
         return false;
-    auto* beam = static_cast<base::reflection::UnkReflObject*>(fn_710083cd30(reinterpret_cast<UnkComponent*>(gun)));
+    auto* beam = static_cast<base::reflection::UnkReflObject*>(fn_710083cd30(reinterpret_cast<UnkComponent_710035131c*>(gun)));
     if (beam && !fn_710009d50c(beam->vf_0x0(), fn_71008424e8()))
         beam = nullptr;
     return fn_7100845fac(beam);

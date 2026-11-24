@@ -9,33 +9,33 @@
 
 using base::reflection::CClass;
 
-struct UnkAIComponent {
+struct UnkAIComponent_71004d771c {
     virtual const CClass* vf_0x0();
 };
 struct UnkOwnerObject_4d771c {
     u8 unk_0x0[0x240];
-    UnkAIComponent* component;
+    UnkAIComponent_71004d771c* component;
 };
-struct UnkOwner {
+struct UnkOwner_71004d771c {
     u8 unk_0x0[0x10];
     UnkOwnerObject_4d771c* object;
 };
-struct UnkSelf {
+struct UnkSelf_71004d771c {
     u8 unk_0x0[0x30];
     void* field_0x30;
     u8 unk_0x38[0x1f8];
-    UnkOwner* owner;
+    UnkOwner_71004d771c* owner;
     u8 unk_0x238[0x3a0];
     u32 field_0x5d8;
 };
 
-bool fn_7100ac4c04(UnkSelf* self, void* a1, void* a2, void* a3, void* a4, void* a5);
+bool fn_7100ac4c04(UnkSelf_71004d771c* self, void* a1, void* a2, void* a3, void* a4, void* a5);
 
-bool fn_71004d771c(UnkSelf* self, void* a1, void* a2, void* a3, void* a4, void* a5) {
+bool fn_71004d771c(UnkSelf_71004d771c* self, void* a1, void* a2, void* a3, void* a4, void* a5) {
     if (!self->field_0x5d8)
         return false;
     if (self->owner && self->owner->object) {
-        UnkAIComponent* component = self->owner->object->component;
+        UnkAIComponent_71004d771c* component = self->owner->object->component;
         if (component && fn_710009d50c(component->vf_0x0(), fn_71004cf318()))
             fn_71004d43dc(component, self->field_0x30);
     }

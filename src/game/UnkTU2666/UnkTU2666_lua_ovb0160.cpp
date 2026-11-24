@@ -334,7 +334,7 @@ s32 SetStat(lua_State* L) {
 
 struct UnkSoundMgr;
 struct UnkMgr;
-struct UnkHandle;
+struct UnkHandle_7100fdd2b4;
 
 namespace lua_bind {
 s32 StopStream(lua_State* L) {
@@ -344,7 +344,7 @@ s32 StopStream(lua_State* L) {
         UnkSoundMgr* sound = g_unk_7101d4d820;
         if (text) {
             CFilePathStrId id(text, true);
-            fn_7100108a84(reinterpret_cast<UnkMgr*>(sound), reinterpret_cast<UnkHandle*>(&id), 0.2f);
+            fn_7100108a84(reinterpret_cast<UnkMgr*>(sound), reinterpret_cast<UnkHandle_7100fdd2b4*>(&id), 0.2f);
         } else {
             fn_7100108b0c(sound, 1, 0.2f);
         }

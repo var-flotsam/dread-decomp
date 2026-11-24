@@ -27,6 +27,7 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "game/sound/UnkSoundHandle.h"
 
 using base::global::CStrId;
 
@@ -48,16 +49,7 @@ struct UnkSoundRef {
     UnkSound* sound;
     s64 serial;
 };
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-
-    UnkSound* Get() const {
-        if (ref && ref->serial == serial && serial != -1)
-            return ref->sound;
-        return nullptr;
-    }
-};
+inline UnkSound* UnkSoundHandle::Get() const { if (ref && ref->serial == serial && serial != -1) return ref->sound; return nullptr; }
 
 struct UnkShipRechargeEntity_b49a4;
 

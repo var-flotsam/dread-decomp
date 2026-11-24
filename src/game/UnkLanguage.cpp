@@ -18,6 +18,7 @@
 #include "types.h"
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
+#include "game/UnkLanguageText.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -27,16 +28,6 @@ using base::global::UnkStringPool;
 
 // A localized text (0x20 bytes: the UTF-32 characters at +0x8, null when empty, and their count at
 // +0x10), with its constructors and destructor.
-struct UnkLanguageText {
-    u8 unk_0x0[0x8];
-    const char32_t* chars;
-    s32 count;
-    u8 unk_0x14[0xc];
-
-    explicit UnkLanguageText(const char32_t* text) { fn_7100066a50(this, text); }
-    UnkLanguageText(const UnkLanguageText& other) { fn_7100066cac(this, &other); }
-    ~UnkLanguageText() { fn_7100066e44(this); }
-};
 static_assert(sizeof(UnkLanguageText) == 0x20, "UnkLanguageText placeholder layout");
 
 // A node's key: a string id released in two steps (the original reloads the id and its count after

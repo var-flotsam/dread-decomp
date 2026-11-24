@@ -13,14 +13,11 @@
 #include "game/UnkBeamVec_ovb0138.h"
 #include "game/UnkTU437.h"
 #include "types.h"
+#include "game/UnkHyperBeamSoundHandle.h"
 
 using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
-struct UnkHyperBeamSoundHandle {
-    void* ref;
-    s64 serial;
-};
 
 struct UnkGrappleAnswer_b50;
 

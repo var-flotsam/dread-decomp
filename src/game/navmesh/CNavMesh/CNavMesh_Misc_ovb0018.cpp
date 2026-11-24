@@ -81,10 +81,10 @@ void fn_71002747f8(UnkNavMesh47f8* self) {
     new (&self->tree) base::global::CRntVector<u8>(0x57);
 }
 
-struct UnkOwner;
+struct UnkOwner_71002b3828;
 
 void fn_71002af96c(UnkNavMeshCell* cell);
-void fn_71002b3828(UnkOwner* self);
+void fn_71002b3828(UnkOwner_71002b3828* self);
 
 // The registry fn_71009c0ba4 returns: an array of entries, each holding the object to refresh at +0x10.
 struct UnkNavRefreshEntry {
@@ -125,7 +125,7 @@ void fn_710027a24c(UnkNavMesh* navmesh) {
     for (u16 i = 0; i < mesh->cell_count; ++i)
         fn_71002af96c(&mesh->cells[i].cell);
     for (UnkNavMeshRecordA24c& record : *mesh)
-        fn_71002b3828(reinterpret_cast<UnkOwner*>(&record));
+        fn_71002b3828(reinterpret_cast<UnkOwner_71002b3828*>(&record));
     for (UnkNavRefreshEntry* entry : *fn_71009c0ba4())
         fn_71009c1180(entry ? entry->object : nullptr);
 }

@@ -35,7 +35,8 @@ template <class Record>
 struct UnkRecordIdArray;
 struct UnkRecordA8_e4ed10;
 struct UnkRecord80;
+struct UnkRecord80_7100e4ed10;
 void fn_7100e4ee60(UnkIdRecordTable<UnkIdRecord28>* self);
 void fn_7100e4ed10(UnkRecordIdArray<UnkRecordA8_e4ed10>* self);
-void fn_7100e4eb8c(UnkRecordIdArray<UnkRecord80>* self);
+void fn_7100e4eb8c(UnkRecordIdArray<UnkRecord80_7100e4ed10>* self);
 extern void* g_unk_7101aa9cf8[];

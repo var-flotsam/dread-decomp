@@ -33,7 +33,7 @@ struct UnkManager;
 using UnkRef = base::UnkRefPtrMember;
 
 // As src/game/CChozoWarriorXUltimateGrabAttack/fn_710048a194.cpp declares it.
-struct UnkVec;
+struct UnkVec_710048a194;
 
 struct UnkGfxFrameSource;
 
@@ -204,7 +204,7 @@ bool fn_7100a6a64c(UnkAccessPointCommander_ovb0085* self) {
             UnkVec3_ovb0085 origin;
             origin.xy = 0;
             origin.z = 0;
-            fn_7101053850(effects, reinterpret_cast<UnkVec*>(&origin), 1, time, 1.0f);
+            fn_7101053850(effects, reinterpret_cast<UnkVec_710048a194*>(&origin), 1, time, 1.0f);
             self->started = true;
         }
     }

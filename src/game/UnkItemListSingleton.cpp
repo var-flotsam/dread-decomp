@@ -5,7 +5,7 @@
 #include "base/UnkSList.h"
 #include "types.h"
 
-struct UnkListedItem {
+struct UnkListedItem_710119ba7c {
     u8 unk_0x0[0x99c];
     s32 state;
 };
@@ -14,11 +14,11 @@ struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
 
 // Adds `item` at the end of the list unless it is null or already listed.
-void fn_710119ba7c(UnkItemList* self, UnkListedItem* item) {
+void fn_710119ba7c(UnkItemList* self, UnkListedItem_710119ba7c* item) {
     if (!item)
         return;
     for (UnkItemList::Node* n = self->head; n; n = n->next)
-        if (reinterpret_cast<UnkListedItem*>(n->value) == item)
+        if (reinterpret_cast<UnkListedItem_710119ba7c*>(n->value) == item)
             return;
     if (item->state < 1)
         item->state = 1;

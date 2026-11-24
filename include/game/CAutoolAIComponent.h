@@ -8,5 +8,6 @@
 struct UnkEvacPart_b61;
 struct UnkEvacTimeline_b61;
 struct UnkSelf;
+struct UnkSelf_71003c716c;
 UnkEvacTimeline_b61* fn_71003c6c3c(UnkEvacPart_b61* part);
-void fn_71003c4e64(UnkSelf* self, u32 flag);
+void fn_71003c4e64(UnkSelf_71003c716c* self, u32 flag);

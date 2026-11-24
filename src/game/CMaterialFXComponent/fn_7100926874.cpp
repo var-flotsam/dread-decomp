@@ -29,7 +29,7 @@ struct UnkSlots_926874 {
     UnkSlotTarget* field_0x2e0[10];
 };
 
-struct UnkEntry {
+struct UnkEntry_7100926874 {
     u32 field_0x0;
     u32 field_0x4;
     u32 field_0x8;
@@ -45,7 +45,7 @@ struct UnkTable_926874 {
     u8 pad_0x0[0x48];
     u32 count;
     u8 pad_0x4c[0x4];
-    UnkEntry* entries[50];
+    UnkEntry_7100926874* entries[50];
 };
 
 // NON_MATCHING(minor): register allocation; the original spills `value` around the search loop and
@@ -54,7 +54,7 @@ void fn_7100926874(UnkTable_926874* self, const UnkKey& key, u32 id, const CVect
                    u32 value, f32 weight) {
     s32 idx = -1;
     for (u64 i = 0; i < self->count; ++i) {
-        UnkEntry* e = self->entries[i];
+        UnkEntry_7100926874* e = self->entries[i];
         if (fn_710080f9e0(&e->field_0x30, &key) && e->field_0x4 == id && e->field_0x8 == kind)
             idx = i;
     }
@@ -65,7 +65,7 @@ void fn_7100926874(UnkTable_926874* self, const UnkKey& key, u32 id, const CVect
     } else if ((u32)idx >= 50) {
         return;
     }
-    UnkEntry* e = self->entries[(u32)idx];
+    UnkEntry_7100926874* e = self->entries[(u32)idx];
     e->field_0x0 = value;
     e->field_0x30 = key;
     fn_710080fb00(&e->field_0x30, self);

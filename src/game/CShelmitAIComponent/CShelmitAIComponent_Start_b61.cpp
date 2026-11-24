@@ -13,7 +13,7 @@
 
 void fn_71006b641c(void* attack);
 
-struct UnkShelmitAI;
+struct UnkShelmitAI_b38;
 
 struct UnkShelmitStartAI_b61 {
     u8 pad_0x0[0x30];
@@ -31,7 +31,7 @@ static inline UnkManager_71726af468* GetManager_b61() {
     return g_unk_71726af468;
 }
 
-void fn_71006baf90(UnkShelmitAI* ai) {
+void fn_71006baf90(UnkShelmitAI_b38* ai) {
     UnkShelmitStartAI_b61* self = reinterpret_cast<UnkShelmitStartAI_b61*>(ai);
     UnkAnimationComponent* cls = static_cast<UnkAnimationComponent*>(self->owner->field_0x220);
     if (!cls)

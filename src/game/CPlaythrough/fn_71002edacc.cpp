@@ -9,20 +9,20 @@
 using base::global::CStrId;
 using base::global::UnkStringPool;
 
-struct UnkNode {
+struct UnkNode_71002edacc {
     u8 pad_0x0[0x8];
     CStrId field_0x8;
     u8 pad_0x10[0x20];
     UnkOwned* field_0x30;
 };
 
-struct UnkHolder {
+struct UnkHolder_71002edacc {
     CStrId field_0x0;
-    UnkNode* field_0x8;
+    UnkNode_71002edacc* field_0x8;
 };
 
-void fn_71002edacc(UnkHolder* self) {
-    UnkNode* node = self->field_0x8;
+void fn_71002edacc(UnkHolder_71002edacc* self) {
+    UnkNode_71002edacc* node = self->field_0x8;
     self->field_0x8 = nullptr;
     if (node) {
         UnkOwned* owned = node->field_0x30;

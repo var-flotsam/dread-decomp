@@ -107,7 +107,7 @@ inline UnkIter<Sync>::UnkIter(u32 index, UnkCallbackSetElem* element) : index(in
     Sync(this);
 }
 
-struct UnkCallbackSetVector {
+struct UnkCallbackSetVector_7100d88e14 {
     UnkCallbackSetElem* data;
     u32 count;
     u32 capacity;
@@ -116,9 +116,9 @@ struct UnkCallbackSetVector {
     u32 flags;
     base::UnkAllocator* allocator;
 
-    template <void (*Reserve)(UnkCallbackSetVector*, u32),
-              void (*PushBack)(UnkCallbackSetVector*, const UnkCallbackSetElem*)>
-    __attribute__((always_inline)) void CopyConstruct(const UnkCallbackSetVector& other) {
+    template <void (*Reserve)(UnkCallbackSetVector_7100d88e14*, u32),
+              void (*PushBack)(UnkCallbackSetVector_7100d88e14*, const UnkCallbackSetElem*)>
+    __attribute__((always_inline)) void CopyConstruct(const UnkCallbackSetVector_7100d88e14& other) {
         data = nullptr;
         count = 0;
         capacity = 0;
@@ -169,7 +169,7 @@ struct UnkCallbackSetVector {
     }
 
     // Reserve is this array type's out-of-line copy of Reserve.
-    template <void (*Reserve)(UnkCallbackSetVector*, u32)>
+    template <void (*Reserve)(UnkCallbackSetVector_7100d88e14*, u32)>
     __attribute__((always_inline)) void Insert(UnkCallbackSetElem&& value, u32 index) {
         if (index == count) {
             u32 n = count;
@@ -203,10 +203,10 @@ struct UnkCallbackSetVector {
 };
 
 template <void (*Sync)(void*)>
-static inline __attribute__((always_inline)) void Begin(const UnkCallbackSetVector* v, UnkIter<Sync>* out) {
+static inline __attribute__((always_inline)) void Begin(const UnkCallbackSetVector_7100d88e14* v, UnkIter<Sync>* out) {
     *out = UnkIter<Sync>(0, v->data);
 }
 
-void fn_7100d88e14(const UnkCallbackSetVector* v, UnkIter<fn_7100d80b84>* out) {
+void fn_7100d88e14(const UnkCallbackSetVector_7100d88e14* v, UnkIter<fn_7100d80b84>* out) {
     Begin(v, out);
 }

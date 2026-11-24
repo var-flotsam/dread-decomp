@@ -451,15 +451,15 @@ struct UnkCounted_CEntity_2 {
     u32 count;
     void Destroy() { (*reinterpret_cast<void (**)(UnkCounted_CEntity_2*)>(*reinterpret_cast<char**>(this) + 0x10))(this); }
 };
-struct UnkNode {
+struct UnkNode_2 {
     void* value;
-    UnkNode* next;
+    UnkNode_2* next;
 };
 struct UnkNodeList_CEntity_2 {
     void** vtable;
     u32 count;
-    UnkNode* head;
-    UnkNode* tail;
+    UnkNode_2* head;
+    UnkNode_2* tail;
     UnkPathAllocator* allocator;
 };
 struct UnkPathList {
@@ -509,8 +509,8 @@ void fn_7100d7cecc(UnkEntityDtor* self) {
     self->paths.head = nullptr;
     self->paths.tail = nullptr;
     self->nodes.vtable = g_unk_7101a32680 + 2;
-    for (UnkNode* n = self->nodes.head; n;) {
-        UnkNode* next = n->next;
+    for (UnkNode_2* n = self->nodes.head; n;) {
+        UnkNode_2* next = n->next;
         self->nodes.allocator->Free(n);
         n = next;
     }

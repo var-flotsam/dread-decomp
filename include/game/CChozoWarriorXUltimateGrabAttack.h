@@ -7,8 +7,10 @@
 
 struct UnkEffect;
 struct UnkSelf;
+struct UnkSelf_710048a194;
+struct UnkSelf_7100489ea0;
 void fn_7100488990(UnkEffect* self, u32 id, f32 time);
-void fn_7100489f3c(UnkSelf* self);
-bool fn_710048a070(UnkSelf* self);
+void fn_7100489f3c(UnkSelf_7100489ea0* self);
+bool fn_710048a070(UnkSelf_710048a194* self);
 extern void* g_unk_7101a3b438[];
 extern void* g_unk_7101a3b610[];

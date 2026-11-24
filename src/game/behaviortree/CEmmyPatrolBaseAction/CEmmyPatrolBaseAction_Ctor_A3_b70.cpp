@@ -12,7 +12,7 @@
 extern void* g_unk_7101a47c98[];
 extern void* g_unk_7101a47d80[];
 
-struct UnkComponent;
+struct UnkComponent_710051d360;
 // base::refl_PoolListCtor<.., 0, 0x10>, instantiated in src/clones (UnkClone_fn_7100515270).
 void fn_7100515270(void* self, u32 step, u32 count, u32 flags, base::UnkAllocator* allocator);
 char* fn_71006fbadc(char* p0);
@@ -64,7 +64,7 @@ struct UnkPatrolBaseAction_A3_b70 {
 };
 
 void fn_7100515180(UnkPatrolBaseAction_A3_b70* self) {
-    fn_710051dab0(reinterpret_cast<UnkComponent*>(self));
+    fn_710051dab0(reinterpret_cast<UnkComponent_710051d360*>(self));
     self->vtable = g_unk_7101a47c98 + 2;
     self->field_0x2c = -1;
     fn_7100515270(self->pool, 10, 0, 4, nullptr);

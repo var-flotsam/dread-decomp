@@ -6,8 +6,10 @@
 #include "types.h"
 
 struct UnkSelf;
+struct UnkSelf_71003d5a14;
 struct UnkVec3;
-void fn_71003d5450(UnkSelf* self, const UnkVec3* v, u32 a2);
+struct UnkVec3_71003d5a14;
+void fn_71003d5450(UnkSelf_71003d5a14* self, const UnkVec3_71003d5a14* v, u32 a2);
 extern void* g_unk_7101a2e5d0[];  // The attack's vtable.
 struct UnkAutsniperSend_b58;
 void fn_71003d3cf8(UnkAutsniperSend_b58* self);  // Enters state 1.

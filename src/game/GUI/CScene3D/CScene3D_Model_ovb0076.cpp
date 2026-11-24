@@ -194,7 +194,7 @@ void fn_7100b727c4(UnkScene3D_ovb0076* self) {
     }
 }
 
-struct UnkListedItem;
+struct UnkListedItem_710119ba7c;
 struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
 
@@ -221,7 +221,7 @@ void fn_7100b72e5c(UnkScene3D_ovb0076* self, bool on) {
         self->item.name = Prefixed_ovb0076("CScene3D:", fn_71011cd4f8(self));
         self->field_0x4a4 = 1;
         fn_710119ba7c(static_cast<UnkItemList*>(ItemList_ovb0076()),
-                      reinterpret_cast<UnkListedItem*>(&self->item));
+                      reinterpret_cast<UnkListedItem_710119ba7c*>(&self->item));
     } else {
         fn_710119ae24(ItemList_ovb0076(), &self->item, true);
     }

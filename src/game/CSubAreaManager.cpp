@@ -65,6 +65,7 @@
 #include "UnkLeftoverReg.h"
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
+#include "game/UnkPlayer.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
@@ -334,10 +335,6 @@ static inline const CStrId& SecondId(const UnkSubArea* area) { return area ? are
 // The camera holder fn_7100defcec gives and its current camera controller (game/UnkCameraCtrl.h).
 void fn_7100723120(void* holder);
 
-struct UnkPlayer {
-    u8 pad_0x0[0x1c0];
-    UnkPlayerSub* field_0x1c0;
-};
 
 void fn_7100eead58(CSubAreaManager* self, const CStrId& prev_a, const CStrId& prev_b, const CStrId& cur_a,
                    const CStrId& cur_b);

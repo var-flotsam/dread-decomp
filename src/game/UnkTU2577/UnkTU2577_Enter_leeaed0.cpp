@@ -62,7 +62,7 @@ void fn_7100eeaed0(UnkSubAreaMgr_b190_leeaed0* self) {
             fn_710105383c(effects);
             if (!fn_7101053a0c(effects)) {
                 UnkVec3f zero(0.0f, 0.0f, 0.0f);
-                fn_7101053850(effects, reinterpret_cast<UnkVec*>(&zero), 0, 0.2f, 1.0f);
+                fn_7101053850(effects, reinterpret_cast<UnkVec_710048a194*>(&zero), 0, 0.2f, 1.0f);
             }
         }
         fn_710024fa0c(reinterpret_cast<UnkStruct_710024fa0c*>(fn_7100defcec(gm)), false);

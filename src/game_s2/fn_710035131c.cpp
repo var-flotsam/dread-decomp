@@ -19,12 +19,12 @@
 
 using base::global::CStrId;
 
-struct UnkComponent {
+struct UnkComponent_710035131c {
     u8 pad_0x0[0x128];
     u8 field_0x128;
 };
 
-struct UnkOwner {
+struct UnkOwner_710035131c {
     u8 pad_0x0[0x38];
     u8 field_0x38[1];
     u8 pad_0x39[0x1e7];
@@ -32,12 +32,12 @@ struct UnkOwner {
     u8 pad_0x228[0x48];
     void* field_0x270;
     u8 pad_0x278[0x30];
-    UnkComponent* field_0x2a8;
+    UnkComponent_710035131c* field_0x2a8;
 };
 
-struct UnkSelf {
+struct UnkSelf_710035131c {
     u8 pad_0x0[0x30];
-    UnkOwner* field_0x30;
+    UnkOwner_710035131c* field_0x30;
     u8 pad_0x38[0x664];
     u32 field_0x69c;
     u8 pad_0x6a0;
@@ -55,10 +55,10 @@ static inline u32 AsU32(const f32& value) {
     return bits;
 }
 
-void fn_710035131c(UnkSelf* self) {
+void fn_710035131c(UnkSelf_710035131c* self) {
     if (self->field_0x69c == 6)
         fn_7100350da0(self);
-    UnkOwner* owner = self->field_0x30;
+    UnkOwner_710035131c* owner = self->field_0x30;
     if (!owner->field_0x220)
         return;
     if (!owner->field_0x2a8)

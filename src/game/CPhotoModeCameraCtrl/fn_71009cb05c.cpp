@@ -41,7 +41,7 @@ static inline void SetValue(CBlackboard* blackboard, const CStrId& section, cons
     }
 }
 
-struct UnkListedItem;
+struct UnkListedItem_710119ba7c;
 struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
 const void* fn_71010e53ac(void* holder);
@@ -109,6 +109,6 @@ void fn_71009cb05c(UnkPhotoModeCameraCtrl_l9cb05c* self, UnkArg_fc* arg) {
         g_unk_7172729910 = p;
     }
     fn_710119ba7c(static_cast<UnkItemList*>(g_unk_7172729910),
-                  reinterpret_cast<UnkListedItem*>(self->field_0x210));
+                  reinterpret_cast<UnkListedItem_710119ba7c*>(self->field_0x210));
     self->field_0x9c = 2;
 }

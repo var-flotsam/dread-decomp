@@ -11,9 +11,9 @@ using base::global::CStrId;
 
 struct UnkCreatedSceneObj;
 
-struct UnkWidget;
+struct UnkWidget_7100205bc4;
 struct UnkWidgetArg;
-void fn_7100205bc4(UnkWidget* self, UnkWidgetArg* a);
+void fn_7100205bc4(UnkWidget_7100205bc4* self, UnkWidgetArg* a);
 
 struct UnkTaggedSubObject131 {
     void* vtable;
@@ -34,7 +34,7 @@ void fn_710014520c(UnkCreatedSceneObj* obj, const CStrId* name) {
     self->flags = 0xff09f000;
     self->tag = 0x600d600d;
     self->vtable = g_unk_7101a1c5e8 + 0x10;
-    fn_7100205bc4((UnkWidget*)self->sub, (UnkWidgetArg*)name);
+    fn_7100205bc4((UnkWidget_7100205bc4*)self->sub, (UnkWidgetArg*)name);
     self->field_0x130 = 0;
     fn_71000255c4(self->member);
     self->self = self;

@@ -12,13 +12,13 @@ struct UnkLinked_569f34 {
     u8 field_0x611;
 };
 
-struct UnkOwner {
+struct UnkOwner_7100569f34 {
     u8 pad_0x0[0x29ee0];
     UnkLinked_569f34* field_0x29ee0;
 };
 
 
-f32 fn_7100569f34(UnkOwner* self, void* unused, u32 key, f32 value) {
+f32 fn_7100569f34(UnkOwner_7100569f34* self, void* unused, u32 key, f32 value) {
     if ((~key & 0xffff) == 0)
         return value;
     if (self->field_0x29ee0->field_0x611)

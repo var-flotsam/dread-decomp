@@ -9,23 +9,23 @@
 
 using base::reflection::CClass;
 
-struct UnkEntry {
+struct UnkEntry_7100403a18 {
     void** vtable;
-    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkEntry*)>(vtable[0])(this); }
-    void vf_0x80() { reinterpret_cast<void (*)(UnkEntry*)>(vtable[16])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkEntry_7100403a18*)>(vtable[0])(this); }
+    void vf_0x80() { reinterpret_cast<void (*)(UnkEntry_7100403a18*)>(vtable[16])(this); }
 };
 
-struct UnkOwner {
+struct UnkOwner_7100403a18 {
     u8 pad_0x0[0x40];
     void* field_0x40;
 };
 
 struct UnkOwnerRef_403a18 {
     u8 pad_0x0[0x220];
-    UnkOwner* field_0x220;
+    UnkOwner_7100403a18* field_0x220;
 };
 
-struct UnkSelf : UnkBehaviorTreeAI {
+struct UnkSelf_7100403a18 : UnkBehaviorTreeAI {
     u8 pad_0x38[0x146c0];
     UnkOwnerRef_403a18* Owner() const { return static_cast<UnkOwnerRef_403a18*>(field_0x30); }
     u8 field_0x146f8;
@@ -36,16 +36,16 @@ struct UnkSelf : UnkBehaviorTreeAI {
 extern __attribute__((visibility("hidden"))) char g_unk_71726c40d8[];
 extern __attribute__((visibility("hidden"))) char g_unk_71726c40e0[];
 
-void fn_7100403a18(UnkSelf* self) {
+void fn_7100403a18(UnkSelf_7100403a18* self) {
     fn_71003695b8(self);
     self->field_0x146f8 = 0;
     self->field_0x1472c = 0;
-    if (UnkOwner* owner = self->Owner()->field_0x220) {
-        if (UnkEntry* entry = fn_71002d57ac(owner->field_0x40, g_unk_71726c40d8)) {
+    if (UnkOwner_7100403a18* owner = self->Owner()->field_0x220) {
+        if (UnkEntry_7100403a18* entry = fn_71002d57ac(owner->field_0x40, g_unk_71726c40d8)) {
             if (fn_710009d50c(entry->vf_0x0(), fn_71002e6474()))
                 entry->vf_0x80();
         }
-        if (UnkEntry* entry = fn_71002d57ac(owner->field_0x40, g_unk_71726c40e0)) {
+        if (UnkEntry_7100403a18* entry = fn_71002d57ac(owner->field_0x40, g_unk_71726c40e0)) {
             if (fn_710009d50c(entry->vf_0x0(), fn_71002e6474()))
                 entry->vf_0x80();
         }

@@ -11,17 +11,17 @@ struct UnkEntity_4744a4 {
     UnkActor* field_0x30;
 };
 
-struct UnkEntry {
+struct UnkEntry_71004744a4 {
     u8 pad_0x0[0x10];
     UnkEntity_4744a4* field_0x10;
 };
 
 struct UnkEntryList {
-    UnkEntry** data;
+    UnkEntry_71004744a4** data;
     u32 count;
 
-    UnkEntry** begin() { return data; }
-    UnkEntry** end() { return data + count; }
+    UnkEntry_71004744a4** begin() { return data; }
+    UnkEntry_71004744a4** end() { return data + count; }
 };
 
 extern char g_unk_71726cca00[] __attribute__((visibility("hidden")));
@@ -34,7 +34,7 @@ bool fn_71004744a4(UnkEntity_4744a4* self) {
         return false;
     UnkEntryList* list = reinterpret_cast<UnkEntryList*>(
         fn_7100de94cc(g_unk_7101d47310, reinterpret_cast<const u64*>(g_unk_71726cca00)));
-    for (UnkEntry* entry : *list) {
+    for (UnkEntry_71004744a4* entry : *list) {
         UnkEntity_4744a4* other = entry ? entry->field_0x10 : nullptr;
         if (other == self)
             continue;

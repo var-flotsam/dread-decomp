@@ -13,11 +13,12 @@ void fn_7100838f20(UnkGunComponent_l838f20* self);  // the destructor; derived g
 struct UnkGunBeam_ovb0070;
 struct UnkSamusGun_ovb0070;
 struct UnkComponent;
+struct UnkComponent_710035131c;
 struct UnkItem_710083e9d4;
 struct UnkListener_b40;
 struct UnkSamusGunComponent_b50;
 struct UnkStruct_710083e9d4;
-void* fn_710083cd30(UnkComponent* component);
+void* fn_710083cd30(UnkComponent_710035131c* component);
 void fn_7100839b00(char* self, bool value);
 void fn_710083b0bc(void* owner, UnkListener_b40* listener);
 UnkItem_710083e9d4* fn_710083e9d4(UnkStruct_710083e9d4* self, const u64* id, bool primary);

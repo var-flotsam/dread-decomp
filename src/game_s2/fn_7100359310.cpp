@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTU437.h"
 #include "base/reflection/TypeObject.h"
+#include "game/UnkAimTunable.h"
 
 using namespace unk_static_init;
 
@@ -23,26 +24,6 @@ struct UnkStatics_7100359310 {
 extern UnkStatics_7100359310 g_unk_71726b16a0 __attribute__((visibility("hidden")));
 extern char g_unk_71726b1430[];
 extern char g_unk_71726b1431[];
-struct __attribute__((packed)) UnkAimTunable {
-    void** vtable;
-    u8 pad_0x8[0x1c];
-    u64 field_0x24;
-    u32 field_0x2c;
-    u8 pad_0x30[4];
-    u64 field_0x34;
-    u32 field_0x3c;
-    u8 pad_0x40[4];
-    u64 field_0x44;
-    u64 field_0x4c;
-    u64 field_0x54;
-    u8 pad_0x5c[8];
-    u64 field_0x64;
-    u64 field_0x6c;
-    u64 field_0x74;
-    u64 field_0x7c;
-    u64 field_0x84;
-    u64 field_0x8c;
-};
 // UnkAimTunable is the full (packed) view of a tunable; fn_7100136ecc (game/UnkTUProperty.h) builds its base.
 extern void* g_unk_7101a23c28[];
 enum class EInputAimDir : u32;

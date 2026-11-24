@@ -11,6 +11,7 @@
 #include "game/UnkTU1159.h"
 #include "game/UnkTU2560.h"
 #include "types.h"
+#include "game/UnkTarget.h"
 
 using base::reflection::CClass;
 
@@ -35,7 +36,7 @@ struct UnkChain1 {
     UnkChain2* field_0x10;
 };
 
-struct UnkSelf {
+struct UnkSelf_7100579d08 {
     u8 pad_0x0[0xe8];
     UnkChain1* field_0xe8;
 };
@@ -49,18 +50,10 @@ struct UnkMessage_579d08 {
     UnkTypeRef* field_0x0;
 };
 
-struct UnkTarget {
-    u8 pad_0x0[0x64];
-    f32 field_0x64;
-    f32 field_0x68;
-    f32 field_0x6c;
-    u8 pad_0x70[0x110];
-    u8 field_0x180;
-};
 
 extern u8 g_unk_7101649f60[];
 
-bool fn_7100579d08(UnkSelf* self, UnkTarget* target, UnkMessage_579d08* message) {
+bool fn_7100579d08(UnkSelf_7100579d08* self, UnkTarget* target, UnkMessage_579d08* message) {
     if (fn_710074ddd8(self, target, message))
         return true;
     if (message->field_0x0->field_0x30 != 0xfab221522cf4e099ull)

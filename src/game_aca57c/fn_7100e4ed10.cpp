@@ -23,14 +23,14 @@ struct UnkRecordA8_e4ed10 {
 };
 static_assert(sizeof(UnkRecordA8_e4ed10) == 0xa8, "UnkRecordA8_e4ed10 layout");
 
-struct UnkRecord80 {
+struct UnkRecord80_7100e4ed10 {
     u8 unk_0x0[0x10];
     UnkStrIdTwoStep field_0x10;
     UnkArray_e4ed10 field_0x18;
     UnkArray_e4ed10 field_0x40;
     u8 unk_0x68[0x18];
 };
-static_assert(sizeof(UnkRecord80) == 0x80, "UnkRecord80 layout");
+static_assert(sizeof(UnkRecord80_7100e4ed10) == 0x80, "UnkRecord80_7100e4ed10 layout");
 
 template <class Record>
 struct UnkRecordIdArray {
@@ -58,7 +58,7 @@ __attribute__((always_inline)) static inline void Clear(UnkRecordIdArray<Record>
 void fn_7100e4ed10(UnkRecordIdArray<UnkRecordA8_e4ed10>* self) { Clear(self); }
 // NON_MATCHING(minor): as fn_7100e4ed10 (the original's base is record + 0x60, ours
 // record + 0x38).
-void fn_7100e4eb8c(UnkRecordIdArray<UnkRecord80>* self) { Clear(self); }
+void fn_7100e4eb8c(UnkRecordIdArray<UnkRecord80_7100e4ed10>* self) { Clear(self); }
 
 // Destructor of a record of two string ids (0x0, 0x18) and two arrays (0x20, 0x48).
 struct UnkIdsArraysRecord {

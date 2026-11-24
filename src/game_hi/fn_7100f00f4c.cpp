@@ -7,7 +7,7 @@
 #include "types.h"
 #include "base/UnkLinkedList.h"
 
-struct UnkRefObj {
+struct UnkRefObj_7100f00f4c {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -16,34 +16,34 @@ struct UnkRefObj {
     u32 field_0x2c;
 };
 
-static inline void RefAdd(UnkRefObj* o) { __atomic_fetch_add(&o->ref_count, 1, __ATOMIC_SEQ_CST); }
-static inline void RefRelease(UnkRefObj* o) {
+static inline void RefAdd(UnkRefObj_7100f00f4c* o) { __atomic_fetch_add(&o->ref_count, 1, __ATOMIC_SEQ_CST); }
+static inline void RefRelease(UnkRefObj_7100f00f4c* o) {
     __atomic_fetch_sub(&o->ref_count, 1, __ATOMIC_SEQ_CST);
     if (__atomic_load_n(&o->ref_count, __ATOMIC_SEQ_CST) == 0)
         o->vf_0x10();
 }
 
-struct UnkRef {
-    UnkRefObj* ptr;
-    UnkRef(const UnkRef& o) : ptr(o.ptr) {
+struct UnkRef_7100f00f4c {
+    UnkRefObj_7100f00f4c* ptr;
+    UnkRef_7100f00f4c(const UnkRef_7100f00f4c& o) : ptr(o.ptr) {
         if (ptr)
             RefAdd(ptr);
     }
-    ~UnkRef() {
+    ~UnkRef_7100f00f4c() {
         if (ptr)
             RefRelease(ptr);
     }
 };
 
-struct UnkListNode {
+struct UnkListNode_7100f00f4c {
     u32 key;
-    UnkRef ref;
-    UnkListNode* next;
+    UnkRef_7100f00f4c ref;
+    UnkListNode_7100f00f4c* next;
 };
 
-struct UnkList : base::UnkLinkedList<UnkListNode> {
-    UnkListNode* Find(u32 key) {
-        for (UnkListNode* n = head; n; n = n->next)
+struct UnkList_7100f00f4c : base::UnkLinkedList<UnkListNode_7100f00f4c> {
+    UnkListNode_7100f00f4c* Find(u32 key) {
+        for (UnkListNode_7100f00f4c* n = head; n; n = n->next)
             if (n->key == key)
                 return n;
         return nullptr;
@@ -64,11 +64,11 @@ struct UnkStruct_0x128 {
     u32 field_0x18;
     u32 bucket_count;
     u8 pad_0x20[0x30];
-    UnkList field_0x50;
+    UnkList_7100f00f4c field_0x50;
     u8 pad_0x78[0x8];
-    UnkList field_0x80;
+    UnkList_7100f00f4c field_0x80;
     u8 pad_0xa8[0x8];
-    UnkList field_0xb0;
+    UnkList_7100f00f4c field_0xb0;
 
     UnkHashNode_f00f4c* Find(u32 key) {
         if (field_0x18 == 0)
@@ -84,10 +84,10 @@ struct UnkStruct_0x128 {
     }
 
     bool IsActive(u32 id) {
-        UnkListNode* n = field_0x80.Find(id);
+        UnkListNode_7100f00f4c* n = field_0x80.Find(id);
         if (!n)
             return false;
-        UnkRef ref = n->ref;
+        UnkRef_7100f00f4c ref = n->ref;
         u32 state = ref.ptr->field_0x2c;
         return state != 0xa && state != 0xc;
     }
@@ -105,7 +105,7 @@ bool fn_7100f00f4c(UnkStruct_0x128* self, u32 id, bool force) {
         return true;
     if (self->IsActive(id) || self->field_0xb0.Find(id))
         fn_7100f011c4(self, id);
-    if (UnkListNode* n = self->field_0x50.Find(id)) {
+    if (UnkListNode_7100f00f4c* n = self->field_0x50.Find(id)) {
         fn_710021ea60(n->ref.ptr);
         self->field_0x50.Remove(n);
         return true;

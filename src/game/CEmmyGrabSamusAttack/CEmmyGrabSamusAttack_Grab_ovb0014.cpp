@@ -504,7 +504,7 @@ void fn_710050a1b0(UnkStruct_710050f26c* attack) {
     }
 }
 
-struct UnkSelf;
+struct UnkSelf_7100552d94;
 struct UnkEmmyGrabAttack_A3_b67;
 struct UnkPlayer;
 struct UnkOwner;
@@ -553,7 +553,7 @@ void fn_710050c06c(UnkGrabAttack10_ovb0014* self) {
     auto* emmy = ai && fn_710009d50c(ai->vf_0x0(), fn_710053b934()) ? reinterpret_cast<UnkEmmyAI_b61*>(ai) : nullptr;
     f32 v = fn_7100552ee4(emmy);
     if (v > 0.0f) {
-        f32 r = fn_7100552d94(reinterpret_cast<UnkSelf*>(emmy));
+        f32 r = fn_7100552d94(reinterpret_cast<UnkSelf_7100552d94*>(emmy));
         self->field_0x6b8 = r;
         self->field_0x6bc = r;
         self->field_0x6c8 = (2.0f / v) * r + 2.0f;

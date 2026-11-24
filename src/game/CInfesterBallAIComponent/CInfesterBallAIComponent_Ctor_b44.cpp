@@ -9,7 +9,7 @@
 
 extern void* g_unk_7101a524b8[];  // the component's vtable
 
-struct UnkComponent;
+struct UnkComponent_71004076e4;
 struct UnkNode;
 
 typedef u64 UnkU64Align4_b44a2 __attribute__((aligned(4)));
@@ -42,7 +42,7 @@ struct UnkInfesterBallAI_b44a2 {
 static_assert(__builtin_offsetof(UnkInfesterBallAI_b44a2, field_0x14778) == 0x14778, "layout");
 
 void fn_71005d2598(UnkInfesterBallAI_b44a2* self) {
-    fn_710036932c(reinterpret_cast<UnkComponent*>(self));
+    fn_710036932c(reinterpret_cast<UnkComponent_71004076e4*>(self));
     self->vtable = g_unk_7101a524b8 + 2;
     __builtin_memset(&self->field_0x146d8, 0, 0x10);
     self->field_0x146f8 = 0;

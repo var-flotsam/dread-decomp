@@ -13,7 +13,7 @@
 #include <new>
 
 // As src/game/CEmmyCaveAIComponent/CEmmyCaveAIComponent.cpp declares it.
-struct UnkComponent;
+struct UnkComponent_71004faad4;
 
 // A file-path id copied in (as src/base/UnkUnit25/UnkIdPathIterAssign.cpp's UnkUnit25PathId).
 struct UnkSancPathId_A3_b71 {
@@ -65,7 +65,7 @@ struct UnkSancVt_A3_b71 {
     UnkSancPathId_A3_b71 path;
     u8 pad_0x147f8[0x2a6f8 - 0x147f8];
     UnkSancVt_A3_b71() {
-        fn_710053e5c0(reinterpret_cast<UnkComponent*>(this));
+        fn_710053e5c0(reinterpret_cast<UnkComponent_71004faad4*>(this));
         vtable = reinterpret_cast<char*>(g_unk_7101a46180) + 0x10;
     }
 };

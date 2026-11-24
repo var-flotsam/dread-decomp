@@ -13,16 +13,16 @@ inline void* operator new(u64, void* p) { return p; }
 extern void* g_unk_7101a1fab8[];
 
 struct UnkWidgetArg;
-struct UnkWidgetMember {
+struct UnkWidgetMember_710020c38c {
     u8 data_0x0[8];
     s32 field_0x8;
     u8 data_0xc[0x2c];
-    UnkWidgetMember() {}
-    UnkWidgetMember(const UnkWidgetMember&) {}
+    UnkWidgetMember_710020c38c() {}
+    UnkWidgetMember_710020c38c(const UnkWidgetMember_710020c38c&) {}
 };
-UnkWidgetMember fn_71001511d0(UnkWidgetArg* a);
+UnkWidgetMember_710020c38c fn_71001511d0(UnkWidgetArg* a);
 
-struct UnkWidget {
+struct UnkWidget_710020c38c {
     void** vtable_0x0;
     void* field_0x8;
     u8 id_0x10[8];
@@ -38,12 +38,12 @@ struct UnkWidget {
     u8 pad_0xfe[2];
     u32 field_0x100;
     u8 pad_0x104[4];
-    UnkWidgetMember member_0x108;
+    UnkWidgetMember_710020c38c member_0x108;
 };
 
-typedef void (*UnkVf50)(UnkWidget*, int);
+typedef void (*UnkVf50)(UnkWidget_710020c38c*, int);
 
-void fn_710020c38c(UnkWidget* self, UnkWidgetArg* a) {
+void fn_710020c38c(UnkWidget_710020c38c* self, UnkWidgetArg* a) {
     self->field_0x8 = nullptr;
     self->vtable_0x0 = g_unk_7101a1f000 + 2;
     CStrId_Construct(self->id_0x10, "", true);
@@ -72,7 +72,7 @@ void fn_710020c38c(UnkWidget* self, UnkWidgetArg* a) {
     self->flag_0xfd = 1;
     self->field_0x100 = 0x600d600d;
     self->vtable_0x0 = g_unk_7101a1fab8 + 2;
-    new (&self->member_0x108) UnkWidgetMember(fn_71001511d0(a));
+    new (&self->member_0x108) UnkWidgetMember_710020c38c(fn_71001511d0(a));
     self->member_0x108.field_0x8 = 0;
     fn_710021693c(&self->sub_0x80, 0.0f);
     ((UnkVf50)self->vtable_0x0[10])(self, 1);

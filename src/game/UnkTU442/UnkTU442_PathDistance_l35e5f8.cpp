@@ -4,15 +4,8 @@
 #include <float.h>
 
 #include "types.h"
+#include "game/UnkAIPath.h"
 
-struct UnkAIPath {
-    void* vertices;
-    s32 count;
-    u8 unk_0xc[0x20];
-    u8 closed;
-    u8 unk_0x2d[0x1b];
-    f32* lengths;  // one per edge
-};
 
 static inline u32 EdgeCount(const UnkAIPath* self) {
     return self->count - (!self->closed & (self->count != 0));

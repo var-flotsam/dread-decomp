@@ -11,7 +11,7 @@
 #include "types.h"
 
 // Declared as src/game/CCentralUnitAIComponent/fn_71004076e4.cpp defines it.
-struct UnkComponent;
+struct UnkComponent_71004076e4;
 void fn_71006ec9f0(void* member);
 void fn_71006ed608(void* member);
 
@@ -36,7 +36,7 @@ struct UnkYamplotXAI_yxa {
 };
 
 void fn_71006f3190(UnkYamplotXAI_yxa* self) {
-    fn_710036932c(reinterpret_cast<UnkComponent*>(self));
+    fn_710036932c(reinterpret_cast<UnkComponent_71004076e4*>(self));
     At_yxa<void**>(self, 0) = g_unk_7101a6ae18 + 2;
     fn_71006ec9f0(reinterpret_cast<char*>(self) + 0x146c8);
     fn_71006ed608(reinterpret_cast<char*>(self) + 0x146f8);

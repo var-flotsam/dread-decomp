@@ -42,12 +42,12 @@ struct UnkRoot_5528fc {
     UnkRecord_5528fc* field_0x10;
 };
 
-struct UnkSelf {
+struct UnkSelf_71005528fc {
     u8 pad_0x0[0x29558];
     UnkRoot_5528fc* field_0x29558;
 };
 
-bool fn_71005528fc(UnkSelf* self, void* arg) {
+bool fn_71005528fc(UnkSelf_71005528fc* self, void* arg) {
     UnkRoot_5528fc* root = self->field_0x29558;
     if (!root)
         return false;

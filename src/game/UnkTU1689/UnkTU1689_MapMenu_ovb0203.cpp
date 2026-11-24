@@ -32,6 +32,7 @@
 #include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
+#include "game/UnkMapData.h"
 
 using base::global::CStrId;
 using base::global::UnkStrIdBase;
@@ -71,19 +72,6 @@ struct UnkMapMenuEntry_ovb0203 {
 };
 
 // The map data (fn_7100e8d8b0): the zoom, the layer values and the map menu it belongs to.
-struct UnkMapData {
-    u8 pad_0x0[0xbc];
-    f32 field_0xbc;
-    u8 pad_0xc0[0x4];
-    f32 field_0xc4;
-    u8 pad_0xc8[0x48];
-    CStrId field_0x110;
-    u8 field_0x118[1];
-    u8 pad_0x119[0xd63d30 - 0x119];
-    f32 bounds[4];  // the map's box: min x, min y, max x, max y
-    u8 pad_0xd63d40[0xd63f40 - 0xd63d40];
-    UnkMapEntry_ovb0203* field_0xd63f40;
-};
 
 struct UnkMapMenuController_ovb0203 {
     virtual void vf_0x0();

@@ -8,13 +8,13 @@
 
 using base::global::UnkStrId;
 
-struct UnkNode {
+struct UnkNode_710046f678 {
     u8 pad_0x0[0x15a0];
     u64 field_0x15a0;
     u64 field_0x15a8;
 };
 
-void fn_710046f678(UnkNode* self) {
+void fn_710046f678(UnkNode_710046f678* self) {
     fn_71003ace0c(self);
     self->field_0x15a8 = 0;
     self->field_0x15a0 = 0;

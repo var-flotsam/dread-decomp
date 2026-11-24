@@ -11,7 +11,7 @@ struct UnkManager {
     u8 unk_0x0[0x110];
     u32 ready;
 };
-struct UnkSelf {
+struct UnkSelf_710030c0c0 {
     u8 unk_0x0[0x448];
     u32 state;
     u32 field_0x44c;
@@ -21,7 +21,7 @@ struct UnkSelf {
     u8 field_0x49b;
 };
 
-void fn_710030c0c0(UnkSelf* self) {
+void fn_710030c0c0(UnkSelf_710030c0c0* self) {
     UnkManager* manager = g_unk_7101d47360;
     if (!manager) {
         manager = static_cast<UnkManager*>(fn_71000839a0(0xae8, 0x3f));

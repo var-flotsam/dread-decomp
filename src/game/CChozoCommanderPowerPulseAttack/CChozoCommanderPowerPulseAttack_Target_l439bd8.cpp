@@ -12,7 +12,7 @@
 
 using base::reflection::UnkReflObject;
 
-struct UnkSelf;
+struct UnkSelf_710042bb48;
 struct UnkOut_42bb48;
 
 struct UnkPulseRange_l439bd8 {
@@ -57,5 +57,5 @@ bool fn_7100439bd8(UnkPulseAttack_l439bd8* self, UnkVec3f* out) {
         out->x = -self->def->distance + out->x;
         return true;
     }
-    return fn_710042bb48(reinterpret_cast<UnkSelf*>(self), reinterpret_cast<UnkOut_42bb48*>(out));
+    return fn_710042bb48(reinterpret_cast<UnkSelf_710042bb48*>(self), reinterpret_cast<UnkOut_42bb48*>(out));
 }

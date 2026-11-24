@@ -15,7 +15,7 @@ using base::reflection::CClass;
 struct UnkAIObject {
     virtual const CClass* vf_0x0();
 };
-struct UnkSelf {
+struct UnkSelf_71003fd0b0 {
     u8 unk_0x0[0x10];
     UnkAIObject* object;
     u8 unk_0x18[0x18];
@@ -23,16 +23,16 @@ struct UnkSelf {
     u8 unk_0x38[0x14684];
     UnkAim aim;
 };
-struct UnkTunable {
+struct UnkTunable_71003fd0b0 {
     u8 unk_0x0[0x24];
     f32 field_0x24;
 };
 
 extern "C" f32 atan2f(f32 y, f32 x);
-void fn_71003fd194(UnkSelf* self, f32 current);
+void fn_71003fd194(UnkSelf_71003fd0b0* self, f32 current);
 
 // NON_MATCHING(minor): the final select is `fcsel ... le` in the original, `fcsel ... gt` with the operands swapped here.
-void fn_71003fd0b0(UnkSelf* self, f32 scale) {
+void fn_71003fd0b0(UnkSelf_71003fd0b0* self, f32 scale) {
     UnkAim* aim = &self->aim;
     if (self->object)
         fn_710009d50c(self->object->vf_0x0(), fn_71003feb44());

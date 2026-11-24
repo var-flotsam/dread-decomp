@@ -13,7 +13,7 @@ struct UnkStrBody_0x38 {
     u64 field_0x30;
 };
 
-struct UnkHandle {
+struct UnkHandle_7100fdd2b4 {
     UnkStrBody_0x38* field_0x0;
 };
 
@@ -21,7 +21,7 @@ struct UnkEntry_0x60_fdd2b4 {
     u8 pad_0x0[0x8];
     f32 field_0x8;
     u8 pad_0xc[0x1c];
-    UnkHandle* field_0x28;
+    UnkHandle_7100fdd2b4* field_0x28;
     u32 field_0x30;
     u8 pad_0x34[0x2c];
 };
@@ -67,7 +67,7 @@ void fn_7100fdd2b4(UnkStruct_0xd0_fdd2b4* self, u64* id, f32 time) {
         UnkEntry_0x60_fdd2b4& e = arr.data[i];
         if (e.field_0x30 == 0)
             continue;
-        UnkHandle* h = e.field_0x28;
+        UnkHandle_7100fdd2b4* h = e.field_0x28;
         if (h->field_0x0 == (UnkStrBody_0x38*)((char*)g_unk_7101d47200 + 0x10))
             continue;
         if (h->field_0x0->field_0x30 != *id)

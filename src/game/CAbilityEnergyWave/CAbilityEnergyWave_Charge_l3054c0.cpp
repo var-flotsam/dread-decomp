@@ -8,7 +8,7 @@
 #include "game/CGunComponent.h"
 #include "types.h"
 
-struct UnkComponent;
+struct UnkComponent_710035131c;
 
 // The part a world shows for an effect name.
 struct UnkBurstPart_l3054c0 {
@@ -82,7 +82,7 @@ void fn_71003054c0(UnkEnergyWave_l3054c0* self) {
     UnkWorld* world = owner->world;
     bool charging = false;
     if (gun && !gun->disabled)
-        charging = static_cast<UnkGunState_l3054c0*>(fn_710083cd30(reinterpret_cast<UnkComponent*>(gun)))->IsCharging();
+        charging = static_cast<UnkGunState_l3054c0*>(fn_710083cd30(reinterpret_cast<UnkComponent_710035131c*>(gun)))->IsCharging();
 
     bool centerOff = !LivePart(world, HashOf("specialburst_rocketballcenter"))->active;
     fn_710114fe8c(world, HashOf("specialburst_rocketball"), charging, 0);

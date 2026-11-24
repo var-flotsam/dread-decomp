@@ -36,7 +36,7 @@ struct UnkGrabAttack_A3_b68 {
     f32 field_0x6c0;
 };
 
-struct UnkSelf;
+struct UnkSelf_710050ccc8;
 struct UnkPlayer;
 struct UnkStruct_7101176ea8;
 
@@ -81,7 +81,7 @@ void fn_710050d07c(UnkGrabAttack_A3_b68* self) {
 }
 
 void fn_710050eca0(UnkGrabAttack_A3_b68* self) {
-    fn_710050cd98(reinterpret_cast<UnkSelf*>(self));
+    fn_710050cd98(reinterpret_cast<UnkSelf_710050ccc8*>(self));
     auto* player = reinterpret_cast<UnkPlayer_A3_b68*>(fn_7100dec788(g_unk_7101d47310));
     if (player->field_0x1c0->field_0x5c)
         return;

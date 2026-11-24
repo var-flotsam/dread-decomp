@@ -11,6 +11,7 @@
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
+#include "game/UnkPlayer.h"
 
 struct UnkInventory;
 
@@ -19,10 +20,6 @@ struct UnkOwner {
     UnkInventory* field_0x270;
 };
 
-struct UnkPlayer {
-    u8 pad_0x0[0x220];
-    void* field_0x220;
-};
 
 struct UnkDesc_SpitSend;
 __attribute__((visibility("hidden"))) extern const u64 g_unk_71016498b8[];  // a hash per kind

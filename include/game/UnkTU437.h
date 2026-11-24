@@ -11,8 +11,9 @@ struct UnkBeamVec_ovb0138;
 struct UnkActor;
 struct UnkAimTunable;
 struct UnkSelf;
+struct UnkSelf_710035131c;
 void fn_7100359118(void* self);
-void fn_7100350da0(UnkSelf*);
+void fn_7100350da0(UnkSelf_710035131c*);
 extern UnkAimTunable g_unk_71726b1438;
 extern void* g_unk_71726b1688;  // The light manager.
 extern void* g_unk_7101a23c58[];

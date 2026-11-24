@@ -332,7 +332,7 @@ struct UnkRushTunables_b0195 {
     f32 field_0x24;
 };
 
-struct UnkVec {
+struct UnkVec_710048a194 {
     u64 xy;
     u32 z;
 };
@@ -353,7 +353,7 @@ void fn_7100dcdc2c(UnkRush_b0195* self) {
         amount = 0.0f;
     }
     alignas(8) f32 v[3] = {amount, amount, amount};
-    fn_7101053850(effects, reinterpret_cast<UnkVec*>(v), 1, 0.3f, 1.0f);
+    fn_7101053850(effects, reinterpret_cast<UnkVec_710048a194*>(v), 1, 0.3f, 1.0f);
 }
 
 struct UnkRushScoreRow_b0195 {

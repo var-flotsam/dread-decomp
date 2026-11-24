@@ -6,14 +6,14 @@
 #include "game_s2/UnkTunables.h"
 #include "types.h"
 
-struct UnkSelf {
+struct UnkSelf_7100552d94 {
     u8 pad_0x0[0x29ee0];
     UnkProvider* field_0x29ee0;
 };
 
 extern "C" int rand();
 
-f32 fn_7100552d94(UnkSelf* self) {
+f32 fn_7100552d94(UnkSelf_7100552d94* self) {
     alignas(16) f32 values[4];
     values[1] = self->field_0x29ee0->vf_0xd8()->field_0xf4;
     f32* p = &values[1];

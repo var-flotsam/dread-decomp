@@ -19,8 +19,8 @@ using base::reflection::UnkReflObject;
 f32 fn_7100da9260(UnkManager_71726af468* self);
 struct UnkWarriorXAI_ovb0092;
 void fn_71004990ac(UnkWarriorXAI_ovb0092* self);
-struct UnkSelf;
-void fn_710048ecbc(UnkSelf* self);
+struct UnkSelf_710048ecbc;
+void fn_710048ecbc(UnkSelf_710048ecbc* self);
 struct UnkCommanderPlayer_b67a2;
 
 static inline UnkManager_71726af468* Manager_ovb0092() {
@@ -68,7 +68,7 @@ void fn_710048f3c4(UnkWarriorXAI_ovb0092* self) {
         if (UnkReflObject* attack = player->attack)
             grabbing = fn_710009d50c(attack->vf_0x0(), fn_7100486188());
         if (player && !grabbing) {
-            fn_710048ecbc(reinterpret_cast<UnkSelf*>(self));
+            fn_710048ecbc(reinterpret_cast<UnkSelf_710048ecbc*>(self));
             self->owner->player->vf_0x178();
             fn_7101134420(reinterpret_cast<UnkCommanderPlayer_b67a2*>(self->owner->player), self->entry, 0, 0,
                           nullptr, -1.0f);
