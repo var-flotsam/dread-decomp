@@ -751,7 +751,7 @@ void fn_71004896b4(UnkSmGrab_A2_b63<0x80>* self);
 void fn_710048997c(UnkSmGrab_A2_b63<0x80>* self);
 void fn_7100489588(UnkSmGrab_A1_b64<0x80>*, UnkSmGrabMsg_A1_b64* msg);
 void fn_7100489850(UnkSmGrab_A1_b64<0x80>*, UnkSmGrabMsg_A1_b64* msg);
-struct UnkAIComponent;
+struct UnkAIComponent_7100489ea0;
 struct UnkSelf;
 
 struct UnkSmWarriorAI_A1_b64 {
@@ -773,7 +773,7 @@ static inline void WarriorStep_A1_b64(UnkSmGrab_A1_b64<0x80>* self) {
         if (component) {
             UnkSmWarriorAI_A1_b64* found =
                 fn_710009d50c(component->vf_0x0(), fn_710048db44()) ? component : nullptr;
-            fn_710048fc80(reinterpret_cast<UnkAIComponent*>(found));
+            fn_710048fc80(reinterpret_cast<UnkAIComponent_7100489ea0*>(found));
         } else {
             fn_710048fc80(nullptr);
         }

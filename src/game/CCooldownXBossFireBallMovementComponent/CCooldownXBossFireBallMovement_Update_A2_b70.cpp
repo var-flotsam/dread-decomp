@@ -12,7 +12,7 @@
 
 using base::reflection::CClass;
 
-struct UnkAIComponent;
+struct UnkAIComponent_71004d771c;
 struct UnkShardsSphere_b60a2;
 
 struct UnkFireBallComponent_A2_b70 {
@@ -41,7 +41,7 @@ void fn_71004d767c(UnkFireBallMovement_A2_b70* self, f32 dt) {
     if (self->owner && self->owner->object) {
         UnkFireBallComponent_A2_b70* component = self->owner->object->component;
         if (component && fn_710009d50c(component->vf_0x0(), fn_71004cf318()))
-            fn_71004d43dc(reinterpret_cast<UnkAIComponent*>(component), self->actor);
+            fn_71004d43dc(reinterpret_cast<UnkAIComponent_71004d771c*>(component), self->actor);
     }
     fn_7100232c68(self->actor);
 }

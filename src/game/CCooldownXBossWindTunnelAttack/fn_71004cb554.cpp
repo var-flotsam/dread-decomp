@@ -29,16 +29,16 @@ struct UnkGlobal {
     u32 field_0x28;
 };
 
-struct UnkActor {
+struct UnkActor_71004cb554 {
     void** vtable;
-    const CClass* vf_0x0(f32 value) { return reinterpret_cast<const CClass* (*)(UnkActor*, f32)>(vtable[0])(this, value); }
+    const CClass* vf_0x0(f32 value) { return reinterpret_cast<const CClass* (*)(UnkActor_71004cb554*, f32)>(vtable[0])(this, value); }
     u8 pad_0x8[0x1582c];
     u8 field_0x15834;
 };
 
 struct UnkOwner {
     u8 pad_0x0[0x240];
-    UnkActor* field_0x240;
+    UnkActor_71004cb554* field_0x240;
 };
 
 struct UnkSelf {
@@ -68,7 +68,7 @@ struct UnkSelf {
 struct UnkTunable;
 
 UnkEntry* fn_71004ba10c(UnkPool_4cb554* pool, u32 index, u32 flag);
-void fn_71004d1fe8(UnkActor* actor);
+void fn_71004d1fe8(UnkActor_71004cb554* actor);
 
 void fn_71004cb554(UnkSelf* self) {
     fn_71004c1944(self);
@@ -91,7 +91,7 @@ void fn_71004cb554(UnkSelf* self) {
     f32 value = entry ? entry->field_0x30 : 0.0f;
     UnkOwner* owner = self->field_0x8;
     self->field_0x74 = value;
-    UnkActor* actor = owner->field_0x240;
+    UnkActor_71004cb554* actor = owner->field_0x240;
     if (actor) {
         const CClass* type = actor->vf_0x0(value);
         if (fn_710009d50c(type, fn_71004cf318())) {
