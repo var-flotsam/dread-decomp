@@ -62,8 +62,8 @@ struct UnkShakernautChase_ovb0136 {
     f32 field_0x58;
     f32 field_0x5c;
     u8 pad_0x60[0xc];
-    f32 field_0x6c;
-    f32 field_0x70;
+    f32 fMinDist;
+    f32 fMaxDist;
 };
 
 void fn_71006aa9e0(UnkShakernautChase_ovb0136* self) {
@@ -99,9 +99,9 @@ void fn_71006aa9e0(UnkShakernautChase_ovb0136* self) {
     self->field_0x54 = source->field_0x124;
     f32 a = 0.0f;
     f32 b = 0.0f;
-    if (self->field_0x6c != -1.0f && self->field_0x70 != -1.0f) {
-        a = self->field_0x6c;
-        b = self->field_0x70;
+    if (self->fMinDist != -1.0f && self->fMaxDist != -1.0f) {
+        a = self->fMinDist;
+        b = self->fMaxDist;
     } else {
         source->vf_0x90(owner, &a, &b);
     }

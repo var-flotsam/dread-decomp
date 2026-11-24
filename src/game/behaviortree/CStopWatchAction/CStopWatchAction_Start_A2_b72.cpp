@@ -11,13 +11,13 @@ struct UnkSelf;
 
 struct UnkStopWatch_A2_b72 {
     u8 pad_0x0[0x30];
-    u8 field_0x30[8];
+    u8 sElapsedTime[8];
     u8 pad_0x38[0x4];
-    f32 field_0x3c;
-    f32 field_0x40;
+    f32 fMinTime;
+    f32 fMaxTime;
     u8 pad_0x44[0x4];
-    u8 field_0x48[8];
-    u8 field_0x50[8];
+    u8 sMinTime[8];
+    u8 sMaxTime[8];
     u8 pad_0x58[0x4];
     f32 field_0x5c;
 };
@@ -26,12 +26,12 @@ void fn_7100392648(UnkStopWatch_A2_b72* self) {
     UnkSelf* s = reinterpret_cast<UnkSelf*>(self);
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     f32 elapsed = 0.0f;
-    fn_7100394e2c(s, self->field_0x30, &elapsed);
+    fn_7100394e2c(s, self->sElapsedTime, &elapsed);
     if (elapsed + 0.001f >= 0.0f && elapsed + -0.001f <= 0.0f) {
-        f32 lo = self->field_0x3c;
-        fn_7100394e2c(s, self->field_0x48, &lo);
-        f32 hi = self->field_0x40;
-        fn_7100394e2c(s, self->field_0x50, &hi);
+        f32 lo = self->fMinTime;
+        fn_7100394e2c(s, self->sMinTime, &lo);
+        f32 hi = self->fMaxTime;
+        fn_7100394e2c(s, self->sMaxTime, &hi);
         self->field_0x5c = lo + (hi - lo) * 0.5f;
     }
 }

@@ -20,7 +20,7 @@ struct UnkNode_388e20 : UnkBehaviorTreeNodeBase {
     u32 field_0x54;
     u64 field_0x58;
     u64 field_0x60;
-    u8 field_0x68;
+    u8 bStopInAbort;
     u8 pad_0x69[7];
     void** field_0x70;
     u64 field_0x78;
@@ -41,7 +41,7 @@ void fn_7100388e20(UnkNode_388e20* self) {
     self->field_0x54 = 0x7fffffff;
     self->field_0x58 = 0;
     self->field_0x60 = 0;
-    self->field_0x68 = 0;
+    self->bStopInAbort = 0;
     self->field_0x70 = g_unk_7101a22d48 + 2;
     self->field_0x78 = 0;
     self->field_0x80 = 0;

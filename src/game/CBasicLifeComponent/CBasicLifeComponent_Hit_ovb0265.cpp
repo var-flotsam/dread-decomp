@@ -39,7 +39,7 @@ struct UnkBasicLife_ovb0265 {
     u8 pad_0x8[0x28];
     UnkLifeActor_ovb0265* owner;  // 0x30
     u8 pad_0x38[0x54 - 0x38];
-    f32 field_0x54;
+    f32 fCurrentLife;
     u8 pad_0x58[0x64 - 0x58];
     bool field_0x64;
     u8 pad_0x65[0x70 - 0x65];
@@ -77,7 +77,7 @@ u32 fn_71008a3c48(UnkBasicLife_ovb0265* self, UnkLifeHit_ovb0265* hit) {
         if (self->field_0x278 < config->field_0x120)
             fn_71008c1538(reinterpret_cast<UnkRequest*>(hit), hit->amount * config->field_0x11c);
         if (hit->flags >> 5 & 1)
-            fn_71008c1538(reinterpret_cast<UnkRequest*>(hit), self->field_0x54);
+            fn_71008c1538(reinterpret_cast<UnkRequest*>(hit), self->fCurrentLife);
         if (!self->Allows(hit)) {
             // keeps the rejected path's vtable load separate from the handled path's
             asm("" : "+r"(hit));
@@ -89,7 +89,7 @@ u32 fn_71008a3c48(UnkBasicLife_ovb0265* self, UnkLifeHit_ovb0265* hit) {
             return handled;
     }
     u32 result = self->Resolve(hit);
-    if (self->field_0x54 <= 0.0f) {
+    if (self->fCurrentLife <= 0.0f) {
         self->Result(2, hit);
         return result;
     }

@@ -14,7 +14,7 @@ using base::global::UnkStringData;
 
 struct UnkNode_2e753c {
     void** vtable;
-    CStrId field_0x8;
+    CStrId sName;
     UnkPair field_0x10;
     UnkPair field_0x20;
     UnkPair field_0x30;
@@ -28,7 +28,7 @@ void fn_71002e753c(UnkNode_2e753c* self) {
     self->field_0x20 = UnkPair{0, 0};
     self->field_0x10 = UnkPair{0, 0};
     self->vtable = g_unk_7101a21718 + 2;
-    new (&self->field_0x8) CStrId(base::global::CStrId::Empty());
+    new (&self->sName) CStrId(base::global::CStrId::Empty());
     self->vtable = g_unk_7101a21af8 + 2;
     self->field_0x10.field_0x0 = 0;
     if (!g_unk_7101d47108)

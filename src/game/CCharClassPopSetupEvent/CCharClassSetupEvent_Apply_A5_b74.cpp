@@ -15,8 +15,8 @@ struct UnkSetupEvent_A5_b74 {
     void** vtable;
     u8 pad_0x8[0x8];
     base::global::CStrId id;  // 0x10
-    bool field_0x18;
-    bool field_0x19;
+    bool bPersistent;
+    bool bForceUpdate;
 };
 
 template <void (*Apply)(void*, const base::global::CStrId*, bool, bool)>
@@ -29,7 +29,7 @@ static inline __attribute__((always_inline)) void SetupEventApply_A5_b74(UnkSetu
         fn_7100ee1f34(manager);
         g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
-    Apply(manager, &self->id, self->field_0x18, self->field_0x19);
+    Apply(manager, &self->id, self->bPersistent, self->bForceUpdate);
 }
 
 void fn_7100bcb03c(UnkSetupEvent_A5_b74* self) {

@@ -17,28 +17,28 @@ struct UnkPositionalSound_l14c878 {
     s32 path_count;  // 0x48
     u8 unk_0x4c[4];
     CFilePathStrId paths[4];  // 0x50
-    f32 field_0x70;
-    f32 field_0x74;
-    f32 field_0x78;
-    f32 field_0x7c;
-    f32 field_0x80;
+    f32 fMinAtt;
+    f32 fMaxAtt;
+    f32 fLaunchEvery;
+    f32 fVol;
+    f32 fPitch;
     u8 unk_0x84[0x24];
-    bool field_0xa8;
+    bool bLoop;
 };
-static_assert(__builtin_offsetof(UnkPositionalSound_l14c878, field_0xa8) == 0xa8, "layout");
+static_assert(__builtin_offsetof(UnkPositionalSound_l14c878, bLoop) == 0xa8, "layout");
 
 u32 fn_710114c878(UnkPositionalSound_l14c878* self, UnkProp* p) {
     if (Is(p, Key(0x1498)) && p->set) {
-        CRntFile_ReadFormat(p->stream, "ffff", &self->field_0x7c, &self->field_0x80, &self->field_0x70,
-                      &self->field_0x74);
+        CRntFile_ReadFormat(p->stream, "ffff", &self->fVol, &self->fPitch, &self->fMinAtt,
+                      &self->fMaxAtt);
         return true;
     }
     if (Is(p, Key(0x1ff0)) && p->set) {
-        CRntFile_ReadFormat(p->stream, "b", &self->field_0xa8);
+        CRntFile_ReadFormat(p->stream, "b", &self->bLoop);
         return true;
     }
     if (Is(p, Key(0x1fe8)) && p->set) {
-        CRntFile_ReadFormat(p->stream, "f", &self->field_0x78);
+        CRntFile_ReadFormat(p->stream, "f", &self->fLaunchEvery);
         return true;
     }
     if (Is(p, Key(0x1fa8)) && p->set) {

@@ -80,7 +80,7 @@ struct UnkPatrolAction_ovb0124 {
     s32 field_0x54;
     f32 x, y, z;  // 0x58
     f32 radius;   // 0x64
-    bool field_0x68;
+    bool bStopInAbort;
     u8 pad_0x69[7];
     UnkPatrolListener_ovb0124 listener;  // 0x70
     base::UnkStrIdMember field_0x90;
@@ -94,7 +94,7 @@ void fn_71003893dc(UnkPatrolAction_ovb0124* self, s32* state);
 
 void fn_7100389864(UnkPatrolAction_ovb0124* self) {
     fn_7100394bd4(self);
-    if (self->field_0x68) {
+    if (self->bStopInAbort) {
         UnkParams params;
         __builtin_memset(params.field_0x8, 0, 13);
         params.vtable = g_unk_7101a25b10 + 2;

@@ -16,7 +16,7 @@ struct UnkPlayEnvironmentStreamEvent {
     u8 unk_0x8[0x4];
     f32 volume;  // 0xc
     CFilePathStrId path;  // 0x10
-    bool field_0x18;
+    bool bLoop;
     u32 field_0x1c;
 };
 
@@ -25,6 +25,6 @@ void fn_7100cca6d4(UnkPlayEnvironmentStreamEvent* self) {
     self->vtable = g_unk_7101aa5e38 + 0x10;
     self->volume = 1.0f;
     new (&self->path) CFilePathStrId("", true);
-    self->field_0x18 = false;
+    self->bLoop = false;
     self->field_0x1c = 0;
 }

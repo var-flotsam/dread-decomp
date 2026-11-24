@@ -63,7 +63,7 @@ struct UnkFrozenIceRecord_b44a2 {
     void** vtable;
     UnkIdData_b44a2* field_0x8;   // CStrId
     UnkIdData_b44a2* field_0x10;  // CStrId
-    f32 field_0x18;
+    f32 fScale;
 };
 
 void fn_71007f1e6c(UnkFrozenIceRecord_b44a2* self) {
@@ -76,5 +76,5 @@ void fn_71007f1e6c(UnkFrozenIceRecord_b44a2* self) {
     self->field_0x10 = id;
     if (counted)
         ++id->ref_count;
-    self->field_0x18 = 1.0f;
+    self->fScale = 1.0f;
 }

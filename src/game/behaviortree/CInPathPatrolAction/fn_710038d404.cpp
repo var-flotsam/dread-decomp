@@ -43,7 +43,7 @@ struct UnkNode_38d404 : UnkBehaviorTreeNodeBase {
     u64 field_0xb8;
     u64 field_0xc0;
     u8 pad_0xc8;
-    u8 field_0xc9;
+    u8 bAlwaysInDir;
 
     void vf_0x18() {
         reinterpret_cast<void (*)(UnkNode_38d404*)>(vtable[3])(this);
@@ -75,6 +75,6 @@ void fn_710038d404(UnkNode_38d404* self) {
     self->field_0xb0 = 0;
     self->field_0xb8 = 0;
     self->field_0xc0 = 0;
-    self->field_0xc9 = 0;
+    self->bAlwaysInDir = 0;
     self->vf_0x18();
 }

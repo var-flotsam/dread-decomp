@@ -16,10 +16,10 @@ extern void* g_unk_7101a64f60[];
 struct UnkSluggerDef {
     void** vtable;
     u8 pad_0x8[0x508];
-    u8 field_0x510[0x130];
-    CStrId field_0x640;
-    f32 field_0x648;
-    f32 field_0x64c;
+    u8 oSluggerSpitAttackDef[0x130];
+    CStrId sAcidBallCharClass;
+    f32 fAttackReachableHeight;
+    f32 fBallTrajectoryCheckRadius;
 };
 
 // The constructor: the base constructor fn_7100416db8, the vtable, the member at +0x510
@@ -28,10 +28,10 @@ struct UnkSluggerDef {
 void fn_71006c5618(UnkSluggerDef* self) {
     fn_7100416db8(reinterpret_cast<UnkObject_7100416db8*>(self));
     self->vtable = g_unk_7101a64f60 + 2;
-    fn_71006c0044(self->field_0x510);
-    new (&self->field_0x640) CStrId(base::global::CStrId::Empty());
-    self->field_0x648 = -1.0f;
-    self->field_0x64c = -1.0f;
+    fn_71006c0044(self->oSluggerSpitAttackDef);
+    new (&self->sAcidBallCharClass) CStrId(base::global::CStrId::Empty());
+    self->fAttackReachableHeight = -1.0f;
+    self->fBallTrajectoryCheckRadius = -1.0f;
     reinterpret_cast<void (*)(UnkSluggerDef*)>(self->vtable[3])(self);
 }
 
@@ -39,8 +39,8 @@ void fn_71006c5618(UnkSluggerDef* self) {
 void fn_71006c5314(UnkSluggerDef* self) {
     fn_7100416db8(reinterpret_cast<UnkObject_7100416db8*>(self));
     self->vtable = g_unk_7101a64f60 + 2;
-    fn_71006c0044(self->field_0x510);
-    new (&self->field_0x640) CStrId(base::global::CStrId::Empty());
-    self->field_0x648 = -1.0f;
-    self->field_0x64c = -1.0f;
+    fn_71006c0044(self->oSluggerSpitAttackDef);
+    new (&self->sAcidBallCharClass) CStrId(base::global::CStrId::Empty());
+    self->fAttackReachableHeight = -1.0f;
+    self->fBallTrajectoryCheckRadius = -1.0f;
 }

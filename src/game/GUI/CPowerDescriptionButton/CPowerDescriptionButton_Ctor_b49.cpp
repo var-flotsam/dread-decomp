@@ -23,10 +23,10 @@ __attribute__((always_inline)) static inline void InitEmptyId(CStrId* id) {
 struct UnkPowerDescriptionButton {
     char* vtable;
     u8 base_0x8[0x2a0];
-    u8 field_0x2a8[0x30];  // strings (base::global::CRntString's layout)
-    u8 field_0x2d8[0x30];
+    u8 sPowerName[0x30];  // strings (base::global::CRntString's layout)
+    u8 sPowerDescription[0x30];
     CStrId field_0x308;
-    CStrId field_0x310;
+    CStrId sPowerImage;
     u64 field_0x318;
     u64 field_0x320;
     u64 field_0x328;
@@ -36,10 +36,10 @@ static_assert(__builtin_offsetof(UnkPowerDescriptionButton, field_0x328) == 0x32
 void fn_7100b626f0(UnkPowerDescriptionButton* self) {
     fn_71011bf0ec(reinterpret_cast<UnkGuiButton*>(self));
     self->vtable = g_unk_7101a9dcb0 + 0x10;
-    fn_710007e6c4(self->field_0x2a8);
-    fn_710007e6c4(self->field_0x2d8);
+    fn_710007e6c4(self->sPowerName);
+    fn_710007e6c4(self->sPowerDescription);
     InitEmptyId(&self->field_0x308);
-    InitEmptyId(&self->field_0x310);
+    InitEmptyId(&self->sPowerImage);
     self->field_0x318 = 0;
     self->field_0x320 = 0;
     self->field_0x328 = 0;

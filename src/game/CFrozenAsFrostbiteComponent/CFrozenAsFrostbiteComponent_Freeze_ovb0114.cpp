@@ -38,11 +38,11 @@ struct UnkFrostbiteDefHolder_ovb0114 {
 
 struct UnkFrostbiteDef_ovb0114 {
     u8 pad_0x0[0x5c];
-    f32 field_0x5c;
+    f32 fThawingTime;
     u8 pad_0x60[0x40];
-    s32 field_0xa0;
-    f32 field_0xa4;
-    f32 field_0xa8;
+    s32 iRequiredFrostbiteLevel;
+    f32 fFrostbiteLevelResetTime;
+    f32 fAfterHitNoFrostbiteLevelResetTime;
     u8 pad_0xac[0x4];
     UnkFrostbiteDefHolder_ovb0114* holder2;  // 0xb0
     UnkFrostbiteDefHolder_ovb0114* holder;   // 0xb8
@@ -248,7 +248,7 @@ static inline void Tint(UnkFrozenAsFrostbite_ovb0114* self, f32 ratio) {
 void CFrozenAsFrostbiteComponent_UpdateThawingTint(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
     UnkFrostbiteDef_ovb0114* def = self->def;
     if (!def->partCount) {
-        f32 duration = def->field_0x5c;
+        f32 duration = def->fThawingTime;
         if (duration > 0.0f)
             Tint(self, self->field_0x44 / duration);
         else
@@ -276,7 +276,7 @@ void CFrozenAsFrostbiteComponent_UpdateFrostbiteLevel(UnkFrozenAsFrostbite_ovb01
         if (delay == 0.0f) {
             f32 count = (f32)self->count;
             UnkFrostbiteDef_ovb0114* def = self->def;
-            Tint(self, (count / (f32)def->field_0xa0) * (self->timer / def->field_0xa4));
+            Tint(self, (count / (f32)def->iRequiredFrostbiteLevel) * (self->timer / def->fFrostbiteLevelResetTime));
             self->timer -= dt;
             if (self->timer <= 0.0f) {
                 if (self->count >= 1)
@@ -331,10 +331,10 @@ bool CFrozenAsFrostbiteComponent_HandleDamage(UnkFrozenAsFrostbite_ovb0114* self
     } else {
         s32 count = ++self->count;
         UnkFrostbiteDef_ovb0114* def = self->def;
-        if (count < def->field_0xa0) {
-            self->delay = def->field_0xa8;
-            self->timer = def->field_0xa4;
-            Tint(self, (f32)count / (f32)def->field_0xa0);
+        if (count < def->iRequiredFrostbiteLevel) {
+            self->delay = def->fAfterHitNoFrostbiteLevelResetTime;
+            self->timer = def->fFrostbiteLevelResetTime;
+            Tint(self, (f32)count / (f32)def->iRequiredFrostbiteLevel);
             self->field_0x3e0 = 0.0f;
             if (self->count == 1)
                 AddKey(self->actor, self->def->holder2->id);

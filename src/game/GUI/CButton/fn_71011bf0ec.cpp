@@ -13,10 +13,10 @@ using base::global::CStrId;
 struct UnkGuiButton {
     char* vtable;
     u8 base_0x8[0x228];
-    CStrId field_0x230;
-    CStrId field_0x238;
-    CStrId field_0x240;
-    CStrId field_0x248;
+    CStrId sTopNeighbour;
+    CStrId sBottomNeighbour;
+    CStrId sLeftNeighbour;
+    CStrId sRightNeighbour;
     u16 field_0x250;
     u8 pad_0x252[0x6];
     void* field_0x258;  // a callback: unused word, the object, the function
@@ -34,10 +34,10 @@ static_assert(__builtin_offsetof(UnkGuiButton, field_0x28c) == 0x28c, "UnkGuiBut
 void fn_71011bf0ec(UnkGuiButton* self) {
     fn_71011d8d24(self);
     self->vtable = g_unk_7101cb5908 + 0x10;
-    new (&self->field_0x230) CStrId("", true);
-    new (&self->field_0x238) CStrId("", true);
-    new (&self->field_0x240) CStrId("", true);
-    new (&self->field_0x248) CStrId("", true);
+    new (&self->sTopNeighbour) CStrId("", true);
+    new (&self->sBottomNeighbour) CStrId("", true);
+    new (&self->sLeftNeighbour) CStrId("", true);
+    new (&self->sRightNeighbour) CStrId("", true);
     self->field_0x250 = 0;
     self->field_0x258 = nullptr;
     self->object = self;

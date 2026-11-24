@@ -40,8 +40,8 @@ static inline __attribute__((always_inline)) void InitEmpty_te52(UnkStringData**
 struct UnkTutoEnterLogicAction_b52 {
     void* vtable;
     u8 unk_0x8[0x8];
-    bool field_0x10;
-    bool field_0x11;
+    bool bShowMessage;
+    bool bWaitForInput;
     CStrId id;                              // 0x18
     UnkTutoEnterCallbackSet_b52 callbacks;  // 0x20
     UnkStringData* name;                    // 0x60
@@ -55,8 +55,8 @@ static_assert(__builtin_offsetof(UnkTutoEnterLogicAction_b52, field_0x80) == 0x8
 void fn_7100a585a8(UnkTutoEnterLogicAction_b52* self) {
     fn_7100a55aa4(reinterpret_cast<UnkChangeSetupLogicActionDef*>(self));
     self->vtable = g_unk_7101a8f518 + 0x10;
-    self->field_0x10 = true;
-    self->field_0x11 = false;
+    self->bShowMessage = true;
+    self->bWaitForInput = false;
     new (&self->id) CStrId("", true);
     self->callbacks.vtable = g_unk_7101a20998 + 2;
     new (&self->callbacks.items) base::global::CRntVector<UnkTutoEnterCallable_b52*>(0xf);

@@ -26,17 +26,17 @@ struct UnkRinkaShoot_ovb0267 {
     u8 pad_0x0[0x18];
     UnkRinkaOwner_ovb0267* field_0x18;
     u8 pad_0x20[0xc];
-    s32 field_0x2c;
-    f32 field_0x30;
-    f32 field_0x34;
-    f32 field_0x38;
+    s32 iSpawnPointIndex;
+    f32 fRinkaTypeAProbability;
+    f32 fRinkaTypeBProbability;
+    f32 fRinkaTypeCProbability;
 };
 
 
 u32 fn_7100402714(UnkRinkaShoot_ovb0267* self) {
-    if (self->field_0x2c < 0)
+    if (self->iSpawnPointIndex < 0)
         return 6;
-    f32 total = self->field_0x30 + self->field_0x34 + self->field_0x38;
+    f32 total = self->fRinkaTypeAProbability + self->fRinkaTypeBProbability + self->fRinkaTypeCProbability;
     f32 draw = (f32)((rand() & 0x7fff) * (1.0 / 32767.0));
     u32 pick;
     if (total <= 0.0f) {
@@ -44,18 +44,18 @@ u32 fn_7100402714(UnkRinkaShoot_ovb0267* self) {
         pick = v < 0.33f ? 0 : (!(v < 0.66f) ? 2 : 1);
     } else {
         f32 v = total * draw + 0.0f;
-        if (!UNK_NEAR(self->field_0x30, 0.0f) && v <= self->field_0x30) {
+        if (!UNK_NEAR(self->fRinkaTypeAProbability, 0.0f) && v <= self->fRinkaTypeAProbability) {
             pick = 0;
-        } else if (!UNK_NEAR(self->field_0x34, 0.0f) && v <= self->field_0x30 + self->field_0x34) {
+        } else if (!UNK_NEAR(self->fRinkaTypeBProbability, 0.0f) && v <= self->fRinkaTypeAProbability + self->fRinkaTypeBProbability) {
             pick = 1;
         } else {
             pick = 2;
-            if (self->field_0x38 + 0.001f >= 0.0f && self->field_0x38 - 0.001f <= 0.0f)
+            if (self->fRinkaTypeCProbability + 0.001f >= 0.0f && self->fRinkaTypeCProbability - 0.001f <= 0.0f)
                 return 5;
         }
     }
     UnkReflObject* comp = self->field_0x18->field_0x240;
     if (comp && fn_710009d50c(comp->vf_0x0(), fn_71004030f4()))
-        fn_7100405d58(reinterpret_cast<UnkAIComponent*>(comp), self->field_0x2c, pick);
+        fn_7100405d58(reinterpret_cast<UnkAIComponent*>(comp), self->iSpawnPointIndex, pick);
     return 5;
 }

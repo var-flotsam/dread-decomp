@@ -13,9 +13,9 @@ struct UnkFXSetActiveEventDef {
     void** vtable;
     u8 pad_0x8[0x8];
     UnkStrId field_0x10;
-    bool field_0x18;
-    bool field_0x19;
-    bool field_0x1a;
+    bool bActive;
+    bool bDisableOnEmpty;
+    bool bDeleteOnEmpty;
 };
 
 extern char g_unk_7101aa0988[];
@@ -24,7 +24,7 @@ void fn_7100becf6c(UnkFXSetActiveEventDef* self) {
     fn_7100067ea4(self);
     self->vtable = reinterpret_cast<void**>(g_unk_7101aa0988 + 0x10);
     new (&self->field_0x10) UnkStrId("", true);
-    self->field_0x18 = true;
-    self->field_0x19 = false;
-    self->field_0x1a = false;
+    self->bActive = true;
+    self->bDisableOnEmpty = false;
+    self->bDeleteOnEmpty = false;
 }

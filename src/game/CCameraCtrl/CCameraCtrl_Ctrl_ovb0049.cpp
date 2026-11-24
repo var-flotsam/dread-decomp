@@ -93,7 +93,7 @@ struct UnkCameraCtrl_ovb0049 {
     UnkWeakHandle* follow;  // 0xb8
     f32 field_0xc0;
     f32 field_0xc4;
-    CStrId field_0xc8;
+    CStrId sLuaCallbackOnPossess;
     CStrId on_reset;  // 0xd0, the script function called with the controller
     UnkCameraLists_ovb0049 field_0xd8;
     UnkCameraLists_ovb0049 field_0x158;  // the controller is told to it (fn_71010eea84)
@@ -221,7 +221,7 @@ void fn_71010ed260(UnkCameraCtrl_ovb0049* self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101cb1720 + 0x10);
     fn_71010ed3b4(&self->field_0xd8);
     ReleaseId(&self->on_reset);
-    ReleaseId(&self->field_0xc8);
+    ReleaseId(&self->sLuaCallbackOnPossess);
     ReleaseRef(self->follow);
     ReleaseRef(self->handle);
     ReleaseId(&self->name);

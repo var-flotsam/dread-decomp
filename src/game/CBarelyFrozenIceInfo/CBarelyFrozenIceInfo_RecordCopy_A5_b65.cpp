@@ -11,13 +11,13 @@ using base::global::CStrId;
 
 struct UnkFrozenIceRecord_A5_b65 {
     void* vtable;
-    CStrId field_0x8;
-    CStrId field_0x10;
-    f32 field_0x18;
+    CStrId sModel;
+    CStrId sNode;
+    f32 fScale;
 
     UnkFrozenIceRecord_A5_b65(const UnkFrozenIceRecord_A5_b65& other)
-        : vtable(reinterpret_cast<char*>(g_unk_7101a73e10) + 0x10), field_0x8(other.field_0x8),
-          field_0x10(other.field_0x10), field_0x18(other.field_0x18) {}
+        : vtable(reinterpret_cast<char*>(g_unk_7101a73e10) + 0x10), sModel(other.sModel),
+          sNode(other.sNode), fScale(other.fScale) {}
 };
 
 void fn_71007f1edc(UnkFrozenIceRecord_A5_b65* self, const UnkFrozenIceRecord_A5_b65* other) {

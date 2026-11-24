@@ -7,22 +7,22 @@
 
 struct UnkSelf {
     u8 pad_0x0[0x30];
-    u8 field_0x30[8];
-    u8 field_0x38;
+    u8 sElapsedTime[8];
+    u8 bResetElapsedTimeOnSuccess;
     u8 pad_0x39[0x1f];
-    u32 field_0x58;
+    u32 eReturnStatusFailed;
     f32 field_0x5c;
 };
 
 u32 fn_7100392704(UnkSelf* self, f32 delta) {
     f32 elapsed = 0.0f;
-    fn_7100394e2c(self, self->field_0x30, &elapsed);
+    fn_7100394e2c(self, self->sElapsedTime, &elapsed);
     elapsed = elapsed + delta;
-    fn_71003954fc(self, self->field_0x30, elapsed);
+    fn_71003954fc(self, self->sElapsedTime, elapsed);
     if (elapsed >= self->field_0x5c) {
-        if (self->field_0x38)
-            fn_71003954fc(self, self->field_0x30, 0.0f);
+        if (self->bResetElapsedTimeOnSuccess)
+            fn_71003954fc(self, self->sElapsedTime, 0.0f);
         return 5;
     }
-    return self->field_0x58;
+    return self->eReturnStatusFailed;
 }

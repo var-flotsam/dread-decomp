@@ -16,20 +16,20 @@ struct UnkSetActionToOtherEntityEvent_b42a3 {
     void* vtable;
     u8 unk_0x8[0x8];
     CStrId id_0x10;
-    bool field_0x18;
-    u32 field_0x1c;
+    bool bForce;
+    u32 iFrame;
     CStrId id_0x20;
-    bool field_0x28;
-    f32 field_0x2c;
+    bool bIsAttack;
+    f32 fProbability;
 };
 
 void fn_7100bd009c(UnkSetActionToOtherEntityEvent_b42a3* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa1918 + 0x10;
     new (&self->id_0x10) CStrId(base::global::CStrId::Empty());
-    self->field_0x18 = true;
-    self->field_0x1c = 0;
+    self->bForce = true;
+    self->iFrame = 0;
     new (&self->id_0x20) CStrId(base::global::CStrId::Empty());
-    self->field_0x28 = false;
-    self->field_0x2c = 1.0f;
+    self->bIsAttack = false;
+    self->fProbability = 1.0f;
 }

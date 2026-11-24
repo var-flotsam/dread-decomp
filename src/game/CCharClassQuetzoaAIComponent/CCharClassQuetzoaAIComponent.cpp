@@ -10,14 +10,14 @@ void fn_7100643980(void* self);
 extern void* g_unk_7101a5a128[];
 
 struct UnkQuetzoaDef : UnkBossAIComponent {
-    u8 field_0x528[0xf0];
+    u8 oQuetzoaChargeAttackDef[0xf0];
     u8 field_0x618[0xf0];
 };
 
 __attribute__((always_inline)) static inline void ConstructQuetzoa(UnkQuetzoaDef* self) {
     fn_710041a198(self);
     self->vtable = g_unk_7101a5a128 + 2;
-    fn_7100642cd0(self->field_0x528);
+    fn_7100642cd0(self->oQuetzoaChargeAttackDef);
     fn_7100643980(self->field_0x618);
     reinterpret_cast<u8*>(self)[0x50c] = 1;
     self->field_0x4e0 = 0.8f;

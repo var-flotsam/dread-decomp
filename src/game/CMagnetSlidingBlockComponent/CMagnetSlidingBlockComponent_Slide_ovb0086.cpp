@@ -148,9 +148,9 @@ struct UnkMagnetSlidingBlock_b0086 {
     u8 pad_0x38[0x290 - 0x38];
     UnkMagnetState_b0086* state;  // 0x290
     u8 pad_0x298[0x330 - 0x298];
-    f32 field_0x330;
-    f32 field_0x334;
-    f32 field_0x338;
+    f32 fTimePreparingToOpen;
+    f32 fTimeToCompleteMovementTowardsEnd;
+    f32 fTimeToCompleteMovementTowardsStart;
     u8 pad_0x33c[8];
     f32 field_0x344;
     f32 field_0x348;
@@ -190,7 +190,7 @@ void fn_710091fddc(UnkMagnetSlidingBlock_b0086* self) {
 }
 
 void fn_710091feb4(UnkMagnetSlidingBlock_b0086* self) {
-    self->field_0x344 = self->field_0x330;
+    self->field_0x344 = self->fTimePreparingToOpen;
     self->StopRumble();
 }
 
@@ -208,12 +208,12 @@ void CMagnetSlidingBlockComponent_StartLoopRumble(UnkMagnetSlidingBlock_b0086* s
 // timeline key and the rumble.
 void fn_71009200a8(UnkMagnetSlidingBlock_b0086* self, s32 state) {
     if (state == 5)
-        self->field_0x344 = self->field_0x330 * 0.5f;
+        self->field_0x344 = self->fTimePreparingToOpen * 0.5f;
     f32 speed = self->Lerp();
-    f32 full = self->field_0x338 / speed;
+    f32 full = self->fTimeToCompleteMovementTowardsStart / speed;
     f32 kept = 1.0f - self->field_0x348 / full;
     f32 speed2 = self->Lerp();
-    self->field_0x348 = kept * (self->field_0x334 / speed2);
+    self->field_0x348 = kept * (self->fTimeToCompleteMovementTowardsEnd / speed2);
     fn_7100d7c828(reinterpret_cast<UnkActor*>(self->owner), &g_unk_710164b248, false);
     CMagnetSlidingBlockComponent_StartLoopRumble(self);
 }
@@ -221,12 +221,12 @@ void fn_71009200a8(UnkMagnetSlidingBlock_b0086* self, s32 state) {
 // The other way (state 3): from the +0x334 range to the +0x338 one, and the rumble stops.
 void fn_7100920a30(UnkMagnetSlidingBlock_b0086* self, s32 state) {
     if (state == 3)
-        self->field_0x344 = self->field_0x330;
+        self->field_0x344 = self->fTimePreparingToOpen;
     f32 speed = self->Lerp();
-    f32 full = self->field_0x334 / speed;
+    f32 full = self->fTimeToCompleteMovementTowardsEnd / speed;
     f32 kept = 1.0f - self->field_0x348 / full;
     f32 speed2 = self->Lerp();
-    self->field_0x348 = kept * (self->field_0x338 / speed2);
+    self->field_0x348 = kept * (self->fTimeToCompleteMovementTowardsStart / speed2);
     fn_7100d7c828(reinterpret_cast<UnkActor*>(self->owner), &g_unk_710164b248, false);
     self->StopRumble();
 }
@@ -239,13 +239,13 @@ void fn_7100921248(UnkMagnetSlidingBlock_b0086* self, f32 target) {
             switch (state->kind) {
             case 5: {
                 f32 speed = self->Lerp();
-                f32 full = self->field_0x338 / speed;
+                f32 full = self->fTimeToCompleteMovementTowardsStart / speed;
                 self->field_0x348 = self->field_0x350 * full;
                 return;
             }
             case 3: {
                 f32 speed = self->Lerp();
-                f32 full = self->field_0x334 / speed;
+                f32 full = self->fTimeToCompleteMovementTowardsEnd / speed;
                 self->field_0x348 = (1.0f - self->field_0x350) * full;
                 return;
             }

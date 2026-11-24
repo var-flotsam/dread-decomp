@@ -276,22 +276,22 @@ struct UnkSpawnGroupUpdate_ovb0065 {
     u8 pad_0x20[0x118];
     bool field_0x138;
     u8 pad_0x139;
-    bool field_0x13a;
+    bool bIsGenerator;
     u8 pad_0x13b;
-    bool field_0x13c;
+    bool bAutomanaged;
     u8 pad_0x13d;
-    bool field_0x13e;
+    bool bAutoenabled;
     bool field_0x13f;
     u8 pad_0x140[0x38];
     f32 field_0x178;
     f32 field_0x17c;
-    f32 field_0x180;
+    f32 fGenerateEvery;
     u8 pad_0x184[0xc];
-    s32 field_0x190;
+    s32 iMaxSimultaneous;
     u8 pad_0x194[4];
     s32 field_0x198;
     u8 pad_0x19c[4];
-    bool field_0x1a0;
+    bool bCheckActiveDrops;
     u8 pad_0x1a1[3];
     s32 field_0x1a4;
     u8 pad_0x1a8[0x10];
@@ -305,7 +305,7 @@ void fn_710111a458(UnkSpawnGroupUpdate_ovb0065* self, bool value);
 // Collects the group's entries through fn_710111b230 when the flag at +0x13e is set and neither
 // +0x138 nor +0x13c is, then updates the player-inside state (fn_710111a458) while there is a player.
 static inline void UpdateInside(UnkSpawnGroupUpdate_ovb0065* self) {
-    if (!self->field_0x138 && self->field_0x13e && !self->field_0x13c) {
+    if (!self->field_0x138 && self->bAutoenabled && !self->bAutomanaged) {
         UnkCollectList_ovb0065 list;
         fn_710111b230(reinterpret_cast<UnkComponent_71011199cc*>(self), reinterpret_cast<UnkList_71011199cc*>(&list));
     }
@@ -329,14 +329,14 @@ void fn_710111a708(UnkSpawnGroupUpdate_ovb0065* self, bool flag, UnkList_7101119
 void fn_710111abb8(UnkSpawnGroupUpdate_ovb0065* self, f32 dt) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
     UpdateInside(self);
-    if (!self->field_0x13a || !self->field_0x138 || !self->field_0x1b8 || self->field_0x13f)
+    if (!self->bIsGenerator || !self->field_0x138 || !self->field_0x1b8 || self->field_0x13f)
         return;
     self->field_0x178 += dt;
-    if (self->field_0x198 < self->field_0x190)
+    if (self->field_0x198 < self->iMaxSimultaneous)
         self->field_0x17c += dt;
-    if (self->field_0x17c < self->field_0x180)
+    if (self->field_0x17c < self->fGenerateEvery)
         return;
-    if (self->field_0x1a0 && self->field_0x1a4 > 0)
+    if (self->bCheckActiveDrops && self->field_0x1a4 > 0)
         return;
     UnkCollectList_ovb0065 list;
     fn_710111a708(self, false, reinterpret_cast<UnkList_71011199cc*>(&list));

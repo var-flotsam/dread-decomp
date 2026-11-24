@@ -15,8 +15,8 @@ extern void* g_unk_7101a5d0b8[];
 struct UnkRodomithonDef_ovb0023 {
     void** vtable;
     u8 pad_0x8[0x630 - 0x8];
-    f32 field_0x630;
-    f32 field_0x634;
+    f32 fFireActiveTime;
+    f32 fRestTime;
     u64 field_0x638;
     u64 field_0x640;
     u32 field_0x648;
@@ -29,8 +29,8 @@ struct UnkRodomithonDef_ovb0023 {
 void fn_710066775c(UnkRodomithonDef_ovb0023* self) {
     fn_710066faa8(reinterpret_cast<UnkRodotukDef2*>(self));
     self->vtable = &g_unk_7101a5d0b8[2];
-    self->field_0x630 = -1.0f;
-    self->field_0x634 = -1.0f;
+    self->fFireActiveTime = -1.0f;
+    self->fRestTime = -1.0f;
     self->field_0x638 = 0;
     self->field_0x640 = 0;
     self->field_0x648 = 10;

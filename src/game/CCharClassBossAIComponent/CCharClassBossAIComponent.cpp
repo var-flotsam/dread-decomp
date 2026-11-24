@@ -31,9 +31,9 @@ struct UnkBossAIDef {
     bool field_0x511;
     bool field_0x512;
     u8 pad_0x513[0x5];
-    CStrId field_0x518;
+    CStrId sInventoryItemOnKilled;
     u8 pad_0x520[0x2];
-    bool field_0x522;
+    bool bGiveInventoryItemOnDead;
 };
 
 void fn_710041a430(UnkBossAIDef* self) {
@@ -44,8 +44,8 @@ void fn_710041a430(UnkBossAIDef* self) {
     self->field_0x510 = false;
     self->field_0x511 = true;
     self->field_0x512 = true;
-    new (&self->field_0x518) CStrId(base::global::CStrId::Empty());
-    self->field_0x522 = true;
+    new (&self->sInventoryItemOnKilled) CStrId(base::global::CStrId::Empty());
+    self->bGiveInventoryItemOnDead = true;
     self->field_0xc4 = true;
     self->field_0xe8 = false;
     self->field_0x50c = false;

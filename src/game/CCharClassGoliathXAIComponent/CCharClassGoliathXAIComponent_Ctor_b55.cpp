@@ -27,7 +27,7 @@ struct UnkGoliathXAI_b55 {
     bool field_0x50c;
     u8 pad_0x50d[0x23];
     u8 field_0x530[0xf8];
-    u8 field_0x628[0xf8];
+    u8 oGoliathXBurstProjectionBombsAttackDef[0xf8];
     u8 field_0x720[0x8];
 
     void vf_0x18() { reinterpret_cast<void (*)(UnkGoliathXAI_b55*)>(vtable[3])(this); }
@@ -38,7 +38,7 @@ void fn_7100587da4(UnkGoliathXAI_b55* self) {
     self->vtable = g_unk_7101a4c200 + 2;
     fn_710058d960(self->field_0x530);
     self->vtable = g_unk_7101a4b340 + 2;
-    fn_7100583588(self->field_0x628);
+    fn_7100583588(self->oGoliathXBurstProjectionBombsAttackDef);
     fn_710058397c(self->field_0x720);
     self->field_0x40b = true;
     self->field_0x4fc = 0x101;

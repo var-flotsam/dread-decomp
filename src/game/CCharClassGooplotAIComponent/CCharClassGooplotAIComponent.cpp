@@ -15,15 +15,15 @@ struct UnkGooplotDef {
     u8 pad_0x8[0x3a4];
     float field_0x3ac;
     u8 pad_0x3b0[0x160];
-    u8 field_0x510[0xf0];
-    u8 field_0x600[0xf0];
+    u8 oGooplotJumpAttackDef[0xf0];
+    u8 oGooplotUndoJumpAttackDef[0xf0];
 };
 
 void fn_7100599434(UnkGooplotDef* self) {
     fn_7100416db8(reinterpret_cast<UnkObject_7100416db8*>(self));
     self->vtable = g_unk_7101a4cfa8 + 2;
-    fn_71005931d8(self->field_0x510);
-    fn_7100593de8(self->field_0x600);
+    fn_71005931d8(self->oGooplotJumpAttackDef);
+    fn_7100593de8(self->oGooplotUndoJumpAttackDef);
     self->field_0x3ac = 3.14159274f;
     reinterpret_cast<void (*)(UnkGooplotDef*)>(self->vtable[3])(self);
 }

@@ -54,7 +54,7 @@ struct UnkWaterTriggerChangeComponent {
     u32 field_0x158;
     u64 field_0x160;
     u8 pad_0x168[0x38];
-    bool field_0x1a0;
+    bool bDeactivateOnFinished;
     void* field_0x1a8;
     void* field_0x1b0;
 };
@@ -100,7 +100,7 @@ void fn_7100a68e8c(UnkWaterTriggerChangeComponent* self) {
     self->field_0x158 = 0;
     self->field_0x128 = g_unk_7101a33fa0 + 2;
     self->field_0x160 = 0;
-    self->field_0x1a0 = true;
+    self->bDeactivateOnFinished = true;
     self->field_0x1a8 = nullptr;
     self->field_0x1b0 = nullptr;
     reinterpret_cast<void (*)(UnkWaterTriggerChangeComponent*)>(self->vtable[3])(self);

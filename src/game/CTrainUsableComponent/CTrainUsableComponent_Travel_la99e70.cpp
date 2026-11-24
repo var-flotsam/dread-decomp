@@ -43,12 +43,12 @@ struct UnkTrainUsable_la99e70 {
     u64* keys;  // 0x4d8
     u32 count;  // 0x4e0
     u8 pad_0x4e4[0x64];
-    u32 field_0x548;  // 0x548
+    u32 eDirection;  // 0x548
     u32 kind;  // 0x54c
     CStrId scenario;  // 0x550
-    CStrId field_0x558;  // 0x558
-    CStrId field_0x560;  // 0x560
-    bool field_0x568;  // 0x568
+    CStrId sScenarioName;  // 0x558
+    CStrId sTargetSpawnPoint;  // 0x560
+    bool bAquaLoadingScreen;  // 0x568
 };
 
 // Stores the bool at `value` under `name` in the blackboard section `section` names (unless the
@@ -86,10 +86,10 @@ void CTrainUsableComponent_SetLoadingScreenAndTravelToTarget(UnkTrainUsable_la99
     if (!show)
         return;
     if (self->kind == 0) {
-        if (self->field_0x548 == 0)
-            self->kind = self->field_0x568 ? 8 : 7;
+        if (self->eDirection == 0)
+            self->kind = self->bAquaLoadingScreen ? 8 : 7;
         else
-            self->kind = self->field_0x568 ? 10 : 9;
+            self->kind = self->bAquaLoadingScreen ? 10 : 9;
     }
     {
         u64 arg = reinterpret_cast<u64>(self);
@@ -117,8 +117,8 @@ void CTrainUsableComponent_SetLoadingScreenAndTravelToTarget(UnkTrainUsable_la99
     fn_7100e10d78(LoadingScreen(), self->kind);
     UnkGameManager* gm = g_unk_7101d47310;
     const CRntString& a = UseName(self->scenario);
-    const CRntString& b = UseName(self->field_0x558);
-    const CRntString& c = UseName(self->field_0x560);
+    const CRntString& b = UseName(self->sScenarioName);
+    const CRntString& c = UseName(self->sTargetSpawnPoint);
     fn_7100df28d0(gm, a, b, c, CStrId(g_unk_710162e2ed, true), true, CRntString(g_unk_710162e2ed),
                   base::global::CStrId::Empty(), 0, nullptr, 0.0f);
 }

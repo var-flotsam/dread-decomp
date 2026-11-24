@@ -7,15 +7,15 @@ using base::global::CStrId;
 
 struct UnkRecord_2e1dc0 {
     u64 field_0x0;
-    CStrId field_0x8;
-    CStrId field_0x10;
+    CStrId sName;
+    CStrId sBone;
     u8 field_0x18[16];
 };
 
 UnkRecord_2e1dc0* fn_71002e1dc0(UnkRecord_2e1dc0* self, UnkRecord_2e1dc0* other) {
     if (self != other) {
-        self->field_0x8 = other->field_0x8;
-        self->field_0x10.ReleaseAndTake(other->field_0x10);
+        self->sName = other->sName;
+        self->sBone.ReleaseAndTake(other->sBone);
         __builtin_memcpy(self->field_0x18, other->field_0x18, sizeof(self->field_0x18));
     }
     return self;

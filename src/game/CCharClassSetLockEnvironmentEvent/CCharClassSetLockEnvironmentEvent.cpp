@@ -8,9 +8,9 @@
 
 struct UnkSetLockEnvironmentEvent {
     u8 unk_0x0[0xc];
-    bool field_0xc;
-    bool field_0xd;
-    bool field_0xe;
+    bool bMusic;
+    bool bEnvironment;
+    bool bSound;
 };
 
 void fn_7100cd3c10(UnkSetLockEnvironmentEvent* self) {
@@ -20,5 +20,5 @@ void fn_7100cd3c10(UnkSetLockEnvironmentEvent* self) {
         fn_7100d8ced8(m);
         g_unk_7101d47368 = m;
     }
-    fn_7100d8efd0(m, self->field_0xd, self->field_0xe, self->field_0xc);
+    fn_7100d8efd0(m, self->bEnvironment, self->bSound, self->bMusic);
 }

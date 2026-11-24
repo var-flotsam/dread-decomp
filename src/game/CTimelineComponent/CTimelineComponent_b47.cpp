@@ -16,7 +16,7 @@ struct UnkTimelineDefLink {
 
 struct UnkCharClassTimeline : UnkReflObject {
     u8 pad_0x8[0x58 - 8];
-    u32 field_0x58;
+    u32 eNextPolicy;
     u8 pad_0x5c[4];
     UnkTimelineDefLink* field_0x60;
     u32 field_0x68;
@@ -43,7 +43,7 @@ bool fn_7100a2babc(UnkTimelineComponentB47* self, void* arg) {
     if (object && fn_710009d50c(object->vf_0x0(), fn_7100796bc4())) {
         self->def = object;
         self->field_0x50 = object->field_0x60->field_0x30;
-        self->field_0x48 = object->field_0x58;
+        self->field_0x48 = object->eNextPolicy;
         self->field_0x60 = object->field_0x6c;
         self->field_0x5c = object->field_0x68;
     } else {

@@ -13,8 +13,8 @@ struct UnkNode_36dd1c : UnkBehaviorTreeNodeBase {
     UnkStrId field_0x30;
     UnkStrId field_0x38;
     UnkStrIdBase field_0x40;
-    bool field_0x48;
-    bool field_0x49;
+    bool bWaitAnimEnd;
+    bool bWaitIfFrozen;
     bool field_0x4a;
 };
 
@@ -29,7 +29,7 @@ void fn_710036dd1c(UnkNode_36dd1c* self) {
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
     self->field_0x40.data = &g_unk_7101d47108->empty;
-    self->field_0x48 = false;
-    self->field_0x49 = true;
+    self->bWaitAnimEnd = false;
+    self->bWaitIfFrozen = true;
     self->field_0x4a = false;
 }

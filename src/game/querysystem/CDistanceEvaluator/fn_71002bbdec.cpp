@@ -9,7 +9,7 @@ UnkRec* fn_71002bbdec(UnkRec* self, const UnkRec* other) {
     if (self != other) {
         self->field_0x8 = other->field_0x8;
         self->field_0x10 = other->field_0x10;
-        self->field_0x18 = other->field_0x18;
+        self->sFunction = other->sFunction;
         self->field_0x20 = other->field_0x20;
     }
     return self;
