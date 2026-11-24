@@ -21,16 +21,16 @@ using base::global::CStrId;
 struct UnkIdListHolder_ovb0123 {
     void** vtable;
     u8 pad_0x8[0x50];
-    CStrId field_0x58;
-    CStrId field_0x60;
+    CStrId sName;
+    CStrId sLevelID;
     UnkOwnedList field_0x68;
 };
 
 void fn_71002f2d80(UnkIdListHolder_ovb0123* self) {
     self->vtable = g_unk_7101a22240 + 2;
     self->field_0x68.~UnkOwnedList();
-    self->field_0x60.Reset();
-    self->field_0x58.Reset();
+    self->sLevelID.Reset();
+    self->sName.Reset();
     fn_7100016f88(self);
 }
 

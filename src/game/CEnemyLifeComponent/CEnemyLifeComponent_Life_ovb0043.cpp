@@ -212,7 +212,7 @@ struct UnkEnemyLifeComponent3_ovb0043 {
     UnkEnemyLifeActor3_ovb0043* actor;  // 0x30
     u8 pad_0x38[0x18];
     f32 field_0x50;
-    f32 field_0x54;
+    f32 fCurrentLife;
     u8 pad_0x58[0x18];
     s32 field_0x70;
     u8 pad_0x74[0x1d4];
@@ -238,7 +238,7 @@ void fn_710115ab50(UnkEnemyLifeComponent3_ovb0043* self) {
     f32 value = fn_71008bce1c(self->field_0x260);
     self->field_0x70 = 1;
     self->field_0x50 = value;
-    self->field_0x54 = value;
+    self->fCurrentLife = value;
     self->field_0x248 = false;
     self->field_0x24c = -1.0f;
     self->field_0x250 = 0;

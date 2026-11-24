@@ -55,7 +55,7 @@ struct UnkPresetContext_l3667b0 {
 
 struct UnkAttackPreset_l3667b0 {
     u8 pad_0x0[0x10];
-    bool field_0x10;
+    bool bEnabled;
     u8 pad_0x11[0x13];
     f32 cooldown;  // 0x24
 };
@@ -75,7 +75,7 @@ static inline UnkReflObject* AsCharClassAttack(UnkReflObject* attack) {
 
 // NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 bool fn_71003667b0(UnkAttackPreset_l3667b0* self, UnkPresetContext_l3667b0* ctx, UnkReflObject* attack) {
-    bool enabled = ctx->field_0x1a || self->field_0x10;
+    bool enabled = ctx->field_0x1a || self->bEnabled;
     UnkPresetAI_l3667b0* ai = Ai(ctx);
     if (!enabled)
         return false;

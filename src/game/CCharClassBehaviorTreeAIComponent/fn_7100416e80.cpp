@@ -18,7 +18,7 @@ void fn_7100db3f24(UnkPathRegistry* self, CFilePathStrId* id);
 struct UnkStruct_7100416e80 {
     char* vtable;
     u8 unk_0x8[0x4f8];
-    CFilePathStrId field_0x500;
+    CFilePathStrId sBehaviorTreePath;
 };
 
 void fn_7100413720(UnkStruct_7100416e80* self);
@@ -34,11 +34,11 @@ static inline UnkPathRegistry* GetManager() {
 
 void fn_7100416e80(UnkStruct_7100416e80* self) {
     self->vtable = g_unk_7101a34218 + 0x10;
-    if (self->field_0x500.data != &g_unk_7101d47200->empty) {
-        fn_7100db3f24(GetManager(), &self->field_0x500);
+    if (self->sBehaviorTreePath.data != &g_unk_7101d47200->empty) {
+        fn_7100db3f24(GetManager(), &self->sBehaviorTreePath);
         // Copy-assignment from the shared id, inlined (CFilePathStrId has none yet): retain the
         // new id, release the old one, as CStrId's on the other pool.
-        UnkStringData*& data = self->field_0x500.data;
+        UnkStringData*& data = self->sBehaviorTreePath.data;
         if (data != g_unk_7101d470e8.data) {
             UnkStringData* d = g_unk_7101d470e8.data;
             UnkStringPool* pool = g_unk_7101d47200;
@@ -54,7 +54,7 @@ void fn_7100416e80(UnkStruct_7100416e80* self) {
     }
     // The id's destructor, inlined (decrement and test in two steps).
     if (UnkStringPool* pool = g_unk_7101d47200) {
-        UnkStringData*& data = self->field_0x500.data;
+        UnkStringData*& data = self->sBehaviorTreePath.data;
         if (data && data != &pool->empty) {
             --data->ref_count;
             if (data->ref_count == 0) {

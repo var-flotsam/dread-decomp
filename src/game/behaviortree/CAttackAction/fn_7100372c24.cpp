@@ -26,7 +26,7 @@ struct UnkBase_7100394530 {
 };
 
 struct UnkObject_7100372c24 : UnkBase_7100393ea0 {
-    CRntString field_0x30;
+    CRntString sAttack;
     UnkStrIdTwoStep field_0x60;
 
     ~UnkObject_7100372c24() { vtable = &g_unk_7101a25010[2]; }

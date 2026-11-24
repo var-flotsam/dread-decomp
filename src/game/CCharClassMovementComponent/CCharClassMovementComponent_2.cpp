@@ -10,7 +10,7 @@ struct UnkStruct_71008bca30;
 void fn_710097b250(UnkCharClassMovementComponent* self) {
     fn_71011acd10(reinterpret_cast<UnkStruct_71008bca30*>(self));
     self->vtable = g_unk_7101a85840 + 2;
-    self->field_0x58 = true;
+    self->bWantsCheckViewDirInComputeKinematicRotationDelta = true;
     self->field_0x18 = 4000;
     self->field_0x5c = 0;
 }

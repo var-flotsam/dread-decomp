@@ -19,7 +19,7 @@ struct UnkNode_37fe18 : UnkBehaviorTreeNodeBase {
     u8 pad_0x2c[4];
     UnkStringData* field_0x30;
     u8 pad_0x38;
-    u8 field_0x39;
+    u8 bUpdateEachTick;
     u8 pad_0x3a[2];
     u8 field_0x3c[13];
     u8 pad_0x49[7];
@@ -34,7 +34,7 @@ void fn_710037fe18(UnkNode_37fe18* self) {
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
     self->field_0x30 = &g_unk_7101d47108->empty;
-    self->field_0x39 = 0;
+    self->bUpdateEachTick = 0;
     __builtin_memset(self->field_0x3c, 0, 13);
     fn_71002acfe4(self->field_0x50);
     self->field_0x12ad8.field_0x10 = 0;

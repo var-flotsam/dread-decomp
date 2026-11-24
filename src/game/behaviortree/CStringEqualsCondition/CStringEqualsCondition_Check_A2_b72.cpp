@@ -35,15 +35,15 @@ struct UnkInlineString_A2_b72 {
 
 struct UnkStringEqualsCondition_A2_b72 {
     u8 pad_0x0[0x38];
-    u8 field_0x38[0x30];
-    CStrId field_0x68;
+    u8 sRawValue[0x30];
+    CStrId sBlackboardValue;
 };
 
 bool CStringEqualsCondition_CheckBlackboardValueEqualsRawValue(UnkStringEqualsCondition_A2_b72* self) {
-    if (self->field_0x68.data == &g_unk_7101d47108->empty)
+    if (self->sBlackboardValue.data == &g_unk_7101d47108->empty)
         return false;
     UnkInlineString_A2_b72 str;
-    CBehavior_ReadStringProperty(self, &self->field_0x68, &str);
+    CBehavior_ReadStringProperty(self, &self->sBlackboardValue, &str);
     return fn_710007f120(reinterpret_cast<const UnkCompared_0x30*>(str.str),
-                         reinterpret_cast<const UnkCompared_0x30*>(self->field_0x38));
+                         reinterpret_cast<const UnkCompared_0x30*>(self->sRawValue));
 }

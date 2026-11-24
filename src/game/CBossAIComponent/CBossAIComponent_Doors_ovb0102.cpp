@@ -437,9 +437,9 @@ struct UnkBossDeathAI_ovb0102 {
     u32 state;  // +0x14988
     u8 pad_0x1498c[4];
     base::UnkRefHandle handle;  // +0x14990
-    bool field_0x14998;
+    bool bSaveGameOnAfterDead;
 };
-static_assert(__builtin_offsetof(UnkBossDeathAI_ovb0102, field_0x14998) == 0x14998, "layout");
+static_assert(__builtin_offsetof(UnkBossDeathAI_ovb0102, bSaveGameOnAfterDead) == 0x14998, "layout");
 
 // The base death handling.
 void fn_710110e274(UnkBossDeathAI_ovb0102* self);
@@ -465,7 +465,7 @@ void CBossAIComponent_OnBossDeath(UnkBossDeathAI_ovb0102* self) {
         return;
     if (!g_unk_71726bc570->field_0xb8) {
         UnkBossDeathTargetHolder_ovb0102* holder = Holder(self);
-        if (holder && holder->target && fn_7100dfbe3c(g_unk_7101d47310) && self->field_0x14998) {
+        if (holder && holder->target && fn_7100dfbe3c(g_unk_7101d47310) && self->bSaveGameOnAfterDead) {
             CRntString name(IdText(self->owner->name));
             CRntString_AppendCString(&name, "_dead");
             UnkGameManager* manager = g_unk_7101d47310;

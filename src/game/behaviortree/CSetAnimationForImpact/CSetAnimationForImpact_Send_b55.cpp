@@ -44,8 +44,8 @@ struct UnkSetAnimationForImpact_b55 {
     u8 pad_0x0[0x18];
     UnkImpactOwner_b55* owner;
     u8 pad_0x20[0x10];
-    CStrId field_0x30;
-    CStrId field_0x38;
+    CStrId sFrontImpact;
+    CStrId sBackImpact;
     CStrId field_0x40;
     u8 pad_0x48[0x2];
     bool field_0x4a;
@@ -63,9 +63,9 @@ void CSetAnimationForImpact_SelectFrontOrBackImpactAndSend(UnkSetAnimationForImp
     f32 z = source->z, y = source->y, x = source->x;
     UnkVec3_b55 v = dir->vf_0x210();
     if (-x * v.x + -y * v.y + -z * v.z >= 0.0f)
-        self->field_0x40 = self->field_0x30;
+        self->field_0x40 = self->sFrontImpact;
     else
-        self->field_0x40 = self->field_0x38;
+        self->field_0x40 = self->sBackImpact;
     UnkImpactOwner_b55* owner = self->owner;
     void* target = owner ? owner->field_0x220 : nullptr;
     u64 hash = self->field_0x40.data->Key();

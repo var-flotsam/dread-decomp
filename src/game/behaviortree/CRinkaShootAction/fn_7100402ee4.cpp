@@ -18,17 +18,17 @@ struct UnkSelf_7100402ee4 {
     u8 unk_0x0[0x18];
     UnkOwner_7100402ee4* owner;
     u8 unk_0x20[0xc];
-    s32 field_0x2c;
-    u32 field_0x30;
+    s32 iSpawnPointIndex;
+    u32 eRinkaType;
 };
 
 u32 fn_7100402ee4(UnkSelf_7100402ee4* self) {
-    if (self->field_0x2c < 0)
+    if (self->iSpawnPointIndex < 0)
         return 6;
     UnkAIComponent* component = self->owner->component;
     UnkAIComponent* found = nullptr;
     if (component && fn_710009d50c(component->vf_0x0(), fn_71004030f4()))
         found = component;
-    fn_7100405d58(found, self->field_0x2c, self->field_0x30);
+    fn_7100405d58(found, self->iSpawnPointIndex, self->eRinkaType);
     return 5;
 }

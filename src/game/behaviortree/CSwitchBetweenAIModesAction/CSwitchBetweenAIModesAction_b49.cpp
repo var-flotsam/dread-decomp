@@ -25,8 +25,8 @@ struct UnkSwitchAIModes_b49 {
     u8 pad_0x0[0x48];
     UnkAIModePair_b49 modes;
     u8 pad_0x50[0x28];
-    bool field_0x78;
-    bool field_0x79;
+    bool bSetAction;
+    bool bMaintainFrame;
     bool played;
     u8 pad_0x7b[5];
     UnkAIModesAI_b49* ai;
@@ -44,7 +44,7 @@ void CSwitchBetweenAIModesAction_End(UnkSwitchAIModes_b49* self, u32 result) {
                 if (self->modes.second)
                     fn_7101178e08(self->anim, self->modes.second, 0, 0, -1.0f);
                 if (self->modes.first)
-                    fn_710117662c(self->anim, self->modes.first, 0, self->field_0x78, self->field_0x79, -1.0f);
+                    fn_710117662c(self->anim, self->modes.first, 0, self->bSetAction, self->bMaintainFrame, -1.0f);
             }
             self->played = true;
         }

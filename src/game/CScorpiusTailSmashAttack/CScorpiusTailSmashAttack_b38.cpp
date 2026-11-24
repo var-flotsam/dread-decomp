@@ -15,7 +15,7 @@ struct UnkScorpiusObject {
 
 struct UnkScorpiusCharClass : UnkScorpiusObject {
     u8 pad_0x8[0x598];
-    f32 field_0x5a0;
+    f32 fTimeRegenTailSlowMovement;
     f32 field_0x5a4;
 };
 
@@ -42,7 +42,7 @@ bool fn_710068c284(UnkTailSmashAttack* self) {
     UnkScorpiusCharClass* cc =
         fn_710009d50c(object->vf_0x0(), fn_710068f63c()) ? static_cast<UnkScorpiusCharClass*>(object) : nullptr;
     f32 value = ai->field_0x14cd4;
-    f32 base = cc->field_0x5a0;
+    f32 base = cc->fTimeRegenTailSlowMovement;
     f32 extra = cc->field_0x5a4;
     f32 limit = base + extra;
     if (value > limit)

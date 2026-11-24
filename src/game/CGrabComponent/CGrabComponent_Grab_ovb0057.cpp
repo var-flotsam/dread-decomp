@@ -206,7 +206,7 @@ struct UnkGrabComponent_ovb0057 {
     bool field_0xb8;
     u8 pad_0xb9[7];
     f32 field_0xc0;
-    u32 field_0xc4;
+    u32 eLinkModeAsGrabber;
     UnkGrabLink_ovb0057* field_0xc8;
     UnkGrabLink_ovb0057* field_0xd0;
     UnkWeakHandle* target;  // 0xd8
@@ -376,7 +376,7 @@ void fn_710113adb4(UnkGrabComponent_ovb0057* self) {
     new (&self->field_0x90) base::global::CRntVector<UnkGrabEntry_ovb0057*>(0xf);
     self->field_0xb8 = false;
     self->field_0xc0 = -1.0f;
-    self->field_0xc4 = 1;
+    self->eLinkModeAsGrabber = 1;
     self->field_0xc8 = nullptr;
     self->field_0xd0 = nullptr;
     self->target = nullptr;
