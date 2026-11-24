@@ -14,6 +14,12 @@ written in (namespaces, class, and a `Class::` on the definition's line). Making
 moving it to another class, is a change of signature: do it in the source first, with the class's layout batch.
 Renaming a name the map already gave (a better reading, or a real name found later) works the same way.
 
+`--revert` takes an inferred name back, the exact inverse of a rename: the map's row goes, the function list's row
+is `fn_<addr>` with name_source `unknown` again, and every use in the code is spelled as the placeholder. Only a
+name the map gave (name_source `inferred`) is reverted; one the binary carries is not this tool's to remove. The
+map keeps reasons for the names it holds and no history, so the reason for a revert is printed, and belongs in
+the commit and the pull request that carry it.
+
 Gates (CLAUDE.md, "Conventions"): a rename changes no code. After one, `python tools/check.py --version <ver>
 --update` reports no REGRESSION (one is reported for an `O` function no source defines any more: a name check.py
 cannot resolve) and `git diff data/functions/` shows only the renamed rows' name and name_source.
@@ -24,6 +30,7 @@ hand-written code still uses a mapped function's old placeholder.
 Usage:
   python tools/rename.py 0x7100219588 UnkRenderManager::ProjectToScreen --reason "projects a point through the view"
   python tools/rename.py 0x7100219588 ... --dry-run    # what would change, nothing written
+  python tools/rename.py --revert 0x7100219588 --reason "the code does not support the name" [--dry-run]
   python tools/rename.py --check                       # the map is valid, applied and complete; exit 1 if not
   python tools/rename.py --list                        # the map
 Standard library only, no game data.
@@ -186,10 +193,7 @@ def rename(address: int, new: str, reason: str, dry_run: bool) -> int:
     if literals:
         return fail(f"{old_ident} is spelled in a string literal (an asm label?) in {', '.join(literals[:5])}: "
                     "rename by hand")
-    tools = [p for p in subprocess.run(["git", "ls-files", *TOOL_DIRS], cwd=ROOT, capture_output=True, text=True,
-                                       check=True).stdout.splitlines()
-             if p.endswith(".py") and word(old_ident).search((ROOT / p).read_text(encoding="utf-8"))]
-    for p in tools:
+    for p in tools_mentioning(old_ident):
         print(f"warning: {p} mentions {old_ident}; if it looks the function up by that name, make it use the address")
 
     mapped = [r for r in names.read() if r["address"] != addr]
@@ -205,6 +209,79 @@ def rename(address: int, new: str, reason: str, dry_run: bool) -> int:
         if any(r["address"] == addr for r in frows):
             names.apply(frows, [m for m in mapped if m["address"] == addr])
             functions.write(fname, frows)
+    print("next: python tools/check.py --version <ver> --update (no REGRESSION, and git diff data/functions/ shows "
+          "only this row), python tools/decl_check.py --strict --base origin/main, python tools/rename.py --check")
+    return 0
+
+
+def tools_mentioning(ident: str) -> list[str]:
+    """The tools whose text spells `ident`: one that looks a function up by name needs the address instead."""
+    out = subprocess.run(["git", "ls-files", *TOOL_DIRS], cwd=ROOT, capture_output=True, text=True,
+                         check=True).stdout.splitlines()
+    return [p for p in out if p.endswith(".py") and word(ident).search((ROOT / p).read_text(encoding="utf-8"))]
+
+
+def revert(address: int, reason: str, dry_run: bool) -> int:
+    """Take an inferred name back: the inverse of `rename`, in the map, the function list and the code."""
+    addr = f"{address:#x}"
+    rows = functions.by_file()
+    every = [r for frows in rows.values() for r in frows]
+    row = next((r for r in every if r["address"] == addr), None)
+    if row is None:
+        return fail(f"{addr} is not a function of data/functions/")
+    placeholder = names.placeholder(address)
+    old = row["name"]
+    if row["name_source"] in names.GENERATED_SOURCES or row["status"] == "L":
+        return fail(f"{addr} is named by the binary: {old} ({row['name_source']}); only an inferred name is reverted")
+    if row["name_source"] not in names.SOURCES:
+        return fail(f"{addr} has no name to revert: {old} ({row['name_source']})")
+    mapped = names.read()
+    if not any(r["address"] == addr for r in mapped):
+        return fail(f"{addr} ({old}) has no row in data/names.csv: the function list and the map disagree "
+                    "(python tools/rename.py --check)")
+    if not reason.strip():
+        return fail("a revert needs its reason (--reason)")
+
+    old_ident = names.split(old)[1]
+    others = [r["name"] for r in every if r["address"] != addr and names.split(r["name"])[1] == old_ident]
+    if others:
+        return fail(f"{old_ident} is also the name of {', '.join(others[:3])}: rewriting it would touch those too. "
+                    "Revert this one by hand")
+
+    changed: dict[str, str] = {}
+    literals = []
+    total = 0
+    for p in tracked_files():
+        t = (ROOT / p).read_text(encoding="utf-8")
+        if uses_in_code(t, placeholder):
+            return fail(f"{p} already uses {placeholder} beside {old_ident}: the rename was not complete "
+                        "(python tools/rename.py --check)")
+        out, n, lit = replace_in_code(t, old_ident, placeholder)
+        if lit:
+            literals.append(p)
+        if n:
+            changed[p] = out
+            total += n
+            print(f"{p}: {n}")
+    if literals:
+        return fail(f"{old_ident} is spelled in a string literal (an asm label?) in {', '.join(literals[:5])}: "
+                    "revert by hand")
+    for p in tools_mentioning(old_ident):
+        print(f"warning: {p} mentions {old_ident}; if it looks the function up by that name, make it use the address")
+
+    print(f"{addr}: {old} -> {placeholder}, {total} uses in {len(changed)} files")
+    print(f"reason: {' '.join(reason.split())}")
+    if dry_run:
+        print("dry run: nothing written")
+        return 0
+    for p, t in changed.items():
+        (ROOT / p).write_text(t, encoding="utf-8", newline="")
+    names.write([r for r in mapped if r["address"] != addr])
+    for fname, frows in rows.items():
+        for r in frows:
+            if r["address"] == addr:
+                r["name"], r["name_source"] = placeholder, "unknown"
+                functions.write(fname, frows)
     print("next: python tools/check.py --version <ver> --update (no REGRESSION, and git diff data/functions/ shows "
           "only this row), python tools/decl_check.py --strict --base origin/main, python tools/rename.py --check")
     return 0
@@ -260,6 +337,9 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true", help="print what would change; write nothing")
     ap.add_argument("--record-only", action="store_true",
                     help="write the map and function list only (the code was renamed by hand)")
+    ap.add_argument("--revert", action="store_true",
+                    help="take the address's inferred name back: fn_<addr> and name_source unknown again, in the "
+                         "map, the function list and the code (no name argument)")
     ap.add_argument("--check", action="store_true", help="verify the map, its application and its completeness")
     ap.add_argument("--list", action="store_true", help="print the map")
     args = ap.parse_args()
@@ -273,12 +353,17 @@ def main() -> int:
         for r in names.read():
             print(f"{r['address']}  {r['name']}  ({r['name_source']}: {r['reason']})")
         return 0
-    if not (args.address and args.name):
-        ap.error("an address and a name, or --check, or --list")
+    if args.revert:
+        if not args.address or args.name or args.record_only:
+            ap.error("--revert takes an address and --reason, and no name")
+    elif not (args.address and args.name):
+        ap.error("an address and a name, or --revert and an address, or --check, or --list")
     try:
         address = int(args.address, 16)
     except ValueError:
         ap.error(f"{args.address}: not a hex address")
+    if args.revert:
+        return revert(address, args.reason, args.dry_run)
     if args.record_only:
         return record_only(address, args.name, args.reason, args.dry_run)
     return rename(address, args.name, args.reason, args.dry_run)

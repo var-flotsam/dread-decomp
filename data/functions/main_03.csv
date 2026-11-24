@@ -4636,7 +4636,7 @@ address,size,name,name_source,subsystem,status
 0x71003dabd0,4,fn_71003dabd0,unknown,game/ai?,O
 0x71003dabd4,4,fn_71003dabd4,unknown,game/ai?,O
 0x71003dabd8,264,CAutsniperAIComponent_UpdateLayerChangeAndMovement,inferred,game/ai?,O
-0x71003dace0,308,CAutsniperAIComponent_SetMovementVelocity,inferred,game/ai?,O
+0x71003dace0,308,fn_71003dace0,unknown,game/ai?,O
 0x71003dae14,72,fn_71003dae14,unknown,game/ai?,O
 0x71003dae5c,128,fn_71003dae5c,unknown,game/ai?,O
 0x71003daedc,36,fn_71003daedc,unknown,game/ai?,O

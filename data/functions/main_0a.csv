@@ -560,7 +560,7 @@ address,size,name,name_source,subsystem,status
 0x7100a16530,36,fn_7100a16530,unknown,game/components?,O
 0x7100a16554,384,CCaterzillaSpawnPointComponent_UpdateWaveTimers,inferred,game/components?,O
 0x7100a166d4,872,fn_7100a166d4,unknown,game/components?,U
-0x7100a16a3c,128,CCaterzillaSpawnPointComponent_IncrementSpawnCount,inferred,game/components?,O
+0x7100a16a3c,128,fn_7100a16a3c,unknown,game/components?,O
 0x7100a16abc,280,fn_7100a16abc,unknown,game/components?,O
 0x7100a16bd4,124,fn_7100a16bd4,unknown,game/components?,O
 0x7100a16c50,1344,fn_7100a16c50,unknown,game/components?,U
