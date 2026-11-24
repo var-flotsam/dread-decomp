@@ -14,17 +14,17 @@ extern void* g_unk_7101a758d8[];
 struct UnkHangableGrappleSurface {
     void** vtable;
     u8 pad_0x8[0x60];
-    f32 field_0x68;
+    f32 fMagnetSurfaceMaxIntensityOnGrappleNotAllowed;
     u8 pad_0x6c[4];
-    CStrId field_0x70;
-    f32 field_0x78;
+    CStrId sGrappleHelperColliderId;
+    f32 fGrappleHelperMaxSegmentLengthToUseCenter;
 };
 
 void fn_7100823fe4(UnkHangableGrappleSurface* self) {
     fn_7100816b28(reinterpret_cast<char*>(self));
     self->vtable = g_unk_7101a758d8 + 2;
-    self->field_0x68 = 0.5f;
-    new (&self->field_0x70) CStrId(base::global::CStrId::Empty());
-    self->field_0x78 = 100.0f;
+    self->fMagnetSurfaceMaxIntensityOnGrappleNotAllowed = 0.5f;
+    new (&self->sGrappleHelperColliderId) CStrId(base::global::CStrId::Empty());
+    self->fGrappleHelperMaxSegmentLengthToUseCenter = 100.0f;
     reinterpret_cast<void (*)(UnkHangableGrappleSurface*)>(self->vtable[3])(self);
 }

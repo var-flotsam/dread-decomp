@@ -13,15 +13,15 @@ struct UnkChozoCommanderXLife_8ae790 {
     u8 pad_0x8[0x10];
     u64 field_0x18;
     u8 pad_0x20[0x84];
-    f32 field_0xa4;
-    f32 field_0xa8;
+    f32 fTimeToWin;
+    f32 fImpactedPlayRate;
 };
 
 void fn_71008ae790(UnkChozoCommanderXLife_8ae790* self) {
     fn_71008bca30(self);
     self->vtable = g_unk_7101a7dbf0 + 2;
-    self->field_0xa4 = 10.0f;
-    self->field_0xa8 = 0.7f;
+    self->fTimeToWin = 10.0f;
+    self->fImpactedPlayRate = 0.7f;
     self->field_0x18 = 3500;
     fn_7100023854(reinterpret_cast<UnkNode*>(self));
 }

@@ -14,8 +14,8 @@ struct UnkSetMaterialPropertyEvent {
     void* vtable;
     u8 unk_0x8[0x8];
     CStrId id;  // 0x10
-    u32 field_0x18;
-    u32 field_0x1c;
+    u32 ePropertyName;
+    u32 eStage;
     u64 field_0x20;
     u64 field_0x28;
 };
@@ -24,8 +24,8 @@ void fn_7100cd49ac(UnkSetMaterialPropertyEvent* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa6108 + 0x10;
     new (&self->id) CStrId("", true);
-    self->field_0x18 = 0;
-    self->field_0x1c = 1;
+    self->ePropertyName = 0;
+    self->eStage = 1;
     self->field_0x20 = 0;
     self->field_0x28 = 0;
 }

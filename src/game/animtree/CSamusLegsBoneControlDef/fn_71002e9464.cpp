@@ -7,7 +7,7 @@ using base::global::CStrId;
 
 struct UnkRecord_71002e9464 {
     u8 pad_0x0[8];
-    CStrId field_0x8;
+    CStrId sName;
     u64 field_0x10;
     u64 field_0x18;
     u64 field_0x20;
@@ -17,7 +17,7 @@ struct UnkRecord_71002e9464 {
     UnkRecord_71002e9464& operator=(const UnkRecord_71002e9464& other) {
         if (this == &other)
             return *this;
-        field_0x8 = other.field_0x8;
+        sName = other.sName;
         field_0x10 = other.field_0x10;
         u64 t18 = other.field_0x18;
         u64 t20 = other.field_0x20;

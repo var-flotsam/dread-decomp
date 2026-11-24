@@ -9,14 +9,14 @@
 struct UnkItemLifeComponent {
     void** vtable;
     u8 pad_0x8[0xa0];
-    u8 field_0xa8[0x70];
-    u32 field_0x118;
+    u8 oDamageSourceFactor[0x70];
+    u32 iHitCount;
 };
 
 void fn_71008b4d80(UnkItemLifeComponent* self) {
     fn_71008bca30(self);
     self->vtable = g_unk_7101a7de58 + 2;
-    fn_71008c2da8(self->field_0xa8);
-    self->field_0x118 = 1;
+    fn_71008c2da8(self->oDamageSourceFactor);
+    self->iHitCount = 1;
     reinterpret_cast<void (*)(UnkItemLifeComponent*)>(self->vtable[3])(self);
 }

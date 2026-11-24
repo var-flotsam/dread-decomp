@@ -8,8 +8,8 @@
 struct UnkShipRechargeDef {
     void** vtable;
     u8 pad_0x8[0x1b0];
-    u8 field_0x1b8[0x30];
-    u8 field_0x1e8[0x30];
+    u8 sSaveUseSuccessMessage[0x30];
+    u8 sSaveUseQuestionID[0x30];
 };
 
 extern void* g_unk_7101a926f0[];
@@ -17,7 +17,7 @@ extern void* g_unk_7101a926f0[];
 void fn_7100a8b37c(UnkShipRechargeDef* self) {
     fn_7100a7b494(self);
     self->vtable = &g_unk_7101a926f0[2];
-    fn_710007e6c4(self->field_0x1b8);
-    fn_710007e6c4(self->field_0x1e8);
+    fn_710007e6c4(self->sSaveUseSuccessMessage);
+    fn_710007e6c4(self->sSaveUseQuestionID);
     reinterpret_cast<void (*)(UnkShipRechargeDef*)>(self->vtable[3])(self);
 }

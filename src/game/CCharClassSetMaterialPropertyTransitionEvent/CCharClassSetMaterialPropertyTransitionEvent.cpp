@@ -11,12 +11,12 @@ struct UnkMaterialTransitionEvent {
     void** vtable;
     u8 unk_0x8[0x8];
     u64 id_0x10;
-    u32 field_0x18;
-    u32 field_0x1c;
+    u32 ePropertyName;
+    u32 eStage;
     u64 field_0x20;
     u64 field_0x28;
-    f32 field_0x30;
-    f32 field_0x34;
+    f32 fHDR;
+    f32 fTime;
 };
 
 extern void* g_unk_7101aa6138[];
@@ -25,10 +25,10 @@ void fn_7100cd5c4c(UnkMaterialTransitionEvent* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa6138 + 2;
     CStrId_Construct(&self->id_0x10, "", true);
-    self->field_0x18 = 0;
-    self->field_0x1c = 1;
+    self->ePropertyName = 0;
+    self->eStage = 1;
     self->field_0x20 = 0;
     self->field_0x28 = 0;
-    self->field_0x30 = 1.0f;
-    self->field_0x34 = 1.0f;
+    self->fHDR = 1.0f;
+    self->fTime = 1.0f;
 }

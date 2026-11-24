@@ -66,14 +66,14 @@ struct UnkCaterzillaSpawn2_ovb0054 {
     u8 pad_0x0[0x30];
     UnkActor* owner;  // 0x30
     u8 pad_0x38[0x3bc - 0x38];
-    u32 field_0x3bc;
+    u32 eSpawnOrder;
     u32 field_0x3c0;
     u32 field_0x3c4;
-    u32 field_0x3c8;
+    u32 NumCaterzillas;
     u32 field_0x3cc;
     bool field_0x3d0;
     u8 pad_0x3d1[0x3];
-    f32 field_0x3d4;
+    f32 fTimeToGenerateNextWave;
     f32 field_0x3d8;
     bool field_0x3dc;
     bool field_0x3dd;
@@ -83,7 +83,7 @@ struct UnkCaterzillaSpawn2_ovb0054 {
     union {
         UnkCaterzillaSpawn2_ovb0054* next;  // 0x420
     };
-    f32 field_0x428;
+    f32 fTimeToRespawnAllCaterzillas;
     f32 field_0x42c;
     bool field_0x430;
     u8 pad_0x431[0x33];
@@ -103,7 +103,7 @@ static inline void Link2(UnkCaterzillaSpawn2_ovb0054* self, bool head) {
 }
 
 void CCaterzillaSpawnPointComponent_UpdateWaveTimers(UnkCaterzillaSpawn2_ovb0054* self, f32 dt) {
-    if (self->next && !self->field_0x3df && self->field_0x3bc == 2) {
+    if (self->next && !self->field_0x3df && self->eSpawnOrder == 2) {
         if (fn_7100d7bea0(self->owner, false) && !self->field_0x3de)
             Link2(self, true);
         else if (fn_7100d7bea0(self->next->owner, false) && !self->next->field_0x3de)
@@ -111,7 +111,7 @@ void CCaterzillaSpawnPointComponent_UpdateWaveTimers(UnkCaterzillaSpawn2_ovb0054
     }
     if (self->field_0x3dd) {
         self->field_0x3d8 = self->field_0x3d8 + dt;
-        if (self->field_0x3d8 >= self->field_0x3d4) {
+        if (self->field_0x3d8 >= self->fTimeToGenerateNextWave) {
             self->field_0x3d0 = true;
             self->field_0x3dc = true;
             self->field_0x3dd = false;
@@ -123,12 +123,12 @@ void CCaterzillaSpawnPointComponent_UpdateWaveTimers(UnkCaterzillaSpawn2_ovb0054
     }
     if (self->field_0x430) {
         self->field_0x42c = self->field_0x42c + dt;
-        if (self->field_0x42c >= self->field_0x428) {
+        if (self->field_0x42c >= self->fTimeToRespawnAllCaterzillas) {
             self->field_0x3dc = true;
             self->field_0x3d0 = true;
             self->field_0x42c = 0.0f;
             self->field_0x430 = false;
-            u32 rest = self->field_0x3c8;
+            u32 rest = self->NumCaterzillas;
             self->field_0x3c4 = rest;
             self->field_0x3c0 = rest;
             self->field_0x3cc = 0;

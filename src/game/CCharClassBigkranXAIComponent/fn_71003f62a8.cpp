@@ -16,8 +16,8 @@ struct UnkPicker {
     u8 field_0x530[0x48];
     u8 field_0x578[0x48];
     u8 field_0x5c0[0x48];
-    f32 field_0x608;
-    f32 field_0x60c;
+    f32 fMaxDistance1;
+    f32 fMaxDistance2;
 };
 
 void* fn_71003f62a8(UnkPicker* self, UnkObject_71003f62a8* object) {
@@ -36,10 +36,10 @@ void* fn_71003f62a8(UnkPicker* self, UnkObject_71003f62a8* object) {
                 f32 dy = by - ty;
                 f32 dz = bz - tz;
                 f32 d2 = dx * dx + dy * dy + dz * dz;
-                f32 near = self->field_0x608;
+                f32 near = self->fMaxDistance1;
                 if (d2 < near * near)
                     return self->field_0x530;
-                f32 far = self->field_0x60c;
+                f32 far = self->fMaxDistance2;
                 if (!(d2 < far * far))
                     return self->field_0x5c0;
             }

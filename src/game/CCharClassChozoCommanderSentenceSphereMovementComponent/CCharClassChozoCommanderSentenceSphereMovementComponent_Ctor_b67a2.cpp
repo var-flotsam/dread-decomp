@@ -20,11 +20,11 @@ struct UnkSentenceSphereMovement_b67a2 {
     u8 pad_0x8[0x134 - 0x8];
     f32 field_0x134;
     f32 field_0x138;
-    f32 field_0x13c;
-    f32 field_0x140;
-    f32 field_0x144;
-    f32 field_0x148;
-    f32 field_0x14c;
+    f32 fInitialRadius;
+    f32 fMinRadius;
+    f32 fMaxRadius;
+    f32 fTimeToReachMinRadius;
+    f32 fTimeToReachMaxRadius;
 };
 static_assert(sizeof(UnkSentenceSphereMovement_b67a2) == 0x150, "layout");
 
@@ -35,10 +35,10 @@ void fn_710045928c_b67a2(UnkSentenceSphereMovement_b67a2* self) {
     self->vtable = reinterpret_cast<char*>(g_unk_7101a37420) + 0x10;
     self->field_0x134 = 90.0f;
     self->field_0x138 = 1.57079637f;
-    self->field_0x13c = 30.0f;
-    self->field_0x140 = 90.0f;
-    self->field_0x144 = 200.0f;
-    self->field_0x148 = 1.0f;
-    self->field_0x14c = 4.0f;
+    self->fInitialRadius = 30.0f;
+    self->fMinRadius = 90.0f;
+    self->fMaxRadius = 200.0f;
+    self->fTimeToReachMinRadius = 1.0f;
+    self->fTimeToReachMaxRadius = 4.0f;
     fn_7100023854(reinterpret_cast<UnkNode*>(self));
 }

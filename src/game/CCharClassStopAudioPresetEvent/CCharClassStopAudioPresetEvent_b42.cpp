@@ -21,7 +21,7 @@ struct UnkStopAudioPresetEvent_b42a3 {
     CStrId id_0x18;
     CFilePathStrId path_0x20;
     u64 field_0x28;
-    f32 field_0x30;
+    f32 fFadeOut;
     u32 field_0x34;
 };
 
@@ -32,6 +32,6 @@ void fn_7100be4928(UnkStopAudioPresetEvent_b42a3* self) {
     new (&self->id_0x18) CStrId(base::global::CStrId::Empty());
     new (&self->path_0x20) CFilePathStrId(g_unk_7101d470e8);
     self->field_0x28 = 0;
-    self->field_0x30 = -1.0f;
+    self->fFadeOut = -1.0f;
     self->field_0x34 = 0;
 }

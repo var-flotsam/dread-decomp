@@ -12,13 +12,13 @@ using base::math::CVector3D;
 
 struct UnkDistanceCond_l39d65c {
     u8 pad_0x0[0x38];
-    u8 field_0x38[8];
+    u8 sFirstPos[8];
     CVector3D field_0x40;
     u8 pad_0x4c[4];
-    u8 field_0x50[8];
+    u8 sSecondPos[8];
     CVector3D field_0x58;
-    f32 field_0x64;
-    f32 field_0x68;
+    f32 fDistance;
+    f32 fHightDistance;
 };
 
 struct UnkSelf;
@@ -39,8 +39,8 @@ bool fn_710039d65c(UnkDistanceCond_l39d65c* self) {
     b.x = 0;
     b.y = 0;
     b.z = 0;
-    Fetch_l39d65c(self, self->field_0x38, &a);
-    Fetch_l39d65c(self, self->field_0x50, &b);
+    Fetch_l39d65c(self, self->sFirstPos, &a);
+    Fetch_l39d65c(self, self->sSecondPos, &b);
     self->field_0x40.x = a.x;
     self->field_0x40.y = a.y;
     self->field_0x40.z = a.z;
@@ -52,11 +52,11 @@ bool fn_710039d65c(UnkDistanceCond_l39d65c* self) {
                  UNK_NEAR(b.y, g_unk_710164779c.y) && UNK_NEAR(b.z, g_unk_710164779c.z);
     if (!unset) {
         f32 dx = __builtin_fabsf(a.x - b.x);
-        f32 tolerance = self->field_0x68;
+        f32 tolerance = self->fHightDistance;
         bool below = b.y - tolerance < a.y;
         bool above = tolerance + b.y > a.y;
         bool in_band = tolerance == 0.0f ? true : (above & below);
-        if (dx <= self->field_0x64)
+        if (dx <= self->fDistance)
             return in_band;
     }
     return false;

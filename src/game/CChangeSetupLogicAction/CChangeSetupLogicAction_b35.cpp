@@ -13,9 +13,9 @@ struct UnkChangeSetupLogicActionDef {
     void** vtable;
     u8 pad_0x8[0x8];
     UnkStrId field_0x10;
-    bool field_0x18;
-    bool field_0x19;
-    bool field_0x1a;
+    bool bPersistent;
+    bool bForceChange;
+    bool bPush;
 };
 
 extern void* g_unk_7101a8e380[];
@@ -24,7 +24,7 @@ void fn_7100a377a4(UnkChangeSetupLogicActionDef* self) {
     fn_7100a55aa4(self);
     self->vtable = &g_unk_7101a8e380[2];
     new (&self->field_0x10) UnkStrId("", true);
-    self->field_0x18 = true;
-    self->field_0x19 = false;
-    self->field_0x1a = true;
+    self->bPersistent = true;
+    self->bForceChange = false;
+    self->bPush = true;
 }

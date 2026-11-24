@@ -713,13 +713,14 @@ def estimate(requests: list[dict], counted: dict[str, int] | None = None, ttl: s
         else:
             cached_t, rest_t = cached_c / CHARS_PER_TOKEN, rest_c / CHARS_PER_TOKEN
         tokens += cached_t + rest_t
-        out = MAX_TOKENS * PRICE["output"]
+        cap = r["params"].get("max_tokens", MAX_TOKENS)   # each request's own limit
+        out = cap * PRICE["output"]
         worst += cached_t * write_rate + rest_t * PRICE["input"] + out
         key = json.dumps([r["params"]["system"], r["params"]["messages"][0]["content"][0]], sort_keys=True)
         first = key not in seen_prefix
         seen_prefix.add(key)
         likely += (cached_t * (write_rate if first else PRICE["cache_read"]) + rest_t * PRICE["input"]
-                   + MAX_TOKENS * 0.4 * PRICE["output"])
+                   + cap * 0.4 * PRICE["output"])
     return {"requests": len(requests), "input_tokens": int(tokens),
             "worst_dollars": round(worst / 1e6 * BATCH_DISCOUNT, 2),
             "likely_dollars": round(likely / 1e6 * BATCH_DISCOUNT, 2)}

@@ -90,7 +90,7 @@ struct UnkMagnetSlidingBlock_l91e260 {
     u64 field_0x330;
     u32 field_0x338;
     u8 pad_0x33c[4];
-    bool field_0x340;
+    bool bContinueMovingOnStopHang;
     u32 field_0x344;
     u32 field_0x348;
     u32 field_0x34c;
@@ -154,7 +154,7 @@ void fn_710091e260(UnkMagnetSlidingBlock_l91e260* self) {
 
     self->field_0x330 = 0;
     self->field_0x338 = 0;
-    self->field_0x340 = false;
+    self->bContinueMovingOnStopHang = false;
     self->field_0x344 = 0;
     self->field_0x348 = 0;
     self->field_0x350 = 0;

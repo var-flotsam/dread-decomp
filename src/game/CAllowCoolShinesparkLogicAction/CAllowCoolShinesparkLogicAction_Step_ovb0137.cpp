@@ -39,8 +39,8 @@ struct UnkCoolShinesparkAction_ovb0137 {
     u32 count_b;  // 0x40
     u8 pad_0x44[0x1c];
     u8 field_0x60[8];
-    bool field_0x68;
-    bool field_0x69;
+    bool bAllow;
+    bool bForce;
 };
 
 // After the base step, hands the player's shinespark ability the two lists as bit masks.
@@ -62,8 +62,8 @@ void CAllowCoolShinesparkLogicAction_ApplyAllowedMasksToPlayerAbility(UnkCoolShi
     mask_b.bits = 0;
     for (u32* it = self->list_b; it != self->list_b + self->count_b; ++it)
         mask_b.bits |= 1u << *it;
-    if (self->field_0x68)
-        fn_71003312a8(ability, &mask_a, &mask_b, self->field_0x60, self->field_0x69);
+    if (self->bAllow)
+        fn_71003312a8(ability, &mask_a, &mask_b, self->field_0x60, self->bForce);
     else
-        fn_710032a3b4(ability, &mask_a, &mask_b, self->field_0x69);
+        fn_710032a3b4(ability, &mask_a, &mask_b, self->bForce);
 }

@@ -18,16 +18,16 @@ struct UnkChangeSetupAction_b53 {
     void** vtable;
     u8 pad_0x8[0x8];
     base::global::CStrId id;  // 0x10
-    bool field_0x18;
-    bool field_0x19;
-    bool field_0x1a;
+    bool bPersistent;
+    bool bForceChange;
+    bool bPush;
 };
 
 void fn_7100a37690(UnkChangeSetupAction_b53* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     if (self->id.data == &g_unk_7101d47108->empty)
         return;
-    bool mode = self->field_0x1a;
+    bool mode = self->bPush;
     void* manager = g_unk_7101d47360;
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
@@ -35,7 +35,7 @@ void fn_7100a37690(UnkChangeSetupAction_b53* self) {
         g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     if (mode)
-        fn_7100eea3fc(manager, &self->id, self->field_0x18, self->field_0x19);
+        fn_7100eea3fc(manager, &self->id, self->bPersistent, self->bForceChange);
     else
-        fn_7100eea334(manager, &self->id, self->field_0x18, self->field_0x19);
+        fn_7100eea334(manager, &self->id, self->bPersistent, self->bForceChange);
 }

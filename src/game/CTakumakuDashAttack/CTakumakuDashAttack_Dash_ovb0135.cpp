@@ -57,12 +57,12 @@ struct UnkTakumakuEntry_ovb0135 {
 
 struct UnkTakumakuCharClass_ovb0135 {
     u8 pad_0x0[0x640];
-    f32 field_0x640;
+    f32 fMinChargeTime;
     bool field_0x644;
     bool field_0x645;
     u8 pad_0x646[6];
-    f32 field_0x64c;
-    f32 field_0x650;
+    f32 fMaxTimeDetectingBehindToTurn;
+    f32 fMaxTimeMissingToStop;
 };
 
 // An optional target point (unaligned inside the AI component).
@@ -272,7 +272,7 @@ bool fn_71006d0494(UnkTakumakuDash_ovb0135* self, const UnkTakumakuMessage_ovb01
         }
         if (Same(*id, *fn_71006d3e48(self->ai))) {
             if (char_class) {
-                self->countdown = char_class->field_0x640;
+                self->countdown = char_class->fMinChargeTime;
                 self->next = 2;
             }
             return true;
@@ -280,8 +280,8 @@ bool fn_71006d0494(UnkTakumakuDash_ovb0135* self, const UnkTakumakuMessage_ovb01
         if (!Same(*id, *fn_71006d3e70(self->ai)))
             return true;
         if (char_class) {
-            self->field_0x6c = char_class->field_0x64c;
-            self->field_0x70 = char_class->field_0x650;
+            self->field_0x6c = char_class->fMaxTimeDetectingBehindToTurn;
+            self->field_0x70 = char_class->fMaxTimeMissingToStop;
         }
         self->next = 3;
         return true;

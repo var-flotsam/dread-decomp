@@ -44,7 +44,7 @@ struct UnkCharClassGrab_ovb0120 {
     base::UnkAllocator* allocator;  // 0x78
     u32 field_0x80;
     u8 pad_0x84[4];
-    CStrId field_0x88;
+    CStrId sFireCameraFXPreset;
     u32 field_0x90;
 };
 static_assert(__builtin_offsetof(UnkCharClassGrab_ovb0120, field_0x90) == 0x90, "layout");
@@ -58,7 +58,7 @@ void fn_71007905b8(UnkCharClassGrab_ovb0120* self) {
     self->field_0x70 = 0;
     self->allocator = GetDefaultAllocator();
     self->field_0x80 = 0x13;
-    new (&self->field_0x88) CStrId(g_unk_710162e2ed, true);
+    new (&self->sFireCameraFXPreset) CStrId(g_unk_710162e2ed, true);
     self->field_0x90 = UnkGrabClassDefaultMask();
     self->field_0x18 = 0x10cc;
 }

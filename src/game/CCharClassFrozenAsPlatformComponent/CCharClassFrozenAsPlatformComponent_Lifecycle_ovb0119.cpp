@@ -67,7 +67,7 @@ extern char g_unk_7101a74408[];  // the class's vtable (reached through the GOT)
 struct UnkFrozenAsPlatformComponent_b0119 {
     char* vtable;
     u8 pad_0x8[0x98];
-    u8 field_0xa0[0x30];  // a base::global::CRntString with its storage
+    u8 sCollisionMaskToFreeze[0x30];  // a base::global::CRntString with its storage
     base::UnkStrIdMember field_0xd0;
     base::global::CRntVector<base::UnkStrIdMember> field_0xd8;
     u8 pad_0x100[0x8];
@@ -81,7 +81,7 @@ void fn_71007fc850(UnkFrozenAsPlatformComponent_b0119* self) {
     self->field_0x108.~UnkStrIdMemberOf();
     self->field_0xd8.Free();
     self->field_0xd0.~UnkStrIdMemberOf();
-    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(self->field_0xa0));
+    CRntString_Destroy(reinterpret_cast<base::global::CRntString*>(self->sCollisionMaskToFreeze));
     fn_71007ee5bc(reinterpret_cast<char*>(self));
 }
 
@@ -95,12 +95,12 @@ struct UnkFrozenIceBase_b44a2;
 struct UnkFrozenAsPlatformInit_b0119 {
     char* vtable;
     u8 pad_0x8[0x98];
-    u8 field_0xa0[0x30];  // a base::global::CRntString with its storage
+    u8 sCollisionMaskToFreeze[0x30];  // a base::global::CRntString with its storage
     CStrId field_0xd0;
     base::global::CRntVector<base::UnkPooledString> field_0xd8;
-    f32 field_0x100;
+    f32 fPlatformDepth;
     u8 pad_0x104[0x4];
-    CStrId field_0x108;
+    CStrId sIceCubeCharClass;
     u64 field_0x110;  // two floats
 
     // Grows the vector at +0xd8: the ids are moved bitwise and the old ones released.
@@ -136,11 +136,11 @@ struct UnkFrozenAsPlatformInit_b0119 {
 void fn_71007fc694(UnkFrozenAsPlatformInit_b0119* self) {
     fn_71007ee4c8(reinterpret_cast<UnkFrozenIceBase_b44a2*>(self));
     self->vtable = g_unk_7101a74408 + 0x10;
-    new (self->field_0xa0) base::global::CRntString("DAMAGE");
+    new (self->sCollisionMaskToFreeze) base::global::CRntString("DAMAGE");
     new (&self->field_0xd0) CStrId(base::global::CStrId::Empty());
     new (&self->field_0xd8) base::global::CRntVector<base::UnkPooledString>(0xf);
     self->ReserveIds(4);
-    self->field_0x100 = 100.0f;
-    new (&self->field_0x108) CStrId(base::global::CStrId::Empty());
+    self->fPlatformDepth = 100.0f;
+    new (&self->sIceCubeCharClass) CStrId(base::global::CStrId::Empty());
     self->field_0x110 = 0x42c8000042c80000;
 }

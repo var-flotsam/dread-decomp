@@ -14,11 +14,11 @@ using base::global::CStrId;
 struct UnkNearWallTrack_b46a3 {
     void** vtable;
     u8 unk_0x8[0x30];
-    CStrId field_0x38;
-    CStrId field_0x40;
-    CStrId field_0x48;
+    CStrId sHighAction;
+    CStrId sLowAction;
+    CStrId sNoHandAction;
     f32 field_0x50;
-    f32 field_0x54;
+    f32 fCheckDistance;
 };
 
 extern char g_unk_717278e3a8[] __attribute__((visibility("hidden")));
@@ -28,9 +28,9 @@ void fn_7100c54548(UnkNearWallTrack_b46a3* self) {
     fn_7100c53d88();
     fn_7100d2a844(self, g_unk_717278e3a8);
     self->vtable = &g_unk_7101aa4890[2];
-    new (&self->field_0x38) CStrId(base::global::CStrId::Empty());
-    new (&self->field_0x40) CStrId(base::global::CStrId::Empty());
-    new (&self->field_0x48) CStrId(base::global::CStrId::Empty());
+    new (&self->sHighAction) CStrId(base::global::CStrId::Empty());
+    new (&self->sLowAction) CStrId(base::global::CStrId::Empty());
+    new (&self->sNoHandAction) CStrId(base::global::CStrId::Empty());
     self->field_0x50 = -1.0f;
-    self->field_0x54 = 1.0f;
+    self->fCheckDistance = 1.0f;
 }

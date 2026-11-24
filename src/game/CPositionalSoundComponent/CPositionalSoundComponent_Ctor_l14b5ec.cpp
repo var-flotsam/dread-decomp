@@ -27,14 +27,14 @@ struct UnkPositionalSound_l14b5ec {
     void* field_0x78;
     void* field_0x80;
     UnkSoundHandle handles[2];  // 0x88
-    bool field_0xa8;
+    bool bLoop;
     bool field_0xa9;
     u8 unk_0xaa[6];
     CStrId field_0xb0;
     u32 field_0xb8;
-    f32 field_0xbc;
-    f32 field_0xc0;
-    f32 field_0xc4;
+    f32 fFadeOutTime;
+    f32 fHorizontalMult;
+    f32 fVerticalMult;
     void* field_0xc8;
     u32 field_0xd0;
 };
@@ -52,13 +52,13 @@ void fn_710114b5ec(UnkPositionalSound_l14b5ec* self) {
     self->field_0x80 = nullptr;
     self->handles[0] = g_unk_7108b6c460;
     self->handles[1] = g_unk_7108b6c460;
-    self->field_0xa8 = false;
+    self->bLoop = false;
     self->field_0xa9 = false;
     new (&self->field_0xb0) CStrId("", true);
     self->field_0xb8 = 0;
-    self->field_0xbc = 0.0f;
-    self->field_0xc0 = 1.0f;
-    self->field_0xc4 = 1.0f;
+    self->fFadeOutTime = 0.0f;
+    self->fHorizontalMult = 1.0f;
+    self->fVerticalMult = 1.0f;
     self->field_0xc8 = nullptr;
     self->field_0xd0 = 0;
     for (int i = 0; i < self->path_count; ++i)

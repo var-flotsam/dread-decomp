@@ -13,7 +13,7 @@ using base::global::UnkStringData;
 struct UnkFXLinkEvent {
     void** vtable;
     u8 unk_0x8[0x8];
-    CStrId field_0x10;
+    CStrId sName;
     u8 unk_0x18[0x8];
     UnkStringData* field_0x20;
     u8 unk_0x28[0x18];
@@ -25,7 +25,7 @@ extern void* g_unk_7101aa0f58[];
 void fn_7100bb2894(UnkFXLinkEvent* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa0f58 + 2;
-    new (&self->field_0x10) CStrId("", true);
+    new (&self->sName) CStrId("", true);
     self->field_0x20 = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();

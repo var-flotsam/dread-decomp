@@ -14,7 +14,7 @@ using base::global::UnkStringData;
 
 struct UnkNode_372788 : UnkBehaviorTreeNodeBase {
     u8 pad_0x2c[4];
-    CRntString field_0x30;
+    CRntString sAttack;
     UnkStringData* field_0x60;
     u16 field_0x68;
 };
@@ -22,7 +22,7 @@ struct UnkNode_372788 : UnkBehaviorTreeNodeBase {
 void fn_7100372788(UnkNode_372788* self) {
     fn_7100393e68(self);
     self->vtable = g_unk_7101a25010 + 2;
-    new (&self->field_0x30) CRntString("");
+    new (&self->sAttack) CRntString("");
     self->field_0x60 = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();

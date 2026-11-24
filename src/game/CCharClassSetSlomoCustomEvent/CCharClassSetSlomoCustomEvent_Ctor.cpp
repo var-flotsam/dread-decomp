@@ -14,8 +14,8 @@ extern char g_unk_7101aa6290[];
 struct UnkSetSlomoCustomEvent {
     void* vtable;
     u8 unk_0x8[0x4];
-    f32 field_0xc;
-    f32 field_0x10;
+    f32 fSlomo;
+    f32 fTime;
     u8 unk_0x14[0x4];
     CStrId id;  // 0x18
 };
@@ -23,7 +23,7 @@ struct UnkSetSlomoCustomEvent {
 void fn_7100cd8df4(UnkSetSlomoCustomEvent* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa6290 + 0x10;
-    self->field_0xc = 1.0f;
-    self->field_0x10 = 1.0f;
+    self->fSlomo = 1.0f;
+    self->fTime = 1.0f;
     new (&self->id) CStrId("", true);
 }

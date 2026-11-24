@@ -33,8 +33,8 @@ static inline void SetVolume(void* target, u32 mask, f32 a, f32 b) {
 struct UnkVolumeOverrideEvent_ovb0114 {
     u8 pad_0x0[0x10];
     u8 target[0x8];  // 0x10
-    f32 field_0x18;
-    f32 field_0x1c;
+    f32 fVolume;
+    f32 fFadeTime;
     CStrId actor;  // 0x20
 };
 
@@ -45,5 +45,5 @@ void fn_7100bd28d0(UnkVolumeOverrideEvent_ovb0114* self) {
     ++reinterpret_cast<UnkVolumeIdData_ovb0114*>(id->data)->uses;
     const char* text = reinterpret_cast<UnkVolumeIdData_ovb0114*>(id->data)->text;
     u32 bit = fn_7100106820(text ? text : g_unk_710162e2ed);
-    SetVolume(self->target, 1u << bit, self->field_0x18, self->field_0x1c);
+    SetVolume(self->target, 1u << bit, self->fVolume, self->fFadeTime);
 }

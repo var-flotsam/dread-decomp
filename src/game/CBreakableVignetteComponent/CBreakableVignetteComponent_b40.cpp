@@ -28,7 +28,7 @@ struct UnkBreakableVignette_bv {
     u8 pad_0x38[1];
     bool field_0x39;
     u8 pad_0x3a[2];
-    bool field_0x3c;
+    bool bForceNotVisible;
     u8 pad_0x3d[3];
     UnkKeyed_bv* field_0x40;
     void* field_0x48;
@@ -38,7 +38,7 @@ void CBreakableVignetteComponent_ApplyBrokenStateAndLinkToManager(UnkBreakableVi
     auto show = reinterpret_cast<u32 (*)(UnkRenderManager*, bool, u64, u32, bool)>(fn_7100219c6c);
     while (show(g_unk_7101d47300, !self->field_0x39, self->field_0x40->key, 0, false) == 2) {
     }
-    if (!self->field_0x39 && self->field_0x3c)
+    if (!self->field_0x39 && self->bForceNotVisible)
         fn_7100e95130(fn_7100e8d8b0(), self->field_0x30);
     void** link = &self->field_0x48;
     void* manager = g_unk_7101d47360;

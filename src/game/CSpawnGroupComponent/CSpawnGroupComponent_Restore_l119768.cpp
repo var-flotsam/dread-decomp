@@ -31,12 +31,12 @@ struct UnkSpawnGroup_l119768 {
     u8 pad_0x74[0xc4];
     bool field_0x138;
     u8 pad_0x139[3];
-    bool field_0x13c;
+    bool bAutomanaged;
     u8 pad_0x13d;
-    bool field_0x13e;
+    bool bAutoenabled;
     bool field_0x13f;
     u8 pad_0x140[0x4c];
-    s32 field_0x18c;
+    s32 iMaxToGenerate;
     u8 pad_0x190[4];
     s32 field_0x194;
     u8 pad_0x198[4];
@@ -61,7 +61,7 @@ struct UnkSpawnGroup_l119768 {
         return index;
     }
 };
-static_assert(__builtin_offsetof(UnkSpawnGroup_l119768, field_0x13c) == 0x13c, "");
+static_assert(__builtin_offsetof(UnkSpawnGroup_l119768, bAutomanaged) == 0x13c, "");
 static_assert(__builtin_offsetof(UnkSpawnGroup_l119768, field_0x19c) == 0x19c, "");
 static_assert(__builtin_offsetof(UnkSpawnGroup_l119768, values) == 0x3f0, "");
 
@@ -80,9 +80,9 @@ static inline bool GetSectionInt(CBlackboard* blackboard, const CStrId& section,
 }
 
 void fn_7101119768(UnkSpawnGroup_l119768* self, CBlackboard* blackboard) {
-    if (!self->field_0x13c)
+    if (!self->bAutomanaged)
         return;
-    bool flag = self->field_0x13e;
+    bool flag = self->bAutoenabled;
     {
         CStrId section_id = fn_71011a2fbc(g_unk_7101d47310->field_0x608);
         u64 index = self->IndexOf(g_unk_7172a065e0);
@@ -107,7 +107,7 @@ void fn_7101119768(UnkSpawnGroup_l119768* self, CBlackboard* blackboard) {
     }
     if (found) {
         s32 value = self->field_0x19c;
-        s32 limit = self->field_0x18c;
+        s32 limit = self->iMaxToGenerate;
         self->field_0x194 = limit > value ? value : limit;
     }
 }

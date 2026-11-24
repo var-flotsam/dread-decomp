@@ -14,7 +14,7 @@ void fn_71006b2d74(void* self);
 struct UnkShelmitDef {
     void** vtable;
     u8 pad_0x8[0x508];
-    u8 field_0x510[0x108];
+    u8 oShelmitPlasmaRayAttackDef[0x108];
     f32 field_0x618[11];
     u8 pad_0x644[4];
     u8 field_0x648[8];
@@ -23,7 +23,7 @@ struct UnkShelmitDef {
 void fn_71006b94c8(UnkShelmitDef* self) {
     fn_7100416db8(reinterpret_cast<UnkObject_7100416db8*>(self));
     self->vtable = g_unk_7101a63ad0 + 2;
-    fn_71006b2d74(self->field_0x510);
+    fn_71006b2d74(self->oShelmitPlasmaRayAttackDef);
     for (u32 i = 0; i < 11; ++i)
         self->field_0x618[i] = -1.0f;
     fn_71007c7ddc(self->field_0x648);

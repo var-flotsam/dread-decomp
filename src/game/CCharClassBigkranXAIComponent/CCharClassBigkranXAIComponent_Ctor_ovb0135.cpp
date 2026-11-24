@@ -50,10 +50,10 @@ struct UnkBigkranXAI_ovb0135 {
     f32 near;                            // 0x608
     f32 far;                             // 0x60c
     CStrId name;                         // 0x610
-    f32 field_0x618;
-    f32 field_0x61c;
-    f32 field_0x620;
-    f32 field_0x624;
+    f32 fShotHeightOffset;
+    f32 fReachableHeightBeforeAttack;
+    f32 fReachableHeightOnAttack;
+    f32 fTimeBeforeWarningAttack;
     u8 attack[0x108];  // 0x628
     u8 spit[0x8];      // 0x730
 };
@@ -68,10 +68,10 @@ void fn_71003f5f3c(UnkBigkranXAI_ovb0135* self) {
     self->near = -1.0f;
     self->far = -1.0f;
     new (&self->name) CStrId(base::global::CStrId::Empty());
-    self->field_0x618 = -1.0f;
-    self->field_0x61c = -1.0f;
-    self->field_0x620 = -1.0f;
-    self->field_0x624 = -1.0f;
+    self->fShotHeightOffset = -1.0f;
+    self->fReachableHeightBeforeAttack = -1.0f;
+    self->fReachableHeightOnAttack = -1.0f;
+    self->fTimeBeforeWarningAttack = -1.0f;
     fn_71003ef808(reinterpret_cast<UnkBigkranXAttackDef_ovb0135*>(self->attack));
     fn_71003f0aac(reinterpret_cast<UnkBigkranXSpitAttackDef*>(self->spit));
 }

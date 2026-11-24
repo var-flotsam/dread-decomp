@@ -73,12 +73,12 @@ struct UnkBossAI_l3ac064 {
     UnkBossCallbackSet_l3ac064 callbacks_b;    // 0x14910
     UnkEmptyStrId id;                 // 0x14950
     UnkBossCallbackSet_l3ac064 callbacks_c;    // 0x14958
-    bool field_0x14998;
+    bool bSaveGameOnAfterDead;
 };
 static_assert(__builtin_offsetof(UnkBossAI_l3ac064, near_height_time) == 0x14724, "layout");
 static_assert(__builtin_offsetof(UnkBossAI_l3ac064, field_0x14808) == 0x14808, "layout");
 static_assert(__builtin_offsetof(UnkBossAI_l3ac064, life_bar) == 0x148f0, "layout");
-static_assert(__builtin_offsetof(UnkBossAI_l3ac064, field_0x14998) == 0x14998, "layout");
+static_assert(__builtin_offsetof(UnkBossAI_l3ac064, bSaveGameOnAfterDead) == 0x14998, "layout");
 
 void fn_71003ac064(UnkBossAI_l3ac064* self) {
     fn_710036932c(reinterpret_cast<UnkComponent_71004076e4*>(self));
@@ -116,5 +116,5 @@ void fn_71003ac064(UnkBossAI_l3ac064* self) {
     new (&self->callbacks_b) UnkBossCallbackSet_l3ac064;
     new (&self->id) UnkEmptyStrId;
     new (&self->callbacks_c) UnkBossCallbackSet_l3ac064;
-    self->field_0x14998 = true;
+    self->bSaveGameOnAfterDead = true;
 }

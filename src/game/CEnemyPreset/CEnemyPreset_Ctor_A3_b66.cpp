@@ -15,20 +15,20 @@ extern char g_unk_7101a49360[];
 struct UnkEnemyPresetEntry_A3_b66 {
     void** vtable;
     u64 field_0x8;
-    CStrId field_0x10;
-    f32 field_0x18;
-    CStrId field_0x20;
-    CStrId field_0x28;
+    CStrId sId;
+    f32 fLife;
+    CStrId sLifeTunable;
+    CStrId sLifeTunableVar;
     bool field_0x30;
 };
 
 void fn_7100578b90(UnkEnemyPresetEntry_A3_b66* self) {
     fn_7101043904(self);
     self->vtable = reinterpret_cast<void**>(g_unk_7101a49360) + 2;
-    new (&self->field_0x10) CStrId(base::global::CStrId::Empty());
-    self->field_0x18 = -1.0f;
-    new (&self->field_0x20) CStrId(base::global::CStrId::Empty());
-    new (&self->field_0x28) CStrId(base::global::CStrId::Empty());
+    new (&self->sId) CStrId(base::global::CStrId::Empty());
+    self->fLife = -1.0f;
+    new (&self->sLifeTunable) CStrId(base::global::CStrId::Empty());
+    new (&self->sLifeTunableVar) CStrId(base::global::CStrId::Empty());
     self->field_0x30 = false;
     reinterpret_cast<void (*)(UnkEnemyPresetEntry_A3_b66*)>(self->vtable[3])(self);
 }

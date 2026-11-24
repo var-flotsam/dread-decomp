@@ -13,11 +13,11 @@ struct UnkBonePositionEvent_b42a3 {
     char* vtable;
     u8 unk_0x8[0x8];
     u64 ids[4];
-    u32 field_0x30;
-    u32 field_0x34;
+    u32 ePropertyName;
+    u32 eStage;
     u64 field_0x38;
-    f32 field_0x40;
-    bool field_0x44;
+    f32 fTime;
+    bool bLocalPosition;
 };
 
 void fn_7100bd85e4(UnkBonePositionEvent_b42a3* self) {
@@ -27,9 +27,9 @@ void fn_7100bd85e4(UnkBonePositionEvent_b42a3* self) {
     CStrId_Construct(&self->ids[1], "", true);
     CStrId_Construct(&self->ids[2], "", true);
     CStrId_Construct(&self->ids[3], "", true);
-    self->field_0x30 = 0;
-    self->field_0x34 = 1;
+    self->ePropertyName = 0;
+    self->eStage = 1;
     self->field_0x38 = 0;
-    self->field_0x40 = 1.0f;
-    self->field_0x44 = false;
+    self->fTime = 1.0f;
+    self->bLocalPosition = false;
 }

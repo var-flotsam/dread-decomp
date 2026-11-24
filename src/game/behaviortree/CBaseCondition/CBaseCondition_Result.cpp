@@ -11,12 +11,12 @@ struct UnkBaseCondition {
     UNK_VSLOT(14) UNK_VSLOT(15) UNK_VSLOT(16) UNK_VSLOT(17) UNK_VSLOT(18) UNK_VSLOT(19)
     virtual bool vf_20();  // the test
     u8 pad_0x8[0x24];
-    bool field_0x2c;  // negate
-    s32 field_0x30;   // the status when it holds
-    s32 field_0x34;   // the status when it does not
+    bool bNegate;  // negate
+    s32 eReturnStatusSuccess;   // the status when it holds
+    s32 eReturnStatusFailed;   // the status when it does not
 };
 
 s32 fn_7100394538(UnkBaseCondition* self) {
     bool passed = self->vf_20();
-    return passed == !self->field_0x2c ? self->field_0x30 : self->field_0x34;
+    return passed == !self->bNegate ? self->eReturnStatusSuccess : self->eReturnStatusFailed;
 }

@@ -18,7 +18,7 @@ struct UnkMorphBallLauncherDef_b44a2 {
     u64 field_0x60;
     u32 field_0x68;
     u32 pad_0x6c;
-    base::global::CStrId field_0x70;
+    base::global::CStrId sCannonActionPlayRateEasingFunction;
 };
 
 void fn_7100885304(UnkMorphBallLauncherDef_b44a2* self) {
@@ -27,6 +27,6 @@ void fn_7100885304(UnkMorphBallLauncherDef_b44a2* self) {
     self->field_0x68 = 0;
     self->field_0x58 = 0;
     self->field_0x60 = 0;
-    new (&self->field_0x70) base::global::CStrId(base::global::CStrId::Empty());
+    new (&self->sCannonActionPlayRateEasingFunction) base::global::CStrId(base::global::CStrId::Empty());
     reinterpret_cast<void (*)(UnkMorphBallLauncherDef_b44a2*)>(self->vtable[3])(self);
 }

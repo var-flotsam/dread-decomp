@@ -13,19 +13,19 @@ struct UnkFXLinkTriple_ovb0097 {
 struct UnkFXLinkEntry_ovb0097 {
     void* vtable;
     u32 field_0x8;
-    CStrId field_0x10;
-    u32 field_0x18;
+    CStrId sName;
+    u32 eLinkType;
     CStrId field_0x20;
     UnkFXLinkTriple_ovb0097 field_0x28;
-    CStrId field_0x40;
+    CStrId sAdditional;
 };
 
 UnkFXLinkEntry_ovb0097* fn_7100bb2e24(UnkFXLinkEntry_ovb0097* self, const UnkFXLinkEntry_ovb0097* other) {
     self->field_0x8 = other->field_0x8;
-    self->field_0x10 = other->field_0x10;
-    self->field_0x18 = other->field_0x18;
+    self->sName = other->sName;
+    self->eLinkType = other->eLinkType;
     self->field_0x20 = other->field_0x20;
     self->field_0x28 = other->field_0x28;
-    self->field_0x40 = other->field_0x40;
+    self->sAdditional = other->sAdditional;
     return self;
 }

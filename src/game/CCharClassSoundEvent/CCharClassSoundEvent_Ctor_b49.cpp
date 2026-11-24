@@ -18,24 +18,24 @@ struct UnkSoundEvent_b49 {
     void** vtable;
     u8 unk_0x8[0x8];
     CFilePathStrId field_0x10[8];
-    CStrId field_0x50;
-    f32 field_0x58;
-    f32 field_0x5c;
-    f32 field_0x60;
-    f32 field_0x64;
-    f32 field_0x68;
-    bool field_0x6c;
+    CStrId sNode;
+    f32 fVolume;
+    f32 fRadiusMinAttenuation;
+    f32 fRadiusMaxAttenuation;
+    f32 fPitch;
+    f32 fPitchMax;
+    bool bStopOnChangeAnim;
     u32 field_0x70;
     u32 field_0x74;
-    f32 field_0x78;
-    f32 field_0x7c;
-    bool field_0x80;
-    bool field_0x81;
-    CStrId field_0x88;
-    CStrId field_0x90;
-    u32 field_0x98;
+    f32 fStopInTime;
+    f32 fRumbleGainOverride;
+    bool bStopOnEntityDead;
+    bool bRumbleSync;
+    CStrId sSoundGroupId;
+    CStrId sType;
+    u32 eSoundType;
 };
-static_assert(__builtin_offsetof(UnkSoundEvent_b49, field_0x98) == 0x98, "layout");
+static_assert(__builtin_offsetof(UnkSoundEvent_b49, eSoundType) == 0x98, "layout");
 
 extern void* g_unk_7101aa63e0[];
 
@@ -44,23 +44,23 @@ void fn_7100cde6ac(UnkSoundEvent_b49* self) {
     self->vtable = &g_unk_7101aa63e0[2];
     for (CFilePathStrId& id : self->field_0x10)
         new (&id) CFilePathStrId("", true);
-    self->field_0x50.data = nullptr;
+    self->sNode.data = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
-    self->field_0x50.data = &g_unk_7101d47108->empty;
-    self->field_0x58 = 1.0f;
-    self->field_0x5c = 500.0f;
-    self->field_0x60 = 3000.0f;
-    self->field_0x64 = 1.0f;
-    self->field_0x68 = -1.0f;
-    self->field_0x6c = false;
+    self->sNode.data = &g_unk_7101d47108->empty;
+    self->fVolume = 1.0f;
+    self->fRadiusMinAttenuation = 500.0f;
+    self->fRadiusMaxAttenuation = 3000.0f;
+    self->fPitch = 1.0f;
+    self->fPitchMax = -1.0f;
+    self->bStopOnChangeAnim = false;
     self->field_0x70 = 0;
     self->field_0x74 = 0;
-    self->field_0x78 = -1.0f;
-    self->field_0x7c = -1.0f;
-    self->field_0x80 = false;
-    self->field_0x81 = false;
-    new (&self->field_0x88) CStrId("DEFAULT", true);
-    new (&self->field_0x90) CStrId("N", true);
-    self->field_0x98 = 0;
+    self->fStopInTime = -1.0f;
+    self->fRumbleGainOverride = -1.0f;
+    self->bStopOnEntityDead = false;
+    self->bRumbleSync = false;
+    new (&self->sSoundGroupId) CStrId("DEFAULT", true);
+    new (&self->sType) CStrId("N", true);
+    self->eSoundType = 0;
 }

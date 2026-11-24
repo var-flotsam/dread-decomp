@@ -17,8 +17,8 @@ struct UnkPlayMusicEvent {
     CFilePathStrId path;  // 0x10
     u32 field_0x18;
     f32 volume;  // 0x1c
-    bool field_0x20;
-    f32 field_0x24;
+    bool bLoop;
+    f32 fFadeInTime;
 };
 
 void fn_7100ccb6f0(UnkPlayMusicEvent* self) {
@@ -27,6 +27,6 @@ void fn_7100ccb6f0(UnkPlayMusicEvent* self) {
     new (&self->path) CFilePathStrId("", true);
     self->field_0x18 = 5;
     self->volume = 1.0f;
-    self->field_0x20 = false;
-    self->field_0x24 = -1.0f;
+    self->bLoop = false;
+    self->fFadeInTime = -1.0f;
 }

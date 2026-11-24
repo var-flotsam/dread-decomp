@@ -16,18 +16,18 @@ struct UnkLogicCamera_ovb0070 {
     void** vtable;
     u8 pad_0x8[0x8];
     CStrId field_0x10;
-    CStrId field_0x18;
-    bool field_0x20;
+    CStrId sControllerID;
+    bool bStatic;
     f32 field_0x24;
     f32 field_0x28;
     f32 field_0x2c;
     f32 field_0x30;
     f32 field_0x34;
     f32 field_0x38;
-    f32 field_0x3c;
-    f32 field_0x40;
-    f32 field_0x44;
-    f32 field_0x48;
+    f32 fFovX;
+    f32 fMinExtraZDist;
+    f32 fMaxExtraZDist;
+    f32 fDefaultInterp;
 };
 
 // The constructor: the parent constructor fn_7101043904, the class vtable, an empty id and the id of
@@ -37,18 +37,18 @@ void fn_710105263c(UnkLogicCamera_ovb0070* self) {
     fn_7101043904(self);
     self->vtable = &g_unk_7101a81678[2];
     new (&self->field_0x10) CStrId(base::global::CStrId::Empty());
-    new (&self->field_0x18) CStrId("", true);
-    self->field_0x20 = false;
+    new (&self->sControllerID) CStrId("", true);
+    self->bStatic = false;
     self->field_0x24 = 0.0f;
     self->field_0x28 = 0.0f;
     self->field_0x2c = 0.0f;
     self->field_0x30 = 0.0f;
     self->field_0x34 = 0.0f;
     self->field_0x38 = 0.0f;
-    self->field_0x3c = 45.0f;
-    self->field_0x40 = 0.0f;
-    self->field_0x44 = 0.0f;
-    self->field_0x48 = -1.0f;
+    self->fFovX = 45.0f;
+    self->fMinExtraZDist = 0.0f;
+    self->fMaxExtraZDist = 0.0f;
+    self->fDefaultInterp = -1.0f;
     reinterpret_cast<void (*)(UnkLogicCamera_ovb0070*)>(self->vtable[3])(self);
 }
 
@@ -66,24 +66,24 @@ void fn_71010515c8(UnkLogicCamera_ovb0070* self, const UnkLogicCamera_ovb0070* o
     fn_7101043904(self);
     self->vtable = &g_unk_7101a81678[2];
     InitEmpty(&self->field_0x10);
-    InitEmpty(&self->field_0x18);
+    InitEmpty(&self->sControllerID);
     self->field_0x24 = 0.0f;
     self->field_0x28 = 0.0f;
     self->field_0x2c = 0.0f;
     self->field_0x30 = 0.0f;
     self->field_0x34 = 0.0f;
     self->field_0x38 = 0.0f;
-    self->field_0x20 = other->field_0x20;
+    self->bStatic = other->bStatic;
     self->field_0x24 = other->field_0x24;
     self->field_0x28 = other->field_0x28;
     self->field_0x2c = other->field_0x2c;
     self->field_0x30 = other->field_0x30;
     self->field_0x34 = other->field_0x34;
     self->field_0x38 = other->field_0x38;
-    self->field_0x3c = other->field_0x3c;
-    self->field_0x40 = other->field_0x40;
-    self->field_0x44 = other->field_0x44;
-    self->field_0x48 = other->field_0x48;
+    self->fFovX = other->fFovX;
+    self->fMinExtraZDist = other->fMinExtraZDist;
+    self->fMaxExtraZDist = other->fMaxExtraZDist;
+    self->fDefaultInterp = other->fDefaultInterp;
 }
 
 struct UnkCameraVtable_ovb0070 {

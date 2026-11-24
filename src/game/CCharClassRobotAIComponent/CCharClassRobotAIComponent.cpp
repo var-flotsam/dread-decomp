@@ -21,15 +21,15 @@ struct UnkRobotAIDef {
     u8 pad_0x8[0xe4];
     u32 field_0xec;
     u8 pad_0xf0[0x420];
-    CFilePathStrId field_0x510;
-    CStrId field_0x518;
+    CFilePathStrId sBumpedFX;
+    CStrId sDeathTimeline;
 };
 
 static inline __attribute__((always_inline)) void Construct(UnkRobotAIDef* self) {
     fn_7100416db8(reinterpret_cast<UnkObject_7100416db8*>(self));
     self->vtable = g_unk_7101a34550 + 2;
-    new (&self->field_0x510) CFilePathStrId("", true);
-    new (&self->field_0x518) CStrId("", true);
+    new (&self->sBumpedFX) CFilePathStrId("", true);
+    new (&self->sDeathTimeline) CStrId("", true);
     self->field_0xec = 1;
 }
 

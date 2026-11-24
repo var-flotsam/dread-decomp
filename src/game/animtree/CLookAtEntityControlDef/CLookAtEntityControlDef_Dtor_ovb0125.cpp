@@ -21,24 +21,24 @@ extern void* g_unk_7101a21af8[];
 
 struct UnkLookAtDef_ovb0125 {
     void** vtable;
-    CStrId field_0x8;
-    CStrId field_0x10;
+    CStrId sName;
+    CStrId sBone;
     u8 unk_0x18[0x28];
-    CStrId field_0x40;
+    CStrId sEntity;
 };
 
 void fn_71002e5c40(UnkLookAtDef_ovb0125* self) {
     self->vtable = g_unk_7101a21ef0 + 2;
-    self->field_0x40.Reset();
+    self->sEntity.Reset();
     self->vtable = g_unk_7101a21af8 + 2;
-    self->field_0x10.Reset();
+    self->sBone.Reset();
     self->vtable = g_unk_7101a21718 + 2;
     if (UnkStringPool* pool = g_unk_7101d47108) {
-        base::global::UnkStringData* data = self->field_0x8.data;
+        base::global::UnkStringData* data = self->sName.data;
         if (data && data != &pool->empty) {
             --data->ref_count;
-            if (self->field_0x8.data->ref_count == 0)
-                StringPool_Release(pool, self->field_0x8.data);
+            if (self->sName.data->ref_count == 0)
+                StringPool_Release(pool, self->sName.data);
         }
     }
     operator delete(self);
@@ -53,20 +53,20 @@ struct UnkLookAtPair_ovb0125 {
 
 struct UnkLookAtRecord_ovb0125 {
     void** vtable;
-    CStrId field_0x8;
-    CStrId field_0x10;
+    CStrId sName;
+    CStrId sBone;
     UnkLookAtPair_ovb0125 field_0x18;
     UnkLookAtPair_ovb0125 field_0x28;
     u32 field_0x38;
     u32 pad_0x3c;
-    CStrId field_0x40;
+    CStrId sEntity;
 };
 
 UnkLookAtRecord_ovb0125* fn_71002e6134(UnkLookAtRecord_ovb0125* self, const UnkLookAtRecord_ovb0125* other) {
-    self->field_0x8 = other->field_0x8;
-    self->field_0x10 = other->field_0x10;
+    self->sName = other->sName;
+    self->sBone = other->sBone;
     self->field_0x18 = other->field_0x18;
     __builtin_memcpy(&self->field_0x28, &other->field_0x28, 0x14);
-    self->field_0x40 = other->field_0x40;
+    self->sEntity = other->sEntity;
     return self;
 }

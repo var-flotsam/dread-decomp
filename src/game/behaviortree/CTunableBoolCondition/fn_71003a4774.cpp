@@ -22,7 +22,7 @@ static_assert(__builtin_offsetof(UnkTextEntry_l3a4774, ref_count) == 0x44, "ref_
 
 struct UnkTunableBoolCondition_l3a4774 {
     u8 pad_0x0[0x38];
-    bool field_0x38;
+    bool bValue;
     u8 pad_0x39[7];
     UnkTextEntry_l3a4774* field_0x40;
     UnkTextEntry_l3a4774* field_0x48;
@@ -35,7 +35,7 @@ CRntString fn_71003a4774(UnkTunableBoolCondition_l3a4774* self) {
     UnkTextEntry_l3a4774* first = self->field_0x40;
     void* empty = &g_unk_7101d47108->empty;
     if (first == empty || self->field_0x48 == empty) {
-        const char* word = self->field_0x38 == false ? "false" : "true";
+        const char* word = self->bValue == false ? "false" : "true";
         CRntString_AppendCString(&result, word);
         return result;
     }

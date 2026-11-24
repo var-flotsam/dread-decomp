@@ -18,13 +18,13 @@ struct UnkGoliathXAI {
     void** vtable;
     u8 pad_0x8[0x528];
     u8 field_0x530[0xf8];
-    u8 field_0x628[0xf8];
+    u8 oGoliathXBurstProjectionBombsAttackDef[0xf8];
     u8 field_0x720[0x8];
 
     __attribute__((always_inline)) ~UnkGoliathXAI() {
         vtable = g_unk_7101a4b340 + 2;
         fn_71005839ac(field_0x720);
-        fn_71005835c0(field_0x628);
+        fn_71005835c0(oGoliathXBurstProjectionBombsAttackDef);
         vtable = g_unk_7101a4c200 + 2;
         fn_710058d990(field_0x530);
         fn_710041a230(reinterpret_cast<UnkGoliathXBase*>(this));

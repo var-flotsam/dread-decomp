@@ -14,8 +14,8 @@ struct UnkCharClassBoneToConstant_bc {
     u8 pad_0x0[0x58];
     u64 field_0x58;
     u64 field_0x60;
-    u32 field_0x68;
-    u32 field_0x6c;
+    u32 ePropertyName;
+    u32 eStage;
 };
 
 struct UnkBoneToConstant_bc {
@@ -37,7 +37,7 @@ u32 fn_7100803ef4(UnkBoneToConstant_bc* self, void* arg) {
     UnkCharClassBoneToConstant_bc* c = reinterpret_cast<UnkCharClassBoneToConstant_bc*>(cast);
     self->field_0x50 = c->field_0x60;
     self->field_0x48 = c->field_0x58;
-    self->field_0x58 = c->field_0x68;
-    self->field_0x5c = c->field_0x6c;
+    self->field_0x58 = c->ePropertyName;
+    self->field_0x5c = c->eStage;
     return result & 1;
 }
