@@ -58,7 +58,7 @@ struct UnkSwifterSpawnGroup_ovb0114 {
 struct UnkWeakTarget;
 void fn_710111b64c(UnkSwifterSpawnGroup_ovb0114* self, const char* name, UnkWeakTarget* spawned);  // the base step
 
-void fn_7100a130d0(UnkSwifterSpawnGroup_ovb0114* self, const char* name, UnkWeakTarget* spawned) {
+void CSwifterSpawnGroupComponent_OnEntityGenerated(UnkSwifterSpawnGroup_ovb0114* self, const char* name, UnkWeakTarget* spawned) {
     fn_710111b64c(self, name, spawned);
     for (UnkSwifterMember_ovb0114 *it = self->members, *end = it + self->memberCount; it != end; ++it) {
         UnkSwifterComponent_ovb0114* component = (*fn_71003df2d0(it))->component;

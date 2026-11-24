@@ -41,7 +41,7 @@ struct UnkShockWaveResetB47 {
     u32 field_0x298;
 };
 
-void fn_71009f3b68(UnkShockWaveResetB47* self) {
+void CShockWaveComponent_Reset(UnkShockWaveResetB47* self) {
     fn_71010c4228(reinterpret_cast<UnkParent*>(self));
     {
         UnkShockWaveFreshB47 fresh;
