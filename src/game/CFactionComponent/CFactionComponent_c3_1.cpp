@@ -13,7 +13,7 @@ struct UnkFactionComponent_c3 {
     u32 kind;         // 0x70
 };
 
-bool fn_710113906c(UnkFactionComponent_c3* self, const CRntString* name) {
+bool CFactionComponent_TrySetFactionFromName(UnkFactionComponent_c3* self, const CRntString* name) {
     if (self->kind != 0)
         return false;
     if (!name->data || !name->data[0])

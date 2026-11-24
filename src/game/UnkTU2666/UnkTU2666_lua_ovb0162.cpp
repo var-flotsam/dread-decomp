@@ -67,7 +67,7 @@ inline void* FindByName_b0162(UnkGameManager* manager, const char* name) {
 
 struct UnkStruct_7100233684;
 struct UnkModelUpdaterEvents_ovb0032;
-void fn_7101173c60(UnkModelUpdaterEvents_ovb0032* self, void* source);
+void CModelUpdaterComponent_QueueProceduralNodeMove(UnkModelUpdaterEvents_ovb0032* self, void* source);
 
 namespace lua_bind {
 s32 ProceduralNodeMove(lua_State* L) {
@@ -78,7 +78,7 @@ s32 ProceduralNodeMove(lua_State* L) {
         result = 1;
         if (void* object = FindByName_b0162(g_unk_7101d47310, name)) {
             if (void* target = fn_7100233684(static_cast<UnkStruct_7100233684*>(object))) {
-                fn_7101173c60(static_cast<UnkModelUpdaterEvents_ovb0032*>(target), &bag);
+                CModelUpdaterComponent_QueueProceduralNodeMove(static_cast<UnkModelUpdaterEvents_ovb0032*>(target), &bag);
                 result = 0;
             }
         }

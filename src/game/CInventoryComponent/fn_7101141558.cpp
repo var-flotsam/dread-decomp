@@ -33,6 +33,6 @@ struct UnkObject_7101141558 : UnkBase_0x40 {
     }
 };
 
-void fn_7101141558(UnkObject_7101141558& self) {
+void CInventoryComponent_DestroyAndDelete(UnkObject_7101141558& self) {
     delete &self;
 }

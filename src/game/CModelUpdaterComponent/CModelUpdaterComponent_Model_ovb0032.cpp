@@ -204,7 +204,7 @@ bool fn_71011743bc(UnkModelUpdater_ovb0032* self, const s64* id) {
 void fn_71001435b4(UnkModel_ovb0032* self, const UnkVec3f* angle);
 
 // Passes the transform's translation (bit 0 of `what`) and angles (bit 1) to the model.
-void fn_7101173824(UnkModelUpdater_ovb0032* self, UnkXform* xform, const u32* what) {
+void CModelUpdaterComponent_ApplyTransformToModel(UnkModelUpdater_ovb0032* self, UnkXform* xform, const u32* what) {
     if (!self->model)
         return;
     if (*what & 1) {
@@ -318,7 +318,7 @@ struct UnkModelUpdaterEvents_ovb0032 {
 void fn_710116ed2c(UnkModelEvent_ovb0032* event, void* source);
 
 // Reads an event (fn_710116ed2c) and queues it.
-void fn_7101173c60(UnkModelUpdaterEvents_ovb0032* self, void* source) {
+void CModelUpdaterComponent_QueueProceduralNodeMove(UnkModelUpdaterEvents_ovb0032* self, void* source) {
     UnkModelEvent_ovb0032 event;
     fn_710116ed2c(&event, source);
     self->events.PushBack(event);

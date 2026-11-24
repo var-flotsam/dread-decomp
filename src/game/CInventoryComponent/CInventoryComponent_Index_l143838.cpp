@@ -8,7 +8,7 @@ using base::global::CStrId;
 
 struct CInventoryComponent;
 
-s64 fn_7101143838(CInventoryComponent* self, const CStrId& id) {
+s64 CInventoryComponent_GetItemIndex(CInventoryComponent* self, const CStrId& id) {
     if (id == g_unk_7172a092b8) return 0;
     if (id == g_unk_7172a092c0) return 1;
     if (id == g_unk_7172a092c8) return 2;

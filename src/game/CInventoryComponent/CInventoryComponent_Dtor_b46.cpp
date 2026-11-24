@@ -28,7 +28,7 @@ static void Cleanup_71011412e4(char* self) {
     fn_7101141378(reinterpret_cast<UnkObject_7101141558*>(self));
 }
 
-void fn_71011412e4(char* self) {
+void CInventoryComponent_Destroy(char* self) {
     base::refl_Dtor<UnkTag_71011412e4, UnkCalledAt_71011412e4<Cleanup_71011412e4, 0>,
                     UnkCalledAt_71011412e4<fn_71009168e0, 0x90>, base::UnkStrIdAt<0x88>,
                     UnkCalledAt_71011412e4<fn_7101141468, 0x40>>(self);

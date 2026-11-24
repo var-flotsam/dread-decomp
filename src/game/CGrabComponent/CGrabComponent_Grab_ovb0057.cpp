@@ -430,20 +430,20 @@ __attribute__((noinline)) UnkGrabInfo_ovb0057& UnkGrabInfo_ovb0057::operator=(co
     return *this;
 }
 
-void fn_710113b6ac(UnkGrabComponent_ovb0057* self, UnkWeakTarget* target) {
+void CGrabComponent_SetTarget(UnkGrabComponent_ovb0057* self, UnkWeakTarget* target) {
     AssignRef(&self->target, fn_7100d78378(target));
     if (self->target_set != true)
         self->target_set = true;
 }
 
-void fn_710113b72c(UnkGrabComponent_ovb0057* self) {
+void CGrabComponent_AddToGrabComponentList(UnkGrabComponent_ovb0057* self) {
     u64 v = reinterpret_cast<u64>(self);
     if (IndexOf(&g_unk_7172a090b8, v) >= 0)
         return;
     g_unk_7172a090b8.PushBack(v);
 }
 
-void fn_710113b7d0(UnkGrabComponent_ovb0057* self) {
+void CGrabComponent_RemoveFromGrabComponentList(UnkGrabComponent_ovb0057* self) {
     if (self->params.state == 2)
         fn_710113b8cc(self);
     u64 v = reinterpret_cast<u64>(self);
