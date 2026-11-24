@@ -18,7 +18,7 @@ struct UnkScourgeAI_l6a0620 {
 // The string id of the angle value, reached PC-relative.
 extern char g_unk_7172704f30[] __attribute__((visibility("hidden")));
 
-void fn_71006a0620(UnkScourgeAI_l6a0620* self, UnkActor* target) {
+void CScourgeAIComponent_StoreBiteAngle(UnkScourgeAI_l6a0620* self, UnkActor* target) {
     fn_7101105c94(reinterpret_cast<UnkWarLotusAI*>(self));
     UnkActor* current = fn_7100d7c990(self->actor);
     if (!current || current != target)

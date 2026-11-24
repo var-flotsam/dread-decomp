@@ -44,7 +44,7 @@ extern char g_unk_71727420b8[];
 extern UnkConversion g_unk_71727420c0;
 void fn_71009fd01c() __attribute__((visibility("hidden")));
 
-void fn_71009fe030() {
+void CShotLaunchConfig_InitStatics() {
     InitHeaderIds(&g_unk_7172742850.ids);
     fn_71009f98c4();
     fn_710009ec00(g_unk_7172741cc0, g_unk_7172742850.field_0x20);

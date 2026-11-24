@@ -98,7 +98,7 @@ struct UnkRumbleRecords : base::global::CRntVector<UnkRumbleRecord> {
     }
 };
 
-void fn_71009dbdb8(UnkRumbleRecords* self, u32 count);  // resizes
+void CRumbleComponent_ResizeRumbleEntries(UnkRumbleRecords* self, u32 count);  // resizes
 
 struct CRumbleComponent {
     u8 unk_0x0[0x40];
@@ -115,7 +115,7 @@ UnkHandle fn_71009dacbc(CRumbleComponent* self, const UnkRumbleParams* params, b
     if (handle.target && handle.serial != ~0ull && handle.target->field_0x8 == handle.serial &&
         handle.target->field_0x0)
         fn_7100072030(handle.target->field_0x0, self->field_0x40);
-    fn_71009dbdb8(&self->records, self->records.count + 1);
+    CRumbleComponent_ResizeRumbleEntries(&self->records, self->records.count + 1);
     UnkRumbleRecord& r = self->records.Back();
     r.handle = handle;
     r.params = *params;

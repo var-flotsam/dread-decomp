@@ -97,7 +97,7 @@ static inline bool IsPlayer(UnkOwner* actor) {
     return fn_7100defcd4(g_unk_7101d47310) == actor || SecondPlayer(g_unk_7101d47310) == actor;
 }
 
-void fn_71009f7da4(UnkShockWavePoolAdd_ovb0069* self, UnkOwner* actor) {
+void CShockWavePoolComponent_AddActor(UnkShockWavePoolAdd_ovb0069* self, UnkOwner* actor) {
     if (IsPlayer(actor)) {
         if (self->list.IndexOf(fn_7100defcd4(g_unk_7101d47310)) >= 0)
             return;
@@ -107,7 +107,7 @@ void fn_71009f7da4(UnkShockWavePoolAdd_ovb0069* self, UnkOwner* actor) {
     self->list.PushBack(actor);
 }
 
-bool fn_71009f7ec4(UnkShockWavePoolAdd_ovb0069* self, UnkOwner* actor, void* unused, bool force) {
+bool CShockWavePoolComponent_CanHitActor(UnkShockWavePoolAdd_ovb0069* self, UnkOwner* actor, void* unused, bool force) {
     bool listed;
     if (IsPlayer(actor))
         listed = self->list.IndexOf(fn_7100defcd4(g_unk_7101d47310)) >= 0 ||

@@ -70,7 +70,7 @@ bool fn_71009f9588(UnkShotComponent_ovb0066* self, void* a, void* b, void* c, bo
     if (keys->count) {
         for (const u64 *key = keys->keys, *end = key + keys->count; key != end; ++key) {
             UnkShotEntry_ovb0066* entry = nullptr;
-            if (fn_71009f8d1c(self->def, key, &entry) && entry && entry->Fire(a, b, c, d, e, f, g))
+            if (CCharClassShotComponent_FindLaunchShotConfig(self->def, key, &entry) && entry && entry->Fire(a, b, c, d, e, f, g))
                 return true;
         }
         return false;

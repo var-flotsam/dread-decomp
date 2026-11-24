@@ -15,7 +15,7 @@ using base::math::CVector3D;
 struct UnkOwner;
 struct UnkVec3f;
 struct UnkShockWaveHitTest_ovb0123;
-bool fn_71009f4d18(UnkShockWaveHitTest_ovb0123* self, UnkOwner* actor, const UnkVec3f* direction, bool force);
+bool CShockWaveComponent_CanHitActor(UnkShockWaveHitTest_ovb0123* self, UnkOwner* actor, const UnkVec3f* direction, bool force);
 
 struct UnkEntityBox {
     base::math::CVector3D min;
@@ -57,7 +57,7 @@ inline CVector2D Minus(const CVector2D& a, const CVector2D& b) { return {a.x - b
 inline CVector2D Plus(const CVector2D& a, const CVector2D& b) { return {a.x + b.x, a.y + b.y}; }
 
 bool fn_71007e6d80(UnkFloorShockWave_l7e6d80* self, UnkOwner* target, const UnkVec3f* direction, bool force) {
-    bool hit = fn_71009f4d18(reinterpret_cast<UnkShockWaveHitTest_ovb0123*>(self), target, direction, force);
+    bool hit = CShockWaveComponent_CanHitActor(reinterpret_cast<UnkShockWaveHitTest_ovb0123*>(self), target, direction, force);
     UnkFloorShockWaveActor_l7e6d80* actor = reinterpret_cast<UnkFloorShockWaveActor_l7e6d80*>(target);
     if (actor && actor->body) {
         if (!hit)

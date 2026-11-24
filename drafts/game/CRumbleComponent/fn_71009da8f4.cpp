@@ -132,7 +132,7 @@ struct UnkRumbleRecords_l9da8f4 : base::global::CRntVector<UnkRumbleRecord_l9da8
 };
 
 struct UnkRumbleRecords;
-void fn_71009dbdb8(UnkRumbleRecords* self, u32 count);  // resizes
+void CRumbleComponent_ResizeRumbleEntries(UnkRumbleRecords* self, u32 count);  // resizes
 
 struct UnkRumbleOwner_l9da8f4 {
     u8 pad_0x0[0x44];
@@ -195,7 +195,7 @@ UnkHyperBeamEffectHandle fn_71009da8f4(CRumbleComponent* component, const UnkHyp
         fn_7100072030(rumble, self->field_0x40);
         fn_7100072484(static_cast<char*>(CurrentRumble(handle)), reinterpret_cast<char*>(&point));
     }
-    fn_71009dbdb8(reinterpret_cast<UnkRumbleRecords*>(&self->records), self->records.count + 1);
+    CRumbleComponent_ResizeRumbleEntries(reinterpret_cast<UnkRumbleRecords*>(&self->records), self->records.count + 1);
     UnkRumbleRecord_l9da8f4& r = self->records.Back();
     r.handle = handle;
     r.params = *params;

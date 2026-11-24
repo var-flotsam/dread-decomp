@@ -9,4 +9,4 @@ struct UnkShotDef_ovb0066;
 struct UnkShotEntry_ovb0066;
 
 extern void* g_unk_7101a8ab40[];
-bool fn_71009f8d1c(UnkShotDef_ovb0066* def, const u64* key, UnkShotEntry_ovb0066** out);
+bool CCharClassShotComponent_FindLaunchShotConfig(UnkShotDef_ovb0066* def, const u64* key, UnkShotEntry_ovb0066** out);

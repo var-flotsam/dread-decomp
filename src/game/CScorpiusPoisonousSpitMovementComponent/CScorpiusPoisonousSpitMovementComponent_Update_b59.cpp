@@ -34,7 +34,7 @@ struct UnkSpitMovement_b59a4 {
     f32 field_0x5dc;
 };
 
-void fn_7100699150(UnkSpitMovement_b59a4* self, f32 dt) {
+void CScorpiusPoisonousSpitMovementComponent_Update(UnkSpitMovement_b59a4* self, f32 dt) {
     fn_7100ac3a78(reinterpret_cast<UnkNailongThornMovement*>(self), dt);
     if (!self->field_0x5d8)
         return;

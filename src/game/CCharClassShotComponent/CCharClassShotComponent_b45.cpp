@@ -14,7 +14,7 @@ struct UnkShotComponent_b45a2 {
     u32 count;
 };
 
-bool fn_71009f8d1c(UnkShotComponent_b45a2* self, const u64* key, UnkShotEntry_b45a2** out) {
+bool CCharClassShotComponent_FindLaunchShotConfig(UnkShotComponent_b45a2* self, const u64* key, UnkShotEntry_b45a2** out) {
     if (!out)
         return false;
     UnkShotEntry_b45a2** it = self->entries;

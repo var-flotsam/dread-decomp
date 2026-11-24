@@ -109,7 +109,7 @@ static inline void Bind(UnkWap_la09348* self, UnkWapState_la09348* state, void (
     state->field_0x40 = {self, c};
 }
 
-void fn_7100a09348(UnkWap_la09348* self) {
+void CWeightActivatedPlatformSmartObjectComponent_InitStates(UnkWap_la09348* self) {
     self->machine.owner = self;
     Bind(self, &self->states[0], reinterpret_cast<void (*)()>(fn_7100a0d4f4), fn_7100a0d618, fn_7100a0d61c);
     Bind(self, &self->states[1], fn_7100a0d620, fn_7100a0d624, fn_7100a0d628);
