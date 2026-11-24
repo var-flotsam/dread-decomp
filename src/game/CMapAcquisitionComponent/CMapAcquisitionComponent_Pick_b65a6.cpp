@@ -26,7 +26,7 @@ struct UnkMapAcquisitionOwner_b65a6 {
     UnkMapAcquisitionTarget_b65a6* target;
 };
 
-u64* fn_7100a85b98(UnkMapAcquisitionOwner_b65a6* self) { return self->flag_0x539 ? &self->target->field_0x1c8 : &self->target->field_0x100; }
-u64* fn_7100a85bb4(UnkMapAcquisitionOwner_b65a6* self) { return self->flag_0x539 ? &self->target->field_0x1d0 : &self->target->field_0x110; }
-u64* fn_7100a85bd0(UnkMapAcquisitionOwner_b65a6* self) { return self->flag_0x539 ? &self->target->field_0x1e8 : &self->target->field_0x108; }
-u64* fn_7100a85bec(UnkMapAcquisitionOwner_b65a6* self) { return self->flag_0x7b9 ? &self->target->field_0x130 : &self->target->field_0x1e0; }
+u64* CMapAcquisitionComponent_GetUseInitAction(UnkMapAcquisitionOwner_b65a6* self) { return self->flag_0x539 ? &self->target->field_0x1c8 : &self->target->field_0x100; }
+u64* CMapAcquisitionComponent_GetUseAction(UnkMapAcquisitionOwner_b65a6* self) { return self->flag_0x539 ? &self->target->field_0x1d0 : &self->target->field_0x110; }
+u64* CMapAcquisitionComponent_GetUsableInitAction(UnkMapAcquisitionOwner_b65a6* self) { return self->flag_0x539 ? &self->target->field_0x1e8 : &self->target->field_0x108; }
+u64* CMapAcquisitionComponent_GetUseEndAction(UnkMapAcquisitionOwner_b65a6* self) { return self->flag_0x7b9 ? &self->target->field_0x130 : &self->target->field_0x1e0; }
