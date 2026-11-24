@@ -64,7 +64,7 @@ void fn_71005cb424(UnkInfesterAI_b57a3* self, void* arg) {
             base::global::UnkStringData* d = self->field_0x146c8->field_0x510.data;
             if (&g_unk_7101d47108->empty != d)
                 ++d->ref_count;
-            hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(d) + 0x30);
+            hash = d->Key();
             fn_7101172780(target, reinterpret_cast<const char*>(&hash));
             if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
                 if (d != &pool->empty && --d->ref_count == 0)

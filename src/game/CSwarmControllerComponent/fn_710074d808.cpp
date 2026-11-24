@@ -5,19 +5,12 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
+#include "game/UnkTU1161.h"
+#include "game/UnkVec3Result.h"
 
 using base::reflection::UnkReflObject;
 
-// Returned through x8, so the original's result type is not trivially copyable.
-struct UnkVec3Result {
-    f32 x;
-    f32 y;
-    f32 z;
-    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
-};
-
 struct UnkParent_71007455dc;
-UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 
 struct UnkBillboard_l74d808 {
     virtual const base::reflection::CType* vf_0x0();
@@ -65,8 +58,18 @@ struct UnkGroupCallback_l74d808 {
     void (*function)(void* context, UnkGroup_l74d808* group);
 };
 
-void fn_710074d808(UnkSwarmNear_l74d808* self, const base::math::CVector2D* point, UnkGroupCallback_l74d808* callback,
-                   f32 extra) {
+// The squared distance, in the plane, from a group's position to a point.
+static inline f32 GroupPlanarDistanceSq(UnkGroup_l74d808* group, const base::math::CVector2D* point) {
+    UnkVec3Result position = fn_7100745e24(reinterpret_cast<UnkParent_71007455dc*>(group));
+    base::math::CVector2D flat;
+    fn_710007b430(&flat, reinterpret_cast<const base::math::CVector3D*>(&position));
+    f32 dx = flat.x - point->x;
+    f32 dy = flat.y - point->y;
+    return dx * dx + dy * dy;
+}
+
+void fn_710074d808(UnkSwarmNear_l74d808* self, f32 extra, const base::math::CVector2D* point,
+                   UnkGroupCallback_l74d808* callback) {
     UnkReflObject* object = reinterpret_cast<UnkReflObject*>(self->def->groups->billboard);
     UnkBillboard_l74d808* billboard =
         fn_710009d50c(object->vf_0x0(), fn_710072be34()) ? reinterpret_cast<UnkBillboard_l74d808*>(object) : nullptr;
@@ -76,12 +79,7 @@ void fn_710074d808(UnkSwarmNear_l74d808* self, const base::math::CVector2D* poin
         UnkGroup_l74d808* group = self->def->groups->Get(i);
         if (group->pending == 0 || !group->active)
             continue;
-        UnkVec3Result position = fn_7100745e24(reinterpret_cast<UnkParent_71007455dc*>(group));
-        base::math::CVector2D flat;
-        fn_710007b430(&flat, reinterpret_cast<const base::math::CVector3D*>(&position));
-        f32 dx = flat.x - point->x;
-        f32 dy = flat.y - point->y;
-        if (dx * dx + dy * dy < reach_sq)
+        if (GroupPlanarDistanceSq(group, point) < reach_sq)
             callback->function(callback->context, group);
     }
 }

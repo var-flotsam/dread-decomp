@@ -72,10 +72,8 @@ bool fn_7100e9c06c(UnkMinimapOwner_j* self, UnkReflObject* object) {
             fn_7100e957a8(self);
         } else {
             UnkActorDef_j* def = reinterpret_cast<UnkDoorOwner_j*>(object)->field_0x18->field_0x28;
-            if (!IsA<fn_7100254b14>(def))
-                def = nullptr;
-            // keeps the cast's null result a real value, as the original reads the field through it
-            asm("" : "+r"(def));
+            // a checked cast: null when the definition is not of the class
+            def = IsA<fn_7100254b14>(def) ? def : nullptr;
             if (def->field_0x98 == slot.id.data) {
                 fn_7100e9565c(&self->hidden_kinds, &g_unk_71727c81a8);
                 fn_7100e9565c(&self->hidden_kinds, &g_unk_71727c83b0);
@@ -84,12 +82,14 @@ bool fn_7100e9c06c(UnkMinimapOwner_j* self, UnkReflObject* object) {
         }
     }
     UnkHiddenKinds_j* kinds = &self->hidden_kinds;
+    u64 n = kinds->count;
     CStrId* it = kinds->data;
-    for (u64 n = kinds->count; n != 0; --n, ++it)
+    for (; n != 0; --n, ++it)
         if (it->data == g_unk_71727c8198.data)
             return false;
+    n = kinds->count;
     it = kinds->data;
-    for (u64 n = kinds->count; n != 0; --n, ++it)
+    for (; n != 0; --n, ++it)
         if (it->data == g_unk_71727c81a8.data)
             return false;
     return true;

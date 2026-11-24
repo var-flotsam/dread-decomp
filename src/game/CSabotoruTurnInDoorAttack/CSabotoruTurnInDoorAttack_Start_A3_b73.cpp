@@ -37,6 +37,20 @@ struct UnkSabotoruAttack_A3_b73 {
     UnkActorTarget* anim;              // 0x58
 };
 
+// Takes `link` off the class the attack's handle still refers to, and drops the handle.
+static inline void UnhookTrackLink_A3_b73(UnkSabotoruAttack_A3_b73* self, UnkSabotoruTrackLink_A3_b73* link) {
+    UnkWeakHandle* handle = self->handle.handle;
+    if (!handle)
+        return;
+    if (UnkWeakTarget* target = handle->target)
+        fn_710117b3f0(target, link);
+    if (UnkWeakHandle* p = self->handle.handle) {
+        if (--p->ref_count == 0)
+            p->vf_0x10();
+        self->handle.handle = nullptr;
+    }
+}
+
 void CSabotoruTurnInDoorAttack_BeginAttack(UnkSabotoruAttack_A3_b73* self) {
     fn_71003608ac(reinterpret_cast<UnkAttackBase*>(self));
     self->field_0x30 = 0;
@@ -50,17 +64,8 @@ void CSabotoruTurnInDoorAttack_BeginAttack(UnkSabotoruAttack_A3_b73* self) {
         link->context = self;
         link->callback = fn_71006741bc;
         UnkWeakTarget* track = Track_A3_b73(self->owner);
-        if (UnkWeakHandle* handle = self->handle.handle) {
-            if (UnkWeakTarget* target = handle->target)
-                fn_710117b3f0(target, link);
-            if (UnkWeakHandle* p = self->handle.handle) {
-                if (--p->ref_count == 0)
-                    p->vf_0x10();
-                self->handle.handle = nullptr;
-            }
-        }
+        UnhookTrackLink_A3_b73(self, link);
         if (track) {
-            asm("" : "+r"(self));
             CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
             fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
         }

@@ -54,13 +54,15 @@ static inline UnkScriptManager_ovb0085* ScriptManager() {
 
 static inline bool IsSet(const CRntString& s) { return s.data && s.data[0]; }
 
+// Tells the script manager to drop the script named at +0x98 when both names are set.
+static inline void DropScript(UnkScriptComponent_ovb0085* self) {
+    if (IsSet(self->name_0x68) && IsSet(self->name_0x98))
+        fn_710109d890(ScriptManager(), &self->name_0x98);
+}
+
 void fn_7101139cdc(UnkScriptComponent_ovb0085* self) {
     self->vtable = g_unk_7101cb30b8 + 0x10;
-    // The first name's text is read through raw bytes: the original computes the name's address again
-    // for its destructor.
-    const char* first = *reinterpret_cast<char* const*>(reinterpret_cast<u8*>(self) + 0x68);
-    if (first && first[0] && IsSet(self->name_0x98))
-        fn_710109d890(ScriptManager(), &self->name_0x98);
+    DropScript(self);
     CRntString_Destroy(&self->name_0x98);
     CRntString_Destroy(&self->name_0x68);
     self->entries.Free();

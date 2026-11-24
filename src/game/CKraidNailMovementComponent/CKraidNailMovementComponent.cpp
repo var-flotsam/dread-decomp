@@ -33,12 +33,17 @@ struct UnkKraidNailMovement {
 
 extern CStrId g_unk_71726f4338 __attribute__((visibility("hidden")));
 
+struct UnkTunable_7100606404 {
+    u8 pad_0x0[0x290];
+    f32 field_0x290;  // 0x290
+};
+
 bool CKraidNailMovementComponent_CacheCharClassAndSetSpinningNailsDamage(UnkKraidNailMovement* self, UnkKraidCreatureArg* arg) {
     bool result = fn_7100ac3108(reinterpret_cast<UnkKraidBouncingCreaturesMovement2*>(self), arg);
     UnkReflObject* obj = self->field_0x10;
     self->field_0x5d8 = obj && fn_710009d50c(obj->vf_0x0(), fn_7100602d44()) ? obj : nullptr;
     fn_71008c1538(reinterpret_cast<UnkRequest*>(self->field_0x248),
-                  *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_7172716160) + 0x290));
+                  reinterpret_cast<const UnkTunable_7100606404*>(&g_unk_7172716160)->field_0x290);
     self->field_0x300 = g_unk_71726f4338;
     self->field_0x2fc = 0x4000000;
     return result;
