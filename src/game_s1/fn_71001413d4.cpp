@@ -5,7 +5,8 @@
 #include "game/UnkXformNode.h"
 
 struct UnkXformHolder_0x40 {
-    u8 pad_0x0[0x40];
+    u8 pad_0x0[0x28];
+    char field_0x28[0x18];  // the transform node
     UnkXform xform;
 };
 
@@ -42,7 +43,7 @@ template <UnkXformApply Apply>
 static inline void ApplyKeepingScale(UnkXformHolder_0x40* self, const UnkXform* src) {
     UnkXform x(*src);
     UnkVec3f mine = self->xform.GetScale();
-    char* node = reinterpret_cast<char*>(self) + 0x28;
+    char* node = self->field_0x28;
     UnkVec3f s = x.GetScale();
     if (UNK_CHANGED(mine.x, s.x) || UNK_CHANGED(mine.y, s.y) || UNK_CHANGED(mine.z, s.z))
         x.SetScale(mine);

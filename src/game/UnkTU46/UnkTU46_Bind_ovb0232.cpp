@@ -33,14 +33,15 @@ struct UnkInputOwner_b0232 {
     virtual void vf_0x20();
     virtual void vf_0x28();
     virtual bool vf_0x30(u32 button, u32 id);
-    u8 pad_0x8[0x10];
+    u32 field_0x8;  // the id 0xfd stands for
+    u8 pad_0xc[0xc];
     UnkBindingMap_b0232 map;  // 0x18
 };
 
 void fn_710006d2a0(UnkSoundGroup* self_, u32 id) {
     UnkInputOwner_b0232* self = reinterpret_cast<UnkInputOwner_b0232*>(self_);
     if (id == 0xfd)
-        id = *reinterpret_cast<u32*>(reinterpret_cast<u8*>(self) + 8);
+        id = self->field_0x8;
     base::global::CRntVector<u32>* entry = self->map.Find(id);
     if (entry == self->map.values + self->map.count) {
         if (self->map.count == self->map.capacity)

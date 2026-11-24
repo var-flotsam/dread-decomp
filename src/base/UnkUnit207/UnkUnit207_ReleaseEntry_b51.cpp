@@ -43,7 +43,7 @@ void* fn_710016b0ec(UnkNamedEntries_710016b194* self, u32 index) {
             base::global::CStrId& name = entries[index].name;
             if (name.data != &g_unk_7101d47108->empty) {
                 fn_71001995e8(reinterpret_cast<void*>(object), true);
-                u64 hash = *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(name.data) + 0x30);
+                u64 hash = name.data->Key();
                 fn_7100199420(reinterpret_cast<void*>(object), &hash, true);
             }
             return reinterpret_cast<void*>(object);

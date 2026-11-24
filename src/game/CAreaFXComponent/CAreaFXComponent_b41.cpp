@@ -27,7 +27,7 @@ void fn_71007ff7bc(UnkSelf_af41* self) {
         if (!(Near_af41(owner->x, self->pos[0]) && Near_af41(owner->y, self->pos[1]) &&
               Near_af41(owner->z, self->pos[2]))) {
             if (UnkFlagHolder_af41* holder = owner->field_0x240)
-                *((u8*)holder + 0x16e6) = 1;
+                holder->field_0x16e6 = 1;
             self->owner->vf_0xd0(self->pos, true);
         }
     }

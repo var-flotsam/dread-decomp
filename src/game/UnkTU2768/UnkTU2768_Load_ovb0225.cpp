@@ -45,7 +45,7 @@ struct UnkUserDataOwner {
     u8 unk_0x4a[0x234 - 0x4a];
     u8 field_0x234[0x14];  // cleared by the constructor
     nn::os::LightEventType event;  // 0x248
-    u8 unk_0x254[0xc];
+    nn::os::LightEventType field_0x254;  // the event signalled after a load
     nn::os::MutexType stateMutex;  // 0x260
     nn::os::MutexType mutex;       // 0x280
     UnkLoadRunner_b0225* runner;   // 0x2a0
@@ -137,7 +137,7 @@ s32 fn_7101203620(UnkUserDataOwner* self) {
         fn_7100fc7b70(loader);
         if (loader->done)
             loader->done(loader, result);
-        fn_7100066698(reinterpret_cast<nn::os::LightEventType*>(reinterpret_cast<u8*>(self) + 0x254));
+        fn_7100066698(&self->field_0x254);
     }
     {
         UnkMutexLock state(&self->stateMutex);

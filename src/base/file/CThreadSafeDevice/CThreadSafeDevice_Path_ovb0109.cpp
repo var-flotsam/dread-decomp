@@ -41,7 +41,7 @@ static inline const char* IdChars(const Id& id) {
     __builtin_memcpy(&uses, data + 0x44, sizeof(uses));
     ++uses;
     __builtin_memcpy(data + 0x44, &uses, sizeof(uses));
-    const char* s = reinterpret_cast<const CRntString*>(reinterpret_cast<u8*>(id.data) + 0x10)->data;
+    const char* s = id.data->text;
     return s ? s : g_unk_710162e2ed;
 }
 
@@ -65,8 +65,8 @@ struct UnkPathPart_ovb0109 : UnkBufferString<0x200, g_unk_7101a1a5a8> {
 // The empty id's text (its read count at +0x44 raised).
 static inline const CRntString* EmptyText() {
     base::global::UnkStringData* data = base::global::CStrId::Empty().data;
-    ++*reinterpret_cast<s32*>(reinterpret_cast<u8*>(data) + 0x44);
-    return reinterpret_cast<const CRntString*>(reinterpret_cast<u8*>(data) + 0x10);
+    ++data->reads;
+    return &data->String();
 }
 
 // Splits "device:dir/name.ext" into the directory (with its slash), the name and the extension; each

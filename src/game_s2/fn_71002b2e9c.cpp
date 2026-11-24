@@ -14,15 +14,12 @@ struct UnkElem_2b2e9c {
     u8 bytes[8];
 };
 
-struct UnkSub;
-
 struct UnkRecord_2b2e9c {
     u64 field_0x0;
     CStrId field_0x8;
     s32 field_0x10;
     u8 pad_0x14[4];
-    UnkSub* field_0x18;
-    u8 pad_0x20[0xa8];
+    u8 field_0x18[0xb0];  // the sub-object fn_710002f4e4 constructs
     base::global::CRntVector<UnkElem_2b2e9c> field_0xc8;
     base::global::CRntVector<UnkElem_2b2e9c> field_0xf0;
     u64 field_0x118;
@@ -43,7 +40,7 @@ void fn_71002b2e9c(UnkRecord_2b2e9c* self) {
     self->field_0x0 = 0;
     new (&self->field_0x8) CStrId(base::global::CStrId::Empty());
     self->field_0x10 = -1;
-    fn_710002f4e4(reinterpret_cast<UnkSub*>(reinterpret_cast<char*>(self) + 0x18));
+    fn_710002f4e4(self->field_0x18);
     new (&self->field_0xc8) base::global::CRntVector<UnkElem_2b2e9c>(0x57);
     new (&self->field_0xf0) base::global::CRntVector<UnkElem_2b2e9c>(0x57);
     self->field_0x118 = 0;

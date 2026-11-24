@@ -11,14 +11,15 @@ struct UnkBlock {
 };
 
 struct UnkBoxed {
-    u8 unk_0x0[0x20];
+    u8 unk_0x0[8];
+    u8 field_0x8[0x18];
     s32 kind;
 
     // The first field lives at 0 (or behind the pointer there), the block at 8.
     u32* First() { return kind == 2 ? *reinterpret_cast<u32**>(this) : reinterpret_cast<u32*>(this); }
     template <class Tail>
     UnkBlock<Tail>* Second() {
-        u8* slot = reinterpret_cast<u8*>(this) + 8;
+        u8* slot = field_0x8;
         return kind == 2 ? *reinterpret_cast<UnkBlock<Tail>**>(slot)
                          : reinterpret_cast<UnkBlock<Tail>*>(slot);
     }

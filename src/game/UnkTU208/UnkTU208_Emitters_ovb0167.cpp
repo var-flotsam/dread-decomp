@@ -97,7 +97,7 @@ void fn_710016c038(UnkEmitter2_ovb0167* self, UnkOwner_ovb0167* owner, void* arg
     u8* scene = reinterpret_cast<u8*>(self->owner->scene);
     self->field_0x18 = reinterpret_cast<UnkOwner_ovb0167*>(scene + 0x90);
     EnsureEntries(self->field_0x18);
-    u8* scene2 = *reinterpret_cast<u8**>(reinterpret_cast<u8*>(self->owner) + 8);
+    u8* scene2 = reinterpret_cast<u8*>(self->owner->scene);
     self->field_0x20 = reinterpret_cast<UnkOwner_ovb0167*>(scene2 + 0x108);
     EnsureEntries(self->field_0x20);
 }

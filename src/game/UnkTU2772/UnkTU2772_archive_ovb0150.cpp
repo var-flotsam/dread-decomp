@@ -322,7 +322,10 @@ struct UnkAtkMixer_b0150 {
     bool on_952;
     u8 pad_0x953[0x980 - 0x953];
     nn::os::MutexType mutex;     // 0x980
+    u8 pad_0x9a0[0xa64 - 0x9a0];
+    u8 field_0xa64;
 };
+static_assert(__builtin_offsetof(UnkAtkMixer_b0150, field_0xa64) == 0xa64, "UnkAtkMixer_b0150 layout");
 
 static inline nn::os::MutexType* AtkLock_b0150() {
     return reinterpret_cast<nn::os::MutexType*>(static_cast<char*>(fn_71001039f8()) + 0x8a0);
@@ -335,7 +338,7 @@ static inline void Toggle(void* bank, u32 index) {
 
 void fn_7101214eec(UnkAtkMixer_b0150* self, s32 amount) {
     nn::os::LockMutex(&self->mutex);
-    if (self->on_950 && self->on_951 && *((u8*)self + 0xa64)) {
+    if (self->on_950 && self->on_951 && self->field_0xa64) {
         void* a = self->bank_a;
         Toggle(a, 1);
         Toggle(a, 2);

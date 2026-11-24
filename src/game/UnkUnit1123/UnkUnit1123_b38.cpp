@@ -45,10 +45,14 @@ struct UnkHandlerParams {
 
 // The handler: the unit 1124 object (fn_7100703814 constructs it) and the kept settings, a
 // parameter block of the handler's own kind.
+struct UnkHandlerOwner;
+
 template <class Tail>
 struct UnkHandler {
     void** vtable;
-    u8 pad_0x8[0xa8];
+    u8 pad_0x8[0x28];
+    UnkHandlerOwner* field_0x30;
+    u8 pad_0x38[0x78];
     UnkHandlerParams<Tail> params;  // 0xb0
 };
 
@@ -182,7 +186,7 @@ struct UnkHandlerOwner {
 
 // Sends the sink a block with the largest float as its value at +0x10.
 void fn_7100703358(UnkHandler<UnkBytes3>* self) {
-    UnkEffectSink* sink = (*reinterpret_cast<UnkHandlerOwner**>(reinterpret_cast<char*>(self) + 0x30))->field_0x218;
+    UnkEffectSink* sink = self->field_0x30->field_0x218;
     if (!sink)
         return;
     UnkSinkParams params;

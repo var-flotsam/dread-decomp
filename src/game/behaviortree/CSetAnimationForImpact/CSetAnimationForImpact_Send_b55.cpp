@@ -68,7 +68,7 @@ void fn_710036de14(UnkSetAnimationForImpact_b55* self) {
         self->field_0x40 = self->field_0x38;
     UnkImpactOwner_b55* owner = self->owner;
     void* target = owner ? owner->field_0x220 : nullptr;
-    u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(self->field_0x40.data) + 0x30);
+    u64 hash = self->field_0x40.data->Key();
     base::reflection::UnkReflTypeIdArg mode;
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;

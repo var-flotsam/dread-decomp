@@ -17,8 +17,7 @@ struct UnkNamedIdList_b65a4 {
     base::global::CRntVector<base::global::CStrId> ids;    // 0x10
 
     __attribute__((always_inline)) ~UnkNamedIdList_b65a4() {
-        vtable = reinterpret_cast<void**>(
-            reinterpret_cast<char*>(Which == 0 ? g_unk_7101a56150 : g_unk_7101a6c020) + 0x10);
+        vtable = (Which == 0 ? g_unk_7101a56150 : g_unk_7101a6c020) + 2;
         ids.Free();
     }
 };

@@ -19,7 +19,8 @@ struct UnkNode {
     u64 field_0x78;
     u64 field_0x80;
     u64 field_0x88;
-    u8 pad_0x90[0x130];
+    u8 pad_0x90[0x10];
+    u8 field_0xa0[0x120];  // a POLYCOLLECTION2D shape (fn_7100d62b04)
     u64 field_0x1c0;
     u8 pad_0x1c8[0x8];
     u64 field_0x1d0;
@@ -39,7 +40,7 @@ void fn_71004c5738(UnkNode* self) {
     self->field_0x78 = 0;
     self->field_0x80 = 0;
     self->field_0x88 = 0;
-    fn_7100d62b04(reinterpret_cast<char*>(self) + 0xa0);
+    fn_7100d62b04(self->field_0xa0);
     self->field_0x1c0 = 0xffffffff00000000ull;
     self->field_0x1d0 = 0;
     self->field_0x1d8 = 0;

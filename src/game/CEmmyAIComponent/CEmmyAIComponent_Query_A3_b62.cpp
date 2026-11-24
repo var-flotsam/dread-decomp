@@ -19,14 +19,17 @@ struct UnkEmmyOwner2_b62a3 {
 struct UnkEmmyAI2_b62a3 {
     u8 pad_0x0[0x30];
     UnkEmmyOwner2_b62a3* owner;
-    u8 pad_0x38[0x14c14 - 0x38];
+    u8 pad_0x38[0x149b0 - 0x38];
+    char field_0x149b0[0x14c14 - 0x149b0];  // the tunable values
     bool field_0x14c14;
+    u8 pad_0x14c15[0x29350 - 0x14c15];
+    u8 field_0x29350[1];
 };
 
 bool fn_710054aa5c(UnkEmmyAI2_b62a3* self) {
     if (!self->field_0x14c14)
         return false;
-    if (fn_710002fb70(reinterpret_cast<char*>(self) + 0x29350))
+    if (fn_710002fb70(self->field_0x29350))
         return false;
     UnkAnimationComponent* animation = self->owner->animation;
     if (!animation)
@@ -35,7 +38,7 @@ bool fn_710054aa5c(UnkEmmyAI2_b62a3* self) {
 }
 
 f32 fn_710054bc28(UnkEmmyAI2_b62a3* self) {
-    char* tunables = reinterpret_cast<char*>(self) + 0x149b0;
+    char* tunables = self->field_0x149b0;
     asm("" : "+r"(tunables));
     if (fn_710054ad2c(reinterpret_cast<UnkEmmyAIView*>(self)))
         return *reinterpret_cast<f32*>(tunables);
