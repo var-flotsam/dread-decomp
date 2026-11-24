@@ -19,7 +19,7 @@ using base::reflection::UnkReflObject;
 struct UnkLink_ovb0130;
 struct UnkTargetLink_ovb0130;
 struct UnkWeakTarget;
-bool fn_7100a30948(base::global::CRntVector<UnkLink_ovb0130>* self, UnkLink_ovb0130* link);
+bool CSoundProofTriggerComponent_ActorsToIgnoreContains(base::global::CRntVector<UnkLink_ovb0130>* self, UnkLink_ovb0130* link);
 void fn_7100a30a9c(UnkTargetLink_ovb0130* self, UnkWeakTarget* target);
 
 struct UnkAudioComponent_ovb0015;
@@ -132,7 +132,7 @@ static inline UnkSoundProofLink_la3037c LinkTo(UnkSoundProofEntity_la3037c* enti
 
 // Whether the trigger's links include one to the target of `link`.
 static inline bool IsLinked(UnkSoundProofTrigger_la3037c* self, const UnkSoundProofLink_la3037c& link) {
-    return fn_7100a30948(&self->links, reinterpret_cast<UnkLink_ovb0130*>(const_cast<UnkSoundProofLink_la3037c*>(&link)));
+    return CSoundProofTriggerComponent_ActorsToIgnoreContains(&self->links, reinterpret_cast<UnkLink_ovb0130*>(const_cast<UnkSoundProofLink_la3037c*>(&link)));
 }
 
 void fn_7100a3037c(UnkSoundProofTrigger_la3037c* self) {

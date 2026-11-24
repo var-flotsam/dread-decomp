@@ -19,7 +19,7 @@ struct UnkTargetLink_ovb0130;
 struct UnkWeakTarget;
 
 void fn_7100a47124(char*);
-bool fn_7100a30948(base::global::CRntVector<UnkLink_ovb0130>* self, UnkLink_ovb0130* link);
+bool CSoundProofTriggerComponent_ActorsToIgnoreContains(base::global::CRntVector<UnkLink_ovb0130>* self, UnkLink_ovb0130* link);
 void fn_7100a30a9c(UnkTargetLink_ovb0130* self, UnkWeakTarget* target);
 void fn_710071f634(UnkAudioComponent_ovb0015* self, const u32* groups, s32 level, f32 time);
 
@@ -132,11 +132,11 @@ void fn_7100a2ffcc(UnkSoundProofTrigger_l2ffcc* self) {
         // Inside: only the listed entities; outside: only the others.
         if (inside) {
             UnkSoundProofLink_l2ffcc link(entity);
-            if (!fn_7100a30948(&self->links, reinterpret_cast<UnkLink_ovb0130*>(&link)))
+            if (!CSoundProofTriggerComponent_ActorsToIgnoreContains(&self->links, reinterpret_cast<UnkLink_ovb0130*>(&link)))
                 continue;
         } else {
             UnkSoundProofLink_l2ffcc link(entity);
-            if (fn_7100a30948(&self->links, reinterpret_cast<UnkLink_ovb0130*>(&link)))
+            if (CSoundProofTriggerComponent_ActorsToIgnoreContains(&self->links, reinterpret_cast<UnkLink_ovb0130*>(&link)))
                 continue;
         }
         if (!fn_710009d50c(entity->vf_0x0(), fn_7100d70c20()))

@@ -106,7 +106,7 @@ static inline void ResetTrigger(UnkTriggerComponent_la5dac0* self) {
 }
 
 // Declared as src/game/CColliderTriggerComponent/CColliderTriggerComponent.cpp declares it.
-void fn_7100a5dac0(void* p) {
+void CTriggerComponent_Construct(void* p) {
     UnkTriggerComponent_la5dac0* self = static_cast<UnkTriggerComponent_la5dac0*>(p);
     fn_71010c4148(static_cast<UnkStateObject*>(p));
     self->vtable = g_unk_7101a8f5c8 + 2;

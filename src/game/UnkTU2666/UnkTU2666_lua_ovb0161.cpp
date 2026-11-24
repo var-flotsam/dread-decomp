@@ -413,7 +413,7 @@ s32 SpawnEntity(lua_State* L) {
 }  // namespace lua_bind
 
 struct UnkTriggerList_A5_b72;
-bool fn_7100a60104(UnkTriggerList_A5_b72* self, const CRntString& name);
+bool CTriggerComponent_IsEntityInside(UnkTriggerList_A5_b72* self, const CRntString& name);
 
 namespace lua_bind {
 s32 IsEntityInsideTrigger(lua_State* L) {
@@ -429,7 +429,7 @@ s32 IsEntityInsideTrigger(lua_State* L) {
         return 1;
     base::UnkNamedEntry key;
     CRntString_ConstructFromCString(&key, second);
-    bool found = fn_7100a60104(static_cast<UnkTriggerList_A5_b72*>(triggers), *reinterpret_cast<const CRntString*>(&key));
+    bool found = CTriggerComponent_IsEntityInside(static_cast<UnkTriggerList_A5_b72*>(triggers), *reinterpret_cast<const CRntString*>(&key));
     s32 result = fn_71010c0b40(L, "b", found);
     CRntString_Destroy(reinterpret_cast<CRntString*>(&key));
     return result;

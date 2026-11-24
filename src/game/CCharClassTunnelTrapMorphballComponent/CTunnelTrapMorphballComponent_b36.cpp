@@ -21,5 +21,5 @@ void fn_7100a44350(UnkTunnelTrapMorphball* self, bool flag) {
     if (flag)
         fn_7100a44074(self);
     else
-        fn_7100a443c8(self);
+        CTunnelTrapMorphballComponent_ActivateTrap(self);
 }

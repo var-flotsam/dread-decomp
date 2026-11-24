@@ -67,15 +67,15 @@ struct UnkTunnelTrap_b48 {
     }
 };
 
-bool fn_7100a43e7c(UnkTunnelTrap_b48* self) {
+bool CTunnelTrapMorphballComponent_GetActivated(UnkTunnelTrap_b48* self) {
     return self->ReadFlag(g_unk_717274a620);
 }
 
-bool fn_7100a43f78(UnkTunnelTrap_b48* self) {
+bool CTunnelTrapMorphballComponent_GetForcedOpened(UnkTunnelTrap_b48* self) {
     return self->ReadFlag(g_unk_717274a648);
 }
 
-void fn_7100a445c8(UnkTunnelTrap_b48* self, CBlackboard* blackboard, u32 value) {
+void CTunnelTrapMorphballComponent_SetActivated(UnkTunnelTrap_b48* self, CBlackboard* blackboard, u32 value) {
     CStrId section_id = fn_71011a2fbc(g_unk_7101d47310->field_0x608);
     u64 index = 0;
     u32 count = self->count;

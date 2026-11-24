@@ -69,7 +69,7 @@ struct UnkColliderTrigger_b0058 {
 };
 static_assert(__builtin_offsetof(UnkColliderTrigger_b0058, shape_ref.handle) == 0x460, "layout");
 
-__attribute__((noinline)) void fn_7100a4c444(UnkColliderTrigger_b0058* self, void* shape);
+__attribute__((noinline)) void CColliderTriggerComponent_RebuildColliderFromShape(UnkColliderTrigger_b0058* self, void* shape);
 
 // The collision manager (as src/game/CBreakableTileGroup_Reset_b49.cpp declares it).
 struct UnkManager_7100863a8c;
@@ -132,11 +132,11 @@ void fn_7100a4c38c(UnkColliderTrigger_b0058* self) {
         break;
     }
     if (UnkLogicShape_b0058* shape = FindLogicShape(actor))
-        fn_7100a4c444(self, shape->shape);
+        CColliderTriggerComponent_RebuildColliderFromShape(self, shape->shape);
 }
 
 // A new collider with the logic shape's shape.
-void fn_7100a4c444(UnkColliderTrigger_b0058* self, void* shape) {
+void CColliderTriggerComponent_RebuildColliderFromShape(UnkColliderTrigger_b0058* self, void* shape) {
     Recreate(self);
     self->collider->vf_0x30(true);
     self->collider->vf_0x60(false);
@@ -148,7 +148,7 @@ void fn_7100a4c804(UnkColliderTrigger_b0058* self, const base::math::CVector3D* 
 
 // Reads the component, then the trigger box's size (three floats) and builds the box collider.
 void fn_7100a4c780(UnkColliderTrigger_b0058* self, base::global::CRntFile* file) {
-    fn_7100a6081c(self, file);
+    CTriggerComponent_LoadFromFile(self, file);
     f32 x, z, y;  // stored as x, z, y
     CRntFile_Read(file, &x, 4, 1);
     CRntFile_Read(file, &z, 4, 1);

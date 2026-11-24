@@ -84,7 +84,7 @@ struct UnkTunnelTrapComponent_ovb0136 {
     }
 };
 
-void fn_7100a443c8(UnkTunnelTrapMorphball* trap) {
+void CTunnelTrapMorphballComponent_ActivateTrap(UnkTunnelTrapMorphball* trap) {
     auto* self = reinterpret_cast<UnkTunnelTrapComponent_ovb0136*>(trap);
     if (void* anim = self->owner->field_0x220) {
         base::reflection::refl_EmitU32(anim, 0x6a17390fc912b900, 0xf4061ff25a2163d6, 0, &g_unk_710164b958,

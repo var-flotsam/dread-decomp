@@ -263,7 +263,7 @@ void fn_7100df4610(UnkGameManager* manager) {
             from->field_0x6f4 = 0;
 
             while (source->field_0x320 != 0)
-                fn_7100a601cc(source->field_0x328[0]->field_0x1e8, reinterpret_cast<UnkTriggerTarget_la601cc*>(actor),
+                CTriggerComponent_ReplaceEntityInside(source->field_0x328[0]->field_0x1e8, reinterpret_cast<UnkTriggerTarget_la601cc*>(actor),
                               reinterpret_cast<UnkTriggerTarget_la601cc*>(source));
             fn_7100a5fccc(actor);
         }

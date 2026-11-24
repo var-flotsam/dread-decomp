@@ -61,7 +61,7 @@ static inline UnkReflType* AsUnk(const base::reflection::CType* t) {
     return reinterpret_cast<UnkReflType*>(const_cast<base::reflection::CType*>(t));
 }
 
-void fn_7100a75a70() {
+void CAccessPointComponent_InitStatics() {
     UnkAccessPointTU& tu = g_unk_717274f518;
     InitHeader(tu.header);
     tu.field_0x48[0] = -1.0f;

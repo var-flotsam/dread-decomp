@@ -50,7 +50,7 @@ void fn_7100a21bcc();
 void fn_7100a2253c(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_7100a2214c();
 
-void fn_7100a24610() {
+void CFreezeRoomComponent_InitStatics() {
     UnkFreezeRoomTU_la24610& tu = g_unk_7172745fe0;
     InitHeader(tu.header);
     tu.field_0x30 = -1.0f;

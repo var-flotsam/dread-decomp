@@ -10,6 +10,6 @@ struct UnkSyncBlockCameraTarget {
     UnkWeakHandle* handle;
 };
 
-void fn_7100a20d7c(UnkSyncBlockCameraTarget* self, UnkWeakTarget* target) {
+void CSynchronizedBlockCameraCtrl_SetTarget(UnkSyncBlockCameraTarget* self, UnkWeakTarget* target) {
     AssignRef(&self->handle, target ? fn_7100d78378(target) : nullptr);
 }

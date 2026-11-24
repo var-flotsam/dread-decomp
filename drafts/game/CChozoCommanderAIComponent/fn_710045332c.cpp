@@ -35,7 +35,7 @@ extern UnkDesc_SpitSend g_unk_710164b958;
 extern __attribute__((visibility("hidden"))) UnkCls_710117af10* g_unk_71726c9508;
 
 void fn_710110ca70(void* self);
-void fn_7100a20d7c(UnkSyncBlockCameraTarget* self, UnkWeakTarget* target);
+void CSynchronizedBlockCameraCtrl_SetTarget(UnkSyncBlockCameraTarget* self, UnkWeakTarget* target);
 void fn_71003530d4(UnkCameraOwner_l3530d4* self);
 
 struct UnkFlags_l308950 {
@@ -262,7 +262,7 @@ void fn_710045332c(UnkCommanderAI_l45332c* self) {
                         fn_71003530d4(static_cast<UnkCameraOwner_l3530d4*>(holder));
                     UnkMeleeCameraCtrl_l45332c* camera = MeleeCamera(holder);
                     if (camera) {
-                        fn_7100a20d7c(reinterpret_cast<UnkSyncBlockCameraTarget*>(camera),
+                        CSynchronizedBlockCameraCtrl_SetTarget(reinterpret_cast<UnkSyncBlockCameraTarget*>(camera),
                                       reinterpret_cast<UnkWeakTarget*>(self->owner));
                         camera->field_0x304 = self->params->field_0x148;
                         camera->field_0x330 = self->params->field_0x42d;
@@ -309,7 +309,7 @@ void fn_710045332c(UnkCommanderAI_l45332c* self) {
     UnkMeleeCameraCtrl_l45332c* camera = MeleeCamera(holder);
     if (!camera)
         return;
-    fn_7100a20d7c(reinterpret_cast<UnkSyncBlockCameraTarget*>(camera), reinterpret_cast<UnkWeakTarget*>(self->owner));
+    CSynchronizedBlockCameraCtrl_SetTarget(reinterpret_cast<UnkSyncBlockCameraTarget*>(camera), reinterpret_cast<UnkWeakTarget*>(self->owner));
     camera->field_0x304 = 0.5f;
     camera->field_0x308 = 1200.0f;
     camera->SetBox();

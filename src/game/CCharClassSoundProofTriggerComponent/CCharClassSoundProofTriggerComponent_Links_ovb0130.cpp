@@ -36,7 +36,7 @@ struct UnkLink_ovb0130 {
 static_assert(sizeof(UnkLink_ovb0130) == 0x40, "UnkLink_ovb0130 layout");
 
 // fn_7100a30948: whether the list holds a link to the target of `link`.
-bool fn_7100a30948(base::global::CRntVector<UnkLink_ovb0130>* self, UnkLink_ovb0130* link) {
+bool CSoundProofTriggerComponent_ActorsToIgnoreContains(base::global::CRntVector<UnkLink_ovb0130>* self, UnkLink_ovb0130* link) {
     for (u64 i = 0; i < self->count; ++i) {
         UnkLink_ovb0130& entry = self->data[i];
         void* target = link->Get();
