@@ -225,6 +225,15 @@ class Requests(unittest.TestCase):
         self.assertGreater(est["worst_dollars"], est["likely_dollars"])
         self.assertGreater(est["input_tokens"], 0)
 
+    def test_max_tokens_sets_the_limit_and_the_worst_case(self):
+        tree = FakeTree({"src/game/CFoo/CFoo.cpp": FOO})
+        its = items(("0x7100000100", "CFoo_GetCount"))
+        small, _ = nb.build_requests("review", its, lambda it: tree, members, max_tokens=4000)
+        full, _ = nb.build_requests("review", its, lambda it: tree, members)
+        self.assertEqual(small[0]["params"]["max_tokens"], 4000)
+        self.assertEqual(full[0]["params"]["max_tokens"], nb.MAX_TOKENS)
+        self.assertLess(nb.estimate(small)["worst_dollars"], nb.estimate(full)["worst_dollars"])
+
 
 def succeeded(cid, payload, stop="end_turn", usage=None):
     return {"custom_id": cid, "result": {"type": "succeeded", "message": {
