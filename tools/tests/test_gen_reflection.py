@@ -546,6 +546,29 @@ class TypedKeysByName(unittest.TestCase):
         self.assertIn("f->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);", out)
         self.assertNotIn("fn_710000bf80", out)
 
+    def test_declaration_goes_when_the_field_macros_named_the_key(self):
+        # the one-line field form already wrote the use by name: only the address-named declaration is left
+        keys = {"fn_710000bf80": ("Persistence", "T<E>::object")}
+        decl = "const base::reflection::AttributeKey& fn_710000bf80();"
+        use = '    DREAD_REFLECTED_FIELD(f32, "fA", 0x8, (Persistence, 0));'
+        self.assertEqual(gr.typed_keys_by_name(chr(10).join([decl, use]), keys), use)
+
+    def test_declaration_stays_while_something_names_the_getter(self):
+        keys = {"fn_710000bf80": ("Persistence", "T<E>::object")}
+        text = "const base::reflection::AttributeKey& fn_710000bf80();\ng(fn_710000bf80());"
+        self.assertEqual(gr.typed_keys_by_name(text, keys), text)
+
+
+class TypedAttributeKeys(unittest.TestCase):
+    def test_header_names_map_to_the_getters_addresses(self):
+        # ReflectedFields.h names a typed key's getter <Name>Key; the map is by its address
+        keys = gr.typed_attribute_keys()
+        self.assertEqual({fn: name for fn, (name, _) in keys.items()},
+                         {f"fn_{a:x}": gr.refl_attrs.ATTRIBUTE_NAMES[a] for a in gr.refl_attrs.TYPED_KEYS})
+        self.assertEqual(keys["fn_710000bf80"][0], "Persistence")
+        self.assertEqual(keys["fn_71000923a0"][0], "EditorModeDataFlow")
+        self.assertTrue(all(obj.endswith("::object") for _, obj in keys.values()))
+
 
 
 class RegistryInclude(unittest.TestCase):

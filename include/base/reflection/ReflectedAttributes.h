@@ -32,8 +32,12 @@ namespace base::reflection {
 struct AttributeKey {
     base::global::CStrId name;
     const CType* type;  // the value type
-    u32 targets;        // what the attribute may be attached to, a bit per base::reflection::EAttributeTarget
-                        // (the insertion in src/base/reflection/UnkReflAttrs.cpp tests it); 0xf in all keys seen
+    // What the attribute may be attached to, a bit per base::reflection::EAttributeTarget. An inference: no
+    // code that reads the key's own word is matched yet. The insertion (src/base/reflection/UnkReflAttrs.cpp)
+    // tests the registry's record of a known attribute, which has this layout (the type at +0x8, the targets
+    // at +0x10, a flag at +0x14, 0x18 bytes), and the keys' values are small masks: 0x2 in most, then 0x1,
+    // 0x8, 0x6, 0x3, 0xa, 0xf and 0x4.
+    u32 targets;
     u16 field_0x14;
 
     AttributeKey(const base::global::CStrId& name, const CType* type, u32 targets)

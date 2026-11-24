@@ -275,7 +275,7 @@ def emit(kind: str, addr: int, f: dict, decls: set[str], registries: dict[int, i
         if "u32" not in f or "u16" not in f or not (ty := key_type(f, decls)):
             return None
         return head + [f"    static const CType* type() {{ return {ty}; }}",
-                       f"    static constexpr u32 field_0x10 = {f['u32']:#x};",
+                       f"    static constexpr u32 targets = {f['u32']:#x};",
                        f"    static constexpr u16 field_0x14 = {f['u16']:#x};", "};",
                        f"template const base::reflection::AttributeKey& "
                        f"base::reflection::refl_GetAttrKeyFlags<{tag}>();"]
@@ -283,7 +283,7 @@ def emit(kind: str, addr: int, f: dict, decls: set[str], registries: dict[int, i
         if "u32" not in f or not (ty := key_type(f, decls)):
             return None
         return head + [f"    static const CType* type() {{ return {ty}; }}",
-                       f"    static constexpr u32 field_0x10 = {f['u32']:#x};", "};",
+                       f"    static constexpr u32 targets = {f['u32']:#x};", "};",
                        f"template const base::reflection::AttributeKey& "
                        f"base::reflection::refl_GetAttrKey<{tag}>();"]
     return head + ["};", f"template const base::global::CStrId& base::reflection::refl_GetStaticStrId<{tag}>();"]

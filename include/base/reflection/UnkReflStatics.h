@@ -15,11 +15,12 @@ namespace base::reflection {
 template <class G>
 struct UnkReflStatic;
 
-// An attribute key (e.g. "Description"): name, value type, its targets (0xf).
+// An attribute key (e.g. "Description"): name, value type, its targets (a small mask, 0x2 in most keys;
+// AttributeKey in ReflectedAttributes.h says what the name rests on).
 template <class G>
 const AttributeKey& refl_GetAttrKey() {
     static AttributeKey s_key(base::global::CStrId(UnkReflStatic<G>::name, true), UnkReflStatic<G>::type(),
-                              UnkReflStatic<G>::field_0x10);
+                              UnkReflStatic<G>::targets);
     return s_key;
 }
 
@@ -34,7 +35,7 @@ struct UnkReflAttrKeyFlags : AttributeKey {
 template <class G>
 const AttributeKey& refl_GetAttrKeyFlags() {
     static UnkReflAttrKeyFlags s_key(base::global::CStrId(UnkReflStatic<G>::name, true), UnkReflStatic<G>::type(),
-                                     UnkReflStatic<G>::field_0x10, UnkReflStatic<G>::field_0x14);
+                                     UnkReflStatic<G>::targets, UnkReflStatic<G>::field_0x14);
     return s_key;
 }
 

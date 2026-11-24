@@ -1931,7 +1931,7 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100ed8b60> {
     static constexpr const char* name = "FileFilter";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100f112cc;
 template <>
@@ -1948,28 +1948,28 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100f9e870> {
     static constexpr const char* name = "AssetType";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100f9e980;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100f9e980> {
     static constexpr const char* name = "BasePath";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100f9ea90;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100f9ea90> {
     static constexpr const char* name = "FolderFilter";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100f9eba0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100f9eba0> {
     static constexpr const char* name = "FileNameOnly";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 const base::global::CStrId& fn_7100fcadd0() {
     static base::global::CStrId s_id("GUISoundManager", true);
@@ -2000,49 +2000,49 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7101042e70> {
     static constexpr const char* name = "bIsNotSelectable";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7101042f80;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7101042f80> {
     static constexpr const char* name = "WidgetStartupFirstParameter";
     static const CType* type() { return fn_7100014768(); }
-    static constexpr u32 field_0x10 = 0x8;
+    static constexpr u32 targets = 0x8;
 };
 struct UnkRefl_fn_7101043090;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7101043090> {
     static constexpr const char* name = "DoNotUniteCollectionIntersectIt";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71010431a0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71010431a0> {
     static constexpr const char* name = "Normalize";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71010432b0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71010432b0> {
     static constexpr const char* name = "sDefaultFolderRelativePath";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71010433c0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71010433c0> {
     static constexpr const char* name = "ControlFloatDecimals";
     static const CType* type() { return fn_7100005178(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71010434d0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71010434d0> {
     static constexpr const char* name = "eActorLinkToComponentLinkTransform";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_710106bc20;
