@@ -9,7 +9,6 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 #include "base/reflection/TypeObject.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 extern const base::reflection::CType g_unk_71727586d0 __attribute__((visibility("hidden")));

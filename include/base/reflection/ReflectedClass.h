@@ -97,6 +97,14 @@ inline void DestroyDestructorFirst(void* obj) {
     }                                                                                                   \
     DREAD_REFL_GETTER_BODY_(T, base::global::CStrId(#T, true), PARENT::refl_GetClass())
 
+// The same for a class in the namespace form whose parent is a declared class (below): the parent's getter
+// is the static member its header declares, so no namespace of the parent's name is opened.
+#define DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(T, PARENT)                                           \
+    namespace T {                                                                                       \
+    const base::reflection::CClass* refl_GetClass();                                                    \
+    }                                                                                                   \
+    DREAD_REFL_GETTER_BODY_(T, base::global::CStrId(#T, true), PARENT::refl_GetClass())
+
 // A class with no parent descriptor.
 #define DREAD_REFLECTED_ROOT_CLASS(T)                                                                   \
     namespace T {                                                                                       \

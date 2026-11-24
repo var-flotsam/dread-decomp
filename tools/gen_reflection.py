@@ -1123,7 +1123,11 @@ def typed_attribute_keys() -> dict[str, tuple[str, str]]:
 # A reflected class's run-once guard (refl_AddFields' first statements) and its tunable object (registered in the
 # global registry), both named in the class's namespace: refl_fields_added and refl_tunable.
 GUARD_RE = re.compile(r"^    if \((g_unk_[0-9a-f]{10})\)\n        return;\n    \1 = true;$", re.M)
-TUNABLE_USE_RE = re.compile(r"\(base::reflection::TunableRegistry\(\), &(g_unk_[0-9a-f]{10}), ")
+TUNABLE_USE_RE = re.compile(r"\(base::tunable::TunableManager\(\), &(g_unk_[0-9a-f]{10}), ")
+# The registration of that object: the manager's function for the class, one copy per class in the original, named
+# in the class's namespace too (refl_RegisterTunable).
+TUNABLE_REGISTER_RE = re.compile(r"^    (fn_[0-9a-f]{10})\(base::tunable::TunableManager\(\), &", re.M)
+TUNABLE_REGISTER_ARGS = "(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category)"
 NAMESPACE_RE = re.compile(r"^namespace ([\w:]+) \{$", re.M)
 
 
@@ -1140,20 +1144,25 @@ def namespace_at(lines: list[str], i: int) -> str | None:
 
 
 def class_statics_by_name(text: str) -> str:
-    """`text` with each class's run-once guard and tunable object written by name, `refl_fields_added` and
-    `refl_tunable`, declared in the class's namespace with the object's own label (asm("g_unk_<addr>")) in place of
-    the file's `extern bool g_unk_<addr>;` / `extern UnkTunable g_unk_<addr>;`. An object named twice in one
-    namespace, declared otherwise or used outside its namespace keeps its address."""
+    """`text` with each class's run-once guard, tunable object and tunable registration written by name,
+    `refl_fields_added`, `refl_tunable` and `refl_RegisterTunable`, declared in the class's namespace with the
+    object's or function's own label (asm("g_unk_<addr>"), asm("fn_<addr>")) in place of the file's
+    `extern bool g_unk_<addr>;` / `extern base::tunable::CTunable g_unk_<addr>;` / `base::tunable::CTunable*
+    fn_<addr>(...);`. One named twice in one namespace, declared otherwise or used outside its namespace keeps its
+    address."""
     lines = text.split(chr(10))
-    found: dict[str, tuple[str, str, str]] = {}
-    for regex, name, spelled in ((GUARD_RE, "refl_fields_added", "bool"), (TUNABLE_USE_RE, "refl_tunable", "UnkTunable")):
+    found: dict[str, tuple[str, str, str, str]] = {}  # symbol -> (namespace, name, before the name, after it)
+    for regex, name, before, after in ((GUARD_RE, "refl_fields_added", "extern bool ", ""),
+                                       (TUNABLE_USE_RE, "refl_tunable", "extern base::tunable::CTunable ", ""),
+                                       (TUNABLE_REGISTER_RE, "refl_RegisterTunable", "base::tunable::CTunable* ",
+                                        TUNABLE_REGISTER_ARGS)):
         for m in regex.finditer(text):
             scope = namespace_at(lines, text.count(chr(10), 0, m.start()))
             if scope:
-                found.setdefault(m.group(1), (scope, name, spelled))
-    taken = collections.Counter((scope, name) for scope, name, _ in found.values())
-    for g, (scope, name, spelled) in found.items():
-        decl = f"extern {spelled} {g};"
+                found.setdefault(m.group(1), (scope, name, before, after))
+    taken = collections.Counter((scope, name) for scope, name, _, _ in found.values())
+    for g, (scope, name, before, after) in found.items():
+        decl = f"{before}{g}{after};"
         if taken[(scope, name)] != 1 or lines.count(decl) != 1:
             continue
         uses = [i for i, line in enumerate(lines) if re.search(rf"\b{g}\b", line) and line != decl]
@@ -1161,7 +1170,7 @@ def class_statics_by_name(text: str) -> str:
             continue
         for i in uses:
             lines[i] = re.sub(rf"\b{g}\b", name, lines[i])
-        lines[lines.index(decl)] = f'namespace {scope} {{ extern {spelled} {name} asm("{g}"); }}'
+        lines[lines.index(decl)] = f'namespace {scope} {{ {before}{name}{after} asm("{g}"); }}'
     return chr(10).join(lines)
 
 
@@ -1193,35 +1202,24 @@ def with_include(text: str, include: str) -> str:
 
 
 def with_registry_include(text: str) -> str:
-    """`text` with the tunable registry helper's header when it calls the helper (the final pass adds it)."""
-    if "base::reflection::TunableRegistry()" in text:
-        return with_include(text, '#include "base/reflection/UnkTunableRegistry.h"')
+    """`text` with the tunable manager's header when it uses the manager (the final pass adds it): not for the
+    manager's own reflection functions, which are in a namespace of its name."""
+    if "base::tunable::CTunableManager*" in text or "base::tunable::TunableManager()" in text:
+        return with_include(text, '#include "base/tunable/CTunableManager.h"')
     return text
-
-
-# Prelude names (refl_attrs.PRELUDE) only the CTunable* classes' field functions use: a file that names neither
-# loses their `using` lines (the final pass).
-TUNABLE_USINGS = ("UnkTunable", "UnkTunableRegistry")
-
-
-def without_unused_usings(text: str) -> str:
-    """`text` without the `using base::reflection::<name>;` lines of TUNABLE_USINGS it does not otherwise name."""
-    lines = text.split(chr(10))
-    for name in TUNABLE_USINGS:
-        using = f"using base::reflection::{name};"
-        if using in lines and not any(re.search(rf"\b{name}\b", line) for line in lines if line != using):
-            lines.remove(using)
-    return chr(10).join(lines)
 
 
 # The declared-class form of a class block, as text (tools/dread/declared_class.py; tools/gen_classes.py
 # uses it too, without this module's binary dependencies).
-from dread.declared_class import CLASS_BLOCK, declared_class_block  # noqa: E402,F401
+from dread.declared_class import CLASS_BLOCK, DECLARED_PARENT, declared_class_block  # noqa: E402,F401
 
 def with_declared_classes(text: str, includes: dict[str, str], sizes: dict[str, int],
-                          offsets: dict[tuple[str, str], int]) -> str:
+                          offsets: dict[tuple[str, str], int], bases: dict[str, list[str]] | None = None) -> str:
     """`text` with the blocks of the classes tools/gen_classes.py declares (`includes`: class -> header)
-    written as the class's members, and the header included (the final pass)."""
+    written as the class's members, and the header included (the final pass). A block that keeps the namespace
+    form takes its parent's getter from the parent's class (DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT) when the
+    text includes that class: its header, or the header of a class derived from it (`bases`: class -> its chain).
+    A namespace of the parent's name would clash with the class there."""
     def one(m: re.Match) -> str:
         name, body, kind, parent = m.group(1), m.group(2), m.group(3), m.group(4)
         if name not in includes or (parent and parent not in includes):
@@ -1241,7 +1239,23 @@ def with_declared_classes(text: str, includes: dict[str, str], sizes: dict[str, 
     for name, include in includes.items():
         if new != text and re.search(rf"^DREAD_REFLECTED_DECLARED_(?:ROOT_)?CLASS\({re.escape(name)}[,)]", new, re.M):
             new = with_include(new, f'#include "{include}"')
-    return new
+    return with_declared_parents(new, includes, bases)
+
+
+PLAIN_CLASS = re.compile(r"^DREAD_REFLECTED_CLASS\(([\w:]+), ([\w:]+)\);$", re.M)
+
+
+def with_declared_parents(text: str, includes: dict[str, str], bases: dict[str, list[str]] | None = None) -> str:
+    """`text` with each namespace-form class whose parent is a class the text includes (its header, or that of a
+    class derived from it; `includes`: class -> header, `bases`: class -> its chain) taking the parent's getter
+    from the class: DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT."""
+    lines = set(text.split(chr(10)))
+    seen = {b for name, include in includes.items() if f'#include "{include}"' in lines
+            for b in (bases or {}).get(name, [name])}
+    if not seen:
+        return text
+    return PLAIN_CLASS.sub(lambda m: f"DREAD_REFLECTED_{DECLARED_PARENT}({m.group(1)}, {m.group(2)});"
+                           if m.group(2) in seen else m.group(0), text)
 
 
 # Prelude names only the namespace form's TypeOf and Destroy use: a file in the declared form that no longer names
@@ -1269,13 +1283,46 @@ def unconverted_classes(texts: list[str], includes: dict[str, str]) -> list[str]
     return sorted(set(includes) - done)
 
 
-def declared_classes() -> tuple[dict[str, str], dict[str, int], dict[tuple[str, str], int]]:
+def declared_parent_header(parent: str, unit: set[str], body: list[str], headers: dict[str, str] | None = None,
+                           bases: dict[str, list[str]] | None = None) -> str | None:
+    """The header of `parent` when a namespace-form class (its lines: `body`) must include it as its unit (its
+    classes: `unit`) is first written: `parent` is a declared class (`headers`: class -> header; the ones on disk),
+    a line other than the getter's macro names it as a type (a CTunable* class's tunable object and registration:
+    the class is then visible, and a namespace of its name would clash with it in every compile of the text, the
+    checks before the final pass included), and neither it nor a base of it (`bases`: class -> its chain) is a
+    class of the unit, whose blocks are all in the namespace form until the final pass (which gives a class its
+    declared parent's getter where the unit includes the parent, with_declared_classes)."""
+    if headers is None:
+        headers, bases = declared_chains()
+    if parent not in headers or unit & set(bases.get(parent, [parent])):
+        return None
+    named = re.compile(rf"(?<![\w:]){re.escape(parent)}(?!\w|::)")
+    if not any(named.search(line) for line in body if not line.startswith("DREAD_REFLECTED_")):
+        return None
+    return headers[parent]
+
+
+_DECLARED_CHAINS: list = []
+
+
+def declared_chains() -> tuple[dict[str, str], dict[str, list[str]]]:
+    """({class: its header's include path} of the headers tools/gen_classes.py wrote, {class: its base chain})."""
+    if not _DECLARED_CHAINS:
+        import gen_classes
+
+        headers = gen_classes.declared_includes()
+        types, _ = gen_classes.tables()
+        _DECLARED_CHAINS.append((headers, {c: gen_classes.chain(c, types) for c in headers}))
+    return _DECLARED_CHAINS[0]
+
+
+def declared_classes() -> tuple[dict[str, str], dict[str, int], dict[tuple[str, str], int], dict[str, list[str]]]:
     """The arguments of with_declared_classes, from tools/gen_classes.py's headers and the class sizes."""
     import gen_classes
 
     types, _ = gen_classes.tables()
-    return (gen_classes.declared_includes(), {t: int(r["size"], 16) for t, r in types.items() if r["size"]},
-            gen_classes.offsets())
+    headers, bases = declared_chains()
+    return (headers, {t: int(r["size"], 16) for t, r in types.items() if r["size"]}, gen_classes.offsets(), bases)
 
 
 def main() -> int:
@@ -1518,6 +1565,15 @@ def main() -> int:
                 body, h, n_attrs = readable_class_lines(
                     orig, g, sizes[g.address], {a: candidates[a] for a in attr_ok}, macro,
                     type_of[g.parent] if g.parent else None, decl_lines, class_types, type_objects)
+                parent_include = None
+                if g.parent and not suffix:
+                    parent_include = declared_parent_header(type_of[g.parent], {b.type for b in block}, body)
+                if parent_include and f'#include "{parent_include}"' not in lines:
+                    # The class's lines name its declared parent as a type (declared_parent_header): the unit
+                    # includes the parent's header, and its classes take that parent's getter from the class
+                    # (with_declared_parents, below).
+                    lines.insert(lines.index('#include "base/reflection/ReflectedClass.h"') + 1,
+                                 f'#include "{parent_include}"')
                 lines += body + [""]
                 fields_include = '#include "base/reflection/ReflectedFields.h"'
                 if fields_include not in lines and any(FIELD_MACRO_RE.search(l) for l in body):
@@ -1566,6 +1622,7 @@ def main() -> int:
         if gap:
             lines += padding_lines(block, gap)
         ptrs = [p for g in block for p in items_by_getter.get(g.address, []) + local_others.get(g.address, [])]
+        lines = with_declared_parents(chr(10).join(lines), *declared_chains()).split(chr(10))
         files[name] = (lines, ptrs)
         file_getters[name] = {g.address: g.type for g in readable}
         generated += n
@@ -1805,7 +1862,7 @@ def main() -> int:
     declared = declared_classes()
     for f in sorted(OUT.glob("*.cpp")):
         old = f.read_text(encoding="utf-8")
-        new = without_unused_usings(with_registry_include(class_statics_by_name(functions_in_one_line(typed_keys_by_name(old, typed_keys)))))
+        new = with_registry_include(class_statics_by_name(functions_in_one_line(typed_keys_by_name(old, typed_keys))))
         new = without_unused_declared_usings(with_declared_classes(new, *declared))
         if new != old:
             f.write_text(new, encoding="utf-8", newline=chr(10))

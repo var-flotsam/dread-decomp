@@ -479,7 +479,7 @@ s32 GetTunables(lua_State* L) {
     base::reflection::UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<base::reflection::UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
+        CTunableManager_Construct(registry);
         g_unk_7101d47350 = registry;
     }
     base::reflection::UnkTunableRegistry* object = registry;

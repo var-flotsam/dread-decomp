@@ -235,8 +235,6 @@ using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 void fn_7100267878();
 void fn_71002678c8();
 void fn_7100264d40(CClass* cls) {
@@ -252,8 +250,6 @@ using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 void fn_7100267b0c();
 void fn_7100267b5c();
 void fn_7100265330(CClass* cls) {

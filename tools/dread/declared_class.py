@@ -9,9 +9,12 @@ from __future__ import annotations
 
 import re
 
-# A class block of the namespace form, with its getter's macro.
+# A class block of the namespace form, with its getter's macro (CLASS_WITH_DECLARED_PARENT: its parent is a
+# declared class, whose namespace the macro does not open).
+DECLARED_PARENT = "CLASS_WITH_DECLARED_PARENT"
 CLASS_BLOCK = re.compile(r"^namespace ([\w:]+) \{\n(.*?)^\}  // namespace \1\n"
-                         r"DREAD_REFLECTED_(CLASS|ROOT_CLASS)\(\1(?:, ([\w:]+))?\);$", re.M | re.S)
+                         r"DREAD_REFLECTED_(CLASS|ROOT_CLASS|" + DECLARED_PARENT + r")\(\1(?:, ([\w:]+))?\);$",
+                         re.M | re.S)
 REFL_DECLARATION = re.compile(r"^[^ ].*? refl_\w+\([^)]*\);$")
 REFL_DEFINITION = re.compile(r"^([^ ].*?) (refl_\w+\(.*)$")
 FIELD_OFFSET = re.compile(r'^(    DREAD_REFLECTED_(?:FIELD|CLASS_FIELD|FIELD_OF)\((?:"[^"]*"|[^,]+), "(\w+)", )(0x[0-9a-f]+|\d+)\b')

@@ -9,6 +9,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
+#include "reflected/animtree/CAnimTreeElementDef.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -23,16 +24,19 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
+namespace animtree { class CAnimTreeElementDef; }
+namespace base::global { template <class> class CRntVector; }
+#include <memory>
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::object asm("g_unk_71726aa3a0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // animtree::CAnimTreeDef
-extern base::reflection::CType g_unk_71726aa3a0;
 void fn_71002d69a4(CFunction* fn, const char* name);
 namespace animtree::CAnimTreeDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sRootNode", 0x10);
-    CVariable* field1 = AddReflectedField(cls, CStrId("aNodes", true), &g_unk_71726aa3a0, 0x18, -1, -1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("aNodes", true), &base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::object, 0x18, -1, -1);
     field1->attrs_0x70.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterNodeDefDeserialization", true));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>", "aControls", 0x48);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>", "aLinks", 0x78);
@@ -53,7 +57,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto destroy = &refl_Destroy;
 };
 }  // namespace animtree::CAnimTreeDef
-DREAD_REFLECTED_CLASS(animtree::CAnimTreeDef, animtree::CAnimTreeElementDef);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(animtree::CAnimTreeDef, animtree::CAnimTreeElementDef);
 
 // animtree::CAnimTreeDef::TAnimTreeLinkDef
 namespace animtree::CAnimTreeDef::TAnimTreeLinkDef {
@@ -226,8 +230,6 @@ using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 void fn_71002d9b8c();
 void fn_71002d9bdc();
 void fn_71002d6cd8(CClass* cls) {
@@ -243,8 +245,6 @@ using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 void fn_71002d9e00();
 void fn_71002d9e50();
 void fn_71002d72c8(CClass* cls) {

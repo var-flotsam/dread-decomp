@@ -5,14 +5,13 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -20,7 +19,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
@@ -80,8 +79,8 @@ DREAD_REFLECTED_CLASS(CAimComponent, CComponent);
 
 // CAimComponent::CTunableAim
 namespace CAimComponent::CTunableAim { extern bool refl_fields_added asm("g_unk_71726b1500"); }
-namespace CAimComponent::CTunableAim { extern UnkTunable refl_tunable asm("g_unk_71726b1438"); }
-void fn_7100342780(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CAimComponent::CTunableAim { extern base::tunable::CTunable refl_tunable asm("g_unk_71726b1438"); }
+namespace CAimComponent::CTunableAim { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100342780"); }
 namespace CAimComponent::CTunableAim {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -114,7 +113,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFrontDownDown", 0xb8, (DefaultValue, -1.1780972f));
     DREAD_REFLECTED_FIELD(f32, "fFrontLockUp", 0xbc, (DefaultValue, 0.19634955f));
     DREAD_REFLECTED_FIELD(f32, "fFrontLockDown", 0xc0, (DefaultValue, -0.19634955f));
-    fn_7100342780(base::reflection::TunableRegistry(), &refl_tunable, "Aim");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Aim");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -138,7 +137,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CAimComponent::CTunableAim
-DREAD_REFLECTED_CLASS(CAimComponent::CTunableAim, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CAimComponent::CTunableAim, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

@@ -11,13 +11,12 @@
 #include "base/reflection/ReflectedAttributes.h"
 #include "reflected/CBossRushDebugTime.h"
 #include "reflected/CBossRushSurvivalConfiguration.h"
+#include "reflected/CBossRushManager/CTunableBossRushManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::Destroy;
 
 // CBossRushSurvivalConfiguration
 #pragma GCC diagnostic push
@@ -78,20 +77,17 @@ DREAD_REFLECTED_DECLARED_ROOT_CLASS(CBossRushDebugTime);
 #pragma GCC diagnostic pop
 
 // CBossRushManager::CTunableBossRushManager
-namespace CBossRushManager::CTunableBossRushManager {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls);
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x1e8;
+void CBossRushManager::CTunableBossRushManager::refl_AddAttributes(CClass*) {}
+bool CBossRushManager::CTunableBossRushManager::refl_Equals(const void*, const void*) { return false; }
+s32 CBossRushManager::CTunableBossRushManager::refl_Hash() { return -1; }
+const base::reflection::CType& CBossRushManager::CTunableBossRushManager::refl_TypeOf(const void* obj) { return *static_cast<const CTunableBossRushManager*>(obj)->refl_GetDynamicClass(); }
+void CBossRushManager::CTunableBossRushManager::refl_CopyConstruct(void*, const void*) {}
+void CBossRushManager::CTunableBossRushManager::refl_MoveConstruct(void*, const void*) {}
+void CBossRushManager::CTunableBossRushManager::refl_Destroy(void* obj) { static_cast<CTunableBossRushManager*>(obj)->~CTunableBossRushManager(); }
+void* CBossRushManager::CTunableBossRushManager::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CBossRushManager::CTunableBossRushManager::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CBossRushManager::CTunableBossRushManager::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CTunableBossRushManager);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -102,8 +98,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CBossRushManager::CTunableBossRushManager
-DREAD_REFLECTED_CLASS(CBossRushManager::CTunableBossRushManager, base::tunable::CTunable);
+DREAD_REFLECTED_DECLARED_CLASS(CBossRushManager::CTunableBossRushManager, base::tunable::CTunable);
 
 void fn_7100dcefb8();
 void fn_7100dcf020();

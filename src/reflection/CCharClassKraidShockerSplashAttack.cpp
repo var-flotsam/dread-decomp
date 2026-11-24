@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -42,8 +41,8 @@ DREAD_REFLECTED_CLASS(CCharClassKraidShockerSplashAttack, CCharClassKraidAttack)
 
 // CCharClassKraidShockerSplashAttack::CTunableCharClassKraidShockerSplashAttack
 namespace CCharClassKraidShockerSplashAttack::CTunableCharClassKraidShockerSplashAttack { extern bool refl_fields_added asm("g_unk_71726f0868"); }
-namespace CCharClassKraidShockerSplashAttack::CTunableCharClassKraidShockerSplashAttack { extern UnkTunable refl_tunable asm("g_unk_71726f0840"); }
-void fn_71005e6ed4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassKraidShockerSplashAttack::CTunableCharClassKraidShockerSplashAttack { extern base::tunable::CTunable refl_tunable asm("g_unk_71726f0840"); }
+namespace CCharClassKraidShockerSplashAttack::CTunableCharClassKraidShockerSplashAttack { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71005e6ed4"); }
 namespace CCharClassKraidShockerSplashAttack::CTunableCharClassKraidShockerSplashAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -53,7 +52,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
-    fn_71005e6ed4(base::reflection::TunableRegistry(), &refl_tunable, "Kraid");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Kraid");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -77,4 +76,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassKraidShockerSplashAttack::CTunableCharClassKraidShockerSplashAttack
-DREAD_REFLECTED_CLASS(CCharClassKraidShockerSplashAttack::CTunableCharClassKraidShockerSplashAttack, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassKraidShockerSplashAttack::CTunableCharClassKraidShockerSplashAttack, base::tunable::CTunable);

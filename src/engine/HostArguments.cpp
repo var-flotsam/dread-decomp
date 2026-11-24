@@ -432,7 +432,7 @@ void fn_7100000d40() {
     fn_710006ce38(Singleton<UnkSoundHolder, 0x48, fn_710006cd9c>(g_unk_7101d47340), dt);
     fn_7100073af8(Singleton<UnkRumbleManager, 0x2210, fn_71000733e4>(g_unk_7101d47348), dt);
     fn_7100219db4(g_unk_7101d47300, 0.0f, 0.0f, 0.0f, false);
-    fn_710013dee8(Singleton<UnkTunableRegistry, 0x58, fn_710013ac14>(g_unk_7101d47350));
+    fn_710013dee8(Singleton<UnkTunableRegistry, 0x58, CTunableManager_Construct>(g_unk_7101d47350));
     fn_710119d31c(Singleton<UnkLanguage, 0x2068, fn_710119c020>(g_unk_7101d47358));
     fn_7100ee49f0(Singleton<void, 0xae8, fn_7100ee1f34>(reinterpret_cast<void*&>(g_unk_7101d47360)), dt);
     fn_7100d8ef04(Singleton<void, 0x4c8, fn_7100d8ced8>(g_unk_7101d47368), dt);

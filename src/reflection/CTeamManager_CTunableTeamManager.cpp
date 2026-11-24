@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CTeamManager::CTunableTeamManager
 namespace CTeamManager::CTunableTeamManager { extern bool refl_fields_added asm("g_unk_7172a0c2a0"); }
-namespace CTeamManager::CTunableTeamManager { extern UnkTunable refl_tunable asm("g_unk_7172a0c270"); }
-void fn_71011a6394(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CTeamManager::CTunableTeamManager { extern base::tunable::CTunable refl_tunable asm("g_unk_7172a0c270"); }
+namespace CTeamManager::CTunableTeamManager { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71011a6394"); }
 namespace CTeamManager::CTunableTeamManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -34,7 +33,7 @@ void refl_AddFields(CClass* cls) {
         return;
     DREAD_REFLECTED_FIELD(f32, "fCoordinatedAttacksMinTime", 0x24, (DefaultValue, 0.0f), (ShowInConfig, false));
     DREAD_REFLECTED_FIELD(f32, "fCoordinatedAttacksMaxTime", 0x28, (DefaultValue, 0.0f), (ShowInConfig, false));
-    fn_71011a6394(base::reflection::TunableRegistry(), &refl_tunable, "AI");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "AI");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -58,4 +57,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CTeamManager::CTunableTeamManager
-DREAD_REFLECTED_CLASS(CTeamManager::CTunableTeamManager, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CTeamManager::CTunableTeamManager, base::tunable::CTunable);

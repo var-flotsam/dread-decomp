@@ -1316,7 +1316,7 @@ address,size,name,name_source,subsystem,status
 0x710013a638,496,base::reflection::refl_InitType<base::global::CRntVector<base::tunable::CTunableManager*>>,reflection,engine/reflection,O
 0x710013a828,812,fn_710013a828,unknown,unknown,U
 0x710013ab54,192,fn_710013ab54,unknown,engine/reflection?,O
-0x710013ac14,88,fn_710013ac14,unknown,unknown,O
+0x710013ac14,88,CTunableManager_Construct,inferred,unknown,O
 0x710013ac6c,668,fn_710013ac6c,unknown,unknown,O
 0x710013af08,472,fn_710013af08,unknown,engine/reflection?,O
 0x710013b0e0,4408,fn_710013b0e0,unknown,unknown,m

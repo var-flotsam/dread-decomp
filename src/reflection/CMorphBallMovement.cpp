@@ -5,21 +5,20 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
@@ -77,8 +76,8 @@ DREAD_REFLECTED_CLASS(CMorphBallMovement, CPlayerMovement);
 namespace CMorphBallMovement::CTunableMorphBallMovement { extern bool refl_fields_added asm("g_unk_7172739438"); }
 void fn_710094ff98();
 void fn_710093d6cc(CFunction* fn, const char* name);
-namespace CMorphBallMovement::CTunableMorphBallMovement { extern UnkTunable refl_tunable asm("g_unk_71727393d8"); }
-void fn_710093d848(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CMorphBallMovement::CTunableMorphBallMovement { extern base::tunable::CTunable refl_tunable asm("g_unk_71727393d8"); }
+namespace CMorphBallMovement::CTunableMorphBallMovement { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710093d848"); }
 namespace CMorphBallMovement::CTunableMorphBallMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -105,7 +104,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fCornerAssistHorizontalVelocityToConsiderMoving", 0x50, (DefaultValue, 0.0f), (Description, "Minimum horizontal physics velocity to decide whether it's stationary or moving"));
     DREAD_REFLECTED_FIELD(f32, "fCornerAssistMovingAwayFromCornerThresholdFactor", 0x54, (DefaultValue, 0.0f), (Description, "When jumping against a corner, but hitting past the corner, this is the multiplier to MorphBall's radius to consider we're still close enough to the corner to apply assistance"));
     DREAD_REFLECTED_FIELD(f32, "fAirTimeBeforeSoundRelauch", 0x58, (DefaultValue, 1.0f));
-    fn_710093d848(base::reflection::TunableRegistry(), &refl_tunable, "MorphBall");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "MorphBall");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -129,7 +128,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CMorphBallMovement::CTunableMorphBallMovement
-DREAD_REFLECTED_CLASS(CMorphBallMovement::CTunableMorphBallMovement, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CMorphBallMovement::CTunableMorphBallMovement, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

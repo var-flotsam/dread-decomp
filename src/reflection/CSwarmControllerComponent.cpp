@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
 #include "base/reflection/ReflectedAttributes.h"
@@ -12,15 +13,13 @@ using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 template <class T> struct CGameLink;
 class CActor;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
@@ -54,8 +53,8 @@ DREAD_REFLECTED_CLASS(CSwarmControllerComponent, CComponent);
 
 // CSwarmControllerComponent::CTunableSwarmDamage
 namespace CSwarmControllerComponent::CTunableSwarmDamage { extern bool refl_fields_added asm("g_unk_7172710c78"); }
-namespace CSwarmControllerComponent::CTunableSwarmDamage { extern UnkTunable refl_tunable asm("g_unk_7172710c40"); }
-void fn_7100747540(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CSwarmControllerComponent::CTunableSwarmDamage { extern base::tunable::CTunable refl_tunable asm("g_unk_7172710c40"); }
+namespace CSwarmControllerComponent::CTunableSwarmDamage { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100747540"); }
 namespace CSwarmControllerComponent::CTunableSwarmDamage {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -69,7 +68,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMissileSplashDamageRadius", 0x2c, (DefaultValue, 30.0f), (Description, "Radius of the splash damage of the missile [30]"));
     DREAD_REFLECTED_FIELD(f32, "fSuperMissileSplashDamageRadius", 0x30, (DefaultValue, 60.0f), (Description, "Radius of the splash damage of the super missile [60]"));
     DREAD_REFLECTED_FIELD(f32, "fBeamRadius", 0x34, (DefaultValue, 25.0f), (Description, "Radius of the beam shots when calculating impacts [25]"));
-    fn_7100747540(base::reflection::TunableRegistry(), &refl_tunable, "Swarms damage");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Swarms damage");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -93,7 +92,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CSwarmControllerComponent::CTunableSwarmDamage
-DREAD_REFLECTED_CLASS(CSwarmControllerComponent::CTunableSwarmDamage, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CSwarmControllerComponent::CTunableSwarmDamage, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

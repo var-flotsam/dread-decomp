@@ -6,20 +6,19 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 namespace base::global { class CRntString; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CRntString>::Get();
 
@@ -55,8 +54,8 @@ DREAD_REFLECTED_CLASS(CPowerBombGun, CSecondaryGun);
 namespace CPowerBombGun::CTunablePowerBomb { extern bool refl_fields_added asm("g_unk_7172727d48"); }
 void fn_7100856ee4();
 void fn_71008560b4(CFunction* fn, const char* name);
-namespace CPowerBombGun::CTunablePowerBomb { extern UnkTunable refl_tunable asm("g_unk_7172727ce0"); }
-void fn_7100856230(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CPowerBombGun::CTunablePowerBomb { extern base::tunable::CTunable refl_tunable asm("g_unk_7172727ce0"); }
+namespace CPowerBombGun::CTunablePowerBomb { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100856230"); }
 namespace CPowerBombGun::CTunablePowerBomb {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -71,7 +70,7 @@ void refl_AddFields(CClass* cls) {
         fn_71008560b4(fn, "_sDamageSource_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CRntString, "sDamageSource", (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())), (Description, base::global::CRntString("Source of the damage to be dealt")));
     DREAD_REFLECTED_FIELD(f32, "fHeat", 0x60, (DefaultValue, 0.7f), (Description, "Maximun damage to the shield"));
-    fn_7100856230(base::reflection::TunableRegistry(), &refl_tunable, "");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -95,4 +94,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CPowerBombGun::CTunablePowerBomb
-DREAD_REFLECTED_CLASS(CPowerBombGun::CTunablePowerBomb, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CPowerBombGun::CTunablePowerBomb, base::tunable::CTunable);

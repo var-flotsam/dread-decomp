@@ -221,10 +221,14 @@ class Selection(unittest.TestCase):
         classes, _ = gc.selected(TYPES, FIELDS, gc.NO_EXTRA, None, refl, why)
         self.assertEqual(classes, ["base::core::CRoot"])  # CMid and so CLeaf are left out
         self.assertIn("opens a namespace", why["CLeaf"])
-        # a namespace-form subclass declares its parent's getter in the parent's namespace
+        # a namespace-form subclass of a declared class takes the parent's getter from the class
+        # (DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT): it opens no namespace of the parent's name
         units = [gc.Unit("CMid.cpp", set(), {"CMid": "base::core::CRoot", "CLeaf": "CMid"}, set())]
-        self.assertEqual(gc.clashes({"base::core::CRoot", "CMid"}, TYPES, units), {"CMid": "CMid.cpp"})
+        self.assertEqual(gc.clashes({"base::core::CRoot", "CMid"}, TYPES, units), {})
         self.assertEqual(gc.clashes({"base::core::CRoot", "CMid", "CLeaf"}, TYPES, units), {})
+        # a namespace-form class nested in the declared parent's name still opens the parent's namespace
+        units = [gc.Unit("CMid.cpp", {"CMid"}, {"CMid::CInner": "CMid"}, set())]
+        self.assertEqual(gc.clashes({"base::core::CRoot", "CMid"}, TYPES, units), {"CMid": "CMid.cpp"})
         # a type src/reflection/ names inside a class keeps the class out
         refl = ({"base::core::CRoot", "CMid"}, {"CLeaf": body}, {"CLeaf"}, [])
         self.assertEqual(gc.selected(TYPES, FIELDS, gc.NO_EXTRA, None, refl)[0], ["CMid", "base::core::CRoot"])
@@ -286,9 +290,49 @@ class DeclaredClassPass(unittest.TestCase):
 
     def test_kept_when_an_offset_disagrees_or_the_parent_is_not_declared(self):
         text = '#include "base/reflection/ReflectedClass.h"\n' + BLOCK
-        self.assertEqual(self.convert(BLOCK, {("CLeaf", "bOn"): 0x1D, ("CLeaf", "iCount"): 0x20}), text)
         self.assertEqual(gr.with_declared_classes(text, {"CLeaf": "reflected/CLeaf.h"}, self.SIZES, self.OFFSETS),
                          text)
+        wrong = {("CLeaf", "bOn"): 0x1D, ("CLeaf", "iCount"): 0x20}
+        self.assertEqual(self.convert(BLOCK, wrong), text)  # the unit does not include its parent's class
+
+    def test_namespace_form_under_a_declared_parent_the_unit_includes(self):
+        wrong = {("CLeaf", "bOn"): 0x1D, ("CLeaf", "iCount"): 0x20}
+        plain = '#include "base/reflection/ReflectedClass.h"\n' + BLOCK
+        # the parent's header is included: the parent's getter is the class's
+        text = '#include "reflected/CMid.h"\n' + BLOCK
+        out = self.convert(text, wrong)
+        self.assertNotIn("reflected/CLeaf.h", out)
+        self.assertIn("namespace CLeaf {\n", out)
+        self.assertTrue(out.endswith("}  // namespace CLeaf\nDREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CLeaf, CMid);\n"))
+        self.assertEqual(out.replace("_WITH_DECLARED_PARENT", "").replace('#include "reflected/CMid.h"\n', ""), plain)
+        # the pass is stable, and tools/gen_classes.py reads the block as it did
+        self.assertEqual(gr.with_declared_classes(out, self.INCLUDES, self.SIZES, wrong), out)
+        m = gc.CLASS_BLOCK.search(out)
+        self.assertEqual((m.group(1), m.group(4)), ("CLeaf", "CMid"))
+        # so is a class derived from the parent (another class of the unit, in the declared form)
+        includes = {**self.INCLUDES, "CSide": "reflected/CSide.h"}
+        text = '#include "base/reflection/ReflectedClass.h"\n#include "reflected/CSide.h"\n' + BLOCK
+        out = gr.with_declared_classes(text, includes, self.SIZES, wrong, {"CSide": ["CSide", "CMid"]})
+        self.assertTrue(out.endswith("DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CLeaf, CMid);\n"))
+        self.assertEqual(gr.with_declared_classes(text, includes, self.SIZES, wrong, {"CSide": ["CSide"]}), text)
+
+    def test_parent_header_as_the_unit_is_first_written(self):
+        headers = {"CMid": "reflected/CMid.h", "base::core::CRoot": "reflected/base/core/CRoot.h"}
+        bases = {"CMid": ["CMid", "base::core::CRoot"], "base::core::CRoot": ["base::core::CRoot"]}
+        body = ["extern CMid g_unk_7100000020;", "namespace CLeaf {", "}  // namespace CLeaf",
+                "DREAD_REFLECTED_CLASS(CLeaf, CMid);"]
+        # a declared parent of another unit that the class's lines name as a type: its header, for
+        # DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT
+        self.assertEqual(gr.declared_parent_header("CMid", {"CLeaf"}, body, headers, bases), "reflected/CMid.h")
+        # named by the getter's macro alone, or as a scope: the class is not visible, the namespace form stands
+        self.assertIsNone(gr.declared_parent_header("CMid", {"CLeaf"}, body[1:], headers, bases))
+        self.assertIsNone(gr.declared_parent_header(
+            "CMid", {"CLeaf"}, ["x = CMid::refl_GetClass();", "y = base::CMid();", *body[1:]], headers, bases))
+        # the parent, or a base of it, is a class of this unit (a namespace until the final pass): not yet
+        self.assertIsNone(gr.declared_parent_header("CMid", {"CMid", "CLeaf"}, body, headers, bases))
+        self.assertIsNone(gr.declared_parent_header("CMid", {"base::core::CRoot", "CLeaf"}, body, headers, bases))
+        # a parent that is not declared
+        self.assertIsNone(gr.declared_parent_header("COther", {"CLeaf"}, body, headers, bases))
 
     def test_unused_usings_of_the_namespace_form(self):
         text = ("using base::reflection::ClassOf;\nusing base::reflection::Destroy;\nusing base::reflection::CClass;\n"

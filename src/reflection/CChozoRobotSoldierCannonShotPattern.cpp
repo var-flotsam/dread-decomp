@@ -7,17 +7,16 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 #include "reflected/CChozoRobotSoldierCannonShotPattern.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::Destroy;
@@ -52,8 +51,8 @@ DREAD_REFLECTED_DECLARED_ROOT_CLASS(CChozoRobotSoldierCannonShotPattern);
 
 // CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack
 namespace CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack { extern bool refl_fields_added asm("g_unk_71726ca6c0"); }
-namespace CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack { extern UnkTunable refl_tunable asm("g_unk_71726ca688"); }
-void fn_710045e870(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack { extern base::tunable::CTunable refl_tunable asm("g_unk_71726ca688"); }
+namespace CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710045e870"); }
 namespace CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -66,7 +65,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToFinishAttack", 0x2c, (DefaultValue, 0.25f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToWaitAfterBeamCharged", 0x30, (DefaultValue, 0.75f));
-    fn_710045e870(base::reflection::TunableRegistry(), &refl_tunable, "ChozoRobotSoldier");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "ChozoRobotSoldier");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -90,7 +89,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack
-DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack, base::tunable::CTunable);
 
 // CCharClassChozoRobotSoldierCannonShotAttack
 namespace CCharClassChozoRobotSoldierCannonShotAttack {

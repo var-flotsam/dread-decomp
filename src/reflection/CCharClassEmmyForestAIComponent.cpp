@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -42,8 +41,8 @@ DREAD_REFLECTED_CLASS(CCharClassEmmyForestAIComponent, CCharClassEmmyAIComponent
 
 // CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent
 namespace CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent { extern bool refl_fields_added asm("g_unk_71726dbb58"); }
-namespace CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726db920"); }
-void fn_71004f2204(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726db920"); }
+namespace CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71004f2204"); }
 namespace CEmmyConfiguration { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent {
 void refl_AddAttributes(CClass*) {}
@@ -58,7 +57,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fHeadHeatIncrementFactorForGround", 0x22c, (DefaultValue, 0.1f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToStartHeatRecover", 0x230, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fHeadHeatRecoveredPerSecond", 0x234, (DefaultValue, 0.15f));
-    fn_71004f2204(base::reflection::TunableRegistry(), &refl_tunable, "Emmy");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Emmy");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -82,4 +81,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent
-DREAD_REFLECTED_CLASS(CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassEmmyForestAIComponent::CTunableEmmyForestAIComponent, base::tunable::CTunable);

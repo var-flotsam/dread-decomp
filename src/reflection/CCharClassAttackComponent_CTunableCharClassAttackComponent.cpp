@@ -7,13 +7,12 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -21,7 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 namespace base::global { class CStrId; }
 namespace base::global { template <class, class> class CRntSmallDictionary; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::object asm("g_unk_7101d5f2b0");
@@ -33,8 +32,8 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassAttackComponent::CTunableCharClassAttackComponent
 namespace CCharClassAttackComponent::CTunableCharClassAttackComponent { extern bool refl_fields_added asm("g_unk_71727165a8"); }
-namespace CCharClassAttackComponent::CTunableCharClassAttackComponent { extern UnkTunable refl_tunable asm("g_unk_7172716160"); }
-void fn_7100789ca4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassAttackComponent::CTunableCharClassAttackComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_7172716160"); }
+namespace CCharClassAttackComponent::CTunableCharClassAttackComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100789ca4"); }
 namespace CCharClassAttackComponent::CTunableCharClassAttackComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -306,7 +305,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDamageFulmiteBellyMineExplosionDefault", 0x438, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageInfesterBallExplosionDefault", 0x43c, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageCooldownXBossLaser", 0x440, (DefaultValue, 50.0f));
-    fn_7100789ca4(base::reflection::TunableRegistry(), &refl_tunable, "Damage");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Damage");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -330,7 +329,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassAttackComponent::CTunableCharClassAttackComponent
-DREAD_REFLECTED_CLASS(CCharClassAttackComponent::CTunableCharClassAttackComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassAttackComponent::CTunableCharClassAttackComponent, base::tunable::CTunable);
 
 // CCharClassAttackComponent
 void fn_710078d8c0();

@@ -7,14 +7,13 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -23,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent
 namespace CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent { extern bool refl_fields_added asm("g_unk_71726fa158"); }
-namespace CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726fa0f8"); }
-void fn_7100637c8c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726fa0f8"); }
+namespace CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100637c8c"); }
 namespace CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -48,7 +47,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fWaitTimeToReturnPatrol", 0x58, (DefaultValue, 2.0f), (ShowInDevConfig, true), (Description, "Wait time before going back to patrol"), (MinValue, 0.0f), (MaxValue, 5.0f), (ControlFloatStep, 0.25f), (InternalDevTag, "RegularEnemies|PoisonFly"));
     DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x5c, (DefaultValue, 2350.0f), (ShowInDevConfig, true), (Description, "Motion speed"), (MinValue, 0.0f), (MaxValue, 5000.0f), (ControlFloatStep, 50.0f), (InternalDevTag, "RegularEnemies|PoisonFly"));
     DREAD_REFLECTED_FIELD(f32, "fMinAnticipationRelocationDistance", 0x38, (DefaultValue, 150.0f));
-    fn_7100637c8c(base::reflection::TunableRegistry(), &refl_tunable, "PoisonFly");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "PoisonFly");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -72,7 +71,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent
-DREAD_REFLECTED_CLASS(CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent, base::tunable::CTunable);
 
 // CCharClassPoisonFlyAIComponent
 namespace CCharClassPoisonFlyDiveAttack { const base::reflection::CClass* refl_GetClass(); }

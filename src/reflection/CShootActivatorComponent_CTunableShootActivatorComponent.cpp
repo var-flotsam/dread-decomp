@@ -7,20 +7,19 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 class CActor;
 template <class> class CGameLink;
 namespace base::global { template <class> class CRntVector; }
@@ -33,8 +32,8 @@ template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELin
 
 // CShootActivatorComponent::CTunableShootActivatorComponent
 namespace CShootActivatorComponent::CTunableShootActivatorComponent { extern bool refl_fields_added asm("g_unk_717272c480"); }
-namespace CShootActivatorComponent::CTunableShootActivatorComponent { extern UnkTunable refl_tunable asm("g_unk_717272c450"); }
-void fn_710088d830(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CShootActivatorComponent::CTunableShootActivatorComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_717272c450"); }
+namespace CShootActivatorComponent::CTunableShootActivatorComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710088d830"); }
 namespace CShootActivatorComponent::CTunableShootActivatorComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -46,7 +45,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fVolumeMin", 0x24, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fDecreaseVolumeFactor", 0x28, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fPitchMin", 0x2c, (DefaultValue, 0.0f));
-    fn_710088d830(base::reflection::TunableRegistry(), &refl_tunable, "ShootActivator");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "ShootActivator");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -70,7 +69,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CShootActivatorComponent::CTunableShootActivatorComponent
-DREAD_REFLECTED_CLASS(CShootActivatorComponent::CTunableShootActivatorComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CShootActivatorComponent::CTunableShootActivatorComponent, base::tunable::CTunable);
 
 // CCharClassShootActivatorComponent
 namespace CCharClassShootActivatorComponent {

@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent
 namespace CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent { extern bool refl_fields_added asm("g_unk_71726f9150"); }
-namespace CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726f9128"); }
-void fn_710062ba18(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726f9128"); }
+namespace CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710062ba18"); }
 namespace CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -33,7 +32,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fHeadAngleInterpolationSpeed", 0x24, (DefaultValue, 90.0f));
-    fn_710062ba18(base::reflection::TunableRegistry(), &refl_tunable, "Obsydomithon");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Obsydomithon");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -57,7 +56,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent
-DREAD_REFLECTED_CLASS(CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent, base::tunable::CTunable);
 
 // CCharClassObsydomithonAIComponent
 namespace CCharClassObsydomithonAttack { const base::reflection::CClass* refl_GetClass(); }

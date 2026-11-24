@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorXSpitAttack::CTunableCharClassChozoWarriorXSpitAttack
 namespace CCharClassChozoWarriorXSpitAttack::CTunableCharClassChozoWarriorXSpitAttack { extern bool refl_fields_added asm("g_unk_71726ce528"); }
-namespace CCharClassChozoWarriorXSpitAttack::CTunableCharClassChozoWarriorXSpitAttack { extern UnkTunable refl_tunable asm("g_unk_71726ce4f8"); }
-void fn_710047e184(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassChozoWarriorXSpitAttack::CTunableCharClassChozoWarriorXSpitAttack { extern base::tunable::CTunable refl_tunable asm("g_unk_71726ce4f8"); }
+namespace CCharClassChozoWarriorXSpitAttack::CTunableCharClassChozoWarriorXSpitAttack { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710047e184"); }
 namespace CCharClassChozoWarriorXSpitAttack::CTunableCharClassChozoWarriorXSpitAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -35,7 +34,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fSplashRadius", 0x2c, (DefaultValue, 70.0f));
-    fn_710047e184(base::reflection::TunableRegistry(), &refl_tunable, "ChozoWarriorXSpitAttack");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "ChozoWarriorXSpitAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -59,7 +58,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassChozoWarriorXSpitAttack::CTunableCharClassChozoWarriorXSpitAttack
-DREAD_REFLECTED_CLASS(CCharClassChozoWarriorXSpitAttack::CTunableCharClassChozoWarriorXSpitAttack, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassChozoWarriorXSpitAttack::CTunableCharClassChozoWarriorXSpitAttack, base::tunable::CTunable);
 
 // CCharClassChozoWarriorXSpitAttack
 namespace CCharClassChozoWarriorXSpitAttack {

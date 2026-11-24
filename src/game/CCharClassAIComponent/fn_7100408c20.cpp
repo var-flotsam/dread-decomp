@@ -18,7 +18,6 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 #include "base/reflection/TypeObject.h"
 enum class ECutPathMode : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ECutPathMode>::object asm("g_unk_71726b1db0");

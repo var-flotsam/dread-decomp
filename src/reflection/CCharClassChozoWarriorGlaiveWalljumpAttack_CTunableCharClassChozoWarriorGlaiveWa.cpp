@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack
 namespace CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack { extern bool refl_fields_added asm("g_unk_71726d05d0"); }
-namespace CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack { extern UnkTunable refl_tunable asm("g_unk_71726d05a0"); }
-void fn_7100492bb4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack { extern base::tunable::CTunable refl_tunable asm("g_unk_71726d05a0"); }
+namespace CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100492bb4"); }
 namespace CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -35,7 +34,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, 200.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 2000.0f));
     DREAD_REFLECTED_FIELD(f32, "fSkipAttackProb", 0x2c, (DefaultValue, 0.5f));
-    fn_7100492bb4(base::reflection::TunableRegistry(), &refl_tunable, "ChozoWarriorGlaiveWalljumpAttack");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "ChozoWarriorGlaiveWalljumpAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -59,7 +58,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack
-DREAD_REFLECTED_CLASS(CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack, base::tunable::CTunable);
 
 // CCharClassChozoWarriorGlaiveWalljumpAttack
 namespace CCharClassChozoWarriorGlaiveWalljumpAttack {

@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CGrappleBeamComponent::CTunableGrappleBeamComponent
 namespace CGrappleBeamComponent::CTunableGrappleBeamComponent { extern bool refl_fields_added asm("g_unk_7172723310"); }
-namespace CGrappleBeamComponent::CTunableGrappleBeamComponent { extern UnkTunable refl_tunable asm("g_unk_71727232d8"); }
-void fn_71008174c0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CGrappleBeamComponent::CTunableGrappleBeamComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71727232d8"); }
+namespace CGrappleBeamComponent::CTunableGrappleBeamComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71008174c0"); }
 namespace CGrappleBeamComponent::CTunableGrappleBeamComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -36,7 +35,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fRetractSpeed", 0x28, (DefaultValue, 8000.0f), (Description, "retract speed"));
     DREAD_REFLECTED_FIELD(f32, "fMaxLength", 0x2c, (DefaultValue, 1100.0f), (Description, "max length"));
     DREAD_REFLECTED_FIELD(f32, "fMaxLengthToStartRetract", 0x30, (DefaultValue, 1100.0f), (Description, "max length before retracting"));
-    fn_71008174c0(base::reflection::TunableRegistry(), &refl_tunable, "Grapple");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Grapple");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -60,7 +59,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CGrappleBeamComponent::CTunableGrappleBeamComponent
-DREAD_REFLECTED_CLASS(CGrappleBeamComponent::CTunableGrappleBeamComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CGrappleBeamComponent::CTunableGrappleBeamComponent, base::tunable::CTunable);
 
 // CGrappleBeamComponent
 namespace CGrappleBeamComponent {

@@ -7,13 +7,12 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -21,7 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 class CActor;
 template <class> class CGameLink;
@@ -39,8 +38,8 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 namespace CEmmyAIComponent::CTunableEmmyAIComponent { extern bool refl_fields_added asm("g_unk_71726e0bb0"); }
 void fn_7100564f50();
 void fn_710053b4fc(CFunction* fn, const char* name);
-namespace CEmmyAIComponent::CTunableEmmyAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726e0aa8"); }
-void fn_710053b678(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CEmmyAIComponent::CTunableEmmyAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726e0aa8"); }
+namespace CEmmyAIComponent::CTunableEmmyAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710053b678"); }
 namespace CEmmyAIComponent::CTunableEmmyAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -118,7 +117,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bAlwaysWinQTE1", 0xf5, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fCentralUnitAlarmVolumeOnGrab", 0xf8, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fTimeInFrustumToMarkEmmySeen", 0xfc, (DefaultValue, 1.0f));
-    fn_710053b678(base::reflection::TunableRegistry(), &refl_tunable, "Emmy");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Emmy");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -142,7 +141,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CEmmyAIComponent::CTunableEmmyAIComponent
-DREAD_REFLECTED_CLASS(CEmmyAIComponent::CTunableEmmyAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CEmmyAIComponent::CTunableEmmyAIComponent, base::tunable::CTunable);
 
 // CEmmyAIComponent
 void fn_7100565044();

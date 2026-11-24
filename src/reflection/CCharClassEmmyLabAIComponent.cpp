@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -42,8 +41,8 @@ DREAD_REFLECTED_CLASS(CCharClassEmmyLabAIComponent, CCharClassEmmyAIComponent);
 
 // CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent
 namespace CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent { extern bool refl_fields_added asm("g_unk_71726dc228"); }
-namespace CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726dbfa0"); }
-void fn_71004f687c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726dbfa0"); }
+namespace CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71004f687c"); }
 namespace CEmmyConfiguration { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent {
 void refl_AddAttributes(CClass*) {}
@@ -78,7 +77,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSpeedBoosterPhase2ProtectorDestroyedOutOfCameraCloseSpeed", 0x27c, (DefaultValue, 3.0f), (ShowInConfig, true), (Description, "Speed booster phase 2 protector destroyed out of cmaera close speed"), (MinValue, 0.05f), (MaxValue, 4.0f), (ControlFloatStep, 0.05f), (InternalTag, "Emmy|EmmyLab|SpeedBoost"));
     DREAD_REFLECTED_FIELD(f32, "fSpeedBoosterPhase2ProtectionHeadImpactedSpeedFactor", 0x280, (DefaultValue, 0.5f), (ShowInConfig, true), (Description, "Speed booster phase 2 protection head impacted speed factor"), (MinValue, 0.05f), (MaxValue, 4.0f), (ControlFloatStep, 0.05f), (InternalTag, "Emmy|EmmyLab|SpeedBoost"));
     DREAD_REFLECTED_FIELD(f32, "fSpeedBoosterAudioVolumeIncrease", 0x284, (DefaultValue, 1.5f), (ShowInConfig, true), (Description, "Speed booster VolumeIncrease"), (MinValue, 1.0f), (MaxValue, 2.0f), (ControlFloatStep, 0.05f), (InternalTag, "Emmy|EmmyLab|SpeedBoost"));
-    fn_71004f687c(base::reflection::TunableRegistry(), &refl_tunable, "Emmy");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Emmy");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -102,4 +101,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent
-DREAD_REFLECTED_CLASS(CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent, base::tunable::CTunable);

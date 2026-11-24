@@ -6,26 +6,25 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CHeatableShieldComponent::CTunableHeatableShield
 namespace CHeatableShieldComponent::CTunableHeatableShield { extern bool refl_fields_added asm("g_unk_7172729370"); }
-namespace CHeatableShieldComponent::CTunableHeatableShield { extern UnkTunable refl_tunable asm("g_unk_7172729300"); }
-void fn_710086a398(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CHeatableShieldComponent::CTunableHeatableShield { extern base::tunable::CTunable refl_tunable asm("g_unk_7172729300"); }
+namespace CHeatableShieldComponent::CTunableHeatableShield { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710086a398"); }
 namespace CHeatableShieldComponent::CTunableHeatableShield {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -41,7 +40,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxRGBColor", 0x64, (DefaultValue, 1.0f), (Description, "Maximum value of red, green or blue [0..1]"));
     DREAD_REFLECTED_FIELD(f32, "fStartEmmitingParticlesOnHeat", 0x68, (DefaultValue, 0.0f), (Description, "Heat value that when reached causes the heat particles to be spawned."));
     DREAD_REFLECTED_FIELD(f32, "fStopEmmitingParticlesOnCooldown", 0x6c, (DefaultValue, 0.1f), (Description, "Heat value that when reduced to from a higher point causes the heat particles to be despawned."));
-    fn_710086a398(base::reflection::TunableRegistry(), &refl_tunable, "");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -65,7 +64,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CHeatableShieldComponent::CTunableHeatableShield
-DREAD_REFLECTED_CLASS(CHeatableShieldComponent::CTunableHeatableShield, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CHeatableShieldComponent::CTunableHeatableShield, base::tunable::CTunable);
 
 // CHeatableShieldComponent
 void fn_710086ce20();

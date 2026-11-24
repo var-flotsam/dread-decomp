@@ -6,20 +6,19 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 namespace base::math { class CVector3D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
 
@@ -31,8 +30,8 @@ void fn_71011862f0();
 void fn_71011834f4(CFunction* fn, const char* name);
 void fn_71011864b0();
 void fn_7101183670(CFunction* fn, const char* name);
-namespace CCreditsMode::CTunableCredits { extern UnkTunable refl_tunable asm("g_unk_7172a0b630"); }
-void fn_71011837ec(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCreditsMode::CTunableCredits { extern base::tunable::CTunable refl_tunable asm("g_unk_7172a0b630"); }
+namespace CCreditsMode::CTunableCredits { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71011837ec"); }
 namespace CCreditsMode::CTunableCredits {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -53,7 +52,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_vColorEntry_SetterFunction")
         fn_7101183670(fn, "_m_vColorEntry_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vColorEntry", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}), (Description, base::global::CRntString("Entry color")));
-    fn_71011837ec(base::reflection::TunableRegistry(), &refl_tunable, "CREDITS");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "CREDITS");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -77,7 +76,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCreditsMode::CTunableCredits
-DREAD_REFLECTED_CLASS(CCreditsMode::CTunableCredits, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCreditsMode::CTunableCredits, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

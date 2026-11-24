@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -42,8 +41,8 @@ DREAD_REFLECTED_CLASS(CCharClassCentralUnitCannonAIComponent, CCharClassAICompon
 
 // CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent
 namespace CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent { extern bool refl_fields_added asm("g_unk_71726c32d8"); }
-namespace CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726c32a0"); }
-void fn_71003ff338(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726c32a0"); }
+namespace CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_71003ff338"); }
 namespace CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -56,7 +55,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fAimAngleTolerance", 0x28, (DefaultValue, 0.1f));
     DREAD_REFLECTED_FIELD(f32, "fAttackPreparationTime", 0x2c, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fAttackCooldownTime", 0x30, (DefaultValue, 1.0f));
-    fn_71003ff338(base::reflection::TunableRegistry(), &refl_tunable, "CentralUnitCannon");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "CentralUnitCannon");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -80,4 +79,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent
-DREAD_REFLECTED_CLASS(CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent, base::tunable::CTunable);

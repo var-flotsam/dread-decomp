@@ -193,8 +193,12 @@ class Parse(unittest.TestCase):
                bl(ra.TUNABLE_REGISTRY_CTOR),
                bl(reg, **{"1": ("ptr", obj), "2": ("str", "CTunableFoo")})]
         decls, src = run_parse(evs)
-        self.assertIn(f"extern UnkTunableRegistry* g_unk_{slot:x};", decls)
-        self.assertIn('    fn_7100dddd00(registry, &g_unk_7101710000, "CTunableFoo");', src)
+        self.assertIn(f"extern base::tunable::CTunableManager* g_unk_{slot:x};", decls)
+        self.assertIn("extern base::tunable::CTunable g_unk_7101710000;", decls)
+        self.assertIn("base::tunable::CTunable* fn_7100dddd00(base::tunable::CTunableManager* manager, "
+                      "base::tunable::CTunable* tunable, const char* category);", decls)
+        self.assertIn("        CTunableManager_Construct(manager);", src)
+        self.assertIn('    fn_7100dddd00(manager, &g_unk_7101710000, "CTunableFoo");', src)
         self.assertIn("fn_71000839a0(0x40, 0x8)", src)
 
     def test_global_tunable_registry(self):
@@ -203,8 +207,8 @@ class Parse(unittest.TestCase):
                bl(ra.TUNABLE_REGISTRY_CTOR),
                bl(reg, **{"1": ("ptr", obj), "2": ("str", "CTunableFoo")})]
         decls, src = run_parse(evs)
-        self.assertNotIn(f"extern UnkTunableRegistry* g_unk_{ra.TUNABLE_REGISTRY:x};", decls)
-        self.assertIn('    fn_7100dddd00(base::reflection::TunableRegistry(), &g_unk_7101710000, "CTunableFoo");', src)
+        self.assertNotIn(f"extern base::tunable::CTunableManager* g_unk_{ra.TUNABLE_REGISTRY:x};", decls)
+        self.assertIn('    fn_7100dddd00(base::tunable::TunableManager(), &g_unk_7101710000, "CTunableFoo");', src)
         self.assertNotIn("fn_71000839a0", src)
 
     def test_unknown_shapes(self):

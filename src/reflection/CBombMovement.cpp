@@ -5,15 +5,14 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -52,8 +51,8 @@ DREAD_REFLECTED_CLASS(CBombMovement, CWeaponMovement);
 
 // CBombMovement::CTunableBombMovement
 namespace CBombMovement::CTunableBombMovement { extern bool refl_fields_added asm("g_unk_7172753b08"); }
-namespace CBombMovement::CTunableBombMovement { extern UnkTunable refl_tunable asm("g_unk_7172753ad0"); }
-void fn_7100aa9c14(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CBombMovement::CTunableBombMovement { extern base::tunable::CTunable refl_tunable asm("g_unk_7172753ad0"); }
+namespace CBombMovement::CTunableBombMovement { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100aa9c14"); }
 namespace CBombMovement::CTunableBombMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -67,7 +66,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fExplosionRadiusPlayer", 0x2c, (DefaultValue, 100.0f), (Description, "Final explosion radius to hit player"));
     DREAD_REFLECTED_FIELD(f32, "fExplosionExpansionTime", 0x30, (DefaultValue, 0.35f), (Description, "Time it takes for the explosion radius to get to the final one"));
     DREAD_REFLECTED_FIELD(f32, "fExplosionLifeTime", 0x34, (DefaultValue, 0.5f), (Description, "Time after bomb explodes until it can be deployed again (includes the time it takes for the bomb to expand)"));
-    fn_7100aa9c14(base::reflection::TunableRegistry(), &refl_tunable, "");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -91,7 +90,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CBombMovement::CTunableBombMovement
-DREAD_REFLECTED_CLASS(CBombMovement::CTunableBombMovement, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CBombMovement::CTunableBombMovement, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

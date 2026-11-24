@@ -7,14 +7,13 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -23,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent
 namespace CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent { extern bool refl_fields_added asm("g_unk_71726e7310"); }
-namespace CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726e72b8"); }
-void fn_7100598718(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent { extern base::tunable::CTunable refl_tunable asm("g_unk_71726e72b8"); }
+namespace CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100598718"); }
 namespace CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -46,7 +45,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fJumpTargetYOffset1", 0x4c, (DefaultValue, 70.0f), (ShowInDevConfig, true), (Description, "Aiming Y offset 1"), (MinValue, -200.0f), (MaxValue, 200.0f), (ControlFloatStep, 5.0f), (InternalDevTag, "RegularEnemies|Gooplot"));
     DREAD_REFLECTED_FIELD(f32, "fJumpTargetYOffset2", 0x50, (DefaultValue, 0.0f), (ShowInDevConfig, true), (Description, "Aiming Y offset 2"), (MinValue, -200.0f), (MaxValue, 200.0f), (ControlFloatStep, 5.0f), (InternalDevTag, "RegularEnemies|Gooplot"));
     DREAD_REFLECTED_FIELD(f32, "fJumpTargetYOffset3", 0x54, (DefaultValue, -70.0f), (ShowInDevConfig, true), (Description, "Aiming Y offset 3"), (MinValue, -200.0f), (MaxValue, 200.0f), (ControlFloatStep, 5.0f), (InternalDevTag, "RegularEnemies|Gooplot"));
-    fn_7100598718(base::reflection::TunableRegistry(), &refl_tunable, "Gooplot");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Gooplot");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -70,7 +69,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent
-DREAD_REFLECTED_CLASS(CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent, base::tunable::CTunable);
 
 // CCharClassGooplotAIComponent
 namespace CCharClassGooplotJumpAttack { const base::reflection::CClass* refl_GetClass(); }

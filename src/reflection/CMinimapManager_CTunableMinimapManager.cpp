@@ -6,20 +6,19 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 namespace base::math { class CVector3D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -63,8 +62,8 @@ void fn_7100eac044();
 void fn_7100e85400(CFunction* fn, const char* name);
 void fn_7100eac1cc();
 void fn_7100e8557c(CFunction* fn, const char* name);
-namespace CMinimapManager::CTunableMinimapManager { extern UnkTunable refl_tunable asm("g_unk_71727ca410"); }
-void fn_7100e856f8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CMinimapManager::CTunableMinimapManager { extern base::tunable::CTunable refl_tunable asm("g_unk_71727ca410"); }
+namespace CMinimapManager::CTunableMinimapManager { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100e856f8"); }
 namespace CMinimapManager::CTunableMinimapManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -189,7 +188,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_bAutoFadeEnabled_SetterFunction")
         fn_7100e8557c(fn, "_bAutoFadeEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bAutoFadeEnabled", (DefaultValue, true));
-    fn_7100e856f8(base::reflection::TunableRegistry(), &refl_tunable, "MinimapManager");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "MinimapManager");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -213,7 +212,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CMinimapManager::CTunableMinimapManager
-DREAD_REFLECTED_CLASS(CMinimapManager::CTunableMinimapManager, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CMinimapManager::CTunableMinimapManager, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

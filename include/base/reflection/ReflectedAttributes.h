@@ -73,8 +73,9 @@ struct CFunction {
 };
 static_assert(sizeof(CFunction) == 0xb8, "function array stride");
 
-struct UnkTunableRegistry;  // 0x58 bytes, created on first use by the CTunable* field functions
-struct UnkTunable;          // the global a CTunable* class registers
+// The hand-written sources' older name for the object a CTunable* class registers with the tunable manager
+// (a base::tunable::CTunable; the manager is in base/tunable/CTunableManager.h), which they declare themselves.
+struct UnkTunable;
 
 // A value passed type-erased: its type's descriptor and where it is.
 struct TypedValueRef {
@@ -110,10 +111,6 @@ base::reflection::CFunction* AddReflectedFunction(base::reflection::CClass* cls,
 
 // Resize a function's parameter attribute containers (0x38 bytes each, at +0x88) to `count`.
 void ResizeParameterAttributes(base::reflection::CFunction* fn, u32 count);
-
-// Allocation (size, flags; the flags are 0x3f for the tunable registry), and the registry's
-// constructor.
-void fn_710013ac14(base::reflection::UnkTunableRegistry* self);
 
 // The CRntString inside the string the global empty id base::global::CStrId::Empty() (base/global/CStrId.h)
 // points to (+0x10), whose u32 at +0x44 counts these uses; default values copy it.

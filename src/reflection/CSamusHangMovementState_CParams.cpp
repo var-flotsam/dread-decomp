@@ -6,15 +6,14 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 #include "reflected/CSamusHangMovementState/CParams.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::Destroy;
@@ -42,8 +41,8 @@ DREAD_REFLECTED_DECLARED_CLASS(CSamusHangMovementState::CParams, CSamusMovementS
 
 // CSamusHangMovementState::CTunableSamusHangMovementState
 namespace CSamusHangMovementState::CTunableSamusHangMovementState { extern bool refl_fields_added asm("g_unk_717273bf78"); }
-namespace CSamusHangMovementState::CTunableSamusHangMovementState { extern UnkTunable refl_tunable asm("g_unk_717273bf50"); }
-void fn_710099fd60(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CSamusHangMovementState::CTunableSamusHangMovementState { extern base::tunable::CTunable refl_tunable asm("g_unk_717273bf50"); }
+namespace CSamusHangMovementState::CTunableSamusHangMovementState { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_710099fd60"); }
 namespace CSamusHangMovementState::CTunableSamusHangMovementState {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -55,7 +54,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bAnalogAimLimitAngles", 0x21, (DefaultValue, false), (Description, "Whether to apply limits to analog aim while hanging"));
     DREAD_REFLECTED_FIELD(bool, "bAllowPreInputResetClimbToMorphBall", 0x22, (DefaultValue, false), (Description, "If player is pressing the stick to climb right after hanging and we would convert to MorphBall by climbing, should we allow this stick-based climb?"));
     DREAD_REFLECTED_FIELD(f32, "fTimeToIgnoreFastClimbAfterMorphBall", 0x24, (DefaultValue, 0.6f));
-    fn_710099fd60(base::reflection::TunableRegistry(), &refl_tunable, "Hang");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Hang");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -79,4 +78,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CSamusHangMovementState::CTunableSamusHangMovementState
-DREAD_REFLECTED_CLASS(CSamusHangMovementState::CTunableSamusHangMovementState, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CSamusHangMovementState::CTunableSamusHangMovementState, base::tunable::CTunable);

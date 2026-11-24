@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSubAreaManager::CTunableSubAreaManager
 namespace CSubAreaManager::CTunableSubAreaManager { extern bool refl_fields_added asm("g_unk_71729da8a8"); }
-namespace CSubAreaManager::CTunableSubAreaManager { extern UnkTunable refl_tunable asm("g_unk_71729da878"); }
-void fn_7100edff64(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CSubAreaManager::CTunableSubAreaManager { extern base::tunable::CTunable refl_tunable asm("g_unk_71729da878"); }
+namespace CSubAreaManager::CTunableSubAreaManager { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100edff64"); }
 namespace CSubAreaManager::CTunableSubAreaManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -35,7 +34,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxFadeOutTimeLights", 0x28, (DefaultValue, 1.2f), (Description, "Time that the lights that are dissapearing in the previous subarea take to fade"));
     DREAD_REFLECTED_FIELD(f32, "fMaxFadeInTimeLights", 0x24, (DefaultValue, 0.9f), (Description, "Time that the lights that are appearing in the next subarea take to fade"));
     DREAD_REFLECTED_FIELD(bool, "bKillPlayerOutsideScenario", 0x2c, (DefaultValue, false), (Description, "Tracks if the player cross the scenario boundaries and kills it"));
-    fn_7100edff64(base::reflection::TunableRegistry(), &refl_tunable, "SubAreaManager");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "SubAreaManager");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -59,7 +58,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CSubAreaManager::CTunableSubAreaManager
-DREAD_REFLECTED_CLASS(CSubAreaManager::CTunableSubAreaManager, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CSubAreaManager::CTunableSubAreaManager, base::tunable::CTunable);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

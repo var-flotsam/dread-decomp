@@ -54,8 +54,10 @@ to its reflected size, every member type is spelled, it is not nested in another
 src/reflection/ names no type nested in it) and whose reflection source converts (src/reflection/ writes
 its block in the declared form, or tools/gen_reflection.py's pass would), and then every unit compiles: a
 source of src/reflection/ that would both see a declared class (through a class it converts, or its bases)
-and open a namespace of that class's name (a block it keeps in the namespace form, its parent's getter, the
-CTunable statics `refl_fields_added` and `refl_tunable`) leaves that class and its subclasses out.
+and open a namespace of that class's name (a block it keeps in the namespace form, the getter of a parent that
+is not declared, the CTunable statics `refl_fields_added`, `refl_tunable` and `refl_RegisterTunable`) leaves
+that class and its subclasses out. A namespace-form block under a declared parent opens no namespace of the
+parent's name: it takes the getter from the class (DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT).
 data/class_scope.csv (`class,reason`) limits the output: `*` for every class, or the classes by name (the
 classes the two tables name are in scope too); a row with a reason leaves that class (and its subclasses)
 out, for a reason the rule cannot see. A class in scope that fails the rule is an error.
@@ -544,14 +546,19 @@ def clashes(classes: set[str], types: dict[str, dict], units: list[Unit]) -> dic
     """{declared class: the source that would also open a namespace of its name}. A unit includes the header of
     every class it writes in the declared form (and so its bases'); a block it keeps in the namespace form opens
     its class's namespace and declares its parent's getter in the parent's (DREAD_REFLECTED_CLASS), and the
-    lines outside the blocks open theirs (the CTunable* statics, `refl_fields_added` and `refl_tunable`)."""
+    lines outside the blocks open theirs (the CTunable* statics, `refl_fields_added` and `refl_tunable`). A
+    namespace-form block whose parent is declared opens the namespaces around the parent, not the parent's:
+    where its unit sees the parent's class, tools/gen_reflection.py has it take the getter from the class
+    (DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT)."""
     out: dict[str, str] = {}
     for u in units:
         converted = (u.done | set(u.blocks)) & classes
         included = {b for c in converted for b in chain(c, types)}
         opened = set(u.opened)
         for c, parent in u.blocks.items():
-            if c not in classes:
+            if c not in classes and parent in classes:
+                opened |= prefixes(c) | (prefixes(parent) - {parent})
+            elif c not in classes:
                 opened |= prefixes(c) | (prefixes(parent) if parent else set())
             else:
                 opened |= prefixes(c) - {c}

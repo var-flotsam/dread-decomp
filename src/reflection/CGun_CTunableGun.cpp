@@ -6,14 +6,13 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/base/tunable/CTunable.h"
 #include "base/reflection/ReflectedAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
+#include "base/tunable/CTunableManager.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
-using base::reflection::UnkTunable;
-using base::reflection::UnkTunableRegistry;
 using base::reflection::ClassDescription;
 using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
@@ -22,8 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CGun::CTunableGun
 namespace CGun::CTunableGun { extern bool refl_fields_added asm("g_unk_7172725ee8"); }
-namespace CGun::CTunableGun { extern UnkTunable refl_tunable asm("g_unk_7172725ea8"); }
-void fn_7100834e28(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CGun::CTunableGun { extern base::tunable::CTunable refl_tunable asm("g_unk_7172725ea8"); }
+namespace CGun::CTunableGun { base::tunable::CTunable* refl_RegisterTunable(base::tunable::CTunableManager* manager, base::tunable::CTunable* tunable, const char* category) asm("fn_7100834e28"); }
 namespace CGun::CTunableGun {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -38,7 +37,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fCheckBackHangDistance", 0x30, (DefaultValue, 120.0f), (Description, "Fire check back distance (hang)"));
     DREAD_REFLECTED_FIELD(f32, "fTimeHitMissedModifierDuration", 0x34, (DefaultValue, 0.7f), (Description, "Time to not modify volume of missed hits"));
     DREAD_REFLECTED_FIELD(f32, "fVolumeHitMissedModifier", 0x38, (DefaultValue, 0.2f), (Description, "Volume multiplier for missed hits after a hit"));
-    fn_7100834e28(base::reflection::TunableRegistry(), &refl_tunable, "Gun");
+    refl_RegisterTunable(base::tunable::TunableManager(), &refl_tunable, "Gun");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -62,7 +61,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 }  // namespace CGun::CTunableGun
-DREAD_REFLECTED_CLASS(CGun::CTunableGun, base::tunable::CTunable);
+DREAD_REFLECTED_CLASS_WITH_DECLARED_PARENT(CGun::CTunableGun, base::tunable::CTunable);
 
 // CGun
 namespace CGun {
