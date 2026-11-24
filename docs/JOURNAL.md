@@ -41,6 +41,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 **Static initialisers and tables**
 - A function-local static sits at a distance from its guard that depends on the unit's other statics, so such a function matches only in a file that defines them all in order; 7 of 18 near-miss failures were this (session log, #637).
+- Why: GlobalMerge puts a unit's internal statics (function-local statics and their guards included) into one block sorted by size, same-size statics in source order, so a guard-to-object distance is the size of everything sorted between them. An unused placeholder static is dropped, so a static is reproduced only by writing the function that owns it; find owners by scanning main for every function that names an address in the block (`data_map.py`'s `named_addresses`, then base-plus-offset loads and stores). Statics that cannot share one block also show where a `tu_map.py` unit boundary is off (session log, #644).
 - Each vector of ids built from a list sits in its own immediately called lambda; lists of one length in a unit need one element type; packed 4-byte-aligned struct when a u32 precedes the ids: [Above 2 KB](#above-2-kb-outside-the-six-hand-slices-srcgame_s7-2026-10-21).
 - Header ids built "sources first", enum converters local to the unit (`visibility("hidden")`): [batch 13](#slice-1-static-initialisers-batch-13).
 - Giant table functions are generated (`tools/gen_tables.py`); the id table's destructor still differs in register allocation: [Giant functions](#giant-functions-probe-2026-10-21-cloud-thread-biggest-functions-probe).
@@ -112,6 +113,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A function that a generated source reaches through a hand-written header's declaration cannot be renamed until that generator emits the name: grep `src/tables`, `src/clones` and `src/reflection*` before renaming a hub: [Name the CRntString functions](#session-log-newest-first) (#614).
 - A header-only type move is safe when each edited source's object hashes the same before and after (Clang 9.0.1 with the project flags); partial views of one type merge into the union of their fields where they agree at every overlapping offset: [Reconcile differing copies of shared types](#session-log-newest-first) (#618).
 - A `base::reflection` class whose header declares `refl_Description` and its reflection functions as members takes the generator's member form, not the namespace form; the mangled symbols are the same, so its matches stay: [Name the reflected field type base::reflection::CVariable](#session-log-newest-first) (#625).
+- Inferred names (name_source `inferred`, through `rename.py` with the evidence in `data/names.csv`): pick classes whose functions are all `O`, none in `data/equivalence.csv`, and skip any placeholder a generated directory references; name only what the code shows (reflected char-class members by offset from `gen_fields.py`), keep a placeholder where a name would guess, and have a fresh reviewer that has not seen the reasoning judge each name right, vague or wrong, reverting all but the right ones. The pilot cost about $0.66 a landed name (16 of 22, two review rounds), later batches about 40k subagent tokens a name (session log, #649, #654, #655, #657, #658).
+- Steering forms that come out for free: of 310 empty barriers only 8 left every object unchanged; offset casts often do (843 hits down to 473), replaced by a typed member at the offset, existing or a `field_0x..` split from padding. They stay where the byte pointer drops alias information, where users read different types at one offset, or where the base is a generic type. Accept each edit only when `tools/objsame.py compare` prints UNCHANGED for the file and every includer of an edited header (session log, #647, #650, #651).
 
 **Port: shaders**
 - `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
@@ -168,7 +171,616 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through 4bc61496a137ab70499b5f75d3e025f7aae84b80 -->
+<!-- journal_sync: through aecef56053561df7698f5ecbb717fe06613c7ae6 -->
+
+**Inferred names, session 4 batch 1: 33 functions from CRotationalPlatformComponent to CAutsharpSpawnPointComponent (#657, 2026-11-23).**
+
+Before: the unnamed matched functions of 12 classes, from `CRotationalPlatformComponent` to `CAutsharpSpawnPointComponent`, were named `fn_<addr>`.
+
+After: 33 of them carry inferred names (name_source `inferred`), recorded with their evidence in `data/names.csv` through `tools/rename.py`; 24 keep their placeholders. Code is unchanged apart from the names.
+
+This is batch 1 of naming session 4 of 4 (classes whose lowest function is at 0x71009cf11d or above), following the pilot in #649.
+
+**How the classes were chosen.** From the compiled objects of every `src/game/<Class>/` directory with a real class name, taken in ascending order of the lowest address the class defines: every function defined there is `O`, 4 to 40 are named `fn_<addr>`, none is in `data/equivalence.csv`. As in #649, the generated-directory rule is applied per function: a function whose placeholder or address appears in a generated directory keeps it. `CRumbleComponent` through `CAutsharpSpawnPointComponent` follow `CRotationalPlatformComponent`; `CSamusMovement` qualified but all of its candidates were declined. Functions whose unit (`tools/tu_map.py`) is another class's, but which are defined in this directory, were declined rather than named for the directory.
+
+| Address | Name | Evidence in the code |
+|---|---|---|
+| `0x71009d890c` | `CRotationalPlatformComponent_UpdateRotation` | after the base step, while rotating (+0x88) eases the owner's z angle toward the target angle (+0x90, degrees) over 0.3 s, sets a timeline id once on reaching it, and stops after 2 s |
+| `0x71009d9650` | `CRotationalPlatformComponent_InitStatics` | the unit's static initialiser: the ERotationDirection enum and its converters, the ROTATIONAL id, the Used property, the class getter, the unit's type registration and six collider and state ids |
+| `0x71009da040` | `CRumbleComponent_MarkRumbleStopped` | sets +0x63 on the first rumble entry (list +0x48) whose handle names the given object; +0x63 is the flag fn_71009da834 sets after fading a rumble out |
+| `0x71009da364` | `CRumbleComponent_UpdateRumblePositions` | for each rumble entry flagged at +0x62, takes the point the owner's +0x228 component gives for the entry's name, or the owner's position, and moves the rumble there (fn_7100072484) |
+| `0x71009dae9c` | `CRumbleComponent_MakeRumbleDescFromSoundDef` | reads a sound definition into a sound description (fn_7101037bc0) and copies its file, kind, position and tunables into the rumble description it is given |
+| `0x71009dbdb8` | `CRumbleComponent_ResizeRumbleEntries` | grows the component's 0x68-byte rumble entry vector to n (fn_71009dbeec) and default-constructs the new entries; the component calls it to add one entry |
+| `0x71009dc0cc` | `CRumbleComponent_EraseRumbleEntry` | destroys the rumble entry at the index and moves the later 0x68-byte entries down by one |
+| `0x71009f3ae0` | `CShockWaveComponent_DestroyAndDelete` | the deleting destructor: runs the complete destructor (vtable g_unk_7101a8a820, node list +0x250, member +0x40, base fn_71010c4194) and frees the object |
+| `0x71009f3b68` | `CShockWaveComponent_Reset` | after the CComponent base step fn_71010c4228, assigns a freshly constructed member to +0x40 (fn_71009f35b0, fn_71009f3bf8), frees and empties the node list +0x250 and clears +0x280 to +0x298 |
+| `0x71009f4bf8` | `CShockWaveComponent_AddActor` | appends the actor to the node list +0x250, except when it is the player (fn_7100defcd4) or the game manager's second player (+0x29a0) and either is already listed |
+| `0x71009f4d18` | `CShockWaveComponent_CanHitActor` | false for a listed actor unless active (+0x244) and timer +0x298 at 0 or forced; under a full circle (+0x168) needs the actor within half angle +0x28c of the direction; then box vs sphere radius +0x284 |
+| `0x71009f4f48` | `CShockWaveComponent_GetDirection` | returns a unit xy vector: +x or -x by the sign of the linked object's (+0x1c8) angle y, or +y turned by the owner's angles when +0x189 is set, then turned about z by +0x16c |
+| `0x71009f5b78` | `CShockWavePoolComponent_Destroy` | the complete destructor: sets vtable g_unk_7101a8a9b0, frees the array +0x2a8 and the node list +0x268, destroys the member +0x40 and runs the component base destructor fn_71010c4194 |
+| `0x71009f5c18` | `CShockWavePoolComponent_DestroyAndDelete` | the deleting destructor: runs the complete destructor (as fn_71009f5b78) and frees the object |
+| `0x71009f5cc0` | `CShockWavePoolComponent_Reset` | after the CComponent base step fn_71010c4228, assigns a freshly constructed member to +0x40 (fn_71009f5730, fn_71009f5d50), frees and empties the node list +0x268 and clears +0x298 and +0x318 |
+| `0x71009f7da4` | `CShockWavePoolComponent_AddActor` | appends the actor to the node list +0x268, except when it is the player (fn_7100defcd4) or the game manager's second player (+0x29a0) and either is already listed |
+| `0x71009f7ec4` | `CShockWavePoolComponent_CanHitActor` | false for a listed actor unless active (+0x244) and timer +0x320 at 0 or forced; true with no point segment (+0x2a8: no points, or one with +0x2d4 clear), else whether the actor's 2D box touches the segment |
+| `0x71009f8074` | `CShockWavePoolComponent_GetDirection` | returns a unit xy vector: +x or -x by the sign of the linked object's (+0x1c8) angle y, turned about z by +0x164 (opposite sign for +x) |
+| `0x71009f8bcc` | `CCharClassShotComponent_Destroy` | the complete destructor: sets vtable g_unk_7101a8ab40, destroys the owned list +0x58 (vLaunchShotConfigs) and runs the CCharClassComponent base destructor fn_71011acd74 |
+| `0x71009f8c70` | `CCharClassShotComponent_DestroyAndDelete` | the deleting destructor: runs the complete destructor (as fn_71009f8bcc) and frees the object |
+| `0x71009f8d1c` | `CCharClassShotComponent_FindLaunchShotConfig` | finds the first entry of vLaunchShotConfigs (+0x58, count +0x60) whose sID (CShotLaunchConfig +0x10) equals the key and stores it in out; CShotComponent fires the found config |
+| `0x71009fa098` | `CShotLaunchConfig_SetUpLaunch` | resets the launch state (fn_71009f9dc0), stores origin, target and direction, two flags, a float, frame word g_unk_7101d58e48 and the config at +0x40; returns true; base step of fn_71009feb78 |
+| `0x71009fa8fc` | `CShotLaunchConfig_GetTrajectoryOffset` | writes the offset after time t of a shot along (dirX, dirY) at speed under gravity: x = dirX*speed*t, y = dirY*speed*t - gravity*t*t/2, z = 0; called twice by CProjectileMovement update |
+| `0x71009fe030` | `CShotLaunchConfig_InitStatics` | the unit's static initialiser (tu_map initialiser of unit 1509): header ids, class getter fn_71009f98c4, the CRntVector of unique_ptr CShotLaunchConfig types and iterators, the conversion |
+| `0x7100a03a14` | `CSmartObjectComponent_LoadFromFile` | after the base read fn_710024fc0c reads a bool and six strings from a CRntFile and sets reflected sOnUseStart, sOnUseFailure, sOnUseSuccess, sUsableEntity, sDefaultUseAction, sDefaultAbortAction, bStartEnabled |
+| `0x7100a05880` | `CSmartObjectComponent_InitStatics` | the unit's static initialiser (tu_map initialiser of unit 1512): header, class getter fn_7100a00014, the SMARTOBJS component id and the useinit and useabort ids |
+| `0x7100a076b0` | `CUnlockAreaSmartObjectComponent_SendGrabRequest` | hands the player grabber (+0x260) the grab request at +0xc0 (fn_710113d940, CGrabComponent unit) named by the id at +0x148, else +0x68, with the word at +0x40; then clears +0x148 |
+| `0x7100a07a90` | `CUnlockAreaSmartObjectComponent_IsNotPlayingRelax` | true when the owner animation component (+0x220) has no playing track whose action is the id table relax id (+0x1d78) per fn_710117ae38; false without an animation component |
+| `0x7100a09348` | `CWeightActivatedPlatformSmartObjectComponent_InitStates` | registers the seven states of the state machine at +0x180 and binds their callbacks to the platform, inits the registry map at +0x560 under the owner name, caches a name hash at +0x5a0 |
+| `0x7100a09f7c` | `CWeightActivatedPlatformSmartObjectComponent_LoadFromBlackboard` | reads the Finished property (g_unk_71727434e0) from the given blackboard section of the current scenario and, when true, runs fn_7100a0a08c (state 7, stores Finished true) |
+| `0x7100a130d0` | `CSwifterSpawnGroupComponent_OnEntityGenerated` | runs the base step fn_710111b64c (calls sOnEntityGenerated +0x228), turns off (fn_710024fa0c) every vectSpawnPoints +0x68 entry that is on and whose actor id is the given name, counts +0x428 up to 3 |
+| `0x7100a135f0` | `CSwifterSpawnGroupComponent_InitStatics` | the unit's static initialiser: header ids, the ESwifterSpawnGroupDirection and ESwifterSpawnGroupSpawnMode enums, the class getter fn_7100a1204c, the unit's type registration |
+| `0x7100a148d0` | `CAutsharpSpawnPointComponent_InitStatics` | the unit's static initialiser: header ids plus the spawn_right id, the EAutsharpSpawnPointDir enum and its int converters, the class getter fn_7100a13bd0, the unit's type registration |
+
+Declined (placeholder kept):
+- `0x71009d8b90` (CRotationalPlatformComponent): a message handler that runs the rotation's end (fn_71009d8bcc) for two message types; what the types are is not shown
+- `0x71009d8ee4` (CRotationalPlatformComponent): the same handler through a this pointer 0x40 bytes in; which base it serves is not shown
+- `0x71009da0a8` (CRumbleComponent): the same body as fn_71009da040 on a pointer 0x40 bytes into the component (list +8); which base or interface it serves is not shown
+- `0x71009db2e0` (CRumbleComponent): builds a rumble description from a definition and starts it (fn_71009dacbc); fn_71009db4b8 has the same body, and nothing shows which definition kind each serves
+- `0x71009db4b8` (CRumbleComponent): the same body as fn_71009db2e0; nothing shows what tells the two apart
+- `0x71009e6940` (CSamusMovement): returns whether the ghost aura ability's state is 3 to 6; the states are not named
+- `0x71009e9acc` (CSamusMovement): zeroes about a dozen unnamed fields (+0x40, +0x7c, +0x6e8, +0x2314 and others) and sets +0x22f9; no caller or string shows what this partial reset is for
+- `0x71009e9b10` (CSamusMovement): sets the bool at +0x22f9 when it differs (read by fn_71009f0bb0); nothing names what the flag means
+- `0x71009ebe04` (CSamusMovement): true when the timer +0x2314 is positive, a game manager member check (fn_7100f0ca8c) holds, or the animation is in a CCharClassIgnoreHangTrack; what the three share is not shown
+- `0x7100a042e0` (CSmartObjectComponent): runs the script the id at +0x48 names (which reflected field is unknown), calls unnamed fn_7100a03118, then a grab request; its role in use would be a guess
+- `0x7100a0746c` (CUnlockAreaSmartObjectComponent): after input and flag checks either runs vf_0x1a8 when the id equals unlockareaout or sets +0x150 and fetches the tunable sDialogID text, which is dropped; purpose not plain
+- `0x7100a0782c` (CUnlockAreaSmartObjectComponent): sends the owner +0x220 the hash at +0x70, sets an input wait of tunable fIgnoreInputTime, asks the CMorphBallMovement for mode 1, clears +0x148; which use step this is would be a guess
+- `0x7100a09948` (CWeightActivatedPlatformSmartObjectComponent): no direct callers; does several steps (timeline on and off keys, state 3 request, slot colour, track start, fn_7100a09cd4); calling it the class update would be a guess
+- `0x7100a09cd4` (CWeightActivatedPlatformSmartObjectComponent): requests state 5, clears the Finished blackboard flag, sets the linked usable +0xfa flag true; states and flag unnamed, so enable or reset would be a guess
+- `0x7100a0a2dc` (CWeightActivatedPlatformSmartObjectComponent): requests state 6, clears the Finished blackboard flag, sets the linked usable +0xfa flag false; states and flag unnamed, so disable would be a guess
+- `0x7100a0ab24` (CWeightActivatedPlatformSmartObjectComponent): event handler that calls fn_7100a046ec, passes the event name to the linked user vf_0x178 and requests state 3; meaning of the state and slot unknown
+- `0x7100a0ad9c` (CWeightActivatedPlatformSmartObjectComponent): has side effects (hands player back, tries linked usable fn_7100aa1098, else blocks input for track length); a CanUse name would not fit and its role is unclear
+- `0x7100a0d480` (CWeightActivatedPlatformSmartObjectComponent): when bDisableWhenEmmyNearby (+0x558) is set runs fn_7100a0a2dc for true or fn_7100a09cd4 for false; no callers show what the bool reports
+- `0x7100a131d0` (CSwifterSpawnGroupComponent): named ..._RemoveEntityAndResetTimeToSpawn at first; review: wrong, the spawn time is reset only when the count reaches 0 with +0x42c clear
+- `0x7100a13224` (CSwifterSpawnGroupComponent): same tail as fn_7100a131d0 after the base fn_710111c56c, whose slot (a spawned actor going away, counters drop) is unnamed; a name would guess the event
+- `0x7100a14190` (CAutsharpSpawnPointComponent): sets one of two flags on the owner by eSpawnDir; what the flags mean is not shown
+- `0x7100a141e8` (CAutsharpSpawnPointComponent): a spawn check that also sends a message and sets +0x400; CanSpawn would hide the side effects
+- `0x7100a17b30` (CSwifterSpawnGroupComponent): outside the class's unit (initialiser of unit 1527, CCaterzillaSpawnPointComponent; registers ECaterzillaSpawnPointDir and ECaterzillaSpawnPointOrder)
+- `0x7100a4f6d0` (CSwifterSpawnGroupComponent): outside the class's unit (initialiser of unit 1567, CForbiddenEdgesLogicAction; registers navmesh::ENavMeshGroup and CForbiddenEdgesLogicAction::EState)
+
+**Independent review.** Fresh subagents that had not seen the naming reasoning got the sources and a random sample of the names, and judged each right, vague or wrong, checking the stated evidence against the code.
+- Round 1, 25 of 34 names (seed 4101): 24 right, 0 vague, 1 wrong. The batch failed. `0x7100a131d0`, named `CSwifterSpawnGroupComponent_RemoveEntityAndResetTimeToSpawn`, claimed a reset that happens only when the count reaches 0; reverted. One reason was corrected (`..._OnEntityGenerated` turns off every matching spawn point, not one).
+- Round 2, 25 of 33 names (seed 4102): 25 right, 0 vague, 0 wrong, 1 reason with an error: `CShockWavePoolComponent_CanHitActor`'s reason said "true without a point segment", where the early return also covers one point with +0x2d4 clear. Corrected.
+
+**Cost.** Proposals by three reading subagents (about 538k tokens) and two reviewers (about 427k tokens), plus this session's own reading, selection and checks. That is about 29k subagent tokens per landed name; the session's own share and a dollar figure are not visible from inside the session. A good part of this batch was one-time setup (toolchain, libc++ headers, class selection and the check scripts), and batches 2 and 3 were read in parallel with this one.
+
+**Name 30 functions in 12 classes of naming range 2 (inferred) (#658, 2026-11-23).**
+
+Before: 30 functions in twelve classes of naming range 2 (0x710058a369 to 0x710079f5c0, by each class's lowest function address) were still called `fn_<addr>`.
+
+After: they carry inferred names (`name_source` `inferred`), applied with `tools/rename.py` with one reason each. Names only: no code, layout or struct changes.
+
+**How the classes were chosen.** A class qualifies when it is a directory `src/game/<Class>/` with a real class name, every function defined there is status O, 4 to 40 of them are `fn_<addr>`, none is in `data/equivalence.csv` and none is referenced from a generated directory (`.gitattributes`). Under that strict rule only these twelve classes qualify in range 2, so this batch is all of them. Later batches will use the pilot's (#649) per-function rule instead: a class qualifies on the other conditions, and only the functions referenced from generated directories are skipped. Each PR will say so.
+
+**Names** (evidence is what the code shows; offsets are into the object named):
+
+| address | name | evidence |
+|---|---|---|
+| `0x7100606050` | `CKraidBouncingCreaturesMovementComponent_InitStatics` | the unit's static initialiser: the header ids, the "CKraidBouncingCreaturesMovementComponent" class id, the class getter, the unit's type registration |
+| `0x71006052a4` | `CKraidBouncingCreaturesMovementComponent_BeginPlay` | after the base step that sets the launch velocity from the direction (fn_7100ac3880), registers with the game manager under the unit's class-name id (fn_7100de9540), then adds the linked actor's velocity (+0x230) times fOwnerVelocityFactor (char class +0x11c) when bAddOwnerVelocityOnBeginPlay (+0x11a) is set |
+| `0x7100623af0` | `CNailongThornMovementComponent_InitStatics` | the unit's static initialiser: the "NailongThornMovementComponent" class id, the "fDamageNailongThorn" and "fDamageDepthornBall" ids, the class getter, the unit's type registration |
+| `0x7100623080` | `CNailongThornMovementComponent_Update` | takes dt and ends in the projectile movement's update (fn_7100ac3a78); before it, advances the oscillation phase and offset by amplitude times sine; the sway step runs only while +0x5e0 is set and also rewrites the side vector at +0x4f8 |
+| `0x710062314c` | `CNailongThornMovementComponent_ImpactWhenOutOfRange` | after the movement component's step, sets the "onimpact" id on the owner's timeline when the thorn is farther from its CNailongAIComponent shooter than the float at +0x4d8 of that AI's +0x1610 object (not a reflected member) |
+| `0x71006238ec` | `CNailongThornMovementComponent_SetUpDamage` | fills the request with one of two tunable values and the matching unit id, "fDamageDepthornBall" or "fDamageNailongThorn", by the word at +0x5dc |
+| `0x7100645568` | `CQuetzoaEnergyWaveAttack_OffsetByFacing` | adds a fixed offset (211 back along the facing sign, 78 up) to the given position |
+| `0x71006455bc` | `CQuetzoaEnergyWaveAttack_ComputeAimDirection` | writes the direction from the wave's origin to the owner's target into an out parameter; returns false with no target or more than 70 degrees (1.2217 rad) off the facing direction, so targets behind are rejected; stores nothing on the attack |
+| `0x7100645698` | `CQuetzoaEnergyWaveAttack_UpdateAim` | after the base step with dt, re-aims from the owner's position at its target and keeps the new direction when fn_71006457c4 allows it |
+| `0x7100663d2c` | `CRockDiverAIComponent_AdvancePhase` | advances the phase at +0x146dc from 0 to 1 and from 1 to 2 |
+| `0x7100699150` | `CScorpiusPoisonousSpitMovementComponent_Update` | takes dt and starts with the projectile movement's update (fn_7100ac3a78); while +0x5d8 is set it counts a timer, and once (+0x5d9, only when the owner has a timeline) sets a timeline id when it passes fTimeToReachExplosionRadius + fTimeToMaintainExplosionRadius - fTimeToDisapear of CTunableCharClassScorpiusPoisonousSpitAttack |
+| `0x7100699288` | `CScorpiusPoisonousSpitMovementComponent_FaceAlongVelocity` | after the movement component's step, turns the owner to face along the velocity at +0x4b8 (its z angle plus pi) and applies the transform; the angle includes a +pi offset, so the owner's x axis ends up against the velocity |
+| `0x710069f1a0` | `CScourgeAIComponent_Destroy` | the destructor: the vtable CScourgeAIComponent::refl_Construct stores, the embedded CScourgeTongueSlashAttack's destructor, then the base destructor |
+| `0x710069f244` | `CScourgeAIComponent_DeletingDestroy` | the destructor's body as fn_710069f1a0, then frees the object |
+| `0x71006a0620` | `CScourgeAIComponent_StoreBiteAngle` | after the base step, when the argument is the current target, writes the signed angle in degrees between the actor's forward axis and the target under the key fBiteAngle (g_unk_7172704f30, from the unit initialiser) into the property bag of the actor's +0x220 component |
+| `0x71006c7a40` | `CSluggerAcidBallMovementComponent_BeginPlay` | after the base step that sets the launch velocity (fn_7100ac3880), adds the linked actor's velocity times fOwnerVelocityFactor when bAddOwnerVelocityOnBeginPlay is set and copies fTimeMeleeable and fTimeAbortable from the char class (+0x134, +0x138); a first-time flag at +0xf9 guards a final vtable slot 0x260 call |
+| `0x71006de7c4` | `CVulkranAttackManager_Destroy` | the destructor: the vtable its unit's constructor stores, the list at +0x18 destroyed, the counted reference at +0x8 dropped |
+| `0x71006de820` | `CVulkranAttackManager_DeletingDestroy` | the destructor's body as fn_71006de7c4, then frees the object |
+| `0x71006de888` | `CVulkranAttackManager_Clear` | drops the reference at +0x8, clears the word at +0x10 and frees every node of the list, resetting its count |
+| `0x71006df774` | `CVulkranMagmaBallMovementComponent_BeginPlay` | after the base step that sets the launch velocity (fn_7100ac3880), adds the linked actor's velocity (z set to 0, x and y limited to at most 600) times fOwnerVelocityFactor when bAddOwnerVelocityOnBeginPlay is set; a first-time flag at +0xf9 guards a final vtable slot 0x260 call |
+| `0x71006df868` | `CVulkranMagmaBallMovementComponent_Update` | takes dt and starts with the projectile movement's update (fn_7100ac3a78); then, inside a lava pool (CVulkranMagmaBallMovementComponent_IsInLavaPool), calls vtable slot 0x338 with the reversed direction, the call the base hit handler fn_7100ac4c60 makes |
+| `0x71006df98c` | `CVulkranMagmaBallMovementComponent_IsInLavaPool` | whether the owner's position, projected to 2D, is inside one of the registered CLavaPoolComponent objects that is not disabled |
+| `0x71006e07b0` | `CWarLotusAIComponent_ResetBumpFactor` | after the base step, clears the bump state (value -1, factor 0, flag false) and writes the factor under "BumpToRelaxToImpactFactor" |
+| `0x71006ecf98` | `CYamplotXBiteAttack_SetUpDamage` | fills the damage request with the first unit id and the value fn_7100789f5c gives for fDamageYamplotXStep or fDamageYampaStep by the word at +0x6fc of the object the AI holds at +0x14728, and sets +0xc8 to 1 unless the owner's +0x2c8 component is frozen; same layout as the other SetUpDamage requests |
+| `0x710074ef00` | `CBossCameraCtrl_Construct` | the constructor: the base constructor, the vtable the destructors restore, the target list and the starting values |
+| `0x710074efb4` | `CBossCameraCtrl_Destroy` | the destructor: the vtable, the target list's references dropped and freed, then the base destructor |
+| `0x710074f058` | `CBossCameraCtrl_DeletingDestroy` | the destructor's body as fn_710074efb4, then frees the object |
+| `0x710074f91c` | `CBossCameraCtrl_IsFinished` | true when not active; otherwise drops gone targets (fn_710074f550) and returns false when a target's animation plays a CCharClassIgnoreBossCameraFinishedTrack, or (unless the target's +0x1b8 object is in state 2 and the AI manager's +0x2410 part is empty) its AI is not a CBossAIComponent or its slot 0x7c8 answers true |
+| `0x7100750804` | `CBossCameraCtrl_AddTarget` | adds a counted weak handle to the given actor to the target list at +0x2a0 unless it is null or already there |
+| `0x7100750ab4` | `CBossCameraCtrl_HasTarget` | whether the target list at +0x2a0 holds the given actor |
+
+**Declined** (left as `fn_<addr>`):
+- CKraidBouncingCreaturesMovementComponent: `0x71006051ec` (extends the clone-family base step fn_7100ac3108, whose purpose is not shown), `0x7100605d64` (hit test on a base test fn_7100ac4ec0 that is not understood).
+- CNailongThornMovementComponent: `0x71006232d0`, `0x71006233dc` (two slots with one body that sends "onimpact" once; which event each answers is not shown).
+- CQuetzoaEnergyWaveAttack: `0x7100645408` (base step, a kind-5 parameter block and the first aim; "start" would be a guess), `0x7100646088` (writes +0x14a20, outside this 0x40-byte class; a clone of fn_7100ed77b8).
+- CRockDiverAIComponent: `0x7100663780` (surface handler with a request hash, an aim and an effect; the event and ids are not named), `0x7100663b90` (base step and a CCharClassTweakDeathActionTrack branch; meaning not shown), `0x710066369c` (named `..._UpdateDistanceRatio` at first; second review: vague, since the key it writes is "OpenCloseWingsBlendingFactor" and the radius is fCloseWingsStartDistance. Reverted, as the brief asks for vague names).
+- CScorpiusPoisonousSpitMovementComponent: `0x7100698ff4` (fn_7100ac3108 base step), `0x71006997e0` (hit filter on a base test that is not understood).
+- CScourgeAIComponent: `0x710069f680` (forwards position and axes to fn_710069f728, not understood), `0x71006a052c` (tongue logic around CCharClassScourgeExtendTongueTrack, unclear), `0x71006a0884` (query on the embedded attack, meaning not shown), `0x71006a07e0` (named `..._IsTargetInRange` at first; first review: wrong, because it is also true with no target or no range object. No short name fits that predicate, so reverted).
+- CSluggerAcidBallMovementComponent: `0x71006c79b4` (fn_7100ac3108 base step), `0x71006c7ba4` (hit test), `0x71006c7d1c` (melee hit sets a timeline id that is not named).
+- CVulkranAttackManager: `0x71006de940`, `0x71006ded20` (add to a list and drop the held entry; the list's role is not shown).
+- CVulkranMagmaBallMovementComponent: `0x71006df684` (fn_7100ac3108 base step and an id from a char-class string), `0x71006dfa88` (hit test with a player part).
+- CWarLotusAIComponent: `0x71006e09e4`, `0x71006e0ca0` (bump start with +1 or -1 after base steps that are not understood), `0x71006e0acc` (picks a timeline id by hashes that are not named), `0x71006e0e14` (forwards to owner slot 0x2c0).
+- CYamplotXBiteAttack: `0x71006eca84` (base attack check; "can start" would be a guess here), `0x71006ecb84` (sends an id to the animation in mode 2; unclear), `0x71006ecce4` (named `..._GetBiteActionId` at first; first review: vague, since nothing marks the id as an action. Reverted). `0x71006edc1c` sits in this directory but belongs to CYamplotXStepAttack's unit, so it was left alone.
+- CBossCameraCtrl: `0x710074f104` (a start-like step on a base fn_71010ed98c that is not understood), `0x710074f6c4`, `0x710074f80c` (music manager kind 7 and an area name; meaning not shown).
+
+**Independent review.** Two fresh subagents that had not seen my reasoning each got the sources and 25 names drawn at random, and checked the stated evidence against the code.
+- First review (seed 20261124, 25 of 33): 23 right, 1 vague (`CYamplotXBiteAttack_GetBiteActionId`), 1 wrong (`CScourgeAIComponent_IsTargetInRange`, true with no target). Both were reverted. Three names were changed to engine words or a more exact verb on its advice (`..._StoreBiteAngle` from the key "fBiteAngle", `..._ImpactWhenOutOfRange`, `..._ComputeAimDirection`), and nine reasons were corrected.
+- Second review on a new sample (seed 20261125, 25 of 31): 24 right, 1 vague, 0 wrong. The vague one (`CRockDiverAIComponent_UpdateDistanceRatio`) was reverted, and the reasons it found incomplete (the BeginPlay first-time flag, the Kraid order, the Boss camera conditions, the Vulkran slot 0x338 call, the Scorpius +pi offset) were corrected.
+
+**Cost.** This session so far, including both reviews: about 125k output tokens, 0.72M cache writes and 54.5M cache reads. At the pilot's rates that is about $19, or about $0.63 per landed name. That figure also covers one-time setup (toolchain, libc++ headers, class selection) and most of the reading for batch 2, so the per-name cost of this batch alone is lower. The reviewers used about 217k and 220k tokens.
+
+**Notes for later.** `CVulkranMagmaBallMovementComponent_BeginPlay` is defined in `src/game/CSluggerAcidBallMovementComponent/CSluggerAcidBallMovementComponent_b38.cpp` (unit 1087); moving it was left out so objects compare by path. `rename.py` also updated one caller in `drafts/` (`CVulkranAttackManager_Clear`), as it does for every hand-written use.
+
+**Match five functions by building their units' statics in one file (unit 180, CShipRechargeComponent) (#644, 2026-11-23).**
+
+A pilot of matching functions whose only difference is where their function-local statics sit, by building
+each unit's statics in one file (the lead from #637, "Not matched (16), by cause").
+
+**Why the distances differ.** On AArch64 the compiler's GlobalMerge pass merges a unit's internal globals
+(function-local statics and their guards included) into one block, sorted by size and, for equal sizes, in
+the order the module created them. So a unit's 8-byte statics (guards, string ids) come first and its larger
+objects after them, and a function's guard-to-object distance is the size of everything sorted between the
+two. Built alone, a function finds its object right after its guard. With the functions that own the
+in-between statics in the same file, in the unit's order, the distance comes out right with no other change.
+
+**Matched (5), in two units:**
+- Unit 180, new `src/game/UnkTU180/UnkTU180_NameLookup.cpp`: `fn_710015ddc0`, `fn_710015dc04` (both were
+  drafts) and `fn_710015e600` (new). The 8-byte static between the two drafts' guards, which #637 could not
+  place, is `fn_710015e600`'s guard: it is the only function in main that names it, and its string object sits
+  after the other two. So no placeholder static was needed. tools/tu_map.py puts `fn_710015e600` in unit 181;
+  its statics say it belongs to unit 180 (two objects cannot share a merged block), so the unit boundary there is
+  off. The three lookups are declared once in `include/game/UnkTU180.h`; their callers
+  (`UnkUnit180_Lookup.cpp`, `UnkUnit181_Lookup.cpp`, `UnkTU151_Resize_ovb0249.cpp`) include it and still match.
+  `UnkUniformTable` gains its block count (+0x4c), which `fn_710015dc04` loops over.
+- Unit 1598 (CShipRechargeComponent): `fn_7100a8b840` and `fn_7100a8bc44` (both drafts) go into
+  `CShipRechargeComponent_Update_A5_b76.cpp`, before `fn_7100a8bfc8`, which still matches. Each of the three
+  has a guarded path id; the first two also a guarded 0x70-byte sound description. `fn_7100aa3330` moves to
+  `include/game/CUsableComponent.h` (now called from two files). The draft's own `UnkSoundRef` and
+  `UnkSaveGamePair_b54` give way to the headers'.
+
+**Did not work, and why** (the four other units #637 listed):
+- Unit 2564 (`fn_7100e68844`): between guard and object lie a global of the unit initialiser and a guard of
+  `fn_7100e68f44` (10,960 bytes, not written).
+- Unit 2553 (`fn_7100df492c`): 0x88 bytes of statics of four other functions, two of them not written
+  (`fn_7100dfd174`, `fn_7100de70a8`).
+- Unit 2702 (`fn_7101100544`): the block holds statics of six unwritten functions and `CAIComponent::refl_GetClass`.
+- CAIManager (`fn_7100daa2ac`): needs `fn_7100dab040` (not written), and two functions tu_map.py puts in the
+  unit before, whose statics lie inside this one's block (a second boundary that looks off).
+- Others looked at: unit 2296 (`fn_7100cdc910`) needs `fn_7100cdc2f0` (draft at 16.8%); unit 1468
+  (`fn_71009b0f24`) needs `fn_71009b1e14` (47.2%); unit 1713 and unit 1537 need file-scope globals that today
+  live in generated reflection sources or an initialiser written against `extern` addresses.
+- Unit 2666 (lua_bind sound functions), tried in a scratch file only: with the seven drafts in address order and
+  stand-ins for two statics of unwritten owners, 5 of 7 match (`PlayVibration`, `PlayEntityLoop`,
+  `PlayEntityGUILoop`, `PlayEntitySoundContinueOnDead`, `CreateEntityPositionalSound`). Landing them needs
+  `PlayEntitySound` (46.5%) and `PlayEntityGUISound` (94%) to match, `LaunchCutsceneFromPlaythrough` written, and
+  two 8-byte globals of the unit initialiser (today lifted code) defined in the same file. Not done here.
+
+**How far this goes.** Placeholder statics are not a way round it: an unused file-scope static is dropped, and by
+how GlobalMerge works one kept with `used` is left out of the merge (not tried here); #637's scratch match
+used an invented function to keep its stand-in. So a static can only be reproduced by writing the function that
+owns it. About
+40 drafts had this cause (notes that name a guard distance, merged statics or .bss layout; a regraded sample of
+10 showed only those offsets differing in 8). 4 are matched here. About 19 of the rest are at 85% or more with
+layout as the only difference; most of them wait on an unwritten or far-off sibling, or on file-scope globals in
+generated code. The cheap case is a unit whose in-between statics belong to functions that are already matched or
+are drafts with only this difference: about 30 minutes to an hour each, mostly spent finding the owners
+(a scan of the original for every function that names an address in the block, including through base plus
+offset). Expect a handful more such units, not dozens.
+
+Reusable: to find a static's owner, scan every function of main for the addresses it names (adrp plus add,
+plus load and store offsets from that register); `tools/data_map.py`'s `named_addresses` does the first part.
+
+**Inferred names, range 1 batch 1: 25 functions of ten classes (#655, 2026-11-23).**
+
+Before: the ten lowest-address qualifying classes of range 1 (`CActorComponent`, `CPlaythrough`, `CActorDef`, `CPlaythroughDef`, `CAbilityMultiLockon`, `CAbilityOpticCamouflage`, `CAbilitySpeedBooster`, `CAimComponent`, `CAttack`, `CBehaviorTreeAIComponent`) had 76 hand-written functions still named `fn_<addr>`, not counting those referenced from generated directories.
+
+After: 25 of them carry inferred names (name_source `inferred`), recorded with their evidence in `data/names.csv` through `tools/rename.py`; 51 keep their placeholders. Code is unchanged apart from the names.
+
+This is naming session 1 of 4, batch 1, following the PR #649 pilot.
+
+**How the classes were chosen.** From the compiled objects of every `src/game/<Class>/` directory with a real class name: the lowest function address the directory defines is in range 1 (0x7100000000 to 0x710058a368), every function it defines is `O`, 4 to 40 are named `fn_<addr>`, and none is in `data/equivalence.csv`. As in #649, the generated-directory rule is applied per function: a placeholder that appears anywhere under a generated directory (mostly `src/lifted/`) is left alone and not counted above. Applied to whole classes, the rule leaves only 8 classes and 42 names in range 1, so this keeps the pilot's reading.
+
+| Address | Name | Evidence in the code |
+|---|---|---|
+| `0x7100252240` | `CActorComponent_InitStatics` | Static initialiser of CActorComponent's unit (tools/tu_map.py unit 342 lists it as the unit's init): no arguments, only InitHeader/InitClass/InitVector/type-registration calls, registering the CollectionTypeMapper value_type classes and "base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>". |
+| `0x71002552a4` | `CActorDef_FindComponentByType` | Walks the component definitions at +0xa0 (count +0xa8) and returns the first whose type id (+0x10, set from the type by fn_7100253988) has the same hash (string data +0x30) as a CRntString built from `name`, else null. |
+| `0x71002563dc` | `CActorDef_ReadComponents` | Reads a count from the file, then per component its name and type strings; unless +0x50 is set it creates each component definition (fn_7100253988) and appends it to the list at +0xa0, otherwise looks it up by name in that list; each reads its own data (fn_7100253af0) and the list is then sorted (fn_7100256810). |
+| `0x71002ef66c` | `CPlaythrough_TruncateRecords` | On the record array it is given, destroys the 0x40-byte records past index n (each releasing its counted reference and freeing its vector of named reflected values) and sets the count to n; CPlaythrough's destructor (CPlaythrough_Dtor_l2ebc18.cpp) calls it as Truncate(0) on its records at +0xb0, and again through the array's inlined free. |
+| `0x71002efa40` | `CPlaythrough_InitStatics` | Static initialiser of CPlaythrough's unit (tu_map unit 424 lists it as the init): no arguments, InitHeaderIds and type registrations for "CPlaythrough::SCheckpointData", "CPlaythrough::SCheckpointData::SValidationInfo", the TDictCheckpointDatas iterator value_types and "CPlaythrough::TDictCheckpointDatas", plus the "presaveddata/" and "playthroughs/" string statics. |
+| `0x71002f2478` | `CPlaythroughDef_GetCheckpointTagsString` | Joins the string ids of the array at +0xa8 into one string separated by ","; its only caller is the CPlaythroughDef::SCheckpointDef "_strTags_GetterFunction" invoker (fn_71002f4f44), and the same array is what the "HasTag" invoker (fn_71002f500c) searches. |
+| `0x71002f2d30` | `CPlaythroughDef_FindCheckpointDef` | Returns the first entry of the pointer array at +0x68 (count +0x70) whose string id at +0x10 equals the argument, or null; +0x68 is the holder built by CPlaythroughDef's constructor after sName (+0x58) and sLevelID (+0x60), +0x10 is SCheckpointDef's sCheckpointID, and the reflected "FindCheckpointDef" invoker (fn_71002f466c) runs the same loop. |
+| `0x71002f6180` | `CPlaythroughDef_InitStatics` | The unit's static initialiser: no arguments, inits the header ids, calls the CPlaythroughDef and SCheckpointDef class getters (fn_71002effc4, fn_71002f07e0) and registers the CRntVector< std::unique_ptr<CPlaythroughDef::SCheckpointDef> > collection types by name. |
+| `0x7100319958` | `CAbilityMultiLockon_UpdateFadingObjects` | Walking the array at +0x700 from the back, removes entries with no object or a time at or below zero (taking the object's item at +8 off the render manager), then lowers each remaining entry's time by 4*dt, clamped at zero, and sets it as the alpha of the object's model (+0x1b8) colour. |
+| `0x710031c7b8` | `CAbilityMultiLockon_AddFadingObject` | When the object is non-null, appends {1.0, object} to the array at +0x700, whose time the update fn_7100319958 lowers and writes as the object's model alpha; CCharClassLockOnMissileMovement's fn_7100ab6bb8 hands its object at +0x858 to the "MultiLockon" ability through it. |
+| `0x710031d5f0` | `CAbilityMultiLockon_InitStatics` | The unit's static initialiser: no arguments, registers the "CAbilityMultiLockon::SSubState" enum, calls the CAbilityMultiLockon class getter (fn_7100316638), sets up a tunable and builds the "MultiLockon", "LockOnMissile" and "lockonmissilemarker" ids. |
+| `0x7100323f10` | `CAbilityOpticCamouflage_ConsumeEnergyAndDamageLife` | Consumes special energy (fn_7100a1feac) at the tunable's fSpecialEnergyConsumptionPerSecondStill/Moving (+0x24/+0x28) times dt; when the energy at +0x44 is empty it also takes life (fn_71011601b8 on fCurrentLife +0x54) at fDamagePerSecondStill/Moving (+0x30/+0x34), never below 1. It copies CTunableSpecialEnergyComponent's fTimeToRecoverAllEnergyOpticalCamuflage/NotMoving (+0x30/+0x34) into the energy component, plays a timeline event on running out and, on the player actor (fn_7100dec788), on coming back (flag +0x398), then calls fn_7100324060. |
+| `0x7100324060` | `CAbilityOpticCamouflage_PulseModelColor` | Advances the phase at +0x394 by 10 or 20 per second (20 while fn_7100a1f84c holds for the special energy component), blends two colour constants by sin(phase)*0.5+0.5 (held flat when fn_7100301700 on the actor's +0x2e0 is above zero) and passes the colour to the model part found by hash 0x979ff4c6002c84dc on the actor's model (+0x280) through fn_71001bc10c. |
+| `0x71003247cc` | `CAbilityOpticCamouflage_Destroy` | The complete destructor: sets the unit's vtable g_unk_7101a230a8, detaches the listener at +0x3a0 from the target of its weak handle (+0x18, fn_710083b0bc) and drops the handle, then runs CAbility's destructor fn_71002fa2bc. The layout ends at 0x3c0, the reflected size of CAbilityOpticCamouflage (base CAbility, 0x390). |
+| `0x710032485c` | `CAbilityOpticCamouflage_DestroyAndDelete` | The deleting destructor: the same steps as fn_71003247cc (vtable g_unk_7101a230a8, listener at +0x3a0 detached), CAbility's destructor inlined (CAbility vtable, six value holders at +0xe8, member at +0x10, fn_7101043934), then operator delete. |
+| `0x7100325290` | `CAbilityOpticCamouflage_InitStatics` | The unit's static initialiser (no arguments): InitHeaderIds, calls the class getter fn_7100320270, registers the CAbilityOpticCamouflage::ESelectionMode and CAbilityOpticCamouflage::ESelectionInput enums by those strings (InitEnum), calls the tunable getter fn_7100320a88 and registers the tunable g_unk_71726affc0 (InitTunable). |
+| `0x710033bc80` | `CAbilitySpeedBooster_UpdateActivationTime` | Called each step from the ability update with dt: while fn_710033c174 passes, it adds dt to +0x398 when the playing CCharClassAllowSpeedBoosterTrack record allows it (allowed without one), and while +0x398 is still zero only if +0x394 is set; it sets +0x394 and fires timeline key g_unk_7101649008 when +0x398 is zero and +0x3a1 is set; otherwise it calls fn_710033c350; +0x3a1 is cleared every call. +0x398 is the value fn_710033f6fc compares with the tunable's fTimeToActivate (+0x2c). |
+| `0x710033bf64` | `CAbilitySpeedBooster_UpdateModelTint` | While the ability state is 6, or +0x394 is set and +0x398 has reached the tunable's fTimeToShowPreparationFX (+0x24), it advances +0x390 by dt times 10 or 20 (chosen by the movement's speed), blends two colour pairs by sin(+0x390) and passes the colour to the CSamusModelUpdaterComponent tint call fn_710093adc0 on the owner actor's model updater (+0x228). |
+| `0x710033f0c8` | `CAbilitySpeedBooster_Destroy` | Complete destructor: restores the unit's vtable g_unk_7101a23798, destroys the slot at +0x5a8 (fn_7100030a50), the three value holders at +0x458 and the member at +0x3a8, then runs CAbility's destructor fn_71002fa2bc. |
+| `0x710033f194` | `CAbilitySpeedBooster_DestroyAndDelete` | Same member teardown as fn_710033f0c8, then CAbility's destructor inlined (CAbility vtable g_unk_7101a223f8, its six value holders, the member at +0x10, fn_7101043934) and frees the object with fn_7100083c00. |
+| `0x710033f6fc` | `CAbilitySpeedBooster_TryActivate` | Unless the CAbility state (+0xb4, 7 deferring to +0x20) is 6, calls fn_71002fa070 (fn_71002f9460 with 1) when the owner actor is null or has no +0x220, or when +0x398 has reached the threshold: the list value at +0x5a8 if the list is non-empty, else the tunable's fTimeToActivate (+0x2c). |
+| `0x71003448d4` | `CAimComponent_ForceAimPressed` | Adds the string id to the key list at +0x6e8 when the flag is set and removes it otherwise (fn_710002fd10 / fn_710002ffb4); this is the same body as the invoker fn_7100354274 that CAimComponent's reflection registers as "ForceAimPressed" with the same (bool, CStrId) arguments. |
+| `0x7100362324` | `CAttack_GetPreset` | Returns fn_71003646b0 (the CCharClassAttack's tPresets entry at an index) for the CCharClassAttack at +0x20, using the owner's AI component iForcedAttackPreset (+0x1788) instead of the given index when its sForcedAttack (+0x1780) equals the attack's sName (+0x38); null without +0x20. |
+| `0x71003627f8` | `CAttack_MakeIdWithAnimState` | Returns a string id built from the text of the attack's vf_0xb0 id followed by the sAnimState (+0x18) of the owner's playing CCharClassSetAnimStateTrack record (looked up with fn_710117b08c), or the empty id when +0x20 is null; CGoliathXSlamAttack's callers send its hash and CAIAttackComponent's fn_7101134648 passes it to vf_0x170. |
+| `0x71003697f0` | `CBehaviorTreeAIComponent_SendCrazyEnd` | Runs once (sets +0x146b0): sends to the owner's +0x220 with mode 1 the id the owner's AI component returns from vf_0x1d0, or when that is empty the table id "crazyend", falling back to "relax" when that send fails; its callers invoke it while the owner is in a CCharClassCrazyTrack. |
+
+Declined (placeholder kept):
+- `0x71002ec894`: proposed CPlaythrough_ReadFromFile; dropped before review: a file reader whose body CPlaythroughDef's fn_71002f2a94 shares; nothing shows the object is a CPlaythrough
+- `0x7100015250`: Generic keyed-array lookup (find-or-null) with an identical copy at fn_7100015508 and siblings across units; shared container code, not CActorComponent-specific.
+- `0x7100251f78`: Clone family: one of several identical copies of the shrink-to-fit of fn_7100d86d30 (also fn_710104b27c, fn_71010c6b78, fn_71000df5ec); generic container code.
+- `0x710104b27c`: Identical copy of the generic shrink-to-fit container code (fn_7100d86d30 family), called from CBlackboard's unit; not class-specific.
+- `0x71010c6b78`: Identical copy of the generic shrink-to-fit container code (fn_7100d86d30 family), called from CComponent's unit; not class-specific.
+- `0x71002ec674`: Generic erase-at of a keyed record dictionary reached only through the shared RemoveKey helper (fn_71002eeef8), one of a family with per-type siblings; the record type is not shown to be CPlaythrough's.
+- `0x7100254fdc`: Multi-step load step (stream read via vf_0x30, name from context, vf_0x48, parts' vf_0x20, factory loads of the names); the virtual slot's role is not reflected, so a summary name would be a guess.
+- `0x7100255158`: Several steps (releases factory resources by name, calls parts' unknown slot 0x30, conditionally destroys parts on +0x50) with no reflected slot name; also used as CCharClass's base reset; left unnamed to avoid guessing.
+- `0x7100255334`: Finds a component definition by name id (+0x8), but its body is identical to fn_7100255368 and nothing distinguishes the two for disambiguation.
+- `0x7100255368`: Identical body to fn_7100255334 (find component by name id at +0x8); no difference to disambiguate the two names.
+- `0x7100256810`: libc++ std::__sort instantiation (an alias to the mangled std symbol) for a pointer list ordered by +0x18; library template code.
+- `0x7100256e90`: libc++ std::__sort4 instantiation (alias to the mangled std symbol); library template code.
+- `0x7100256ff0`: libc++ std::__insertion_sort_incomplete instantiation (alias to the mangled std symbol); library template code.
+- `0x71002f2a94`: Generic read-reflected-object-from-file body shared per unit (CPlaythrough's fn_71002ec894 is the same with other callbacks); the self type is only a reflected object with a path at +0x8, not shown to be CPlaythroughDef.
+- `0x71002f608c`: Shared string node-list destructor template (same body as fn_71007fd4c8/fn_7100932010 with other vtables and link offsets), not CPlaythroughDef-specific.
+- `0x71007fd4c8`: Same shared string node-list destructor template, in the CCharClassFrozenAsPlatformComponent unit; not specific to CPlaythroughDef.
+- `0x7100932010`: Same shared string node-list destructor template, in the CMeleeComponent unit; not specific to CPlaythroughDef.
+- `0x710031965c`: Body acts on a slot's actor through callees whose roles are unestablished (fn_7100233910 sets an unnamed CActor flag, timeline component fn_7100a2bc3c); purpose cannot be stated without guessing.
+- `0x7100319aec`: Generic growing-array element accessor (an inline template's out-of-line copy), not class-specific.
+- `0x710031a13c`: Appends the actor's handle to +0x3c8 after timeline calls with unnamed ids, but its only caller calls it while releasing targets with an id argument; role unclear.
+- `0x710031d33c`: Runs fn_710031965c (unnamed, unclear) on each slot, clears the fading objects and sets +0x728 to -1; no vtable or reflected evidence for a reset role, so a name would rest on the unclear slot step.
+- `0x71003448ec`: Same add/remove toggle as ForceAimPressed but on the key list at +0x798, which no reflected name or string identifies.
+- `0x710034e0b8`: Out-of-line destructor of the shared placeholder UnkSoundDesc type (declared as its member), not a CAimComponent function.
+- `0x710034f8dc`: Predicate on an animation track class (fn_7100d03e08) and unnamed state/flag (+0x50, +0x360) with no engine vocabulary for what it tests.
+- `0x7100351ed4`: Returns a position from collision objects named by an unnamed char-class id (+0x150) or an unnamed static id on the component's target (+0x5c8); purpose not plain without guessing.
+- `0x71003546d8`: Message handler on an unknown message hash setting unnamed fields (+0x670/+0x674/+0x6a2); no vocabulary to name it.
+- `0x7100318278`: Complete destructor of a small value-holder class whose identical clones live in the CAbilityShinespark and CAbilitySpeedBooster units; the class is unidentified.
+- `0x710031dd08`: Deleting destructor of the same unidentified value-holder clone family (also in CAbilityShinespark/CAbilitySpeedBooster units).
+- `0x710031e030`: libc++ std::__sort instantiation (alias) for an unidentified 0x30-byte entry type; library code, not class-specific.
+- `0x710031eaa0`: libc++ std::__sort3 instantiation (alias) for an unidentified entry type; library code.
+- `0x710031f110`: libc++ std::__sort4 instantiation (alias) for an unidentified entry type; library code.
+- `0x710031f550`: libc++ std::__sort5 instantiation (alias) for an unidentified entry type; library code.
+- `0x710031fad0`: libc++ std::__insertion_sort_3 instantiation (alias) for an unidentified entry type; library code.
+- `0x710031fcd0`: libc++ std::__insertion_sort_incomplete instantiation (alias) for an unidentified entry type; library code.
+- `0x7100323b60`: Same shape as CAbility's fn_71002fa078 (timeline id swap via unnamed vtable slots 0xd0/0xe0/0xe8, then fn_71002f9460); the roles of the slots and states 6/7 are not shown, so a name would guess.
+- `0x7100324284`: Base step fn_71002fa298 then vtable slot 0xa0 with a comparison of the owner's +0xb8 against an unnamed global in state 6; purpose not plain.
+- `0x7100325184`: Generic weak-handle assignment (AssignRef/GetWeakHandle), same body as fn_710082efe8/fn_71006f552c/fn_71006f5630 in other units; not class-specific.
+- `0x71003283c4`: Complete destructor in the unidentified value-holder clone family (vtable in another ability unit).
+- `0x7100332080`: Deleting destructor in the unidentified value-holder clone family (vtable in another ability unit).
+- `0x710033f41c`: Complete destructor in the unidentified value-holder clone family (vtable in another ability unit).
+- `0x710033f458`: Deleting destructor in the unidentified value-holder clone family (vtable in another ability unit).
+- `0x71003624f4`: proposed CAttack_GetDistanceRange; dropped before review: returns two radius-adjusted values that a caller uses as a distance range; which char-class members they are is not shown
+- `0x710033b7c4`: Override that, in state 6, resets two model tints, fires a timeline key, clears several tracks and then calls the unnamed base fn_71002f9de8; its role (and the extra actor argument) cannot be stated without guessing.
+- `0x710033c2e4`: Predicate combining an unidentified owner +0x210 object, the state at +0x3b8 being 1 and not being in a CCharClassIgnoreSpeedBoosterTrack; what it decides is not plain.
+- `0x710033cf48`: Override of the unnamed CAbility enter fn_71002f9f18 doing several things (tint reset, state request 2, animation sends, facing record, timeline keys); no single verb phrase without guessing.
+- `0x710033d28c`: Runs a callback then calls the unnamed fn_710033cd50 under several unidentified movement/state conditions; purpose depends on what cd50 does.
+- `0x710033e2c8`: Calls the unnamed fn_710033cd50 when an input vector points against a facing constant in boost modes 2/3; cd50's meaning is unknown so a name would guess.
+- `0x7100362498`: Predicate on owner +0x220, an unnamed flag at +0x14 and not being in a CCharClassAttackTrack; CAttack has no reflected members to name the flag, so its meaning is unclear.
+- `0x710036270c`: Returns the preset's vf_0x48(arg); that CAttackPreset virtual is unidentified.
+- `0x7100369db8`: Builds an attack query (optionally with a target distance) and passes it through the unnamed fn_71010ffe3c / vf_0x468 / vf_0x470 or falls back to fn_7101105950; the settings at +0x146b8 and the result are unidentified.
+- `0x7100255268`: proposed CActorDef_GetFlagForEditorMode; review: vague (the two bytes it picks between are unnamed flags read from a file, and nothing calls it). Reverted.
+
+**Independent review.** A fresh subagent that had not seen the naming reasoning got the sources and 25 of the 26 proposed names, drawn with `random.seed(101)` (`0x71002f6180` was the one left out), and judged each against the code: 24 right, 1 vague, 0 wrong. The batch passed. The vague name (`0x7100255268`) was reverted. Six reasons the reviewer found imprecise or incomplete were corrected before committing: `0x710033bc80`, `0x71003627f8`, `0x7100323f10`, `0x710033bf64`, `0x710033f6fc` and `0x71002ef66c`.
+
+**Cost.** The naming was done by four subagents of about 170k to 220k tokens each (774k in all) and one reviewer of 228k tokens, plus this session's share of setup and checks. That is about 40k subagent tokens per landed name. This environment does not show the bill, so there is no dollar figure; going by the pilot's ratio it is under a dollar a name.
+
+**Notes for later.** `CPlaythroughDef_GetCheckpointTagsString`'s `self` is really an `SCheckpointDef`, since `CPlaythroughDef` is only 0x90 bytes; a layout batch could make it a member. Many declined functions are generic container code or libc++ `std::sort` pieces compiled into these units.
+
+**Name 28 functions in eight classes of range 3 (#654, 2026-11-23).**
+
+Before: these eight classes of the third address range (`0x710079f5c1` to `0x71009cf11c`) still had 58 functions named `fn_<addr>`: `CFloatingPropActingComponent`, `CFrozenAsFrostbiteComponent`, `CChozombieFXComponent`, `CScorpiusFXComponent`, `CActionSwitcherOnPullGrapplePointComponent`, `CLockOnMissileGun`, `CPlasmaBeamGun` and `CPowerBeamGun`.
+
+After: 28 of them carry inferred names (name_source `inferred`), applied with `tools/rename.py` and recorded with their evidence in `data/names.csv`. The rest keep their placeholders, listed below with the reason. Only the names change; the code does not.
+
+This is naming session 3 of 4, following the pilot in #649. **How the classes were chosen:** from the compiled objects of each `src/game/<Class>/` directory with a real class name, the classes whose lowest defined function is in range 3, every function defined there is `O`, 4 to 40 are `fn_<addr>`, none is in `data/equivalence.csv` and none is referenced from a generated directory. Fourteen classes qualify; this PR has the first eight by address, and the other six follow in a second PR.
+
+| Address | Name | Evidence in the code |
+|---|---|---|
+| `0x71007e62f0` | `CFloatingPropActingComponent_Destroy` | the destructor: restores the vtable of the class's unit (g_unk_7101a73768), destroys the string at +0x60, drops the counted reference at +0x40, then the component base destructor fn_71010c4194 |
+| `0x71007e6358` | `CFloatingPropActingComponent_DestroyAndDelete` | the deleting destructor: the body of the destructor fn_71007e62f0, then operator delete |
+| `0x71007e63b8` | `CFloatingPropActingComponent_FindTargetAndPlay` | after the base step, keeps at +0x40 the weak handle of the object fn_71007e4924 finds for the owner, then starts the animation (fn_71007e64d0) |
+| `0x71007e64d0` | `CFloatingPropActingComponent_PlayAnimation` | sends the target at +0x40 an animation request (CAnimationComponent's fn_7101176ea8) with a fixed id and a random start in [0, 1], then sets the flag at +0x9c |
+| `0x71007f4170` | `CFrozenAsFrostbiteComponent_InitFromCharClass` | after the base step, caches the char class cast to CCharClassFrozenAsFrostbiteComponent (getter fn_71007f0258) and reserves one object slot per tBarelyIceInfo entry (+0xc8, count +0xd0) |
+| `0x71007f4514` | `CFrozenAsFrostbiteComponent_PlaceBarelyIceObjects` | once there is one object per tBarelyIceInfo entry, sets each object's position and rotation from the transform of its entry's node in the actor's model |
+| `0x71007f46e8` | `CFrozenAsFrostbiteComponent_UpdateFrostbiteLevel` | while the level is positive, counts down the after-hit delay (fAfterHitNoFrostbiteLevelResetTime) and then the reset time (fFrostbiteLevelResetTime), tinting by level and time; when it runs out adds sTimelineIdOnFrostbiteStop to the actor and zeroes the level; then the base update |
+| `0x71007f4f64` | `CFrozenAsFrostbiteComponent_UpdateThawingTint` | when the char class has no tBarelyIceInfo entries, tints the actor by +0x44 over fThawingTime (+0x5c), then the base update fn_71007fa610 |
+| `0x71007f5880` | `CFrozenAsFrostbiteComponent_HandleDamage` | takes a damage request: raises the frostbite level (playing sTimelineIdOnFrostbiteStart at level 1) and tints the actor, and at iRequiredFrostbiteLevel caps the damage to leave one point of life and sets state 2 |
+| `0x71007f80b0` | `CFrozenAsFrostbiteComponent_InitStatics` | the unit's static initialiser (tools/tu_map.py, unit 1259): its header ids and the aSS id, the icemissile_frozenfx and ice_explosion_broken paths, the icesteam ids, two class getters and the tunable |
+| `0x7100806f1c` | `CChozombieFXComponent_Destroy` | the destructor: the unit's vtable (g_unk_7101a74b88), the render object at +0x2d8 taken off the render manager, the file-path id at +0x48 released, then the component base destructor fn_71010c4194 |
+| `0x7100806fc0` | `CChozombieFXComponent_DestroyAndDelete` | the deleting destructor: the same body as fn_7100806f1c, then operator delete |
+| `0x710080706c` | `CChozombieFXComponent_CreateModel` | after the base step, caches the char class cast to CCharClassChozombieFXComponent (getter fn_71008054e4), copies its model path to +0x48 and, when there is none yet, creates the model at +0x2d8 and adds it to the render manager |
+| `0x710080f184` | `CScorpiusFXComponent_Destroy` | the destructor: the unit's vtable (g_unk_7101a74e88), every gas effect handed back to the model manager, then the component base destructor fn_71010c4194 |
+| `0x710080f284` | `CScorpiusFXComponent_DestroyAndDelete` | the deleting destructor: fn_710080f184, then operator delete (fn_7100083c00) |
+| `0x710080f4c8` | `CScorpiusFXComponent_CreateGasEffects` | creates 50 effects from "actors/characters/scorpius/fx/scorpiuspoisonousgas.bcptl", puts each on render layer 0 switched off, and appends it to the array at +0x60 |
+| `0x710080f624` | `CScorpiusFXComponent_ReleaseGasEffects` | hands every effect of the array at +0x60 back to the model manager and empties the array |
+| `0x7100825f80` | `CActionSwitcherOnPullGrapplePointComponent_LoadFromBlackboard` | after the base load, finds the component's section in the given blackboard and reads the bool under the id the component's table maps the "Used" property to; when that read fails, calls fn_710082cee4(true) and fn_710082cf08(false) |
+| `0x71008261e0` | `CActionSwitcherOnPullGrapplePointComponent_CanGrapple` | true when the base test passes, the flag at +0x98 is clear, the message comes from the char class's sGrappleCollider (+0x78) and its value at +0x20 is at least fGrappleMinAlignmentX (+0xa0) in size |
+| `0x71008262c4` | `CActionSwitcherOnPullGrapplePointComponent_PlayGrappleAttachAction` | after the base step, sends the owner's animation component (+0x220) the char class's sActionOnGrappleAttach (+0x80) unless it is the empty id |
+| `0x71008263e4` | `CActionSwitcherOnPullGrapplePointComponent_PlayPullOrDetachAction` | after the base step, sends the owner's animation component sActionOnPull (+0xa0) when the flag argument is set (then marks +0x98 and calls slot 0x1a8 with the game blackboard), else the char class's sActionOnGrappleDetach (+0x98) |
+| `0x710084cb58` | `CLockOnMissileGun_Destroy` | the destructor: the unit's vtable (g_unk_7101a784a8), drops the counted references at +0x1924 (count +0x1920), then the base destructor fn_710084e8fc |
+| `0x710084cbec` | `CLockOnMissileGun_DestroyAndDelete` | the deleting destructor: the same body as fn_710084cb58, then operator delete |
+| `0x71008519d8` | `CPlasmaBeamGun_PreloadEffects` | once (flag +0x1870), preloads the plasma beam's explosion and minor_explosion effects and the explosion_game model, then fn_71008548bc |
+| `0x7100851f18` | `CPlasmaBeamGun_ReleaseEffects` | when preloaded (flag +0x1870), releases the same two plasma beam effects and the model, then fn_7100854db8 |
+| `0x7100853720` | `CPowerBeamGun_FireShot` | when there is an owner and slot 0x48 allows it, takes the shot's position and direction (fn_710034f54c with the id a CSamusAnimationComponent holds at +0x530, else 0), passes them to fn_71008538e8, plays the shot sound through g_unk_71726af0b0 (kind 4 when the shot's flag at +4 is set, else 3) and returns true |
+| `0x71008548bc` | `CPowerBeamGun_PreloadEffects` | after the base step, once (flag +0x1870), registers the power beam's nine effects and models (explosion, chargebeam, powerbeam_waves...) with the model manager's effect cache |
+| `0x7100854db8` | `CPowerBeamGun_ReleaseEffects` | after the base step, when preloaded (flag +0x1870), releases five of the power beam's paths (four effects and the diffusion_explosion_game model) |
+
+Declined (placeholder kept):
+- `0x71007f4378`: several unrelated steps; any one name would be vague.
+- `0x71007f4860`: repeats the level reset after a base step that takes a state whose role is not shown.
+- `0x71007f5b7c`: a forwarder to virtual slot 0x200.
+- `0x71007f5d24`: breaks into state 3, whose meaning is not shown.
+- `0x71007f6100`, `0x71007f6750`, `0x71007f68b0`, `0x71007f6b90`, `0x71007f71e0`, `0x71007f7340`, `0x71007f7620`, `0x71007f7c70`, `0x71007f7dd0`: libc++ `std::sort` helpers spelled as asm labels, which `rename.py` cannot rename.
+- `0x710080f710`: the gas release plus the base step `fn_71010c422c`; a separate name needs that step's role.
+- `0x7100826090`: a pull-state handler sending `sActionOnPull`; telling it apart from its siblings needs the base states' roles.
+- `0x710082bec4`: lives in `CPlatformTrapGrapplePointComponent`'s unit and sends a fixed hash.
+- `0x710084d400`: tests a virtual's value against 3; its purpose is not shown.
+- `0x71008523c4`, `0x7100852698`, `0x7100851bc0`, `0x7100851d6c`: the effect pool's template code copied into the unit; a `CPlasmaBeamGun` name would mislabel them.
+- `0x710085477c`, `0x710085478c`: forwarders to slot 0x158.
+- `0x71007e662c` and `0x71007e664c`, named `..._ResetTargetValue` and `..._UpdateTargetValue` at first. Review 1: vague, since the key they use is the unit's "WaterMovement" id. Reverted; `..._ResetWaterMovement` and `..._UpdateWaterMovement` are candidates for a later pass.
+- `0x7100826634`, named `..._PlayPullStateAction` at first. Review 1: vague, because it does not tell it apart from `0x7100826090`. Reverted.
+- `0x710084ccd0`, named `CLockOnMissileGun_UpdateLockOn` at first. Review 1: **wrong**, because nothing shows lock-on, and the flag at +0x199c is set on the fire path (`fn_710084d468`). Reverted.
+- `0x7100853674`, named `CPowerBeamGun_ApplyDiffusionBeam` at first. Review 1: vague, because the name covers only the conditional part of the body. Reverted.
+- `0x71007f4278`, named `..._ResetFrostbiteLevel` at first. Review 2: vague, because `0x71007f4860` and `UpdateFrostbiteLevel`'s tail do the same reset. Reverted.
+- `0x71008073c0`, named `..._ReleaseTrails` at first. Review 2: vague, because nothing in the code says "trail". Reverted.
+
+**Independent review.** Two fresh subagents that had not seen my reasoning each got the sources and 25 names drawn at random, and judged each name right, vague or wrong.
+- Round 1, seed 31, 25 of 35 names: 21 right, 3 vague, 1 wrong. The batch failed. I reverted the wrong name, the three vague ones and an unsampled sibling with the same problem, and corrected seven reasons (tint and timeline wording, the "aSS" id, models versus effects, "targets").
+- Round 2, seed 47, 25 of the remaining 30: 23 right, 2 vague, 0 wrong. I reverted both vague names and corrected two reasons (`FireShot`'s "charged" and origin wording, and the blackboard id that `LoadFromBlackboard` reads).
+
+**Cost.** For this session so far: 74k output tokens, 420k cache writes and 37.9M cache reads. That includes one-time setup (toolchain, libc++ headers, class selection) and drafting the second batch. The two reviewers used 57k output tokens, 254k cache writes and 13.9M cache reads between them. Per landed name that comes to about 4.7k output tokens and 1.85M cache reads.
+
+**Findings.**
+- `CPlasmaBeamGun_PreloadEffects` sets the flag at +0x1870 and then calls `CPowerBeamGun_PreloadEffects`, which tests the same flag. So a plasma gun never preloads the power beam's own effects. The function matches, so this is probably the original's behaviour.
+- `CChozombieFXComponent_CreateModel` overrides the same virtual as `CFrozenAsFrostbiteComponent_InitFromCharClass`. A later pass may want one name for that slot.
+
+**Run-lock tests take the holder's pid from the child (#652, 2026-11-23).**
+
+Before: on the owner's Windows machine, two tests added by #646 failed, `test_second_process_waits_then_runs` and `test_timeout_message` in `tools/tests/test_runlock.py`. Each compared the lock holder's pid in the waiting or timeout message with `Popen.pid` of the process the test launched. Under a Windows venv, `python.exe` is a launcher that starts the real interpreter as a second process, so the pid holding the lock was never `Popen.pid`.
+
+After: the holder process prints its own `os.getpid()` with the "held" line, `hold()` returns that pid beside the process, and both tests compare against it. The tests pass on Linux as before and no longer depend on how the interpreter is launched.
+
+How: tests only. `tools/dread/runlock.py` is unchanged.
+
+**Inferred names pilot: CMapAcquisitionComponent and CTrainUsableComponent (#649, 2026-11-23).**
+
+Before: every hand-written function of `CMapAcquisitionComponent` and `CTrainUsableComponent` was named `fn_<addr>`.
+
+After: 16 of them carry inferred names (name_source `inferred`), recorded with their evidence in `data/names.csv` through `tools/rename.py`; 6 keep their placeholders. Code is unchanged apart from the names.
+
+This is a pilot of the inferred-names tier (owner, 2026-11-23) on two classes, to measure cost and quality. Do not merge without review.
+
+**How the classes were chosen.** From the compiled objects of every `src/game/<Class>/` directory with a real class name: every function defined there is `O`, 8 to 25 are named `fn_<addr>`, none is in `data/equivalence.csv`, and `tools/fakematch.py` reports no form in the directory (so nothing overlaps the steering-form removal running in parallel). Only two directories also had no function referenced from a generated directory, `CAIAction` and `CAutsniperSpawnPointComponent`, and both hold clone families of one body copied across other classes' units, which a class name would mislabel. So I applied the generated-directory rule per function instead: these two classes have 15 and 11 unnamed functions, and the four referenced from `src/lifted/` (`0x7100a84d78`, `0x7100a84fb4`, `0x7100a86138`, `0x7100a9948c`) were left alone. Both are usable components whose char classes' reflected fields (`sUse*Action`, `eDirection`, `sStartLevelMusicID`) give the engine's own vocabulary.
+
+| Address | Name | Evidence in the code |
+|---|---|---|
+| `0x7100a88650` | `CMapAcquisitionComponent_InitStatics` | the unit's static initialiser: the "MAP" id, the "Used" and "Acquired" properties, the class getter, the unit's type registration |
+| `0x7100a854fc` | `CMapAcquisitionComponent_InitStates` | the usable component's state setup, then the component's four states added to its machine with their callbacks, then the registry map under the owner's name |
+| `0x7100a8593c` | `CMapAcquisitionComponent_LoadFromBlackboard` | after the base load, reads the acquired flag (+0x539) from the component's blackboard section: "Acquired", or else "Used"'s entry in its id table |
+| `0x7100a85b98` | `CMapAcquisitionComponent_GetUseInitAction` | char class +0x1c8 `sUseInitMRUsedAction` when acquired, else +0x100 `sUseInitAction` |
+| `0x7100a85bb4` | `CMapAcquisitionComponent_GetUseAction` | +0x1d0 `sUseMRUsedAction` when acquired, else +0x110 `sUseAction` |
+| `0x7100a85bd0` | `CMapAcquisitionComponent_GetUsableInitAction` | +0x1e8 `sUsableInitMRUsedAction` when acquired, else +0x108 `sUsableInitAction` |
+| `0x7100a85bec` | `CMapAcquisitionComponent_GetUseEndAction` | +0x130 `sUseEndAction` or +0x1e0 `sUseEndUseAfterDownLoadMapAction`, by the flag at +0x7b9 |
+| `0x7100a86d00` | `CMapAcquisitionComponent_AskSaveQuestion` | shows the "#GUI_SAVESTATION_QUESTION" pop-up with the accept and back texts and two callbacks |
+| `0x7100a85ae0` | `CMapAcquisitionComponent_GetCurrentScenarioSectionId` | the current scenario's blackboard section id or the empty id; an inlined copy of the game manager's `fn_7100de9c30` |
+| `0x7100a99878` | `CTrainUsableComponent_GetUsableAction` | `sUsableLeftAction` or `sUsableRightAction` by `eDirection` (+0x548) |
+| `0x7100a998e8` | `CTrainUsableComponent_GetUsableLevelChangeAction` | `sUsableLevelChangeLeftAction` or `...RightAction` by `eDirection` |
+| `0x7100a99958` | `CTrainUsableComponent_GetUseInitAction` | `sUseInitLeftAction` or `sUseInitRightAction` by `eDirection` |
+| `0x7100a999c8` | `CTrainUsableComponent_GetUseAction` | `sUseLeftAction` or `sUseRightAction` by `eDirection` |
+| `0x7100a99a38` | `CTrainUsableComponent_GetUseLevelChangeAction` | `sUseRightLevelChangeAction` or `sUseLeftLevelChangeAction` by `eDirection` |
+| `0x7100a99aa8` | `CTrainUsableComponent_GetUseEndAction` | `sUseRightEndAction` or `sUseLeftEndAction` by `eDirection` |
+| `0x7100a9a600` | `CTrainUsableComponent_InitStatics` | the unit's static initialiser: the "CTrainUsableComponent" and "initopen" ids, the `ETrainDirection` enum, the class getter, the unit's type registration |
+
+Every char-class offset was checked against `tools/gen_fields.py` by the reviewers too. The train class is reached through a cast check against `CCharClassTrainUsableComponent`'s getter; the map acquisition's char class at +0x7f8 is not cast-checked, but three other offsets the unit reads there (`sStartLevelMusicID`, `fPostponeFadeInTime`, `fFadeInTime`) fit `CCharClassMapAcquisitionComponent`. Finding: for direction 0, the last two train getters return the Right action while the other four return the Left one; the names make no left/right claim.
+
+Declined (placeholder kept):
+- `0x7100a876fc`: counts time and waits on the level music or a tunable wait, then runs steps not yet understood (a Lua-side call, two timeline ids, its own slot 0x2b8).
+- `0x7100a86c40`: keeps a handle to the given target, then either asks the save question or runs one of two virtual steps; "start use" would be a guess.
+- `0x7100a9a1f8`: marks the usable used, hands the game manager the scenario name with the "[MANTAIN]" tag, then the base step; what that call means is not shown.
+- `0x7100a8756c`, named `..._FadeInAndStartLevelMusic` at first; review: wrong, since the music starts only in "MAINMENU" mode. Reverted.
+- `0x7100a99e70`, named `..._ShowDialogAndStartTravel` at first; review: vague and its reason wrong (the base step never hides anything, and the final call is a scenario-load request, not "travel"). Reverted.
+- `0x7100a99ba4`, named `CTrainUsableComponent_Use`; second review: vague, and its reason claimed a "train animation" where the id tested is the unit's "initopen" id. Reverted.
+
+**Independent review.** Two fresh subagents that had not seen my reasoning got the sources and every name (all of them, being fewer than 20), and judged each right, vague or wrong.
+- Round 1, 19 names: 16 right, 2 vague, 1 wrong. The batch failed. I reverted the wrong name and one vague name, and corrected one reason.
+- Round 2, 17 names: 16 right, 1 vague, 0 wrong. I reverted the vague name and corrected two reasons that said "registers the class type" where the code shows a getter call and a type registration.
+
+**Cost.** This session, including both reviews: about 72k output tokens, 457k cache writes and 30.4M cache reads, at $10.58 in all. That is about 33k fresh tokens and 1.9M cache reads per landed name, or about $0.66 a name. The two reviewers used 197k and 189k tokens. A good part of the cost was one-time setup (toolchain, libc++ headers, class selection), so a second batch should cost less per name.
+
+**Notes for later.** `CTrainUsableComponent_Travel_la99e70.cpp` calls +0x550 `scenario`, but reflection names +0x550/+0x558/+0x560 `sLevelName`, `sScenarioName` and `sTargetSpawnPoint`; that belongs to a layout batch. Two files keep address names (`fn_7100a8756c.cpp`, `fn_7100a9a600.cpp`), and the second now defines a named function; renaming files was left out so the objects compare by path.
+
+**Add tools/objsame.py: does a source still compile to the same object (#647, 2026-11-23).**
+
+Adds `tools/objsame.py`, a tracked version of the throwaway comparison that #632, #635, #639 and #643 each wrote for themselves: does a hand-written source still compile to the same object? It needs no game data, so it runs on any clone with the project compiler.
+
+- **`save --tag T [FILES | @LIST | --all | --base REF]`** compiles each selected source with Clang 9.0.1 and `tools/buildcfg.py`'s flags and records, per object: every allocated section's bytes (by hash, with size, type, flags and alignment), its relocations (offset, type, addend, target symbol, or the section for a section-relative one) and the defined symbols. A header in the selection expands to its hand-written includers (`baseline.py`'s selection). `--base REF` selects the files that differ from REF (untracked included) and the includers of changed headers, and compiles them **as they are at REF** in a temporary detached worktree, so the snapshot can be taken after the edit.
+- **`compare --tag T [--modulo-names]`** rebuilds and prints `UNCHANGED` or `CHANGED` per file with what differs, exit 1 on any change. A file that does not compile on either side is `CHANGED`. `--modulo-names` cuts every symbol name, relocation target and per-function section name to its qualified name without parameter lists (`a::f(UnkX*) const` -> `a::f`, `f(UnkX)::s` -> `f::s`): the acceptance test for renaming a type. A change where only names differ (a function renamed) is still `CHANGED`, with "names only" as its first line.
+- Every compile runs from the tree's root with repository paths made relative, so anything the code embeds from a file name is the same in a REF worktree as in the checkout (Clang 9 has no `-fmacro-prefix-map`). Objects and records live under `build/objsame/<tag>/` (`base/` and `now/`), apart from `check.py`'s cache. Standard library only (its own ELF reader); parallel (`-j`).
+
+Checked here: 19 unit tests in `tools/tests/test_objsame.py` (tiny made-up sources: a comment edit is unchanged, a constant edit changes bytes, a type rename is "names only" exactly and unchanged modulo names, a broken source is changed; the compiled ones skip without the compiler). On 20 random hand-written sources: a comment appended to each, `UNCHANGED` 20/20; a file-local type renamed in one, `CHANGED` (names only) exactly and `UNCHANGED` modulo names; a `+ 1` added there, `CHANGED` modulo names. The same rename through `save --base HEAD` gave the same results; a comment in a header with 4 includers, unchanged through the worktree. `--all` (7,363 hand-written sources) saved and compared modulo names with 0 changed, about 2 minutes each on 4 cores. A record of an object from `check.py --compile-only` equals objsame's own for the same source.
+
+Reusable: for a rename, `save --tag x --base origin/main` then `compare --tag x --modulo-names`; renaming a function itself shows as "names only", which is the evidence that nothing but the name moved.
+
+**Steering forms out of matched functions: header members and their users (#650, 2026-11-23).**
+
+Before: 578 byte-matching hand-written functions were kept out of the headline figure by a steering form, most of them by an offset cast (`*(T*)((char*)p + 0x18)`) or an empty asm barrier.
+
+After: this pull request and its sibling (claude/steering-forms-2, the files that include none of the headers changed here) take out 2 barriers and 193 offset casts in 150 files without changing a single compiled object. Together the two take offset-cast hits from 843 to 473 and barriers from 310 to 302.
+
+How: every edit was accepted only when `tools/objsame.py compare` (draft PR #647, run from outside the tree, not committed) printed UNCHANGED in exact mode, for the edited file and for every hand-written includer of an edited header. The final check of this branch compiled the 1,636 sources that differ from `origin/main` or include a changed header: 0 changed. No game data was used or needed.
+
+- **Barriers.** Each barrier in a `.cpp` without `NON_MATCHING` was taken out alone and the file recompiled (the same test as `fakematch.py --unneeded-barriers`, compared on the whole object instead of against the dump). 8 of 310 changed nothing and are gone (2 in this PR, 6 in the sibling); 280 still change the code; the rest sit in headers, macros or `NON_MATCHING` files.
+- **Offset casts.** A read or write through a byte pointer plus a constant now uses the struct's member at that offset: an existing member, or a `field_0x..` placeholder split out of the padding (sizes, other offsets and static_asserts unchanged). Headers that gained members: `UnkActor`, `UnkGameManager` (and `UnkGameManagerSub_0x1af8`), `UnkGuiDisplayObject`, `UnkGuiRoot`, `UnkModel`, `UnkSceneObject`, `UnkSwitchObject`, `UnkManager_71726af468`, `UnkBossAIComponent`, `UnkChargeComponent`, `UnkToggle`, `UnkFxObject_ovb0041`, `UnkGraphicsState`, `UnkMinimapStatics`, `UnkSubArea`, `UnkMedia324`, `UnkUnit36_Nfp`. Two structs that were defined in one `.cpp` and forward-declared in a header (`UnkGroupIds`, `UnkGlobal2`) moved into their headers.
+- **String ids.** `UnkStringData` reads use its own members: the key at 0x30 as `Key()`, the string at 0x10 as `String()` or `text`, the hash words as `hash`, the read count as `reads`, and the empty-string test as `&g_unk_7101d47108->empty`.
+
+What stays, and why (reusable):
+- A typed member often changes the code where the byte pointer was there to drop type-based alias information; the source comment usually says so, and objsame confirms it. Those stay as they are, as do the comparisons written as integers on purpose (`CGameBlackboard`).
+- Offsets whose users read different types (UnkActor +0x1c0, +0x1f0, +0x200, +0x278; UnkGameManager +0x29a0) stay until the member's real type is known.
+- Bases of a generic type (`UnkReflObject`, `UnkRefCounted`, `UnkTunable` globals, `CType`) would need a new type per user, and raw `char*`/`void*` bases (`UnkReflMoveCtor.cpp`, `UnkUnit245`) a whole new struct: out of scope here.
+- Files with `NON_MATCHING`, `src/game/UnkTU180/`, the `CShipRechargeComponent` sources, generated directories and `include/base/reflection/` were left alone. No function in `data/equivalence.csv` was touched.
+- `src/game/CCharClassChozoWarriorXAIComponent/fn_710048da20.cpp` keeps its 6 hits: its local `UnkNode` would become a further different definition of that name (struct_check).
+
+**Steering forms out of matched functions: files with local structs only (#651, 2026-11-23).**
+
+Before: 578 byte-matching hand-written functions were kept out of the headline figure by a steering form, most of them by an offset cast (`*(T*)((char*)p + 0x18)`) or an empty asm barrier.
+
+After: this pull request takes out 6 barriers and 177 offset casts in 124 files, none of which includes a header that changes; its sibling (claude/steering-forms-1) holds the header changes and their users. Each PR stands alone and changes no compiled object. Together the two take offset-cast hits from 843 to 473 and barriers from 310 to 302.
+
+How: every edit was accepted only when `tools/objsame.py compare` (draft PR #647, run from outside the tree, not committed) printed UNCHANGED in exact mode, for the edited file and for every hand-written includer of an edited header. The final check of this branch compiled the 166 sources that differ from `origin/main` or include a changed one: 0 changed. No game data was used or needed.
+
+- **Barriers.** Each barrier in a `.cpp` without `NON_MATCHING` was taken out alone and the file recompiled (the same test as `fakematch.py --unneeded-barriers`, compared on the whole object instead of against the dump). 8 of 310 changed nothing and are gone (6 in this PR, 2 in the sibling); 280 still change the code; the rest sit in headers, macros or `NON_MATCHING` files.
+- **Offset casts.** A read or write through a byte pointer plus a constant now uses the struct's member at that offset: an existing member, or a `field_0x..` placeholder split out of the padding (sizes, other offsets and static_asserts unchanged). Here every new member is in a struct local to its `.cpp`; the header changes are all in the sibling PR.
+- **String ids.** `UnkStringData` reads use its own members: the key at 0x30 as `Key()`, the string at 0x10 as `String()` or `text`, the hash words as `hash`, the read count as `reads`, and the empty-string test as `&g_unk_7101d47108->empty`.
+
+What stays, and why (reusable):
+- A typed member often changes the code where the byte pointer was there to drop type-based alias information; the source comment usually says so, and objsame confirms it. Those stay as they are, as do the comparisons written as integers on purpose (`CGameBlackboard`).
+- Offsets whose users read different types (UnkActor +0x1c0, +0x1f0, +0x200, +0x278; UnkGameManager +0x29a0) stay until the member's real type is known.
+- Bases of a generic type (`UnkReflObject`, `UnkRefCounted`, `UnkTunable` globals, `CType`) would need a new type per user, and raw `char*`/`void*` bases (`UnkReflMoveCtor.cpp`, `UnkUnit245`) a whole new struct: out of scope here.
+- Files with `NON_MATCHING`, `src/game/UnkTU180/`, the `CShipRechargeComponent` sources, generated directories and `include/base/reflection/` were left alone. No function in `data/equivalence.csv` was touched.
+
+**drafts.py absorb; progress.py --quality shows failed and stale family reads (#645, 2026-11-23).**
+
+Before: when a draft's function matched only once it sat in its unit's file with the unit's other functions (#644, function-local statics), there was no command to retire the draft; the worker deleted the draft file and its `drafts/INDEX.csv` row by hand. And `tools/progress.py --quality` listed a generated family whose latest read failed under "clean, not yet read", and kept counting a passing read after its generator had changed.
+
+After: `tools/drafts.py absorb DRAFT.cpp [...] --into src/FILE.cpp [--write]` checks that the target defines each draft's function and then removes the draft and its row; `--quality` shows failed reads and passes with a changed generator as rows of their own, and neither counts.
+
+**A. `drafts.py absorb`.** Text only: it compiles and grades nothing, so it needs no dump and no `--version`; the byte check stays with `tools/check.py` and CI. A draft goes only when the target, a source under `src/`, defines its function by its placeholder `fn_<addr>` or by its name in `data/functions/` (a qualified name is looked for with its class, so another class's function of the same name does not count; a declaration does not count). Without `--write` it only prints what it would do; with it, the draft file, its row and a folder left empty go. A draft whose function the target does not define is named and left alone, and the command exits 1.
+
+**B. `progress.py --quality`.**
+- A family whose latest row in `data/family_reads.csv` is `fail` now has its own row, "Generated, read and failed: `<family>` (date, a sample of N)", and its functions leave "clean, not yet read". Today that is `reflection` (2026-11-23, 20 sampled).
+- A `pass` counts only while no commit after the row's `generator_commit` has touched the family's generator. The generator is found from the generated directory the family names (`GENERATORS`: `reflection` to `gen_reflection.py`, `reflection_types` to `gen_types.py`, `reflection_statics` to `gen_statics.py` and `gen_lift.py`, `clones`, `tables`, `lifted` to theirs), by the family name or the `src/<dir>/` of its scope. Otherwise its functions show as "read and passed, generator changed since" (with the commit count), or "generator not checked" when this clone cannot tell (commit not in the clone, no generator known), and are not counted in the headline.
+- The names line under HANDOFF's table gains the failed and not-counted figures, so the generated shares still add up.
+
+Every other figure is unchanged: on a made-up cache, origin/main's `progress.py` and this branch's print the same thing when no family has failed or gone stale, and with today's `data/family_reads.csv` the only differences are the reflection "not yet read" row and the new "read and failed" row. The real `--quality` run needs check.py's cache, which this session does not have.
+
+**check.py: one run at a time per cache directory (#646, 2026-11-23).**
+
+Before: two `tools/check.py` runs that share `build/check/<version>/` (two worktrees whose `build/` is one junction) wrote the same cache files at once. On 2026-11-23 one died with `PermissionError` in `write_json` (the `os.replace` of a `.tmp` onto a `.diff.json` the other run had open), and `verify.py`, or any script around it, read the half-printed output as a result.
+
+After: one run at a time per cache directory. A second run waits and says who it is waiting for, gives up with a clear message after a limit, and a dead holder's lock is taken over.
+
+- **New `tools/dread/runlock.py`** (standard library, Windows and Linux): `check.py` creates `build/check/<version>/check.lock` with `O_EXCL` for the whole run, holding its pid, host, worktree path, command and start time, and deletes it at the end (also on an exception or Ctrl+C).
+- **Waiting:** a second run prints one line every 30 seconds (`lock: build/check/2.1.0 is in use by check.py, pid 1234, worktree C:\...\dread-decomp-topic, since 14:02:11 (6 min ago); waiting, up to 30 min in all (--wait)`) and after `--wait` minutes (default 30; `--wait 0` gives up at once) exits with status 3 and the same holder in the message.
+- **Stale locks:** a lock whose process is not running, or whose pid now belongs to a process that started after the lock was taken (Windows reuses pids fast, for example after a cancelled CI job), is taken over with a `lock: taking over ...` note. A takeover marker makes sure only one waiter deletes it. A lock from another host is never judged stale; an unreadable lock file older than 10 seconds is treated as a crash leftover.
+- **`verify.py`** holds the same lock for its whole run, so nothing from another checkout runs between its steps; it exports the lock's token in `DREAD_RUN_LOCK`, so the `check.py` it starts runs under it instead of waiting. It also says `FAIL check.py --update: check.py stopped before its summary` when `check.py` ends with a traceback or gives up on the lock, instead of counting the fragment as lost functions.
+- **Retried replace:** `write_json` retries `os.replace` on `PermissionError` with a growing delay (about 5 seconds), and if it still fails, leaves that cache file as it was with a note rather than killing the run (every cache file is checked against its inputs before use).
+
+Not changed: other tools that call `check.build()` directly (trymatch, objdiff_gen, port_addresses) still don't take the lock, but they get the retried replace. No new CI step.
+
+Tests: `tools/tests/test_runlock.py` (two real processes contending, the wait lines, the timeout message, `--wait 0`, takeover of a dead pid and of a reused pid, another host's lock left alone, an unreadable lock, the inherited lock, release only of one's own lock, the retried and the given-up replace) and three cases in `test_verify.py` (a crashed check.py, giving up on another run's lock, the lock held while check.py runs). Locally: the whole suite shows the same results as `origin/main` here (the 45 import errors are this environment's missing lz4/capstone/pyelftools), `policy_check.py` and `gen_commands.py --check` pass. `check.py --compile-only` was driven end to end with the compile stubbed (wait, `--wait 0` exit 3, takeover after `kill -9`); the real compile is left to the hosted build job, and the self-hosted check exercises the lock on Windows.
+
+**Name the reflection helpers' attribute keys, attribute insert and CType's name (#643, 2026-11-23).**
+
+Real names for placeholders the shared reflection headers pass to every generated reflection source, where the binary's own evidence names the thing; the rest keep their placeholders and are listed below with what was looked at.
+
+Inventory: 224 placeholder tokens in `include/base/reflection/*.h` (excluding the generated `UnkClassGetters.h`); those in `CClass.h` reach all 2,130 generated reflection sources, those in `ReflectedAttributes.h`/`ReflectedFields.h` 1,513.
+
+| Placeholder | New name | Evidence | Generated sources reached |
+|---|---|---|---|
+| 61 attribute-key getters `fn_7100005070` ... `fn_71010434d0` (inline aliases `attr::X()` in `ReflectedFields.h`) | `base::reflection::attr::<Key>` (e.g. `attr::Description`, `attr::TrackGroup`), declared in `ReflectedAttributes.h`; the 61 aliases are gone | each key is built from its own name string ("Description", "TrackGroup", ...); recorded with `rename.py --record-only` | 1,513 |
+| `fn_71000934b8` (the insert every attribute registration goes through) | `SetAttribute` | inferred, through `rename.py --reason`: adds a value under a key or replaces the one there; a new key only when the attribute registry allows it for the element's target | 1,513 |
+| `CType::m_name` | `CType::sName` | the binary's reflection of `base::reflection::CType` registers `sName` (a `CStrId`) at +0x8 | 2,130 |
+
+`tools/gen_reflection.py` now takes the key names from `refl_attrs.ATTRIBUTE_NAMES` (no longer from the aliases) and keeps a plain key's address-named declaration until its calls are written by name. Regenerating changes no generated file.
+
+Kept as placeholders:
+- `CClass+0xe8` / `+0x110` (`UnkReflArray`): the layout is `base::global::CRntSmallDictionary`'s, and the binary instantiates `CRntSmallDictionary<CName, CVariable>` and `<CStrId, CFunction>` (the field dictionary is keyed by the name's hash, a `CName`, not a `CStrId` as the pilot's lead had it). Retyping is a layout change across about ten hand-written files (`data` -> `values`) and the generator; left for a layout batch. `+0xb8` has no evidence of its value type.
+- `UnkReflAttrs` (0x38 bytes): starts with a `CRntSmallDictionary<CStrId, CTypedValue>` (string in the binary) but adds a default type and the target; the wrapper's own name is not in the binary. `UnkReflValue` (0x18 bytes, the dictionary's values) is likely `base::reflection::CTypedValue`, but it is used in 413 files and its reflected size is not recorded; follow-up. `UnkReflValueRef` (type, pointer; 0x10) is not `CTypedValue`: no name found.
+- `UnkReflAttrKey` and its `field_0x10/0x14`, `UnkReflObject::vf_0x0` (the tree already spells slot 0 both `vf_0x0` and `GetClass`), `UnkReflClassTraits`, `UnkFnSet`, `m_fn_0x28..0x70`, `fn_0x70`/`fn_0xe0`: roles only (the same roles `ClassDescription` already names); no string, RTTI, reflection field or MEDS name.
+- The two typed keys `fn_710000bf80` ("Persistence") and `fn_71000923a0` ("EditorModeDataFlow"): `attr::Persistence()`/`attr::EditorModeDataFlow()` already name the (key, enum type) pair, so the getter cannot take the same name.
+- Type getters `fn_7100005178` etc. in `UnkReflTypeOf`: already named in the function list (`refl_GetType<T>`, i.e. `PrimitiveType<T>::Get`); spelling them so touches about 500 hand-written and generated uses, a mechanical follow-up rather than a naming question.
+
+Verification: every source that sees `base/reflection/CClass.h` (5,363) compiled to the same object before and after, apart from symbol names (same section bytes, same relocations against the same targets by address, names mapped through `data/names.csv` and the function list).
+
+**Generated class declarations take hand-kept members and methods from data tables (#642, 2026-11-23).**
+
+**A generated class declaration now takes hand-kept knowledge from two tracked tables, so a reflected class keeps exactly one declaration.** This answers the review of #638: a generated header cannot be hand-edited, so it had no room for methods, the virtual table, or the members hidden in `pad_` gaps. That knowledge lived in hand-written `Unk...` views. Two of those views are now deleted and their classes' sources use the generated classes.
+
+### The tables (`tools/gen_classes.py`, its usage text; `docs/reference.md`, "Key facts")
+
+- **`data/class_members.csv`** has the columns `class,offset,type,name,init,source,note`.
+  - A row adds a member the reflection does not describe, merged with the reflected members by offset. `type` is a spelling (`f32`, `base::math::CVector3D`, ...) or a reflected type name. A member with no known name keeps a placeholder (`field_0x50`). `note` is written as the member's comment.
+  - A row at a reflected member's offset, with its name, gives only `init`, the default initializer that the class's constructor sets.
+  - `source` names the evidence: the matched function that uses the member.
+- **`data/class_methods.csv`** has the columns `class,kind,declaration,address,definition,source`.
+  - `vtable` gives the original virtual table's address. It is written as `// vtable g_unk_<addr>` on the class line, which `asm_labels.py` already reads.
+  - `ctor`, `dtor`, `static` and `plain` declare a method in the class body. A constructor or destructor with an address gets `// fn_<addr>` after it; any other method gets an `asm("fn_<addr>")` label.
+  - `definition` `default` writes `inline T::T() = default;` after the class. That is the form for a constructor the original inlines: it is user-provided, so `T()` does not zero the object first.
+  - `virtual N` adds a new virtual function in slot N. The generator checks that N is the next free slot: a root's first new slot is 3, and the rows of a class and its bases count up from there.
+- **Errors:** an overlap, a misaligned member, a member past the class's data, a wrong slot, an unknown kind or a type the generator cannot spell is a generator error.
+- **Padding:** a gap that the next member's alignment explains, and a leaf class's tail padding, are no longer `pad_` members. Without that change, the implicit copy of `CCooldownXBossFireBallDef` copied its padding.
+
+### `UnkRandShake_ovb0131`: done
+
+- `CCameraFX_Shake` gains `field_0x50` and `field_0x54`, from the view's elapsed-time and stopped members. `CCameraFX_RandShake` gains `field_0x68` (a `CVector3D`) and `field_0x74`, from the view's offset members. The view's names were inferred, so they stay placeholders here, with their roles in the notes.
+- The view's curve at 0x58 is the reflected `sFunction` (`CStrId`). The view's use count and text are now `CStrId::Text()`.
+- The view's duration, amplitude and second amplitude are the reflected `fTime`, `fDistance` and `fTwist`.
+- **Re-proven:**
+  - `fn_71010f27c0` stays `O`.
+  - `fn_71010f2918` stays `m`, registers only, and its verified-equivalent verdict still holds (no `EQUIV` line).
+  - `fn_7100767a50` (`CCameraFX_OscillationShake`) stays `O`.
+- **Constructors.** `fn_71010f2b68` and `fn_7100767fb8` are now `CCameraFX_RandShake::refl_Construct` and `CCameraFX_OscillationShake::refl_Construct`, the names `data/functions/` already gives them. Each is `new (obj) T(); self->vf_0x18();`, byte-identical.
+  - The parts behind that:
+    - `CCameraFX_Shake()  // fn_71010f3d20`, an out-of-line constructor;
+    - both classes' virtual table addresses;
+    - defaulted inline constructors, with initializers for the reflected members;
+    - `virtual void vf_0x18()` in slot 3 of `base::core::CBaseObject`. Both constructions call it right after construction, as `fn_71009b747c` does for an unrelated class.
+  - The second view of the class (`UnkRandShakeDef`) and the free `fn_71010f3d20` declaration are gone. `UnkRandShake_ovb0131.h` and `UnkRandShakeCurve_ovb0131.h` are deleted.
+  - With a real constructor, the compiler emits weak copies of the implicit destructors of `CCameraFX`, `CCameraFX_Shake` and the constructed class. They map to no address and are not counted. If a destructor ever gets a name in `data/names.csv`, two objects would define it: a `destructor` row with the address should then go in first.
+
+### `UnkFireBallDef_ovb0072` (`CCooldownXBossFireBallDef`): done
+
+- **The data:** the virtual table address; the initializers `true`, `0.0f` and `false` on `bEnabled`, `fPreparationTimeOffset` and `bBreakable`; and a defaulted inline constructor.
+- **The copy and move constructors and the destructor** are the compiler's implicit ones and the declared virtual destructor. Once the padding is not a member, the implicit copy is the original's 9-byte copy, so the packed `data` block and the untyped virtual-table store are not needed.
+- **Re-proven:** all six functions in the four files stay `O`: `fn_71004bd2f0`, `fn_71004c0078`, `fn_71004c095c`, `fn_71004c0bac`, `fn_71004bd548`, `fn_71004c06b0` and `fn_71004c0404`.
+  - A user-provided default constructor was needed in the grow function: an implicit one makes `T()` zero the whole object first, which differed in four instructions.
+- The view and its data and virtual-table helper headers are deleted.
+
+### Which classes
+
+- **The rule** (computed in `gen_classes.selected`): every reflected class the generator can lay out (its whole base chain, every member type spelled, not nested in another reflected class) and whose `src/reflection/` block is in the declared form or converts.
+- **The scope:** `data/class_scope.csv` limits the output to the pilot's 19 classes (22 headers with their bases), plus any class the two tables name. A class in scope that fails the rule is an error. `*` lifts the limit.
+- `gen_classes.py --rule` counts what the rule would select: **1,331 of 2,355** classes. The compile step still has to catch namespace and class clashes in multi-class units; #638 counted 81 of them.
+
+### Getters
+
+- `gen_class_getters.py` leaves out the getter of every declared class, so `UnkClassGetters.h` loses 22 `fn_<addr>` declarations. Nine hand-written callers now call `T::refl_GetClass()` and include the class header.
+- The generator now writes `fn_71000e88c0` (`CVariable`) as `void`, as its matched definition is. Before, only a hand edit of the generated header did that.
+- Local `fn_<addr>` declarations in `src/clones/` and `src/reflection_types/` are their own generators' and are unchanged.
+
+### Before 1,200 classes
+
+- `--rule` reads all of `src/reflection/` for every candidate, so it should be indexed once per run.
+- The weak implicit destructors need a policy: declare every class's destructor with its address once the addresses are known.
+- `vf_0x18` sits on the root on the evidence of two constructions; a wider run should confirm slot 3 across hierarchies before it relies on that.
+
+**Lead progress reports with matching and clean in form; split names by source (#641, 2026-11-23).**
+
+`tools/progress.py --quality` and the block `--handoff` writes now report the owner's decisions of 2026-11-23. Reporting only: no gate, no CI change, and no figure moves (compared against `origin/main` on the same cache, run back to back).
+
+**Headline: matching and clean in form.** A function that byte-matches, has no steering form, and is hand-written or comes from a generated family whose sampled read passed (`data/family_reads.csv`). The row that was "Byte-matching and readable" keeps its number and is now labelled for what it tests, "Byte-matching, hand-written, no steering form"; the headline is that row plus "Generated, read and passed". The two are equal today because no family has passed. The handoff's completeness line now leads with it:
+
+> Completeness, whole binary (`tools/progress.py --quality`): matching and clean in form **22.16%** (12,429 functions; byte-matching, hand-written, no steering form 22.16%, plus generated, read and passed 0.00%); byte-matching but not clean in form yet 49.77% (generated source not yet read 48.81%, hand-written with a steering form 0.96%); ...
+
+"Complete" keeps its strict meaning (matching, readable, real names); the output no longer says "finished" or "readable" for this row. The JSON key `complete` and the CSV column `finished_pct` keep their names so `tools/tu_status.py`, `tools/dashboard_export.py` and the dashboard's readers keep working; comments say what they now hold.
+
+**Names, a second figure beside the headline.** The name rows gain the split by source for the functions that pass the loose test, and a "named" figure:
+
+> Names, whole binary (...): named **0.02%** (25 functions) = own name from a source 0.01% (7) + own name inferred 0.01% (18); a real name in the source only, not counted, 0.00% (0). Of byte-matching, hand-written, no steering form: names loose 0.02% (25 functions), names strict 0.01% (18), ...
+
+- From a source: the row's `name_source` is rtti, reflection, string, symbol or library. Inferred: `inferred` (through `data/names.csv`), counted as named, as its own tier.
+- A function whose source spells a real name while its row in `data/functions/` does not (a placeholder name, or `name_source` unknown) is shown apart, "a real name in the source only", and not counted as named: a name counts once the list records it with its source (`tools/rename.py`). None today.
+- "Readable is a floor a tool can see, not a reading" now sits with the name and placeholder scans ("Names are a floor a tool can see, not a reading"), where it applies.
+
+**Other tools.** `tools/status_card.py` and `tools/daily.py` read the headline from the new line and still read the old "byte-matching and readable" line (the current `docs/HANDOFF.md` and the history `daily.py` walks); their labels say "matching and clean in form" / "Clean in form". `daily.py --now` computes the headline (hand-written row plus generated, read and passed) instead of the hand-written row alone. `--handoff` keeps a names line of either spelling when it does not recompute it. `tools/tu_status.py --quality` and `tools/dashboard_export.py` changed wording only; `tools/dread/handoff.py` parses neither line and is unchanged. `docs/commands.md` regenerated.
+
+Not done here: `docs/HANDOFF.md`, `README.md`'s card and `docs/JOURNAL.md` are left for the merging session; `CLAUDE.md` and `docs/reference.md` are recorded on another branch.
 
 **Spell the real names of 316 matching functions in their sources (#639, 2026-11-23).**
 

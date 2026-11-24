@@ -53,7 +53,7 @@ static inline void SetAIState_b59(UnkMagmaRainOwner_b59* owner, u32 state) {
     }
 }
 
-void fn_71003ea6d8(UnkMagmaRain_b59* self, u32 stage) {
+void CBigkranXMagmaRainAttack_SetState(UnkMagmaRain_b59* self, u32 stage) {
     if (self->stage == stage)
         return;
     self->stage = stage;

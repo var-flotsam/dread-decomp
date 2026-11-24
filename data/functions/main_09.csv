@@ -243,7 +243,7 @@ address,size,name,name_source,subsystem,status
 0x710090a194,1080,fn_710090a194,unknown,unknown,U
 0x710090a5cc,68,fn_710090a5cc,unknown,unknown,O
 0x710090a610,28,fn_710090a610,unknown,game/components?,O
-0x710090a62c,100,fn_710090a62c,unknown,game/core?,O
+0x710090a62c,100,CWaterPoolComponent_GetWaterVolumesId,inferred,game/core?,O
 0x710090a690,8,fn_710090a690,unknown,unknown,O
 0x710090a698,128,fn_710090a698,unknown,unknown,O
 0x710090a718,8,fn_710090a718,unknown,unknown,O
@@ -898,8 +898,8 @@ address,size,name,name_source,subsystem,status
 0x710091c004,244,CHydrogigaZiplineComponent::refl_GetClass,reflection,game/components,O
 0x710091c0f8,216,CHydrogigaZiplineComponent::refl_AddFields,reflection,game/components,O
 0x710091c1d0,372,CHydrogigaZiplineComponent::refl_InitClass,reflection,game/components,O
-0x710091c344,176,fn_710091c344,unknown,game/components?,O
-0x710091c3f4,184,fn_710091c3f4,unknown,game/components?,O
+0x710091c344,176,CHydrogigaZiplineComponent_Destroy,inferred,game/components?,O
+0x710091c3f4,184,CHydrogigaZiplineComponent_DestroyAndDelete,inferred,game/components?,O
 0x710091c4ac,120,fn_710091c4ac,unknown,game/components?,O
 0x710091c524,56,fn_710091c524,unknown,game/components?,O
 0x710091c55c,196,fn_710091c55c,unknown,game/components?,O
@@ -929,8 +929,8 @@ address,size,name,name_source,subsystem,status
 0x710091ce44,244,CHydrogigaZiplineRailComponent::refl_GetClass,reflection,game/components,O
 0x710091cf38,216,CHydrogigaZiplineRailComponent::refl_AddFields,reflection,game/components,O
 0x710091d010,388,CHydrogigaZiplineRailComponent::refl_InitClass,reflection,game/components,O
-0x710091d194,176,fn_710091d194,unknown,game/components?,O
-0x710091d244,184,fn_710091d244,unknown,game/components?,O
+0x710091d194,176,CHydrogigaZiplineRailComponent_Destroy,inferred,game/components?,O
+0x710091d244,184,CHydrogigaZiplineRailComponent_DestroyAndDelete,inferred,game/components?,O
 0x710091d2fc,448,fn_710091d2fc,unknown,game/components?,O
 0x710091d4bc,260,fn_710091d4bc,unknown,game/components?,O
 0x710091d5c0,28,fn_710091d5c0,unknown,game/components?,O
@@ -2059,7 +2059,7 @@ address,size,name,name_source,subsystem,status
 0x7100967de8,68,fn_7100967de8,unknown,game/characters?,O
 0x7100967e2c,76,fn_7100967e2c,unknown,game/characters?,O
 0x7100967e78,68,fn_7100967e78,unknown,game/characters?,O
-0x7100967ec0,436,fn_7100967ec0,unknown,game/characters?,O
+0x7100967ec0,436,CCharClassEnemyMovement_InitStatics,inferred,game/characters?,O
 0x7100968074,4,CEnemyMovementWalkingAnims::refl_AddAttributes,reflection,game,O
 0x7100968078,240,CEnemyMovementWalkingAnims::refl_GetClass,reflection,game,O
 0x7100968168,1712,CEnemyMovementWalkingAnims::refl_AddFields,reflection,game,O
@@ -2620,7 +2620,7 @@ address,size,name,name_source,subsystem,status
 0x710098d034,1388,fn_710098d034,unknown,game/player?,U
 0x710098d5a0,392,fn_710098d5a0,unknown,game/player?,U
 0x710098d728,104,fn_710098d728,unknown,game/player?,O
-0x710098d790,240,fn_710098d790,unknown,game/player?,O
+0x710098d790,240,CSamusAirMovementState_GetMorphBallTransition,inferred,game/player?,O
 0x710098d880,20,fn_710098d880,unknown,game/player?,O
 0x710098d894,36,fn_710098d894,unknown,game/player?,O
 0x710098d8b8,400,fn_710098d8b8,unknown,game/player?,O
@@ -3151,7 +3151,7 @@ address,size,name,name_source,subsystem,status
 0x71009afa74,12,CSamusMagnetGloveMovementState::CTunableSamusMagnetGloveMovementState::refl_Destroy,reflection,game/player,O
 0x71009afa80,8,CSamusMagnetGloveMovementState::CTunableSamusMagnetGloveMovementState::refl_CopyAssign,reflection,game/player,O
 0x71009afa88,8,CSamusMagnetGloveMovementState::CTunableSamusMagnetGloveMovementState::refl_MoveAssign,reflection,game/player,O
-0x71009afa90,684,fn_71009afa90,unknown,game/player?,O
+0x71009afa90,684,CSamusMagnetGloveMovementState_InitStatics,inferred,game/player?,O
 0x71009afd3c,4,CSamusMorphBallMovementState::CParams::refl_AddAttributes,reflection,game/player,O
 0x71009afd40,244,CSamusMorphBallMovementState::CParams::refl_GetClass,reflection,game/player,O
 0x71009afe34,4,CSamusMorphBallMovementState::CParams::refl_AddFields,reflection,game/player,O
@@ -3475,7 +3475,7 @@ address,size,name,name_source,subsystem,status
 0x71009bbeac,12,CCharClassNavMeshItemComponent::refl_Destroy,reflection,game/characters,O
 0x71009bbeb8,8,CCharClassNavMeshItemComponent::refl_CopyAssign,reflection,game/characters,O
 0x71009bbec0,8,CCharClassNavMeshItemComponent::refl_MoveAssign,reflection,game/characters,O
-0x71009bbed0,436,fn_71009bbed0,unknown,game/characters?,O
+0x71009bbed0,436,CCharClassNavMeshItemComponent_InitStatics,inferred,game/characters?,O
 0x71009bc084,4,CCharClassTriggerNavMeshItemComponent::refl_AddAttributes,reflection,game/characters,O
 0x71009bc088,244,CCharClassTriggerNavMeshItemComponent::refl_GetClass,reflection,game/characters,O
 0x71009bc17c,4,CCharClassTriggerNavMeshItemComponent::refl_AddFields,reflection,game/characters,O

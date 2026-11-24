@@ -28,7 +28,7 @@ void fn_71003e13b8() __attribute__((visibility("hidden")));
 void fn_71003e13c4() __attribute__((visibility("hidden")));
 extern char g_unk_71726c0510[];
 
-void fn_71003e1840() {
+void CBigFistAttack_InitStatics() {
     InitHeaderIds(&g_unk_71726c0518.ids);
     InitEnum(&base::reflection::TypeObject<CBigFistAttack::EBigFistAttackState, UnkEnumType>::object, "CBigFistAttack::EBigFistAttackState", fn_71003e045c, fn_71003e0250,
              g_unk_71726c04c8, &g_unk_71726c04d0, fn_71003e13b8, &g_unk_71726c04f0, fn_71003e13c4);

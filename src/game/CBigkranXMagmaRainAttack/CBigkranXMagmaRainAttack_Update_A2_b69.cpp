@@ -14,10 +14,10 @@ struct UnkMagmaRainAttack_A2_b69 {
     f32 timer;  // +0x58
 };
 
-void fn_71003ea6d8(UnkMagmaRainAttack_A2_b69* self, s32 state);
+void CBigkranXMagmaRainAttack_SetState(UnkMagmaRainAttack_A2_b69* self, s32 state);
 void fn_71003ea960(UnkMagmaRainAttack_A2_b69* self, f32 dt);
 
-void fn_71003ea8cc(UnkMagmaRainAttack_A2_b69* self, f32 dt) {
+void CBigkranXMagmaRainAttack_UpdateState(UnkMagmaRainAttack_A2_b69* self, f32 dt) {
     fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     s32 state = self->pending;
     self->state = state;
@@ -26,7 +26,7 @@ void fn_71003ea8cc(UnkMagmaRainAttack_A2_b69* self, f32 dt) {
     } else if (state == 2) {
         self->timer -= dt;
         if (self->timer < 0.001f)
-            fn_71003ea6d8(self, 3);
+            CBigkranXMagmaRainAttack_SetState(self, 3);
         else
             fn_71003ea960(self, dt);
     }
