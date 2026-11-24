@@ -2,6 +2,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkS12.h"
 #include "types.h"
+#include "game/UnkFlags_7101176ea8.h"
 
 struct UnkEntry_7101176ea8 {
     char pad[0x70];
@@ -27,11 +28,6 @@ struct UnkStruct_7101176ea8 {
     UnkMap_7101176ea8* field_0x40;
 };
 
-struct UnkFlags_7101176ea8 {
-    u32 value;
-    UnkFlags_7101176ea8(u32 v) : value(v) {}
-    UnkFlags_7101176ea8(const UnkFlags_7101176ea8& o) : value(o.value) {}
-};
 struct UnkS16 { u64 a, b; };
 
 struct UnkMaskBase_7101176ea8 {

@@ -3,12 +3,8 @@
 #include "game/CChozoCommanderGroundAttack.h"
 #include "game/CComponent.h"
 #include "game_s2/UnkWeakHandle.h"
+#include "game/UnkSelf.h"
 
-struct UnkSelf {
-    u8 pad_0x0[0x60];
-    u8 field_0x60[0x18];
-    UnkWeakHandle* field_0x78;
-};
 
 void fn_710043c5c8(UnkSelf* self) {
     fn_710042bb40(self);

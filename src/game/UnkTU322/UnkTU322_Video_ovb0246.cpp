@@ -13,6 +13,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU254.h"
 #include "game/UnkTU322.h"
+#include "game/UnkPathKey.h"
 
 struct UnkRefObj_ovb0246 {
     virtual void vf_0x0();
@@ -51,9 +52,6 @@ struct UnkRef {
 };
 
 struct UnkPlayer;
-struct UnkPathKey {
-    u8 data[0x10];
-};
 
 extern void* g_unk_7101a20470[];
 extern void* g_unk_7101a20440[];
