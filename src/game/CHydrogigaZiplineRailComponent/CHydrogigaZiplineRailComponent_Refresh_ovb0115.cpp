@@ -56,7 +56,7 @@ struct UnkZiplineRail_ovb0115 {
 };
 
 // Refreshes the rail for its "dead" flag: the owner's timeline, every linked part, and the material.
-void fn_710091d4bc(UnkZiplineRail_b49* rail) {
+void CHydrogigaZiplineRailComponent_ApplyDeadState(UnkZiplineRail_b49* rail) {
     UnkZiplineRail_ovb0115* self = reinterpret_cast<UnkZiplineRail_ovb0115*>(rail);
     fn_7100d7c828(reinterpret_cast<UnkActor*>(self->owner), self->dead ? &g_unk_710164b218 : &g_unk_710164b220,
                   false);

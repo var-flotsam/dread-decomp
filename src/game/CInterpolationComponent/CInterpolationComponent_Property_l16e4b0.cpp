@@ -38,7 +38,7 @@ static inline u32 ReadVec(UnkProp* p, UnkInterpolationVec_l16e4b0* out) {
     return 1;
 }
 
-u32 fn_710116e4b0(UnkInterpolationProps_l16e4b0* self, UnkProp* p) {
+u32 CInterpolationComponent_HandlePosAngProperty(UnkInterpolationProps_l16e4b0* self, UnkProp* p) {
     if (unk_prop::IsName(p, CRntString("Pos")) && !p->set)
         return CRntFile_WriteFormat(p->stream, "o", &self->pos) == 8;
     if (unk_prop::IsName(p, CRntString("Pos")) && p->set)

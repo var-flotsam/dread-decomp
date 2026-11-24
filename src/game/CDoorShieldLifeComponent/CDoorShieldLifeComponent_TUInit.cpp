@@ -41,7 +41,7 @@ static inline UnkReflType* AsUnk(base::reflection::CType* t) {
     return reinterpret_cast<UnkReflType*>(t);
 }
 
-void fn_71008dee60() {
+void CDoorShieldLifeComponent_InitStatics() {
     UnkDoorShieldLifeTU& tu = g_unk_7172732030;
     InitHeader(tu.header);
     InitEnum(AsUnk(&base::reflection::TypeObject<CDoorShieldLifeComponent::EColor>::object), "CDoorShieldLifeComponent::EColor", fn_71008dd720,

@@ -13,5 +13,5 @@ struct UnkHandleMenu {
     UnkGuiHandle menu;
 };
 
-void fn_7100b2c2bc(UnkHandleMenu<0x488>* self);
-void fn_7100b2cd24(UnkHandleMenu<0x490>* self);
+void CIngameMenu_CreatePowerDescComposition(UnkHandleMenu<0x488>* self);
+void CIngameMenu_SetUpMissionMenuComposition(UnkHandleMenu<0x490>* self);

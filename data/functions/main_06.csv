@@ -119,10 +119,10 @@ address,size,name,name_source,subsystem,status
 0x710060463c,4,fn_710060463c,unknown,game/components?,O
 0x7100604640,36,fn_7100604640,unknown,game/components?,O
 0x7100604664,24,fn_7100604664,unknown,game/components?,O
-0x710060467c,332,fn_710060467c,unknown,game/components?,O
+0x710060467c,332,CKraidAcidBlobsMovementComponent_InitCharClassAndDamageId,inferred,game/components?,O
 0x71006047c8,4,fn_71006047c8,unknown,game/components?,O
 0x71006047cc,4,fn_71006047cc,unknown,game/components?,O
-0x71006047d0,392,fn_71006047d0,unknown,game/components?,O
+0x71006047d0,392,CKraidAcidBlobsMovementComponent_OnBeginPlay,inferred,game/components?,O
 0x7100604958,68,fn_7100604958,unknown,game/components?,O
 0x710060499c,8,fn_710060499c,unknown,game/components?,O
 0x71006049a4,544,fn_71006049a4,unknown,game/components?,m
@@ -139,7 +139,7 @@ address,size,name,name_source,subsystem,status
 0x7100604d78,28,CKraidAcidBlobsMovementComponent::refl_TypeOf,reflection,game/components,O
 0x7100604d94,72,CKraidAcidBlobsMovementComponent::refl_Construct,reflection,game/components,O
 0x7100604ddc,12,CKraidAcidBlobsMovementComponent::refl_Destroy,reflection,game/components,O
-0x7100604df0,352,fn_7100604df0,unknown,game/components?,O
+0x7100604df0,352,CKraidAcidBlobsMovementComponent_InitStatics,inferred,game/components?,O
 0x7100604f50,4,CKraidBouncingCreaturesMovementComponent::refl_AddAttributes,reflection,game/components,O
 0x7100604f54,244,CKraidBouncingCreaturesMovementComponent::refl_GetClass,reflection,game/components,O
 0x7100605048,4,CKraidBouncingCreaturesMovementComponent::refl_AddFields,reflection,game/components,O
@@ -174,7 +174,7 @@ address,size,name,name_source,subsystem,status
 0x710060627c,352,CKraidNailMovementComponent::refl_InitClass,reflection,game/components,O
 0x71006063dc,4,fn_71006063dc,unknown,game/components?,O
 0x71006063e0,36,fn_71006063e0,unknown,game/components?,O
-0x7100606404,240,fn_7100606404,unknown,game/components?,O
+0x7100606404,240,CKraidNailMovementComponent_CacheCharClassAndSetSpinningNailsDamage,inferred,game/components?,O
 0x71006064f4,40,fn_71006064f4,unknown,game/components?,O
 0x710060651c,4,fn_710060651c,unknown,game/components?,O
 0x7100606520,108,fn_7100606520,unknown,game/components?,O
@@ -200,7 +200,7 @@ address,size,name,name_source,subsystem,status
 0x7100606b98,64,CKraidNailMovementComponent::refl_Construct,reflection,game/components,O
 0x7100606bd8,4,CKraidNailMovementComponent::refl_Destroy,reflection,game/components,O
 0x7100606bdc,84,fn_7100606bdc,unknown,game/components?,O
-0x7100606c30,392,fn_7100606c30,unknown,game/components?,O
+0x7100606c30,392,CKraidNailMovementComponent_InitStatics,inferred,game/components?,O
 0x7100606db8,4,CKraidShockerSplashMovementComponent::refl_AddAttributes,reflection,game/components,O
 0x7100606dbc,244,CKraidShockerSplashMovementComponent::refl_GetClass,reflection,game/components,O
 0x7100606eb0,4,CKraidShockerSplashMovementComponent::refl_AddFields,reflection,game/components,O
@@ -228,7 +228,7 @@ address,size,name,name_source,subsystem,status
 0x7100607fd8,28,CKraidShockerSplashMovementComponent::refl_TypeOf,reflection,game/components,O
 0x7100607ff4,60,CKraidShockerSplashMovementComponent::refl_Construct,reflection,game/components,O
 0x7100608030,12,CKraidShockerSplashMovementComponent::refl_Destroy,reflection,game/components,O
-0x7100608040,384,fn_7100608040,unknown,game/components?,O
+0x7100608040,384,CKraidShockerSplashMovementComponent_InitStatics,inferred,game/components?,O
 0x71006081c0,4,CKraidSpikeMovablePlatformComponent::refl_AddAttributes,reflection,game/components,O
 0x71006081c4,244,CKraidSpikeMovablePlatformComponent::refl_GetClass,reflection,game/components,O
 0x71006082b8,4,CKraidSpikeMovablePlatformComponent::refl_AddFields,reflection,game/components,O
@@ -240,13 +240,13 @@ address,size,name,name_source,subsystem,status
 0x71006084f0,92,fn_71006084f0,unknown,game/components?,O
 0x710060854c,60,fn_710060854c,unknown,game/components?,O
 0x7100608588,8,fn_7100608588,unknown,game/components?,O
-0x7100608590,228,fn_7100608590,unknown,game/components?,O
-0x7100608674,520,fn_7100608674,unknown,game/components?,O
-0x710060887c,280,fn_710060887c,unknown,game/components?,O
-0x7100608994,88,fn_7100608994,unknown,game/components?,O
+0x7100608590,228,CKraidSpikeMovablePlatformComponent_AdvanceTimersAndSwitchToMotionSpeed,inferred,game/components?,O
+0x7100608674,520,CKraidSpikeMovablePlatformComponent_OnStickedWallTimeElapsed,inferred,game/components?,O
+0x710060887c,280,CKraidSpikeMovablePlatformComponent_ResetStateAndRecordOwnerPosition,inferred,game/components?,O
+0x7100608994,88,CKraidSpikeMovablePlatformComponent_ComputeMotionDisplacement,inferred,game/components?,O
 0x71006089ec,456,fn_71006089ec,unknown,game/components?,M
-0x7100608bb4,288,fn_7100608bb4,unknown,game/components?,O
-0x7100608cd4,404,fn_7100608cd4,unknown,game/components?,O
+0x7100608bb4,288,CKraidSpikeMovablePlatformComponent_StickToWall,inferred,game/components?,O
+0x7100608cd4,404,CKraidSpikeMovablePlatformComponent_TryDamagePlayer,inferred,game/components?,O
 0x7100608e68,128,fn_7100608e68,unknown,game/components?,O
 0x7100608ee8,92,fn_7100608ee8,unknown,game/components?,M
 0x7100608f44,28,fn_7100608f44,unknown,game/components?,O
@@ -260,7 +260,7 @@ address,size,name,name_source,subsystem,status
 0x710060906c,12,CKraidSpikeMovablePlatformComponent::refl_Destroy,reflection,game/components,O
 0x7100609078,8,CKraidSpikeMovablePlatformComponent::refl_CopyAssign,reflection,game/components,O
 0x7100609080,8,CKraidSpikeMovablePlatformComponent::refl_MoveAssign,reflection,game/components,O
-0x7100609090,344,fn_7100609090,unknown,game/components?,O
+0x7100609090,344,CKraidSpikeMovablePlatformComponent_InitStatics,inferred,game/components?,O
 0x71006091e8,4,behaviortree::CKreepStoreHomePosAction::refl_AddAttributes,reflection,ai/behaviortree,O
 0x71006091ec,244,behaviortree::CKreepStoreHomePosAction::refl_GetClass,reflection,ai/behaviortree,O
 0x71006092e0,4,behaviortree::CKreepStoreHomePosAction::refl_AddFields,reflection,ai/behaviortree,O

@@ -179,7 +179,7 @@ void XParasiteAI_SetEffectActive(UnkXParasiteAI* self, bool on) {
             return;
         UnkVec3f position(self->owner->field_0x44, self->owner->field_0x54, self->owner->field_0x64);
         fn_7100146d84(fx, &position);
-        fn_7101152988(static_cast<UnkRinkaControl_ovb0090*>(control), fx, reinterpret_cast<UnkRinkaEntry_ruc**>(g_unk_717270b910),
+        CFXComponent_AddNamedEffect(static_cast<UnkRinkaControl_ovb0090*>(control), fx, reinterpret_cast<UnkRinkaEntry_ruc**>(g_unk_717270b910),
                       nullptr, 0);
         const UnkVec3f& src = *reinterpret_cast<const UnkVec3f*>(&g_unk_7101647790);
         UnkVec3f first(src);

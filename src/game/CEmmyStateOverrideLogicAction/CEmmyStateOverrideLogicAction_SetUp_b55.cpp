@@ -77,7 +77,7 @@ static inline UnkAnimationComponent* Anim(UnkEmmyActor_b55* a) {
     return *reinterpret_cast<UnkAnimationComponent**>(c + 0x220);
 }
 
-void fn_7100a4d4e8(UnkEmmyStateOverrideAction_b55* self) {
+void CEmmyStateOverrideLogicAction_ApplyModeToGlobalActorList(UnkEmmyStateOverrideAction_b55* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     UnkEmmyList_b55 list(g_unk_71726af0a8->list);
     for (UnkEmmyEntryPtr_b55* it = list.items; it != list.end(); ++it) {

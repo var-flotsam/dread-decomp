@@ -61,7 +61,7 @@ static inline void SetValue(CBlackboard* blackboard, const CStrId& section, cons
     }
 }
 
-void fn_7100b1db14(UnkEndingRewards_lb1db14* self) {
+void CEndingRewardsComposition_ClearRewardsAndStoreHiddenFlags(UnkEndingRewards_lb1db14* self) {
     CBlackboard* profile = &g_unk_7101d47310->field_0x820;
     {
         const CStrId& section = RewardsSectionId();

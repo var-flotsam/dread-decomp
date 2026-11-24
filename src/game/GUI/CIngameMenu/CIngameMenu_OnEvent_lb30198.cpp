@@ -70,7 +70,7 @@ static inline UnkStateOwner* Owner(UnkIngameMenu_lb30198* self) {
     return reinterpret_cast<UnkStateOwner*>(self);
 }
 
-void fn_7100b30198(UnkIngameMenu_lb30198* self, UnkMenuEvent_lb30198* ev) {
+void CIngameMenu_DispatchGuiEvent(UnkIngameMenu_lb30198* self, UnkMenuEvent_lb30198* ev) {
     if (ev->handled || !self->active || ev->field_0x20 == 1)
         return;
 

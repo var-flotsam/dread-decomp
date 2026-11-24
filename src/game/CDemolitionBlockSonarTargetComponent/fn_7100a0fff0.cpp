@@ -17,6 +17,6 @@ struct UnkDemolitionModelHolder {
 };
 static_assert(__builtin_offsetof(UnkDemolitionModelHolder, second) == 0x98, "UnkDemolitionModelHolder layout");
 
-bool fn_7100a0fff0(UnkDemolitionModelHolder* self, const base::global::CFilePathStrId& path) {
+bool CDemolitionBlockSonarTargetComponent_LoadModelFromPath(UnkDemolitionModelHolder* self, const base::global::CFilePathStrId& path) {
     return UnkResHolderLoad<g_unk_716e453ff8>(self, path);
 }

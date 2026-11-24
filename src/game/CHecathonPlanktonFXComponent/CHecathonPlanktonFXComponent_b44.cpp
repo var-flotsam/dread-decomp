@@ -33,7 +33,7 @@ struct UnkPlanktonFX_b44a2 {
     UnkPlanktonModel_b44a2* model;  // 0x12c0
 };
 
-void fn_710080c9bc(UnkPlanktonFX_b44a2* self) {
+void CHecathonPlanktonFXComponent_ClearModelParam(UnkPlanktonFX_b44a2* self) {
     self->intensity = 0.0f;
     if (!self->model)
         return;

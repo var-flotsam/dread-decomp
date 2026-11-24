@@ -162,5 +162,5 @@ void fn_710066036c(UnkRinkaUnitSpawn_ovb0090* self) {
     }
     fn_7100146dac(reinterpret_cast<UnkSwitchObject*>(self->fx), true);
     fn_7100208a40(&self->fx->field_0x28);
-    fn_7101152988(self->actor->control, self->fx, g_unk_71726fd110, nullptr, 0);
+    CFXComponent_AddNamedEffect(self->actor->control, self->fx, g_unk_71726fd110, nullptr, 0);
 }

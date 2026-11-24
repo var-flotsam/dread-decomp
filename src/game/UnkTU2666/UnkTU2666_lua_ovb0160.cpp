@@ -266,7 +266,7 @@ s32 GetLandmarkPosition(lua_State* L) {
     UnkLuaNode_b0160* node;
     {
         CStrId id(name, true);
-        node = fn_71008a3288(&id);
+        node = CLandmarkComponent_FindById(&id);
     }
     if (!node)
         return 0;
@@ -281,7 +281,7 @@ s32 GetLandmarkOrientation(lua_State* L) {
     UnkLuaNode_b0160* node;
     {
         CStrId id(name, true);
-        node = fn_71008a3288(&id);
+        node = CLandmarkComponent_FindById(&id);
     }
     if (!node)
         return 0;

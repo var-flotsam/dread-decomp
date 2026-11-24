@@ -104,7 +104,7 @@ void fn_71007facf4(UnkFrozenComponent_ov110* self) {
     fn_710117abfc(animation, 0, g_unk_7172721120, 0xf4061ff25a2163d6ull);
 }
 
-void fn_71007f9d7c(UnkSmOwner_A5_b62<0x228>* owner, f32 dt) {
+void CFrozenComponent_TickLayerWeightLerp(UnkSmOwner_A5_b62<0x228>* owner, f32 dt) {
     UnkFrozenComponent_ov110* self = reinterpret_cast<UnkFrozenComponent_ov110*>(owner);
     CStrId track = base::global::CStrId::Empty();
     CStrId blend = base::global::CStrId::Empty();
@@ -124,14 +124,14 @@ void fn_71007f9d7c(UnkSmOwner_A5_b62<0x228>* owner, f32 dt) {
                     target = start + t * (target - start);
                 }
                 self->value = target;
-                fn_71007f95b8(reinterpret_cast<CFrozenComponent2*>(self), target);
+                CFrozenComponent_SetBlendLayerNodeWeight(reinterpret_cast<CFrozenComponent2*>(self), target);
             }
         }
     }
 }
 
 // Sets the thaw blend layer's weight and, at (about) zero, stops the thaw track.
-void fn_71007f95b8(CFrozenComponent2* component, f32 weight) {
+void CFrozenComponent_SetBlendLayerNodeWeight(CFrozenComponent2* component, f32 weight) {
     UnkFrozenComponent_ov110* self = reinterpret_cast<UnkFrozenComponent_ov110*>(component);
     CStrId track = base::global::CStrId::Empty();
     CStrId blend = base::global::CStrId::Empty();

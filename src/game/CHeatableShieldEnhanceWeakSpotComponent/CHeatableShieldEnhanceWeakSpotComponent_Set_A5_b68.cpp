@@ -30,7 +30,7 @@ struct UnkWeakSpot_A5_b68 {
     UnkWeakSpotDesc_A5_b68* field_0x50;
 };
 
-void fn_71007d4d10(UnkWeakSpot_A5_b68* self, bool on) {
+void CHeatableShieldEnhanceWeakSpotComponent_SetWeakSpotAimed(UnkWeakSpot_A5_b68* self, bool on) {
     if (self->field_0x48 == on)
         return;
     if (on && !fn_7100df5b00(g_unk_7101d47310))

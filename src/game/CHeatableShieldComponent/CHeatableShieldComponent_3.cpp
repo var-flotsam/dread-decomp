@@ -9,6 +9,6 @@
 void fn_710086b268(UnkHeatableShieldEntries* self) {
     for (UnkHeatableShieldEntry *p = self->data, *end = p + self->count; p != end; ++p) {
         p->owner = self->owner;
-        fn_710086e410(p);
+        CHeatableShieldComponent_ResetEntry(p);
     }
 }

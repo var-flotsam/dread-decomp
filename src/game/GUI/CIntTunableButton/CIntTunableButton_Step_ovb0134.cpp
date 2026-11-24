@@ -63,7 +63,7 @@ struct UnkIntTunableButton_ovb0134 {
     UnkScriptName_ovb0134* script;        // 0x2e0
 };
 
-void fn_7100b32404(UnkIntTunableButton_ovb0134* self, s32 direction) {
+void CIntTunableButton_StepTunableValue(UnkIntTunableButton_ovb0134* self, s32 direction) {
     switch (direction) {
     case 1: {
         s32 step = self->step;
