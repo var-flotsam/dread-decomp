@@ -19,7 +19,7 @@ struct UnkComponent_71003b0224 {
 };
 
 
-bool fn_71003b0224(UnkComponent_71003b0224* self, u32* out) {
+bool CBossAIComponent_GetBossCameraCeilingLandmarkY(UnkComponent_71003b0224* self, u32* out) {
     if (self->field_0x147d8 == 1) {
         {
             UnkRefPtr reference = fn_710023b580(self->field_0x147b0);

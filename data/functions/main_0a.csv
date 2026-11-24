@@ -544,7 +544,7 @@ address,size,name,name_source,subsystem,status
 0x7100a15204,28,CAutsniperSpawnPointComponent::refl_TypeOf,reflection,game/components,O
 0x7100a15220,52,CAutsniperSpawnPointComponent::refl_Construct,reflection,game/components,O
 0x7100a15254,12,CAutsniperSpawnPointComponent::refl_Destroy,reflection,game/components,O
-0x7100a15260,436,fn_7100a15260,unknown,game/components?,O
+0x7100a15260,436,CAutsniperSpawnPointComponent_InitStatics,inferred,game/components?,O
 0x7100a15414,332,fn_7100a15414,unknown,game/components?,O
 0x7100a15560,384,base::reflection::refl_InitType<ECaterzillaSpawnPointDir>,reflection,engine/reflection,O
 0x7100a156e0,428,fn_7100a156e0,unknown,game/components?,O
@@ -732,7 +732,7 @@ address,size,name,name_source,subsystem,status
 0x7100a1d534,12,CSlidleSpawnPointComponent::refl_Destroy,reflection,game/components,O
 0x7100a1d540,8,CSlidleSpawnPointComponent::refl_CopyAssign,reflection,game/components,O
 0x7100a1d548,8,CSlidleSpawnPointComponent::refl_MoveAssign,reflection,game/components,O
-0x7100a1d550,436,fn_7100a1d550,unknown,game/components?,O
+0x7100a1d550,436,CSlidleSpawnPointComponent_InitStatics,inferred,game/components?,O
 0x7100a1d704,4,CSlowNailongSpawnPointComponent::refl_AddAttributes,reflection,game/components,O
 0x7100a1d708,244,CSlowNailongSpawnPointComponent::refl_GetClass,reflection,game/components,O
 0x7100a1d7fc,4,CSlowNailongSpawnPointComponent::refl_AddFields,reflection,game/components,O
@@ -1732,7 +1732,7 @@ address,size,name,name_source,subsystem,status
 0x7100a419b0,28,CSaveGameLogicAction::refl_TypeOf,reflection,game/ai,O
 0x7100a419cc,4,CSaveGameLogicAction::refl_Construct,reflection,game/ai,O
 0x7100a419d0,12,CSaveGameLogicAction::refl_Destroy,reflection,game/ai,O
-0x7100a419e0,436,fn_7100a419e0,unknown,game/ai?,O
+0x7100a419e0,436,CSaveGameLogicAction_InitStatics,inferred,game/ai?,O
 0x7100a41b94,4,CSaveGameToSnapshotLogicAction::refl_AddAttributes,reflection,game/ai,O
 0x7100a41b98,244,CSaveGameToSnapshotLogicAction::refl_GetClass,reflection,game/ai,O
 0x7100a41c8c,312,CSaveGameToSnapshotLogicAction::refl_AddFields,reflection,game/ai,O
@@ -2040,7 +2040,7 @@ address,size,name,name_source,subsystem,status
 0x7100a4d7cc,28,CEmmyStateOverrideLogicAction::refl_TypeOf,reflection,game/ai,O
 0x7100a4d7e8,52,CEmmyStateOverrideLogicAction::refl_Construct,reflection,game/ai,O
 0x7100a4d81c,12,CEmmyStateOverrideLogicAction::refl_Destroy,reflection,game/ai,O
-0x7100a4d830,436,fn_7100a4d830,unknown,game/ai?,O
+0x7100a4d830,436,CEmmyStateOverrideLogicAction_InitStatics,inferred,game/ai?,O
 0x7100a4d9e4,4,CCameraToRailLogicAction::refl_AddAttributes,reflection,game/ai,O
 0x7100a4d9e8,244,CCameraToRailLogicAction::refl_GetClass,reflection,game/ai,O
 0x7100a4dadc,216,CCameraToRailLogicAction::refl_AddFields,reflection,game/ai,O
@@ -2152,7 +2152,7 @@ address,size,name,name_source,subsystem,status
 0x7100a51598,28,CPerceptionModifierLogicAction::refl_TypeOf,reflection,game/ai,O
 0x7100a515b4,132,CPerceptionModifierLogicAction::refl_Construct,reflection,game/ai,O
 0x7100a51638,12,CPerceptionModifierLogicAction::refl_Destroy,reflection,game/ai,O
-0x7100a51650,436,fn_7100a51650,unknown,game/ai?,O
+0x7100a51650,436,CPerceptionModifierLogicAction_InitStatics,inferred,game/ai?,O
 0x7100a51804,4,CSetActorEnabledLogicAction::refl_AddAttributes,reflection,game/ai,O
 0x7100a51808,244,CSetActorEnabledLogicAction::refl_GetClass,reflection,game/ai,O
 0x7100a518fc,368,CSetActorEnabledLogicAction::refl_AddFields,reflection,game/ai,O
@@ -4598,7 +4598,7 @@ address,size,name,name_source,subsystem,status
 0x7100ac1930,12,CCharClassProjectileMovement::refl_Destroy,reflection,game/characters,O
 0x7100ac193c,8,CCharClassProjectileMovement::refl_CopyAssign,reflection,game/characters,O
 0x7100ac1944,8,CCharClassProjectileMovement::refl_MoveAssign,reflection,game/characters,O
-0x7100ac1950,436,fn_7100ac1950,unknown,engine/reflection?,O
+0x7100ac1950,436,CCharClassProjectileMovement_InitStatics,inferred,engine/reflection?,O
 0x7100ac1b04,4,CHomingMovement::refl_AddAttributes,reflection,game,O
 0x7100ac1b08,244,CHomingMovement::refl_GetClass,reflection,game,O
 0x7100ac1bfc,4,CHomingMovement::refl_AddFields,reflection,game,O
