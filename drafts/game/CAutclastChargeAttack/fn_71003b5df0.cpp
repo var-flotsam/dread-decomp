@@ -43,7 +43,7 @@ struct UnkChargeEntry_l3b5df0 {
 };
 
 struct UnkChargeEntry_ovb0016;
-void fn_71003b78f8(base::global::CRntVector<UnkChargeEntry_ovb0016>* entries, u32 n);
+void CAutclastChargeAttack_ReserveChargeEntries(base::global::CRntVector<UnkChargeEntry_ovb0016>* entries, u32 n);
 
 // The block handed to the owner's +0x218 (fn_71010c7e6c); the vtable tells the kinds apart.
 struct UnkEffectParams_b0117 {
@@ -86,7 +86,7 @@ void fn_71003b5df0(UnkAutclastChargeAttack_l3b5df0* self) {
     u32 n = reinterpret_cast<UnkAutclastTunable_l3b5df0*>(&g_unk_71726bd2c8)->charge_count * 2;
     base::global::CRntVector<UnkChargeEntry_l3b5df0>& entries = self->entries;
     if (entries.count < n) {
-        fn_71003b78f8(reinterpret_cast<base::global::CRntVector<UnkChargeEntry_ovb0016>*>(&entries), n);
+        CAutclastChargeAttack_ReserveChargeEntries(reinterpret_cast<base::global::CRntVector<UnkChargeEntry_ovb0016>*>(&entries), n);
         for (u32 i = entries.count; i < n; ++i)
             new (&entries.data[i]) UnkChargeEntry_l3b5df0();
         entries.count = n;

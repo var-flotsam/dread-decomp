@@ -19,7 +19,7 @@ struct UnkStruct_71003ae428;
 struct UnkSelf_71003ad45c;
 struct UnkRenderItemPair_b64a2;
 void CBossAIComponent_UpdateColorChange(UnkBossColorAI_ovb0102* self, f32 dt, bool counting);
-void fn_71003ad7ec(UnkBossAITimers_ovb0102* self, f32 dt);
+void CBossAIComponent_UpdateTimersAndRestoreDefaultCamera(UnkBossAITimers_ovb0102* self, f32 dt);
 void CBossAIComponent_UpdateDamageFX(UnkBossBlinkAI_ovb0102* self, f32 dt);
 void fn_710035d558(UnkRenderItemPair_b64a2* self);
 void fn_710035d5c4(UnkRenderItemPair_b64a2* self, f32 value);
@@ -129,7 +129,7 @@ void fn_71003ae15c(UnkBossAI_l3ae15c* self, f32 dt) {
             self->field_0x147ec = 0.0f;
     }
 
-    fn_71003ad7ec(reinterpret_cast<UnkBossAITimers_ovb0102*>(self), dt);
+    CBossAIComponent_UpdateTimersAndRestoreDefaultCamera(reinterpret_cast<UnkBossAITimers_ovb0102*>(self), dt);
     fn_71003ae428(reinterpret_cast<UnkStruct_71003ae428*>(self), self->field_0x147f4, false, false);
 
     UnkActor* target = fn_7100d7c990(self->owner);

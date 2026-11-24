@@ -48,7 +48,7 @@ static inline s32 Parse(UnkFileReader* reader, UnkReadTarget* target) {
 }
 
 // Reads the object from the file its path names; whether it parsed.
-bool fn_71002f2a94(UnkPlaythroughDefFile_ovb0123* self, const UnkPlaythroughLoadRequest_ovb0123* request) {
+bool CPlaythroughDef_ReadFromFile(UnkPlaythroughDefFile_ovb0123* self, const UnkPlaythroughLoadRequest_ovb0123* request) {
     UnkFileReader reader;
     {
         UnkPathPairTemp_b45a1 s = fn_710001ab24(self->path);

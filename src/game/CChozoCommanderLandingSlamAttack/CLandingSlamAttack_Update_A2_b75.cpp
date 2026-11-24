@@ -101,7 +101,7 @@ void CChozoCommanderLandingSlamAttack_UpdateStage(UnkSlamUpdate_A2_b75* self, f3
         if (!(t > self->def->limit) && !(__builtin_fabsf(AsF32(x) - AsF32(other)) <= 50.0f))
             fn_710043764c(self);
         else
-            fn_7100437c44(reinterpret_cast<UnkSlamAttack_A2_b72*>(self));
+            CChozoCommanderLandingSlamAttack_EnterStage1(reinterpret_cast<UnkSlamAttack_A2_b72*>(self));
         break;
     }
     case 1: {

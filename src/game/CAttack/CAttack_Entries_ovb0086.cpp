@@ -109,7 +109,7 @@ f32 fn_710036270c(UnkAttack_b0086* self, void* arg, u32 value) {
     return entry->vf_0x48(arg);
 }
 
-void fn_71003624f4(UnkAttack_b0086* self, u32 value, f32* first, f32* second) {
+void CAttack_GetDistanceRange(UnkAttack_b0086* self, u32 value, f32* first, f32* second) {
     if (!self->target) {
         *first = -1.0f;
         *second = -1.0f;

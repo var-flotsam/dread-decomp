@@ -74,7 +74,7 @@ struct UnkSlamAttack_A2_b72 {
 };
 
 void fn_71004385c4(UnkSlamAttack_A2_b72* self) {
-    fn_7100437c44(self);
+    CChozoCommanderLandingSlamAttack_EnterStage1(self);
     UnkSlamParams_A2_b72 params;
     fn_71006f4b0c(self->owner->field_0x298, &params, 0);
 }

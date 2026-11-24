@@ -175,7 +175,7 @@ found:
 }
 
 // The mark record at `index`, growing the array to reach it.
-__attribute__((noinline)) UnkLockonEntry_ovb0092* fn_7100319aec(UnkLockonMarks_ovb0092* entries, u32 index) {
+__attribute__((noinline)) UnkLockonEntry_ovb0092* CAbilityMultiLockon_GetFadingObjectAt(UnkLockonMarks_ovb0092* entries, u32 index) {
     return &entries->At(index);
 }
 
@@ -184,7 +184,7 @@ void CAbilityMultiLockon_UpdateFadingObjects(UnkMultiLockon_ovb0092* self, f32 d
     UnkLockonMarks_ovb0092* marks = &self->marks;
     for (s32 i = marks->count; i > 0;) {
         --i;
-        UnkLockonEntry_ovb0092* e = fn_7100319aec(marks, i);
+        UnkLockonEntry_ovb0092* e = CAbilityMultiLockon_GetFadingObjectAt(marks, i);
         auto* mark = static_cast<UnkLockonMark_ovb0092*>(e->target);
         if (!(e->time <= 0.0f)) {
             if (mark)

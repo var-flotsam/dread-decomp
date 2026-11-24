@@ -61,7 +61,7 @@ static inline void Erase(UnkChozoXList_l48f748* list, UnkChozoXList_l48f748::Nod
     }
 }
 
-void fn_710048f748(UnkChozoWarriorXAI_l48f748* self, UnkChozoXOther_l48f748* other, u32 id, bool flag) {
+void CChozoWarriorXAIComponent_MovePendingEntryToListFront(UnkChozoWarriorXAI_l48f748* self, UnkChozoXOther_l48f748* other, u32 id, bool flag) {
     fn_710049b40c(self, other, id, false);
     if (!self->pending)
         return;

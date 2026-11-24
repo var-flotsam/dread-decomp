@@ -95,7 +95,7 @@ struct UnkChozoWarriorAIFull {
 
 // Releases the tracked target (telling its +0x208 object to stop first) and sends the owner's
 // animation a zero under the unit's hash.
-void fn_71004996b0(UnkChozoWarriorAIFull* self) {
+void CChozoWarriorAIComponent_ReleaseHandleAndClearTimer(UnkChozoWarriorAIFull* self) {
     UnkAnimationComponent* animation = self->owner->animation;
     if (!animation)
         return;

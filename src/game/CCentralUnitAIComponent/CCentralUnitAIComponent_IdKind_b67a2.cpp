@@ -13,7 +13,7 @@ extern CStrId g_unk_71726c4140 __attribute__((visibility("hidden")));
 
 struct UnkCentralUnitAI_b67a2;
 
-s64 fn_71004057d8(UnkCentralUnitAI_b67a2* self, const CStrId* id) {
+s64 CCentralUnitAIComponent_MapStrIdToKind(UnkCentralUnitAI_b67a2* self, const CStrId* id) {
     if (id->data == g_unk_71726c4110.data)
         return 0x11;
     if (id->data == g_unk_71726c4118.data)

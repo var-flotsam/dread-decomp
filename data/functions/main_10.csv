@@ -4090,7 +4090,7 @@ address,size,name,name_source,subsystem,status
 0x71010c67b4,352,fn_71010c67b4,unknown,unknown,O
 0x71010c6914,252,fn_71010c6914,unknown,unknown,O
 0x71010c6a10,360,fn_71010c6a10,unknown,unknown,O
-0x71010c6b78,356,fn_71010c6b78,unknown,unknown,O
+0x71010c6b78,356,CActorComponent_ShrinkStrIdTableToCount,inferred,unknown,O
 0x71010c6cdc,308,fn_71010c6cdc,unknown,unknown,O
 0x71010c6e10,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::Begin",reflection,engine/reflection,O
 0x71010c6e1c,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::End",reflection,engine/reflection,O

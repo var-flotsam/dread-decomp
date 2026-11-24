@@ -10,7 +10,7 @@ struct UnkHypersparkAttack_ovb0023;
 void fn_71003ad278(UnkObject_71003ad278* self);
 void fn_71004365a8(void* self);
 void fn_710042dbfc(UnkHypersparkAttack_ovb0023* self);
-void fn_7100425840(UnkChargeAttack2_ovb0113* self);
+void CChozoCommanderAirChargeAttack_ComputeTimelineMotionOffset(UnkChargeAttack2_ovb0113* self);
 
 struct UnkVec3_l44ff4c {
     f32 x = 0.0f;
@@ -60,5 +60,5 @@ void fn_710044ff4c(UnkChozoCommanderAI_l44ff4c* self) {
     self->field_0x15cf8 = UnkChozoState_l44ff4c();
     fn_71004365a8(self->field_0x14a28);
     fn_710042dbfc(reinterpret_cast<UnkHypersparkAttack_ovb0023*>(self->field_0x14ec0));
-    fn_7100425840(reinterpret_cast<UnkChargeAttack2_ovb0113*>(self->field_0x14ce8));
+    CChozoCommanderAirChargeAttack_ComputeTimelineMotionOffset(reinterpret_cast<UnkChargeAttack2_ovb0113*>(self->field_0x14ce8));
 }
