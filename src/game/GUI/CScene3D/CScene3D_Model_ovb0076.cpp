@@ -207,7 +207,7 @@ static inline void* ItemList_ovb0076() {
     return g_unk_7172729910;
 }
 
-CRntString fn_71011cd4f8(UnkScene3D_ovb0076* self);  // the object's name
+CRntString CDisplayObject_GetFullName(UnkScene3D_ovb0076* self);  // the object's name
 
 static inline CRntString Prefixed_ovb0076(const char* prefix, const CRntString& str) {
     return CRntString_ConcatCStringFirst(prefix, &str);
@@ -218,7 +218,7 @@ void fn_7100b72e5c(UnkScene3D_ovb0076* self, bool on) {
         return;
     self->field_0x469 = on;
     if (on) {
-        self->item.name = Prefixed_ovb0076("CScene3D:", fn_71011cd4f8(self));
+        self->item.name = Prefixed_ovb0076("CScene3D:", CDisplayObject_GetFullName(self));
         self->field_0x4a4 = 1;
         fn_710119ba7c(static_cast<UnkItemList*>(ItemList_ovb0076()),
                       reinterpret_cast<UnkListedItem_710119ba7c*>(&self->item));

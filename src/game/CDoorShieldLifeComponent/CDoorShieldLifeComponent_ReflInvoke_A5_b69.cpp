@@ -11,7 +11,7 @@
 using base::reflection::UnkReflValue;
 
 struct UnkDoorLifeKinds;
-void fn_71008d3cb4(UnkDoorLifeKinds* self, const char* const* a, const char* const* b, const char* const* c,
+void CDoorLifeComponent_SetFourMasksFromStrings(UnkDoorLifeKinds* self, const char* const* a, const char* const* b, const char* const* c,
                    const char* const* d);
 
 static inline __attribute__((always_inline)) void* ArgPtr_A5_b69(UnkReflValue* arg) {
@@ -25,7 +25,7 @@ static inline __attribute__((always_inline)) void* ArgPtr_A5_b69(UnkReflValue* a
 UnkReflValue fn_71008dc34c(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* a = args[0];
     UnkDoorLifeKinds* self = *reinterpret_cast<UnkDoorLifeKinds**>(obj + 8);
-    fn_71008d3cb4(self, static_cast<const char* const*>(ArgPtr_A5_b69(&a[0])),
+    CDoorLifeComponent_SetFourMasksFromStrings(self, static_cast<const char* const*>(ArgPtr_A5_b69(&a[0])),
                   static_cast<const char* const*>(ArgPtr_A5_b69(&a[1])),
                   static_cast<const char* const*>(ArgPtr_A5_b69(&a[2])),
                   static_cast<const char* const*>(ArgPtr_A5_b69(&a[3])));

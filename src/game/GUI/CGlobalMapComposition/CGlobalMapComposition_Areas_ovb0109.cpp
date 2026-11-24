@@ -99,12 +99,12 @@ struct UnkMapRegion_ovb0109 {
 };
 static_assert(sizeof(UnkMapRegion_ovb0109) == 0x58, "UnkMapRegion_ovb0109 size");
 
-__attribute__((noinline)) void fn_7100b262f4(UnkMapRegion_ovb0109* self) {
+__attribute__((noinline)) void CGlobalMapComposition_FreeRegionAreaLists(UnkMapRegion_ovb0109* self) {
     self->second.Free();
     self->first.Free();
 }
 
-inline UnkMapRegion_ovb0109::~UnkMapRegion_ovb0109() { fn_7100b262f4(this); }
+inline UnkMapRegion_ovb0109::~UnkMapRegion_ovb0109() { CGlobalMapComposition_FreeRegionAreaLists(this); }
 
 // The regions keyed by id: two parallel arrays sharing a count, capacity and allocator.
 using UnkMapRegions_ovb0109 = base::global::CRntSmallDictionary<UnkStrIdMember, UnkMapRegion_ovb0109>;
@@ -345,14 +345,14 @@ static inline UnkGuiDisplayObject* Areas(UnkMapComposition_ovb0109* self) {
     return self->areas;
 }
 
-void fn_7100b2af40(UnkMapComposition_ovb0109* self, const CStrId& name, const base::math::CVector2D* position) {
+void CGlobalMapComposition_SetAreaPosition(UnkMapComposition_ovb0109* self, const CStrId& name, const base::math::CVector2D* position) {
     if (UnkGuiDisplayObject* area = AsContainer(fn_71011d94d4(Areas(self), name))) {
         fn_71011cde64(area, position, 0, 0);
         fn_71011cd5a0(reinterpret_cast<UnkGuiObj*>(area));
     }
 }
 
-UnkVec2Result fn_7100b2b074(UnkMapComposition_ovb0109* self, const CStrId& name) {
+UnkVec2Result CGlobalMapComposition_GetAreaPosition(UnkMapComposition_ovb0109* self, const CStrId& name) {
     UnkVec2Result result(0.0f, 0.0f);
     if (UnkGuiDisplayObject* area = AsContainer(fn_71011d94d4(Areas(self), name))) {
         UnkGuiPos p = fn_71011f6240(AnchorState(area), 0, 0);

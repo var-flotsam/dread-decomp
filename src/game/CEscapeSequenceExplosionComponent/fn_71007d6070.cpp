@@ -25,7 +25,7 @@ void fn_71007d5f58() __attribute__((visibility("hidden")));
 void fn_71007d5f64() __attribute__((visibility("hidden")));
 extern char g_unk_717271e298[];
 
-void fn_71007d6070() {
+void CEscapeSequenceExplosionComponent_InitStatics() {
     InitHeaderIds(&g_unk_717271e2b0.ids);
     InitEnum(&base::reflection::TypeObject<CEscapeSequenceExplosionComponent::EExplosionType, UnkEnumType>::object, "CEscapeSequenceExplosionComponent::EExplosionType", fn_71007d573c, fn_71007d5590,
              g_unk_717271e250, &g_unk_717271e258, fn_71007d5f58, &g_unk_717271e278, fn_71007d5f64);

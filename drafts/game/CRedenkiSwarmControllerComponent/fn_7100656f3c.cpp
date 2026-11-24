@@ -55,7 +55,7 @@ struct UnkSwarmList_fsc;
 bool fn_71006580e0(UnkDaivoSwarm_b0012* self, const CVector3D* from, const CVector3D* to, UnkSweepHit_l656f3c* hit,
                    f32 radius, f32 limit);
 // As src/game/CFlockingSwarmControllerComponent/CFlockingSwarmControllerComponent_b39.cpp defines it.
-void fn_7100739bdc(UnkFlockingSwarm_fsc* self, u32 index, UnkSwarmList_fsc* list);
+void CFlockingSwarmControllerComponent_ComputePathPointValueIfUnset(UnkFlockingSwarm_fsc* self, u32 index, UnkSwarmList_fsc* list);
 
 static inline f32 Dot(const CVector3D& a, const CVector3D& b) {
     return a.x * b.x + a.y * b.y + a.z * b.z;
@@ -63,7 +63,7 @@ static inline f32 Dot(const CVector3D& a, const CVector3D& b) {
 
 static inline void AddPoint(UnkDaivoSwarm_b0012* self, UnkRedenkiPath_ovb0084* path, const CVector3D* point) {
     fn_71010592b0(reinterpret_cast<UnkMinimapPath*>(path), point);
-    fn_7100739bdc(reinterpret_cast<UnkFlockingSwarm_fsc*>(self), path->Count() - 1,
+    CFlockingSwarmControllerComponent_ComputePathPointValueIfUnset(reinterpret_cast<UnkFlockingSwarm_fsc*>(self), path->Count() - 1,
                   reinterpret_cast<UnkSwarmList_fsc*>(path));
 }
 

@@ -17,9 +17,9 @@ using base::global::CStrId;
 
 // ---- the unit's list of string ids (defined in CFXComponent_Update_ovb0052.cpp) ----
 
-void fn_71011571f8(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::IAllocator* a);
+void CFXComponent_ConstructIdList(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::IAllocator* a);
 void fn_7101157530(UnkParentPoolList* self);
-UnkFXIdNode* fn_7101157324(UnkParentPoolList* self, UnkFXIdNode* node);
+UnkFXIdNode* CFXComponent_EraseIdListNode(UnkParentPoolList* self, UnkFXIdNode* node);
 
 // The list as this function uses it: built for `n` ids, filled at the back, destroyed at scope end.
 struct UnkFXIdList_l14eeac {
@@ -29,11 +29,11 @@ struct UnkFXIdList_l14eeac {
     UnkParentPoolList& list() { return *reinterpret_cast<UnkParentPoolList*>(storage); }
     const UnkParentPoolList& list() const { return *reinterpret_cast<const UnkParentPoolList*>(storage); }
 
-    explicit UnkFXIdList_l14eeac(u32 n) { fn_71011571f8(&list(), n, 0, 0x10, nullptr); }
+    explicit UnkFXIdList_l14eeac(u32 n) { CFXComponent_ConstructIdList(&list(), n, 0, 0x10, nullptr); }
     ~UnkFXIdList_l14eeac() { fn_7101157530(&list()); }
 
     UnkFXIdNode* Head() const { return static_cast<UnkFXIdNode*>(list().head); }
-    UnkFXIdNode* Erase(UnkFXIdNode* node) { return fn_7101157324(&list(), node); }
+    UnkFXIdNode* Erase(UnkFXIdNode* node) { return CFXComponent_EraseIdListNode(&list(), node); }
 
     void PushBack(const CStrId& id) {
         UnkFXIdNode* node = static_cast<UnkFXIdNode*>(list().allocator->vf_0x40(sizeof(UnkFXIdNode), 8, list().flags));
@@ -149,7 +149,7 @@ static_assert(__builtin_offsetof(UnkFXComponent_l14eeac, record) == 0x138, "UnkF
 
 struct UnkFXComponent_b0052;
 
-void fn_710114eeac(UnkFXComponent_b0052* self_) {
+void CFXComponent_SwitchEffectsOnRecordChange(UnkFXComponent_b0052* self_) {
     UnkFXComponent_l14eeac* self = reinterpret_cast<UnkFXComponent_l14eeac*>(self_);
     if (!self->actor->animation)
         return;

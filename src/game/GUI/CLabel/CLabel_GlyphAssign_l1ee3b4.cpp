@@ -57,7 +57,7 @@ static inline void AddGlyph(UnkGlyphVector_l1ee3b4* glyphs, const UnkLabelGlyph_
     ++glyphs->count;
 }
 
-UnkGlyphVector* fn_71011ee3b4(UnkGlyphVector* self_, const UnkGlyphVector* other_) {
+UnkGlyphVector* CLabel_AssignGlyphArray(UnkGlyphVector* self_, const UnkGlyphVector* other_) {
     auto* self = reinterpret_cast<UnkGlyphVector_l1ee3b4*>(self_);
     auto* other = reinterpret_cast<const UnkGlyphVector_l1ee3b4*>(other_);
     if (self != other) {

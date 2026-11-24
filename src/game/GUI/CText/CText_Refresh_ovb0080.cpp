@@ -88,7 +88,7 @@ void fn_7100b86f00(UnkText_b0080* self) {
     void* font = self->font;
     if (!font) {
         if (fn_71011cde14(display)->frame != 0x7fffffff && self->font_id.data != &g_unk_7101d47108->empty) {
-            font = fn_71011b882c(*root, &self->font_id);
+            font = CGUIManager_GetOrLoadCachedByPath(*root, &self->font_id);
             self->font = font;
         } else {
             font = self->font;

@@ -114,7 +114,7 @@ struct UnkPanel_71011dfeb0 {
     }
 };
 
-void fn_71011dfeb0(UnkPanel_71011dfeb0* self) {
+void CHUD_BindLayoutChildren(UnkPanel_71011dfeb0* self) {
     fn_71011d9b3c(self);
     self->Bind(self->field_0x260, 0xa85c4752f3e59787);  // "LifeLabel"
     self->Bind(self->field_0x268, 0x4fee8e10d17093ff);  // "MissileLabel"

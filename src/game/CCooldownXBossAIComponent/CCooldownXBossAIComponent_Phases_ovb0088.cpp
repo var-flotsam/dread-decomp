@@ -381,7 +381,7 @@ static inline bool IsShieldable(const CStrId& id) {
 u32 CCooldownXBossAIComponent_ScaleGrabDamageAndCheckSource(UnkCooldownXDamageAI_ovb0088* self, UnkCooldownXDamage_ovb0088* damage) {
     u32 result = fn_71003adaf8(reinterpret_cast<UnkQuetzoaXAI_b58*>(self), reinterpret_cast<UnkQuetzoaXMessage_b58*>(damage));
     if (self->owner->part && fn_710113d83c(self->owner->part)) {
-        f32 value = fn_71008c2de8(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(self->tables->table), damage->flags);
+        f32 value = CDamageSourceFactor_GetFactorForDamageFlags(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(self->tables->table), damage->flags);
         fn_71008c1538(reinterpret_cast<UnkRequest*>(damage), value * damage->scale);
     }
     CStrId id(damage->source ? damage->source->id : base::global::CStrId::Empty());

@@ -145,7 +145,7 @@ static inline UnkGuiDisplayObject* IfContainer(UnkGuiDisplayObject* object) {
                : nullptr;
 }
 
-void fn_7100b1ca40(UnkEndingRewards_lb1ca40* self) {
+void CEndingRewardsComposition_InitGalleryFromProfileRewards(UnkEndingRewards_lb1ca40* self) {
     fn_7100af83e0(self);
     self->field_0x248 = 6;
     self->field_0x24c = 3;

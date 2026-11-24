@@ -48,7 +48,7 @@ struct UnkMapNameId {
     }
 };
 
-UnkMapNameId fn_7100b22e50(const CStrId& scenario) {
+UnkMapNameId CGlobalMapComposition_GetMapNameIdForId(const CStrId& scenario) {
     UnkMapNameId result;
     const char* name;
     if (scenario.data == g_unk_71727c7fe8.data)
@@ -245,7 +245,7 @@ static inline UnkGuiDisplayObject* TransportContainer(UnkGuiDisplayObject* objec
 void fn_7100b28144(UnkGlobalMapView_b28144* self) {
     UnkGuiDisplayObject* area = TransportContainer(fn_71011d98ec(self->root, self->selected_area.data->Key()));
     UnkGuiDisplayObject* map =
-        TransportContainer(fn_71011d98ec(self->root, fn_7100b22e50(self->hovered).data->Key()));
+        TransportContainer(fn_71011d98ec(self->root, CGlobalMapComposition_GetMapNameIdForId(self->hovered).data->Key()));
     if (!area || !map)
         return;
 

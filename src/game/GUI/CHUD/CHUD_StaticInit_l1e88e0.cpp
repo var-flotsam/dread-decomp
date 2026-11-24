@@ -106,7 +106,7 @@ void fn_71011deff0(UnkReflType* self, const CStrId& name, void (*init)(), void* 
 void fn_71011dede4();
 void fn_71011df170(void* self);  // UnkHudParams_l1e88e0's destructor, as registered
 
-void fn_71011e88e0() {
+void CHUD_InitStatics() {
     InitHeaderIds(&g_unk_7172a0ffd0.ids);
     g_unk_7172a0ffd0.field_0x60[0] = -1.0f;
     g_unk_7172a0ffd0.field_0x60[1] = -1.0f;

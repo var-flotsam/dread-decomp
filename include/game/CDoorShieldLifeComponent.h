@@ -6,7 +6,7 @@
 #include "types.h"
 
 struct UnkDoorShieldStore_A4_b76;
-void fn_71008db4e4(UnkDoorShieldStore_A4_b76* self);
+void CDoorShieldLifeComponent_WriteChangeWhenVisibleAndNextStateToBlackboard(UnkDoorShieldStore_A4_b76* self);
 extern void* g_unk_7101a7ebf8[];
 struct UnkDoorLock;
 // Turn the door's shield to face `actor`, from the front or from the back.

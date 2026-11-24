@@ -300,7 +300,7 @@ void fn_71011a4050(UnkGameManagerSub_0x608* scenario) {
                 {
                     UnkGuiDisplayObject* l = self->level_label;
                     CStrId font("digital_big", true);
-                    fn_71011ed150(l, font);
+                    CLabel_SetFont(l, font);
                 }
                 {
                     UnkGuiDisplayObject* l = self->level_label;

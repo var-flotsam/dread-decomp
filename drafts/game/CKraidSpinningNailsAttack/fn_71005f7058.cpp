@@ -16,7 +16,7 @@ using base::global::CStrId;
 using base::reflection::CClass;
 
 struct UnkKraidNailsAttack_A4_b71;
-void fn_71005f67cc(UnkKraidNailsAttack_A4_b71* self);
+void CKraidSpinningNailsAttack_TakeNextPatternNailsDef(UnkKraidNailsAttack_A4_b71* self);
 
 // The id table's slot this file reads (not yet a member of UnkGameManagerIdTable).
 struct UnkIdTableSlot_l5f7058 {
@@ -107,7 +107,7 @@ bool fn_71005f7058(UnkKraidNailsAttack_l5f7058* self, UnkEvent_l5f7058* event) {
     if (target->track.data->Key() == kRelaxTrack)
         return true;
 
-    fn_71005f67cc(reinterpret_cast<UnkKraidNailsAttack_A4_b71*>(self));
+    CKraidSpinningNailsAttack_TakeNextPatternNailsDef(reinterpret_cast<UnkKraidNailsAttack_A4_b71*>(self));
     void* animation = self->owner->field_0x220;
     bool relax = self->entry == nullptr;
     if (!relax) {

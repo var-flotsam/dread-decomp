@@ -72,7 +72,7 @@ int fn_7101075950(lua_State* L, const char* path) {
     UnkGuiDisplayObject* object;
     {
         CRntString name(path);
-        object = fn_71011b5d3c(root, reinterpret_cast<const char* const*>(&name));
+        object = CGUIManager_FindDisplayObjectByPath(root, reinterpret_cast<const char* const*>(&name));
     }
     if (!object)
         return 0;

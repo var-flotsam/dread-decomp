@@ -38,7 +38,7 @@ static inline __attribute__((always_inline)) void Stop_A5_b71(UnkHeatableShieldE
     *h = g_unk_7108b6c460;
 }
 
-void fn_710086e410(UnkHeatableShieldEntry* entry) {
+void CHeatableShieldComponent_ResetEntry(UnkHeatableShieldEntry* entry) {
     UnkHeatableShieldEntry_A5_b71* self = reinterpret_cast<UnkHeatableShieldEntry_A5_b71*>(entry);
     self->field_0xa0 = 0;
     self->field_0x60 = 0;

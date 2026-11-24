@@ -7,4 +7,4 @@
 #include "types.h"
 
 struct UnkHudOwnedPtr;
-void fn_71011e7700(base::global::CRntVector<UnkHudOwnedPtr>* self, UnkHudOwnedPtr* value);
+void CHUD_EmplaceBackOwnedPtr(base::global::CRntVector<UnkHudOwnedPtr>* self, UnkHudOwnedPtr* value);

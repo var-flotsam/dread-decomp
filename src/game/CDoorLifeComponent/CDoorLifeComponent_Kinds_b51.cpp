@@ -21,7 +21,7 @@ static inline u32 ParseKind(const char* text) {
     return CRntString_Contains(&str, "|") ? fn_7100414070(text) : fn_71008a40c0(text);
 }
 
-void fn_71008d3cb4(UnkDoorLifeKinds* self, const char* const* a, const char* const* b, const char* const* c,
+void CDoorLifeComponent_SetFourMasksFromStrings(UnkDoorLifeKinds* self, const char* const* a, const char* const* b, const char* const* c,
                    const char* const* d) {
     self->kinds[0] = ParseKind(*a);
     self->kinds[1] = ParseKind(*b);

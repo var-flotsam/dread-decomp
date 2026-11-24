@@ -5,7 +5,7 @@
 #include "base/global/UnkStringPool.h"
 #include "game/UnkGuiRoot.h"
 
-UnkGuiDisplayObject* fn_71011b5d3c(UnkGuiRoot* root, const char* const* path) {
+UnkGuiDisplayObject* CGUIManager_FindDisplayObjectByPath(UnkGuiRoot* root, const char* const* path) {
     if (!root->menu)
         return nullptr;
     if (StringBuffer_Differs(reinterpret_cast<char*>(const_cast<const char**>(path)), "[Root]"))

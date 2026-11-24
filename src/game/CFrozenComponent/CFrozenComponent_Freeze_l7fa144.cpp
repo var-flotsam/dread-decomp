@@ -85,7 +85,7 @@ inline void Blend_l7fa144(UnkAnimationComponent* animation, char* layer, const C
 struct UnkFrozenComponent;
 
 // `time` is never read: the declaration in CFrozenComponent.cpp passes it.
-void fn_71007fa144(UnkFrozenComponent* component, f32 time) {
+void CFrozenComponent_PlayFreezeInitAction(UnkFrozenComponent* component, f32 time) {
     UnkFrozenComponent_l7fa144* self = reinterpret_cast<UnkFrozenComponent_l7fa144*>(component);
     UnkAnimationComponent* animation = self->owner->animation;
     if (!animation || !self->char_class)

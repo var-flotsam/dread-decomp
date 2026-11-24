@@ -11,10 +11,10 @@ struct UnkZiplineRail_A5_b65 {
     bool dead;
 };
 
-void fn_710091d5c0(UnkZiplineRail_A5_b65* self, bool dead) {
+void CHydrogigaZiplineRailComponent_SetHydrogigaDead(UnkZiplineRail_A5_b65* self, bool dead) {
     bool before = self->dead;
     self->dead = dead;
     if (before == dead)
         return;
-    fn_710091d4bc(reinterpret_cast<UnkZiplineRail_b49*>(self));
+    CHydrogigaZiplineRailComponent_ApplyDeadState(reinterpret_cast<UnkZiplineRail_b49*>(self));
 }

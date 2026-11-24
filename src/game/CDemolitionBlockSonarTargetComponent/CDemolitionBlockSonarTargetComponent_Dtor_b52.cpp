@@ -27,7 +27,7 @@ struct UnkSonarTarget_b52 {
 };
 
 // By reference: the object is known to exist, so the delete has no null check.
-void fn_7100a0f888(UnkSonarTarget_b52& self) {
+void CDemolitionBlockSonarTargetComponent_DestroyAndDelete(UnkSonarTarget_b52& self) {
     self.vtable = reinterpret_cast<void**>(g_unk_7101a8b8f0 + 0x10);
     self.entries.Free();
     if (UnkRefObject* p = self.ref) {

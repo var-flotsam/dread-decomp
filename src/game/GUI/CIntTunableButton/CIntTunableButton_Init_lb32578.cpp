@@ -81,7 +81,7 @@ void fn_7100b32578(UnkIntTunableButton_lb32578* self) {
     {
         UnkGuiDisplayObject* label = self->label;
         CStrId font("digital_medium", true);
-        fn_71011ed150(label, font);
+        CLabel_SetFont(label, font);
     }
     fn_71011d0088(self->label, false);
     fn_71011ed018(self->label, 2);

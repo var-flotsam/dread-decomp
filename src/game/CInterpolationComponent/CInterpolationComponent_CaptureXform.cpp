@@ -9,7 +9,7 @@ struct UnkInterpolationXformState {
     UnkVec3f angle;     // 0x4c
 };
 
-void fn_710116e6d0(UnkInterpolationXformState* self, UnkXform* xform, const u32* mask) {
+void CInterpolationComponent_CopyMaskedPosAngFromXform(UnkInterpolationXformState* self, UnkXform* xform, const u32* mask) {
     if (*mask & 1)
         self->position = xform->GetTranslation();
     if (*mask & 2)

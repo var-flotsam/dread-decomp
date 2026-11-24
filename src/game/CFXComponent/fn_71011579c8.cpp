@@ -28,7 +28,7 @@ struct UnkFXList_l1579c8 {
     base::IAllocator* allocator;  // 0x20
 };
 
-void fn_71011579c8(UnkFXList_l1579c8* self, u32 capacity) {
+void CFXComponent_ReserveEffectListCapacity(UnkFXList_l1579c8* self, u32 capacity) {
     if (self->capacity >= capacity)
         return;
     UnkFXEntry_l1579c8* values = static_cast<UnkFXEntry_l1579c8*>(

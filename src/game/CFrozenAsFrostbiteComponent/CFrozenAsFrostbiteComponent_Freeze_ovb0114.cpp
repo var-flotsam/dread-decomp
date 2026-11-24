@@ -119,7 +119,7 @@ void CFrozenAsFrostbiteComponent_ResetFrostbiteAndReleaseIceObjects(UnkFrozenAsF
 // After the base step: caches the character class (a CCharClassFrozenAsFrostbiteComponent) and
 // makes room in the object list for one object per part of it.
 bool CFrozenAsFrostbiteComponent_InitFromCharClass(UnkFrozenAsFrostbite_ovb0114* self, void* arg) {
-    if (!fn_71007f900c(self, arg))
+    if (!CFrozenComponent_CacheCharClassAndRegisterStates(self, arg))
         return false;
     UnkReflObject* object = self->charClass;
     self->def = reinterpret_cast<UnkFrostbiteDef_ovb0114*>(

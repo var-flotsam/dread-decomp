@@ -83,7 +83,7 @@ bool fn_7100a928ec(UnkThermalDevice_b0279* self, bool frozen) {
                 continue;
             door->field_0x408 = 0;
             door->field_0x40c = 2;
-            fn_71008db4e4(reinterpret_cast<UnkDoorShieldStore_A4_b76*>(door));
+            CDoorShieldLifeComponent_WriteChangeWhenVisibleAndNextStateToBlackboard(reinterpret_cast<UnkDoorShieldStore_A4_b76*>(door));
         }
         {
             UnkRenderManager* render = g_unk_7101d47300;
