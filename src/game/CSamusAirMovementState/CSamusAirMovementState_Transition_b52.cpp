@@ -39,7 +39,7 @@ struct UnkAirStateName_b52 {
     u64 hash;
 };
 
-bool fn_710098d790(UnkAirState_b52* self, UnkAirTransition_b52* out) {
+bool CSamusAirMovementState_GetMorphBallTransition(UnkAirState_b52* self, UnkAirTransition_b52* out) {
     UnkAnimationComponent* animation = self->owner->animation;
     if (animation && fn_710117b348(animation, fn_7100d14d38())) {
         out->blend = g_unk_7172769770;

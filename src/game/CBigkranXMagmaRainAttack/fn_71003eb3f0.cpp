@@ -23,7 +23,7 @@ extern UnkConversion g_unk_71726c17e0;
 void fn_71003eaf60() __attribute__((visibility("hidden")));
 void fn_71003eaf6c() __attribute__((visibility("hidden")));
 
-void fn_71003eb3f0() {
+void CBigkranXMagmaRainAttack_InitStatics() {
     InitHeaderIds(&g_unk_71726c1800.ids);
     fn_71003e9efc();
     fn_710009ec00(g_unk_71726c1698, g_unk_71726c1800.field_0x28);

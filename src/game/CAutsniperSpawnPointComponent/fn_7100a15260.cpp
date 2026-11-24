@@ -127,7 +127,7 @@ void fn_7100a50a2c(UnkReflType* self, const CStrId& name, void (*init)(), void* 
 void fn_7100ac05ac(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_7100956118(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_71009bb50c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100a15260() {
+void CAutsniperSpawnPointComponent_InitStatics() {
     InitHeader(g_unk_71727446e0);
     InitEnum(&base::reflection::TypeObject<EAutsniperSpawnPointDir, UnkReflType>::object, "EAutsniperSpawnPointDir", fn_7100a14bf8, fn_7100a14aac);
     fn_710009ec00(&g_unk_7172744690, &base::reflection::TypeObject<EAutsniperSpawnPointDir, UnkReflType>::object);
@@ -136,7 +136,7 @@ void fn_7100a15260() {
     fn_710009ec00(&g_unk_71727446d8, &g_unk_7172744700);
 }
 
-void fn_7100a1d550() {
+void CSlidleSpawnPointComponent_InitStatics() {
     InitHeader(g_unk_71727454b0);
     InitEnum(&base::reflection::TypeObject<ESlidleOutSpawnPointDir, UnkReflType>::object, "ESlidleOutSpawnPointDir", fn_7100a1cd3c, fn_7100a1cb90);
     fn_710009ec00(&g_unk_7172745460, &base::reflection::TypeObject<ESlidleOutSpawnPointDir, UnkReflType>::object);
@@ -145,7 +145,7 @@ void fn_7100a1d550() {
     fn_710009ec00(&g_unk_71727454a8, &g_unk_71727454d0);
 }
 
-void fn_7100a419e0() {
+void CSaveGameLogicAction_InitStatics() {
     InitHeader(g_unk_717274a1f8);
     InitEnum(&base::reflection::TypeObject<CSaveGameLogicAction::EDestination, UnkReflType>::object, "CSaveGameLogicAction::EDestination", fn_7100a40d1c, fn_7100a40bd0);
     fn_710009ec00(&g_unk_717274a1a8, &base::reflection::TypeObject<CSaveGameLogicAction::EDestination, UnkReflType>::object);
@@ -154,7 +154,7 @@ void fn_7100a419e0() {
     fn_710009ec00(&g_unk_717274a1f0, &g_unk_717274a218);
 }
 
-void fn_7100a4d830() {
+void CEmmyStateOverrideLogicAction_InitStatics() {
     InitHeader(g_unk_717274b5e0);
     InitEnum(&base::reflection::TypeObject<CEmmyStateOverrideLogicAction::EMode, UnkReflType>::object, "CEmmyStateOverrideLogicAction::EMode", fn_7100a4d014, fn_7100a4cec8);
     fn_710009ec00(&g_unk_717274b590, &base::reflection::TypeObject<CEmmyStateOverrideLogicAction::EMode, UnkReflType>::object);
@@ -163,7 +163,7 @@ void fn_7100a4d830() {
     fn_710009ec00(&g_unk_717274b5d8, &g_unk_717274b600);
 }
 
-void fn_7100a51650() {
+void CPerceptionModifierLogicAction_InitStatics() {
     InitHeader(g_unk_717274c100);
     InitEnum(&base::reflection::TypeObject<CPerceptionModifierLogicAction::EMode, UnkReflType>::object, "CPerceptionModifierLogicAction::EMode", fn_7100a50a2c, fn_7100a508e0);
     fn_710009ec00(&g_unk_717274c0b0, &base::reflection::TypeObject<CPerceptionModifierLogicAction::EMode, UnkReflType>::object);
@@ -172,7 +172,7 @@ void fn_7100a51650() {
     fn_710009ec00(&g_unk_717274c0f8, &g_unk_717274c120);
 }
 
-void fn_7100ac1950() {
+void CCharClassProjectileMovement_InitStatics() {
     InitHeader(g_unk_71727553d0);
     InitEnum(&base::reflection::TypeObject<CCharClassProjectileMovement::EProjectileMeleeHitReaction, UnkReflType>::object, "CCharClassProjectileMovement::EProjectileMeleeHitReaction", fn_7100ac05ac, fn_7100ac0400);
     fn_710009ec00(&g_unk_7172755380, &base::reflection::TypeObject<CCharClassProjectileMovement::EProjectileMeleeHitReaction, UnkReflType>::object);
@@ -181,7 +181,7 @@ void fn_7100ac1950() {
     fn_710009ec00(&g_unk_71727553c8, &g_unk_71727553f0);
 }
 
-void fn_7100967ec0() {
+void CCharClassEnemyMovement_InitStatics() {
     InitHeader(g_unk_717273a448);
     InitEnum(&base::reflection::TypeObject<CCharClassEnemyMovement::ETurn180Mode, UnkReflType>::object, "CCharClassEnemyMovement::ETurn180Mode", fn_7100956118, fn_7100955f6c);
     fn_710009ec00(&g_unk_717273a3f8, &base::reflection::TypeObject<CCharClassEnemyMovement::ETurn180Mode, UnkReflType>::object);
@@ -190,7 +190,7 @@ void fn_7100967ec0() {
     fn_710009ec00(&g_unk_717273a440, &g_unk_717273a468);
 }
 
-void fn_71009bbed0() {
+void CCharClassNavMeshItemComponent_InitStatics() {
     InitHeader(g_unk_717273db38);
     InitEnum(&base::reflection::TypeObject<ENavMeshItemType, UnkReflType>::object, "ENavMeshItemType", fn_71009bb50c, fn_71009bb360);
     fn_710009ec00(&g_unk_717273dae8, &base::reflection::TypeObject<ENavMeshItemType, UnkReflType>::object);
