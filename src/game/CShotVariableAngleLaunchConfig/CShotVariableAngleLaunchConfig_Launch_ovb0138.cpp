@@ -7,7 +7,7 @@
 #include "types.h"
 
 struct UnkShotLaunch_ovb0090;
-bool fn_71009fa098(void* owner, const UnkVec3f* target, const UnkVec3f* direction, const UnkVec3f* origin, bool a,
+bool CShotLaunchConfig_SetUpLaunch(void* owner, const UnkVec3f* target, const UnkVec3f* direction, const UnkVec3f* origin, bool a,
                    bool b, UnkShotLaunch_ovb0090* out, f32 value);
 
 struct UnkVariableAngleConfig_ovb0138 {
@@ -49,7 +49,7 @@ static inline f32 Lerp(f32 t, f32 a, f32 b) {
 
 bool fn_71009feb78(UnkVariableAngleConfig_ovb0138* self, const UnkVec3f* target, const UnkVec3f* direction,
                    const UnkVec3f* origin, bool a, bool b, UnkVariableAngleLaunch_ovb0138* out, f32 value) {
-    if (!fn_71009fa098(self, target, direction, origin, a, b, reinterpret_cast<UnkShotLaunch_ovb0090*>(out), value))
+    if (!CShotLaunchConfig_SetUpLaunch(self, target, direction, origin, a, b, reinterpret_cast<UnkShotLaunch_ovb0090*>(out), value))
         return false;
     f32 f18 = self->field_0x18;
     out->field_0x2c = f18;

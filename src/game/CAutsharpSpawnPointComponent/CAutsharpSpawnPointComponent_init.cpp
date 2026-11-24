@@ -24,7 +24,7 @@ extern UnkConverter g_unk_71727443f0;
 extern char g_unk_7172744410;
 extern UnkReflType g_unk_7172744440 __attribute__((visibility("hidden")));
 
-void fn_7100a148d0() {
+void CAutsharpSpawnPointComponent_InitStatics() {
     InitHeader(g_unk_7172744418.header);
     new (&g_unk_7172744418.field_0x18) CStrId("spawn_right", true);
     fn_7100000250(CStrId_Destroy, &g_unk_7172744418.field_0x18, &g_unk_7101a19000);
