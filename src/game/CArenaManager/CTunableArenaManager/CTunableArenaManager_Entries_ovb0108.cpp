@@ -89,7 +89,7 @@ struct UnkArenaEntry_ovb0108 {
 };
 static_assert(sizeof(UnkArenaEntry_ovb0108) == 0x80, "UnkArenaEntry_ovb0108 layout");
 
-__attribute__((flatten)) void fn_7100e167d4(char* self) {
+__attribute__((flatten)) void CArenaManager_DestroyArenaEntry(char* self) {
     reinterpret_cast<UnkArenaEntry_ovb0108*>(self)->~UnkArenaEntry_ovb0108();
 }
 
@@ -109,7 +109,7 @@ static inline u64 IndexOf(const UnkStrIdTable& table, const UnkPropertyName& key
     return count;
 }
 
-void fn_7100e14d74(UnkArenaEntry_ovb0108* self, UnkGameManagerSub_0x608* owner, CBlackboard* blackboard) {
+void CArenaManager_SetArenaAllDead(UnkArenaEntry_ovb0108* self, UnkGameManagerSub_0x608* owner, CBlackboard* blackboard) {
     self->all_dead = true;
     {
         UnkTypedValue v;
@@ -162,10 +162,10 @@ void fn_7100e14c8c(UnkArenaEntries_ovb0108* self, UnkArenaActor_ovb0108* actor) 
     if (actor->name.data == &g_unk_7101d47108->empty)
         return;
     UnkArenaEntry_ovb0108* it = self->Find(actor->name);
-    fn_7100e14d74(it == self->end() ? nullptr : it, self->owner, &g_unk_7101d47310->field_0x968);
+    CArenaManager_SetArenaAllDead(it == self->end() ? nullptr : it, self->owner, &g_unk_7101d47310->field_0x968);
 }
 
-void fn_7100e14ec0(UnkArenaEntries_ovb0108* self, const CStrId& key) {
+void CArenaManager_SetArenaNewRandomSelectedSpawnGroup(UnkArenaEntries_ovb0108* self, const CStrId& key) {
     UnkArenaEntry_ovb0108* it = self->Find(key);
     if (it && it != self->end())
         fn_7100e14fc8(it, self->owner, &g_unk_7101d47310->field_0x968);
@@ -185,14 +185,14 @@ UnkArenaItemDef_ovb0108* fn_7100e15bb0(UnkArenaEntry_ovb0108* self, const CStrId
 void fn_7100e15cec(UnkArenaEntry_ovb0108* entry, UnkGameManagerSub_0x608* owner, CBlackboard* blackboard,
                    UnkArenaItemDef_ovb0108* item);
 
-void fn_7100e1593c(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& value) {
+void CArenaManager_SetArenaDefaultSpawnGroup(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& value) {
     UnkArenaEntry_ovb0108* it = self->Find(key);
     if (__builtin_expect(!it || self->end() == it, 0))
         return;
     it->field_0x30 = reinterpret_cast<const base::UnkStrIdMember&>(value);
 }
 
-void fn_7100e15a84(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& item_name) {
+void CArenaManager_SetArenaSelectedSpawnGroup(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& item_name) {
     UnkArenaEntry_ovb0108* it = self->Find(key);
     if (it && it != self->end()) {
         if (UnkArenaItemDef_ovb0108* item = fn_7100e15bb0(it, item_name))

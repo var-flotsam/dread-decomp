@@ -59,7 +59,7 @@ struct UnkMarkMinimapAction_b53 {
 void fn_7100a3ef6c(UnkMarkMinimapAction_b53* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     if (void* object = self->first.Resolve())
-        fn_7100e950b4(g_unk_7101d47310->field_0x2228, object);
+        CMinimapManager_SetRegionVisible(g_unk_7101d47310->field_0x2228, object);
     if (void* object = self->second.Resolve())
-        fn_7100e95038(g_unk_7101d47310->field_0x2228, object);
+        CMinimapManager_SetRegionVisited(g_unk_7101d47310->field_0x2228, object);
 }

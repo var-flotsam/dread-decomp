@@ -32,13 +32,13 @@ static inline void Accumulate(UnkDroppedSum* total, const UnkDroppedItem_e2f9a4*
     total->count++;
 }
 
-void fn_7100e2f9a4(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool) {
+void CLogicDroppedItemManager_ApplyGreenMiniXDrop(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool) {
     UnkDroppedSum* total = &self->total;
     fn_7100e2e9b0(self, item, arg, 0);
     Accumulate(total, item);
 }
 
-void fn_7100e2fa00(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool) {
+void CLogicDroppedItemManager_ApplyYellowMiniXDrop(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool) {
     UnkDroppedSum* total = &self->total;
     fn_7100e2e8a4(self, item, arg, 0);
     Accumulate(total, item);

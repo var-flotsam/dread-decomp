@@ -13,7 +13,7 @@ struct UnkDroppedSlots_b47a3 {
     UnkDroppedSlot_b47a3 slots[128];
 };
 
-u32 fn_7100e2d608(UnkDroppedSlots_b47a3* self) {
+u32 CLogicDroppedItemManager_CountActiveSlots(UnkDroppedSlots_b47a3* self) {
     u32 n = 0;
     for (u64 i = 0; i < 128; ++i)
         n += self->slots[i].active;

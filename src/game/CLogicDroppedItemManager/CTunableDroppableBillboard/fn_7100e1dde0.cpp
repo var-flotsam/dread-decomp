@@ -52,7 +52,7 @@ static inline void InitString_le1dde0(CRntString* string, const char* text) {
     fn_7100000250(reinterpret_cast<void (*)(void*)>(CRntString_Destroy), string, g_unk_7101a19000);
 }
 
-void fn_7100e1dde0() {
+void CLogicDroppedItemManager_InitStatics() {
     UnkStatics_le1dde0& s = g_unk_71727c1358;
     InitHeaderIds(&s.ids);
     s.field_0x60 = -1.0f;

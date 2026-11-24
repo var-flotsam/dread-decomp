@@ -34,7 +34,7 @@ struct UnkRecord_ld8d45c;
 struct UnkStruct_710025ad0c;
 void fn_7100ebfa5c(UnkNavMeshManager* self);
 void fn_7100e8efac(void* world);
-void fn_7100ca6dd0(UnkObserverReset_ovb0055* self);
+void CBreakableTileManager_ClearTileGroups(UnkObserverReset_ovb0055* self);
 void fn_7100d8d45c(UnkRecord_ld8d45c* self);
 void fn_7100d8ced8(void* p);
 void fn_7100d46804(UnkManager_7100863a8c* self);
@@ -43,7 +43,7 @@ void fn_71011a1d00(void* scenario);
 void fn_7101196f4c(void* self);
 void CSubAreaManager_Reset(UnkManager* self);
 void fn_71011a4f1c(void* self);
-void fn_7100e1480c(char* self);
+void CArenaManager_FreeArenaEntries(char* self);
 void fn_7100274b48(void* self);
 void fn_710025ad0c(UnkStruct_710025ad0c* self);
 
@@ -119,7 +119,7 @@ void fn_71011a12b0(UnkScenario_l1a12b0* self) {
     self->vtable = g_unk_7101cb5528 + 0x10;
     fn_7100ebfa5c(Instance<UnkNavMeshManager, UnkNavMeshManager, fn_7100ebf278>(g_unk_71726a4510, 0x62ec8));
     fn_7100e8efac(g_unk_7101d47310->field_0x2228);
-    fn_7100ca6dd0(reinterpret_cast<UnkObserverReset_ovb0055*>(g_unk_7101d47310->field_0x1af8));
+    CBreakableTileManager_ClearTileGroups(reinterpret_cast<UnkObserverReset_ovb0055*>(g_unk_7101d47310->field_0x1af8));
     fn_7100d8d45c(static_cast<UnkRecord_ld8d45c*>(Instance<void, void, fn_7100d8ced8>(g_unk_7101d47368, 0x4c8)));
     fn_71011a19a4(self);
     fn_71011a1d00(self);
@@ -139,7 +139,7 @@ void fn_71011a12b0(UnkScenario_l1a12b0* self) {
 
     fn_71011a4f1c(self->field_0x8b8);
     self->paths.~UnkScenarioPaths_l1a12b0();
-    fn_7100e1480c(reinterpret_cast<char*>(self->field_0x858));
+    CArenaManager_FreeArenaEntries(reinterpret_cast<char*>(self->field_0x858));
     self->field_0x850.~UnkRefPtrMember();
     self->field_0x828.Free();
     fn_7100274b48(self->field_0x3f8);

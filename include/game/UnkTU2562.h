@@ -23,8 +23,8 @@ struct UnkDroppedItem_e2f9a4;
 void fn_7100e2f98c(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool flag);
 void fn_7100e2f994(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool flag);
 void fn_7100e2f99c(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool flag);
-void fn_7100e2f9a4(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool flag);
-void fn_7100e2fa00(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool flag);
+void CLogicDroppedItemManager_ApplyGreenMiniXDrop(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool flag);
+void CLogicDroppedItemManager_ApplyYellowMiniXDrop(UnkDroppedItemManager* self, UnkDroppedItem_e2f9a4* item, void* arg, bool flag);
 
 // The billboards' path prefixes and suffixes (five strings, to 0x71727c14b8): fn_7100e21b8c puts names under
 // the first two, fn_7100e2a734 between the first and each of the last three.

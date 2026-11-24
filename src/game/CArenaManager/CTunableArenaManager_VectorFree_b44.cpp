@@ -5,16 +5,16 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-void fn_7100e167d4(char*);
+void CArenaManager_DestroyArenaEntry(char*);
 
 struct UnkArenaEntry_b44a3;
 template <>
 struct UnkCloneDtorTraits<UnkArenaEntry_b44a3> {
-    static void destroy(char* p) { fn_7100e167d4(p); }
+    static void destroy(char* p) { CArenaManager_DestroyArenaEntry(p); }
 };
 
 using UnkArenaEntries_b44a3 = base::global::CRntVector<UnkCloneDtorElem<UnkArenaEntry_b44a3, 0x80>>;
 
-__attribute__((flatten)) void fn_7100e1480c(char* self) {
+__attribute__((flatten)) void CArenaManager_FreeArenaEntries(char* self) {
     reinterpret_cast<UnkArenaEntries_b44a3*>(self + 0x8)->Free();
 }

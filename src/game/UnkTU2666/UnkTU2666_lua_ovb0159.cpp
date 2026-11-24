@@ -149,7 +149,7 @@ s32 SetMinimapRegionVisited(lua_State* L) {
         return 0;
     if (void* object = FindByName(g_unk_7101d47310, name)) {
         if (UnkTracker* tracker = fn_710028aca8(object)) {
-            fn_7100e95038(g_unk_7101d47310->field_0x2228, reinterpret_cast<UnkTrackerFields_b0159*>(tracker)->field_0x30);
+            CMinimapManager_SetRegionVisited(g_unk_7101d47310->field_0x2228, reinterpret_cast<UnkTrackerFields_b0159*>(tracker)->field_0x30);
             return 0;
         }
     }
@@ -162,7 +162,7 @@ s32 SetMinimapRegionVisible(lua_State* L) {
         return 0;
     if (void* object = FindByName(g_unk_7101d47310, name)) {
         if (UnkTracker* tracker = fn_710028aca8(object)) {
-            fn_7100e950b4(g_unk_7101d47310->field_0x2228, reinterpret_cast<UnkTrackerFields_b0159*>(tracker)->field_0x30);
+            CMinimapManager_SetRegionVisible(g_unk_7101d47310->field_0x2228, reinterpret_cast<UnkTrackerFields_b0159*>(tracker)->field_0x30);
             return 0;
         }
     }
@@ -199,7 +199,7 @@ s32 GetActorPosition(lua_State* L) {
 }  // namespace lua_bind
 
 struct UnkArenaEntries_ovb0108;
-void fn_7100e14ec0(UnkArenaEntries_ovb0108* self, const CStrId& key);
+void CArenaManager_SetArenaNewRandomSelectedSpawnGroup(UnkArenaEntries_ovb0108* self, const CStrId& key);
 
 s32 fn_7101084270(lua_State* L) {
     const char* name;
@@ -207,7 +207,7 @@ s32 fn_7101084270(lua_State* L) {
         if (UnkGameManagerSub_0x608* sub = g_unk_7101d47310->field_0x608) {
             UnkArenaEntries_ovb0108* entries = reinterpret_cast<UnkArenaEntries_ovb0108*>(reinterpret_cast<u8*>(sub) + 0x858);
             CStrId id(name, true);
-            fn_7100e14ec0(entries, id);
+            CArenaManager_SetArenaNewRandomSelectedSpawnGroup(entries, id);
         }
     }
     return 0;

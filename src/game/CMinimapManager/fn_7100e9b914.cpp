@@ -8,7 +8,7 @@ struct UnkMinimapIds {
     u32 count;
 };
 
-bool fn_7100e9b914(UnkMinimapIds* self, const u64* id) {
+bool CMinimapManager_ContainsIconKind(UnkMinimapIds* self, const u64* id) {
     u64* it = self->ids;
     for (u64 n = self->count; n != 0; --n, ++it)
         if (*it == *id)

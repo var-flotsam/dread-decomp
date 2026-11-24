@@ -254,8 +254,8 @@ s32 SetScenarioBlackboardSectionID(lua_State* L) {
 }  // namespace lua_bind
 
 struct UnkArenaEntries_ovb0108;
-void fn_7100e1593c(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& value);
-void fn_7100e15a84(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& item_name);
+void CArenaManager_SetArenaDefaultSpawnGroup(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& value);
+void CArenaManager_SetArenaSelectedSpawnGroup(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& item_name);
 
 s32 fn_7101084070(lua_State* L) {
     const char* first;
@@ -266,7 +266,7 @@ s32 fn_7101084070(lua_State* L) {
                 reinterpret_cast<UnkArenaEntries_ovb0108*>(reinterpret_cast<char*>(arena) + 0x858);
             CStrId a(first, true);
             CStrId b(second, true);
-            fn_7100e1593c(entries, a, b);
+            CArenaManager_SetArenaDefaultSpawnGroup(entries, a, b);
         }
     }
     return 0;
@@ -281,7 +281,7 @@ s32 fn_7101084170(lua_State* L) {
                 reinterpret_cast<UnkArenaEntries_ovb0108*>(reinterpret_cast<char*>(arena) + 0x858);
             CStrId a(first, true);
             CStrId b(second, true);
-            fn_7100e15a84(entries, a, b);
+            CArenaManager_SetArenaSelectedSpawnGroup(entries, a, b);
         }
     }
     return 0;

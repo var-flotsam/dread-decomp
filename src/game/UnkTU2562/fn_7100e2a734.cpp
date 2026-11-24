@@ -39,7 +39,7 @@ static inline void LoadPath(const CRntString& path, UnkStrIdPathResource* model)
 static inline void Show(CDrop* billboard, const CStrId& id, void* owner, f32 count, const UnkDropTable& set) {
     billboard->item = id;
     billboard->owner = owner;
-    billboard->callback = fn_7100e2fa00;
+    billboard->callback = CLogicDroppedItemManager_ApplyYellowMiniXDrop;
     billboard->amount = count;
     billboard->table = set;
     g_unk_717269c4d8 = true;

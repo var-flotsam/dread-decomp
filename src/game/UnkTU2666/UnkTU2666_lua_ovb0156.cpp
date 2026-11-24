@@ -212,14 +212,14 @@ s32 SaveProfile(lua_State* L) {
 }
 }  // namespace lua_bind
 
-void fn_7100df9358(void* self, u32 index, s32 level);
+void CGameManager_SetSceneBrightness(void* self, u32 index, s32 level);
 
 namespace lua_bind {
 s32 SetSceneBrightness(lua_State* L) {
     s32 index = 0;
     s32 level = 0;
     if (fn_71010c0270(L, "ii", &index, &level))
-        fn_7100df9358(g_unk_7101d47310, index, level);
+        CGameManager_SetSceneBrightness(g_unk_7101d47310, index, level);
     return 0;
 }
 
@@ -255,14 +255,14 @@ s32 SetSlomoFor(lua_State* L) {
 }
 }  // namespace lua_bind
 
-void fn_7100ca79f0(UnkObserverEntryMap_7100ca79f0* manager, u32 id, bool flag);
+void CBreakableTileManager_ResetTileGroup(UnkObserverEntryMap_7100ca79f0* manager, u32 id, bool flag);
 
 namespace lua_bind {
 s32 ResetTileGroup(lua_State* L) {
     s32 id = 0;
     bool flag = false;
     if (fn_71010c0270(L, "ib", &id, &flag))
-        fn_7100ca79f0(reinterpret_cast<UnkObserverEntryMap_7100ca79f0*>(g_unk_7101d47310->field_0x1af8), id, flag);
+        CBreakableTileManager_ResetTileGroup(reinterpret_cast<UnkObserverEntryMap_7100ca79f0*>(g_unk_7101d47310->field_0x1af8), id, flag);
     return 0;
 }
 }  // namespace lua_bind

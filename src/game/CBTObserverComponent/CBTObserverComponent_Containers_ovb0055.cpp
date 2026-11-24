@@ -333,7 +333,7 @@ struct UnkObserverGroupOwner_ovb0055 {
     UnkObserverGroupMap_ovb0055 map;  // 0x8
 };
 
-UnkObserverGroupItems_ovb0055* fn_7100ca7510(UnkObserverGroupOwner_ovb0055* self, const CStrId* key) {
+UnkObserverGroupItems_ovb0055* CBreakableTileManager_AddTileGroupGroup(UnkObserverGroupOwner_ovb0055* self, const CStrId* key) {
     UnkObserverGroupMap_ovb0055& map = self->map;
     base::UnkAllocator* allocator = GetDefaultAllocator();
     UnkObserverGroupNode_ovb0055** slot = nullptr;
@@ -487,7 +487,7 @@ struct UnkObserverById_ovb0055 {
 };
 
 // Creates an observer under `id`, or under the next free id when it is 0; returns the id.
-u32 fn_7100ca6f00(UnkObserverById_ovb0055* self, u32 id) {
+u32 CBreakableTileManager_CreateTileGroup(UnkObserverById_ovb0055* self, u32 id) {
     u32 next = id + 1;
     if (self->next_id > next)
         next = self->next_id;
@@ -537,7 +537,7 @@ struct UnkObserverPlayer_ovb0055 {
 struct UnkPlayer;
 
 // While the player is in a state other than 2, updates the enabled observers and resets the others.
-void fn_7100ca6e64(UnkObserverById_ovb0055* self, f32 dt) {
+void CBreakableTileManager_UpdateTileGroups(UnkObserverById_ovb0055* self, f32 dt) {
     auto* player = reinterpret_cast<UnkObserverPlayer_ovb0055*>(fn_7100dec788(g_unk_7101d47310));
     if (!player || !player->state || player->state->state == 2)
         return;
@@ -601,7 +601,7 @@ struct UnkObserverReset_ovb0055 {
     UnkBTObserverEntries_ovb0055 entries;  // 0x128
 };
 
-void fn_7100ca6dd0(UnkObserverReset_ovb0055* self) {
+void CBreakableTileManager_ClearTileGroups(UnkObserverReset_ovb0055* self) {
     fn_7100ca7900(&self->groups);
     for (UnkBTObserver_ovb0055** it = self->observers, **end = self->observers + self->observer_count; it != end;
          ++it) {
@@ -741,7 +741,7 @@ static inline void Attach(void** link, void* manager, u32 offset) {
 }
 
 // Loads the ten block models and hooks up the three callbacks.
-void fn_7100ca6ba0(UnkObserverSetUp_ovb0055* self) {
+void CBreakableTileManager_LoadTileModelsAndConnectCallbacks(UnkObserverSetUp_ovb0055* self) {
     self->models = static_cast<UnkModel**>(fn_7100083ba0(0x50, 0x1e));
     for (u64 i = 0; i < 10; ++i) {
         UnkModel* model;

@@ -109,7 +109,7 @@ extern UnkConversion g_unk_71727beb98;
 void fn_7100e04e68() __attribute__((visibility("hidden")));
 void fn_7100e04e74() __attribute__((visibility("hidden")));
 
-void fn_7100e06590() {
+void CTunableGameManager_InitStatics() {
     UnkStatics_le06590& s = g_unk_71727bed98;
     InitHeaderIds(&s.ids);
     s.field_0x140 = -1.0f;
