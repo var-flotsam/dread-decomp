@@ -20,7 +20,7 @@ void fn_7101172cec(UnkWobbleOwner_ovb0032* self, f32 speed, f32 base_x, f32 spre
 extern const UnkVec3fCopy_ovb0032 g_unk_710164a2b0 __attribute__((visibility("hidden")));
 
 struct UnkSpikePlatformStart_b59a4;
-void fn_7100608bb4(UnkSpikePlatformStart_b59a4* self);
+void CKraidSpikeMovablePlatformComponent_StickToWall(UnkSpikePlatformStart_b59a4* self);
 
 struct UnkKraidSpikeOwner_l6089ec {
     u8 pad_0x0[0x44];
@@ -122,7 +122,7 @@ void fn_71006089ec(UnkKraidSpikePlatform_l6089ec* self, UnkVec3f* delta) {
             f32 gap = self->floor - (x - half_height);
             if (gap > 0.0f) {
                 delta->x = gap + delta->x;
-                fn_7100608bb4(reinterpret_cast<UnkSpikePlatformStart_b59a4*>(self));
+                CKraidSpikeMovablePlatformComponent_StickToWall(reinterpret_cast<UnkSpikePlatformStart_b59a4*>(self));
             }
         }
         break;

@@ -96,7 +96,7 @@ struct UnkFXPlayerState_pc {
     f32 field_0xd8;
 };
 
-void fn_7101152f88(UnkFXComponent_b0052* self, f32 value);
+void CFXComponent_AttachFirstOverlayModelForDuration(UnkFXComponent_b0052* self, f32 value);
 // Defined in this unit; it reads the offset and keeps no pointer to it.
 
 static const u64 kPlayerEffect = 0x444c7220d7fc64c4ULL;
@@ -127,7 +127,7 @@ static inline void SwitchOff(UnkFXPlayerComponent_pc* self, u64 hash) {
     }
 }
 
-void fn_7101152cc8(UnkFXPlayerComponent_pc* self, UnkFXPlayerActor_pc* player) {
+void CFXComponent_OnPlayerChange(UnkFXPlayerComponent_pc* self, UnkFXPlayerActor_pc* player) {
     if (!player)
         return;
     UnkFXPlayerComponent_pc* old = player->fx;
@@ -135,7 +135,7 @@ void fn_7101152cc8(UnkFXPlayerComponent_pc* self, UnkFXPlayerActor_pc* player) {
         return;
 
     if (old->glow > 1.1920929e-07f) {
-        fn_7101152f88(reinterpret_cast<UnkFXComponent_b0052*>(self), old->glow);
+        CFXComponent_AttachFirstOverlayModelForDuration(reinterpret_cast<UnkFXComponent_b0052*>(self), old->glow);
         old->glow = 0.0f;
         if (old->overlay_scene) {
             fn_710014580c(Manager()->models[0], old->overlay_scene);

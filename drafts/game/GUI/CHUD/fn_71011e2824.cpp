@@ -10,7 +10,7 @@ struct UnkItemChangeMsg_2824 : UnkItemChange_2950 {
 };
 
 static inline bool Notify_2824(UnkHud_2950* self, const UnkItemChange_2950& change) {
-    return fn_71011e2950(self, &change);
+    return CHUD_UpdateMissileCounterOnItemChange(self, &change);
 }
 
 void fn_71011e2824(UnkHud_2950* self) {

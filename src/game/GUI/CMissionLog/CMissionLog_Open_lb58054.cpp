@@ -142,7 +142,7 @@ void fn_7100b58054(UnkMissionLog_lb58054* self, UnkMissionLogEvent_lb58054* even
         fn_71012004ac(reinterpret_cast<UnkList_ovb0059*>(self->objectives));
         self->objectives->field_0x264 = true;
         fn_71011d0088(self->entries, false);
-        fn_71011ed150(self->entries, g_unk_7172765058);
+        CLabel_SetFont(self->entries, g_unk_7172765058);
         fn_71011ed018(self->entries, 0);
         fn_71011ed084(self->entries, 0);
         UnkSprite_spr* sprite = reinterpret_cast<UnkSprite_spr*>(self->entries);

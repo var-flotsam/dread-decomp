@@ -28,7 +28,7 @@ struct UnkActivatable_l8c3dcc {
     UnkInfo_l8c3dcc* info;
 };
 
-void fn_71008c3dcc(UnkActivatable_l8c3dcc* self) {
+void CDemolitionBlockActivatableActorLifeComponent_PassActivatableObjAnimsToController(UnkActivatable_l8c3dcc* self) {
     alignas(8) u8 sh[8];
     alignas(8) u8 sa[8];
     alignas(8) u8 sb[8];

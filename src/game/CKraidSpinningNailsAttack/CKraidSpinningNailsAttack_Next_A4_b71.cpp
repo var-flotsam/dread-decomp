@@ -45,7 +45,7 @@ struct UnkKraidNailsAttack_A4_b71 {
     UnkKraidNailDef_A4_b71* def;  // 0x60
 };
 
-void fn_71005f67cc(UnkKraidNailsAttack_A4_b71* self) {
+void CKraidSpinningNailsAttack_TakeNextPatternNailsDef(UnkKraidNailsAttack_A4_b71* self) {
     UnkKraidComp_A4_b71* obj = self->owner->ai;
     UnkKraidComp_A4_b71* kraid =
         fn_710009d50c(reinterpret_cast<const CClass* (*)(UnkKraidComp_A4_b71*)>(obj->vtable[0])(obj), fn_71005fac74())

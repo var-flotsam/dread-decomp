@@ -143,10 +143,10 @@ struct UnkRedenkiFullReset_ovb0084 {
     u32 field_0x538;
 };
 
-void fn_710073807c(UnkRedenkiFullReset_ovb0084* self);
+void CFlockingSwarmControllerComponent_ResetAndResizeMemberLists(UnkRedenkiFullReset_ovb0084* self);
 
 void fn_710064f184(UnkRedenkiFullReset_ovb0084* self) {
-    fn_710073807c(self);
+    CFlockingSwarmControllerComponent_ResetAndResizeMemberLists(self);
     self->state = 0;
     fn_710073f7bc(reinterpret_cast<UnkRedenkiSwarmController*>(self), 0);
     self->field_0x534 = -1.0f;
@@ -755,7 +755,7 @@ struct UnkRedenkiPath_ovb0084 {
 struct UnkRedenkiSwarm_ovb0084;
 bool fn_710073cbe4(UnkRedenkiSwarm_ovb0084* self, CVector2D* from, CVector2D* to, UnkRedenkiScratch_ovb0084* scratch,
                    bool flag);
-void fn_7100739bdc(UnkRedenkiSwarm_ovb0084* self, u32 index, UnkRedenkiPath_ovb0084* path);
+void CFlockingSwarmControllerComponent_ComputePathPointValueIfUnset(UnkRedenkiSwarm_ovb0084* self, u32 index, UnkRedenkiPath_ovb0084* path);
 
 bool fn_7100658310(UnkRedenkiSwarm_ovb0084* self, UnkRedenkiPath_ovb0084* path, const CVector3D* target, bool flag) {
     UnkRedenkiScratch_ovb0084 scratch;
@@ -768,7 +768,7 @@ bool fn_7100658310(UnkRedenkiSwarm_ovb0084* self, UnkRedenkiPath_ovb0084* path, 
         UnkRedenkiPath_ovb0084* route = reinterpret_cast<UnkRedenkiPath_ovb0084*>(scratch.path);
         for (u32 i = 1; i < route->Count(); i++) {
             fn_71010592b0(reinterpret_cast<UnkMinimapPath_CMinimapData*>(path), route->Point(i)->Position());
-            fn_7100739bdc(self, path->Count() - 1, path);
+            CFlockingSwarmControllerComponent_ComputePathPointValueIfUnset(self, path->Count() - 1, path);
         }
     }
     return found;

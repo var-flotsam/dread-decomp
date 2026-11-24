@@ -50,7 +50,7 @@ struct CFrozenComponent2 {
 };
 
 // Relinks the component into its owner's target list, clears 0x39c and restarts from 0.
-void fn_71007f954c(CFrozenComponent2* self) {
+void CFrozenComponent_RelinkAndResetLayerWeight(CFrozenComponent2* self) {
     if (UnkFrozenTarget* target = self->owner->target) {
         UnkLinkList** slot = &self->link;
         if (*slot) {
@@ -65,5 +65,5 @@ void fn_71007f954c(CFrozenComponent2* self) {
     v->z = 0.0f;
     v->x = 0.0f;
     v->y = 0.0f;
-    fn_71007f95b8(self, 0.0f);
+    CFrozenComponent_SetBlendLayerNodeWeight(self, 0.0f);
 }

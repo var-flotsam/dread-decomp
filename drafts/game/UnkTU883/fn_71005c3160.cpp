@@ -15,7 +15,7 @@ struct UnkShootActivatorHidrogiga_b47;
 extern u32 g_unk_71727bebb8;
 UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 UnkZiplineRail_A5_b65* fn_71005c32d4(UnkWeakTarget* entity);
-void fn_710091d5c0(UnkZiplineRail_A5_b65* self, bool dead);
+void CHydrogigaZiplineRailComponent_SetHydrogigaDead(UnkZiplineRail_A5_b65* self, bool dead);
 void fn_7100898434(UnkHidrogigaActivator_ovb0036* self, bool enabled);
 void fn_7100898498(UnkShootActivatorHidrogiga_b47* self, bool value);
 
@@ -46,7 +46,7 @@ void fn_71005c3160(UnkHydrogigaAI_b0166* self, bool flag) {
     key = reinterpret_cast<UnkStrIdHashed_b0166*>(s_rail.data)->hash;
     kind = g_unk_71727bebb8;
     UnkWeakTarget* entity = fn_7100debbc8(manager, &key, &kind);
-    fn_710091d5c0(fn_71005c32d4(entity), flag);
+    CHydrogigaZiplineRailComponent_SetHydrogigaDead(fn_71005c32d4(entity), flag);
     fn_7100898434(static_cast<UnkHidrogigaActivator_ovb0036*>(ObjectOf(self->parts[0])), flag);
     fn_7100898434(static_cast<UnkHidrogigaActivator_ovb0036*>(ObjectOf(self->parts[1])), flag);
     if (!flag) {

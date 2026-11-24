@@ -105,7 +105,7 @@ void fn_7100fb927c(UnkDialogState_ovb0215* self) {
             }
             reinterpret_cast<void (*)(UnkMissionLogTarget_ovb0079*, s32)>(
                 (*reinterpret_cast<void***>(target))[0x1e0 / 8])(target, 0);
-            fn_7100b018fc(target, &event);
+            CDialogComposition_PassEventToLabelOrClosePage(target, &event);
             fn_71011cdce8(reinterpret_cast<UnkGuiDisplayObject*>(target), false);
             fn_7100b02384(target);
             fn_7101202488(&event);

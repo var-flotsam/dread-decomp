@@ -36,7 +36,7 @@ struct UnkHudOwnedPtr;
 
 // Appends an owned object to the array (fn_71011e7700 takes it over).
 static inline void Append(base::global::CRntVector<UnkHudOwnedRef_3060>* array, UnkHudOwnedRef_3060&& value) {
-    fn_71011e7700(reinterpret_cast<base::global::CRntVector<UnkHudOwnedPtr>*>(array),
+    CHUD_EmplaceBackOwnedPtr(reinterpret_cast<base::global::CRntVector<UnkHudOwnedPtr>*>(array),
                   reinterpret_cast<UnkHudOwnedPtr*>(&value));
 }
 

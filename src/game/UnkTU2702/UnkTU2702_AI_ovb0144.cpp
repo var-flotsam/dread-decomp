@@ -211,7 +211,7 @@ void fn_710110cacc(UnkAIC_b0144* self) {
         if (!name)
             name = g_unk_710162e2ed;
         fn_710115217c(world, effect, 0, 6, &base::global::CStrId::Empty(), offset, rotation, const_cast<char*>(name));
-        fn_7101152988(reinterpret_cast<UnkRinkaControl_ovb0090*>(world), reinterpret_cast<UnkFxObject_ovb0041*>(effect),
+        CFXComponent_AddNamedEffect(reinterpret_cast<UnkRinkaControl_ovb0090*>(world), reinterpret_cast<UnkFxObject_ovb0041*>(effect),
                       reinterpret_cast<UnkRinkaEntry_ruc**>(&g_unk_7172a062e0), nullptr, 0);
     }
     auto* vt = reinterpret_cast<UnkEffectVt_b0144*>(fx);

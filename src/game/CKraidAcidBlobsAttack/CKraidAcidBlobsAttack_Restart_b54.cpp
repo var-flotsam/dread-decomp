@@ -23,7 +23,7 @@ struct UnkKraidAcidBlobsAttack_b54 {
     u32 field_0x48;
 };
 
-void fn_71005f12b0(UnkKraidAcidBlobsAttack_b54* self) {
+void CKraidAcidBlobsAttack_ResetAndPickDifferentLaunchPattern(UnkKraidAcidBlobsAttack_b54* self) {
     fn_71005f2018(reinterpret_cast<char*>(self));
     self->flag = false;
     self->field_0x40 = 0;

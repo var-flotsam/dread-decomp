@@ -45,7 +45,7 @@ UnkEnumType* fn_710104cc64();
 void fn_710104d0d0(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 UnkEnumType* fn_710104d254();
 void fn_710104d330(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_7101050570() {
+void CDefinition_InitStatics() {
     InitHeaderIds(&g_unk_71729fda70.ids);
     fn_710104c290();
     fn_710009ec00(g_unk_71729fd230, g_unk_71729fda70.field_0x28);

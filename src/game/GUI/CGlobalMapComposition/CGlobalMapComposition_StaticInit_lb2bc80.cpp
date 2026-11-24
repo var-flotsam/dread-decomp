@@ -56,7 +56,7 @@ extern UnkConversion g_unk_7172762ce0;
 void fn_7100b2b1c8() __attribute__((visibility("hidden")));
 void fn_7100b2b1d4() __attribute__((visibility("hidden")));
 
-void fn_7100b2bc80() {
+void CGlobalMapComposition_InitStatics() {
     InitHeaderIds(&g_unk_7172762d04.ids);
     g_unk_7172762d04.field_0x14c = -1.0f;
     g_unk_7172762d04.field_0x150 = -1.0f;

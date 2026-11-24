@@ -53,7 +53,7 @@ static inline void PlaceTrail(UnkAcidBlob_ovb0135* self) {
     fn_7100145f3c(reinterpret_cast<UnkSwitchObject*>(part), &angles);
 }
 
-void fn_71006047d0(UnkAcidBlob_ovb0135* self) {
+void CKraidAcidBlobsMovementComponent_OnBeginPlay(UnkAcidBlob_ovb0135* self) {
     fn_7100ac3880(reinterpret_cast<UnkSelf*>(self));
     fn_7100de9540(g_unk_7101d47310, &g_unk_71726f4060, reinterpret_cast<UnkWeakTarget*>(self));
     UnkAcidBlobTarget_ovb0135* target = self->target;

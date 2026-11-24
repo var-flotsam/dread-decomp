@@ -55,7 +55,7 @@ struct UnkRefl_fn_71005aad7c;
 template <>
 base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_71005aad7c>(void*);
 struct UnkPlanktonFX_b44a2;
-void fn_710080c9bc(UnkPlanktonFX_b44a2* self);
+void CHecathonPlanktonFXComponent_ClearModelParam(UnkPlanktonFX_b44a2* self);
 
 static inline f32 Random_b60() {
     return (f32)((rand() & 0x7fff) * (1.0 / 32767.0));
@@ -94,7 +94,7 @@ void fn_71005ab414(UnkHecathonAI_b60* self, bool) {
 void fn_71005a9eac(UnkHecathonAI_b60* self) {
     fn_71005ab080(self, false);
     if (!self->field_0x147c8)
-        fn_710080c9bc(reinterpret_cast<UnkPlanktonFX_b44a2*>(
+        CHecathonPlanktonFXComponent_ClearModelParam(reinterpret_cast<UnkPlanktonFX_b44a2*>(
             base::reflection::refl_FindTyped<UnkRefl_fn_71005aad7c>(self->field_0x18)));
     if (self->field_0x147d3) {
         auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8);

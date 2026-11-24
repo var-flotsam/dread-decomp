@@ -75,7 +75,7 @@ static inline UnkFXMaterialEffect* EffectNamed(UnkFXMaterialComponent* self, Unk
     return entry ? entry->effect : nullptr;
 }
 
-void fn_7101156808(UnkStruct_710024fa0c* component) {
+void CFXComponent_SwitchMaterialEffectsOnMaterialChange(UnkStruct_710024fa0c* component) {
     UnkFXMaterialComponent* self = reinterpret_cast<UnkFXMaterialComponent*>(component);
     void* source = fn_710094c9ac(self->owner);
     u32 entered = fn_7100798e88();

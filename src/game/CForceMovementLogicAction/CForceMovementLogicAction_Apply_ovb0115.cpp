@@ -42,7 +42,7 @@ struct UnkInputComponent;
 struct UnkForcedMovementTarget_A5_b68;
 struct UnkEntityState;
 
-void fn_7100a4fd80(UnkForcedMovementAction_ovb0115* self) {
+void CForceMovementLogicAction_ApplyToPlayer(UnkForcedMovementAction_ovb0115* self) {
     UnkForcedMovementPlayer_ovb0115* player =
         reinterpret_cast<UnkForcedMovementPlayer_ovb0115*>(fn_7100dec788(g_unk_7101d47310));
     UnkForcedMovementTarget_A5_b68* movement = player->field_0x200;

@@ -71,7 +71,7 @@ u32 fn_71008a3c48(UnkBasicLife_ovb0265* self, UnkLifeHit_ovb0265* hit) {
         return 0;
     if (fn_710024fbc8(self)) {
         UnkLifeConfig_ovb0265* config = self->config;
-        f32 factor = fn_71008c2de8(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(config->factors), hit->flags);
+        f32 factor = CDamageSourceFactor_GetFactorForDamageFlags(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(config->factors), hit->flags);
         fn_71008c1538(reinterpret_cast<UnkRequest*>(hit), factor * hit->amount);
         config = self->config;
         if (self->field_0x278 < config->field_0x120)

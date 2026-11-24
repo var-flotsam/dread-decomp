@@ -20,10 +20,10 @@ struct UnkGuiFontNames_b52 {
 // A glyph's metrics in font `font` (signature as src/game/GUI/CLabel.cpp declares it): this version
 // only builds (and drops) a string id from the font's name when the root has the font, and always
 // fails.
-bool fn_71011b89dc(UnkGuiRoot* root, u8 font, const base::global::CStrId* font_id, u32 code, UnkGlyphMetrics* out) {
+bool CGUIManager_TryGetGlyphMetrics(UnkGuiRoot* root, u8 font, const base::global::CStrId* font_id, u32 code, UnkGlyphMetrics* out) {
     auto* self = reinterpret_cast<UnkGuiFontNames_b52*>(root);
     // The font lookup (CLabel.cpp declares it with the id; CGUIManager.cpp defines it without).
-    auto lookup = reinterpret_cast<void* (*)(UnkGuiRoot*, const base::global::CStrId*)>(fn_71011b882c);
+    auto lookup = reinterpret_cast<void* (*)(UnkGuiRoot*, const base::global::CStrId*)>(CGUIManager_GetOrLoadCachedByPath);
     if (lookup(root, font_id) && font < self->count) {
         const base::global::CRntString* name = *fn_710109c444(self->names, font);
         alignas(8) u8 storage[sizeof(base::global::CStrId)];

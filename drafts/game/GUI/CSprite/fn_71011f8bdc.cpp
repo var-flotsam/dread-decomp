@@ -29,7 +29,7 @@ struct UnkGuiSprite_l1f8bdc : UnkGuiDisplayObject {
 static_assert(__builtin_offsetof(UnkGuiSprite_l1f8bdc, sheet) == 0x1c8, "UnkGuiSprite_l1f8bdc layout");
 
 struct UnkGuiListOwner_b49;
-void* fn_71011b9fac(UnkGuiListOwner_b49* self, u64 key);
+void* CGUIManager_FindInEntryListByKey(UnkGuiListOwner_b49* self, u64 key);
 void fn_71011b97bc(UnkGuiRoot* root, CRntString sheet);
 void* fn_71011ba000(UnkGuiRoot* root, const CStrId* sheet, const CStrId* image);
 void fn_71011f8f80(UnkGuiSprite_l1f8bdc* self, void* image, CStrId id);
@@ -91,7 +91,7 @@ void fn_71011f8bdc(UnkGuiDisplayObject* self, CStrId id) {
     if (slash != -1 && CRntString("WhiteSquare").key != TextOf(image).key)
         found = fn_71011ba000(g_unk_717271e8f8, &sheet.Id(), &image.Id());
     else
-        found = fn_71011b9fac(reinterpret_cast<UnkGuiListOwner_b49*>(g_unk_717271e8f8),
+        found = CGUIManager_FindInEntryListByKey(reinterpret_cast<UnkGuiListOwner_b49*>(g_unk_717271e8f8),
                               reinterpret_cast<u64>(&image.Id()));
     fn_71011f8f80(sprite, found, sheet.Id());
     sprite->vf_0x60();

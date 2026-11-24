@@ -14,7 +14,7 @@ struct UnkStatics_7100609090 {
 extern UnkStatics_7100609090 g_unk_71726f4610 __attribute__((visibility("hidden")));
 extern char g_unk_71726f4608[];
 
-void fn_7100609090() {
+void CKraidSpikeMovablePlatformComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726f4610.ids);
     InitId(&g_unk_71726f4610.field_0x18, "fDamageKraidSpikes");
     InitClassId(&g_unk_71726f4610.field_0x20, "CKraidSpikeMovablePlatformComponent");

@@ -238,7 +238,7 @@ __attribute__((always_inline)) static inline void RecordFlag(bool* field) {
         fn_71011cdc30(AsDisplayObject(GetHolder(manager->*Ref)), false);
 }
 
-void fn_7100b2de48(UnkStateOwner* self) {
+void CIngameMenu_EnterSamusMenuState(UnkStateOwner* self) {
     f32 value = 1.0f;
     fn_7100219294(g_unk_7101d47300, 0xede73d1953baf654, &value, 2);
     self->field_0x2e4 = 1;
@@ -258,7 +258,7 @@ void fn_7100b2de48(UnkStateOwner* self) {
 // Start of the other state: the object at 0x2c8 (while the global flag at 0xb8 is set) or the
 // one at 0x290 becomes current, and once the manager's object is set up it is also handed to
 // the global at 0x717275c380.
-void fn_7100b2d278(UnkStateOwner* self) {
+void CIngameMenu_EnterConfigMenuState(UnkStateOwner* self) {
     if (g_unk_71726bc570->field_0xb8) {
         if (!self->field_0x2c8)
             fn_7100b2c784(self);
@@ -299,7 +299,7 @@ __attribute__((always_inline)) static inline void UndoFlags(UnkStateOwner* self)
     }
 }
 
-void fn_7100b2d3e8(UnkStateOwner* self) {
+void CIngameMenu_ExitConfigMenuState(UnkStateOwner* self) {
     if ((u32)(self->field_0x2e8 - 3) >= 4) {
         self->field_0x288 = !g_unk_71726bc570->field_0xb8 ? self->field_0x290 : self->field_0x2c8;
         if (!self->field_0x2dc)
@@ -471,7 +471,7 @@ void fn_7100e9b4b0(void* target);
 // (fn_7100b2d0a4); the settings are set back, and with 0x279 set the manager's object at 0x2228
 // is told, the manager's object at 0x498 is reset once in place, the owner is handed on and the
 // recorded flags are undone.
-void fn_7100b2dfc4(UnkStateOwner* self) {
+void CIngameMenu_ExitSamusMenuState(UnkStateOwner* self) {
     UnkObject_b2de48* menu = reinterpret_cast<UnkObject_b2de48*>(self->field_0x2c0);
     UnkSamusMenu* samus =
         fn_710009d50c(menu->Type(), fn_7100b65dc0()) ? static_cast<UnkSamusMenu*>(menu) : nullptr;
@@ -498,15 +498,15 @@ void fn_7100b2dfc4(UnkStateOwner* self) {
 }
 
 struct UnkResourceManager;
-void fn_7100b2c58c(UnkStateOwner* self);
+void CIngameMenu_SetUpIconsHudComposition(UnkStateOwner* self);
 
 // Start of the playthrough state: one setting is changed, the menu at 0x2d0 (created when
 // missing) becomes current in mode -1, sound 0xfd is played, and the official playthrough's
 // data is requested (and the handle dropped).
-void fn_7100b2cebc(UnkStateOwner* self) {
+void CIngameMenu_EnterIconsHudState(UnkStateOwner* self) {
     fn_7100219da4(g_unk_7101d47300, false, true, 2);
     if (!self->field_0x2d0)
-        fn_7100b2c58c(self);
+        CIngameMenu_SetUpIconsHudComposition(self);
     self->current = self->field_0x2d0;
     self->field_0x2e4 = -1;
     PlaySound<fn_710006d4d0>(0xfd);
@@ -539,12 +539,12 @@ __attribute__((always_inline)) static inline void StartSubmenu(UnkStateOwner* se
     ResetParams();
 }
 
-void fn_7100b2d62c(UnkStateOwner* self) { StartSubmenu<&UnkStateOwner::field_0x2a0, fn_7100b2c964>(self); }
-void fn_7100b2d754(UnkStateOwner* self) { StartSubmenu<&UnkStateOwner::field_0x2a8, fn_7100b2ca48>(self); }
+void CIngameMenu_EnterSystemMenuState(UnkStateOwner* self) { StartSubmenu<&UnkStateOwner::field_0x2a0, fn_7100b2c964>(self); }
+void CIngameMenu_EnterAmiiboMenuState(UnkStateOwner* self) { StartSubmenu<&UnkStateOwner::field_0x2a8, fn_7100b2ca48>(self); }
 
 // End of the system menu state: unless in state 6 the menu is kept at 0x288, the current
 // object handed on (unless 0x2dc is set) and hidden; two settings are set back.
-void fn_7100b2d6d0(UnkStateOwner* self) {
+void CIngameMenu_ExitSystemMenuState(UnkStateOwner* self) {
     if (self->field_0x2e8 != 6) {
         self->field_0x288 = self->field_0x2a0;
         if (!self->field_0x2dc)
@@ -556,20 +556,20 @@ void fn_7100b2d6d0(UnkStateOwner* self) {
 }
 
 // The mission log, its menu created first when there is none.
-UnkMissionLog_b2de48* fn_7100b2e338(UnkStateOwner* self) {
+UnkMissionLog_b2de48* CIngameMenu_GetOrCreateMissionMenu(UnkStateOwner* self) {
     UnkObjRef* ref = self->field_0x490;
     if (!ref || !ref->obj)
-        fn_7100b2cd24(reinterpret_cast<UnkHandleMenu<0x490>*>(self));
+        CIngameMenu_SetUpMissionMenuComposition(reinterpret_cast<UnkHandleMenu<0x490>*>(self));
     return GetMissionLog(self->field_0x490);
 }
 
 // Start of the mission log state from the game: the parameter is set to -1 (mode 1), the
 // mission log becomes current, sound 0xfd is played and the settings are reset.
-void fn_7100b2e208(UnkStateOwner* self) {
+void CIngameMenu_EnterMissionMenuState(UnkStateOwner* self) {
     f32 value = -1.0f;
     fn_7100219294(g_unk_7101d47300, 0xede73d1953baf654, &value, 2);
     self->field_0x2e4 = 1;
-    self->current = reinterpret_cast<UnkComposition*>(fn_7100b2e338(self));
+    self->current = reinterpret_cast<UnkComposition*>(CIngameMenu_GetOrCreateMissionMenu(self));
     PlaySound(0xfd);
     ResetParams();
 }
@@ -917,7 +917,7 @@ __attribute__((always_inline)) static inline void SwitchPage(UnkStateOwner* self
     }
 }
 
-void fn_7100b2ed84(UnkStateOwner* self, const UnkInputEvent* event) { SwitchPage<9, 8>(self, event); }
+void CIngameMenu_StepPageTowardSamusMenu(UnkStateOwner* self, const UnkInputEvent* event) { SwitchPage<9, 8>(self, event); }
 void fn_7100b2ee88(UnkStateOwner* self, const UnkInputEvent* event) { SwitchPage<8, 9>(self, event); }
 
 // A string id and a file-path id copied from globals for an assignment (fn_71000267f8), the
@@ -943,7 +943,7 @@ __attribute__((always_inline)) static inline void AssignIds(UnkIdPair* pair, con
     fn_71000267f8(reinterpret_cast<UnkStrIdPathResource*>(pair), reinterpret_cast<const UnkStrIdPathPair&>(value));
 }
 void fn_71011d931c(UnkMenuStates* self);
-void fn_7100b2f6b0(UnkMenuStates* self);
+void CIngameMenu_BuildStateTable(UnkMenuStates* self);
 extern CFilePathStrId g_unk_7172762ff0 __attribute__((visibility("hidden")));
 extern CFilePathStrId g_unk_7172762ff8 __attribute__((visibility("hidden")));
 extern CFilePathStrId g_unk_7172762fe8 __attribute__((visibility("hidden")));
@@ -953,13 +953,13 @@ extern CFilePathStrId g_unk_7172763000 __attribute__((visibility("hidden")));
 // runs, the delay and states are reset (state 1 next), the object is activated once (0x188,
 // vf_0xa0), the two callbacks are moved to the manager's sets at 0x24f8 and 0x2128, and the
 // power description and mission menu are set up.
-void fn_7100b2f250(UnkMenuStates* self) {
+void CIngameMenu_InitStateTableAndPowerDescMissionMenus(UnkMenuStates* self) {
     fn_71011d931c(self);
     AssignIds(&self->field_0x2f0, UnkIdPairValue_b2de48(g_unk_71727b9d30, g_unk_7172762ff0));
     AssignIds(&self->field_0x308, UnkIdPairValue_b2de48(g_unk_71727b9d30, g_unk_7172762ff8));
     AssignIds(&self->field_0x368, UnkIdPairValue_b2de48(g_unk_71727b9d30, g_unk_7172762fe8));
     AssignIds(&self->field_0x320, UnkIdPairValue_b2de48(g_unk_71727b9d30, g_unk_7172763000));
-    fn_7100b2f6b0(self);
+    CIngameMenu_BuildStateTable(self);
     self->field_0x2e0 = -1;
     self->field_0x2e4 = -1;
     self->field_0x2e8 = 1;
@@ -970,6 +970,6 @@ void fn_7100b2f250(UnkMenuStates* self) {
     }
     self->field_0x3a8.Watch<0x24f8>(g_unk_7101d47310);
     self->field_0x3c0.Watch<0x2128>(g_unk_7101d47310);
-    fn_7100b2c2bc(reinterpret_cast<UnkHandleMenu<0x488>*>(self));
-    fn_7100b2cd24(reinterpret_cast<UnkHandleMenu<0x490>*>(self));
+    CIngameMenu_CreatePowerDescComposition(reinterpret_cast<UnkHandleMenu<0x488>*>(self));
+    CIngameMenu_SetUpMissionMenuComposition(reinterpret_cast<UnkHandleMenu<0x490>*>(self));
 }

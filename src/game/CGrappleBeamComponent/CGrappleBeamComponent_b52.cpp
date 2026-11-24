@@ -11,7 +11,7 @@ struct UnkGrappleBeamComponent {
 typedef void (*UnkGrappleNotify)(UnkWeakTarget* target, UnkGrappleBeamComponent* beam);
 
 // Remembers the point (through its weak handle) and, while it is alive, tells it (vtable slot 0x198).
-void fn_7100818bc0(UnkGrappleBeamComponent* self, UnkWeakTarget* point) {
+void CGrappleBeamComponent_StoreTargetHandleAndNotifyTarget(UnkGrappleBeamComponent* self, UnkWeakTarget* point) {
     UnkWeakHandle* handle = GetWeakHandle(point);
     AssignRef(&self->point, handle);
     if (handle && handle->target) {

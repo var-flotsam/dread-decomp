@@ -43,7 +43,7 @@ struct UnkDoorLife_b48 {
     bool controlled_by_usable;
 };
 
-void fn_71008d8890(UnkDoorLife_b48* self, bool controlled) {
+void CDoorLifeComponent_SetControlledByUsable(UnkDoorLife_b48* self, bool controlled) {
     bool value = controlled;
     self->controlled_by_usable = controlled;
     UnkGameManager* manager = g_unk_7101d47310;

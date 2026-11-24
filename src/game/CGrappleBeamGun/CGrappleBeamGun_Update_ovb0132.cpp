@@ -25,7 +25,7 @@ struct UnkGrappleTunableView_ovb0132 {
 };
 
 struct UnkGun_ovb0091;
-void fn_7100839f68(UnkGun_ovb0091* self, const CStrId& id);
+void CGunComponent_CancelPendingIdOrPopQueuedId(UnkGun_ovb0091* self, const CStrId& id);
 
 struct UnkGrappleState_ovb0132 {
     u8 pad_0x0[0x10];
@@ -98,5 +98,5 @@ void fn_7100833a58(UnkGrappleBeamGun_ovb0132* self) {
         if (fn_71008408b0(gun, self))
             return;
     }
-    fn_7100839f68(reinterpret_cast<UnkGun_ovb0091*>(self->owner->gun), GrappleIdTable().field_0x1240);
+    CGunComponent_CancelPendingIdOrPopQueuedId(reinterpret_cast<UnkGun_ovb0091*>(self->owner->gun), GrappleIdTable().field_0x1240);
 }

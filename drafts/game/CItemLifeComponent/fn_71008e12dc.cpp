@@ -307,7 +307,7 @@ bool fn_71008e12dc(UnkItemLife_l8e12dc* self, UnkHitInfo_l8e12dc* hit) {
         counted = HuskAllows(husks, suffix);
         husks.Free();
     } else {
-        f32 factor = fn_71008c2de8(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(self->damage->factors), hit->flags);
+        f32 factor = CDamageSourceFactor_GetFactorForDamageFlags(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(self->damage->factors), hit->flags);
         fn_71008c1538(reinterpret_cast<UnkRequest*>(hit), factor * hit->factor);
         if (hit->flags & 0x20)
             fn_71008c1538(reinterpret_cast<UnkRequest*>(hit), self->field_0x54);

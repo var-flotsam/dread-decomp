@@ -32,5 +32,5 @@ extern CType g_unk_71727358b0 __attribute__((visibility("hidden")));   // its ty
         return fn_710009d50c(type, &TYPE) ? obj : nullptr;                                    \
     }
 
-FIND_COMPONENT(fn_71008a3288, g_unk_717272dec0, g_unk_717272dec8, fn_71008a2d70)
+FIND_COMPONENT(CLandmarkComponent_FindById, g_unk_717272dec0, g_unk_717272dec8, fn_71008a2d70)
 FIND_COMPONENT(fn_71009108f8, g_unk_71727358a8, g_unk_71727358b0, fn_7100910320)

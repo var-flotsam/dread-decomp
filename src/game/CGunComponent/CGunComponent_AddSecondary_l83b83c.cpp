@@ -214,7 +214,7 @@ inline const UnkGunType_l83b83c* FindType_l83b83c(const char* name) {
     return reinterpret_cast<const UnkGunType_l83b83c*>(fn_71000a5118(registry, &id));
 }
 
-UnkSecondaryGun_l83b83c* fn_710083b83c(char* self_, const char* a, const char* b, const char* c, f32 value,
+UnkSecondaryGun_l83b83c* CGunComponent_CreateGunByTypeNameAndAddToSlot(char* self_, const char* a, const char* b, const char* c, f32 value,
                                     const char* d, const char* e, const char* f, const char* g,
                                     const char* h, s32 i, s32 j) {
     UnkGunComponent_l83b83c* self = reinterpret_cast<UnkGunComponent_l83b83c*>(self_);

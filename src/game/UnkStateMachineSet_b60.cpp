@@ -120,7 +120,7 @@ struct UnkMorphBallLauncher_b57;
 struct UnkLinkList;
 struct UnkSmBase_b60;
 void fn_71007dbeac(UnkSmBase_b60*);
-void fn_7100818bc0(UnkSmBase_b60*, void* point);  // src/game/CGrappleBeamComponent/CGrappleBeamComponent_b52.cpp
+void CGrappleBeamComponent_StoreTargetHandleAndNotifyTarget(UnkSmBase_b60*, void* point);  // src/game/CGrappleBeamComponent/CGrappleBeamComponent_b52.cpp
 
 #define UNK_SM_SET_AFTER_B60(addr, base, basetype, offset, id, last, none) \
     void fn_##addr(UnkSmOwner_b60<offset>* self) {                           \
@@ -135,7 +135,7 @@ UNK_SM_SET_AFTER_B60(71007f931c, fn_710024facc, UnkSmBase_b60, 0x228, 1, 4, 5)
 // The same, with the grapple point (x1) its callers pass, which reaches fn_7100818bc0 untouched in the
 // original (tools/forwarded_args.py).
 void fn_710081c584(UnkSmOwner_b60<0x480>* self, void* point) {
-    fn_7100818bc0(reinterpret_cast<UnkSmBase_b60*>(self), point);
+    CGrappleBeamComponent_StoreTargetHandleAndNotifyTarget(reinterpret_cast<UnkSmBase_b60*>(self), point);
     RequestState_b60<4, 5>(&self->machine, 3);
 }
 

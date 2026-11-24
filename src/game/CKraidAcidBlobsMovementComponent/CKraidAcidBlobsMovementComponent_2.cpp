@@ -48,7 +48,7 @@ struct UnkKraidAcidBlobsArg {
 
 extern CStrId g_unk_71726f4068 __attribute__((visibility("hidden")));
 
-bool fn_710060467c(UnkKraidAcidBlobsMovement* self, UnkKraidAcidBlobsArg* arg) {
+bool CKraidAcidBlobsMovementComponent_InitCharClassAndDamageId(UnkKraidAcidBlobsMovement* self, UnkKraidAcidBlobsArg* arg) {
     bool result = fn_7100ac3108(reinterpret_cast<UnkKraidBouncingCreaturesMovement2*>(self),
                                 reinterpret_cast<UnkKraidCreatureArg*>(arg));
     UnkReflObject* obj = self->field_0x10;

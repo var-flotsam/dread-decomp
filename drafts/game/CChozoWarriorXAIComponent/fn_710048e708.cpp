@@ -41,7 +41,7 @@ struct UnkStateOwner;
 struct UnkMlogMessage_b42a1;
 struct UnkSelf;
 
-UnkMissionLog* fn_7100b2e338(UnkStateOwner* self);
+UnkMissionLog* CIngameMenu_GetOrCreateMissionMenu(UnkStateOwner* self);
 bool fn_7100b59b18(UnkMissionLog* log, const CStrId& entry);
 void fn_7100fdbd84(void* manager, u32 a);
 void fn_710048ecbc(UnkSelf* self);
@@ -63,7 +63,7 @@ inline bool NameIs_l48e708(const CStrId& id, const CRntString& str) {
 
 void fn_710048e708(void* self, void* arg) {
     if (!g_unk_71726bc570->field_0xb8) {
-        UnkMissionLog* log = fn_7100b2e338(reinterpret_cast<UnkStateOwner*>(fn_7100deac84(g_unk_7101d47310)));
+        UnkMissionLog* log = CIngameMenu_GetOrCreateMissionMenu(reinterpret_cast<UnkStateOwner*>(fn_7100deac84(g_unk_7101d47310)));
         if (log && !fn_7100b59b18(log, CStrId("#MLOG_DEFEAT_BOSS_CWXE_SHIP", true))) {
             if (auto* scenario = reinterpret_cast<UnkScenario_l48e708*>(g_unk_7101d47310->field_0x608)) {
                 CStrId text(base::global::UnkStrIdInline(), nullptr, false);
