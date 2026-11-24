@@ -86,7 +86,7 @@ struct UnkBehaviorTreeAI_l3697f0 {
 };
 
 // The header's UnkStruct_710036974c is defined in fn_710036974c.cpp without these members yet.
-void fn_71003697f0(UnkStruct_710036974c* component) {
+void CBehaviorTreeAIComponent_SendCrazyEnd(UnkStruct_710036974c* component) {
     UnkBehaviorTreeAI_l3697f0* self = reinterpret_cast<UnkBehaviorTreeAI_l3697f0*>(component);
     if (self->sent)
         return;

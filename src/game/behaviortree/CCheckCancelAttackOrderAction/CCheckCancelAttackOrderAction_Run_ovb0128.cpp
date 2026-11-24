@@ -96,7 +96,7 @@ struct UnkCheckCancelAttackOrder_ovb0128 {
     bool flag;  // 0x2c
 };
 
-void* fn_7100362324(UnkCancelAttack_ovb0128* attack, u32 mode);
+void* CAttack_GetPreset(UnkCancelAttack_ovb0128* attack, u32 mode);
 
 // The instance, reached through the GOT.
 
@@ -108,7 +108,7 @@ u32 fn_7100377664(UnkCheckCancelAttackOrder_ovb0128* self) {
     if (!ai)
         return 2;
     UnkCancelAttack_ovb0128* attack = ai->attack;
-    if (!attack || !fn_7100362324(attack, ai->mode))
+    if (!attack || !CAttack_GetPreset(attack, ai->mode))
         return 2;
     UnkCancelQuery_ovb0128 query(reinterpret_cast<UnkActor*>(self->owner), ai->params);
     query.field_0x1a = true;

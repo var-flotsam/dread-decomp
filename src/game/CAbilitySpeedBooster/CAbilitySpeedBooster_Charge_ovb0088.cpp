@@ -132,7 +132,7 @@ static inline __attribute__((always_inline)) void DestroySpeedBooster(UnkSpeedBo
 
 // The deleting destructor, with CAbility's destructor (fn_71002fa2bc) inlined: its vtable, its six value
 // holders (last first) and the member at +0x10, then fn_7101043934.
-void fn_710033f194(UnkSpeedBooster_ovb0088* self) {
+void CAbilitySpeedBooster_DestroyAndDelete(UnkSpeedBooster_ovb0088* self) {
     DestroySpeedBooster(self);
     self->vtable = reinterpret_cast<char*>(&g_unk_7101a223f8[2]);
     for (int i = 5; i >= 0; --i)
@@ -146,7 +146,7 @@ void fn_710033f194(UnkSpeedBooster_ovb0088* self) {
 }
 
 // The complete destructor: the members, then CAbility's destructor.
-void fn_710033f0c8(UnkSpeedBooster_ovb0088* self) {
+void CAbilitySpeedBooster_Destroy(UnkSpeedBooster_ovb0088* self) {
     DestroySpeedBooster(self);
     fn_71002fa2bc(reinterpret_cast<UnkOpticAbility_ovb0059*>(self));
 }
@@ -179,7 +179,7 @@ static_assert(__builtin_offsetof(UnkSpeedBoosterAbility_ovb0088, charge) == 0x39
 void fn_710033c350(UnkSpeedBoosterAbility_ovb0088* self);
 struct UnkSmAbility2_A2_b63;
 
-void fn_710033bc80(UnkSpeedBoosterAbility_ovb0088* self, f32 dt) {
+void CAbilitySpeedBooster_UpdateActivationTime(UnkSpeedBoosterAbility_ovb0088* self, f32 dt) {
     if (fn_710033c174(reinterpret_cast<UnkSmAbility2_A2_b63*>(self))) {
         UnkTrackQuery query = {fn_7100cea268(), nullptr, -1.0f};
         bool allow;
@@ -348,7 +348,7 @@ struct UnkSpeedBoosterGlow_ovb0088 {
 };
 static_assert(__builtin_offsetof(UnkSpeedBoosterGlow_ovb0088, charge) == 0x398, "layout");
 
-void fn_710033bf64(UnkSpeedBoosterGlow_ovb0088* self, f32 dt) {
+void CAbilitySpeedBooster_UpdateModelTint(UnkSpeedBoosterGlow_ovb0088* self, f32 dt) {
     const auto* tunable = reinterpret_cast<const UnkSpeedBoosterGlowTunable_ovb0088*>(&g_unk_71726b0fc0);
     if (!self->IsBoosting() && (!self->active || !(self->charge >= tunable->glow_charge)))
         return;

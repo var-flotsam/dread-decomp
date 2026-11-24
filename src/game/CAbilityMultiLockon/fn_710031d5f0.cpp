@@ -33,7 +33,7 @@ extern char g_unk_71726af8a8[];
 extern char g_unk_71726af8a9[];
 extern void* g_unk_7101a22f60[];
 
-void fn_710031d5f0() {
+void CAbilityMultiLockon_InitStatics() {
     InitHeaderIds(&g_unk_71726af948.ids);
     InitEnum(&base::reflection::TypeObject<CAbilityMultiLockon::SSubState, UnkEnumType>::object, "CAbilityMultiLockon::SSubState", fn_71003164b4, fn_71003162a8,
              g_unk_71726af860, &g_unk_71726af868, fn_710031d8ac, &g_unk_71726af888, fn_710031d8b8);
