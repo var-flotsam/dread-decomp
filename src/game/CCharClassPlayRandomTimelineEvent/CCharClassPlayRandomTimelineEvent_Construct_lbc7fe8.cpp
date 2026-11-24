@@ -12,7 +12,7 @@ using base::global::CStrId;
 extern char g_unk_7101aa16a8[];
 
 static_assert(__builtin_offsetof(UnkPlayRandomTimelineEvent, params) == 0xc, "layout");
-static_assert(__builtin_offsetof(UnkPlayRandomTimelineEvent, field_0x20) == 0x20, "layout");
+static_assert(__builtin_offsetof(UnkPlayRandomTimelineEvent, sName0) == 0x20, "layout");
 
 // An empty id, creating the pool first when there is none.
 static inline void MakeEmpty(CStrId* id) {
@@ -25,12 +25,12 @@ static inline void MakeEmpty(CStrId* id) {
 void fn_7100bc7fe8(UnkPlayRandomTimelineEvent* self) {
     fn_7100067ea4(self);
     self->vtable = reinterpret_cast<void**>(g_unk_7101aa16a8 + 0x10);
-    MakeEmpty(&self->field_0x20);
-    MakeEmpty(&self->field_0x28);
-    MakeEmpty(&self->field_0x30);
-    MakeEmpty(&self->field_0x38);
-    MakeEmpty(&self->field_0x40);
-    MakeEmpty(&self->field_0x48);
-    MakeEmpty(&self->field_0x50);
-    MakeEmpty(&self->field_0x58);
+    MakeEmpty(&self->sName0);
+    MakeEmpty(&self->sName1);
+    MakeEmpty(&self->sName2);
+    MakeEmpty(&self->sName3);
+    MakeEmpty(&self->sName4);
+    MakeEmpty(&self->sName5);
+    MakeEmpty(&self->sName6);
+    MakeEmpty(&self->sName7);
 }

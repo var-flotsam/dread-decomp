@@ -46,39 +46,39 @@ UnkDropProbabilities_dp* fn_71007c81d0(UnkDropProbabilities_dp* self, const UnkD
 }
 
 struct UnkDropDefaults_dp {
-    u32 field_0x0;
-    u32 field_0x4;
-    s32 field_0x8;
-    s32 field_0xc;
+    u32 iMinNumOfDroppedItems;
+    u32 iMaxNumOfDroppedItems;
+    s32 iMaxItemTypeMin;
+    s32 iMaxItemTypeMax;
     u32 field_0x10[4];
     u32 field_0x20;
     u32 field_0x24;
     u32 field_0x28;
-    u32 field_0x2c;
+    u32 iXCellsToDrop;
     u32 field_0x30[8];
-    f32 field_0x50;
-    f32 field_0x54;
-    f32 field_0x58;
-    base::global::CStrId field_0x60;
+    f32 fMinDistance;
+    f32 fMaxDistance;
+    f32 fMaxZDisp;
+    base::global::CStrId sNodeToDrop;
     u32 field_0x68[6];
     UnkDropTail_dp tail;
 };
 
 static inline __attribute__((always_inline)) void Init_dp(UnkDropDefaults_dp* self) {
-    self->field_0x0 = 1;
-    self->field_0x4 = 1;
-    self->field_0x8 = -1;
-    self->field_0xc = -1;
+    self->iMinNumOfDroppedItems = 1;
+    self->iMaxNumOfDroppedItems = 1;
+    self->iMaxItemTypeMin = -1;
+    self->iMaxItemTypeMax = -1;
     __builtin_memset(self->field_0x10, 0, sizeof(self->field_0x10));
     self->field_0x20 = 0;
     self->field_0x24 = 0;
     self->field_0x28 = 0;
-    self->field_0x2c = 1;
+    self->iXCellsToDrop = 1;
     __builtin_memset(self->field_0x30, 0, sizeof(self->field_0x30));
-    self->field_0x50 = -5.0f;
-    self->field_0x54 = 20.0f;
-    self->field_0x58 = 10.0f;
-    new (&self->field_0x60) base::global::CStrId("", true);
+    self->fMinDistance = -5.0f;
+    self->fMaxDistance = 20.0f;
+    self->fMaxZDisp = 10.0f;
+    new (&self->sNodeToDrop) base::global::CStrId("", true);
     __builtin_memset(self->field_0x68, 0, sizeof(self->field_0x68));
     self->tail.field_0x80 = 0;
     self->tail.field_0x88 = 0;

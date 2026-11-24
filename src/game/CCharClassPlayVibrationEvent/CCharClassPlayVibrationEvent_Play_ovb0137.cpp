@@ -77,16 +77,16 @@ struct UnkPlayVibrationEvent_ovb0137 {
     u8 pad_0x0[0x10];
     UnkVibrationPathId_ovb0137 path;  // 0x10
     CStrId name;                      // 0x18
-    u32 field_0x20;
+    u32 eType;
     f32 field_0x24[4];
-    f32 field_0x34;
-    f32 field_0x38;
-    f32 field_0x3c;
-    f32 field_0x40;
-    bool field_0x44;
-    bool field_0x45;
-    bool field_0x46;
-    bool field_0x47;
+    f32 fPan;
+    f32 fFadeInTime;
+    f32 fFadeOutTime;
+    f32 fSpeed;
+    bool b3D;
+    bool bLoop;
+    bool bStopOnEntityDead;
+    bool bStopOnChangeAnim;
 };
 
 struct UnkVibrationContext_ovb0137 {
@@ -100,18 +100,18 @@ void fn_7100ccc95c(UnkPlayVibrationEvent_ovb0137* self, UnkVibrationContext_ovb0
     UnkVibrationDesc_ovb0137 desc;
     desc.path = self->path;
     desc.field_0x8 = 0;
-    desc.field_0x10 = self->field_0x20;
+    desc.field_0x10 = self->eType;
     desc.field_0x14 = reinterpret_cast<const UnkVec3f&>(g_unk_710164779c);
     desc.field_0x20[0] = self->field_0x24[0];
     desc.field_0x20[1] = self->field_0x24[1];
     desc.field_0x20[2] = self->field_0x24[2];
     desc.field_0x20[3] = self->field_0x24[3];
-    desc.field_0x30 = self->field_0x34;
-    desc.field_0x34 = self->field_0x38;
-    desc.field_0x38 = self->field_0x3c;
-    desc.field_0x3c = self->field_0x40;
-    desc.field_0x40 = self->field_0x44;
-    desc.field_0x41 = self->field_0x45;
-    fn_7100d7c614(ctx->owner, reinterpret_cast<const UnkHyperBeamEffectDesc*>(&desc), &self->name, self->field_0x47,
-                  self->field_0x46, 1);
+    desc.field_0x30 = self->fPan;
+    desc.field_0x34 = self->fFadeInTime;
+    desc.field_0x38 = self->fFadeOutTime;
+    desc.field_0x3c = self->fSpeed;
+    desc.field_0x40 = self->b3D;
+    desc.field_0x41 = self->bLoop;
+    fn_7100d7c614(ctx->owner, reinterpret_cast<const UnkHyperBeamEffectDesc*>(&desc), &self->name, self->bStopOnChangeAnim,
+                  self->bStopOnEntityDead, 1);
 }

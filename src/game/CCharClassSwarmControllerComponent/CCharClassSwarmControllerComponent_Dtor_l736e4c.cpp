@@ -43,15 +43,15 @@ struct UnkSwarmIdPairs_l736e4c {
 struct UnkSwarmController_l736e4c {
     void* vtable;
     u8 pad_0x8[0x68];
-    CStrId field_0x70;
+    CStrId sIndividualLife;
     u8 pad_0x78[0x98];
-    u8 field_0x110[0x70];
-    CRntString field_0x180;
-    CRntString field_0x1b0;
-    CRntString field_0x1e0;
-    CRntString field_0x210;
-    CRntString field_0x240;
-    CRntString field_0x270;
+    u8 oDamageSourceFactor[0x70];
+    CRntString sImpactSoundSmallGroup;
+    CRntString sImpactSoundMediumGroup;
+    CRntString sImpactSoundLargeGroup;
+    CRntString sMoveSoundSmallGroup;
+    CRntString sMoveSoundMediumGroup;
+    CRntString sMoveSoundLargeGroup;
     UnkSwarmIdPairs_l736e4c field_0x2a0;
     UnkSwarmIdPairs_l736e4c field_0x2e8;
     u8 pad_0x330[0x4];
@@ -59,7 +59,7 @@ struct UnkSwarmController_l736e4c {
     UnkSwarmIdList_l736e4c field_0x388;
     UnkSwarmIdList_l736e4c field_0x3dc;
 };
-static_assert(__builtin_offsetof(UnkSwarmController_l736e4c, field_0x180) == 0x180, "layout");
+static_assert(__builtin_offsetof(UnkSwarmController_l736e4c, sImpactSoundSmallGroup) == 0x180, "layout");
 static_assert(__builtin_offsetof(UnkSwarmController_l736e4c, field_0x334) == 0x334, "layout");
 
 void fn_7100736e4c(UnkSwarmController_l736e4c* self) {
@@ -69,13 +69,13 @@ void fn_7100736e4c(UnkSwarmController_l736e4c* self) {
     self->field_0x334.Clear();
     self->field_0x2e8.Destroy();
     self->field_0x2a0.Destroy();
-    CRntString_Destroy(&self->field_0x270);
-    CRntString_Destroy(&self->field_0x240);
-    CRntString_Destroy(&self->field_0x210);
-    CRntString_Destroy(&self->field_0x1e0);
-    CRntString_Destroy(&self->field_0x1b0);
-    CRntString_Destroy(&self->field_0x180);
-    fn_71008c2de0(self->field_0x110);
-    self->field_0x70.Reset();
+    CRntString_Destroy(&self->sMoveSoundLargeGroup);
+    CRntString_Destroy(&self->sMoveSoundMediumGroup);
+    CRntString_Destroy(&self->sMoveSoundSmallGroup);
+    CRntString_Destroy(&self->sImpactSoundLargeGroup);
+    CRntString_Destroy(&self->sImpactSoundMediumGroup);
+    CRntString_Destroy(&self->sImpactSoundSmallGroup);
+    fn_71008c2de0(self->oDamageSourceFactor);
+    self->sIndividualLife.Reset();
     fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(self));
 }

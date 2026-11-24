@@ -35,9 +35,9 @@ static inline u32 ItemId(UnkDropItemDef_ovb0136* const& def) {
 
 struct UnkDropItemOverwriteEvent_ovb0136 {
     u8 pad_0x0[0xc];
-    u32 field_0xc;
-    u32 field_0x10;
-    u32 field_0x14;
+    u32 iMinNumOfDroppedItems;
+    u32 iMaxNumOfDroppedItems;
+    u32 iMaxItemTypeMin;
     u8 pad_0x18[4];
     u32 field_0x1c[7];
     u32 field_0x38[4];
@@ -47,9 +47,9 @@ struct UnkDropItemOverwriteEvent_ovb0136 {
     UnkDropItemVec3_ovb0136 field_0x60;
     UnkDropItemVec3_ovb0136 field_0x6c;
     UnkDropItemDef_ovb0136* def;  // 0x78
-    u8 field_0x80;
-    u8 field_0x81;
-    u8 field_0x82;
+    u8 bStrictDirection;
+    u8 bForceAttract;
+    u8 bIgnoreAttractionRadius;
     u8 pad_0x83;
     u32 kind;  // 0x84
 };
@@ -59,10 +59,10 @@ struct UnkDropSpawnRequest_ovb0096;
 UnkDropItemParams_ovb0136 fn_7100cb7f90(UnkDropSpawnRequest_ovb0096* request) {
     auto* event = reinterpret_cast<UnkDropItemOverwriteEvent_ovb0136*>(request);
     UnkDropItemParams_ovb0136 params;
-    params.field_0x0 = event->field_0xc;
-    params.field_0x4 = event->field_0x10;
-    params.field_0x8 = event->field_0x14;
-    params.field_0xc = event->field_0x14;
+    params.field_0x0 = event->iMinNumOfDroppedItems;
+    params.field_0x4 = event->iMaxNumOfDroppedItems;
+    params.field_0x8 = event->iMaxItemTypeMin;
+    params.field_0xc = event->iMaxItemTypeMin;
     params.field_0x10[0] = event->field_0x1c[0];
     params.field_0x10[1] = event->field_0x1c[1];
     params.field_0x10[2] = event->field_0x1c[2];
@@ -82,9 +82,9 @@ UnkDropItemParams_ovb0136 fn_7100cb7f90(UnkDropSpawnRequest_ovb0096* request) {
     params.field_0x74 = event->field_0x6c;
     params.item = ItemId(event->def);
     params.kind = event->kind;
-    params.field_0x88 = event->field_0x80;
-    params.field_0x89 = event->field_0x81;
-    params.field_0x8a = event->field_0x82;
+    params.field_0x88 = event->bStrictDirection;
+    params.field_0x89 = event->bForceAttract;
+    params.field_0x8a = event->bIgnoreAttractionRadius;
     return params;
 }
 

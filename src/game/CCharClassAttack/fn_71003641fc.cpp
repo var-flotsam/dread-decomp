@@ -18,7 +18,7 @@ struct UnkStruct_71003641fc {
     bool field_0x1c;
     u32 field_0x20;
     base::UnkAllocator* field_0x28;
-    CStrId field_0x30;
+    CStrId sAttackAnim;
     CStrId field_0x38;
     f32 field_0x40;
     f32 field_0x44;
@@ -77,7 +77,7 @@ void fn_71003641fc(UnkStruct_71003641fc* self) {
     self->field_0x1c = true;
     self->field_0x20 = 4;
     self->field_0x28 = GetDefaultAllocator();
-    new (&self->field_0x30) CStrId("", true);
+    new (&self->sAttackAnim) CStrId("", true);
     new (&self->field_0x38) CStrId("", true);
     self->field_0x40 = -1.0f;
     self->field_0x44 = -1.0f;

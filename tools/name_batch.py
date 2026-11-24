@@ -982,6 +982,19 @@ def as_dict(obj) -> dict:
 def parse_result(result: dict, schema_kind: str) -> tuple[dict | None, str]:
     """(the answer, status) of one batch result. Anything but a finished turn with valid JSON is no verdict:
     errored, canceled or expired requests, stop_reason refusal or max_tokens (truncated), bad JSON."""
+    data, status = answer_of(result)
+    if data is None:
+        return None, status
+    if schema_kind == "review":
+        if data.get("verdict") not in VERDICTS or not isinstance(data.get("evidence_true"), bool):
+            return None, "no verdict: answer outside the schema"
+    elif data.get("decision") not in ("name", "decline"):
+        return None, "no verdict: answer outside the schema"
+    return data, "ok"
+
+
+def answer_of(result: dict) -> tuple[dict | None, str]:
+    """The JSON object one batch result answered, before any schema check, or (None, why)."""
     res = result.get("result") or {}
     rtype = res.get("type")
     if rtype != "succeeded":
@@ -1000,10 +1013,7 @@ def parse_result(result: dict, schema_kind: str) -> tuple[dict | None, str]:
         data = json.loads(text)
     except json.JSONDecodeError:
         return None, "no verdict: not JSON"
-    if schema_kind == "review":
-        if data.get("verdict") not in VERDICTS or not isinstance(data.get("evidence_true"), bool):
-            return None, "no verdict: answer outside the schema"
-    elif data.get("decision") not in ("name", "decline"):
+    if not isinstance(data, dict):
         return None, "no verdict: answer outside the schema"
     return data, "ok"
 
@@ -1079,16 +1089,7 @@ def cmd_fetch(args, client=None) -> int:
            "input_tokens": total["input"], "cache_write_tokens": total["write"], "cache_read_tokens": total["read"],
            "output_tokens": total["output"], "cache_reads_happened": "yes" if total["read"] else "no",
            "dollars": f"{cost:.4f}"}
-    if any(r["run"] == args.run for r in ledger_rows()):
-        print(f"  ledger: {args.run} is already recorded; not added again")
-    else:
-        LEDGER.parent.mkdir(parents=True, exist_ok=True)
-        new = not LEDGER.exists()
-        with LEDGER.open("a", newline="", encoding="utf-8") as fh:
-            w = csv.DictWriter(fh, fieldnames=LEDGER_COLUMNS, lineterminator="\n")
-            if new:
-                w.writeheader()
-            w.writerow(row)
+    append_ledger(row)
     print(f"{args.run}: {len(raw)} results, {good} with an answer; {out}")
     print(f"  tokens: input {total['input']:,}, cache write {total['write']:,}, cache read {total['read']:,}, "
           f"output {total['output']:,}; cache reads {'happened' if total['read'] else 'did NOT happen'}; "
@@ -1098,6 +1099,20 @@ def cmd_fetch(args, client=None) -> int:
         print("  " + ", ".join(f"{v} {n}" for v, n in counts.items())
               + f", no verdict {sum(1 for r in rows if not r['verdict'])}")
     return 0
+
+
+def append_ledger(row: dict) -> None:
+    """Add a fetched run's row to the ledger, once."""
+    if any(r["run"] == row["run"] for r in ledger_rows()):
+        print(f"  ledger: {row['run']} is already recorded; not added again")
+        return
+    LEDGER.parent.mkdir(parents=True, exist_ok=True)
+    new = not LEDGER.exists()
+    with LEDGER.open("a", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=LEDGER_COLUMNS, lineterminator="\n")
+        if new:
+            w.writeheader()
+        w.writerow(row)
 
 
 def run_cost(run: str) -> float:
