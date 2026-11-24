@@ -69,7 +69,7 @@ struct UnkTriComboAttack_l43c21c {
     UnkTriComboLink_l43c21c link;  // 0x60
 };
 
-void fn_710043c21c(UnkTriComboAttack_l43c21c* self) {
+void CChozoCommanderTriComboAttack_Start(UnkTriComboAttack_l43c21c* self) {
     // Declared past a goto (no lifetime markers), so each keeps its own slot.
     goto start;
     base::reflection::UnkReflTypeIdArg mode1;

@@ -58,7 +58,7 @@ static inline bool IsCannonAI(UnkReflObject* obj) {
     return fn_710009d50c(obj->vf_0x0(), fn_71003fafa0());
 }
 
-void fn_71003ffe6c(UnkCannonBeamMovement_l3ffe6c* self, UnkCannonDamageRequest_l3ffe6c* request) {
+void CCentralUnitCannonBeamMovementComponent_SetBeamDamage(UnkCannonBeamMovement_l3ffe6c* self, UnkCannonDamageRequest_l3ffe6c* request) {
     const UnkCannonDamageTunable_l3ffe6c* tunable =
         reinterpret_cast<const UnkCannonDamageTunable_l3ffe6c*>(&g_unk_7172716160);
     UnkRequest* damage = reinterpret_cast<UnkRequest*>(request);

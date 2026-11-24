@@ -90,7 +90,7 @@ static inline f32 AsF32(u32 bits) {
     return value;
 }
 
-void fn_7100437930(UnkSlamUpdate_A2_b75* self, f32 dt) {
+void CChozoCommanderLandingSlamAttack_UpdateStage(UnkSlamUpdate_A2_b75* self, f32 dt) {
     fn_7100424b5c(reinterpret_cast<UnkChozoCommanderAttack*>(self), dt);
     u32 x = PosX(self->owner);
     u32 other = PosX(fn_7100d7c990(self->owner));

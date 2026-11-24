@@ -10,7 +10,7 @@ struct UnkSelf {
     UnkWeakHandle* field_0x78;
 };
 
-void fn_710043c5c8(UnkSelf* self) {
+void CChozoCommanderTriComboAttack_Reset(UnkSelf* self) {
     fn_710042bb40(self);
     if (UnkWeakHandle* handle = self->field_0x78) {
         if (UnkWeakTarget* target = handle->target)

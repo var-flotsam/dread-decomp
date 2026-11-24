@@ -9,7 +9,7 @@
 struct UnkCannonBeamMovement_l3ffe6c;
 struct UnkCannonDamageRequest_l3ffe6c;
 
-void fn_71003ffe6c(UnkCannonBeamMovement_l3ffe6c* self, UnkCannonDamageRequest_l3ffe6c* request);
+void CCentralUnitCannonBeamMovementComponent_SetBeamDamage(UnkCannonBeamMovement_l3ffe6c* self, UnkCannonDamageRequest_l3ffe6c* request);
 
 // Where and how the hit landed: nine floats.
 struct UnkCannonHitPoint_l3ffd84 {
@@ -50,7 +50,7 @@ bool fn_71003ffd84(UnkCannonBeamMovement_l3ffd84* self, void* other, void* a2, v
     self->field_0x3b0 = -1;
     self->field_0x3d8 = 0;
     self->field_0x3dc = 0x238;
-    fn_71003ffe6c(reinterpret_cast<UnkCannonBeamMovement_l3ffe6c*>(self),
+    CCentralUnitCannonBeamMovementComponent_SetBeamDamage(reinterpret_cast<UnkCannonBeamMovement_l3ffe6c*>(self),
                   reinterpret_cast<UnkCannonDamageRequest_l3ffe6c*>(self->request));
     fn_7100ac82c0(reinterpret_cast<UnkSplash_b59a4*>(self), other);
     return fn_7100ac4ec0(reinterpret_cast<UnkObj*>(self), other, a2, a3, hit, a5);
