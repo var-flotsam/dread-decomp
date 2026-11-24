@@ -49,7 +49,7 @@ void fn_71008fab30(void* p);
 void fn_71008fb614(CType* self, const CStrId& name, const CType* base, void* a, void (*init)(CClass*), void* b);
 void fn_71008fb2b4(CClass* cls);
 
-void fn_71008fdc40() {
+void CCharClassLavaPoolComponent_InitStatics() {
     UnkLavaPoolTU& tu = g_unk_7172733538;
     InitHeader(tu.header);
     tu.field_0x30 = -1.0f;

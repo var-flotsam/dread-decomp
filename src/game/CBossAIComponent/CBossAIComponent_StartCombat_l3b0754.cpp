@@ -18,7 +18,7 @@ using base::global::UnkStringData;
 
 struct UnkBossDoorAI_ovb0102;
 struct UnkCameraOwner;
-void fn_71003b0054(UnkBossDoorAI_ovb0102* self, bool locked);
+void CBossAIComponent_LockDoors(UnkBossDoorAI_ovb0102* self, bool locked);
 
 // The id's text, counting the read.
 static inline const char* const& TextOf(UnkStringData* const& id) {
@@ -99,7 +99,7 @@ void fn_71003b0754(UnkBossAI_l3b0754* self) {
     self->field_0x148e0 = false;
     if (!self->settings->field_0x50c)
         fn_71003b0300(self);
-    fn_71003b0054(reinterpret_cast<UnkBossDoorAI_ovb0102*>(self), false);
+    CBossAIComponent_LockDoors(reinterpret_cast<UnkBossDoorAI_ovb0102*>(self), false);
     if (g_unk_71726bc570->field_0xb8)
         return;
     UnkBossTarget_l3b0754* target = self->Target();

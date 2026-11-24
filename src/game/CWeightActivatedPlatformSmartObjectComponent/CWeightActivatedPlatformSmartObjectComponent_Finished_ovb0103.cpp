@@ -166,7 +166,7 @@ struct UnkPlatform_ovb0103 {
 
 struct UnkPlatformSm_b61;
 
-void fn_7100a09f7c(UnkPlatform_ovb0103* self, CBlackboard* blackboard) {
+void CWeightActivatedPlatformSmartObjectComponent_LoadFromBlackboard(UnkPlatform_ovb0103* self, CBlackboard* blackboard) {
     bool value = false;
     bool finished;
     {

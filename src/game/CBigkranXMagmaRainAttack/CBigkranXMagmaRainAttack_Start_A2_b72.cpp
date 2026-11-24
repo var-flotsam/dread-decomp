@@ -41,7 +41,7 @@ struct UnkMagmaRainAttack_A2_b72 {
     f32 field_0x5c;
 };
 
-void fn_71003ea5fc(UnkMagmaRainAttack_A2_b72* self) {
+void CBigkranXMagmaRainAttack_Start(UnkMagmaRainAttack_A2_b72* self) {
     fn_71003608ac(reinterpret_cast<UnkAttackBase*>(self));
     self->field_0x30 = 1;
     self->field_0x34 = 1;

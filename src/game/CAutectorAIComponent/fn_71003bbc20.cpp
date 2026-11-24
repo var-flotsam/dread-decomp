@@ -25,7 +25,7 @@ void fn_71003bbaf4() __attribute__((visibility("hidden")));
 void fn_71003bbb00() __attribute__((visibility("hidden")));
 extern char g_unk_71726bd8a8[];
 
-void fn_71003bbc20() {
+void CAutectorAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726bd8b0.ids);
     InitEnum(&base::reflection::TypeObject<EJumpType, UnkEnumType>::object, "EJumpType", fn_71003badfc, fn_71003bacb0,
              g_unk_71726bd860, &g_unk_71726bd868, fn_71003bbaf4, &g_unk_71726bd888, fn_71003bbb00);
