@@ -48,7 +48,7 @@ void fn_710082bec4(UnkGrapplePoint_b54* self) {
     UnkSpitSend(self->owner->field_0x220, 0xc710a77d9222340d, 0xf4061ff25a2163d6);
 }
 
-void fn_71008262c4(UnkGrapplePoint_b54* self) {
+void CActionSwitcherOnPullGrapplePointComponent_PlayGrappleAttachAction(UnkGrapplePoint_b54* self) {
     fn_710082cce8(reinterpret_cast<UnkPullableGrapplePoint_b54*>(self));
     base::global::UnkStringData* id = self->field_0x90->id;
     if (id != &g_unk_7101d47108->empty)

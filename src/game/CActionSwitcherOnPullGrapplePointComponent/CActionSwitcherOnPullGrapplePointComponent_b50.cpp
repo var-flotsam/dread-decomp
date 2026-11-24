@@ -34,7 +34,7 @@ struct UnkPullSwitcher_b50 {
     bool field_0x98;
 };
 
-bool fn_71008261e0(UnkPullSwitcher_b50* self, void* arg, UnkPullMessage_b50* msg) {
+bool CActionSwitcherOnPullGrapplePointComponent_CanGrapple(UnkPullSwitcher_b50* self, void* arg, UnkPullMessage_b50* msg) {
     if (!fn_710082cb24(self, arg, msg) || self->field_0x98)
         return false;
     UnkPullSource_b50* source = msg->sender->field_0x10;
