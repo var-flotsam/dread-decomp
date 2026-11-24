@@ -28,7 +28,7 @@ struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
 struct Vec2;
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 struct UnkLavaDropsShape_A2_b71;
 void fn_7100d61750(UnkLavaDropsShape_A2_b71* self);
@@ -173,11 +173,11 @@ bool fn_71006457c4(UnkEnergyWaveAttack_ovb0102* attack, const UnkVec3_ovb0102* p
         fn_710007b430(&dir2, reinterpret_cast<const base::math::CVector3D*>(dir));
         base::math::CVector2D delta = {length * dir2.x, length * dir2.y};
 
-        bool hit = fn_7100d5babc(tree, mask, reinterpret_cast<UnkShape*>(&circle),
+        bool hit = SweepShapeAgainstCollisionTree(tree, mask, reinterpret_cast<UnkShape*>(&circle),
                                  reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&delta), &query,
                                  false);
         if (fn_710110c498(link))
-            hit = hit | fn_7100d5babc(fn_710110c498(link), mask, reinterpret_cast<UnkShape*>(&circle),
+            hit = hit | SweepShapeAgainstCollisionTree(fn_710110c498(link), mask, reinterpret_cast<UnkShape*>(&circle),
                                       reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&delta),
                                       &query, false);
         if (hit) {

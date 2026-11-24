@@ -18,7 +18,7 @@ void fn_7100105ef4(void* sound, f32 time, f32 step, bool arg3);
 void fn_7100104f08(void* voice);
 void fn_710010519c(UnkSoundVoice2_b56* voice, void* system, u32 seq, bool flag);
 void fn_7100105c00(UnkPlayingSound_ovb0074* sound, f32 value);
-void fn_7100105f94(UnkInterp_7100105f94* self, s32 level, f32 time);
+void SetSoundLevelOverTime(UnkInterp_7100105f94* self, s32 level, f32 time);
 void fn_7100106024(UnkSound*, const void*);
 extern const UnkSoundHandle g_unk_7108b6c460;  // The empty handle.
 void fn_7100105bac(UnkPlayingSound_ovb0074* sound, f32 value);

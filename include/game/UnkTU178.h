@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkMatrix44;
-void fn_710015bf40(UnkMatrix44*, f32);
+void ScaleMatrixYByAspectRatioAndNegateElement7(UnkMatrix44*, f32);

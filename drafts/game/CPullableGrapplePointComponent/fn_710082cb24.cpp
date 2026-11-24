@@ -77,7 +77,7 @@ bool fn_710082cb24(UnkPullableGrapplePoint_l82cb24* self, UnkPullActor_l82cb24* 
         CVector3D to_actor = CVector3D{actor->x, actor->y, actor->z} - pos;
         pos = Normalized(to_actor) * 5.0f + pos;
     }
-    if (!fn_7100219588(g_unk_7101d47300, &pos, 0, 0))
+    if (!IsPositionOnScreen(g_unk_7101d47300, &pos, 0, 0))
         return false;
     UnkPullMovement_l82cb24* movement = actor->movement;
     if (!movement)

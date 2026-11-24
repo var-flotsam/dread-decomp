@@ -14,7 +14,7 @@ namespace base { namespace reflection { struct UnkTunable; } }
 extern base::reflection::UnkTunable g_unk_7172a03d80;
 
 bool fn_71009e1310(void* self);
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 f32 fn_7100d60238(void* shape);
 f32 fn_7100d60230(void* shape);
 void fn_7100d60184(void* shape, f32 scale);
@@ -158,7 +158,7 @@ bool fn_710099ea80(UnkGroundState_l99ea80* self) {
         UnkVec3f delta = step * dir;
         base::math::CVector2D delta2d;
         Project(&delta2d, delta);
-        if (fn_7100d5babc(tree, mask, reinterpret_cast<UnkShape*>(&capsule), reinterpret_cast<const UnkMtx44*>(&xf),
+        if (SweepShapeAgainstCollisionTree(tree, mask, reinterpret_cast<UnkShape*>(&capsule), reinterpret_cast<const UnkMtx44*>(&xf),
                           reinterpret_cast<const Vec2*>(&delta2d), nullptr, false))
             return false;
     }
@@ -167,7 +167,7 @@ bool fn_710099ea80(UnkGroundState_l99ea80* self) {
     {
         u32 mask = self->movement->mask;
         UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(ahead);
-        if (fn_7100d5b484(tree, mask, reinterpret_cast<UnkShape*>(&capsule), reinterpret_cast<const UnkMtx44*>(&xf),
+        if (QueryCollisionTreeForTransformedShapeOverlaps(tree, mask, reinterpret_cast<UnkShape*>(&capsule), reinterpret_cast<const UnkMtx44*>(&xf),
                           nullptr, 1))
             return false;
     }
@@ -178,7 +178,7 @@ bool fn_710099ea80(UnkGroundState_l99ea80* self) {
         UnkVec3f delta = dir * 100.0f;
         base::math::CVector2D delta2d;
         Project(&delta2d, delta);
-        if (fn_7100d5babc(tree, mask, reinterpret_cast<UnkShape*>(&capsule), reinterpret_cast<const UnkMtx44*>(&xf),
+        if (SweepShapeAgainstCollisionTree(tree, mask, reinterpret_cast<UnkShape*>(&capsule), reinterpret_cast<const UnkMtx44*>(&xf),
                           reinterpret_cast<const Vec2*>(&delta2d), nullptr, false))
             return false;
     }
@@ -186,7 +186,7 @@ bool fn_710099ea80(UnkGroundState_l99ea80* self) {
     UnkVec3f below = dir * 100.0f + ahead + UnkVec3f(0.0f, -10.0f, 0.0f);
     u32 mask = self->movement->mask;
     UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(below);
-    if (!fn_7100d5b484(tree, mask, reinterpret_cast<UnkShape*>(&capsule), reinterpret_cast<const UnkMtx44*>(&xf),
+    if (!QueryCollisionTreeForTransformedShapeOverlaps(tree, mask, reinterpret_cast<UnkShape*>(&capsule), reinterpret_cast<const UnkMtx44*>(&xf),
                        nullptr, 1))
         return false;
     return !reinterpret_cast<UnkGameManagerFlags_l99ea80*>(g_unk_7101d47310)->field_0x13c;

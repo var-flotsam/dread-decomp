@@ -157,7 +157,7 @@ struct UnkAngleOwnerHolder {
 UnkSetStatus fn_7100d69140(void* self, UnkAngleOwnerHolder* holder, UnkValueArg_c1334c* const* arg) {
     UnkAngleOwner* owner = holder->owner;
     f32 degrees = (*arg)->Get<f32>();
-    fn_7100110664(&owner->field_0xa8, (f32)((f64)degrees * 3.141592653589793 / 180.0));
+    SetOBox2DAngleAndRebuildAxes(&owner->field_0xa8, (f32)((f64)degrees * 3.141592653589793 / 180.0));
     owner->vf_0x80();
     UnkSetStatus status;
     status.field_0x0 = 0;

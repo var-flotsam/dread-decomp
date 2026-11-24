@@ -419,7 +419,7 @@ void fn_71011ec768(UnkLabelLayout* layout) {
                             sized = fn_71011b8160(item.field_0x38, sized);
                             UnkLabelVec2 scale = fn_71011b7f48(item.field_0x38, sized);
                             UnkLabelVec2 arg = scale;
-                            fn_710020a5a0(reinterpret_cast<UnkStruct_710020a5a0*>(&glyph->object->node),
+                            SetNode2DScale(reinterpret_cast<UnkStruct_710020a5a0*>(&glyph->object->node),
                                           reinterpret_cast<const base::math::CVector2D*>(&arg));
                         }
                         item.color.r *= 0.925f;

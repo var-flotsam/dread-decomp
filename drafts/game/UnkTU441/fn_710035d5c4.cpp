@@ -19,7 +19,7 @@ struct UnkMinimapVec3;
 struct UnkStruct_710020a5a0;
 void fn_710019c564(void* target, f32 a, f32 b, f32 c, f32 d);
 void fn_710020a4c4(void* p, const UnkMinimapVec3& pos);
-void fn_710020a5a0(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
+void SetNode2DScale(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
 
 struct UnkQuadRender_ovb0259 {
     u8 pad_0x0[0x78];
@@ -74,7 +74,7 @@ void fn_710035d5c4(UnkFadeQuads_ovb0259* self, f32 t) {
     alignas(8) f32 scale[2];
     scale[1] = 0.01f;
     scale[0] = t * 0.4f;
-    fn_710020a5a0(reinterpret_cast<UnkStruct_710020a5a0*>(self->first->node), reinterpret_cast<const base::math::CVector2D*>(scale));
+    SetNode2DScale(reinterpret_cast<UnkStruct_710020a5a0*>(self->first->node), reinterpret_cast<const base::math::CVector2D*>(scale));
     if (t > 0.66f)
         fn_710019c564(self->first->render->field_0x78, 0.0f, 1.0f, 0.0f, 1.0f);
     else if (t > 0.33f)

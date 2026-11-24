@@ -16,7 +16,7 @@
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 extern void* g_unk_7101a23590[];
 
@@ -178,7 +178,7 @@ void fn_71007feb70(UnkAreaFXSelf_l7feb70* self, UnkAreaFXPos_l7feb70* pos) {
     UnkSweepOffset_l7feb70 sweep(Offset_l7feb70(*pos, self->owner->Position()));
     UnkSweepQuery_l7feb70 query;
     const UnkMatrix44& xf = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->owner->transform));
-    if (fn_7100d5babc(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf),
+    if (SweepShapeAgainstCollisionTree(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf),
                       reinterpret_cast<const Vec2*>(&sweep.v), &query, false)) {
         f32 t = fn_7100977b20(flagged);
         pos->x = t * query.hit.normal.x + query.hit.point.x;

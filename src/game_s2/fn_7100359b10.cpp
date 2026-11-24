@@ -18,7 +18,7 @@ extern UnkConversion g_unk_71726b1c18;
 void fn_7100359a78() __attribute__((visibility("hidden")));
 void fn_7100359a84() __attribute__((visibility("hidden")));
 
-void fn_7100359b10() {
+void EAimDirection_InitStatics() {
     InitHeaderIds(&g_unk_71726b1c38.ids);
     InitEnum(&base::reflection::TypeObject<EAimDirection, UnkEnumType>::object, "EAimDirection", fn_71003598f8, fn_710035962c,
              g_unk_71726b1bf0, &g_unk_71726b1bf8, fn_7100359a78, &g_unk_71726b1c18, fn_7100359a84);

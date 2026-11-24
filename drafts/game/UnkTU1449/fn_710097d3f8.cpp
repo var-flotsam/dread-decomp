@@ -178,7 +178,7 @@ static inline base::math::CVector3D Sub(const UnkVec3f& a, const UnkVec3f& b) {
 
 static inline bool Query(UnkTree* tree, u32 mask, UnkShape* shape, const UnkMatrix44_7100078c9c& xf,
                          UnkHitList_l97d3f8* hits) {
-    return fn_7100d5b484(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), hits, 1);
+    return QueryCollisionTreeForTransformedShapeOverlaps(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), hits, 1);
 }
 
 static inline void MoveTo(UnkBody_l97d3f8* body, const base::math::CVector3D& pos) {

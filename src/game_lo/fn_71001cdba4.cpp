@@ -63,7 +63,7 @@ void fn_71001cdba4(UnkOwner_71001cdba4* self, UnkEntry_71001cdba4* entry) {
 }
 
 // Drops the last entry and binds the one before it, or the default set when none is left.
-void fn_71001cdd18(UnkOwner_71001cdba4* self) {
+void PopPairListStackAndReapplyTop(UnkOwner_71001cdba4* self) {
     base::global::CRntVector<UnkEntry_71001cdba4>& v = self->entries;
     u32 n = v.count - 1;
     // The entry's destructor (its count cleared).

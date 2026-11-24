@@ -1919,7 +1919,7 @@ address,size,name,name_source,subsystem,status
 0x7100964670,492,fn_7100964670,unknown,game/characters?,O
 0x710096485c,280,fn_710096485c,unknown,game/characters?,O
 0x7100964974,496,fn_7100964974,unknown,game/characters?,O
-0x7100964b64,968,fn_7100964b64,unknown,game/characters?,O
+0x7100964b64,968,DestroyThirteenStrIds,inferred,game/characters?,O
 0x7100964f2c,36,fn_7100964f2c,unknown,game/characters?,O
 0x7100964f50,60,fn_7100964f50,unknown,game/characters?,O
 0x7100964f8c,108,CCharClassEnemyMovement_GetAngularSpeed,inferred,game/characters?,O

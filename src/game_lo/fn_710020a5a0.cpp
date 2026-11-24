@@ -19,7 +19,7 @@ struct UnkStruct_710020a5a0 {
     CVector2D field_0x154;
 };
 
-void fn_710020a5a0(UnkStruct_710020a5a0* self, const CVector2D* scale) {
+void SetNode2DScale(UnkStruct_710020a5a0* self, const CVector2D* scale) {
     UnkCopyMatrix(&self->field_0x110, fn_7100079138(scale->x, scale->y, 1.0f));
     self->field_0x154.x = scale->x;
     self->field_0x154.y = scale->y;

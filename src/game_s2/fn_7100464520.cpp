@@ -8,7 +8,7 @@ extern "C" void __cxa_guard_release(u64* guard);
 extern u64 g_unk_71726cb9b8;
 extern u8 g_unk_71726cb9b0[];
 
-void fn_7100464520() {
+void InitSpinjump2attackCannonshotIdOnce() {
     if (!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726cb9b8), __ATOMIC_ACQUIRE) & 1)) {
         if (__cxa_guard_acquire(&g_unk_71726cb9b8)) {
             new (g_unk_71726cb9b0) CStrId("spinjump2attack_cannonshot", true);

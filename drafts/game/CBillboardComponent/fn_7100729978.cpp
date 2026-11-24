@@ -85,7 +85,7 @@ struct UnkBillboards_l729978 {
 };
 
 static inline bool IsOnScreen(const UnkVec3Result& point) {
-    return fn_7100219588(g_unk_7101d47300, &point, 0, 0);
+    return IsPositionOnScreen(g_unk_7101d47300, &point, 0, 0);
 }
 
 bool fn_7100729978(void* object) {

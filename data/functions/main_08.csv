@@ -2313,7 +2313,7 @@ address,size,name,name_source,subsystem,status
 0x710086de00,328,fn_710086de00,unknown,game/components?,O
 0x710086df48,356,fn_710086df48,unknown,game/components?,O
 0x710086e0ac,476,DestroyHeatableShieldValueRecord,inferred,game/components?,O
-0x710086e288,392,fn_710086e288,unknown,unknown,O
+0x710086e288,392,DestroyStrIdArrayOf5,inferred,unknown,O
 0x710086e410,196,CHeatableShieldComponent_ResetEntry,inferred,game/components?,O
 0x710086e4e0,140,fn_710086e4e0,unknown,unknown,O
 0x710086e56c,4,CHydrogigaGrabCameraCtrl::refl_AddAttributes,reflection,game,O

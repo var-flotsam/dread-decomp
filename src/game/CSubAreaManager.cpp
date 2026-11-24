@@ -142,7 +142,7 @@ struct UnkIdSet {
                field_0x78.count == 0 && field_0xc8.count == 0 && field_0xa0.count == 0;
     }
 };
-void fn_7100ee7134(UnkIdSet* self);
+void ClearSubAreaChangeIdLists(UnkIdSet* self);
 
 // Members the reset (fn_7100ee34f0) empties.
 using UnkPathIdMember = base::UnkStrIdMemberOf<g_unk_7101d47200>;  // a file-path id
@@ -369,7 +369,7 @@ void CSubAreaManager_SetCurrentSubArea(CSubAreaManager* self, UnkSubArea* area, 
                 fn_71010e4168(holder, &camera->field_0x20, false);
             }
             if (fn_7100023d00(camera, fn_71010e7f90()) && !force) {
-                fn_7100ee7134(&self->field_0x158);
+                ClearSubAreaChangeIdLists(&self->field_0x158);
                 cleared = true;
             }
         }
@@ -819,7 +819,7 @@ __attribute__((always_inline)) static inline void DiffFiles(UnkIdSet* set, UnkRe
 // What changes from sub-area `prev` to `cur` (either may be null): the id lists and the files.
 // NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
 void CSubAreaManager_ChangeSubAreaResources(CSubAreaManager* self, UnkSubArea* prev, UnkSubArea* cur, UnkIdSet* set, bool flag) {
-    fn_7100ee7134(set);
+    ClearSubAreaChangeIdLists(set);
     bool all = fn_7100ee7438(self, prev, cur, &set->field_0x28, set, false);
     fn_7100ee7808(self, prev, cur, &set->field_0x50, &set->field_0x78, all);
     UnkResPathVec cur_files(0xf);
@@ -834,7 +834,7 @@ void CSubAreaManager_ChangeSubAreaResources(CSubAreaManager* self, UnkSubArea* p
 // The same for two other file lists (`prev` and `cur` are the lists' owners themselves).
 // NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
 void fn_7100ee8044(CSubAreaManager* self, void* prev, void* cur, UnkIdSet* set) {
-    fn_7100ee7134(set);
+    ClearSubAreaChangeIdLists(set);
     bool all = fn_7100ee8470(self, prev, cur, &set->field_0x28, set, false);
     fn_7100ee8838(self, prev, cur, &set->field_0x50, &set->field_0x78, all);
     UnkResPathVec cur_files(0xf);

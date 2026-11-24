@@ -19,7 +19,7 @@ using base::global::CStrId;
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 struct UnkMatrix44_7100078c9c {
     f32 m[16];
@@ -105,7 +105,7 @@ struct UnkSweepOffset_l951bf4 {
 
 static inline bool Sweep(UnkTree* tree, u32 mask, UnkShape* shape, const UnkMatrix44_7100078c9c& xf,
                          const UnkSweepOffset_l951bf4& sweep, UnkSweepQuery_l951bf4* query) {
-    return fn_7100d5babc(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf),
+    return SweepShapeAgainstCollisionTree(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf),
                          reinterpret_cast<const Vec2*>(&sweep.v), query, false);
 }
 

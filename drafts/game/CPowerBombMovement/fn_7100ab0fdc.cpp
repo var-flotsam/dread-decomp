@@ -207,7 +207,7 @@ void fn_7100ab0fdc(UnkPowerBombMovement_lab0fdc* self, f32 size) {
     {
         UnkPbActor_lab0fdc* actor = self->actor;
         UnkLavaDropsShape_A2_b71 shape(Around(UnkVec3f(actor->x, actor->y, actor->z)), size);
-        hit = fn_7100d5b484(tree, 0x80000, reinterpret_cast<UnkShape*>(&shape),
+        hit = QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x80000, reinterpret_cast<UnkShape*>(&shape),
                             reinterpret_cast<const UnkMtx44*>(&g_unk_7101a1a680), &hits, 0);
     }
     if (!hit)

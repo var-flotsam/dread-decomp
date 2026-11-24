@@ -90,7 +90,7 @@ void fn_710035d7bc(UnkFadeQuads_ovb0259* self) {
     }
     {
         f32 scale[2] = {0.4f, 0.015f};
-        fn_710020a5a0(reinterpret_cast<UnkStruct_710020a5a0*>(self->second->node),
+        SetNode2DScale(reinterpret_cast<UnkStruct_710020a5a0*>(self->second->node),
                       reinterpret_cast<const base::math::CVector2D*>(scale));
     }
     fn_710020ad90(self->second->node, 501);

@@ -15,7 +15,7 @@ struct UnkRenderTargetSlot;
 void fn_7100160990(s32 a, s32 b, u32);
 void fn_7100160ab0(u32 a, s32 b, u32 c);
 void fn_7100161b90(void* obj);
-void fn_710015f770(s32 slot, void* object, u32);
+void SetGraphicsSlotPointer(s32 slot, void* object, u32);
 void fn_7100160d50(u32 a, s32 b, u32 c);
 void fn_7100161d70(UnkGfxBuffer252* buffer);
 void fn_7100161dc0(UnkGfxBuffer252* buffer);

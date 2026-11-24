@@ -239,7 +239,7 @@ void CHyperBeamGun_QueryShapeHits(UnkHyperBeamGunHits_ovb0127* self, UnkShape* s
         return;
     UnkBeamHitList_ovb0127 hits;
     UnkTree* tree = static_cast<UnkTree*>(g_unk_7101d47310->field_0x608->field_0x820);
-    if (fn_7100d5b484(tree, 0x81481, shape, reinterpret_cast<const UnkMtx44*>(&g_unk_7101a1a680), &hits, 0)) {
+    if (QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x81481, shape, reinterpret_cast<const UnkMtx44*>(&g_unk_7101a1a680), &hits, 0)) {
         for (UnkBeamHitRecord_ovb0127 *hit = hits.items(), *end = hit + hits.count; hit != end; ++hit)
             fn_71008472d4(self, hit, UnkNoArg(), arg, false);
     }

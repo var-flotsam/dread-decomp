@@ -116,7 +116,7 @@ void fn_7100b58054(UnkMissionLog_lb58054* self, UnkMissionLogEvent_lb58054* even
                 self->dialog = found;
             } else {
                 UnkGuiDisplayObject* dialog =
-                    AsDialog(fn_71011b69d8(g_unk_717271e8f8, CRntString("DialogComposition")).Get());
+                    AsDialog(GetGuiCompositionHandleByName(g_unk_717271e8f8, CRntString("DialogComposition")).Get());
                 if (dialog) {
                     fn_71011cdce8(dialog, false);
                     fn_71011cf2a4(dialog, false);

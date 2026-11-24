@@ -19,7 +19,7 @@ using base::global::CStrId;
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 __attribute__((visibility("hidden"))) extern CStrId g_unk_71726e7008;  // the owner's collider name
 
@@ -92,7 +92,7 @@ static inline bool Sweep(UnkTree* tree, u32 mask, UnkShape* shape, const UnkMatr
     fn_710007b430(flat, dir);
     delta->x = flat->x * distance;
     delta->y = flat->y * distance;
-    return fn_7100d5babc(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(delta),
+    return SweepShapeAgainstCollisionTree(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(delta),
                          nullptr, false);
 }
 

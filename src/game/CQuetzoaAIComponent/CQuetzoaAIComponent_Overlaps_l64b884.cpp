@@ -111,7 +111,7 @@ struct UnkSweepOffset_l64b884 {
 // Whether the shape placed by `xf` and swept by `sweep` hits anything in `tree` on the layers of `mask`.
 static inline bool Sweep(UnkTree* tree, u32 mask, UnkShape* shape, const UnkMatrix44_7100078c9c& xf, const UnkSweepOffset_l64b884& sweep,
                          UnkSweepQuery_l64b884* query) {
-    return fn_7100d5babc(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&sweep.v), query, false);
+    return SweepShapeAgainstCollisionTree(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&sweep.v), query, false);
 }
 
 bool CQuetzoaAIComponent_SweepCollidesAlongDelta(UnkQuetzoaAI_l64b884* self, const base::math::CVector3D* delta) {

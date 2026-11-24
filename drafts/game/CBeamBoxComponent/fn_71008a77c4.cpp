@@ -36,7 +36,7 @@ struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
 struct Vec2;
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 void fn_71008635a4(UnkCollisionContainer* self, const CStrId* id, const u32* extra);
 
@@ -340,7 +340,7 @@ bool fn_71008a77c4(UnkBeamBoxComponent_l8a77c4* self, UnkBeamHitMessage_l8a77c4*
             {
                 UnkBeamHitList_l8a77c4 hits;
                 UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(self->start);
-                if (fn_7100d5babc(tree, 1, reinterpret_cast<UnkShape*>(&shape), reinterpret_cast<const UnkMtx44*>(&xf),
+                if (SweepShapeAgainstCollisionTree(tree, 1, reinterpret_cast<UnkShape*>(&shape), reinterpret_cast<const UnkMtx44*>(&xf),
                                   reinterpret_cast<const Vec2*>(&delta), &hits, false)) {
                     f32 halfWidth = fabsf((box->min_x + box->max_x) * 0.5f - box->min_x);
                     self->end.x = hits.First().point.x - halfWidth * self->slide.x;

@@ -31,7 +31,7 @@ struct UnkVec3Result {
 };
 
 struct UnkStruct_71007455dc;
-UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
+UnkVec3Result GetPositionFromParentAndOffset(UnkStruct_71007455dc* self);
 u8 fn_71007452a4(UnkTarget* target);
 
 extern char g_unk_710164a410[];
@@ -170,7 +170,7 @@ void fn_7100654cd0(UnkRedenkiController_l654cd0* self, UnkRedenkiGroup_l654cd0* 
         if (!fn_7100744e1c(reinterpret_cast<UnkSwarmMember_ovb6*>(member)))
             continue;
         UnkRedenkiSlot_l654cd0* slot = fn_710065a7dc(slots, i);
-        UnkVec3Result home = fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(member));
+        UnkVec3Result home = GetPositionFromParentAndOffset(reinterpret_cast<UnkStruct_71007455dc*>(member));
         member->field_0x170 = fn_71007452a4(reinterpret_cast<UnkTarget*>(member));
 
         f32 radius = self->tuning->radiusScale * member->radius;
@@ -221,7 +221,7 @@ void fn_7100654cd0(UnkRedenkiController_l654cd0* self, UnkRedenkiGroup_l654cd0* 
         void* manager = g_unk_71726da048;
         if (!manager) {
             manager = fn_71000839a0(0xe0, 0x3f);
-            fn_7100e1bca4(manager);
+            ConstructBillboardManager(manager);
             g_unk_71726da048 = manager;
         }
         u64 key = billboard->field_0xd0->field_0x30;

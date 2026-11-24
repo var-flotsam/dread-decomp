@@ -97,7 +97,7 @@ void fn_71004e3884(UnkDizzeanSwarm_l4e3884* self, f32 dt) {
         for (UnkDizzeanMember_l4e3884* member : *group) {
             if (!fn_7100744e1c(reinterpret_cast<UnkSwarmMember_ovb6*>(member)) || !member->field_0x25)
                 continue;
-            sum += fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(member)) - centre;
+            sum += GetPositionFromParentAndOffset(reinterpret_cast<UnkStruct_71007455dc*>(member)) - centre;
         }
         bool moved = !(NearZero(sum.x) && NearZero(sum.y) && NearZero(sum.z));
         if (moved && sum.x * group->heading[0] + sum.y * group->heading[1] + sum.z * group->heading[2] < 0.0f) {

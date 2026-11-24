@@ -386,7 +386,7 @@ void CRedenkiSwarmControllerComponent_InitTimersAndBuildPath(UnkRedenkiStart_ovb
         void* manager = g_unk_71726da048;
         if (!manager) {
             manager = fn_71000839a0(0xe0, 0x3f);
-            fn_7100e1bca4(manager);
+            ConstructBillboardManager(manager);
             g_unk_71726da048 = manager;
         }
         u64 key = billboard->field_0xd0->field_0x30;
@@ -841,7 +841,7 @@ void fn_710065a37c(UnkRedenkiFxCtrl_ovb0084* self, UnkRedenkiDart_ovb0084* membe
     void* manager = g_unk_71726da048;
     if (!manager) {
         manager = fn_71000839a0(0xe0, 0x3f);
-        fn_7100e1bca4(manager);
+        ConstructBillboardManager(manager);
         g_unk_71726da048 = manager;
     }
     u64 key = billboard->field_0xd0->field_0x30;
@@ -1070,7 +1070,7 @@ bool fn_710065ab50(UnkRedenkiHandler_ovb0084* self, UnkRedenkiMemberFx_ovb0084* 
     void* manager = g_unk_71726da048;
     if (!manager) {
         manager = fn_71000839a0(0xe0, 0x3f);
-        fn_7100e1bca4(manager);
+        ConstructBillboardManager(manager);
         g_unk_71726da048 = manager;
     }
     u64 key = billboard->field_0xd0->field_0x30;

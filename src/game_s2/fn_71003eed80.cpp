@@ -38,7 +38,7 @@ void fn_71003ec95c();
 void fn_71003ecb04(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726c1fd0[];
 
-void fn_71003eed80() {
+void InitBigkranXSpitLaunchPatternStatics() {
     InitHeaderIds(&g_unk_71726c2418.ids);
     {
         CStrId n("SBigkranXSpitLaunchPatternStep", true);

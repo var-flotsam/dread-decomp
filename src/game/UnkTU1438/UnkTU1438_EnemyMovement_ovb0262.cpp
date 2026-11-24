@@ -79,7 +79,7 @@ static_assert(__builtin_offsetof(UnkEnemyMovement_ovb0262l, field_0x1c8) == 0x1c
 
 void fn_710078e6ac(void* self);
 void fn_710096485c(void* record);
-void fn_7100964b64(void* record);
+void DestroyThirteenStrIds(void* record);
 void fn_710046e2e0(void* anims);
 
 struct UnkObj_710052d200;
@@ -140,7 +140,7 @@ void fn_7100964974(UnkEnemyMovement_ovb0262l* self) {
     self->walkinit_0x158.Reset();
     self->walk_0x150.Reset();
     self->relax_0x148.Reset();
-    fn_7100964b64(self->record);
+    DestroyThirteenStrIds(self->record);
     fn_710046e2e0(&self->anims);
     self->relax.Reset();
     fn_710078e6ac(self);

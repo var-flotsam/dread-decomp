@@ -113,7 +113,7 @@ struct __attribute__((packed)) UnkHitList_l82ac54 {
 };
 
 // The collision query: the shape at `matrix`, swept by `sweep`, against the tree.
-bool fn_7100d5babc(void* tree, u32 mask, UnkCollisionShape* shape, const UnkMatrix44_7100078c9c* matrix,
+bool SweepShapeAgainstCollisionTree(void* tree, u32 mask, UnkCollisionShape* shape, const UnkMatrix44_7100078c9c* matrix,
                    const CVector2D* sweep, UnkHitList_l82ac54* hits, u32 flags);
 
 struct UnkGrappleOwner_l82ac54 {
@@ -184,7 +184,7 @@ bool fn_710082ac54(UnkMovableGrapplePoint_l82ac54* self, UnkActor* other) {
         {
             UnkHitList_l82ac54 hits;
             UnkMatrix44_7100078c9c at = BuildTranslationMatrixFromVec3(start);
-            if (fn_7100d5babc(tree, 0x11, reinterpret_cast<UnkCollisionShape*>(&shape), &at, &sweep, &hits, 0)) {
+            if (SweepShapeAgainstCollisionTree(tree, 0x11, reinterpret_cast<UnkCollisionShape*>(&shape), &at, &sweep, &hits, 0)) {
                 for (UnkHitRecord_l82ac54* it = hits.begin(); it != hits.end(); ++it) {
                     if (!fn_71008640a4(container, &EntityOf(it->handle)->name)) {
                         blocked = true;

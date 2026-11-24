@@ -1,7 +1,7 @@
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
-bool fn_7100219588(UnkRenderManager*, const void*, u32, u32);
+bool IsPositionOnScreen(UnkRenderManager*, const void*, u32, u32);
 
 struct UnkPosHolder_b0211 {
     u8 pad_0x0[0x28];
@@ -31,5 +31,5 @@ bool fn_7100a0ea54(UnkProbe_b0211* self, f32 z, const f32* from) {
     }
     UnkRenderManager* manager = g_unk_7101d47300;
     UnkProbePoint_b0211 p = {x - dx * 70.7106781f, y - dy * 70.7106781f, z};
-    return fn_7100219588(manager, &p, 0, 0);
+    return IsPositionOnScreen(manager, &p, 0, 0);
 }

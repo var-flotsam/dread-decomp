@@ -18,7 +18,7 @@ void fn_7100219c6c(UnkRenderManager* self, bool enable, u64 layer, u32 arg3, boo
 void fn_7100219dd0(UnkRenderManager* self, u64 model, const UnkMatrix44* m, u32 a, u32 b, u64* instance, u32 c);
 void fn_7100219e10(UnkRenderManager* self, u64 object);
 void fn_71002191a4(UnkRenderManager* self, u32 value);
-bool fn_7100219588(UnkRenderManager* self, const void* pos, u32 a, u32 b);
+bool IsPositionOnScreen(UnkRenderManager* self, const void* pos, u32 a, u32 b);
 void fn_7100219e64(UnkRenderManager* self, u64 object, const UnkMatrix44* m);
 void fn_7100219804(UnkRenderManager* self, u32 layer);  // Drops the layer.
 bool fn_7100219970(UnkRenderManager* self);

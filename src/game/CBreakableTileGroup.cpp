@@ -213,7 +213,7 @@ bool fn_7100c9e2a8(UnkQueryObj* self) {
                 UnkHitList hits;
                 UnkMatrix44 identity;
                 SetIdentity(&identity);
-                if (!fn_7100d5b484(static_cast<UnkTree*>(tracker), 0x2000, reinterpret_cast<UnkShape*>(&shape),
+                if (!QueryCollisionTreeForTransformedShapeOverlaps(static_cast<UnkTree*>(tracker), 0x2000, reinterpret_cast<UnkShape*>(&shape),
                                    reinterpret_cast<const UnkMtx44*>(&identity), &hits, 0)) {
                     ok = true;
                 } else if (self->field_0x4 == 7) {

@@ -206,8 +206,8 @@ struct UnkMtx44;
 void* fn_7100ed77a0(void* player);
 extern void* g_unk_71726af0b0;
 bool fn_7100d5c518(UnkTree* self, u32 mask, const UnkBox* box, void* arg, u32 arg2);
-bool fn_7100d5b484(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, void* arg, u16 arg2);
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool QueryCollisionTreeForTransformedShapeOverlaps(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, void* arg, u16 arg2);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 void fn_7100abbd40(UnkSweepHit_lecd1a4* first, UnkSweepHit_lecd1a4* last, UnkSweepCompare_lecd1a4& compare);
 s32 fn_7100ecee50(UnkSweepAttack_lecd1a4* self, void* arg, const Vec3* from, const Vec3* delta, UnkSweepHit_lecd1a4* hit,
@@ -289,7 +289,7 @@ static inline bool Collect(UnkSweepAttack_lecd1a4* self, const Vec3& from, const
         xf.m[7] = from.y - dir.y * back;
         xf.m[11] = from.z - dir.z * back;
         UnkSweepSphere_lecd1a4 shape(&g_unk_710164779c, back);
-        bool hit = fn_7100d5b484(tree, 0x1080, reinterpret_cast<UnkShape*>(&shape),
+        bool hit = QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x1080, reinterpret_cast<UnkShape*>(&shape),
                                  reinterpret_cast<const UnkMtx44*>(&xf), &hits, 0);
         if (hit)
             return true;
@@ -300,7 +300,7 @@ static inline bool Collect(UnkSweepAttack_lecd1a4* self, const Vec3& from, const
             Vec3 twice = delta + delta;
             Vec2 flat;
             fn_710007b430(&flat, reinterpret_cast<const base::math::CVector3D*>(&twice));
-            any |= fn_7100d5babc(tree, 0x1080, reinterpret_cast<UnkShape*>(&shape),
+            any |= SweepShapeAgainstCollisionTree(tree, 0x1080, reinterpret_cast<UnkShape*>(&shape),
                                  reinterpret_cast<const UnkMtx44*>(&xf), &flat, &hits, true);
         }
         return any;

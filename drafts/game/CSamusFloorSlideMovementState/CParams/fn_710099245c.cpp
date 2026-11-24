@@ -15,7 +15,7 @@
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 struct UnkMatrix44_7100078c9c {
     f32 m[16];
@@ -156,7 +156,7 @@ void fn_710099245c(UnkCeilingState_l99245c* self, void* a1, void* a2, const UnkC
             sweep.x = 0.0f;
             sweep.y = self->height * 0.5f + self->width;
             UnkCeilingQuery_l99245c query(bottom);
-            if (fn_7100d5babc(tree, self->movement->mask, reinterpret_cast<UnkShape*>(&box),
+            if (SweepShapeAgainstCollisionTree(tree, self->movement->mask, reinterpret_cast<UnkShape*>(&box),
                               reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&sweep), &query,
                               false)) {
                 // A surface facing straight down is the ceiling the slide fits under.

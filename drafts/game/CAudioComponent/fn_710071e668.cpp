@@ -252,11 +252,11 @@ void fn_710071e668(UnkAudio_l71e668* self, UnkSoundEntry_l71e668* entry, f32 dt)
             if (value != 0 && level == 16000) {
                 UnkSound_l71e668* s = reinterpret_cast<UnkSound_l71e668*>(entry->handle.ref->object);
                 if (s->level > fn_710010aaa0(value))
-                    fn_7100105f94(reinterpret_cast<UnkInterp_7100105f94*>(GetSound_l71e668(&entry->handle)), value, 0.2f);
+                    SetSoundLevelOverTime(reinterpret_cast<UnkInterp_7100105f94*>(GetSound_l71e668(&entry->handle)), value, 0.2f);
             }
             return;
         }
-        bool visible = fn_7100219588(g_unk_7101d47300, &entry->x, 0, 0);
+        bool visible = IsPositionOnScreen(g_unk_7101d47300, &entry->x, 0, 0);
         UnkPlayingSound_ovb0074* s = reinterpret_cast<UnkPlayingSound_ovb0074*>(GetSound_l71e668(&entry->handle));
         if (visible)
             fn_7100105cf0(s, entry->visible_value);

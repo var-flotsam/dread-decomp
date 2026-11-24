@@ -141,7 +141,7 @@ UnkProbeHit_l9488d8 fn_71009488d8(UnkProbeSelf_l9488d8* self, const UnkProbePos_
     xf.m[7] = y;
     xf.m[11] = z;
     UnkProbeQuery_l9488d8 query(self->pos);
-    fn_7100d5b484(tree, self->collision_mask, reinterpret_cast<UnkShape*>(shape),
+    QueryCollisionTreeForTransformedShapeOverlaps(tree, self->collision_mask, reinterpret_cast<UnkShape*>(shape),
                   reinterpret_cast<const UnkMtx44*>(&xf), &query, 0);
     shape->Restore();
     return query.hit;

@@ -27,7 +27,7 @@ UnkMatrix44* fn_7100196248(UnkProjCamera_b0249* self, UnkViewport_b0249* view) {
     if (!self->built) {
         self->built = true;
         UnkCopyMatrix(&self->matrix, fn_71000791a8(self->field_0x30, UnkVec3f(0.0f, 0.0f, 0.0f), self->field_0x3c));
-        fn_710015bf40(&self->matrix, (f32)view->width / (f32)view->height);
+        ScaleMatrixYByAspectRatioAndNegateElement7(&self->matrix, (f32)view->width / (f32)view->height);
     }
     return &self->matrix;
 }

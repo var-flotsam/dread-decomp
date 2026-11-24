@@ -57,7 +57,7 @@ extern UnkEnumType g_unk_71726a7f08;
 void fn_71002c9a50(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726a8078[];
 
-void fn_71002ce520() {
+void InitLaunchPatternAndConfigStatics() {
     InitHeaderIds(&g_unk_71726a8900.ids);
     {
         CStrId n("SLaunchPatternStep", true);

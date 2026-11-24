@@ -16,7 +16,7 @@ struct UnkMtx44;
 struct UnkAssignedSlot;
 
 UnkShape* fn_7100976588(UnkFlagged* flagged);
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg,
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg,
                    bool flag);
 void fn_71002a5d1c(UnkAssignedSlot* self, const UnkAssignedSlot* other);
 
@@ -137,7 +137,7 @@ UnkVec3f fn_71009e0ec8(UnkCastMover* self, const UnkVec3f* pos, f32 depth, u8* o
 
     UnkCastResult cast;
     u8 hit = 0;
-    if (fn_7100d5babc(tree, self->field_0x3d0, shape->field_0x158, (const UnkMtx44*)&xf, (const Vec2*)dir, &cast,
+    if (SweepShapeAgainstCollisionTree(tree, self->field_0x3d0, shape->field_0x158, (const UnkMtx44*)&xf, (const Vec2*)dir, &cast,
                       false)) {
         UnkVec3f from = Origin(*pos);
         f32 d = cast.hit.distance;

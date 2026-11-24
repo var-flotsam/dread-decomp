@@ -44,7 +44,7 @@ static inline void* Manager_ovb0113() {
     void* manager = g_unk_71726da048;
     if (!manager) {
         manager = fn_71000839a0(0xe0, 0x3f);
-        fn_7100e1bca4(manager);
+        ConstructBillboardManager(manager);
         g_unk_71726da048 = manager;
     }
     return manager;

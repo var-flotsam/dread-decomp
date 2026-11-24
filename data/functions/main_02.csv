@@ -324,7 +324,7 @@ address,size,name,name_source,subsystem,status
 0x710020a444,8,fn_710020a444,unknown,unknown,O
 0x710020a44c,120,fn_710020a44c,unknown,unknown,O
 0x710020a4c4,220,fn_710020a4c4,unknown,unknown,O
-0x710020a5a0,228,fn_710020a5a0,unknown,unknown,O
+0x710020a5a0,228,SetNode2DScale,inferred,unknown,O
 0x710020a684,100,fn_710020a684,unknown,engine/reflection?,O
 0x710020a6e8,380,fn_710020a6e8,unknown,gui?,O
 0x710020a864,368,fn_710020a864,unknown,engine/reflection?,O
@@ -702,7 +702,7 @@ address,size,name,name_source,subsystem,status
 0x710021954c,12,fn_710021954c,unknown,game/characters?,O
 0x7100219558,8,fn_7100219558,unknown,unknown,O
 0x7100219560,40,fn_7100219560,unknown,unknown,O
-0x7100219588,272,fn_7100219588,unknown,unknown,O
+0x7100219588,272,IsPositionOnScreen,inferred,unknown,O
 0x7100219698,172,fn_7100219698,unknown,unknown,O
 0x7100219744,60,fn_7100219744,unknown,unknown,O
 0x7100219780,60,fn_7100219780,unknown,unknown,O
@@ -3513,7 +3513,7 @@ address,size,name,name_source,subsystem,status
 0x710028659c,136,fn_710028659c,unknown,unknown,M
 0x7100286624,132,fn_7100286624,unknown,unknown,O
 0x71002866a8,240,fn_71002866a8,unknown,unknown,O
-0x7100286798,392,fn_7100286798,unknown,unknown,O
+0x7100286798,392,InitNavQueryFromActor,inferred,unknown,O
 0x7100286920,68,fn_7100286920,unknown,unknown,O
 0x7100286964,68,fn_7100286964,unknown,unknown,O
 0x71002869a8,100,ResetSearchQueryResult,inferred,unknown,O
@@ -3830,7 +3830,7 @@ address,size,name,name_source,subsystem,status
 0x71002b16f4,172,fn_71002b16f4,unknown,unknown,O
 0x71002b17a0,508,fn_71002b17a0,unknown,unknown,O
 0x71002b199c,160,fn_71002b199c,unknown,unknown,m
-0x71002b1a3c,576,fn_71002b1a3c,unknown,unknown,O
+0x71002b1a3c,576,GrowOwnedListArrayAndGetListAt,inferred,unknown,O
 0x71002b1c7c,356,fn_71002b1c7c,unknown,game?,U
 0x71002b1de0,204,fn_71002b1de0,unknown,game?,U
 0x71002b1eac,536,fn_71002b1eac,unknown,unknown,O
@@ -3851,7 +3851,7 @@ address,size,name,name_source,subsystem,status
 0x71002b2bac,212,fn_71002b2bac,unknown,game/components?,O
 0x71002b2c80,396,fn_71002b2c80,unknown,ai/navmesh?,U
 0x71002b2e10,140,fn_71002b2e10,unknown,unknown,O
-0x71002b2e9c,204,fn_71002b2e9c,unknown,ai/navmesh?,O
+0x71002b2e9c,204,ConstructNavMeshItem,inferred,ai/navmesh?,O
 0x71002b2f68,428,fn_71002b2f68,unknown,ai/navmesh?,m
 0x71002b3114,532,fn_71002b3114,unknown,ai/navmesh?,U
 0x71002b3328,508,fn_71002b3328,unknown,ai/navmesh?,O
@@ -4694,7 +4694,7 @@ address,size,name,name_source,subsystem,status
 0x71002cd5bc,48,fn_71002cd5bc,unknown,unknown,O
 0x71002cd5ec,308,fn_71002cd5ec,unknown,unknown,O
 0x71002cd720,308,fn_71002cd720,unknown,unknown,O
-0x71002cd854,356,fn_71002cd854,unknown,unknown,O
+0x71002cd854,356,ReserveListStrIdElementVector,inferred,unknown,O
 0x71002cd9b8,460,fn_71002cd9b8,unknown,unknown,O
 0x71002cdb84,588,fn_71002cdb84,unknown,unknown,O
 0x71002cddd0,588,fn_71002cddd0,unknown,unknown,O
@@ -4704,7 +4704,7 @@ address,size,name,name_source,subsystem,status
 0x71002ce334,24,fn_71002ce334,unknown,unknown,O
 0x71002ce34c,228,fn_71002ce34c,unknown,unknown,O
 0x71002ce430,240,fn_71002ce430,unknown,unknown,O
-0x71002ce520,1624,fn_71002ce520,unknown,engine/reflection?,O
+0x71002ce520,1624,InitLaunchPatternAndConfigStatics,inferred,engine/reflection?,O
 0x71002ceb78,4,CPerceptionRuleSet::refl_AddAttributes,reflection,game,O
 0x71002ceb7c,240,CPerceptionRuleSet::refl_GetClass,reflection,game,O
 0x71002cec6c,5676,CPerceptionRuleSet::refl_AddFields,reflection,game,O

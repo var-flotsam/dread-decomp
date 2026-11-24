@@ -73,7 +73,7 @@ void CBombMovement_QueryHits(UnkBombHitHandler_ovb0078* self, u32 mask, const vo
         return;
     UnkLavaDropsShape_A2_b71 shape(source, size);
     UnkBombHitVisitor_laaa914 hits(*static_cast<const UnkBombQueryPos_laaa914*>(source));
-    if (fn_7100d5b484(tree, mask, reinterpret_cast<UnkShape*>(&shape),
+    if (QueryCollisionTreeForTransformedShapeOverlaps(tree, mask, reinterpret_cast<UnkShape*>(&shape),
                       reinterpret_cast<const UnkMtx44*>(&g_unk_7101a1a680), &hits, 0)) {
         for (UnkBombHitRecord_laaa914* it = hits.items(); it != hits.items() + hits.count; ++it)
             CBombMovement_DispatchHitByClass(self, kinds, const_cast<void*>(source), reinterpret_cast<UnkBombHitInfo_ovb0078*>(it),

@@ -22,7 +22,7 @@ struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 struct UnkWallOwner_l9ed53c {
     u8 pad_0x0[0x20];
@@ -178,7 +178,7 @@ bool fn_71009ed53c(UnkSamusMovement_l9ed53c* self, const CVector3D* pos, const C
     sweep.x = x * distance;
     sweep.z = dir->z * distance;
     fn_710007b430(&delta, &sweep);
-    if (!fn_7100d5babc(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&delta),
+    if (!SweepShapeAgainstCollisionTree(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&delta),
                        &query, true))
         return false;
 

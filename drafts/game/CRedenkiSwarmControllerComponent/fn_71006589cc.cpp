@@ -18,7 +18,7 @@ struct UnkVec3Result {
 };
 
 struct UnkStruct_71007455dc;
-UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
+UnkVec3Result GetPositionFromParentAndOffset(UnkStruct_71007455dc* self);
 void fn_710074566c(UnkStruct_71007455dc* self, const f32* pos);
 void fn_71007456fc(UnkTarget* target, u8 value);
 UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
@@ -94,7 +94,7 @@ void fn_71006589cc(UnkRedenkiController_l6589cc* self, UnkRedenkiMember_l6589cc*
     f32 farDistance = self->tuning->farDistance;
     UnkRedenkiGroup_l6589cc* group = member->group;
     f32 spread = group->spread;
-    UnkVec3Result pos = fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(member));
+    UnkVec3Result pos = GetPositionFromParentAndOffset(reinterpret_cast<UnkStruct_71007455dc*>(member));
     UnkVec3Result center = fn_7100745e24(reinterpret_cast<UnkParent_71007455dc*>(group));
     f32 targetX = spread * member->field_0x38 * member->field_0x44 + center.x;
     f32 targetY = spread * member->field_0x3c * member->field_0x44 + center.y;

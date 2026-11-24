@@ -126,7 +126,7 @@ inline UnkElement::UnkElement() : id(base::global::CStrId::Empty().data) {
 }
 
 typedef base::global::CRntVector<UnkElement> UnkElements;
-void fn_71002cd854(base::global::CRntVector<UnkElement>* self, u32 capacity);
+void ReserveListStrIdElementVector(base::global::CRntVector<UnkElement>* self, u32 capacity);
 
 void fn_71002cd178(UnkElements* v) { v->Clear(); }
 
@@ -144,7 +144,7 @@ static inline __attribute__((always_inline)) void PushBackCopyOol(UnkElements* v
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }
-    fn_71002cd854(v, new_capacity);
+    ReserveListStrIdElementVector(v, new_capacity);
     new (&v->data[v->count]) UnkElement(value);
     ++v->count;
 }
@@ -157,7 +157,7 @@ void fn_71002cd720(UnkElements* self, const UnkElements* other) {
     self->field_0x14 = other->field_0x14;
     self->flags = other->flags;
     self->allocator = other->allocator;
-    fn_71002cd854(self, other->capacity);
+    ReserveListStrIdElementVector(self, other->capacity);
     for (const UnkElement *p = other->data, *e = p + other->count; p != e; ++p)
         PushBackCopyOol(self, *p);
 }
@@ -165,7 +165,7 @@ void fn_71002cd720(UnkElements* self, const UnkElements* other) {
 UnkElements* fn_71002cd9b8(UnkElements* self, const UnkElements* other) {
     if (self != other) {
         self->Clear();
-        fn_71002cd854(self, other->capacity);
+        ReserveListStrIdElementVector(self, other->capacity);
         for (const UnkElement *p = other->data, *e = p + other->count; p != e; ++p)
             PushBackCopyOol(self, *p);
     }
@@ -183,13 +183,13 @@ static inline __attribute__((always_inline)) void InsertOol(UnkElements* v, UnkE
         if ((s32)new_capacity <= (s32)index)
             for (;;) {
             }
-        fn_71002cd854(v, new_capacity);
+        ReserveListStrIdElementVector(v, new_capacity);
         new (&v->data[v->count]) UnkElement(value);
     } else {
         u32 new_capacity = cap;
         if (cap <= n && v->step != 0)
             new_capacity = v->GrownCapacity(n);
-        fn_71002cd854(v, new_capacity);
+        ReserveListStrIdElementVector(v, new_capacity);
         for (u32 i = v->count - 1; i >= index; --i) {
             UnkElement* q = &v->data[i];
             new (q + 1) UnkElement(static_cast<UnkElement&&>(*q));

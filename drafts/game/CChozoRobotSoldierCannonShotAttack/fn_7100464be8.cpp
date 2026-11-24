@@ -161,7 +161,7 @@ struct UnkSelf;
 struct UnkVec3;
 bool fn_710046514c(UnkSelf* self, UnkVec3* out);
 void fn_71000769f0(UnkMatrix44* out, const void* a, const void* b, const void* c, const void* d);
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg,
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg,
                    bool flag);
 struct UnkCannonShotAttack_l464be8;
 bool fn_7100466d54(UnkCannonShotAttack_l464be8* self, const UnkMatrix44* frame, const CVector3D* aim, f32* out,
@@ -258,7 +258,7 @@ bool fn_7100464be8(UnkCannonShotAttack_l464be8* self, const CVector3D* target, C
         start.m[11] = from.z;
         UnkCannonSweepQuery_l464be8 query;
         bool blocked = false;
-        if (fn_7100d5babc(tree, self->owner->data->collision_mask, reinterpret_cast<UnkShape*>(&shape),
+        if (SweepShapeAgainstCollisionTree(tree, self->owner->data->collision_mask, reinterpret_cast<UnkShape*>(&shape),
                           reinterpret_cast<const UnkMtx44*>(&start), reinterpret_cast<const Vec2*>(&delta), &query,
                           false)) {
             UnkActor* hit = nullptr;

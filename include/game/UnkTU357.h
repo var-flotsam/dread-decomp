@@ -14,7 +14,7 @@ struct UnkStruct_7100286624;
 struct UnkStruct_7100286798;
 void fn_710028659c(UnkNavQuery* self);
 void fn_7100286624(UnkStruct_7100286624* self);
-void fn_7100286798(UnkStruct_7100286798* self, UnkActor_7100286798* actor);
+void InitNavQueryFromActor(UnkStruct_7100286798* self, UnkActor_7100286798* actor);
 UnkWeakTarget* fn_7100286ad4(void* owner);
 void fn_7100286920(UnkNavQuery* self, const base::math::CVector2D* point, u16 cell, u8 side);
 void fn_7100286964(UnkNavQuery* self, const base::math::CVector2D* start, u16 cell, UnkNavMeshHits* hits);
