@@ -68,7 +68,7 @@ __attribute__((always_inline)) static inline u32 Initialise(UnkSelf_3f47fc* self
     return result & 1;
 }
 
-u32 fn_71003f47fc(UnkSelf_3f47fc* self, void* arg) {
+u32 CBigkranXAIComponent_InitAttacks(UnkSelf_3f47fc* self, void* arg) {
     return Initialise<fn_71003e59f8, fn_71003f5604, fn_71003ea558, fn_71003f14c4, 0x149b8, 0x149c0, 0x14a20, 0x628,
                       0x730>(self, arg);
 }
@@ -84,7 +84,7 @@ void fn_71006453a8(void* entry, u8* source);
 void fn_71006a4200(void* entry, u8* source);
 void fn_71006a6e4c(void* entry, u8* source);
 
-u32 fn_710058835c(UnkSelf_3f47fc* self, void* arg) {
+u32 CGoliathXAIComponent_InitAttacks(UnkSelf_3f47fc* self, void* arg) {
     return Initialise<fn_7100590c14, fn_710058793c, fn_7100583e14, fn_71005869d0, 0x14b58, 0x14b60, 0x14bf0, 0x628,
                       0x720>(self, arg);
 }
@@ -94,7 +94,7 @@ u32 fn_7100649f88(UnkSelf_3f47fc* self, void* arg) {
                       0x618>(self, arg);
 }
 
-u32 fn_71006ad75c(UnkSelf_3f47fc* self, void* arg) {
+u32 CShakernautAIComponent_InitAttacks(UnkSelf_3f47fc* self, void* arg) {
     return Initialise<fn_710066193c, fn_71006ac5f4, fn_71006a4200, fn_71006a6e4c, 0x147f8, 0x146d0, 0x14738, 0x520,
                       0x620>(self, arg);
 }
@@ -112,12 +112,12 @@ u32 fn_7100599d3c(UnkSelf_3f47fc* self, void* arg) {
                       0x600>(self, arg);
 }
 
-u32 fn_71005cbb00(UnkSelf_3f47fc* self, void* arg) {
+u32 CInfesterAIComponent_InitAttacks(UnkSelf_3f47fc* self, void* arg) {
     return Initialise<fn_7100369490, fn_71005c9c50, fn_71005c63d0, fn_71005c5478, 0x146c8, 0x146f8, 0x14758, 0x520,
                       0x610>(self, arg);
 }
 
-u32 fn_710061fec8(UnkSelf_3f47fc* self, void* arg) {
+u32 CNailongAIComponent_InitAttacks(UnkSelf_3f47fc* self, void* arg) {
     return Initialise<fn_7100369490, fn_7100614184, fn_710060b214, fn_7100624a8c, 0x147e0, 0x146c8, 0x14760, 0x510,
                       0x638>(self, arg);
 }

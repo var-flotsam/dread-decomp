@@ -18,9 +18,9 @@ struct UnkBossBlinkAI_ovb0102;
 struct UnkStruct_71003ae428;
 struct UnkSelf;
 struct UnkRenderItemPair_b64a2;
-void fn_71003adb60(UnkBossColorAI_ovb0102* self, f32 dt, bool counting);
+void CBossAIComponent_UpdateColorChange(UnkBossColorAI_ovb0102* self, f32 dt, bool counting);
 void fn_71003ad7ec(UnkBossAITimers_ovb0102* self, f32 dt);
-void fn_71003ae858(UnkBossBlinkAI_ovb0102* self, f32 dt);
+void CBossAIComponent_UpdateDamageFX(UnkBossBlinkAI_ovb0102* self, f32 dt);
 void fn_710035d558(UnkRenderItemPair_b64a2* self);
 void fn_710035d5c4(UnkRenderItemPair_b64a2* self, f32 value);
 bool fn_71010e390c(void* menu, const CStrId* id);
@@ -111,7 +111,7 @@ void fn_71003ae15c(UnkBossAI_l3ae15c* self, f32 dt) {
     }
     self->field_0x148dc = self->field_0x148d8 ? self->field_0x148dc + dt : 0.0f;
 
-    fn_71003adb60(reinterpret_cast<UnkBossColorAI_ovb0102*>(self), dt, true);
+    CBossAIComponent_UpdateColorChange(reinterpret_cast<UnkBossColorAI_ovb0102*>(self), dt, true);
     if (self->flags->field_0x50e && self->field_0x14804 >= 1) {
         if (fn_71003ad4dc(reinterpret_cast<UnkSelf*>(self), 0.15f, self->field_0x14804))
             self->field_0x14804 = -1;
@@ -140,5 +140,5 @@ void fn_71003ae15c(UnkBossAI_l3ae15c* self, f32 dt) {
         self->near_height_time = 0.0f;
 
     fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);
-    fn_71003ae858(reinterpret_cast<UnkBossBlinkAI_ovb0102*>(self), dt);
+    CBossAIComponent_UpdateDamageFX(reinterpret_cast<UnkBossBlinkAI_ovb0102*>(self), dt);
 }

@@ -959,7 +959,7 @@ address,size,name,name_source,subsystem,status
 0x710061f9e8,384,base::reflection::refl_InitType<CNailongAIComponent::EType>,reflection,engine/reflection,O
 0x710061fb68,828,fn_710061fb68,unknown,game/ai?,O
 0x710061fea4,36,fn_710061fea4,unknown,game/ai?,O
-0x710061fec8,208,fn_710061fec8,unknown,game/ai?,O
+0x710061fec8,208,CNailongAIComponent_InitAttacks,inferred,game/ai?,O
 0x710061ff98,204,fn_710061ff98,unknown,game/ai?,O
 0x7100620064,2876,fn_7100620064,unknown,game/ai?,U
 0x7100620ba0,260,fn_7100620ba0,unknown,game/ai?,O
@@ -4323,7 +4323,7 @@ address,size,name,name_source,subsystem,status
 0x71006ad39c,380,fn_71006ad39c,unknown,game/ai?,O
 0x71006ad518,544,fn_71006ad518,unknown,game/ai?,O
 0x71006ad738,36,fn_71006ad738,unknown,game/ai?,O
-0x71006ad75c,208,fn_71006ad75c,unknown,game/ai?,O
+0x71006ad75c,208,CShakernautAIComponent_InitAttacks,inferred,game/ai?,O
 0x71006ad82c,44,fn_71006ad82c,unknown,game/ai?,O
 0x71006ad858,236,fn_71006ad858,unknown,game/ai?,O
 0x71006ad944,1124,fn_71006ad944,unknown,game/ai?,U
