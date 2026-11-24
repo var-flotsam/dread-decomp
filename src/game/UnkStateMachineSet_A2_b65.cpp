@@ -330,6 +330,12 @@ void fn_710030cf20(UnkAbilityStep_A2_b65* self) {
         RequestState_A2_b65<6, 7>(&self->machine, 4);
 }
 
+// The part of CCharClassChozoCommanderAIComponent fn_710043e880 reads: the value handed to the owner's +0x1d0.
+struct UnkChozoCommanderAI_710043e880 {
+    u8 pad_0x0[0x15a8];
+    f32 field_0x15a8;  // 0x15a8
+};
+
 // CChozoCommanderUltimateGrabAttack: after the base call, when the owner's AI (+0x10 of +0x240) is a
 // CCharClassChozoCommanderAIComponent, passes its +0x15a8 to the owner's +0x1d0 (vf_0x168); then a
 // game-manager call and state 3.
@@ -338,8 +344,9 @@ void fn_710043e880(UnkKiGrab_A2_b65* self) {
     if (UnkKiGrabAiHolder_A2_b65* holder = self->owner->field_0x240) {
         if (base::reflection::UnkReflObject* ai = holder->ai) {
             if (fn_710009d50c(ai->vf_0x0(), fn_710044d0c0())) {
+                UnkChozoCommanderAI_710043e880* commander = reinterpret_cast<UnkChozoCommanderAI_710043e880*>(ai);
                 if (UnkKiGrabTarget_A2_b65* target = self->owner->field_0x1d0)
-                    target->vf_0x168(true, *reinterpret_cast<f32*>(reinterpret_cast<char*>(ai) + 0x15a8));
+                    target->vf_0x168(true, commander->field_0x15a8);
             }
         }
     }

@@ -167,8 +167,9 @@ void fn_7100a20f64(UnkSyncCamera_b0129* self) {
     }
     if (self->timer > 0.0f) {
         fn_7100df6c78(g_unk_7101d47310, 1.0f, 0.0f);
-        // The timer and the word after it, cleared as one doubleword.
-        *reinterpret_cast<u64*>(reinterpret_cast<char*>(self) + 0x2d4) = 0;
+        // The timer and the value after it: the two stores merge into one doubleword.
+        self->timer = 0.0f;
+        self->field_0x2d8 = 0.0f;
         reinterpret_cast<CStrId&>(self->settings) = base::global::CStrId::Empty();
     }
     self->field_0x2ec = UnkVec3f(0.0f, 0.0f, 0.0f);
