@@ -27,7 +27,7 @@ struct UnkOwnedPtr_hg {
 
 void fn_71005ad514(void* member);
 void fn_71005ad8fc(void* member);
-void fn_71005af734(void* member);
+void CCharClassHydrogigaPolypsAttack_Construct(void* member);
 void fn_71005b23bc(void* member);
 void fn_71005b279c(void* member);
 
@@ -62,7 +62,7 @@ void fn_71005b981c(UnkCharClassHydrogigaAIComponent* self) {
     fn_71008c2da8(self->field_0x6c8);
     fn_71005ad514(self->field_0x738);
     fn_71005ad8fc(self->field_0x830);
-    fn_71005af734(self->field_0x920);
+    CCharClassHydrogigaPolypsAttack_Construct(self->field_0x920);
     fn_71005b23bc(self->field_0xa98);
     fn_71005b279c(self->field_0xb88);
     self->field_0x409 = 0;

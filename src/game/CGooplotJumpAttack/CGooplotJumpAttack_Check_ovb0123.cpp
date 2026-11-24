@@ -88,7 +88,7 @@ static inline UnkManager_71726af468* Manager() {
     return manager;
 }
 
-void fn_71005951fc(UnkGooplotJump_ovb0123* self, f32 dt) {
+void CGooplotJumpAttack_Update(UnkGooplotJump_ovb0123* self, f32 dt) {
     fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     switch (self->state) {
     case 0: {
@@ -114,7 +114,7 @@ void fn_71005951fc(UnkGooplotJump_ovb0123* self, f32 dt) {
     }
 }
 
-bool fn_71005944e8(UnkGooplotJump_ovb0123* self, void* arg, u32 mode) {
+bool CGooplotJumpAttack_CanStart(UnkGooplotJump_ovb0123* self, void* arg, u32 mode) {
     if (!fn_7100360b84(reinterpret_cast<CAttack*>(self), arg, mode))
         return false;
     base::math::CVector3D point = g_unk_710164779c;
@@ -181,7 +181,7 @@ struct UnkGooplotStart_ovb0123 {
     u32 field_0x80;
 };
 
-void fn_7100594c08(UnkGooplotStart_ovb0123* self) {
+void CGooplotJumpAttack_StartJump(UnkGooplotStart_ovb0123* self) {
     fn_71003608ac(reinterpret_cast<UnkAttackBase*>(self));
     {
         auto* records = reinterpret_cast<UnkGooplotRecords_ovb0123*>(reinterpret_cast<u8*>(self->owner->records) + 0x80);

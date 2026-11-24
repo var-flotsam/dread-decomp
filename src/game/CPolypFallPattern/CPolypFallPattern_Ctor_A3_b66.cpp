@@ -19,7 +19,7 @@ struct UnkPolypPattern_A3_b66 {
     base::global::CRntVector<void*> field_0x150;
 };
 
-void fn_71005af734(UnkPolypPattern_A3_b66* self) {
+void CCharClassHydrogigaPolypsAttack_Construct(UnkPolypPattern_A3_b66* self) {
     fn_71005aceb8(self);
     self->vtable = reinterpret_cast<void**>(g_unk_7101a50368) + 2;
     self->field_0xec = -1;

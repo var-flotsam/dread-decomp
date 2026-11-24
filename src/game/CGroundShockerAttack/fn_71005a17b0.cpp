@@ -24,7 +24,7 @@ extern UnkConversion g_unk_71726e8008;
 void fn_71005a1250() __attribute__((visibility("hidden")));
 void fn_71005a125c() __attribute__((visibility("hidden")));
 
-void fn_71005a17b0() {
+void CGroundShockerAttack_InitStatics() {
     InitHeaderIds(&g_unk_71726e8028.ids);
     fn_71005a020c();
     fn_710009ec00(g_unk_71726e7ec0, g_unk_71726e8028.field_0x30);

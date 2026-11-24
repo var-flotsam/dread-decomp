@@ -83,7 +83,7 @@ static inline void* SubAreaManager() {
 }
 
 // When the actor is the super Goliath, applies the environment setup.
-void fn_7100591968(UnkGoliathAI3_ovb0106* self) {
+void CGoliathAIComponent_RequestSuperGoliathSetup(UnkGoliathAI3_ovb0106* self) {
     static CStrId s_name("SP_Goliath_B_goliath", true);
     if (self->actor->name != s_name.data)
         return;

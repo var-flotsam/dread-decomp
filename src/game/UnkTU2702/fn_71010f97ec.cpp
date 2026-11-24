@@ -130,7 +130,7 @@ void fn_71010f97ec(UnkAIComponent_l0f97ec* self) {
     if (!fn_7100deabe4(g_unk_7101d47310)) {
         UnkTeamFlags_l0f97ec* flags = self->field_0x1610;
         if (!flags || flags->field_0xc4) {
-            fn_71011a726c(reinterpret_cast<UnkTeamList*>(TeamManager()),
+            CTeamManager_AddMember(reinterpret_cast<UnkTeamList*>(TeamManager()),
                           reinterpret_cast<UnkWeakTarget*>(self->actor));
             fn_71011a710c(TeamManager());
         }
