@@ -2455,9 +2455,9 @@ address,size,name,name_source,subsystem,status
 0x710015d900,636,fn_710015d900,unknown,unknown,O
 0x710015db80,16,fn_710015db80,unknown,unknown,O
 0x710015db90,116,fn_710015db90,unknown,unknown,O
-0x710015dc04,244,fn_710015dc04,unknown,unknown,U
+0x710015dc04,244,fn_710015dc04,unknown,unknown,O
 0x710015dd00,180,fn_710015dd00,unknown,unknown,U
-0x710015ddc0,380,fn_710015ddc0,unknown,msapi?,U
+0x710015ddc0,380,fn_710015ddc0,unknown,msapi?,O
 0x710015df40,224,fn_710015df40,unknown,msapi?,O
 0x710015e020,228,fn_710015e020,unknown,unknown,U
 0x710015e110,212,fn_710015e110,unknown,msapi?,U
@@ -2467,7 +2467,7 @@ address,size,name,name_source,subsystem,status
 0x710015e3d0,220,fn_710015e3d0,unknown,unknown,O
 0x710015e4b0,232,fn_710015e4b0,unknown,unknown,U
 0x710015e5a0,96,fn_710015e5a0,unknown,msapi?,O
-0x710015e600,248,fn_710015e600,unknown,unknown,U
+0x710015e600,248,fn_710015e600,unknown,unknown,O
 0x710015e700,584,fn_710015e700,unknown,unknown,O
 0x710015e950,36,fn_710015e950,unknown,unknown,O
 0x710015e980,36,fn_710015e980,unknown,unknown,O
