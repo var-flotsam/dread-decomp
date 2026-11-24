@@ -24,6 +24,7 @@ Usage:
   python tools/name_batch.py build-review --run R --branch origin/claude/<b> [--dry-run]   # one request per name the branch adds
   python tools/name_batch.py build-review --run R --proposals build/name_batch/P/proposals.csv [--dry-run]
   python tools/name_batch.py build-propose --run P --classes FILE [--rev origin/main] [--dry-run]   # FILE: one class directory per line
+  python tools/name_batch.py build-propose --run P --pool 1|2|3 [--limit 350] [--dry-run]   # a wider pool (see --help)
   python tools/name_batch.py submit --run R [--budget 180]   # create the batch (refuses past the budget)
   python tools/name_batch.py status --run R                  # processing status and request counts
   python tools/name_batch.py fetch --run R                   # results, verdicts.csv or proposals.csv, a ledger row
@@ -89,6 +90,9 @@ GENERATED = ("src/reflection/", "src/reflection_types/", "src/reflection_statics
 CUSTOM_ID = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
 PLACEHOLDER = re.compile(r"^fn_([0-9a-f]+)$")
 VERDICTS = ("right", "vague", "wrong")
+# Role words the fixed verbs replace (Construct, Destroy, DestroyAndDelete, InitStatics): a name using one is
+# held back by apply even when judged right.
+NOT_FIXED_VERB = re.compile(r"(Ctor|Dtor|Constructor|Destructor|Deleting|StaticInit|UnitStatics)(?![a-z])")
 
 NAMING = """\
 How names work in this project:
@@ -103,9 +107,12 @@ How names work in this project:
   Class::Method form. The verb phrase says what the code does, specifically enough to tell the function from its
   siblings in the same class, and claims nothing the code does not show (no purpose guessed from a callee's
   placeholder name, no "train animation" where the code only compares an id).
+- A function of a unit with no class name (the request says so) gets no class prefix: its name is a verb phrase
+  that describes it on its own, specifically enough to be told from every other function of the program
+  (FindActorByName, not Find or GetValue).
 - Fixed roles keep the project's fixed verbs: <Class>_Construct for a constructor, <Class>_Destroy for a complete
   destructor, <Class>_DestroyAndDelete for a deleting destructor, <Class>_InitStatics for a unit's static
-  initialiser (not Ctor, Dtor, DeletingDtor or StaticInit).
+  initialiser (not Ctor, Dtor, Destructor, DeletingDtor, StaticInit or InitUnitStatics).
 - Evidence is stated as facts in the code: the members it reads or writes by their reflected names and offsets,
   the strings it uses, the callees it calls, the conditions it tests, and what its callers do with it.
 - A vague name (Update, Handle, Process, Run, Use, DoStep and the like, or any name that would fit many functions)
@@ -137,7 +144,8 @@ function's sources, some of its callers and the class's reflected members.
 
 """ + NAMING + """
 Answer:
-- decision "name": name is <Class>_<VerbPhrase> for the class given (a C++ identifier, no parameters), and
+- decision "name": name is <Class>_<VerbPhrase> for the class given, or the verb phrase alone when the request
+  says the unit has no class name (a C++ identifier, no parameters), and
   evidence is one line of facts in the code that support it (members by reflected name and offset, strings,
   callees, conditions, what callers do). Name only what the code shows.
 - decision "decline": name is empty, and evidence says what the function does as far as the code shows it. Decline
@@ -171,7 +179,7 @@ PROPOSE_SCHEMA = {
 VERDICT_COLUMNS = ["custom_id", "address", "name", "class", "verdict", "evidence_true", "reason", "stated_evidence",
                    "status"]
 PROPOSAL_COLUMNS = ["custom_id", "address", "placeholder", "class", "rev", "decision", "name", "evidence", "reason",
-                    "status"]
+                    "status", "unit"]
 
 
 # ---------------------------------------------------------------------------------------------------- git
@@ -209,6 +217,10 @@ class Tree:
 
     def ls(self, directory: str) -> list[str]:
         return sorted(git("ls-tree", "-r", "--name-only", self.rev, "--", directory).split())
+
+    def dirs(self, directory: str = "src") -> list[str]:
+        """Every directory under `directory`, at any depth."""
+        return sorted(git("ls-tree", "-r", "-d", "--name-only", self.rev, "--", directory).split())
 
 
 # ---------------------------------------------------------------------------------------------------- C++ text
@@ -525,13 +537,16 @@ def build_requests(kind: str, items: list[dict], tree_for, members_for, ttl: str
     schema = REVIEW_SCHEMA if kind == "review" else PROPOSE_SCHEMA
     caching = ttl != "off"
     groups: dict[str, list[dict]] = {}
-    for it in sorted(items, key=lambda x: (x["class"], int(x["address"], 16))):
-        groups.setdefault(it["class"], []).append(it)
+    # A unit with no class name (it["unit"] set, it["class"] empty) is grouped by its directory instead.
+    for it in sorted(items, key=lambda x: (x["class"] or x.get("unit", ""), int(x["address"], 16))):
+        groups.setdefault(it["class"] or it.get("unit", ""), []).append(it)
     system = [{"type": "text", "text": rules}]
     if caching and len(items) > 1 and len(rules) / CHARS_PER_TOKEN >= MIN_CACHE_TOKENS:
         system[0]["cache_control"] = cache_control(ttl)
     requests, meta = [], []
-    for cls, group in groups.items():
+    for key, group in groups.items():
+        cls = group[0]["class"]
+        unit = "" if cls else group[0].get("unit", "")
         ctxs = [(it, gather(tree_for(it), it["lookup"])) for it in group]
         # The class's shared block: its reflected members and the defining files of its functions.
         shared_files: dict[str, str] = {}
@@ -542,7 +557,11 @@ def build_requests(kind: str, items: list[dict], tree_for, members_for, ttl: str
                 shared_files[p] = ctx["def_text"]
                 size += len(ctx["def_text"])
         members = members_for(cls) if cls else ""
-        shared = [f"Class: {cls or '(none: a free function)'}\n"]
+        if unit:
+            shared = [f"Unit: {unit} (it has no class name: its functions are named without a class prefix, by a "
+                      "verb phrase that describes each on its own)\n"]
+        else:
+            shared = [f"Class: {cls or '(none: a free function)'}\n"]
         shared.append("Reflected members (offset, name, type; members of a base class say which):\n"
                       + (members if members else "(this class is not reflected, or no class applies)") + "\n")
         if shared_files:
@@ -557,6 +576,10 @@ def build_requests(kind: str, items: list[dict], tree_for, members_for, ttl: str
             if kind == "review":
                 parts.append(f"Function at {it['address']}, in the sources as {it['lookup']}.\n"
                              f"Proposed name: {it['name']}\nStated evidence: {it['evidence']}\n")
+            elif unit:
+                parts.append(f"Function at {it['address']}, in the sources as {it['lookup']}, in unit {unit}, which "
+                             "has no class name.\nPropose a name of the form <VerbPhrase>, with no class prefix, "
+                             "that describes the function on its own, or decline.\n")
             else:
                 parts.append(f"Function at {it['address']}, in the sources as {it['lookup']}, in class {cls}.\n"
                              f"Propose a name of the form {cls}_<VerbPhrase>, or decline.\n")
@@ -586,7 +609,7 @@ def build_requests(kind: str, items: list[dict], tree_for, members_for, ttl: str
                 "messages": [{"role": "user", "content": [shared_block, {"type": "text", "text": "\n".join(parts)}]}],
             }
             requests.append({"custom_id": cid, "params": params})
-            entry = {k: it[k] for k in ("address", "name", "class", "lookup", "evidence", "rev") if k in it}
+            entry = {k: it[k] for k in ("address", "name", "class", "unit", "lookup", "evidence", "rev") if k in it}
             entry.update({"custom_id": cid, "def_path": ctx["def_path"], "callers": len(ctx["callers"]),
                           "notes": ctx["notes"]})
             meta.append(entry)
@@ -666,7 +689,7 @@ def write_run(run: str, kind: str, requests: list[dict], meta: list[dict], extra
 
 def print_summary(run: str, info: dict) -> None:
     est = info["estimate"]
-    classes = len({m["class"] for m in info["items"]})
+    classes = len({m["class"] or m.get("unit", "") for m in info["items"]})
     left = sum(1 for m in info["items"] if m["notes"])
     print(f"{run}: {est['requests']} requests in {classes} class group(s); ~{est['input_tokens']:,} input tokens "
           f"({'counted' if info['counted_tokens'] else 'estimated at ' + str(CHARS_PER_TOKEN) + ' chars/token'}); "
@@ -705,7 +728,8 @@ def cmd_build_review(args, tree_factory=Tree, members=reflected_members, client=
                 if r["decision"] != "name" or not r["name"]:
                     continue
                 items.append({"address": r["address"], "name": r["name"], "lookup": r["placeholder"],
-                              "class": r["class"], "evidence": r["evidence"], "rev": r["rev"]})
+                              "class": r["class"], "unit": r.get("unit") or "", "evidence": r["evidence"],
+                              "rev": r["rev"]})
         extra["proposals"] = str(args.proposals)
         extra["from_run"] = Path(args.proposals).resolve().parent.name
     if not items:
@@ -722,12 +746,14 @@ def cmd_build_review(args, tree_factory=Tree, members=reflected_members, client=
     return 0
 
 
-def unnamed_matched(directory: str, tree: Tree, statuses: dict[str, str]) -> tuple[list[str], list[str]]:
+def unnamed_matched(directory: str, tree: Tree, statuses: dict[str, str],
+                    direct: bool = False) -> tuple[list[str], list[str]]:
     """The fn_<addr> functions defined in a class directory whose status is O, and those skipped because a
-    generated directory refers to them (a clone family shared with other units, PR #649)."""
+    generated directory refers to them (a clone family shared with other units, PR #649). `direct`: only the
+    directory's own files, not those of its subdirectories (which are pools of their own)."""
     found, skipped = [], []
     for f in tree.ls(directory):
-        if not f.endswith(".cpp"):
+        if not f.endswith(".cpp") or (direct and f.rsplit("/", 1)[0] != directory):
             continue
         text = tree.read(f)
         for name in sorted(set(re.findall(r"\bfn_[0-9a-f]{10}\b", mask(text)))):
@@ -745,11 +771,90 @@ def function_statuses() -> dict[str, str]:
     return {r["name"]: r["status"] for r in functions.rows()}
 
 
-def cmd_build_propose(args, tree_factory=Tree, members=reflected_members, statuses=None, client=None) -> int:
+# The pools beyond the listed classes (--pool). A real class name is a C++-style type name that is not a
+# placeholder (Unk...); a unit without one is an Unk... directory or an address-named src/game_* folder.
+POOLS = {
+    1: "real-named class directories under src/game/",
+    2: "real-named class directories outside src/game/",
+    3: "unit directories without a class name (Unk..., src/game_*); names carry no class prefix",
+}
+REAL_CLASS = re.compile(r"^[A-Z][A-Za-z0-9]*$")
+
+
+def pool_directories(tree, pool: int) -> list[str]:
+    """The directories of a pool, each a unit of its own (only its direct files count)."""
+    out = []
+    for d in tree.dirs("src"):
+        if (d + "/").startswith(GENERATED):
+            continue
+        base = d.rsplit("/", 1)[-1]
+        real = bool(REAL_CLASS.match(base)) and not base.startswith("Unk")
+        in_game = d.startswith("src/game/")
+        if pool == 1 and real and in_game:
+            out.append(d)
+        elif pool == 2 and real and not in_game:
+            out.append(d)
+        elif pool == 3 and (base.startswith("Unk") or (d.count("/") == 1 and base.startswith("game_"))):
+            out.append(d)
+    return out
+
+
+def equivalence_addresses() -> set[str]:
+    """Addresses with a verdict in data/equivalence.csv: their sources may yet change, so they get no name here."""
+    path = ROOT / "data" / "equivalence.csv"
+    if not path.exists():
+        return set()
+    with path.open(newline="", encoding="utf-8") as fh:
+        return {r["address"].lower() for r in csv.DictReader(fh)}
+
+
+def proposed_before(exclude: str = "") -> set[str]:
+    """Addresses an earlier propose run already answered for (named or declined), from its proposals.csv."""
+    seen = set()
+    for p in sorted(STATE.glob("*/proposals.csv")):
+        if p.parent.name == exclude:
+            continue
+        with p.open(newline="", encoding="utf-8") as fh:
+            seen |= {r["address"].lower() for r in csv.DictReader(fh) if r.get("decision")}
+    return seen
+
+
+def pool_items(tree, statuses: dict[str, str], pool: int, limit: int, rev: str, skip: set[str]) -> list[dict]:
+    """Items for a pool, whole directories in order of their lowest unnamed address, up to `limit` requests."""
+    units = []
+    taken: set[str] = set()
+    for d in pool_directories(tree, pool):
+        found, skipped = unnamed_matched(d, tree, statuses, direct=True)
+        found = [n for n in found if n not in taken and "0x" + PLACEHOLDER.match(n).group(1) not in skip]
+        taken |= set(found)
+        if found:
+            units.append((min(int(PLACEHOLDER.match(n).group(1), 16) for n in found), d, found))
+    items = []
+    for _, d, found in sorted(units):
+        if limit and items and len(items) + len(found) > limit:
+            break
+        base = d.rsplit("/", 1)[-1]
+        for name in found:
+            addr = "0x" + PLACEHOLDER.match(name).group(1)
+            it = {"address": addr, "name": name, "lookup": name, "class": base if pool != 3 else "", "rev": rev}
+            if pool == 3:
+                it["unit"] = d
+            items.append(it)
+    return items
+
+
+def cmd_build_propose(args, tree_factory=Tree, members=reflected_members, statuses=None, client=None,
+                      skip=None) -> int:
     tree = tree_factory(args.rev)
     statuses = statuses if statuses is not None else function_statuses()
     items = []
-    for line in Path(args.classes).read_text(encoding="utf-8").splitlines():
+    if getattr(args, "pool", None):
+        if skip is None:
+            skip = equivalence_addresses() | proposed_before(exclude=args.run)
+        items = pool_items(tree, statuses, args.pool, args.limit, args.rev, skip)
+        print(f"  pool {args.pool} ({POOLS[args.pool]}): {len(items)} functions in "
+              f"{len({it['class'] or it['unit'] for it in items})} directories")
+    for line in (Path(args.classes).read_text(encoding="utf-8").splitlines() if args.classes else []):
         directory = line.split("#", 1)[0].strip().rstrip("/")
         if not directory:
             continue
@@ -962,7 +1067,7 @@ def cmd_fetch(args, client=None) -> int:
             rows.append({"custom_id": m["custom_id"], "address": m["address"], "placeholder": m["lookup"],
                          "class": m["class"], "rev": m["rev"], "decision": data["decision"] if data else "",
                          "name": data["name"] if data else "", "evidence": data["evidence"] if data else "",
-                         "reason": data["reason"] if data else "", "status": status})
+                         "reason": data["reason"] if data else "", "status": status, "unit": m.get("unit", "")})
     out = d / ("verdicts.csv" if kind == "review" else "proposals.csv")
     with out.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=VERDICT_COLUMNS if kind == "review" else PROPOSAL_COLUMNS,
@@ -1029,6 +1134,8 @@ def cmd_apply(args, runner=None) -> int:
     with vpath.open(newline="", encoding="utf-8") as fh:
         rows = list(csv.DictReader(fh))
     applied, rejected, none = choose(rows)
+    held = [r for r in applied if NOT_FIXED_VERB.search(r["name"])]
+    applied = [r for r in applied if r not in held]
     landed, failed = [], []
     for r in applied:
         res = runner(r["address"], r["name"], r["stated_evidence"])
@@ -1046,6 +1153,10 @@ def cmd_apply(args, runner=None) -> int:
               f"{'true' if r['evidence_true'] == 'yes' else 'not true'}; {r['reason']}" for r in rejected]
     lines += ["", "No verdict (placeholder kept):", ""]
     lines += [f"- `{r['address']}` `{r['name']}`: {r['status']}" for r in none]
+    if held:
+        lines += ["", "Judged right, but held back: not in the project's fixed verbs (Construct, Destroy, "
+                  "DestroyAndDelete, InitStatics):", ""]
+        lines += [f"- `{r['address']}` `{r['name']}`" for r in held]
     if failed:
         lines += ["", "Judged right, but tools/rename.py refused:", ""]
         lines += [f"- `{r['address']}` `{r['name']}`: {msg.splitlines()[-1] if msg else 'failed'}" for r, msg in failed]
@@ -1053,6 +1164,7 @@ def cmd_apply(args, runner=None) -> int:
     lines += ["", f"Cost: ${spend:.2f} at the batch rate (ledger), {per} per landed name."]
     (d / "apply.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"{args.run}: applied {len(landed)}, rejected {len(rejected)}, no verdict {len(none)}"
+          + (f", held for their verbs {len(held)}" if held else "")
           + (f", rename failed {len(failed)}" if failed else "") + f"; {d / 'apply.md'}")
     print(f"  cost per landed name: {per} (${spend:.2f} in all). Nothing was committed or pushed.")
     return 0
@@ -1090,7 +1202,12 @@ def main(argv: list[str] | None = None) -> int:
     src.add_argument("--proposals")
     p = sub.add_parser("build-propose")
     build_opts(p)
-    p.add_argument("--classes", required=True)
+    src = p.add_mutually_exclusive_group(required=True)
+    src.add_argument("--classes", help="a file: one class directory per line")
+    src.add_argument("--pool", type=int, choices=sorted(POOLS),
+                     help="; ".join(f"{k}: {v}" for k, v in POOLS.items())
+                     + " (functions in data/equivalence.csv or answered by an earlier propose run are left out)")
+    p.add_argument("--limit", type=int, default=0, help="with --pool: at most this many requests (whole directories)")
     p.add_argument("--rev", default="origin/main")
     p = sub.add_parser("submit")
     p.add_argument("--run", required=True)

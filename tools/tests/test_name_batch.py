@@ -31,6 +31,13 @@ class FakeTree:
     def ls(self, directory):
         return sorted(p for p in self.files if p.startswith(directory + "/"))
 
+    def dirs(self, directory="src"):
+        out = set()
+        for p in self.files:
+            parts = p.split("/")[:-1]
+            out |= {"/".join(parts[:i]) for i in range(2, len(parts) + 1)}
+        return sorted(d for d in out if d.startswith(directory + "/"))
+
 
 FOO = """\
 // The foo unit.
@@ -444,6 +451,71 @@ class Propose(StateDir):
         found, skipped = nb.unnamed_matched("src/game/CFoo", FakeTree(files), statuses)
         self.assertEqual(found, ["fn_7100000100"])
         self.assertEqual(skipped, ["fn_7100000400"])
+
+    POOL_FILES = {
+        "src/game/CFoo/a.cpp": "int fn_7100000500() { return 1; }\n",
+        "src/game/animtree/CNode/n.cpp": "int fn_7100000100() { return 1; }\n",
+        "src/game/animtree/CNode/CSub/s.cpp": "int fn_7100000110() { return 1; }\n",
+        "src/game/UnkThing/u.cpp": "int fn_7100000200() { return 1; }\n",
+        "src/base/CRes/r.cpp": "int fn_7100000300() { return 1; }\nint fn_7100000310() { return 2; }\n",
+        "src/base/UnkUnit7/x.cpp": "int fn_7100000400() { return 1; }\n",
+        "src/game_lo/fn_7100000600.cpp": "int fn_7100000600() { return 1; }\n",
+        "src/game_s1/UnkUnit9/y.cpp": "int fn_7100000700() { return 1; }\n",
+        "src/lifted/CLift/l.cpp": "int fn_7100000800() { return 1; }\n",
+    }
+
+    def test_pool_directories(self):
+        tree = FakeTree(self.POOL_FILES)
+        self.assertEqual(nb.pool_directories(tree, 1),
+                         ["src/game/CFoo", "src/game/animtree/CNode", "src/game/animtree/CNode/CSub"])
+        self.assertEqual(nb.pool_directories(tree, 2), ["src/base/CRes"])
+        self.assertEqual(nb.pool_directories(tree, 3),
+                         ["src/base/UnkUnit7", "src/game/UnkThing", "src/game_lo", "src/game_s1",
+                          "src/game_s1/UnkUnit9"])
+
+    def test_pool_items_skip_limit_and_no_prefix(self):
+        tree = FakeTree(self.POOL_FILES)
+        statuses = {f"fn_7100000{a}": "O" for a in ("100", "110", "200", "300", "310", "400", "500", "600", "700")}
+        items = nb.pool_items(tree, statuses, 1, 0, "r", skip={"0x7100000500"})
+        # Each directory takes only its own files; the subdirectory is its own unit.
+        self.assertEqual([(i["address"], i["class"]) for i in items],
+                         [("0x7100000100", "CNode"), ("0x7100000110", "CSub")])
+        items = nb.pool_items(tree, statuses, 2, 1, "r", skip=set())
+        self.assertEqual(len(items), 2)  # a directory is never split by the limit, but the first is always taken
+        items = nb.pool_items(tree, statuses, 3, 2, "r", skip=set())
+        self.assertEqual([(i["address"], i["class"], i["unit"]) for i in items],
+                         [("0x7100000200", "", "src/game/UnkThing"), ("0x7100000400", "", "src/base/UnkUnit7")])
+
+    def test_unit_requests_ask_for_no_prefix(self):
+        tree = FakeTree(self.POOL_FILES)
+        it = {"address": "0x7100000600", "name": "fn_7100000600", "lookup": "fn_7100000600", "class": "",
+              "unit": "src/game_lo", "rev": "r"}
+        reqs, meta = nb.build_requests("propose", [it], lambda _: tree, members)
+        content = reqs[0]["params"]["messages"][0]["content"]
+        self.assertIn("Unit: src/game_lo", content[0]["text"])
+        self.assertIn("with no class prefix", content[-1]["text"])
+        self.assertEqual(meta[0]["unit"], "src/game_lo")
+        rev = dict(it, name="CountLiveActors", evidence="counts entries")
+        reqs, _ = nb.build_requests("review", [rev], lambda _: tree, members)
+        self.assertIn("Unit: src/game_lo", reqs[0]["params"]["messages"][0]["content"][0]["text"])
+
+    def test_build_propose_pool_skips_given_addresses(self):
+        args = SimpleNamespace(run="pp", rev="r", pool=2, limit=0, classes=None, dry_run=True, effort="high",
+                               cache_ttl="5m")
+        statuses = {"fn_7100000300": "O", "fn_7100000310": "O"}
+        self.assertEqual(nb.cmd_build_propose(args, tree_factory=lambda rev: FakeTree(self.POOL_FILES),
+                                              members=members, statuses=statuses, skip={"0x7100000300"}), 0)
+        meta = json.loads((nb.STATE / "pp" / "meta.json").read_text())
+        self.assertEqual([m["address"] for m in meta["items"]], ["0x7100000310"])
+
+
+class FixedVerbs(StateDir):
+    def test_apply_holds_names_outside_the_fixed_verbs(self):
+        for bad in ("CFoo_Dtor", "CFoo_DeletingDestructor", "CFoo_InitUnitStatics", "CFoo_StaticInit", "CFoo_Ctor"):
+            self.assertTrue(nb.NOT_FIXED_VERB.search(bad), bad)
+        for good in ("CFoo_Destroy", "CFoo_DestroyAndDelete", "CFoo_InitStatics", "CActor_Construct",
+                     "CActorDef_FindPartById"):
+            self.assertFalse(nb.NOT_FIXED_VERB.search(good), good)
 
 
 if __name__ == "__main__":
