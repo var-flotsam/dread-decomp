@@ -77,6 +77,8 @@ function compiles to exactly the original machine code and reads as source a gam
 Everything you return is only a candidate: each is compiled with the project compiler and compared with the
 original byte for byte, and only a candidate that passes is kept. You cannot compile, so return several
 genuinely different attempts (different hypotheses about the original source), not variations of spacing.
+Deliberate only as far as it takes to form the hypotheses: an answer cut off by the output limit is lost whole,
+so write the candidates once you have them instead of simulating the compiler at length.
 
 The compiler is upstream Clang 9.0.1 for AArch64: --target=aarch64-none-elf -mcpu=cortex-a57 -O3 -fPIC
 -fno-strict-aliasing -std=c++1z -fno-rtti -fno-exceptions. Code generation follows the source closely in ways you
@@ -88,7 +90,13 @@ written with a pointer or with an index.
 
 Names in the sources: fn_<address> is a function nobody has named, g_unk_<address> a global, Unk... a type,
 field_0x18 or pad_0x.. a member, vf_0x<offset> a virtual function at that vtable offset. Keep the names that are
-there; never invent a new placeholder of these forms, and never rename what exists.
+there and never rename what exists. Never write an fn_ or g_unk_ name that the file or the headers do not declare.
+A type or member you have to add (a view of the part of an object the function reads) is named the same honest
+way, because nobody knows its real name: the type Unk<What>_<the suffix the file's own types carry, or the
+function's address>, unlike any type in the file or the headers; a member field_0x<offset> with its real type
+and an `// 0x<offset>` comment; the bytes before it `u8 pad_0x<offset>[...]`. A descriptive name for a new member
+or type (speed, launch_value, TunablesView) is a guess and is not accepted; use a real name only where the file
+or the headers show it (an existing type that already has the member is better than a new view).
 
 Readable source (the project's rules):
 - Code no developer would write is an optimization not undone yet: look for the inlined helper (written once
@@ -146,8 +154,9 @@ SCHEMA = {
 HARVEST_COLUMNS = ["custom_id", "pool", "address", "function", "path", "candidate", "kept", "why", "change"]
 INCLUDE = re.compile(r'^[ \t]*#[ \t]*include[ \t]+"([^"]+)"', re.M)
 SPECIFIC = re.compile(r"\b(?:fn_\w+|g_\w+|[A-Za-z_]\w*[A-Z]\w*|[A-Z]\w{2,})\b")
-PLACEHOLDER = re.compile(r"\b(?:fn_[0-9a-f]{6,}|g_unk_\w+|unk_[0-9a-f]{4,}\w*|Unk[A-Z_]\w*|field_0x\w+|pad_0x\w+|"
-                         r"vf_0x\w+)\b")
+# Names a candidate may not bring in: a function or global nothing shown declares.
+PLACEHOLDER = re.compile(r"\b(?:fn_[0-9a-f]{6,}|g_unk_\w+)\b")
+NEW_TYPE = re.compile(r"\b(?:struct|class|union|enum(?:\s+class)?)\s+([A-Za-z_]\w*)\s*(?::[^;{()]*)?\{")
 # Forms a candidate may not have more of than the text it replaces (fakematch's kinds are counted apart).
 FORBIDDEN = {
     "goto": re.compile(r"\bgoto\b"),
@@ -213,10 +222,12 @@ def counts(text: str) -> dict[str, int]:
     return {what: len(rx.findall(code)) for what, rx in FORBIDDEN.items()}
 
 
-def screen(path: str, old_text: str, name: str, code: str, pool: str, known: str) -> tuple[str | None, str]:
+def screen(path: str, old_text: str, name: str, code: str, pool: str, known: str,
+           taken: frozenset[str] | set[str] = frozenset()) -> tuple[str | None, str]:
     """(the file's new text, "") when a candidate may be compiled, or (None, why not): it must define the
-    function, add none of the FORBIDDEN forms, no placeholder name that `known` (the file and the headers sent)
-    does not have, and leave fakematch nothing to report in it (clean) or nothing new (near)."""
+    function, add none of the FORBIDDEN forms, no fn_ or g_unk_ name that `known` (the file and the headers sent)
+    does not have, define no type whose name the tree already has (`taken`), and leave fakematch nothing to
+    report in it (clean) or nothing new (near)."""
     span = definition_span(old_text, name)
     if span is None:
         return None, "the file no longer defines the function"
@@ -231,7 +242,11 @@ def screen(path: str, old_text: str, name: str, code: str, pool: str, known: str
             return None, f"adds {what}"
     new_names = sorted(set(PLACEHOLDER.findall(nb.mask(code))) - set(PLACEHOLDER.findall(known)))
     if new_names:
-        return None, f"a placeholder that was not there: {new_names[0]}"
+        return None, f"a name nothing shown declares: {new_names[0]}"
+    old_types = set(NEW_TYPE.findall(nb.mask(old_fn)))   # a type the replaced text itself defined may stay
+    for t in NEW_TYPE.findall(nb.mask(code)):
+        if t not in old_types and (t in taken or re.search(rf"\b{re.escape(t)}\b", nb.mask(known))):
+            return None, f"defines a type the tree already has: {t}"
     lo = line_of(new_text, span[0])
     hi = line_of(new_text, span[0] + len(code.strip()))
     now = steering_in(path, new_text, lo, hi)
@@ -575,8 +590,9 @@ def context(item: dict, run: str) -> dict | None:
 
 
 def max_tokens_for(fn_chars: int, k: int) -> int:
-    """An output cap sized from the function: K rewrites of it, plus room to think (thinking counts)."""
-    return int(min(32_000, max(12_000, 10_000 + k * (fn_chars / 3.0) * 1.5)))
+    """An output cap sized from the function: K rewrites of it, plus room to think (thinking counts, and took
+    over 12,000 tokens in half of the first pilot's requests, which were lost whole)."""
+    return int(min(48_000, max(32_000, 28_000 + k * (fn_chars / 3.0) * 1.5)))
 
 
 def custom_id(pool: str, address: str) -> str:
@@ -769,6 +785,16 @@ def cmd_fetch(args, client=None) -> int:
     return 0
 
 
+def tree_types() -> set[str]:
+    """Every type name the tracked sources define (src/, include/, drafts/): a candidate's new type needs another."""
+    if "types" not in _state:
+        out = subprocess.run(["git", "grep", "-h", "-o", "-E", r"\b(struct|class|union)\s+[A-Za-z_]\w*", "--", "src",
+                              "include", "drafts"], cwd=ROOT, capture_output=True, text=True, encoding="utf-8",
+                             errors="replace").stdout
+        _state["types"] = {ln.split()[-1] for ln in out.splitlines() if ln.strip()}
+    return _state["types"]
+
+
 def judge(run: str, m: dict, index: int, cand: dict, base_text: str, base: list[dict] | str, known: str) -> dict:
     """One candidate's row of harvest.csv; a kept one's new file text is in row['text']."""
     row = {"custom_id": m["custom_id"], "pool": m["pool"], "address": m["address"], "function": m["name"],
@@ -776,7 +802,7 @@ def judge(run: str, m: dict, index: int, cand: dict, base_text: str, base: list[
     if isinstance(base, str):
         row["why"] = f"the file does not build as it is: {base}"
         return row
-    new_text, why = screen(m["path"], base_text, m["name"], cand["code"], m["pool"], known)
+    new_text, why = screen(m["path"], base_text, m["name"], cand["code"], m["pool"], known, tree_types())
     if new_text is None:
         row["why"] = why
         return row

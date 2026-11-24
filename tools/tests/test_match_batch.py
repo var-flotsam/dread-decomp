@@ -103,6 +103,18 @@ class Screen(unittest.TestCase):
         self.assertIsNone(text)
         self.assertIn("fn_7100000abc", why)
 
+    def test_a_new_view_keeps_placeholder_names_and_needs_a_free_type_name(self):
+        view = ("struct UnkFooView_7100000100 {\n    u8 pad_0x0[0x4];\n    int field_0x4;  // 0x4\n};\n\n"
+                "int fn_7100000100(UnkFoo* self) {\n"
+                "    return reinterpret_cast<UnkFooView_7100000100*>(self)->field_0x4;\n}")
+        self.assertEqual(self.screen(view)[1], "")
+        text, why = mb.screen("src/game/CFoo/CFoo.cpp", FILE, "fn_7100000100", view, "clean", FILE,
+                              {"UnkFooView_7100000100"})
+        self.assertIsNone(text)
+        self.assertIn("already has: UnkFooView_7100000100", why)
+        text, why = self.screen(view.replace("UnkFooView_7100000100", "UnkFoo"))
+        self.assertIsNone(text)
+
     def test_must_define_the_function(self):
         text, why = self.screen("int Other(UnkFoo* self) {\n    return self->limit;\n}")
         self.assertIsNone(text)
@@ -191,9 +203,9 @@ class Requests(unittest.TestCase):
         self.assertIn("cmp x10, x1", task)
 
     def test_output_cap_follows_the_function(self):
-        self.assertEqual(mb.max_tokens_for(300, 4), 12_000)
+        self.assertEqual(mb.max_tokens_for(300, 4), 32_000)
         self.assertGreater(mb.max_tokens_for(9_000, 4), mb.max_tokens_for(3_000, 4))
-        self.assertEqual(mb.max_tokens_for(900_000, 4), 32_000)
+        self.assertEqual(mb.max_tokens_for(900_000, 4), 48_000)
 
     def test_take(self):
         pool = list(range(100))
