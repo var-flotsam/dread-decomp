@@ -80,7 +80,7 @@ static inline UnkLeafCollider_b0175* LeafCollider(UnkLeafTable_b0175* table, s32
 }
 
 struct UnkQueryCtx;
-struct UnkNode {
+struct UnkBvhNode {
     f32 minX, minY, maxX, maxY;
     s32 index;
 };
@@ -96,7 +96,7 @@ struct UnkBoxCtx_b0175 {
 };
 UnkColliderResult fn_7100d58ee4(UnkReflObject* obj, void* a, void* b, u32 layers, void* c, u32 d);
 
-bool fn_7100d5d0bc(UnkQueryCtx* c, const UnkNode* node) {
+bool fn_7100d5d0bc(UnkQueryCtx* c, const UnkBvhNode* node) {
     UnkBoxCtx_b0175* ctx = reinterpret_cast<UnkBoxCtx_b0175*>(c);
     UnkLeafCollider_b0175* collider = LeafCollider(ctx->table, node->index);
     if (collider && collider->enabled && (collider->GetLayers() & ctx->mask)) {
@@ -118,7 +118,7 @@ struct UnkShapeCtx_b0175 {
     void* bounds;  // 0x68
     u16 arg2;      // 0x70
 };
-bool fn_7100d5cfb4(UnkQueryCtx* c, const UnkNode* node) {
+bool fn_7100d5cfb4(UnkQueryCtx* c, const UnkBvhNode* node) {
     UnkShapeCtx_b0175* ctx = reinterpret_cast<UnkShapeCtx_b0175*>(c);
     UnkLeafCollider_b0175* collider = LeafCollider(ctx->table, node->index);
     if (collider && collider->enabled && (collider->GetLayers() & ctx->mask) && !collider->IsSame(ctx->shape)) {
@@ -143,7 +143,7 @@ struct UnkSweepCtx_b0175 {
 UnkColliderResult fn_7100d58ab4(void* a, void* b, UnkReflObject* obj, void* c, void* d, u32 layers, void* e,
                                 bool flag);
 
-bool fn_7100d5cd9c(UnkQueryCtx* c, const UnkNode* node) {
+bool fn_7100d5cd9c(UnkQueryCtx* c, const UnkBvhNode* node) {
     UnkSweepCtx_b0175* ctx = reinterpret_cast<UnkSweepCtx_b0175*>(c);
     UnkLeafCollider_b0175* collider = LeafCollider(ctx->table, node->index);
     if (collider && collider->enabled && (collider->GetLayers() & ctx->mask) && !collider->IsSame(ctx->shape)) {
@@ -163,7 +163,7 @@ struct UnkPairCtx_b0175 {
     UnkLeafCollider_b0175* self;
     u16 arg2;  // 0x28
 };
-bool fn_7100d5cea8(UnkQueryCtx* c, const UnkNode* node) {
+bool fn_7100d5cea8(UnkQueryCtx* c, const UnkBvhNode* node) {
     UnkPairCtx_b0175* ctx = reinterpret_cast<UnkPairCtx_b0175*>(c);
     UnkLeafCollider_b0175* collider = LeafCollider(ctx->table, node->index);
     if (collider && collider->enabled && (collider->GetLayers() & ctx->mask) && ctx->self != collider) {
@@ -184,7 +184,7 @@ struct UnkPairSweepCtx_b0175 {
     UnkLeafCollider_b0175* self;
     u8 delta[8];  // 0x28
 };
-bool fn_7100d5cc80(UnkQueryCtx* c, const UnkNode* node) {
+bool fn_7100d5cc80(UnkQueryCtx* c, const UnkBvhNode* node) {
     UnkPairSweepCtx_b0175* ctx = reinterpret_cast<UnkPairSweepCtx_b0175*>(c);
     UnkLeafCollider_b0175* collider = LeafCollider(ctx->table, node->index);
     if (collider && collider->enabled && (collider->GetLayers() & ctx->mask) && ctx->self != collider) {

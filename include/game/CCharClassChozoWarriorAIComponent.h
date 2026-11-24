@@ -5,6 +5,6 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
-struct UnkNode;
-void fn_7100497584(UnkNode* self);
+struct UnkChozoWarriorCharClass;
+void fn_7100497584(UnkChozoWarriorCharClass* self);
 extern void* g_unk_7101a3cab0[];
