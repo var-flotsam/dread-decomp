@@ -98,12 +98,12 @@ void fn_71001c465c(UnkModeOwner257* self, s32 mode);
 UnkGuiPos fn_71011f61bc(const UnkGuiItemState* state, const UnkGuiPos* pos);
 const UnkGuiScale* fn_71011b7e74(UnkGuiRoot* root);
 void fn_710020bbe4(void* position, const f32* value);
-void fn_710019db08(UnkColorLayer224* self, const base::color::CColor4F* color);
+void SetColorAndCacheRGBA8Bytes(UnkColorLayer224* self, const base::color::CColor4F* color);
 void* CGUIManager_FindInEntryListByKey(UnkGuiListOwner_b49* self, u64 key);
 void fn_7100b1c56c(const UnkGuiItemState* parent, UnkGuiItemState* out, const UnkGuiItemState* child, u32 mode,
                    u32 changes);
 void fn_710020a6e8(UnkXformNodeNegZ* self, const UnkVec3f* v);
-void fn_710019c4fc(UnkFadeLayer* layer, const base::color::CColor4F* color);
+void SetFadeLayerColor(UnkFadeLayer* layer, const base::color::CColor4F* color);
 
 extern f32 g_unk_710164d1c8;  // the colour scale
 
@@ -359,7 +359,7 @@ void fn_71011ec768(UnkLabelLayout* layout) {
                         base::color::CColor4F run_color(
                             NonNegative(state->color.r * color_scale), NonNegative(color_scale * state->color.g),
                             NonNegative(color_scale * state->color.b), NonNegative(color_scale * state->color.a));
-                        fn_710019db08(reinterpret_cast<UnkColorLayer224*>(run->object->text->layer), &run_color);
+                        SetColorAndCacheRGBA8Bytes(reinterpret_cast<UnkColorLayer224*>(run->object->text->layer), &run_color);
                     }
 
                     for (u64 i = 0; i < run->glyph_count; ++i) {
@@ -429,7 +429,7 @@ void fn_71011ec768(UnkLabelLayout* layout) {
                             base::color::CColor4F glyph_color(
                                 NonNegative(color_scale * item.color.r), NonNegative(color_scale * item.color.g),
                                 NonNegative(color_scale * item.color.b), NonNegative(color_scale * item.color.a));
-                            fn_710019c4fc(glyph->object->holder->layer, &glyph_color);
+                            SetFadeLayerColor(glyph->object->holder->layer, &glyph_color);
                         }
                         fn_710020ac34(&glyph->object->node, item.field_0x3c);
                     }

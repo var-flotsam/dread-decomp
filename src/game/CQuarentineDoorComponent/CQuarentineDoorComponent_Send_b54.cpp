@@ -55,7 +55,7 @@ void fn_71007defe0(UnkQuarentineDoor_b54* self) {
     if (self->owner)
         if (void* target = self->owner->field_0x220)
             SendParams_b54(target, base::global::CName("opened").hash, 0xf4061ff25a2163d6, 2);
-    fn_71007df12c(self, true);
+    ApplyDoorOpenState(self, true);
 }
 
 void fn_71007df384(UnkQuarentineDoor_b54* self) {

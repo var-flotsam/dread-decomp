@@ -92,6 +92,6 @@ void fn_71001d7b64(base::global::CRntVector<u8>* vector, u32 capacity) {
     Reserve<&g_unk_7101d47108>(vector, capacity);
 }
 
-void fn_71002682e8(base::global::CRntVector<u8>* vector, u32 capacity) {
+void ReserveSmartLinkEntryVector(base::global::CRntVector<u8>* vector, u32 capacity) {
     Reserve<&g_unk_7101d47200>(vector, capacity);
 }

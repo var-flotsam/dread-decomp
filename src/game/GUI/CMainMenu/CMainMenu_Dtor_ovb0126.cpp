@@ -19,7 +19,7 @@ extern char g_unk_7101a9cf08[];  // the reference pair's vtable
 struct UnkMainMenuMember3e0_ovb0126;
 void fn_7100b49a64(UnkMainMenuMember3e0_ovb0126* self);
 struct UnkMainMenuMember2f8_ovb0126;
-void fn_7100b52460(UnkMainMenuMember2f8_ovb0126* self);
+void DestroyMainMenuSoundMember(UnkMainMenuMember2f8_ovb0126* self);
 
 struct UnkMainMenuListener_ovb0126 {
     char* vtable;
@@ -65,7 +65,7 @@ struct UnkMainMenuMember3e0Holder_ovb0126 {
 struct UnkMainMenuMember2f8Holder_ovb0126 {
     u8 storage[0x48];
     __attribute__((always_inline)) ~UnkMainMenuMember2f8Holder_ovb0126() {
-        fn_7100b52460(reinterpret_cast<UnkMainMenuMember2f8_ovb0126*>(this));
+        DestroyMainMenuSoundMember(reinterpret_cast<UnkMainMenuMember2f8_ovb0126*>(this));
     }
 };
 

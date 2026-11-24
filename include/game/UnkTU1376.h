@@ -15,14 +15,14 @@ struct UnkDoorLife_b44a2;
 struct UnkDoorLock;
 struct UnkUnit2186Object;
 struct UnkDoorShieldLife6_ovb0001;
-bool fn_71008d0ef4(void*);
+bool OpenDoorUnlessOpen(void*);
 void fn_71008d0a08(UnkDoorShieldLife6_ovb0001* self, const void* animation, bool reverse, bool loop);
 void* fn_71008d89b0(void* owner);
 void fn_71008d498c(UnkDoorLife_b44a2* self, u32 a, u32 b, u32 c);
 UnkUnit2186Object* fn_71008d5d2c(void* owner);
-void fn_71008cdf84(UnkDoorLock* door);
+void BreakDoorVignettesAndNotifyDoorOpened(UnkDoorLock* door);
 void fn_71008d0c24(UnkDoorLifeA5_b61* self, f32 target, f32 speed);
-bool fn_71008d5c1c(UnkDoorLife* self);
+bool IsPlayerOutsideDoorBounds(UnkDoorLife* self);
 extern UnkProperty g_unk_7172731160;
 extern UnkProperty g_unk_7172731110;  // "StayOpened".
 extern UnkProperty g_unk_71727310c0;

@@ -54,7 +54,7 @@ extern base::global::CStrId g_unk_71726e1f68 __attribute__((visibility("hidden")
 base::global::CRntVector<UnkListedItem*>* fn_7100552d7c();
 void fn_71005479a0(UnkEmmyRelaxAI_b59* self);
 // Hands the game manager the string id for the barrier state (the barrier or no-barrier name, or the default).
-void fn_710054095c(UnkEmmyAI2_b57a3* self);
+void PassEmmyBarrierStrIdToManager(UnkEmmyAI2_b57a3* self);
 void fn_7100540dd0(char* self);
 UnkLuaDoorTarget* fn_710055b104(void* object);
 void fn_7100547428(UnkEmmyActor_b55* self, s32 state, UnkActor* target, bool b);

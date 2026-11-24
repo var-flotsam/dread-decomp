@@ -22,7 +22,7 @@ void LinkMultiWaitHolder(MultiWaitType* multiWait, MultiWaitHolderType* holder);
 }  // namespace nn
 
 struct UnkMovieWorker_b50;
-void fn_7100222ab4(UnkMovieWorker_b50* thread);
+void RunMovieDecoderEventHandlerThread(UnkMovieWorker_b50* thread);
 
 namespace {
 
@@ -93,5 +93,5 @@ void fn_7100222970(UnkMovieUnit327_b50* self_) {
     nn::os::InitializeMultiWait(reinterpret_cast<nn::os::MultiWaitType*>(self->pad_0x1f8));
     InitWaited(self, &self->field_0x228, 5);
     InitWaited(self, &self->field_0x2b0, 4);
-    fn_7100066744(self, "MovieDecoderEventHandler", reinterpret_cast<void (*)(void*)>(fn_7100222ab4), 0, 0x10, self);
+    fn_7100066744(self, "MovieDecoderEventHandler", reinterpret_cast<void (*)(void*)>(RunMovieDecoderEventHandlerThread), 0, 0x10, self);
 }

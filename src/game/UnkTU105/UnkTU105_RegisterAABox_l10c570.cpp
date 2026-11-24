@@ -16,7 +16,7 @@ extern UnkNamedValue g_unk_7108b6d520;
 void fn_710010c2a0(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_710010c194();
 
-void fn_710010c570() {
+void RegisterCAABoxReflection() {
     InitClass(reinterpret_cast<UnkReflType*>(&g_unk_7108b6d3d0), "base::spatial::CAABox", fn_710010c2a0, fn_710010c194);
     fn_710009ec00(g_unk_7108b6d508, &g_unk_7108b6d3d0);
     InitNamedValue(&g_unk_7108b6d510, "Min", TypeOf<fn_7100009658>, fn_710010c424);

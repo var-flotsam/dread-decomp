@@ -124,7 +124,7 @@ void fn_71000a8a50();
 extern UnkConversion g_unk_7101d5c4f0;
 void fn_71000bc608() __attribute__((visibility("hidden")));
 extern UnkConversion g_unk_7101d5c510;
-void* fn_71000cce60(void*, void*);
+void* AssignFilePathStrIdFromRefCountedStringHandle(void*, void*);
 extern UnkConversion g_unk_7101d5c530;
 void fn_71000a8a90();
 extern UnkConversion g_unk_7101d5c550;
@@ -134,7 +134,7 @@ void fn_71000a8b10();
 extern UnkConversion g_unk_7101d5c590;
 void fn_71000bc638() __attribute__((visibility("hidden")));
 extern UnkConversion g_unk_7101d5c5b0;
-void* fn_71000ccf08(void*, void*);
+void* AssignCStrIdFromStringHolderHandle(void*, void*);
 extern UnkConversion g_unk_7101d5c5d0;
 void fn_71000ccfb0();
 extern UnkConversion g_unk_7101d5c5f0;
@@ -150,7 +150,7 @@ void fn_71000cd218();
 extern UnkConversion g_unk_7101d5c690;
 void* fn_71000cd2a4(void*, void*);
 extern UnkConversion g_unk_7101d5c6b0;
-void* fn_71000cd338(void*, void*);
+void* AssignFilePathStrIdFromCString(void*, void*);
 extern UnkConversion g_unk_7101d5c6d0;
 void fn_71000cd4b8();
 extern UnkConversion g_unk_7101d5c6f0;
@@ -520,11 +520,11 @@ extern char g_unk_7101d61130[];
 void fn_71000ba880();
 void fn_71000ba884(void* obj, const CStrId& name, void* base, void* a, void (*factory)(), void* b);
 extern char g_unk_7101d61268[];
-void fn_71000e23ac();
+void AssignRntStringVectorFromCString();
 extern UnkConversion g_unk_7101d61270;
 void fn_71000e24b0();
 extern UnkConversion g_unk_7101d61290;
-void fn_71000e26f8();
+void AssignRntStringVectorFromHeldString();
 extern UnkConversion g_unk_7101d612b0;
 
 void InitBaseCollectionReflectionTypeStatics() {
@@ -599,12 +599,12 @@ void InitBaseCollectionReflectionTypeStatics() {
     InitConversion(&g_unk_7101d5c4d0, TypeOf<fn_7100009658>, fn_710009fb38, fn_71000a8a10);
     InitConversion(&g_unk_7101d5c4f0, TypeOf<fn_7100009658>, fn_710009ffd4, fn_71000a8a50);
     InitConversion(&g_unk_7101d5c510, TypeOf<fn_7100009658>, TypeOf<fn_71000081e8>, fn_71000bc608);
-    InitConversion(&g_unk_7101d5c530, TypeOf<fn_7100009658>, TypeOf<fn_710000ad9c>, reinterpret_cast<void (*)()>(&fn_71000cce60));
+    InitConversion(&g_unk_7101d5c530, TypeOf<fn_7100009658>, TypeOf<fn_710000ad9c>, reinterpret_cast<void (*)()>(&AssignFilePathStrIdFromRefCountedStringHandle));
     InitConversion(&g_unk_7101d5c550, TypeOf<fn_710000ad9c>, TypeOf<fn_7100007f84>, fn_71000a8a90);
     InitConversion(&g_unk_7101d5c570, TypeOf<fn_710000ad9c>, fn_710009fb38, fn_71000a8ad0);
     InitConversion(&g_unk_7101d5c590, TypeOf<fn_710000ad9c>, fn_710009ffd4, fn_71000a8b10);
     InitConversion(&g_unk_7101d5c5b0, TypeOf<fn_710000ad9c>, TypeOf<fn_71000081e8>, fn_71000bc638);
-    InitConversion(&g_unk_7101d5c5d0, TypeOf<fn_710000ad9c>, TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_71000ccf08));
+    InitConversion(&g_unk_7101d5c5d0, TypeOf<fn_710000ad9c>, TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&AssignCStrIdFromStringHolderHandle));
     InitConversion(&g_unk_7101d5c5f0, TypeOf<fn_71000081e8>, TypeOf<fn_7100007f84>, fn_71000ccfb0);
     InitConversion(&g_unk_7101d5c610, TypeOf<fn_71000081e8>, fn_710009f200, fn_71000cd000);
     InitConversion(&g_unk_7101d5c630, TypeOf<fn_71000081e8>, fn_710009f69c, fn_71000cd084);
@@ -612,7 +612,7 @@ void InitBaseCollectionReflectionTypeStatics() {
     InitConversion(&g_unk_7101d5c670, TypeOf<fn_71000081e8>, fn_710009ffd4, fn_71000cd18c);
     InitConversion(&g_unk_7101d5c690, TypeOf<fn_71000081e8>, fn_71000a0318, fn_71000cd218);
     InitConversion(&g_unk_7101d5c6b0, TypeOf<fn_71000081e8>, TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_71000cd2a4));
-    InitConversion(&g_unk_7101d5c6d0, TypeOf<fn_71000081e8>, TypeOf<fn_710000ad9c>, reinterpret_cast<void (*)()>(&fn_71000cd338));
+    InitConversion(&g_unk_7101d5c6d0, TypeOf<fn_71000081e8>, TypeOf<fn_710000ad9c>, reinterpret_cast<void (*)()>(&AssignFilePathStrIdFromCString));
     InitConversion(&g_unk_7101d5c6f0, TypeOf<fn_7100010e58>, TypeOf<fn_710000fd7c>, fn_71000cd4b8);
     fn_710009ec00(g_unk_7101d5c710, fn_71000a8b4c());
     fn_710009ec00(g_unk_7101d5c711, fn_71000a8c28());
@@ -1035,7 +1035,7 @@ void InitBaseCollectionReflectionTypeStatics() {
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d61130, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d61268, g_unk_7101d61130);
-    InitConversion(&g_unk_7101d61270, TypeOf<fn_71000081e8>, reinterpret_cast<UnkEnumType*>(g_unk_7101d61130), fn_71000e23ac);
+    InitConversion(&g_unk_7101d61270, TypeOf<fn_71000081e8>, reinterpret_cast<UnkEnumType*>(g_unk_7101d61130), AssignRntStringVectorFromCString);
     InitConversion(&g_unk_7101d61290, TypeOf<fn_7100007f84>, reinterpret_cast<UnkEnumType*>(g_unk_7101d61130), fn_71000e24b0);
-    InitConversion(&g_unk_7101d612b0, TypeOf<fn_7100009658>, reinterpret_cast<UnkEnumType*>(g_unk_7101d61130), fn_71000e26f8);
+    InitConversion(&g_unk_7101d612b0, TypeOf<fn_7100009658>, reinterpret_cast<UnkEnumType*>(g_unk_7101d61130), AssignRntStringVectorFromHeldString);
 }

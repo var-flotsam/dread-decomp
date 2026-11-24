@@ -72,7 +72,7 @@ UnkReflValue fn_71008dc938(char* obj, UnkReflValue* const* args) {
     }
     if (before != after) {
         if (after)
-            fn_71008d0ef4(self);
+            OpenDoorUnlessOpen(self);
         else
             fn_71008d498c(reinterpret_cast<UnkDoorLife_b44a2*>(self), 0, 0, 0);
     }

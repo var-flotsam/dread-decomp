@@ -26,14 +26,14 @@ void fn_7100161960(UnkObj_7100161b90** out, u32 size, void* data, const u32* cou
 void fn_7100161d60(UnkGfxBuffer252* buffer);
 
 // Fills a target's description from its format, size and options.
-void fn_710015f810(UnkRenderTargetSlot* out, u32 format, u32 width, u32 height, u32 a, void* b, void* c, u32 d, u32 e);
+void FillRenderTargetSlotByFormat(UnkRenderTargetSlot* out, u32 format, u32 width, u32 height, u32 a, void* b, void* c, u32 d, u32 e);
 
 void fn_7100160590(u64 slot);
 void fn_71001606f0(u32 index, bool enable, u32 group);
 void fn_7100160810(s32 a, s32 b, u32);
 void fn_7100160890(s32 a, s32 b, u32);
 void* fn_71001611e0(void* object);  // A target's NVN texture.
-u32 fn_71001622e0(UnkGfxBuffer252* buffer);
+u32 GetBufferCapacityOrZero(UnkGfxBuffer252* buffer);
 extern UnkPool_1587f0 g_unk_716e2a7580;  // The descriptors' memory.
 extern UnkGfxHeap* g_unk_716e2a76a8;  // The heap for textures.
 extern UnkGfxHeap* g_unk_716e2a76b0;  // The heap for render targets.

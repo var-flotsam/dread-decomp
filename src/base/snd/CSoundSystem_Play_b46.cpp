@@ -6,7 +6,7 @@
 #include "game/UnkSoundHandle_b46a1.h"
 #include "types.h"
 
-void fn_71000feff8(void* player, u32 id, UnkSoundHandle_b46a1 handle, f32 value);
+void SetSoundChannelLevelsByMask(void* player, u32 id, UnkSoundHandle_b46a1 handle, f32 value);
 void fn_71000f9d20(void* player, UnkSoundHandle_b46a1 handle, f32 time);
 
 void fn_7100108b90(char* self, u32 id, const UnkSoundHandle_b46a1& handle, f32 value) {
@@ -15,5 +15,5 @@ void fn_7100108b90(char* self, u32 id, const UnkSoundHandle_b46a1& handle, f32 v
     if (id == 0)
         fn_71000f9d20(self + 8, handle, value);
     else
-        fn_71000feff8(self + 8, id, handle, value);
+        SetSoundChannelLevelsByMask(self + 8, id, handle, value);
 }

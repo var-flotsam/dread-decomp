@@ -28,7 +28,7 @@ struct UnkFlagsetType_b0068;
 UnkEnumType* fn_7100067f5c();
 UnkEnumType* fn_7100068204();
 bool fn_710009a430(UnkFlagsetType_b0068* self, const UnkReflFieldObject* obj, UnkReflField* field, CRntFile* file);
-UnkReflTypedPtr fn_71000e755c(UnkReflField* field, const UnkReflTypedPtr* obj);
+UnkReflTypedPtr GetReflectedFieldTypedPtr(UnkReflField* field, const UnkReflTypedPtr* obj);
 
 // The event as read here: its class (vtable slot 0), then a word the file starts with.
 struct UnkEventView_06790c {
@@ -82,7 +82,7 @@ struct UnkEventValue_06790c {
 };
 
 static inline void SetField(UnkEventField_06790c* field, const UnkReflTypedPtr* obj, UnkEventValue_06790c* value) {
-    fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
+    SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
                   reinterpret_cast<UnkReflValueArg*>(value));
 }
 
@@ -195,7 +195,7 @@ void fn_710006790c(UnkTimelineEvent* event, CRntFile* file) {
         case 0xFC925429C459C462: {  // an enum: the member's word is written directly
             u32 value;
             CRntFile_Read(file, &value, 4, 1);
-            UnkReflTypedPtr member = fn_71000e755c(reinterpret_cast<UnkReflField*>(field), &obj);
+            UnkReflTypedPtr member = GetReflectedFieldTypedPtr(reinterpret_cast<UnkReflField*>(field), &obj);
             fn_710009dcd8(member.type, member.ptr);
             *static_cast<u32*>(member.ptr) = value;
             break;

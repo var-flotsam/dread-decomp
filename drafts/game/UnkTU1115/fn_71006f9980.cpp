@@ -8,8 +8,8 @@ using base::global::CRntVector;
 // The registry and its entries as the unit's other functions take them (UnkUnit1115_b50.cpp).
 struct UnkQueryEntry_b50;
 struct UnkQueryList_b50;
-void fn_71006facbc(UnkQueryEntry_b50* entry);
-void fn_71006fb514(void* map, const u32* id, UnkQueryEntry_b50* const* entry);
+void RefreshRegistryObjectGraphNodeIndices(UnkQueryEntry_b50* entry);
+void AppendU32KeyU64ValueToSmallDictionary(void* map, const u32* id, UnkQueryEntry_b50* const* entry);
 
 // An object of the registry, deleted through its virtual destructor.
 struct UnkRegObj_l6f9980 {
@@ -91,8 +91,8 @@ void fn_71006f9980(UnkQueryList_b50* registry, u32 id) {
     self->index.count = 0;
     for (UnkRegObj_l6f9980 **p = self->objects.data, **end = p + self->objects.count; p != end; ++p) {
         UnkRegObj_l6f9980* entry = *p;
-        fn_71006facbc(reinterpret_cast<UnkQueryEntry_b50*>(entry));
+        RefreshRegistryObjectGraphNodeIndices(reinterpret_cast<UnkQueryEntry_b50*>(entry));
         u32 entry_id = entry->id;
-        fn_71006fb514(&self->index, &entry_id, reinterpret_cast<UnkQueryEntry_b50* const*>(&entry));
+        AppendU32KeyU64ValueToSmallDictionary(&self->index, &entry_id, reinterpret_cast<UnkQueryEntry_b50* const*>(&entry));
     }
 }

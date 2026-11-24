@@ -54,7 +54,7 @@ struct UnkRecords_e54348 {
 
 void fn_7100e54348(UnkRecords_e54348* self, const u64* key, const UnkRecord_e54348* record) {
     if (self->count == self->capacity)
-        fn_7100e54ad8(reinterpret_cast<UnkRecord60Array*>(self), self->step + self->count);
+        ReserveRecord60AndPointerArrays(reinterpret_cast<UnkRecord60Array*>(self), self->step + self->count);
     self->keys[self->count] = *key;
     UnkRecord_e54348* values = self->values;
     u32 i = self->count;

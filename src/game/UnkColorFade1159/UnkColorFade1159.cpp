@@ -15,7 +15,7 @@ struct UnkColorFade1159 {
     bool field_0x150;
 };
 
-void fn_71007453a8(UnkColorFade1159* self, const base::color::CColor4F* from, const base::color::CColor4F* to,
+void StartColorFadeFromToOverTime(UnkColorFade1159* self, const base::color::CColor4F* from, const base::color::CColor4F* to,
                    bool mark_dirty, bool flag, f32 time) {
     self->field_0x12c = time;
     self->field_0x128 = time;

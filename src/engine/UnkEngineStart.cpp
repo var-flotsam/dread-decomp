@@ -56,7 +56,7 @@ struct UnkStartupSettings {
 static_assert(sizeof(UnkStartupSettings) == 0x40, "UnkStartupSettings layout");
 
 void fn_71000a4598(UnkVersionRegistry* self);  // constructor
-void fn_71000a497c(UnkVersionRegistry* self);
+void SetUpTypeRegistry(UnkVersionRegistry* self);
 
 // The frame timer (0x50 bytes; src/game_s1/fn_7100080c40.cpp resets it).
 struct UnkGfxFrameSource;
@@ -113,7 +113,7 @@ void fn_7100015c70(const UnkStartupSettings* settings, CFilePathStrId root) {
     fn_7100083870(nullptr, 0);
     UnkVersionRegistry* registry = Singleton<UnkVersionRegistry, 0x1a8, fn_71000a4598>(g_unk_7101d4c8d0);
     registry->field_0x178 = settings->field_0x0;
-    fn_71000a497c(registry);
+    SetUpTypeRegistry(registry);
     ResetTimerAndStartStampToNow(reinterpret_cast<UnkTimer_7100080c40*>(
         Singleton<UnkGfxFrameSource, 0x50, TimerCtor>(g_unk_7101d47328)));
     Devices();

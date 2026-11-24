@@ -90,7 +90,7 @@ static inline bool Set_l043a04(UnkCameraCtrl* self, u64 key, void* in) {
     UnkTyped_l043a04 obj = {self->vf_0x0(), self};
     UnkTyped_l043a04 value = {Type(), in};
     if (UnkField_l043a04* field = table->FindField(key))
-        return fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&obj),
+        return SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&obj),
                              reinterpret_cast<UnkReflValueArg*>(&value));
     return false;
 }
@@ -122,7 +122,7 @@ bool fn_7101043a04(UnkCameraCtrl* controller, const char* name, lua_State* L, s3
         UnkTyped_l043a04 obj = {controller->vf_0x0(), controller};
         base::reflection::UnkTypedRef ref;
         fn_71000a16e0(&ref, reinterpret_cast<const char*>(enumType), &value);
-        return fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&obj),
+        return SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&obj),
                              reinterpret_cast<UnkReflValueArg*>(&ref));
     }
     case 'f': {

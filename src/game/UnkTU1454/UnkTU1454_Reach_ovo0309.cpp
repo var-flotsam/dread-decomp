@@ -29,7 +29,7 @@ struct UnkPositionSource_b0249;
 struct UnkUnit1452_b56;
 struct UnkSmOther_b60;
 struct UnkSmBase_b60;
-bool fn_7100985a08(UnkNpc_b0248* self, UnkTarget_b0248* target);
+bool IsCircleAtTargetPositionFreeOfCollision(UnkNpc_b0248* self, UnkTarget_b0248* target);
 
 bool fn_7100984d24(UnkNpc_b0248* self) {
     UnkTarget_b0248* target =
@@ -50,7 +50,7 @@ bool fn_7100984d24(UnkNpc_b0248* self) {
             far = col.x * plan->dir[0] + col.y * plan->dir[1] + col.z * plan->dir[2] >= 50.0f;
         }
         if (far)
-            return fn_7100985a08(self, target);
+            return IsCircleAtTargetPositionFreeOfCollision(self, target);
     }
     return false;
 }

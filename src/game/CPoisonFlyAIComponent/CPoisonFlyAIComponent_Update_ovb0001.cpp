@@ -44,7 +44,7 @@ void CPoisonFlyAIComponent_UpdateAttackOffsetTime(UnkPoisonFlyAI_b67a4* self, f3
 // As src/game/UnkUnit958/UnkUnit958_b35.cpp declares it.
 struct UnkUnit958List;
 struct UnkUnit958Entry;
-UnkUnit958Entry* fn_710063b770(UnkUnit958List* self, void* key);
+UnkUnit958Entry* FindOffsetEntryByOwner(UnkUnit958List* self, void* key);
 
 struct UnkPoisonFlyOffsetEntry_ovb0001 {
     u8 pad_0x0[0x14];
@@ -106,7 +106,7 @@ void fn_71006392cc(UnkPoisonFlyAI1_ovb0001* self, f32 dt) {
         fn_7100da7e2c(m);
         g_unk_71726af468 = m;
     }
-    UnkPoisonFlyOffsetEntry_ovb0001* entry = reinterpret_cast<UnkPoisonFlyOffsetEntry_ovb0001*>(fn_710063b770(
+    UnkPoisonFlyOffsetEntry_ovb0001* entry = reinterpret_cast<UnkPoisonFlyOffsetEntry_ovb0001*>(FindOffsetEntryByOwner(
         reinterpret_cast<UnkUnit958List*>(g_unk_71726af468->pad_0x0 + 0x80), self->owner));
     if (entry) {
         UnkActor* actor = fn_7100d7c990(reinterpret_cast<UnkActor*>(self->owner));

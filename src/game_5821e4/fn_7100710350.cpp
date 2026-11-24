@@ -27,7 +27,7 @@ extern UnkConversion g_unk_717270e460;
 void fn_7100710250() __attribute__((visibility("hidden")));
 void fn_710071025c() __attribute__((visibility("hidden")));
 
-void fn_7100710350() {
+void InitEAnimationTagStatics() {
     InitHeaderIds(&g_unk_717270e480.ids);
     InitEnum(&base::reflection::TypeObject<EAnimationTag, UnkEnumType>::object, "EAnimationTag", fn_710070ff68, fn_710070f99c,
              g_unk_717270e300, &g_unk_717270e308, fn_7100710238, &g_unk_717270e328, fn_7100710244);

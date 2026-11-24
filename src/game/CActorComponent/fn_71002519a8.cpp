@@ -26,19 +26,19 @@ u64* fn_71000d92a8(UnkValuesByKey* a, const u64* key) { return FindValue(a, key)
 
 // Removal of the value stored for a key, when present (the removal itself is a separate function per type):
 // fn_71000d9234, fn_71000dac68.
-void* fn_71000d9de8(UnkValuesByKey* a, u64* value);
-void* fn_71000db82c(UnkValuesByKey* a, u64* value);
+void* SwapEraseStrIdValueKeyedByStrIdAt(UnkValuesByKey* a, u64* value);
+void* EraseKeyedFilePathIdSwappingLast(UnkValuesByKey* a, u64* value);
 
 void fn_71000d9234(UnkValuesByKey* a, const u64* key) {
     u64* p = a->Find(*key);
     if (p != a->End())
-        fn_71000d9de8(a, p);
+        SwapEraseStrIdValueKeyedByStrIdAt(a, p);
 }
 
 void fn_71000dac68(UnkValuesByKey* a, const u64* key) {
     u64* p = a->Find(*key);
     if (p != a->End())
-        fn_71000db82c(a, p);
+        EraseKeyedFilePathIdSwappingLast(a, p);
 }
 
 // The same over 4-byte values (fn_71000dedbc).
@@ -56,13 +56,13 @@ u32* fn_710079c41c(UnkWordsByKey* a, const u64* key) {
     return p == a->End() ? nullptr : p;
 }
 
-u32* fn_71000df750(UnkWordsByKey* a, u32* value);
+u32* EraseU32StrIdKeyedEntryBySwapWithLast(UnkWordsByKey* a, u32* value);
 
 // Removal over 4-byte values (fn_71000ded44).
 void fn_71000ded44(UnkWordsByKey* a, const u64* key) {
     u32* p = a->Find(*key);
     if (p != a->End())
-        fn_71000df750(a, p);
+        EraseU32StrIdKeyedEntryBySwapWithLast(a, p);
 }
 
 // The same removal in another unit, with its own out-of-line removal (fn_710079c3a4).

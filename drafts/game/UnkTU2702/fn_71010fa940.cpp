@@ -72,7 +72,7 @@ void fn_71010fa940(UnkResetAI_l0fa940* self) {
         fn_71002874dc(self->field_0xd8 + i * 4);
     self->field_0xe0 = 0;
     self->field_0x100 = 0;
-    fn_7100119f98(outline, false);
+    SetPolylineClosed(outline, false);
     self->field_0x1108 = 0;
     fn_7100874460(self->field_0x18a8, reinterpret_cast<UnkWeakTarget**>(&self->owner));
     UnkResetOwner_l0fa940* owner = self->owner;

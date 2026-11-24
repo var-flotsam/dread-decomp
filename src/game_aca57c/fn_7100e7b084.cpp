@@ -80,7 +80,7 @@ struct UnkFormatArgs {
     UnkFormatSource* source;
 };
 
-UnkString100 fn_7100adc570(UnkFormatSource* self) {
+UnkString100 FormatValueAsString(UnkFormatSource* self) {
     UnkTextBuffer200 text;
     UnkFormatArgs args = {self->field_0x8, self};
     fn_71000a1784(&args, &text);
@@ -176,7 +176,7 @@ inline UnkString200Array::UnkString200Array(const UnkString200Array& other)
 
 void fn_7100e7bab4(UnkString200Array* self, const UnkString200Array* other) { new (self) UnkString200Array(*other); }
 
-UnkString200* fn_7100e7c0f0(UnkString200Array* self, UnkString200* pos) {
+UnkString200* SwapEraseKeyedString200ArrayElement(UnkString200Array* self, UnkString200* pos) {
     u32 index = pos - self->data;
     self->data[index].~UnkString200();
     u32 last = self->count - 1;

@@ -180,7 +180,7 @@ void fn_71001eb6b4(void*, UnkBoundsList* list, UnkSphere* sphere) {
     for (u32 i = 0; i < count; ++i) {
         UnkBoundsNode* node = list->items[i].node;
         for (u32 k = 0; k < 8; ++k)
-            fn_7100215f60(reinterpret_cast<UnkBounded*>(box), &node->points[k]);
+            ExtendBoundingBoxToContainPoint(reinterpret_cast<UnkBounded*>(box), &node->points[k]);
     }
     {
         UnkVec3f centre = fn_7100215ef4(box);

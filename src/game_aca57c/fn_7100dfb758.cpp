@@ -75,10 +75,10 @@ s32 fn_71010c0cd0(lua_State* L, s32 count, char* buf, u32 size, UnkPropBag* resu
     }                                                                                \
     return result;
 
-bool fn_7100dfb758(UnkPropBag* results, const char* name, const char* fmt, ...) {
+bool CallScriptFunctionByName(UnkPropBag* results, const char* name, const char* fmt, ...) {
     UNK_CALL_SCRIPT(results, name, fmt)
 }
 
-bool fn_7100e03d78(UnkPropBag* results, const char* name, const char* fmt, ...) {
+bool CallScriptFunctionIntoPropBag(UnkPropBag* results, const char* name, const char* fmt, ...) {
     UNK_CALL_SCRIPT(results, name, fmt)
 }

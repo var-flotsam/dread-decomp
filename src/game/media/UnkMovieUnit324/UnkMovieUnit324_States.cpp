@@ -26,7 +26,7 @@ void fn_7100224de4(UnkMedia324* self);
 bool fn_7100224fbc(UnkMedia324* self, void* arg);
 void fn_7100224f2c(UnkMedia324* self);
 // UnkMovieUnit324_Pause.cpp.
-void fn_710021fe0c(UnkMedia324* self);
+void FinishMediaSeekAndRestoreSavedState(UnkMedia324* self);
 // As src/game_hi/fn_7100f00f4c.cpp declares it.
 struct UnkRefObj_7100f00f4c;
 
@@ -118,7 +118,7 @@ u32 fn_710021fd10(UnkMedia324* self, void* position) {
         fn_710021f950(self);
         SetState(self, 8);
         if (fn_7100224fbc(reinterpret_cast<UnkMedia324*>(self), position))
-            fn_710021fe0c(self);
+            FinishMediaSeekAndRestoreSavedState(self);
         result = 0;
         break;
     case 8:
@@ -158,7 +158,7 @@ void fn_710021fbb4(UnkMedia324* self) {
 
 // The end of a seek: state 9, then back to the state the seek left (+0x34): playing again through
 // fn_710021fa20, or set directly, telling the listeners unless it is 1.
-void fn_710021fe0c(UnkMedia324* self) {
+void FinishMediaSeekAndRestoreSavedState(UnkMedia324* self) {
     fn_710006691c(&self->lock);
     SetState(self, 9);
     s32 state = self->seek_state;
@@ -206,7 +206,7 @@ bool fn_71000666a0(nn::os::LightEventType* event, u32 milliseconds);
 
 // Waits on the ready event (fn_71000666a0 with a time-out); the signature is the one
 // src/game/media/UnkUnit330/UnkUnit330.cpp declares.
-void fn_71002202d8(UnkMedia324* self, u32 milliseconds) {
+void TimedWaitMediaTracksReadyEvent(UnkMedia324* self, u32 milliseconds) {
     fn_71000666a0(&reinterpret_cast<UnkMedia324*>(self)->ready, milliseconds);
 }
 

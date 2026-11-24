@@ -91,7 +91,7 @@ void CCharClassShootActivatorComponent_PlayOrSetSoundPitchVolumeByAmount(UnkShoo
         auto* tunable = reinterpret_cast<UnkShootTunable_ovb0126*>(&g_unk_717272c450);
         f32 pitch = Ramp(tunable->pitch_min, self->pitch_max, amount);
         f32 volume = Ramp(tunable->volume_min, self->volume_max, amount);
-        fn_7100105da8(self->sound.Get(), pitch, 0.2f);
+        SetSoundVoicePitchOverDuration(self->sound.Get(), pitch, 0.2f);
         fn_7100105d34(self->sound.Get(), volume, false, 0.2f);
     } else if (amount > 0.0f) {
         using Play = UnkSoundHandle_ovb0126 (*)(UnkEntityWithSound*, void*, void*, bool);

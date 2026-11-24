@@ -849,7 +849,7 @@ bool fn_710086068c(UnkCollisionComponent_Load_ovb0107* self) {
     auto* charClass = static_cast<UnkCharClassCollision_ovb0107*>(
         object ? (fn_710009d50c(object->vf_0x0(), fn_710079a218()) ? object : nullptr) : nullptr);
     self->active = charClass->active;
-    UnkTunableLine path = fn_710013c834(&charClass->path, "\\", "/");
+    UnkTunableLine path = ReplaceAllSubstrings(&charClass->path, "\\", "/");
     UnkGameManagerIdTable& table = GameManagerIdTable();
     CountUse(table.field_0x2418);
     if (CRntString_KeysDiffer(path.Str(),

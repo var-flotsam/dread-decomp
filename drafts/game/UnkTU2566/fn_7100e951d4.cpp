@@ -44,7 +44,7 @@ struct UnkMinimapOwner_951d4 {
 struct UnkGridCell_e;
 UnkGridCell_e* fn_7100e796a8(void* grid, u32 index);
 struct UnkLinkedCell;
-void fn_7100e78180(UnkLinkedCell* self);
+void RecomputeLinkedCellNeighbourMask(UnkLinkedCell* self);
 struct UnkLinkedCell_e;
 void fn_7100e78060(UnkLinkedCell_e* self);
 
@@ -91,7 +91,7 @@ void fn_7100e951d4(UnkMinimapOwner* owner, u32 count, void* items, u32 field_0x3
         f32 r = Channel(red);
         f32 g = Channel(green);
         if (cell->dirty)
-            fn_7100e78180(reinterpret_cast<UnkLinkedCell*>(cell));
+            RecomputeLinkedCellNeighbourMask(reinterpret_cast<UnkLinkedCell*>(cell));
         u32 color = (u8)r;
         u8 links = cell->links;
         color |= (u32)(u8)g << 8;

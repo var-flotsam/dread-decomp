@@ -62,7 +62,7 @@ static inline bool Get(UnkPlayRateObject_ovb0106* obj, u64 key, f32* out) {
     typed.ptr = obj;
     UnkPlayRateValue_ovb0106 value = {fn_710000abbc(), out};
     if (UnkPlayRateField_ovb0106* field = cls->FindField(key)) {
-        fn_71000e78e0(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
         return true;
     }

@@ -28,7 +28,7 @@ void fn_71004f2c60(UnkEmmyForestAI_A2_b70* self, f32 dt) {
     UnkShakernautId_b53 clear_id;
 start:
     if (self->owner->ctrl) {
-        bool on = fn_7100df5740(g_unk_7101d47310);
+        bool on = IsOpticCamouflageAbilityInState6(g_unk_7101d47310);
         UnkShakernautCtrl_b53* ctrl = self->owner->ctrl;
         if (on) {
             set_id.value = 0x40;

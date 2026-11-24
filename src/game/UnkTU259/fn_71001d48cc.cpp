@@ -65,7 +65,7 @@ bool fn_71001d48cc(UnkRenderTargetA1* target, void* program, f32 alpha) {
         fn_71001cafa0(reinterpret_cast<UnkStruct_71001cdd74*>(self), 1, 1, 0);
     fn_710015a860(0);
     fn_710015aa20(0);
-    fn_710015a8c0(0);
+    SetDepthCompareFunc(0);
     fn_710015a3e0(0);
     fn_710015ab00(4);
     fn_71001606f0(0, 1, true);

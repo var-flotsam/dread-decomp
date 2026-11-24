@@ -97,7 +97,7 @@ static inline s32 SetEntitySound_b0163(lua_State* L) {
         if (kVolume)
             fn_7100105d34(ref->sound, value, false, 0.2f);
         else
-            fn_7100105da8(ref->sound, value, 0.2f);
+            SetSoundVoicePitchOverDuration(ref->sound, value, 0.2f);
     }
     return 0;
 }

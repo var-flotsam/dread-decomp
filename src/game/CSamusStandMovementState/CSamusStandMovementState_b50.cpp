@@ -14,7 +14,7 @@ struct UnkSamusMove_b50a5 {
 };
 
 bool fn_71009ea3e4(UnkSamusMove_b50a5* self, f32 speed);
-bool fn_71009ea664(UnkSamusMove_b50a5* self);
+bool IsCapsuleSweepAheadInFacingDirectionClear(UnkSamusMove_b50a5* self);
 
 struct UnkSamusStandState_b50a5 {
     u8 unk_0x0[0x38];
@@ -28,7 +28,7 @@ bool fn_71009b5460(UnkSamusStandState_b50a5* self, UnkHashWord_b50a5* id) {
     if (speed > 0.0f) {
         *id = 0xbca4fe615b9507aeull;
         if (!reinterpret_cast<const bool*>(&g_unk_7172740de0)[0x79] || !fn_71009ea3e4(self->movement, speed) ||
-            fn_71009ea664(self->movement))
+            IsCapsuleSweepAheadInFacingDirectionClear(self->movement))
             return true;
     } else if (self->movement->field_0x7e4) {
         *id = 0x861f06fd9f7439ffull;

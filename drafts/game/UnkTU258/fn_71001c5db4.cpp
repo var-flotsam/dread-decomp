@@ -102,7 +102,7 @@ struct UnkGfx258_b0247 {
 };
 
 bool fn_7100159c80();
-void fn_7100159f90(u32 a, u32 b);
+void DrawIndexedFromCurrentState(u32 a, u32 b);
 void fn_710015a3e0(u32 value);
 void fn_710015a500(u32 a, u32 b);
 void fn_710015a680(u32 value);
@@ -182,7 +182,7 @@ void fn_71001c5b74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
         }
         if (fn_7100159c80()) {
             self->field_0x317add0++;
-            fn_7100159f90(0, -1);
+            DrawIndexedFromCurrentState(0, -1);
         }
         tmp.x = item->field_0x14c[0];
         tmp.y = item->field_0x14c[1];
@@ -200,7 +200,7 @@ void fn_71001c5b74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
     }
     if (fn_7100159c80()) {
         self->field_0x317add0++;
-        fn_7100159f90(0, -1);
+        DrawIndexedFromCurrentState(0, -1);
     }
 }
 
@@ -244,7 +244,7 @@ void fn_71001c5114(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
     if (fn_7100159c80()) {
         u32 n = count * 6;
         self->field_0x317add0++;
-        fn_7100159f90(0, n);
+        DrawIndexedFromCurrentState(0, n);
     }
 }
 
@@ -289,7 +289,7 @@ void fn_71001c52d4(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
     fn_7100160d50(0, 2, 1);
     if (fn_7100159c80()) {
         self->field_0x317add0++;
-        fn_7100159f90(0, -1);
+        DrawIndexedFromCurrentState(0, -1);
     }
 }
 

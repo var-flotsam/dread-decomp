@@ -137,7 +137,7 @@ void fn_710028e71c(void* self, const UnkNavPolygonArray_l28e71c* polygons, const
             UnkVec3 point = {segment.end.x, segment.end.y, 0.0f};
             fn_7100118b94(&outline, &point);
         }
-        fn_7100119f98(reinterpret_cast<UnkTileOutline*>(&outline), true);
+        SetPolylineClosed(reinterpret_cast<UnkTileOutline*>(&outline), true);
         out->polygons.PushBack(outline);
         out->changed = true;
     }

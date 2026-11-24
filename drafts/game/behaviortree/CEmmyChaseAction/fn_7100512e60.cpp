@@ -111,7 +111,7 @@ static inline UnkCentralUnit_l512e60* CentralUnit() {
         fn_7100ddb6dc(reg);
         g_unk_71726bee10 = reg;
     }
-    return reinterpret_cast<UnkCentralUnit_l512e60*>(fn_7100ddb768(reinterpret_cast<UnkUnit2547*>(reg)));
+    return reinterpret_cast<UnkCentralUnit_l512e60*>(GetFirstCentralUnitListObject(reinterpret_cast<UnkUnit2547*>(reg)));
 }
 
 // The AI and its character class component, both null without an AI.

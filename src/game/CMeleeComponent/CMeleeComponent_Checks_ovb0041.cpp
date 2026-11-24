@@ -119,7 +119,7 @@ void fn_7100929404(UnkMelee3_ovb0041* self) {
         CStrId id(*fn_7101177ae8(self->owner->anim, 0xf4061ff25a2163d6));
         self->pending = false;
         fn_7100929bbc(self);
-        if (void* p = fn_7100df57f4(g_unk_7101d47310))
+        if (void* p = GetPlayerOpticCamouflageAbility(g_unk_7101d47310))
             fn_71003246d8(p);
     }
     self->event_count = 0;

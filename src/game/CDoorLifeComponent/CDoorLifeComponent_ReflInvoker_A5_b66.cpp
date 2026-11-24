@@ -21,7 +21,7 @@ UnkReflValue fn_71008dc890(void*, char* obj, UnkReflValue* const* args) {
     bool open = *static_cast<bool*>(ArgPtr_A5_b66(&values[0]));
     u8 quiet = *static_cast<u8*>(ArgPtr_A5_b66(&values[1]));  // read as a byte, not a bool
     if (open)
-        fn_71008d0ef4(target);
+        OpenDoorUnlessOpen(target);
     else
         fn_71008d498c(target, !quiet, 1, 1);
     UnkReflValue r;

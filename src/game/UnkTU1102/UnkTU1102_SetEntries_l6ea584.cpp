@@ -85,7 +85,7 @@ static inline void AppendHandle(base::global::CRntVector<UnkWeakHandle*>& list, 
     ++list.count;
 }
 
-void fn_71006ea584(UnkXParasiteAI* self, void* inner) {
+void RebuildXParasiteEntriesFromList(UnkXParasiteAI* self, void* inner) {
     base::global::CRntVector<UnkWeakHandle*>& entries = self->entries;
     for (u32 i = 0; i < entries.count; ++i) {
         if (UnkWeakHandle* entry = entries.data[i]) {

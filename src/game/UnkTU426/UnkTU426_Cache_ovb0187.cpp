@@ -24,7 +24,7 @@ struct UnkResSource_b0187q {
 struct UnkResKeyHolder_b0187q;
 UnkCountedResource* fn_71002f6ebc(UnkResSource_b0187q* source, const char* const* key, u32 flags, void* extra);
 CStrId* fn_71002ec88c(UnkCountedResource* resource);
-void fn_71002f7c08(void* arrays, u32 capacity);
+void ReserveStrIdCountedRefDictionaryCapacity(void* arrays, u32 capacity);
 
 struct UnkResCache_b0187q {
     u8 pad_0x0[0x8];
@@ -58,7 +58,7 @@ UnkResRef_b0187q fn_71002f6d18(UnkResCache_b0187q* self, const char* const* key,
     ++created->ref_count;
     CStrId* id = fn_71002ec88c(created);
     if (self->count == self->capacity)
-        fn_71002f7c08(&self->refs, self->step + self->count);
+        ReserveStrIdCountedRefDictionaryCapacity(&self->refs, self->step + self->count);
     CStrId* slot = &self->ids[self->count];
     base::global::UnkStringData* d = id->data;
     __builtin_memcpy(slot, &d, sizeof(d));

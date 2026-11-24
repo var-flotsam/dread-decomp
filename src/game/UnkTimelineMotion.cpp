@@ -80,7 +80,7 @@ static inline f32 FrameAt(UnkTimeline* self, f32 t) {
     if ((f32)self->frame_count == t)
         return self->last_frame;
     if (self->keys.count == 1)
-        return t / fn_7100b8ad14(&self->keys, 0)->frame_time;
+        return t / GetTimeKeyAtGrowingWithDefaults(&self->keys, 0)->frame_time;
     // The first key after `t`; the one before it holds `t`.
     UnkTimeKey* it = self->keys.data;
     UnkTimeKey* last = self->keys.data + self->keys.count;

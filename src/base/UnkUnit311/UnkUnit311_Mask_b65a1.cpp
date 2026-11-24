@@ -3,4 +3,4 @@
 #include "game/UnkTU311.h"
 #include "types.h"
 
-bool fn_7100217e50(u32 flags, u32 mask) { return (mask & ~flags) == 0; }
+bool AreAllMaskBitsSetInFlags(u32 flags, u32 mask) { return (mask & ~flags) == 0; }

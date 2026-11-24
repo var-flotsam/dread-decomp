@@ -22,7 +22,7 @@ using base::global::CStrId;
 using unk_prop_bag::UnkPropBag;
 
 // Calls the script function `name`, collecting what it returns in `results`.
-bool fn_7100dfb758(UnkPropBag* results, const char* name, const char* fmt, ...);
+bool CallScriptFunctionByName(UnkPropBag* results, const char* name, const char* fmt, ...);
 
 // A value a script call returned: where it is in the bag's stream, the hash of its name and its type.
 struct UnkScriptValue_ldfb930 {
@@ -60,7 +60,7 @@ s32 fn_7100dfb930() {
     UnkGameManager* manager = g_unk_7101d47310;
     f32 ratio = 0.0f;
     UnkPropBag results;
-    if (fn_7100dfb758(&results, "Init.GetMaxGameProgressStats", g_unk_710162e2ed)) {
+    if (CallScriptFunctionByName(&results, "Init.GetMaxGameProgressStats", g_unk_710162e2ed)) {
         const UnkQualifiedId& name = DefId_ldfb930(g_unk_71727590f8);
         s32 total = 0;
         UnkScriptValue_ldfb930* it = FindValue_ldfb930(results, name.id);

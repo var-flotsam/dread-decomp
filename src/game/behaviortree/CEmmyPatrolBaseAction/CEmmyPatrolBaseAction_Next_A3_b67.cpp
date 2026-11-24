@@ -10,7 +10,7 @@
 // As src/game/behaviortree/CEmmyPatrolBaseAction/CEmmyPatrolBaseAction_Start_b55.cpp declares it.
 struct UnkPatrolBase_b55;
 
-u32 fn_71006fa894(void* path);
+u32 CountListsInAllRegistryRecords(void* path);
 
 struct UnkNodeAllocator_A3_b67 {
     void** vtable;
@@ -59,7 +59,7 @@ void fn_7100515ed8(UnkPatrolAction_A3_b67* self) {
         UnkEmmyNodeSet_A3_b67* set = &ai->nodes;
         u32 steps = ++self->steps;
         asm("" : "+r"(set));
-        u32 limit = fn_71006fa894(set->path);
+        u32 limit = CountListsInAllRegistryRecords(set->path);
         for (UnkEmmyNode_A3_b67* node = set->head; node;) {
             UnkEmmyNode_A3_b67* next = node->next;
             set->allocator->Free(node);

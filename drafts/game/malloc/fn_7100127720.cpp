@@ -39,7 +39,7 @@ struct UnkContactBuffer {
 };
 
 struct UnkCapsule2D;
-bool fn_710010f838(const UnkCircle2D* circle, const UnkCapsule2D* capsule, f32 tolerance);
+bool IsCapsuleCentreInsideCircle(const UnkCircle2D* circle, const UnkCapsule2D* capsule, f32 tolerance);
 
 // Appends a cleared point and returns its index (the count itself once it reaches ~0).
 static inline u32 AddPoint(UnkContactBuffer<2>* out) {
@@ -106,9 +106,9 @@ bool fn_7100127720(const UnkCircle2D* a, const UnkCircle2D& b, UnkContactBuffer<
         return false;
     if (dist < fabsf(ra - rb)) {
         if (flag) {
-            if (fn_710010f838(&b, reinterpret_cast<const UnkCapsule2D*>(a), 0.0f))
+            if (IsCapsuleCentreInsideCircle(&b, reinterpret_cast<const UnkCapsule2D*>(a), 0.0f))
                 SetCentrePoint(out, a->x, a->y);
-            else if (fn_710010f838(a, reinterpret_cast<const UnkCapsule2D*>(&b), 0.0f))
+            else if (IsCapsuleCentreInsideCircle(a, reinterpret_cast<const UnkCapsule2D*>(&b), 0.0f))
                 SetCentrePoint(out, b.x, b.y);
         }
         return out->count != 0;

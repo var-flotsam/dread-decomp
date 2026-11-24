@@ -6,7 +6,7 @@
 using base::global::CFilePathStrId;
 
 struct UnkObject246;
-bool fn_71001bb9c8(UnkObject246* self, const CFilePathStrId* path);
+bool LoadAndSwapPartResourceByPath(UnkObject246* self, const CFilePathStrId* path);
 
 struct UnkOwner118 {
     u8 pad_0x0[0x128];
@@ -15,5 +15,5 @@ struct UnkOwner118 {
 
 bool fn_7100141b64(UnkOwner118* self, const CFilePathStrId* path) {
     CFilePathStrId copy(*path);
-    return fn_71001bb9c8(self->field_0x128, &copy);
+    return LoadAndSwapPartResourceByPath(self->field_0x128, &copy);
 }

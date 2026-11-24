@@ -168,7 +168,7 @@ void CDaivoSwarmControllerComponent_BuildAttackPathAlongTargetVelocity(UnkDaivoS
 
 // As src/game/UnkColorFade1159/UnkColorFade1159.cpp defines it.
 struct UnkColorFade1159;
-void fn_71007453a8(UnkColorFade1159* self, const base::color::CColor4F* from, const base::color::CColor4F* to,
+void StartColorFadeFromToOverTime(UnkColorFade1159* self, const base::color::CColor4F* from, const base::color::CColor4F* to,
                    bool mark_dirty, bool flag, f32 time);
 // As src/game/CRinkaUnitComponent/CRinkaUnitComponent_b39.cpp declares it.
 extern const base::math::CVector4D g_unk_7101647634;
@@ -220,7 +220,7 @@ void CDaivoSwarmControllerComponent_StartGroupColorFadesOverTimeAlive(UnkDaivoFa
         CColor4F from = member->color;
         CColor4F to = reinterpret_cast<const CColor4F&>(g_unk_7101647634);
         member->field_0x154 = time;
-        fn_71007453a8(reinterpret_cast<UnkColorFade1159*>(member), &from, &to, false, false, time);
+        StartColorFadeFromToOverTime(reinterpret_cast<UnkColorFade1159*>(member), &from, &to, false, false, time);
     }
 }
 

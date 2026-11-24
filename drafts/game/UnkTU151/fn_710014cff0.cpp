@@ -22,12 +22,12 @@ struct __attribute__((packed)) UnkEntryArray_b0249 {
     UnkEntry_b0249 items[1];
 };
 
-void fn_710014d838(UnkEntryArray_b0249* self, u32 count);
+void ResizeStrIdEntryArray(UnkEntryArray_b0249* self, u32 count);
 
 // The entry at `index`, the array grown to hold it first.
 static inline UnkEntry_b0249& At(UnkEntryArray_b0249* entries, u64 index) {
     if (index >= entries->count)
-        fn_710014d838(entries, index + 1);
+        ResizeStrIdEntryArray(entries, index + 1);
     return entries->items[index];
 }
 

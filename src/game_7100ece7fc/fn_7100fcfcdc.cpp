@@ -34,7 +34,7 @@ extern void* g_unk_7101cabb60[];
 extern void* g_unk_7101cabf20[];
 extern void* g_unk_7101cabe98[];
 
-void fn_7100fcfcdc(UnkMusicBank_0xb78* bank, u32 kind) {
+void ConstructMusicChannelWithEightEntries(UnkMusicBank_0xb78* bank, u32 kind) {
     auto* self = reinterpret_cast<UnkObject_7100fcfcdc_fcfcdc*>(bank);  // this file's view of the bank
     fn_7100fe1028(reinterpret_cast<UnkMusicChannel_0x30*>(self), kind);  // its base, the channel
     self->field_0x38 = nullptr;

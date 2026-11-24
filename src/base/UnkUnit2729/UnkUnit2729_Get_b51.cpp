@@ -42,7 +42,7 @@ base::global::CFilePathStrId fn_710025539c(UnkKey_71011938bc* const* key);
 
 // The miss path: builds the resource from the key and the path (or the key's default path when the
 // path is empty) and adds it to the cache.
-UnkCountedResource* fn_71011939dc(UnkCache_71011938bc* self, UnkKey_71011938bc* const* key,
+UnkCountedResource* CreateAndCacheResourceOnLookupMiss(UnkCache_71011938bc* self, UnkKey_71011938bc* const* key,
                                   const base::global::CFilePathStrId* path) {
     base::global::CFilePathStrId tmp = path->data != &g_unk_7101d47200->empty
                                            ? base::global::CFilePathStrId(*path)
@@ -78,7 +78,7 @@ UnkRef_71011938bc fn_71011938bc(UnkCache_71011938bc* self, UnkKey_71011938bc* co
             }
         }
     }
-    UnkCountedResource* v = fn_71011939dc(self, key, path);
+    UnkCountedResource* v = CreateAndCacheResourceOnLookupMiss(self, key, path);
     ref.ptr = nullptr;
     if (v) {
         ++v->ref_count;

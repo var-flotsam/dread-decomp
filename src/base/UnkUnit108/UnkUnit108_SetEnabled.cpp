@@ -33,7 +33,7 @@ UnkStatus108 fn_710011dd10(void* context, UnkOwner108* owner, UnkValue108* const
         else if (target->state == 1)
             target->state = 3;
     }
-    fn_7100119c1c(target);
+    ResolvePendingPolygonWinding(target);
     UnkStatus108 status;
     status.field_0x0 = 0;
     status.field_0x8 = 0;

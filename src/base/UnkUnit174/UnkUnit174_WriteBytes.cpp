@@ -11,7 +11,7 @@ struct UnkUnit174Buffer_2 {
     bool enabled;  // 0x34
 };
 
-void fn_71001542f0(UnkUnit174Buffer_2* self, u32 offset, u32 size, const void* src) {
+void WriteBytesToEnabledBufferAtOffset(UnkUnit174Buffer_2* self, u32 offset, u32 size, const void* src) {
     if (!self || !self->enabled || !self->data)
         return;
     memcpy(self->data + offset, src, size);

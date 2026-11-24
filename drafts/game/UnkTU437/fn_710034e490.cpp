@@ -248,7 +248,7 @@ static inline u32 AimMode(UnkAimComponent_l34e490* self, bool* locked, bool* ble
         } else if ((gun && gun->busy) || fn_7100df59a8(g_unk_7101d47310) ||
                    (gun && fn_710084088c(reinterpret_cast<UnkSamusGunComponent*>(gun))) ||
                    g_unk_7101d47310->field_0xc8 != 0 || g_unk_7101d47310->field_0x10c ||
-                   fn_7100df5740(g_unk_7101d47310)) {
+                   IsOpticCamouflageAbilityInState6(g_unk_7101d47310)) {
             mode = 3;
         } else if (self->field_0x358 != 0 &&
                    (near || self->field_0x4d4 > 0.0f ||

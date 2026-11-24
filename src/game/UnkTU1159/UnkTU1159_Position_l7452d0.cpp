@@ -23,14 +23,14 @@ struct UnkOffsetObj_1159_l7452d0 {
 
 // Defined in src/game/UnkUnit1161/UnkUnit1161_b42.cpp.
 struct UnkPoint_1161_b42;
-UnkVec3_1161_b42 fn_7100745f80(const UnkPoint_1161_b42* self);
+UnkVec3_1161_b42 GetPositionPlusParentTranslationAndOffset(const UnkPoint_1161_b42* self);
 
 UnkVec3f fn_71007452d0(const UnkOffsetObj_1159_l7452d0* self) {
     if (self->mode == 1) {
         return UnkVec3f(self->pos[0] + self->offset[0], self->pos[1] + self->offset[1], self->pos[2] + self->offset[2]);
     }
     if (self->owner) {
-        UnkVec3_1161_b42 base = fn_7100745f80(reinterpret_cast<const UnkPoint_1161_b42*>(self->owner));
+        UnkVec3_1161_b42 base = GetPositionPlusParentTranslationAndOffset(reinterpret_cast<const UnkPoint_1161_b42*>(self->owner));
         f32 x = self->pos[0] + self->offset[0];
         f32 y = self->pos[1] + self->offset[1];
         f32 z = self->pos[2] + self->offset[2];

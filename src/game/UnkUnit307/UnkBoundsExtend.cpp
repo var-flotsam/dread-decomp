@@ -28,7 +28,7 @@ static inline void ExtendRange(UnkRange& r, f32 v) {
     }
 }
 
-void fn_7100215f60(UnkBox_215f60* self, const UnkPoint3& point) {
+void ExtendBoundingBoxToContainPoint(UnkBox_215f60* self, const UnkPoint3& point) {
     ExtendRange(self->x, point.x);
     ExtendRange(self->y, point.y);
     ExtendRange(self->z, point.z);

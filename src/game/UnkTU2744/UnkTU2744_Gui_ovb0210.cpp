@@ -302,7 +302,7 @@ UnkGuiDisplayObject* fn_71011b63c4(UnkGuiRoot* root, UnkButtonTemplate_ovb0108* 
     {
         UnkCopyRoot_b0210 copy_root = {
             fn_710009dcd8(const_cast<char*>(reinterpret_cast<const char*>(source->vf_0x0())), source), source};
-        fn_71000ee314(reinterpret_cast<UnkWriteStack_b0026*>(&stack), reinterpret_cast<UnkWriteRoot_b0026*>(&copy_root),
+        InitReflValueListWithRoot(reinterpret_cast<UnkWriteStack_b0026*>(&stack), reinterpret_cast<UnkWriteRoot_b0026*>(&copy_root),
                       2);
     }
     UnkReadTarget target;

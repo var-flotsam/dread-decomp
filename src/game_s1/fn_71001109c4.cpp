@@ -124,7 +124,7 @@ UnkReflValue fn_71008dcbb8(void*, char* obj) {
     return MakeValue<fn_7100014768, s32>(1);
 }
 UnkReflValue InvokeCutsceneComponentTryLaunchCutscene(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_71007aa610(Target(obj))); }
-UnkReflValue fn_71008dcc08(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_71008d0ef4(Target(obj))); }
+UnkReflValue fn_71008dcc08(void*, char* obj) { return MakeValue<fn_710000d228, bool>(OpenDoorUnlessOpen(Target(obj))); }
 
 UnkReflValue fn_7101132928(void*, char* obj) {
     fn_7101126af4(reinterpret_cast<CSpawnPointComponent*>(Target(obj)));

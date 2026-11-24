@@ -24,7 +24,7 @@ struct UnkTunableGroupArrays_A1b71 {
     }
 };
 
-UnkTunableGroup_A1b71* fn_710013c2ac(UnkTunableGroupArrays_A1b71* self, const CStrId* key);
+UnkTunableGroup_A1b71* AppendEmptyTunableGroupWithId(UnkTunableGroupArrays_A1b71* self, const CStrId* key);
 
 struct UnkTunableRegistry_A1b71 {
     u8 pad_0x0[0x30];
@@ -40,6 +40,6 @@ UnkTunableGroupRef_A1b71 fn_710013c218(UnkTunableRegistry_A1b71* self, const CSt
     UnkTunableGroupArrays_A1b71* groups = &self->groups;
     UnkTunableGroup_A1b71* group = groups->Find(*name);
     if (group == groups->End())
-        group = fn_710013c2ac(groups, name);
+        group = AppendEmptyTunableGroupWithId(groups, name);
     return UnkTunableGroupRef_A1b71{group};
 }

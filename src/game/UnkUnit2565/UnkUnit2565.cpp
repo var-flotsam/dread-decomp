@@ -21,7 +21,7 @@ static inline bool IsOpen(const UnkLinkedCell* cell) {
 }
 
 // Recomputes the mask of open neighbours (and their links) and clears the dirty flag.
-void fn_7100e78180(UnkLinkedCell* self) {
+void RecomputeLinkedCellNeighbourMask(UnkLinkedCell* self) {
     u32 mask = 0;
     self->open_links = 0;
     if (UnkLinkedCell* cell = self->link0) {

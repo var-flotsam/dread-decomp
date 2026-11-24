@@ -82,7 +82,7 @@ bool fn_7100a1b2e4(UnkRockDiverSpawnPoint_la1b2e4* self) {
         if (dx * dx + dy * dy + dz * dz < g_unk_7101a8ca68 * g_unk_7101a8ca68)
             return Disarm(self);
     }
-    if (!allowed || self->delay > 0.0f || fn_7100df5740(g_unk_7101d47310))
+    if (!allowed || self->delay > 0.0f || IsOpticCamouflageAbilityInState6(g_unk_7101d47310))
         return false;
     self->armed = true;
     return true;

@@ -33,7 +33,7 @@ struct UnkTexPivot {
     f32 v[4];
 };
 
-void fn_710014f074(void* shader) {
+void InitPpMixerShader(void* shader) {
     UnkMixerShader* self = static_cast<UnkMixerShader*>(shader);
     fn_710014c890(reinterpret_cast<UnkRegistered_l14c890*>(self), "pp_mixer");
     fn_710014cb78(self);

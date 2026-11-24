@@ -11,7 +11,7 @@ void CEmmyAIComponent_PushBackInnerArrayCopy(UnkOuterVec* self, const UnkInnerVe
 
 // Copy-constructs `self` from `other`: the same settings and allocator, the capacity reserved up
 // front, then each inner array appended.
-void fn_71006fb3f4(UnkOuterVec* self, const UnkOuterVec* other) {
+void CopyConstructNestedRntVector(UnkOuterVec* self, const UnkOuterVec* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;

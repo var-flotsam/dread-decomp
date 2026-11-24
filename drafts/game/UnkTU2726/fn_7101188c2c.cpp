@@ -42,7 +42,7 @@ using unk_prop_bag::Key;
 using unk_prop_bag::UnkPropBag;
 
 // Calls the script function `name`, collecting what it returns in `results`.
-bool fn_7100dfb758(UnkPropBag* results, const char* name, const char* fmt, ...);
+bool CallScriptFunctionByName(UnkPropBag* results, const char* name, const char* fmt, ...);
 void fn_710010825c(UnkSoundMgr* manager, const u32* id, f32 time);
 UnkMatrix44 fn_7100078e54(f32 a, f32 b, f32 c);
 // As src/game/UnkTU2523/UnkTU2523_Misc_ovb0220.cpp defines it.
@@ -369,7 +369,7 @@ void fn_7101188c2c(UnkIngameMenu_l188c2c* self, f32 dt) {
     case 7: {
         bool overrides = false;
         UnkPropBag results;
-        if (fn_7100dfb758(&results, "CurrentScenario.GetOnDeathOverrides", g_unk_710162e2ed)) {
+        if (CallScriptFunctionByName(&results, "CurrentScenario.GetOnDeathOverrides", g_unk_710162e2ed)) {
             UnkScriptValue_l188c2c* it = FindValue_l188c2c(results, Key(0x1218));
             if (it != &Values_l188c2c(results)[results.values.count] && it->type == 'b') {
                 CRntFile_Seek(&results.lock, it->offset, 0);

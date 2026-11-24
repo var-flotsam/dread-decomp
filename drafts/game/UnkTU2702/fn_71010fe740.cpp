@@ -59,7 +59,7 @@ struct UnkTargetState_l0fe740 {
             keys[i].~UnkStateKey_l0fe740();
         key_count = 0;
         field_0x98 = 0;
-        fn_7100119f98(reinterpret_cast<UnkTileOutline*>(this), false);
+        SetPolylineClosed(reinterpret_cast<UnkTileOutline*>(this), false);
     }
 };
 static_assert(sizeof(UnkTargetState_l0fe740) == 0xa0, "layout");
