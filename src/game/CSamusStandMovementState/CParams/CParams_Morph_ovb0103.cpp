@@ -85,7 +85,7 @@ static inline const UnkQualifiedId& GetQualifiedId_ovb0103(UnkPropertyEx<>& item
 
 // Whether the state can turn into the morph ball: the kind (fn_71009b4de0) when the inventory holds
 // ITEM_MORPH_BALL and fn_71009b49dc or fn_71009b4b50 allows it.
-__attribute__((always_inline)) bool CParams_CanTransitionToMorphBall(UnkStandState_ovb0103* self, u32* kind, bool* a, bool* b) {
+__attribute__((always_inline)) bool fn_71009b45a8(UnkStandState_ovb0103* self, u32* kind, bool* a, bool* b) {
     *kind = 0;
     *a = false;
     *b = false;
@@ -101,7 +101,7 @@ void fn_71009b4490(UnkStandState_ovb0103* self) {
     u32 kind;
     bool a;
     bool b;
-    if (CParams_CanTransitionToMorphBall(self, &kind, &a, &b)) {
+    if (fn_71009b45a8(self, &kind, &a, &b)) {
         if (a)
             fn_71009b170c(self);
         if (b) {

@@ -159,7 +159,7 @@ static inline void Stop(UnkMorphBall_l94c19c* self) {
 // Whether the shape placed by `xf` and swept by `step` hits anything in `tree` on the layers of `mask`.
 static inline bool Sweep(UnkTree* tree, u32 mask, UnkShape* shape, const UnkMatrix44_7100078c9c& xf,
                          const base::math::CVector2D& step, UnkSweepQuery_l94c19c* query) {
-    return fn_7100d5babc(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&step),
+    return SweepShapeAgainstCollisionTree(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&step),
                          query, false);
 }
 

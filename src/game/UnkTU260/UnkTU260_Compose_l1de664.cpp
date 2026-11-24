@@ -67,12 +67,12 @@ void fn_71001de664(UnkRenderPass_1de664* self, bool first_extra, bool second_ext
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_710015a260(false);
     fn_71001ced08(self->target, self->flag_0xae51);
-    fn_710015f770(9, fn_710015c450(self->slot_0x498), true);
+    SetGraphicsSlotPointer(9, fn_710015c450(self->slot_0x498), true);
     if (first_extra)
         fn_71001d6a0c(self->target);
     if (second_extra)
         fn_71001d6ad0(self->target);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cdd70(self->target);
 
     fn_710015c3f0(self->slot_0x460);
@@ -88,7 +88,7 @@ void fn_71001de664(UnkRenderPass_1de664* self, bool first_extra, bool second_ext
     textures[3] = fn_710015c450(self->slot_0x498);
     textures[4] = fn_710015c450(self->slot_0x460);
     for (u32 i = 0; i < 5; ++i) {
-        fn_710015f770(i, textures[i], true);
+        SetGraphicsSlotPointer(i, textures[i], true);
         fn_71001606f0(i, textures[i] != nullptr, true);
         fn_7100160ab0(i, 0, true);
         fn_7100160990(i, 0, true);
@@ -99,7 +99,7 @@ void fn_71001de664(UnkRenderPass_1de664* self, bool first_extra, bool second_ext
         fn_71001d6a0c(self->target);
     if (second_extra)
         fn_71001d6ad0(self->target);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cdd70(self->target);
     fn_71001cde48(self->target);
 }

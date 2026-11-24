@@ -18,7 +18,7 @@ UnkMatrix44* fn_710019d920(UnkView_ovb0245* self, UnkSize_ovb0245* size) {
         self->matrix_valid = 1;
         UnkMatrix44 m = fn_71000791a8(self->position, UnkVec3f(0.0f, 0.0f, 0.0f), self->scale);
         UnkCopyMatrix(&self->matrix, m);
-        fn_710015bf40(&self->matrix, (f32)size->width / (f32)size->height);
+        ScaleMatrixYByAspectRatioAndNegateElement7(&self->matrix, (f32)size->width / (f32)size->height);
     }
     return &self->matrix;
 }

@@ -76,7 +76,7 @@ void fn_7100ddbd18(UnkVisorHud_b0261* self) {
             base::math::CVector2D scale;
             scale.x = 1.0f;
             scale.y = 0.5625f;
-            fn_710020a5a0(reinterpret_cast<UnkStruct_710020a5a0*>(widget->field_0x18), &scale);
+            SetNode2DScale(reinterpret_cast<UnkStruct_710020a5a0*>(widget->field_0x18), &scale);
         }
     }
     self->field_0x1c = 600.0f;

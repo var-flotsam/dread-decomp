@@ -113,7 +113,7 @@ struct UnkPopUpLists_ovb0085 {
 };
 
 struct UnkIdPair20Array;
-void CPopUpComposition_TruncateStrIdPairArray(UnkIdPair20Array* self, u32 n);
+void fn_7100b607f0(UnkIdPair20Array* self, u32 n);
 struct UnkPopUpIdRecord_ovb0085;
 
 struct UnkPopUpAction_ovb0085 {
@@ -238,7 +238,7 @@ void fn_7100b5e7c8(UnkPopUpComposition_ovb0085* self) {
     self->field_0x320.~UnkRefPtrMember();
     self->panel.~UnkRefPtrMember();
     if (self->records.data) {
-        CPopUpComposition_TruncateStrIdPairArray(reinterpret_cast<UnkIdPair20Array*>(&self->records), 0);
+        fn_7100b607f0(reinterpret_cast<UnkIdPair20Array*>(&self->records), 0);
         self->records.allocator->vf_0x48(self->records.data);
         self->records.capacity = 0;
     }

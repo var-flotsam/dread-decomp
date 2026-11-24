@@ -32,6 +32,6 @@ UnkMatrix44 fn_710019da10(UnkView_ovb0245* self, UnkSize_ovb0245* size, f32 x, f
     UnkVec3f position(x / width + base.x, py, base.z);
     UnkMatrix44 m = fn_71000791a8(position, UnkVec3f(0.0f, 0.0f, 0.0f), self->scale);
     UnkCopyMatrix(&result, m);
-    fn_710015bf40(&result, aspect);
+    ScaleMatrixYByAspectRatioAndNegateElement7(&result, aspect);
     return result;
 }

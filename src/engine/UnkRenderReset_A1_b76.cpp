@@ -30,7 +30,7 @@ static inline void ResetA1(UnkRenderOwnerA1* self) {
     fn_71001cdd74(self->target, self->block_0x118);
     fn_71001cdba4(self->target, self->block_0x308);
     Third(self->target);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cde48(self->target);
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_71001cdd70(self->target);

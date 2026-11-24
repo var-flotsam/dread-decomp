@@ -198,7 +198,7 @@ bool fn_710038c4c8(UnkInPathPatrolAction_l38c4c8* self) {
                 f32 angle = 0.0f;
                 if (cosine < 1.0f)
                     angle = cosine > -1.0f ? acosf(cosine) : 3.1415927f;
-                fn_7100110664(&box, angle + box.angle);
+                SetOBox2DAngleAndRebuildAxes(&box, angle + box.angle);
             }
         }
     }

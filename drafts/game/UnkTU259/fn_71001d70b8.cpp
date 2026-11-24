@@ -40,7 +40,7 @@ void fn_71001cdba4(UnkGfxV_b0154* self, UnkEntry_b0154v* entry);
 void fn_7100160ab0(u32 index, s32 mode, u32 group);
 void fn_7100160990(u32 index, s32 mode, u32 group);
 void fn_71001d4dbc(UnkGfxV_b0154* self, void* object, UnkViewport_b0154v* viewport);
-void fn_710015f770(u32 index, void* object, u32 group);
+void SetGraphicsSlotPointer(u32 index, void* object, u32 group);
 UnkEntry_b0154v* fn_7100159aa0();
 void fn_710015c2d0(UnkEntry_b0154v* entry);
 void fn_71001cafa0(UnkGfxV_b0154* self, s32 a, s32 b, s32 c);
@@ -80,7 +80,7 @@ void fn_71001d70b8(UnkGfxV_b0154* self, void** object_ref, u64* value_ref, bool 
     fn_7100160ab0(0, mode, 1);
     fn_7100160990(0, mode, 1);
     fn_71001d4dbc(self, object, &viewport);
-    fn_710015f770(0, nullptr, 1);
+    SetGraphicsSlotPointer(0, nullptr, 1);
     base::global::CRntVector<UnkEntry_b0154v>& v = self->entries;
     u32 n = v.count - 1;
     typedef u32 __attribute__((may_alias)) UnkAliasCount;

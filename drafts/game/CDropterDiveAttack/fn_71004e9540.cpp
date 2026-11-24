@@ -25,7 +25,7 @@ void RoundVector3ComponentsHalfAwayFromZero(UnkVec3fR* v);
 struct UnkPlayerMovementCache;
 void* fn_71010d7a6c(UnkPlayerMovementCache* self);
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 __attribute__((visibility("hidden"))) extern const CVector3D g_unk_7101649ca4;
 
@@ -195,7 +195,7 @@ bool fn_71004e9540(UnkDropterDive_l4e9540* self) {
     xf.m[7] = from.y;
     xf.m[11] = from.z;
     UnkDiveQuery_l4e9540 query(CVector3D{start.x, start.y, 0.0f});
-    if (!fn_7100d5babc(tree, 0x80429, reinterpret_cast<UnkShape*>(&circle), reinterpret_cast<const UnkMtx44*>(&xf),
+    if (!SweepShapeAgainstCollisionTree(tree, 0x80429, reinterpret_cast<UnkShape*>(&circle), reinterpret_cast<const UnkMtx44*>(&xf),
                        reinterpret_cast<const Vec2*>(&sweep), &query, false))
         return false;
     UnkDiveHitOwner_l4e9540* hit_owner = query.hit.object.ptr->owner;

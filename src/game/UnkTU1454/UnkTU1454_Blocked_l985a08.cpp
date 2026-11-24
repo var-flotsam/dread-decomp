@@ -106,7 +106,7 @@ bool IsCircleAtTargetPositionFreeOfCollision(UnkNpc_b0248* self, UnkTarget_b0248
     UnkCircleShape_l985a08 shape(UnkCircle_l985a08{0.0f, 0.0f, radius});
     UnkHitVisitor_l985a08 hits;
     UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(pos);
-    bool hit = fn_7100d5b484(tree, 0x209, reinterpret_cast<UnkShape*>(&shape),
+    bool hit = QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x209, reinterpret_cast<UnkShape*>(&shape),
                              reinterpret_cast<const UnkMtx44*>(&xf), &hits, 1);
     return !hit;
 }

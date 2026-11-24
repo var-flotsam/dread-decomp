@@ -134,7 +134,7 @@ UnkProbeHit_l94848c fn_710094848c(UnkProbeSelf_l94848c* self) {
     UnkMatrix44 xf;
     UnkCopyMatrix(&xf, fn_710002614c(&self->actor->transform));
     UnkProbeQuery_l94848c query(self->pos);
-    fn_7100d5b484(tree, self->collision_mask, reinterpret_cast<UnkShape*>(shape),
+    QueryCollisionTreeForTransformedShapeOverlaps(tree, self->collision_mask, reinterpret_cast<UnkShape*>(shape),
                   reinterpret_cast<const UnkMtx44*>(&xf), &query, 0);
     shape->Restore();
     return query.hit;

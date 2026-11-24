@@ -8,7 +8,7 @@ extern "C" void __cxa_guard_release(u64* guard);
 
 extern u64 g_unk_71726cbba0;
 
-void fn_7100467e70() {
+void InitSpinjump2AttackDashslashStrId() {
     if (!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726cbba0), __ATOMIC_ACQUIRE) & 1)) {
         if (__cxa_guard_acquire(&g_unk_71726cbba0)) {
             new (g_unk_71726cbb98) CStrId("spinjump2attack_dashslash", true);

@@ -79,7 +79,7 @@ bool fn_71001d48cc(UnkRenderTargetA1* target, void* program, f32 alpha) {
         // The original adjusts the view here, not the projection.
         if (fn_710015c460() == 1)
             view.m[13] = 1.0f - view.m[13];
-        fn_710015bf40(&projection, fn_7100132fa0());
+        ScaleMatrixYByAspectRatioAndNegateElement7(&projection, fn_7100132fa0());
         fn_710015e4b0(context->state, 0, context->projection_location, 4, 1, &projection, 1);
     }
     if (context->field_0x400)

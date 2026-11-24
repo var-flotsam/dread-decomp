@@ -316,7 +316,7 @@ void fn_71001d4f84(UnkOwner_b0154e* self, UnkEntry_b0154e* entry, UnkViewport_b0
                   viewport->max_depth);
     for (u64 i = 0; i < object_count; i++) {
         void* object = objects[i];
-        fn_710015f770(i, object, true);
+        SetGraphicsSlotPointer(i, object, true);
         fn_71001606f0(i, object != nullptr, true);
     }
     if (scissor->width && scissor->height)
@@ -440,7 +440,7 @@ struct UnkGfxN_b0154 {
 static inline __attribute__((always_inline)) void BindSlot(u32 slot, void* object) {
     if (object) {
         fn_71001606f0(slot, 1, 1);
-        fn_710015f770(slot, object, 1);
+        SetGraphicsSlotPointer(slot, object, 1);
         fn_7100160810(slot, 0, 1);
         fn_7100160890(slot, 0, 1);
         fn_7100160910(slot, 0, 1);
@@ -570,7 +570,7 @@ void fn_71001d4be4(UnkGfxS_b0154* self, UnkViewport_b0154s* viewport, f32 r, f32
     }
     fn_7100159490(viewport->x, viewport->y, viewport->width, viewport->height, viewport->min_depth,
                   viewport->max_depth);
-    fn_710015f770(0, nullptr, true);
+    SetGraphicsSlotPointer(0, nullptr, true);
     fn_71001606f0(0, 0, true);
     if (fn_7100159c80()) {
         fn_7100159800(0);
@@ -627,7 +627,7 @@ void fn_71001d4dbc(UnkGfxR_b0154* self, void* object, UnkViewport_b0154r* viewpo
     }
     fn_7100159490(viewport->x, viewport->y, viewport->width, viewport->height, viewport->min_depth,
                   viewport->max_depth);
-    fn_710015f770(0, object, true);
+    SetGraphicsSlotPointer(0, object, true);
     fn_71001606f0(0, object != nullptr, true);
     if (fn_7100159c80()) {
         fn_7100159800(0);

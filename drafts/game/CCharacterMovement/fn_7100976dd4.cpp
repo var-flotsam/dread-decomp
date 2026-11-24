@@ -164,12 +164,12 @@ bool fn_7100976dd4(UnkMovement_l976dd4* self, UnkVec3f* pos, UnkVec3f* normal_ou
             xf.m[7] = p.y;
             xf.m[11] = p.z;
             ok = true;
-            if (!fn_7100d5b484(static_cast<UnkTree*>(tracker), mask, reinterpret_cast<UnkShape*>(probe),
+            if (!QueryCollisionTreeForTransformedShapeOverlaps(static_cast<UnkTree*>(tracker), mask, reinterpret_cast<UnkShape*>(probe),
                                reinterpret_cast<const UnkMtx44*>(&xf), nullptr, 1))
                 break;
             moved = true;
             UnkPushHits_l976dd4 hits;
-            if (fn_7100d5b484(static_cast<UnkTree*>(tracker), mask, reinterpret_cast<UnkShape*>(&area),
+            if (QueryCollisionTreeForTransformedShapeOverlaps(static_cast<UnkTree*>(tracker), mask, reinterpret_cast<UnkShape*>(&area),
                               reinterpret_cast<const UnkMtx44*>(&xf), &hits, 1)) {
                 moved = false;
                 if (hits.begin() == hits.end()) {

@@ -1142,7 +1142,7 @@ address,size,name,name_source,subsystem,status
 0x7100745404,60,fn_7100745404,unknown,game/components?,O
 0x7100745440,60,fn_7100745440,unknown,game/components?,O
 0x710074547c,352,fn_710074547c,unknown,game/components?,U
-0x71007455dc,144,fn_71007455dc,unknown,game/components?,O
+0x71007455dc,144,GetPositionFromParentAndOffset,inferred,game/components?,O
 0x710074566c,144,fn_710074566c,unknown,game/components?,m
 0x71007456fc,24,fn_71007456fc,unknown,game/components?,O
 0x7100745714,32,fn_7100745714,unknown,game/components?,O

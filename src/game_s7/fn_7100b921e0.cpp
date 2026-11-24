@@ -44,7 +44,7 @@ struct UnkPractice_7100b921e0 {
 // below the branch (one address per member), ours only the last. Same behaviour.
 void fn_7100b921e0(UnkPractice_7100b921e0* self) {
     UnkGuiRoot* root = g_unk_717271e8f8;
-    self->composition = fn_71011b69d8(root, CRntString("bossrushresults")).Get();
+    self->composition = GetGuiCompositionHandleByName(root, CRntString("bossrushresults")).Get();
     UnkGuiObj*& composition = self->composition;
     fn_71011d968c(g_unk_717271e8f8->menu, composition);
     fn_71011cdce8(composition, 1);

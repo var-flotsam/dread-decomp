@@ -69,7 +69,7 @@ bool fn_710073cbe4(UnkSwarmComponent_l73cbe4* self, const CVector2D* from, const
     fn_710028659c(q);
     fn_7100286920(q, from, from_cell, 0xff);
     fn_7100286964(q, to, to_cell, nullptr);
-    fn_7100286798(reinterpret_cast<UnkStruct_7100286798*>(&query), self->owner);
+    InitNavQueryFromActor(reinterpret_cast<UnkStruct_7100286798*>(&query), self->owner);
     query.field_0x1ac = self->params->field_0x458;
 
     bool result = false;

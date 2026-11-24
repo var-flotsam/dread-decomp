@@ -2307,7 +2307,7 @@ address,size,name,name_source,subsystem,status
 0x71011a2fbc,20,fn_71011a2fbc,unknown,game/world?,O
 0x71011a2fd0,592,fn_71011a2fd0,unknown,game/world?,U
 0x71011a3220,20,fn_71011a3220,unknown,game/world?,O
-0x71011a3234,164,CScenario_FindLayerValueByKey,inferred,game/world?,O
+0x71011a3234,164,fn_71011a3234,unknown,game/world?,O
 0x71011a32d8,668,fn_71011a32d8,unknown,game/world?,U
 0x71011a3574,416,fn_71011a3574,unknown,game/world?,O
 0x71011a3714,840,fn_71011a3714,unknown,game/world?,U
@@ -2561,7 +2561,7 @@ address,size,name,name_source,subsystem,status
 0x71011b659c,352,fn_71011b659c,unknown,unknown,O
 0x71011b66fc,352,fn_71011b66fc,unknown,unknown,O
 0x71011b685c,380,fn_71011b685c,unknown,script/bindings?,O
-0x71011b69d8,388,fn_71011b69d8,unknown,gui?,O
+0x71011b69d8,388,GetGuiCompositionHandleByName,inferred,gui?,O
 0x71011b6b5c,96,fn_71011b6b5c,unknown,unknown,O
 0x71011b6bbc,592,fn_71011b6bbc,unknown,gui?,O
 0x71011b6e0c,476,fn_71011b6e0c,unknown,unknown,U

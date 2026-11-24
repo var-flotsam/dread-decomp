@@ -103,7 +103,7 @@ bool fn_7100d5b268(UnkTree* tree, u32 mask, const base::math::CVector3D* from, c
         UnkTreeHit_ld5b268 result(from);
         UnkMatrix44 identity;
         SetIdentity(&identity);
-        hit = fn_7100d5b484(tree, mask, reinterpret_cast<UnkShape*>(&shape),
+        hit = QueryCollisionTreeForTransformedShapeOverlaps(tree, mask, reinterpret_cast<UnkShape*>(&shape),
                             reinterpret_cast<const UnkMtx44*>(&identity), &result, 0);
         if (out && hit)
             *out = result.track;

@@ -36,7 +36,7 @@ struct UnkRecord_2b2e9c {
     u64 field_0x200;
 };
 
-void fn_71002b2e9c(UnkRecord_2b2e9c* self) {
+void ConstructNavMeshItem(UnkRecord_2b2e9c* self) {
     self->field_0x0 = 0;
     new (&self->field_0x8) CStrId(base::global::CStrId::Empty());
     self->field_0x10 = -1;

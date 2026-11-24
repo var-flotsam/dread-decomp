@@ -97,7 +97,7 @@ __attribute__((visibility("hidden"))) extern UnkVec3f g_unk_710164a698;
 __attribute__((visibility("hidden"))) extern UnkVec3f g_unk_710164a6a4;
 
 void fn_71000769f0(UnkMatrix44* out, const void* a, const void* b, const void* c, const void* d);
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 void fn_71006afc28(UnkShakernaut_af8ec* self, const UnkMatrix44* frame, const CVector3D* target, f32* angle,
                    UnkMatrix44* pose, bool* reachable);
 
@@ -160,7 +160,7 @@ bool fn_71006af8ec(UnkShakernaut_af8ec* self, const CVector3D* from, const CVect
 
     UnkHit_af8ec hit;
     u32 mask = static_cast<UnkCollisionMask_af8ec*>(self->actor->field_0x1f8)->mask;
-    if (!fn_7100d5babc(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&delta),
+    if (!SweepShapeAgainstCollisionTree(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&delta),
                        &hit, false))
         return true;
     UnkCollider_af8ec* collider = hit.GetCollider();

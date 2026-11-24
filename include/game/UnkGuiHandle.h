@@ -31,4 +31,4 @@ struct UnkGuiHandle {
     }
 };
 
-UnkGuiHandle fn_71011b69d8(UnkGuiRoot* registry, const base::global::CRntString& name);
+UnkGuiHandle GetGuiCompositionHandleByName(UnkGuiRoot* registry, const base::global::CRntString& name);

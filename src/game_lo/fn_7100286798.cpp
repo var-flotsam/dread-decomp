@@ -107,7 +107,7 @@ static inline u32 AsU32(const f32& value) {
     return bits;
 }
 
-void fn_7100286798(UnkStruct_7100286798* self, UnkActor_7100286798* actor) {
+void InitNavQueryFromActor(UnkStruct_7100286798* self, UnkActor_7100286798* actor) {
     self->actor = actor;
     if (!actor || !actor->component)
         return;

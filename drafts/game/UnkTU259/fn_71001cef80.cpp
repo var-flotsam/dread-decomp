@@ -248,7 +248,7 @@ void fn_71001cef80(UnkGfx_l1cef80* self, const UnkLightList_l1cef80* lights) {
 
     if (self->map_count) {
         fn_71001606f0(0xc, true, 1);
-        fn_710015f770(0xc, self->maps[0]->texture, 1);
+        SetGraphicsSlotPointer(0xc, self->maps[0]->texture, 1);
         fn_7100160810(0xc, 0, 1);
         fn_7100160890(0xc, 0, 1);
         fn_7100160910(0xc, 0, 1);

@@ -95,7 +95,7 @@ static inline bool IsPlaying(const UnkHandle& h) {
     return h.Get() != g_unk_7101d586c0.Get();
 }
 
-void CParams_StartRumbleIfNotPlaying(UnkMagnetLoopState_ovb0082* self) {
+void fn_71009aefb8(UnkMagnetLoopState_ovb0082* self) {
     if (IsPlaying(self->rumble) &&
         (!IsPlaying(self->rumble) || static_cast<UnkMagnetRumble_ovb0082*>(self->rumble.target->target)->field_0x9d))
         return;

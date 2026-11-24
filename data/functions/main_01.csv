@@ -110,7 +110,7 @@ address,size,name,name_source,subsystem,status
 0x7100105ebc,56,fn_7100105ebc,unknown,engine/base?,O
 0x7100105ef4,40,fn_7100105ef4,unknown,engine/base?,O
 0x7100105f1c,120,fn_7100105f1c,unknown,engine/base?,O
-0x7100105f94,144,fn_7100105f94,unknown,engine/base?,O
+0x7100105f94,144,SetSoundLevelOverTime,inferred,engine/base?,O
 0x7100106024,8,fn_7100106024,unknown,engine/base?,O
 0x710010602c,12,fn_710010602c,unknown,engine/base?,O
 0x7100106038,176,fn_7100106038,unknown,engine/base?,U
@@ -377,7 +377,7 @@ address,size,name,name_source,subsystem,status
 0x71001102a4,380,fn_71001102a4,unknown,engine/base?,O
 0x7100110420,304,fn_7100110420,unknown,engine/base?,O
 0x7100110550,276,fn_7100110550,unknown,engine/base?,O
-0x7100110664,104,fn_7100110664,unknown,engine/base?,O
+0x7100110664,104,SetOBox2DAngleAndRebuildAxes,inferred,engine/base?,O
 0x71001106cc,44,fn_71001106cc,unknown,engine/base?,O
 0x71001106f8,156,fn_71001106f8,unknown,engine/base?,O
 0x7100110794,84,fn_7100110794,unknown,engine/base?,O
@@ -2428,7 +2428,7 @@ address,size,name,name_source,subsystem,status
 0x710015be60,140,fn_710015be60,unknown,unknown,O
 0x710015bef0,4,fn_710015bef0,unknown,unknown,O
 0x710015bf00,52,fn_710015bf00,unknown,unknown,O
-0x710015bf40,220,fn_710015bf40,unknown,engine/reflection?,O
+0x710015bf40,220,ScaleMatrixYByAspectRatioAndNegateElement7,inferred,engine/reflection?,O
 0x710015c020,124,fn_710015c020,unknown,unknown,U
 0x710015c0a0,140,fn_710015c0a0,unknown,unknown,O
 0x710015c12c,8,fn_710015c12c,unknown,unknown,O
@@ -2477,7 +2477,7 @@ address,size,name,name_source,subsystem,status
 0x710015ef10,488,InitBinariesSourcesStatics,inferred,unknown,O
 0x710015f100,1012,fn_710015f100,unknown,unknown,m
 0x710015f500,624,fn_710015f500,unknown,unknown,m
-0x710015f770,160,fn_710015f770,unknown,msapi?,O
+0x710015f770,160,SetGraphicsSlotPointer,inferred,msapi?,O
 0x710015f810,100,FillRenderTargetSlotByFormat,inferred,unknown,O
 0x710015f880,1220,fn_710015f880,unknown,unknown,U
 0x710015fd50,664,fn_710015fd50,unknown,unknown,U
@@ -3967,7 +3967,7 @@ address,size,name,name_source,subsystem,status
 0x71001ccdd8,1480,fn_71001ccdd8,unknown,unknown,O
 0x71001cd3a0,2052,fn_71001cd3a0,unknown,unknown,U
 0x71001cdba4,372,fn_71001cdba4,unknown,unknown,O
-0x71001cdd18,84,fn_71001cdd18,unknown,unknown,O
+0x71001cdd18,84,PopPairListStackAndReapplyTop,inferred,unknown,O
 0x71001cdd6c,4,fn_71001cdd6c,unknown,unknown,O
 0x71001cdd70,4,fn_71001cdd70,unknown,unknown,O
 0x71001cdd74,156,fn_71001cdd74,unknown,unknown,O

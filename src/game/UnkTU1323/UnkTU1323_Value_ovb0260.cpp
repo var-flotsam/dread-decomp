@@ -13,7 +13,7 @@ using base::global::UnkStringPool;
 
 struct UnkHeatableValue_0xd0;
 struct UnkIdRecord_0x28;
-void fn_710086e288(UnkIdRecord_0x28* self);
+void DestroyStrIdArrayOf5(UnkIdRecord_0x28* self);
 
 struct UnkHeatableValue_b260 {
     CStrId id0;                       // 0x0
@@ -49,7 +49,7 @@ __attribute__((flatten)) void fn_710086df48(UnkHeatableValue_0xd0* self) {
 
 void DestroyHeatableShieldValueRecord(UnkHeatableValue_0xd0* self_) {
     UnkHeatableValue_b260* self = reinterpret_cast<UnkHeatableValue_b260*>(self_);
-    fn_710086e288(reinterpret_cast<UnkIdRecord_0x28*>(self->ids78));
+    DestroyStrIdArrayOf5(reinterpret_cast<UnkIdRecord_0x28*>(self->ids78));
     self->id48.Reset();
     reinterpret_cast<base::global::CRntVector<UnkStrIdTwoStep>&>(self->list).Free();
     self->id18.Reset();

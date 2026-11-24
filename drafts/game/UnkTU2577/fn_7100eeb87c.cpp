@@ -15,7 +15,7 @@ using base::global::UnkStringData;
 
 struct UnkScenarioLayer_ovb0032;
 struct UnkScenarioKey_ovb0032;
-void* CScenario_FindLayerValueByKey(UnkScenarioLayer_ovb0032* layers, u32 index, UnkScenarioKey_ovb0032* const* key);
+void* fn_71011a3234(UnkScenarioLayer_ovb0032* layers, u32 index, UnkScenarioKey_ovb0032* const* key);
 
 // A string id: moves take the id and leave the pool's empty string.
 struct UnkId_eb87c {
@@ -121,7 +121,7 @@ void fn_7100eeb87c(UnkSubAreaMgr_eb87c* self, UnkSceneObject_eb87c* object, UnkI
         }
     }
 
-    UnkLayerEntries_eb87c* entries = static_cast<UnkLayerEntries_eb87c*>(CScenario_FindLayerValueByKey(
+    UnkLayerEntries_eb87c* entries = static_cast<UnkLayerEntries_eb87c*>(fn_71011a3234(
         reinterpret_cast<UnkScenarioLayer_ovb0032*>(g_unk_7101d47310->field_0x608), 0, &object->key));
     if (!entries)
         return;

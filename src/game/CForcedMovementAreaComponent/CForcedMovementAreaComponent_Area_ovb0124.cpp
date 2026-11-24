@@ -511,7 +511,7 @@ bool CForcedMovementAreaComponent_QueryNamedColliderHit(UnkForcedAreaQuery_ovb01
     UnkCollisionObject* c = fn_71008640a4(static_cast<UnkCollisionContainer*>(object), name);
     if (!c)
         return false;
-    return fn_7100d5b484(tree, 0x10, reinterpret_cast<UnkAreaShaped_ovb0124*>(c)->shape,
+    return QueryCollisionTreeForTransformedShapeOverlaps(tree, 0x10, reinterpret_cast<UnkAreaShaped_ovb0124*>(c)->shape,
                          reinterpret_cast<const UnkMtx44*>(&xf), &query, 0);
 }
 

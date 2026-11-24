@@ -17,7 +17,7 @@ struct UnkQueryCtx {
 
 bool fn_7100d5cd9c(UnkQueryCtx* ctx, const UnkBvhNode* node);
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag) {
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag) {
     UnkMtx44 m = *xf * shape->transform;
     UnkMtx44 moved = m;
     Vec3 offset = {delta->x, delta->y, 0.0f};

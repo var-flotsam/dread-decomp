@@ -22,7 +22,7 @@
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 struct UnkNearSelf_l63ab04;
 struct UnkNearEntity_l63ab04;
@@ -278,13 +278,13 @@ bool fn_710063a7ec(UnkSelf_l63a7ec* self, UnkNearEntity_l63ab04* ignore, const U
         if (fn_7100d5c518(tree, mask, reinterpret_cast<const UnkBox*>(&segment), nullptr, 2))
             return false;
     }
-    if (fn_7100d5b484(tree, mask, holder->shape, reinterpret_cast<const UnkMtx44*>(&xf), nullptr, 0))
+    if (QueryCollisionTreeForTransformedShapeOverlaps(tree, mask, holder->shape, reinterpret_cast<const UnkMtx44*>(&xf), nullptr, 0))
         return false;
 
     UnkSegmentHitQuery_ovb0198u query(OnPlane_ovb0198u(from));
     CVector2D sweep = {dir.x * (dist + margin), dir.y * (dist + margin)};
     u32 clear = false;
-    if (fn_7100d5babc(tree, mask, holder->shape, reinterpret_cast<const UnkMtx44*>(&xf),
+    if (SweepShapeAgainstCollisionTree(tree, mask, holder->shape, reinterpret_cast<const UnkMtx44*>(&xf),
                       reinterpret_cast<const Vec2*>(&sweep), &query, false)) {
         UnkHitObject_l63a7ec* object = reinterpret_cast<UnkHitObject_l63a7ec*>(query.hit.object.ptr);
         if (UnkHitComponent_l63a7ec* component = object->entity->component) {

@@ -11,5 +11,5 @@ struct UnkStruct_710020a5a0;
 struct UnkMinimapVec3;
 void fn_710020ad90(void* self, s32 value);
 void fn_710020a4c4(void* node, const UnkMinimapVec3& pos);
-void fn_710020a5a0(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
+void SetNode2DScale(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
 void* fn_710020a43c(UnkModelNode* node);

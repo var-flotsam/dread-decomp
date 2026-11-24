@@ -72,7 +72,7 @@ struct alignas(16) UnkPoint_d7bea0 {
 };
 
 static inline bool InView(const UnkPoint_d7bea0& p) {
-    return fn_7100219588(g_unk_7101d47300, &p, 0, 0);
+    return IsPositionOnScreen(g_unk_7101d47300, &p, 0, 0);
 }
 
 bool fn_7100d7bea0(UnkActor* owner, u32 mode) {

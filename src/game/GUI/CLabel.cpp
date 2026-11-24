@@ -152,7 +152,7 @@ void fn_71011ee5a8(UnkLabel_CLabel* self) {
                             // The scale is passed by value: a copy made after the viewport is read.
                             UnkLabelViewport* viewport = e->viewport;
                             UnkLabelVec2 arg = scale;
-                            fn_710020a5a0(reinterpret_cast<UnkStruct_710020a5a0*>(&viewport->node),
+                            SetNode2DScale(reinterpret_cast<UnkStruct_710020a5a0*>(&viewport->node),
                                           reinterpret_cast<const CVector2D*>(&arg));
                             fn_71001c3770(e->viewport->view, true);
                         }

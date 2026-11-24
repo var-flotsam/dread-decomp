@@ -228,7 +228,7 @@ void fn_71001c5114(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
         fn_7100160990(0, mode, 1);
         self->field_0x3183650 = cmd->field_0xfc;
     }
-    fn_710015f770(0, cmd->field_0xa8, true);
+    SetGraphicsSlotPointer(0, cmd->field_0xa8, true);
     const UnkMatrix44* matrix = GetCachedXformMatrixAdjustedByAspectRatio(reinterpret_cast<UnkCachedMatrix_7100196674*>(cmd),
                                               reinterpret_cast<const UnkSize_7100196674*>(self->field_0x317aa08));
     fn_710015e4b0(self->field_0x317af68, 0, self->field_0x317ae18, 4, 1, matrix, 1);
@@ -266,7 +266,7 @@ void fn_71001c52d4(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
         fn_7100160990(0, mode, 1);
         self->field_0x3183650 = cmd->field_0x130;
     }
-    fn_710015f770(0, cmd->field_0xc0, true);
+    SetGraphicsSlotPointer(0, cmd->field_0xc0, true);
     if (self->field_0x317ae18) {
         const UnkMatrix44* matrix = fn_7100196248(cmd, self->field_0x317aa08);
         fn_710015e4b0(self->field_0x317af68, 0, self->field_0x317ae18, 4, 1, matrix, 1);

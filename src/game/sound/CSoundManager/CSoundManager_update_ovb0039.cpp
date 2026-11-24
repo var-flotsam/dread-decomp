@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/UnkCountedResource.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -159,8 +160,11 @@ static inline void CopyId(CStrId* dst, const CStrId* src) {
         ++data->ref_count;
 }
 
-void CSoundManager_ShrinkIdResourceDictionaryToFit(UnkSoundPairList_ovb0039* self);
-void CSoundManager_ReserveStrIdRecordDictionary(UnkSoundPairList_ovb0039* self, u32 n);
+// The dictionary's shrink and reserve, with the type CSoundManager_tables_ovb0038.cpp defines them on.
+struct UnkSoundIdResource_b0038;
+using UnkSoundIdTable_b0038 = base::global::CRntSmallDictionary<CStrId, UnkSoundIdResource_b0038>;
+void fn_710102a344(UnkSoundIdTable_b0038* self);
+void fn_7101029ec8(UnkSoundIdTable_b0038* self, u32 capacity);
 
 UnkSoundPairList_ovb0039* fn_710102a0ec(UnkSoundPairList_ovb0039* self, const UnkSoundPairList_ovb0039* other) {
     if (self == other)
@@ -175,8 +179,8 @@ UnkSoundPairList_ovb0039* fn_710102a0ec(UnkSoundPairList_ovb0039* self, const Un
     }
     self->count = 0;
     if (other->count != self->capacity) {
-        CSoundManager_ShrinkIdResourceDictionaryToFit(self);
-        CSoundManager_ReserveStrIdRecordDictionary(self, other->count);
+        fn_710102a344(reinterpret_cast<UnkSoundIdTable_b0038*>(self));
+        fn_7101029ec8(reinterpret_cast<UnkSoundIdTable_b0038*>(self), other->count);
     }
     self->count = other->count;
     for (u64 i = 0; i < self->count; ++i)

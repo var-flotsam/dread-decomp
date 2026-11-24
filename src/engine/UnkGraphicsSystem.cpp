@@ -1365,10 +1365,10 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         fn_710015aa20(1);
         fn_710015a760(0);
         SetDepthCompareFunc(4);
-        fn_710015f770(0, nullptr, true);
-        fn_710015f770(1, nullptr, true);
-        fn_710015f770(2, nullptr, true);
-        fn_710015f770(3, nullptr, true);
+        SetGraphicsSlotPointer(0, nullptr, true);
+        SetGraphicsSlotPointer(1, nullptr, true);
+        SetGraphicsSlotPointer(2, nullptr, true);
+        SetGraphicsSlotPointer(3, nullptr, true);
         fn_71001606f0(0, 0, true);
         fn_71001606f0(1, 0, true);
         fn_71001606f0(2, 0, true);
@@ -1393,9 +1393,9 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         fn_710015aa20(1);
         fn_710015a760(0);
         SetDepthCompareFunc(4);
-        fn_710015f770(0, nullptr, true);
-        fn_710015f770(1, nullptr, true);
-        fn_710015f770(2, nullptr, true);
+        SetGraphicsSlotPointer(0, nullptr, true);
+        SetGraphicsSlotPointer(1, nullptr, true);
+        SetGraphicsSlotPointer(2, nullptr, true);
         fn_71001606f0(0, 0, true);
         fn_71001606f0(1, 0, true);
         fn_71001606f0(2, 0, true);
@@ -1415,9 +1415,9 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         fn_710015aa20(1);
         fn_710015a760(0);
         SetDepthCompareFunc(4);
-        fn_710015f770(0, nullptr, true);
-        fn_710015f770(1, nullptr, true);
-        fn_710015f770(2, nullptr, true);
+        SetGraphicsSlotPointer(0, nullptr, true);
+        SetGraphicsSlotPointer(1, nullptr, true);
+        SetGraphicsSlotPointer(2, nullptr, true);
         fn_71001606f0(0, 0, true);
         fn_71001606f0(1, 0, true);
         fn_71001606f0(2, 0, true);
@@ -1448,9 +1448,9 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         fn_710015a860(0);
         fn_710015aa20(0);
         fn_710015a760(0);
-        fn_710015f770(0, nullptr, true);
-        fn_710015f770(1, nullptr, true);
-        fn_710015f770(2, nullptr, true);
+        SetGraphicsSlotPointer(0, nullptr, true);
+        SetGraphicsSlotPointer(1, nullptr, true);
+        SetGraphicsSlotPointer(2, nullptr, true);
         fn_71001606f0(0, 1, true);
         fn_71001606f0(1, 0, true);
         fn_71001606f0(2, 0, true);
@@ -1477,7 +1477,7 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         if (self->field_0x317ae00[3]) {
             UnkMatrix44 projection;
             UnkCopyMatrix(&projection, camera->projection);
-            fn_710015bf40(&projection, fn_7100132fa0());
+            ScaleMatrixYByAspectRatioAndNegateElement7(&projection, fn_7100132fa0());
             fn_710015e4b0(self->field_0x317af68, 0, self->field_0x317ae00[3], 4, 1, &projection, 1);
         }
         break;

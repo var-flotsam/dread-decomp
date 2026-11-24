@@ -22,7 +22,7 @@ struct UnkQueryCtx {
 
 bool fn_7100d5cfb4(UnkQueryCtx* ctx, const UnkBvhNode* node);
 
-bool fn_7100d5b484(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, void* arg, u32 arg2) {
+bool QueryCollisionTreeForTransformedShapeOverlaps(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, void* arg, u32 arg2) {
     UnkFlags result = NoFlags_d5b484();
     UnkMtx44 m = *xf * shape->transform;
     UnkBox bounds = shape->vf_0x28(m);

@@ -15,7 +15,7 @@ struct UnkStruct_71007455dc {
     s32 mode;  // 0xd8
 };
 
-UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self) {
+UnkVec3Result GetPositionFromParentAndOffset(UnkStruct_71007455dc* self) {
     if (self->mode != 1 && self->parent) {
         UnkVec3Result p = fn_7100745e24(self->parent);
         return UnkVec3Result(p.x + self->offset.x, p.y + self->offset.y, p.z + self->offset.z);

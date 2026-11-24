@@ -26,7 +26,7 @@ struct UnkVec3Result {
 struct UnkStruct_71007455dc;
 struct UnkSwarmController_ovb6;
 struct UnkSwarmGroup_ovb6;
-UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
+UnkVec3Result GetPositionFromParentAndOffset(UnkStruct_71007455dc* self);
 void fn_7100748234(UnkSwarmController_ovb6* self, UnkSwarmGroup_ovb6* group);
 
 extern u8 g_unk_710164a9e8[];
@@ -179,7 +179,7 @@ void fn_710074b680(UnkSwarmController_l74b680* self, UnkSwarmUnit_l74b680* membe
     // A forced alert, or one of this kind, makes the member leave at once.
     bool leave = forced;
     if (alert) {
-        alert->position = fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(member));
+        alert->position = GetPositionFromParentAndOffset(reinterpret_cast<UnkStruct_71007455dc*>(member));
         alert->field_0x94 |= 8;
         leave = forced || (alert->flags & 0x15401) == 1;
     }
@@ -213,7 +213,7 @@ void fn_710074b680(UnkSwarmController_l74b680* self, UnkSwarmUnit_l74b680* membe
     }
 
     ++self->left_count;
-    UnkVec3Result pos = fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(member));
+    UnkVec3Result pos = GetPositionFromParentAndOffset(reinterpret_cast<UnkStruct_71007455dc*>(member));
     self->left_positions.x += pos.x;
     self->left_positions.y += pos.y;
     self->left_positions.z += pos.z;
@@ -225,7 +225,7 @@ void fn_710074b680(UnkSwarmController_l74b680* self, UnkSwarmUnit_l74b680* membe
     void* manager = g_unk_71726da048;
     if (!manager) {
         manager = fn_71000839a0(0xe0, 0x3f);
-        fn_7100e1bca4(manager);
+        ConstructBillboardManager(manager);
         g_unk_71726da048 = manager;
     }
     u64 key = billboard->effect->key;
