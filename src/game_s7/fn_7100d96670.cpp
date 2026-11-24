@@ -20,10 +20,10 @@ void fn_7100d96670() {
         const char* sources1[2];
         const char* sources0[1];
         sources0[0] = ".rfld";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CScenario", ".brfld", sources0, 1);
+        fn_7100004578(&types[0], "CScenario", ".brfld", sources0, 1);
         sources1[0] = ".msld";
         sources1[1] = ".mssg";
-        CAnimationResource_ConstructResourceFormat(&types[1], "CScenarioLogicImporter", ".bmsld", sources1, 2);
+        fn_7100004578(&types[1], "CScenarioLogicImporter", ".bmsld", sources1, 2);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9030), "leveldef", types, 2);
         fn_7100004a44(&types[1]);
         fn_7100004a44(&types[0]);
@@ -34,7 +34,7 @@ void fn_7100d96670() {
         const char* sources0[2];
         sources0[0] = ".mdei";
         sources0[1] = ".rlei";
-        CAnimationResource_ConstructResourceFormat(&types[0], "gameeditor::CEditorGameData", nullptr, sources0, 2);
+        fn_7100004578(&types[0], "gameeditor::CEditorGameData", nullptr, sources0, 2);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b90b0), "mapeditor", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -44,7 +44,7 @@ void fn_7100d96670() {
         const char* sources0[2];
         sources0[0] = ".mssd";
         sources0[1] = ".mssl";
-        CAnimationResource_ConstructResourceFormat(&types[0], "engine::scene::CSceneSlot", ".bmssd", sources0, 2);
+        fn_7100004578(&types[0], "engine::scene::CSceneSlot", ".bmssd", sources0, 2);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9130), "mapscene", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -53,7 +53,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".msbk";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CBreakableTileLoader", ".bmsbk", sources0, 1);
+        fn_7100004578(&types[0], "CBreakableTileLoader", ".bmsbk", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b91b0), "mapbreak", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -62,7 +62,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".rev";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CEnvironmentVisualPresets", ".brev", sources0, 1);
+        fn_7100004578(&types[0], "CEnvironmentVisualPresets", ".brev", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9230), "mapenv", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -71,7 +71,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".res";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CEnvironmentSoundPresets", ".bres", sources0, 1);
+        fn_7100004578(&types[0], "CEnvironmentSoundPresets", ".bres", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b92b0), "mapenvsnd", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -80,7 +80,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".rem";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CEnvironmentMusicPresets", ".brem", sources0, 1);
+        fn_7100004578(&types[0], "CEnvironmentMusicPresets", ".brem", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9330), "mapenvmus", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -89,7 +89,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".mscc";
-        CAnimationResource_ConstructResourceFormat(&types[0], "game::logic::collision::CCollisionImporter", ".bmscc", sources0, 1);
+        fn_7100004578(&types[0], "game::logic::collision::CCollisionImporter", ".bmscc", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b93b0), "mapcamcoll", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -98,7 +98,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".rsa";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CSubAreaManager", ".brsa", sources0, 1);
+        fn_7100004578(&types[0], "CSubAreaManager", ".brsa", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9430), "mapsubarea", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -107,7 +107,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".msnav";
-        CAnimationResource_ConstructResourceFormat(&types[0], "navmesh::CNavMesh", ".bmsnav", sources0, 1);
+        fn_7100004578(&types[0], "navmesh::CNavMesh", ".bmsnav", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b94b0), "navmesh", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -117,7 +117,7 @@ void fn_7100d96670() {
         const char* sources0[2];
         sources0[0] = ".msad";
         sources0[1] = ".msaf";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CActorDef", ".bmsad", sources0, 2);
+        fn_7100004578(&types[0], "CActorDef", ".bmsad", sources0, 2);
         CAnimationResource_ConstructResourceTypeFromFormats(g_unk_71727b9530, "actordef", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -126,7 +126,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".msact";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CAction", ".bmsact", sources0, 1);
+        fn_7100004578(&types[0], "CAction", ".bmsact", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b95b0), "action", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -136,7 +136,7 @@ void fn_7100d96670() {
         const char* sources0[2];
         sources0[0] = ".msas";
         sources0[1] = ".msact";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CActionSet", ".bmsas", sources0, 2);
+        fn_7100004578(&types[0], "CActionSet", ".bmsas", sources0, 2);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9630), "actionset", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -145,7 +145,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".mbtre";
-        CAnimationResource_ConstructResourceFormat(&types[0], "behaviortree::CBehaviorTree", ".bmtre", sources0, 1);
+        fn_7100004578(&types[0], "behaviortree::CBehaviorTree", ".bmtre", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b96b0), "behtree", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -154,7 +154,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".mscu";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CCutSceneDef", ".bmscu", sources0, 1);
+        fn_7100004578(&types[0], "CCutSceneDef", ".bmscu", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9730), "cutscene", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -163,7 +163,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".lua";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CLuaLibraryManager", ".lc", sources0, 1);
+        fn_7100004578(&types[0], "CLuaLibraryManager", ".lc", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b97b0), "script", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -172,7 +172,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".mscd";
-        CAnimationResource_ConstructResourceFormat(&types[0], "game::logic::collision::CCollisionImporter", ".bmscd", sources0, 1);
+        fn_7100004578(&types[0], "game::logic::collision::CCollisionImporter", ".bmscd", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9830), "colldata", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -181,7 +181,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".mslink";
-        CAnimationResource_ConstructResourceFormat(&types[0], "navmesh::CDynamicSmartLinkRules", ".bmslink", sources0, 1);
+        fn_7100004578(&types[0], "navmesh::CDynamicSmartLinkRules", ".bmslink", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b98b0), "slinkrules", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -190,7 +190,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".mslgroup";
-        CAnimationResource_ConstructResourceFormat(&types[0], "navmesh::CDynamicSmartLinkGroup", ".bmslgroup", sources0, 1);
+        fn_7100004578(&types[0], "navmesh::CDynamicSmartLinkGroup", ".bmslgroup", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9930), "slinkgroup", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -199,7 +199,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".txt";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CLanguageManager", ".txt", sources0, 1);
+        fn_7100004578(&types[0], "CLanguageManager", ".txt", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b99b0), "txt", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -208,7 +208,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".mscp";
-        CAnimationResource_ConstructResourceFormat(&types[0], "GUI::CDisplayObjectContainer", ".bmscp", sources0, 1);
+        fn_7100004578(&types[0], "GUI::CDisplayObjectContainer", ".bmscp", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9a30), "composition", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -217,7 +217,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".mssk";
-        CAnimationResource_ConstructResourceFormat(&types[0], "GUI::CGUIManager::SkinContainer", ".bmssk", sources0, 1);
+        fn_7100004578(&types[0], "GUI::CGUIManager::SkinContainer", ".bmssk", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9ab0), "skin", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -226,7 +226,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".mssh";
-        CAnimationResource_ConstructResourceFormat(&types[0], "GUI::CGUIManager::ShapeContainer", ".bmssh", sources0, 1);
+        fn_7100004578(&types[0], "GUI::CGUIManager::ShapeContainer", ".bmssh", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9b30), "shape", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -235,7 +235,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".msss";
-        CAnimationResource_ConstructResourceFormat(&types[0], "GUI::CGUIManager::SpriteSheetContainer", ".bmsss", sources0, 1);
+        fn_7100004578(&types[0], "GUI::CGUIManager::SpriteSheetContainer", ".bmsss", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9bb0), "sprite_sheet", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -244,7 +244,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".wav";
-        CAnimationResource_ConstructResourceFormat(&types[0], "base::snd::CSoundSystemATK", nullptr, sources0, 1);
+        fn_7100004578(&types[0], "base::snd::CSoundSystemATK", nullptr, sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9c30), "sound", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -253,7 +253,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".rsa";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CSubAreaManager", ".brsa", sources0, 1);
+        fn_7100004578(&types[0], "CSubAreaManager", ".brsa", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(g_unk_71727b9cb0, "subarearef", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -262,7 +262,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".apd";
-        CAnimationResource_ConstructResourceFormat(&types[0], "sound::CAudioPresets", ".bapd", sources0, 1);
+        fn_7100004578(&types[0], "sound::CAudioPresets", ".bapd", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9d30), "audiopreset", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -271,7 +271,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".ptdef";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CPlaythroughDef", ".bptdef", sources0, 1);
+        fn_7100004578(&types[0], "CPlaythroughDef", ".bptdef", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9db0), "playdef", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -280,7 +280,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".ptdat";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CPlaythrough", ".bptdat", sources0, 1);
+        fn_7100004578(&types[0], "CPlaythrough", ".bptdat", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(g_unk_71727b9e30, "playdata", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -289,7 +289,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".chkdat";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CBlackboard", ".bchkdat", sources0, 1);
+        fn_7100004578(&types[0], "CBlackboard", ".bchkdat", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(g_unk_71727b9eb0, "checkpoint", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -298,7 +298,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".ldef";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CLightManager", ".bldef", sources0, 1);
+        fn_7100004578(&types[0], "CLightManager", ".bldef", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(g_unk_71727b9f30, "lightsdef", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -307,7 +307,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".pfg";
-        CAnimationResource_ConstructResourceFormat(&types[0], "base::file::CPack", ".pkg", sources0, 1);
+        fn_7100004578(&types[0], "base::file::CPack", ".pkg", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727b9fb0), "pack", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -316,7 +316,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".psi";
-        CAnimationResource_ConstructResourceFormat(&types[0], "base::file::CPackSetManager", ".bpsi", sources0, 1);
+        fn_7100004578(&types[0], "base::file::CPackSetManager", ".bpsi", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727ba030), "packsets", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -325,7 +325,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".lsnd";
-        CAnimationResource_ConstructResourceFormat(&types[0], "base::snd::CSoundGroupManager", ".blsnd", sources0, 1);
+        fn_7100004578(&types[0], "base::snd::CSoundGroupManager", ".blsnd", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727ba0b0), "sndlimits", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -334,7 +334,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".mdefs";
-        CAnimationResource_ConstructResourceFormat(&types[0], "sound::CMusicManager", ".bmdefs", sources0, 1);
+        fn_7100004578(&types[0], "sound::CMusicManager", ".bmdefs", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727ba130), "musicdefs", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -343,7 +343,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".rspd";
-        CAnimationResource_ConstructResourceFormat(&types[0], "CShotAudioWeaponPresets", ".brspd", sources0, 1);
+        fn_7100004578(&types[0], "CShotAudioWeaponPresets", ".brspd", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(reinterpret_cast<char*>(&g_unk_71727ba1b0), "shotsnds", types, 1);
         fn_7100004a44(&types[0]);
     }();
@@ -352,7 +352,7 @@ void fn_7100d96670() {
         UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".gsnds";
-        CAnimationResource_ConstructResourceFormat(&types[0], "sound::CSoundEventsDef", ".bgsnds", sources0, 1);
+        fn_7100004578(&types[0], "sound::CSoundEventsDef", ".bgsnds", sources0, 1);
         CAnimationResource_ConstructResourceTypeFromFormats(g_unk_71727ba230, "gamesnds", types, 1);
         fn_7100004a44(&types[0]);
     }();
