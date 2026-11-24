@@ -191,6 +191,11 @@ class Requests(Root):
         p = reqs[0]["params"]
         self.assertEqual(p["model"], "claude-opus-5-5")
         self.assertEqual(p["thinking"], {"type": "adaptive"})
+        self.assertEqual(p["max_tokens"], mb.MAX_TOKENS)
+        # the worst case is priced at each request's own limit
+        worst = nb.estimate(reqs)["worst_dollars"]
+        reqs[0]["params"]["max_tokens"] = 2 * mb.MAX_TOKENS
+        self.assertGreater(nb.estimate(reqs)["worst_dollars"], worst)
         self.assertEqual(p["output_config"]["format"]["schema"], mb.PROPOSE_SCHEMA)
         text = p["messages"][0]["content"][0]["text"]
         self.assertIn("0x0010  f32", text)            # the compiler's offsets
@@ -263,6 +268,16 @@ class CapAndFetch(Root):
         rows = nb.ledger_rows()
         self.assertEqual((rows[0]["run"], rows[0]["kind"]), ("m1", mb.KIND_PROPOSE))
 
+    def test_agree_needs_the_review_of_that_propose_run(self):
+        for run, info in (("p1", {"kind": mb.KIND_PROPOSE, "items": []}),
+                          ("r1", {"kind": mb.KIND_REVIEW, "from_run": "p0", "items": []})):
+            d = nb.run_dir(run)
+            d.mkdir(parents=True, exist_ok=True)
+            (d / "meta.json").write_text(json.dumps(info), encoding="utf-8")
+            (d / "answers.json").write_text("[]", encoding="utf-8")
+        self.assertEqual(mb.cmd_agree(SimpleNamespace(propose="p1", review="r1", write=False)), 1)
+        self.assertIn("not a review built from p1", mb.sys.stdout.getvalue())
+
     def test_refused_and_outside_schema(self):
         self.assertIsNone(mb.parse(succeeded("a", "{}", stop="refusal"), mb.KIND_PROPOSE)[0])
         self.assertIsNone(mb.parse(succeeded("a", {"class": "CFoo", "members": "x", "reason": ""}),
@@ -273,13 +288,15 @@ class CapAndFetch(Root):
 class Agree(unittest.TestCase):
     MT = mb.member_types(mb.parse_layouts(DUMP), "UnkFooView")
 
-    def run_agree(self, members, votes, class_agree=True, cls="CFoo"):
+    def run_agree(self, members, votes, class_agree=True, cls="CFoo", candidates=("CFoo",), facts=None,
+                  vote_list=None):
         prop = {"custom_id": "p", "path": "src/game/CFoo/x.cpp", "struct": "UnkFooView", "class": cls,
-                "candidates": ["CFoo", "CCharClassFoo"], "placeholders": list(self.MT), "members": members}
-        rev = {"path": prop["path"], "struct": "UnkFooView", "answer": {
-            "class_agree": class_agree, "class_reason": "", "members": [
+                "candidates": list(candidates), "placeholders": list(self.MT), "members": members}
+        rev = {"path": prop["path"], "struct": "UnkFooView", "from": "p", "answer": {
+            "class_agree": class_agree, "class_reason": "", "members": vote_list or [
                 {"member": m, "agree": a, "reason": ""} for m, a in votes.items()]}}
-        return mb.agree([prop], [rev], refl(), lambda p: self.MT, lambda p: {"CStrId": 8})
+        return mb.agree([prop], [rev], refl(), lambda p: self.MT, lambda p: {"CStrId": 8},
+                        (lambda p: facts) if facts else None)
 
     def test_only_both_agree_exact_offset_and_compatible_type(self):
         members = [{"member": "field_0x10", "reflected": "fSpeed", "evidence": "stores 1.0f"},
@@ -293,6 +310,56 @@ class Agree(unittest.TestCase):
         why = {x["placeholder"]: x["why"] for x in left}
         self.assertIn("disagrees with the member", why["field_0x14"])
         self.assertIn("type not compatible", why["field_0x20"])   # a struct, not an int
+
+    def test_ambiguous_class_is_flagged(self):
+        # CCharClassFoo also has a member at 0x10 (fRange), none at 0x18
+        members = [{"member": "field_0x10", "reflected": "fSpeed", "evidence": "e"},
+                   {"member": "field_0x18", "reflected": "sName", "evidence": "e"}]
+        rows, left = self.run_agree(members, {"field_0x10": True, "field_0x18": True},
+                                    candidates=("CFoo", "CCharClassFoo"))
+        self.assertEqual([r["name"] for r in rows], ["sName"])
+        self.assertIn("flagged, ambiguous class: CCharClassFoo", left[0]["why"])
+
+    def test_a_shared_base_member_is_not_ambiguous(self):
+        r = refl()
+        self.assertEqual(mb.ambiguous_at(0xffffffff, "CFoo", ["CFoo", "CFooBase"], r), [])
+        self.assertEqual(mb.ambiguous_at(0x10, "CFoo", ["CFoo", "CCharClassFoo"], r), ["CCharClassFoo"])
+
+    def test_foreign_object_without_a_check_is_flagged(self):
+        members = [{"member": "field_0x10", "reflected": "fSpeed", "evidence": "e"}]
+        rows, left = self.run_agree(members, {"field_0x10": True}, facts={"own": False, "checked": False})
+        self.assertEqual(rows, [])
+        self.assertIn("flagged, not the function's own object", left[0]["why"])
+        self.assertEqual(len(self.run_agree(members, {"field_0x10": True},
+                                            facts={"own": False, "checked": True})[0]), 1)
+
+    def test_duplicate_votes_are_disagreement(self):
+        members = [{"member": "field_0x10", "reflected": "fSpeed", "evidence": "e"}]
+        votes = [{"member": "field_0x10", "agree": False, "reason": ""},
+                 {"member": "field_0x10", "agree": True, "reason": ""}]
+        rows, left = self.run_agree(members, {}, vote_list=votes)
+        self.assertEqual(rows, [])
+        self.assertIn("disagrees with the member", left[0]["why"])
+
+    def test_signedness_is_a_note(self):
+        self.assertIn("signedness", mb.signedness_note("int", "u32"))
+        self.assertIn("signedness", mb.signedness_note("unsigned", "s32"))
+        self.assertEqual(mb.signedness_note("int", "s32"), "")
+        self.assertEqual(mb.signedness_note("float", "f32"), "")
+
+    def test_own_object_and_checks(self):
+        r = refl()
+        own = "void fn_7100000100(UnkFooView* self) { self->field_0x10 = 1.0f; }"
+        self.assertTrue(mb.object_facts("UnkFooView", "CFoo", [own], r)["own"])
+        method = "struct UnkFooView {\n    int field_0x10;\n    void Touch() { field_0x10 = 1; }\n};"
+        self.assertTrue(mb.object_facts("UnkFooView", "CFoo", [method], r)["own"])
+        foreign = ("void fn_7100000100(void* owner) {\n"
+                   "    auto* v = reinterpret_cast<UnkFooView*>(owner);\n    v->field_0x10 = 1.0f;\n}")
+        facts = mb.object_facts("UnkFooView", "CFoo", [foreign], r)
+        self.assertEqual(facts, {"own": False, "checked": False})
+        checked = foreign.replace("{\n", "{\n    fn_7100000900();\n", 1)
+        self.assertTrue(mb.object_facts("UnkFooView", "CFoo", [checked], r)["checked"])
+        self.assertTrue(mb.object_facts("UnkFooView", "CFoo", [foreign + " CFoo::refl_GetClass();"], r)["checked"])
 
     def test_wrong_offset_and_invented_name(self):
         members = [{"member": "field_0x14", "reflected": "fSpeed", "evidence": "e"},
@@ -360,8 +427,47 @@ class Rename(Root):
         row = {"path": self.PATH, "struct": "UnkFooView", "placeholder": "field_0x10", "name": "fSpeed",
                "class": "CFoo", "offset": "0x10", "reflected_type": "float", "view_type": "f32", "evidence": "e"}
         mb.TABLE.parent.mkdir(parents=True, exist_ok=True)
+        mb.write_table([row, {**row, "placeholder": "field_0x14", "name": "iCount", "offset": "0x14",
+                              "reflected_type": "int", "view_type": "u32"}])
+        got = mb.read_table()
+        self.assertEqual(got[0], {**row, "note": ""})
+        self.assertIn("signedness", got[1]["note"])
+
+    def test_generated_file_is_not_written(self):
+        path = "src/reflection/x.cpp"
+        self.write(path, VIEW)
+        ok, why, _ = mb.apply_group(path, "UnkFooView", {"field_0x10": "fSpeed"}, [path], errors=lambda p: [])
+        self.assertFalse(ok)
+        self.assertIn("generated", why)
+        self.assertEqual((self.root / path).read_text(encoding="utf-8"), VIEW)
+
+    def apply_with(self, changed):
+        row = {"path": self.PATH, "struct": "UnkFooView", "placeholder": "field_0x10", "name": "fSpeed",
+               "class": "CFoo", "offset": "0x10", "reflected_type": "float", "view_type": "f32", "evidence": "e"}
+        mb.TABLE.parent.mkdir(parents=True, exist_ok=True)
         mb.write_table([row])
-        self.assertEqual(mb.read_table(), [row])
+        args = SimpleNamespace(only=None, base="origin/main", no_objsame=False)
+        with mock.patch.object(mb, "objsame_changed", lambda base: changed), \
+                mock.patch.object(mb, "stale_uses", lambda *a: []):
+            return mb.cmd_apply(args, errors=self.fake_compiler())
+
+    def test_apply_keeps_an_unchanged_object(self):
+        self.assertEqual(self.apply_with(set()), 0)
+        self.assertIn("self->fSpeed", (self.root / self.PATH).read_text(encoding="utf-8"))
+
+    def test_apply_reverts_a_changed_object(self):
+        self.assertEqual(self.apply_with({self.PATH}), 1)
+        self.assertEqual((self.root / self.PATH).read_text(encoding="utf-8"), VIEW)
+        self.assertIn("REVERTED", mb.sys.stdout.getvalue())
+
+    def test_stale_uses_in_preprocessor_branches_and_drafts(self):
+        text = ("#ifndef FOO_H\n#define FOO_H\nvoid a(UnkFooView* s) { s->fSpeed = 1; }\n"
+                "#if 0\nvoid b(UnkFooView* s) { s->field_0x10 = 1; }\n#endif\n#endif\n")
+        self.write("src/game/CFoo/y.cpp", text)
+        with mock.patch.object(mb.subprocess, "run", return_value=SimpleNamespace(stdout="drafts/d.cpp\n")):
+            self.write("drafts/d.cpp", "void d(UnkFooView* s) { s->field_0x10 = 2; }\n")
+            got = mb.stale_uses("UnkFooView", {"field_0x10": "fSpeed"}, ["src/game/CFoo/y.cpp"])
+        self.assertEqual(sorted((s["path"], s["line"]) for s in got), [("drafts/d.cpp", 1), ("src/game/CFoo/y.cpp", 5)])
 
 
 if __name__ == "__main__":

@@ -28,7 +28,11 @@ This is sourced naming (name_source reflection), not inferred naming: no name co
   cost       this tool's runs in the ledger
 
 The acceptance test is tools/objsame.py in exact mode on every changed file and every includer of a changed
-header (`objsame.py save --tag members --base origin/main` then `compare --tag members`).
+header, against --base (origin/main): `apply` runs it, and a struct whose rename changed an object goes back and
+is listed. It also reports old member names it could not check (drafts/, port/, preprocessor branches).
+`agree` flags, and does not apply, a member at an offset where another candidate class also has a member
+(ambiguous class), and a struct that is never a function's own object when the code shows no getter call or
+cast check for the class; a signedness difference is a note in the table, not a type change.
 
 Usage:
   python tools/member_batch.py scan [--top 60]
@@ -61,9 +65,12 @@ from dread.paths import ROOT  # noqa: E402
 
 TABLE = ROOT / "data" / "member_names.csv"
 TABLE_COLUMNS = ["path", "struct", "placeholder", "name", "class", "offset", "reflected_type", "view_type",
-                 "evidence"]
+                 "evidence", "note"]
 KIND_PROPOSE, KIND_REVIEW = "member-propose", "member-review"
 DEFAULT_CAP = 40.0
+# Thinking counts toward it. The pilot's 73 answers used at most 3,157 output tokens (median 1,600); a truncated
+# answer is no verdict, and a lower limit lowers the worst case the cap is checked against.
+MAX_TOKENS = 8000
 SCAN_ROOTS = ("src/game", "include/game")
 MAX_USES = 8
 USE_MAX = 20_000            # a longer using function is left out whole, and the request says so
@@ -651,7 +658,7 @@ def make_params(rules: str, schema: dict, user: str, effort: str, cache: bool) -
     system = [{"type": "text", "text": rules}]
     if cache and len(rules) / nb.CHARS_PER_TOKEN >= nb.MIN_CACHE_TOKENS:
         system[0]["cache_control"] = nb.cache_control("5m")
-    return {"model": nb.MODEL, "max_tokens": nb.MAX_TOKENS, "thinking": nb.THINKING,
+    return {"model": nb.MODEL, "max_tokens": MAX_TOKENS, "thinking": nb.THINKING,
             "output_config": {"effort": effort, "format": {"type": "json_schema", "schema": schema}},
             "system": system, "messages": [{"role": "user", "content": [{"type": "text", "text": user}]}]}
 
@@ -818,24 +825,98 @@ def proposals_of(run: str) -> list[dict]:
     return out
 
 
+def ambiguous_at(offset: int, cls: str, candidates: list[str], refl: Reflection) -> list[str]:
+    """The other candidate classes with a reflected member at `offset` (a member they share through a common base
+    is one member, not two): when there are any, the offset alone does not tell which class the struct views."""
+    mine = {(owner, name) for off, name, _, owner in refl.known(cls) if off == offset}
+    out = []
+    for c in candidates:
+        if c == cls:
+            continue
+        theirs = {(owner, name) for off, name, _, owner in refl.known(c) if off == offset}
+        if theirs - mine:
+            out.append(c)
+    return out
+
+
+def object_facts(struct: str, cls: str, texts: list[str], refl: Reflection) -> dict:
+    """What the sources show about the object a struct views: `own`, the struct is a function's own object (its
+    first parameter, or the struct has methods or constructors of its own); `checked`, the code calls the class's
+    getter or names it in a cast check."""
+    joined = "\n".join(nb.mask(t) for t in texts)
+    s = re.escape(struct)
+    own = bool(re.search(rf"\w\s*\(\s*(?:const\s+)?(?:\w+::)*{s}\s*(?:const\s*)?[*&]", joined)
+               or re.search(rf"\b{s}\s*::\s*~?\w+\s*\(", joined))
+    if not own:
+        for t in texts:
+            m = nb.mask(t)
+            sc = nb.Scopes(m)
+            for v in find_views(t) + [x for x in _all_bodies(m, sc, struct)]:
+                if v["struct"] == struct and any(sc.parent.get(o) == v["open"] and k == "code"
+                                                 for o, k in sc.kind.items()):
+                    own = True
+    getter = refl.types.get(cls, {}).get("getter", "").lower()
+    last = re.escape(cls.split("::")[-1])
+    raw = "\n".join(texts)
+    checked = bool((getter and re.search(rf"\bfn_{getter[2:]}\b", raw))
+                   or re.search(rf"\b{last}\s*::\s*refl_GetClass\b", raw)
+                   or re.search(rf"\b(?:IsA|IsKindOf|DynamicCast|dynamic_cast|refl_\w*Cast)\s*<\s*(?:\w+::)*{last}\b",
+                                raw))
+    return {"own": own, "checked": checked}
+
+
+def _all_bodies(m: str, sc, struct: str) -> list[dict]:
+    """Class bodies named `struct`, with or without placeholder members."""
+    out = []
+    for o, kind in sc.kind.items():
+        if kind == "class" and o in sc.match:
+            hm = re.search(rf"\b(?:struct|class|union)\s+{re.escape(struct)}\b[^{{]*$", m[sc.head_start(o):o])
+            if hm:
+                out.append({"struct": struct, "open": o})
+    return out
+
+
+SIGNED = {"int", "s32", "signed int", "s16", "short", "s8", "signed char", "s64", "long", "long long"}
+UNSIGNED = {"unsigned", "unsigned int", "u32", "u16", "unsigned short", "u8", "unsigned char", "u64",
+            "unsigned long", "unsigned long long"}
+
+
+def signedness_note(reflected: str, view_type: str) -> str:
+    r, v = strip_cv(reflected), strip_cv(view_type)
+    if r in SIGNED and v in UNSIGNED:
+        return f"signedness: the view declares {view_type}, reflection says {reflected}"
+    if r in UNSIGNED and v in SIGNED:
+        return f"signedness: the view declares {view_type}, reflection says {reflected}"
+    return ""
+
+
 def agree(proposals: list[dict], reviews: list[dict], refl: Reflection, members_of,
-          sizes_of=lambda p: {}) -> tuple[list[dict], list[dict]]:
+          sizes_of=lambda p: {}, facts_of=None) -> tuple[list[dict], list[dict]]:
     """(rows to apply, members left with why). A member is applied only when the review agrees with the class and
     with it, the reflected name is the chosen class's member at the compiler's offset of the placeholder exactly,
-    and the types are compatible. `members_of(proposal)` gives the struct's member types (member_types),
-    `sizes_of(proposal)` the record sizes of its translation unit."""
-    by_struct = {(r["path"], r["struct"]): r for r in reviews}
+    and the types are compatible. Two guards flag a member instead of applying it: another candidate class has a
+    member at that offset (ambiguous class), or the struct is never a function's own object and the code shows no
+    getter call or cast check for the class (`facts_of(proposal)` -> object_facts; None skips this guard).
+    `members_of(proposal)` gives the struct's member types (member_types), `sizes_of(proposal)` the record sizes
+    of its translation unit. A signedness difference is kept as a note in the row; the type is not changed."""
+    by_from = {r["from"]: r for r in reviews if r.get("from")}
+    by_struct = {(r["path"], r["struct"]): r for r in reviews if not r.get("from")}
     rows, left = [], []
     for p in proposals:
         cls = p["class"]
         if cls in ("", "none"):
             continue
-        rev = by_struct.get((p["path"], p["struct"]))
+        rev = by_from.get(p.get("custom_id")) or by_struct.get((p["path"], p["struct"]))
         rans = (rev or {}).get("answer") or {}
-        votes = {m["member"]: m for m in rans.get("members", [])}
+        votes: dict[str, dict] = {}
+        for vote in rans.get("members", []):
+            # two votes for one member: whatever they say, that is not agreement
+            votes[vote["member"]] = {"agree": False} if vote["member"] in votes else vote
+        proposed = [m["member"] for m in p["members"] if m["reflected"].strip()]
         mt = members_of(p)
         names = set(mt)
         used_names: set[str] = set()
+        facts = facts_of(p) if facts_of else {"own": True, "checked": True}
         for m in p["members"]:
             ph, name = m["member"], m["reflected"].strip()
             if not name:
@@ -853,6 +934,9 @@ def agree(proposals: list[dict], reviews: list[dict], refl: Reflection, members_
                 continue
             if not votes.get(ph, {}).get("agree"):
                 leave("review disagrees with the member")
+                continue
+            if proposed.count(ph) > 1:
+                leave("proposed twice")
                 continue
             if not m.get("evidence", "").strip():
                 leave("no evidence stated")
@@ -878,10 +962,18 @@ def agree(proposals: list[dict], reviews: list[dict], refl: Reflection, members_
             if name in names or name in used_names:
                 leave("the struct already has a member of that name")
                 continue
+            others = ambiguous_at(off, cls, p["candidates"], refl)
+            if others:
+                leave(f"flagged, ambiguous class: {', '.join(others)} also have a member at {off:#x}")
+                continue
+            if not facts["own"] and not facts["checked"]:
+                leave("flagged, not the function's own object and no getter call or cast check for the class")
+                continue
             used_names.add(name)
             rows.append({"path": p["path"], "struct": p["struct"], "placeholder": ph, "name": name, "class": cls,
                          "offset": f"{off:#x}", "reflected_type": rtype, "view_type": v["type"],
-                         "evidence": m.get("evidence", "").replace("\n", " ").strip()})
+                         "evidence": m.get("evidence", "").replace("\n", " ").strip(),
+                         "note": signedness_note(rtype, v["type"])})
     return rows, left
 
 
@@ -896,8 +988,11 @@ def read_table(path: Path | None = None) -> list[dict]:
 def write_table(rows: list[dict], path: Path | None = None) -> None:
     path = path or TABLE
     rows = sorted(rows, key=lambda r: (r["path"], r["struct"], int(r["offset"], 16)))
+    for r in rows:
+        if not r.get("note"):
+            r["note"] = signedness_note(r["reflected_type"], r["view_type"])
     with path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=TABLE_COLUMNS, lineterminator="\n")
+        w = csv.DictWriter(f, fieldnames=TABLE_COLUMNS, lineterminator="\n", restval="")
         w.writeheader()
         w.writerows(rows)
 
@@ -949,11 +1044,19 @@ def rel_path(f: str) -> str:
         return f
 
 
+def editable(path: str) -> bool:
+    """A hand-written source under src/ or include/: never a generated directory or include/reflected/."""
+    return (path.startswith(("src/", "include/")) and not path.startswith(nb.GENERATED)
+            and not path.startswith("include/reflected/") and ".." not in path.split("/"))
+
+
 def apply_group(path: str, struct: str, renames: dict[str, str], compile_paths: list[str], errors=compile_errors,
                 max_rounds: int = 6) -> tuple[bool, str, dict[str, str]]:
     """Rename a struct's members and every use the compiler reports. Returns (ok, why, {file: original text})
     and leaves the files as they were when not ok."""
     originals: dict[str, str] = {}
+    if not editable(path):
+        return False, f"{path} is generated or not hand-written; not edited", {}
     text = read(path)
     new = rename_in_struct(text, struct, renames)
     if new is None:
@@ -984,7 +1087,7 @@ def apply_group(path: str, struct: str, renames: dict[str, str], compile_paths: 
                     return restore(f"error names another type: {f}:{ln}: {msg}")
             fixes.setdefault(rel_path(f), set()).add((ln, col, old))
         for f, spots in fixes.items():
-            if f.startswith(nb.GENERATED) or f.startswith("include/reflected/") or not (ROOT / f).is_file():
+            if not editable(f) or not (ROOT / f).is_file():
                 return restore(f"a use is in a file not to be edited: {f}")
             cur = originals.get(f) or read(f)
             originals.setdefault(f, cur)
@@ -1010,7 +1113,7 @@ def includers(path: str) -> list[str]:
     return sorted(baseline.expand({path}))
 
 
-def cmd_apply(args) -> int:
+def cmd_apply(args, errors=compile_errors) -> int:
     rows = read_table()
     groups: dict[tuple[str, str], dict[str, str]] = {}
     for r in rows:
@@ -1030,22 +1133,129 @@ def cmd_apply(args) -> int:
             print(f"  skip {path}:{struct}: nothing left to rename")
             skipped += 1
             continue
-        ok, why, originals = apply_group(path, struct, todo, includers(path))
-        log.append({"path": path, "struct": struct, "renames": todo, "ok": ok, "why": why,
-                    "files": sorted(originals)})
+        ok, why, originals = apply_group(path, struct, todo, includers(path), errors=errors)
+        entry = {"path": path, "struct": struct, "renames": todo, "ok": ok, "why": why, "files": sorted(originals),
+                 "originals": originals}
+        log.append(entry)
         if ok:
             done += 1
             print(f"  {path}:{struct}: {len(todo)} renamed in {len(originals)} file(s)")
         else:
             failed += 1
             print(f"  FAILED {path}:{struct}: {why}")
+    reverted = []
+    applied = [e for e in log if e["ok"]]
+    if applied and not args.no_objsame:
+        changed = (objsame_changed or objsame_check)(args.base)
+        reverted = revert_changed(applied, changed)
+        for e in reverted:
+            print(f"  REVERTED {e['path']}:{e['struct']}: {e['why']}")
+        done -= len(reverted)
+    stale = []
+    for e in log:
+        if e["ok"]:
+            stale += stale_uses(e["struct"], e["renames"], e["files"])
+    for s in stale:
+        print(f"  STALE {s['path']}:{s['line']}: {s['old']} of {s['struct']} ({s['where']}); left as it is")
     out = nb.STATE / "member_apply.json"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(log, indent=1), encoding="utf-8")
-    print(f"member_batch apply: {done} struct(s) renamed, {skipped} skipped, {failed} failed; {out}")
-    print("  next: python tools/objsame.py save --tag members --base origin/main && "
-          "python tools/objsame.py compare --tag members")
-    return 1 if failed else 0
+    out.write_text(json.dumps([{k: v for k, v in e.items() if k != "originals"} for e in log] + [{"stale": stale}],
+                              indent=1), encoding="utf-8")
+    print(f"member_batch apply: {done} struct(s) renamed, {skipped} skipped, {failed} failed, "
+          f"{len(reverted)} reverted by objsame, {len(stale)} stale use(s) reported; {out}")
+    return 1 if failed or reverted else 0
+
+
+def objsame_check(base: str) -> set[str]:
+    """Files tools/objsame.py (exact mode) reports CHANGED for the edits since `base`, includers of changed
+    headers included. A file it cannot compile counts as changed."""
+    tag = "member-apply"
+    py = sys.executable
+    save = subprocess.run([py, str(ROOT / "tools" / "objsame.py"), "save", "--tag", tag, "--base", base], cwd=ROOT,
+                          capture_output=True, text=True, encoding="utf-8", errors="replace")
+    if save.returncode != 0:
+        raise SystemExit(f"member_batch: objsame save failed: {(save.stdout + save.stderr).strip()[-400:]}")
+    cmp_ = subprocess.run([py, str(ROOT / "tools" / "objsame.py"), "compare", "--tag", tag], cwd=ROOT,
+                          capture_output=True, text=True, encoding="utf-8", errors="replace")
+    changed = {ln.split(None, 1)[1].strip() for ln in cmp_.stdout.splitlines() if ln.startswith("CHANGED ")}
+    if cmp_.returncode != 0 and not changed:
+        raise SystemExit(f"member_batch: objsame compare failed: {(cmp_.stdout + cmp_.stderr).strip()[-400:]}")
+    return changed
+
+
+objsame_changed = None   # tests replace the objsame run
+
+
+def revert_changed(applied: list[dict], changed: set[str]) -> list[dict]:
+    """Put back every struct whose rename touched a file whose object changed, or a header one of whose includers
+    changed; groups that share a file with a reverted group go back too (the files return to their text before
+    the first of them). Returns the reverted log entries, each marked not ok."""
+    if not changed:
+        return []
+    hit = set()
+    for e in applied:
+        files = set(e["files"])
+        if files & changed or any(f.endswith(".h") and set(includers(f)) & changed for f in files):
+            hit.add(id(e))
+    grew = True
+    while grew:
+        grew = False
+        touched = {f for e in applied if id(e) in hit for f in e["files"]}
+        for e in applied:
+            if id(e) not in hit and set(e["files"]) & touched:
+                hit.add(id(e))
+                grew = True
+    first: dict[str, str] = {}
+    for e in applied:
+        if id(e) in hit:
+            for f, t in e["originals"].items():
+                first.setdefault(f, t)
+    for f, t in first.items():
+        (ROOT / f).write_bytes(t.encode("utf-8"))
+    out = []
+    for e in applied:
+        if id(e) in hit:
+            e["ok"] = False
+            e["why"] = "objsame (exact): " + ", ".join(sorted(set(e["files"]) & changed) or ["an includer changed"])
+            out.append(e)
+    return out
+
+
+STALE_ROOTS = ("drafts", "port")
+
+
+def stale_uses(struct: str, renames: dict[str, str], files: list[str]) -> list[dict]:
+    """Uses of a renamed member the compiler could not see: files under drafts/ and port/ that name the struct and
+    still use the old member name, and the old name inside preprocessor branches of the edited files."""
+    out = []
+    olds = sorted(renames)
+    found = subprocess.run(["git", "grep", "-l", "-w", "-F", "-e", struct, "--", *STALE_ROOTS], cwd=ROOT,
+                           capture_output=True, text=True, encoding="utf-8").stdout.split()
+    for f in found:
+        for i, line in enumerate(read(f).split("\n"), 1):
+            for old in olds:
+                if re.search(rf"\b{old}\b", line):
+                    out.append({"path": f, "line": i, "old": old, "struct": struct, "where": f.split("/")[0] + "/"})
+    for f in files:
+        stack: list[bool] = []   # True for a conditional branch, False for an include guard
+        lines = read(f).split("\n")
+        for i, line in enumerate(lines, 1):
+            s = line.strip()
+            gm = re.match(r"#\s*ifndef\s+(\w+)", s)
+            if gm:
+                nxt = next((ln.strip() for ln in lines[i:] if ln.strip()), "")
+                stack.append(not re.match(rf"#\s*define\s+{gm.group(1)}\b", nxt))
+            elif re.match(r"#\s*if", s):
+                stack.append(True)
+            elif re.match(r"#\s*endif", s):
+                if stack:
+                    stack.pop()
+            elif any(stack) and not s.startswith("#"):
+                for old in olds:
+                    if re.search(rf"(?:->|\.)\s*{old}\b", line):
+                        out.append({"path": f, "line": i, "old": old, "struct": struct,
+                                    "where": "inside an #if branch"})
+    return out
 
 
 # ---------------------------------------------------------------------------------------------------- commands
@@ -1077,7 +1287,12 @@ def cmd_build(args, client=None) -> int:
                 path, struct = ln.rsplit(":", 1)
                 views.append({"path": path, "struct": struct})
     else:
-        views = pick(scan(refl), args.select, keep=lambda r: not generated_mentions(r["struct"]))
+        done = {(r["path"], r["struct"]) for r in read_table()}   # a struct already asked about is not asked again
+        for prev in args.skip_runs or []:
+            done |= {(m["path"], m["struct"]) for m in json.loads((nb.run_dir(prev) / "meta.json").read_text(
+                encoding="utf-8"))["items"]}
+        views = pick(scan(refl), args.select, args.per_dir,
+                     keep=lambda r: (r["path"], r["struct"]) not in done and not generated_mentions(r["struct"]))
     requests, meta = build_propose(views, refl, args.effort)
     info = nb.write_run(args.run, KIND_PROPOSE, requests, meta, {"ttl": "5m", "effort": args.effort}, client,
                         args.dry_run)
@@ -1099,17 +1314,32 @@ def cmd_build_review(args, client=None) -> int:
 
 
 def cmd_agree(args) -> int:
+    rinfo = json.loads((nb.run_dir(args.review) / "meta.json").read_text(encoding="utf-8"))
+    if rinfo.get("kind") != KIND_REVIEW or rinfo.get("from_run") != args.propose:
+        print(f"member_batch: {args.review} is not a review built from {args.propose} "
+              f"(it was built from {rinfo.get('from_run') or 'nothing'}); nothing agreed")
+        return 1
     refl = Reflection()
     props = proposals_of(args.propose)
     revs = load_answers(args.review)
+    from_id = {m["custom_id"]: m.get("from") for m in rinfo["items"]}
+    for r in revs:
+        r["from"] = from_id.get(r["custom_id"])
     meta = {m["custom_id"]: m for m in json.loads((nb.run_dir(args.propose) / "meta.json").read_text(
         encoding="utf-8"))["items"]}
+
+    def facts_of(p):
+        users = [u for u in users_of(p["path"], p["struct"]) if (ROOT / u).is_file()]
+        return object_facts(p["struct"], p["class"], [read(u) for u in users], refl)
+
     rows, left = agree(props, revs, refl, lambda p: meta[p["custom_id"]]["members"],
-                       lambda p: meta[p["custom_id"]].get("sizes", {}))
+                       lambda p: meta[p["custom_id"]].get("sizes", {}), facts_of)
     mapped = [p for p in props if p["class"] not in ("", "none")]
+    flagged = [x for x in left if x["why"].startswith("flagged")]
     print(f"{len(props)} answered, {len(mapped)} mapped to a class, "
           f"{sum(1 for p in mapped for m in p['members'] if m['reflected'])} members proposed; "
-          f"{len(rows)} agreed and checked, {len(left)} left")
+          f"{len(rows)} agreed and checked, {len(left)} left ({len(flagged)} flagged by the guards); "
+          f"{sum(1 for r in rows if r['note'])} with a signedness note")
     whys: dict[str, int] = {}
     for x in left:
         k = re.sub(r":.*", "", x["why"])
@@ -1150,6 +1380,8 @@ def main(argv: list[str] | None = None) -> int:
             g = p.add_mutually_exclusive_group(required=True)
             g.add_argument("--select", type=int, help="the N best-scored structs (scan)")
             g.add_argument("--structs", help="a file of path:Struct lines")
+            p.add_argument("--per-dir", type=int, default=2, help="with --select: at most this many per directory")
+            p.add_argument("--skip-runs", nargs="*", help="with --select: leave out the structs of these runs")
         else:
             p.add_argument("--from", required=True, help="the propose run")
     p = sub.add_parser("submit")
@@ -1164,6 +1396,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--write", action="store_true", help="merge the rows into data/member_names.csv")
     p = sub.add_parser("apply")
     p.add_argument("--only", nargs="*", help="path:Struct groups to apply")
+    p.add_argument("--base", default="origin/main", help="objsame's reference: every changed object reverts")
+    p.add_argument("--no-objsame", action="store_true", help="skip the objsame check (tests and debugging only)")
     sub.add_parser("cost")
     args = ap.parse_args(argv)
     return {"scan": cmd_scan, "build": cmd_build, "build-review": cmd_build_review, "submit": cmd_submit,
