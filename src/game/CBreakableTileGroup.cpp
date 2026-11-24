@@ -35,6 +35,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
+#include "game/UnkPlayer.h"
 
 namespace base {
 template <class Arg>
@@ -152,14 +153,6 @@ struct __attribute__((packed)) UnkHitList {
     UnkHitRecord* end() { return reinterpret_cast<UnkHitRecord*>(storage + count * sizeof(UnkHitRecord)); }
 };
 
-struct UnkPlayer {
-    u8 pad_0x0[0x1f0];
-    void* field_0x1f0;
-    u8 pad_0x1f8[0x10];
-    UnkHelper* field_0x208;
-    u8 pad_0x210[0x50];
-    void* field_0x260;
-};
 
 // The objects fn_7100552d7c lists: a tile may not come back while one of them has a +0x1b8 whose
 // +0x70 is 2.
