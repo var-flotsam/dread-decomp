@@ -154,7 +154,7 @@ UnkReflValue fn_71010c57bc(void*, char* obj) { return MakeValue<fn_710000d228, b
 // or 0 whatever the method returns (four units' copies, each calling its own method).
 s32 fn_710117b3f8(void* self, const void* value);
 void fn_7100873bf8(void* self, const void* value);
-s32 fn_7101173ddc(void* self, const void* value);
+s32 CModelUpdaterComponent_LinkTo(void* self, const void* value);
 s32 fn_710117a018(void* self, const void* value);
 
 template <class R, R (*Method)(void*, const void*)>
@@ -179,5 +179,5 @@ __attribute__((always_inline)) static inline s32 ReturningZero(void* self, const
 
 UnkReflValue fn_710117bba0(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG((ReturningZero<s32, fn_710117b3f8>)) }
 UnkReflValue fn_7100874214(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG((ReturningZero<void, fn_7100873bf8>)) }
-UnkReflValue fn_71011746a4(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG(fn_7101173ddc) }
+UnkReflValue fn_71011746a4(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG(CModelUpdaterComponent_LinkTo) }
 UnkReflValue fn_710117bc1c(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG((ReturningZero<s32, fn_710117a018>)) }

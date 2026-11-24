@@ -70,7 +70,7 @@ __attribute__((always_inline)) static inline void Forget_ovb0062(UnkAreaSoundHan
     }
 }
 
-void fn_71011815a8(UnkAreaSoundHandles_ovb0062* self, UnkSound* sound) {
+void CAreaSoundComponent_ClearHandleOfSound(UnkAreaSoundHandles_ovb0062* self, UnkSound* sound) {
     Forget_ovb0062(self, sound);
 }
 

@@ -82,7 +82,7 @@ __attribute__((always_inline)) static inline void Construct(UnkCharClass_ovb0066
     self->field_0x158 = 0;
 }
 
-void fn_71011abe2c(UnkCharClass_ovb0066* self) { Construct(self); }
+void CCharClass_Construct(UnkCharClass_ovb0066* self) { Construct(self); }
 
 void fn_71011ac838(UnkCharClass_ovb0066* self) {
     Construct(self);

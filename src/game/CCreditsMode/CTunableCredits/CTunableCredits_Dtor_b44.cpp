@@ -69,6 +69,6 @@ struct UnkCreditsObject_b44a3 : UnkCreditsBase_b44a3 {
     ~UnkCreditsObject_b44a3() { vtable = &g_unk_7101cb4ef8[2]; }
 };
 
-void fn_7101185dd4(UnkCreditsObject_b44a3* self) {
+void CCreditsMode_Destroy(UnkCreditsObject_b44a3* self) {
     self->~UnkCreditsObject_b44a3();
 }

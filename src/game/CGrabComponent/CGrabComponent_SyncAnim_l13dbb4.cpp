@@ -55,7 +55,7 @@ static inline void Update(UnkAnimationComponent* animation, f32 time) {
     reinterpret_cast<void (*)(UnkAnimationComponent*, f32)>(vtable[0xa8 / 8])(animation, time);
 }
 
-void fn_710113dbb4(UnkGrabComponent_l13dbb4* self, UnkGrabActor_l13dbb4* grabber, UnkGrabActor_l13dbb4* grabbed,
+void CGrabComponent_AdvanceGrabAnimations(UnkGrabComponent_l13dbb4* self, UnkGrabActor_l13dbb4* grabber, UnkGrabActor_l13dbb4* grabbed,
                    f32 time) {
     UnkAnimationComponent* grabber_anim = grabber->animation;
     if (grabber_anim) {

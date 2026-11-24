@@ -61,7 +61,7 @@ static inline bool HasItem(UnkInventory_7101147868* self, UnkPropertyEx<>& item)
 void fn_71003af880(base::global::CRntVector<UnkRecord_7101147868>* self, UnkRecord_7101147868&& value);
 
 
-void fn_7101147868(UnkInventory_7101147868* self, base::global::CRntVector<UnkRecord_7101147868>* records) {
+void CInventoryComponent_AppendSamusInventoryRecord(UnkInventory_7101147868* self, base::global::CRntVector<UnkRecord_7101147868>* records) {
     int has_0 = HasItem(self, g_unk_717275a518);
     int has_1 = HasItem(self, g_unk_717275a9d8);
     int has_2 = HasItem(self, g_unk_717275aa58);

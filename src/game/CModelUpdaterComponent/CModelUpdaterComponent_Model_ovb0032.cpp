@@ -175,7 +175,7 @@ struct UnkShowNodeComponentB;
 struct UnkShowNodeEvent;
 
 // Shows one part of the model's slot table picked at random and hides the others.
-void fn_7101173a04(UnkShowNodeComponentB* component, UnkShowNodeEvent*) {
+void CModelUpdaterComponent_ShowRandomMesh(UnkShowNodeComponentB* component, UnkShowNodeEvent*) {
     auto* self = reinterpret_cast<UnkModelUpdater_ovb0032*>(component);
     s32 count = self->model->slots->parts->count;
     if (count == 0)
@@ -189,7 +189,7 @@ void fn_7101173a04(UnkShowNodeComponentB* component, UnkShowNodeEvent*) {
 }
 
 // Whether the model's slot table has a part with the key `*id`.
-bool fn_71011743bc(UnkModelUpdater_ovb0032* self, const s64* id) {
+bool CModelUpdaterComponent_HasMesh(UnkModelUpdater_ovb0032* self, const s64* id) {
     if (self->model) {
         UnkModelParts_ovb0032* parts = self->model->slots->parts;
         for (u64 i = 0; i < parts->count; ++i) {
@@ -204,7 +204,7 @@ bool fn_71011743bc(UnkModelUpdater_ovb0032* self, const s64* id) {
 void fn_71001435b4(UnkModel_ovb0032* self, const UnkVec3f* angle);
 
 // Passes the transform's translation (bit 0 of `what`) and angles (bit 1) to the model.
-void fn_7101173824(UnkModelUpdater_ovb0032* self, UnkXform* xform, const u32* what) {
+void CModelUpdaterComponent_ApplyTransformToModel(UnkModelUpdater_ovb0032* self, UnkXform* xform, const u32* what) {
     if (!self->model)
         return;
     if (*what & 1) {
@@ -236,7 +236,7 @@ static inline void ResetPath_ovb0032(CFilePathStrId& path) {
 
 // Drops the loaded model (takes it off the render manager's layer and forgets its path), then loads
 // the next one (fn_7101171a08).
-void fn_7101174314(void* object, const void* path, const CRntString* extra) {
+void CModelUpdaterComponent_ChangeModel(void* object, const void* path, const CRntString* extra) {
     auto* self = static_cast<UnkModelUpdater_ovb0032*>(object);
     if (self->model) {
         fn_71002199d8(g_unk_7101d47300, reinterpret_cast<UnkItemBase_71011a91c4*>(self->model->item),
@@ -318,7 +318,7 @@ struct UnkModelUpdaterEvents_ovb0032 {
 void fn_710116ed2c(UnkModelEvent_ovb0032* event, void* source);
 
 // Reads an event (fn_710116ed2c) and queues it.
-void fn_7101173c60(UnkModelUpdaterEvents_ovb0032* self, void* source) {
+void CModelUpdaterComponent_QueueProceduralNodeMove(UnkModelUpdaterEvents_ovb0032* self, void* source) {
     UnkModelEvent_ovb0032 event;
     fn_710116ed2c(&event, source);
     self->events.PushBack(event);
@@ -341,7 +341,7 @@ void fn_7101173ef4(UnkModelUpdater_ovb0032* self, UnkModelUpdater_ovb0032* targe
 
 // Reads an entity name, a part name, a flag and two vectors from the stream and, when both this
 // updater and the named entity's have a model, passes them on (fn_7101173ef4). Returns whether it did.
-s32 fn_7101173ddc(void* object, const void* stream) {
+s32 CModelUpdaterComponent_LinkTo(void* object, const void* stream) {
     auto* self = static_cast<UnkModelUpdater_ovb0032*>(object);
     if (!self->model)
         return 0;

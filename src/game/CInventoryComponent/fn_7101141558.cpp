@@ -29,10 +29,10 @@ struct UnkObject_7101141558 : UnkBase_0x40 {
 
     ~UnkObject_7101141558() {
         vtable = &g_unk_7101cb33c8[2];
-        fn_7101141378(this);
+        CInventoryComponent_ClearItemAmounts(this);
     }
 };
 
-void fn_7101141558(UnkObject_7101141558& self) {
+void CInventoryComponent_DestroyAndDelete(UnkObject_7101141558& self) {
     delete &self;
 }

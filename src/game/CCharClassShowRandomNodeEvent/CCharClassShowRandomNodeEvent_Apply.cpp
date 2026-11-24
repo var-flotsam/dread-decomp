@@ -10,7 +10,7 @@ struct UnkShowNodeEvent {
 struct UnkShowNodeComponentA;
 struct UnkShowNodeComponentB;
 void fn_710115635c(UnkShowNodeComponentA* component, UnkShowNodeEvent* event);
-void fn_7101173a04(UnkShowNodeComponentB* component, UnkShowNodeEvent* event);
+void CModelUpdaterComponent_ShowRandomMesh(UnkShowNodeComponentB* component, UnkShowNodeEvent* event);
 struct UnkShowNodeActor {
     u8 pad_0x0[0x228];
     UnkShowNodeComponentB* field_0x228;
@@ -26,6 +26,6 @@ void fn_7100cdb7bc(UnkShowNodeEvent* self, UnkShowNodeActor** actor_ref) {
             fn_710115635c(component, self);
     } else {
         if (UnkShowNodeComponentB* component = actor->field_0x228)
-            fn_7101173a04(component, self);
+            CModelUpdaterComponent_ShowRandomMesh(component, self);
     }
 }

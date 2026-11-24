@@ -181,7 +181,7 @@ static inline char* Instance_ovb0043() {
 
 // The base step (fn_7101158d78, the character life component's, with the fraction passed on); when it succeeds and the AI's state (+0x1610) does not hold back
 // (+0xc4 clear), the owner is passed to the global instance (fn_71011a726c, then fn_71011a710c).
-bool fn_710115bdcc(UnkEnemyLifeComponent2_ovb0043* self, f32 fraction, bool flag) {
+bool CEnemyLifeComponent_AddLifeFraction(UnkEnemyLifeComponent2_ovb0043* self, f32 fraction, bool flag) {
     bool result = fn_7101158d78(reinterpret_cast<UnkCharacterLifeComponent*>(self), fraction, flag);
     if (result) {
         UnkEnemyLifeActor2_ovb0043* actor = self->actor;
