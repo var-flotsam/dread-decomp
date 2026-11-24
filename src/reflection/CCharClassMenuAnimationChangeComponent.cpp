@@ -14,7 +14,7 @@ void CCharClassMenuAnimationChangeComponent::refl_AddAttributes(CClass*) {}
 void CCharClassMenuAnimationChangeComponent::refl_AddFields(CClass*) {}
 bool CCharClassMenuAnimationChangeComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassMenuAnimationChangeComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMenuAnimationChangeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMenuAnimationChangeComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMenuAnimationChangeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMenuAnimationChangeComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMenuAnimationChangeComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassMenuAnimationChangeComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassMenuAnimationChangeComponent::refl_Destroy(void* obj) { static_cast<CCharClassMenuAnimationChangeComponent*>(obj)->~CCharClassMenuAnimationChangeComponent(); }

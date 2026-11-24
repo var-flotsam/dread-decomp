@@ -11,7 +11,7 @@
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
-void fn_710009d020(const CType* self, base::global::CRntVector<const CType*>* out);
+void CType_AppendParentType(const CType* self, base::global::CRntVector<const CType*>* out);
 UnkReflValue fn_710000cf10(void* field, const base::reflection::UnkReflAttrKey& key, bool inherited);
 
 using UnkRefsFn_l096fc8 = void (*)(const CType*, base::global::CRntVector<const CType*>*, bool);
@@ -32,7 +32,7 @@ struct UnkClass_l096fc8 {
 
 // Whether the field persists: when it has no "Persistence" attribute, or the attribute is 1.
 static inline bool Persistent(UnkClassField_l096fc8* f) {
-    UnkReflValue v = fn_710000cf10(f, fn_710000bf80(), true);
+    UnkReflValue v = fn_710000cf10(f, base::reflection::attr::PersistenceKey(), true);
     if (!v.type) {
         fn_71000a1c60(&v);
         return true;
@@ -44,7 +44,7 @@ static inline bool Persistent(UnkClassField_l096fc8* f) {
 }
 
 void fn_7100096fc8(UnkClass_l096fc8* self, base::global::CRntVector<const CType*>* out, bool persistentOnly) {
-    reinterpret_cast<UnkRefsFn_l096fc8>(&fn_710009d020)(reinterpret_cast<const CType*>(self), out, persistentOnly);
+    reinterpret_cast<UnkRefsFn_l096fc8>(&CType_AppendParentType)(reinterpret_cast<const CType*>(self), out, persistentOnly);
     UnkClassField_l096fc8* end = self->fields + self->count;
     for (UnkClassField_l096fc8* f = self->fields; f != end; ++f) {
         if (!persistentOnly || Persistent(f)) {

@@ -43,7 +43,7 @@ void InitStatics_TimelineLayerEnums() {
         CStrId name("base::global::timeline::ELayer", true);
         fn_710006a754(&base::reflection::TypeObject<base::global::timeline::ELayer, UnkEnumInfo>::object, &name, fn_710006a428, nullptr);
     }
-    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::global::timeline::ELayer, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &base::reflection::TypeObject<base::global::timeline::ELayer, UnkEnumInfo>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d580a8, &base::reflection::TypeObject<base::global::timeline::ELayer, UnkEnumInfo>::object);
     {
         void* a = base::reflection::TypeObject<base::global::timeline::ELayer, UnkEnumInfo>::object.desc_0x8->field_0x30;

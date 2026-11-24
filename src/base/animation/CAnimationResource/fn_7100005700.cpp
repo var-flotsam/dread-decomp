@@ -30,7 +30,7 @@ __attribute__((always_inline)) inline void InitResource(UnkResourceStatics* s, c
         const char* sources0[1];
         sources0[0] = source;
         fn_7100004578(&types[0], name, ext, sources0, 1);
-        fn_7100004698(registry, category, types, 1);
+        CAnimationResource_ConstructResourceTypeFromFormats(registry, category, types, 1);
         fn_7100004a44(&types[0]);
     }
     __cxa_atexit(fn_7100004b94, registry, g_unk_7101a19000);
@@ -39,7 +39,7 @@ __attribute__((always_inline)) inline void InitResource(UnkResourceStatics* s, c
 extern UnkResourceStatics g_unk_7101d4b5a8 __attribute__((visibility("hidden")));
 extern char g_unk_7101d4b410[];
 
-void fn_7100005700() {
+void CAnimationResource_InitStatics() {
     InitResource(&g_unk_7101d4b5a8, fn_710000430c, g_unk_7101d4b410, "base::animation::CAnimationResource",
                  ".bcskla", ".cskla", g_unk_7101d4b418, "anim");
 }

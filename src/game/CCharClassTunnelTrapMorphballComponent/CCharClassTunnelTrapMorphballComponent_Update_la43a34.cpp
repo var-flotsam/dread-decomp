@@ -81,11 +81,11 @@ start:
         if (fn_7101176e78(animation, reinterpret_cast<void*>(id), nullptr)) {
             play_mode.id = 0;
             play_mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, id, kind, &play_mode, &g_unk_710164b968, &g_unk_7172769740, &play_mask);
+            CAnimationComponent_SendActionToTrack(animation, id, kind, &play_mode, &g_unk_710164b968, &g_unk_7172769740, &play_mask);
         } else {
             open_mode.id = 0;
             open_mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x6a17390fc912b900, kind, &open_mode, &g_unk_710164b968, &g_unk_717276974c,
+            CAnimationComponent_SendActionToTrack(animation, 0x6a17390fc912b900, kind, &open_mode, &g_unk_710164b968, &g_unk_717276974c,
                           &open_mask);
         }
         fn_71009c0f1c(target, 0xb15b31b835c17820);
@@ -93,7 +93,7 @@ start:
     } else {
         close_mode.id = 0;
         close_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, 0x6909d27d2c787fba, kind, &close_mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(animation, 0x6909d27d2c787fba, kind, &close_mode, &g_unk_710164b958, &g_unk_7172769740,
                       &close_mask);
         if (UnkCollisionContainer* collisions = self->owner->collisions) {
             fn_71008656d8(collisions, 0x10000, 0x10, self->field_0x40);

@@ -23,7 +23,7 @@ void behaviortree::CDebugAttackAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CDebugAttackAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CDebugAttackAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CDebugAttackAction::refl_TypeOf(const void* obj) { return *static_cast<const CDebugAttackAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CDebugAttackAction::refl_TypeOf(const void* obj) { return *static_cast<const CDebugAttackAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CDebugAttackAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CDebugAttackAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CDebugAttackAction::refl_Destroy(void* obj) { static_cast<CDebugAttackAction*>(obj)->~CDebugAttackAction(); }

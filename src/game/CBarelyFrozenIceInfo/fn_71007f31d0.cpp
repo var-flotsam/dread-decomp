@@ -43,7 +43,7 @@ extern UnkConversion g_unk_7172720498;
 void fn_71007f1e30() __attribute__((visibility("hidden")));
 extern char g_unk_71727204b8[];
 
-void fn_71007f31d0() {
+void CBarelyFrozenIceInfo_InitStatics() {
     InitHeaderIds(&g_unk_7172720b20.ids);
     fn_71007eea64();
     fn_710009ec00(g_unk_7172720098, g_unk_7172720b20.field_0x28);

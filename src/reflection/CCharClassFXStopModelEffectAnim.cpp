@@ -26,7 +26,7 @@ void CCharClassFXStopModelEffectAnim::refl_AddFields(CClass* cls) {
 }
 bool CCharClassFXStopModelEffectAnim::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFXStopModelEffectAnim::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFXStopModelEffectAnim::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXStopModelEffectAnim*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFXStopModelEffectAnim::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXStopModelEffectAnim*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFXStopModelEffectAnim::refl_Destroy(void* obj) { static_cast<CCharClassFXStopModelEffectAnim*>(obj)->~CCharClassFXStopModelEffectAnim(); }
 struct CCharClassFXStopModelEffectAnim::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFXStopModelEffectAnim);

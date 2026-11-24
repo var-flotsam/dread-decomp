@@ -14,7 +14,7 @@ void CFulmiteBellyMineAttackComponent::refl_AddAttributes(CClass*) {}
 void CFulmiteBellyMineAttackComponent::refl_AddFields(CClass*) {}
 bool CFulmiteBellyMineAttackComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CFulmiteBellyMineAttackComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CFulmiteBellyMineAttackComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFulmiteBellyMineAttackComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CFulmiteBellyMineAttackComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFulmiteBellyMineAttackComponent*>(obj)->refl_GetDynamicClass(); }
 void CFulmiteBellyMineAttackComponent::refl_Destroy(void* obj) { static_cast<CFulmiteBellyMineAttackComponent*>(obj)->~CFulmiteBellyMineAttackComponent(); }
 struct CFulmiteBellyMineAttackComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CFulmiteBellyMineAttackComponent);

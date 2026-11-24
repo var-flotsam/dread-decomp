@@ -24,7 +24,7 @@ void CCharClassMovablePlatformComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassMovablePlatformComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassMovablePlatformComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMovablePlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMovablePlatformComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMovablePlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMovablePlatformComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMovablePlatformComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassMovablePlatformComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassMovablePlatformComponent::refl_Destroy(void* obj) { static_cast<CCharClassMovablePlatformComponent*>(obj)->~CCharClassMovablePlatformComponent(); }

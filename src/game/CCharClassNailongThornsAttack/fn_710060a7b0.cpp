@@ -22,7 +22,7 @@ void fn_710060a6e4() __attribute__((visibility("hidden")));
 void fn_710060a6f0() __attribute__((visibility("hidden")));
 extern char g_unk_71726f4a40[];
 
-void fn_710060a7b0() {
+void CCharClassNailongThornsAttack_InitStatics() {
     InitHeaderIds(&g_unk_71726f4a48.ids);
     InitEnum(&base::reflection::TypeObject<CCharClassNailongThornsAttack::EDepthornAttackType, UnkEnumType>::object, "CCharClassNailongThornsAttack::EDepthornAttackType", fn_71006098b4, fn_7100609708,
              g_unk_71726f49f8, &g_unk_71726f4a00, fn_710060a6e4, &g_unk_71726f4a20, fn_710060a6f0);

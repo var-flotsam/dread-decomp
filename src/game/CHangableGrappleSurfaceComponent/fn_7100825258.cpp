@@ -37,7 +37,7 @@ struct UnkPolygon2D {
 };
 static_assert(sizeof(UnkPolygon2D) == 0x48, "UnkPolygon2D layout");
 
-void fn_7100864654(UnkCollisionContainer_l864654* self, u32 mask,
+void CCollisionComponent_CollectObjectsByMask(UnkCollisionContainer_l864654* self, u32 mask,
                    base::global::CRntVector<UnkCollisionShape_l864654*>* out, bool all);
 
 // A collider's shape: vf_0x18 is its kind, 0x10 for a polygon.
@@ -85,7 +85,7 @@ UnkHangPoint_b50 fn_7100825258(UnkHangable_b50* self, UnkHangMessage_b50* msg) {
     UnkHangPoint_b50 best(0.0f, 0.0f, 0.0f);
     UnkCollisionContainer_l864654* collision = self->owner->collision;
     CRntVector<UnkCollider_l825258*> colliders(0xf);
-    fn_7100864654(collision, 0x20000,
+    CCollisionComponent_CollectObjectsByMask(collision, 0x20000,
                   reinterpret_cast<CRntVector<UnkCollisionShape_l864654*>*>(&colliders), false);
     f32 best_distance = 3.4028235e38f;
     for (UnkCollider_l825258*& collider : colliders) {

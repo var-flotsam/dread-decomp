@@ -22,7 +22,7 @@ void CCharClassHyperDashTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassHyperDashTrack::refl_AddFields(CClass*) {}
 bool CCharClassHyperDashTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassHyperDashTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassHyperDashTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHyperDashTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassHyperDashTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHyperDashTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassHyperDashTrack::refl_Destroy(void* obj) { static_cast<CCharClassHyperDashTrack*>(obj)->~CCharClassHyperDashTrack(); }
 struct CCharClassHyperDashTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassHyperDashTrack);

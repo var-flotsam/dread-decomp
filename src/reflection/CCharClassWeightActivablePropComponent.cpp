@@ -23,7 +23,7 @@ void CCharClassWeightActivablePropComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassWeightActivablePropComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassWeightActivablePropComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassWeightActivablePropComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassWeightActivablePropComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassWeightActivablePropComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassWeightActivablePropComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassWeightActivablePropComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassWeightActivablePropComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassWeightActivablePropComponent::refl_Destroy(void* obj) { static_cast<CCharClassWeightActivablePropComponent*>(obj)->~CCharClassWeightActivablePropComponent(); }

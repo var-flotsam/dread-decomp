@@ -42,7 +42,7 @@ void refl_AddFields(CClass* cls) {
         DREAD_REFLECTED_FUNCTION_DESCRIPTION("CreateNode", &base::reflection::TypeObject<SWorldGraphNode>::object, 0x1, fn_7100accfc8);
         fn_7100acceec(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create Node At Index");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
         fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("vPos", true));
@@ -51,7 +51,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("DeleteNode") {
         fn_7100acbea0(fn, "DeleteNode");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete Node At Index");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
 }

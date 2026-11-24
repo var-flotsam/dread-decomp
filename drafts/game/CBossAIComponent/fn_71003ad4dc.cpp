@@ -61,7 +61,7 @@ inline bool Send_l3ad4dc(void* target, u64 hash, UnkBossSendParams_l3ad4dc param
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    return fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &params, &g_unk_7172769740, &mask);
+    return CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &params, &g_unk_7172769740, &mask);
 }
 
 bool fn_71003ad4dc(UnkSelf* self, f32 value, s32 index) {

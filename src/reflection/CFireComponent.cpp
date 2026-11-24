@@ -14,7 +14,7 @@ void CFireComponent::refl_AddAttributes(CClass*) {}
 void CFireComponent::refl_AddFields(CClass*) {}
 bool CFireComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CFireComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CFireComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFireComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CFireComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFireComponent*>(obj)->refl_GetDynamicClass(); }
 void CFireComponent::refl_CopyConstruct(void*, const void*) {}
 void CFireComponent::refl_MoveConstruct(void*, const void*) {}
 void CFireComponent::refl_Destroy(void* obj) { static_cast<CFireComponent*>(obj)->~CFireComponent(); }

@@ -64,7 +64,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_vPos_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0, fn_710023e278);
     DREAD_REFLECTED_FUNCTION("_vPos_SetterFunction")
         fn_7100228b24(fn, "_vPos_SetterFunction");
-    CVariable* field3 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field3->attrs.Add<base::math::CVector3D>(base::reflection::attr::DefaultValue(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
     field3->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &base::reflection::TypeObject<CompleteInfo>::object, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"oBBox"}, 0xa, nullptr, 0xf)));
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Position");
@@ -73,13 +73,13 @@ void refl_AddFields(CClass* cls) {
         fn_7100228ee4(fn, "_vAng_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vAng", (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Angle"));
     DREAD_REFLECTED_FUNCTION_OF("_pComponents_GetterFunction", (base::reflection::PointerType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::Get()), 0, fn_710023e44c);
-    CVariable* field5 = AddReflectedField(cls, CStrId("pComponents", true), base::reflection::PointerType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field5 = AddReflectedField(cls, CStrId("pComponents", true), base::reflection::PointerType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field5->attrs.Add<bool>(base::reflection::attr::SetRenderItemSelectionIdCall(), true);
     field5->attrs.Add<const char*>(base::reflection::attr::Description(), "List of entity components");
     field5->attrs.Add<bool>(base::reflection::attr::FixedCollection(), true);
     DREAD_REFLECTED_FUNCTION("GetComponentByName") {
         fn_710022913c(fn, "GetComponentByName");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sName", true));
     }
     DREAD_REFLECTED_FUNCTION("RequestDelete") {

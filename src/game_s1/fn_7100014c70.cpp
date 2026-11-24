@@ -37,7 +37,7 @@ void RegisterEBlendFunctionEnum() {
         CStrId name("base::animation::EBlendFunction", true);
         fn_71000145e8(&base::reflection::TypeObject<base::animation::EBlendFunction, UnkEnumInfo>::object, &name, fn_710001449c, nullptr);
     }
-    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::animation::EBlendFunction, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &base::reflection::TypeObject<base::animation::EBlendFunction, UnkEnumInfo>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d4d6e8, &base::reflection::TypeObject<base::animation::EBlendFunction, UnkEnumInfo>::object);
     void* a = base::reflection::TypeObject<base::animation::EBlendFunction, UnkEnumInfo>::object.desc_0x8->field_0x30;
     void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;

@@ -59,7 +59,7 @@ void fn_7100a0bbf0(UnkWap_la0bbf0* self) {
                                            : &g_unk_7172769740;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, hash, kind, &mode, &g_unk_710164b958, desc, &mask);
+        CAnimationComponent_SendActionToTrack(animation, hash, kind, &mode, &g_unk_710164b958, desc, &mask);
     }
 
     if (UnkWapLink_la0bbf0* link = self->link) {

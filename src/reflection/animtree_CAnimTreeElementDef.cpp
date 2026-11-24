@@ -25,7 +25,7 @@ void animtree::CAnimTreeElementDef::refl_AddFields(CClass* cls) {
 }
 bool animtree::CAnimTreeElementDef::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 animtree::CAnimTreeElementDef::refl_Hash() { return -1; }
-const base::reflection::CType& animtree::CAnimTreeElementDef::refl_TypeOf(const void* obj) { return *static_cast<const CAnimTreeElementDef*>(obj)->vf_0x0(); }
+const base::reflection::CType& animtree::CAnimTreeElementDef::refl_TypeOf(const void* obj) { return *static_cast<const CAnimTreeElementDef*>(obj)->refl_GetDynamicClass(); }
 void animtree::CAnimTreeElementDef::refl_Destroy(void* obj) { static_cast<CAnimTreeElementDef*>(obj)->~CAnimTreeElementDef(); }
 struct animtree::CAnimTreeElementDef::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CAnimTreeElementDef);

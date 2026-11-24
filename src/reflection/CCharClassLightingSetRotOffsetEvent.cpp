@@ -28,7 +28,7 @@ void CCharClassLightingSetRotOffsetEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassLightingSetRotOffsetEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassLightingSetRotOffsetEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassLightingSetRotOffsetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLightingSetRotOffsetEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassLightingSetRotOffsetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLightingSetRotOffsetEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassLightingSetRotOffsetEvent::refl_Destroy(void* obj) { static_cast<CCharClassLightingSetRotOffsetEvent*>(obj)->~CCharClassLightingSetRotOffsetEvent(); }
 struct CCharClassLightingSetRotOffsetEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassLightingSetRotOffsetEvent);

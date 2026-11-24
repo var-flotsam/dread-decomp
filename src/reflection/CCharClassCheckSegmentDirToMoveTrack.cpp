@@ -22,7 +22,7 @@ void CCharClassCheckSegmentDirToMoveTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassCheckSegmentDirToMoveTrack::refl_AddFields(CClass*) {}
 bool CCharClassCheckSegmentDirToMoveTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCheckSegmentDirToMoveTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCheckSegmentDirToMoveTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCheckSegmentDirToMoveTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCheckSegmentDirToMoveTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCheckSegmentDirToMoveTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCheckSegmentDirToMoveTrack::refl_Destroy(void* obj) { static_cast<CCharClassCheckSegmentDirToMoveTrack*>(obj)->~CCharClassCheckSegmentDirToMoveTrack(); }
 struct CCharClassCheckSegmentDirToMoveTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCheckSegmentDirToMoveTrack);

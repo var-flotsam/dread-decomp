@@ -14,7 +14,7 @@ void CReturnAreaSmartObjectComponent::refl_AddAttributes(CClass*) {}
 void CReturnAreaSmartObjectComponent::refl_AddFields(CClass*) {}
 bool CReturnAreaSmartObjectComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CReturnAreaSmartObjectComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CReturnAreaSmartObjectComponent::refl_TypeOf(const void* obj) { return *static_cast<const CReturnAreaSmartObjectComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CReturnAreaSmartObjectComponent::refl_TypeOf(const void* obj) { return *static_cast<const CReturnAreaSmartObjectComponent*>(obj)->refl_GetDynamicClass(); }
 void CReturnAreaSmartObjectComponent::refl_CopyConstruct(void*, const void*) {}
 void CReturnAreaSmartObjectComponent::refl_MoveConstruct(void*, const void*) {}
 void CReturnAreaSmartObjectComponent::refl_Destroy(void* obj) { static_cast<CReturnAreaSmartObjectComponent*>(obj)->~CReturnAreaSmartObjectComponent(); }

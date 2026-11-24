@@ -22,7 +22,7 @@ void CCharClassIgnoreViewDirChangeTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreViewDirChangeTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreViewDirChangeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreViewDirChangeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreViewDirChangeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreViewDirChangeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreViewDirChangeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreViewDirChangeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreViewDirChangeTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreViewDirChangeTrack*>(obj)->~CCharClassIgnoreViewDirChangeTrack(); }
 struct CCharClassIgnoreViewDirChangeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreViewDirChangeTrack);

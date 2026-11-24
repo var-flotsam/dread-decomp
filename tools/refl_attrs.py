@@ -54,7 +54,7 @@ CRNT_DTOR = 0x710007ECD4
 CFP_CTOR = 0x71000166C8
 GLOBAL_CFP = 0x7101D470E8      # g_unk_7101d470e8, base::global::CFilePathStrId::Empty()
 HASH = 0x7100001570
-RESIZE_PARAM_ATTRS = 0x710009AE5C  # fn_710009ae5c(fn, fn->params.count)
+RESIZE_PARAM_ATTRS = 0x710009AE5C  # ResizeParameterAttributes(fn, fn->params.count)
 ENSURE_POOL = 0x710007FDB4     # what an inlined string-id constructor calls when there's no pool yet
 POOL_LOOKUP = 0x71000804F8     # and the string pool's lookup and insert, which it calls
 POOL_INSERT = 0x71000801E4
@@ -72,7 +72,7 @@ VCALL_PARAM_ATTRS = -0x58
 NOT_KEYS = {GET_ATTRS, ADD_ATTR, ADD_FIELD, ADD_FUNCTION, CSTRID_CTOR, CSTRID_RELEASE, ALLOC,
             TUNABLE_REGISTRY_CTOR, CRNT_CTOR, CRNT_COPY, CRNT_DTOR, CFP_CTOR, HASH, RESIZE_PARAM_ATTRS,
             ENSURE_POOL, GUARD_ACQUIRE, POOL_LOOKUP, POOL_INSERT, LIST_CTOR}
-# Value type getter -> C++ type, as in UnkReflTypeOf.
+# Value type getter -> C++ type, as in ValueType (base/reflection/ReflectedAttributes.h).
 VALUE_TYPES = {0x7100005178: "u32", 0x7100014768: "s32", 0x71000081E8: "const char*", 0x7100009658: "base::global::CStrId",
                0x710000ABBC: "f32", 0x710000D228: "bool",
                0x7100024504: "base::math::CVector2D", 0x71000246E4: "base::math::CVector3D",
@@ -299,7 +299,7 @@ def index_expr(fact: tuple | None) -> str | None:
     if fact == ("imm", 2**64 - 1):
         return "-1"
     if fact and fact[0] == "count" and fact[1] < 0:
-        return f"cls->m_array_0x110.size() - {-fact[1]}"
+        return f"cls->m_functions.size() - {-fact[1]}"
     return None
 
 
@@ -401,7 +401,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
         if vals or not is_key(j):
             return None
         key = evs[j].target
-        decls.append(f"const base::reflection::UnkReflAttrKey& fn_{key:x}();")
+        decls.append(f"const base::reflection::AttributeKey& fn_{key:x}();")
         j, vals = next_bl(j + 1)
         if j >= n:
             return None
@@ -586,7 +586,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             elif t == VCALL_PARAM_ATTRS and evs[jb].regs.get("1", ("",))[0] == "imm":
                 r = attribute(jb + 1, f"fn->ParamAttrs({evs[jb].regs['1'][1]})->")
             elif t == RESIZE_PARAM_ATTRS:
-                r = jb + 1, "    fn_710009ae5c(fn, fn->params.count);"
+                r = jb + 1, "    ResizeParameterAttributes(fn, fn->params.count);"
             elif t > 0 and evs[jb].regs.get("ret0") == ("ret", ADD_FUNCTION) and t not in NOT_KEYS \
                     and t not in VALUE_TYPES and t not in class_getters:
                 # A call that takes the function (e.g. one that adds a parameter type).
@@ -1096,10 +1096,10 @@ ATTRIBUTE_NAMES = {  # attribute key getter -> the name it registers (attr:: in 
 TYPED_KEYS = {0x710000BF80: 0x7101D679F0, 0x71000923A0: 0x7101D55008}  # key -> its enum type (TypedAttrKey)
 FIELD_RE = re.compile(r'^    CVariable\* (field\d+) = AddReflectedField\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\), '
                       r'(?:fn_([0-9a-f]{10})\(\)|&g_unk_([0-9a-f]{10})), (0x[0-9a-f]+, -1, -1|0xffffffff, '
-                      r'cls->m_array_0x110\.size\(\) - [12], (?:cls->m_array_0x110\.size\(\) - 1|-1))\);$')
+                      r'cls->m_functions\.size\(\) - [12], (?:cls->m_functions\.size\(\) - 1|-1))\);$')
 PROPERTY_TAILS = {  # a property's offset and accessor indices -> its macro (ReflectedFields.h)
-    "0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1": "DREAD_REFLECTED_PROPERTY",
-    "0xffffffff, cls->m_array_0x110.size() - 1, -1": "DREAD_REFLECTED_READ_ONLY_PROPERTY",
+    "0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1": "DREAD_REFLECTED_PROPERTY",
+    "0xffffffff, cls->m_functions.size() - 1, -1": "DREAD_REFLECTED_READ_ONLY_PROPERTY",
 }
 ATTR_RE = re.compile(r'^    (field\d+)->attrs\.Add<(.+?)>\(fn_([0-9a-f]{10})\(\), (.*)\);$')
 

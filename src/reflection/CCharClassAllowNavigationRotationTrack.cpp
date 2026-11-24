@@ -22,7 +22,7 @@ void CCharClassAllowNavigationRotationTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAllowNavigationRotationTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowNavigationRotationTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowNavigationRotationTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowNavigationRotationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowNavigationRotationTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowNavigationRotationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowNavigationRotationTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowNavigationRotationTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowNavigationRotationTrack*>(obj)->~CCharClassAllowNavigationRotationTrack(); }
 struct CCharClassAllowNavigationRotationTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowNavigationRotationTrack);

@@ -21,7 +21,7 @@ void fn_71000d0634(UnkResPathVec* self, const UnkResPathVec* other) {
     self->field_0x14 = other->field_0x14;
     self->flags = other->flags;
     self->allocator = other->allocator;
-    fn_7100018450(self, other->capacity);
+    CAsset_ReserveFilePathIdVec(self, other->capacity);
     for (const base::global::CFilePathStrId *p = other->data, *e = p + other->count; p != e; ++p) {
         u32 n = self->count;
         u32 c = self->capacity;
@@ -30,7 +30,7 @@ void fn_71000d0634(UnkResPathVec* self, const UnkResPathVec* other) {
         if ((s32)n >= (s32)c)
             for (;;) {
             }
-        fn_7100018450(self, c);
+        CAsset_ReserveFilePathIdVec(self, c);
         base::global::CFilePathStrId* slot = &self->data[self->count];
         base::global::UnkStringData* d = p->data;
         __builtin_memcpy(slot, &d, 8);

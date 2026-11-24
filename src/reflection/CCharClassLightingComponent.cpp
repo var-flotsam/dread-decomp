@@ -59,7 +59,7 @@ void CLightingComponent::refl_AddAttributes(CClass*) {}
 void CLightingComponent::refl_AddFields(CClass*) {}
 bool CLightingComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CLightingComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CLightingComponent::refl_TypeOf(const void* obj) { return *static_cast<const CLightingComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CLightingComponent::refl_TypeOf(const void* obj) { return *static_cast<const CLightingComponent*>(obj)->refl_GetDynamicClass(); }
 void CLightingComponent::refl_CopyConstruct(void*, const void*) {}
 void CLightingComponent::refl_MoveConstruct(void*, const void*) {}
 void CLightingComponent::refl_Destroy(void* obj) { static_cast<CLightingComponent*>(obj)->~CLightingComponent(); }

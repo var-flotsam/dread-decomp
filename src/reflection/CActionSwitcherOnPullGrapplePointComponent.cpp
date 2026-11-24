@@ -23,7 +23,7 @@ void CActionSwitcherOnPullGrapplePointComponent::refl_AddFields(CClass* cls) {
 }
 bool CActionSwitcherOnPullGrapplePointComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CActionSwitcherOnPullGrapplePointComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CActionSwitcherOnPullGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CActionSwitcherOnPullGrapplePointComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CActionSwitcherOnPullGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CActionSwitcherOnPullGrapplePointComponent*>(obj)->refl_GetDynamicClass(); }
 void CActionSwitcherOnPullGrapplePointComponent::refl_CopyConstruct(void*, const void*) {}
 void CActionSwitcherOnPullGrapplePointComponent::refl_MoveConstruct(void*, const void*) {}
 void CActionSwitcherOnPullGrapplePointComponent::refl_Destroy(void* obj) { static_cast<CActionSwitcherOnPullGrapplePointComponent*>(obj)->~CActionSwitcherOnPullGrapplePointComponent(); }

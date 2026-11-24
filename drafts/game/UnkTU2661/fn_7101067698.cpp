@@ -204,7 +204,7 @@ static inline UnkAssetResRef AsActionSet(const UnkAssetResRef& found) {
 static inline bool Parse(UnkFileReader* reader, UnkReadTarget* target) {
     UnkParseContext ctx(g_unk_7172a014c8, reader, target);
     UnkReadEntry* end = target->entries + target->count;
-    return fn_710000f750(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr) != 0;
+    return CBlendSpaceResource_ReadObjectAsStoredType(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr) != 0;
 }
 
 // Loads the cutscene from `path`; whether it was read and set up.

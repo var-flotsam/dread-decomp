@@ -41,7 +41,7 @@ const base::reflection::CType* fn_710104643c();
 void fn_7101046518(UnkReflType* self, const CStrId& name, void* a, void* b);
 const base::reflection::CType* fn_710104670c();  // refl_GetType<CBlackboard::TSectionContainer*>
 
-void fn_710104be40() {
+void CBlackboard_InitStatics() {
     InitHeaderFns(g_unk_71729fd048);
     InitClass(&g_unk_71729fc4b0, "CBlackboard::CSection", fn_7101044c7c, fn_7101044aac);
     fn_710009ec00(&g_unk_71729fc5e8, &g_unk_71729fc4b0);

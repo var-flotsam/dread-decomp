@@ -29,7 +29,7 @@ void CCharClassFadeOutEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassFadeOutEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFadeOutEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFadeOutEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFadeOutEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFadeOutEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFadeOutEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFadeOutEvent::refl_Destroy(void* obj) { static_cast<CCharClassFadeOutEvent*>(obj)->~CCharClassFadeOutEvent(); }
 struct CCharClassFadeOutEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFadeOutEvent);

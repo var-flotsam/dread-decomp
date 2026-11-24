@@ -43,7 +43,7 @@ void RegisterEEventPropsAndTEventPropsFlagsTypes() {
         CStrId name("EEventProps", true);
         fn_7100069e20(&base::reflection::TypeObject<EEventProps, UnkEnumInfo>::object, &name, fn_7100069a34, nullptr);
     }
-    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<EEventProps, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &base::reflection::TypeObject<EEventProps, UnkEnumInfo>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d57e10, &base::reflection::TypeObject<EEventProps, UnkEnumInfo>::object);
     {
         void* a = base::reflection::TypeObject<EEventProps, UnkEnumInfo>::object.desc_0x8->field_0x30;

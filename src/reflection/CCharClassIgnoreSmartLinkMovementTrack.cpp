@@ -22,7 +22,7 @@ void CCharClassIgnoreSmartLinkMovementTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreSmartLinkMovementTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreSmartLinkMovementTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreSmartLinkMovementTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreSmartLinkMovementTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSmartLinkMovementTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreSmartLinkMovementTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSmartLinkMovementTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreSmartLinkMovementTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreSmartLinkMovementTrack*>(obj)->~CCharClassIgnoreSmartLinkMovementTrack(); }
 struct CCharClassIgnoreSmartLinkMovementTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreSmartLinkMovementTrack);

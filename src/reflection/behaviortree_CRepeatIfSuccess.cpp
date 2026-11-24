@@ -23,7 +23,7 @@ void behaviortree::CRepeatIfSuccess::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CRepeatIfSuccess::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CRepeatIfSuccess::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CRepeatIfSuccess::refl_TypeOf(const void* obj) { return *static_cast<const CRepeatIfSuccess*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CRepeatIfSuccess::refl_TypeOf(const void* obj) { return *static_cast<const CRepeatIfSuccess*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CRepeatIfSuccess::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CRepeatIfSuccess::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CRepeatIfSuccess::refl_Destroy(void* obj) { static_cast<CRepeatIfSuccess*>(obj)->~CRepeatIfSuccess(); }

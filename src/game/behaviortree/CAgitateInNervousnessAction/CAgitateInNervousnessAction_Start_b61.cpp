@@ -40,5 +40,5 @@ start:
     u64 id = self->anim->id;
     mode.id = 0;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(cls, id, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(cls, id, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }

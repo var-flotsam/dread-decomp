@@ -26,7 +26,7 @@ void CCharClassCallEmmyEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassCallEmmyEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCallEmmyEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCallEmmyEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCallEmmyEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCallEmmyEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCallEmmyEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCallEmmyEvent::refl_Destroy(void* obj) { static_cast<CCharClassCallEmmyEvent*>(obj)->~CCharClassCallEmmyEvent(); }
 struct CCharClassCallEmmyEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCallEmmyEvent);

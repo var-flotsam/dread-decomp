@@ -219,11 +219,11 @@ struct UnkAudioPresetBank_i {
 static_assert(__builtin_offsetof(UnkAudioPresetBank_i, flags) == 0x5c4, "layout");
 
 struct UnkAssetRecordHolder_b45a1;
-UnkAssetRecordHolder_b45a1* fn_7100016e14(UnkAssetRecordHolder_b45a1* self, UnkAssetRecordHolder_b45a1* other);
+UnkAssetRecordHolder_b45a1* CAsset_MoveAssign(UnkAssetRecordHolder_b45a1* self, UnkAssetRecordHolder_b45a1* other);
 
 UnkAudioPresetBank_i* fn_7101037484(UnkAudioPresetBank_i* self, UnkAudioPresetBank_i* other) {
     if (other != self) {
-        fn_7100016e14(reinterpret_cast<UnkAssetRecordHolder_b45a1*>(self), reinterpret_cast<UnkAssetRecordHolder_b45a1*>(other));
+        CAsset_MoveAssign(reinterpret_cast<UnkAssetRecordHolder_b45a1*>(self), reinterpret_cast<UnkAssetRecordHolder_b45a1*>(other));
         self->id_a = other->id_a;
         self->id_b = other->id_b;
         const void* src_items = other->items;

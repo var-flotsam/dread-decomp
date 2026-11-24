@@ -12,7 +12,7 @@
 using base::reflection::CClass;
 
 extern void* g_unk_7101a196f0[];
-extern base::reflection::UnkReflArray g_unk_7101d4ea78 __attribute__((visibility("hidden")));
+extern base::reflection::UntypedSmallDictionary g_unk_7101d4ea78 __attribute__((visibility("hidden")));
 
 // The entry walk's types as src/base/core/CBaseObject/fn_7100023854.cpp declares them.
 struct UnkNode;

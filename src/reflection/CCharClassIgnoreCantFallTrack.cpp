@@ -22,7 +22,7 @@ void CCharClassIgnoreCantFallTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreCantFallTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreCantFallTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreCantFallTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreCantFallTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCantFallTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreCantFallTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCantFallTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreCantFallTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreCantFallTrack*>(obj)->~CCharClassIgnoreCantFallTrack(); }
 struct CCharClassIgnoreCantFallTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreCantFallTrack);

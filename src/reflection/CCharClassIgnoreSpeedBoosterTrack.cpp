@@ -22,7 +22,7 @@ void CCharClassIgnoreSpeedBoosterTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreSpeedBoosterTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreSpeedBoosterTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreSpeedBoosterTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreSpeedBoosterTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSpeedBoosterTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreSpeedBoosterTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSpeedBoosterTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreSpeedBoosterTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreSpeedBoosterTrack*>(obj)->~CCharClassIgnoreSpeedBoosterTrack(); }
 struct CCharClassIgnoreSpeedBoosterTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreSpeedBoosterTrack);

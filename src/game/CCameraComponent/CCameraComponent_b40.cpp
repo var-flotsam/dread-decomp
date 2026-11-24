@@ -11,7 +11,7 @@
 
 using base::reflection::UnkReflValue;
 
-s32 fn_71010e655c(void* self, void* stream, UnkReflValue* out);
+s32 CCameraComponent_ReadControllerNameToStrIdValue(void* self, void* stream, UnkReflValue* out);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b40a3(UnkReflValue* arg) {
     if (!arg->type)
@@ -26,7 +26,7 @@ UnkReflValue fn_71010e7860(char* self, void*, UnkReflValue* const* args) {
     char* target = self;
     void* p0 = ArgPtr_b40a3(&a[0]);
     void* p1 = ArgPtr_b40a3(&a[1]);
-    fn_71010e655c(target, p0, static_cast<UnkReflValue*>(p1));
+    CCameraComponent_ReadControllerNameToStrIdValue(target, p0, static_cast<UnkReflValue*>(p1));
     s32 v = 0;
     const base::reflection::CType* type = fn_7100014768();
     UnkReflValue r;

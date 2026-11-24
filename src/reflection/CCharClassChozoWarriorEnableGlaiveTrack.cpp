@@ -26,7 +26,7 @@ void CCharClassChozoWarriorEnableGlaiveTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassChozoWarriorEnableGlaiveTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassChozoWarriorEnableGlaiveTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassChozoWarriorEnableGlaiveTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoWarriorEnableGlaiveTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassChozoWarriorEnableGlaiveTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoWarriorEnableGlaiveTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassChozoWarriorEnableGlaiveTrack::refl_Destroy(void* obj) { static_cast<CCharClassChozoWarriorEnableGlaiveTrack*>(obj)->~CCharClassChozoWarriorEnableGlaiveTrack(); }
 struct CCharClassChozoWarriorEnableGlaiveTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassChozoWarriorEnableGlaiveTrack);

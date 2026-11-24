@@ -14,7 +14,7 @@ void CActionSwitcherComponent::refl_AddAttributes(CClass*) {}
 void CActionSwitcherComponent::refl_AddFields(CClass*) {}
 bool CActionSwitcherComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CActionSwitcherComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CActionSwitcherComponent::refl_TypeOf(const void* obj) { return *static_cast<const CActionSwitcherComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CActionSwitcherComponent::refl_TypeOf(const void* obj) { return *static_cast<const CActionSwitcherComponent*>(obj)->refl_GetDynamicClass(); }
 void CActionSwitcherComponent::refl_CopyConstruct(void*, const void*) {}
 void CActionSwitcherComponent::refl_MoveConstruct(void*, const void*) {}
 void CActionSwitcherComponent::refl_Destroy(void* obj) { static_cast<CActionSwitcherComponent*>(obj)->~CActionSwitcherComponent(); }

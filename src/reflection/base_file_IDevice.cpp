@@ -14,7 +14,7 @@ void base::file::IDevice::refl_AddAttributes(CClass*) {}
 void base::file::IDevice::refl_AddFields(CClass*) {}
 bool base::file::IDevice::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 base::file::IDevice::refl_Hash() { return -1; }
-const base::reflection::CType& base::file::IDevice::refl_TypeOf(const void* obj) { return *static_cast<const IDevice*>(obj)->vf_0x0(); }
+const base::reflection::CType& base::file::IDevice::refl_TypeOf(const void* obj) { return *static_cast<const IDevice*>(obj)->refl_GetDynamicClass(); }
 void base::file::IDevice::refl_Destroy(void* obj) { static_cast<IDevice*>(obj)->~IDevice(); }
 struct base::file::IDevice::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(IDevice);

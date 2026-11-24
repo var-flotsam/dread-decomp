@@ -22,7 +22,7 @@ void CCharClassObsydomithonIdleTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassObsydomithonIdleTrack::refl_AddFields(CClass*) {}
 bool CCharClassObsydomithonIdleTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassObsydomithonIdleTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassObsydomithonIdleTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassObsydomithonIdleTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassObsydomithonIdleTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassObsydomithonIdleTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassObsydomithonIdleTrack::refl_Destroy(void* obj) { static_cast<CCharClassObsydomithonIdleTrack*>(obj)->~CCharClassObsydomithonIdleTrack(); }
 struct CCharClassObsydomithonIdleTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassObsydomithonIdleTrack);

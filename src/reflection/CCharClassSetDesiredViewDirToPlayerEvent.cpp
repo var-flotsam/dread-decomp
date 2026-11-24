@@ -22,7 +22,7 @@ void CCharClassSetDesiredViewDirToPlayerEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassSetDesiredViewDirToPlayerEvent::refl_AddFields(CClass*) {}
 bool CCharClassSetDesiredViewDirToPlayerEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetDesiredViewDirToPlayerEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetDesiredViewDirToPlayerEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetDesiredViewDirToPlayerEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetDesiredViewDirToPlayerEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetDesiredViewDirToPlayerEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetDesiredViewDirToPlayerEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetDesiredViewDirToPlayerEvent*>(obj)->~CCharClassSetDesiredViewDirToPlayerEvent(); }
 struct CCharClassSetDesiredViewDirToPlayerEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetDesiredViewDirToPlayerEvent);

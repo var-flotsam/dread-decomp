@@ -22,7 +22,7 @@ void CCharClassEmmyValveComponent::refl_AddAttributes(CClass*) {}
 void CCharClassEmmyValveComponent::refl_AddFields(CClass*) {}
 bool CCharClassEmmyValveComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassEmmyValveComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmyValveComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyValveComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmyValveComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyValveComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmyValveComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassEmmyValveComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassEmmyValveComponent::refl_Destroy(void* obj) { static_cast<CCharClassEmmyValveComponent*>(obj)->~CCharClassEmmyValveComponent(); }
@@ -56,7 +56,7 @@ void CEmmyValveComponent::refl_AddFields(CClass* cls) {
 }
 bool CEmmyValveComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CEmmyValveComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CEmmyValveComponent::refl_TypeOf(const void* obj) { return *static_cast<const CEmmyValveComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CEmmyValveComponent::refl_TypeOf(const void* obj) { return *static_cast<const CEmmyValveComponent*>(obj)->refl_GetDynamicClass(); }
 void CEmmyValveComponent::refl_CopyConstruct(void*, const void*) {}
 void CEmmyValveComponent::refl_MoveConstruct(void*, const void*) {}
 void CEmmyValveComponent::refl_Destroy(void* obj) { static_cast<CEmmyValveComponent*>(obj)->~CEmmyValveComponent(); }

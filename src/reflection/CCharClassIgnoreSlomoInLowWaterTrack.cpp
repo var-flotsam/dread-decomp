@@ -22,7 +22,7 @@ void CCharClassIgnoreSlomoInLowWaterTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreSlomoInLowWaterTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreSlomoInLowWaterTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreSlomoInLowWaterTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreSlomoInLowWaterTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSlomoInLowWaterTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreSlomoInLowWaterTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSlomoInLowWaterTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreSlomoInLowWaterTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreSlomoInLowWaterTrack*>(obj)->~CCharClassIgnoreSlomoInLowWaterTrack(); }
 struct CCharClassIgnoreSlomoInLowWaterTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreSlomoInLowWaterTrack);

@@ -329,7 +329,7 @@ struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
 };
 
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
-bool fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path);
+bool CPackManagerDevice_UnmountPackSetPacks(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path);
 
 static inline base::file::UnkFileDevice* PackSets_e00b48() {
     base::file::UnkFileDevice* object = g_unk_7101d4d828;
@@ -350,7 +350,7 @@ void fn_7100e00b48(UnkGameManager* self) {
     fn_7100089eec(PackSets_e00b48(), PackPath_e00b48(self), &list);
     for (UnkListedPath* n = list.head; n; n = n->next)
         fn_7100108c94(g_unk_7101d4d820, reinterpret_cast<const CFilePathStrId*>(n));
-    fn_7100089ef4(PackSets_e00b48(), PackPath_e00b48(self));
+    CPackManagerDevice_UnmountPackSetPacks(PackSets_e00b48(), PackPath_e00b48(self));
 }
 
 // ---- fn_7100dfb1b0 ----

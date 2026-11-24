@@ -45,7 +45,7 @@ void game::logic::collision::COBoxShape2D::refl_AddFields(CClass* cls) {
 }
 bool game::logic::collision::COBoxShape2D::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 game::logic::collision::COBoxShape2D::refl_Hash() { return -1; }
-const base::reflection::CType& game::logic::collision::COBoxShape2D::refl_TypeOf(const void* obj) { return *static_cast<const COBoxShape2D*>(obj)->vf_0x0(); }
+const base::reflection::CType& game::logic::collision::COBoxShape2D::refl_TypeOf(const void* obj) { return *static_cast<const COBoxShape2D*>(obj)->refl_GetDynamicClass(); }
 void game::logic::collision::COBoxShape2D::refl_Destroy(void* obj) { static_cast<COBoxShape2D*>(obj)->~COBoxShape2D(); }
 struct game::logic::collision::COBoxShape2D::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(COBoxShape2D);

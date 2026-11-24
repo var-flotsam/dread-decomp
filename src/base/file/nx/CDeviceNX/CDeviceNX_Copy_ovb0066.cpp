@@ -19,9 +19,9 @@ public:
     virtual u64 vf_0x30();
 };
 
-s32 fn_710002ecdc(void* table, CRntString* path, void* dest, bool commit) {
+s32 CDeviceNX_CopyFile(void* table, CRntString* path, void* dest, bool commit) {
     UnkSaveBuffer_ovb0066* buffer = nullptr;
-    s32 ret = fn_710002ed98(table, path, &buffer, 0, nullptr, 8, 0x16);
+    s32 ret = CDeviceNX_ReadWholeFileIntoNewBuffer(table, path, &buffer, 0, nullptr, 8, 0x16);
     if (ret == 0) {
         UnkSaveBuffer_ovb0066* held = buffer;
         void* data = held->vf_0x28();

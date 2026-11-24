@@ -67,7 +67,7 @@ bool CVulkranMagmaBallMovementComponent_IsInLavaPool(UnkMagmaBall_b50* self) {
         if (area->disabled)
             continue;
         CVector2D copy = {point.x, point.y};
-        if (fn_7100a47e00(area, &copy))
+        if (CCharClassBaseTriggerComponent_IsPointInColliderBounds(area, &copy))
             return true;
     }
     return false;

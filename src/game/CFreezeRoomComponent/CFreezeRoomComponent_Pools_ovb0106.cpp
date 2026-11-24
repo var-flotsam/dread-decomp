@@ -79,7 +79,7 @@ void fn_7100a238f4(UnkFreezeRoom_ovb0106* self) {
         pos.z = z;
         CVector2D point;
         fn_710007b430(&point, &pos);
-        if (fn_7100a47e00(reinterpret_cast<UnkMagmaArea_b50*>(self), &point))
+        if (CCharClassBaseTriggerComponent_IsPointInColliderBounds(reinterpret_cast<UnkMagmaArea_b50*>(self), &point))
             pool->SetFrozen(self->frozen);
     }
 }

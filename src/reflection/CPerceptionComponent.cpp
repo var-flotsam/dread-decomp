@@ -14,7 +14,7 @@ void CPerceptionComponent::refl_AddAttributes(CClass*) {}
 void CPerceptionComponent::refl_AddFields(CClass*) {}
 bool CPerceptionComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CPerceptionComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CPerceptionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CPerceptionComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CPerceptionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CPerceptionComponent*>(obj)->refl_GetDynamicClass(); }
 void CPerceptionComponent::refl_Destroy(void* obj) { static_cast<CPerceptionComponent*>(obj)->~CPerceptionComponent(); }
 struct CPerceptionComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CPerceptionComponent);

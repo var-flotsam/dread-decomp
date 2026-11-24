@@ -267,7 +267,7 @@ void fn_71009b25b0(UnkSamusState_l9b25b0* self, bool forced) {
             if (!current->vf_0x130(0, 0, nullptr))
                 return;
         } else if (current->kind == 2) {
-            fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
+            CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
                           reinterpret_cast<const UnkRequest_7101176ea8*>(&params.transition), 0xf4061ff25a2163d6);
             return;
         }

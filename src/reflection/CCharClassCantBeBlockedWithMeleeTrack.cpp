@@ -22,7 +22,7 @@ void CCharClassCantBeBlockedWithMeleeTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassCantBeBlockedWithMeleeTrack::refl_AddFields(CClass*) {}
 bool CCharClassCantBeBlockedWithMeleeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCantBeBlockedWithMeleeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCantBeBlockedWithMeleeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCantBeBlockedWithMeleeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCantBeBlockedWithMeleeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCantBeBlockedWithMeleeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCantBeBlockedWithMeleeTrack::refl_Destroy(void* obj) { static_cast<CCharClassCantBeBlockedWithMeleeTrack*>(obj)->~CCharClassCantBeBlockedWithMeleeTrack(); }
 struct CCharClassCantBeBlockedWithMeleeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCantBeBlockedWithMeleeTrack);

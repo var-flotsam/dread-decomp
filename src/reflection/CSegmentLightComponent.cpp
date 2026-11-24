@@ -60,7 +60,7 @@ void CSegmentLightComponent::refl_AddFields(CClass* cls) {
 }
 bool CSegmentLightComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CSegmentLightComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CSegmentLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSegmentLightComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSegmentLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSegmentLightComponent*>(obj)->refl_GetDynamicClass(); }
 void CSegmentLightComponent::refl_CopyConstruct(void*, const void*) {}
 void CSegmentLightComponent::refl_MoveConstruct(void*, const void*) {}
 void CSegmentLightComponent::refl_Destroy(void* obj) { static_cast<CSegmentLightComponent*>(obj)->~CSegmentLightComponent(); }

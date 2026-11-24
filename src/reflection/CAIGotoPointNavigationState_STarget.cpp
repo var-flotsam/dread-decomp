@@ -16,7 +16,7 @@ void CAIGotoPointNavigationState::STarget::refl_AddAttributes(CClass*) {}
 void CAIGotoPointNavigationState::STarget::refl_AddFields(CClass*) {}
 bool CAIGotoPointNavigationState::STarget::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CAIGotoPointNavigationState::STarget::refl_Hash() { return -1; }
-const base::reflection::CType& CAIGotoPointNavigationState::STarget::refl_TypeOf(const void* obj) { return *static_cast<const STarget*>(obj)->vf_0x0(); }
+const base::reflection::CType& CAIGotoPointNavigationState::STarget::refl_TypeOf(const void* obj) { return *static_cast<const STarget*>(obj)->refl_GetDynamicClass(); }
 void CAIGotoPointNavigationState::STarget::refl_Destroy(void* obj) { static_cast<STarget*>(obj)->~STarget(); }
 struct CAIGotoPointNavigationState::STarget::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(STarget);
@@ -35,7 +35,7 @@ void CAIGotoPointNavigationState::SPointTarget::refl_AddAttributes(CClass*) {}
 void CAIGotoPointNavigationState::SPointTarget::refl_AddFields(CClass*) {}
 bool CAIGotoPointNavigationState::SPointTarget::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CAIGotoPointNavigationState::SPointTarget::refl_Hash() { return -1; }
-const base::reflection::CType& CAIGotoPointNavigationState::SPointTarget::refl_TypeOf(const void* obj) { return *static_cast<const SPointTarget*>(obj)->vf_0x0(); }
+const base::reflection::CType& CAIGotoPointNavigationState::SPointTarget::refl_TypeOf(const void* obj) { return *static_cast<const SPointTarget*>(obj)->refl_GetDynamicClass(); }
 void CAIGotoPointNavigationState::SPointTarget::refl_Destroy(void* obj) { static_cast<SPointTarget*>(obj)->~SPointTarget(); }
 struct CAIGotoPointNavigationState::SPointTarget::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(SPointTarget);
@@ -55,7 +55,7 @@ void CAIGotoPointNavigationState::SEntityTarget::refl_AddAttributes(CClass*) {}
 void CAIGotoPointNavigationState::SEntityTarget::refl_AddFields(CClass*) {}
 bool CAIGotoPointNavigationState::SEntityTarget::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CAIGotoPointNavigationState::SEntityTarget::refl_Hash() { return -1; }
-const base::reflection::CType& CAIGotoPointNavigationState::SEntityTarget::refl_TypeOf(const void* obj) { return *static_cast<const SEntityTarget*>(obj)->vf_0x0(); }
+const base::reflection::CType& CAIGotoPointNavigationState::SEntityTarget::refl_TypeOf(const void* obj) { return *static_cast<const SEntityTarget*>(obj)->refl_GetDynamicClass(); }
 void CAIGotoPointNavigationState::SEntityTarget::refl_Destroy(void* obj) { static_cast<SEntityTarget*>(obj)->~SEntityTarget(); }
 struct CAIGotoPointNavigationState::SEntityTarget::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(SEntityTarget);

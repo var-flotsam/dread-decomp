@@ -75,5 +75,5 @@ void fn_71005f42c8(UnkKraidSwipe_b57a4* self, f32 dt) {
     UnkKraidSwipeArg_b57a4 arg(MakeFloat_b57a4(0.3f));
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0xcb39371b86897f5c, 0xf4061ff25a2163d6, &mode, &arg, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, 0xcb39371b86897f5c, 0xf4061ff25a2163d6, &mode, &arg, &g_unk_7172769740, &mask);
 }

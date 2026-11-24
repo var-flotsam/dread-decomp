@@ -91,7 +91,7 @@ u32 fn_710024fc10(UnkActorComp_l24fc10* self, UnkProp* p) {
         const char* name;
         CRntFile_ReadCString(p->stream, &name);
         u64 crc = StringCrc64(name, __builtin_strlen(name));
-        const base::reflection::UnkReflArray& entries = self->vf_0x0()->m_array_0xe8;
+        const base::reflection::UntypedSmallDictionary& entries = self->vf_0x0()->m_fields;
         const u64* keys = static_cast<const u64*>(entries.keys);
         u32 i = 0;
         for (; i < entries.count; ++i) {

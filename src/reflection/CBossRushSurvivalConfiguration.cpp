@@ -32,7 +32,7 @@ void CBossRushSurvivalConfiguration::refl_AddFields(CClass* cls) {
 }
 bool CBossRushSurvivalConfiguration::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CBossRushSurvivalConfiguration::refl_Hash() { return -1; }
-const base::reflection::CType& CBossRushSurvivalConfiguration::refl_TypeOf(const void* obj) { return *static_cast<const CBossRushSurvivalConfiguration*>(obj)->vf_0x0(); }
+const base::reflection::CType& CBossRushSurvivalConfiguration::refl_TypeOf(const void* obj) { return *static_cast<const CBossRushSurvivalConfiguration*>(obj)->refl_GetDynamicClass(); }
 void CBossRushSurvivalConfiguration::refl_Destroy(void* obj) { static_cast<CBossRushSurvivalConfiguration*>(obj)->~CBossRushSurvivalConfiguration(); }
 struct CBossRushSurvivalConfiguration::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CBossRushSurvivalConfiguration);
@@ -60,7 +60,7 @@ void CBossRushDebugTime::refl_AddFields(CClass* cls) {
 }
 bool CBossRushDebugTime::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CBossRushDebugTime::refl_Hash() { return -1; }
-const base::reflection::CType& CBossRushDebugTime::refl_TypeOf(const void* obj) { return *static_cast<const CBossRushDebugTime*>(obj)->vf_0x0(); }
+const base::reflection::CType& CBossRushDebugTime::refl_TypeOf(const void* obj) { return *static_cast<const CBossRushDebugTime*>(obj)->refl_GetDynamicClass(); }
 void CBossRushDebugTime::refl_Destroy(void* obj) { static_cast<CBossRushDebugTime*>(obj)->~CBossRushDebugTime(); }
 struct CBossRushDebugTime::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CBossRushDebugTime);

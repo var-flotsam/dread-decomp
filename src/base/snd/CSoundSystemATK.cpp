@@ -778,7 +778,7 @@ extern void* g_unk_7101a1bb18;  // the archive's path
 
 // This unit's other set-up steps.
 void fn_71000f36f8(void* block);
-void fn_71000f86c0(void* list, u64 count, u32 flags, base::UnkSubAllocator* allocator);  // base/UnkBlockArrayPool.h
+void CSoundSystemATK_CreateBlockPool0x128(void* list, u64 count, u32 flags, base::UnkSubAllocator* allocator);  // base/UnkBlockArrayPool.h
 void fn_71000f88b8(UnkSoundSystemATK* self);
 void fn_71000f8b30(UnkSoundSystemATK* self);
 void fn_71000f9450(UnkSoundSystemATK* self);
@@ -864,7 +864,7 @@ bool fn_71000f7800(UnkSoundSystemATK* self) {
             fn_71000f36f8(block);
             Member<void*>(self, 0x400588 + i * 8) = block;
         }
-        fn_71000f86c0(reinterpret_cast<u8*>(self) + 0x388, 0x80, 0xb, &heap->allocator);
+        CSoundSystemATK_CreateBlockPool0x128(reinterpret_cast<u8*>(self) + 0x388, 0x80, 0xb, &heap->allocator);
         fn_7101229134(fn_7101228d6c(), fn_71000f6770, nullptr);
         fn_710120b108(fn_71000f6880, nullptr);
         fn_710120b148(fn_71000f6890, nullptr);

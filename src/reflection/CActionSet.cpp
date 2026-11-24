@@ -13,7 +13,7 @@ using base::reflection::ClassDescription;
 void CActionSet::refl_AddFields(CClass*) {}
 bool CActionSet::refl_Equals(const void*, const void*) { return false; }
 s32 CActionSet::refl_Hash() { return -1; }
-const base::reflection::CType& CActionSet::refl_TypeOf(const void* obj) { return *static_cast<const CActionSet*>(obj)->vf_0x0(); }
+const base::reflection::CType& CActionSet::refl_TypeOf(const void* obj) { return *static_cast<const CActionSet*>(obj)->refl_GetDynamicClass(); }
 void CActionSet::refl_Destroy(void* obj) { static_cast<CActionSet*>(obj)->~CActionSet(); }
 struct CActionSet::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CActionSet);

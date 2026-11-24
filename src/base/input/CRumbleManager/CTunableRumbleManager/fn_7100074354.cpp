@@ -27,7 +27,7 @@ struct UnkUnit50Object;
 struct UnkUnit50Desc;
 
 UnkRumbleFile* fn_710007454c(UnkRumbleManager* self, const void* name);
-UnkRumbleEffect_b0068* fn_7100074b38(UnkTunableRumbleManager_b0068* self);
+UnkRumbleEffect_b0068* CTunableRumbleManager_AllocateEffect(UnkTunableRumbleManager_b0068* self);
 void fn_7100071ef0(UnkUnit50Object* self, const UnkUnit50Desc* desc);
 void fn_71000722c4(UnkUnit50Object* self);
 // The slot vector's GrowAt (base::global::CRntVector<..>::GrowAt, instantiated in src/clones as
@@ -90,7 +90,7 @@ UnkHandle fn_7100074354(UnkRumbleManager* manager, const UnkRumbleParams* desc) 
     local.file = file;
     local.path = file->path;
     UnkHandle handle;
-    auto* effect = fn_7100074b38(reinterpret_cast<UnkTunableRumbleManager_b0068*>(self));
+    auto* effect = CTunableRumbleManager_AllocateEffect(reinterpret_cast<UnkTunableRumbleManager_b0068*>(self));
     if (effect) {
         auto* object = reinterpret_cast<UnkUnit50Object*>(effect);
         fn_7100071ef0(object, reinterpret_cast<const UnkUnit50Desc*>(&local));

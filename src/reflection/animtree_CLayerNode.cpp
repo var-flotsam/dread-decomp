@@ -14,7 +14,7 @@ void animtree::CLayerNode::refl_AddAttributes(CClass*) {}
 void animtree::CLayerNode::refl_AddFields(CClass*) {}
 bool animtree::CLayerNode::refl_Equals(const void*, const void*) { return false; }
 s32 animtree::CLayerNode::refl_Hash() { return -1; }
-const base::reflection::CType& animtree::CLayerNode::refl_TypeOf(const void* obj) { return *static_cast<const CLayerNode*>(obj)->vf_0x0(); }
+const base::reflection::CType& animtree::CLayerNode::refl_TypeOf(const void* obj) { return *static_cast<const CLayerNode*>(obj)->refl_GetDynamicClass(); }
 void animtree::CLayerNode::refl_CopyConstruct(void*, const void*) {}
 void animtree::CLayerNode::refl_MoveConstruct(void*, const void*) {}
 void animtree::CLayerNode::refl_Destroy(void* obj) { static_cast<CLayerNode*>(obj)->~CLayerNode(); }

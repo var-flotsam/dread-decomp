@@ -22,7 +22,7 @@ void CCharClassGeneratorActivatedNotificationEvent::refl_AddAttributes(CClass* c
 void CCharClassGeneratorActivatedNotificationEvent::refl_AddFields(CClass*) {}
 bool CCharClassGeneratorActivatedNotificationEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassGeneratorActivatedNotificationEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassGeneratorActivatedNotificationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGeneratorActivatedNotificationEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassGeneratorActivatedNotificationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGeneratorActivatedNotificationEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassGeneratorActivatedNotificationEvent::refl_Destroy(void* obj) { static_cast<CCharClassGeneratorActivatedNotificationEvent*>(obj)->~CCharClassGeneratorActivatedNotificationEvent(); }
 struct CCharClassGeneratorActivatedNotificationEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassGeneratorActivatedNotificationEvent);

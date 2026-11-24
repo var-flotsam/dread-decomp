@@ -48,7 +48,7 @@ struct UnkTrackParams_ovb0021 {
 };
 
 struct UnkTrackMovement_ovb0021;
-bool fn_7100976ab8(UnkTrackMovement_ovb0021* self, const base::reflection::CClass* cls, UnkTrackParams_ovb0021* params,
+bool CCharacterMovement_BuildRequestParamsFromRecordOfClass(UnkTrackMovement_ovb0021* self, const base::reflection::CClass* cls, UnkTrackParams_ovb0021* params,
                    bool forced);
 UnkTrackParams_ovb0021 fn_71009767f4(UnkTrackMovement_ovb0021* self, bool forced);
 
@@ -115,7 +115,7 @@ template <const base::reflection::CClass* (*Track)()>
 inline void RequestTrack(UnkAnimationComponent* animation, UnkTrackMovement_ovb0021* movement,
                          UnkTrackParams_ovb0021* params) {
     ClearDefaultAction(animation);
-    fn_7100976ab8(movement, Track(), params, true);
+    CCharacterMovement_BuildRequestParamsFromRecordOfClass(movement, Track(), params, true);
 }
 
 // The track to let go of the surface with when the input points away from it enough, else none.
@@ -191,6 +191,6 @@ void fn_71009aea30(UnkMagnetState_l9aea30* self, const UnkMessage_l9aea30* msg) 
         if (transition.id == -1)
             return;
     }
-    fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
+    CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
                   reinterpret_cast<const UnkRequest_7101176ea8*>(&transition), 0xf4061ff25a2163d6);
 }

@@ -22,8 +22,9 @@ public:
     static void refl_MoveConstruct(void* dst, const void* src);
     static void refl_Destroy(void* obj);
     struct refl_Description;
-    // The class getter (no known name) and the destructor, as the reflection functions call them.
-    virtual const base::reflection::CClass* vf_0x0() const;
+    // The object's class (the getter's own name is not known) and the destructor, as the reflection
+    // functions call them.
+    virtual const base::reflection::CClass* refl_GetDynamicClass() const;
     virtual ~CTrack();
     u8 pad_0x8[0x10];
 };

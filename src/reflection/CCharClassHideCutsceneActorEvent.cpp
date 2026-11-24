@@ -27,7 +27,7 @@ void CCharClassHideCutsceneActorEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassHideCutsceneActorEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassHideCutsceneActorEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassHideCutsceneActorEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHideCutsceneActorEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassHideCutsceneActorEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHideCutsceneActorEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassHideCutsceneActorEvent::refl_Destroy(void* obj) { static_cast<CCharClassHideCutsceneActorEvent*>(obj)->~CCharClassHideCutsceneActorEvent(); }
 struct CCharClassHideCutsceneActorEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassHideCutsceneActorEvent);

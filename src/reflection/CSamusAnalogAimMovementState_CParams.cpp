@@ -14,7 +14,7 @@ void CSamusAnalogAimMovementState::CParams::refl_AddAttributes(CClass*) {}
 void CSamusAnalogAimMovementState::CParams::refl_AddFields(CClass*) {}
 bool CSamusAnalogAimMovementState::CParams::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CSamusAnalogAimMovementState::CParams::refl_Hash() { return -1; }
-const base::reflection::CType& CSamusAnalogAimMovementState::CParams::refl_TypeOf(const void* obj) { return *static_cast<const CParams*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSamusAnalogAimMovementState::CParams::refl_TypeOf(const void* obj) { return *static_cast<const CParams*>(obj)->refl_GetDynamicClass(); }
 void CSamusAnalogAimMovementState::CParams::refl_Destroy(void* obj) { static_cast<CParams*>(obj)->~CParams(); }
 struct CSamusAnalogAimMovementState::CParams::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CParams);

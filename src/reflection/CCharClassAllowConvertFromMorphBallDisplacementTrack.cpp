@@ -22,7 +22,7 @@ void CCharClassAllowConvertFromMorphBallDisplacementTrack::refl_AddAttributes(CC
 void CCharClassAllowConvertFromMorphBallDisplacementTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowConvertFromMorphBallDisplacementTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowConvertFromMorphBallDisplacementTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowConvertFromMorphBallDisplacementTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowConvertFromMorphBallDisplacementTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowConvertFromMorphBallDisplacementTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowConvertFromMorphBallDisplacementTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowConvertFromMorphBallDisplacementTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowConvertFromMorphBallDisplacementTrack*>(obj)->~CCharClassAllowConvertFromMorphBallDisplacementTrack(); }
 struct CCharClassAllowConvertFromMorphBallDisplacementTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowConvertFromMorphBallDisplacementTrack);

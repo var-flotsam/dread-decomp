@@ -50,7 +50,7 @@ void fn_7100600c98(UnkStruct_7100600c98* self) {
     if (void* p = self->actor->field_0x220) {
         none.id = 0;
         all.id = UnkAll_7100600c98().value;
-        fn_7101176690(p, 0x039363ae10389fa6ull, 0xf4061ff25a2163d6ull, &none, &g_unk_7101cd0898_target,
+        CAnimationComponent_SendActionToTrack(p, 0x039363ae10389fa6ull, 0xf4061ff25a2163d6ull, &none, &g_unk_7101cd0898_target,
                       &g_unk_7101cd08a0_target, &all);
     }
     if (auto* q = static_cast<UnkTimelineComponent*>(self->actor->field_0x2e8)) {

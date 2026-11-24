@@ -77,7 +77,7 @@ struct UnkFunctionSet_l0979a0 {
 
 // The class's function named `name`, or null.
 static inline CFunction* FindFunction(CClass* cls, const CStrId& name) {
-    const auto* set = reinterpret_cast<const UnkFunctionSet_l0979a0*>(&cls->m_array_0x110);
+    const auto* set = reinterpret_cast<const UnkFunctionSet_l0979a0*>(&cls->m_functions);
     CFunction* it = set->Find(name);
     return it == set->End() ? nullptr : it;
 }

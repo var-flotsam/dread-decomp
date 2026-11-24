@@ -14,7 +14,7 @@ void animtree::CAnimTreeControl::refl_AddAttributes(CClass*) {}
 void animtree::CAnimTreeControl::refl_AddFields(CClass*) {}
 bool animtree::CAnimTreeControl::refl_Equals(const void*, const void*) { return false; }
 s32 animtree::CAnimTreeControl::refl_Hash() { return -1; }
-const base::reflection::CType& animtree::CAnimTreeControl::refl_TypeOf(const void* obj) { return *static_cast<const CAnimTreeControl*>(obj)->vf_0x0(); }
+const base::reflection::CType& animtree::CAnimTreeControl::refl_TypeOf(const void* obj) { return *static_cast<const CAnimTreeControl*>(obj)->refl_GetDynamicClass(); }
 void animtree::CAnimTreeControl::refl_CopyConstruct(void*, const void*) {}
 void animtree::CAnimTreeControl::refl_MoveConstruct(void*, const void*) {}
 void animtree::CAnimTreeControl::refl_Destroy(void* obj) { static_cast<CAnimTreeControl*>(obj)->~CAnimTreeControl(); }

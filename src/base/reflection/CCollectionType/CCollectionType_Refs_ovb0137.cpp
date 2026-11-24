@@ -7,12 +7,12 @@
 using base::reflection::CCollectionType;
 using base::reflection::CType;
 
-void fn_710009d020(const CType* self, base::global::CRntVector<const CType*>* out);
+void CType_AppendParentType(const CType* self, base::global::CRntVector<const CType*>* out);
 
 using UnkRefsFn_ovb0137 = void (*)(const CType*, base::global::CRntVector<const CType*>*, bool);
 
 void fn_7100098944(const CCollectionType* self, base::global::CRntVector<const CType*>* out, bool flag) {
-    reinterpret_cast<UnkRefsFn_ovb0137>(&fn_710009d020)(self, out, flag);
+    reinterpret_cast<UnkRefsFn_ovb0137>(&CType_AppendParentType)(self, out, flag);
     const CType* key = self->m_key;
     out->PushBack(key);
     const CType* element = self->m_element;

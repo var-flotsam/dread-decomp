@@ -22,7 +22,7 @@ void CCharClassHideProtectorEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassHideProtectorEvent::refl_AddFields(CClass*) {}
 bool CCharClassHideProtectorEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassHideProtectorEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassHideProtectorEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHideProtectorEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassHideProtectorEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHideProtectorEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassHideProtectorEvent::refl_Destroy(void* obj) { static_cast<CCharClassHideProtectorEvent*>(obj)->~CCharClassHideProtectorEvent(); }
 struct CCharClassHideProtectorEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassHideProtectorEvent);

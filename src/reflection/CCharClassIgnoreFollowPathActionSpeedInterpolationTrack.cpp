@@ -22,7 +22,7 @@ void CCharClassIgnoreFollowPathActionSpeedInterpolationTrack::refl_AddAttributes
 void CCharClassIgnoreFollowPathActionSpeedInterpolationTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreFollowPathActionSpeedInterpolationTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreFollowPathActionSpeedInterpolationTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreFollowPathActionSpeedInterpolationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreFollowPathActionSpeedInterpolationTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreFollowPathActionSpeedInterpolationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreFollowPathActionSpeedInterpolationTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreFollowPathActionSpeedInterpolationTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreFollowPathActionSpeedInterpolationTrack*>(obj)->~CCharClassIgnoreFollowPathActionSpeedInterpolationTrack(); }
 struct CCharClassIgnoreFollowPathActionSpeedInterpolationTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreFollowPathActionSpeedInterpolationTrack);

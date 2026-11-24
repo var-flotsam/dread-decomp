@@ -67,15 +67,15 @@ start:
     if (fn_710024fb2c(reinterpret_cast<UnkActivatable_b48*>(self))) {
         active_mode.id = 1;
         active_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, id, kind, &active_mode, &g_unk_710164b958, &g_unk_7172769740, &active_mask);
+        CAnimationComponent_SendActionToTrack(animation, id, kind, &active_mode, &g_unk_710164b958, &g_unk_7172769740, &active_mask);
     } else if (action->state == 2) {
         id = action->next;
         next_mode.id = 1;
         next_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, id, kind, &next_mode, &g_unk_710164b958, &g_unk_7172769740, &next_mask);
+        CAnimationComponent_SendActionToTrack(animation, id, kind, &next_mode, &g_unk_710164b958, &g_unk_7172769740, &next_mask);
     } else {
         idle_mode.id = 1;
         idle_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, id, kind, &idle_mode, &g_unk_710164b958, &g_unk_717276974c, &idle_mask);
+        CAnimationComponent_SendActionToTrack(animation, id, kind, &idle_mode, &g_unk_710164b958, &g_unk_717276974c, &idle_mask);
     }
 }

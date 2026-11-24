@@ -43,7 +43,7 @@ static inline void Append(UnkResPathVec* v, const base::UnkStrIdMemberOf<g_unk_7
     if ((s32)n >= (s32)c)
         for (;;) {
         }
-    fn_7100018450(v, c);
+    CAsset_ReserveFilePathIdVec(v, c);
     CFilePathStrId* slot = &v->data[v->count];
     base::global::UnkStringData* d = id.data;
     __builtin_memcpy(slot, &d, 8);

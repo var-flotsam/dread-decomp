@@ -230,7 +230,7 @@ bool fn_710062f490(UnkObsydomithonAI_b0129c* self, UnkTrackEvent_b0129c* event) 
             mode.id = 2;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x9acfaf2b2d6d677f, 0xfc45ff84f571ba40, &mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0x9acfaf2b2d6d677f, 0xfc45ff84f571ba40, &mode, &g_unk_710164b958,
                           &g_unk_7172769740, &mask);
         }
         if (fn_710117b348(animation, fn_7100c0d1d8())) {

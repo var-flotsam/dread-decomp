@@ -30,7 +30,7 @@ static inline UnkTrack* FindTrack(void* handle, u64 key) {
     return entry ? entry->track : nullptr;
 }
 
-UnkTrack* fn_71011771e0(void* handle, u64 key) { return FindTrack(handle, key); }
+UnkTrack* CAnimationComponent_FindTrackByNameHash(void* handle, u64 key) { return FindTrack(handle, key); }
 // A copy next door.
 UnkTrack* fn_7101177b68(void* handle, u64 key) { return FindTrack(handle, key); }
 // Hands that track (null when there is none) to fn_710070d5dc, next door.

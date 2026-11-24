@@ -22,7 +22,7 @@ void CCharClassCanBeAbortedTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassCanBeAbortedTrack::refl_AddFields(CClass*) {}
 bool CCharClassCanBeAbortedTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCanBeAbortedTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCanBeAbortedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCanBeAbortedTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCanBeAbortedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCanBeAbortedTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCanBeAbortedTrack::refl_Destroy(void* obj) { static_cast<CCharClassCanBeAbortedTrack*>(obj)->~CCharClassCanBeAbortedTrack(); }
 struct CCharClassCanBeAbortedTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCanBeAbortedTrack);

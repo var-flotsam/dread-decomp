@@ -31,7 +31,7 @@ void CCharClassLightingSetColorEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassLightingSetColorEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassLightingSetColorEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassLightingSetColorEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLightingSetColorEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassLightingSetColorEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLightingSetColorEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassLightingSetColorEvent::refl_Destroy(void* obj) { static_cast<CCharClassLightingSetColorEvent*>(obj)->~CCharClassLightingSetColorEvent(); }
 struct CCharClassLightingSetColorEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassLightingSetColorEvent);

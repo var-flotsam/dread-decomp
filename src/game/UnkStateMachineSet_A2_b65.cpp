@@ -299,7 +299,7 @@ void fn_710043095c(UnkKiGrab_A2_b65* self) {
     fn_7100dfee18(g_unk_7101d47310);
     self->field_0x13d = false;
     UnkStruct_710117af10* animation = self->owner->animation;
-    if (animation && fn_710117af10(animation, &g_unk_71726c7df8, false))
+    if (animation && CAnimationComponent_IsPlayingActionNameContaining(animation, &g_unk_71726c7df8, false))
         self->field_0x13d = true;
     RequestState_A2_b65<7, 0x7fffffff>(&self->machine, 3);
 }

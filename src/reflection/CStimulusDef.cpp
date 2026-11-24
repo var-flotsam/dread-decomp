@@ -25,7 +25,7 @@ void CStimulusDef::refl_AddFields(CClass* cls) {
 }
 bool CStimulusDef::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CStimulusDef::refl_Hash() { return -1; }
-const base::reflection::CType& CStimulusDef::refl_TypeOf(const void* obj) { return *static_cast<const CStimulusDef*>(obj)->vf_0x0(); }
+const base::reflection::CType& CStimulusDef::refl_TypeOf(const void* obj) { return *static_cast<const CStimulusDef*>(obj)->refl_GetDynamicClass(); }
 void CStimulusDef::refl_Destroy(void* obj) { static_cast<CStimulusDef*>(obj)->~CStimulusDef(); }
 struct CStimulusDef::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CStimulusDef);

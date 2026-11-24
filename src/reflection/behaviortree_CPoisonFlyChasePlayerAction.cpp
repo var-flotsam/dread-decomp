@@ -23,7 +23,7 @@ void behaviortree::CPoisonFlyChasePlayerAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CPoisonFlyChasePlayerAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CPoisonFlyChasePlayerAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CPoisonFlyChasePlayerAction::refl_TypeOf(const void* obj) { return *static_cast<const CPoisonFlyChasePlayerAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CPoisonFlyChasePlayerAction::refl_TypeOf(const void* obj) { return *static_cast<const CPoisonFlyChasePlayerAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CPoisonFlyChasePlayerAction::refl_Destroy(void* obj) { static_cast<CPoisonFlyChasePlayerAction*>(obj)->~CPoisonFlyChasePlayerAction(); }
 void* behaviortree::CPoisonFlyChasePlayerAction::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* behaviortree::CPoisonFlyChasePlayerAction::refl_MoveAssign(void*, const void*) { return nullptr; }

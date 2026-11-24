@@ -56,7 +56,7 @@ void fn_71005cb424(UnkInfesterAI_b57a3* self, void* arg) {
             fn_710117662c(anim, 0xb, 0, false, false, -1.0f);
             mode.id = 0;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(anim, 0x56b5846baf59688c, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+            CAnimationComponent_SendActionToTrack(anim, 0x56b5846baf59688c, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                           &mask);
         }
         self->field_0x146de = false;

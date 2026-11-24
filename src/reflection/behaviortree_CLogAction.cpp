@@ -24,7 +24,7 @@ void behaviortree::CLogAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CLogAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CLogAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CLogAction::refl_TypeOf(const void* obj) { return *static_cast<const CLogAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CLogAction::refl_TypeOf(const void* obj) { return *static_cast<const CLogAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CLogAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CLogAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CLogAction::refl_Destroy(void* obj) { static_cast<CLogAction*>(obj)->~CLogAction(); }

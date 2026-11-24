@@ -14,7 +14,7 @@ struct UnkAABoxShape2D {
     UnkBoxVec2 max;  // 0xb0
 };
 
-UnkBox3 fn_7100d5e39c(const UnkAABoxShape2D* self, const UnkBoxTransform* transform) {
+UnkBox3 CAABoxShape2D_GetBox3DTranslatedByTransform(const UnkAABoxShape2D* self, const UnkBoxTransform* transform) {
     UnkBoxVec2 min = self->min;
     UnkBoxVec2 max = self->max;
     f32 x = transform->m[0][3];

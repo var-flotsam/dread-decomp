@@ -22,7 +22,7 @@ void CCharClassCooldownXBossCanFireTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassCooldownXBossCanFireTrack::refl_AddFields(CClass*) {}
 bool CCharClassCooldownXBossCanFireTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCooldownXBossCanFireTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCooldownXBossCanFireTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCooldownXBossCanFireTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCooldownXBossCanFireTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCooldownXBossCanFireTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCooldownXBossCanFireTrack::refl_Destroy(void* obj) { static_cast<CCharClassCooldownXBossCanFireTrack*>(obj)->~CCharClassCooldownXBossCanFireTrack(); }
 struct CCharClassCooldownXBossCanFireTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCooldownXBossCanFireTrack);

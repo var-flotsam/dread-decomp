@@ -27,7 +27,7 @@ extern UnkParseCallbacks g_unk_71726a0058 __attribute__((visibility("hidden")));
 static inline s32 Parse(UnkFileReader* reader, UnkReadTarget* target) {
     UnkParseContext ctx(g_unk_71726a0058, reader, target);
     UnkReadEntry* end = target->entries + target->count;
-    return reinterpret_cast<s32 (*)(UnkParseContext*, void*)>(&fn_710000f750)(
+    return reinterpret_cast<s32 (*)(UnkParseContext*, void*)>(&CBlendSpaceResource_ReadObjectAsStoredType)(
         &ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr);
 }
 

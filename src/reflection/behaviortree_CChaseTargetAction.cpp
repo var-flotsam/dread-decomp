@@ -33,7 +33,7 @@ void behaviortree::CChaseTargetAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CChaseTargetAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CChaseTargetAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CChaseTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CChaseTargetAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CChaseTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CChaseTargetAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CChaseTargetAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CChaseTargetAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CChaseTargetAction::refl_Destroy(void* obj) { static_cast<CChaseTargetAction*>(obj)->~CChaseTargetAction(); }

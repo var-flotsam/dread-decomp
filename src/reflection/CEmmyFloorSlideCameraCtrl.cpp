@@ -14,7 +14,7 @@ void CEmmyFloorSlideCameraCtrl::refl_AddAttributes(CClass*) {}
 void CEmmyFloorSlideCameraCtrl::refl_AddFields(CClass*) {}
 bool CEmmyFloorSlideCameraCtrl::refl_Equals(const void*, const void*) { return false; }
 s32 CEmmyFloorSlideCameraCtrl::refl_Hash() { return -1; }
-const base::reflection::CType& CEmmyFloorSlideCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CEmmyFloorSlideCameraCtrl*>(obj)->vf_0x0(); }
+const base::reflection::CType& CEmmyFloorSlideCameraCtrl::refl_TypeOf(const void* obj) { return *static_cast<const CEmmyFloorSlideCameraCtrl*>(obj)->refl_GetDynamicClass(); }
 void CEmmyFloorSlideCameraCtrl::refl_Destroy(void* obj) { static_cast<CEmmyFloorSlideCameraCtrl*>(obj)->~CEmmyFloorSlideCameraCtrl(); }
 struct CEmmyFloorSlideCameraCtrl::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CEmmyFloorSlideCameraCtrl);

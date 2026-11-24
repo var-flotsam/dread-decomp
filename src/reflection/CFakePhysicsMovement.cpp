@@ -14,7 +14,7 @@ void CFakePhysicsMovement::refl_AddAttributes(CClass*) {}
 void CFakePhysicsMovement::refl_AddFields(CClass*) {}
 bool CFakePhysicsMovement::refl_Equals(const void*, const void*) { return false; }
 s32 CFakePhysicsMovement::refl_Hash() { return -1; }
-const base::reflection::CType& CFakePhysicsMovement::refl_TypeOf(const void* obj) { return *static_cast<const CFakePhysicsMovement*>(obj)->vf_0x0(); }
+const base::reflection::CType& CFakePhysicsMovement::refl_TypeOf(const void* obj) { return *static_cast<const CFakePhysicsMovement*>(obj)->refl_GetDynamicClass(); }
 void CFakePhysicsMovement::refl_CopyConstruct(void*, const void*) {}
 void CFakePhysicsMovement::refl_MoveConstruct(void*, const void*) {}
 void CFakePhysicsMovement::refl_Destroy(void* obj) { static_cast<CFakePhysicsMovement*>(obj)->~CFakePhysicsMovement(); }

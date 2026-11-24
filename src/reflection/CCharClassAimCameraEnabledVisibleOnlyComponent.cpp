@@ -15,7 +15,7 @@ void CCharClassAimCameraEnabledVisibleOnlyComponent::refl_AddAttributes(CClass*)
 void CCharClassAimCameraEnabledVisibleOnlyComponent::refl_AddFields(CClass*) {}
 bool CCharClassAimCameraEnabledVisibleOnlyComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassAimCameraEnabledVisibleOnlyComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAimCameraEnabledVisibleOnlyComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAimCameraEnabledVisibleOnlyComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAimCameraEnabledVisibleOnlyComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAimCameraEnabledVisibleOnlyComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAimCameraEnabledVisibleOnlyComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassAimCameraEnabledVisibleOnlyComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassAimCameraEnabledVisibleOnlyComponent::refl_Destroy(void* obj) { static_cast<CCharClassAimCameraEnabledVisibleOnlyComponent*>(obj)->~CCharClassAimCameraEnabledVisibleOnlyComponent(); }
@@ -40,7 +40,7 @@ void CAimCameraEnabledVisibleOnlyComponent::refl_AddAttributes(CClass*) {}
 void CAimCameraEnabledVisibleOnlyComponent::refl_AddFields(CClass*) {}
 bool CAimCameraEnabledVisibleOnlyComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CAimCameraEnabledVisibleOnlyComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CAimCameraEnabledVisibleOnlyComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAimCameraEnabledVisibleOnlyComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CAimCameraEnabledVisibleOnlyComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAimCameraEnabledVisibleOnlyComponent*>(obj)->refl_GetDynamicClass(); }
 void CAimCameraEnabledVisibleOnlyComponent::refl_CopyConstruct(void*, const void*) {}
 void CAimCameraEnabledVisibleOnlyComponent::refl_MoveConstruct(void*, const void*) {}
 void CAimCameraEnabledVisibleOnlyComponent::refl_Destroy(void* obj) { static_cast<CAimCameraEnabledVisibleOnlyComponent*>(obj)->~CAimCameraEnabledVisibleOnlyComponent(); }

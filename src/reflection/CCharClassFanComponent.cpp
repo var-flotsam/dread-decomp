@@ -85,7 +85,7 @@ void CFanComponent::refl_AddFields(CClass* cls) {
 }
 bool CFanComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CFanComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CFanComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFanComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CFanComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFanComponent*>(obj)->refl_GetDynamicClass(); }
 void CFanComponent::refl_Destroy(void* obj) { static_cast<CFanComponent*>(obj)->~CFanComponent(); }
 void* CFanComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* CFanComponent::refl_MoveAssign(void*, const void*) { return nullptr; }

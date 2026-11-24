@@ -21,7 +21,7 @@ void animtree::CCallbackBoneControlDef::refl_AddAttributes(CClass* cls) {
 void animtree::CCallbackBoneControlDef::refl_AddFields(CClass*) {}
 bool animtree::CCallbackBoneControlDef::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 animtree::CCallbackBoneControlDef::refl_Hash() { return -1; }
-const base::reflection::CType& animtree::CCallbackBoneControlDef::refl_TypeOf(const void* obj) { return *static_cast<const CCallbackBoneControlDef*>(obj)->vf_0x0(); }
+const base::reflection::CType& animtree::CCallbackBoneControlDef::refl_TypeOf(const void* obj) { return *static_cast<const CCallbackBoneControlDef*>(obj)->refl_GetDynamicClass(); }
 void animtree::CCallbackBoneControlDef::refl_Destroy(void* obj) { static_cast<CCallbackBoneControlDef*>(obj)->~CCallbackBoneControlDef(); }
 struct animtree::CCallbackBoneControlDef::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCallbackBoneControlDef);

@@ -22,7 +22,7 @@ void CCharClassTurnTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassTurnTrack::refl_AddFields(CClass*) {}
 bool CCharClassTurnTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTurnTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTurnTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTurnTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTurnTrack::refl_Destroy(void* obj) { static_cast<CCharClassTurnTrack*>(obj)->~CCharClassTurnTrack(); }
 struct CCharClassTurnTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTurnTrack);

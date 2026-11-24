@@ -14,7 +14,7 @@ void CMagnetSurfaceComponent::refl_AddAttributes(CClass*) {}
 void CMagnetSurfaceComponent::refl_AddFields(CClass*) {}
 bool CMagnetSurfaceComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CMagnetSurfaceComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CMagnetSurfaceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMagnetSurfaceComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CMagnetSurfaceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMagnetSurfaceComponent*>(obj)->refl_GetDynamicClass(); }
 void CMagnetSurfaceComponent::refl_CopyConstruct(void*, const void*) {}
 void CMagnetSurfaceComponent::refl_MoveConstruct(void*, const void*) {}
 void CMagnetSurfaceComponent::refl_Destroy(void* obj) { static_cast<CMagnetSurfaceComponent*>(obj)->~CMagnetSurfaceComponent(); }

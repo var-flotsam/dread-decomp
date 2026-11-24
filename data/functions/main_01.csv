@@ -168,9 +168,9 @@ address,size,name,name_source,subsystem,status
 0x7100108288,8,fn_7100108288,unknown,engine/base?,O
 0x7100108290,12,fn_7100108290,unknown,engine/base?,O
 0x710010829c,12,fn_710010829c,unknown,engine/base?,O
-0x71001082a8,444,fn_71001082a8,unknown,engine/base?,O
+0x71001082a8,444,CSoundSystem_SetGroupsMuted,inferred,engine/base?,O
 0x7100108464,444,fn_7100108464,unknown,engine/base?,O
-0x7100108620,392,fn_7100108620,unknown,engine/base?,O
+0x7100108620,392,CSoundSystem_PlayOrRestartSound,inferred,engine/base?,O
 0x71001087a8,300,fn_71001087a8,unknown,engine/base?,U
 0x71001088d4,416,fn_71001088d4,unknown,engine/base?,O
 0x7100108a74,8,fn_7100108a74,unknown,engine/base?,O
@@ -1150,7 +1150,7 @@ address,size,name,name_source,subsystem,status
 0x7100134eb0,756,fn_7100134eb0,unknown,unknown,m
 0x71001351b0,972,fn_71001351b0,unknown,unknown,m
 0x7100135580,864,fn_7100135580,unknown,unknown,m
-0x71001358e0,432,fn_71001358e0,unknown,unknown,O
+0x71001358e0,432,CTunable_ReserveIdToListMap,inferred,unknown,O
 0x7100135a90,4,base::tunable::CTunable::refl_AddAttributes,reflection,engine/base,O
 0x7100135a94,244,base::tunable::CTunable::refl_GetClass,reflection,engine/base,O
 0x7100135b88,148,base::tunable::CTunable::refl_AddFields,reflection,engine/base,O
@@ -1301,7 +1301,7 @@ address,size,name,name_source,subsystem,status
 0x71001391c0,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CRntString, base::tunable::CTunable*>>::End",reflection,engine/reflection,O
 0x71001391d4,100,fn_71001391d4,unknown,unknown,O
 0x7100139238,116,fn_7100139238,unknown,unknown,O
-0x71001392b0,776,fn_71001392b0,unknown,engine/reflection?,O
+0x71001392b0,776,CTunable_InitStatics,inferred,engine/reflection?,O
 0x71001395b8,220,fn_71001395b8,unknown,engine/reflection?,O
 0x7100139694,328,base::tunable::CTunableManager::refl_InitClass,reflection,engine/base,O
 0x71001397dc,220,base::reflection::refl_GetType<base::tunable::CTunableManager*>,reflection,engine/reflection,O

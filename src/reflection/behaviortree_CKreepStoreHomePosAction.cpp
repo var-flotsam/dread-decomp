@@ -14,7 +14,7 @@ void behaviortree::CKreepStoreHomePosAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CKreepStoreHomePosAction::refl_AddFields(CClass*) {}
 bool behaviortree::CKreepStoreHomePosAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CKreepStoreHomePosAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CKreepStoreHomePosAction::refl_TypeOf(const void* obj) { return *static_cast<const CKreepStoreHomePosAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CKreepStoreHomePosAction::refl_TypeOf(const void* obj) { return *static_cast<const CKreepStoreHomePosAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CKreepStoreHomePosAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CKreepStoreHomePosAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CKreepStoreHomePosAction::refl_Destroy(void* obj) { static_cast<CKreepStoreHomePosAction*>(obj)->~CKreepStoreHomePosAction(); }

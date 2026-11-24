@@ -17,6 +17,6 @@ struct UnkHideScenarioItemEvent {
     bool flag_0x19;
 };
 
-void fn_7100cc4384(UnkHideScenarioItemEvent* self) {
+void CCharClassHideScenarioItemByNameEvent_ApplyHideItem(UnkHideScenarioItemEvent* self) {
     fn_7100219c5c(g_unk_7101d47300, self->hide, self->target->item, 0, self->flag_0x19);
 }

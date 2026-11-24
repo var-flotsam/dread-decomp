@@ -22,7 +22,7 @@ void CCharClassAutectorExplosionEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassAutectorExplosionEvent::refl_AddFields(CClass*) {}
 bool CCharClassAutectorExplosionEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAutectorExplosionEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAutectorExplosionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAutectorExplosionEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAutectorExplosionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAutectorExplosionEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAutectorExplosionEvent::refl_Destroy(void* obj) { static_cast<CCharClassAutectorExplosionEvent*>(obj)->~CCharClassAutectorExplosionEvent(); }
 struct CCharClassAutectorExplosionEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAutectorExplosionEvent);

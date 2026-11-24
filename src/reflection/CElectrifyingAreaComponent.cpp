@@ -23,7 +23,7 @@ void CElectrifyingAreaComponent::refl_AddFields(CClass* cls) {
 }
 bool CElectrifyingAreaComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CElectrifyingAreaComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CElectrifyingAreaComponent::refl_TypeOf(const void* obj) { return *static_cast<const CElectrifyingAreaComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CElectrifyingAreaComponent::refl_TypeOf(const void* obj) { return *static_cast<const CElectrifyingAreaComponent*>(obj)->refl_GetDynamicClass(); }
 void CElectrifyingAreaComponent::refl_CopyConstruct(void*, const void*) {}
 void CElectrifyingAreaComponent::refl_MoveConstruct(void*, const void*) {}
 void CElectrifyingAreaComponent::refl_Destroy(void* obj) { static_cast<CElectrifyingAreaComponent*>(obj)->~CElectrifyingAreaComponent(); }

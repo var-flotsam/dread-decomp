@@ -22,7 +22,7 @@ void CCharClassApplyDC_ShinesparkLogicTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassApplyDC_ShinesparkLogicTrack::refl_AddFields(CClass*) {}
 bool CCharClassApplyDC_ShinesparkLogicTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassApplyDC_ShinesparkLogicTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassApplyDC_ShinesparkLogicTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassApplyDC_ShinesparkLogicTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassApplyDC_ShinesparkLogicTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassApplyDC_ShinesparkLogicTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassApplyDC_ShinesparkLogicTrack::refl_Destroy(void* obj) { static_cast<CCharClassApplyDC_ShinesparkLogicTrack*>(obj)->~CCharClassApplyDC_ShinesparkLogicTrack(); }
 struct CCharClassApplyDC_ShinesparkLogicTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassApplyDC_ShinesparkLogicTrack);

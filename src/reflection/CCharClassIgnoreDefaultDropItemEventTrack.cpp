@@ -22,7 +22,7 @@ void CCharClassIgnoreDefaultDropItemEventTrack::refl_AddAttributes(CClass* cls) 
 void CCharClassIgnoreDefaultDropItemEventTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreDefaultDropItemEventTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreDefaultDropItemEventTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreDefaultDropItemEventTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreDefaultDropItemEventTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreDefaultDropItemEventTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreDefaultDropItemEventTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreDefaultDropItemEventTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreDefaultDropItemEventTrack*>(obj)->~CCharClassIgnoreDefaultDropItemEventTrack(); }
 struct CCharClassIgnoreDefaultDropItemEventTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreDefaultDropItemEventTrack);

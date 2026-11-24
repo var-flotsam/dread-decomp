@@ -22,7 +22,7 @@ void CCharClassDeactivateHecathonConeFXEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassDeactivateHecathonConeFXEvent::refl_AddFields(CClass*) {}
 bool CCharClassDeactivateHecathonConeFXEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassDeactivateHecathonConeFXEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassDeactivateHecathonConeFXEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDeactivateHecathonConeFXEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassDeactivateHecathonConeFXEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDeactivateHecathonConeFXEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassDeactivateHecathonConeFXEvent::refl_Destroy(void* obj) { static_cast<CCharClassDeactivateHecathonConeFXEvent*>(obj)->~CCharClassDeactivateHecathonConeFXEvent(); }
 struct CCharClassDeactivateHecathonConeFXEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassDeactivateHecathonConeFXEvent);

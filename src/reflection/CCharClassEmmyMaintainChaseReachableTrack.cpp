@@ -22,7 +22,7 @@ void CCharClassEmmyMaintainChaseReachableTrack::refl_AddAttributes(CClass* cls) 
 void CCharClassEmmyMaintainChaseReachableTrack::refl_AddFields(CClass*) {}
 bool CCharClassEmmyMaintainChaseReachableTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEmmyMaintainChaseReachableTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmyMaintainChaseReachableTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyMaintainChaseReachableTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmyMaintainChaseReachableTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyMaintainChaseReachableTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmyMaintainChaseReachableTrack::refl_Destroy(void* obj) { static_cast<CCharClassEmmyMaintainChaseReachableTrack*>(obj)->~CCharClassEmmyMaintainChaseReachableTrack(); }
 struct CCharClassEmmyMaintainChaseReachableTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEmmyMaintainChaseReachableTrack);

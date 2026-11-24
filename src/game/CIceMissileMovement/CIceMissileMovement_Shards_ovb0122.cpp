@@ -77,7 +77,7 @@ void fn_7100ab46ac(UnkIceMissileMovement_ovb0122* self) {
                 continue;
             CVector2D point;
             fn_710007b430(&point, &pos);
-            if (fn_7100a47e00(reinterpret_cast<UnkMagmaArea_b50*>(pool), &point)) {
+            if (CCharClassBaseTriggerComponent_IsPointInColliderBounds(reinterpret_cast<UnkMagmaArea_b50*>(pool), &point)) {
                 self->field_0x620 = false;
                 break;
             }

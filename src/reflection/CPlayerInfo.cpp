@@ -125,7 +125,7 @@ void CPlayerInfo::refl_AddFields(CClass* cls) {
 }
 bool CPlayerInfo::refl_Equals(const void*, const void*) { return false; }
 s32 CPlayerInfo::refl_Hash() { return -1; }
-const base::reflection::CType& CPlayerInfo::refl_TypeOf(const void* obj) { return *static_cast<const CPlayerInfo*>(obj)->vf_0x0(); }
+const base::reflection::CType& CPlayerInfo::refl_TypeOf(const void* obj) { return *static_cast<const CPlayerInfo*>(obj)->refl_GetDynamicClass(); }
 void CPlayerInfo::refl_Destroy(void* obj) { static_cast<CPlayerInfo*>(obj)->~CPlayerInfo(); }
 struct CPlayerInfo::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CPlayerInfo);

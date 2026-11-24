@@ -56,7 +56,7 @@ struct UnkDropItemOverwriteEvent_ovb0136 {
 
 struct UnkDropSpawnRequest_ovb0096;
 
-UnkDropItemParams_ovb0136 fn_7100cb7f90(UnkDropSpawnRequest_ovb0096* request) {
+UnkDropItemParams_ovb0136 CCharClassDropItemOverwriteProbabilitiesEvent_BuildDropParams(UnkDropSpawnRequest_ovb0096* request) {
     auto* event = reinterpret_cast<UnkDropItemOverwriteEvent_ovb0136*>(request);
     UnkDropItemParams_ovb0136 params;
     params.field_0x0 = event->iMinNumOfDroppedItems;

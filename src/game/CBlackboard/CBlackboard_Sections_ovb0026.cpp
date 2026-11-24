@@ -114,7 +114,7 @@ void fn_7101048420(CBlackboard::CSection* self) {
 
 // Removes the entry in `slot`: its id is released and the last entry moved into its place.
 // Returns the slot. The moves are untyped (the original reloads the arrays after each).
-CBlackboard::CSection** fn_7101048588(UnkSectionArray_b0026* self, CBlackboard::CSection** slot) {
+CBlackboard::CSection** CBlackboard_SwapRemoveSectionArrayEntry(UnkSectionArray_b0026* self, CBlackboard::CSection** slot) {
     u32 i = slot - self->values;
     self->keys[i].Reset();
     u32 last = self->count - 1;
@@ -145,7 +145,7 @@ s32 fn_71010475d0(CBlackboard* self, const CStrId& key, const CStrId& name) {
         UnkReflValue* value = UnkParallelFindSlot(properties, name);
         if (value != &properties->values[properties->count] && value->type &&
             base::reflection::refl_ArgValue<void>(value))
-            return fn_7100024140(reinterpret_cast<const base::reflection::CType*>(value->type));
+            return CBaseObject_GetTypeCodeChar(reinterpret_cast<const base::reflection::CType*>(value->type));
     }
     return 'n';
 }
@@ -187,7 +187,7 @@ static inline void CopyId(CStrId* dst, const CStrId& src) {
 }
 
 // Creates the group named `key` with the names on `list`.
-UnkSectionGroup_b0026* fn_7101048820(UnkBlackboardGroups_b0026* self, const CStrId& key, UnkNameList_b0026* list) {
+UnkSectionGroup_b0026* CBlackboard_CreateGroupWithNames(UnkBlackboardGroups_b0026* self, const CStrId& key, UnkNameList_b0026* list) {
     UnkSectionGroup_b0026* group = fn_71010486bc(self, key);
     for (UnkNameListItem_b0026* item = list->first; item; item = item->next) {
         UnkBuiltStrId_b0026 built(*reinterpret_cast<const base::global::CRntString*>(item));

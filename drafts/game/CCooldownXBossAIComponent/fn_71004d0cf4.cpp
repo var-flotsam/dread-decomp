@@ -83,7 +83,7 @@ inline void SendMode1(void* target, u64 hash, u64 kind, base::reflection::UnkRef
                       base::reflection::UnkReflTypeIdArg& mask) {
     mode.id = 1;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+    CAnimationComponent_SendActionToTrack(target, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }
 
 static inline u64 StartHash(u64 kind, const UnkPhaseValues_l4d0cf4* v) {

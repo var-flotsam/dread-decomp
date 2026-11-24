@@ -22,7 +22,7 @@ void CCharClassIgnoreOpticCamouflageTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreOpticCamouflageTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreOpticCamouflageTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreOpticCamouflageTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreOpticCamouflageTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreOpticCamouflageTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreOpticCamouflageTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreOpticCamouflageTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreOpticCamouflageTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreOpticCamouflageTrack*>(obj)->~CCharClassIgnoreOpticCamouflageTrack(); }
 struct CCharClassIgnoreOpticCamouflageTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreOpticCamouflageTrack);

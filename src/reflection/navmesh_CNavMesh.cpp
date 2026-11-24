@@ -21,7 +21,7 @@ void navmesh::CNavMesh::refl_AddAttributes(CClass* cls) {
 void navmesh::CNavMesh::refl_AddFields(CClass*) {}
 bool navmesh::CNavMesh::refl_Equals(const void*, const void*) { return false; }
 s32 navmesh::CNavMesh::refl_Hash() { return -1; }
-const base::reflection::CType& navmesh::CNavMesh::refl_TypeOf(const void* obj) { return *static_cast<const CNavMesh*>(obj)->vf_0x0(); }
+const base::reflection::CType& navmesh::CNavMesh::refl_TypeOf(const void* obj) { return *static_cast<const CNavMesh*>(obj)->refl_GetDynamicClass(); }
 void navmesh::CNavMesh::refl_Destroy(void* obj) { static_cast<CNavMesh*>(obj)->~CNavMesh(); }
 struct navmesh::CNavMesh::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CNavMesh);

@@ -13,7 +13,7 @@
 using base::snd::UnkSoundSystemATK;
 
 struct UnkSoundStart;
-void fn_71000fbaf8(UnkSoundSystemATK* sys, s32 command, const void* payload);
+void CSoundSystemATK_PushCommandToSecondQueue(UnkSoundSystemATK* sys, s32 command, const void* payload);
 void fn_71000f4414(void* sound);
 void fn_71000f43c0(void* sound);
 void fn_71000f4488(void* self, void* target, u32 id, u64 a, u32 b, u32 c, u32 d);
@@ -160,7 +160,7 @@ struct UnkSndIdPayload_l102a40 {
 static inline void Notify(UnkSndSys_l102a40* self, s32 command, u32 id, u32 a, u32 b) {
     nn::os::GetCurrentThread();
     UnkSndIdPayload_l102a40 payload = {id, a, b};
-    fn_71000fbaf8(reinterpret_cast<UnkSoundSystemATK*>(self), command, &payload);
+    CSoundSystemATK_PushCommandToSecondQueue(reinterpret_cast<UnkSoundSystemATK*>(self), command, &payload);
 }
 
 void fn_7100102a40(UnkSndSys_l102a40* self, const UnkSndStartRequest_l102a40* request) {

@@ -22,7 +22,7 @@ void CCharClassFloorSlideEnlargeCollisionTrack::refl_AddAttributes(CClass* cls) 
 void CCharClassFloorSlideEnlargeCollisionTrack::refl_AddFields(CClass*) {}
 bool CCharClassFloorSlideEnlargeCollisionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFloorSlideEnlargeCollisionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFloorSlideEnlargeCollisionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFloorSlideEnlargeCollisionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFloorSlideEnlargeCollisionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFloorSlideEnlargeCollisionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFloorSlideEnlargeCollisionTrack::refl_Destroy(void* obj) { static_cast<CCharClassFloorSlideEnlargeCollisionTrack*>(obj)->~CCharClassFloorSlideEnlargeCollisionTrack(); }
 struct CCharClassFloorSlideEnlargeCollisionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFloorSlideEnlargeCollisionTrack);

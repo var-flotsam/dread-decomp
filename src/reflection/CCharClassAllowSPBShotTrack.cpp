@@ -22,7 +22,7 @@ void CCharClassAllowSPBShotTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAllowSPBShotTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowSPBShotTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowSPBShotTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowSPBShotTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowSPBShotTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowSPBShotTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowSPBShotTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowSPBShotTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowSPBShotTrack*>(obj)->~CCharClassAllowSPBShotTrack(); }
 struct CCharClassAllowSPBShotTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowSPBShotTrack);

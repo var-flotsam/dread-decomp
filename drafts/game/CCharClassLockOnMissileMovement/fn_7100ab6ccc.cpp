@@ -106,7 +106,7 @@ struct UnkLockOnItem_b61 {
 };
 
 struct UnkLockOnMovement_ovb0121;
-void fn_7100ab6bb8(UnkLockOnMovement_ovb0121* self);
+void CCharClassLockOnMissileMovement_HandLockToMultiLockonAbility(UnkLockOnMovement_ovb0121* self);
 
 struct UnkVec3f_lab6ccc {
     f32 x;
@@ -164,7 +164,7 @@ static_assert(__builtin_offsetof(UnkLockOnMissile_lab6ccc, field_0x132f8) == 0x1
 // Gives the lock-on item back (to the MultiLockon ability once the target is marked) and drops it.
 inline void ReleaseItem_lab6ccc(UnkLockOnMovement_lab6ccc* self) {
     if (static_cast<UnkLockOnMissile_lab6ccc*>(self)->field_0x132f8)
-        fn_7100ab6bb8(reinterpret_cast<UnkLockOnMovement_ovb0121*>(self));
+        CCharClassLockOnMissileMovement_HandLockToMultiLockonAbility(reinterpret_cast<UnkLockOnMovement_ovb0121*>(self));
     if (UnkLockOnItem_b61* item = self->field_0x858) {
         fn_71002199d8(g_unk_7101d47300, reinterpret_cast<UnkItemBase_71011a91c4*>(item->item), 0);
         self->field_0x858 = nullptr;

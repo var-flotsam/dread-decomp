@@ -26,7 +26,7 @@ void CCharClassRestoreCameraNearEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassRestoreCameraNearEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassRestoreCameraNearEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassRestoreCameraNearEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRestoreCameraNearEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassRestoreCameraNearEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRestoreCameraNearEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassRestoreCameraNearEvent::refl_Destroy(void* obj) { static_cast<CCharClassRestoreCameraNearEvent*>(obj)->~CCharClassRestoreCameraNearEvent(); }
 struct CCharClassRestoreCameraNearEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassRestoreCameraNearEvent);

@@ -24,7 +24,7 @@ void behaviortree::CSetTimelineAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CSetTimelineAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CSetTimelineAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CSetTimelineAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetTimelineAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CSetTimelineAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetTimelineAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CSetTimelineAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CSetTimelineAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CSetTimelineAction::refl_Destroy(void* obj) { static_cast<CSetTimelineAction*>(obj)->~CSetTimelineAction(); }

@@ -23,7 +23,7 @@ using base::global::UnkStrIdBase;
 using base::reflection::CEnumType;
 using base::reflection::CType;
 
-bool fn_7100099724(const CEnumType* self, const base::global::CStrId* name, s32* out);
+bool CEnumType_TryGetValueByNameId(const CEnumType* self, const base::global::CStrId* name, s32* out);
 
 struct UnkField_l043a04 {
     u8 pad_0x0[0x10];
@@ -115,7 +115,7 @@ bool fn_7101043a04(UnkCameraCtrl* controller, const char* name, lua_State* L, s3
         bool found;
         {
             UnkEnumName_l043a04 id(text, true);
-            found = fn_7100099724(enumType, reinterpret_cast<const base::global::CStrId*>(&id), &value);
+            found = CEnumType_TryGetValueByNameId(enumType, reinterpret_cast<const base::global::CStrId*>(&id), &value);
         }
         if (!found)
             return false;

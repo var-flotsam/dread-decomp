@@ -14,7 +14,7 @@ void CMagmaCentralUnitComponentDef::refl_AddAttributes(CClass*) {}
 void CMagmaCentralUnitComponentDef::refl_AddFields(CClass*) {}
 bool CMagmaCentralUnitComponentDef::refl_Equals(const void*, const void*) { return false; }
 s32 CMagmaCentralUnitComponentDef::refl_Hash() { return -1; }
-const base::reflection::CType& CMagmaCentralUnitComponentDef::refl_TypeOf(const void* obj) { return *static_cast<const CMagmaCentralUnitComponentDef*>(obj)->vf_0x0(); }
+const base::reflection::CType& CMagmaCentralUnitComponentDef::refl_TypeOf(const void* obj) { return *static_cast<const CMagmaCentralUnitComponentDef*>(obj)->refl_GetDynamicClass(); }
 void CMagmaCentralUnitComponentDef::refl_CopyConstruct(void*, const void*) {}
 void CMagmaCentralUnitComponentDef::refl_MoveConstruct(void*, const void*) {}
 void CMagmaCentralUnitComponentDef::refl_Destroy(void* obj) { static_cast<CMagmaCentralUnitComponentDef*>(obj)->~CMagmaCentralUnitComponentDef(); }

@@ -21,7 +21,7 @@ void behaviortree::CBehaviorTree::refl_AddAttributes(CClass* cls) {
 void behaviortree::CBehaviorTree::refl_AddFields(CClass*) {}
 bool behaviortree::CBehaviorTree::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CBehaviorTree::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CBehaviorTree::refl_TypeOf(const void* obj) { return *static_cast<const CBehaviorTree*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CBehaviorTree::refl_TypeOf(const void* obj) { return *static_cast<const CBehaviorTree*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CBehaviorTree::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CBehaviorTree::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CBehaviorTree::refl_Destroy(void* obj) { static_cast<CBehaviorTree*>(obj)->~CBehaviorTree(); }

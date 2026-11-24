@@ -12,7 +12,7 @@ struct UnkEnumEntry_b66a1 {
     s32 value;
 };
 
-CStrId fn_71000999cc(const CEnumType* self, s32 value) {
+CStrId CEnumType_GetNameOfValue(const CEnumType* self, s32 value) {
     const UnkEnumEntry_b66a1* entries = reinterpret_cast<const UnkEnumEntry_b66a1*>(self->m_values.data);
     for (const UnkEnumEntry_b66a1 *it = entries, *end = entries + self->m_values.count; it != end; ++it)
         if (it->value == value)

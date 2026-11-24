@@ -22,7 +22,7 @@ void CCharClassKraidCheckDeadInGrabEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassKraidCheckDeadInGrabEvent::refl_AddFields(CClass*) {}
 bool CCharClassKraidCheckDeadInGrabEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassKraidCheckDeadInGrabEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassKraidCheckDeadInGrabEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidCheckDeadInGrabEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassKraidCheckDeadInGrabEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidCheckDeadInGrabEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassKraidCheckDeadInGrabEvent::refl_Destroy(void* obj) { static_cast<CCharClassKraidCheckDeadInGrabEvent*>(obj)->~CCharClassKraidCheckDeadInGrabEvent(); }
 struct CCharClassKraidCheckDeadInGrabEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassKraidCheckDeadInGrabEvent);

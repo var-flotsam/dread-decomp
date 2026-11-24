@@ -27,7 +27,7 @@ void CCharClassTweakAirFrictionTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassTweakAirFrictionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTweakAirFrictionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTweakAirFrictionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakAirFrictionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTweakAirFrictionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakAirFrictionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTweakAirFrictionTrack::refl_Destroy(void* obj) { static_cast<CCharClassTweakAirFrictionTrack*>(obj)->~CCharClassTweakAirFrictionTrack(); }
 struct CCharClassTweakAirFrictionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTweakAirFrictionTrack);

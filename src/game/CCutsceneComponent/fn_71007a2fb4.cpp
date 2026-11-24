@@ -24,14 +24,14 @@ namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
-base::reflection::UnkReflValue fn_71007ad4d0(void*, char* obj);
+base::reflection::UnkReflValue CCutsceneComponent_InvokeCutsceneNameGetter(void*, char* obj);
 void fn_71007a515c(CFunction* fn, const char* name);
 void fn_71007ad5e8();
 void fn_71007ad648();
 void fn_71007a52d8(CFunction* fn, const char* name);
 void fn_71007ad78c();
 void fn_71007a544c(CFunction* fn, const char* name);
-base::reflection::UnkReflValue fn_71007ad814(void*, char* obj);
+base::reflection::UnkReflValue CCutsceneComponent_InvokeSetupCurrentTakePositions(void*, char* obj);
 void fn_71007ad8d4();
 void fn_71007ad8e8();
 void fn_71007ad91c();
@@ -39,7 +39,7 @@ void fn_71007ad950();
 void fn_71007ad984();
 void fn_71007ad9b8();
 void fn_71007ad9ec();
-base::reflection::UnkReflValue fn_71007ada28(void*, char* obj);
+base::reflection::UnkReflValue CCutsceneComponent_InvokeHasCutsceneBeenPlayed(void*, char* obj);
 void fn_71007adb08();
 void fn_71007adb3c();
 extern const base::reflection::CType g_unk_71727199c0 __attribute__((visibility("hidden")));
@@ -51,9 +51,9 @@ base::reflection::UnkReflValue fn_71007ade14(void*, char* obj, base::reflection:
 void PushSetTakePlayModeParamTypes(CFunction* fn);
 void fn_71007a5744(CFunction* fn, const char* name);
 void fn_71007ae270();
-base::reflection::UnkReflValue fn_71007ae2bc(void*, char* obj, base::reflection::UnkReflValue* const* args);
+base::reflection::UnkReflValue CCutsceneComponent_InvokeSetExtraActorStatus(void*, char* obj, base::reflection::UnkReflValue* const* args);
 void fn_7100302b38(CFunction* fn);
-base::reflection::UnkReflValue fn_71007ae4e8(void*, char* obj, base::reflection::UnkReflValue* const* args);
+base::reflection::UnkReflValue CCutsceneComponent_InvokeOnExtraActorVisibilityPerTakeChanged(void*, char* obj, base::reflection::UnkReflValue* const* args);
 void fn_71007ae40c(CFunction* fn);
 
 void fn_71007a2fb4(CClass* cls) {
@@ -62,11 +62,11 @@ void fn_71007a2fb4(CClass* cls) {
         fn->return_type = fn_7100009658();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71007ad4d0);
+        fn->invoker = reinterpret_cast<void*>(&CCutsceneComponent_InvokeCutsceneNameGetter);
     }
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_sCutsceneName_SetterFunction", true)))
         fn_71007a515c(fn, "_m_sCutsceneName_SetterFunction");
-    CVariable* field0 = AddReflectedField(cls, CStrId("sCutsceneName", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("sCutsceneName", true), fn_7100009658(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), true);
     CVariable* field1 = AddReflectedField(cls, CStrId("bDisableScenarioEntitiesOnPlay", true), fn_710000d228(), 0x20e, -1, -1);
     field1->attrs.Add<bool>(base::reflection::attr::DefaultValue(), true);
@@ -77,9 +77,9 @@ void fn_71007a2fb4(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad5e8);
     }
-    CVariable* field2 = AddReflectedField(cls, CStrId("vOriginalPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field2->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
-    field2->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
+    CVariable* field2 = AddReflectedField(cls, CStrId("vOriginalPos", true), fn_71000246e4(), 0xffffffff, cls->m_functions.size() - 1, -1);
+    field2->attrs.Add<s32>(base::reflection::attr::PersistenceKey(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field2->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlowKey(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
     field2->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_vctCutscenesOffsets_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vctCutscenesOffsets_GetterFunction", true);
@@ -90,7 +90,7 @@ void fn_71007a2fb4(CClass* cls) {
     }
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_vctCutscenesOffsets_SetterFunction", true)))
         fn_71007a52d8(fn, "_m_vctCutscenesOffsets_SetterFunction");
-    CVariable* field3 = AddReflectedField(cls, CStrId("vctCutscenesOffsets", true), &g_unk_7101d5c078, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field3 = AddReflectedField(cls, CStrId("vctCutscenesOffsets", true), &g_unk_7101d5c078, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field3->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     CVariable* field4 = AddReflectedField(cls, CStrId("vctExtraInvolvedSubareas", true), &g_unk_7101d5c998, 0x80, -1, -1);
     CVariable* field5 = AddReflectedField(cls, CStrId("vctExtraInvolvedActors", true), &g_unk_7172719170, 0xd0, -1, -1);
@@ -114,7 +114,7 @@ void fn_71007a2fb4(CClass* cls) {
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71007ad814);
+        fn->invoker = reinterpret_cast<void*>(&CCutsceneComponent_InvokeSetupCurrentTakePositions);
     }
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("SetGlobalfreeCamera", true))) {
         fn->name = base::global::UnkStrId("SetGlobalfreeCamera", true);
@@ -170,7 +170,7 @@ void fn_71007a2fb4(CClass* cls) {
         fn->return_type = fn_710000d228();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71007ada28);
+        fn->invoker = reinterpret_cast<void*>(&CCutsceneComponent_InvokeHasCutsceneBeenPlayed);
     }
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("OnTakeChanged", true))) {
         fn->name = base::global::UnkStrId("OnTakeChanged", true);
@@ -231,9 +231,9 @@ void fn_71007a2fb4(CClass* cls) {
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71007ae2bc);
+        fn->invoker = reinterpret_cast<void*>(&CCutsceneComponent_InvokeSetExtraActorStatus);
         fn_7100302b38(fn);
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_sTargetActorId", true));
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_bEnabled", true));
         fn->ParamAttrs(2)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_bRestoreVisibility", true));
@@ -243,9 +243,9 @@ void fn_71007a2fb4(CClass* cls) {
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71007ae4e8);
+        fn->invoker = reinterpret_cast<void*>(&CCutsceneComponent_InvokeOnExtraActorVisibilityPerTakeChanged);
         fn_71007ae40c(fn);
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_uExtraActorIndex", true));
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_uTakeIndex", true));
         fn->ParamAttrs(2)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_bState", true));

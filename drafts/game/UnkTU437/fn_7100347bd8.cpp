@@ -85,7 +85,7 @@ void fn_7100347bd8(UnkAimFrameSelf_l347bd8* self, f32 angle, UnkAimFrame_l347bd8
         m.m[10] = 1.0f;
         m.m[5] = 1.0f;
         m.m[0] = 1.0f;
-        UnkTrackAction* action = fn_710070d500(fn_71011771e0(animation, kAimKey));
+        UnkTrackAction* action = fn_710070d500(CAnimationComponent_FindTrackByNameHash(animation, kAimKey));
         if (action &&
             fn_710009d50c(reinterpret_cast<const base::reflection::CType* (*)(UnkTrackAction*)>(action->vtable[3])(
                               action),

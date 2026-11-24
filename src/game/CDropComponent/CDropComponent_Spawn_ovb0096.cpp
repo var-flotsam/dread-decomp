@@ -149,8 +149,8 @@ struct UnkDropSpawnRequest_ovb0096 {
     UnkDropSpawnExtra_ovb0096 extra;
 };
 
-UnkDropSpawnParams_ovb0096 fn_7100cb7f90(UnkDropSpawnRequest_ovb0096* request);
-UnkDropSpawnParams_ovb0096 fn_7100cb5004(UnkDropSpawnRequest_ovb0096* request);
+UnkDropSpawnParams_ovb0096 CCharClassDropItemOverwriteProbabilitiesEvent_BuildDropParams(UnkDropSpawnRequest_ovb0096* request);
+UnkDropSpawnParams_ovb0096 CCharClassDropItemCrazyEvent_BuildDropSpawnParams(UnkDropSpawnRequest_ovb0096* request);
 
 // Which of six directions the player is in, seen from the owner facing along its yaw sign.
 __attribute__((always_inline)) static inline void PlayerDirection_ovb0096(UnkDropSpawnComp_ovb0096* self, u32& kind) {
@@ -182,7 +182,7 @@ void fn_71007c26f0(UnkDropSpawnComp_ovb0096* self, UnkDropSpawnRequest_ovb0096* 
         return;
     if (request->field_0x83)
         return;
-    UnkDropSpawnParams_ovb0096 params = fn_7100cb7f90(request);
+    UnkDropSpawnParams_ovb0096 params = CCharClassDropItemOverwriteProbabilitiesEvent_BuildDropParams(request);
     if (params.kind == 9)
         PlayerDirection_ovb0096(self, params.kind);
     fn_71007c21e8(reinterpret_cast<char*>(self), reinterpret_cast<char*>(&params),
@@ -196,7 +196,7 @@ void fn_71007c24a4(UnkDropSpawnComp_ovb0096* self, UnkDropSpawnRequest_ovb0096* 
         return;
     if (request->field_0x83)
         return;
-    UnkDropSpawnParams_ovb0096 params = fn_7100cb5004(request);
+    UnkDropSpawnParams_ovb0096 params = CCharClassDropItemCrazyEvent_BuildDropSpawnParams(request);
     if (params.kind == 9)
         PlayerDirection_ovb0096(self, params.kind);
     self->spawn_count++;

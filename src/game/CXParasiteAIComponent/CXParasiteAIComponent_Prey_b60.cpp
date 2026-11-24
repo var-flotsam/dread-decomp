@@ -41,7 +41,7 @@ start:
         u64 hash = sink->field_0x2b8->hash;
         mode.id = 2;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(sink, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(sink, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     }
     if (auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8)) {
         timeline_mask.id = UnkAll_SpitSend().value;

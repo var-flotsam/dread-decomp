@@ -157,7 +157,7 @@ void fn_7100d8db30(UnkUnit2525_b51* manager, void* resource, bool force) {
             s_desc.field_0x34 = sound->field_0x20;
             s_desc.group = 5;
             s_desc.path = sound->path;
-            fn_7100108620(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820),
+            CSoundSystem_PlayOrRestartSound(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820),
                           reinterpret_cast<UnkSoundDesc_ovb0074*>(&s_desc));
         }
     }

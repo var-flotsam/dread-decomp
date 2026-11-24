@@ -27,7 +27,7 @@ void CCharClassLightingSetUseSpecularEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassLightingSetUseSpecularEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassLightingSetUseSpecularEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassLightingSetUseSpecularEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLightingSetUseSpecularEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassLightingSetUseSpecularEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLightingSetUseSpecularEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassLightingSetUseSpecularEvent::refl_Destroy(void* obj) { static_cast<CCharClassLightingSetUseSpecularEvent*>(obj)->~CCharClassLightingSetUseSpecularEvent(); }
 struct CCharClassLightingSetUseSpecularEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassLightingSetUseSpecularEvent);

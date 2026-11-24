@@ -31,7 +31,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         DREAD_REFLECTED_FUNCTION_OF("_m_pShape_GetterFunction", base::reflection::PointerType<game::logic::collision::CShape*>::Get(), 0, fn_7100d3f7f4);
     }();
-    fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("pShape")), cls->m_array_0x110.size() - 1);
+    fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("pShape")), cls->m_functions.size() - 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

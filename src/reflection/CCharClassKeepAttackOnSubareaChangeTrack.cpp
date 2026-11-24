@@ -22,7 +22,7 @@ void CCharClassKeepAttackOnSubareaChangeTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassKeepAttackOnSubareaChangeTrack::refl_AddFields(CClass*) {}
 bool CCharClassKeepAttackOnSubareaChangeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassKeepAttackOnSubareaChangeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassKeepAttackOnSubareaChangeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKeepAttackOnSubareaChangeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassKeepAttackOnSubareaChangeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKeepAttackOnSubareaChangeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassKeepAttackOnSubareaChangeTrack::refl_Destroy(void* obj) { static_cast<CCharClassKeepAttackOnSubareaChangeTrack*>(obj)->~CCharClassKeepAttackOnSubareaChangeTrack(); }
 struct CCharClassKeepAttackOnSubareaChangeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassKeepAttackOnSubareaChangeTrack);

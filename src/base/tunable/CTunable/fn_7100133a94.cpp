@@ -17,7 +17,7 @@ UnkOwnedList* fn_7100133a94(UnkOwnedListMap* self, const CStrId* key) {
         return found;
     UnkOwnedList empty;
     if (self->count == self->capacity)
-        fn_71001358e0(self, self->count + self->step);
+        CTunable_ReserveIdToListMap(self, self->count + self->step);
     new (&self->keys[self->count]) CStrId(*key);
     UnkOwnedList* slot = &self->values[self->count];
     new (slot) UnkOwnedList(static_cast<UnkOwnedList&&>(empty));

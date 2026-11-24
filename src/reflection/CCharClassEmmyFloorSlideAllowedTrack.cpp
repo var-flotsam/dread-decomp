@@ -22,7 +22,7 @@ void CCharClassEmmyFloorSlideAllowedTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassEmmyFloorSlideAllowedTrack::refl_AddFields(CClass*) {}
 bool CCharClassEmmyFloorSlideAllowedTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEmmyFloorSlideAllowedTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmyFloorSlideAllowedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyFloorSlideAllowedTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmyFloorSlideAllowedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyFloorSlideAllowedTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmyFloorSlideAllowedTrack::refl_Destroy(void* obj) { static_cast<CCharClassEmmyFloorSlideAllowedTrack*>(obj)->~CCharClassEmmyFloorSlideAllowedTrack(); }
 struct CCharClassEmmyFloorSlideAllowedTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEmmyFloorSlideAllowedTrack);

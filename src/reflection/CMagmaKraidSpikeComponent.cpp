@@ -14,7 +14,7 @@ void CMagmaKraidSpikeComponent::refl_AddAttributes(CClass*) {}
 void CMagmaKraidSpikeComponent::refl_AddFields(CClass*) {}
 bool CMagmaKraidSpikeComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CMagmaKraidSpikeComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CMagmaKraidSpikeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMagmaKraidSpikeComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CMagmaKraidSpikeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMagmaKraidSpikeComponent*>(obj)->refl_GetDynamicClass(); }
 void CMagmaKraidSpikeComponent::refl_CopyConstruct(void*, const void*) {}
 void CMagmaKraidSpikeComponent::refl_MoveConstruct(void*, const void*) {}
 void CMagmaKraidSpikeComponent::refl_Destroy(void* obj) { static_cast<CMagmaKraidSpikeComponent*>(obj)->~CMagmaKraidSpikeComponent(); }

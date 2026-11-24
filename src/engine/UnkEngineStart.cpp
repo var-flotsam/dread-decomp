@@ -183,9 +183,9 @@ void fn_7100087800(UnkRegistry_0x70* self);
 // set table it loads.
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 void fn_71000895c8(UnkFileDevice* self, UnkDevice* packs);
-bool fn_7100089c1c(UnkFileDevice* self, const CFilePathStrId& path);
+bool CPackManagerDevice_LoadPackSetsFile(UnkFileDevice* self, const CFilePathStrId& path);
 // Loads the cache's file table; mounts a pack.
-bool fn_7100087124(UnkDevice* cache, const CFilePathStrId& path);
+bool CFileCacheDevice_LoadToc(UnkDevice* cache, const CFilePathStrId& path);
 
 static inline UnkDevice* NewHostDevice(const char* name, const char* path) {
     UnkDevice* device = static_cast<UnkDevice*>(fn_71000839a0(0x48, 3));
@@ -223,8 +223,8 @@ void fn_7100015fc0(const CFilePathStrId& root) {
     fn_71000887a8(devices, CStrId("savedata", true));
     fn_7100087800(devices);
     fn_71000895c8(PackSets(), packs);
-    fn_7100087124(binaries, CFilePathStrId("system/files.toc", true));
+    CFileCacheDevice_LoadToc(binaries, CFilePathStrId("system/files.toc", true));
     fn_710008aa90(packs, CFilePathStrId("packs/system/system.pkg", true));
     fn_710008aa90(packs, CFilePathStrId("packs/system/vibrations.pkg", true));
-    fn_7100089c1c(PackSets(), CFilePathStrId("system/pkg/pack_sets.bpsi", true));
+    CPackManagerDevice_LoadPackSetsFile(PackSets(), CFilePathStrId("system/pkg/pack_sets.bpsi", true));
 }

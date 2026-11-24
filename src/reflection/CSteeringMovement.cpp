@@ -14,7 +14,7 @@ void CSteeringMovement::refl_AddAttributes(CClass*) {}
 void CSteeringMovement::refl_AddFields(CClass*) {}
 bool CSteeringMovement::refl_Equals(const void*, const void*) { return false; }
 s32 CSteeringMovement::refl_Hash() { return -1; }
-const base::reflection::CType& CSteeringMovement::refl_TypeOf(const void* obj) { return *static_cast<const CSteeringMovement*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSteeringMovement::refl_TypeOf(const void* obj) { return *static_cast<const CSteeringMovement*>(obj)->refl_GetDynamicClass(); }
 void CSteeringMovement::refl_CopyConstruct(void*, const void*) {}
 void CSteeringMovement::refl_MoveConstruct(void*, const void*) {}
 void CSteeringMovement::refl_Destroy(void* obj) { static_cast<CSteeringMovement*>(obj)->~CSteeringMovement(); }

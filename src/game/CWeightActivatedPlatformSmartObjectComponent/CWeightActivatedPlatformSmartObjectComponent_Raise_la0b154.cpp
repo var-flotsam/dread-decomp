@@ -20,7 +20,7 @@ using base::global::CStrId;
 
 struct UnkCharacterMovementTarget;
 struct UnkWeakTarget;
-void fn_710097a58c(UnkCharacterMovementTarget* self, UnkWeakTarget* target);
+void CCharacterMovement_SetWeakTarget(UnkCharacterMovementTarget* self, UnkWeakTarget* target);
 extern const u64 g_unk_710164b4d0;
 
 struct UnkWapPlayer_la0b154 {
@@ -70,7 +70,7 @@ void fn_7100a0b154(UnkWap_la0b154* self) {
                                            : &g_unk_7172769740;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(animation, hash, kind, &mode, &g_unk_710164b958, desc, &mask);
+        CAnimationComponent_SendActionToTrack(animation, hash, kind, &mode, &g_unk_710164b958, desc, &mask);
 
         if (UnkWapLink_la0b154* link = self->link) {
             if (UnkSmartObjectActor* object = link->object) {
@@ -83,7 +83,7 @@ void fn_7100a0b154(UnkWap_la0b154* self) {
 
     UnkWapPlayer_la0b154* player = reinterpret_cast<UnkWapPlayer_la0b154*>(fn_7100dec788(g_unk_7101d47310));
     if (player && player->movement)
-        fn_710097a58c(player->movement, reinterpret_cast<UnkWeakTarget*>(self->owner));
+        CCharacterMovement_SetWeakTarget(player->movement, reinterpret_cast<UnkWeakTarget*>(self->owner));
     fn_7100d7c828(reinterpret_cast<UnkActor*>(self->owner), &g_unk_710164b4d0, false);
     self->field_0x5a8 = true;
 }

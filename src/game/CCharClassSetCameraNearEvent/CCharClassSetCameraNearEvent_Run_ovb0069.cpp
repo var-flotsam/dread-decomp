@@ -21,7 +21,7 @@ struct UnkCameraNearActor_ovb0069 {
 
 void fn_71010e4a78(void* camera, const void* settings, f32 time);
 
-void fn_7100cd1bd4(UnkSetCameraNearEvent_ovb0069* self, UnkCameraNearActor_ovb0069** actor) {
+void CCharClassSetCameraNearEvent_ApplyToCameraIfDirMatches(UnkSetCameraNearEvent_ovb0069* self, UnkCameraNearActor_ovb0069** actor) {
     void* camera = fn_7100defcec(g_unk_7101d47310);
     if (!camera)
         return;

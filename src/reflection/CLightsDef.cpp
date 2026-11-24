@@ -36,14 +36,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("CreateElement") {
         fn_7100d9d680(fn, "CreateElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create LightInfo");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
         fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
     }
     DREAD_REFLECTED_FUNCTION("DeleteElement") {
         fn_7100d9d800(fn, "DeleteElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete LightInfo");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
 }

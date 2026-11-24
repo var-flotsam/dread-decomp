@@ -22,7 +22,7 @@ void CCharClassUltimateGrabEnergyRecharge::refl_AddAttributes(CClass* cls) {
 void CCharClassUltimateGrabEnergyRecharge::refl_AddFields(CClass*) {}
 bool CCharClassUltimateGrabEnergyRecharge::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassUltimateGrabEnergyRecharge::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassUltimateGrabEnergyRecharge::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassUltimateGrabEnergyRecharge*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassUltimateGrabEnergyRecharge::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassUltimateGrabEnergyRecharge*>(obj)->refl_GetDynamicClass(); }
 void CCharClassUltimateGrabEnergyRecharge::refl_Destroy(void* obj) { static_cast<CCharClassUltimateGrabEnergyRecharge*>(obj)->~CCharClassUltimateGrabEnergyRecharge(); }
 struct CCharClassUltimateGrabEnergyRecharge::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassUltimateGrabEnergyRecharge);

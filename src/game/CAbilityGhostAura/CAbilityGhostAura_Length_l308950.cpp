@@ -33,7 +33,7 @@ f32 CAbilityGhostAura_ComputeTimelineTranslationLength(UnkTimeline* timeline) {
     return sqrtf(x * x + y * y + z * z);
 }
 
-f32 fn_7100977c88(void*, char* owner);
+f32 CCharacterMovement_GetNegatedShapeBoundsMinY(void*, char* owner);
 
 // A collider as this function reads it: its bounds, refreshed through vf_0x98 while `dirty` is set.
 struct UnkGhostAuraCollider_l308d0c {
@@ -143,13 +143,13 @@ void fn_7100308d0c(UnkGhostAura_l308d0c* self) {
             UnkGhostAuraCollider_l308d0c* a =
                 reinterpret_cast<UnkGhostAuraCollider_l308d0c*>(fn_71008640a4(collision, &g_unk_71726af4a8));
             if (a != nullptr) {
-                self->field_0x488 = fn_7100977c88(source, reinterpret_cast<char*>(a));
+                self->field_0x488 = CCharacterMovement_GetNegatedShapeBoundsMinY(source, reinterpret_cast<char*>(a));
                 self->half_width = HalfWidth(a);
             }
             UnkGhostAuraCollider_l308d0c* b =
                 reinterpret_cast<UnkGhostAuraCollider_l308d0c*>(fn_71008640a4(collision, &g_unk_71726af4b0));
             if (b != nullptr) {
-                self->field_0x48c = fn_7100977c88(source, reinterpret_cast<char*>(b));
+                self->field_0x48c = CCharacterMovement_GetNegatedShapeBoundsMinY(source, reinterpret_cast<char*>(b));
                 f32 width = HalfWidth(b);
                 self->half_width = self->half_width > width ? self->half_width : width;
             }

@@ -23,7 +23,7 @@ void CCharClassPlatformTrapGrapplePointComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassPlatformTrapGrapplePointComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassPlatformTrapGrapplePointComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassPlatformTrapGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPlatformTrapGrapplePointComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassPlatformTrapGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPlatformTrapGrapplePointComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassPlatformTrapGrapplePointComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassPlatformTrapGrapplePointComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassPlatformTrapGrapplePointComponent::refl_Destroy(void* obj) { static_cast<CCharClassPlatformTrapGrapplePointComponent*>(obj)->~CCharClassPlatformTrapGrapplePointComponent(); }

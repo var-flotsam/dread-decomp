@@ -22,7 +22,7 @@ void CCharClassFloorSlideRunTurnTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassFloorSlideRunTurnTrack::refl_AddFields(CClass*) {}
 bool CCharClassFloorSlideRunTurnTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFloorSlideRunTurnTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFloorSlideRunTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFloorSlideRunTurnTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFloorSlideRunTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFloorSlideRunTurnTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFloorSlideRunTurnTrack::refl_Destroy(void* obj) { static_cast<CCharClassFloorSlideRunTurnTrack*>(obj)->~CCharClassFloorSlideRunTurnTrack(); }
 struct CCharClassFloorSlideRunTurnTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFloorSlideRunTurnTrack);

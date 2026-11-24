@@ -22,7 +22,7 @@ void CCharClassAllowMeleeLimitsTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAllowMeleeLimitsTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowMeleeLimitsTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowMeleeLimitsTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowMeleeLimitsTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowMeleeLimitsTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowMeleeLimitsTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowMeleeLimitsTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowMeleeLimitsTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowMeleeLimitsTrack*>(obj)->~CCharClassAllowMeleeLimitsTrack(); }
 struct CCharClassAllowMeleeLimitsTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowMeleeLimitsTrack);

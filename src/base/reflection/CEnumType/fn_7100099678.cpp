@@ -23,7 +23,7 @@ struct UnkEnumType_l099678 {
 // NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 s32 fn_7100099678(UnkEnumType_l099678* self) {
     UnkScopedHashStream s(0x16, nullptr);
-    s32 id = fn_710009d110(reinterpret_cast<UnkHashed*>(self));
+    s32 id = CType_ComputeBaseHash(reinterpret_cast<UnkHashed*>(self));
     s.PutBytes(&id, 4);
     for (const UnkEnumEntry_l099678& entry : *self)
         s.PutBytes(&entry.value, 4);

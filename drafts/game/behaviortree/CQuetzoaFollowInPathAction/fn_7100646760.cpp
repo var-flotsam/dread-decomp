@@ -151,7 +151,7 @@ struct UnkGotoParams_l646760 {
         const CType* type = reinterpret_cast<const CType*>(fn_7100701c54());
         const CType* current = reinterpret_cast<const CType*>(target.type);
         if (current && target.field_0x14 == 0 &&
-            (current == type ? type->m_fn_0x48 != nullptr : fn_710009d52c(type, current))) {
+            (current == type ? type->m_copyAssign != nullptr : fn_710009d52c(type, current))) {
             fn_71000a1cc8(&target, type, point);
         } else {
             fn_71000a1c60(&target);

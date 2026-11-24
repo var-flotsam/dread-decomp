@@ -13,7 +13,7 @@ struct UnkSetLockEnvironmentEvent {
     bool bSound;
 };
 
-void fn_7100cd3c10(UnkSetLockEnvironmentEvent* self) {
+void CCharClassSetLockEnvironmentEvent_ApplyLockFlags(UnkSetLockEnvironmentEvent* self) {
     void* m = g_unk_7101d47368;
     if (!m) {
         m = fn_71000839a0(0x4c8, 0x3f);

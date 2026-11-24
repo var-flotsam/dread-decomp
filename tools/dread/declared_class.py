@@ -47,7 +47,7 @@ def declared_class_block(name: str, body: str, sizes: dict[str, int], offsets: d
         if m:
             # in a member's body the class is named without its namespace
             line = f"{m.group(1)} {name}::{m.group(2)}"
-            line = line.replace("{ return ClassOf(obj); }", f"{{ return *static_cast<const {short}*>(obj)->vf_0x0(); }}")
+            line = line.replace("{ return ClassOf(obj); }", f"{{ return *static_cast<const {short}*>(obj)->refl_GetDynamicClass(); }}")
             line = line.replace("{ Destroy(obj); }", f"{{ static_cast<{short}*>(obj)->~{short}(); }}")
         elif not (line.startswith(" ") or line in ("}", "};")):
             return None

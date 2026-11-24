@@ -108,7 +108,7 @@ void fn_7100689f80(UnkPoisonGasAttack_l689f80* self, f32 dt) {
             value.count = 1;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &value, &g_unk_7172769740, &mask);
+            CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &value, &g_unk_7172769740, &mask);
         }
     } else if (self->state == 1) {
         if (self->growing) {

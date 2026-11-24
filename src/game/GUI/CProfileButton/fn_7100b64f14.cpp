@@ -54,7 +54,7 @@ void fn_7100b64f14(UnkProfileButton_lb64f14* self) {
     if (entry.used) {
         if (self->target >= 0) {
             fn_7100df78cc(g_unk_7101d47310, name, false, false);
-            fn_7100af65b4(reinterpret_cast<UnkObj_7100af65b4*>(self));
+            CChangeMenuStateButton_SendNewStateIdxMessage(reinterpret_cast<UnkObj_7100af65b4*>(self));
         }
     } else {
         fn_7100df97b4(g_unk_7101d47310, name, true, false);

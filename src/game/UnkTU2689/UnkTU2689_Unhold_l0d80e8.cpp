@@ -76,7 +76,7 @@ void fn_71010d80e8(UnkPlayerMovementD_b0204* movement, u32 kind) {
         if (void* animation = self->owner->animation) {
             mode.id = 2;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0xde253bad2ff7f4ae, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0xde253bad2ff7f4ae, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                           &g_unk_7172769740, &mask);
         }
     } else if (kind == 2 || kind == 3) {

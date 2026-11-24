@@ -22,7 +22,7 @@ void CCharClassMapRoomDownloadMapNotificationEvent::refl_AddAttributes(CClass* c
 void CCharClassMapRoomDownloadMapNotificationEvent::refl_AddFields(CClass*) {}
 bool CCharClassMapRoomDownloadMapNotificationEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassMapRoomDownloadMapNotificationEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMapRoomDownloadMapNotificationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMapRoomDownloadMapNotificationEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMapRoomDownloadMapNotificationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMapRoomDownloadMapNotificationEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMapRoomDownloadMapNotificationEvent::refl_Destroy(void* obj) { static_cast<CCharClassMapRoomDownloadMapNotificationEvent*>(obj)->~CCharClassMapRoomDownloadMapNotificationEvent(); }
 struct CCharClassMapRoomDownloadMapNotificationEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassMapRoomDownloadMapNotificationEvent);

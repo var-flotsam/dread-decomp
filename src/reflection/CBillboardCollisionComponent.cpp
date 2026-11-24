@@ -14,7 +14,7 @@ void CBillboardCollisionComponent::refl_AddAttributes(CClass*) {}
 void CBillboardCollisionComponent::refl_AddFields(CClass*) {}
 bool CBillboardCollisionComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CBillboardCollisionComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CBillboardCollisionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBillboardCollisionComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CBillboardCollisionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBillboardCollisionComponent*>(obj)->refl_GetDynamicClass(); }
 void CBillboardCollisionComponent::refl_Destroy(void* obj) { static_cast<CBillboardCollisionComponent*>(obj)->~CBillboardCollisionComponent(); }
 struct CBillboardCollisionComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CBillboardCollisionComponent);

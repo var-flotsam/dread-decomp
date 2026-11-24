@@ -26,7 +26,7 @@ void CCharClassCheckFloorHitExtraDistanceTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassCheckFloorHitExtraDistanceTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCheckFloorHitExtraDistanceTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCheckFloorHitExtraDistanceTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCheckFloorHitExtraDistanceTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCheckFloorHitExtraDistanceTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCheckFloorHitExtraDistanceTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCheckFloorHitExtraDistanceTrack::refl_Destroy(void* obj) { static_cast<CCharClassCheckFloorHitExtraDistanceTrack*>(obj)->~CCharClassCheckFloorHitExtraDistanceTrack(); }
 struct CCharClassCheckFloorHitExtraDistanceTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCheckFloorHitExtraDistanceTrack);

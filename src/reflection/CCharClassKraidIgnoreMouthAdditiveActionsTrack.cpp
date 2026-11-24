@@ -22,7 +22,7 @@ void CCharClassKraidIgnoreMouthAdditiveActionsTrack::refl_AddAttributes(CClass* 
 void CCharClassKraidIgnoreMouthAdditiveActionsTrack::refl_AddFields(CClass*) {}
 bool CCharClassKraidIgnoreMouthAdditiveActionsTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassKraidIgnoreMouthAdditiveActionsTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassKraidIgnoreMouthAdditiveActionsTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidIgnoreMouthAdditiveActionsTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassKraidIgnoreMouthAdditiveActionsTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidIgnoreMouthAdditiveActionsTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassKraidIgnoreMouthAdditiveActionsTrack::refl_Destroy(void* obj) { static_cast<CCharClassKraidIgnoreMouthAdditiveActionsTrack*>(obj)->~CCharClassKraidIgnoreMouthAdditiveActionsTrack(); }
 struct CCharClassKraidIgnoreMouthAdditiveActionsTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassKraidIgnoreMouthAdditiveActionsTrack);

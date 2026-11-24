@@ -228,7 +228,7 @@ void fn_710045332c(UnkCommanderAI_l45332c* self) {
     UnkReflTypeIdArg fall_id;
     fn_710110ca70(self);
     void* anim = self->owner->field_0x220;
-    if (anim && fn_710117af10(static_cast<UnkStruct_710117af10*>(anim), &g_unk_71726c9508, false)) {
+    if (anim && CAnimationComponent_IsPlayingActionNameContaining(static_cast<UnkStruct_710117af10*>(anim), &g_unk_71726c9508, false)) {
         auto* entry = static_cast<UnkTimeline*>(
             fn_7101176d34(static_cast<UnkStruct_7101176ea8*>(self->owner->field_0x220),
                           reinterpret_cast<UnkAnimKey_l45332c*>(g_unk_71726c9508)->field_0x30));
@@ -254,7 +254,7 @@ void fn_710045332c(UnkCommanderAI_l45332c* self) {
                 desc.field_0x4 = 0.0f;
                 desc.field_0x8 = 4.0f;
                 fall_id.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-                fn_7101176690(animation, hash, kKindU32, &fall_mode, &g_unk_710164b958, &desc, &fall_id);
+                CAnimationComponent_SendActionToTrack(animation, hash, kKindU32, &fall_mode, &g_unk_710164b958, &desc, &fall_id);
                 void* holder = fn_7100defcec(g_unk_7101d47310);
                 if (holder) {
                     UnkCameraCtrl* current = fn_71010e2080(holder);
@@ -285,7 +285,7 @@ void fn_710045332c(UnkCommanderAI_l45332c* self) {
                 u64 hash = StringCrc64("meleesuccess_commander", 22);
                 success_mode.id = 1;
                 success_id.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-                fn_7101176690(animation, hash, kKindU32, &success_mode, &g_unk_710164b958, &g_unk_7172769740,
+                CAnimationComponent_SendActionToTrack(animation, hash, kKindU32, &success_mode, &g_unk_710164b958, &g_unk_7172769740,
                               &success_id);
             }
         }

@@ -40,7 +40,7 @@ start:
     if (void* cls = self->owner->field_0x220) {
         mode1.id = 0;
         mask1.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, track, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740, &mask1);
+        CAnimationComponent_SendActionToTrack(cls, track, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740, &mask1);
     }
     UnkActor* player = reinterpret_cast<UnkActor*>(fn_7100dec788(g_unk_7101d47310));
     if (!player)
@@ -48,7 +48,7 @@ start:
     if (void* cls = player->field_0x220) {
         mode2.id = 0;
         mask2.id = UnkAll_SpitSend().value;
-        fn_7101176690(cls, track, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
+        CAnimationComponent_SendActionToTrack(cls, track, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740, &mask2);
     }
     if (UnkKraidPlayerPart_b61* part = static_cast<UnkKraidPlayerPart_b61*>(player->field_0x208))
         part->vf_0x1e8(false);

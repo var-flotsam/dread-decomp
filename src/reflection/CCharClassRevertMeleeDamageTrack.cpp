@@ -21,7 +21,7 @@ void CCharClassRevertMeleeDamageTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassRevertMeleeDamageTrack::refl_AddFields(CClass*) {}
 bool CCharClassRevertMeleeDamageTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassRevertMeleeDamageTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassRevertMeleeDamageTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRevertMeleeDamageTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassRevertMeleeDamageTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRevertMeleeDamageTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassRevertMeleeDamageTrack::refl_Destroy(void* obj) { static_cast<CCharClassRevertMeleeDamageTrack*>(obj)->~CCharClassRevertMeleeDamageTrack(); }
 struct CCharClassRevertMeleeDamageTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassRevertMeleeDamageTrack);

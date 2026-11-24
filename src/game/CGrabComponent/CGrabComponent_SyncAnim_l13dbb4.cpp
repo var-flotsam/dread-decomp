@@ -88,7 +88,7 @@ void CGrabComponent_AdvanceGrabAnimations(UnkGrabComponent_l13dbb4* self, UnkGra
                     request.id = 2;
                     base::reflection::UnkReflTypeIdArg mask;
                     mask.id = UnkAll_SpitSend().value;
-                    sync = fn_7101176690(grabbed_anim, track, kind, &request, &g_unk_710164b958, &g_unk_7172769740,
+                    sync = CAnimationComponent_SendActionToTrack(grabbed_anim, track, kind, &request, &g_unk_710164b958, &g_unk_7172769740,
                                          &mask);
                 }
                 break;

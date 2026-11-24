@@ -14,7 +14,7 @@ void behaviortree::CAutectorExecuteJumpAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CAutectorExecuteJumpAction::refl_AddFields(CClass*) {}
 bool behaviortree::CAutectorExecuteJumpAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CAutectorExecuteJumpAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CAutectorExecuteJumpAction::refl_TypeOf(const void* obj) { return *static_cast<const CAutectorExecuteJumpAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CAutectorExecuteJumpAction::refl_TypeOf(const void* obj) { return *static_cast<const CAutectorExecuteJumpAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CAutectorExecuteJumpAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CAutectorExecuteJumpAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CAutectorExecuteJumpAction::refl_Destroy(void* obj) { static_cast<CAutectorExecuteJumpAction*>(obj)->~CAutectorExecuteJumpAction(); }

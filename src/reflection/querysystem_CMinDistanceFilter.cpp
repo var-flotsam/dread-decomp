@@ -23,7 +23,7 @@ void querysystem::CMinDistanceFilter::refl_AddFields(CClass* cls) {
 }
 bool querysystem::CMinDistanceFilter::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 querysystem::CMinDistanceFilter::refl_Hash() { return -1; }
-const base::reflection::CType& querysystem::CMinDistanceFilter::refl_TypeOf(const void* obj) { return *static_cast<const CMinDistanceFilter*>(obj)->vf_0x0(); }
+const base::reflection::CType& querysystem::CMinDistanceFilter::refl_TypeOf(const void* obj) { return *static_cast<const CMinDistanceFilter*>(obj)->refl_GetDynamicClass(); }
 void querysystem::CMinDistanceFilter::refl_Destroy(void* obj) { static_cast<CMinDistanceFilter*>(obj)->~CMinDistanceFilter(); }
 struct querysystem::CMinDistanceFilter::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CMinDistanceFilter);

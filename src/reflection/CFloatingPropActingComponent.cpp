@@ -14,7 +14,7 @@ void CFloatingPropActingComponent::refl_AddAttributes(CClass*) {}
 void CFloatingPropActingComponent::refl_AddFields(CClass*) {}
 bool CFloatingPropActingComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CFloatingPropActingComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CFloatingPropActingComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFloatingPropActingComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CFloatingPropActingComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFloatingPropActingComponent*>(obj)->refl_GetDynamicClass(); }
 void CFloatingPropActingComponent::refl_CopyConstruct(void*, const void*) {}
 void CFloatingPropActingComponent::refl_MoveConstruct(void*, const void*) {}
 void CFloatingPropActingComponent::refl_Destroy(void* obj) { static_cast<CFloatingPropActingComponent*>(obj)->~CFloatingPropActingComponent(); }

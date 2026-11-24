@@ -14,7 +14,7 @@ void CCentralUnitComponentDef::refl_AddAttributes(CClass*) {}
 void CCentralUnitComponentDef::refl_AddFields(CClass*) {}
 bool CCentralUnitComponentDef::refl_Equals(const void*, const void*) { return false; }
 s32 CCentralUnitComponentDef::refl_Hash() { return -1; }
-const base::reflection::CType& CCentralUnitComponentDef::refl_TypeOf(const void* obj) { return *static_cast<const CCentralUnitComponentDef*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCentralUnitComponentDef::refl_TypeOf(const void* obj) { return *static_cast<const CCentralUnitComponentDef*>(obj)->refl_GetDynamicClass(); }
 void CCentralUnitComponentDef::refl_CopyConstruct(void*, const void*) {}
 void CCentralUnitComponentDef::refl_MoveConstruct(void*, const void*) {}
 void CCentralUnitComponentDef::refl_Destroy(void* obj) { static_cast<CCentralUnitComponentDef*>(obj)->~CCentralUnitComponentDef(); }

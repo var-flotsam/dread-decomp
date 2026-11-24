@@ -22,7 +22,7 @@ void CCharClassIgnoreAnalogWideInitTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreAnalogWideInitTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreAnalogWideInitTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreAnalogWideInitTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreAnalogWideInitTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreAnalogWideInitTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreAnalogWideInitTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreAnalogWideInitTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreAnalogWideInitTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreAnalogWideInitTrack*>(obj)->~CCharClassIgnoreAnalogWideInitTrack(); }
 struct CCharClassIgnoreAnalogWideInitTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreAnalogWideInitTrack);

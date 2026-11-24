@@ -85,12 +85,12 @@ void fn_71010d7d0c(UnkPlayerMovementD_b0204* self, u32 kind) {
     case 0: {
         static const CStrId s_frozen("frozen", true);
         if (self->owner->animation &&
-            fn_710117af10(static_cast<UnkStruct_710117af10*>(self->owner->animation),
+            CAnimationComponent_IsPlayingActionNameContaining(static_cast<UnkStruct_710117af10*>(self->owner->animation),
                           reinterpret_cast<UnkCls_710117af10**>(const_cast<CStrId*>(&s_frozen)), false)) {
             void* animation = self->owner->animation;
             mode.id = 2;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(animation, 0x6a83a50c8f7f1ee6, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(animation, 0x6a83a50c8f7f1ee6, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                           &g_unk_7172769740, &mask);
         }
         playTimeline(self->ids->release);

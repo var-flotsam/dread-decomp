@@ -28,7 +28,7 @@ void CCharClassAlternativeActionPlayEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassAlternativeActionPlayEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAlternativeActionPlayEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAlternativeActionPlayEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAlternativeActionPlayEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAlternativeActionPlayEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAlternativeActionPlayEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAlternativeActionPlayEvent::refl_Destroy(void* obj) { static_cast<CCharClassAlternativeActionPlayEvent*>(obj)->~CCharClassAlternativeActionPlayEvent(); }
 struct CCharClassAlternativeActionPlayEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAlternativeActionPlayEvent);

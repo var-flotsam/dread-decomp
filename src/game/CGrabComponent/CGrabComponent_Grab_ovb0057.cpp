@@ -549,7 +549,7 @@ void CGrabComponent_RequestAnimAndClearTarget(UnkGrabComponent_ovb0057* self) {
             mode.id = 1;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(anim, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+            CAnimationComponent_SendActionToTrack(anim, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                           reinterpret_cast<UnkDesc_SpitSend*>(&g_unk_7172769758), &mask);
         }
     }

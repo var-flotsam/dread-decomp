@@ -22,7 +22,7 @@ void CCharClassSpinJumpEndTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassSpinJumpEndTrack::refl_AddFields(CClass*) {}
 bool CCharClassSpinJumpEndTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSpinJumpEndTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSpinJumpEndTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSpinJumpEndTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSpinJumpEndTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSpinJumpEndTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSpinJumpEndTrack::refl_Destroy(void* obj) { static_cast<CCharClassSpinJumpEndTrack*>(obj)->~CCharClassSpinJumpEndTrack(); }
 struct CCharClassSpinJumpEndTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSpinJumpEndTrack);

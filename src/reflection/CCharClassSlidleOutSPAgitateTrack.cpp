@@ -22,7 +22,7 @@ void CCharClassSlidleOutSPAgitateTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassSlidleOutSPAgitateTrack::refl_AddFields(CClass*) {}
 bool CCharClassSlidleOutSPAgitateTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSlidleOutSPAgitateTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSlidleOutSPAgitateTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSlidleOutSPAgitateTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSlidleOutSPAgitateTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSlidleOutSPAgitateTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSlidleOutSPAgitateTrack::refl_Destroy(void* obj) { static_cast<CCharClassSlidleOutSPAgitateTrack*>(obj)->~CCharClassSlidleOutSPAgitateTrack(); }
 struct CCharClassSlidleOutSPAgitateTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSlidleOutSPAgitateTrack);

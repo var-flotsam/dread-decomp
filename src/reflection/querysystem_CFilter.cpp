@@ -25,7 +25,7 @@ void querysystem::CFilter::refl_AddFields(CClass* cls) {
 }
 bool querysystem::CFilter::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 querysystem::CFilter::refl_Hash() { return -1; }
-const base::reflection::CType& querysystem::CFilter::refl_TypeOf(const void* obj) { return *static_cast<const CFilter*>(obj)->vf_0x0(); }
+const base::reflection::CType& querysystem::CFilter::refl_TypeOf(const void* obj) { return *static_cast<const CFilter*>(obj)->refl_GetDynamicClass(); }
 void querysystem::CFilter::refl_Destroy(void* obj) { static_cast<CFilter*>(obj)->~CFilter(); }
 struct querysystem::CFilter::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CFilter);

@@ -26,7 +26,7 @@ void CCharClassEmmyDeathShowMessageEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassEmmyDeathShowMessageEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEmmyDeathShowMessageEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmyDeathShowMessageEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyDeathShowMessageEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmyDeathShowMessageEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyDeathShowMessageEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmyDeathShowMessageEvent::refl_Destroy(void* obj) { static_cast<CCharClassEmmyDeathShowMessageEvent*>(obj)->~CCharClassEmmyDeathShowMessageEvent(); }
 struct CCharClassEmmyDeathShowMessageEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEmmyDeathShowMessageEvent);

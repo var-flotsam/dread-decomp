@@ -22,7 +22,7 @@ void CCharClassIgnorePerceptionTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnorePerceptionTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnorePerceptionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnorePerceptionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnorePerceptionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnorePerceptionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnorePerceptionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnorePerceptionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnorePerceptionTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnorePerceptionTrack*>(obj)->~CCharClassIgnorePerceptionTrack(); }
 struct CCharClassIgnorePerceptionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnorePerceptionTrack);

@@ -38,7 +38,7 @@ void CCharClassIgnoreCollisionMaskTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassIgnoreCollisionMaskTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreCollisionMaskTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreCollisionMaskTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCollisionMaskTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreCollisionMaskTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCollisionMaskTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreCollisionMaskTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreCollisionMaskTrack*>(obj)->~CCharClassIgnoreCollisionMaskTrack(); }
 struct CCharClassIgnoreCollisionMaskTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreCollisionMaskTrack);

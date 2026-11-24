@@ -3,8 +3,6 @@
 #include "types.h"
 #include "base/global/timeline/CEvent.h"
 
-// src/base/global/timeline/CEvent/UnkPrime.cpp.
-
 struct UnkResBucket_b257j;
 
 // The resource registry's chained set (base/global/UnkBucketSet.h), the path map at +0x10 of the
@@ -30,8 +28,8 @@ void fn_71000e9d60(void* set, u32 buckets, u32 flags) {
     self->node_count = 0;
     self->version = 1;
     u32 n = buckets;
-    if (!fn_71000669a0(n))
-        n = fn_7100066930(n);
+    if (!CEvent_IsPrime(n))
+        n = CEvent_GetNextPrimeAtOrAbove(n);
     u32 c = self->buckets.count;
     if (c < n) {
         UnkResBucket_b257j** p;

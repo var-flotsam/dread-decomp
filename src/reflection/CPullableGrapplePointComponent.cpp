@@ -14,7 +14,7 @@ void CPullableGrapplePointComponent::refl_AddAttributes(CClass*) {}
 void CPullableGrapplePointComponent::refl_AddFields(CClass*) {}
 bool CPullableGrapplePointComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CPullableGrapplePointComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CPullableGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CPullableGrapplePointComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CPullableGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CPullableGrapplePointComponent*>(obj)->refl_GetDynamicClass(); }
 void CPullableGrapplePointComponent::refl_CopyConstruct(void*, const void*) {}
 void CPullableGrapplePointComponent::refl_MoveConstruct(void*, const void*) {}
 void CPullableGrapplePointComponent::refl_Destroy(void* obj) { static_cast<CPullableGrapplePointComponent*>(obj)->~CPullableGrapplePointComponent(); }

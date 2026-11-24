@@ -18,7 +18,7 @@ struct UnkMsg_7100af65b4 : UnkGuiEvent {
 
 UnkGuiDisplayObject* fn_71011c068c(UnkObj_7100af65b4* self);
 
-void fn_7100af65b4(UnkObj_7100af65b4* self) {
+void CChangeMenuStateButton_SendNewStateIdxMessage(UnkObj_7100af65b4* self) {
     UnkPropBag bag;
     fn_7100aa3b9c(&bag, CStrId("StateIdx", true), self->field_0x2a4);
     UnkMsg_7100af65b4 msg(fn_71011c068c(self), 4, &bag);

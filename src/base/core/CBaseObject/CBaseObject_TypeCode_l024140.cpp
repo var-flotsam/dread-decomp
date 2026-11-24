@@ -14,7 +14,7 @@
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
 
-s32 fn_7100024140(const CType* type) {
+s32 CBaseObject_GetTypeCodeChar(const CType* type) {
     if (type == fn_710000d228())
         return 'b';
     if (type == fn_7100014768())
@@ -37,9 +37,9 @@ s32 fn_7100024140(const CType* type) {
         return 'c';
 
     const UnkReflObject* object = reinterpret_cast<const UnkReflObject*>(type);
-    if (fn_710009d760(object, fn_710009921c()))
+    if (CType_ObjectIsKindOf(object, fn_710009921c()))
         return 'e';
-    if (fn_710009d760(object, fn_710009a11c()))
+    if (CType_ObjectIsKindOf(object, fn_710009a11c()))
         return 'F';
     if (fn_710009d52c(type, fn_7100007f84()))
         return 's';

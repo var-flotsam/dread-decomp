@@ -158,7 +158,7 @@ u32 fn_71003849ec(UnkFleeFromTarget_l3849ec* self) {
                 base::reflection::UnkReflTypeIdArg mode, mask;
                 mode.id = 0;
                 mask.id = UnkAll_SpitSend().value;
-                if (!fn_7101176690(anim, self->id.data->Key(), 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+                if (!CAnimationComponent_SendActionToTrack(anim, self->id.data->Key(), 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                                    &g_unk_7172769740, &mask))
                     return result;
                 self->field_0x89 = true;

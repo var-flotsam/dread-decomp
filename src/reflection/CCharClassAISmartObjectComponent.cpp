@@ -23,7 +23,7 @@ void CCharClassAISmartObjectComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassAISmartObjectComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassAISmartObjectComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAISmartObjectComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAISmartObjectComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAISmartObjectComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAISmartObjectComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAISmartObjectComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassAISmartObjectComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassAISmartObjectComponent::refl_Destroy(void* obj) { static_cast<CCharClassAISmartObjectComponent*>(obj)->~CCharClassAISmartObjectComponent(); }

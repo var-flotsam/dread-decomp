@@ -22,7 +22,7 @@ void CCharClassAllowRootMotionInStoppedTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAllowRootMotionInStoppedTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowRootMotionInStoppedTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowRootMotionInStoppedTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowRootMotionInStoppedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowRootMotionInStoppedTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowRootMotionInStoppedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowRootMotionInStoppedTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowRootMotionInStoppedTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowRootMotionInStoppedTrack*>(obj)->~CCharClassAllowRootMotionInStoppedTrack(); }
 struct CCharClassAllowRootMotionInStoppedTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowRootMotionInStoppedTrack);

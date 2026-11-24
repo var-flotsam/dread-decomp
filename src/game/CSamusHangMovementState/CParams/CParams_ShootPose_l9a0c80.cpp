@@ -103,6 +103,6 @@ void fn_71009a0c80(UnkHangParams_l9a0c80* self) {
     UnkTrackQuery query = {fn_7100c5bb9c(), nullptr, -1.0f};
     if (fn_710117b08c(animation, &query))
         reinterpret_cast<UnkHangTrack_l9a0c80*>(query.result)->vf_0x18(&request);
-    fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
+    CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(animation),
                   reinterpret_cast<const UnkRequest_7101176ea8*>(&request), 0xf4061ff25a2163d6);
 }

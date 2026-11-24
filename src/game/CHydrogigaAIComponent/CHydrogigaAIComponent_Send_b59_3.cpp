@@ -47,20 +47,20 @@ void fn_71005c2b2c(UnkHydrogigaAI3_b59a3* self) {
     if (reinterpret_cast<bool*>(object)[0x6a]) {
         mode1.id = 1;
         mask1.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, 0x7620adeca58e32f3, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(target, 0x7620adeca58e32f3, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
                       &mask1);
         mode2.id = 1;
         mask2.id = UnkNone_SpitSend().value;
-        fn_7101176690(target, 0x7620adeca58e32f3, 0xbd794f4bf6d1d598, &mode2, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(target, 0x7620adeca58e32f3, 0xbd794f4bf6d1d598, &mode2, &g_unk_710164b958, &g_unk_7172769740,
                       &mask2);
     } else {
         mode3.id = 1;
         mask3.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, 0x9e7051642e151650, 0xf4061ff25a2163d6, &mode3, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(target, 0x9e7051642e151650, 0xf4061ff25a2163d6, &mode3, &g_unk_710164b958, &g_unk_7172769740,
                       &mask3);
         mode4.id = 1;
         mask4.id = UnkNone_SpitSend().value;
-        fn_7101176690(target, 0x9e7051642e151650, 0xbd794f4bf6d1d598, &mode4, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(target, 0x9e7051642e151650, 0xbd794f4bf6d1d598, &mode4, &g_unk_710164b958, &g_unk_7172769740,
                       &mask4);
     }
     fn_7100d35a98(reinterpret_cast<UnkEntry*>(object), false);

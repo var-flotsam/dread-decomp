@@ -190,7 +190,7 @@ struct UnkGotoParams_l6d1394 {
     void SetTarget(const CClass* cls, const void* object) {
         const CType* current = reinterpret_cast<const CType*>(target.type);
         if (current && target.field_0x14 == 0 &&
-            (current == cls ? cls->m_fn_0x48 != nullptr : fn_710009d52c(cls, current))) {
+            (current == cls ? cls->m_copyAssign != nullptr : fn_710009d52c(cls, current))) {
             fn_71000a1cc8(&target, cls, object);
         } else {
             fn_71000a1c60(&target);
@@ -325,7 +325,7 @@ s32 fn_71006d1394(UnkTakumakuChase_l6d1394* self) {
         mode.id = 0;
         UnkReflTypeIdArg mask;
         mask.id = UnkGrabClassDefaultMask();
-        if (fn_7101176690(animation, turn.data->Key(), 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
+        if (CAnimationComponent_SendActionToTrack(animation, turn.data->Key(), 0xf4061ff25a2163d6, &mode, &g_unk_710164b958,
                           &g_unk_7172769740, &mask)) {
             if (self->turns > 0 && --self->turns == 0)
                 self->ai->field_0x14758 = true;

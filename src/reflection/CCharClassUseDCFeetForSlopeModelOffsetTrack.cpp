@@ -22,7 +22,7 @@ void CCharClassUseDCFeetForSlopeModelOffsetTrack::refl_AddAttributes(CClass* cls
 void CCharClassUseDCFeetForSlopeModelOffsetTrack::refl_AddFields(CClass*) {}
 bool CCharClassUseDCFeetForSlopeModelOffsetTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassUseDCFeetForSlopeModelOffsetTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassUseDCFeetForSlopeModelOffsetTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassUseDCFeetForSlopeModelOffsetTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassUseDCFeetForSlopeModelOffsetTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassUseDCFeetForSlopeModelOffsetTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassUseDCFeetForSlopeModelOffsetTrack::refl_Destroy(void* obj) { static_cast<CCharClassUseDCFeetForSlopeModelOffsetTrack*>(obj)->~CCharClassUseDCFeetForSlopeModelOffsetTrack(); }
 struct CCharClassUseDCFeetForSlopeModelOffsetTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassUseDCFeetForSlopeModelOffsetTrack);

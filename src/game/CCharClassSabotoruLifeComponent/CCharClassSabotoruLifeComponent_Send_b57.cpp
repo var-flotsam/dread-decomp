@@ -28,7 +28,7 @@ struct UnkSabotoruLife_b57a4 {
     CStrId sDeadAnim;
 };
 
-const CStrId& fn_7100677b20(UnkSabotoruLife_b57a4* self, UnkSabotoruActor_b57a4* actor) {
+const CStrId& CCharClassSabotoruLifeComponent_GetDeadAnimOrSendDoorDeath(UnkSabotoruLife_b57a4* self, UnkSabotoruActor_b57a4* actor) {
     UnkSabotoruAI_b57a4* ai = actor->field_0x240;
     if (ai && fn_710009d50c(ai->vf_0x0(), fn_7100677dd4()) && ai->field_0x14778 == 1) {
         if (void* target = actor->field_0x220) {

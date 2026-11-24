@@ -32,7 +32,7 @@ static_assert(sizeof(UnkSkeletonTransformer_b66a1) == 0x60, "UnkSkeletonTransfor
 void fn_7100005ab0(void* self) { static_cast<UnkSkeletonTransformer_b66a1*>(self)->~UnkSkeletonTransformer_b66a1(); }
 
 // The deleting destructor: the same, then the game's operator delete.
-void fn_7100005b20(void* self) {
+void CAnimationSkeletonTransformer_DestroyAndDelete(void* self) {
     static_cast<UnkSkeletonTransformer_b66a1*>(self)->~UnkSkeletonTransformer_b66a1();
     fn_7100083c00(self);
 }

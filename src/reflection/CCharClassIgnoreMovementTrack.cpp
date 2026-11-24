@@ -22,7 +22,7 @@ void CCharClassIgnoreMovementTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreMovementTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreMovementTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreMovementTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreMovementTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreMovementTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreMovementTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreMovementTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreMovementTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreMovementTrack*>(obj)->~CCharClassIgnoreMovementTrack(); }
 struct CCharClassIgnoreMovementTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreMovementTrack);

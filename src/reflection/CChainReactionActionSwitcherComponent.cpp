@@ -28,7 +28,7 @@ void CChainReactionActionSwitcherComponent::refl_AddFields(CClass* cls) {
 }
 bool CChainReactionActionSwitcherComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CChainReactionActionSwitcherComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CChainReactionActionSwitcherComponent::refl_TypeOf(const void* obj) { return *static_cast<const CChainReactionActionSwitcherComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CChainReactionActionSwitcherComponent::refl_TypeOf(const void* obj) { return *static_cast<const CChainReactionActionSwitcherComponent*>(obj)->refl_GetDynamicClass(); }
 void CChainReactionActionSwitcherComponent::refl_CopyConstruct(void*, const void*) {}
 void CChainReactionActionSwitcherComponent::refl_MoveConstruct(void*, const void*) {}
 void CChainReactionActionSwitcherComponent::refl_Destroy(void* obj) { static_cast<CChainReactionActionSwitcherComponent*>(obj)->~CChainReactionActionSwitcherComponent(); }

@@ -9,6 +9,6 @@ struct UnkCharacterMovementTarget {
     UnkWeakHandle* handle;
 };
 
-void fn_710097a58c(UnkCharacterMovementTarget* self, UnkWeakTarget* target) {
+void CCharacterMovement_SetWeakTarget(UnkCharacterMovementTarget* self, UnkWeakTarget* target) {
     AssignRef(&self->handle, target ? fn_7100d78378(target) : nullptr);
 }

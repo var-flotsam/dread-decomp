@@ -22,7 +22,7 @@ void CCharClassBuriedTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassBuriedTrack::refl_AddFields(CClass*) {}
 bool CCharClassBuriedTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassBuriedTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassBuriedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBuriedTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassBuriedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBuriedTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassBuriedTrack::refl_Destroy(void* obj) { static_cast<CCharClassBuriedTrack*>(obj)->~CCharClassBuriedTrack(); }
 struct CCharClassBuriedTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassBuriedTrack);

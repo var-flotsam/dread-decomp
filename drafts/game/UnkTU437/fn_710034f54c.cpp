@@ -105,7 +105,7 @@ void fn_710034f54c(UnkShotAim_l34f54c* self, s32 aim, UnkVec3f* out) {
 
     static const CStrId s_2mb("2mb", true);
     if (self->has_fixed_direction &&
-        fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(animation),
+        CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(animation),
                       reinterpret_cast<UnkCls_710117af10**>(const_cast<CStrId*>(&s_2mb)), false) &&
         !InFreeShotCell(self)) {
         if (self->has_fixed_direction)

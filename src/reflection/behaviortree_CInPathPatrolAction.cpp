@@ -35,7 +35,7 @@ void behaviortree::CInPathPatrolAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CInPathPatrolAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CInPathPatrolAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CInPathPatrolAction::refl_TypeOf(const void* obj) { return *static_cast<const CInPathPatrolAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CInPathPatrolAction::refl_TypeOf(const void* obj) { return *static_cast<const CInPathPatrolAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CInPathPatrolAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CInPathPatrolAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CInPathPatrolAction::refl_Destroy(void* obj) { static_cast<CInPathPatrolAction*>(obj)->~CInPathPatrolAction(); }

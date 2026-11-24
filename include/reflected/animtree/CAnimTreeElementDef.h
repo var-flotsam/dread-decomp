@@ -26,8 +26,9 @@ public:
     static void* refl_CopyAssign(void* dst, const void* src);
     static void* refl_MoveAssign(void* dst, const void* src);
     struct refl_Description;
-    // The class getter (no known name) and the destructor, as the reflection functions call them.
-    virtual const base::reflection::CClass* vf_0x0() const;
+    // The object's class (the getter's own name is not known) and the destructor, as the reflection
+    // functions call them.
+    virtual const base::reflection::CClass* refl_GetDynamicClass() const;
     virtual ~CAnimTreeElementDef();
     base::global::CStrId sName;  // 0x8
 };

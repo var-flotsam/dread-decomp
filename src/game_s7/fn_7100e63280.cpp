@@ -593,7 +593,7 @@ void InitMinimapDataStatics() {
         const char* sources0[1];
         sources0[0] = ".mmap";
         fn_7100004578(&types[0], "CMinimapData", ".bmmap", sources0, 1);
-        fn_7100004698(g_unk_71727c4670, "minimap", types, 1);
+        CAnimationResource_ConstructResourceTypeFromFormats(g_unk_71727c4670, "minimap", types, 1);
         fn_7100004a44(&types[0]);
     }();
     __cxa_atexit(fn_7100004b94, g_unk_71727c4670, g_unk_7101a19000);

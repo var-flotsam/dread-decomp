@@ -26,7 +26,7 @@ void behaviortree::CSetAnimationForImpact::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CSetAnimationForImpact::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CSetAnimationForImpact::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CSetAnimationForImpact::refl_TypeOf(const void* obj) { return *static_cast<const CSetAnimationForImpact*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CSetAnimationForImpact::refl_TypeOf(const void* obj) { return *static_cast<const CSetAnimationForImpact*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CSetAnimationForImpact::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CSetAnimationForImpact::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CSetAnimationForImpact::refl_Destroy(void* obj) { static_cast<CSetAnimationForImpact*>(obj)->~CSetAnimationForImpact(); }

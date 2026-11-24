@@ -33,7 +33,7 @@ void fn_71005474f4(UnkEmmySearchAI_b59a3* self, bool force) {
         return;
     if (fn_7100979ef0(self->owner->field_0x218))
         goto first;
-    if (fn_710117af10(reinterpret_cast<UnkStruct_710117af10*>(self->owner->field_0x220), &g_unk_71726df420, false))
+    if (CAnimationComponent_IsPlayingActionNameContaining(reinterpret_cast<UnkStruct_710117af10*>(self->owner->field_0x220), &g_unk_71726df420, false))
         goto second;
     goto third;
     base::reflection::UnkReflTypeIdArg mode1;
@@ -46,20 +46,20 @@ first:
     target = self->owner->field_0x220;
     mode1.id = 0;
     mask1.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0xf79899dcc9c61893, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0xf79899dcc9c61893, 0xf4061ff25a2163d6, &mode1, &g_unk_710164b958, &g_unk_7172769740,
                   &mask1);
     return;
 second:
     target = self->owner->field_0x220;
     mode2.id = 0;
     mask2.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0x390c7a63da50b2ac, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0x390c7a63da50b2ac, 0xf4061ff25a2163d6, &mode2, &g_unk_710164b958, &g_unk_7172769740,
                   &mask2);
     return;
 third:
     target = self->owner->field_0x220;
     mode3.id = 0;
     mask3.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0x64e3f7fcfd88e5c0, 0xf4061ff25a2163d6, &mode3, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0x64e3f7fcfd88e5c0, 0xf4061ff25a2163d6, &mode3, &g_unk_710164b958, &g_unk_7172769740,
                   &mask3);
 }

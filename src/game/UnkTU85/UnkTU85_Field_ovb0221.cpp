@@ -40,7 +40,7 @@ bool fn_71000e6db0(UnkVersionEntry* self) {
     u32 ok = (u64)self;
     if (self) {
         ok = 0;
-        UnkReflValue v = fn_710009ddd4(self, base::reflection::attr::IsLink());
+        UnkReflValue v = CType_GetAttributeValue(self, base::reflection::attr::IsLink());
         const CType* type = reinterpret_cast<const CType*>(v.type);
         if (type && fn_710009d50c(type, fn_710000d228()))
             ok = *base::reflection::refl_ArgValue<u8>(&v);
@@ -137,7 +137,7 @@ UnkReflValue fn_71000e77dc(UnkReflField_ovb0221* field, const UnkReflTypedPtr* o
     UnkTypedRef ref;
     fn_71000a16e0(&ref, type, static_cast<char*>(obj->ptr) + field->offset);
     UnkTypedRef dst = {reinterpret_cast<const CType*>(r.type), ValueData85(&r)};
-    fn_710009d960(reinterpret_cast<const CType*>(type), &ref, &dst);
+    CType_AssignOrConvertValue(reinterpret_cast<const CType*>(type), &ref, &dst);
     return r;
 }
 
@@ -153,16 +153,16 @@ static inline __attribute__((always_inline)) void InitWord85(UnkTypedWord85* slo
     slot->type = nullptr;
     const CType* t = fn_7100010e58();
     if (slot->type) {
-        slot->type->m_fn_0x40(slot);
+        slot->type->m_destroy(slot);
         slot->type = nullptr;
     }
     slot->type = t;
-    if (t->m_fn_0x38)
-        t->m_fn_0x38(slot, &index);
+    if (t->m_moveConstruct)
+        t->m_moveConstruct(slot, &index);
 }
 
 struct UnkAttrContainer85 {
-    base::reflection::UnkReflArray array;
+    base::reflection::UntypedSmallDictionary array;
     void* owner;
     u32 flag;
     UnkAttrContainer85(void* o) : array(10, 0x3e), owner(o), flag(1) {}

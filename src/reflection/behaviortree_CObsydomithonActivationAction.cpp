@@ -14,7 +14,7 @@ void behaviortree::CObsydomithonActivationAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CObsydomithonActivationAction::refl_AddFields(CClass*) {}
 bool behaviortree::CObsydomithonActivationAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CObsydomithonActivationAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CObsydomithonActivationAction::refl_TypeOf(const void* obj) { return *static_cast<const CObsydomithonActivationAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CObsydomithonActivationAction::refl_TypeOf(const void* obj) { return *static_cast<const CObsydomithonActivationAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CObsydomithonActivationAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CObsydomithonActivationAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CObsydomithonActivationAction::refl_Destroy(void* obj) { static_cast<CObsydomithonActivationAction*>(obj)->~CObsydomithonActivationAction(); }

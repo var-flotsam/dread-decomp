@@ -38,7 +38,7 @@ void fn_71006a4d74(UnkShockAttack_l6a4d74* self, const CStrId* id, bool plain) {
         plain_hash = id->data->Key();
         plain_mode.id = 2;
         plain_mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(plain_target, plain_hash, 0xf4061ff25a2163d6ull, &plain_mode, &g_unk_710164b958,
+        CAnimationComponent_SendActionToTrack(plain_target, plain_hash, 0xf4061ff25a2163d6ull, &plain_mode, &g_unk_710164b958,
                       &g_unk_7172769740, &plain_mask);
         break;
     default: {
@@ -55,7 +55,7 @@ void fn_71006a4d74(UnkShockAttack_l6a4d74* self, const CStrId* id, bool plain) {
         u64 hash = key;
         mode.id = 2;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, hash, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6ull, &mode, &g_unk_710164b958, &g_unk_7172769740,
                       &mask);
         break;
     }

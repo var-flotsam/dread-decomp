@@ -74,14 +74,14 @@ void fn_7100406880(UnkCentralUnitAI3_ovb0125* self, void* unused, s32 kind) {
             mode.id = 2;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
-            fn_7101176690(target, 0xbdd72151748e5a82, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968,
+            CAnimationComponent_SendActionToTrack(target, 0xbdd72151748e5a82, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968,
                           &g_unk_7172769740, &mask);
             void* target2 = self->owner->field_0x220;
             base::reflection::UnkReflTypeIdArg mode2;
             mode2.id = 2;
             base::reflection::UnkReflTypeIdArg mask2;
             mask2.id = UnkAll_SpitSend().value;
-            fn_7101176690(target2, 0xbdd72151748e5a82, 0xcf7107181622cb23, &mode2,
+            CAnimationComponent_SendActionToTrack(target2, 0xbdd72151748e5a82, 0xcf7107181622cb23, &mode2,
                           &g_unk_710164b968, &g_unk_7172769740, &mask2);
         }
         fn_7100406ab0(self);

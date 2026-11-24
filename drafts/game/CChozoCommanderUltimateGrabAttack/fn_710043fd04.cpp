@@ -79,11 +79,11 @@ bool fn_710043fd04(UnkUltimateGrab_ovb0130* self, s32 kind, f32 value) {
     mode.id = 10;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    if (!fn_7101176690(owner_target, owner_hash, track, &mode, &g_unk_710164b968, &param, &mask))
+    if (!CAnimationComponent_SendActionToTrack(owner_target, owner_hash, track, &mode, &g_unk_710164b968, &param, &mask))
         return false;
     base::reflection::UnkReflTypeIdArg mode2;
     mode2.id = 10;
     base::reflection::UnkReflTypeIdArg mask2;
     mask2.id = UnkAll_SpitSend().value;
-    return fn_7101176690(player_target, player_hash, track, &mode2, &g_unk_710164b968, &param, &mask2);
+    return CAnimationComponent_SendActionToTrack(player_target, player_hash, track, &mode2, &g_unk_710164b968, &param, &mask2);
 }

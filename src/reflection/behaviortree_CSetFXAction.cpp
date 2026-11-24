@@ -25,7 +25,7 @@ void behaviortree::CSetFXAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CSetFXAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CSetFXAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CSetFXAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetFXAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CSetFXAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetFXAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CSetFXAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CSetFXAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CSetFXAction::refl_Destroy(void* obj) { static_cast<CSetFXAction*>(obj)->~CSetFXAction(); }

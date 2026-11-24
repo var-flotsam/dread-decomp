@@ -26,7 +26,7 @@ void CCharClassDeleteEntityEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassDeleteEntityEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassDeleteEntityEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassDeleteEntityEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDeleteEntityEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassDeleteEntityEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDeleteEntityEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassDeleteEntityEvent::refl_Destroy(void* obj) { static_cast<CCharClassDeleteEntityEvent*>(obj)->~CCharClassDeleteEntityEvent(); }
 struct CCharClassDeleteEntityEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassDeleteEntityEvent);

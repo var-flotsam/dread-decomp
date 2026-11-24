@@ -68,7 +68,7 @@ bool fn_71005b3e60(UnkBraidAttack_b57a3* self, UnkBraidEvent_b57a3* event) {
     mode.id = 1;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(target, 0x4e12b70d37e92f0b, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
+    CAnimationComponent_SendActionToTrack(target, 0x4e12b70d37e92f0b, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
                   &mask);
     return true;
 }

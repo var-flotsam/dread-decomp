@@ -85,7 +85,7 @@ void fn_7100866580(UnkCollisionContainer* self) {
 
 void fn_71008614c0(UnkCollisionContainer* self) {
     fn_7100860c64(self);
-    fn_71008615b4(self);
+    CCollisionComponent_SyncAnimationColliderTracks(self);
     if (Flag(self, 0xc8))
         RefreshRecords(self, 1);
     ResetObjects(self);
@@ -93,7 +93,7 @@ void fn_71008614c0(UnkCollisionContainer* self) {
 
 void fn_71008617d0(UnkCollisionContainer* self) {
     fn_71008618cc(self);
-    fn_71008615b4(self);
+    CCollisionComponent_SyncAnimationColliderTracks(self);
     if (Flag(self, 0xc8) && Flag(self, 0xc9))
         RefreshRecords(self, 0);
     ResetObjects(self);
@@ -136,7 +136,7 @@ struct UnkTrackOwner_ovb0107 {
     void* field_0x1f0;  // 0x1f0
 };
 
-void fn_71008615b4(UnkCollisionContainer* container) {
+void CCollisionComponent_SyncAnimationColliderTracks(UnkCollisionContainer* container) {
     auto* self = reinterpret_cast<UnkCollisionComponent_ovb0107*>(container);
     UnkActor* owner = self->owner;
     auto* animation = static_cast<UnkAnimationComponent*>(owner->field_0x220);
@@ -188,7 +188,7 @@ void fn_71008615b4(UnkCollisionContainer* container) {
 
 // Constructing the record array with a growth step, allocation flags and an initial capacity.
 
-void fn_710086023c(char* self, u32 capacity, u32 step, u32 flags) {
+void CCollisionComponent_InitRecordVector(char* self, u32 capacity, u32 step, u32 flags) {
     auto* records = reinterpret_cast<base::global::CRntVector<UnkCollisionRecord>*>(self);
     records->data = nullptr;
     records->count = 0;
@@ -294,7 +294,7 @@ void fn_71008635a4(UnkCollisionContainer* self, const CStrId* id, const u32* ext
     }
 }
 
-UnkCollisionObject* fn_7100863814(UnkCollisionContainer* self, const CStrId* id, const u32* extra) {
+UnkCollisionObject* CCollisionComponent_AddFlagsToFirstObjectWithId(UnkCollisionContainer* self, const CStrId* id, const u32* extra) {
     for (u32 i = 0; i < self->records.count; ++i) {
         if (fn_71007253b8(&self->records, i).field_0x0.data == id->data) {
             AddFlags(self, i, extra);

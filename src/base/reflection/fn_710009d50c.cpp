@@ -25,7 +25,7 @@ bool fn_710009d52c(const base::reflection::CType* type, const base::reflection::
     u64 key = current->sName.data->Key();
     // The type is not checked for null again (the original reads a null type's array).
     do {
-        auto* links = reinterpret_cast<UnkTypeLinks*>(const_cast<base::reflection::UnkReflArray*>(&type->m_array_0xb8));
+        auto* links = reinterpret_cast<UnkTypeLinks*>(const_cast<base::reflection::UntypedSmallDictionary*>(&type->m_conversions));
         void** slot = links->Find(key);
         if (slot != links->End())
             return *slot != nullptr;

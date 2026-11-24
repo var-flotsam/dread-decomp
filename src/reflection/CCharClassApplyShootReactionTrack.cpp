@@ -22,7 +22,7 @@ void CCharClassApplyShootReactionTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassApplyShootReactionTrack::refl_AddFields(CClass*) {}
 bool CCharClassApplyShootReactionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassApplyShootReactionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassApplyShootReactionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassApplyShootReactionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassApplyShootReactionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassApplyShootReactionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassApplyShootReactionTrack::refl_Destroy(void* obj) { static_cast<CCharClassApplyShootReactionTrack*>(obj)->~CCharClassApplyShootReactionTrack(); }
 struct CCharClassApplyShootReactionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassApplyShootReactionTrack);

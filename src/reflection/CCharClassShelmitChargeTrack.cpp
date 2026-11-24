@@ -22,7 +22,7 @@ void CCharClassShelmitChargeTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassShelmitChargeTrack::refl_AddFields(CClass*) {}
 bool CCharClassShelmitChargeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassShelmitChargeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassShelmitChargeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassShelmitChargeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassShelmitChargeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassShelmitChargeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassShelmitChargeTrack::refl_Destroy(void* obj) { static_cast<CCharClassShelmitChargeTrack*>(obj)->~CCharClassShelmitChargeTrack(); }
 struct CCharClassShelmitChargeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassShelmitChargeTrack);

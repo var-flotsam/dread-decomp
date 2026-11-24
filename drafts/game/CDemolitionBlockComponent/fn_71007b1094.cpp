@@ -73,7 +73,7 @@ void fn_71007b1094(UnkDemolitionBlock* self, f32 value) {
         mode.id = 0;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = MoveMask();
-        fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
+        CAnimationComponent_SendActionToTrack(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
         UnkDemolitionLink* link = &self->link;
         link->context = self;
         link->callback = fn_71007b1a24;

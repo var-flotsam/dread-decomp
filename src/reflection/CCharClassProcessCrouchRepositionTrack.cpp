@@ -22,7 +22,7 @@ void CCharClassProcessCrouchRepositionTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassProcessCrouchRepositionTrack::refl_AddFields(CClass*) {}
 bool CCharClassProcessCrouchRepositionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassProcessCrouchRepositionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassProcessCrouchRepositionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassProcessCrouchRepositionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassProcessCrouchRepositionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassProcessCrouchRepositionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassProcessCrouchRepositionTrack::refl_Destroy(void* obj) { static_cast<CCharClassProcessCrouchRepositionTrack*>(obj)->~CCharClassProcessCrouchRepositionTrack(); }
 struct CCharClassProcessCrouchRepositionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassProcessCrouchRepositionTrack);

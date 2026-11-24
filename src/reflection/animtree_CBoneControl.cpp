@@ -14,7 +14,7 @@ void animtree::CBoneControl::refl_AddAttributes(CClass*) {}
 void animtree::CBoneControl::refl_AddFields(CClass*) {}
 bool animtree::CBoneControl::refl_Equals(const void*, const void*) { return false; }
 s32 animtree::CBoneControl::refl_Hash() { return -1; }
-const base::reflection::CType& animtree::CBoneControl::refl_TypeOf(const void* obj) { return *static_cast<const CBoneControl*>(obj)->vf_0x0(); }
+const base::reflection::CType& animtree::CBoneControl::refl_TypeOf(const void* obj) { return *static_cast<const CBoneControl*>(obj)->refl_GetDynamicClass(); }
 void* animtree::CBoneControl::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* animtree::CBoneControl::refl_MoveAssign(void*, const void*) { return nullptr; }
 struct animtree::CBoneControl::refl_Description : ClassDescription {

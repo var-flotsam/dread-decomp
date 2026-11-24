@@ -129,7 +129,7 @@ void fn_710098f63c(UnkAimState_l98f63c* self, bool skip) {
 
     UnkAimMode_l98f63c* mode = self->owner->field_0x2b0->mode;
     if (mode && (mode->state & ~1u) == 2)
-        fn_7101176ea8(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
+        CAnimationComponent_SendActionRequestRecordToTrack(reinterpret_cast<UnkStruct_7101176ea8*>(self->owner->animation),
                       reinterpret_cast<const UnkRequest_7101176ea8*>(transition), 0xf4061ff25a2163d6);
     else
         fn_710098ae04(reinterpret_cast<UnkAirTarget_B71a6*>(self->target),

@@ -22,7 +22,7 @@ void CCharClassDoubleJumpEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassDoubleJumpEvent::refl_AddFields(CClass*) {}
 bool CCharClassDoubleJumpEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassDoubleJumpEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassDoubleJumpEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDoubleJumpEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassDoubleJumpEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDoubleJumpEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassDoubleJumpEvent::refl_Destroy(void* obj) { static_cast<CCharClassDoubleJumpEvent*>(obj)->~CCharClassDoubleJumpEvent(); }
 struct CCharClassDoubleJumpEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassDoubleJumpEvent);

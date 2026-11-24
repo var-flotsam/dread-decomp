@@ -22,7 +22,7 @@ void CCharClassKraidIgnoreHeadDamageTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassKraidIgnoreHeadDamageTrack::refl_AddFields(CClass*) {}
 bool CCharClassKraidIgnoreHeadDamageTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassKraidIgnoreHeadDamageTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassKraidIgnoreHeadDamageTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidIgnoreHeadDamageTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassKraidIgnoreHeadDamageTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidIgnoreHeadDamageTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassKraidIgnoreHeadDamageTrack::refl_Destroy(void* obj) { static_cast<CCharClassKraidIgnoreHeadDamageTrack*>(obj)->~CCharClassKraidIgnoreHeadDamageTrack(); }
 struct CCharClassKraidIgnoreHeadDamageTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassKraidIgnoreHeadDamageTrack);

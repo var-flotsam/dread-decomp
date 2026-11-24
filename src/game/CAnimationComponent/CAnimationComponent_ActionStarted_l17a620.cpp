@@ -106,7 +106,7 @@ void fn_710117a620(UnkAnimComponent_l17a620* self, UnkPairOwner* source, UnkActi
             if (!listener || !listener->callback || !listener->callback(listener->context, &event))
                 fn_710117eb1c(&self->listeners, listener);
         }
-        fn_710117ecb0(&walk);
+        CAnimationComponent_EndListenersWalk(&walk);
     }
 
     UnkTrackAction* playing = fn_710070d500(started->track);

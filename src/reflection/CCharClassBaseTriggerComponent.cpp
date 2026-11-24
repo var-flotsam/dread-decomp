@@ -22,7 +22,7 @@ void CCharClassBaseTriggerComponent::refl_AddAttributes(CClass*) {}
 void CCharClassBaseTriggerComponent::refl_AddFields(CClass*) {}
 bool CCharClassBaseTriggerComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassBaseTriggerComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassBaseTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBaseTriggerComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassBaseTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBaseTriggerComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassBaseTriggerComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassBaseTriggerComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassBaseTriggerComponent::refl_Destroy(void* obj) { static_cast<CCharClassBaseTriggerComponent*>(obj)->~CCharClassBaseTriggerComponent(); }
@@ -63,7 +63,7 @@ void CBaseTriggerComponent::refl_AddFields(CClass* cls) {
 }
 bool CBaseTriggerComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CBaseTriggerComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CBaseTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBaseTriggerComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CBaseTriggerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBaseTriggerComponent*>(obj)->refl_GetDynamicClass(); }
 void* CBaseTriggerComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* CBaseTriggerComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
 struct CBaseTriggerComponent::refl_Description : ClassDescription {

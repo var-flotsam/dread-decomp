@@ -137,7 +137,7 @@ struct UnkEmmyRelaxAI_b59;
 struct UnkEnumType;
 namespace CEmmyAIComponent { enum class ETargetPerceptionType : u32; }
 template <> UnkEnumType base::reflection::TypeObject<CEmmyAIComponent::ETargetPerceptionType, UnkEnumType>::object asm("g_unk_71726dfca0");
-s32 fn_710009976c(const base::reflection::CEnumType* self, const base::global::CStrId* name);
+s32 CEnumType_GetValueByNameIdOrMinusOne(const base::reflection::CEnumType* self, const base::global::CStrId* name);
 
 struct UnkEmmyPerceptionComponent_A3_b65 {
     u8 unk_0x0[0x30];
@@ -155,7 +155,7 @@ UnkResult_0x18_A3_b65 fn_7100565b44(void* unused, UnkEmmyPerceptionOwner_A3_b65*
     UnkEmmyPerceptionComponent_A3_b65* target = owner->target;
     base::global::CStrId* name = PickArgOrNull_A3_b65<base::global::CStrId>(&args[0]);
     void* arg = PickArgOrNull_A3_b65<void>(&args[1]);
-    s32 type = fn_710009976c(reinterpret_cast<base::reflection::CEnumType*>(&base::reflection::TypeObject<CEmmyAIComponent::ETargetPerceptionType, UnkEnumType>::object), name);
+    s32 type = CEnumType_GetValueByNameIdOrMinusOne(reinterpret_cast<base::reflection::CEnumType*>(&base::reflection::TypeObject<CEmmyAIComponent::ETargetPerceptionType, UnkEnumType>::object), name);
     fn_7100546a30(reinterpret_cast<UnkEmmyRelaxAI_b59*>(target), type, fn_7100d7c990(target->owner), arg);
     UnkResult_0x18_A3_b65 result = {};
     result.kind_and_flag = 0x100000002;

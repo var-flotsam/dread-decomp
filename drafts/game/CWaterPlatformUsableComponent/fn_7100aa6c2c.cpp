@@ -94,7 +94,7 @@ void fn_7100aa6c2c(UnkWaterPlatform_laa6c2c* self, CBlackboard* blackboard) {
         u32 mode = 2;
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
-        fn_7101176690(target, 0x9923746b468b51e5, 0x94b6e812cbf3fb75, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode), &g_unk_710164b968, &g_unk_7172769740,
+        CAnimationComponent_SendActionToTrack(target, 0x9923746b468b51e5, 0x94b6e812cbf3fb75, reinterpret_cast<base::reflection::UnkReflTypeIdArg*>(&mode), &g_unk_710164b968, &g_unk_7172769740,
                       &mask);
         StartCurve(self, 0.5f);
         fn_7100aa6a2c(1.0f, self);

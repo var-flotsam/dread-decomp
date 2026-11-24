@@ -14,7 +14,7 @@ void CDredhedAttackComponent::refl_AddAttributes(CClass*) {}
 void CDredhedAttackComponent::refl_AddFields(CClass*) {}
 bool CDredhedAttackComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CDredhedAttackComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CDredhedAttackComponent::refl_TypeOf(const void* obj) { return *static_cast<const CDredhedAttackComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CDredhedAttackComponent::refl_TypeOf(const void* obj) { return *static_cast<const CDredhedAttackComponent*>(obj)->refl_GetDynamicClass(); }
 void CDredhedAttackComponent::refl_Destroy(void* obj) { static_cast<CDredhedAttackComponent*>(obj)->~CDredhedAttackComponent(); }
 struct CDredhedAttackComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CDredhedAttackComponent);

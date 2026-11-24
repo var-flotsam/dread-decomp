@@ -26,7 +26,7 @@ void CCharClassCooldownXBossPhase2ActionTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassCooldownXBossPhase2ActionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCooldownXBossPhase2ActionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCooldownXBossPhase2ActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCooldownXBossPhase2ActionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCooldownXBossPhase2ActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCooldownXBossPhase2ActionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCooldownXBossPhase2ActionTrack::refl_Destroy(void* obj) { static_cast<CCharClassCooldownXBossPhase2ActionTrack*>(obj)->~CCharClassCooldownXBossPhase2ActionTrack(); }
 struct CCharClassCooldownXBossPhase2ActionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCooldownXBossPhase2ActionTrack);

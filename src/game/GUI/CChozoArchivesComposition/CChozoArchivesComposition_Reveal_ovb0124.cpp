@@ -105,7 +105,7 @@ static inline void SetBool_ovb0124(CBlackboard* blackboard, const CStrId& sectio
     }
 }
 
-void fn_7100af79a0(void* self, UnkArchivesEntryItem_ovb0124* item) {
+void CChozoArchivesComposition_RevealSecretMemoryOnce(void* self, UnkArchivesEntryItem_ovb0124* item) {
     UnkGameManager* gm = g_unk_7101d47310;
     CBlackboard* profile = &gm->field_0x820;
     bool visited = false;

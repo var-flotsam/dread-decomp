@@ -14,7 +14,7 @@ void CDemolitionBlockSonarTargetComponent::refl_AddAttributes(CClass*) {}
 void CDemolitionBlockSonarTargetComponent::refl_AddFields(CClass*) {}
 bool CDemolitionBlockSonarTargetComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CDemolitionBlockSonarTargetComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CDemolitionBlockSonarTargetComponent::refl_TypeOf(const void* obj) { return *static_cast<const CDemolitionBlockSonarTargetComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CDemolitionBlockSonarTargetComponent::refl_TypeOf(const void* obj) { return *static_cast<const CDemolitionBlockSonarTargetComponent*>(obj)->refl_GetDynamicClass(); }
 void CDemolitionBlockSonarTargetComponent::refl_CopyConstruct(void*, const void*) {}
 void CDemolitionBlockSonarTargetComponent::refl_MoveConstruct(void*, const void*) {}
 void CDemolitionBlockSonarTargetComponent::refl_Destroy(void* obj) { static_cast<CDemolitionBlockSonarTargetComponent*>(obj)->~CDemolitionBlockSonarTargetComponent(); }

@@ -62,7 +62,7 @@ inline void Append(UnkResPathVec* v, const CFilePathStrId& id) {
     if ((s32)n >= (s32)c)
         for (;;) {
         }
-    fn_7100018450(v, c);
+    CAsset_ReserveFilePathIdVec(v, c);
     new (&v->data[v->count]) CFilePathStrId(id);
     ++v->count;
 }

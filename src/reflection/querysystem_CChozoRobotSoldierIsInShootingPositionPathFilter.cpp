@@ -14,7 +14,7 @@ void querysystem::CChozoRobotSoldierIsInShootingPositionPathFilter::refl_AddAttr
 void querysystem::CChozoRobotSoldierIsInShootingPositionPathFilter::refl_AddFields(CClass*) {}
 bool querysystem::CChozoRobotSoldierIsInShootingPositionPathFilter::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 querysystem::CChozoRobotSoldierIsInShootingPositionPathFilter::refl_Hash() { return -1; }
-const base::reflection::CType& querysystem::CChozoRobotSoldierIsInShootingPositionPathFilter::refl_TypeOf(const void* obj) { return *static_cast<const CChozoRobotSoldierIsInShootingPositionPathFilter*>(obj)->vf_0x0(); }
+const base::reflection::CType& querysystem::CChozoRobotSoldierIsInShootingPositionPathFilter::refl_TypeOf(const void* obj) { return *static_cast<const CChozoRobotSoldierIsInShootingPositionPathFilter*>(obj)->refl_GetDynamicClass(); }
 void querysystem::CChozoRobotSoldierIsInShootingPositionPathFilter::refl_Destroy(void* obj) { static_cast<CChozoRobotSoldierIsInShootingPositionPathFilter*>(obj)->~CChozoRobotSoldierIsInShootingPositionPathFilter(); }
 struct querysystem::CChozoRobotSoldierIsInShootingPositionPathFilter::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CChozoRobotSoldierIsInShootingPositionPathFilter);

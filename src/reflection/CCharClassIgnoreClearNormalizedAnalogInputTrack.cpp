@@ -22,7 +22,7 @@ void CCharClassIgnoreClearNormalizedAnalogInputTrack::refl_AddAttributes(CClass*
 void CCharClassIgnoreClearNormalizedAnalogInputTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreClearNormalizedAnalogInputTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreClearNormalizedAnalogInputTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreClearNormalizedAnalogInputTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreClearNormalizedAnalogInputTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreClearNormalizedAnalogInputTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreClearNormalizedAnalogInputTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreClearNormalizedAnalogInputTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreClearNormalizedAnalogInputTrack*>(obj)->~CCharClassIgnoreClearNormalizedAnalogInputTrack(); }
 struct CCharClassIgnoreClearNormalizedAnalogInputTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreClearNormalizedAnalogInputTrack);

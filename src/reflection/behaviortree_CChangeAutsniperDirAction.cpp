@@ -14,7 +14,7 @@ void behaviortree::CChangeAutsniperDirAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CChangeAutsniperDirAction::refl_AddFields(CClass*) {}
 bool behaviortree::CChangeAutsniperDirAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CChangeAutsniperDirAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CChangeAutsniperDirAction::refl_TypeOf(const void* obj) { return *static_cast<const CChangeAutsniperDirAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CChangeAutsniperDirAction::refl_TypeOf(const void* obj) { return *static_cast<const CChangeAutsniperDirAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CChangeAutsniperDirAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CChangeAutsniperDirAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CChangeAutsniperDirAction::refl_Destroy(void* obj) { static_cast<CChangeAutsniperDirAction*>(obj)->~CChangeAutsniperDirAction(); }

@@ -22,7 +22,7 @@ void CCharClassEmmyTunnelTransitionTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassEmmyTunnelTransitionTrack::refl_AddFields(CClass*) {}
 bool CCharClassEmmyTunnelTransitionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEmmyTunnelTransitionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmyTunnelTransitionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyTunnelTransitionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmyTunnelTransitionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyTunnelTransitionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmyTunnelTransitionTrack::refl_Destroy(void* obj) { static_cast<CCharClassEmmyTunnelTransitionTrack*>(obj)->~CCharClassEmmyTunnelTransitionTrack(); }
 struct CCharClassEmmyTunnelTransitionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEmmyTunnelTransitionTrack);

@@ -58,7 +58,7 @@ struct UnkCamera_df5e50;
 struct UnkOwner_71010e2278;
 struct UnkArg1_71010e2278;
 struct UnkArg2_71010e2278;
-void fn_71010e2278(UnkOwner_71010e2278* self, UnkArg1_71010e2278* a1, UnkArg2_71010e2278* a2,
+void CCameraComponent_CreateSceneObjectAndControllers(UnkOwner_71010e2278* self, UnkArg1_71010e2278* a1, UnkArg2_71010e2278* a2,
                    f32 x, f32 y, f32 z);
 void fn_71010e530c(UnkCamera_df5e50* self, UnkVec3_df5e50* position);
 void fn_71010e5344(UnkCamera_df5e50* self, UnkVec3_df5e50* direction);
@@ -138,7 +138,7 @@ void fn_7100df5e50(UnkGameManager* manager, const char* name) {
     {
         UnkVec3_df5e50 position = {0.0f, 0.0f, 15000.0f};
         UnkVec3_df5e50 direction = {0.0f, 0.0f, -1.0f};
-        fn_71010e2278(reinterpret_cast<UnkOwner_71010e2278*>(camera), reinterpret_cast<UnkArg1_71010e2278*>(&position),
+        CCameraComponent_CreateSceneObjectAndControllers(reinterpret_cast<UnkOwner_71010e2278*>(camera), reinterpret_cast<UnkArg1_71010e2278*>(&position),
                       reinterpret_cast<UnkArg2_71010e2278*>(&direction), 45.0f, 100.0f, 100000.0f);
     }
     UnkPlayerHandle_df5e50* handle = self->field_0x29b8;

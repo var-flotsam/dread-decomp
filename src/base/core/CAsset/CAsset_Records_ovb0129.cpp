@@ -25,7 +25,7 @@ using base::global::CFilePathStrId;
 __attribute__((always_inline)) inline UnkResPathVec::UnkResPathVec(const UnkResPathVec& other)
     : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14),
       flags(other.flags), allocator(other.allocator) {
-    fn_7100018450(this, other.capacity);
+    CAsset_ReserveFilePathIdVec(this, other.capacity);
     for (const CFilePathStrId* p = other.data, *end = other.data + other.count; p != end; ++p) {
         u32 n = count;
         u32 new_capacity = capacity;
@@ -34,7 +34,7 @@ __attribute__((always_inline)) inline UnkResPathVec::UnkResPathVec(const UnkResP
         if ((s32)n >= (s32)new_capacity)
             for (;;) {
             }
-        fn_7100018450(this, new_capacity);
+        CAsset_ReserveFilePathIdVec(this, new_capacity);
         // Copied bitwise, then the reference taken: count is reloaded after the store.
         CFilePathStrId* slot = &data[count];
         base::global::UnkStringData* value = p->data;
@@ -48,7 +48,7 @@ __attribute__((always_inline)) inline UnkResPathVec::UnkResPathVec(const UnkResP
 // The maps of file path ids to id and path pairs (src/base/core/CAsset/UnkIdRecordMapCopy_b45.cpp copies
 // them with fn_710001810c).
 struct UnkPathIdPairMap_b45a1;
-void fn_710001810c(UnkPathIdPairMap_b45a1* self, const UnkPathIdPairMap_b45a1* other);
+void CAsset_CopyConstructPathIdPairMap(UnkPathIdPairMap_b45a1* self, const UnkPathIdPairMap_b45a1* other);
 
 // A 0x80-byte record: two maps, a list of file path ids and a file path id.
 struct UnkRecord80 {
@@ -60,10 +60,10 @@ struct UnkRecord80 {
 static_assert(sizeof(UnkRecord80) == 0x80, "UnkRecord80 layout");
 
 // The record's copy constructor. Declared elsewhere as returning the record; the original returns nothing.
-void fn_7100017ba0(UnkRecord80* self, const UnkRecord80* other) {
-    fn_710001810c(reinterpret_cast<UnkPathIdPairMap_b45a1*>(self->map0),
+void CAsset_CopyConstructRecord(UnkRecord80* self, const UnkRecord80* other) {
+    CAsset_CopyConstructPathIdPairMap(reinterpret_cast<UnkPathIdPairMap_b45a1*>(self->map0),
                   reinterpret_cast<const UnkPathIdPairMap_b45a1*>(other->map0));
-    fn_710001810c(reinterpret_cast<UnkPathIdPairMap_b45a1*>(self->map1),
+    CAsset_CopyConstructPathIdPairMap(reinterpret_cast<UnkPathIdPairMap_b45a1*>(self->map1),
                   reinterpret_cast<const UnkPathIdPairMap_b45a1*>(other->map1));
     new (&self->paths) UnkResPathVec(other->paths);
     new (&self->path) CFilePathStrId(other->path);

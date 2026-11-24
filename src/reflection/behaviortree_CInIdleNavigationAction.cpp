@@ -14,7 +14,7 @@ void behaviortree::CInIdleNavigationAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CInIdleNavigationAction::refl_AddFields(CClass*) {}
 bool behaviortree::CInIdleNavigationAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CInIdleNavigationAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CInIdleNavigationAction::refl_TypeOf(const void* obj) { return *static_cast<const CInIdleNavigationAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CInIdleNavigationAction::refl_TypeOf(const void* obj) { return *static_cast<const CInIdleNavigationAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CInIdleNavigationAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CInIdleNavigationAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CInIdleNavigationAction::refl_Destroy(void* obj) { static_cast<CInIdleNavigationAction*>(obj)->~CInIdleNavigationAction(); }

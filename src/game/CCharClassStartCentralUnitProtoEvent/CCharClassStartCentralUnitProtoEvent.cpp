@@ -29,7 +29,7 @@ struct UnkCentralUnitList {
     u32 count;
 };
 
-void fn_7100be1e0c(void* self, void* const* context) {
+void CCharClassStartCentralUnitProtoEvent_StartAllCentralUnitProtos(void* self, void* const* context) {
     if (!*context)
         return;
     UnkCentralUnitList* list = fn_7100772c98();
