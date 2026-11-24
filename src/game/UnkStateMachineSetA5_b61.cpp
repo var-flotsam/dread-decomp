@@ -190,11 +190,16 @@ struct UnkMsgA5_b61 {
     UnkMsgNode2A5_b61* field_0x10;
 };
 
+struct UnkMsgObjectA5_b61 {
+    u8 pad_0x0[0x30];
+    void* field_0x30;  // 0x30
+};
+
 bool fn_7100888aa8(UnkLauncherSmA5_b61* self, const UnkMsgA5_b61* message) {
     base::reflection::UnkReflObject* obj = message->field_0x10->field_0x10->field_0x10;
     if (!obj || !fn_710009d50c(obj->vf_0x0(), fn_710085fc44()))
         return false;
-    void* owner = *reinterpret_cast<void**>(reinterpret_cast<char*>(obj) + 0x30);
+    void* owner = reinterpret_cast<UnkMsgObjectA5_b61*>(obj)->field_0x30;
     if (owner != (self->field_0x310 ? self->field_0x310->field_0x10 : nullptr))
         return false;
     UnkSmStateA5_b61* current = self->machine.current;

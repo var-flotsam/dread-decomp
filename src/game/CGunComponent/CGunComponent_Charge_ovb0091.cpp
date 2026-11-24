@@ -541,6 +541,12 @@ void fn_710083eb58(UnkGun_ovb0091* self) {
         VCall<void, s32>(weapon, 0xd0, self->mode);
 }
 
+// The Samus animation component (CSamusAnimationComponent), as far as this function writes it.
+struct UnkSamusAnimation_ovb0091 {
+    u8 pad_0x0[0x530];
+    s32 field_0x530;  // 0x530
+};
+
 void fn_710083ed38(UnkGun_ovb0091* self) {
     UnkGunActor_ovb0091* actor = self->actor;
     if (actor->field_0x2b0)
@@ -549,7 +555,7 @@ void fn_710083ed38(UnkGun_ovb0091* self) {
     if (actor) {
         UnkReflObject* animation = actor->animation;
         if (animation && fn_710009d50c(animation->vf_0x0(), fn_7100713bb0()))  // CSamusAnimationComponent
-            *reinterpret_cast<s32*>(reinterpret_cast<char*>(animation) + 0x530) = 3;
+            reinterpret_cast<UnkSamusAnimation_ovb0091*>(animation)->field_0x530 = 3;
     }
     if (!self->charging)
         return;

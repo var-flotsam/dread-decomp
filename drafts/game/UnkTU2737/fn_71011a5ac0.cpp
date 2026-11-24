@@ -89,7 +89,7 @@ void fn_71011a5958(UnkScheduler_b0253* self, UnkTimed_b0253* object) {
 }
 
 // Queues an object: at once as finished when it has no time, else as waiting.
-u32 fn_71011a5ac0(UnkScheduler_b0253* self, f32 time, u32 a, u32 b, void* x, void* y, void* z) {
+u32 fn_71011a5ac0(UnkScheduler_b0253* self, u32 a, u32 b, f32 time, void* x, void* y, void* z) {
     u32 id = self->next_id;
     self->next_id = id + 1;
     UnkTimed_b0253* object = static_cast<UnkTimed_b0253*>(fn_71000839a0(0x50, 5));

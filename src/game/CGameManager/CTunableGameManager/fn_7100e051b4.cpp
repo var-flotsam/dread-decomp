@@ -90,6 +90,31 @@ struct UnkActorDefRequest_le051b4 {
     ~UnkActorDefRequest_le051b4() { vtable = g_unk_7101a20c58 + 0x10; }
 };
 
+// The plain load request, as base/UnkCache.h builds it: its own vtable, then the fields.
+struct UnkLoadRequestBase_le051b4 {
+    char* vtable;      // 0x0
+    u64 field_0x8;     // 0x8
+    u32 field_0x10;    // 0x10
+    void* field_0x18;  // 0x18
+
+    UnkLoadRequestBase_le051b4(u32 a, void* b)
+        : vtable(g_unk_7101a19610 + 0x10), field_0x8(0), field_0x10(a), field_0x18(b) {}
+};
+
+// The derived request's vtable goes in once the base is built.
+struct UnkNamedRequestHead_le051b4 : UnkLoadRequestBase_le051b4 {
+    UnkNamedRequestHead_le051b4() : UnkLoadRequestBase_le051b4(2, nullptr) { vtable = g_unk_7101a20c58 + 0x10; }
+};
+
+// The load request for a named asset.
+struct UnkNamedRequest_le051b4 : UnkNamedRequestHead_le051b4 {
+    CStrId name;       // 0x20
+    void* field_0x28;  // 0x28
+
+    explicit UnkNamedRequest_le051b4(const CStrId& name) : name(name), field_0x28(nullptr) {}
+    ~UnkNamedRequest_le051b4() { vtable = g_unk_7101a20c58 + 0x10; }
+};
+
 UnkSpawnDefRef_b52 fn_7100e051b4(UnkActorDefFactory* factory, const CStrId* name) {
     UnkCharClass_le051b4* object = static_cast<UnkCharClass_le051b4*>(fn_71000839a0(0x168, 5));
     CCharClass_Construct(reinterpret_cast<UnkCharClass_ovb0066*>(object));
@@ -107,7 +132,7 @@ UnkSpawnDefRef_b52 fn_7100e051b4(UnkActorDefFactory* factory, const CStrId* name
         UnkStringPath_le051b4(*CGameManager_BuildRuntimeAssetPath(reinterpret_cast<UnkAssetNameData_ovb0113**>(const_cast<CStrId*>(name)))
                                    .Str())
             .Path());
-    UnkActorDefRequest_le051b4 request(*name);
+    UnkNamedRequest_le051b4 request(*name);
     UnkCountedResource* resource = ref.ptr;
     if (fn_71000171a0(resource, reinterpret_cast<const char*>(&key),
                       reinterpret_cast<base::UnkLoadRequest*>(&request)))

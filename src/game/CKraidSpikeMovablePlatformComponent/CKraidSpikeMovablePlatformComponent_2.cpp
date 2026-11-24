@@ -144,6 +144,11 @@ static inline bool GrabsPlatform(UnkSpikePlayer* player, UnkKraidSpikePlatform* 
     return false;
 }
 
+struct UnkTunable_7100608cd4 {
+    u8 pad_0x0[0x28c];
+    f32 field_0x28c;  // 0x28c
+};
+
 bool fn_7100608cd4(UnkKraidSpikePlatform* self) {
     bool result = true;
     if (fn_7100952694())
@@ -157,7 +162,7 @@ bool fn_7100608cd4(UnkKraidSpikePlatform* self) {
             UnkSpikeDamageRequest request;
             fn_71008c0c74(reinterpret_cast<UnkStruct_71008c0c74*>(&request));
             fn_71008c1538(reinterpret_cast<UnkRequest*>(&request),
-                          *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_7172716160) + 0x28c));
+                          reinterpret_cast<const UnkTunable_7100608cd4*>(&g_unk_7172716160)->field_0x28c);
             request.id = g_unk_71726f4628;
             result = player->field_0x1b8->vf_0x188(&request) == 1;
             fn_71008c1558(reinterpret_cast<UnkBase_71003cc474*>(&request));
