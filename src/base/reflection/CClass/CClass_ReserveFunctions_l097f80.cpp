@@ -40,7 +40,7 @@ struct UnkVectorView {
     }
 };
 
-// A keyed array (UnkReflArray in CClass.h): values and their names, side by side.
+// A keyed array (UntypedSmallDictionary in CClass.h): values and their names, side by side.
 template <class T>
 struct UnkKeyedArray {
     T* data;

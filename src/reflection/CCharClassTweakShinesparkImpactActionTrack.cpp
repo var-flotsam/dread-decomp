@@ -27,7 +27,7 @@ void CCharClassTweakShinesparkImpactActionTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassTweakShinesparkImpactActionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTweakShinesparkImpactActionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTweakShinesparkImpactActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakShinesparkImpactActionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTweakShinesparkImpactActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakShinesparkImpactActionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTweakShinesparkImpactActionTrack::refl_Destroy(void* obj) { static_cast<CCharClassTweakShinesparkImpactActionTrack*>(obj)->~CCharClassTweakShinesparkImpactActionTrack(); }
 struct CCharClassTweakShinesparkImpactActionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTweakShinesparkImpactActionTrack);

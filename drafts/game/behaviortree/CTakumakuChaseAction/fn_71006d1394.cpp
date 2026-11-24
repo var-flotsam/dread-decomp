@@ -190,7 +190,7 @@ struct UnkGotoParams_l6d1394 {
     void SetTarget(const CClass* cls, const void* object) {
         const CType* current = reinterpret_cast<const CType*>(target.type);
         if (current && target.field_0x14 == 0 &&
-            (current == cls ? cls->m_fn_0x48 != nullptr : fn_710009d52c(cls, current))) {
+            (current == cls ? cls->m_copyAssign != nullptr : fn_710009d52c(cls, current))) {
             fn_71000a1cc8(&target, cls, object);
         } else {
             fn_71000a1c60(&target);

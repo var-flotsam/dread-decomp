@@ -22,7 +22,7 @@ void CCharClassAutsharpSPInitMovementEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassAutsharpSPInitMovementEvent::refl_AddFields(CClass*) {}
 bool CCharClassAutsharpSPInitMovementEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAutsharpSPInitMovementEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAutsharpSPInitMovementEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAutsharpSPInitMovementEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAutsharpSPInitMovementEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAutsharpSPInitMovementEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAutsharpSPInitMovementEvent::refl_Destroy(void* obj) { static_cast<CCharClassAutsharpSPInitMovementEvent*>(obj)->~CCharClassAutsharpSPInitMovementEvent(); }
 struct CCharClassAutsharpSPInitMovementEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAutsharpSPInitMovementEvent);

@@ -29,7 +29,7 @@ void CSoundListenerComponent::refl_AddFields(CClass* cls) {
 }
 bool CSoundListenerComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CSoundListenerComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CSoundListenerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSoundListenerComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSoundListenerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSoundListenerComponent*>(obj)->refl_GetDynamicClass(); }
 void CSoundListenerComponent::refl_CopyConstruct(void*, const void*) {}
 void CSoundListenerComponent::refl_MoveConstruct(void*, const void*) {}
 void CSoundListenerComponent::refl_Destroy(void* obj) { static_cast<CSoundListenerComponent*>(obj)->~CSoundListenerComponent(); }

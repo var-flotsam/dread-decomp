@@ -232,10 +232,10 @@ void fn_71002d9b8c();
 void fn_71002d9bdc();
 void fn_71002d6cd8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71002d9b8c);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0x1, fn_71002d9bdc);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -249,9 +249,9 @@ void fn_71002d9e00();
 void fn_71002d9e50();
 void fn_71002d72c8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71002d9e00);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0x101, fn_71002d9e50);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

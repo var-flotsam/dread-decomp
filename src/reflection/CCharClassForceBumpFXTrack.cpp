@@ -32,7 +32,7 @@ void CCharClassForceBumpFXTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassForceBumpFXTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassForceBumpFXTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassForceBumpFXTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceBumpFXTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassForceBumpFXTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceBumpFXTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassForceBumpFXTrack::refl_Destroy(void* obj) { static_cast<CCharClassForceBumpFXTrack*>(obj)->~CCharClassForceBumpFXTrack(); }
 struct CCharClassForceBumpFXTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassForceBumpFXTrack);

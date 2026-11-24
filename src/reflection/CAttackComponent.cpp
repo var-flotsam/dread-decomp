@@ -25,7 +25,7 @@ void CAttackComponent::refl_AddFields(CClass* cls) {
 }
 bool CAttackComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CAttackComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CAttackComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAttackComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CAttackComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAttackComponent*>(obj)->refl_GetDynamicClass(); }
 void CAttackComponent::refl_CopyConstruct(void*, const void*) {}
 void CAttackComponent::refl_MoveConstruct(void*, const void*) {}
 void CAttackComponent::refl_Destroy(void* obj) { static_cast<CAttackComponent*>(obj)->~CAttackComponent(); }

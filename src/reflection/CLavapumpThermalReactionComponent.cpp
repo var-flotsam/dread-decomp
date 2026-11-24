@@ -14,7 +14,7 @@ void CLavapumpThermalReactionComponent::refl_AddAttributes(CClass*) {}
 void CLavapumpThermalReactionComponent::refl_AddFields(CClass*) {}
 bool CLavapumpThermalReactionComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CLavapumpThermalReactionComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CLavapumpThermalReactionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CLavapumpThermalReactionComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CLavapumpThermalReactionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CLavapumpThermalReactionComponent*>(obj)->refl_GetDynamicClass(); }
 void CLavapumpThermalReactionComponent::refl_Destroy(void* obj) { static_cast<CLavapumpThermalReactionComponent*>(obj)->~CLavapumpThermalReactionComponent(); }
 struct CLavapumpThermalReactionComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CLavapumpThermalReactionComponent);

@@ -22,7 +22,7 @@ void CCharClassFanCoolDownComponent::refl_AddAttributes(CClass*) {}
 void CCharClassFanCoolDownComponent::refl_AddFields(CClass*) {}
 bool CCharClassFanCoolDownComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassFanCoolDownComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFanCoolDownComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFanCoolDownComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFanCoolDownComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFanCoolDownComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFanCoolDownComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassFanCoolDownComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassFanCoolDownComponent::refl_Destroy(void* obj) { static_cast<CCharClassFanCoolDownComponent*>(obj)->~CCharClassFanCoolDownComponent(); }
@@ -54,7 +54,7 @@ void CFanCoolDownComponent::refl_AddFields(CClass* cls) {
 }
 bool CFanCoolDownComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CFanCoolDownComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CFanCoolDownComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFanCoolDownComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CFanCoolDownComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFanCoolDownComponent*>(obj)->refl_GetDynamicClass(); }
 void CFanCoolDownComponent::refl_CopyConstruct(void*, const void*) {}
 void CFanCoolDownComponent::refl_MoveConstruct(void*, const void*) {}
 void CFanCoolDownComponent::refl_Destroy(void* obj) { static_cast<CFanCoolDownComponent*>(obj)->~CFanCoolDownComponent(); }

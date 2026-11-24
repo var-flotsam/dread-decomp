@@ -45,7 +45,7 @@ void CCharClassMaterialPropertyTransitionTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassMaterialPropertyTransitionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassMaterialPropertyTransitionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMaterialPropertyTransitionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMaterialPropertyTransitionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMaterialPropertyTransitionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMaterialPropertyTransitionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMaterialPropertyTransitionTrack::refl_Destroy(void* obj) { static_cast<CCharClassMaterialPropertyTransitionTrack*>(obj)->~CCharClassMaterialPropertyTransitionTrack(); }
 struct CCharClassMaterialPropertyTransitionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassMaterialPropertyTransitionTrack);

@@ -22,7 +22,7 @@ void CCharClassInfesterBallResetRotationEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassInfesterBallResetRotationEvent::refl_AddFields(CClass*) {}
 bool CCharClassInfesterBallResetRotationEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassInfesterBallResetRotationEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassInfesterBallResetRotationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassInfesterBallResetRotationEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassInfesterBallResetRotationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassInfesterBallResetRotationEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassInfesterBallResetRotationEvent::refl_Destroy(void* obj) { static_cast<CCharClassInfesterBallResetRotationEvent*>(obj)->~CCharClassInfesterBallResetRotationEvent(); }
 struct CCharClassInfesterBallResetRotationEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassInfesterBallResetRotationEvent);

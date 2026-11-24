@@ -32,7 +32,7 @@ void behaviortree::CXParasiteGoToPointAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CXParasiteGoToPointAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CXParasiteGoToPointAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CXParasiteGoToPointAction::refl_TypeOf(const void* obj) { return *static_cast<const CXParasiteGoToPointAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CXParasiteGoToPointAction::refl_TypeOf(const void* obj) { return *static_cast<const CXParasiteGoToPointAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CXParasiteGoToPointAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CXParasiteGoToPointAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CXParasiteGoToPointAction::refl_Destroy(void* obj) { static_cast<CXParasiteGoToPointAction*>(obj)->~CXParasiteGoToPointAction(); }

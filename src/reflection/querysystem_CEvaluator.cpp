@@ -26,7 +26,7 @@ void querysystem::CEvaluator::refl_AddFields(CClass* cls) {
 }
 bool querysystem::CEvaluator::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 querysystem::CEvaluator::refl_Hash() { return -1; }
-const base::reflection::CType& querysystem::CEvaluator::refl_TypeOf(const void* obj) { return *static_cast<const CEvaluator*>(obj)->vf_0x0(); }
+const base::reflection::CType& querysystem::CEvaluator::refl_TypeOf(const void* obj) { return *static_cast<const CEvaluator*>(obj)->refl_GetDynamicClass(); }
 void querysystem::CEvaluator::refl_Destroy(void* obj) { static_cast<CEvaluator*>(obj)->~CEvaluator(); }
 struct querysystem::CEvaluator::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CEvaluator);

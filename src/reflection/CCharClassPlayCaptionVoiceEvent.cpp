@@ -30,7 +30,7 @@ void CCharClassPlayCaptionVoiceEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassPlayCaptionVoiceEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassPlayCaptionVoiceEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassPlayCaptionVoiceEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPlayCaptionVoiceEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassPlayCaptionVoiceEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPlayCaptionVoiceEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassPlayCaptionVoiceEvent::refl_Destroy(void* obj) { static_cast<CCharClassPlayCaptionVoiceEvent*>(obj)->~CCharClassPlayCaptionVoiceEvent(); }
 struct CCharClassPlayCaptionVoiceEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassPlayCaptionVoiceEvent);

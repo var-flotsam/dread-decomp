@@ -22,7 +22,7 @@ void CCharClassStealthTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassStealthTrack::refl_AddFields(CClass*) {}
 bool CCharClassStealthTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassStealthTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassStealthTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStealthTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassStealthTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStealthTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassStealthTrack::refl_Destroy(void* obj) { static_cast<CCharClassStealthTrack*>(obj)->~CCharClassStealthTrack(); }
 struct CCharClassStealthTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassStealthTrack);

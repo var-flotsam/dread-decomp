@@ -22,7 +22,7 @@ void CCharClassActiveMeleeIgnorePeacefulEnemyTrack::refl_AddAttributes(CClass* c
 void CCharClassActiveMeleeIgnorePeacefulEnemyTrack::refl_AddFields(CClass*) {}
 bool CCharClassActiveMeleeIgnorePeacefulEnemyTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassActiveMeleeIgnorePeacefulEnemyTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassActiveMeleeIgnorePeacefulEnemyTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActiveMeleeIgnorePeacefulEnemyTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassActiveMeleeIgnorePeacefulEnemyTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActiveMeleeIgnorePeacefulEnemyTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassActiveMeleeIgnorePeacefulEnemyTrack::refl_Destroy(void* obj) { static_cast<CCharClassActiveMeleeIgnorePeacefulEnemyTrack*>(obj)->~CCharClassActiveMeleeIgnorePeacefulEnemyTrack(); }
 struct CCharClassActiveMeleeIgnorePeacefulEnemyTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassActiveMeleeIgnorePeacefulEnemyTrack);

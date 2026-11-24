@@ -26,7 +26,7 @@ void CCharClassSetShadowCasterEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassSetShadowCasterEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetShadowCasterEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetShadowCasterEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetShadowCasterEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetShadowCasterEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetShadowCasterEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetShadowCasterEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetShadowCasterEvent*>(obj)->~CCharClassSetShadowCasterEvent(); }
 struct CCharClassSetShadowCasterEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetShadowCasterEvent);

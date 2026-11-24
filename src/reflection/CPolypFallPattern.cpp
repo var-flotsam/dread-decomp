@@ -29,7 +29,7 @@ void CPolypFallPattern::refl_AddFields(CClass* cls) {
 }
 bool CPolypFallPattern::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CPolypFallPattern::refl_Hash() { return -1; }
-const base::reflection::CType& CPolypFallPattern::refl_TypeOf(const void* obj) { return *static_cast<const CPolypFallPattern*>(obj)->vf_0x0(); }
+const base::reflection::CType& CPolypFallPattern::refl_TypeOf(const void* obj) { return *static_cast<const CPolypFallPattern*>(obj)->refl_GetDynamicClass(); }
 void CPolypFallPattern::refl_Destroy(void* obj) { static_cast<CPolypFallPattern*>(obj)->~CPolypFallPattern(); }
 struct CPolypFallPattern::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CPolypFallPattern);

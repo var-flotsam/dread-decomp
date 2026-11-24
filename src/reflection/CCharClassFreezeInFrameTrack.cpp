@@ -22,7 +22,7 @@ void CCharClassFreezeInFrameTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassFreezeInFrameTrack::refl_AddFields(CClass*) {}
 bool CCharClassFreezeInFrameTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFreezeInFrameTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFreezeInFrameTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFreezeInFrameTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFreezeInFrameTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFreezeInFrameTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFreezeInFrameTrack::refl_Destroy(void* obj) { static_cast<CCharClassFreezeInFrameTrack*>(obj)->~CCharClassFreezeInFrameTrack(); }
 struct CCharClassFreezeInFrameTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFreezeInFrameTrack);

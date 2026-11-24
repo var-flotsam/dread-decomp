@@ -22,7 +22,7 @@ void CCharClassMeleeDamageProgressiveArcTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassMeleeDamageProgressiveArcTrack::refl_AddFields(CClass*) {}
 bool CCharClassMeleeDamageProgressiveArcTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassMeleeDamageProgressiveArcTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMeleeDamageProgressiveArcTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMeleeDamageProgressiveArcTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMeleeDamageProgressiveArcTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMeleeDamageProgressiveArcTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMeleeDamageProgressiveArcTrack::refl_Destroy(void* obj) { static_cast<CCharClassMeleeDamageProgressiveArcTrack*>(obj)->~CCharClassMeleeDamageProgressiveArcTrack(); }
 struct CCharClassMeleeDamageProgressiveArcTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassMeleeDamageProgressiveArcTrack);

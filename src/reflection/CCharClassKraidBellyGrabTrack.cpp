@@ -22,7 +22,7 @@ void CCharClassKraidBellyGrabTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassKraidBellyGrabTrack::refl_AddFields(CClass*) {}
 bool CCharClassKraidBellyGrabTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassKraidBellyGrabTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassKraidBellyGrabTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidBellyGrabTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassKraidBellyGrabTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidBellyGrabTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassKraidBellyGrabTrack::refl_Destroy(void* obj) { static_cast<CCharClassKraidBellyGrabTrack*>(obj)->~CCharClassKraidBellyGrabTrack(); }
 struct CCharClassKraidBellyGrabTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassKraidBellyGrabTrack);

@@ -30,7 +30,7 @@ void CCameraFX_OscillationShake::refl_AddFields(CClass* cls) {
 }
 bool CCameraFX_OscillationShake::refl_Equals(const void*, const void*) { return false; }
 s32 CCameraFX_OscillationShake::refl_Hash() { return -1; }
-const base::reflection::CType& CCameraFX_OscillationShake::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX_OscillationShake*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCameraFX_OscillationShake::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX_OscillationShake*>(obj)->refl_GetDynamicClass(); }
 void CCameraFX_OscillationShake::refl_CopyConstruct(void*, const void*) {}
 void CCameraFX_OscillationShake::refl_MoveConstruct(void*, const void*) {}
 void CCameraFX_OscillationShake::refl_Destroy(void* obj) { static_cast<CCameraFX_OscillationShake*>(obj)->~CCameraFX_OscillationShake(); }

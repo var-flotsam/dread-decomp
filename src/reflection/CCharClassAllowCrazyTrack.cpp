@@ -22,7 +22,7 @@ void CCharClassAllowCrazyTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAllowCrazyTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowCrazyTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowCrazyTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowCrazyTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowCrazyTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowCrazyTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowCrazyTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowCrazyTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowCrazyTrack*>(obj)->~CCharClassAllowCrazyTrack(); }
 struct CCharClassAllowCrazyTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowCrazyTrack);

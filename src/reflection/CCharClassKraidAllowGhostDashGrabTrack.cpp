@@ -22,7 +22,7 @@ void CCharClassKraidAllowGhostDashGrabTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassKraidAllowGhostDashGrabTrack::refl_AddFields(CClass*) {}
 bool CCharClassKraidAllowGhostDashGrabTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassKraidAllowGhostDashGrabTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassKraidAllowGhostDashGrabTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidAllowGhostDashGrabTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassKraidAllowGhostDashGrabTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidAllowGhostDashGrabTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassKraidAllowGhostDashGrabTrack::refl_Destroy(void* obj) { static_cast<CCharClassKraidAllowGhostDashGrabTrack*>(obj)->~CCharClassKraidAllowGhostDashGrabTrack(); }
 struct CCharClassKraidAllowGhostDashGrabTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassKraidAllowGhostDashGrabTrack);

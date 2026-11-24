@@ -28,7 +28,7 @@ void CCharClassPositionalSoundComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassPositionalSoundComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassPositionalSoundComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassPositionalSoundComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPositionalSoundComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassPositionalSoundComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPositionalSoundComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassPositionalSoundComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassPositionalSoundComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassPositionalSoundComponent::refl_Destroy(void* obj) { static_cast<CCharClassPositionalSoundComponent*>(obj)->~CCharClassPositionalSoundComponent(); }

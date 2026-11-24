@@ -22,7 +22,7 @@ void CCharClassCollisionMaterialFXSetEnabledEvent::refl_AddAttributes(CClass* cl
 void CCharClassCollisionMaterialFXSetEnabledEvent::refl_AddFields(CClass*) {}
 bool CCharClassCollisionMaterialFXSetEnabledEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCollisionMaterialFXSetEnabledEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCollisionMaterialFXSetEnabledEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCollisionMaterialFXSetEnabledEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCollisionMaterialFXSetEnabledEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCollisionMaterialFXSetEnabledEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCollisionMaterialFXSetEnabledEvent::refl_Destroy(void* obj) { static_cast<CCharClassCollisionMaterialFXSetEnabledEvent*>(obj)->~CCharClassCollisionMaterialFXSetEnabledEvent(); }
 struct CCharClassCollisionMaterialFXSetEnabledEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCollisionMaterialFXSetEnabledEvent);

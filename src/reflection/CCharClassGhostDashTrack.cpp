@@ -22,7 +22,7 @@ void CCharClassGhostDashTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassGhostDashTrack::refl_AddFields(CClass*) {}
 bool CCharClassGhostDashTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassGhostDashTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassGhostDashTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGhostDashTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassGhostDashTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGhostDashTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassGhostDashTrack::refl_Destroy(void* obj) { static_cast<CCharClassGhostDashTrack*>(obj)->~CCharClassGhostDashTrack(); }
 struct CCharClassGhostDashTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassGhostDashTrack);

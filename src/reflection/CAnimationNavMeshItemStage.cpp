@@ -14,7 +14,7 @@ void CAnimationNavMeshItemStage::refl_AddAttributes(CClass*) {}
 void CAnimationNavMeshItemStage::refl_AddFields(CClass*) {}
 bool CAnimationNavMeshItemStage::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CAnimationNavMeshItemStage::refl_Hash() { return -1; }
-const base::reflection::CType& CAnimationNavMeshItemStage::refl_TypeOf(const void* obj) { return *static_cast<const CAnimationNavMeshItemStage*>(obj)->vf_0x0(); }
+const base::reflection::CType& CAnimationNavMeshItemStage::refl_TypeOf(const void* obj) { return *static_cast<const CAnimationNavMeshItemStage*>(obj)->refl_GetDynamicClass(); }
 void CAnimationNavMeshItemStage::refl_Destroy(void* obj) { static_cast<CAnimationNavMeshItemStage*>(obj)->~CAnimationNavMeshItemStage(); }
 struct CAnimationNavMeshItemStage::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CAnimationNavMeshItemStage);

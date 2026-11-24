@@ -27,7 +27,7 @@ void CCharClassEnableScenarioItemByNameEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassEnableScenarioItemByNameEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEnableScenarioItemByNameEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEnableScenarioItemByNameEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEnableScenarioItemByNameEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEnableScenarioItemByNameEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEnableScenarioItemByNameEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEnableScenarioItemByNameEvent::refl_Destroy(void* obj) { static_cast<CCharClassEnableScenarioItemByNameEvent*>(obj)->~CCharClassEnableScenarioItemByNameEvent(); }
 struct CCharClassEnableScenarioItemByNameEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEnableScenarioItemByNameEvent);

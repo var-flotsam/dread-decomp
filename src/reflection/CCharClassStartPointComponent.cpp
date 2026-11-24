@@ -24,7 +24,7 @@ void CCharClassStartPointComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassStartPointComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassStartPointComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassStartPointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStartPointComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassStartPointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStartPointComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassStartPointComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassStartPointComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassStartPointComponent::refl_Destroy(void* obj) { static_cast<CCharClassStartPointComponent*>(obj)->~CCharClassStartPointComponent(); }
@@ -63,7 +63,7 @@ void CStartPointComponent::refl_AddFields(CClass* cls) {
 }
 bool CStartPointComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CStartPointComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CStartPointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CStartPointComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CStartPointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CStartPointComponent*>(obj)->refl_GetDynamicClass(); }
 void CStartPointComponent::refl_CopyConstruct(void*, const void*) {}
 void CStartPointComponent::refl_MoveConstruct(void*, const void*) {}
 void CStartPointComponent::refl_Destroy(void* obj) { static_cast<CStartPointComponent*>(obj)->~CStartPointComponent(); }

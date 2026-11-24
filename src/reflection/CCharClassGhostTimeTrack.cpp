@@ -22,7 +22,7 @@ void CCharClassGhostTimeTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassGhostTimeTrack::refl_AddFields(CClass*) {}
 bool CCharClassGhostTimeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassGhostTimeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassGhostTimeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGhostTimeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassGhostTimeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGhostTimeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassGhostTimeTrack::refl_Destroy(void* obj) { static_cast<CCharClassGhostTimeTrack*>(obj)->~CCharClassGhostTimeTrack(); }
 struct CCharClassGhostTimeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassGhostTimeTrack);

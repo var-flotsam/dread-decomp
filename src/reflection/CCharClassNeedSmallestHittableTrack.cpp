@@ -22,7 +22,7 @@ void CCharClassNeedSmallestHittableTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassNeedSmallestHittableTrack::refl_AddFields(CClass*) {}
 bool CCharClassNeedSmallestHittableTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassNeedSmallestHittableTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassNeedSmallestHittableTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassNeedSmallestHittableTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassNeedSmallestHittableTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassNeedSmallestHittableTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassNeedSmallestHittableTrack::refl_Destroy(void* obj) { static_cast<CCharClassNeedSmallestHittableTrack*>(obj)->~CCharClassNeedSmallestHittableTrack(); }
 struct CCharClassNeedSmallestHittableTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassNeedSmallestHittableTrack);

@@ -14,7 +14,7 @@ void CSonarTargetComponent::refl_AddAttributes(CClass*) {}
 void CSonarTargetComponent::refl_AddFields(CClass*) {}
 bool CSonarTargetComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CSonarTargetComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CSonarTargetComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSonarTargetComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSonarTargetComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSonarTargetComponent*>(obj)->refl_GetDynamicClass(); }
 void CSonarTargetComponent::refl_Destroy(void* obj) { static_cast<CSonarTargetComponent*>(obj)->~CSonarTargetComponent(); }
 void* CSonarTargetComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* CSonarTargetComponent::refl_MoveAssign(void*, const void*) { return nullptr; }

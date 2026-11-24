@@ -23,7 +23,7 @@ void CCharClassChozoCommanderDestroySentenceSpheresEvent::refl_AddAttributes(CCl
 void CCharClassChozoCommanderDestroySentenceSpheresEvent::refl_AddFields(CClass*) {}
 bool CCharClassChozoCommanderDestroySentenceSpheresEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassChozoCommanderDestroySentenceSpheresEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassChozoCommanderDestroySentenceSpheresEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoCommanderDestroySentenceSpheresEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassChozoCommanderDestroySentenceSpheresEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoCommanderDestroySentenceSpheresEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassChozoCommanderDestroySentenceSpheresEvent::refl_Destroy(void* obj) { static_cast<CCharClassChozoCommanderDestroySentenceSpheresEvent*>(obj)->~CCharClassChozoCommanderDestroySentenceSpheresEvent(); }
 struct CCharClassChozoCommanderDestroySentenceSpheresEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassChozoCommanderDestroySentenceSpheresEvent);

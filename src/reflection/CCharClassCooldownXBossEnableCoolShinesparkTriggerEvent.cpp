@@ -26,7 +26,7 @@ void CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent::refl_AddFields(CCl
 }
 bool CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent::refl_Destroy(void* obj) { static_cast<CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent*>(obj)->~CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent(); }
 struct CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent);

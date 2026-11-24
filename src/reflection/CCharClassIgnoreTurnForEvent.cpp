@@ -27,7 +27,7 @@ void CCharClassIgnoreTurnForEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassIgnoreTurnForEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreTurnForEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreTurnForEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreTurnForEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreTurnForEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreTurnForEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreTurnForEvent::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreTurnForEvent*>(obj)->~CCharClassIgnoreTurnForEvent(); }
 struct CCharClassIgnoreTurnForEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreTurnForEvent);

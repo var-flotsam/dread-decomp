@@ -21,7 +21,7 @@ void animtree::CBlendNodeDef::refl_AddAttributes(CClass* cls) {
 void animtree::CBlendNodeDef::refl_AddFields(CClass*) {}
 bool animtree::CBlendNodeDef::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 animtree::CBlendNodeDef::refl_Hash() { return -1; }
-const base::reflection::CType& animtree::CBlendNodeDef::refl_TypeOf(const void* obj) { return *static_cast<const CBlendNodeDef*>(obj)->vf_0x0(); }
+const base::reflection::CType& animtree::CBlendNodeDef::refl_TypeOf(const void* obj) { return *static_cast<const CBlendNodeDef*>(obj)->refl_GetDynamicClass(); }
 void animtree::CBlendNodeDef::refl_Destroy(void* obj) { static_cast<CBlendNodeDef*>(obj)->~CBlendNodeDef(); }
 struct animtree::CBlendNodeDef::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CBlendNodeDef);

@@ -26,7 +26,7 @@ void CChangeSetupLogicAction::refl_AddFields(CClass* cls) {
 }
 bool CChangeSetupLogicAction::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CChangeSetupLogicAction::refl_Hash() { return -1; }
-const base::reflection::CType& CChangeSetupLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CChangeSetupLogicAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& CChangeSetupLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CChangeSetupLogicAction*>(obj)->refl_GetDynamicClass(); }
 void CChangeSetupLogicAction::refl_Destroy(void* obj) { static_cast<CChangeSetupLogicAction*>(obj)->~CChangeSetupLogicAction(); }
 struct CChangeSetupLogicAction::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CChangeSetupLogicAction);

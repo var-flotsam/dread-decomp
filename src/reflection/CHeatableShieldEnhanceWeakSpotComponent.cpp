@@ -14,7 +14,7 @@ void CHeatableShieldEnhanceWeakSpotComponent::refl_AddAttributes(CClass*) {}
 void CHeatableShieldEnhanceWeakSpotComponent::refl_AddFields(CClass*) {}
 bool CHeatableShieldEnhanceWeakSpotComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CHeatableShieldEnhanceWeakSpotComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CHeatableShieldEnhanceWeakSpotComponent::refl_TypeOf(const void* obj) { return *static_cast<const CHeatableShieldEnhanceWeakSpotComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CHeatableShieldEnhanceWeakSpotComponent::refl_TypeOf(const void* obj) { return *static_cast<const CHeatableShieldEnhanceWeakSpotComponent*>(obj)->refl_GetDynamicClass(); }
 void CHeatableShieldEnhanceWeakSpotComponent::refl_CopyConstruct(void*, const void*) {}
 void CHeatableShieldEnhanceWeakSpotComponent::refl_MoveConstruct(void*, const void*) {}
 void CHeatableShieldEnhanceWeakSpotComponent::refl_Destroy(void* obj) { static_cast<CHeatableShieldEnhanceWeakSpotComponent*>(obj)->~CHeatableShieldEnhanceWeakSpotComponent(); }

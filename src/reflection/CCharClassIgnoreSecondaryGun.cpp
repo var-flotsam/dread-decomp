@@ -22,7 +22,7 @@ void CCharClassIgnoreSecondaryGun::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreSecondaryGun::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreSecondaryGun::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreSecondaryGun::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreSecondaryGun::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSecondaryGun*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreSecondaryGun::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSecondaryGun*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreSecondaryGun::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreSecondaryGun*>(obj)->~CCharClassIgnoreSecondaryGun(); }
 struct CCharClassIgnoreSecondaryGun::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreSecondaryGun);

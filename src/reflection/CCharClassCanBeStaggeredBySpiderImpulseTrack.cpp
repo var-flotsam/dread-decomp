@@ -22,7 +22,7 @@ void CCharClassCanBeStaggeredBySpiderImpulseTrack::refl_AddAttributes(CClass* cl
 void CCharClassCanBeStaggeredBySpiderImpulseTrack::refl_AddFields(CClass*) {}
 bool CCharClassCanBeStaggeredBySpiderImpulseTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCanBeStaggeredBySpiderImpulseTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCanBeStaggeredBySpiderImpulseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCanBeStaggeredBySpiderImpulseTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCanBeStaggeredBySpiderImpulseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCanBeStaggeredBySpiderImpulseTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCanBeStaggeredBySpiderImpulseTrack::refl_Destroy(void* obj) { static_cast<CCharClassCanBeStaggeredBySpiderImpulseTrack*>(obj)->~CCharClassCanBeStaggeredBySpiderImpulseTrack(); }
 struct CCharClassCanBeStaggeredBySpiderImpulseTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCanBeStaggeredBySpiderImpulseTrack);

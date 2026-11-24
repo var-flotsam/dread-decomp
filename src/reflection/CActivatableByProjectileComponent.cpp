@@ -14,7 +14,7 @@ void CActivatableByProjectileComponent::refl_AddAttributes(CClass*) {}
 void CActivatableByProjectileComponent::refl_AddFields(CClass*) {}
 bool CActivatableByProjectileComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CActivatableByProjectileComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CActivatableByProjectileComponent::refl_TypeOf(const void* obj) { return *static_cast<const CActivatableByProjectileComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CActivatableByProjectileComponent::refl_TypeOf(const void* obj) { return *static_cast<const CActivatableByProjectileComponent*>(obj)->refl_GetDynamicClass(); }
 void CActivatableByProjectileComponent::refl_CopyConstruct(void*, const void*) {}
 void CActivatableByProjectileComponent::refl_MoveConstruct(void*, const void*) {}
 void CActivatableByProjectileComponent::refl_Destroy(void* obj) { static_cast<CActivatableByProjectileComponent*>(obj)->~CActivatableByProjectileComponent(); }

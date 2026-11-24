@@ -22,7 +22,7 @@ void CCharClassHydrogigaTentacleC02FXTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassHydrogigaTentacleC02FXTrack::refl_AddFields(CClass*) {}
 bool CCharClassHydrogigaTentacleC02FXTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassHydrogigaTentacleC02FXTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassHydrogigaTentacleC02FXTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHydrogigaTentacleC02FXTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassHydrogigaTentacleC02FXTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassHydrogigaTentacleC02FXTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassHydrogigaTentacleC02FXTrack::refl_Destroy(void* obj) { static_cast<CCharClassHydrogigaTentacleC02FXTrack*>(obj)->~CCharClassHydrogigaTentacleC02FXTrack(); }
 struct CCharClassHydrogigaTentacleC02FXTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassHydrogigaTentacleC02FXTrack);

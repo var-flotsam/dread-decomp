@@ -22,7 +22,7 @@ void CCharClassWaterValveAllowWaterLoopEndEvent::refl_AddAttributes(CClass* cls)
 void CCharClassWaterValveAllowWaterLoopEndEvent::refl_AddFields(CClass*) {}
 bool CCharClassWaterValveAllowWaterLoopEndEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassWaterValveAllowWaterLoopEndEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassWaterValveAllowWaterLoopEndEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassWaterValveAllowWaterLoopEndEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassWaterValveAllowWaterLoopEndEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassWaterValveAllowWaterLoopEndEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassWaterValveAllowWaterLoopEndEvent::refl_Destroy(void* obj) { static_cast<CCharClassWaterValveAllowWaterLoopEndEvent*>(obj)->~CCharClassWaterValveAllowWaterLoopEndEvent(); }
 struct CCharClassWaterValveAllowWaterLoopEndEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassWaterValveAllowWaterLoopEndEvent);

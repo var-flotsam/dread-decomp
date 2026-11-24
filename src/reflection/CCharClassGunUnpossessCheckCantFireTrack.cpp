@@ -22,7 +22,7 @@ void CCharClassGunUnpossessCheckCantFireTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassGunUnpossessCheckCantFireTrack::refl_AddFields(CClass*) {}
 bool CCharClassGunUnpossessCheckCantFireTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassGunUnpossessCheckCantFireTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassGunUnpossessCheckCantFireTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGunUnpossessCheckCantFireTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassGunUnpossessCheckCantFireTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGunUnpossessCheckCantFireTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassGunUnpossessCheckCantFireTrack::refl_Destroy(void* obj) { static_cast<CCharClassGunUnpossessCheckCantFireTrack*>(obj)->~CCharClassGunUnpossessCheckCantFireTrack(); }
 struct CCharClassGunUnpossessCheckCantFireTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassGunUnpossessCheckCantFireTrack);

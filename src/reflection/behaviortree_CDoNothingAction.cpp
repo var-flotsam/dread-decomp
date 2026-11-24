@@ -24,7 +24,7 @@ void behaviortree::CDoNothingAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CDoNothingAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CDoNothingAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CDoNothingAction::refl_TypeOf(const void* obj) { return *static_cast<const CDoNothingAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CDoNothingAction::refl_TypeOf(const void* obj) { return *static_cast<const CDoNothingAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CDoNothingAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CDoNothingAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CDoNothingAction::refl_Destroy(void* obj) { static_cast<CDoNothingAction*>(obj)->~CDoNothingAction(); }

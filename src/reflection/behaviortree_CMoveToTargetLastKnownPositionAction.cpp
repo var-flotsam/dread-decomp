@@ -25,7 +25,7 @@ void behaviortree::CMoveToTargetLastKnownPositionAction::refl_AddFields(CClass* 
 }
 bool behaviortree::CMoveToTargetLastKnownPositionAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CMoveToTargetLastKnownPositionAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CMoveToTargetLastKnownPositionAction::refl_TypeOf(const void* obj) { return *static_cast<const CMoveToTargetLastKnownPositionAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CMoveToTargetLastKnownPositionAction::refl_TypeOf(const void* obj) { return *static_cast<const CMoveToTargetLastKnownPositionAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CMoveToTargetLastKnownPositionAction::refl_Destroy(void* obj) { static_cast<CMoveToTargetLastKnownPositionAction*>(obj)->~CMoveToTargetLastKnownPositionAction(); }
 void* behaviortree::CMoveToTargetLastKnownPositionAction::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* behaviortree::CMoveToTargetLastKnownPositionAction::refl_MoveAssign(void*, const void*) { return nullptr; }

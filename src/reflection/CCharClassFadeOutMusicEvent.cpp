@@ -26,7 +26,7 @@ void CCharClassFadeOutMusicEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassFadeOutMusicEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFadeOutMusicEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFadeOutMusicEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFadeOutMusicEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFadeOutMusicEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFadeOutMusicEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFadeOutMusicEvent::refl_Destroy(void* obj) { static_cast<CCharClassFadeOutMusicEvent*>(obj)->~CCharClassFadeOutMusicEvent(); }
 struct CCharClassFadeOutMusicEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFadeOutMusicEvent);

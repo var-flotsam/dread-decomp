@@ -27,7 +27,7 @@ void CCharClassSetSceneGroupEnabledEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassSetSceneGroupEnabledEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetSceneGroupEnabledEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetSceneGroupEnabledEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetSceneGroupEnabledEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetSceneGroupEnabledEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetSceneGroupEnabledEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetSceneGroupEnabledEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetSceneGroupEnabledEvent*>(obj)->~CCharClassSetSceneGroupEnabledEvent(); }
 struct CCharClassSetSceneGroupEnabledEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetSceneGroupEnabledEvent);

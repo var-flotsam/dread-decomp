@@ -26,7 +26,7 @@ void CCharClassChangeAIAnimationStateEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassChangeAIAnimationStateEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassChangeAIAnimationStateEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassChangeAIAnimationStateEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChangeAIAnimationStateEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassChangeAIAnimationStateEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChangeAIAnimationStateEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassChangeAIAnimationStateEvent::refl_Destroy(void* obj) { static_cast<CCharClassChangeAIAnimationStateEvent*>(obj)->~CCharClassChangeAIAnimationStateEvent(); }
 struct CCharClassChangeAIAnimationStateEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassChangeAIAnimationStateEvent);

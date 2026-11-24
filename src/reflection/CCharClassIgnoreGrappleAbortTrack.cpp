@@ -22,7 +22,7 @@ void CCharClassIgnoreGrappleAbortTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreGrappleAbortTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreGrappleAbortTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreGrappleAbortTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreGrappleAbortTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreGrappleAbortTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreGrappleAbortTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreGrappleAbortTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreGrappleAbortTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreGrappleAbortTrack*>(obj)->~CCharClassIgnoreGrappleAbortTrack(); }
 struct CCharClassIgnoreGrappleAbortTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreGrappleAbortTrack);

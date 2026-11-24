@@ -28,7 +28,7 @@ void CCharClassSetLockEnvironmentEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassSetLockEnvironmentEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetLockEnvironmentEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetLockEnvironmentEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetLockEnvironmentEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetLockEnvironmentEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetLockEnvironmentEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetLockEnvironmentEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetLockEnvironmentEvent*>(obj)->~CCharClassSetLockEnvironmentEvent(); }
 struct CCharClassSetLockEnvironmentEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetLockEnvironmentEvent);

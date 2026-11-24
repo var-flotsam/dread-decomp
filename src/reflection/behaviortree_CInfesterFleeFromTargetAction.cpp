@@ -26,7 +26,7 @@ void behaviortree::CInfesterFleeFromTargetAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CInfesterFleeFromTargetAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CInfesterFleeFromTargetAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CInfesterFleeFromTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CInfesterFleeFromTargetAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CInfesterFleeFromTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CInfesterFleeFromTargetAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CInfesterFleeFromTargetAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CInfesterFleeFromTargetAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CInfesterFleeFromTargetAction::refl_Destroy(void* obj) { static_cast<CInfesterFleeFromTargetAction*>(obj)->~CInfesterFleeFromTargetAction(); }

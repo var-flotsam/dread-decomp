@@ -22,7 +22,7 @@ void CCharClassIgnoreEmmySpeedOverrideTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreEmmySpeedOverrideTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreEmmySpeedOverrideTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreEmmySpeedOverrideTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreEmmySpeedOverrideTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreEmmySpeedOverrideTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreEmmySpeedOverrideTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreEmmySpeedOverrideTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreEmmySpeedOverrideTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreEmmySpeedOverrideTrack*>(obj)->~CCharClassIgnoreEmmySpeedOverrideTrack(); }
 struct CCharClassIgnoreEmmySpeedOverrideTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreEmmySpeedOverrideTrack);

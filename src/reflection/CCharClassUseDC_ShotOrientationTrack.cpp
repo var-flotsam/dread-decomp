@@ -26,7 +26,7 @@ void CCharClassUseDC_ShotOrientationTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassUseDC_ShotOrientationTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassUseDC_ShotOrientationTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassUseDC_ShotOrientationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassUseDC_ShotOrientationTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassUseDC_ShotOrientationTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassUseDC_ShotOrientationTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassUseDC_ShotOrientationTrack::refl_Destroy(void* obj) { static_cast<CCharClassUseDC_ShotOrientationTrack*>(obj)->~CCharClassUseDC_ShotOrientationTrack(); }
 struct CCharClassUseDC_ShotOrientationTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassUseDC_ShotOrientationTrack);

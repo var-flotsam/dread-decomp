@@ -26,7 +26,7 @@ void CCharClassPickAllItemsEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassPickAllItemsEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassPickAllItemsEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassPickAllItemsEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPickAllItemsEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassPickAllItemsEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPickAllItemsEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassPickAllItemsEvent::refl_Destroy(void* obj) { static_cast<CCharClassPickAllItemsEvent*>(obj)->~CCharClassPickAllItemsEvent(); }
 struct CCharClassPickAllItemsEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassPickAllItemsEvent);

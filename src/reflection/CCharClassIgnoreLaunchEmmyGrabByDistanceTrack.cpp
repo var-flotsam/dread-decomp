@@ -22,7 +22,7 @@ void CCharClassIgnoreLaunchEmmyGrabByDistanceTrack::refl_AddAttributes(CClass* c
 void CCharClassIgnoreLaunchEmmyGrabByDistanceTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreLaunchEmmyGrabByDistanceTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreLaunchEmmyGrabByDistanceTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreLaunchEmmyGrabByDistanceTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreLaunchEmmyGrabByDistanceTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreLaunchEmmyGrabByDistanceTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreLaunchEmmyGrabByDistanceTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreLaunchEmmyGrabByDistanceTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreLaunchEmmyGrabByDistanceTrack*>(obj)->~CCharClassIgnoreLaunchEmmyGrabByDistanceTrack(); }
 struct CCharClassIgnoreLaunchEmmyGrabByDistanceTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreLaunchEmmyGrabByDistanceTrack);

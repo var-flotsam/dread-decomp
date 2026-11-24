@@ -14,7 +14,7 @@ void CBillboardLifeComponent::refl_AddAttributes(CClass*) {}
 void CBillboardLifeComponent::refl_AddFields(CClass*) {}
 bool CBillboardLifeComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CBillboardLifeComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CBillboardLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBillboardLifeComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CBillboardLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBillboardLifeComponent*>(obj)->refl_GetDynamicClass(); }
 void CBillboardLifeComponent::refl_Destroy(void* obj) { static_cast<CBillboardLifeComponent*>(obj)->~CBillboardLifeComponent(); }
 struct CBillboardLifeComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CBillboardLifeComponent);

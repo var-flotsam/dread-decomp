@@ -63,19 +63,19 @@ void fn_71000a4b60(UnkVersionRegistry* self_) {
     auto* self = reinterpret_cast<UnkTypeRegistry_l0a4b60*>(self_);
     CRntVector<CType*> roots(0xf);
     roots.Reserve(0x880);
-    for (CType* type = static_cast<CType*>(g_unk_7101d5bdc0); type; type = static_cast<CType*>(type->field_0x88)) {
+    for (CType* type = static_cast<CType*>(g_unk_7101d5bdc0); type; type = static_cast<CType*>(type->m_nextRegistered)) {
         {
             CStrId name = type->sName;
             AddType(&self->names, name, type);
         }
         if (const CType* parent = type->m_parent) {
             void* derived = type;
-            const_cast<CType*>(parent)->m_array_0x90.PushBack(derived);
+            const_cast<CType*>(parent)->m_derivedTypes.PushBack(derived);
         } else {
             roots.PushBackCopy(type);
         }
     }
-    for (CType* type = static_cast<CType*>(g_unk_7101d5bdc0); type; type = static_cast<CType*>(type->field_0x88))
+    for (CType* type = static_cast<CType*>(g_unk_7101d5bdc0); type; type = static_cast<CType*>(type->m_nextRegistered))
         fn_710009ea28(type);
     fn_71000a5e00(roots.data, roots.data + roots.count);
     for (CType** root = roots.data; root != roots.data + roots.count; ++root)

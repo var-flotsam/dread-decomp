@@ -153,16 +153,16 @@ static inline __attribute__((always_inline)) void InitWord85(UnkTypedWord85* slo
     slot->type = nullptr;
     const CType* t = fn_7100010e58();
     if (slot->type) {
-        slot->type->m_fn_0x40(slot);
+        slot->type->m_destroy(slot);
         slot->type = nullptr;
     }
     slot->type = t;
-    if (t->m_fn_0x38)
-        t->m_fn_0x38(slot, &index);
+    if (t->m_moveConstruct)
+        t->m_moveConstruct(slot, &index);
 }
 
 struct UnkAttrContainer85 {
-    base::reflection::UnkReflArray array;
+    base::reflection::UntypedSmallDictionary array;
     void* owner;
     u32 flag;
     UnkAttrContainer85(void* o) : array(10, 0x3e), owner(o), flag(1) {}

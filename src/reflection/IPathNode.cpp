@@ -14,7 +14,7 @@ void IPathNode::refl_AddAttributes(CClass*) {}
 void IPathNode::refl_AddFields(CClass*) {}
 bool IPathNode::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 IPathNode::refl_Hash() { return -1; }
-const base::reflection::CType& IPathNode::refl_TypeOf(const void* obj) { return *static_cast<const IPathNode*>(obj)->vf_0x0(); }
+const base::reflection::CType& IPathNode::refl_TypeOf(const void* obj) { return *static_cast<const IPathNode*>(obj)->refl_GetDynamicClass(); }
 void IPathNode::refl_Destroy(void* obj) { static_cast<IPathNode*>(obj)->~IPathNode(); }
 struct IPathNode::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(IPathNode);

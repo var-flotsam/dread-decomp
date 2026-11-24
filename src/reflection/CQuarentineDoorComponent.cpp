@@ -24,7 +24,7 @@ void CQuarentineDoorComponent::refl_AddFields(CClass* cls) {
 }
 bool CQuarentineDoorComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CQuarentineDoorComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CQuarentineDoorComponent::refl_TypeOf(const void* obj) { return *static_cast<const CQuarentineDoorComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CQuarentineDoorComponent::refl_TypeOf(const void* obj) { return *static_cast<const CQuarentineDoorComponent*>(obj)->refl_GetDynamicClass(); }
 void CQuarentineDoorComponent::refl_CopyConstruct(void*, const void*) {}
 void CQuarentineDoorComponent::refl_MoveConstruct(void*, const void*) {}
 void CQuarentineDoorComponent::refl_Destroy(void* obj) { static_cast<CQuarentineDoorComponent*>(obj)->~CQuarentineDoorComponent(); }

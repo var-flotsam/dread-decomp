@@ -14,7 +14,7 @@ void CEmmyAttackComponent::refl_AddAttributes(CClass*) {}
 void CEmmyAttackComponent::refl_AddFields(CClass*) {}
 bool CEmmyAttackComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CEmmyAttackComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CEmmyAttackComponent::refl_TypeOf(const void* obj) { return *static_cast<const CEmmyAttackComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CEmmyAttackComponent::refl_TypeOf(const void* obj) { return *static_cast<const CEmmyAttackComponent*>(obj)->refl_GetDynamicClass(); }
 void CEmmyAttackComponent::refl_Destroy(void* obj) { static_cast<CEmmyAttackComponent*>(obj)->~CEmmyAttackComponent(); }
 struct CEmmyAttackComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CEmmyAttackComponent);

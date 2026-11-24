@@ -22,7 +22,7 @@ void CCharClassFloorSlideEndTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassFloorSlideEndTrack::refl_AddFields(CClass*) {}
 bool CCharClassFloorSlideEndTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFloorSlideEndTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFloorSlideEndTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFloorSlideEndTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFloorSlideEndTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFloorSlideEndTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFloorSlideEndTrack::refl_Destroy(void* obj) { static_cast<CCharClassFloorSlideEndTrack*>(obj)->~CCharClassFloorSlideEndTrack(); }
 struct CCharClassFloorSlideEndTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFloorSlideEndTrack);

@@ -22,7 +22,7 @@ void CCharClassDissolveFanMudEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassDissolveFanMudEvent::refl_AddFields(CClass*) {}
 bool CCharClassDissolveFanMudEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassDissolveFanMudEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassDissolveFanMudEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDissolveFanMudEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassDissolveFanMudEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDissolveFanMudEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassDissolveFanMudEvent::refl_Destroy(void* obj) { static_cast<CCharClassDissolveFanMudEvent*>(obj)->~CCharClassDissolveFanMudEvent(); }
 struct CCharClassDissolveFanMudEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassDissolveFanMudEvent);

@@ -22,7 +22,7 @@ void CCharClassIgnoreSonarTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreSonarTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreSonarTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreSonarTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreSonarTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSonarTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreSonarTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSonarTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreSonarTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreSonarTrack*>(obj)->~CCharClassIgnoreSonarTrack(); }
 struct CCharClassIgnoreSonarTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreSonarTrack);

@@ -23,7 +23,7 @@ void behaviortree::CIdleAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CIdleAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CIdleAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CIdleAction::refl_TypeOf(const void* obj) { return *static_cast<const CIdleAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CIdleAction::refl_TypeOf(const void* obj) { return *static_cast<const CIdleAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CIdleAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CIdleAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CIdleAction::refl_Destroy(void* obj) { static_cast<CIdleAction*>(obj)->~CIdleAction(); }

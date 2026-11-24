@@ -14,7 +14,7 @@ void CHangableGrappleSurfaceComponent::refl_AddAttributes(CClass*) {}
 void CHangableGrappleSurfaceComponent::refl_AddFields(CClass*) {}
 bool CHangableGrappleSurfaceComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CHangableGrappleSurfaceComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CHangableGrappleSurfaceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CHangableGrappleSurfaceComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CHangableGrappleSurfaceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CHangableGrappleSurfaceComponent*>(obj)->refl_GetDynamicClass(); }
 void CHangableGrappleSurfaceComponent::refl_CopyConstruct(void*, const void*) {}
 void CHangableGrappleSurfaceComponent::refl_MoveConstruct(void*, const void*) {}
 void CHangableGrappleSurfaceComponent::refl_Destroy(void* obj) { static_cast<CHangableGrappleSurfaceComponent*>(obj)->~CHangableGrappleSurfaceComponent(); }

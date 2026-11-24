@@ -13,7 +13,7 @@ using base::reflection::ClassDescription;
 void CTunableMenuHelperClass::refl_AddAttributes(CClass*) {}
 bool CTunableMenuHelperClass::refl_Equals(const void*, const void*) { return false; }
 s32 CTunableMenuHelperClass::refl_Hash() { return -1; }
-const base::reflection::CType& CTunableMenuHelperClass::refl_TypeOf(const void* obj) { return *static_cast<const CTunableMenuHelperClass*>(obj)->vf_0x0(); }
+const base::reflection::CType& CTunableMenuHelperClass::refl_TypeOf(const void* obj) { return *static_cast<const CTunableMenuHelperClass*>(obj)->refl_GetDynamicClass(); }
 void CTunableMenuHelperClass::refl_MoveConstruct(void*, const void*) {}
 void CTunableMenuHelperClass::refl_Destroy(void* obj) { static_cast<CTunableMenuHelperClass*>(obj)->~CTunableMenuHelperClass(); }
 void* CTunableMenuHelperClass::refl_MoveAssign(void*, const void*) { return nullptr; }

@@ -14,7 +14,7 @@ void CScorpiusFXComponent::refl_AddAttributes(CClass*) {}
 void CScorpiusFXComponent::refl_AddFields(CClass*) {}
 bool CScorpiusFXComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CScorpiusFXComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CScorpiusFXComponent::refl_TypeOf(const void* obj) { return *static_cast<const CScorpiusFXComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CScorpiusFXComponent::refl_TypeOf(const void* obj) { return *static_cast<const CScorpiusFXComponent*>(obj)->refl_GetDynamicClass(); }
 void CScorpiusFXComponent::refl_CopyConstruct(void*, const void*) {}
 void CScorpiusFXComponent::refl_MoveConstruct(void*, const void*) {}
 void CScorpiusFXComponent::refl_Destroy(void* obj) { static_cast<CScorpiusFXComponent*>(obj)->~CScorpiusFXComponent(); }

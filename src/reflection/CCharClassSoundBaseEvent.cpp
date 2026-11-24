@@ -14,7 +14,7 @@ void CCharClassSoundBaseEvent::refl_AddAttributes(CClass*) {}
 void CCharClassSoundBaseEvent::refl_AddFields(CClass*) {}
 bool CCharClassSoundBaseEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSoundBaseEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSoundBaseEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSoundBaseEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSoundBaseEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSoundBaseEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSoundBaseEvent::refl_Destroy(void* obj) { static_cast<CCharClassSoundBaseEvent*>(obj)->~CCharClassSoundBaseEvent(); }
 struct CCharClassSoundBaseEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSoundBaseEvent);

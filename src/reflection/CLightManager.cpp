@@ -39,13 +39,13 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("CreateElement") {
         fn_7100e082bc(fn, "CreateElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create LightDef");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<base::global::CFilePathStrId>(base::reflection::attr::Name(), base::global::CFilePathStrId("sPath", true));
     }
     DREAD_REFLECTED_FUNCTION("DeleteElement") {
         fn_7100e08438(fn, "DeleteElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete LightDef");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<base::global::CFilePathStrId>(base::reflection::attr::Name(), base::global::CFilePathStrId("sPath", true));
     }
 }

@@ -22,7 +22,7 @@ void CCharClassTakumakuIgnoreJumpbackTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassTakumakuIgnoreJumpbackTrack::refl_AddFields(CClass*) {}
 bool CCharClassTakumakuIgnoreJumpbackTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTakumakuIgnoreJumpbackTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTakumakuIgnoreJumpbackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTakumakuIgnoreJumpbackTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTakumakuIgnoreJumpbackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTakumakuIgnoreJumpbackTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTakumakuIgnoreJumpbackTrack::refl_Destroy(void* obj) { static_cast<CCharClassTakumakuIgnoreJumpbackTrack*>(obj)->~CCharClassTakumakuIgnoreJumpbackTrack(); }
 struct CCharClassTakumakuIgnoreJumpbackTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTakumakuIgnoreJumpbackTrack);

@@ -14,7 +14,7 @@ void behaviortree::CScorpiusRegereratingMaskAction::refl_AddAttributes(CClass*) 
 void behaviortree::CScorpiusRegereratingMaskAction::refl_AddFields(CClass*) {}
 bool behaviortree::CScorpiusRegereratingMaskAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CScorpiusRegereratingMaskAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CScorpiusRegereratingMaskAction::refl_TypeOf(const void* obj) { return *static_cast<const CScorpiusRegereratingMaskAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CScorpiusRegereratingMaskAction::refl_TypeOf(const void* obj) { return *static_cast<const CScorpiusRegereratingMaskAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CScorpiusRegereratingMaskAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CScorpiusRegereratingMaskAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CScorpiusRegereratingMaskAction::refl_Destroy(void* obj) { static_cast<CScorpiusRegereratingMaskAction*>(obj)->~CScorpiusRegereratingMaskAction(); }

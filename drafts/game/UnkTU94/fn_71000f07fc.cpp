@@ -21,7 +21,7 @@ using base::global::UnkStringData;
 using base::global::UnkStrIdBase;
 using base::reflection::CClass;
 using base::reflection::CType;
-using base::reflection::UnkReflArray;
+using base::reflection::UntypedSmallDictionary;
 using base::reflection::UnkReflObject;
 using base::reflection::UnkReflTypedPtr;
 using base::reflection::UnkReflValue;
@@ -46,7 +46,7 @@ struct UnkReader_f07fc {
     virtual UnkReadResult_f07fc vf_0x10(const UnkReflTypedPtr& source, const UnkReaderKey_f07fc& key, u32 flags);
 };
 
-// The readers a class keeps by name (CClass::m_array_0x110), 0xb8 bytes each.
+// The readers a class keeps by name (CClass::m_functions), 0xb8 bytes each.
 struct UnkClassReader_f07fc : UnkReader_f07fc {
     u8 pad_0x8[0xb0];
 };
@@ -131,7 +131,7 @@ static inline UnkReader_f07fc* FindClassReader(const CType* type) {
                 type && fn_710009d50c(reinterpret_cast<const UnkReflObject*>(type)->vf_0x0(), fn_7100096100())
                     ? static_cast<const CClass*>(type)
                     : nullptr;
-            const UnkReflArray& readers = cls->m_array_0x110;
+            const UntypedSmallDictionary& readers = cls->m_functions;
             const CStrId* keys = static_cast<const CStrId*>(readers.keys);
             u64 i = 0;
             for (; i < readers.count; ++i) {

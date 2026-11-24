@@ -38,7 +38,7 @@ void game::logic::collision::CShape::refl_AddFields(CClass* cls) {
 }
 bool game::logic::collision::CShape::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 game::logic::collision::CShape::refl_Hash() { return -1; }
-const base::reflection::CType& game::logic::collision::CShape::refl_TypeOf(const void* obj) { return *static_cast<const CShape*>(obj)->vf_0x0(); }
+const base::reflection::CType& game::logic::collision::CShape::refl_TypeOf(const void* obj) { return *static_cast<const CShape*>(obj)->refl_GetDynamicClass(); }
 void game::logic::collision::CShape::refl_Destroy(void* obj) { static_cast<CShape*>(obj)->~CShape(); }
 struct game::logic::collision::CShape::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CShape);

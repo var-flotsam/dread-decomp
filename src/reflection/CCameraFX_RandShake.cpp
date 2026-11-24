@@ -25,7 +25,7 @@ void CCameraFX_RandShake::refl_AddFields(CClass* cls) {
 }
 bool CCameraFX_RandShake::refl_Equals(const void*, const void*) { return false; }
 s32 CCameraFX_RandShake::refl_Hash() { return -1; }
-const base::reflection::CType& CCameraFX_RandShake::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX_RandShake*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCameraFX_RandShake::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX_RandShake*>(obj)->refl_GetDynamicClass(); }
 void CCameraFX_RandShake::refl_CopyConstruct(void*, const void*) {}
 void CCameraFX_RandShake::refl_MoveConstruct(void*, const void*) {}
 void CCameraFX_RandShake::refl_Destroy(void* obj) { static_cast<CCameraFX_RandShake*>(obj)->~CCameraFX_RandShake(); }

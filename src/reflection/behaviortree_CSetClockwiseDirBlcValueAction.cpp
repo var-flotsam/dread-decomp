@@ -24,7 +24,7 @@ void behaviortree::CSetClockwiseDirBlcValueAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CSetClockwiseDirBlcValueAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CSetClockwiseDirBlcValueAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CSetClockwiseDirBlcValueAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetClockwiseDirBlcValueAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CSetClockwiseDirBlcValueAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetClockwiseDirBlcValueAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CSetClockwiseDirBlcValueAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CSetClockwiseDirBlcValueAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CSetClockwiseDirBlcValueAction::refl_Destroy(void* obj) { static_cast<CSetClockwiseDirBlcValueAction*>(obj)->~CSetClockwiseDirBlcValueAction(); }

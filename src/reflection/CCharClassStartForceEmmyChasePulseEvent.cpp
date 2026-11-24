@@ -26,7 +26,7 @@ void CCharClassStartForceEmmyChasePulseEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassStartForceEmmyChasePulseEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassStartForceEmmyChasePulseEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassStartForceEmmyChasePulseEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStartForceEmmyChasePulseEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassStartForceEmmyChasePulseEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStartForceEmmyChasePulseEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassStartForceEmmyChasePulseEvent::refl_Destroy(void* obj) { static_cast<CCharClassStartForceEmmyChasePulseEvent*>(obj)->~CCharClassStartForceEmmyChasePulseEvent(); }
 struct CCharClassStartForceEmmyChasePulseEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassStartForceEmmyChasePulseEvent);

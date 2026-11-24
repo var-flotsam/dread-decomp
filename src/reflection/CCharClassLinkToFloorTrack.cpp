@@ -26,7 +26,7 @@ void CCharClassLinkToFloorTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassLinkToFloorTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassLinkToFloorTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassLinkToFloorTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLinkToFloorTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassLinkToFloorTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLinkToFloorTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassLinkToFloorTrack::refl_Destroy(void* obj) { static_cast<CCharClassLinkToFloorTrack*>(obj)->~CCharClassLinkToFloorTrack(); }
 struct CCharClassLinkToFloorTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassLinkToFloorTrack);

@@ -22,7 +22,7 @@ void CCharClassFXCrazyTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassFXCrazyTrack::refl_AddFields(CClass*) {}
 bool CCharClassFXCrazyTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFXCrazyTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFXCrazyTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXCrazyTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFXCrazyTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXCrazyTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFXCrazyTrack::refl_Destroy(void* obj) { static_cast<CCharClassFXCrazyTrack*>(obj)->~CCharClassFXCrazyTrack(); }
 struct CCharClassFXCrazyTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFXCrazyTrack);

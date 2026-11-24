@@ -42,7 +42,7 @@ namespace CEntity {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_oBBox_GetterFunction", &base::reflection::TypeObject<base::spatial::CAABox>::object, 0, fn_7100d823f4);
-    CVariable* field0 = AddReflectedField(cls, CStrId("oBBox", true), &base::reflection::TypeObject<base::spatial::CAABox>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("oBBox", true), &base::reflection::TypeObject<base::spatial::CAABox>::object, 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Entity BBox");
@@ -50,7 +50,7 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<bool>(base::reflection::attr::WidgetReadOnly(), true);
     DREAD_REFLECTED_FIELD(bool, "bIsInFrustum", 0xffffffff, (DisplayName, CStrId("Inside Frustum", true)), (Persistence, 0), (EditorVisible, false));
     DREAD_REFLECTED_FUNCTION_OF("_bIsInFrustum_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100d82448);
-    fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("bIsInFrustum")), cls->m_array_0x110.size() - 1);
+    fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("bIsInFrustum")), cls->m_functions.size() - 1);
     DREAD_REFLECTED_FUNCTION("PlayEntityLoop") {
         fn_7100d71900(fn, "PlayEntityLoop");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));

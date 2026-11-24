@@ -26,7 +26,7 @@ void CCharClassTweakGrappleVisualNodeTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassTweakGrappleVisualNodeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTweakGrappleVisualNodeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTweakGrappleVisualNodeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakGrappleVisualNodeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTweakGrappleVisualNodeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakGrappleVisualNodeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTweakGrappleVisualNodeTrack::refl_Destroy(void* obj) { static_cast<CCharClassTweakGrappleVisualNodeTrack*>(obj)->~CCharClassTweakGrappleVisualNodeTrack(); }
 struct CCharClassTweakGrappleVisualNodeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTweakGrappleVisualNodeTrack);

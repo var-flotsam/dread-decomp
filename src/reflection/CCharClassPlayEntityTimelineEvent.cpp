@@ -27,7 +27,7 @@ void CCharClassPlayEntityTimelineEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassPlayEntityTimelineEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassPlayEntityTimelineEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassPlayEntityTimelineEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPlayEntityTimelineEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassPlayEntityTimelineEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPlayEntityTimelineEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassPlayEntityTimelineEvent::refl_Destroy(void* obj) { static_cast<CCharClassPlayEntityTimelineEvent*>(obj)->~CCharClassPlayEntityTimelineEvent(); }
 struct CCharClassPlayEntityTimelineEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassPlayEntityTimelineEvent);

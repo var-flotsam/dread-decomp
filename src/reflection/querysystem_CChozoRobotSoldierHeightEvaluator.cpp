@@ -14,7 +14,7 @@ void querysystem::CChozoRobotSoldierHeightEvaluator::refl_AddAttributes(CClass*)
 void querysystem::CChozoRobotSoldierHeightEvaluator::refl_AddFields(CClass*) {}
 bool querysystem::CChozoRobotSoldierHeightEvaluator::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 querysystem::CChozoRobotSoldierHeightEvaluator::refl_Hash() { return -1; }
-const base::reflection::CType& querysystem::CChozoRobotSoldierHeightEvaluator::refl_TypeOf(const void* obj) { return *static_cast<const CChozoRobotSoldierHeightEvaluator*>(obj)->vf_0x0(); }
+const base::reflection::CType& querysystem::CChozoRobotSoldierHeightEvaluator::refl_TypeOf(const void* obj) { return *static_cast<const CChozoRobotSoldierHeightEvaluator*>(obj)->refl_GetDynamicClass(); }
 void querysystem::CChozoRobotSoldierHeightEvaluator::refl_Destroy(void* obj) { static_cast<CChozoRobotSoldierHeightEvaluator*>(obj)->~CChozoRobotSoldierHeightEvaluator(); }
 struct querysystem::CChozoRobotSoldierHeightEvaluator::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CChozoRobotSoldierHeightEvaluator);

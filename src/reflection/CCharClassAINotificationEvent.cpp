@@ -22,7 +22,7 @@ void CCharClassAINotificationEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassAINotificationEvent::refl_AddFields(CClass*) {}
 bool CCharClassAINotificationEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAINotificationEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAINotificationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAINotificationEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAINotificationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAINotificationEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAINotificationEvent::refl_Destroy(void* obj) { static_cast<CCharClassAINotificationEvent*>(obj)->~CCharClassAINotificationEvent(); }
 struct CCharClassAINotificationEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAINotificationEvent);

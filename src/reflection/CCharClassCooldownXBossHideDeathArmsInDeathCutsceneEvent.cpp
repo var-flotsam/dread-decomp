@@ -22,7 +22,7 @@ void CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent::refl_AddAttribute
 void CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent::refl_AddFields(CClass*) {}
 bool CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent::refl_Destroy(void* obj) { static_cast<CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent*>(obj)->~CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent(); }
 struct CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent);

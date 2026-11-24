@@ -14,7 +14,7 @@ void CScriptComponent::refl_AddAttributes(CClass*) {}
 void CScriptComponent::refl_AddFields(CClass*) {}
 bool CScriptComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CScriptComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CScriptComponent::refl_TypeOf(const void* obj) { return *static_cast<const CScriptComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CScriptComponent::refl_TypeOf(const void* obj) { return *static_cast<const CScriptComponent*>(obj)->refl_GetDynamicClass(); }
 void CScriptComponent::refl_CopyConstruct(void*, const void*) {}
 void CScriptComponent::refl_MoveConstruct(void*, const void*) {}
 void CScriptComponent::refl_Destroy(void* obj) { static_cast<CScriptComponent*>(obj)->~CScriptComponent(); }

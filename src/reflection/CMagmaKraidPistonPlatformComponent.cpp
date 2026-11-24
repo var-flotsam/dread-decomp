@@ -14,7 +14,7 @@ void CMagmaKraidPistonPlatformComponent::refl_AddAttributes(CClass*) {}
 void CMagmaKraidPistonPlatformComponent::refl_AddFields(CClass*) {}
 bool CMagmaKraidPistonPlatformComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CMagmaKraidPistonPlatformComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CMagmaKraidPistonPlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMagmaKraidPistonPlatformComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CMagmaKraidPistonPlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMagmaKraidPistonPlatformComponent*>(obj)->refl_GetDynamicClass(); }
 void CMagmaKraidPistonPlatformComponent::refl_CopyConstruct(void*, const void*) {}
 void CMagmaKraidPistonPlatformComponent::refl_MoveConstruct(void*, const void*) {}
 void CMagmaKraidPistonPlatformComponent::refl_Destroy(void* obj) { static_cast<CMagmaKraidPistonPlatformComponent*>(obj)->~CMagmaKraidPistonPlatformComponent(); }

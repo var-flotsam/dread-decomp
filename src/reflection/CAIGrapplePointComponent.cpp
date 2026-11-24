@@ -14,7 +14,7 @@ void CAIGrapplePointComponent::refl_AddAttributes(CClass*) {}
 void CAIGrapplePointComponent::refl_AddFields(CClass*) {}
 bool CAIGrapplePointComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CAIGrapplePointComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CAIGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAIGrapplePointComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CAIGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CAIGrapplePointComponent*>(obj)->refl_GetDynamicClass(); }
 void CAIGrapplePointComponent::refl_CopyConstruct(void*, const void*) {}
 void CAIGrapplePointComponent::refl_MoveConstruct(void*, const void*) {}
 void CAIGrapplePointComponent::refl_Destroy(void* obj) { static_cast<CAIGrapplePointComponent*>(obj)->~CAIGrapplePointComponent(); }

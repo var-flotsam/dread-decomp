@@ -22,7 +22,7 @@ void CCharClassFXCreateAndLinkBaseEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassFXCreateAndLinkBaseEvent::refl_AddFields(CClass*) {}
 bool CCharClassFXCreateAndLinkBaseEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFXCreateAndLinkBaseEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFXCreateAndLinkBaseEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXCreateAndLinkBaseEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFXCreateAndLinkBaseEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXCreateAndLinkBaseEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFXCreateAndLinkBaseEvent::refl_Destroy(void* obj) { static_cast<CCharClassFXCreateAndLinkBaseEvent*>(obj)->~CCharClassFXCreateAndLinkBaseEvent(); }
 struct CCharClassFXCreateAndLinkBaseEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFXCreateAndLinkBaseEvent);

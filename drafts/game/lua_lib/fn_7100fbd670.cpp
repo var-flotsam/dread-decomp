@@ -56,7 +56,7 @@ int fn_7100fbf2c0(lua_State* L);
 // The names of the methods every collection has.
 extern CStrId g_unk_71729efef0[7] __attribute__((visibility("hidden")));
 
-// A field of a class (CClass::m_array_0xe8's elements, 0xb0 bytes).
+// A field of a class (CClass::m_fields's elements, 0xb0 bytes).
 struct UnkClassField_lfbd670 {
     u8 pad_0x0[0xb0];
 };
@@ -111,8 +111,8 @@ static inline int PushMethod(lua_State* L, const CStrId* name) {
 
 // The index of the field of a class with the given name hash, or the field count.
 static inline u64 FindField(const CClass* cls, u64 key) {
-    const u64* keys = static_cast<const u64*>(cls->m_array_0xe8.keys);
-    u64 count = cls->m_array_0xe8.count;
+    const u64* keys = static_cast<const u64*>(cls->m_fields.keys);
+    u64 count = cls->m_fields.count;
     for (u64 i = 0; i < count; ++i)
         if (keys[i] == key)
             return i;
@@ -215,9 +215,9 @@ int fn_7100fbd670(lua_State* L, UnkTypedPair_ovb0016* value, CStrId* name) {
         target.type = fn_710009dcd8(type, obj);
         target.ptr = obj;
         u64 index = FindField(cls, name->data->Key());
-        UnkClassField_lfbd670* fields = static_cast<UnkClassField_lfbd670*>(cls->m_array_0xe8.data);
+        UnkClassField_lfbd670* fields = static_cast<UnkClassField_lfbd670*>(cls->m_fields.data);
         UnkClassField_lfbd670* field = &fields[index];
-        UnkClassField_lfbd670* end = &fields[cls->m_array_0xe8.count];
+        UnkClassField_lfbd670* end = &fields[cls->m_fields.count];
         if (field != end && field) {
             if (fn_71000e74bc(reinterpret_cast<CVariable*>(field))) {
                 UnkReflTypedPtr member = fn_71000e755c(reinterpret_cast<CVariable*>(field), &target);

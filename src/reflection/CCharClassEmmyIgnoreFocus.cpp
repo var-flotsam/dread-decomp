@@ -22,7 +22,7 @@ void CCharClassEmmyIgnoreFocus::refl_AddAttributes(CClass* cls) {
 void CCharClassEmmyIgnoreFocus::refl_AddFields(CClass*) {}
 bool CCharClassEmmyIgnoreFocus::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEmmyIgnoreFocus::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmyIgnoreFocus::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyIgnoreFocus*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmyIgnoreFocus::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyIgnoreFocus*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmyIgnoreFocus::refl_Destroy(void* obj) { static_cast<CCharClassEmmyIgnoreFocus*>(obj)->~CCharClassEmmyIgnoreFocus(); }
 struct CCharClassEmmyIgnoreFocus::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEmmyIgnoreFocus);

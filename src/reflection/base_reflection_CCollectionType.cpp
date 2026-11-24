@@ -12,20 +12,20 @@ void fn_71000986cc(base::reflection::CClass*) {}
 void fn_71000987c4(base::reflection::CClass*) {}
 bool fn_7100098bb8(const void* a, const void* b) { return a == b; }
 s32 fn_7100098bc4() { return -1; }
-const base::reflection::CType& fn_7100098bcc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100098be8(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
+const base::reflection::CType& fn_7100098bcc(const void* obj) { return *static_cast<const base::reflection::ReflectedObject*>(obj)->refl_GetDynamicClass(); }
+void fn_7100098be8(void* obj) { static_cast<base::reflection::ReflectedObject*>(obj)->~ReflectedObject(); }
 template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71000987c8> {
+struct base::reflection::ClassTraits<UnkRefl_fn_71000987c8> {
     static constexpr u64 size = 0x170;
     static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100098bb8;
-    static constexpr HashFn fn_0x60 = &fn_7100098bc4;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100098bcc;
-    static constexpr SlotFn fn_0x28 = nullptr;
-    static constexpr CopyConstructFn fn_0x30 = nullptr;
-    static constexpr CopyConstructFn fn_0x38 = nullptr;
-    static constexpr DestroyFn fn_0x40 = &fn_7100098be8;
-    static constexpr AssignFn fn_0x48 = nullptr;
-    static constexpr AssignFn fn_0x50 = nullptr;
+    static constexpr EqualsFn equals = &fn_7100098bb8;
+    static constexpr HashFn hash = &fn_7100098bc4;
+    static constexpr TypeOfFn type_of = &fn_7100098bcc;
+    static constexpr SlotFn construct = nullptr;
+    static constexpr CopyConstructFn copy_construct = nullptr;
+    static constexpr CopyConstructFn move_construct = nullptr;
+    static constexpr DestroyFn destroy = &fn_7100098be8;
+    static constexpr AssignFn copy_assign = nullptr;
+    static constexpr AssignFn move_assign = nullptr;
 };
 DREAD_REFL_CLASS_GETTER(71000986d0, 71000987c8, "base::reflection::CCollectionType", 710009c7b8, 71000986cc, 71000987c4);

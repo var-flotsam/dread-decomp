@@ -22,7 +22,7 @@ void CCharClassAIAttackCheckFinishedEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassAIAttackCheckFinishedEvent::refl_AddFields(CClass*) {}
 bool CCharClassAIAttackCheckFinishedEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAIAttackCheckFinishedEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAIAttackCheckFinishedEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAIAttackCheckFinishedEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAIAttackCheckFinishedEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAIAttackCheckFinishedEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAIAttackCheckFinishedEvent::refl_Destroy(void* obj) { static_cast<CCharClassAIAttackCheckFinishedEvent*>(obj)->~CCharClassAIAttackCheckFinishedEvent(); }
 struct CCharClassAIAttackCheckFinishedEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAIAttackCheckFinishedEvent);

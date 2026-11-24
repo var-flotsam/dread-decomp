@@ -24,10 +24,10 @@ struct UnkStruct_71003b24fc {
 
 static inline UnkCloneObject* CreateEnemyPreset() {
     const CClass* cls = fn_7100576258();
-    if (fn_710009d50c(cls, fn_7100576258()) && cls->m_fn_0x28) {
+    if (fn_710009d50c(cls, fn_7100576258()) && cls->m_construct) {
         void* p = GetDefaultAllocator()->vf_0x40(cls->m_size, 8, 4);
         if (p)
-            reinterpret_cast<void (*)(void*)>(cls->m_fn_0x28)(p);
+            reinterpret_cast<void (*)(void*)>(cls->m_construct)(p);
         return static_cast<UnkCloneObject*>(p);
     }
     return nullptr;

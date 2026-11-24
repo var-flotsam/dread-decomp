@@ -22,7 +22,7 @@ void CCharClassCommanderGroundStageChangeTrack::refl_AddAttributes(CClass* cls) 
 void CCharClassCommanderGroundStageChangeTrack::refl_AddFields(CClass*) {}
 bool CCharClassCommanderGroundStageChangeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCommanderGroundStageChangeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCommanderGroundStageChangeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCommanderGroundStageChangeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCommanderGroundStageChangeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCommanderGroundStageChangeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCommanderGroundStageChangeTrack::refl_Destroy(void* obj) { static_cast<CCharClassCommanderGroundStageChangeTrack*>(obj)->~CCharClassCommanderGroundStageChangeTrack(); }
 struct CCharClassCommanderGroundStageChangeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCommanderGroundStageChangeTrack);

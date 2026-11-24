@@ -22,7 +22,7 @@ void CCharClassIgnoreColorChangeTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreColorChangeTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreColorChangeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreColorChangeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreColorChangeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreColorChangeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreColorChangeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreColorChangeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreColorChangeTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreColorChangeTrack*>(obj)->~CCharClassIgnoreColorChangeTrack(); }
 struct CCharClassIgnoreColorChangeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreColorChangeTrack);

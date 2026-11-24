@@ -22,7 +22,7 @@ void CCharClassIgnoreCrazyEndCounterTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreCrazyEndCounterTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreCrazyEndCounterTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreCrazyEndCounterTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreCrazyEndCounterTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCrazyEndCounterTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreCrazyEndCounterTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCrazyEndCounterTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreCrazyEndCounterTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreCrazyEndCounterTrack*>(obj)->~CCharClassIgnoreCrazyEndCounterTrack(); }
 struct CCharClassIgnoreCrazyEndCounterTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreCrazyEndCounterTrack);

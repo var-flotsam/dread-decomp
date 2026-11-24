@@ -22,7 +22,7 @@ void CCharClassScheduleStealthActionTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassScheduleStealthActionTrack::refl_AddFields(CClass*) {}
 bool CCharClassScheduleStealthActionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassScheduleStealthActionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassScheduleStealthActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScheduleStealthActionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassScheduleStealthActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScheduleStealthActionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassScheduleStealthActionTrack::refl_Destroy(void* obj) { static_cast<CCharClassScheduleStealthActionTrack*>(obj)->~CCharClassScheduleStealthActionTrack(); }
 struct CCharClassScheduleStealthActionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassScheduleStealthActionTrack);

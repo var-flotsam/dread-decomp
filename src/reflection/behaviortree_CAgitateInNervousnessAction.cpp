@@ -25,7 +25,7 @@ void behaviortree::CAgitateInNervousnessAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CAgitateInNervousnessAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CAgitateInNervousnessAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CAgitateInNervousnessAction::refl_TypeOf(const void* obj) { return *static_cast<const CAgitateInNervousnessAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CAgitateInNervousnessAction::refl_TypeOf(const void* obj) { return *static_cast<const CAgitateInNervousnessAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CAgitateInNervousnessAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CAgitateInNervousnessAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CAgitateInNervousnessAction::refl_Destroy(void* obj) { static_cast<CAgitateInNervousnessAction*>(obj)->~CAgitateInNervousnessAction(); }

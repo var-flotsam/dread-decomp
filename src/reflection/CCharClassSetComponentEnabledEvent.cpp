@@ -27,7 +27,7 @@ void CCharClassSetComponentEnabledEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassSetComponentEnabledEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetComponentEnabledEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetComponentEnabledEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetComponentEnabledEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetComponentEnabledEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetComponentEnabledEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetComponentEnabledEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetComponentEnabledEvent*>(obj)->~CCharClassSetComponentEnabledEvent(); }
 struct CCharClassSetComponentEnabledEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetComponentEnabledEvent);

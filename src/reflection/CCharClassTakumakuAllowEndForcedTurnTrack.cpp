@@ -22,7 +22,7 @@ void CCharClassTakumakuAllowEndForcedTurnTrack::refl_AddAttributes(CClass* cls) 
 void CCharClassTakumakuAllowEndForcedTurnTrack::refl_AddFields(CClass*) {}
 bool CCharClassTakumakuAllowEndForcedTurnTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTakumakuAllowEndForcedTurnTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTakumakuAllowEndForcedTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTakumakuAllowEndForcedTurnTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTakumakuAllowEndForcedTurnTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTakumakuAllowEndForcedTurnTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTakumakuAllowEndForcedTurnTrack::refl_Destroy(void* obj) { static_cast<CCharClassTakumakuAllowEndForcedTurnTrack*>(obj)->~CCharClassTakumakuAllowEndForcedTurnTrack(); }
 struct CCharClassTakumakuAllowEndForcedTurnTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTakumakuAllowEndForcedTurnTrack);

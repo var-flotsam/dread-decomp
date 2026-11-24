@@ -22,7 +22,7 @@ void CCharClassObsydomithonChargePoseTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassObsydomithonChargePoseTrack::refl_AddFields(CClass*) {}
 bool CCharClassObsydomithonChargePoseTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassObsydomithonChargePoseTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassObsydomithonChargePoseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassObsydomithonChargePoseTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassObsydomithonChargePoseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassObsydomithonChargePoseTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassObsydomithonChargePoseTrack::refl_Destroy(void* obj) { static_cast<CCharClassObsydomithonChargePoseTrack*>(obj)->~CCharClassObsydomithonChargePoseTrack(); }
 struct CCharClassObsydomithonChargePoseTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassObsydomithonChargePoseTrack);

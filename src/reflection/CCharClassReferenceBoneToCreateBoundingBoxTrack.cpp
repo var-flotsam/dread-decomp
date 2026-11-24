@@ -32,7 +32,7 @@ void CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_AddFields(CClass* cls
 }
 bool CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassReferenceBoneToCreateBoundingBoxTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassReferenceBoneToCreateBoundingBoxTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_Destroy(void* obj) { static_cast<CCharClassReferenceBoneToCreateBoundingBoxTrack*>(obj)->~CCharClassReferenceBoneToCreateBoundingBoxTrack(); }
 struct CCharClassReferenceBoneToCreateBoundingBoxTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassReferenceBoneToCreateBoundingBoxTrack);

@@ -22,7 +22,7 @@ void CCharClassMakingNoiseTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassMakingNoiseTrack::refl_AddFields(CClass*) {}
 bool CCharClassMakingNoiseTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassMakingNoiseTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMakingNoiseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMakingNoiseTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMakingNoiseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMakingNoiseTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMakingNoiseTrack::refl_Destroy(void* obj) { static_cast<CCharClassMakingNoiseTrack*>(obj)->~CCharClassMakingNoiseTrack(); }
 struct CCharClassMakingNoiseTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassMakingNoiseTrack);

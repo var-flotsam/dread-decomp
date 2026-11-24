@@ -14,7 +14,7 @@ void behaviortree::CPoisonFlyRequestAttackOffset::refl_AddAttributes(CClass*) {}
 void behaviortree::CPoisonFlyRequestAttackOffset::refl_AddFields(CClass*) {}
 bool behaviortree::CPoisonFlyRequestAttackOffset::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CPoisonFlyRequestAttackOffset::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CPoisonFlyRequestAttackOffset::refl_TypeOf(const void* obj) { return *static_cast<const CPoisonFlyRequestAttackOffset*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CPoisonFlyRequestAttackOffset::refl_TypeOf(const void* obj) { return *static_cast<const CPoisonFlyRequestAttackOffset*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CPoisonFlyRequestAttackOffset::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CPoisonFlyRequestAttackOffset::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CPoisonFlyRequestAttackOffset::refl_Destroy(void* obj) { static_cast<CPoisonFlyRequestAttackOffset*>(obj)->~CPoisonFlyRequestAttackOffset(); }

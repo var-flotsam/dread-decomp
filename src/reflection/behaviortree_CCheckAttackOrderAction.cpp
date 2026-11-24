@@ -14,7 +14,7 @@ void behaviortree::CCheckAttackOrderAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CCheckAttackOrderAction::refl_AddFields(CClass*) {}
 bool behaviortree::CCheckAttackOrderAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CCheckAttackOrderAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CCheckAttackOrderAction::refl_TypeOf(const void* obj) { return *static_cast<const CCheckAttackOrderAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CCheckAttackOrderAction::refl_TypeOf(const void* obj) { return *static_cast<const CCheckAttackOrderAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CCheckAttackOrderAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CCheckAttackOrderAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CCheckAttackOrderAction::refl_Destroy(void* obj) { static_cast<CCheckAttackOrderAction*>(obj)->~CCheckAttackOrderAction(); }

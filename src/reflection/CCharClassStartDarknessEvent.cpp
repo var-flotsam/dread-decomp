@@ -28,7 +28,7 @@ void CCharClassStartDarknessEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassStartDarknessEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassStartDarknessEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassStartDarknessEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStartDarknessEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassStartDarknessEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassStartDarknessEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassStartDarknessEvent::refl_Destroy(void* obj) { static_cast<CCharClassStartDarknessEvent*>(obj)->~CCharClassStartDarknessEvent(); }
 struct CCharClassStartDarknessEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassStartDarknessEvent);

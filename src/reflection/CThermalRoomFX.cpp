@@ -14,7 +14,7 @@ void CThermalRoomFX::refl_AddAttributes(CClass*) {}
 void CThermalRoomFX::refl_AddFields(CClass*) {}
 bool CThermalRoomFX::refl_Equals(const void*, const void*) { return false; }
 s32 CThermalRoomFX::refl_Hash() { return -1; }
-const base::reflection::CType& CThermalRoomFX::refl_TypeOf(const void* obj) { return *static_cast<const CThermalRoomFX*>(obj)->vf_0x0(); }
+const base::reflection::CType& CThermalRoomFX::refl_TypeOf(const void* obj) { return *static_cast<const CThermalRoomFX*>(obj)->refl_GetDynamicClass(); }
 void CThermalRoomFX::refl_CopyConstruct(void*, const void*) {}
 void CThermalRoomFX::refl_MoveConstruct(void*, const void*) {}
 void CThermalRoomFX::refl_Destroy(void* obj) { static_cast<CThermalRoomFX*>(obj)->~CThermalRoomFX(); }

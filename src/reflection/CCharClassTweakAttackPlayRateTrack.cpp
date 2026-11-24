@@ -28,7 +28,7 @@ void CCharClassTweakAttackPlayRateTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassTweakAttackPlayRateTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTweakAttackPlayRateTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTweakAttackPlayRateTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakAttackPlayRateTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTweakAttackPlayRateTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakAttackPlayRateTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTweakAttackPlayRateTrack::refl_Destroy(void* obj) { static_cast<CCharClassTweakAttackPlayRateTrack*>(obj)->~CCharClassTweakAttackPlayRateTrack(); }
 struct CCharClassTweakAttackPlayRateTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTweakAttackPlayRateTrack);

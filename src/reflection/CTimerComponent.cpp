@@ -14,7 +14,7 @@ void CTimerComponent::refl_AddAttributes(CClass*) {}
 void CTimerComponent::refl_AddFields(CClass*) {}
 bool CTimerComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CTimerComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CTimerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CTimerComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CTimerComponent::refl_TypeOf(const void* obj) { return *static_cast<const CTimerComponent*>(obj)->refl_GetDynamicClass(); }
 void CTimerComponent::refl_CopyConstruct(void*, const void*) {}
 void CTimerComponent::refl_MoveConstruct(void*, const void*) {}
 void CTimerComponent::refl_Destroy(void* obj) { static_cast<CTimerComponent*>(obj)->~CTimerComponent(); }

@@ -95,7 +95,7 @@ void CCharClassModifyColliderStateBaseTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassModifyColliderStateBaseTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassModifyColliderStateBaseTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassModifyColliderStateBaseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassModifyColliderStateBaseTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassModifyColliderStateBaseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassModifyColliderStateBaseTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassModifyColliderStateBaseTrack::refl_Destroy(void* obj) { static_cast<CCharClassModifyColliderStateBaseTrack*>(obj)->~CCharClassModifyColliderStateBaseTrack(); }
 struct CCharClassModifyColliderStateBaseTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassModifyColliderStateBaseTrack);

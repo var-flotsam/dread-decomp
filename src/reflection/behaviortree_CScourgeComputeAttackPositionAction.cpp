@@ -25,7 +25,7 @@ void behaviortree::CScourgeComputeAttackPositionAction::refl_AddFields(CClass* c
 }
 bool behaviortree::CScourgeComputeAttackPositionAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CScourgeComputeAttackPositionAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CScourgeComputeAttackPositionAction::refl_TypeOf(const void* obj) { return *static_cast<const CScourgeComputeAttackPositionAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CScourgeComputeAttackPositionAction::refl_TypeOf(const void* obj) { return *static_cast<const CScourgeComputeAttackPositionAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CScourgeComputeAttackPositionAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CScourgeComputeAttackPositionAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CScourgeComputeAttackPositionAction::refl_Destroy(void* obj) { static_cast<CScourgeComputeAttackPositionAction*>(obj)->~CScourgeComputeAttackPositionAction(); }

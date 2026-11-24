@@ -22,7 +22,7 @@ void CCharClassFXStopAllFXEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassFXStopAllFXEvent::refl_AddFields(CClass*) {}
 bool CCharClassFXStopAllFXEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFXStopAllFXEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFXStopAllFXEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXStopAllFXEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFXStopAllFXEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXStopAllFXEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFXStopAllFXEvent::refl_Destroy(void* obj) { static_cast<CCharClassFXStopAllFXEvent*>(obj)->~CCharClassFXStopAllFXEvent(); }
 struct CCharClassFXStopAllFXEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFXStopAllFXEvent);

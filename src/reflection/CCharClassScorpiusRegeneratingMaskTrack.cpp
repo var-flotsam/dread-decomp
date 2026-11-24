@@ -22,7 +22,7 @@ void CCharClassScorpiusRegeneratingMaskTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassScorpiusRegeneratingMaskTrack::refl_AddFields(CClass*) {}
 bool CCharClassScorpiusRegeneratingMaskTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassScorpiusRegeneratingMaskTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassScorpiusRegeneratingMaskTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScorpiusRegeneratingMaskTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassScorpiusRegeneratingMaskTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScorpiusRegeneratingMaskTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassScorpiusRegeneratingMaskTrack::refl_Destroy(void* obj) { static_cast<CCharClassScorpiusRegeneratingMaskTrack*>(obj)->~CCharClassScorpiusRegeneratingMaskTrack(); }
 struct CCharClassScorpiusRegeneratingMaskTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassScorpiusRegeneratingMaskTrack);

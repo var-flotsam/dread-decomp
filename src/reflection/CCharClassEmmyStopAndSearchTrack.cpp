@@ -22,7 +22,7 @@ void CCharClassEmmyStopAndSearchTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassEmmyStopAndSearchTrack::refl_AddFields(CClass*) {}
 bool CCharClassEmmyStopAndSearchTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEmmyStopAndSearchTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmyStopAndSearchTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyStopAndSearchTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmyStopAndSearchTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyStopAndSearchTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmyStopAndSearchTrack::refl_Destroy(void* obj) { static_cast<CCharClassEmmyStopAndSearchTrack*>(obj)->~CCharClassEmmyStopAndSearchTrack(); }
 struct CCharClassEmmyStopAndSearchTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEmmyStopAndSearchTrack);

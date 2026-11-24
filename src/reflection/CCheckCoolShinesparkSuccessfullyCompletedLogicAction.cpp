@@ -14,7 +14,7 @@ void CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_AddAttributes(CC
 void CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_AddFields(CClass*) {}
 bool CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_Hash() { return -1; }
-const base::reflection::CType& CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CCheckCoolShinesparkSuccessfullyCompletedLogicAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CCheckCoolShinesparkSuccessfullyCompletedLogicAction*>(obj)->refl_GetDynamicClass(); }
 void CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_Destroy(void* obj) { static_cast<CCheckCoolShinesparkSuccessfullyCompletedLogicAction*>(obj)->~CCheckCoolShinesparkSuccessfullyCompletedLogicAction(); }
 struct CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCheckCoolShinesparkSuccessfullyCompletedLogicAction);

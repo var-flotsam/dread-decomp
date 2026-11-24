@@ -187,7 +187,7 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100005070> {
     static constexpr const char* name = "Version";
     static const CType* type() { return fn_7100005178(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_7100007e80;
@@ -195,14 +195,14 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100007e80> {
     static constexpr const char* name = "Description";
     static const CType* type() { return fn_7100007f84(); }
-    static constexpr u32 field_0x10 = 0xf;
+    static constexpr u32 targets = 0xf;
 };
 struct UnkRefl_fn_710000bf80;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710000bf80> {
     static constexpr const char* name = "Persistence";
     static const CType* type() { return &g_unk_7101d679f0; }
-    static constexpr u32 field_0x10 = 0x3;
+    static constexpr u32 targets = 0x3;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_710000d120;
@@ -210,7 +210,7 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710000d120> {
     static constexpr const char* name = "_EditorOnly";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0xf;
+    static constexpr u32 targets = 0xf;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_7100011040;
@@ -218,7 +218,7 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100011040> {
     static constexpr const char* name = "sBinaryDeserialize";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_710001b9f0;
@@ -226,14 +226,14 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710001b9f0> {
     static constexpr const char* name = "XmlAttribute";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100026bf0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100026bf0> {
     static constexpr const char* name = "sSerializationType";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_710008f920;
@@ -241,7 +241,7 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710008f920> {
     static constexpr const char* name = "Name";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x8;
+    static constexpr u32 targets = 0x8;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_710008fa30;
@@ -249,98 +249,98 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710008fa30> {
     static constexpr const char* name = "UniqueId";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
 };
 struct UnkRefl_fn_710008fb40;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710008fb40> {
     static constexpr const char* name = "DeleteElement";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_710008fc50;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710008fc50> {
     static constexpr const char* name = "EraseElement";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_710008fd60;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710008fd60> {
     static constexpr const char* name = "CreateElement";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_710008fe70;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710008fe70> {
     static constexpr const char* name = "InsertElement";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_710008ff80;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710008ff80> {
     static constexpr const char* name = "AfterElementDeserialization";
     static const CType* type() { return &g_unk_7101d61130; }
-    static constexpr u32 field_0x10 = 0x3;
+    static constexpr u32 targets = 0x3;
 };
 struct UnkRefl_fn_7100090090;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090090> {
     static constexpr const char* name = "FixedCollection";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71000901a0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000901a0> {
     static constexpr const char* name = "ElementKeyVariable";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71000902b0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000902b0> {
     static constexpr const char* name = "Optional";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0xa;
+    static constexpr u32 targets = 0xa;
 };
 struct UnkRefl_fn_71000903c0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000903c0> {
     static constexpr const char* name = "Required";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0xa;
+    static constexpr u32 targets = 0xa;
 };
 struct UnkRefl_fn_71000904d0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000904d0> {
     static constexpr const char* name = "RntFilePackedParams";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x4;
+    static constexpr u32 targets = 0x4;
 };
 struct UnkRefl_fn_71000905e0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000905e0> {
     static constexpr const char* name = "AssetHash";
     static const CType* type() { return fn_7100005178(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
 };
 struct UnkRefl_fn_71000906f0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000906f0> {
     static constexpr const char* name = "CreateElementAt";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100090800;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090800> {
     static constexpr const char* name = "bBinaryDumpable";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_7100090910;
@@ -348,7 +348,7 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090910> {
     static constexpr const char* name = "IsLink";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_7100090a20;
@@ -356,21 +356,21 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090a20> {
     static constexpr const char* name = "EditorVisible";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100090b30;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090b30> {
     static constexpr const char* name = "EditorVisibleIfNested";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100090c40;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090c40> {
     static constexpr const char* name = "CharEditorVisible";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_7100090d50;
@@ -378,294 +378,294 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090d50> {
     static constexpr const char* name = "EventGroup";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
 };
 struct UnkRefl_fn_7100090e60;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090e60> {
     static constexpr const char* name = "TrackGroup";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
 };
 struct UnkRefl_fn_7100090f70;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090f70> {
     static constexpr const char* name = "Group";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
 };
 struct UnkRefl_fn_7100091080;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091080> {
     static constexpr const char* name = "MinValue";
     static const CType* type() { return fn_710000abbc(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100091190;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091190> {
     static constexpr const char* name = "MaxValue";
     static const CType* type() { return fn_710000abbc(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71000912a0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000912a0> {
     static constexpr const char* name = "EmptyTrack";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
 };
 struct UnkRefl_fn_71000913b0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000913b0> {
     static constexpr const char* name = "MinValueProperty";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71000914c0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000914c0> {
     static constexpr const char* name = "MaxValueProperty";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71000915d0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000915d0> {
     static constexpr const char* name = "uSliderSteps";
     static const CType* type() { return fn_7100005178(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71000916e0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000916e0> {
     static constexpr const char* name = "MinValueI";
     static const CType* type() { return fn_7100014768(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71000917f0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000917f0> {
     static constexpr const char* name = "MaxValueI";
     static const CType* type() { return fn_7100014768(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100091900;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091900> {
     static constexpr const char* name = "Extension";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100091a10;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091a10> {
     static constexpr const char* name = "_oPath";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x8;
+    static constexpr u32 targets = 0x8;
 };
 struct UnkRefl_fn_7100091b20;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091b20> {
     static constexpr const char* name = "_bHidePath";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x8;
+    static constexpr u32 targets = 0x8;
 };
 struct UnkRefl_fn_7100091c30;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091c30> {
     static constexpr const char* name = "DisplayName";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100091d40;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091d40> {
     static constexpr const char* name = "TypeSelectionEnabled";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100091e50;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091e50> {
     static constexpr const char* name = "SPointChClassSelectEnabled";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
 };
 struct UnkRefl_fn_7100091f60;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091f60> {
     static constexpr const char* name = "AddNewItemButtonEnabled";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100092070;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100092070> {
     static constexpr const char* name = "DeleteItemButtonEnabled";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100092180;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100092180> {
     static constexpr const char* name = "FillComboBoxDelegate";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100092290;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100092290> {
     static constexpr const char* name = "AllowBlankComboItem";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71000923a0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000923a0> {
     static constexpr const char* name = "EditorModeDataFlow";
     static const CType* type() { return &g_unk_7101d55008; }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71000924b0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000924b0> {
     static constexpr const char* name = "bEditorModeDataFlowInit";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71000925c0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000925c0> {
     static constexpr const char* name = "bSkipDataFlowOrder";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71000926d0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000926d0> {
     static constexpr const char* name = "CompleteGameModelActionTreeFrom";
     static const CType* type() { return &g_unk_7101d60ff0; }
-    static constexpr u32 field_0x10 = 0x6;
+    static constexpr u32 targets = 0x6;
 };
 struct UnkRefl_fn_71000927e0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000927e0> {
     static constexpr const char* name = "UndoableSideEffects";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x6;
+    static constexpr u32 targets = 0x6;
 };
 struct UnkRefl_fn_71000928f0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000928f0> {
     static constexpr const char* name = "ForcedSetSideEffect";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x6;
+    static constexpr u32 targets = 0x6;
 };
 struct UnkRefl_fn_7100092a00;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100092a00> {
     static constexpr const char* name = "IsVirtualPosition";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100092b10;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100092b10> {
     static constexpr const char* name = "DisableListAddRemove";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100092c20;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100092c20> {
     static constexpr const char* name = "DisableListAdd";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100092d30;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100092d30> {
     static constexpr const char* name = "DisableListRemove";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100092e40;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100092e40> {
     static constexpr const char* name = "DisableListRename";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100092f50;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100092f50> {
     static constexpr const char* name = "bExcludedFromDeepCopy";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100093060;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100093060> {
     static constexpr const char* name = "bExcludeFromSchema";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
 };
 struct UnkRefl_fn_7100093170;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100093170> {
     static constexpr const char* name = "ShowInConfig";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100093280;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100093280> {
     static constexpr const char* name = "ShowInDevConfig";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100093390;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100093390> {
     static constexpr const char* name = "DeprecatedVar";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100234410;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100234410> {
     static constexpr const char* name = "WidgetReadOnly";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100234780;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100234780> {
     static constexpr const char* name = "SetRenderItemSelectionIdCall";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_710025d550;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710025d550> {
     static constexpr const char* name = "VisibleNameOffset";
     static const CType* type() { return fn_710025d654(); }
-    static constexpr u32 field_0x10 = 0x1;
+    static constexpr u32 targets = 0x1;
 };
 struct UnkRefl_fn_710025d990;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710025d990> {
     static constexpr const char* name = "ePersistenceTarget";
     static const CType* type() { return &g_unk_7172756d10; }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_710025daa0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710025daa0> {
     static constexpr const char* name = "eLinkTarget";
     static const CType* type() { return &g_unk_71727bc110; }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_710025dbb0;
@@ -673,14 +673,14 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710025dbb0> {
     static constexpr const char* name = "bWeakLink";
     static const CType* type() { return fn_710000d228(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_710025dcc0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710025dcc0> {
     static constexpr const char* name = "ePersistenceTargetExcludeChildren";
     static const CType* type() { return &g_unk_7172756f90; }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_7100263720;
@@ -688,7 +688,7 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100263720> {
     static constexpr const char* name = "ePersistenceTargetExclude";
     static const CType* type() { return &g_unk_7172756f90; }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
     static constexpr u16 field_0x14 = 0x100;
 };
 struct UnkRefl_fn_7100286ad4;
@@ -849,21 +849,21 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100324af0> {
     static constexpr const char* name = "ControlFloatStep";
     static const CType* type() { return fn_710000abbc(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100324c00;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100324c00> {
     static constexpr const char* name = "InternalTag";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_7100324d10;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100324d10> {
     static constexpr const char* name = "ControlIntStep";
     static const CType* type() { return fn_7100005178(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_710032bc90;
 template <>
@@ -1028,7 +1028,7 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71003ba540> {
     static constexpr const char* name = "InternalDevTag";
     static const CType* type() { return fn_7100009658(); }
-    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u32 targets = 0x2;
 };
 struct UnkRefl_fn_71003bba70;
 template <>
@@ -3308,77 +3308,77 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_710089a1b0> {
     static const CClass* type() { return fn_71007e6074(); }
     static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
 };
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100005070>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100007e80>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_710000bf80>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_710000d120>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100011040>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710001b9f0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100026bf0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_710008f920>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008fa30>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008fb40>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008fc50>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008fd60>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008fe70>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008ff80>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090090>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000901a0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000902b0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000903c0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000904d0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000905e0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000906f0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100090800>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100090910>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090a20>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090b30>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100090c40>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090d50>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090e60>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090f70>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091080>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091190>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000912a0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000913b0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000914c0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000915d0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000916e0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000917f0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091900>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091a10>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091b20>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091c30>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091d40>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091e50>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091f60>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092070>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092180>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092290>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000923a0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000924b0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000925c0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000926d0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000927e0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000928f0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092a00>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092b10>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092c20>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092d30>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092e40>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092f50>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100093060>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100093170>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100093280>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100093390>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100234410>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100234780>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710025d550>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710025d990>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_710025daa0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710025dbb0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_710025dcc0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100263720>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100005070>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100007e80>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_710000bf80>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_710000d120>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100011040>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710001b9f0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100026bf0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_710008f920>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008fa30>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008fb40>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008fc50>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008fd60>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008fe70>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008ff80>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090090>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000901a0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000902b0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000903c0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000904d0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000905e0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000906f0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100090800>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100090910>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090a20>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090b30>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100090c40>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090d50>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090e60>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090f70>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091080>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091190>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000912a0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000913b0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000914c0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000915d0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000916e0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000917f0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091900>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091a10>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091b20>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091c30>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091d40>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091e50>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091f60>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092070>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092180>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092290>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000923a0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000924b0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000925c0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000926d0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000927e0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000928f0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092a00>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092b10>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092c20>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092d30>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092e40>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092f50>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100093060>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100093170>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100093280>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100093390>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100234410>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100234780>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710025d550>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710025d990>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_710025daa0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710025dbb0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_710025dcc0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100263720>();
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_7100286ad4>(void*);
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_7100286bb0>(void*);
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710028aca8>(void*);
@@ -3397,9 +3397,9 @@ template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRe
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710031cbd4>(void*);
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710031ccb0>(void*);
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710031cd8c>(void*);
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100324af0>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100324c00>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100324d10>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100324af0>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100324c00>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100324d10>();
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710032bc90>(void*);
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710032df00>(void*);
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710033dc00>(void*);
@@ -3420,7 +3420,7 @@ template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRe
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71003b1c84>();
 template void* base::reflection::refl_GetSingletonPart<UnkRefl_fn_71003b27b4>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71003b8b30>();
-template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71003ba540>();
+template const base::reflection::AttributeKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71003ba540>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71003bba70>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71003bc178>();
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_71003be154>(void*);

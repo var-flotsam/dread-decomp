@@ -14,7 +14,7 @@ void CStateParams::refl_AddAttributes(CClass*) {}
 void CStateParams::refl_AddFields(CClass*) {}
 bool CStateParams::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CStateParams::refl_Hash() { return -1; }
-const base::reflection::CType& CStateParams::refl_TypeOf(const void* obj) { return *static_cast<const CStateParams*>(obj)->vf_0x0(); }
+const base::reflection::CType& CStateParams::refl_TypeOf(const void* obj) { return *static_cast<const CStateParams*>(obj)->refl_GetDynamicClass(); }
 void CStateParams::refl_Destroy(void* obj) { static_cast<CStateParams*>(obj)->~CStateParams(); }
 struct CStateParams::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CStateParams);

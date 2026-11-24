@@ -22,7 +22,7 @@ void CCharClassTakumakuChargeTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassTakumakuChargeTrack::refl_AddFields(CClass*) {}
 bool CCharClassTakumakuChargeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTakumakuChargeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTakumakuChargeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTakumakuChargeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTakumakuChargeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTakumakuChargeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTakumakuChargeTrack::refl_Destroy(void* obj) { static_cast<CCharClassTakumakuChargeTrack*>(obj)->~CCharClassTakumakuChargeTrack(); }
 struct CCharClassTakumakuChargeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTakumakuChargeTrack);

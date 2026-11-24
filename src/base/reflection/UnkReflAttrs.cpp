@@ -97,7 +97,7 @@ static inline UnkReflValue* Insert(UnkReflAttrsMap* attrs, const UnkReflAttrKey&
 // Stores `value` in `slot`, converted to `type` when that differs and can be copied.
 static inline void SetValue(UnkReflValue* slot, const CType* type, const UnkReflValueRef& value) {
     const CType* from = value.type;
-    if (type && from != type && type->m_fn_0x30) {
+    if (type && from != type && type->m_copyConstruct) {
         UnkReflValue converted = fn_71000a1774(&value, type);
         const CType* t = reinterpret_cast<const CType*>(converted.type);
         const void* p = nullptr;

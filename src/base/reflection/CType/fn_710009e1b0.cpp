@@ -80,7 +80,7 @@ struct UnkReflVisitor {
 
 // The value with its object's own class (none when the type has no class getter).
 inline UnkTypedRef DynamicRef(const CType* type, void* data) {
-    TypeOfFn type_of = type->m_fn_0x68;
+    TypeOfFn type_of = type->m_typeOf;
     UnkTypedRef r;
     r.type = type_of ? &type_of(data) : nullptr;
     r.ptr = data;

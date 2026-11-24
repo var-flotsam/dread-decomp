@@ -22,7 +22,7 @@ void CCharClassReadySmartObjectEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassReadySmartObjectEvent::refl_AddFields(CClass*) {}
 bool CCharClassReadySmartObjectEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassReadySmartObjectEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassReadySmartObjectEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassReadySmartObjectEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassReadySmartObjectEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassReadySmartObjectEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassReadySmartObjectEvent::refl_Destroy(void* obj) { static_cast<CCharClassReadySmartObjectEvent*>(obj)->~CCharClassReadySmartObjectEvent(); }
 struct CCharClassReadySmartObjectEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassReadySmartObjectEvent);

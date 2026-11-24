@@ -22,7 +22,7 @@ void CCharClassIgnoreConvertToSamusTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreConvertToSamusTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreConvertToSamusTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreConvertToSamusTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreConvertToSamusTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreConvertToSamusTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreConvertToSamusTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreConvertToSamusTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreConvertToSamusTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreConvertToSamusTrack*>(obj)->~CCharClassIgnoreConvertToSamusTrack(); }
 struct CCharClassIgnoreConvertToSamusTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreConvertToSamusTrack);

@@ -23,7 +23,7 @@ void base::core::CDefinition::refl_AddFields(CClass* cls) {
 }
 bool base::core::CDefinition::refl_Equals(const void*, const void*) { return false; }
 s32 base::core::CDefinition::refl_Hash() { return -1; }
-const base::reflection::CType& base::core::CDefinition::refl_TypeOf(const void* obj) { return *static_cast<const CDefinition*>(obj)->vf_0x0(); }
+const base::reflection::CType& base::core::CDefinition::refl_TypeOf(const void* obj) { return *static_cast<const CDefinition*>(obj)->refl_GetDynamicClass(); }
 void base::core::CDefinition::refl_Destroy(void* obj) { static_cast<CDefinition*>(obj)->~CDefinition(); }
 struct base::core::CDefinition::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CDefinition);

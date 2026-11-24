@@ -14,7 +14,7 @@ void GUI::CMenuEntryDataSet::refl_AddAttributes(CClass*) {}
 void GUI::CMenuEntryDataSet::refl_AddFields(CClass*) {}
 bool GUI::CMenuEntryDataSet::refl_Equals(const void*, const void*) { return false; }
 s32 GUI::CMenuEntryDataSet::refl_Hash() { return -1; }
-const base::reflection::CType& GUI::CMenuEntryDataSet::refl_TypeOf(const void* obj) { return *static_cast<const CMenuEntryDataSet*>(obj)->vf_0x0(); }
+const base::reflection::CType& GUI::CMenuEntryDataSet::refl_TypeOf(const void* obj) { return *static_cast<const CMenuEntryDataSet*>(obj)->refl_GetDynamicClass(); }
 void GUI::CMenuEntryDataSet::refl_CopyConstruct(void*, const void*) {}
 void GUI::CMenuEntryDataSet::refl_MoveConstruct(void*, const void*) {}
 void GUI::CMenuEntryDataSet::refl_Destroy(void* obj) { static_cast<CMenuEntryDataSet*>(obj)->~CMenuEntryDataSet(); }

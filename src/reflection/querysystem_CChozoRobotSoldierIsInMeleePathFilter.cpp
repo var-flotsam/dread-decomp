@@ -14,7 +14,7 @@ void querysystem::CChozoRobotSoldierIsInMeleePathFilter::refl_AddAttributes(CCla
 void querysystem::CChozoRobotSoldierIsInMeleePathFilter::refl_AddFields(CClass*) {}
 bool querysystem::CChozoRobotSoldierIsInMeleePathFilter::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 querysystem::CChozoRobotSoldierIsInMeleePathFilter::refl_Hash() { return -1; }
-const base::reflection::CType& querysystem::CChozoRobotSoldierIsInMeleePathFilter::refl_TypeOf(const void* obj) { return *static_cast<const CChozoRobotSoldierIsInMeleePathFilter*>(obj)->vf_0x0(); }
+const base::reflection::CType& querysystem::CChozoRobotSoldierIsInMeleePathFilter::refl_TypeOf(const void* obj) { return *static_cast<const CChozoRobotSoldierIsInMeleePathFilter*>(obj)->refl_GetDynamicClass(); }
 void querysystem::CChozoRobotSoldierIsInMeleePathFilter::refl_Destroy(void* obj) { static_cast<CChozoRobotSoldierIsInMeleePathFilter*>(obj)->~CChozoRobotSoldierIsInMeleePathFilter(); }
 struct querysystem::CChozoRobotSoldierIsInMeleePathFilter::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CChozoRobotSoldierIsInMeleePathFilter);

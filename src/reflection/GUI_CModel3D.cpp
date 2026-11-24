@@ -115,7 +115,7 @@ void GUI::CModel3D::refl_AddFields(CClass* cls) {
 }
 bool GUI::CModel3D::refl_Equals(const void*, const void*) { return false; }
 s32 GUI::CModel3D::refl_Hash() { return -1; }
-const base::reflection::CType& GUI::CModel3D::refl_TypeOf(const void* obj) { return *static_cast<const CModel3D*>(obj)->vf_0x0(); }
+const base::reflection::CType& GUI::CModel3D::refl_TypeOf(const void* obj) { return *static_cast<const CModel3D*>(obj)->refl_GetDynamicClass(); }
 void GUI::CModel3D::refl_Destroy(void* obj) { static_cast<CModel3D*>(obj)->~CModel3D(); }
 struct GUI::CModel3D::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CModel3D);

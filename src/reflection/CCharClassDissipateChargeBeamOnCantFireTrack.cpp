@@ -22,7 +22,7 @@ void CCharClassDissipateChargeBeamOnCantFireTrack::refl_AddAttributes(CClass* cl
 void CCharClassDissipateChargeBeamOnCantFireTrack::refl_AddFields(CClass*) {}
 bool CCharClassDissipateChargeBeamOnCantFireTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassDissipateChargeBeamOnCantFireTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassDissipateChargeBeamOnCantFireTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDissipateChargeBeamOnCantFireTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassDissipateChargeBeamOnCantFireTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDissipateChargeBeamOnCantFireTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassDissipateChargeBeamOnCantFireTrack::refl_Destroy(void* obj) { static_cast<CCharClassDissipateChargeBeamOnCantFireTrack*>(obj)->~CCharClassDissipateChargeBeamOnCantFireTrack(); }
 struct CCharClassDissipateChargeBeamOnCantFireTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassDissipateChargeBeamOnCantFireTrack);

@@ -46,7 +46,7 @@ void refl_AddFields(CClass* cls) {
     }
     DREAD_REFLECTED_FUNCTION("Discover") {
         fn_7100a9c674(fn, "Discover");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_bTransition", true));
     }
 }

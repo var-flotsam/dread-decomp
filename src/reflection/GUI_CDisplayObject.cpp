@@ -370,7 +370,7 @@ void GUI::CDisplayObject::refl_AddFields(CClass* cls) {
 }
 bool GUI::CDisplayObject::refl_Equals(const void*, const void*) { return false; }
 s32 GUI::CDisplayObject::refl_Hash() { return -1; }
-const base::reflection::CType& GUI::CDisplayObject::refl_TypeOf(const void* obj) { return *static_cast<const CDisplayObject*>(obj)->vf_0x0(); }
+const base::reflection::CType& GUI::CDisplayObject::refl_TypeOf(const void* obj) { return *static_cast<const CDisplayObject*>(obj)->refl_GetDynamicClass(); }
 void GUI::CDisplayObject::refl_Destroy(void* obj) { static_cast<CDisplayObject*>(obj)->~CDisplayObject(); }
 struct GUI::CDisplayObject::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CDisplayObject);

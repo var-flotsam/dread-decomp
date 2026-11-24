@@ -25,7 +25,7 @@ void CCameraFX_RotationShake::refl_AddFields(CClass* cls) {
 }
 bool CCameraFX_RotationShake::refl_Equals(const void*, const void*) { return false; }
 s32 CCameraFX_RotationShake::refl_Hash() { return -1; }
-const base::reflection::CType& CCameraFX_RotationShake::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX_RotationShake*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCameraFX_RotationShake::refl_TypeOf(const void* obj) { return *static_cast<const CCameraFX_RotationShake*>(obj)->refl_GetDynamicClass(); }
 void CCameraFX_RotationShake::refl_CopyConstruct(void*, const void*) {}
 void CCameraFX_RotationShake::refl_MoveConstruct(void*, const void*) {}
 void CCameraFX_RotationShake::refl_Destroy(void* obj) { static_cast<CCameraFX_RotationShake*>(obj)->~CCameraFX_RotationShake(); }

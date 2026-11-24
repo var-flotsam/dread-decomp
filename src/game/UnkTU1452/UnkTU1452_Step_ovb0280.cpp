@@ -155,7 +155,7 @@ void fn_710098202c(UnkStandStep_ovb0280* self, void* arg, UnkReflValue* value) {
         const CType* t = fn_71009b3854();
         const CType* cur = reinterpret_cast<const CType*>(value->type);
         if (cur && value->field_0x14 == 0 &&
-            (cur == t ? t->m_fn_0x48 != nullptr : fn_710009d52c(t, cur))) {
+            (cur == t ? t->m_copyAssign != nullptr : fn_710009d52c(t, cur))) {
             fn_71000a1cc8(value, t, &req);
         } else {
             fn_71000a1c60(value);

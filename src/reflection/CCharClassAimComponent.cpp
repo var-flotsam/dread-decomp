@@ -76,7 +76,7 @@ void CCharClassAimComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassAimComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassAimComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAimComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAimComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAimComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAimComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAimComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassAimComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassAimComponent::refl_Destroy(void* obj) { static_cast<CCharClassAimComponent*>(obj)->~CCharClassAimComponent(); }

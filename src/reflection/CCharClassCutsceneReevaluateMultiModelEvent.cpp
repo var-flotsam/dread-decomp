@@ -22,7 +22,7 @@ void CCharClassCutsceneReevaluateMultiModelEvent::refl_AddAttributes(CClass* cls
 void CCharClassCutsceneReevaluateMultiModelEvent::refl_AddFields(CClass*) {}
 bool CCharClassCutsceneReevaluateMultiModelEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCutsceneReevaluateMultiModelEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCutsceneReevaluateMultiModelEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCutsceneReevaluateMultiModelEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCutsceneReevaluateMultiModelEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCutsceneReevaluateMultiModelEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCutsceneReevaluateMultiModelEvent::refl_Destroy(void* obj) { static_cast<CCharClassCutsceneReevaluateMultiModelEvent*>(obj)->~CCharClassCutsceneReevaluateMultiModelEvent(); }
 struct CCharClassCutsceneReevaluateMultiModelEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCutsceneReevaluateMultiModelEvent);

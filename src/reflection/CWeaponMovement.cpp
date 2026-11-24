@@ -14,7 +14,7 @@ void CWeaponMovement::refl_AddAttributes(CClass*) {}
 void CWeaponMovement::refl_AddFields(CClass*) {}
 bool CWeaponMovement::refl_Equals(const void*, const void*) { return false; }
 s32 CWeaponMovement::refl_Hash() { return -1; }
-const base::reflection::CType& CWeaponMovement::refl_TypeOf(const void* obj) { return *static_cast<const CWeaponMovement*>(obj)->vf_0x0(); }
+const base::reflection::CType& CWeaponMovement::refl_TypeOf(const void* obj) { return *static_cast<const CWeaponMovement*>(obj)->refl_GetDynamicClass(); }
 void CWeaponMovement::refl_CopyConstruct(void*, const void*) {}
 void CWeaponMovement::refl_MoveConstruct(void*, const void*) {}
 void CWeaponMovement::refl_Destroy(void* obj) { static_cast<CWeaponMovement*>(obj)->~CWeaponMovement(); }

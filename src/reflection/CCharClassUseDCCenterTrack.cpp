@@ -22,7 +22,7 @@ void CCharClassUseDCCenterTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassUseDCCenterTrack::refl_AddFields(CClass*) {}
 bool CCharClassUseDCCenterTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassUseDCCenterTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassUseDCCenterTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassUseDCCenterTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassUseDCCenterTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassUseDCCenterTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassUseDCCenterTrack::refl_Destroy(void* obj) { static_cast<CCharClassUseDCCenterTrack*>(obj)->~CCharClassUseDCCenterTrack(); }
 struct CCharClassUseDCCenterTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassUseDCCenterTrack);

@@ -22,7 +22,7 @@ void CCharClassFXSetActiveEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassFXSetActiveEvent::refl_AddFields(CClass*) {}
 bool CCharClassFXSetActiveEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFXSetActiveEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFXSetActiveEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXSetActiveEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFXSetActiveEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXSetActiveEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFXSetActiveEvent::refl_Destroy(void* obj) { static_cast<CCharClassFXSetActiveEvent*>(obj)->~CCharClassFXSetActiveEvent(); }
 struct CCharClassFXSetActiveEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFXSetActiveEvent);

@@ -23,7 +23,7 @@ void querysystem::CSameEntitySideFilter::refl_AddFields(CClass* cls) {
 }
 bool querysystem::CSameEntitySideFilter::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 querysystem::CSameEntitySideFilter::refl_Hash() { return -1; }
-const base::reflection::CType& querysystem::CSameEntitySideFilter::refl_TypeOf(const void* obj) { return *static_cast<const CSameEntitySideFilter*>(obj)->vf_0x0(); }
+const base::reflection::CType& querysystem::CSameEntitySideFilter::refl_TypeOf(const void* obj) { return *static_cast<const CSameEntitySideFilter*>(obj)->refl_GetDynamicClass(); }
 void querysystem::CSameEntitySideFilter::refl_Destroy(void* obj) { static_cast<CSameEntitySideFilter*>(obj)->~CSameEntitySideFilter(); }
 struct querysystem::CSameEntitySideFilter::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CSameEntitySideFilter);

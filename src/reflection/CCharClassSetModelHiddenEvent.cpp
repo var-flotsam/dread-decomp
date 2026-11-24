@@ -26,7 +26,7 @@ void CCharClassSetModelHiddenEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassSetModelHiddenEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetModelHiddenEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetModelHiddenEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetModelHiddenEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetModelHiddenEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetModelHiddenEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetModelHiddenEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetModelHiddenEvent*>(obj)->~CCharClassSetModelHiddenEvent(); }
 struct CCharClassSetModelHiddenEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetModelHiddenEvent);
