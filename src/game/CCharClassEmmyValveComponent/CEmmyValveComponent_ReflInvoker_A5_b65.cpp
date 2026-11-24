@@ -8,7 +8,7 @@
 using base::reflection::UnkReflValue;
 
 struct UnkEmmyValve_A5_b64;
-void fn_71007b3db8(UnkEmmyValve_A5_b64* self, bool open, bool set);
+void CCharClassEmmyValveComponent_SetForcedState(UnkEmmyValve_A5_b64* self, bool open, bool set);
 
 static inline __attribute__((always_inline)) void* ArgPtr_A5_b65(UnkReflValue* arg) {
     if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)
@@ -21,7 +21,7 @@ UnkReflValue fn_71007b4bb0(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* values = args[0];
     bool open = *static_cast<bool*>(ArgPtr_A5_b65(&values[0]));
     bool set = *static_cast<bool*>(ArgPtr_A5_b65(&values[1]));
-    fn_71007b3db8(target, open, set);
+    CCharClassEmmyValveComponent_SetForcedState(target, open, set);
     UnkReflValue r;
     r.field_0x0 = nullptr;
     r.type = nullptr;

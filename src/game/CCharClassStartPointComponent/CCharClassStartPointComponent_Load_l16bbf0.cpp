@@ -83,7 +83,7 @@ struct UnkFieldId_l16bbf0 : UnkStrIdBase {
 
 static inline bool HasMore(CRntFile* file) { return file->position < file->size; }
 
-void fn_710116bbf0(UnkStartPointObject_l16bbf0* self, CRntFile* file) {
+void CCharClassStartPointComponent_ReadFieldsFromFile(UnkStartPointObject_l16bbf0* self, CRntFile* file) {
     fn_710024fc0c(reinterpret_cast<UnkPickableItem_A4_b76*>(self), file);
 
     const char* onTeleport;

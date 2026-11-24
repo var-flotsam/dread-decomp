@@ -36,7 +36,7 @@ struct UnkEnergyGun_b52 {
     bool field_0x128;
 };
 
-u64 fn_7100859798(UnkEnergyGun_b52* self) {
+u64 CSamusGunComponent_GetSecondaryWeaponSelectKey(UnkEnergyGun_b52* self) {
     u64 key = 0x51865f70508a80d2ull;
     UnkInventory* inventory = self->owner->inventory;
     if (!inventory)

@@ -26,7 +26,7 @@ extern "C" int rand();
 struct UnkPart48;
 struct UnkUnit2560Record;
 struct UnkCharClassBillboardLists_ovb0020;
-void fn_71007302e4(UnkCharClassBillboardLists_ovb0020* self, char* item);
+void CCharClassBillboardComponent_ReturnItemToPool(UnkCharClassBillboardLists_ovb0020* self, char* item);
 
 #pragma pack(push, 4)
 static_assert(sizeof(UnkRecord_b218) == 0xb0, "record layout");
@@ -246,7 +246,7 @@ void fn_7100e1c9d8(void* manager_, u32 id) {
     while (found->id != id)
         found = found->chain;
     if (found->field_0x30)
-        fn_71007302e4(static_cast<UnkCharClassBillboardLists_ovb0020*>(found->field_0x30),
+        CCharClassBillboardComponent_ReturnItemToPool(static_cast<UnkCharClassBillboardLists_ovb0020*>(found->field_0x30),
                       reinterpret_cast<char*>(found->item));
     index = id % map->bucket_capacity;
     UnkBillboardNode_b218** bucket = map->buckets + index;

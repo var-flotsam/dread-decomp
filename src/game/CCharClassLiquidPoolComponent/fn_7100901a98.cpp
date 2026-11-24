@@ -23,7 +23,7 @@ struct UnkHeatActor_ovb0083;
 
 // As src/game/CPlayerInfo/CPlayerInfo_SetFlag_A6_b72.cpp defines it.
 struct UnkFlagList_A6_b72;
-void fn_7100f0de24(UnkFlagList_A6_b72* self, void* key, bool flag);
+void CPlayerInfo_SetEntryFlagAndRecomputeAny(UnkFlagList_A6_b72* self, void* key, bool flag);
 void fn_7100f0dea4(UnkFlagList_A6_b72* self, void* key, bool flag, u32 value);
 
 // The id table's string id at +0xae8 (UnkGameManagerIdTable has no member for it yet).
@@ -103,7 +103,7 @@ void fn_7100901a98(UnkLiquidPoolTouch_l901a98* self, UnkLiquidPoolToucher_l901a9
         reinterpret_cast<UnkFlagList_A6_b72*>(reinterpret_cast<char*>(g_unk_7101d47310) + 0x38);
 
     bool first = self->vf_0x188(&LiquidId_l901a98(), nullptr);
-    fn_7100f0de24(flags, self, morph_ball != nullptr || first);
+    CPlayerInfo_SetEntryFlagAndRecomputeAny(flags, self, morph_ball != nullptr || first);
     bool second = first ? self->vf_0x188(&GameManagerIdTable().field_0x1650, nullptr) : false;
     fn_7100f0dea4(flags, self, morph_ball != nullptr || second, self->field_0xc0c);
 

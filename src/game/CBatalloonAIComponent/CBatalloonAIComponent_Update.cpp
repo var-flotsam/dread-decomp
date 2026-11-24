@@ -17,7 +17,7 @@ void fn_71003ddeec(UnkBatalloonAIComponent* self);
 void fn_71003de48c(UnkBatalloonAIComponent* self, f32 dt);
 void fn_71003de5f4(UnkBatalloonAIComponent* self, f32 dt);
 
-void fn_71003dde34(UnkBatalloonAIComponent* self, f32 dt) {
+void CBatalloonAIComponent_UpdateAndCountDownReceivingCall(UnkBatalloonAIComponent* self, f32 dt) {
     if (fn_7100deabe4(g_unk_7101d47310))
         return;
     fn_71005a2558(self, dt);

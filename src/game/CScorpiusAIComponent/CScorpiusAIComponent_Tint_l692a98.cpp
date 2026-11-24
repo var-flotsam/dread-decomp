@@ -29,7 +29,7 @@ struct UnkScorpiusAI_l692a98 {
 
 struct UnkMissilePart;
 
-void fn_7100692a98(UnkScorpiusAI_l692a98* self, f32 amount) {
+void CScorpiusAIComponent_SetPartColorFromCubedAmount(UnkScorpiusAI_l692a98* self, f32 amount) {
     UnkWorld* world = self->owner->world;
     UnkGlowPart_l692a98* part = reinterpret_cast<UnkGlowPart_l692a98*>(fn_7101152b90(world, 0x7eced1a36c46400full));
     if (!part)

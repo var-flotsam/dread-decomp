@@ -52,7 +52,7 @@ static inline UnkReflType* AsUnk(base::reflection::CType* t) {
     return reinterpret_cast<UnkReflType*>(t);
 }
 
-void fn_71008c90a0() {
+void CDemolitionBlockLifeComponent_InitStatics() {
     UnkDemolitionBlockLifeTU& tu = g_unk_7172730d30;
     InitHeader(tu.header);
     InitEnum(AsUnk(&base::reflection::TypeObject<EDemolitionPhase>::object), "EDemolitionPhase", fn_71008c448c, fn_71008c4220);

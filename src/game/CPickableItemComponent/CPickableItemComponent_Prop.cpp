@@ -41,7 +41,7 @@ struct UnkPickableItem_9cf8f8 {
 
 u32 fn_71009cd1b4(UnkPickableItem_9cf8f8* self, UnkProp* p);
 
-u32 fn_71009cf8f8(UnkPickableItem_9cf8f8* self, UnkProp* p) {
+u32 CPickableItemComponent_GetSetProperty(UnkPickableItem_9cf8f8* self, UnkProp* p) {
     if (Is(p, Key(0x1198)) && !p->set) {
         CRntFile_Seek(reinterpret_cast<CRntFile*>(p->stream), 0, 0);
         const char* text = self->NameText().data;

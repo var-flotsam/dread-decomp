@@ -281,7 +281,7 @@ UnkTileElemVector_ovb0028* fn_71007616e8(UnkTileStatesMap_ovb0028* self, UnkTile
 }
 
 // Shrinks both arrays to the count.
-void fn_7100760bf0(UnkTileStatesMap_ovb0028* self) {
+void CBreakableTileGroupComponent_ShrinkActorTileStatesMapToCount(UnkTileStatesMap_ovb0028* self) {
     if (self->count == self->capacity)
         return;
     auto* values = static_cast<UnkTileElemVector_ovb0028*>(

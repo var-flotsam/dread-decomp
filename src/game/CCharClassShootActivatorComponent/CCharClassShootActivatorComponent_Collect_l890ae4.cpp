@@ -127,7 +127,7 @@ static inline void* LinkedTarget(UnkShootLink_l890ae4* link) {
 
 struct UnkHidrogigaShootActivator;
 
-void fn_7100890ae4(UnkHidrogigaShootActivator* activator) {
+void CCharClassShootActivatorComponent_RegisterWithPlayerAndCollectLinkedTargets(UnkHidrogigaShootActivator* activator) {
     UnkShootActivator_l890ae4* self = reinterpret_cast<UnkShootActivator_l890ae4*>(activator);
     fn_71008e0f30(reinterpret_cast<UnkItemLife_l8e0f30*>(self));
 

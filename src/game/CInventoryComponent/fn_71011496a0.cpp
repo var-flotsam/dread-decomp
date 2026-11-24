@@ -68,7 +68,7 @@ extern UnkTunable g_unk_7172a09268;
 extern void* g_unk_7101cb3540[];
 extern char g_unk_7172a09291[];
 
-void fn_71011496a0() {
+void CInventoryComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172a09298.ids);
     InitClassIdFrom(&g_unk_7172a09298.field_0x18, StaticName_71727b85b0());
     InitId(&g_unk_7172a09298.field_0x20, "ITEM_VARIA_SUIT");

@@ -253,14 +253,14 @@ struct UnkEntryVector {
 };
 
 void fn_7100895194(UnkEntryVector* self, const UnkEntryVector* other) {
-    self->CopyConstruct<fn_7100895498, fn_710089566c>(*other);
+    self->CopyConstruct<CCharClassShootActivatorComponent_ReserveCallbackEntryVector, CCharClassShootActivatorComponent_EntryArrayPushBackCopy>(*other);
 }
 
 void fn_71008aaff8(UnkEntryVector* self, const UnkEntryVector* other) {
     self->CopyConstruct<fn_71008ab4e0, fn_71008ab6b4>(*other);
 }
 
-void fn_7100895498(UnkEntryVector* v, u32 n) {
+void CCharClassShootActivatorComponent_ReserveCallbackEntryVector(UnkEntryVector* v, u32 n) {
     v->Reserve(n);
 }
 
@@ -269,7 +269,7 @@ void fn_71008ab4e0(UnkEntryVector* v, u32 n) {
 }
 
 UnkEntryVector* fn_71008957c8(UnkEntryVector* self, const UnkEntryVector* other) {
-    return self->Assign<fn_7100895498, fn_710089566c>(*other);
+    return self->Assign<CCharClassShootActivatorComponent_ReserveCallbackEntryVector, CCharClassShootActivatorComponent_EntryArrayPushBackCopy>(*other);
 }
 
 UnkEntryVector* fn_71008ab810(UnkEntryVector* self, const UnkEntryVector* other) {
@@ -277,7 +277,7 @@ UnkEntryVector* fn_71008ab810(UnkEntryVector* self, const UnkEntryVector* other)
 }
 
 void fn_7100895d14(UnkEntryVector* v, UnkMovedEntry* value, u32 index) {
-    v->Insert<fn_7100895498>(static_cast<UnkMovedEntry&&>(*value), index);
+    v->Insert<CCharClassShootActivatorComponent_ReserveCallbackEntryVector>(static_cast<UnkMovedEntry&&>(*value), index);
 }
 
 void fn_71008abd5c(UnkEntryVector* v, UnkMovedEntry* value, u32 index) {

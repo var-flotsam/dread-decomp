@@ -250,7 +250,7 @@ void fn_7100a959a0(UnkCallbackSetVector* v, u32 size) {
     v->Truncate(size);
 }
 
-void fn_710090d944(UnkCallbackSetVector* v, u32 index) {
+void CCharClassWaterPoolComponent_EraseArrayElementAtIndex(UnkCallbackSetVector* v, u32 index) {
     v->Erase(index);
 }
 
@@ -270,7 +270,7 @@ void fn_7100a3b8e0(UnkCallbackSetVector* v, u32 n) {
     v->Reserve(n);
 }
 
-void fn_7100a956b8(UnkCallbackSetVector* v, u32 n) {
+void CCharClassWaterPoolComponent_ReserveCallbackSetArray(UnkCallbackSetVector* v, u32 n) {
     v->Reserve(n);
 }
 
@@ -283,7 +283,7 @@ void fn_7100a3bfe8(UnkCallbackSetVector* v, UnkCallbackSetElem* value, u32 index
 }
 
 void fn_7100a95dc0(UnkCallbackSetVector* v, UnkCallbackSetElem* value, u32 index) {
-    v->Insert<fn_7100a956b8>(static_cast<UnkCallbackSetElem&&>(*value), index);
+    v->Insert<CCharClassWaterPoolComponent_ReserveCallbackSetArray>(static_cast<UnkCallbackSetElem&&>(*value), index);
 }
 
 void fn_710090c28c(UnkIterValue* self, UnkIterValue* other) {
@@ -307,5 +307,5 @@ void fn_7100a3b6f0(UnkCallbackSetVector* self, const UnkCallbackSetVector* other
 }
 
 void fn_7100a954c8(UnkCallbackSetVector* self, const UnkCallbackSetVector* other) {
-    self->CopyConstruct<fn_7100a956b8, fn_7100a95868>(*other);
+    self->CopyConstruct<CCharClassWaterPoolComponent_ReserveCallbackSetArray, fn_7100a95868>(*other);
 }

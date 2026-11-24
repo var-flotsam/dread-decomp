@@ -40,7 +40,7 @@ static inline __attribute__((always_inline)) UnkFlagEntry_A6_b72* Find_A6_b72(Un
     return end;
 }
 
-void fn_7100f0de24(UnkFlagList_A6_b72* self, void* key, bool flag) {
+void CPlayerInfo_SetEntryFlagAndRecomputeAny(UnkFlagList_A6_b72* self, void* key, bool flag) {
     *reinterpret_cast<char*>(&Find_A6_b72(self, key)->flag) = flag;
     if (flag) {
         self->any = true;

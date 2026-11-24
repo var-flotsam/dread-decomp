@@ -112,7 +112,7 @@ static inline f32 AsF32(u32 bits) {
 
 #define UNK_CHANGED(a, b, eps) ((a) - (eps) > (b) || (a) + (eps) < (b))
 
-void fn_710079f5c0(UnkCubeMapUpdate_ovb0033* self, f32 dt) {
+void CCubeMapComponent_SyncPositionAndAdvanceIntensityFade(UnkCubeMapUpdate_ovb0033* self, f32 dt) {
     UnkCubeMapOwner_ovb0033* owner = self->owner;
     const u32* m = reinterpret_cast<const u32*>(owner->xform.m);
     u32 x = m[3];

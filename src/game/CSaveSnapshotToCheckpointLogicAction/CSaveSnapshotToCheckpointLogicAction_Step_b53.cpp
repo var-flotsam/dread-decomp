@@ -48,7 +48,7 @@ struct UnkSaveSnapshotAction_b53 {
     bool flag;                  // 0x60
 };
 
-void fn_7100a42b48(UnkSaveSnapshotAction_b53* self) {
+void CSaveSnapshotToCheckpointLogicAction_ForwardSnapshotCheckpointAndStartPoint(UnkSaveSnapshotAction_b53* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     UnkGameManager* manager = g_unk_7101d47310;
     const char* const& a = Text(self->first);

@@ -70,6 +70,6 @@ struct UnkBoneOwner;
 struct UnkMatrix44;
 bool fn_71001c1920(UnkBoneOwner* self, const u64* id, UnkMatrix44* out);
 
-bool fn_71011736e0(char* self, const u64* id, u32* out) {
+bool CModelUpdaterComponent_TryGetEntryTranslationById(char* self, const u64* id, u32* out) {
     return Translation<UnkBoneOwner, u64, UnkMatrix44, fn_71001c1920>(self, id, out);
 }

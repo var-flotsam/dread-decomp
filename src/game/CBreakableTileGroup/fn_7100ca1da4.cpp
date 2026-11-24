@@ -29,7 +29,7 @@ struct UnkTileCollider;
 
 using base::math::CVector3D;
 
-void fn_7100c9e968(UnkQueryObj* tile);
+void CBreakableTileGroup_ApplyTileTransformToRenderObject(UnkQueryObj* tile);
 
 void fn_7100ca1da4(UnkTileGroup* group, const CVector3D* origin) {
     group->field_0x18 = origin->x;
@@ -41,7 +41,7 @@ void fn_7100ca1da4(UnkTileGroup* group, const CVector3D* origin) {
         const f32 y = group->field_0x1c + (f32)tile->field_0xc * 100.0f;
         tile->field_0x28 = x;
         tile->field_0x2c = y;
-        fn_7100c9e968(tile);
+        CBreakableTileGroup_ApplyTileTransformToRenderObject(tile);
     }
     fn_7100ca1180(group);
 }

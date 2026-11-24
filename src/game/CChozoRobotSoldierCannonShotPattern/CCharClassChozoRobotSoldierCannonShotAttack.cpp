@@ -20,7 +20,7 @@ struct UnkCannonShotAttackDef {
     base::global::CRntVector<void*> patterns;  // 0xf0
 };
 
-void fn_710045ee14(UnkCannonShotAttackDef* self) {
+void CCharClassChozoRobotSoldierCannonShotAttack_Construct(UnkCannonShotAttackDef* self) {
     fn_71003641fc(reinterpret_cast<UnkStruct_71003641fc*>(self));
     self->vtable = g_unk_7101a38100 + 2;
     new (&self->patterns) base::global::CRntVector<void*>(0xf);

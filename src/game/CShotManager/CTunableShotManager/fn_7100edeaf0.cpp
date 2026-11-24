@@ -171,7 +171,7 @@ extern UnkStruct_71729cf280 g_unk_71729cf280;
 void fn_7100ed4024(UnkStruct_71729cf280* self);  // its constructor
 void fn_7100ed40dc(void* self);  // its destructor, as registered
 
-void fn_7100edeaf0() {
+void CShotManager_InitStatics() {
     InitHeaderIds(&g_unk_71729da448.ids);
     g_unk_71729da448.field_0x100 = 0;
     g_unk_71729da448.field_0x108 = 0;

@@ -53,7 +53,7 @@ struct UnkMissileBaseGun_A5_b62 {
     f32 vf_0x1e0() { return reinterpret_cast<f32 (*)(UnkMissileBaseGun_A5_b62*)>(vtable[0x1e0 / 8])(this); }
 };
 
-void fn_710084f904(UnkMissileBaseGun_A5_b62* self) {
+void CMissileBaseGun_SignalUnchargedOrMissileEmpty(UnkMissileBaseGun_A5_b62* self) {
     if (auto* state = static_cast<UnkEmptyState_A5_b62*>(fn_7100df5460(g_unk_7101d47310))) {
         s32 kind = state->kind;
         if (kind == 7) {

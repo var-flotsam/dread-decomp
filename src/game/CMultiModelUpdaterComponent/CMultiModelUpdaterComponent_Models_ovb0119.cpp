@@ -39,7 +39,7 @@ struct UnkMultiModel_b0119 {
     }
 };
 
-bool fn_7100938ebc(UnkMultiModel_b0119* self, const CStrId& name) {
+bool CMultiModelUpdaterComponent_SelectModelByName(UnkMultiModel_b0119* self, const CStrId& name) {
     if (self->name.data == name.data)
         return false;
     UnkModelEntry_b0119* it = self->Find(name.data);
@@ -60,7 +60,7 @@ bool fn_7100938ebc(UnkMultiModel_b0119* self, const CStrId& name) {
 // two steps (as CStrId::Reset).
 using UnkModelMap_b0119 = base::global::CRntSmallDictionary<base::UnkPooledString, UnkModelValue_b0119>;
 
-void fn_7100939678(UnkModelMap_b0119* self, u32 capacity) {
+void CMultiModelUpdaterComponent_ReserveModelMap(UnkModelMap_b0119* self, u32 capacity) {
     if (self->capacity >= capacity)
         return;
     auto* values = static_cast<UnkModelValue_b0119*>(
@@ -71,8 +71,8 @@ void fn_7100939678(UnkModelMap_b0119* self, u32 capacity) {
         UnkModelValue_b0119* src = self->values;
         UnkModelValue_b0119* dst = values;
         for (u32 i = 0; i < self->count; ++i, ++dst, ++src) {
-            fn_7100939804(dst, src);
-            fn_7100938dec(reinterpret_cast<UnkStrIdPathResource*>(src));
+            CMultiModelUpdaterComponent_CopyConstructModelMapValue(dst, src);
+            CMultiModelUpdaterComponent_DestroyModelMapValue(reinterpret_cast<UnkStrIdPathResource*>(src));
         }
         self->allocator->vf_0x48(self->values);
     }

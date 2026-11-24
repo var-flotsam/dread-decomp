@@ -13,7 +13,7 @@ struct UnkDroppedSlots_b47a3 {
     UnkDroppedSlot_b47a3 slots[128];
 };
 
-u32 fn_7100e2d608(UnkDroppedSlots_b47a3* self) {
+u32 CLogicDroppedItemManager_CountActiveSlots(UnkDroppedSlots_b47a3* self) {
     u32 n = 0;
     for (u64 i = 0; i < 128; ++i)
         n += self->slots[i].active;
@@ -34,7 +34,7 @@ struct UnkDroppedSlotsFlags_b47a3 {
     UnkDroppedSlotFlags_b47a3 slots[128];
 };
 
-void fn_7100e2d638(UnkDroppedSlotsFlags_b47a3* self, f32 limit) {
+void CLogicDroppedItemManager_FlagActiveSlotsAboveLimit(UnkDroppedSlotsFlags_b47a3* self, f32 limit) {
     for (s32 i = 0; i < 128; ++i) {
         if (self->slots[i].active && self->slots[i].value > limit)
             self->slots[i].flag = 1;

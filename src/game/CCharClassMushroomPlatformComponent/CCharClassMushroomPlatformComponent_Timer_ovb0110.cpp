@@ -78,7 +78,7 @@ struct UnkMushroomPlatform_ov110 {
 // reports the platform's collider (g_unk_717272c198) for mask 0x2000.
 struct UnkTimerSm_b60;  // src/game/UnkStateMachineSet_b60.cpp
 
-bool fn_710088b7dc(UnkTimerSm_b60* platform) {
+bool CCharClassMushroomPlatformComponent_IsPlayerTouchingPlatform(UnkTimerSm_b60* platform) {
     UnkMushroomPlatform_ov110* self = reinterpret_cast<UnkMushroomPlatform_ov110*>(platform);
     UnkMushroomPlayer_ov110* player = reinterpret_cast<UnkMushroomPlayer_ov110*>(fn_7100dec788(g_unk_7101d47310));
     if (!player || !player->movement)

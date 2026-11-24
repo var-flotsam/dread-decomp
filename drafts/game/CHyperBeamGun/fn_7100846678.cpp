@@ -22,7 +22,7 @@ struct UnkFxPooledObject {
 };
 
 struct UnkFxObjectPool;
-UnkFxPooledObject* fn_710104dc00(UnkFxObjectPool* self);
+UnkFxPooledObject* CFXPool_AcquireFreeObject(UnkFxObjectPool* self);
 UnkFxPooledObject* fn_710104dc8c(UnkFxObjectPool* self);
 
 struct UnkSonarModel_ovb0085;
@@ -98,7 +98,7 @@ static inline UnkFxPooledObject* Take(UnkFxManager_l846678* self, const CFilePat
         if (n->key != key)
             continue;
         if (mode == 1)
-            return fn_710104dc00(n->pool);
+            return CFXPool_AcquireFreeObject(n->pool);
         UnkFxPooledObject* object = fn_710104dc8c(n->pool);
         if (UnkFxTakenList_l846678::Node* taken = Find(&self->taken, reinterpret_cast<u64>(object)))
             Erase(&self->taken, taken);

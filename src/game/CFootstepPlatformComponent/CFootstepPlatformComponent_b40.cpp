@@ -30,7 +30,7 @@ struct UnkFootstepPlatform_fp {
     UnkStringEntry_fp* function;  // 0xe0, a string id
 };
 
-void fn_71007e7b5c(UnkFootstepPlatform_fp* self) {
+void CFootstepPlatformComponent_InvokeCallbackOnOpened(UnkFootstepPlatform_fp* self) {
     fn_71010c4230(reinterpret_cast<UnkHandleOwner_71010c4230*>(self));
     UnkStringEntry_fp* name = self->function;
     if (name == reinterpret_cast<UnkStringEntry_fp*>(&g_unk_7101d47108->empty))

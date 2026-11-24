@@ -64,7 +64,7 @@ void fn_7100a95b08(UnkSetVector_la95b08* self, const UnkSetElem_la95b08* value, 
     u32 new_capacity = self->capacity;
     if (new_capacity <= n && self->step != 0)
         new_capacity = (n / self->step + 1) * self->step;
-    fn_7100a956b8(reinterpret_cast<UnkCallbackSetVector*>(self), new_capacity);
+    CCharClassWaterPoolComponent_ReserveCallbackSetArray(reinterpret_cast<UnkCallbackSetVector*>(self), new_capacity);
     for (u32 i = self->count - 1; i >= index; --i) {
         UnkSetElem_la95b08* e = &self->data[i];
         fn_71007b1928(&e[1].set, &e->set);

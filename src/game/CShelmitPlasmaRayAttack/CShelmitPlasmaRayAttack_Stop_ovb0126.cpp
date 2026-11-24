@@ -24,7 +24,7 @@ struct UnkActorTarget;
 struct UnkEffectSink;
 
 struct CShelmitPlasmaRayAttack_b34;
-void fn_71006b4900(CShelmitPlasmaRayAttack_b34* self);
+void CShelmitPlasmaRayAttack_RemovePlasmaRayColliderAndEffects(CShelmitPlasmaRayAttack_b34* self);
 
 struct UnkPlasmaRayKind3Params_ovb0126 {
     void** vtable;
@@ -103,7 +103,7 @@ void fn_71006b46c8(UnkPlasmaRayStop_ovb0126* self) {
         }
     }
     if (self->field_0x72)
-        fn_71006b4900(reinterpret_cast<CShelmitPlasmaRayAttack_b34*>(self));
+        CShelmitPlasmaRayAttack_RemovePlasmaRayColliderAndEffects(reinterpret_cast<CShelmitPlasmaRayAttack_b34*>(self));
     if (self->state == 7) {
         UnkPlasmaRayStopOwner_ovb0126* owner = self->owner;
         if (owner && owner->navigation) {
@@ -195,7 +195,7 @@ struct UnkPlasmaRayNav_ovb0126 {
     bool field_0x71;
 };
 
-void fn_71006b41b4(UnkPlasmaRayNav_ovb0126* self, bool flag) {
+void CShelmitPlasmaRayAttack_SendNavigationParamsByTargetXDistance(UnkPlasmaRayNav_ovb0126* self, bool flag) {
     UnkPlasmaRayNavOwner_ovb0126* owner = self->owner;
     if (!owner)
         return;

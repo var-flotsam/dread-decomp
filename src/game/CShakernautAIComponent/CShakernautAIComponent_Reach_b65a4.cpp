@@ -22,10 +22,10 @@ struct UnkShakernautAI_b65a4 {
     UnkShakernautArea_b65a4* area[1];  // 0x68 (the area object starts here)
 };
 
-bool fn_71006b1f04(UnkShakernautAI_b65a4* self);
+bool CShakernautAIComponent_IsTargetAboveMovementLimit(UnkShakernautAI_b65a4* self);
 
 bool fn_71006af848(UnkShakernautAI_b65a4* self) {
-    if (!fn_71006b1f04(self)) {
+    if (!CShakernautAIComponent_IsTargetAboveMovementLimit(self)) {
         UnkActor* target = fn_7100d7c990(self->owner);
         if (target && target->field_0x208 && fn_71009e12d0(static_cast<UnkHelper*>(target->field_0x208))) {
             u32 found;

@@ -31,8 +31,8 @@ struct UnkGoliathXAI {
     }
 };
 
-void fn_7100587c9c(UnkGoliathXAI* self) { self->~UnkGoliathXAI(); }
-void fn_7100587cf4(UnkGoliathXAI* self) {
+void CCharClassGoliathXAIComponent_Destroy(UnkGoliathXAI* self) { self->~UnkGoliathXAI(); }
+void CCharClassGoliathXAIComponent_DestroyAndDelete(UnkGoliathXAI* self) {
     self->~UnkGoliathXAI();
     operator delete(self);
 }

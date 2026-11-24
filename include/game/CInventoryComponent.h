@@ -10,7 +10,7 @@ struct UnkInventory;
 struct UnkQualifiedId;
 struct UnkObject_7101141558;
 struct UnkStrIdHandle;
-void fn_7101141378(UnkObject_7101141558*);
+void CInventoryComponent_DeleteAndClearItemAmounts(UnkObject_7101141558*);
 void fn_71011437bc(void* service, const UnkStrIdHandle& handle);
 extern void* g_unk_7101cb33c8[];  // The class's vtable.
 extern u64 g_unk_7172a092b0 __attribute__((visibility("hidden")));

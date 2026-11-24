@@ -19,12 +19,12 @@ struct UnkBreakableHint_A3_b72 {
     UnkBreakableHintMap_A3_b72 map;  // 0x48
 };
 
-void* fn_7100752a78(UnkBreakableHintMap_A3_b72* map, UnkBreakableHintEntry_A3_b72* it);
+void* CBreakableHintComponent_EraseHintMapEntryBySwapWithLast(UnkBreakableHintMap_A3_b72* map, UnkBreakableHintEntry_A3_b72* it);
 
-bool fn_710075312c(UnkBreakableHint_A3_b72* self, u64 key) {
+bool CBreakableHintComponent_EraseItemEntry(UnkBreakableHint_A3_b72* self, u64 key) {
     UnkBreakableHintEntry_A3_b72* it = self->map.Find(key);
     if (it != self->map.values + self->map.count)
-        fn_7100752a78(&self->map, it);
+        CBreakableHintComponent_EraseHintMapEntryBySwapWithLast(&self->map, it);
     if (self->map.count == 0) {
         self->field_0x41 = true;
         fn_71007523e8(self);

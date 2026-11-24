@@ -23,7 +23,7 @@ struct UnkKeyedStrIdMap_ovb0062 {
     u32 capacity;
 };
 
-void fn_71010c6b78(UnkKeyedStrIdMap_ovb0062* self);
+void CActorComponent_ShrinkStrIdTableToCount(UnkKeyedStrIdMap_ovb0062* self);
 void fn_71010c67b4(UnkKeyedStrIdMap_ovb0062* self, u32 capacity);  // the keyed-array reserve
 
 UnkKeyedStrIdMap_ovb0062* fn_71010c6a10(UnkKeyedStrIdMap_ovb0062* self, const UnkKeyedStrIdMap_ovb0062* other) {
@@ -34,7 +34,7 @@ UnkKeyedStrIdMap_ovb0062* fn_71010c6a10(UnkKeyedStrIdMap_ovb0062* self, const Un
             self->keys[i].Reset();
     self->count = 0;
     if (other->count != self->capacity) {
-        fn_71010c6b78(self);
+        CActorComponent_ShrinkStrIdTableToCount(self);
         fn_71010c67b4(self, other->count);
     }
     __builtin_memcpy(self->values, other->values, (u64)other->count * 8);
@@ -95,6 +95,6 @@ struct UnkSwapMap_ovb0062 {
 };
 
 // Declared with a void return in src/game/CPlaythrough/fn_71002eef6c.cpp; it answers the slot.
-u64* fn_71010c6cdc(UnkValuesByKey* a, u64* value) {
+u64* CComponent_SwapEraseStrIdKeyedEntry(UnkValuesByKey* a, u64* value) {
     return reinterpret_cast<UnkSwapMap_ovb0062*>(a)->Erase(value);
 }

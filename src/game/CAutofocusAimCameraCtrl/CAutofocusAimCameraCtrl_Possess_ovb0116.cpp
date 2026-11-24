@@ -140,7 +140,7 @@ struct UnkColour_afc {
     UnkColour_afc(const UnkVec3f& c, f32 a) : rgb(c), alpha(a) {}
 };
 
-void fn_7100722254(UnkAutofocusCtrl_afc* self, UnkAutofocusArg_afc* arg) {
+void CAutofocusAimCameraCtrl_OnPossess(UnkAutofocusCtrl_afc* self, UnkAutofocusArg_afc* arg) {
     self->slide_dir = arg->def->dir;
     self->dir = self->slide_dir;
     self->start_dir = self->dir;
@@ -170,7 +170,7 @@ void fn_7100722254(UnkAutofocusCtrl_afc* self, UnkAutofocusArg_afc* arg) {
     fn_7100000790("CurrentScenario.OnAimCameraPossess", g_unk_710162e2ed);
 }
 
-void fn_710072241c(UnkAutofocusCtrl_afc* self) {
+void CAutofocusAimCameraCtrl_OnUnPossess(UnkAutofocusCtrl_afc* self) {
     fn_71010edd64(reinterpret_cast<UnkGrabCameraCtrl*>(self));
     NotifyEmmys_afc(false);
     self->field_0x220 = 0;

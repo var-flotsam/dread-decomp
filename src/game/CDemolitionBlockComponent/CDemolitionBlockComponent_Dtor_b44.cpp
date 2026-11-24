@@ -54,7 +54,7 @@ void fn_71007d70d8(UnkActivatable_b44a2<0x48>* self) {
     UnkActivatableDtor_b44a2<g_unk_7101a72d70, fn_71010c4194>(self);
 }
 void fn_71008fbc64(UnkActivatable_b44a2<0xcd0>* self) {
-    UnkActivatableDtor_b44a2<g_unk_7101a80778, fn_7100900414>(self);
+    UnkActivatableDtor_b44a2<g_unk_7101a80778, CCharClassLiquidPoolComponent_Destroy>(self);
 }
 void fn_7100924e78(UnkActivatable_b44a2<0x60>* self) {
     UnkActivatableDtor_b44a2<g_unk_7101a831e0, fn_71010c4194>(self);

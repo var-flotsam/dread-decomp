@@ -56,7 +56,7 @@ struct UnkSubAreaRing_b49a6 {
     }
 };
 
-UnkSubAreaEntry_b49a6 fn_7100ef14b8(UnkSubAreaRing_b49a6* self) {
+UnkSubAreaEntry_b49a6 CSubAreaManager_PopBackRingEntry(UnkSubAreaRing_b49a6* self) {
     UnkSubAreaEntry_b49a6 r(static_cast<UnkSubAreaEntry_b49a6&&>(self->Last()));
     self->PopBack();
     return r;

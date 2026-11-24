@@ -4499,8 +4499,8 @@ address,size,name,name_source,subsystem,status
 0x7100d9ec88,4,fn_7100d9ec88,unknown,unknown,O
 0x7100d9ec8c,456,fn_7100d9ec8c,unknown,unknown,O
 0x7100d9ee54,28,fn_7100d9ee54,unknown,game?,O
-0x7100d9ee70,164,fn_7100d9ee70,unknown,unknown,O
-0x7100d9ef14,172,fn_7100d9ef14,unknown,unknown,O
+0x7100d9ee70,164,CLightsDef_Destroy,inferred,unknown,O
+0x7100d9ef14,172,CLightsDef_DestroyAndDelete,inferred,unknown,O
 0x7100d9efc0,368,fn_7100d9efc0,unknown,game?,O
 0x7100d9f130,104,fn_7100d9f130,unknown,unknown,O
 0x7100d9f198,12,fn_7100d9f198,unknown,unknown,O
@@ -4661,7 +4661,7 @@ address,size,name,name_source,subsystem,status
 0x7100da1394,48,fn_7100da1394,unknown,unknown,O
 0x7100da13c4,116,fn_7100da13c4,unknown,unknown,O
 0x7100da1438,208,fn_7100da1438,unknown,game?,O
-0x7100da1508,352,fn_7100da1508,unknown,unknown,O
+0x7100da1508,352,CLightsDef_ReserveLights,inferred,unknown,O
 0x7100da1668,200,fn_7100da1668,unknown,game?,O
 0x7100da1730,436,fn_7100da1730,unknown,game?,O
 0x7100da18e4,424,fn_7100da18e4,unknown,unknown,O
@@ -5509,7 +5509,7 @@ address,size,name,name_source,subsystem,status
 0x7100de49cc,144,fn_7100de49cc,unknown,unknown,O
 0x7100de4a60,312,fn_7100de4a60,unknown,unknown,U
 0x7100de4b98,2736,fn_7100de4b98,unknown,unknown,U
-0x7100de5648,332,fn_7100de5648,unknown,unknown,O
+0x7100de5648,332,CGameManager_ConstructLockedStringList,inferred,unknown,O
 0x7100de5794,336,fn_7100de5794,unknown,unknown,O
 0x7100de58e4,1196,fn_7100de58e4,unknown,unknown,O
 0x7100de5d90,184,fn_7100de5d90,unknown,engine/reflection?,O
@@ -5664,7 +5664,7 @@ address,size,name,name_source,subsystem,status
 0x7100df81fc,140,fn_7100df81fc,unknown,unknown,O
 0x7100df8288,3812,fn_7100df8288,unknown,engine/reflection?,U
 0x7100df916c,492,fn_7100df916c,unknown,script/bindings?,O
-0x7100df9358,124,fn_7100df9358,unknown,script/bindings?,O
+0x7100df9358,124,CGameManager_SetSceneBrightness,inferred,script/bindings?,O
 0x7100df93d4,748,fn_7100df93d4,unknown,unknown,O
 0x7100df96c0,104,fn_7100df96c0,unknown,gui?,O
 0x7100df9728,140,fn_7100df9728,unknown,unknown,O

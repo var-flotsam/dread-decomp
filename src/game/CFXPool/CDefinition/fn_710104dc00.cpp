@@ -17,7 +17,7 @@ struct UnkFxObjectPool {
     u32 used;                                     // 0x38
 };
 
-UnkFxPooledObject* fn_710104dc00(UnkFxObjectPool* self) {
+UnkFxPooledObject* CFXPool_AcquireFreeObject(UnkFxObjectPool* self) {
     if (self->used != 0xffffffff && self->objects.count != 0) {
         u32 i = 0;
         do {

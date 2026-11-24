@@ -221,7 +221,7 @@ struct UnkStandaloneFxComponent_ovb0103 {
 void fn_7100812b2c(UnkStandaloneFxComponent_ovb0103* self) {
     u32 n = self->instances.count;
     for (u32 i = 0; i < n; ++i)
-        fn_7100811f28(reinterpret_cast<UnkStandaloneFx*>(&self->instances.At(i)));
+        CStandaloneFXComponent_CreateInstanceEffect(reinterpret_cast<UnkStandaloneFx*>(&self->instances.At(i)));
 }
 
 void fn_710081305c(UnkStandaloneFxComponent_ovb0103* self, bool value) {
@@ -321,7 +321,7 @@ base::reflection::UnkReflValue fn_7100815534(void*, char* obj, base::reflection:
 
 UnkFxHandle_ovb0103* fn_71011a9c2c(UnkModelManager* self, u32 id, const CFilePathStrId* path, u32 kind, u32 flags);
 
-void fn_7100811f28(UnkStandaloneFx* fx) {
+void CStandaloneFXComponent_CreateInstanceEffect(UnkStandaloneFx* fx) {
     auto* self = reinterpret_cast<UnkFxInstance_ovb0103*>(fx);
     if (self->path.data == &g_unk_7101d47200->empty || self->handle)
         return;

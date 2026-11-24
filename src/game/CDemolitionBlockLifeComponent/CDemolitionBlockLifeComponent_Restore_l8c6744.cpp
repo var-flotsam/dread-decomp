@@ -106,7 +106,7 @@ static inline bool NameHas(UnkStringData* const& name, const char* str) {
     return CRntString_Contains(&name->String(), str);
 }
 
-void fn_71008c6744(UnkDemolitionBlockLife* self) {
+void CDemolitionBlockLifeComponent_SetupDebrisPartsAndColliders(UnkDemolitionBlockLife* self) {
     if (UnkDemolitionModel* model = ModelOf(self->owner)) {
         if (UnkDemolitionModelData* data = model->data) {
             for (u32 i = 0; i < PartCount(data->resource); ++i) {

@@ -17,7 +17,7 @@
 #include "types.h"
 
 struct UnkKraidAI_b56a3;
-void fn_71005fe760(UnkKraidAI_b56a3* self);
+void CKraidAIComponent_CloseMouth(UnkKraidAI_b56a3* self);
 
 struct UnkKraidMouthIdData_b63a4 {
     u8 pad_0x0[0x10];
@@ -64,7 +64,7 @@ __attribute__((always_inline)) static inline bool Contains_b63a4(UnkKraidMouthVa
     return CRntString_Contains(reinterpret_cast<const base::global::CRntString*>(&d->text), o->text ? o->text : "");
 }
 
-void fn_71005fd5cc(UnkKraidMouthAI_b63a4* self, f32 dt) {
+void CKraidAIComponent_UpdateMouthCloseTimer(UnkKraidMouthAI_b63a4* self, f32 dt) {
     UnkAnimationComponent* cls = static_cast<UnkAnimationComponent*>(self->owner->field_0x220);
     UnkKraidMouthValue_b63a4* value =
         static_cast<UnkKraidMouthValue_b63a4*>(fn_7101177d2c(cls, 0x9317bfcf28edee2b));
@@ -83,6 +83,6 @@ void fn_71005fd5cc(UnkKraidMouthAI_b63a4* self, f32 dt) {
     if (self->timer > 0.0f) {
         self->timer -= dt;
         if (self->timer <= 0.0f)
-            fn_71005fe760(reinterpret_cast<UnkKraidAI_b56a3*>(self));
+            CKraidAIComponent_CloseMouth(reinterpret_cast<UnkKraidAI_b56a3*>(self));
     }
 }

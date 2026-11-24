@@ -30,13 +30,13 @@ struct UnkForcedMovementArea_b50 {
 };
 
 void fn_710024f918(UnkForcedMovementArea_b50* self);
-void fn_71007e9580(void* self);
+void CForcedMovementAreaComponent_ClearStrIdRefArrayMap(void* self);
 
 void fn_71007e94c0(UnkForcedMovementArea_b50* self) {
     fn_710024f918(self);
     if (void* object = fn_710043acb4(self->field_0x18))
         fn_71008656d8(object, 0x10000, 0x10, self->field_0x30);
-    fn_71007e9580(self->field_0x48);
+    CForcedMovementAreaComponent_ClearStrIdRefArrayMap(self->field_0x48);
     for (u64 i = 0; i < self->ref_count; ++i) {
         if (UnkRefObj_b50fm* ref = self->refs[i]) {
             if (--ref->ref_count == 0)

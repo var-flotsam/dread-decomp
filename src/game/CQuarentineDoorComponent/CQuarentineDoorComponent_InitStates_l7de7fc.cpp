@@ -124,7 +124,7 @@ static inline void Bind(UnkQuarentineDoor_l7de7fc* self, UnkDoorState_l7de7fc* s
     state->field_0x40 = {self, c};
 }
 
-void fn_71007de7fc(UnkQuarentineDoor_l7de7fc* self) {
+void CQuarentineDoorComponent_InitStateMachine(UnkQuarentineDoor_l7de7fc* self) {
     self->machine.owner = self;
     Bind(self, &self->states[0], fn_71007dfdfc, fn_71007dfe00, fn_71007dfe04);
     Bind(self, &self->states[1], fn_71007dfe08, fn_71007dfe0c, fn_71007dfe10);

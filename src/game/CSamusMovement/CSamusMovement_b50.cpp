@@ -24,7 +24,7 @@ struct UnkSamusMovement_b50a5 {
     UnkMovementOwner_b50a5* owner;
 };
 
-bool fn_71009e6940(UnkSamusMovement_b50a5* self) {
+bool CSamusMovement_IsGhostAuraInState3To6(UnkSamusMovement_b50a5* self) {
     UnkAbilitySet* abilities = self->owner->abilities;
     if (!abilities)
         return false;

@@ -95,7 +95,7 @@ void fn_7100ecca00(UnkShot* self, f32 dt);
 void fn_7100ecfa10(UnkShotModel* self, const UnkVec3f* pos, UnkVec3f* angle, UnkVec3f* scale, f32 t, s32);
 bool fn_7100ecfa84(UnkShotModel* self);
 UnkShot** fn_7100ed4b68(base::global::CRntVector<UnkShot*>* self, u32 i);
-void fn_7100ed7144(UnkShotManager* self);
+void CShotManager_StopLiveEffects(UnkShotManager* self);
 void fn_7100ed7270(UnkShotManager* self, f32 dt);
 
 // Shows the render instance at `(*instances)[n]` at `m` (creating it from `model` the first time)
@@ -211,7 +211,7 @@ void fn_7100ed6c08(UnkShotManager* self, f32 dt) {
             shot->field_0x14a = false;
         ClearDrawCounts(self);
         fn_7100ed6c08(self, 0.0f);
-        fn_7100ed7144(self);
+        CShotManager_StopLiveEffects(self);
     }
 }
 

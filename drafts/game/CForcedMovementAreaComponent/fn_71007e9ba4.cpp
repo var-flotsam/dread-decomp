@@ -11,7 +11,7 @@
 struct UnkForcedMovementArea_A5_b68;
 struct UnkForcedMovementArg_A5_b68;
 void fn_71007ec5e4(UnkForcedMovementArea_A5_b68* self, UnkForcedMovementArg_A5_b68* arg);
-void* fn_71007ec684(char* array, void* it);
+void* CForcedMovementAreaComponent_EraseIdRefVecEntry(char* array, void* it);
 
 struct UnkAreaListenersTag_l7e9ba4;
 using UnkAreaListeners_l7e9ba4 = base::UnkSList<UnkAreaListenersTag_l7e9ba4>;
@@ -172,6 +172,6 @@ void fn_71007e9ba4(UnkForcedMovementArea_l7e9ba4* self, UnkAreaWhat_l7e9ba4* wha
     if (refs->count == 0) {
         fn_71007ec5e4(reinterpret_cast<UnkForcedMovementArea_A5_b68*>(self),
                       reinterpret_cast<UnkForcedMovementArg_A5_b68*>(who));
-        fn_71007ec684(reinterpret_cast<char*>(&self->records), refs);
+        CForcedMovementAreaComponent_EraseIdRefVecEntry(reinterpret_cast<char*>(&self->records), refs);
     }
 }

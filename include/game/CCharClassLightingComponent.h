@@ -7,5 +7,5 @@
 
 struct UnkLightingComponent2;
 struct UnkLightingComponent3;
-void fn_71008e756c(UnkLightingComponent3* self, void* arg);
-void fn_71008e7e98(UnkLightingComponent2* self, const u64* id, void* arg, f32 value);
+void CCharClassLightingComponent_SetLightsDefPath(UnkLightingComponent3* self, void* arg);
+void CCharClassLightingComponent_SetLightColorById(UnkLightingComponent2* self, const u64* id, void* arg, f32 value);

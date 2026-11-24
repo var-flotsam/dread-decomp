@@ -59,9 +59,9 @@ static inline __attribute__((always_inline)) void DestroyQuarentineDoor_b53(UnkQ
     fn_71007d70d8(reinterpret_cast<UnkActivatable_b44a2<0x48>*>(self));
 }
 
-void fn_71007de318(UnkQuarentineDoorComponent_b53* self) { DestroyQuarentineDoor_b53(self); }
+void CQuarentineDoorComponent_Destroy(UnkQuarentineDoorComponent_b53* self) { DestroyQuarentineDoor_b53(self); }
 
-void fn_71007de424(UnkQuarentineDoorComponent_b53* self) {
+void CQuarentineDoorComponent_DestroyAndDelete(UnkQuarentineDoorComponent_b53* self) {
     DestroyQuarentineDoor_b53(self);
     fn_7100083c00(self);
 }

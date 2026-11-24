@@ -165,7 +165,7 @@ static inline void ConstructRest(T* self) {
     fn_7100219dbc(g_unk_7101d47300, &g_unk_7172a04a30, true);
 }
 
-void fn_71010ef0ec(UnkFreeCameraCtrl_b0058* self) {
+void CFreeCameraCtrl_Construct(UnkFreeCameraCtrl_b0058* self) {
     fn_71010ed044(reinterpret_cast<UnkBase_7100763ed4*>(self));
     self->vtable = &g_unk_7101cb1860[2];
     new (&self->list) base::global::CRntVector<UnkFreeCameraCallback_b0058*>(0xf);

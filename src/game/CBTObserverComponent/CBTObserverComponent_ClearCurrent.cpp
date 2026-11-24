@@ -8,7 +8,7 @@ struct UnkObserverOwner {
     u8 member_0x30[0x8];
 };
 
-void fn_7100cab1fc(UnkObserverOwner* self) {
+void CBTObserverComponent_ClearManagerListenerIfOwn(UnkObserverOwner* self) {
     UnkGameManagerSub_0x1af8* holder = g_unk_7101d47310->field_0x1af8;
     void* member = self->member_0x30;
     if (holder->field_0xd0 == member)

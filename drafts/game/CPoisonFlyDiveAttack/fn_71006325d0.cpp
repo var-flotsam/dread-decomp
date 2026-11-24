@@ -82,7 +82,7 @@ struct UnkPoisonFlyDive_l6325d0 {
 
 struct UnkPoisonFlyDive_b61;
 struct UnkPoisonFlyDive_ovb0133;
-void fn_7100632204(UnkPoisonFlyDive_b61* self, u32 state);
+void CPoisonFlyDiveAttack_SetState(UnkPoisonFlyDive_b61* self, u32 state);
 void fn_71006314b4(UnkPoisonFlyDive_ovb0133* self);
 void fn_7100631650(UnkPoisonFlyDive_l6325d0* self);
 bool fn_71006328c0(UnkPoisonFlyDive_l6325d0* self);
@@ -90,7 +90,7 @@ bool fn_7100632aac(UnkPoisonFlyDive_l6325d0* self, UnkDiveTarget_l6325d0* target
 void fn_7100632c8c(UnkPoisonFlyDive_l6325d0* self, UnkDiveTarget_l6325d0* target);
 
 static inline void SetState(UnkPoisonFlyDive_l6325d0* self, u32 state) {
-    fn_7100632204(reinterpret_cast<UnkPoisonFlyDive_b61*>(self), state);
+    CPoisonFlyDiveAttack_SetState(reinterpret_cast<UnkPoisonFlyDive_b61*>(self), state);
 }
 
 // Hands the owner's +0x298 the direction to face.

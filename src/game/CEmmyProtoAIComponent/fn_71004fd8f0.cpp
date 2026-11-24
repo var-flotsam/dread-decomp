@@ -20,7 +20,7 @@ struct UnkStatics_71004fd8f0 {
 extern UnkStatics_71004fd8f0 g_unk_71726dd1e0 __attribute__((visibility("hidden")));
 extern char g_unk_71726dd198[];
 
-void fn_71004fd8f0() {
+void CEmmyProtoAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726dd1e0.ids);
     InitId(&g_unk_71726dd1e0.field_0x18, "floorslide");
     InitId(&g_unk_71726dd1e0.field_0x20, "protoemmyai");

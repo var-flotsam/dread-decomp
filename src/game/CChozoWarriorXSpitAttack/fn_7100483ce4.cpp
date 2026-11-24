@@ -48,7 +48,7 @@ static inline f32 Lerp(f32 a, f32 b, f32 k) {
     return k * b + rest;
 }
 
-void fn_7100483ce4(UnkSpitUpdate_b0266* self, f32 dt) {
+void CChozoWarriorXSpitAttack_UpdateAngle(UnkSpitUpdate_b0266* self, f32 dt) {
     fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     f32 pitch;
     if (self->started) {

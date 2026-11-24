@@ -22,7 +22,7 @@ struct UnkBreakableVignette_A5_b66 {
     u8 field_0x60[1];
 };
 
-void fn_710076351c(UnkBreakableVignette_A5_b66* self) {
+void CBreakableVignetteComponent_Break(UnkBreakableVignette_A5_b66* self) {
     if (self->field_0x39)
         return;
     self->field_0x39 = true;

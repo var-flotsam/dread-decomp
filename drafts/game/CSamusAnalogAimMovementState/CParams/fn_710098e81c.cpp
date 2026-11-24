@@ -109,7 +109,7 @@ struct UnkParamHolder_b42 {
     UnkParamBlock_b42 block;  // 0x8
 };
 
-void fn_71009b0580(UnkParamHolder_b42* self, const UnkParamBlock_b42* block);
+void CSamusMovementState_CopyBlockUnlessIdUnset(UnkParamHolder_b42* self, const UnkParamBlock_b42* block);
 
 struct UnkAimMoveState_l98e81c {
     void* vtable;
@@ -170,7 +170,7 @@ void fn_710098e81c(UnkAimState_l98e81c* self, void* arg) {
             UnkTrackParams_ovb0021 track =
                 fn_71009767f4(reinterpret_cast<UnkTrackMovement_ovb0021*>(self->movement), false);
             if (track.id != -1) {
-                fn_71009b0580(reinterpret_cast<UnkParamHolder_b42*>(&params),
+                CSamusMovementState_CopyBlockUnlessIdUnset(reinterpret_cast<UnkParamHolder_b42*>(&params),
                               reinterpret_cast<const UnkParamBlock_b42*>(&track));
             } else {
                 // The id table's string id at +0xc98, which UnkGameManagerIdTable does not name yet.

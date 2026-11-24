@@ -65,7 +65,7 @@ static inline bool Near_ovb0081(f32 a, f32 b) {
     return lo <= b && hi >= b;
 }
 
-void fn_7100802108(UnkSelf_af41* p) {
+void CAreaFXComponent_SyncOwnerAngleToStored(UnkSelf_af41* p) {
     UnkAreaFX_ovb0081* self = reinterpret_cast<UnkAreaFX_ovb0081*>(p);
     if (!self->has_angle)
         return;

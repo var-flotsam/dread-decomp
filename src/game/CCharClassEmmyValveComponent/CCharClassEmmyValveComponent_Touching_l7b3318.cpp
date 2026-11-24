@@ -128,7 +128,7 @@ static inline bool Overlaps(UnkValve_l7b3318* self, UnkPlayerMovementSource* col
     return fn_7100d57ca0(static_cast<UnkLavaDropsShape_A2_b71*>(body), &transform, object, nullptr, 0);
 }
 
-bool fn_71007b3318(UnkSmBase_b60* component) {
+bool CCharClassEmmyValveComponent_IsAnyActorOverlappingShape(UnkSmBase_b60* component) {
     UnkValve_l7b3318* self = reinterpret_cast<UnkValve_l7b3318*>(component);
     UnkValveEmmyList_l7b3318* list = reinterpret_cast<UnkValveEmmyList_l7b3318*>(g_unk_71726af0a8);
     UnkValveEmmyEntry_l7b3318** begin = list->Entries();

@@ -38,7 +38,7 @@ bool fn_71007fc9d4(UnkFrozenAsPlatform_b0119* self, void* arg) {
 // string-id vector (base::UnkStrIdVec) to `count` ids: growing reserves (fn_710000542c) and
 // constructs empty ids in place; shrinking releases the ids past the new end. Names are
 // placeholders.
-void fn_71007fd04c(base::UnkStrIdVec* self, u32 count) {
+void CCharClassFrozenAsPlatformComponent_ResizeStrIdVector(base::UnkStrIdVec* self, u32 count) {
     if (self->count < count) {
         self->Reserve(count);
         for (u32 i = self->count; i < count; ++i) {

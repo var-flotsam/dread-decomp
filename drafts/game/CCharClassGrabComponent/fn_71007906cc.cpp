@@ -19,7 +19,7 @@ struct UnkCollisionClassDef;
 bool fn_71011aced4(UnkCollisionClassDef* self, CRntFile* file);  // the base read
 // As src/game/CCharClassGrabComponent/CCharClassGrabComponent_Read_A3_b72.cpp defines it.
 struct UnkGrabRecord_A3_b72;
-void fn_7100790cbc(UnkGrabRecord_A3_b72* self, CRntFile* file);
+void CCharClassGrabComponent_ReadVectorsWordsAndFlagBits(UnkGrabRecord_A3_b72* self, CRntFile* file);
 
 // As src/game/CGrabComponent/CGrabComponent_Grab_ovb0057.cpp defines them: a zero whose constructor isn't
 // constexpr, so the static is guarded.
@@ -154,8 +154,8 @@ bool fn_71007906cc(UnkGrabClass_l7906cc* self, CRntFile* file) {
         info.field_0x8 = CStrId(name, true);
         info.field_0x10 = CStrId(other, true);
         info.kind = GrabKind_l7906cc(kind);
-        fn_7100790cbc(reinterpret_cast<UnkGrabRecord_A3_b72*>(&info.box_0x34), file);
-        fn_7100790cbc(reinterpret_cast<UnkGrabRecord_A3_b72*>(&info.box_0x5c), file);
+        CCharClassGrabComponent_ReadVectorsWordsAndFlagBits(reinterpret_cast<UnkGrabRecord_A3_b72*>(&info.box_0x34), file);
+        CCharClassGrabComponent_ReadVectorsWordsAndFlagBits(reinterpret_cast<UnkGrabRecord_A3_b72*>(&info.box_0x5c), file);
         void* memory = list.allocator->vf_0x40(sizeof(UnkGrabNode_l7906cc), 8, list.flags);
         if (memory)
             list.PushBack(new (memory) UnkGrabNode_l7906cc(info));

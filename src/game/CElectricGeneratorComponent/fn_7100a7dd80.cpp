@@ -46,7 +46,7 @@ void fn_71009b6cfc() __attribute__((visibility("hidden")));
 void fn_7100a7c630(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71009b5c38(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71009c5814(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
-void fn_7100a7dd80() {
+void CElectricGeneratorComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172750198.ids);
     fn_7100a7bfc4();
     fn_710009ec00(g_unk_7172750030, g_unk_7172750198.field_0x20);

@@ -18,7 +18,7 @@ struct UnkBTObserverComponent {
     u32 count;  // 0xa0
 };
 
-UnkQueryObj* fn_7100ca7494(UnkBTObserverComponent* self, void* query) {
+UnkQueryObj* CBTObserverComponent_FindFirstHitInEnabledObservers(UnkBTObserverComponent* self, void* query) {
     for (UnkBTObserver_CBTObserverComponent_Find** it = self->data, **end = self->data + self->count; it != end; ++it) {
         if ((*it)->enabled) {
             if (UnkQueryObj* hit = fn_7100ca2048(*it, query, 0))

@@ -55,7 +55,7 @@ static inline void InitEmptyPath(CFilePathStrId* id) {
     id->data = &g_unk_7101d47200->empty;
 }
 
-void fn_7100939804(UnkModelValue_b0119* self, const UnkModelValue_b0119* other) {
+void CMultiModelUpdaterComponent_CopyConstructModelMapValue(UnkModelValue_b0119* self, const UnkModelValue_b0119* other) {
     UnkModel_l939804* model = reinterpret_cast<UnkModel_l939804*>(self);
     const UnkModel_l939804* from = reinterpret_cast<const UnkModel_l939804*>(other);
     InitEmptyStrId(&model->name);

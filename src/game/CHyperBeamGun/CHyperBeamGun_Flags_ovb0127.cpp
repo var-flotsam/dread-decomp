@@ -24,7 +24,7 @@ struct UnkPlayer;
 struct UnkFlagged;
 bool fn_71009e85b4(UnkFlagged*);
 bool fn_71009ebf5c(UnkFlagged*);
-bool fn_71009e6940(UnkFlagged*);
+bool CSamusMovement_IsGhostAuraInState3To6(UnkFlagged*);
 bool fn_71009ebf7c(UnkFlagged*);
 
 struct UnkHyperBeamPlayer_ovb0127 {
@@ -48,7 +48,7 @@ struct CHyperBeamGun_ovb0127 {
 };
 
 // The reasons the hyper beam can't fire, as flags (0 while the animation forces it to fire).
-u32 fn_71008434b8(CHyperBeamGun_ovb0127* self) {
+u32 CHyperBeamGun_GetChargeBlockFlags(CHyperBeamGun_ovb0127* self) {
     UnkFlagged* gun = reinterpret_cast<UnkHyperBeamPlayer_ovb0127*>(fn_7100dec788(g_unk_7101d47310))->gun;
     UnkAnimationComponent* animation = self->owner->animation;
     if (animation && fn_710117b348(animation, fn_7100c1e458()))
@@ -63,7 +63,7 @@ u32 fn_71008434b8(CHyperBeamGun_ovb0127* self) {
             flags |= 4;
         if (fn_71009ebf5c(gun))
             flags |= 8;
-        if (fn_71009e6940(gun))
+        if (CSamusMovement_IsGhostAuraInState3To6(gun))
             flags |= 0x20;
         if (fn_71009ebf7c(gun))
             flags |= 0x200;
@@ -168,7 +168,7 @@ struct UnkHyperBeamEntry_ovb0127 {
 
 using UnkHyperBeamEntries_ovb0127 = base::global::CRntVector<UnkHyperBeamEntry_ovb0127>;
 
-__attribute__((flatten)) UnkHyperBeamEntries_ovb0127* fn_710084888c(UnkHyperBeamEntries_ovb0127* self,
+__attribute__((flatten)) UnkHyperBeamEntries_ovb0127* CHyperBeamGun_CopyAssignEntryVector(UnkHyperBeamEntries_ovb0127* self,
                                                                     const UnkHyperBeamEntries_ovb0127* other) {
     if (self != other) {
         self->Clear();
@@ -179,7 +179,7 @@ __attribute__((flatten)) UnkHyperBeamEntries_ovb0127* fn_710084888c(UnkHyperBeam
     return self;
 }
 
-UnkHyperBeamEntry_ovb0127* fn_7100848ab8(UnkHyperBeamEntries_ovb0127* self, u32 index) {
+UnkHyperBeamEntry_ovb0127* CHyperBeamGun_GrowEntryArrayAt(UnkHyperBeamEntries_ovb0127* self, u32 index) {
     return &self->GrowAt(index);
 }
 
@@ -234,7 +234,7 @@ static inline void* HitManager() {
     return instance;
 }
 
-void fn_71008481f4(UnkHyperBeamGunHits_ovb0127* self, UnkShape* shape, void* arg) {
+void CHyperBeamGun_QueryShapeHits(UnkHyperBeamGunHits_ovb0127* self, UnkShape* shape, void* arg) {
     if (!shape)
         return;
     UnkBeamHitList_ovb0127 hits;

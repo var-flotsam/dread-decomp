@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkEntry_b50a5;
-void fn_71009f26a0(UnkEntry_b50a5* self);
+void CCharClassSceneModelAnimationComponent_DestroyEntry(UnkEntry_b50a5* self);

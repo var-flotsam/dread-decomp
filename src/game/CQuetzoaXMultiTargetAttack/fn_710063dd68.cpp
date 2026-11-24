@@ -11,7 +11,7 @@ struct UnkSelf_63dd68 : UnkAttackBase {
     UnkWeakHandle* field_0x58;
 };
 
-void fn_710063dd68(UnkSelf_63dd68* self) {
+void CQuetzoaXMultiTargetAttack_DetachTrackLink(UnkSelf_63dd68* self) {
     fn_71003609b8(self);
     if (UnkWeakHandle* handle = self->field_0x58) {
         if (UnkWeakTarget* target = handle->target)

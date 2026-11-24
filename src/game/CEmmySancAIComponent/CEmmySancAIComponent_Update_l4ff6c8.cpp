@@ -127,7 +127,7 @@ static bool InChaseZone(UnkSancAI_l4ff6c8* self) {
     return false;
 }
 
-void fn_71004ff6c8(UnkSancAI_l4ff6c8* self, f32 dt) {
+void CEmmySancAIComponent_UpdateZipLine004Behavior(UnkSancAI_l4ff6c8* self, f32 dt) {
     bool inside = InChaseZone(self);
     if (UnkSancListHolder_l4ff6c8* holder = self->list_holder) {
         if (UnkNamedList_7100772cb0* list = holder->list) {

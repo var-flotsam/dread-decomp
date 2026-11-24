@@ -71,7 +71,7 @@ static inline void AddType(char* list, const CType* type) {
     fn_710009ec00(list, const_cast<CType*>(type));
 }
 
-void fn_7100916f30() {
+void CLogicShapeComponent_InitStatics() {
     UnkLogicShapeTU& tu = g_unk_7172736740;
     InitHeader(tu.header);
     fn_7100912a38();

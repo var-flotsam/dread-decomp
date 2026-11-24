@@ -15,7 +15,7 @@ struct UnkAttack_71005b40a8 {
     UnkAttackListenerRaw field_0x70;
 };
 
-void CHydrogigaBraidAttack_DeletingDestroy(UnkAttack_71005b40a8* self) {
+void CHydrogigaBraidAttack_DestroyAndDelete(UnkAttack_71005b40a8* self) {
     self->vtable = g_unk_7101a505c8 + 2;
     self->field_0x70.Destroy();
     self->vtable = g_unk_7101a504d0 + 2;

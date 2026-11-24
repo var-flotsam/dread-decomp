@@ -44,7 +44,7 @@ struct UnkHeatRoom_b49 {
     UnkHeatRoomOwner_b49* owner;
 };
 
-void fn_7100a271e0(UnkHeatRoom_b49* self, bool on) {
+void CHeatRoomComponent_SetEnabledAndSaveToBlackboard(UnkHeatRoom_b49* self, bool on) {
     bool value = on;
     fn_7100878680((UnkActivatable_b48*)self, on);
     UnkGameManager* manager = g_unk_7101d47310;

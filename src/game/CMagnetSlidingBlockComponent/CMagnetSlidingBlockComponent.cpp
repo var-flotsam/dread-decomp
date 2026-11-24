@@ -27,7 +27,7 @@ void fn_71009217a4(UnkProperty* p);
 void fn_710091d7d0(void* p);
 extern char g_unk_7172737558;
 
-void fn_7100921cb0() {
+void CMagnetSlidingBlockComponent_InitStatics() {
     UnkMagnetSlidingBlockTU& tu = g_unk_71727375b0;
     InitHeader(tu.header);
     new (&g_unk_7172737528) CStrId("MAGNET_SLIDING_BLOCK", true);

@@ -52,7 +52,7 @@ bool fn_7100938390(UnkMultiModelUpdater_l938390* self) {
     if (object && fn_710009d50c(object->vf_0x0(), fn_71007934a4())) {
         UnkModelPaths_l938390& models = static_cast<UnkCharClassMultiModel_l938390*>(object)->models;
         for (UnkModelPathIter_l938390 it(models.keys, models.values); it != &models.keys[models.count]; ++it)
-            fn_710093852c(reinterpret_cast<UnkMultiModel_l93852c*>(self), &it.current.Index(),
+            CMultiModelUpdaterComponent_AddModel(reinterpret_cast<UnkMultiModel_l93852c*>(self), &it.current.Index(),
                           &it.current.Element());
     }
     return true;

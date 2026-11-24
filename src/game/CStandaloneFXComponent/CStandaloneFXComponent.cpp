@@ -47,8 +47,8 @@ struct UnkFxComponent : UnkFxComponentBase {
     __attribute__((always_inline)) ~UnkFxComponent() { vtable = g_unk_7101a75008 + 2; }
 };
 
-void fn_71008129e0(UnkFxComponent* self) { self->~UnkFxComponent(); }
-void fn_7100812a80(UnkFxComponent* self) {
+void CStandaloneFXComponent_Destroy(UnkFxComponent* self) { self->~UnkFxComponent(); }
+void CStandaloneFXComponent_DestroyAndDelete(UnkFxComponent* self) {
     self->~UnkFxComponent();
     operator delete(self);
 }

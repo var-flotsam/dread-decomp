@@ -66,7 +66,7 @@ struct UnkShakernautFaceAI_A3_b75 {
     UnkShakernautFaceState_A3_b75 state;
 };
 
-void fn_71006b1ddc(UnkShakernautFaceAI_A3_b75* self, const UnkVec3* dir) {
+void CShakernautAIComponent_SetFacingDirection(UnkShakernautFaceAI_A3_b75* self, const UnkVec3* dir) {
     void* target = self->actor->target;
     if (!target)
         return;

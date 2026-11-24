@@ -100,7 +100,7 @@ struct UnkRinkaUnit_l65f878 {
 };
 static_assert(__builtin_offsetof(UnkRinkaUnit_l65f878, ref) == 0x260, "layout");
 
-void fn_710065f878(UnkRinkaUnit_l65f878* self) {
+void CRinkaUnitComponent_InitStateMachine(UnkRinkaUnit_l65f878* self) {
     fn_71010c4228(reinterpret_cast<UnkParent*>(self));
     self->field_0x258 = 0;
     if (UnkRefObject* ref = self->ref) {

@@ -8,7 +8,7 @@
 #include "types.h"
 
 struct UnkAirState_B71a6;
-void fn_710098b590(UnkAirState_B71a6* self, void*, const u64* value);
+void CSamusAirMovementState_ForwardRequestIfHasMagnetGlove(UnkAirState_B71a6* self, void*, const u64* value);
 
 struct UnkKraidLife_l5fcea4 {
     u8 pad_0x0[0x70];
@@ -75,6 +75,6 @@ void fn_71005fcea4(UnkKraidAI_l5fcea4* self) {
         return;
     if (UnkKraidMoveState_l5fcea4* state = FindState(move, 1)) {
         u64 id = StringCrc64("magnetwallrelaxshot", 19);
-        fn_710098b590(reinterpret_cast<UnkAirState_B71a6*>(state), move->field_0x280, &id);
+        CSamusAirMovementState_ForwardRequestIfHasMagnetGlove(reinterpret_cast<UnkAirState_B71a6*>(state), move->field_0x280, &id);
     }
 }

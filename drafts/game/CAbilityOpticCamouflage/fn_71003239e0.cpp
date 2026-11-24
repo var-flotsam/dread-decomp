@@ -9,7 +9,7 @@ struct UnkAbility_b60a2;
 struct UnkListener_b40;
 
 void fn_71002f9de8(UnkAbility_b60a2* self, void*);
-void fn_7100325184(UnkWeakTarget* self, UnkWeakHandle** out);
+void CAbilityOpticCamouflage_GetWeakHandle(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710083b0b4(void*, void*);
 
 struct UnkOpticState_l3239e0 {
@@ -83,7 +83,7 @@ void fn_71003239e0(UnkOpticAbility_l3239e0* self, void* other) {
         ResetRef(&self->listener.link);
     }
     if (UnkWeakTarget* gun = self->owner->actor->gun) {
-        fn_7100325184(gun, &self->listener.link);
+        CAbilityOpticCamouflage_GetWeakHandle(gun, &self->listener.link);
         fn_710083b0b4(self->listener.link ? self->listener.link->target : nullptr, &self->listener);
     }
     if (UnkOpticPart_l3239e0* part = self->owner->actor->part) {

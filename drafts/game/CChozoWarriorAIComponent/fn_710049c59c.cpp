@@ -52,7 +52,7 @@ bool fn_71010fc5fc(base::reflection::UnkReflObject* component, f32* out);
 
 // As src/game/CChozoWarriorAIComponent/fn_710049cbd8.cpp defines it.
 struct UnkSelf;
-bool fn_710049cbd8(UnkSelf* self);
+bool CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(UnkSelf* self);
 
 // The three attacks' timeline names.
 __attribute__((visibility("hidden"))) extern CStrId g_unk_71726d12d0;
@@ -140,7 +140,7 @@ CStrId fn_710049c59c(UnkChozoWarriorAI_l49c59c* self) {
         }
         f32 room = __builtin_fabsf(edge - self->owner->field_0x44) - self->vtable->vf_0x840(self);
         f32 dx = target->field_0x44 - self->owner->field_0x44;
-        if (fn_710049cbd8(reinterpret_cast<UnkSelf*>(self))) {
+        if (CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(reinterpret_cast<UnkSelf*>(self))) {
             f32 sign = (dx > 0.0f) - (dx < 0.0f);
             dx += self->tunables->field_0x800 * sign;
         }

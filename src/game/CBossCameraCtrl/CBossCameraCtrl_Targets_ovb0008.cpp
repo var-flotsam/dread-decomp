@@ -179,7 +179,7 @@ void fn_710074f6c4(UnkBossCameraCtrl_ovb0008* self) {
         if (actor && actor->holder && ChildObject(actor->holder)) {
             UnkGameManager* manager = g_unk_7101d47310;
             void* child = ChildObject(actor->holder);
-            manager->field_0x2230 = *fn_710112bf20(child);
+            manager->field_0x2230 = *CSpawnPointComponent_GetField0x60TargetId(child);
         }
     }
     fn_7100fdb9e0(reinterpret_cast<UnkMgr_0xf18*>(MusicManager()), 7, 0, -1.0f, 0.5f);

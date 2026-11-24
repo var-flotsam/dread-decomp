@@ -1,7 +1,7 @@
 #include "types.h"
 
 struct UnkScourgeQuery;
-bool fn_710069ae3c(UnkScourgeQuery* query, bool, u32* outIndex, f32* outValue);
+bool CScourgeTongueSlashAttack_CheckWithFlatDistanceToTarget(UnkScourgeQuery* query, bool, u32* outIndex, f32* outValue);
 
 struct CScourgeAIComponent {
     u8 unk_0x0[0x146c8];
@@ -12,5 +12,5 @@ struct CScourgeAIComponent {
 bool fn_71006a0884(CScourgeAIComponent* self) {
     u32 index = 0;
     f32 value = -1.0f;
-    return fn_710069ae3c(reinterpret_cast<UnkScourgeQuery*>(self->query), 0, &index, &value);
+    return CScourgeTongueSlashAttack_CheckWithFlatDistanceToTarget(reinterpret_cast<UnkScourgeQuery*>(self->query), 0, &index, &value);
 }

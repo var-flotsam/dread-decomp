@@ -22,7 +22,7 @@ struct UnkMinimapBlock_A6_b72 {
     u32 count;
 };
 
-UnkMinimapEntry_A6_b72* fn_7100ea61c4(char* self) {
+UnkMinimapEntry_A6_b72* CMinimapManager_FindEntryNearRectCentre(char* self) {
     UnkMinimapBlock_A6_b72* b = reinterpret_cast<UnkMinimapBlock_A6_b72*>(self + 0xd63d30);
     asm("" : "+r"(b));
     u32 n = b->count;

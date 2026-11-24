@@ -15,7 +15,7 @@ struct UnkShotManager_ed64dc {
 
 void fn_7100ddec68(UnkShotEffect_b0011* self, const void* a, const void* b);
 
-void fn_7100ed64dc(UnkShotManager_ed64dc* self, const void* a, const void* b, u32, u32 type, u32, u32 variant) {
+void CShotManager_StartExplosionEffect(UnkShotManager_ed64dc* self, const void* a, const void* b, u32, u32 type, u32, u32 variant) {
     for (UnkShotEffect_b0011 *it = self->effects, *end = self->effects + self->effectCount; it != end; ++it) {
         if (it->state.live)
             continue;

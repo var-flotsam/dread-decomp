@@ -67,7 +67,7 @@ struct UnkAnimId_ov110 {
 
 // The animation the owner's object names (fn_71009b7f1c, its id at +0xa0), else the fallback's
 // (+0x1c0, its id at +0x68), else the empty id.
-UnkAnimId_ov110 fn_71009b7c9c(UnkAnimationNavMeshItem_ov110* self) {
+UnkAnimId_ov110 CAnimationNavMeshItemComponent_GetAnimationId(UnkAnimationNavMeshItem_ov110* self) {
     UnkAnimId_ov110 result;
     if (UnkNavMeshAnimObject_ov110* object = fn_71009b7f1c(self->owner))
         result.Assign(object->animation);
@@ -139,7 +139,7 @@ void fn_71009b7ba8(UnkAnimationNavMeshItem_l9b7ba8* self) {
         return;
     bool playing;
     {
-        UnkAnimId_ov110 id = fn_71009b7c9c(reinterpret_cast<UnkAnimationNavMeshItem_ov110*>(self));
+        UnkAnimId_ov110 id = CAnimationNavMeshItemComponent_GetAnimationId(reinterpret_cast<UnkAnimationNavMeshItem_ov110*>(self));
         playing = fn_710117ae38(animation, id.data->Key(), false);
     }
     if (!playing)

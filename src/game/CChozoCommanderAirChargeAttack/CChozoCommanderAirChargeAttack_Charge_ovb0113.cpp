@@ -96,7 +96,7 @@ struct UnkChargeAttack2_ovb0113 {
     f32 end_z;
 };
 
-void fn_7100425840(UnkChargeAttack2_ovb0113* self) {
+void CChozoCommanderAirChargeAttack_ComputeTimelineMotionOffset(UnkChargeAttack2_ovb0113* self) {
     self->end_x = 0.0f;
     self->end_y = 0.0f;
     self->end_z = 0.0f;

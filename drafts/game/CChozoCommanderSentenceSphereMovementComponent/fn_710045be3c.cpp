@@ -12,7 +12,7 @@
 struct UnkClamper;
 struct UnkSentenceSphereMovement_ovb0135;
 UnkVec3Bits fn_710045bd10(UnkClamper* self);
-void fn_710045b8e0(UnkSentenceSphereMovement_ovb0135* self);
+void CChozoCommanderSentenceSphereMovementComponent_ApplyRadius(UnkSentenceSphereMovement_ovb0135* self);
 UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
 
 struct UnkSphereDef_l45be3c {
@@ -80,7 +80,7 @@ void fn_710045be3c(UnkSentenceSphere_l45be3c* self, f32 dt) {
         }
         radius += range * dt / duration;
         radius = radius < def->max_radius ? radius : def->max_radius;
-        fn_710045b8e0(reinterpret_cast<UnkSentenceSphereMovement_ovb0135*>(self));
+        CChozoCommanderSentenceSphereMovementComponent_ApplyRadius(reinterpret_cast<UnkSentenceSphereMovement_ovb0135*>(self));
     }
 
     UnkVec3Bits target = fn_710045bd10(reinterpret_cast<UnkClamper*>(self));

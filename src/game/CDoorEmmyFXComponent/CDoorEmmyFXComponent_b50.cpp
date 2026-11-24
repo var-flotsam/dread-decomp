@@ -37,7 +37,7 @@ struct UnkDoorEmmyFX_b50 {
 
 void fn_71007b5f58(UnkDoorEmmyFX_b50* self, u32 a, u32 b);
 
-void fn_71007b6be4(UnkDoorEmmyFX_b50* self, bool add) {
+void CDoorEmmyFXComponent_SetEmmyChaseKey(UnkDoorEmmyFX_b50* self, bool add) {
     UnkEmmyPlayer_b50* player = reinterpret_cast<UnkEmmyPlayer_b50*>(fn_7100dec788(g_unk_7101d47310));
     if (!player)
         return;

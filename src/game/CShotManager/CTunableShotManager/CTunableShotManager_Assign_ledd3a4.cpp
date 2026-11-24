@@ -19,10 +19,10 @@ struct UnkShotWeakTarget_b0011;
 
 struct UnkListedObj;
 
-base::global::CRntVector<UnkObj290_b43a3>* fn_7100edd784(base::global::CRntVector<UnkObj290_b43a3>* self,
+base::global::CRntVector<UnkObj290_b43a3>* CShotManager_AssignObj290Vector(base::global::CRntVector<UnkObj290_b43a3>* self,
                                                base::global::CRntVector<UnkObj290_b43a3>* other);
-void fn_7100ede44c(base::global::CRntVector<UnkShotEffect_b0011>* self, const UnkShotEffect_b0011* effect);
-base::global::CRntVector<UnkShotWeakRef_b0011>* fn_7100eddaac(base::global::CRntVector<UnkShotWeakRef_b0011>* self,
+void CShotManager_AppendEffectCopy(base::global::CRntVector<UnkShotEffect_b0011>* self, const UnkShotEffect_b0011* effect);
+base::global::CRntVector<UnkShotWeakRef_b0011>* CShotManager_CopyAssignWeakRefVector(base::global::CRntVector<UnkShotWeakRef_b0011>* self,
                                                      const base::global::CRntVector<UnkShotWeakRef_b0011>* other);
 
 // The draw state between the vectors and the preset names (models, counts, render instances).
@@ -68,7 +68,7 @@ static inline void AssignEffects(CRntVector<UnkShotEffect_b0011>* self, const CR
         self->Clear();
         self->Reserve(other->capacity);
         for (const UnkShotEffect_b0011 *p = other->data, *e = p + other->count; p != e; ++p)
-            fn_7100ede44c(self, p);
+            CShotManager_AppendEffectCopy(self, p);
     }
 }
 
@@ -79,14 +79,14 @@ static inline void AssignWeakRef(UnkWeakHandle** slot, UnkWeakHandle* const* oth
 }
 
 UnkShotManager_ledd3a4* fn_7100edd3a4(UnkShotManager_ledd3a4* self, UnkShotManager_ledd3a4* other) {
-    fn_7100edd784(&self->field_0x8, &other->field_0x8);
+    CShotManager_AssignObj290Vector(&self->field_0x8, &other->field_0x8);
     AssignEffects(&self->field_0x30, &other->field_0x30);
     self->field_0x58 = other->field_0x58;
     self->field_0x80 = other->field_0x80;
     fn_7100edcd50(&self->field_0x308, &other->field_0x308);
     fn_7100edd9d0(&self->field_0x6c8, &other->field_0x6c8);
     self->field_0x1208 = other->field_0x1208;
-    fn_7100eddaac(&self->field_0x1210, &other->field_0x1210);
+    CShotManager_CopyAssignWeakRefVector(&self->field_0x1210, &other->field_0x1210);
     self->field_0x1238 = other->field_0x1238;
     self->field_0x1260 = other->field_0x1260;
     AssignWeakRef(&self->field_0x1268, &other->field_0x1268);

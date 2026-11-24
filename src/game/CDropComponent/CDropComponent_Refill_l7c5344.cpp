@@ -47,7 +47,7 @@ static inline f32 ItemAmount_l7c5344(UnkInventory* inventory, UnkPropertyEx<>& i
     return fn_7101142928(inventory, ItemId_l7c5344(item));
 }
 
-void fn_71007c5344(UnkDropInventory_l7c5344* self, UnkDropSlot_l7c5344** slots, const UnkDropValues_l7c5344* drop) {
+void CDropComponent_SetSlotValuesForLackingSupplies(UnkDropInventory_l7c5344* self, UnkDropSlot_l7c5344** slots, const UnkDropValues_l7c5344* drop) {
     auto* inventory = reinterpret_cast<UnkInventory*>(self);
     UnkDropLife_l7c5344* life = self->owner->life;
     if (life && !(life->max >= life->current)) {

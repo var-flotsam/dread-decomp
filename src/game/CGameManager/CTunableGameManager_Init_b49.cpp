@@ -41,7 +41,7 @@ struct UnkStringListHolder_b49 {
 static_assert(__builtin_offsetof(UnkStringListHolder_b49, mutex) == 0x88, "layout");
 
 // Builds the holder: an empty list with room for five strings, then clears it under the lock.
-__attribute__((flatten)) void fn_7100de5648(UnkStringListHolder_b49* self) {
+__attribute__((flatten)) void CGameManager_ConstructLockedStringList(UnkStringListHolder_b49* self) {
     new (&self->list) UnkStringList_b49();
     self->list.Strings().Reserve(5);
     fn_7100fc71ac(self->field_0x48);

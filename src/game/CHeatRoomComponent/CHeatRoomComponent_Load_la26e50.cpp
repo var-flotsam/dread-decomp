@@ -92,7 +92,7 @@ static_assert(__builtin_offsetof(UnkHeatRoom_la26e50, strength) == 0x7c, "UnkHea
 static_assert(__builtin_offsetof(UnkHeatRoom_la26e50, use_alt) == 0xc24, "UnkHeatRoom_la26e50 layout");
 static_assert(__builtin_offsetof(UnkHeatRoom_la26e50, normal_was_set) == 0xc80, "UnkHeatRoom_la26e50 layout");
 
-void fn_7100a26e50(UnkHeatRoom_la26e50* self) {
+void CHeatRoomComponent_LoadHeatRoomEnabledFromBlackboard(UnkHeatRoom_la26e50* self) {
     fn_7100a46e78(reinterpret_cast<CFreezeRoomComponent*>(self));
     UnkGameManager* manager = g_unk_7101d47310;
     u32 useAlt = reinterpret_cast<u8*>(manager)[0x2441];

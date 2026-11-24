@@ -22,7 +22,7 @@ struct UnkLavaPoolComponent_l8fbe7c {
 };
 
 void fn_71008fbe7c(UnkLavaPoolComponent_l8fbe7c* self) {
-    fn_7100900c44(reinterpret_cast<UnkWaterPoolComponent_b0086*>(self));
+    CCharClassLiquidPoolComponent_ResetLevelAndSurfaceBox(reinterpret_cast<UnkWaterPoolComponent_b0086*>(self));
     UnkWaterPoolPlatform_b0086* platform = fn_71008fbfc0(self->field_0x30);
     if (!platform)
         return;

@@ -50,7 +50,7 @@ struct UnkEmmyCaveAI_b49 {
 void fn_7100540430(UnkEmmyCaveAI_b49* self);
 void fn_7100557ae4(UnkEmmyCaveAI_b49* self);
 
-void fn_71004f0814(UnkEmmyCaveAI_b49* self) {
+void CEmmyCaveAIComponent_ReadForceGrab2FromBlackboard(UnkEmmyCaveAI_b49* self) {
     fn_7100540430(self);
     UnkGameManager* manager = g_unk_7101d47310;
     if (!manager->field_0x608)
@@ -65,7 +65,7 @@ void fn_71004f0814(UnkEmmyCaveAI_b49* self) {
     }
 }
 
-void fn_71004f0924(UnkEmmyCaveAI_b49* self) {
+void CEmmyCaveAIComponent_ClearForceGrab2BlackboardFlag(UnkEmmyCaveAI_b49* self) {
     fn_7100557ae4(self);
     UnkGameManager* manager = g_unk_7101d47310;
     if (!manager->field_0x608)

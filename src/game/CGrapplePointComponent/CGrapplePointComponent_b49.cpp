@@ -50,7 +50,7 @@ struct UnkGrapplePoint_b49 {
     }
 };
 
-void fn_7100822888(UnkGrapplePoint_b49* self, CBlackboard* blackboard) {
+void CGrapplePointComponent_LoadFromBlackboard(UnkGrapplePoint_b49* self, CBlackboard* blackboard) {
     CBlackboard::CSection* section = fn_71010472e0(blackboard, fn_71011a2fbc(g_unk_7101d47310->field_0x608));
     if (!section)
         return;

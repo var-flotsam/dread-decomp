@@ -950,7 +950,7 @@ struct UnkSmLockonActor_A1_b64 {
 };
 
 void fn_710031a13c(UnkSmLockon_A1_b64*, u64, bool);
-void fn_7100725610(UnkSmLockonAI_A1_b64*, UnkWeakTarget*);
+void CBillboardCollisionComponent_RemoveEntry(UnkSmLockonAI_A1_b64*, UnkWeakTarget*);
 
 void fn_7100319e98(UnkSmLockon_A1_b64* self) {
     fn_71002fa068(self);
@@ -977,7 +977,7 @@ void fn_7100319e98(UnkSmLockon_A1_b64* self) {
                     UnkSmLockonActor_A1_b64* actor = reinterpret_cast<UnkSmLockonActor_A1_b64*>(e->owner->target);
                     asm volatile("" : "+r"(found));
                     if (actor->field_0x230)
-                        fn_7100725610(found, Get_A1_b64(e->target));
+                        CBillboardCollisionComponent_RemoveEntry(found, Get_A1_b64(e->target));
                 }
             }
             ++e;

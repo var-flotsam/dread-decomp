@@ -28,7 +28,7 @@ struct UnkWarriorAI {
     u8 pad_0x0[8];
 };
 
-bool fn_710049cbd8(UnkWarriorAI* ai);
+bool CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(UnkWarriorAI* ai);
 
 static inline CVector3D Pos(const UnkActor* actor) {
     return {actor->field_0x44, actor->field_0x54, actor->field_0x64};
@@ -61,6 +61,6 @@ u32 fn_7100494c9c(UnkGlaiveSpinAttack* self, void* arg, u32 mode) {
         return 0;
     UnkReflObject* component = static_cast<UnkReflObject*>(self->owner->field_0x240);
     if (component && fn_710009d50c(component->vf_0x0(), fn_7100497f2c()))
-        return !fn_710049cbd8(reinterpret_cast<UnkWarriorAI*>(component));
+        return !CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(reinterpret_cast<UnkWarriorAI*>(component));
     return 1;
 }

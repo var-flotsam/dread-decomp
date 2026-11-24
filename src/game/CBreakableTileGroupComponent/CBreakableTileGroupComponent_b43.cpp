@@ -13,16 +13,16 @@
 struct UnkTileRecord_bt;
 UnkTileRecord_bt* fn_7100758388(UnkTileRecord_bt* self, UnkTileRecord_bt* other);
 
-void fn_71007613d8(base::global::CRntVector<UnkTileRecordElem_b43a2>* self, u32 capacity);
+void CBreakableTileGroupComponent_ReserveTileInfoVector(base::global::CRntVector<UnkTileRecordElem_b43a2>* self, u32 capacity);
 void fn_71007582a4(UnkTileRecordElem_b43a2* self);
 
 static inline void Grow_b43a2(base::global::CRntVector<UnkTileRecordElem_b43a2>* self, u32 index) {
     u32 capacity = self->capacity;
     if (capacity <= index && self->step != 0)
         capacity = self->GrownCapacity(index);
-    fn_71007613d8(self, capacity);
+    CBreakableTileGroupComponent_ReserveTileInfoVector(self, capacity);
     u32 n = index + 1;
-    fn_71007613d8(self, n);
+    CBreakableTileGroupComponent_ReserveTileInfoVector(self, n);
     for (u32 i = self->count; i < n; ++i)
         fn_71007582a4(&self->data[i]);
     self->count = n;

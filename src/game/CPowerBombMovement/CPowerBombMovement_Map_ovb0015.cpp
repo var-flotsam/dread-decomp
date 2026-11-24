@@ -22,7 +22,7 @@
 extern void* g_unk_7101a95348[];  // the movement's vtable
 
 struct UnkBombMovement;
-void fn_7100aa9ee4(UnkBombMovement* self);  // the base constructor
+void CBombMovement_Construct(UnkBombMovement* self);  // the base constructor
 struct UnkPbMovementBase_ovb0015;
 struct UnkHandleOwner_71010c4230;
 
@@ -113,7 +113,7 @@ static_assert(__builtin_offsetof(UnkPbMovement_ovb0015, map) == 0x4f0, "UnkPbMov
 
 // The constructor.
 __attribute__((flatten)) void fn_7100ab0670(UnkPbMovement_ovb0015* self) {
-    fn_7100aa9ee4(reinterpret_cast<UnkBombMovement*>(self));
+    CBombMovement_Construct(reinterpret_cast<UnkBombMovement*>(self));
     self->field_0x4b8 = true;
     self->field_0x4b9 = true;
     self->vtable = g_unk_7101a95348 + 2;

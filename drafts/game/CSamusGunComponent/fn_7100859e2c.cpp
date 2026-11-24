@@ -48,7 +48,7 @@ struct UnkAutofocusCtrl_l859e2c : UnkReflObject {
 };
 
 u64 fn_710085a1e8(UnkSamusGun_l859e2c* self);
-u64 fn_710085961c(UnkSamusGun_l859e2c* self);
+u64 CSamusGunComponent_GetPrimaryWeaponKey(UnkSamusGun_l859e2c* self);
 
 static inline UnkQualifiedId& Qid_l859e2c(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
@@ -99,7 +99,7 @@ void fn_7100859e2c(UnkSamusGun_l859e2c* self, bool aiming) {
     UnkReflTypeIdArg aim_value, aim_type;
     UnkReflTypeIdArg idle_value, idle_type;
 aim:
-    hash = fn_710085961c(self);
+    hash = CSamusGunComponent_GetPrimaryWeaponKey(self);
     aim_value.id = 0x80;
     aim_type.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
     fn_7101176690(animation, hash, 0x5d523009b8f43e5f, &aim_value, &g_unk_710164b958, &g_unk_717276974c,

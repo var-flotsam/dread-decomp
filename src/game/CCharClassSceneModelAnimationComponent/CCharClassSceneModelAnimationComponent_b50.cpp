@@ -12,7 +12,7 @@ struct UnkEntry_b50a5;
 
 struct UnkEntry_b50a5 {
     u8 unk_0x0[0x50];
-    ~UnkEntry_b50a5() { fn_71009f26a0(this); }
+    ~UnkEntry_b50a5() { CCharClassSceneModelAnimationComponent_DestroyEntry(this); }
 };
 
 struct UnkEntryArray_b50a5 : base::global::CRntVector<UnkEntry_b50a5> {
@@ -66,7 +66,7 @@ struct UnkEntryBody_b50a5 {
     }
 };
 
-void fn_71009f26a0(UnkEntry_b50a5* self) {
+void CCharClassSceneModelAnimationComponent_DestroyEntry(UnkEntry_b50a5* self) {
     reinterpret_cast<UnkEntryBody_b50a5*>(self)->~UnkEntryBody_b50a5();
 }
 

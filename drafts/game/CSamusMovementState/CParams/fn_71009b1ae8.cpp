@@ -49,7 +49,7 @@ struct UnkAreaCollider_ovb0124 {
 };
 
 struct UnkForcedAreaBounds_ovb0124;
-bool fn_71007ecc08(UnkForcedAreaBounds_ovb0124* self, const UnkAreaBox_ovb0124* box);
+bool CForcedMovementAreaComponent_DoorOrForceMovementBoundsOverlapBox(UnkForcedAreaBounds_ovb0124* self, const UnkAreaBox_ovb0124* box);
 CRntVector<UnkWeakHandle*>* fn_71007ecbf0();
 void fn_71007e9a18(UnkWeakTarget* self, bool enable);
 void fn_71009b3030();
@@ -115,7 +115,7 @@ void fn_71009b1ae8(UnkSamusState_l9b1ae8* self, const u64* event) {
         if (!area || !fn_710009d50c(reinterpret_cast<UnkReflObject*>(area)->vf_0x0(), fn_71007e8fb0()))
             continue;
         if (!fn_710024fbc8(Target(*it)) ||
-            !fn_71007ecc08(reinterpret_cast<UnkForcedAreaBounds_ovb0124*>(area), &box))
+            !CForcedMovementAreaComponent_DoorOrForceMovementBoundsOverlapBox(reinterpret_cast<UnkForcedAreaBounds_ovb0124*>(area), &box))
             continue;
 
         fn_71007e9a18(area, true);

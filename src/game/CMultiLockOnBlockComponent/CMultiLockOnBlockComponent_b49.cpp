@@ -39,7 +39,7 @@ struct UnkMultiLockOnBlock_b49 {
     u32 count;
 };
 
-void fn_71008834d4(UnkMultiLockOnBlock_b49* self, u32 flag) {
+void CMultiLockOnBlockComponent_SetActivatedInBlackboard(UnkMultiLockOnBlock_b49* self, u32 flag) {
     UnkGameManager* manager = g_unk_7101d47310;
     UnkGameManagerSub_0x608* scenario = manager->field_0x608;
     CBlackboard* blackboard = &manager->field_0x968;

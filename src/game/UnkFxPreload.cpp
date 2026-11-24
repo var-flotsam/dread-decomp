@@ -12,7 +12,7 @@ struct UnkFxCache;
 
 static inline void UnkPreloadFx(UnkFxCache* cache, const char* path, u32 kind) {
     CFilePathStrId id(path, true);
-    fn_7100851bc0(cache, &id, kind, false);
+    CPlasmaBeamGun_PreloadParticleFxPool(cache, &id, kind, false);
 }
 
 void fn_71011a9e50(UnkFxCache* cache) {

@@ -14,7 +14,7 @@ struct UnkStatics_71007a10c0 {
 extern UnkStatics_71007a10c0 g_unk_7172718d68 __attribute__((visibility("hidden")));
 extern char g_unk_7172718d54[];
 
-void fn_71007a10c0() {
+void CCubeMapComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172718d68.ids);
     fn_710079d3b0();
     fn_710009ec00(g_unk_7172718d54, g_unk_7172718d68.field_0x48);

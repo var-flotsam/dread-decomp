@@ -23,7 +23,7 @@ __attribute__((visibility("hidden"))) extern UnkAimTrackDesc_l344190 g_unk_71726
 // Asks an animation for a track under `key` (of kind `kind`), described by `desc`.
 void fn_710117b598(void* animation, u64 key, u64 kind, const UnkAimTrackDesc_l344190* desc, bool flag);
 void fn_710083b0b4(void*, void*);
-void fn_7100325184(UnkWeakTarget* self, UnkWeakHandle** out);
+void CAbilityOpticCamouflage_GetWeakHandle(UnkWeakTarget* self, UnkWeakHandle** out);
 
 // The string ids in the reflection singleton that name the tracks and their kind.
 struct UnkAimTrackKind_l344190;
@@ -141,7 +141,7 @@ void fn_7100344190(UnkAimBind_l344190* self) {
 
     if (UnkWeakTarget* gun = self->owner->gun) {
         self->gun_link.Release<UnhookGun_l344190>();
-        fn_7100325184(gun, &self->gun_link.handle);
+        CAbilityOpticCamouflage_GetWeakHandle(gun, &self->gun_link.handle);
         fn_710083b0b4(self->gun_link.Target(), self->gun_link.node);
     }
     if (UnkWeakTarget* animation = self->owner->animation) {

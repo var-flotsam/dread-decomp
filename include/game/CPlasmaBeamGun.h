@@ -10,7 +10,7 @@
 struct UnkFxPooledObject;
 struct UnkFxCache;
 // Registers the effect at `path` with the cache.
-void fn_7100851bc0(UnkFxCache* cache, const base::global::CFilePathStrId* path, u32 kind, bool flag);
-void fn_7100851d6c(UnkFxCache* cache, const base::global::CFilePathStrId* path, u32 kind, bool flag);
+void CPlasmaBeamGun_PreloadParticleFxPool(UnkFxCache* cache, const base::global::CFilePathStrId* path, u32 kind, bool flag);
+void CPlasmaBeamGun_PreloadModelFxPool(UnkFxCache* cache, const base::global::CFilePathStrId* path, u32 kind, bool flag);
 // The element at `index`, growing the array to reach it (base::global::CRntVector's GrowAt, out of line).
 UnkFxPooledObject** fn_7100852548(base::global::CRntVector<UnkFxPooledObject*>* array, u32 index);

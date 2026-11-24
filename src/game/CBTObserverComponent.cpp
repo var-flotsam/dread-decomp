@@ -76,5 +76,5 @@ void fn_7100ca6844(UnkBTObserver* self) {
     self->field_0x128.step = 10;
     self->field_0x128.flags = 5;
     self->field_0x128.allocator = GetDefaultAllocator();
-    fn_7100ca9158(&self->field_0x128, 0x50);
+    CBTObserverComponent_ReserveEntries(&self->field_0x128, 0x50);
 }

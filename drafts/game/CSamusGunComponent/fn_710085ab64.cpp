@@ -141,7 +141,7 @@ struct UnkShotRecord_l85ab64 {
     }
 };
 
-void fn_710085c338(base::global::CRntVector<UnkShotRecord_l85ab64>* self, u32 capacity);
+void CSamusGunComponent_ReserveRefEntryVector(base::global::CRntVector<UnkShotRecord_l85ab64>* self, u32 capacity);
 
 struct UnkSamusGun_l85ab64 {
     u8 pad_0x0[0x30];
@@ -215,7 +215,7 @@ static inline void AddRecord(UnkSamusGun_l85ab64* self, UnkWeakHandle* handle, f
     if ((s32)n >= (s32)capacity)
         for (;;) {
         }
-    fn_710085c338(&records, capacity);
+    CSamusGunComponent_ReserveRefEntryVector(&records, capacity);
     new (&records.data[records.count]) UnkShotRecord_l85ab64(handle, now);
     ++records.count;
 }

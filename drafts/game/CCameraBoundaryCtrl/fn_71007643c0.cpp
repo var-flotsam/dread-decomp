@@ -24,7 +24,7 @@ void fn_71010e6278(UnkCamComp8_ovb5* self, UnkCamTarget2_ovb5* target, f32 a, f3
 struct UnkSubAreaManagerView_l7643c0;
 bool fn_7100eeb244(UnkSubAreaManagerView_l7643c0* self);
 struct UnkPairTable_A6_b72;
-bool fn_7100eeb670(UnkPairTable_A6_b72* self, const u64* key0, const u64* key1, f32* second, f32* first);
+bool CSubAreaManager_GetPositiveValuesByKeyPair(UnkPairTable_A6_b72* self, const u64* key0, const u64* key1, f32* second, f32* first);
 
 struct UnkNamed_l7643c0 {
     u8 pad_0x0[0x20];
@@ -166,7 +166,7 @@ void fn_71007643c0(UnkCtrl_l7643c0* self, bool reset) {
             CStrId next(now ? now->name : base::global::CStrId::Empty());
             f32 time = 8.0f;
             f32 blend = 0.3f;
-            fn_7100eeb670(reinterpret_cast<UnkPairTable_A6_b72*>(SubAreaManager()), reinterpret_cast<const u64*>(&stage),
+            CSubAreaManager_GetPositiveValuesByKeyPair(reinterpret_cast<UnkPairTable_A6_b72*>(SubAreaManager()), reinterpret_cast<const u64*>(&stage),
                           reinterpret_cast<const u64*>(&next), &time, &blend);
             fn_71010e6278(CameraOf(self), reinterpret_cast<UnkCamTarget2_ovb5*>(self), 0.0f, -1.0f, 0.01f);
             fn_71010e6278(CameraOf(self), reinterpret_cast<UnkCamTarget2_ovb5*>(self), time, 4.0f, blend);

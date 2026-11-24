@@ -116,7 +116,7 @@ struct UnkLightIdText_ovb0061 {
 
 // Takes the light set's path (+0x58 of the CCharClassLightingComponent) and resolves the resource
 // "lightsdef:<path>" into the pair at +0x48.
-void fn_71008e756c(UnkLightingComponent3* component, void* arg) {
+void CCharClassLightingComponent_SetLightsDefPath(UnkLightingComponent3* component, void* arg) {
     UnkLightingComponentDtor_ovb0061* self = reinterpret_cast<UnkLightingComponentDtor_ovb0061*>(component);
     self->field_0x40 = *static_cast<const base::UnkStrIdMemberOf<g_unk_7101d47200>*>(arg);
     UnkLightIdText_ovb0061 text(g_unk_71727b9f30);

@@ -19,7 +19,7 @@ static inline void Assign(UnkResRef* dst, UnkCountedResource* p) {
     }
 }
 
-bool fn_710072a000(UnkResHolder2* self, const UnkResKey* key) {
+bool CBillboardComponent_LoadHolderResourceByKey(UnkResHolder2* self, const UnkResKey* key) {
 
     UnkResRef resource = fn_71000ead80(g_unk_7101d472f8, key, self->flag, nullptr);
     UnkCountedResource* p = resource.ptr;
@@ -54,7 +54,7 @@ static_assert(sizeof(UnkBillboardObject_ovb0113) == 0x130, "UnkBillboardObject_o
 
 using UnkBillboardSet_ovb0113 = base::global::CRntDictionary<u64, u64>;
 
-UnkBillboardObject_ovb0113* fn_7100729eac(UnkBillboardSet_ovb0113* set, const UnkResKey* key,
+UnkBillboardObject_ovb0113* CBillboardComponent_CreateObjectAndAddToSet(UnkBillboardSet_ovb0113* set, const UnkResKey* key,
                                           UnkBillboardObject_ovb0113** out, UnkWidgetArg* arg) {
     auto* object = static_cast<UnkBillboardObject_ovb0113*>(fn_71000839a0(sizeof(UnkBillboardObject_ovb0113), 0x38));
     fn_71001431ec(reinterpret_cast<UnkTaggedWidgetObject*>(object), arg);
@@ -62,7 +62,7 @@ UnkBillboardObject_ovb0113* fn_7100729eac(UnkBillboardSet_ovb0113* set, const Un
     if (object) {
         fn_71001b4de8(object->billboard);
         if (key->path.data != &g_unk_7101d47200->empty &&
-            !fn_710072a000(reinterpret_cast<UnkResHolder2*>(object), key)) {
+            !CBillboardComponent_LoadHolderResourceByKey(reinterpret_cast<UnkResHolder2*>(object), key)) {
             fn_7100143244(reinterpret_cast<UnkTaggedObject*>(object));
             operator delete(object);
             return nullptr;

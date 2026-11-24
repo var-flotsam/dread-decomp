@@ -41,7 +41,7 @@ u32 UnkFootstepHandle_b45a2(u8* self, UnkFootstepEvent_b45a2* event) {
     return 0;
 }
 
-u32 fn_71007e88c4(u8* self, UnkFootstepEvent_b45a2* event) {
+u32 CFootstepPlatformComponent_SetPendingAndCancelReset(u8* self, UnkFootstepEvent_b45a2* event) {
     return UnkFootstepHandle_b45a2<0xc8>(self, event);
 }
 

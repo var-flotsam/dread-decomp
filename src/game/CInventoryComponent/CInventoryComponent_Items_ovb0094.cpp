@@ -38,7 +38,7 @@ struct UnkInvOwner_ovb0094 {
 };
 
 // Deletes the values of the map at +0x40, then clears it.
-void fn_7101141378(UnkInvOwner_ovb0094* self) {
+void CInventoryComponent_DeleteAndClearItemAmounts(UnkInvOwner_ovb0094* self) {
     for (UnkInvNode_ovb0094* node = self->map.first; node; node = node->next)
         delete node->value;
     self->map.Clear();
@@ -54,7 +54,7 @@ struct UnkInvRelease_ovb0094 {
 };
 
 // Unregisters the component from the game manager, runs fn_71010c4230 and releases the ids at +0x98.
-void fn_71011423c4(UnkInvRelease_ovb0094* self) {
+void CInventoryComponent_UnregisterAndClearFlags(UnkInvRelease_ovb0094* self) {
     fn_7100de9730(g_unk_7101d47310, reinterpret_cast<UnkSpawnGroupKey*>(&g_unk_7172a092b0), self);
     fn_71010c4230(reinterpret_cast<UnkHandleOwner_71010c4230*>(self));
     if (self->ids) {

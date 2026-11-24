@@ -58,7 +58,7 @@ struct UnkSancShapeComp_A3_b71 {
     base::UnkRefHandle holder;
 };
 
-void fn_7100500048(UnkSancShapeComp_A3_b71* self, void*, u32* out) {
+void CEmmySancAIComponent_WriteTunableIfOutsidePhase2HeatShape(UnkSancShapeComp_A3_b71* self, void*, u32* out) {
     if (self->state == 1) {
         {
             UnkRefPtr reference = fn_710023b580(self->field_0x2a778);

@@ -126,7 +126,7 @@ void fn_7100ab13c8(UnkPbMovement_lab13c8* self, const UnkVec3f& position, f32 si
         if (!fn_7100d57ca0(&shape, &xf, collider, &hits, 0))
             continue;
         for (UnkPbHitRecord_lab13c8 *it = hits.items(), *end = it + hits.count; it != end; ++it)
-            fn_7100aaaaf4(self, nullptr, const_cast<UnkVec3f*>(&position), reinterpret_cast<UnkBombHitInfo_ovb0078*>(it),
+            CBombMovement_DispatchHitByClass(self, nullptr, const_cast<UnkVec3f*>(&position), reinterpret_cast<UnkBombHitInfo_ovb0078*>(it),
                           size, nullptr, static_cast<UnkBombOnTiles_ovb0078>(&UnkPbMovement_lab13c8::vf_0x2b0));
         hits.Clear();
     }

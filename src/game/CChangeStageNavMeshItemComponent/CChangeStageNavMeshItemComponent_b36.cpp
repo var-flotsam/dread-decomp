@@ -22,7 +22,7 @@ struct UnkChangeStageNavMeshItem {
     UnkNavMeshRegistry2* registry;  // 0x68
 };
 
-void fn_71009b9a54(UnkChangeStageNavMeshItem* self) {
+void CChangeStageNavMeshItemComponent_DestroyAndDelete(UnkChangeStageNavMeshItem* self) {
     self->vtable = g_unk_7101a88328 + 2;
     UnkNavMeshItemMember* member = &self->member;
     fn_71009ba68c(member);

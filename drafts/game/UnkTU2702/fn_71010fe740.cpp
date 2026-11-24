@@ -18,7 +18,7 @@
 using base::global::CStrId;
 
 struct UnkScenarioIdList_ovb0097;
-void fn_71007e572c(UnkScenarioIdList_ovb0097* self, u32 n);
+void CCharClassEventScenarioComponent_ResizeStrIdList(UnkScenarioIdList_ovb0097* self, u32 n);
 void fn_71004db7f8();
 
 inline const CStrId& TrackedId_l0fe740() {
@@ -327,7 +327,7 @@ void fn_71010fe740(UnkResetAI_l0fe740* self) {
     self->field_0x179c = 0;
     self->field_0x17a0 = false;
     self->field_0x1221 = false;
-    fn_71007e572c(reinterpret_cast<UnkScenarioIdList_ovb0097*>(self->scenario_ids), 0);
+    CCharClassEventScenarioComponent_ResizeStrIdList(reinterpret_cast<UnkScenarioIdList_ovb0097*>(self->scenario_ids), 0);
     self->field_0x1248 = false;
     self->field_0x124c = 0;
     self->field_0x14f4 = 0;

@@ -23,7 +23,7 @@ struct UnkKraidAI_b65a4 {
     void* field_0x14e38;
 };
 
-void fn_7100600ae4(UnkKraidAI_b65a4* self, UnkKraidBox_b65a4* out) {
+void CKraidAIComponent_GetBoxAroundTargetOrBase(UnkKraidAI_b65a4* self, UnkKraidBox_b65a4* out) {
     if (self->field_0x1140 == 0 || self->field_0x14e38) {
         fn_71011063a4(reinterpret_cast<UnkBoundsSelf_l1063a4*>(self), reinterpret_cast<UnkBox_l1063a4*>(out));
         return;

@@ -72,7 +72,7 @@ static inline __attribute__((always_inline)) void SetDirection_b69a4(UnkSabotoru
     request->direction.y = direction.y;
 }
 
-void fn_710067a06c(UnkSabotoruAI_b69a4* self, UnkActor* other, UnkSabotoruRequest_b69a4* request) {
+void CSabotoruAIComponent_SetRequestDirectionFromSpawnPointLink(UnkSabotoruAI_b69a4* self, UnkActor* other, UnkSabotoruRequest_b69a4* request) {
     fn_7101105c90(reinterpret_cast<UnkKraidAI2*>(self), other, reinterpret_cast<UnkKraidRequest*>(request));
     UnkSabotoruSpawnHolder_b69a4* spawn = self->actor->spawn;
     if (!spawn)

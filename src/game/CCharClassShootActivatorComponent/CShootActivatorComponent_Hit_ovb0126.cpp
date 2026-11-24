@@ -107,7 +107,7 @@ static inline UnkShootPlaceActor_ovb0126* Player() {
     return reinterpret_cast<UnkShootPlaceActor_ovb0126*>(fn_7100dec788(g_unk_7101d47310));
 }
 
-void fn_71008919c4(UnkShootPlace_ovb0126* self) {
+void CCharClassShootActivatorComponent_ApplyPlayerOffsetAndYawToActorObject(UnkShootPlace_ovb0126* self) {
     auto* target = static_cast<UnkGeneratorTarget_ovb0120*>(
         fn_7100774014(reinterpret_cast<UnkScenarioObject_ovb0032*>(self->actor)));
     if (!target)
@@ -188,7 +188,7 @@ static inline void MoveId(base::global::UnkStrId* self, base::global::UnkStrId* 
     other->data = &g_unk_7101d47108->empty;
 }
 
-void fn_71008917c4(UnkShootCamera_ovb0126* self) {
+void CCharClassShootActivatorComponent_SyncWithAnimatedCamera(UnkShootCamera_ovb0126* self) {
     void* holder = fn_7100defcec(g_unk_7101d47310);
     if (!holder)
         return;
@@ -218,5 +218,5 @@ void fn_71008917c4(UnkShootCamera_ovb0126* self) {
     if (auto* player = reinterpret_cast<UnkShootPlayer_ovb0126*>(fn_7100dec788(g_unk_7101d47310)))
         fn_7100872460(player->input, false, false, &self->id);
     reinterpret_cast<CStrId*>(&self->id)->Reset();
-    fn_71008919c4(reinterpret_cast<UnkShootPlace_ovb0126*>(self));
+    CCharClassShootActivatorComponent_ApplyPlayerOffsetAndYawToActorObject(reinterpret_cast<UnkShootPlace_ovb0126*>(self));
 }

@@ -38,7 +38,7 @@ void fn_71008340d4() __attribute__((visibility("hidden")));
 extern char g_unk_7172725bc0[];
 extern void* g_unk_7101a77950[];
 
-void fn_7100834340() {
+void CGrappleBeamGun_InitStatics() {
     InitHeaderIds(&g_unk_7172725c08.ids);
     fn_7100832034();
     fn_710009ec00(g_unk_71727258f8, g_unk_7172725c08.field_0x28);

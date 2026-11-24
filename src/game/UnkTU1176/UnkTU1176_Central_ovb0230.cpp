@@ -62,7 +62,7 @@ struct UnkEntry_cu {
     u8 data[0x80];
     ~UnkEntry_cu() { fn_7100778228(reinterpret_cast<UnkPair_7100778228*>(this)); }
 };
-void fn_710077a630(base::global::CRntVector<UnkEntry_cu>* self, u32 n);
+void CCentralUnitComponent_ReservePairEntryVector(base::global::CRntVector<UnkEntry_cu>* self, u32 n);
 
 __attribute__((always_inline)) static inline void DestroyEntry_b0230(UnkSetPair_b0230* pair) {
     reinterpret_cast<UnkEntry_cu*>(pair)->~UnkEntry_cu();
@@ -113,7 +113,7 @@ void fn_710077a700(base::global::CRntVector<UnkEntry_cu>* vec, const UnkEntry_cu
 
 // Makes the array hold `n` entries, default-constructing the new ones (after fn_710077a630 has made room).
 void fn_710077ae90(UnkPairVec_b0230* self, u32 n) {
-    fn_710077a630(reinterpret_cast<base::global::CRntVector<UnkEntry_cu>*>(self), n);
+    CCentralUnitComponent_ReservePairEntryVector(reinterpret_cast<base::global::CRntVector<UnkEntry_cu>*>(self), n);
     for (u32 i = self->count; i < n; ++i)
         new (&self->data[i]) UnkSetPair_b0230();
     self->count = n;

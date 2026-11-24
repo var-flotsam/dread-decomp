@@ -28,10 +28,10 @@ void fn_7100712448(UnkAlternativeActionPlayer* self) {
     At<base::UnkAllocator*>(self, 0x68) = GetDefaultAllocator();
     At<void**>(self, 0x70) = g_unk_7101a22d48 + 2;
     At<UnkAlternativeActionPlayer*>(self, 0x98) = self;
-    At<void (*)(UnkAlternativeActionPlayer*)>(self, 0xa0) = reinterpret_cast<void (*)(UnkAlternativeActionPlayer*)>(&fn_71007124d8);
+    At<void (*)(UnkAlternativeActionPlayer*)>(self, 0xa0) = reinterpret_cast<void (*)(UnkAlternativeActionPlayer*)>(&CAlternativeActionPlayerComponent_CopyEntryFirstPairsToSecondPairs);
     At<u64>(self, 0x88) = 0;
     At<u64>(self, 0x90) = 0;
     At<UnkAlternativeActionPlayer*>(self, 0x78) = self;
-    At<void (*)(UnkAlternativeActionPlayer*)>(self, 0x80) = reinterpret_cast<void (*)(UnkAlternativeActionPlayer *)>(&fn_7100712538);
+    At<void (*)(UnkAlternativeActionPlayer*)>(self, 0x80) = reinterpret_cast<void (*)(UnkAlternativeActionPlayer *)>(&CAlternativeActionPlayerComponent_ClearEntriesOnMessage);
     reinterpret_cast<void (*)(UnkAlternativeActionPlayer*)>(self->vtable[3])(self);
 }

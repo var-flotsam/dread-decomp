@@ -71,7 +71,7 @@ struct UnkHintRef_ovb0093 {
 // A flat map: values and keys in parallel arrays sharing a count and capacity.
 using UnkHintMap_ovb0093 = base::global::CRntSmallDictionary<u64, UnkHintRef_ovb0093>;
 
-__attribute__((noinline)) void fn_7100752fbc(UnkHintMap_ovb0093* self, u32 new_capacity) {
+__attribute__((noinline)) void CBreakableHintComponent_ReserveHintMap(UnkHintMap_ovb0093* self, u32 new_capacity) {
     if (self->capacity >= new_capacity)
         return;
     UnkHintRef_ovb0093* values = static_cast<UnkHintRef_ovb0093*>(
@@ -97,9 +97,9 @@ __attribute__((noinline)) void fn_7100752fbc(UnkHintMap_ovb0093* self, u32 new_c
     self->capacity = new_capacity;
 }
 
-UnkHintRef_ovb0093* fn_7100752eec(UnkHintMap_ovb0093* self, const u64& key, UnkHintRef_ovb0093&& value) {
+UnkHintRef_ovb0093* CBreakableHintComponent_AppendHintMapEntry(UnkHintMap_ovb0093* self, const u64& key, UnkHintRef_ovb0093&& value) {
     if (self->count == self->capacity)
-        fn_7100752fbc(self, self->count + self->step);
+        CBreakableHintComponent_ReserveHintMap(self, self->count + self->step);
     __builtin_memcpy(&self->keys[self->count], &key, sizeof(u64));
     new (&self->values[self->count]) UnkHintRef_ovb0093(static_cast<UnkHintRef_ovb0093&&>(value));
     u32 n = self->count + 1;
@@ -107,7 +107,7 @@ UnkHintRef_ovb0093* fn_7100752eec(UnkHintMap_ovb0093* self, const u64& key, UnkH
     return n == 0 ? self->values : &self->values[n] - 1;
 }
 
-UnkHintRef_ovb0093* fn_7100752a78(UnkHintMap_ovb0093* self, UnkHintRef_ovb0093* it) {
+UnkHintRef_ovb0093* CBreakableHintComponent_EraseHintMapEntryBySwapWithLast(UnkHintMap_ovb0093* self, UnkHintRef_ovb0093* it) {
     u32 index = it - self->values;
     self->values[index].~UnkHintRef_ovb0093();
     u32 last = self->count - 1;
@@ -125,7 +125,7 @@ extern void* g_unk_7101a6e2a0[];
 
 // As src/game/CBreakableHintComponent/CBreakableHintComponent_Remove_A3_b72.cpp declares them.
 struct UnkBreakableHint_A3_b72;
-bool fn_710075312c(UnkBreakableHint_A3_b72* self, u64 key);
+bool CBreakableHintComponent_EraseItemEntry(UnkBreakableHint_A3_b72* self, u64 key);
 
 struct UnkHintWords_ovb0093 {
     u32 x, y, z;
@@ -259,8 +259,8 @@ void fn_7100752208(UnkBreakableHint_ovb0093* self) {
         if (!InArea(self->area, item->actor) || item->field_0x12b)
             continue;
         u64 key = reinterpret_cast<u64>(item);
-        UnkHintRef_ovb0093* ref = fn_7100752eec(hints, key, UnkHintRef_ovb0093());
-        ref->Assign(&item->hints, self, reinterpret_cast<void*>(fn_710075312c));
+        UnkHintRef_ovb0093* ref = CBreakableHintComponent_AppendHintMapEntry(hints, key, UnkHintRef_ovb0093());
+        ref->Assign(&item->hints, self, reinterpret_cast<void*>(CBreakableHintComponent_EraseItemEntry));
     }
     if (hints->count == 0) {
         self->empty = true;

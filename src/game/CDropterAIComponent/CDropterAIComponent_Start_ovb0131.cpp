@@ -126,7 +126,7 @@ struct UnkDropterHitAI_ovb0131 {
     UnkDropterBlock_ovb0131 block;  // 0x14738
 };
 
-void fn_71004ee750(UnkDropterHitAI_ovb0131* self, UnkDropterHitMessage_ovb0131* msg) {
+void CDropterAIComponent_StartDyingOnMessage(UnkDropterHitAI_ovb0131* self, UnkDropterHitMessage_ovb0131* msg) {
     UnkDropterBlock_ovb0131* block = &self->block;
     if (!block->target->flag || (msg->flags & 0x2008040) || block->started) {
         fn_710110cca4(self, msg);

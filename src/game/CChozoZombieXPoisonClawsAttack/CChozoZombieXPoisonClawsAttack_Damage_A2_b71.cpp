@@ -34,7 +34,7 @@ struct UnkPoisonClawsRequest_A2_b71 {
     bool field_0xd4;
 };
 
-void fn_710049ec34(UnkPoisonClawsAttack_A2_b71* self, void* unused, UnkPoisonClawsRequest_A2_b71* request) {
+void CChozoZombieXPoisonClawsAttack_SetPoisonClawsDamage(UnkPoisonClawsAttack_A2_b71* self, void* unused, UnkPoisonClawsRequest_A2_b71* request) {
     void* frozen = self->owner->field_0x2c8;
     if (frozen && fn_71007f9f20(frozen))
         return;

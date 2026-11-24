@@ -18,7 +18,7 @@ using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
 struct UnkMorphBallLauncher_ovb0123;
-UnkReflObject* fn_71008880bc(UnkMorphBallLauncher_ovb0123* self);
+UnkReflObject* CMorphBallLauncherComponent_FindNearestEntity(UnkMorphBallLauncher_ovb0123* self);
 f32 fn_71000768a0(f32 f0);
 __attribute__((visibility("hidden"))) extern const u64 g_unk_710164aea8;
 
@@ -126,7 +126,7 @@ void fn_7100887d0c(UnkMorphBallLauncher_l887d0c* self, f32 dt) {
         if (self->follow_target) {
             UnkWeakHandle* target = self->target;
             if (target == nullptr || target->target == nullptr) {
-                UnkReflObject* nearest = fn_71008880bc(reinterpret_cast<UnkMorphBallLauncher_ovb0123*>(self));
+                UnkReflObject* nearest = CMorphBallLauncherComponent_FindNearestEntity(reinterpret_cast<UnkMorphBallLauncher_ovb0123*>(self));
                 const UnkLauncherXform_l887d0c* xform = reinterpret_cast<const UnkLauncherXform_l887d0c*>(nearest);
                 self->target_start = Pos(xform);
                 target = fn_7100d78378(reinterpret_cast<UnkWeakTarget*>(nearest));

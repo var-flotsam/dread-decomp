@@ -182,7 +182,7 @@ void fn_71004990ac(UnkChozoWarriorAI_l4990ac* self, f32 dt) {
                 }
                 grab.time += dt;
                 if (grab.time >= Tunable().grab_time) {
-                    fn_71004996b0(reinterpret_cast<UnkChozoWarriorAI733*>(self));
+                    CChozoWarriorAIComponent_ReleaseHandleAndClearTimer(reinterpret_cast<UnkChozoWarriorAI733*>(self));
                 } else if (UnkActor* target = fn_7100d7c990(reinterpret_cast<UnkActor*>(self->owner))) {
                     if (UnkAnimationComponent* target_animation =
                             static_cast<UnkAnimationComponent*>(target->field_0x220)) {

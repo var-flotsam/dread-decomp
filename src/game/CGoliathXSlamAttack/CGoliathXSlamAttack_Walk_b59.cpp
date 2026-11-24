@@ -53,7 +53,7 @@ static inline u64 Hash_b59a3(const CStrId& id) {
 }
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
-void fn_7100586d0c(UnkGoliathXSlamWalk_b59a3* self, f32 dt) {
+void CGoliathXSlamAttack_UpdateSlamWalkAnim(UnkGoliathXSlamWalk_b59a3* self, f32 dt) {
     fn_710058e848(self, dt);
     auto* comp = static_cast<UnkGoliathAI_b59a3*>(self->owner->field_0x240);
     if (!comp)

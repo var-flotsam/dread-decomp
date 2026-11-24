@@ -20,7 +20,7 @@ u32 fn_7101171fcc(UnkMultiModelUpdater_l93881c* self, UnkProp* p);
 // As src/game/CMultiModelUpdaterComponent/CMultiModelUpdaterComponent_AddModel_l93852c.cpp defines it.
 struct UnkMultiModel_l93852c;
 
-u32 fn_710093881c(UnkMultiModelUpdater_l93881c* self, UnkProp* p) {
+u32 CMultiModelUpdaterComponent_ReadProperty(UnkMultiModelUpdater_l93881c* self, UnkProp* p) {
     if (Is(p, Key(0x1668)))
         return true;
     if (!Is(p, Key(0x690)))
@@ -36,6 +36,6 @@ u32 fn_710093881c(UnkMultiModelUpdater_l93881c* self, UnkProp* p) {
         CRntFile_ReadCString(file, &unused);
     CStrId name_id(name, true);
     CFilePathStrId path_id(UnkStrIdInline(), path, true);
-    fn_710093852c(reinterpret_cast<UnkMultiModel_l93852c*>(self), &name_id, &path_id);
+    CMultiModelUpdaterComponent_AddModel(reinterpret_cast<UnkMultiModel_l93852c*>(self), &name_id, &path_id);
     return true;
 }

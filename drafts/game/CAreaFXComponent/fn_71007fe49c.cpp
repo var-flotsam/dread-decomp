@@ -17,7 +17,7 @@ extern const CVector2D g_unk_7101647778;
 
 struct UnkAreaFXColl_ovb0081;
 struct UnkFXComponentSelf;
-void fn_71007fee9c(UnkAreaFXColl_ovb0081* self);
+void CAreaFXComponent_CollectOwnerColliders(UnkAreaFXColl_ovb0081* self);
 void fn_71007ff210(UnkFXComponentSelf* self, const f32* color);
 
 struct UnkAreaFXOwner_l7fe49c {
@@ -90,7 +90,7 @@ void fn_71007fe49c(UnkAreaFXComponent_l7fe49c* self, s32 mode) {
     } else {
         fn_71007feb70(self, &centre);
     }
-    fn_71007fee9c(reinterpret_cast<UnkAreaFXColl_ovb0081*>(self));
+    CAreaFXComponent_CollectOwnerColliders(reinterpret_cast<UnkAreaFXColl_ovb0081*>(self));
     CVector2D offset = {0.0f, 0.0f};
     CVector2D half = {self->def->size.x * 0.5f, self->def->size.y * 0.5f};
     UnkAreaRect_l7fe49c area;

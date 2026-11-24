@@ -42,7 +42,7 @@ struct UnkSabotoruUpdAI_A3_b75 {
 void fn_71006786ec(UnkSabotoruUpdAI_A3_b75* self);
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
-void fn_71006792e8(UnkSabotoruUpdAI_A3_b75* self, f32 dt) {
+void CSabotoruAIComponent_UpdateBlackboardPlayerPos(UnkSabotoruUpdAI_A3_b75* self, f32 dt) {
     fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);
     if (static_cast<UnkSabotoruState_A3_b75*>(self->actor->field_0x1b8)->state == 2)
         return;

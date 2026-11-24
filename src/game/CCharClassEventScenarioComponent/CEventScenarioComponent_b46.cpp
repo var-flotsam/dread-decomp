@@ -27,7 +27,7 @@ struct UnkEventScenario_b46a2 {
     bool finished;
 };
 
-void fn_71007e15d0(UnkEventScenario_b46a2* self) {
+void CCharClassEventScenarioComponent_ReadEventFinishedFromBlackboard(UnkEventScenario_b46a2* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     CBlackboard* blackboard = &manager->field_0x968;
     CStrId section_id = fn_71011a2fbc(manager->field_0x608);

@@ -22,7 +22,7 @@ struct UnkSnapSelf_b69a4 {
     u32 count;
 };
 
-u32 fn_71007124d8(UnkAlternativeActionPlayer* player, UnkSnapArg_b69a4 arg) {
+u32 CAlternativeActionPlayerComponent_CopyEntryFirstPairsToSecondPairs(UnkAlternativeActionPlayer* player, UnkSnapArg_b69a4 arg) {
     UnkSnapSelf_b69a4* self = reinterpret_cast<UnkSnapSelf_b69a4*>(player);
     if (!arg.skip) {
         for (UnkSnapEntry_b69a4 *it = self->entries, *end = it + self->count; it != end; ++it) {

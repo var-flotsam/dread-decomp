@@ -241,7 +241,7 @@ struct UnkDropComp_ovb0096 {
     u8 field_0x168;
 };
 
-void fn_71007c1edc(UnkDropComp_ovb0096* self) {
+void CDropComponent_ComputeRadiusFromOwnerCollision(UnkDropComp_ovb0096* self) {
     UnkDropMovement_ovb0096* movement = self->owner->movement;
     if (!movement) {
         self->size = 50.0f;

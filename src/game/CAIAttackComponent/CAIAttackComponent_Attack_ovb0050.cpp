@@ -38,7 +38,7 @@ static inline UnkWeakHandle** HandleSlot(UnkAIAttackComponent2_ovb0050* self) {
     return reinterpret_cast<UnkWeakHandle**>(reinterpret_cast<u8*>(self) + 0x320);
 }
 
-bool fn_7101133dc8(UnkAIAttackComponent2_ovb0050* self) {
+bool CAIAttackComponent_RefetchHandleAndRelink(UnkAIAttackComponent2_ovb0050* self) {
     void* source = self->owner->field_0x218;
     if (!source)
         return true;
