@@ -14,7 +14,7 @@ struct UnkCharClassTimeline_ovb0118 {
     void** vtable;
     u8 pad_0x8[0x50];
     u32 eNextPolicy;
-    base::global::UnkStringData* id;  // 0x60: an empty string id
+    base::global::CStrId id;  // 0x60: an empty string id
     u64 field_0x68;
     u32 field_0x70;
 };
@@ -23,10 +23,10 @@ void fn_7100797234(UnkCharClassTimeline_ovb0118* self) {
     fn_71011acd10(reinterpret_cast<UnkStruct_71008bca30*>(self));
     self->vtable = g_unk_7101a6f8a0 + 2;
     self->eNextPolicy = 0;
-    self->id = nullptr;
+    self->id.data = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
-    self->id = &g_unk_7101d47108->empty;
+    self->id.data = &g_unk_7101d47108->empty;
     self->field_0x68 = 0;
     self->field_0x70 = base::reflection::refl_GetEnumZero<0x7101d57cc8>();
 }

@@ -10,12 +10,12 @@ using base::global::UnkStringData;
 struct UnkComponent_0x138 {
     void** vtable;
     u8 unk_0x8[0xe8];
-    UnkStringData* field_0xf0;  // CStrId
+    base::global::CStrId field_0xf0;  // CStrId
     bool bUseCheckBeforeCast;
     u32 field_0xfc;
     bool bApplyGravityOnInitialSpeed;
-    UnkStringData* field_0x108;  // CStrId
-    UnkStringData* field_0x110;  // CStrId
+    base::global::CStrId field_0x108;  // CStrId
+    base::global::CStrId field_0x110;  // CStrId
     bool bDeleteAfterCollisionProcessed;
     bool bDestroyOnImpactSpeedBooster;
     u8 unk_0x11a[0xe];
@@ -38,14 +38,14 @@ void fn_7100ac14f8(UnkComponent_0x138* self) {
     fn_7100ab38a0(self);
     self->vtable = &g_unk_7101a96758[2];
     UnkStringData* id = base::global::CStrId::Empty().data;
-    self->field_0xf0 = id;
+    self->field_0xf0.data = id;
     if (&g_unk_7101d47108->empty != id)
         ++id->ref_count;
     self->bUseCheckBeforeCast = false;
     self->field_0xfc = 0;
     self->bApplyGravityOnInitialSpeed = true;
-    InitEmptyId(&self->field_0x108);
-    InitEmptyId(&self->field_0x110);
+    InitEmptyId(&self->field_0x108.data);
+    InitEmptyId(&self->field_0x110.data);
     self->bDeleteAfterCollisionProcessed = true;
     self->bDestroyOnImpactSpeedBooster = false;
     self->bIgnoreInvulnerableEntities = true;
