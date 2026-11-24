@@ -18,7 +18,7 @@ struct UnkHashed_710009d110 {
     void* ref_0x80;
 };
 
-u32 fn_710009d110(UnkHashed_710009d110* self) {
+u32 CType_ComputeBaseHash(UnkHashed_710009d110* self) {
     UnkScopedHashStream s(0x16, nullptr);
     s.Begin(0x14);
     s.Put(self->inner_0x8->field_0x30);

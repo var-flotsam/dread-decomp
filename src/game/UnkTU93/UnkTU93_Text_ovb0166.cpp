@@ -26,7 +26,7 @@ struct UnkTypedValue_b0166 {
     u32* ptr;
 };
 
-CStrId fn_71000999cc(UnkReflObject* enum_type, u32 value);
+CStrId CEnumType_GetNameOfValue(UnkReflObject* enum_type, u32 value);
 
 struct UnkCountedStrData_b0166 {
     u8 pad_0x0[0x10];
@@ -48,7 +48,7 @@ bool fn_71000efb88(UnkTextWriter_b0166* self, UnkTypedValue_b0166* value) {
     char* text = self->text;
     UnkReflObject* type = value->type;
     UnkReflObject* enum_type = type && fn_710009d50c(type->vf_0x0(), fn_710009921c()) ? type : nullptr;
-    CStrId name = fn_71000999cc(enum_type, *value->ptr);
+    CStrId name = CEnumType_GetNameOfValue(enum_type, *value->ptr);
     strncpy(text, CStr(name), sizeof(self->text));
     return true;
 }

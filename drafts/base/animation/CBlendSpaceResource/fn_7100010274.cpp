@@ -68,7 +68,7 @@ bool fn_7100010274(CRntFile* file, UnkTypedRef* value) {
         if (fn_710009d50c(reinterpret_cast<const UnkReflObject*>(type)->vf_0x0(), fn_7100096100()))
             cls = static_cast<const CClass*>(type);
     }
-    UnkReflValue attr = fn_710009ddd4(reinterpret_cast<UnkVersionEntry*>(const_cast<CType*>(value->type)),
+    UnkReflValue attr = CType_GetAttributeValue(reinterpret_cast<UnkVersionEntry*>(const_cast<CType*>(value->type)),
                                       base::reflection::attr::sBinaryDeserialize());
     bool ok = false;
     if (cls && attr.type) {

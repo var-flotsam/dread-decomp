@@ -22,7 +22,7 @@ static inline s32 ValueOf(const CEnumType* self, const CStrId* name) {
     return -1;
 }
 
-bool fn_7100099724(const CEnumType* self, const CStrId* name, s32* out) {
+bool CEnumType_TryGetValueByNameId(const CEnumType* self, const CStrId* name, s32* out) {
     const UnkEnumEntry* entries = reinterpret_cast<const UnkEnumEntry*>(self->m_values.data);
     for (const UnkEnumEntry *it = entries, *end = entries + self->m_values.count; it != end; ++it) {
         if (it->name.data == name->data) {
@@ -33,7 +33,7 @@ bool fn_7100099724(const CEnumType* self, const CStrId* name, s32* out) {
     return false;
 }
 
-s32 fn_710009976c(const CEnumType* self, const CStrId* name) { return ValueOf(self, name); }
+s32 CEnumType_GetValueByNameIdOrMinusOne(const CEnumType* self, const CStrId* name) { return ValueOf(self, name); }
 
 // A reflected value: the value's storage at +0x8.
 struct UnkEnumValueRef {

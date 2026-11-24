@@ -47,7 +47,7 @@ void fn_7100009fe0();
 UnkReflType* fn_710000a4f4();
 void fn_710000a5d0(UnkReflType* self, const CStrId& name, void* a, void* b);
 
-void fn_71000113b0() {
+void CBlendSpaceResource_InitStatics() {
     new (&g_unk_7101d4cdc8.sources) CStrId("sources", true);
     fn_7100000250(CStrId_Destroy, &g_unk_7101d4cdc8.sources, &g_unk_7101a19000);
     new (&g_unk_7101d4cdc8.binaries) CStrId("binaries", true);
@@ -86,8 +86,8 @@ void fn_71000113b0() {
         const char* sources0[2];
         sources0[0] = ".mbls";
         sources0[1] = ".mblst";
-        fn_7100004578(&types[0], "base::animation::CBlendSpaceResource", ".bmbls", sources0, 2);
-        fn_7100004698(g_unk_7101d4c138, "blendspace", types, 1);
+        CAnimationResource_ConstructResourceFormat(&types[0], "base::animation::CBlendSpaceResource", ".bmbls", sources0, 2);
+        CAnimationResource_ConstructResourceTypeFromFormats(g_unk_7101d4c138, "blendspace", types, 1);
         fn_7100004a44(&types[0]);
     }
     fn_7100000250(fn_7100004b94, g_unk_7101d4c138, &g_unk_7101a19000);

@@ -121,7 +121,7 @@ static inline UnkReflTypedPtr TypedAddress(UnkReflValue& value) {
 static inline UnkReader_f07fc* FindClassReader(const CType* type) {
     UnkReader_f07fc* reader = nullptr;
     UnkReflValue attr =
-        fn_710009ddd4(reinterpret_cast<UnkVersionEntry*>(const_cast<CType*>(type)), base::reflection::attr::AfterElementDeserialization());
+        CType_GetAttributeValue(reinterpret_cast<UnkVersionEntry*>(const_cast<CType*>(type)), base::reflection::attr::AfterElementDeserialization());
     if (attr.type) {
         auto* name = static_cast<UnkReaderName_f07fc*>(ValueAddress(attr));
         if (name->length &&

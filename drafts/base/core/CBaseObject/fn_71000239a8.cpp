@@ -100,7 +100,7 @@ bool fn_71000239a8(void* dst, UnkBaseObject_b49a1* src, UnkClassField_b49a1* fie
     if (!to || to == cls->End())
         return false;
 
-    switch (fn_7100024140(from->type)) {
+    switch (CBaseObject_GetTypeCodeChar(from->type)) {
     case 'b':
         return CopyAs<bool, fn_710000d228>(from, &source, to, &target);
     case 'e': {

@@ -102,7 +102,7 @@ s32 DebugPlayStream(lua_State* L) {
         desc.direction = 1;
         desc.path = path;
         desc.group = 1;
-        fn_7100108620(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820),
+        CSoundSystem_PlayOrRestartSound(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820),
                       reinterpret_cast<UnkSoundDesc_ovb0074*>(&desc));
     }
     return 0;

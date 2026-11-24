@@ -44,7 +44,7 @@ struct UnkKeyedPtrsOwner_b52 {
     UnkKeyedPtrs_b52 entries;
 };
 
-void fn_710009dba0(UnkKeyedPtrsOwner_b52* self, const u64* key, void* value) {
+void CType_AddConversion(UnkKeyedPtrsOwner_b52* self, const u64* key, void* value) {
     UnkKeyedPtrs_b52& a = self->entries;
     if (a.count == a.capacity)
         a.Grow(a.step + a.count);

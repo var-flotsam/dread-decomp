@@ -50,7 +50,7 @@ static inline void* AsList(const base::reflection::CType* t) {
     return const_cast<void*>(static_cast<const void*>(t));
 }
 
-void fn_71001392b0() {
+void CTunable_InitStatics() {
     new (&g_unk_710b371b10.sources) CStrId("sources", true);
     fn_7100000250(CStrId_Destroy, &g_unk_710b371b10.sources, &g_unk_7101a19000);
     new (&g_unk_710b371b10.binaries) CStrId("binaries", true);

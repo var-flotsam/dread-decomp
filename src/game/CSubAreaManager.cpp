@@ -84,7 +84,7 @@ extern UnkParseCallbacks g_unk_71729daf80 __attribute__((visibility("hidden")));
 static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {
     UnkParseContext ctx(g_unk_71729daf80, reader, target);
     UnkReadEntry* end = target->entries + target->count;
-    fn_710000f750(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr);
+    CBlendSpaceResource_ReadObjectAsStoredType(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr);
 }
 
 // The reader's first argument is an empty value (its caller leaves x0 as it is).
@@ -775,7 +775,7 @@ static inline void Append(UnkResPathVec* v, const CFilePathStrId& id) {
     if ((s32)c <= (s32)n)
         for (;;) {
         }
-    fn_7100018450(v, c);
+    CAsset_ReserveFilePathIdVec(v, c);
     new (&v->data[v->count]) CFilePathStrId(id);
     ++v->count;
 }

@@ -36,7 +36,7 @@ static inline UnkWriterEntry_b0202* Entries(UnkWriter_b0202* self) {
 }
 
 void fn_71000ed480(UnkWriter_b0202* self, const UnkReflValueRef* ref);
-bool fn_710009d760(const UnkReflObject* obj, const CType* type);
+bool CType_ObjectIsKindOf(const UnkReflObject* obj, const CType* type);
 
 s32 fn_71000ed2b8(UnkWriter_b0202* self, const CType* type) {
     u32 count = self->count;
@@ -48,7 +48,7 @@ s32 fn_71000ed2b8(UnkWriter_b0202* self, const CType* type) {
     CRntFile_Write(self->file, &root, sizeof(root));
 
     CStrId name = g_unk_7101d470e0;
-    if (fn_710009d760(reinterpret_cast<const UnkReflObject*>(type), reinterpret_cast<const CType*>(fn_710009bedc())))
+    if (CType_ObjectIsKindOf(reinterpret_cast<const UnkReflObject*>(type), reinterpret_cast<const CType*>(fn_710009bedc())))
         name = type->sName;
     if (name.data != &g_unk_7101d47108->empty) {
         CName hashed(base::global::UnkNameHash(), name.data->Key());

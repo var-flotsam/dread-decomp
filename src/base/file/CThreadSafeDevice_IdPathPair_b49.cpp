@@ -55,7 +55,7 @@ void fn_710008d2ec(UnkStrPair_0x10* s, const CFilePathStrId* path) {
     ++*reinterpret_cast<UnkAliasU32_b49a1*>(&reinterpret_cast<UnkPathEntry_b49a1*>(path->data)->uses);
     const char* text = reinterpret_cast<UnkPathEntry_b49a1*>(path->data)->text;
     CFilePathStrId p(text ? text : g_unk_710162e2ed, true);
-    fn_710008d99c(&p, &pair->id, &pair->path);
+    CThreadSafeDevice_SplitDeviceFromPath(&p, &pair->id, &pair->path);
 }
 
 void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e) {
@@ -64,5 +64,5 @@ void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e) {
     InitEmpty(&pair->path);
     const char* text = *reinterpret_cast<const char* const*>(e);
     CFilePathStrId p(text ? text : g_unk_710162e2ed, true);
-    fn_710008d99c(&p, &pair->id, &pair->path);
+    CThreadSafeDevice_SplitDeviceFromPath(&p, &pair->id, &pair->path);
 }

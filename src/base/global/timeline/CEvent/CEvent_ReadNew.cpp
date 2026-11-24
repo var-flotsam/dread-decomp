@@ -30,7 +30,7 @@ struct UnkEventTypeView {
 // Reads the rest of an event from the file.
 void fn_710006790c(UnkTimelineEvent_068f5c* event, base::global::CRntFile* file);
 
-UnkTimelineEvent_068f5c* fn_7100067848(base::global::CRntFile* file) {
+UnkTimelineEvent_068f5c* CEvent_ReadNewFromFile(base::global::CRntFile* file) {
     u64 raw;
     CRntFile_Read(file, &raw, 8, 1);
     UnkVersionRegistry* registry = g_unk_7101d4c8d0;

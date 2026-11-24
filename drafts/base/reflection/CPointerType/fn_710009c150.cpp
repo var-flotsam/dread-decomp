@@ -9,14 +9,14 @@ using base::global::CRntVector;
 using base::reflection::CPointerType;
 using base::reflection::CType;
 
-void fn_710009d020(const CType* self, base::global::CRntVector<const CType*>* out);
+void CType_AppendParentType(const CType* self, base::global::CRntVector<const CType*>* out);
 // Collects the types `type` refers to through its array at 0x90.
 void fn_710009d3b8(const CType* type, CRntVector<const CType*>* out);
 
 using UnkRefsFn_l09c150 = void (*)(const CType*, CRntVector<const CType*>*, bool);
 
 void fn_710009c150(const CPointerType* self, CRntVector<const CType*>* out, bool flag) {
-    reinterpret_cast<UnkRefsFn_l09c150>(&fn_710009d020)(self, out, flag);
+    reinterpret_cast<UnkRefsFn_l09c150>(&CType_AppendParentType)(self, out, flag);
     const CType* pointee = self->m_pointee;
     out->PushBack(pointee);
     if (self->m_pointee->m_array_0x90.count == 0)

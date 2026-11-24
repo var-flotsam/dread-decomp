@@ -22,6 +22,6 @@ void RegisterECollectionAccessModeEnum() {
         CStrId name("base::reflection::ECollectionAccessMode", true);
         fn_7100098410(base::reflection::TypeObject<base::reflection::ECollectionAccessMode, u8[]>::object, &name, fn_71000982c4, nullptr);
     }
-    fn_7100000250(fn_7100099468, base::reflection::TypeObject<base::reflection::ECollectionAccessMode, u8[]>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, base::reflection::TypeObject<base::reflection::ECollectionAccessMode, u8[]>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5a448, base::reflection::TypeObject<base::reflection::ECollectionAccessMode, u8[]>::object);
 }

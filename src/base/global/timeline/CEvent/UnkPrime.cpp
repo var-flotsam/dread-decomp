@@ -5,7 +5,7 @@
 #include "types.h"
 
 // Whether `n` is prime (2 and 3 are; 1 and the even numbers past 2 are not).
-bool fn_71000669a0(u32 n) {
+bool CEvent_IsPrime(u32 n) {
     if ((n | 1) == 3)
         return true;
     if (n == 1 || !(n & 1))
@@ -19,9 +19,9 @@ bool fn_71000669a0(u32 n) {
 }
 
 // The smallest prime at or above `n` (an even `n` starts from the odd number after it).
-u32 fn_7100066930(u32 n) {
+u32 CEvent_GetNextPrimeAtOrAbove(u32 n) {
     n += ~n & 1;
-    while (!fn_71000669a0(n))
+    while (!CEvent_IsPrime(n))
         n += 2;
     return n;
 }

@@ -14,7 +14,7 @@ using base::snd::UnkSoundSystemATK;
 struct UnkSoundCommand;
 struct UnkSoundStart;
 
-void fn_71000fbaf8(UnkSoundSystemATK* sys, s32 command, const void* payload);
+void CSoundSystemATK_PushCommandToSecondQueue(UnkSoundSystemATK* sys, s32 command, const void* payload);
 void fn_71000f4414(void* sound);
 void fn_71000f43c0(void* sound);
 void fn_71000f44cc(void* self, void* target, UnkSoundCommand* command);
@@ -162,7 +162,7 @@ static inline UnkPlayHeap_l102d50* Heap() { return reinterpret_cast<UnkPlayHeap_
 static inline void Send(UnkPlaySys_l102d50* self, s32 command, u32 id, u32 a, u32 b) {
     nn::os::GetCurrentThread();
     UnkPlayPayload_l102d50 payload = {id, a, b};
-    fn_71000fbaf8(reinterpret_cast<UnkSoundSystemATK*>(self), command, &payload);
+    CSoundSystemATK_PushCommandToSecondQueue(reinterpret_cast<UnkSoundSystemATK*>(self), command, &payload);
 }
 
 void fn_7100102d50(UnkPlaySys_l102d50* self, const UnkPlayRequest_l102d50* request) {

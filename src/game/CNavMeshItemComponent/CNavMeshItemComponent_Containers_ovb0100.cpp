@@ -89,7 +89,7 @@ struct UnkSourceArg;
 struct UnkEnumType;
 namespace CNavMeshItemStage { enum class ESide : u32; }
 template <> UnkEnumType base::reflection::TypeObject<CNavMeshItemStage::ESide, UnkEnumType>::object asm("g_unk_717273ef58");
-s32 fn_710009976c(const base::reflection::CEnumType* self, const base::global::CStrId* name);
+s32 CEnumType_GetValueByNameIdOrMinusOne(const base::reflection::CEnumType* self, const base::global::CStrId* name);
 
 struct UnkNavSourceDesc_ovb0100 {
     u8 pad_0x0[0x30];
@@ -175,7 +175,7 @@ UnkReflValue fn_71009c2b04(void*, char* obj, UnkReflValue* const* values) {
             UnkNavSource_ovb0100* src = self->SourceAt(i);
             if (src && src->desc->id == id) {
                 src->side =
-                    fn_710009976c(reinterpret_cast<base::reflection::CEnumType*>(&base::reflection::TypeObject<CNavMeshItemStage::ESide, UnkEnumType>::object), name);
+                    CEnumType_GetValueByNameIdOrMinusOne(reinterpret_cast<base::reflection::CEnumType*>(&base::reflection::TypeObject<CNavMeshItemStage::ESide, UnkEnumType>::object), name);
                 break;
             }
         }

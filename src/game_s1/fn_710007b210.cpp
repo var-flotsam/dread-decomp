@@ -44,7 +44,7 @@ void ETransformSpaceAndEMaxAxis_InitStatics() {
         CStrId name("base::math::ETransformSpace", true);
         fn_710007aac8(&base::reflection::TypeObject<base::math::ETransformSpace, UnkEnumInfo>::object, &name, fn_710007a91c, nullptr);
     }
-    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::math::ETransformSpace, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &base::reflection::TypeObject<base::math::ETransformSpace, UnkEnumInfo>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d58a18, &base::reflection::TypeObject<base::math::ETransformSpace, UnkEnumInfo>::object);
     {
         void* a = base::reflection::TypeObject<base::math::ETransformSpace, UnkEnumInfo>::object.desc_0x8->field_0x30;
@@ -66,7 +66,7 @@ void ETransformSpaceAndEMaxAxis_InitStatics() {
         CStrId name("base::math::EMaxAxis", true);
         fn_710007af74(&base::reflection::TypeObject<base::math::EMaxAxis, UnkEnumInfo>::object, &name, fn_710007ac48, nullptr);
     }
-    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::math::EMaxAxis, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &base::reflection::TypeObject<base::math::EMaxAxis, UnkEnumInfo>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d58b78, &base::reflection::TypeObject<base::math::EMaxAxis, UnkEnumInfo>::object);
     {
         void* a = base::reflection::TypeObject<base::math::EMaxAxis, UnkEnumInfo>::object.desc_0x8->field_0x30;

@@ -323,11 +323,11 @@ struct UnkScenePathId_ovb0076 : base::global::UnkFilePathStrIdBase {
     ~UnkScenePathId_ovb0076() { reinterpret_cast<base::global::CFilePathStrId*>(this)->~CFilePathStrId(); }
 };
 
-bool fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path);  // unloads
+bool CPackManagerDevice_UnmountPackSetPacks(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path);  // unloads
 void fn_71011f5cd0(UnkGuiFrame* frame);
 
 static inline void Unload_ovb0076(base::file::UnkFileDevice* device, const UnkScenePathId_ovb0076& path) {
-    fn_7100089ef4(device, &path);
+    CPackManagerDevice_UnmountPackSetPacks(device, &path);
 }
 
 // Drops the model: the frame's objects and the maps, the render manager's layer, and the file.

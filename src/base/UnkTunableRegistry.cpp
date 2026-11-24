@@ -329,7 +329,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
                     n = last.Length();
                 last = Mid(last.Data(), n);
                 char text[0x100];
-                switch (fn_7100024140(field->type)) {
+                switch (CBaseObject_GetTypeCodeChar(field->type)) {
                 case 'b': {
                     u8 v = 0;  // a bool, tested as a byte
                     UnkReflTypedPtr obj = Typed(type, object);
@@ -387,7 +387,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
             // Sets the field from the value.
             if (!field->field_0x28 && !fn_71000e74bc(reinterpret_cast<UnkReflField*>(field)))
                 continue;
-            switch (fn_7100024140(field->type)) {
+            switch (CBaseObject_GetTypeCodeChar(field->type)) {
             case 'b': {
                 UnkReflTypedPtr obj = Typed(type, object);
                 bool v = (value.Data()[0] | 0x20) == 't';

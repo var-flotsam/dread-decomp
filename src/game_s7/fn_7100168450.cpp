@@ -103,90 +103,90 @@ void InitMsapiApiEnumTypeStatics() {
         CStrId n("msapi::api::rs::ERenderStateValue", true);
         fn_7100163d34(&base::reflection::TypeObject<msapi::api::rs::ERenderStateValue, UnkEnumType>::object, n, fn_71001633a8, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::rs::ERenderStateValue, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::rs::ERenderStateValue, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34b1e8, &base::reflection::TypeObject<msapi::api::rs::ERenderStateValue, UnkEnumType>::object);
     {
         CStrId n("msapi::api::idx::EPrimitiveType", true);
         fn_7100164180(&base::reflection::TypeObject<msapi::api::idx::EPrimitiveType, UnkEnumType>::object, n, fn_7100163eb4, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::idx::EPrimitiveType, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::idx::EPrimitiveType, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34b308, &base::reflection::TypeObject<msapi::api::idx::EPrimitiveType, UnkEnumType>::object);
     {
         CStrId n("msapi::api::idx::EDataType", true);
         fn_710016450c(&base::reflection::TypeObject<msapi::api::idx::EDataType, UnkEnumType>::object, n, fn_7100164300, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::idx::EDataType, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::idx::EDataType, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34b428, &base::reflection::TypeObject<msapi::api::idx::EDataType, UnkEnumType>::object);
     {
         CStrId n("msapi::api::tex::EComponents", true);
         fn_7100164d18(&base::reflection::TypeObject<msapi::api::tex::EComponents, UnkEnumType>::object, n, fn_710016468c, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::tex::EComponents, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::tex::EComponents, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34b548, &base::reflection::TypeObject<msapi::api::tex::EComponents, UnkEnumType>::object);
     {
         CStrId n("msapi::api::tex::EArrangement", true);
         fn_71001650a4(&base::reflection::TypeObject<msapi::api::tex::EArrangement, UnkEnumType>::object, n, fn_7100164e98, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::tex::EArrangement, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::tex::EArrangement, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34b668, &base::reflection::TypeObject<msapi::api::tex::EArrangement, UnkEnumType>::object);
     {
         CStrId n("msapi::api::tex::ETiling", true);
         fn_7100165430(&base::reflection::TypeObject<msapi::api::tex::ETiling, UnkEnumType>::object, n, fn_7100165224, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::tex::ETiling, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::tex::ETiling, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34b788, &base::reflection::TypeObject<msapi::api::tex::ETiling, UnkEnumType>::object);
     {
         CStrId n("msapi::api::tex::EFiltering", true);
         fn_710016587c(&base::reflection::TypeObject<msapi::api::tex::EFiltering, UnkEnumType>::object, n, fn_71001655b0, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::tex::EFiltering, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::tex::EFiltering, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34b8a8, &base::reflection::TypeObject<msapi::api::tex::EFiltering, UnkEnumType>::object);
     {
         CStrId n("msapi::api::types::blendOp::EBlendOp", true);
         fn_7100165cc8(&base::reflection::TypeObject<msapi::api::types::blendOp::EBlendOp, UnkEnumType>::object, n, fn_71001659fc, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::types::blendOp::EBlendOp, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::types::blendOp::EBlendOp, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34b9c8, &base::reflection::TypeObject<msapi::api::types::blendOp::EBlendOp, UnkEnumType>::object);
     {
         CStrId n("msapi::api::types::blendFactor::EBlendFactor", true);
         fn_71001662f4(&base::reflection::TypeObject<msapi::api::types::blendFactor::EBlendFactor, UnkEnumType>::object, n, fn_7100165e48, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::types::blendFactor::EBlendFactor, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::types::blendFactor::EBlendFactor, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34bae8, &base::reflection::TypeObject<msapi::api::types::blendFactor::EBlendFactor, UnkEnumType>::object);
     {
         CStrId n("msapi::api::types::cullMode::ECullMode", true);
         fn_7100166680(&base::reflection::TypeObject<msapi::api::types::cullMode::ECullMode, UnkEnumType>::object, n, fn_7100166474, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::types::cullMode::ECullMode, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::types::cullMode::ECullMode, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34bc08, &base::reflection::TypeObject<msapi::api::types::cullMode::ECullMode, UnkEnumType>::object);
     {
         CStrId n("msapi::api::types::cmpMode::ECmpMode", true);
         fn_7100166bec(&base::reflection::TypeObject<msapi::api::types::cmpMode::ECmpMode, UnkEnumType>::object, n, fn_7100166800, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::types::cmpMode::ECmpMode, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::types::cmpMode::ECmpMode, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34bd28, &base::reflection::TypeObject<msapi::api::types::cmpMode::ECmpMode, UnkEnumType>::object);
     {
         CStrId n("msapi::api::types::stencilOp::EStencilOp", true);
         fn_7100167158(&base::reflection::TypeObject<msapi::api::types::stencilOp::EStencilOp, UnkEnumType>::object, n, fn_7100166d6c, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::types::stencilOp::EStencilOp, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::types::stencilOp::EStencilOp, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34be48, &base::reflection::TypeObject<msapi::api::types::stencilOp::EStencilOp, UnkEnumType>::object);
     {
         CStrId n("msapi::api::types::textureAddress::ETextureAddress", true);
         fn_71001674e4(&base::reflection::TypeObject<msapi::api::types::textureAddress::ETextureAddress, UnkEnumType>::object, n, fn_71001672d8, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::types::textureAddress::ETextureAddress, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::types::textureAddress::ETextureAddress, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34bf68, &base::reflection::TypeObject<msapi::api::types::textureAddress::ETextureAddress, UnkEnumType>::object);
     {
         CStrId n("msapi::api::types::textureFilter::ETextureFilter", true);
         fn_7100167870(&base::reflection::TypeObject<msapi::api::types::textureFilter::ETextureFilter, UnkEnumType>::object, n, fn_7100167664, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::types::textureFilter::ETextureFilter, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::types::textureFilter::ETextureFilter, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34c088, &base::reflection::TypeObject<msapi::api::types::textureFilter::ETextureFilter, UnkEnumType>::object);
     {
         CStrId n("msapi::api::types::fillMode::EFillMode", true);
         fn_7100167b3c(&base::reflection::TypeObject<msapi::api::types::fillMode::EFillMode, UnkEnumType>::object, n, fn_71001679f0, nullptr);
     }
-    __cxa_atexit(fn_7100099468, &base::reflection::TypeObject<msapi::api::types::fillMode::EFillMode, UnkEnumType>::object, g_unk_7101a19000);
+    __cxa_atexit(CEnumType_Destroy, &base::reflection::TypeObject<msapi::api::types::fillMode::EFillMode, UnkEnumType>::object, g_unk_7101a19000);
     fn_710009ec00(g_unk_716e34c1a8, &base::reflection::TypeObject<msapi::api::types::fillMode::EFillMode, UnkEnumType>::object);
 }

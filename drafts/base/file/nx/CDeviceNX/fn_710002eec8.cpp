@@ -27,8 +27,8 @@ s32 CommitSaveData(const char* name);
 
 using base::global::CRntString;
 
-CRntString fn_710002df80(void* table, CRntString path);
-u32 fn_710002e168(void* table, CRntString* path);
+CRntString CDeviceNX_BuildFullPath(void* table, CRntString path);
+u32 CDeviceNX_CheckDirectoryExists(void* table, CRntString* path);
 bool fn_710008e374(const CRntString* path, CRntString* dir, CRntString* name, CRntString* ext);
 
 // A string built empty out of line (fn_710007e6c4).
@@ -51,8 +51,8 @@ inline void SplitDirectory_l02eec8(const CRntString& path, CRntString* dir) {
 // Creates the device's directory `dir` when it is not there yet; 0 when it is there (or was made).
 inline s32 EnsureDirectory_l02eec8(void* table, CRntString* dir, bool commit) {
     s32 ret = 0;
-    if (fn_710002e168(table, dir) == 1) {
-        CRntString full = fn_710002df80(table, *dir);
+    if (CDeviceNX_CheckDirectoryExists(table, dir) == 1) {
+        CRntString full = CDeviceNX_BuildFullPath(table, *dir);
         bool failed = nn::fs::CreateDirectory(Text_l02eec8(full)) != 0;
         if (!failed && commit)
             failed |= nn::fs::CommitSaveData("savedata") != 0;
@@ -62,7 +62,7 @@ inline s32 EnsureDirectory_l02eec8(void* table, CRntString* dir, bool commit) {
 }
 
 s32 fn_710002eec8(void* table, void* path, void* data, u64 size, bool commit, bool create) {
-    CRntString full = fn_710002df80(table, *static_cast<CRntString*>(path));
+    CRntString full = CDeviceNX_BuildFullPath(table, *static_cast<CRntString*>(path));
     if (create) {
         UnkEmptyString_l02eec8 dir;
         SplitDirectory_l02eec8(full, dir.Str());

@@ -15,7 +15,7 @@ struct UnkTimelineEvent_068f5c {
 };
 
 // Reads one event (created by its class id) from the file.
-UnkTimelineEvent_068f5c* fn_7100067848(base::global::CRntFile* file);
+UnkTimelineEvent_068f5c* CEvent_ReadNewFromFile(base::global::CRntFile* file);
 
 // The arrays' slots are written as raw words (the original's stores may alias the arrays' own
 // fields: their counts are read again after each one).
@@ -95,7 +95,7 @@ void fn_7100068f5c(UnkTimelineEvents* self, base::global::CRntFile* file) {
         u32 tenths;
         CRntFile_Read(file, &tenths, 4, 1);
         f32 time = (f32)tenths * 0.1f;
-        UnkTimelineEvent_068f5c* e = fn_7100067848(file);
+        UnkTimelineEvent_068f5c* e = CEvent_ReadNewFromFile(file);
         UnkTimedEvents& t = self->timed;
         if (t.count == t.capacity)
             fn_710006981c(&t, t.step + t.count);
@@ -104,11 +104,11 @@ void fn_7100068f5c(UnkTimelineEvents* self, base::global::CRntFile* file) {
         ++t.count;
     }
     for (u32 i = 0; i < count0; ++i)
-        self->lists[0].Append(fn_7100067848(file));
+        self->lists[0].Append(CEvent_ReadNewFromFile(file));
     for (u32 i = 0; i < count1; ++i)
-        self->lists[1].Append(fn_7100067848(file));
+        self->lists[1].Append(CEvent_ReadNewFromFile(file));
     for (u32 i = 0; i < count2; ++i)
-        self->lists[2].Append(fn_7100067848(file));
+        self->lists[2].Append(CEvent_ReadNewFromFile(file));
     for (u32 i = 0; i < count3; ++i)
-        self->lists[3].Append(fn_7100067848(file));
+        self->lists[3].Append(CEvent_ReadNewFromFile(file));
 }

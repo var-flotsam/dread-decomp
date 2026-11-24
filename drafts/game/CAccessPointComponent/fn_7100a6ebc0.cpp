@@ -79,7 +79,7 @@ struct UnkAp_la6ebc0 {
 static_assert(__builtin_offsetof(UnkAp_la6ebc0, field_0x914) == 0x914, "layout");
 
 struct UnkMusicMode;
-void fn_71001082a8(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask);
+void CSoundSystem_SetGroupsMuted(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask);
 extern const u64 g_unk_710164b548;
 
 void fn_7100a6ebc0(UnkAp_la6ebc0* self) {
@@ -99,7 +99,7 @@ void fn_7100a6ebc0(UnkAp_la6ebc0* self) {
         UnkMask mode(MusicModeNone_la6ebc0());
         fn_7100fd90d8(-1.0f, -1.0f, music, name, 4, reinterpret_cast<const UnkMusicMode*>(&mode), 0, 0, nullptr);
         alignas(8) u32 mask = 1;
-        fn_71001082a8(reinterpret_cast<UnkSoundSystemMasks_ovb0074*>(g_unk_7101d4d820), true, &mask);
+        CSoundSystem_SetGroupsMuted(reinterpret_cast<UnkSoundSystemMasks_ovb0074*>(g_unk_7101d4d820), true, &mask);
         self->field_0x914 = 0;
         if (self->user && self->user->target)
             fn_7100d7c828(reinterpret_cast<UnkActor*>(self->user->target), &g_unk_710164b548, false);

@@ -43,7 +43,7 @@ static inline bool Assign(const CType* type, UnkTypedRef* dst, UnkTypedRef src) 
 }
 
 // The kind and the name the callers pass (as to fn_71000ee9fc) are not read here.
-bool fn_710000fbb0(CRntFile* file, u32, UnkTypedRef* value, const base::global::CStrId*) {
+bool CBlendSpaceResource_ReadReflectedValueFromFile(CRntFile* file, u32, UnkTypedRef* value, const base::global::CStrId*) {
     if (value->type == fn_710000fd7c()) {
         CName name(UnkNameHash(), -1);
         CRntFile_Read(file, &name, sizeof(name), 1);

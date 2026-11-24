@@ -145,7 +145,7 @@ s32 fn_71010475d0(CBlackboard* self, const CStrId& key, const CStrId& name) {
         UnkReflValue* value = UnkParallelFindSlot(properties, name);
         if (value != &properties->values[properties->count] && value->type &&
             base::reflection::refl_ArgValue<void>(value))
-            return fn_7100024140(reinterpret_cast<const base::reflection::CType*>(value->type));
+            return CBaseObject_GetTypeCodeChar(reinterpret_cast<const base::reflection::CType*>(value->type));
     }
     return 'n';
 }

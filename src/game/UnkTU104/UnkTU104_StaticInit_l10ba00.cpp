@@ -93,7 +93,7 @@ void fn_710010ba00() {
         CStrId name("base::snd::ESndType", true);
         fn_7100109230(&TypeObject<base::snd::ESndType>::object, name, fn_7100108ea4, nullptr);
     }
-    fn_7100000250(fn_7100099468, &TypeObject<base::snd::ESndType>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &TypeObject<base::snd::ESndType>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7108b6cae0, &TypeObject<base::snd::ESndType>::object);
     InitEnumConverters(reinterpret_cast<UnkReflType*>(&TypeObject<base::snd::ESndType>::object), g_unk_7108b6cae8, fn_710010b628, g_unk_7108b6cb08, fn_710010b634);
 
@@ -101,7 +101,7 @@ void fn_710010ba00() {
         CStrId name("base::snd::EAttenuationCurve", true);
         fn_71001094fc(&TypeObject<base::snd::EAttenuationCurve>::object, name, fn_71001093b0, nullptr);
     }
-    fn_7100000250(fn_7100099468, &TypeObject<base::snd::EAttenuationCurve>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &TypeObject<base::snd::EAttenuationCurve>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7108b6cc40, &TypeObject<base::snd::EAttenuationCurve>::object);
     InitEnumConverters(reinterpret_cast<UnkReflType*>(&TypeObject<base::snd::EAttenuationCurve>::object), g_unk_7108b6cc48, fn_710010b640, g_unk_7108b6cc68, fn_710010b64c);
 
@@ -109,7 +109,7 @@ void fn_710010ba00() {
         CStrId name("base::snd::EReverbIntensity", true);
         fn_71001098e8(&TypeObject<base::snd::EReverbIntensity>::object, name, fn_710010967c, nullptr);
     }
-    fn_7100000250(fn_7100099468, &TypeObject<base::snd::EReverbIntensity>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &TypeObject<base::snd::EReverbIntensity>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7108b6cda0, &TypeObject<base::snd::EReverbIntensity>::object);
     InitEnumConverters(reinterpret_cast<UnkReflType*>(&TypeObject<base::snd::EReverbIntensity>::object), g_unk_7108b6cda8, fn_710010b658, g_unk_7108b6cdc8, fn_710010b664);
 
@@ -117,7 +117,7 @@ void fn_710010ba00() {
         CStrId name("base::snd::ELowPassFilter", true);
         fn_710010a454(&TypeObject<base::snd::ELowPassFilter>::object, name, fn_7100109a68, nullptr);
     }
-    fn_7100000250(fn_7100099468, &TypeObject<base::snd::ELowPassFilter>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &TypeObject<base::snd::ELowPassFilter>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7108b6cf00, &TypeObject<base::snd::ELowPassFilter>::object);
     InitEnumConverters(reinterpret_cast<UnkReflType*>(&TypeObject<base::snd::ELowPassFilter>::object), g_unk_7108b6cf08, fn_710010b670, g_unk_7108b6cf28, fn_710010b67c);
 
@@ -125,7 +125,7 @@ void fn_710010ba00() {
         CStrId name("base::snd::EPositionalType", true);
         fn_710010a720(&TypeObject<base::snd::EPositionalType>::object, name, fn_710010a5d4, nullptr);
     }
-    fn_7100000250(fn_7100099468, &TypeObject<base::snd::EPositionalType>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &TypeObject<base::snd::EPositionalType>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7108b6d060, &TypeObject<base::snd::EPositionalType>::object);
     InitEnumConverters(reinterpret_cast<UnkReflType*>(&TypeObject<base::snd::EPositionalType>::object), g_unk_7108b6d068, fn_710010b688, g_unk_7108b6d088, fn_710010b694);
 
@@ -160,7 +160,7 @@ void fn_710010ba00() {
         CStrId name("base::snd::ESndPlayerId", true);
         fn_710010ae7c(&TypeObject<base::snd::ESndPlayerId>::object, name, fn_710010aaf0, nullptr);
     }
-    fn_7100000250(fn_7100099468, &TypeObject<base::snd::ESndPlayerId>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &TypeObject<base::snd::ESndPlayerId>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7108b6d228, &TypeObject<base::snd::ESndPlayerId>::object);
     InitEnumConverters(reinterpret_cast<UnkReflType*>(&TypeObject<base::snd::ESndPlayerId>::object), g_unk_7108b6d230, fn_710010b6a0, g_unk_7108b6d250, fn_710010b6ac);
 
@@ -168,7 +168,7 @@ void fn_710010ba00() {
         CStrId name("base::snd::ESndLogicId", true);
         fn_710010b4a8(&TypeObject<base::snd::ESndLogicId>::object, name, fn_710010affc, nullptr);
     }
-    fn_7100000250(fn_7100099468, &TypeObject<base::snd::ESndLogicId>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &TypeObject<base::snd::ESndLogicId>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7108b6d388, &TypeObject<base::snd::ESndLogicId>::object);
     InitEnumConverters(reinterpret_cast<UnkReflType*>(&TypeObject<base::snd::ESndLogicId>::object), g_unk_7108b6d390, fn_710010b6b8, g_unk_7108b6d3b0, fn_710010b6c4);
 }

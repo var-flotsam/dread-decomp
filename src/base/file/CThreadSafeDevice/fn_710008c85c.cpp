@@ -11,7 +11,7 @@ template <>
 struct base::UnkChainedSetTraits<UnkTag_710008c85c> {
     static char** bucket(char* self, u32 i) { return fn_710008d0c4(self, i); }
 };
-void fn_710008c85c(char* self) {
+void CThreadSafeDevice_ClearChainedSetAndFlag(char* self) {
     base::refl_ChainedSetClear<UnkTag_710008c85c, UnkTrivialKey, 0x18>(self + 8);
     *reinterpret_cast<bool*>(self) = false;
     fn_710008c9d8(self + 8);

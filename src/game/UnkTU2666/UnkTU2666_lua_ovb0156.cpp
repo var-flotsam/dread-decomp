@@ -237,7 +237,7 @@ s32 SetSFXMuted(lua_State* L) {
     bool on = true;
     if (fn_71010c0270(L, "b", &on)) {
         u32 mask = 1;
-        fn_71001082a8(reinterpret_cast<UnkSoundSystemMasks_ovb0074*>(g_unk_7101d4d820), on, &mask);
+        CSoundSystem_SetGroupsMuted(reinterpret_cast<UnkSoundSystemMasks_ovb0074*>(g_unk_7101d4d820), on, &mask);
     }
     return 0;
 }

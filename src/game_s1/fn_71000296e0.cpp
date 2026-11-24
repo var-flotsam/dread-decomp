@@ -53,7 +53,7 @@ void RegisterBaseCurvesEnumTypes() {
         CStrId name("base::curves::EKeysType", true);
         fn_7100028d58(&base::reflection::TypeObject<base::curves::EKeysType, UnkEnumInfo>::object, &name, fn_7100028aec, nullptr);
     }
-    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::curves::EKeysType, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &base::reflection::TypeObject<base::curves::EKeysType, UnkEnumInfo>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d4f028, &base::reflection::TypeObject<base::curves::EKeysType, UnkEnumInfo>::object);
     {
         void* a = base::reflection::TypeObject<base::curves::EKeysType, UnkEnumInfo>::object.desc_0x8->field_0x30;
@@ -75,7 +75,7 @@ void RegisterBaseCurvesEnumTypes() {
         CStrId name("base::curves::ETimeType", true);
         fn_7100029084(&base::reflection::TypeObject<base::curves::ETimeType, UnkEnumInfo>::object, &name, fn_7100028ed8, nullptr);
     }
-    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::curves::ETimeType, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &base::reflection::TypeObject<base::curves::ETimeType, UnkEnumInfo>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d4f188, &base::reflection::TypeObject<base::curves::ETimeType, UnkEnumInfo>::object);
     {
         void* a = base::reflection::TypeObject<base::curves::ETimeType, UnkEnumInfo>::object.desc_0x8->field_0x30;
@@ -97,7 +97,7 @@ void RegisterBaseCurvesEnumTypes() {
         CStrId name("base::curves::EInterpMode", true);
         fn_71000293b0(&base::reflection::TypeObject<base::curves::EInterpMode, UnkEnumInfo>::object, &name, fn_7100029204, nullptr);
     }
-    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::curves::EInterpMode, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &base::reflection::TypeObject<base::curves::EInterpMode, UnkEnumInfo>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d4f2e8, &base::reflection::TypeObject<base::curves::EInterpMode, UnkEnumInfo>::object);
     {
         void* a = base::reflection::TypeObject<base::curves::EInterpMode, UnkEnumInfo>::object.desc_0x8->field_0x30;

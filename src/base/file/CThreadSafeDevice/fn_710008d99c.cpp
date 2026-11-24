@@ -75,7 +75,7 @@ inline void ReleaseAndTake(Id* id, Other&& other) {
 
 // Splits `path` at its device colon into the device id and the file path. It returns true on every
 // path; the callers ignore the result.
-bool fn_710008d99c(const CFilePathStrId* path, CStrId* id, CFilePathStrId* file) {
+bool CThreadSafeDevice_SplitDeviceFromPath(const CFilePathStrId* path, CStrId* id, CFilePathStrId* file) {
     if (path->data == &g_unk_7101d47200->empty) {
         *id = g_unk_7101d592c8;
         *file = g_unk_7101d470e8;

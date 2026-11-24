@@ -356,8 +356,8 @@ bool fn_7100fc7d58(UnkDirIter_b0235* it);
 void fn_7100fc7cfc(UnkDirIter_b0235* it, base::global::CRntFile* file);
 extern const char g_unk_710164784b;  // the path separator
 extern u8 g_unk_71729f0020[] __attribute__((visibility("hidden")));
-u32 fn_710002ec40(void* table, CRntString* path);
-s32 fn_710002ecdc(void* table, CRntString* path, void* dest, bool commit);
+u32 CDeviceNX_IsFileMissingOrEmpty(void* table, CRntString* path);
+s32 CDeviceNX_CopyFile(void* table, CRntString* path, void* dest, bool commit);
 u32 fn_710002f2b8();
 
 // A path: a copy of `root`, with the iterator's current name appended after a separator.
@@ -378,11 +378,11 @@ s32 fn_7100fc44b4(UnkNoArg, UnkSaveCommand_b0235* command) {
     while (fn_7100fc7c5c(&it)) {
         {
             CRntString path = JoinPath(command->target->save_path, fn_7100fc7c7c(&it));
-            if (fn_710002ec40(g_unk_71729f0020, &path)) {
+            if (CDeviceNX_IsFileMissingOrEmpty(g_unk_71729f0020, &path)) {
                 result = 1;
             } else {
                 CRntString dest = JoinPath(command->target->dest_path, fn_7100fc7c7c(&it));
-                if (fn_710002ecdc(g_unk_71729f0020, &path, &dest, false))
+                if (CDeviceNX_CopyFile(g_unk_71729f0020, &path, &dest, false))
                     result = 2;
                 else
                     result = fn_710002f2b8() ? 5 : 0;
@@ -404,7 +404,7 @@ struct UnkSaveBuffer_b0235 {
 };
 
 static inline __attribute__((always_inline)) s32 ReadFile(CRntString&& path, UnkSaveBuffer_b0235** buffer) {
-    return fn_710002ed98(g_unk_71729f0020, &path, buffer, 1, nullptr, 8, 0x16);
+    return CDeviceNX_ReadWholeFileIntoNewBuffer(g_unk_71729f0020, &path, buffer, 1, nullptr, 8, 0x16);
 }
 
 s32 fn_7100fc3b00(UnkNoArg, UnkSaveCommand_b0235* command) {

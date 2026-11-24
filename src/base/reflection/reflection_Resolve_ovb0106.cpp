@@ -176,7 +176,7 @@ UnkResolvedValue fn_7100ad7cc0(UnkReflPath_ovb0106* path) {
     ref.type = type;
     ref.ptr = first;
     UnkTypedRef src = RefOf(expected);
-    if (!fn_710009d5d4(reinterpret_cast<const char*>(type), &ref, &src))
+    if (!CType_AreValuesEqual(reinterpret_cast<const char*>(type), &ref, &src))
         return UnkResolvedValue();
     if (path->count == 1) {
         UnkReflValue v;

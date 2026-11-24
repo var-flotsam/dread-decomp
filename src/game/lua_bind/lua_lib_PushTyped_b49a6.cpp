@@ -98,7 +98,7 @@ bool fn_7100fbf55c(UnkLuaPusher_b49a6* self, UnkTypedValue_b49a6* value) {
 // Pushes an enum value as its name (fn_71000999cc on the enum type, CEnumType fn_710009921c); counts it.
 using base::global::CStrId;
 
-CStrId fn_71000999cc(UnkReflObject* enum_type, u32 value);
+CStrId CEnumType_GetNameOfValue(UnkReflObject* enum_type, u32 value);
 
 struct UnkCountedStrData_b49a6 {
     u8 pad_0x0[0x10];
@@ -121,7 +121,7 @@ bool fn_7100fbf690(UnkLuaPusher_b49a6* self, UnkTypedValue_b49a6* value) {
     UnkReflObject* type = value->type;
     UnkReflObject* enum_type = type && fn_710009d50c(type->vf_0x0(), fn_710009921c()) ? type : nullptr;
     {
-        CStrId name = fn_71000999cc(enum_type, *static_cast<u32*>(value->ptr));
+        CStrId name = CEnumType_GetNameOfValue(enum_type, *static_cast<u32*>(value->ptr));
         lua_pushstring(L, CStr(name));
     }
     ++self->pushed;

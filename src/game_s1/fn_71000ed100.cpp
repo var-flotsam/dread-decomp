@@ -38,7 +38,7 @@ void RegisterEPersistenceEnumType() {
         CStrId name("base::serialization::EPersistence", true);
         fn_71000eceec(&reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<base::serialization::EPersistence>::object), &name, fn_71000ecda0, nullptr);
     }
-    fn_7100000250(fn_7100099468, &reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<base::serialization::EPersistence>::object), &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<base::serialization::EPersistence>::object), &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d67b08, &reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<base::serialization::EPersistence>::object));
     void* a = reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<base::serialization::EPersistence>::object).desc_0x8->field_0x30;
     void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;

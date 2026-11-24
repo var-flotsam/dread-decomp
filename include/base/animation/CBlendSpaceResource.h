@@ -17,7 +17,7 @@ void* fn_710000ffd0();
 extern UnkVersionRegistry* g_unk_7101d4c8d0;
 extern char g_unk_7101d4c138[];
 // Parses from a root node: fn_710000f850's result (nonzero on success).
-s32 fn_710000f750(UnkParseContext* self, void* root);
+s32 CBlendSpaceResource_ReadObjectAsStoredType(UnkParseContext* self, void* root);
 const base::reflection::UnkReflAttrKey& fn_710000d120();
 const base::reflection::CType* fn_7100010e58();  // An 8-byte type's getter.
 extern const base::reflection::CType g_unk_7101d4cfb0 __attribute__((visibility("hidden")));

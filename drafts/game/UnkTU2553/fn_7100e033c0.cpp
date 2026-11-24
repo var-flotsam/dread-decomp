@@ -21,7 +21,7 @@ void fn_7100108b34(UnkSoundSystemMasks_ovb0074* self, s32 group, bool on, f32 ti
 using base::input::UnkRumbleManager;
 extern UnkRumbleManager* g_unk_7101d47348;
 struct UnkTunableRumbleManager_b0068;
-void fn_7100075020(UnkTunableRumbleManager_b0068* self, bool flag, const u32* channels);
+void CTunableRumbleManager_SetChannelsPaused(UnkTunableRumbleManager_b0068* self, bool flag, const u32* channels);
 
 // The game's mode holder at +0x498.
 struct UnkModeHolder_le033c0 {
@@ -72,7 +72,7 @@ void fn_7100e033c0(UnkGameManager* self, bool pause, bool keep) {
         fn_7100108b34(SoundSystem(), 5, true, 0.2f);
         UnkTunableRumbleManager_b0068* rumble = RumbleManager();
         alignas(8) u32 channels = 0x19;
-        fn_7100075020(rumble, true, &channels);
+        CTunableRumbleManager_SetChannelsPaused(rumble, true, &channels);
     } else {
         UnkModeHolder_le033c0* mode = static_cast<UnkModeHolder_le033c0*>(self->field_0x498);
         if (mode && mode->vf_0x68() && keep)
@@ -84,6 +84,6 @@ void fn_7100e033c0(UnkGameManager* self, bool pause, bool keep) {
         fn_7100108464(sound, false, &mask);
         UnkTunableRumbleManager_b0068* rumble = RumbleManager();
         alignas(8) u32 channels = 0x19;
-        fn_7100075020(rumble, false, &channels);
+        CTunableRumbleManager_SetChannelsPaused(rumble, false, &channels);
     }
 }

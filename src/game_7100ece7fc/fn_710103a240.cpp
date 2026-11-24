@@ -9,7 +9,7 @@
 using base::global::CFilePathStrId;
 
 struct UnkPathIdList_710103a240 : base::global::CRntVector<CFilePathStrId> {
-    void Reserve(u32 capacity) { fn_7100018450(reinterpret_cast<UnkResPathVec*>(this), capacity); }
+    void Reserve(u32 capacity) { CAsset_ReserveFilePathIdVec(reinterpret_cast<UnkResPathVec*>(this), capacity); }
 
     __attribute__((always_inline)) void Append(const CFilePathStrId& id) {
         u32 n = count;

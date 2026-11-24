@@ -62,7 +62,7 @@ struct UnkPathIdList_lc8b3d4 {
     u32 flags;
     base::UnkAllocator* allocator;
 
-    void Reserve(u32 n) { fn_7100018450(reinterpret_cast<UnkResPathVec*>(this), n); }
+    void Reserve(u32 n) { CAsset_ReserveFilePathIdVec(reinterpret_cast<UnkResPathVec*>(this), n); }
     void PushBack(const CFilePathStrId& id) {
         u32 n = count;
         u32 new_capacity = capacity;

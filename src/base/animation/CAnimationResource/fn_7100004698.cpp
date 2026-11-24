@@ -83,7 +83,7 @@ static inline void Construct(UnkResTypeMembers* self, const char* name, const Un
     }
 }
 
-void fn_7100004698(void* self, const char* name, UnkResFormat* formats, u64 count) {
+void CAnimationResource_ConstructResourceTypeFromFormats(void* self, const char* name, UnkResFormat* formats, u64 count) {
     Construct(static_cast<UnkResTypeMembers*>(self), name, reinterpret_cast<UnkResFormatMembers*>(formats), count);
 }
 

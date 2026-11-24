@@ -122,7 +122,7 @@ void CCharClassLiquidPoolComponent_InitStatics() {
         CStrId name("CLiquidPoolBaseComponent::ELiquidType", true);
         fn_71008fff3c(&base::reflection::TypeObject<CLiquidPoolBaseComponent::ELiquidType>::object, name, fn_71008ffd30, nullptr);
     }
-    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<CLiquidPoolBaseComponent::ELiquidType>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &base::reflection::TypeObject<CLiquidPoolBaseComponent::ELiquidType>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7172733d00, &base::reflection::TypeObject<CLiquidPoolBaseComponent::ELiquidType>::object);
     InitEnumConverters(reinterpret_cast<UnkReflType*>(&base::reflection::TypeObject<CLiquidPoolBaseComponent::ELiquidType>::object), g_unk_7172733d08, fn_7100903848,
                        g_unk_7172733d28, fn_7100903854);
