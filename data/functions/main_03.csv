@@ -5333,7 +5333,7 @@ address,size,name,name_source,subsystem,status
 0x71003f6484,244,CCaterzillaAIComponent::refl_GetClass,reflection,game/ai,O
 0x71003f6578,4,CCaterzillaAIComponent::refl_AddFields,reflection,game/ai,O
 0x71003f657c,356,CCaterzillaAIComponent::refl_InitClass,reflection,game/ai,O
-0x71003f66e0,108,fn_71003f66e0,unknown,game/ai?,O
+0x71003f66e0,108,CCaterzillaAIComponent_Destroy,inferred,game/ai?,O
 0x71003f674c,100,fn_71003f674c,unknown,game/ai?,O
 0x71003f67b0,1220,fn_71003f67b0,unknown,game/ai?,U
 0x71003f6c74,136,fn_71003f6c74,unknown,game/ai?,O
@@ -5523,7 +5523,7 @@ address,size,name,name_source,subsystem,status
 0x71003ffafc,112,fn_71003ffafc,unknown,game/components?,O
 0x71003ffb6c,4,fn_71003ffb6c,unknown,game/components?,O
 0x71003ffb70,4,fn_71003ffb70,unknown,game/components?,O
-0x71003ffb74,496,fn_71003ffb74,unknown,game/components?,O
+0x71003ffb74,496,CCentralUnitCannonBeamMovementComponent_SetLaunchTimelineEvent,inferred,game/components?,O
 0x71003ffd64,4,fn_71003ffd64,unknown,game/components?,O
 0x71003ffd68,8,fn_71003ffd68,unknown,game/components?,O
 0x71003ffd70,4,fn_71003ffd70,unknown,game/components?,O
@@ -5531,4 +5531,4 @@ address,size,name,name_source,subsystem,status
 0x71003ffd78,8,fn_71003ffd78,unknown,game/components?,O
 0x71003ffd80,4,fn_71003ffd80,unknown,game/components?,O
 0x71003ffd84,232,fn_71003ffd84,unknown,game/components?,U
-0x71003ffe6c,1256,fn_71003ffe6c,unknown,game/components?,O
+0x71003ffe6c,1256,CCentralUnitCannonBeamMovementComponent_SetBeamDamage,inferred,game/components?,O

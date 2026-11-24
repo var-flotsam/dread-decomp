@@ -38,7 +38,7 @@ struct UnkSelfCfg {
     UnkConfig* field_0x50;
 };
 
-void fn_7100437fb4(UnkSelf_437fb4* self, UnkScaled* block) {
+void CChozoCommanderLandingSlamAttack_ScaleByTargetDistance(UnkSelf_437fb4* self, UnkScaled* block) {
     if (self->field_0x58 != 0)
         return;
     f32 own_x = self->field_0x8->field_0x44;

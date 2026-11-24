@@ -12,7 +12,7 @@ struct UnkCaterzillaAI_b49 {
     UnkAttackOwner* field_0x146d0;
 };
 
-void fn_71003f66e0(UnkCaterzillaAI_b49* self) {
+void CCaterzillaAIComponent_Destroy(UnkCaterzillaAI_b49* self) {
     self->vtable = g_unk_7101a31d90 + 2;
     if (UnkAttackOwner* p = self->field_0x146d0) {
         if (--p->ref_count == 0)

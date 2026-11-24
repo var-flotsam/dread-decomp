@@ -32,7 +32,7 @@ extern char g_unk_71726c87c9[];
 extern UnkTunable g_unk_71726c87d0;
 extern void* g_unk_7101a363c8[];
 
-void fn_71004435c0() {
+void CChozoCommanderUltimateGrabAttack_InitStatics() {
     InitHeaderIds(&g_unk_71726c8800.ids);
     InitId(&g_unk_71726c8800.field_0x18, "ugrabcommandersamusintroair");
     InitId(&g_unk_71726c8800.field_0x20, "ugrabcommandersamusintroground");

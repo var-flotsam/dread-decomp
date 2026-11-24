@@ -111,11 +111,11 @@ struct UnkBurstAimPoint_ovb0135;
 struct UnkBeamBurstFire_A2_b75;
 void fn_7100428af4(UnkBurstStart_ovb0135* self);
 void fn_7100426de4(UnkBurstStart_ovb0135* self, u32 a, f32 b, f32 c, f32 d);
-void fn_710042995c(UnkBurstAim_ovb0135* self, const UnkBurstAimPoint_ovb0135* point);
+void CChozoCommanderBeamBurstAttack_PlaceEffectAtPoint(UnkBurstAim_ovb0135* self, const UnkBurstAimPoint_ovb0135* point);
 void fn_7100429d10(UnkBeamBurstFire_A2_b75* self);
-void fn_7100429384(UnkBeamBurstUpdate_l428d50* self);
+void CChozoCommanderBeamBurstAttack_SignalBeamBurstStart(UnkBeamBurstUpdate_l428d50* self);
 void fn_71004294d8(UnkBeamBurstUpdate_l428d50* self, UnkBurstHit_l428d50* hit);
-void fn_7100426fb4(UnkBeamBurstUpdate_l428d50* self);
+void CChozoCommanderAttack_SwitchOnPart(UnkBeamBurstUpdate_l428d50* self);
 void fn_7100427048(UnkBeamBurstUpdate_l428d50* self, f32 dt, f32 scale, const void* a, const void* b,
                    UnkBurstHit_l428d50* hit);
 void fn_7100427580(UnkBeamBurstUpdate_l428d50* self);
@@ -162,7 +162,7 @@ void fn_7100428d50(UnkBeamBurstUpdate_l428d50* self, f32 dt) {
         UnkBurstHit_l428d50 hit;
         self->aim_time += dt;
         if (self->aim_time >= 0.2f)
-            fn_7100426fb4(self);
+            CChozoCommanderAttack_SwitchOnPart(self);
         fn_7100427048(self, dt, 1.0f, g_unk_7101a35478, g_unk_7101a35488, &hit);
         if (self->aim_time >= tunable.time_aiming) {
             void* animation = self->owner->field_0x220;
@@ -185,10 +185,10 @@ void fn_7100428d50(UnkBeamBurstUpdate_l428d50* self, f32 dt) {
     case 2: {
         self->charge_time += dt;
         if (self->charge_time >= tunable.time_shooting_init) {
-            fn_7100429384(self);
+            CChozoCommanderBeamBurstAttack_SignalBeamBurstStart(self);
             UnkBurstHit_l428d50 hit;
             fn_71004294d8(self, &hit);
-            fn_710042995c(reinterpret_cast<UnkBurstAim_ovb0135*>(self),
+            CChozoCommanderBeamBurstAttack_PlaceEffectAtPoint(reinterpret_cast<UnkBurstAim_ovb0135*>(self),
                           reinterpret_cast<const UnkBurstAimPoint_ovb0135*>(&hit));
             self->hit_time = 0.0f;
             self->shoot_time = 0.0f;
@@ -200,7 +200,7 @@ void fn_7100428d50(UnkBeamBurstUpdate_l428d50* self, f32 dt) {
         fn_7100426de4(Start(self), 0, dt, tunable.shot_angle_interp_speed_min, tunable.shot_angle_interp_speed_max);
         UnkBurstHit_l428d50 hit;
         fn_71004294d8(self, &hit);
-        fn_710042995c(reinterpret_cast<UnkBurstAim_ovb0135*>(self),
+        CChozoCommanderBeamBurstAttack_PlaceEffectAtPoint(reinterpret_cast<UnkBurstAim_ovb0135*>(self),
                       reinterpret_cast<const UnkBurstAimPoint_ovb0135*>(&hit));
         UnkBurstCollision_l428d50* collision = HitCollision(hit);
         if (collision && collision->owner->field_0x1c0) {

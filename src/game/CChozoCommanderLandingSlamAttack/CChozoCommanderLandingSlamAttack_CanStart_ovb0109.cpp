@@ -49,7 +49,7 @@ struct UnkSlamAttack_ovb0109 {
     UnkSlamActor_ovb0109* actor;
 };
 
-bool fn_7100437530(UnkSlamAttack_ovb0109* self, void* request, u32 flag) {
+bool CChozoCommanderLandingSlamAttack_CanStart(UnkSlamAttack_ovb0109* self, void* request, u32 flag) {
     bool ok = fn_7100424b50(reinterpret_cast<UnkRequester*>(self), request, flag);
     auto* target = reinterpret_cast<UnkSlamTarget_ovb0109*>(
         fn_7100d7c990(reinterpret_cast<UnkActor*>(self->actor)));
