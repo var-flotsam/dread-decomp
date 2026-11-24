@@ -8,7 +8,7 @@
 struct UnkRequest;
 void fn_7100901144(char* self);
 
-void fn_71008fc678(char* self) {
+void CLavaPoolComponent_ResetDamage(char* self) {
     fn_7100901144(self);
     const u32* values = reinterpret_cast<const u32*>(self + 0xc90);
     u32* out = reinterpret_cast<u32*>(self + 0xbc0);
