@@ -40,7 +40,7 @@ void fn_71003d7158(UnkSelf_3d69b0* self);
 void fn_71003d7250(UnkSelf_3d69b0* self);
 void fn_71003d7348(UnkSelf_3d69b0* self);
 
-void fn_71003d69b0(UnkSelf_3d69b0* self, f32 dt) {
+void CAutsniperShootAttack_TickBeforeShootTimerToState5(UnkSelf_3d69b0* self, f32 dt) {
     f32 timer = self->timer + dt;
     self->timer = timer;
     if (!(timer >= self->limits->limit))

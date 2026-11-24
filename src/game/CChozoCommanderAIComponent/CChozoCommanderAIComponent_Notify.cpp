@@ -31,7 +31,7 @@ struct UnkComponent665 {
 };
 
 // `arg` (x1) reaches fn_710042eb58's tail call untouched in the original (tools/forwarded_args.py).
-void fn_7100455660(UnkComponent665* self, void* arg) {
+void CChozoCommanderAIComponent_ForwardToActiveKiCounterAttack(UnkComponent665* self, void* arg) {
     if (!reinterpret_cast<const UnkTunableFlags665*>(&g_unk_71726c91d0)->field_0x2a) {
         return;
     }

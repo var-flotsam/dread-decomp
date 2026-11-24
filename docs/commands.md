@@ -430,6 +430,7 @@ Give a function a readable name: the name map (data/names.csv), the function lis
 ```sh
 python tools/rename.py 0x7100219588 UnkRenderManager::ProjectToScreen --reason "projects a point through the view"
 python tools/rename.py 0x7100219588 ... --dry-run    # what would change, nothing written
+python tools/rename.py --revert 0x7100219588 --reason "the code does not support the name" [--dry-run]
 python tools/rename.py --check                       # the map is valid, applied and complete; exit 1 if not
 python tools/rename.py --list                        # the map
 ```

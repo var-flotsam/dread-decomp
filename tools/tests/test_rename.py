@@ -1,9 +1,12 @@
 """tools/rename.py and tools/dread/names.py: the name map's rules, its application, the rewrite of the code and the
 digest's spelling of a renamed callee. No compiler and no game data."""
+import contextlib
+import io
 import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest import mock
 
 from tools.tests import _path  # noqa: F401
 import equiv_test
@@ -122,6 +125,119 @@ class Rewrite(unittest.TestCase):
             p = Path(d) / "names.csv"
             names.write([row(address="0x7100000200", name="B"), row()], p)
             self.assertEqual([r["address"] for r in names.read(p)], ["0x7100000200", "0x7100219588"])
+
+
+REVERT_SRC = '''// Calls ProjectToScreen's callee by address.
+bool ProjectToScreen(void* self);
+bool Other(void* self) {
+    return ProjectToScreen(self);
+}
+bool ProjectToScreen(void* self) {
+    return self != nullptr;
+}
+'''
+
+
+class Revert(unittest.TestCase):
+    """rename.revert on a tree of its own: a map, a one-file function list and one source."""
+
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.root = Path(tmp.name)
+        (self.root / "src").mkdir()
+        self.src = self.root / "src" / "a.cpp"
+        self.src.write_text(REVERT_SRC, encoding="utf-8", newline="")
+        self.map = self.root / "names.csv"
+        names.write([row(), row(address="0x7100000200", name="Kept")], self.map)
+        self.frows = {"main_02.csv": [
+            {"address": "0x7100000100", "size": "8", "name": "CFoo::refl_GetClass", "name_source": "reflection",
+             "subsystem": "game", "status": "O"},
+            {"address": "0x7100000200", "size": "8", "name": "Kept", "name_source": "inferred",
+             "subsystem": "game", "status": "O"},
+            {"address": "0x7100000300", "size": "8", "name": "fn_7100000300", "name_source": "unknown",
+             "subsystem": "game", "status": "U"},
+            {"address": "0x7100219588", "size": "8", "name": "ProjectToScreen", "name_source": "inferred",
+             "subsystem": "game", "status": "O"}]}
+        self.written: dict[str, list[dict]] = {}
+        patches = [
+            mock.patch.object(rename, "ROOT", self.root),
+            mock.patch.object(rename, "tracked_files", lambda: ["src/a.cpp"]),
+            mock.patch.object(rename, "tools_mentioning", lambda ident: []),
+            mock.patch.object(rename.functions, "by_file",
+                              lambda: {f: [dict(r) for r in rows] for f, rows in self.frows.items()}),
+            mock.patch.object(rename.functions, "write", lambda name, rows: self.written.__setitem__(name, rows)),
+            mock.patch.object(rename.names, "read", lambda path=None: names_read(self.map)),
+            mock.patch.object(rename.names, "write", lambda rows, path=None: names_write(rows, self.map)),
+        ]
+        names_read, names_write = names.read, names.write
+        for p in patches:
+            p.start()
+            self.addCleanup(p.stop)
+
+    def run_revert(self, address, reason="the code does not support the name", dry_run=False):
+        out, err = io.StringIO(), io.StringIO()
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            code = rename.revert(address, reason, dry_run)
+        return code, out.getvalue(), err.getvalue()
+
+    def unchanged(self):
+        return (self.written == {} and self.src.read_text(encoding="utf-8") == REVERT_SRC
+                and [r["address"] for r in names.read(self.map)] == ["0x7100000200", "0x7100219588"])
+
+    def test_restores_map_list_and_code(self):
+        code, out, _ = self.run_revert(0x7100219588)
+        self.assertEqual(code, 0)
+        self.assertEqual([r["name"] for r in names.read(self.map)], ["Kept"])
+        self.assertEqual(list(self.written), ["main_02.csv"])
+        by_addr = {r["address"]: r for r in self.written["main_02.csv"]}
+        self.assertEqual((by_addr["0x7100219588"]["name"], by_addr["0x7100219588"]["name_source"]),
+                         ("fn_7100219588", "unknown"))
+        untouched = [r for r in self.written["main_02.csv"] if r["address"] != "0x7100219588"]
+        self.assertEqual(untouched, self.frows["main_02.csv"][:3])
+        text = self.src.read_text(encoding="utf-8")
+        self.assertEqual(text, REVERT_SRC.replace("bool ProjectToScreen(", "bool fn_7100219588(")
+                         .replace("return ProjectToScreen(", "return fn_7100219588("))
+        self.assertIn("// Calls ProjectToScreen's callee", text)
+        self.assertIn("reason: the code does not support the name", out)
+
+    def test_is_the_inverse_of_a_rename(self):
+        self.assertEqual(self.run_revert(0x7100219588)[0], 0)
+        self.frows = dict(self.written)
+        out, err = io.StringIO(), io.StringIO()
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            code = rename.rename(0x7100219588, "ProjectToScreen", "projects a point", False)
+        self.assertEqual(code, 0, err.getvalue())
+        self.assertEqual(self.src.read_text(encoding="utf-8"), REVERT_SRC)
+        self.assertEqual(names.read(self.map), [row(address="0x7100000200", name="Kept"), row()])
+
+    def test_refuses_a_name_the_binary_carries(self):
+        code, _, err = self.run_revert(0x7100000100)
+        self.assertEqual(code, 1)
+        self.assertIn("named by the binary", err)
+        self.assertTrue(self.unchanged())
+
+    def test_refuses_an_address_with_no_name(self):
+        code, _, err = self.run_revert(0x7100000300)
+        self.assertEqual(code, 1)
+        self.assertIn("no name to revert", err)
+        self.assertTrue(self.unchanged())
+        code, _, err = self.run_revert(0x7100999999)
+        self.assertEqual(code, 1)
+        self.assertIn("not a function", err)
+
+    def test_needs_a_reason(self):
+        code, _, err = self.run_revert(0x7100219588, reason="  ")
+        self.assertEqual(code, 1)
+        self.assertIn("needs its reason", err)
+        self.assertTrue(self.unchanged())
+
+    def test_dry_run_changes_nothing(self):
+        code, out, _ = self.run_revert(0x7100219588, dry_run=True)
+        self.assertEqual(code, 0)
+        self.assertIn("ProjectToScreen -> fn_7100219588, 3 uses in 1 files", out)
+        self.assertIn("dry run", out)
+        self.assertTrue(self.unchanged())
 
 
 class Tree(unittest.TestCase):

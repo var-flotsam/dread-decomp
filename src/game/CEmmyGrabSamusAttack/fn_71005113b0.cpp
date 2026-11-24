@@ -27,7 +27,7 @@ __attribute__((always_inline)) inline void InitRntString(base::UnkNamedEntry* s,
 extern char g_unk_71726de550[];
 void fn_710050512c(void* self);  // its destructor, as registered
 
-void fn_71005113b0() {
+void CEmmyGrabSamusAttack_InitStatics() {
     UnkEmmyGrabStatics& g = g_unk_71726de558;
     InitHeaderIds(&g.ids);
     g.field_0xf8[0] = -1.0f;
@@ -54,7 +54,7 @@ void fn_71005113b0() {
     g.bands[3] = 100.0f;
     {
         UnkInlineStr50 strs[4] = {"4m", "3m", "2m", "1m"};
-        fn_7100505000(g.band_names, strs, 4);
+        CEmmyGrabSamusAttack_InitInlineStrArray4FromList(g.band_names, strs, 4);
     }
     __cxa_atexit(fn_710050512c, g.band_names, g_unk_7101a19000);
     InitInlineStr50(&g.tunnel_suffix, "_tunnel");

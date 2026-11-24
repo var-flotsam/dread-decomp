@@ -78,7 +78,7 @@ static inline void ResetAndSend(UnkGrabAttack_ovb0014* self) {
     self->field_0x6bc = -1.0f;
     self->field_0x6c0 = -1.0f;
     u32 kind = self->field_0x38 ? self->field_0x38->field_0x10 : 14;
-    UnkStrId_71005077f8 id = fn_71005077f8(reinterpret_cast<UnkStruct_71005077f8*>(self), kind);
+    UnkStrId_71005077f8 id = CEmmyGrabSamusAttack_BuildAnimationIdForKind(reinterpret_cast<UnkStruct_71005077f8*>(self), kind);
     UnkStringData* data = id.data;
     if (data != &g_unk_7101d47108->empty)
         fn_710050a500(reinterpret_cast<UnkGrabAttack_b59a3*>(self), reinterpret_cast<const UnkGrabId_b59a3*>(&id));
@@ -93,7 +93,7 @@ static inline void ResetAndSend(UnkGrabAttack_ovb0014* self) {
     }
 }
 
-void fn_7100510fd8(UnkGrabAttack_ovb0014* self) {
+void CEmmyGrabSamusAttack_ResetTimersAndSendKindAnim(UnkGrabAttack_ovb0014* self) {
     ResetAndSend(self);
 }
 
@@ -254,7 +254,7 @@ static inline void SwitchOff(UnkGrabAttack_ovb0014c* self, UnkSceneObject* UnkGr
     }
 }
 
-void fn_710050c490(UnkGrabSm_b61* sm) {
+void CEmmyGrabSamusAttack_UpdateEffectsFromCountdown(UnkGrabSm_b61* sm) {
     auto* self = reinterpret_cast<UnkGrabAttack_ovb0014c*>(sm);
     if (self->field_0x6b8 > 0.0f) {
         f32 t = (self->field_0x6c8 + -2.0f) * (self->field_0x6bc / self->field_0x6b8) + 2.0f;
@@ -345,7 +345,7 @@ struct UnkGrabAnimId_ovb0014 : UnkStrIdBase {
 };
 
 // The animation of each grab kind (the first two have none).
-UnkStrId_71005077f8 fn_710050a8f8(u32 kind) {
+UnkStrId_71005077f8 CEmmyGrabSamusAttack_GetAnimIdOfGrabKind(u32 kind) {
     UnkGrabAnimId_ovb0014 ids[] = {
         base::global::CStrId::Empty(),
         base::global::CStrId::Empty(),

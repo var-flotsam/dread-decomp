@@ -7,7 +7,7 @@
 #include "game/UnkActor.h"
 #include "game_s2/UnkSpitAttack.h"
 
-void fn_71003f24f4(UnkSpitAttack* self, u32 state) {
+void CBigkranXSpitAttack_SetState(UnkSpitAttack* self, u32 state) {
     if (self->field_0x34 == state)
         return;
     self->field_0x34 = state;

@@ -40,7 +40,7 @@ void fn_7100415cf8();
 void fn_71004115d4(CFunction* fn, const char* name);
 void fn_7100415d88();
 void fn_7100411750(CFunction* fn, const char* name);
-base::reflection::UnkReflValue fn_7100415e18(void* unused, void* argument);
+base::reflection::UnkReflValue CCharClassAIComponent_GetInFrustumModeReflValue(void* unused, void* argument);
 void fn_71004118cc(CFunction* fn, const char* name);
 void fn_7100415ea4();
 void fn_7100411a40(CFunction* fn, const char* name);
@@ -201,7 +201,7 @@ void fn_7100408c20(CClass* cls) {
             fn->return_type = &base::reflection::TypeObject<EInFrustumMode>::object;
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_7100415e18);
+            fn->invoker = reinterpret_cast<void*>(&CCharClassAIComponent_GetInFrustumModeReflValue);
         }
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_eInFrustumMode_SetterFunction", true)))
             fn_71004118cc(fn, "_m_eInFrustumMode_SetterFunction");

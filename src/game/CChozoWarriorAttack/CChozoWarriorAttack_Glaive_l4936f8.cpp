@@ -99,7 +99,7 @@ static inline UnkVec3f TipOf(const UnkMatrix44& m, f32 length) {
     return fn_7100078170(reinterpret_cast<const UnkMat4f*>(&m), &along);
 }
 
-void fn_71004936f8(UnkChozoWarriorAttack_l4936f8* self) {
+void CChozoWarriorAttack_UpdateSweptTriangleCollider(UnkChozoWarriorAttack_l4936f8* self) {
     UnkChozoWarriorActor_l4936f8* actor = self->actor;
     UnkAnimationComponent* animation = actor->animation;
     UnkEntity* model = actor->model;

@@ -28,7 +28,7 @@ struct UnkSpitAttackIds {
     UnkSpitOwner* field_0x8;
 };
 
-const UnkStrIdBase* fn_71003f1538(UnkSpitAttackIds* self) {
+const UnkStrIdBase* CBigkranXSpitAttack_GetAttackInitAnimId(UnkSpitAttackIds* self) {
     UnkSpitOwner* owner = self->field_0x8;
     if (owner) {
         UnkSpitOwnerState* state = owner->field_0x218;

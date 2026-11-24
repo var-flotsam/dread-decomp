@@ -76,7 +76,7 @@ struct UnkCooldownXAttack_ovb0114 {
     UnkCooldownXAttackStrData_ovb0114* name;  // 0x38
 };
 
-f32 fn_71004a0af8(UnkCooldownXAttack_ovb0114* self) {
+f32 CCharClassCooldownXBossAttack_GetTunableBoolForAttackName(UnkCooldownXAttack_ovb0114* self) {
     bool enabled = true;
     UnkCooldownXAttackObject_ovb0114* tunable = reinterpret_cast<UnkCooldownXAttackObject_ovb0114*>(&g_unk_71726d8260);
     Get(tunable, self->name->key, &enabled);

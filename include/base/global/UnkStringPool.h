@@ -37,7 +37,7 @@ struct UnkPoolIter {
 
 char** StringPool_Bucket(char* set, u32 bucket);  // the address of a bucket
 bool StringBuffer_Differs(char* buffer, const char* str);  // the buffer differs from str
-void StringBuffer_Construct(char* buffer, const char* str, u32 length, s64 key);  // buffer constructor
+void fn_710007ecb4(char* buffer, const char* str, u32 length, s64 key);  // buffer constructor
 // The buffer's destructor is fn_710007ecd4 (base/global/CRntString.h): the buffer is a CRntString.
 void StringBuffer_Assign(char* buffer, const char* str, u32 length, s64 key);   // buffer assign
 void fn_7100080a00(char* set, base::global::UnkPoolIter* it);             // erase

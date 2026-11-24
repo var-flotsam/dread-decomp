@@ -71,7 +71,7 @@ void fn_71004d559c(UnkCooldownXRecords_l4d559c* self, u32 capacity) {
             UnkCooldownXRecord_l4d559c* dst = values;
             for (u32 i = 0; i < self->count; ++i, ++dst, ++src) {
                 new (dst) UnkCooldownXRecord_l4d559c(static_cast<UnkCooldownXRecord_l4d559c&&>(*src));
-                fn_71004d0b00(reinterpret_cast<UnkCooldownXRecord_ovb0088*>(src));
+                CCooldownXBossAIComponent_DestroyRecordRefAndIds(reinterpret_cast<UnkCooldownXRecord_ovb0088*>(src));
             }
             self->allocator->vf_0x48(self->values);
         }

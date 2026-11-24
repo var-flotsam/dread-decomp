@@ -15,7 +15,7 @@
 #include "types.h"
 
 struct UnkNodeSet695_b43a1;
-base::reflection::UnkReflObject* fn_7100475564(UnkNodeSet695_b43a1* self);
+base::reflection::UnkReflObject* CAIManager_FindLastActorBossAIComponent(UnkNodeSet695_b43a1* self);
 
 struct UnkDeleteEntityActor {
     u8 pad_0x0[0x240];
@@ -48,7 +48,7 @@ void fn_7100cb23c8(UnkDeleteEntityEvent* self, UnkDeleteEntityContext* context) 
     if (g_unk_71726bc570->field_0xb8 && actor->ai &&
         fn_710009d50c(actor->ai->vf_0x0(), reinterpret_cast<const base::reflection::CType*>(fn_710046ea2c()))) {
         UnkManager_71726af468* manager = GetManager();
-        if (!fn_7100475564(reinterpret_cast<UnkNodeSet695_b43a1*>(manager->pad_0x0 + 0x228))) {
+        if (!CAIManager_FindLastActorBossAIComponent(reinterpret_cast<UnkNodeSet695_b43a1*>(manager->pad_0x0 + 0x228))) {
             fn_7100d7b054(context->actor, 10.0f);
             return;
         }

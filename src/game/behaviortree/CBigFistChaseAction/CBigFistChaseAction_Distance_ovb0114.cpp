@@ -52,7 +52,7 @@ static inline UnkBigFistAI_ovb0114* AI(UnkActor* actor) {
     return static_cast<UnkBigFistAI_ovb0114*>(actor->field_0x240);
 }
 
-f32 fn_71003e4dc4(UnkBigFistChase_ovb0114* self) {
+f32 CBigFistChaseAction_ComputeDesiredChaseDistance(UnkBigFistChase_ovb0114* self) {
     f32 distance = self->distance;
     f32 max, min;
     if (distance < 0.0f) {

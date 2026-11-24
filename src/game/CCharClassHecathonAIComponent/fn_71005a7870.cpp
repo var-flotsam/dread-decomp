@@ -29,7 +29,7 @@ extern char g_unk_71726e8cf9[];
 extern UnkTunable g_unk_71726e8d00;
 extern void* g_unk_7101a4f768[];
 
-void fn_71005a7870() {
+void CCharClassHecathonAIComponent_InitStatics() {
     InitHeaderIds(&g_unk_71726e8d70.ids);
     InitEnum(&base::reflection::TypeObject<CCharClassHecathonAIComponent::ESubspecies, UnkEnumType>::object, "CCharClassHecathonAIComponent::ESubspecies", fn_71005a610c, fn_71005a5fc0,
              g_unk_71726e8cb0, &g_unk_71726e8cb8, fn_71005a7694, &g_unk_71726e8cd8, fn_71005a76a0);

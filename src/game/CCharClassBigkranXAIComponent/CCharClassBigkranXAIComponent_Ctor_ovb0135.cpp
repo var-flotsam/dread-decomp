@@ -20,7 +20,7 @@ extern void* g_unk_7101a31ca8[];
 
 struct UnkBigkranXSpitAttackDef;
 void fn_71003f0aac(UnkBigkranXSpitAttackDef* self);
-void fn_71003f0bac(UnkBigkranXSpitAttackDef* self);
+void CCharClassBigkranXSpitAttack_Destroy(UnkBigkranXSpitAttackDef* self);
 struct UnkBigkranXAttackDef_ovb0135;
 void fn_71003ef808(UnkBigkranXAttackDef_ovb0135* self);
 void fn_71003ef84c(UnkBigkranXAttackDef_ovb0135* self);
@@ -78,7 +78,7 @@ void fn_71003f5f3c(UnkBigkranXAI_ovb0135* self) {
 
 void fn_71003f60c8(UnkBigkranXAI_ovb0135* self) {
     self->vtable = g_unk_7101a31ca8 + 2;
-    fn_71003f0bac(reinterpret_cast<UnkBigkranXSpitAttackDef*>(self->spit));
+    CCharClassBigkranXSpitAttack_Destroy(reinterpret_cast<UnkBigkranXSpitAttackDef*>(self->spit));
     fn_71003ef84c(reinterpret_cast<UnkBigkranXAttackDef_ovb0135*>(self->attack));
     self->name.Reset();
     self->far_range.Destroy();

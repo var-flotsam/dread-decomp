@@ -5,7 +5,7 @@
 
 struct UnkGrabAttack_ovb0014;
 struct UnkGrabTick_b54;
-void fn_7100510fd8(UnkGrabAttack_ovb0014* self);
+void CEmmyGrabSamusAttack_ResetTimersAndSendKindAnim(UnkGrabAttack_ovb0014* self);
 void fn_7100511324(UnkGrabTick_b54* self, f32 dt);
 void fn_710051109c();
 void fn_71005110a0();
@@ -136,7 +136,7 @@ static_assert(__builtin_offsetof(UnkGrabAttack_505b60, states) == 0x100, "layout
 void fn_7100505b60(UnkGrabAttack_505b60* self) {
     self->machine.owner = self;
     self->machine.Add(&self->states[0]);
-    self->states[0].on_enter = {self, reinterpret_cast<UnkCallback_505b60>(&fn_7100510fd8)};
+    self->states[0].on_enter = {self, reinterpret_cast<UnkCallback_505b60>(&CEmmyGrabSamusAttack_ResetTimersAndSendKindAnim)};
     self->machine.Add(&self->states[1]);
     self->states[1].on_enter = {self, fn_710051109c};
     self->states[1].on_exit = {self, fn_71005110a0};

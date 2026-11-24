@@ -63,7 +63,7 @@ void fn_710050d07c(UnkGrabAttack_A3_b68* self) {
     self->field_0x6bc = -1.0f;
     self->field_0x6c0 = -1.0f;
     u32 kind = self->field_0x38 ? self->field_0x38->field_0x10 : 14;
-    UnkStrId_71005077f8 id = fn_71005077f8(reinterpret_cast<UnkStruct_71005077f8*>(self), kind);
+    UnkStrId_71005077f8 id = CEmmyGrabSamusAttack_BuildAnimationIdForKind(reinterpret_cast<UnkStruct_71005077f8*>(self), kind);
     UnkStringData* data = id.data;
     if (data != &g_unk_7101d47108->empty)
         fn_710050a500(reinterpret_cast<UnkGrabAttack_b59a3*>(self), reinterpret_cast<const UnkGrabId_b59a3*>(&id));
@@ -87,7 +87,7 @@ void fn_710050eca0(UnkGrabAttack_A3_b68* self) {
         return;
     UnkStruct_7101176ea8* anim = player->field_0x220;
     u32 kind = self->field_0x38 ? self->field_0x38->field_0x10 : 14;
-    UnkStrId_71005077f8 id = fn_71005077f8(reinterpret_cast<UnkStruct_71005077f8*>(self), kind);
+    UnkStrId_71005077f8 id = CEmmyGrabSamusAttack_BuildAnimationIdForKind(reinterpret_cast<UnkStruct_71005077f8*>(self), kind);
     UnkStringData* data = id.data;
     auto* entry = static_cast<UnkAnimEntry_A3_b68*>(
         fn_7101176d34(anim, *reinterpret_cast<void**>(reinterpret_cast<char*>(data) + 0x30)));

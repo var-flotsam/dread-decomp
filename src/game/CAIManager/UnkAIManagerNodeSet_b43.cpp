@@ -134,7 +134,7 @@ struct UnkActor_b43a1 {
     base::reflection::UnkReflObject* field_0x240;
 };
 
-base::reflection::UnkReflObject* fn_7100475564(UnkNodeSet695_b43a1* self) {
+base::reflection::UnkReflObject* CAIManager_FindLastActorBossAIComponent(UnkNodeSet695_b43a1* self) {
     base::reflection::UnkReflObject* found = nullptr;
     for (auto* n = self->Values()->head; n; n = n->next) {
         auto* actor = reinterpret_cast<UnkActor_b43a1*>(n->value);

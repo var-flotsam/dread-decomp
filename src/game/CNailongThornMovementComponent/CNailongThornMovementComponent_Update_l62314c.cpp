@@ -41,7 +41,7 @@ inline base::math::CVector3D Pos_l62314c(const UnkActor* actor) {
 }
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
-void CNailongThornMovementComponent_ImpactWhenOutOfRange(UnkThorn_l62314c* self, f32 dt) {
+void fn_710062314c(UnkThorn_l62314c* self, f32 dt) {
     fn_71010d1a90(reinterpret_cast<UnkMovementComponent*>(self), dt);
     if (!self->link)
         return;

@@ -20,7 +20,7 @@ struct UnkPicker {
     f32 fMaxDistance2;
 };
 
-void* fn_71003f62a8(UnkPicker* self, UnkObject_71003f62a8* object) {
+void* CCharClassBigkranXAIComponent_SelectLaunchConfigByDistance(UnkPicker* self, UnkObject_71003f62a8* object) {
     if (object) {
         UnkActor* body = object->field_0x30;
         if (body) {

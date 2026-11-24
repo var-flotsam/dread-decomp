@@ -1031,7 +1031,7 @@ address,size,name,name_source,subsystem,status
 0x7100623080,140,CNailongThornMovementComponent_Update,inferred,game/components?,O
 0x710062310c,56,fn_710062310c,unknown,game/components?,O
 0x7100623144,8,fn_7100623144,unknown,game/components?,O
-0x710062314c,388,CNailongThornMovementComponent_ImpactWhenOutOfRange,inferred,game/components?,O
+0x710062314c,388,fn_710062314c,unknown,game/components?,O
 0x71006232d0,268,fn_71006232d0,unknown,game/components?,O
 0x71006233dc,268,fn_71006233dc,unknown,game/components?,O
 0x71006234e8,808,fn_71006234e8,unknown,game/components?,U

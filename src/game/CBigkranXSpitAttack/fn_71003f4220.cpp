@@ -27,7 +27,7 @@ void fn_71003f3ae8() __attribute__((visibility("hidden")));
 void fn_71003f3af4() __attribute__((visibility("hidden")));
 extern UnkWord12 g_unk_71726c2858;
 
-void fn_71003f4220() {
+void CBigkranXSpitAttack_InitStatics() {
     InitHeaderIds(&g_unk_71726c2868.ids);
     fn_71003f0df4();
     fn_710009ec00(g_unk_71726c26f0, g_unk_71726c2868.field_0x30);

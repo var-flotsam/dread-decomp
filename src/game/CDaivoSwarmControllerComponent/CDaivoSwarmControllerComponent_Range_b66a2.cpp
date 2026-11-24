@@ -19,7 +19,7 @@ struct UnkDaivoSwarmController_b66a2 {
 
 f32 fn_710065aa30(UnkDaivoSwarmController_b66a2* self);
 
-f32 fn_71004e1f48(UnkDaivoSwarmController_b66a2* self) {
+f32 CDaivoSwarmControllerComponent_GetSpeedForMode(UnkDaivoSwarmController_b66a2* self) {
     f32 range = 0.0f;
     switch (self->mode) {
     case 0:
