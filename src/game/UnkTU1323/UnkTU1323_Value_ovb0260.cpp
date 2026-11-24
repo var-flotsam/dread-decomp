@@ -47,7 +47,7 @@ __attribute__((flatten)) void fn_710086df48(UnkHeatableValue_0xd0* self) {
     new (reinterpret_cast<UnkHeatableValue_b260*>(self)) UnkHeatableValue_b260;
 }
 
-void fn_710086e0ac(UnkHeatableValue_0xd0* self_) {
+void DestroyHeatableShieldValueRecord(UnkHeatableValue_0xd0* self_) {
     UnkHeatableValue_b260* self = reinterpret_cast<UnkHeatableValue_b260*>(self_);
     fn_710086e288(reinterpret_cast<UnkIdRecord_0x28*>(self->ids78));
     self->id48.Reset();

@@ -455,7 +455,7 @@ bool fn_710073cbe4(UnkRedenkiSwarm_ovb0084* self, CVector2D* from, CVector2D* to
 
 bool fn_7100655390(UnkRedenkiCheck_ovb0084* self, CVector2D* point, bool flag) {
     UnkRedenkiPlayerState_ovb0084* player =
-        static_cast<UnkRedenkiPlayerState_ovb0084*>(fn_7100df57f4(g_unk_7101d47310));
+        static_cast<UnkRedenkiPlayerState_ovb0084*>(GetPlayerOpticCamouflageAbility(g_unk_7101d47310));
     s32 state = player->state;
     if (state == 7) {
         if (!player->sub)

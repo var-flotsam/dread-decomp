@@ -177,7 +177,7 @@ void fn_71008cde78(UnkDoorFlag_b0251* self, bool on) {
         const CType* type = obj->vf_0x0();
         fn_71008cb078();
         if (fn_710009d50c(type, &g_unk_7172731af8))
-            fn_71008cdf84(reinterpret_cast<UnkDoorLock*>(obj));
+            BreakDoorVignettesAndNotifyDoorOpened(reinterpret_cast<UnkDoorLock*>(obj));
     }
 }
 
@@ -249,7 +249,7 @@ struct UnkDoorOpen_b0251 {
     }
 };
 
-void fn_71008cdf84(UnkDoorLock* door) {
+void BreakDoorVignettesAndNotifyDoorOpened(UnkDoorLock* door) {
     UnkDoorOpen_b0251* self = reinterpret_cast<UnkDoorOpen_b0251*>(door);
     fn_71008d1944(reinterpret_cast<UnkDoor_b0251*>(self), true);
     for (UnkDoorPart_b0251 *p = self->parts, *e = p + self->part_count; p != e; ++p) {
@@ -322,7 +322,7 @@ struct UnkDoorRange_b0251 {
     f32 field_0x6a8;
 };
 
-bool fn_71008d5c1c(UnkDoorLife* door) {
+bool IsPlayerOutsideDoorBounds(UnkDoorLife* door) {
     UnkDoorRange_b0251* self = reinterpret_cast<UnkDoorRange_b0251*>(door);
     UnkDoorPlayer_b0251* player = reinterpret_cast<UnkDoorPlayer_b0251*>(fn_7100dec788(g_unk_7101d47310));
     if (!player)
@@ -415,7 +415,7 @@ struct UnkDoorFlow_b0251 {
 void fn_71008d2690(UnkDoorFlow_b0251* self) {
     switch (self->field_0x40c) {
     case 1:
-        fn_71008d0ef4(self);
+        OpenDoorUnlessOpen(self);
         if (void* actor = fn_71002b3b84(self->owner))
             fn_71009c0f1c(actor, 0x6909d27d2c787fba);
         break;

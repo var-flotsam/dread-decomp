@@ -27,7 +27,7 @@ static inline u32 ValueOf(const UnkPairList_l70f098::Node* n) {
     return static_cast<u32>(n->value >> 32);
 }
 
-void fn_710070f098(UnkOwner_710070f098* self, u32 key, u32 value) {
+void SetKeyEntryInListSortedByValueDesc(UnkOwner_710070f098* self, u32 key, u32 value) {
     UnkPairList_l70f098::Node* n = self->head;
     for (; n; n = n->next) {
         if (KeyOf(n) == key)

@@ -23,13 +23,13 @@ struct UnkQueryHolder_b50 {
     UnkQueryTarget_b50* target;
 };
 
-void fn_71006f9368(UnkQueryHolder_b50* self, UnkQueryTag_b50 tag, void* data, u32 mode);
+void CreateAndRegisterObjectByNameAndId(UnkQueryHolder_b50* self, UnkQueryTag_b50 tag, void* data, u32 mode);
 
-void fn_71006fadf0(UnkQueryHolder_b50* self, char* query, u32 mode) {
+void HandleWorldGraphNodeAdded(UnkQueryHolder_b50* self, char* query, u32 mode) {
     UnkQueryTarget_b50* target = self->target;
     UnkQueryTarget_b50* match = target->vf_0x18(query, mode) == 16 ? target : nullptr;
     if (fn_7100116de0(match->shape, query, 0, 1, 1.0f))
-        fn_71006f9368(self, UnkQueryTag_b50{}, query + 8, mode);
+        CreateAndRegisterObjectByNameAndId(self, UnkQueryTag_b50{}, query + 8, mode);
 }
 
 // fn_71006fae70: the same test; on a hit every entry of the list at +0x68 (count +0x70) gets the
@@ -54,8 +54,8 @@ struct UnkQueryList_b50 {
 
 void fn_71006f8af4(UnkQueryEntry_b50* entry, void* data, u32 mode);
 void fn_71006f9980(UnkQueryList_b50* self, u32 mode);
-void fn_71006facbc(UnkQueryEntry_b50* entry);
-void fn_71006fb514(void* map, const u32* id, UnkQueryEntry_b50* const* entry);
+void RefreshRegistryObjectGraphNodeIndices(UnkQueryEntry_b50* entry);
+void AppendU32KeyU64ValueToSmallDictionary(void* map, const u32* id, UnkQueryEntry_b50* const* entry);
 
 void fn_71006fae70(UnkQueryList_b50* self, char* query, u32 mode) {
     UnkQueryTarget_b50* target = reinterpret_cast<UnkQueryHolder_b50*>(self)->target;
@@ -69,8 +69,8 @@ void fn_71006fae70(UnkQueryList_b50* self, char* query, u32 mode) {
     u8* map = self->map;
     for (UnkQueryEntry_b50 **it = self->entries, **end = self->entries + self->count; it != end; ++it) {
         UnkQueryEntry_b50* entry = *it;
-        fn_71006facbc(entry);
+        RefreshRegistryObjectGraphNodeIndices(entry);
         u32 id = entry->id;
-        fn_71006fb514(map, &id, &entry);
+        AppendU32KeyU64ValueToSmallDictionary(map, &id, &entry);
     }
 }

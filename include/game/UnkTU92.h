@@ -11,7 +11,7 @@ struct UnkReadArg_b0026;
 struct UnkEnumInfo;
 struct UnkWriteRoot_b0026;
 struct UnkWriteStack_b0026;
-void fn_71000ee314(UnkWriteStack_b0026* self, UnkWriteRoot_b0026* root, u32 count);
+void InitReflValueListWithRoot(UnkWriteStack_b0026* self, UnkWriteRoot_b0026* root, u32 count);
 namespace base::serialization { enum class EDeserializeCollectionElementMode : u32; }
 template <> UnkEnumInfo base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode, UnkEnumInfo>::object asm("g_unk_7101d67c10");
-bool fn_71000ee9fc(void* reader, u32 flags, UnkReadArg_b0026* arg, const base::global::CStrId* name);
+bool ReadReflListingTopEntryByKind(void* reader, u32 flags, UnkReadArg_b0026* arg, const base::global::CStrId* name);

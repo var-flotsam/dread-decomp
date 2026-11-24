@@ -287,7 +287,7 @@ void fn_71009e11c0(UnkMove_b152* self, const void* arg) {
     }
 }
 
-void fn_71009e3188(UnkMove_b152* self, f32* values) {
+void ApplySamusForwardBackwardScaleOrReset(UnkMove_b152* self, f32* values) {
     if (self->field_0x5258 != 1.0f) {
         static CStrId s_forward("forward", true);
         static CStrId s_backward("backward", true);
@@ -376,7 +376,7 @@ bool fn_71009e69c4(UnkMove_b152* self) {
     return !fn_7100df5a4c(*manager);
 }
 
-bool fn_71009e73cc(UnkMove_b152* self, UnkVec2_b152* out) {
+bool GetMovementSpeedLimitAndDecayRate(UnkMove_b152* self, UnkVec2_b152* out) {
     out->x = 0.0f;
     out->y = 10.0f;
     UnkTrackQuery query = {fn_7100d2caa8(), nullptr, -1.0f};
@@ -564,7 +564,7 @@ void fn_71009e9890(UnkMove_b152* self) {
     fn_710117b3e8(self->link.handle ? self->link.handle->target : nullptr, link);
 }
 
-bool fn_71009ea664(UnkMove_b152* self) {
+bool IsCapsuleSweepAheadInFacingDirectionClear(UnkMove_b152* self) {
     if (!self->field_0x3a8)
         return false;
     UnkCollisionContainer* container = self->actor->field_0x2a0;
@@ -640,7 +640,7 @@ UnkHitFlags_b152 fn_71009ecd98(UnkMove_b152* self, UnkHitInfo_b152* hit) {
     return result;
 }
 
-void fn_71009eee34(UnkSamusMovement* movement, const u64* key, bool active, bool flag) {
+void SetSamusLegOverrideKeyActive(UnkSamusMovement* movement, const u64* key, bool active, bool flag) {
     UnkMove_b152* self = reinterpret_cast<UnkMove_b152*>(movement);
     UnkGuiKeyList* list = reinterpret_cast<UnkGuiKeyList*>(self->timer);
     base::global::CStrId* id = reinterpret_cast<base::global::CStrId*>(const_cast<u64*>(key));

@@ -35,7 +35,7 @@ struct UnkReflFieldInfo {
     UnkFieldAccessor* accessor;  // +0x18
 };
 
-UnkReflTypedPtr fn_71000e755c(const UnkReflFieldInfo* field, UnkFieldOwner* owner) {
+UnkReflTypedPtr GetReflectedFieldTypedPtr(const UnkReflFieldInfo* field, UnkFieldOwner* owner) {
     UnkReflTypedPtr r;
     if (field->offset == 0xffffffff) {
         UnkReflValue value = field->accessor->vf_0x10(owner, UnkTypedRef{nullptr, nullptr}, 0);

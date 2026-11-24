@@ -113,7 +113,7 @@ static inline UnkTouchUnit_l7e9ee8* CentralUnit_l7e9ee8() {
         fn_7100ddb6dc(reg);
         g_unk_71726bee10 = reg;
     }
-    return reinterpret_cast<UnkTouchUnit_l7e9ee8*>(fn_7100ddb768(reinterpret_cast<UnkUnit2547*>(reg)));
+    return reinterpret_cast<UnkTouchUnit_l7e9ee8*>(GetFirstCentralUnitListObject(reinterpret_cast<UnkUnit2547*>(reg)));
 }
 
 // Moves a registration into the manager's set at `offset`.

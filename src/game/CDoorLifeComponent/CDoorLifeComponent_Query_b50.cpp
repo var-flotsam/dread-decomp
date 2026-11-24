@@ -13,7 +13,7 @@ using base::reflection::UnkReflValue;
 struct UnkDoorLife;
 
 bool fn_71008d5b80(char* self, void*, UnkReflValue* out) {
-    bool value = fn_71008d5c1c(reinterpret_cast<UnkDoorLife*>(self));
+    bool value = IsPlayerOutsideDoorBounds(reinterpret_cast<UnkDoorLife*>(self));
     const CType* t = fn_710000d228();
     const CType* cur = reinterpret_cast<const CType*>(out->type);
     if (cur && out->field_0x14 == 0 &&

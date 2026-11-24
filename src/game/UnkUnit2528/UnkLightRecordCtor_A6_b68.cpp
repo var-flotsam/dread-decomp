@@ -34,6 +34,6 @@ static inline __attribute__((always_inline)) void LightRecordCtor_A6_b68(UnkLigh
     self->field_0x5c = 0;
 }
 
-void fn_7100d9b128(UnkLightRecord_A6_b68* self) { LightRecordCtor_A6_b68(self); }
+void ConstructCLightsDefLightEntry(UnkLightRecord_A6_b68* self) { LightRecordCtor_A6_b68(self); }
 
 void fn_7100d9bdd4(UnkLightRecord_A6_b68* self) { LightRecordCtor_A6_b68(self); }

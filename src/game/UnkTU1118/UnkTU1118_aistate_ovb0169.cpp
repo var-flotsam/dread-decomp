@@ -86,7 +86,7 @@ struct UnkAIStateSelect_b0169 {
     u8 alt_list[8];  // 0x218
 };
 
-bool fn_71006fe35c(void* self, void* item);
+bool SetPoint2DFromSourceAndOffsetToOwner(void* self, void* item);
 void* fn_71006fe430(void* self, void* target, s32 index, s32 arg, void* extra);
 struct UnkVec3;
 
@@ -124,7 +124,7 @@ bool fn_71006fe16c(UnkAIStateSelect_b0169* self, s32 index) {
         if (!item)
             return false;
     }
-    if (!fn_71006fe35c(self, item))
+    if (!SetPoint2DFromSourceAndOffsetToOwner(self, item))
         return false;
     self->previous = self->current;
     self->current = index;

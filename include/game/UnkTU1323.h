@@ -7,5 +7,5 @@
 
 struct UnkHeatableShieldEntry;
 struct UnkHeatableValue_0xd0;
-void fn_710086e0ac(UnkHeatableValue_0xd0*);  // Destructor.
+void DestroyHeatableShieldValueRecord(UnkHeatableValue_0xd0*);  // Destructor.
 void CHeatableShieldComponent_ResetEntry(UnkHeatableShieldEntry* entry);

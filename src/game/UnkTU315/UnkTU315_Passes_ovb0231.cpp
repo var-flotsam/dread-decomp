@@ -23,7 +23,7 @@ void* NodeMember(const UnkSceneNode* node) {
 void fn_71001fd490(void* list, void* obj, u32 layer);
 
 bool fn_7100219a34(UnkRenderManager* self, UnkSceneNode* entry) {
-    if (!fn_7100217e50(entry->bits & 0x3fff, 1))
+    if (!AreAllMaskBitsSetInFlags(entry->bits & 0x3fff, 1))
         return false;
     u32 bits = entry->bits;
     u32 layer = (bits >> 12) & 0xf;

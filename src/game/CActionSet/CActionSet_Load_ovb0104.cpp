@@ -154,7 +154,7 @@ struct UnkActionSet_b0104 {
     char actions[0x80];  // 0x68: a hash map
 };
 
-u64 fn_7100b8a428(CRntFile* file, void* out);
+u64 ReadLengthPrefixedStrIdFromFile(CRntFile* file, void* out);
 void fn_7100b8c2cc(char* map, u32 buckets, u32 nodes);
 void fn_7100b8c420(UnkActionSet_b0104* self, CRntFile* file);
 
@@ -176,7 +176,7 @@ bool CActionSet_LoadFromFile(UnkActionSet_b0104* self) {
         u32 value;
         s32 count;
         CRntFile_Seek(&file, 8, 0);
-        fn_7100b8a428(&file, self->field_0x58);
+        ReadLengthPrefixedStrIdFromFile(&file, self->field_0x58);
         value = 0;
         CRntFile_Read(&file, &value, 4, 1);
         self->field_0x60 = value;

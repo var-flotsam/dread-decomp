@@ -45,7 +45,7 @@ struct UnkOuterList_A4_b75 : base::UnkVtableList<UnkOuterNode_A4_b75> {
     }
 };
 
-void fn_710086f394(UnkOuterList_A4_b75* self) {
+void DestroyStrIdKeyedListOfLists(UnkOuterList_A4_b75* self) {
     self->Destroy();
 }
 

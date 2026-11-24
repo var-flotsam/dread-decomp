@@ -169,7 +169,7 @@ void fn_7100b40740(UnkMapMenu_lb40740* self, f32 dt) {
             fn_7100105bac(self->zoom_sound.Playback(), 0.03f);
         } else {
             fn_7100105c00(self->zoom_sound.Playback(), 0.2f);
-            fn_7100105da8(self->zoom_sound.Interp(), zoom > self->last_zoom ? 0.9f : 1.0f, 0.2f);
+            SetSoundVoicePitchOverDuration(self->zoom_sound.Interp(), zoom > self->last_zoom ? 0.9f : 1.0f, 0.2f);
             self->last_zoom = zoom;
         }
     }
@@ -183,7 +183,7 @@ void fn_7100b40740(UnkMapMenu_lb40740* self, f32 dt) {
             fn_7100105c00(self->scroll_sound.Playback(), 0.0f);
             fn_7100105d34(self->scroll_sound.Interp(),
                           self->fast ? g_unk_7172763d10 : g_unk_7172763d10 * 0.8f, false, 0.2f);
-            fn_7100105da8(self->scroll_sound.Interp(), self->fast ? 1.0f : self->scroll_speed * 0.1f + 0.8f,
+            SetSoundVoicePitchOverDuration(self->scroll_sound.Interp(), self->fast ? 1.0f : self->scroll_speed * 0.1f + 0.8f,
                           0.0f);
         } else {
             fn_7100105bac(self->scroll_sound.Playback(), 0.1f);

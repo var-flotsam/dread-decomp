@@ -14,7 +14,7 @@ struct UnkTimeKeys {
     UnkTimeKey* data;
     u32 count;
 };
-UnkTimeKey* fn_7100b8ad14(UnkTimeKeys* self, u32 index);
+UnkTimeKey* GetTimeKeyAtGrowingWithDefaults(UnkTimeKeys* self, u32 index);
 
 // The part of an animation's timing these conversions read.
 struct UnkAnimClock_b8af0c {
@@ -33,7 +33,7 @@ f32 fn_7100b8af0c(f32 frames, const UnkAnimTiming* timing) {
         return clock->length;
     UnkTimeKeys* keys = &clock->keys;
     if (keys->count == 1)
-        return frames / fn_7100b8ad14(keys, 0)->frame_time;
+        return frames / GetTimeKeyAtGrowingWithDefaults(keys, 0)->frame_time;
     // The first key past `frames`; the one before it holds it.
     UnkTimeKey* after = std::lower_bound(keys->data, keys->data + keys->count, frames,
                                          [](const UnkTimeKey& key, f32 value) { return key.time <= value; });

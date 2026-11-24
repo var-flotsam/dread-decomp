@@ -66,7 +66,7 @@ void fn_71007e7c08(UnkFootstepPlatform_A5_b63* self) {
         return;
     asm("" ::: "memory");  // the original reloads the object after the test
     if (UnkDoorLock* lock = fn_71002af860(reinterpret_cast<UnkWeakTarget*>(c->field_0x10))) {
-        fn_71008d0ef4(lock);
+        OpenDoorUnlessOpen(lock);
         auto* timeline =
             reinterpret_cast<UnkTimelineComponent*>(fn_71003c6c3c(reinterpret_cast<UnkEvacPart_b61*>(self->owner)));
         if (timeline) {

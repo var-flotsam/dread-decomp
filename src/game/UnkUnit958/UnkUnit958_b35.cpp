@@ -18,7 +18,7 @@ struct UnkUnit958List {
     u32 count;
 };
 
-UnkUnit958Entry* fn_710063b770(UnkUnit958List* self, void* key) {
+UnkUnit958Entry* FindOffsetEntryByOwner(UnkUnit958List* self, void* key) {
     for (UnkUnit958Entry *it = self->entries, *end = it + self->count; it != end; ++it) {
         void* k = it->object != nullptr ? it->object->key : nullptr;
         if (k == key)

@@ -12,7 +12,7 @@
 
 struct UnkKeySetOwner;
 void fn_710019962c(void* object);
-void fn_71001995e8(void* object, bool value);
+void SaveListFlagsToPreviousAndOptionallyClear(void* object, bool value);
 
 struct UnkNamedEntry_710016b194 {
     u64 object;
@@ -42,7 +42,7 @@ void* fn_710016b0ec(UnkNamedEntries_710016b194* self, u32 index) {
         if (fn_710019e4fc(static_cast<UnkKeySetOwner*>(g_unk_716e34c2e0), object)) {
             base::global::CStrId& name = entries[index].name;
             if (name.data != &g_unk_7101d47108->empty) {
-                fn_71001995e8(reinterpret_cast<void*>(object), true);
+                SaveListFlagsToPreviousAndOptionallyClear(reinterpret_cast<void*>(object), true);
                 u64 hash = name.data->Key();
                 fn_7100199420(reinterpret_cast<void*>(object), &hash, true);
             }

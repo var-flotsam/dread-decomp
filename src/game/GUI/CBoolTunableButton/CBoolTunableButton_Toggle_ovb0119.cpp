@@ -64,7 +64,7 @@ void CBoolTunableButton_ToggleValue(UnkBoolTunableButton_b0119* self) {
             UnkTypedPtr_b0119 obj = {object->vf_0x0(), object};
             UnkReflField* field = self->field;
             UnkTypedPtr_b0119 value = {fn_710000d228(), &self->value};
-            fn_71000e7a80(field, reinterpret_cast<const UnkReflFieldObject*>(&obj),
+            SetReflectedFieldValue(field, reinterpret_cast<const UnkReflFieldObject*>(&obj),
                           reinterpret_cast<UnkReflValueArg*>(&value));
         }
     }

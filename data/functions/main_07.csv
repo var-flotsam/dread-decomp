@@ -354,7 +354,7 @@ address,size,name,name_source,subsystem,status
 0x710070ddf8,292,fn_710070ddf8,unknown,unknown,O
 0x710070df1c,32,fn_710070df1c,unknown,game/components?,O
 0x710070df3c,4,fn_710070df3c,unknown,unknown,O
-0x710070df40,188,fn_710070df40,unknown,game/components?,O
+0x710070df40,188,CanAnimationTrackAcceptRequest,inferred,game/components?,O
 0x710070dffc,956,fn_710070dffc,unknown,unknown,U
 0x710070e3b8,16,fn_710070e3b8,unknown,animation?,O
 0x710070e3c8,36,fn_710070e3c8,unknown,animation?,O
@@ -362,7 +362,7 @@ address,size,name,name_source,subsystem,status
 0x710070e680,140,fn_710070e680,unknown,unknown,O
 0x710070e70c,2060,fn_710070e70c,unknown,engine/reflection?,O
 0x710070ef18,384,base::reflection::refl_InitType<CAnimationPrefix::SPrefix::Enum>,reflection,engine/reflection,O
-0x710070f098,424,fn_710070f098,unknown,engine/reflection?,O
+0x710070f098,424,SetKeyEntryInListSortedByValueDesc,inferred,engine/reflection?,O
 0x710070f240,192,fn_710070f240,unknown,engine/reflection?,O
 0x710070f300,44,fn_710070f300,unknown,engine/reflection?,O
 0x710070f32c,12,fn_710070f32c,unknown,engine/reflection?,O
@@ -377,7 +377,7 @@ address,size,name,name_source,subsystem,status
 0x710070f390,20,base::reflection::ValueOps<CAnimationPrefix::SPrefix::Enum>::CopyAssign,reflection,engine/reflection,O
 0x710070f3a4,20,base::reflection::ValueOps<CAnimationPrefix::SPrefix::Enum>::MoveAssign,reflection,engine/reflection,O
 0x710070f3b8,280,fn_710070f3b8,unknown,engine/reflection?,O
-0x710070f4d0,1228,fn_710070f4d0,unknown,engine/reflection?,O
+0x710070f4d0,1228,InitAnimationPrefixEnumStatics,inferred,engine/reflection?,O
 0x710070f99c,1484,fn_710070f99c,unknown,engine/reflection?,O
 0x710070ff68,384,base::reflection::refl_InitType<EAnimationTag>,reflection,engine/reflection,O
 0x71007100e8,336,base::reflection::refl_InitType<TAnimationTagFlagSet>,reflection,engine/reflection,O
@@ -403,7 +403,7 @@ address,size,name,name_source,subsystem,status
 0x7100710324,4,base::reflection::ValueOps<TAnimationTagFlagSet>::Destroy,reflection,engine/reflection,O
 0x7100710328,20,base::reflection::ValueOps<TAnimationTagFlagSet>::CopyAssign,reflection,engine/reflection,O
 0x710071033c,20,base::reflection::ValueOps<TAnimationTagFlagSet>::MoveAssign,reflection,engine/reflection,O
-0x7100710350,656,fn_7100710350,unknown,engine/reflection?,O
+0x7100710350,656,InitEAnimationTagStatics,inferred,engine/reflection?,O
 0x71007105e0,4,CCharClassAnimationComponent::refl_AddAttributes,reflection,game/characters,O
 0x71007105e4,244,CCharClassAnimationComponent::refl_GetClass,reflection,game/characters,O
 0x71007106d8,2096,CCharClassAnimationComponent::refl_AddFields,reflection,game/characters,O
@@ -1138,7 +1138,7 @@ address,size,name,name_source,subsystem,status
 0x71007451d0,212,fn_71007451d0,unknown,game/components?,U
 0x71007452a4,44,fn_71007452a4,unknown,game/components?,O
 0x71007452d0,216,fn_71007452d0,unknown,game/components?,O
-0x71007453a8,92,fn_71007453a8,unknown,game/components?,O
+0x71007453a8,92,StartColorFadeFromToOverTime,inferred,game/components?,O
 0x7100745404,60,fn_7100745404,unknown,game/components?,O
 0x7100745440,60,fn_7100745440,unknown,game/components?,O
 0x710074547c,352,fn_710074547c,unknown,game/components?,U
@@ -1164,7 +1164,7 @@ address,size,name,name_source,subsystem,status
 0x7100745e24,80,fn_7100745e24,unknown,game/components?,O
 0x7100745e74,156,fn_7100745e74,unknown,game/components?,O
 0x7100745f10,112,fn_7100745f10,unknown,game/components?,O
-0x7100745f80,88,fn_7100745f80,unknown,game/components?,O
+0x7100745f80,88,GetPositionPlusParentTranslationAndOffset,inferred,game/components?,O
 0x7100745fd8,24,fn_7100745fd8,unknown,game/components?,O
 0x7100745ff0,140,fn_7100745ff0,unknown,game/components?,O
 0x710074607c,4,CSwarmAttackComponent::refl_AddAttributes,reflection,game/components,O
@@ -2045,7 +2045,7 @@ address,size,name,name_source,subsystem,status
 0x7100772c98,24,fn_7100772c98,unknown,unknown,O
 0x7100772cb0,72,fn_7100772cb0,unknown,game/ai?,O
 0x7100772cf8,440,fn_7100772cf8,unknown,unknown,O
-0x7100772eb0,360,fn_7100772eb0,unknown,game?,O
+0x7100772eb0,360,ConstructResolvedLinkToTarget,inferred,game?,O
 0x7100773018,620,fn_7100773018,unknown,unknown,U
 0x7100773284,284,fn_7100773284,unknown,unknown,U
 0x71007733a0,748,fn_71007733a0,unknown,unknown,U
@@ -2320,12 +2320,12 @@ address,size,name,name_source,subsystem,status
 0x710077a478,164,fn_710077a478,unknown,unknown,O
 0x710077a51c,276,fn_710077a51c,unknown,unknown,O
 0x710077a630,208,CCentralUnitComponent_ReservePairEntryVector,inferred,unknown,O
-0x710077a700,300,fn_710077a700,unknown,engine/reflection?,O
+0x710077a700,300,AppendCallbackSetPairVectorEntry,inferred,engine/reflection?,O
 0x710077a82c,320,fn_710077a82c,unknown,unknown,O
 0x710077a96c,404,fn_710077a96c,unknown,engine/reflection?,O
 0x710077ab00,624,fn_710077ab00,unknown,unknown,O
 0x710077ad70,288,fn_710077ad70,unknown,unknown,O
-0x710077ae90,244,fn_710077ae90,unknown,unknown,O
+0x710077ae90,244,ResizeCallbackSetPairVector,inferred,unknown,O
 0x710077af84,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::Begin,reflection,engine/reflection,O
 0x710077af90,20,fn_710077af90,unknown,unknown,O
 0x710077afa4,580,fn_710077afa4,unknown,unknown,O
@@ -2424,7 +2424,7 @@ address,size,name,name_source,subsystem,status
 0x710077cd34,4,base::reflection::ValueOps<darkness::EDarknessPreset>::Destroy,reflection,engine/reflection,O
 0x710077cd38,20,base::reflection::ValueOps<darkness::EDarknessPreset>::CopyAssign,reflection,engine/reflection,O
 0x710077cd4c,20,base::reflection::ValueOps<darkness::EDarknessPreset>::MoveAssign,reflection,engine/reflection,O
-0x710077cd60,316,fn_710077cd60,unknown,engine/reflection?,O
+0x710077cd60,316,InitEDarknessPresetStatics,inferred,engine/reflection?,O
 0x710077ce9c,4,CMagmaCentralUnitComponent::refl_AddAttributes,reflection,game/components,O
 0x710077cea0,244,CMagmaCentralUnitComponent::refl_GetClass,reflection,game/components,O
 0x710077cf94,216,CMagmaCentralUnitComponent::refl_AddFields,reflection,game/components,O
@@ -4631,8 +4631,8 @@ address,size,name,name_source,subsystem,status
 0x71007da730,508,fn_71007da730,unknown,game?,O
 0x71007da92c,352,fn_71007da92c,unknown,game?,O
 0x71007daa8c,560,fn_71007daa8c,unknown,game?,U
-0x71007dacbc,584,fn_71007dacbc,unknown,game?,O
-0x71007daf04,336,fn_71007daf04,unknown,game?,O
+0x71007dacbc,584,UpdateCountdownCameraShake,inferred,game?,O
+0x71007daf04,336,TriggerCountdownStagesByElapsedShare,inferred,game?,O
 0x71007db054,604,fn_71007db054,unknown,game?,U
 0x71007db2b0,216,fn_71007db2b0,unknown,game?,O
 0x71007db388,28,fn_71007db388,unknown,game?,O
@@ -4768,7 +4768,7 @@ address,size,name,name_source,subsystem,status
 0x71007decb0,556,fn_71007decb0,unknown,game/components?,O
 0x71007deedc,260,fn_71007deedc,unknown,game/components?,O
 0x71007defe0,332,fn_71007defe0,unknown,game/components?,O
-0x71007df12c,236,fn_71007df12c,unknown,game/components?,O
+0x71007df12c,236,ApplyDoorOpenState,inferred,game/components?,O
 0x71007df218,364,fn_71007df218,unknown,game/components?,O
 0x71007df384,352,fn_71007df384,unknown,game/components?,O
 0x71007df4e4,488,fn_71007df4e4,unknown,game/components?,O

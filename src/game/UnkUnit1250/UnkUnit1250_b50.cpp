@@ -28,7 +28,7 @@ static inline UnkCollisionObject* Find_b50(UnkCollisionContainer* collision, con
     return fn_71008640a4(collision, &name);
 }
 
-void fn_71007df12c(UnkDoor_b50* self, bool open) {
+void ApplyDoorOpenState(UnkDoor_b50* self, bool open) {
     if (UnkCollisionContainer* collision = self->owner->collision) {
         UnkCollisionObject* object = Find_b50(collision, CStrId("door", true));
         fn_7100d35a98(reinterpret_cast<UnkEntry*>(object), !open);

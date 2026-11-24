@@ -116,7 +116,7 @@ void fn_710097e5ec(UnkEventHolder_b0197* self) {
 
 // The string-id vector built from an array of ids (an initializer list: pointer and size), a
 // growth step, an allocator (the default one when none is given) and the allocation flags.
-void fn_710097bb7c(base::UnkStrIdVec* self, const base::global::CStrId* ids, u64 size, u32 step,
+void ConstructStrIdVectorFromIdArray(base::UnkStrIdVec* self, const base::global::CStrId* ids, u64 size, u32 step,
                    base::IAllocator* allocator, u32 flags) {
     self->data = nullptr;
     self->count = 0;

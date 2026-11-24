@@ -41,7 +41,7 @@ struct UnkContactBuffer {
 };
 
 struct UnkCapsule2D;
-bool fn_710010f838(const UnkCircle2D* circle, const UnkCapsule2D* capsule, f32 tolerance);
+bool IsCapsuleCentreInsideCircle(const UnkCircle2D* circle, const UnkCapsule2D* capsule, f32 tolerance);
 
 // The 2D tests' tolerance (0.001).
 extern const f32 g_unk_7101647774;
@@ -157,7 +157,7 @@ bool fn_71001271d0(const void* b, const UnkCircle2D* a, UnkContactBuffer<2>* out
     }
 
     if (out->count == 0 && flag) {
-        if (fn_710010f838(a, static_cast<const UnkCapsule2D*>(b), 0.0f)) {
+        if (IsCapsuleCentreInsideCircle(a, static_cast<const UnkCapsule2D*>(b), 0.0f)) {
             if (out->count == 0)
                 AddPoint(out);
             MarkPoint(out->points[0], (seg->start.x + seg->end.x) * 0.5f, (seg->start.y + seg->end.y) * 0.5f);

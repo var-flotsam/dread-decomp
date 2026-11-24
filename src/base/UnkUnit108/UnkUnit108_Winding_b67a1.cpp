@@ -14,7 +14,7 @@ struct UnkPolyline108_b67a1 {
     bool closed;  // 0x2c
 };
 
-bool fn_7100118be8(const UnkPolyline108_b67a1* self) {
+bool IsPolylineClockwiseXY(const UnkPolyline108_b67a1* self) {
     u32 edges = self->count;
     if (!self->closed && edges != 0)
         --edges;

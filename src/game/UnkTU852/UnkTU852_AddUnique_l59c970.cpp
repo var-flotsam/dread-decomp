@@ -58,7 +58,7 @@ static inline void Append(UnkWeakRefList_59c970* list, UnkWeakTarget* actor) {
     }
 }
 
-void fn_710059c970(void* owner_, void* actor_) {
+void AppendWeakRefIfAbsent(void* owner_, void* actor_) {
     UnkWeakRefList_59c970* list = &static_cast<UnkWeakRefOwner_59c970*>(owner_)->refs;
     UnkWeakTarget* actor = static_cast<UnkWeakTarget*>(actor_);
     if (IndexOf(list, actor) >= 0)

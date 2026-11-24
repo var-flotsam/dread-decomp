@@ -19,7 +19,7 @@ struct UnkBreakablePart;
 struct UnkBreakableTarget;
 struct UnkElectrifyingAreaA5_b61;
 
-bool fn_7100118be8(const UnkPolyline108_b67a1* self);
+bool IsPolylineClockwiseXY(const UnkPolyline108_b67a1* self);
 
 
 // A 2D polygon: its vertices, whether it is closed, and a bounding box kept up to date lazily
@@ -159,7 +159,7 @@ void fn_71007d1a74(UnkElectrifyingArea_ov110* self, void* arg, bool* inside, Unk
         f32 half_x = size_x * 0.5f;
         f32 half_y = size_y * 0.5f;
         // A small enough area that winds the right way counts as inside.
-        if (*inside && self->use_box && fn_7100118be8(reinterpret_cast<const UnkPolyline108_b67a1*>(shape)) &&
+        if (*inside && self->use_box && IsPolylineClockwiseXY(reinterpret_cast<const UnkPolyline108_b67a1*>(shape)) &&
             half_x < y && half_y < y) {
             *inside = true;
             return;

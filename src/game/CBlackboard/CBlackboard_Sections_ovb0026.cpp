@@ -391,7 +391,7 @@ s32 fn_710104b540(UnkBlackboardReader_b0026* self, base::reflection::UnkReflObje
     void* reader = self->reader;
     arg.type = fn_710000fd7c();
     arg.value = &name;
-    fn_71000ee9fc(reader, 0, &arg, &base::global::CStrId::Empty());
+    ReadReflListingTopEntryByKind(reader, 0, &arg, &base::global::CStrId::Empty());
     const base::reflection::CType* type = fn_710009c640(obj);
     if (fn_710009d50c(reinterpret_cast<const base::reflection::CType*>(obj->vf_0x0()),
                       reinterpret_cast<const base::reflection::CType*>(fn_710009bedc()))) {
@@ -399,7 +399,7 @@ s32 fn_710104b540(UnkBlackboardReader_b0026* self, base::reflection::UnkReflObje
         reader = self->reader;
         arg.type = fn_710000fd7c();
         arg.value = &id;
-        fn_71000ee9fc(reader, 1, &arg, &base::global::CStrId::Empty());
+        ReadReflListingTopEntryByKind(reader, 1, &arg, &base::global::CStrId::Empty());
         if (id != (u64)-1)
             type = reinterpret_cast<const base::reflection::CType*>(fn_71000a5118(g_unk_7101d4c8d0, &id));
     }
@@ -409,7 +409,7 @@ s32 fn_710104b540(UnkBlackboardReader_b0026* self, base::reflection::UnkReflObje
 // ---- writing the blackboard ----
 
 struct UnkVersionWriter_A1b71;
-void fn_71000ed224(UnkVersionWriter_A1b71* self, base::global::CRntFile* file, UnkVersionEntry* entry);
+void InitRntFileWriterAndWriteHeader(UnkVersionWriter_A1b71* self, base::global::CRntFile* file, UnkVersionEntry* entry);
 
 // The writer's state (0xc90 bytes, src/base/UnkUnit90/UnkVersionWriter_A1_b71.cpp).
 struct UnkWriter_b0026 {
@@ -453,10 +453,10 @@ void fn_7101047988(CBlackboard* self, base::global::CRntFile* file) {
     UnkWriteStack_b0026 stack;
     {
         UnkWriteRoot_b0026 root = {fn_710009dcd8(const_cast<char*>(reinterpret_cast<const char*>(object->vf_0x0())), self), self};
-        fn_71000ee314(&stack, &root, 2);
+        InitReflValueListWithRoot(&stack, &root, 2);
     }
     UnkWriter_b0026 writer;
-    fn_71000ed224(reinterpret_cast<UnkVersionWriter_A1b71*>(&writer), file,
+    InitRntFileWriterAndWriteHeader(reinterpret_cast<UnkVersionWriter_A1b71*>(&writer), file,
                   reinterpret_cast<UnkVersionEntry*>(const_cast<base::reflection::CClass*>(object->vf_0x0())));
     if (stack.count) {
         const UnkParseCallbacks* callbacks = &g_unk_71729fd068;
@@ -501,10 +501,10 @@ void fn_7101048b94(UnkSectionGroup_b0026* self, base::global::CRntFile* file) {
     UnkWriteStack_b0026 stack;
     {
         UnkWriteRoot_b0026 root = {fn_710009dcd8(const_cast<char*>(reinterpret_cast<const char*>(object->vf_0x0())), object), object};
-        fn_71000ee314(&stack, &root, 2);
+        InitReflValueListWithRoot(&stack, &root, 2);
     }
     UnkWriter_b0026 writer;
-    fn_71000ed224(reinterpret_cast<UnkVersionWriter_A1b71*>(&writer), file,
+    InitRntFileWriterAndWriteHeader(reinterpret_cast<UnkVersionWriter_A1b71*>(&writer), file,
                   reinterpret_cast<UnkVersionEntry*>(const_cast<base::reflection::CClass*>(
                       reinterpret_cast<base::reflection::UnkReflObject*>(self->owner)->vf_0x0())));
     if (stack.count) {

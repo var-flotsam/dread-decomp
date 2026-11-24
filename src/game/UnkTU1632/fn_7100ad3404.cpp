@@ -15,7 +15,7 @@ struct UnkTmpValue_b0217 {
     }
 };
 
-void fn_7100ad3404(UnkErasedVector* self, const UnkErasedValue_0x10* values, u64 count) {
+void ConstructErasedValueVectorFromArray(UnkErasedVector* self, const UnkErasedValue_0x10* values, u64 count) {
     u32 n = count;
     self->step = 10;
     self->data = nullptr;

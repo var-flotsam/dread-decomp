@@ -27,7 +27,7 @@ bool fn_7100219ae0(UnkRenderManager* self, UnkSceneNode* entry, u32 value) {
         return false;
     bits = (bits & ~0xf000u) | ((value & 0xf) << 12);
     entry->bits = bits;
-    if (!fn_7100217e50(bits & 0x3fff, 1))
+    if (!AreAllMaskBitsSetInFlags(bits & 0x3fff, 1))
         return false;
     void* obj = nullptr;
     switch (entry->type_at_3()) {

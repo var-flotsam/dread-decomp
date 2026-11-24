@@ -151,7 +151,7 @@ bool fn_71008d586c(UnkDoorLife* self, bool force, bool notify, const CStrId* id)
     if (UnkState_CDoorLifeComponent* current = self->field_0x420.current) {
         switch (current->id) {
         case 1:
-            if (force || fn_71008d5c1c(self))
+            if (force || IsPlayerOutsideDoorBounds(self))
                 RequestState(&self->field_0x420, 3);
             else
                 self->field_0x6ac = true;

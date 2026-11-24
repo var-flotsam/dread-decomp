@@ -59,7 +59,7 @@ __attribute__((always_inline)) static inline void AddSlot(UnkRenderTargetOwner* 
     slot.field_0x0 = 0;
     slot.width = 0;
     slot.height = 0;
-    fn_710015f810(&slot, 6, width, height, 0, nullptr, nullptr, 1, 0);
+    FillRenderTargetSlotByFormat(&slot, 6, width, height, 0, nullptr, nullptr, 1, 0);
     slot.width = width;
     slot.height = height;
     slot.field_0x10 = false;

@@ -17,7 +17,7 @@ struct UnkWeakRefAt;
 
 bool fn_7100977e50(UnkCharacterMovement* self, f32 max_dot, f32 extra, f32 step, f32 back, u32 mask,
                    const CVector3D* pos, CVector3D* out_point, UnkCollisionHit* out_hit, const CVector3D* dir);
-void fn_710092ef94(UnkWeakRefAt<0>* self, UnkWeakTarget* other);
+void SetWeakRefAt0ToObjectHandle(UnkWeakRefAt<0>* self, UnkWeakTarget* other);
 
 struct UnkGroundRef_ovb0146 {
     UnkRefObject* ptr;
@@ -89,7 +89,7 @@ void fn_7101110030(UnkGroundAI_ovb0146* self) {
     if (!fn_7100977e50(probe, 1.0f, 50.0f, 3.4028235e38f, 0.0f, mask, reinterpret_cast<CVector3D*>(&pos), nullptr,
                        reinterpret_cast<UnkCollisionHit*>(&hit), reinterpret_cast<CVector3D*>(&dir))) {
         UnkShape* shape = fn_7100976588(reinterpret_cast<UnkFlagged*>(self->owner->movement));
-        fn_710092ef94(reinterpret_cast<UnkWeakRefAt<0>*>(&hit), reinterpret_cast<UnkWeakTarget*>(shape));
+        SetWeakRefAt0ToObjectHandle(reinterpret_cast<UnkWeakRefAt<0>*>(&hit), reinterpret_cast<UnkWeakTarget*>(shape));
         UnkGroundOwner_ovb0146* o = self->owner;
         f32 x = o->x, y = o->y, z = o->z;
         const UnkMatrix44& m1 = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(&o->xform));

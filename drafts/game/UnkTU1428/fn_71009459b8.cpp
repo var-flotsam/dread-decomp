@@ -129,7 +129,7 @@ void fn_71009459b8(UnkBallMovement_l9459b8* self, f32 dt) {
             fn_7100105c9c(reinterpret_cast<UnkPlayingSound_ovb0074*>(sound), 0.1f);
         if (self->speed >= g_unk_71727393d8.pitch_speed) {
             f32 pitch = Clamp(Ref(loop)->sound->pitch - dt * 12.0f, 0.3f, 1.1f);
-            fn_7100105da8(reinterpret_cast<UnkInterp_7100105d34*>(Get(loop)), pitch, 0.2f);
+            SetSoundVoicePitchOverDuration(reinterpret_cast<UnkInterp_7100105d34*>(Get(loop)), pitch, 0.2f);
         }
         CVector3D pos = self->actor->GetPosition();
         fn_7100105ebc(Get(loop), &pos);

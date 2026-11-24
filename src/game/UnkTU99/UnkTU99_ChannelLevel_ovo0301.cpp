@@ -43,7 +43,7 @@ static inline s32 LevelOf(UnkSndChannels_o0301* self, s32 channel) {
     return *reinterpret_cast<s32*>(reinterpret_cast<u8*>(self) + static_cast<s64>(channel) * 4 + 0x34c);
 }
 
-void fn_71000feff8(void* player, u32 id, UnkSoundHandle_b46a1 handle, f32 value) {
+void SetSoundChannelLevelsByMask(void* player, u32 id, UnkSoundHandle_b46a1 handle, f32 value) {
     UnkSndChannels_o0301* self = static_cast<UnkSndChannels_o0301*>(player);
     if (__builtin_expect(g_unk_7108b6ab60 & 1, 1))
         return;

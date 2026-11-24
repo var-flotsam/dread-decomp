@@ -55,12 +55,12 @@ static inline UnkBox_b0236& BoxAt(UnkBoxVector_b0236* boxes, u32 index) {
             if (boxes->capacity < grown)
                 boxes->Reallocate(grown);
         }
-        fn_710010e364(boxes, index + 1);
+        ResizeBoxVector(boxes, index + 1);
     }
     return boxes->data[index];
 }
 
-UnkVec3f fn_710010e15c(const void* self, UnkBoxVector_b0236* boxes, u32 begin, u32 end, const UnkVec3f* point) {
+UnkVec3f ComputeBoxCentersMeanSquaredDistanceToPoint(const void* self, UnkBoxVector_b0236* boxes, u32 begin, u32 end, const UnkVec3f* point) {
     UnkVec3f sum(0.0f, 0.0f, 0.0f);
     u32 n = end - begin;
     for (u32 i = begin; i < end; ++i) {

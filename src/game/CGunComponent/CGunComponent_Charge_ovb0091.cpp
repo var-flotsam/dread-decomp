@@ -161,11 +161,11 @@ struct UnkChargeTimes_ovb0091 {
     f32 start;  // 0x4
     f32 full;   // 0x8
 };
-const UnkChargeTimes_ovb0091* fn_7100837220(s32 mode);
+const UnkChargeTimes_ovb0091* GetGunModeParamsFromTunable(s32 mode);
 bool fn_710113db74(void* object);
 void fn_710083a034(UnkGun_ovb0091* self, bool flag, bool now);
 void* fn_71007bad34(void* object);
-void fn_710034f374(void* object);
+void CacheShotOrientationAxis(void* object);
 void fn_710083dd48(UnkGun_ovb0091* self, void* value);
 void fn_710083c17c(UnkGun_ovb0091* self);
 // base::global::CRntVector<void*>::GrowAt, out of line.
@@ -227,7 +227,7 @@ static inline void StartCharge(UnkGun_ovb0091* self) {
     self->charging = true;
     self->charge = 0.0f;
     self->field_0x131 = 0;
-    const UnkChargeTimes_ovb0091* times = fn_7100837220(self->mode);
+    const UnkChargeTimes_ovb0091* times = GetGunModeParamsFromTunable(self->mode);
     self->charge_start = times->start;
     self->charge_full = times->full;
 }
@@ -550,7 +550,7 @@ struct UnkSamusAnimation_ovb0091 {
 void fn_710083ed38(UnkGun_ovb0091* self) {
     UnkGunActor_ovb0091* actor = self->actor;
     if (actor->field_0x2b0)
-        fn_710034f374(actor->field_0x2b0);
+        CacheShotOrientationAxis(actor->field_0x2b0);
     actor = self->actor;
     if (actor) {
         UnkReflObject* animation = actor->animation;

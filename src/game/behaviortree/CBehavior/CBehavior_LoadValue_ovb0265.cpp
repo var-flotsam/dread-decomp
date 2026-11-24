@@ -97,7 +97,7 @@ static inline bool Get(UnkBehaviorObject_ovb0265* obj, u64 key, void* out) {
     typed.ptr = obj;
     UnkBehaviorValue_ovb0265 value = {reinterpret_cast<const CType*>(Type()), out};
     if (UnkBehaviorField_ovb0265* field = cls->FindField(key))
-        return fn_71000e78e0(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        return ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                              reinterpret_cast<UnkReflValueArg*>(&value));
     return false;
 }

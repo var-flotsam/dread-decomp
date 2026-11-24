@@ -13,7 +13,7 @@ struct UnkColorLayer224 {
 };
 static_assert(__builtin_offsetof(UnkColorLayer224, bytes) == 0x1b0, "UnkColorLayer224 layout");
 
-void fn_710019db08(UnkColorLayer224* self, const base::color::CColor4F* color) {
+void SetColorAndCacheRGBA8Bytes(UnkColorLayer224* self, const base::color::CColor4F* color) {
     self->color = *color;
     self->bytes[0] = (u8)(s32)(self->color.r * 255.0f);
     self->bytes[1] = (u8)(s32)(self->color.g * 255.0f);

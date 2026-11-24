@@ -61,7 +61,7 @@ void* fn_7100224b00(UnkPlayer* owner, s32 key_a, s32 key_b) {
 
 struct UnkMovieUnit327_b50;
 struct UnkMovieUnit322_b50;
-void fn_7100222bb0(UnkMovieUnit327_b50* self);
+void DestroyMovieDecoderEventHandler(UnkMovieUnit327_b50* self);
 void fn_710021c808(UnkMovieUnit322_b50* self);
 void fn_7100081378(void* allocator);
 extern char g_unk_7101a20630[];  // the pool owner's vtable base
@@ -104,7 +104,7 @@ void fn_71002245ec(UnkSlotPool_ovb0224* self) {
     }
     // Reached by offset, as the original does (a separate address calculation from the loop's).
     reinterpret_cast<base::global::CRntVector<UnkPoolSlot_ovb0224>*>(reinterpret_cast<u8*>(self) + 0x1228)->Free();
-    fn_7100222bb0(reinterpret_cast<UnkMovieUnit327_b50*>(self->field_0x68));
+    DestroyMovieDecoderEventHandler(reinterpret_cast<UnkMovieUnit327_b50*>(self->field_0x68));
     fn_710021c808(reinterpret_cast<UnkMovieUnit322_b50*>(self));
 }
 
@@ -118,7 +118,7 @@ void fn_7100222970(void* list);
 __attribute__((visibility("hidden"))) void* fn_71002237f0(u64 size, u64 align, void* user);
 __attribute__((visibility("hidden"))) void fn_7100223860(void* pointer, void* user);
 __attribute__((visibility("hidden"))) void* fn_7100223980(void* pointer, u64 size, void* user);
-void fn_7100223b8c(void* arg);
+void RunMovieInputHandlerThread(void* arg);
 struct UnkRenderTargetOwner;
 void fn_7100223c2c(UnkRenderTargetOwner* self);
 extern char g_unk_716e599f08[] __attribute__((visibility("hidden")));
@@ -143,6 +143,6 @@ void fn_71002236ac(UnkPlayer* player) {
     movie::SetAllocator(fn_71002237f0, fn_7100223860, fn_7100223980, nullptr);
     nn::os::InitializeMessageQueue(reinterpret_cast<nn::os::MessageQueueType*>(self->queue),
                                    self->field_0x9e0, 0x100);
-    fn_7100066744(thread, "MovieInputHandler", fn_7100223b8c, 0, 0x10, self);
+    fn_7100066744(thread, "MovieInputHandler", RunMovieInputHandlerThread, 0, 0x10, self);
     fn_7100223c2c(reinterpret_cast<UnkRenderTargetOwner*>(self));
 }

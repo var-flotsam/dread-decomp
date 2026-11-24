@@ -85,7 +85,7 @@ extern UnkTrackBlend g_unk_7172769788;
 // The kind word of a blend setting: the kind in the low half, the mode in the high.
 static inline u64 BlendKind(u32 kind, u32 mode) { return (u64)mode << 32 | kind; }
 
-void fn_7100b8e430() {
+void InitActionEnumStatics() {
     InitHeaderIds(&g_unk_71727697a0);
     InitEnum(&g_unk_7172768f18, "EActionProps", fn_7100b8caec, fn_7100b8c7c0, g_unk_7172769030, &g_unk_7172769038,
              fn_7100b8e0dc, &g_unk_7172769058, fn_7100b8e0e8);

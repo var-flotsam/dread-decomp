@@ -182,7 +182,7 @@ bool fn_7100705cec(UnkActorWaypoints_l705cec* self, f32 range, f32 offset) {
         if (movement->segment > ai->path.SegmentCount())
             return false;
         const UnkNavCell_l705cec* cell =
-            reinterpret_cast<const UnkNavCell_l705cec*>(fn_710035e580(ai->path.AsPath(), movement->segment));
+            reinterpret_cast<const UnkNavCell_l705cec*>(GetPathSegmentEntryOrFallback(ai->path.AsPath(), movement->segment));
         if (cell->cell == 0xffff || cell->side == 0xff)
             return false;
         if (cell->cell != waypoints[index].field_0x1a || cell->side != waypoints[index].side)

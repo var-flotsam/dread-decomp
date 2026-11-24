@@ -23,7 +23,7 @@ static inline void InitId(UnkStrIdBase* id, const char* str) {
     __cxa_atexit(CStrId_Destroy, id, g_unk_7101a19000);
 }
 
-void fn_7100f17b70() {
+void InitEndScreenStatics() {
     UnkStatics_71729dc370* s = &g_unk_71729dc370;
     s->field_0x0 = 6;
     InitId(&s->ids[0], "binaries");

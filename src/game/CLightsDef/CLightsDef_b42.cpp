@@ -11,7 +11,7 @@
 #include "game/UnkLightsElem_b42a3.h"
 #include "types.h"
 
-void fn_7100d9b128(UnkLightsElem_b42a3* self);
+void ConstructCLightsDefLightEntry(UnkLightsElem_b42a3* self);
 void* fn_7100d9b27c(UnkLightsElem_b42a3* self, UnkLightsElem_b42a3* other);
 
 static inline void Grow_b42a3(UnkLightsArray_b42a3* self, u32 index) {
@@ -22,7 +22,7 @@ static inline void Grow_b42a3(UnkLightsArray_b42a3* self, u32 index) {
     u32 n = index + 1;
     CLightsDef_ReserveLights(self, n);
     for (u32 i = self->count; i < n; ++i)
-        fn_7100d9b128(&self->data[i]);
+        ConstructCLightsDefLightEntry(&self->data[i]);
     self->count = n;
 }
 

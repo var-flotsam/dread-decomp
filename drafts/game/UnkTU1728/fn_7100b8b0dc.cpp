@@ -14,7 +14,7 @@ struct UnkStruct_71007142e8 {
 
 struct UnkTimeKey;
 struct UnkTimeKeys;
-UnkTimeKey* fn_7100b8ad14(UnkTimeKeys* self, u32 index);
+UnkTimeKey* GetTimeKeyAtGrowingWithDefaults(UnkTimeKeys* self, u32 index);
 void fn_7100714808(void* target, UnkStruct_71007142e8* motion, bool flag);
 
 // A time key: from `time` on, the frame advances `rate` frames a second from `frame`.
@@ -54,7 +54,7 @@ static inline f32 FrameAt(UnkTimeline_b8b0dc* self, f32 time) {
     f32 frame;
     if (self->keys.count == 1) {
         UnkTimeKey_b8b0dc* key =
-            reinterpret_cast<UnkTimeKey_b8b0dc*>(fn_7100b8ad14(reinterpret_cast<UnkTimeKeys*>(&self->keys), 0));
+            reinterpret_cast<UnkTimeKey_b8b0dc*>(GetTimeKeyAtGrowingWithDefaults(reinterpret_cast<UnkTimeKeys*>(&self->keys), 0));
         frame = time * key->rate;
     } else {
         UnkTimeKey_b8b0dc* next =

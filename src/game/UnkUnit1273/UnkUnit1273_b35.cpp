@@ -7,7 +7,7 @@
 // Named as src/game/CMaterialFXComponent/fn_7100926874.cpp declares the callee (the id at +8 is a
 // CStrId there).
 
-bool fn_710080f9e0(const UnkKey* a, const UnkKey* b) {
+bool AreKindedKeysEqual(const UnkKey* a, const UnkKey* b) {
     if (a->kind != b->kind)
         return false;
     if (a->kind != 1) {

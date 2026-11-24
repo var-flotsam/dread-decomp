@@ -7,7 +7,7 @@
 struct UnkCircle2D;
 struct UnkCapsule2D;
 
-bool fn_710010f838(const UnkCircle2D* circle, const UnkCapsule2D* capsule, f32 tolerance) {
+bool IsCapsuleCentreInsideCircle(const UnkCircle2D* circle, const UnkCapsule2D* capsule, f32 tolerance) {
     const f32* c = reinterpret_cast<const f32*>(circle);
     const f32* p = reinterpret_cast<const f32*>(capsule);
     f32 dx = c[0] - p[0];

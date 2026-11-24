@@ -80,7 +80,7 @@ UnkActor_dca218* fn_7100dca218(UnkSurvivalConfiguration_dca218* self) {
             fn_7100ddb6dc(registry);
             g_unk_71726bee10 = registry;
         }
-        UnkCentralUnit* unit = fn_7100ddb768(reinterpret_cast<UnkUnit2547*>(registry));
+        UnkCentralUnit* unit = GetFirstCentralUnitListObject(reinterpret_cast<UnkUnit2547*>(registry));
         if (!unit)
             return nullptr;
         UnkActorHolder_dca218** slot = reinterpret_cast<UnkActorHolder_dca218**>(

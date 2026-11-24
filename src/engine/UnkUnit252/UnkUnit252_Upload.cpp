@@ -17,7 +17,7 @@ bool fn_71001c01fc(UnkGfxSlots252* self, u32 index, const UnkGfxData252* vertice
     u32 vertex_size = vertices->count * 12;
     u32 record_size = records->count * 16;
     UnkGfxBuffer252* buffer = holder->buffer;
-    if (record_size + vertex_size > fn_71001622e0(buffer))
+    if (record_size + vertex_size > GetBufferCapacityOrZero(buffer))
         return false;
     fn_7100161d70(buffer);
     fn_7100161e60(buffer, 0, 0, 0, fn_71001622f0(3, 3), vertices->data, vertex_size, 0);

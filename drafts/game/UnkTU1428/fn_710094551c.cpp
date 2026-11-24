@@ -221,7 +221,7 @@ void fn_710094551c(UnkMorphBallMovement_551c* self, f32 dt) {
         }
         UnkBallInterpRef_551c* ref = self->interp;
         if (ref && ref->id == self->interp_id && self->interp_id != ~0ull && ref->object) {
-            fn_7100105da8(reinterpret_cast<UnkInterp_7100105d34*>(ref->object),
+            SetSoundVoicePitchOverDuration(reinterpret_cast<UnkInterp_7100105d34*>(ref->object),
                           Clamp_551c(ref->object->time + dt, 0.1f, 1.5f), 0.2f);
         }
     }

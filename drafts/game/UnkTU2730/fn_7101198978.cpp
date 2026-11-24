@@ -89,8 +89,8 @@ void fn_7101198978(UnkCutsceneList_l198978* self) {
         }
         ++key->data->reads;
         UnkTunableLine name(key->data->String());
-        name = fn_710013c834(name.Str(), "CutScenePlayed[", g_unk_710162e2ed);
-        name = fn_710013c834(name.Str(), "]", g_unk_710162e2ed);
+        name = ReplaceAllSubstrings(name.Str(), "CutScenePlayed[", g_unk_710162e2ed);
+        name = ReplaceAllSubstrings(name.Str(), "]", g_unk_710162e2ed);
         UnkTextStrId_l198978 id(*name.Str());
         MoveBack(&self->unplayed, id);
         listed = true;

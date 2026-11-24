@@ -72,6 +72,6 @@ struct UnkChainedMap_b54a1 {
 };
 
 
-UnkMapNode_b54a1* fn_7100142504(UnkChainedMap_b54a1<3>* self, const u64* key) { return self->Erase(key); }
+UnkMapNode_b54a1* EraseChainedMapNodeByU64Key(UnkChainedMap_b54a1<3>* self, const u64* key) { return self->Erase(key); }
 UnkMapNode_b54a1* fn_710014bca8(UnkChainedMap_b54a1<4>* self, const u64* key) { return self->Erase(key); }
 UnkMapNode_b54a1* fn_710019e268(UnkChainedMap_b54a1<5>* self, const u64* key) { return self->Erase(key); }

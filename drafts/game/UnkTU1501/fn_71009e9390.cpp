@@ -167,7 +167,7 @@ struct UnkLeg_b152 {
 void fn_71002d6074(UnkLeg_b152* leg, bool flag, f32 weight);
 bool fn_710002fb70(void* timer);
 
-void fn_71009eee34(UnkSamusMovement* movement, const u64* key, bool active, bool flag) {
+void SetSamusLegOverrideKeyActive(UnkSamusMovement* movement, const u64* key, bool active, bool flag) {
     UnkMove_b152* self = reinterpret_cast<UnkMove_b152*>(movement);
     UnkGuiKeyList* list = reinterpret_cast<UnkGuiKeyList*>(self->timer);
     base::global::CStrId* id = reinterpret_cast<base::global::CStrId*>(const_cast<u64*>(key));

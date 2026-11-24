@@ -40,7 +40,7 @@ void fn_7100ddb6f8(UnkUnit2547* self, void* arg) {
     }
 }
 
-UnkCentralUnit* fn_7100ddb768(UnkUnit2547* self) {
+UnkCentralUnit* GetFirstCentralUnitListObject(UnkUnit2547* self) {
     UnkCentralUnitList* list = fn_7100772c98();
     for (UnkCentralUnitEntry** it = list->data, **end = list->data + list->count; it != end; ++it) {
         if (*it && (*it)->object)
@@ -49,7 +49,7 @@ UnkCentralUnit* fn_7100ddb768(UnkUnit2547* self) {
     return nullptr;
 }
 
-void fn_7100ddb7bc(UnkUnit2547* self, void* a, void* b, void* c, void* d, bool e) {
+void BroadcastSubAreaChangeToCentralUnits(UnkUnit2547* self, void* a, void* b, void* c, void* d, bool e) {
     UnkCentralUnitList* list = fn_7100772c98();
     for (UnkCentralUnitEntry** it = list->data, **end = list->data + list->count; it != end; ++it) {
         if (*it && (*it)->object)
@@ -98,7 +98,7 @@ void fn_7100ddb9a4(UnkUnit2547* self, void* arg) {
 void fn_71007724c4(UnkCentralUnit* unit, f32* value, u32* id);
 
 // The highest value any unit reports (fn_71007724c4) and the id that came with it; both 0 without one.
-void fn_7100ddba14(UnkUnit2547* self, f32* best, u32* best_id) {
+void GetHighestCentralUnitValueAndId(UnkUnit2547* self, f32* best, u32* best_id) {
     *best = 0;
     *best_id = 0;
     UnkCentralUnitList* list = fn_7100772c98();
@@ -134,7 +134,7 @@ static inline void SendToTargets(f32 value) {
     }
 }
 
-void fn_7100ddbabc(UnkUnit2547* self, u32 state, f32 value) {
+void SetStateAndSendValueToCentralUnitTargets(UnkUnit2547* self, u32 state, f32 value) {
     self->state = state;
     SendToTargets(value);
 }

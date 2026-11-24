@@ -57,7 +57,7 @@ void fn_7101043f74(UnkObj_ovb0265* self, UnkPropBag* bag) {
         case 'b': {
             bool v = false;
             UnkObjValue value = {fn_710000d228(), &v};
-            fn_71000e78e0(reinterpret_cast<UnkReflField*>(it), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+            ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(it), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                           reinterpret_cast<UnkReflValueArg*>(&value));
             unk_prop_bag::fn_710050f4ac(bag, name, v);
             break;
@@ -65,7 +65,7 @@ void fn_7101043f74(UnkObj_ovb0265* self, UnkPropBag* bag) {
         case 'f': {
             f32 v = 0.0f;
             UnkObjValue value = {fn_710000abbc(), &v};
-            fn_71000e78e0(reinterpret_cast<UnkReflField*>(it), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+            ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(it), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                           reinterpret_cast<UnkReflValueArg*>(&value));
             unk_prop_bag::fn_710033187c(bag, name, v);
             break;
@@ -73,7 +73,7 @@ void fn_7101043f74(UnkObj_ovb0265* self, UnkPropBag* bag) {
         case 'i': {
             u32 v = 0;
             UnkObjValue value = {fn_7100014768(), &v};
-            fn_71000e78e0(reinterpret_cast<UnkReflField*>(it), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+            ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(it), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                           reinterpret_cast<UnkReflValueArg*>(&value));
             unk_prop_bag::fn_7100aa3b9c(bag, name, v);
             break;
@@ -81,7 +81,7 @@ void fn_7101043f74(UnkObj_ovb0265* self, UnkPropBag* bag) {
         case 's': {
             CRntString v(g_unk_710162e2ed);
             UnkObjValue value = {fn_7100007f84(), &v};
-            fn_71000e78e0(reinterpret_cast<UnkReflField*>(it), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+            ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(it), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                           reinterpret_cast<UnkReflValueArg*>(&value));
             unk_prop_bag::fn_710050e4dc(bag, name, v.data ? v.data : g_unk_710162e2ed);
             break;

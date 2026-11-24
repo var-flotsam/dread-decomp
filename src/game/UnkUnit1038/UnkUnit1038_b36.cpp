@@ -10,7 +10,7 @@ struct UnkUnit1038Owner {
     UnkWeakHandle* handle;
 };
 
-void fn_71006a23c4(UnkUnit1038Owner* self, UnkWeakTarget* target) {
+void SetWeakTargetUnlessCurrentAlive(UnkUnit1038Owner* self, UnkWeakTarget* target) {
     if (!target)
         return;
     if (self->handle && self->handle->target)

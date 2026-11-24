@@ -103,7 +103,7 @@ bool fn_710048cde0(UnkWallClimbAttack_l48cde0* self, void* arg, u32 mode) {
         return false;
     UnkWarriorAI* warrior = reinterpret_cast<UnkWarriorAI*>(ai);
     if (CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(warrior)) {
-        bool in_cutscene = fn_7100df5630(g_unk_7101d47310);
+        bool in_cutscene = IsPlayerGhostAuraStateIn3To6(g_unk_7101d47310);
         if (y > limit || in_cutscene)
             return false;
     } else {

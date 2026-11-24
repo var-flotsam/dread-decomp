@@ -202,7 +202,7 @@ bool fn_710020da1c(UnkUpdater_710020c780* self, f32 dt) {
     return self->field_0xf9;
 }
 
-void fn_710020dbd8(UnkUpdater_710020c780* self) {
+void SyncSourceSettingsAndApplyBSphereRadius(UnkUpdater_710020c780* self) {
     UnkSource_710020c780* source = self->field_0x108;
     UnkReflObject* obj = self->field_0x78;
     UnkReflObject* cast = nullptr;

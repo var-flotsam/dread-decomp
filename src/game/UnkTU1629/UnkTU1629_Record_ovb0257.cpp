@@ -78,7 +78,7 @@ void fn_7100acfb14(void* record, const void* source) {
 bool fn_7100ad0294(UnkRecord_b257g* self, bool a, u32 b, UnkChild_b257g* child);
 
 // Appends the children the record accepts for (a, b) to `out`.
-void fn_7100ad0380(UnkRecord_b257g* self, bool a, u32 b, base::global::CRntVector<UnkChild_b257g*>* out) {
+void CollectRecordChildrenAcceptedByFilter(UnkRecord_b257g* self, bool a, u32 b, base::global::CRntVector<UnkChild_b257g*>* out) {
     out->count = 0;
     if (!self->children.count)
         return;

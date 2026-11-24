@@ -155,7 +155,7 @@ UnkResolvedValue fn_7100ad8120(const UnkTypedRef* collection, void* a, u32 b) {
 }
 
 // The argument the path's first one must convert to.
-UnkReflPathArg_ovb0106* fn_7100ad2e20();
+UnkReflPathArg_ovb0106* GetPathRootIdValue();
 
 static inline UnkTypedRef RefOf(UnkReflPathArg_ovb0106* arg) {
     UnkTypedRef r;
@@ -170,7 +170,7 @@ UnkResolvedValue fn_7100ad7cc0(UnkReflPath_ovb0106* path) {
     if (path->count == 0)
         return UnkResolvedValue();
     UnkReflPathArg_ovb0106* first = path->data;
-    UnkReflPathArg_ovb0106* expected = fn_7100ad2e20();
+    UnkReflPathArg_ovb0106* expected = GetPathRootIdValue();
     const CType* type = first->type;
     UnkTypedRef ref;
     ref.type = type;

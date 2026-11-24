@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkGuiEventData_ovb0182;
-void fn_7100b1e3fc(void* slots, UnkGuiEventData_ovb0182* event);
+void DispatchEventToHandlersForKey(void* slots, UnkGuiEventData_ovb0182* event);

@@ -83,7 +83,7 @@ struct UnkFlags_b0237 {
         flags = static_cast<u16>(x | (y << 8));
     }
 };
-bool fn_710015b650(UnkFlags_b0237* p);
+bool PushStencilStateAndApply(UnkFlags_b0237* p);
 
 struct UnkRenderOwner_b0237 {
     u8 pad_0x0[0x8];
@@ -277,7 +277,7 @@ void fn_71001debe8(UnkRenderOwner_b0237* self) {
 void fn_71001de3a8(UnkRenderOwner_b0237* self) {
     fn_71001cdd6c(self->target, g_unk_716e596128);
     UnkFlags_b0237 flags(0, 1);
-    fn_710015b650(&flags);
+    PushStencilStateAndApply(&flags);
     if (fn_71001d48cc(self->target, nullptr, 1.0f - self->field_0x438)) {
         f32 a = static_cast<f32>(self->field_0x120);
         f32 b = static_cast<f32>(self->field_0x428);
@@ -299,7 +299,7 @@ void fn_71001de3a8(UnkRenderOwner_b0237* self) {
                       &self->rect_0x100);
         fn_71001cdd18(self->target);
     }
-    fn_710015b8a0(true);
+    PopStateStackAndApplyNewTop(true);
     fn_71001cdd70(self->target);
 }
 

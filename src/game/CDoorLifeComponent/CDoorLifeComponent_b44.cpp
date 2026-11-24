@@ -29,5 +29,5 @@ void fn_71008d0740(UnkDoorLife_b44a2* self, bool add, base::global::CStrId* key)
     if (!after)
         fn_71008d498c(self, 0, 0, 0);
     else
-        fn_71008d0ef4(self);
+        OpenDoorUnlessOpen(self);
 }

@@ -34,7 +34,7 @@ struct UnkCounters_ovb0259 {
 struct UnkFileReader;
 extern const char* g_unk_7101a1bd30;
 
-__attribute__((noinline)) UnkCounter_ovb0259* fn_71001047e0(base::global::CRntVector<UnkCounter_ovb0259>* v, u32 index) {
+__attribute__((noinline)) UnkCounter_ovb0259* GrowCounterVectorAt(base::global::CRntVector<UnkCounter_ovb0259>* v, u32 index) {
     return &v->GrowAt(index);
 }
 
@@ -70,7 +70,7 @@ bool fn_7100104940(UnkCounters_ovb0259* self, const u32* key) {
     return true;
 }
 
-void fn_7100104600(void* self_) {
+void LoadUseCounterLimitsFromFile(void* self_) {
     UnkCounters_ovb0259* self = static_cast<UnkCounters_ovb0259*>(self_);
     CRntFile file;
     fn_710007be8c(&file, 0xb, nullptr);
@@ -100,7 +100,7 @@ void fn_7100104600(void* self_) {
         }
         for (u32 i = 0; i < count; ++i) {
             const char* name;
-            UnkCounter_ovb0259* e = fn_71001047e0(&v, i);
+            UnkCounter_ovb0259* e = GrowCounterVectorAt(&v, i);
             CRntFile_ReadCString(&file, &name);
             CRntFile_Read(&file, &e->limit, 4, 1);
             e->count = 0;

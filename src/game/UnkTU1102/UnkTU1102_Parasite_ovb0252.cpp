@@ -96,7 +96,7 @@ void fn_71006e9fcc(UnkXParasiteAI* self, UnkActor* target) {
 struct UnkStruct_710024fa0c;
 struct UnkXParasiteMode_A3_b75;
 
-void fn_71006e75e8(UnkXParasiteAI* self, bool on);
+void SetXParasiteEffectAndBindingSlots(UnkXParasiteAI* self, bool on);
 
 static inline bool Moving(UnkXParasiteAI* s) {
     return s->field_0x14714 - 0.001f > 0.0f || s->field_0x14714 + 0.001f < 0.0f || s->field_0x14718 - 0.001f > 0.0f ||
@@ -134,7 +134,7 @@ void fn_71006e8a18(UnkXParasiteAI* self) {
         }
         fn_7100232c68(self->owner);
     } else {
-        fn_71006e75e8(self, true);
+        SetXParasiteEffectAndBindingSlots(self, true);
     }
     fn_71006e9384(self, reinterpret_cast<const UnkXParasiteMode_A3_b75*>(&self->field_0x146e4));
     self->field_0x146e4 = 0x7fffffff;

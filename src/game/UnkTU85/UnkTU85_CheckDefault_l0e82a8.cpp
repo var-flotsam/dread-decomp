@@ -70,7 +70,7 @@ inline const T* ValueAs(const UnkReflValue& value) {
 }
 
 inline void GetField(UnkFieldRecord_l0e82a8* field, void* obj, UnkFieldValueArg_l0e82a8* arg) {
-    fn_71000e78e0(reinterpret_cast<UnkReflField*>(field), static_cast<const UnkReflFieldObject*>(obj),
+    ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(field), static_cast<const UnkReflFieldObject*>(obj),
                   reinterpret_cast<UnkReflValueArg*>(arg));
 }
 

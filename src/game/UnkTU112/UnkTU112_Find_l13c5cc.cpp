@@ -34,7 +34,7 @@ static inline UnkTunableObject** FindByFullName(UnkTunableRegistry* self, const 
     return &self->objects[self->count];
 }
 
-UnkTunableObject* fn_710013c5cc(UnkTunableRegistry* self, const char* name, bool qualified) {
+UnkTunableObject* FindTunableObjectByName(UnkTunableRegistry* self, const char* name, bool qualified) {
     UnkNameString_l13c5cc key(name);
     if (qualified) {
         UnkTunableObject** it = FindByFullName(self, key.Str());

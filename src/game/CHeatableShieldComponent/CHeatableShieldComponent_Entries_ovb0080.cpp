@@ -51,7 +51,7 @@ void fn_710086ad24(UnkHeatableShieldD_b0080* self) {
     }
     if (self->entries) {
         for (u32 i = 0; i < self->count; ++i)
-            fn_710086e0ac(reinterpret_cast<UnkHeatableValue_0xd0*>(&self->entries[i]));
+            DestroyHeatableShieldValueRecord(reinterpret_cast<UnkHeatableValue_0xd0*>(&self->entries[i]));
     }
     self->count = 0;
     if (self->keys)

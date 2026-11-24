@@ -439,7 +439,7 @@ void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
 extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 struct UnkCentralUnit;
-UnkCentralUnit* fn_7100ddb768(UnkUnit2547* self);
+UnkCentralUnit* GetFirstCentralUnitListObject(UnkUnit2547* self);
 struct UnkZiplineLink_b49;
 struct UnkZiplineLinkTarget_b49;
 UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* source);

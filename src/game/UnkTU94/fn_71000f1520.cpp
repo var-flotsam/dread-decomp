@@ -103,7 +103,7 @@ bool fn_71000f1520(UnkTypedRefWriter* self, UnkWriterField_f1520* field) {
             object.ptr = ValueAddress(parent->value);
             UnkReflValueArg value;
             fn_71000a1710(&value, &top->value);
-            fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), &object, &value);
+            SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(field), &object, &value);
         }
         SetCount_f1520(self, self->count - 1);
     } else {

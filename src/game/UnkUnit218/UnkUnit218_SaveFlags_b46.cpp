@@ -20,7 +20,7 @@ struct UnkUnit218_b46a1 {
     UnkFlagNode_b46a1* head;
 };
 
-void fn_71001995e8(UnkUnit218_b46a1* self, bool clear) {
+void SaveListFlagsToPreviousAndOptionallyClear(UnkUnit218_b46a1* self, bool clear) {
     UnkFlagNode_b46a1* node = self->head;
     if (clear) {
         for (; node; node = node->next) {

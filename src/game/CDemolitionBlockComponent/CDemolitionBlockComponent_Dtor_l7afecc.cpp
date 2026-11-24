@@ -48,7 +48,7 @@ struct UnkDemolitionBlockListener_l7afecc {
 
 struct UnkDemolitionBlockTable_l7afecc : UnkStrIdTable {
     ~UnkDemolitionBlockTable_l7afecc() {
-        fn_71004f11f8(this);
+        ClearStrIdKeyedRecord10Table(this);
         if (keys)
             allocator->vf_0x48(keys);
         if (values)

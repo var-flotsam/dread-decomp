@@ -268,7 +268,7 @@ struct UnkAimTurn_ovb0198p {
 };
 static_assert(__builtin_offsetof(UnkAimTurn_ovb0198p, side) == 0x330, "layout");
 
-void fn_7100349f28(UnkAimTurn_ovb0198p* self, f32 dt, f32 target) {
+void TurnAimAngleTowardTargetWithBandSpeed(UnkAimTurn_ovb0198p* self, f32 dt, f32 target) {
     fn_710007a170(reinterpret_cast<UnkAim*>(&target), self->angle);
     bool up = target > self->angle;
     f32 cur = self->angle;
@@ -559,7 +559,7 @@ struct UnkAimShot_ovb0198v {
 };
 static_assert(__builtin_offsetof(UnkAimShot_ovb0198v, valid) == 0x990, "layout");
 
-void fn_710034f374(UnkAimShot_ovb0198v* self) {
+void CacheShotOrientationAxis(UnkAimShot_ovb0198v* self) {
     self->valid = 0;
     UnkAnimationComponent* animation = self->actor->animation;
     UnkTrackQuery query = {fn_7100d34f18(), nullptr, -1.0f};

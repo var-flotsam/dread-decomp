@@ -61,11 +61,11 @@ struct UnkCopyRef {
 };
 
 inline bool GetField(UnkCopyField* field, const UnkCopyRef* obj, UnkCopyRef* value) {
-    return fn_71000e78e0(reinterpret_cast<CVariable*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
+    return ReadReflectedFieldIntoTypedRef(reinterpret_cast<CVariable*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
                          reinterpret_cast<UnkReflValueArg*>(value));
 }
 inline bool SetField(UnkCopyField* field, const UnkCopyRef* obj, UnkCopyRef* value) {
-    return fn_71000e7a80(reinterpret_cast<CVariable*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
+    return SetReflectedFieldValue(reinterpret_cast<CVariable*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
                          reinterpret_cast<UnkReflValueArg*>(value));
 }
 

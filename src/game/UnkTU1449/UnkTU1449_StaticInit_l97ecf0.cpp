@@ -11,7 +11,7 @@ using namespace unk_static_init;
 struct UnkIdRecordOwner_0xf0;
 using UnkIdElem = UnkCloneStrIdElem<UnkIdRecordOwner_0xf0, 0, 8, UnkCloneStrId<UnkIdRecordOwner_0xf0>>;
 
-void fn_710097bb7c(base::UnkStrIdVec* self, const base::global::CStrId* ids, u64 size, u32 step,
+void ConstructStrIdVectorFromIdArray(base::UnkStrIdVec* self, const base::global::CStrId* ids, u64 size, u32 step,
                    base::IAllocator* allocator, u32 flags);
 void fn_71008600a8(base::global::CRntVector<UnkIdElem>* self);
 
@@ -26,26 +26,26 @@ static_assert(__builtin_offsetof(UnkStatics_l97ecf0, wall_up) == 0x40, "layout")
 extern UnkStatics_l97ecf0 g_unk_717273ad40 __attribute__((visibility("hidden")));
 
 // Each list: two ids, a growth step of 10, the default allocator, then its destructor registered.
-void fn_710097ecf0() {
+void InitMagnetGrappleTransitionIdStatics() {
     InitHeaderIds(&g_unk_717273ad40.ids);
     [] {
         UnkStrIdTmp ids[] = {UnkStrIdTmp("magnetwallgrapple2magnetwalldown5init", true),
                              UnkStrIdTmp("magnetwallgrapple2magnetwalldown2init", true)};
-        fn_710097bb7c(&g_unk_717273ad40.wall_down, reinterpret_cast<const base::global::CStrId*>(ids), 2, 10, nullptr, 15);
+        ConstructStrIdVectorFromIdArray(&g_unk_717273ad40.wall_down, reinterpret_cast<const base::global::CStrId*>(ids), 2, 10, nullptr, 15);
     }();
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_71008600a8), &g_unk_717273ad40.wall_down,
                   g_unk_7101a19000);
     [] {
         UnkStrIdTmp ids[] = {UnkStrIdTmp("magnetwallgrapple2magnetwallup5init", true),
                              UnkStrIdTmp("magnetwallgrapple2magnetwallup2init", true)};
-        fn_710097bb7c(&g_unk_717273ad40.wall_up, reinterpret_cast<const base::global::CStrId*>(ids), 2, 10, nullptr, 15);
+        ConstructStrIdVectorFromIdArray(&g_unk_717273ad40.wall_up, reinterpret_cast<const base::global::CStrId*>(ids), 2, 10, nullptr, 15);
     }();
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_71008600a8), &g_unk_717273ad40.wall_up,
                   g_unk_7101a19000);
     [] {
         UnkStrIdTmp ids[] = {UnkStrIdTmp("magnetceilinggrapple2magnetceilingforward5init", true),
                              UnkStrIdTmp("magnetceilinggrapple2magnetceilingforward2init", true)};
-        fn_710097bb7c(&g_unk_717273ad40.ceiling_forward, reinterpret_cast<const base::global::CStrId*>(ids), 2, 10, nullptr,
+        ConstructStrIdVectorFromIdArray(&g_unk_717273ad40.ceiling_forward, reinterpret_cast<const base::global::CStrId*>(ids), 2, 10, nullptr,
                       15);
     }();
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_71008600a8), &g_unk_717273ad40.ceiling_forward,
@@ -53,7 +53,7 @@ void fn_710097ecf0() {
     [] {
         UnkStrIdTmp ids[] = {UnkStrIdTmp("magnetceilinggrapple2magnetceilingbackward5init", true),
                              UnkStrIdTmp("magnetceilinggrapple2magnetceilingbackward2init", true)};
-        fn_710097bb7c(&g_unk_717273ad40.ceiling_backward, reinterpret_cast<const base::global::CStrId*>(ids), 2, 10, nullptr,
+        ConstructStrIdVectorFromIdArray(&g_unk_717273ad40.ceiling_backward, reinterpret_cast<const base::global::CStrId*>(ids), 2, 10, nullptr,
                       15);
     }();
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_71008600a8), &g_unk_717273ad40.ceiling_backward,

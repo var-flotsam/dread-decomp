@@ -106,7 +106,7 @@ void fn_710086c218(UnkHeatableShield_b0080* self, const void* a0, bool a1, const
         CHeatableShieldComponent_CopyConstructEntry(reinterpret_cast<UnkHeatableEntry_b0080*>(&Values(entries)[entries->count]),
                       reinterpret_cast<const UnkHeatableEntry_b0080*>(&value));
         ++entries->count;
-        fn_710086e0ac(&value);
+        DestroyHeatableShieldValueRecord(&value);
     }
 
     UnkHeatableShieldValue_l86c218& entry = Values(entries)[IndexOf(entries, name)];

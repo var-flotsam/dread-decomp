@@ -103,7 +103,7 @@ void fn_7100105e40(UnkVoiceState_ovb0176* self, f32 a, f32 b) {
         fn_71000ffc24(self->owner, (UnkSoundVoiceRef*)self, a);
 }
 
-void fn_7100105da8(UnkVoiceState_ovb0176* self, f32 a, f32 b) {
+void SetSoundVoicePitchOverDuration(UnkVoiceState_ovb0176* self, f32 a, f32 b) {
     if (!self->field_0x11e) {
         if (self->field_0xf4.f == a && Near(self->field_0x3c.f, self->field_0x44.f))
             return;

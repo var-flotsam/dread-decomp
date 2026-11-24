@@ -57,7 +57,7 @@ void fn_710015ac00(u32 a, u32 unused, u32 index, u32 b, u32 c, u32 d) {
 
 extern void (*g_unk_716e29b8c8)(void* context, s32 a, s64 type, u32 value, void* data);
 
-void fn_7100159f90(u32 count, u32 value) {
+void DrawIndexedFromCurrentState(u32 count, u32 value) {
     if (value == 0)
         return;
     UnkDrawState_ovb0245* state = reinterpret_cast<UnkDrawState_ovb0245*>(fn_7100154470());
@@ -89,7 +89,7 @@ extern f32 g_unk_716e29c230;
 extern u32 g_unk_716e29c234;
 extern void (*g_unk_716e29b920)(void* context, s32 a, f32 b, u32 c, s32 d);
 
-void fn_7100159660(bool a, bool b, bool c) {
+void ClearColorAndDepthStencilTargets(bool a, bool b, bool c) {
     if (a) {
         if (g_unk_7101a1d7d8) {
             void* context = fn_7100153d50();
@@ -118,7 +118,7 @@ void fn_7100159660(bool a, bool b, bool c) {
 
 extern s32 g_unk_7101a1d7e8;
 
-void fn_710015a8c0(u32 mode) {
+void SetDepthCompareFunc(u32 mode) {
     if (g_unk_7101a1d7e8 == (s32)mode)
         return;
     g_unk_7101a1d7c5 = true;
@@ -157,7 +157,7 @@ void fn_710015a8c0(u32 mode) {
 // As src/game/UnkTU260/UnkTU260_Render_ovb0237.cpp declares it (the request is its flags block; the original returns
 // whether the request was taken).
 struct UnkFlags_b0237;
-bool fn_710015b650(UnkFlags_b0237* request_) {
+bool PushStencilStateAndApply(UnkFlags_b0237* request_) {
     auto* request = reinterpret_cast<UnkBlendState*>(request_);
     g_unk_716e29c6d0.applied = 0;
     u32 count = g_unk_716e29c6d0.count;
@@ -222,6 +222,6 @@ bool fn_710015b650(UnkFlags_b0237* request_) {
         CallNvn(g_unk_716e29b9b0, fn_7100153d50(), 2, g_unk_716e29c244);
         CallNvn(g_unk_716e29b9b0, fn_7100153d50(), 1, g_unk_716e29c244);
     }
-    fn_710015afd0(request->field_0x0, request->field_0x4, request->field_0x8);
+    SetStencilOpsIfChanged(request->field_0x0, request->field_0x4, request->field_0x8);
     return true;
 }
