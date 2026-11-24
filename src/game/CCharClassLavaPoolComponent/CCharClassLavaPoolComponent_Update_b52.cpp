@@ -93,7 +93,7 @@ static inline bool Near_b52(f32 v, f32 to) {
     return v - 0.001f <= to && v + 0.001f >= to;
 }
 
-void fn_71008fc438(UnkLavaPool_b52* self, f32 dt) {
+void CLavaPoolComponent_UpdateLevelChange(UnkLavaPool_b52* self, f32 dt) {
     fn_71010c4234(reinterpret_cast<char*>(self));
     if (self->paused || !self->changing)
         return;
