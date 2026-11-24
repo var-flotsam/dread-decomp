@@ -6,5 +6,5 @@
 
 void CSoundSystemATK_CreateBlockPool0x128(void* list, u64 count, u32 flags, base::UnkSubAllocator* allocator) {
     UnkBlockArrayPoolCreate<0x128>(static_cast<UnkBlockArrayPool*>(list), count, flags,
-                                   reinterpret_cast<base::UnkAllocator*>(allocator));
+                                   reinterpret_cast<base::IAllocator*>(allocator));
 }

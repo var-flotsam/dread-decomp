@@ -55,7 +55,7 @@ struct UnkRecordArrays_l2ef2d0 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // Grows both arrays to `new_capacity`: the records and the names are moved.

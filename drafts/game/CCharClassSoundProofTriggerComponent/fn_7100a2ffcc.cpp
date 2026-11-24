@@ -36,7 +36,7 @@ struct UnkSoundProofLinkBase_l2ffcc {
     u32 step;
     bool field_0x1c;
     u32 flags;
-    base::UnkAllocator* allocator;  // 0x28
+    base::IAllocator* allocator;  // 0x28
 
     ~UnkSoundProofLinkBase_l2ffcc() {
         vtable = g_unk_7101a20998 + 2;

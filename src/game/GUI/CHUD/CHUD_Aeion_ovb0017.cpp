@@ -222,7 +222,7 @@ void fn_71011e7ac8(UnkHudIdValueVector_ovb0017* self, u32 capacity);
 
 // The array built from a list: reserved for the list, then each element appended (a copy of a copy).
 void fn_71011df420(UnkHudIdValueVector_ovb0017* self, std::initializer_list<UnkHudIdValue_ovb0017> items,
-                   u32 step, base::UnkAllocator* allocator, u32 flags) {
+                   u32 step, base::IAllocator* allocator, u32 flags) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;

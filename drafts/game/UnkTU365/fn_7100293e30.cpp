@@ -43,7 +43,7 @@ struct UnkSegmentList_l293e30 {
     u32 count;
     Node* head;
     Node* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 
     UnkSegmentList_l293e30(const UnkSegmentList_l293e30& other)
@@ -124,7 +124,7 @@ struct UnkNavPolygonSet_l293e30 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u8 pad_0x28[0x10];
     bool changed;  // 0x38
 

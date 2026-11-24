@@ -15,7 +15,7 @@ struct UnkStruct_71002b58c0_U16Vec {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkStruct_71002b58c0_U16Vec(const UnkStruct_71002b58c0_U16Vec& o)
         : data(nullptr), count(0), capacity(0), step(o.step), field_0x14(o.field_0x14), flags(o.flags),

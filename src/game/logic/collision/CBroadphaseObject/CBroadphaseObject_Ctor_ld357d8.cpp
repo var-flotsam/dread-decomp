@@ -48,7 +48,7 @@ struct UnkBroadphaseObject_ld357d8 {
     s32 count;                       // 0xf8
     UnkBroadphaseHandlerNode* head;  // 0x100
     UnkBroadphaseHandlerNode* tail;  // 0x108
-    base::UnkAllocator* allocator;   // 0x110
+    base::IAllocator* allocator;   // 0x110
     u32 flags;                       // 0x118
     u8 pad_0x11c[4];
     bool busy;  // 0x120

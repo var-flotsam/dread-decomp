@@ -28,7 +28,7 @@ struct UnkNodeList_0x38 {
     UnkNode_0x68* head;
     UnkNode_0x68* tail;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u64 field_0x30;
 
     UnkNodeList_0x38() {
@@ -37,7 +37,7 @@ struct UnkNodeList_0x38 {
         head = nullptr;
         tail = nullptr;
         flags = 0x10;
-        base::UnkAllocator* a = GetDefaultAllocator();
+        base::IAllocator* a = GetDefaultAllocator();
         vtable = g_unk_7101cac250 + 0x10;
         allocator = a;
         field_0x30 = 0;

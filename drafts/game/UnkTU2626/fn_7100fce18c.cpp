@@ -61,7 +61,7 @@ struct UnkPlayingList_lfce18c {
     u32 capacity;  // 0x14
     u32 step;
     u32 flags;     // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     void Reserve(u32 n) {
         if (count >= n)

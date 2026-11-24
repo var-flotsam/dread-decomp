@@ -92,7 +92,7 @@ struct UnkGuiLayer_b0209 {
     u32 field_0x10;
     bool field_0x14;
     u32 field_0x18;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 field_0x28;
     bool field_0x2c;
     bool field_0x2d;

@@ -25,7 +25,7 @@ extern void* g_unk_7101a9ff78[];
 
 struct UnkActionBlockPool_b0104 {
     char* vtable;  // 0x0
-    base::UnkAllocator* parent;  // 0x8
+    base::IAllocator* parent;  // 0x8
     UnkBlockFreeList blocks;  // 0x10
     u32 field_0x38;
     bool field_0x3c;
@@ -38,7 +38,7 @@ struct UnkActionBuckets_b0104 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkActionSetCtor_b0104 {
@@ -46,7 +46,7 @@ struct UnkActionSetCtor_b0104 {
     u8 base_0x8[0x50];
     CStrId name;  // 0x58
     u32 field_0x60;
-    base::UnkAllocator* allocator;  // 0x68
+    base::IAllocator* allocator;  // 0x68
     u32 flags;  // 0x70
     u32 count;  // 0x74
     UnkActionBuckets_b0104 buckets;  // 0x78
@@ -95,7 +95,7 @@ void fn_7100b8a7d0(void* value);
 
 // The action map: a chained hash map (base/UnkHashMap.h's layout).
 struct UnkActionMap_b0104 {
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u32 field_0x8;
     u32 count;  // 0xc
     void* buckets;  // 0x10

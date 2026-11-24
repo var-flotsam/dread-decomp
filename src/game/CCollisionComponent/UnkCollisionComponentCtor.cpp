@@ -23,13 +23,13 @@ struct UnkCollisionComponent {
     u32 field_0x80;
     bool field_0x84;
     u32 field_0x88;
-    base::UnkAllocator* field_0x90;
+    base::IAllocator* field_0x90;
     void* field_0x98;
     void* field_0xa0;
     u32 field_0xa8;
     bool field_0xac;
     u32 field_0xb0;
-    base::UnkAllocator* field_0xb8;
+    base::IAllocator* field_0xb8;
     void* field_0xc0;
     u32 field_0xc8;
     void* field_0xd0;
@@ -38,7 +38,7 @@ struct UnkCollisionComponent {
     void* field_0xe8;
     u32 field_0xf0;
     u32 field_0xf4;
-    base::UnkAllocator* field_0xf8;
+    base::IAllocator* field_0xf8;
     u16 field_0x100;
     void** field_0x108;
     void* field_0x110;

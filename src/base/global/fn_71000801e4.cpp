@@ -20,7 +20,7 @@ UnkStringData* StringPool_Insert(UnkStringPool* pool_, u64 hash, const char* str
         return nullptr;
     char* set = pool + 0x58;
     ++*reinterpret_cast<u32*>(set + 0x48);
-    char* node = static_cast<char*>((*reinterpret_cast<base::UnkAllocator**>(set + 0x38))
+    char* node = static_cast<char*>((*reinterpret_cast<base::IAllocator**>(set + 0x38))
                                         ->vf_0x40(0x58, 8, *reinterpret_cast<u32*>(set + 0x40)));
     if (node) {
         *reinterpret_cast<u64*>(node) = hash;

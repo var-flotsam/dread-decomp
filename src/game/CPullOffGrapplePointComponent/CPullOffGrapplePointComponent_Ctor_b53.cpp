@@ -21,7 +21,7 @@ struct UnkPullOffContainerBase_b53 {
 };
 
 struct UnkPullOffContainer_b53 : UnkPullOffContainerBase_b53 {
-    base::UnkAllocator* field_0x28;
+    base::IAllocator* field_0x28;
     u32 field_0x30;
 };
 

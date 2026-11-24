@@ -45,7 +45,7 @@ using UnkPoolSet = UnkBucketSet<UnkPoolNode>;
 // fn_7100080578 has set the pool up.
 struct UnkPoolNodes {
     char* vtable;
-    UnkAllocator* parent;  // the allocator the node memory comes from
+    IAllocator* parent;  // the allocator the node memory comes from
     UnkBlockFreeList blocks;
     u32 field_0x38;
     bool field_0x3c;

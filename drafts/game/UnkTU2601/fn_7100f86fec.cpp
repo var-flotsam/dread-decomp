@@ -46,7 +46,7 @@ struct UnkPartF84868_b56 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     UnkPartF84868_b56(const UnkPartF84868_b56& other) { fn_7100f84868(this, &other); }
 
     UnkPartF84868_b56& operator=(UnkPartF84868_b56&& other) {
@@ -101,14 +101,14 @@ struct UnkEntryNode_a {
 static_assert(sizeof(UnkEntryNode_a) == 0x88, "node");
 
 struct UnkEntryMap_a {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkEntryNode_a** buckets;
     u32 bucket_used;
     u32 bucket_count;
     u8 unk_0x20[0x10];
-    base::UnkAllocator* bucket_allocator;
+    base::IAllocator* bucket_allocator;
     UnkEntryNode_a* tail;
     UnkEntryNode_a* head;
 };
@@ -181,9 +181,9 @@ UnkEntryNode_a* fn_7100f87140(UnkEntryMap_a* self, const CStrId* key, UnkEntry_a
 
 void fn_7100f86fec(UnkEntryMap_a* self, const CStrId* key, const UnkEntry_a* value) {
     UnkEntryNode_a** slot = FindSlot_a(self, key);
-    base::UnkAllocator* allocator = self->allocator;
+    base::IAllocator* allocator = self->allocator;
     u32 flags = self->flags;
-    void* (base::UnkAllocator::*alloc)(u64, u64, u32) = &base::UnkAllocator::vf_0x40;
+    void* (base::IAllocator::*alloc)(u64, u64, u32) = &base::IAllocator::vf_0x40;
     UnkEntryNode_a* old = *slot;
     UnkEntryNode_a* node = (UnkEntryNode_a*)(allocator->*alloc)(sizeof(UnkEntryNode_a), 8, flags);
     new (&node->key) CStrId(*key);
@@ -246,7 +246,7 @@ struct UnkMoveVec_a {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     UnkMoveVec_a(UnkMoveVec_a&& o)
         : data(o.data), count(o.count), capacity(o.capacity), step(o.step), field_0x14(o.field_0x14),
           flags(o.flags), allocator(o.allocator) {
@@ -308,7 +308,7 @@ struct UnkRec50_a {
     u32 step;
     bool field_0x1c;
     u32 flags;
-    base::UnkAllocator* allocator;  // 0x28
+    base::IAllocator* allocator;  // 0x28
     u64 field_0x30;
     u64 field_0x38;
     u64 field_0x40;

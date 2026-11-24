@@ -49,6 +49,6 @@ void CMinimapManager_EraseHashSetNodeAtIterator(char* set, UnkPoolIter* it) {
         *reinterpret_cast<char**>(prev + 0x15f8) = *reinterpret_cast<char**>(node + 0x15f8);
     --*reinterpret_cast<u32*>(set + 0x44);
     fn_7100eb3d9c(node);
-    (*reinterpret_cast<base::UnkAllocator**>(set + 0x38))->vf_0x48(node);
+    (*reinterpret_cast<base::IAllocator**>(set + 0x38))->vf_0x48(node);
     ++*reinterpret_cast<u32*>(set + 0x48);
 }

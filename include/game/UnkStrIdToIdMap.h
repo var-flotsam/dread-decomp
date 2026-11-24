@@ -20,7 +20,7 @@ struct UnkStrIdToIdNode {
 static_assert(__builtin_offsetof(UnkStrIdToIdNode, chain) == 0x38, "UnkStrIdToIdNode layout");
 
 struct UnkStrIdToIdMap {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;                   // 0x8
     u32 count;                   // 0xc
     UnkStrIdToIdNode** buckets;  // 0x10

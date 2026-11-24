@@ -28,7 +28,7 @@ struct UnkTriggerRecord {
     u32 field_0x40;
     bool field_0x44;
     u32 field_0x48;
-    base::UnkAllocator* field_0x50;
+    base::IAllocator* field_0x50;
     bool field_0x58;
 
     __attribute__((always_inline)) UnkTriggerRecord()

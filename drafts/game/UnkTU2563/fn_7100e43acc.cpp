@@ -97,7 +97,7 @@ static_assert(__builtin_offsetof(UnkMinimapRects_le43acc, field_0x6320) == 0x632
 
 // Adds an empty id list under `key` and returns it.
 inline UnkStrIdVec& AddIdList(UnkIdLists_le43acc& lists, const CStrId& key) {
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     if (lists.count == lists.capacity)
         fn_71009ba838(&lists, lists.count + lists.step);
     new (&lists.keys[lists.count]) CStrId(key);

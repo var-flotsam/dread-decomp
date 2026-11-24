@@ -27,7 +27,7 @@ struct UnkRecordMap_b0238 {
     u32 capacity;
     u32 field_0x18;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void DestroyValues() {
         if (values && count) {

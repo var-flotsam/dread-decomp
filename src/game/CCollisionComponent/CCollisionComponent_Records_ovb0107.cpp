@@ -312,7 +312,7 @@ struct UnkCollisionManagerMasks_ovb0107 {
     u32 count;   // 0xb0
     u8 unk_0xb4[8];
     u32 allocFlags;  // 0xbc
-    base::UnkAllocator* allocator;  // 0xc0
+    base::IAllocator* allocator;  // 0xc0
 };
 
 struct UnkCollisionFilter_ovb0107 {
@@ -333,7 +333,7 @@ void fn_71008633e0(UnkCollisionContainer* container, UnkCollisionNode_ovb0107* n
     if (!self->enabled)
         return;
     auto* m = reinterpret_cast<UnkCollisionManagerMasks_ovb0107*>(Manager());
-    base::UnkAllocator* allocator = m->allocator;
+    base::IAllocator* allocator = m->allocator;
     u64 size = 0;
     u32* masks = nullptr;
     u32* bits = nullptr;
@@ -421,7 +421,7 @@ struct UnkCollisionComponent_Dtor_ovb0107 {
     u32* masks;                                // 0xe0
     u32 filterCount;                           // 0xe8
     u8 unk_0xec[0xc];
-    base::UnkAllocator* filterAllocator;  // 0xf8
+    base::IAllocator* filterAllocator;  // 0xf8
     u8 unk_0x100[8];
     void** listener;  // 0x108
     u8 unk_0x110[0x10];

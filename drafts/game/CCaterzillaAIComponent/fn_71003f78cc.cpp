@@ -53,7 +53,7 @@ struct UnkCaterzillaLinksCopy_l3f78cc {
     u32 count;
     u32 capacity;
     u8 pad_0x10[0x10];
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     explicit UnkCaterzillaLinksCopy_l3f78cc(const void* other) {
         fn_7100246a94(reinterpret_cast<base::global::CRntVector<UnkEntry_b41a1>*>(this),

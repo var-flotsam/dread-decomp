@@ -25,7 +25,7 @@ struct UnkResFormat {
     u32 source_step;                         // 0x20
     bool field_0x24;
     u32 source_flags;                      // 0x28
-    base::UnkAllocator* source_allocator;  // 0x30
+    base::IAllocator* source_allocator;  // 0x30
 };
 static_assert(sizeof(UnkResFormat) == 0x38, "UnkResFormat layout");
 

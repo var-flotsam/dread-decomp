@@ -25,7 +25,7 @@ struct UnkPtrNode_A1b72 {
 };
 
 struct UnkPtrMap_A1b72 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;                    // 0xc
     UnkPtrNode_A1b72** buckets;   // 0x10

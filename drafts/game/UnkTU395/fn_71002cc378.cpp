@@ -28,7 +28,7 @@ struct UnkGrowEntries16_ovb0180 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Reallocate(u32 new_capacity) {
         UnkEntry16_ovb0180* p = static_cast<UnkEntry16_ovb0180*>(

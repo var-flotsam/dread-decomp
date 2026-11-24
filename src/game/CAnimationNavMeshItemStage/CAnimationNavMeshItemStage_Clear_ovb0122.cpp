@@ -22,7 +22,7 @@ struct UnkNavMeshItemStage_ovb0122 {
     u32 count;      // 0x18
     u32 capacity;   // 0x1c
     u8 pad_0x20[0x10];
-    base::UnkAllocator* allocator;  // 0x30
+    base::IAllocator* allocator;  // 0x30
     u8 pad_0x38[0x8];
     CStrId name;  // 0x40
     u8 pad_0x48[0x4];

@@ -16,7 +16,7 @@ struct UnkIdRecordOwner_0xf0;
 using UnkIdElem = UnkCloneStrIdElem<UnkIdRecordOwner_0xf0, 0, 8, UnkCloneStrId<UnkIdRecordOwner_0xf0>>;
 
 void fn_710097bb7c(base::UnkStrIdVec* self, const base::global::CStrId* ids, u64 size, u32 step,
-                   base::UnkAllocator* allocator, u32 flags);
+                   base::IAllocator* allocator, u32 flags);
 void fn_71008600a8(base::global::CRntVector<UnkIdElem>* self);
 
 // A string-id vector (base::UnkStrIdVec's layout) built from a list of ids and freed when destroyed.
@@ -27,7 +27,7 @@ struct UnkIdList_le68844 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkIdList_le68844(std::initializer_list<CStrId> ids) {
         fn_710097bb7c(reinterpret_cast<base::UnkStrIdVec*>(this), ids.begin(), ids.size(), 10, nullptr, 0xf);

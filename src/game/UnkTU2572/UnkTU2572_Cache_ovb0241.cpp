@@ -102,8 +102,8 @@ struct UnkResourceCache_ca4ec {
 static_assert(__builtin_offsetof(UnkResourceCache_ca4ec, pending) == 0xa8, "layout");
 static_assert(__builtin_offsetof(UnkResourceCache_ca4ec, path) == 0xd0, "layout");
 
-void fn_7100eca5dc(UnkTableA_ca4ec* self, base::UnkAllocator* allocator, u32 flags);
-void fn_7100eca778(UnkTableB_ca4ec* self, base::UnkAllocator* allocator, u32 flags);
+void fn_7100eca5dc(UnkTableA_ca4ec* self, base::IAllocator* allocator, u32 flags);
+void fn_7100eca778(UnkTableB_ca4ec* self, base::IAllocator* allocator, u32 flags);
 
 void fn_7100eca4ec(UnkResourceCache_ca4ec* self) {
     self->field_0x0 = 0;
@@ -131,7 +131,7 @@ struct UnkMap_ecb4ac {
     s32 field_0x28;
     u8 pad_0x2c[4];
     UnkNode_ecb4ac* field_0x30;
-    base::UnkAllocator* allocator;  // 0x38
+    base::IAllocator* allocator;  // 0x38
     u8 pad_0x40[4];
     u32 count;  // 0x44
     u32 freed;  // 0x48

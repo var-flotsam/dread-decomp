@@ -226,7 +226,7 @@ struct UnkNavOwner_b0025 {
     u32 count;
     UnkItemLink_b0025* head;
     UnkItemLink_b0025* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u8 unk_0x3c[0x44];
     u8 field_0x80[0x2e8];

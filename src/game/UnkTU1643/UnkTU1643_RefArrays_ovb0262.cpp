@@ -61,7 +61,7 @@ struct UnkOwner_ovb0262a {
     u8 pad_0x58[0x8];
     UnkPlainArray_ovb0262a plain;  // 0x60
     u8 pad_0x70[0x10];
-    base::UnkAllocator* alloc_plain;  // 0x80
+    base::IAllocator* alloc_plain;  // 0x80
     u8 pad_0x88[0x8];
     UnkRefArray_ovb0262a d;  // 0x90
     u32 element_count;  // 0xb8 (placed below)

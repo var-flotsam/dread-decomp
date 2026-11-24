@@ -10,7 +10,7 @@
 extern char g_unk_7101aa9b20[];  // vtable
 
 struct UnkAllocHandle_7100359118 {
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     u32 flags = 0xe;
     u32 field_0xc = 0;
 };

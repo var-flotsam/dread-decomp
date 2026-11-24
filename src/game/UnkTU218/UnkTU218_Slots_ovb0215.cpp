@@ -99,7 +99,7 @@ struct UnkIdNode_ovb0215 {
 };
 
 struct UnkIdMap_ovb0215 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkIdNode_ovb0215** buckets;  // 0x10 (base::global::CRntVector)

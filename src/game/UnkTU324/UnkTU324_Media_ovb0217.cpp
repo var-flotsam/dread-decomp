@@ -48,7 +48,7 @@ struct UnkMovieSmartPtrVector_b0217 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_710022037c(UnkMovieSmartPtrVector_b0217* self, u32 n) {

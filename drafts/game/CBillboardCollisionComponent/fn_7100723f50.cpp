@@ -33,7 +33,7 @@ struct UnkBbTable_l723f50 {
     u32 capacity;  // 0x14
     u32 step;      // 0x18
     u32 flags;     // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     void Reserve(u32 n) {
         u64* new_keys = static_cast<u64*>(allocator->vf_0x40(n * sizeof(u64), 8, flags));

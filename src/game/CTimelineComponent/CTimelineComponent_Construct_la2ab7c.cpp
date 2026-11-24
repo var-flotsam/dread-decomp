@@ -46,7 +46,7 @@ struct UnkTimedList_la2ab7c {
     u32 count = 0;
     UnkTimedEntry* head = nullptr;
     UnkTimedEntry* tail = nullptr;
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     u32 flags = 0x13;
 
     UnkTimedList_la2ab7c() : vtable(g_unk_7101a8de98 + 0x10) {}

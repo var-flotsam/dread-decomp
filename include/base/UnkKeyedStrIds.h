@@ -15,7 +15,7 @@ struct UnkKeyedStrIds {
     u32 capacity;
     u32 field_0x18;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Takes over the arrays, leaving the other empty (a map moving its values into new storage).
     UnkKeyedStrIds(UnkKeyedStrIds&& other)

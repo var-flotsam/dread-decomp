@@ -32,19 +32,19 @@ struct UnkDoorShieldLifeCtor_A5_b71 {
     u32 list_a_step;
     u8 list_a_grow;
     u32 list_a_flags;
-    base::UnkAllocator* list_a_allocator;
+    base::IAllocator* list_a_allocator;
     void* list_b_data;  // 0x430
     u64 list_b_count;
     u32 list_b_step;
     u8 list_b_grow;
     u32 list_b_flags;
-    base::UnkAllocator* list_b_allocator;
+    base::IAllocator* list_b_allocator;
     void* list_c_data;  // 0x458
     u64 list_c_count;
     u32 list_c_step;
     u8 list_c_grow;
     u32 list_c_flags;
-    base::UnkAllocator* list_c_allocator;
+    base::IAllocator* list_c_allocator;
     bool field_0x480;
     u8 pad_0x481[0x7];
     u64 field_0x488;

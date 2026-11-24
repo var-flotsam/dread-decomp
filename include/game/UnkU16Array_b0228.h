@@ -12,7 +12,7 @@ struct UnkU16Array_b0228 {
     u32 step;                       // 0x10
     bool field_0x14;                // 0x14
     u32 flags;                      // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     UnkU16Array_b0228() = default;
     UnkU16Array_b0228(const UnkU16Array_b0228& o) {

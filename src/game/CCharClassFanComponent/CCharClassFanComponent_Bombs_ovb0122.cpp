@@ -75,7 +75,7 @@ struct UnkFan_ovb0122 {
     u32 count;                 // 0xb80
     UnkFanNode_ovb0122* head;  // 0xb88
     UnkFanNode_ovb0122* tail;  // 0xb90
-    base::UnkAllocator* allocator;  // 0xb98
+    base::IAllocator* allocator;  // 0xb98
     u32 alloc_flags;                // 0xba0
 };
 static_assert(__builtin_offsetof(UnkFan_ovb0122, alloc_flags) == 0xba0, "layout");

@@ -13,7 +13,7 @@ struct UnkPart48 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // base::global::CRntVector's defaults.
     __attribute__((always_inline)) UnkPart48()

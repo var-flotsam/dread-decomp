@@ -13,7 +13,7 @@ struct UnkArray_a63224 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkArray_a63224(UnkArray_a63224&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),

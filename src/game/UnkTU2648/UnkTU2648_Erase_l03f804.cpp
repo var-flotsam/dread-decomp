@@ -29,7 +29,7 @@ struct UnkIdNode_l03f804 {
 static_assert(__builtin_offsetof(UnkIdNode_l03f804, chain) == 0x5e8, "layout");
 
 struct UnkIdMap_l03f804 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u8 pad_0x8[0x4];
     u32 count;                    // 0xc
     UnkIdNode_l03f804** buckets;  // 0x10

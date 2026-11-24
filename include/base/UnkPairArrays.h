@@ -22,7 +22,7 @@ struct UnkPairArrays {
     u32 capacity;
     u32 step;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     // Grows both arrays (the old contents are copied bitwise) when the capacity has to change.
     void Grow(u32 new_capacity) {

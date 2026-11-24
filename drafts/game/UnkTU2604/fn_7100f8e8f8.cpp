@@ -50,7 +50,7 @@ struct UnkIdNode_lf8e8f8 {
 static_assert(sizeof(UnkIdNode_lf8e8f8) == 0x40, "UnkIdNode_lf8e8f8 layout");
 
 struct UnkIdMap_lf8e8f8 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;                    // 0x8
     u32 count;                    // 0xc
     UnkIdNode_lf8e8f8** buckets;  // 0x10

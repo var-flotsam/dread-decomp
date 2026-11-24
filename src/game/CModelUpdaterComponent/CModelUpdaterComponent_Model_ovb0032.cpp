@@ -25,7 +25,7 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;

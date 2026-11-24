@@ -31,7 +31,7 @@ struct UnkMinimapRecords {
     u32 capacity;
     u32 field_0x18;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkMinimapRecords(UnkMinimapRecords&& other)
         : data(other.data), keys(other.keys), count(other.count), capacity(other.capacity),
@@ -76,7 +76,7 @@ struct UnkMinimapRecordCellList {
     u32 capacity;
     u32 field_0x18;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // The caller (fn_7100e97f8c) has its own view of the list, so the declaration (game/UnkTU2566.h) takes it

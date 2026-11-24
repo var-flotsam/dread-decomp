@@ -19,7 +19,7 @@ struct UnkUnit100Value {
     u32 step;               // 0x18
     bool field_0x1c;
     u32 flags;                     // 0x20
-    base::UnkAllocator* allocator;  // 0x28
+    base::IAllocator* allocator;  // 0x28
 
     __attribute__((always_inline)) UnkUnit100Value& operator=(const UnkUnit100Value& other) {
         if (this != &other) {

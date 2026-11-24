@@ -11,7 +11,7 @@ using base::global::CRntFile;
 namespace {
 
 inline void* AllocateBlock(CRntFile* file, s64 size) {
-    base::UnkAllocator* allocator = file->allocator;
+    base::IAllocator* allocator = file->allocator;
     if (!allocator) {
         allocator = GetDefaultAllocator();
         file->allocator = allocator;

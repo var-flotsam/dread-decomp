@@ -32,7 +32,7 @@ struct UnkRodotukDef {
     u32 field_0x528;
     bool field_0x52c;
     u32 field_0x530;
-    base::UnkAllocator* field_0x538;
+    base::IAllocator* field_0x538;
     u8 field_0x540[0x10];
 };
 

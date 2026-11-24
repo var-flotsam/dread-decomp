@@ -43,7 +43,7 @@ struct UnkMapNode_b0213 {
 };
 
 struct UnkMap_b0213 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkMapNode_b0213** buckets;

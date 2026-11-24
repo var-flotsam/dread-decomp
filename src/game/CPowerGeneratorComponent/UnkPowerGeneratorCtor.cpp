@@ -31,7 +31,7 @@ struct UnkPowerGeneratorComponent {
     u32 field_0xd0;
     bool field_0xd4;
     u32 field_0xd8;
-    base::UnkAllocator* field_0xe0;
+    base::IAllocator* field_0xe0;
     u32 field_0xe8;
     u64 field_0xf0;
     void** field_0xf8;
@@ -40,7 +40,7 @@ struct UnkPowerGeneratorComponent {
     u32 field_0x110;
     bool field_0x114;
     u32 field_0x118;
-    base::UnkAllocator* field_0x120;
+    base::IAllocator* field_0x120;
     u32 field_0x128;
     u64 field_0x130;
     u8 pad_0x138[0x8];

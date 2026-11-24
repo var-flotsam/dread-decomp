@@ -84,7 +84,7 @@ struct CPackManagerDevice {
     u8 field_0x11;
     u8 pad_0x12[6];
     UnkDevice* device;        // +0x18: the device the packs are read from
-    UnkAllocator* allocator;  // +0x20
+    IAllocator* allocator;  // +0x20
     u32 flags;                // +0x28
     u8 pad_0x2c[4];
     global::CRntVector<UnkPack*> packs;  // +0x30

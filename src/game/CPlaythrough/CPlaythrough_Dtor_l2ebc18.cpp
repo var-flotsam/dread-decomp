@@ -73,7 +73,7 @@ struct UnkRecordArray_l2ebc18 {
     u32 count;
     u32 capacity;
     u8 pad_0x10[0x10];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Truncate(u32 n) { CPlaythrough_TruncateRecords(reinterpret_cast<UnkRecords_l2ef66c*>(this), n); }
     void Free() {
@@ -93,7 +93,7 @@ struct UnkIdTable_l2ebc18 {
     void* data;
     void* field_0x8;
     u8 pad_0x10[0x10];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Destroy() {
         fn_71002ecaec(this);

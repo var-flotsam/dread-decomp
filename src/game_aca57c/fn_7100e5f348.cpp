@@ -43,7 +43,7 @@ struct UnkArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkArray(UnkArray&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
@@ -92,7 +92,7 @@ struct UnkRecordIdArray {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // NON_MATCHING(minor): the original keeps a 32-bit record counter (ours is widened to 64 bits),

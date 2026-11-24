@@ -13,7 +13,7 @@ using base::global::CStrId;
 
 // The slots of game/UnkRenderPassSlots.h with flags 0xb.
 struct UnkTU2604Slots {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 field_0x8;
     u32 field_0xc;
     base::global::CRntVector<void*> slots;

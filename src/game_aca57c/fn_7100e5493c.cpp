@@ -26,7 +26,7 @@ struct UnkU16Array {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // base::global::CRntVector's defaults.
     __attribute__((always_inline)) UnkU16Array()
@@ -93,7 +93,7 @@ struct UnkRecord60Array {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) UnkRecord60Array(const UnkRecord60Array& other);
 };

@@ -39,7 +39,7 @@ struct UnkBlendVector13 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkBlendSpace1D13 {
@@ -94,7 +94,7 @@ struct UnkBlendSlots13 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) ~UnkBlendSlots13() {
         for (u64 i = 0; i < count; ++i)

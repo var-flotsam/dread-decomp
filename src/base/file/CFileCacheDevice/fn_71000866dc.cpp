@@ -38,6 +38,6 @@ void CFileCacheDevice_EraseCacheSetNodeAtIterator(char* set, UnkPoolIter* it) {
     if (prev)
         *reinterpret_cast<char**>(prev + 0x10) = *reinterpret_cast<char**>(node + 0x10);
     --*reinterpret_cast<u32*>(set + 0x44);
-    (*reinterpret_cast<base::UnkAllocator**>(set + 0x38))->vf_0x48(node);
+    (*reinterpret_cast<base::IAllocator**>(set + 0x38))->vf_0x48(node);
     ++*reinterpret_cast<u32*>(set + 0x48);
 }

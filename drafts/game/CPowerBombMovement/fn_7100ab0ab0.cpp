@@ -43,7 +43,7 @@ struct UnkPbNode_ovb0015 {
 
 // The chained hash map (the layout of base/UnkHashMap.h's): 11 buckets to start with.
 struct UnkPbMap_ovb0015 {
-    base::UnkAllocator* allocator;  // 0x0: the nodes'
+    base::IAllocator* allocator;  // 0x0: the nodes'
     u32 field_0x8;
     u32 count;                     // 0xc
     base::global::CRntVector<void*> buckets;  // 0x10

@@ -36,7 +36,7 @@ struct UnkScourgeTargetList {
     u32 count;
     UnkWeakHandleNode* head;
     UnkWeakHandleNode* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 static inline UnkScourgeTarget* TargetOf(UnkWeakHandle* handle) {

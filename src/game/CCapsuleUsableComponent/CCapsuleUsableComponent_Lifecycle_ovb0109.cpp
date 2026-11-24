@@ -29,7 +29,7 @@ struct UnkCapsuleUsableComponent_ovb0109 {
     u32 list_a_step;
     bool list_a_grow;
     u32 list_a_flags;
-    base::UnkAllocator* list_a_allocator;
+    base::IAllocator* list_a_allocator;
     u32 list_a_field_0x30;
     void* list_a_owner;
     void** list_b_vtable;  // 0x5e8
@@ -38,7 +38,7 @@ struct UnkCapsuleUsableComponent_ovb0109 {
     u32 list_b_step;
     bool list_b_grow;
     u32 list_b_flags;
-    base::UnkAllocator* list_b_allocator;
+    base::IAllocator* list_b_allocator;
     u32 list_b_field_0x30;
     void* list_b_owner;
     // A listener link: vtable, two words and the weak handle of what it listens to.

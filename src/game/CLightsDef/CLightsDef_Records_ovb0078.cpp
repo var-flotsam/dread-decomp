@@ -65,7 +65,7 @@ struct UnkClearedArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // Shrinks the array to `count` records (it never grows it).

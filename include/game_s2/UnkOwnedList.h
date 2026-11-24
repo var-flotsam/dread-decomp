@@ -39,7 +39,7 @@ struct UnkOwnedList {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // The value-initialised element of GrowAt (fn_71004a972c): an empty list that allocates with
     // flags 0xf.

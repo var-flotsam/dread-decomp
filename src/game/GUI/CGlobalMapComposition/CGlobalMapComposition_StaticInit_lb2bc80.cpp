@@ -67,7 +67,7 @@ void fn_7100b2bc80() {
     param->field_0x4 = -4.0f;
     param->field_0x8 = 3.0f;
     auto* str = reinterpret_cast<base::global::CRntString*>(param->field_0x10);
-    CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&param->field_0x40));
+    CRntString_InitWithAllocator(str, reinterpret_cast<base::IAllocator*>(&param->field_0x40));
     param->field_0x40 = g_unk_7101a1b5a0 + 2;
     param->field_0x68 = 0;
     param->field_0x70 = 0;

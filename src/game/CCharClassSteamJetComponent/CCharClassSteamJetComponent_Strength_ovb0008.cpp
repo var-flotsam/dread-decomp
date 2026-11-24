@@ -34,7 +34,7 @@ struct UnkJetList_ovb0008 {
     u32 field_0x18;
     bool field_0x1c;
     u32 field_0x20;
-    base::UnkAllocator* field_0x28;
+    base::IAllocator* field_0x28;
     u32 field_0x30;
 };
 

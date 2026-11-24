@@ -30,10 +30,10 @@ struct UnkPooledList_l1a8f60 {
     u32 count;
     UnkListNode_l1a8f60* head;  // 0x10
     UnkListNode_l1a8f60* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u32 flags;                      // 0x28
     char* pool_vtable;              // 0x30
-    base::UnkAllocator* pool_allocator;  // 0x38
+    base::IAllocator* pool_allocator;  // 0x38
     UnkBlockFreeList pool;               // 0x40
     u8 pad_0x68[4];
     bool clearing;  // 0x6c

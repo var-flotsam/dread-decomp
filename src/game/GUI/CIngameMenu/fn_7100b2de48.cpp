@@ -512,7 +512,7 @@ void fn_7100b2cebc(UnkStateOwner* self) {
     PlaySound<fn_710006d4d0>(0xfd);
     UnkInlineString path;
     auto* str = reinterpret_cast<base::global::CRntString*>(&path);
-    CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&path.vtable));
+    CRntString_InitWithAllocator(str, reinterpret_cast<base::IAllocator*>(&path.vtable));
     path.vtable = &g_unk_7101a1b750[2];
     path.field_0xb8 = 0;
     path.field_0xc0 = 0;

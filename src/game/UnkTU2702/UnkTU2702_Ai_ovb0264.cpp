@@ -520,7 +520,7 @@ struct UnkLocal_w {
     u8 pad_0x34[4];
     UnkLocalNode_w* head;  // 0x38
     UnkLocalNode_w* tail;  // 0x40
-    base::UnkAllocator* allocator;  // 0x48
+    base::IAllocator* allocator;  // 0x48
     u64 pad_0x50;
     UnkLocal_w(void* actor, void* arg);  // fn_71002c6f80
     __attribute__((always_inline)) ~UnkLocal_w() {

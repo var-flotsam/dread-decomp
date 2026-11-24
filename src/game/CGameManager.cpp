@@ -206,7 +206,7 @@ struct UnkGameManagerStr {
     CRntString* Str() { return reinterpret_cast<CRntString*>(this); }
 
     UnkGameManagerStr() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage));
         storage.vtable = g_unk_7101a194b8 + 2;
         storage.field_0x108 = nullptr;
         storage.field_0x110 = 0;
@@ -699,7 +699,7 @@ struct UnkPtrList {
         UnkPtrListNode* tail;
     };
     union {
-        base::UnkAllocator* allocator;
+        base::IAllocator* allocator;
     };
     union {
         u32 flags;
@@ -748,7 +748,7 @@ struct UnkStrVector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkStrVector(u32 step_, u32 flags_)
         : data(nullptr), count(0), capacity(0), step(step_), field_0x14(true), flags(flags_),

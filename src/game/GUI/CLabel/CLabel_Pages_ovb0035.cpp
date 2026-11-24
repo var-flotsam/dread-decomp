@@ -156,7 +156,7 @@ struct UnkLabelDtor_b0035 {
     u8 pad_0x2cc[4];
     UnkLabelDtorLineNode_b0035* lines;  // 0x2d0
     UnkLabelDtorLineNode_b0035* lines_tail;
-    base::UnkAllocator* allocator;  // 0x2e0
+    base::IAllocator* allocator;  // 0x2e0
 };
 static_assert(__builtin_offsetof(UnkLabelDtor_b0035, allocator) == 0x2e0, "UnkLabelDtor_b0035 layout");
 
@@ -236,7 +236,7 @@ template <class T>
 struct UnkLabelList_b0035 {
     UnkLabelNode_b0035<T>* head;
     UnkLabelNode_b0035<T>* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void FreeNodes() {
         for (UnkLabelNode_b0035<T>* n = head; n;) {

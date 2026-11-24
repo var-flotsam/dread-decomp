@@ -124,7 +124,7 @@ struct UnkCallbackSetVector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     template <void (*Reserve)(UnkCallbackSetVector*, u32),
               void (*PushBack)(UnkCallbackSetVector*, const UnkCallbackSetElem*)>
@@ -284,7 +284,7 @@ struct UnkSetElem_b0237 {
     u32 list_step;
     bool list_grow;
     u32 list_flags;
-    base::UnkAllocator* list_allocator;
+    base::IAllocator* list_allocator;
     u32 field_0x30;
     base::UnkRefHandle owner;  // 0x38
     u32 field_0x40;
@@ -316,7 +316,7 @@ struct UnkSetVector_b0237 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void GrowTo(u32 index) {
         if (growable && count <= index) {
@@ -384,7 +384,7 @@ struct UnkThermalComp_b0237 {
             u32 devices_step;
             bool devices_grow;
             u32 devices_flags;
-            base::UnkAllocator* devices_allocator;
+            base::IAllocator* devices_allocator;
         };
     };
     CStrId id_0x570;

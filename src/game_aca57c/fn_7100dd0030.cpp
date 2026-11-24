@@ -3,7 +3,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 
 struct UnkU32PairArray {
     u32* values;
@@ -12,7 +12,7 @@ struct UnkU32PairArray {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     UnkU32PairArray(const UnkU32PairArray& other);
 

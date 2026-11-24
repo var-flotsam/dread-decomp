@@ -15,7 +15,7 @@ struct UnkSurvivalArray_b42a3 {
     u32 field_0x14;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Init() {
         data = nullptr;

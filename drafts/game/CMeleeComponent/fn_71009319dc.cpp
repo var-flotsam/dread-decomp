@@ -25,7 +25,7 @@ static_assert(sizeof(UnkStringNode_l9319dc) == 0x90, "UnkStringNode_l9319dc layo
 // The list's node pool: an allocator (vtable at +0) over a block free list.
 struct UnkStringNodePool_l9319dc {
     void* vtable;
-    base::UnkAllocator* backing;  // 0x8
+    base::IAllocator* backing;  // 0x8
     UnkBlockFreeList blocks;      // 0x10
 
     u64 Capacity() const { return blocks.size / sizeof(UnkStringNode_l9319dc); }
@@ -53,7 +53,7 @@ struct UnkStringChain_l9319dc {
 struct UnkStringList_l9319dc {
     u8 pad_0x0[8];
     UnkStringChain_l9319dc nodes;   // 0x8
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u32 flags;                      // 0x28
     UnkStringNodePool_l9319dc pool;  // 0x30
 
@@ -74,7 +74,7 @@ struct UnkStringList_l9319dc {
     void Reserve(u32 n) {
         if (n <= pool.Capacity())
             return;
-        base::UnkAllocator* alloc = pool.backing ? pool.backing : allocator;
+        base::IAllocator* alloc = pool.backing ? pool.backing : allocator;
         u32 alloc_flags = flags;
         if (void* buffer = pool.blocks.buffer) {
             fn_71000837f4(&pool.blocks);
@@ -88,7 +88,7 @@ struct UnkStringList_l9319dc {
             u64 size = (u64)n * sizeof(UnkStringNode_l9319dc);
             fn_710008378c(&pool.blocks, alloc->vf_0x40(size, 8, alloc_flags), size, sizeof(UnkStringNode_l9319dc));
         }
-        allocator = reinterpret_cast<base::UnkAllocator*>(&pool);
+        allocator = reinterpret_cast<base::IAllocator*>(&pool);
     }
 };
 

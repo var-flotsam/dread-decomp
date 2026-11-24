@@ -293,7 +293,7 @@ struct UnkAudioVector_ovb0015 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkAudioVector_ovb0015(u32 step_)
         : data(nullptr), count(0), capacity(0), step(step_), field_0x14(true), flags(0xb),
@@ -329,7 +329,7 @@ struct UnkAudioPairList_ovb0015 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkAudioPairList_ovb0015()
         : data(nullptr), ptrs(nullptr), count(0), capacity(0), step(10), flags(0xe),

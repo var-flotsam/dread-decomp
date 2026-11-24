@@ -42,7 +42,7 @@ struct UnkHydrogigaCameras_l5c0a3c {
     u32 count;  // 0x58
     UnkCamNode_l5c0a3c* head;
     UnkCamNode_l5c0a3c* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // The id table's slot at +0x1d30 (UnkGameManagerIdTable does not name it yet).

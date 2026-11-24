@@ -29,13 +29,13 @@ struct UnkDemolitionBlockComponent {
     u32 field_0xf0;
     bool field_0xf4;
     u32 field_0xf8;
-    base::UnkAllocator* field_0x100;
+    base::IAllocator* field_0x100;
     void* field_0x108;
     void* field_0x110;
     u32 field_0x118;
     bool field_0x11c;
     u32 field_0x120;
-    base::UnkAllocator* field_0x128;
+    base::IAllocator* field_0x128;
 };
 
 void fn_71007b1848(UnkDemolitionBlockComponent* self) {

@@ -36,7 +36,7 @@ struct UnkSamplerCache {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkSamplerDesc* Find(u64 key) {
         for (u32 i = 0; i < count; i++) {

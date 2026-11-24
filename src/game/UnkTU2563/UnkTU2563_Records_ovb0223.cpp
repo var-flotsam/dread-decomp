@@ -54,7 +54,7 @@ struct UnkRec138Vec_b0223 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Reserve(u32 n) {
         if (capacity < n) {
@@ -427,7 +427,7 @@ struct UnkU16Array_b0223 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // base::global::CRntVector's defaults.
     __attribute__((always_inline)) UnkU16Array_b0223()
@@ -498,7 +498,7 @@ struct UnkRec60IdArray_b0223 {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_7100e56634(UnkRec60IdArray_b0223* self, const UnkRec60IdArray_b0223* other) {
@@ -584,7 +584,7 @@ struct UnkStrIdVecMap_b0223 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkNavMeshItemMember;
@@ -809,7 +809,7 @@ struct UnkItemList_b0223 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void MoveFrom(UnkItemList_b0223* src) {
         data = src->data;

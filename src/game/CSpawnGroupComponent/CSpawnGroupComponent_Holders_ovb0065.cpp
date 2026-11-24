@@ -236,7 +236,7 @@ struct UnkCollectList_ovb0065 : base::UnkVtableList<UnkCollectList_ovb0065Node> 
         Node* n = head;
         if (!n)
             return;
-        base::UnkAllocator* a = allocator;
+        base::IAllocator* a = allocator;
         while (n) {
             Node* next = n->next;
             a->vf_0x48(n);

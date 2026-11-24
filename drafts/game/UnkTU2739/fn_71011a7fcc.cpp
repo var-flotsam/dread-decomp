@@ -82,7 +82,7 @@ struct UnkVariantNode_l1a7fcc {
         u32 step;
         bool field_0x14;
         u32 flags;
-        base::UnkAllocator* allocator;
+        base::IAllocator* allocator;
     };
 
     UnkPath_l1a7fcc key;

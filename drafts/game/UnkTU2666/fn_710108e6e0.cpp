@@ -32,7 +32,7 @@ struct UnkInlineString_l08e6e0 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     explicit UnkInlineString_l08e6e0(const char* text) {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a1b750 + 2);
         field_0xb8 = 0;
         field_0xc0 = 0;

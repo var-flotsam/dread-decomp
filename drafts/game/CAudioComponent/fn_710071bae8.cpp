@@ -108,7 +108,7 @@ struct UnkAudioSlots_bae8 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkAudioSlot_bae8* Find(const CFilePathStrId& path) {
         for (u32 i = 0; i < count; ++i)

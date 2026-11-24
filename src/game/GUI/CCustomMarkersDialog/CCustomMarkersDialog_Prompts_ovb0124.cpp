@@ -191,7 +191,7 @@ struct UnkMarkersRefs_ovb0124 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkMarkersRefs_ovb0124() {
         if (data) {

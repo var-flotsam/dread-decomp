@@ -22,7 +22,7 @@ struct UnkSabotoruSpawnPointComponent {
     u32 field_0x3d0;
     bool field_0x3d4;
     u32 field_0x3d8;
-    base::UnkAllocator* field_0x3e0;
+    base::IAllocator* field_0x3e0;
     u32 field_0x3e8;
     u64 field_0x3f0;
     void** field_0x3f8;
@@ -31,7 +31,7 @@ struct UnkSabotoruSpawnPointComponent {
     u32 field_0x410;
     bool field_0x414;
     u32 field_0x418;
-    base::UnkAllocator* field_0x420;
+    base::IAllocator* field_0x420;
     u32 field_0x428;
     u64 field_0x430;
 };

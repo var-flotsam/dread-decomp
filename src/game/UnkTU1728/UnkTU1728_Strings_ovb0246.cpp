@@ -77,7 +77,7 @@ struct UnkRawVec_b0246 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkRawVec_b0246(UnkRawVec_b0246&& other) {
         data = other.data;

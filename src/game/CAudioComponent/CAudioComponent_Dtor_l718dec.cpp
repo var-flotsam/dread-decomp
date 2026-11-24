@@ -76,7 +76,7 @@ struct UnkAudioVector_l718dec {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkAudioPairList_l718dec {
@@ -86,7 +86,7 @@ struct UnkAudioPairList_l718dec {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkAudioComponent_l718dec {

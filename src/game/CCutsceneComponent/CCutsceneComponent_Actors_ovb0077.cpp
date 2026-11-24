@@ -66,7 +66,7 @@ struct UnkByteArray_ovb0077 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkByteArray_ovb0077& operator=(const UnkByteArray_ovb0077& o) {
         if (this != &o) {

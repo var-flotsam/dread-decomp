@@ -20,7 +20,7 @@ struct UnkStrIdTable {
     base::global::CStrId* keys;
     u32 count;
     u8 unk_0x14[0xc];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 static_assert(sizeof(UnkStrIdTable) == 0x28, "UnkStrIdTable placeholder layout");
 

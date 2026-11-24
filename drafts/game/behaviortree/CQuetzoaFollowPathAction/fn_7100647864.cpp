@@ -127,7 +127,7 @@ struct UnkPathRequest_l647864 {
     u32 field_0xe8;
     bool field_0xec;
     u32 field_0xf0;
-    base::UnkAllocator* allocator;  // 0xf8
+    base::IAllocator* allocator;  // 0xf8
     bool field_0x100;
     bool field_0x102;
     bool field_0x104;

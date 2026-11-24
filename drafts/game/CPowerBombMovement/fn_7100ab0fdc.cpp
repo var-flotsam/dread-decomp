@@ -154,7 +154,7 @@ struct UnkPowerBombMovement_lab0fdc {
     u8 pad_0x0[0x30];
     UnkPbActor_lab0fdc* actor;  // 0x30
     u8 pad_0x38[0x4f0 - 0x38];
-    base::UnkAllocator* allocator;    // 0x4f0
+    base::IAllocator* allocator;    // 0x4f0
     u32 allocFlags;                   // 0x4f8
     u32 tileCount;                    // 0x4fc
     UnkPbTileNode_lab0fdc** buckets;  // 0x500

@@ -43,7 +43,7 @@ struct UnkNodeList_0x40 {
     u32 count;
     UnkNode_01185ea8* head;
     UnkNode_01185ea8* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u8 unk_0x28[0x18];
 
     ~UnkNodeList_0x40() {

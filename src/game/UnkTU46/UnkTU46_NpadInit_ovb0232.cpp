@@ -22,7 +22,7 @@ struct UnkNpadGroup_b0232 {
     u64 field_0x28;
     u32 field_0x30;
     u32 field_0x34;
-    base::UnkAllocator* allocator;  // 0x38
+    base::IAllocator* allocator;  // 0x38
     u64 field_0x40;
     u64 ids[4];  // 0x48
     u32 id_8;  // 0x68

@@ -38,10 +38,10 @@ struct UnkScrollStrList_lb75894 {
     UnkListNode<0x30>* tail;
     u32 field_0x20;
     u32 pad_0x24;
-    base::UnkAllocator* allocator;  // 0x28
+    base::IAllocator* allocator;  // 0x28
     u64 field_0x30;
     void* pool_vtable;              // 0x38
-    base::UnkAllocator* pool_allocator;  // 0x40
+    base::IAllocator* pool_allocator;  // 0x40
     UnkBlockFreeList free_list;     // 0x48
     u32 field_0x70;
     u8 field_0x74;

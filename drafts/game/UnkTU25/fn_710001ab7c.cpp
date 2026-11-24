@@ -23,7 +23,7 @@ struct UnkEmptyMap_l01ab7c {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkEmptyMap_l01ab7c() {
         values = nullptr;

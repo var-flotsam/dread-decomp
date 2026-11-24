@@ -54,7 +54,7 @@ struct UnkTeamRanked_l1a6d50 {
     UnkTeamNode_l1a6d50* head;
     UnkTeamNode_l1a6d50* tail;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkTeamManager_l1a6d50 {

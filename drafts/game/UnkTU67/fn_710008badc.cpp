@@ -66,7 +66,7 @@ struct UnkPathSetNode {
 static_assert(sizeof(UnkPathSetNode) == 0x48, "UnkPathSetNode layout");
 
 struct UnkPathSetTable {
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u32 flags;                      // 0x8
     u32 count;                      // 0xc
     UnkPathSetNode** buckets;       // 0x10

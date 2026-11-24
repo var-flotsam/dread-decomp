@@ -22,7 +22,7 @@ struct UnkPhotoModeCameraCtrl_A4_b72 {
     u32 list_step;
     u8 list_grow;
     u32 list_flags;
-    base::UnkAllocator* list_allocator;
+    base::IAllocator* list_allocator;
     f32 field_0x200;
     f32 field_0x204;
     u32 field_0x208;

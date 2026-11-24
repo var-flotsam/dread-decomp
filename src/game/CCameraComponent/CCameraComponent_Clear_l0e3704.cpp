@@ -32,7 +32,7 @@ struct UnkCamComponent_l0e3704 {
     u32 count;
     UnkCamNode_l0e3704* head;
     UnkCamNode_l0e3704* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_71010e3704(void* object) {

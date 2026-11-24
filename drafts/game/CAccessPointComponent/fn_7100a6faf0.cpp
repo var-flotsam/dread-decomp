@@ -93,7 +93,7 @@ struct UnkApMapNode_la6faf0 {
 
 // Names by key, chained in buckets (base/UnkChainedMap.h's layout).
 struct UnkApMap_la6faf0 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     CRntVector<UnkApMapNode_la6faf0*> buckets;  // 0x10

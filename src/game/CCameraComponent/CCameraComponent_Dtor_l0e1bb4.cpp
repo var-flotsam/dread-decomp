@@ -40,7 +40,7 @@ struct UnkCameraNodeList_l0e1bb4 {
     u32 count;
     UnkCameraNode_l0e1bb4* head;
     UnkCameraNode_l0e1bb4* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u8 unk_0x28[0x8];
 
     ~UnkCameraNodeList_l0e1bb4() {

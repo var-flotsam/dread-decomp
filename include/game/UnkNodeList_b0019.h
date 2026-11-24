@@ -11,7 +11,7 @@ struct UnkNodeList_b0019 {
     UnkNode_0x68* head;
     UnkNode_0x68* tail;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     void* field_0x30;
 
     void Destroy(UnkNode_0x68* node) {
