@@ -7,7 +7,7 @@
 #include "types.h"
 
 struct UnkMapAcquisition_b50a5;
-void fn_7100a86d00(UnkMapAcquisition_b50a5* self);
+void CMapAcquisitionComponent_AskSaveQuestion(UnkMapAcquisition_b50a5* self);
 
 struct UnkMapAcquisition_b50a5 {
     void** vtable;
@@ -27,7 +27,7 @@ bool fn_7100a86c40(UnkMapAcquisition_b50a5* self, UnkWeakTarget* target) {
         return false;
     AssignRef(&self->handle, fn_7100d78378(target));
     if (self->flag) {
-        fn_7100a86d00(self);
+        CMapAcquisitionComponent_AskSaveQuestion(self);
         return false;
     }
     if (self->CallSlot<bool>(0x188))

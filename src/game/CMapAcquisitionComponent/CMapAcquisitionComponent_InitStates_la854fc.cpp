@@ -97,7 +97,7 @@ static inline void Bind(UnkMapAcquisition_la854fc* self, UnkMapState_la854fc* st
     state->field_0x40 = {self, c};
 }
 
-void fn_7100a854fc(UnkMapAcquisition_la854fc* self) {
+void CMapAcquisitionComponent_InitStates(UnkMapAcquisition_la854fc* self) {
     fn_7100a9ea64(reinterpret_cast<UnkStateObject*>(self));
     self->machine.owner = self;
     Bind(self, &self->states[0], fn_7100a884c8, fn_7100a884cc, fn_7100a884d0);
