@@ -34,7 +34,7 @@ void fn_71009d5ff8(UnkFrozenPlatform* self) {
     At<u32>(self, 0x70) = 10;
     At<u8>(self, 0x74) = 1;
     At<u32>(self, 0x78) = 0xf;
-    At<base::UnkAllocator*>(self, 0x80) = GetDefaultAllocator();
+    At<base::IAllocator*>(self, 0x80) = GetDefaultAllocator();
     At<u32>(self, 0x88) = 0;
     At<char*>(self, 0x58) = reinterpret_cast<char*>(g_unk_7101a33fa0) + 0x10;
     At<u64>(self, 0x90) = 0;

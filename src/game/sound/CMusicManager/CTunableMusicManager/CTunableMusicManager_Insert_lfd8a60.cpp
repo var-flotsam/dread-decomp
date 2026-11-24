@@ -64,7 +64,7 @@ struct UnkMusicRequestList_d8a60 {
     UnkMusicRequestNode_d8a60* head;  // 0x10
     UnkMusicRequestNode_d8a60* tail;  // 0x18
     u32 flags;                        // 0x20
-    base::UnkAllocator* allocator;    // 0x28
+    base::IAllocator* allocator;    // 0x28
     UnkMusicRequestCompare_d8a60* compare;  // 0x30
 
 };

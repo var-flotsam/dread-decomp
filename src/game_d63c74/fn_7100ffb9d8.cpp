@@ -24,7 +24,7 @@ struct UnkMovedArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     template <class Index = u64>
     __attribute__((always_inline)) void MoveFrom(UnkMovedArray* src) {

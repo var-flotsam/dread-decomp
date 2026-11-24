@@ -4,7 +4,7 @@
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CRntString;
 
 // A string with 0x100 bytes of inline storage: its allocator (the object at +0x30, a block of
@@ -64,7 +64,7 @@ void CRntString_AssignPrefix(CRntString* self, const char* str, u32 length) {
             tmp.str.data = nullptr;
             tmp.str.length = 0;
             tmp.str.key = -1;
-            tmp.str.allocator = reinterpret_cast<UnkAllocator*>(&tmp.allocator_vtable);
+            tmp.str.allocator = reinterpret_cast<IAllocator*>(&tmp.allocator_vtable);
             tmp.field_0x138 = 0;
             tmp.field_0x140 = 0;
             tmp.allocator_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);

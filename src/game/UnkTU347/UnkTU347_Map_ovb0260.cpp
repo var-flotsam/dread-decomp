@@ -30,7 +30,7 @@ struct UnkIdNode_b260 {
 };
 
 struct UnkIdMap_b260_ovb0260 {
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u8 unk_0x8[4];
     u32 count;                      // 0xc
     void* buckets;                  // 0x10

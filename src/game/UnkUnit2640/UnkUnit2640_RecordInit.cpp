@@ -12,7 +12,7 @@ struct UnkUnit2640Record {
     bool field_0x1c;
     u32 flags;
     u32 field_0x24;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u64 field_0x30;
     f32 scale[2];
     u64 field_0x40;

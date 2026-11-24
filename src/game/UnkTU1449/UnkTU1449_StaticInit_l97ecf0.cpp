@@ -12,7 +12,7 @@ struct UnkIdRecordOwner_0xf0;
 using UnkIdElem = UnkCloneStrIdElem<UnkIdRecordOwner_0xf0, 0, 8, UnkCloneStrId<UnkIdRecordOwner_0xf0>>;
 
 void fn_710097bb7c(base::UnkStrIdVec* self, const base::global::CStrId* ids, u64 size, u32 step,
-                   base::UnkAllocator* allocator, u32 flags);
+                   base::IAllocator* allocator, u32 flags);
 void fn_71008600a8(base::global::CRntVector<UnkIdElem>* self);
 
 struct UnkStatics_l97ecf0 {

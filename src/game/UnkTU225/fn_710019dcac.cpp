@@ -25,7 +25,7 @@ void fn_710019dcac(UnkGfxSceneRegistry* self) {
     m->buckets.step = 10;
     m->buckets.field_0x14 = true;
     m->buckets.flags = 0xe;
-    base::UnkAllocator* a = GetDefaultAllocator();
+    base::IAllocator* a = GetDefaultAllocator();
     m->buckets.allocator = a;
     m->last = nullptr;
     m->first = nullptr;

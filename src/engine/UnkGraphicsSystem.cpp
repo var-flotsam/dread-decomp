@@ -258,7 +258,7 @@ struct UnkGraphicsSystem {
     u8 unk_0x317aa65[0x3];
     u32 field_0x317aa68;
     u8 unk_0x317aa6c[0x4];
-    base::UnkAllocator* field_0x317aa70;
+    base::IAllocator* field_0x317aa70;
     u32 field_0x317aa78;
     u32 field_0x317aa7c;
     base::global::CRntVector<u64> field_0x317aa80;
@@ -1260,7 +1260,7 @@ void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* /*un
     fn_71001cafa0(reinterpret_cast<UnkStruct_71001cdd74*>(self), 0, 1, 0);
 
     // Indices for quads: 0, 1, 2, 0, 2, 3 for each four vertices.
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     u16* indices = static_cast<u16*>(allocator->vf_0x40((u64)self->field_0x317af48 * sizeof(u16), 8, 8));
     u32 count = self->field_0x317af48;
     self->field_0x317af50 = indices;

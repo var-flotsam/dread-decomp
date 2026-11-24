@@ -22,7 +22,7 @@ struct UnkRodomithonDef_ovb0023 {
     u32 field_0x648;
     bool field_0x64c;
     u32 field_0x650;
-    base::UnkAllocator* allocator;  // 0x658
+    base::IAllocator* allocator;  // 0x658
     u8 list[0x8];                   // 0x660
 };
 

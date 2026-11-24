@@ -8,7 +8,7 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CStrId;
 
 template <class V>
@@ -19,7 +19,7 @@ struct UnkStrIdTable {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 };
 
 // CStrId's destructor, decrementing and testing in two steps (the original reloads the id

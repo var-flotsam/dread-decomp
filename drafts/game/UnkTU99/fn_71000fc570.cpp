@@ -28,7 +28,7 @@ struct UnkToken_l0fc570 {
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
 
     UnkToken_l0fc570() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
@@ -45,7 +45,7 @@ struct UnkTokens_l0fc570 {
     char* vtable;
     base::UnkLinkedList<UnkToken_l0fc570> body;  // 0x8
     char* pool_vtable;  // +0x30: the node pool
-    base::UnkAllocator* pool_parent;
+    base::IAllocator* pool_parent;
     UnkBlockFreeList pool_blocks;
 
     // base::UnkLinkedList::Clear, destroying each token first.
@@ -65,7 +65,7 @@ struct UnkTokens_l0fc570 {
     void Reserve(u32 n) {
         if (pool_blocks.size / sizeof(UnkToken_l0fc570) >= n)
             return;
-        base::UnkAllocator* parent = pool_parent ? pool_parent : body.allocator;
+        base::IAllocator* parent = pool_parent ? pool_parent : body.allocator;
         u32 pool_flags = body.flags;
         if (void* buffer = pool_blocks.buffer) {
             fn_71000837f4(&pool_blocks);
@@ -79,7 +79,7 @@ struct UnkTokens_l0fc570 {
             u64 size = n * sizeof(UnkToken_l0fc570);
             fn_710008378c(&pool_blocks, parent->vf_0x40(size, 8, pool_flags), size, sizeof(UnkToken_l0fc570));
         }
-        body.allocator = reinterpret_cast<base::UnkAllocator*>(&pool_vtable);
+        body.allocator = reinterpret_cast<base::IAllocator*>(&pool_vtable);
     }
 
     UnkToken_l0fc570* Append() {

@@ -114,7 +114,7 @@ struct UnkU64Array {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) UnkU64Array(const UnkU64Array& other)
         : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14),

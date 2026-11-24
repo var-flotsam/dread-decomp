@@ -5200,7 +5200,7 @@ address,size,name,name_source,subsystem,status
 0x71006d5ba8,80,fn_71006d5ba8,unknown,game/ai?,O
 0x71006d5bf8,368,CTakumakuAIComponent_StartSpikeShake,inferred,game/ai?,O
 0x71006d5d68,60,fn_71006d5d68,unknown,game/ai?,O
-0x71006d5da4,92,CTakumakuAIComponent_SetReachableHeightByAttackState,inferred,game/ai?,O
+0x71006d5da4,92,fn_71006d5da4,unknown,game/ai?,O
 0x71006d5e00,84,fn_71006d5e00,unknown,game/ai?,O
 0x71006d5e54,396,fn_71006d5e54,unknown,game/ai?,O
 0x71006d5fe0,28,fn_71006d5fe0,unknown,game/ai?,O
@@ -5836,7 +5836,7 @@ address,size,name,name_source,subsystem,status
 0x71006f0b70,80,fn_71006f0b70,unknown,game/ai?,O
 0x71006f0bc0,260,fn_71006f0bc0,unknown,game/ai?,O
 0x71006f0cc4,572,fn_71006f0cc4,unknown,game/ai?,O
-0x71006f0f00,604,CYamplotXAIComponent_SetMeleeSuccess2mIfPending,inferred,game/ai?,O
+0x71006f0f00,604,fn_71006f0f00,unknown,game/ai?,O
 0x71006f115c,224,fn_71006f115c,unknown,game/ai?,O
 0x71006f123c,1984,fn_71006f123c,unknown,game/ai?,U
 0x71006f19fc,820,fn_71006f19fc,unknown,game/ai?,U

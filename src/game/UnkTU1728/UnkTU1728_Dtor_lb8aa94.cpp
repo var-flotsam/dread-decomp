@@ -11,7 +11,7 @@ struct UnkOwnedTable_b8aa94 {
     void* field_0x8;
     u32 count;
     u8 pad_0x14[0xc];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkOwnedTable_b8aa94() {
         if (data) {

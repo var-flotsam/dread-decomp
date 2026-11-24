@@ -14,7 +14,7 @@ extern void* g_unk_7101a47d80[];
 
 struct UnkComponent_710051d360;
 // base::refl_PoolListCtor<.., 0, 0x10>, instantiated in src/clones (UnkClone_fn_7100515270).
-void fn_7100515270(void* self, u32 step, u32 count, u32 flags, base::UnkAllocator* allocator);
+void fn_7100515270(void* self, u32 step, u32 count, u32 flags, base::IAllocator* allocator);
 char* fn_71006fbadc(char* p0);
 void fn_7100515388(char* p0, char* p1);
 
@@ -30,7 +30,7 @@ struct UnkPatrolArray_A3_b70 {
     u32 step = 20;
     bool field_0x14 = true;
     u32 flags = 4;
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
 };
 
 struct UnkPatrolXY_A3_b70 {

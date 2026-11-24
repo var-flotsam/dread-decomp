@@ -16,7 +16,7 @@ struct UnkCallbackIdList {
     u32 step;
     bool field_0x1c;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 field_0x30;
     void* field_0x38;
     UnkStringData* id;

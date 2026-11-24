@@ -32,12 +32,12 @@ struct UnkClassDesc_ovb0115 {
     u64* field_keys;                // 0xf0
     u32 field_count;                // 0xf8
     u8 pad_0xfc[0xc];
-    base::UnkAllocator* field_allocator;  // 0x108
+    base::IAllocator* field_allocator;  // 0x108
     UnkClassFunction_ovb0115* functions;  // 0x110
     UnkStringData** function_names;       // 0x118
     u32 function_count;                   // 0x120
     u8 pad_0x124[0xc];
-    base::UnkAllocator* function_allocator;  // 0x130
+    base::IAllocator* function_allocator;  // 0x130
 };
 
 // CClass's destructor: frees the functions and their names, then the fields, then the CType part.

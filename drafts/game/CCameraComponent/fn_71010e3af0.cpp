@@ -127,7 +127,7 @@ struct UnkCamList_l0e3af0 {
     u32 count;
     Node* head;
     Node* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Unlinks and frees `node`; returns the node after it, or null when it is not in the list.
     Node* Erase(Node* node) {

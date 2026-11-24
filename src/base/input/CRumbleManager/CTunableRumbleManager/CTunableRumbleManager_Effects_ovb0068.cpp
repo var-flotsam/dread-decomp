@@ -79,7 +79,7 @@ void fn_71000736c0(char* self) {
         while (node) {
             char* next = *reinterpret_cast<char**>(node + 0x10);
             reinterpret_cast<UnkRumbleFileKey_b0068*>(node)->~UnkRumbleFileKey_b0068();
-            (*reinterpret_cast<base::UnkAllocator**>(self))->vf_0x48(node);
+            (*reinterpret_cast<base::IAllocator**>(self))->vf_0x48(node);
             node = next;
         }
         memset(*reinterpret_cast<void**>(self + 0x10), 0, *reinterpret_cast<u32*>(self + 0x1c) * u64(8));

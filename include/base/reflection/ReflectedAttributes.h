@@ -166,10 +166,10 @@ struct UnkReflList {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Out of line (fn_7100228ca0 for CRntString).
-    UnkReflList(std::initializer_list<T> items, u32 step, base::UnkAllocator* allocator, u32 flags);
+    UnkReflList(std::initializer_list<T> items, u32 step, base::IAllocator* allocator, u32 flags);
     UnkReflList(UnkReflList&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
           field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
@@ -190,7 +190,7 @@ struct UnkReflList {
 
 template <>
 UnkReflList<base::global::CRntString>::UnkReflList(std::initializer_list<base::global::CRntString> items, u32 step,
-                                                   base::UnkAllocator* allocator, u32 flags);  // fn_7100228ca0
+                                                   base::IAllocator* allocator, u32 flags);  // fn_7100228ca0
 
 // A default value made of a u32 and a list of strings (e.g. "vSegments:*:vPos"), typed by a
 // global descriptor.

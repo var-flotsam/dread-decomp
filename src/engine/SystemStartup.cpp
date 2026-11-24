@@ -1044,7 +1044,7 @@ void* fn_7100132370(u64 count, u64 size) {
 void* fn_71001323d0(void* ptr, u64 size) {
     if (!ptr)
         return fn_7100132300(size);  // malloc, inlined
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     if (!size) {
         allocator->vf_0x48(ptr);
         return nullptr;

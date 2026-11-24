@@ -73,7 +73,7 @@ struct UnkStrIdVec {
     u32 step;
     bool field_0x14;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     void Reserve(u32 n) { fn_710000542c(this, n); }
     void PushBack(const global::CStrId& v) {
@@ -171,7 +171,7 @@ struct UnkKeyedMoveArray {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     // Out of line in fn_71000d78ec and its copies.
     __attribute__((always_inline)) void Clear() {

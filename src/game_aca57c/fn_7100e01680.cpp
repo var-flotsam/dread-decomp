@@ -56,7 +56,7 @@ void* fn_7100e01680(UnkObj_7100e01680* self) {
     if (fn_7100e03d78(&bag, "CurrentScenario.GetStartPointOverride", "")) {
         UnkInlineString_e01680 s;
         auto* str = reinterpret_cast<base::global::CRntString*>(&s);
-        CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
+        CRntString_InitWithAllocator(str, reinterpret_cast<base::IAllocator*>(&s.vtable));
         s.vtable = &g_unk_7101a1b750[2];
         s.field_0xb8 = 0;
         s.field_0xc0 = 0;

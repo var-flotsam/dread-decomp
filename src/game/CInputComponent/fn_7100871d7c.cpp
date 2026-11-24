@@ -25,7 +25,7 @@ struct UnkInputComponentState {
     };
     UnkInputListenerNode* listeners;  // 0xab0
     UnkInputListenerNode* last;       // 0xab8
-    base::UnkAllocator* allocator;    // 0xac0
+    base::IAllocator* allocator;    // 0xac0
     u32 alloc_flags;                  // 0xac8
     u8 pad_0xacc[0x38];
     bool flags[5];  // 0xb04

@@ -23,7 +23,7 @@ struct UnkRntStringVec_b59 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkRntStringVec_b59(const UnkRntStringVec_b59& other) { fn_71000e0320(this, &other); }
     ~UnkRntStringVec_b59() { reinterpret_cast<base::global::CRntVector<UnkRntString_b59>*>(this)->Free(); }

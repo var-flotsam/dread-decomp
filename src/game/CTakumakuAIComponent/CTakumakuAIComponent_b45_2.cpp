@@ -25,7 +25,7 @@ struct UnkTakumakuAI2_b45a2 {
     s32 id;  // 0x14708
 };
 
-void CTakumakuAIComponent_SetReachableHeightByAttackState(UnkTakumakuAI2_b45a2* self, UnkTakumakuPoint_b45a2* point) {
+void fn_71006d5da4(UnkTakumakuAI2_b45a2* self, UnkTakumakuPoint_b45a2* point) {
     if (!self->target)
         return;
     point->x -= 60.0f;

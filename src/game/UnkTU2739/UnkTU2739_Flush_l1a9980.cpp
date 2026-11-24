@@ -37,7 +37,7 @@ struct UnkOwner_l1a9980 {
     u32 count;      // 0x180
     UnkNode_l1a9980* head;
     UnkNode_l1a9980* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_71011a9980(UnkQueueOwner* owner) {

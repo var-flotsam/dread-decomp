@@ -236,7 +236,7 @@ struct UnkCollectList_ovb0065 : base::UnkVtableList<UnkCollectList_ovb0065Node> 
         Node* n = head;
         if (!n)
             return;
-        base::UnkAllocator* a = allocator;
+        base::IAllocator* a = allocator;
         while (n) {
             Node* next = n->next;
             a->vf_0x48(n);
@@ -532,7 +532,7 @@ void fn_710111c3d8(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn) {
     ForEach(self, self->field_0x90, fn);
 }
 
-void CSpawnGroupComponent_ForEachSpawnedEntity(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn) {
+void fn_710111c470(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn) {
     ForEach(self, self->field_0x40, fn);
 }
 

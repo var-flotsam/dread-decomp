@@ -29,7 +29,7 @@ struct UnkLightsDefArray_b52 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) ~UnkLightsDefArray_b52() {
         if (data) {

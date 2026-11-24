@@ -103,7 +103,7 @@ struct UnkShinesparkBuffers_l32804c {
     void* values;
     u32 count;
     u8 pad_0x14[0x20 - 0x14];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Destroy() {
         count = 0;

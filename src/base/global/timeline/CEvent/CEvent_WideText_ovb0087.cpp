@@ -28,10 +28,10 @@ struct UnkWideTextStr {
     void* vtable;
     wchar_t* chars;
     u32 count;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Allocate(u64 length) {
-        base::UnkAllocator* a = GetDefaultAllocator();
+        base::IAllocator* a = GetDefaultAllocator();
         chars = static_cast<wchar_t*>(a->vf_0x40((u64)(u32)(length + 1) * 4, 8, 0x11));
         wcscpy(chars, g_unk_7101647684);
         count = wcslen(chars);

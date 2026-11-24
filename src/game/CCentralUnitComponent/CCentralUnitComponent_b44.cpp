@@ -26,10 +26,10 @@ void fn_710077b454(UnkCentralUnitPair_b44a2* self) {
     At<u32>(self, 0x18) = 10;
     At<u8>(self, 0x1c) = 1;
     At<u32>(self, 0x20) = 0xf;
-    base::UnkAllocator* alloc_a = GetDefaultAllocator();
+    base::IAllocator* alloc_a = GetDefaultAllocator();
     void** vtable_b = g_unk_7101a20950 + 2;
     At<void**>(self, 0x0) = vtable_b;
-    At<base::UnkAllocator*>(self, 0x28) = alloc_a;
+    At<base::IAllocator*>(self, 0x28) = alloc_a;
     At<u32>(self, 0x30) = 0;
     At<u64>(self, 0x38) = 0;
     At<void**>(self, 0x40) = vtable_a;
@@ -38,8 +38,8 @@ void fn_710077b454(UnkCentralUnitPair_b44a2* self) {
     At<u32>(self, 0x58) = 10;
     At<u8>(self, 0x5c) = 1;
     At<u32>(self, 0x60) = 0xf;
-    base::UnkAllocator* alloc_b = GetDefaultAllocator();
-    At<base::UnkAllocator*>(self, 0x68) = alloc_b;
+    base::IAllocator* alloc_b = GetDefaultAllocator();
+    At<base::IAllocator*>(self, 0x68) = alloc_b;
     At<u32>(self, 0x70) = 0;
     At<void**>(self, 0x40) = vtable_b;
     At<u64>(self, 0x78) = 0;

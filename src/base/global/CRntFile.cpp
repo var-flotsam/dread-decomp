@@ -37,7 +37,7 @@ bool CRntFile_Seek(CRntFile* file, u64 offset, s32 whence) {
 // Allocates `size` bytes from the file's allocator, taking the default one on first use. Null when
 // there is no allocator at all.
 static inline void* AllocateBlock(CRntFile* file, s64 size) {
-    base::UnkAllocator* allocator = file->allocator;
+    base::IAllocator* allocator = file->allocator;
     if (!allocator) {
         allocator = GetDefaultAllocator();
         file->allocator = allocator;

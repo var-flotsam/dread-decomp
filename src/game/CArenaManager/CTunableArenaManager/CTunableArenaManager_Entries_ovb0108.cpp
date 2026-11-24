@@ -57,7 +57,7 @@ struct UnkArenaRefArray_ovb0108 {
     u32 count;
     u32 capacity;
     u8 unk_0x10[0x10];
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     UnkArenaRefPtr_ovb0108* begin() { return data; }
     UnkArenaRefPtr_ovb0108* end() { return data + count; }

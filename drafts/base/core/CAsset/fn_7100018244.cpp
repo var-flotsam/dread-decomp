@@ -23,7 +23,7 @@ struct UnkPathIdPairMap_b45a1 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // A string id of the given pool as the map moves it: a move takes the string and leaves the

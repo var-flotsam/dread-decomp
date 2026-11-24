@@ -20,7 +20,7 @@ struct UnkKeyedArray98_b54a1 {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkObject_710019506c;

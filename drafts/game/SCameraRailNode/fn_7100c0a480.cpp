@@ -7,7 +7,7 @@
 #include "game/SCameraRailNode.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 
 // As src/game/SCameraRailNode/fn_7100c073f0.cpp defines them.
 struct UnkMovedArray {
@@ -17,7 +17,7 @@ struct UnkMovedArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     UnkMovedArray(UnkMovedArray&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),

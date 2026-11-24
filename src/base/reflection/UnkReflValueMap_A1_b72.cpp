@@ -31,7 +31,7 @@ struct UnkReflValueNode_A1b72 {
 
 struct UnkReflValueMap_A1b72 {
     using Node = UnkReflValueNode_A1b72;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;            // 0xc
     Node** buckets;       // 0x10

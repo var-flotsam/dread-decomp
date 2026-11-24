@@ -21,7 +21,7 @@ struct UnkMultiLockOnPointComponent_4884 {
     u32 field_0x58;
     bool field_0x5c;
     u32 field_0x60;
-    base::UnkAllocator* field_0x68;
+    base::IAllocator* field_0x68;
     u32 field_0x70;
     u64 field_0x78;
 };

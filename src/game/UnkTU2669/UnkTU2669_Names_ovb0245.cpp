@@ -30,7 +30,7 @@ struct UnkStackStr_ovb0245 {
     CRntString* Str() { return reinterpret_cast<CRntString*>(this); }
 
     UnkStackStr_ovb0245() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage_vtable));
         storage_vtable = g_unk_7101a194b8 + 2;
         field_0x138 = nullptr;
         field_0x140 = 0;
@@ -123,13 +123,13 @@ struct UnkScriptItem_ovb0245 {
 };
 
 struct UnkScriptTable_ovb0245 {
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u32 flags_0x8;
     u32 count;                      // 0xc
     UnkScriptItem_ovb0245** buckets;  // 0x10
     u32 bucket_count_0x18;
     u32 bucket_count;               // 0x1c
-    base::UnkAllocator* allocator_0x20;
+    base::IAllocator* allocator_0x20;
     u32 pad_0x28[4];
     UnkScriptItem_ovb0245* tail;    // 0x38
     UnkScriptItem_ovb0245* head;    // 0x40

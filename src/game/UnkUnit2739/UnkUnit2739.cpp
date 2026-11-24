@@ -22,7 +22,7 @@ struct UnkQueueOwner {
     u32 count;
     UnkQueueNode* head;
     UnkQueueNode* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_71011aa820(UnkQueueOwner* self) {

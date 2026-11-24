@@ -137,7 +137,7 @@ struct UnkNavNodePool_af414 {
     u32 count;
     UnkNavNode_af414* head;
     UnkNavNode_af414* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     base::UnkBlockPool pool;  // 0x30
 

@@ -55,7 +55,7 @@ static_assert(__builtin_offsetof(UnkObject_l192b50, holder) == 0x210, "layout");
 
 void fn_7100192b50(UnkObject_l192b50* self) {
     self->vtable = reinterpret_cast<char*>(g_unk_7101a1dc70) + 0x10;
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
 
     for (u32 i = 0; i < self->object_count; ++i) {
         if (self->objects[i]) {

@@ -31,7 +31,7 @@ extern char g_unk_7172746ef8;
 extern char g_unk_7172746f98 __attribute__((visibility("hidden")));
 extern UnkBlockArrayPool g_unk_7172746f00;
 void fn_7100a2ab14(void* pool);
-void CTimelineComponent_CreateBlockArrayPool(UnkBlockArrayPool* self, u64 n, u32 flags, base::UnkAllocator* allocator);
+void CTimelineComponent_CreateBlockArrayPool(UnkBlockArrayPool* self, u64 n, u32 flags, base::IAllocator* allocator);
 
 void CTimelineComponent_InitStatics() {
     UnkTimelineTUData_ovb0089& data = g_unk_7172746f68;

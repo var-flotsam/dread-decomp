@@ -589,7 +589,7 @@ struct UnkGroup90_b0200 {
     u32 capacity;                // 0x14
     u32 step;                    // 0x18
     u32 flags;                   // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u8 pad_0x28[0x10];
     UnkMinimapRecord tail;  // 0x38
 };

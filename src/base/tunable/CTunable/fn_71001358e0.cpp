@@ -45,7 +45,7 @@ struct UnkIdMap {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // Grows both arrays, moving the values (destroying the old ones with Destroy) and the keys.

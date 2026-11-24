@@ -40,7 +40,7 @@ void refl_StrIdListCtor(char* self) {
     *reinterpret_cast<u64*>(self + 0x20) = 0;
     *reinterpret_cast<u32*>(self + 0x28) = 10;
     *reinterpret_cast<u32*>(self + 0x2c) = 14;
-    *reinterpret_cast<UnkAllocator**>(self + 0x30) = GetDefaultAllocator();
+    *reinterpret_cast<IAllocator**>(self + 0x30) = GetDefaultAllocator();
 }
 }
 
@@ -102,7 +102,7 @@ struct UnkCloneKeyedArray {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     void Reserve(u32 n) {
         if (capacity >= n)
@@ -243,7 +243,7 @@ struct UnkStrIdHashNode {
 
 template <class Tag>
 struct UnkStrIdHashMap {
-    UnkAllocator* allocator;
+    IAllocator* allocator;
     u32 field_0x8;
     u32 count;
     UnkStrIdHashNode<Tag>** buckets;
@@ -563,7 +563,7 @@ struct UnkCloneSubVec {
     u32 step;
     bool field_0x14;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 };
 
 // Resizes an array of arrays to `n`: reallocates when the capacity is short (moving the
@@ -651,7 +651,7 @@ struct UnkCloneVecHandle {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkCloneVecHandle(UnkCloneVecHandle&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
@@ -1000,7 +1000,7 @@ struct UnkChainMap {
     u8 unk_0xc[0x1c];
     u32 first_bucket;
     UnkChainMapNode<Tag, Id>* first_node;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
     u32 field_0x40;
     u32 count;
     u32 version;
@@ -1096,7 +1096,7 @@ struct UnkPoolListTraits;
 // An allocator handing out blocks of a buffer taken from `parent`.
 struct UnkBlockPool {
     char* vtable;
-    UnkAllocator* parent;
+    IAllocator* parent;
     UnkBlockFreeList blocks;
     u32 field_0x38;
     bool field_0x3c;
@@ -1125,10 +1125,10 @@ struct UnkPoolListBase {
     u32 count;
     char* head;
     char* tail;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
     u32 flags;
 
-    __attribute__((always_inline)) void Init(u32 flags, UnkAllocator* a) {
+    __attribute__((always_inline)) void Init(u32 flags, IAllocator* a) {
         vtable = UnkPoolListTraits<Tag>::base_vtable() + 0x10;
         count = 0;
         head = nullptr;
@@ -1159,11 +1159,11 @@ struct UnkPoolList : UnkPoolListBase<Tag, Next> {
     UnkBlockPool pool;
 
     // The constructor, as a function: the class's vtable is stored before the pool is set up.
-    __attribute__((always_inline)) void Init(u32 n, u32 flags, UnkAllocator* a) {
+    __attribute__((always_inline)) void Init(u32 n, u32 flags, IAllocator* a) {
         UnkPoolListBase<Tag, Next>::Init(flags, a);
         this->vtable = UnkPoolListTraits<Tag>::vtable() + 0x10;
         pool.Init();
-        UnkAllocator* parent = this->allocator;
+        IAllocator* parent = this->allocator;
         pool.field_0x38 = 0;
         pool.field_0x3c = false;
         u32 f = this->flags;
@@ -1177,7 +1177,7 @@ struct UnkPoolList : UnkPoolListBase<Tag, Next> {
         }
         // The pool's address, formed as an integer: the original recomputes it here rather than
         // keeping &pool live across the calls.
-        this->allocator = reinterpret_cast<UnkAllocator*>(reinterpret_cast<u64>(this) + 0x30);
+        this->allocator = reinterpret_cast<IAllocator*>(reinterpret_cast<u64>(this) + 0x30);
     }
     ~UnkPoolList() {
         this->vtable = UnkPoolListTraits<Tag>::vtable() + 0x10;
@@ -1194,7 +1194,7 @@ static_assert(sizeof(UnkPoolList<void, 0, 0>) == 0x70);
 
 // The constructor doesn't use Next (its instantiations pass 0).
 template <class Tag, u32 Next, u32 Elem>
-void refl_PoolListCtor(UnkPoolList<Tag, Next, Elem>* self, u32 n, u32, u32 flags, UnkAllocator* a) {
+void refl_PoolListCtor(UnkPoolList<Tag, Next, Elem>* self, u32 n, u32, u32 flags, IAllocator* a) {
     self->Init(n, flags, a);
 }
 
@@ -1463,8 +1463,8 @@ namespace base {
 template <class Tag, u64 NodeSize>
 void refl_HashMapInit(char* self, u32 buckets, u32 nodes) {
     u32 flags = *reinterpret_cast<u32*>(self + 8);
-    UnkAllocator* a = *reinterpret_cast<UnkAllocator**>(self);
-    UnkAllocator*& pool_alloc = *reinterpret_cast<UnkAllocator**>(self + 0x50);
+    IAllocator* a = *reinterpret_cast<IAllocator**>(self);
+    IAllocator*& pool_alloc = *reinterpret_cast<IAllocator**>(self + 0x50);
     if (void* block = *reinterpret_cast<void**>(self + 0x78)) {
         fn_71000837f4(reinterpret_cast<UnkBlockFreeList*>(self + 0x58));
         pool_alloc->vf_0x48(block);
@@ -1748,7 +1748,7 @@ struct UnkKeyedValueArray {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     __attribute__((always_inline)) ~UnkKeyedValueArray() {
         if (keys && count)
@@ -2002,7 +2002,7 @@ struct UnkValueMapNode {
 template <class Tag, u64 Size, global::UnkStringPool*& Pool>
 struct UnkValueMap {
     using Node = UnkValueMapNode<Tag, Size, Pool>;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
     u32 flags;
     u32 count;
     Node** buckets;

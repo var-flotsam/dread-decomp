@@ -21,7 +21,7 @@ struct UnkWaterPoolComponent_b53 {
     u32 field_0xc90_step;
     bool field_0xc90_grow;
     u32 field_0xc90_flags;
-    base::UnkAllocator* field_0xc90_allocator;
+    base::IAllocator* field_0xc90_allocator;
     u64 field_0xcb8;
     char field_0xcc0[0x38];  // string-id list (fn_710090b950)
     u64 field_0xcf8;
@@ -30,7 +30,7 @@ struct UnkWaterPoolComponent_b53 {
     u32 field_0xd00_step;
     bool field_0xd00_grow;
     u32 field_0xd00_flags;
-    base::UnkAllocator* field_0xd00_allocator;
+    base::IAllocator* field_0xd00_allocator;
     base::global::CStrId field_0xd28;
     bool field_0xd30;
     u64 field_0xd38;

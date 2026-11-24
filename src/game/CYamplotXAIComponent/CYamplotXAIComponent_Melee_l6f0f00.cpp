@@ -35,7 +35,7 @@ struct UnkYamplotXAI_l6f0f00 {
 };
 static_assert(__builtin_offsetof(UnkYamplotXAI_l6f0f00, path_end) == 0x147e8, "UnkYamplotXAI_l6f0f00 layout");
 
-void CYamplotXAIComponent_SetMeleeSuccess2mIfPending(UnkYamplotXAI_l6f0f00* self, s32 mode, UnkMeleeRequest_l1065bc* request, bool* out) {
+void fn_71006f0f00(UnkYamplotXAI_l6f0f00* self, s32 mode, UnkMeleeRequest_l1065bc* request, bool* out) {
     fn_71011065bc(reinterpret_cast<UnkMeleeSelf_l1065bc*>(self), mode, request, out);
     if (!self->melee_pending)
         return;

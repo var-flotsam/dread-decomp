@@ -30,7 +30,7 @@ struct UnkLiquidList_da2100 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Reserve(u32 n) { fn_7100da2900(reinterpret_cast<UnkRefPtrArray*>(this), n); }
 };

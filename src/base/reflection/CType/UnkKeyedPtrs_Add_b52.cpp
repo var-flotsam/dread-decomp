@@ -15,7 +15,7 @@ struct UnkKeyedPtrs_b52 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Grow(u32 new_capacity) {
         if (count >= new_capacity)

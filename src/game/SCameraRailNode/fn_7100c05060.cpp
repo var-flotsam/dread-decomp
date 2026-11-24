@@ -7,7 +7,7 @@
 #include "game/UnkVariantPair.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::UnkRefPtrMember;
 
 extern char unk_7101aa2888[];  // the record's vtable
@@ -32,7 +32,7 @@ struct UnkVariantRecord {
     u32 count;
     u32 field_0x2c;
     u8 unk_0x30[0x10];
-    UnkAllocator* allocator;
+    IAllocator* allocator;
     u8 unk_0x48[0x8];
     UnkRefPtrMember ref;
     u32 state;

@@ -11,7 +11,7 @@ using UnkResSetInit_b257j = base::global::UnkBucketSet<UnkResBucket_b257j>;
 
 void fn_71000e9d60(void* set, u32 buckets, u32 flags) {
     UnkResSetInit_b257j* self = static_cast<UnkResSetInit_b257j*>(set);
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     self->buckets.step = 10;
     self->buckets.data = nullptr;
     self->buckets.count = 0;

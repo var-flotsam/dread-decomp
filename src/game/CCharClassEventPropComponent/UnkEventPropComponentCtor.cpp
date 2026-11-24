@@ -43,7 +43,7 @@ struct UnkEventPropDerived : UnkEventPropComponent {
     void* field_0x98;
     u32 field_0xa0;
     u32 field_0xa4;
-    base::UnkAllocator* field_0xa8;
+    base::IAllocator* field_0xa8;
     void* field_0xb0;
     s64 field_0xb8;
     u32 field_0xc0;
@@ -55,7 +55,7 @@ struct UnkEventPropDerived : UnkEventPropComponent {
     u32 field_0xd8;
     bool field_0xdc;
     u32 field_0xe0;
-    base::UnkAllocator* field_0xe8;
+    base::IAllocator* field_0xe8;
     bool field_0xf0;
     bool field_0xf1;
 };

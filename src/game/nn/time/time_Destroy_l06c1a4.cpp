@@ -20,7 +20,7 @@ struct UnkTimeObj_l06c1a4 {
     u32 count;                                                  // 0x8
     UnkIdNode_l06c1a4* head;                                    // 0x10
     UnkIdNode_l06c1a4* tail;                                    // 0x18
-    base::UnkAllocator* allocator;                              // 0x20
+    base::IAllocator* allocator;                              // 0x20
     u64 field_0x28;
     base::global::CRntVector<UnkLinked_l06c1a4*> linked;  // 0x30
     base::global::CRntVector<u64> field_0x58;

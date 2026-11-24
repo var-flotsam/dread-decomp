@@ -190,7 +190,7 @@ struct UnkSearchNodeChain_b0068 {
     u32 pad_0xc;
     UnkSearchNode_b0068* head;
     UnkSearchNode_b0068* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 tag;
 };
 

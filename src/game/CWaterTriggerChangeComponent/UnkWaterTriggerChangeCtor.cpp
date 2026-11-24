@@ -32,7 +32,7 @@ struct UnkWaterTriggerChangeComponent {
     u32 field_0xc0;
     bool field_0xc4;
     u32 field_0xc8;
-    base::UnkAllocator* field_0xd0;
+    base::IAllocator* field_0xd0;
     u32 field_0xd8;
     u64 field_0xe0;
     void** field_0xe8;
@@ -41,7 +41,7 @@ struct UnkWaterTriggerChangeComponent {
     u32 field_0x100;
     bool field_0x104;
     u32 field_0x108;
-    base::UnkAllocator* field_0x110;
+    base::IAllocator* field_0x110;
     u32 field_0x118;
     u64 field_0x120;
     void** field_0x128;
@@ -50,7 +50,7 @@ struct UnkWaterTriggerChangeComponent {
     u32 field_0x140;
     bool field_0x144;
     u32 field_0x148;
-    base::UnkAllocator* field_0x150;
+    base::IAllocator* field_0x150;
     u32 field_0x158;
     u64 field_0x160;
     u8 pad_0x168[0x38];

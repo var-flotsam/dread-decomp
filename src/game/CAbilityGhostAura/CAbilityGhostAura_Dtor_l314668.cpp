@@ -108,7 +108,7 @@ struct UnkGhostAuraList_l314668 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Destroy() {
         if (data) {

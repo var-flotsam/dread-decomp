@@ -49,7 +49,7 @@ struct UnkRedenkiSubList_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Free() {
         if (data) {
@@ -68,7 +68,7 @@ struct UnkRedenkiSubLists_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_710065b1b0(UnkRedenkiSubLists_ovb0084* self, u32 n);
@@ -93,7 +93,7 @@ struct UnkRedenkiFlagArray_Reset_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Reallocate(u32 new_capacity) {
         bool* p = static_cast<bool*>(allocator->vf_0x40(new_capacity, 8, flags));
@@ -573,7 +573,7 @@ struct UnkRedenkiFlagArray_Attack_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Reallocate(u32 new_capacity) {
         bool* p = static_cast<bool*>(allocator->vf_0x40(new_capacity, 8, flags));
@@ -894,7 +894,7 @@ struct UnkRedenkiCellArray_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Reallocate(u32 new_capacity) {
         UnkRedenkiCell_ovb0084* p = static_cast<UnkRedenkiCell_ovb0084*>(
@@ -1091,7 +1091,7 @@ struct UnkOwnedVector_ovb0084 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkOwnedVector_ovb0084(UnkOwnedVector_ovb0084&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
@@ -1174,7 +1174,7 @@ struct UnkRedenkiSlotArray_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // Grows the array to `n` slots, the new ones cleared.

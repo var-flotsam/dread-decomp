@@ -31,7 +31,7 @@ struct UnkCutSceneTable_lc8e034 {
     u32 field_0x14;
     u32 field_0x18;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkCutSceneTable_lc8e034& operator=(UnkCutSceneTable_lc8e034&& other) {
         fn_7100c88920(reinterpret_cast<UnkCutSceneTable_lc886c0*>(this));

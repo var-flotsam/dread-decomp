@@ -21,7 +21,7 @@ void refl_HashMapClear(char* self) {
         while (node) {
             char* next = *reinterpret_cast<char**>(node + NextOff);
             reinterpret_cast<Key*>(node + KeyOff)->~Key();
-            (*reinterpret_cast<UnkAllocator**>(self))->vf_0x48(node);
+            (*reinterpret_cast<IAllocator**>(self))->vf_0x48(node);
             node = next;
         }
         memset(*reinterpret_cast<void**>(self + 0x10), 0, *reinterpret_cast<u32*>(self + 0x1c) * u64(8));
@@ -31,7 +31,7 @@ void refl_HashMapClear(char* self) {
     }
     if (void* buckets = *reinterpret_cast<void**>(self + 0x10)) {
         *reinterpret_cast<u32*>(self + 0x18) = 0;
-        (*reinterpret_cast<UnkAllocator**>(self + 0x30))->vf_0x48(buckets);
+        (*reinterpret_cast<IAllocator**>(self + 0x30))->vf_0x48(buckets);
         *reinterpret_cast<u32*>(self + 0x1c) = 0;
     }
 }
@@ -52,7 +52,7 @@ void refl_ChainedSetClear(char* self) {
             while (node) {
                 char* next = *reinterpret_cast<char**>(node + Next);
                 reinterpret_cast<Key*>(node)->~Key();
-                (*reinterpret_cast<UnkAllocator**>(self + 0x38))->vf_0x48(node);
+                (*reinterpret_cast<IAllocator**>(self + 0x38))->vf_0x48(node);
                 ++*reinterpret_cast<u32*>(self + 0x48);
                 node = next;
             }
@@ -78,7 +78,7 @@ void refl_ValueMapClear(char* self) {
             char* next = *reinterpret_cast<char**>(node + NextOff);
             UnkHashMapTraits<Tag>::destroy(node + 8);
             reinterpret_cast<Key*>(node)->~Key();
-            (*reinterpret_cast<UnkAllocator**>(self))->vf_0x48(node);
+            (*reinterpret_cast<IAllocator**>(self))->vf_0x48(node);
             node = next;
         }
         memset(*reinterpret_cast<void**>(self + 0x10), 0, *reinterpret_cast<u32*>(self + 0x1c) * u64(8));
@@ -88,7 +88,7 @@ void refl_ValueMapClear(char* self) {
     }
     if (void* buckets = *reinterpret_cast<void**>(self + 0x10)) {
         *reinterpret_cast<u32*>(self + 0x18) = 0;
-        (*reinterpret_cast<UnkAllocator**>(self + 0x30))->vf_0x48(buckets);
+        (*reinterpret_cast<IAllocator**>(self + 0x30))->vf_0x48(buckets);
         *reinterpret_cast<u32*>(self + 0x1c) = 0;
     }
 }

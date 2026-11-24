@@ -48,7 +48,7 @@ struct RefSlotArray_b43a2 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Reserve(u32 n) {
         if (capacity < n) {

@@ -6,7 +6,7 @@
 #include "game/UnkVariantPair.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 
 extern char unk_7101aa28d8[];  // the array's vtable (at 0x18, or at 0x8 in fn_7100c09b38's pair)
 
@@ -23,7 +23,7 @@ struct UnkRecordArrayVariant {
     u32 count;
     u32 capacity;
     u8 unk_0x18[0x10];
-    UnkAllocator* allocator;
+    IAllocator* allocator;
     u8 unk_0x30[0x20];
     u32 state;
 };

@@ -8,6 +8,6 @@
 extern char unk_7101cb25d8[];  // the base part's vtable (reached through the GOT)
 extern char unk_7101cb25b8[];  // the container's vtable (reached through the GOT)
 
-void fn_71010f8804(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::UnkAllocator* a) {
+void fn_71010f8804(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::IAllocator* a) {
     refl_ParentPoolListCtor<0x28, unk_7101cb25d8, unk_7101cb25b8>(self, n, flags, a);
 }

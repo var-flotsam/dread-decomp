@@ -56,7 +56,7 @@ struct UnkMapNode_l198e00 {
 };
 
 struct UnkNodeMap_l198e00 {
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u32 flags;
     u32 count;  // 0xc
     base::global::CRntVector<UnkMapNode_l198e00*> buckets;  // 0x10

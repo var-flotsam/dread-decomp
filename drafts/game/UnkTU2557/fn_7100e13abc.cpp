@@ -30,7 +30,7 @@ struct UnkPoolNode_b0247 {
 
 struct UnkPoolMap_b0247 {
     using Node = UnkPoolNode_b0247;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     Node** buckets;       // 0x10

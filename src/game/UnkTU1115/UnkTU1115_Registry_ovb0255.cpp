@@ -22,7 +22,7 @@ struct UnkTable_b0255 {
     u32 field_0x14;
     u32 field_0x18;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 };
 
 struct UnkRegistry_b0255;

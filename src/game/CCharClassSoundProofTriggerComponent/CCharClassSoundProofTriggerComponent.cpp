@@ -16,7 +16,7 @@ struct UnkSoundProofTrigger {
     u32 field_0xad0;
     bool field_0xad4;
     u32 field_0xad8;
-    base::UnkAllocator* field_0xae0;
+    base::IAllocator* field_0xae0;
     u32 field_0xae8;
     f32 field_0xaec;
     f32 field_0xaf0;

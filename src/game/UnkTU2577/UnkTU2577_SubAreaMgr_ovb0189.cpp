@@ -470,7 +470,7 @@ struct UnkHashNode_b189 {
 static_assert(__builtin_offsetof(UnkHashNode_b189, next) == 0x30, "node layout");
 
 struct UnkHashMap_b189 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 field_0x8;
     u32 count;
     UnkHashNode_b189** buckets;

@@ -24,7 +24,7 @@ struct UnkKeyedArray {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkKeyedArray(const UnkKeyedArray& other)
         : data(other.data), keys(other.keys), count(other.count), capacity(other.capacity), step(other.step),

@@ -31,7 +31,7 @@ struct UnkIdVectorNode_ovb0060 {
 };
 
 struct UnkIdVectorMap_ovb0060 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkIdVectorNode_ovb0060** buckets;  // 0x10
@@ -75,7 +75,7 @@ struct UnkIdVecNode_ovb0060 {
 };
 
 struct UnkIdVecMap_ovb0060 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkIdVecNode_ovb0060** buckets;  // 0x10

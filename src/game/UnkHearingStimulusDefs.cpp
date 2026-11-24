@@ -68,7 +68,7 @@ struct UnkHearingStimulusNode {
 };
 
 struct UnkHearingStimulusMap {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkHearingStimulusNode** buckets;

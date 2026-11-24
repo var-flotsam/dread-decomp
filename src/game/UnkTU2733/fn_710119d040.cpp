@@ -81,7 +81,7 @@ struct UnkInlineString_l19d040 {
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     explicit UnkInlineString_l19d040(const char* text) {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage_vtable));
         storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;

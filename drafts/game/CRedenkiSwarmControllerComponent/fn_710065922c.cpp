@@ -22,7 +22,7 @@ struct UnkRedenkiSubList_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Free() {
         if (data) {
@@ -41,7 +41,7 @@ struct UnkRedenkiSubLists_ovb0084 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkRedenkiKeyHolder_ovb0084 {

@@ -11,7 +11,7 @@
 #include "base/global/UnkStringPoolBody.h"
 
 using base::UnkNamedEntry;
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CRntVector;
 using base::global::UnkPoolNode;
 using base::global::UnkPoolSetWithNodes;
@@ -130,7 +130,7 @@ UnkStringPoolHolder::~UnkStringPoolHolder() {
 // on `set` make each use of the node pool's address a fresh computation, as in the original.
 void fn_7100080578(UnkPoolSetWithNodes* set, u32 buckets, u32 nodes) {
     u32 flags = set->node_flags;
-    UnkAllocator* node_allocator = set->node_allocator;
+    IAllocator* node_allocator = set->node_allocator;
     void* old_memory = set->nodes.blocks.buffer;
     if (old_memory) {
         fn_71000837f4(&set->nodes.blocks);
@@ -146,7 +146,7 @@ void fn_7100080578(UnkPoolSetWithNodes* set, u32 buckets, u32 nodes) {
         asm("" : "+r"(set));
         fn_710008378c(&set->nodes.blocks, memory, (u64)nodes * sizeof(UnkPoolNode), sizeof(UnkPoolNode));
     }
-    set->node_allocator = reinterpret_cast<UnkAllocator*>(&set->nodes);
+    set->node_allocator = reinterpret_cast<IAllocator*>(&set->nodes);
     CRntVector<UnkPoolNode*>& v = set->buckets;
     u32 count = v.count;
     if (count < buckets) {

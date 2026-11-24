@@ -20,7 +20,7 @@ void fn_7100fed9dc(void* dst, const void* src);
 template <class Node>
 struct UnkIdMap_lfeeb84 {
     CStrId id;
-    base::UnkAllocator* allocator;  // 0x8
+    base::IAllocator* allocator;  // 0x8
     u32 flags;
     u32 count;
     base::global::CRntVector<Node*> buckets;  // 0x18

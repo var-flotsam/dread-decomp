@@ -406,7 +406,7 @@ address,size,name,name_source,subsystem,status
 0x710111c010,236,fn_710111c010,unknown,game/components?,O
 0x710111c0fc,732,fn_710111c0fc,unknown,game/components?,m
 0x710111c3d8,152,fn_710111c3d8,unknown,game/components?,O
-0x710111c470,152,CSpawnGroupComponent_ForEachSpawnedEntity,inferred,game/components?,O
+0x710111c470,152,fn_710111c470,unknown,game/components?,O
 0x710111c508,100,fn_710111c508,unknown,game/components?,O
 0x710111c56c,288,fn_710111c56c,unknown,game/components?,O
 0x710111c68c,80,fn_710111c68c,unknown,game/components?,O

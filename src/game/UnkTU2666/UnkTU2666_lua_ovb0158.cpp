@@ -421,7 +421,7 @@ struct UnkSettings_b0158 {
     void* field_0x8 = nullptr;
     u64 field_0x10 = 0;
     u64 field_0x18 = 0xf;
-    base::UnkAllocator* field_0x20;
+    base::IAllocator* field_0x20;
     u64 field_0x28;
 };
 

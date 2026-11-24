@@ -75,7 +75,7 @@ struct UnkTimelineComponent {
     };
     UnkTimedEntry* timed_head;
     UnkTimedEntry* timed_tail;
-    base::UnkAllocator* timed_allocator;
+    base::IAllocator* timed_allocator;
     u32 timed_flags;
 };
 static_assert(__builtin_offsetof(UnkTimelineComponent, table) == 0x68, "UnkTimelineComponent placeholder layout");

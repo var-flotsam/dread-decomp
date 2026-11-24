@@ -40,7 +40,7 @@ struct UnkClearVector_A4_b73 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Clear() {
         for (u64 i = 0; i < count; ++i)
@@ -105,7 +105,7 @@ struct UnkPushEntry_A4_b73 {
     u32 list_step;
     bool list_grow;
     u32 list_flags;
-    base::UnkAllocator* list_allocator;
+    base::IAllocator* list_allocator;
     u32 field_0x30;
     base::UnkRefHandle owner;  // 0x38
     base::global::CStrId id;   // 0x40
@@ -122,7 +122,7 @@ struct UnkPushVector_A4_b73 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     template <void (*Reserve)(UnkEntryVector*, u32)>
     __attribute__((always_inline)) void PushBack(const UnkPushEntry_A4_b73* value) {

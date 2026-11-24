@@ -27,7 +27,7 @@ struct UnkRefNode_ld41c40 {
 };
 
 struct UnkRefMap_ld41c40 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u8 pad_0x8[0x4];
     u32 count;                     // 0xc
     UnkRefNode_ld41c40** buckets;  // 0x10

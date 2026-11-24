@@ -48,7 +48,7 @@ struct UnkNavTable_l274b48 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkNavTable_l274b48() {
         Clear(reinterpret_cast<Tables*>(this));

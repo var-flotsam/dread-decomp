@@ -436,7 +436,7 @@ void fn_710119ab20() {
     fn_7100000250(CStrId_Destroy, &g_unk_7172a0bc98, &g_unk_7101a19000);
 }
 
-using base::UnkAllocator;
+using base::IAllocator;
 
 struct UnkTracked_b0188 : UnkRefObject {
     u64 field_0x10;
