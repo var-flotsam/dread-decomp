@@ -15,6 +15,6 @@ void fn_71005028e4(UnkChargeComponent* self, f32 time) {
     f32 limit = g_unk_71726e0aa8.field_0xa0;
     if (current != limit) {
         f32 next = time * 100.0f + current;
-        fn_71005026d0(self, 0, next > limit ? limit : next);
+        CEmmyWaveMovementComponent_SetSizeAndRescaleShapeAndFX(self, 0, next > limit ? limit : next);
     }
 }

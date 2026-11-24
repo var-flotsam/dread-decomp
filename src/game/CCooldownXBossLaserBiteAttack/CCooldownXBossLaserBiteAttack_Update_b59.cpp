@@ -16,7 +16,7 @@ struct UnkWhipSend_b58;
 struct UnkGrappleAnswer_b50;
 
 struct UnkLaserBite_b59;
-void fn_71004c1f18(UnkLaserBite_b59* self);
+void CCooldownXBossAttack_ActivateStartLavaTL(UnkLaserBite_b59* self);
 
 struct UnkLaserBiteAnswer_b59 {
     f32 field_0x0;
@@ -60,7 +60,7 @@ void fn_71004c2814(UnkLaserBite_b59* self, f32 dt) {
         return;
     if (fn_710117b348(anim, fn_7100bf9a78())) {
         self->vf_0xe8();
-        fn_71004c1f18(self);
+        CCooldownXBossAttack_ActivateStartLavaTL(self);
         return;
     }
     self->vf_0xf0();

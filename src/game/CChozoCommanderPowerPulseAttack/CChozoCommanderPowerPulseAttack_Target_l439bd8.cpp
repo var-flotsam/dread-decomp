@@ -38,7 +38,7 @@ struct UnkPulseAttack_l439bd8 {
     UnkPulseDef_l439bd8* def;  // 0x50
 };
 
-bool fn_7100439bd8(UnkPulseAttack_l439bd8* self, UnkVec3f* out) {
+bool CChozoCommanderPowerPulseAttack_GetAttackPosKeepingMinDistToWall(UnkPulseAttack_l439bd8* self, UnkVec3f* out) {
     UnkReflObject* ai = static_cast<UnkReflObject*>(self->owner->field_0x240);
     UnkReflObject* commander = ai && fn_710009d50c(ai->vf_0x0(), fn_710044e708()) ? ai : nullptr;
     UnkPulseRange_l439bd8* range = &reinterpret_cast<UnkPulseAI_l439bd8*>(commander)->range;
@@ -57,5 +57,5 @@ bool fn_7100439bd8(UnkPulseAttack_l439bd8* self, UnkVec3f* out) {
         out->x = -self->def->distance + out->x;
         return true;
     }
-    return fn_710042bb48(reinterpret_cast<UnkSelf_710042bb48*>(self), reinterpret_cast<UnkOut_42bb48*>(out));
+    return CChozoCommanderGroundAttack_ComputeDesiredAttackPos(reinterpret_cast<UnkSelf_710042bb48*>(self), reinterpret_cast<UnkOut_42bb48*>(out));
 }

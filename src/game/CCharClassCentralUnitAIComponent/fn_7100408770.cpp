@@ -16,7 +16,7 @@ struct UnkSelf_408770 {
 
 void fn_710013c7e0(UnkTunableRegistry* registry, const char* group, const char* name, f32* value);
 
-f32 fn_7100408770(UnkSelf_408770* self) {
+f32 CCharClassCentralUnitAIComponent_GetArmorLifeTunableValue(UnkSelf_408770* self) {
     f32 found = 0.0f;
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {

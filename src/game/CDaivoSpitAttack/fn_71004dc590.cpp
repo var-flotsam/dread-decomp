@@ -7,7 +7,7 @@ struct UnkSelf_71004dc590 {
     UnkWeakHandle* field_0x14890;
 };
 
-void fn_71004dc590(UnkSelf_71004dc590* self, UnkWeakTarget* other) {
+void CDaivoSpitAttack_SetAIComponentSpitRef(UnkSelf_71004dc590* self, UnkWeakTarget* other) {
     UnkWeakHandle* handle = other ? GetWeakHandle(other) : nullptr;
     AssignRef(&self->field_0x14890, handle);
 }

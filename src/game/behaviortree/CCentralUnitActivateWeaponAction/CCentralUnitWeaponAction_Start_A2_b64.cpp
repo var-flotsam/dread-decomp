@@ -37,5 +37,5 @@ static inline __attribute__((always_inline)) u32 Start(UnkCentralUnitWeaponActio
     return Switch(found, self->field_0x2c) ? 5 : 6;
 }
 
-u32 fn_7100401484(UnkCentralUnitWeaponAction_b64a2* self) { return Start<fn_7100406080>(self); }
+u32 CCentralUnitActivateWeaponAction_ActivateWeaponAtSpawnPoint(UnkCentralUnitWeaponAction_b64a2* self) { return Start<fn_7100406080>(self); }
 u32 fn_7100401fa4(UnkCentralUnitWeaponAction_b64a2* self) { return Start<fn_7100406300>(self); }

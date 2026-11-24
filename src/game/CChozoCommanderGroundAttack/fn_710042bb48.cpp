@@ -51,7 +51,7 @@ struct UnkSelf_710042bb48 {
     UnkController* field_0x48;
 };
 
-bool fn_710042bb48(UnkSelf_710042bb48* self, UnkOut_42bb48* out) {
+bool CChozoCommanderGroundAttack_ComputeDesiredAttackPos(UnkSelf_710042bb48* self, UnkOut_42bb48* out) {
     bool result = false;
     if (self->field_0x48->field_0xf0 != -1.0f) {
         f32 from = self->field_0x8->field_0x44;

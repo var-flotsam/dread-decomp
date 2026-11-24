@@ -76,7 +76,7 @@ struct UnkHydrogigaAttack_ovb0114 {
     UnkHydrogigaAttackStrData_ovb0114* name;  // 0x38
 };
 
-f32 fn_71005acf10(UnkHydrogigaAttack_ovb0114* self) {
+f32 CCharClassHydrogigaAttack_GetTunableEnabledByName(UnkHydrogigaAttack_ovb0114* self) {
     bool enabled = true;
     UnkHydrogigaAttackObject_ovb0114* tunable = reinterpret_cast<UnkHydrogigaAttackObject_ovb0114*>(&g_unk_71726eb108);
     Get(tunable, self->name->key, &enabled);

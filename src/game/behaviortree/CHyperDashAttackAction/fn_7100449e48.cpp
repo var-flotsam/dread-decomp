@@ -98,7 +98,7 @@ u32 fn_7100449e48(UnkHyperDashAttackAction_l449e48* self) {
         return 2;
     }
     if (!self->started) {
-        void* target = fn_7100449868(reinterpret_cast<UnkHyperDashNode_ovb0095*>(self));
+        void* target = CHyperDashAttackAction_GetNamedOrCurrentAttack(reinterpret_cast<UnkHyperDashNode_ovb0095*>(self));
         self->started = fn_7100449bdc(reinterpret_cast<UnkHyperDashAttackAction_l4496a8*>(self), target,
                                       self->field_0x70);
         if (self->started)

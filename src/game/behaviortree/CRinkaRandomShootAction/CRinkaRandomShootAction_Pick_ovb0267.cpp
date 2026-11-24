@@ -33,7 +33,7 @@ struct UnkRinkaShoot_ovb0267 {
 };
 
 
-u32 fn_7100402714(UnkRinkaShoot_ovb0267* self) {
+u32 CRinkaRandomShootAction_PickRandomRinkaTypeForSpawnPoint(UnkRinkaShoot_ovb0267* self) {
     if (self->iSpawnPointIndex < 0)
         return 6;
     f32 total = self->fRinkaTypeAProbability + self->fRinkaTypeBProbability + self->fRinkaTypeCProbability;

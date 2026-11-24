@@ -20,10 +20,10 @@ using base::reflection::UnkReflObject;
 
 struct UnkHydrogigaAttack;
 void fn_71005b3978(UnkHydrogigaAttack* self, UnkReflObject* arg);
-void fn_71005b4998(UnkHydrogigaAttack* self, UnkReflObject* arg);
+void CHydrogigaMaelstormAttack_InitAndAddTentacleIds(UnkHydrogigaAttack* self, UnkReflObject* arg);
 void fn_71005b542c(UnkHydrogigaAttack* self, UnkReflObject* arg);
-void fn_71005b6e40(UnkHydrogigaAttack* self, UnkReflObject* arg);
-void fn_71005b7910(UnkHydrogigaAttack* self, UnkReflObject* arg);
+void CHydrogigaTentacleBashAttack_InitFromCharClass(UnkHydrogigaAttack* self, UnkReflObject* arg);
+void CHydrogigaTongueSwirlAttack_InitFromCharClass(UnkHydrogigaAttack* self, UnkReflObject* arg);
 
 struct UnkStrIdHandle {
     union {
@@ -105,13 +105,13 @@ u32 fn_71005bb568(UnkHydrogigaAI_l5bb568* self, void* arg) {
     self->attacks.Add(Attack(self->attack_0));
     fn_71005b3978(Attack(self->attack_0), Data(self->char_class->field_0x738));
     self->attacks.Add(Attack(self->attack_1));
-    fn_71005b4998(Attack(self->attack_1), Data(self->char_class->maelstorm));
+    CHydrogigaMaelstormAttack_InitAndAddTentacleIds(Attack(self->attack_1), Data(self->char_class->maelstorm));
     self->attacks.Add(Attack(self->attack_2));
     fn_71005b542c(Attack(self->attack_2), Data(self->char_class->field_0x920));
     self->attacks.Add(Attack(self->attack_3));
-    fn_71005b6e40(Attack(self->attack_3), Data(self->char_class->tentacle_bash));
+    CHydrogigaTentacleBashAttack_InitFromCharClass(Attack(self->attack_3), Data(self->char_class->tentacle_bash));
     self->attacks.Add(Attack(self->attack_4));
-    fn_71005b7910(Attack(self->attack_4), Data(self->char_class->tongue_swirl));
+    CHydrogigaTongueSwirlAttack_InitFromCharClass(Attack(self->attack_4), Data(self->char_class->tongue_swirl));
 
     {
         UnkGameManager* manager = g_unk_7101d47310;

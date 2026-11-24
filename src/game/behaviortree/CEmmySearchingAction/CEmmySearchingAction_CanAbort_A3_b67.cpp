@@ -20,7 +20,7 @@ struct UnkEmmySearchingAction_A3_b67 {
     UnkActor* owner;  // 0x18
 };
 
-bool fn_7100518494(UnkEmmySearchingAction_A3_b67* self) {
+bool CEmmySearchingAction_ShouldDeferSearchStart(UnkEmmySearchingAction_A3_b67* self) {
     auto* ai = static_cast<base::reflection::UnkReflObject*>(self->owner->field_0x240);
     u8* emmy = ai && fn_710009d50c(ai->vf_0x0(), fn_710053b934()) ? reinterpret_cast<u8*>(ai) : nullptr;
     void* movement = self->owner->field_0x218;

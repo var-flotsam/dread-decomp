@@ -60,7 +60,7 @@ struct UnkReflObject;
 using base::reflection::UnkReflObject;
 bool fn_7100449944(UnkHyperDashAttackAction_l4496a8* self, void* target);
 
-void fn_71004496a8(UnkHyperDashAttackAction_l4496a8* self) {
+void CHyperDashAttackAction_Start(UnkHyperDashAttackAction_l4496a8* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->started = false;
     UnkDashAI_l4496a8* commander = nullptr;
@@ -75,7 +75,7 @@ void fn_71004496a8(UnkHyperDashAttackAction_l4496a8* self) {
     if (self->name_property.data != &g_unk_7101d47108->empty)
         CBehavior_ReadStringProperty(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->name_property,
                       reinterpret_cast<UnkInlineString_A2_b72*>(&name));
-    UnkReflObject* target = fn_7100449868(reinterpret_cast<UnkHyperDashNode_ovb0095*>(self));
+    UnkReflObject* target = CHyperDashAttackAction_GetNamedOrCurrentAttack(reinterpret_cast<UnkHyperDashNode_ovb0095*>(self));
     self->field_0x70 = fn_7100449944(self, target);
     if (commander)
         commander->field_0x15ed0 = true;

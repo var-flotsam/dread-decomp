@@ -24,7 +24,7 @@ void fn_710048c33c();
 void fn_710048c340();
 void fn_710048c350();
 void fn_710048c380();
-void fn_710048c384(UnkEffect* self);
+void CChozoWarriorXUltimateGrabAttack_OnEnterState6(UnkEffect* self);
 void fn_710048c430();
 void fn_710048c440();
 void fn_710048c4b4();
@@ -155,7 +155,7 @@ void fn_7100486de8(UnkUltGrab_486de8* self) {
     Bind(self, &self->states[3], fn_710048c29c, fn_710048c2f0, fn_710048c2f4);
     Bind(self, &self->states[4], fn_710048c304, fn_710048c33c, fn_710048c340);
     BindEnterExit(self, &self->states[5], fn_710048c350, fn_710048c380);
-    BindEnterExit(self, &self->states[6], reinterpret_cast<void (*)()>(fn_710048c384), fn_710048c430);
+    BindEnterExit(self, &self->states[6], reinterpret_cast<void (*)()>(CChozoWarriorXUltimateGrabAttack_OnEnterState6), fn_710048c430);
     Bind(self, &self->states[7], fn_710048c440, fn_710048c4b4, fn_710048c4b8);
     Bind(self, &self->states[8], fn_710048c4c8, fn_710048c51c, fn_710048c520);
     Bind(self, &self->states[9], fn_710048c530, fn_710048c568, fn_710048c56c);

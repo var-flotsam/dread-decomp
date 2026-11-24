@@ -40,7 +40,7 @@ inline UnkPathRecord_b0019& PathAt(UnkPathVec_b0019& v, u32 i) {
         fn_7100456980(&v, n);
         fn_7100456980(&v, i + 1);
         for (u32 j = v.count; j < i + 1; ++j)
-            fn_7100456ac0(reinterpret_cast<UnkPathRecord*>(&v.data[j]));
+            CChozoCommanderAIComponent_ConstructFilePathRecord(reinterpret_cast<UnkPathRecord*>(&v.data[j]));
         v.count = i + 1;
     }
     return v.data[i];

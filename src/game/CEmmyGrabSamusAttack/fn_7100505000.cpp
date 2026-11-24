@@ -13,7 +13,7 @@ struct UnkInlineStrArray_l505000 {
 
 // The count is a 64-bit value in the original (it is tested and walked whole), though the capacity
 // check reads only its low half.
-void fn_7100505000(void* storage, const UnkInlineStr50* strs, u64 count) {
+void CEmmyGrabSamusAttack_InitInlineStrArray4FromList(void* storage, const UnkInlineStr50* strs, u64 count) {
     auto* self = new (storage) UnkInlineStrArray_l505000;
     const u32 n = static_cast<u32>(count);
     if (n > sizeof(self->strs) / sizeof(self->strs[0]))

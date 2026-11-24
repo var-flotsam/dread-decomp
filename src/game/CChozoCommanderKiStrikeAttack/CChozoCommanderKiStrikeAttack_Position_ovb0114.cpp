@@ -44,7 +44,7 @@ static inline f32 Sign(f32 v) {
 // The strike position: from the owner, backed off along its facing by the AI component's distance
 // (fn_71010fc778) while that is under the definition's minimum; otherwise at the target's x side
 // distance (from fn_71010fc39c's x), when that reaches the minimum. False when there is none.
-bool fn_71004369b4(UnkKiStrike3_ovb0114* self, UnkVec3f* out) {
+bool CChozoCommanderKiStrikeAttack_ComputeHyperDashPosition(UnkKiStrike3_ovb0114* self, UnkVec3f* out) {
     UnkReflObject* obj = static_cast<UnkReflObject*>(self->owner->field_0x240);
     if (!obj || !fn_710009d50c(obj->vf_0x0(), fn_710044e708()))
         return false;

@@ -245,7 +245,7 @@ using base::global::CStrId;
 
 struct UnkNameHolder_50816c;
 
-u32 fn_710050816c(UnkNameHolder_50816c* self);
+u32 CEmmyGrabSamusAttack_NameHashToKnownNameIndex(UnkNameHolder_50816c* self);
 
 struct UnkSpeedNode_h {
     u32 key;
@@ -281,7 +281,7 @@ f32 fn_71010ff140(UnkSpeedSelf_h* self) {
     u32 hash;
     {
         UnkTimelineId tl = fn_7101177be0(anim, 0xf4061ff25a2163d6);
-        hash = fn_710050816c(reinterpret_cast<UnkNameHolder_50816c*>(&tl));
+        hash = CEmmyGrabSamusAttack_NameHashToKnownNameIndex(reinterpret_cast<UnkNameHolder_50816c*>(&tl));
     }
     f32 speed = -1.0f;
     if (self->map.count) {

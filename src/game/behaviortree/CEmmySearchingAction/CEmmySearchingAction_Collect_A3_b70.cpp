@@ -77,7 +77,7 @@ static inline __attribute__((always_inline)) void Collect_A3_b70(UnkCollectOwner
     items.Free();
 }
 
-void fn_710051cdd8(UnkCollectOwner_A3_b70* self, bool flag, u32 mode, UnkCollectList_A3_b70* list) {
+void CEmmySearchingAction_ExpandSearchNode(UnkCollectOwner_A3_b70* self, bool flag, u32 mode, UnkCollectList_A3_b70* list) {
     Collect_A3_b70<fn_7100ad0380>(self, flag, mode, list, reinterpret_cast<char*>(g_unk_7101a47fa8) + 0x10);
 }
 void fn_7100560d14(UnkCollectOwner_A3_b70* self, bool flag, u32 mode, UnkCollectList_A3_b70* list) {

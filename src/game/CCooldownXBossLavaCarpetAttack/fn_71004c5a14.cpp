@@ -33,7 +33,7 @@ struct UnkRecord_4c5a14 {
 };
 
 void fn_7100d62ca8(void* self, const void* other);
-void fn_71004c5c2c(void* self, const void* other);
+void CCooldownXBossLavaCarpetAttack_AssignRecordArray(void* self, const void* other);
 
 // NON_MATCHING(minor): the 24-byte copy at +0x1c0 and the 11-byte copy at +0x77c load and store in a different order
 UnkRecord_4c5a14* fn_71004c5a14(UnkRecord_4c5a14* self, const UnkRecord_4c5a14* other) {
@@ -57,7 +57,7 @@ UnkRecord_4c5a14* fn_71004c5a14(UnkRecord_4c5a14* self, const UnkRecord_4c5a14* 
     __builtin_memcpy(self->field_0x90, other->field_0x90, 12);
     fn_7100d62ca8(self->field_0xa0, other->field_0xa0);
     __builtin_memcpy(self->field_0x1c0, other->field_0x1c0, 24);
-    fn_71004c5c2c(self->field_0x1d8, other->field_0x1d8);
+    CCooldownXBossLavaCarpetAttack_AssignRecordArray(self->field_0x1d8, other->field_0x1d8);
     __builtin_memcpy(self->field_0x77c, other->field_0x77c, 11);
     return self;
 }

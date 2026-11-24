@@ -107,7 +107,7 @@ struct UnkCooldownXPartC_l4cfc28 : UnkCooldownXPartBase_l4cfc28 {
 // A record kept by id (0x40 bytes), destroyed out of line.
 struct UnkCooldownXRecordEntry_l4cfc28 {
     u8 data[0x40];
-    ~UnkCooldownXRecordEntry_l4cfc28() { fn_71004d0b00(reinterpret_cast<UnkCooldownXRecord_ovb0088*>(this)); }
+    ~UnkCooldownXRecordEntry_l4cfc28() { CCooldownXBossAIComponent_DestroyRecordRefAndIds(reinterpret_cast<UnkCooldownXRecord_ovb0088*>(this)); }
 };
 
 // The records by id, owning both arrays.

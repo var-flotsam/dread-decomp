@@ -43,7 +43,7 @@ struct UnkEmmyGrabAttack_l50ed80 {
     UnkEntityWithSound* owner;
 };
 
-void fn_710050ed80(UnkEmmyGrabAttack_l50ed80* self) {
+void CEmmyGrabSamusAttack_PlayGrabHandTwoRumble(UnkEmmyGrabAttack_l50ed80* self) {
     static CFilePathStrId s_path("actors/emmy/grabhandtwo_emmy_01.bnvib", true);
     UnkRumbleParams_l50ed80 params;
     params.field_0x10 = 3;

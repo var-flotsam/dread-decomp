@@ -23,7 +23,7 @@ struct UnkStruct_71005077f8;
 struct UnkStruct_710050f26c;
 void fn_710050f26c(UnkStruct_710050f26c* self, f32 time, const UnkColorIn_710050f26c* color, f32 time2, const UnkColor_710050f26c* color2, f32 offset);
 void fn_71005068c8(UnkEmmyGrabAttack_A3_b67* self, f32 a, f32 b, f32 c, bool d, bool e);
-UnkStrId_71005077f8 fn_71005077f8(UnkStruct_71005077f8* self, u32 kind);
+UnkStrId_71005077f8 CEmmyGrabSamusAttack_BuildAnimationIdForKind(UnkStruct_71005077f8* self, u32 kind);
 void fn_7100507d24(UnkGrabAttack_b58a3* self);
 bool fn_710050a500(UnkGrabAttack_b59a3* self, const UnkGrabId_b59a3* id);
 void fn_710050afd0(UnkGrabFx4_b61* self, UnkGrabArg_b61* arg);
@@ -33,4 +33,4 @@ extern UnkGrabArg_b61 g_unk_71726de5a0 __attribute__((visibility("hidden")));
 extern UnkGrabInputArg_b61 g_unk_71726de5d0 __attribute__((visibility("hidden")));
 extern void* g_unk_7101a479c8[];
 // Builds an array of four inline strings in `storage` and copies up to four of `strs` into it.
-void fn_7100505000(void* storage, const UnkInlineStr50* strs, u64 count);
+void CEmmyGrabSamusAttack_InitInlineStrArray4FromList(void* storage, const UnkInlineStr50* strs, u64 count);

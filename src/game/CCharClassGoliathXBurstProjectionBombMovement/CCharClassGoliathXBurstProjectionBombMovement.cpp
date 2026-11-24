@@ -20,7 +20,7 @@ struct UnkObject_7100589b94 {
     UnkStringData* id;
 };
 
-void fn_7100589b94(UnkObject_7100589b94* self) {
+void CCharClassGoliathXBurstProjectionBombMovement_Destroy(UnkObject_7100589b94* self) {
     self->vtable = &g_unk_7101a4bcf8[2];
     if (UnkStringPool* pool = g_unk_7101d47108) {
         if (self->id && self->id != &pool->empty) {

@@ -431,7 +431,7 @@ struct UnkRushNodeSlot_b0195 {
     UnkRushActor_b0195* field_0x30;
 };
 struct UnkNodeSet695_b43a1;
-base::reflection::UnkReflObject* fn_7100475564(UnkNodeSet695_b43a1* self);
+base::reflection::UnkReflObject* CAIManager_FindLastActorBossAIComponent(UnkNodeSet695_b43a1* self);
 void fn_71011a664c(char* instance);
 extern char* g_unk_71726b2398;
 struct UnkDoorRegistry_b61;

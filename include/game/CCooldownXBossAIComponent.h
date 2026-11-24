@@ -8,4 +8,4 @@
 struct UnkCooldownXRecord_ovb0088;
 struct UnkAIComponent_71004d771c;
 void fn_71004d43dc(UnkAIComponent_71004d771c*, void*);
-void fn_71004d0b00(UnkCooldownXRecord_ovb0088* self);
+void CCooldownXBossAIComponent_DestroyRecordRefAndIds(UnkCooldownXRecord_ovb0088* self);

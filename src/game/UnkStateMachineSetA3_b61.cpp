@@ -128,7 +128,7 @@ struct UnkGrabSm_b61 {
     f32 field_0x6bc;
 };
 
-void fn_710050c490(UnkGrabSm_b61* self);
+void CEmmyGrabSamusAttack_UpdateEffectsFromCountdown(UnkGrabSm_b61* self);
 
 // Grab hold: while the target has no "ignore melee" track, counts down and then asks for state 10.
 void fn_710050d67c(UnkGrabSm_b61* self, f32 dt) {
@@ -136,7 +136,7 @@ void fn_710050d67c(UnkGrabSm_b61* self, f32 dt) {
     UnkActor* actor = reinterpret_cast<UnkActor*>(fn_7100defcd4(g_unk_7101d47310));
     if (fn_710117b348(static_cast<UnkAnimationComponent*>(actor->field_0x220), fn_7100d0ebf8()))
         return;
-    fn_710050c490(self);
+    CEmmyGrabSamusAttack_UpdateEffectsFromCountdown(self);
     self->field_0x6bc -= dt;
     if (!(self->field_0x6bc <= 0.0f))
         return;
@@ -208,7 +208,7 @@ void fn_710050c258(UnkGrabSm_b61* self, f32 dt) {
     UnkActor* actor = reinterpret_cast<UnkActor*>(fn_7100defcd4(g_unk_7101d47310));
     if (fn_710117b348(static_cast<UnkAnimationComponent*>(actor->field_0x220), fn_7100d0ebf8()))
         return;
-    fn_710050c490(self);
+    CEmmyGrabSamusAttack_UpdateEffectsFromCountdown(self);
     self->field_0x6bc -= dt;
     if (!(self->field_0x6bc <= 0.0f))
         return;
@@ -263,7 +263,7 @@ void fn_710050ce60(UnkGrabFx_b61* self, f32 dt) {
         Fade_b61(self, dt);
         return;
     }
-    fn_710050c490(reinterpret_cast<UnkGrabSm_b61*>(self));
+    CEmmyGrabSamusAttack_UpdateEffectsFromCountdown(reinterpret_cast<UnkGrabSm_b61*>(self));
     self->field_0x6bc -= dt;
     if (!(self->field_0x6bc <= 0.0f))
         return;

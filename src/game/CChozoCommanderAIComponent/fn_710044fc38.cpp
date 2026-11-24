@@ -59,7 +59,7 @@ __attribute__((always_inline)) static inline void RegisterState(UnkCmdComponent*
 }
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
-bool fn_710044fc38(UnkCmdComponent* self, void* arg) {
+bool CChozoCommanderAIComponent_InitAttacksFromCharClass(UnkCmdComponent* self, void* arg) {
     // Read as a flag here, as a word by the other callers.
     bool result = reinterpret_cast<bool (*)(UnkBossAIComponent*, void*)>(fn_71003ac8f4)(reinterpret_cast<UnkBossAIComponent*>(self), arg);
     UnkCmdActor* obj = self->field_0x10;
