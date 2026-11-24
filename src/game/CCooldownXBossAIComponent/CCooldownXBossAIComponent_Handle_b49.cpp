@@ -23,7 +23,8 @@ struct UnkCooldownAI_b49 {
     base::UnkRefHandle handle;
 };
 
-void fn_71004d432c(UnkCooldownAI_b49* self, u32 on) {
+// Resolves the handle on first use and returns the entity it names, or null.
+static inline UnkEntityState* GetHandleEntity(UnkCooldownAI_b49* self) {
     if (self->state == 1) {
         {
             UnkRef fresh = fn_7100353be8(self->source);
@@ -32,7 +33,10 @@ void fn_71004d432c(UnkCooldownAI_b49* self, u32 on) {
         self->state = 2;
     }
     auto* c = static_cast<UnkCountedCooldown_b49*>(self->handle.ptr);
-    if (c && c->field_0x10)
-        // the original reloads the object after the test
-        fn_7100232864(static_cast<UnkEntityState*>(*reinterpret_cast<void* volatile*>(&c->field_0x10)), on & 1);
+    return c ? static_cast<UnkEntityState*>(c->field_0x10) : nullptr;
+}
+
+void fn_71004d432c(UnkCooldownAI_b49* self, u32 on) {
+    if (GetHandleEntity(self))
+        fn_7100232864(GetHandleEntity(self), on & 1);
 }

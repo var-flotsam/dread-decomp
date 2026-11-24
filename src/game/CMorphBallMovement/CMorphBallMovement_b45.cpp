@@ -29,16 +29,14 @@ struct UnkMorphBallMovement_b45a2 {
 static_assert(__builtin_offsetof(UnkMorphBallMovement_b45a2, field_0x265c) == 0x265c, "layout");
 
 void fn_710094a43c(UnkMorphBallMovement_b45a2* self) {
-    UnkMorphBallState_b45a2* state = &self->state;
-    asm("" : "+r"(state));  // the original addresses the block from its start
     if (self->field_0xf9) {
         self->field_0xf9 = false;
         self->vf_0x260();
     }
-    state->field_0x14 = false;
-    state->field_0x12 = 1;
+    self->state.field_0x14 = false;
+    self->state.field_0x12 = 1;
     self->field_0x1dc = UnkVec2_b45a2{0.0f, 0.0f};
-    state->field_0x244 = false;
+    self->state.field_0x244 = false;
     self->field_0x265c = 0;
-    state->field_0x0 = UnkVec2_b45a2{0.0f, 0.0f};
+    self->state.field_0x0 = UnkVec2_b45a2();
 }

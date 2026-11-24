@@ -63,6 +63,12 @@ struct UnkSubAreaMgr_b190_ovb0190 {
 static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ovb0190, actor) == 0x148, "layout");
 static_assert(__builtin_offsetof(UnkSubAreaMgr_b190_ovb0190, field_0x3f0) == 0x3f0, "layout");
 
+// The forced movement target as far as it is read here.
+struct UnkForcedMovementView_b190 {
+    u8 pad_0x0[0x7bb];
+    u8 field_0x7bb;  // 0x7bb
+};
+
 void fn_7100ee6ae4(UnkSubAreaMgr_b190_ovb0190* self) {
     UnkFollowPlayer_b190* player = reinterpret_cast<UnkFollowPlayer_b190*>(fn_7100dec788(g_unk_7101d47310));
     if (player) {
@@ -98,7 +104,7 @@ void fn_7100ee6ae4(UnkSubAreaMgr_b190_ovb0190* self) {
             self->field_0x128.y = dy;
             self->field_0x128.x = dx;
             self->field_0x128.z = dz;
-            if (!*(reinterpret_cast<u8*>(movement) + 0x7bb)) {
+            if (!reinterpret_cast<UnkForcedMovementView_b190*>(movement)->field_0x7bb) {
                 f32 params[2];
                 params[0] = (dx > 0.0f) - (dx < 0.0f);
                 params[1] = 0.0f;

@@ -49,14 +49,27 @@ struct UnkStrIdHandle;
 using base::global::CStrId;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 
+struct UnkPlayer_71009d377c {
+    u8 pad_0x0[0x270];
+    UnkInventory* field_0x270;  // 0x270
+};
+
+struct UnkPickableItem_71009d377c {
+    u8 pad_0x0[0x98];
+    base::global::CStrId field_0x98;  // 0x98
+    u8 pad_0xa0[0x89];
+    u8 field_0x129;  // 0x129
+};
+
 bool fn_71009d377c(char* self) {
-    UnkPlayer* player = fn_7100dec788(g_unk_7101d47310);
-    if (!player || !self[0x129])
+    UnkPickableItem_71009d377c* item = reinterpret_cast<UnkPickableItem_71009d377c*>(self);
+    UnkPlayer_71009d377c* player = reinterpret_cast<UnkPlayer_71009d377c*>(fn_7100dec788(g_unk_7101d47310));
+    if (!player || !item->field_0x129)
         return false;
-    UnkInventory* inventory = *reinterpret_cast<UnkInventory**>(reinterpret_cast<char*>(player) + 0x270);
+    UnkInventory* inventory = player->field_0x270;
     alignas(UnkQualifiedId) char storage[sizeof(UnkQualifiedId)];
     UnkQualifiedId& q = *reinterpret_cast<UnkQualifiedId*>(storage);
-    fn_7100ae986c(reinterpret_cast<UnkStrIdHandle*>(&q), *reinterpret_cast<const base::global::CStrId*>(self + 0x98));
+    fn_7100ae986c(reinterpret_cast<UnkStrIdHandle*>(&q), item->field_0x98);
     bool r = fn_71011428bc(inventory, q);
     q.id.~CStrId();
     return r;

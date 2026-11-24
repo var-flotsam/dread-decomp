@@ -155,6 +155,11 @@ static inline u64 EffectKey() { return *reinterpret_cast<u64*>(g_unk_7172a062e0 
 
 __attribute__((noinline)) void fn_710110cacc(UnkAIC_b0144* self);
 
+struct UnkAIFx_b0144 {
+    u8 pad_0x0[0xb];
+    u8 field_0xb;  // 0xb
+};
+
 void fn_71011048c0(UnkAIC_b0144* self) {
     UnkAnimationComponent* track = self->owner->field_0x220;
     if (track && fn_710117b348(track, fn_7100cfd428())) {
@@ -169,7 +174,7 @@ void fn_71011048c0(UnkAIC_b0144* self) {
         UnkObject* world = self->owner->field_0x280;
         if (UnkComponent* fx = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(world),
                                                                              EffectKey()))) {
-            u8 kind = *(reinterpret_cast<u8*>(fx) + 0xb);
+            u8 kind = reinterpret_cast<UnkAIFx_b0144*>(fx)->field_0xb;
             if (fn_710114e668(world, kind)) {
                 fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(fx), false);
                 fn_710115596c(reinterpret_cast<UnkRinkaControl_ruc*>(world), fx);
