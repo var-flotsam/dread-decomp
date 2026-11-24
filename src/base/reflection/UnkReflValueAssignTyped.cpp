@@ -13,5 +13,5 @@ struct UnkReflTypedObject {
 bool fn_7100adc81c(UnkReflTypedObject* dst, UnkReflTypedObject* src) {
     base::reflection::UnkTypedRef to = {dst->type, dst};
     base::reflection::UnkTypedRef from = {src->type, src};
-    return fn_710009d5d4((const char*)dst->type, &to, &from);
+    return CType_AreValuesEqual((const char*)dst->type, &to, &from);
 }

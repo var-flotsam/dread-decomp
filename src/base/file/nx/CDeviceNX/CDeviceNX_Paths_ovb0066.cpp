@@ -27,7 +27,7 @@ s32 CommitSaveData(const char* name);
 using base::global::CRntString;
 
 // The device's root path (a string at the start of the table).
-CRntString fn_710002df80(void* table, CRntString path) {
+CRntString CDeviceNX_BuildFullPath(void* table, CRntString path) {
     const CRntString* root = static_cast<const CRntString*>(table);
     if (!CRntString_Contains(&path, root->data ? root->data : g_unk_710162e2ed)) {
         CRntString full = CRntString_Concat(root, &path);
@@ -67,9 +67,9 @@ static inline const CRntString& Use_ovb0066(UnkDeviceFileRef_ovb0066* ref) {
     return *reinterpret_cast<const CRntString*>(ref->bytes + 0x10);
 }
 
-s32 fn_710002f210(u8* self, UnkDeviceFileRef_ovb0066* handle, bool commit) {
+s32 CDeviceNX_DeleteFileAndCommit(u8* self, UnkDeviceFileRef_ovb0066* handle, bool commit) {
     void* table = self + 0x10;
-    CRntString full = fn_710002df80(table, Use_ovb0066(handle));
+    CRntString full = CDeviceNX_BuildFullPath(table, Use_ovb0066(handle));
     s32 result = nn::fs::DeleteFile(full.data ? full.data : g_unk_710162e2ed);
     if (result == 0 && commit)
         result = nn::fs::CommitSaveData("savedata");
@@ -91,7 +91,7 @@ u32 fn_710002eb04(void* table, CRntString* path, UnkFileInfo_ovb0066* info, cons
         info->exists = false;
         return 0;
     }
-    CRntString full = fn_710002df80(table, *path);
+    CRntString full = CDeviceNX_BuildFullPath(table, *path);
     nn::fs::FileHandle file;
     if (nn::fs::OpenFile(&file, full.data ? full.data : g_unk_710162e2ed, 1) == 0) {
         s64 size = 0;
@@ -130,7 +130,7 @@ inline const UnkWanted_ovb0066& NoneWanted_ovb0066() {
     return s_none;
 }
 
-u32 fn_710002ec40(void* table, CRntString* path) {
+u32 CDeviceNX_IsFileMissingOrEmpty(void* table, CRntString* path) {
     UnkFileInfo_ovb0066 info;
     info.exists = false;
     info.mask = 0;
@@ -153,8 +153,8 @@ public:
 
 void fn_71000810cc(base::UnkBuffer* self, u64 size, base::UnkAllocator* allocator, s32 align, u32 flags);
 
-u32 fn_710002ed98(void* table, CRntString* path, void* out, u32 b, void* allocator, u32 align, u32 flags) {
-    CRntString full = fn_710002df80(table, *path);
+u32 CDeviceNX_ReadWholeFileIntoNewBuffer(void* table, CRntString* path, void* out, u32 b, void* allocator, u32 align, u32 flags) {
+    CRntString full = CDeviceNX_BuildFullPath(table, *path);
     nn::fs::FileHandle file;
     u32 ret = 1;
     if (nn::fs::OpenFile(&file, full.data ? full.data : g_unk_710162e2ed, 1) == 0) {

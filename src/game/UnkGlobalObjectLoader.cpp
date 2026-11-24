@@ -37,7 +37,7 @@ extern UnkParseCallbacks g_unk_71729ec650 __attribute__((visibility("hidden")));
 static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {
     UnkParseContext ctx(g_unk_71729ec650, reader, target);
     UnkReadEntry* end = target->entries + target->count;
-    fn_710000f750(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr);
+    CBlendSpaceResource_ReadObjectAsStoredType(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr);
 }
 
 void fn_7100f9bf8c(void* self, const UnkEntry_0x30* path) {

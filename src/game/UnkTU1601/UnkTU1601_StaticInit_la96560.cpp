@@ -107,7 +107,7 @@ void fn_7100a96560() {
         CStrId name("CThermalDeviceComponent::EPipeGroup", true);
         fn_7100a91d80(&base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, name, fn_7100a919f4, nullptr);
     }
-    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7172752278, &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object);
     InitEnumConverters(reinterpret_cast<UnkReflType*>(&base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object), g_unk_7172752280, fn_7100a9434c,
                        g_unk_71727522a0, fn_7100a94358);

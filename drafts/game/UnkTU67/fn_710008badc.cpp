@@ -116,7 +116,7 @@ struct UnkPathSetTable {
             if ((s32)size >= (s32)capacity)
                 for (;;) {
                 }
-            fn_7100018450(&paths, capacity);
+            CAsset_ReserveFilePathIdVec(&paths, capacity);
             new (&paths.data[paths.count]) CFilePathStrId(path);
             ++paths.count;
         }

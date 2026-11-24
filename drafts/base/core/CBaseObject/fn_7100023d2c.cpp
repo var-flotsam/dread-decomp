@@ -71,7 +71,7 @@ bool fn_7100023d2c(UnkReflObject* self, UnkReadField* field, CRntFile* file) {
     if (!field)
         return false;
 
-    switch (fn_7100024140(reinterpret_cast<const CType*>(field->type))) {
+    switch (CBaseObject_GetTypeCodeChar(reinterpret_cast<const CType*>(field->type))) {
     case 'F': {
         UnkReflObject* type = field->type;
         UnkReflObject* flagset = type && fn_710009d50c(type->vf_0x0(), fn_710009a11c()) ? type : nullptr;

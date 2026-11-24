@@ -31,7 +31,7 @@ void CloseDirectory(DirectoryHandle handle);
 
 using base::global::CRntString;
 
-CRntString fn_710002df80(void* table, CRntString path);
+CRntString CDeviceNX_BuildFullPath(void* table, CRntString path);
 
 // A list of strings: singly linked, allocated through its allocator.
 struct UnkStringNode_l02e6e0 {
@@ -85,7 +85,7 @@ struct UnkScopedArray_l02e6e0 {
 s32 fn_710002e6e0(void* table, CRntString* path, s32 depth, bool dirs, bool files, UnkStringList_l02e6e0* out) {
     if (depth < 0)
         return 0;
-    CRntString full = fn_710002df80(table, *path);
+    CRntString full = CDeviceNX_BuildFullPath(table, *path);
     UnkScopedArray_l02e6e0<char> name(0x100);
     UnkScopedArray_l02e6e0<nn::fs::DirectoryEntry> entries(0x80);
     nn::fs::DirectoryHandle dir;

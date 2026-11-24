@@ -14,10 +14,10 @@ s32 OpenDirectory(DirectoryHandle* out, const char* path, s32 mode);
 void CloseDirectory(DirectoryHandle handle);
 }  // namespace nn::fs
 
-base::global::CRntString fn_710002df80(void* table, base::global::CRntString path);
+base::global::CRntString CDeviceNX_BuildFullPath(void* table, base::global::CRntString path);
 
-u32 fn_710002e168(void* table, base::global::CRntString* path) {
-    base::global::CRntString full = fn_710002df80(table, *path);
+u32 CDeviceNX_CheckDirectoryExists(void* table, base::global::CRntString* path) {
+    base::global::CRntString full = CDeviceNX_BuildFullPath(table, *path);
     nn::fs::DirectoryHandle handle;
     s32 result = nn::fs::OpenDirectory(&handle, full.data ? full.data : g_unk_710162e2ed, 1);
     u32 ret;

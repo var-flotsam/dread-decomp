@@ -133,8 +133,8 @@ static_assert(__builtin_offsetof(UnkTunableSoundSystem_l0f8b30, defs) == 0x40086
 
 // The bucket count for `n`: itself when prime, else the next prime above it.
 static inline u32 BucketCount(u32 n) {
-    if (!fn_71000669a0(n))
-        n = fn_7100066930(n);
+    if (!CEvent_IsPrime(n))
+        n = CEvent_GetNextPrimeAtOrAbove(n);
     return n;
 }
 

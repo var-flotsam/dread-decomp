@@ -57,7 +57,7 @@ static inline void Add(UnkResPathVec* list, const CFilePathStrId& id) {
     if ((s32)n >= (s32)capacity)
         for (;;) {
         }
-    fn_7100018450(list, capacity);
+    CAsset_ReserveFilePathIdVec(list, capacity);
     new (&list->data[list->count]) CFilePathStrId(id);
     ++list->count;
 }

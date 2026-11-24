@@ -11,7 +11,7 @@ using base::reflection::CType;
 
 struct UnkKeyedB0Array_b51;   // src/base/reflection/CClass/UnkKeyedB0_ShrinkToFit_b51.cpp
 struct UnkFunctionRefs_b52;   // src/base/reflection/UnkUnit85/UnkFunctionRefs_Resolve_b52.cpp
-void fn_7100096b54(UnkKeyedB0Array_b51* self);
+void CClass_ShrinkKeyedB0ArrayToFit(UnkKeyedB0Array_b51* self);
 void fn_71000e7e54(UnkFunctionRefs_b52* self, CClass* cls);
 void fn_710009ce10(CClass* self);
 void fn_7100096884(CClass* self, const CType* parent);
@@ -29,7 +29,7 @@ void fn_71000967ec(CClass* self) {
         self->m_addAttributes(self);
     if (self->m_addFields)
         self->m_addFields(self);
-    fn_7100096b54(reinterpret_cast<UnkKeyedB0Array_b51*>(&self->m_fields));
+    CClass_ShrinkKeyedB0ArrayToFit(reinterpret_cast<UnkKeyedB0Array_b51*>(&self->m_fields));
     fn_7100096c80(&self->m_functions);
     UnkRecordB0_A1b71* it = static_cast<UnkRecordB0_A1b71*>(self->m_fields.data);
     for (UnkRecordB0_A1b71* end = it + self->m_fields.count; it != end; ++it)

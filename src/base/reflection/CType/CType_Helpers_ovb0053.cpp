@@ -182,7 +182,7 @@ UnkReflTypedPtr fn_710009ee40(UnkReflHolder_ovb0053& holder) {
 }
 
 // The value an attribute holds under `key`, or an empty value when the type has none.
-UnkReflValue fn_710009ddd4(const CType* type, const UnkReflAttrKey& key) {
+UnkReflValue CType_GetAttributeValue(const CType* type, const UnkReflAttrKey& key) {
     UnkReflValue r;
     if (auto* attrs = static_cast<UnkAttrTable_ovb0053*>(type->m_attributes)) {
         UnkReflValue* it = attrs->Find(key);
@@ -207,7 +207,7 @@ UnkReflValue fn_710009ddd4(const CType* type, const UnkReflAttrKey& key) {
 
 // Assigns `src` (which must be of `type`) to `dst`: with the type's assignment (CType+0x48) when dst is
 // of the same type, else through the conversion registered for dst's type on `type` or an ancestor.
-bool fn_710009d960(const CType* type, UnkTypedRef* src, UnkTypedRef* dst) {
+bool CType_AssignOrConvertValue(const CType* type, UnkTypedRef* src, UnkTypedRef* dst) {
     if (src->type != type)
         return false;
     if (dst->type == type) {
@@ -246,7 +246,7 @@ static inline const CType* DynamicTypeOf_ovb0053(const UnkTypedRef* ref) {
 
 // Whether two values whose dynamic type is `type` are equal: by the type's comparison (CType+0x58), else by
 // identity.
-bool fn_710009d5d4(const CType* type, UnkTypedRef* a, UnkTypedRef* b) {
+bool CType_AreValuesEqual(const CType* type, UnkTypedRef* a, UnkTypedRef* b) {
     const CType* ta = DynamicTypeOf_ovb0053(a);
     const CType* tb = DynamicTypeOf_ovb0053(b);
     if (ta == type && tb == type) {
@@ -300,7 +300,7 @@ UnkReflValue fn_710009da40(const CType* type, const UnkTypedRef* src, const CTyp
 }
 
 // Adds the type's parent, if any, to `out`.
-void fn_710009d020(const CType* self, base::global::CRntVector<const CType*>* out) {
+void CType_AppendParentType(const CType* self, base::global::CRntVector<const CType*>* out) {
     if (self->m_parent)
         out->PushBack(self->m_parent);
 }
@@ -357,7 +357,7 @@ static inline s32 OwnHash_ovb0053(CType* type) {
 }
 
 // Stores the "AssetHash" attribute: the type's own hash combined with those of every type it refers to.
-void fn_710009ea3c(CType* type) {
+void CType_AddAssetHashAttribute(CType* type) {
     u32 hash = OwnHash_ovb0053(type);
     base::global::CRntVector<CType*> refs(0xf);
     fn_710009d1ec(type, &refs, true);

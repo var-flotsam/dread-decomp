@@ -49,7 +49,7 @@ static_assert(sizeof(UnkRecord80) == 0x80, "UnkRecord80 layout");
 template <class V>
 using UnkIdMap = base::global::CRntSmallDictionary<UnkAssetStrId, V>;
 
-void fn_710001871c(UnkIdMap<UnkRecord80>* self) {
+void CAsset_ShrinkIdRecordMapToCount(UnkIdMap<UnkRecord80>* self) {
     if (self->count != self->capacity) {
         UnkRecord80* values = static_cast<UnkRecord80*>(
             self->allocator->vf_0x40((u64)self->count * sizeof(UnkRecord80), 8, self->flags));

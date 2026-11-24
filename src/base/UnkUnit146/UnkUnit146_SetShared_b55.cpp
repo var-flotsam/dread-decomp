@@ -5,7 +5,7 @@
 
 #include "types.h"
 
-void fn_7100005b9c(void* obj, std::shared_ptr<void> value, bool flag, s64 index);
+void CAnimationSkeletonTransformer_SetSharedPtr(void* obj, std::shared_ptr<void> value, bool flag, s64 index);
 void fn_71000038f8(void* obj, std::shared_ptr<void> value, bool flag, s64 index, f32 time);  // stores `time` (+0xe8)
 
 struct UnkSharedTarget {
@@ -14,7 +14,7 @@ struct UnkSharedTarget {
 };
 
 void fn_710014af54(UnkSharedTarget* self, const std::shared_ptr<void>& value) {
-    fn_7100005b9c(self->field_0x10, value, true, -1);
+    CAnimationSkeletonTransformer_SetSharedPtr(self->field_0x10, value, true, -1);
 }
 
 // `time` (s0) reaches fn_71000038f8 untouched in the original (tools/forwarded_args.py).

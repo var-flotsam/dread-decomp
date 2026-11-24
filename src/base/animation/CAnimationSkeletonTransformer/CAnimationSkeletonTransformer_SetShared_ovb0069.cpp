@@ -28,7 +28,7 @@ struct UnkSkeletonTransformerSet_ovb0069 {
     bool field_0x22;
 };
 
-void fn_7100005b9c(void* obj, std::shared_ptr<void> value, bool flag, s64 index) {
+void CAnimationSkeletonTransformer_SetSharedPtr(void* obj, std::shared_ptr<void> value, bool flag, s64 index) {
     auto* self = static_cast<UnkSkeletonTransformerSet_ovb0069*>(obj);
     self->shared = value;
     if (self->shared) {

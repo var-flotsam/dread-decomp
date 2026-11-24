@@ -7,7 +7,7 @@
 
 using base::global::UnkPoolIter;
 
-void fn_71000866dc(char* set, UnkPoolIter* it) {
+void CFileCacheDevice_EraseCacheSetNodeAtIterator(char* set, UnkPoolIter* it) {
     u32 bucket;
     if (it->ref.set && *reinterpret_cast<u32*>(it->ref.set + 0x48) == it->ref.version) {
         bucket = it->ref.bucket;

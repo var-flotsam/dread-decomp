@@ -44,7 +44,7 @@ void fn_7100016cfc(UnkIdRecordMapWithPath_b45a1* self, const UnkIdRecordMapWithP
     fn_7100017948(reinterpret_cast<UnkIdRecordMap*>(self), other->count);
     self->count = other->count;
     for (u64 i = 0; i < self->count; ++i)
-        fn_7100017ba0(reinterpret_cast<UnkRecord80*>(&self->values[i]),
+        CAsset_CopyConstructRecord(reinterpret_cast<UnkRecord80*>(&self->values[i]),
                       reinterpret_cast<const UnkRecord80*>(&other->values[i]));
     self->count = other->count;
     for (u64 i = 0; i < self->count; ++i) {
@@ -79,7 +79,7 @@ struct UnkPathIdPairMap_b45a1 {
 
 void fn_7100018244(UnkPathIdPairMap_b45a1* self, u32 capacity);  // Reserve
 
-void fn_710001810c(UnkPathIdPairMap_b45a1* self, const UnkPathIdPairMap_b45a1* other) {
+void CAsset_CopyConstructPathIdPairMap(UnkPathIdPairMap_b45a1* self, const UnkPathIdPairMap_b45a1* other) {
     self->keys = nullptr;
     self->count = 0;
     self->capacity = 0;
@@ -111,7 +111,7 @@ void fn_710001810c(UnkPathIdPairMap_b45a1* self, const UnkPathIdPairMap_b45a1* o
 }
 
 // As src/base/core/CAsset/fn_7100018558.cpp declares it: the map's copy-assignment.
-UnkIdRecordMap* fn_7100018558(UnkIdRecordMap* self, const UnkIdRecordMap* other);
+UnkIdRecordMap* CAsset_CopyAssignIdRecordMap(UnkIdRecordMap* self, const UnkIdRecordMap* other);
 
 // An object holding an id, a file path id, a map of ids to records with a file path id (the type
 // fn_7100016cfc copies) and an owned pointer, with a flag and a word at its end.
@@ -128,14 +128,14 @@ static_assert(__builtin_offsetof(UnkAssetRecordHolder_b45a1, owned) == 0x48, "Un
 
 // Its move-assignment: the flag, the word and the pointer are taken (the other's cleared), the
 // ids and the map copied.
-UnkAssetRecordHolder_b45a1* fn_7100016e14(UnkAssetRecordHolder_b45a1* self, UnkAssetRecordHolder_b45a1* other) {
+UnkAssetRecordHolder_b45a1* CAsset_MoveAssign(UnkAssetRecordHolder_b45a1* self, UnkAssetRecordHolder_b45a1* other) {
     self->word = other->word;
     self->flag = other->flag;
     other->word = 0;
     other->flag = false;
     self->id = other->id;
     self->path = other->path;
-    fn_7100018558(reinterpret_cast<UnkIdRecordMap*>(&self->records),
+    CAsset_CopyAssignIdRecordMap(reinterpret_cast<UnkIdRecordMap*>(&self->records),
                   reinterpret_cast<const UnkIdRecordMap*>(&other->records));
     reinterpret_cast<base::UnkStrIdMemberOf<g_unk_7101d47200>&>(self->records.path) =
         reinterpret_cast<const base::UnkStrIdMemberOf<g_unk_7101d47200>&>(other->records.path);

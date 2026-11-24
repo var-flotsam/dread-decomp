@@ -29,7 +29,7 @@ using base::global::CFilePathStrId;
 using base::global::UnkStringData;
 using base::snd::UnkSoundSystemATK;
 
-void fn_71000fbaf8(UnkSoundSystemATK* sys, s32 command, const void* payload);
+void CSoundSystemATK_PushCommandToSecondQueue(UnkSoundSystemATK* sys, s32 command, const void* payload);
 
 // A sound the system plays: the path id's data (its hash is at +0x30), three flags and a level.
 struct UnkSndVoice_b0185 {
@@ -157,7 +157,7 @@ void fn_7100101e78(UnkSndSys_b0185* self, const u32* id) {
         return;
     nn::os::GetCurrentThread();
     UnkSndIdPayload_b0185 payload = {key, 0, 0};
-    fn_71000fbaf8(Atk(self), 0, &payload);
+    CSoundSystemATK_PushCommandToSecondQueue(Atk(self), 0, &payload);
     self->sounds_a.Insert(*id, nullptr);
 }
 
@@ -167,7 +167,7 @@ void fn_71001021d4(UnkSndSys_b0185* self, const u32* id) {
         return;
     nn::os::GetCurrentThread();
     UnkSndIdPayload_b0185 payload = {key, 1, 0};
-    fn_71000fbaf8(Atk(self), 0, &payload);
+    CSoundSystemATK_PushCommandToSecondQueue(Atk(self), 0, &payload);
     self->sounds_b.Insert(*id, nullptr);
 }
 
@@ -230,7 +230,7 @@ void fn_7100102310(UnkSndSys_b0185* self, const u32* id) {
     u32 key = *id;
     nn::os::GetCurrentThread();
     UnkSndIdPayload_b0185 payload = {key, 1, 1};
-    fn_71000fbaf8(Atk(self), 0, &payload);
+    CSoundSystemATK_PushCommandToSecondQueue(Atk(self), 0, &payload);
     EraseNode_b0185(m, *id);
 }
 
@@ -284,7 +284,7 @@ void fn_7100101fb0(UnkSndSys_b0185* self, const u32* id) {
     u32 key = *id;
     nn::os::GetCurrentThread();
     UnkSndIdPayload_b0185 payload = {key, 0, 1};
-    fn_71000fbaf8(Atk(self), 0, &payload);
+    CSoundSystemATK_PushCommandToSecondQueue(Atk(self), 0, &payload);
     EraseNode_b0185(m, *id);
 }
 

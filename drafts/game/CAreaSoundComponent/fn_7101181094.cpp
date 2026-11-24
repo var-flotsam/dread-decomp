@@ -141,7 +141,7 @@ void fn_7101181094(UnkAreaSound_l181094* self, void* arg, const base::math::CVec
             s_stream.field_0x30 = self->field_0xb60;
             s_stream.field_0x34 = self->field_0xb64;
             UnkPlayingHandle_ovb0074 playing =
-                fn_7100108620(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820),
+                CSoundSystem_PlayOrRestartSound(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820),
                               reinterpret_cast<UnkSoundDesc_ovb0074*>(&s_stream));
             self->handles[2].ref = reinterpret_cast<UnkSoundRef*>(playing.ref);
             self->handles[2].serial = playing.serial;

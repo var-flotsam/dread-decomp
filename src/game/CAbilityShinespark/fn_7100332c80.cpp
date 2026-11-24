@@ -66,7 +66,7 @@ void fn_7100332c80(UnkKeyedValues_7100332c80* self, const u64* key, const base::
             void* p = v->field_0x14 == 1 || *reinterpret_cast<const u64*>(type + 0x18) > 8 ? v->field_0x0 : v;
             if (p) {
                 fn_71000a16e0(&dst, type, p);
-                if (fn_710009d5d4(type, &dst, value))
+                if (CType_AreValuesEqual(type, &dst, value))
                     return;
             }
         }

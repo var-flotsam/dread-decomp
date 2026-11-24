@@ -18,7 +18,7 @@ using base::reflection::UnkReflObject;
 static inline bool Parse(UnkFileReader* reader, UnkReadTarget* target) {
     UnkParseContext ctx(g_unk_71729fd068, reader, target);
     UnkReadEntry* end = target->entries + target->count;
-    return fn_710000f750(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr) != 0;
+    return CBlendSpaceResource_ReadObjectAsStoredType(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr) != 0;
 }
 
 bool fn_71010477f0(UnkReflObject* self, const base::global::CRntFile* file) {

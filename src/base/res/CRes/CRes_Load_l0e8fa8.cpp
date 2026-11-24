@@ -28,7 +28,7 @@ struct UnkResKey_l0e8fa8 {
     }
 };
 
-u32 fn_71000e9198(void* self, const CFilePathStrId& path, u32 fallback);
+u32 CRes_GetKindFromPathExtension(void* self, const CFilePathStrId& path, u32 fallback);
 
 struct UnkResObject_l0e8fa8 {
     virtual ~UnkResObject_l0e8fa8();
@@ -84,7 +84,7 @@ static inline UnkRegistry_0x70* Registry() {
 }
 
 bool fn_71000e8fa8(UnkRes_l0e8fa8* self, UnkResLoadRequest_l0e8fa8* request) {
-    u32 kind = fn_71000e9198(self, self->path.file, request->kind);
+    u32 kind = CRes_GetKindFromPathExtension(self, self->path.file, request->kind);
     self->kind = kind;
     u32 align;
     switch (kind) {

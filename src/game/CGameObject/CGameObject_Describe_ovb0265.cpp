@@ -53,7 +53,7 @@ void fn_7101043f74(UnkObj_ovb0265* self, UnkPropBag* bag) {
     UnkObjField* end = it + cls->count;
     for (; it != end; ++it) {
         CStrId name(it->id);
-        switch (fn_7100024140(it->type)) {
+        switch (CBaseObject_GetTypeCodeChar(it->type)) {
         case 'b': {
             bool v = false;
             UnkObjValue value = {fn_710000d228(), &v};

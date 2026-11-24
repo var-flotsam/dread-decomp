@@ -74,4 +74,4 @@ using UnkOwnedListMap = base::global::CRntSmallDictionary<base::global::CStrId, 
 
 // Grows the map's two arrays to `capacity`, moving the lists and the ids
 // (src/base/tunable/CTunable/fn_71001358e0.cpp).
-void fn_71001358e0(UnkOwnedListMap* self, u32 capacity);
+void CTunable_ReserveIdToListMap(UnkOwnedListMap* self, u32 capacity);

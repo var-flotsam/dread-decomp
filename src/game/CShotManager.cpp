@@ -325,7 +325,7 @@ void fn_7100ed5a04(UnkShotPresets* self) {
     if (reader.file.position < reader.file.size && reader.field_0x38 == 0) {
         UnkParseContext ctx(g_unk_71729da548, &reader, &target);
         UnkReadEntry* end = target.entries + target.count;
-        fn_710000f750(&ctx, target.count ? end[-1].field_0x0->field_0x10 : nullptr);
+        CBlendSpaceResource_ReadObjectAsStoredType(&ctx, target.count ? end[-1].field_0x0->field_0x10 : nullptr);
     }
     for (u32 k = 0; k < 15; ++k) {
         u32 kind = g_unk_710164bec0[k];

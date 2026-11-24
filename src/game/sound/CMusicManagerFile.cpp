@@ -32,7 +32,7 @@ extern base::global::CFilePathStrId g_unk_71729f08a8 __attribute__((visibility("
 static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {
     UnkParseContext ctx(g_unk_71729f08d0, reader, target);
     UnkReadEntry* end = target->entries + target->count;
-    fn_710000f750(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr);
+    CBlendSpaceResource_ReadObjectAsStoredType(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr);
 }
 
 // Reads the music manager's tunables from their file.

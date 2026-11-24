@@ -6,7 +6,7 @@
 using base::global::CFilePathStrId;
 using base::global::UnkStringPool;
 
-void fn_7100018450(UnkResPathVec* self, u32 capacity) {
+void CAsset_ReserveFilePathIdVec(UnkResPathVec* self, u32 capacity) {
     if (self->capacity < capacity) {
         auto* ids = static_cast<CFilePathStrId*>(
             self->allocator->vf_0x40((u64)capacity * sizeof(CFilePathStrId), 8, self->flags));

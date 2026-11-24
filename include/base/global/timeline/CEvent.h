@@ -18,8 +18,8 @@ void fn_7100066828(void* thread, u32 a);
 void fn_7100067ed4(void* self);  // Derived classes call it as their base's destructor.
 void fn_710006686c(void* thread);
 void fn_7100066cac(void* self, const void* other);
-u32 fn_7100066930(u32 n);
-bool fn_71000669a0(u32 n);
+u32 CEvent_GetNextPrimeAtOrAbove(u32 n);
+bool CEvent_IsPrime(u32 n);
 void fn_7100066a50(void* text, const char32_t* value);
 extern char g_unk_7101a1a0d0[];  // The text's vtable (the object points 0x10 past it).
 void fn_7100066af0(UnkLayoutText* self, const char32_t* text);

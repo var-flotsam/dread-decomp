@@ -27,6 +27,6 @@ void fn_71000a4470() {
         CStrId name("EExecutionReturnValue", true);
         fn_71000a2270(base::reflection::TypeObject<EExecutionReturnValue, u8[]>::object, &name, fn_71000a2184, nullptr);
     }
-    fn_7100000250(fn_7100099468, base::reflection::TypeObject<EExecutionReturnValue, u8[]>::object, &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, base::reflection::TypeObject<EExecutionReturnValue, u8[]>::object, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5b838, base::reflection::TypeObject<EExecutionReturnValue, u8[]>::object);
 }

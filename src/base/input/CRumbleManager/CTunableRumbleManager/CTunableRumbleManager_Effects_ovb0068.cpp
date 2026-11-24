@@ -38,7 +38,7 @@ struct UnkTunableRumbleManager_b0068 {
 static_assert(__builtin_offsetof(UnkTunableRumbleManager_b0068, channel_mask) == 0x2204, "layout");
 
 // Enables or disables the given channels, switching every effect on one of them (after 0.2 s).
-void fn_7100075020(UnkTunableRumbleManager_b0068* self, bool flag, const u32* channels) {
+void CTunableRumbleManager_SetChannelsPaused(UnkTunableRumbleManager_b0068* self, bool flag, const u32* channels) {
     u32 mask = self->channel_mask;
     self->channel_mask = !flag ? (mask & ~*channels) : (mask | *channels);
     UnkRumbleEffect_b0068** it = self->effects.data;
@@ -52,7 +52,7 @@ void fn_7100075020(UnkTunableRumbleManager_b0068* self, bool flag, const u32* ch
 }
 
 // A new effect from the pool (null when none is free), built with the next id and listed.
-UnkRumbleEffect_b0068* fn_7100074b38(UnkTunableRumbleManager_b0068* self) {
+UnkRumbleEffect_b0068* CTunableRumbleManager_AllocateEffect(UnkTunableRumbleManager_b0068* self) {
     if (!self->free_effects)
         return nullptr;
     --self->free_effects;

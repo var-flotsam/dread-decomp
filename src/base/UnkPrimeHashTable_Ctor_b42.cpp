@@ -52,8 +52,8 @@ struct UnkPrimeHashTable_b42a1 {
         allocator = alloc;
         field_0x38 = nullptr;
         field_0x40 = nullptr;
-        if (!fn_71000669a0(n))
-            n = fn_7100066930(n);
+        if (!CEvent_IsPrime(n))
+            n = CEvent_GetNextPrimeAtOrAbove(n);
         Resize(n);
     }
 

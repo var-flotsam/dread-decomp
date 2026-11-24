@@ -105,7 +105,7 @@ void CAtkSoundStream_StartThreadAndPlaySound(UnkAtkSoundStream_l21b09c* self) {
     desc.group = 1;
     desc.path = self->source->path;
     desc.direction = -1;
-    self->handle = fn_7100108620(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820),
+    self->handle = CSoundSystem_PlayOrRestartSound(reinterpret_cast<UnkSoundSystemPlayView_ovb0074*>(g_unk_7101d4d820),
                                  reinterpret_cast<UnkSoundDesc_ovb0074*>(&desc));
     fn_7100105bac(PlayingSound_l21b09c(self->handle), 0.0f);
 }

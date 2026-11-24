@@ -38,7 +38,7 @@ void RegisterEEditorModeDataFlowEnum() {
         CStrId name("gameeditor::EEditorModeDataFlow", true);
         fn_710002d62c(&reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object), &name, fn_710002d420, nullptr);
     }
-    fn_7100000250(fn_7100099468, &reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object), &g_unk_7101a19000);
+    fn_7100000250(CEnumType_Destroy, &reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object), &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d55120, &reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object));
     void* a = reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object).desc_0x8->field_0x30;
     void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;

@@ -41,7 +41,7 @@ struct UnkBlendTransformer_b66a1 : UnkBlendTransformerBase_b66a1 {
 void fn_7100003800(UnkBlendTransformer_b66a1* self) { self->~UnkBlendTransformer_b66a1(); }
 
 // The deleting destructor: the same, then the game's operator delete.
-void fn_7100003878(UnkBlendTransformer_b66a1* self) {
+void CAnimationBlendSkeletonTransformer_DestroyAndDelete(UnkBlendTransformer_b66a1* self) {
     self->~UnkBlendTransformer_b66a1();
     fn_7100083c00(self);
 }

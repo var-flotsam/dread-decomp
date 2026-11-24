@@ -23,7 +23,7 @@ using base::global::CRntString;
 
 struct UnkMgr_0xf18;
 
-void fn_71001082a8(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask);
+void CSoundSystem_SetGroupsMuted(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask);
 
 // A mode word passed by address (the word after it is not set).
 struct UnkMusicMode {
@@ -108,7 +108,7 @@ void fn_7100a8a1ec(UnkSaveStation_la8a1ec* self) {
     fn_7100fd90d8(-1.0f, -1.0f, music, name, 4, &mode, 0, 0, nullptr);
     UnkSoundMgr* sound = g_unk_7101d4d820;
     alignas(8) u32 mask = 1;
-    fn_71001082a8(reinterpret_cast<UnkSoundSystemMasks_ovb0074*>(sound), true, &mask);
+    CSoundSystem_SetGroupsMuted(reinterpret_cast<UnkSoundSystemMasks_ovb0074*>(sound), true, &mask);
     self->time = 0.0f;
     if (self->user && self->user->target)
         fn_7100d7c828(reinterpret_cast<UnkActor*>(self->user->target), &g_unk_710164b5b8, false);
