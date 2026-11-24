@@ -12,12 +12,9 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "reflected/CBaseLightComponent.h"
 namespace engine::utils { enum class ELightPreset : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<engine::utils::ELightPreset>::object asm("g_unk_716e5992a0");
 namespace base::math { class CVector3D; }
@@ -56,9 +53,8 @@ void fn_71008ef988();
 void fn_71008eed1c(CFunction* fn, const char* name);
 void fn_71008efa44();
 void fn_71008eee98(CFunction* fn, const char* name);
-namespace CBaseLightComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CBaseLightComponent::refl_AddAttributes(CClass*) {}
+void CBaseLightComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_vLightPos_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x100, fn_71008ef0bc);
     DREAD_REFLECTED_FUNCTION("_vLightPos_SetterFunction")
         fn_71008edb54(fn, "_vLightPos_SetterFunction");
@@ -116,13 +112,13 @@ void refl_AddFields(CClass* cls) {
         fn_71008eee98(fn, "_bUseSpecular_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bUseSpecular");
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x58;
+bool CBaseLightComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CBaseLightComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CBaseLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBaseLightComponent*>(obj)->vf_0x0(); }
+void* CBaseLightComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CBaseLightComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CBaseLightComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CBaseLightComponent);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
@@ -130,5 +126,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CBaseLightComponent
-DREAD_REFLECTED_CLASS(CBaseLightComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CBaseLightComponent, CComponent);

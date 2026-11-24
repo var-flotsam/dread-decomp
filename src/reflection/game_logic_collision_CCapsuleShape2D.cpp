@@ -14,11 +14,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/game/logic/collision/CCapsuleShape2D.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
@@ -29,9 +26,8 @@ void fn_7100d60a2c();
 void fn_7100d5facc(CFunction* fn, const char* name);
 void fn_7100d60ae0();
 void fn_7100d5fc48(CFunction* fn, const char* name);
-namespace game::logic::collision::CCapsuleShape2D {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void game::logic::collision::CCapsuleShape2D::refl_AddAttributes(CClass*) {}
+void game::logic::collision::CCapsuleShape2D::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_fRadius_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100d60978);
     DREAD_REFLECTED_FUNCTION("_fRadius_SetterFunction")
         fn_7100d5f950(fn, "_fRadius_SetterFunction");
@@ -45,17 +41,12 @@ void refl_AddFields(CClass* cls) {
         fn_7100d5fc48(fn, "_bOutwardsNormal_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bOutwardsNormal", (DefaultValue, false));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xc0;
+bool game::logic::collision::CCapsuleShape2D::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 game::logic::collision::CCapsuleShape2D::refl_Hash() { return -1; }
+const base::reflection::CType& game::logic::collision::CCapsuleShape2D::refl_TypeOf(const void* obj) { return *static_cast<const CCapsuleShape2D*>(obj)->vf_0x0(); }
+void game::logic::collision::CCapsuleShape2D::refl_Destroy(void* obj) { static_cast<CCapsuleShape2D*>(obj)->~CCapsuleShape2D(); }
+struct game::logic::collision::CCapsuleShape2D::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCapsuleShape2D);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -66,8 +57,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace game::logic::collision::CCapsuleShape2D
-DREAD_REFLECTED_CLASS(game::logic::collision::CCapsuleShape2D, game::logic::collision::CShape);
+DREAD_REFLECTED_DECLARED_CLASS(game::logic::collision::CCapsuleShape2D, game::logic::collision::CShape);
 
 void fn_7100d60424();
 void fn_7100d6048c();

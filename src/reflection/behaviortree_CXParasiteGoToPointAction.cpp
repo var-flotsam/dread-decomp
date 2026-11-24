@@ -7,42 +7,39 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CXParasiteGoToPointAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CXParasiteGoToPointAction
-namespace behaviortree::CXParasiteGoToPointAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sGoToPosBlackboard", 0x30, (DefaultValue, ""), (Description, "GoTo Position (blackboard)"));
-    DREAD_REFLECTED_FIELD(CStrId, "sGoToEntityBlackboard", 0x38, (DefaultValue, ""), (Description, "GoTo Entity (blackboard)"));
-    DREAD_REFLECTED_FIELD(bool, "bStopOnArrive", 0x40, (DefaultValue, false), (Description, "Exact arrive at destiny position (blackboard)"));
-    DREAD_REFLECTED_FIELD(bool, "bUseWaypoints", 0x41, (DefaultValue, false), (Description, "Use curves to arrive (blackboard)"));
-    DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x5c, (DefaultValue, -1.0f), (Description, "Motion Speed (blackboard)"));
-    DREAD_REFLECTED_FIELD(f32, "fAccelerationForce", 0x60, (DefaultValue, -1.0f), (Description, "Acceleration force (blackboard)"));
-    DREAD_REFLECTED_FIELD(f32, "fBrakeForce", 0x64, (DefaultValue, -1.0f), (Description, "Brake force (blackboard)"));
-    DREAD_REFLECTED_FIELD(f32, "fBrakeDistance", 0x68, (DefaultValue, -1.0f), (Description, "Brake distance (blackboard)"));
-    DREAD_REFLECTED_FIELD(f32, "fTurningForce", 0x6c, (DefaultValue, -1.0f), (Description, "Turning force (blackboard)"));
-    DREAD_REFLECTED_FIELD(f32, "fMaxTurningAngle", 0x74, (DefaultValue, -1.0f), (Description, "Max turning angle (blackboard)"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CXParasiteGoToPointAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CXParasiteGoToPointAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sGoToPosBlackboard", offsetof(CXParasiteGoToPointAction, sGoToPosBlackboard), (DefaultValue, ""), (Description, "GoTo Position (blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sGoToEntityBlackboard", offsetof(CXParasiteGoToPointAction, sGoToEntityBlackboard), (DefaultValue, ""), (Description, "GoTo Entity (blackboard)"));
+    DREAD_REFLECTED_FIELD(bool, "bStopOnArrive", offsetof(CXParasiteGoToPointAction, bStopOnArrive), (DefaultValue, false), (Description, "Exact arrive at destiny position (blackboard)"));
+    DREAD_REFLECTED_FIELD(bool, "bUseWaypoints", offsetof(CXParasiteGoToPointAction, bUseWaypoints), (DefaultValue, false), (Description, "Use curves to arrive (blackboard)"));
+    DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", offsetof(CXParasiteGoToPointAction, fMotionSpeed), (DefaultValue, -1.0f), (Description, "Motion Speed (blackboard)"));
+    DREAD_REFLECTED_FIELD(f32, "fAccelerationForce", offsetof(CXParasiteGoToPointAction, fAccelerationForce), (DefaultValue, -1.0f), (Description, "Acceleration force (blackboard)"));
+    DREAD_REFLECTED_FIELD(f32, "fBrakeForce", offsetof(CXParasiteGoToPointAction, fBrakeForce), (DefaultValue, -1.0f), (Description, "Brake force (blackboard)"));
+    DREAD_REFLECTED_FIELD(f32, "fBrakeDistance", offsetof(CXParasiteGoToPointAction, fBrakeDistance), (DefaultValue, -1.0f), (Description, "Brake distance (blackboard)"));
+    DREAD_REFLECTED_FIELD(f32, "fTurningForce", offsetof(CXParasiteGoToPointAction, fTurningForce), (DefaultValue, -1.0f), (Description, "Turning force (blackboard)"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTurningAngle", offsetof(CXParasiteGoToPointAction, fMaxTurningAngle), (DefaultValue, -1.0f), (Description, "Max turning angle (blackboard)"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xa0;
+bool behaviortree::CXParasiteGoToPointAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CXParasiteGoToPointAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CXParasiteGoToPointAction::refl_TypeOf(const void* obj) { return *static_cast<const CXParasiteGoToPointAction*>(obj)->vf_0x0(); }
+void behaviortree::CXParasiteGoToPointAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CXParasiteGoToPointAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CXParasiteGoToPointAction::refl_Destroy(void* obj) { static_cast<CXParasiteGoToPointAction*>(obj)->~CXParasiteGoToPointAction(); }
+void* behaviortree::CXParasiteGoToPointAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CXParasiteGoToPointAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CXParasiteGoToPointAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CXParasiteGoToPointAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -53,5 +50,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CXParasiteGoToPointAction
-DREAD_REFLECTED_CLASS(behaviortree::CXParasiteGoToPointAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CXParasiteGoToPointAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

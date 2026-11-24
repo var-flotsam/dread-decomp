@@ -7,34 +7,31 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CLogAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CLogAction
-namespace behaviortree::CLogAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(s32, "iCount", 0x2c, (DefaultValue, -1), (Description, "Num logs"));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sText", 0x30, (DefaultValue, base::global::CRntString("Default log")), (Description, base::global::CRntString("Text to print")));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CLogAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CLogAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(s32, "iCount", offsetof(CLogAction, iCount), (DefaultValue, -1), (Description, "Num logs"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sText", offsetof(CLogAction, sText), (DefaultValue, base::global::CRntString("Default log")), (Description, base::global::CRntString("Text to print")));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x68;
+bool behaviortree::CLogAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CLogAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CLogAction::refl_TypeOf(const void* obj) { return *static_cast<const CLogAction*>(obj)->vf_0x0(); }
+void behaviortree::CLogAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CLogAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CLogAction::refl_Destroy(void* obj) { static_cast<CLogAction*>(obj)->~CLogAction(); }
+void* behaviortree::CLogAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CLogAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CLogAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CLogAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -45,5 +42,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CLogAction
-DREAD_REFLECTED_CLASS(behaviortree::CLogAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CLogAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

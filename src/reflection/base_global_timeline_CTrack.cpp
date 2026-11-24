@@ -5,25 +5,19 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/base/global/timeline/CTrack.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // base::global::timeline::CTrack
-namespace base::global::timeline::CTrack {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
+void base::global::timeline::CTrack::refl_AddAttributes(CClass*) {}
+void base::global::timeline::CTrack::refl_AddFields(CClass*) {}
+bool base::global::timeline::CTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 base::global::timeline::CTrack::refl_Hash() { return -1; }
+const base::reflection::CType& base::global::timeline::CTrack::refl_TypeOf(const void* obj) { return *static_cast<const CTrack*>(obj)->vf_0x0(); }
+void base::global::timeline::CTrack::refl_Destroy(void* obj) { static_cast<CTrack*>(obj)->~CTrack(); }
+struct base::global::timeline::CTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -31,5 +25,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace base::global::timeline::CTrack
-DREAD_REFLECTED_ROOT_CLASS(base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(base::global::timeline::CTrack);

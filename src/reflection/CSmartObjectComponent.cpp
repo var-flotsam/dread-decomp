@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CSmartObjectComponent.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -42,9 +39,10 @@ void fn_7100a025f4(CFunction* fn, const char* name);
 void fn_7100a026a8(CFunction* fn, const char* name);
 void fn_7100a0275c(CFunction* fn, const char* name);
 void fn_7100a02810(CFunction* fn, const char* name);
-namespace CSmartObjectComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CSmartObjectComponent::refl_AddAttributes(CClass*) {}
+void CSmartObjectComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sOnUseStart_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100a04d10);
     DREAD_REFLECTED_FUNCTION("_m_sOnUseStart_SetterFunction")
         fn_7100a01964(fn, "_m_sOnUseStart_SetterFunction");
@@ -73,7 +71,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_bStartEnabled_SetterFunction")
         fn_7100a0224c(fn, "_m_bStartEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bStartEnabled", (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(f32, "fInterpolationTime", 0x40, (DefaultValue, 1.0f), (Description, "Interpolation time"));
+    DREAD_REFLECTED_FIELD(f32, "fInterpolationTime", offsetof(CSmartObjectComponent, fInterpolationTime), (DefaultValue, 1.0f), (Description, "Interpolation time"));
     DREAD_REFLECTED_FUNCTION("OnLevelChangeUse")
         fn_7100a023c8(fn, "OnLevelChangeUse");
     DREAD_REFLECTED_FUNCTION("SetUseState") {
@@ -102,17 +100,16 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x148;
+bool CSmartObjectComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CSmartObjectComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CSmartObjectComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSmartObjectComponent*>(obj)->vf_0x0(); }
+void CSmartObjectComponent::refl_CopyConstruct(void*, const void*) {}
+void CSmartObjectComponent::refl_MoveConstruct(void*, const void*) {}
+void CSmartObjectComponent::refl_Destroy(void* obj) { static_cast<CSmartObjectComponent*>(obj)->~CSmartObjectComponent(); }
+void* CSmartObjectComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CSmartObjectComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CSmartObjectComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSmartObjectComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -123,8 +120,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CSmartObjectComponent
-DREAD_REFLECTED_CLASS(CSmartObjectComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CSmartObjectComponent, CComponent);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

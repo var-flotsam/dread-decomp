@@ -12,12 +12,9 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "reflected/CPlayerInfo.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
@@ -43,9 +40,8 @@ void fn_7100f08560(CFunction* fn, const char* name);
 void fn_7100f08614(CFunction* fn, const char* name);
 void fn_7100f0f428();
 void fn_71003540d8(CFunction* fn);
-namespace CPlayerInfo {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CPlayerInfo::refl_AddAttributes(CClass*) {}
+void CPlayerInfo::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sInputPreset_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100f0ed90);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(CStrId, "sInputPreset", (Persistence, 0));
     DREAD_REFLECTED_FUNCTION("SetInputPreset") {
@@ -127,21 +123,19 @@ void refl_AddFields(CClass* cls) {
         fn_71003540d8(fn);
     }
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x400;
+bool CPlayerInfo::refl_Equals(const void*, const void*) { return false; }
+s32 CPlayerInfo::refl_Hash() { return -1; }
+const base::reflection::CType& CPlayerInfo::refl_TypeOf(const void* obj) { return *static_cast<const CPlayerInfo*>(obj)->vf_0x0(); }
+void CPlayerInfo::refl_Destroy(void* obj) { static_cast<CPlayerInfo*>(obj)->~CPlayerInfo(); }
+struct CPlayerInfo::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CPlayerInfo);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CPlayerInfo
-DREAD_REFLECTED_CLASS(CPlayerInfo, CGameObject);
+DREAD_REFLECTED_DECLARED_CLASS(CPlayerInfo, CGameObject);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

@@ -7,52 +7,45 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassThrowWeaponEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassThrowWeaponEvent
-namespace CCharClassThrowWeaponEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassThrowWeaponEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Throw Weapon");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("NOT IMPLEMENTED", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fTimeToLive", 0xc, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fThrowingAngle", 0x10, (DefaultValue, 0.78f));
-    DREAD_REFLECTED_FIELD(bool, "bRotateToDirection", 0x14, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fSpinFactorX", 0x18, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fSpinFactorY", 0x1c, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fSpinFactorZ", 0x20, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(bool, "bRepositionOnEnd", 0x24, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(f32, "fMass", 0x28, (DefaultValue, 50.0f));
-    DREAD_REFLECTED_FIELD(bool, "bReboundEnabled", 0x2c, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(s32, "iReboundMaxNumber", 0x30, (DefaultValue, 5));
-    DREAD_REFLECTED_FIELD(f32, "fReboundRestitution", 0x34, (DefaultValue, 0.5f));
-    DREAD_REFLECTED_FIELD(f32, "fDestinationOffsetX", 0x38, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(bool, "bDestinationOnFloor", 0x3c, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fDamage", 0x40, (DefaultValue, 15.0f));
-    DREAD_REFLECTED_FIELD(s32, "iEntitiesToDamage", 0x44, (DefaultValue, 1));
-    DREAD_REFLECTED_FIELD(bool, "bIgnoreCollisionWithEntities", 0x48, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bDamageWithBox", 0x49, (DefaultValue, false));
+void CCharClassThrowWeaponEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fTimeToLive", offsetof(CCharClassThrowWeaponEvent, fTimeToLive), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fThrowingAngle", offsetof(CCharClassThrowWeaponEvent, fThrowingAngle), (DefaultValue, 0.78f));
+    DREAD_REFLECTED_FIELD(bool, "bRotateToDirection", offsetof(CCharClassThrowWeaponEvent, bRotateToDirection), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fSpinFactorX", offsetof(CCharClassThrowWeaponEvent, fSpinFactorX), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpinFactorY", offsetof(CCharClassThrowWeaponEvent, fSpinFactorY), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpinFactorZ", offsetof(CCharClassThrowWeaponEvent, fSpinFactorZ), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bRepositionOnEnd", offsetof(CCharClassThrowWeaponEvent, bRepositionOnEnd), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fMass", offsetof(CCharClassThrowWeaponEvent, fMass), (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(bool, "bReboundEnabled", offsetof(CCharClassThrowWeaponEvent, bReboundEnabled), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(s32, "iReboundMaxNumber", offsetof(CCharClassThrowWeaponEvent, iReboundMaxNumber), (DefaultValue, 5));
+    DREAD_REFLECTED_FIELD(f32, "fReboundRestitution", offsetof(CCharClassThrowWeaponEvent, fReboundRestitution), (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fDestinationOffsetX", offsetof(CCharClassThrowWeaponEvent, fDestinationOffsetX), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bDestinationOnFloor", offsetof(CCharClassThrowWeaponEvent, bDestinationOnFloor), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fDamage", offsetof(CCharClassThrowWeaponEvent, fDamage), (DefaultValue, 15.0f));
+    DREAD_REFLECTED_FIELD(s32, "iEntitiesToDamage", offsetof(CCharClassThrowWeaponEvent, iEntitiesToDamage), (DefaultValue, 1));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreCollisionWithEntities", offsetof(CCharClassThrowWeaponEvent, bIgnoreCollisionWithEntities), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bDamageWithBox", offsetof(CCharClassThrowWeaponEvent, bDamageWithBox), (DefaultValue, false));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x50;
+bool CCharClassThrowWeaponEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassThrowWeaponEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassThrowWeaponEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassThrowWeaponEvent*>(obj)->vf_0x0(); }
+void CCharClassThrowWeaponEvent::refl_Destroy(void* obj) { static_cast<CCharClassThrowWeaponEvent*>(obj)->~CCharClassThrowWeaponEvent(); }
+struct CCharClassThrowWeaponEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassThrowWeaponEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -63,5 +56,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassThrowWeaponEvent
-DREAD_REFLECTED_CLASS(CCharClassThrowWeaponEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassThrowWeaponEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

@@ -7,36 +7,33 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassActionSwitcherComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassActionSwitcherComponent
-namespace CCharClassActionSwitcherComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sActivateAction", 0x58, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sDeactivateAction", 0x60, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bScalePlayRate", 0x68, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bDisableOnActivatedOnDeattachActor", 0x69, (DefaultValue, false));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassActionSwitcherComponent::refl_AddAttributes(CClass*) {}
+void CCharClassActionSwitcherComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sActivateAction", offsetof(CCharClassActionSwitcherComponent, sActivateAction), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sDeactivateAction", offsetof(CCharClassActionSwitcherComponent, sDeactivateAction), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bScalePlayRate", offsetof(CCharClassActionSwitcherComponent, bScalePlayRate), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bDisableOnActivatedOnDeattachActor", offsetof(CCharClassActionSwitcherComponent, bDisableOnActivatedOnDeattachActor), (DefaultValue, false));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x70;
+bool CCharClassActionSwitcherComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassActionSwitcherComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassActionSwitcherComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActionSwitcherComponent*>(obj)->vf_0x0(); }
+void CCharClassActionSwitcherComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassActionSwitcherComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassActionSwitcherComponent::refl_Destroy(void* obj) { static_cast<CCharClassActionSwitcherComponent*>(obj)->~CCharClassActionSwitcherComponent(); }
+void* CCharClassActionSwitcherComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassActionSwitcherComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassActionSwitcherComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassActionSwitcherComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -47,5 +44,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassActionSwitcherComponent
-DREAD_REFLECTED_CLASS(CCharClassActionSwitcherComponent, CCharClassActivatableComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassActionSwitcherComponent, CCharClassActivatableComponent);
+#pragma GCC diagnostic pop

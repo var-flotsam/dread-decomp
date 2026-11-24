@@ -7,38 +7,31 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassSetSlomoCustomEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSetSlomoCustomEvent
-namespace CCharClassSetSlomoCustomEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassSetSlomoCustomEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Slomo Custom");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Time", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fSlomo", 0xc, (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 10.0f));
-    DREAD_REFLECTED_FIELD(f32, "fTime", 0x10, (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 1000.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sFunction", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
+void CCharClassSetSlomoCustomEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fSlomo", offsetof(CCharClassSetSlomoCustomEvent, fSlomo), (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTime", offsetof(CCharClassSetSlomoCustomEvent, fTime), (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sFunction", offsetof(CCharClassSetSlomoCustomEvent, sFunction), (DefaultValue, CStrId(CStrId::Empty())));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CCharClassSetSlomoCustomEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassSetSlomoCustomEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassSetSlomoCustomEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetSlomoCustomEvent*>(obj)->vf_0x0(); }
+void CCharClassSetSlomoCustomEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetSlomoCustomEvent*>(obj)->~CCharClassSetSlomoCustomEvent(); }
+struct CCharClassSetSlomoCustomEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassSetSlomoCustomEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -49,5 +42,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassSetSlomoCustomEvent
-DREAD_REFLECTED_CLASS(CCharClassSetSlomoCustomEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassSetSlomoCustomEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

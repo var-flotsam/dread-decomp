@@ -5,29 +5,23 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CCheckCoolShinesparkSuccessfullyCompletedLogicAction.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCheckCoolShinesparkSuccessfullyCompletedLogicAction
-namespace CCheckCoolShinesparkSuccessfullyCompletedLogicAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x10;
+void CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_AddAttributes(CClass*) {}
+void CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_AddFields(CClass*) {}
+bool CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_Hash() { return -1; }
+const base::reflection::CType& CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CCheckCoolShinesparkSuccessfullyCompletedLogicAction*>(obj)->vf_0x0(); }
+void CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_Destroy(void* obj) { static_cast<CCheckCoolShinesparkSuccessfullyCompletedLogicAction*>(obj)->~CCheckCoolShinesparkSuccessfullyCompletedLogicAction(); }
+struct CCheckCoolShinesparkSuccessfullyCompletedLogicAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCheckCoolShinesparkSuccessfullyCompletedLogicAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCheckCoolShinesparkSuccessfullyCompletedLogicAction
-DREAD_REFLECTED_CLASS(CCheckCoolShinesparkSuccessfullyCompletedLogicAction, CTriggerLogicAction);
+DREAD_REFLECTED_DECLARED_CLASS(CCheckCoolShinesparkSuccessfullyCompletedLogicAction, CTriggerLogicAction);

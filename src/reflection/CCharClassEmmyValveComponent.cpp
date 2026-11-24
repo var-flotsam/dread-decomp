@@ -12,28 +12,24 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "reflected/CCharClassEmmyValveComponent.h"
+#include "reflected/CEmmyValveComponent.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CCharClassEmmyValveComponent
-namespace CCharClassEmmyValveComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x58;
+void CCharClassEmmyValveComponent::refl_AddAttributes(CClass*) {}
+void CCharClassEmmyValveComponent::refl_AddFields(CClass*) {}
+bool CCharClassEmmyValveComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassEmmyValveComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassEmmyValveComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyValveComponent*>(obj)->vf_0x0(); }
+void CCharClassEmmyValveComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassEmmyValveComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassEmmyValveComponent::refl_Destroy(void* obj) { static_cast<CCharClassEmmyValveComponent*>(obj)->~CCharClassEmmyValveComponent(); }
+void* CCharClassEmmyValveComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassEmmyValveComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassEmmyValveComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassEmmyValveComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,33 +40,30 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassEmmyValveComponent
-DREAD_REFLECTED_CLASS(CCharClassEmmyValveComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassEmmyValveComponent, CCharClassComponent);
 
 // CEmmyValveComponent
 void fn_71007b4bb0();
 void fn_7100302d14(CFunction* fn);
 void fn_71007b4c44();
-namespace CEmmyValveComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+void CEmmyValveComponent::refl_AddAttributes(CClass*) {}
+void CEmmyValveComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("SetState") {
         DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetState", &base::reflection::TypeObject<void>::object, 0, fn_71007b4bb0);
         fn_7100302d14(fn);
     }
     DREAD_REFLECTED_FUNCTION_OF("CleanForceStateFlag", &base::reflection::TypeObject<void>::object, 0, fn_71007b4c44);
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x298;
+bool CEmmyValveComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CEmmyValveComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CEmmyValveComponent::refl_TypeOf(const void* obj) { return *static_cast<const CEmmyValveComponent*>(obj)->vf_0x0(); }
+void CEmmyValveComponent::refl_CopyConstruct(void*, const void*) {}
+void CEmmyValveComponent::refl_MoveConstruct(void*, const void*) {}
+void CEmmyValveComponent::refl_Destroy(void* obj) { static_cast<CEmmyValveComponent*>(obj)->~CEmmyValveComponent(); }
+void* CEmmyValveComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CEmmyValveComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CEmmyValveComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CEmmyValveComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -81,8 +74,7 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CEmmyValveComponent
-DREAD_REFLECTED_CLASS(CEmmyValveComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CEmmyValveComponent, CComponent);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

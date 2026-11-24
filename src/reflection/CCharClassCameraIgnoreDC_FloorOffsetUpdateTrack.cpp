@@ -7,32 +7,25 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack
-namespace CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack {
-void refl_AddAttributes(CClass* cls) {
+void CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Camera Ignore DC_Floor Offset Update");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Camera", true));
 }
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
+void CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_AddFields(CClass*) {}
+bool CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack*>(obj)->vf_0x0(); }
+void CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_Destroy(void* obj) { static_cast<CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack*>(obj)->~CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack(); }
+struct CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -41,5 +34,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack
-DREAD_REFLECTED_CLASS(CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack, base::global::timeline::CTrack);

@@ -7,32 +7,25 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedAttributes.h"
 #include "base/reflection/ReflectedFields.h"
+#include "reflected/CCharClassIgnoreInputTrack.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassIgnoreInputTrack
-namespace CCharClassIgnoreInputTrack {
-void refl_AddAttributes(CClass* cls) {
+void CCharClassIgnoreInputTrack::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Input");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Ignore", true));
 }
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
+void CCharClassIgnoreInputTrack::refl_AddFields(CClass*) {}
+bool CCharClassIgnoreInputTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassIgnoreInputTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassIgnoreInputTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreInputTrack*>(obj)->vf_0x0(); }
+void CCharClassIgnoreInputTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreInputTrack*>(obj)->~CCharClassIgnoreInputTrack(); }
+struct CCharClassIgnoreInputTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassIgnoreInputTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -41,5 +34,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassIgnoreInputTrack
-DREAD_REFLECTED_CLASS(CCharClassIgnoreInputTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassIgnoreInputTrack, base::global::timeline::CTrack);

@@ -5,28 +5,23 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CShockWavePoolComponent.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CShockWavePoolComponent
-namespace CShockWavePoolComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x330;
+void CShockWavePoolComponent::refl_AddAttributes(CClass*) {}
+void CShockWavePoolComponent::refl_AddFields(CClass*) {}
+bool CShockWavePoolComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CShockWavePoolComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CShockWavePoolComponent::refl_TypeOf(const void* obj) { return *static_cast<const CShockWavePoolComponent*>(obj)->vf_0x0(); }
+void CShockWavePoolComponent::refl_CopyConstruct(void*, const void*) {}
+void CShockWavePoolComponent::refl_MoveConstruct(void*, const void*) {}
+void CShockWavePoolComponent::refl_Destroy(void* obj) { static_cast<CShockWavePoolComponent*>(obj)->~CShockWavePoolComponent(); }
+void* CShockWavePoolComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CShockWavePoolComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CShockWavePoolComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CShockWavePoolComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -37,5 +32,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CShockWavePoolComponent
-DREAD_REFLECTED_CLASS(CShockWavePoolComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CShockWavePoolComponent, CComponent);

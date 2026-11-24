@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CCharClassAimComponent.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCharClassAimComponent
@@ -34,9 +31,10 @@ void fn_710035c2f0();
 void fn_710035bbf4(CFunction* fn, const char* name);
 void fn_710035c380();
 void fn_710035bd70(CFunction* fn, const char* name);
-namespace CCharClassAimComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassAimComponent::refl_AddAttributes(CClass*) {}
+void CCharClassAimComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_fAutoAimWidth_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710035c020);
     DREAD_REFLECTED_FUNCTION("_m_fAutoAimWidth_SetterFunction")
         fn_710035b488(fn, "_m_fAutoAimWidth_SetterFunction");
@@ -65,28 +63,27 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_fAutoAimLockAfterDeadTime_SetterFunction")
         fn_710035bd70(fn, "_m_fAutoAimLockAfterDeadTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimLockAfterDeadTime", (DefaultValue, 0.5f));
-    DREAD_REFLECTED_FIELD(f32, "fMaxTimeMaintainingFront", 0x74, (DefaultValue, 0.66f), (Description, "Max Time Maintaining Front"));
-    DREAD_REFLECTED_FIELD(f32, "fLaserDeactivationTime", 0x78, (DefaultValue, 0.4f), (Description, "Laser deactivation time"));
-    DREAD_REFLECTED_FIELD(f32, "fAnalogModeDefaultInterp", 0x7c, (DefaultValue, 15.707964f), (Description, "Aim Analog mode default inter"));
-    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterFire", 0x80, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterFireOnAir", 0x84, (DefaultValue, 2.0f));
-    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterDiagonal", 0x88, (DefaultValue, 0.9f));
-    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterSecondaryWeapon", 0x8c, (DefaultValue, 0.45f));
-    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterStealthRun", 0x90, (DefaultValue, 0.45f));
-    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterParkour", 0x94, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterFloorSlide45End", 0x98, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeMaintainingFront", offsetof(CCharClassAimComponent, fMaxTimeMaintainingFront), (DefaultValue, 0.66f), (Description, "Max Time Maintaining Front"));
+    DREAD_REFLECTED_FIELD(f32, "fLaserDeactivationTime", offsetof(CCharClassAimComponent, fLaserDeactivationTime), (DefaultValue, 0.4f), (Description, "Laser deactivation time"));
+    DREAD_REFLECTED_FIELD(f32, "fAnalogModeDefaultInterp", offsetof(CCharClassAimComponent, fAnalogModeDefaultInterp), (DefaultValue, 15.707964f), (Description, "Aim Analog mode default inter"));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterFire", offsetof(CCharClassAimComponent, fForcedFrontTimeAfterFire), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterFireOnAir", offsetof(CCharClassAimComponent, fForcedFrontTimeAfterFireOnAir), (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterDiagonal", offsetof(CCharClassAimComponent, fForcedFrontTimeAfterDiagonal), (DefaultValue, 0.9f));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterSecondaryWeapon", offsetof(CCharClassAimComponent, fForcedFrontTimeAfterSecondaryWeapon), (DefaultValue, 0.45f));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterStealthRun", offsetof(CCharClassAimComponent, fForcedFrontTimeAfterStealthRun), (DefaultValue, 0.45f));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterParkour", offsetof(CCharClassAimComponent, fForcedFrontTimeAfterParkour), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterFloorSlide45End", offsetof(CCharClassAimComponent, fForcedFrontTimeAfterFloorSlide45End), (DefaultValue, 0.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xa0;
+bool CCharClassAimComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassAimComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassAimComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAimComponent*>(obj)->vf_0x0(); }
+void CCharClassAimComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassAimComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassAimComponent::refl_Destroy(void* obj) { static_cast<CCharClassAimComponent*>(obj)->~CCharClassAimComponent(); }
+void* CCharClassAimComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassAimComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassAimComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassAimComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -97,5 +94,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassAimComponent
-DREAD_REFLECTED_CLASS(CCharClassAimComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassAimComponent, CCharClassComponent);
+#pragma GCC diagnostic pop

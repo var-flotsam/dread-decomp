@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CCharClassIgnoreCollisionMaskTrack.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
@@ -25,12 +22,11 @@ void fn_7100c29f5c();
 void fn_7100c299c0(CFunction* fn, const char* name);
 void fn_7100c2a0d0();
 void fn_7100c29b3c(CFunction* fn, const char* name);
-namespace CCharClassIgnoreCollisionMaskTrack {
-void refl_AddAttributes(CClass* cls) {
+void CCharClassIgnoreCollisionMaskTrack::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Collision Mask");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Collision", true));
 }
-void refl_AddFields(CClass* cls) {
+void CCharClassIgnoreCollisionMaskTrack::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sMasksToIgnore_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100c29f5c);
     DREAD_REFLECTED_FUNCTION("_m_sMasksToIgnore_SetterFunction")
         fn_7100c299c0(fn, "_m_sMasksToIgnore_SetterFunction");
@@ -40,15 +36,12 @@ void refl_AddFields(CClass* cls) {
         fn_7100c29b3c(fn, "_m_sMasksToEnforce_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sMasksToEnforce", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Mask to Enforce"));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x30;
+bool CCharClassIgnoreCollisionMaskTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassIgnoreCollisionMaskTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassIgnoreCollisionMaskTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCollisionMaskTrack*>(obj)->vf_0x0(); }
+void CCharClassIgnoreCollisionMaskTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreCollisionMaskTrack*>(obj)->~CCharClassIgnoreCollisionMaskTrack(); }
+struct CCharClassIgnoreCollisionMaskTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassIgnoreCollisionMaskTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -57,5 +50,4 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassIgnoreCollisionMaskTrack
-DREAD_REFLECTED_CLASS(CCharClassIgnoreCollisionMaskTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassIgnoreCollisionMaskTrack, base::global::timeline::CTrack);

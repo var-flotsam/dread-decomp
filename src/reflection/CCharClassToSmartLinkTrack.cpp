@@ -7,34 +7,29 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassToSmartLinkTrack.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassToSmartLinkTrack
-namespace CCharClassToSmartLinkTrack {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassToSmartLinkTrack::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "To Smart Link");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Movement", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
+void CCharClassToSmartLinkTrack::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", offsetof(CCharClassToSmartLinkTrack, sAction), (DefaultValue, CStrId(CStrId::Empty())));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CCharClassToSmartLinkTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassToSmartLinkTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassToSmartLinkTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassToSmartLinkTrack*>(obj)->vf_0x0(); }
+void CCharClassToSmartLinkTrack::refl_Destroy(void* obj) { static_cast<CCharClassToSmartLinkTrack*>(obj)->~CCharClassToSmartLinkTrack(); }
+struct CCharClassToSmartLinkTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassToSmartLinkTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -43,5 +38,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassToSmartLinkTrack
-DREAD_REFLECTED_CLASS(CCharClassToSmartLinkTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassToSmartLinkTrack, base::global::timeline::CTrack);
+#pragma GCC diagnostic pop

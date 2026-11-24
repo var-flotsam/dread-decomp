@@ -7,37 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassTweakSlopeModelOffsetTrack.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTweakSlopeModelOffsetTrack
-namespace CCharClassTweakSlopeModelOffsetTrack {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassTweakSlopeModelOffsetTrack::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Slope Model Offset");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Slope", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fSlopeUpOffset", 0x18, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fSlopeDownOffset", 0x1c, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fFadeInFrames", 0x20, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(f32, "fFadeOutFrames", 0x24, (DefaultValue, 0.0f));
+void CCharClassTweakSlopeModelOffsetTrack::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fSlopeUpOffset", offsetof(CCharClassTweakSlopeModelOffsetTrack, fSlopeUpOffset), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSlopeDownOffset", offsetof(CCharClassTweakSlopeModelOffsetTrack, fSlopeDownOffset), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFadeInFrames", offsetof(CCharClassTweakSlopeModelOffsetTrack, fFadeInFrames), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFadeOutFrames", offsetof(CCharClassTweakSlopeModelOffsetTrack, fFadeOutFrames), (DefaultValue, 0.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x28;
+bool CCharClassTweakSlopeModelOffsetTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassTweakSlopeModelOffsetTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassTweakSlopeModelOffsetTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakSlopeModelOffsetTrack*>(obj)->vf_0x0(); }
+void CCharClassTweakSlopeModelOffsetTrack::refl_Destroy(void* obj) { static_cast<CCharClassTweakSlopeModelOffsetTrack*>(obj)->~CCharClassTweakSlopeModelOffsetTrack(); }
+struct CCharClassTweakSlopeModelOffsetTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassTweakSlopeModelOffsetTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -46,5 +41,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassTweakSlopeModelOffsetTrack
-DREAD_REFLECTED_CLASS(CCharClassTweakSlopeModelOffsetTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassTweakSlopeModelOffsetTrack, base::global::timeline::CTrack);
+#pragma GCC diagnostic pop

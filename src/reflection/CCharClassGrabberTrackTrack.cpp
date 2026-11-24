@@ -7,38 +7,33 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassGrabberTrackTrack.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGrabberTrackTrack
-namespace CCharClassGrabberTrackTrack {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassGrabberTrackTrack::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Grabber Track");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Grab", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sGrabberNode", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sGrabbedAnimation", 0x20, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bMarksPosition", 0x28, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bMarksRotation", 0x29, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(CStrId, "sWorksWith", 0x30, (DefaultValue, CStrId(CStrId::Empty())));
+void CCharClassGrabberTrackTrack::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sGrabberNode", offsetof(CCharClassGrabberTrackTrack, sGrabberNode), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sGrabbedAnimation", offsetof(CCharClassGrabberTrackTrack, sGrabbedAnimation), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bMarksPosition", offsetof(CCharClassGrabberTrackTrack, bMarksPosition), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bMarksRotation", offsetof(CCharClassGrabberTrackTrack, bMarksRotation), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(CStrId, "sWorksWith", offsetof(CCharClassGrabberTrackTrack, sWorksWith), (DefaultValue, CStrId(CStrId::Empty())));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x38;
+bool CCharClassGrabberTrackTrack::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassGrabberTrackTrack::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassGrabberTrackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGrabberTrackTrack*>(obj)->vf_0x0(); }
+void CCharClassGrabberTrackTrack::refl_Destroy(void* obj) { static_cast<CCharClassGrabberTrackTrack*>(obj)->~CCharClassGrabberTrackTrack(); }
+struct CCharClassGrabberTrackTrack::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassGrabberTrackTrack);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -47,5 +42,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto move_construct = &refl_MoveConstruct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassGrabberTrackTrack
-DREAD_REFLECTED_CLASS(CCharClassGrabberTrackTrack, base::global::timeline::CTrack);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassGrabberTrackTrack, base::global::timeline::CTrack);
+#pragma GCC diagnostic pop

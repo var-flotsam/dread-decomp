@@ -7,41 +7,38 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassKraidSpikeMovablePlatformComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassKraidSpikeMovablePlatformComponent
-namespace CCharClassKraidSpikeMovablePlatformComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fInitialMotionSpeed", 0x74, (DefaultValue, 400.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x78, (DefaultValue, -1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fInitialDisplacement", 0x7c, (DefaultValue, 200.0f));
-    DREAD_REFLECTED_FIELD(f32, "fPreparationTime", 0x80, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fShakeDisplacementX", 0x84, (DefaultValue, 3.0f));
-    DREAD_REFLECTED_FIELD(f32, "fShakeSpeedX", 0x88, (DefaultValue, 400.0f));
-    DREAD_REFLECTED_FIELD(f32, "fShakeDisplacementY", 0x8c, (DefaultValue, 3.0f));
-    DREAD_REFLECTED_FIELD(f32, "fShakeSpeedY", 0x90, (DefaultValue, 400.0f));
-    DREAD_REFLECTED_FIELD(f32, "fFlyingSpikeStickedWallTime", 0x94, (DefaultValue, -1.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassKraidSpikeMovablePlatformComponent::refl_AddAttributes(CClass*) {}
+void CCharClassKraidSpikeMovablePlatformComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fInitialMotionSpeed", offsetof(CCharClassKraidSpikeMovablePlatformComponent, fInitialMotionSpeed), (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", offsetof(CCharClassKraidSpikeMovablePlatformComponent, fMotionSpeed), (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInitialDisplacement", offsetof(CCharClassKraidSpikeMovablePlatformComponent, fInitialDisplacement), (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPreparationTime", offsetof(CCharClassKraidSpikeMovablePlatformComponent, fPreparationTime), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShakeDisplacementX", offsetof(CCharClassKraidSpikeMovablePlatformComponent, fShakeDisplacementX), (DefaultValue, 3.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShakeSpeedX", offsetof(CCharClassKraidSpikeMovablePlatformComponent, fShakeSpeedX), (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShakeDisplacementY", offsetof(CCharClassKraidSpikeMovablePlatformComponent, fShakeDisplacementY), (DefaultValue, 3.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShakeSpeedY", offsetof(CCharClassKraidSpikeMovablePlatformComponent, fShakeSpeedY), (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFlyingSpikeStickedWallTime", offsetof(CCharClassKraidSpikeMovablePlatformComponent, fFlyingSpikeStickedWallTime), (DefaultValue, -1.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x98;
+bool CCharClassKraidSpikeMovablePlatformComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassKraidSpikeMovablePlatformComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassKraidSpikeMovablePlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidSpikeMovablePlatformComponent*>(obj)->vf_0x0(); }
+void CCharClassKraidSpikeMovablePlatformComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassKraidSpikeMovablePlatformComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassKraidSpikeMovablePlatformComponent::refl_Destroy(void* obj) { static_cast<CCharClassKraidSpikeMovablePlatformComponent*>(obj)->~CCharClassKraidSpikeMovablePlatformComponent(); }
+void* CCharClassKraidSpikeMovablePlatformComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassKraidSpikeMovablePlatformComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassKraidSpikeMovablePlatformComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassKraidSpikeMovablePlatformComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -52,5 +49,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassKraidSpikeMovablePlatformComponent
-DREAD_REFLECTED_CLASS(CCharClassKraidSpikeMovablePlatformComponent, CCharClassMovablePlatformComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassKraidSpikeMovablePlatformComponent, CCharClassMovablePlatformComponent);
+#pragma GCC diagnostic pop

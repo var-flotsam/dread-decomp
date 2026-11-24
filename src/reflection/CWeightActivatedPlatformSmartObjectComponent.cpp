@@ -12,40 +12,37 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "reflected/CWeightActivatedPlatformSmartObjectComponent.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CWeightActivatedPlatformSmartObjectComponent
 void fn_7100a0d274();
 void fn_7100a0d2a8();
-namespace CWeightActivatedPlatformSmartObjectComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sDustFX", 0x178, (DefaultValue, "dust"), (Description, "fx id"));
-    DREAD_REFLECTED_FIELD(bool, "bDisableWhenEmmyNearby", 0x558, (DefaultValue, false), (Description, "Should disable (or prevent usability) when Emmy is nearby?"));
-    DREAD_REFLECTED_FIELD(bool, "bDisableWhenUsed", 0x559, (DefaultValue, false), (Description, "Should disable once is used?"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CWeightActivatedPlatformSmartObjectComponent::refl_AddAttributes(CClass*) {}
+void CWeightActivatedPlatformSmartObjectComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sDustFX", offsetof(CWeightActivatedPlatformSmartObjectComponent, sDustFX), (DefaultValue, "dust"), (Description, "fx id"));
+    DREAD_REFLECTED_FIELD(bool, "bDisableWhenEmmyNearby", offsetof(CWeightActivatedPlatformSmartObjectComponent, bDisableWhenEmmyNearby), (DefaultValue, false), (Description, "Should disable (or prevent usability) when Emmy is nearby?"));
+    DREAD_REFLECTED_FIELD(bool, "bDisableWhenUsed", offsetof(CWeightActivatedPlatformSmartObjectComponent, bDisableWhenUsed), (DefaultValue, false), (Description, "Should disable once is used?"));
     DREAD_REFLECTED_FUNCTION_OF("SetStateAfterCutScene", &base::reflection::TypeObject<void>::object, 0, fn_7100a0d274);
     DREAD_REFLECTED_FUNCTION_OF("SetStateDuringFakeAdamDialogueCutScene", &base::reflection::TypeObject<void>::object, 0, fn_7100a0d2a8);
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x5b0;
+bool CWeightActivatedPlatformSmartObjectComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CWeightActivatedPlatformSmartObjectComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CWeightActivatedPlatformSmartObjectComponent::refl_TypeOf(const void* obj) { return *static_cast<const CWeightActivatedPlatformSmartObjectComponent*>(obj)->vf_0x0(); }
+void CWeightActivatedPlatformSmartObjectComponent::refl_Destroy(void* obj) { static_cast<CWeightActivatedPlatformSmartObjectComponent*>(obj)->~CWeightActivatedPlatformSmartObjectComponent(); }
+struct CWeightActivatedPlatformSmartObjectComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CWeightActivatedPlatformSmartObjectComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CWeightActivatedPlatformSmartObjectComponent
-DREAD_REFLECTED_CLASS(CWeightActivatedPlatformSmartObjectComponent, CSmartObjectComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CWeightActivatedPlatformSmartObjectComponent, CSmartObjectComponent);
+#pragma GCC diagnostic pop
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).

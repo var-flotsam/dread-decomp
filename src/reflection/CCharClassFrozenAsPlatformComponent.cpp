@@ -12,40 +12,37 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CCharClassFrozenAsPlatformComponent.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
 // CCharClassFrozenAsPlatformComponent
 void fn_71007fd394();
 void fn_71007fc518(CFunction* fn, const char* name);
-namespace CCharClassFrozenAsPlatformComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sCollisionMaskToFreeze", 0xa0, (DefaultValue, base::global::CRntString("DAMAGE")), (Description, "Collision Mask to create the ice platform"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassFrozenAsPlatformComponent::refl_AddAttributes(CClass*) {}
+void CCharClassFrozenAsPlatformComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sCollisionMaskToFreeze", offsetof(CCharClassFrozenAsPlatformComponent, sCollisionMaskToFreeze), (DefaultValue, base::global::CRntString("DAMAGE")), (Description, "Collision Mask to create the ice platform"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sCollisionTagsExcludedFromFreezing_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71007fd394);
     DREAD_REFLECTED_FUNCTION("_m_sCollisionTagsExcludedFromFreezing_SetterFunction")
         fn_71007fc518(fn, "_m_sCollisionTagsExcludedFromFreezing_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sCollisionTagsExcludedFromFreezing", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Comma separated list of collision tags to exclude in the ice platform created"));
-    DREAD_REFLECTED_FIELD(f32, "fPlatformDepth", 0x100, (DefaultValue, 100.0f), (Description, "Size of the platform in Z"));
-    DREAD_REFLECTED_FIELD(CStrId, "sIceCubeCharClass", 0x108, (DefaultValue, CStrId("ice_cube", true)));
-    DREAD_REFLECTED_FIELD(base::math::CVector2D, "vIceCubeSize", 0x110, (DefaultValue, base::math::CVector2D{100.0f, 100.0f}), (Description, "Size X,Y of the ice cube"));
+    DREAD_REFLECTED_FIELD(f32, "fPlatformDepth", offsetof(CCharClassFrozenAsPlatformComponent, fPlatformDepth), (DefaultValue, 100.0f), (Description, "Size of the platform in Z"));
+    DREAD_REFLECTED_FIELD(CStrId, "sIceCubeCharClass", offsetof(CCharClassFrozenAsPlatformComponent, sIceCubeCharClass), (DefaultValue, CStrId("ice_cube", true)));
+    DREAD_REFLECTED_FIELD(base::math::CVector2D, "vIceCubeSize", offsetof(CCharClassFrozenAsPlatformComponent, vIceCubeSize), (DefaultValue, base::math::CVector2D{100.0f, 100.0f}), (Description, "Size X,Y of the ice cube"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x118;
+bool CCharClassFrozenAsPlatformComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassFrozenAsPlatformComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassFrozenAsPlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFrozenAsPlatformComponent*>(obj)->vf_0x0(); }
+void CCharClassFrozenAsPlatformComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassFrozenAsPlatformComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassFrozenAsPlatformComponent::refl_Destroy(void* obj) { static_cast<CCharClassFrozenAsPlatformComponent*>(obj)->~CCharClassFrozenAsPlatformComponent(); }
+void* CCharClassFrozenAsPlatformComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassFrozenAsPlatformComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassFrozenAsPlatformComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassFrozenAsPlatformComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -56,5 +53,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassFrozenAsPlatformComponent
-DREAD_REFLECTED_CLASS(CCharClassFrozenAsPlatformComponent, CCharClassFrozenComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassFrozenAsPlatformComponent, CCharClassFrozenComponent);
+#pragma GCC diagnostic pop

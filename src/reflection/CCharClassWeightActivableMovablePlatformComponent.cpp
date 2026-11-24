@@ -7,33 +7,30 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassWeightActivableMovablePlatformComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassWeightActivableMovablePlatformComponent
-namespace CCharClassWeightActivableMovablePlatformComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sActionOnActivated", 0x78, (DefaultValue, CStrId(CStrId::Empty())));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassWeightActivableMovablePlatformComponent::refl_AddAttributes(CClass*) {}
+void CCharClassWeightActivableMovablePlatformComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnActivated", offsetof(CCharClassWeightActivableMovablePlatformComponent, sActionOnActivated), (DefaultValue, CStrId(CStrId::Empty())));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x80;
+bool CCharClassWeightActivableMovablePlatformComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassWeightActivableMovablePlatformComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassWeightActivableMovablePlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassWeightActivableMovablePlatformComponent*>(obj)->vf_0x0(); }
+void CCharClassWeightActivableMovablePlatformComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassWeightActivableMovablePlatformComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassWeightActivableMovablePlatformComponent::refl_Destroy(void* obj) { static_cast<CCharClassWeightActivableMovablePlatformComponent*>(obj)->~CCharClassWeightActivableMovablePlatformComponent(); }
+void* CCharClassWeightActivableMovablePlatformComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassWeightActivableMovablePlatformComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassWeightActivableMovablePlatformComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassWeightActivableMovablePlatformComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,5 +41,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassWeightActivableMovablePlatformComponent
-DREAD_REFLECTED_CLASS(CCharClassWeightActivableMovablePlatformComponent, CCharClassMovablePlatformComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassWeightActivableMovablePlatformComponent, CCharClassMovablePlatformComponent);
+#pragma GCC diagnostic pop

@@ -8,10 +8,6 @@
 #include "reflected/CGameObject.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CGameObject
 void CGameObject::refl_AddAttributes(CClass*) {}

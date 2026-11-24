@@ -7,37 +7,34 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassPlayerMovement.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPlayerMovement
-namespace CCharClassPlayerMovement {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sFrozenStartTimeline", 0x70, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sFrozenStopTimeline", 0x78, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sFrozenGroundTimeline", 0x80, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sFrozenImpactTimeline", 0x88, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(CStrId, "sFrozenRestoreTimeline", 0x90, (DefaultValue, CStrId(CStrId::Empty())));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassPlayerMovement::refl_AddAttributes(CClass*) {}
+void CCharClassPlayerMovement::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sFrozenStartTimeline", offsetof(CCharClassPlayerMovement, sFrozenStartTimeline), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sFrozenStopTimeline", offsetof(CCharClassPlayerMovement, sFrozenStopTimeline), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sFrozenGroundTimeline", offsetof(CCharClassPlayerMovement, sFrozenGroundTimeline), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sFrozenImpactTimeline", offsetof(CCharClassPlayerMovement, sFrozenImpactTimeline), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sFrozenRestoreTimeline", offsetof(CCharClassPlayerMovement, sFrozenRestoreTimeline), (DefaultValue, CStrId(CStrId::Empty())));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x98;
+bool CCharClassPlayerMovement::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassPlayerMovement::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassPlayerMovement::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPlayerMovement*>(obj)->vf_0x0(); }
+void CCharClassPlayerMovement::refl_CopyConstruct(void*, const void*) {}
+void CCharClassPlayerMovement::refl_MoveConstruct(void*, const void*) {}
+void CCharClassPlayerMovement::refl_Destroy(void* obj) { static_cast<CCharClassPlayerMovement*>(obj)->~CCharClassPlayerMovement(); }
+void* CCharClassPlayerMovement::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassPlayerMovement::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassPlayerMovement::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassPlayerMovement);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -48,5 +45,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassPlayerMovement
-DREAD_REFLECTED_CLASS(CCharClassPlayerMovement, CCharClassCharacterMovement);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassPlayerMovement, CCharClassCharacterMovement);
+#pragma GCC diagnostic pop

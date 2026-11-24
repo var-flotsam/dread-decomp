@@ -9,47 +9,44 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CAttackPreset.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CAttackPreset
-namespace CAttackPreset {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x10, (DefaultValue, true), (Description, "Can use the attack?"));
-    DREAD_REFLECTED_FIELD(f32, "fMinNextAttackTime", 0x14, (DefaultValue, 0.0f), (Description, "Min time to do a new attack (any attack)"));
-    DREAD_REFLECTED_FIELD(f32, "fMaxNextAttackTime", 0x18, (DefaultValue, 0.0f), (Description, "Max time to do a new attack (any attack)"));
-    DREAD_REFLECTED_FIELD(f32, "fMandatoryMinNextAttackTime", 0x1c, (DefaultValue, 0.0f), (Description, "Mandatory min time to do a new attack (any attack)"));
-    DREAD_REFLECTED_FIELD(f32, "fMandatoryMaxNextAttackTime", 0x20, (DefaultValue, 0.0f), (Description, "Mandatory max time to do a new attack (any attack)"));
-    DREAD_REFLECTED_FIELD(f32, "fRepeatAttackTime", 0x24, (DefaultValue, 0.0f), (Description, "Time to repeat the attack (same attack)"));
-    DREAD_REFLECTED_FIELD(f32, "fShortDistanceProb", 0x2c, (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in short distance"));
-    DREAD_REFLECTED_FIELD(f32, "fMediumDistanceProb", 0x30, (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in medium distance"));
-    DREAD_REFLECTED_FIELD(f32, "fLongDistanceProb", 0x34, (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in long distance"));
-    DREAD_REFLECTED_FIELD(f32, "fAbuseShortDistanceProb", 0x38, (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in short distance and abuse"));
-    DREAD_REFLECTED_FIELD(f32, "fAbuseMediumDistanceProb", 0x3c, (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in medium distance and abuse"));
-    DREAD_REFLECTED_FIELD(f32, "fAbuseLongDistanceProb", 0x40, (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in long distance and abuse"));
-    DREAD_REFLECTED_FIELD(f32, "fAbuseTime", 0x28, (DefaultValue, -1.0f), (Description, "Time to check abuse (if -1 never abuse)"));
-    DREAD_REFLECTED_FIELD(u32, "uMaxOccurrencesInLastAttacks", 0x48, (DefaultValue, u32(0x2u)));
-    DREAD_REFLECTED_FIELD(u32, "uNumOfAttacksToEvaluate", 0x4c, (DefaultValue, u32(0x5u)));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CAttackPreset::refl_AddAttributes(CClass*) {}
+void CAttackPreset::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", offsetof(CAttackPreset, bEnabled), (DefaultValue, true), (Description, "Can use the attack?"));
+    DREAD_REFLECTED_FIELD(f32, "fMinNextAttackTime", offsetof(CAttackPreset, fMinNextAttackTime), (DefaultValue, 0.0f), (Description, "Min time to do a new attack (any attack)"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxNextAttackTime", offsetof(CAttackPreset, fMaxNextAttackTime), (DefaultValue, 0.0f), (Description, "Max time to do a new attack (any attack)"));
+    DREAD_REFLECTED_FIELD(f32, "fMandatoryMinNextAttackTime", offsetof(CAttackPreset, fMandatoryMinNextAttackTime), (DefaultValue, 0.0f), (Description, "Mandatory min time to do a new attack (any attack)"));
+    DREAD_REFLECTED_FIELD(f32, "fMandatoryMaxNextAttackTime", offsetof(CAttackPreset, fMandatoryMaxNextAttackTime), (DefaultValue, 0.0f), (Description, "Mandatory max time to do a new attack (any attack)"));
+    DREAD_REFLECTED_FIELD(f32, "fRepeatAttackTime", offsetof(CAttackPreset, fRepeatAttackTime), (DefaultValue, 0.0f), (Description, "Time to repeat the attack (same attack)"));
+    DREAD_REFLECTED_FIELD(f32, "fShortDistanceProb", offsetof(CAttackPreset, fShortDistanceProb), (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in short distance"));
+    DREAD_REFLECTED_FIELD(f32, "fMediumDistanceProb", offsetof(CAttackPreset, fMediumDistanceProb), (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in medium distance"));
+    DREAD_REFLECTED_FIELD(f32, "fLongDistanceProb", offsetof(CAttackPreset, fLongDistanceProb), (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in long distance"));
+    DREAD_REFLECTED_FIELD(f32, "fAbuseShortDistanceProb", offsetof(CAttackPreset, fAbuseShortDistanceProb), (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in short distance and abuse"));
+    DREAD_REFLECTED_FIELD(f32, "fAbuseMediumDistanceProb", offsetof(CAttackPreset, fAbuseMediumDistanceProb), (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in medium distance and abuse"));
+    DREAD_REFLECTED_FIELD(f32, "fAbuseLongDistanceProb", offsetof(CAttackPreset, fAbuseLongDistanceProb), (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in long distance and abuse"));
+    DREAD_REFLECTED_FIELD(f32, "fAbuseTime", offsetof(CAttackPreset, fAbuseTime), (DefaultValue, -1.0f), (Description, "Time to check abuse (if -1 never abuse)"));
+    DREAD_REFLECTED_FIELD(u32, "uMaxOccurrencesInLastAttacks", offsetof(CAttackPreset, uMaxOccurrencesInLastAttacks), (DefaultValue, u32(0x2u)));
+    DREAD_REFLECTED_FIELD(u32, "uNumOfAttacksToEvaluate", offsetof(CAttackPreset, uNumOfAttacksToEvaluate), (DefaultValue, u32(0x5u)));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x50;
+bool CAttackPreset::refl_Equals(const void*, const void*) { return false; }
+s32 CAttackPreset::refl_Hash() { return -1; }
+const base::reflection::CType& CAttackPreset::refl_TypeOf(const void* obj) { return *static_cast<const CAttackPreset*>(obj)->vf_0x0(); }
+void CAttackPreset::refl_CopyConstruct(void*, const void*) {}
+void CAttackPreset::refl_MoveConstruct(void*, const void*) {}
+void CAttackPreset::refl_Destroy(void* obj) { static_cast<CAttackPreset*>(obj)->~CAttackPreset(); }
+void* CAttackPreset::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CAttackPreset::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CAttackPreset::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CAttackPreset);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -60,8 +57,8 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CAttackPreset
-DREAD_REFLECTED_ROOT_CLASS(CAttackPreset);
+DREAD_REFLECTED_DECLARED_ROOT_CLASS(CAttackPreset);
+#pragma GCC diagnostic pop
 
 void fn_7100366c78();
 void fn_7100366ce0();

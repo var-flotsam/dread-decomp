@@ -7,33 +7,30 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassAIGrapplePointComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAIGrapplePointComponent
-namespace CCharClassAIGrapplePointComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sGrappleCollider", 0x78, (DefaultValue, ""), (Description, "Name of the collider that can be grappled"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassAIGrapplePointComponent::refl_AddAttributes(CClass*) {}
+void CCharClassAIGrapplePointComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sGrappleCollider", offsetof(CCharClassAIGrapplePointComponent, sGrappleCollider), (DefaultValue, ""), (Description, "Name of the collider that can be grappled"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x80;
+bool CCharClassAIGrapplePointComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassAIGrapplePointComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassAIGrapplePointComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAIGrapplePointComponent*>(obj)->vf_0x0(); }
+void CCharClassAIGrapplePointComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassAIGrapplePointComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassAIGrapplePointComponent::refl_Destroy(void* obj) { static_cast<CCharClassAIGrapplePointComponent*>(obj)->~CCharClassAIGrapplePointComponent(); }
+void* CCharClassAIGrapplePointComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassAIGrapplePointComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassAIGrapplePointComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassAIGrapplePointComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -44,5 +41,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassAIGrapplePointComponent
-DREAD_REFLECTED_CLASS(CCharClassAIGrapplePointComponent, CCharClassPullableGrapplePointComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassAIGrapplePointComponent, CCharClassPullableGrapplePointComponent);
+#pragma GCC diagnostic pop

@@ -15,3 +15,4 @@ UnkWeakTarget* fn_71007e4924(void* owner);
 void fn_71007e2ecc(UnkEventScenario_b49a2* self, bool a, bool b, f32 c, f32 d, f32 e, f32 f);
 extern UnkProperty g_unk_717271f350;
 UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
+extern void* g_unk_7101a73408[];

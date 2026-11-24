@@ -5,29 +5,23 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "reflected/CPerceptionComponent.h"
 using base::reflection::CClass;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CPerceptionComponent
-namespace CPerceptionComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass*) {}
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x70;
+void CPerceptionComponent::refl_AddAttributes(CClass*) {}
+void CPerceptionComponent::refl_AddFields(CClass*) {}
+bool CPerceptionComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CPerceptionComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CPerceptionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CPerceptionComponent*>(obj)->vf_0x0(); }
+void CPerceptionComponent::refl_Destroy(void* obj) { static_cast<CPerceptionComponent*>(obj)->~CPerceptionComponent(); }
+struct CPerceptionComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CPerceptionComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CPerceptionComponent
-DREAD_REFLECTED_CLASS(CPerceptionComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CPerceptionComponent, CComponent);

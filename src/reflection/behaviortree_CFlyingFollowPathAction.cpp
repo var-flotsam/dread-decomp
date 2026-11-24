@@ -7,42 +7,39 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CFlyingFollowPathAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CFlyingFollowPathAction
-namespace behaviortree::CFlyingFollowPathAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fAcceleration", 0x3c, (DefaultValue, 9999.0f));
-    DREAD_REFLECTED_FIELD(f32, "fSpeedMultiplier", 0x40, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fHareDistance", 0x44, (DefaultValue, 50.0f));
-    DREAD_REFLECTED_FIELD(bool, "bLookAtMoveDir", 0x48, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bIgnoreCollisionInPath", 0x51, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(CStrId, "sPatrolAnim", 0x58, (DefaultValue, "patrol"));
-    DREAD_REFLECTED_FIELD(bool, "bShouldSetPatrolAnim", 0x71, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bUseSteering", 0x72, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(bool, "bRestartnOnPush", 0x73, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bUseDesiredViewDirAsInitialDir", 0x74, (DefaultValue, false));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CFlyingFollowPathAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CFlyingFollowPathAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fAcceleration", offsetof(CFlyingFollowPathAction, fAcceleration), (DefaultValue, 9999.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedMultiplier", offsetof(CFlyingFollowPathAction, fSpeedMultiplier), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHareDistance", offsetof(CFlyingFollowPathAction, fHareDistance), (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(bool, "bLookAtMoveDir", offsetof(CFlyingFollowPathAction, bLookAtMoveDir), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreCollisionInPath", offsetof(CFlyingFollowPathAction, bIgnoreCollisionInPath), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(CStrId, "sPatrolAnim", offsetof(CFlyingFollowPathAction, sPatrolAnim), (DefaultValue, "patrol"));
+    DREAD_REFLECTED_FIELD(bool, "bShouldSetPatrolAnim", offsetof(CFlyingFollowPathAction, bShouldSetPatrolAnim), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bUseSteering", offsetof(CFlyingFollowPathAction, bUseSteering), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bRestartnOnPush", offsetof(CFlyingFollowPathAction, bRestartnOnPush), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bUseDesiredViewDirAsInitialDir", offsetof(CFlyingFollowPathAction, bUseDesiredViewDirAsInitialDir), (DefaultValue, false));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x80;
+bool behaviortree::CFlyingFollowPathAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CFlyingFollowPathAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CFlyingFollowPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CFlyingFollowPathAction*>(obj)->vf_0x0(); }
+void behaviortree::CFlyingFollowPathAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CFlyingFollowPathAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CFlyingFollowPathAction::refl_Destroy(void* obj) { static_cast<CFlyingFollowPathAction*>(obj)->~CFlyingFollowPathAction(); }
+void* behaviortree::CFlyingFollowPathAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CFlyingFollowPathAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CFlyingFollowPathAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CFlyingFollowPathAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -53,5 +50,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CFlyingFollowPathAction
-DREAD_REFLECTED_CLASS(behaviortree::CFlyingFollowPathAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CFlyingFollowPathAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

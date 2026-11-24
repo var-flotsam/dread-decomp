@@ -7,37 +7,30 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassFakeDropEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFakeDropEvent
-namespace CCharClassFakeDropEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassFakeDropEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Fake Drop");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Drop", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(s32, "iNumLife", 0xc, (DefaultValue, 0));
-    DREAD_REFLECTED_FIELD(s32, "iNumMissile", 0x10, (DefaultValue, 0));
+void CCharClassFakeDropEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(s32, "iNumLife", offsetof(CCharClassFakeDropEvent, iNumLife), (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iNumMissile", offsetof(CCharClassFakeDropEvent, iNumMissile), (DefaultValue, 0));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
+bool CCharClassFakeDropEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassFakeDropEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassFakeDropEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFakeDropEvent*>(obj)->vf_0x0(); }
+void CCharClassFakeDropEvent::refl_Destroy(void* obj) { static_cast<CCharClassFakeDropEvent*>(obj)->~CCharClassFakeDropEvent(); }
+struct CCharClassFakeDropEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassFakeDropEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -48,5 +41,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassFakeDropEvent
-DREAD_REFLECTED_CLASS(CCharClassFakeDropEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassFakeDropEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

@@ -7,35 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassMorphBallLauncherExitComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMorphBallLauncherExitComponent
-namespace CCharClassMorphBallLauncherExitComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fExpelImpulseSize", 0x58, (DefaultValue, 0.0f), (Description, "Impulse force to apply when expelling MorphBall through exit"));
-    DREAD_REFLECTED_FIELD(f32, "fInputIgnoreTimeAfterExpelling", 0x5c, (DefaultValue, 0.0f), (Description, "Time after expelling during which the input is ignored (so impulse is kept for a bit"));
-    DREAD_REFLECTED_FIELD(f32, "fFrictionIgnoreTimeAfterExpelling", 0x60, (DefaultValue, 0.0f), (Description, "Time after expelling during which MorphBall's friction is ignored (so impulse is kept for a bit longer)"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassMorphBallLauncherExitComponent::refl_AddAttributes(CClass*) {}
+void CCharClassMorphBallLauncherExitComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fExpelImpulseSize", offsetof(CCharClassMorphBallLauncherExitComponent, fExpelImpulseSize), (DefaultValue, 0.0f), (Description, "Impulse force to apply when expelling MorphBall through exit"));
+    DREAD_REFLECTED_FIELD(f32, "fInputIgnoreTimeAfterExpelling", offsetof(CCharClassMorphBallLauncherExitComponent, fInputIgnoreTimeAfterExpelling), (DefaultValue, 0.0f), (Description, "Time after expelling during which the input is ignored (so impulse is kept for a bit"));
+    DREAD_REFLECTED_FIELD(f32, "fFrictionIgnoreTimeAfterExpelling", offsetof(CCharClassMorphBallLauncherExitComponent, fFrictionIgnoreTimeAfterExpelling), (DefaultValue, 0.0f), (Description, "Time after expelling during which MorphBall's friction is ignored (so impulse is kept for a bit longer)"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x68;
+bool CCharClassMorphBallLauncherExitComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassMorphBallLauncherExitComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassMorphBallLauncherExitComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMorphBallLauncherExitComponent*>(obj)->vf_0x0(); }
+void CCharClassMorphBallLauncherExitComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassMorphBallLauncherExitComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassMorphBallLauncherExitComponent::refl_Destroy(void* obj) { static_cast<CCharClassMorphBallLauncherExitComponent*>(obj)->~CCharClassMorphBallLauncherExitComponent(); }
+void* CCharClassMorphBallLauncherExitComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassMorphBallLauncherExitComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassMorphBallLauncherExitComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassMorphBallLauncherExitComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -46,5 +43,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassMorphBallLauncherExitComponent
-DREAD_REFLECTED_CLASS(CCharClassMorphBallLauncherExitComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassMorphBallLauncherExitComponent, CCharClassComponent);
+#pragma GCC diagnostic pop

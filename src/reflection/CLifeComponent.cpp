@@ -12,12 +12,9 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "reflected/CLifeComponent.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 class CompleteInfo;
 template <> base::reflection::CType base::reflection::TypeObject<CompleteInfo>::object asm("g_unk_7101d60ff0");
@@ -41,10 +38,11 @@ void fn_710115f654(CFunction* fn, const char* name);
 void fn_710115f708(CFunction* fn, const char* name);
 void fn_7101161700();
 void fn_7100302d14(CFunction* fn);
-namespace CLifeComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(bool, "bWantsCameraFXPreset", 0xe0, (DefaultValue, true), (Description, "Wants Camera FX Preset"), (Persistence, 0), (EditorVisible, false));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CLifeComponent::refl_AddAttributes(CClass*) {}
+void CLifeComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(bool, "bWantsCameraFXPreset", offsetof(CLifeComponent, bWantsCameraFXPreset), (DefaultValue, true), (Description, "Wants Camera FX Preset"), (Persistence, 0), (EditorVisible, false));
     DREAD_REFLECTED_FUNCTION("SetOnDamageCallback") {
         fn_710115f078(fn, "SetOnDamageCallback");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set on damage lua callback"));
@@ -59,7 +57,7 @@ void refl_AddFields(CClass* cls) {
     field1->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("max life"));
     field1->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &base::reflection::TypeObject<CompleteInfo>::object, base::reflection::UnkReflStringList(0x0, base::reflection::UnkReflList<base::global::CRntString>({""}, 0xa, nullptr, 0xf)));
     field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
-    DREAD_REFLECTED_FIELD(f32, "fCurrentLife", 0x54, (Persistence, 0), (EditorVisible, false), (DefaultValue, -1.0f), (Description, "Current Life"));
+    DREAD_REFLECTED_FIELD(f32, "fCurrentLife", offsetof(CLifeComponent, fCurrentLife), (Persistence, 0), (EditorVisible, false), (DefaultValue, -1.0f), (Description, "Current Life"));
     DREAD_REFLECTED_FUNCTION_OF("_m_fCurrentLife_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011613dc);
     fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("fCurrentLife")), cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION("_m_fCurrentLife_SetterFunction")
@@ -89,17 +87,17 @@ void refl_AddFields(CClass* cls) {
         fn_7100302d14(fn);
     }
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x240;
+bool CLifeComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CLifeComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CLifeComponent*>(obj)->vf_0x0(); }
+void CLifeComponent::refl_Destroy(void* obj) { static_cast<CLifeComponent*>(obj)->~CLifeComponent(); }
+struct CLifeComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CLifeComponent);
     static constexpr bool abstract = true;
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CLifeComponent
-DREAD_REFLECTED_CLASS(CLifeComponent, CComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CLifeComponent, CComponent);
+#pragma GCC diagnostic pop

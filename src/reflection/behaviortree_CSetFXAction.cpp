@@ -7,35 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CSetFXAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSetFXAction
-namespace behaviortree::CSetFXAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sFX", 0x30, (DefaultValue, ""), (Description, "FX to set"));
-    DREAD_REFLECTED_FIELD(bool, "bSet", 0x38, (DefaultValue, true), (Description, "Set or remove FX"));
-    DREAD_REFLECTED_FIELD(bool, "bEnd", 0x39, (DefaultValue, false), (Description, "End after setting the FX (false)"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CSetFXAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CSetFXAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sFX", offsetof(CSetFXAction, sFX), (DefaultValue, ""), (Description, "FX to set"));
+    DREAD_REFLECTED_FIELD(bool, "bSet", offsetof(CSetFXAction, bSet), (DefaultValue, true), (Description, "Set or remove FX"));
+    DREAD_REFLECTED_FIELD(bool, "bEnd", offsetof(CSetFXAction, bEnd), (DefaultValue, false), (Description, "End after setting the FX (false)"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x40;
+bool behaviortree::CSetFXAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CSetFXAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CSetFXAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetFXAction*>(obj)->vf_0x0(); }
+void behaviortree::CSetFXAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CSetFXAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CSetFXAction::refl_Destroy(void* obj) { static_cast<CSetFXAction*>(obj)->~CSetFXAction(); }
+void* behaviortree::CSetFXAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CSetFXAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CSetFXAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CSetFXAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -46,5 +43,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CSetFXAction
-DREAD_REFLECTED_CLASS(behaviortree::CSetFXAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CSetFXAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop

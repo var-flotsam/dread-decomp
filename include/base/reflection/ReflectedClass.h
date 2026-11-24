@@ -128,26 +128,12 @@ inline void DestroyDestructorFirst(void* obj) {
                                               base::reflection::ClassSetupFn, __VA_ARGS__::refl_Description*)
 
 // A class declared to its reflection source (a header tools/gen_classes.py writes under include/reflected/):
-// its reflection functions are its own static members, which the class declares with this macro, and its
-// source defines them out of the class (`void CCameraFX::refl_AddFields(CClass* cls) { ... }`). The symbols are
-// the namespace form's: a namespace and a class mangle the same way.
+// its reflection functions are its own static members, which the class declares (those it has, and its
+// `struct refl_Description`), and its source defines them out of the class (`void CCameraFX::refl_AddFields(
+// CClass* cls) { ... }`). The symbols are the namespace form's: a namespace and a class mangle the same way.
 // A field's offset is offsetof(T, member). T has a virtual table and so no standard layout, where offsetof is
 // conditionally supported; Clang and GCC give the Itanium layout's offset, as the reflection itself records.
 // The header and the reflection source each allow it (-Winvalid-offsetof) only where they use it.
-#define DREAD_REFLECTED_CLASS_MEMBERS                                                                \
-    static const base::reflection::CClass* refl_GetClass();                                             \
-    static void refl_AddAttributes(base::reflection::CClass* cls);                                      \
-    static void refl_AddFields(base::reflection::CClass* cls);                                          \
-    static bool refl_Equals(const void* a, const void* b);                                              \
-    static s32 refl_Hash();                                                                             \
-    static const base::reflection::CType& refl_TypeOf(const void* obj);                                 \
-    static void refl_Construct(void* obj);                                                              \
-    static void refl_CopyConstruct(void* dst, const void* src);                                         \
-    static void refl_MoveConstruct(void* dst, const void* src);                                         \
-    static void refl_Destroy(void* obj);                                                                \
-    static void* refl_CopyAssign(void* dst, const void* src);                                           \
-    static void* refl_MoveAssign(void* dst, const void* src);                                           \
-    struct refl_Description
 
 // The getter and descriptor constructor of a declared class T (above); PARENT is its base class.
 #define DREAD_REFLECTED_DECLARED_CLASS(T, PARENT)                                                       \

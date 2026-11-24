@@ -7,36 +7,33 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/behaviortree/CFleeInPathAction.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CFleeInPathAction
-namespace behaviortree::CFleeInPathAction {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", 0x5c, (DefaultValue, 5.0f), (Description, "Reach distance"));
-    DREAD_REFLECTED_FIELD(bool, "bSuccessOnFinish", 0x64, (DefaultValue, false), (Description, "Return success on finish"));
-    DREAD_REFLECTED_FIELD(bool, "bSetAnimOnReach", 0x65, (DefaultValue, false), (Description, "Set animation on point reached"));
-    DREAD_REFLECTED_FIELD(CStrId, "sAnimOnReach", 0x68, (DefaultValue, ""), (Description, "Animation to set"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void behaviortree::CFleeInPathAction::refl_AddAttributes(CClass*) {}
+void behaviortree::CFleeInPathAction::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", offsetof(CFleeInPathAction, fReachedDistance), (DefaultValue, 5.0f), (Description, "Reach distance"));
+    DREAD_REFLECTED_FIELD(bool, "bSuccessOnFinish", offsetof(CFleeInPathAction, bSuccessOnFinish), (DefaultValue, false), (Description, "Return success on finish"));
+    DREAD_REFLECTED_FIELD(bool, "bSetAnimOnReach", offsetof(CFleeInPathAction, bSetAnimOnReach), (DefaultValue, false), (Description, "Set animation on point reached"));
+    DREAD_REFLECTED_FIELD(CStrId, "sAnimOnReach", offsetof(CFleeInPathAction, sAnimOnReach), (DefaultValue, ""), (Description, "Animation to set"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x70;
+bool behaviortree::CFleeInPathAction::refl_Equals(const void*, const void*) { return false; }
+s32 behaviortree::CFleeInPathAction::refl_Hash() { return -1; }
+const base::reflection::CType& behaviortree::CFleeInPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CFleeInPathAction*>(obj)->vf_0x0(); }
+void behaviortree::CFleeInPathAction::refl_CopyConstruct(void*, const void*) {}
+void behaviortree::CFleeInPathAction::refl_MoveConstruct(void*, const void*) {}
+void behaviortree::CFleeInPathAction::refl_Destroy(void* obj) { static_cast<CFleeInPathAction*>(obj)->~CFleeInPathAction(); }
+void* behaviortree::CFleeInPathAction::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* behaviortree::CFleeInPathAction::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct behaviortree::CFleeInPathAction::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CFleeInPathAction);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -47,5 +44,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace behaviortree::CFleeInPathAction
-DREAD_REFLECTED_CLASS(behaviortree::CFleeInPathAction, behaviortree::CBaseAction);
+DREAD_REFLECTED_DECLARED_CLASS(behaviortree::CFleeInPathAction, behaviortree::CBaseAction);
+#pragma GCC diagnostic pop
