@@ -25,7 +25,7 @@ struct UnkNailongThornMovement {
     f32 speed;
 };
 
-void fn_7100623080(UnkNailongThornMovement* self, f32 dt) {
+void CNailongThornMovementComponent_Update(UnkNailongThornMovement* self, f32 dt) {
     if (self->swaying) {
         f32 step = self->speed * dt;
         f32 phase = self->phase + step;

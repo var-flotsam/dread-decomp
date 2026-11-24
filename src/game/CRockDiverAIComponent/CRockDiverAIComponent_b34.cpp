@@ -6,7 +6,7 @@ struct CRockDiverAIComponent {
 };
 
 // Advances the phase from 0 to 1 and from 1 to 2.
-void fn_7100663d2c(CRockDiverAIComponent* self) {
+void CRockDiverAIComponent_AdvancePhase(CRockDiverAIComponent* self) {
     s32& phase = self->phase;
     if (phase == 0)
         phase = 1;
