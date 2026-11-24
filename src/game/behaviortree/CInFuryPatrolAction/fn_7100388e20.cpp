@@ -27,7 +27,7 @@ struct UnkNode_388e20 : UnkBehaviorTreeNodeBase {
     u64 field_0x80;
     u64 field_0x88;
     u64 field_0x90;
-    UnkStringData* field_0x98;
+    base::global::CStrId field_0x98;
 };
 
 void fn_7100388e20(UnkNode_388e20* self) {
@@ -50,8 +50,8 @@ void fn_7100388e20(UnkNode_388e20* self) {
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
     self->field_0x90 = (u64)&g_unk_7101d47108->empty;
-    self->field_0x98 = nullptr;
+    self->field_0x98.data = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
-    self->field_0x98 = &g_unk_7101d47108->empty;
+    self->field_0x98.data = &g_unk_7101d47108->empty;
 }
