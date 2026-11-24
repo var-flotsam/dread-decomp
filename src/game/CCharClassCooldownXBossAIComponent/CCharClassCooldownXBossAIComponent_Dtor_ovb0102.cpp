@@ -19,12 +19,12 @@ void fn_71004ae7c0(void* member);
 void fn_71004a5060(void* member);
 
 struct UnkCharClassCooldownXAI_ovb0102 : UnkBossAIComponent {
-    u8 field_0x528[0x130];
-    u8 field_0x658[0x190];
-    u8 field_0x7e8[0x100];
-    u8 field_0x8e8[0x108];
-    u8 field_0x9f0[0x148];
-    u8 field_0xb38[0x108];
+    u8 oCooldownXBossLavaCarpetAttackDef[0x130];
+    u8 oCooldownXBossLavaDropsAttackDef[0x190];
+    u8 oCooldownXBossReaperAttackDef[0x100];
+    u8 oCooldownXBossStrongWhipAttackDef[0x108];
+    u8 oCooldownXBossWindTunnelAttackDef[0x148];
+    u8 oCooldownXBossLaserBiteAttackDef[0x108];
     UnkOwnedList field_0xc40;
     u8 pad_0xc68[0x10];
     u8 field_0xc78[0x8];
@@ -36,11 +36,11 @@ void fn_71004ce62c(UnkCharClassCooldownXAI_ovb0102* self) {
     self->vtable = g_unk_7101a3ebe8 + 2;
     fn_71008c2de0(self->field_0xc78);
     self->field_0xc40.~UnkOwnedList();
-    fn_71004a17c0(self->field_0xb38);
-    fn_71004b9ec0(self->field_0x9f0);
-    fn_71004b4f18(self->field_0x8e8);
-    fn_71004b42e8(self->field_0x7e8);
-    fn_71004ae7c0(self->field_0x658);
-    fn_71004a5060(self->field_0x528);
+    fn_71004a17c0(self->oCooldownXBossLaserBiteAttackDef);
+    fn_71004b9ec0(self->oCooldownXBossWindTunnelAttackDef);
+    fn_71004b4f18(self->oCooldownXBossStrongWhipAttackDef);
+    fn_71004b42e8(self->oCooldownXBossReaperAttackDef);
+    fn_71004ae7c0(self->oCooldownXBossLavaDropsAttackDef);
+    fn_71004a5060(self->oCooldownXBossLavaCarpetAttackDef);
     fn_710041a230(reinterpret_cast<UnkGoliathXBase*>(self));
 }

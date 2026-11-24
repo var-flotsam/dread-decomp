@@ -449,6 +449,22 @@ python tools/name_batch.py apply --run R                   # on a clean origin/m
 python tools/name_batch.py cost                            # the ledger and its total
 ```
 
+### `tools/member_batch.py`
+
+Give hand-written view structs' placeholder members (`field_0x..`) the names the game's reflection already has, through the Claude Message Batches API, with a spend cap of its own.
+
+```sh
+python tools/member_batch.py scan [--top 60]
+python tools/member_batch.py build --run mem-p1 (--select 40 | --structs FILE) [--dry-run]   # FILE: path:Struct lines
+python tools/member_batch.py build-review --run mem-r1 --from mem-p1 [--dry-run]
+python tools/member_batch.py submit --run mem-p1 [--cap 40] [--budget 180]
+python tools/member_batch.py status --run mem-p1
+python tools/member_batch.py fetch --run mem-p1
+python tools/member_batch.py agree --propose mem-p1 --review mem-r1 [--write]   # --write: data/member_names.csv
+python tools/member_batch.py apply [--only path:Struct]
+python tools/member_batch.py cost
+```
+
 ### `tools/equiv_test.py`
 
 The machine test for tier 2: is a hand-written function that does not match equivalent to the original?

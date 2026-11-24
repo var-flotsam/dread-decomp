@@ -17,17 +17,17 @@ using base::global::UnkStringData;
 struct UnkEnemyLifeComponent_ovb0090 {
     void** vtable;
     u8 pad_0x8[0xa0];
-    u8 field_0xa8[0x70];
-    bool field_0x118;
+    u8 oDamageSourceFactor[0x70];
+    bool bShouldDieWithPowerBomb;
     u8 pad_0x119[3];
-    f32 field_0x11c;
+    f32 fDamageFXTime;
     UnkStringData* field_0x120;
     UnkStringData* field_0x128;
     u64 field_0x130;
     u16 field_0x138;
     u8 pad_0x13a[2];
     u32 field_0x13c[3];
-    bool field_0x148;
+    bool bDashMeleeAppliesNonLethalDamage;
 };
 
 static inline void InitEmptyId(UnkStringData** id) {
@@ -40,15 +40,15 @@ static inline void InitEmptyId(UnkStringData** id) {
 void fn_71008b4544(UnkEnemyLifeComponent_ovb0090* self) {
     fn_71008bca30(self);
     self->vtable = g_unk_7101a7de00 + 2;
-    fn_71008c2da8(self->field_0xa8);
-    self->field_0x118 = true;
-    self->field_0x11c = 0.01f;
+    fn_71008c2da8(self->oDamageSourceFactor);
+    self->bShouldDieWithPowerBomb = true;
+    self->fDamageFXTime = 0.01f;
     InitEmptyId(&self->field_0x120);
     InitEmptyId(&self->field_0x128);
     __builtin_memset(self->field_0x13c, 0, sizeof(self->field_0x13c));
     self->field_0x130 = 0;
     self->field_0x138 = 0;
-    self->field_0x148 = true;
+    self->bDashMeleeAppliesNonLethalDamage = true;
 }
 
 using base::UnkStrIdMember;

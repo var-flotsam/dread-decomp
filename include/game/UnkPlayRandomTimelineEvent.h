@@ -9,12 +9,12 @@ struct UnkPlayRandomTimelineEvent {
     void** vtable;
     u32 field_0x8;
     UnkTimelineEventParams_lbc844c params;  // 0xc
-    base::global::CStrId field_0x20;
-    base::global::CStrId field_0x28;
-    base::global::CStrId field_0x30;
-    base::global::CStrId field_0x38;
-    base::global::CStrId field_0x40;
-    base::global::CStrId field_0x48;
-    base::global::CStrId field_0x50;
-    base::global::CStrId field_0x58;
+    base::global::CStrId sName0;
+    base::global::CStrId sName1;
+    base::global::CStrId sName2;
+    base::global::CStrId sName3;
+    base::global::CStrId sName4;
+    base::global::CStrId sName5;
+    base::global::CStrId sName6;
+    base::global::CStrId sName7;
 };

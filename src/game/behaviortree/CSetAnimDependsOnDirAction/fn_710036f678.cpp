@@ -35,9 +35,9 @@ struct UnkNode_36f678 : UnkBehaviorTreeNodeBase {
     u32 field_0x84;
     bool field_0x88;
     u8 pad_0x89;
-    bool field_0x8a;
+    bool bCheckInSmartlink;
     u8 pad_0x8b;
-    bool field_0x8c;
+    bool bCheckInTurn;
     u8 pad_0x8d[3];
     UnkStrIdBase field_0x90;
     UnkInlineStr field_0x98;
@@ -59,8 +59,8 @@ void fn_710036f678(UnkNode_36f678* self) {
     self->field_0x7c.v = -1;
     self->field_0x84 = -1;
     self->field_0x88 = false;
-    self->field_0x8a = false;
-    self->field_0x8c = false;
+    self->bCheckInSmartlink = false;
+    self->bCheckInTurn = false;
     self->field_0x90.data = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
