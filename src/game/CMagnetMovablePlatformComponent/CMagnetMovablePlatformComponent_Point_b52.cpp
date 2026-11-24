@@ -28,7 +28,7 @@ struct UnkMagnetMovablePlatform_b52 {
 
 UnkMinimapPathPoint fn_710091ad8c(UnkMagnetMovablePlatform_b52* self, f32 t) {
     UnkMagnetPathHolder_b52* holder = fn_7100382150(self->actor);
-    f32 eased = fn_7100076850(t);
+    f32 eased = SmoothStepCubic(t);
     UnkDashPath* path = holder->path;
     u32 index = 0;
     f32 fraction = 0.0f;

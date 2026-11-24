@@ -33,7 +33,7 @@ static inline s64 DivideBy1000(s64 x) {
     return (h >> 7) + static_cast<s64>(static_cast<u64>(x) >> 63);
 }
 
-void fn_7100080cb8(UnkFrameTimer_b260* self, f32 scale) {
+void AdvanceFrameTimer(UnkFrameTimer_b260* self, f32 scale) {
     self->inverse = 1.0f / self->divisor;
     self->last = self->current;
     self->elapsed = 0;

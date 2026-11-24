@@ -7,7 +7,7 @@
 #include "types.h"
 
 static inline UnkV4_b47 operator*(const UnkV4_b47& a, f32 s) { return fn_7100030830(&a, s); }
-static inline UnkV4_b47 operator+(const UnkV4_b47& a, const UnkV4_b47& b) { return fn_7100030770(&a, &b); }
+static inline UnkV4_b47 operator+(const UnkV4_b47& a, const UnkV4_b47& b) { return AddVec4ClampedNonNegative(&a, &b); }
 
 // Linear blend from a (t = 0) to b (t = 1).
 static inline UnkV4_b47 Lerp(const UnkV4_b47& a, const UnkV4_b47& b, f32 t) { return a * (1.0f - t) + b * t; }

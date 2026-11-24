@@ -75,7 +75,7 @@ static inline __attribute__((always_inline)) bool Near_ovb0036(f32 a, f32 b) {
 
 // `v` through the matrix `m` (fn_7100078170).
 static inline __attribute__((always_inline)) UnkVec3f Rotate_ovb0036(const UnkMatrix44& m, const UnkVec3f& v) {
-    return fn_7100078170(reinterpret_cast<const UnkMat4f*>(&m), &v);
+    return TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&m), &v);
 }
 
 struct UnkDirLightOwner_ovb0036 {

@@ -64,7 +64,7 @@ struct UnkPowerBombRing_laae780 {
 
 // The rotation of `v` by `angle`.
 inline UnkVec3f Rotate(const UnkVec3f& v, const UnkVec3f& angle) {
-    return fn_710007a400(v, angle);
+    return RotateVec3ByAngles(v, angle);
 }
 
 struct UnkPowerBombMovement_laae780 {

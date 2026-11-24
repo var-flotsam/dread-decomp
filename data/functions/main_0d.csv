@@ -4186,7 +4186,7 @@ address,size,name,name_source,subsystem,status
 0x7100d8a27c,288,fn_7100d8a27c,unknown,unknown,O
 0x7100d8a39c,412,fn_7100d8a39c,unknown,unknown,U
 0x7100d8a538,600,fn_7100d8a538,unknown,game?,U
-0x7100d8a790,4100,fn_7100d8a790,unknown,engine/reflection?,O
+0x7100d8a790,4100,InitStatics_CEntityCollectionTypes,inferred,engine/reflection?,O
 0x7100d8b794,80,fn_7100d8b794,unknown,unknown,O
 0x7100d8b7e4,164,fn_7100d8b7e4,unknown,unknown,O
 0x7100d8b888,252,fn_7100d8b888,unknown,unknown,U
@@ -5283,7 +5283,7 @@ address,size,name,name_source,subsystem,status
 0x7100dd1250,264,fn_7100dd1250,unknown,unknown,m
 0x7100dd1358,156,fn_7100dd1358,unknown,unknown,O
 0x7100dd13f4,168,fn_7100dd13f4,unknown,game/components?,O
-0x7100dd14a0,2452,fn_7100dd14a0,unknown,unknown,O
+0x7100dd14a0,2452,InitBossRushManagerStatics,inferred,unknown,O
 0x7100dd1e34,2156,fn_7100dd1e34,unknown,unknown,U
 0x7100dd26a0,332,fn_7100dd26a0,unknown,unknown,O
 0x7100dd27ec,1140,fn_7100dd27ec,unknown,engine/reflection?,O

@@ -78,7 +78,7 @@ extern UnkStrIdBase g_unk_7172763cf8;
 extern UnkStrIdBase g_unk_7172763d00;
 extern UnkStrIdBase g_unk_7172763d08;
 
-void fn_7100b48ca0() {
+void InitMapMenuControllerStatics() {
     InitHeaderIds(&g_unk_7172763d5c.ids);
     g_unk_7172763d5c.field_0xfc = -1.0f;
     g_unk_7172763d5c.field_0x100 = -1.0f;

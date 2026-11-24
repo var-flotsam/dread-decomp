@@ -7,4 +7,4 @@
 
 struct UnkAnimTrack_b67a1;
 struct UnkMatrix44;
-void fn_7100012b60(UnkMatrix44* out, const UnkAnimTrack_b67a1* track, f32 t);
+void EvaluateAnimTrackMatrixAtTime(UnkMatrix44* out, const UnkAnimTrack_b67a1* track, f32 t);

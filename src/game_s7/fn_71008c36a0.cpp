@@ -56,7 +56,7 @@ void fn_71008c36a0() {
              g_unk_7172730970, &g_unk_7172730978, fn_71008c360c, &g_unk_7172730998, fn_71008c3618);
 }
 
-void fn_710021c330() {
+void InitEMovieStatusStatics() {
     InitHeaderIds(&g_unk_716e599aa8.ids);
     InitEnum(&base::reflection::TypeObject<media::EMovieStatus, UnkEnumType>::object, "media::EMovieStatus", fn_710021c118, fn_710021be4c,
              g_unk_716e599a60, &g_unk_716e599a68, fn_710021c298, &g_unk_716e599a88, fn_710021c2a4);
@@ -68,7 +68,7 @@ void fn_71009547c0() {
              g_unk_717273a220, &g_unk_717273a228, fn_71009546e4, &g_unk_717273a248, fn_71009546f0);
 }
 
-void fn_7100982ae0() {
+void InitESamusUsingGrapplePullPointStatePullStageStatics() {
     InitHeaderIds(&g_unk_717273afa8.ids);
     InitEnum(&base::reflection::TypeObject<ESamusUsingGrapplePullPointStatePullStage, UnkEnumType>::object, "ESamusUsingGrapplePullPointStatePullStage", fn_71009828d0, fn_71009826c4,
              g_unk_717273af60, &g_unk_717273af68, fn_7100982a50, &g_unk_717273af88, fn_7100982a5c);

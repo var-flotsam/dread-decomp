@@ -6,7 +6,7 @@
 #include "types.h"
 
 struct UnkBoneOwner;
-bool fn_71001c1b70(UnkBoneOwner* self, u32 index, UnkMatrix44* out);
+bool GetBoneWorldMatrixByIndex(UnkBoneOwner* self, u32 index, UnkMatrix44* out);
 extern u32 g_unk_710b3729d8 __attribute__((visibility("hidden")));
 
 struct UnkBoneXformOwner_ovb0262h {
@@ -29,7 +29,7 @@ bool fn_71001437f8(UnkBoneXformOwner_ovb0262h* self, UnkXform* out, s32 index) {
     if (index >= 0) {
         UnkMatrix44 matrix;
         SetIdentity_ovb0262h(&matrix);
-        if (!fn_71001c1b70(self->bones, index, &matrix))
+        if (!GetBoneWorldMatrixByIndex(self->bones, index, &matrix))
             return false;
         UnkCopyMatrix(reinterpret_cast<UnkMatrix44*>(out->m), matrix);
         out->flags = (out->flags | 8) & ~g_unk_710b3729d8;

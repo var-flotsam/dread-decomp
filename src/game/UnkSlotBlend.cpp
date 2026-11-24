@@ -68,7 +68,7 @@ void fn_71001c113c(UnkSlots* self, f32 dt) {
         }
         f32 t = blend->duration > 0.0f ? blend->time / blend->duration : 1.0f;
         // `to` when the time has run out (t = 0), `from` at the start (t = 1).
-        CColor4F value = fn_710003088c(t, blend->to, blend->from);
+        CColor4F value = LerpColor4FClampedNonNegative(t, blend->to, blend->from);
         u32 mode = blend->mode;
         UnkSetSlot(self, blend->id, blend->kind, &value, mode);
     }

@@ -773,7 +773,7 @@ struct UnkComponentMap_7100231e80 {
 
 struct UnkMember_7100231e80 {
     u8 data[0x1];
-    __attribute__((always_inline)) ~UnkMember_7100231e80() { fn_710002572c(this); }
+    __attribute__((always_inline)) ~UnkMember_7100231e80() { DetachTreeNodeFromParentAndChildren(this); }
 };
 
 struct UnkEntityBase_7100231e80 {
@@ -1023,7 +1023,7 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 
 struct UnkKeyedStrIdMapA_ovb0062;
-void fn_71000269c4(UnkStrIdPathResource* self, UnkCountedResource* resource);
+void SetStrIdPathResourceFromResource(UnkStrIdPathResource* self, UnkCountedResource* resource);
 
 struct UnkActor_7100232160;
 struct UnkEntryDef_7100232160 {
@@ -1137,7 +1137,7 @@ bool fn_7100232160(UnkActor_7100232160* self, const UnkSource_7100232160* other)
     if (self->path_res.ids.id.data != &g_unk_7101d47108->empty && self->path_res.ids.path.data != &g_unk_7101d47200->empty)
         return false;
     self->name = other->name;
-    fn_71000269c4(&self->path_res, reinterpret_cast<UnkCountedResource*>(other->resource));
+    SetStrIdPathResourceFromResource(&self->path_res, reinterpret_cast<UnkCountedResource*>(other->resource));
     UnkResourceList_7100232160* list = other->resource;
     for (UnkEntry_7100232160 **it = list->entries, **end = it + list->entry_count; it != end; ++it) {
         if (!(*it)->active)

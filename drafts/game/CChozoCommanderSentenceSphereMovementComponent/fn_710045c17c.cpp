@@ -26,7 +26,7 @@ struct UnkMatrix44Words {
     UnkMatrix44Words(const UnkMatrix44Words& other);
 };
 
-UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src);
+UnkMatrix44Words CopyMatrixWithoutTranslation(const UnkMatrix44Words* src);
 
 extern const u64 g_unk_7101649750;
 extern const u64 g_unk_7101649738;
@@ -149,8 +149,8 @@ void fn_710045c17c(UnkSentenceSphere_l45c17c* self, f32 dt) {
         m.m[0] = 1.0f;
         if (fn_71011735e8(self->holder->anchor->model, &g_unk_7101649738, &m, 0)) {
             position = UnkVec3f(m.m[3], m.m[7], m.m[11]);
-            UnkVec3f offset = fn_7100078170(
-                reinterpret_cast<const UnkMat4f*>(AddressOf(fn_7100076dc4(reinterpret_cast<const UnkMatrix44Words*>(&m)))),
+            UnkVec3f offset = TransformPointByMatrixWithPerspectiveDivide(
+                reinterpret_cast<const UnkMat4f*>(AddressOf(CopyMatrixWithoutTranslation(reinterpret_cast<const UnkMatrix44Words*>(&m)))),
                 &g_unk_7101649740);
             position.x = offset.x + position.x;
             position.y = offset.y + position.y;

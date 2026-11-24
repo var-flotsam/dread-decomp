@@ -169,7 +169,7 @@ bool fn_71003b514c(UnkActor* actor, const CVector2D* from, const CVector2D* dir)
     UnkBoxDesc start_desc(origin, angle, length, depth);
     UnkBoxShape start_box(&start_desc);
     UnkVec3f offset(length * dir->x * 0.5f, length * dir->y * 0.5f, 0.0f);
-    UnkMatrix44_7100078c9c transform = fn_7100078cd8(offset);
+    UnkMatrix44_7100078c9c transform = BuildTranslationMatrixFromVec3(offset);
 
     for (u64 i = 0; i < 2; i++) {
         f32 sign = i == 0 ? -1.0f : 1.0f;

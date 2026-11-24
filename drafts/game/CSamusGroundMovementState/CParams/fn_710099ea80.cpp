@@ -154,7 +154,7 @@ bool fn_710099ea80(UnkGroundState_l99ea80* self) {
     {
         // Clear ahead at the movement's height.
         u32 mask = self->movement->mask;
-        UnkMatrix44_7100078c9c xf = fn_7100078cd8(origin);
+        UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(origin);
         UnkVec3f delta = step * dir;
         base::math::CVector2D delta2d;
         Project(&delta2d, delta);
@@ -166,7 +166,7 @@ bool fn_710099ea80(UnkGroundState_l99ea80* self) {
     UnkVec3f ahead = step * dir + origin + UnkVec3f(0.0f, -100.0f, 0.0f);
     {
         u32 mask = self->movement->mask;
-        UnkMatrix44_7100078c9c xf = fn_7100078cd8(ahead);
+        UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(ahead);
         if (fn_7100d5b484(tree, mask, reinterpret_cast<UnkShape*>(&capsule), reinterpret_cast<const UnkMtx44*>(&xf),
                           nullptr, 1))
             return false;
@@ -174,7 +174,7 @@ bool fn_710099ea80(UnkGroundState_l99ea80* self) {
     {
         // Clear further ahead from there.
         u32 mask = self->movement->mask;
-        UnkMatrix44_7100078c9c xf = fn_7100078cd8(ahead);
+        UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(ahead);
         UnkVec3f delta = dir * 100.0f;
         base::math::CVector2D delta2d;
         Project(&delta2d, delta);
@@ -185,7 +185,7 @@ bool fn_710099ea80(UnkGroundState_l99ea80* self) {
     // And ground below the far end.
     UnkVec3f below = dir * 100.0f + ahead + UnkVec3f(0.0f, -10.0f, 0.0f);
     u32 mask = self->movement->mask;
-    UnkMatrix44_7100078c9c xf = fn_7100078cd8(below);
+    UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(below);
     if (!fn_7100d5b484(tree, mask, reinterpret_cast<UnkShape*>(&capsule), reinterpret_cast<const UnkMtx44*>(&xf),
                        nullptr, 1))
         return false;

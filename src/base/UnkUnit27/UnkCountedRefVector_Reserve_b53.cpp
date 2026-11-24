@@ -7,7 +7,7 @@
 #include "game/UnkCountedRef_b53.h"
 #include "types.h"
 
-void fn_71000231f4(base::global::CRntVector<u8>* vector, u32 capacity) {
+void ReserveCountedRefVector(base::global::CRntVector<u8>* vector, u32 capacity) {
     auto* self = reinterpret_cast<base::global::CRntVector<UnkCountedRef_b53>*>(vector);
     if (self->capacity < capacity) {
         auto* p = static_cast<UnkCountedRef_b53*>(

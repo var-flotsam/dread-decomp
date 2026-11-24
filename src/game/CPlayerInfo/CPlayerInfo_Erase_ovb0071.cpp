@@ -26,7 +26,7 @@ UnkPlayerInfoValue_ovb0071* CPlayerInfo_ErasePropertyArraysEntry(UnkPropertyArra
     fn_710002f67c(&static_cast<UnkPlayerInfoValue_ovb0071*>(self->values)[index]);
     self->ids[index].Reset();
     if (self->count - 1 != index) {
-        fn_710002f588(&static_cast<UnkPlayerInfoValue_ovb0071*>(self->values)[index],
+        ConstructIdListCopyingNodesAndMovingCallbacks(&static_cast<UnkPlayerInfoValue_ovb0071*>(self->values)[index],
                       &static_cast<UnkPlayerInfoValue_ovb0071*>(self->values)[self->count - 1]);
         fn_710002f67c(&static_cast<UnkPlayerInfoValue_ovb0071*>(self->values)[self->count - 1]);
         CStrId* ids = self->ids;

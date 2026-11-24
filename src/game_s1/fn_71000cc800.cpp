@@ -31,11 +31,11 @@ static inline base::UnkStrIdMemberOf<Pool>* AssignFromString(base::UnkStrIdMembe
     return self;
 }
 
-base::UnkStrIdMember* fn_71000cc800(base::UnkStrIdMember* self, const CRntString* str) {
+base::UnkStrIdMember* AssignStrIdFromRntString(base::UnkStrIdMember* self, const CRntString* str) {
     return AssignFromString(self, str);
 }
 
-base::UnkStrIdMemberOf<g_unk_7101d47200>* fn_71000cc890(base::UnkStrIdMemberOf<g_unk_7101d47200>* self,
+base::UnkStrIdMemberOf<g_unk_7101d47200>* AssignFilePathStrIdFromRntString(base::UnkStrIdMemberOf<g_unk_7101d47200>* self,
                                                          const CRntString* str) {
     return AssignFromString(self, str);
 }
@@ -44,6 +44,6 @@ base::UnkStrIdMember* fn_71000ccca8(base::UnkStrIdMember* self, const CRntString
     return AssignFromString(self, str);
 }
 
-base::UnkStrIdMember* fn_71000ccd84(base::UnkStrIdMember* self, const CRntString* str) {
+base::UnkStrIdMember* AssignDefaultPoolStrIdFromRntString(base::UnkStrIdMember* self, const CRntString* str) {
     return AssignFromString(self, str);
 }

@@ -19,16 +19,16 @@ using UnkCopyPairVec_l01e744 = base::global::CRntVector<UnkCopyPair_l01e744>;
 
 // Signatures as src/game/UnkTU25/UnkTU25_PairVecTruncate_ovb0186.cpp and
 // src/base/UnkUnit25/UnkStrIdPathPairVecReserve_b45.cpp define them.
-void fn_710001e62c(base::global::CRntVector<UnkStrIdPathPair>* self, u32 count);
+void TruncateStrIdPathPairVector(base::global::CRntVector<UnkStrIdPathPair>* self, u32 count);
 struct UnkStrIdPathPairVec_b45a1;
 
 static inline void Reserve_l01e744(UnkCopyPairVec_l01e744* self, u32 n) {
-    fn_710001e4e8(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), n);
+    ReserveStrIdPairVectorCapacity(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), n);
 }
 
 UnkCopyPairVec_l01e744* fn_710001e744(UnkCopyPairVec_l01e744* self, const UnkCopyPairVec_l01e744* other) {
     if (self != other) {
-        fn_710001e62c(reinterpret_cast<base::global::CRntVector<UnkStrIdPathPair>*>(self), 0);
+        TruncateStrIdPathPairVector(reinterpret_cast<base::global::CRntVector<UnkStrIdPathPair>*>(self), 0);
         Reserve_l01e744(self, other->capacity);
         for (const UnkCopyPair_l01e744 *p = other->data, *e = p + other->count; p != e; ++p) {
             u32 n = self->count;

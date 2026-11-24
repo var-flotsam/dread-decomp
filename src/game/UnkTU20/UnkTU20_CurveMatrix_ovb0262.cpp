@@ -21,7 +21,7 @@ static inline f32 Channel(UnkChannelSet_ovb0262p* self, u32 index, f32 t) {
 
 struct UnkAnimTrack_b67a1;
 
-void fn_7100012b60(UnkMatrix44* out, const UnkAnimTrack_b67a1* track, f32 t) {
+void EvaluateAnimTrackMatrixAtTime(UnkMatrix44* out, const UnkAnimTrack_b67a1* track, f32 t) {
     UnkChannelSet_ovb0262p* self = const_cast<UnkChannelSet_ovb0262p*>(reinterpret_cast<const UnkChannelSet_ovb0262p*>(track));
     UnkMatrix44 m;
     UnkVec3f translation(Channel(self, 0, t), Channel(self, 1, t), Channel(self, 2, t));

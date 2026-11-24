@@ -143,7 +143,7 @@ void fn_710099245c(UnkCeilingState_l99245c* self, void* a1, void* a2, const UnkC
         UnkGameManagerSub_0x608* trackers = g_unk_7101d47310->field_0x608;
         UnkTree* tree = trackers ? static_cast<UnkTree*>(trackers->field_0x820) : nullptr;
         if (tree) {
-            UnkMatrix44_7100078c9c xf = fn_7100078cd8(reinterpret_cast<const UnkVec3f&>(bottom));
+            UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(reinterpret_cast<const UnkVec3f&>(bottom));
             UnkCeilingBox_l99245c box;
             f32 width = self->width;
             box.field_0xa8 = width;

@@ -82,7 +82,7 @@ static inline void AddNode(UnkLinkList_lec0ec4* list) {
 
 // The resource the registry has for the ids.
 static inline UnkAssetResRef Resolve(const UnkLinkIds_lec0ec4& ids) {
-    return fn_710002038c(g_unk_7101d4bbc0, ids.AsPair(), true, nullptr);
+    return MakeResourceFromRegistryFactory(g_unk_7101d4bbc0, ids.AsPair(), true, nullptr);
 }
 
 struct UnkNavLinks_lec0ec4 {

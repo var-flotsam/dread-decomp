@@ -14,7 +14,7 @@ using base::global::CStrId;
 
 struct UnkAttackBase;
 struct UnkVec3fR;
-void fn_710007b4b0(UnkVec3fR* v);
+void RoundVector3ComponentsHalfAwayFromZero(UnkVec3fR* v);
 
 using base::math::CVector3D;
 
@@ -73,7 +73,7 @@ void fn_71004e997c(UnkDropterDive_ovb0132* self) {
     f32 x = *px;
     f32 z = *pz;
     CVector3D pos = {x, y, z};
-    fn_710007b4b0(reinterpret_cast<UnkVec3fR*>(&pos));
+    RoundVector3ComponentsHalfAwayFromZero(reinterpret_cast<UnkVec3fR*>(&pos));
     UnkActor* owner = self->owner;
     f32 ox = owner->field_0x44;
     f32 oy = owner->field_0x54;

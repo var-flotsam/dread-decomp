@@ -30,7 +30,7 @@ UnkVec3f fn_71009b5f48(UnkSideEnemyMovement2_ovb0093* self) {
     UnkVec3f up = fn_71010c9ad0(reinterpret_cast<UnkEnemyMovement_A5*>(self));
     f32 angle = -(atan2f(-up.y, -up.x) + 1.5707964f);
     UnkVec3f angles(angle, self->owner->xform.GetAngle().y, 0.0f);
-    UnkVec3f result = fn_710007a220(&angles);
+    UnkVec3f result = WrapAngles3ToPi(&angles);
     self->vf_0x380(result, 0.0f);
     return result;
 }

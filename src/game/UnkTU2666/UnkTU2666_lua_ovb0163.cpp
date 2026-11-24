@@ -737,7 +737,7 @@ bool fn_7101096d68(s32 first, s32 second) {
     return result;
 }
 
-bool fn_71000878f0(UnkRegistry_0x70* self, const UnkStrPair_0x10* path, u32 flags, void* out);
+bool AppendRegistryPathsListedBelowPath(UnkRegistry_0x70* self, const UnkStrPair_0x10* path, u32 flags, void* out);
 void fn_7100df9728(UnkGameManager* self);
 void fn_7100133020();
 
@@ -791,7 +791,7 @@ s32 FormatSavedGames(lua_State*) {
         UnkRegistry_0x70* registry = Registry_b0163();
         UnkStrPair_0x10 prefix;
         fn_710008d680(&prefix, "savedata:");
-        fn_71000878f0(registry, &prefix, 0, &list);
+        AppendRegistryPathsListedBelowPath(registry, &prefix, 0, &list);
         fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(&prefix));
     }
     for (UnkPairNode_b0163* node = list.head; node; node = node->next)

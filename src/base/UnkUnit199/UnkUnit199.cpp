@@ -4,7 +4,7 @@
 #include "game/UnkMat4f.h"
 #include "types.h"
 
-UnkMat4f fn_7100079a04(f32 fov, f32 aspect, f32 near_z, f32 far_z);
+UnkMat4f MakePerspectiveFovMatrix(f32 fov, f32 aspect, f32 near_z, f32 far_z);
 
 struct UnkPerspective199 {
     f32 fov;
@@ -30,5 +30,5 @@ struct UnkProjectionTarget199 {
 };
 
 void fn_7100169604(const UnkPerspective199* self, UnkProjectionTarget199* target) {
-    target->projection = fn_7100079a04(__builtin_fmaxf(self->fov, 0.0f), self->aspect, self->near_z, self->far_z);
+    target->projection = MakePerspectiveFovMatrix(__builtin_fmaxf(self->fov, 0.0f), self->aspect, self->near_z, self->far_z);
 }

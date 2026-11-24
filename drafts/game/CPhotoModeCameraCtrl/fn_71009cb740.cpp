@@ -132,7 +132,7 @@ void fn_71009cb740(UnkPhotoModeUpdate_l9cb740* self) {
     if (fabsf(self->turn_x) > 0.3f) {
         f32 angle = turn_speed * (self->turn_x > 0.0f ? -0.0025f : 0.0025f);
         rot = fn_710007966c(&right, angle);
-        rotated = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&rot), &self->dir);
+        rotated = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&rot), &self->dir);
         self->dir = rotated;
     }
     UnkVec3f d = Unit(self->dir.x, self->dir.y, self->dir.z);

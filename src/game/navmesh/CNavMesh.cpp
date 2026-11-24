@@ -1106,7 +1106,7 @@ static_assert(sizeof(UnkNavLoadPathRecord) == 0x108, "UnkNavLoadPathRecord layou
 
 struct UnkWordObject;
 void fn_7100279bac(base::global::CRntVector<UnkWordObject>* self, u32 capacity, u32 flags);  // constructor
-void fn_7100279ca0(base::global::CRntVector<UnkWordObject>* self, const UnkWordObject* value);
+void PushBackNavMeshRecordCopy(base::global::CRntVector<UnkWordObject>* self, const UnkWordObject* value);
 static inline base::global::CRntVector<UnkWordObject>* AsWordObjects(base::global::CRntVector<UnkNavLoadPathRecord>* v) {
     return reinterpret_cast<base::global::CRntVector<UnkWordObject>*>(v);
 }
@@ -1457,7 +1457,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                     rec.data.field_0x2 = cell;
                     ReadRecordBody(&rec.data, f);
                     ReadRecordTail(&rec.data, f);
-                    fn_7100279ca0(AsWordObjects(SlotAt<base::global::CRntVector<UnkNavLoadPathRecord>>(cells, cell)),
+                    PushBackNavMeshRecordCopy(AsWordObjects(SlotAt<base::global::CRntVector<UnkNavLoadPathRecord>>(cells, cell)),
                                   reinterpret_cast<const UnkWordObject*>(&rec));
                 }
             }
@@ -1528,7 +1528,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                         rec.data.field_0x2 = cell;
                         ReadRecordBody(&rec.data, f);
                         ReadRecordTail(&rec.data, f);
-                        fn_7100279ca0(AsWordObjects(list), reinterpret_cast<const UnkWordObject*>(&rec));
+                        PushBackNavMeshRecordCopy(AsWordObjects(list), reinterpret_cast<const UnkWordObject*>(&rec));
                     }
                 }
             }

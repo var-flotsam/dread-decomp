@@ -33,7 +33,7 @@ extern CStrId g_unk_7172703620 __attribute__((visibility("hidden")));
 extern char g_unk_710164a530[] __attribute__((visibility("hidden")));
 
 char* fn_71011729a8(char* p0);
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 
 // A position returned in memory (x8): 16 bytes, not trivially copyable.
 struct UnkActorPosition {
@@ -105,7 +105,7 @@ void fn_710068af10(UnkSpitAttack_l68af10* self) {
         position = UnkVec3f(node.m[3], node.m[7], node.m[11]);
 
     // 45 degrees up, facing the owner's way.
-    UnkVec3f direction = fn_710007a390(UnkVec3f(1.0f, 0.0f, 0.0f), 0.7853982f);
+    UnkVec3f direction = RotateVec3AboutZ(UnkVec3f(1.0f, 0.0f, 0.0f), 0.7853982f);
     if (fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->owner->field_0x38)).m[2] < 0.0f)
         direction.x = -direction.x;
     f32 length = sqrtf(direction.x * direction.x + direction.y * direction.y + direction.z * direction.z);

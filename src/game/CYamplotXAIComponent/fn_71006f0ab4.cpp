@@ -36,7 +36,7 @@ static inline UnkSegment2D EdgeAt(const UnkPolygon2D* p, u32 i) {
 
 // NON_MATCHING(functional): Control flow differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 UnkSegment2D fn_71006f0ab4(UnkPool_0x48* pool, u32 handle) {
-    const UnkPolygon2D* polygon = reinterpret_cast<const UnkPolygon2D*>(fn_710012431c(pool, handle));
+    const UnkPolygon2D* polygon = reinterpret_cast<const UnkPolygon2D*>(ResolveHandleToPoolSlot(pool, handle));
     u32 edge = handle & 0xffff;
     if (edge != 0 || polygon->closed) {
         u32 last = edge != 0 ? edge : EdgeCount(polygon);

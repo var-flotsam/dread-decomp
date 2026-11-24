@@ -13,7 +13,7 @@ UnkReflType* fn_71001fb9ac();
 void fn_71001fbc54(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_71001fba88();
 
-void fn_71001fe540() {
+void InitCSceneManagerStatics() {
     InitHeader(g_unk_716e598128);
     fn_710009ec00(&g_unk_716e597ec0, fn_71001fb9ac());
     InitClass(&g_unk_716e597ec8, "engine::scene::CSceneManager", fn_71001fbc54, fn_71001fba88);

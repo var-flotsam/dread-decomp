@@ -32,6 +32,6 @@ void fn_7100013be4(UnkAnimInstance_b67a1* self, void* matrices) {
     for (s32 i = 0; i < list->count; ++i) {
         UnkAnimTrack_b67a1* track = &list->tracks[i];
         if (UnkMatrix44* m = fn_7100015508(matrices, track->id))
-            fn_7100012b60(m, track, self->weight);
+            EvaluateAnimTrackMatrixAtTime(m, track, self->weight);
     }
 }

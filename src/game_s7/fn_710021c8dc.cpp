@@ -69,7 +69,7 @@ __attribute__((always_inline)) static inline void Free(UnkKeyedStrIds* self) {
         self->allocator->vf_0x48(self->keys);
 }
 
-void fn_710021c8dc(UnkKeyedStrIds* self) { Free(self); }
+void FreeKeyedStrIdArrays(UnkKeyedStrIds* self) { Free(self); }
 
 void fn_7100231fd4(UnkKeyedStrIds* self) { Free(self); }
 
@@ -87,7 +87,7 @@ void fn_7101046d58(UnkKeyedStrIds* self) { Free(self); }
 
 void fn_71010c6914(UnkKeyedStrIds* self) { Free(self); }
 
-void fn_71010e1d70(UnkKeyedStrIds* self) { Free(self); }
+void ReleaseKeyedStrIdsAndFreeArrays(UnkKeyedStrIds* self) { Free(self); }
 
 void fn_7100711978(UnkKeyedStrIds* self) { Free(self); }
 

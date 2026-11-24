@@ -9,7 +9,7 @@
 struct UnkStrIdPathPairVec_b45a1;
 struct UnkInlineString;
 struct UnkPathPairTemp_b45a1;
-UnkPathPairTemp_b45a1 fn_710001ab24(void* path);
-void fn_710001e4e8(UnkStrIdPathPairVec_b45a1* self, u32 capacity);
+UnkPathPairTemp_b45a1 MakePathPairFromRegistryCallback(void* path);
+void ReserveStrIdPairVectorCapacity(UnkStrIdPathPairVec_b45a1* self, u32 capacity);
 extern base::reflection::CType g_unk_7101d4dad8;
 extern char g_unk_7101d4e570[] __attribute__((visibility("hidden")));

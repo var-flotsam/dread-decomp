@@ -361,7 +361,7 @@ address,size,name,name_source,subsystem,status
 0x71011162b4,60,fn_71011162b4,unknown,unknown,O
 0x71011162f0,60,fn_71011162f0,unknown,unknown,O
 0x710111632c,844,fn_710111632c,unknown,unknown,U
-0x7101116680,3452,fn_7101116680,unknown,engine/reflection?,O
+0x7101116680,3452,InitELOSModeAndSFallBackPathStatics,inferred,engine/reflection?,O
 0x71011173fc,120,fn_71011173fc,unknown,game/components?,O
 0x7101117474,4,CSpawnGroupComponent::refl_AddAttributes,reflection,game/components,O
 0x7101117478,244,CSpawnGroupComponent::refl_GetClass,reflection,game/components,O
@@ -873,7 +873,7 @@ address,size,name,name_source,subsystem,status
 0x71011329bc,80,fn_71011329bc,unknown,engine/reflection?,O
 0x7101132a0c,20,fn_7101132a0c,unknown,unknown,O
 0x7101132a20,372,fn_7101132a20,unknown,unknown,O
-0x7101132ba0,2832,fn_7101132ba0,unknown,engine/reflection?,O
+0x7101132ba0,2832,InitSpawnPointComponentStatics,inferred,engine/reflection?,O
 0x71011336b0,4,CAIAttackComponent::refl_AddAttributes,reflection,game/ai,O
 0x71011336b4,244,CAIAttackComponent::refl_GetClass,reflection,game/ai,O
 0x71011337a8,4,CAIAttackComponent::refl_AddFields,reflection,game/ai,O

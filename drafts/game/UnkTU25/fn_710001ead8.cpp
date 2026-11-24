@@ -16,7 +16,7 @@ struct UnkMovePair_l01ead8 {
 };
 
 static inline void Reserve_l01ead8(base::global::CRntVector<UnkMovePair_l01ead8>* self, u32 n) {
-    fn_710001e4e8(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), n);
+    ReserveStrIdPairVectorCapacity(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), n);
 }
 
 void fn_710001ead8(base::global::CRntVector<UnkMovePair_l01ead8>* self, UnkMovePair_l01ead8* value, u32 index) {

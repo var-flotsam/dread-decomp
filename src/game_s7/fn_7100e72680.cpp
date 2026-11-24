@@ -172,7 +172,7 @@ extern CStrId g_unk_71727c83b8;
 extern CStrId g_unk_71727c83d0;
 extern char g_unk_71727c83d8[];
 
-void fn_7100e72680() {
+void InitMinimapDefStatics() {
     InitHeaderIds(&g_unk_71727c8d08.ids);
     g_unk_71727c8d08.field_0x88 = 0;
     g_unk_71727c8d08.field_0x90 = 0;

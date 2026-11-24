@@ -5,7 +5,7 @@
 #include "game/UnkV4_b47.h"
 #include "types.h"
 static inline f32 pos(f32 v) { return v <= 0.0f ? 0.0f : v; }
-UnkV4_b47 fn_7100030770(const UnkV4_b47* a, const UnkV4_b47* b) {
+UnkV4_b47 AddVec4ClampedNonNegative(const UnkV4_b47* a, const UnkV4_b47* b) {
     UnkV4_b47 s(a->x + b->x, a->y + b->y, a->z + b->z, a->w + b->w);
     UnkV4_b47 r;
     r.x = pos(s.x);

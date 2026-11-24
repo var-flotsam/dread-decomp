@@ -4,4 +4,4 @@
 // 0x71000934b8-0x71000943bc). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
-u32 fn_7100093bb8(void* ref);
+u32 HashFlaggedAttributeKeysAndValues(void* ref);

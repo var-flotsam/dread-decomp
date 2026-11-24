@@ -88,7 +88,7 @@ void fn_710018abac(UnkEmitter_l18abac* self, const UnkVec3f* direction) {
     UnkVertex_l18abac* v = (UnkVertex_l18abac*)g_unk_716e34c3d0;
     UnkVec3f dir = *direction;
     if (!self->field_0x43a) {
-        dir = fn_7100077c04(self->field_0x3f0, dir);
+        dir = TransformDirectionByMatrix3x3(self->field_0x3f0, dir);
         f32 inv = 1.0f / (sqrtf(dir.x * dir.x + dir.y * dir.y + dir.z * dir.z) + 0.0001f);
         dir.x *= inv;
         dir.y *= inv;

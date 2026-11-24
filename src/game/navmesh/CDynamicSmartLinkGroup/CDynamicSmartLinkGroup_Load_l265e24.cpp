@@ -78,7 +78,7 @@ static inline bool IsSmartLinkFile(const CFilePathStrId& path) {
 
 bool CDynamicSmartLinkGroup_LoadFromFileAndResolveLinks(UnkSmartLinkGroup_l265e24* self) {
     {
-        UnkPathPairTemp_b45a1 s = fn_710001ab24(self->field_0x8);
+        UnkPathPairTemp_b45a1 s = MakePathPairFromRegistryCallback(self->field_0x8);
         self->path = *reinterpret_cast<const CFilePathStrId*>(&s.path);
     }
     UnkFileReader reader;
@@ -117,7 +117,7 @@ bool CDynamicSmartLinkGroup_LoadFromFileAndResolveLinks(UnkSmartLinkGroup_l265e2
                 UnkRegistry_7100d92158* registry = g_unk_7101d4bbc0;
                 UnkSmartLinkIds_l265e24 ids{reinterpret_cast<const CStrId&>(g_unk_71727b98b0), l->path};
                 UnkAssetResRef found =
-                    fn_710002038c(registry, reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
+                    MakeResourceFromRegistryFactory(registry, reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
                 UnkCountedResource* res = found.ptr;
                 if (l->resource != res) {
                     if (res)

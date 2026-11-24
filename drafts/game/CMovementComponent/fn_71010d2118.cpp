@@ -70,7 +70,7 @@ static inline UnkVec3f Side(bool flag, const UnkContact_ovb0048* contact) {
 // The root motion's translation carried into the frame of `xform`.
 static inline UnkVec3f Carried(const UnkMatrix44* motion, const UnkMatrix44* xform) {
     UnkVec3f translation(motion->m[3], motion->m[7], motion->m[11]);
-    return fn_7100077c04(fn_710002614c(xform), translation);
+    return TransformDirectionByMatrix3x3(fn_710002614c(xform), translation);
 }
 
 void fn_71010d2118(UnkRootMotion_l0d2118* self, f32 dt, const UnkRootMotionXform_l0d2118* root,

@@ -15,7 +15,7 @@ extern u8 g_unk_7101d59548[];
 void fn_7100088c50(void*);
 void fn_7100088ca8(void* obj, CStrId* name, void* a, void* b, void (*factory)(void*), void* c);
 
-void fn_71000891c0() {
+void InitCPackRegistrationStatics() {
     {
         CStrId name("base::file::CPack", true);
         fn_7100088ca8(g_unk_7101d59410, &name, nullptr, nullptr, fn_7100088c50, nullptr);

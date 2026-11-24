@@ -94,7 +94,7 @@ static inline UnkVec3f AngleOf(const UnkMatrix44& m, u32 kind) {
 
 // Where the matrix places the point g_unk_710164b1c0.
 static inline UnkVec3f Place(const UnkMatrix44& m) {
-    return fn_7100078170(reinterpret_cast<const UnkMat4f*>(&m), &g_unk_710164b1c0);
+    return TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&m), &g_unk_710164b1c0);
 }
 
 // The model's frame named by `key`.

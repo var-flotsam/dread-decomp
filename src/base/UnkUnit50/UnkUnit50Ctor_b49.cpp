@@ -59,6 +59,6 @@ inline UnkUnit50Object_b49a1::UnkUnit50Object_b49a1(u32 id)
     field_0x60 = 0;
 }
 
-void fn_7100071dac(UnkUnit50Object_b49a1* self, u32 id) {
+void ConstructTunableRumbleEntry(UnkUnit50Object_b49a1* self, u32 id) {
     new (self) UnkUnit50Object_b49a1(id);
 }

@@ -69,7 +69,7 @@ struct UnkMorphBall_d5b4 {
 };
 static_assert(__builtin_offsetof(UnkMorphBall_d5b4, saved_flag) == 0x2518, "layout");
 
-UnkStruct_0x48* fn_710012431c(UnkPool_0x48*, u32);
+UnkStruct_0x48* ResolveHandleToPoolSlot(UnkPool_0x48*, u32);
 
 bool fn_710094d5b4(UnkMorphBall_d5b4* self, UnkMorphBallHit_d5b4* hit) {
     if (!self->saved_flag)
@@ -80,7 +80,7 @@ bool fn_710094d5b4(UnkMorphBall_d5b4* self, UnkMorphBallHit_d5b4* hit) {
         bool copy = true;
         if ((collider != nullptr) & (kind == 0x10)) {
             UnkStruct_0x48* entry =
-                fn_710012431c(reinterpret_cast<UnkPool_0x48*>(reinterpret_cast<u8*>(collider) + 0xa8), hit->words[0]);
+                ResolveHandleToPoolSlot(reinterpret_cast<UnkPool_0x48*>(reinterpret_cast<u8*>(collider) + 0xa8), hit->words[0]);
             copy = entry == self->field_0x2430 && hit->v.index == self->field_0x2438;
         }
         if (copy)

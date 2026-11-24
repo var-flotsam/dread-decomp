@@ -68,5 +68,5 @@ UnkVec3f fn_710016e468(const UnkSpawnVolume* self) {
     }
     UnkVec3f p = UnkVec3f(v.x * self->size[0], v.y * self->size[1], v.z * self->size[2]) *
                  fn_7100076cec(reinterpret_cast<UnkXform*>(const_cast<UnkMat4f*>(&self->matrix)));
-    return fn_7100078170(&self->matrix, &p);
+    return TransformPointByMatrixWithPerspectiveDivide(&self->matrix, &p);
 }

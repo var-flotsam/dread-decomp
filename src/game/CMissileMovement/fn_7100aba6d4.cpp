@@ -102,7 +102,7 @@ bool fn_7100aba6d4(UnkMissileMovement_laba6d4* self, UnkMissileTarget_laba6d4* t
         return false;
 
     UnkActor* owner = self->owner;
-    UnkMatrix44_7100078c9c move = fn_7100078cd8(UnkVec3f(owner->field_0x44, owner->field_0x54, owner->field_0x64));
+    UnkMatrix44_7100078c9c move = BuildTranslationMatrixFromVec3(UnkVec3f(owner->field_0x44, owner->field_0x54, owner->field_0x64));
     UnkMatrix44 world = fn_71000127c8(fn_7100078314(&bone), reinterpret_cast<const UnkMatrix44&>(move));
     // The bone's index by name, and the translation of the bone's transform at the missile.
     f32 x, y, z;

@@ -9,7 +9,7 @@ struct UnkVec3f {
     UnkVec3f(const UnkVec3f& o) : x(o.x), y(o.y), z(o.z) {}
 };
 
-UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v) {
+UnkVec3f TransformPointByMatrixWithPerspectiveDivide(const UnkMat4f* m, const UnkVec3f* v) {
     f32 x = m->m[0][3] + (v->x * m->m[0][0] + v->y * m->m[0][1] + v->z * m->m[0][2]);
     f32 y = m->m[1][3] + (v->x * m->m[1][0] + v->y * m->m[1][1] + v->z * m->m[1][2]);
     f32 z = m->m[2][3] + (v->x * m->m[2][0] + v->y * m->m[2][1] + v->z * m->m[2][2]);

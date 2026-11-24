@@ -85,7 +85,7 @@ const base::reflection::CType* fn_7100019cf0();
 // AssetID's conversions.
 struct UnkPair_l01ef24;
 struct UnkInlineString;
-UnkPair_l01ef24* fn_710001ef24(UnkPair_l01ef24* self, const UnkInlineString* other);
+UnkPair_l01ef24* AssignAssetIdFromString(UnkPair_l01ef24* self, const UnkInlineString* other);
 void fn_710001f1c8();
 void fn_710001ca14() __attribute__((visibility("hidden")));
 
@@ -97,7 +97,7 @@ static inline void (*AsInit(void (*init)(base::reflection::CClass*)))() {
     return reinterpret_cast<void (*)()>(init);
 }
 
-void fn_710001f460() {
+void InitAssetNameAndAssetIdStatics() {
     new (&HeaderIds().sources) UnkStrIdBase("sources", true);
     fn_7100000250(CStrId_Destroy, &HeaderIds().sources, g_unk_7101a19000);
     new (&HeaderIds().binaries) UnkStrIdBase("binaries", true);
@@ -125,7 +125,7 @@ void fn_710001f460() {
     fn_710009ec00(g_unk_7101d4e008, g_unk_7101d4de98);
 
     InitConverterFrom(g_unk_7101d4e010, AsUnk(&g_unk_7101d4dad8), refl_TypeOf<fn_7100007f84>,
-                      reinterpret_cast<void (*)()>(fn_710001ef24));
+                      reinterpret_cast<void (*)()>(AssignAssetIdFromString));
     InitConverterFrom(g_unk_7101d4e030, AsUnk(&g_unk_7101d4dad8), refl_TypeOf<fn_7100009658>, fn_710001f1c8);
     InitConverterTo(g_unk_7101d4e050, AsUnk(&g_unk_7101d4dad8), refl_TypeOf<fn_7100007f84>, fn_710001ca14);
 

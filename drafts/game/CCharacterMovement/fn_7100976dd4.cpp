@@ -152,7 +152,7 @@ bool fn_7100976dd4(UnkMovement_l976dd4* self, UnkVec3f* pos, UnkVec3f* normal_ou
     }
     UnkPushShape_l976dd4* probe = shape->Clone();
     probe->Scale(0.999f);
-    UnkMatrix44_7100078c9c xf = fn_7100078cd8(p);
+    UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(p);
 
     bool ok = false;
     UnkVec3f normal(0.0f, 0.0f, 0.0f);

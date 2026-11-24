@@ -186,7 +186,7 @@ UnkNavMeshPoint_l9b8910 fn_71009b8910(UnkNavMeshItemStage_l9b8910* self) {
                     pos.x = m.m[3];
                     pos.y = m.m[7];
                     pos.z = m.m[11];
-                    UnkVec3f moved = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&world),
+                    UnkVec3f moved = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&world),
                                                    reinterpret_cast<const UnkVec3f*>(&pos));
                     pos.x = moved.x;
                     pos.y = moved.y;

@@ -57,7 +57,7 @@ static inline bool Near(f32 a, f32 b) {
 
 // `v` through the matrix `m`.
 static inline UnkVec3f Rotate(const UnkMatrix44& m, const UnkVec3f& v) {
-    return fn_7100078170(reinterpret_cast<const UnkMat4f*>(&m), &v);
+    return TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&m), &v);
 }
 
 void fn_71008f920c(UnkSpotLightComponent_l8f920c* self) {

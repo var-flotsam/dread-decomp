@@ -256,7 +256,7 @@ void fn_710033003c(UnkShinespark_l33003c* self) {
     }
     bool found;
     {
-        UnkMatrix44_7100078c9c xf = fn_7100078cd8(position);
+        UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(position);
         found = fn_7100d5b484(tree, 0x1080, collider->shape, reinterpret_cast<const UnkMtx44*>(&xf), &query, 0);
     }
     if (found) {

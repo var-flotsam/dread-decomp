@@ -4,7 +4,7 @@
 #include "base/UnkMatrix44.h"
 #include "types.h"
 
-UnkMatrix44 fn_7100079a9c(f32 left, f32 right, f32 bottom, f32 top, f32 near, f32 far) {
+UnkMatrix44 MakeOrthoProjectionMatrixZeroToOne(f32 left, f32 right, f32 bottom, f32 top, f32 near, f32 far) {
     UnkMatrix44 r;
     __builtin_memset(&r, 0, sizeof(r));
     r.m[0] = r.m[5] = r.m[10] = r.m[15] = 1.0f;  // starts as the identity

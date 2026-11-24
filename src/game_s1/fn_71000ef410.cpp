@@ -30,7 +30,7 @@ void fn_71000ef384() HIDDEN;
 void fn_71000ef390() HIDDEN;
 void fn_71000ef204(UnkEnumInfo* obj, CStrId* name, void (*fn)(), void* a);
 
-void fn_71000ef410() {
+void RegisterEDeserializeCollectionElementModeEnum() {
     {
         CStrId name("base::serialization::EDeserializeCollectionElementMode", true);
         fn_71000ef204(&base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode, UnkEnumInfo>::object, &name, fn_71000ef058, nullptr);

@@ -19,7 +19,7 @@ struct UnkMatrix44Words {
     UnkMatrix44Words(const UnkMatrix44Words& other);
 };
 
-UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src);
+UnkMatrix44Words CopyMatrixWithoutTranslation(const UnkMatrix44Words* src);
 
 // The prey's model, as far as this source reaches: the name of its attachment and the attachment's offset.
 struct UnkXParasiteModel_l6e9aa8;
@@ -156,8 +156,8 @@ void fn_71006e9aa8(UnkXParasiteAI_l6e9aa8* self) {
             attachment.m[0] = 1.0f;
             if (FindAttachment(entity, model, &attachment)) {
                 UnkVec3f origin(attachment.m[3], attachment.m[7], attachment.m[11]);
-                UnkMatrix44Words rotation = fn_7100076dc4(reinterpret_cast<const UnkMatrix44Words*>(&attachment));
-                UnkVec3f offset = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&rotation), fn_710110f230(model));
+                UnkMatrix44Words rotation = CopyMatrixWithoutTranslation(reinterpret_cast<const UnkMatrix44Words*>(&attachment));
+                UnkVec3f offset = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&rotation), fn_710110f230(model));
                 pos = UnkVec3f(origin.x + offset.x, origin.y + offset.y, origin.z + offset.z);
             }
         }

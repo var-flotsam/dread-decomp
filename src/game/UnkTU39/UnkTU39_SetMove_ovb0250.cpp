@@ -12,7 +12,7 @@ using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
 using base::global::CRntVector;
 
-void fn_710003017c(UnkDeferredSet<UnkDeferredCallback<f32>>* self, UnkDeferredSet<UnkDeferredCallback<f32>>* other) {
+void MoveConstructFloatCallbackSet(UnkDeferredSet<UnkDeferredCallback<f32>>* self, UnkDeferredSet<UnkDeferredCallback<f32>>* other) {
     new (&self->items) CRntVector<UnkDeferredCallback<f32>*>(0xf);
     new (&self->pending_add) CRntVector<UnkDeferredCallback<f32>*>(0xf);
     new (&self->pending_remove) CRntVector<UnkDeferredCallback<f32>*>(0xf);

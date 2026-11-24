@@ -340,7 +340,7 @@ bool fn_7100d668d4(UnkLeafVisitor<UnkShape8Geometry, bool>* self, const UnkTreeN
                 self->result.bits |= 3;
             } else {
                 auto* pool = reinterpret_cast<UnkPool_0x48*>(const_cast<void*>(query->field_0x18));
-                const auto* polygon = reinterpret_cast<const UnkPolygon2D_710012be70*>(fn_710012431c(pool, LeafHandle(node)));
+                const auto* polygon = reinterpret_cast<const UnkPolygon2D_710012be70*>(ResolveHandleToPoolSlot(pool, LeafHandle(node)));
                 UnkPolygonHit h{polygon, LeafHandle(node), *p};
                 self->result.bits |= query->vf_0x10(h).bits;
             }

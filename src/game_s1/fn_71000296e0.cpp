@@ -48,7 +48,7 @@ void fn_7100029548() HIDDEN;
 void fn_7100029554() HIDDEN;
 void fn_7100029560() HIDDEN;
 void fn_710002956c() HIDDEN;
-void fn_71000296e0() {
+void RegisterBaseCurvesEnumTypes() {
     {
         CStrId name("base::curves::EKeysType", true);
         fn_7100028d58(&base::reflection::TypeObject<base::curves::EKeysType, UnkEnumInfo>::object, &name, fn_7100028aec, nullptr);

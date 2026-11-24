@@ -13,7 +13,7 @@
 #include "types.h"
 
 struct UnkEntity;
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 f32 fn_7101177e24(UnkAnimationComponent* self, u64 key);
 void fn_7101179e68(UnkAnimationComponent* self, void* entry, u64 key, UnkMatrix44* out, u32 flags, f32 frame);
 
@@ -72,8 +72,8 @@ static const u64 kAimKey = 0xf4061ff25a2163d6;
 
 void fn_7100347bd8(UnkAimFrameSelf_l347bd8* self, f32 angle, UnkAimFrame_l347bd8* out) {
     f32 facing = self->owner->xform.GetAngle().y;
-    UnkVec3f dir = facing < 0.0f ? fn_710007a390(UnkVec3f(-1.0f, 0.0f, 0.0f), -angle)
-                                 : fn_710007a390(UnkVec3f(1.0f, 0.0f, 0.0f), angle);
+    UnkVec3f dir = facing < 0.0f ? RotateVec3AboutZ(UnkVec3f(-1.0f, 0.0f, 0.0f), -angle)
+                                 : RotateVec3AboutZ(UnkVec3f(1.0f, 0.0f, 0.0f), angle);
     UnkVec3f side = Cross(UnkVec3f(0.0f, 0.0f, -1.0f), dir);
 
     UnkAimFrameOwner_l347bd8* owner = self->owner;

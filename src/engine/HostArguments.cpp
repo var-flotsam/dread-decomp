@@ -285,7 +285,7 @@ static inline UnkFrameTimer* FrameTimer() {
 }
 // Advances the timer by a frame, the game manager's +0x6a4 being the time scale; the time passed
 // since the last frame.
-void fn_7100080cb8(UnkFrameTimer* timer, f32 scale);
+void AdvanceFrameTimer(UnkFrameTimer* timer, f32 scale);
 f32 fn_7100081020(UnkFrameTimer* timer);
 
 // The GUI root (src/game/CCutscene.cpp): whether it runs the frame time, and the time it gives.
@@ -421,7 +421,7 @@ void fn_7100000d40() {
     if (fn_710119a320(g_unk_7101d47330)) {
         dt = fn_710119a3d0(g_unk_7101d47330);
     } else {
-        fn_7100080cb8(FrameTimer(), *reinterpret_cast<f32*>(reinterpret_cast<char*>(g_unk_7101d47310) + 0x6a4));
+        AdvanceFrameTimer(FrameTimer(), *reinterpret_cast<f32*>(reinterpret_cast<char*>(g_unk_7101d47310) + 0x6a4));
         dt = FrameTimer()->frame_time;
     }
     bool paused = fn_710119a320(g_unk_7101d47330);

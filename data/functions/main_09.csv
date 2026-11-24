@@ -2494,7 +2494,7 @@ address,size,name,name_source,subsystem,status
 0x7100982ab0,4,base::reflection::ValueOps<ESamusUsingGrapplePullPointStatePullStage>::Destroy,reflection,engine/reflection,O
 0x7100982ab4,20,base::reflection::ValueOps<ESamusUsingGrapplePullPointStatePullStage>::CopyAssign,reflection,engine/reflection,O
 0x7100982ac8,20,base::reflection::ValueOps<ESamusUsingGrapplePullPointStatePullStage>::MoveAssign,reflection,engine/reflection,O
-0x7100982ae0,412,fn_7100982ae0,unknown,engine/reflection?,O
+0x7100982ae0,412,InitESamusUsingGrapplePullPointStatePullStageStatics,inferred,engine/reflection?,O
 0x7100982c7c,440,fn_7100982c7c,unknown,game/player?,O
 0x7100982e34,568,fn_7100982e34,unknown,unknown,O
 0x710098306c,368,fn_710098306c,unknown,unknown,O

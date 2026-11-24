@@ -99,7 +99,7 @@ bool fn_7100c6e18c(void* self, UnkStruct_0x48* slot, u32 start, UnkTU2177NodeLis
         if ((world != nullptr) & (world->vf_0x18() == 0x10)) {
             if (!(nodes->At(i).flags & 1))
                 continue;
-            UnkStruct_0x48* nodeSlot = fn_710012431c(&world->pool, nodes->At(i).handle);
+            UnkStruct_0x48* nodeSlot = ResolveHandleToPoolSlot(&world->pool, nodes->At(i).handle);
             base::math::CVector2D other;
             fn_710007b430(&other, &nodes->At(i).pos);
             if (point.x + 1e-5f >= other.x && point.x - 1e-5f <= other.x && nodeSlot == slot &&

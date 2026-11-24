@@ -9,7 +9,7 @@ struct UnkPool_0x48;
 struct UnkStruct_0x48;
 struct UnkTileOutlineList;
 void fn_7100123eb4(UnkTileOutlineList* self);
-UnkStruct_0x48* fn_710012431c(UnkPool_0x48* pool, u32 handle);
+UnkStruct_0x48* ResolveHandleToPoolSlot(UnkPool_0x48* pool, u32 handle);
 void fn_7100123f1c(void* self, const void* other);
 void fn_7100123f58(void* self, void* other);
 void fn_7100123fb0(UnkTileOutlineList* self);

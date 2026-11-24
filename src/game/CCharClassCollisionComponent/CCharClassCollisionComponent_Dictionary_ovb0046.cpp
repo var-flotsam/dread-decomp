@@ -96,7 +96,7 @@ u32* CCharClassCollisionComponent_ColMatDictEraseAt(UnkColMatDict_ovb0046* self,
     return &self->values[index];
 }
 
-void fn_710079cb54(UnkColMatDict_ovb0046* self);
+void ShrinkU32StrIdTableToCount(UnkColMatDict_ovb0046* self);
 void fn_710079c890(UnkColMatDict_ovb0046* self, u32 n);  // reserve
 
 // Copy assignment: releases the keys, makes room (fn_710079cb54, then the reserve) when the capacity
@@ -110,7 +110,7 @@ UnkColMatDict_ovb0046* fn_710079c9ec(UnkColMatDict_ovb0046* self, const UnkColMa
     }
     self->count = 0;
     if (other->count != self->capacity) {
-        fn_710079cb54(self);
+        ShrinkU32StrIdTableToCount(self);
         fn_710079c890(self, other->count);
     }
     __builtin_memcpy(self->values, other->values, (u64)other->count * sizeof(u32));

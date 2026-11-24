@@ -306,7 +306,7 @@ void fn_710070419c(UnkSelf_l70419c* self, const CVector2D* pos, u32 mask, CVecto
     for (UnkContact_l70419c* contact = contacts.begin(); contact != contacts.end(); contact++) {
         UnkPolygons_l70419c* polygons = As<UnkPolygons_l70419c, 0x10>(contact->ref->collider->shape);
         if (polygons) {
-            if (!fn_710012431c(reinterpret_cast<UnkPool_0x48*>(polygons->polygons), contact->handle))
+            if (!ResolveHandleToPoolSlot(reinterpret_cast<UnkPool_0x48*>(polygons->polygons), contact->handle))
                 continue;
             UnkSegment2D edge = fn_710012436c(
                 reinterpret_cast<const UnkPolygonCollection2D*>(polygons->polygons), contact->handle);

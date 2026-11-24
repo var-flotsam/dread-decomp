@@ -13,7 +13,7 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 bool fn_71006e2b9c(void* self);
 
 struct UnkXParasiteAI_l6e2e6c : base::reflection::UnkReflObject {
@@ -117,7 +117,7 @@ u32 fn_71006e2e6c(UnkGoToPoint_l6e2e6c* self, f32 dt) {
             f32 cyp = uz * -0.0f + ux;
             f32 czp = uy * 0.0f - ux * 0.0f;
             f32 side = nx * cxp + ny * cyp + nz * czp;
-            UnkVec3f r = fn_710007a390(from, side < 0.0f ? -limit : limit);
+            UnkVec3f r = RotateVec3AboutZ(from, side < 0.0f ? -limit : limit);
             nx = r.x;
             ny = r.y;
             nz = 0.0f;

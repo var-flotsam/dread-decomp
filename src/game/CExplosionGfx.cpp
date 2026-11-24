@@ -48,8 +48,8 @@ void fn_7100de08f0(CExplosionGfx* self, UnkExplosionTarget* target) {
         f32 turn = RandRange(arc * -kTwoPi, arc * kTwoPi);
         UnkVec3f offset(distance, 0.0f, 0.0f);
         if (!IsNearZero(distance)) {
-            UnkMatrix44 rotation = fn_7100078d8c(even + turn);
-            offset = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&rotation), &offset);
+            UnkMatrix44 rotation = MakeRotationMatrixZ(even + turn);
+            offset = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&rotation), &offset);
         }
         f32 min_delay = self->vRandomDelay[0];
         f32 max_delay = self->vRandomDelay[1];

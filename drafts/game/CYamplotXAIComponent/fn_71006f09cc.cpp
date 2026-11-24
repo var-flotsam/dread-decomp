@@ -35,7 +35,7 @@ static inline UnkSegment2D EdgeAt(const UnkPolygon2D* p, u32 i) {
 }
 
 UnkSegment2D fn_71006f09cc(UnkPool_0x48* pool, u32 handle) {
-    const UnkPolygon2D* polygon = reinterpret_cast<const UnkPolygon2D*>(fn_710012431c(pool, handle));
+    const UnkPolygon2D* polygon = reinterpret_cast<const UnkPolygon2D*>(ResolveHandleToPoolSlot(pool, handle));
     u32 edge = handle & 0xffff;
     if (!polygon->closed && EdgeCount(polygon) - 1 <= edge) {
         UnkSegment2D tail = EdgeAt(polygon, edge);

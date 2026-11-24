@@ -150,7 +150,7 @@ void fn_7100d8a538();
 UnkEnumType* fn_7100231c1c();
 extern UnkNamedValue g_unk_71727b6be0;
 
-void fn_7100d8a790() {
+void InitStatics_CEntityCollectionTypes() {
     InitHeaderIds(&g_unk_71727b85d8.ids);
     g_unk_71727b85d8.field_0x28 = -1.0f;
     g_unk_71727b85d8.field_0x2c = -1.0f;

@@ -55,7 +55,7 @@ void fn_7100025624(void* self) {
 extern const base::math::CVector3D g_unk_7101647790;
 extern const base::math::CVector3D g_unk_71016477a8;
 
-void fn_7100025a98(void* self) {
+void ResetXformToIdentity(void* self) {
     UnkXform* r = static_cast<UnkXform*>(self);
     for (int i = 0; i < 16; i++)
         r->m[i / 4][i % 4] = 0.0f;
@@ -98,7 +98,7 @@ static inline void InitFromText(UnkStrIdPathResource* self, const base::global::
     fn_71000267f8(self, ids.ids);
 }
 
-UnkStrIdPathResource* fn_71000272cc(UnkStrIdPathResource* self, const UnkInlineString* other) {
+UnkStrIdPathResource* AssignAssetLinkFromPathText(UnkStrIdPathResource* self, const UnkInlineString* other) {
     if (reinterpret_cast<const void*>(other) != reinterpret_cast<const void*>(self)) {
         union Raw {
             UnkStrIdPathResource r;
@@ -120,7 +120,7 @@ struct UnkResourceIds_ovb0177 {
     base::global::CFilePathStrId path;
 };
 
-void fn_71000269c4(UnkStrIdPathResource* self, UnkCountedResource* resource) {
+void SetStrIdPathResourceFromResource(UnkStrIdPathResource* self, UnkCountedResource* resource) {
     UnkCountedResource* old = self->resource;
     if (old != resource) {
         if (resource)
@@ -214,7 +214,7 @@ bool fn_710002589c(void* link, UnkLinkTarget127_b66a1* target, u32 mode, void* e
             UnkTransformNode* first = self->next;
             StoreLink32(&self->parent->first, first);
         }
-        fn_7100025a98(&self->xform);
+        ResetXformToIdentity(&self->xform);
         fn_7100025bd0(self);
         if (self->slot < 0)
             --self->parent->count;

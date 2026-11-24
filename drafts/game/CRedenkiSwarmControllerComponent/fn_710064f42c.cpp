@@ -19,7 +19,7 @@ struct UnkDaivoFade_b0012;
 struct UnkFadeGroup_b0012;
 
 // As src/game_s1/fn_7100078c9c.cpp defines it.
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_Start_b55.cpp declares it.
 struct UnkTarget;
@@ -196,7 +196,7 @@ void fn_710064f42c(UnkDaivoFade_b0012* fade, UnkFadeGroup_b0012* fadeGroup) {
         member->speed = speed;
         member->phase = RandomRange(0.0f, kTwoPi);
         UnkVec3f p(radius * speed, 0.0f, 0.0f);
-        p = fn_710007a390(p, memberAngle);
+        p = RotateVec3AboutZ(p, memberAngle);
         f32 height = RandomRange(-25.0f, 0.0f);
         p.x = offset.x + p.x;
         p.y = offset.y + p.y;

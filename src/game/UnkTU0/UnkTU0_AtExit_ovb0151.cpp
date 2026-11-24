@@ -65,7 +65,7 @@ int fn_7100000250(void (*func)(void*), void* arg, void* dso) {
     return AddEntry(reinterpret_cast<void*>(func), arg, dso);
 }
 
-void fn_71000002f0(void* dso, u64 first, u64 last) {
+void RunDsoAtExitHandlersInRange(void* dso, u64 first, u64 last) {
     u64 capacity = folded::g_unk_7101d46060 - ::g_unk_7101d46060;
     u64 n = last < capacity ? last : capacity;
     while (n > first) {
@@ -76,11 +76,11 @@ void fn_71000002f0(void* dso, u64 first, u64 last) {
             reinterpret_cast<void (*)(void*)>(g_unk_7101d46060[n].field_0x0)(g_unk_7101d46060[n].field_0x8);
             next_last = g_unk_7101d470d8;
         }
-        fn_71000002f0(dso, count, next_last);
+        RunDsoAtExitHandlersInRange(dso, count, next_last);
     }
 }
 
 int fn_7100000190(void* dso) {
-    fn_71000002f0(dso, 0, g_unk_7101d470d8);
+    RunDsoAtExitHandlersInRange(dso, 0, g_unk_7101d470d8);
     return 0;
 }

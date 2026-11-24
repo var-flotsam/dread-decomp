@@ -38,7 +38,7 @@ static_assert(sizeof(CColor4F) == 0x10, "CColor4F layout");
 
 // The blend of two colours: `from` at t <= 0, `to` at t >= 1, linear in between; each component
 // then clamped to be non-negative.
-base::color::CColor4F fn_710003088c(f32 t, const base::color::CColor4F& from, const base::color::CColor4F& to);
+base::color::CColor4F LerpColor4FClampedNonNegative(f32 t, const base::color::CColor4F& from, const base::color::CColor4F& to);
 
 // The colour's four components as a vector, by value (a copy).
 base::math::UnkVector4D fn_7100030878(const base::color::CColor4F* color);

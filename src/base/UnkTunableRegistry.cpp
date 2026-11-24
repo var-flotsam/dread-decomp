@@ -131,7 +131,7 @@ static inline UnkTunableLine Mid(const char* str, u32 count) {
 // words the opener sets.
 // The id and path pair (base/UnkStrIdPathPair.h) the file is opened with.
 // Reads a line of at most `size` bytes from the position; false when none could be read.
-bool fn_710007c9e8(base::global::CRntFile* file, char* buffer, u32 size);
+bool ReadRntFileLine(base::global::CRntFile* file, char* buffer, u32 size);
 // Rewinds the file opened for writing to its buffer (fn_710007c1a4).
 void fn_710007c610(base::global::CRntFile* file, u64 buffer);
 // Writes `count` blocks of `size` bytes.
@@ -232,7 +232,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
         result = true;
         while (reader.file.position < reader.file.size) {
             char buffer[0x100];
-            if (!fn_710007c9e8(&reader.file, buffer, 0x100))
+            if (!ReadRntFileLine(&reader.file, buffer, 0x100))
                 continue;
             CRntString_AssignCString(line.Str(), buffer);
             if (generate)

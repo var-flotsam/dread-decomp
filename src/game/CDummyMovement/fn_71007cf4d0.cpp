@@ -28,7 +28,7 @@ struct UnkDummyOwner_l7cf4d0 {
 
     // A direction in the owner's space turned into world space.
     UnkVec3f ToWorld(const UnkVec3f& v) {
-        return fn_7100077c04(fn_710002614c(reinterpret_cast<const UnkMatrix44*>(&xform)), v);
+        return TransformDirectionByMatrix3x3(fn_710002614c(reinterpret_cast<const UnkMatrix44*>(&xform)), v);
     }
 };
 static_assert(__builtin_offsetof(UnkDummyOwner_l7cf4d0, moved) == 0x3b0, "layout");

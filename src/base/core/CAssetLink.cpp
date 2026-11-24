@@ -18,7 +18,7 @@ void fn_71000267f8(UnkStrIdPathResource* self, const UnkStrIdPathPair& other) {
     self->ids.path = other.path;
     UnkAssetResRef res =
         self->ids.id.data != &g_unk_7101d47108->empty && self->ids.path.data != &g_unk_7101d47200->empty
-            ? fn_710002038c(g_unk_7101d4bbc0, &self->ids, true, nullptr)
+            ? MakeResourceFromRegistryFactory(g_unk_7101d4bbc0, &self->ids, true, nullptr)
             : UnkAssetResRef();
     reinterpret_cast<UnkAssetResRef&>(self->resource) = res;
 }

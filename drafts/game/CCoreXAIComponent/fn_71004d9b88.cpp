@@ -27,8 +27,8 @@ struct UnkMatrix44Words {
     UnkMatrix44Words(const UnkMatrix44Words& other);
 };
 
-UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src);
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkMatrix44Words CopyMatrixWithoutTranslation(const UnkMatrix44Words* src);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 void fn_71000769f0(UnkMatrix44* out, const void* a, const void* b, const void* c, const void* d);
 
 // The name of the model node the AI component follows, and that node's offset.
@@ -142,8 +142,8 @@ void fn_71004d9b88(UnkCoreXAI_l4d9b88* self, f32 dt) {
                     f32 y = m.m[7];
                     f32 z = m.m[11];
                     // The node's offset turned by the node's rotation.
-                    UnkVec3f offset = fn_7100078170(
-                        reinterpret_cast<const UnkMat4f*>(AddressOf(fn_7100076dc4(reinterpret_cast<const UnkMatrix44Words*>(&m)))),
+                    UnkVec3f offset = TransformPointByMatrixWithPerspectiveDivide(
+                        reinterpret_cast<const UnkMat4f*>(AddressOf(CopyMatrixWithoutTranslation(reinterpret_cast<const UnkMatrix44Words*>(&m)))),
                         fn_710110f230(ai));
                     pos.x = x + offset.x;
                     pos.y = y + offset.y;
@@ -179,7 +179,7 @@ void fn_71004d9b88(UnkCoreXAI_l4d9b88* self, f32 dt) {
         const UnkVec3f up(0.0f, 0.0f, 1.0f);
         if (Dot(Cross(*aim, Negated(up)), dir) < 0.0f)
             turn = -turn;
-        *aim = fn_710007a390(*aim, turn);
+        *aim = RotateVec3AboutZ(*aim, turn);
         Normalize(*aim);
     } else {
         *aim = UnkVec3f(dir.x, dir.y, dir.z);

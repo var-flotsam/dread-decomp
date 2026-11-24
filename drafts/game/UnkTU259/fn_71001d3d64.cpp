@@ -64,7 +64,7 @@ inline void SetPosition(UnkGfx_l1d3d64* self, u32 base, const UnkLight_l1d3d64* 
     if (fn_71001aa0b4(self->program, 1, base + 0x15, location)) {
         UnkVec3f position = light->position;
         if (self->transform_lights)
-            position = fn_7100078170(reinterpret_cast<const UnkMat4f*>(matrix), &position);
+            position = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(matrix), &position);
         f32 values[4] = {position.x, position.y, position.z, 0.0f};
         fn_710015e1f0(self->state, 1, *location, 4, values);
     }
@@ -104,7 +104,7 @@ void fn_71001d3d64(UnkGfx_l1d3d64* self, u32 index, const UnkLightEntry_l1d3d64*
         if (fn_71001aa0b4(self->program, 1, base + 0x15, &location)) {
             UnkVec3f position = light->position;
             if (self->transform_lights)
-                position = fn_7100078170(reinterpret_cast<const UnkMat4f*>(matrix), &position);
+                position = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(matrix), &position);
             f32 values[4] = {position.x, position.y, position.z, 0.0f};
             fn_710015e1f0(self->state, 1, location, 4, values);
         }
@@ -113,7 +113,7 @@ void fn_71001d3d64(UnkGfx_l1d3d64* self, u32 index, const UnkLightEntry_l1d3d64*
         if (fn_71001aa0b4(self->program, 1, base + 0x16, &location)) {
             UnkVec3f direction = light->direction;
             if (self->transform_lights)
-                direction = fn_7100077c04(*matrix, direction);
+                direction = TransformDirectionByMatrix3x3(*matrix, direction);
             f32 values[4] = {direction.x, direction.y, direction.z, 0.0f};
             fn_710015e1f0(self->state, 1, location, 4, values);
         }
@@ -128,7 +128,7 @@ void fn_71001d3d64(UnkGfx_l1d3d64* self, u32 index, const UnkLightEntry_l1d3d64*
         if (fn_71001aa0b4(self->program, 1, base + 0x16, &location)) {
             UnkVec3f direction = light->direction;
             if (self->transform_lights)
-                direction = fn_7100078170(reinterpret_cast<const UnkMat4f*>(matrix), &direction);
+                direction = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(matrix), &direction);
             f32 values[4] = {direction.x, direction.y, direction.z, 0.0f};
             fn_710015e1f0(self->state, 1, location, 4, values);
         }

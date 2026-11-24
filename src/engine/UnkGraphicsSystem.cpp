@@ -793,7 +793,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     vb0.field_0x14 = true;
     vb0.flags = 0x38;
     vb0.allocator = GetDefaultAllocator();
-    fn_71000231f4(&vb0, 0x18);
+    ReserveCountedRefVector(&vb0, 0x18);
 
     self->field_0xf8 = 0;
     self->field_0x120 = 0;

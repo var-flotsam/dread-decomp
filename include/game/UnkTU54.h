@@ -22,14 +22,14 @@ UnkMatrix44 fn_7100078834(const UnkKeyedEntry* entry, const UnkMatrix44* matrix,
 UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
 UnkVec3f fn_7100076acc(const UnkXform* x);  // The rotation angles of a transform.
 UnkVec3f fn_710007a7f0(UnkVec3f dir);  // Direction to rotation angles.
-UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
-UnkVec3f fn_710007a220(const UnkVec3f* v);
-UnkVec3f fn_7100077c04(const UnkMatrix44& m, const UnkVec3f& v);
+UnkMatrix44_7100078c9c BuildTranslationMatrixFromVec3(const UnkVec3f& t);
+UnkVec3f WrapAngles3ToPi(const UnkVec3f* v);
+UnkVec3f TransformDirectionByMatrix3x3(const UnkMatrix44& m, const UnkVec3f& v);
 UnkMat4f fn_7100079c60(const UnkVec3f* from, const UnkVec3f* to);
 // The point `v` transformed by the matrix.
-UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
+UnkVec3f TransformPointByMatrixWithPerspectiveDivide(const UnkMat4f* m, const UnkVec3f* v);
 UnkMatrix44 fn_7100078314(const UnkMatrix44* m);
 UnkMatrix44 fn_710007966c(const void* value, f32 angle);
 UnkVec3f fn_710007a450(void* xform, const UnkVec3f* v);
-UnkVec3f fn_710007a400(const UnkVec3f& v, const UnkVec3f& angles);  // `v` rotated by three angles.
+UnkVec3f RotateVec3ByAngles(const UnkVec3f& v, const UnkVec3f& angles);  // `v` rotated by three angles.
 void fn_71000769f0(UnkMatrix44* out, const void* a, const void* b, const void* c, const void* d);
