@@ -259,7 +259,7 @@ address,size,name,name_source,subsystem,status
 0x7100412d8c,380,fn_7100412d8c,unknown,game/characters?,O
 0x7100412f08,380,fn_7100412f08,unknown,game/characters?,O
 0x7100413084,1692,fn_7100413084,unknown,game/characters?,O
-0x7100413720,1972,fn_7100413720,unknown,game/characters?,U
+0x7100413720,1972,fn_7100413720,unknown,game/characters?,O
 0x7100413ed4,36,fn_7100413ed4,unknown,game/characters?,O
 0x7100413ef8,216,fn_7100413ef8,unknown,game/characters?,O
 0x7100413fd0,8,fn_7100413fd0,unknown,game/characters?,O
