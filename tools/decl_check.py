@@ -67,6 +67,9 @@ Usage:
                                                     # called or in a type's name (CI runs this on pull
                                                     # requests); growth of identical extra copies (multi-file
                                                     # symbols, extra copies) only warns, unless --strict
+<ref>'s files are read with today's names for the functions data/names.csv has named, renamed or taken back
+since (tools/rename.py), so a rename or a revert by itself adds and removes nothing.
+
 Standard library and git only, no game data, so CI can run it. <ref>'s files are read with one
 `git cat-file --batch` over `git ls-tree -r --name-only <ref>` (the same bytes `git show
 <ref>:<path>` gives, in one process). The current tree is the working tree, tracked and untracked
@@ -76,6 +79,8 @@ Standard library and git only, no game data, so CI can run it. <ref>'s files are
 from __future__ import annotations
 
 import argparse
+import csv
+import io
 import json
 import re
 import subprocess
@@ -511,6 +516,39 @@ def print_symbol(r: Report, name: str) -> None:
           f"{len(r.sigs.get(name, []))} distinct signatures")
 
 
+def renames_since(base_rows: list[dict], cur_rows: list[dict]) -> dict[str, str]:
+    """{a free function's identifier at the base: its identifier now} for the functions data/names.csv names
+    differently in the two trees: named since, renamed, or taken back to fn_<addr> (tools/rename.py --revert)."""
+    from dread import names
+
+    def idents(rows: list[dict]) -> dict[int, str]:
+        return {int(r["address"], 16): n for r in rows for q, n in [names.split(r["name"])] if not q}
+
+    was, now = idents(base_rows), idents(cur_rows)
+    return {old: new for a in sorted(set(was) | set(now))
+            for old, new in [(was.get(a, names.placeholder(a)), now.get(a, names.placeholder(a)))] if old != new}
+
+
+def as_renamed(files: dict[str, str], renames: dict[str, str]) -> dict[str, str]:
+    """The base tree's files with today's names, as tools/rename.py would have written them. The trees are
+    compared by symbol, and only fn_<addr> definitions are compared with their declarations, so without this a
+    function that changed its name is another symbol: a differing local declaration that was there all along
+    would count as new when the name is taken back."""
+    if not renames:
+        return files
+    pattern = re.compile(r"\b(?:" + "|".join(map(re.escape, sorted(renames, key=len, reverse=True))) + r")\b")
+    return {p: pattern.sub(lambda m: renames[m.group(0)], t) for p, t in files.items()}
+
+
+def base_names(ref: str) -> list[dict]:
+    """The rows of data/names.csv at a git ref (none when the ref has no such file)."""
+    try:
+        text = git("show", f"{ref}:data/names.csv").decode("utf-8")
+    except subprocess.CalledProcessError:
+        return []
+    return list(csv.DictReader(io.StringIO(text, newline="")))
+
+
 def grown(cur_by: dict[str, list[str]], base_by: dict[str, list[str]]) -> str:
     """The symbols with more signatures (or files) than at the base, beyond the first: `sym (b -> c)`."""
     syms = sorted(s for s, v in cur_by.items() if len(v) > max(len(base_by.get(s, [])), 1))
@@ -795,6 +833,9 @@ def main() -> int:
         cur_defs = definition_mismatches(cur_files, cur)
         cur_types = definition_type_differences(cur_files, cur)
         base_files = tree_files(args.base) if args.base else None
+        if args.base:
+            from dread import names
+            base_files = as_renamed(base_files, renames_since(base_names(args.base), names.read()))
         base = Report(base_files) if args.base else None
         base_defs = definition_mismatches(base_files, base) if args.base else {}
         base_types = definition_type_differences(base_files, base) if args.base else {}
