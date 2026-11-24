@@ -50,6 +50,11 @@ static inline __attribute__((always_inline)) void* ArgPtrOrNull_A5_b69(UnkReflVa
     return arg;
 }
 
+struct UnkElemView_A5_b69 {
+    u8 pad_0x0[0x30];
+    u64 field_0x30;  // 0x30
+};
+
 UnkReflValue CCutsceneComponent_InvokeSetExtraActorStatus(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* a = args[0];
     UnkCutsceneOwner_A5_b69* self = *reinterpret_cast<UnkCutsceneOwner_A5_b69**>(obj + 8);
@@ -57,8 +62,8 @@ UnkReflValue CCutsceneComponent_InvokeSetExtraActorStatus(void*, char* obj, UnkR
     u8 first = *static_cast<const u8*>(ArgPtr_A5_b69(&a[1]));
     u8 second = *static_cast<const u8*>(ArgPtr_A5_b69(&a[2]));
     for (u32 i = 0; i < self->entries.count; ++i) {
-        UnkElem_0x88& e = fn_71007a6b58(&self->entries, i);
-        if (*reinterpret_cast<const u64*>(reinterpret_cast<char*>(&e) + 0x30) == *id) {
+        UnkElemView_A5_b69& e = reinterpret_cast<UnkElemView_A5_b69&>(fn_71007a6b58(&self->entries, i));
+        if (e.field_0x30 == *id) {
             bool b = second;
             bool a = first;
             fn_71007a95f8(self, i, a, a, b);

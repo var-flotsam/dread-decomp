@@ -56,13 +56,18 @@ void fn_7100d7b468(UnkEntityComponents* self, void* a) { ForEachComponent<0x130>
 struct UnkOwner;
 void fn_71010d6878(f32 value);
 
+struct UnkTunables_7100d7b394 {
+    u8 pad_0x0[0x24];
+    f32 field_0x24;  // 0x24
+    f32 field_0x28;  // 0x28
+};
+
 void fn_7100d7b394(UnkEntityComponents* self, void* a) {
     UnkEntityComponents* player = reinterpret_cast<UnkEntityComponents*>(fn_7100defcd4(g_unk_7101d47310));
-    char* tunable = reinterpret_cast<char*>(&g_unk_7172a03d80);
-    f32* a0 = reinterpret_cast<f32*>(tunable + 0x24);
-    f32* a1 = reinterpret_cast<f32*>(tunable + 0x28);
-    asm("" : "+r"(a0));
-    fn_71010d6878(*(player == self ? a0 : a1));
+    const UnkTunables_7100d7b394* tunable = reinterpret_cast<const UnkTunables_7100d7b394*>(&g_unk_7172a03d80);
+    f32 a0 = tunable->field_0x24;
+    f32 a1 = tunable->field_0x28;
+    fn_71010d6878(player == self ? a0 : a1);
     ForEachComponent<0x128>(self, a);
 }
 
