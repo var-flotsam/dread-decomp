@@ -20,6 +20,7 @@
 #include "game/UnkUnit2728Holder.h"
 #include "types.h"
 #include "game/sound/UnkSoundHandle.h"
+#include "game/UnkSoundRef.h"
 
 using base::global::CStrId;
 
@@ -70,12 +71,7 @@ __attribute__((noinline)) void fn_7101192664(UnkUnit2728* self, const CStrId* ke
     }
 }
 
-struct UnkSound;
-struct UnkSoundRef {
-    UnkSound* sound;
-    s64 serial;
-};
-inline UnkSound* UnkSoundHandle::Get() const { if (ref && ref->serial == serial && serial != -1) return ref->sound; return nullptr; }
+inline UnkSound* UnkSoundHandle::Get() const { if (ref && ref->serial == serial && serial != -1) return ref->object; return nullptr; }
 
 UnkSoundHandle fn_7100fcdf00(void* player, f32 volume, const CStrId& name, bool arg3);
 
