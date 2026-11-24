@@ -18,7 +18,7 @@ struct UnkTrainUsableComponentCutScene_b308 {
     u32 field_0x588;
     bool field_0x58c;
     u32 field_0x590;
-    base::UnkAllocator* field_0x598;
+    base::IAllocator* field_0x598;
     u32 field_0x5a0;
     u64 field_0x5a8;
 };

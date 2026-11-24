@@ -33,7 +33,7 @@ struct UnkCollider_ovb0034 {
     u32 count;                                // 0x130
     UnkColliderListNode_ovb0034* head;        // 0x138
     UnkColliderListNode_ovb0034* tail;        // 0x140
-    base::UnkAllocator* allocator;            // 0x148
+    base::IAllocator* allocator;            // 0x148
     u8 pad_0x150[0x8];
     UnkColliderReleasable_ovb0034* field_0x158;
     bool field_0x160;
@@ -79,7 +79,7 @@ struct UnkColliderMapNode_ovb0034 {
 };
 
 struct UnkColliderMap_ovb0034 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkColliderMapNode_ovb0034** buckets;

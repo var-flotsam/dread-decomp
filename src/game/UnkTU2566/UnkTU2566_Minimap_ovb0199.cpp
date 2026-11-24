@@ -519,7 +519,7 @@ struct UnkMmCell_b0199 {
     u64 field_0x10;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     f32 min[2];
     f32 max[2];
     u8 sub[0x50];

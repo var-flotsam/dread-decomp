@@ -25,7 +25,7 @@ struct UnkUnit2669Str {
     CRntString* Str() { return reinterpret_cast<CRntString*>(this); }
 
     UnkUnit2669Str() {
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage));
         storage.vtable = g_unk_7101a194b8 + 2;
         storage.field_0x108 = nullptr;
         storage.field_0x110 = 0;

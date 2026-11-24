@@ -58,7 +58,7 @@ void* refl_CacheAdd(UnkCacheOwner* self, const char* key, u32 a, void* b) {
     if (fn_71000171a0(obj, key, &request)) {
         ++*reinterpret_cast<u32*>(s + 0x50);
         char* node = static_cast<char*>(
-            (*reinterpret_cast<UnkAllocator**>(s + 0x40))->vf_0x40(0x18, 8, *reinterpret_cast<u32*>(s + 0x48)));
+            (*reinterpret_cast<IAllocator**>(s + 0x40))->vf_0x40(0x18, 8, *reinterpret_cast<u32*>(s + 0x48)));
         if (node) {
             UnkStringData* d = *reinterpret_cast<UnkStringData* const*>(key + 8);
             *reinterpret_cast<UnkStringData**>(node) = d;

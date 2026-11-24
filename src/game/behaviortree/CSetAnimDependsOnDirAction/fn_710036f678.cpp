@@ -66,7 +66,7 @@ void fn_710036f678(UnkNode_36f678* self) {
         base::global::UnkEnsureStringPool();
     self->field_0x90.data = &g_unk_7101d47108->empty;
     CRntString_InitWithAllocator(reinterpret_cast<base::global::CRntString*>(&self->field_0x98),
-                  reinterpret_cast<base::UnkAllocator*>(&self->field_0x98.vtable));
+                  reinterpret_cast<base::IAllocator*>(&self->field_0x98.vtable));
     self->field_0x98.vtable = &g_unk_7101a194b8[2];
     self->field_0x98.field_0x138 = 0;
     self->field_0x98.field_0x140 = 0;

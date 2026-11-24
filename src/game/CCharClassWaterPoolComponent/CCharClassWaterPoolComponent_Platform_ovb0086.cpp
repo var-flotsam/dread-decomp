@@ -150,7 +150,7 @@ struct UnkWaterPoolArray_b0086 {
     u32 count;
     u32 capacity;
     u8 pad_0x10[0x10];
-    base::UnkAllocator* allocator;  // +0x20
+    base::IAllocator* allocator;  // +0x20
 };
 
 // Releases a string id in two steps (the id and its count reloaded after the decrement).

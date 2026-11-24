@@ -51,8 +51,8 @@ void fn_7100083870(void* mem, u64 size) {
     fn_7100133010(g_unk_7101d58eb0, g_unk_7101d58eb8);
 }
 
-base::UnkAllocator* GetDefaultAllocator() {
-    return reinterpret_cast<base::UnkAllocator*>(s_current);
+base::IAllocator* GetDefaultAllocator() {
+    return reinterpret_cast<base::IAllocator*>(s_current);
 }
 
 void fn_71000839c0(bool current_thread) {
@@ -100,7 +100,7 @@ void* fn_7100083b80(u64 size) {
 }
 
 // Allocates from `allocator`, or from the default one without it.
-void* fn_7100083bc0(u64 size, u32 flags, u64 align, base::UnkAllocator* allocator) {
+void* fn_7100083bc0(u64 size, u32 flags, u64 align, base::IAllocator* allocator) {
     if (allocator)
         return allocator->vf_0x40(size, align, flags);
     return s_current->vf_0x40(size, align, flags);

@@ -22,7 +22,7 @@ struct UnkIdMapNode_b0261 {
 };
 
 struct UnkIdMap_b0261 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkIdMapNode_b0261** buckets;  // 0x10

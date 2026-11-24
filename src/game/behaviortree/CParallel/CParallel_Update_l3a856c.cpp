@@ -22,7 +22,7 @@ struct UnkParallel_l3a856c {
     u32 running_count;                 // 0x70
     UnkParallelEntry_l3a856c* head;    // 0x78
     UnkParallelEntry_l3a856c* tail;    // 0x80
-    base::UnkAllocator* allocator;     // 0x88
+    base::IAllocator* allocator;     // 0x88
     u32 flags;                         // 0x90
     u8 pad_0x94[0x4c];
     u32 pending;  // 0xe0

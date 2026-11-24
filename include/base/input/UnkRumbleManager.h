@@ -23,7 +23,7 @@ namespace base::input {
 // and growth step at +0x18-0x24, the buckets' flags and allocator at +0x28/+0x30, the node list
 // at +0x38/+0x40, the node pool (vtable +0x48, allocator +0x50, free list +0x58).
 struct UnkPooledChainedMap {
-    base::UnkAllocator* alloc;  // +0x0
+    base::IAllocator* alloc;  // +0x0
     u32 flags;                  // +0x8, 0xe
     u32 size;                   // +0xc, the entry count
     base::global::CRntVector<void*> buckets;  // +0x10, the bucket heads
@@ -53,7 +53,7 @@ struct UnkRumbleManager {
     u64 field_0x20b0;
     u32 field_0x20b8;                // 10
     u32 field_0x20bc;                // 0xe
-    base::UnkAllocator* alloc_0x20c0;
+    base::IAllocator* alloc_0x20c0;
     u8 pad_0x20c8[8];
     UnkPooledChainedMap map;  // +0x20d0
     u64 field_0x2158;
@@ -63,7 +63,7 @@ struct UnkRumbleManager {
     u8 pad_0x216d[3];
     u32 field_0x2170;  // 0xf
     u8 pad_0x2174[4];
-    base::UnkAllocator* alloc_0x2178;
+    base::IAllocator* alloc_0x2178;
     u64 field_0x2180;
     u8 pad_0x2188[8];
     UnkBlockFreeList pool_0x2190;
@@ -74,7 +74,7 @@ struct UnkRumbleManager {
     u8 pad_0x21cd[3];
     u32 field_0x21d0;  // 0xf
     u8 pad_0x21d4[4];
-    base::UnkAllocator* alloc_0x21d8;
+    base::IAllocator* alloc_0x21d8;
     u8 pad_0x21e0[8];
     u32 field_0x21e8;
     u32 field_0x21ec;

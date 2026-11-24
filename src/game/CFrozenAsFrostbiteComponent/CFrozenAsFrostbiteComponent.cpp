@@ -25,7 +25,7 @@ struct UnkFrozenAsFrostbiteComponent {
     u32 field_0x3f8;
     bool field_0x3fc;
     u32 field_0x400;
-    base::UnkAllocator* field_0x408;
+    base::IAllocator* field_0x408;
 };
 
 void fn_71007f5bf4(UnkFrozenAsFrostbiteComponent* self) {

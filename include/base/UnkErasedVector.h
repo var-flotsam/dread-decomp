@@ -48,7 +48,7 @@ struct UnkErasedVector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 static_assert(sizeof(UnkErasedVector) == 0x28, "UnkErasedVector layout");
 

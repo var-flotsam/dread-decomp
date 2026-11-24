@@ -99,7 +99,7 @@ struct UnkLockOnPointNode_l882cdc {
 };
 
 struct UnkLockOnPointMap_l882cdc {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     base::global::CRntVector<UnkLockOnPointNode_l882cdc*> buckets;

@@ -28,7 +28,7 @@ struct UnkRefList_b0209 {
     UnkRefNode_b0209* head;
     UnkRefNode_b0209* tail;
     u8 unk_0x18[8];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void FreeNodes() {
         for (UnkRefNode_b0209* n = head; n;) {

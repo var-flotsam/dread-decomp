@@ -18,7 +18,7 @@ struct UnkMagnetSlidingBlockCounterWeightMovablePlatformComponent_a710 {
     u32 field_0x270;
     bool field_0x274;
     u32 field_0x278;
-    base::UnkAllocator* field_0x280;
+    base::IAllocator* field_0x280;
     u32 field_0x288;
     u64 field_0x290;
 };

@@ -38,7 +38,7 @@ struct UnkDemolitionSets_l7b0e04 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Reallocate(u32 n) {
         auto* p = static_cast<UnkDemolitionSet_l7b0e04*>(allocator->vf_0x40((u64)n * sizeof(UnkDemolitionSet_l7b0e04), 8, flags));

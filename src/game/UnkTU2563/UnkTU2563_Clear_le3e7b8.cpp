@@ -33,7 +33,7 @@ struct UnkOpaqueTable_le3e7b8 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // An array of array pairs, destroyed out of line.

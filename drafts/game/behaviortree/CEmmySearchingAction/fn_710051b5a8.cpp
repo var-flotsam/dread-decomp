@@ -59,7 +59,7 @@ struct UnkSearcher {
 void fn_710051b5a8(UnkSearcher* self, u32 index, base::global::CRntVector<UnkPoint*>* points) {
     UnkEntryList& entries = self->field_0x12b08;
 
-    base::UnkAllocator* copy_allocator = points->allocator;
+    base::IAllocator* copy_allocator = points->allocator;
     UnkPoint** copy = nullptr;
     if (points->capacity)
         copy = static_cast<UnkPoint**>(

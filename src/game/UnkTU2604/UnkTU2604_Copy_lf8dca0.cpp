@@ -38,7 +38,7 @@ struct UnkTU2604CopySoundNode {
 
 // CRntDictionary<CStrId, CEnvironmentSoundData::SSound>: chained buckets and a list of all nodes.
 struct UnkTU2604CopySoundMap {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;                                    // 0xc
     CRntVector<UnkTU2604CopySoundNode*> buckets;  // 0x10

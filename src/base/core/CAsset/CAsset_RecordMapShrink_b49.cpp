@@ -25,7 +25,7 @@ struct UnkAssetKeyedMap {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkAssetKeyedMap(UnkAssetKeyedMap&& other)
         : values(other.values), keys(other.keys), count(other.count), capacity(other.capacity),

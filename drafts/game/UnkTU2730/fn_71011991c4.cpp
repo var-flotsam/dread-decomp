@@ -43,7 +43,7 @@ struct UnkHandleList_l1991c4 {
     u32 count;
     Node* head;
     Node* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 
     // The node whose handle leads to `target`, or null.

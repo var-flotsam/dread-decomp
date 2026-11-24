@@ -26,7 +26,7 @@ struct UnkAutclastChargeAttack {
     u32 field_0xa0;
     bool field_0xa4;
     u32 field_0xa8;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 __attribute__((always_inline)) static inline void Construct(UnkAutclastChargeAttack* self) {

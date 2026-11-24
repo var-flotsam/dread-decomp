@@ -22,7 +22,7 @@ struct UnkLinkedList {
     };
     Node* head;            // 0x8
     Node* tail;            // 0x10
-    UnkAllocator* allocator;  // 0x18
+    IAllocator* allocator;  // 0x18
     u32 flags;             // 0x20
 
     // Frees every node and leaves the list empty.

@@ -68,7 +68,7 @@ struct UnkAnimTreeIdPairs_b49a1 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 static inline void Grow_b49a1(UnkAnimTreeIdPairs_b49a1* self, u32 index) {

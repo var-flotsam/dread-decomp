@@ -173,7 +173,7 @@ struct UnkFloatsById_ovb0064 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkFloatsById_ovb0064(const UnkFloatsById_ovb0064& other) {
         ids = nullptr;

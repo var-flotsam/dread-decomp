@@ -80,7 +80,7 @@ struct UnkBeamVector_l8aba1c {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_71008aba1c(UnkBeamVector_l8aba1c* self, const UnkBeamEntry_l8aba1c* value, u32 index) {

@@ -18,13 +18,13 @@ struct UnkElem_l2970ec {
     u64 field_0x60;
     u32 field_0x68;
     u8 pad_0x6c[4];
-    base::UnkAllocator* allocator_a;  // 0x70
+    base::IAllocator* allocator_a;  // 0x70
     char* vtable_b;                   // 0x78
     u32 field_0x80;
     u8 pad_0x84[4];
     u64 field_0x88;
     u64 field_0x90;
-    base::UnkAllocator* allocator_b;  // 0x98
+    base::IAllocator* allocator_b;  // 0x98
     u32 field_0xa0;
     u8 pad_0xa4[4];
     u8 outline_b[0x40];  // 0xa8
@@ -33,7 +33,7 @@ struct UnkElem_l2970ec {
     u8 pad_0xf4[4];
     u64 field_0xf8;
     u64 field_0x100;
-    base::UnkAllocator* allocator_c;  // 0x108
+    base::IAllocator* allocator_c;  // 0x108
     u32 field_0x110;
     u8 pad_0x114[4];
     u8 outline_c[0x40];  // 0x118
@@ -72,7 +72,7 @@ struct UnkArray_l2970ec {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 // As src/game/UnkTU365/UnkTU365_Misc_ovb0228.cpp and UnkTU365_Containers_ovb0229.cpp declare them.

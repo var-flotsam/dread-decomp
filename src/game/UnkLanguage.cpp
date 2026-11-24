@@ -79,7 +79,7 @@ static inline UnkLanguageNode** Slot(base::global::CRntVector<UnkLanguageNode*>&
 }
 
 struct UnkLanguage {
-    base::UnkAllocator* allocator;  // the nodes'
+    base::IAllocator* allocator;  // the nodes'
     u32 flags;
     u32 count;
     base::global::CRntVector<UnkLanguageNode*> buckets;  // `capacity` is the hash modulus

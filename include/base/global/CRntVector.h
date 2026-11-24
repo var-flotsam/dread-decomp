@@ -1,7 +1,8 @@
 #pragma once
 
 // The engine's growable array, base::global::CRntVector (the name reflection gives it), and the
-// allocator interface it allocates through (a placeholder name). The layout is shared by CType+0x90 (default-constructed
+// allocator interface it allocates through (base::IAllocator, an inferred name: no RTTI, string or
+// mercury-engine-data-structures entry names it). The layout is shared by CType+0x90 (default-constructed
 // there: growth step 10, flags 0x3e) and the parameter-type list of a reflected function
 // (CFunction+0x8, filled by fn_7100a19530).
 
@@ -18,8 +19,10 @@
 namespace base {
 
 // Only the slots the array and the C library functions use are named. vf_0x40 allocates (size,
-// alignment, flags); vf_0x48 frees; vf_0x50 is an allocation's usable size.
-struct UnkAllocator {
+// alignment, flags); vf_0x48 frees; vf_0x50 is an allocation's usable size. An interface: its users
+// reach it only through these slots, and two implementations share them (base::UnkDefaultAllocator,
+// which GetDefaultAllocator hands out, and its sub-allocators; base/UnkDefaultAllocator.h).
+struct IAllocator {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -39,7 +42,7 @@ struct UnkAllocator {
 // it the memory heap's first 0x4e700000 bytes; src/base/UnkDefaultAllocatorGlobal.cpp).
 void fn_7100083870(void* mem, u64 size);
 // Returns the allocator new arrays are created with.
-base::UnkAllocator* GetDefaultAllocator();
+base::IAllocator* GetDefaultAllocator();
 // Allocates `size` bytes from that allocator (its vf_0x40, 8-byte aligned) with the given flags.
 void* fn_71000839a0(u64 size, u32 flags);
 // Allocates `size` bytes from that allocator, 8-byte aligned, with the given flags (the system
@@ -51,7 +54,7 @@ void* fn_7100083ba0(u64 size, u32 flags);
 // runtime's (port/runtime/src/heap.cpp, which comes here once the allocator exists).
 void* fn_7100083b60(u64 size);
 void* fn_7100083b80(u64 size);
-void* fn_7100083bc0(u64 size, u32 flags, u64 align, base::UnkAllocator* allocator);
+void* fn_7100083bc0(u64 size, u32 flags, u64 align, base::IAllocator* allocator);
 void fn_7100083c00(void* ptr);
 void fn_7100083c30(void* ptr);
 
@@ -67,7 +70,7 @@ struct CRntVector {
     u32 step = 10;  // capacity grows to the next multiple of this
     bool field_0x14 = true;
     u32 flags = 0x3e;  // passed to the allocator
-    UnkAllocator* allocator = GetDefaultAllocator();
+    IAllocator* allocator = GetDefaultAllocator();
 
     CRntVector() = default;
     explicit CRntVector(u32 flags) : flags(flags) {}

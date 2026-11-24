@@ -29,7 +29,7 @@ struct UnkIdNode_l1a19a4 {
 };
 
 struct UnkIdMap_l1a19a4 {
-    base::UnkAllocator* allocator;    // 0x0
+    base::IAllocator* allocator;    // 0x0
     u8 pad_0x8[4];
     u32 count;                        // 0xc
     void* buckets;                    // 0x10

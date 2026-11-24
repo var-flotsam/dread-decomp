@@ -13,7 +13,7 @@ struct UnkIdPairMap;
 void fn_7100f8db84(UnkIdPairMap* self);
 
 struct UnkIdPairMap {
-    base::UnkAllocator* allocator;  // frees the nodes
+    base::IAllocator* allocator;  // frees the nodes
     u32 field_0x8;
     u32 count;
     base::global::CRntVector<void*> buckets;

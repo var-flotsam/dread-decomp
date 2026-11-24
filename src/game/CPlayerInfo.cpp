@@ -96,7 +96,7 @@ struct UnkPlayerInfo {
     u32 field_0x334;
     u32 field_0x338;
     u32 field_0x33c;
-    base::UnkAllocator* field_0x340;
+    base::IAllocator* field_0x340;
     u8 timer_0x348[0xb0];
     bool field_0x3f8;
 };

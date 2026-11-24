@@ -27,7 +27,7 @@ struct UnkReflParamAttrs_ovb0102 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u64 field_0x28;
     u32 field_0x30;
 

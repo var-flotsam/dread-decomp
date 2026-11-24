@@ -70,7 +70,7 @@ void fn_71001b2d04(UnkRenderRes_ovb0076* self) {
 // A list of file-path ids built from an array of them (each one copied in turn), growing by
 // `step`, its allocator the default one when none is given.
 void fn_71001b1478(UnkResPathVec* self, const CFilePathStrId* ids, u64 count, u32 step,
-                   base::UnkAllocator* allocator, u32 flags) {
+                   base::IAllocator* allocator, u32 flags) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;

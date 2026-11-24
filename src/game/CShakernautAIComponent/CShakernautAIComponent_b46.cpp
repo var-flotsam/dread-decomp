@@ -10,7 +10,7 @@ struct UnkShakernautList_b46a2 {
     u32 capacity;
     u8 flag;
     u32 grow;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkShakernautAI_b46a2 {

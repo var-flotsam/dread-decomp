@@ -23,7 +23,7 @@ struct UnkPool_ld46804 {
     u32 count;
     void* field_0x10;
     void* field_0x18;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 };
 

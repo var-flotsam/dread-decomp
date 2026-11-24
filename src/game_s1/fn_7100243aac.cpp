@@ -51,7 +51,7 @@ struct UnkOwnedArray_7100243aac {
     u32 count;
     u32 capacity;
     u8 pad_0x10[0x10];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_7100243aac(UnkOwnedArray_7100243aac* self) {

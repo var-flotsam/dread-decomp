@@ -27,7 +27,7 @@ struct UnkUnit280Array {
     u32 step;      // 0x10
     bool field_0x14;
     u32 flags;                      // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 
     __attribute__((always_inline)) UnkUnit280Array& operator=(const UnkUnit280Array& other) {
         count = 0;

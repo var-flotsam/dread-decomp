@@ -19,7 +19,7 @@ extern const char* const g_unk_7101cac300[] __attribute__((visibility("hidden"))
 // A hash map by name whose nodes are also kept in a list.
 template <class Node>
 struct UnkMusicDefMap_dbd98 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;  // 0xc
     Node** buckets;

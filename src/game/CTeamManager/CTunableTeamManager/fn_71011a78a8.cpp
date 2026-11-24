@@ -42,7 +42,7 @@ struct UnkRefList {
     Node* head;
     Node* tail;
     u8 unk_0x18[Pad];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkRefList() {
         for (Node* n = head; n;) {

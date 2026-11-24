@@ -21,7 +21,7 @@ struct UnkSwarmEntry_l74ea40 {
     u8 pad_0x2d[3];
     u32 field_0x30;
     u8 pad_0x34[4];
-    base::UnkAllocator* allocator;  // 0x38
+    base::IAllocator* allocator;  // 0x38
 
     // The move constructor.
     UnkSwarmEntry_l74ea40(UnkSwarmEntry_l74ea40& other) {

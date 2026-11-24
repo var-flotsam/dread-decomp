@@ -44,7 +44,7 @@ struct UnkCreditsNodeList_b44a3 {
     u32 count;
     UnkCreditsNode_b44a3* head;
     UnkCreditsNode_b44a3* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u8 unk_0x28[0x18];
 
     ~UnkCreditsNodeList_b44a3() {

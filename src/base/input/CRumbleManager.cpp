@@ -50,7 +50,7 @@ void fn_71000733e4(UnkRumbleManager* self) {
     m->buckets.step = 10;
     m->buckets.field_0x14 = true;
     m->buckets.flags = 0xe;
-    base::UnkAllocator* a = GetDefaultAllocator();
+    base::IAllocator* a = GetDefaultAllocator();
     m->last = nullptr;
     m->first = nullptr;
     m->pool_vtable = g_unk_7101a1a4c8 + 0x10;
@@ -222,6 +222,6 @@ UnkRumbleFile* fn_710007454c(UnkRumbleManager* self, const void* name) {
 // The manager's pool of 0xa8-byte blocks at +0x2180 (base/UnkBlockArrayPool.h).
 #include "base/UnkBlockArrayPool.h"
 
-void fn_7100073900(UnkBlockArrayPool* self, u64 n, u32 flags, base::UnkAllocator* allocator) {
+void fn_7100073900(UnkBlockArrayPool* self, u64 n, u32 flags, base::IAllocator* allocator) {
     UnkBlockArrayPoolCreate<0xa8>(self, n, flags, allocator);
 }

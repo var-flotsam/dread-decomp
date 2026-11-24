@@ -195,7 +195,7 @@ void refl_ListDtor(char* self) {
     char* n = *reinterpret_cast<char**>(self + 0x10);
     while (n) {
         char* next = *reinterpret_cast<char**>(n + Next);
-        (*reinterpret_cast<UnkAllocator**>(self + Alloc))->vf_0x48(n);
+        (*reinterpret_cast<IAllocator**>(self + Alloc))->vf_0x48(n);
         n = next;
     }
     *reinterpret_cast<u32*>(self + 8) = 0;
@@ -274,7 +274,7 @@ inline void refl_FreeListNodes(char* self) {
     char* n = *reinterpret_cast<char**>(self + 0x10);
     while (n) {
         char* next = *reinterpret_cast<char**>(n + Next);
-        (*reinterpret_cast<UnkAllocator**>(self + 0x20))->vf_0x48(n);
+        (*reinterpret_cast<IAllocator**>(self + 0x20))->vf_0x48(n);
         n = next;
     }
 }
@@ -295,7 +295,7 @@ void refl_ListOwnerDeletingDtor(char* self) {
     *reinterpret_cast<char**>(self + 0x30) = Traits::member_vtable() + 0x10;
     if (char* p = *reinterpret_cast<char**>(self + 0x60)) {
         fn_71000837f4(reinterpret_cast<UnkBlockFreeList*>(self + 0x40));
-        (*reinterpret_cast<UnkAllocator**>(self + 0x38))->vf_0x48(p);
+        (*reinterpret_cast<IAllocator**>(self + 0x38))->vf_0x48(p);
         *reinterpret_cast<char**>(self + 0x38) = nullptr;
     }
     *reinterpret_cast<char**>(self) = Traits::base_vtable() + 0x10;

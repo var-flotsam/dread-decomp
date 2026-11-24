@@ -15,7 +15,7 @@
 #include "game/UnkTU223.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 
 struct UnkSoundIdList : base::UnkLinkedList<UnkSoundIdListNode> {
     UnkSoundIdListNode* Find(u32 key) {
@@ -87,7 +87,7 @@ static inline void SetColor(UnkSoundIdItem* item, f32 rgb, f32 alpha) {
 }
 
 struct UnkSoundIdRegistry {
-    UnkAllocator* allocator;  // the map's nodes'
+    IAllocator* allocator;  // the map's nodes'
     u32 flags;
     u32 count;
     base::global::CRntVector<UnkSoundIdEntry*> buckets;  // 0x10

@@ -25,7 +25,7 @@ struct UnkQueueAI_l105990 {
     UnkQueueEntry_l105990* last;    // 0x1178
     UnkQueueEntry_l105990* first;   // 0x1180
     u32 flags;                      // 0x1188
-    base::UnkAllocator* allocator;  // 0x1190
+    base::IAllocator* allocator;  // 0x1190
 
     void PopFirst() {
         UnkQueueEntry_l105990* entry = first;

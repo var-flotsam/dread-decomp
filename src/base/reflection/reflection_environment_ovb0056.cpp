@@ -189,7 +189,7 @@ void fn_7100d8f0b4(UnkEnvironmentVisuals_ovb56* self) {
     fn_7100f985d8(0.0f, fade, &range);
 }
 
-using base::UnkAllocator;
+using base::IAllocator;
 
 // A path entry (0x18 bytes) of an inner array.
 struct UnkPathEntry_ovb56 {
@@ -204,7 +204,7 @@ struct UnkPathGroup_ovb56 {
     u32 count;                 // 0x10
     u32 capacity;              // 0x14
     u8 unk_0x18[0x10];
-    UnkAllocator* allocator;  // 0x28
+    IAllocator* allocator;  // 0x28
     u8 unk_0x30[0x20];
 };
 static_assert(sizeof(UnkPathGroup_ovb56) == 0x50, "layout");
@@ -214,7 +214,7 @@ struct UnkPathGroupVec_ovb56 {
     u32 count;
     u32 capacity;
     u8 unk_0x10[0x10];
-    UnkAllocator* allocator;  // 0x20
+    IAllocator* allocator;  // 0x20
 };
 
 // Shrinks the array to `n`, releasing the entries of every dropped group.

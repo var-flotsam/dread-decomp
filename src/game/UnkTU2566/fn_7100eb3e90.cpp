@@ -10,7 +10,7 @@
 #include "game/UnkCountedRef_b53.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CStrId;
 
 using UnkNamedRefArrays_eb3e90 = base::global::CRntSmallDictionary<CStrId, UnkCountedRef_b53>;

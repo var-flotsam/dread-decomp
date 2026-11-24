@@ -82,7 +82,7 @@ struct UnkIdArray78Node_lfedc08 {
 
 // A chained hash map whose nodes are also linked in one list.
 struct UnkIdArray78Map_lfedc08 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     base::global::CRntVector<UnkIdArray78Node_lfedc08*> buckets;

@@ -30,7 +30,7 @@ struct UnkNavMeshMap47f8 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkNavMeshMap47f8() {
         values = nullptr;
@@ -344,7 +344,7 @@ struct UnkNavBucketE93c {
     void* field_0x0;
     void* field_0x8;
     u8 pad_0x10[0x10];
-    base::UnkAllocator* allocator;  // +0x20
+    base::IAllocator* allocator;  // +0x20
 
     ~UnkNavBucketE93c() {
         CNavMesh_ClearMapOfRecordListMaps(reinterpret_cast<UnkNavLoadRecordMaps*>(this));

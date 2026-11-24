@@ -98,7 +98,7 @@ struct UnkCallbackSetVector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     template <void (*Reserve)(UnkCallbackSetVector*, u32),
               void (*PushBack)(UnkCallbackSetVector*, const UnkCallbackSetElem*)>

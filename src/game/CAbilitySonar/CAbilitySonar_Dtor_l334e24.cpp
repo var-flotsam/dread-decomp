@@ -78,7 +78,7 @@ struct UnkSonarTargetList_l334e24 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Destroy() {
         if (data) {

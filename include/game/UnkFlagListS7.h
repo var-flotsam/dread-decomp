@@ -28,7 +28,7 @@ struct alignas(16) UnkFlagList {
         Node* tail;
     };
     union {
-        base::UnkAllocator* allocator;
+        base::IAllocator* allocator;
     };
     union {
         u32 flags;

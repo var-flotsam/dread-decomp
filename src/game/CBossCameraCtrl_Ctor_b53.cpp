@@ -32,7 +32,7 @@ struct UnkBossCameraCtrl_b53 : UnkBossCameraBase_b53 {
     u32 list_step = 10;
     bool list_field_0x14 = true;
     u32 list_flags = 0xf;
-    base::UnkAllocator* list_allocator = GetDefaultAllocator();
+    base::IAllocator* list_allocator = GetDefaultAllocator();
     u64 field_0x2c8[15] = {};
     u8 unk_0x340[4];
     f32 field_0x344 = 1.0f;

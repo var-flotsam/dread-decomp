@@ -3,10 +3,10 @@
 #include "base/UnkCloneHelpers.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 
 struct UnkState_0xb0 {
-    UnkAllocator* alloc_0x0;
+    IAllocator* alloc_0x0;
     s32 field_0x8;
     s32 field_0xc, field_0x10, field_0x14, field_0x18, field_0x1c;
     s32 field_0x20;
@@ -14,7 +14,7 @@ struct UnkState_0xb0 {
     u8 pad_0x25[3];
     s32 field_0x28;
     u8 pad_0x2c[4];
-    UnkAllocator* alloc_0x30;
+    IAllocator* alloc_0x30;
     void* field_0x38;
     void* field_0x40;
     void* vtable_0x48;
@@ -30,7 +30,7 @@ struct UnkState_0xb0 {
     u8 pad_0x9d[3];
     s32 field_0xa0;
     u8 pad_0xa4[4];
-    UnkAllocator* alloc_0xa8;
+    IAllocator* alloc_0xa8;
 };
 
 void fn_710008c674(UnkState_0xb0* self) {

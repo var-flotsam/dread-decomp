@@ -10,7 +10,7 @@
 #include "game/UnkTU57.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CRntString;
 
 struct UnkStrNode_b6f {
@@ -26,10 +26,10 @@ struct UnkStrList_b6f {
     UnkStrNode_b6f* head;  // +0x10
     UnkStrNode_b6f* tail;  // +0x18
     u32 flags;  // +0x20
-    UnkAllocator* allocator;  // +0x28: the nodes' allocator (the pool below once it has a block)
-    UnkAllocator* parent;  // +0x30: where the pool's block comes from
+    IAllocator* allocator;  // +0x28: the nodes' allocator (the pool below once it has a block)
+    IAllocator* parent;  // +0x30: where the pool's block comes from
     void* pool_vtable;  // +0x38: the node pool
-    UnkAllocator* pool_parent;  // +0x40
+    IAllocator* pool_parent;  // +0x40
     UnkBlockFreeList pool_blocks;  // +0x48
 
     void Clear() {
@@ -49,8 +49,8 @@ struct UnkStrList_b6f {
     // Gives the pool one block for `nodes` nodes.
     void Reserve(u32 nodes) {
         u32 block_flags = flags;
-        UnkAllocator* own = allocator;
-        UnkAllocator* from = parent;
+        IAllocator* own = allocator;
+        IAllocator* from = parent;
         if (!from)
             from = own;
         if (void* block = pool_blocks.buffer) {
@@ -64,7 +64,7 @@ struct UnkStrList_b6f {
         u64 size = (u64)nodes * sizeof(UnkStrNode_b6f);
         void* buffer = from->vf_0x40(size, 8, block_flags);
         fn_710008378c(&pool_blocks, buffer, size, sizeof(UnkStrNode_b6f));
-        allocator = reinterpret_cast<UnkAllocator*>(&pool_vtable);
+        allocator = reinterpret_cast<IAllocator*>(&pool_vtable);
     }
 
     UnkStrNode_b6f* PushBack() {

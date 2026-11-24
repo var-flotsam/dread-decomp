@@ -28,7 +28,7 @@ struct UnkEmmyWakeUpComponent {
     u32 field_0x98;
     bool field_0x9c;
     u32 field_0xa0;
-    base::UnkAllocator* field_0xa8;
+    base::IAllocator* field_0xa8;
     u32 field_0xb0;
     u64 field_0xb8;
     void** field_0xc0;

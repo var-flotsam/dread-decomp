@@ -21,7 +21,7 @@ struct UnkArrayBase_710014a86c {
     u32 count;
     u32 capacity;
     u8 pad_0x20[0x10];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 template <bool Deleting>
@@ -110,7 +110,7 @@ struct UnkOwningArray_710014c3d4 : UnkArrayBase_710014a86c {
     u32 object_count;
     u32 object_capacity;
     u8 pad_0x48[0x10];
-    base::UnkAllocator* object_allocator;
+    base::IAllocator* object_allocator;
 };
 
 template <bool Deleting>
@@ -149,7 +149,7 @@ struct UnkArray_710014c1e8 {
     u32 count;
     u32 capacity;
     u8 pad_0x10[0x10];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) ~UnkArray_710014c1e8() {
         if (data) {
@@ -166,7 +166,7 @@ struct UnkListNode_710014c1e8 {
 };
 
 struct UnkHashedList_710014c1e8 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 field_0x8;
     u32 size;
     UnkArray_710014c1e8 buckets;
@@ -222,7 +222,7 @@ struct UnkTwoBasesInit_710014b810 {
     u64 field_0x70;
     u64 field_0x78;
     base::global::CRntVector<void*> array_0x80;
-    base::UnkAllocator* list_allocator;
+    base::IAllocator* list_allocator;
     u32 list_field_0x8;
     u32 list_size;
     base::global::CRntVector<void*> buckets;

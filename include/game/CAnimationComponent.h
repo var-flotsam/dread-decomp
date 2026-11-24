@@ -60,7 +60,7 @@ bool fn_710117aaac(void* cls, const base::reflection::CClass* track_class, f32 f
 bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, UnkFlags_7101176ea8 flags, const UnkS16& a, const UnkS12& b, UnkFlags_7101176ea8 c);
 const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 f32 fn_710117808c(UnkAnimationComponent* self, u64 key);
-void fn_710117b794(void* list, u32 capacity, u32 a, u32 step, base::UnkAllocator* allocator);
+void fn_710117b794(void* list, u32 capacity, u32 a, u32 step, base::IAllocator* allocator);
 extern void* g_unk_7101cb46c0[];
 extern char g_unk_7101cb4840[];
 extern char g_unk_7101cb4860[];

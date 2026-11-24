@@ -34,7 +34,7 @@ struct UnkScene3DCtor_lb72380 {
     u8 pad_0x37c[0x4];
     void* list_head;  // 0x380
     void* list_tail;  // 0x388
-    base::UnkAllocator* allocator;  // 0x390
+    base::IAllocator* allocator;  // 0x390
     u32 field_0x398;
     u8 pad_0x39c[0x4];
     u32 field_0x3a0;

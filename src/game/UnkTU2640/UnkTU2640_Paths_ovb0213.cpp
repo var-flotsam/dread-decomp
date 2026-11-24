@@ -61,7 +61,7 @@ struct UnkPathRecordVec_b0213 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkPathRecordVec_b56;
@@ -337,7 +337,7 @@ void* fn_7100fff328(void* dst, const void* src) {
 // A chained map's node list (links at +0x38) and bucket array, as the maps of
 // src/game/UnkStrIdMapErase_A6_b73.cpp keep them.
 struct UnkNodeMap_b0213 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     union {
@@ -449,7 +449,7 @@ struct UnkIdArrayNode_b0213 {
 };
 
 struct UnkIdArrayMap_b0213 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkIdArrayNode_b0213** buckets;
@@ -506,7 +506,7 @@ UnkIdArrayNode_b0213* fn_7101005e44(UnkIdArrayMap_b0213* self, const CStrId* key
 template <class Node>
 struct UnkIdMapOf_b0213 {
     CStrId id;
-    base::UnkAllocator* allocator;  // 0x8
+    base::IAllocator* allocator;  // 0x8
     u32 flags;
     u32 count;
     union {

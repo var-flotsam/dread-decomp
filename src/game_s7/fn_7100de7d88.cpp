@@ -15,7 +15,7 @@ struct UnkPtrArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkPtrArray() {
         if (data) {

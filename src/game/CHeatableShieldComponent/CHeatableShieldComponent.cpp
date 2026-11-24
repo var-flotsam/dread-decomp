@@ -17,7 +17,7 @@ struct UnkHeatableShield : UnkBaseComponent {
     u64 field_0x50;
     u32 field_0x58;
     u32 field_0x5c;
-    base::UnkAllocator* field_0x60;
+    base::IAllocator* field_0x60;
     u8 field_0x68[0x200];
     u64 field_0x268;
     u64 field_0x270;

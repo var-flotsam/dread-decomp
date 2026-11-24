@@ -10,7 +10,7 @@
 
 using base::global::CStrId;
 
-namespace base { struct UnkAllocator; }
+namespace base { struct IAllocator; }
 
 struct UnkActor_710023259c;
 struct UnkStrIdArray {
@@ -25,9 +25,9 @@ struct UnkStrIdList_daa2ac : UnkStrIdArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
-    UnkStrIdList_daa2ac(std::initializer_list<CStrId> ids, u32 step, base::UnkAllocator* allocator,
+    UnkStrIdList_daa2ac(std::initializer_list<CStrId> ids, u32 step, base::IAllocator* allocator,
                         u32 flags);  // fn_710097bb7c
     ~UnkStrIdList_daa2ac();          // fn_71008600a8
 };

@@ -7,7 +7,7 @@
 struct UnkNodeArrayCopy {
     UnkNamedNode** data;
     u32 count;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     explicit UnkNodeArrayCopy(const base::global::CRntVector<UnkNamedNode*>& other) {
         allocator = other.allocator;

@@ -16,7 +16,7 @@
 namespace base::global {
 
 struct CRntFile {
-    base::UnkAllocator* allocator;  // +0x0: null until the first allocation (then the default one)
+    base::IAllocator* allocator;  // +0x0: null until the first allocation (then the default one)
     u64 position;                   // +0x8
     u32 alloc_flags;                // +0x10: the allocation flags (0x3d for the property bag's)
     u8* data;  // +0x18: null while no block is allocated

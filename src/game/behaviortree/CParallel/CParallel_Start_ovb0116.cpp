@@ -36,7 +36,7 @@ struct UnkParallel_ovb0116 {
     u32 running_count;                  // 0x70
     UnkParallelEntry_ovb0116* head;     // 0x78
     UnkParallelEntry_ovb0116* tail;     // 0x80
-    base::UnkAllocator* allocator;      // 0x88
+    base::IAllocator* allocator;      // 0x88
     u32 flags;                          // 0x90
     u8 pad_0x94[0x44];
     u32 field_0xd8;

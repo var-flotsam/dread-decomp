@@ -285,7 +285,7 @@ struct UnkItems_b0230 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     // Destroys the callables and frees the array.
     void Free() {

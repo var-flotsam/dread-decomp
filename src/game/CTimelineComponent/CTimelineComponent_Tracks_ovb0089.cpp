@@ -26,7 +26,7 @@ struct UnkTimelineTrackTable_ovb0089 {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void DestroyAll() {
         if (values && count) {
@@ -55,7 +55,7 @@ struct UnkTimelineComponentFull_ovb0089 {
     u32 timed_count;                      // 0x180
     UnkTimedEntry* timed_head;
     UnkTimedEntry* timed_tail;
-    base::UnkAllocator* timed_allocator;  // 0x198
+    base::IAllocator* timed_allocator;  // 0x198
 
     void FreeTimed() {
         for (UnkTimedEntry* e = timed_head; e;) {

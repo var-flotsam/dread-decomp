@@ -31,7 +31,7 @@ struct UnkHudIdValue_ovb0017 {
 using UnkHudIdValueVector_ovb0017 = base::global::CRntVector<UnkHudIdValue_ovb0017>;
 
 void fn_71011df420(UnkHudIdValueVector_ovb0017* self, std::initializer_list<UnkHudIdValue_ovb0017> items,
-                   u32 step, base::UnkAllocator* allocator, u32 flags);
+                   u32 step, base::IAllocator* allocator, u32 flags);
 
 struct UnkIdWordPair;
 void fn_71011df574(base::global::CRntVector<UnkIdWordPair>* self);

@@ -12,7 +12,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::UnkStrIdMember;
 
 struct UnkMovedVec {
@@ -22,7 +22,7 @@ struct UnkMovedVec {
     u32 step;
     bool field_0x14;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 
     UnkMovedVec(UnkMovedVec&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),

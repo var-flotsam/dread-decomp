@@ -82,7 +82,7 @@ struct UnkGuiNode_l19dff8 {
 static_assert(sizeof(UnkGuiNode_l19dff8) == 0x58, "node");
 
 struct UnkGuiCache_l19dff8 {
-    base::UnkAllocator* allocator;  // 0x0
+    base::IAllocator* allocator;  // 0x0
     u32 flags;                      // 0x8
     u32 size;                       // 0xc
     UnkGuiNode_l19dff8** buckets;   // 0x10

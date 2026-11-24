@@ -68,7 +68,7 @@ void fn_7100543148(UnkEmmyAI_l543148* self, f32 dt) {
     UnkMarkerVertices_l543148 vertices = {
         4, {{0.0f, 50.0f, 0.0f}, {50.0f, 0.0f, 0.0f}, {0.0f, -50.0f, 0.0f}, {-50.0f, 0.0f, 0.0f}}};
 
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     base::global::CRntVector<UnkRecord16_9230> colors(0xf);
     colors.Reserve(4);
     for (u32 i = 0; i < 4; i++)

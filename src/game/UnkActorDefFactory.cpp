@@ -49,7 +49,7 @@ struct UnkActorDefMap {
     base::global::CRntVector<UnkActorDefMapNode*> buckets;
     u32 first_bucket;
     UnkActorDefMapNode* first_node;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     // A union member: the original rereads it after storing to an item while walking the map.

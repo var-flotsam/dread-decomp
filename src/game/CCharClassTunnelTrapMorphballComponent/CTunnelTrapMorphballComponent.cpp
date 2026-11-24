@@ -29,7 +29,7 @@ struct UnkTunnelTrapMorphballComponent {
     u32 field_0xb8;
     bool field_0xbc;
     u32 field_0xc0;
-    base::UnkAllocator* field_0xc8;
+    base::IAllocator* field_0xc8;
     u64 field_0xd0;
     bool field_0xd8;
 };

@@ -17,7 +17,7 @@ using base::global::CStrId;
 
 // ---- the unit's list of string ids (defined in CFXComponent_Update_ovb0052.cpp) ----
 
-void CFXComponent_ConstructIdList(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::UnkAllocator* a);
+void CFXComponent_ConstructIdList(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::IAllocator* a);
 void fn_7101157530(UnkParentPoolList* self);
 UnkFXIdNode* CFXComponent_EraseIdListNode(UnkParentPoolList* self, UnkFXIdNode* node);
 

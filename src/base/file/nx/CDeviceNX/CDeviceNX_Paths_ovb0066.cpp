@@ -151,7 +151,7 @@ public:
     virtual void* vf_0x38();
 };
 
-void fn_71000810cc(base::UnkBuffer* self, u64 size, base::UnkAllocator* allocator, s32 align, u32 flags);
+void fn_71000810cc(base::UnkBuffer* self, u64 size, base::IAllocator* allocator, s32 align, u32 flags);
 
 u32 CDeviceNX_ReadWholeFileIntoNewBuffer(void* table, CRntString* path, void* out, u32 b, void* allocator, u32 align, u32 flags) {
     CRntString full = CDeviceNX_BuildFullPath(table, *path);
@@ -161,7 +161,7 @@ u32 CDeviceNX_ReadWholeFileIntoNewBuffer(void* table, CRntString* path, void* ou
         s64 size = 0;
         nn::fs::GetFileSize(&size, file);
         void* mem = fn_71000839a0(0x28, 3);
-        fn_71000810cc(static_cast<base::UnkBuffer*>(mem), size, static_cast<base::UnkAllocator*>(allocator),
+        fn_71000810cc(static_cast<base::UnkBuffer*>(mem), size, static_cast<base::IAllocator*>(allocator),
                       align, flags);
         UnkFileBuffer_ovb0066* buffer = static_cast<UnkFileBuffer_ovb0066*>(mem);
         ret = 0x7fffffff;

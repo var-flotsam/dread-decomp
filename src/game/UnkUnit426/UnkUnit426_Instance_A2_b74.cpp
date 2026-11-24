@@ -21,7 +21,7 @@ struct UnkUnit426Instance_A2_b74 {
     u64 field_0x78;
     u32 growth;  // 0x80
     u32 flags;   // 0x84
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     void* resource;
 };
 static_assert(sizeof(UnkUnit426Instance_A2_b74) == 0x98, "size");

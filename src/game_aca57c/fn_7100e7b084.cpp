@@ -193,22 +193,22 @@ UnkString200* fn_7100e7c0f0(UnkString200Array* self, UnkString200* pos) {
 void fn_7100e7bc3c(UnkString200Array* self, u32 capacity) {
     if (self->capacity >= capacity)
         return;
-    base::UnkAllocator* allocator = static_cast<base::UnkAllocator*>(self->allocator);
+    base::IAllocator* allocator = static_cast<base::IAllocator*>(self->allocator);
     UnkString200* data =
         static_cast<UnkString200*>(allocator->vf_0x40((u64)capacity * sizeof(UnkString200), 8, self->flags));
     u32* keys = static_cast<u32*>(
-        static_cast<base::UnkAllocator*>(self->allocator)->vf_0x40((u64)capacity * sizeof(u32), 8, self->flags));
+        static_cast<base::IAllocator*>(self->allocator)->vf_0x40((u64)capacity * sizeof(u32), 8, self->flags));
     if (UnkString200* old = self->data) {
         UnkString200* dst = data;
         for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
             new (dst) UnkString200(*old);
             old->~UnkString200();
         }
-        static_cast<base::UnkAllocator*>(self->allocator)->vf_0x48(self->data);
+        static_cast<base::IAllocator*>(self->allocator)->vf_0x48(self->data);
     }
     if (self->keys) {
         __builtin_memcpy(keys, self->keys, (u64)self->count * sizeof(u32));
-        static_cast<base::UnkAllocator*>(self->allocator)->vf_0x48(self->keys);
+        static_cast<base::IAllocator*>(self->allocator)->vf_0x48(self->keys);
     }
     self->data = data;
     self->keys = keys;

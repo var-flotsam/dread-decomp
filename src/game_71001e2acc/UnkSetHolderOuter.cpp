@@ -15,7 +15,7 @@ struct UnkSetHolderOuter {
     u32 count;
     u32 capacity;
     u8 pad_0x20[0x10];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkSetHolderInner {

@@ -10,5 +10,5 @@ struct UnkLightsArray_b42a3 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };

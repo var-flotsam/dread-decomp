@@ -19,7 +19,7 @@ struct UnkSetElem_A4_b72 {
     u32 list_step;
     bool list_grow;
     u32 list_flags;
-    base::UnkAllocator* list_allocator;
+    base::IAllocator* list_allocator;
     u32 field_0x30;
     base::UnkRefHandle owner;  // 0x38
     f32 field_0x40;
@@ -53,7 +53,7 @@ struct UnkSetVector_A4_b72 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void GrowTo(u32 index) {
         if (growable && count <= index) {

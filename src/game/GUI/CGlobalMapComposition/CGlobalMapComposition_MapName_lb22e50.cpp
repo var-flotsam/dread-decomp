@@ -199,7 +199,7 @@ struct UnkMapLabel {
         const CRntString& text = id.data->String();
         u32 length = text.length - skip;
         const char* start = text.data + skip;
-        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        CRntString_InitWithAllocator(Str(), reinterpret_cast<base::IAllocator*>(&storage_vtable));
         storage_vtable = g_unk_7101a194b8 + 2;
         field_0x138 = 0;
         field_0x140 = 0;
