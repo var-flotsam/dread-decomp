@@ -18,9 +18,9 @@ struct UnkSoundRef {
 };
 
 struct UnkAudioSound_ovb0015;
-void fn_710071f878(UnkAudioSound_ovb0015* self);
+void CAudioComponent_ReleaseSoundSlotIds(UnkAudioSound_ovb0015* self);
 struct UnkStruct_710071faf4;
-void fn_710071faf4(UnkStruct_710071faf4* self, const UnkStruct_710071faf4* other);
+void CAudioComponent_CopyConstructSoundSlot(UnkStruct_710071faf4* self, const UnkStruct_710071faf4* other);
 
 void fn_7100d7c604(void* owner, u64* path);
 
@@ -64,10 +64,10 @@ struct UnkAudioStopSound_l71a524 {
     u8 pad_0xc1[0xd0 - 0xc1];
 
     UnkAudioStopSound_l71a524(UnkAudioStopSound_l71a524&& other) {
-        fn_710071faf4(reinterpret_cast<UnkStruct_710071faf4*>(this),
+        CAudioComponent_CopyConstructSoundSlot(reinterpret_cast<UnkStruct_710071faf4*>(this),
                       reinterpret_cast<const UnkStruct_710071faf4*>(&other));
     }
-    ~UnkAudioStopSound_l71a524() { fn_710071f878(reinterpret_cast<UnkAudioSound_ovb0015*>(this)); }
+    ~UnkAudioStopSound_l71a524() { CAudioComponent_ReleaseSoundSlotIds(reinterpret_cast<UnkAudioSound_ovb0015*>(this)); }
 };
 static_assert(sizeof(UnkAudioStopSound_l71a524) == 0xd0, "UnkAudioStopSound_l71a524 layout");
 

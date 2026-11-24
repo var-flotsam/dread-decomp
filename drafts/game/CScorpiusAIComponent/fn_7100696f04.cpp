@@ -22,7 +22,7 @@
 using base::global::CStrId;
 
 struct UnkScorpiusAI_l692a98;
-void fn_7100692a98(UnkScorpiusAI_l692a98* self, f32 amount);
+void CScorpiusAIComponent_SetPartColorFromCubedAmount(UnkScorpiusAI_l692a98* self, f32 amount);
 struct UnkScorpiusAI_b59a4;
 void fn_7100696b48(UnkScorpiusAI_b59a4* self);
 
@@ -230,7 +230,7 @@ u32 fn_7100696f04(UnkScorpiusAI_l696f04* self, UnkScorpiusEvent_l696f04* event) 
         self->health -= event->damage;
         const auto* health = reinterpret_cast<const UnkScorpiusHealthTunables_l696f04*>(&g_unk_717272fd38);
         const f32* max_health = mode == 1 ? &health->max_health_a : &health->max_health_b;
-        fn_7100692a98(reinterpret_cast<UnkScorpiusAI_l692a98*>(self), self->health / *max_health);
+        CScorpiusAIComponent_SetPartColorFromCubedAmount(reinterpret_cast<UnkScorpiusAI_l692a98*>(self), self->health / *max_health);
         if (self->health <= 0.0f && !fn_710113d83c(self->owner->grab)) {
             fn_7100696b48(reinterpret_cast<UnkScorpiusAI_b59a4*>(self));
             if (self->mode == 1)

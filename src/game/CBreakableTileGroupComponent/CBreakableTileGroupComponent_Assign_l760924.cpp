@@ -29,7 +29,7 @@ struct UnkIdMap;
 void fn_7100760774(UnkIdMap<UnkOwnedList>* self, u32 capacity);
 // Releases the keys, frees the arrays and empties the map (a clone of fn_710027e494).
 void fn_7100760ae4(UnkTileStatesMap_ovb0028* self);
-void fn_7100760bf0(UnkTileStatesMap_ovb0028* self);
+void CBreakableTileGroupComponent_ShrinkActorTileStatesMapToCount(UnkTileStatesMap_ovb0028* self);
 
 static inline void CopyConstructVector(UnkTileElemVector_ovb0028* dst, const UnkTileElemVector_ovb0028* src) {
     dst->data = nullptr;
@@ -58,7 +58,7 @@ UnkTileStatesMap_ovb0028* fn_7100760924(UnkTileStatesMap_ovb0028* self, const Un
         return self;
     fn_7100760ae4(self);
     if (other->count != self->capacity) {
-        fn_7100760bf0(self);
+        CBreakableTileGroupComponent_ShrinkActorTileStatesMapToCount(self);
         fn_7100760774(reinterpret_cast<UnkIdMap<UnkOwnedList>*>(self), other->count);
     }
     self->count = other->count;

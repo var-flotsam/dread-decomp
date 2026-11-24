@@ -132,7 +132,7 @@ struct UnkShelmitGrabAI_ovb0111 {
 
 struct UnkShelmitAI_b49a3;
 
-void fn_71006ba7ec(UnkShelmitGrabAI_ovb0111* self, f32 dt) {
+void CShelmitAIComponent_UpdateGrappledTimeAndCooldown(UnkShelmitGrabAI_ovb0111* self, f32 dt) {
     UnkShelmitGrabState_ovb0111* state = &self->state;
     if (self->state.handle && self->state.handle->target && state->target) {
         state->value += dt;
@@ -188,7 +188,7 @@ struct UnkShelmitBlend_ovb0111 {
     UnkShelmitBlendTuning_ovb0111* tuning;  // 0x146c8
 };
 
-void fn_71006ba90c(UnkShelmitBlend_ovb0111* self) {
+void CShelmitAIComponent_ApplyPlatformRotationSpeedFromEntitySpeed(UnkShelmitBlend_ovb0111* self) {
     UnkActor* owner = self->owner;
     if (!owner)
         return;
@@ -272,6 +272,6 @@ static inline void CopyParams(UnkShelmitParamsAI_ovb0111::Block& block, UnkActor
     *out = tuning->params;
 }
 
-void fn_71006bc2a0(UnkShelmitParamsAI_ovb0111* self, UnkShelmitParams_ovb0111* out) {
+void CShelmitAIComponent_GetRegularMeleeChargeShotDropProbabilities(UnkShelmitParamsAI_ovb0111* self, UnkShelmitParams_ovb0111* out) {
     CopyParams(self->block, self->owner, out);
 }

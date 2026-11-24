@@ -28,7 +28,7 @@ static_assert(sizeof(UnkTileRecordOwned_l7613d8) == 0x48, "record layout");
 using UnkTileRecordVector_l7613d8 = base::global::CRntVector<UnkTileRecordOwned_l7613d8>;
 
 // CRntVector<record>::Reserve.
-void fn_71007613d8(base::global::CRntVector<UnkTileRecordElem_b43a2>* array, u32 capacity) {
+void CBreakableTileGroupComponent_ReserveTileInfoVector(base::global::CRntVector<UnkTileRecordElem_b43a2>* array, u32 capacity) {
     UnkTileRecordVector_l7613d8* self = reinterpret_cast<UnkTileRecordVector_l7613d8*>(array);
     if (self->capacity < capacity) {
         UnkTileRecordOwned_l7613d8* p = static_cast<UnkTileRecordOwned_l7613d8*>(

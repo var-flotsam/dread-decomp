@@ -166,7 +166,7 @@ struct UnkAudio_l71e668 {
 struct UnkAudio_b50;
 struct UnkSoundRequest_b50;
 struct UnkSoundRequest_b0038;
-UnkSoundHandle fn_710071a7dc(UnkAudio_b50* self, const UnkSoundRequest_b50* request);
+UnkSoundHandle CAudioComponent_PlaySoundWithLimitCheck(UnkAudio_b50* self, const UnkSoundRequest_b50* request);
 UnkSoundHandle fn_710102540c(UnkDropTarget* self, const UnkStrIdPathPair* ids, const UnkSoundRequest_b0038* request);
 void fn_710071b39c(UnkSoundRequest_l71e668* request, const void* params);
 void fn_71001060e8(UnkSound_l71e668* sound, f32 a, f32 b, f32 c);
@@ -201,7 +201,7 @@ static void Play_l71e668(UnkAudio_l71e668* self, UnkSoundEntry_l71e668* entry, b
     request.field_0x10 = self->values[request.field_0x0];
     request.loop = entry->loop;
     if (entry->ids.id.data == &g_unk_7101d47108->empty || entry->ids.path.data == &g_unk_7101d47200->empty) {
-        entry->handle = fn_710071a7dc(reinterpret_cast<UnkAudio_b50*>(self),
+        entry->handle = CAudioComponent_PlaySoundWithLimitCheck(reinterpret_cast<UnkAudio_b50*>(self),
                                       reinterpret_cast<const UnkSoundRequest_b50*>(&request));
     } else if (!self->CanPlay()) {
         entry->handle = g_unk_7108b6c460;

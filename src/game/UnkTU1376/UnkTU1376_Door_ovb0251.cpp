@@ -259,7 +259,7 @@ void fn_71008cdf84(UnkDoorLock* door) {
         UnkDoorTarget_b0251* target = *t;
         void* r = fn_7100751520(target ? target->field_0x10 : nullptr);
         if (r)
-            fn_710076351c(r);
+            CBreakableVignetteComponent_Break(r);
     }
     if (fn_71010c0bb0(g_unk_7172a01d18, "CurrentScenario.OnDoorOpened")) {
         fn_7100fbc4e0(g_unk_7172a01d18, self->owner);

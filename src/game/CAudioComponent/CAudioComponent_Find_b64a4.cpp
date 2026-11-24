@@ -25,7 +25,7 @@ struct UnkAudioFind_b64a4 {
 // Signature as src/game/CEntity_2.cpp declares it.
 struct UnkEntitySoundComponent;
 
-UnkSoundHandle fn_710071a338(UnkEntitySoundComponent* component, void* a) {
+UnkSoundHandle CAudioComponent_FindSoundHandleByPath(UnkEntitySoundComponent* component, void* a) {
     UnkAudioFind_b64a4* self = reinterpret_cast<UnkAudioFind_b64a4*>(component);
     const u64* key = static_cast<const u64*>(a);
     UnkAudioEntry_b64a4* e = self->entries;

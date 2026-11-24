@@ -92,7 +92,7 @@ struct UnkRinkaUnitKind_ovb0090 {
     s32 kind;  // 0x48: 0, 1 or 2 picks the a, b or c effect
 };
 
-const CFilePathStrId* fn_710065f4a8(UnkRinkaUnitKind_ovb0090* self) {
+const CFilePathStrId* CRinkaUnitComponent_GetSpawningLoopFxPath(UnkRinkaUnitKind_ovb0090* self) {
     static const CFilePathStrId a("actors/props/rinkaunit/fx/rinkaspawningloopa.bcptl", true);
     static const CFilePathStrId b("actors/props/rinkaunit/fx/rinkaspawningloopb.bcptl", true);
     static const CFilePathStrId c("actors/props/rinkaunit/fx/rinkaspawningloopc.bcptl", true);
@@ -101,7 +101,7 @@ const CFilePathStrId* fn_710065f4a8(UnkRinkaUnitKind_ovb0090* self) {
     return kind == 2 ? &c : path;
 }
 
-__attribute__((noinline)) const CFilePathStrId* fn_710065f690(UnkRinkaUnitKind_ovb0090* self) {
+__attribute__((noinline)) const CFilePathStrId* CRinkaUnitComponent_GetInitLoopFxPath(UnkRinkaUnitKind_ovb0090* self) {
     static const CFilePathStrId a("actors/props/rinkaunit/fx/rinka_initloopa.bcptl", true);
     static const CFilePathStrId b("actors/props/rinkaunit/fx/rinka_initloopb.bcptl", true);
     static const CFilePathStrId c("actors/props/rinkaunit/fx/rinka_initloopc.bcptl", true);
@@ -146,7 +146,7 @@ void fn_710066036c(UnkRinkaUnitSpawn_ovb0090* self) {
         return;
     UnkModelManager* manager = ModelManager();
     UnkFxObject_ovb0041* fx =
-        fn_71003b7db0(manager, fn_710065f690(reinterpret_cast<UnkRinkaUnitKind_ovb0090*>(self)), false, true);
+        fn_71003b7db0(manager, CRinkaUnitComponent_GetInitLoopFxPath(reinterpret_cast<UnkRinkaUnitKind_ovb0090*>(self)), false, true);
     self->fx = fx;
     if (!fx)
         return;

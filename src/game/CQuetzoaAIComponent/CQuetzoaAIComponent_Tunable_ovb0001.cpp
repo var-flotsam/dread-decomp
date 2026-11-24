@@ -14,6 +14,6 @@ struct UnkQuetzoaAI_ovb0001 {
     UnkQuetzoaCharClass_ovb0001* charClass;  // 0x14a28
 };
 
-f32 fn_710064bbe4(UnkQuetzoaAI_ovb0001* self) {
+f32 CQuetzoaAIComponent_GetTunableBySubspecies(UnkQuetzoaAI_ovb0001* self) {
     return self->charClass->field_0x708 == 0 ? g_unk_71726c4890.field_0x34 : g_unk_71726c4890.field_0x60.value;
 }

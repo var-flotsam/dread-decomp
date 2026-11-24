@@ -47,7 +47,7 @@ struct UnkShakernautAIComponent_sha {
 
 static inline f32 Dot(const UnkVec2_sh& a, f32 x, f32 y) { return a.x * x + a.y * y; }
 
-CStrId fn_71006b1b48(UnkShakernautAIComponent_sha* self) {
+CStrId CShakernautAIComponent_SelectIdByFacingAndRecordFlags(UnkShakernautAIComponent_sha* self) {
     if (!fn_7101136308(self->owner->attack))
         return base::global::CStrId::Empty();
     UnkReflObject* ai = self->owner->ai;

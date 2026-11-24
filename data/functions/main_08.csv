@@ -1034,7 +1034,7 @@ address,size,name,name_source,subsystem,status
 0x710082eec0,128,fn_710082eec0,unknown,game/components?,O
 0x710082ef40,168,fn_710082ef40,unknown,game/components?,O
 0x710082efe8,260,fn_710082efe8,unknown,game/components?,O
-0x710082f0f0,540,fn_710082f0f0,unknown,game/components?,O
+0x710082f0f0,540,CPullOffGrapplePointComponent_InitStatics,inferred,game/components?,O
 0x710082f30c,4,CSwingableGrapplePointComponent::refl_AddAttributes,reflection,game/components,O
 0x710082f310,244,CSwingableGrapplePointComponent::refl_GetClass,reflection,game/components,O
 0x710082f404,4,CSwingableGrapplePointComponent::refl_AddFields,reflection,game/components,O

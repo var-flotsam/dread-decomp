@@ -5,7 +5,7 @@ struct CShelmitPlasmaRayAttack_b34 {
     u32 state;
 };
 
-void fn_71006b4900(CShelmitPlasmaRayAttack_b34* self);
+void CShelmitPlasmaRayAttack_RemovePlasmaRayColliderAndEffects(CShelmitPlasmaRayAttack_b34* self);
 
 // Ends the attack: states 0-2 and 7-9 just move to 11; states 3-6 also run fn_71006b4900.
 void fn_71006b6508(CShelmitPlasmaRayAttack_b34* self) {
@@ -15,7 +15,7 @@ void fn_71006b6508(CShelmitPlasmaRayAttack_b34* self) {
     case 5:
     case 6:
         self->state = 11;
-        fn_71006b4900(self);
+        CShelmitPlasmaRayAttack_RemovePlasmaRayColliderAndEffects(self);
         break;
     case 0:
     case 1:

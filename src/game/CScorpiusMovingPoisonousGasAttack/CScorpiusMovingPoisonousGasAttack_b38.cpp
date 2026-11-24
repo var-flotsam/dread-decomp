@@ -55,7 +55,7 @@ struct UnkGasAttack {
 void fn_7100689d84(UnkGasAttack* self);
 bool fn_7100689c0c(UnkGasAttack* self);
 void fn_7100689ea8(UnkGasAttack* self);
-bool fn_71006895a0(void*, void*);
+bool CScorpiusMovingPoisonousGasAttack_OnEventSendFacingToTarget(void*, void*);
 
 // The bit pattern of a float in memory (a word load, as the original reads it).
 static inline u32 AsU32(const f32& value) {
@@ -76,7 +76,7 @@ static inline void DropHandle(UnkGasAttack* self, UnkGasLink* link) {
     }
 }
 
-void fn_71006885e8(UnkGasAttack* self) {
+void CScorpiusMovingPoisonousGasAttack_SendFacingAndLinkTrackListener(UnkGasAttack* self) {
     fn_7100689d84(self);
     self->field_0x70 = fn_7100689c0c(self);
     UnkActor* owner = self->owner;
@@ -105,7 +105,7 @@ void fn_71006885e8(UnkGasAttack* self) {
     UnkWeakTarget* track = static_cast<UnkWeakTarget*>(self->owner->field_0x220);
     UnkGasLink* link = &self->link;
     link->context = self;
-    link->callback = reinterpret_cast<void (*)()>(&fn_71006895a0);
+    link->callback = reinterpret_cast<void (*)()>(&CScorpiusMovingPoisonousGasAttack_OnEventSendFacingToTarget);
     DropHandle(self, link);
     if (track) {
         // The slot is addressed by its offset.

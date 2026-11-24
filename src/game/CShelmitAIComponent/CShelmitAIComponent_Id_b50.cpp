@@ -22,7 +22,7 @@ struct UnkShelmitAI_b50 {
     UnkShelmitOwner_b50* owner;
 };
 
-void fn_71006bc188(UnkShelmitAI_b50* self, void* arg, u32 event, CStrId* out) {
+void CShelmitAIComponent_GetFlee2PatrolWalkId(UnkShelmitAI_b50* self, void* arg, u32 event, CStrId* out) {
     *out = base::global::CStrId::Empty();
     if (event == 12) {
         if (UnkTakumakuComponent* component = self->owner->field_0x220) {

@@ -13,7 +13,7 @@ struct UnkShakernautAI_b64a4 {
 
 void fn_7101106490(UnkShakernautAI_b64a4* self, void* which);
 
-void fn_71006b0e10(UnkShakernautAI_b64a4* self, void* which) {
+void CShakernautAIComponent_ResetTimerForGivenMember(UnkShakernautAI_b64a4* self, void* which) {
     fn_7101106490(self, which);
     if (which == self->field_0x146d0) {
         self->field_0x14808 = 0;

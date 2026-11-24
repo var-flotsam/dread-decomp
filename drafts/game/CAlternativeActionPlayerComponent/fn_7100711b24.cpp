@@ -40,7 +40,7 @@ struct UnkAltActionUpdate_l711b24 {
 };
 
 struct UnkAltActionAbort_ovb0115;
-void fn_7100711c88(UnkAltActionAbort_ovb0115* self);
+void CAlternativeActionPlayerComponent_RequestAbortTrackAnimation(UnkAltActionAbort_ovb0115* self);
 
 void fn_7100711b24(UnkAltActionUpdate_l711b24* self, f32 dt) {
     fn_71010c4234(reinterpret_cast<char*>(self));
@@ -70,5 +70,5 @@ void fn_7100711b24(UnkAltActionUpdate_l711b24* self, f32 dt) {
         rect->v[2] = rect->v[0];
         rect->v[3] = rect->v[1];
     }
-    fn_7100711c88(reinterpret_cast<UnkAltActionAbort_ovb0115*>(self));
+    CAlternativeActionPlayerComponent_RequestAbortTrackAnimation(reinterpret_cast<UnkAltActionAbort_ovb0115*>(self));
 }

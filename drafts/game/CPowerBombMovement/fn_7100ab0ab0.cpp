@@ -91,7 +91,7 @@ UnkTgmRefVector_b205* fn_71006e9fb4();
 
 struct UnkXParasiteAI;
 struct UnkVector3_b55;
-bool fn_71006eb590(UnkXParasiteAI* self);
+bool CXParasiteAIComponent_ReadIsBeingAttractedAndCheckAvailable(UnkXParasiteAI* self);
 void XParasiteAI_AttractToPowerBomb(UnkXParasiteAI* self, UnkVector3_b55* position);
 void fn_71006eb6fc(UnkXParasiteAI* self);  // lets the parasite go
 
@@ -236,7 +236,7 @@ void fn_7100ab0ab0(UnkPbMovement_lab0ab0* self, f32 dt) {
     UnkTgmRefVector_b205* parasites = fn_71006e9fb4();
     for (UnkTgmRef_b205** it = parasites->data, **end = it + parasites->count; it != end; ++it) {
         UnkPbParasite_lab0ab0* parasite = Parasite(*it);
-        if (!fn_71006eb590(reinterpret_cast<UnkXParasiteAI*>(parasite)))
+        if (!CXParasiteAIComponent_ReadIsBeingAttractedAndCheckAvailable(reinterpret_cast<UnkXParasiteAI*>(parasite)))
             continue;
         UnkPbPos_lab0ab0* owner = self->owner;
         UnkPbPos_lab0ab0* actor = parasite->actor;

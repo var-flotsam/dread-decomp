@@ -24,7 +24,7 @@ __attribute__((always_inline)) static inline void ConstructQuetzoa(UnkQuetzoaDef
     self->field_0x4fc = 0x101;
 }
 
-void fn_71006490e8(UnkQuetzoaDef* self) {
+void CCharClassQuetzoaAIComponent_ConstructBase(UnkQuetzoaDef* self) {
     ConstructQuetzoa(self);
 }
 

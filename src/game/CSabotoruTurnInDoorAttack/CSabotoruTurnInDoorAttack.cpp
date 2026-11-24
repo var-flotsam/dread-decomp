@@ -17,7 +17,7 @@ struct UnkSabotoruTurnInDoor : UnkAttackBase {
     UnkWeakHandle* field_0x50;
 };
 
-void fn_7100673b60(UnkSabotoruTurnInDoor* self) {
+void CSabotoruTurnInDoorAttack_UnhookLinkAndNotifyAI(UnkSabotoruTurnInDoor* self) {
     fn_71003609b8(self);
     if (UnkWeakHandle* handle = self->field_0x50) {
         if (UnkWeakTarget* target = handle->target)

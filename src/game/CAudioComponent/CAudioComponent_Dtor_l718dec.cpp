@@ -15,7 +15,7 @@ using base::global::CStrId;
 using base::global::UnkStringPool;
 
 struct UnkAudioSound_ovb0015;
-void fn_710071f878(UnkAudioSound_ovb0015* self);
+void CAudioComponent_ReleaseSoundSlotIds(UnkAudioSound_ovb0015* self);
 
 // As src/game/CAudioComponent/CAudioComponent_Stop_b65a4.cpp has them.
 struct UnkSoundRef {
@@ -136,7 +136,7 @@ void fn_7100718dec(UnkAudioComponent_l718dec* self) {
     UnkAudioVector_l718dec<UnkAudioSlot_l718dec>& sounds = self->sounds;
     if (sounds.data) {
         for (u32 i = 0; i < sounds.count; ++i)
-            fn_710071f878(reinterpret_cast<UnkAudioSound_ovb0015*>(&sounds.data[i]));
+            CAudioComponent_ReleaseSoundSlotIds(reinterpret_cast<UnkAudioSound_ovb0015*>(&sounds.data[i]));
         sounds.count = 0;
         sounds.allocator->vf_0x48(sounds.data);
         sounds.capacity = 0;

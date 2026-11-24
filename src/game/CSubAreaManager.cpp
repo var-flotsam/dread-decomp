@@ -333,7 +333,7 @@ static inline const CStrId& FirstId(const UnkSubArea* area) { return area ? area
 static inline const CStrId& SecondId(const UnkSubArea* area) { return area ? area->field_0x50 : base::global::CStrId::Empty(); }
 
 // The camera holder fn_7100defcec gives and its current camera controller (game/UnkCameraCtrl.h).
-void fn_7100723120(void* holder);
+void CAutofocusAimCameraCtrl_RemoveAllFromCameraList(void* holder);
 
 
 void fn_7100eead58(CSubAreaManager* self, const CStrId& prev_a, const CStrId& prev_b, const CStrId& cur_a,
@@ -362,7 +362,7 @@ void CSubAreaManager_SetCurrentSubArea(CSubAreaManager* self, UnkSubArea* area, 
         if (UnkCameraCtrl* camera = fn_71010e2080(holder)) {
             const CStrId& id = *reinterpret_cast<CStrId*>(GameManagerIdTable().pad_0x0 + 0x868);
             if (camera->field_0x20.data == id.data) {
-                fn_7100723120(holder);
+                CAutofocusAimCameraCtrl_RemoveAllFromCameraList(holder);
                 camera = fn_71010e2080(holder);
                 if (!camera)
                     goto update;

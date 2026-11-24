@@ -124,7 +124,7 @@ struct UnkAttackQuery_ovb0115 {
     UnkAttackQuery_ovb0115(UnkActor* actor, void* params) { fn_71002c6f80(this, actor, params); }
 };
 
-bool fn_710069ae3c(UnkScourgeSlash_b0115* self, bool check, void* a, void* b) {
+bool CScourgeTongueSlashAttack_CheckWithFlatDistanceToTarget(UnkScourgeSlash_b0115* self, bool check, void* a, void* b) {
     UnkScourgeAIView_ovb0115* ai = static_cast<UnkScourgeAIView_ovb0115*>(self->actor->field_0x240);
     UnkActor* target = fn_7100d7c990(self->actor);
     if (!ai || !target)
@@ -238,7 +238,7 @@ struct UnkScourgeSlashShape_ovb0115 {
 };
 
 // Gives the tongue's collider (created on first use as a 2D polygon collection) the outline.
-void fn_710069b8a0(UnkScourgeSlashShape_ovb0115* self, UnkTileOutline* outline) {
+void CScourgeTongueSlashAttack_SetTongueBreakableTileBlockerOutline(UnkScourgeSlashShape_ovb0115* self, UnkTileOutline* outline) {
     UnkCollisionContainer* collision = self->owner->collision;
     if (!collision)
         return;
