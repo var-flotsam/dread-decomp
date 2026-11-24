@@ -145,7 +145,7 @@ address,name,name_source,reason
 0x71009f5c18,CShockWavePoolComponent_DestroyAndDelete,inferred,the deleting destructor: runs the complete destructor (as fn_71009f5b78) and frees the object
 0x71009f5cc0,CShockWavePoolComponent_Reset,inferred,"after the CComponent base step fn_71010c4228, assigns a freshly constructed member to +0x40 (fn_71009f5730, fn_71009f5d50), frees and empties the node list +0x268 and clears +0x298 and +0x318"
 0x71009f7da4,CShockWavePoolComponent_AddActor,inferred,"appends the actor to the node list +0x268, except when it is the player (fn_7100defcd4) or the game manager's second player (+0x29a0) and either is already listed"
-0x71009f7ec4,CShockWavePoolComponent_CanHitActor,inferred,"false for a listed actor unless active (+0x244) and timer +0x320 at 0 or forced; true without a point segment (+0x2a8), else whether the actor's 2D box touches the first two points' segment"
+0x71009f7ec4,CShockWavePoolComponent_CanHitActor,inferred,"false for a listed actor unless active (+0x244) and timer +0x320 at 0 or forced; true with no point segment (+0x2a8: no points, or one with +0x2d4 clear), else whether the actor's 2D box touches the segment"
 0x71009f8074,CShockWavePoolComponent_GetDirection,inferred,"returns a unit xy vector: +x or -x by the sign of the linked object's (+0x1c8) angle y, turned about z by +0x164 (opposite sign for +x)"
 0x71009f8bcc,CCharClassShotComponent_Destroy,inferred,"the complete destructor: sets vtable g_unk_7101a8ab40, destroys the owned list +0x58 (vLaunchShotConfigs) and runs the CCharClassComponent base destructor fn_71011acd74"
 0x71009f8c70,CCharClassShotComponent_DestroyAndDelete,inferred,the deleting destructor: runs the complete destructor (as fn_71009f8bcc) and frees the object
