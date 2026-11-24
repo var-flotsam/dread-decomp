@@ -32,6 +32,7 @@
 #include "game/UnkActor.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTimelineComponent.h"
+#include "game/UnkAimTunable.h"
 
 struct UnkSmState_A1_b64 {
     virtual void vf_0x0();
@@ -303,10 +304,6 @@ void fn_71002f9694(UnkSmAbility_A1_b64* self, bool on) {
 
 // CAbilityShinespark's unit (machine +0x6a0, states 0-5, none 6): the owner's facing feeds two steps; a
 // flag drops once the facing leaves the allowed cone, and state 4 is requested when the timer runs out.
-struct UnkAimTunable {
-    u8 pad_0x0[0xb8];
-    f32 field_0xb8;
-};
 
 using base::math::CVector3D;
 

@@ -11,6 +11,7 @@
 #include "game/UnkTU1159.h"
 #include "game/UnkTU2560.h"
 #include "types.h"
+#include "game/UnkTarget.h"
 
 using base::reflection::CClass;
 
@@ -41,14 +42,6 @@ struct UnkRedenkiController_b55 {
 };
 
 // The member type, by the name src/game/CFingSwarmControllerComponent/fn_7100579d08.cpp gives it.
-struct UnkTarget {
-    u8 pad_0x0[0x160];
-    f32 field_0x160;
-    u8 pad_0x164[4];
-    f32 field_0x168;
-    u8 pad_0x16c[0x14];
-    u8 field_0x180;
-};
 
 extern char g_unk_710164a430[];
 u8 fn_71007452a4(UnkTarget* target);

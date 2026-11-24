@@ -11,6 +11,7 @@
 #include "game/UnkTU1159.h"
 #include "game/UnkTU2560.h"
 #include "types.h"
+#include "game/UnkTarget.h"
 
 using base::reflection::CClass;
 
@@ -49,14 +50,6 @@ struct UnkMessage_579d08 {
     UnkTypeRef* field_0x0;
 };
 
-struct UnkTarget {
-    u8 pad_0x0[0x64];
-    f32 field_0x64;
-    f32 field_0x68;
-    f32 field_0x6c;
-    u8 pad_0x70[0x110];
-    u8 field_0x180;
-};
 
 extern u8 g_unk_7101649f60[];
 

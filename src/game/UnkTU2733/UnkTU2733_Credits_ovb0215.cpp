@@ -12,6 +12,7 @@
 #include "base/global/timeline/CEvent.h"
 #include "game/UnkTU2733.h"
 #include "types.h"
+#include "game/UnkLanguageText.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -19,10 +20,6 @@ using base::global::UnkStringEntry;
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
-struct UnkLanguageText {
-    u8 unk_0x0[0x20];
-    UnkLanguageText(const UnkLanguageText& other) { fn_7100066cac(this, &other); }
-};
 
 struct UnkLanguage {
     u8 unk_0x0[0x48];

@@ -10,6 +10,7 @@
 #include "game/UnkTU376.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
+#include "game/UnkShape.h"
 
 struct UnkOwner_o0309 {
     u8 pad_0x0[0x44];
@@ -39,10 +40,6 @@ struct UnkTempObject_o0309 {
 struct UnkShapeInner_o0309 {
     void** vtable;
     u8 field_0x8[0x20];
-};
-struct UnkShape {
-    u8 pad_0x0[0x158];
-    UnkShapeInner_o0309* field_0x158;
 };
 struct UnkFlagged;
 
