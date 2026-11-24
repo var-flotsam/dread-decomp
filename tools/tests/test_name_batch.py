@@ -385,6 +385,15 @@ class FetchAndApply(StateDir):
         self.assertIn("1 applied, 3 rejected", report)
         self.assertIn("per landed name", report)
 
+    def test_empty_evidence_is_not_applied(self):
+        # A live run had a proposal with an empty evidence line judged right and "true"; rename.py needs a reason.
+        rows = [{"verdict": "right", "evidence_true": "yes", "stated_evidence": " "},
+                {"verdict": "right", "evidence_true": "yes", "stated_evidence": "reads +0x10"}]
+        applied, rejected, none = nb.choose(rows)
+        self.assertEqual(applied, [rows[1]])
+        self.assertEqual(rejected, [rows[0]])
+        self.assertEqual(none, [])
+
     def test_proposals_feed_review(self):
         info = self.make_run("p1", kind="propose", n=2)
         ids = [m["custom_id"] for m in info["items"]]
