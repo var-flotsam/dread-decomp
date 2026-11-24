@@ -18,7 +18,7 @@ struct UnkQueryCtx {
     u16 arg2;
 };
 
-bool fn_7100d5cea8(UnkQueryCtx* ctx, const UnkNode* node);
+bool fn_7100d5cea8(UnkQueryCtx* ctx, const UnkBvhNode* node);
 
 bool fn_7100d5bfbc(UnkTree* self, u32 mask, UnkBvhCollider* shape, void* arg, u32 arg2) {
     UnkFlags result = NoFlags_d5bfbc();
@@ -30,7 +30,7 @@ bool fn_7100d5bfbc(UnkTree* self, u32 mask, UnkBvhCollider* shape, void* arg, u3
         u32 count = self->nodeCount;
         u32 i = 0;
         while (i < count) {
-            const UnkNode& n = self->nodes[i];
+            const UnkBvhNode& n = self->nodes[i];
             if (bounds.max.x >= n.minX && bounds.min.x <= n.maxX && bounds.max.y >= n.minY && bounds.min.y <= n.maxY) {
                 if (n.index < 0 && !fn_7100d5cea8(&ctx, &n))
                     break;
