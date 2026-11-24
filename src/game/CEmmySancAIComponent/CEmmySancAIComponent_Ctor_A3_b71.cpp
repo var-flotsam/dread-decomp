@@ -73,7 +73,7 @@ struct UnkSancVt_A3_b71 {
 struct UnkSanc_A3_b71 : UnkSancVt_A3_b71 {
     u64 field_0x2a6f8 = 0;
     base::global::CRntVector<UnkSancElem_A3_b71> elems{0xf};
-    bool field_0x2a728 = false;
+    bool bZipLine004Behavior = false;
     UnkSancList_A3_b71 first;
     UnkSancList_A3_b71 second;
 

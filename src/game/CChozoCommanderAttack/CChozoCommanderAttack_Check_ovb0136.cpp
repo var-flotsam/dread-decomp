@@ -31,7 +31,7 @@ struct UnkCommanderPlayerLink_ovb0136 {
 
 struct UnkCommanderCharClass_ovb0136 : base::reflection::UnkReflObject {
     u8 pad_0x8[0x15ac];
-    f32 field_0x15b4;
+    f32 fAttackWaitTimeBetweenPhases;
 };
 
 struct UnkCommanderAI_ovb0136 : base::reflection::UnkReflObject {
@@ -72,7 +72,7 @@ bool fn_710042679c(CAttack* attack, void* arg, u32 mode) {
     if (ai && fn_710009d50c(ai->vf_0x0(), fn_710044e708())) {
         UnkCommanderCharClass_ovb0136* charClass = ai->charClass;
         if (charClass && fn_710009d50c(charClass->vf_0x0(), fn_710044d0c0()) &&
-            ai->field_0x15d10 < charClass->field_0x15b4)
+            ai->field_0x15d10 < charClass->fAttackWaitTimeBetweenPhases)
             return false;
     }
     return PowerBombAllows();

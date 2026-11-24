@@ -22,7 +22,7 @@ struct UnkGoliathAI_l58d9c4 {
 
 struct UnkGoliathAttack_l58d9c4 {
     u8 pad_0x0[0x44];
-    f32 field_0x44;
+    f32 fMaxDistance;
 };
 
 struct UnkGoliathActor_l58d9c4 {
@@ -44,7 +44,7 @@ f32 fn_710058d9c4(UnkGoliathAttack_l58d9c4* self, UnkGoliathActor_l58d9c4* actor
                 return 0.0f;
             UnkGoliathTunables_gla* t = &g_unk_71726e5e70;
             // picks between the two bit patterns, as the original does
-            f32 mine = self->field_0x44;
+            f32 mine = self->fMaxDistance;
             u32 mine_bits, fallback_bits;
             __builtin_memcpy(&mine_bits, &mine, 4);
             __builtin_memcpy(&fallback_bits, &t->field_0x28, 4);

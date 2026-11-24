@@ -15,7 +15,7 @@ struct UnkObject_7100495954 {
 
 struct UnkClassData : UnkObject_7100495954 {
     u8 pad_0x8[0x7f0];
-    u8 field_0x7f8;
+    u8 bUsesShield;
 };
 
 struct UnkComponent_495954 : UnkObject_7100495954 {
@@ -43,7 +43,7 @@ f32 fn_7100495954(UnkSelf_495954* self, void* arg, u32 mode) {
     UnkComponent_495954* component = self->field_0x8->field_0x240;
     if (component && fn_710009d50c(component->vf_0x0(), fn_7100497f2c())) {
         UnkClassData* data = component->field_0x10;
-        if (data && fn_710009d50c(data->vf_0x0(), fn_7100496fbc()) && data->field_0x7f8) {
+        if (data && fn_710009d50c(data->vf_0x0(), fn_7100496fbc()) && data->bUsesShield) {
             if (!component->field_0x14999)
                 value = 0.0f;
         }

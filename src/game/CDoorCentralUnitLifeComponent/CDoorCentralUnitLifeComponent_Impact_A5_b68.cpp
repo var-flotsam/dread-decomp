@@ -15,11 +15,11 @@ struct UnkCentralUnitDoor_b46a2;
 
 struct UnkDoorCentralUnitLife_A5_b68 {
     u8 pad_0x0[0xc08];
-    s32 field_0xc08;
+    s32 eMode;
 };
 
 bool fn_71008ca8ac(UnkDoorCentralUnitLife_A5_b68* self) {
-    if (self->field_0xc08 != 1) {
+    if (self->eMode != 1) {
         fn_71008ca700(reinterpret_cast<UnkCentralUnitDoor_b46a2*>(self), false);
         CStrId id("CENTRAL_UNIT_DOOR_IMPACT", true);
         UnkGameManager* gm = g_unk_7101d47310;

@@ -27,7 +27,7 @@ struct UnkDoorLife_b56 {
     u8 pad_0x0[0x30];
     UnkDoorLifeOwner_b56* owner;
     u8 pad_0x38[0xc08 - 0x38];
-    s32 field_0xc08;
+    s32 eMode;
     u8 pad_0xc0c[0xc49 - 0xc0c];
     bool field_0xc49;
 };
@@ -43,7 +43,7 @@ UnkDoorLifeShield_b56* fn_710030a820(UnkDoorLifeOwner_b56* owner);
 void fn_71007e9ea0(UnkDoorLifeShield_b56* shield, bool flag);
 
 void fn_71008ca0b8(UnkDoorLife_b56* self, bool closed) {
-    if (self->field_0xc08 == 1) {
+    if (self->eMode == 1) {
         fn_71008ca700(reinterpret_cast<UnkCentralUnitDoor_b46a2*>(self), closed);
         return;
     }

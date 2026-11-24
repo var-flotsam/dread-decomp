@@ -19,7 +19,7 @@ struct UnkCharClassSteamJet {
     u8 pad_0x0[0x5c];
     f32 damage;  // 0x5c
     u8 pad_0x60[0x38];
-    bool field_0x98;
+    bool bSteamOnly;
 };
 
 struct UnkSteamJetComponent {
@@ -56,7 +56,7 @@ bool fn_710089e340(UnkSteamJetComponent* self, UnkSteamJetArg* arg) {
         self->field_0xbc4 = self->field_0xc78->damage;
         fn_71008c1538(reinterpret_cast<UnkRequest*>(self->request), self->field_0xbc4);
     }
-    if (self->field_0xc78->field_0x98) {
+    if (self->field_0xc78->bSteamOnly) {
         self->field_0xae1 = true;
         self->field_0xbe0 = true;
     }

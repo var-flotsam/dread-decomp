@@ -18,7 +18,7 @@ struct UnkWarriorXSend_b58 {
     u8 pad_0x0[0x30];
     UnkWarriorXSendOwner_b58* owner;
     u8 pad_0x38[0x149cc - 0x38];
-    s32 field_0x149cc;
+    s32 eTransformationType;
 };
 
 struct UnkWarriorXHashed_b58 {
@@ -30,7 +30,7 @@ struct UnkDescribed;
 
 void fn_710048f8b0(UnkWarriorXSend_b58* self) {
     fn_7100498db8(reinterpret_cast<UnkSelf*>(self));
-    if (self->field_0x149cc != 0) {
+    if (self->eTransformationType != 0) {
         void* target = self->owner->field_0x220;
         if (target) {
             UnkWarriorXHashed_b58* d = *reinterpret_cast<UnkWarriorXHashed_b58**>(

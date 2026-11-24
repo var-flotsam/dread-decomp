@@ -16,7 +16,7 @@ struct UnkSetCameraNearEvent {
     u8 unk_0x8[0x4];
     f32 distance;  // 0xc
     CStrId id;  // 0x10
-    u32 field_0x18;
+    u32 eDir;
 };
 
 void fn_7100cd1cd8(UnkSetCameraNearEvent* self) {
@@ -24,5 +24,5 @@ void fn_7100cd1cd8(UnkSetCameraNearEvent* self) {
     self->vtable = g_unk_7101aa6048 + 0x10;
     self->distance = 100.0f;
     new (&self->id) CStrId("", true);
-    self->field_0x18 = 0;
+    self->eDir = 0;
 }

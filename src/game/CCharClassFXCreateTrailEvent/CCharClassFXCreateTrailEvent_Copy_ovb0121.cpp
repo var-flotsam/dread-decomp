@@ -60,7 +60,7 @@ struct UnkTrailEventData_ovb0121 {
     u32 field_0x8;
     UnkCopiedId_ovb0121<&g_unk_7101d47108> a;     // 0x10
     UnkCopiedId_ovb0121<&g_unk_7101d47200> path;  // 0x18
-    u32 field_0x20;
+    u32 eLinkType;
     UnkCopiedId_ovb0121<&g_unk_7101d47108> b;     // 0x28
     UnkTrailBlock_ovb0121 block;                  // 0x30
 };
@@ -69,7 +69,7 @@ UnkTrailEventData_ovb0121* fn_7100bb1abc(UnkTrailEventData_ovb0121* self, const 
     self->field_0x8 = other->field_0x8;
     self->a = other->a;
     self->path = other->path;
-    self->field_0x20 = other->field_0x20;
+    self->eLinkType = other->eLinkType;
     self->b = other->b;
     self->block = other->block;
     return self;

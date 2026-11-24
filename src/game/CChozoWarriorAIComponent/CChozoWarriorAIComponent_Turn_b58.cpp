@@ -25,7 +25,7 @@ struct UnkWarriorTurn_b58 {
     u8 pad_0x0[0x30];
     UnkWarriorTurnOwner_b58* owner;
     u8 pad_0x38[0x149cc - 0x38];
-    u32 field_0x149cc;
+    u32 eTransformationType;
     u8 pad_0x149d0[0x14b40 - 0x149d0];
     u64 field_0x14b40;
 };
@@ -52,6 +52,6 @@ void fn_71004994f4(UnkWarriorTurn_b58* self) {
         angles.y = y;
         reinterpret_cast<void (*)(UnkWarriorTurnOwner_b58*, CVector3D*, bool)>(o->vtable[0xd8 / 8])(
             o, &angles, true);
-        self->field_0x149cc = 3;
+        self->eTransformationType = 3;
     }
 }

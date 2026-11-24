@@ -49,7 +49,7 @@ struct UnkFireComponent_b57 {
 struct UnkCantFireRecord_b57 {
     u8 pad_0x0[0x20];
     base::global::UnkStringData* id;
-    bool field_0x28;
+    bool bBufferInputActionSynchronized;
 };
 
 void fn_7100305818(void* object, UnkFireMessage_b57* message, s32* kind);
@@ -72,7 +72,7 @@ bool fn_7100831aa0(UnkFireComponent_b57* self, UnkFireMessage_b57* message, void
             u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(record->id) + 0x30);
             base::reflection::UnkReflTypeIdArg mode;
             mode.id = 0;
-            UnkDesc_SpitSend* desc = record->field_0x28 ? reinterpret_cast<UnkDesc_SpitSend*>(&g_unk_7172769758) : &g_unk_7172769740;
+            UnkDesc_SpitSend* desc = record->bBufferInputActionSynchronized ? reinterpret_cast<UnkDesc_SpitSend*>(&g_unk_7172769758) : &g_unk_7172769740;
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_SpitSend().value;
             fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, desc, &mask);
